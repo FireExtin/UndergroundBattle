@@ -20,6 +20,7 @@ func cloneBoardState(state BoardState) BoardState {
 	cloned.RandomResults = slices.Clone(state.RandomResults)
 	cloned.Cards = cloneCardStates(state.Cards)
 	cloned.Continuous = cloneContinuousRegistry(state.Continuous)
+	cloned.Attachments = cloneAttachmentRegistry(state.Attachments)
 	return cloned
 }
 
@@ -132,6 +133,21 @@ func cloneContinuousEffects(effects []ContinuousEffect) []ContinuousEffect {
 		next := effect
 		next.DependencyKey = slices.Clone(effect.DependencyKey)
 		cloned = append(cloned, next)
+	}
+
+	return cloned
+}
+
+func cloneAttachmentRegistry(registry AttachmentRegistry) AttachmentRegistry {
+	cloned := registry
+	cloned.Active = cloneAttachments(registry.Active)
+	return cloned
+}
+
+func cloneAttachments(attachments []Attachment) []Attachment {
+	cloned := make([]Attachment, 0, len(attachments))
+	for _, attachment := range attachments {
+		cloned = append(cloned, attachment)
 	}
 
 	return cloned

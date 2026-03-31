@@ -144,6 +144,43 @@ func TestDeclareAttackRejectsExhaustedAttacker(t *testing.T) {
 	}
 }
 
+func TestDeclareAttackIgnoresXQ31TargetLegalityRestriction(t *testing.T) {
+	state := newRoleActionTestState()
+	state.Turn.Priority.CurrentPlayerID = "P2"
+	state.Turn.ActivePlayerID = "P2"
+	attacker := testCharacterCard("p2-attacker", "P2", CardNumericStats{Combat: 2, Defense: 2})
+	protected := testCharacterCard("p1-prestige", "P1", CardNumericStats{Combat: 1, Defense: 3})
+	protected.PrintedKeywords = []string{"声望"}
+	xq31 := testCharacterCard("xq31-1", "P1", CardNumericStats{Combat: 1, Defense: 4})
+	xq31.DefinitionID = "XQ31"
+	xq31.ControllerID = "P1"
+	xq31.PrintedKeywords = []string{"领袖", "公开", "声望"}
+
+	state.Board.Cards = []CardState{
+		attacker,
+		protected,
+		xq31,
+	}
+
+	result, err := SubmitAction(state, Action{
+		ID:           "act-attack-xq31-role-action",
+		ActorID:      "P2",
+		Kind:         ActionKindDeclareAttack,
+		CardID:       "p2-attacker",
+		TargetCardID: "p1-prestige",
+	})
+	if err != nil {
+		t.Fatalf("SubmitAction returned error: %v", err)
+	}
+
+	if result.Event.Kind != EventKindDamageApplied {
+		t.Fatalf("event kind = %q, want %q", result.Event.Kind, EventKindDamageApplied)
+	}
+	if cardStateByID(t, result.State, "p1-prestige").Counters.Damage != 2 {
+		t.Fatalf("prestige target damage = %d, want 2", cardStateByID(t, result.State, "p1-prestige").Counters.Damage)
+	}
+}
+
 func TestDeclareInvestigationPlacesInfluenceOnRegionAndExhaustsInvestigator(t *testing.T) {
 	state := newRoleActionTestState()
 	state.Board.Cards = []CardState{

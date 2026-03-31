@@ -76,10 +76,13 @@
 - [x] `declare_attack / declare_investigation` 已接入
 - [x] 地区控制、得分、主动玩家轮转、终局 gate、sandbox reset 已接入
 - [x] continuous source lifecycle 最小闭环已接入
+- [x] `XQ31` 的 target legality 已收窄到真正的 card-effect targeting，不再误伤 `declare_attack / declare_investigation`
+- [x] invariant check 已从 pre-commit working state 改为 committed state，并收紧了 `revision == len(history.actions)` 一致性
 - [x] 第一批 10 张真实 fixture 已接入 shared catalog / normalized artifact
 - [x] fixture `card.basicType` 已贯通 schema / TS / Go / normalized artifact
 - [x] `XQ22` 第一条禁令已接入：ready 时禁止打出 `basicType == "事务"` 的卡
 - [x] `XQ22` 禁令已从“按卡名匹配”修正为“按 `CardState.DefinitionID` 匹配”
+- [x] attachment tracking V0 已接入：fixture-only 附属 source 也可被追踪，且 host 离场会同步清理对应 continuous effect
 - [x] 对应高风险回归测试已补齐
 
 ### 2.2 正在进行
@@ -111,10 +114,67 @@
 
 如果只把这轮看成“多了一张卡的禁令”，就会低估它对后续架构的价值。
 
+### 2.2.2 最新纠偏同步（这部分优先于前文旧表述）
+
+这份交接文档最初写完后，又发生了两轮重要的纠偏修复。TRAE 接手时必须把这两条视为当前事实，而不是沿用旧判断。
+
+#### A. `XQ31 / invariant` 纠偏
+
+动机：
+
+- 之前的 `XQ31` target legality 是“只要 action 带 `targetCardId` 就拦”，这会误伤 `declare_attack / declare_investigation`
+- 之前的 invariant check 挂在 commit 前，只能看到 working state，看不到最终 `revision/history/continuous recalc` 的 commit 结果
+- 同时 `InvariantRevisionConsistent` 被放宽成了 `revision == len(actions)` 或 `+1` 都算合法，这会掩盖真正的 committed-state 不一致
+
+现在已经修成：
+
+- `XQ31` 只在 `queue_operation` 上检查 target legality，也就是只拦“卡牌/能力指定目标”这条主链
+- `declare_attack / declare_investigation` 不再被 `XQ31` 误伤
+- invariant 改为在 committed state 上检查
+- `InvariantPriorityPlayerValid` 现在会按 engine 的真实 fallback 逻辑读 `PriorityPlayerID`
+- `InvariantRevisionConsistent` 现在要求 committed state 严格满足 `revision == len(history.actions)`
+
+这条修复的重点不是“过一个测试”，而是重新把 legality 和 health-check 放回正确层次：
+
+- `XQ31` 是 targeting restriction，不是泛化的“所有 targetCardId 动作禁止”
+- invariant 是 commit 后真相检查，不是 pre-commit 中间态检查
+
+#### B. `附属追踪系统` 纠偏
+
+动机：
+
+- attachment tracking 初版要求 source 必须是场上实体 `cardId`
+- 但真实 `queue_operation` 打出的 `BQ022` 这类附属，目前 source 仍是 fixture / definition identity，不是已 materialize 的 table permanent
+- 同时 attachment 被 prune 时，对应的 continuous effect 没有一起失效；再加上 `cloneBoardState()` 漏了 `Attachments` 深拷贝，这三处会让“看起来有追踪、实际生命周期仍错位”
+
+现在已经修成：
+
+- attachment 允许用 `sourceDefinitionId + sourceOperationId` 追踪 fixture-only source
+- 因此 `BQ022` 这种真实 `queue_operation` 路径现在也会建立 attachment 记录，而不是只在手工测试 state 里成功
+- `ContinuousEffect` 新增 `attachmentId`，host 离场后 attachment prune 会同步清掉对应 continuous effect
+- `cloneBoardState()` 已补上 `Attachments` 深拷贝，避免 snapshot aliasing
+
+这条修复的重点也要理解清楚：
+
+- 这不是“完整附属系统完成了”
+- 这是一个 **attachment tracking V0**
+- 它解决的是 review 里指出的三个硬伤：
+  - 生产路径不可达
+  - attachment 和 continuous 生命周期脱钩
+  - state clone 漏接
+
+但它**没有**解决：
+
+- 附属作为真实 table permanent 的正式上场表示
+- `attachedTo` 驱动的完整 permanents lifecycle
+- `回收` / 回手 / 附属自身离场处理
+
+如果 TRAE 后续继续做附属，不要误以为这块已经“系统化完成”；它只是从“错误的半成品”推进到了“可以安全继续演进的 V0”。
+
 ### 2.3 待完成
 
 - [ ] 把 `XQ22` 从单卡特例推进成更一般的 scoped prohibition / targeting framework
-- [ ] 继续处理 `B` 组剩余卡：`XQ31`、`XQ01`
+- [ ] 继续处理 `B` 组剩余卡：重点还剩 `XQ01`，`XQ31` 的最小 targeting slice 已纠偏但远未完成完整牌义
 - [ ] 把 `CardState.DefinitionID` 贯穿到未来真正的 permanents / attachments 上场建模
 - [ ] 把当前“rules core + fixture gate + sandbox”整理成更清晰的 AI 接手路径，避免后续会话重新摸索上下文
 
@@ -329,8 +389,9 @@ type CardOperationSource struct {
 
 ### 6.2 已知限制
 
-- `XQ31`、`XQ01` 仍未做，因为还缺通用 target legality / region scoped silence
-- 附属 / 结附 / 回收仍未建模，`BQ022` 这类牌不能视作完整正确实现
+- `XQ31` 只做了最窄的 targeting restriction slice；它还没有完成“所有本方声望角色 +1 防御力”这半边牌义
+- `XQ01` 仍未做，因为还缺 region scoped silence / ability-kind restriction 正式框架
+- 附属 / 结附 / 回收仍未完整建模；当前只有 attachment tracking V0，`BQ022` 不能视作完整正确实现
 - `CardState.DefinitionID` 目前没有暴露到 projection，这符合 hidden-info 边界，但也意味着客户端不能直接拿它做展示或预校验
 
 ### 6.2.1 需要特别提醒新 AI 的认知陷阱

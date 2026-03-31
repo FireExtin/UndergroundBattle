@@ -125,6 +125,23 @@ func TestInvariantPriorityPlayerValidFail(t *testing.T) {
 	}
 }
 
+// TestInvariantPriorityPlayerValidFallsBackToLegacyPriorityField verifies that
+// the invariant checks the same effective priority player that the engine uses.
+func TestInvariantPriorityPlayerValidFallsBackToLegacyPriorityField(t *testing.T) {
+	state := NewGameState(InitialStateConfig{
+		GameID:         "test-priority-fallback",
+		ActivePlayerID: "P1",
+		PlayerIDs:      []string{"P1", "P2"},
+	})
+
+	state.Turn.Priority.CurrentPlayerID = ""
+	state.Turn.PriorityPlayerID = "P3"
+
+	if InvariantPriorityPlayerValid(state) {
+		t.Fatal("expected fallback priority player outside players list to fail")
+	}
+}
+
 // TestInvariantStackDepthNonNegativePass verifies that non-negative stack depth passes.
 func TestInvariantStackDepthNonNegativePass(t *testing.T) {
 	state := NewGameState(InitialStateConfig{
@@ -181,14 +198,6 @@ func TestInvariantRevisionConsistentPass(t *testing.T) {
 	if !InvariantRevisionConsistent(state) {
 		t.Fatal("expected revision 1 with one action to pass")
 	}
-
-	// Revision 2, one action (one ahead)
-	state.Revision.Number = 2
-	state.History.Actions = []Action{{ID: "action-1"}}
-
-	if !InvariantRevisionConsistent(state) {
-		t.Fatal("expected revision 2 with one action to pass (one ahead)")
-	}
 }
 
 // TestInvariantRevisionConsistentFail verifies that inconsistent revision fails.
@@ -205,6 +214,14 @@ func TestInvariantRevisionConsistentFail(t *testing.T) {
 
 	if InvariantRevisionConsistent(state) {
 		t.Fatal("expected negative revision to fail")
+	}
+
+	// Revision 2, only 1 action (one ahead is still inconsistent)
+	state.Revision.Number = 2
+	state.History.Actions = []Action{{ID: "action-1"}}
+
+	if InvariantRevisionConsistent(state) {
+		t.Fatal("expected revision one ahead of action history to fail")
 	}
 
 	// Revision 5, only 1 action (too far ahead)

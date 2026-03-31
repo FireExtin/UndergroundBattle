@@ -94,11 +94,12 @@ func SubmitActionWithProjection(state GameState, action Action, projector *Proje
 		return SubmitResult{}, err
 	}
 
-	// Check invariants on the working state (before commit)
-	// This checks the direct effects of the operation before commit processing
-	// (commit adds history, revisions, and may recalculate continuous effects)
+	result := commitState(working, action, operation, event, projector)
+
+	// Check invariants on the committed state so history/revision bookkeeping and
+	// commit-time recalculation are validated together.
 	if DefaultInvariantConfig.Enabled {
-		results := CheckAllInvariants(working, DefaultInvariantConfig)
+		results := CheckAllInvariants(result.State, DefaultInvariantConfig)
 		for _, result := range results {
 			if !result.Passed {
 				invariantError := legalityFailure(
@@ -116,7 +117,7 @@ func SubmitActionWithProjection(state GameState, action Action, projector *Proje
 		}
 	}
 
-	return commitState(working, action, operation, event, projector), nil
+	return result, nil
 }
 
 // ReplayActions replays an action log against an initial snapshot.

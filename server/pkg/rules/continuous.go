@@ -79,6 +79,29 @@ func registerContinuousEffect(state GameState, operation Operation, effect Effec
 	}
 
 	working := cloneGameState(state)
+	attachmentID := ""
+
+	// Attachment tracking must support both real board entities and fixture-only
+	// sources such as BQ022, which currently do not materialize as table cards.
+	if operation.Source.BasicType == "附属" {
+		builder := NewAttachment(working).
+			To(targetCardID).
+			AtRevision(working.Revision.Number).
+			WithBasicType(operation.Source.BasicType).
+			FromDefinition(operation.Source.CardID).
+			FromOperation(operation.ID)
+
+		if findCardIndex(working, operation.CardID) != -1 {
+			builder = builder.From(operation.CardID)
+		}
+
+		newState, err := builder.Create()
+		if err == nil {
+			working = newState
+			attachmentID = working.Board.Attachments.Active[len(working.Board.Attachments.Active)-1].ID
+		}
+	}
+
 	registry := &working.Board.Continuous
 	registry.NextTimestamp++
 
@@ -86,6 +109,7 @@ func registerContinuousEffect(state GameState, operation Operation, effect Effec
 		ID:                fmt.Sprintf("ce:%s:%d", operation.ID, registry.NextTimestamp),
 		SourceOperationID: operation.ID,
 		SourceCardID:      operation.CardID,
+		AttachmentID:      attachmentID,
 		ControllerID:      operation.ActorID,
 		TargetCardID:      targetCardID,
 		Layer:             layerForEffect(effect.Kind),
@@ -105,26 +129,6 @@ func registerContinuousEffect(state GameState, operation Operation, effect Effec
 	}
 
 	registry.Active = append(registry.Active, continuous)
-
-	// Create attachment if this is an attachment card (basicType = "附属")
-	// Note: If attachment creation fails (e.g., target destroyed or moved), the error is
-	// intentionally ignored to allow the continuous effect to still be created. This is
-	// a design choice - the attachment relationship is optional metadata, while the
-	// continuous effect is the primary game mechanic.
-	if operation.Source.BasicType == "附属" {
-		newState, err := NewAttachment(working).
-			From(operation.CardID).
-			To(targetCardID).
-			AtRevision(working.Revision.Number).
-			WithBasicType(operation.Source.BasicType).
-			Create()
-		if err == nil {
-			working = newState
-		}
-		// If err != nil, attachment creation failed silently (target invalid/destroyed).
-		// This is acceptable - the continuous effect still applies, we just don't track
-		// the attachment relationship for pruning purposes.
-	}
 
 	requestContinuousRecalculation(&working)
 	return working
@@ -178,6 +182,10 @@ func pruneExpiredContinuousEffects(state *GameState) {
 			removed = true
 			continue
 		}
+		if !continuousEffectAttachmentIsStillActive(*state, effect) {
+			removed = true
+			continue
+		}
 		if !continuousEffectSourceIsStillActive(*state, effect) {
 			removed = true
 			continue
@@ -195,6 +203,20 @@ func pruneExpiredContinuousEffects(state *GameState) {
 func pruneExpiredAttachments(state *GameState) {
 	manager := NewAttachmentManager(*state)
 	*state = manager.PruneExpired()
+}
+
+func continuousEffectAttachmentIsStillActive(state GameState, effect ContinuousEffect) bool {
+	if effect.AttachmentID == "" {
+		return true
+	}
+
+	for _, attachment := range state.Board.Attachments.Active {
+		if attachment.ID == effect.AttachmentID {
+			return true
+		}
+	}
+
+	return false
 }
 
 func continuousEffectSourceIsStillActive(state GameState, effect ContinuousEffect) bool {

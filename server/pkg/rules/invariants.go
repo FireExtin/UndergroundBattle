@@ -125,7 +125,7 @@ func InvariantRevisionConsistent(state GameState) bool {
 	if state.Revision.Number < 0 {
 		return false
 	}
-	// Revision should match history length or be one ahead
+	// On committed authoritative state, revision must match action history exactly.
 	expectedRevision := len(state.History.Actions)
-	return state.Revision.Number == expectedRevision || state.Revision.Number == expectedRevision+1
+	return state.Revision.Number == expectedRevision
 }

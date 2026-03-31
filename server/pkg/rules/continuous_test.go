@@ -375,6 +375,9 @@ func TestPureDSLAttachmentRegistersContinuousKeywordEffect(t *testing.T) {
 	if len(result.State.Board.Continuous.Active) != 1 {
 		t.Fatalf("active continuous effects = %d, want 1", len(result.State.Board.Continuous.Active))
 	}
+	if len(result.State.Board.Attachments.Active) != 1 {
+		t.Fatalf("active attachments = %d, want 1", len(result.State.Board.Attachments.Active))
+	}
 
 	effect := result.State.Board.Continuous.Active[0]
 	if effect.EffectKind != "addKeyword" {
@@ -388,6 +391,61 @@ func TestPureDSLAttachmentRegistersContinuousKeywordEffect(t *testing.T) {
 	target := cardStateByID(t, result.State, "card-keyword-1")
 	if !containsString(target.EffectiveKeywords, "blackBlade") {
 		t.Fatalf("effective keywords = %v, want blackBlade", target.EffectiveKeywords)
+	}
+
+	attachment := result.State.Board.Attachments.Active[0]
+	if attachment.SourceDefinitionID != "BQ022" {
+		t.Fatalf("attachment sourceDefinitionId = %q, want BQ022", attachment.SourceDefinitionID)
+	}
+	if attachment.SourceOperationID != result.Operation.ID {
+		t.Fatalf("attachment sourceOperationId = %q, want %q", attachment.SourceOperationID, result.Operation.ID)
+	}
+	if attachment.TargetCardID != "card-keyword-1" {
+		t.Fatalf("attachment targetCardId = %q, want card-keyword-1", attachment.TargetCardID)
+	}
+}
+
+func TestPureDSLAttachmentPrunesContinuousEffectWhenTargetLeavesTable(t *testing.T) {
+	state := newContinuousTestState()
+	state.Board.Cards = []CardState{
+		{
+			CardID:         "card-keyword-1",
+			Name:           "Keyword Target",
+			OwnerID:        "P2",
+			Zone:           CardZoneTable,
+			VisibleToOwner: true,
+			Revealed:       true,
+		},
+	}
+
+	result, err := SubmitAction(state, Action{
+		ID:           "act-keyword-fixture-prune",
+		ActorID:      "P1",
+		Kind:         ActionKindQueueOperation,
+		CardID:       "BQ022",
+		TargetCardID: "card-keyword-1",
+	})
+	if err != nil {
+		t.Fatalf("SubmitAction returned error: %v", err)
+	}
+
+	leavesTable := cloneGameState(result.State)
+	targetIndex := findCardIndex(leavesTable, "card-keyword-1")
+	leavesTable.Board.Cards[targetIndex].Zone = CardZoneDiscard
+	leavesTable.Board.Cards[targetIndex].Destroyed = true
+
+	recalculated := RecalculateContinuousEffects(leavesTable)
+
+	if len(recalculated.Board.Attachments.Active) != 0 {
+		t.Fatalf("active attachments after target leaves = %d, want 0", len(recalculated.Board.Attachments.Active))
+	}
+	if len(recalculated.Board.Continuous.Active) != 0 {
+		t.Fatalf("active continuous effects after target leaves = %d, want 0", len(recalculated.Board.Continuous.Active))
+	}
+
+	target := cardStateByID(t, recalculated, "card-keyword-1")
+	if containsString(target.EffectiveKeywords, "blackBlade") {
+		t.Fatalf("effective keywords after target leaves = %v, blackBlade should be gone", target.EffectiveKeywords)
 	}
 }
 

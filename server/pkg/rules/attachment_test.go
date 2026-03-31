@@ -249,6 +249,38 @@ func TestAttachmentManager_GetAttachmentsFromSource(t *testing.T) {
 	}
 }
 
+func TestCloneGameStateDeepCopiesAttachments(t *testing.T) {
+	state := newAttachmentTestState()
+	state.Board.Attachments = AttachmentRegistry{
+		Active: []Attachment{
+			{
+				ID:               "att:1",
+				SourceCardID:     "source-a",
+				SourceOperationID: "op:1",
+				SourceDefinitionID: "BQ022",
+				TargetCardID:     "target-1",
+			},
+		},
+		NextAttachmentID: 2,
+	}
+
+	cloned := cloneGameState(state)
+	cloned.Board.Attachments.Active[0].TargetCardID = "target-mutated"
+	cloned.Board.Attachments.Active = append(cloned.Board.Attachments.Active, Attachment{
+		ID:               "att:2",
+		SourceOperationID: "op:2",
+		SourceDefinitionID: "BQ022",
+		TargetCardID:     "target-2",
+	})
+
+	if state.Board.Attachments.Active[0].TargetCardID != "target-1" {
+		t.Fatalf("original attachment target mutated to %q", state.Board.Attachments.Active[0].TargetCardID)
+	}
+	if len(state.Board.Attachments.Active) != 1 {
+		t.Fatalf("original attachment count = %d, want 1", len(state.Board.Attachments.Active))
+	}
+}
+
 // TestAttachmentCreationFailureStillCreatesContinuousEffect verifies that when
 // attachment creation fails (e.g., target destroyed), the continuous effect is
 // still created. This is intentional - attachment is optional metadata.

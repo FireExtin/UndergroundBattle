@@ -139,6 +139,7 @@ type ContinuousEffect struct {
 	ID                string          `json:"id"`
 	SourceOperationID string          `json:"sourceOperationId,omitempty"`
 	SourceCardID      string          `json:"sourceCardId,omitempty"`
+	AttachmentID      string          `json:"attachmentId,omitempty"`
 	ControllerID      string          `json:"controllerId,omitempty"`
 	TargetCardID      string          `json:"targetCardId,omitempty"`
 	Layer             ContinuousLayer `json:"layer"`
@@ -155,10 +156,12 @@ type ContinuousEffect struct {
 
 // Attachment represents an attachment relationship between two cards.
 type Attachment struct {
-	ID                string `json:"id"`
-	SourceCardID      string `json:"sourceCardId"`
-	TargetCardID      string `json:"targetCardId"`
-	CreatedAtRevision int    `json:"createdAtRevision"`
+	ID                 string `json:"id"`
+	SourceCardID       string `json:"sourceCardId,omitempty"`
+	SourceDefinitionID string `json:"sourceDefinitionId,omitempty"`
+	SourceOperationID  string `json:"sourceOperationId,omitempty"`
+	TargetCardID       string `json:"targetCardId"`
+	CreatedAtRevision  int    `json:"createdAtRevision"`
 }
 
 // AttachmentRegistry tracks all active attachments.

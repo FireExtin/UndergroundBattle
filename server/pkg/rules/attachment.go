@@ -8,11 +8,13 @@ import (
 
 // AttachmentBuilder provides a fluent interface for creating attachments.
 type AttachmentBuilder struct {
-	state      GameState
-	sourceID   string
-	targetID   string
-	revision   int
-	basicType  string
+	state              GameState
+	sourceID           string
+	sourceDefinitionID string
+	sourceOperationID  string
+	targetID           string
+	revision           int
+	basicType          string
 }
 
 // NewAttachment creates a new AttachmentBuilder.
@@ -25,6 +27,18 @@ func NewAttachment(state GameState) *AttachmentBuilder {
 // From sets the source card ID.
 func (b *AttachmentBuilder) From(sourceID string) *AttachmentBuilder {
 	b.sourceID = sourceID
+	return b
+}
+
+// FromDefinition sets the source definition ID for fixture-only attachment sources.
+func (b *AttachmentBuilder) FromDefinition(sourceDefinitionID string) *AttachmentBuilder {
+	b.sourceDefinitionID = sourceDefinitionID
+	return b
+}
+
+// FromOperation sets the source operation ID for the attachment-producing effect.
+func (b *AttachmentBuilder) FromOperation(sourceOperationID string) *AttachmentBuilder {
+	b.sourceOperationID = sourceOperationID
 	return b
 }
 
@@ -53,13 +67,18 @@ func (b *AttachmentBuilder) CanCreate() bool {
 		return false
 	}
 
-	// Validate source card
-	if !b.isCardValid(b.sourceID) {
+	// There must be some stable source identity.
+	if b.sourceID == "" && b.sourceDefinitionID == "" && b.sourceOperationID == "" {
 		return false
 	}
 
 	// Validate target card
 	if !b.isCardValid(b.targetID) {
+		return false
+	}
+
+	// If the source is represented as a board entity, it must still be valid.
+	if b.sourceID != "" && !b.isCardValid(b.sourceID) {
 		return false
 	}
 
@@ -78,10 +97,12 @@ func (b *AttachmentBuilder) Create() (GameState, error) {
 	registry.NextAttachmentID++
 
 	attachment := Attachment{
-		ID:                fmt.Sprintf("att:%d", registry.NextAttachmentID),
-		SourceCardID:      b.sourceID,
-		TargetCardID:      b.targetID,
-		CreatedAtRevision: b.revision,
+		ID:                 fmt.Sprintf("att:%d", registry.NextAttachmentID),
+		SourceCardID:       b.sourceID,
+		SourceDefinitionID: b.sourceDefinitionID,
+		SourceOperationID:  b.sourceOperationID,
+		TargetCardID:       b.targetID,
+		CreatedAtRevision:  b.revision,
 	}
 
 	registry.Active = append(registry.Active, attachment)
@@ -130,7 +151,17 @@ func (am *AttachmentManager) PruneExpired() GameState {
 
 // isAttachmentStillActive checks if both source and target cards are still valid.
 func (am *AttachmentManager) isAttachmentStillActive(attachment Attachment) bool {
-	return am.isCardValid(attachment.SourceCardID) && am.isCardValid(attachment.TargetCardID)
+	if !am.isCardValid(attachment.TargetCardID) {
+		return false
+	}
+
+	if attachment.SourceCardID != "" {
+		return am.isCardValid(attachment.SourceCardID)
+	}
+
+	// Fixture-only attachment sources do not have a table entity yet, so the host
+	// card is the only lifecycle anchor we can enforce in the current model.
+	return true
 }
 
 // isCardValid checks if a card is valid (on table and not destroyed).
