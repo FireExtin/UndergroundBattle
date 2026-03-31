@@ -187,14 +187,15 @@ func (session *SandboxSession) resetLocked() ([]protocolEnvelope, error) {
 	state := rules.NewM0SandboxState()
 	projector := rules.NewProjectionEngine()
 	views := projector.Generate(state)
+
+	session.state = state
+	session.projector = projector
 	session.nextMessageNumber = 1
 	messages, err := session.materializeBootstrapMessages(views)
 	if err != nil {
 		return nil, err
 	}
 
-	session.state = state
-	session.projector = projector
 	session.messages = cloneProtocolEnvelopes(messages)
 	session.nextMessageNumber = len(messages) + 1
 	return cloneProtocolEnvelopes(messages), nil
