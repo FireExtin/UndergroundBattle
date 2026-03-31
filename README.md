@@ -22,6 +22,13 @@
 
 它会作为整个项目的背景和骨架，供人类开发者和 AI 编码工具共同参考。
 
+## 最近里程碑（2026-03-31）
+
+- 规则核已把“对局结束”提升为正式 `MatchState`，而不是仅依赖 `winner` 字段。
+- Go sandbox 已支持 `POST /api/debugger/reset`，结束后可直接在同一会话重开一局。
+- Web Live Debugger 已接入 `Reset Sandbox` 按钮，并在终局态禁用动作提交、显示胜者提示。
+- 相关细节与阶段状态请继续参考 `docs/NEXT_GEN_RULE_PLAN.md` 与 git 提交记录。
+
 ---
 
 # 2. 现有公开资料与数据来源
