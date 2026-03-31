@@ -13,6 +13,11 @@ const (
 	testCardDirect          = "BQ010"
 	testCardScriptStack     = "BQ013"
 	testCardScriptPermanent = "BQ024"
+	testCardXQ03            = "XQ03"
+	testCardXQ34            = "XQ34"
+	testCardJZ74            = "JZ74"
+	testCardWM088           = "WM088"
+	testCardWM090           = "WM090"
 )
 
 func TestSubmitActionAcceptsLegalQueueOperation(t *testing.T) {
@@ -876,6 +881,168 @@ func TestStackedDSLCardExhaustsSelectedTargetOnResolution(t *testing.T) {
 	projected := cardViewByID(t, playerOneView.Board.Cards, "table-char-1")
 	if !projected.Exhausted {
 		t.Fatal("expected visible exhausted state to reach player projection")
+	}
+}
+
+func TestXQ03ExhaustsSelectedTargetOnResolution(t *testing.T) {
+	state := NewGameState(InitialStateConfig{
+		GameID:         "game-xq03-exhaust",
+		ActivePlayerID: "P1",
+		Seed:           17,
+	})
+	state.Board.Cards = append(state.Board.Cards, CardState{
+		CardID:         "xq03-target-1",
+		Name:           "Pinned Target",
+		OwnerID:        "P2",
+		Zone:           CardZoneTable,
+		VisibleToOwner: true,
+		Revealed:       true,
+	})
+
+	queued := mustSubmit(t, state, Action{
+		ID:           "act-xq03-queue",
+		ActorID:      "P1",
+		Kind:         ActionKindQueueOperation,
+		CardID:       testCardXQ03,
+		TargetCardID: "xq03-target-1",
+	})
+
+	if cardStateByID(t, queued, "xq03-target-1").Exhausted {
+		t.Fatal("target should stay ready until XQ03 resolves")
+	}
+
+	resolved := mustSubmit(t, queued, Action{
+		ID:      "act-xq03-resolve",
+		ActorID: "P1",
+		Kind:    ActionKindResolveTopStack,
+	})
+
+	if !cardStateByID(t, resolved, "xq03-target-1").Exhausted {
+		t.Fatal("expected XQ03 to exhaust the selected target")
+	}
+}
+
+func TestFastStackDrawFixturesDrawCardsOnResolution(t *testing.T) {
+	testCases := []struct {
+		name   string
+		cardID string
+	}{
+		{name: "XQ34", cardID: testCardXQ34},
+		{name: "JZ74", cardID: testCardJZ74},
+	}
+
+	for _, testCase := range testCases {
+		testCase := testCase
+		t.Run(testCase.name, func(t *testing.T) {
+			state := NewGameState(InitialStateConfig{
+				GameID:         "game-" + testCase.cardID,
+				ActivePlayerID: "P1",
+				Seed:           18,
+			})
+
+			queued := mustSubmit(t, state, Action{
+				ID:      "act-" + testCase.cardID + "-queue",
+				ActorID: "P1",
+				Kind:    ActionKindQueueOperation,
+				CardID:  testCase.cardID,
+			})
+
+			if len(cardsOwnedInZone(queued, "P1", CardZoneHand)) != 0 {
+				t.Fatal("draw should not happen before stack resolution")
+			}
+
+			resolved := mustSubmit(t, queued, Action{
+				ID:      "act-" + testCase.cardID + "-resolve",
+				ActorID: "P1",
+				Kind:    ActionKindResolveTopStack,
+			})
+
+			if len(cardsOwnedInZone(resolved, "P1", CardZoneHand)) != 1 {
+				t.Fatalf("drawn hand count = %d, want 1", len(cardsOwnedInZone(resolved, "P1", CardZoneHand)))
+			}
+
+			if len(resolved.Board.Resolved) != 1 || resolved.Board.Resolved[0].CardID != testCase.cardID {
+				t.Fatalf("resolved cards = %#v, want one resolved %q", resolved.Board.Resolved, testCase.cardID)
+			}
+		})
+	}
+}
+
+func TestWM088DrawsTwoCardsOnDirectResolution(t *testing.T) {
+	state := NewGameState(InitialStateConfig{
+		GameID:         "game-wm088-draw",
+		ActivePlayerID: "P1",
+		Seed:           19,
+	})
+
+	result, err := SubmitAction(state, Action{
+		ID:      "act-wm088",
+		ActorID: "P1",
+		Kind:    ActionKindQueueOperation,
+		CardID:  testCardWM088,
+	})
+	if err != nil {
+		t.Fatalf("SubmitAction returned error: %v", err)
+	}
+
+	if len(result.State.Board.Resolved) != 1 {
+		t.Fatalf("resolved count = %d, want 1", len(result.State.Board.Resolved))
+	}
+
+	if len(cardsOwnedInZone(result.State, "P1", CardZoneHand)) != 2 {
+		t.Fatalf("drawn hand count = %d, want 2", len(cardsOwnedInZone(result.State, "P1", CardZoneHand)))
+	}
+}
+
+func TestWM090InspectsTargetPlayerHandOnDirectResolution(t *testing.T) {
+	state := NewGameState(InitialStateConfig{
+		GameID:         "game-wm090-inspect",
+		ActivePlayerID: "P1",
+		Seed:           20,
+	})
+	state.Board.Cards = append(state.Board.Cards,
+		CardState{
+			CardID:         "wm090-p2-hand-1",
+			Name:           "First Secret",
+			OwnerID:        "P2",
+			Zone:           CardZoneHand,
+			VisibleToOwner: true,
+		},
+		CardState{
+			CardID:         "wm090-p2-hand-2",
+			Name:           "Second Secret",
+			OwnerID:        "P2",
+			Zone:           CardZoneHand,
+			VisibleToOwner: true,
+		},
+	)
+
+	result, err := SubmitAction(state, Action{
+		ID:             "act-wm090",
+		ActorID:        "P1",
+		Kind:           ActionKindQueueOperation,
+		CardID:         testCardWM090,
+		TargetPlayerID: "P2",
+	})
+	if err != nil {
+		t.Fatalf("SubmitAction returned error: %v", err)
+	}
+
+	target := cardStateByID(t, result.State, "wm090-p2-hand-1")
+	if !containsString(target.InspectedBy, "P1") {
+		t.Fatalf("inspectedBy = %v, want P1 included", target.InspectedBy)
+	}
+
+	playerOneView := result.Views.Players["P1"]
+	visibleCount := 0
+	for _, card := range playerOneView.Board.Cards {
+		if card.OwnerID == "P2" && card.Zone == CardZoneHand && card.Visibility == "visible" {
+			visibleCount++
+		}
+	}
+
+	if visibleCount != 2 {
+		t.Fatalf("visible inspected hand cards = %d, want 2", visibleCount)
 	}
 }
 

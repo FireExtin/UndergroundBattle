@@ -20,12 +20,23 @@ describe("CardLogic contract fixtures", () => {
     const currentVersion = await readCurrentCardSchemaVersion(repoRoot);
     const fixtures = await loadFixtures(repoRoot);
 
-    expect(fixtures).toHaveLength(5);
+    expect(fixtures).toHaveLength(10);
     expect(validateFixtures(fixtures, currentVersion)).toEqual([]);
     await expect(validateFixtureSources(fixtures, repoRoot)).resolves.toEqual([]);
 
     const normalized = normalizeFixtures(fixtures, currentVersion, "2026-03-31T00:00:00.000Z");
-    expect(normalized.records.map((record) => record.cardId)).toEqual(["BQ005", "BQ010", "BQ013", "BQ022", "BQ024"]);
+    expect(normalized.records.map((record) => record.cardId)).toEqual([
+      "BQ005",
+      "BQ010",
+      "BQ013",
+      "BQ022",
+      "BQ024",
+      "JZ74",
+      "WM088",
+      "WM090",
+      "XQ03",
+      "XQ34"
+    ]);
 
     const scripted = normalized.records.find((record) => record.cardId === "BQ013");
     expect(scripted).toMatchObject({

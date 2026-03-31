@@ -1,0 +1,35 @@
+{
+  "$schema": "../../schemas/fixture.schema.json",
+  "cardId": "WM088",
+  "schemaVersion": "0.1.0",
+  "card": {
+    "name": "现场调查",
+    "sourcePath": "organized_content/cards/事/cards.json"
+  },
+  "input": {
+    "logic": {
+      "id": "cards.wm088.field-investigation",
+      "schemaVersion": "0.1.0",
+      "speed": "slow",
+      "targetKinds": [],
+      "requiresStack": false,
+      "durationKind": "none",
+      "scriptId": null,
+      "effects": [
+        {
+          "kind": "drawCards",
+          "targetRef": "controller",
+          "amount": 2
+        }
+      ]
+    }
+  },
+  "expectations": {
+    "parseOk": true,
+    "speed": "slow",
+    "targetKinds": [],
+    "requiresStack": false,
+    "durationKind": "none",
+    "scriptId": null
+  }
+}

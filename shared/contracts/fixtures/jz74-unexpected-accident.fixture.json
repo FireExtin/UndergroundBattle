@@ -1,0 +1,35 @@
+{
+  "$schema": "../../schemas/fixture.schema.json",
+  "cardId": "JZ74",
+  "schemaVersion": "0.1.0",
+  "card": {
+    "name": "意外事故",
+    "sourcePath": "organized_content/cards/事/cards.json"
+  },
+  "input": {
+    "logic": {
+      "id": "cards.jz74.unexpected-accident",
+      "schemaVersion": "0.1.0",
+      "speed": "fast",
+      "targetKinds": [],
+      "requiresStack": true,
+      "durationKind": "none",
+      "scriptId": null,
+      "effects": [
+        {
+          "kind": "drawCards",
+          "targetRef": "controller",
+          "amount": 1
+        }
+      ]
+    }
+  },
+  "expectations": {
+    "parseOk": true,
+    "speed": "fast",
+    "targetKinds": [],
+    "requiresStack": true,
+    "durationKind": "none",
+    "scriptId": null
+  }
+}

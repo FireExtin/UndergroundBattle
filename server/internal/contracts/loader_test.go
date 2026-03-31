@@ -99,8 +99,8 @@ func TestDefaultFixtureCatalogIndexesRealCards(t *testing.T) {
 		t.Fatalf("LoadDefaultFixtureCatalog returned error: %v", err)
 	}
 
-	if catalog.Len() != 5 {
-		t.Fatalf("catalog length = %d, want 5", catalog.Len())
+	if catalog.Len() != 10 {
+		t.Fatalf("catalog length = %d, want 10", catalog.Len())
 	}
 
 	fixture, ok := catalog.Find("BQ010")
@@ -114,6 +114,15 @@ func TestDefaultFixtureCatalogIndexesRealCards(t *testing.T) {
 
 	if fixture.Card.SourcePath != "organized_content/cards/事/cards.json" {
 		t.Fatalf("fixture sourcePath = %q, want %q", fixture.Card.SourcePath, "organized_content/cards/事/cards.json")
+	}
+
+	newFixture, ok := catalog.Find("WM090")
+	if !ok {
+		t.Fatal("expected WM090 fixture in catalog")
+	}
+
+	if newFixture.Card.Name != "茶叶占卜法" {
+		t.Fatalf("fixture card name = %q, want %q", newFixture.Card.Name, "茶叶占卜法")
 	}
 }
 

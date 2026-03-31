@@ -1,6 +1,6 @@
 {
   "schemaVersion": "0.1.0",
-  "generatedAt": "2026-03-31T11:49:07.903Z",
+  "generatedAt": "2026-03-31T17:59:16.565Z",
   "recordType": "CardLogicContract",
   "records": [
     {
@@ -101,6 +101,95 @@
         "addKeyword",
         "addKeyword",
         "modifyStat"
+      ]
+    },
+    {
+      "cardId": "JZ74",
+      "cardName": "意外事故",
+      "sourcePath": "organized_content/cards/事/cards.json",
+      "schemaVersion": "0.1.0",
+      "logicId": "cards.jz74.unexpected-accident",
+      "speed": "fast",
+      "targetKinds": [],
+      "requiresStack": true,
+      "durationKind": "none",
+      "scriptId": null,
+      "requiresScript": false,
+      "pureDSLExecutable": true,
+      "effectKinds": [
+        "drawCards"
+      ]
+    },
+    {
+      "cardId": "WM088",
+      "cardName": "现场调查",
+      "sourcePath": "organized_content/cards/事/cards.json",
+      "schemaVersion": "0.1.0",
+      "logicId": "cards.wm088.field-investigation",
+      "speed": "slow",
+      "targetKinds": [],
+      "requiresStack": false,
+      "durationKind": "none",
+      "scriptId": null,
+      "requiresScript": false,
+      "pureDSLExecutable": true,
+      "effectKinds": [
+        "drawCards"
+      ]
+    },
+    {
+      "cardId": "WM090",
+      "cardName": "茶叶占卜法",
+      "sourcePath": "organized_content/cards/事/cards.json",
+      "schemaVersion": "0.1.0",
+      "logicId": "cards.wm090.tea-leaf-divination",
+      "speed": "slow",
+      "targetKinds": [
+        "player"
+      ],
+      "requiresStack": false,
+      "durationKind": "none",
+      "scriptId": null,
+      "requiresScript": false,
+      "pureDSLExecutable": true,
+      "effectKinds": [
+        "inspectHand"
+      ]
+    },
+    {
+      "cardId": "XQ03",
+      "cardName": "力场束缚",
+      "sourcePath": "organized_content/cards/事/cards.json",
+      "schemaVersion": "0.1.0",
+      "logicId": "cards.xq03.force-field-restraint",
+      "speed": "fast",
+      "targetKinds": [
+        "character"
+      ],
+      "requiresStack": true,
+      "durationKind": "none",
+      "scriptId": null,
+      "requiresScript": false,
+      "pureDSLExecutable": true,
+      "effectKinds": [
+        "exhaust"
+      ]
+    },
+    {
+      "cardId": "XQ34",
+      "cardName": "灵感",
+      "sourcePath": "organized_content/cards/事/cards.json",
+      "schemaVersion": "0.1.0",
+      "logicId": "cards.xq34.inspiration",
+      "speed": "fast",
+      "targetKinds": [],
+      "requiresStack": true,
+      "durationKind": "none",
+      "scriptId": null,
+      "requiresScript": false,
+      "pureDSLExecutable": true,
+      "effectKinds": [
+        "drawCards"
       ]
     }
   ]

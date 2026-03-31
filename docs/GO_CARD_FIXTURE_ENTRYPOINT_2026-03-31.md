@@ -9,7 +9,7 @@ Purpose: explains how `queue_operation` now enters the Go rules kernel through r
 - 更新 normalized contract 输出，保留 `cardName` 和 `sourcePath` 供后续工具链复用。
 - 为 Go 增加 fixture catalog，并让 `queue_operation` 通过 `action.cardId` 解析真实卡牌入口。
 
-## First Batch
+## Current Batch
 
 当前接入的真实卡牌样例是：
 
@@ -18,6 +18,11 @@ Purpose: explains how `queue_operation` now enters the Go rules kernel through r
 - `BQ013` 召现雷霆
 - `BQ022` 合金指虎
 - `BQ024` 脊椎强殖装甲
+- `JZ74` 意外事故
+- `WM088` 现场调查
+- `WM090` 茶叶占卜法
+- `XQ03` 力场束缚
+- `XQ34` 灵感
 
 这批样例同时覆盖了：
 
@@ -25,6 +30,7 @@ Purpose: explains how `queue_operation` now enters the Go rules kernel through r
 - 直接结算与入 stack
 - `player`、`region`、`character`、`asset`、`attachment` 等基础目标类型
 - `none` 与 `permanent` 两类最小持续时间
+- `exhaust`、`drawCards`、`inspectHand`、`dealDamage`、`addKeyword`、`modifyStat` 等当前已接入的基础 effect kinds
 
 ## Rules-Kernel Change
 

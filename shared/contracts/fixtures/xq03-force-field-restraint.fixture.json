@@ -1,0 +1,34 @@
+{
+  "$schema": "../../schemas/fixture.schema.json",
+  "cardId": "XQ03",
+  "schemaVersion": "0.1.0",
+  "card": {
+    "name": "力场束缚",
+    "sourcePath": "organized_content/cards/事/cards.json"
+  },
+  "input": {
+    "logic": {
+      "id": "cards.xq03.force-field-restraint",
+      "schemaVersion": "0.1.0",
+      "speed": "fast",
+      "targetKinds": ["character"],
+      "requiresStack": true,
+      "durationKind": "none",
+      "scriptId": null,
+      "effects": [
+        {
+          "kind": "exhaust",
+          "targetRef": "selected"
+        }
+      ]
+    }
+  },
+  "expectations": {
+    "parseOk": true,
+    "speed": "fast",
+    "targetKinds": ["character"],
+    "requiresStack": true,
+    "durationKind": "none",
+    "scriptId": null
+  }
+}
