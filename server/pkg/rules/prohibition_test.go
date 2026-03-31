@@ -325,3 +325,26 @@ func TestProhibitionCheckerReturnsRuleInfo(t *testing.T) {
 		t.Fatalf("expected rule SourceDefinitionID to be XQ22, got %s", result.MatchedRule.SourceDefinitionID)
 	}
 }
+
+func TestBuildProhibitionCheckerIgnoresTestOnlyRules(t *testing.T) {
+	state := NewGameState(InitialStateConfig{
+		GameID:         "test-production-prohibition-only",
+		ActivePlayerID: "P1",
+		PlayerIDs:      []string{"P1", "P2"},
+	})
+	state.Board.Cards = []CardState{
+		{
+			CardID:       "TEST01-1",
+			DefinitionID: "TEST01",
+			Zone:         CardZoneTable,
+			ControllerID: "P1",
+		},
+	}
+
+	result := BuildProhibitionChecker(state).Check(state, "P2", TargetCategory{
+		BasicTypes: []string{"角色"},
+	})
+	if result.Prohibited {
+		t.Fatalf("expected production checker to ignore TEST01, got source %q", result.SourceCardID)
+	}
+}

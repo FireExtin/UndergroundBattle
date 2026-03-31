@@ -330,3 +330,32 @@ func testRegionCard(cardID string) CardState {
 		Revealed:       true,
 	}
 }
+
+func TestDeclareInvestigationIgnoresXQ31TargetLegalityRestriction(t *testing.T) {
+	state := newRoleActionTestState()
+	state.Turn.Priority.CurrentPlayerID = "P2"
+	state.Turn.ActivePlayerID = "P2"
+
+	investigator := testCharacterCard("p2-investigator", "P2", CardNumericStats{Combat: 1, Defense: 2, Investigation: 1})
+	xq31 := testCharacterCard("xq31-1", "P1", CardNumericStats{Combat: 1, Defense: 4})
+	xq31.DefinitionID = "XQ31"
+	xq31.ControllerID = "P1"
+	xq31.PrintedKeywords = []string{"领袖", "公开", "声望"}
+	region := testRegionCard("region-1")
+
+	state.Board.Cards = []CardState{investigator, xq31, region}
+
+	result, err := SubmitAction(state, Action{
+		ID:           "act-investigation-xq31-boundary",
+		ActorID:      "P2",
+		Kind:         ActionKindDeclareInvestigation,
+		CardID:       "p2-investigator",
+		TargetCardID: "region-1",
+	})
+	if err != nil {
+		t.Fatalf("SubmitAction returned error: %v", err)
+	}
+	if result.Event.Kind != EventKindInvestigationApplied {
+		t.Fatalf("event kind = %q, want %q", result.Event.Kind, EventKindInvestigationApplied)
+	}
+}

@@ -92,18 +92,33 @@
 
 ## 2026-04-01 补记（XQ22 legality identity fix）
 
-- `queue_operation` 的第一条“按真实卡牌定义识别场上特定牌”的 prohibition slice 已接入：
+- `queue_operation` 的第一条"按真实卡牌定义识别场上特定牌"的 prohibition slice 已接入：
   - 当前 `XQ22` 会在 ready 且位于 `table` 时禁止打出 `basicType == "事务"` 的卡
   - 匹配依据不再是显示名，而是 `CardState.DefinitionID == "XQ22"`
 - 这次补丁明确了两个身份层：
   - `CardState.CardID`：场上实例 ID，同一玩家同名两张牌也必须不同
-  - `CardState.DefinitionID`：卡牌定义 ID，用于规则识别“这是不是 XQ22”
+  - `CardState.DefinitionID`：卡牌定义 ID，用于规则识别"这是不是 XQ22"
 - 这一步是后续做：
   - 多张同定义牌共存
   - 按定义识别光环 / 禁令 / 结附来源
   - 避免文案改名导致规则失效
   的前置条件。
 - 当前仍未完成的是把 `DefinitionID` 贯穿到更正式的 permanents / attachments 上场生命周期里；目前它主要先服务于规则判定和测试建模。
+
+## 2026-04-01 第六次补记（Legality Framework Hardening V1）
+
+- Phase 3 legality hardening 现在有了专用的 production rule catalog：
+  - `server/pkg/rules/legality_catalog.go` - 集中管理 XQ22/XQ31 等 production rules
+  - `server/pkg/rules/legality_shared.go` - 共享 source-condition 和 actor-scope 匹配逻辑
+- duplicated legality matcher logic 已合并到 shared helpers：
+  - `cardMatchesDefinitionAndCondition()` - 检查卡牌是否满足定义 ID 和条件
+  - `scopeAppliesToActor()` - 检查作用域是否适用于指定行动者
+- `XQ31` 现在只在 `queue_operation` 上检查 target legality：
+  - `declare_attack` 和 `declare_investigation` 不再被 XQ31 误伤
+  - 边界已锁定并通过回归测试验证
+- 下一阶段跟进方向：
+  - 完成 XQ31 数值光环（+1 防御力）实现
+  - 设计 XQ01 地区作用域沉默的 prerequisite
 
 
 ## 2026-03-31 执行顺序说明

@@ -81,34 +81,7 @@ func (c *TargetLegalityChecker) matchesSourceCondition(
 	card CardState,
 	rule TargetLegalityRule,
 ) bool {
-	// Must match the definition ID
-	if card.DefinitionID != rule.SourceDefinitionID {
-		return false
-	}
-
-	condition := rule.SourceCondition
-
-	// Check zone requirement
-	if condition.Zone != "" && card.Zone != condition.Zone {
-		return false
-	}
-
-	// Check ready requirement
-	if condition.Ready && card.Exhausted {
-		return false
-	}
-
-	// Check not destroyed requirement
-	if condition.NotDestroyed && card.Destroyed {
-		return false
-	}
-
-	// Check revealed requirement (if specified)
-	if condition.Revealed && !card.Revealed {
-		return false
-	}
-
-	return true
+	return cardMatchesDefinitionAndCondition(card, rule.SourceDefinitionID, rule.SourceCondition)
 }
 
 // matchesActorRestriction checks if the actor restriction applies to the given actor.
@@ -118,21 +91,7 @@ func (c *TargetLegalityChecker) matchesActorRestriction(
 	actorID string,
 	restriction ProhibitionScope,
 ) bool {
-	switch restriction.Kind {
-	case ProhibitionScopeAllPlayers:
-		return true
-
-	case ProhibitionScopeOpponentsOnly:
-		// Restriction applies only to opponents of the source controller
-		return sourceCard.ControllerID != "" && actorID != sourceCard.ControllerID
-
-	case ProhibitionScopeControllerOnly:
-		// Restriction applies only to the controller of the source
-		return sourceCard.ControllerID == actorID
-
-	default:
-		return false
-	}
+	return scopeAppliesToActor(sourceCard, actorID, restriction)
 }
 
 // matchesAffectedTarget checks if the target satisfies the affected target condition.
@@ -219,10 +178,5 @@ var XQ31TargetLegalityRule = TargetLegalityRule{
 // BuildTargetLegalityChecker creates a checker with all active target legality rules.
 // This is the entry point for target legality checks.
 func BuildTargetLegalityChecker(state GameState) *TargetLegalityChecker {
-	// Currently hardcoded rules - can be made dynamic later
-	rules := []TargetLegalityRule{
-		XQ31TargetLegalityRule,
-	}
-
-	return NewTargetLegalityChecker(rules)
+	return NewTargetLegalityChecker(BuildProductionTargetLegalityRules())
 }

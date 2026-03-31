@@ -56,34 +56,7 @@ func (c *ScopedProhibitionChecker) Check(
 
 // matchesSourceCondition checks if a card satisfies the source condition of a prohibition rule.
 func (c *ScopedProhibitionChecker) matchesSourceCondition(card CardState, rule ProhibitionRule) bool {
-	// Must match the definition ID
-	if card.DefinitionID != rule.SourceDefinitionID {
-		return false
-	}
-
-	condition := rule.SourceCondition
-
-	// Check zone requirement
-	if condition.Zone != "" && card.Zone != condition.Zone {
-		return false
-	}
-
-	// Check ready requirement
-	if condition.Ready && card.Exhausted {
-		return false
-	}
-
-	// Check not destroyed requirement
-	if condition.NotDestroyed && card.Destroyed {
-		return false
-	}
-
-	// Check revealed requirement (if specified)
-	if condition.Revealed && !card.Revealed {
-		return false
-	}
-
-	return true
+	return cardMatchesDefinitionAndCondition(card, rule.SourceDefinitionID, rule.SourceCondition)
 }
 
 // matchesScope checks if the prohibition scope applies to the given actor.
@@ -93,21 +66,7 @@ func (c *ScopedProhibitionChecker) matchesScope(
 	actorID string,
 	scope ProhibitionScope,
 ) bool {
-	switch scope.Kind {
-	case ProhibitionScopeAllPlayers:
-		return true
-
-	case ProhibitionScopeOpponentsOnly:
-		// Prohibition applies only to opponents of the source controller
-		return sourceCard.ControllerID != "" && actorID != sourceCard.ControllerID
-
-	case ProhibitionScopeControllerOnly:
-		// Prohibition applies only to the controller of the source
-		return sourceCard.ControllerID != "" && sourceCard.ControllerID == actorID
-
-	default:
-		return false
-	}
+	return scopeAppliesToActor(sourceCard, actorID, scope)
 }
 
 // matchesTargetCategory checks if the target category matches the prohibition rule.
@@ -216,10 +175,5 @@ var TEST02ProhibitionRule = ProhibitionRule{
 // BuildProhibitionChecker creates a checker with all active prohibition rules.
 // This is the entry point for legality checks.
 func BuildProhibitionChecker(state GameState) *ScopedProhibitionChecker {
-	// Production rules only - test rules should be added via NewProhibitionChecker in tests
-	rules := []ProhibitionRule{
-		XQ22ProhibitionRule,
-	}
-
-	return NewScopedProhibitionChecker(rules)
+	return NewScopedProhibitionChecker(BuildProductionProhibitionRules())
 }

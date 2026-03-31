@@ -81,9 +81,12 @@
 - [x] 第一批 10 张真实 fixture 已接入 shared catalog / normalized artifact
 - [x] fixture `card.basicType` 已贯通 schema / TS / Go / normalized artifact
 - [x] `XQ22` 第一条禁令已接入：ready 时禁止打出 `basicType == "事务"` 的卡
-- [x] `XQ22` 禁令已从“按卡名匹配”修正为“按 `CardState.DefinitionID` 匹配”
+- [x] `XQ22` 禁令已从"按卡名匹配"修正为"按 `CardState.DefinitionID` 匹配"
 - [x] attachment tracking V0 已接入：fixture-only 附属 source 也可被追踪，且 host 离场会同步清理对应 continuous effect
 - [x] 对应高风险回归测试已补齐
+- [x] **legality production rule catalog 已建立**（`server/pkg/rules/legality_catalog.go`）
+- [x] **shared source-condition 和 actor-scope matching 已提取**（`server/pkg/rules/legality_shared.go`）
+- [x] **`XQ31` 只在 `queue_operation` 上检查 target legality，`declare_attack/declare_investigation` 不再被误伤**
 
 ### 2.2 正在进行
 
@@ -173,8 +176,9 @@
 
 ### 2.3 待完成
 
-- [ ] 把 `XQ22` 从单卡特例推进成更一般的 scoped prohibition / targeting framework
-- [ ] 继续处理 `B` 组剩余卡：重点还剩 `XQ01`，`XQ31` 的最小 targeting slice 已纠偏但远未完成完整牌义
+- [x] 把 `XQ22` 从单卡特例推进成更一般的 scoped prohibition / targeting framework（legality_catalog.go + legality_shared.go）
+- [ ] 完成 `XQ31` 数值光环（+1 防御力）实现
+- [ ] 设计 `XQ01` 地区作用域沉默的 prerequisite
 - [ ] 把 `CardState.DefinitionID` 贯穿到未来真正的 permanents / attachments 上场建模
 - [ ] 把当前“rules core + fixture gate + sandbox”整理成更清晰的 AI 接手路径，避免后续会话重新摸索上下文
 
@@ -198,7 +202,12 @@
 │       ├── dsl.go
 │       ├── region.go
 │       ├── regression.go
-│       └── scenario.go
+│       ├── scenario.go
+│       ├── prohibition.go          # XQ22 prohibition checker
+│       ├── target_legality.go      # XQ31 target legality checker
+│       ├── legality_catalog.go     # production rule catalog (NEW)
+│       ├── legality_shared.go      # shared source/scope matchers (NEW)
+│       ├── types.go               # includes ProhibitionRule, TargetLegalityRule
 ├── web/
 │   └── src/debugger/
 ├── shared/
