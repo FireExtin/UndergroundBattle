@@ -162,6 +162,19 @@
   - 不做资产主动能力
   - 不做更多 UI
 
+## 2026-04-01 第十次补记（Discard / Graveyard Semantics V1.5）
+
+- Phase 3 现在把“进入 discard/坟墓”从零散赋值，收敛成统一的规则语义与实现入口：
+  - `continuous.go` 中新增 `moveCardToDiscard()` 统一 helper 函数，专门处理“卡进入 discard”
+  - `applyDerivedBoardSemantics()` 现在使用统一 helper，不再散写字段
+  - `dsl.go` 中新增 `applyDiscardCardEffect()` DSL effect 处理
+  - 在 `applyDSLEffect()` 中新增对 "discardCard" 的支持
+- 新增完整的单元测试：
+  - `discard_test.go` - 覆盖致命伤害路径和 discardCard DSL effect
+- 这是 Discard / Graveyard V1.5，不是完整坟墓交互系统：
+  - 已支持统一离场 + `discardCard` 最小 DSL
+  - 仍未做：坟墓检索、复活、回手、坟墓作为资源区
+
 
 ## 2026-03-31 执行顺序说明
 

@@ -23,6 +23,8 @@ func applyDSLEffect(state GameState, operation Operation, effect EffectSpec) Gam
 		return applyPlaceInfluenceEffect(state, operation, effect)
 	case "dealDamage":
 		return applyDealDamageEffect(state, operation, effect)
+	case "discardCard":
+		return applyDiscardCardEffect(state, operation, effect)
 	default:
 		return state
 	}
@@ -139,6 +141,22 @@ func applyDealDamageEffect(state GameState, operation Operation, effect EffectSp
 	working := cloneGameState(state)
 	working.Board.Cards[index].Counters.Damage += *effect.Amount
 	requestContinuousRecalculation(&working)
+	return working
+}
+
+func applyDiscardCardEffect(state GameState, operation Operation, effect EffectSpec) GameState {
+	targetCardID := runtimeTargetCardID(operation, effect)
+	if targetCardID == "" {
+		return state
+	}
+
+	index := findCardIndex(state, targetCardID)
+	if index == -1 {
+		return state
+	}
+
+	working := cloneGameState(state)
+	moveCardToDiscard(&working.Board.Cards[index])
 	return working
 }
 

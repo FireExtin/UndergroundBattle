@@ -324,13 +324,17 @@ func applyDerivedBoardSemantics(state *GameState) {
 		}
 
 		if card.Counters.Damage >= lethalDefenseThreshold(card.EffectiveStats.Defense) {
-			card.Destroyed = true
-			card.Zone = CardZoneDiscard
-			card.Revealed = true
+			moveCardToDiscard(card)
 		}
 	}
 
 	refreshAllRegionControl(state)
+}
+
+func moveCardToDiscard(card *CardState) {
+	card.Destroyed = true
+	card.Zone = CardZoneDiscard
+	card.Revealed = true
 }
 
 func lethalDefenseThreshold(defense int) int {
