@@ -1,6 +1,7 @@
 package api
 
 import (
+	"encoding/json"
 	"reflect"
 	"testing"
 
@@ -45,6 +46,47 @@ func TestSandboxSessionResetRestoresCanonicalM0State(t *testing.T) {
 	for _, message := range messages {
 		if message.Name != "StatePatched" {
 			t.Fatalf("message name = %q, want %q", message.Name, "StatePatched")
+		}
+	}
+}
+
+func TestSandboxSessionResetBootstrapMessagesUseResetRevision(t *testing.T) {
+	session := NewSandboxSession()
+	_, err := session.SubmitAction(rules.Action{
+		ID:      "act-session-reset-revision-1",
+		ActorID: "P1",
+		Kind:    rules.ActionKindRevealCard,
+		CardID:  "P1-HAND-SECRET",
+	})
+	if err != nil {
+		t.Fatalf("SubmitAction returned error: %v", err)
+	}
+
+	messages, err := session.Reset()
+	if err != nil {
+		t.Fatalf("Reset returned error: %v", err)
+	}
+
+	for index, message := range messages {
+		if message.Revision == nil {
+			t.Fatalf("messages[%d].revision is nil, want 0", index)
+		}
+
+		if *message.Revision != 0 {
+			t.Fatalf("messages[%d].revision = %d, want 0", index, *message.Revision)
+		}
+
+		var payload rules.StatePatched
+		if err := json.Unmarshal(message.Payload, &payload); err != nil {
+			t.Fatalf("json.Unmarshal(messages[%d]) returned error: %v", index, err)
+		}
+
+		if payload.Revision.Number != 0 {
+			t.Fatalf("payload revision = %d, want 0", payload.Revision.Number)
+		}
+
+		if payload.Event.RevisionNumber != 0 {
+			t.Fatalf("payload event revision = %d, want 0", payload.Event.RevisionNumber)
 		}
 	}
 }
