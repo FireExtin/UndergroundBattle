@@ -473,3 +473,61 @@ type LegalityError struct {
 func (err *LegalityError) Error() string {
 	return string(err.Code) + ": " + err.Message
 }
+
+// ProhibitionScopeKind defines who is affected by a prohibition rule.
+type ProhibitionScopeKind string
+
+const (
+	// ProhibitionScopeAllPlayers means the prohibition applies to all players.
+	ProhibitionScopeAllPlayers ProhibitionScopeKind = "all_players"
+	// ProhibitionScopeOpponentsOnly means the prohibition applies only to opponents of the source controller.
+	ProhibitionScopeOpponentsOnly ProhibitionScopeKind = "opponents_only"
+	// ProhibitionScopeControllerOnly means the prohibition applies only to the controller of the source.
+	ProhibitionScopeControllerOnly ProhibitionScopeKind = "controller_only"
+)
+
+// CardCondition defines the conditions a source card must satisfy for a prohibition to be active.
+type CardCondition struct {
+	Zone         CardZone `json:"zone,omitempty"`         // Card must be in this zone
+	Ready        bool     `json:"ready,omitempty"`        // Card must be ready (not exhausted)
+	NotDestroyed bool     `json:"notDestroyed,omitempty"` // Card must not be destroyed
+	Revealed     bool     `json:"revealed,omitempty"`     // Card must be revealed (optional)
+}
+
+// ProhibitionScope defines the scope of players affected by a prohibition.
+type ProhibitionScope struct {
+	Kind ProhibitionScopeKind `json:"kind"`
+}
+
+// TargetCategory defines what kinds of targets are prohibited.
+type TargetCategory struct {
+	BasicTypes  []string     `json:"basicTypes,omitempty"`  // Prohibited card basic types (e.g., "事务")
+	ActionKinds []ActionKind `json:"actionKinds,omitempty"` // Prohibited action kinds
+}
+
+// ProhibitionRule defines a self-contained prohibition effect.
+// It describes: when active (source condition), who affected (scope), what prohibited (target).
+type ProhibitionRule struct {
+	// SourceDefinitionID is the card definition ID that produces this prohibition (e.g., "XQ22").
+	SourceDefinitionID string `json:"sourceDefinitionId"`
+
+	// SourceCondition defines when the source card is considered "active" for this prohibition.
+	SourceCondition CardCondition `json:"sourceCondition"`
+
+	// Scope defines which players are affected by this prohibition.
+	Scope ProhibitionScope `json:"scope"`
+
+	// TargetCategory defines what is being prohibited.
+	TargetCategory TargetCategory `json:"targetCategory"`
+
+	// Description is a human-readable description of this prohibition (for debugging).
+	Description string `json:"description,omitempty"`
+}
+
+// ProhibitionMatchResult contains the result of a prohibition check.
+type ProhibitionMatchResult struct {
+	Prohibited     bool             // Whether the action is prohibited
+	MatchedRule    *ProhibitionRule // The rule that caused the prohibition (if any)
+	SourceCardID   string           // The actual source card instance ID (for error messages)
+	SourceCardName string           // The source card name (for error messages)
+}

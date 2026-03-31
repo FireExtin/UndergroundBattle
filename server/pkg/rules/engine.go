@@ -309,7 +309,7 @@ func CheckLegality(state GameState, action Action) LegalityResult {
 			return windowLegality
 		}
 
-		playLegality := checkQueuedCardPlayLegality(state, source)
+		playLegality := checkQueuedCardPlayLegality(state, action.ActorID, source)
 		if !playLegality.OK {
 			return playLegality
 		}
@@ -980,16 +980,17 @@ func checkCardWindowLegality(state GameState, source CardOperationSource) Legali
 	return okLegalityResult()
 }
 
-func checkQueuedCardPlayLegality(state GameState, source CardOperationSource) LegalityResult {
-	if source.BasicType != "事务" {
-		return okLegalityResult()
+func checkQueuedCardPlayLegality(state GameState, actorID string, source CardOperationSource) LegalityResult {
+	// Build target category from the card being played
+	targetCategory := TargetCategory{
+		BasicTypes: []string{source.BasicType},
 	}
 
-	for _, card := range state.Board.Cards {
-		if !isReadyDefinitionCard(card, "XQ22") {
-			continue
-		}
+	// Use the prohibition checker to evaluate all active rules
+	checker := BuildProhibitionChecker(state)
+	result := checker.Check(state, actorID, targetCategory)
 
+	if result.Prohibited {
 		return legalityFailure(
 			ReasonCodeLegalityFailedActionProhibited,
 			"rules.legality.action_prohibited",
@@ -997,17 +998,13 @@ func checkQueuedCardPlayLegality(state GameState, source CardOperationSource) Le
 			map[string]string{
 				"cardId":              source.CardID,
 				"basicType":           source.BasicType,
-				"prohibitingCardId":   card.CardID,
-				"prohibitingCardName": card.Name,
+				"prohibitingCardId":   result.SourceCardID,
+				"prohibitingCardName": result.SourceCardName,
 			},
 		)
 	}
 
 	return okLegalityResult()
-}
-
-func isReadyDefinitionCard(card CardState, definitionID string) bool {
-	return card.DefinitionID == definitionID && card.Zone == CardZoneTable && !card.Destroyed && !card.Exhausted
 }
 
 func resolveStackedOperation(state GameState, operation Operation) (GameState, Operation, error) {
