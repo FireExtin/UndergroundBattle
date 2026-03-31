@@ -20,6 +20,21 @@
   - 胜利条件
   - 持续效果来源离场清理
 
+## 2026-04-01 第二次补记
+
+- `Phase 3` 现在已经补上第二刀：
+  - 地区牌会记录 `InfluenceByPlayer`
+  - 地区控制权以最高 influence 决定；平局则无控制者
+  - `declare_investigation` 会把 influence 记到行动者名下，而不只是加总 counter
+  - `placeInfluence` DSL 作用到地区时，也会同步 region control
+  - `end -> main` 的回合切换会按当前已控制地区结算得分
+  - 分数达到 `VictoryThreshold` 时会写入 `WinnerPlayerID`
+- 这仍然不是完整闭环，当前明确未完成的是：
+  - 分数 / 胜利状态尚未投影到 Web 调试器
+  - 回合切换尚未轮转 `ActivePlayerID`
+  - 地区争夺还没有更完整的占领/结算规则
+  - 持续效果来源离场清理仍未接入
+
 ## 2026-03-31 执行顺序说明
 
 - 当前仓库状态已经从“纯规则核骨架”推进到了 `LIVE_SANDBOX` 阶段，因此下一步不建议立刻继续堆按钮、堆卡或上真实联机。

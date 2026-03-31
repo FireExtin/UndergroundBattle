@@ -582,6 +582,54 @@ func TestDamageEqualToEffectiveDefenseDestroysCard(t *testing.T) {
 	}
 }
 
+func TestPlaceInfluenceOnRegionTracksControllerForActor(t *testing.T) {
+	state := newContinuousTestState()
+	state.Board.Cards = []CardState{
+		testRegionCard("region-dsl-1"),
+	}
+
+	action := Action{
+		ID:           "act-region-dsl-1",
+		ActorID:      "P1",
+		Kind:         ActionKindQueueOperation,
+		CardID:       "MANUAL-INFLUENCE",
+		TargetCardID: "region-dsl-1",
+	}
+	operation := manualDSLCardEffectOperation(
+		"op:act-region-dsl-1",
+		"act-region-dsl-1",
+		"P1",
+		"MANUAL-INFLUENCE",
+		"region-dsl-1",
+		"none",
+		[]EffectSpec{
+			{
+				Kind:      "placeInfluence",
+				TargetRef: "selected",
+				Amount:    intPtr(2),
+			},
+		},
+	)
+
+	working, resolved, event, err := executeOperation(state, operation)
+	if err != nil {
+		t.Fatalf("executeOperation returned error: %v", err)
+	}
+
+	result := commitState(working, action, resolved, event, nil)
+	region := cardStateByID(t, result.State, "region-dsl-1")
+
+	if region.Counters.Influence != 2 {
+		t.Fatalf("region influence = %d, want 2", region.Counters.Influence)
+	}
+	if region.InfluenceByPlayer["P1"] != 2 {
+		t.Fatalf("P1 region influence = %d, want 2", region.InfluenceByPlayer["P1"])
+	}
+	if region.ControllerID != "P1" {
+		t.Fatalf("controller = %q, want %q", region.ControllerID, "P1")
+	}
+}
+
 func TestModifyStatCanPreventLethalDamageUntilEffectExpires(t *testing.T) {
 	state := newContinuousTestState()
 	state.Board.Cards = []CardState{

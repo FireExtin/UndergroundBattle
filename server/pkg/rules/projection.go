@@ -39,6 +39,8 @@ type CardState struct {
 	PrintedStats        CardNumericStats `json:"printedStats"`
 	EffectiveStats      CardNumericStats `json:"effectiveStats"`
 	Counters            CardCounters     `json:"counters"`
+	InfluenceByPlayer   map[string]int   `json:"influenceByPlayer,omitempty"`
+	ControllerID        string           `json:"controllerId,omitempty"`
 	Permissions         []string         `json:"permissions,omitempty"`
 	Prohibitions        []string         `json:"prohibitions,omitempty"`
 	RequiredPermissions []string         `json:"requiredPermissions,omitempty"`

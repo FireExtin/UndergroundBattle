@@ -163,6 +163,7 @@ type GameState struct {
 	Revision Revision     `json:"revision"`
 	Turn     TurnState    `json:"turn"`
 	Board    BoardState   `json:"board"`
+	Score    ScoreState   `json:"score"`
 	History  HistoryState `json:"history"`
 	RNG      RNGState     `json:"rng"`
 }
@@ -262,6 +263,13 @@ type HistoryState struct {
 	Operations []Operation `json:"operations"`
 	Events     []Event     `json:"events"`
 	Revisions  []Revision  `json:"revisions"`
+}
+
+// ScoreState stores the public score race used by the first minimal playable loop.
+type ScoreState struct {
+	ByPlayer         map[string]int `json:"byPlayer"`
+	VictoryThreshold int            `json:"victoryThreshold"`
+	WinnerPlayerID   string         `json:"winnerPlayerId,omitempty"`
 }
 
 // TurnState captures the minimum turn owner, priority owner, and phase needed by the skeleton rules kernel.

@@ -8,6 +8,7 @@ func cloneGameState(state GameState) GameState {
 	cloned := state
 	cloned.Players = slices.Clone(state.Players)
 	cloned.Board = cloneBoardState(state.Board)
+	cloned.Score = cloneScoreState(state.Score)
 	cloned.History = cloneHistoryState(state.History)
 	return cloned
 }
@@ -109,6 +110,7 @@ func cloneCardStates(cards []CardState) []CardState {
 		next.InspectedBy = slices.Clone(card.InspectedBy)
 		next.PrintedKeywords = slices.Clone(card.PrintedKeywords)
 		next.EffectiveKeywords = slices.Clone(card.EffectiveKeywords)
+		next.InfluenceByPlayer = cloneIntMap(card.InfluenceByPlayer)
 		next.Permissions = slices.Clone(card.Permissions)
 		next.Prohibitions = slices.Clone(card.Prohibitions)
 		next.RequiredPermissions = slices.Clone(card.RequiredPermissions)
@@ -130,6 +132,25 @@ func cloneContinuousEffects(effects []ContinuousEffect) []ContinuousEffect {
 		next := effect
 		next.DependencyKey = slices.Clone(effect.DependencyKey)
 		cloned = append(cloned, next)
+	}
+
+	return cloned
+}
+
+func cloneScoreState(state ScoreState) ScoreState {
+	cloned := state
+	cloned.ByPlayer = cloneIntMap(state.ByPlayer)
+	return cloned
+}
+
+func cloneIntMap(values map[string]int) map[string]int {
+	if len(values) == 0 {
+		return nil
+	}
+
+	cloned := make(map[string]int, len(values))
+	for key, value := range values {
+		cloned[key] = value
 	}
 
 	return cloned

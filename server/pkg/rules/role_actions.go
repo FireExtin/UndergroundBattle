@@ -123,6 +123,13 @@ func executeDeclareInvestigation(state GameState, operation Operation) (GameStat
 
 	working.Board.Cards[investigatorIndex].Exhausted = true
 	working.Board.Cards[targetIndex].Counters.Influence += applied
+	if working.Board.Cards[targetIndex].Kind == CardKindRegion {
+		if working.Board.Cards[targetIndex].InfluenceByPlayer == nil {
+			working.Board.Cards[targetIndex].InfluenceByPlayer = map[string]int{}
+		}
+		working.Board.Cards[targetIndex].InfluenceByPlayer[operation.ActorID] += applied
+		refreshAllRegionControl(&working)
+	}
 	reopenPhaseStep(&working.Turn)
 	resetPriorityWindow(&working.Turn, operation.ActorID, PriorityWindowAction)
 	operation.Status = OperationStatusResolved

@@ -46,6 +46,7 @@ func NewGameState(config InitialStateConfig) GameState {
 				Active: []ContinuousEffect{},
 			},
 		},
+		Score: newScoreState(players),
 		History: HistoryState{
 			Actions:    []Action{},
 			Operations: []Operation{},
@@ -689,7 +690,9 @@ func applyPhaseAdvance(state GameState, operation Operation) GameState {
 	working.Turn.Phase = phaseState(operation.NextPhase)
 
 	if previousPhase == PhaseEnd && operation.NextPhase == PhaseMain {
+		awardControlledRegionPoints(&working)
 		working.Turn.TurnNumber++
+		evaluateWinner(&working)
 	}
 
 	resetPriorityWindow(&working.Turn, working.Turn.ActivePlayerID, PriorityWindowAction)

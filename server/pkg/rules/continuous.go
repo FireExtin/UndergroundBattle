@@ -259,6 +259,8 @@ func applyDerivedBoardSemantics(state *GameState) {
 			card.Revealed = true
 		}
 	}
+
+	refreshAllRegionControl(state)
 }
 
 func lethalDefenseThreshold(defense int) int {

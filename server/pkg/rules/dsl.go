@@ -115,6 +115,13 @@ func applyPlaceInfluenceEffect(state GameState, operation Operation, effect Effe
 
 	working := cloneGameState(state)
 	working.Board.Cards[index].Counters.Influence += *effect.Amount
+	if working.Board.Cards[index].Kind == CardKindRegion {
+		if working.Board.Cards[index].InfluenceByPlayer == nil {
+			working.Board.Cards[index].InfluenceByPlayer = map[string]int{}
+		}
+		working.Board.Cards[index].InfluenceByPlayer[operation.ActorID] += *effect.Amount
+		refreshAllRegionControl(&working)
+	}
 	return working
 }
 
