@@ -94,19 +94,23 @@ func SubmitActionWithProjection(state GameState, action Action, projector *Proje
 		return SubmitResult{}, err
 	}
 
-	// Check invariants after state change (only in test mode)
+	// Commit state first, then check invariants on the committed state
+	// This ensures we catch issues introduced during commit (revision/history updates, recalculations)
+	result := commitState(working, action, operation, event, projector)
+
+	// Check invariants after commit (only in test mode)
 	if DefaultInvariantConfig.Enabled {
-		results := CheckAllInvariants(working, DefaultInvariantConfig)
-		for _, result := range results {
-			if !result.Passed {
+		results := CheckAllInvariants(result.State, DefaultInvariantConfig)
+		for _, invResult := range results {
+			if !invResult.Passed {
 				invariantError := legalityFailure(
 					ReasonCodeRulesFailedInvariantViolated,
 					"rules.invariant.violated",
 					"invariant.check",
 					map[string]string{
 						"actionId":      action.ID,
-						"invariantName": result.Name,
-						"message":       result.Message,
+						"invariantName": invResult.Name,
+						"message":       invResult.Message,
 					},
 				)
 				return SubmitResult{}, newLegalityError(invariantError)
@@ -114,7 +118,7 @@ func SubmitActionWithProjection(state GameState, action Action, projector *Proje
 		}
 	}
 
-	return commitState(working, action, operation, event, projector), nil
+	return result, nil
 }
 
 // ReplayActions replays an action log against an initial snapshot.
@@ -247,8 +251,9 @@ func CheckLegality(state GameState, action Action) LegalityResult {
 		)
 	}
 
-	// Check target legality for card targets
-	if action.TargetCardID != "" {
+	// Check target legality for card operation targets (not for role actions like attack/investigation)
+	// XQ31 "不能成为目标" should only block card/ability targeting, not role actions.
+	if action.TargetCardID != "" && action.Kind == ActionKindQueueOperation {
 		targetLegalityChecker := BuildTargetLegalityChecker(state)
 		targetResult := targetLegalityChecker.CheckTargetCard(state, action.ActorID, action.TargetCardID)
 		if !targetResult.CanTarget {

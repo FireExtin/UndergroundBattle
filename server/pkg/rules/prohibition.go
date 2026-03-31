@@ -216,11 +216,9 @@ var TEST02ProhibitionRule = ProhibitionRule{
 // BuildProhibitionChecker creates a checker with all active prohibition rules.
 // This is the entry point for legality checks.
 func BuildProhibitionChecker(state GameState) *ScopedProhibitionChecker {
-	// Currently hardcoded rules - can be made dynamic later
+	// Production rules only - test rules should be added via NewProhibitionChecker in tests
 	rules := []ProhibitionRule{
 		XQ22ProhibitionRule,
-		TEST01ProhibitionRule,
-		TEST02ProhibitionRule,
 	}
 
 	return NewScopedProhibitionChecker(rules)

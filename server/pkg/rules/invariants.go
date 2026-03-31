@@ -96,8 +96,13 @@ func InvariantCardZoneValid(state GameState) bool {
 }
 
 // InvariantPriorityPlayerValid checks that the priority player exists in the players list.
+// This checks the actual value that the engine will use (including fallback to PriorityPlayerID).
 func InvariantPriorityPlayerValid(state GameState) bool {
+	// Use the same logic as currentPriorityPlayerID in engine.go
 	priorityPlayer := state.Turn.Priority.CurrentPlayerID
+	if priorityPlayer == "" {
+		priorityPlayer = state.Turn.PriorityPlayerID
+	}
 	if priorityPlayer == "" {
 		return true // Empty means no priority (game might not have started)
 	}

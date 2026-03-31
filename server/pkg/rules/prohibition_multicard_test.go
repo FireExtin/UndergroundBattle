@@ -5,7 +5,7 @@ import (
 )
 
 // TestMultiCardProhibition verifies that the prohibition framework supports multiple cards.
-// RED TEST: This test will fail initially because we haven't added TEST01 rule yet.
+// Uses explicit rule construction to avoid polluting production BuildProhibitionChecker.
 func TestMultiCardProhibition(t *testing.T) {
 	state := NewGameState(InitialStateConfig{
 		GameID:         "test-multi",
@@ -35,7 +35,12 @@ func TestMultiCardProhibition(t *testing.T) {
 		},
 	}
 
-	checker := BuildProhibitionChecker(state)
+	// Build checker with explicit test rules (not using production BuildProhibitionChecker)
+	rules := []ProhibitionRule{
+		XQ22ProhibitionRule,
+		TEST01ProhibitionRule,
+	}
+	checker := NewScopedProhibitionChecker(rules)
 
 	// Verify XQ22 still prohibits event cards (事务)
 	targetEvent := TargetCategory{
@@ -86,7 +91,11 @@ func TestMultiCardProhibitionDifferentScopes(t *testing.T) {
 		},
 	}
 
-	checker := BuildProhibitionChecker(state)
+	// Build checker with explicit test rules
+	rules := []ProhibitionRule{
+		TEST02ProhibitionRule,
+	}
+	checker := NewScopedProhibitionChecker(rules)
 
 	targetCategory := TargetCategory{
 		BasicTypes: []string{"事务"},
@@ -184,7 +193,11 @@ func TestProhibitionCheckerEmptyControllerID(t *testing.T) {
 		},
 	}
 
-	checker := BuildProhibitionChecker(state)
+	// Build checker with explicit test rules
+	rules := []ProhibitionRule{
+		TEST02ProhibitionRule,
+	}
+	checker := NewScopedProhibitionChecker(rules)
 
 	targetCategory := TargetCategory{
 		BasicTypes: []string{"事务"},
