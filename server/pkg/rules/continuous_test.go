@@ -802,6 +802,294 @@ func TestModifyStatCanPreventLethalDamageUntilEffectExpires(t *testing.T) {
 	}
 }
 
+func TestContinuousEffectsBuiltFromXQ31(t *testing.T) {
+	state := newContinuousTestState()
+	state.Board.Cards = []CardState{
+		{
+			CardID:          "xq31-1",
+			DefinitionID:    "XQ31",
+			Name:            "莫兰大主教",
+			Zone:            CardZoneTable,
+			Exhausted:       false,
+			Destroyed:       false,
+			ControllerID:    "P1",
+			PrintedKeywords: []string{"领袖", "公开", "声望"},
+			PrintedStats:    CardNumericStats{Combat: 1, Defense: 4},
+		},
+		{
+			CardID:          "prestige-ally-1",
+			DefinitionID:    "ALLY",
+			Name:            "声望盟友",
+			Zone:            CardZoneTable,
+			Exhausted:       false,
+			Destroyed:       false,
+			ControllerID:    "P1",
+			PrintedKeywords: []string{"声望"},
+			PrintedStats:    CardNumericStats{Combat: 1, Defense: 2},
+		},
+	}
+
+	effects := BuildContinuousEffectsFromTemplates(state, BuildProductionContinuousEffectTemplates())
+	if len(effects) != 2 {
+		t.Fatalf("continuous effect count = %d, want 2 (XQ31 and prestige ally)", len(effects))
+	}
+
+	foundXQ31 := false
+	foundPrestigeAlly := false
+
+	for _, effect := range effects {
+		if effect.SourceCardID != "xq31-1" {
+			t.Fatalf("continuous effect sourceCardId = %q, want xq31-1", effect.SourceCardID)
+		}
+		if effect.TargetCardID == "xq31-1" {
+			foundXQ31 = true
+		}
+		if effect.TargetCardID == "prestige-ally-1" {
+			foundPrestigeAlly = true
+		}
+		if effect.Layer != LayerNumeric {
+			t.Fatalf("continuous effect layer = %q, want %q", effect.Layer, LayerNumeric)
+		}
+		if effect.EffectKind != "modifyStat" {
+			t.Fatalf("continuous effect effectKind = %q, want modifyStat", effect.EffectKind)
+		}
+		if effect.Stat != "defense" {
+			t.Fatalf("continuous effect stat = %q, want defense", effect.Stat)
+		}
+		if effect.Amount != 1 {
+			t.Fatalf("continuous effect amount = %d, want 1", effect.Amount)
+		}
+	}
+
+	if !foundXQ31 {
+		t.Fatal("expected effect for XQ31 (prestige self-buff)")
+	}
+	if !foundPrestigeAlly {
+		t.Fatal("expected effect for prestige ally")
+	}
+}
+
+func TestContinuousEffectsNotBuiltFromExhaustedXQ31(t *testing.T) {
+	state := newContinuousTestState()
+	state.Board.Cards = []CardState{
+		{
+			CardID:          "xq31-1",
+			DefinitionID:    "XQ31",
+			Name:            "莫兰大主教",
+			Zone:            CardZoneTable,
+			Exhausted:       true,
+			Destroyed:       false,
+			ControllerID:    "P1",
+			PrintedKeywords: []string{"领袖", "公开", "声望"},
+		},
+	}
+
+	effects := BuildContinuousEffectsFromTemplates(state, BuildProductionContinuousEffectTemplates())
+	if len(effects) != 0 {
+		t.Fatalf("continuous effect count = %d, want 0 (exhausted XQ31 should not produce effect)", len(effects))
+	}
+}
+
+func TestContinuousEffectsNotBuiltFromDestroyedXQ31(t *testing.T) {
+	state := newContinuousTestState()
+	state.Board.Cards = []CardState{
+		{
+			CardID:          "xq31-1",
+			DefinitionID:    "XQ31",
+			Name:            "莫兰大主教",
+			Zone:            CardZoneTable,
+			Exhausted:       false,
+			Destroyed:       true,
+			ControllerID:    "P1",
+			PrintedKeywords: []string{"领袖", "公开", "声望"},
+		},
+	}
+
+	effects := BuildContinuousEffectsFromTemplates(state, BuildProductionContinuousEffectTemplates())
+	if len(effects) != 0 {
+		t.Fatalf("continuous effect count = %d, want 0 (destroyed XQ31 should not produce effect)", len(effects))
+	}
+}
+
+func TestContinuousEffectsNotAppliedToDestroyedTarget(t *testing.T) {
+	state := newContinuousTestState()
+	state.Board.Cards = []CardState{
+		{
+			CardID:          "xq31-1",
+			DefinitionID:    "XQ31",
+			Name:            "莫兰大主教",
+			Zone:            CardZoneTable,
+			Exhausted:       false,
+			Destroyed:       false,
+			ControllerID:    "P1",
+			PrintedKeywords: []string{"领袖", "公开", "声望"},
+			PrintedStats:    CardNumericStats{Combat: 1, Defense: 4},
+		},
+		{
+			CardID:          "destroyed-ally-1",
+			DefinitionID:    "ALLY",
+			Name:            "已摧毁盟友",
+			Zone:            CardZoneTable,
+			Exhausted:       false,
+			Destroyed:       true,
+			ControllerID:    "P1",
+			PrintedKeywords: []string{"声望"},
+			PrintedStats:    CardNumericStats{Combat: 1, Defense: 2},
+		},
+	}
+
+	effects := BuildContinuousEffectsFromTemplates(state, BuildProductionContinuousEffectTemplates())
+	for _, effect := range effects {
+		if effect.TargetCardID == "destroyed-ally-1" {
+			t.Fatalf("should not create effect for destroyed target, but got effect targeting %s", effect.TargetCardID)
+		}
+	}
+}
+
+func TestXQ31GrantsDefenseToPrestigeAlly(t *testing.T) {
+	state := newContinuousTestState()
+	state.Board.Cards = []CardState{
+		{
+			CardID:          "xq31-1",
+			DefinitionID:    "XQ31",
+			Name:            "莫兰大主教",
+			Zone:            CardZoneTable,
+			Exhausted:       false,
+			Destroyed:       false,
+			ControllerID:    "P1",
+			PrintedKeywords: []string{"领袖", "公开", "声望"},
+			PrintedStats:    CardNumericStats{Combat: 1, Defense: 4},
+		},
+		{
+			CardID:          "prestige-ally-1",
+			DefinitionID:    "ALLY",
+			Name:            "声望盟友",
+			Zone:            CardZoneTable,
+			Exhausted:       false,
+			Destroyed:       false,
+			ControllerID:    "P1",
+			PrintedKeywords: []string{"声望"},
+			PrintedStats:    CardNumericStats{Combat: 1, Defense: 2},
+		},
+	}
+
+	recalculated := RecalculateContinuousEffects(state)
+	xq31 := cardStateByID(t, recalculated, "xq31-1")
+	prestigeAlly := cardStateByID(t, recalculated, "prestige-ally-1")
+
+	if xq31.EffectiveStats.Defense != 5 {
+		t.Fatalf("XQ31 effective defense = %d, want 5 (4 + 1)", xq31.EffectiveStats.Defense)
+	}
+	if prestigeAlly.EffectiveStats.Defense != 3 {
+		t.Fatalf("prestige ally effective defense = %d, want 3 (2 + 1)", prestigeAlly.EffectiveStats.Defense)
+	}
+}
+
+func TestXQ31DoesNotAffectNonPrestigeAlly(t *testing.T) {
+	state := newContinuousTestState()
+	state.Board.Cards = []CardState{
+		{
+			CardID:          "xq31-1",
+			DefinitionID:    "XQ31",
+			Name:            "莫兰大主教",
+			Zone:            CardZoneTable,
+			Exhausted:       false,
+			Destroyed:       false,
+			ControllerID:    "P1",
+			PrintedKeywords: []string{"领袖", "公开", "声望"},
+			PrintedStats:    CardNumericStats{Combat: 1, Defense: 4},
+		},
+		{
+			CardID:          "non-prestige-ally-1",
+			DefinitionID:    "ALLY",
+			Name:            "非声望盟友",
+			Zone:            CardZoneTable,
+			Exhausted:       false,
+			Destroyed:       false,
+			ControllerID:    "P1",
+			PrintedKeywords: []string{},
+			PrintedStats:    CardNumericStats{Combat: 1, Defense: 2},
+		},
+	}
+
+	recalculated := RecalculateContinuousEffects(state)
+	nonPrestigeAlly := cardStateByID(t, recalculated, "non-prestige-ally-1")
+
+	if nonPrestigeAlly.EffectiveStats.Defense != 2 {
+		t.Fatalf("non-prestige ally effective defense = %d, want 2 (no buff)", nonPrestigeAlly.EffectiveStats.Defense)
+	}
+}
+
+func TestXQ31DoesNotAffectEnemy(t *testing.T) {
+	state := newContinuousTestState()
+	state.Board.Cards = []CardState{
+		{
+			CardID:          "xq31-1",
+			DefinitionID:    "XQ31",
+			Name:            "莫兰大主教",
+			Zone:            CardZoneTable,
+			Exhausted:       false,
+			Destroyed:       false,
+			ControllerID:    "P1",
+			PrintedKeywords: []string{"领袖", "公开", "声望"},
+			PrintedStats:    CardNumericStats{Combat: 1, Defense: 4},
+		},
+		{
+			CardID:          "enemy-1",
+			DefinitionID:    "ENEMY",
+			Name:            "敌方角色",
+			Zone:            CardZoneTable,
+			Exhausted:       false,
+			Destroyed:       false,
+			ControllerID:    "P2",
+			PrintedKeywords: []string{"声望"},
+			PrintedStats:    CardNumericStats{Combat: 1, Defense: 2},
+		},
+	}
+
+	recalculated := RecalculateContinuousEffects(state)
+	enemy := cardStateByID(t, recalculated, "enemy-1")
+
+	if enemy.EffectiveStats.Defense != 2 {
+		t.Fatalf("enemy effective defense = %d, want 2 (no buff)", enemy.EffectiveStats.Defense)
+	}
+}
+
+func TestXQ31DoesNotAffectDestroyedCard(t *testing.T) {
+	state := newContinuousTestState()
+	state.Board.Cards = []CardState{
+		{
+			CardID:          "xq31-1",
+			DefinitionID:    "XQ31",
+			Name:            "莫兰大主教",
+			Zone:            CardZoneTable,
+			Exhausted:       false,
+			Destroyed:       false,
+			ControllerID:    "P1",
+			PrintedKeywords: []string{"领袖", "公开", "声望"},
+			PrintedStats:    CardNumericStats{Combat: 1, Defense: 4},
+		},
+		{
+			CardID:          "destroyed-ally-1",
+			DefinitionID:    "ALLY",
+			Name:            "已摧毁盟友",
+			Zone:            CardZoneTable,
+			Exhausted:       false,
+			Destroyed:       true,
+			ControllerID:    "P1",
+			PrintedKeywords: []string{"声望"},
+			PrintedStats:    CardNumericStats{Combat: 1, Defense: 2},
+		},
+	}
+
+	recalculated := RecalculateContinuousEffects(state)
+	destroyedAlly := cardStateByID(t, recalculated, "destroyed-ally-1")
+
+	if destroyedAlly.EffectiveStats.Defense != 2 {
+		t.Fatalf("destroyed ally effective defense = %d, want 2 (no buff)", destroyedAlly.EffectiveStats.Defense)
+	}
+}
+
 func newContinuousTestState() GameState {
 	return NewGameState(InitialStateConfig{
 		GameID:         "game-continuous",

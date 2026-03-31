@@ -34,3 +34,42 @@ func TestBuildProductionTargetLegalityRules(t *testing.T) {
 		t.Fatalf("target legality side = %q, want %q", rule.AffectedTargetCondition.Side, SideAlly)
 	}
 }
+
+func TestBuildProductionContinuousEffectTemplates(t *testing.T) {
+	templates := BuildProductionContinuousEffectTemplates()
+	if len(templates) != 1 {
+		t.Fatalf("production continuous effect template count = %d, want 1", len(templates))
+	}
+
+	template := templates[0]
+	if template.SourceDefinitionID != "XQ31" {
+		t.Fatalf("continuous effect sourceDefinitionId = %q, want XQ31", template.SourceDefinitionID)
+	}
+	if template.SourceCondition.Zone != CardZoneTable {
+		t.Fatalf("continuous effect sourceCondition.Zone = %q, want %q", template.SourceCondition.Zone, CardZoneTable)
+	}
+	if !template.SourceCondition.Ready {
+		t.Fatal("continuous effect sourceCondition.Ready = false, want true")
+	}
+	if !template.SourceCondition.NotDestroyed {
+		t.Fatal("continuous effect sourceCondition.NotDestroyed = false, want true")
+	}
+	if template.Layer != LayerNumeric {
+		t.Fatalf("continuous effect layer = %q, want %q", template.Layer, LayerNumeric)
+	}
+	if template.EffectKind != "modifyStat" {
+		t.Fatalf("continuous effect effectKind = %q, want modifyStat", template.EffectKind)
+	}
+	if template.Stat != "defense" {
+		t.Fatalf("continuous effect stat = %q, want defense", template.Stat)
+	}
+	if template.Amount != 1 {
+		t.Fatalf("continuous effect amount = %d, want 1", template.Amount)
+	}
+	if template.TargetCondition.Side != SideAlly {
+		t.Fatalf("continuous effect targetCondition.Side = %q, want %q", template.TargetCondition.Side, SideAlly)
+	}
+	if len(template.TargetCondition.Keywords) != 1 || template.TargetCondition.Keywords[0] != "声望" {
+		t.Fatalf("continuous effect targetCondition.Keywords = %#v, want [声望]", template.TargetCondition.Keywords)
+	}
+}

@@ -598,6 +598,43 @@ type TargetLegalityRule struct {
 	Description string `json:"description,omitempty"`
 }
 
+// ContinuousEffectTemplate defines a production continuous effect produced by a card.
+// This is used to dynamically build continuous effects based on active cards on the board.
+type ContinuousEffectTemplate struct {
+	// SourceDefinitionID is the card definition ID that produces this effect (e.g., "XQ31").
+	SourceDefinitionID string `json:"sourceDefinitionId"`
+
+	// SourceCondition defines when the source card is considered "active" for this effect.
+	SourceCondition CardCondition `json:"sourceCondition"`
+
+	// TargetCondition defines which targets are affected by this effect.
+	TargetCondition TargetCondition `json:"targetCondition"`
+
+	// Layer is the continuous effect layer.
+	Layer ContinuousLayer `json:"layer"`
+
+	// EffectKind is the effect kind (e.g., "modifyStat").
+	EffectKind string `json:"effectKind"`
+
+	// DurationKind is how long the effect lasts (e.g., "permanent").
+	DurationKind string `json:"durationKind"`
+
+	// Stat is the stat to modify (if effectKind is "modifyStat").
+	Stat string `json:"stat,omitempty"`
+
+	// Amount is the amount to modify (if effectKind is "modifyStat").
+	Amount int `json:"amount,omitempty"`
+
+	// Keyword is the keyword to add/remove (if effectKind is "addKeyword" or "removeKeyword").
+	Keyword string `json:"keyword,omitempty"`
+
+	// Permission is the permission to grant/prohibit (if effectKind is "grantPermission" or "prohibitPermission").
+	Permission string `json:"permission,omitempty"`
+
+	// Description is a human-readable description of this effect (for debugging).
+	Description string `json:"description,omitempty"`
+}
+
 // TargetLegalityMatchResult contains the result of a target legality check.
 type TargetLegalityMatchResult struct {
 	// CanTarget is true if the target can be acted upon.

@@ -29,7 +29,10 @@ func RecalculateContinuousEffects(state GameState) GameState {
 	pruneExpiredAttachments(&working)
 	pruneExpiredContinuousEffects(&working)
 
-	effects := cloneContinuousEffects(working.Board.Continuous.Active)
+	prodEffects := BuildContinuousEffectsFromTemplates(working, BuildProductionContinuousEffectTemplates())
+	existingEffects := cloneContinuousEffects(working.Board.Continuous.Active)
+	effects := append(existingEffects, prodEffects...)
+
 	sortContinuousEffects(effects)
 	for _, effect := range effects {
 		applyContinuousEffect(&working, effect)
@@ -163,7 +166,6 @@ func resetDerivedCardState(state *GameState) {
 		card.EffectiveStats = card.PrintedStats
 		card.Permissions = nil
 		card.Prohibitions = nil
-		card.Destroyed = card.Zone == CardZoneDiscard
 		card.CostAdjustment = 0
 		card.ActionQuota = 0
 	}
@@ -357,4 +359,48 @@ func normalizedContinuousDuration(durationKind string) string {
 	default:
 		return "permanent"
 	}
+}
+
+// BuildContinuousEffectsFromTemplates builds active continuous effects from production templates
+// based on the current game state.
+func BuildContinuousEffectsFromTemplates(state GameState, templates []ContinuousEffectTemplate) []ContinuousEffect {
+	var effects []ContinuousEffect
+	timestamp := state.Board.Continuous.NextTimestamp
+
+	for _, sourceCard := range state.Board.Cards {
+		for _, template := range templates {
+			if !cardMatchesDefinitionAndCondition(sourceCard, template.SourceDefinitionID, template.SourceCondition) {
+				continue
+			}
+
+			for _, targetCard := range state.Board.Cards {
+				if targetCard.Zone != CardZoneTable || targetCard.Destroyed {
+					continue
+				}
+
+				if !cardMatchesTargetCondition(sourceCard, targetCard, template.TargetCondition) {
+					continue
+				}
+
+				timestamp++
+				effect := ContinuousEffect{
+					ID:           fmt.Sprintf("ce:prod:%s:%s:%d", template.SourceDefinitionID, sourceCard.CardID, timestamp),
+					SourceCardID: sourceCard.CardID,
+					ControllerID: sourceCard.ControllerID,
+					TargetCardID: targetCard.CardID,
+					Layer:        template.Layer,
+					EffectKind:   template.EffectKind,
+					DurationKind: template.DurationKind,
+					Timestamp:    timestamp,
+					Stat:         template.Stat,
+					Amount:       template.Amount,
+					Keyword:      template.Keyword,
+					Permission:   template.Permission,
+				}
+				effects = append(effects, effect)
+			}
+		}
+	}
+
+	return effects
 }

@@ -120,6 +120,21 @@
   - 完成 XQ31 数值光环（+1 防御力）实现
   - 设计 XQ01 地区作用域沉默的 prerequisite
 
+## 2026-04-01 第七次补记（XQ31 数值光环）
+
+- Phase 3 continuous effects 现在有了专用的 production template catalog：
+  - `server/pkg/rules/types.go` - 新增 `ContinuousEffectTemplate` 类型
+  - `server/pkg/rules/legality_catalog.go` - 新增 `XQ31ContinuousEffectTemplate` 和 `BuildProductionContinuousEffectTemplates()`
+  - `server/pkg/rules/legality_shared.go` - 新增 `cardMatchesTargetCondition()` 共享函数
+  - `server/pkg/rules/continuous.go` - 新增 `BuildContinuousEffectsFromTemplates()` 函数，并集成到 `RecalculateContinuousEffects`
+- XQ31（莫兰大主教）的数值光环已完整实现：
+  - 当 XQ31 在场且就绪时，所有本方声望角色获得 +1 防御力
+  - 效果不影响敌方、非声望、已摧毁的卡牌
+  - 新增完整的单元测试和 Golden Scenario 验证
+- 修复了 `resetDerivedCardState` 中意外重置 `Destroyed` 标志的问题
+- 下一阶段跟进方向：
+  - 设计 XQ01 地区作用域沉默的 prerequisite
+
 
 ## 2026-03-31 执行顺序说明
 

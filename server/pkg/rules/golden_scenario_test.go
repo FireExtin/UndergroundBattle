@@ -326,3 +326,99 @@ func TestGoldenScenario_InvariantsAfterActions(t *testing.T) {
 		}
 	}
 }
+
+// TestGoldenScenario_XQ31GrantsDefenseToPrestigeAllies verifies that XQ31 grants +1 defense to all allied prestige characters.
+// Scenario: XQ31 本方声望角色 +1 防御力
+func TestGoldenScenario_XQ31GrantsDefenseToPrestigeAllies(t *testing.T) {
+	// Given: P1 has XQ31, a prestige ally, and a non-prestige ally on the table
+	state := NewGameState(InitialStateConfig{
+		GameID:         "golden-xq31-defense",
+		ActivePlayerID: "P1",
+		PlayerIDs:      []string{"P1", "P2"},
+	})
+
+	// Add XQ31 to P1's table (4 defense printed)
+	xq31Card := CardState{
+		CardID:          "XQ31-1",
+		DefinitionID:    "XQ31",
+		Name:            "莫兰大主教",
+		Zone:            CardZoneTable,
+		Exhausted:       false,
+		Destroyed:       false,
+		ControllerID:    "P1",
+		PrintedKeywords: []string{"领袖", "公开", "声望"},
+		PrintedStats:    CardNumericStats{Combat: 1, Defense: 4},
+	}
+
+	// Add prestige ally to P1's table (2 defense printed)
+	prestigeAlly := CardState{
+		CardID:          "PRESTIGE-ALLY-1",
+		DefinitionID:    "ALLY",
+		Name:            "声望盟友",
+		Zone:            CardZoneTable,
+		Exhausted:       false,
+		Destroyed:       false,
+		ControllerID:    "P1",
+		PrintedKeywords: []string{"声望"},
+		PrintedStats:    CardNumericStats{Combat: 1, Defense: 2},
+	}
+
+	// Add non-prestige ally to P1's table (2 defense printed)
+	nonPrestigeAlly := CardState{
+		CardID:          "NON-PRESTIGE-ALLY-1",
+		DefinitionID:    "ALLY",
+		Name:            "非声望盟友",
+		Zone:            CardZoneTable,
+		Exhausted:       false,
+		Destroyed:       false,
+		ControllerID:    "P1",
+		PrintedKeywords: []string{},
+		PrintedStats:    CardNumericStats{Combat: 1, Defense: 2},
+	}
+
+	// Add enemy prestige character to P2's table (2 defense printed)
+	enemyPrestige := CardState{
+		CardID:          "ENEMY-PRESTIGE-1",
+		DefinitionID:    "ENEMY",
+		Name:            "敌方声望",
+		Zone:            CardZoneTable,
+		Exhausted:       false,
+		Destroyed:       false,
+		ControllerID:    "P2",
+		PrintedKeywords: []string{"声望"},
+		PrintedStats:    CardNumericStats{Combat: 1, Defense: 2},
+	}
+
+	state.Board.Cards = []CardState{xq31Card, prestigeAlly, nonPrestigeAlly, enemyPrestige}
+
+	// When: Recalculate continuous effects
+	recalculated := RecalculateContinuousEffects(state)
+
+	// Then: Verify defense values
+	var xq31, prestigeAllyAfter, nonPrestigeAllyAfter, enemyPrestigeAfter CardState
+	for _, card := range recalculated.Board.Cards {
+		switch card.CardID {
+		case "XQ31-1":
+			xq31 = card
+		case "PRESTIGE-ALLY-1":
+			prestigeAllyAfter = card
+		case "NON-PRESTIGE-ALLY-1":
+			nonPrestigeAllyAfter = card
+		case "ENEMY-PRESTIGE-1":
+			enemyPrestigeAfter = card
+		}
+	}
+
+	if xq31.EffectiveStats.Defense != 5 {
+		t.Fatalf("XQ31 effective defense = %d, want 5 (4 + 1)", xq31.EffectiveStats.Defense)
+	}
+	if prestigeAllyAfter.EffectiveStats.Defense != 3 {
+		t.Fatalf("prestige ally effective defense = %d, want 3 (2 + 1)", prestigeAllyAfter.EffectiveStats.Defense)
+	}
+	if nonPrestigeAllyAfter.EffectiveStats.Defense != 2 {
+		t.Fatalf("non-prestige ally effective defense = %d, want 2 (no buff)", nonPrestigeAllyAfter.EffectiveStats.Defense)
+	}
+	if enemyPrestigeAfter.EffectiveStats.Defense != 2 {
+		t.Fatalf("enemy prestige effective defense = %d, want 2 (no buff)", enemyPrestigeAfter.EffectiveStats.Defense)
+	}
+}
