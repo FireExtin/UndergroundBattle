@@ -140,6 +140,17 @@ func CheckLegality(state GameState, action Action) LegalityResult {
 		)
 	}
 
+	if state.Score.WinnerPlayerID != "" {
+		return legalityFailure(
+			ReasonCodeRulesFailedGameAlreadyOver,
+			"rules.game.already_over",
+			"score.winner",
+			map[string]string{
+				"winnerPlayerId": state.Score.WinnerPlayerID,
+			},
+		)
+	}
+
 	if state.Turn.Phase.StepEnded && action.Kind != ActionKindAdvancePhase {
 		return legalityFailure(
 			ReasonCodeRulesFailedStepEnded,

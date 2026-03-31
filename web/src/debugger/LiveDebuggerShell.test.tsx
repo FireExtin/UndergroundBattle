@@ -11,6 +11,46 @@ const initialLiveMessages = defaultMockMessageSets[0].messages.filter(
   (message) => message.name === "StatePatched"
 );
 
+const playableLiveMessages: DebuggerProtocolEnvelope[] = initialLiveMessages.map((message) => {
+  if (message.name !== "StatePatched") {
+    return message;
+  }
+
+  if (message.payload.playerView) {
+    return {
+      ...message,
+      payload: {
+        ...message.payload,
+        playerView: {
+          ...message.payload.playerView,
+          score: {
+            ...message.payload.playerView.score,
+            winnerPlayerId: undefined
+          }
+        }
+      }
+    };
+  }
+
+  if (message.payload.spectatorView) {
+    return {
+      ...message,
+      payload: {
+        ...message.payload,
+        spectatorView: {
+          ...message.payload.spectatorView,
+          score: {
+            ...message.payload.spectatorView.score,
+            winnerPlayerId: undefined
+          }
+        }
+      }
+    };
+  }
+
+  return message;
+});
+
 const rejectionBatch: DebuggerProtocolEnvelope[] = [
   {
     version: "0.1.0",
@@ -58,7 +98,7 @@ describe("LiveDebuggerShell", () => {
   it("submits preset actions and appends returned protocol messages", async () => {
     const fetchMock = vi
       .fn()
-      .mockResolvedValueOnce(createJSONResponse(initialLiveMessages))
+      .mockResolvedValueOnce(createJSONResponse(playableLiveMessages))
       .mockResolvedValueOnce(createJSONResponse(rejectionBatch));
     vi.stubGlobal("fetch", fetchMock);
 
@@ -84,6 +124,18 @@ describe("LiveDebuggerShell", () => {
       actorId: "P1",
       kind: "pass_priority"
     });
+  });
+
+  it("disables action controls when the live patch already has a winner", async () => {
+    const fetchMock = vi.fn().mockResolvedValue(createJSONResponse(initialLiveMessages));
+    vi.stubGlobal("fetch", fetchMock);
+
+    render(<LiveDebuggerShell fallbackMessageSets={defaultMockMessageSets} />);
+
+    await screen.findByText(/Source:\s*Live Sandbox/);
+    expect(screen.getByText("Game over. Winner: P1")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Pass Priority" })).toBeDisabled();
+    expect(fetchMock).toHaveBeenCalledTimes(1);
   });
 
   it("falls back to mock protocol data when the live server is unavailable", async () => {

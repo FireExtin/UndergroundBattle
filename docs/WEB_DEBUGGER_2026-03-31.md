@@ -45,6 +45,7 @@ Purpose: explains the first minimal web debugger and match shell for the Undergr
 - `action log` 只显示 accepted/rejected，不把 `StatePatched` 也混进日志行里。
 - `legality failure` 显示结构化字段，不退化成单行字符串。
 - 动作面板只提供少量预置动作，不引入完整作者工具或动作编辑器。
+- 当当前 patch 已有 `winner` 时，live 动作面板会禁用提交按钮，但仍允许 `Reload Feed`。
 - Web 仍然不是语义权威；按钮点击只是提交 `Action`，最终是否合法仍由 Go 决定。
 
 ## Hidden Information

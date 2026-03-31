@@ -14,7 +14,7 @@ import {
   createInitialLiveDebuggerState,
   liveDebuggerReducer
 } from "./liveModel";
-import type { MockMessageSet, ViewerId } from "./protocol";
+import type { MockMessageSet, StatePatchedEnvelope, ViewerId } from "./protocol";
 
 // Purpose: Switches the debugger from static mock-only mode to a minimal live sandbox fed by the Go HTTP server.
 type LiveDebuggerShellProps = {
@@ -78,12 +78,17 @@ export function LiveDebuggerShell({ fallbackMessageSets }: LiveDebuggerShellProp
           ? "当前连接 Go 规则核的最小 HTTP sandbox，可以提交预置动作并观察真实 revision、stack、priority 与投影变化。"
           : "当前未连接到 Go sandbox，已退回 mock protocol 数据。规则真相源仍然只存在于 Go。"
       }
-      renderControls={({ selectedViewer }) => (
+      renderControls={({ selectedViewer, currentPatch }) => (
         <ActionControlsPanel
           selectedViewer={selectedViewer}
           pending={state.loading || state.submitting}
           presets={liveActionPresets}
-          disabledReason={disabledReason(state.mode, selectedViewer, state.errorMessage)}
+          disabledReason={disabledReason(
+            state.mode,
+            selectedViewer,
+            state.errorMessage,
+            currentWinnerPlayerId(currentPatch)
+          )}
           onActionSelected={(presetId) =>
             void handleActionSelection(
               presetId,
@@ -146,9 +151,18 @@ async function handleActionSelection(
   }
 }
 
-function disabledReason(mode: "loading" | "live" | "fallback", selectedViewer: ViewerId, error: string) {
+function disabledReason(
+  mode: "loading" | "live" | "fallback",
+  selectedViewer: ViewerId,
+  error: string,
+  winnerPlayerId: string
+) {
   if (mode !== "live") {
     return error || "Live server unavailable. Showing mock protocol data."
+  }
+
+  if (winnerPlayerId !== "") {
+    return `Game over. Winner: ${winnerPlayerId}`
   }
 
   if (selectedViewer === "spectator") {
@@ -160,4 +174,10 @@ function disabledReason(mode: "loading" | "live" | "fallback", selectedViewer: V
 
 function loadStartedAction() {
   return { type: "loadStarted" } as const;
+}
+
+function currentWinnerPlayerId(
+  patch: StatePatchedEnvelope | undefined
+) {
+  return patch?.payload.playerView?.score.winnerPlayerId ?? patch?.payload.spectatorView?.score.winnerPlayerId ?? "";
 }

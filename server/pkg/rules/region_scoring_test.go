@@ -1,6 +1,7 @@
 package rules
 
 import (
+	"errors"
 	"reflect"
 	"testing"
 )
@@ -182,6 +183,51 @@ func TestRegionScoringReplayProducesSameState(t *testing.T) {
 
 	if !reflect.DeepEqual(finalState, replayed) {
 		t.Fatalf("replayed state mismatch\nfinal = %#v\nreplayed = %#v", finalState, replayed)
+	}
+}
+
+func TestWinnerStopsFurtherActionsWithStructuredReasonCode(t *testing.T) {
+	state := newRoleActionTestState()
+	state.Score.VictoryThreshold = 1
+	state.Board.Cards = []CardState{
+		testRegionCard("region-1"),
+	}
+	state.Board.Cards[0].InfluenceByPlayer = map[string]int{"P1": 3}
+	refreshAllRegionControl(&state)
+
+	state = mustSubmit(t, state, Action{
+		ID:      "act-game-over-1",
+		ActorID: "P1",
+		Kind:    ActionKindAdvancePhase,
+	})
+	state = mustSubmit(t, state, Action{
+		ID:      "act-game-over-2",
+		ActorID: "P1",
+		Kind:    ActionKindAdvancePhase,
+	})
+
+	if state.Score.WinnerPlayerID != "P1" {
+		t.Fatalf("winner = %q, want %q", state.Score.WinnerPlayerID, "P1")
+	}
+
+	_, err := SubmitAction(state, Action{
+		ID:      "act-game-over-3",
+		ActorID: "P2",
+		Kind:    ActionKindPassPriority,
+	})
+	if err == nil {
+		t.Fatal("expected action after winner to be rejected")
+	}
+
+	var legality *LegalityError
+	if !errors.As(err, &legality) {
+		t.Fatalf("expected LegalityError, got %T", err)
+	}
+	if legality.Code != ReasonCodeRulesFailedGameAlreadyOver {
+		t.Fatalf("legality code = %q, want %q", legality.Code, ReasonCodeRulesFailedGameAlreadyOver)
+	}
+	if legality.Context["winnerPlayerId"] != "P1" {
+		t.Fatalf("winnerPlayerId context = %q, want %q", legality.Context["winnerPlayerId"], "P1")
 	}
 }
 

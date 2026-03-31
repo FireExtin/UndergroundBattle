@@ -391,6 +391,7 @@ const (
 	ReasonCodeStackFailedEmpty                     ReasonCode = "STACK_FAILED_EMPTY"
 	ReasonCodeRulesFailedCardLogicMissing          ReasonCode = "RULES_FAILED_CARD_LOGIC_MISSING"
 	ReasonCodeRulesFailedCardLogicUnavailable      ReasonCode = "RULES_FAILED_CARD_LOGIC_UNAVAILABLE"
+	ReasonCodeRulesFailedGameAlreadyOver           ReasonCode = "RULES_FAILED_GAME_ALREADY_OVER"
 	ReasonCodeRulesFailedUnknownActionKind         ReasonCode = "RULES_FAILED_UNKNOWN_ACTION_KIND"
 	ReasonCodeRulesFailedRandomMaxInvalid          ReasonCode = "RULES_FAILED_RANDOM_MAX_INVALID"
 	ReasonCodeRulesFailedStepEnded                 ReasonCode = "RULES_FAILED_STEP_ENDED"

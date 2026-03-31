@@ -16,13 +16,17 @@ import {
   selectCurrentStack,
   selectLatestRejected
 } from "./model";
-import type { MockMessageSet, ViewerId } from "./protocol";
+import type { MockMessageSet, StatePatchedEnvelope, ViewerId } from "./protocol";
 
 // Purpose: Hosts the minimal match debugger using only React useReducer and mock protocol envelopes.
 type DebuggerShellProps = {
   messageSets: MockMessageSet[];
   lede?: string;
-  renderControls?: (context: { selectedViewer: ViewerId; activeSet?: MockMessageSet }) => ReactNode;
+  renderControls?: (context: {
+    selectedViewer: ViewerId;
+    activeSet?: MockMessageSet;
+    currentPatch?: StatePatchedEnvelope;
+  }) => ReactNode;
 };
 
 export function DebuggerShell({ messageSets, lede, renderControls }: DebuggerShellProps) {
@@ -58,7 +62,8 @@ export function DebuggerShell({ messageSets, lede, renderControls }: DebuggerShe
       {renderControls
         ? renderControls({
             selectedViewer: state.selectedViewer,
-            activeSet
+            activeSet,
+            currentPatch
           })
         : null}
 
