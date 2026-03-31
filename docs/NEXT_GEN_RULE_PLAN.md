@@ -78,7 +78,25 @@
   3. 再进入第一套完整可玩规则闭环
   4. 最后才扩首发卡池与真实联机
 - 换句话说，这份文档里的 4 个里程碑仍然成立，但当前执行顺序应以前两项“稳固基线”和“最小完整闭环”为先。
-- 具体落地顺序见 [NEXT_STEP_EXECUTION_PLAN_2026-03-31.md](/Users/ddd/Downloads/UndergroundBattle/docs/NEXT_STEP_EXECUTION_PLAN_2026-03-31.md)。
+- 具体落地顺序见 [NEXT_STEP_EXECUTION_PLAN_2026-03-31.md](./NEXT_STEP_EXECUTION_PLAN_2026-03-31.md)。
+
+## 2026-03-31 第五次补记（sandbox 终局态与重开一局闭环）
+
+- 已完成“winner gate -> 正式 MatchState”的升级：
+  - `GameState.Match` 作为正式状态源，包含 `status / endReason / winnerPlayerId / finishedAtRevision`
+  - 终局合法性 gate 改为读取 `Match.Status == finished`，拒绝码维持 `RULES_FAILED_GAME_ALREADY_OVER`
+  - 拒绝上下文会携带 `winnerPlayerId`，便于前端直出终局原因
+- 已完成 sandbox reset 通路：
+  - `SandboxSession.Reset()` 会重建 canonical `NewM0SandboxState()`，重置投影器并重新生成 bootstrap `StatePatched` 批次
+  - HTTP 新增 `POST /api/debugger/reset`，直接返回 reset 后的新 bootstrap 消息流
+- 已完成 Web 调试器 reset 交互：
+  - Action 面板新增 `Reset Sandbox` 按钮，调用 `/api/debugger/reset`
+  - 若当前 patch 处于终局（`winnerPlayerId` 非空），动作按钮禁用并展示 `Game over. Winner: ...`
+  - reset 成功后会替换消息流并恢复可提交动作状态
+- 这意味着浏览器里的最小闭环已经可直接体验：
+  1. 打到终局
+  2. 看到终局态（非仅 score winner 字段）
+  3. 一键重开同一 sandbox 会话的新对局
 
 ## 里程碑 1：Permission / Legality V2
 - 把 permission hook 从 `inspect_card` 扩到现有需要约束的动作：`reveal_card`、`queue_operation`，以及下一步新增的角色动作入口。

@@ -175,6 +175,31 @@ describe("LiveDebuggerShell", () => {
     });
   });
 
+  it("allows action submission again after resetting from a game-over patch", async () => {
+    const fetchMock = vi
+      .fn()
+      .mockResolvedValueOnce(createJSONResponse(initialLiveMessages))
+      .mockResolvedValueOnce(createJSONResponse(playableLiveMessages))
+      .mockResolvedValueOnce(createJSONResponse(rejectionBatch));
+    vi.stubGlobal("fetch", fetchMock);
+
+    render(<LiveDebuggerShell fallbackMessageSets={defaultMockMessageSets} />);
+
+    await screen.findByText(/Source:\s*Live Sandbox/);
+    expect(screen.getByRole("button", { name: "Pass Priority" })).toBeDisabled();
+
+    fireEvent.click(screen.getByRole("button", { name: "Reset Sandbox" }));
+    await waitFor(() => {
+      expect(screen.getByRole("button", { name: "Pass Priority" })).not.toBeDisabled();
+    });
+
+    fireEvent.click(screen.getByRole("button", { name: "Pass Priority" }));
+    await screen.findByText("LEGALITY_FAILED_NOT_YOUR_PRIORITY");
+
+    expect(fetchMock).toHaveBeenCalledTimes(3);
+    expect(fetchMock.mock.calls[2]?.[0]).toBe("/api/debugger/actions");
+  });
+
   it("falls back to mock protocol data when the live server is unavailable", async () => {
     const fetchMock = vi.fn().mockRejectedValue(new Error("connect ECONNREFUSED"));
     vi.stubGlobal("fetch", fetchMock);
