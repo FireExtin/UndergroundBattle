@@ -1,0 +1,206 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://undergroundbattle.local/shared/schemas/card-logic.schema.json",
+  "title": "CardLogic",
+  "description": "Defines the minimal CardLogic DSL surface authored in TypeScript and interpreted by Go.",
+  "x-currentSchemaVersion": "0.1.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "schemaVersion",
+    "speed",
+    "targetKinds",
+    "requiresStack",
+    "durationKind",
+    "scriptId",
+    "effects"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._/-]*$",
+      "description": "Stable DSL logic identifier."
+    },
+    "schemaVersion": {
+      "type": "string",
+      "const": "0.1.0",
+      "description": "Must match the current version declared in shared/schemas/card.schema.json."
+    },
+    "speed": {
+      "type": "string",
+      "enum": ["slow", "fast", "reaction"],
+      "description": "Minimal timing bucket used by the contract tests."
+    },
+    "targetKinds": {
+      "type": "array",
+      "description": "The target categories this card logic expects.",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": ["character", "player", "region", "secretSociety", "asset", "attachment"]
+      }
+    },
+    "requiresStack": {
+      "type": "boolean",
+      "description": "Whether the effect must enter the stack before resolution."
+    },
+    "durationKind": {
+      "type": "string",
+      "enum": ["none", "turn", "permanent"],
+      "description": "Minimal duration bucket exposed to the contract surface."
+    },
+    "scriptId": {
+      "type": ["string", "null"],
+      "pattern": "^[a-z0-9][a-z0-9._/-]*$",
+      "description": "Non-null means the card requires Go-side script handling instead of pure DSL execution."
+    },
+    "effects": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Minimal basic effects supported by the current CardLogic DSL contract.",
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/$defs/drawCardsEffect"
+          },
+          {
+            "$ref": "#/$defs/placeInfluenceEffect"
+          },
+          {
+            "$ref": "#/$defs/dealDamageEffect"
+          },
+          {
+            "$ref": "#/$defs/modifyStatEffect"
+          },
+          {
+            "$ref": "#/$defs/addKeywordEffect"
+          },
+          {
+            "$ref": "#/$defs/inspectHandEffect"
+          },
+          {
+            "$ref": "#/$defs/exhaustEffect"
+          }
+        ]
+      }
+    }
+  },
+  "$defs": {
+    "drawCardsEffect": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "targetRef", "amount"],
+      "properties": {
+        "kind": {
+          "const": "drawCards"
+        },
+        "targetRef": {
+          "const": "controller"
+        },
+        "amount": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "placeInfluenceEffect": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "targetRef", "amount"],
+      "properties": {
+        "kind": {
+          "const": "placeInfluence"
+        },
+        "targetRef": {
+          "type": "string",
+          "enum": ["selected", "controller"]
+        },
+        "amount": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "dealDamageEffect": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "targetRef", "amount"],
+      "properties": {
+        "kind": {
+          "const": "dealDamage"
+        },
+        "targetRef": {
+          "const": "selected"
+        },
+        "amount": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "modifyStatEffect": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "targetRef", "stat", "amount"],
+      "properties": {
+        "kind": {
+          "const": "modifyStat"
+        },
+        "targetRef": {
+          "const": "selected"
+        },
+        "stat": {
+          "type": "string",
+          "enum": ["combat", "defense", "influence", "investigation"]
+        },
+        "amount": {
+          "type": "integer"
+        }
+      }
+    },
+    "addKeywordEffect": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "targetRef", "keyword"],
+      "properties": {
+        "kind": {
+          "const": "addKeyword"
+        },
+        "targetRef": {
+          "const": "selected"
+        },
+        "keyword": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "inspectHandEffect": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "targetRef"],
+      "properties": {
+        "kind": {
+          "const": "inspectHand"
+        },
+        "targetRef": {
+          "const": "selected"
+        }
+      }
+    },
+    "exhaustEffect": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "targetRef"],
+      "properties": {
+        "kind": {
+          "const": "exhaust"
+        },
+        "targetRef": {
+          "const": "selected"
+        }
+      }
+    }
+  }
+}

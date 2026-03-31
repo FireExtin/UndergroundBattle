@@ -1,0 +1,55 @@
+# GO_CARD_FIXTURE_ENTRYPOINT_2026-03-31
+
+Purpose: explains how `queue_operation` now enters the Go rules kernel through real shared CardLogic fixtures instead of placeholder labels.
+
+## Scope
+
+- 将 `shared/contracts/fixtures` 从 toy DSL 示例切换到第一批真实卡牌样例。
+- 为 fixture 增加 `card.name` 和 `card.sourcePath`，并在 TypeScript 侧校验其必须回指 `organized_content` 中的真实卡牌记录。
+- 更新 normalized contract 输出，保留 `cardName` 和 `sourcePath` 供后续工具链复用。
+- 为 Go 增加 fixture catalog，并让 `queue_operation` 通过 `action.cardId` 解析真实卡牌入口。
+
+## First Batch
+
+当前接入的真实卡牌样例是：
+
+- `BQ005` 多重梦境迷宫
+- `BQ010` 读心术
+- `BQ013` 召现雷霆
+- `BQ022` 合金指虎
+- `BQ024` 脊椎强殖装甲
+
+这批样例同时覆盖了：
+
+- 纯 DSL 与 `scriptId` 入口
+- 直接结算与入 stack
+- `player`、`region`、`character`、`asset`、`attachment` 等基础目标类型
+- `none` 与 `permanent` 两类最小持续时间
+
+## Rules-Kernel Change
+
+- `queue_operation` legality 现在要求 `action.cardId`。
+- Go 会从共享 fixture catalog 中查找该 `cardId` 对应的 contract。
+- 若 fixture 不存在，会返回结构化错误 `RULES_FAILED_CARD_LOGIC_MISSING`。
+- 若 fixture catalog 不可读取，会返回结构化错误 `RULES_FAILED_CARD_LOGIC_UNAVAILABLE`。
+- operation 会携带 `source` 元数据，包含 `cardName`、`logicId`、`sourcePath`、`targetKinds`、`requiresStack`、`scriptId`、`effectKinds`。
+
+## Current Limit
+
+- 这次改动接入的是“卡牌来源”和“脚本分流入口”，不是完整效果执行。
+- 纯 DSL 卡当前只会以 contract-backed operation 的形式进入管线。
+- `scriptId` 卡当前会被明确标记为 `requiresScript`，但脚本解释本身仍是后续阶段任务。
+
+## Validation
+
+- `go test ./...`
+- `cd tools/fixture-tools && npm run generate`
+- `cd tools/fixture-tools && npm test`
+- `cd tools/fixture-tools && npm run typecheck`
+- `cd web && npm test`
+- `cd web && npm run typecheck`
+
+## Environment Note
+
+- `tools/card-importer` 当前缺少本地已安装的 Node devDependencies，因此其 `npm test` / `npm run typecheck` 在 shell 层直接报 `tsc` / `vitest` 不存在。
+- 这不是本次逻辑改动引入的断言回归，但仍需要在后续环境整理时补齐。

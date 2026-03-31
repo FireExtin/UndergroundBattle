@@ -1,0 +1,19 @@
+{
+  "name": "@undergroundbattle/fixture-tools",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Purpose: reads, validates, normalizes, and tests shared CardLogic DSL contract fixtures.",
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest --run",
+    "test:watch": "vitest",
+    "generate": "npm run build && node ./dist/cli.js"
+  },
+  "devDependencies": {
+    "@types/node": "^24.5.2",
+    "typescript": "^6.0.2",
+    "vitest": "^4.1.2"
+  }
+}

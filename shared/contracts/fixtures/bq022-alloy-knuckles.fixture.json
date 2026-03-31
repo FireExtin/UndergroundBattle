@@ -1,0 +1,35 @@
+{
+  "$schema": "../../schemas/fixture.schema.json",
+  "cardId": "BQ022",
+  "schemaVersion": "0.1.0",
+  "card": {
+    "name": "合金指虎",
+    "sourcePath": "organized_content/cards/附/cards.json"
+  },
+  "input": {
+    "logic": {
+      "id": "cards.bq022.alloy-knuckles",
+      "schemaVersion": "0.1.0",
+      "speed": "slow",
+      "targetKinds": ["character"],
+      "requiresStack": false,
+      "durationKind": "permanent",
+      "scriptId": null,
+      "effects": [
+        {
+          "kind": "addKeyword",
+          "targetRef": "selected",
+          "keyword": "blackBlade"
+        }
+      ]
+    }
+  },
+  "expectations": {
+    "parseOk": true,
+    "speed": "slow",
+    "targetKinds": ["character"],
+    "requiresStack": false,
+    "durationKind": "permanent",
+    "scriptId": null
+  }
+}

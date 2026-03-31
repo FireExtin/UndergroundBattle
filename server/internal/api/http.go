@@ -1,0 +1,99 @@
+package api
+
+import (
+	"encoding/json"
+	"net/http"
+	"os"
+	"path/filepath"
+	"strings"
+
+	"undergroundbattle/server/pkg/rules"
+)
+
+// Purpose: Exposes the in-memory sandbox session over minimal HTTP endpoints and optionally serves the built web debugger.
+
+func NewHandler(session *SandboxSession, staticDir string) http.Handler {
+	mux := http.NewServeMux()
+	mux.HandleFunc("/api/debugger/messages", func(writer http.ResponseWriter, request *http.Request) {
+		if request.Method != http.MethodGet {
+			writeMethodNotAllowed(writer, http.MethodGet)
+			return
+		}
+
+		writeJSON(writer, http.StatusOK, session.Messages())
+	})
+	mux.HandleFunc("/api/debugger/actions", func(writer http.ResponseWriter, request *http.Request) {
+		if request.Method != http.MethodPost {
+			writeMethodNotAllowed(writer, http.MethodPost)
+			return
+		}
+
+		var action rules.Action
+		if err := json.NewDecoder(request.Body).Decode(&action); err != nil {
+			writeJSON(writer, http.StatusBadRequest, map[string]string{
+				"error": "invalid_action_json",
+			})
+			return
+		}
+
+		messages, err := session.SubmitAction(action)
+		if err != nil {
+			writeJSON(writer, http.StatusInternalServerError, map[string]string{
+				"error": err.Error(),
+			})
+			return
+		}
+
+		writeJSON(writer, http.StatusOK, messages)
+	})
+
+	if staticDir == "" || !directoryExists(staticDir) {
+		return mux
+	}
+
+	fileServer := http.FileServer(http.Dir(staticDir))
+	indexPath := filepath.Join(staticDir, "index.html")
+
+	return http.HandlerFunc(func(writer http.ResponseWriter, request *http.Request) {
+		if strings.HasPrefix(request.URL.Path, "/api/") {
+			mux.ServeHTTP(writer, request)
+			return
+		}
+
+		if request.URL.Path == "/" || pathWithoutExtension(request.URL.Path) {
+			http.ServeFile(writer, request, indexPath)
+			return
+		}
+
+		fileServer.ServeHTTP(writer, request)
+	})
+}
+
+func writeJSON(writer http.ResponseWriter, status int, value any) {
+	writer.Header().Set("Content-Type", "application/json; charset=utf-8")
+	writer.WriteHeader(status)
+	if err := json.NewEncoder(writer).Encode(value); err != nil {
+		http.Error(writer, err.Error(), http.StatusInternalServerError)
+	}
+}
+
+func writeMethodNotAllowed(writer http.ResponseWriter, allowed string) {
+	writer.Header().Set("Allow", allowed)
+	writeJSON(writer, http.StatusMethodNotAllowed, map[string]string{
+		"error": "method_not_allowed",
+	})
+}
+
+func directoryExists(path string) bool {
+	info, err := os.Stat(path)
+	if err != nil {
+		return false
+	}
+
+	return info.IsDir()
+}
+
+func pathWithoutExtension(path string) bool {
+	base := filepath.Base(path)
+	return filepath.Ext(base) == ""
+}

@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://undergroundbattle.local/shared/schemas/card.schema.json",
+  "title": "Card",
+  "description": "Defines the normalized card data shared between TypeScript tooling and the Go authority.",
+  "x-currentSchemaVersion": "0.1.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["cardId", "schemaVersion", "name", "faction", "cardType", "cost", "text"],
+  "properties": {
+    "cardId": {
+      "type": "string",
+      "pattern": "^[A-Z0-9_-]+$",
+      "description": "Stable card identifier."
+    },
+    "schemaVersion": {
+      "type": "string",
+      "const": "0.1.0",
+      "description": "Current semver version for the card schema."
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Localized display name."
+    },
+    "faction": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Faction or camp label used by deckbuilding and rules."
+    },
+    "cardType": {
+      "type": "string",
+      "enum": ["character", "event", "asset", "location", "token", "unknown"],
+      "description": "High-level card type placeholder for early tooling."
+    },
+    "cost": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Normalized resource cost."
+    },
+    "text": {
+      "type": "string",
+      "description": "Raw card text or normalized rules text."
+    },
+    "traits": {
+      "type": "array",
+      "description": "Optional normalized trait list.",
+      "items": {
+        "type": "string"
+      },
+      "default": []
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Importer metadata kept outside authoritative semantics.",
+      "additionalProperties": {
+        "type": ["string", "number", "boolean", "null"]
+      }
+    }
+  }
+}

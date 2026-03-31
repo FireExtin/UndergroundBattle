@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://undergroundbattle.local/shared/schemas/fixture.schema.json",
+  "title": "CardLogicContractFixture",
+  "description": "Defines a shared CardLogic fixture that must pass before cards can enter the main pool.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["cardId", "schemaVersion", "card", "input", "expectations"],
+  "properties": {
+    "cardId": {
+      "type": "string",
+      "pattern": "^[A-Z0-9_-]+$",
+      "description": "Stable card identifier gated by this fixture."
+    },
+    "schemaVersion": {
+      "type": "string",
+      "const": "0.1.0",
+      "description": "Semver version carried by the fixture. Must match the current card schema version."
+    },
+    "card": {
+      "type": "object",
+      "description": "Minimal real-card source metadata so fixtures remain anchored to organized resources.",
+      "additionalProperties": false,
+      "required": ["name", "sourcePath"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sourcePath": {
+          "type": "string",
+          "pattern": "^organized_content/.+\\.json$"
+        }
+      }
+    },
+    "input": {
+      "type": "object",
+      "description": "Input payload shared by TypeScript tooling and the Go parser.",
+      "additionalProperties": false,
+      "required": ["logic"],
+      "properties": {
+        "logic": {
+          "$ref": "./card-logic.schema.json"
+        }
+      }
+    },
+    "expectations": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["parseOk", "speed", "targetKinds", "requiresStack", "durationKind", "scriptId"],
+      "properties": {
+        "parseOk": {
+          "type": "boolean"
+        },
+        "speed": {
+          "type": "string",
+          "enum": ["slow", "fast", "reaction"]
+        },
+        "targetKinds": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": ["character", "player", "region", "secretSociety", "asset", "attachment"]
+          }
+        },
+        "requiresStack": {
+          "type": "boolean"
+        },
+        "durationKind": {
+          "type": "string",
+          "enum": ["none", "turn", "permanent"]
+        },
+        "scriptId": {
+          "type": ["string", "null"],
+          "pattern": "^[a-z0-9][a-z0-9._/-]*$"
+        }
+      }
+    }
+  }
+}

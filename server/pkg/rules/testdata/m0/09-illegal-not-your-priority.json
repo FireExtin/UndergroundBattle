@@ -1,0 +1,291 @@
+{
+  "id": "illegal-not-your-priority",
+  "description": "A non-priority player attempting a standard action returns a structured legality rejection.",
+  "initialState": "m0_sandbox_v1",
+  "actions": [
+    {
+      "id": "act-m0-illegal-priority-1",
+      "actorId": "P2",
+      "kind": "advance_phase"
+    }
+  ],
+  "expectations": {
+    "revision": 0,
+    "turn": {
+      "phase": "main",
+      "step": "action"
+    },
+    "priority": {
+      "currentPlayerId": "P1",
+      "windowKind": "action",
+      "passCount": 0
+    },
+    "stack": [],
+    "resolved": [],
+    "actionLog": [],
+    "views": {
+      "P1": {
+        "cards": [
+          {
+            "ownerId": "P1",
+            "zone": "hand",
+            "visibility": "visible",
+            "cardId": "P1-HAND-SECRET",
+            "name": "Secret Archive",
+            "revealed": false,
+            "exhausted": false,
+            "destroyed": false,
+            "stats": {
+              "combat": 0,
+              "defense": 0,
+              "influence": 0,
+              "investigation": 0
+            },
+            "counters": {
+              "damage": 0,
+              "influence": 0
+            }
+          },
+          {
+            "ownerId": "P1",
+            "zone": "table",
+            "visibility": "visible",
+            "cardId": "P1-TABLE-1",
+            "name": "Dream Sentinel",
+            "revealed": true,
+            "exhausted": false,
+            "destroyed": false,
+            "stats": {
+              "combat": 2,
+              "defense": 2,
+              "influence": 0,
+              "investigation": 1
+            },
+            "counters": {
+              "damage": 0,
+              "influence": 0
+            }
+          },
+          {
+            "ownerId": "P2",
+            "zone": "hand",
+            "visibility": "hidden",
+            "revealed": false,
+            "exhausted": false,
+            "destroyed": false,
+            "stats": {
+              "combat": 0,
+              "defense": 0,
+              "influence": 0,
+              "investigation": 0
+            },
+            "counters": {
+              "damage": 0,
+              "influence": 0
+            }
+          },
+          {
+            "ownerId": "P2",
+            "zone": "table",
+            "visibility": "visible",
+            "cardId": "P2-TABLE-1",
+            "name": "Frontline Adept",
+            "revealed": true,
+            "exhausted": false,
+            "destroyed": false,
+            "keywords": [
+              "blackBlade"
+            ],
+            "stats": {
+              "combat": 2,
+              "defense": 3,
+              "influence": 0,
+              "investigation": 1
+            },
+            "counters": {
+              "damage": 1,
+              "influence": 0
+            }
+          }
+        ]
+      },
+      "P2": {
+        "cards": [
+          {
+            "ownerId": "P1",
+            "zone": "hand",
+            "visibility": "hidden",
+            "revealed": false,
+            "exhausted": false,
+            "destroyed": false,
+            "stats": {
+              "combat": 0,
+              "defense": 0,
+              "influence": 0,
+              "investigation": 0
+            },
+            "counters": {
+              "damage": 0,
+              "influence": 0
+            }
+          },
+          {
+            "ownerId": "P1",
+            "zone": "table",
+            "visibility": "visible",
+            "cardId": "P1-TABLE-1",
+            "name": "Dream Sentinel",
+            "revealed": true,
+            "exhausted": false,
+            "destroyed": false,
+            "stats": {
+              "combat": 2,
+              "defense": 2,
+              "influence": 0,
+              "investigation": 1
+            },
+            "counters": {
+              "damage": 0,
+              "influence": 0
+            }
+          },
+          {
+            "ownerId": "P2",
+            "zone": "hand",
+            "visibility": "visible",
+            "cardId": "P2-HAND-SECRET",
+            "name": "Black Ledger",
+            "revealed": false,
+            "exhausted": false,
+            "destroyed": false,
+            "stats": {
+              "combat": 0,
+              "defense": 0,
+              "influence": 0,
+              "investigation": 0
+            },
+            "counters": {
+              "damage": 0,
+              "influence": 0
+            }
+          },
+          {
+            "ownerId": "P2",
+            "zone": "table",
+            "visibility": "visible",
+            "cardId": "P2-TABLE-1",
+            "name": "Frontline Adept",
+            "revealed": true,
+            "exhausted": false,
+            "destroyed": false,
+            "keywords": [
+              "blackBlade"
+            ],
+            "stats": {
+              "combat": 2,
+              "defense": 3,
+              "influence": 0,
+              "investigation": 1
+            },
+            "counters": {
+              "damage": 1,
+              "influence": 0
+            }
+          }
+        ]
+      },
+      "spectator": {
+        "cards": [
+          {
+            "ownerId": "P1",
+            "zone": "hand",
+            "visibility": "hidden",
+            "revealed": false,
+            "exhausted": false,
+            "destroyed": false,
+            "stats": {
+              "combat": 0,
+              "defense": 0,
+              "influence": 0,
+              "investigation": 0
+            },
+            "counters": {
+              "damage": 0,
+              "influence": 0
+            }
+          },
+          {
+            "ownerId": "P1",
+            "zone": "table",
+            "visibility": "visible",
+            "cardId": "P1-TABLE-1",
+            "name": "Dream Sentinel",
+            "revealed": true,
+            "exhausted": false,
+            "destroyed": false,
+            "stats": {
+              "combat": 2,
+              "defense": 2,
+              "influence": 0,
+              "investigation": 1
+            },
+            "counters": {
+              "damage": 0,
+              "influence": 0
+            }
+          },
+          {
+            "ownerId": "P2",
+            "zone": "hand",
+            "visibility": "hidden",
+            "revealed": false,
+            "exhausted": false,
+            "destroyed": false,
+            "stats": {
+              "combat": 0,
+              "defense": 0,
+              "influence": 0,
+              "investigation": 0
+            },
+            "counters": {
+              "damage": 0,
+              "influence": 0
+            }
+          },
+          {
+            "ownerId": "P2",
+            "zone": "table",
+            "visibility": "visible",
+            "cardId": "P2-TABLE-1",
+            "name": "Frontline Adept",
+            "revealed": true,
+            "exhausted": false,
+            "destroyed": false,
+            "keywords": [
+              "blackBlade"
+            ],
+            "stats": {
+              "combat": 2,
+              "defense": 3,
+              "influence": 0,
+              "investigation": 1
+            },
+            "counters": {
+              "damage": 1,
+              "influence": 0
+            }
+          }
+        ]
+      }
+    },
+    "lastRejection": {
+      "reasonCode": "LEGALITY_FAILED_NOT_YOUR_PRIORITY",
+      "messageKey": "rules.legality.not_your_priority",
+      "hook": "turn.priority",
+      "context": {
+        "actorId": "P2",
+        "priorityPlayerId": "P1"
+      }
+    }
+  }
+}

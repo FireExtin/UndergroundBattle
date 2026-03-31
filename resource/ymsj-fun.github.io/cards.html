@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>卡牌工具 | 隐秘世界服务中心</title>
+<meta name="generator" content="Jekyll v3.9.2" />
+<meta property="og:title" content="卡牌工具" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="不知道真相既是不幸，也是幸运。" />
+<meta property="og:description" content="不知道真相既是不幸，也是幸运。" />
+<link rel="canonical" href="https://dou.vbcpascal.cn//cards/" />
+<meta property="og:url" content="https://dou.vbcpascal.cn//cards/" />
+<meta property="og:site_name" content="隐秘世界服务中心" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="卡牌工具" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"不知道真相既是不幸，也是幸运。","headline":"卡牌工具","url":"https://dou.vbcpascal.cn//cards/"}</script>
+<!-- End Jekyll SEO tag -->
+<script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.min.js"></script>
+  <script src="public/js/highcharts.js"></script>
+
+  <link rel="stylesheet" href="public/css/main.css">
+  <link rel="stylesheet" href="public/css/global.css">
+  <link rel="stylesheet" href="public/css/deck.css">
+
+  <script src="public/js/yaml.js"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/default.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  <script src="public/js/html2canvas.js"></script>
+  <script src="public/js/sortable.js"></script><link type="application/atom+xml" rel="alternate" href="https://dou.vbcpascal.cn//feed.xml" title="隐秘世界服务中心" /></head><body><header class="site-header" role="banner">
+
+  <div class="wrapper-wide"><div style="
+        display: block; 
+        float:left; 
+        background-image: url('public/image/icon.png'); 
+        background-position: left bottom; 
+        background-size: 30px auto;
+        background-repeat: no-repeat; 
+        padding: 0 0 0 40px; ">
+      <a class="site-title" rel="author" href="index.html" style="
+        font-family: 'YinMiShiJie';">隐秘世界服务中心</a>
+    </div><nav class="site-nav">
+      <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+      <label for="nav-trigger">
+        <span class="menu-icon">
+          <svg viewBox="0 0 18 15" width="18px" height="15px">
+            <path
+              d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z" />
+          </svg>
+        </span>
+      </label>
+
+      <div class="trigger">
+        <a class="page-link" href="cards.html">单卡查询</a>
+        <a class="page-link" href="decks.html">卡组工具</a>
+        <a class="page-link" href="posts.html">猎团文章</a>
+      </div>
+
+    </nav></div>
+</header><main class="page-content" aria-label="Content">
+      <div class="wrapper-wide">
+        <link rel="stylesheet" href="public/css/card-query.css">
+<link rel="stylesheet" href="public/css/card-preview.css">
+
+<div class="uw-filter-area" id="uw-filter-area">
+  <div class="content">
+    <div class="filter-block search-block">
+      <label>搜索内容：</label>
+      <span><input id="uw-search" /></span>
+    </div>
+
+    <div class="filter-block type">
+      <label>类&emsp;&emsp;别：</label>
+      <span class="buttons">
+        <button id="filter-type-button-0" class="btn active" onclick="typeSelect('任意')">任意</button>
+        
+        <button id="filter-type-button-1" class="btn" onclick="typeSelect('角色')">角色</button>
+        
+        <button id="filter-type-button-2" class="btn" onclick="typeSelect('事务')">事务</button>
+        
+        <button id="filter-type-button-3" class="btn" onclick="typeSelect('附属')">附属</button>
+        
+        <button id="filter-type-button-4" class="btn" onclick="typeSelect('秘社')">秘社</button>
+        
+        <button id="filter-type-button-5" class="btn" onclick="typeSelect('地区')">地区</button>
+        
+        <button id="filter-type-button-6" class="btn" onclick="typeSelect('任务')">任务</button>
+        
+      </span>
+    </div>
+
+    <div class="filter-block cost">
+      <label>费&emsp;&emsp;用：</label>
+      <span class="buttons">
+        <button id="filter-cost-button--1" class="btn active"
+          style="background-image: url('public/image/costs/cost-x.png');" onclick="costSelect('-1')"></button>
+        
+        <button id="filter-cost-button-0" class="btn"
+          style="background-image: url('public/image/costs/cost-0.png');" onclick="costSelect('0')">
+        </button>
+        
+        <button id="filter-cost-button-1" class="btn"
+          style="background-image: url('public/image/costs/cost-1.png');" onclick="costSelect('1')">
+        </button>
+        
+        <button id="filter-cost-button-2" class="btn"
+          style="background-image: url('public/image/costs/cost-2.png');" onclick="costSelect('2')">
+        </button>
+        
+        <button id="filter-cost-button-3" class="btn"
+          style="background-image: url('public/image/costs/cost-3.png');" onclick="costSelect('3')">
+        </button>
+        
+        <button id="filter-cost-button-4" class="btn"
+          style="background-image: url('public/image/costs/cost-4.png');" onclick="costSelect('4')">
+        </button>
+        
+        <button id="filter-cost-button-5" class="btn"
+          style="background-image: url('public/image/costs/cost-5.png');" onclick="costSelect('5')">
+        </button>
+        
+        <button id="filter-cost-button-6" class="btn"
+          style="background-image: url('public/image/costs/cost-6.png');" onclick="costSelect('6')">
+        </button>
+        
+        <button id="filter-cost-button-7" class="btn"
+          style="background-image: url('public/image/costs/cost-7.png');" onclick="costSelect('7')">
+        </button>
+        
+      </span>
+    </div>
+
+    <div class="filter-block color">
+      <label>颜&emsp;&emsp;色：</label>
+      <span class="buttons">
+        <button id="filter-color-button-0" class="btn active"
+          style="background-image: url('public/image/colors/任意色.png');" onclick="colorSelect('任意色')"></button>
+        
+        <button id="filter-color-button-1" class="btn"
+          style="background-image: url('public/image/colors/黄.png');" onclick="colorSelect('黄')">
+        </button>
+        
+        <button id="filter-color-button-2" class="btn"
+          style="background-image: url('public/image/colors/绿.png');" onclick="colorSelect('绿')">
+        </button>
+        
+        <button id="filter-color-button-3" class="btn"
+          style="background-image: url('public/image/colors/蓝.png');" onclick="colorSelect('蓝')">
+        </button>
+        
+        <button id="filter-color-button-4" class="btn"
+          style="background-image: url('public/image/colors/红.png');" onclick="colorSelect('红')">
+        </button>
+        
+        <button id="filter-color-button-5" class="btn"
+          style="background-image: url('public/image/colors/灰.png');" onclick="colorSelect('灰')">
+        </button>
+        
+        <button id="filter-color-button-6" class="btn"
+          style="background-image: url('public/image/colors/白.png');" onclick="colorSelect('白')">
+        </button>
+        
+        <button id="filter-color-button-7" class="btn"
+          style="background-image: url('public/image/colors/黑.png');" onclick="colorSelect('黑')">
+        </button>
+        
+        <button id="filter-color-button-8" class="btn"
+          style="background-image: url('public/image/colors/紫.png');" onclick="colorSelect('紫')">
+        </button>
+        
+        <button id="filter-color-button-9" class="btn"
+          style="background-image: url('public/image/colors/中立.png');" onclick="colorSelect('中立')">
+        </button>
+        
+      </span>
+    </div>
+
+    <div class="filter-block card-set">
+      <label>版&emsp;&emsp;本：</label>
+      <span class="buttons">
+        <button id="filter-set-button-0" class="btn active" onclick="setSelect('Any')">Any</button>
+        
+        <button id="filter-set-button-1" class="btn" onclick="setSelect('JC')">JC</button>
+        
+        <button id="filter-set-button-2" class="btn" onclick="setSelect('XQ')">XQ</button>
+        
+        <button id="filter-set-button-3" class="btn" onclick="setSelect('LC')">LC</button>
+        
+        <button id="filter-set-button-4" class="btn" onclick="setSelect('JZ')">JZ</button>
+        
+        <button id="filter-set-button-5" class="btn" onclick="setSelect('WM')">WM</button>
+        
+        <button id="filter-set-button-6" class="btn" onclick="setSelect('XG')">XG</button>
+        
+        <button id="filter-set-button-7" class="btn" onclick="setSelect('CQ')">CQ</button>
+        
+        <button id="filter-set-button-8" class="btn" onclick="setSelect('BQ')">BQ</button>
+        
+      </span>
+    </div>
+
+    <div class="filter-block magic">
+      <label>魔法领域：</label>
+      <span class="buttons">
+        <button id="filter-magic-button-0" class="btn active"
+          style="background-image: url('public/image/magics/魔法.png');" onclick="magicSelect('任意魔法')"> </button>
+        
+        <button id="filter-magic-button-1" class="btn"
+          style="background-image: url('public/image/magics/心灵.png');" onclick="magicSelect('心灵')"> </button>
+        
+        <button id="filter-magic-button-2" class="btn"
+          style="background-image: url('public/image/magics/神圣.png');" onclick="magicSelect('神圣')"> </button>
+        
+        <button id="filter-magic-button-3" class="btn"
+          style="background-image: url('public/image/magics/星辰.png');" onclick="magicSelect('星辰')"> </button>
+        
+        <button id="filter-magic-button-4" class="btn"
+          style="background-image: url('public/image/magics/死亡.png');" onclick="magicSelect('死亡')"> </button>
+        
+        <button id="filter-magic-button-5" class="btn"
+          style="background-image: url('public/image/magics/鲜血.png');" onclick="magicSelect('鲜血')"> </button>
+        
+        <button id="filter-magic-button-6" class="btn" style="background-image: url('public/image/magics/无魔法.png');"
+          onclick="magicSelect('无魔法')"> </button>
+      </span>
+    </div>
+
+
+    <div class="filter-button">
+      <button onclick="filterCards()">筛选</button>
+    </div>
+
+  </div>
+</div>
+
+<br>
+
+<div class="underworld-cards-query" id="underworld-cards-query">
+  <div class="ucq-opts">
+    <p id="ucq-count">共查询到张牌。</p>
+    <div class="checkbox-example">
+      <input type="checkbox" id="opt-kws" name="opt-kws" checked>
+      <label for="opt-kws">显示关键词解释</label>
+    </div>
+    <div class="checkbox-example">
+      <input type="checkbox" id="opt-token" name="opt-token" checked>
+      <label for="opt-kws">显示衍生物和指示物</label>
+    </div>
+  </div>
+  <ul id="ucq-cards" class="large"></ul>
+  <p id="ucq-show" onclick="showMoreCards()">点击查看更多</p>
+</div>
+
+<div id="card-preview" class="dark-background">
+  <div class="info-block" id="cp-info-block">
+    <div class="card" id="cp-card"> </div>
+    <div class="info" id="cp-info" card-name="CARD-NAME">
+      <div class="name">6s的孤电子</div>
+      <div class="setname"> 星光俱乐部 | XG000 </div>
+      <div class="type"> 中立角色 - 人类 / 工程师 / 光头症患者 </div>
+      <div class="attr"> 费用：12 心灵</div>
+      <div class="attr">
+        防御：3&nbsp;&nbsp;
+        能力：IIIiii&nbsp;&nbsp;
+      </div>
+      <div class="attr">
+      </div>
+      <textarea class="text" readonly>
+  额外费用：从你的牌库中查找每个颜色的一张所需费用小于2的角色牌，每个以此法展示的牌，打出或翻面6s的孤电子所需的费用减少1。
+  现身触发：封印这些牌。
+        </textarea>
+    </div>
+  </div>
+</div>
+
+<script src="public/js/card-search.js"></script>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">隐秘世界服务中心</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">隐秘世界服务中心</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"></ul></div>
+
+      <div class="footer-col footer-col-3">
+        <p>不知道真相既是不幸，也是幸运。</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

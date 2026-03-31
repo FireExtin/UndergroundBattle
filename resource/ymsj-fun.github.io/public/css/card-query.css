@@ -1,0 +1,319 @@
+.uw-filter-area {
+  width: 100%;
+  height: auto;
+  display: inline-block;
+
+  background-image: url("../image/filter.jpg");
+  background-repeat: no-repeat;
+  background-color: black;
+  background-position: center;
+  background-size: auto 100%;
+  border-radius: 15px;
+}
+
+.uw-filter-area .content {
+  width: 96%;
+  font-size: 1.2em;
+  margin: 2% 2% 2% 2%;
+  overflow-x: hidden;
+}
+
+.uw-filter-area .content label {
+  float: left;
+  margin: 0.2em 1em 0 0;
+  color: #ddd;
+}
+
+.uw-filter-area .content .search-block {
+  display: inline-block;
+  width: 100%;
+  overflow: hidden;
+}
+
+.uw-filter-area .content .search-block span {
+  display: block;
+  overflow: hidden;
+  margin-right: 1em;
+}
+
+.uw-filter-area .content .search-block input {
+  padding-left: 0.5em;
+  width: calc(90% - 0.5em);
+  font-size: 1em;
+  height: 1.5em;
+  border-radius: 0.4em;
+  font-family: inherit;
+  color: #666;
+}
+
+.uw-filter-area .content .filter-block {
+  display: inline-block;
+  vertical-align: bottom;
+  width: 47%;
+  min-width: 430px;
+  /* max-width: 550px; */
+  height: 3em;
+  margin: 0.3em 2% 0.3em 0;
+}
+
+.uw-filter-area .content .buttons {
+  display: flex;
+  justify-content: space-between;
+  vertical-align: bottom;
+  max-width: 450px;
+}
+
+.uw-filter-area .content .btn {
+  border: none;
+  outline: none;
+  margin: 2px 2px 2px 2px;
+  padding: 2px 2px 2px 2px;
+  width: 2em;
+  cursor: pointer;
+  background-color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 90% auto;
+  transition-duration: 0ms;
+  color: #ddd;
+}
+
+.uw-filter-area .content .btn.active {
+  outline: 3px dotted #ddd;
+}
+
+
+@media screen and (max-width: 750px) {
+  .uw-filter-area {
+    background: unset;
+    width: 100%;
+    height: auto;
+  }
+
+  .uw-filter-area .content {
+    margin: 10px 0 10px 0;
+    width: 100%;
+    display: inline-block;
+  }
+
+  .uw-filter-area .content label {
+    display: none;
+  }
+
+  .uw-filter-area .content .search-block {
+    margin: 0 0 0.5em;
+    width: 100%;
+  }
+
+  .uw-filter-area .content .search-block span {
+    margin-right: 0;
+  }
+
+  .uw-filter-area .content .search-block input {
+    margin: 0 0;
+    padding: 0 0;
+    padding-left: 0.2em;
+    font-size: 0.8em;
+    line-height: 1em;
+    width: 97%;
+  }
+
+  .uw-filter-area .content .filter-block {
+    width: 100%;
+    min-width: unset;
+    height: auto;
+    margin-top: 0;
+    margin-right: 0;
+  }
+
+  .uw-filter-area .content .buttons {
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+  .uw-filter-area .content .buttons::-webkit-scrollbar {
+    display: none;
+  }
+
+  .uw-filter-area .content .btn {
+    color: #666;
+  }
+
+  .uw-filter-area .content .btn.active {
+    outline: 2px dotted #666;
+  }
+}
+
+.uw-filter-area .content .type .btn {
+  font-size: 0.8em;
+  height: 2em;
+  width: 3em;
+  text-align: center;
+}
+
+.uw-filter-area .content .cost .btn {
+  height: 2em;
+}
+
+.uw-filter-area .content .cost .btn.active {
+  border-radius: 50%;
+}
+
+.uw-filter-area .content .color .btn {
+  height: 3em;
+}
+
+.uw-filter-area .content .card-set .btn {
+  font-size: 0.8em;
+  height: 2em;
+  width: 3em;
+  text-align: center;
+}
+
+.uw-filter-area .content .magic .btn {
+  height: 2em;
+}
+
+@media screen and (max-width: 750px) {
+  .uw-filter-area .content .type .btn {
+    height: 2em;
+    min-width: 3.5em;
+    font-size: 0.5em;
+  }
+
+  .uw-filter-area .content .cost .btn {
+    width: 1.5em;
+    height: 1.5em;
+    min-width: 1.5em;
+  }
+
+  .uw-filter-area .content .color .btn {
+    height: 2em;
+    min-width: 1.2em;
+    margin-right: 0.4em;
+  }
+
+  .uw-filter-area .content .card-set .btn {
+    height: 2em;
+    min-width: 3em;
+    font-size: 0.5em;
+    text-align: center;
+  }
+
+  .uw-filter-area .content .magic .btn {
+    width: 1.5em;
+    height: 1.5em;
+    min-width: 1.5em;
+  }
+}
+
+.uw-filter-area .filter-button button {
+  display: inline-block;
+  width: 6em;
+  margin-bottom: 2%;
+  margin-left: calc(5% + 3.5em);
+  background-color: transparent;
+  color: #ddd;
+  border: 1.5px solid;
+  border-radius: 0.4em;
+}
+
+.uw-filter-area .filter-button button:active {
+  background-color: transparent;
+  border-color: #666;
+}
+
+@media screen and (max-width: 750px) {
+  .uw-filter-area .filter-button button {
+    width: 100%;
+    margin: 0 0 0 0;
+    padding: 0;
+    height: 1.8em;
+    font-size: 0.8em;
+    line-height: 1em;
+    color: #666;
+  }
+}
+
+/* Cards query */
+
+.underworld-cards-query {
+  width: 100%;
+  position: relative;
+  height: auto;
+  margin: 0;
+  font-family: Arial, Sans-serif;
+  text-align: left;
+  font-size: 1em;
+  color: #666;
+}
+
+.underworld-cards-query p {
+  width: auto;
+  text-align: center;
+  margin-top: 0.2em;
+  margin-bottom: 0.2em;
+}
+
+.underworld-cards-query .ucq-opts {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.underworld-cards-query ul {
+  list-style: none;
+  text-align: center;
+  margin-left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.underworld-cards-query .card {
+  width: 176px;
+  height: 246.5px;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  margin: 0 0 10px 0;
+  font-size: 14px;
+  border-radius: 8px;
+  color: #ffffff;
+}
+
+@media screen and (max-width: 750px) {
+  .underworld-cards-query p {
+    width: auto;
+    text-align: center;
+  }
+
+  .underworld-cards-query {
+    font-size: 0.8em;
+    color: #666;
+  }
+
+  .underworld-cards-query .card {
+    width: 60px;
+    height: 80px;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    margin: 0 0 10px 0;
+    font-size: 14px;
+    border-radius: 4.8px;
+    color: #ffffff;
+  }
+}
+
+.underworld-cards-query #ucq-cards.large .card {
+  width: 260px;
+  height: 364px;
+  border-radius: 12px;
+}
+
+@media screen and (max-width: 750px) {
+  .underworld-cards-query #ucq-cards.large .card {
+    width: 104px;
+    height: 145px;
+    border-radius: 4.8px;
+  }
+}

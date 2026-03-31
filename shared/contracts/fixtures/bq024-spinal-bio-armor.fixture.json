@@ -1,0 +1,46 @@
+{
+  "$schema": "../../schemas/fixture.schema.json",
+  "cardId": "BQ024",
+  "schemaVersion": "0.1.0",
+  "card": {
+    "name": "脊椎强殖装甲",
+    "sourcePath": "organized_content/cards/附/cards.json"
+  },
+  "input": {
+    "logic": {
+      "id": "cards.bq024.spinal-bio-armor",
+      "schemaVersion": "0.1.0",
+      "speed": "slow",
+      "targetKinds": ["character"],
+      "requiresStack": false,
+      "durationKind": "permanent",
+      "scriptId": "scripts.bq024.spinal-bio-armor",
+      "effects": [
+        {
+          "kind": "addKeyword",
+          "targetRef": "selected",
+          "keyword": "blackBlade"
+        },
+        {
+          "kind": "addKeyword",
+          "targetRef": "selected",
+          "keyword": "blackStar"
+        },
+        {
+          "kind": "modifyStat",
+          "targetRef": "selected",
+          "stat": "defense",
+          "amount": 1
+        }
+      ]
+    }
+  },
+  "expectations": {
+    "parseOk": true,
+    "speed": "slow",
+    "targetKinds": ["character"],
+    "requiresStack": false,
+    "durationKind": "permanent",
+    "scriptId": "scripts.bq024.spinal-bio-armor"
+  }
+}

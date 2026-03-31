@@ -1,0 +1,42 @@
+.builder-cards {
+  float: left;
+  width: calc(96% - 300px);
+  height: 95%;
+  margin: 0 0;
+  overflow-y: auto;
+  padding-bottom: 2%;
+  position: relative;
+}
+
+.builder-cards::-webkit-scrollbar {
+  width: 10px;
+}
+
+.builder-cards::-webkit-scrollbar-thumb {
+  background: #ddd;
+  border-radius: 5px;
+}
+
+@media screen and (max-width: 750px) {
+  .builder-cards {
+    width: calc(100% - 180px);
+    position: absolute;
+    left: 10px
+  }
+}
+
+#message-box {
+  display: block;
+  position: fixed;
+  width: 20em;
+  height: 3em;
+  font-size: 1.2em;
+  line-height: 3em;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  background-color: rgba(0, 0, 0, .8);
+  color: white;
+  border-radius: 0.4em;
+}

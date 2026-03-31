@@ -1,0 +1,39 @@
+{
+  "$schema": "../../schemas/fixture.schema.json",
+  "cardId": "BQ010",
+  "schemaVersion": "0.1.0",
+  "card": {
+    "name": "读心术",
+    "sourcePath": "organized_content/cards/事/cards.json"
+  },
+  "input": {
+    "logic": {
+      "id": "cards.bq010.read-minds",
+      "schemaVersion": "0.1.0",
+      "speed": "slow",
+      "targetKinds": ["player"],
+      "requiresStack": false,
+      "durationKind": "none",
+      "scriptId": null,
+      "effects": [
+        {
+          "kind": "inspectHand",
+          "targetRef": "selected"
+        },
+        {
+          "kind": "drawCards",
+          "targetRef": "controller",
+          "amount": 1
+        }
+      ]
+    }
+  },
+  "expectations": {
+    "parseOk": true,
+    "speed": "slow",
+    "targetKinds": ["player"],
+    "requiresStack": false,
+    "durationKind": "none",
+    "scriptId": null
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "$schema": "../../schemas/fixture.schema.json",
+  "cardId": "BQ005",
+  "schemaVersion": "0.1.0",
+  "card": {
+    "name": "多重梦境迷宫",
+    "sourcePath": "organized_content/cards/角/cards.json"
+  },
+  "input": {
+    "logic": {
+      "id": "cards.bq005.multi-dream-maze",
+      "schemaVersion": "0.1.0",
+      "speed": "fast",
+      "targetKinds": ["character", "attachment", "asset"],
+      "requiresStack": true,
+      "durationKind": "none",
+      "scriptId": null,
+      "effects": [
+        {
+          "kind": "exhaust",
+          "targetRef": "selected"
+        }
+      ]
+    }
+  },
+  "expectations": {
+    "parseOk": true,
+    "speed": "fast",
+    "targetKinds": ["character", "attachment", "asset"],
+    "requiresStack": true,
+    "durationKind": "none",
+    "scriptId": null
+  }
+}

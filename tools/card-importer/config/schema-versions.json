@@ -1,0 +1,8 @@
+{
+  "description": "Purpose: Explicit schema versions for normalized datasets. Missing entries must fail the importer instead of defaulting silently.",
+  "cardsRawIndex": "0.1.0",
+  "cardPrint": "0.1.0",
+  "ruleDocMeta": "0.1.0",
+  "tokenMeta": "0.1.0"
+}
+

@@ -1,0 +1,4 @@
+{
+  // Purpose: Provides a root editor config for the browser-side TypeScript workspace.
+  "extends": "./tsconfig.app.json"
+}

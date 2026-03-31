@@ -1,0 +1,35 @@
+{
+  "$schema": "../../schemas/fixture.schema.json",
+  "cardId": "BQ013",
+  "schemaVersion": "0.1.0",
+  "card": {
+    "name": "召现雷霆",
+    "sourcePath": "organized_content/cards/事/cards.json"
+  },
+  "input": {
+    "logic": {
+      "id": "cards.bq013.call-lightning",
+      "schemaVersion": "0.1.0",
+      "speed": "slow",
+      "targetKinds": ["region"],
+      "requiresStack": true,
+      "durationKind": "none",
+      "scriptId": "scripts.bq013.call-lightning",
+      "effects": [
+        {
+          "kind": "dealDamage",
+          "targetRef": "selected",
+          "amount": 4
+        }
+      ]
+    }
+  },
+  "expectations": {
+    "parseOk": true,
+    "speed": "slow",
+    "targetKinds": ["region"],
+    "requiresStack": true,
+    "durationKind": "none",
+    "scriptId": "scripts.bq013.call-lightning"
+  }
+}

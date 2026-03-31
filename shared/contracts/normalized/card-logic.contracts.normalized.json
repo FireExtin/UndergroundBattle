@@ -1,0 +1,107 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-03-31T11:49:07.903Z",
+  "recordType": "CardLogicContract",
+  "records": [
+    {
+      "cardId": "BQ005",
+      "cardName": "多重梦境迷宫",
+      "sourcePath": "organized_content/cards/角/cards.json",
+      "schemaVersion": "0.1.0",
+      "logicId": "cards.bq005.multi-dream-maze",
+      "speed": "fast",
+      "targetKinds": [
+        "character",
+        "attachment",
+        "asset"
+      ],
+      "requiresStack": true,
+      "durationKind": "none",
+      "scriptId": null,
+      "requiresScript": false,
+      "pureDSLExecutable": true,
+      "effectKinds": [
+        "exhaust"
+      ]
+    },
+    {
+      "cardId": "BQ010",
+      "cardName": "读心术",
+      "sourcePath": "organized_content/cards/事/cards.json",
+      "schemaVersion": "0.1.0",
+      "logicId": "cards.bq010.read-minds",
+      "speed": "slow",
+      "targetKinds": [
+        "player"
+      ],
+      "requiresStack": false,
+      "durationKind": "none",
+      "scriptId": null,
+      "requiresScript": false,
+      "pureDSLExecutable": true,
+      "effectKinds": [
+        "inspectHand",
+        "drawCards"
+      ]
+    },
+    {
+      "cardId": "BQ013",
+      "cardName": "召现雷霆",
+      "sourcePath": "organized_content/cards/事/cards.json",
+      "schemaVersion": "0.1.0",
+      "logicId": "cards.bq013.call-lightning",
+      "speed": "slow",
+      "targetKinds": [
+        "region"
+      ],
+      "requiresStack": true,
+      "durationKind": "none",
+      "scriptId": "scripts.bq013.call-lightning",
+      "requiresScript": true,
+      "pureDSLExecutable": false,
+      "effectKinds": [
+        "dealDamage"
+      ]
+    },
+    {
+      "cardId": "BQ022",
+      "cardName": "合金指虎",
+      "sourcePath": "organized_content/cards/附/cards.json",
+      "schemaVersion": "0.1.0",
+      "logicId": "cards.bq022.alloy-knuckles",
+      "speed": "slow",
+      "targetKinds": [
+        "character"
+      ],
+      "requiresStack": false,
+      "durationKind": "permanent",
+      "scriptId": null,
+      "requiresScript": false,
+      "pureDSLExecutable": true,
+      "effectKinds": [
+        "addKeyword"
+      ]
+    },
+    {
+      "cardId": "BQ024",
+      "cardName": "脊椎强殖装甲",
+      "sourcePath": "organized_content/cards/附/cards.json",
+      "schemaVersion": "0.1.0",
+      "logicId": "cards.bq024.spinal-bio-armor",
+      "speed": "slow",
+      "targetKinds": [
+        "character"
+      ],
+      "requiresStack": false,
+      "durationKind": "permanent",
+      "scriptId": "scripts.bq024.spinal-bio-armor",
+      "requiresScript": true,
+      "pureDSLExecutable": false,
+      "effectKinds": [
+        "addKeyword",
+        "addKeyword",
+        "modifyStat"
+      ]
+    }
+  ]
+}

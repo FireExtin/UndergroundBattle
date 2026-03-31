@@ -1,0 +1,175 @@
+.dark-background {
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 999;
+}
+
+#card-preview .info-block {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  position: fixed;
+}
+
+#card-preview .info-block .card {
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 12px;
+}
+
+#card-preview .info-block .info {
+  width: 350px;
+  height: auto;
+  margin: 40px 20px 40px 0;
+  color: white;
+}
+
+#card-preview .info-block .info .name {
+  margin: 15px auto 10px 15px;
+  font-size: 24px;
+  line-height: 36px;
+}
+
+#card-preview .info-block .info .setname {
+  margin: auto 15px 24px 15px;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: left;
+}
+
+#card-preview .info-block .info .type {
+  margin: auto 15px 5px 15px;
+  font-size: 14px;
+  color: #BCBCBC;
+}
+
+#card-preview .info-block .info .attr {
+  margin: auto 15px 5px 15px;
+  font-size: 14px;
+  color: #BCBCBC;
+  word-wrap: normal;
+}
+
+#card-preview .info-block .info textarea {
+  margin: 20px 15px 10px 10px;
+  font-size: 16px;
+  font-family: inherit;
+  line-height: 27px;
+  width: 340px;
+  outline: none;
+  background-color: transparent;
+  color: white;
+  border: none;
+  resize: none;
+}
+
+#card-preview .info-block .info textarea::-webkit-scrollbar {
+  width: 1px;
+}
+
+@media screen and (min-width: 850px) {
+  #card-preview .info-block {
+    display: block;
+    width: 850px;
+    height: 590px;
+  }
+
+  #card-preview .info-block .card {
+    float: left;
+    width: 400px;
+    height: 540px;
+    border-radius: 18px;
+    margin: 25px 10px 25px 20px;
+  }
+
+  #card-preview .info-block .info {
+    float: right;
+  }
+
+  #card-preview .info-block .info textarea {
+    height: 270px;
+  }
+}
+
+@media screen and (min-width: 750px) and (max-width: 850px) {
+  #card-preview .info-block {
+    display: block;
+    width: 730px;
+    height: 470px;
+  }
+
+  #card-preview .info-block .card {
+    float: left;
+    width: 300px;
+    height: 420px;
+    margin: 25px 10px 25px 20px;
+  }
+
+  #card-preview .info-block .info {
+    float: right;
+  }
+
+  #card-preview .info-block .info textarea {
+    height: 170px;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  #card-preview .info-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: auto;
+  }
+
+  #card-preview .info-block .card {
+    display: block;
+    width: 217px;
+    height: 303px;
+  }
+
+  #card-preview .info-block .info {
+    width: 70%;
+    height: 250px;
+    text-align: center;
+    margin: 0 0;
+  }
+
+  #card-preview .info-block .info .name {
+    display: none;
+  }
+
+  #card-preview .info-block .info .setname {
+    margin: 0.5em 0.2em 0.5em 0.2em;
+    font-size: 1em;
+    line-height: 1.1em;
+    text-align: center;
+    color: #BCBCBC;
+  }
+
+  #card-preview .info-block .info .type {
+    display: none;
+  }
+
+  #card-preview .info-block .info .attr {
+    display: none;
+  }
+
+  #card-preview .info-block .info textarea {
+    margin: 0.2em 0.2em 0 0.2em;
+    font-size: 1em;
+    line-height: 1.2em;
+    width: 100%;
+    max-width: 400px;
+    height: 90%;
+  }
+}

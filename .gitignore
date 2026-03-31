@@ -1,0 +1,6 @@
+# Purpose: Keeps generated artifacts out of the repository while preserving the scaffold sources.
+node_modules/
+dist/
+coverage/
+*.tsbuildinfo
+.DS_Store
