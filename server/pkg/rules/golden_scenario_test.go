@@ -422,3 +422,83 @@ func TestGoldenScenario_XQ31GrantsDefenseToPrestigeAllies(t *testing.T) {
 		t.Fatalf("enemy prestige effective defense = %d, want 2 (no buff)", enemyPrestigeAfter.EffectiveStats.Defense)
 	}
 }
+
+// TestGoldenScenario_XQ01SilencesAttackAndInvestigation verifies that XQ01 prevents all characters from attacking and investigating.
+// Scenario: XQ01 沉默所有角色的攻击和调查
+func TestGoldenScenario_XQ01SilencesAttackAndInvestigation(t *testing.T) {
+	// Given: P1 has XQ01 ready on the table
+	state := NewGameState(InitialStateConfig{
+		GameID:         "golden-xq01",
+		ActivePlayerID: "P1",
+		PlayerIDs:      []string{"P1", "P2"},
+	})
+
+	// Add XQ01 to P1's table
+	xq01Card := CardState{
+		CardID:          "XQ01-1",
+		DefinitionID:    "XQ01",
+		Name:            "联会禁音使",
+		Zone:            CardZoneTable,
+		Exhausted:       false,
+		Destroyed:       false,
+		ControllerID:    "P1",
+		PrintedKeywords: []string{"角色"},
+		Kind:            CardKindCharacter,
+	}
+
+	// Add P1's character to the table
+	allyCard := CardState{
+		CardID:          "ALLY-1",
+		DefinitionID:    "ALLY",
+		Name:            "本方角色",
+		Zone:            CardZoneTable,
+		Exhausted:       false,
+		Destroyed:       false,
+		ControllerID:    "P1",
+		PrintedKeywords: []string{"角色"},
+		Kind:            CardKindCharacter,
+	}
+
+	// Add P2's character to the table
+	enemyCard := CardState{
+		CardID:          "ENEMY-1",
+		DefinitionID:    "ENEMY",
+		Name:            "敌方角色",
+		Zone:            CardZoneTable,
+		Exhausted:       false,
+		Destroyed:       false,
+		ControllerID:    "P2",
+		PrintedKeywords: []string{"角色"},
+		Kind:            CardKindCharacter,
+	}
+
+	state.Board.Cards = []CardState{xq01Card, allyCard, enemyCard}
+
+	// Recalculate continuous effects to apply XQ01's silence
+	state = RecalculateContinuousEffects(state)
+
+	// Verify that all characters have attack and investigate prohibited
+	var allyAfter CardState
+	var enemyAfter CardState
+	for _, card := range state.Board.Cards {
+		switch card.CardID {
+		case "ALLY-1":
+			allyAfter = card
+		case "ENEMY-1":
+			enemyAfter = card
+		}
+	}
+
+	if !containsString(allyAfter.Prohibitions, "attack") {
+		t.Fatalf("ally prohibitions = %v, want contains \"attack\"", allyAfter.Prohibitions)
+	}
+	if !containsString(allyAfter.Prohibitions, "investigate") {
+		t.Fatalf("ally prohibitions = %v, want contains \"investigate\"", allyAfter.Prohibitions)
+	}
+	if !containsString(enemyAfter.Prohibitions, "attack") {
+		t.Fatalf("enemy prohibitions = %v, want contains \"attack\"", enemyAfter.Prohibitions)
+	}
+	if !containsString(enemyAfter.Prohibitions, "investigate") {
+		t.Fatalf("enemy prohibitions = %v, want contains \"investigate\"", enemyAfter.Prohibitions)
+	}
+}

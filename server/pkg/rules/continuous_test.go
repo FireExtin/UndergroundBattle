@@ -1098,6 +1098,235 @@ func newContinuousTestState() GameState {
 	})
 }
 
+func TestXQ01SilencesAttackWhenReady(t *testing.T) {
+	state := newContinuousTestState()
+	state.Board.Cards = []CardState{
+		{
+			CardID:       "xq01-1",
+			DefinitionID: "XQ01",
+			Name:         "联会禁音使",
+			Zone:         CardZoneTable,
+			Exhausted:    false,
+			Destroyed:    false,
+			ControllerID: "P1",
+			Kind:         CardKindCharacter,
+		},
+		{
+			CardID:       "ally-1",
+			DefinitionID: "ALLY",
+			Name:         "本方角色",
+			Zone:         CardZoneTable,
+			Exhausted:    false,
+			Destroyed:    false,
+			ControllerID: "P1",
+			Kind:         CardKindCharacter,
+		},
+		{
+			CardID:       "enemy-1",
+			DefinitionID: "ENEMY",
+			Name:         "敌方角色",
+			Zone:         CardZoneTable,
+			Exhausted:    false,
+			Destroyed:    false,
+			ControllerID: "P2",
+			Kind:         CardKindCharacter,
+		},
+	}
+
+	recalculated := RecalculateContinuousEffects(state)
+
+	var ally CardState
+	var enemy CardState
+	for _, card := range recalculated.Board.Cards {
+		if card.CardID == "ally-1" {
+			ally = card
+		}
+		if card.CardID == "enemy-1" {
+			enemy = card
+		}
+	}
+
+	if !containsString(ally.Prohibitions, "attack") {
+		t.Fatalf("ally prohibitions = %v, want contains \"attack\"", ally.Prohibitions)
+	}
+	if !containsString(enemy.Prohibitions, "attack") {
+		t.Fatalf("enemy prohibitions = %v, want contains \"attack\"", enemy.Prohibitions)
+	}
+}
+
+func TestXQ01SilencesInvestigateWhenReady(t *testing.T) {
+	state := newContinuousTestState()
+	state.Board.Cards = []CardState{
+		{
+			CardID:       "xq01-1",
+			DefinitionID: "XQ01",
+			Name:         "联会禁音使",
+			Zone:         CardZoneTable,
+			Exhausted:    false,
+			Destroyed:    false,
+			ControllerID: "P1",
+			Kind:         CardKindCharacter,
+		},
+		{
+			CardID:       "ally-1",
+			DefinitionID: "ALLY",
+			Name:         "本方角色",
+			Zone:         CardZoneTable,
+			Exhausted:    false,
+			Destroyed:    false,
+			ControllerID: "P1",
+			Kind:         CardKindCharacter,
+		},
+		{
+			CardID:       "enemy-1",
+			DefinitionID: "ENEMY",
+			Name:         "敌方角色",
+			Zone:         CardZoneTable,
+			Exhausted:    false,
+			Destroyed:    false,
+			ControllerID: "P2",
+			Kind:         CardKindCharacter,
+		},
+	}
+
+	recalculated := RecalculateContinuousEffects(state)
+
+	var ally CardState
+	var enemy CardState
+	for _, card := range recalculated.Board.Cards {
+		if card.CardID == "ally-1" {
+			ally = card
+		}
+		if card.CardID == "enemy-1" {
+			enemy = card
+		}
+	}
+
+	if !containsString(ally.Prohibitions, "investigate") {
+		t.Fatalf("ally prohibitions = %v, want contains \"investigate\"", ally.Prohibitions)
+	}
+	if !containsString(enemy.Prohibitions, "investigate") {
+		t.Fatalf("enemy prohibitions = %v, want contains \"investigate\"", enemy.Prohibitions)
+	}
+}
+
+func TestXQ01DoesNotSilenceWhenExhausted(t *testing.T) {
+	state := newContinuousTestState()
+	state.Board.Cards = []CardState{
+		{
+			CardID:       "xq01-1",
+			DefinitionID: "XQ01",
+			Name:         "联会禁音使",
+			Zone:         CardZoneTable,
+			Exhausted:    true,
+			Destroyed:    false,
+			ControllerID: "P1",
+			Kind:         CardKindCharacter,
+		},
+		{
+			CardID:       "ally-1",
+			DefinitionID: "ALLY",
+			Name:         "本方角色",
+			Zone:         CardZoneTable,
+			Exhausted:    false,
+			Destroyed:    false,
+			ControllerID: "P1",
+			Kind:         CardKindCharacter,
+		},
+	}
+
+	recalculated := RecalculateContinuousEffects(state)
+
+	var ally CardState
+	for _, card := range recalculated.Board.Cards {
+		if card.CardID == "ally-1" {
+			ally = card
+		}
+	}
+
+	if containsString(ally.Prohibitions, "attack") {
+		t.Fatalf("ally prohibitions = %v, want NOT contains \"attack\" (XQ01 exhausted)", ally.Prohibitions)
+	}
+}
+
+func TestXQ01DoesNotSilenceWhenOffTable(t *testing.T) {
+	state := newContinuousTestState()
+	state.Board.Cards = []CardState{
+		{
+			CardID:       "xq01-1",
+			DefinitionID: "XQ01",
+			Name:         "联会禁音使",
+			Zone:         CardZoneHand,
+			Exhausted:    false,
+			Destroyed:    false,
+			ControllerID: "P1",
+			Kind:         CardKindCharacter,
+		},
+		{
+			CardID:       "ally-1",
+			DefinitionID: "ALLY",
+			Name:         "本方角色",
+			Zone:         CardZoneTable,
+			Exhausted:    false,
+			Destroyed:    false,
+			ControllerID: "P1",
+			Kind:         CardKindCharacter,
+		},
+	}
+
+	recalculated := RecalculateContinuousEffects(state)
+
+	var ally CardState
+	for _, card := range recalculated.Board.Cards {
+		if card.CardID == "ally-1" {
+			ally = card
+		}
+	}
+
+	if containsString(ally.Prohibitions, "attack") {
+		t.Fatalf("ally prohibitions = %v, want NOT contains \"attack\" (XQ01 off table)", ally.Prohibitions)
+	}
+}
+
+func TestXQ01DoesNotSilenceWhenDestroyed(t *testing.T) {
+	state := newContinuousTestState()
+	state.Board.Cards = []CardState{
+		{
+			CardID:       "xq01-1",
+			DefinitionID: "XQ01",
+			Name:         "联会禁音使",
+			Zone:         CardZoneTable,
+			Exhausted:    false,
+			Destroyed:    true,
+			ControllerID: "P1",
+			Kind:         CardKindCharacter,
+		},
+		{
+			CardID:       "ally-1",
+			DefinitionID: "ALLY",
+			Name:         "本方角色",
+			Zone:         CardZoneTable,
+			Exhausted:    false,
+			Destroyed:    false,
+			ControllerID: "P1",
+			Kind:         CardKindCharacter,
+		},
+	}
+
+	recalculated := RecalculateContinuousEffects(state)
+
+	var ally CardState
+	for _, card := range recalculated.Board.Cards {
+		if card.CardID == "ally-1" {
+			ally = card
+		}
+	}
+
+	if containsString(ally.Prohibitions, "attack") {
+		t.Fatalf("ally prohibitions = %v, want NOT contains \"attack\" (XQ01 destroyed)", ally.Prohibitions)
+	}
+}
+
 func manualDSLCardEffectOperation(
 	operationID string,
 	actionID string,
