@@ -77,7 +77,7 @@
 - 每个生成文件都要有简短注释说明用途
 ```
 
----
+***
 
 # 阶段 2：资源归一化
 
@@ -156,7 +156,7 @@
 - 给出后续阶段可复用的 normalized schema
 ```
 
----
+***
 
 # 阶段 3：DSL fixture 和双端契约测试
 
@@ -233,7 +233,7 @@
 - 所有测试可本地直接运行
 ```
 
----
+***
 
 # 阶段 4：最小 Go rules core
 
@@ -298,7 +298,7 @@ SubmitAction
 - 不要写假测试
 ```
 
----
+***
 
 # 阶段 5：Priority、Stack、错误协议
 
@@ -363,7 +363,7 @@ SubmitAction
 - 错误必须是结构化的，而不是纯文本
 ```
 
----
+***
 
 # 阶段 6：Projection 和隐藏信息隔离
 
@@ -409,7 +409,7 @@ SubmitAction
 - 不要引入数据库
 ```
 
----
+***
 
 # 阶段 7：持续效果最小系统
 
@@ -467,7 +467,7 @@ SubmitAction
 - 保留后续扩展接口
 ```
 
----
+***
 
 # 阶段 8：最小 Web 调试器和对局骨架
 
@@ -517,3 +517,42 @@ SubmitAction
 - 不要引入复杂状态管理库
 ```
 
+<br />
+
+<br />
+
+<br />
+
+我会这样排，而且我认为 `现在不该把这些机制并行开工`。
+
+**推荐顺序**
+
+1. `资产 / Permanent Model V1`
+2. `附属 / Host Lifecycle V1`
+3. `暗藏部署 / 现身 V1`
+4. `快 / 闪电 / 反应时机 V2`
+5. `战斗对抗 V2`
+6. `调查对抗 + 势力对抗 V2`
+
+**为什么这样排**
+
+第一优先该做的是 `资产 / permanent`，因为它是缺的底座。现在规则核里真正稳定的在场实体主要还是角色和地区，见 [projection.go](/Users/ddd/Downloads/UndergroundBattle/server/pkg/rules/projection.go) 和 [role\_actions.go](/Users/ddd/Downloads/UndergroundBattle/server/pkg/rules/role_actions.go)。而你提到的资产、附属、隐藏部署，本质都要求“卡牌作为真实在场永久物存在，并有明确的进场/在场/离场语义”。这层不先补，后面全会变成特判。
+
+第二做 `附属 / host lifecycle`，因为它直接建立在 permanent 模型上，而且你们已经被 `BQ022` 这类牌逼到边缘了。当前只有 attachment tracking V0，不是完整附属系统，见 [attachment.go](/Users/ddd/Downloads/UndergroundBattle/server/pkg/rules/attachment.go) 和 [continuous.go](/Users/ddd/Downloads/UndergroundBattle/server/pkg/rules/continuous.go)。这一步做完，装备、结附、宿主离场、附属离场这些才会进入正式生命周期。
+
+第三再做 `暗藏部署 / 现身`。原因不是它不重要，而是它风险最高：它同时碰 permanent state、hidden-info projection、legality、replay。现在你们有 hidden-info 和 `reveal_card`，但还没有“隐藏永久物部署”系统，见 [engine.go](/Users/ddd/Downloads/UndergroundBattle/server/pkg/rules/engine.go) 和 [m0-sandbox.md](/Users/ddd/Downloads/UndergroundBattle/docs/milestones/m0-sandbox.md)。太早做，很容易把 projection 边界搞脏。
+
+第四才是把 `快 / 闪电 / 反应时机` 从最小版拉到 V2。当前 `speed + window + stack` 已经有最小可用形态，见 [engine.go](/Users/ddd/Downloads/UndergroundBattle/server/pkg/rules/engine.go#L981) 和 [GO\_PHASE\_PRIORITY\_WINDOWS\_2026-03-31.md](/Users/ddd/Downloads/UndergroundBattle/docs/GO_PHASE_PRIORITY_WINDOWS_2026-03-31.md)。所以它不是零，但也还不值得现在深挖到完整时机学。等 permanent / attachment / hidden deploy 有了，再补 timing 更稳。
+
+第五、第六再补 `战斗 / 调查 / 势力对抗` 的完整版本。不是因为它们不重要，而是因为现在已经有最小闭环：
+
+- 攻击：见 [role\_actions.go](/Users/ddd/Downloads/UndergroundBattle/server/pkg/rules/role_actions.go#L69)
+- 调查：见 [role\_actions.go](/Users/ddd/Downloads/UndergroundBattle/server/pkg/rules/role_actions.go#L108)
+- 地区控制与得分：见 [region.go](/Users/ddd/Downloads/UndergroundBattle/server/pkg/rules/region.go)
+
+所以这三块当前是“能跑但不完整”，不是“完全没有”。在 permanent/timing 没稳前，过早把它们做复杂，后面大概率还要重改。
+
+**一句话判断**
+
+现在最该做的不是继续补“对抗花样”，也不是急着做“暗藏部署”；而是先把 `资产 / permanent / attachment` 这条状态模型骨架做出来。\
+如果只能选下一刀，我会选：`Asset / Permanent Model V1`。
