@@ -499,10 +499,37 @@ type ProhibitionScope struct {
 	Kind ProhibitionScopeKind `json:"kind"`
 }
 
+// TargetCondition defines additional conditions on the target being acted upon.
+// This is a reserved extension point for future use (e.g., XQ31/XQ01).
+type TargetCondition struct {
+	// Keywords defines required keywords on the target (reserved for XQ31: "声望")
+	Keywords []string `json:"keywords,omitempty"`
+
+	// RegionID defines the region scope (reserved for XQ01: "本地区")
+	RegionID string `json:"regionId,omitempty"`
+
+	// AbilityKinds defines which ability kinds are affected (reserved for XQ01: "触发能力", "行动能力")
+	AbilityKinds []string `json:"abilityKinds,omitempty"`
+
+	// Side defines whether the target must be ally or enemy (reserved for XQ31: "本方", "敌方")
+	Side SideKind `json:"side,omitempty"`
+}
+
+// SideKind defines whether a target is considered ally or enemy.
+type SideKind string
+
+const (
+	// SideAlly means the target is an ally (same controller as source).
+	SideAlly SideKind = "ally"
+	// SideEnemy means the target is an enemy (different controller from source).
+	SideEnemy SideKind = "enemy"
+)
+
 // TargetCategory defines what kinds of targets are prohibited.
 type TargetCategory struct {
-	BasicTypes  []string     `json:"basicTypes,omitempty"`  // Prohibited card basic types (e.g., "事务")
-	ActionKinds []ActionKind `json:"actionKinds,omitempty"` // Prohibited action kinds
+	BasicTypes  []string         `json:"basicTypes,omitempty"`  // Prohibited card basic types (e.g., "事务")
+	ActionKinds []ActionKind     `json:"actionKinds,omitempty"` // Prohibited action kinds
+	Condition   *TargetCondition `json:"condition,omitempty"`   // Additional target conditions (reserved extension)
 }
 
 // ProhibitionRule defines a self-contained prohibition effect.

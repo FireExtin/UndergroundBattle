@@ -103,7 +103,7 @@ func (c *ScopedProhibitionChecker) matchesScope(
 
 	case ProhibitionScopeControllerOnly:
 		// Prohibition applies only to the controller of the source
-		return sourceCard.ControllerID == actorID
+		return sourceCard.ControllerID != "" && sourceCard.ControllerID == actorID
 
 	default:
 		return false
@@ -177,12 +177,50 @@ var XQ22ProhibitionRule = ProhibitionRule{
 	Description: "XQ22: While ready, prohibits all players from playing event cards",
 }
 
+// TEST01ProhibitionRule is a test card that prohibits character cards (角色).
+// Used to verify the framework supports multiple prohibition rules.
+var TEST01ProhibitionRule = ProhibitionRule{
+	SourceDefinitionID: "TEST01",
+	SourceCondition: CardCondition{
+		Zone:         CardZoneTable,
+		Ready:        true,
+		NotDestroyed: true,
+	},
+	Scope: ProhibitionScope{
+		Kind: ProhibitionScopeAllPlayers,
+	},
+	TargetCategory: TargetCategory{
+		BasicTypes: []string{"角色"},
+	},
+	Description: "TEST01: Test card that prohibits character cards",
+}
+
+// TEST02ProhibitionRule is a test card that prohibits event cards for opponents only.
+// Used to verify the framework supports different scopes.
+var TEST02ProhibitionRule = ProhibitionRule{
+	SourceDefinitionID: "TEST02",
+	SourceCondition: CardCondition{
+		Zone:         CardZoneTable,
+		Ready:        true,
+		NotDestroyed: true,
+	},
+	Scope: ProhibitionScope{
+		Kind: ProhibitionScopeOpponentsOnly,
+	},
+	TargetCategory: TargetCategory{
+		BasicTypes: []string{"事务"},
+	},
+	Description: "TEST02: Test card that prohibits event cards for opponents only",
+}
+
 // BuildProhibitionChecker creates a checker with all active prohibition rules.
 // This is the entry point for legality checks.
 func BuildProhibitionChecker(state GameState) *ScopedProhibitionChecker {
 	// Currently hardcoded rules - can be made dynamic later
 	rules := []ProhibitionRule{
 		XQ22ProhibitionRule,
+		TEST01ProhibitionRule,
+		TEST02ProhibitionRule,
 	}
 
 	return NewScopedProhibitionChecker(rules)
