@@ -228,6 +228,10 @@ func CheckLegality(state GameState, action Action) LegalityResult {
 		return okLegalityResult()
 	case ActionKindPassPriority:
 		return okLegalityResult()
+	case ActionKindDeclareAttack:
+		return checkRoleActionLegality(state, action, CardKindCharacter)
+	case ActionKindDeclareInvestigation:
+		return checkRoleActionLegality(state, action, CardKindRegion)
 	case ActionKindQueueOperation:
 		if !state.Turn.Phase.AllowsStack {
 			return legalityFailure(
@@ -352,6 +356,16 @@ func BuildOperation(state GameState, action Action) (Operation, error) {
 		operation.CardID = action.CardID
 	case ActionKindPassPriority:
 		operation.Kind = OperationKindPassPriority
+	case ActionKindDeclareAttack:
+		operation.Kind = OperationKindDeclareAttack
+		operation.CardID = action.CardID
+		operation.TargetCardID = action.TargetCardID
+		operation.Label = "declare_attack"
+	case ActionKindDeclareInvestigation:
+		operation.Kind = OperationKindDeclareInvestigation
+		operation.CardID = action.CardID
+		operation.TargetCardID = action.TargetCardID
+		operation.Label = "declare_investigation"
 	case ActionKindQueueOperation:
 		source, found, err := lookupCardOperationSource(action.CardID)
 		if err != nil {
@@ -424,6 +438,10 @@ func executeOperation(state GameState, operation Operation) (GameState, Operatio
 		return executeInspectCard(working, operation)
 	case OperationKindPassPriority:
 		return executePassPriority(working, operation)
+	case OperationKindDeclareAttack:
+		return executeDeclareAttack(working, operation)
+	case OperationKindDeclareInvestigation:
+		return executeDeclareInvestigation(working, operation)
 	case OperationKindCardEffect:
 		return executeCardEffect(working, operation)
 	case OperationKindResolveTopStack:
@@ -791,7 +809,7 @@ func actionRequiresPriority(kind ActionKind) bool {
 
 func actionRequiresEmptyStack(kind ActionKind) bool {
 	switch kind {
-	case ActionKindAdvancePhase, ActionKindRevealCard, ActionKindInspectCard, ActionKindRollSeededRandom:
+	case ActionKindAdvancePhase, ActionKindRevealCard, ActionKindInspectCard, ActionKindDeclareAttack, ActionKindDeclareInvestigation, ActionKindRollSeededRandom:
 		return true
 	default:
 		return false
@@ -867,6 +885,10 @@ func permissionForActionKind(kind ActionKind) string {
 		return "inspect"
 	case ActionKindRevealCard:
 		return "reveal"
+	case ActionKindDeclareAttack:
+		return "attack"
+	case ActionKindDeclareInvestigation:
+		return "investigate"
 	default:
 		return ""
 	}

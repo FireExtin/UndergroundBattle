@@ -6,27 +6,31 @@ package rules
 type ActionKind string
 
 const (
-	ActionKindAdvancePhase     ActionKind = "advance_phase"
-	ActionKindRevealCard       ActionKind = "reveal_card"
-	ActionKindInspectCard      ActionKind = "inspect_card"
-	ActionKindPassPriority     ActionKind = "pass_priority"
-	ActionKindQueueOperation   ActionKind = "queue_operation"
-	ActionKindResolveTopStack  ActionKind = "resolve_top_stack"
-	ActionKindRollSeededRandom ActionKind = "roll_seeded_random"
+	ActionKindAdvancePhase         ActionKind = "advance_phase"
+	ActionKindRevealCard           ActionKind = "reveal_card"
+	ActionKindInspectCard          ActionKind = "inspect_card"
+	ActionKindPassPriority         ActionKind = "pass_priority"
+	ActionKindQueueOperation       ActionKind = "queue_operation"
+	ActionKindDeclareAttack        ActionKind = "declare_attack"
+	ActionKindDeclareInvestigation ActionKind = "declare_investigation"
+	ActionKindResolveTopStack      ActionKind = "resolve_top_stack"
+	ActionKindRollSeededRandom     ActionKind = "roll_seeded_random"
 )
 
 // OperationKind names the minimal operation types built from actions.
 type OperationKind string
 
 const (
-	OperationKindAdvancePhase    OperationKind = "advance_phase"
-	OperationKindRevealCard      OperationKind = "reveal_card"
-	OperationKindInspectCard     OperationKind = "inspect_card"
-	OperationKindPassPriority    OperationKind = "pass_priority"
-	OperationKindStackedEffect   OperationKind = "stacked_effect"
-	OperationKindCardEffect      OperationKind = "card_effect"
-	OperationKindResolveTopStack OperationKind = "resolve_top_stack"
-	OperationKindRollRandom      OperationKind = "roll_seeded_random"
+	OperationKindAdvancePhase         OperationKind = "advance_phase"
+	OperationKindRevealCard           OperationKind = "reveal_card"
+	OperationKindInspectCard          OperationKind = "inspect_card"
+	OperationKindPassPriority         OperationKind = "pass_priority"
+	OperationKindStackedEffect        OperationKind = "stacked_effect"
+	OperationKindCardEffect           OperationKind = "card_effect"
+	OperationKindDeclareAttack        OperationKind = "declare_attack"
+	OperationKindDeclareInvestigation OperationKind = "declare_investigation"
+	OperationKindResolveTopStack      OperationKind = "resolve_top_stack"
+	OperationKindRollRandom           OperationKind = "roll_seeded_random"
 )
 
 // OperationStatus describes whether an operation is pending on the stack or already resolved.
@@ -42,14 +46,18 @@ const (
 type EventKind string
 
 const (
-	EventKindOperationEnqueued EventKind = "operation_enqueued"
-	EventKindOperationResolved EventKind = "operation_resolved"
-	EventKindPhaseAdvanced     EventKind = "phase_advanced"
-	EventKindCardInspected     EventKind = "card_inspected"
-	EventKindCardRevealed      EventKind = "card_revealed"
-	EventKindPriorityPassed    EventKind = "priority_passed"
-	EventKindRandomGenerated   EventKind = "random_generated"
-	EventKindStepEnded         EventKind = "step_ended"
+	EventKindOperationEnqueued    EventKind = "operation_enqueued"
+	EventKindOperationResolved    EventKind = "operation_resolved"
+	EventKindPhaseAdvanced        EventKind = "phase_advanced"
+	EventKindCardInspected        EventKind = "card_inspected"
+	EventKindCardRevealed         EventKind = "card_revealed"
+	EventKindPriorityPassed       EventKind = "priority_passed"
+	EventKindRandomGenerated      EventKind = "random_generated"
+	EventKindStepEnded            EventKind = "step_ended"
+	EventKindAttackDeclared       EventKind = "attack_declared"
+	EventKindDamageApplied        EventKind = "damage_applied"
+	EventKindCardDestroyed        EventKind = "card_destroyed"
+	EventKindInvestigationApplied EventKind = "investigation_applied"
 )
 
 // PhaseName identifies the current minimal turn phase.
@@ -231,6 +239,10 @@ type Event struct {
 	PriorityWindow   PriorityWindowKind `json:"priorityWindow,omitempty"`
 	PassCount        int                `json:"passCount,omitempty"`
 	ResolvedTargetID string             `json:"resolvedTargetId,omitempty"`
+	SourceCardID     string             `json:"sourceCardId,omitempty"`
+	TargetCardID     string             `json:"targetCardId,omitempty"`
+	AppliedAmount    int                `json:"appliedAmount,omitempty"`
+	DestroyedCardID  string             `json:"destroyedCardId,omitempty"`
 	StackDepth       int                `json:"stackDepth"`
 	RandomValue      *int               `json:"randomValue,omitempty"`
 	StepEnded        bool               `json:"stepEnded,omitempty"`

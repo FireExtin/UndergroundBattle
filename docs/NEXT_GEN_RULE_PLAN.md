@@ -1,8 +1,24 @@
 # 下一阶段规则核计划
 
 ## Summary
-- 当前已经有：最小规则核、priority/stack、projection、continuous effects、`inspect` 的 permission hook、`dealDamage` 对 `EffectiveStats.Defense` 的最小致命判定。
+- 当前已经有：最小规则核、priority/stack、projection、continuous effects、`inspect` 的 permission hook、`dealDamage` 对 `EffectiveStats.Defense` 的最小致命判定，以及第一批角色动作入口 `declare_attack / declare_investigation`。
 - 如果目标是“继续稳定接真实卡 DSL，并形成一个可扩展 alpha”，还差 4 个明确里程碑。做完这 4 个就够继续推进主卡池，不需要先上完整 dependency engine。
+
+## 2026-04-01 进度补记
+
+- `Phase 3` 已经开始，但只推进了第一刀：
+  - 新增 `declare_attack`
+  - 新增 `declare_investigation`
+  - 角色动作会读取 `EffectiveStats`
+  - 角色动作会使执行者 `Exhausted`
+  - 攻击会走最小伤害/销毁语义
+  - 调查会向地区放置 `influence` counter
+- 这还不等于“完整可玩对局闭环”。
+- 下一步仍然是：
+  - 地区争夺
+  - 得分
+  - 胜利条件
+  - 持续效果来源离场清理
 
 ## 2026-03-31 执行顺序说明
 

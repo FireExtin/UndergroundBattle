@@ -14,10 +14,20 @@ const (
 	CardZoneDiscard CardZone = "discard"
 )
 
+// CardKind identifies the minimal role a card plays in legality and board semantics.
+type CardKind string
+
+const (
+	CardKindUnknown   CardKind = "unknown"
+	CardKindCharacter CardKind = "character"
+	CardKindRegion    CardKind = "region"
+)
+
 // CardState is the authoritative hidden-information record stored only in FullState.
 type CardState struct {
 	CardID              string           `json:"cardId"`
 	Name                string           `json:"name"`
+	Kind                CardKind         `json:"kind,omitempty"`
 	OwnerID             string           `json:"ownerId"`
 	Zone                CardZone         `json:"zone"`
 	VisibleToOwner      bool             `json:"visibleToOwner"`
