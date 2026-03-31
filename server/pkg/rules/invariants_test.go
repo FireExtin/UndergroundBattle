@@ -248,8 +248,8 @@ func TestCheckAllInvariants(t *testing.T) {
 
 	results := CheckAllInvariants(state, DefaultInvariantConfig)
 
-	if len(results) != 5 {
-		t.Fatalf("expected 5 invariant results, got %d", len(results))
+	if len(results) != 6 {
+		t.Fatalf("expected 6 invariant results, got %d", len(results))
 	}
 
 	for _, result := range results {

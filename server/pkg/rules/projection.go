@@ -21,6 +21,7 @@ const (
 	CardKindUnknown   CardKind = "unknown"
 	CardKindCharacter CardKind = "character"
 	CardKindRegion    CardKind = "region"
+	CardKindAsset     CardKind = "asset"
 )
 
 // CardState is the authoritative hidden-information record stored only in FullState.

@@ -36,6 +36,7 @@ func CheckAllInvariants(state GameState, config InvariantConfig) []InvariantChec
 	}{
 		{"CardIDUnique", InvariantCardIDUnique},
 		{"CardZoneValid", InvariantCardZoneValid},
+		{"CardDestroyedStateValid", InvariantCardDestroyedStateValid},
 		{"PriorityPlayerValid", InvariantPriorityPlayerValid},
 		{"StackDepthNonNegative", InvariantStackDepthNonNegative},
 		{"RevisionConsistent", InvariantRevisionConsistent},
@@ -89,6 +90,19 @@ func InvariantCardZoneValid(state GameState) bool {
 	}
 	for _, card := range state.Board.Cards {
 		if !validZones[card.Zone] {
+			return false
+		}
+	}
+	return true
+}
+
+// InvariantCardDestroyedStateValid checks that card Destroyed state is consistent with Zone.
+func InvariantCardDestroyedStateValid(state GameState) bool {
+	for _, card := range state.Board.Cards {
+		if card.Zone == CardZoneTable && card.Destroyed {
+			return false
+		}
+		if card.Zone == CardZoneDiscard && !card.Destroyed {
 			return false
 		}
 	}

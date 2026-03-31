@@ -146,6 +146,22 @@
   - 不应再以全局 `prohibitPermission(attack/investigate)` 形式进入 production catalog
   - 等 prerequisite 到位后再按正确语义实现
 
+## 2026-04-01 第九次补记（Asset / Permanent Model V1）
+
+- Phase 3 现在正式把“资产牌作为真实在场永久物”这层状态模型做出来了：
+  - `projection.go` 中新增 `CardKindAsset` 常量
+  - `invariants.go` 中新增 `InvariantCardDestroyedStateValid` 检查，确保卡片的 Destroyed 状态与 Zone 一致（在 Table 时不应该被 Destroyed，在 Discard 时应该被 Destroyed）
+  - `clone.go` 已完整覆盖所有 CardState 字段克隆，包括 Kind
+  - 现有代码框架（进场、离场、continuous source validity、投影、回放）已经支持任何 CardKind，包括 Asset
+- 新增完整的单元测试：
+  - `asset_test.go` - 覆盖 Asset Card 进场、离场、不影响现有 Character 等场景
+- 这是 Asset / Permanent V1，不是完整 attachment system：
+  - 不做 BQ022 这类附属/结附牌的完整语义
+  - 不做回收/回手
+  - 不做暗藏部署
+  - 不做资产主动能力
+  - 不做更多 UI
+
 
 ## 2026-03-31 执行顺序说明
 
