@@ -129,6 +129,65 @@ func TestTurnDurationContinuousEffectExpiresAfterTurnEnds(t *testing.T) {
 	}
 }
 
+func TestContinuousEffectIsRemovedWhenSourceLeavesTable(t *testing.T) {
+	state := newContinuousTestState()
+	state.Board.Cards = []CardState{
+		{
+			CardID:         "card-source-1",
+			Name:           "Effect Source",
+			OwnerID:        "P1",
+			Zone:           CardZoneTable,
+			VisibleToOwner: true,
+			Revealed:       true,
+		},
+		{
+			CardID:         "card-target-1",
+			Name:           "Effect Target",
+			OwnerID:        "P1",
+			Zone:           CardZoneTable,
+			VisibleToOwner: true,
+			Revealed:       true,
+			PrintedStats:   CardNumericStats{Defense: 1},
+		},
+	}
+	state.Board.Continuous = ContinuousEffectRegistry{
+		Active: []ContinuousEffect{
+			{
+				ID:           "ce:source-leaves-1",
+				SourceCardID: "card-source-1",
+				Layer:        LayerNumeric,
+				EffectKind:   "modifyStat",
+				TargetCardID: "card-target-1",
+				Stat:         "defense",
+				Amount:       2,
+				DurationKind: "permanent",
+				Timestamp:    1,
+			},
+		},
+	}
+
+	current := RecalculateContinuousEffects(state)
+	if cardStateByID(t, current, "card-target-1").EffectiveStats.Defense != 3 {
+		t.Fatalf("effective defense while source is in play = %d, want 3", cardStateByID(t, current, "card-target-1").EffectiveStats.Defense)
+	}
+
+	sourceLeaves := cloneGameState(current)
+	sourceIndex := findCardIndex(sourceLeaves, "card-source-1")
+	sourceLeaves.Board.Cards[sourceIndex].Zone = CardZoneDiscard
+	sourceLeaves.Board.Cards[sourceIndex].Destroyed = true
+
+	cleaned := RecalculateContinuousEffects(sourceLeaves)
+	target := cardStateByID(t, cleaned, "card-target-1")
+
+	if target.EffectiveStats.Defense != 1 {
+		t.Fatalf("effective defense after source leaves table = %d, want 1", target.EffectiveStats.Defense)
+	}
+
+	if len(cleaned.Board.Continuous.Active) != 0 {
+		t.Fatalf("active continuous effects = %d, want 0", len(cleaned.Board.Continuous.Active))
+	}
+}
+
 func TestCommitRecalculatesContinuousEffectsOnceWhenOneOperationRegistersMultipleEffects(t *testing.T) {
 	state := newContinuousTestState()
 	state.Board.Cards = []CardState{

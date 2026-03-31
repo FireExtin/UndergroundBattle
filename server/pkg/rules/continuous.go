@@ -156,6 +156,10 @@ func pruneExpiredContinuousEffects(state *GameState) {
 			removed = true
 			continue
 		}
+		if !continuousEffectSourceIsStillActive(*state, effect) {
+			removed = true
+			continue
+		}
 
 		kept = append(kept, effect)
 	}
@@ -164,6 +168,21 @@ func pruneExpiredContinuousEffects(state *GameState) {
 		registry.Active = kept
 		requestContinuousRecalculation(state)
 	}
+}
+
+func continuousEffectSourceIsStillActive(state GameState, effect ContinuousEffect) bool {
+	if effect.SourceCardID == "" {
+		return true
+	}
+
+	index := findCardIndex(state, effect.SourceCardID)
+	if index == -1 {
+		// Some continuous effects come from fixture-only cards that are not represented as board instances.
+		return true
+	}
+
+	source := state.Board.Cards[index]
+	return source.Zone == CardZoneTable && !source.Destroyed
 }
 
 func sortContinuousEffects(effects []ContinuousEffect) {
