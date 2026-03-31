@@ -522,6 +522,9 @@ type ProhibitionScope struct {
 // TargetCondition defines additional conditions on the target being acted upon.
 // This is a reserved extension point for future use (e.g., XQ31/XQ01).
 type TargetCondition struct {
+	// Kinds defines required card kinds on the target (e.g. character-only aura filters).
+	Kinds []CardKind `json:"kinds,omitempty"`
+
 	// Keywords defines required keywords on the target (reserved for XQ31: "声望")
 	Keywords []string `json:"keywords,omitempty"`
 

@@ -16,13 +16,13 @@ func TestGoldenScenario_XQ22BlocksEventCard(t *testing.T) {
 
 	// Add XQ22 to P1's table
 	xq22Card := CardState{
-		CardID:         "XQ22-1",
-		DefinitionID:   "XQ22",
-		Name:           "州议员贝伦·希恩斯",
-		Zone:           CardZoneTable,
-		Exhausted:      false,
-		Destroyed:      false,
-		ControllerID:   "P1",
+		CardID:          "XQ22-1",
+		DefinitionID:    "XQ22",
+		Name:            "州议员贝伦·希恩斯",
+		Zone:            CardZoneTable,
+		Exhausted:       false,
+		Destroyed:       false,
+		ControllerID:    "P1",
 		PrintedKeywords: []string{"角色"},
 	}
 	state.Board.Cards = []CardState{xq22Card}
@@ -59,25 +59,27 @@ func TestGoldenScenario_XQ31ProtectsPrestigeAlly(t *testing.T) {
 
 	// Add XQ31 to P1's table
 	xq31Card := CardState{
-		CardID:         "XQ31-1",
-		DefinitionID:   "XQ31",
-		Name:           "莫兰大主教",
-		Zone:           CardZoneTable,
-		Exhausted:      false,
-		Destroyed:      false,
-		ControllerID:   "P1",
+		CardID:          "XQ31-1",
+		DefinitionID:    "XQ31",
+		Name:            "莫兰大主教",
+		Kind:            CardKindCharacter,
+		Zone:            CardZoneTable,
+		Exhausted:       false,
+		Destroyed:       false,
+		ControllerID:    "P1",
 		PrintedKeywords: []string{"领袖", "公开", "声望"},
 	}
 
 	// Add prestige ally to P1's table
 	prestigeAlly := CardState{
-		CardID:         "ALLY-1",
-		DefinitionID:   "ALLY",
-		Name:           "声望盟友",
-		Zone:           CardZoneTable,
-		Exhausted:      false,
-		Destroyed:      false,
-		ControllerID:   "P1",
+		CardID:          "ALLY-1",
+		DefinitionID:    "ALLY",
+		Name:            "声望盟友",
+		Kind:            CardKindCharacter,
+		Zone:            CardZoneTable,
+		Exhausted:       false,
+		Destroyed:       false,
+		ControllerID:    "P1",
 		PrintedKeywords: []string{"声望"},
 	}
 
@@ -173,13 +175,13 @@ func TestGoldenScenario_XQ22AllowsNonEventCards(t *testing.T) {
 
 	// Add XQ22 to P1's table
 	xq22Card := CardState{
-		CardID:         "XQ22-1",
-		DefinitionID:   "XQ22",
-		Name:           "州议员贝伦·希恩斯",
-		Zone:           CardZoneTable,
-		Exhausted:      false,
-		Destroyed:      false,
-		ControllerID:   "P1",
+		CardID:          "XQ22-1",
+		DefinitionID:    "XQ22",
+		Name:            "州议员贝伦·希恩斯",
+		Zone:            CardZoneTable,
+		Exhausted:       false,
+		Destroyed:       false,
+		ControllerID:    "P1",
 		PrintedKeywords: []string{"角色"},
 	}
 	state.Board.Cards = []CardState{xq22Card}
@@ -209,25 +211,27 @@ func TestGoldenScenario_XQ31AllowsAllyToTargetPrestige(t *testing.T) {
 
 	// Add XQ31 to P1's table
 	xq31Card := CardState{
-		CardID:         "XQ31-1",
-		DefinitionID:   "XQ31",
-		Name:           "莫兰大主教",
-		Zone:           CardZoneTable,
-		Exhausted:      false,
-		Destroyed:      false,
-		ControllerID:   "P1",
+		CardID:          "XQ31-1",
+		DefinitionID:    "XQ31",
+		Name:            "莫兰大主教",
+		Kind:            CardKindCharacter,
+		Zone:            CardZoneTable,
+		Exhausted:       false,
+		Destroyed:       false,
+		ControllerID:    "P1",
 		PrintedKeywords: []string{"领袖", "公开", "声望"},
 	}
 
 	// Add prestige ally to P1's table
 	prestigeAlly := CardState{
-		CardID:         "ALLY-1",
-		DefinitionID:   "ALLY",
-		Name:           "声望盟友",
-		Zone:           CardZoneTable,
-		Exhausted:      false,
-		Destroyed:      false,
-		ControllerID:   "P1",
+		CardID:          "ALLY-1",
+		DefinitionID:    "ALLY",
+		Name:            "声望盟友",
+		Kind:            CardKindCharacter,
+		Zone:            CardZoneTable,
+		Exhausted:       false,
+		Destroyed:       false,
+		ControllerID:    "P1",
 		PrintedKeywords: []string{"声望"},
 	}
 
@@ -342,6 +346,7 @@ func TestGoldenScenario_XQ31GrantsDefenseToPrestigeAllies(t *testing.T) {
 		CardID:          "XQ31-1",
 		DefinitionID:    "XQ31",
 		Name:            "莫兰大主教",
+		Kind:            CardKindCharacter,
 		Zone:            CardZoneTable,
 		Exhausted:       false,
 		Destroyed:       false,
@@ -355,6 +360,7 @@ func TestGoldenScenario_XQ31GrantsDefenseToPrestigeAllies(t *testing.T) {
 		CardID:          "PRESTIGE-ALLY-1",
 		DefinitionID:    "ALLY",
 		Name:            "声望盟友",
+		Kind:            CardKindCharacter,
 		Zone:            CardZoneTable,
 		Exhausted:       false,
 		Destroyed:       false,
@@ -368,6 +374,7 @@ func TestGoldenScenario_XQ31GrantsDefenseToPrestigeAllies(t *testing.T) {
 		CardID:          "NON-PRESTIGE-ALLY-1",
 		DefinitionID:    "ALLY",
 		Name:            "非声望盟友",
+		Kind:            CardKindCharacter,
 		Zone:            CardZoneTable,
 		Exhausted:       false,
 		Destroyed:       false,
@@ -381,6 +388,7 @@ func TestGoldenScenario_XQ31GrantsDefenseToPrestigeAllies(t *testing.T) {
 		CardID:          "ENEMY-PRESTIGE-1",
 		DefinitionID:    "ENEMY",
 		Name:            "敌方声望",
+		Kind:            CardKindCharacter,
 		Zone:            CardZoneTable,
 		Exhausted:       false,
 		Destroyed:       false,
@@ -423,10 +431,9 @@ func TestGoldenScenario_XQ31GrantsDefenseToPrestigeAllies(t *testing.T) {
 	}
 }
 
-// TestGoldenScenario_XQ01SilencesAttackAndInvestigation verifies that XQ01 prevents all characters from attacking and investigating.
-// Scenario: XQ01 沉默所有角色的攻击和调查
-func TestGoldenScenario_XQ01SilencesAttackAndInvestigation(t *testing.T) {
-	// Given: P1 has XQ01 ready on the table
+// TestGoldenScenario_XQ01RemainsDeferredUntilRegionScopedSilenceExists verifies that
+// XQ01 does not add a fake global silence before region/ability-kind prerequisites land.
+func TestGoldenScenario_XQ01RemainsDeferredUntilRegionScopedSilenceExists(t *testing.T) {
 	state := NewGameState(InitialStateConfig{
 		GameID:         "golden-xq01",
 		ActivePlayerID: "P1",
@@ -473,11 +480,8 @@ func TestGoldenScenario_XQ01SilencesAttackAndInvestigation(t *testing.T) {
 	}
 
 	state.Board.Cards = []CardState{xq01Card, allyCard, enemyCard}
-
-	// Recalculate continuous effects to apply XQ01's silence
 	state = RecalculateContinuousEffects(state)
 
-	// Verify that all characters have attack and investigate prohibited
 	var allyAfter CardState
 	var enemyAfter CardState
 	for _, card := range state.Board.Cards {
@@ -489,16 +493,10 @@ func TestGoldenScenario_XQ01SilencesAttackAndInvestigation(t *testing.T) {
 		}
 	}
 
-	if !containsString(allyAfter.Prohibitions, "attack") {
-		t.Fatalf("ally prohibitions = %v, want contains \"attack\"", allyAfter.Prohibitions)
+	if len(allyAfter.Prohibitions) != 0 {
+		t.Fatalf("ally prohibitions = %v, want none while XQ01 remains deferred", allyAfter.Prohibitions)
 	}
-	if !containsString(allyAfter.Prohibitions, "investigate") {
-		t.Fatalf("ally prohibitions = %v, want contains \"investigate\"", allyAfter.Prohibitions)
-	}
-	if !containsString(enemyAfter.Prohibitions, "attack") {
-		t.Fatalf("enemy prohibitions = %v, want contains \"attack\"", enemyAfter.Prohibitions)
-	}
-	if !containsString(enemyAfter.Prohibitions, "investigate") {
-		t.Fatalf("enemy prohibitions = %v, want contains \"investigate\"", enemyAfter.Prohibitions)
+	if len(enemyAfter.Prohibitions) != 0 {
+		t.Fatalf("enemy prohibitions = %v, want none while XQ01 remains deferred", enemyAfter.Prohibitions)
 	}
 }

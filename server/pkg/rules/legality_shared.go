@@ -35,6 +35,10 @@ func scopeAppliesToActor(sourceCard CardState, actorID string, scope Prohibition
 }
 
 func cardMatchesTargetCondition(sourceCard CardState, targetCard CardState, condition TargetCondition) bool {
+	if len(condition.Kinds) > 0 && !slices.Contains(condition.Kinds, targetCard.Kind) {
+		return false
+	}
+
 	if condition.Side != "" {
 		isAlly := sourceCard.ControllerID != "" && targetCard.ControllerID == sourceCard.ControllerID
 		if condition.Side == SideAlly && !isAlly {

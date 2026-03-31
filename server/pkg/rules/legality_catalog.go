@@ -22,6 +22,7 @@ var XQ31ContinuousEffectTemplate = ContinuousEffectTemplate{
 		NotDestroyed: true,
 	},
 	TargetCondition: TargetCondition{
+		Kinds:    []CardKind{CardKindCharacter},
 		Keywords: []string{"声望"},
 		Side:     SideAlly,
 	},
@@ -33,44 +34,8 @@ var XQ31ContinuousEffectTemplate = ContinuousEffectTemplate{
 	Description:  "XQ31: Allied prestige characters gain +1 defense",
 }
 
-// XQ01SilenceAttackTemplate defines the continuous effect for card XQ01 (联会禁音使).
-// When XQ01 is ready on the table, all characters cannot attack.
-var XQ01SilenceAttackTemplate = ContinuousEffectTemplate{
-	SourceDefinitionID: "XQ01",
-	SourceCondition: CardCondition{
-		Zone:         CardZoneTable,
-		Ready:        true,
-		NotDestroyed: true,
-	},
-	TargetCondition: TargetCondition{},
-	Layer:           LayerProhibition,
-	EffectKind:      "prohibitPermission",
-	DurationKind:    "permanent",
-	Permission:      "attack",
-	Description:     "XQ01: All characters cannot attack",
-}
-
-// XQ01SilenceInvestigateTemplate defines the continuous effect for card XQ01 (联会禁音使).
-// When XQ01 is ready on the table, all characters cannot investigate.
-var XQ01SilenceInvestigateTemplate = ContinuousEffectTemplate{
-	SourceDefinitionID: "XQ01",
-	SourceCondition: CardCondition{
-		Zone:         CardZoneTable,
-		Ready:        true,
-		NotDestroyed: true,
-	},
-	TargetCondition: TargetCondition{},
-	Layer:           LayerProhibition,
-	EffectKind:      "prohibitPermission",
-	DurationKind:    "permanent",
-	Permission:      "investigate",
-	Description:     "XQ01: All characters cannot investigate",
-}
-
 func BuildProductionContinuousEffectTemplates() []ContinuousEffectTemplate {
 	return []ContinuousEffectTemplate{
 		XQ31ContinuousEffectTemplate,
-		XQ01SilenceAttackTemplate,
-		XQ01SilenceInvestigateTemplate,
 	}
 }

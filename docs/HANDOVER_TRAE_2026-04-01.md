@@ -87,6 +87,8 @@
 - [x] **legality production rule catalog 已建立**（`server/pkg/rules/legality_catalog.go`）
 - [x] **shared source-condition 和 actor-scope matching 已提取**（`server/pkg/rules/legality_shared.go`）
 - [x] **`XQ31` 只在 `queue_operation` 上检查 target legality，`declare_attack/declare_investigation` 不再被误伤**
+- [x] **`XQ31` 的数值光环已接入，并收紧到“本方声望角色”**
+- [x] **`XQ01` 的错误全局沉默实现已回滚；该牌仍保持 deferred**
 
 ### 2.2 正在进行
 
@@ -177,7 +179,7 @@
 ### 2.3 待完成
 
 - [x] 把 `XQ22` 从单卡特例推进成更一般的 scoped prohibition / targeting framework（legality_catalog.go + legality_shared.go）
-- [ ] 完成 `XQ31` 数值光环（+1 防御力）实现
+- [x] 完成 `XQ31` 数值光环（+1 防御力）实现，但当前只覆盖“本方声望角色”这一正确最小语义
 - [ ] 设计 `XQ01` 地区作用域沉默的 prerequisite
 - [ ] 把 `CardState.DefinitionID` 贯穿到未来真正的 permanents / attachments 上场建模
 - [ ] 把当前“rules core + fixture gate + sandbox”整理成更清晰的 AI 接手路径，避免后续会话重新摸索上下文
@@ -398,7 +400,7 @@ type CardOperationSource struct {
 
 ### 6.2 已知限制
 
-- `XQ31` 只做了最窄的 targeting restriction slice；它还没有完成“所有本方声望角色 +1 防御力”这半边牌义
+- `XQ31` 现在已经有“本方声望角色 +1 防御力”这半边牌义，但过滤条件必须保持为 character-only，不能扩到任意声望 permanent
 - `XQ01` 仍未做，因为还缺 region scoped silence / ability-kind restriction 正式框架
 - 附属 / 结附 / 回收仍未完整建模；当前只有 attachment tracking V0，`BQ022` 不能视作完整正确实现
 - `CardState.DefinitionID` 目前没有暴露到 projection，这符合 hidden-info 边界，但也意味着客户端不能直接拿它做展示或预校验

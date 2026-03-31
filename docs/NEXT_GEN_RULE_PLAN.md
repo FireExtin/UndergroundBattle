@@ -129,27 +129,22 @@
   - `server/pkg/rules/continuous.go` - 新增 `BuildContinuousEffectsFromTemplates()` 函数，并集成到 `RecalculateContinuousEffects`
 - XQ31（莫兰大主教）的数值光环已完整实现：
   - 当 XQ31 在场且就绪时，所有本方声望角色获得 +1 防御力
-  - 效果不影响敌方、非声望、已摧毁的卡牌
+  - 效果不影响敌方、非声望、非角色、已摧毁的卡牌
   - 新增完整的单元测试和 Golden Scenario 验证
 - 修复了 `resetDerivedCardState` 中意外重置 `Destroyed` 标志的问题
 - 下一阶段跟进方向：
   - 设计 XQ01 地区作用域沉默的 prerequisite
 
-## 2026-04-01 第八次补记（XQ01 地区作用域沉默）
+## 2026-04-01 第八次补记（XQ01 错误全局沉默已回滚）
 
-- Phase 3 XQ01（联会禁音使）的沉默效果已完整实现：
-  - 当 XQ01 在场且就绪时，所有角色（本方和敌方）不能发动攻击和调查
-  - 效果通过 prohibitPermission 机制，禁止 "attack" 和 "investigate" 权限
-  - XQ01 横置、离场或被摧毁时，效果自动消失
-  - 新增完整的单元测试和 Golden Scenario 验证
-- 形式化问题定义：
-  - Forall 卡牌 c ∈ GameState.Board.Cards,
-    if (c.DefinitionID == "XQ01" ∧ c.Zone == CardZoneTable ∧ ¬c.Exhausted ∧ ¬c.Destroyed)
-    then forall 角色 d ∈ GameState.Board.Cards,
-      (d.Kind == CardKindCharacter ∧ d.Zone == CardZoneTable ∧ ¬d.Destroyed)
-      ⇒ ("attack" ∈ d.Prohibitions ∧ "investigate" ∈ d.Prohibitions)
-- 测试严格遵循 TDD：先写红测，再实现，最后验证
-- 所有现有测试保持通过，确保向后兼容
+- `XQ01` 曾被误实现成“全桌所有角色都不能攻击/调查”的 production continuous template。
+- 该实现现已回滚，原因不是代码质量问题，而是**牌义范围错误**：
+  - 真实需求仍然是“本地区角色不能发动触发能力和行动能力”
+  - 当前 rules core 还没有 region-scoped silence / ability-kind restriction 的正式模型
+- 当前结论恢复为：
+  - `XQ01` 仍保持 deferred
+  - 不应再以全局 `prohibitPermission(attack/investigate)` 形式进入 production catalog
+  - 等 prerequisite 到位后再按正确语义实现
 
 
 ## 2026-03-31 执行顺序说明

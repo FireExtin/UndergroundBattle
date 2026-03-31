@@ -809,6 +809,7 @@ func TestContinuousEffectsBuiltFromXQ31(t *testing.T) {
 			CardID:          "xq31-1",
 			DefinitionID:    "XQ31",
 			Name:            "莫兰大主教",
+			Kind:            CardKindCharacter,
 			Zone:            CardZoneTable,
 			Exhausted:       false,
 			Destroyed:       false,
@@ -820,6 +821,7 @@ func TestContinuousEffectsBuiltFromXQ31(t *testing.T) {
 			CardID:          "prestige-ally-1",
 			DefinitionID:    "ALLY",
 			Name:            "声望盟友",
+			Kind:            CardKindCharacter,
 			Zone:            CardZoneTable,
 			Exhausted:       false,
 			Destroyed:       false,
@@ -876,6 +878,7 @@ func TestContinuousEffectsNotBuiltFromExhaustedXQ31(t *testing.T) {
 			CardID:          "xq31-1",
 			DefinitionID:    "XQ31",
 			Name:            "莫兰大主教",
+			Kind:            CardKindCharacter,
 			Zone:            CardZoneTable,
 			Exhausted:       true,
 			Destroyed:       false,
@@ -897,6 +900,7 @@ func TestContinuousEffectsNotBuiltFromDestroyedXQ31(t *testing.T) {
 			CardID:          "xq31-1",
 			DefinitionID:    "XQ31",
 			Name:            "莫兰大主教",
+			Kind:            CardKindCharacter,
 			Zone:            CardZoneTable,
 			Exhausted:       false,
 			Destroyed:       true,
@@ -918,6 +922,7 @@ func TestContinuousEffectsNotAppliedToDestroyedTarget(t *testing.T) {
 			CardID:          "xq31-1",
 			DefinitionID:    "XQ31",
 			Name:            "莫兰大主教",
+			Kind:            CardKindCharacter,
 			Zone:            CardZoneTable,
 			Exhausted:       false,
 			Destroyed:       false,
@@ -929,6 +934,7 @@ func TestContinuousEffectsNotAppliedToDestroyedTarget(t *testing.T) {
 			CardID:          "destroyed-ally-1",
 			DefinitionID:    "ALLY",
 			Name:            "已摧毁盟友",
+			Kind:            CardKindCharacter,
 			Zone:            CardZoneTable,
 			Exhausted:       false,
 			Destroyed:       true,
@@ -953,6 +959,7 @@ func TestXQ31GrantsDefenseToPrestigeAlly(t *testing.T) {
 			CardID:          "xq31-1",
 			DefinitionID:    "XQ31",
 			Name:            "莫兰大主教",
+			Kind:            CardKindCharacter,
 			Zone:            CardZoneTable,
 			Exhausted:       false,
 			Destroyed:       false,
@@ -964,6 +971,7 @@ func TestXQ31GrantsDefenseToPrestigeAlly(t *testing.T) {
 			CardID:          "prestige-ally-1",
 			DefinitionID:    "ALLY",
 			Name:            "声望盟友",
+			Kind:            CardKindCharacter,
 			Zone:            CardZoneTable,
 			Exhausted:       false,
 			Destroyed:       false,
@@ -992,6 +1000,7 @@ func TestXQ31DoesNotAffectNonPrestigeAlly(t *testing.T) {
 			CardID:          "xq31-1",
 			DefinitionID:    "XQ31",
 			Name:            "莫兰大主教",
+			Kind:            CardKindCharacter,
 			Zone:            CardZoneTable,
 			Exhausted:       false,
 			Destroyed:       false,
@@ -1003,6 +1012,7 @@ func TestXQ31DoesNotAffectNonPrestigeAlly(t *testing.T) {
 			CardID:          "non-prestige-ally-1",
 			DefinitionID:    "ALLY",
 			Name:            "非声望盟友",
+			Kind:            CardKindCharacter,
 			Zone:            CardZoneTable,
 			Exhausted:       false,
 			Destroyed:       false,
@@ -1027,6 +1037,7 @@ func TestXQ31DoesNotAffectEnemy(t *testing.T) {
 			CardID:          "xq31-1",
 			DefinitionID:    "XQ31",
 			Name:            "莫兰大主教",
+			Kind:            CardKindCharacter,
 			Zone:            CardZoneTable,
 			Exhausted:       false,
 			Destroyed:       false,
@@ -1038,6 +1049,7 @@ func TestXQ31DoesNotAffectEnemy(t *testing.T) {
 			CardID:          "enemy-1",
 			DefinitionID:    "ENEMY",
 			Name:            "敌方角色",
+			Kind:            CardKindCharacter,
 			Zone:            CardZoneTable,
 			Exhausted:       false,
 			Destroyed:       false,
@@ -1062,6 +1074,7 @@ func TestXQ31DoesNotAffectDestroyedCard(t *testing.T) {
 			CardID:          "xq31-1",
 			DefinitionID:    "XQ31",
 			Name:            "莫兰大主教",
+			Kind:            CardKindCharacter,
 			Zone:            CardZoneTable,
 			Exhausted:       false,
 			Destroyed:       false,
@@ -1073,6 +1086,7 @@ func TestXQ31DoesNotAffectDestroyedCard(t *testing.T) {
 			CardID:          "destroyed-ally-1",
 			DefinitionID:    "ALLY",
 			Name:            "已摧毁盟友",
+			Kind:            CardKindCharacter,
 			Zone:            CardZoneTable,
 			Exhausted:       false,
 			Destroyed:       true,
@@ -1090,6 +1104,43 @@ func TestXQ31DoesNotAffectDestroyedCard(t *testing.T) {
 	}
 }
 
+func TestXQ31DoesNotAffectPrestigeRegion(t *testing.T) {
+	state := newContinuousTestState()
+	state.Board.Cards = []CardState{
+		{
+			CardID:          "xq31-1",
+			DefinitionID:    "XQ31",
+			Name:            "莫兰大主教",
+			Kind:            CardKindCharacter,
+			Zone:            CardZoneTable,
+			Exhausted:       false,
+			Destroyed:       false,
+			ControllerID:    "P1",
+			PrintedKeywords: []string{"领袖", "公开", "声望"},
+			PrintedStats:    CardNumericStats{Combat: 1, Defense: 4},
+		},
+		{
+			CardID:          "prestige-region-1",
+			DefinitionID:    "REGION",
+			Name:            "声望地区",
+			Kind:            CardKindRegion,
+			Zone:            CardZoneTable,
+			Exhausted:       false,
+			Destroyed:       false,
+			ControllerID:    "P1",
+			PrintedKeywords: []string{"声望"},
+			PrintedStats:    CardNumericStats{Defense: 2},
+		},
+	}
+
+	recalculated := RecalculateContinuousEffects(state)
+	region := cardStateByID(t, recalculated, "prestige-region-1")
+
+	if region.EffectiveStats.Defense != 2 {
+		t.Fatalf("prestige region effective defense = %d, want 2 (XQ31 should only buff characters)", region.EffectiveStats.Defense)
+	}
+}
+
 func newContinuousTestState() GameState {
 	return NewGameState(InitialStateConfig{
 		GameID:         "game-continuous",
@@ -1098,64 +1149,18 @@ func newContinuousTestState() GameState {
 	})
 }
 
-func TestXQ01SilencesAttackWhenReady(t *testing.T) {
-	state := newContinuousTestState()
-	state.Board.Cards = []CardState{
-		{
-			CardID:       "xq01-1",
-			DefinitionID: "XQ01",
-			Name:         "联会禁音使",
-			Zone:         CardZoneTable,
-			Exhausted:    false,
-			Destroyed:    false,
-			ControllerID: "P1",
-			Kind:         CardKindCharacter,
-		},
-		{
-			CardID:       "ally-1",
-			DefinitionID: "ALLY",
-			Name:         "本方角色",
-			Zone:         CardZoneTable,
-			Exhausted:    false,
-			Destroyed:    false,
-			ControllerID: "P1",
-			Kind:         CardKindCharacter,
-		},
-		{
-			CardID:       "enemy-1",
-			DefinitionID: "ENEMY",
-			Name:         "敌方角色",
-			Zone:         CardZoneTable,
-			Exhausted:    false,
-			Destroyed:    false,
-			ControllerID: "P2",
-			Kind:         CardKindCharacter,
-		},
-	}
-
-	recalculated := RecalculateContinuousEffects(state)
-
-	var ally CardState
-	var enemy CardState
-	for _, card := range recalculated.Board.Cards {
-		if card.CardID == "ally-1" {
-			ally = card
+func TestXQ01IsNotActiveInProductionContinuousTemplatesYet(t *testing.T) {
+	for _, template := range BuildProductionContinuousEffectTemplates() {
+		if template.SourceDefinitionID == "XQ01" {
+			t.Fatalf("unexpected XQ01 production template: %#v", template)
 		}
-		if card.CardID == "enemy-1" {
-			enemy = card
-		}
-	}
-
-	if !containsString(ally.Prohibitions, "attack") {
-		t.Fatalf("ally prohibitions = %v, want contains \"attack\"", ally.Prohibitions)
-	}
-	if !containsString(enemy.Prohibitions, "attack") {
-		t.Fatalf("enemy prohibitions = %v, want contains \"attack\"", enemy.Prohibitions)
 	}
 }
 
-func TestXQ01SilencesInvestigateWhenReady(t *testing.T) {
+func TestXQ01DoesNotGloballyBlockAttackBeforeRegionScopedSilenceExists(t *testing.T) {
 	state := newContinuousTestState()
+	state.Turn.Priority.CurrentPlayerID = "P1"
+	state.Turn.ActivePlayerID = "P1"
 	state.Board.Cards = []CardState{
 		{
 			CardID:       "xq01-1",
@@ -1165,131 +1170,57 @@ func TestXQ01SilencesInvestigateWhenReady(t *testing.T) {
 			Exhausted:    false,
 			Destroyed:    false,
 			ControllerID: "P1",
+			OwnerID:      "P1",
 			Kind:         CardKindCharacter,
 		},
 		{
-			CardID:       "ally-1",
-			DefinitionID: "ALLY",
-			Name:         "本方角色",
-			Zone:         CardZoneTable,
-			Exhausted:    false,
-			Destroyed:    false,
-			ControllerID: "P1",
-			Kind:         CardKindCharacter,
+			CardID:         "attacker-1",
+			DefinitionID:   "ALLY",
+			Name:           "攻击者",
+			Zone:           CardZoneTable,
+			Exhausted:      false,
+			Destroyed:      false,
+			ControllerID:   "P1",
+			OwnerID:        "P1",
+			Kind:           CardKindCharacter,
+			PrintedStats:   CardNumericStats{Combat: 2, Defense: 2},
+			EffectiveStats: CardNumericStats{Combat: 2, Defense: 2},
 		},
 		{
-			CardID:       "enemy-1",
-			DefinitionID: "ENEMY",
-			Name:         "敌方角色",
-			Zone:         CardZoneTable,
-			Exhausted:    false,
-			Destroyed:    false,
-			ControllerID: "P2",
-			Kind:         CardKindCharacter,
+			CardID:         "defender-1",
+			DefinitionID:   "ENEMY",
+			Name:           "防御者",
+			Zone:           CardZoneTable,
+			Exhausted:      false,
+			Destroyed:      false,
+			ControllerID:   "P2",
+			OwnerID:        "P2",
+			Kind:           CardKindCharacter,
+			PrintedStats:   CardNumericStats{Combat: 1, Defense: 3},
+			EffectiveStats: CardNumericStats{Combat: 1, Defense: 3},
 		},
 	}
 
 	recalculated := RecalculateContinuousEffects(state)
-
-	var ally CardState
-	var enemy CardState
-	for _, card := range recalculated.Board.Cards {
-		if card.CardID == "ally-1" {
-			ally = card
-		}
-		if card.CardID == "enemy-1" {
-			enemy = card
-		}
+	result, err := SubmitAction(recalculated, Action{
+		ID:           "act-xq01-should-not-block-attack",
+		ActorID:      "P1",
+		Kind:         ActionKindDeclareAttack,
+		CardID:       "attacker-1",
+		TargetCardID: "defender-1",
+	})
+	if err != nil {
+		t.Fatalf("XQ01 should stay deferred and must not globally block attack: %v", err)
 	}
-
-	if !containsString(ally.Prohibitions, "investigate") {
-		t.Fatalf("ally prohibitions = %v, want contains \"investigate\"", ally.Prohibitions)
-	}
-	if !containsString(enemy.Prohibitions, "investigate") {
-		t.Fatalf("enemy prohibitions = %v, want contains \"investigate\"", enemy.Prohibitions)
+	if result.Event.Kind != EventKindDamageApplied {
+		t.Fatalf("event kind = %q, want %q", result.Event.Kind, EventKindDamageApplied)
 	}
 }
 
-func TestXQ01DoesNotSilenceWhenExhausted(t *testing.T) {
+func TestXQ01DoesNotGloballyBlockInvestigationBeforeRegionScopedSilenceExists(t *testing.T) {
 	state := newContinuousTestState()
-	state.Board.Cards = []CardState{
-		{
-			CardID:       "xq01-1",
-			DefinitionID: "XQ01",
-			Name:         "联会禁音使",
-			Zone:         CardZoneTable,
-			Exhausted:    true,
-			Destroyed:    false,
-			ControllerID: "P1",
-			Kind:         CardKindCharacter,
-		},
-		{
-			CardID:       "ally-1",
-			DefinitionID: "ALLY",
-			Name:         "本方角色",
-			Zone:         CardZoneTable,
-			Exhausted:    false,
-			Destroyed:    false,
-			ControllerID: "P1",
-			Kind:         CardKindCharacter,
-		},
-	}
-
-	recalculated := RecalculateContinuousEffects(state)
-
-	var ally CardState
-	for _, card := range recalculated.Board.Cards {
-		if card.CardID == "ally-1" {
-			ally = card
-		}
-	}
-
-	if containsString(ally.Prohibitions, "attack") {
-		t.Fatalf("ally prohibitions = %v, want NOT contains \"attack\" (XQ01 exhausted)", ally.Prohibitions)
-	}
-}
-
-func TestXQ01DoesNotSilenceWhenOffTable(t *testing.T) {
-	state := newContinuousTestState()
-	state.Board.Cards = []CardState{
-		{
-			CardID:       "xq01-1",
-			DefinitionID: "XQ01",
-			Name:         "联会禁音使",
-			Zone:         CardZoneHand,
-			Exhausted:    false,
-			Destroyed:    false,
-			ControllerID: "P1",
-			Kind:         CardKindCharacter,
-		},
-		{
-			CardID:       "ally-1",
-			DefinitionID: "ALLY",
-			Name:         "本方角色",
-			Zone:         CardZoneTable,
-			Exhausted:    false,
-			Destroyed:    false,
-			ControllerID: "P1",
-			Kind:         CardKindCharacter,
-		},
-	}
-
-	recalculated := RecalculateContinuousEffects(state)
-
-	var ally CardState
-	for _, card := range recalculated.Board.Cards {
-		if card.CardID == "ally-1" {
-			ally = card
-		}
-	}
-
-	if containsString(ally.Prohibitions, "attack") {
-		t.Fatalf("ally prohibitions = %v, want NOT contains \"attack\" (XQ01 off table)", ally.Prohibitions)
-	}
-}
-
-func TestXQ01DoesNotSilenceWhenDestroyed(t *testing.T) {
-	state := newContinuousTestState()
+	state.Turn.Priority.CurrentPlayerID = "P1"
+	state.Turn.ActivePlayerID = "P1"
 	state.Board.Cards = []CardState{
 		{
 			CardID:       "xq01-1",
@@ -1297,33 +1228,48 @@ func TestXQ01DoesNotSilenceWhenDestroyed(t *testing.T) {
 			Name:         "联会禁音使",
 			Zone:         CardZoneTable,
 			Exhausted:    false,
-			Destroyed:    true,
+			Destroyed:    false,
 			ControllerID: "P1",
+			OwnerID:      "P1",
 			Kind:         CardKindCharacter,
 		},
 		{
-			CardID:       "ally-1",
-			DefinitionID: "ALLY",
-			Name:         "本方角色",
+			CardID:         "investigator-1",
+			DefinitionID:   "ALLY",
+			Name:           "调查者",
+			Zone:           CardZoneTable,
+			Exhausted:      false,
+			Destroyed:      false,
+			ControllerID:   "P1",
+			OwnerID:        "P1",
+			Kind:           CardKindCharacter,
+			PrintedStats:   CardNumericStats{Combat: 1, Defense: 2, Investigation: 2},
+			EffectiveStats: CardNumericStats{Combat: 1, Defense: 2, Investigation: 2},
+		},
+		{
+			CardID:       "region-1",
+			DefinitionID: "REGION",
+			Name:         "调查地区",
 			Zone:         CardZoneTable,
 			Exhausted:    false,
 			Destroyed:    false,
-			ControllerID: "P1",
-			Kind:         CardKindCharacter,
+			Kind:         CardKindRegion,
 		},
 	}
 
 	recalculated := RecalculateContinuousEffects(state)
-
-	var ally CardState
-	for _, card := range recalculated.Board.Cards {
-		if card.CardID == "ally-1" {
-			ally = card
-		}
+	result, err := SubmitAction(recalculated, Action{
+		ID:           "act-xq01-should-not-block-investigation",
+		ActorID:      "P1",
+		Kind:         ActionKindDeclareInvestigation,
+		CardID:       "investigator-1",
+		TargetCardID: "region-1",
+	})
+	if err != nil {
+		t.Fatalf("XQ01 should stay deferred and must not globally block investigation: %v", err)
 	}
-
-	if containsString(ally.Prohibitions, "attack") {
-		t.Fatalf("ally prohibitions = %v, want NOT contains \"attack\" (XQ01 destroyed)", ally.Prohibitions)
+	if result.Event.Kind != EventKindInvestigationApplied {
+		t.Fatalf("event kind = %q, want %q", result.Event.Kind, EventKindInvestigationApplied)
 	}
 }
 
