@@ -1060,15 +1060,7 @@ func TestXQ22PreventsQueueOperationForEventCardsWhileReady(t *testing.T) {
 		ActivePlayerID: "P1",
 		Seed:           21,
 	})
-	state.Board.Cards = append(state.Board.Cards, CardState{
-		CardID:         "xq22-table-1",
-		Name:           "州议员贝伦·希恩斯",
-		Kind:           CardKindCharacter,
-		OwnerID:        "P1",
-		Zone:           CardZoneTable,
-		VisibleToOwner: true,
-		Revealed:       true,
-	})
+	state.Board.Cards = append(state.Board.Cards, xq22TableCard("P1"))
 
 	legality := CheckLegality(state, Action{
 		ID:      "act-xq22-blocks-event",
@@ -1083,6 +1075,42 @@ func TestXQ22PreventsQueueOperationForEventCardsWhileReady(t *testing.T) {
 
 	if legality.ReasonCode != ReasonCodeLegalityFailedActionProhibited {
 		t.Fatalf("reason code = %q, want %q", legality.ReasonCode, ReasonCodeLegalityFailedActionProhibited)
+	}
+}
+
+func TestXQ22StillPreventsEventCardsWhenDisplayNameChanges(t *testing.T) {
+	state := NewGameState(InitialStateConfig{
+		GameID:         "game-xq22-renamed",
+		ActivePlayerID: "P1",
+		Seed:           26,
+	})
+	card := xq22TableCard("P1")
+	card.Name = "改名后的州议员"
+	state.Board.Cards = append(state.Board.Cards, card)
+
+	legality := CheckLegality(state, queueCardAction("act-xq22-renamed", "P1", testCardDirect))
+	if legality.OK {
+		t.Fatal("expected XQ22 definition to prohibit event cards even after display name changes")
+	}
+
+	if legality.ReasonCode != ReasonCodeLegalityFailedActionProhibited {
+		t.Fatalf("reason code = %q, want %q", legality.ReasonCode, ReasonCodeLegalityFailedActionProhibited)
+	}
+}
+
+func TestXQ22DoesNotPreventEventCardsForNameCollisionOnly(t *testing.T) {
+	state := NewGameState(InitialStateConfig{
+		GameID:         "game-xq22-name-collision",
+		ActivePlayerID: "P1",
+		Seed:           27,
+	})
+	card := xq22TableCard("P1")
+	card.DefinitionID = "NOT_XQ22"
+	state.Board.Cards = append(state.Board.Cards, card)
+
+	legality := CheckLegality(state, queueCardAction("act-xq22-name-collision", "P1", testCardDirect))
+	if !legality.OK {
+		t.Fatalf("expected name collision without XQ22 definition to stay legal, got %+v", legality)
 	}
 }
 
@@ -1216,6 +1244,7 @@ func queueCardAction(actionID string, actorID string, cardID string) Action {
 func xq22TableCard(ownerID string) CardState {
 	return CardState{
 		CardID:         "xq22-table-1",
+		DefinitionID:   "XQ22",
 		Name:           "州议员贝伦·希恩斯",
 		Kind:           CardKindCharacter,
 		OwnerID:        ownerID,

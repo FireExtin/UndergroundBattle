@@ -26,6 +26,7 @@ const (
 // CardState is the authoritative hidden-information record stored only in FullState.
 type CardState struct {
 	CardID              string           `json:"cardId"`
+	DefinitionID        string           `json:"definitionId,omitempty"`
 	Name                string           `json:"name"`
 	Kind                CardKind         `json:"kind,omitempty"`
 	OwnerID             string           `json:"ownerId"`

@@ -986,7 +986,7 @@ func checkQueuedCardPlayLegality(state GameState, source CardOperationSource) Le
 	}
 
 	for _, card := range state.Board.Cards {
-		if card.Name != "州议员贝伦·希恩斯" || card.Zone != CardZoneTable || card.Destroyed || card.Exhausted {
+		if !isReadyDefinitionCard(card, "XQ22") {
 			continue
 		}
 
@@ -1004,6 +1004,10 @@ func checkQueuedCardPlayLegality(state GameState, source CardOperationSource) Le
 	}
 
 	return okLegalityResult()
+}
+
+func isReadyDefinitionCard(card CardState, definitionID string) bool {
+	return card.DefinitionID == definitionID && card.Zone == CardZoneTable && !card.Destroyed && !card.Exhausted
 }
 
 func resolveStackedOperation(state GameState, operation Operation) (GameState, Operation, error) {

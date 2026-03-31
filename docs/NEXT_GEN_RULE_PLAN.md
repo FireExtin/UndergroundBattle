@@ -90,6 +90,22 @@
   - 更正式的玩家操作流
   - 更多真实可玩的 fixture / card semantics
 
+## 2026-04-01 补记（XQ22 legality identity fix）
+
+- `queue_operation` 的第一条“按真实卡牌定义识别场上特定牌”的 prohibition slice 已接入：
+  - 当前 `XQ22` 会在 ready 且位于 `table` 时禁止打出 `basicType == "事务"` 的卡
+  - 匹配依据不再是显示名，而是 `CardState.DefinitionID == "XQ22"`
+- 这次补丁明确了两个身份层：
+  - `CardState.CardID`：场上实例 ID，同一玩家同名两张牌也必须不同
+  - `CardState.DefinitionID`：卡牌定义 ID，用于规则识别“这是不是 XQ22”
+- 这一步是后续做：
+  - 多张同定义牌共存
+  - 按定义识别光环 / 禁令 / 结附来源
+  - 避免文案改名导致规则失效
+  的前置条件。
+- 当前仍未完成的是把 `DefinitionID` 贯穿到更正式的 permanents / attachments 上场生命周期里；目前它主要先服务于规则判定和测试建模。
+
+
 ## 2026-03-31 执行顺序说明
 
 - 当前仓库状态已经从“纯规则核骨架”推进到了 `LIVE_SANDBOX` 阶段，因此下一步不建议立刻继续堆按钮、堆卡或上真实联机。
