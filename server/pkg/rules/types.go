@@ -153,6 +153,20 @@ type ContinuousEffect struct {
 	Permission        string          `json:"permission,omitempty"`
 }
 
+// Attachment represents an attachment relationship between two cards.
+type Attachment struct {
+	ID                string `json:"id"`
+	SourceCardID      string `json:"sourceCardId"`
+	TargetCardID      string `json:"targetCardId"`
+	CreatedAtRevision int    `json:"createdAtRevision"`
+}
+
+// AttachmentRegistry tracks all active attachments.
+type AttachmentRegistry struct {
+	Active           []Attachment `json:"active"`
+	NextAttachmentID int          `json:"nextAttachmentId"`
+}
+
 // ContinuousEffectRegistry stores active effects plus recalculation bookkeeping.
 type ContinuousEffectRegistry struct {
 	Active                 []ContinuousEffect `json:"active"`
@@ -330,6 +344,7 @@ type BoardState struct {
 	RandomResults []RandomResult           `json:"randomResults"`
 	Cards         []CardState              `json:"cards"`
 	Continuous    ContinuousEffectRegistry `json:"continuous"`
+	Attachments   AttachmentRegistry       `json:"attachments"`
 }
 
 // RandomResult records each deterministic RNG draw committed into history-visible board state.

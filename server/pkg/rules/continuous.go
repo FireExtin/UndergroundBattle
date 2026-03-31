@@ -26,6 +26,7 @@ func RecalculateContinuousEffects(state GameState) GameState {
 	registry.FullRecalculationCount++
 
 	resetDerivedCardState(&working)
+	pruneExpiredAttachments(&working)
 	pruneExpiredContinuousEffects(&working)
 
 	effects := cloneContinuousEffects(working.Board.Continuous.Active)
@@ -104,6 +105,26 @@ func registerContinuousEffect(state GameState, operation Operation, effect Effec
 	}
 
 	registry.Active = append(registry.Active, continuous)
+
+	// Create attachment if this is an attachment card (basicType = "附属")
+	if operation.Source.BasicType == "附属" {
+		targetIndex := findCardIndex(working, targetCardID)
+		if targetIndex != -1 {
+			target := working.Board.Cards[targetIndex]
+			if target.Zone == CardZoneTable && !target.Destroyed {
+				attachmentRegistry := &working.Board.Attachments
+				attachmentRegistry.NextAttachmentID++
+				attachment := Attachment{
+					ID:                fmt.Sprintf("att:%d", attachmentRegistry.NextAttachmentID),
+					SourceCardID:      operation.CardID,
+					TargetCardID:      targetCardID,
+					CreatedAtRevision: working.Revision.Number,
+				}
+				attachmentRegistry.Active = append(attachmentRegistry.Active, attachment)
+			}
+		}
+	}
+
 	requestContinuousRecalculation(&working)
 	return working
 }
@@ -168,6 +189,50 @@ func pruneExpiredContinuousEffects(state *GameState) {
 		registry.Active = kept
 		requestContinuousRecalculation(state)
 	}
+}
+
+func pruneExpiredAttachments(state *GameState) {
+	registry := &state.Board.Attachments
+	if len(registry.Active) == 0 {
+		return
+	}
+
+	kept := make([]Attachment, 0, len(registry.Active))
+	removed := false
+	for _, attachment := range registry.Active {
+		if !attachmentIsStillActive(*state, attachment) {
+			removed = true
+			continue
+		}
+
+		kept = append(kept, attachment)
+	}
+
+	if removed {
+		registry.Active = kept
+	}
+}
+
+func attachmentIsStillActive(state GameState, attachment Attachment) bool {
+	sourceIndex := findCardIndex(state, attachment.SourceCardID)
+	if sourceIndex == -1 {
+		return false
+	}
+	source := state.Board.Cards[sourceIndex]
+	if source.Zone != CardZoneTable || source.Destroyed {
+		return false
+	}
+
+	targetIndex := findCardIndex(state, attachment.TargetCardID)
+	if targetIndex == -1 {
+		return false
+	}
+	target := state.Board.Cards[targetIndex]
+	if target.Zone != CardZoneTable || target.Destroyed {
+		return false
+	}
+
+	return true
 }
 
 func continuousEffectSourceIsStillActive(state GameState, effect ContinuousEffect) bool {

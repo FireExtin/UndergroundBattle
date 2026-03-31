@@ -48,6 +48,10 @@ func NewGameState(config InitialStateConfig) GameState {
 			Continuous: ContinuousEffectRegistry{
 				Active: []ContinuousEffect{},
 			},
+			Attachments: AttachmentRegistry{
+				Active:           []Attachment{},
+				NextAttachmentID: 1,
+			},
 		},
 		Score: newScoreState(players),
 		History: HistoryState{

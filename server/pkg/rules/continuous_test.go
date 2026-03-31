@@ -789,3 +789,172 @@ func manualDSLCardEffectOperation(
 func intPtr(value int) *int {
 	return &value
 }
+
+func TestAttachmentNotCreatedWhenTargetNotOnTable(t *testing.T) {
+	state := newContinuousTestState()
+	state.Board.Cards = []CardState{
+		{
+			CardID:         "attachment-source",
+			Name:           "Test Attachment",
+			OwnerID:        "P1",
+			Zone:           CardZoneTable,
+			VisibleToOwner: true,
+			Revealed:       true,
+		},
+		{
+			CardID:         "target-in-discard",
+			Name:           "Target in Discard",
+			OwnerID:        "P1",
+			Zone:           CardZoneDiscard,
+			VisibleToOwner: true,
+			Revealed:       true,
+		},
+	}
+
+	operation := manualAttachmentOperation(
+		"op:attach-test",
+		"act:attach-test",
+		"P1",
+		"attachment-source",
+		"target-in-discard",
+	)
+
+	result := registerContinuousEffect(state, operation, EffectSpec{
+		Kind:      "addKeyword",
+		TargetRef: "selected",
+		Keyword:   "test",
+	})
+
+	if len(result.Board.Attachments.Active) != 0 {
+		t.Fatalf("expected no attachment created when target is in discard, got %d", len(result.Board.Attachments.Active))
+	}
+}
+
+func TestAttachmentNotCreatedWhenTargetDestroyed(t *testing.T) {
+	state := newContinuousTestState()
+	state.Board.Cards = []CardState{
+		{
+			CardID:         "attachment-source",
+			Name:           "Test Attachment",
+			OwnerID:        "P1",
+			Zone:           CardZoneTable,
+			VisibleToOwner: true,
+			Revealed:       true,
+		},
+		{
+			CardID:         "target-destroyed",
+			Name:           "Target Destroyed",
+			OwnerID:        "P1",
+			Zone:           CardZoneTable,
+			VisibleToOwner: true,
+			Revealed:       true,
+			Destroyed:      true,
+		},
+	}
+
+	operation := manualAttachmentOperation(
+		"op:attach-test",
+		"act:attach-test",
+		"P1",
+		"attachment-source",
+		"target-destroyed",
+	)
+
+	result := registerContinuousEffect(state, operation, EffectSpec{
+		Kind:      "addKeyword",
+		TargetRef: "selected",
+		Keyword:   "test",
+	})
+
+	if len(result.Board.Attachments.Active) != 0 {
+		t.Fatalf("expected no attachment created when target is destroyed, got %d", len(result.Board.Attachments.Active))
+	}
+}
+
+func TestAttachmentCreatedWhenTargetValid(t *testing.T) {
+	state := newContinuousTestState()
+	state.Board.Cards = []CardState{
+		{
+			CardID:         "attachment-source",
+			Name:           "Test Attachment",
+			OwnerID:        "P1",
+			Zone:           CardZoneTable,
+			VisibleToOwner: true,
+			Revealed:       true,
+		},
+		{
+			CardID:         "target-valid",
+			Name:           "Target Valid",
+			OwnerID:        "P1",
+			Zone:           CardZoneTable,
+			VisibleToOwner: true,
+			Revealed:       true,
+			Destroyed:      false,
+		},
+	}
+
+	operation := manualAttachmentOperation(
+		"op:attach-test",
+		"act:attach-test",
+		"P1",
+		"attachment-source",
+		"target-valid",
+	)
+
+	result := registerContinuousEffect(state, operation, EffectSpec{
+		Kind:      "addKeyword",
+		TargetRef: "selected",
+		Keyword:   "test",
+	})
+
+	if len(result.Board.Attachments.Active) != 1 {
+		t.Fatalf("expected 1 attachment created when target is valid, got %d", len(result.Board.Attachments.Active))
+	}
+
+	attachment := result.Board.Attachments.Active[0]
+	if attachment.SourceCardID != "attachment-source" {
+		t.Errorf("attachment source = %q, want %q", attachment.SourceCardID, "attachment-source")
+	}
+	if attachment.TargetCardID != "target-valid" {
+		t.Errorf("attachment target = %q, want %q", attachment.TargetCardID, "target-valid")
+	}
+}
+
+func manualAttachmentOperation(
+	operationID string,
+	actionID string,
+	actorID string,
+	cardID string,
+	targetCardID string,
+) Operation {
+	return Operation{
+		ID:            operationID,
+		ActionID:      actionID,
+		ActorID:       actorID,
+		Kind:          OperationKindCardEffect,
+		Status:        OperationStatusBuilt,
+		CardID:        cardID,
+		TargetCardID:  targetCardID,
+		RequiresStack: false,
+		Source: &CardOperationSource{
+			CardID:            cardID,
+			CardName:          "Test Attachment",
+			LogicID:           "test.attachment",
+			Speed:             "slow",
+			TargetKinds:       []string{"character"},
+			BasicType:         "附属",
+			RequiresStack:     false,
+			ExecutionKind:     CardExecutionDSL,
+			DurationKind:      "permanent",
+			RequiresScript:    false,
+			PureDSLExecutable: true,
+			Effects: []EffectSpec{
+				{
+					Kind:      "addKeyword",
+					TargetRef: "selected",
+					Keyword:   "test",
+				},
+			},
+		},
+	}
+}
