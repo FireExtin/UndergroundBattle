@@ -32,6 +32,9 @@ func NewGameState(config InitialStateConfig) GameState {
 		Revision: Revision{
 			Number: 0,
 		},
+		Match: MatchState{
+			Status: MatchStatusActive,
+		},
 		Turn: TurnState{
 			TurnNumber:     1,
 			ActivePlayerID: activePlayerID,
@@ -140,13 +143,25 @@ func CheckLegality(state GameState, action Action) LegalityResult {
 		)
 	}
 
-	if state.Score.WinnerPlayerID != "" {
+	if state.Match.Status == MatchStatusFinished {
+		if state.Match.WinnerPlayerID == "" {
+			return legalityFailure(
+				ReasonCodeRulesFailedInvalidState,
+				"rules.game.invalid_state",
+				"match.winnerPlayerId",
+				map[string]string{
+					"status":    string(state.Match.Status),
+					"endReason": string(state.Match.EndReason),
+				},
+			)
+		}
 		return legalityFailure(
 			ReasonCodeRulesFailedGameAlreadyOver,
 			"rules.game.already_over",
-			"score.winner",
+			"match.status",
 			map[string]string{
-				"winnerPlayerId": state.Score.WinnerPlayerID,
+				"winnerPlayerId": state.Match.WinnerPlayerID,
+				"endReason":      string(state.Match.EndReason),
 			},
 		)
 	}
@@ -729,6 +744,9 @@ func commitState(state GameState, action Action, operation Operation, event Even
 	committed.History.Events = append(committed.History.Events, cloneEvent(event))
 	committed.History.Revisions = append(committed.History.Revisions, revision)
 	committed.Revision = revision
+	if committed.Match.Status == MatchStatusFinished && committed.Match.FinishedAtRevision == 0 {
+		committed.Match.FinishedAtRevision = revision.Number
+	}
 	committed = maybeRecalculateContinuousEffects(committed, revision)
 	views := ProjectionBundle{}
 	if projector != nil {

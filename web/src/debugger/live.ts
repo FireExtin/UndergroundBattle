@@ -32,12 +32,20 @@ export async function fetchDebuggerMessages(): Promise<DebuggerProtocolEnvelope[
 }
 
 export async function submitDebuggerAction(action: Action): Promise<DebuggerProtocolEnvelope[]> {
-  const response = await fetch("/api/debugger/actions", {
+ const response = await fetch("/api/debugger/actions", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
     body: JSON.stringify(action)
+  });
+
+  return readJSONResponse<DebuggerProtocolEnvelope[]>(response);
+}
+
+export async function resetDebuggerSession(): Promise<DebuggerProtocolEnvelope[]> {
+  const response = await fetch("/api/debugger/reset", {
+    method: "POST"
   });
 
   return readJSONResponse<DebuggerProtocolEnvelope[]>(response);

@@ -46,6 +46,22 @@ func NewHandler(session *SandboxSession, staticDir string) http.Handler {
 
 		writeJSON(writer, http.StatusOK, messages)
 	})
+	mux.HandleFunc("/api/debugger/reset", func(writer http.ResponseWriter, request *http.Request) {
+		if request.Method != http.MethodPost {
+			writeMethodNotAllowed(writer, http.MethodPost)
+			return
+		}
+
+		messages, err := session.Reset()
+		if err != nil {
+			writeJSON(writer, http.StatusInternalServerError, map[string]string{
+				"error": err.Error(),
+			})
+			return
+		}
+
+		writeJSON(writer, http.StatusOK, messages)
+	})
 
 	if staticDir == "" || !directoryExists(staticDir) {
 		return mux

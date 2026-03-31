@@ -48,6 +48,13 @@ const score = {
   winnerPlayerId: "P1"
 } as const;
 
+const match = {
+  status: "finished",
+  endReason: "victory_threshold",
+  winnerPlayerId: "P1",
+  finishedAtRevision: 7
+} as const;
+
 const sharedStack = [
   {
     id: "op:opening",
@@ -170,6 +177,7 @@ export const defaultMockMessageSets: MockMessageSet[] = [
             gameId: "game-web-debugger",
             viewerPlayerId: "P1",
             revision,
+            match,
             turn,
             score,
             board: {
@@ -232,6 +240,7 @@ export const defaultMockMessageSets: MockMessageSet[] = [
             gameId: "game-web-debugger",
             viewerPlayerId: "P2",
             revision,
+            match,
             turn,
             score,
             board: {
@@ -289,6 +298,7 @@ export const defaultMockMessageSets: MockMessageSet[] = [
           spectatorView: {
             gameId: "game-web-debugger",
             revision,
+            match,
             turn,
             score,
             board: {

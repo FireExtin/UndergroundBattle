@@ -9,6 +9,7 @@ type ActionControlsPanelProps = {
   disabledReason: string;
   onActionSelected: (presetId: LiveActionPreset["id"]) => void;
   onReload: () => void;
+  onReset: () => void;
 };
 
 export function ActionControlsPanel({
@@ -17,7 +18,8 @@ export function ActionControlsPanel({
   presets,
   disabledReason,
   onActionSelected,
-  onReload
+  onReload,
+  onReset
 }: ActionControlsPanelProps) {
   const actionsDisabled = disabledReason !== "";
 
@@ -46,6 +48,15 @@ export function ActionControlsPanel({
           onClick={onReload}
         >
           Reload Feed
+        </button>
+        <button
+          type="button"
+          className="action-button action-button--secondary"
+          disabled={pending}
+          onClick={onReset}
+          aria-label="Reset Sandbox"
+        >
+          Reset Sandbox
         </button>
       </div>
     </section>

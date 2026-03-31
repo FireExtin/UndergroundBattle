@@ -131,6 +131,18 @@ func TestVictoryIsDeclaredWhenThresholdReached(t *testing.T) {
 	if state.Score.WinnerPlayerID != "P1" {
 		t.Fatalf("winner = %q, want %q", state.Score.WinnerPlayerID, "P1")
 	}
+	if state.Match.Status != MatchStatusFinished {
+		t.Fatalf("match status = %q, want %q", state.Match.Status, MatchStatusFinished)
+	}
+	if state.Match.EndReason != MatchEndReasonVictoryThreshold {
+		t.Fatalf("match end reason = %q, want %q", state.Match.EndReason, MatchEndReasonVictoryThreshold)
+	}
+	if state.Match.WinnerPlayerID != "P1" {
+		t.Fatalf("match winner = %q, want %q", state.Match.WinnerPlayerID, "P1")
+	}
+	if state.Match.FinishedAtRevision != state.Revision.Number {
+		t.Fatalf("finishedAtRevision = %d, want %d", state.Match.FinishedAtRevision, state.Revision.Number)
+	}
 }
 
 func TestEndOfTurnRotatesActivePlayerToNextPlayer(t *testing.T) {

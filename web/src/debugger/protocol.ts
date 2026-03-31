@@ -99,6 +99,13 @@ export type ScoreState = {
   winnerPlayerId?: string;
 };
 
+export type MatchState = {
+  status: "active" | "finished";
+  endReason?: string;
+  winnerPlayerId?: string;
+  finishedAtRevision?: number;
+};
+
 export type CardNumericStats = {
   combat: number;
   defense: number;
@@ -141,6 +148,7 @@ export type PlayerViewState = {
   gameId: string;
   viewerPlayerId: string;
   revision: Revision;
+  match: MatchState;
   turn: TurnState;
   score: ScoreState;
   board: ViewBoardState;
@@ -149,6 +157,7 @@ export type PlayerViewState = {
 export type SpectatorViewState = {
   gameId: string;
   revision: Revision;
+  match: MatchState;
   turn: TurnState;
   score: ScoreState;
   board: ViewBoardState;

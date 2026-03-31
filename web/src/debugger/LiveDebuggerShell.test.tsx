@@ -23,6 +23,13 @@ const playableLiveMessages: DebuggerProtocolEnvelope[] = initialLiveMessages.map
         ...message.payload,
         playerView: {
           ...message.payload.playerView,
+          match: {
+            ...message.payload.playerView.match,
+            status: "active",
+            endReason: undefined,
+            winnerPlayerId: undefined,
+            finishedAtRevision: undefined
+          },
           score: {
             ...message.payload.playerView.score,
             winnerPlayerId: undefined
@@ -39,6 +46,13 @@ const playableLiveMessages: DebuggerProtocolEnvelope[] = initialLiveMessages.map
         ...message.payload,
         spectatorView: {
           ...message.payload.spectatorView,
+          match: {
+            ...message.payload.spectatorView.match,
+            status: "active",
+            endReason: undefined,
+            winnerPlayerId: undefined,
+            finishedAtRevision: undefined
+          },
           score: {
             ...message.payload.spectatorView.score,
             winnerPlayerId: undefined
@@ -136,6 +150,29 @@ describe("LiveDebuggerShell", () => {
     expect(screen.getByText("Game over. Winner: P1")).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Pass Priority" })).toBeDisabled();
     expect(fetchMock).toHaveBeenCalledTimes(1);
+  });
+
+  it("resets the sandbox and replaces the feed with a fresh bootstrap state", async () => {
+    const fetchMock = vi
+      .fn()
+      .mockResolvedValueOnce(createJSONResponse(initialLiveMessages))
+      .mockResolvedValueOnce(createJSONResponse(playableLiveMessages));
+    vi.stubGlobal("fetch", fetchMock);
+
+    render(<LiveDebuggerShell fallbackMessageSets={defaultMockMessageSets} />);
+
+    await screen.findByText(/Source:\s*Live Sandbox/);
+    fireEvent.click(screen.getByRole("button", { name: "Reset Sandbox" }));
+
+    await waitFor(() => {
+      expect(screen.queryByText("Game over. Winner: P1")).not.toBeInTheDocument();
+    });
+    expect(screen.getByRole("button", { name: "Pass Priority" })).not.toBeDisabled();
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+    expect(fetchMock.mock.calls[1]?.[0]).toBe("/api/debugger/reset");
+    expect(fetchMock.mock.calls[1]?.[1]).toMatchObject({
+      method: "POST"
+    });
   });
 
   it("falls back to mock protocol data when the live server is unavailable", async () => {

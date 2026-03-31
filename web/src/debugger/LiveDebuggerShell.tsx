@@ -6,6 +6,7 @@ import {
   buildActionFromPreset,
   fetchDebuggerMessages,
   liveActionPresets,
+  resetDebuggerSession,
   submitDebuggerAction,
   type LiveActionPresetId
 } from "./live";
@@ -98,6 +99,7 @@ export function LiveDebuggerShell({ fallbackMessageSets }: LiveDebuggerShellProp
             )
           }
           onReload={() => void reloadLiveMessages(dispatch, fallbackMessageSets)}
+          onReset={() => void resetLiveSession(dispatch, fallbackMessageSets)}
         />
       )}
     />
@@ -112,6 +114,24 @@ async function reloadLiveMessages(
 
   try {
     const messages = await fetchDebuggerMessages();
+    dispatch({ type: "loadSucceeded", messages });
+  } catch {
+    dispatch({
+      type: "loadFellBack",
+      messages: fallbackMessageSets[0]?.messages ?? [],
+      errorMessage: "Live server unavailable. Showing mock protocol data."
+    });
+  }
+}
+
+async function resetLiveSession(
+  dispatch: Dispatch<LiveDebuggerAction>,
+  fallbackMessageSets: MockMessageSet[]
+) {
+  dispatch(loadStartedAction());
+
+  try {
+    const messages = await resetDebuggerSession();
     dispatch({ type: "loadSucceeded", messages });
   } catch {
     dispatch({
@@ -179,5 +199,5 @@ function loadStartedAction() {
 function currentWinnerPlayerId(
   patch: StatePatchedEnvelope | undefined
 ) {
-  return patch?.payload.playerView?.score.winnerPlayerId ?? patch?.payload.spectatorView?.score.winnerPlayerId ?? "";
+  return patch?.payload.playerView?.match.winnerPlayerId ?? patch?.payload.spectatorView?.match.winnerPlayerId ?? "";
 }

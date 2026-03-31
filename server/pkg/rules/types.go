@@ -104,6 +104,22 @@ const (
 	LayerActionQuota ContinuousLayer = "action_quota"
 )
 
+// MatchStatus identifies whether the current match is still active or already terminal.
+type MatchStatus string
+
+const (
+	MatchStatusActive   MatchStatus = "active"
+	MatchStatusFinished MatchStatus = "finished"
+)
+
+// MatchEndReason identifies the minimal reason the current match reached a terminal state.
+type MatchEndReason string
+
+const (
+	MatchEndReasonNone             MatchEndReason = ""
+	MatchEndReasonVictoryThreshold MatchEndReason = "victory_threshold"
+)
+
 // CardNumericStats stores printed and effective numeric values used by the minimal rules kernel.
 type CardNumericStats struct {
 	Combat        int `json:"combat"`
@@ -161,6 +177,7 @@ type GameState struct {
 	GameID   string       `json:"gameId"`
 	Players  []string     `json:"players"`
 	Revision Revision     `json:"revision"`
+	Match    MatchState   `json:"match"`
 	Turn     TurnState    `json:"turn"`
 	Board    BoardState   `json:"board"`
 	Score    ScoreState   `json:"score"`
@@ -270,6 +287,14 @@ type ScoreState struct {
 	ByPlayer         map[string]int `json:"byPlayer"`
 	VictoryThreshold int            `json:"victoryThreshold"`
 	WinnerPlayerID   string         `json:"winnerPlayerId,omitempty"`
+}
+
+// MatchState stores the explicit lifecycle status of one authoritative match.
+type MatchState struct {
+	Status             MatchStatus    `json:"status"`
+	EndReason          MatchEndReason `json:"endReason,omitempty"`
+	WinnerPlayerID     string         `json:"winnerPlayerId,omitempty"`
+	FinishedAtRevision int            `json:"finishedAtRevision,omitempty"`
 }
 
 // TurnState captures the minimum turn owner, priority owner, and phase needed by the skeleton rules kernel.
@@ -392,6 +417,7 @@ const (
 	ReasonCodeRulesFailedCardLogicMissing          ReasonCode = "RULES_FAILED_CARD_LOGIC_MISSING"
 	ReasonCodeRulesFailedCardLogicUnavailable      ReasonCode = "RULES_FAILED_CARD_LOGIC_UNAVAILABLE"
 	ReasonCodeRulesFailedGameAlreadyOver           ReasonCode = "RULES_FAILED_GAME_ALREADY_OVER"
+	ReasonCodeRulesFailedInvalidState              ReasonCode = "RULES_FAILED_INVALID_STATE"
 	ReasonCodeRulesFailedUnknownActionKind         ReasonCode = "RULES_FAILED_UNKNOWN_ACTION_KIND"
 	ReasonCodeRulesFailedRandomMaxInvalid          ReasonCode = "RULES_FAILED_RANDOM_MAX_INVALID"
 	ReasonCodeRulesFailedStepEnded                 ReasonCode = "RULES_FAILED_STEP_ENDED"

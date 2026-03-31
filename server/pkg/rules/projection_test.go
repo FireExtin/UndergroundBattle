@@ -230,6 +230,12 @@ func TestProjectionCarriesPublicScoreAndWinner(t *testing.T) {
 	state.Score.ByPlayer["P1"] = 2
 	state.Score.ByPlayer["P2"] = 1
 	state.Score.WinnerPlayerID = "P1"
+	state.Match = MatchState{
+		Status:             MatchStatusFinished,
+		EndReason:          MatchEndReasonVictoryThreshold,
+		WinnerPlayerID:     "P1",
+		FinishedAtRevision: 4,
+	}
 
 	views := NewProjectionEngine().Generate(state)
 
@@ -241,6 +247,12 @@ func TestProjectionCarriesPublicScoreAndWinner(t *testing.T) {
 	}
 	if views.Spectator.Score.WinnerPlayerID != "P1" {
 		t.Fatalf("spectator winner = %q, want %q", views.Spectator.Score.WinnerPlayerID, "P1")
+	}
+	if views.Players["P1"].Match.Status != MatchStatusFinished {
+		t.Fatalf("player projected match status = %q, want %q", views.Players["P1"].Match.Status, MatchStatusFinished)
+	}
+	if views.Spectator.Match.EndReason != MatchEndReasonVictoryThreshold {
+		t.Fatalf("spectator projected end reason = %q, want %q", views.Spectator.Match.EndReason, MatchEndReasonVictoryThreshold)
 	}
 }
 

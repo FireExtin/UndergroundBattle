@@ -115,6 +115,13 @@ func evaluateWinner(state *GameState) {
 	}
 
 	state.Score.WinnerPlayerID = bestPlayerID
+	if bestPlayerID == "" {
+		return
+	}
+
+	state.Match.Status = MatchStatusFinished
+	state.Match.EndReason = MatchEndReasonVictoryThreshold
+	state.Match.WinnerPlayerID = bestPlayerID
 }
 
 func ensureScoreStatePlayers(state *GameState) {

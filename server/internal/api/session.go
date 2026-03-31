@@ -31,17 +31,12 @@ type SandboxSession struct {
 }
 
 func NewSandboxSession() *SandboxSession {
-	state := rules.NewM0SandboxState()
-	projector := rules.NewProjectionEngine()
-	views := projector.Generate(state)
-
 	session := &SandboxSession{
-		state:             state,
-		projector:         projector,
-		messages:          []protocolEnvelope{},
 		nextMessageNumber: 1,
 	}
-	session.messages = session.materializeBootstrapMessages(views)
+	if _, err := session.resetLocked(); err != nil {
+		panic(err)
+	}
 	return session
 }
 
@@ -70,6 +65,13 @@ func (session *SandboxSession) SubmitAction(action rules.Action) ([]protocolEnve
 	return session.appendDispatchBatch(result.Dispatch)
 }
 
+func (session *SandboxSession) Reset() ([]protocolEnvelope, error) {
+	session.mu.Lock()
+	defer session.mu.Unlock()
+
+	return session.resetLocked()
+}
+
 func (session *SandboxSession) appendDispatchBatch(batch rules.DispatchBatch) ([]protocolEnvelope, error) {
 	envelopes := make([]protocolEnvelope, 0, len(batch.Messages))
 	for _, dispatch := range batch.Messages {
@@ -85,7 +87,7 @@ func (session *SandboxSession) appendDispatchBatch(batch rules.DispatchBatch) ([
 	return cloneProtocolEnvelopes(envelopes), nil
 }
 
-func (session *SandboxSession) materializeBootstrapMessages(views rules.ProjectionBundle) []protocolEnvelope {
+func (session *SandboxSession) materializeBootstrapMessages(views rules.ProjectionBundle) ([]protocolEnvelope, error) {
 	revisionNumber := session.state.Revision.Number
 	bootstrapEvent := rules.Event{
 		ID:               "evt:bootstrap",
@@ -104,7 +106,7 @@ func (session *SandboxSession) materializeBootstrapMessages(views rules.Projecti
 		payload := rules.NewStatePatchedForPlayer(views, playerID, bootstrapEvent, session.state.Revision)
 		envelope, err := session.newEnvelope("view", "StatePatched", &revisionNumber, payload)
 		if err != nil {
-			panic(err)
+			return nil, err
 		}
 
 		envelopes = append(envelopes, envelope)
@@ -113,11 +115,11 @@ func (session *SandboxSession) materializeBootstrapMessages(views rules.Projecti
 	spectatorPayload := rules.NewStatePatchedForSpectator(views, bootstrapEvent, session.state.Revision)
 	envelope, err := session.newEnvelope("view", "StatePatched", &revisionNumber, spectatorPayload)
 	if err != nil {
-		panic(err)
+		return nil, err
 	}
 
 	envelopes = append(envelopes, envelope)
-	return envelopes
+	return envelopes, nil
 }
 
 func (session *SandboxSession) newEnvelopeForDispatch(dispatch rules.ClientDispatch) (protocolEnvelope, error) {
@@ -179,4 +181,21 @@ func cloneProtocolEnvelopes(messages []protocolEnvelope) []protocolEnvelope {
 	}
 
 	return cloned
+}
+
+func (session *SandboxSession) resetLocked() ([]protocolEnvelope, error) {
+	state := rules.NewM0SandboxState()
+	projector := rules.NewProjectionEngine()
+	views := projector.Generate(state)
+	session.nextMessageNumber = 1
+	messages, err := session.materializeBootstrapMessages(views)
+	if err != nil {
+		return nil, err
+	}
+
+	session.state = state
+	session.projector = projector
+	session.messages = cloneProtocolEnvelopes(messages)
+	session.nextMessageNumber = len(messages) + 1
+	return cloneProtocolEnvelopes(messages), nil
 }

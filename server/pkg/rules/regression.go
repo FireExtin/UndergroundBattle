@@ -137,6 +137,9 @@ func validateProjectionBundleInvariants(state GameState, views ProjectionBundle)
 		if view.Revision != state.Revision {
 			issues = append(issues, fmt.Sprintf("views.%s.revision = %#v, want %#v", playerID, view.Revision, state.Revision))
 		}
+		if !reflect.DeepEqual(view.Match, state.Match) {
+			issues = append(issues, fmt.Sprintf("views.%s.match = %#v, want %#v", playerID, view.Match, state.Match))
+		}
 		if !reflect.DeepEqual(view.Turn, state.Turn) {
 			issues = append(issues, fmt.Sprintf("views.%s.turn = %#v, want %#v", playerID, view.Turn, state.Turn))
 		}
@@ -151,6 +154,9 @@ func validateProjectionBundleInvariants(state GameState, views ProjectionBundle)
 	}
 	if views.Spectator.Revision != state.Revision {
 		issues = append(issues, fmt.Sprintf("views.spectator.revision = %#v, want %#v", views.Spectator.Revision, state.Revision))
+	}
+	if !reflect.DeepEqual(views.Spectator.Match, state.Match) {
+		issues = append(issues, fmt.Sprintf("views.spectator.match = %#v, want %#v", views.Spectator.Match, state.Match))
 	}
 	if !reflect.DeepEqual(views.Spectator.Turn, state.Turn) {
 		issues = append(issues, fmt.Sprintf("views.spectator.turn = %#v, want %#v", views.Spectator.Turn, state.Turn))

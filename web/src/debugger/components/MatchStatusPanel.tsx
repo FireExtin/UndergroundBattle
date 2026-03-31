@@ -6,6 +6,7 @@ type MatchStatusPanelProps = {
 };
 
 export function MatchStatusPanel({ patch }: MatchStatusPanelProps) {
+  const match = patch?.payload.playerView?.match ?? patch?.payload.spectatorView?.match;
   const turn = patch?.payload.playerView?.turn ?? patch?.payload.spectatorView?.turn;
   const score = patch?.payload.playerView?.score ?? patch?.payload.spectatorView?.score;
   const revision = patch?.payload.revision.number ?? "-";
@@ -17,6 +18,10 @@ export function MatchStatusPanel({ patch }: MatchStatusPanelProps) {
     <section className="panel">
       <h2>Match Status</h2>
       <dl className="status-grid">
+        <div>
+          <dt>Match State</dt>
+          <dd>{match?.status ?? "-"}</dd>
+        </div>
         <div>
           <dt>Current Revision</dt>
           <dd>{revision}</dd>
@@ -48,6 +53,10 @@ export function MatchStatusPanel({ patch }: MatchStatusPanelProps) {
         <div>
           <dt>Winner</dt>
           <dd>{score?.winnerPlayerId ?? "-"}</dd>
+        </div>
+        <div>
+          <dt>End Reason</dt>
+          <dd>{match?.endReason ?? "-"}</dd>
         </div>
       </dl>
     </section>
