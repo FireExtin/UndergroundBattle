@@ -38,6 +38,22 @@ describe("DebuggerShell", () => {
     expect(screen.getByText("7")).toBeInTheDocument();
   });
 
+  it("shows the active player plus public score and winner", () => {
+    render(<DebuggerShell messageSets={defaultMockMessageSets} />);
+
+    const panel = screen.getByRole("heading", { name: "Match Status" }).closest("section");
+    if (!panel) {
+      throw new Error("Match Status panel not found");
+    }
+
+    const scoped = within(panel);
+    expect(scoped.getByText("Active Player")).toBeInTheDocument();
+    expect(scoped.getAllByText("P1")).toHaveLength(2);
+    expect(scoped.getByText(/P1: 2/)).toBeInTheDocument();
+    expect(scoped.getByText(/P2: 1/)).toBeInTheDocument();
+    expect(scoped.getByText("Winner")).toBeInTheDocument();
+  });
+
   it("renders structured legality failure details", () => {
     render(<DebuggerShell messageSets={defaultMockMessageSets} />);
 

@@ -220,6 +220,30 @@ func TestProjectionGenerationDoesNotBreakRevisionOrReplay(t *testing.T) {
 	}
 }
 
+func TestProjectionCarriesPublicScoreAndWinner(t *testing.T) {
+	state := NewGameState(InitialStateConfig{
+		GameID:         "game-projection-score",
+		ActivePlayerID: "P1",
+		PlayerIDs:      []string{"P1", "P2"},
+		Seed:           7,
+	})
+	state.Score.ByPlayer["P1"] = 2
+	state.Score.ByPlayer["P2"] = 1
+	state.Score.WinnerPlayerID = "P1"
+
+	views := NewProjectionEngine().Generate(state)
+
+	if views.Players["P1"].Score.ByPlayer["P1"] != 2 {
+		t.Fatalf("P1 projected score = %d, want 2", views.Players["P1"].Score.ByPlayer["P1"])
+	}
+	if views.Players["P2"].Score.ByPlayer["P2"] != 1 {
+		t.Fatalf("P2 projected score = %d, want 1", views.Players["P2"].Score.ByPlayer["P2"])
+	}
+	if views.Spectator.Score.WinnerPlayerID != "P1" {
+		t.Fatalf("spectator winner = %q, want %q", views.Spectator.Score.WinnerPlayerID, "P1")
+	}
+}
+
 func TestProjectionRunsOnlyAfterCommitAndNotDuringLegality(t *testing.T) {
 	state := NewGameState(InitialStateConfig{
 		GameID:         "game-projection-timing",

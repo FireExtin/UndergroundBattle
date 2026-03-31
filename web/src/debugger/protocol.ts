@@ -93,6 +93,12 @@ export type TurnState = {
   phase: PhaseState;
 };
 
+export type ScoreState = {
+  byPlayer: Record<string, number>;
+  victoryThreshold: number;
+  winnerPlayerId?: string;
+};
+
 export type CardNumericStats = {
   combat: number;
   defense: number;
@@ -136,6 +142,7 @@ export type PlayerViewState = {
   viewerPlayerId: string;
   revision: Revision;
   turn: TurnState;
+  score: ScoreState;
   board: ViewBoardState;
 };
 
@@ -143,6 +150,7 @@ export type SpectatorViewState = {
   gameId: string;
   revision: Revision;
   turn: TurnState;
+  score: ScoreState;
   board: ViewBoardState;
 };
 

@@ -693,6 +693,7 @@ func applyPhaseAdvance(state GameState, operation Operation) GameState {
 		awardControlledRegionPoints(&working)
 		working.Turn.TurnNumber++
 		evaluateWinner(&working)
+		working.Turn.ActivePlayerID = nextPriorityPlayerID(working, working.Turn.ActivePlayerID)
 	}
 
 	resetPriorityWindow(&working.Turn, working.Turn.ActivePlayerID, PriorityWindowAction)

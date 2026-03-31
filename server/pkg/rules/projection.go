@@ -78,6 +78,7 @@ type PlayerViewState struct {
 	ViewerPlayerID string         `json:"viewerPlayerId"`
 	Revision       Revision       `json:"revision"`
 	Turn           TurnState      `json:"turn"`
+	Score          ScoreState     `json:"score"`
 	Board          ViewBoardState `json:"board"`
 }
 
@@ -86,6 +87,7 @@ type SpectatorViewState struct {
 	GameID   string         `json:"gameId"`
 	Revision Revision       `json:"revision"`
 	Turn     TurnState      `json:"turn"`
+	Score    ScoreState     `json:"score"`
 	Board    ViewBoardState `json:"board"`
 }
 
@@ -128,6 +130,7 @@ func (engine *ProjectionEngine) Generate(full FullState) ProjectionBundle {
 			ViewerPlayerID: playerID,
 			Revision:       full.Revision,
 			Turn:           full.Turn,
+			Score:          cloneScoreState(full.Score),
 			Board:          projectBoardForPlayer(full, playerID),
 		}
 	}
@@ -139,6 +142,7 @@ func (engine *ProjectionEngine) Generate(full FullState) ProjectionBundle {
 			GameID:   full.GameID,
 			Revision: full.Revision,
 			Turn:     full.Turn,
+			Score:    cloneScoreState(full.Score),
 			Board:    projectBoardForSpectator(full),
 		},
 	}

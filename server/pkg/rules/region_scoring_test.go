@@ -114,8 +114,8 @@ func TestVictoryIsDeclaredWhenThresholdReached(t *testing.T) {
 	for _, action := range []Action{
 		{ID: "act-victory-1", ActorID: "P1", Kind: ActionKindAdvancePhase},
 		{ID: "act-victory-2", ActorID: "P1", Kind: ActionKindAdvancePhase},
-		{ID: "act-victory-3", ActorID: "P1", Kind: ActionKindAdvancePhase},
-		{ID: "act-victory-4", ActorID: "P1", Kind: ActionKindAdvancePhase},
+		{ID: "act-victory-3", ActorID: "P2", Kind: ActionKindAdvancePhase},
+		{ID: "act-victory-4", ActorID: "P2", Kind: ActionKindAdvancePhase},
 	} {
 		var err error
 		state, err = nextStateAfter(state, action)
@@ -129,6 +129,31 @@ func TestVictoryIsDeclaredWhenThresholdReached(t *testing.T) {
 	}
 	if state.Score.WinnerPlayerID != "P1" {
 		t.Fatalf("winner = %q, want %q", state.Score.WinnerPlayerID, "P1")
+	}
+}
+
+func TestEndOfTurnRotatesActivePlayerToNextPlayer(t *testing.T) {
+	state := newRoleActionTestState()
+
+	state = mustSubmit(t, state, Action{
+		ID:      "act-rotate-turn-1",
+		ActorID: "P1",
+		Kind:    ActionKindAdvancePhase,
+	})
+	result, err := SubmitAction(state, Action{
+		ID:      "act-rotate-turn-2",
+		ActorID: "P1",
+		Kind:    ActionKindAdvancePhase,
+	})
+	if err != nil {
+		t.Fatalf("SubmitAction returned error: %v", err)
+	}
+
+	if result.State.Turn.ActivePlayerID != "P2" {
+		t.Fatalf("active player = %q, want %q", result.State.Turn.ActivePlayerID, "P2")
+	}
+	if result.State.Turn.Priority.CurrentPlayerID != "P2" {
+		t.Fatalf("priority player = %q, want %q", result.State.Turn.Priority.CurrentPlayerID, "P2")
 	}
 }
 

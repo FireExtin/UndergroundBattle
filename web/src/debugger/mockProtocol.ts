@@ -39,6 +39,15 @@ const turn = {
   }
 } as const;
 
+const score = {
+  byPlayer: {
+    P1: 2,
+    P2: 1
+  },
+  victoryThreshold: 2,
+  winnerPlayerId: "P1"
+} as const;
+
 const sharedStack = [
   {
     id: "op:opening",
@@ -162,6 +171,7 @@ export const defaultMockMessageSets: MockMessageSet[] = [
             viewerPlayerId: "P1",
             revision,
             turn,
+            score,
             board: {
               stack: [...sharedStack],
               resolved: [],
@@ -223,6 +233,7 @@ export const defaultMockMessageSets: MockMessageSet[] = [
             viewerPlayerId: "P2",
             revision,
             turn,
+            score,
             board: {
               stack: [...sharedStack],
               resolved: [],
@@ -279,6 +290,7 @@ export const defaultMockMessageSets: MockMessageSet[] = [
             gameId: "game-web-debugger",
             revision,
             turn,
+            score,
             board: {
               stack: [...sharedStack],
               resolved: [],

@@ -8,7 +8,8 @@ Purpose: explains the first minimal web debugger and match shell for the Undergr
   - 对局基础页面
   - stack 面板
   - action log 面板
-  - current revision / phase / step / priority 显示
+  - current revision / phase / step / active player / priority 显示
+  - public score / winner 显示
   - legality failure 显示
   - mock 的 per-player view 切换
   - 基于 Go HTTP sandbox 的 live feed
@@ -39,7 +40,7 @@ Purpose: explains the first minimal web debugger and match shell for the Undergr
 ## UI Decisions
 
 - 当前 viewer 切换固定为：`P1 / P2 / spectator`。
-- revision / phase / step / priority 取当前 viewer 对应的最新 `StatePatched`。
+- revision / phase / step / active player / priority / score / winner 取当前 viewer 对应的最新 `StatePatched`。
 - `stack` 面板固定按“栈顶在上”展示，因此 UI 会反转底层 push-at-end 的数组。
 - `action log` 只显示 accepted/rejected，不把 `StatePatched` 也混进日志行里。
 - `legality failure` 显示结构化字段，不退化成单行字符串。

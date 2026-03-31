@@ -153,12 +153,14 @@ func cloneContext(context map[string]string) map[string]string {
 
 func clonePlayerView(view PlayerViewState) PlayerViewState {
 	cloned := view
+	cloned.Score = cloneScoreState(view.Score)
 	cloned.Board = cloneViewBoardState(view.Board)
 	return cloned
 }
 
 func cloneSpectatorView(view SpectatorViewState) SpectatorViewState {
 	cloned := view
+	cloned.Score = cloneScoreState(view.Score)
 	cloned.Board = cloneViewBoardState(view.Board)
 	return cloned
 }
