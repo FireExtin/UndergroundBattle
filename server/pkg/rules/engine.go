@@ -90,6 +90,26 @@ func SubmitActionWithProjection(state GameState, action Action, projector *Proje
 		return SubmitResult{}, err
 	}
 
+	// Check invariants after state change (only in test mode)
+	if DefaultInvariantConfig.Enabled {
+		results := CheckAllInvariants(working, DefaultInvariantConfig)
+		for _, result := range results {
+			if !result.Passed {
+				invariantError := legalityFailure(
+					ReasonCodeRulesFailedInvariantViolated,
+					"rules.invariant.violated",
+					"invariant.check",
+					map[string]string{
+						"actionId":      action.ID,
+						"invariantName": result.Name,
+						"message":       result.Message,
+					},
+				)
+				return SubmitResult{}, newLegalityError(invariantError)
+			}
+		}
+	}
+
 	return commitState(working, action, operation, event, projector), nil
 }
 

@@ -423,6 +423,7 @@ const (
 	ReasonCodeRulesFailedUnknownActionKind         ReasonCode = "RULES_FAILED_UNKNOWN_ACTION_KIND"
 	ReasonCodeRulesFailedRandomMaxInvalid          ReasonCode = "RULES_FAILED_RANDOM_MAX_INVALID"
 	ReasonCodeRulesFailedStepEnded                 ReasonCode = "RULES_FAILED_STEP_ENDED"
+	ReasonCodeRulesFailedInvariantViolated         ReasonCode = "RULES_FAILED_INVARIANT_VIOLATED"
 )
 
 // LegalityResult is the structured legality response returned by the authoritative checker.
