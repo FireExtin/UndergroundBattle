@@ -107,22 +107,23 @@ func registerContinuousEffect(state GameState, operation Operation, effect Effec
 	registry.Active = append(registry.Active, continuous)
 
 	// Create attachment if this is an attachment card (basicType = "附属")
+	// Note: If attachment creation fails (e.g., target destroyed or moved), the error is
+	// intentionally ignored to allow the continuous effect to still be created. This is
+	// a design choice - the attachment relationship is optional metadata, while the
+	// continuous effect is the primary game mechanic.
 	if operation.Source.BasicType == "附属" {
-		targetIndex := findCardIndex(working, targetCardID)
-		if targetIndex != -1 {
-			target := working.Board.Cards[targetIndex]
-			if target.Zone == CardZoneTable && !target.Destroyed {
-				attachmentRegistry := &working.Board.Attachments
-				attachmentRegistry.NextAttachmentID++
-				attachment := Attachment{
-					ID:                fmt.Sprintf("att:%d", attachmentRegistry.NextAttachmentID),
-					SourceCardID:      operation.CardID,
-					TargetCardID:      targetCardID,
-					CreatedAtRevision: working.Revision.Number,
-				}
-				attachmentRegistry.Active = append(attachmentRegistry.Active, attachment)
-			}
+		newState, err := NewAttachment(working).
+			From(operation.CardID).
+			To(targetCardID).
+			AtRevision(working.Revision.Number).
+			WithBasicType(operation.Source.BasicType).
+			Create()
+		if err == nil {
+			working = newState
 		}
+		// If err != nil, attachment creation failed silently (target invalid/destroyed).
+		// This is acceptable - the continuous effect still applies, we just don't track
+		// the attachment relationship for pruning purposes.
 	}
 
 	requestContinuousRecalculation(&working)
@@ -192,47 +193,8 @@ func pruneExpiredContinuousEffects(state *GameState) {
 }
 
 func pruneExpiredAttachments(state *GameState) {
-	registry := &state.Board.Attachments
-	if len(registry.Active) == 0 {
-		return
-	}
-
-	kept := make([]Attachment, 0, len(registry.Active))
-	removed := false
-	for _, attachment := range registry.Active {
-		if !attachmentIsStillActive(*state, attachment) {
-			removed = true
-			continue
-		}
-
-		kept = append(kept, attachment)
-	}
-
-	if removed {
-		registry.Active = kept
-	}
-}
-
-func attachmentIsStillActive(state GameState, attachment Attachment) bool {
-	sourceIndex := findCardIndex(state, attachment.SourceCardID)
-	if sourceIndex == -1 {
-		return false
-	}
-	source := state.Board.Cards[sourceIndex]
-	if source.Zone != CardZoneTable || source.Destroyed {
-		return false
-	}
-
-	targetIndex := findCardIndex(state, attachment.TargetCardID)
-	if targetIndex == -1 {
-		return false
-	}
-	target := state.Board.Cards[targetIndex]
-	if target.Zone != CardZoneTable || target.Destroyed {
-		return false
-	}
-
-	return true
+	manager := NewAttachmentManager(*state)
+	*state = manager.PruneExpired()
 }
 
 func continuousEffectSourceIsStillActive(state GameState, effect ContinuousEffect) bool {
