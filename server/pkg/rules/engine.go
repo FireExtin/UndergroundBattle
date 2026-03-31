@@ -223,6 +223,24 @@ func CheckLegality(state GameState, action Action) LegalityResult {
 		)
 	}
 
+	// Check target legality for card targets
+	if action.TargetCardID != "" {
+		targetLegalityChecker := BuildTargetLegalityChecker(state)
+		targetResult := targetLegalityChecker.CheckTargetCard(state, action.ActorID, action.TargetCardID)
+		if !targetResult.CanTarget {
+			return legalityFailure(
+				ReasonCodeTargetFailedProhibited,
+				"rules.target.prohibited",
+				"action.targetCardId",
+				map[string]string{
+					"targetCardId":        action.TargetCardID,
+					"prohibitingCardId":   targetResult.SourceCardID,
+					"prohibitingCardName": targetResult.SourceCardName,
+				},
+			)
+		}
+	}
+
 	switch action.Kind {
 	case ActionKindAdvancePhase:
 		return okLegalityResult()

@@ -413,6 +413,7 @@ const (
 	ReasonCodeLegalityFailedPermissionRequired     ReasonCode = "LEGALITY_FAILED_PERMISSION_REQUIRED"
 	ReasonCodeLegalityFailedActionProhibited       ReasonCode = "LEGALITY_FAILED_ACTION_PROHIBITED"
 	ReasonCodeTargetFailedMissing                  ReasonCode = "TARGET_FAILED_MISSING"
+	ReasonCodeTargetFailedProhibited               ReasonCode = "TARGET_FAILED_PROHIBITED"
 	ReasonCodeCostFailedUnpaid                     ReasonCode = "COST_FAILED_UNPAID"
 	ReasonCodeStackFailedEmpty                     ReasonCode = "STACK_FAILED_EMPTY"
 	ReasonCodeRulesFailedCardLogicMissing          ReasonCode = "RULES_FAILED_CARD_LOGIC_MISSING"
@@ -557,4 +558,38 @@ type ProhibitionMatchResult struct {
 	MatchedRule    *ProhibitionRule // The rule that caused the prohibition (if any)
 	SourceCardID   string           // The actual source card instance ID (for error messages)
 	SourceCardName string           // The source card name (for error messages)
+}
+
+// TargetLegalityRule defines a self-contained rule for whether a target can be acted upon.
+// This is a reserved extension point for future use (e.g., XQ31 "不能成为目标").
+type TargetLegalityRule struct {
+	// SourceDefinitionID is the card definition ID that produces this rule (e.g., "XQ31").
+	SourceDefinitionID string `json:"sourceDefinitionId"`
+
+	// SourceCondition defines when the source card is considered "active".
+	SourceCondition CardCondition `json:"sourceCondition"`
+
+	// AffectedTargetCondition defines which targets are affected by this rule.
+	AffectedTargetCondition TargetCondition `json:"affectedTargetCondition"`
+
+	// ActorRestriction defines which actors are restricted by this rule.
+	ActorRestriction ProhibitionScope `json:"actorRestriction"`
+
+	// Description is a human-readable description of this rule (for debugging).
+	Description string `json:"description,omitempty"`
+}
+
+// TargetLegalityMatchResult contains the result of a target legality check.
+type TargetLegalityMatchResult struct {
+	// CanTarget is true if the target can be acted upon.
+	CanTarget bool
+
+	// MatchedRule is the rule that caused the restriction (if any).
+	MatchedRule *TargetLegalityRule
+
+	// SourceCardID is the actual source card instance ID (for error messages).
+	SourceCardID string
+
+	// SourceCardName is the source card name (for error messages).
+	SourceCardName string
 }
