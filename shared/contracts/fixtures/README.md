@@ -7,6 +7,9 @@ Each fixture is self-contained and must include:
 - `cardId`
 - `schemaVersion`
 - `card`
+  - `card.name`
+  - `card.sourcePath`
+  - `card.basicType`
 - `input`
 - `expectations`
 

@@ -65,6 +65,10 @@ func TestSubmitActionAcceptsLegalQueueOperation(t *testing.T) {
 		t.Fatalf("logic id = %q, want %q", result.State.Board.Stack[0].Source.LogicID, "cards.bq005.multi-dream-maze")
 	}
 
+	if result.State.Board.Stack[0].Source.BasicType != "角色" {
+		t.Fatalf("basicType = %q, want %q", result.State.Board.Stack[0].Source.BasicType, "角色")
+	}
+
 	if result.State.Board.Stack[0].Source.ExecutionKind != CardExecutionDSL {
 		t.Fatalf("execution kind = %q, want %q", result.State.Board.Stack[0].Source.ExecutionKind, CardExecutionDSL)
 	}
@@ -669,6 +673,10 @@ func TestQueueOperationDirectlyResolvesNonStackFixture(t *testing.T) {
 		t.Fatal("expected read-minds fixture to stay pure DSL executable")
 	}
 
+	if resolved.Source.BasicType != "事务" {
+		t.Fatalf("basicType = %q, want %q", resolved.Source.BasicType, "事务")
+	}
+
 	if resolved.Source.ExecutionKind != CardExecutionDSL {
 		t.Fatalf("execution kind = %q, want %q", resolved.Source.ExecutionKind, CardExecutionDSL)
 	}
@@ -1046,6 +1054,145 @@ func TestWM090InspectsTargetPlayerHandOnDirectResolution(t *testing.T) {
 	}
 }
 
+func TestXQ22PreventsQueueOperationForEventCardsWhileReady(t *testing.T) {
+	state := NewGameState(InitialStateConfig{
+		GameID:         "game-xq22-event-lock",
+		ActivePlayerID: "P1",
+		Seed:           21,
+	})
+	state.Board.Cards = append(state.Board.Cards, CardState{
+		CardID:         "xq22-table-1",
+		Name:           "州议员贝伦·希恩斯",
+		Kind:           CardKindCharacter,
+		OwnerID:        "P1",
+		Zone:           CardZoneTable,
+		VisibleToOwner: true,
+		Revealed:       true,
+	})
+
+	legality := CheckLegality(state, Action{
+		ID:      "act-xq22-blocks-event",
+		ActorID: "P1",
+		Kind:    ActionKindQueueOperation,
+		CardID:  testCardDirect,
+	})
+
+	if legality.OK {
+		t.Fatal("expected XQ22 to prohibit queueing event cards while ready")
+	}
+
+	if legality.ReasonCode != ReasonCodeLegalityFailedActionProhibited {
+		t.Fatalf("reason code = %q, want %q", legality.ReasonCode, ReasonCodeLegalityFailedActionProhibited)
+	}
+}
+
+func TestXQ22PreventsBothPlayersFromQueueingEventCardsWhileReady(t *testing.T) {
+	for _, actorID := range []string{"P1", "P2"} {
+		t.Run(actorID, func(t *testing.T) {
+			state := NewGameState(InitialStateConfig{
+				GameID:         "game-xq22-both-players-" + actorID,
+				ActivePlayerID: actorID,
+				Seed:           22,
+			})
+			state.Board.Cards = append(state.Board.Cards, xq22TableCard("P1"))
+
+			legality := CheckLegality(state, queueCardAction("act-xq22-both-"+actorID, actorID, testCardDirect))
+			if legality.OK {
+				t.Fatalf("expected XQ22 to prohibit %s from queueing event cards while ready", actorID)
+			}
+
+			if legality.ReasonCode != ReasonCodeLegalityFailedActionProhibited {
+				t.Fatalf("reason code = %q, want %q", legality.ReasonCode, ReasonCodeLegalityFailedActionProhibited)
+			}
+		})
+	}
+}
+
+func TestXQ22AllowsNonEventCardsWhileReady(t *testing.T) {
+	state := NewGameState(InitialStateConfig{
+		GameID:         "game-xq22-non-event",
+		ActivePlayerID: "P1",
+		Seed:           23,
+	})
+	state.Board.Cards = append(state.Board.Cards, xq22TableCard("P1"))
+
+	legality := CheckLegality(state, queueCardAction("act-xq22-non-event", "P1", testCardScriptPermanent))
+	if !legality.OK {
+		t.Fatalf("expected non-event card to remain legal, got %+v", legality)
+	}
+}
+
+func TestXQ22AllowsEventCardsWhenInactive(t *testing.T) {
+	cases := []struct {
+		name string
+		card CardState
+	}{
+		{
+			name: "exhausted",
+			card: func() CardState {
+				card := xq22TableCard("P1")
+				card.Exhausted = true
+				return card
+			}(),
+		},
+		{
+			name: "destroyed",
+			card: func() CardState {
+				card := xq22TableCard("P1")
+				card.Destroyed = true
+				return card
+			}(),
+		},
+		{
+			name: "discarded",
+			card: func() CardState {
+				card := xq22TableCard("P1")
+				card.Zone = CardZoneDiscard
+				return card
+			}(),
+		},
+	}
+
+	for _, tc := range cases {
+		t.Run(tc.name, func(t *testing.T) {
+			state := NewGameState(InitialStateConfig{
+				GameID:         "game-xq22-inactive-" + tc.name,
+				ActivePlayerID: "P1",
+				Seed:           24,
+			})
+			state.Board.Cards = append(state.Board.Cards, tc.card)
+
+			legality := CheckLegality(state, queueCardAction("act-xq22-inactive-"+tc.name, "P1", testCardDirect))
+			if !legality.OK {
+				t.Fatalf("expected inactive XQ22 not to prohibit event cards, got %+v", legality)
+			}
+		})
+	}
+}
+
+func TestSubmitActionReturnsLegalityErrorWhenXQ22BlocksEventCards(t *testing.T) {
+	state := NewGameState(InitialStateConfig{
+		GameID:         "game-xq22-submit-action",
+		ActivePlayerID: "P1",
+		Seed:           25,
+	})
+	state.Board.Cards = append(state.Board.Cards, xq22TableCard("P1"))
+
+	_, err := SubmitAction(state, queueCardAction("act-xq22-submit-action", "P1", testCardDirect))
+	if err == nil {
+		t.Fatal("expected SubmitAction to reject event card while XQ22 is ready")
+	}
+
+	var legalityErr *LegalityError
+	if !errors.As(err, &legalityErr) {
+		t.Fatalf("expected LegalityError, got %T", err)
+	}
+
+	if legalityErr.Code != ReasonCodeLegalityFailedActionProhibited {
+		t.Fatalf("error code = %q, want %q", legalityErr.Code, ReasonCodeLegalityFailedActionProhibited)
+	}
+}
+
 func mustSubmit(t *testing.T, state GameState, action Action) GameState {
 	t.Helper()
 
@@ -1063,6 +1210,18 @@ func queueCardAction(actionID string, actorID string, cardID string) Action {
 		ActorID: actorID,
 		Kind:    ActionKindQueueOperation,
 		CardID:  cardID,
+	}
+}
+
+func xq22TableCard(ownerID string) CardState {
+	return CardState{
+		CardID:         "xq22-table-1",
+		Name:           "州议员贝伦·希恩斯",
+		Kind:           CardKindCharacter,
+		OwnerID:        ownerID,
+		Zone:           CardZoneTable,
+		VisibleToOwner: true,
+		Revealed:       true,
 	}
 }
 

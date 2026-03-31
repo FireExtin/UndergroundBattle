@@ -42,6 +42,7 @@ describe("CardLogic contract fixtures", () => {
     expect(scripted).toMatchObject({
       cardName: "召现雷霆",
       sourcePath: "organized_content/cards/事/cards.json",
+      basicType: "事务",
       scriptId: "scripts.bq013.call-lightning",
       requiresScript: true,
       pureDSLExecutable: false

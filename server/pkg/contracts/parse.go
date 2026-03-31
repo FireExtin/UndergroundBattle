@@ -15,6 +15,7 @@ func ParseFixtureLogic(fixture Fixture) ParsedCardLogic {
 		CardID:            fixture.CardID,
 		CardName:          fixture.Card.Name,
 		SourcePath:        fixture.Card.SourcePath,
+		BasicType:         fixture.Card.BasicType,
 		LogicID:           fixture.Input.Logic.ID,
 		SchemaVersion:     fixture.Input.Logic.SchemaVersion,
 		Speed:             fixture.Input.Logic.Speed,

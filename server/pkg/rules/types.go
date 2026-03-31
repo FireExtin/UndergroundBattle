@@ -214,6 +214,7 @@ type CardOperationSource struct {
 	CardID            string            `json:"cardId"`
 	CardName          string            `json:"cardName"`
 	SourcePath        string            `json:"sourcePath"`
+	BasicType         string            `json:"basicType,omitempty"`
 	LogicID           string            `json:"logicId"`
 	Speed             string            `json:"speed"`
 	TargetKinds       []string          `json:"targetKinds"`

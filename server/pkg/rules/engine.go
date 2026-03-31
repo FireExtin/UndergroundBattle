@@ -309,6 +309,11 @@ func CheckLegality(state GameState, action Action) LegalityResult {
 			return windowLegality
 		}
 
+		playLegality := checkQueuedCardPlayLegality(state, source)
+		if !playLegality.OK {
+			return playLegality
+		}
+
 		if !source.RequiresStack && len(state.Board.Stack) != 0 {
 			return legalityFailure(
 				ReasonCodeLegalityFailedStackNotEmpty,
@@ -975,6 +980,32 @@ func checkCardWindowLegality(state GameState, source CardOperationSource) Legali
 	return okLegalityResult()
 }
 
+func checkQueuedCardPlayLegality(state GameState, source CardOperationSource) LegalityResult {
+	if source.BasicType != "事务" {
+		return okLegalityResult()
+	}
+
+	for _, card := range state.Board.Cards {
+		if card.Name != "州议员贝伦·希恩斯" || card.Zone != CardZoneTable || card.Destroyed || card.Exhausted {
+			continue
+		}
+
+		return legalityFailure(
+			ReasonCodeLegalityFailedActionProhibited,
+			"rules.legality.action_prohibited",
+			"board.cards",
+			map[string]string{
+				"cardId":              source.CardID,
+				"basicType":           source.BasicType,
+				"prohibitingCardId":   card.CardID,
+				"prohibitingCardName": card.Name,
+			},
+		)
+	}
+
+	return okLegalityResult()
+}
+
 func resolveStackedOperation(state GameState, operation Operation) (GameState, Operation, error) {
 	switch operation.Kind {
 	case OperationKindCardEffect:
@@ -1059,6 +1090,7 @@ func cardOperationSourceFromFixture(fixture contractspkg.Fixture) CardOperationS
 		CardID:            parsed.CardID,
 		CardName:          parsed.CardName,
 		SourcePath:        parsed.SourcePath,
+		BasicType:         parsed.BasicType,
 		LogicID:           parsed.LogicID,
 		Speed:             parsed.Speed,
 		TargetKinds:       slices.Clone(parsed.TargetKinds),

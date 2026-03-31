@@ -4,7 +4,8 @@
   "schemaVersion": "0.1.0",
   "card": {
     "name": "合金指虎",
-    "sourcePath": "organized_content/cards/附/cards.json"
+    "sourcePath": "organized_content/cards/附/cards.json",
+    "basicType": "附属"
   },
   "input": {
     "logic": {

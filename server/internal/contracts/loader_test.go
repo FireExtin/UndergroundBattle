@@ -72,6 +72,10 @@ func TestContractFixturesMatchExpectations(t *testing.T) {
 				t.Fatalf("sourcePath = %q, want %q", parsed.SourcePath, fixture.Card.SourcePath)
 			}
 
+			if parsed.BasicType != fixture.Card.BasicType {
+				t.Fatalf("basicType = %q, want %q", parsed.BasicType, fixture.Card.BasicType)
+			}
+
 			if fixture.Expectations.ScriptID != nil {
 				if !parsed.RequiresScript {
 					t.Fatal("scripted fixture must set requiresScript to true")
@@ -114,6 +118,10 @@ func TestDefaultFixtureCatalogIndexesRealCards(t *testing.T) {
 
 	if fixture.Card.SourcePath != "organized_content/cards/事/cards.json" {
 		t.Fatalf("fixture sourcePath = %q, want %q", fixture.Card.SourcePath, "organized_content/cards/事/cards.json")
+	}
+
+	if fixture.Card.BasicType != "事务" {
+		t.Fatalf("fixture basicType = %q, want %q", fixture.Card.BasicType, "事务")
 	}
 
 	newFixture, ok := catalog.Find("WM090")

@@ -21,7 +21,7 @@
       "type": "object",
       "description": "Minimal real-card source metadata so fixtures remain anchored to organized resources.",
       "additionalProperties": false,
-      "required": ["name", "sourcePath"],
+      "required": ["name", "sourcePath", "basicType"],
       "properties": {
         "name": {
           "type": "string",
@@ -30,6 +30,10 @@
         "sourcePath": {
           "type": "string",
           "pattern": "^organized_content/.+\\.json$"
+        },
+        "basicType": {
+          "type": "string",
+          "minLength": 1
         }
       }
     },

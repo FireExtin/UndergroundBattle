@@ -108,6 +108,10 @@ export function validateFixture(fixture: ContractFixture, currentVersion: string
     );
   }
 
+  if (fixture.card.basicType.trim().length === 0) {
+    issues.push(issue("BASIC_TYPE_INVALID", `${fixture.cardId}.card.basicType`, "card.basicType must not be empty"));
+  }
+
   if (fixture.schemaVersion !== currentVersion) {
     issues.push(issue("SCHEMA_VERSION_MISMATCH", `${fixture.cardId}.schemaVersion`, `expected ${currentVersion}`));
   }
@@ -216,6 +220,7 @@ export function normalizeFixture(fixture: ContractFixture): NormalizedContractRe
     cardId: fixture.cardId,
     cardName: fixture.card.name,
     sourcePath: fixture.card.sourcePath,
+    basicType: fixture.card.basicType,
     schemaVersion: fixture.schemaVersion,
     logicId: fixture.input.logic.id,
     speed: fixture.input.logic.speed,
@@ -262,7 +267,7 @@ function issue(code: string, path: string, message: string): ValidationIssue {
 async function validateFixtureSource(
   fixture: ContractFixture,
   repoRoot: string,
-  sourceCache: Map<string, Record<string, { id?: string; name?: string }>>
+  sourceCache: Map<string, Record<string, { id?: string; name?: string; "basic-type"?: string }>>
 ): Promise<ValidationIssue[]> {
   const issues: ValidationIssue[] = [];
   if (!SOURCE_PATH_PATTERN.test(fixture.card.sourcePath)) {
@@ -273,7 +278,10 @@ async function validateFixtureSource(
   let sourceIndex = sourceCache.get(sourcePath);
   if (!sourceIndex) {
     try {
-      sourceIndex = JSON.parse(await readFile(sourcePath, "utf-8")) as Record<string, { id?: string; name?: string }>;
+      sourceIndex = JSON.parse(await readFile(sourcePath, "utf-8")) as Record<
+        string,
+        { id?: string; name?: string; "basic-type"?: string }
+      >;
       sourceCache.set(sourcePath, sourceIndex);
     } catch {
       return [
@@ -314,6 +322,16 @@ async function validateFixtureSource(
         "SOURCE_NAME_MISMATCH",
         `${fixture.cardId}.card.name`,
         `organized content name ${sourceRecord.name ?? "(missing)"} does not match fixture`
+      )
+    );
+  }
+
+  if (sourceRecord["basic-type"] !== fixture.card.basicType) {
+    issues.push(
+      issue(
+        "SOURCE_BASIC_TYPE_MISMATCH",
+        `${fixture.cardId}.card.basicType`,
+        `organized content basic-type ${sourceRecord["basic-type"] ?? "(missing)"} does not match fixture`
       )
     );
   }

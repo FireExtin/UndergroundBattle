@@ -4,7 +4,8 @@
   "schemaVersion": "0.1.0",
   "card": {
     "name": "多重梦境迷宫",
-    "sourcePath": "organized_content/cards/角/cards.json"
+    "sourcePath": "organized_content/cards/角/cards.json",
+    "basicType": "角色"
   },
   "input": {
     "logic": {

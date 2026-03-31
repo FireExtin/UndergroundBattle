@@ -13,6 +13,7 @@ type BasicEffect struct {
 type FixtureCard struct {
 	Name       string `json:"name"`
 	SourcePath string `json:"sourcePath"`
+	BasicType  string `json:"basicType"`
 }
 
 // CardLogic is authored in TypeScript but interpreted by Go as the final semantic authority.
@@ -56,6 +57,7 @@ type ParsedCardLogic struct {
 	CardID            string
 	CardName          string
 	SourcePath        string
+	BasicType         string
 	LogicID           string
 	SchemaVersion     string
 	Speed             string

@@ -4,7 +4,8 @@
   "schemaVersion": "0.1.0",
   "card": {
     "name": "灵感",
-    "sourcePath": "organized_content/cards/事/cards.json"
+    "sourcePath": "organized_content/cards/事/cards.json",
+    "basicType": "事务"
   },
   "input": {
     "logic": {

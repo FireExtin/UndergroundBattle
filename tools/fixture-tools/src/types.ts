@@ -91,6 +91,7 @@ export type FixtureExpectations = {
 export type FixtureCard = {
   name: string;
   sourcePath: string;
+  basicType: string;
 };
 
 export type ContractFixture = {
@@ -108,6 +109,7 @@ export type NormalizedContractRecord = {
   cardId: string;
   cardName: string;
   sourcePath: string;
+  basicType: string;
   schemaVersion: string;
   logicId: string;
   speed: Speed;

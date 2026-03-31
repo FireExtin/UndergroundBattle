@@ -58,13 +58,36 @@ describe("validateFixture", () => {
     );
   });
 
+  it("rejects an empty basic type", () => {
+    const issues = validateFixture(
+      {
+        ...fixture(),
+        card: {
+          ...fixture().card,
+          basicType: "   "
+        }
+      },
+      "0.1.0"
+    );
+
+    expect(issues).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          code: "BASIC_TYPE_INVALID",
+          path: "DSL001.card.basicType"
+        })
+      ])
+    );
+  });
+
   it("marks scripted fixtures as requiring scripts during normalization", () => {
     const normalized = normalizeFixture({
       ...fixture(),
       cardId: "BQ013",
       card: {
         name: "召现雷霆",
-        sourcePath: "organized_content/cards/事/cards.json"
+        sourcePath: "organized_content/cards/事/cards.json",
+        basicType: "事务"
       },
       input: {
         logic: {
@@ -91,7 +114,7 @@ describe("validateFixture", () => {
     await mkdir(sourceDir, { recursive: true });
     await writeFile(
       path.join(sourceDir, "cards.json"),
-      `${JSON.stringify({ DSL001: { id: "DSL001", name: "错误名称" } }, null, 2)}\n`,
+      `${JSON.stringify({ DSL001: { id: "DSL001", name: "错误名称", "basic-type": "事务" } }, null, 2)}\n`,
       "utf-8"
     );
 
@@ -104,6 +127,26 @@ describe("validateFixture", () => {
       ])
     );
   });
+
+  it("rejects a fixture whose source basic type does not match organized content", async () => {
+    const repoRoot = await mkdtemp(path.join(os.tmpdir(), "undergroundbattle-fixtures-"));
+    const sourceDir = path.join(repoRoot, "organized_content/cards/事");
+    await mkdir(sourceDir, { recursive: true });
+    await writeFile(
+      path.join(sourceDir, "cards.json"),
+      `${JSON.stringify({ DSL001: { id: "DSL001", name: "示例卡", "basic-type": "角色" } }, null, 2)}\n`,
+      "utf-8"
+    );
+
+    await expect(validateFixtureSources([fixture()], repoRoot)).resolves.toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          code: "SOURCE_BASIC_TYPE_MISMATCH",
+          path: "DSL001.card.basicType"
+        })
+      ])
+    );
+  });
 });
 
 function fixture(): ContractFixture {
@@ -112,7 +155,8 @@ function fixture(): ContractFixture {
     schemaVersion: "0.1.0",
     card: {
       name: "示例卡",
-      sourcePath: "organized_content/cards/事/cards.json"
+      sourcePath: "organized_content/cards/事/cards.json",
+      basicType: "事务"
     },
     input: {
       logic: {
