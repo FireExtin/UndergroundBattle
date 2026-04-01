@@ -147,6 +147,35 @@ body {
   color: #111827;
 }
 
+.custom-action-editor {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.custom-action-label {
+  font-size: 0.9rem;
+  color: #374151;
+}
+
+.custom-action-input {
+  width: 100%;
+  min-height: 8rem;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+  line-height: 1.45;
+}
+
+.custom-action-error {
+  margin: 0;
+  color: #b91c1c;
+  font-size: 0.9rem;
+}
+
 .simple-list {
   margin: 0;
   padding-left: 1.2rem;

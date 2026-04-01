@@ -14,6 +14,7 @@ Purpose: explains the first minimal web debugger and match shell for the Undergr
   - mock 的 per-player view 切换
   - 基于 Go HTTP sandbox 的 live feed
   - 预置动作提交按钮
+  - 最小 custom JSON 动作提交入口
   - live 不可用时退回 mock fallback
 - 不实现：
   - websocket
@@ -44,7 +45,7 @@ Purpose: explains the first minimal web debugger and match shell for the Undergr
 - `stack` 面板固定按“栈顶在上”展示，因此 UI 会反转底层 push-at-end 的数组。
 - `action log` 只显示 accepted/rejected，不把 `StatePatched` 也混进日志行里。
 - `legality failure` 显示结构化字段，不退化成单行字符串。
-- 动作面板只提供少量预置动作，不引入完整作者工具或动作编辑器。
+- 动作面板提供少量预置动作，并提供最小 JSON 编辑器用于提交自定义 `Action`；仍不引入完整作者工具。
 - 当当前 patch 已有 `winner` 时，live 动作面板会禁用提交按钮，但仍允许 `Reload Feed`。
 - Web 仍然不是语义权威；按钮点击只是提交 `Action`，最终是否合法仍由 Go 决定。
 

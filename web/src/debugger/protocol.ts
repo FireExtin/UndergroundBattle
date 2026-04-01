@@ -13,6 +13,8 @@ export type Action = {
   targetCardId?: string;
   operationLabel?: string;
   randomMax?: number;
+  markerType?: string;
+  markerAmount?: number;
 };
 
 export type CardOperationSource = {
@@ -44,6 +46,8 @@ export type Operation = {
   label?: string;
   randomMax?: number;
   nextPhase?: string;
+  markerType?: string;
+  markerAmount?: number;
   source?: CardOperationSource;
 };
 
@@ -62,6 +66,9 @@ export type Event = {
   stackDepth: number;
   randomValue?: number;
   stepEnded?: boolean;
+  markerType?: string;
+  markerAmount?: number;
+  targetPlayerId?: string;
 };
 
 export type Revision = {
@@ -125,6 +132,7 @@ export type CardView = {
   zone: CardZone;
   visibility: string;
   revealed: boolean;
+  faceDown?: boolean;
   exhausted: boolean;
   destroyed: boolean;
   keywords?: string[];
@@ -151,6 +159,7 @@ export type PlayerViewState = {
   match: MatchState;
   turn: TurnState;
   score: ScoreState;
+  markers?: Record<string, number>;
   board: ViewBoardState;
 };
 
@@ -160,6 +169,7 @@ export type SpectatorViewState = {
   match: MatchState;
   turn: TurnState;
   score: ScoreState;
+  markers?: Record<string, number>;
   board: ViewBoardState;
 };
 

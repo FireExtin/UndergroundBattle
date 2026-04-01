@@ -7,7 +7,11 @@ type ActionControlsPanelProps = {
   pending: boolean;
   presets: LiveActionPreset[];
   disabledReason: string;
+  customActionDraft: string;
+  customActionError: string;
   onActionSelected: (presetId: LiveActionPreset["id"]) => void;
+  onCustomActionDraftChanged: (draft: string) => void;
+  onCustomActionSubmit: () => void;
   onReload: () => void;
   onReset: () => void;
 };
@@ -17,7 +21,11 @@ export function ActionControlsPanel({
   pending,
   presets,
   disabledReason,
+  customActionDraft,
+  customActionError,
   onActionSelected,
+  onCustomActionDraftChanged,
+  onCustomActionSubmit,
   onReload,
   onReset
 }: ActionControlsPanelProps) {
@@ -58,6 +66,30 @@ export function ActionControlsPanel({
         >
           Reset Sandbox
         </button>
+      </div>
+      <div className="custom-action-editor">
+        <label className="custom-action-label" htmlFor="custom-action-json">
+          Custom Action JSON
+        </label>
+        <textarea
+          id="custom-action-json"
+          className="custom-action-input"
+          value={customActionDraft}
+          onChange={(event) => onCustomActionDraftChanged(event.target.value)}
+          disabled={actionsDisabled || pending}
+          rows={6}
+          spellCheck={false}
+        />
+        <button
+          type="button"
+          className="action-button"
+          disabled={actionsDisabled || pending}
+          onClick={onCustomActionSubmit}
+          aria-label="Submit Custom Action"
+        >
+          Submit Custom Action
+        </button>
+        {customActionError ? <p className="custom-action-error">{customActionError}</p> : null}
       </div>
     </section>
   );

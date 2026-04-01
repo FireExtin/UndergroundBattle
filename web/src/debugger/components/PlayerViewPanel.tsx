@@ -24,7 +24,8 @@ export function PlayerViewPanel({ viewerLabel, cards }: PlayerViewPanelProps) {
                   <p className="card-details">
                     keywords: {card.keywords?.join(", ") || "none"} | stats: {card.stats.combat}/
                     {card.stats.defense}/{card.stats.influence}/{card.stats.investigation} | counters: dmg{" "}
-                    {card.counters.damage}, inf {card.counters.influence}
+                    {card.counters.damage}, inf {card.counters.influence} | face-down:{" "}
+                    {card.faceDown ? "yes" : "no"}
                   </p>
                 ) : null}
               </div>

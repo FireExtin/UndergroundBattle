@@ -3,6 +3,7 @@ import { describe, expect, it } from "vitest";
 
 import { DebuggerShell } from "./DebuggerShell";
 import { defaultMockMessageSets } from "./mockProtocol";
+import type { MockMessageSet } from "./protocol";
 
 // Purpose: Verifies the minimal debugger shell renders mock protocol state and viewer-specific hidden information.
 describe("DebuggerShell", () => {
@@ -78,5 +79,104 @@ describe("DebuggerShell", () => {
     fireEvent.click(screen.getByRole("button", { name: "View as spectator" }));
     expect(screen.queryByText("Secret Archive")).not.toBeInTheDocument();
     expect(screen.queryByText("P1-HAND-SECRET")).not.toBeInTheDocument();
+  });
+
+  it("shows face-down status and marker summary when patch includes them", () => {
+    const faceDownMarkersMessageSet: MockMessageSet = {
+      id: "face-down-markers",
+      label: "FaceDown + Markers",
+      messages: [
+        {
+          version: "0.1.0",
+          kind: "view",
+          messageId: "msg-state-patched-face-down-markers",
+          name: "StatePatched",
+          revision: 1,
+          payload: {
+            type: "StatePatched",
+            audienceKind: "player",
+            audienceId: "P1",
+            revision: {
+              number: 1
+            },
+            event: {
+              id: "evt:1",
+              actionId: "act:1",
+              operationId: "op:1",
+              kind: "face_down_set",
+              revisionNumber: 1,
+              stackDepth: 0
+            },
+            playerView: {
+              gameId: "game-face-down-markers",
+              viewerPlayerId: "P1",
+              revision: {
+                number: 1
+              },
+              match: {
+                status: "active"
+              },
+              turn: {
+                turnNumber: 1,
+                activePlayerId: "P1",
+                priorityPlayerId: "P1",
+                priority: {
+                  currentPlayerId: "P1",
+                  passCount: 0,
+                  windowKind: "action"
+                },
+                phase: {
+                  name: "main",
+                  step: "action",
+                  allowsStack: true,
+                  stepEnded: false
+                }
+              },
+              score: {
+                byPlayer: { P1: 0, P2: 0 },
+                victoryThreshold: 10
+              },
+              markers: {
+                secret_society: 2
+              },
+              board: {
+                stack: [],
+                resolved: [],
+                randomResults: [],
+                cards: [
+                  {
+                    cardId: "P1-TABLE-HIDDEN-1",
+                    name: "Hidden Operator",
+                    ownerId: "P1",
+                    zone: "table",
+                    visibility: "visible",
+                    revealed: false,
+                    faceDown: true,
+                    exhausted: false,
+                    destroyed: false,
+                    keywords: [],
+                    stats: {
+                      combat: 1,
+                      defense: 1,
+                      influence: 0,
+                      investigation: 1
+                    },
+                    counters: {
+                      damage: 0,
+                      influence: 0
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    };
+
+    render(<DebuggerShell messageSets={[faceDownMarkersMessageSet]} />);
+
+    expect(screen.getByText(/face-down: yes/i)).toBeInTheDocument();
+    expect(screen.getByText(/secret_society: 2/i)).toBeInTheDocument();
   });
 });

@@ -9,7 +9,10 @@ export type LiveActionPresetId =
   | "inspectOwnSecret"
   | "castReadMinds"
   | "castDreamMaze"
-  | "equipAlloyKnuckles";
+  | "equipAlloyKnuckles"
+  | "setSecretSocietyMarker"
+  | "removeSecretSocietyMarker"
+  | "setOwnTableFaceDown";
 
 export type LiveActionPreset = {
   id: LiveActionPresetId;
@@ -23,7 +26,10 @@ export const liveActionPresets: LiveActionPreset[] = [
   { id: "inspectOwnSecret", label: "Inspect Own Secret" },
   { id: "castReadMinds", label: "Cast 读心术 (BQ010)" },
   { id: "castDreamMaze", label: "Cast 多重梦境迷宫 (BQ005)" },
-  { id: "equipAlloyKnuckles", label: "Equip 合金指虎 (BQ022)" }
+  { id: "equipAlloyKnuckles", label: "Equip 合金指虎 (BQ022)" },
+  { id: "setSecretSocietyMarker", label: "Set Secret Marker" },
+  { id: "removeSecretSocietyMarker", label: "Remove Secret Marker" },
+  { id: "setOwnTableFaceDown", label: "Set Own Table Face-Down" }
 ];
 
 export async function fetchDebuggerMessages(): Promise<DebuggerProtocolEnvelope[]> {
@@ -32,7 +38,7 @@ export async function fetchDebuggerMessages(): Promise<DebuggerProtocolEnvelope[
 }
 
 export async function submitDebuggerAction(action: Action): Promise<DebuggerProtocolEnvelope[]> {
- const response = await fetch("/api/debugger/actions", {
+  const response = await fetch("/api/debugger/actions", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -103,7 +109,51 @@ export function buildActionFromPreset(
         cardId: "BQ022",
         targetCardId: ownTableCardId(viewerId)
       };
+    case "setSecretSocietyMarker":
+      return {
+        ...action,
+        kind: "set_marker",
+        targetPlayerId: viewerId,
+        markerType: "secret_society",
+        markerAmount: 1
+      };
+    case "removeSecretSocietyMarker":
+      return {
+        ...action,
+        kind: "remove_marker",
+        targetPlayerId: viewerId,
+        markerType: "secret_society",
+        markerAmount: 1
+      };
+    case "setOwnTableFaceDown":
+      return {
+        ...action,
+        kind: "set_face_down",
+        cardId: ownTableCardId(viewerId)
+      };
   }
+}
+
+export function buildActionFromCustomJSON(
+  viewerId: Exclude<ViewerId, "spectator">,
+  rawJSON: string,
+  sequence: number
+): Action {
+  const parsed = parseCustomActionJSON(rawJSON);
+  const kind = readNonEmptyString(parsed.kind);
+  if (kind === "") {
+    throw new Error("Custom action JSON must include a non-empty kind.");
+  }
+
+  const id = readNonEmptyString(parsed.id);
+  const actorId = readNonEmptyString(parsed.actorId);
+
+  return {
+    ...(parsed as Action),
+    id: id === "" ? `act-web-${viewerId.toLowerCase()}-${sequence}` : id,
+    actorId: actorId === "" ? viewerId : actorId,
+    kind
+  };
 }
 
 async function readJSONResponse<T>(response: Response): Promise<T> {
@@ -128,4 +178,27 @@ function opposingTableCardId(viewerId: Exclude<ViewerId, "spectator">) {
 
 function opposingPlayerId(viewerId: Exclude<ViewerId, "spectator">) {
   return viewerId === "P1" ? "P2" : "P1";
+}
+
+function parseCustomActionJSON(rawJSON: string): Record<string, unknown> {
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(rawJSON);
+  } catch {
+    throw new Error("Custom action must be valid JSON.");
+  }
+
+  if (parsed === null || typeof parsed !== "object" || Array.isArray(parsed)) {
+    throw new Error("Custom action JSON must be an object.");
+  }
+
+  return parsed as Record<string, unknown>;
+}
+
+function readNonEmptyString(value: unknown) {
+  if (typeof value !== "string") {
+    return "";
+  }
+
+  return value.trim();
 }

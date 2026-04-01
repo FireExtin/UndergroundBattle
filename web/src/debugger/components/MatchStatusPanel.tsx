@@ -9,10 +9,12 @@ export function MatchStatusPanel({ patch }: MatchStatusPanelProps) {
   const match = patch?.payload.playerView?.match ?? patch?.payload.spectatorView?.match;
   const turn = patch?.payload.playerView?.turn ?? patch?.payload.spectatorView?.turn;
   const score = patch?.payload.playerView?.score ?? patch?.payload.spectatorView?.score;
+  const markers = patch?.payload.playerView?.markers ?? patch?.payload.spectatorView?.markers;
   const revision = patch?.payload.revision.number ?? "-";
   const scoreEntries = Object.entries(score?.byPlayer ?? {}).sort(([left], [right]) =>
     left.localeCompare(right)
   );
+  const markerEntries = Object.entries(markers ?? {}).sort(([left], [right]) => left.localeCompare(right));
 
   return (
     <section className="panel">
@@ -57,6 +59,14 @@ export function MatchStatusPanel({ patch }: MatchStatusPanelProps) {
         <div>
           <dt>End Reason</dt>
           <dd>{match?.endReason ?? "-"}</dd>
+        </div>
+        <div>
+          <dt>Markers</dt>
+          <dd>
+            {markerEntries.length === 0
+              ? "-"
+              : markerEntries.map(([markerType, amount]) => `${markerType}: ${amount}`).join(" | ")}
+          </dd>
         </div>
       </dl>
     </section>

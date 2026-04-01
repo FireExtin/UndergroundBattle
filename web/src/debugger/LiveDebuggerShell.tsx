@@ -1,9 +1,10 @@
-import { useEffect, useReducer, useRef, type Dispatch, type MutableRefObject } from "react";
+import { useEffect, useReducer, useRef, useState, type Dispatch, type MutableRefObject } from "react";
 
 import { DebuggerShell } from "./DebuggerShell";
 import { ActionControlsPanel } from "./components/ActionControlsPanel";
 import {
   buildActionFromPreset,
+  buildActionFromCustomJSON,
   fetchDebuggerMessages,
   liveActionPresets,
   resetDebuggerSession,
@@ -28,6 +29,8 @@ export function LiveDebuggerShell({ fallbackMessageSets }: LiveDebuggerShellProp
     fallbackMessageSets,
     createInitialLiveDebuggerState
   );
+  const [customActionDraft, setCustomActionDraft] = useState('{"kind":"pass_priority"}');
+  const [customActionError, setCustomActionError] = useState("");
   const nextActionNumber = useRef(1);
 
   useEffect(() => {
@@ -90,12 +93,28 @@ export function LiveDebuggerShell({ fallbackMessageSets }: LiveDebuggerShellProp
             state.errorMessage,
             currentWinnerPlayerId(currentPatch)
           )}
+          customActionDraft={customActionDraft}
+          customActionError={customActionError}
           onActionSelected={(presetId) =>
             void handleActionSelection(
               presetId,
               selectedViewer,
               nextActionNumber,
-              dispatch
+              dispatch,
+              setCustomActionError
+            )
+          }
+          onCustomActionDraftChanged={(draft) => {
+            setCustomActionDraft(draft);
+            setCustomActionError("");
+          }}
+          onCustomActionSubmit={() =>
+            void handleCustomActionSelection(
+              customActionDraft,
+              selectedViewer,
+              nextActionNumber,
+              dispatch,
+              setCustomActionError
             )
           }
           onReload={() => void reloadLiveMessages(dispatch, fallbackMessageSets)}
@@ -146,13 +165,15 @@ async function handleActionSelection(
   presetId: LiveActionPresetId,
   selectedViewer: ViewerId,
   nextActionNumber: MutableRefObject<number>,
-  dispatch: Dispatch<LiveDebuggerAction>
+  dispatch: Dispatch<LiveDebuggerAction>,
+  setCustomActionError: Dispatch<string>
 ) {
   if (selectedViewer === "spectator") {
     return;
   }
 
   dispatch({ type: "submitStarted" });
+  setCustomActionError("");
 
   try {
     const action = buildActionFromPreset(
@@ -160,6 +181,44 @@ async function handleActionSelection(
       presetId,
       nextActionNumber.current
     );
+    nextActionNumber.current += 1;
+    const messages = await submitDebuggerAction(action);
+    dispatch({ type: "submitSucceeded", messages });
+  } catch (error) {
+    dispatch({
+      type: "submitFailed",
+      errorMessage: error instanceof Error ? error.message : "Action submission failed."
+    });
+  }
+}
+
+async function handleCustomActionSelection(
+  customActionDraft: string,
+  selectedViewer: ViewerId,
+  nextActionNumber: MutableRefObject<number>,
+  dispatch: Dispatch<LiveDebuggerAction>,
+  setCustomActionError: Dispatch<string>
+) {
+  if (selectedViewer === "spectator") {
+    return;
+  }
+
+  let action;
+  try {
+    action = buildActionFromCustomJSON(
+      selectedViewer,
+      customActionDraft,
+      nextActionNumber.current
+    );
+  } catch (error) {
+    setCustomActionError(error instanceof Error ? error.message : "Custom action is invalid.");
+    return;
+  }
+
+  dispatch({ type: "submitStarted" });
+  setCustomActionError("");
+
+  try {
     nextActionNumber.current += 1;
     const messages = await submitDebuggerAction(action);
     dispatch({ type: "submitSucceeded", messages });

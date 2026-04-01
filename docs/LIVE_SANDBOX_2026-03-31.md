@@ -36,13 +36,20 @@ Purpose: records the first end-to-end playable sandbox wiring between the Go rul
   - `Cast 读心术 (BQ010)`
   - `Cast 多重梦境迷宫 (BQ005)`
   - `Equip 合金指虎 (BQ022)`
+  - `Set Secret Marker`
+  - `Remove Secret Marker`
+  - `Set Own Table Face-Down`
+- 动作面板现在还提供一个最小 `Custom Action JSON` 编辑器：
+  - 支持直接提交结构化 `Action` 到 `POST /api/debugger/actions`
+  - 若 JSON 缺少 `id`/`actorId`，前端会按当前 viewer 自动补齐
+  - spectator 或 game-over 状态下会与预置动作一起禁用
 
 ## Why This Is Still Minimal
 
 - 没有 websocket
 - 没有数据库
 - 没有多房间 match service
-- 没有完整动作作者工具
+- 没有完整动作作者工具（当前仅有最小 JSON 提交入口）
 - 没有真实身份和权限隔离
 - 前端 viewer switcher 仍然是调试器能力，不是正式对局客户端权限模型
 
