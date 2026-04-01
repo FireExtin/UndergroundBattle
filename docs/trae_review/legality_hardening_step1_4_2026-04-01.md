@@ -1,11 +1,12 @@
-# Legality Hardening Step1-3（2026-04-01）
+# Legality Hardening Step1-4（2026-04-01）
 
 ## 背景与目标
 
-- 目标：按既定顺序完成三件事，降低规则引擎复杂度并补齐 XQ01 前置能力。
+- 目标：按既定顺序完成四件事，降低规则引擎复杂度并补齐 XQ01 前置能力。
   - Step1：关键状态写入加 guardrail，防止散写回潮。
   - Step2：`queue_operation` 合法性与构建逻辑从 `engine.go` 抽离。
   - Step3：补齐 `prohibition` 对 `TargetCondition` 的匹配（XQ01 前置最小切片）。
+  - Step4：继续抽离 `queue_operation` 子流程中的 window/play legality helper，进一步压薄 `engine.go`。
 
 ## 改动清单
 
@@ -45,9 +46,18 @@
     - `AbilityKinds` 不匹配时不得禁用。
     - `RegionID + AbilityKinds` 同时匹配时应触发禁用。
 
+### 4) queue_operation helper 继续外提（Step4）
+
+- 动机：Step2 完成后，`checkCardWindowLegality(...)` 与 `checkQueuedCardPlayLegality(...)` 仍留在 `engine.go`，编排层仍持有子流程细节。
+- 重点：
+  - 将上述两个 helper 迁移到 `queue_operation_flow.go`。
+  - `engine.go` 只保留调度，不再承载 queue 子流程细节实现。
+  - 语义保持不变，继续通过现有 XQ22 / role action 回归面验证。
+
 ## 验证结果
 
 - `go test ./server/pkg/rules -run "TestProhibitionCheckerTargetConditionAbilityKindsMismatchDoesNotProhibit|TestProhibitionCheckerTargetConditionRegionAndAbilityMatchProhibits"` ✅
+- `go test ./server/pkg/rules -run "TestCheckQueueOperationActionLegalityRejectsMissingCardID|TestBuildQueueOperationFromActionReturnsSourceMetadata|TestSubmitActionRejectsQueueOperationWhenXQ22ReadyOnTable|TestSubmitActionAllowsQueueOperationForNonTransactionUnderXQ22|TestRoleActionIgnoresXQ31TargetLegality"` ✅
 - `go test ./server/pkg/rules` ✅
 - `go test ./server/...` ✅
 

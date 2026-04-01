@@ -95,3 +95,76 @@ func buildQueueOperationFromAction(action Action, sourceLookup cardOperationSour
 
 	return nil
 }
+
+func checkCardWindowLegality(state GameState, source CardOperationSource) LegalityResult {
+	windowKind := currentPriorityWindowKind(state)
+	switch source.Speed {
+	case "slow":
+		if windowKind != PriorityWindowAction {
+			return legalityFailure(
+				ReasonCodeLegalityFailedActionWindowRequired,
+				"rules.legality.action_window_required",
+				"turn.priority.window",
+				map[string]string{
+					"cardId":     source.CardID,
+					"speed":      source.Speed,
+					"windowKind": string(windowKind),
+				},
+			)
+		}
+	case "reaction":
+		if windowKind != PriorityWindowResponse || len(state.Board.Stack) == 0 {
+			return legalityFailure(
+				ReasonCodeLegalityFailedResponseWindowRequired,
+				"rules.legality.response_window_required",
+				"turn.priority.window",
+				map[string]string{
+					"cardId":     source.CardID,
+					"speed":      source.Speed,
+					"windowKind": string(windowKind),
+					"stackDepth": intString(len(state.Board.Stack)),
+				},
+			)
+		}
+	case "fast":
+		if windowKind == PriorityWindowClosed {
+			return legalityFailure(
+				ReasonCodeLegalityFailedActionWindowRequired,
+				"rules.legality.action_window_required",
+				"turn.priority.window",
+				map[string]string{
+					"cardId":     source.CardID,
+					"speed":      source.Speed,
+					"windowKind": string(windowKind),
+				},
+			)
+		}
+	}
+
+	return okLegalityResult()
+}
+
+func checkQueuedCardPlayLegality(state GameState, actorID string, source CardOperationSource) LegalityResult {
+	targetCategory := TargetCategory{
+		BasicTypes: []string{source.BasicType},
+	}
+
+	checker := BuildProhibitionChecker(state)
+	result := checker.Check(state, actorID, targetCategory)
+
+	if result.Prohibited {
+		return legalityFailure(
+			ReasonCodeLegalityFailedActionProhibited,
+			"rules.legality.action_prohibited",
+			"board.cards",
+			map[string]string{
+				"cardId":              source.CardID,
+				"basicType":           source.BasicType,
+				"prohibitingCardId":   result.SourceCardID,
+				"prohibitingCardName": result.SourceCardName,
+			},
+		)
+	}
+
+	return okLegalityResult()
+}
