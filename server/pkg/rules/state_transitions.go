@@ -118,6 +118,29 @@ func addInfluenceCounter(card *CardState, controllerID string, amount int) {
 	card.InfluenceByPlayer[controllerID] += amount
 }
 
+func addShieldCounter(card *CardState, amount int) {
+	if card == nil || amount <= 0 {
+		return
+	}
+
+	card.Counters.Shield += amount
+}
+
+func consumeShieldCounter(card *CardState, amount int) bool {
+	if card == nil || amount <= 0 {
+		return false
+	}
+	if card.Counters.Shield < amount {
+		return false
+	}
+
+	card.Counters.Shield -= amount
+	if card.Counters.Shield < 0 {
+		card.Counters.Shield = 0
+	}
+	return true
+}
+
 func setMarker(state *GameState, playerID string, markerType string, amount int) {
 	if state == nil {
 		return

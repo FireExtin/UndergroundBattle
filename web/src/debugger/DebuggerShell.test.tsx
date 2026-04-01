@@ -179,4 +179,149 @@ describe("DebuggerShell", () => {
     expect(screen.getByText(/face-down: yes/i)).toBeInTheDocument();
     expect(screen.getByText(/secret_society: 2/i)).toBeInTheDocument();
   });
+
+  it("shows shield counters and shield_consumed event details", () => {
+    const shieldMessageSet: MockMessageSet = {
+      id: "shield-consumed",
+      label: "Shield Consumed",
+      messages: [
+        {
+          version: "0.1.0",
+          kind: "event",
+          messageId: "msg-action-accepted-shield",
+          name: "ActionAccepted",
+          revision: 8,
+          payload: {
+            type: "ActionAccepted",
+            action: {
+              id: "act-shield-1",
+              actorId: "P1",
+              kind: "queue_operation",
+              cardId: "BQ005",
+              targetCardId: "P2-TABLE-SHIELD"
+            },
+            operation: {
+              id: "op:act-shield-1",
+              actionId: "act-shield-1",
+              actorId: "P1",
+              kind: "card_effect",
+              status: "resolved",
+              requiresStack: true,
+              cardId: "BQ005",
+              targetCardId: "P2-TABLE-SHIELD",
+              label: "多重梦境迷宫"
+            },
+            event: {
+              id: "evt:act-shield-1",
+              actionId: "act-shield-1",
+              operationId: "op:act-shield-1",
+              kind: "shield_consumed",
+              revisionNumber: 8,
+              stackDepth: 0,
+              markerType: "shield",
+              markerAmount: 1,
+              sourceCardId: "BQ005",
+              targetCardId: "P2-TABLE-SHIELD",
+              targetPlayerId: "P2",
+              appliedAmount: 1
+            },
+            revision: {
+              number: 8,
+              actionId: "act-shield-1",
+              operationId: "op:act-shield-1",
+              eventId: "evt:act-shield-1"
+            }
+          }
+        },
+        {
+          version: "0.1.0",
+          kind: "view",
+          messageId: "msg-state-patched-shield",
+          name: "StatePatched",
+          revision: 8,
+          payload: {
+            type: "StatePatched",
+            audienceKind: "player",
+            audienceId: "P1",
+            revision: {
+              number: 8
+            },
+            event: {
+              id: "evt:act-shield-1",
+              actionId: "act-shield-1",
+              operationId: "op:act-shield-1",
+              kind: "shield_consumed",
+              revisionNumber: 8,
+              stackDepth: 0
+            },
+            playerView: {
+              gameId: "game-shield-view",
+              viewerPlayerId: "P1",
+              revision: {
+                number: 8
+              },
+              match: {
+                status: "active"
+              },
+              turn: {
+                turnNumber: 2,
+                activePlayerId: "P1",
+                priorityPlayerId: "P1",
+                priority: {
+                  currentPlayerId: "P1",
+                  passCount: 0,
+                  windowKind: "action"
+                },
+                phase: {
+                  name: "main",
+                  step: "action",
+                  allowsStack: true,
+                  stepEnded: false
+                }
+              },
+              score: {
+                byPlayer: { P1: 0, P2: 0 },
+                victoryThreshold: 10
+              },
+              board: {
+                stack: [],
+                resolved: [],
+                randomResults: [],
+                cards: [
+                  {
+                    cardId: "P2-TABLE-SHIELD",
+                    name: "Shielded Target",
+                    ownerId: "P2",
+                    zone: "table",
+                    visibility: "visible",
+                    revealed: true,
+                    faceDown: false,
+                    exhausted: false,
+                    destroyed: false,
+                    keywords: [],
+                    stats: {
+                      combat: 1,
+                      defense: 3,
+                      influence: 0,
+                      investigation: 1
+                    },
+                    counters: {
+                      damage: 0,
+                      influence: 0,
+                      shield: 1
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    };
+
+    render(<DebuggerShell messageSets={[shieldMessageSet]} />);
+
+    expect(screen.getByText(/shield_consumed/i)).toBeInTheDocument();
+    expect(screen.getByText(/shd 1/i)).toBeInTheDocument();
+  });
 });

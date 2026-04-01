@@ -67,6 +67,7 @@ const (
 	EventKindMarkerSet            EventKind = "marker_set"
 	EventKindMarkerRemoved        EventKind = "marker_removed"
 	EventKindFaceDownSet          EventKind = "face_down_set"
+	EventKindShieldConsumed       EventKind = "shield_consumed"
 )
 
 // PhaseName identifies the current minimal turn phase.
@@ -141,6 +142,7 @@ type CardNumericStats struct {
 type CardCounters struct {
 	Damage    int `json:"damage"`
 	Influence int `json:"influence"`
+	Shield    int `json:"shield,omitempty"`
 }
 
 // ContinuousEffect is the serializable minimal continuous-effect record stored in authoritative state.

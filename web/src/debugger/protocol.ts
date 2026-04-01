@@ -69,6 +69,9 @@ export type Event = {
   markerType?: string;
   markerAmount?: number;
   targetPlayerId?: string;
+  sourceCardId?: string;
+  targetCardId?: string;
+  appliedAmount?: number;
 };
 
 export type Revision = {
@@ -123,6 +126,7 @@ export type CardNumericStats = {
 export type CardCounters = {
   damage: number;
   influence: number;
+  shield?: number;
 };
 
 export type CardView = {

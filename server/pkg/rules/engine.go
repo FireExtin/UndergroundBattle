@@ -321,6 +321,10 @@ func buildOperationWithLookup(state GameState, action Action, sourceLookup cardO
 func executeOperation(state GameState, operation Operation) (GameState, Operation, Event, error) {
 	working := cloneGameState(state)
 
+	if shieldState, shieldOperation, shieldEvent, intercepted := tryResolveShieldInterception(working, operation); intercepted {
+		return shieldState, shieldOperation, shieldEvent, nil
+	}
+
 	if operation.RequiresStack {
 		working, operation = defaultStackEngine.Push(working, operation)
 		reopenPhaseStep(&working.Turn)

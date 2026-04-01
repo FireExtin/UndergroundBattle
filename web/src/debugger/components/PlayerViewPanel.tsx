@@ -14,6 +14,7 @@ export function PlayerViewPanel({ viewerLabel, cards }: PlayerViewPanelProps) {
         {cards.map((card, index) => {
           const key = card.cardId ?? `${card.ownerId}-${card.zone}-${index}`;
           const isVisible = card.visibility === "visible";
+          const shield = card.counters.shield ?? 0;
 
           return (
             <li key={key} className="card-row">
@@ -24,7 +25,7 @@ export function PlayerViewPanel({ viewerLabel, cards }: PlayerViewPanelProps) {
                   <p className="card-details">
                     keywords: {card.keywords?.join(", ") || "none"} | stats: {card.stats.combat}/
                     {card.stats.defense}/{card.stats.influence}/{card.stats.investigation} | counters: dmg{" "}
-                    {card.counters.damage}, inf {card.counters.influence} | face-down:{" "}
+                    {card.counters.damage}, inf {card.counters.influence}, shd {shield} | face-down:{" "}
                     {card.faceDown ? "yes" : "no"}
                   </p>
                 ) : null}

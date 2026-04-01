@@ -4,6 +4,17 @@
 - 当前已经有：最小规则核、priority/stack、projection、continuous effects、`inspect` 的 permission hook、`dealDamage` 对 `EffectiveStats.Defense` 的最小致命判定，以及第一批角色动作入口 `declare_attack / declare_investigation`。
 - 如果目标是“继续稳定接真实卡 DSL，并形成一个可扩展 alpha”，还差 4 个明确里程碑。做完这 4 个就够继续推进主卡池，不需要先上完整 dependency engine。
 
+## 2026-04-02 第十八次补记（机制→引擎差距矩阵 + Shield V1）
+
+- 已新增“机制 -> 引擎差距矩阵”文档：
+  - `docs/MECHANISM_ENGINE_GAP_MATRIX_2026-04-02.md`
+- 本轮规则落地：
+  - Shield V1 已接线：当带护盾的目标被敌方 `queue_operation` 或 `declare_attack` 指定时，会自动移除 1 个护盾并终止该次效果。
+  - 当前为最小闭环实现，不包含“可选择是否消耗护盾”的交互决策模型。
+- 执行优先级（记忆约束）同步：
+  - 先做基础卡牌所需机制。
+  - 扩展系列（星光、帷幕之后、序曲、间奏）降级为低优先级，当前阶段不纳入实现范围。
+
 ## 2026-04-02 第十七次补记（Engine 去重型收口阶段完成）
 
 - 第十六次补记中的 4 个“下一步动作”已完成：
@@ -344,5 +355,5 @@
 ## Assumptions / Defaults
 - 先以“可扩展 alpha”为终点，不追求完整 dependency engine、replacement effect、trigger stack、完整费用系统。
 - Go 继续是唯一语义权威；TS 只负责 schema、fixture、作者工具和前置校验。
-- 销毁规则固定为：`damage >= EffectiveStats.Defense` 即离场进 `discard`；本阶段不实现护盾、再生、濒死队列。
+- 销毁规则固定为：`damage >= EffectiveStats.Defense` 即离场进 `discard`；当前只实现 Shield V1（敌方指定拦截），仍不实现再生、濒死队列。
 - 新动作只先做 `declare_attack`、`declare_investigation`，不同时展开完整战斗阶段改造。

@@ -10,15 +10,30 @@ export function ActionLogPanel({ entries }: ActionLogPanelProps) {
     <section className="panel">
       <h2>Action Log</h2>
       <ol className="simple-list" aria-label="Action Log Entries">
-        {entries.map((entry) => (
-          <li key={entry.messageId}>
-            <strong>{entry.name}</strong>
-            <span className="muted">
-              {" "}
-              {entry.payload.action.id} / {entry.payload.action.kind}
-            </span>
-          </li>
-        ))}
+        {entries.map((entry) => {
+          if (entry.name === "ActionAccepted") {
+            return (
+              <li key={entry.messageId}>
+                <strong>{entry.name}</strong>
+                <span className="muted">
+                  {" "}
+                  {entry.payload.action.id} / {entry.payload.action.kind} / {entry.payload.event.kind}
+                </span>
+              </li>
+            );
+          }
+
+          return (
+            <li key={entry.messageId}>
+              <strong>{entry.name}</strong>
+              <span className="muted">
+                {" "}
+                {entry.payload.action.id} / {entry.payload.action.kind} /{" "}
+                {entry.payload.legality.reasonCode ?? "rejected"}
+              </span>
+            </li>
+          );
+        })}
       </ol>
     </section>
   );

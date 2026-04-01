@@ -223,3 +223,35 @@ func TestMarkerTransitions(t *testing.T) {
 		t.Fatalf("removeMarkerCount result = %d, want 1", got)
 	}
 }
+
+func TestShieldCounterTransitions(t *testing.T) {
+	card := CardState{
+		CardID: "card-shield-transition-1",
+	}
+
+	addShieldCounter(&card, 2)
+	if card.Counters.Shield != 2 {
+		t.Fatalf("shield after add = %d, want 2", card.Counters.Shield)
+	}
+
+	consumed := consumeShieldCounter(&card, 1)
+	if !consumed {
+		t.Fatal("consumeShieldCounter should succeed when enough shield exists")
+	}
+	if card.Counters.Shield != 1 {
+		t.Fatalf("shield after consume = %d, want 1", card.Counters.Shield)
+	}
+
+	consumed = consumeShieldCounter(&card, 2)
+	if consumed {
+		t.Fatal("consumeShieldCounter should fail when shield is insufficient")
+	}
+	if card.Counters.Shield != 1 {
+		t.Fatalf("shield should stay unchanged on failed consume, got %d", card.Counters.Shield)
+	}
+
+	addShieldCounter(nil, 1)
+	if consumeShieldCounter(nil, 1) {
+		t.Fatal("consumeShieldCounter(nil) should return false")
+	}
+}
