@@ -18,6 +18,7 @@ func TestEngineOrchestrationGuard_NoActionPermissionHelpers(t *testing.T) {
 	forbiddenMarkers := []string{
 		"func checkCardActionPermissionLegality(",
 		"func permissionForActionKind(",
+		"targetLegalityChecker := BuildTargetLegalityChecker(state)",
 	}
 
 	for _, marker := range forbiddenMarkers {

@@ -185,23 +185,9 @@ func checkLegalityWithLookup(state GameState, action Action, sourceLookup cardOp
 		)
 	}
 
-	// Check target legality for card operation targets (not for role actions like attack/investigation)
-	// XQ31 "不能成为目标" should only block card/ability targeting, not role actions.
-	if action.TargetCardID != "" && action.Kind == ActionKindQueueOperation {
-		targetLegalityChecker := BuildTargetLegalityChecker(state)
-		targetResult := targetLegalityChecker.CheckTargetCard(state, action.ActorID, action.TargetCardID)
-		if !targetResult.CanTarget {
-			return legalityFailure(
-				ReasonCodeTargetFailedProhibited,
-				"rules.target.prohibited",
-				"action.targetCardId",
-				map[string]string{
-					"targetCardId":        action.TargetCardID,
-					"prohibitingCardId":   targetResult.SourceCardID,
-					"prohibitingCardName": targetResult.SourceCardName,
-				},
-			)
-		}
+	targetLegality := checkQueueOperationTargetLegality(state, action)
+	if !targetLegality.OK {
+		return targetLegality
 	}
 
 	switch action.Kind {

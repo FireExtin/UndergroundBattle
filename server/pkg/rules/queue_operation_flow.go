@@ -4,6 +4,31 @@ import "fmt"
 
 // Purpose: Extracts queue_operation legality and build logic from engine orchestration paths.
 
+func checkQueueOperationTargetLegality(state GameState, action Action) LegalityResult {
+	// XQ31 "不能成为目标" should only block card/ability targeting on queue_operation.
+	// Role actions like declare_attack / declare_investigation are intentionally out of scope.
+	if action.Kind != ActionKindQueueOperation || action.TargetCardID == "" {
+		return okLegalityResult()
+	}
+
+	targetLegalityChecker := BuildTargetLegalityChecker(state)
+	targetResult := targetLegalityChecker.CheckTargetCard(state, action.ActorID, action.TargetCardID)
+	if !targetResult.CanTarget {
+		return legalityFailure(
+			ReasonCodeTargetFailedProhibited,
+			"rules.target.prohibited",
+			"action.targetCardId",
+			map[string]string{
+				"targetCardId":        action.TargetCardID,
+				"prohibitingCardId":   targetResult.SourceCardID,
+				"prohibitingCardName": targetResult.SourceCardName,
+			},
+		)
+	}
+
+	return okLegalityResult()
+}
+
 func checkQueueOperationActionLegality(state GameState, action Action, sourceLookup cardOperationSourceLookup) LegalityResult {
 	if !state.Turn.Phase.AllowsStack {
 		return legalityFailure(
