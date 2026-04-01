@@ -15,6 +15,8 @@ const (
 	ActionKindDeclareInvestigation ActionKind = "declare_investigation"
 	ActionKindResolveTopStack      ActionKind = "resolve_top_stack"
 	ActionKindRollSeededRandom     ActionKind = "roll_seeded_random"
+	ActionKindSetMarker            ActionKind = "set_marker"    // 设置标记物
+	ActionKindRemoveMarker         ActionKind = "remove_marker" // 移除标记物
 )
 
 // OperationKind names the minimal operation types built from actions.

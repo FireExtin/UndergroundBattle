@@ -105,14 +105,15 @@ func TestAttachmentSourceDepartureEffectInvalidation(t *testing.T) {
 	// 创建 continuous effect（由 source-1 提供）
 	state.Board.Continuous.Active = []ContinuousEffect{
 		{
-			ID:             "eff-1",
-			SourceCardID:   "source-1",
-			TargetCardID:   "host-1",
-			Layer:          LayerNumeric,
-			EffectKind:     "modifyStat",
-			Stat:           "defense",
-			Amount:         1,
-			DurationKind:   "permanent",
+			ID:           "eff-1",
+			SourceCardID: "source-1",
+			AttachmentID: "att-1",
+			TargetCardID: "host-1",
+			Layer:        LayerNumeric,
+			EffectKind:   "modifyStat",
+			Stat:         "defense",
+			Amount:       1,
+			DurationKind: "permanent",
 		},
 	}
 
@@ -189,5 +190,85 @@ func TestAttachmentTrackingV0NoRegression(t *testing.T) {
 	att := newState.Board.Attachments.Active[0]
 	if att.TargetCardID != "host-1" {
 		t.Fatalf("expected TargetCardID = 'host-1', got %q", att.TargetCardID)
+	}
+}
+
+// TestPruneExpiredAttachmentDoesNotRemoveOtherEffectsFromSameSource ensures we only
+// remove effects tied to removed attachment IDs, not every effect from the same source.
+func TestPruneExpiredAttachmentDoesNotRemoveOtherEffectsFromSameSource(t *testing.T) {
+	state := NewGameState(InitialStateConfig{
+		GameID:         "test-attachment-prune-precision",
+		ActivePlayerID: "P1",
+	})
+
+	state.Board.Cards = []CardState{
+		{
+			CardID:    "source-1",
+			Kind:      CardKindCharacter,
+			Zone:      CardZoneTable,
+			OwnerID:   "P1",
+			Destroyed: false,
+		},
+		{
+			CardID:    "host-expired",
+			Kind:      CardKindCharacter,
+			Zone:      CardZoneDiscard, // invalid host/target for attachment
+			OwnerID:   "P1",
+			Destroyed: true,
+		},
+		{
+			CardID:    "host-active",
+			Kind:      CardKindCharacter,
+			Zone:      CardZoneTable,
+			OwnerID:   "P1",
+			Destroyed: false,
+		},
+	}
+
+	state.Board.Attachments.Active = []Attachment{
+		{ID: "att-expired", SourceCardID: "source-1", TargetCardID: "host-expired", HostCardID: "host-expired"},
+		{ID: "att-active", SourceCardID: "source-1", TargetCardID: "host-active", HostCardID: "host-active"},
+	}
+
+	state.Board.Continuous.Active = []ContinuousEffect{
+		// Bound to expired attachment: should be removed.
+		{ID: "ce-expired", SourceCardID: "source-1", AttachmentID: "att-expired", TargetCardID: "host-expired"},
+		// Bound to active attachment: should stay.
+		{ID: "ce-active-attachment", SourceCardID: "source-1", AttachmentID: "att-active", TargetCardID: "host-active"},
+		// Not attachment-bound but same source: should also stay.
+		{ID: "ce-active-non-attachment", SourceCardID: "source-1", TargetCardID: "host-active"},
+	}
+
+	pruned := NewAttachmentManager(state).PruneExpired()
+
+	if len(pruned.Board.Attachments.Active) != 1 {
+		t.Fatalf("attachments after prune = %d, want 1", len(pruned.Board.Attachments.Active))
+	}
+	if pruned.Board.Attachments.Active[0].ID != "att-active" {
+		t.Fatalf("remaining attachment = %q, want %q", pruned.Board.Attachments.Active[0].ID, "att-active")
+	}
+
+	foundExpired := false
+	foundActiveAttachment := false
+	foundActiveNonAttachment := false
+	for _, effect := range pruned.Board.Continuous.Active {
+		switch effect.ID {
+		case "ce-expired":
+			foundExpired = true
+		case "ce-active-attachment":
+			foundActiveAttachment = true
+		case "ce-active-non-attachment":
+			foundActiveNonAttachment = true
+		}
+	}
+
+	if foundExpired {
+		t.Fatal("expired attachment effect should be removed")
+	}
+	if !foundActiveAttachment {
+		t.Fatal("active attachment effect should be kept")
+	}
+	if !foundActiveNonAttachment {
+		t.Fatal("non-attachment effect from same source should not be removed")
 	}
 }

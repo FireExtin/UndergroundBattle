@@ -109,6 +109,25 @@ func TestMarkerLegalityHook(t *testing.T) {
 	}
 }
 
+// TestMarkerCloneIsolation ensures cloneGameState deep-copies marker registry maps.
+func TestMarkerCloneIsolation(t *testing.T) {
+	original := NewGameState(InitialStateConfig{
+		GameID:         "test-marker-clone-isolation",
+		ActivePlayerID: "P1",
+	})
+	original.Board.Markers.SetMarker("P1", "secret_society", 1)
+
+	cloned := cloneGameState(original)
+	cloned.Board.Markers.SetMarker("P1", "secret_society", 3)
+
+	if got := original.Board.Markers.GetMarker("P1", "secret_society"); got != 1 {
+		t.Fatalf("original marker mutated through clone aliasing: got %d, want 1", got)
+	}
+	if got := cloned.Board.Markers.GetMarker("P1", "secret_society"); got != 3 {
+		t.Fatalf("cloned marker value = %d, want 3", got)
+	}
+}
+
 // Helper functions
 
 func addMarker(state GameState, playerID, markerType string, amount int) GameState {

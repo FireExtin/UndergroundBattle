@@ -21,6 +21,7 @@ func cloneBoardState(state BoardState) BoardState {
 	cloned.Cards = cloneCardStates(state.Cards)
 	cloned.Continuous = cloneContinuousRegistry(state.Continuous)
 	cloned.Attachments = cloneAttachmentRegistry(state.Attachments)
+	cloned.Markers = cloneMarkerRegistry(state.Markers)
 	return cloned
 }
 
@@ -153,6 +154,12 @@ func cloneAttachments(attachments []Attachment) []Attachment {
 	return cloned
 }
 
+func cloneMarkerRegistry(registry MarkerRegistry) MarkerRegistry {
+	cloned := registry
+	cloned.ByPlayer = cloneNestedIntMap(registry.ByPlayer)
+	return cloned
+}
+
 func cloneScoreState(state ScoreState) ScoreState {
 	cloned := state
 	cloned.ByPlayer = cloneIntMap(state.ByPlayer)
@@ -167,6 +174,19 @@ func cloneIntMap(values map[string]int) map[string]int {
 	cloned := make(map[string]int, len(values))
 	for key, value := range values {
 		cloned[key] = value
+	}
+
+	return cloned
+}
+
+func cloneNestedIntMap(values map[string]map[string]int) map[string]map[string]int {
+	if len(values) == 0 {
+		return nil
+	}
+
+	cloned := make(map[string]map[string]int, len(values))
+	for key, nested := range values {
+		cloned[key] = cloneIntMap(nested)
 	}
 
 	return cloned

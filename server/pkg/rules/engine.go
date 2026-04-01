@@ -571,6 +571,7 @@ func executeRevealCard(state GameState, operation Operation) (GameState, Operati
 	}
 
 	working.Board.Cards[index].Revealed = true
+	working.Board.Cards[index].FaceDown = false // 同时设置 FaceDown = false
 	reopenPhaseStep(&working.Turn)
 	resetPriorityWindow(&working.Turn, operation.ActorID, PriorityWindowAction)
 	operation.Status = OperationStatusResolved

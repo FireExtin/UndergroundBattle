@@ -138,7 +138,7 @@ func NewAttachmentManager(state GameState) *AttachmentManager {
 }
 
 // PruneExpired removes attachments where source, target, or host is no longer valid.
-// Also removes continuous effects from expired attachment sources.
+// Also removes continuous effects bound to removed attachment IDs.
 func (am *AttachmentManager) PruneExpired() GameState {
 	working := cloneGameState(am.state)
 	registry := &working.Board.Attachments
@@ -147,41 +147,41 @@ func (am *AttachmentManager) PruneExpired() GameState {
 		return working
 	}
 
-	// Track which attachment sources are being removed
-	removedSourceIDs := make(map[string]bool)
+	// Track which attachment IDs are being removed.
+	removedAttachmentIDs := make(map[string]bool)
 
 	kept := make([]Attachment, 0, len(registry.Active))
 	for _, attachment := range registry.Active {
 		if am.isAttachmentStillActive(attachment) {
 			kept = append(kept, attachment)
 		} else {
-			// Track removed source for continuous effect cleanup
-			if attachment.SourceCardID != "" {
-				removedSourceIDs[attachment.SourceCardID] = true
+			if attachment.ID != "" {
+				removedAttachmentIDs[attachment.ID] = true
 			}
 		}
 	}
 
 	registry.Active = kept
 
-	// Clean up continuous effects from removed attachment sources
-	if len(removedSourceIDs) > 0 {
-		working.Board.Continuous.Active = filterContinuousEffectsBySource(
+	// Clean up continuous effects bound to removed attachments only.
+	if len(removedAttachmentIDs) > 0 {
+		working.Board.Continuous.Active = filterContinuousEffectsByAttachmentID(
 			working.Board.Continuous.Active,
-			removedSourceIDs,
+			removedAttachmentIDs,
 		)
 	}
 
 	return working
 }
 
-// filterContinuousEffectsBySource removes continuous effects from removed sources.
-func filterContinuousEffectsBySource(effects []ContinuousEffect, removedSources map[string]bool) []ContinuousEffect {
+// filterContinuousEffectsByAttachmentID removes effects tied to removed attachments.
+func filterContinuousEffectsByAttachmentID(effects []ContinuousEffect, removedAttachmentIDs map[string]bool) []ContinuousEffect {
 	kept := make([]ContinuousEffect, 0, len(effects))
 	for _, effect := range effects {
-		if !removedSources[effect.SourceCardID] {
-			kept = append(kept, effect)
+		if effect.AttachmentID != "" && removedAttachmentIDs[effect.AttachmentID] {
+			continue
 		}
+		kept = append(kept, effect)
 	}
 	return kept
 }
