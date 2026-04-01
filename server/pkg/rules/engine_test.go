@@ -1259,6 +1259,103 @@ func TestSubmitActionReturnsLegalityErrorWhenXQ22BlocksEventCards(t *testing.T) 
 	}
 }
 
+func TestSetMarkerActionUpdatesMarkerRegistry(t *testing.T) {
+	state := NewGameState(InitialStateConfig{
+		GameID:         "game-set-marker",
+		ActivePlayerID: "P1",
+		Seed:           28,
+	})
+
+	result, err := SubmitAction(state, Action{
+		ID:             "act-set-marker-1",
+		ActorID:        "P1",
+		Kind:           ActionKindSetMarker,
+		TargetPlayerID: "P1",
+		MarkerType:     "secret_society",
+		MarkerAmount:   2,
+	})
+	if err != nil {
+		t.Fatalf("SubmitAction returned error: %v", err)
+	}
+
+	if result.Operation.Kind != OperationKindSetMarker {
+		t.Fatalf("operation kind = %q, want %q", result.Operation.Kind, OperationKindSetMarker)
+	}
+
+	if result.Event.Kind != EventKindMarkerSet {
+		t.Fatalf("event kind = %q, want %q", result.Event.Kind, EventKindMarkerSet)
+	}
+
+	if got := result.State.Board.Markers.GetMarker("P1", "secret_society"); got != 2 {
+		t.Fatalf("marker amount = %d, want 2", got)
+	}
+}
+
+func TestRemoveMarkerActionRejectsOverRemoval(t *testing.T) {
+	state := NewGameState(InitialStateConfig{
+		GameID:         "game-remove-marker",
+		ActivePlayerID: "P1",
+		Seed:           29,
+	})
+
+	state = mustSubmit(t, state, Action{
+		ID:             "act-set-marker-before-remove",
+		ActorID:        "P1",
+		Kind:           ActionKindSetMarker,
+		TargetPlayerID: "P1",
+		MarkerType:     "secret_society",
+		MarkerAmount:   2,
+	})
+
+	_, err := SubmitAction(state, Action{
+		ID:             "act-remove-marker-1",
+		ActorID:        "P1",
+		Kind:           ActionKindRemoveMarker,
+		TargetPlayerID: "P1",
+		MarkerType:     "secret_society",
+		MarkerAmount:   5,
+	})
+	if err == nil {
+		t.Fatal("expected SubmitAction to reject marker over-removal")
+	}
+
+	var legalityErr *LegalityError
+	if !errors.As(err, &legalityErr) {
+		t.Fatalf("expected LegalityError, got %T", err)
+	}
+	if legalityErr.Code != ReasonCodeTargetFailedMissing {
+		t.Fatalf("error code = %q, want %q", legalityErr.Code, ReasonCodeTargetFailedMissing)
+	}
+}
+
+func TestSetMarkerActionRejectsMissingMarkerType(t *testing.T) {
+	state := NewGameState(InitialStateConfig{
+		GameID:         "game-set-marker-missing-type",
+		ActivePlayerID: "P1",
+		Seed:           30,
+	})
+
+	_, err := SubmitAction(state, Action{
+		ID:             "act-set-marker-missing-type",
+		ActorID:        "P1",
+		Kind:           ActionKindSetMarker,
+		TargetPlayerID: "P1",
+		MarkerAmount:   1,
+	})
+	if err == nil {
+		t.Fatal("expected SubmitAction to reject missing markerType")
+	}
+
+	var legalityErr *LegalityError
+	if !errors.As(err, &legalityErr) {
+		t.Fatalf("expected LegalityError, got %T", err)
+	}
+
+	if legalityErr.Code != ReasonCodeTargetFailedMissing {
+		t.Fatalf("error code = %q, want %q", legalityErr.Code, ReasonCodeTargetFailedMissing)
+	}
+}
+
 func mustSubmit(t *testing.T, state GameState, action Action) GameState {
 	t.Helper()
 

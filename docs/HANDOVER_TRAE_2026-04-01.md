@@ -207,6 +207,23 @@
   - 新增 `conflict_loop_test.go` 完整测试
 - [ ] 把当前"rules core + fixture gate + sandbox"整理成更清晰的 AI 接手路径，避免后续会话重新摸索上下文
 
+### 2.3.1 最新待做补充（2026-04-01，覆盖优先）
+
+> 以下待做项基于“降复杂度重构”最新落地状态，应优先于旧的“继续扩卡”叙事。
+
+- [ ] **统一状态迁移入口继续收口（Transition API）**
+  - 已收口：`inspect`、`drawCards`、`RandomResults`、`Board.Resolved`
+  - 待收口：其余跨模块 append/字段写入点（尤其是未来 permanents/attachments 扩展路径）
+- [ ] **`engine.go` 继续去重型**
+  - 已拆出：`marker_actions.go`、`card_effect_resolution.go`
+  - 待拆：legality/card-source catalog 相关段落，目标是 engine 只保留 orchestration
+- [ ] **建立“禁止散写”的长期护栏**
+  - 增加面向 transition helper 的约束测试/检查（例如针对关键字段写入路径的预算或守卫）
+  - 防止后续扩卡时回到“就地字段突变 + 局部特判”模式
+- [ ] **effect 绑定粒度继续坚持实体 ID 语义**
+  - 现有 `attachmentId` 绑定能力必须在后续新牌实现中持续沿用
+  - 禁止回退到 source 粗粒度解绑，避免同源误删
+
 ---
 
 ## 3. 核心文件结构
@@ -418,8 +435,10 @@ type CardOperationSource struct {
 
 | 问题 | 位置 | 状态 | 备注 |
 |-----|------|-----|------|
-| `XQ22` 仍是单卡硬编码 slice | `server/pkg/rules/engine.go` | 已控范围 | 现在按 `DefinitionID` 匹配了，但还没抽象成通用 prohibition framework |
+| `XQ22` 仍属于“单卡规则实例”而非完整规则家族 | `server/pkg/rules/legality_catalog.go` | 已控范围 | 已从 engine 硬编码迁到 catalog，但仍需继续抽象更多可复用 prohibition 模式 |
 | `DefinitionID` 还没贯穿真实 permanents lifecycle | `server/pkg/rules/projection.go` 及未来上场建模 | 待继续 | 当前主要在测试/规则识别里使用 |
+| 状态迁移入口仍未完全覆盖 | `server/pkg/rules/*` | 进行中 | 已完成 inspect/draw/random/resolved 收口，仍需持续清理残余散写点 |
+| `engine.go` 体量虽下降但仍偏大 | `server/pkg/rules/engine.go` | 进行中 | 已抽离 marker/card-effect 模块，仍需继续抽 legality/source-catalog 段 |
 
 ### 6.2 已知限制
 

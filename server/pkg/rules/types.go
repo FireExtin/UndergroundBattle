@@ -149,6 +149,7 @@ type ContinuousEffect struct {
 	SourceOperationID string          `json:"sourceOperationId,omitempty"`
 	SourceCardID      string          `json:"sourceCardId,omitempty"`
 	AttachmentID      string          `json:"attachmentId,omitempty"`
+	BindingEntityID   string          `json:"bindingEntityId,omitempty"`
 	ControllerID      string          `json:"controllerId,omitempty"`
 	TargetCardID      string          `json:"targetCardId,omitempty"`
 	Layer             ContinuousLayer `json:"layer"`
@@ -223,10 +224,10 @@ type Action struct {
 	CardID         string     `json:"cardId,omitempty"`
 	TargetPlayerID string     `json:"targetPlayerId,omitempty"`
 	TargetCardID   string     `json:"targetCardId,omitempty"`
+	MarkerType     string     `json:"markerType,omitempty"`
+	MarkerAmount   int        `json:"markerAmount,omitempty"`
 	OperationLabel string     `json:"operationLabel,omitempty"`
 	RandomMax      int        `json:"randomMax,omitempty"`
-	MarkerType     string     `json:"markerType,omitempty"`   // 标记物类型
-	MarkerAmount   int        `json:"markerAmount,omitempty"` // 标记物数量
 }
 
 // EffectSpec is the executable subset of the shared CardLogic effect payload copied into Go-side operations.
@@ -268,12 +269,12 @@ type Operation struct {
 	CardID         string               `json:"cardId,omitempty"`
 	TargetPlayerID string               `json:"targetPlayerId,omitempty"`
 	TargetCardID   string               `json:"targetCardId,omitempty"`
+	MarkerType     string               `json:"markerType,omitempty"`
+	MarkerAmount   int                  `json:"markerAmount,omitempty"`
 	Label          string               `json:"label,omitempty"`
 	RandomMax      int                  `json:"randomMax,omitempty"`
 	NextPhase      PhaseName            `json:"nextPhase,omitempty"`
 	Source         *CardOperationSource `json:"source,omitempty"`
-	MarkerType     string               `json:"markerType,omitempty"`   // 标记物类型
-	MarkerAmount   int                  `json:"markerAmount,omitempty"` // 标记物数量
 }
 
 // Event records the committed result of a single action pipeline run.
@@ -293,11 +294,11 @@ type Event struct {
 	TargetCardID     string             `json:"targetCardId,omitempty"`
 	AppliedAmount    int                `json:"appliedAmount,omitempty"`
 	DestroyedCardID  string             `json:"destroyedCardId,omitempty"`
+	MarkerType       string             `json:"markerType,omitempty"`
+	MarkerAmount     int                `json:"markerAmount,omitempty"`
 	StackDepth       int                `json:"stackDepth"`
 	RandomValue      *int               `json:"randomValue,omitempty"`
 	StepEnded        bool               `json:"stepEnded,omitempty"`
-	MarkerType       string             `json:"markerType,omitempty"`     // 标记物类型
-	MarkerAmount     int                `json:"markerAmount,omitempty"`   // 标记物数量
 	TargetPlayerID   string             `json:"targetPlayerId,omitempty"` // 目标玩家ID
 }
 

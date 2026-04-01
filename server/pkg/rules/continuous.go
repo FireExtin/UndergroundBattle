@@ -83,25 +83,30 @@ func registerContinuousEffect(state GameState, operation Operation, effect Effec
 
 	working := cloneGameState(state)
 	attachmentID := ""
+	sourceCardID := sourceCardEntityID(working, operation)
+	bindingEntityID := bindingEntityForOperation(operation.ID)
+	if sourceCardID != "" {
+		bindingEntityID = bindingEntityForCard(sourceCardID)
+	}
 
 	// Attachment tracking must support both real board entities and fixture-only
 	// sources such as BQ022, which currently do not materialize as table cards.
 	if operation.Source.BasicType == "附属" {
-		builder := NewAttachment(working).
-			To(targetCardID).
-			AtRevision(working.Revision.Number).
-			WithBasicType(operation.Source.BasicType).
-			FromDefinition(operation.Source.CardID).
-			FromOperation(operation.ID)
-
-		if findCardIndex(working, operation.CardID) != -1 {
-			builder = builder.From(operation.CardID)
-		}
-
-		newState, err := builder.Create()
+		newState, createdAttachmentID, err := attachToHost(working, attachmentTransitionSpec{
+			SourceCardID:       sourceCardID,
+			SourceDefinitionID: operation.Source.CardID,
+			SourceOperationID:  operation.ID,
+			TargetCardID:       targetCardID,
+			HostCardID:         targetCardID,
+			Revision:           working.Revision.Number,
+			BasicType:          operation.Source.BasicType,
+		})
 		if err == nil {
 			working = newState
-			attachmentID = working.Board.Attachments.Active[len(working.Board.Attachments.Active)-1].ID
+			attachmentID = createdAttachmentID
+			if attachmentID != "" {
+				bindingEntityID = bindingEntityForAttachment(attachmentID)
+			}
 		}
 	}
 
@@ -111,8 +116,9 @@ func registerContinuousEffect(state GameState, operation Operation, effect Effec
 	continuous := ContinuousEffect{
 		ID:                fmt.Sprintf("ce:%s:%d", operation.ID, registry.NextTimestamp),
 		SourceOperationID: operation.ID,
-		SourceCardID:      operation.CardID,
+		SourceCardID:      sourceCardID,
 		AttachmentID:      attachmentID,
+		BindingEntityID:   bindingEntityID,
 		ControllerID:      operation.ActorID,
 		TargetCardID:      targetCardID,
 		Layer:             layerForEffect(effect.Kind),
@@ -184,11 +190,7 @@ func pruneExpiredContinuousEffects(state *GameState) {
 			removed = true
 			continue
 		}
-		if !continuousEffectAttachmentIsStillActive(*state, effect) {
-			removed = true
-			continue
-		}
-		if !continuousEffectSourceIsStillActive(*state, effect) {
+		if !continuousEffectBindingIsStillActive(*state, effect) {
 			removed = true
 			continue
 		}
@@ -205,35 +207,6 @@ func pruneExpiredContinuousEffects(state *GameState) {
 func pruneExpiredAttachments(state *GameState) {
 	manager := NewAttachmentManager(*state)
 	*state = manager.PruneExpired()
-}
-
-func continuousEffectAttachmentIsStillActive(state GameState, effect ContinuousEffect) bool {
-	if effect.AttachmentID == "" {
-		return true
-	}
-
-	for _, attachment := range state.Board.Attachments.Active {
-		if attachment.ID == effect.AttachmentID {
-			return true
-		}
-	}
-
-	return false
-}
-
-func continuousEffectSourceIsStillActive(state GameState, effect ContinuousEffect) bool {
-	if effect.SourceCardID == "" {
-		return true
-	}
-
-	index := findCardIndex(state, effect.SourceCardID)
-	if index == -1 {
-		// Some continuous effects come from fixture-only cards that are not represented as board instances.
-		return true
-	}
-
-	source := state.Board.Cards[index]
-	return source.Zone == CardZoneTable && !source.Destroyed
 }
 
 func sortContinuousEffects(effects []ContinuousEffect) {
@@ -331,12 +304,6 @@ func applyDerivedBoardSemantics(state *GameState) {
 	refreshAllRegionControl(state)
 }
 
-func moveCardToDiscard(card *CardState) {
-	card.Destroyed = true
-	card.Zone = CardZoneDiscard
-	card.Revealed = true
-}
-
 func lethalDefenseThreshold(defense int) int {
 	if defense <= 0 {
 		return 1
@@ -388,18 +355,19 @@ func BuildContinuousEffectsFromTemplates(state GameState, templates []Continuous
 
 				timestamp++
 				effect := ContinuousEffect{
-					ID:           fmt.Sprintf("ce:prod:%s:%s:%d", template.SourceDefinitionID, sourceCard.CardID, timestamp),
-					SourceCardID: sourceCard.CardID,
-					ControllerID: sourceCard.ControllerID,
-					TargetCardID: targetCard.CardID,
-					Layer:        template.Layer,
-					EffectKind:   template.EffectKind,
-					DurationKind: template.DurationKind,
-					Timestamp:    timestamp,
-					Stat:         template.Stat,
-					Amount:       template.Amount,
-					Keyword:      template.Keyword,
-					Permission:   template.Permission,
+					ID:              fmt.Sprintf("ce:prod:%s:%s:%d", template.SourceDefinitionID, sourceCard.CardID, timestamp),
+					SourceCardID:    sourceCard.CardID,
+					BindingEntityID: bindingEntityForCard(sourceCard.CardID),
+					ControllerID:    sourceCard.ControllerID,
+					TargetCardID:    targetCard.CardID,
+					Layer:           template.Layer,
+					EffectKind:      template.EffectKind,
+					DurationKind:    template.DurationKind,
+					Timestamp:       timestamp,
+					Stat:            template.Stat,
+					Amount:          template.Amount,
+					Keyword:         template.Keyword,
+					Permission:      template.Permission,
 				}
 				effects = append(effects, effect)
 			}

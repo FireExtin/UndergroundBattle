@@ -74,74 +74,6 @@ func NewGameState(config InitialStateConfig) GameState {
 	return state
 }
 
-// SubmitAction runs the legality -> operation -> stack/direct resolution -> event -> commit pipeline.
-func SubmitAction(state GameState, action Action) (SubmitResult, error) {
-	return SubmitActionWithProjection(state, action, NewProjectionEngine())
-}
-
-// SubmitActionWithProjection runs the same pipeline as SubmitAction but exposes projection generation for tests and callers.
-func SubmitActionWithProjection(state GameState, action Action, projector *ProjectionEngine) (SubmitResult, error) {
-	legality := CheckLegality(state, action)
-	if !legality.OK {
-		return SubmitResult{}, newLegalityError(legality)
-	}
-
-	operation, err := BuildOperation(state, action)
-	if err != nil {
-		return SubmitResult{}, err
-	}
-
-	working := cloneGameState(state)
-	working, operation, event, err := executeOperation(working, operation)
-	if err != nil {
-		return SubmitResult{}, err
-	}
-
-	result := commitState(working, action, operation, event, projector)
-
-	// Check invariants on the committed state so history/revision bookkeeping and
-	// commit-time recalculation are validated together.
-	if DefaultInvariantConfig.Enabled {
-		results := CheckAllInvariants(result.State, DefaultInvariantConfig)
-		for _, result := range results {
-			if !result.Passed {
-				invariantError := legalityFailure(
-					ReasonCodeRulesFailedInvariantViolated,
-					"rules.invariant.violated",
-					"invariant.check",
-					map[string]string{
-						"actionId":      action.ID,
-						"invariantName": result.Name,
-						"message":       result.Message,
-					},
-				)
-				return SubmitResult{}, newLegalityError(invariantError)
-			}
-		}
-	}
-
-	return result, nil
-}
-
-// ReplayActions replays an action log against an initial snapshot.
-func ReplayActions(initial GameState, actions []Action) (GameState, error) {
-	replayed := cloneGameState(initial)
-	for _, action := range actions {
-		result, err := submitActionWithoutProjection(replayed, action)
-		if err != nil {
-			return GameState{}, err
-		}
-
-		replayed = result.State
-	}
-
-	return replayed, nil
-}
-
-func submitActionWithoutProjection(state GameState, action Action) (SubmitResult, error) {
-	return SubmitActionWithProjection(state, action, nil)
-}
-
 // CheckLegality returns a structured machine-readable legality result instead of a plain text error.
 func CheckLegality(state GameState, action Action) LegalityResult {
 	if action.ID == "" {
@@ -304,6 +236,8 @@ func CheckLegality(state GameState, action Action) LegalityResult {
 		return okLegalityResult()
 	case ActionKindPassPriority:
 		return okLegalityResult()
+	case ActionKindSetMarker, ActionKindRemoveMarker:
+		return checkMarkerActionLegality(state, action)
 	case ActionKindDeclareAttack:
 		return checkRoleActionLegality(state, action, CardKindCharacter)
 	case ActionKindDeclareInvestigation:
@@ -398,102 +332,6 @@ func CheckLegality(state GameState, action Action) LegalityResult {
 		}
 
 		return okLegalityResult()
-	case ActionKindSetMarker:
-		if action.MarkerType == "" {
-			return legalityFailure(
-				ReasonCodeTargetFailedMissing,
-				"rules.target.marker_type_missing",
-				"action.markerType",
-				nil,
-			)
-		}
-
-		if action.MarkerAmount <= 0 {
-			return legalityFailure(
-				ReasonCodeRulesFailedRandomMaxInvalid,
-				"rules.marker.amount_invalid",
-				"action.markerAmount",
-				nil,
-			)
-		}
-
-		if action.TargetPlayerID != "" && !containsString(state.Players, action.TargetPlayerID) {
-			return legalityFailure(
-				ReasonCodeTargetFailedMissing,
-				"rules.target.player_missing",
-				"action.targetPlayerId",
-				map[string]string{
-					"targetPlayerId": action.TargetPlayerID,
-				},
-			)
-		}
-
-		return okLegalityResult()
-	case ActionKindRemoveMarker:
-		if action.MarkerType == "" {
-			return legalityFailure(
-				ReasonCodeTargetFailedMissing,
-				"rules.target.marker_type_missing",
-				"action.markerType",
-				nil,
-			)
-		}
-
-		if action.MarkerAmount < 0 {
-			return legalityFailure(
-				ReasonCodeRulesFailedRandomMaxInvalid,
-				"rules.marker.amount_invalid",
-				"action.markerAmount",
-				nil,
-			)
-		}
-
-		if action.TargetPlayerID != "" && !containsString(state.Players, action.TargetPlayerID) {
-			return legalityFailure(
-				ReasonCodeTargetFailedMissing,
-				"rules.target.player_missing",
-				"action.targetPlayerId",
-				map[string]string{
-					"targetPlayerId": action.TargetPlayerID,
-				},
-			)
-		}
-
-		// 检查目标玩家是否有足够的标记物可以移除
-		targetPlayerID := action.TargetPlayerID
-		if targetPlayerID == "" {
-			targetPlayerID = action.ActorID
-		}
-
-		currentAmount := state.Board.Markers.GetMarker(targetPlayerID, action.MarkerType)
-		if currentAmount <= 0 {
-			return legalityFailure(
-				ReasonCodeTargetFailedMissing,
-				"rules.marker.not_enough",
-				"board.markers",
-				map[string]string{
-					"playerId":      targetPlayerID,
-					"markerType":    action.MarkerType,
-					"currentAmount": intString(currentAmount),
-				},
-			)
-		}
-
-		if action.MarkerAmount > currentAmount {
-			return legalityFailure(
-				ReasonCodeTargetFailedMissing,
-				"rules.marker.not_enough",
-				"board.markers",
-				map[string]string{
-					"playerId":        targetPlayerID,
-					"markerType":      action.MarkerType,
-					"currentAmount":   intString(currentAmount),
-					"requestedAmount": intString(action.MarkerAmount),
-				},
-			)
-		}
-
-		return okLegalityResult()
 	case ActionKindSetFaceDown:
 		if action.CardID == "" {
 			return legalityFailure(
@@ -560,6 +398,14 @@ func BuildOperation(state GameState, action Action) (Operation, error) {
 		operation.CardID = action.CardID
 	case ActionKindPassPriority:
 		operation.Kind = OperationKindPassPriority
+	case ActionKindSetMarker:
+		operation.Kind = OperationKindSetMarker
+		operation.MarkerType = action.MarkerType
+		operation.MarkerAmount = action.MarkerAmount
+	case ActionKindRemoveMarker:
+		operation.Kind = OperationKindRemoveMarker
+		operation.MarkerType = action.MarkerType
+		operation.MarkerAmount = action.MarkerAmount
 	case ActionKindDeclareAttack:
 		operation.Kind = OperationKindDeclareAttack
 		operation.CardID = action.CardID
@@ -588,16 +434,6 @@ func BuildOperation(state GameState, action Action) (Operation, error) {
 	case ActionKindRollSeededRandom:
 		operation.Kind = OperationKindRollRandom
 		operation.RandomMax = action.RandomMax
-	case ActionKindSetMarker:
-		operation.Kind = OperationKindSetMarker
-		operation.MarkerType = action.MarkerType
-		operation.MarkerAmount = action.MarkerAmount
-		operation.TargetPlayerID = action.TargetPlayerID
-	case ActionKindRemoveMarker:
-		operation.Kind = OperationKindRemoveMarker
-		operation.MarkerType = action.MarkerType
-		operation.MarkerAmount = action.MarkerAmount
-		operation.TargetPlayerID = action.TargetPlayerID
 	case ActionKindSetFaceDown:
 		operation.Kind = OperationKindSetFaceDown
 		operation.CardID = action.CardID
@@ -655,6 +491,10 @@ func executeOperation(state GameState, operation Operation) (GameState, Operatio
 		return executeInspectCard(working, operation)
 	case OperationKindPassPriority:
 		return executePassPriority(working, operation)
+	case OperationKindSetMarker:
+		return executeSetMarker(working, operation)
+	case OperationKindRemoveMarker:
+		return executeRemoveMarker(working, operation)
 	case OperationKindDeclareAttack:
 		return executeDeclareAttack(working, operation)
 	case OperationKindDeclareInvestigation:
@@ -665,10 +505,6 @@ func executeOperation(state GameState, operation Operation) (GameState, Operatio
 		return executeResolveTopStack(working, operation)
 	case OperationKindRollRandom:
 		return executeRollRandom(working, operation)
-	case OperationKindSetMarker:
-		return executeSetMarker(working, operation)
-	case OperationKindRemoveMarker:
-		return executeRemoveMarker(working, operation)
 	case OperationKindSetFaceDown:
 		return executeSetFaceDown(working, operation)
 	default:
@@ -712,8 +548,7 @@ func executeRevealCard(state GameState, operation Operation) (GameState, Operati
 		return GameState{}, Operation{}, Event{}, fmt.Errorf("%s", ReasonCodeTargetFailedMissing)
 	}
 
-	working.Board.Cards[index].Revealed = true
-	working.Board.Cards[index].FaceDown = false // 同时设置 FaceDown = false
+	revealFaceDown(&working.Board.Cards[index])
 	reopenPhaseStep(&working.Turn)
 	resetPriorityWindow(&working.Turn, operation.ActorID, PriorityWindowAction)
 	operation.Status = OperationStatusResolved
@@ -741,9 +576,7 @@ func executeInspectCard(state GameState, operation Operation) (GameState, Operat
 		return GameState{}, Operation{}, Event{}, fmt.Errorf("%s", ReasonCodeTargetFailedMissing)
 	}
 
-	if !containsString(working.Board.Cards[index].InspectedBy, operation.ActorID) {
-		working.Board.Cards[index].InspectedBy = append(working.Board.Cards[index].InspectedBy, operation.ActorID)
-	}
+	markCardInspected(&working.Board.Cards[index], operation.ActorID)
 	reopenPhaseStep(&working.Turn)
 	resetPriorityWindow(&working.Turn, operation.ActorID, PriorityWindowAction)
 	operation.Status = OperationStatusResolved
@@ -882,7 +715,7 @@ func executeRollRandom(state GameState, operation Operation) (GameState, Operati
 	working.RNG = nextRNG
 	reopenPhaseStep(&working.Turn)
 	resetPriorityWindow(&working.Turn, operation.ActorID, PriorityWindowAction)
-	working.Board.RandomResults = append(working.Board.RandomResults, RandomResult{
+	appendRandomResult(&working, RandomResult{
 		ActionID:    operation.ActionID,
 		OperationID: operation.ID,
 		DrawIndex:   nextRNG.DrawCount,
@@ -903,77 +736,6 @@ func executeRollRandom(state GameState, operation Operation) (GameState, Operati
 		PassCount:        working.Turn.Priority.PassCount,
 		StackDepth:       len(working.Board.Stack),
 		RandomValue:      &randomValue,
-		RevisionNumber:   0,
-	}, nil
-}
-
-func executeSetMarker(state GameState, operation Operation) (GameState, Operation, Event, error) {
-	working := cloneGameState(state)
-	targetPlayerID := operation.TargetPlayerID
-	if targetPlayerID == "" {
-		targetPlayerID = operation.ActorID
-	}
-
-	working.Board.Markers.SetMarker(targetPlayerID, operation.MarkerType, operation.MarkerAmount)
-	reopenPhaseStep(&working.Turn)
-	resetPriorityWindow(&working.Turn, operation.ActorID, PriorityWindowAction)
-	operation.Status = OperationStatusResolved
-
-	return working, operation, Event{
-		ID:               "evt:" + operation.ActionID,
-		ActionID:         operation.ActionID,
-		OperationID:      operation.ID,
-		Kind:             EventKindMarkerSet,
-		Phase:            working.Turn.Phase.Name,
-		Step:             working.Turn.Phase.Step,
-		PriorityPlayerID: currentPriorityPlayerID(working),
-		PriorityWindow:   currentPriorityWindowKind(working),
-		PassCount:        working.Turn.Priority.PassCount,
-		StackDepth:       len(working.Board.Stack),
-		TargetPlayerID:   targetPlayerID,
-		MarkerType:       operation.MarkerType,
-		MarkerAmount:     operation.MarkerAmount,
-		RevisionNumber:   0,
-	}, nil
-}
-
-func executeRemoveMarker(state GameState, operation Operation) (GameState, Operation, Event, error) {
-	working := cloneGameState(state)
-	targetPlayerID := operation.TargetPlayerID
-	if targetPlayerID == "" {
-		targetPlayerID = operation.ActorID
-	}
-
-	currentAmount := working.Board.Markers.GetMarker(targetPlayerID, operation.MarkerType)
-	removeAmount := operation.MarkerAmount
-	if removeAmount <= 0 || removeAmount > currentAmount {
-		removeAmount = currentAmount
-	}
-
-	newAmount := currentAmount - removeAmount
-	if newAmount < 0 {
-		newAmount = 0
-	}
-
-	working.Board.Markers.SetMarker(targetPlayerID, operation.MarkerType, newAmount)
-	reopenPhaseStep(&working.Turn)
-	resetPriorityWindow(&working.Turn, operation.ActorID, PriorityWindowAction)
-	operation.Status = OperationStatusResolved
-
-	return working, operation, Event{
-		ID:               "evt:" + operation.ActionID,
-		ActionID:         operation.ActionID,
-		OperationID:      operation.ID,
-		Kind:             EventKindMarkerRemoved,
-		Phase:            working.Turn.Phase.Name,
-		Step:             working.Turn.Phase.Step,
-		PriorityPlayerID: currentPriorityPlayerID(working),
-		PriorityWindow:   currentPriorityWindowKind(working),
-		PassCount:        working.Turn.Priority.PassCount,
-		StackDepth:       len(working.Board.Stack),
-		TargetPlayerID:   targetPlayerID,
-		MarkerType:       operation.MarkerType,
-		MarkerAmount:     newAmount,
 		RevisionNumber:   0,
 	}, nil
 }
@@ -1147,6 +909,8 @@ func actionRequiresEmptyStack(kind ActionKind) bool {
 		ActionKindDeclareInvestigation,
 		ActionKindRollSeededRandom:
 		return true
+	case ActionKindSetMarker, ActionKindRemoveMarker:
+		return true
 	default:
 		return false
 	}
@@ -1315,52 +1079,6 @@ func resolveStackedOperation(state GameState, operation Operation) (GameState, O
 		resolved := markOperationResolved(operation)
 		return finalizeResolvedOperation(state, resolved), resolved, nil
 	}
-}
-
-func resolveCardEffect(state GameState, operation Operation) (GameState, Operation, error) {
-	if operation.Source == nil {
-		return GameState{}, Operation{}, fmt.Errorf("%s", ReasonCodeRulesFailedCardLogicUnavailable)
-	}
-
-	switch operation.Source.ExecutionKind {
-	case CardExecutionDSL:
-		return resolveDSLCardEffect(state, operation)
-	case CardExecutionScript:
-		return resolveScriptCardEffect(state, operation)
-	default:
-		return GameState{}, Operation{}, fmt.Errorf("%s", ReasonCodeRulesFailedCardLogicUnavailable)
-	}
-}
-
-func resolveDSLCardEffect(state GameState, operation Operation) (GameState, Operation, error) {
-	if operation.Source == nil {
-		return GameState{}, Operation{}, fmt.Errorf("%s", ReasonCodeRulesFailedCardLogicUnavailable)
-	}
-
-	working := cloneGameState(state)
-	for _, effect := range operation.Source.Effects {
-		working = applyDSLEffect(working, operation, effect)
-	}
-
-	resolved := markOperationResolved(operation)
-	return finalizeResolvedOperation(working, resolved), resolved, nil
-}
-
-func resolveScriptCardEffect(state GameState, operation Operation) (GameState, Operation, error) {
-	resolved := markOperationResolved(operation)
-	return finalizeResolvedOperation(state, resolved), resolved, nil
-}
-
-func finalizeResolvedOperation(state GameState, operation Operation) GameState {
-	working := cloneGameState(state)
-	working.Board.Resolved = append(working.Board.Resolved, operation)
-	return working
-}
-
-func markOperationResolved(operation Operation) Operation {
-	resolved := cloneOperation(operation)
-	resolved.Status = OperationStatusResolved
-	return resolved
 }
 
 func postResolutionWindowKind(state GameState) PriorityWindowKind {
