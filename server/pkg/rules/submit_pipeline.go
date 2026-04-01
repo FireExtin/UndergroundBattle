@@ -8,6 +8,7 @@ type submitInternalOptions struct {
 	projector            *ProjectionEngine
 	enforceDeterminism   bool
 	replayForDeterminism func(GameState, Action) (SubmitResult, error)
+	cardSourceLookup     cardOperationSourceLookup
 }
 
 type submitPipelineState struct {
@@ -65,7 +66,7 @@ func submitActionInternal(state GameState, action Action, options submitInternal
 }
 
 func submitLegalityPhase(pipeline *submitPipelineState) error {
-	legality := CheckLegality(pipeline.preState, pipeline.action)
+	legality := checkLegalityWithLookup(pipeline.preState, pipeline.action, pipeline.options.cardSourceLookup)
 	if legality.OK {
 		return nil
 	}
@@ -74,7 +75,7 @@ func submitLegalityPhase(pipeline *submitPipelineState) error {
 }
 
 func submitBuildAndExecutePhase(pipeline *submitPipelineState) error {
-	operation, err := BuildOperation(pipeline.preState, pipeline.action)
+	operation, err := buildOperationWithLookup(pipeline.preState, pipeline.action, pipeline.options.cardSourceLookup)
 	if err != nil {
 		return err
 	}

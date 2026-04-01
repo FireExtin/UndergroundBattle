@@ -2,10 +2,6 @@ package rules
 
 import (
 	"fmt"
-	"slices"
-
-	internalcontracts "undergroundbattle/server/internal/contracts"
-	contractspkg "undergroundbattle/server/pkg/contracts"
 )
 
 // Purpose: Implements the authoritative action pipeline with structured legality, priority passing, and stack resolution.
@@ -76,6 +72,10 @@ func NewGameState(config InitialStateConfig) GameState {
 
 // CheckLegality returns a structured machine-readable legality result instead of a plain text error.
 func CheckLegality(state GameState, action Action) LegalityResult {
+	return checkLegalityWithLookup(state, action, nil)
+}
+
+func checkLegalityWithLookup(state GameState, action Action, sourceLookup cardOperationSourceLookup) LegalityResult {
 	if action.ID == "" {
 		return legalityFailure(
 			ReasonCodeLegalityFailedActionIDMissing,
@@ -263,7 +263,7 @@ func CheckLegality(state GameState, action Action) LegalityResult {
 			)
 		}
 
-		source, found, err := lookupCardOperationSource(action.CardID)
+		source, found, err := lookupCardOperationSourceWithLookup(sourceLookup, action.CardID)
 		if err != nil {
 			return legalityFailure(
 				ReasonCodeRulesFailedCardLogicUnavailable,
@@ -373,6 +373,10 @@ func CheckLegality(state GameState, action Action) LegalityResult {
 
 // BuildOperation normalizes a legal action into a single authoritative operation.
 func BuildOperation(state GameState, action Action) (Operation, error) {
+	return buildOperationWithLookup(state, action, nil)
+}
+
+func buildOperationWithLookup(state GameState, action Action, sourceLookup cardOperationSourceLookup) (Operation, error) {
 	operation := Operation{
 		ID:             "op:" + action.ID,
 		ActionID:       action.ID,
@@ -417,7 +421,7 @@ func BuildOperation(state GameState, action Action) (Operation, error) {
 		operation.TargetCardID = action.TargetCardID
 		operation.Label = "declare_investigation"
 	case ActionKindQueueOperation:
-		source, found, err := lookupCardOperationSource(action.CardID)
+		source, found, err := lookupCardOperationSourceWithLookup(sourceLookup, action.CardID)
 		if err != nil {
 			return Operation{}, err
 		}
@@ -1087,62 +1091,4 @@ func postResolutionWindowKind(state GameState) PriorityWindowKind {
 	}
 
 	return PriorityWindowAction
-}
-
-func lookupCardOperationSource(cardID string) (CardOperationSource, bool, error) {
-	catalog, err := internalcontracts.LoadDefaultFixtureCatalog()
-	if err != nil {
-		return CardOperationSource{}, false, err
-	}
-
-	fixture, ok := catalog.Find(cardID)
-	if !ok {
-		return CardOperationSource{}, false, nil
-	}
-
-	return cardOperationSourceFromFixture(fixture), true, nil
-}
-
-func cardOperationSourceFromFixture(fixture contractspkg.Fixture) CardOperationSource {
-	parsed := contractspkg.ParseFixtureLogic(fixture)
-	return CardOperationSource{
-		CardID:            parsed.CardID,
-		CardName:          parsed.CardName,
-		SourcePath:        parsed.SourcePath,
-		BasicType:         parsed.BasicType,
-		LogicID:           parsed.LogicID,
-		Speed:             parsed.Speed,
-		TargetKinds:       slices.Clone(parsed.TargetKinds),
-		RequiresStack:     parsed.RequiresStack,
-		ExecutionKind:     cardExecutionKind(parsed.RequiresScript),
-		DurationKind:      parsed.DurationKind,
-		ScriptID:          cloneOptionalString(parsed.ScriptID),
-		RequiresScript:    parsed.RequiresScript,
-		PureDSLExecutable: parsed.PureDSLExecutable,
-		Effects:           effectSpecsFromParsed(parsed.Effects),
-		EffectKinds:       slices.Clone(parsed.EffectKinds),
-	}
-}
-
-func cardExecutionKind(requiresScript bool) CardExecutionKind {
-	if requiresScript {
-		return CardExecutionScript
-	}
-
-	return CardExecutionDSL
-}
-
-func effectSpecsFromParsed(effects []contractspkg.BasicEffect) []EffectSpec {
-	specs := make([]EffectSpec, 0, len(effects))
-	for _, effect := range effects {
-		specs = append(specs, EffectSpec{
-			Kind:      effect.Kind,
-			TargetRef: effect.TargetRef,
-			Amount:    cloneOptionalInt(effect.Amount),
-			Stat:      effect.Stat,
-			Keyword:   effect.Keyword,
-		})
-	}
-
-	return specs
 }
