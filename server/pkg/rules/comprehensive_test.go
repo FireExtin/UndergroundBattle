@@ -1,6 +1,7 @@
 package rules
 
 import (
+	"strings"
 	"testing"
 )
 
@@ -823,5 +824,149 @@ func TestFaceDown_ActionPipeline_SetAndReveal(t *testing.T) {
 	// 验证事件类型
 	if result.Event.Kind != EventKindCardRevealed {
 		t.Fatalf("Expected EventKindCardRevealed, got %s", result.Event.Kind)
+	}
+}
+
+// =============================================================================
+// 测试用例 14: 标准动作空栈约束（表驱动测试）
+// 测试目的: 验证 reveal/inspect/set_face_down 等标准动作在非空栈时应被拒绝
+// 输入数据: 各种标准动作在空栈和非空栈状态下的执行
+// 预期输出: 空栈时允许执行，非空栈时拒绝执行
+// 验证方法: 表驱动测试，检查不同状态下的执行结果
+// =============================================================================
+func TestStandardActions_EmptyStackConstraint(t *testing.T) {
+	// 测试用例表
+	testCases := []struct {
+		name           string
+		action         Action
+		hasStack       bool
+		expectSuccess  bool
+		expectErrorMsg string
+	}{
+		{
+			name: "reveal_card with empty stack",
+			action: Action{
+				ID:      "action-1",
+				ActorID: "P1",
+				Kind:    ActionKindRevealCard,
+				CardID:  "card-1",
+			},
+			hasStack:       false,
+			expectSuccess:  true,
+			expectErrorMsg: "",
+		},
+		{
+			name: "reveal_card with non-empty stack",
+			action: Action{
+				ID:      "action-2",
+				ActorID: "P1",
+				Kind:    ActionKindRevealCard,
+				CardID:  "card-1",
+			},
+			hasStack:       true,
+			expectSuccess:  false,
+			expectErrorMsg: "LEGALITY_FAILED_STACK_NOT_EMPTY",
+		},
+		{
+			name: "inspect_card with empty stack",
+			action: Action{
+				ID:      "action-3",
+				ActorID: "P1",
+				Kind:    ActionKindInspectCard,
+				CardID:  "card-1",
+			},
+			hasStack:       false,
+			expectSuccess:  true,
+			expectErrorMsg: "",
+		},
+		{
+			name: "inspect_card with non-empty stack",
+			action: Action{
+				ID:      "action-4",
+				ActorID: "P1",
+				Kind:    ActionKindInspectCard,
+				CardID:  "card-1",
+			},
+			hasStack:       true,
+			expectSuccess:  false,
+			expectErrorMsg: "LEGALITY_FAILED_STACK_NOT_EMPTY",
+		},
+		{
+			name: "set_face_down with empty stack",
+			action: Action{
+				ID:      "action-5",
+				ActorID: "P1",
+				Kind:    ActionKindSetFaceDown,
+				CardID:  "card-1",
+			},
+			hasStack:       false,
+			expectSuccess:  true,
+			expectErrorMsg: "",
+		},
+		{
+			name: "set_face_down with non-empty stack",
+			action: Action{
+				ID:      "action-6",
+				ActorID: "P1",
+				Kind:    ActionKindSetFaceDown,
+				CardID:  "card-1",
+			},
+			hasStack:       true,
+			expectSuccess:  false,
+			expectErrorMsg: "LEGALITY_FAILED_STACK_NOT_EMPTY",
+		},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			// 创建测试状态
+			state := NewGameState(InitialStateConfig{
+				GameID:         "test-empty-stack-constraint",
+				ActivePlayerID: "P1",
+			})
+
+			// 添加一张卡牌
+			card := CardState{
+				CardID:       "card-1",
+				DefinitionID: "TEST_CARD",
+				Name:         "测试卡牌",
+				Kind:         CardKindCharacter,
+				OwnerID:      "P1",
+				Zone:         CardZoneTable,
+			}
+			state.Board.Cards = []CardState{card}
+
+			// 如果需要非空栈，添加一个操作
+			if tc.hasStack {
+				state.Board.Stack = []Operation{
+					{
+						ID:            "op-1",
+						ActorID:       "P1",
+						Kind:          OperationKindCardEffect,
+						Status:        OperationStatusPending,
+						CardID:        "card-1",
+						Label:         "test effect",
+						RequiresStack: true,
+					},
+				}
+			}
+
+			// 执行动作
+			_, err := SubmitAction(state, tc.action)
+
+			// 验证结果
+			if tc.expectSuccess {
+				if err != nil {
+					t.Fatalf("Expected success, got error: %v", err)
+				}
+			} else {
+				if err == nil {
+					t.Fatalf("Expected error, got success")
+				}
+				if !strings.Contains(err.Error(), tc.expectErrorMsg) {
+					t.Fatalf("Expected error message to contain %q, got %q", tc.expectErrorMsg, err.Error())
+				}
+			}
+		})
 	}
 }
