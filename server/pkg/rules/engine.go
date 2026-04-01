@@ -2,10 +2,6 @@ package rules
 
 import (
 	"fmt"
-	"slices"
-
-	internalcontracts "undergroundbattle/server/internal/contracts"
-	contractspkg "undergroundbattle/server/pkg/contracts"
 )
 
 // Purpose: Implements the authoritative action pipeline with structured legality, priority passing, and stack resolution.
@@ -76,6 +72,10 @@ func NewGameState(config InitialStateConfig) GameState {
 
 // CheckLegality returns a structured machine-readable legality result instead of a plain text error.
 func CheckLegality(state GameState, action Action) LegalityResult {
+	return checkLegalityWithLookup(state, action, nil)
+}
+
+func checkLegalityWithLookup(state GameState, action Action, sourceLookup cardOperationSourceLookup) LegalityResult {
 	if action.ID == "" {
 		return legalityFailure(
 			ReasonCodeLegalityFailedActionIDMissing,
@@ -185,23 +185,9 @@ func CheckLegality(state GameState, action Action) LegalityResult {
 		)
 	}
 
-	// Check target legality for card operation targets (not for role actions like attack/investigation)
-	// XQ31 "不能成为目标" should only block card/ability targeting, not role actions.
-	if action.TargetCardID != "" && action.Kind == ActionKindQueueOperation {
-		targetLegalityChecker := BuildTargetLegalityChecker(state)
-		targetResult := targetLegalityChecker.CheckTargetCard(state, action.ActorID, action.TargetCardID)
-		if !targetResult.CanTarget {
-			return legalityFailure(
-				ReasonCodeTargetFailedProhibited,
-				"rules.target.prohibited",
-				"action.targetCardId",
-				map[string]string{
-					"targetCardId":        action.TargetCardID,
-					"prohibitingCardId":   targetResult.SourceCardID,
-					"prohibitingCardName": targetResult.SourceCardName,
-				},
-			)
-		}
+	targetLegality := checkQueueOperationTargetLegality(state, action)
+	if !targetLegality.OK {
+		return targetLegality
 	}
 
 	switch action.Kind {
@@ -243,73 +229,7 @@ func CheckLegality(state GameState, action Action) LegalityResult {
 	case ActionKindDeclareInvestigation:
 		return checkRoleActionLegality(state, action, CardKindRegion)
 	case ActionKindQueueOperation:
-		if !state.Turn.Phase.AllowsStack {
-			return legalityFailure(
-				ReasonCodeLegalityFailedStackClosed,
-				"rules.legality.stack_closed",
-				"turn.phase",
-				map[string]string{
-					"phase": string(state.Turn.Phase.Name),
-				},
-			)
-		}
-
-		if action.CardID == "" {
-			return legalityFailure(
-				ReasonCodeTargetFailedMissing,
-				"rules.target.card_missing",
-				"action.cardId",
-				nil,
-			)
-		}
-
-		source, found, err := lookupCardOperationSource(action.CardID)
-		if err != nil {
-			return legalityFailure(
-				ReasonCodeRulesFailedCardLogicUnavailable,
-				"rules.card_logic.unavailable",
-				"shared.contracts.fixtures",
-				map[string]string{
-					"cardId": action.CardID,
-					"error":  err.Error(),
-				},
-			)
-		}
-
-		if !found {
-			return legalityFailure(
-				ReasonCodeRulesFailedCardLogicMissing,
-				"rules.card_logic.missing",
-				"shared.contracts.fixtures",
-				map[string]string{
-					"cardId": action.CardID,
-				},
-			)
-		}
-
-		windowLegality := checkCardWindowLegality(state, source)
-		if !windowLegality.OK {
-			return windowLegality
-		}
-
-		playLegality := checkQueuedCardPlayLegality(state, action.ActorID, source)
-		if !playLegality.OK {
-			return playLegality
-		}
-
-		if !source.RequiresStack && len(state.Board.Stack) != 0 {
-			return legalityFailure(
-				ReasonCodeLegalityFailedStackNotEmpty,
-				"rules.legality.stack_not_empty",
-				"board.stack",
-				map[string]string{
-					"stackDepth": intString(len(state.Board.Stack)),
-					"cardId":     action.CardID,
-				},
-			)
-		}
-
-		return okLegalityResult()
+		return checkQueueOperationActionLegality(state, action, sourceLookup)
 	case ActionKindResolveTopStack:
 		if len(state.Board.Stack) == 0 {
 			return legalityFailure(
@@ -373,6 +293,10 @@ func CheckLegality(state GameState, action Action) LegalityResult {
 
 // BuildOperation normalizes a legal action into a single authoritative operation.
 func BuildOperation(state GameState, action Action) (Operation, error) {
+	return buildOperationWithLookup(state, action, nil)
+}
+
+func buildOperationWithLookup(state GameState, action Action, sourceLookup cardOperationSourceLookup) (Operation, error) {
 	operation := Operation{
 		ID:             "op:" + action.ID,
 		ActionID:       action.ID,
@@ -417,18 +341,9 @@ func BuildOperation(state GameState, action Action) (Operation, error) {
 		operation.TargetCardID = action.TargetCardID
 		operation.Label = "declare_investigation"
 	case ActionKindQueueOperation:
-		source, found, err := lookupCardOperationSource(action.CardID)
-		if err != nil {
+		if err := buildQueueOperationFromAction(action, sourceLookup, &operation); err != nil {
 			return Operation{}, err
 		}
-		if !found {
-			return Operation{}, fmt.Errorf("%s", ReasonCodeRulesFailedCardLogicMissing)
-		}
-		operation.Kind = OperationKindCardEffect
-		operation.RequiresStack = source.RequiresStack
-		operation.CardID = action.CardID
-		operation.Label = source.CardName
-		operation.Source = &source
 	case ActionKindResolveTopStack:
 		operation.Kind = OperationKindResolveTopStack
 	case ActionKindRollSeededRandom:
@@ -747,8 +662,7 @@ func executeSetFaceDown(state GameState, operation Operation) (GameState, Operat
 		return GameState{}, Operation{}, Event{}, fmt.Errorf("%s", ReasonCodeTargetFailedMissing)
 	}
 
-	working.Board.Cards[index].FaceDown = true
-	working.Board.Cards[index].Revealed = false
+	setFaceDown(&working.Board.Cards[index])
 	reopenPhaseStep(&working.Turn)
 	resetPriorityWindow(&working.Turn, operation.ActorID, PriorityWindowAction)
 	operation.Status = OperationStatusResolved
@@ -938,139 +852,6 @@ func containsString(values []string, target string) bool {
 	return false
 }
 
-func checkCardActionPermissionLegality(state GameState, cardID string, kind ActionKind) LegalityResult {
-	permission := permissionForActionKind(kind)
-	if permission == "" {
-		return okLegalityResult()
-	}
-
-	index := findCardIndex(state, cardID)
-	if index == -1 {
-		return okLegalityResult()
-	}
-
-	card := state.Board.Cards[index]
-	if containsString(card.Prohibitions, permission) {
-		return legalityFailure(
-			ReasonCodeLegalityFailedActionProhibited,
-			"rules.legality.action_prohibited",
-			"board.cards.prohibitions",
-			map[string]string{
-				"cardId":     cardID,
-				"permission": permission,
-				"actionKind": string(kind),
-			},
-		)
-	}
-
-	if containsString(card.RequiredPermissions, permission) && !containsString(card.Permissions, permission) {
-		return legalityFailure(
-			ReasonCodeLegalityFailedPermissionRequired,
-			"rules.legality.permission_required",
-			"board.cards.permissions",
-			map[string]string{
-				"cardId":     cardID,
-				"permission": permission,
-				"actionKind": string(kind),
-			},
-		)
-	}
-
-	return okLegalityResult()
-}
-
-func permissionForActionKind(kind ActionKind) string {
-	switch kind {
-	case ActionKindInspectCard:
-		return "inspect"
-	case ActionKindRevealCard:
-		return "reveal"
-	case ActionKindSetFaceDown:
-		return "set_face_down"
-	case ActionKindDeclareAttack:
-		return "attack"
-	case ActionKindDeclareInvestigation:
-		return "investigate"
-	default:
-		return ""
-	}
-}
-
-func checkCardWindowLegality(state GameState, source CardOperationSource) LegalityResult {
-	windowKind := currentPriorityWindowKind(state)
-	switch source.Speed {
-	case "slow":
-		if windowKind != PriorityWindowAction {
-			return legalityFailure(
-				ReasonCodeLegalityFailedActionWindowRequired,
-				"rules.legality.action_window_required",
-				"turn.priority.window",
-				map[string]string{
-					"cardId":     source.CardID,
-					"speed":      source.Speed,
-					"windowKind": string(windowKind),
-				},
-			)
-		}
-	case "reaction":
-		if windowKind != PriorityWindowResponse || len(state.Board.Stack) == 0 {
-			return legalityFailure(
-				ReasonCodeLegalityFailedResponseWindowRequired,
-				"rules.legality.response_window_required",
-				"turn.priority.window",
-				map[string]string{
-					"cardId":     source.CardID,
-					"speed":      source.Speed,
-					"windowKind": string(windowKind),
-					"stackDepth": intString(len(state.Board.Stack)),
-				},
-			)
-		}
-	case "fast":
-		if windowKind == PriorityWindowClosed {
-			return legalityFailure(
-				ReasonCodeLegalityFailedActionWindowRequired,
-				"rules.legality.action_window_required",
-				"turn.priority.window",
-				map[string]string{
-					"cardId":     source.CardID,
-					"speed":      source.Speed,
-					"windowKind": string(windowKind),
-				},
-			)
-		}
-	}
-
-	return okLegalityResult()
-}
-
-func checkQueuedCardPlayLegality(state GameState, actorID string, source CardOperationSource) LegalityResult {
-	// Build target category from the card being played
-	targetCategory := TargetCategory{
-		BasicTypes: []string{source.BasicType},
-	}
-
-	// Use the prohibition checker to evaluate all active rules
-	checker := BuildProhibitionChecker(state)
-	result := checker.Check(state, actorID, targetCategory)
-
-	if result.Prohibited {
-		return legalityFailure(
-			ReasonCodeLegalityFailedActionProhibited,
-			"rules.legality.action_prohibited",
-			"board.cards",
-			map[string]string{
-				"cardId":              source.CardID,
-				"basicType":           source.BasicType,
-				"prohibitingCardId":   result.SourceCardID,
-				"prohibitingCardName": result.SourceCardName,
-			},
-		)
-	}
-
-	return okLegalityResult()
-}
-
 func resolveStackedOperation(state GameState, operation Operation) (GameState, Operation, error) {
 	switch operation.Kind {
 	case OperationKindCardEffect:
@@ -1087,62 +868,4 @@ func postResolutionWindowKind(state GameState) PriorityWindowKind {
 	}
 
 	return PriorityWindowAction
-}
-
-func lookupCardOperationSource(cardID string) (CardOperationSource, bool, error) {
-	catalog, err := internalcontracts.LoadDefaultFixtureCatalog()
-	if err != nil {
-		return CardOperationSource{}, false, err
-	}
-
-	fixture, ok := catalog.Find(cardID)
-	if !ok {
-		return CardOperationSource{}, false, nil
-	}
-
-	return cardOperationSourceFromFixture(fixture), true, nil
-}
-
-func cardOperationSourceFromFixture(fixture contractspkg.Fixture) CardOperationSource {
-	parsed := contractspkg.ParseFixtureLogic(fixture)
-	return CardOperationSource{
-		CardID:            parsed.CardID,
-		CardName:          parsed.CardName,
-		SourcePath:        parsed.SourcePath,
-		BasicType:         parsed.BasicType,
-		LogicID:           parsed.LogicID,
-		Speed:             parsed.Speed,
-		TargetKinds:       slices.Clone(parsed.TargetKinds),
-		RequiresStack:     parsed.RequiresStack,
-		ExecutionKind:     cardExecutionKind(parsed.RequiresScript),
-		DurationKind:      parsed.DurationKind,
-		ScriptID:          cloneOptionalString(parsed.ScriptID),
-		RequiresScript:    parsed.RequiresScript,
-		PureDSLExecutable: parsed.PureDSLExecutable,
-		Effects:           effectSpecsFromParsed(parsed.Effects),
-		EffectKinds:       slices.Clone(parsed.EffectKinds),
-	}
-}
-
-func cardExecutionKind(requiresScript bool) CardExecutionKind {
-	if requiresScript {
-		return CardExecutionScript
-	}
-
-	return CardExecutionDSL
-}
-
-func effectSpecsFromParsed(effects []contractspkg.BasicEffect) []EffectSpec {
-	specs := make([]EffectSpec, 0, len(effects))
-	for _, effect := range effects {
-		specs = append(specs, EffectSpec{
-			Kind:      effect.Kind,
-			TargetRef: effect.TargetRef,
-			Amount:    cloneOptionalInt(effect.Amount),
-			Stat:      effect.Stat,
-			Keyword:   effect.Keyword,
-		})
-	}
-
-	return specs
 }

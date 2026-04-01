@@ -2,6 +2,8 @@ package rules
 
 // Purpose: Implements scoped prohibition checking for card effects like XQ22.
 
+import "slices"
+
 // ScopedProhibitionChecker evaluates prohibition rules against the current game state.
 type ScopedProhibitionChecker struct {
 	rules []ProhibitionRule
@@ -112,7 +114,58 @@ func (c *ScopedProhibitionChecker) matchesTargetCategory(
 		}
 	}
 
+	if prohibited.Condition != nil {
+		if actual.Condition == nil {
+			return false
+		}
+		if !matchesProhibitionTargetCondition(*actual.Condition, *prohibited.Condition) {
+			return false
+		}
+	}
+
 	return true
+}
+
+func matchesProhibitionTargetCondition(actual TargetCondition, prohibited TargetCondition) bool {
+	if len(prohibited.Kinds) > 0 && !cardKindSlicesOverlap(actual.Kinds, prohibited.Kinds) {
+		return false
+	}
+
+	if len(prohibited.Keywords) > 0 && !stringSlicesOverlap(actual.Keywords, prohibited.Keywords) {
+		return false
+	}
+
+	if prohibited.RegionID != "" && actual.RegionID != prohibited.RegionID {
+		return false
+	}
+
+	if len(prohibited.AbilityKinds) > 0 && !stringSlicesOverlap(actual.AbilityKinds, prohibited.AbilityKinds) {
+		return false
+	}
+
+	if prohibited.Side != "" && actual.Side != prohibited.Side {
+		return false
+	}
+
+	return true
+}
+
+func stringSlicesOverlap(left []string, right []string) bool {
+	for _, value := range left {
+		if slices.Contains(right, value) {
+			return true
+		}
+	}
+	return false
+}
+
+func cardKindSlicesOverlap(left []CardKind, right []CardKind) bool {
+	for _, value := range left {
+		if slices.Contains(right, value) {
+			return true
+		}
+	}
+	return false
 }
 
 // Predefined prohibition rules for known cards.

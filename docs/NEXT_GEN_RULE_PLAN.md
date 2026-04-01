@@ -4,6 +4,18 @@
 - 当前已经有：最小规则核、priority/stack、projection、continuous effects、`inspect` 的 permission hook、`dealDamage` 对 `EffectiveStats.Defense` 的最小致命判定，以及第一批角色动作入口 `declare_attack / declare_investigation`。
 - 如果目标是“继续稳定接真实卡 DSL，并形成一个可扩展 alpha”，还差 4 个明确里程碑。做完这 4 个就够继续推进主卡池，不需要先上完整 dependency engine。
 
+## 2026-04-01 第十六次补记（Engine 去重型收口下一步）
+
+- 已完成的结构收口（本轮）：
+  - `queue_operation` 的 legality/build/window/play/target-precheck 已从 `engine.go` 拆到独立 flow 文件。
+  - action-permission legality 已拆到 `action_permission_flow.go`。
+  - 状态写入 guard 已覆盖 `FaceDown/Revealed/Markers/Resolved/RandomResults/Exhausted/Destroyed/Zone`。
+- **下一步动作（按顺序执行）**：
+  1. 抽离 `engine.go` 的通用 preflight（`target/player/card` 存在性与 empty-stack/priority 前置检查）到独立模块，`engine.go` 保留编排 switch。
+  2. 新增 `engine` 结构守卫测试，禁止回流 card-rule 细节和 permission/targeting helper 到 `engine.go`。
+  3. 在不引入全局沉默的前提下完成 `XQ01` 最小 prerequisite 对接：把 `TargetCondition.AbilityKinds` 映射到现有动作权限校验入口（仅框架层，不落错误牌义）。
+  4. 完成一轮回归基线：`go test ./server/...`、`(cd tools/fixture-tools && npm test)`、`(cd web && npm test)`，并同步 `docs/trae_review` 任务记录。
+
 ## 2026-04-01 进度补记
 
 - `Phase 3` 已经开始，但只推进了第一刀：
