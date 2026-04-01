@@ -1,9 +1,6 @@
 package rules
 
-import (
-	"fmt"
-	"strings"
-)
+import "strings"
 
 // Purpose: Applies the current minimal executable subset of pure CardLogic DSL effects to GameState.
 
@@ -24,15 +21,7 @@ func applyDrawCardsEffect(state GameState, operation Operation, effect EffectSpe
 	working := cloneGameState(state)
 	startSequence := countGeneratedDrawCards(working, operation.ID)
 	for offset := 0; offset < *effect.Amount; offset++ {
-		working.Board.Cards = append(working.Board.Cards, CardState{
-			CardID:         fmt.Sprintf("draw:%s:%d", operation.ID, startSequence+offset+1),
-			Name:           "",
-			OwnerID:        operation.ActorID,
-			Zone:           CardZoneHand,
-			VisibleToOwner: true,
-			Revealed:       false,
-			Exhausted:      false,
-		})
+		appendGeneratedDrawCard(&working, operation.ID, operation.ActorID, startSequence+offset+1)
 	}
 
 	return working
@@ -50,9 +39,7 @@ func applyInspectHandEffect(state GameState, operation Operation, effect EffectS
 			continue
 		}
 
-		if !containsString(card.InspectedBy, operation.ActorID) {
-			working.Board.Cards[index].InspectedBy = append(working.Board.Cards[index].InspectedBy, operation.ActorID)
-		}
+		markCardInspected(&working.Board.Cards[index], operation.ActorID)
 	}
 
 	return working

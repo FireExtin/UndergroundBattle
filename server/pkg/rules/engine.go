@@ -237,33 +237,7 @@ func CheckLegality(state GameState, action Action) LegalityResult {
 	case ActionKindPassPriority:
 		return okLegalityResult()
 	case ActionKindSetMarker, ActionKindRemoveMarker:
-		if action.TargetPlayerID == "" {
-			return legalityFailure(
-				ReasonCodeTargetFailedMissing,
-				"rules.target.player_missing",
-				"action.targetPlayerId",
-				nil,
-			)
-		}
-		if action.MarkerType == "" {
-			return legalityFailure(
-				ReasonCodeTargetFailedMissing,
-				"rules.target.marker_missing",
-				"action.markerType",
-				nil,
-			)
-		}
-		if action.MarkerAmount <= 0 {
-			return legalityFailure(
-				ReasonCodeRulesFailedInvalidState,
-				"rules.marker.amount_invalid",
-				"action.markerAmount",
-				map[string]string{
-					"markerAmount": intString(action.MarkerAmount),
-				},
-			)
-		}
-		return okLegalityResult()
+		return checkMarkerActionLegality(action)
 	case ActionKindDeclareAttack:
 		return checkRoleActionLegality(state, action, CardKindCharacter)
 	case ActionKindDeclareInvestigation:
@@ -570,9 +544,7 @@ func executeInspectCard(state GameState, operation Operation) (GameState, Operat
 		return GameState{}, Operation{}, Event{}, fmt.Errorf("%s", ReasonCodeTargetFailedMissing)
 	}
 
-	if !containsString(working.Board.Cards[index].InspectedBy, operation.ActorID) {
-		working.Board.Cards[index].InspectedBy = append(working.Board.Cards[index].InspectedBy, operation.ActorID)
-	}
+	markCardInspected(&working.Board.Cards[index], operation.ActorID)
 	reopenPhaseStep(&working.Turn)
 	resetPriorityWindow(&working.Turn, operation.ActorID, PriorityWindowAction)
 	operation.Status = OperationStatusResolved
@@ -671,56 +643,6 @@ func executePassPriority(state GameState, operation Operation) (GameState, Opera
 	}, nil
 }
 
-func executeSetMarker(state GameState, operation Operation) (GameState, Operation, Event, error) {
-	working := cloneGameState(state)
-	setMarker(&working, operation.TargetPlayerID, operation.MarkerType, operation.MarkerAmount)
-	reopenPhaseStep(&working.Turn)
-	resetPriorityWindow(&working.Turn, operation.ActorID, PriorityWindowAction)
-	operation.Status = OperationStatusResolved
-
-	return working, operation, Event{
-		ID:               "evt:" + operation.ActionID,
-		ActionID:         operation.ActionID,
-		OperationID:      operation.ID,
-		Kind:             EventKindMarkerSet,
-		Phase:            working.Turn.Phase.Name,
-		Step:             working.Turn.Phase.Step,
-		PriorityPlayerID: currentPriorityPlayerID(working),
-		PriorityWindow:   currentPriorityWindowKind(working),
-		PassCount:        working.Turn.Priority.PassCount,
-		ResolvedTargetID: operation.TargetPlayerID,
-		MarkerType:       operation.MarkerType,
-		MarkerAmount:     operation.MarkerAmount,
-		StackDepth:       len(working.Board.Stack),
-		RevisionNumber:   0,
-	}, nil
-}
-
-func executeRemoveMarker(state GameState, operation Operation) (GameState, Operation, Event, error) {
-	working := cloneGameState(state)
-	removeMarkerCount(&working, operation.TargetPlayerID, operation.MarkerType, operation.MarkerAmount)
-	reopenPhaseStep(&working.Turn)
-	resetPriorityWindow(&working.Turn, operation.ActorID, PriorityWindowAction)
-	operation.Status = OperationStatusResolved
-
-	return working, operation, Event{
-		ID:               "evt:" + operation.ActionID,
-		ActionID:         operation.ActionID,
-		OperationID:      operation.ID,
-		Kind:             EventKindMarkerRemoved,
-		Phase:            working.Turn.Phase.Name,
-		Step:             working.Turn.Phase.Step,
-		PriorityPlayerID: currentPriorityPlayerID(working),
-		PriorityWindow:   currentPriorityWindowKind(working),
-		PassCount:        working.Turn.Priority.PassCount,
-		ResolvedTargetID: operation.TargetPlayerID,
-		MarkerType:       operation.MarkerType,
-		MarkerAmount:     operation.MarkerAmount,
-		StackDepth:       len(working.Board.Stack),
-		RevisionNumber:   0,
-	}, nil
-}
-
 func executeResolveTopStack(state GameState, operation Operation) (GameState, Operation, Event, error) {
 	working, pending, err := defaultStackEngine.PopTop(state)
 	if err != nil {
@@ -761,7 +683,7 @@ func executeRollRandom(state GameState, operation Operation) (GameState, Operati
 	working.RNG = nextRNG
 	reopenPhaseStep(&working.Turn)
 	resetPriorityWindow(&working.Turn, operation.ActorID, PriorityWindowAction)
-	working.Board.RandomResults = append(working.Board.RandomResults, RandomResult{
+	appendRandomResult(&working, RandomResult{
 		ActionID:    operation.ActionID,
 		OperationID: operation.ID,
 		DrawIndex:   nextRNG.DrawCount,
@@ -1088,52 +1010,6 @@ func resolveStackedOperation(state GameState, operation Operation) (GameState, O
 		resolved := markOperationResolved(operation)
 		return finalizeResolvedOperation(state, resolved), resolved, nil
 	}
-}
-
-func resolveCardEffect(state GameState, operation Operation) (GameState, Operation, error) {
-	if operation.Source == nil {
-		return GameState{}, Operation{}, fmt.Errorf("%s", ReasonCodeRulesFailedCardLogicUnavailable)
-	}
-
-	switch operation.Source.ExecutionKind {
-	case CardExecutionDSL:
-		return resolveDSLCardEffect(state, operation)
-	case CardExecutionScript:
-		return resolveScriptCardEffect(state, operation)
-	default:
-		return GameState{}, Operation{}, fmt.Errorf("%s", ReasonCodeRulesFailedCardLogicUnavailable)
-	}
-}
-
-func resolveDSLCardEffect(state GameState, operation Operation) (GameState, Operation, error) {
-	if operation.Source == nil {
-		return GameState{}, Operation{}, fmt.Errorf("%s", ReasonCodeRulesFailedCardLogicUnavailable)
-	}
-
-	working := cloneGameState(state)
-	for _, effect := range operation.Source.Effects {
-		working = applyDSLEffect(working, operation, effect)
-	}
-
-	resolved := markOperationResolved(operation)
-	return finalizeResolvedOperation(working, resolved), resolved, nil
-}
-
-func resolveScriptCardEffect(state GameState, operation Operation) (GameState, Operation, error) {
-	resolved := markOperationResolved(operation)
-	return finalizeResolvedOperation(state, resolved), resolved, nil
-}
-
-func finalizeResolvedOperation(state GameState, operation Operation) GameState {
-	working := cloneGameState(state)
-	working.Board.Resolved = append(working.Board.Resolved, operation)
-	return working
-}
-
-func markOperationResolved(operation Operation) Operation {
-	resolved := cloneOperation(operation)
-	resolved.Status = OperationStatusResolved
-	return resolved
 }
 
 func postResolutionWindowKind(state GameState) PriorityWindowKind {
