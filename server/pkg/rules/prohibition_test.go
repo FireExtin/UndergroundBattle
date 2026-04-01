@@ -348,3 +348,101 @@ func TestBuildProhibitionCheckerIgnoresTestOnlyRules(t *testing.T) {
 		t.Fatalf("expected production checker to ignore TEST01, got source %q", result.SourceCardID)
 	}
 }
+
+func TestProhibitionCheckerTargetConditionAbilityKindsMismatchDoesNotProhibit(t *testing.T) {
+	state := NewGameState(InitialStateConfig{
+		GameID:         "test-prohibition-condition-ability-mismatch",
+		ActivePlayerID: "P1",
+		PlayerIDs:      []string{"P1", "P2"},
+	})
+	state.Board.Cards = []CardState{
+		{
+			CardID:       "COND-1",
+			DefinitionID: "COND",
+			Zone:         CardZoneTable,
+			Exhausted:    false,
+			Destroyed:    false,
+			ControllerID: "P1",
+		},
+	}
+
+	checker := NewScopedProhibitionChecker([]ProhibitionRule{
+		{
+			SourceDefinitionID: "COND",
+			SourceCondition: CardCondition{
+				Zone:         CardZoneTable,
+				Ready:        true,
+				NotDestroyed: true,
+			},
+			Scope: ProhibitionScope{
+				Kind: ProhibitionScopeAllPlayers,
+			},
+			TargetCategory: TargetCategory{
+				BasicTypes: []string{"事务"},
+				Condition: &TargetCondition{
+					AbilityKinds: []string{"action"},
+				},
+			},
+		},
+	})
+
+	result := checker.Check(state, "P2", TargetCategory{
+		BasicTypes: []string{"事务"},
+		Condition: &TargetCondition{
+			AbilityKinds: []string{"trigger"},
+		},
+	})
+	if result.Prohibited {
+		t.Fatalf("expected no prohibition when abilityKinds mismatch, got source %q", result.SourceCardID)
+	}
+}
+
+func TestProhibitionCheckerTargetConditionRegionAndAbilityMatchProhibits(t *testing.T) {
+	state := NewGameState(InitialStateConfig{
+		GameID:         "test-prohibition-condition-region-ability-match",
+		ActivePlayerID: "P1",
+		PlayerIDs:      []string{"P1", "P2"},
+	})
+	state.Board.Cards = []CardState{
+		{
+			CardID:       "COND-1",
+			DefinitionID: "COND",
+			Zone:         CardZoneTable,
+			Exhausted:    false,
+			Destroyed:    false,
+			ControllerID: "P1",
+		},
+	}
+
+	checker := NewScopedProhibitionChecker([]ProhibitionRule{
+		{
+			SourceDefinitionID: "COND",
+			SourceCondition: CardCondition{
+				Zone:         CardZoneTable,
+				Ready:        true,
+				NotDestroyed: true,
+			},
+			Scope: ProhibitionScope{
+				Kind: ProhibitionScopeAllPlayers,
+			},
+			TargetCategory: TargetCategory{
+				BasicTypes: []string{"事务"},
+				Condition: &TargetCondition{
+					RegionID:     "region-a",
+					AbilityKinds: []string{"action"},
+				},
+			},
+		},
+	})
+
+	result := checker.Check(state, "P2", TargetCategory{
+		BasicTypes: []string{"事务"},
+		Condition: &TargetCondition{
+			RegionID:     "region-a",
+			AbilityKinds: []string{"action"},
+		},
+	})
+	if !result.Prohibited {
+		t.Fatal("expected prohibition when region/ability conditions both match")
+	}
+}

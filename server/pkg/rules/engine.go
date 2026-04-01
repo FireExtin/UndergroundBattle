@@ -243,73 +243,7 @@ func checkLegalityWithLookup(state GameState, action Action, sourceLookup cardOp
 	case ActionKindDeclareInvestigation:
 		return checkRoleActionLegality(state, action, CardKindRegion)
 	case ActionKindQueueOperation:
-		if !state.Turn.Phase.AllowsStack {
-			return legalityFailure(
-				ReasonCodeLegalityFailedStackClosed,
-				"rules.legality.stack_closed",
-				"turn.phase",
-				map[string]string{
-					"phase": string(state.Turn.Phase.Name),
-				},
-			)
-		}
-
-		if action.CardID == "" {
-			return legalityFailure(
-				ReasonCodeTargetFailedMissing,
-				"rules.target.card_missing",
-				"action.cardId",
-				nil,
-			)
-		}
-
-		source, found, err := lookupCardOperationSourceWithLookup(sourceLookup, action.CardID)
-		if err != nil {
-			return legalityFailure(
-				ReasonCodeRulesFailedCardLogicUnavailable,
-				"rules.card_logic.unavailable",
-				"shared.contracts.fixtures",
-				map[string]string{
-					"cardId": action.CardID,
-					"error":  err.Error(),
-				},
-			)
-		}
-
-		if !found {
-			return legalityFailure(
-				ReasonCodeRulesFailedCardLogicMissing,
-				"rules.card_logic.missing",
-				"shared.contracts.fixtures",
-				map[string]string{
-					"cardId": action.CardID,
-				},
-			)
-		}
-
-		windowLegality := checkCardWindowLegality(state, source)
-		if !windowLegality.OK {
-			return windowLegality
-		}
-
-		playLegality := checkQueuedCardPlayLegality(state, action.ActorID, source)
-		if !playLegality.OK {
-			return playLegality
-		}
-
-		if !source.RequiresStack && len(state.Board.Stack) != 0 {
-			return legalityFailure(
-				ReasonCodeLegalityFailedStackNotEmpty,
-				"rules.legality.stack_not_empty",
-				"board.stack",
-				map[string]string{
-					"stackDepth": intString(len(state.Board.Stack)),
-					"cardId":     action.CardID,
-				},
-			)
-		}
-
-		return okLegalityResult()
+		return checkQueueOperationActionLegality(state, action, sourceLookup)
 	case ActionKindResolveTopStack:
 		if len(state.Board.Stack) == 0 {
 			return legalityFailure(
@@ -421,18 +355,9 @@ func buildOperationWithLookup(state GameState, action Action, sourceLookup cardO
 		operation.TargetCardID = action.TargetCardID
 		operation.Label = "declare_investigation"
 	case ActionKindQueueOperation:
-		source, found, err := lookupCardOperationSourceWithLookup(sourceLookup, action.CardID)
-		if err != nil {
+		if err := buildQueueOperationFromAction(action, sourceLookup, &operation); err != nil {
 			return Operation{}, err
 		}
-		if !found {
-			return Operation{}, fmt.Errorf("%s", ReasonCodeRulesFailedCardLogicMissing)
-		}
-		operation.Kind = OperationKindCardEffect
-		operation.RequiresStack = source.RequiresStack
-		operation.CardID = action.CardID
-		operation.Label = source.CardName
-		operation.Source = &source
 	case ActionKindResolveTopStack:
 		operation.Kind = OperationKindResolveTopStack
 	case ActionKindRollSeededRandom:
@@ -751,8 +676,7 @@ func executeSetFaceDown(state GameState, operation Operation) (GameState, Operat
 		return GameState{}, Operation{}, Event{}, fmt.Errorf("%s", ReasonCodeTargetFailedMissing)
 	}
 
-	working.Board.Cards[index].FaceDown = true
-	working.Board.Cards[index].Revealed = false
+	setFaceDown(&working.Board.Cards[index])
 	reopenPhaseStep(&working.Turn)
 	resetPriorityWindow(&working.Turn, operation.ActorID, PriorityWindowAction)
 	operation.Status = OperationStatusResolved

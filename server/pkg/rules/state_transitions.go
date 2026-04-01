@@ -33,6 +33,15 @@ func revealFaceDown(card *CardState) {
 	card.Revealed = true
 }
 
+func setFaceDown(card *CardState) {
+	if card == nil {
+		return
+	}
+
+	card.FaceDown = true
+	card.Revealed = false
+}
+
 func markCardInspected(card *CardState, inspectorID string) {
 	if card == nil || inspectorID == "" {
 		return
