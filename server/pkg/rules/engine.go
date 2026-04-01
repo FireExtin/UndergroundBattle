@@ -2,6 +2,7 @@ package rules
 
 import (
 	"fmt"
+	"reflect"
 	"slices"
 
 	internalcontracts "undergroundbattle/server/internal/contracts"
@@ -11,6 +12,12 @@ import (
 // Purpose: Implements the authoritative action pipeline with structured legality, priority passing, and stack resolution.
 
 var defaultStackEngine StackEngine
+
+type submitInternalOptions struct {
+	projector            *ProjectionEngine
+	enforceDeterminism   bool
+	replayForDeterminism func(GameState, Action) (SubmitResult, error)
+}
 
 // NewGameState builds the deterministic initial state used by the minimal rules kernel.
 func NewGameState(config InitialStateConfig) GameState {
@@ -76,11 +83,21 @@ func NewGameState(config InitialStateConfig) GameState {
 
 // SubmitAction runs the legality -> operation -> stack/direct resolution -> event -> commit pipeline.
 func SubmitAction(state GameState, action Action) (SubmitResult, error) {
-	return SubmitActionWithProjection(state, action, NewProjectionEngine())
+	return submitActionInternal(state, action, submitInternalOptions{
+		projector:          NewProjectionEngine(),
+		enforceDeterminism: true,
+	})
 }
 
 // SubmitActionWithProjection runs the same pipeline as SubmitAction but exposes projection generation for tests and callers.
 func SubmitActionWithProjection(state GameState, action Action, projector *ProjectionEngine) (SubmitResult, error) {
+	return submitActionInternal(state, action, submitInternalOptions{
+		projector:          projector,
+		enforceDeterminism: true,
+	})
+}
+
+func submitActionInternal(state GameState, action Action, options submitInternalOptions) (SubmitResult, error) {
 	legality := CheckLegality(state, action)
 	if !legality.OK {
 		return SubmitResult{}, newLegalityError(legality)
@@ -97,7 +114,7 @@ func SubmitActionWithProjection(state GameState, action Action, projector *Proje
 		return SubmitResult{}, err
 	}
 
-	result := commitState(working, action, operation, event, projector)
+	result := commitState(working, action, operation, event, options.projector)
 
 	// Check invariants on the committed state so history/revision bookkeeping and
 	// commit-time recalculation are validated together.
@@ -120,6 +137,39 @@ func SubmitActionWithProjection(state GameState, action Action, projector *Proje
 		}
 	}
 
+	if options.enforceDeterminism {
+		replay := options.replayForDeterminism
+		if replay == nil {
+			replay = submitActionWithoutProjection
+		}
+
+		replayed, err := replay(state, action)
+		if err != nil {
+			return SubmitResult{}, newLegalityError(legalityFailure(
+				ReasonCodeRulesFailedInvariantViolated,
+				"rules.replay.non_deterministic",
+				"replay.determinism",
+				map[string]string{
+					"actionId":    action.ID,
+					"replayError": err.Error(),
+				},
+			))
+		}
+
+		if !statesMatchDeterministic(result.State, replayed.State) {
+			return SubmitResult{}, newLegalityError(legalityFailure(
+				ReasonCodeRulesFailedInvariantViolated,
+				"rules.replay.non_deterministic",
+				"replay.determinism",
+				map[string]string{
+					"actionId":       action.ID,
+					"revision":       intString(result.State.Revision.Number),
+					"replayRevision": intString(replayed.State.Revision.Number),
+				},
+			))
+		}
+	}
+
 	return result, nil
 }
 
@@ -139,7 +189,14 @@ func ReplayActions(initial GameState, actions []Action) (GameState, error) {
 }
 
 func submitActionWithoutProjection(state GameState, action Action) (SubmitResult, error) {
-	return SubmitActionWithProjection(state, action, nil)
+	return submitActionInternal(state, action, submitInternalOptions{
+		projector:          nil,
+		enforceDeterminism: false,
+	})
+}
+
+func statesMatchDeterministic(left GameState, right GameState) bool {
+	return reflect.DeepEqual(left, right)
 }
 
 // CheckLegality returns a structured machine-readable legality result instead of a plain text error.
