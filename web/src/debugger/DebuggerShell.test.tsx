@@ -52,6 +52,8 @@ describe("DebuggerShell", () => {
     expect(scoped.getAllByText("P1")).toHaveLength(2);
     expect(scoped.getByText(/P1: 2/)).toBeInTheDocument();
     expect(scoped.getByText(/P2: 1/)).toBeInTheDocument();
+    expect(scoped.getByText("First-Player Privilege")).toBeInTheDocument();
+    expect(scoped.getByText("available")).toBeInTheDocument();
     expect(scoped.getByText("Winner")).toBeInTheDocument();
   });
 
@@ -120,6 +122,7 @@ describe("DebuggerShell", () => {
                 turnNumber: 1,
                 activePlayerId: "P1",
                 priorityPlayerId: "P1",
+                firstPlayerPrivilegeUsed: true,
                 priority: {
                   currentPlayerId: "P1",
                   passCount: 0,
@@ -178,6 +181,8 @@ describe("DebuggerShell", () => {
 
     expect(screen.getByText(/face-down: yes/i)).toBeInTheDocument();
     expect(screen.getByText(/secret_society: 2/i)).toBeInTheDocument();
+    expect(screen.getByText("First-Player Privilege")).toBeInTheDocument();
+    expect(screen.getByText("used")).toBeInTheDocument();
   });
 
   it("shows shield counters and shield_consumed event details", () => {

@@ -49,6 +49,10 @@ export function MatchStatusPanel({ patch }: MatchStatusPanelProps) {
           <dd>{turn?.priority.windowKind ?? "-"}</dd>
         </div>
         <div>
+          <dt>First-Player Privilege</dt>
+          <dd>{turn?.firstPlayerPrivilegeUsed ? "used" : "available"}</dd>
+        </div>
+        <div>
           <dt>Score</dt>
           <dd>{scoreEntries.length === 0 ? "-" : scoreEntries.map(([playerId, value]) => `${playerId}: ${value}`).join(" | ")}</dd>
         </div>

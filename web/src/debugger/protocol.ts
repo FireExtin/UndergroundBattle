@@ -99,6 +99,7 @@ export type TurnState = {
   turnNumber: number;
   activePlayerId: string;
   priorityPlayerId: string;
+  firstPlayerPrivilegeUsed?: boolean;
   priority: PriorityState;
   phase: PhaseState;
 };

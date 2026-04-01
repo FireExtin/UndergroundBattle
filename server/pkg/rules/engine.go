@@ -652,10 +652,7 @@ func applyPhaseAdvance(state GameState, operation Operation) GameState {
 	working.Turn.Phase = phaseState(operation.NextPhase)
 
 	if previousPhase == PhaseEnd && operation.NextPhase == PhaseMain {
-		awardControlledRegionPoints(&working)
-		working.Turn.TurnNumber++
-		evaluateWinner(&working)
-		working.Turn.ActivePlayerID = nextPriorityPlayerID(working, working.Turn.ActivePlayerID)
+		applyEndToMainRulebookFlow(&working, operation)
 	}
 
 	resetPriorityWindow(&working.Turn, working.Turn.ActivePlayerID, PriorityWindowAction)

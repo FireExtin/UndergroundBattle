@@ -27,11 +27,11 @@ func refreshAllRegionControl(state *GameState) {
 			continue
 		}
 
-		refreshRegionControl(card)
+		refreshRegionControlWithState(state, card)
 	}
 }
 
-func refreshRegionControl(card *CardState) {
+func refreshRegionControlWithState(state *GameState, card *CardState) {
 	if card == nil {
 		return
 	}
@@ -65,12 +65,41 @@ func refreshRegionControl(card *CardState) {
 		}
 	}
 
-	if tied || bestPlayerID == "" {
+	if bestPlayerID == "" {
 		card.ControllerID = ""
 		return
 	}
 
-	card.ControllerID = bestPlayerID
+	if !tied {
+		card.ControllerID = bestPlayerID
+		return
+	}
+
+	if state == nil || len(state.Players) == 0 {
+		card.ControllerID = ""
+		return
+	}
+
+	firstPlayerID := state.Turn.ActivePlayerID
+	if firstPlayerID == "" {
+		firstPlayerID = state.Players[0]
+	}
+	requested := state.Board.Markers.GetMarker(firstPlayerID, markerTypeFirstPlayerPrivilegeRequest) > 0
+	alreadyUsed := state.Board.Markers.GetMarker(firstPlayerID, markerTypeFirstPlayerPrivilegeUsed) > 0
+	privilege := ApplyFirstPlayerPrivilege(ResolveContestOutcome(bestInfluence, bestInfluence), alreadyUsed || !requested)
+	if privilege.Allowed {
+		card.ControllerID = firstPlayerID
+		setMarker(state, firstPlayerID, markerTypeFirstPlayerPrivilegeUsed, 1)
+		setMarker(state, firstPlayerID, markerTypeFirstPlayerPrivilegeRequest, 0)
+		state.Turn.FirstPlayerPrivilegeUsed = true
+		return
+	}
+
+	card.ControllerID = ""
+}
+
+func refreshRegionControl(card *CardState) {
+	refreshRegionControlWithState(nil, card)
 }
 
 func awardControlledRegionPoints(state *GameState) {
