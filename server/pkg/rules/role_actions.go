@@ -81,8 +81,8 @@ func executeDeclareAttack(state GameState, operation Operation) (GameState, Oper
 	targetIndex := findCardIndex(working, operation.TargetCardID)
 	damage := appliedCombatDamage(working.Board.Cards[attackerIndex])
 
-	working.Board.Cards[attackerIndex].Exhausted = true
-	working.Board.Cards[targetIndex].Counters.Damage += damage
+	exhaustCard(&working.Board.Cards[attackerIndex])
+	addDamageCounter(&working.Board.Cards[targetIndex], damage)
 	destroyedCardID := ""
 	eventKind := EventKindDamageApplied
 	if cardWillBeDestroyed(working.Board.Cards[targetIndex]) {
@@ -121,13 +121,9 @@ func executeDeclareInvestigation(state GameState, operation Operation) (GameStat
 	targetIndex := findCardIndex(working, operation.TargetCardID)
 	applied := appliedInvestigation(working.Board.Cards[investigatorIndex])
 
-	working.Board.Cards[investigatorIndex].Exhausted = true
-	working.Board.Cards[targetIndex].Counters.Influence += applied
+	exhaustCard(&working.Board.Cards[investigatorIndex])
+	addInfluenceCounter(&working.Board.Cards[targetIndex], operation.ActorID, applied)
 	if working.Board.Cards[targetIndex].Kind == CardKindRegion {
-		if working.Board.Cards[targetIndex].InfluenceByPlayer == nil {
-			working.Board.Cards[targetIndex].InfluenceByPlayer = map[string]int{}
-		}
-		working.Board.Cards[targetIndex].InfluenceByPlayer[operation.ActorID] += applied
 		refreshAllRegionControl(&working)
 	}
 	reopenPhaseStep(&working.Turn)

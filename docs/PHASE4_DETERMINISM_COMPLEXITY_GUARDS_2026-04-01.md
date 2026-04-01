@@ -51,3 +51,62 @@ If a budget needs to be raised:
 1. Prefer extracting module boundaries first.
 2. If still necessary, raise the budget in test with a short rationale in the same commit.
 3. Update this doc to keep rationale visible for handover/review.
+
+## 3) Orchestrator-Lite Extraction (Submit/Replay)
+
+To continue complexity reduction after adding guards, the submit/replay entry pipeline was extracted from `engine.go` into `submit_pipeline.go` as explicit phases:
+
+- legality
+- build + execute
+- commit
+- invariant guard
+- determinism guard
+
+`engine.go` now stays focused on rules primitives (legality/build/execute helpers), while orchestration flow lives in one dedicated file.
+
+Practical impact:
+
+- lower file pressure on `engine.go` (dropped from ~1240 lines to ~1110 lines)
+- clearer insertion point for future cross-cutting guards (no more ad-hoc growth in engine core)
+- no behavior change; all existing tests pass
+
+## 4) Unified State Transition APIs
+
+Added centralized transition helpers in `state_transitions.go`:
+
+- `moveCardToDiscard`
+- `revealFaceDown`
+- `attachToHost`
+- `setMarker`
+- `addMarkerCount` / `removeMarkerCount`
+
+And refactored core execution paths to use them (instead of scattered field writes):
+
+- reveal path (`executeRevealCard`)
+- role action exhaust/damage/influence writes
+- DSL exhaust/damage/influence/discard writes
+- attachment creation route inside continuous registration
+
+## 5) Rule Declaration vs Execution Registry Split
+
+`DSL/fixture` remains declarative (`kind`, `targetRef`, params).  
+Execution dispatch is now registry-driven in Go:
+
+- `dsl_effect_handlers` map in `dsl_handlers.go`
+- `applyDSLEffect` resolves handler by effect kind and executes implementation
+
+This removes the execution switch from DSL entry and keeps control flow in Go handlers only.
+
+## 6) Fine-Grained Effect Binding IDs
+
+Added `ContinuousEffect.BindingEntityID` and binding-aware lifecycle checks:
+
+- `attachment:<id>`
+- `card:<cardId>`
+- `operation:<operationId>`
+
+Pruning now evaluates binding identity first (with backward-compatible fallback), preventing coarse source-level over-pruning.
+
+Extra extraction:
+
+- moved binding lifecycle helpers into `continuous_binding.go` to keep `continuous.go` within complexity budget.

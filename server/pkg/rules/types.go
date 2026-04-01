@@ -142,6 +142,7 @@ type ContinuousEffect struct {
 	SourceOperationID string          `json:"sourceOperationId,omitempty"`
 	SourceCardID      string          `json:"sourceCardId,omitempty"`
 	AttachmentID      string          `json:"attachmentId,omitempty"`
+	BindingEntityID   string          `json:"bindingEntityId,omitempty"`
 	ControllerID      string          `json:"controllerId,omitempty"`
 	TargetCardID      string          `json:"targetCardId,omitempty"`
 	Layer             ContinuousLayer `json:"layer"`

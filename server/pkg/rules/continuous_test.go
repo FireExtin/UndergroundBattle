@@ -173,8 +173,7 @@ func TestContinuousEffectIsRemovedWhenSourceLeavesTable(t *testing.T) {
 
 	sourceLeaves := cloneGameState(current)
 	sourceIndex := findCardIndex(sourceLeaves, "card-source-1")
-	sourceLeaves.Board.Cards[sourceIndex].Zone = CardZoneDiscard
-	sourceLeaves.Board.Cards[sourceIndex].Destroyed = true
+	moveCardToDiscard(&sourceLeaves.Board.Cards[sourceIndex])
 
 	cleaned := RecalculateContinuousEffects(sourceLeaves)
 	target := cardStateByID(t, cleaned, "card-target-1")
@@ -185,6 +184,88 @@ func TestContinuousEffectIsRemovedWhenSourceLeavesTable(t *testing.T) {
 
 	if len(cleaned.Board.Continuous.Active) != 0 {
 		t.Fatalf("active continuous effects = %d, want 0", len(cleaned.Board.Continuous.Active))
+	}
+}
+
+func TestOperationBoundContinuousEffectSurvivesSourceDeparture(t *testing.T) {
+	state := newContinuousTestState()
+	state.Board.Cards = []CardState{
+		{
+			CardID:         "card-source-opbinding-1",
+			Name:           "Source",
+			OwnerID:        "P1",
+			Zone:           CardZoneTable,
+			VisibleToOwner: true,
+			Revealed:       true,
+		},
+		{
+			CardID:         "card-target-cardbinding-1",
+			Name:           "Card-Bound Target",
+			OwnerID:        "P1",
+			Zone:           CardZoneTable,
+			VisibleToOwner: true,
+			Revealed:       true,
+			PrintedStats:   CardNumericStats{Defense: 1},
+		},
+		{
+			CardID:         "card-target-opbinding-1",
+			Name:           "Operation-Bound Target",
+			OwnerID:        "P1",
+			Zone:           CardZoneTable,
+			VisibleToOwner: true,
+			Revealed:       true,
+			PrintedStats:   CardNumericStats{Defense: 1},
+		},
+	}
+	state.Board.Continuous = ContinuousEffectRegistry{
+		Active: []ContinuousEffect{
+			{
+				ID:              "ce:cardbinding-1",
+				SourceCardID:    "card-source-opbinding-1",
+				BindingEntityID: bindingEntityForCard("card-source-opbinding-1"),
+				Layer:           LayerNumeric,
+				EffectKind:      "modifyStat",
+				TargetCardID:    "card-target-cardbinding-1",
+				Stat:            "defense",
+				Amount:          2,
+				DurationKind:    "permanent",
+				Timestamp:       1,
+			},
+			{
+				ID:              "ce:opbinding-1",
+				SourceCardID:    "card-source-opbinding-1",
+				BindingEntityID: bindingEntityForOperation("op:source-opbinding-1"),
+				Layer:           LayerNumeric,
+				EffectKind:      "modifyStat",
+				TargetCardID:    "card-target-opbinding-1",
+				Stat:            "defense",
+				Amount:          2,
+				DurationKind:    "permanent",
+				Timestamp:       2,
+			},
+		},
+	}
+
+	sourceLeaves := cloneGameState(state)
+	sourceIndex := findCardIndex(sourceLeaves, "card-source-opbinding-1")
+	moveCardToDiscard(&sourceLeaves.Board.Cards[sourceIndex])
+
+	recalculated := RecalculateContinuousEffects(sourceLeaves)
+	cardBoundTarget := cardStateByID(t, recalculated, "card-target-cardbinding-1")
+	opBoundTarget := cardStateByID(t, recalculated, "card-target-opbinding-1")
+
+	if cardBoundTarget.EffectiveStats.Defense != 1 {
+		t.Fatalf("card-bound target defense = %d, want 1 after source leaves", cardBoundTarget.EffectiveStats.Defense)
+	}
+	if opBoundTarget.EffectiveStats.Defense != 3 {
+		t.Fatalf("operation-bound target defense = %d, want 3 after source leaves", opBoundTarget.EffectiveStats.Defense)
+	}
+
+	if len(recalculated.Board.Continuous.Active) != 1 {
+		t.Fatalf("active continuous effects = %d, want 1", len(recalculated.Board.Continuous.Active))
+	}
+	if recalculated.Board.Continuous.Active[0].ID != "ce:opbinding-1" {
+		t.Fatalf("remaining effect = %q, want %q", recalculated.Board.Continuous.Active[0].ID, "ce:opbinding-1")
 	}
 }
 

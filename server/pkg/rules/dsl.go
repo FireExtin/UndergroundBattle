@@ -8,26 +8,12 @@ import (
 // Purpose: Applies the current minimal executable subset of pure CardLogic DSL effects to GameState.
 
 func applyDSLEffect(state GameState, operation Operation, effect EffectSpec) GameState {
-	switch effect.Kind {
-	case "drawCards":
-		return applyDrawCardsEffect(state, operation, effect)
-	case "inspectHand":
-		return applyInspectHandEffect(state, operation, effect)
-	case "exhaust":
-		return applyExhaustEffect(state, operation, effect)
-	case "addKeyword":
-		return applyAddKeywordEffect(state, operation, effect)
-	case "modifyStat":
-		return applyModifyStatEffect(state, operation, effect)
-	case "placeInfluence":
-		return applyPlaceInfluenceEffect(state, operation, effect)
-	case "dealDamage":
-		return applyDealDamageEffect(state, operation, effect)
-	case "discardCard":
-		return applyDiscardCardEffect(state, operation, effect)
-	default:
+	handler, ok := dslEffectHandlerFor(effect.Kind)
+	if !ok {
 		return state
 	}
+
+	return handler(state, operation, effect)
 }
 
 func applyDrawCardsEffect(state GameState, operation Operation, effect EffectSpec) GameState {
@@ -84,7 +70,7 @@ func applyExhaustEffect(state GameState, operation Operation, effect EffectSpec)
 	}
 
 	working := cloneGameState(state)
-	working.Board.Cards[index].Exhausted = true
+	exhaustCard(&working.Board.Cards[index])
 	return working
 }
 
@@ -116,12 +102,8 @@ func applyPlaceInfluenceEffect(state GameState, operation Operation, effect Effe
 	}
 
 	working := cloneGameState(state)
-	working.Board.Cards[index].Counters.Influence += *effect.Amount
+	addInfluenceCounter(&working.Board.Cards[index], operation.ActorID, *effect.Amount)
 	if working.Board.Cards[index].Kind == CardKindRegion {
-		if working.Board.Cards[index].InfluenceByPlayer == nil {
-			working.Board.Cards[index].InfluenceByPlayer = map[string]int{}
-		}
-		working.Board.Cards[index].InfluenceByPlayer[operation.ActorID] += *effect.Amount
 		refreshAllRegionControl(&working)
 	}
 	return working
@@ -139,7 +121,7 @@ func applyDealDamageEffect(state GameState, operation Operation, effect EffectSp
 	}
 
 	working := cloneGameState(state)
-	working.Board.Cards[index].Counters.Damage += *effect.Amount
+	addDamageCounter(&working.Board.Cards[index], *effect.Amount)
 	requestContinuousRecalculation(&working)
 	return working
 }
