@@ -54,7 +54,7 @@ func checkRoleActionLegality(state GameState, action Action, requiredTargetKind 
 		)
 	}
 
-	permissionLegality := checkCardActionPermissionLegality(state, action.CardID, action.Kind)
+	permissionLegality := checkCardActionPermissionLegality(state, action.ActorID, action.CardID, action.Kind)
 	if !permissionLegality.OK {
 		return permissionLegality
 	}
