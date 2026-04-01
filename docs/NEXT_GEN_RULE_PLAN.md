@@ -4,6 +4,23 @@
 - 当前已经有：最小规则核、priority/stack、projection、continuous effects、`inspect` 的 permission hook、`dealDamage` 对 `EffectiveStats.Defense` 的最小致命判定，以及第一批角色动作入口 `declare_attack / declare_investigation`。
 - 如果目标是“继续稳定接真实卡 DSL，并形成一个可扩展 alpha”，还差 4 个明确里程碑。做完这 4 个就够继续推进主卡池，不需要先上完整 dependency engine。
 
+## 2026-04-02 第十九次补记（Day1~Day5 串行落地）
+
+- 按“基础包优先、扩展后置”口径，已串行落地 4 个收口项（对应本轮实现 commit：`d7ae754`）：
+  1. 赢区去向修正：地区赢取后由 `discard` 改为进入 `score` 区；并补齐“先清该地区单位/附属，再地区入计分区，再补地区”的最小顺序闭环。
+  2. 抓牌空库终局：补上 `deck_out`（单方空库失败）与 `deck_out_draw`（双方同时空库平局）两条终局分支。
+  3. 先手特权显式动作化：新增 `use_first_player_privilege`，具备 legality、单回合一次限制与事件回放。
+  4. 基础机制补齐：新增 `move_card`（相邻地区移动）与 `set_card_marker/remove_card_marker`（卡牌级标记注册表），并接入投影显示。
+- 状态模型补充：
+  - 新增区域/终局相关字段和枚举：`CardZoneScore`、`MatchEndReasonDeckOut`、`MatchEndReasonDeckOutDraw`。
+  - 新增卡牌级字段：`CardState.RegionCardID`、`CardState.RegionOrder`、`BoardState.CardMarkers`。
+- 前端同步：
+  - Live Debugger 新增 `Use First-Player Privilege` 预置动作。
+  - 卡牌详情面板新增 `markers` 展示（card markers）。
+- 回归与覆盖：
+  - `go test ./server/...`、`cd web && npm test` 均通过；
+  - `server/pkg/rules` 总覆盖率约 `86%`，新增规则文件边角/异常分支覆盖均达到当前阶段门槛。
+
 ## 2026-04-02 第十八次补记（机制→引擎差距矩阵 + Shield V1）
 
 - 已新增“机制 -> 引擎差距矩阵”文档：
