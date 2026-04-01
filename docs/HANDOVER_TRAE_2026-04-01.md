@@ -84,6 +84,11 @@
 - [x] `XQ22` 禁令已从"按卡名匹配"修正为"按 `CardState.DefinitionID` 匹配"
 - [x] attachment tracking V0 已接入：fixture-only 附属 source 也可被追踪，且 host 离场会同步清理对应 continuous effect
 - [x] 对应高风险回归测试已补齐
+- [x] **Attachment / Host Lifecycle V1 已完成**：
+  - `Attachment` 结构体新增 `HostCardID` 字段
+  - `AttachmentBuilder` 新增 `Host()` 方法
+  - `PruneExpired()` 实现宿主离场联动和 continuous effect 清理
+  - 新增 `attachment_lifecycle_test.go` 完整测试
 - [x] **legality production rule catalog 已建立**（`server/pkg/rules/legality_catalog.go`）
 - [x] **shared source-condition 和 actor-scope matching 已提取**（`server/pkg/rules/legality_shared.go`）
 - [x] **`XQ31` 只在 `queue_operation` 上检查 target legality，`declare_attack/declare_investigation` 不再被误伤**
@@ -181,8 +186,26 @@
 - [x] 把 `XQ22` 从单卡特例推进成更一般的 scoped prohibition / targeting framework（legality_catalog.go + legality_shared.go）
 - [x] 完成 `XQ31` 数值光环（+1 防御力）实现，但当前只覆盖“本方声望角色”这一正确最小语义
 - [ ] 设计 `XQ01` 地区作用域沉默的 prerequisite
-- [ ] 把 `CardState.DefinitionID` 贯穿到未来真正的 permanents / attachments 上场建模
-- [ ] 把当前“rules core + fixture gate + sandbox”整理成更清晰的 AI 接手路径，避免后续会话重新摸索上下文
+- [x] 把 `CardState.DefinitionID` 贯穿到未来真正的 permanents / attachments 上场建模（Attachment / Host Lifecycle V1 已完成）
+- [x] **Secret Society Marker V1 已完成**：
+  - `MarkerRegistry` 类型和 `BoardState.Markers` 字段
+  - `GetMarker()` / `SetMarker()` 方法
+  - Projection 支持 `PlayerViewState.Markers` / `SpectatorViewState.Markers`
+  - 新增 `marker_test.go` 完整测试
+- [x] **Hidden Deployment & Reveal V1 已完成**：
+  - `CardState.FaceDown` 字段
+  - 投影可见性控制（owner 可见，对手/观众隐藏）
+  - 新增 `hidden_deployment_test.go` 完整测试
+- [x] **Timing Window V2 已完成**：
+  - Fast action 允许条件检查
+  - Reaction 需要 stack 非空
+  - 新增 `timing_window_test.go` 完整测试
+- [x] **Conflict Loop V2 已完成**：
+  - 战斗目标合法性检查
+  - 调查与地区控制衔接
+  - 游戏结束检查
+  - 新增 `conflict_loop_test.go` 完整测试
+- [ ] 把当前"rules core + fixture gate + sandbox"整理成更清晰的 AI 接手路径，避免后续会话重新摸索上下文
 
 ---
 

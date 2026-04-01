@@ -52,6 +52,9 @@ func NewGameState(config InitialStateConfig) GameState {
 				Active:           []Attachment{},
 				NextAttachmentID: 1,
 			},
+			Markers: MarkerRegistry{
+				ByPlayer: make(map[string]map[string]int),
+			},
 		},
 		Score: newScoreState(players),
 		History: HistoryState{

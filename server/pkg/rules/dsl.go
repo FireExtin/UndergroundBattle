@@ -154,9 +154,15 @@ func applyDiscardCardEffect(state GameState, operation Operation, effect EffectS
 	if index == -1 {
 		return state
 	}
+	// V1.5 keeps discardCard conservative: only table cards can be moved to discard.
+	// This avoids leaking hidden hand/deck information via accidental reveal.
+	if state.Board.Cards[index].Zone != CardZoneTable || state.Board.Cards[index].Destroyed {
+		return state
+	}
 
 	working := cloneGameState(state)
 	moveCardToDiscard(&working.Board.Cards[index])
+	requestContinuousRecalculation(&working)
 	return working
 }
 

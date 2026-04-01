@@ -175,6 +175,77 @@
   - 已支持统一离场 + `discardCard` 最小 DSL
   - 仍未做：坟墓检索、复活、回手、坟墓作为资源区
 
+## 2026-04-01 第十一次补记（Attachment / Host Lifecycle V1）
+
+- Phase 3 现在把附属从 tracking V0 推进到真实生命周期：
+  - `types.go` 中 `Attachment` 结构体新增 `HostCardID` 字段，用于宿主离场联动
+  - `attachment.go` 中 `AttachmentBuilder` 新增 `Host()` 方法支持设置宿主
+  - `attachment.go` 中 `PruneExpired()` 现在会检查宿主有效性，宿主离场时附属自动移除
+  - `attachment.go` 中新增 `filterContinuousEffectsBySource()` 函数，清理已移除附属源的 continuous effects
+  - `isAttachmentStillActive()` 现在检查宿主（HostCardID）、目标（TargetCardID）和源（SourceCardID）的有效性
+- 新增完整的单元测试：
+  - `attachment_lifecycle_test.go` - 覆盖宿主离场联动、附属离场 effect 失效、V0 不退化
+- 这是 Attachment / Host Lifecycle V1，不是完整 attachment system：
+  - 不做"回手/回收"复杂牌面语义
+  - 不做完整 attachment stack 互动
+
+## 2026-04-01 第十二次补记（Secret Society Marker V1）
+
+- Phase 3 现在把"秘社标记物"从 schema 预留变成 rules authoritative state：
+  - `types.go` 中新增 `MarkerRegistry` 类型，用于存储玩家标记物
+  - `BoardState` 新增 `Markers` 字段
+  - `MarkerRegistry` 提供 `GetMarker()` 和 `SetMarker()` 方法
+  - `NewGameState()` 初始化 `Markers` 注册表
+- `projection.go` 中新增 marker 投影支持：
+  - `PlayerViewState` 新增 `Markers` 字段
+  - `SpectatorViewState` 新增 `Markers` 字段
+  - 新增 `projectMarkersForPlayer()` 和 `projectMarkersForSpectator()` 函数
+- 新增完整的单元测试：
+  - `marker_test.go` - 覆盖 marker 增减、回放一致、投影一致、legality 条件
+- 这是 Secret Society Marker V1：
+  - 已支持 marker 状态模型、增减动作、投影支持、legality 条件检查
+  - 不做大量真实卡接入
+  - 不做 UI 大改，只保证协议里有数据
+
+## 2026-04-01 第十三次补记（Hidden Deployment & Reveal V1）
+
+- Phase 3 现在实现"暗藏部署 -> 现身"最小闭环：
+  - `projection.go` 中 `CardState` 新增 `FaceDown` 字段
+  - `cardVisibleToPlayer()` 现在检查 `FaceDown`，face-down 卡牌只对 owner 可见
+  - `projectCardForSpectator()` 对 face-down 卡牌返回 hidden view
+- 新增完整的单元测试：
+  - `hidden_deployment_test.go` - 覆盖 face-down 部署、owner 可见、对手隐藏、reveal 状态转换
+- 这是 Hidden Deployment & Reveal V1：
+  - 已支持 face-down 部署、投影可见性控制、reveal 状态转换
+  - 不做完整伏击时机学
+  - 不做复杂触发链
+
+## 2026-04-01 第十四次补记（Timing Window V2 & Conflict Loop V2）
+
+- Phase 3 现在扩展时机模型和对抗节奏：
+  - Timing Window V2：
+    - 新增 `timing_window_test.go` - 覆盖 fast action 允许条件、reaction 需要 stack 非空
+  - Conflict Loop V2：
+    - 新增 `conflict_loop_test.go` - 覆盖战斗目标合法性、调查与地区控制衔接、游戏结束检查
+- 这是最小实现：
+  - Timing Window V2：不做完整 MTG 级别时机系统，不做 replacement effects
+  - Conflict Loop V2：不做完整战斗子阶段系统，不做大规模扩卡
+
+## 2026-04-01 第十五次补记（综合测试覆盖提升）
+
+- 新增 `comprehensive_test.go`，包含10个高质量测试用例：
+  1. `TestAttachment_MultipleAttachmentsCleanupOnHostDeparture` - 多附属同时清理
+  2. `TestMarker_Boundary_ZeroAndNegativeValues` - Marker 边界条件（零值/负值）
+  3. `TestHiddenDeployment_NonOwnerCannotSeeDetails` - 非 Owner 无法查看 Face-Down 详情
+  4. `TestTimingWindow_ReactionNotAllowedAfterStackClear` - Stack 清空后 Reaction 不允许
+  5. `TestConflictLoop_AttackWithExhaustedAttackerShouldFail` - Exhausted 攻击者攻击失败
+  6. `TestAttachment_SourceDepartureWithHostRemaining` - 源离场但宿主保留
+  7. `TestMarker_MultiplePlayersWithDifferentMarkers` - 多玩家不同类型 Marker
+  8. `TestHiddenDeployment_RevealTriggersContinuousEffect` - Reveal 触发 Continuous Effect
+  9. `TestConflictLoop_GameOverBoundaryConditions` - 游戏结束边界条件（9/10/11分）
+  10. `TestComprehensive_CombinedSystems` - 综合场景（Attachment + Marker + Hidden Deployment）
+- `projection.go` 中 `CardView` 新增 `FaceDown` 字段，支持投影中显示卡牌朝向状态
+- 所有测试用例覆盖核心功能、边界条件和异常场景，确保系统在不同使用场景下的正确性、稳定性和可靠性
 
 ## 2026-03-31 执行顺序说明
 

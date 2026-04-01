@@ -13,6 +13,7 @@ type AttachmentBuilder struct {
 	sourceDefinitionID string
 	sourceOperationID  string
 	targetID           string
+	hostID             string
 	revision           int
 	basicType          string
 }
@@ -45,6 +46,12 @@ func (b *AttachmentBuilder) FromOperation(sourceOperationID string) *AttachmentB
 // To sets the target card ID.
 func (b *AttachmentBuilder) To(targetID string) *AttachmentBuilder {
 	b.targetID = targetID
+	return b
+}
+
+// Host sets the host card ID for attachment lifecycle management.
+func (b *AttachmentBuilder) Host(hostID string) *AttachmentBuilder {
+	b.hostID = hostID
 	return b
 }
 
@@ -102,6 +109,7 @@ func (b *AttachmentBuilder) Create() (GameState, error) {
 		SourceDefinitionID: b.sourceDefinitionID,
 		SourceOperationID:  b.sourceOperationID,
 		TargetCardID:       b.targetID,
+		HostCardID:         b.hostID,
 		CreatedAtRevision:  b.revision,
 	}
 
@@ -129,7 +137,8 @@ func NewAttachmentManager(state GameState) *AttachmentManager {
 	return &AttachmentManager{state: state}
 }
 
-// PruneExpired removes attachments where source or target is no longer valid.
+// PruneExpired removes attachments where source, target, or host is no longer valid.
+// Also removes continuous effects from expired attachment sources.
 func (am *AttachmentManager) PruneExpired() GameState {
 	working := cloneGameState(am.state)
 	registry := &working.Board.Attachments
@@ -138,29 +147,63 @@ func (am *AttachmentManager) PruneExpired() GameState {
 		return working
 	}
 
+	// Track which attachment sources are being removed
+	removedSourceIDs := make(map[string]bool)
+
 	kept := make([]Attachment, 0, len(registry.Active))
 	for _, attachment := range registry.Active {
 		if am.isAttachmentStillActive(attachment) {
 			kept = append(kept, attachment)
+		} else {
+			// Track removed source for continuous effect cleanup
+			if attachment.SourceCardID != "" {
+				removedSourceIDs[attachment.SourceCardID] = true
+			}
 		}
 	}
 
 	registry.Active = kept
+
+	// Clean up continuous effects from removed attachment sources
+	if len(removedSourceIDs) > 0 {
+		working.Board.Continuous.Active = filterContinuousEffectsBySource(
+			working.Board.Continuous.Active,
+			removedSourceIDs,
+		)
+	}
+
 	return working
 }
 
-// isAttachmentStillActive checks if both source and target cards are still valid.
+// filterContinuousEffectsBySource removes continuous effects from removed sources.
+func filterContinuousEffectsBySource(effects []ContinuousEffect, removedSources map[string]bool) []ContinuousEffect {
+	kept := make([]ContinuousEffect, 0, len(effects))
+	for _, effect := range effects {
+		if !removedSources[effect.SourceCardID] {
+			kept = append(kept, effect)
+		}
+	}
+	return kept
+}
+
+// isAttachmentStillActive checks if source, target, and host cards are still valid.
 func (am *AttachmentManager) isAttachmentStillActive(attachment Attachment) bool {
+	// Check target (the card being attached to)
 	if !am.isCardValid(attachment.TargetCardID) {
 		return false
 	}
 
+	// Check host (if specified, the host is the lifecycle anchor)
+	if attachment.HostCardID != "" && !am.isCardValid(attachment.HostCardID) {
+		return false
+	}
+
+	// Check source (the card providing the attachment effect)
 	if attachment.SourceCardID != "" {
 		return am.isCardValid(attachment.SourceCardID)
 	}
 
-	// Fixture-only attachment sources do not have a table entity yet, so the host
-	// card is the only lifecycle anchor we can enforce in the current model.
+	// Fixture-only attachment sources do not have a table entity yet
 	return true
 }
 

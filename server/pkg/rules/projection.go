@@ -34,6 +34,7 @@ type CardState struct {
 	Zone                CardZone         `json:"zone"`
 	VisibleToOwner      bool             `json:"visibleToOwner"`
 	Revealed            bool             `json:"revealed"`
+	FaceDown            bool             `json:"faceDown,omitempty"` // 暗藏部署状态
 	Exhausted           bool             `json:"exhausted"`
 	InspectedBy         []string         `json:"inspectedBy,omitempty"`
 	PrintedKeywords     []string         `json:"printedKeywords,omitempty"`
@@ -59,6 +60,7 @@ type CardView struct {
 	Zone       CardZone         `json:"zone"`
 	Visibility string           `json:"visibility"`
 	Revealed   bool             `json:"revealed"`
+	FaceDown   bool             `json:"faceDown,omitempty"` // 是否面朝下
 	Exhausted  bool             `json:"exhausted"`
 	Destroyed  bool             `json:"destroyed"`
 	Keywords   []string         `json:"keywords,omitempty"`
@@ -83,6 +85,7 @@ type PlayerViewState struct {
 	Turn           TurnState      `json:"turn"`
 	Score          ScoreState     `json:"score"`
 	Board          ViewBoardState `json:"board"`
+	Markers        map[string]int `json:"markers,omitempty"` // 玩家可见的标记物
 }
 
 // SpectatorViewState is the public-only projection generated for non-player observers.
@@ -93,6 +96,7 @@ type SpectatorViewState struct {
 	Turn     TurnState      `json:"turn"`
 	Score    ScoreState     `json:"score"`
 	Board    ViewBoardState `json:"board"`
+	Markers  map[string]int `json:"markers,omitempty"` // 公开可见的标记物
 }
 
 // ProjectionBundle collects all post-commit projections for a single revision.
@@ -137,6 +141,7 @@ func (engine *ProjectionEngine) Generate(full FullState) ProjectionBundle {
 			Turn:           full.Turn,
 			Score:          cloneScoreState(full.Score),
 			Board:          projectBoardForPlayer(full, playerID),
+			Markers:        projectMarkersForPlayer(full, playerID),
 		}
 	}
 
@@ -150,6 +155,7 @@ func (engine *ProjectionEngine) Generate(full FullState) ProjectionBundle {
 			Turn:     full.Turn,
 			Score:    cloneScoreState(full.Score),
 			Board:    projectBoardForSpectator(full),
+			Markers:  projectMarkersForSpectator(full),
 		},
 	}
 }
@@ -190,6 +196,11 @@ func projectCardForPlayer(card CardState, viewerPlayerID string) CardView {
 }
 
 func projectCardForSpectator(card CardState) CardView {
+	// Face-down cards are always hidden from spectators
+	if card.FaceDown {
+		return hiddenCardView(card)
+	}
+
 	if card.Revealed {
 		return visibleCardView(card)
 	}
@@ -198,6 +209,11 @@ func projectCardForSpectator(card CardState) CardView {
 }
 
 func cardVisibleToPlayer(card CardState, viewerPlayerID string) bool {
+	// Face-down cards are only visible to their owner
+	if card.FaceDown {
+		return card.OwnerID == viewerPlayerID
+	}
+
 	if card.Revealed {
 		return true
 	}
@@ -217,6 +233,7 @@ func visibleCardView(card CardState) CardView {
 		Zone:       card.Zone,
 		Visibility: "visible",
 		Revealed:   card.Revealed,
+		FaceDown:   card.FaceDown,
 		Exhausted:  card.Exhausted,
 		Destroyed:  card.Destroyed,
 		Keywords:   visibleKeywords(card),
@@ -249,4 +266,45 @@ func visibleStats(card CardState) CardNumericStats {
 	}
 
 	return card.PrintedStats
+}
+
+// projectMarkersForPlayer returns all markers visible to a specific player.
+// For now, all markers are public, so return all markers for the player.
+func projectMarkersForPlayer(full FullState, playerID string) map[string]int {
+	if full.Board.Markers.ByPlayer == nil {
+		return nil
+	}
+	playerMarkers, ok := full.Board.Markers.ByPlayer[playerID]
+	if !ok || len(playerMarkers) == 0 {
+		return nil
+	}
+	// Return a copy
+	result := make(map[string]int)
+	for k, v := range playerMarkers {
+		result[k] = v
+	}
+	return result
+}
+
+// projectMarkersForSpectator returns all public markers for spectator view.
+// For now, aggregate all player markers (or return nil if no markers).
+func projectMarkersForSpectator(full FullState) map[string]int {
+	if full.Board.Markers.ByPlayer == nil {
+		return nil
+	}
+	// For spectators, show aggregated public markers
+	// For now, we'll return nil or aggregate if needed
+	// This can be extended to show specific public marker types
+	totalMarkers := make(map[string]int)
+	hasMarkers := false
+	for _, playerMarkers := range full.Board.Markers.ByPlayer {
+		for markerType, amount := range playerMarkers {
+			totalMarkers[markerType] += amount
+			hasMarkers = true
+		}
+	}
+	if !hasMarkers {
+		return nil
+	}
+	return totalMarkers
 }

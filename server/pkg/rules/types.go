@@ -161,6 +161,7 @@ type Attachment struct {
 	SourceDefinitionID string `json:"sourceDefinitionId,omitempty"`
 	SourceOperationID  string `json:"sourceOperationId,omitempty"`
 	TargetCardID       string `json:"targetCardId"`
+	HostCardID         string `json:"hostCardId,omitempty"` // 宿主卡片ID，用于宿主离场联动
 	CreatedAtRevision  int    `json:"createdAtRevision"`
 }
 
@@ -348,6 +349,40 @@ type BoardState struct {
 	Cards         []CardState              `json:"cards"`
 	Continuous    ContinuousEffectRegistry `json:"continuous"`
 	Attachments   AttachmentRegistry       `json:"attachments"`
+	Markers       MarkerRegistry           `json:"markers"` // 秘社标记物注册表
+}
+
+// MarkerRegistry tracks all player markers (e.g., secret society markers).
+type MarkerRegistry struct {
+	// ByPlayer maps playerID -> markerType -> amount
+	ByPlayer map[string]map[string]int `json:"byPlayer"`
+}
+
+// GetMarker returns the amount of a specific marker type for a player.
+func (r MarkerRegistry) GetMarker(playerID, markerType string) int {
+	if r.ByPlayer == nil {
+		return 0
+	}
+	playerMarkers, ok := r.ByPlayer[playerID]
+	if !ok {
+		return 0
+	}
+	return playerMarkers[markerType]
+}
+
+// SetMarker sets the amount of a specific marker type for a player.
+func (r *MarkerRegistry) SetMarker(playerID, markerType string, amount int) {
+	if r.ByPlayer == nil {
+		r.ByPlayer = make(map[string]map[string]int)
+	}
+	if r.ByPlayer[playerID] == nil {
+		r.ByPlayer[playerID] = make(map[string]int)
+	}
+	if amount <= 0 {
+		delete(r.ByPlayer[playerID], markerType)
+	} else {
+		r.ByPlayer[playerID][markerType] = amount
+	}
 }
 
 // RandomResult records each deterministic RNG draw committed into history-visible board state.
