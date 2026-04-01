@@ -74,10 +74,7 @@ func discardExcessHandCards(state *GameState, playerID string, handLimit int) {
 	// Deterministic discard choice: latest cards in board-order hand slice are discarded first.
 	for cursor := len(handIndices) - 1; cursor >= 0 && excess > 0; cursor-- {
 		card := &state.Board.Cards[handIndices[cursor]]
-		card.Zone = CardZoneDiscard
-		card.Destroyed = true
-		card.Revealed = true
-		card.FaceDown = false
+		moveCardToDiscard(card)
 		excess--
 	}
 }
@@ -100,14 +97,27 @@ func applyDrawStep(state *GameState, operation Operation) {
 	if state == nil {
 		return
 	}
+	if state.Match.Status == MatchStatusFinished {
+		return
+	}
 
 	policy := DefaultDrawStepPolicy()
 	if !policy.DrawWithoutStack {
 		return
 	}
 
+	operationID := operation.ID + ":draw"
+	if hasExplicitDeckModel(*state) {
+		failedPlayers := drawOneFromDeckPerPlayer(state)
+		if len(failedPlayers) == 0 {
+			return
+		}
+		applyDeckOutResult(state, failedPlayers)
+		return
+	}
+
 	for index, playerID := range state.Players {
-		appendGeneratedDrawCard(state, operation.ID+":draw", playerID, index+1)
+		appendGeneratedDrawCard(state, operationID, playerID, index+1)
 	}
 }
 
@@ -133,8 +143,9 @@ func resolveRegionWins(state *GameState) {
 			continue
 		}
 
+		cleanupWonRegionTableState(state, region.CardID)
 		winnerID := region.ControllerID
-		moveCardToDiscard(region)
+		moveCardToScore(region)
 		state.Score.ByPlayer[winnerID]++
 
 		state.Board.Cards = append(state.Board.Cards, CardState{
@@ -147,6 +158,98 @@ func resolveRegionWins(state *GameState) {
 		})
 		nextAutoRegionIndex++
 	}
+}
+
+func cleanupWonRegionTableState(state *GameState, regionCardID string) {
+	if state == nil || regionCardID == "" {
+		return
+	}
+
+	for index := range state.Board.Cards {
+		card := &state.Board.Cards[index]
+		if card.Kind == CardKindRegion || card.Zone != CardZoneTable || card.Destroyed {
+			continue
+		}
+		if card.RegionCardID != regionCardID {
+			continue
+		}
+		moveCardToDiscard(card)
+	}
+
+	pruned := NewAttachmentManager(*state).PruneExpired()
+	state.Board.Attachments = pruned.Board.Attachments
+	state.Board.Continuous.Active = pruned.Board.Continuous.Active
+}
+
+func hasExplicitDeckModel(state GameState) bool {
+	for _, card := range state.Board.Cards {
+		if card.Zone == CardZoneDeck {
+			return true
+		}
+	}
+	return false
+}
+
+func drawOneFromDeckPerPlayer(state *GameState) []string {
+	if state == nil {
+		return nil
+	}
+
+	failed := make([]string, 0)
+	for _, playerID := range state.Players {
+		index := topDeckCardIndex(*state, playerID)
+		if index < 0 {
+			failed = append(failed, playerID)
+			continue
+		}
+		drawCardFromDeck(&state.Board.Cards[index])
+	}
+
+	return failed
+}
+
+func topDeckCardIndex(state GameState, playerID string) int {
+	for index := len(state.Board.Cards) - 1; index >= 0; index-- {
+		card := state.Board.Cards[index]
+		if card.OwnerID != playerID || card.Zone != CardZoneDeck || card.Destroyed {
+			continue
+		}
+		return index
+	}
+	return -1
+}
+
+func applyDeckOutResult(state *GameState, failedPlayers []string) {
+	if state == nil || len(failedPlayers) == 0 {
+		return
+	}
+
+	state.Match.Status = MatchStatusFinished
+	state.Match.WinnerPlayerID = ""
+	state.Score.WinnerPlayerID = ""
+
+	if len(failedPlayers) == len(state.Players) {
+		state.Match.EndReason = MatchEndReasonDeckOutDraw
+		return
+	}
+
+	winner := survivingPlayerID(state.Players, failedPlayers)
+	state.Match.EndReason = MatchEndReasonDeckOut
+	state.Match.WinnerPlayerID = winner
+	state.Score.WinnerPlayerID = winner
+}
+
+func survivingPlayerID(players []string, failedPlayers []string) string {
+	failedSet := make(map[string]bool, len(failedPlayers))
+	for _, playerID := range failedPlayers {
+		failedSet[playerID] = true
+	}
+	for _, playerID := range players {
+		if !failedSet[playerID] {
+			return playerID
+		}
+	}
+	return ""
 }
 
 func regionWinThreshold(region CardState) int {

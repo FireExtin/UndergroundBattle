@@ -12,6 +12,7 @@ const (
 	CardZoneHand    CardZone = "hand"
 	CardZoneTable   CardZone = "table"
 	CardZoneDiscard CardZone = "discard"
+	CardZoneScore   CardZone = "score"
 )
 
 // CardKind identifies the minimal role a card plays in legality and board semantics.
@@ -32,6 +33,8 @@ type CardState struct {
 	Kind                CardKind         `json:"kind,omitempty"`
 	OwnerID             string           `json:"ownerId"`
 	Zone                CardZone         `json:"zone"`
+	RegionCardID        string           `json:"regionCardId,omitempty"`
+	RegionOrder         int              `json:"regionOrder,omitempty"`
 	VisibleToOwner      bool             `json:"visibleToOwner"`
 	Revealed            bool             `json:"revealed"`
 	FaceDown            bool             `json:"faceDown,omitempty"` // 暗藏部署状态
@@ -66,6 +69,7 @@ type CardView struct {
 	Keywords   []string         `json:"keywords,omitempty"`
 	Stats      CardNumericStats `json:"stats"`
 	Counters   CardCounters     `json:"counters"`
+	Markers    map[string]int   `json:"markers,omitempty"`
 }
 
 // ViewBoardState is the client-safe projection of board information.
@@ -163,7 +167,7 @@ func (engine *ProjectionEngine) Generate(full FullState) ProjectionBundle {
 func projectBoardForPlayer(full FullState, viewerPlayerID string) ViewBoardState {
 	view := baseBoardProjection(full)
 	for _, card := range full.Board.Cards {
-		view.Cards = append(view.Cards, projectCardForPlayer(card, viewerPlayerID))
+		view.Cards = append(view.Cards, projectCardForPlayer(full, card, viewerPlayerID))
 	}
 
 	return view
@@ -172,7 +176,7 @@ func projectBoardForPlayer(full FullState, viewerPlayerID string) ViewBoardState
 func projectBoardForSpectator(full FullState) ViewBoardState {
 	view := baseBoardProjection(full)
 	for _, card := range full.Board.Cards {
-		view.Cards = append(view.Cards, projectCardForSpectator(card))
+		view.Cards = append(view.Cards, projectCardForSpectator(full, card))
 	}
 
 	return view
@@ -187,22 +191,22 @@ func baseBoardProjection(full FullState) ViewBoardState {
 	}
 }
 
-func projectCardForPlayer(card CardState, viewerPlayerID string) CardView {
+func projectCardForPlayer(full FullState, card CardState, viewerPlayerID string) CardView {
 	if cardVisibleToPlayer(card, viewerPlayerID) {
-		return visibleCardView(card)
+		return visibleCardView(card, projectCardMarkers(full, card.CardID))
 	}
 
 	return hiddenCardView(card)
 }
 
-func projectCardForSpectator(card CardState) CardView {
+func projectCardForSpectator(full FullState, card CardState) CardView {
 	// Face-down cards are always hidden from spectators
 	if card.FaceDown {
 		return hiddenCardView(card)
 	}
 
 	if card.Revealed {
-		return visibleCardView(card)
+		return visibleCardView(card, projectCardMarkers(full, card.CardID))
 	}
 
 	return hiddenCardView(card)
@@ -225,7 +229,7 @@ func cardVisibleToPlayer(card CardState, viewerPlayerID string) bool {
 	return slices.Contains(card.InspectedBy, viewerPlayerID)
 }
 
-func visibleCardView(card CardState) CardView {
+func visibleCardView(card CardState, markers map[string]int) CardView {
 	return CardView{
 		CardID:     card.CardID,
 		Name:       card.Name,
@@ -239,6 +243,7 @@ func visibleCardView(card CardState) CardView {
 		Keywords:   visibleKeywords(card),
 		Stats:      visibleStats(card),
 		Counters:   card.Counters,
+		Markers:    markers,
 	}
 }
 
@@ -250,6 +255,22 @@ func hiddenCardView(card CardState) CardView {
 		Revealed:   false,
 		Exhausted:  false,
 	}
+}
+
+func projectCardMarkers(full FullState, cardID string) map[string]int {
+	if cardID == "" || full.Board.CardMarkers.ByCard == nil {
+		return nil
+	}
+	values, ok := full.Board.CardMarkers.ByCard[cardID]
+	if !ok || len(values) == 0 {
+		return nil
+	}
+
+	result := make(map[string]int, len(values))
+	for markerType, amount := range values {
+		result[markerType] = amount
+	}
+	return result
 }
 
 func visibleKeywords(card CardState) []string {

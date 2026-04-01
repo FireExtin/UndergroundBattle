@@ -200,10 +200,11 @@ describe("LiveDebuggerShell", () => {
     expect(fetchMock.mock.calls[2]?.[0]).toBe("/api/debugger/actions");
   });
 
-  it("submits marker and face-down presets with expected action payloads", async () => {
+  it("submits marker, face-down, and first-player privilege presets with expected action payloads", async () => {
     const fetchMock = vi
       .fn()
       .mockResolvedValueOnce(createJSONResponse(playableLiveMessages))
+      .mockResolvedValueOnce(createJSONResponse(rejectionBatch))
       .mockResolvedValueOnce(createJSONResponse(rejectionBatch))
       .mockResolvedValueOnce(createJSONResponse(rejectionBatch))
       .mockResolvedValueOnce(createJSONResponse(rejectionBatch));
@@ -226,6 +227,10 @@ describe("LiveDebuggerShell", () => {
     fireEvent.click(screen.getByRole("button", { name: "Set Own Table Face-Down" }));
     await waitFor(() => {
       expect(fetchMock).toHaveBeenCalledTimes(4);
+    });
+    fireEvent.click(screen.getByRole("button", { name: "Use First-Player Privilege" }));
+    await waitFor(() => {
+      expect(fetchMock).toHaveBeenCalledTimes(5);
     });
 
     const setMarkerBody = JSON.parse(String(fetchMock.mock.calls[1]?.[1]?.body));
@@ -254,6 +259,13 @@ describe("LiveDebuggerShell", () => {
       actorId: "P1",
       kind: "set_face_down",
       cardId: "P1-TABLE-1"
+    });
+
+    const privilegeBody = JSON.parse(String(fetchMock.mock.calls[4]?.[1]?.body));
+    expect(privilegeBody).toMatchObject({
+      id: "act-web-p1-4",
+      actorId: "P1",
+      kind: "use_first_player_privilege"
     });
   });
 

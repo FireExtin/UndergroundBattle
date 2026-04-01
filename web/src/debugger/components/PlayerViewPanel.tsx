@@ -15,6 +15,10 @@ export function PlayerViewPanel({ viewerLabel, cards }: PlayerViewPanelProps) {
           const key = card.cardId ?? `${card.ownerId}-${card.zone}-${index}`;
           const isVisible = card.visibility === "visible";
           const shield = card.counters.shield ?? 0;
+          const markerSummary = Object.entries(card.markers ?? {})
+            .sort(([left], [right]) => left.localeCompare(right))
+            .map(([markerType, amount]) => `${markerType} ${amount}`)
+            .join(", ");
 
           return (
             <li key={key} className="card-row">
@@ -26,7 +30,7 @@ export function PlayerViewPanel({ viewerLabel, cards }: PlayerViewPanelProps) {
                     keywords: {card.keywords?.join(", ") || "none"} | stats: {card.stats.combat}/
                     {card.stats.defense}/{card.stats.influence}/{card.stats.investigation} | counters: dmg{" "}
                     {card.counters.damage}, inf {card.counters.influence}, shd {shield} | face-down:{" "}
-                    {card.faceDown ? "yes" : "no"}
+                    {card.faceDown ? "yes" : "no"} | markers: {markerSummary || "none"}
                   </p>
                 ) : null}
               </div>

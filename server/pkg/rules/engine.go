@@ -51,6 +51,9 @@ func NewGameState(config InitialStateConfig) GameState {
 			Markers: MarkerRegistry{
 				ByPlayer: make(map[string]map[string]int),
 			},
+			CardMarkers: CardMarkerRegistry{
+				ByCard: make(map[string]map[string]int),
+			},
 		},
 		Score: newScoreState(players),
 		History: HistoryState{
@@ -106,25 +109,17 @@ func checkLegalityWithLookup(state GameState, action Action, sourceLookup cardOp
 	}
 
 	if state.Match.Status == MatchStatusFinished {
-		if state.Match.WinnerPlayerID == "" {
-			return legalityFailure(
-				ReasonCodeRulesFailedInvalidState,
-				"rules.game.invalid_state",
-				"match.winnerPlayerId",
-				map[string]string{
-					"status":    string(state.Match.Status),
-					"endReason": string(state.Match.EndReason),
-				},
-			)
+		context := map[string]string{
+			"endReason": string(state.Match.EndReason),
+		}
+		if state.Match.WinnerPlayerID != "" {
+			context["winnerPlayerId"] = state.Match.WinnerPlayerID
 		}
 		return legalityFailure(
 			ReasonCodeRulesFailedGameAlreadyOver,
 			"rules.game.already_over",
 			"match.status",
-			map[string]string{
-				"winnerPlayerId": state.Match.WinnerPlayerID,
-				"endReason":      string(state.Match.EndReason),
-			},
+			context,
 		)
 	}
 
@@ -183,6 +178,12 @@ func checkLegalityWithLookup(state GameState, action Action, sourceLookup cardOp
 		return okLegalityResult()
 	case ActionKindSetMarker, ActionKindRemoveMarker:
 		return checkMarkerActionLegality(state, action)
+	case ActionKindSetCardMarker, ActionKindRemoveCardMarker:
+		return checkCardMarkerActionLegality(state, action)
+	case ActionKindUseFirstPlayerPrivilege:
+		return checkFirstPlayerPrivilegeActionLegality(state, action)
+	case ActionKindMoveCard:
+		return checkMoveCardActionLegality(state, action)
 	case ActionKindDeclareAttack:
 		return checkRoleActionLegality(state, action, CardKindCharacter)
 	case ActionKindDeclareInvestigation:
@@ -289,6 +290,21 @@ func buildOperationWithLookup(state GameState, action Action, sourceLookup cardO
 		operation.Kind = OperationKindRemoveMarker
 		operation.MarkerType = action.MarkerType
 		operation.MarkerAmount = action.MarkerAmount
+	case ActionKindSetCardMarker:
+		operation.Kind = OperationKindSetCardMarker
+		operation.MarkerType = action.MarkerType
+		operation.MarkerAmount = action.MarkerAmount
+		operation.TargetCardID = action.TargetCardID
+	case ActionKindRemoveCardMarker:
+		operation.Kind = OperationKindRemoveCardMarker
+		operation.MarkerType = action.MarkerType
+		operation.MarkerAmount = action.MarkerAmount
+		operation.TargetCardID = action.TargetCardID
+	case ActionKindMoveCard:
+		operation.Kind = OperationKindMoveCard
+		operation.CardID = action.CardID
+		operation.TargetCardID = action.TargetCardID
+		operation.Label = "move_card"
 	case ActionKindDeclareAttack:
 		operation.Kind = OperationKindDeclareAttack
 		operation.CardID = action.CardID
@@ -311,6 +327,8 @@ func buildOperationWithLookup(state GameState, action Action, sourceLookup cardO
 	case ActionKindSetFaceDown:
 		operation.Kind = OperationKindSetFaceDown
 		operation.CardID = action.CardID
+	case ActionKindUseFirstPlayerPrivilege:
+		operation.Kind = OperationKindUseFirstPlayerPrivilege
 	default:
 		return Operation{}, fmt.Errorf("unsupported action kind %q", action.Kind)
 	}
@@ -373,8 +391,14 @@ func executeOperation(state GameState, operation Operation) (GameState, Operatio
 		return executeSetMarker(working, operation)
 	case OperationKindRemoveMarker:
 		return executeRemoveMarker(working, operation)
+	case OperationKindSetCardMarker:
+		return executeSetCardMarker(working, operation)
+	case OperationKindRemoveCardMarker:
+		return executeRemoveCardMarker(working, operation)
 	case OperationKindDeclareAttack:
 		return executeDeclareAttack(working, operation)
+	case OperationKindMoveCard:
+		return executeMoveCard(working, operation)
 	case OperationKindDeclareInvestigation:
 		return executeDeclareInvestigation(working, operation)
 	case OperationKindCardEffect:
@@ -385,6 +409,8 @@ func executeOperation(state GameState, operation Operation) (GameState, Operatio
 		return executeRollRandom(working, operation)
 	case OperationKindSetFaceDown:
 		return executeSetFaceDown(working, operation)
+	case OperationKindUseFirstPlayerPrivilege:
+		return executeUseFirstPlayerPrivilege(working, operation)
 	default:
 		return GameState{}, Operation{}, Event{}, fmt.Errorf("unsupported operation kind %q", operation.Kind)
 	}
@@ -779,11 +805,13 @@ func actionRequiresEmptyStack(kind ActionKind) bool {
 		ActionKindRevealCard,
 		ActionKindInspectCard,
 		ActionKindSetFaceDown,
+		ActionKindUseFirstPlayerPrivilege,
+		ActionKindMoveCard,
 		ActionKindDeclareAttack,
 		ActionKindDeclareInvestigation,
 		ActionKindRollSeededRandom:
 		return true
-	case ActionKindSetMarker, ActionKindRemoveMarker:
+	case ActionKindSetMarker, ActionKindRemoveMarker, ActionKindSetCardMarker, ActionKindRemoveCardMarker:
 		return true
 	default:
 		return false

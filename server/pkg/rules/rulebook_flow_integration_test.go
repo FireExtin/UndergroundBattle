@@ -149,7 +149,30 @@ func TestRulebookFlow_C03_RegionWinFlowMovesRegionAndRefills(t *testing.T) {
 	region.InfluenceByPlayer = map[string]int{"P1": 2, "P2": 0}
 	region.Counters.Influence = 2
 	region.ControllerID = "P1"
-	state.Board.Cards = []CardState{region}
+	state.Board.Cards = []CardState{
+		region,
+		{
+			CardID:         "region-win-unit-1",
+			Name:           "Region Unit",
+			Kind:           CardKindCharacter,
+			OwnerID:        "P1",
+			Zone:           CardZoneTable,
+			RegionCardID:   "region-win-1",
+			VisibleToOwner: true,
+			Revealed:       true,
+			PrintedStats:   CardNumericStats{Combat: 1, Defense: 1},
+			EffectiveStats: CardNumericStats{Combat: 1, Defense: 1},
+		},
+	}
+	state.Board.Attachments.Active = []Attachment{
+		{
+			ID:                 "att:region-win-1",
+			SourceDefinitionID: "TEST:ATTACHMENT",
+			TargetCardID:       "region-win-unit-1",
+			HostCardID:         "region-win-1",
+			CreatedAtRevision:  0,
+		},
+	}
 
 	result, err := SubmitAction(state, Action{
 		ID:      "act-c03-end-to-main",
@@ -161,14 +184,20 @@ func TestRulebookFlow_C03_RegionWinFlowMovesRegionAndRefills(t *testing.T) {
 	}
 
 	won := cardStateByID(t, result.State, "region-win-1")
-	if won.Zone != CardZoneDiscard {
-		t.Fatalf("won region zone = %q, want %q", won.Zone, CardZoneDiscard)
+	if won.Zone != CardZoneScore {
+		t.Fatalf("won region zone = %q, want %q", won.Zone, CardZoneScore)
 	}
-	if !won.Destroyed {
-		t.Fatal("won region should be marked removed from active table")
+	if won.Destroyed {
+		t.Fatal("won region should not be marked destroyed after moving to score zone")
 	}
 	if result.State.Score.ByPlayer["P1"] != 1 {
 		t.Fatalf("P1 score = %d, want 1 from region win", result.State.Score.ByPlayer["P1"])
+	}
+	if got := cardStateByID(t, result.State, "region-win-unit-1").Zone; got != CardZoneDiscard {
+		t.Fatalf("region unit zone = %q, want %q after region win cleanup", got, CardZoneDiscard)
+	}
+	if len(result.State.Board.Attachments.Active) != 0 {
+		t.Fatalf("attachments should be pruned before score-zone move, got %#v", result.State.Board.Attachments.Active)
 	}
 
 	refillFound := false
@@ -314,6 +343,90 @@ func TestRulebookFlow_EndToMainResetsPrivilegeMarkersForAllPlayers(t *testing.T)
 		if got := result.State.Board.Markers.GetMarker(playerID, markerTypeFirstPlayerPrivilegeUsed); got != 0 {
 			t.Fatalf("%s used marker = %d, want 0", playerID, got)
 		}
+	}
+}
+
+func TestRulebookFlow_C14_DrawFromEmptyDeckSinglePlayerLoses(t *testing.T) {
+	state := NewGameState(InitialStateConfig{
+		GameID:         "c14-single-empty-deck",
+		ActivePlayerID: "P1",
+		PlayerIDs:      []string{"P1", "P2"},
+	})
+	state.Turn.Phase = phaseState(PhaseEnd)
+	resetPriorityWindow(&state.Turn, "P1", PriorityWindowAction)
+	state.Board.Cards = append(state.Board.Cards, CardState{
+		CardID:         "p2-deck-1",
+		Name:           "P2 Deck Card",
+		OwnerID:        "P2",
+		Zone:           CardZoneDeck,
+		VisibleToOwner: false,
+		Revealed:       false,
+	})
+
+	result, err := SubmitAction(state, Action{
+		ID:      "act-c14-single-empty-deck",
+		ActorID: "P1",
+		Kind:    ActionKindAdvancePhase,
+	})
+	if err != nil {
+		t.Fatalf("SubmitAction returned error: %v", err)
+	}
+
+	if result.State.Match.Status != MatchStatusFinished {
+		t.Fatalf("match status = %q, want %q", result.State.Match.Status, MatchStatusFinished)
+	}
+	if result.State.Match.EndReason != MatchEndReasonDeckOut {
+		t.Fatalf("match end reason = %q, want %q", result.State.Match.EndReason, MatchEndReasonDeckOut)
+	}
+	if result.State.Match.WinnerPlayerID != "P2" {
+		t.Fatalf("winner = %q, want %q", result.State.Match.WinnerPlayerID, "P2")
+	}
+	if result.State.Score.WinnerPlayerID != "P2" {
+		t.Fatalf("score winner = %q, want %q", result.State.Score.WinnerPlayerID, "P2")
+	}
+	if got := countCardsInZoneByOwner(result.State, CardZoneHand, "P2"); got != 1 {
+		t.Fatalf("P2 hand count = %d, want 1 after successful draw", got)
+	}
+}
+
+func TestRulebookFlow_C14_DrawFromEmptyDeckBothPlayersDrawMatch(t *testing.T) {
+	state := NewGameState(InitialStateConfig{
+		GameID:         "c14-both-empty-deck",
+		ActivePlayerID: "P1",
+		PlayerIDs:      []string{"P1", "P2"},
+	})
+	state.Turn.Phase = phaseState(PhaseEnd)
+	resetPriorityWindow(&state.Turn, "P1", PriorityWindowAction)
+	// Deck model is active because a deck card exists, but both players will fail to draw simultaneously.
+	state.Board.Cards = append(state.Board.Cards, CardState{
+		CardID:         "deck-anchor-other-owner",
+		Name:           "Deck Anchor",
+		OwnerID:        "WORLD",
+		Zone:           CardZoneDeck,
+		VisibleToOwner: false,
+		Revealed:       false,
+	})
+
+	result, err := SubmitAction(state, Action{
+		ID:      "act-c14-both-empty-deck",
+		ActorID: "P1",
+		Kind:    ActionKindAdvancePhase,
+	})
+	if err != nil {
+		t.Fatalf("SubmitAction returned error: %v", err)
+	}
+
+	if result.State.Match.Status != MatchStatusFinished {
+		t.Fatalf("match status = %q, want %q", result.State.Match.Status, MatchStatusFinished)
+	}
+	if result.State.Match.EndReason != MatchEndReasonDeckOutDraw {
+		t.Fatalf("match end reason = %q, want %q", result.State.Match.EndReason, MatchEndReasonDeckOutDraw)
+	}
+	if result.State.Match.WinnerPlayerID != "" {
+		t.Fatalf("winner = %q, want empty on simultaneous deck-out", result.State.Match.WinnerPlayerID)
+	}
+	if result.State.Score.WinnerPlayerID != "" {
+		t.Fatalf("score winner = %q, want empty on simultaneous deck-out", result.State.Score.WinnerPlayerID)
 	}
 }
 

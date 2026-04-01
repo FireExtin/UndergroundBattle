@@ -2,7 +2,7 @@
 
 export type ProtocolChannelKind = "command" | "event" | "view";
 export type ViewerId = "P1" | "P2" | "spectator";
-export type CardZone = "deck" | "hand" | "table" | "discard";
+export type CardZone = "deck" | "hand" | "table" | "discard" | "score";
 
 export type Action = {
   id: string;
@@ -143,6 +143,7 @@ export type CardView = {
   keywords?: string[];
   stats: CardNumericStats;
   counters: CardCounters;
+  markers?: Record<string, number>;
 };
 
 export type ViewBoardState = {

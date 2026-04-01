@@ -22,6 +22,45 @@ func moveCardToDiscard(card *CardState) {
 	card.Destroyed = true
 	card.Zone = CardZoneDiscard
 	card.Revealed = true
+	card.FaceDown = false
+	card.RegionCardID = ""
+}
+
+func moveCardToScore(card *CardState) {
+	if card == nil {
+		return
+	}
+
+	card.Destroyed = false
+	card.Zone = CardZoneScore
+	card.Revealed = true
+	card.FaceDown = false
+	card.Exhausted = false
+	card.RegionCardID = ""
+}
+
+func moveCardToDeckBottom(card *CardState) {
+	if card == nil {
+		return
+	}
+
+	card.Destroyed = false
+	card.Zone = CardZoneDeck
+	card.Revealed = false
+	card.FaceDown = false
+	card.Exhausted = false
+	card.RegionCardID = ""
+}
+
+func drawCardFromDeck(card *CardState) {
+	if card == nil {
+		return
+	}
+
+	card.Destroyed = false
+	card.Zone = CardZoneHand
+	card.Revealed = false
+	card.FaceDown = false
 }
 
 func revealFaceDown(card *CardState) {
@@ -149,6 +188,14 @@ func setMarker(state *GameState, playerID string, markerType string, amount int)
 	state.Board.Markers.SetMarker(playerID, markerType, amount)
 }
 
+func setCardMarker(state *GameState, cardID string, markerType string, amount int) {
+	if state == nil || cardID == "" {
+		return
+	}
+
+	state.Board.CardMarkers.SetMarker(cardID, markerType, amount)
+}
+
 func addMarkerCount(state *GameState, playerID string, markerType string, amount int) {
 	if state == nil || amount <= 0 {
 		return
@@ -169,6 +216,34 @@ func removeMarkerCount(state *GameState, playerID string, markerType string, amo
 		next = 0
 	}
 	setMarker(state, playerID, markerType, next)
+}
+
+func addCardMarkerCount(state *GameState, cardID string, markerType string, amount int) {
+	if state == nil || cardID == "" || amount <= 0 {
+		return
+	}
+	current := state.Board.CardMarkers.GetMarker(cardID, markerType)
+	setCardMarker(state, cardID, markerType, current+amount)
+}
+
+func removeCardMarkerCount(state *GameState, cardID string, markerType string, amount int) {
+	if state == nil || cardID == "" || amount <= 0 {
+		return
+	}
+	current := state.Board.CardMarkers.GetMarker(cardID, markerType)
+	next := current - amount
+	if next < 0 {
+		next = 0
+	}
+	setCardMarker(state, cardID, markerType, next)
+}
+
+func moveCardToRegion(card *CardState, regionCardID string) {
+	if card == nil || regionCardID == "" {
+		return
+	}
+
+	card.RegionCardID = regionCardID
 }
 
 func attachToHost(state GameState, spec attachmentTransitionSpec) (GameState, string, error) {

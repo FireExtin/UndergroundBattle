@@ -6,37 +6,45 @@ package rules
 type ActionKind string
 
 const (
-	ActionKindAdvancePhase         ActionKind = "advance_phase"
-	ActionKindRevealCard           ActionKind = "reveal_card"
-	ActionKindInspectCard          ActionKind = "inspect_card"
-	ActionKindPassPriority         ActionKind = "pass_priority"
-	ActionKindQueueOperation       ActionKind = "queue_operation"
-	ActionKindDeclareAttack        ActionKind = "declare_attack"
-	ActionKindDeclareInvestigation ActionKind = "declare_investigation"
-	ActionKindResolveTopStack      ActionKind = "resolve_top_stack"
-	ActionKindRollSeededRandom     ActionKind = "roll_seeded_random"
-	ActionKindSetMarker            ActionKind = "set_marker"    // 设置标记物
-	ActionKindRemoveMarker         ActionKind = "remove_marker" // 移除标记物
-	ActionKindSetFaceDown          ActionKind = "set_face_down" // 设置卡牌为面朝下
+	ActionKindAdvancePhase            ActionKind = "advance_phase"
+	ActionKindRevealCard              ActionKind = "reveal_card"
+	ActionKindInspectCard             ActionKind = "inspect_card"
+	ActionKindPassPriority            ActionKind = "pass_priority"
+	ActionKindQueueOperation          ActionKind = "queue_operation"
+	ActionKindDeclareAttack           ActionKind = "declare_attack"
+	ActionKindDeclareInvestigation    ActionKind = "declare_investigation"
+	ActionKindResolveTopStack         ActionKind = "resolve_top_stack"
+	ActionKindRollSeededRandom        ActionKind = "roll_seeded_random"
+	ActionKindSetMarker               ActionKind = "set_marker"    // 设置标记物
+	ActionKindRemoveMarker            ActionKind = "remove_marker" // 移除标记物
+	ActionKindSetFaceDown             ActionKind = "set_face_down" // 设置卡牌为面朝下
+	ActionKindUseFirstPlayerPrivilege ActionKind = "use_first_player_privilege"
+	ActionKindMoveCard                ActionKind = "move_card"
+	ActionKindSetCardMarker           ActionKind = "set_card_marker"
+	ActionKindRemoveCardMarker        ActionKind = "remove_card_marker"
 )
 
 // OperationKind names the minimal operation types built from actions.
 type OperationKind string
 
 const (
-	OperationKindAdvancePhase         OperationKind = "advance_phase"
-	OperationKindRevealCard           OperationKind = "reveal_card"
-	OperationKindInspectCard          OperationKind = "inspect_card"
-	OperationKindPassPriority         OperationKind = "pass_priority"
-	OperationKindStackedEffect        OperationKind = "stacked_effect"
-	OperationKindCardEffect           OperationKind = "card_effect"
-	OperationKindDeclareAttack        OperationKind = "declare_attack"
-	OperationKindDeclareInvestigation OperationKind = "declare_investigation"
-	OperationKindResolveTopStack      OperationKind = "resolve_top_stack"
-	OperationKindRollRandom           OperationKind = "roll_seeded_random"
-	OperationKindSetMarker            OperationKind = "set_marker"
-	OperationKindRemoveMarker         OperationKind = "remove_marker"
-	OperationKindSetFaceDown          OperationKind = "set_face_down"
+	OperationKindAdvancePhase            OperationKind = "advance_phase"
+	OperationKindRevealCard              OperationKind = "reveal_card"
+	OperationKindInspectCard             OperationKind = "inspect_card"
+	OperationKindPassPriority            OperationKind = "pass_priority"
+	OperationKindStackedEffect           OperationKind = "stacked_effect"
+	OperationKindCardEffect              OperationKind = "card_effect"
+	OperationKindDeclareAttack           OperationKind = "declare_attack"
+	OperationKindDeclareInvestigation    OperationKind = "declare_investigation"
+	OperationKindResolveTopStack         OperationKind = "resolve_top_stack"
+	OperationKindRollRandom              OperationKind = "roll_seeded_random"
+	OperationKindSetMarker               OperationKind = "set_marker"
+	OperationKindRemoveMarker            OperationKind = "remove_marker"
+	OperationKindSetFaceDown             OperationKind = "set_face_down"
+	OperationKindUseFirstPlayerPrivilege OperationKind = "use_first_player_privilege"
+	OperationKindMoveCard                OperationKind = "move_card"
+	OperationKindSetCardMarker           OperationKind = "set_card_marker"
+	OperationKindRemoveCardMarker        OperationKind = "remove_card_marker"
 )
 
 // OperationStatus describes whether an operation is pending on the stack or already resolved.
@@ -52,22 +60,26 @@ const (
 type EventKind string
 
 const (
-	EventKindOperationEnqueued    EventKind = "operation_enqueued"
-	EventKindOperationResolved    EventKind = "operation_resolved"
-	EventKindPhaseAdvanced        EventKind = "phase_advanced"
-	EventKindCardInspected        EventKind = "card_inspected"
-	EventKindCardRevealed         EventKind = "card_revealed"
-	EventKindPriorityPassed       EventKind = "priority_passed"
-	EventKindRandomGenerated      EventKind = "random_generated"
-	EventKindStepEnded            EventKind = "step_ended"
-	EventKindAttackDeclared       EventKind = "attack_declared"
-	EventKindDamageApplied        EventKind = "damage_applied"
-	EventKindCardDestroyed        EventKind = "card_destroyed"
-	EventKindInvestigationApplied EventKind = "investigation_applied"
-	EventKindMarkerSet            EventKind = "marker_set"
-	EventKindMarkerRemoved        EventKind = "marker_removed"
-	EventKindFaceDownSet          EventKind = "face_down_set"
-	EventKindShieldConsumed       EventKind = "shield_consumed"
+	EventKindOperationEnqueued        EventKind = "operation_enqueued"
+	EventKindOperationResolved        EventKind = "operation_resolved"
+	EventKindPhaseAdvanced            EventKind = "phase_advanced"
+	EventKindCardInspected            EventKind = "card_inspected"
+	EventKindCardRevealed             EventKind = "card_revealed"
+	EventKindPriorityPassed           EventKind = "priority_passed"
+	EventKindRandomGenerated          EventKind = "random_generated"
+	EventKindStepEnded                EventKind = "step_ended"
+	EventKindAttackDeclared           EventKind = "attack_declared"
+	EventKindDamageApplied            EventKind = "damage_applied"
+	EventKindCardDestroyed            EventKind = "card_destroyed"
+	EventKindInvestigationApplied     EventKind = "investigation_applied"
+	EventKindMarkerSet                EventKind = "marker_set"
+	EventKindMarkerRemoved            EventKind = "marker_removed"
+	EventKindFaceDownSet              EventKind = "face_down_set"
+	EventKindShieldConsumed           EventKind = "shield_consumed"
+	EventKindFirstPlayerPrivilegeUsed EventKind = "first_player_privilege_used"
+	EventKindCardMoved                EventKind = "card_moved"
+	EventKindCardMarkerSet            EventKind = "card_marker_set"
+	EventKindCardMarkerRemoved        EventKind = "card_marker_removed"
 )
 
 // PhaseName identifies the current minimal turn phase.
@@ -128,6 +140,8 @@ type MatchEndReason string
 const (
 	MatchEndReasonNone             MatchEndReason = ""
 	MatchEndReasonVictoryThreshold MatchEndReason = "victory_threshold"
+	MatchEndReasonDeckOut          MatchEndReason = "deck_out"
+	MatchEndReasonDeckOutDraw      MatchEndReason = "deck_out_draw"
 )
 
 // CardNumericStats stores printed and effective numeric values used by the minimal rules kernel.
@@ -370,39 +384,7 @@ type BoardState struct {
 	Continuous    ContinuousEffectRegistry `json:"continuous"`
 	Attachments   AttachmentRegistry       `json:"attachments"`
 	Markers       MarkerRegistry           `json:"markers"` // 秘社标记物注册表
-}
-
-// MarkerRegistry tracks all player markers (e.g., secret society markers).
-type MarkerRegistry struct {
-	// ByPlayer maps playerID -> markerType -> amount
-	ByPlayer map[string]map[string]int `json:"byPlayer"`
-}
-
-// GetMarker returns the amount of a specific marker type for a player.
-func (r MarkerRegistry) GetMarker(playerID, markerType string) int {
-	if r.ByPlayer == nil {
-		return 0
-	}
-	playerMarkers, ok := r.ByPlayer[playerID]
-	if !ok {
-		return 0
-	}
-	return playerMarkers[markerType]
-}
-
-// SetMarker sets the amount of a specific marker type for a player.
-func (r *MarkerRegistry) SetMarker(playerID, markerType string, amount int) {
-	if r.ByPlayer == nil {
-		r.ByPlayer = make(map[string]map[string]int)
-	}
-	if r.ByPlayer[playerID] == nil {
-		r.ByPlayer[playerID] = make(map[string]int)
-	}
-	if amount <= 0 {
-		delete(r.ByPlayer[playerID], markerType)
-	} else {
-		r.ByPlayer[playerID][markerType] = amount
-	}
+	CardMarkers   CardMarkerRegistry       `json:"cardMarkers"`
 }
 
 // RandomResult records each deterministic RNG draw committed into history-visible board state.

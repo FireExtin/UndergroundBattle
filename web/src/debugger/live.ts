@@ -12,7 +12,8 @@ export type LiveActionPresetId =
   | "equipAlloyKnuckles"
   | "setSecretSocietyMarker"
   | "removeSecretSocietyMarker"
-  | "setOwnTableFaceDown";
+  | "setOwnTableFaceDown"
+  | "useFirstPlayerPrivilege";
 
 export type LiveActionPreset = {
   id: LiveActionPresetId;
@@ -29,7 +30,8 @@ export const liveActionPresets: LiveActionPreset[] = [
   { id: "equipAlloyKnuckles", label: "Equip 合金指虎 (BQ022)" },
   { id: "setSecretSocietyMarker", label: "Set Secret Marker" },
   { id: "removeSecretSocietyMarker", label: "Remove Secret Marker" },
-  { id: "setOwnTableFaceDown", label: "Set Own Table Face-Down" }
+  { id: "setOwnTableFaceDown", label: "Set Own Table Face-Down" },
+  { id: "useFirstPlayerPrivilege", label: "Use First-Player Privilege" }
 ];
 
 export async function fetchDebuggerMessages(): Promise<DebuggerProtocolEnvelope[]> {
@@ -130,6 +132,11 @@ export function buildActionFromPreset(
         ...action,
         kind: "set_face_down",
         cardId: ownTableCardId(viewerId)
+      };
+    case "useFirstPlayerPrivilege":
+      return {
+        ...action,
+        kind: "use_first_player_privilege"
       };
   }
 }

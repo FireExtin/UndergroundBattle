@@ -10,7 +10,8 @@ describe("liveActionPresets", () => {
       expect.arrayContaining([
         "setSecretSocietyMarker",
         "removeSecretSocietyMarker",
-        "setOwnTableFaceDown"
+        "setOwnTableFaceDown",
+        "useFirstPlayerPrivilege"
       ])
     );
   });
@@ -59,6 +60,16 @@ describe("buildActionFromPreset", () => {
       actorId: "P2",
       kind: "set_face_down",
       cardId: "P2-TABLE-1"
+    });
+  });
+
+  it("builds explicit use_first_player_privilege action", () => {
+    const action = buildActionFromPreset("P1", "useFirstPlayerPrivilege", 9);
+
+    expect(action).toMatchObject({
+      id: "act-web-p1-9",
+      actorId: "P1",
+      kind: "use_first_player_privilege"
     });
   });
 });

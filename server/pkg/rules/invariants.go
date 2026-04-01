@@ -87,6 +87,7 @@ func InvariantCardZoneValid(state GameState) bool {
 		CardZoneTable:   true,
 		CardZoneDiscard: true,
 		CardZoneDeck:    true,
+		CardZoneScore:   true,
 	}
 	for _, card := range state.Board.Cards {
 		if !validZones[card.Zone] {
