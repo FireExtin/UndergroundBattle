@@ -17,6 +17,7 @@ const (
 	ActionKindRollSeededRandom     ActionKind = "roll_seeded_random"
 	ActionKindSetMarker            ActionKind = "set_marker"    // 设置标记物
 	ActionKindRemoveMarker         ActionKind = "remove_marker" // 移除标记物
+	ActionKindSetFaceDown          ActionKind = "set_face_down" // 设置卡牌为面朝下
 )
 
 // OperationKind names the minimal operation types built from actions.
@@ -35,6 +36,7 @@ const (
 	OperationKindRollRandom           OperationKind = "roll_seeded_random"
 	OperationKindSetMarker            OperationKind = "set_marker"
 	OperationKindRemoveMarker         OperationKind = "remove_marker"
+	OperationKindSetFaceDown          OperationKind = "set_face_down"
 )
 
 // OperationStatus describes whether an operation is pending on the stack or already resolved.
@@ -64,6 +66,7 @@ const (
 	EventKindInvestigationApplied EventKind = "investigation_applied"
 	EventKindMarkerSet            EventKind = "marker_set"
 	EventKindMarkerRemoved        EventKind = "marker_removed"
+	EventKindFaceDownSet          EventKind = "face_down_set"
 )
 
 // PhaseName identifies the current minimal turn phase.
@@ -296,6 +299,7 @@ type Event struct {
 	StackDepth       int                `json:"stackDepth"`
 	RandomValue      *int               `json:"randomValue,omitempty"`
 	StepEnded        bool               `json:"stepEnded,omitempty"`
+	TargetPlayerID   string             `json:"targetPlayerId,omitempty"` // 目标玩家ID
 }
 
 // Revision monotonically identifies each committed state transition.

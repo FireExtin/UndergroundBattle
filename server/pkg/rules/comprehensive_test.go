@@ -554,9 +554,274 @@ func TestComprehensive_CombinedSystems(t *testing.T) {
 		t.Fatal("markers should not be affected by host departure")
 	}
 
-	// face-down 卡牌应该仍然存在
+	// 验证 face-down 卡牌应该仍然存在
 	hiddenAfter := findCardByID(state, "hidden-1")
 	if hiddenAfter == nil || hiddenAfter.Zone != CardZoneTable {
 		t.Fatal("face-down card should not be affected by host departure")
+	}
+}
+
+// =============================================================================
+// 测试用例 11: Marker - 通过 Action 正式管道设置和移除标记物
+// 测试目的: 验证通过 ActionKindSetMarker 和 ActionKindRemoveMarker 在正式管道中设置和移除标记物
+// 输入数据: 发送 SetMarker action 设置标记物，然后发送 RemoveMarker action 移除标记物
+// 预期输出: 标记物被正确设置和移除，状态一致
+// 验证方法: 检查标记物数量和事件类型
+// =============================================================================
+func TestMarker_ActionPipeline_SetAndRemove(t *testing.T) {
+	state := NewGameState(InitialStateConfig{
+		GameID:         "test-marker-action-pipeline",
+		ActivePlayerID: "P1",
+	})
+	state.Players = []string{"P1", "P2"}
+
+	// 测试设置标记物
+	setAction := Action{
+		ID:           "action-1",
+		ActorID:      "P1",
+		Kind:         ActionKindSetMarker,
+		MarkerType:   "secret_society",
+		MarkerAmount: 3,
+	}
+
+	result, err := SubmitAction(state, setAction)
+	if err != nil {
+		t.Fatalf("SetMarker action failed: %v", err)
+	}
+
+	// 验证标记物被设置
+	if result.State.Board.Markers.GetMarker("P1", "secret_society") != 3 {
+		t.Fatalf("Expected 3 secret_society markers for P1, got %d", result.State.Board.Markers.GetMarker("P1", "secret_society"))
+	}
+
+	// 验证事件类型
+	if result.Event.Kind != EventKindMarkerSet {
+		t.Fatalf("Expected EventKindMarkerSet, got %s", result.Event.Kind)
+	}
+
+	// 测试移除标记物
+	removeAction := Action{
+		ID:         "action-2",
+		ActorID:    "P1",
+		Kind:       ActionKindRemoveMarker,
+		MarkerType: "secret_society",
+	}
+
+	result, err = SubmitAction(result.State, removeAction)
+	if err != nil {
+		t.Fatalf("RemoveMarker action failed: %v", err)
+	}
+
+	// 验证标记物被移除
+	if result.State.Board.Markers.GetMarker("P1", "secret_society") != 0 {
+		t.Fatalf("Expected 0 secret_society markers for P1, got %d", result.State.Board.Markers.GetMarker("P1", "secret_society"))
+	}
+
+	// 验证事件类型
+	if result.Event.Kind != EventKindMarkerRemoved {
+		t.Fatalf("Expected EventKindMarkerRemoved, got %s", result.Event.Kind)
+	}
+}
+
+func TestMarker_ActionPipeline_RemoveByAmount(t *testing.T) {
+	state := NewGameState(InitialStateConfig{
+		GameID:         "test-marker-remove-by-amount",
+		ActivePlayerID: "P1",
+	})
+	state.Players = []string{"P1", "P2"}
+
+	result, err := SubmitAction(state, Action{
+		ID:           "action-1",
+		ActorID:      "P1",
+		Kind:         ActionKindSetMarker,
+		MarkerType:   "secret_society",
+		MarkerAmount: 3,
+	})
+	if err != nil {
+		t.Fatalf("SetMarker action failed: %v", err)
+	}
+
+	result, err = SubmitAction(result.State, Action{
+		ID:           "action-2",
+		ActorID:      "P1",
+		Kind:         ActionKindRemoveMarker,
+		MarkerType:   "secret_society",
+		MarkerAmount: 1,
+	})
+	if err != nil {
+		t.Fatalf("RemoveMarker action failed: %v", err)
+	}
+
+	if got := result.State.Board.Markers.GetMarker("P1", "secret_society"); got != 2 {
+		t.Fatalf("Expected 2 secret_society markers for P1 after removing 1, got %d", got)
+	}
+	if result.Event.Kind != EventKindMarkerRemoved {
+		t.Fatalf("Expected EventKindMarkerRemoved, got %s", result.Event.Kind)
+	}
+	if result.Event.MarkerAmount != 2 {
+		t.Fatalf("Expected event markerAmount to be 2 (remaining), got %d", result.Event.MarkerAmount)
+	}
+}
+
+// =============================================================================
+// 测试用例 12: Marker - 合法性检查
+// 测试目的: 验证 marker 操作的合法性检查功能
+// 输入数据: 测试各种非法情况，如缺少 MarkerType、MarkerAmount <= 0、移除不存在的标记物
+// 预期输出: 非法操作被拒绝，返回相应的错误代码
+// 验证方法: 检查返回的错误类型和原因
+// =============================================================================
+func TestMarker_LegalityChecks(t *testing.T) {
+	state := NewGameState(InitialStateConfig{
+		GameID:         "test-marker-legality",
+		ActivePlayerID: "P1",
+	})
+	state.Players = []string{"P1", "P2"}
+
+	// 测试 1: 缺少 MarkerType
+	action := Action{
+		ID:           "action-1",
+		ActorID:      "P1",
+		Kind:         ActionKindSetMarker,
+		MarkerAmount: 3,
+	}
+
+	_, err := SubmitAction(state, action)
+	if err == nil {
+		t.Fatal("Expected error for missing MarkerType, got none")
+	}
+
+	// 测试 2: MarkerAmount <= 0
+	action = Action{
+		ID:           "action-2",
+		ActorID:      "P1",
+		Kind:         ActionKindSetMarker,
+		MarkerType:   "secret_society",
+		MarkerAmount: 0,
+	}
+
+	_, err = SubmitAction(state, action)
+	if err == nil {
+		t.Fatal("Expected error for MarkerAmount <= 0, got none")
+	}
+
+	// 测试 3: 移除不存在的标记物
+	action = Action{
+		ID:         "action-3",
+		ActorID:    "P1",
+		Kind:       ActionKindRemoveMarker,
+		MarkerType: "non_existent",
+	}
+
+	_, err = SubmitAction(state, action)
+	if err == nil {
+		t.Fatal("Expected error for removing non-existent marker, got none")
+	}
+
+	// 测试 4: 移除数量超过当前数量
+	result, err := SubmitAction(state, Action{
+		ID:           "action-4",
+		ActorID:      "P1",
+		Kind:         ActionKindSetMarker,
+		MarkerType:   "secret_society",
+		MarkerAmount: 1,
+	})
+	if err != nil {
+		t.Fatalf("SetMarker action failed: %v", err)
+	}
+
+	_, err = SubmitAction(result.State, Action{
+		ID:           "action-5",
+		ActorID:      "P1",
+		Kind:         ActionKindRemoveMarker,
+		MarkerType:   "secret_society",
+		MarkerAmount: 2,
+	})
+	if err == nil {
+		t.Fatal("Expected error when removing more markers than current amount, got none")
+	}
+}
+
+// =============================================================================
+// 测试用例 13: FaceDown - 通过 Action 正式管道设置和揭示卡牌
+// 测试目的: 验证通过 ActionKindSetFaceDown 和 ActionKindRevealCard 在正式管道中设置和揭示卡牌
+// 输入数据: 发送 SetFaceDown action 设置卡牌为面朝下，然后发送 RevealCard action 揭示卡牌
+// 预期输出: 卡牌状态被正确设置和揭示，状态一致
+// 验证方法: 检查卡牌的 FaceDown 和 Revealed 状态
+// =============================================================================
+func TestFaceDown_ActionPipeline_SetAndReveal(t *testing.T) {
+	state := NewGameState(InitialStateConfig{
+		GameID:         "test-facedown-action-pipeline",
+		ActivePlayerID: "P1",
+	})
+
+	// 创建一张卡牌
+	card := CardState{
+		CardID:       "card-1",
+		DefinitionID: "TEST_CARD",
+		Name:         "测试卡牌",
+		Kind:         CardKindCharacter,
+		OwnerID:      "P1",
+		Zone:         CardZoneTable,
+	}
+	state.Board.Cards = []CardState{card}
+
+	// 测试设置为面朝下
+	setFaceDownAction := Action{
+		ID:      "action-1",
+		ActorID: "P1",
+		Kind:    ActionKindSetFaceDown,
+		CardID:  "card-1",
+	}
+
+	result, err := SubmitAction(state, setFaceDownAction)
+	if err != nil {
+		t.Fatalf("SetFaceDown action failed: %v", err)
+	}
+
+	// 验证卡牌被设置为面朝下
+	cardAfterSet := findCardByID(result.State, "card-1")
+	if cardAfterSet == nil {
+		t.Fatal("Card not found after SetFaceDown")
+	}
+	if !cardAfterSet.FaceDown {
+		t.Fatal("Card should be face-down after SetFaceDown")
+	}
+	if cardAfterSet.Revealed {
+		t.Fatal("Card should not be revealed after SetFaceDown")
+	}
+
+	// 验证事件类型
+	if result.Event.Kind != EventKindFaceDownSet {
+		t.Fatalf("Expected EventKindFaceDownSet, got %s", result.Event.Kind)
+	}
+
+	// 测试揭示卡牌
+	revealAction := Action{
+		ID:      "action-2",
+		ActorID: "P1",
+		Kind:    ActionKindRevealCard,
+		CardID:  "card-1",
+	}
+
+	result, err = SubmitAction(result.State, revealAction)
+	if err != nil {
+		t.Fatalf("RevealCard action failed: %v", err)
+	}
+
+	// 验证卡牌被揭示
+	cardAfterReveal := findCardByID(result.State, "card-1")
+	if cardAfterReveal == nil {
+		t.Fatal("Card not found after RevealCard")
+	}
+	if cardAfterReveal.FaceDown {
+		t.Fatal("Card should not be face-down after RevealCard")
+	}
+	if !cardAfterReveal.Revealed {
+		t.Fatal("Card should be revealed after RevealCard")
+	}
+
+	// 验证事件类型
+	if result.Event.Kind != EventKindCardRevealed {
+		t.Fatalf("Expected EventKindCardRevealed, got %s", result.Event.Kind)
 	}
 }

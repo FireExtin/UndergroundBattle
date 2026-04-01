@@ -550,6 +550,44 @@ func TestStandardActionFailsWhenStackIsNotEmpty(t *testing.T) {
 	}
 }
 
+func TestSetFaceDownFailsWhenStackIsNotEmpty(t *testing.T) {
+	state := NewGameState(InitialStateConfig{
+		GameID:         "game-set-face-down-stack-legality",
+		ActivePlayerID: "P1",
+		Seed:           8,
+	})
+	state.Board.Cards = append(state.Board.Cards, CardState{
+		CardID:       "table-face-down-target",
+		DefinitionID: "TEST_CARD",
+		Name:         "Face Down Target",
+		Kind:         CardKindCharacter,
+		OwnerID:      "P2",
+		Zone:         CardZoneTable,
+	})
+
+	state = mustSubmit(t, state, Action{
+		ID:      "act-set-face-down-stack-check-1",
+		ActorID: "P1",
+		Kind:    ActionKindQueueOperation,
+		CardID:  testCardFastStack,
+	})
+
+	legality := CheckLegality(state, Action{
+		ID:      "act-set-face-down-stack-check-2",
+		ActorID: "P2",
+		Kind:    ActionKindSetFaceDown,
+		CardID:  "table-face-down-target",
+	})
+
+	if legality.OK {
+		t.Fatal("expected legality check to fail")
+	}
+
+	if legality.ReasonCode != ReasonCodeLegalityFailedStackNotEmpty {
+		t.Fatalf("reason code = %q, want %q", legality.ReasonCode, ReasonCodeLegalityFailedStackNotEmpty)
+	}
+}
+
 func TestFastCardCanBePlayedDuringResponseWindow(t *testing.T) {
 	state := NewGameState(InitialStateConfig{
 		GameID:         "game-fast-response",
@@ -1253,7 +1291,7 @@ func TestSetMarkerActionUpdatesMarkerRegistry(t *testing.T) {
 	}
 }
 
-func TestRemoveMarkerActionCannotDropBelowZero(t *testing.T) {
+func TestRemoveMarkerActionRejectsOverRemoval(t *testing.T) {
 	state := NewGameState(InitialStateConfig{
 		GameID:         "game-remove-marker",
 		ActivePlayerID: "P1",
@@ -1269,7 +1307,7 @@ func TestRemoveMarkerActionCannotDropBelowZero(t *testing.T) {
 		MarkerAmount:   2,
 	})
 
-	result, err := SubmitAction(state, Action{
+	_, err := SubmitAction(state, Action{
 		ID:             "act-remove-marker-1",
 		ActorID:        "P1",
 		Kind:           ActionKindRemoveMarker,
@@ -1277,16 +1315,16 @@ func TestRemoveMarkerActionCannotDropBelowZero(t *testing.T) {
 		MarkerType:     "secret_society",
 		MarkerAmount:   5,
 	})
-	if err != nil {
-		t.Fatalf("SubmitAction returned error: %v", err)
+	if err == nil {
+		t.Fatal("expected SubmitAction to reject marker over-removal")
 	}
 
-	if result.Event.Kind != EventKindMarkerRemoved {
-		t.Fatalf("event kind = %q, want %q", result.Event.Kind, EventKindMarkerRemoved)
+	var legalityErr *LegalityError
+	if !errors.As(err, &legalityErr) {
+		t.Fatalf("expected LegalityError, got %T", err)
 	}
-
-	if got := result.State.Board.Markers.GetMarker("P1", "secret_society"); got != 0 {
-		t.Fatalf("marker amount after remove = %d, want 0", got)
+	if legalityErr.Code != ReasonCodeTargetFailedMissing {
+		t.Fatalf("error code = %q, want %q", legalityErr.Code, ReasonCodeTargetFailedMissing)
 	}
 }
 
