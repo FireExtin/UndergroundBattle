@@ -1139,7 +1139,13 @@ func actionRequiresPriority(kind ActionKind) bool {
 
 func actionRequiresEmptyStack(kind ActionKind) bool {
 	switch kind {
-	case ActionKindAdvancePhase, ActionKindRevealCard, ActionKindInspectCard, ActionKindDeclareAttack, ActionKindDeclareInvestigation, ActionKindRollSeededRandom:
+	case ActionKindAdvancePhase,
+		ActionKindRevealCard,
+		ActionKindInspectCard,
+		ActionKindSetFaceDown,
+		ActionKindDeclareAttack,
+		ActionKindDeclareInvestigation,
+		ActionKindRollSeededRandom:
 		return true
 	default:
 		return false

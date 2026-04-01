@@ -550,6 +550,44 @@ func TestStandardActionFailsWhenStackIsNotEmpty(t *testing.T) {
 	}
 }
 
+func TestSetFaceDownFailsWhenStackIsNotEmpty(t *testing.T) {
+	state := NewGameState(InitialStateConfig{
+		GameID:         "game-set-face-down-stack-legality",
+		ActivePlayerID: "P1",
+		Seed:           8,
+	})
+	state.Board.Cards = append(state.Board.Cards, CardState{
+		CardID:       "table-face-down-target",
+		DefinitionID: "TEST_CARD",
+		Name:         "Face Down Target",
+		Kind:         CardKindCharacter,
+		OwnerID:      "P2",
+		Zone:         CardZoneTable,
+	})
+
+	state = mustSubmit(t, state, Action{
+		ID:      "act-set-face-down-stack-check-1",
+		ActorID: "P1",
+		Kind:    ActionKindQueueOperation,
+		CardID:  testCardFastStack,
+	})
+
+	legality := CheckLegality(state, Action{
+		ID:      "act-set-face-down-stack-check-2",
+		ActorID: "P2",
+		Kind:    ActionKindSetFaceDown,
+		CardID:  "table-face-down-target",
+	})
+
+	if legality.OK {
+		t.Fatal("expected legality check to fail")
+	}
+
+	if legality.ReasonCode != ReasonCodeLegalityFailedStackNotEmpty {
+		t.Fatalf("reason code = %q, want %q", legality.ReasonCode, ReasonCodeLegalityFailedStackNotEmpty)
+	}
+}
+
 func TestFastCardCanBePlayedDuringResponseWindow(t *testing.T) {
 	state := NewGameState(InitialStateConfig{
 		GameID:         "game-fast-response",
