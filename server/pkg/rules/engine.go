@@ -236,6 +236,34 @@ func CheckLegality(state GameState, action Action) LegalityResult {
 		return okLegalityResult()
 	case ActionKindPassPriority:
 		return okLegalityResult()
+	case ActionKindSetMarker, ActionKindRemoveMarker:
+		if action.TargetPlayerID == "" {
+			return legalityFailure(
+				ReasonCodeTargetFailedMissing,
+				"rules.target.player_missing",
+				"action.targetPlayerId",
+				nil,
+			)
+		}
+		if action.MarkerType == "" {
+			return legalityFailure(
+				ReasonCodeTargetFailedMissing,
+				"rules.target.marker_missing",
+				"action.markerType",
+				nil,
+			)
+		}
+		if action.MarkerAmount <= 0 {
+			return legalityFailure(
+				ReasonCodeRulesFailedInvalidState,
+				"rules.marker.amount_invalid",
+				"action.markerAmount",
+				map[string]string{
+					"markerAmount": intString(action.MarkerAmount),
+				},
+			)
+		}
+		return okLegalityResult()
 	case ActionKindDeclareAttack:
 		return checkRoleActionLegality(state, action, CardKindCharacter)
 	case ActionKindDeclareInvestigation:
@@ -369,6 +397,14 @@ func BuildOperation(state GameState, action Action) (Operation, error) {
 		operation.CardID = action.CardID
 	case ActionKindPassPriority:
 		operation.Kind = OperationKindPassPriority
+	case ActionKindSetMarker:
+		operation.Kind = OperationKindSetMarker
+		operation.MarkerType = action.MarkerType
+		operation.MarkerAmount = action.MarkerAmount
+	case ActionKindRemoveMarker:
+		operation.Kind = OperationKindRemoveMarker
+		operation.MarkerType = action.MarkerType
+		operation.MarkerAmount = action.MarkerAmount
 	case ActionKindDeclareAttack:
 		operation.Kind = OperationKindDeclareAttack
 		operation.CardID = action.CardID
@@ -451,6 +487,10 @@ func executeOperation(state GameState, operation Operation) (GameState, Operatio
 		return executeInspectCard(working, operation)
 	case OperationKindPassPriority:
 		return executePassPriority(working, operation)
+	case OperationKindSetMarker:
+		return executeSetMarker(working, operation)
+	case OperationKindRemoveMarker:
+		return executeRemoveMarker(working, operation)
 	case OperationKindDeclareAttack:
 		return executeDeclareAttack(working, operation)
 	case OperationKindDeclareInvestigation:
@@ -628,6 +668,56 @@ func executePassPriority(state GameState, operation Operation) (GameState, Opera
 		StackDepth:       len(working.Board.Stack),
 		RevisionNumber:   0,
 		StepEnded:        true,
+	}, nil
+}
+
+func executeSetMarker(state GameState, operation Operation) (GameState, Operation, Event, error) {
+	working := cloneGameState(state)
+	setMarker(&working, operation.TargetPlayerID, operation.MarkerType, operation.MarkerAmount)
+	reopenPhaseStep(&working.Turn)
+	resetPriorityWindow(&working.Turn, operation.ActorID, PriorityWindowAction)
+	operation.Status = OperationStatusResolved
+
+	return working, operation, Event{
+		ID:               "evt:" + operation.ActionID,
+		ActionID:         operation.ActionID,
+		OperationID:      operation.ID,
+		Kind:             EventKindMarkerSet,
+		Phase:            working.Turn.Phase.Name,
+		Step:             working.Turn.Phase.Step,
+		PriorityPlayerID: currentPriorityPlayerID(working),
+		PriorityWindow:   currentPriorityWindowKind(working),
+		PassCount:        working.Turn.Priority.PassCount,
+		ResolvedTargetID: operation.TargetPlayerID,
+		MarkerType:       operation.MarkerType,
+		MarkerAmount:     operation.MarkerAmount,
+		StackDepth:       len(working.Board.Stack),
+		RevisionNumber:   0,
+	}, nil
+}
+
+func executeRemoveMarker(state GameState, operation Operation) (GameState, Operation, Event, error) {
+	working := cloneGameState(state)
+	removeMarkerCount(&working, operation.TargetPlayerID, operation.MarkerType, operation.MarkerAmount)
+	reopenPhaseStep(&working.Turn)
+	resetPriorityWindow(&working.Turn, operation.ActorID, PriorityWindowAction)
+	operation.Status = OperationStatusResolved
+
+	return working, operation, Event{
+		ID:               "evt:" + operation.ActionID,
+		ActionID:         operation.ActionID,
+		OperationID:      operation.ID,
+		Kind:             EventKindMarkerRemoved,
+		Phase:            working.Turn.Phase.Name,
+		Step:             working.Turn.Phase.Step,
+		PriorityPlayerID: currentPriorityPlayerID(working),
+		PriorityWindow:   currentPriorityWindowKind(working),
+		PassCount:        working.Turn.Priority.PassCount,
+		ResolvedTargetID: operation.TargetPlayerID,
+		MarkerType:       operation.MarkerType,
+		MarkerAmount:     operation.MarkerAmount,
+		StackDepth:       len(working.Board.Stack),
+		RevisionNumber:   0,
 	}, nil
 }
 
@@ -829,6 +919,8 @@ func actionRequiresPriority(kind ActionKind) bool {
 func actionRequiresEmptyStack(kind ActionKind) bool {
 	switch kind {
 	case ActionKindAdvancePhase, ActionKindRevealCard, ActionKindInspectCard, ActionKindDeclareAttack, ActionKindDeclareInvestigation, ActionKindRollSeededRandom:
+		return true
+	case ActionKindSetMarker, ActionKindRemoveMarker:
 		return true
 	default:
 		return false

@@ -86,6 +86,15 @@ And refactored core execution paths to use them (instead of scattered field writ
 - role action exhaust/damage/influence writes
 - DSL exhaust/damage/influence/discard writes
 - attachment creation route inside continuous registration
+- marker action execution route (`set_marker` / `remove_marker`)
+
+Marker actions are now integrated into authoritative action pipeline end-to-end:
+
+- legality checks
+- operation build
+- operation execution
+- structured events (`marker_set`, `marker_removed`)
+- replay/history/projection through normal commit flow
 
 ## 5) Rule Declaration vs Execution Registry Split
 

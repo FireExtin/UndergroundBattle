@@ -33,6 +33,8 @@ const (
 	OperationKindDeclareInvestigation OperationKind = "declare_investigation"
 	OperationKindResolveTopStack      OperationKind = "resolve_top_stack"
 	OperationKindRollRandom           OperationKind = "roll_seeded_random"
+	OperationKindSetMarker            OperationKind = "set_marker"
+	OperationKindRemoveMarker         OperationKind = "remove_marker"
 )
 
 // OperationStatus describes whether an operation is pending on the stack or already resolved.
@@ -60,6 +62,8 @@ const (
 	EventKindDamageApplied        EventKind = "damage_applied"
 	EventKindCardDestroyed        EventKind = "card_destroyed"
 	EventKindInvestigationApplied EventKind = "investigation_applied"
+	EventKindMarkerSet            EventKind = "marker_set"
+	EventKindMarkerRemoved        EventKind = "marker_removed"
 )
 
 // PhaseName identifies the current minimal turn phase.
@@ -217,6 +221,8 @@ type Action struct {
 	CardID         string     `json:"cardId,omitempty"`
 	TargetPlayerID string     `json:"targetPlayerId,omitempty"`
 	TargetCardID   string     `json:"targetCardId,omitempty"`
+	MarkerType     string     `json:"markerType,omitempty"`
+	MarkerAmount   int        `json:"markerAmount,omitempty"`
 	OperationLabel string     `json:"operationLabel,omitempty"`
 	RandomMax      int        `json:"randomMax,omitempty"`
 }
@@ -260,6 +266,8 @@ type Operation struct {
 	CardID         string               `json:"cardId,omitempty"`
 	TargetPlayerID string               `json:"targetPlayerId,omitempty"`
 	TargetCardID   string               `json:"targetCardId,omitempty"`
+	MarkerType     string               `json:"markerType,omitempty"`
+	MarkerAmount   int                  `json:"markerAmount,omitempty"`
 	Label          string               `json:"label,omitempty"`
 	RandomMax      int                  `json:"randomMax,omitempty"`
 	NextPhase      PhaseName            `json:"nextPhase,omitempty"`
@@ -283,6 +291,8 @@ type Event struct {
 	TargetCardID     string             `json:"targetCardId,omitempty"`
 	AppliedAmount    int                `json:"appliedAmount,omitempty"`
 	DestroyedCardID  string             `json:"destroyedCardId,omitempty"`
+	MarkerType       string             `json:"markerType,omitempty"`
+	MarkerAmount     int                `json:"markerAmount,omitempty"`
 	StackDepth       int                `json:"stackDepth"`
 	RandomValue      *int               `json:"randomValue,omitempty"`
 	StepEnded        bool               `json:"stepEnded,omitempty"`
