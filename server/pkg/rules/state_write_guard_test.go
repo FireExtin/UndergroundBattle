@@ -51,6 +51,24 @@ func TestStateTransitionWriteGuardsForCriticalFields(t *testing.T) {
 			allowedFiles:  map[string]bool{"state_transitions.go": true},
 			failureReason: "random results writes must go through appendRandomResult transition",
 		},
+		{
+			name:          "exhausted_assignment",
+			pattern:       regexp.MustCompile(`\.Board\.Cards\[[^\]]+\]\.Exhausted\s*=`),
+			allowedFiles:  map[string]bool{"state_transitions.go": true},
+			failureReason: "direct Exhausted writes must go through exhaustCard transition",
+		},
+		{
+			name:          "destroyed_assignment",
+			pattern:       regexp.MustCompile(`\.Board\.Cards\[[^\]]+\]\.Destroyed\s*=`),
+			allowedFiles:  map[string]bool{"state_transitions.go": true},
+			failureReason: "direct Destroyed writes must go through moveCardToDiscard transition",
+		},
+		{
+			name:          "zone_assignment",
+			pattern:       regexp.MustCompile(`\.Board\.Cards\[[^\]]+\]\.Zone\s*=`),
+			allowedFiles:  map[string]bool{"state_transitions.go": true},
+			failureReason: "direct Zone writes must go through moveCardToDiscard transition",
+		},
 	}
 
 	for _, guard := range guards {
