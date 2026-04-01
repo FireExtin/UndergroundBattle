@@ -17,6 +17,7 @@ const (
 	ActionKindRollSeededRandom     ActionKind = "roll_seeded_random"
 	ActionKindSetMarker            ActionKind = "set_marker"    // 设置标记物
 	ActionKindRemoveMarker         ActionKind = "remove_marker" // 移除标记物
+	ActionKindSetFaceDown          ActionKind = "set_face_down" // 设置卡牌为面朝下
 )
 
 // OperationKind names the minimal operation types built from actions.
@@ -33,6 +34,9 @@ const (
 	OperationKindDeclareInvestigation OperationKind = "declare_investigation"
 	OperationKindResolveTopStack      OperationKind = "resolve_top_stack"
 	OperationKindRollRandom           OperationKind = "roll_seeded_random"
+	OperationKindSetMarker            OperationKind = "set_marker"
+	OperationKindRemoveMarker         OperationKind = "remove_marker"
+	OperationKindSetFaceDown          OperationKind = "set_face_down"
 )
 
 // OperationStatus describes whether an operation is pending on the stack or already resolved.
@@ -60,6 +64,9 @@ const (
 	EventKindDamageApplied        EventKind = "damage_applied"
 	EventKindCardDestroyed        EventKind = "card_destroyed"
 	EventKindInvestigationApplied EventKind = "investigation_applied"
+	EventKindMarkerSet            EventKind = "marker_set"
+	EventKindMarkerRemoved        EventKind = "marker_removed"
+	EventKindFaceDownSet          EventKind = "face_down_set"
 )
 
 // PhaseName identifies the current minimal turn phase.
@@ -218,6 +225,8 @@ type Action struct {
 	TargetCardID   string     `json:"targetCardId,omitempty"`
 	OperationLabel string     `json:"operationLabel,omitempty"`
 	RandomMax      int        `json:"randomMax,omitempty"`
+	MarkerType     string     `json:"markerType,omitempty"`   // 标记物类型
+	MarkerAmount   int        `json:"markerAmount,omitempty"` // 标记物数量
 }
 
 // EffectSpec is the executable subset of the shared CardLogic effect payload copied into Go-side operations.
@@ -263,6 +272,8 @@ type Operation struct {
 	RandomMax      int                  `json:"randomMax,omitempty"`
 	NextPhase      PhaseName            `json:"nextPhase,omitempty"`
 	Source         *CardOperationSource `json:"source,omitempty"`
+	MarkerType     string               `json:"markerType,omitempty"`   // 标记物类型
+	MarkerAmount   int                  `json:"markerAmount,omitempty"` // 标记物数量
 }
 
 // Event records the committed result of a single action pipeline run.
@@ -285,6 +296,9 @@ type Event struct {
 	StackDepth       int                `json:"stackDepth"`
 	RandomValue      *int               `json:"randomValue,omitempty"`
 	StepEnded        bool               `json:"stepEnded,omitempty"`
+	MarkerType       string             `json:"markerType,omitempty"`     // 标记物类型
+	MarkerAmount     int                `json:"markerAmount,omitempty"`   // 标记物数量
+	TargetPlayerID   string             `json:"targetPlayerId,omitempty"` // 目标玩家ID
 }
 
 // Revision monotonically identifies each committed state transition.

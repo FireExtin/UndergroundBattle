@@ -398,6 +398,129 @@ func CheckLegality(state GameState, action Action) LegalityResult {
 		}
 
 		return okLegalityResult()
+	case ActionKindSetMarker:
+		if action.MarkerType == "" {
+			return legalityFailure(
+				ReasonCodeTargetFailedMissing,
+				"rules.target.marker_type_missing",
+				"action.markerType",
+				nil,
+			)
+		}
+
+		if action.MarkerAmount <= 0 {
+			return legalityFailure(
+				ReasonCodeRulesFailedRandomMaxInvalid,
+				"rules.marker.amount_invalid",
+				"action.markerAmount",
+				nil,
+			)
+		}
+
+		if action.TargetPlayerID != "" && !containsString(state.Players, action.TargetPlayerID) {
+			return legalityFailure(
+				ReasonCodeTargetFailedMissing,
+				"rules.target.player_missing",
+				"action.targetPlayerId",
+				map[string]string{
+					"targetPlayerId": action.TargetPlayerID,
+				},
+			)
+		}
+
+		return okLegalityResult()
+	case ActionKindRemoveMarker:
+		if action.MarkerType == "" {
+			return legalityFailure(
+				ReasonCodeTargetFailedMissing,
+				"rules.target.marker_type_missing",
+				"action.markerType",
+				nil,
+			)
+		}
+
+		if action.MarkerAmount < 0 {
+			return legalityFailure(
+				ReasonCodeRulesFailedRandomMaxInvalid,
+				"rules.marker.amount_invalid",
+				"action.markerAmount",
+				nil,
+			)
+		}
+
+		if action.TargetPlayerID != "" && !containsString(state.Players, action.TargetPlayerID) {
+			return legalityFailure(
+				ReasonCodeTargetFailedMissing,
+				"rules.target.player_missing",
+				"action.targetPlayerId",
+				map[string]string{
+					"targetPlayerId": action.TargetPlayerID,
+				},
+			)
+		}
+
+		// 检查目标玩家是否有足够的标记物可以移除
+		targetPlayerID := action.TargetPlayerID
+		if targetPlayerID == "" {
+			targetPlayerID = action.ActorID
+		}
+
+		currentAmount := state.Board.Markers.GetMarker(targetPlayerID, action.MarkerType)
+		if currentAmount <= 0 {
+			return legalityFailure(
+				ReasonCodeTargetFailedMissing,
+				"rules.marker.not_enough",
+				"board.markers",
+				map[string]string{
+					"playerId":      targetPlayerID,
+					"markerType":    action.MarkerType,
+					"currentAmount": intString(currentAmount),
+				},
+			)
+		}
+
+		if action.MarkerAmount > currentAmount {
+			return legalityFailure(
+				ReasonCodeTargetFailedMissing,
+				"rules.marker.not_enough",
+				"board.markers",
+				map[string]string{
+					"playerId":        targetPlayerID,
+					"markerType":      action.MarkerType,
+					"currentAmount":   intString(currentAmount),
+					"requestedAmount": intString(action.MarkerAmount),
+				},
+			)
+		}
+
+		return okLegalityResult()
+	case ActionKindSetFaceDown:
+		if action.CardID == "" {
+			return legalityFailure(
+				ReasonCodeTargetFailedMissing,
+				"rules.target.card_missing",
+				"action.cardId",
+				nil,
+			)
+		}
+
+		if !hasCardID(state, action.CardID) {
+			return legalityFailure(
+				ReasonCodeTargetFailedMissing,
+				"rules.target.card_missing",
+				"board.cards",
+				map[string]string{
+					"cardId": action.CardID,
+				},
+			)
+		}
+
+		permissionLegality := checkCardActionPermissionLegality(state, action.CardID, action.Kind)
+		if !permissionLegality.OK {
+			return permissionLegality
+		}
+
+		return okLegalityResult()
 	default:
 		return legalityFailure(
 			ReasonCodeRulesFailedUnknownActionKind,
@@ -465,6 +588,19 @@ func BuildOperation(state GameState, action Action) (Operation, error) {
 	case ActionKindRollSeededRandom:
 		operation.Kind = OperationKindRollRandom
 		operation.RandomMax = action.RandomMax
+	case ActionKindSetMarker:
+		operation.Kind = OperationKindSetMarker
+		operation.MarkerType = action.MarkerType
+		operation.MarkerAmount = action.MarkerAmount
+		operation.TargetPlayerID = action.TargetPlayerID
+	case ActionKindRemoveMarker:
+		operation.Kind = OperationKindRemoveMarker
+		operation.MarkerType = action.MarkerType
+		operation.MarkerAmount = action.MarkerAmount
+		operation.TargetPlayerID = action.TargetPlayerID
+	case ActionKindSetFaceDown:
+		operation.Kind = OperationKindSetFaceDown
+		operation.CardID = action.CardID
 	default:
 		return Operation{}, fmt.Errorf("unsupported action kind %q", action.Kind)
 	}
@@ -529,6 +665,12 @@ func executeOperation(state GameState, operation Operation) (GameState, Operatio
 		return executeResolveTopStack(working, operation)
 	case OperationKindRollRandom:
 		return executeRollRandom(working, operation)
+	case OperationKindSetMarker:
+		return executeSetMarker(working, operation)
+	case OperationKindRemoveMarker:
+		return executeRemoveMarker(working, operation)
+	case OperationKindSetFaceDown:
+		return executeSetFaceDown(working, operation)
 	default:
 		return GameState{}, Operation{}, Event{}, fmt.Errorf("unsupported operation kind %q", operation.Kind)
 	}
@@ -765,6 +907,106 @@ func executeRollRandom(state GameState, operation Operation) (GameState, Operati
 	}, nil
 }
 
+func executeSetMarker(state GameState, operation Operation) (GameState, Operation, Event, error) {
+	working := cloneGameState(state)
+	targetPlayerID := operation.TargetPlayerID
+	if targetPlayerID == "" {
+		targetPlayerID = operation.ActorID
+	}
+
+	working.Board.Markers.SetMarker(targetPlayerID, operation.MarkerType, operation.MarkerAmount)
+	reopenPhaseStep(&working.Turn)
+	resetPriorityWindow(&working.Turn, operation.ActorID, PriorityWindowAction)
+	operation.Status = OperationStatusResolved
+
+	return working, operation, Event{
+		ID:               "evt:" + operation.ActionID,
+		ActionID:         operation.ActionID,
+		OperationID:      operation.ID,
+		Kind:             EventKindMarkerSet,
+		Phase:            working.Turn.Phase.Name,
+		Step:             working.Turn.Phase.Step,
+		PriorityPlayerID: currentPriorityPlayerID(working),
+		PriorityWindow:   currentPriorityWindowKind(working),
+		PassCount:        working.Turn.Priority.PassCount,
+		StackDepth:       len(working.Board.Stack),
+		TargetPlayerID:   targetPlayerID,
+		MarkerType:       operation.MarkerType,
+		MarkerAmount:     operation.MarkerAmount,
+		RevisionNumber:   0,
+	}, nil
+}
+
+func executeRemoveMarker(state GameState, operation Operation) (GameState, Operation, Event, error) {
+	working := cloneGameState(state)
+	targetPlayerID := operation.TargetPlayerID
+	if targetPlayerID == "" {
+		targetPlayerID = operation.ActorID
+	}
+
+	currentAmount := working.Board.Markers.GetMarker(targetPlayerID, operation.MarkerType)
+	removeAmount := operation.MarkerAmount
+	if removeAmount <= 0 || removeAmount > currentAmount {
+		removeAmount = currentAmount
+	}
+
+	newAmount := currentAmount - removeAmount
+	if newAmount < 0 {
+		newAmount = 0
+	}
+
+	working.Board.Markers.SetMarker(targetPlayerID, operation.MarkerType, newAmount)
+	reopenPhaseStep(&working.Turn)
+	resetPriorityWindow(&working.Turn, operation.ActorID, PriorityWindowAction)
+	operation.Status = OperationStatusResolved
+
+	return working, operation, Event{
+		ID:               "evt:" + operation.ActionID,
+		ActionID:         operation.ActionID,
+		OperationID:      operation.ID,
+		Kind:             EventKindMarkerRemoved,
+		Phase:            working.Turn.Phase.Name,
+		Step:             working.Turn.Phase.Step,
+		PriorityPlayerID: currentPriorityPlayerID(working),
+		PriorityWindow:   currentPriorityWindowKind(working),
+		PassCount:        working.Turn.Priority.PassCount,
+		StackDepth:       len(working.Board.Stack),
+		TargetPlayerID:   targetPlayerID,
+		MarkerType:       operation.MarkerType,
+		MarkerAmount:     newAmount,
+		RevisionNumber:   0,
+	}, nil
+}
+
+func executeSetFaceDown(state GameState, operation Operation) (GameState, Operation, Event, error) {
+	working := cloneGameState(state)
+	index := findCardIndex(working, operation.CardID)
+	if index == -1 {
+		return GameState{}, Operation{}, Event{}, fmt.Errorf("%s", ReasonCodeTargetFailedMissing)
+	}
+
+	working.Board.Cards[index].FaceDown = true
+	working.Board.Cards[index].Revealed = false
+	reopenPhaseStep(&working.Turn)
+	resetPriorityWindow(&working.Turn, operation.ActorID, PriorityWindowAction)
+	operation.Status = OperationStatusResolved
+
+	return working, operation, Event{
+		ID:               "evt:" + operation.ActionID,
+		ActionID:         operation.ActionID,
+		OperationID:      operation.ID,
+		Kind:             EventKindFaceDownSet,
+		Phase:            working.Turn.Phase.Name,
+		Step:             working.Turn.Phase.Step,
+		PriorityPlayerID: currentPriorityPlayerID(working),
+		PriorityWindow:   currentPriorityWindowKind(working),
+		PassCount:        working.Turn.Priority.PassCount,
+		ResolvedTargetID: operation.CardID,
+		StackDepth:       len(working.Board.Stack),
+		RevisionNumber:   0,
+	}, nil
+}
+
 func applyPhaseAdvance(state GameState, operation Operation) GameState {
 	working := cloneGameState(state)
 	previousPhase := working.Turn.Phase.Name
@@ -973,6 +1215,8 @@ func permissionForActionKind(kind ActionKind) string {
 		return "inspect"
 	case ActionKindRevealCard:
 		return "reveal"
+	case ActionKindSetFaceDown:
+		return "set_face_down"
 	case ActionKindDeclareAttack:
 		return "attack"
 	case ActionKindDeclareInvestigation:
