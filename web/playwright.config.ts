@@ -16,13 +16,13 @@ export default defineConfig({
       command: "cd .. && PORT=8080 go run ./server/cmd/api",
       url: "http://127.0.0.1:8080/api/debugger/messages",
       timeout: 120_000,
-      reuseExistingServer: true
+      reuseExistingServer: false
     },
     {
       command: "npm run dev -- --host 127.0.0.1 --port 4173",
       url: "http://127.0.0.1:4173",
       timeout: 120_000,
-      reuseExistingServer: true
+      reuseExistingServer: false
     }
   ],
   projects: [

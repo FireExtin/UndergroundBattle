@@ -182,6 +182,8 @@ func checkLegalityWithLookup(state GameState, action Action, sourceLookup cardOp
 		return checkCardMarkerActionLegality(state, action)
 	case ActionKindUseFirstPlayerPrivilege:
 		return checkFirstPlayerPrivilegeActionLegality(state, action)
+	case ActionKindPlayCard:
+		return checkPlayCardActionLegality(state, action, sourceLookup)
 	case ActionKindMoveCard:
 		return checkMoveCardActionLegality(state, action)
 	case ActionKindDeclareAttack:
@@ -305,6 +307,36 @@ func buildOperationWithLookup(state GameState, action Action, sourceLookup cardO
 		operation.CardID = action.CardID
 		operation.TargetCardID = action.TargetCardID
 		operation.Label = "move_card"
+	case ActionKindPlayCard:
+		operation.Kind = OperationKindPlayCard
+		operation.CardID = action.CardID
+		operation.TargetCardID = action.TargetCardID
+		operation.TargetPlayerID = action.TargetPlayerID
+		operation.TargetRegionCardID = action.TargetRegionCardID
+		operation.PlayMode = action.PlayMode
+		operation.Label = "play_card"
+		if cardIndex := findCardIndex(state, action.CardID); cardIndex >= 0 {
+			card := state.Board.Cards[cardIndex]
+			lookupID := card.DefinitionID
+			if lookupID == "" {
+				lookupID = card.CardID
+			}
+			if lookupID != "" && (card.Kind == CardKindEvent || card.Kind == CardKindAsset) {
+				source, found, err := lookupCardOperationSourceWithLookup(sourceLookup, lookupID)
+				if err != nil {
+					return Operation{}, err
+				}
+				if found {
+					operation.Source = &source
+					if card.Kind == CardKindEvent {
+						operation.RequiresStack = source.RequiresStack
+						if source.CardName != "" {
+							operation.Label = source.CardName
+						}
+					}
+				}
+			}
+		}
 	case ActionKindDeclareAttack:
 		operation.Kind = OperationKindDeclareAttack
 		operation.CardID = action.CardID
@@ -341,6 +373,10 @@ func executeOperation(state GameState, operation Operation) (GameState, Operatio
 
 	if shieldState, shieldOperation, shieldEvent, intercepted := tryResolveShieldInterception(working, operation); intercepted {
 		return shieldState, shieldOperation, shieldEvent, nil
+	}
+
+	if operation.Kind == OperationKindPlayCard {
+		return executePlayCard(working, operation)
 	}
 
 	if operation.RequiresStack {
@@ -844,6 +880,8 @@ func resolveStackedOperation(state GameState, operation Operation) (GameState, O
 	switch operation.Kind {
 	case OperationKindCardEffect:
 		return resolveCardEffect(state, operation)
+	case OperationKindPlayCard:
+		return resolveStackedPlayCard(state, operation)
 	default:
 		resolved := markOperationResolved(operation)
 		return finalizeResolvedOperation(state, resolved), resolved, nil

@@ -23,7 +23,7 @@ export function BattleTable({ battle, localPlayerId, onLocalPlayerChanged, onCar
           <p className="eyebrow">隐秘世界</p>
           <h1>可玩牌桌原型</h1>
           <p className="muted">
-            Turn {battle.turn.turnNumber} | Active {battle.turn.activePlayerId} | Priority {battle.turn.priority.currentPlayerId}
+            回合 {battle.turn.turnNumber} | 当前玩家 {battle.turn.activePlayerId} | 优先权 {battle.turn.priority.currentPlayerId}
           </p>
         </div>
         <div className="battle-table__viewer-switch" role="group" aria-label="视角切换">
@@ -75,12 +75,22 @@ export function BattleTable({ battle, localPlayerId, onLocalPlayerChanged, onCar
                     }}
                   >
                     <strong>{slot.regionCard.name ?? slot.regionCard.cardId}</strong>
+                    <p className="muted">
+                      势力值 {slot.regionCard.stats.influence} · 分值 {slot.regionCard.regionScore ?? 0}
+                    </p>
                   </button>
                 ) : (
                   <strong>空地区槽</strong>
                 )}
               </header>
-              <p className="muted">regionId: {slot.regionCard?.cardId ?? "-"}</p>
+              <p className="muted">地区卡 ID：{slot.regionCard?.cardId ?? "-"}</p>
+              {slot.regionCard?.description ? (
+                <details className="battle-region-meta">
+                  <summary>查看地区说明</summary>
+                  <p>{slot.regionCard.description}</p>
+                  {slot.regionCard.faq ? <p className="muted">FAQ：{slot.regionCard.faq}</p> : null}
+                </details>
+              ) : null}
               <div className="contest-slot__rows">
                 <div>
                   <p className="muted">对方驻场</p>
@@ -219,8 +229,8 @@ function CardStrip({ cards, fallback, compact = false, onVisibleCardPicked }: Ca
               </button>
             ) : (
               <>
-                <strong>{isVisible ? card.name ?? card.cardId : "Card Back"}</strong>
-                <p>{isVisible ? card.cardId ?? "-" : "hidden"}</p>
+                <strong>{isVisible ? card.name ?? card.cardId : "卡背"}</strong>
+                <p>{isVisible ? card.cardId ?? "-" : "隐藏"}</p>
               </>
             )}
           </li>

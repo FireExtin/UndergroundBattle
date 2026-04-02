@@ -2,6 +2,8 @@ package api
 
 import (
 	"encoding/json"
+	"errors"
+	"io"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -38,6 +40,12 @@ func NewHandler(session *SandboxSession, staticDir string) http.Handler {
 
 		messages, err := session.SubmitAction(action)
 		if err != nil {
+			if errors.Is(err, errSetupNotCompleted) {
+				writeJSON(writer, http.StatusConflict, map[string]string{
+					"error": errSetupNotCompleted.Error(),
+				})
+				return
+			}
 			writeJSON(writer, http.StatusInternalServerError, map[string]string{
 				"error": err.Error(),
 			})
@@ -77,6 +85,62 @@ func NewHandler(session *SandboxSession, staticDir string) http.Handler {
 		}
 
 		writeJSON(writer, http.StatusOK, report)
+	})
+	mux.HandleFunc("/api/battle/setup/state", func(writer http.ResponseWriter, request *http.Request) {
+		if request.Method != http.MethodGet {
+			writeMethodNotAllowed(writer, http.MethodGet)
+			return
+		}
+
+		writeJSON(writer, http.StatusOK, session.SetupState())
+	})
+	mux.HandleFunc("/api/battle/setup/start", func(writer http.ResponseWriter, request *http.Request) {
+		if request.Method != http.MethodPost {
+			writeMethodNotAllowed(writer, http.MethodPost)
+			return
+		}
+
+		var input SetupStartInput
+		if request.Body != nil {
+			if err := json.NewDecoder(request.Body).Decode(&input); err != nil && !errors.Is(err, io.EOF) {
+				writeJSON(writer, http.StatusBadRequest, map[string]string{"error": "invalid_setup_start_json"})
+				return
+			}
+		}
+
+		state, err := session.StartSetup(input)
+		if err != nil {
+			writeJSON(writer, http.StatusInternalServerError, map[string]string{"error": err.Error()})
+			return
+		}
+
+		writeJSON(writer, http.StatusOK, state)
+	})
+	mux.HandleFunc("/api/battle/setup/advance", func(writer http.ResponseWriter, request *http.Request) {
+		if request.Method != http.MethodPost {
+			writeMethodNotAllowed(writer, http.MethodPost)
+			return
+		}
+
+		var input SetupAdvanceInput
+		if request.Body != nil {
+			if err := json.NewDecoder(request.Body).Decode(&input); err != nil && !errors.Is(err, io.EOF) {
+				writeJSON(writer, http.StatusBadRequest, map[string]string{"error": "invalid_setup_advance_json"})
+				return
+			}
+		}
+
+		state, err := session.AdvanceSetup(input)
+		if err != nil {
+			status := http.StatusInternalServerError
+			if errors.Is(err, errSetupNotActive) {
+				status = http.StatusConflict
+			}
+			writeJSON(writer, status, map[string]string{"error": err.Error()})
+			return
+		}
+
+		writeJSON(writer, http.StatusOK, state)
 	})
 
 	if staticDir == "" || !directoryExists(staticDir) {

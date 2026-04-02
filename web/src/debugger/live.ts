@@ -2,6 +2,62 @@ import type { Action, DebuggerProtocolEnvelope, ViewerId } from "./protocol";
 
 // Purpose: Provides the minimal HTTP client and preset action builders used by the live sandbox debugger.
 
+export type SetupStepStatus = {
+  step: number;
+  title: string;
+  completed: boolean;
+};
+
+export type SetupRegionView = {
+  cardId: string;
+  definitionId: string;
+  name: string;
+  type: string;
+  description?: string;
+  faq?: string;
+  influenceLimit: number;
+  score: number;
+  regionOrder: number;
+  worldDeckIndex: number;
+  worldDeckRemain: number;
+};
+
+export type SetupState = {
+  active: boolean;
+  completed: boolean;
+  currentStep: number;
+  seed: number;
+  steps: SetupStepStatus[];
+  p1Societies?: string[];
+  p2Societies?: string[];
+  markerPoolReady: boolean;
+  worldDeckCount: number;
+  revealedRegions?: SetupRegionView[];
+  playerDeckCount: Record<string, number>;
+  playerHandCount: Record<string, number>;
+  mulliganUsed: Record<string, boolean>;
+  startingPlayerId?: string;
+  previousLoserPlayer?: string;
+  lastStepMessage?: string;
+  runtimeIgnoredScopes?: Record<string, string[]>;
+  runtimeNotes?: Record<string, string>;
+};
+
+export type SetupStartInput = {
+  seed?: number;
+  p1Societies?: string[];
+  p2Societies?: string[];
+  previousLoserPlayer?: string;
+};
+
+export type SetupAdvanceInput = {
+  p1Societies?: string[];
+  p2Societies?: string[];
+  mulliganBottomCount?: Record<string, number>;
+  startingPlayerId?: string;
+  usePreviousLoserChoice?: boolean;
+};
+
 export type LiveActionPresetId =
   | "passPriority"
   | "advancePhase"
@@ -57,6 +113,33 @@ export async function resetDebuggerSession(): Promise<DebuggerProtocolEnvelope[]
   });
 
   return readJSONResponse<DebuggerProtocolEnvelope[]>(response);
+}
+
+export async function fetchBattleSetupState(): Promise<SetupState> {
+  const response = await fetch("/api/battle/setup/state", undefined);
+  return readJSONResponse<SetupState>(response);
+}
+
+export async function startBattleSetup(input: SetupStartInput): Promise<SetupState> {
+  const response = await fetch("/api/battle/setup/start", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(input)
+  });
+  return readJSONResponse<SetupState>(response);
+}
+
+export async function advanceBattleSetup(input: SetupAdvanceInput): Promise<SetupState> {
+  const response = await fetch("/api/battle/setup/advance", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(input)
+  });
+  return readJSONResponse<SetupState>(response);
 }
 
 export function buildActionFromPreset(

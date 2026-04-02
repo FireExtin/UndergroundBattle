@@ -205,6 +205,83 @@ func TestSandboxSessionSubmitStillSucceedsWhenReportWriteFails(t *testing.T) {
 	}
 }
 
+func TestSandboxSessionSetupFlowBlocksActionsUntilCompleted(t *testing.T) {
+	session := NewSandboxSession()
+
+	_, err := session.StartSetup(SetupStartInput{Seed: 20260402})
+	if err != nil {
+		t.Fatalf("StartSetup returned error: %v", err)
+	}
+
+	_, err = session.SubmitAction(rules.Action{
+		ID:      "act-setup-blocked",
+		ActorID: "P1",
+		Kind:    rules.ActionKindPassPriority,
+	})
+	if err == nil {
+		t.Fatal("SubmitAction succeeded before setup completion, want setup_not_completed error")
+	}
+	if !strings.Contains(err.Error(), "setup_not_completed") {
+		t.Fatalf("SubmitAction error = %q, want setup_not_completed", err.Error())
+	}
+
+	for step := 1; step <= 7; step++ {
+		_, err = session.AdvanceSetup(SetupAdvanceInput{})
+		if err != nil {
+			t.Fatalf("AdvanceSetup(step=%d) returned error: %v", step, err)
+		}
+	}
+
+	actorID := session.state.Turn.Priority.CurrentPlayerID
+	if actorID == "" {
+		actorID = "P1"
+	}
+	_, err = session.SubmitAction(rules.Action{
+		ID:      "act-setup-finished",
+		ActorID: actorID,
+		Kind:    rules.ActionKindPassPriority,
+	})
+	if err != nil {
+		t.Fatalf("SubmitAction returned error after setup completion: %v", err)
+	}
+}
+
+func TestSandboxSessionSetupStateTracksCurrentStep(t *testing.T) {
+	session := NewSandboxSession()
+
+	state, err := session.StartSetup(SetupStartInput{Seed: 42})
+	if err != nil {
+		t.Fatalf("StartSetup returned error: %v", err)
+	}
+	if !state.Active {
+		t.Fatal("setup state should be active after start")
+	}
+	if state.CurrentStep != 1 {
+		t.Fatalf("current step = %d, want 1", state.CurrentStep)
+	}
+
+	state, err = session.AdvanceSetup(SetupAdvanceInput{})
+	if err != nil {
+		t.Fatalf("AdvanceSetup returned error: %v", err)
+	}
+	if state.CurrentStep != 2 {
+		t.Fatalf("current step = %d, want 2", state.CurrentStep)
+	}
+
+	for step := 2; step <= 7; step++ {
+		state, err = session.AdvanceSetup(SetupAdvanceInput{})
+		if err != nil {
+			t.Fatalf("AdvanceSetup(step=%d) returned error: %v", step, err)
+		}
+	}
+	if !state.Completed {
+		t.Fatal("setup should be completed after step 7")
+	}
+	if state.CurrentStep != 7 {
+		t.Fatalf("current step = %d, want 7", state.CurrentStep)
+	}
+}
+
 func prepareSinglePointWin(t *testing.T, session *SandboxSession) {
 	t.Helper()
 

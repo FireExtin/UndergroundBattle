@@ -238,6 +238,15 @@ body {
   gap: 0.9rem;
 }
 
+.battle-setup {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.battle-setup h1 {
+  margin: 0;
+}
+
 .battle-shell__banner {
   display: flex;
   align-items: center;
@@ -358,6 +367,25 @@ body {
 .contest-slot__rows {
   display: grid;
   gap: 0.25rem;
+}
+
+.battle-region-meta {
+  margin: 0.4rem 0;
+  border: 1px solid #c3d7e4;
+  border-radius: 8px;
+  background: #f8fcff;
+  padding: 0.35rem 0.45rem;
+}
+
+.battle-region-meta summary {
+  cursor: pointer;
+  font-size: 0.82rem;
+  color: #234a67;
+}
+
+.battle-region-meta p {
+  margin: 0.35rem 0 0;
+  font-size: 0.8rem;
 }
 
 .contest-free-zone {

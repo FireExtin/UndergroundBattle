@@ -50,6 +50,8 @@ type SandboxSession struct {
 	mu                sync.Mutex
 	state             rules.GameState
 	projector         *rules.ProjectionEngine
+	setup             SetupState
+	setupRuntime      setupRuntimeState
 	messages          []protocolEnvelope
 	nextMessageNumber int
 	logger            *log.Logger
@@ -100,6 +102,9 @@ func (session *SandboxSession) Messages() []protocolEnvelope {
 func (session *SandboxSession) SubmitAction(action rules.Action) ([]protocolEnvelope, error) {
 	session.mu.Lock()
 	defer session.mu.Unlock()
+	if session.setup.Active && !session.setup.Completed {
+		return nil, errSetupNotCompleted
+	}
 
 	beforeMatch := session.state.Match
 	result, err := rules.SubmitActionWithProjection(session.state, action, session.projector)
@@ -260,6 +265,8 @@ func (session *SandboxSession) resetLocked() ([]protocolEnvelope, error) {
 
 	session.state = state
 	session.projector = projector
+	session.setup = SetupState{}
+	session.setupRuntime = setupRuntimeState{}
 	session.nextMessageNumber = 1
 	messages, err := session.materializeBootstrapMessages(views)
 	if err != nil {

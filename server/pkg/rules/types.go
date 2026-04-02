@@ -22,6 +22,7 @@ const (
 	ActionKindMoveCard                ActionKind = "move_card"
 	ActionKindSetCardMarker           ActionKind = "set_card_marker"
 	ActionKindRemoveCardMarker        ActionKind = "remove_card_marker"
+	ActionKindPlayCard                ActionKind = "play_card"
 )
 
 // OperationKind names the minimal operation types built from actions.
@@ -45,6 +46,7 @@ const (
 	OperationKindMoveCard                OperationKind = "move_card"
 	OperationKindSetCardMarker           OperationKind = "set_card_marker"
 	OperationKindRemoveCardMarker        OperationKind = "remove_card_marker"
+	OperationKindPlayCard                OperationKind = "play_card"
 )
 
 // OperationStatus describes whether an operation is pending on the stack or already resolved.
@@ -80,6 +82,7 @@ const (
 	EventKindCardMoved                EventKind = "card_moved"
 	EventKindCardMarkerSet            EventKind = "card_marker_set"
 	EventKindCardMarkerRemoved        EventKind = "card_marker_removed"
+	EventKindCardPlayed               EventKind = "card_played"
 )
 
 // PhaseName identifies the current minimal turn phase.
@@ -234,16 +237,18 @@ type FullState = GameState
 
 // Action is the player intent submitted into the authoritative pipeline.
 type Action struct {
-	ID             string     `json:"id"`
-	ActorID        string     `json:"actorId"`
-	Kind           ActionKind `json:"kind"`
-	CardID         string     `json:"cardId,omitempty"`
-	TargetPlayerID string     `json:"targetPlayerId,omitempty"`
-	TargetCardID   string     `json:"targetCardId,omitempty"`
-	MarkerType     string     `json:"markerType,omitempty"`
-	MarkerAmount   int        `json:"markerAmount,omitempty"`
-	OperationLabel string     `json:"operationLabel,omitempty"`
-	RandomMax      int        `json:"randomMax,omitempty"`
+	ID                 string     `json:"id"`
+	ActorID            string     `json:"actorId"`
+	Kind               ActionKind `json:"kind"`
+	CardID             string     `json:"cardId,omitempty"`
+	TargetPlayerID     string     `json:"targetPlayerId,omitempty"`
+	TargetCardID       string     `json:"targetCardId,omitempty"`
+	TargetRegionCardID string     `json:"targetRegionCardId,omitempty"`
+	PlayMode           string     `json:"playMode,omitempty"`
+	MarkerType         string     `json:"markerType,omitempty"`
+	MarkerAmount       int        `json:"markerAmount,omitempty"`
+	OperationLabel     string     `json:"operationLabel,omitempty"`
+	RandomMax          int        `json:"randomMax,omitempty"`
 }
 
 // EffectSpec is the executable subset of the shared CardLogic effect payload copied into Go-side operations.
@@ -276,21 +281,23 @@ type CardOperationSource struct {
 
 // Operation is the normalized work item built from an action before it is queued or resolved.
 type Operation struct {
-	ID             string               `json:"id"`
-	ActionID       string               `json:"actionId"`
-	ActorID        string               `json:"actorId"`
-	Kind           OperationKind        `json:"kind"`
-	Status         OperationStatus      `json:"status"`
-	RequiresStack  bool                 `json:"requiresStack"`
-	CardID         string               `json:"cardId,omitempty"`
-	TargetPlayerID string               `json:"targetPlayerId,omitempty"`
-	TargetCardID   string               `json:"targetCardId,omitempty"`
-	MarkerType     string               `json:"markerType,omitempty"`
-	MarkerAmount   int                  `json:"markerAmount,omitempty"`
-	Label          string               `json:"label,omitempty"`
-	RandomMax      int                  `json:"randomMax,omitempty"`
-	NextPhase      PhaseName            `json:"nextPhase,omitempty"`
-	Source         *CardOperationSource `json:"source,omitempty"`
+	ID                 string               `json:"id"`
+	ActionID           string               `json:"actionId"`
+	ActorID            string               `json:"actorId"`
+	Kind               OperationKind        `json:"kind"`
+	Status             OperationStatus      `json:"status"`
+	RequiresStack      bool                 `json:"requiresStack"`
+	CardID             string               `json:"cardId,omitempty"`
+	TargetPlayerID     string               `json:"targetPlayerId,omitempty"`
+	TargetCardID       string               `json:"targetCardId,omitempty"`
+	TargetRegionCardID string               `json:"targetRegionCardId,omitempty"`
+	PlayMode           string               `json:"playMode,omitempty"`
+	MarkerType         string               `json:"markerType,omitempty"`
+	MarkerAmount       int                  `json:"markerAmount,omitempty"`
+	Label              string               `json:"label,omitempty"`
+	RandomMax          int                  `json:"randomMax,omitempty"`
+	NextPhase          PhaseName            `json:"nextPhase,omitempty"`
+	Source             *CardOperationSource `json:"source,omitempty"`
 }
 
 // Event records the committed result of a single action pipeline run.

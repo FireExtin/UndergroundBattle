@@ -198,8 +198,8 @@ export function deriveBattleInfoLogs(messages: DebuggerProtocolEnvelope[]): Batt
       entries.push({
         id: `${message.messageId}:system`,
         kind: "system",
-        summary: `SYSTEM rev ${revision} ${view.turn.phase.name}/${view.turn.phase.step}`,
-        detail: `priority=${view.turn.priority.currentPlayerId} score=${scoreSummary} status=${view.match.status}${winner}`,
+        summary: `系统 rev ${revision} ${view.turn.phase.name}/${view.turn.phase.step}`,
+        detail: `优先权=${view.turn.priority.currentPlayerId} 分数=${scoreSummary} 状态=${view.match.status}${winner}`,
         revision,
         order: messageOrder(message.messageId, index)
       });
@@ -332,8 +332,8 @@ function acceptedLog(message: ActionAcceptedEnvelope, fallbackOrder: number): Ba
   return {
     id: `${message.messageId}:accepted`,
     kind: "accepted",
-    summary: `ACCEPTED ${message.payload.action.actorId} -> ${message.payload.action.kind}`,
-    detail: `event=${message.payload.event.kind} phase=${message.payload.event.phase ?? "-"} priority=${message.payload.event.priorityPlayerId ?? "-"} stack=${message.payload.event.stackDepth}`,
+    summary: `已接受 ${message.payload.action.actorId} -> ${message.payload.action.kind}`,
+    detail: `事件=${message.payload.event.kind} 阶段=${message.payload.event.phase ?? "-"} 优先权=${message.payload.event.priorityPlayerId ?? "-"} 栈深=${message.payload.event.stackDepth}`,
     revision,
     order: messageOrder(message.messageId, fallbackOrder)
   };
@@ -343,8 +343,8 @@ function rejectedLog(message: ActionRejectedEnvelope, fallbackOrder: number): Ba
   return {
     id: `${message.messageId}:rejected`,
     kind: "rejected",
-    summary: `REJECTED ${message.payload.action.actorId} -> ${message.payload.action.kind}`,
-    detail: `reason=${message.payload.legality.reasonCode ?? "-"} message=${message.payload.legality.messageKey ?? "-"}`,
+    summary: `已拒绝 ${message.payload.action.actorId} -> ${message.payload.action.kind}`,
+    detail: `原因=${message.payload.legality.reasonCode ?? "-"} 提示=${message.payload.legality.messageKey ?? "-"}`,
     order: messageOrder(message.messageId, fallbackOrder)
   };
 }

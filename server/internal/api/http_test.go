@@ -118,3 +118,41 @@ func TestLatestReportEndpointReturnsMostRecentReport(t *testing.T) {
 		t.Fatalf("payload.revision = %d, want %d", payload.Revision, 1)
 	}
 }
+
+func TestSetupEndpointsStartAdvanceAndState(t *testing.T) {
+	session := NewSandboxSession()
+	handler := NewHandler(session, "")
+
+	startRequest := httptest.NewRequest(http.MethodPost, "/api/battle/setup/start", bytes.NewBufferString(`{"seed":20260402}`))
+	startRecorder := httptest.NewRecorder()
+	handler.ServeHTTP(startRecorder, startRequest)
+	if startRecorder.Code != http.StatusOK {
+		t.Fatalf("start status code = %d, want %d", startRecorder.Code, http.StatusOK)
+	}
+
+	stateRequest := httptest.NewRequest(http.MethodGet, "/api/battle/setup/state", nil)
+	stateRecorder := httptest.NewRecorder()
+	handler.ServeHTTP(stateRecorder, stateRequest)
+	if stateRecorder.Code != http.StatusOK {
+		t.Fatalf("state status code = %d, want %d", stateRecorder.Code, http.StatusOK)
+	}
+
+	var setupState SetupState
+	if err := json.Unmarshal(stateRecorder.Body.Bytes(), &setupState); err != nil {
+		t.Fatalf("json.Unmarshal setup state returned error: %v", err)
+	}
+	if setupState.CurrentStep != 1 {
+		t.Fatalf("setup current step = %d, want 1", setupState.CurrentStep)
+	}
+
+	advanceRequest := httptest.NewRequest(http.MethodPost, "/api/battle/setup/advance", bytes.NewBufferString(`{}`))
+	advanceRecorder := httptest.NewRecorder()
+	handler.ServeHTTP(advanceRecorder, advanceRequest)
+	if advanceRecorder.Code != http.StatusOK {
+		t.Fatalf("advance status code = %d, want %d", advanceRecorder.Code, http.StatusOK)
+	}
+
+	if _, err := session.SubmitAction(rules.Action{ID: "act-http-setup-gate", ActorID: "P1", Kind: rules.ActionKindPassPriority}); err == nil {
+		t.Fatal("SubmitAction succeeded while setup is incomplete, want error")
+	}
+}

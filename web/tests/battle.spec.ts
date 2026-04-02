@@ -1,96 +1,116 @@
-import { expect, test, type APIRequestContext } from "@playwright/test";
+import { expect, test, type APIRequestContext, type Page } from "@playwright/test";
 
-// Purpose: Exercises a minimal real gameplay loop from the battle table UI.
+// Purpose: Exercises setup wizard + battle actions against the authoritative live sandbox.
+
+type PlayerID = "P1" | "P2";
+
+type CardSnapshot = {
+  cardId?: string;
+  ownerId?: string;
+  zone?: string;
+  kind?: string;
+  regionOrder?: number;
+  stats?: {
+    investigation?: number;
+  };
+};
+
+type PlayerViewSnapshot = {
+  match: {
+    status: "active" | "finished";
+    winnerPlayerId?: string;
+  };
+  turn: {
+    priority: {
+      currentPlayerId: string;
+    };
+  };
+  board: {
+    cards: CardSnapshot[];
+  };
+};
+
+let actionSequence = 1;
 
 test("battle table combo actions: attack + investigation + move + marker + pass", async ({ page, request }) => {
-  await page.goto("/");
+  await resetSandboxSession(request);
+  await completeSetupViaUI(page);
 
-  await expect(page.getByRole("heading", { name: "对方玩家区域" })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "争夺区" })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "本方玩家区域" })).toBeVisible();
-  await expect(page.getByText("Source: Live Sandbox")).toBeVisible();
-  await expect(page.getByRole("button", { name: "The Silver District" })).toBeVisible();
-  await expect(page.getByRole("button", { name: "The Ash Quarter" })).toBeVisible();
-  await expect(page.getByRole("button", { name: "The Gilded Gate" })).toBeVisible();
+  const regionIDs = await listRegionCardIDs(request, "P1");
+  expect(regionIDs.length).toBeGreaterThanOrEqual(3);
 
-  await page.getByRole("button", { name: "重开对局" }).click();
-  await expect(page.getByText("Source: Live Sandbox")).toBeVisible();
+  const p1RegionID = regionIDs[0]!;
+  const p2RegionID = regionIDs[1]!;
+  const p1CharacterID = await playFirstCharacterFromHand(request, "P1", p1RegionID);
+  const p2CharacterID = await playFirstCharacterFromHand(request, "P2", p2RegionID);
 
-  await postAction(request, {
-    id: "act-e2e-combo-pass-to-p2",
-    actorId: "P1",
-    kind: "pass_priority"
-  });
-  await postAction(request, {
-    id: "act-e2e-combo-investigate",
+  await ensurePriority(request, "P2");
+  await postActionExpectAccepted(request, {
+    id: nextActionID("act-e2e-investigate"),
     actorId: "P2",
     kind: "declare_investigation",
-    cardId: "P2-TABLE-1",
-    targetCardId: "REGION-2"
+    cardId: p2CharacterID,
+    targetCardId: p2RegionID
   });
-  await postAction(request, {
-    id: "act-e2e-combo-move",
-    actorId: "P2",
+
+  await ensurePriority(request, "P1");
+  await postActionExpectAccepted(request, {
+    id: nextActionID("act-e2e-move"),
+    actorId: "P1",
     kind: "move_card",
-    cardId: "P2-TABLE-1",
-    targetCardId: "REGION-3"
+    cardId: p1CharacterID,
+    targetCardId: p2RegionID
   });
-  await postAction(request, {
-    id: "act-e2e-combo-pass-to-p1",
-    actorId: "P2",
-    kind: "pass_priority"
-  });
-  await postAction(request, {
-    id: "act-e2e-combo-attack",
+
+  await postActionExpectAccepted(request, {
+    id: nextActionID("act-e2e-attack"),
     actorId: "P1",
     kind: "declare_attack",
-    cardId: "P1-TABLE-1",
-    targetCardId: "P2-TABLE-1"
+    cardId: p1CharacterID,
+    targetCardId: p2CharacterID
   });
 
   await page.getByRole("button", { name: "刷新状态" }).click();
-  await expect(page.getByText("Actor: P1")).toBeVisible();
+  await expect(page.getByText("对局信息日志")).toBeVisible();
+  await expect(page.locator(".battle-info-logs__item--accepted").first()).toBeVisible();
 
-  await page.getByLabel("Action Kind").selectOption("set_marker");
-  await page.getByLabel("Target Player").selectOption("P1");
-  await page.getByLabel("Marker Type").fill("secret_society");
-  await page.getByLabel("Marker Amount").fill("1");
+  await page.getByLabel("动作类型").selectOption("set_marker");
+  await page.getByLabel("目标玩家").selectOption("P1");
+  await page.getByLabel("标记类型").fill("secret_society");
+  await page.getByLabel("标记数量").fill("1");
   await page.getByRole("button", { name: "提交动作" }).click();
+  await page.getByRole("button", { name: "让过优先权" }).click();
 
-  await expect(page.getByText("Source: Live Sandbox")).toBeVisible();
-
-  await page.getByRole("button", { name: "Pass Priority" }).click();
-  await expect(page.getByText(/ACCEPTED/).first()).toBeVisible();
   await expect(page.getByText("本方玩家区域")).toBeVisible();
+  await expect(page.locator(".battle-info-logs__item--accepted").first()).toBeVisible();
 });
 
 test("finished match disables actions and latest report endpoint is readable", async ({ page, request }) => {
-  const resetResponse = await request.post("/api/debugger/reset");
-  expect(resetResponse.ok()).toBeTruthy();
+  await completeSetupViaAPI(request);
 
-  await postAction(request, {
-    id: "act-e2e-report-investigate-1",
-    actorId: "P1",
-    kind: "declare_investigation",
-    cardId: "P1-TABLE-1",
-    targetCardId: "REGION-1"
-  });
+  const regionIDs = await listRegionCardIDs(request, "P1");
+  expect(regionIDs.length).toBeGreaterThanOrEqual(3);
 
-  for (const action of [
-    { id: "act-e2e-phase-1", actorId: "P1", kind: "advance_phase" },
-    { id: "act-e2e-phase-2", actorId: "P1", kind: "advance_phase" },
-    { id: "act-e2e-phase-3", actorId: "P2", kind: "advance_phase" },
-    { id: "act-e2e-phase-4", actorId: "P2", kind: "advance_phase" },
-    { id: "act-e2e-phase-5", actorId: "P1", kind: "advance_phase" },
-    { id: "act-e2e-phase-6", actorId: "P1", kind: "advance_phase" }
-  ]) {
-    await postAction(request, action);
+  await ensurePriority(request, "P1");
+  const p1Investigators = await deployInvestigatorsForP1(request, regionIDs.slice(0, 2));
+  expect(p1Investigators.length).toBeGreaterThan(0);
+
+  for (const investigator of p1Investigators) {
+    await postActionExpectAccepted(request, {
+      id: nextActionID("act-e2e-investigate"),
+      actorId: "P1",
+      kind: "declare_investigation",
+      cardId: investigator.cardId,
+      targetCardId: investigator.regionCardId
+    });
   }
+
+  await advanceUntilFinished(request, 16);
 
   await page.goto("/");
   await page.getByRole("button", { name: "刷新状态" }).click();
 
-  await expect(page.getByText("Game over. Winner: P1").first()).toBeVisible();
+  await expect(page.getByText("对局结束，胜者：P1").first()).toBeVisible();
   await expect(page.getByRole("button", { name: "提交动作" })).toBeDisabled();
 
   const reportResponse = await request.get("/api/debugger/reports/latest");
@@ -103,19 +123,233 @@ test("finished match disables actions and latest report endpoint is readable", a
   expect(report.content ?? "").toContain("# Match Report");
 });
 
-async function postAction(
+async function completeSetupViaUI(page: Page) {
+  await page.goto("/");
+  await expect(page.getByRole("heading", { name: "隐秘世界 开局设置" })).toBeVisible();
+  await expect(page.getByText("准备开始《隐秘世界》卡牌游戏，请按规则顺序完成初始设置。")).toBeVisible();
+
+  await page.getByRole("button", { name: "开始开局设置" }).click();
+  await expect(page.getByRole("heading", { name: "开局设置进行中" })).toBeVisible();
+
+  for (let step = 1; step <= 7; step += 1) {
+    await expect(page.getByText(new RegExp(`当前步骤：第\\s*${step}\\s*/\\s*7\\s*步`))).toBeVisible();
+    await page.getByRole("button", { name: "执行下一步" }).click();
+  }
+
+  await expect(page.getByRole("heading", { name: "对方玩家区域" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "争夺区" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "本方玩家区域" })).toBeVisible();
+  await expect(page.getByText("数据源：实时沙盒")).toBeVisible();
+}
+
+async function completeSetupViaAPI(request: APIRequestContext) {
+  await resetSandboxSession(request);
+
+  const startResponse = await request.post("/api/battle/setup/start", {
+    data: {
+      seed: 20260402,
+      p1Societies: ["方碑序列", "帷幕守望"],
+      p2Societies: ["王座会", "国家机构"]
+    }
+  });
+  expect(startResponse.ok()).toBeTruthy();
+
+  for (let step = 1; step <= 7; step += 1) {
+    const payload =
+      step === 7
+        ? { startingPlayerId: "P1", usePreviousLoserChoice: false }
+        : step === 6
+          ? { mulliganBottomCount: { P1: 0, P2: 0 } }
+          : {};
+    const response = await request.post("/api/battle/setup/advance", { data: payload });
+    expect(response.ok()).toBeTruthy();
+  }
+}
+
+async function resetSandboxSession(request: APIRequestContext) {
+  const response = await request.post("/api/debugger/reset");
+  expect(response.ok()).toBeTruthy();
+}
+
+function nextActionID(prefix: string) {
+  const id = `${prefix}-${actionSequence}`;
+  actionSequence += 1;
+  return id;
+}
+
+async function listRegionCardIDs(request: APIRequestContext, playerID: PlayerID): Promise<string[]> {
+  const view = await latestPlayerView(request, playerID);
+  return view.board.cards
+    .filter((card) => card.zone === "table" && card.kind === "region" && typeof card.cardId === "string")
+    .sort((left, right) => (left.regionOrder ?? 99) - (right.regionOrder ?? 99))
+    .map((card) => String(card.cardId));
+}
+
+async function ensurePriority(request: APIRequestContext, actorID: PlayerID) {
+  for (let index = 0; index < 10; index += 1) {
+    const view = await latestPlayerView(request, actorID);
+    const currentPriority = toPlayerID(view.turn.priority.currentPlayerId);
+    if (currentPriority === actorID) {
+      return;
+    }
+
+    await postActionExpectAccepted(request, {
+      id: nextActionID("act-e2e-pass"),
+      actorId: currentPriority,
+      kind: "pass_priority"
+    });
+  }
+
+  throw new Error(`unable to transfer priority to ${actorID}`);
+}
+
+async function playFirstCharacterFromHand(
+  request: APIRequestContext,
+  actorID: PlayerID,
+  targetRegionCardID: string
+) {
+  await ensurePriority(request, actorID);
+  const view = await latestPlayerView(request, actorID);
+  const character = view.board.cards.find(
+    (card) =>
+      card.ownerId === actorID &&
+      card.zone === "hand" &&
+      card.kind === "character" &&
+      typeof card.cardId === "string"
+  );
+  expect(character?.cardId).toBeTruthy();
+
+  const cardID = String(character!.cardId);
+  await postActionExpectAccepted(request, {
+    id: nextActionID("act-e2e-play"),
+    actorId: actorID,
+    kind: "play_card",
+    cardId: cardID,
+    targetRegionCardId: targetRegionCardID,
+    playMode: "face_up"
+  });
+  return cardID;
+}
+
+async function deployInvestigatorsForP1(
+  request: APIRequestContext,
+  regionIDs: string[]
+): Promise<Array<{ cardId: string; regionCardId: string }>> {
+  const view = await latestPlayerView(request, "P1");
+  const characters = view.board.cards.filter(
+    (card) =>
+      card.ownerId === "P1" &&
+      card.zone === "hand" &&
+      card.kind === "character" &&
+      typeof card.cardId === "string"
+  );
+  characters.sort((left, right) => (right.stats?.investigation ?? 0) - (left.stats?.investigation ?? 0));
+
+  const deployed: Array<{ cardId: string; regionCardId: string }> = [];
+  const deployCount = Math.min(2, characters.length, regionIDs.length);
+  for (let index = 0; index < deployCount; index += 1) {
+    const cardID = String(characters[index]!.cardId);
+    const regionCardID = regionIDs[index]!;
+    await postActionExpectAccepted(request, {
+      id: nextActionID("act-e2e-play-investigator"),
+      actorId: "P1",
+      kind: "play_card",
+      cardId: cardID,
+      targetRegionCardId: regionCardID,
+      playMode: "face_up"
+    });
+    deployed.push({ cardId: cardID, regionCardId: regionCardID });
+  }
+
+  return deployed;
+}
+
+async function advanceUntilFinished(request: APIRequestContext, maxAdvanceActions: number) {
+  for (let index = 0; index < maxAdvanceActions; index += 1) {
+    const view = await latestPlayerView(request, "P1");
+    if (view.match.status === "finished") {
+      return;
+    }
+
+    await postActionExpectAccepted(request, {
+      id: nextActionID("act-e2e-advance"),
+      actorId: toPlayerID(view.turn.priority.currentPlayerId),
+      kind: "advance_phase"
+    });
+  }
+
+  const finalView = await latestPlayerView(request, "P1");
+  expect(finalView.match.status).toBe("finished");
+}
+
+async function latestPlayerView(request: APIRequestContext, playerID: PlayerID): Promise<PlayerViewSnapshot> {
+  const response = await request.get("/api/debugger/messages");
+  expect(response.ok()).toBeTruthy();
+  const messages = (await response.json()) as Array<{
+    name?: string;
+    payload?: {
+      audienceKind?: string;
+      audienceId?: string;
+      playerView?: PlayerViewSnapshot & { viewerPlayerId?: string };
+    };
+  }>;
+
+  for (let index = messages.length - 1; index >= 0; index -= 1) {
+    const message = messages[index];
+    if (message?.name !== "StatePatched") {
+      continue;
+    }
+    const payload = message.payload;
+    if (!payload?.playerView) {
+      continue;
+    }
+    if (payload.audienceKind === "player" && payload.audienceId === playerID) {
+      return payload.playerView;
+    }
+    if (payload.playerView.viewerPlayerId === playerID) {
+      return payload.playerView;
+    }
+  }
+
+  throw new Error(`missing player view for ${playerID}`);
+}
+
+function toPlayerID(raw: string): PlayerID {
+  return raw === "P2" ? "P2" : "P1";
+}
+
+async function postActionExpectAccepted(
   request: APIRequestContext,
   action: {
     id: string;
-    actorId: "P1" | "P2";
+    actorId: PlayerID;
     kind: string;
     cardId?: string;
     targetCardId?: string;
     targetPlayerId?: string;
+    targetRegionCardId?: string;
+    playMode?: string;
   }
 ) {
   const response = await request.post("/api/debugger/actions", {
     data: action
   });
   expect(response.ok()).toBeTruthy();
+
+  const messages = (await response.json()) as Array<{
+    name?: string;
+    payload?: {
+      action?: { id?: string };
+      legality?: { reasonCode?: string; messageKey?: string };
+    };
+  }>;
+  const accepted = messages.find((message) => message.name === "ActionAccepted");
+  if (accepted) {
+    return;
+  }
+
+  const rejected = messages.find((message) => message.name === "ActionRejected");
+  throw new Error(
+    `action rejected: ${action.kind} ${rejected?.payload?.legality?.reasonCode ?? "unknown"} ${rejected?.payload?.legality?.messageKey ?? ""}`
+  );
 }

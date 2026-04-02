@@ -23,6 +23,7 @@ const (
 	CardKindCharacter CardKind = "character"
 	CardKindRegion    CardKind = "region"
 	CardKindAsset     CardKind = "asset"
+	CardKindEvent     CardKind = "event"
 )
 
 // CardState is the authoritative hidden-information record stored only in FullState.
@@ -30,11 +31,14 @@ type CardState struct {
 	CardID              string           `json:"cardId"`
 	DefinitionID        string           `json:"definitionId,omitempty"`
 	Name                string           `json:"name"`
+	Description         string           `json:"description,omitempty"`
+	FAQ                 string           `json:"faq,omitempty"`
 	Kind                CardKind         `json:"kind,omitempty"`
 	OwnerID             string           `json:"ownerId"`
 	Zone                CardZone         `json:"zone"`
 	RegionCardID        string           `json:"regionCardId,omitempty"`
 	RegionOrder         int              `json:"regionOrder,omitempty"`
+	RegionScore         int              `json:"regionScore,omitempty"`
 	VisibleToOwner      bool             `json:"visibleToOwner"`
 	Revealed            bool             `json:"revealed"`
 	FaceDown            bool             `json:"faceDown,omitempty"` // 暗藏部署状态
@@ -59,11 +63,14 @@ type CardState struct {
 type CardView struct {
 	CardID       string           `json:"cardId,omitempty"`
 	Name         string           `json:"name,omitempty"`
+	Description  string           `json:"description,omitempty"`
+	FAQ          string           `json:"faq,omitempty"`
 	OwnerID      string           `json:"ownerId"`
 	Zone         CardZone         `json:"zone"`
 	Kind         string           `json:"kind,omitempty"`
 	RegionCardID string           `json:"regionCardId,omitempty"`
 	RegionOrder  int              `json:"regionOrder,omitempty"`
+	RegionScore  int              `json:"regionScore,omitempty"`
 	Visibility   string           `json:"visibility"`
 	Revealed     bool             `json:"revealed"`
 	FaceDown     bool             `json:"faceDown,omitempty"` // 是否面朝下
@@ -236,11 +243,14 @@ func visibleCardView(card CardState, markers map[string]int) CardView {
 	return CardView{
 		CardID:       card.CardID,
 		Name:         card.Name,
+		Description:  card.Description,
+		FAQ:          card.FAQ,
 		OwnerID:      card.OwnerID,
 		Zone:         card.Zone,
 		Kind:         string(card.Kind),
 		RegionCardID: card.RegionCardID,
 		RegionOrder:  card.RegionOrder,
+		RegionScore:  card.RegionScore,
 		Visibility:   "visible",
 		Revealed:     card.Revealed,
 		FaceDown:     card.FaceDown,
@@ -295,8 +305,6 @@ func visibleStats(card CardState) CardNumericStats {
 	return card.PrintedStats
 }
 
-// projectMarkersForPlayer returns all markers visible to a specific player.
-// For now, all markers are public, so return all markers for the player.
 func projectMarkersForPlayer(full FullState, playerID string) map[string]int {
 	if full.Board.Markers.ByPlayer == nil {
 		return nil
@@ -305,7 +313,6 @@ func projectMarkersForPlayer(full FullState, playerID string) map[string]int {
 	if !ok || len(playerMarkers) == 0 {
 		return nil
 	}
-	// Return a copy
 	result := make(map[string]int)
 	for k, v := range playerMarkers {
 		result[k] = v
@@ -313,15 +320,10 @@ func projectMarkersForPlayer(full FullState, playerID string) map[string]int {
 	return result
 }
 
-// projectMarkersForSpectator returns all public markers for spectator view.
-// For now, aggregate all player markers (or return nil if no markers).
 func projectMarkersForSpectator(full FullState) map[string]int {
 	if full.Board.Markers.ByPlayer == nil {
 		return nil
 	}
-	// For spectators, show aggregated public markers
-	// For now, we'll return nil or aggregate if needed
-	// This can be extended to show specific public marker types
 	totalMarkers := make(map[string]int)
 	hasMarkers := false
 	for _, playerMarkers := range full.Board.Markers.ByPlayer {

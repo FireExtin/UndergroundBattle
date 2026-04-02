@@ -11,6 +11,8 @@ export type Action = {
   cardId?: string;
   targetPlayerId?: string;
   targetCardId?: string;
+  targetRegionCardId?: string;
+  playMode?: string;
   operationLabel?: string;
   randomMax?: number;
   markerType?: string;
@@ -43,6 +45,8 @@ export type Operation = {
   cardId?: string;
   targetPlayerId?: string;
   targetCardId?: string;
+  targetRegionCardId?: string;
+  playMode?: string;
   label?: string;
   randomMax?: number;
   nextPhase?: string;
@@ -133,11 +137,14 @@ export type CardCounters = {
 export type CardView = {
   cardId?: string;
   name?: string;
+  description?: string;
+  faq?: string;
   ownerId: string;
   zone: CardZone;
   kind?: string;
   regionCardId?: string;
   regionOrder?: number;
+  regionScore?: number;
   visibility: string;
   revealed: boolean;
   faceDown?: boolean;

@@ -10,8 +10,11 @@ describe("BattleShell", () => {
     vi.restoreAllMocks();
   });
 
-  it("loads live messages and renders battle zones", async () => {
-    const fetchMock = vi.fn().mockResolvedValue(createJSONResponse(buildMessages()));
+  it("loads setup and then renders battle zones", async () => {
+    const fetchMock = createBattleFetchMock({
+      setupStates: [completedSetupState()],
+      messages: buildMessages()
+    });
     vi.stubGlobal("fetch", fetchMock);
 
     render(<BattleShell fallbackMessageSets={[]} />);
@@ -19,40 +22,42 @@ describe("BattleShell", () => {
     await screen.findByText("对方玩家区域");
     expect(screen.getByText("争夺区")).toBeInTheDocument();
     expect(screen.getByText("本方玩家区域")).toBeInTheDocument();
+    expect(fetchMock).toHaveBeenCalledWith("/api/battle/setup/state", undefined);
     expect(fetchMock).toHaveBeenCalledWith("/api/debugger/messages", undefined);
   });
 
   it("submits declare_attack action from composer", async () => {
-    const fetchMock = vi
-      .fn()
-      .mockResolvedValueOnce(createJSONResponse(buildMessages()))
-      .mockResolvedValueOnce(createJSONResponse(buildMessages()));
+    const fetchMock = createBattleFetchMock({
+      setupStates: [completedSetupState()],
+      messages: buildMessages()
+    });
     vi.stubGlobal("fetch", fetchMock);
 
     render(<BattleShell fallbackMessageSets={[]} />);
     await screen.findByText("对方玩家区域");
 
-    fireEvent.change(screen.getByLabelText("Action Kind"), {
+    fireEvent.change(screen.getByLabelText("动作类型"), {
       target: { value: "declare_attack" }
     });
-    fireEvent.change(screen.getByLabelText("Source Card"), {
+    fireEvent.change(screen.getByLabelText("来源卡牌"), {
       target: { value: "p1-table-1" }
     });
-    fireEvent.change(screen.getByLabelText("Target Card"), {
+    fireEvent.change(screen.getByLabelText("目标卡牌"), {
       target: { value: "p2-table-1" }
     });
     fireEvent.click(screen.getByRole("button", { name: "提交动作" }));
 
     await waitFor(() => {
-      expect(fetchMock).toHaveBeenCalledTimes(2);
+      expect(fetchMock).toHaveBeenCalledWith(
+        "/api/debugger/actions",
+        expect.objectContaining({
+          method: "POST"
+        })
+      );
     });
 
-    expect(fetchMock.mock.calls[1]?.[0]).toBe("/api/debugger/actions");
-    expect(fetchMock.mock.calls[1]?.[1]).toMatchObject({
-      method: "POST"
-    });
-
-    const body = JSON.parse(String(fetchMock.mock.calls[1]?.[1]?.body));
+    const call = fetchMock.mock.calls.find((args) => args[0] === "/api/debugger/actions");
+    const body = JSON.parse(String(call?.[1]?.body));
     expect(body).toMatchObject({
       actorId: "P1",
       kind: "declare_attack",
@@ -62,90 +67,98 @@ describe("BattleShell", () => {
   });
 
   it("disables action submit when match is finished", async () => {
-    const fetchMock = vi.fn().mockResolvedValue(createJSONResponse(buildMessages({ finished: true })));
+    const fetchMock = createBattleFetchMock({
+      setupStates: [completedSetupState()],
+      messages: buildMessages({ finished: true })
+    });
     vi.stubGlobal("fetch", fetchMock);
 
     render(<BattleShell fallbackMessageSets={[]} />);
 
-    expect((await screen.findAllByText("Game over. Winner: P1")).length).toBeGreaterThan(0);
+    expect((await screen.findAllByText("对局结束，胜者：P1")).length).toBeGreaterThan(0);
     expect(screen.getByRole("button", { name: "提交动作" })).toBeDisabled();
   });
 
-  it("resets the sandbox from battle controls", async () => {
-    const fetchMock = vi
-      .fn()
-      .mockResolvedValueOnce(createJSONResponse(buildMessages({ finished: true })))
-      .mockResolvedValueOnce(createJSONResponse(buildMessages()));
+  it("resets to setup wizard from battle controls", async () => {
+    const fetchMock = createBattleFetchMock({
+      setupStates: [completedSetupState(), inactiveSetupState()],
+      messages: buildMessages({ finished: true })
+    });
     vi.stubGlobal("fetch", fetchMock);
 
     render(<BattleShell fallbackMessageSets={[]} />);
 
-    expect((await screen.findAllByText("Game over. Winner: P1")).length).toBeGreaterThan(0);
-    fireEvent.click(screen.getByRole("button", { name: "重开对局" }));
+    expect((await screen.findAllByText("对局结束，胜者：P1")).length).toBeGreaterThan(0);
+    fireEvent.click(screen.getByRole("button", { name: "重置并返回开局设置" }));
 
     await waitFor(() => {
-      expect(fetchMock).toHaveBeenCalledTimes(2);
+      expect(fetchMock).toHaveBeenCalledWith(
+        "/api/debugger/reset",
+        expect.objectContaining({ method: "POST" })
+      );
     });
 
-    expect(fetchMock.mock.calls[1]?.[0]).toBe("/api/debugger/reset");
-    expect(fetchMock.mock.calls[1]?.[1]).toMatchObject({
-      method: "POST"
-    });
+    expect(await screen.findByText("隐秘世界 开局设置")).toBeInTheDocument();
   });
 
-  it("falls back to offline message when live server is unavailable", async () => {
+  it("shows setup error when live server is unavailable", async () => {
     const fetchMock = vi.fn().mockRejectedValue(new Error("offline"));
     vi.stubGlobal("fetch", fetchMock);
 
     render(<BattleShell fallbackMessageSets={[]} />);
 
-    expect((await screen.findAllByText("Live server unavailable. Showing mock protocol data.")).length).toBeGreaterThan(0);
-    expect(screen.getByRole("button", { name: "提交动作" })).toBeDisabled();
+    expect((await screen.findAllByText("无法连接服务端，已切换离线协议演示。")).length).toBeGreaterThan(0);
+    expect(screen.getByRole("button", { name: "开始开局设置" })).toBeInTheDocument();
   });
 
   it("auto-fills source and target from table card clicks", async () => {
-    const fetchMock = vi.fn().mockResolvedValue(createJSONResponse(buildMessages()));
+    const fetchMock = createBattleFetchMock({
+      setupStates: [completedSetupState()],
+      messages: buildMessages()
+    });
     vi.stubGlobal("fetch", fetchMock);
 
     render(<BattleShell fallbackMessageSets={[]} />);
     await screen.findByText("对方玩家区域");
 
-    fireEvent.change(screen.getByLabelText("Action Kind"), {
+    fireEvent.change(screen.getByLabelText("动作类型"), {
       target: { value: "declare_attack" }
     });
 
     fireEvent.click(screen.getAllByRole("button", { name: /P1 Unit/ })[0]!);
-    expect(screen.getByLabelText("Source Card")).toHaveValue("p1-table-1");
+    expect(screen.getByLabelText("来源卡牌")).toHaveValue("p1-table-1");
 
     fireEvent.click(screen.getAllByRole("button", { name: /P2 Unit/ })[0]!);
-    expect(screen.getByLabelText("Target Card")).toHaveValue("p2-table-1");
+    expect(screen.getByLabelText("目标卡牌")).toHaveValue("p2-table-1");
   });
 
   it("keeps manual source selection when auto-fill would otherwise override it", async () => {
-    const fetchMock = vi
-      .fn()
-      .mockResolvedValue(createJSONResponse(buildMessages({ includeExtraLocalTable: true })));
+    const fetchMock = createBattleFetchMock({
+      setupStates: [completedSetupState()],
+      messages: buildMessages({ includeExtraLocalTable: true })
+    });
     vi.stubGlobal("fetch", fetchMock);
 
     render(<BattleShell fallbackMessageSets={[]} />);
     await screen.findByText("对方玩家区域");
 
     fireEvent.click(screen.getAllByRole("button", { name: /P1 Unit/ })[0]!);
-    expect(screen.getByLabelText("Source Card")).toHaveValue("p1-table-1");
+    expect(screen.getByLabelText("来源卡牌")).toHaveValue("p1-table-1");
 
-    fireEvent.change(screen.getByLabelText("Source Card"), {
+    fireEvent.change(screen.getByLabelText("来源卡牌"), {
       target: { value: "p1-table-2" }
     });
-    expect(screen.getByLabelText("Source Card")).toHaveValue("p1-table-2");
+    expect(screen.getByLabelText("来源卡牌")).toHaveValue("p1-table-2");
 
     fireEvent.click(screen.getAllByRole("button", { name: /P1 Unit/ })[0]!);
-    expect(screen.getByLabelText("Source Card")).toHaveValue("p1-table-2");
+    expect(screen.getByLabelText("来源卡牌")).toHaveValue("p1-table-2");
   });
 
   it("shows action docs and supports info log filtering", async () => {
-    const fetchMock = vi
-      .fn()
-      .mockResolvedValue(createJSONResponse(buildMessages({ includeActionLogs: true })));
+    const fetchMock = createBattleFetchMock({
+      setupStates: [completedSetupState()],
+      messages: buildMessages({ includeActionLogs: true })
+    });
     vi.stubGlobal("fetch", fetchMock);
 
     render(<BattleShell fallbackMessageSets={[]} />);
@@ -154,35 +167,116 @@ describe("BattleShell", () => {
     expect(screen.getByText("动作说明")).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "查看完整说明" })).toBeInTheDocument();
 
-    expect(screen.getByText(/ACCEPTED/)).toBeInTheDocument();
-    expect(screen.getByText(/REJECTED/)).toBeInTheDocument();
+    expect(screen.getByText(/已接受 P1/)).toBeInTheDocument();
+    expect(screen.getByText(/已拒绝 P2/)).toBeInTheDocument();
 
     fireEvent.change(screen.getByLabelText("日志过滤"), {
       target: { value: "rejected" }
     });
-    expect(screen.getByText(/REJECTED/)).toBeInTheDocument();
-    expect(screen.queryByText(/ACCEPTED/)).not.toBeInTheDocument();
+    expect(screen.getByText(/已拒绝 P2/)).toBeInTheDocument();
+    expect(screen.queryByText(/已接受 P1/)).not.toBeInTheDocument();
   });
 
   it("clears stale source card when switching actor perspective", async () => {
-    const fetchMock = vi.fn().mockResolvedValue(createJSONResponse(buildMessages()));
+    const fetchMock = createBattleFetchMock({
+      setupStates: [completedSetupState()],
+      messages: buildMessages()
+    });
     vi.stubGlobal("fetch", fetchMock);
 
     render(<BattleShell fallbackMessageSets={[]} />);
     await screen.findByText("对方玩家区域");
 
-    fireEvent.change(screen.getByLabelText("Action Kind"), {
+    fireEvent.change(screen.getByLabelText("动作类型"), {
       target: { value: "declare_attack" }
     });
-    fireEvent.change(screen.getByLabelText("Source Card"), {
+    fireEvent.change(screen.getByLabelText("来源卡牌"), {
       target: { value: "p1-table-1" }
     });
-    expect(screen.getByLabelText("Source Card")).toHaveValue("p1-table-1");
+    expect(screen.getByLabelText("来源卡牌")).toHaveValue("p1-table-1");
 
     fireEvent.click(screen.getByRole("button", { name: "P2 视角" }));
-    expect(screen.getByLabelText("Source Card")).toHaveValue("");
+    expect(screen.getByLabelText("来源卡牌")).toHaveValue("");
   });
 });
+
+function createBattleFetchMock(options?: {
+  setupStates?: Array<Record<string, unknown>>;
+  messages?: DebuggerProtocolEnvelope[];
+  actionMessages?: DebuggerProtocolEnvelope[];
+}) {
+  const setupStates = options?.setupStates ?? [completedSetupState()];
+  const messages = options?.messages ?? buildMessages();
+  const actionMessages = options?.actionMessages ?? messages;
+  let setupIndex = 0;
+
+  return vi.fn(async (input: RequestInfo | URL, init?: RequestInit) => {
+    const url = String(input);
+    if (url === "/api/battle/setup/state") {
+      const payload = setupStates[Math.min(setupIndex, setupStates.length - 1)] ?? inactiveSetupState();
+      setupIndex += 1;
+      return createJSONResponse(payload);
+    }
+    if (url === "/api/debugger/messages") {
+      return createJSONResponse(messages);
+    }
+    if (url === "/api/debugger/actions") {
+      return createJSONResponse(actionMessages);
+    }
+    if (url === "/api/debugger/reset") {
+      return createJSONResponse([]);
+    }
+    if (url === "/api/battle/setup/start") {
+      return createJSONResponse(completedSetupState());
+    }
+    if (url === "/api/battle/setup/advance") {
+      return createJSONResponse(completedSetupState());
+    }
+
+    return Promise.reject(new Error(`unexpected fetch: ${url} ${init?.method ?? "GET"}`));
+  });
+}
+
+function completedSetupState() {
+  return {
+    active: true,
+    completed: true,
+    currentStep: 7,
+    seed: 20260402,
+    steps: [
+      { step: 1, title: "玩家选择牌组", completed: true },
+      { step: 2, title: "设置世界牌库", completed: true },
+      { step: 3, title: "整理标志", completed: true },
+      { step: 4, title: "设置玩家牌库", completed: true },
+      { step: 5, title: "翻开地区牌", completed: true },
+      { step: 6, title: "抓取起始手牌", completed: true },
+      { step: 7, title: "确定先手玩家", completed: true }
+    ],
+    p1Societies: ["方碑序列", "帷幕守望"],
+    p2Societies: ["王座会", "国家机构"],
+    markerPoolReady: true,
+    worldDeckCount: 7,
+    playerDeckCount: { P1: 44, P2: 44 },
+    playerHandCount: { P1: 6, P2: 6 },
+    mulliganUsed: { P1: false, P2: false },
+    startingPlayerId: "P1"
+  };
+}
+
+function inactiveSetupState() {
+  return {
+    active: false,
+    completed: false,
+    currentStep: 1,
+    seed: 20260402,
+    steps: [],
+    markerPoolReady: false,
+    worldDeckCount: 0,
+    playerDeckCount: { P1: 0, P2: 0 },
+    playerHandCount: { P1: 0, P2: 0 },
+    mulliganUsed: { P1: false, P2: false }
+  };
+}
 
 function buildMessages(options?: {
   finished?: boolean;
@@ -202,13 +296,60 @@ function buildMessages(options?: {
   }
 
   const p1Cards = [
-    card({ cardId: "p1-hand-1", ownerId: "P1", zone: "hand", visibility: "visible", name: "P1 Hand", kind: "character" }),
+    card({
+      cardId: "p1-hand-1",
+      ownerId: "P1",
+      zone: "hand",
+      visibility: "visible",
+      name: "P1 Hand",
+      kind: "character"
+    }),
     card({ ownerId: "P2", zone: "hand", visibility: "hidden" }),
-    card({ cardId: "region-1", ownerId: "P1", zone: "table", visibility: "visible", name: "Region 1", kind: "region", regionOrder: 1 }),
-    card({ cardId: "region-2", ownerId: "P2", zone: "table", visibility: "visible", name: "Region 2", kind: "region", regionOrder: 2 }),
-    card({ cardId: "region-3", ownerId: "P1", zone: "table", visibility: "visible", name: "Region 3", kind: "region", regionOrder: 3 }),
-    card({ cardId: "p1-table-1", ownerId: "P1", zone: "table", visibility: "visible", name: "P1 Unit", kind: "character", regionCardId: "region-1" }),
-    card({ cardId: "p2-table-1", ownerId: "P2", zone: "table", visibility: "visible", name: "P2 Unit", kind: "character", regionCardId: "region-2" })
+    card({
+      cardId: "region-1",
+      ownerId: "P1",
+      zone: "table",
+      visibility: "visible",
+      name: "Region 1",
+      kind: "region",
+      regionOrder: 1
+    }),
+    card({
+      cardId: "region-2",
+      ownerId: "P2",
+      zone: "table",
+      visibility: "visible",
+      name: "Region 2",
+      kind: "region",
+      regionOrder: 2
+    }),
+    card({
+      cardId: "region-3",
+      ownerId: "P1",
+      zone: "table",
+      visibility: "visible",
+      name: "Region 3",
+      kind: "region",
+      regionOrder: 3
+    }),
+    card({
+      cardId: "p1-table-1",
+      ownerId: "P1",
+      zone: "table",
+      visibility: "visible",
+      name: "P1 Unit",
+      kind: "character",
+      regionCardId: "region-1"
+    }),
+    card({
+      cardId: "p2-table-1",
+      ownerId: "P2",
+      zone: "table",
+      visibility: "visible",
+      name: "P2 Unit",
+      kind: "character",
+      regionCardId: "region-2"
+    })
   ];
   if (includeExtraLocalTable) {
     p1Cards.push(
@@ -225,13 +366,23 @@ function buildMessages(options?: {
   }
 
   envelopes.push(
-    statePatched("P1", [
-      ...p1Cards
-    ], { secret_society: 1 }, finished),
-    statePatched("P2", [
-      card({ ownerId: "P1", zone: "hand", visibility: "hidden" }),
-      card({ cardId: "p2-hand-1", ownerId: "P2", zone: "hand", visibility: "visible", name: "P2 Hand", kind: "character" })
-    ], { secret_society: 2 }, finished)
+    statePatched("P1", [...p1Cards], { secret_society: 1 }, finished),
+    statePatched(
+      "P2",
+      [
+        card({ ownerId: "P1", zone: "hand", visibility: "hidden" }),
+        card({
+          cardId: "p2-hand-1",
+          ownerId: "P2",
+          zone: "hand",
+          visibility: "visible",
+          name: "P2 Hand",
+          kind: "character"
+        })
+      ],
+      { secret_society: 2 },
+      finished
+    )
   );
 
   return envelopes;
