@@ -9,6 +9,12 @@ type CardSnapshot = {
   ownerId?: string;
   zone?: string;
   kind?: string;
+  color?: string;
+  loyalty?: string;
+  cost?: number;
+  revealed?: boolean;
+  faceDown?: boolean;
+  destroyed?: boolean;
   regionOrder?: number;
   stats?: {
     investigation?: number;
@@ -24,6 +30,7 @@ type PlayerViewSnapshot = {
     priority: {
       currentPlayerId: string;
     };
+    resources?: Record<string, { current: number; max: number }>;
   };
   board: {
     cards: CardSnapshot[];
@@ -32,7 +39,7 @@ type PlayerViewSnapshot = {
 
 let actionSequence = 1;
 
-test("battle table combo actions: attack + investigation + move + marker + pass", async ({ page, request }) => {
+test("battle table combo actions: investigation + move + marker + end", async ({ page, request }) => {
   await resetSandboxSession(request);
   await completeSetupViaUI(page);
 
@@ -42,32 +49,36 @@ test("battle table combo actions: attack + investigation + move + marker + pass"
   const p1RegionID = regionIDs[0]!;
   const p2RegionID = regionIDs[1]!;
   const p1CharacterID = await playFirstCharacterFromHand(request, "P1", p1RegionID);
-  const p2CharacterID = await playFirstCharacterFromHand(request, "P2", p2RegionID);
-
-  await ensurePriority(request, "P2");
-  await postActionExpectAccepted(request, {
-    id: nextActionID("act-e2e-investigate"),
-    actorId: "P2",
-    kind: "declare_investigation",
-    cardId: p2CharacterID,
-    targetCardId: p2RegionID
+  const p2CharacterID = await playFirstCharacterFromHand(request, "P2", p2RegionID, {
+    allowFailure: true
   });
 
+  if (p2CharacterID) {
+    await ensurePriority(request, "P1");
+    await postActionExpectAccepted(request, {
+      id: nextActionID("act-e2e-attack"),
+      actorId: "P1",
+      kind: "declare_attack",
+      cardId: p1CharacterID,
+      targetCardId: p2CharacterID
+    });
+  }
+
   await ensurePriority(request, "P1");
+  await postActionExpectAccepted(request, {
+    id: nextActionID("act-e2e-investigate"),
+    actorId: "P1",
+    kind: "declare_investigation",
+    cardId: p1CharacterID,
+    targetCardId: p1RegionID
+  });
+
   await postActionExpectAccepted(request, {
     id: nextActionID("act-e2e-move"),
     actorId: "P1",
     kind: "move_card",
     cardId: p1CharacterID,
     targetCardId: p2RegionID
-  });
-
-  await postActionExpectAccepted(request, {
-    id: nextActionID("act-e2e-attack"),
-    actorId: "P1",
-    kind: "declare_attack",
-    cardId: p1CharacterID,
-    targetCardId: p2CharacterID
   });
 
   await page.getByRole("button", { name: "刷新状态" }).click();
@@ -79,7 +90,7 @@ test("battle table combo actions: attack + investigation + move + marker + pass"
   await page.getByLabel("标记类型").fill("secret_society");
   await page.getByLabel("标记数量").fill("1");
   await page.getByRole("button", { name: "提交动作" }).click();
-  await page.getByRole("button", { name: "让过优先权" }).click();
+  await page.getByRole("button", { name: "结束行动" }).click();
 
   await expect(page.getByText("本方玩家区域")).toBeVisible();
   await expect(page.locator(".battle-info-logs__item--accepted").first()).toBeVisible();
@@ -206,20 +217,13 @@ async function ensurePriority(request: APIRequestContext, actorID: PlayerID) {
 async function playFirstCharacterFromHand(
   request: APIRequestContext,
   actorID: PlayerID,
-  targetRegionCardID: string
+  targetRegionCardID: string,
+  options?: { allowFailure?: boolean }
 ) {
-  await ensurePriority(request, actorID);
-  const view = await latestPlayerView(request, actorID);
-  const character = view.board.cards.find(
-    (card) =>
-      card.ownerId === actorID &&
-      card.zone === "hand" &&
-      card.kind === "character" &&
-      typeof card.cardId === "string"
-  );
-  expect(character?.cardId).toBeTruthy();
-
-  const cardID = String(character!.cardId);
+  const cardID = await findAffordableCharacterInHand(request, actorID, options);
+  if (!cardID) {
+    return "";
+  }
   await postActionExpectAccepted(request, {
     id: nextActionID("act-e2e-play"),
     actorId: actorID,
@@ -235,20 +239,12 @@ async function deployInvestigatorsForP1(
   request: APIRequestContext,
   regionIDs: string[]
 ): Promise<Array<{ cardId: string; regionCardId: string }>> {
-  const view = await latestPlayerView(request, "P1");
-  const characters = view.board.cards.filter(
-    (card) =>
-      card.ownerId === "P1" &&
-      card.zone === "hand" &&
-      card.kind === "character" &&
-      typeof card.cardId === "string"
-  );
-  characters.sort((left, right) => (right.stats?.investigation ?? 0) - (left.stats?.investigation ?? 0));
-
   const deployed: Array<{ cardId: string; regionCardId: string }> = [];
-  const deployCount = Math.min(2, characters.length, regionIDs.length);
-  for (let index = 0; index < deployCount; index += 1) {
-    const cardID = String(characters[index]!.cardId);
+  for (let index = 0; index < regionIDs.length; index += 1) {
+    const cardID = await findAffordableCharacterInHand(request, "P1", { allowFailure: true });
+    if (!cardID) {
+      break;
+    }
     const regionCardID = regionIDs[index]!;
     await postActionExpectAccepted(request, {
       id: nextActionID("act-e2e-play-investigator"),
@@ -262,6 +258,169 @@ async function deployInvestigatorsForP1(
   }
 
   return deployed;
+}
+
+async function findAffordableCharacterInHand(
+  request: APIRequestContext,
+  actorID: PlayerID,
+  options?: { allowFailure?: boolean }
+) {
+  for (let step = 0; step < 16; step += 1) {
+    await ensurePriority(request, actorID);
+    const view = await latestPlayerView(request, actorID);
+    const pool = view.turn.resources?.[actorID];
+    const currentResource = pool?.current ?? 0;
+    const affordable = selectAffordableCharacter(view, actorID, currentResource);
+    if (affordable?.cardId) {
+      return String(affordable.cardId);
+    }
+
+    const priorityActor = toPlayerID(view.turn.priority.currentPlayerId);
+    await postActionExpectAccepted(request, {
+      id: nextActionID("act-e2e-advance-resource"),
+      actorId: priorityActor,
+      kind: "advance_phase"
+    });
+  }
+
+  if (options?.allowFailure) {
+    return "";
+  }
+  throw new Error(`unable to find affordable character for ${actorID}`);
+}
+
+function selectAffordableCharacter(
+  view: PlayerViewSnapshot,
+  actorID: PlayerID,
+  currentResource: number
+) {
+  const availableColors = countAvailableColors(view.board.cards, actorID);
+  const candidates = view.board.cards.filter(
+    (card) =>
+      card.ownerId === actorID &&
+      card.zone === "hand" &&
+      card.kind === "character" &&
+      typeof card.cardId === "string"
+  );
+  candidates.sort((left, right) => {
+    const leftCost = left.cost ?? 0;
+    const rightCost = right.cost ?? 0;
+    if (leftCost !== rightCost) {
+      return leftCost - rightCost;
+    }
+    return (right.stats?.investigation ?? 0) - (left.stats?.investigation ?? 0);
+  });
+
+  return candidates.find((card) => {
+    const cost = card.cost ?? 0;
+    if (cost > currentResource) {
+      return false;
+    }
+    return loyaltySatisfied(card.loyalty ?? "", availableColors);
+  });
+}
+
+function countAvailableColors(cards: CardSnapshot[], actorID: PlayerID) {
+  const counts: Record<string, number> = {};
+  for (const card of cards) {
+    if (card.ownerId !== actorID) {
+      continue;
+    }
+    if (card.zone !== "table" || card.destroyed || card.faceDown || !card.revealed) {
+      continue;
+    }
+    if (card.kind !== "character" && card.kind !== "asset") {
+      continue;
+    }
+    const color = normalizeColor(card.color ?? "");
+    if (!color) {
+      continue;
+    }
+    counts[color] = (counts[color] ?? 0) + 1;
+  }
+  return counts;
+}
+
+function loyaltySatisfied(loyalty: string, availableColors: Record<string, number>) {
+  const requirements = parseLoyaltyRequirements(loyalty);
+  for (const [color, amount] of Object.entries(requirements)) {
+    if ((availableColors[color] ?? 0) < amount) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function parseLoyaltyRequirements(loyalty: string) {
+  const text = loyalty.trim();
+  if (text === "") {
+    return {};
+  }
+  const mappings = [
+    { canonical: "黄色", aliases: ["黄"] },
+    { canonical: "红色", aliases: ["红"] },
+    { canonical: "绿色", aliases: ["绿"] },
+    { canonical: "蓝色", aliases: ["蓝"] },
+    { canonical: "黑色", aliases: ["黑"] },
+    { canonical: "白色", aliases: ["白"] },
+    { canonical: "紫色", aliases: ["紫"] },
+    { canonical: "灰色", aliases: ["灰"] }
+  ];
+  const result: Record<string, number> = {};
+  for (const mapping of mappings) {
+    let count = countToken(text, mapping.canonical);
+    if (count === 0) {
+      for (const alias of mapping.aliases) {
+        count = Math.max(count, countToken(text, alias));
+      }
+    }
+    if (count > 0) {
+      result[mapping.canonical] = count;
+    }
+  }
+  return result;
+}
+
+function countToken(text: string, token: string) {
+  if (token === "") {
+    return 0;
+  }
+  return text.split(token).length - 1;
+}
+
+function normalizeColor(raw: string) {
+  const value = raw.trim();
+  if (value === "" || value === "中立") {
+    return "";
+  }
+  switch (value) {
+    case "黄":
+    case "黄色":
+      return "黄色";
+    case "红":
+    case "红色":
+      return "红色";
+    case "绿":
+    case "绿色":
+      return "绿色";
+    case "蓝":
+    case "蓝色":
+      return "蓝色";
+    case "黑":
+    case "黑色":
+      return "黑色";
+    case "白":
+    case "白色":
+      return "白色";
+    case "紫":
+    case "紫色":
+      return "紫色";
+    case "灰":
+    case "灰色":
+      return "灰色";
+    default:
+      return "";
+  }
 }
 
 async function advanceUntilFinished(request: APIRequestContext, maxAdvanceActions: number) {

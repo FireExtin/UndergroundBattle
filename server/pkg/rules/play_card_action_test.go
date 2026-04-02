@@ -379,6 +379,225 @@ func TestPlayCardRejectsInvalidInputs(t *testing.T) {
 	}
 }
 
+func TestPlayCardRejectsWhenCostUnpaid(t *testing.T) {
+	state := basePlayCardState()
+	state.Turn.Resources["P1"] = PlayerResourceState{Current: 1, Max: 1}
+	state.Board.Cards = append(state.Board.Cards,
+		CardState{
+			CardID:         "region-1",
+			Name:           "地区1",
+			Kind:           CardKindRegion,
+			OwnerID:        "TABLE",
+			Zone:           CardZoneTable,
+			VisibleToOwner: true,
+			Revealed:       true,
+			RegionOrder:    1,
+		},
+		CardState{
+			CardID:         "p1-costly-character",
+			Name:           "高费角色",
+			Kind:           CardKindCharacter,
+			OwnerID:        "P1",
+			Zone:           CardZoneHand,
+			VisibleToOwner: true,
+			Cost:           3,
+		},
+	)
+
+	_, err := SubmitAction(state, Action{
+		ID:                 "act-play-card-cost-unpaid",
+		ActorID:            "P1",
+		Kind:               ActionKindPlayCard,
+		CardID:             "p1-costly-character",
+		PlayMode:           "face_up",
+		TargetRegionCardID: "region-1",
+	})
+	if err == nil {
+		t.Fatal("SubmitAction succeeded, want cost unpaid error")
+	}
+
+	var legalityErr *LegalityError
+	if !errors.As(err, &legalityErr) {
+		t.Fatalf("expected LegalityError, got %T", err)
+	}
+	if legalityErr.Code != ReasonCodeCostFailedUnpaid {
+		t.Fatalf("error code = %q, want %q", legalityErr.Code, ReasonCodeCostFailedUnpaid)
+	}
+}
+
+func TestPlayCardDeductsResourceAfterSuccessfulDeployment(t *testing.T) {
+	state := basePlayCardState()
+	state.Turn.Resources["P1"] = PlayerResourceState{Current: 4, Max: 4}
+	state.Board.Cards = append(state.Board.Cards,
+		CardState{
+			CardID:         "region-1",
+			Name:           "地区1",
+			Kind:           CardKindRegion,
+			OwnerID:        "TABLE",
+			Zone:           CardZoneTable,
+			VisibleToOwner: true,
+			Revealed:       true,
+			RegionOrder:    1,
+		},
+		CardState{
+			CardID:         "p1-cost-character",
+			Name:           "中费角色",
+			Kind:           CardKindCharacter,
+			OwnerID:        "P1",
+			Zone:           CardZoneHand,
+			VisibleToOwner: true,
+			Cost:           2,
+		},
+	)
+
+	result, err := SubmitAction(state, Action{
+		ID:                 "act-play-card-cost-paid",
+		ActorID:            "P1",
+		Kind:               ActionKindPlayCard,
+		CardID:             "p1-cost-character",
+		PlayMode:           "face_up",
+		TargetRegionCardID: "region-1",
+	})
+	if err != nil {
+		t.Fatalf("SubmitAction returned error: %v", err)
+	}
+
+	pool := result.State.Turn.Resources["P1"]
+	if pool.Current != 2 {
+		t.Fatalf("resource current = %d, want 2", pool.Current)
+	}
+	if pool.Max != 4 {
+		t.Fatalf("resource max = %d, want 4", pool.Max)
+	}
+}
+
+func TestPlayCardRejectsWhenLoyaltyRequirementUnmet(t *testing.T) {
+	state := basePlayCardState()
+	state.Turn.Resources["P1"] = PlayerResourceState{Current: 4, Max: 4}
+	state.Board.Cards = append(state.Board.Cards,
+		CardState{
+			CardID:         "region-1",
+			Name:           "地区1",
+			Kind:           CardKindRegion,
+			OwnerID:        "TABLE",
+			Zone:           CardZoneTable,
+			VisibleToOwner: true,
+			Revealed:       true,
+			RegionOrder:    1,
+		},
+		CardState{
+			CardID:         "p1-yellow-support",
+			Name:           "黄色附属",
+			Kind:           CardKindAsset,
+			OwnerID:        "P1",
+			Zone:           CardZoneTable,
+			VisibleToOwner: true,
+			Revealed:       true,
+			Color:          "黄",
+			RegionCardID:   "region-1",
+		},
+		CardState{
+			CardID:         "p1-loyal-card",
+			Name:           "忠诚角色",
+			Kind:           CardKindCharacter,
+			OwnerID:        "P1",
+			Zone:           CardZoneHand,
+			VisibleToOwner: true,
+			Cost:           1,
+			Loyalty:        "黄色黄色",
+		},
+	)
+
+	_, err := SubmitAction(state, Action{
+		ID:                 "act-play-card-loyalty-fail",
+		ActorID:            "P1",
+		Kind:               ActionKindPlayCard,
+		CardID:             "p1-loyal-card",
+		PlayMode:           "face_up",
+		TargetRegionCardID: "region-1",
+	})
+	if err == nil {
+		t.Fatal("SubmitAction succeeded, want loyalty unmet error")
+	}
+
+	var legalityErr *LegalityError
+	if !errors.As(err, &legalityErr) {
+		t.Fatalf("expected LegalityError, got %T", err)
+	}
+	if legalityErr.Code != ReasonCodeLegalityFailedActionProhibited {
+		t.Fatalf("error code = %q, want %q", legalityErr.Code, ReasonCodeLegalityFailedActionProhibited)
+	}
+	if legalityErr.MessageKey != "rules.play_card.loyalty_unmet" {
+		t.Fatalf("message key = %q, want %q", legalityErr.MessageKey, "rules.play_card.loyalty_unmet")
+	}
+}
+
+func TestPlayCardAcceptsWhenLoyaltyRequirementMet(t *testing.T) {
+	state := basePlayCardState()
+	state.Turn.Resources["P1"] = PlayerResourceState{Current: 4, Max: 4}
+	state.Board.Cards = append(state.Board.Cards,
+		CardState{
+			CardID:         "region-1",
+			Name:           "地区1",
+			Kind:           CardKindRegion,
+			OwnerID:        "TABLE",
+			Zone:           CardZoneTable,
+			VisibleToOwner: true,
+			Revealed:       true,
+			RegionOrder:    1,
+		},
+		CardState{
+			CardID:         "p1-yellow-asset-1",
+			Name:           "黄色附属1",
+			Kind:           CardKindAsset,
+			OwnerID:        "P1",
+			Zone:           CardZoneTable,
+			VisibleToOwner: true,
+			Revealed:       true,
+			Color:          "黄",
+			RegionCardID:   "region-1",
+		},
+		CardState{
+			CardID:         "p1-yellow-asset-2",
+			Name:           "黄色附属2",
+			Kind:           CardKindAsset,
+			OwnerID:        "P1",
+			Zone:           CardZoneTable,
+			VisibleToOwner: true,
+			Revealed:       true,
+			Color:          "黄色",
+			RegionCardID:   "region-1",
+		},
+		CardState{
+			CardID:         "p1-loyal-pass",
+			Name:           "忠诚通过角色",
+			Kind:           CardKindCharacter,
+			OwnerID:        "P1",
+			Zone:           CardZoneHand,
+			VisibleToOwner: true,
+			Cost:           1,
+			Loyalty:        "黄色黄色",
+		},
+	)
+
+	result, err := SubmitAction(state, Action{
+		ID:                 "act-play-card-loyalty-pass",
+		ActorID:            "P1",
+		Kind:               ActionKindPlayCard,
+		CardID:             "p1-loyal-pass",
+		PlayMode:           "face_up",
+		TargetRegionCardID: "region-1",
+	})
+	if err != nil {
+		t.Fatalf("SubmitAction returned error: %v", err)
+	}
+
+	deployed := cardStateByID(t, result.State, "p1-loyal-pass")
+	if deployed.Zone != CardZoneTable {
+		t.Fatalf("zone = %q, want %q", deployed.Zone, CardZoneTable)
+	}
+}
+
 func basePlayCardState() GameState {
 	state := NewGameState(InitialStateConfig{
 		GameID:         "test-play-card",

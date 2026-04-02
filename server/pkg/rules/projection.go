@@ -33,6 +33,9 @@ type CardState struct {
 	Name                string           `json:"name"`
 	Description         string           `json:"description,omitempty"`
 	FAQ                 string           `json:"faq,omitempty"`
+	Cost                int              `json:"cost,omitempty"`
+	Color               string           `json:"color,omitempty"`
+	Loyalty             string           `json:"loyalty,omitempty"`
 	Kind                CardKind         `json:"kind,omitempty"`
 	OwnerID             string           `json:"ownerId"`
 	Zone                CardZone         `json:"zone"`
@@ -65,6 +68,9 @@ type CardView struct {
 	Name         string           `json:"name,omitempty"`
 	Description  string           `json:"description,omitempty"`
 	FAQ          string           `json:"faq,omitempty"`
+	Cost         int              `json:"cost,omitempty"`
+	Color        string           `json:"color,omitempty"`
+	Loyalty      string           `json:"loyalty,omitempty"`
 	OwnerID      string           `json:"ownerId"`
 	Zone         CardZone         `json:"zone"`
 	Kind         string           `json:"kind,omitempty"`
@@ -152,7 +158,7 @@ func (engine *ProjectionEngine) Generate(full FullState) ProjectionBundle {
 			ViewerPlayerID: playerID,
 			Revision:       full.Revision,
 			Match:          full.Match,
-			Turn:           full.Turn,
+			Turn:           cloneTurnState(full.Turn),
 			Score:          cloneScoreState(full.Score),
 			Board:          projectBoardForPlayer(full, playerID),
 			Markers:        projectMarkersForPlayer(full, playerID),
@@ -166,7 +172,7 @@ func (engine *ProjectionEngine) Generate(full FullState) ProjectionBundle {
 			GameID:   full.GameID,
 			Revision: full.Revision,
 			Match:    full.Match,
-			Turn:     full.Turn,
+			Turn:     cloneTurnState(full.Turn),
 			Score:    cloneScoreState(full.Score),
 			Board:    projectBoardForSpectator(full),
 			Markers:  projectMarkersForSpectator(full),
@@ -245,6 +251,9 @@ func visibleCardView(card CardState, markers map[string]int) CardView {
 		Name:         card.Name,
 		Description:  card.Description,
 		FAQ:          card.FAQ,
+		Cost:         card.Cost,
+		Color:        card.Color,
+		Loyalty:      card.Loyalty,
 		OwnerID:      card.OwnerID,
 		Zone:         card.Zone,
 		Kind:         string(card.Kind),
@@ -303,37 +312,4 @@ func visibleStats(card CardState) CardNumericStats {
 	}
 
 	return card.PrintedStats
-}
-
-func projectMarkersForPlayer(full FullState, playerID string) map[string]int {
-	if full.Board.Markers.ByPlayer == nil {
-		return nil
-	}
-	playerMarkers, ok := full.Board.Markers.ByPlayer[playerID]
-	if !ok || len(playerMarkers) == 0 {
-		return nil
-	}
-	result := make(map[string]int)
-	for k, v := range playerMarkers {
-		result[k] = v
-	}
-	return result
-}
-
-func projectMarkersForSpectator(full FullState) map[string]int {
-	if full.Board.Markers.ByPlayer == nil {
-		return nil
-	}
-	totalMarkers := make(map[string]int)
-	hasMarkers := false
-	for _, playerMarkers := range full.Board.Markers.ByPlayer {
-		for markerType, amount := range playerMarkers {
-			totalMarkers[markerType] += amount
-			hasMarkers = true
-		}
-	}
-	if !hasMarkers {
-		return nil
-	}
-	return totalMarkers
 }

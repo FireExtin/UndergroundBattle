@@ -46,6 +46,10 @@ func checkPlayCardActionLegality(state GameState, action Action, sourceLookup ca
 	if !costLegality.OK {
 		return costLegality
 	}
+	loyaltyLegality := checkPlayCardLoyalty(state, action, card)
+	if !loyaltyLegality.OK {
+		return loyaltyLegality
+	}
 
 	switch card.Kind {
 	case CardKindCharacter:
@@ -249,7 +253,50 @@ func checkPlayCardActionLegality(state GameState, action Action, sourceLookup ca
 }
 
 func checkPlayCardCost(state GameState, action Action, card CardState) LegalityResult {
-	// Cost system is intentionally deferred; keep this hook for PN-BASE-001.
+	required := effectivePlayCardCost(card)
+	pool := currentPlayerResource(state, action.ActorID)
+	if pool.Current < required {
+		return legalityFailure(
+			ReasonCodeCostFailedUnpaid,
+			"rules.cost.unpaid",
+			"turn.resources",
+			map[string]string{
+				"actorId":  action.ActorID,
+				"cardId":   card.CardID,
+				"required": intString(required),
+				"current":  intString(pool.Current),
+			},
+		)
+	}
+
+	return okLegalityResult()
+}
+
+func checkPlayCardLoyalty(state GameState, action Action, card CardState) LegalityResult {
+	required := parseLoyaltyRequirements(card.Loyalty)
+	if len(required) == 0 {
+		return okLegalityResult()
+	}
+
+	available := countPlayerLoyaltyColors(state, action.ActorID)
+	for color, need := range required {
+		if available[color] >= need {
+			continue
+		}
+		return legalityFailure(
+			ReasonCodeLegalityFailedActionProhibited,
+			"rules.play_card.loyalty_unmet",
+			"board.cards",
+			map[string]string{
+				"actorId":   action.ActorID,
+				"cardId":    card.CardID,
+				"color":     color,
+				"required":  intString(need),
+				"available": intString(available[color]),
+			},
+		)
+	}
+
 	return okLegalityResult()
 }
 
@@ -271,6 +318,28 @@ func executePlayCard(state GameState, operation Operation) (GameState, Operation
 	}
 
 	card := &working.Board.Cards[cardIndex]
+	requiredCost := effectivePlayCardCost(*card)
+	if !payPlayerResourceCost(&working, operation.ActorID, requiredCost) {
+		ensureTurnResourceEntries(&working.Turn, working.Players)
+		current := working.Turn.Resources[operation.ActorID].Current
+		return GameState{}, Operation{}, Event{}, &LegalityError{
+			Result: legalityFailure(
+				ReasonCodeCostFailedUnpaid,
+				"rules.cost.unpaid",
+				"turn.resources",
+				map[string]string{
+					"actorId":  operation.ActorID,
+					"cardId":   operation.CardID,
+					"required": intString(requiredCost),
+					"current":  intString(current),
+				},
+			),
+			Code:       ReasonCodeCostFailedUnpaid,
+			Message:    "play card cost unpaid",
+			MessageKey: "rules.cost.unpaid",
+		}
+	}
+
 	switch card.Kind {
 	case CardKindCharacter:
 		playMode := normalizePlayMode(operation.PlayMode)
@@ -383,6 +452,93 @@ func executePlayCard(state GameState, operation Operation) (GameState, Operation
 	default:
 		return GameState{}, Operation{}, Event{}, fmt.Errorf("%s", ReasonCodeRulesFailedInvalidState)
 	}
+}
+
+func effectivePlayCardCost(card CardState) int {
+	required := card.Cost + card.CostAdjustment
+	if required < 0 {
+		return 0
+	}
+	return required
+}
+
+func countPlayerLoyaltyColors(state GameState, playerID string) map[string]int {
+	result := make(map[string]int)
+	for _, card := range state.Board.Cards {
+		if card.OwnerID != playerID {
+			continue
+		}
+		if card.Zone != CardZoneTable || card.Destroyed || card.FaceDown || !card.Revealed {
+			continue
+		}
+		if card.Kind != CardKindCharacter && card.Kind != CardKindAsset {
+			continue
+		}
+		color := normalizeLoyaltyColor(card.Color)
+		if color == "" {
+			continue
+		}
+		result[color]++
+	}
+	return result
+}
+
+func parseLoyaltyRequirements(raw string) map[string]int {
+	text := strings.TrimSpace(raw)
+	if text == "" || text == "-" {
+		return map[string]int{}
+	}
+
+	requirements := make(map[string]int)
+	for _, mapping := range loyaltyColorMappings {
+		count := strings.Count(text, mapping.Canonical)
+		if count == 0 {
+			for _, alias := range mapping.Aliases {
+				aliasCount := strings.Count(text, alias)
+				if aliasCount > count {
+					count = aliasCount
+				}
+			}
+		}
+		if count > 0 {
+			requirements[mapping.Canonical] = count
+		}
+	}
+	return requirements
+}
+
+type loyaltyColorMapping struct {
+	Canonical string
+	Aliases   []string
+}
+
+var loyaltyColorMappings = []loyaltyColorMapping{
+	{Canonical: "黄色", Aliases: []string{"黄"}},
+	{Canonical: "红色", Aliases: []string{"红"}},
+	{Canonical: "绿色", Aliases: []string{"绿"}},
+	{Canonical: "蓝色", Aliases: []string{"蓝"}},
+	{Canonical: "黑色", Aliases: []string{"黑"}},
+	{Canonical: "白色", Aliases: []string{"白"}},
+	{Canonical: "紫色", Aliases: []string{"紫"}},
+	{Canonical: "灰色", Aliases: []string{"灰"}},
+}
+
+func normalizeLoyaltyColor(raw string) string {
+	trimmed := strings.TrimSpace(raw)
+	if trimmed == "" || trimmed == "中立" {
+		return ""
+	}
+	for _, mapping := range loyaltyColorMappings {
+		if trimmed == mapping.Canonical {
+			return mapping.Canonical
+		}
+		for _, alias := range mapping.Aliases {
+			if trimmed == alias {
+				return mapping.Canonical
+			}
+		}
+	}
+	return ""
 }
 
 func resolveStackedPlayCard(state GameState, operation Operation) (GameState, Operation, error) {

@@ -1,54 +1,51 @@
 import { useEffect, useMemo, useState } from "react";
 
-import type { Action } from "../../debugger/protocol";
+import type { Action, CardView } from "../../debugger/protocol";
 import type { BattlePlayerId, BattleState } from "../model";
+import type { BattleCardPick } from "./BattleTable";
 
-// Purpose: Builds explicit action payloads from the current battle view model without client-side rule adjudication.
+// Purpose: Builds battle actions from click-first card selection while keeping server-side adjudication authoritative.
 
 const actionKindOptions = [
-  { value: "pass_priority", label: "让过优先权" },
-  { value: "advance_phase", label: "推进阶段" },
   { value: "play_card", label: "打出卡牌" },
-  { value: "reveal_card", label: "揭示卡牌" },
-  { value: "inspect_card", label: "检视卡牌" },
   { value: "declare_attack", label: "发起攻击" },
   { value: "declare_investigation", label: "发起调查" },
   { value: "move_card", label: "移动卡牌" },
-  { value: "queue_operation", label: "入栈结算" },
-  { value: "set_marker", label: "设置标志" },
-  { value: "remove_marker", label: "移除标志" },
-  { value: "set_face_down", label: "设为暗置" },
-  { value: "use_first_player_privilege", label: "使用先手特权" },
+  { value: "set_marker", label: "设置玩家标志" },
+  { value: "remove_marker", label: "移除玩家标志" },
   { value: "set_card_marker", label: "设置卡牌标记" },
   { value: "remove_card_marker", label: "移除卡牌标记" }
 ] as const;
 
 export type ComposerActionInput = Omit<Action, "id" | "actorId">;
 
-export type ComposerAutoFillHint = {
+export type ComposerCardPickEvent = {
   token: number;
-  sourceCardId?: string;
-  targetCardId?: string;
+  picked: BattleCardPick;
 };
 
 type ActionComposerProps = {
   actorId: BattlePlayerId;
   battle: BattleState;
   pending: boolean;
+  endPending: boolean;
   disabledReason: string;
-  autoFillHint?: ComposerAutoFillHint;
+  pickedCardEvent?: ComposerCardPickEvent;
   onSubmitAction: (action: ComposerActionInput) => void;
+  onEndAction: () => void;
 };
 
 export function ActionComposer({
   actorId,
   battle,
   pending,
+  endPending,
   disabledReason,
-  autoFillHint,
-  onSubmitAction
+  pickedCardEvent,
+  onSubmitAction,
+  onEndAction
 }: ActionComposerProps) {
-  const [kind, setKind] = useState<string>("pass_priority");
+  const [kind, setKind] = useState<string>("play_card");
   const [sourceCardId, setSourceCardId] = useState<string>("");
   const [targetCardId, setTargetCardId] = useState<string>("");
   const [targetRegionCardId, setTargetRegionCardId] = useState<string>("");
@@ -56,17 +53,13 @@ export function ActionComposer({
   const [targetPlayerId, setTargetPlayerId] = useState<string>(battle.opponentPlayerId);
   const [markerType, setMarkerType] = useState<string>("secret_society");
   const [markerAmount, setMarkerAmount] = useState<string>("1");
-  const [operationLabel, setOperationLabel] = useState<string>("");
   const [error, setError] = useState<string>("");
-  const [sourceManualLocked, setSourceManualLocked] = useState<boolean>(false);
-  const [targetManualLocked, setTargetManualLocked] = useState<boolean>(false);
-  const [targetRegionManualLocked, setTargetRegionManualLocked] = useState<boolean>(false);
+
+  const cardLookup = useMemo(() => buildCardLookup(battle), [battle]);
+  const sourceCardKind = cardLookup.get(sourceCardId)?.kind ?? "";
 
   const sourceOptions = useMemo(() => {
-    const ids = [
-      ...battle.actionCandidates.localHandCardIds,
-      ...battle.actionCandidates.localTableCardIds
-    ];
+    const ids = [...battle.actionCandidates.localHandCardIds, ...battle.actionCandidates.localTableCardIds];
     return uniq(ids);
   }, [battle.actionCandidates.localHandCardIds, battle.actionCandidates.localTableCardIds]);
 
@@ -82,98 +75,112 @@ export function ActionComposer({
     battle.actionCandidates.regionCardIds,
     battle.actionCandidates.visibleCardIds
   ]);
+
   const targetRegionOptions = useMemo(() => {
     return uniq(battle.actionCandidates.regionCardIds);
   }, [battle.actionCandidates.regionCardIds]);
 
-  const actionsDisabled = pending || disabledReason !== "";
+  const actionsDisabled = pending || endPending || disabledReason !== "";
 
   useEffect(() => {
     setTargetPlayerId(battle.opponentPlayerId);
-    setSourceManualLocked(false);
-    setTargetManualLocked(false);
-    setTargetRegionManualLocked(false);
   }, [actorId, battle.opponentPlayerId]);
 
   useEffect(() => {
     if (sourceCardId.trim() !== "" && !sourceOptions.includes(sourceCardId)) {
       setSourceCardId("");
-      setSourceManualLocked(false);
     }
   }, [sourceCardId, sourceOptions]);
 
   useEffect(() => {
     if (targetCardId.trim() !== "" && !targetOptions.includes(targetCardId)) {
       setTargetCardId("");
-      setTargetManualLocked(false);
     }
   }, [targetCardId, targetOptions]);
 
   useEffect(() => {
     if (targetRegionCardId.trim() !== "" && !targetRegionOptions.includes(targetRegionCardId)) {
       setTargetRegionCardId("");
-      setTargetRegionManualLocked(false);
     }
   }, [targetRegionCardId, targetRegionOptions]);
 
   useEffect(() => {
-    if (!autoFillHint) {
+    if (!pickedCardEvent) {
       return;
     }
 
-    const suggestedSource = autoFillHint.sourceCardId?.trim() ?? "";
-    if (suggestedSource !== "" && sourceOptions.includes(suggestedSource)) {
-      if (!sourceManualLocked || sourceCardId.trim() === "") {
-        setSourceCardId(suggestedSource);
-      }
+    const pick = pickedCardEvent.picked;
+    if (!pick.cardId) {
+      return;
     }
 
-    const suggestedTarget = autoFillHint.targetCardId?.trim() ?? "";
-    if (suggestedTarget !== "" && targetOptions.includes(suggestedTarget)) {
-      if (!targetManualLocked || targetCardId.trim() === "") {
-        setTargetCardId(suggestedTarget);
-      }
+    if (kind === "set_marker" || kind === "remove_marker") {
+      return;
     }
-    if (suggestedTarget !== "" && targetRegionOptions.includes(suggestedTarget)) {
-      if (!targetRegionManualLocked || targetRegionCardId.trim() === "") {
-        setTargetRegionCardId(suggestedTarget);
+
+    const isRegion = pick.kind === "region";
+    const isOwnCard = pick.ownerId === actorId;
+
+    if (kind === "set_card_marker" || kind === "remove_card_marker") {
+      if (!isRegion) {
+        setTargetCardId(pick.cardId);
+        setError("");
       }
+      return;
     }
-  }, [
-    autoFillHint,
-    sourceCardId,
-    sourceManualLocked,
-    sourceOptions,
-    targetCardId,
-    targetManualLocked,
-    targetOptions,
-    targetRegionCardId,
-    targetRegionManualLocked,
-    targetRegionOptions
-  ]);
+
+    if (isRegion) {
+      if (kind === "play_card") {
+        setTargetRegionCardId(pick.cardId);
+      } else {
+        setTargetCardId(pick.cardId);
+      }
+      setError("");
+      return;
+    }
+
+    if (isOwnCard) {
+      if (pick.zone === "hand") {
+        setSourceCardId(pick.cardId);
+        setError("");
+        return;
+      }
+
+      if (kind === "play_card" && sourceCardKind === "asset") {
+        setTargetCardId(pick.cardId);
+        setError("");
+        return;
+      }
+
+      setSourceCardId(pick.cardId);
+      setError("");
+      return;
+    }
+
+    setTargetCardId(pick.cardId);
+    setError("");
+  }, [actorId, kind, pickedCardEvent, sourceCardKind]);
 
   return (
     <section className="panel battle-actions" aria-label="动作面板">
       <h2>动作面板</h2>
       <p className="muted">当前操作方：{actorId}</p>
       {disabledReason ? <p className="muted">{disabledReason}</p> : null}
+
       <details className="battle-actions__guide">
         <summary>动作说明</summary>
         <ul className="simple-list">
           <li>
-            <strong>让过优先权</strong>：在当前窗口内放弃行动，双方连续让过会结束步骤或触发栈结算。
+            <strong>点选优先</strong>：先在牌桌上点牌，再在此提交动作。手工下拉仅作补充。
           </li>
           <li>
-            <strong>推进阶段</strong>：推进 `main/end` 阶段并触发规则书定义的阶段结算。
+            <strong>结束行动</strong>：自动提交让过优先权；若步骤结束会自动推进阶段。
           </li>
           <li>
-            <strong>打出卡牌</strong>：从手牌部署角色/附属/事务。角色可选明置或暗置并指定地区。
+            <strong>打出卡牌</strong>：角色通常需要选择部署地区，附属需要选择宿主。
           </li>
           <li>
-            <strong>攻击/调查/移动</strong>：`来源卡牌` 选本方驻场，`目标卡牌` 选敌方角色或地区。
-          </li>
-          <li>
-            <strong>标记动作</strong>：用于秘社或卡牌标记增减，需填写类型与数量。
+            <strong>攻击/调查/移动</strong>：来源选本方驻场，目标选敌方驻场或地区。
           </li>
         </ul>
         <a href="/battle-action-guide.md" target="_blank" rel="noreferrer">
@@ -201,47 +208,14 @@ export function ActionComposer({
           </select>
         </label>
 
-        <label className="battle-actions__field">
-          <span>来源卡牌</span>
-          <select
-            aria-label="来源卡牌"
-            value={sourceCardId}
-            onChange={(event) => {
-              setSourceCardId(event.target.value);
-              setSourceManualLocked(true);
-              setError("");
-            }}
-            disabled={actionsDisabled}
-          >
-            <option value="">（无）</option>
-            {sourceOptions.map((value) => (
-              <option key={value} value={value}>
-                {value}
-              </option>
-            ))}
-          </select>
-        </label>
-
-        <label className="battle-actions__field">
-          <span>目标卡牌</span>
-          <select
-            aria-label="目标卡牌"
-            value={targetCardId}
-            onChange={(event) => {
-              setTargetCardId(event.target.value);
-              setTargetManualLocked(true);
-              setError("");
-            }}
-            disabled={actionsDisabled}
-          >
-            <option value="">（无）</option>
-            {targetOptions.map((value) => (
-              <option key={value} value={value}>
-                {value}
-              </option>
-            ))}
-          </select>
-        </label>
+        <div className="battle-actions__field battle-actions__field--wide">
+          <span>当前选择</span>
+          <div className="battle-actions__selection">
+            <p>来源：{cardNameOrPlaceholder(cardLookup, sourceCardId, "点击本方手牌或本方驻场")}</p>
+            <p>目标：{cardNameOrPlaceholder(cardLookup, targetCardId, "点击敌方驻场或地区")}</p>
+            <p>地区：{cardNameOrPlaceholder(cardLookup, targetRegionCardId, "点击地区牌")}</p>
+          </div>
+        </div>
 
         <label className="battle-actions__field">
           <span>目标玩家</span>
@@ -288,20 +262,6 @@ export function ActionComposer({
           />
         </label>
 
-        <label className="battle-actions__field battle-actions__field--wide">
-          <span>操作标签</span>
-          <input
-            aria-label="操作标签"
-            value={operationLabel}
-            onChange={(event) => {
-              setOperationLabel(event.target.value);
-              setError("");
-            }}
-            disabled={actionsDisabled}
-            placeholder="可选"
-          />
-        </label>
-
         <label className="battle-actions__field">
           <span>部署方式</span>
           <select
@@ -317,56 +277,90 @@ export function ActionComposer({
             <option value="face_down">暗置</option>
           </select>
         </label>
-
-        <label className="battle-actions__field">
-          <span>部署地区</span>
-          <select
-            aria-label="部署地区"
-            value={targetRegionCardId}
-            onChange={(event) => {
-              setTargetRegionCardId(event.target.value);
-              setTargetRegionManualLocked(true);
-              setError("");
-            }}
-            disabled={actionsDisabled}
-          >
-            <option value="">（无）</option>
-            {targetRegionOptions.map((value) => (
-              <option key={value} value={value}>
-                {value}
-              </option>
-            ))}
-          </select>
-        </label>
       </div>
 
+      <details className="battle-actions__guide">
+        <summary>手动调整（可选）</summary>
+        <div className="battle-actions__grid">
+          <label className="battle-actions__field">
+            <span>来源卡牌</span>
+            <select
+              aria-label="来源卡牌"
+              value={sourceCardId}
+              onChange={(event) => {
+                setSourceCardId(event.target.value);
+                setError("");
+              }}
+              disabled={actionsDisabled}
+            >
+              <option value="">（无）</option>
+              {sourceOptions.map((value) => (
+                <option key={value} value={value}>
+                  {cardLabel(cardLookup, value)}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <label className="battle-actions__field">
+            <span>目标卡牌</span>
+            <select
+              aria-label="目标卡牌"
+              value={targetCardId}
+              onChange={(event) => {
+                setTargetCardId(event.target.value);
+                setError("");
+              }}
+              disabled={actionsDisabled}
+            >
+              <option value="">（无）</option>
+              {targetOptions.map((value) => (
+                <option key={value} value={value}>
+                  {cardLabel(cardLookup, value)}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <label className="battle-actions__field">
+            <span>部署地区</span>
+            <select
+              aria-label="部署地区"
+              value={targetRegionCardId}
+              onChange={(event) => {
+                setTargetRegionCardId(event.target.value);
+                setError("");
+              }}
+              disabled={actionsDisabled}
+            >
+              <option value="">（无）</option>
+              {targetRegionOptions.map((value) => (
+                <option key={value} value={value}>
+                  {cardLabel(cardLookup, value)}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
+      </details>
+
       <div className="battle-actions__buttons">
-        <button
-          type="button"
-          className="action-button"
-          disabled={actionsDisabled}
-          onClick={() => {
-            submitWithKind("pass_priority");
-          }}
-        >
-          让过优先权
-        </button>
         <button
           type="button"
           className="action-button action-button--secondary"
           disabled={actionsDisabled}
           onClick={() => {
-            submitWithKind("advance_phase");
+            onEndAction();
           }}
         >
-          推进阶段
+          结束行动
         </button>
         <button
           type="button"
           className="action-button"
           disabled={actionsDisabled}
           onClick={() => {
-            submitWithKind(kind);
+            submitCurrentAction();
           }}
           aria-label="提交动作"
         >
@@ -377,44 +371,56 @@ export function ActionComposer({
     </section>
   );
 
-  function submitWithKind(actionKind: string) {
+  function submitCurrentAction() {
     if (actionsDisabled) {
       return;
     }
 
-    const validation = validateBeforeSubmit(
-      actionKind,
+    const validation = validateBeforeSubmit({
+      actionKind: kind,
       sourceCardId,
       targetCardId,
+      targetRegionCardId,
       markerType,
-      markerAmount
-    );
+      markerAmount,
+      sourceCardKind
+    });
     if (validation !== "") {
       setError(validation);
       return;
     }
 
     const action: ComposerActionInput = {
-      kind: actionKind
+      kind
     };
 
-    if (requiresCardID(actionKind)) {
+    if (kind === "play_card" || kind === "declare_attack" || kind === "declare_investigation" || kind === "move_card") {
       action.cardId = sourceCardId;
     }
 
-    if (requiresTargetCardID(actionKind)) {
+    if (
+      kind === "declare_attack" ||
+      kind === "declare_investigation" ||
+      kind === "move_card" ||
+      kind === "set_card_marker" ||
+      kind === "remove_card_marker"
+    ) {
       action.targetCardId = targetCardId;
     }
 
-    if (usesTargetPlayer(actionKind)) {
+    if (kind === "set_marker" || kind === "remove_marker") {
       action.targetPlayerId = targetPlayerId || actorId;
-    }
-
-    if (usesMarker(actionKind)) {
       action.markerType = markerType;
       action.markerAmount = Number(markerAmount);
     }
-    if (actionKind === "play_card") {
+
+    if (kind === "set_card_marker" || kind === "remove_card_marker") {
+      action.targetCardId = targetCardId;
+      action.markerType = markerType;
+      action.markerAmount = Number(markerAmount);
+    }
+
+    if (kind === "play_card") {
       action.playMode = playMode;
       if (targetRegionCardId.trim() !== "") {
         action.targetRegionCardId = targetRegionCardId.trim();
@@ -427,78 +433,154 @@ export function ActionComposer({
       }
     }
 
-    if (actionKind === "queue_operation" && operationLabel.trim() !== "") {
-      action.operationLabel = operationLabel.trim();
-    }
-
     setError("");
     onSubmitAction(action);
   }
 }
 
-function requiresCardID(actionKind: string) {
-  return (
-    actionKind === "reveal_card" ||
-    actionKind === "inspect_card" ||
-    actionKind === "declare_attack" ||
-    actionKind === "declare_investigation" ||
-    actionKind === "move_card" ||
-    actionKind === "queue_operation" ||
-    actionKind === "set_face_down" ||
-    actionKind === "play_card"
-  );
-}
+function validateBeforeSubmit(input: {
+  actionKind: string;
+  sourceCardId: string;
+  targetCardId: string;
+  targetRegionCardId: string;
+  markerType: string;
+  markerAmount: string;
+  sourceCardKind: string;
+}) {
+  const {
+    actionKind,
+    sourceCardId,
+    targetCardId,
+    targetRegionCardId,
+    markerType,
+    markerAmount,
+    sourceCardKind
+  } = input;
 
-function requiresTargetCardID(actionKind: string) {
-  return (
-    actionKind === "declare_attack" ||
-    actionKind === "declare_investigation" ||
-    actionKind === "move_card" ||
-    actionKind === "set_card_marker" ||
-    actionKind === "remove_card_marker"
-  );
-}
-
-function usesTargetPlayer(actionKind: string) {
-  return actionKind === "set_marker" || actionKind === "remove_marker";
-}
-
-function usesMarker(actionKind: string) {
-  return (
-    actionKind === "set_marker" ||
-    actionKind === "remove_marker" ||
-    actionKind === "set_card_marker" ||
-    actionKind === "remove_card_marker"
-  );
-}
-
-function validateBeforeSubmit(
-  actionKind: string,
-  sourceCardId: string,
-  targetCardId: string,
-  markerType: string,
-  markerAmount: string
-) {
-  if (requiresCardID(actionKind) && sourceCardId.trim() === "") {
-    return "需要选择卡牌";
+  switch (actionKind) {
+    case "play_card":
+      if (sourceCardId.trim() === "") {
+        return "需要选择来源卡牌";
+      }
+      if (sourceCardKind === "character" && targetRegionCardId.trim() === "") {
+        return "角色部署需要选择目标地区";
+      }
+      if (sourceCardKind === "asset" && targetCardId.trim() === "") {
+        return "附属部署需要选择宿主卡牌";
+      }
+      return "";
+    case "declare_attack":
+    case "declare_investigation":
+    case "move_card":
+      if (sourceCardId.trim() === "") {
+        return "需要选择来源卡牌";
+      }
+      if (targetCardId.trim() === "") {
+        return "需要选择目标卡牌";
+      }
+      return "";
+    case "set_marker":
+    case "remove_marker":
+      if (markerType.trim() === "") {
+        return "需要输入标记类型";
+      }
+      return validateMarkerAmount(markerAmount);
+    case "set_card_marker":
+    case "remove_card_marker":
+      if (targetCardId.trim() === "") {
+        return "需要选择目标卡牌";
+      }
+      if (markerType.trim() === "") {
+        return "需要输入标记类型";
+      }
+      return validateMarkerAmount(markerAmount);
+    default:
+      return "";
   }
+}
 
-  if (requiresTargetCardID(actionKind) && targetCardId.trim() === "") {
-    return "需要选择目标卡牌";
+function validateMarkerAmount(raw: string) {
+  const parsed = Number(raw);
+  if (!Number.isFinite(parsed) || parsed <= 0) {
+    return "标记数量必须大于 0";
   }
+  return "";
+}
 
-  if (usesMarker(actionKind) && markerType.trim() === "") {
-    return "需要输入标记类型";
+function buildCardLookup(battle: BattleState) {
+  const lookup = new Map<string, CardView>();
+  const push = (card: CardView | undefined) => {
+    const cardId = card?.cardId?.trim();
+    if (!cardId) {
+      return;
+    }
+    if (!card) {
+      return;
+    }
+    if (!lookup.has(cardId)) {
+      lookup.set(cardId, card);
+    }
+  };
+
+  for (const card of battle.local.hand) {
+    push(card);
   }
-
-  if (usesMarker(actionKind)) {
-    const parsed = Number(markerAmount);
-    if (!Number.isFinite(parsed) || parsed <= 0) {
-      return "标记数量必须大于 0";
+  for (const card of battle.local.table) {
+    push(card);
+  }
+  for (const card of battle.local.discard) {
+    push(card);
+  }
+  for (const card of battle.local.score) {
+    push(card);
+  }
+  for (const card of battle.opponent.handPreview) {
+    push(card);
+  }
+  for (const card of battle.opponent.table) {
+    push(card);
+  }
+  for (const region of battle.contest.regions) {
+    push(region.regionCard);
+    for (const card of region.localCards) {
+      push(card);
+    }
+    for (const card of region.opponentCards) {
+      push(card);
     }
   }
+  for (const card of battle.contest.unassignedTableCards) {
+    push(card);
+  }
 
-  return "";
+  return lookup;
+}
+
+function cardLabel(lookup: Map<string, CardView>, cardId: string) {
+  const card = lookup.get(cardId);
+  if (!card) {
+    return cardId;
+  }
+  return `${card.name ?? cardId}（${cardId}）`;
+}
+
+function cardNameOrPlaceholder(
+  lookup: Map<string, CardView>,
+  cardId: string,
+  placeholder: string
+) {
+  const trimmed = cardId.trim();
+  if (trimmed === "") {
+    return placeholder;
+  }
+  const card = lookup.get(trimmed);
+  if (!card) {
+    return trimmed;
+  }
+  if (card.color) {
+    return `${card.name ?? trimmed} · ${card.color}`;
+  }
+  return card.name ?? trimmed;
 }
 
 function uniq(values: string[]) {

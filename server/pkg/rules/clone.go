@@ -7,6 +7,7 @@ import "slices"
 func cloneGameState(state GameState) GameState {
 	cloned := state
 	cloned.Players = slices.Clone(state.Players)
+	cloned.Turn = cloneTurnState(state.Turn)
 	cloned.Board = cloneBoardState(state.Board)
 	cloned.Score = cloneScoreState(state.Score)
 	cloned.History = cloneHistoryState(state.History)
@@ -170,6 +171,25 @@ func cloneCardMarkerRegistry(registry CardMarkerRegistry) CardMarkerRegistry {
 func cloneScoreState(state ScoreState) ScoreState {
 	cloned := state
 	cloned.ByPlayer = cloneIntMap(state.ByPlayer)
+	return cloned
+}
+
+func cloneTurnState(state TurnState) TurnState {
+	cloned := state
+	cloned.Resources = cloneResourceMap(state.Resources)
+	return cloned
+}
+
+func cloneResourceMap(values map[string]PlayerResourceState) map[string]PlayerResourceState {
+	if len(values) == 0 {
+		return nil
+	}
+
+	cloned := make(map[string]PlayerResourceState, len(values))
+	for key, value := range values {
+		cloned[key] = value
+	}
+
 	return cloned
 }
 

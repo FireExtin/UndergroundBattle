@@ -16,11 +16,15 @@ import {
   liveDebuggerReducer,
   type LiveDebuggerAction
 } from "../debugger/liveModel";
-import type { MockMessageSet } from "../debugger/protocol";
+import type {
+  ActionAcceptedEnvelope,
+  DebuggerProtocolEnvelope,
+  MockMessageSet
+} from "../debugger/protocol";
 import {
   ActionComposer,
   type ComposerActionInput,
-  type ComposerAutoFillHint
+  type ComposerCardPickEvent
 } from "./components/ActionComposer";
 import { BattleTable, type BattleCardPick } from "./components/BattleTable";
 import { SetupWizard } from "./components/SetupWizard";
@@ -44,11 +48,12 @@ export function BattleShell({ fallbackMessageSets }: BattleShellProps) {
     createInitialLiveDebuggerState
   );
   const [localPlayerId, setLocalPlayerId] = useState<BattlePlayerId>("P1");
-  const [autoFillHint, setAutoFillHint] = useState<ComposerAutoFillHint | undefined>(undefined);
+  const [pickedCardEvent, setPickedCardEvent] = useState<ComposerCardPickEvent | undefined>(undefined);
   const [logFilter, setLogFilter] = useState<"all" | "accepted" | "rejected" | "system">("all");
   const [setupState, setSetupState] = useState<SetupState | null>(null);
   const [setupLoading, setSetupLoading] = useState<boolean>(true);
   const [setupPending, setSetupPending] = useState<boolean>(false);
+  const [endActionPending, setEndActionPending] = useState<boolean>(false);
   const [setupErrorMessage, setSetupErrorMessage] = useState<string>("");
   const nextActionNumber = useRef(1);
 
@@ -129,7 +134,7 @@ export function BattleShell({ fallbackMessageSets }: BattleShellProps) {
           <button
             type="button"
             className="action-button action-button--secondary"
-            disabled={state.loading || state.submitting || setupPending}
+            disabled={state.loading || state.submitting || setupPending || endActionPending}
             onClick={() => void reloadLiveMessages(dispatch, fallbackMessageSets)}
           >
             刷新状态
@@ -138,7 +143,7 @@ export function BattleShell({ fallbackMessageSets }: BattleShellProps) {
             type="button"
             className="action-button action-button--secondary"
             aria-label="重置并返回开局设置"
-            disabled={state.loading || state.submitting || setupPending}
+            disabled={state.loading || state.submitting || setupPending || endActionPending}
             onClick={() => void resetAndReturnToSetup()}
           >
             重置并返回开局设置
@@ -151,7 +156,7 @@ export function BattleShell({ fallbackMessageSets }: BattleShellProps) {
         localPlayerId={localPlayerId}
         onLocalPlayerChanged={setLocalPlayerId}
         onCardPicked={(picked) => {
-          setAutoFillHint((previous) => nextAutoFillHint(previous, picked));
+          setPickedCardEvent((previous) => nextPickedCardEvent(previous, picked));
         }}
       />
 
@@ -159,13 +164,13 @@ export function BattleShell({ fallbackMessageSets }: BattleShellProps) {
         actorId={localPlayerId}
         battle={battle}
         pending={state.loading || state.submitting}
+        endPending={endActionPending}
         disabledReason={disabledReason}
-        autoFillHint={autoFillHint}
+        pickedCardEvent={pickedCardEvent}
         onSubmitAction={(action) =>
-          void submitBattleAction(action, localPlayerId, nextActionNumber.current, dispatch, () => {
-            nextActionNumber.current += 1;
-          })
+          void submitBattleAction(action, localPlayerId, nextActionNumber, dispatch)
         }
+        onEndAction={() => void endCurrentActionFlow()}
       />
 
       <section className="panel battle-info-logs" aria-label="对局信息日志">
@@ -216,7 +221,7 @@ export function BattleShell({ fallbackMessageSets }: BattleShellProps) {
           setLocalPlayerId(nextSetup.startingPlayerId);
         }
         nextActionNumber.current = 1;
-        setAutoFillHint(undefined);
+        setPickedCardEvent(undefined);
         await reloadLiveMessages(dispatch, fallbackMessageSets);
       }
     } catch (error) {
@@ -252,7 +257,7 @@ export function BattleShell({ fallbackMessageSets }: BattleShellProps) {
       setSetupState(nextSetup);
       dispatch({ type: "loadSucceeded", messages: [] });
       nextActionNumber.current = 1;
-      setAutoFillHint(undefined);
+      setPickedCardEvent(undefined);
       if (nextSetup.completed) {
         await reloadLiveMessages(dispatch, fallbackMessageSets);
       }
@@ -267,30 +272,80 @@ export function BattleShell({ fallbackMessageSets }: BattleShellProps) {
       setSetupPending(false);
     }
   }
+
+  async function endCurrentActionFlow() {
+    if (disabledReason !== "" || state.loading || state.submitting || setupPending || endActionPending) {
+      return;
+    }
+
+    setEndActionPending(true);
+    try {
+      const passActor = normalizeBattlePlayerId(battle.turn.priority.currentPlayerId) ?? localPlayerId;
+      const passResult = await submitBattleAction(
+        { kind: "pass_priority" },
+        passActor,
+        nextActionNumber,
+        dispatch
+      );
+      if (!passResult) {
+        return;
+      }
+
+      const passAccepted = findAcceptedForSubmission(passResult.messages, {
+        actionID: passResult.actionID,
+        actorID: passActor,
+        kind: "pass_priority"
+      });
+      if (!passAccepted) {
+        return;
+      }
+
+      const endedStep =
+        passAccepted.payload.event.kind === "step_ended" || passAccepted.payload.event.stepEnded === true;
+      const postPassBattle = deriveBattleState(passResult.messages, localPlayerId);
+      if (!endedStep || postPassBattle.match.status === "finished") {
+        return;
+      }
+
+      const advanceActor =
+        normalizeBattlePlayerId(postPassBattle.turn.priority.currentPlayerId) ?? passActor;
+      await submitBattleAction(
+        { kind: "advance_phase" },
+        advanceActor,
+        nextActionNumber,
+        dispatch
+      );
+    } finally {
+      setEndActionPending(false);
+    }
+  }
 }
 
 async function submitBattleAction(
   action: ComposerActionInput,
   actorId: BattlePlayerId,
-  actionNumber: number,
-  dispatch: Dispatch<LiveDebuggerAction>,
-  afterSuccess: () => void
-) {
+  nextActionNumber: { current: number },
+  dispatch: Dispatch<LiveDebuggerAction>
+): Promise<{ messages: DebuggerProtocolEnvelope[]; actionID: string } | null> {
   dispatch({ type: "submitStarted" });
+
+  const actionID = `act-battle-${actorId.toLowerCase()}-${nextActionNumber.current}`;
 
   try {
     const messages = await submitDebuggerAction({
-      id: `act-battle-${actorId.toLowerCase()}-${actionNumber}`,
+      id: actionID,
       actorId,
       ...action
     });
-    afterSuccess();
+    nextActionNumber.current += 1;
     dispatch({ type: "submitSucceeded", messages });
+    return { messages, actionID };
   } catch (error) {
     dispatch({
       type: "submitFailed",
       errorMessage: error instanceof Error ? error.message : "动作提交失败。"
     });
+    return null;
   }
 }
 
@@ -329,22 +384,51 @@ function deriveDisabledReason(
   return "";
 }
 
-function nextAutoFillHint(
-  previous: ComposerAutoFillHint | undefined,
+function nextPickedCardEvent(
+  previous: ComposerCardPickEvent | undefined,
   picked: BattleCardPick
-): ComposerAutoFillHint {
+): ComposerCardPickEvent {
   const token = (previous?.token ?? 0) + 1;
-  if (picked.intent === "source") {
-    return {
-      token,
-      sourceCardId: picked.cardId
-    };
-  }
-
   return {
     token,
-    targetCardId: picked.cardId
+    picked
   };
+}
+
+function normalizeBattlePlayerId(value: string): BattlePlayerId | null {
+  if (value === "P1" || value === "P2") {
+    return value;
+  }
+  return null;
+}
+
+function findAcceptedForSubmission(
+  messages: DebuggerProtocolEnvelope[],
+  expected: { actionID: string; actorID: BattlePlayerId; kind: string }
+): ActionAcceptedEnvelope | null {
+  for (let index = messages.length - 1; index >= 0; index -= 1) {
+    const message = messages[index];
+    if (message.name !== "ActionAccepted") {
+      continue;
+    }
+    if (message.payload.action.id === expected.actionID) {
+      return message;
+    }
+  }
+
+  for (let index = messages.length - 1; index >= 0; index -= 1) {
+    const message = messages[index];
+    if (message.name !== "ActionAccepted") {
+      continue;
+    }
+    if (
+      message.payload.action.actorId === expected.actorID &&
+      message.payload.action.kind === expected.kind
+    ) {
+      return message;
+    }
+  }
+  return null;
 }
 
 function filterInfoLogs(

@@ -12,7 +12,11 @@ type BattleTableProps = {
 
 export type BattleCardPick = {
   cardId: string;
-  intent: "source" | "target";
+  ownerId: string;
+  zone: CardView["zone"];
+  kind?: string;
+  regionCardId?: string;
+  name?: string;
 };
 
 export function BattleTable({ battle, localPlayerId, onLocalPlayerChanged, onCardPicked }: BattleTableProps) {
@@ -24,6 +28,9 @@ export function BattleTable({ battle, localPlayerId, onLocalPlayerChanged, onCar
           <h1>可玩牌桌原型</h1>
           <p className="muted">
             回合 {battle.turn.turnNumber} | 当前玩家 {battle.turn.activePlayerId} | 优先权 {battle.turn.priority.currentPlayerId}
+          </p>
+          <p className="muted">
+            资源：P1 {formatResource(battle.turn.resources?.P1)} | P2 {formatResource(battle.turn.resources?.P2)}
           </p>
         </div>
         <div className="battle-table__viewer-switch" role="group" aria-label="视角切换">
@@ -71,7 +78,11 @@ export function BattleTable({ battle, localPlayerId, onLocalPlayerChanged, onCar
                     type="button"
                     className="battle-region-button"
                     onClick={() => {
-                      onCardPicked({ cardId: slot.regionCard!.cardId!, intent: "target" });
+                      const region = slot.regionCard;
+                      if (!region?.cardId) {
+                        return;
+                      }
+                      onCardPicked(toCardPick(region));
                     }}
                   >
                     <strong>{slot.regionCard.name ?? slot.regionCard.cardId}</strong>
@@ -98,7 +109,7 @@ export function BattleTable({ battle, localPlayerId, onLocalPlayerChanged, onCar
                     cards={slot.opponentCards}
                     fallback="(空)"
                     compact
-                    onVisibleCardPicked={(card) => pickTargetCard(card, onCardPicked)}
+                    onVisibleCardPicked={(card) => onCardPicked(toCardPick(card))}
                   />
                 </div>
                 <div>
@@ -107,7 +118,7 @@ export function BattleTable({ battle, localPlayerId, onLocalPlayerChanged, onCar
                     cards={slot.localCards}
                     fallback="(空)"
                     compact
-                    onVisibleCardPicked={(card) => pickSourceCard(card, onCardPicked)}
+                    onVisibleCardPicked={(card) => onCardPicked(toCardPick(card))}
                   />
                 </div>
               </div>
@@ -120,11 +131,7 @@ export function BattleTable({ battle, localPlayerId, onLocalPlayerChanged, onCar
             cards={battle.contest.unassignedTableCards}
             fallback="(空)"
             onVisibleCardPicked={(card) => {
-              if ((card.ownerId ?? "") === localPlayerId) {
-                pickSourceCard(card, onCardPicked);
-                return;
-              }
-              pickTargetCard(card, onCardPicked);
+              onCardPicked(toCardPick(card));
             }}
           />
         </div>
@@ -145,7 +152,7 @@ export function BattleTable({ battle, localPlayerId, onLocalPlayerChanged, onCar
             <CardStrip
               cards={battle.local.hand}
               fallback="(空)"
-              onVisibleCardPicked={(card) => pickSourceCard(card, onCardPicked)}
+              onVisibleCardPicked={(card) => onCardPicked(toCardPick(card))}
             />
           </div>
           <div>
@@ -154,11 +161,7 @@ export function BattleTable({ battle, localPlayerId, onLocalPlayerChanged, onCar
               cards={battle.local.table}
               fallback="(空)"
               onVisibleCardPicked={(card) => {
-                if (card.kind === "region") {
-                  pickTargetCard(card, onCardPicked);
-                  return;
-                }
-                pickSourceCard(card, onCardPicked);
+                onCardPicked(toCardPick(card));
               }}
             />
           </div>
@@ -168,7 +171,7 @@ export function BattleTable({ battle, localPlayerId, onLocalPlayerChanged, onCar
               cards={battle.local.discard}
               fallback="(空)"
               compact
-              onVisibleCardPicked={(card) => pickSourceCard(card, onCardPicked)}
+              onVisibleCardPicked={(card) => onCardPicked(toCardPick(card))}
             />
           </div>
           <div>
@@ -177,7 +180,7 @@ export function BattleTable({ battle, localPlayerId, onLocalPlayerChanged, onCar
               cards={battle.local.score}
               fallback="(空)"
               compact
-              onVisibleCardPicked={(card) => pickSourceCard(card, onCardPicked)}
+              onVisibleCardPicked={(card) => onCardPicked(toCardPick(card))}
             />
           </div>
         </div>
@@ -223,14 +226,14 @@ function CardStrip({ cards, fallback, compact = false, onVisibleCardPicked }: Ca
                 onClick={() => {
                   onVisibleCardPicked(card);
                 }}
-              >
+                >
                 <strong>{card.name ?? card.cardId}</strong>
-                <p>{card.cardId ?? "-"}</p>
+                <p>{cardLine(card)}</p>
               </button>
             ) : (
               <>
                 <strong>{isVisible ? card.name ?? card.cardId : "卡背"}</strong>
-                <p>{isVisible ? card.cardId ?? "-" : "隐藏"}</p>
+                <p>{isVisible ? cardLine(card) : "隐藏"}</p>
               </>
             )}
           </li>
@@ -240,16 +243,37 @@ function CardStrip({ cards, fallback, compact = false, onVisibleCardPicked }: Ca
   );
 }
 
-function pickSourceCard(card: CardView, onCardPicked: (picked: BattleCardPick) => void) {
-  if (!card.cardId) {
-    return;
-  }
-  onCardPicked({ cardId: card.cardId, intent: "source" });
+function toCardPick(card: CardView): BattleCardPick {
+  return {
+    cardId: String(card.cardId ?? ""),
+    ownerId: card.ownerId,
+    zone: card.zone,
+    kind: card.kind,
+    regionCardId: card.regionCardId,
+    name: card.name
+  };
 }
 
-function pickTargetCard(card: CardView, onCardPicked: (picked: BattleCardPick) => void) {
-  if (!card.cardId) {
-    return;
+function cardLine(card: CardView) {
+  const parts: string[] = [];
+  if (typeof card.cost === "number") {
+    parts.push(`费用 ${card.cost}`);
   }
-  onCardPicked({ cardId: card.cardId, intent: "target" });
+  if (card.color) {
+    parts.push(card.color);
+  }
+  if (card.kind === "region") {
+    parts.push(`分值 ${card.regionScore ?? 0}`);
+  }
+  if (parts.length === 0) {
+    return card.cardId ?? "-";
+  }
+  return parts.join(" · ");
+}
+
+function formatResource(resource: { current: number; max: number } | undefined) {
+  if (!resource) {
+    return "-/-";
+  }
+  return `${resource.current}/${resource.max}`;
 }

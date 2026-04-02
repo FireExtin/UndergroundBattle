@@ -356,14 +356,21 @@ type MatchState struct {
 	FinishedAtRevision int            `json:"finishedAtRevision,omitempty"`
 }
 
+// PlayerResourceState stores one player's current/max playable resource snapshot.
+type PlayerResourceState struct {
+	Current int `json:"current"`
+	Max     int `json:"max"`
+}
+
 // TurnState captures the minimum turn owner, priority owner, and phase needed by the skeleton rules kernel.
 type TurnState struct {
-	TurnNumber               int           `json:"turnNumber"`
-	ActivePlayerID           string        `json:"activePlayerId"`
-	PriorityPlayerID         string        `json:"priorityPlayerId"`
-	FirstPlayerPrivilegeUsed bool          `json:"firstPlayerPrivilegeUsed,omitempty"`
-	Priority                 PriorityState `json:"priority"`
-	Phase                    PhaseState    `json:"phase"`
+	TurnNumber               int                            `json:"turnNumber"`
+	ActivePlayerID           string                         `json:"activePlayerId"`
+	PriorityPlayerID         string                         `json:"priorityPlayerId"`
+	FirstPlayerPrivilegeUsed bool                           `json:"firstPlayerPrivilegeUsed,omitempty"`
+	Resources                map[string]PlayerResourceState `json:"resources,omitempty"`
+	Priority                 PriorityState                  `json:"priority"`
+	Phase                    PhaseState                     `json:"phase"`
 }
 
 // PriorityState captures the current action holder plus consecutive pass tracking.

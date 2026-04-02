@@ -100,6 +100,9 @@ type setupCard struct {
 	Society        string
 	Description    string
 	FAQ            string
+	Cost           int
+	Color          string
+	Loyalty        string
 	Defense        int
 	InfluenceLimit int
 	Score          int
@@ -113,6 +116,9 @@ type cardFileEntry struct {
 	Type      string `json:"type"`
 	BasicType string `json:"basic-type"`
 	Society   string `json:"society"`
+	Color     string `json:"color"`
+	Cost      string `json:"cost"`
+	Loyalty   string `json:"lyl"`
 	Text      string `json:"text"`
 	FAQ       string `json:"FAQ"`
 	DFC       string `json:"dfc"`
@@ -157,10 +163,11 @@ func (session *SandboxSession) StartSetup(input SetupStartInput) (SetupState, er
 		PreviousLoserPlayer: strings.TrimSpace(input.PreviousLoserPlayer),
 		RuntimeIgnoredScopes: map[string][]string{
 			"construct": {"society_limit", "deck_size_limit", "duplicate_limit"},
-			"play":      {"cost_payment", "loyalty_requirement"},
+			"play":      {"queue_operation_cost_payment", "queue_operation_loyalty_requirement"},
 		},
 		RuntimeNotes: map[string]string{
 			"pool": "当前仅使用基础包 deckcard=true 候选卡。",
+			"play": "play_card 已启用费用与忠诚校验；queue_operation 仍保留调试通道兼容。",
 		},
 	}
 	session.setup.Steps = buildSetupSteps(session.setup.CurrentStep)
@@ -356,6 +363,9 @@ func setupCardToState(card setupCard, ownerID string, zone rules.CardZone, revea
 		Name:           card.Name,
 		Description:    card.Description,
 		FAQ:            card.FAQ,
+		Cost:           card.Cost,
+		Color:          card.Color,
+		Loyalty:        card.Loyalty,
 		Kind:           kind,
 		OwnerID:        ownerID,
 		Zone:           zone,
@@ -677,6 +687,9 @@ func loadSetupCatalogCards() ([]setupCard, error) {
 					CardType:       strings.TrimSpace(raw.Type),
 					BasicType:      strings.TrimSpace(raw.BasicType),
 					Society:        strings.TrimSpace(raw.Society),
+					Cost:           parseCardCost(raw.Cost),
+					Color:          strings.TrimSpace(raw.Color),
+					Loyalty:        strings.TrimSpace(raw.Loyalty),
 					Description:    strings.TrimSpace(raw.Text),
 					FAQ:            strings.TrimSpace(raw.FAQ),
 					Defense:        parseCardInt(raw.DFC),
@@ -708,6 +721,10 @@ func parseCardInt(raw string) int {
 		return 0
 	}
 	return parsed
+}
+
+func parseCardCost(raw string) int {
+	return parseCardInt(raw)
 }
 
 func repositoryRootFromSetupFile() (string, error) {

@@ -92,6 +92,11 @@ export type PriorityState = {
   windowKind: string;
 };
 
+export type PlayerResourceState = {
+  current: number;
+  max: number;
+};
+
 export type PhaseState = {
   name: string;
   step: string;
@@ -104,6 +109,7 @@ export type TurnState = {
   activePlayerId: string;
   priorityPlayerId: string;
   firstPlayerPrivilegeUsed?: boolean;
+  resources?: Record<string, PlayerResourceState>;
   priority: PriorityState;
   phase: PhaseState;
 };
@@ -139,6 +145,9 @@ export type CardView = {
   name?: string;
   description?: string;
   faq?: string;
+  cost?: number;
+  color?: string;
+  loyalty?: string;
   ownerId: string;
   zone: CardZone;
   kind?: string;

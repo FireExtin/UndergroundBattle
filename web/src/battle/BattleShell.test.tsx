@@ -132,26 +132,24 @@ describe("BattleShell", () => {
     expect(screen.getByLabelText("目标卡牌")).toHaveValue("p2-table-1");
   });
 
-  it("keeps manual source selection when auto-fill would otherwise override it", async () => {
+  it("uses region click to auto-fill play_card target region", async () => {
     const fetchMock = createBattleFetchMock({
       setupStates: [completedSetupState()],
-      messages: buildMessages({ includeExtraLocalTable: true })
+      messages: buildMessages()
     });
     vi.stubGlobal("fetch", fetchMock);
 
     render(<BattleShell fallbackMessageSets={[]} />);
     await screen.findByText("对方玩家区域");
 
-    fireEvent.click(screen.getAllByRole("button", { name: /P1 Unit/ })[0]!);
-    expect(screen.getByLabelText("来源卡牌")).toHaveValue("p1-table-1");
-
-    fireEvent.change(screen.getByLabelText("来源卡牌"), {
-      target: { value: "p1-table-2" }
+    fireEvent.change(screen.getByLabelText("动作类型"), {
+      target: { value: "play_card" }
     });
-    expect(screen.getByLabelText("来源卡牌")).toHaveValue("p1-table-2");
+    fireEvent.click(screen.getAllByRole("button", { name: /P1 Hand/ })[0]!);
+    expect(screen.getByLabelText("来源卡牌")).toHaveValue("p1-hand-1");
 
-    fireEvent.click(screen.getAllByRole("button", { name: /P1 Unit/ })[0]!);
-    expect(screen.getByLabelText("来源卡牌")).toHaveValue("p1-table-2");
+    fireEvent.click(screen.getAllByRole("button", { name: /Region 1/ })[0]!);
+    expect(screen.getByLabelText("部署地区")).toHaveValue("region-1");
   });
 
   it("shows action docs and supports info log filtering", async () => {
@@ -198,17 +196,56 @@ describe("BattleShell", () => {
     fireEvent.click(screen.getByRole("button", { name: "P2 视角" }));
     expect(screen.getByLabelText("来源卡牌")).toHaveValue("");
   });
+
+  it("auto-submits pass then advance when end action closes the step", async () => {
+    const actionResponses = [
+      [
+        accepted("P1", "pass_priority", "step_ended", 2),
+        statePatched("P1", buildMessagesCards(), { secret_society: 1 }, false, {
+          priorityPlayerId: "P1",
+          phaseStep: "ended"
+        })
+      ],
+      [
+        accepted("P1", "advance_phase", "phase_advanced", 3),
+        statePatched("P1", buildMessagesCards(), { secret_society: 1 }, false, {
+          priorityPlayerId: "P2",
+          phaseName: "end",
+          phaseStep: "action"
+        })
+      ]
+    ];
+    const fetchMock = createBattleFetchMock({
+      setupStates: [completedSetupState()],
+      messages: buildMessages(),
+      actionResponses
+    });
+    vi.stubGlobal("fetch", fetchMock);
+
+    render(<BattleShell fallbackMessageSets={[]} />);
+    await screen.findByText("对方玩家区域");
+
+    fireEvent.click(screen.getByRole("button", { name: "结束行动" }));
+
+    await waitFor(() => {
+      const calls = fetchMock.mock.calls.filter((args) => args[0] === "/api/debugger/actions");
+      expect(calls).toHaveLength(2);
+    });
+  });
 });
 
 function createBattleFetchMock(options?: {
   setupStates?: Array<Record<string, unknown>>;
   messages?: DebuggerProtocolEnvelope[];
   actionMessages?: DebuggerProtocolEnvelope[];
+  actionResponses?: DebuggerProtocolEnvelope[][];
 }) {
   const setupStates = options?.setupStates ?? [completedSetupState()];
   const messages = options?.messages ?? buildMessages();
   const actionMessages = options?.actionMessages ?? messages;
+  const actionResponses = options?.actionResponses ?? [actionMessages];
   let setupIndex = 0;
+  let actionIndex = 0;
 
   return vi.fn(async (input: RequestInfo | URL, init?: RequestInit) => {
     const url = String(input);
@@ -221,7 +258,9 @@ function createBattleFetchMock(options?: {
       return createJSONResponse(messages);
     }
     if (url === "/api/debugger/actions") {
-      return createJSONResponse(actionMessages);
+      const payload = actionResponses[Math.min(actionIndex, actionResponses.length - 1)] ?? actionMessages;
+      actionIndex += 1;
+      return createJSONResponse(payload);
     }
     if (url === "/api/debugger/reset") {
       return createJSONResponse([]);
@@ -295,7 +334,122 @@ function buildMessages(options?: {
     );
   }
 
-  const p1Cards = [
+  const p1Cards = buildMessagesCards(includeExtraLocalTable);
+
+  envelopes.push(
+    statePatched("P1", [...p1Cards], { secret_society: 1 }, finished),
+    statePatched(
+      "P2",
+      [
+        card({ ownerId: "P1", zone: "hand", visibility: "hidden" }),
+        card({
+          cardId: "p2-hand-1",
+          ownerId: "P2",
+          zone: "hand",
+          visibility: "visible",
+          name: "P2 Hand",
+          kind: "character"
+        })
+      ],
+      { secret_society: 2 },
+      finished
+    )
+  );
+
+  return envelopes;
+}
+
+function statePatched(
+  audienceId: "P1" | "P2",
+  cards: CardView[],
+  markers: Record<string, number>,
+  finished: boolean,
+  options?: {
+    priorityPlayerId?: "P1" | "P2";
+    phaseName?: "main" | "end";
+    phaseStep?: "action" | "ended";
+  }
+): DebuggerProtocolEnvelope {
+  const priorityPlayerId = options?.priorityPlayerId ?? "P1";
+  const phaseName = options?.phaseName ?? "main";
+  const phaseStep = options?.phaseStep ?? "action";
+
+  const playerView: PlayerViewState = {
+    gameId: "game-battle-shell-test",
+    viewerPlayerId: audienceId,
+    revision: { number: 1 },
+    match: finished
+      ? {
+          status: "finished",
+          winnerPlayerId: "P1",
+          endReason: "victory_threshold",
+          finishedAtRevision: 1
+        }
+      : { status: "active" },
+    turn: {
+      turnNumber: 1,
+      activePlayerId: "P1",
+      priorityPlayerId,
+      priority: {
+        currentPlayerId: priorityPlayerId,
+        passCount: 0,
+        windowKind: phaseStep === "ended" ? "closed" : "action"
+      },
+      phase: {
+        name: phaseName,
+        step: phaseStep,
+        allowsStack: phaseName === "main",
+        stepEnded: phaseStep === "ended"
+      }
+    },
+    score: {
+      byPlayer: {
+        P1: finished ? 2 : 0,
+        P2: 0
+      },
+      victoryThreshold: 2,
+      winnerPlayerId: finished ? "P1" : undefined
+    },
+    markers,
+    board: {
+      stack: [],
+      resolved: [],
+      randomResults: [],
+      cards
+    }
+  };
+
+  return {
+    version: "0.1.0",
+    kind: "view",
+    messageId: `msg-${audienceId}`,
+    name: "StatePatched",
+    revision: 1,
+    payload: {
+      type: "StatePatched",
+      audienceKind: "player",
+      audienceId,
+      revision: { number: 1 },
+      event: {
+        id: `evt-${audienceId}`,
+        actionId: `act-${audienceId}`,
+        operationId: `op-${audienceId}`,
+        kind: "operation_resolved",
+        revisionNumber: 1,
+        phase: phaseName,
+        step: phaseStep,
+        priorityPlayerId,
+        priorityWindow: phaseStep === "ended" ? "closed" : "action",
+        passCount: 0,
+        stackDepth: 0
+      },
+      playerView
+    }
+  };
+}
+
+function buildMessagesCards(includeExtraLocalTable = false): CardView[] {
+  const cards = [
     card({
       cardId: "p1-hand-1",
       ownerId: "P1",
@@ -351,8 +505,9 @@ function buildMessages(options?: {
       regionCardId: "region-2"
     })
   ];
+
   if (includeExtraLocalTable) {
-    p1Cards.push(
+    cards.push(
       card({
         cardId: "p1-table-2",
         ownerId: "P1",
@@ -365,107 +520,7 @@ function buildMessages(options?: {
     );
   }
 
-  envelopes.push(
-    statePatched("P1", [...p1Cards], { secret_society: 1 }, finished),
-    statePatched(
-      "P2",
-      [
-        card({ ownerId: "P1", zone: "hand", visibility: "hidden" }),
-        card({
-          cardId: "p2-hand-1",
-          ownerId: "P2",
-          zone: "hand",
-          visibility: "visible",
-          name: "P2 Hand",
-          kind: "character"
-        })
-      ],
-      { secret_society: 2 },
-      finished
-    )
-  );
-
-  return envelopes;
-}
-
-function statePatched(
-  audienceId: "P1" | "P2",
-  cards: CardView[],
-  markers: Record<string, number>,
-  finished: boolean
-): DebuggerProtocolEnvelope {
-  const playerView: PlayerViewState = {
-    gameId: "game-battle-shell-test",
-    viewerPlayerId: audienceId,
-    revision: { number: 1 },
-    match: finished
-      ? {
-          status: "finished",
-          winnerPlayerId: "P1",
-          endReason: "victory_threshold",
-          finishedAtRevision: 1
-        }
-      : { status: "active" },
-    turn: {
-      turnNumber: 1,
-      activePlayerId: "P1",
-      priorityPlayerId: "P1",
-      priority: {
-        currentPlayerId: "P1",
-        passCount: 0,
-        windowKind: "action"
-      },
-      phase: {
-        name: "main",
-        step: "action",
-        allowsStack: true,
-        stepEnded: false
-      }
-    },
-    score: {
-      byPlayer: {
-        P1: finished ? 2 : 0,
-        P2: 0
-      },
-      victoryThreshold: 2,
-      winnerPlayerId: finished ? "P1" : undefined
-    },
-    markers,
-    board: {
-      stack: [],
-      resolved: [],
-      randomResults: [],
-      cards
-    }
-  };
-
-  return {
-    version: "0.1.0",
-    kind: "view",
-    messageId: `msg-${audienceId}`,
-    name: "StatePatched",
-    revision: 1,
-    payload: {
-      type: "StatePatched",
-      audienceKind: "player",
-      audienceId,
-      revision: { number: 1 },
-      event: {
-        id: `evt-${audienceId}`,
-        actionId: `act-${audienceId}`,
-        operationId: `op-${audienceId}`,
-        kind: "operation_resolved",
-        revisionNumber: 1,
-        phase: "main",
-        step: "action",
-        priorityPlayerId: "P1",
-        priorityWindow: "action",
-        passCount: 0,
-        stackDepth: 0
-      },
-      playerView
-    }
-  };
+  return cards;
 }
 
 function card(partial: Partial<CardView>): CardView {
