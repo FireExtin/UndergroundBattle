@@ -373,6 +373,58 @@ func TestProjectionCardViewIncludesKindAndRegionMetadata(t *testing.T) {
 	}
 }
 
+func TestHiddenFaceDownCardStillCarriesRegionForOpponentProjection(t *testing.T) {
+	state := NewGameState(InitialStateConfig{
+		GameID:         "game-projection-hidden-region",
+		ActivePlayerID: "P1",
+		PlayerIDs:      []string{"P1", "P2"},
+		Seed:           9,
+	})
+	state.Board.Cards = []CardState{
+		{
+			CardID:      "region-1",
+			Name:        "Region One",
+			Kind:        CardKindRegion,
+			OwnerID:     "TABLE",
+			Zone:        CardZoneTable,
+			Revealed:    true,
+			RegionOrder: 1,
+		},
+		{
+			CardID:         "p1-hidden-unit",
+			Name:           "Hidden Unit",
+			Kind:           CardKindCharacter,
+			OwnerID:        "P1",
+			Zone:           CardZoneTable,
+			RegionCardID:   "region-1",
+			VisibleToOwner: true,
+			Revealed:       false,
+			FaceDown:       true,
+		},
+	}
+
+	views := NewProjectionEngine().Generate(state)
+	opponentView := views.Players["P2"]
+	if len(opponentView.Board.Cards) != 2 {
+		t.Fatalf("opponent projected card count = %d, want 2", len(opponentView.Board.Cards))
+	}
+
+	found := false
+	for _, card := range opponentView.Board.Cards {
+		if card.Zone != CardZoneTable || card.Visibility != "hidden" || card.OwnerID != "P1" {
+			continue
+		}
+		found = true
+		if card.RegionCardID != "region-1" {
+			t.Fatalf("hidden card regionCardId = %q, want %q", card.RegionCardID, "region-1")
+		}
+	}
+
+	if !found {
+		t.Fatal("hidden face-down card projection for opponent not found")
+	}
+}
+
 func onlyCard(t *testing.T, view PlayerViewState) CardView {
 	t.Helper()
 

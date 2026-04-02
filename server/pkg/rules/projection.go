@@ -275,11 +275,13 @@ func visibleCardView(card CardState, markers map[string]int) CardView {
 
 func hiddenCardView(card CardState) CardView {
 	return CardView{
-		OwnerID:    card.OwnerID,
-		Zone:       card.Zone,
-		Visibility: "hidden",
-		Revealed:   false,
-		Exhausted:  false,
+		OwnerID:      card.OwnerID,
+		Zone:         card.Zone,
+		RegionCardID: card.RegionCardID,
+		Visibility:   "hidden",
+		Revealed:     false,
+		FaceDown:     card.FaceDown,
+		Exhausted:    false,
 	}
 }
 

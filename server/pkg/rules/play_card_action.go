@@ -58,6 +58,17 @@ func checkPlayCardActionLegality(state GameState, action Action, sourceLookup ca
 		)
 	}
 
+	if playCardRequiresActivePlayer(card.Kind) && action.ActorID != state.Turn.ActivePlayerID {
+		return legalityFailure(
+			ReasonCodeLegalityFailedActionProhibited,
+			"rules.play_card.not_active_player",
+			"turn.activePlayerId",
+			map[string]string{
+				"activePlayerId": state.Turn.ActivePlayerID,
+			},
+		)
+	}
+
 	costLegality := checkPlayCardCost(state, action, card)
 	if !costLegality.OK {
 		return costLegality
@@ -668,4 +679,8 @@ func requiresPlayCardRegionTarget(source CardOperationSource) bool {
 		}
 	}
 	return false
+}
+
+func playCardRequiresActivePlayer(kind CardKind) bool {
+	return kind == CardKindCharacter || kind == CardKindAsset
 }

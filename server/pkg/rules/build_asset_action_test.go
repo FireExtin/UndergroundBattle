@@ -164,3 +164,42 @@ func TestBuildAssetAllowsUseAgainOnNextOwnTurn(t *testing.T) {
 		t.Fatalf("SubmitAction returned error on next own turn: %v", err)
 	}
 }
+
+func TestBuildAssetRejectsWhenActorIsNotActivePlayer(t *testing.T) {
+	state := NewGameState(InitialStateConfig{
+		GameID:         "build-asset-not-active",
+		ActivePlayerID: "P1",
+		PlayerIDs:      []string{"P1", "P2"},
+		Seed:           20260402,
+	})
+	state.Turn.Priority.CurrentPlayerID = "P2"
+	state.Board.Cards = append(state.Board.Cards, CardState{
+		CardID:         "p2-hand-build",
+		Name:           "资产来源",
+		Kind:           CardKindAsset,
+		OwnerID:        "P2",
+		Zone:           CardZoneHand,
+		VisibleToOwner: true,
+	})
+
+	_, err := SubmitAction(state, Action{
+		ID:      "act-build-asset-not-active",
+		ActorID: "P2",
+		Kind:    ActionKindBuildAsset,
+		CardID:  "p2-hand-build",
+	})
+	if err == nil {
+		t.Fatal("SubmitAction succeeded, want active-player rejection")
+	}
+
+	var legalityErr *LegalityError
+	if !errors.As(err, &legalityErr) {
+		t.Fatalf("expected LegalityError, got %T", err)
+	}
+	if legalityErr.Code != ReasonCodeLegalityFailedActionProhibited {
+		t.Fatalf("error code = %q, want %q", legalityErr.Code, ReasonCodeLegalityFailedActionProhibited)
+	}
+	if legalityErr.MessageKey != "rules.build_asset.not_active_player" {
+		t.Fatalf("message key = %q, want %q", legalityErr.MessageKey, "rules.build_asset.not_active_player")
+	}
+}

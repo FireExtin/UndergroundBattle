@@ -567,6 +567,57 @@ func TestPlayCardFaceDownIgnoresLoyaltyRequirement(t *testing.T) {
 	}
 }
 
+func TestPlayCardCharacterRejectsWhenActorIsNotActivePlayer(t *testing.T) {
+	state := basePlayCardState()
+	state.Turn.ActivePlayerID = "P1"
+	state.Turn.Priority.CurrentPlayerID = "P2"
+	state.Turn.Resources["P2"] = PlayerResourceState{Current: 10, Max: 10}
+	state.Board.Cards = append(state.Board.Cards,
+		CardState{
+			CardID:         "region-1",
+			Name:           "地区1",
+			Kind:           CardKindRegion,
+			OwnerID:        "TABLE",
+			Zone:           CardZoneTable,
+			VisibleToOwner: true,
+			Revealed:       true,
+			RegionOrder:    1,
+		},
+		CardState{
+			CardID:         "p2-char-non-active",
+			Name:           "非当前行动玩家角色",
+			Kind:           CardKindCharacter,
+			OwnerID:        "P2",
+			Zone:           CardZoneHand,
+			VisibleToOwner: true,
+			Cost:           1,
+		},
+	)
+
+	_, err := SubmitAction(state, Action{
+		ID:                 "act-play-char-not-active",
+		ActorID:            "P2",
+		Kind:               ActionKindPlayCard,
+		CardID:             "p2-char-non-active",
+		PlayMode:           "face_down",
+		TargetRegionCardID: "region-1",
+	})
+	if err == nil {
+		t.Fatal("SubmitAction succeeded, want active-player rejection")
+	}
+
+	var legalityErr *LegalityError
+	if !errors.As(err, &legalityErr) {
+		t.Fatalf("expected LegalityError, got %T", err)
+	}
+	if legalityErr.Code != ReasonCodeLegalityFailedActionProhibited {
+		t.Fatalf("error code = %q, want %q", legalityErr.Code, ReasonCodeLegalityFailedActionProhibited)
+	}
+	if legalityErr.MessageKey != "rules.play_card.not_active_player" {
+		t.Fatalf("message key = %q, want %q", legalityErr.MessageKey, "rules.play_card.not_active_player")
+	}
+}
+
 func TestPlayCardRejectsWhenLoyaltyRequirementUnmet(t *testing.T) {
 	state := basePlayCardState()
 	state.Turn.Resources["P1"] = PlayerResourceState{Current: 4, Max: 4}
