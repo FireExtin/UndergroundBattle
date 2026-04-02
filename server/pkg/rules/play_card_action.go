@@ -2,6 +2,7 @@ package rules
 
 import (
 	"fmt"
+	"sort"
 	"strings"
 )
 
@@ -490,19 +491,25 @@ func parseLoyaltyRequirements(raw string) map[string]int {
 	}
 
 	requirements := make(map[string]int)
-	for _, mapping := range loyaltyColorMappings {
-		count := strings.Count(text, mapping.Canonical)
-		if count == 0 {
-			for _, alias := range mapping.Aliases {
-				aliasCount := strings.Count(text, alias)
-				if aliasCount > count {
-					count = aliasCount
-				}
+	runes := []rune(text)
+	for cursor := 0; cursor < len(runes); {
+		matched := false
+		for _, token := range loyaltyColorTokens {
+			if cursor+token.RuneLength > len(runes) {
+				continue
 			}
+			if string(runes[cursor:cursor+token.RuneLength]) != token.Token {
+				continue
+			}
+			requirements[token.Canonical]++
+			cursor += token.RuneLength
+			matched = true
+			break
 		}
-		if count > 0 {
-			requirements[mapping.Canonical] = count
+		if matched {
+			continue
 		}
+		cursor++
 	}
 	return requirements
 }
@@ -510,6 +517,12 @@ func parseLoyaltyRequirements(raw string) map[string]int {
 type loyaltyColorMapping struct {
 	Canonical string
 	Aliases   []string
+}
+
+type loyaltyColorToken struct {
+	Token      string
+	Canonical  string
+	RuneLength int
 }
 
 var loyaltyColorMappings = []loyaltyColorMapping{
@@ -521,6 +534,44 @@ var loyaltyColorMappings = []loyaltyColorMapping{
 	{Canonical: "白色", Aliases: []string{"白"}},
 	{Canonical: "紫色", Aliases: []string{"紫"}},
 	{Canonical: "灰色", Aliases: []string{"灰"}},
+}
+
+var loyaltyColorTokens = buildLoyaltyColorTokens()
+
+func buildLoyaltyColorTokens() []loyaltyColorToken {
+	tokens := make([]loyaltyColorToken, 0, len(loyaltyColorMappings)*2)
+	seen := make(map[string]struct{})
+	add := func(token string, canonical string) {
+		normalized := strings.TrimSpace(token)
+		if normalized == "" {
+			return
+		}
+		key := canonical + ":" + normalized
+		if _, exists := seen[key]; exists {
+			return
+		}
+		seen[key] = struct{}{}
+		tokens = append(tokens, loyaltyColorToken{
+			Token:      normalized,
+			Canonical:  canonical,
+			RuneLength: len([]rune(normalized)),
+		})
+	}
+
+	for _, mapping := range loyaltyColorMappings {
+		add(mapping.Canonical, mapping.Canonical)
+		for _, alias := range mapping.Aliases {
+			add(alias, mapping.Canonical)
+		}
+	}
+
+	sort.Slice(tokens, func(i int, j int) bool {
+		if tokens[i].RuneLength == tokens[j].RuneLength {
+			return tokens[i].Token < tokens[j].Token
+		}
+		return tokens[i].RuneLength > tokens[j].RuneLength
+	})
+	return tokens
 }
 
 func normalizeLoyaltyColor(raw string) string {

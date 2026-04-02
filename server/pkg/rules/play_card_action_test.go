@@ -598,6 +598,14 @@ func TestPlayCardAcceptsWhenLoyaltyRequirementMet(t *testing.T) {
 	}
 }
 
+func TestParseLoyaltyRequirementsCountsMixedCanonicalAndAlias(t *testing.T) {
+	requirements := parseLoyaltyRequirements("黄黄色")
+
+	if requirements["黄色"] != 2 {
+		t.Fatalf("黄色 requirement = %d, want 2", requirements["黄色"])
+	}
+}
+
 func basePlayCardState() GameState {
 	state := NewGameState(InitialStateConfig{
 		GameID:         "test-play-card",
