@@ -44,6 +44,20 @@ func checkPlayCardActionLegality(state GameState, action Action, sourceLookup ca
 		)
 	}
 
+	// Only Character cards can be played face-down
+	if normalizePlayMode(action.PlayMode) == playModeFaceDown && card.Kind != CardKindCharacter {
+		return legalityFailure(
+			ReasonCodeLegalityFailedActionProhibited,
+			"rules.play_card.face_down_not_allowed",
+			"action.playMode",
+			map[string]string{
+				"cardId":   card.CardID,
+				"cardKind": string(card.Kind),
+				"playMode": action.PlayMode,
+			},
+		)
+	}
+
 	costLegality := checkPlayCardCost(state, action, card)
 	if !costLegality.OK {
 		return costLegality
