@@ -61,6 +61,7 @@ type SandboxSession struct {
 	mu                sync.Mutex
 	state             rules.GameState
 	projector         *rules.ProjectionEngine
+	lifecycle         SessionLifecycle
 	setup             SetupState
 	setupRuntime      setupRuntimeState
 	messages          []protocolEnvelope
@@ -122,7 +123,7 @@ func (session *SandboxSession) Messages() []protocolEnvelope {
 func (session *SandboxSession) SubmitAction(action rules.Action) ([]protocolEnvelope, error) {
 	session.mu.Lock()
 	defer session.mu.Unlock()
-	if session.setup.Active && !session.setup.Completed {
+	if session.lifecycle.Kind == SessionLifecycleSetup {
 		return nil, errSetupNotCompleted
 	}
 
@@ -173,6 +174,12 @@ func (session *SandboxSession) SubmitAction(action rules.Action) ([]protocolEnve
 		if err := session.generateMatchReportLocked(result.State); err != nil {
 			session.logError("match_report_write_failed gameId=%s revision=%d err=%v", result.State.GameID, result.State.Revision.Number, err)
 		}
+		finishedRevision := result.State.Match.FinishedAtRevision
+		if finishedRevision <= 0 {
+			finishedRevision = result.State.Revision.Number
+		}
+		session.lifecycle = newMatchFinishedLifecycle(session.latestReport, finishedRevision)
+		session.setup.Lifecycle = session.lifecycle
 		session.appendMatchTraceEntryLocked("match_finished", map[string]any{
 			"winner":           result.State.Match.WinnerPlayerID,
 			"endReason":        result.State.Match.EndReason,
@@ -335,7 +342,8 @@ func (session *SandboxSession) resetLocked() ([]protocolEnvelope, error) {
 
 	session.state = state
 	session.projector = projector
-	session.setup = SetupState{}
+	session.lifecycle = newResetLifecycle()
+	session.setup = SetupState{Lifecycle: session.lifecycle}
 	session.setupRuntime = setupRuntimeState{}
 	session.latestReport = nil
 	session.latestTrace = nil

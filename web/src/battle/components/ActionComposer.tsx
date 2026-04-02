@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 
 import type { Action, CardView } from "../../debugger/protocol";
+import { validateActionInput } from "../actionPolicy";
 import type { BattlePlayerId, BattleState } from "../model";
 import type { BattleCardPick } from "./BattleTable";
 
@@ -388,12 +389,15 @@ export function ActionComposer({
     }
 
     const validation = validateBeforeSubmit({
+      rulesMetadata: battle.rulesMetadata,
       actionKind: kind,
       sourceCardId,
       targetCardId,
       targetRegionCardId,
+      targetPlayerId,
       markerType,
       markerAmount,
+      playMode,
       sourceCardKind
     });
     if (validation !== "") {
@@ -450,77 +454,18 @@ export function ActionComposer({
 }
 
 function validateBeforeSubmit(input: {
+  rulesMetadata: BattleState["rulesMetadata"];
   actionKind: string;
   sourceCardId: string;
   targetCardId: string;
   targetRegionCardId: string;
+  targetPlayerId: string;
   markerType: string;
   markerAmount: string;
+  playMode: string;
   sourceCardKind: string;
 }) {
-  const {
-    actionKind,
-    sourceCardId,
-    targetCardId,
-    targetRegionCardId,
-    markerType,
-    markerAmount,
-    sourceCardKind
-  } = input;
-
-  switch (actionKind) {
-    case "play_card":
-      if (sourceCardId.trim() === "") {
-        return "需要选择来源卡牌";
-      }
-      if (sourceCardKind === "character" && targetRegionCardId.trim() === "") {
-        return "角色部署需要选择目标地区";
-      }
-      if (sourceCardKind === "asset" && targetCardId.trim() === "") {
-        return "附属部署需要选择宿主卡牌";
-      }
-      return "";
-    case "build_asset":
-      if (sourceCardId.trim() === "") {
-        return "需要选择来源卡牌";
-      }
-      return "";
-    case "declare_attack":
-    case "declare_investigation":
-    case "move_card":
-      if (sourceCardId.trim() === "") {
-        return "需要选择来源卡牌";
-      }
-      if (targetCardId.trim() === "") {
-        return "需要选择目标卡牌";
-      }
-      return "";
-    case "set_marker":
-    case "remove_marker":
-      if (markerType.trim() === "") {
-        return "需要输入标记类型";
-      }
-      return validateMarkerAmount(markerAmount);
-    case "set_card_marker":
-    case "remove_card_marker":
-      if (targetCardId.trim() === "") {
-        return "需要选择目标卡牌";
-      }
-      if (markerType.trim() === "") {
-        return "需要输入标记类型";
-      }
-      return validateMarkerAmount(markerAmount);
-    default:
-      return "";
-  }
-}
-
-function validateMarkerAmount(raw: string) {
-  const parsed = Number(raw);
-  if (!Number.isFinite(parsed) || parsed <= 0) {
-    return "标记数量必须大于 0";
-  }
-  return "";
+  return validateActionInput(input.rulesMetadata, input);
 }
 
 function buildCardLookup(battle: BattleState) {

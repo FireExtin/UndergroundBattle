@@ -3,17 +3,6 @@ package rules
 // Purpose: Hosts legality and execution flow for the explicit first-player privilege action.
 
 func checkFirstPlayerPrivilegeActionLegality(state GameState, action Action) LegalityResult {
-	if action.ActorID != state.Turn.ActivePlayerID {
-		return legalityFailure(
-			ReasonCodeLegalityFailedActionProhibited,
-			"rules.first_player_privilege.not_first_player",
-			"turn.activePlayerId",
-			map[string]string{
-				"activePlayerId": state.Turn.ActivePlayerID,
-			},
-		)
-	}
-
 	if state.Turn.FirstPlayerPrivilegeUsed ||
 		state.Board.Markers.GetMarker(action.ActorID, markerTypeFirstPlayerPrivilegeUsed) > 0 {
 		return legalityFailure(

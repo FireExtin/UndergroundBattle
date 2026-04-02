@@ -1,5 +1,10 @@
 import { expect, test, type APIRequestContext, type Page } from "@playwright/test";
 
+import {
+  normalizeColor,
+  parseLoyaltyRequirements
+} from "../src/battle/actionPolicy";
+
 // Purpose: Exercises setup wizard + battle actions against the authoritative live sandbox.
 
 type PlayerID = "P1" | "P2";
@@ -34,6 +39,18 @@ type PlayerViewSnapshot = {
   };
   board: {
     cards: CardSnapshot[];
+  };
+  rulesMetadata?: {
+    actionPolicies: Array<unknown>;
+    loyalty: {
+      colorAliases: Array<{
+        canonical: string;
+        aliases?: string[];
+      }>;
+    };
+    projection: {
+      hiddenCardPreserves: string[];
+    };
   };
 };
 
@@ -295,7 +312,7 @@ function selectAffordableCharacter(
   actorID: PlayerID,
   currentResource: number
 ) {
-  const availableColors = countAvailableColors(view.board.cards, actorID);
+  const availableColors = countAvailableColors(view.board.cards, actorID, view.rulesMetadata);
   const candidates = view.board.cards.filter(
     (card) =>
       card.ownerId === actorID &&
@@ -317,11 +334,11 @@ function selectAffordableCharacter(
     if (cost > currentResource) {
       return false;
     }
-    return loyaltySatisfied(card.loyalty ?? "", availableColors);
+    return loyaltySatisfied(card.loyalty ?? "", availableColors, view.rulesMetadata);
   });
 }
 
-function countAvailableColors(cards: CardSnapshot[], actorID: PlayerID) {
+function countAvailableColors(cards: CardSnapshot[], actorID: PlayerID, rulesMetadata?: PlayerViewSnapshot["rulesMetadata"]) {
   const counts: Record<string, number> = {};
   for (const card of cards) {
     if (card.ownerId !== actorID) {
@@ -333,7 +350,7 @@ function countAvailableColors(cards: CardSnapshot[], actorID: PlayerID) {
     if (card.kind !== "character" && card.kind !== "asset") {
       continue;
     }
-    const color = normalizeColor(card.color ?? "");
+    const color = normalizeColor(card.color ?? "", rulesMetadata);
     if (!color) {
       continue;
     }
@@ -342,86 +359,18 @@ function countAvailableColors(cards: CardSnapshot[], actorID: PlayerID) {
   return counts;
 }
 
-function loyaltySatisfied(loyalty: string, availableColors: Record<string, number>) {
-  const requirements = parseLoyaltyRequirements(loyalty);
+function loyaltySatisfied(
+  loyalty: string,
+  availableColors: Record<string, number>,
+  rulesMetadata?: PlayerViewSnapshot["rulesMetadata"]
+) {
+  const requirements = parseLoyaltyRequirements(loyalty, rulesMetadata);
   for (const [color, amount] of Object.entries(requirements)) {
     if ((availableColors[color] ?? 0) < amount) {
       return false;
     }
   }
   return true;
-}
-
-function parseLoyaltyRequirements(loyalty: string) {
-  const text = loyalty.trim();
-  if (text === "") {
-    return {};
-  }
-  const mappings = [
-    { canonical: "黄色", aliases: ["黄"] },
-    { canonical: "红色", aliases: ["红"] },
-    { canonical: "绿色", aliases: ["绿"] },
-    { canonical: "蓝色", aliases: ["蓝"] },
-    { canonical: "黑色", aliases: ["黑"] },
-    { canonical: "白色", aliases: ["白"] },
-    { canonical: "紫色", aliases: ["紫"] },
-    { canonical: "灰色", aliases: ["灰"] }
-  ];
-  const result: Record<string, number> = {};
-  for (const mapping of mappings) {
-    let count = countToken(text, mapping.canonical);
-    if (count === 0) {
-      for (const alias of mapping.aliases) {
-        count = Math.max(count, countToken(text, alias));
-      }
-    }
-    if (count > 0) {
-      result[mapping.canonical] = count;
-    }
-  }
-  return result;
-}
-
-function countToken(text: string, token: string) {
-  if (token === "") {
-    return 0;
-  }
-  return text.split(token).length - 1;
-}
-
-function normalizeColor(raw: string) {
-  const value = raw.trim();
-  if (value === "" || value === "中立") {
-    return "";
-  }
-  switch (value) {
-    case "黄":
-    case "黄色":
-      return "黄色";
-    case "红":
-    case "红色":
-      return "红色";
-    case "绿":
-    case "绿色":
-      return "绿色";
-    case "蓝":
-    case "蓝色":
-      return "蓝色";
-    case "黑":
-    case "黑色":
-      return "黑色";
-    case "白":
-    case "白色":
-      return "白色";
-    case "紫":
-    case "紫色":
-      return "紫色";
-    case "灰":
-    case "灰色":
-      return "灰色";
-    default:
-      return "";
-  }
 }
 
 async function advanceUntilFinished(request: APIRequestContext, maxAdvanceActions: number) {

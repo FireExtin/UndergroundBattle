@@ -392,6 +392,82 @@ func TestSandboxSessionSetupStateTracksCurrentStep(t *testing.T) {
 	}
 }
 
+func TestSandboxSessionLifecycleTransitions(t *testing.T) {
+	session := NewSandboxSessionWithOptions(SandboxSessionOptions{
+		ReportDirectory: t.TempDir(),
+	})
+
+	if got := session.SetupState().Lifecycle.Kind; got != SessionLifecycleReset {
+		t.Fatalf("initial lifecycle = %q, want %q", got, SessionLifecycleReset)
+	}
+
+	state, err := session.StartSetup(SetupStartInput{Seed: 20260403})
+	if err != nil {
+		t.Fatalf("StartSetup returned error: %v", err)
+	}
+	if state.Lifecycle.Kind != SessionLifecycleSetup {
+		t.Fatalf("lifecycle kind after start = %q, want %q", state.Lifecycle.Kind, SessionLifecycleSetup)
+	}
+	if state.Lifecycle.SetupStep != 1 {
+		t.Fatalf("setup lifecycle step after start = %d, want 1", state.Lifecycle.SetupStep)
+	}
+
+	state, err = session.AdvanceSetup(SetupAdvanceInput{})
+	if err != nil {
+		t.Fatalf("AdvanceSetup(step=1) returned error: %v", err)
+	}
+	if state.Lifecycle.SetupStep != 2 {
+		t.Fatalf("setup lifecycle step after advance = %d, want 2", state.Lifecycle.SetupStep)
+	}
+
+	for step := 2; step <= 7; step++ {
+		state, err = session.AdvanceSetup(SetupAdvanceInput{})
+		if err != nil {
+			t.Fatalf("AdvanceSetup(step=%d) returned error: %v", step, err)
+		}
+	}
+	if state.Lifecycle.Kind != SessionLifecycleMatchActive {
+		t.Fatalf("lifecycle kind after setup completion = %q, want %q", state.Lifecycle.Kind, SessionLifecycleMatchActive)
+	}
+
+	_, err = session.Reset()
+	if err != nil {
+		t.Fatalf("Reset returned error before canonical finish path: %v", err)
+	}
+	if got := session.SetupState().Lifecycle.Kind; got != SessionLifecycleReset {
+		t.Fatalf("lifecycle kind after intermediate reset = %q, want %q", got, SessionLifecycleReset)
+	}
+
+	prepareSinglePointWin(t, session)
+	_, err = session.SubmitAction(rules.Action{
+		ID:      "act-session-lifecycle-finish",
+		ActorID: "P1",
+		Kind:    rules.ActionKindAdvancePhase,
+	})
+	if err != nil {
+		t.Fatalf("SubmitAction returned error: %v", err)
+	}
+
+	finished := session.SetupState().Lifecycle
+	if finished.Kind != SessionLifecycleMatchFinished {
+		t.Fatalf("lifecycle kind after finish = %q, want %q", finished.Kind, SessionLifecycleMatchFinished)
+	}
+	if finished.FinishedRevision <= 0 {
+		t.Fatalf("finished revision = %d, want > 0", finished.FinishedRevision)
+	}
+	if finished.ReportPath == "" {
+		t.Fatal("finished lifecycle report path is empty")
+	}
+
+	_, err = session.Reset()
+	if err != nil {
+		t.Fatalf("Reset returned error: %v", err)
+	}
+	if got := session.SetupState().Lifecycle.Kind; got != SessionLifecycleReset {
+		t.Fatalf("lifecycle kind after reset = %q, want %q", got, SessionLifecycleReset)
+	}
+}
+
 func isSetupStepCompleted(steps []SetupStepStatus, targetStep int) bool {
 	for _, step := range steps {
 		if step.Step == targetStep {

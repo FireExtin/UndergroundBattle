@@ -26,6 +26,12 @@ export type SetupState = {
   active: boolean;
   completed: boolean;
   currentStep: number;
+  lifecycle?: {
+    kind: "reset" | "setup" | "match_active" | "match_finished";
+    setupStep?: number;
+    finishedRevision?: number;
+    reportPath?: string;
+  };
   seed: number;
   steps: SetupStepStatus[];
   p1Societies?: string[];

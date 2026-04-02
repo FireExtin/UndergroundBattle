@@ -105,19 +105,21 @@ type PlayerViewState struct {
 	Match          MatchState     `json:"match"`
 	Turn           TurnState      `json:"turn"`
 	Score          ScoreState     `json:"score"`
+	RulesMetadata  RulesMetadata  `json:"rulesMetadata"`
 	Board          ViewBoardState `json:"board"`
 	Markers        map[string]int `json:"markers,omitempty"` // 玩家可见的标记物
 }
 
 // SpectatorViewState is the public-only projection generated for non-player observers.
 type SpectatorViewState struct {
-	GameID   string         `json:"gameId"`
-	Revision Revision       `json:"revision"`
-	Match    MatchState     `json:"match"`
-	Turn     TurnState      `json:"turn"`
-	Score    ScoreState     `json:"score"`
-	Board    ViewBoardState `json:"board"`
-	Markers  map[string]int `json:"markers,omitempty"` // 公开可见的标记物
+	GameID        string         `json:"gameId"`
+	Revision      Revision       `json:"revision"`
+	Match         MatchState     `json:"match"`
+	Turn          TurnState      `json:"turn"`
+	Score         ScoreState     `json:"score"`
+	RulesMetadata RulesMetadata  `json:"rulesMetadata"`
+	Board         ViewBoardState `json:"board"`
+	Markers       map[string]int `json:"markers,omitempty"` // 公开可见的标记物
 }
 
 // ProjectionBundle collects all post-commit projections for a single revision.
@@ -152,6 +154,7 @@ func (engine *ProjectionEngine) Generate(full FullState) ProjectionBundle {
 		engine.generationCount++
 	}
 
+	metadata := DefaultRulesMetadata()
 	playerViews := make(map[string]PlayerViewState, len(full.Players))
 	for _, playerID := range full.Players {
 		playerViews[playerID] = PlayerViewState{
@@ -161,6 +164,7 @@ func (engine *ProjectionEngine) Generate(full FullState) ProjectionBundle {
 			Match:          full.Match,
 			Turn:           cloneTurnState(full.Turn),
 			Score:          cloneScoreState(full.Score),
+			RulesMetadata:  cloneRulesMetadata(metadata),
 			Board:          projectBoardForPlayer(full, playerID),
 			Markers:        projectMarkersForPlayer(full, playerID),
 		}
@@ -170,13 +174,14 @@ func (engine *ProjectionEngine) Generate(full FullState) ProjectionBundle {
 		Revision: full.Revision,
 		Players:  playerViews,
 		Spectator: SpectatorViewState{
-			GameID:   full.GameID,
-			Revision: full.Revision,
-			Match:    full.Match,
-			Turn:     cloneTurnState(full.Turn),
-			Score:    cloneScoreState(full.Score),
-			Board:    projectBoardForSpectator(full),
-			Markers:  projectMarkersForSpectator(full),
+			GameID:        full.GameID,
+			Revision:      full.Revision,
+			Match:         full.Match,
+			Turn:          cloneTurnState(full.Turn),
+			Score:         cloneScoreState(full.Score),
+			RulesMetadata: cloneRulesMetadata(metadata),
+			Board:         projectBoardForSpectator(full),
+			Markers:       projectMarkersForSpectator(full),
 		},
 	}
 }
@@ -278,10 +283,12 @@ func hiddenCardView(card CardState) CardView {
 		OwnerID:      card.OwnerID,
 		Zone:         card.Zone,
 		RegionCardID: card.RegionCardID,
+		RegionOrder:  card.RegionOrder,
 		Visibility:   "hidden",
 		Revealed:     false,
 		FaceDown:     card.FaceDown,
 		Exhausted:    false,
+		Destroyed:    card.Destroyed,
 	}
 }
 

@@ -27,6 +27,7 @@
 - 规则核已把“对局结束”提升为正式 `MatchState`，而不是仅依赖 `winner` 字段。
 - Go sandbox 已支持 `POST /api/debugger/reset`，结束后可直接在同一会话重开一局。
 - Web Live Debugger 已接入 `Reset Sandbox` 按钮，并在终局态禁用动作提交、显示胜者提示。
+- 2026-04-03 起，sandbox session 额外引入显式 `SessionLifecycle`；前端动作表单改为读取 Go projection 下发的 `rulesMetadata.actionPolicies` 做 schema-driven 预校验，不再自己维护动作分支规则。
 - 相关细节与阶段状态请继续参考 `docs/NEXT_GEN_RULE_PLAN.md` 与 git 提交记录。
 
 ---
@@ -111,12 +112,12 @@ UI 不是规则来源。
 * 发送动作请求
 * 展示服务端投影状态
 * 展示日志与错误
-* 做本地预校验与提示
+* 读取 Go 下发的 `rulesMetadata` 做本地预校验与提示
 
 客户端不能：
 
 * 自行裁决
-* 自行决定动作是否合法
+* 自行发明动作合法性规则
 * 自行更新最终游戏状态
 * 自行生成隐藏信息真相
 
@@ -229,7 +230,7 @@ TypeScript 负责：
 * 对局界面
 * 调试界面
 * 回放界面
-* 本地预校验
+* 基于 Go 下发 metadata 的本地预校验
 * fixture 管理辅助
 
 ### 一句话定义

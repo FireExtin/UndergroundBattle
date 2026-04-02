@@ -5,6 +5,7 @@ import type {
   CardView,
   DebuggerProtocolEnvelope,
   MatchState,
+  RulesMetadata,
   ScoreState,
   TurnState,
   ViewerId
@@ -63,6 +64,7 @@ export type BattleState = {
   match: MatchState;
   turn: TurnState;
   score: ScoreState;
+  rulesMetadata: RulesMetadata;
   local: BattlePlayerArea;
   opponent: BattleOpponentArea;
   contest: BattleContestState;
@@ -109,6 +111,16 @@ const defaultScore: ScoreState = {
   victoryThreshold: 2
 };
 
+const defaultRulesMetadata: RulesMetadata = {
+  actionPolicies: [],
+  loyalty: {
+    colorAliases: []
+  },
+  projection: {
+    hiddenCardPreserves: []
+  }
+};
+
 export function deriveBattleState(
   messages: DebuggerProtocolEnvelope[],
   localPlayerId: BattlePlayerId
@@ -124,6 +136,10 @@ export function deriveBattleState(
   const match = referencePatch?.payload.playerView?.match ?? referencePatch?.payload.spectatorView?.match ?? defaultMatch;
   const turn = referencePatch?.payload.playerView?.turn ?? referencePatch?.payload.spectatorView?.turn ?? defaultTurn;
   const score = referencePatch?.payload.playerView?.score ?? referencePatch?.payload.spectatorView?.score ?? defaultScore;
+  const rulesMetadata =
+    referencePatch?.payload.playerView?.rulesMetadata ??
+    referencePatch?.payload.spectatorView?.rulesMetadata ??
+    defaultRulesMetadata;
 
   const localCards = cardsByOwner(cards, localPlayerId);
   const opponentCards = cardsByOwner(cards, opponentPlayerId);
@@ -160,6 +176,7 @@ export function deriveBattleState(
     match,
     turn,
     score,
+    rulesMetadata,
     local: localArea,
     opponent: opponentArea,
     contest,

@@ -4,6 +4,46 @@ export type ProtocolChannelKind = "command" | "event" | "view";
 export type ViewerId = "P1" | "P2" | "spectator";
 export type CardZone = "deck" | "hand" | "table" | "asset" | "discard" | "score";
 
+export type ActionActorConstraint = "any" | "priority_player" | "active_player";
+export type ActionFieldName =
+  | "cardId"
+  | "targetPlayerId"
+  | "targetCardId"
+  | "targetRegionCardId"
+  | "playMode"
+  | "markerType"
+  | "markerAmount"
+  | "randomMax";
+export type ActionFieldRequirement = "optional" | "required" | "forbidden";
+
+export type ActionFieldRule = {
+  field: ActionFieldName;
+  requirement: ActionFieldRequirement;
+  sourceKinds?: string[];
+  minimumInt?: number;
+};
+
+export type ActionPolicy = {
+  actionKind: string;
+  actorConstraint: ActionActorConstraint;
+  requiresPriority: boolean;
+  requiresEmptyStack: boolean;
+  fieldRules?: ActionFieldRule[];
+};
+
+export type RulesMetadata = {
+  actionPolicies: ActionPolicy[];
+  loyalty: {
+    colorAliases: Array<{
+      canonical: string;
+      aliases?: string[];
+    }>;
+  };
+  projection: {
+    hiddenCardPreserves: string[];
+  };
+};
+
 export type Action = {
   id: string;
   actorId: string;
@@ -184,6 +224,7 @@ export type PlayerViewState = {
   match: MatchState;
   turn: TurnState;
   score: ScoreState;
+  rulesMetadata?: RulesMetadata;
   markers?: Record<string, number>;
   board: ViewBoardState;
 };
@@ -194,6 +235,7 @@ export type SpectatorViewState = {
   match: MatchState;
   turn: TurnState;
   score: ScoreState;
+  rulesMetadata?: RulesMetadata;
   markers?: Record<string, number>;
   board: ViewBoardState;
 };

@@ -4,6 +4,28 @@
 - 当前已经有：最小规则核、priority/stack、projection、continuous effects、`inspect` 的 permission hook、`dealDamage` 对 `EffectiveStats.Defense` 的最小致命判定，以及第一批角色动作入口 `declare_attack / declare_investigation`。
 - 如果目标是“继续稳定接真实卡 DSL，并形成一个可扩展 alpha”，还差 4 个明确里程碑。做完这 4 个就够继续推进主卡池，不需要先上完整 dependency engine。
 
+## 2026-04-03 第二十一次补记（SessionLifecycle + ActionPolicy 收口）
+
+- 本轮不是继续加 legality patch，而是优先把几个高频漂移点收成单一真相：
+  1. `SandboxSession` 新增显式 `SessionLifecycle`：`reset / setup / match_active / match_finished`。
+  2. setup step completion 不再由 `currentStep/completed` 二次推导，而是由真实 transition 直接写入 step 状态。
+  3. 新增 Go authoritative `RulesMetadata`，其中包含：
+     - `actionPolicies`
+     - `loyalty.colorAliases`
+     - `projection.hiddenCardPreserves`
+  4. Web `ActionComposer` 不再维护硬编码动作校验分支，改为读取 projection 中的 `rulesMetadata.actionPolicies`。
+  5. Playwright e2e 不再维护独立 loyalty parser，改为复用 `web/src/battle/actionPolicy.ts` 对服务端 metadata 的解释。
+- 同步的详细设计说明见：
+  - `docs/SESSION_LIFECYCLE_ACTION_POLICY_REFACTOR_2026-04-03.md`
+- 新增防护测试：
+  - `server/internal/api/session_test.go`：生命周期状态机回归
+  - `server/pkg/rules/action_policy_test.go`：规则元数据 / actor constraint 回归
+  - `web/src/battle/actionPolicy.test.ts`：前端 metadata-driven 校验与忠诚解析回归
+- 本轮明确**未**推进：
+  - PaymentEngine 并轨
+  - `queue_operation` 的动态 target schema 全量纳入 ActionPolicy
+  - hidden projection 的 golden/schema 完整套件
+
 ## PLAN_NEXT（本轮延后项）
 
 ### PN-BASE-001

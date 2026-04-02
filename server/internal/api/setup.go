@@ -66,6 +66,7 @@ type SetupState struct {
 	Active               bool                `json:"active"`
 	Completed            bool                `json:"completed"`
 	CurrentStep          int                 `json:"currentStep"`
+	Lifecycle            SessionLifecycle    `json:"lifecycle"`
 	Seed                 uint64              `json:"seed"`
 	Steps                []SetupStepStatus   `json:"steps"`
 	P1Societies          []string            `json:"p1Societies,omitempty"`
@@ -152,6 +153,7 @@ func (session *SandboxSession) StartSetup(input SetupStartInput) (SetupState, er
 		Active:              true,
 		Completed:           false,
 		CurrentStep:         1,
+		Lifecycle:           newSetupLifecycle(1),
 		Seed:                seed,
 		P1Societies:         slicesOrDefault(input.P1Societies, []string{"方碑序列", "帷幕守望"}),
 		P2Societies:         slicesOrDefault(input.P2Societies, []string{"王座会", "国家机构"}),
@@ -170,7 +172,8 @@ func (session *SandboxSession) StartSetup(input SetupStartInput) (SetupState, er
 			"play": "play_card 已启用费用与忠诚校验；queue_operation 仍保留调试通道兼容。",
 		},
 	}
-	session.setup.Steps = buildSetupSteps(session.setup.CurrentStep, session.setup.Completed)
+	session.setup.Steps = newSetupSteps()
+	session.lifecycle = session.setup.Lifecycle
 	session.setupRuntime = setupRuntimeState{
 		playerDeck: map[string][]setupCard{"P1": {}, "P2": {}},
 		playerHand: map[string][]setupCard{"P1": {}, "P2": {}},
@@ -217,7 +220,7 @@ func (session *SandboxSession) AdvanceSetup(input SetupAdvanceInput) (SetupState
 		session.setup.P1Societies = slicesOrDefault(input.P1Societies, session.setup.P1Societies)
 		session.setup.P2Societies = slicesOrDefault(input.P2Societies, session.setup.P2Societies)
 		session.setup.LastStepMessage = "步骤1完成：记录双方快速组牌选择。"
-		session.setup.CurrentStep = 2
+		advanceSetupProgress(&session.setup, 1, 2)
 	case 2:
 		regions, err := loadSetupRegionDeckBaseOnly()
 		if err != nil {
@@ -227,11 +230,11 @@ func (session *SandboxSession) AdvanceSetup(input SetupAdvanceInput) (SetupState
 		session.setupRuntime.worldDeck = regions
 		session.setup.WorldDeckCount = len(regions)
 		session.setup.LastStepMessage = "步骤2完成：世界牌库已构建并洗牌。"
-		session.setup.CurrentStep = 3
+		advanceSetupProgress(&session.setup, 2, 3)
 	case 3:
 		session.setup.MarkerPoolReady = true
 		session.setup.LastStepMessage = "步骤3完成：标志已整理。"
-		session.setup.CurrentStep = 4
+		advanceSetupProgress(&session.setup, 3, 4)
 	case 4:
 		cards, err := loadSetupPlayablePoolBaseOnly()
 		if err != nil {
@@ -252,7 +255,7 @@ func (session *SandboxSession) AdvanceSetup(input SetupAdvanceInput) (SetupState
 		session.setup.PlayerHandCount["P1"] = 0
 		session.setup.PlayerHandCount["P2"] = 0
 		session.setup.LastStepMessage = "步骤4完成：双方玩家牌库已构建并完成洗牌语义。"
-		session.setup.CurrentStep = 5
+		advanceSetupProgress(&session.setup, 4, 5)
 	case 5:
 		revealed := make([]setupCard, 0, 3)
 		for len(session.setupRuntime.worldDeck) > 0 && len(revealed) < 3 {
@@ -263,7 +266,7 @@ func (session *SandboxSession) AdvanceSetup(input SetupAdvanceInput) (SetupState
 		session.setup.WorldDeckCount = len(session.setupRuntime.worldDeck)
 		session.setup.RevealedRegions = buildSetupRegionViews(revealed, len(session.setupRuntime.worldDeck))
 		session.setup.LastStepMessage = "步骤5完成：翻开3张地区牌。"
-		session.setup.CurrentStep = 6
+		advanceSetupProgress(&session.setup, 5, 6)
 	case 6:
 		for _, playerID := range []string{"P1", "P2"} {
 			deck := session.setupRuntime.playerDeck[playerID]
@@ -278,12 +281,13 @@ func (session *SandboxSession) AdvanceSetup(input SetupAdvanceInput) (SetupState
 			session.setup.PlayerHandCount[playerID] = len(session.setupRuntime.playerHand[playerID])
 		}
 		session.setup.LastStepMessage = "步骤6完成：双方抓取起始手牌并处理再调度。"
-		session.setup.CurrentStep = 7
+		advanceSetupProgress(&session.setup, 6, 7)
 	case 7:
 		startingPlayerID := resolveStartingPlayerID(session.setup.Seed, input, session.setup.PreviousLoserPlayer)
 		session.setup.StartingPlayerID = startingPlayerID
 		session.setup.Completed = true
 		session.setup.LastStepMessage = "步骤7完成：已确定先手，进入正式对战。"
+		completeFinalSetupStep(&session.setup, 7)
 		if err := session.finalizeSetupToMatchLocked(startingPlayerID); err != nil {
 			return SetupState{}, err
 		}
@@ -291,7 +295,7 @@ func (session *SandboxSession) AdvanceSetup(input SetupAdvanceInput) (SetupState
 		return SetupState{}, fmt.Errorf("setup_step_invalid")
 	}
 
-	session.setup.Steps = buildSetupSteps(session.setup.CurrentStep, session.setup.Completed)
+	session.lifecycle = session.setup.Lifecycle
 	session.appendMatchTraceEntryLocked("setup_advanced", map[string]any{
 		"currentStep":      session.setup.CurrentStep,
 		"completed":        session.setup.Completed,
@@ -361,6 +365,8 @@ func (session *SandboxSession) finalizeSetupToMatchLocked(startingPlayerID strin
 	session.state = state
 	session.messages = cloneProtocolEnvelopes(messages)
 	session.nextMessageNumber = len(messages) + 1
+	session.lifecycle = newMatchActiveLifecycle()
+	session.setup.Lifecycle = session.lifecycle
 	return nil
 }
 
@@ -472,7 +478,7 @@ func drawSetupCards(deck *[]setupCard, hand *[]setupCard, count int) {
 	}
 }
 
-func buildSetupSteps(currentStep int, setupCompleted bool) []SetupStepStatus {
+func newSetupSteps() []SetupStepStatus {
 	titles := []string{
 		"玩家选择牌组",
 		"设置世界牌库",
@@ -485,10 +491,38 @@ func buildSetupSteps(currentStep int, setupCompleted bool) []SetupStepStatus {
 	result := make([]SetupStepStatus, 0, len(titles))
 	for index, title := range titles {
 		step := index + 1
-		completed := step < currentStep || (setupCompleted && step == currentStep)
-		result = append(result, SetupStepStatus{Step: step, Title: title, Completed: completed})
+		result = append(result, SetupStepStatus{Step: step, Title: title, Completed: false})
 	}
 	return result
+}
+
+func advanceSetupProgress(state *SetupState, completedStep int, nextStep int) {
+	if state == nil {
+		return
+	}
+	markSetupStepCompleted(state.Steps, completedStep)
+	state.Active = true
+	state.Completed = false
+	state.CurrentStep = nextStep
+	state.Lifecycle = newSetupLifecycle(nextStep)
+}
+
+func completeFinalSetupStep(state *SetupState, completedStep int) {
+	if state == nil {
+		return
+	}
+	markSetupStepCompleted(state.Steps, completedStep)
+	state.Active = true
+	state.Completed = true
+	state.CurrentStep = completedStep
+}
+
+func markSetupStepCompleted(steps []SetupStepStatus, completedStep int) {
+	for index := range steps {
+		if steps[index].Step == completedStep {
+			steps[index].Completed = true
+		}
+	}
 }
 
 func buildSetupRegionViews(cards []setupCard, worldDeckRemain int) []SetupRegionView {
