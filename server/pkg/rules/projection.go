@@ -11,6 +11,7 @@ const (
 	CardZoneDeck    CardZone = "deck"
 	CardZoneHand    CardZone = "hand"
 	CardZoneTable   CardZone = "table"
+	CardZoneAsset   CardZone = "asset"
 	CardZoneDiscard CardZone = "discard"
 	CardZoneScore   CardZone = "score"
 )

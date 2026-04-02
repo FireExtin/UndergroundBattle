@@ -23,6 +23,7 @@ const (
 	ActionKindSetCardMarker           ActionKind = "set_card_marker"
 	ActionKindRemoveCardMarker        ActionKind = "remove_card_marker"
 	ActionKindPlayCard                ActionKind = "play_card"
+	ActionKindBuildAsset              ActionKind = "build_asset"
 )
 
 // OperationKind names the minimal operation types built from actions.
@@ -47,6 +48,7 @@ const (
 	OperationKindSetCardMarker           OperationKind = "set_card_marker"
 	OperationKindRemoveCardMarker        OperationKind = "remove_card_marker"
 	OperationKindPlayCard                OperationKind = "play_card"
+	OperationKindBuildAsset              OperationKind = "build_asset"
 )
 
 // OperationStatus describes whether an operation is pending on the stack or already resolved.
@@ -83,6 +85,7 @@ const (
 	EventKindCardMarkerSet            EventKind = "card_marker_set"
 	EventKindCardMarkerRemoved        EventKind = "card_marker_removed"
 	EventKindCardPlayed               EventKind = "card_played"
+	EventKindAssetBuilt               EventKind = "asset_built"
 )
 
 // PhaseName identifies the current minimal turn phase.

@@ -8,7 +8,7 @@ import type { BattleCardPick } from "./BattleTable";
 
 const actionKindOptions = [
   { value: "play_card", label: "打出卡牌" },
-  { value: "play_asset", label: "建立资产" },
+  { value: "build_asset", label: "建立资产" },
   { value: "declare_attack", label: "发起攻击" },
   { value: "declare_investigation", label: "发起调查" },
   { value: "move_card", label: "移动卡牌" },
@@ -114,13 +114,23 @@ export function ActionComposer({
     if (!pick.cardId) {
       return;
     }
+    const isOwnCard = pick.ownerId === actorId;
 
     if (kind === "set_marker" || kind === "remove_marker") {
       return;
     }
 
+    if (kind === "build_asset") {
+      if (isOwnCard && pick.zone === "hand") {
+        setSourceCardId(pick.cardId);
+        setTargetCardId("");
+        setTargetRegionCardId("");
+        setError("");
+      }
+      return;
+    }
+
     const isRegion = pick.kind === "region";
-    const isOwnCard = pick.ownerId === actorId;
 
     if (kind === "set_card_marker" || kind === "remove_card_marker") {
       if (!isRegion) {
@@ -131,7 +141,7 @@ export function ActionComposer({
     }
 
     if (isRegion) {
-      if (isPlayLikeActionKind(kind)) {
+      if (isPlayCardActionKind(kind)) {
         setTargetRegionCardId(pick.cardId);
       } else {
         setTargetCardId(pick.cardId);
@@ -147,7 +157,7 @@ export function ActionComposer({
         return;
       }
 
-      if ((kind === "play_card" && sourceCardKind === "asset") || kind === "play_asset") {
+      if (isPlayCardActionKind(kind) && sourceCardKind === "asset") {
         setTargetCardId(pick.cardId);
         setError("");
         return;
@@ -392,10 +402,10 @@ export function ActionComposer({
     }
 
     const action: ComposerActionInput = {
-      kind: toServerActionKind(kind)
+      kind
     };
 
-    if (isPlayLikeActionKind(kind) || kind === "declare_attack" || kind === "declare_investigation" || kind === "move_card") {
+    if (isPlayCardActionKind(kind) || kind === "build_asset" || kind === "declare_attack" || kind === "declare_investigation" || kind === "move_card") {
       action.cardId = sourceCardId;
     }
 
@@ -421,7 +431,7 @@ export function ActionComposer({
       action.markerAmount = Number(markerAmount);
     }
 
-    if (isPlayLikeActionKind(kind)) {
+    if (isPlayCardActionKind(kind)) {
       action.playMode = playMode;
       if (targetRegionCardId.trim() !== "") {
         action.targetRegionCardId = targetRegionCardId.trim();
@@ -471,14 +481,9 @@ function validateBeforeSubmit(input: {
       }
       return "";
     case "play_asset":
+    case "build_asset":
       if (sourceCardId.trim() === "") {
         return "需要选择来源卡牌";
-      }
-      if (sourceCardKind !== "asset") {
-        return "建立资产仅支持附属卡牌";
-      }
-      if (targetCardId.trim() === "") {
-        return "建立资产需要选择宿主卡牌";
       }
       return "";
     case "declare_attack":
@@ -601,13 +606,6 @@ function uniq(values: string[]) {
   return unique;
 }
 
-function isPlayLikeActionKind(kind: string) {
-  return kind === "play_card" || kind === "play_asset";
-}
-
-function toServerActionKind(kind: string): Action["kind"] {
-  if (kind === "play_asset") {
-    return "play_card";
-  }
-  return kind as Action["kind"];
+function isPlayCardActionKind(kind: string) {
+  return kind === "play_card";
 }

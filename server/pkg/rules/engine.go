@@ -185,6 +185,8 @@ func checkLegalityWithLookup(state GameState, action Action, sourceLookup cardOp
 		return checkFirstPlayerPrivilegeActionLegality(state, action)
 	case ActionKindPlayCard:
 		return checkPlayCardActionLegality(state, action, sourceLookup)
+	case ActionKindBuildAsset:
+		return checkBuildAssetActionLegality(state, action)
 	case ActionKindMoveCard:
 		return checkMoveCardActionLegality(state, action)
 	case ActionKindDeclareAttack:
@@ -338,6 +340,10 @@ func buildOperationWithLookup(state GameState, action Action, sourceLookup cardO
 				}
 			}
 		}
+	case ActionKindBuildAsset:
+		operation.Kind = OperationKindBuildAsset
+		operation.CardID = action.CardID
+		operation.Label = "build_asset"
 	case ActionKindDeclareAttack:
 		operation.Kind = OperationKindDeclareAttack
 		operation.CardID = action.CardID
@@ -434,6 +440,8 @@ func executeOperation(state GameState, operation Operation) (GameState, Operatio
 		return executeRemoveCardMarker(working, operation)
 	case OperationKindDeclareAttack:
 		return executeDeclareAttack(working, operation)
+	case OperationKindBuildAsset:
+		return executeBuildAsset(working, operation)
 	case OperationKindMoveCard:
 		return executeMoveCard(working, operation)
 	case OperationKindDeclareInvestigation:
@@ -844,6 +852,7 @@ func actionRequiresEmptyStack(kind ActionKind) bool {
 		ActionKindInspectCard,
 		ActionKindSetFaceDown,
 		ActionKindUseFirstPlayerPrivilege,
+		ActionKindBuildAsset,
 		ActionKindMoveCard,
 		ActionKindDeclareAttack,
 		ActionKindDeclareInvestigation,

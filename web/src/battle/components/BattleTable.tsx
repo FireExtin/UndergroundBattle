@@ -21,9 +21,9 @@ export type BattleCardPick = {
 
 export function BattleTable({ battle, localPlayerId, onLocalPlayerChanged, onCardPicked }: BattleTableProps) {
   const localCharacters = battle.local.table.filter((card) => card.kind === "character");
-  const localAssets = battle.local.table.filter((card) => card.kind === "asset");
+  const localAssets = battle.local.assets;
   const opponentCharacters = battle.opponent.table.filter((card) => card.kind === "character");
-  const opponentAssets = battle.opponent.table.filter((card) => card.kind === "asset");
+  const opponentAssets = battle.opponent.assets;
 
   return (
     <section className="battle-table" aria-label="战场桌面">
@@ -61,6 +61,7 @@ export function BattleTable({ battle, localPlayerId, onLocalPlayerChanged, onCar
         <div className="battle-zone__summary">
           <ZoneStat label="对方玩家手牌" value={battle.opponent.handCount} />
           <ZoneStat label="对方牌库" value={battle.opponent.deckCount} />
+          <ZoneStat label="对方资产区" value={battle.opponent.assetCount} />
           <ZoneStat label="对方墓地" value={battle.opponent.discardCount} />
           <ZoneStat label="对方计分区" value={battle.opponent.scoreCount} />
           <ZoneStat
@@ -167,6 +168,7 @@ export function BattleTable({ battle, localPlayerId, onLocalPlayerChanged, onCar
         <div className="battle-zone__summary">
           <ZoneStat label="玩家手牌" value={battle.local.hand.length} />
           <ZoneStat label="玩家牌库" value={battle.local.deck.length} />
+          <ZoneStat label="资产区" value={battle.local.assets.length} />
           <ZoneStat label="墓地" value={battle.local.discard.length} />
           <ZoneStat label="计分区" value={battle.local.score.length} />
           <ZoneStat label="秘社" value={battle.local.markers.secret_society ?? 0} />

@@ -288,5 +288,6 @@ func resetFirstPlayerPrivilegeMarkers(state *GameState) {
 	for _, playerID := range state.Players {
 		setMarker(state, playerID, markerTypeFirstPlayerPrivilegeUsed, 0)
 		setMarker(state, playerID, markerTypeFirstPlayerPrivilegeRequest, 0)
+		setMarker(state, playerID, markerTypeBuildAssetUsed, 0)
 	}
 }

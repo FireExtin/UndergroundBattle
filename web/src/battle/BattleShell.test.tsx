@@ -243,11 +243,11 @@ describe("BattleShell", () => {
     render(<BattleShell fallbackMessageSets={[]} />);
     await screen.findByText("对方玩家区域");
 
-    expect(screen.getByText("对方资产区")).toBeInTheDocument();
-    expect(screen.getByText("本方资产区")).toBeInTheDocument();
+    expect(screen.getAllByText("对方资产区").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("本方资产区").length).toBeGreaterThan(0);
   });
 
-  it("submits establish asset shortcut as play_card", async () => {
+  it("submits establish asset shortcut as build_asset without extra target", async () => {
     const fetchMock = createBattleFetchMock({
       setupStates: [completedSetupState()],
       messages: buildMessages({ includeAssets: true })
@@ -258,7 +258,7 @@ describe("BattleShell", () => {
     await screen.findByText("对方玩家区域");
 
     fireEvent.change(screen.getByLabelText("动作类型"), {
-      target: { value: "play_asset" }
+      target: { value: "build_asset" }
     });
     fireEvent.change(screen.getByLabelText("来源卡牌"), {
       target: { value: "p1-hand-asset-1" }
@@ -281,10 +281,52 @@ describe("BattleShell", () => {
     const body = JSON.parse(String(call?.[1]?.body));
     expect(body).toMatchObject({
       actorId: "P1",
-      kind: "play_card",
-      cardId: "p1-hand-asset-1",
-      targetCardId: "p1-table-1"
+      kind: "build_asset",
+      cardId: "p1-hand-asset-1"
     });
+    expect(body.targetCardId).toBeUndefined();
+    expect(body.targetRegionCardId).toBeUndefined();
+  });
+
+  it("allows establish asset shortcut for character-style deploy flow", async () => {
+    const fetchMock = createBattleFetchMock({
+      setupStates: [completedSetupState()],
+      messages: buildMessages()
+    });
+    vi.stubGlobal("fetch", fetchMock);
+
+    render(<BattleShell fallbackMessageSets={[]} />);
+    await screen.findByText("对方玩家区域");
+
+    fireEvent.change(screen.getByLabelText("动作类型"), {
+      target: { value: "build_asset" }
+    });
+    fireEvent.change(screen.getByLabelText("来源卡牌"), {
+      target: { value: "p1-hand-1" }
+    });
+    fireEvent.change(screen.getByLabelText("部署地区"), {
+      target: { value: "region-1" }
+    });
+    fireEvent.click(screen.getByRole("button", { name: "提交动作" }));
+
+    await waitFor(() => {
+      expect(fetchMock).toHaveBeenCalledWith(
+        "/api/debugger/actions",
+        expect.objectContaining({
+          method: "POST"
+        })
+      );
+    });
+
+    const call = fetchMock.mock.calls.find((args) => args[0] === "/api/debugger/actions");
+    const body = JSON.parse(String(call?.[1]?.body));
+    expect(body).toMatchObject({
+      actorId: "P1",
+      kind: "build_asset",
+      cardId: "p1-hand-1"
+    });
+    expect(body.targetCardId).toBeUndefined();
+    expect(body.targetRegionCardId).toBeUndefined();
   });
 });
 

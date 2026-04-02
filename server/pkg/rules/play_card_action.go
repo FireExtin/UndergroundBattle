@@ -469,7 +469,7 @@ func countPlayerLoyaltyColors(state GameState, playerID string) map[string]int {
 		if card.OwnerID != playerID {
 			continue
 		}
-		if card.Zone != CardZoneTable || card.Destroyed || card.FaceDown || !card.Revealed {
+		if (card.Zone != CardZoneTable && card.Zone != CardZoneAsset) || card.Destroyed || card.FaceDown || !card.Revealed {
 			continue
 		}
 		if card.Kind != CardKindCharacter && card.Kind != CardKindAsset {

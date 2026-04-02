@@ -2,7 +2,7 @@
 
 export type ProtocolChannelKind = "command" | "event" | "view";
 export type ViewerId = "P1" | "P2" | "spectator";
-export type CardZone = "deck" | "hand" | "table" | "discard" | "score";
+export type CardZone = "deck" | "hand" | "table" | "asset" | "discard" | "score";
 
 export type Action = {
   id: string;

@@ -17,6 +17,7 @@ export type BattlePlayerId = Exclude<ViewerId, "spectator">;
 export type BattlePlayerArea = {
   hand: CardView[];
   deck: CardView[];
+  assets: CardView[];
   discard: CardView[];
   score: CardView[];
   table: CardView[];
@@ -27,6 +28,8 @@ export type BattleOpponentArea = {
   handCount: number;
   handPreview: CardView[];
   deckCount: number;
+  assetCount: number;
+  assets: CardView[];
   discardCount: number;
   scoreCount: number;
   table: CardView[];
@@ -128,6 +131,7 @@ export function deriveBattleState(
   const localArea: BattlePlayerArea = {
     hand: cardsInZone(localCards, "hand"),
     deck: cardsInZone(localCards, "deck"),
+    assets: cardsInZone(localCards, "asset"),
     discard: cardsInZone(localCards, "discard"),
     score: cardsInZone(localCards, "score"),
     table: cardsInZone(localCards, "table"),
@@ -135,10 +139,13 @@ export function deriveBattleState(
   };
 
   const opponentHand = cardsInZone(opponentCards, "hand");
+  const opponentAssets = cardsInZone(opponentCards, "asset");
   const opponentArea: BattleOpponentArea = {
     handCount: opponentHand.length,
     handPreview: opponentHand,
     deckCount: cardsInZone(opponentCards, "deck").length,
+    assetCount: opponentAssets.length,
+    assets: opponentAssets,
     discardCount: cardsInZone(opponentCards, "discard").length,
     scoreCount: cardsInZone(opponentCards, "score").length,
     table: cardsInZone(opponentCards, "table"),

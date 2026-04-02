@@ -85,6 +85,7 @@ func InvariantCardZoneValid(state GameState) bool {
 	validZones := map[CardZone]bool{
 		CardZoneHand:    true,
 		CardZoneTable:   true,
+		CardZoneAsset:   true,
 		CardZoneDiscard: true,
 		CardZoneDeck:    true,
 		CardZoneScore:   true,
@@ -100,7 +101,7 @@ func InvariantCardZoneValid(state GameState) bool {
 // InvariantCardDestroyedStateValid checks that card Destroyed state is consistent with Zone.
 func InvariantCardDestroyedStateValid(state GameState) bool {
 	for _, card := range state.Board.Cards {
-		if card.Zone == CardZoneTable && card.Destroyed {
+		if (card.Zone == CardZoneTable || card.Zone == CardZoneAsset) && card.Destroyed {
 			return false
 		}
 		if card.Zone == CardZoneDiscard && !card.Destroyed {
