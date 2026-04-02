@@ -26,6 +26,25 @@
   - `queue_operation` 的动态 target schema 全量纳入 ActionPolicy
   - hidden projection 的 golden/schema 完整套件
 
+## 2026-04-03 第二十二次补记（PaymentEngine + Prototype Mode 隔离）
+
+- 已把当前临时资源模型从散落函数收口成统一支付边界：
+  - 新增 `server/pkg/rules/payment.go`
+  - 新增 `PaymentEngine`
+  - 当前默认实现为 `PaymentModePrototype`
+- 当前 battle 主路径已经并轨到统一支付入口：
+  - `NewGameState()` 初始化资源改走 payment engine
+  - `end -> main` 回合切换补费改走 payment engine
+  - `play_card` legality / commit 扣费改走 payment engine
+- `RulesMetadata` 新增 `payment.mode`，当前 projection 会显式下发：
+  - `prototype`
+- 本轮仍然**没有**做 rulebook 真实支付模型：
+  - 没有横置资产得费
+  - 没有步骤结束清空支付资源
+  - 没有 `PaymentModeRulebook`
+- 详细说明见：
+  - `docs/PAYMENT_ENGINE_PROTOTYPE_REFACTOR_2026-04-03.md`
+
 ## PLAN_NEXT（本轮延后项）
 
 ### PN-BASE-001

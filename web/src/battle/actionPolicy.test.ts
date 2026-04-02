@@ -29,6 +29,9 @@ const metadata: RulesMetadata = {
       ]
     }
   ],
+  payment: {
+    mode: "prototype"
+  },
   loyalty: {
     colorAliases: [
       { canonical: "黄色", aliases: ["黄"] },

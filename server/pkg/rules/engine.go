@@ -70,7 +70,9 @@ func NewGameState(config InitialStateConfig) GameState {
 	}
 
 	resetPriorityWindow(&state.Turn, activePlayerID, PriorityWindowAction)
-	InitializeTurnResources(&state)
+	if engine := CurrentPaymentEngine(); engine != nil {
+		engine.Initialize(&state)
+	}
 	return state
 }
 
@@ -724,7 +726,9 @@ func applyPhaseAdvance(state GameState, operation Operation) GameState {
 
 	if previousPhase == PhaseEnd && operation.NextPhase == PhaseMain {
 		applyEndToMainRulebookFlow(&working, operation)
-		RefillActivePlayerResources(&working)
+		if engine := CurrentPaymentEngine(); engine != nil {
+			engine.RefillForTurn(&working)
+		}
 	}
 
 	resetPriorityWindow(&working.Turn, working.Turn.ActivePlayerID, PriorityWindowAction)

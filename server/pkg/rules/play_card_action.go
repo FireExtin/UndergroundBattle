@@ -269,7 +269,11 @@ func checkPlayCardActionLegality(state GameState, action Action, sourceLookup ca
 
 func checkPlayCardCost(state GameState, action Action, card CardState) LegalityResult {
 	required := requiredPlayCardCost(action.PlayMode, card)
-	pool := currentPlayerResource(state, action.ActorID)
+	engine := CurrentPaymentEngine()
+	pool := PlayerResourceState{}
+	if engine != nil {
+		pool = engine.ResourceView(state, action.ActorID)
+	}
 	if pool.Current < required {
 		return legalityFailure(
 			ReasonCodeCostFailedUnpaid,
@@ -338,7 +342,24 @@ func executePlayCard(state GameState, operation Operation) (GameState, Operation
 
 	card := &working.Board.Cards[cardIndex]
 	requiredCost := requiredPlayCardCost(operation.PlayMode, *card)
-	if !payPlayerResourceCost(&working, operation.ActorID, requiredCost) {
+	engine := CurrentPaymentEngine()
+	if engine == nil {
+		return GameState{}, Operation{}, Event{}, &LegalityError{
+			Result: legalityFailure(
+				ReasonCodeRulesFailedInvalidState,
+				"rules.payment_engine_not_available",
+				"turn.resources",
+				map[string]string{
+					"actorId": operation.ActorID,
+					"cardId":  operation.CardID,
+				},
+			),
+			Code:       ReasonCodeRulesFailedInvalidState,
+			Message:    "payment engine not available",
+			MessageKey: "rules.payment_engine_not_available",
+		}
+	}
+	if !engine.PayCost(&working, operation.ActorID, requiredCost) {
 		ensureTurnResourceEntries(&working.Turn, working.Players)
 		current := working.Turn.Resources[operation.ActorID].Current
 		return GameState{}, Operation{}, Event{}, &LegalityError{

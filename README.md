@@ -28,6 +28,7 @@
 - Go sandbox 已支持 `POST /api/debugger/reset`，结束后可直接在同一会话重开一局。
 - Web Live Debugger 已接入 `Reset Sandbox` 按钮，并在终局态禁用动作提交、显示胜者提示。
 - 2026-04-03 起，sandbox session 额外引入显式 `SessionLifecycle`；前端动作表单改为读取 Go projection 下发的 `rulesMetadata.actionPolicies` 做 schema-driven 预校验，不再自己维护动作分支规则。
+- 同日，当前资源池模型已被显式收口到 `PaymentEngine + PaymentModePrototype`；`TurnState.Resources` 仍是原型快照，不代表最终规则书支付模型。
 - 相关细节与阶段状态请继续参考 `docs/NEXT_GEN_RULE_PLAN.md` 与 git 提交记录。
 
 ---
