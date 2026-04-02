@@ -232,6 +232,60 @@ describe("BattleShell", () => {
       expect(calls).toHaveLength(2);
     });
   });
+
+  it("renders dedicated asset zones for both players", async () => {
+    const fetchMock = createBattleFetchMock({
+      setupStates: [completedSetupState()],
+      messages: buildMessages({ includeAssets: true })
+    });
+    vi.stubGlobal("fetch", fetchMock);
+
+    render(<BattleShell fallbackMessageSets={[]} />);
+    await screen.findByText("对方玩家区域");
+
+    expect(screen.getByText("对方资产区")).toBeInTheDocument();
+    expect(screen.getByText("本方资产区")).toBeInTheDocument();
+  });
+
+  it("submits establish asset shortcut as play_card", async () => {
+    const fetchMock = createBattleFetchMock({
+      setupStates: [completedSetupState()],
+      messages: buildMessages({ includeAssets: true })
+    });
+    vi.stubGlobal("fetch", fetchMock);
+
+    render(<BattleShell fallbackMessageSets={[]} />);
+    await screen.findByText("对方玩家区域");
+
+    fireEvent.change(screen.getByLabelText("动作类型"), {
+      target: { value: "play_asset" }
+    });
+    fireEvent.change(screen.getByLabelText("来源卡牌"), {
+      target: { value: "p1-hand-asset-1" }
+    });
+    fireEvent.change(screen.getByLabelText("目标卡牌"), {
+      target: { value: "p1-table-1" }
+    });
+    fireEvent.click(screen.getByRole("button", { name: "提交动作" }));
+
+    await waitFor(() => {
+      expect(fetchMock).toHaveBeenCalledWith(
+        "/api/debugger/actions",
+        expect.objectContaining({
+          method: "POST"
+        })
+      );
+    });
+
+    const call = fetchMock.mock.calls.find((args) => args[0] === "/api/debugger/actions");
+    const body = JSON.parse(String(call?.[1]?.body));
+    expect(body).toMatchObject({
+      actorId: "P1",
+      kind: "play_card",
+      cardId: "p1-hand-asset-1",
+      targetCardId: "p1-table-1"
+    });
+  });
 });
 
 function createBattleFetchMock(options?: {
@@ -321,10 +375,12 @@ function buildMessages(options?: {
   finished?: boolean;
   includeActionLogs?: boolean;
   includeExtraLocalTable?: boolean;
+  includeAssets?: boolean;
 }): DebuggerProtocolEnvelope[] {
   const finished = options?.finished === true;
   const includeActionLogs = options?.includeActionLogs === true;
   const includeExtraLocalTable = options?.includeExtraLocalTable === true;
+  const includeAssets = options?.includeAssets === true;
 
   const envelopes: DebuggerProtocolEnvelope[] = [];
   if (includeActionLogs) {
@@ -334,7 +390,7 @@ function buildMessages(options?: {
     );
   }
 
-  const p1Cards = buildMessagesCards(includeExtraLocalTable);
+  const p1Cards = buildMessagesCards(includeExtraLocalTable, includeAssets);
 
   envelopes.push(
     statePatched("P1", [...p1Cards], { secret_society: 1 }, finished),
@@ -448,7 +504,7 @@ function statePatched(
   };
 }
 
-function buildMessagesCards(includeExtraLocalTable = false): CardView[] {
+function buildMessagesCards(includeExtraLocalTable = false, includeAssets = false): CardView[] {
   const cards = [
     card({
       cardId: "p1-hand-1",
@@ -505,6 +561,37 @@ function buildMessagesCards(includeExtraLocalTable = false): CardView[] {
       regionCardId: "region-2"
     })
   ];
+
+  if (includeAssets) {
+    cards.push(
+      card({
+        cardId: "p1-hand-asset-1",
+        ownerId: "P1",
+        zone: "hand",
+        visibility: "visible",
+        name: "P1 资产手牌",
+        kind: "asset"
+      }),
+      card({
+        cardId: "p1-asset-1",
+        ownerId: "P1",
+        zone: "table",
+        visibility: "visible",
+        name: "P1 资产",
+        kind: "asset",
+        regionCardId: "region-1"
+      }),
+      card({
+        cardId: "p2-asset-1",
+        ownerId: "P2",
+        zone: "table",
+        visibility: "visible",
+        name: "P2 资产",
+        kind: "asset",
+        regionCardId: "region-2"
+      })
+    );
+  }
 
   if (includeExtraLocalTable) {
     cards.push(

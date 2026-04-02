@@ -8,6 +8,7 @@ import type { BattleCardPick } from "./BattleTable";
 
 const actionKindOptions = [
   { value: "play_card", label: "打出卡牌" },
+  { value: "play_asset", label: "建立资产" },
   { value: "declare_attack", label: "发起攻击" },
   { value: "declare_investigation", label: "发起调查" },
   { value: "move_card", label: "移动卡牌" },
@@ -130,7 +131,7 @@ export function ActionComposer({
     }
 
     if (isRegion) {
-      if (kind === "play_card") {
+      if (isPlayLikeActionKind(kind)) {
         setTargetRegionCardId(pick.cardId);
       } else {
         setTargetCardId(pick.cardId);
@@ -146,7 +147,7 @@ export function ActionComposer({
         return;
       }
 
-      if (kind === "play_card" && sourceCardKind === "asset") {
+      if ((kind === "play_card" && sourceCardKind === "asset") || kind === "play_asset") {
         setTargetCardId(pick.cardId);
         setError("");
         return;
@@ -391,10 +392,10 @@ export function ActionComposer({
     }
 
     const action: ComposerActionInput = {
-      kind
+      kind: toServerActionKind(kind)
     };
 
-    if (kind === "play_card" || kind === "declare_attack" || kind === "declare_investigation" || kind === "move_card") {
+    if (isPlayLikeActionKind(kind) || kind === "declare_attack" || kind === "declare_investigation" || kind === "move_card") {
       action.cardId = sourceCardId;
     }
 
@@ -420,7 +421,7 @@ export function ActionComposer({
       action.markerAmount = Number(markerAmount);
     }
 
-    if (kind === "play_card") {
+    if (isPlayLikeActionKind(kind)) {
       action.playMode = playMode;
       if (targetRegionCardId.trim() !== "") {
         action.targetRegionCardId = targetRegionCardId.trim();
@@ -467,6 +468,17 @@ function validateBeforeSubmit(input: {
       }
       if (sourceCardKind === "asset" && targetCardId.trim() === "") {
         return "附属部署需要选择宿主卡牌";
+      }
+      return "";
+    case "play_asset":
+      if (sourceCardId.trim() === "") {
+        return "需要选择来源卡牌";
+      }
+      if (sourceCardKind !== "asset") {
+        return "建立资产仅支持附属卡牌";
+      }
+      if (targetCardId.trim() === "") {
+        return "建立资产需要选择宿主卡牌";
       }
       return "";
     case "declare_attack":
@@ -587,4 +599,15 @@ function uniq(values: string[]) {
   const unique = Array.from(new Set(values.filter((value) => value.trim() !== "")));
   unique.sort((left, right) => left.localeCompare(right));
   return unique;
+}
+
+function isPlayLikeActionKind(kind: string) {
+  return kind === "play_card" || kind === "play_asset";
+}
+
+function toServerActionKind(kind: string): Action["kind"] {
+  if (kind === "play_asset") {
+    return "play_card";
+  }
+  return kind as Action["kind"];
 }

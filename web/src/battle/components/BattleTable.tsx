@@ -20,6 +20,11 @@ export type BattleCardPick = {
 };
 
 export function BattleTable({ battle, localPlayerId, onLocalPlayerChanged, onCardPicked }: BattleTableProps) {
+  const localCharacters = battle.local.table.filter((card) => card.kind === "character");
+  const localAssets = battle.local.table.filter((card) => card.kind === "asset");
+  const opponentCharacters = battle.opponent.table.filter((card) => card.kind === "character");
+  const opponentAssets = battle.opponent.table.filter((card) => card.kind === "asset");
+
   return (
     <section className="battle-table" aria-label="战场桌面">
       <header className="battle-table__header">
@@ -64,6 +69,26 @@ export function BattleTable({ battle, localPlayerId, onLocalPlayerChanged, onCar
           />
         </div>
         <CardStrip cards={battle.opponent.handPreview} fallback="(无可见手牌)" />
+        <div className="battle-zone__stacks">
+          <div>
+            <p className="muted">对方角色区</p>
+            <CardStrip
+              cards={opponentCharacters}
+              fallback="(空)"
+              compact
+              onVisibleCardPicked={(card) => onCardPicked(toCardPick(card))}
+            />
+          </div>
+          <div>
+            <p className="muted">对方资产区</p>
+            <CardStrip
+              cards={opponentAssets}
+              fallback="(空)"
+              compact
+              onVisibleCardPicked={(card) => onCardPicked(toCardPick(card))}
+            />
+          </div>
+        </div>
       </section>
 
       <section className="battle-zone battle-zone--contest">
@@ -156,9 +181,19 @@ export function BattleTable({ battle, localPlayerId, onLocalPlayerChanged, onCar
             />
           </div>
           <div>
-            <p className="muted">本方桌面</p>
+            <p className="muted">本方角色区</p>
             <CardStrip
-              cards={battle.local.table}
+              cards={localCharacters}
+              fallback="(空)"
+              onVisibleCardPicked={(card) => {
+                onCardPicked(toCardPick(card));
+              }}
+            />
+          </div>
+          <div>
+            <p className="muted">本方资产区</p>
+            <CardStrip
+              cards={localAssets}
               fallback="(空)"
               onVisibleCardPicked={(card) => {
                 onCardPicked(toCardPick(card));
