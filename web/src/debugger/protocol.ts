@@ -135,6 +135,9 @@ export type CardView = {
   name?: string;
   ownerId: string;
   zone: CardZone;
+  kind?: string;
+  regionCardId?: string;
+  regionOrder?: number;
   visibility: string;
   revealed: boolean;
   faceDown?: boolean;

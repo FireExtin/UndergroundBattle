@@ -308,6 +308,71 @@ func TestProjectionRunsOnlyAfterCommitAndNotDuringLegality(t *testing.T) {
 	}
 }
 
+func TestProjectionCardViewIncludesKindAndRegionMetadata(t *testing.T) {
+	state := NewGameState(InitialStateConfig{
+		GameID:         "game-projection-card-metadata",
+		ActivePlayerID: "P1",
+		PlayerIDs:      []string{"P1", "P2"},
+		Seed:           8,
+	})
+	state.Board.Cards = []CardState{
+		{
+			CardID:      "region-1",
+			Name:        "Region One",
+			Kind:        CardKindRegion,
+			OwnerID:     "P1",
+			Zone:        CardZoneTable,
+			Revealed:    true,
+			RegionOrder: 1,
+		},
+		{
+			CardID:       "unit-1",
+			Name:         "Region Unit",
+			Kind:         CardKindCharacter,
+			OwnerID:      "P1",
+			Zone:         CardZoneTable,
+			Revealed:     true,
+			RegionCardID: "region-1",
+		},
+	}
+
+	views := NewProjectionEngine().Generate(state)
+	view := views.Players["P1"]
+	if len(view.Board.Cards) != 2 {
+		t.Fatalf("card count = %d, want 2", len(view.Board.Cards))
+	}
+
+	var projectedRegion CardView
+	var projectedUnit CardView
+	for _, card := range view.Board.Cards {
+		if card.CardID == "region-1" {
+			projectedRegion = card
+		}
+		if card.CardID == "unit-1" {
+			projectedUnit = card
+		}
+	}
+
+	if projectedRegion.CardID == "" {
+		t.Fatal("region card was not projected")
+	}
+	if projectedUnit.CardID == "" {
+		t.Fatal("unit card was not projected")
+	}
+	if projectedRegion.Kind != "region" {
+		t.Fatalf("projected region kind = %q, want %q", projectedRegion.Kind, "region")
+	}
+	if projectedRegion.RegionOrder != 1 {
+		t.Fatalf("projected region order = %d, want 1", projectedRegion.RegionOrder)
+	}
+	if projectedUnit.Kind != "character" {
+		t.Fatalf("projected unit kind = %q, want %q", projectedUnit.Kind, "character")
+	}
+	if projectedUnit.RegionCardID != "region-1" {
+		t.Fatalf("projected unit region card id = %q, want %q", projectedUnit.RegionCardID, "region-1")
+	}
+}
+
 func onlyCard(t *testing.T, view PlayerViewState) CardView {
 	t.Helper()
 

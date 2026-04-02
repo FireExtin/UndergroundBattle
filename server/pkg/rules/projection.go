@@ -57,19 +57,22 @@ type CardState struct {
 
 // CardView is the client-safe projection of a single card record.
 type CardView struct {
-	CardID     string           `json:"cardId,omitempty"`
-	Name       string           `json:"name,omitempty"`
-	OwnerID    string           `json:"ownerId"`
-	Zone       CardZone         `json:"zone"`
-	Visibility string           `json:"visibility"`
-	Revealed   bool             `json:"revealed"`
-	FaceDown   bool             `json:"faceDown,omitempty"` // 是否面朝下
-	Exhausted  bool             `json:"exhausted"`
-	Destroyed  bool             `json:"destroyed"`
-	Keywords   []string         `json:"keywords,omitempty"`
-	Stats      CardNumericStats `json:"stats"`
-	Counters   CardCounters     `json:"counters"`
-	Markers    map[string]int   `json:"markers,omitempty"`
+	CardID       string           `json:"cardId,omitempty"`
+	Name         string           `json:"name,omitempty"`
+	OwnerID      string           `json:"ownerId"`
+	Zone         CardZone         `json:"zone"`
+	Kind         string           `json:"kind,omitempty"`
+	RegionCardID string           `json:"regionCardId,omitempty"`
+	RegionOrder  int              `json:"regionOrder,omitempty"`
+	Visibility   string           `json:"visibility"`
+	Revealed     bool             `json:"revealed"`
+	FaceDown     bool             `json:"faceDown,omitempty"` // 是否面朝下
+	Exhausted    bool             `json:"exhausted"`
+	Destroyed    bool             `json:"destroyed"`
+	Keywords     []string         `json:"keywords,omitempty"`
+	Stats        CardNumericStats `json:"stats"`
+	Counters     CardCounters     `json:"counters"`
+	Markers      map[string]int   `json:"markers,omitempty"`
 }
 
 // ViewBoardState is the client-safe projection of board information.
@@ -231,19 +234,22 @@ func cardVisibleToPlayer(card CardState, viewerPlayerID string) bool {
 
 func visibleCardView(card CardState, markers map[string]int) CardView {
 	return CardView{
-		CardID:     card.CardID,
-		Name:       card.Name,
-		OwnerID:    card.OwnerID,
-		Zone:       card.Zone,
-		Visibility: "visible",
-		Revealed:   card.Revealed,
-		FaceDown:   card.FaceDown,
-		Exhausted:  card.Exhausted,
-		Destroyed:  card.Destroyed,
-		Keywords:   visibleKeywords(card),
-		Stats:      visibleStats(card),
-		Counters:   card.Counters,
-		Markers:    markers,
+		CardID:       card.CardID,
+		Name:         card.Name,
+		OwnerID:      card.OwnerID,
+		Zone:         card.Zone,
+		Kind:         string(card.Kind),
+		RegionCardID: card.RegionCardID,
+		RegionOrder:  card.RegionOrder,
+		Visibility:   "visible",
+		Revealed:     card.Revealed,
+		FaceDown:     card.FaceDown,
+		Exhausted:    card.Exhausted,
+		Destroyed:    card.Destroyed,
+		Keywords:     visibleKeywords(card),
+		Stats:        visibleStats(card),
+		Counters:     card.Counters,
+		Markers:      markers,
 	}
 }
 

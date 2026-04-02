@@ -4,6 +4,26 @@
 - 当前已经有：最小规则核、priority/stack、projection、continuous effects、`inspect` 的 permission hook、`dealDamage` 对 `EffectiveStats.Defense` 的最小致命判定，以及第一批角色动作入口 `declare_attack / declare_investigation`。
 - 如果目标是“继续稳定接真实卡 DSL，并形成一个可扩展 alpha”，还差 4 个明确里程碑。做完这 4 个就够继续推进主卡池，不需要先上完整 dependency engine。
 
+## 2026-04-02 第二十次补记（可玩前端牌桌 + Playwright 试玩闭环）
+
+- 本轮把 web 入口从“调试器主视图”切到“可玩牌桌主视图”，目标是让玩家可直接在牌桌区域进行对战动作，而不是只看调试面板：
+  - `web/src/app/AppShell.tsx` 现默认挂载 `BattleShell`。
+  - 新增 battle slice：
+    - `web/src/battle/model.ts`：把 `StatePatched` 解析为牌桌区域（对方区域/争夺区/本方区域）与动作候选。
+    - `web/src/battle/components/BattleTable.tsx`：按牌桌语义渲染双方区域、3 个地区槽、争夺区未归属区、手牌/牌库/墓地/计分/秘社。
+    - `web/src/battle/components/ActionComposer.tsx`：可提交 `declare_attack / declare_investigation / move_card / queue_operation / reveal / inspect / marker / pass / advance` 等动作。
+- 为支持牌桌地区分组，协议投影补了最小元数据：
+  - `CardView.kind`、`CardView.regionCardId`、`CardView.regionOrder`（Go projection + TS protocol 同步）。
+- 自动试玩闭环已接入：
+  - 新增 `web/playwright.config.ts`，启动 `Go API (:8080)` + `Vite (:4173)` 双服务。
+  - 新增 `web/tests/battle.spec.ts`，覆盖“打开牌桌 -> 重开 -> 攻击 -> 过牌”的 smoke 对战流。
+  - 新增 npm scripts：`test:e2e`、`test:e2e:headed`。
+- 回归结果：
+  - `go test ./server/...` 通过
+  - `cd web && npm test` 通过（含 battle 新增单测）
+  - `cd web && npm run build` 通过
+  - `cd web && npm run test:e2e -- tests/battle.spec.ts --project=chromium` 通过
+
 ## 2026-04-02 第十九次补记（Day1~Day5 串行落地）
 
 - 按“基础包优先、扩展后置”口径，已串行落地 4 个收口项（对应本轮实现 commit：`d7ae754`）：

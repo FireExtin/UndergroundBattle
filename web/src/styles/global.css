@@ -229,3 +229,231 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+.battle-shell {
+  width: min(1280px, calc(100% - 1.25rem));
+  margin: 0 auto;
+  padding: 1rem 0 2.5rem;
+  display: grid;
+  gap: 0.9rem;
+}
+
+.battle-shell__banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.battle-shell__banner-actions {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.battle-table {
+  border: 3px solid #0b5a8b;
+  border-radius: 14px;
+  background:
+    radial-gradient(120% 100% at 0% 0%, #e8f6fb 0%, #d4ebf2 40%, #cae2ea 100%),
+    repeating-linear-gradient(
+      -45deg,
+      rgba(255, 255, 255, 0.18) 0px,
+      rgba(255, 255, 255, 0.18) 14px,
+      rgba(255, 255, 255, 0.08) 14px,
+      rgba(255, 255, 255, 0.08) 28px
+    );
+  padding: 1rem;
+  display: grid;
+  gap: 0.8rem;
+}
+
+.battle-table__header {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.battle-table__header h1 {
+  margin: 0;
+  font-size: clamp(1.4rem, 3.4vw, 2rem);
+}
+
+.battle-table__viewer-switch {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.battle-zone {
+  border: 2px solid #0b5a8b;
+  border-radius: 10px;
+  background: rgba(244, 251, 255, 0.88);
+  padding: 0.75rem;
+}
+
+.battle-zone h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.05rem;
+}
+
+.battle-zone__summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 0.45rem;
+}
+
+.zone-stat {
+  border: 1px solid #9fc7dd;
+  background: #f6fcff;
+  border-radius: 8px;
+  padding: 0.4rem 0.5rem;
+}
+
+.zone-stat dt {
+  font-size: 0.8rem;
+  color: #5e7286;
+}
+
+.zone-stat dd {
+  margin: 0.15rem 0 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #0a2f4a;
+}
+
+.battle-zone__stacks {
+  margin-top: 0.6rem;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.contest-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.55rem;
+}
+
+.contest-slot {
+  border: 1px solid #91bdd6;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 0.55rem;
+}
+
+.contest-slot header p {
+  margin: 0;
+  font-size: 0.82rem;
+  color: #4f5d6c;
+}
+
+.contest-slot header strong {
+  display: block;
+  margin-top: 0.15rem;
+}
+
+.contest-slot__rows {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.contest-free-zone {
+  margin-top: 0.55rem;
+}
+
+.battle-card-strip {
+  margin: 0.3rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+}
+
+.battle-card-strip--compact .battle-card {
+  width: 104px;
+  min-height: 44px;
+}
+
+.battle-card {
+  width: 124px;
+  min-height: 54px;
+  border-radius: 8px;
+  border: 1px solid #7caed0;
+  background: linear-gradient(165deg, #ffffff 0%, #eef8ff 100%);
+  padding: 0.35rem 0.45rem;
+  display: grid;
+  gap: 0.1rem;
+  align-content: start;
+  box-shadow: 0 2px 0 rgba(20, 70, 108, 0.1);
+}
+
+.battle-card strong {
+  font-size: 0.82rem;
+  line-height: 1.2;
+}
+
+.battle-card p {
+  margin: 0;
+  font-size: 0.72rem;
+  color: #5f6f80;
+}
+
+.battle-card--hidden {
+  border-color: #3a4a5e;
+  color: #f0f8ff;
+  background: linear-gradient(145deg, #1f2734 0%, #374354 65%, #223144 100%);
+}
+
+.battle-card--hidden p {
+  color: #d8e6f5;
+}
+
+.battle-actions {
+  margin-top: 0;
+}
+
+.battle-actions__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.55rem;
+}
+
+.battle-actions__field {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.battle-actions__field span {
+  font-size: 0.82rem;
+  color: #4d6278;
+}
+
+.battle-actions__field select,
+.battle-actions__field input {
+  width: 100%;
+  padding: 0.45rem 0.5rem;
+  border: 1px solid #b7cedd;
+  border-radius: 7px;
+  background: #ffffff;
+}
+
+.battle-actions__field--wide {
+  grid-column: 1 / -1;
+}
+
+.battle-actions__buttons {
+  margin-top: 0.7rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+@media (max-width: 1080px) {
+  .contest-grid {
+    grid-template-columns: 1fr;
+  }
+}
