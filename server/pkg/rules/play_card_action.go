@@ -11,6 +11,7 @@ import (
 const (
 	playModeFaceUp   = "face_up"
 	playModeFaceDown = "face_down"
+	secretDeployCost = 1
 )
 
 func checkPlayCardActionLegality(state GameState, action Action, sourceLookup cardOperationSourceLookup) LegalityResult {
@@ -254,7 +255,7 @@ func checkPlayCardActionLegality(state GameState, action Action, sourceLookup ca
 }
 
 func checkPlayCardCost(state GameState, action Action, card CardState) LegalityResult {
-	required := effectivePlayCardCost(card)
+	required := requiredPlayCardCost(action.PlayMode, card)
 	pool := currentPlayerResource(state, action.ActorID)
 	if pool.Current < required {
 		return legalityFailure(
@@ -274,6 +275,10 @@ func checkPlayCardCost(state GameState, action Action, card CardState) LegalityR
 }
 
 func checkPlayCardLoyalty(state GameState, action Action, card CardState) LegalityResult {
+	if card.Kind == CardKindCharacter && normalizePlayMode(action.PlayMode) == playModeFaceDown {
+		return okLegalityResult()
+	}
+
 	required := parseLoyaltyRequirements(card.Loyalty)
 	if len(required) == 0 {
 		return okLegalityResult()
@@ -319,7 +324,7 @@ func executePlayCard(state GameState, operation Operation) (GameState, Operation
 	}
 
 	card := &working.Board.Cards[cardIndex]
-	requiredCost := effectivePlayCardCost(*card)
+	requiredCost := requiredPlayCardCost(operation.PlayMode, *card)
 	if !payPlayerResourceCost(&working, operation.ActorID, requiredCost) {
 		ensureTurnResourceEntries(&working.Turn, working.Players)
 		current := working.Turn.Resources[operation.ActorID].Current
@@ -461,6 +466,13 @@ func effectivePlayCardCost(card CardState) int {
 		return 0
 	}
 	return required
+}
+
+func requiredPlayCardCost(playMode string, card CardState) int {
+	if card.Kind == CardKindCharacter && normalizePlayMode(playMode) == playModeFaceDown {
+		return secretDeployCost
+	}
+	return effectivePlayCardCost(card)
 }
 
 func countPlayerLoyaltyColors(state GameState, playerID string) map[string]int {

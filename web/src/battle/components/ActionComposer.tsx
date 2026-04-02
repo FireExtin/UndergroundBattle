@@ -480,7 +480,6 @@ function validateBeforeSubmit(input: {
         return "附属部署需要选择宿主卡牌";
       }
       return "";
-    case "play_asset":
     case "build_asset":
       if (sourceCardId.trim() === "") {
         return "需要选择来源卡牌";

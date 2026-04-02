@@ -471,6 +471,102 @@ func TestPlayCardDeductsResourceAfterSuccessfulDeployment(t *testing.T) {
 	}
 }
 
+func TestPlayCardFaceDownUsesSecretDeployCostAndSkipsLoyalty(t *testing.T) {
+	state := basePlayCardState()
+	state.Turn.Resources["P1"] = PlayerResourceState{Current: 1, Max: 1}
+	state.Board.Cards = append(state.Board.Cards,
+		CardState{
+			CardID:         "region-1",
+			Name:           "地区1",
+			Kind:           CardKindRegion,
+			OwnerID:        "TABLE",
+			Zone:           CardZoneTable,
+			VisibleToOwner: true,
+			Revealed:       true,
+			RegionOrder:    1,
+		},
+		CardState{
+			CardID:         "p1-secret-heavy",
+			Name:           "高费暗藏角色",
+			Kind:           CardKindCharacter,
+			OwnerID:        "P1",
+			Zone:           CardZoneHand,
+			VisibleToOwner: true,
+			Cost:           6,
+			Loyalty:        "红色红色红色",
+		},
+	)
+
+	result, err := SubmitAction(state, Action{
+		ID:                 "act-play-card-secret-deploy",
+		ActorID:            "P1",
+		Kind:               ActionKindPlayCard,
+		CardID:             "p1-secret-heavy",
+		PlayMode:           "face_down",
+		TargetRegionCardID: "region-1",
+	})
+	if err != nil {
+		t.Fatalf("SubmitAction returned error: %v", err)
+	}
+
+	deployed := cardStateByID(t, result.State, "p1-secret-heavy")
+	if deployed.Zone != CardZoneTable {
+		t.Fatalf("zone = %q, want %q", deployed.Zone, CardZoneTable)
+	}
+	if !deployed.FaceDown {
+		t.Fatal("expected face-down deployment")
+	}
+
+	pool := result.State.Turn.Resources["P1"]
+	if pool.Current != 0 {
+		t.Fatalf("resource current = %d, want 0 after secret deploy cost", pool.Current)
+	}
+}
+
+func TestPlayCardFaceDownIgnoresLoyaltyRequirement(t *testing.T) {
+	state := basePlayCardState()
+	state.Turn.Resources["P1"] = PlayerResourceState{Current: 10, Max: 10}
+	state.Board.Cards = append(state.Board.Cards,
+		CardState{
+			CardID:         "region-1",
+			Name:           "地区1",
+			Kind:           CardKindRegion,
+			OwnerID:        "TABLE",
+			Zone:           CardZoneTable,
+			VisibleToOwner: true,
+			Revealed:       true,
+			RegionOrder:    1,
+		},
+		CardState{
+			CardID:         "p1-secret-loyal",
+			Name:           "暗藏忠诚角色",
+			Kind:           CardKindCharacter,
+			OwnerID:        "P1",
+			Zone:           CardZoneHand,
+			VisibleToOwner: true,
+			Cost:           6,
+			Loyalty:        "红色红色红色",
+		},
+	)
+
+	result, err := SubmitAction(state, Action{
+		ID:                 "act-play-card-secret-loyalty-ignore",
+		ActorID:            "P1",
+		Kind:               ActionKindPlayCard,
+		CardID:             "p1-secret-loyal",
+		PlayMode:           "face_down",
+		TargetRegionCardID: "region-1",
+	})
+	if err != nil {
+		t.Fatalf("SubmitAction returned error: %v", err)
+	}
+
+	pool := result.State.Turn.Resources["P1"]
+	if pool.Current != 9 {
+		t.Fatalf("resource current = %d, want 9 after secret deploy", pool.Current)
+	}
+}
+
 func TestPlayCardRejectsWhenLoyaltyRequirementUnmet(t *testing.T) {
 	state := basePlayCardState()
 	state.Turn.Resources["P1"] = PlayerResourceState{Current: 4, Max: 4}
