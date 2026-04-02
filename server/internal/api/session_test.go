@@ -1,9 +1,14 @@
 package api
 
 import (
+	"bytes"
 	"encoding/json"
+	"log"
+	"os"
 	"reflect"
+	"strings"
 	"testing"
+	"time"
 
 	"undergroundbattle/server/pkg/rules"
 )
@@ -88,5 +93,144 @@ func TestSandboxSessionResetBootstrapMessagesUseResetRevision(t *testing.T) {
 		if payload.Event.RevisionNumber != 0 {
 			t.Fatalf("payload event revision = %d, want 0", payload.Event.RevisionNumber)
 		}
+	}
+}
+
+func TestSandboxSessionLogsAcceptedRejectedAndFinishedAtInfoLevel(t *testing.T) {
+	var logBuffer bytes.Buffer
+	reportDir := t.TempDir()
+	session := NewSandboxSessionWithOptions(SandboxSessionOptions{
+		Logger:          log.New(&logBuffer, "", 0),
+		ReportDirectory: reportDir,
+		Now: func() time.Time {
+			return time.Date(2026, time.April, 2, 12, 34, 56, 0, time.UTC)
+		},
+	})
+
+	_, err := session.SubmitAction(rules.Action{
+		ID:      "act-rejected-priority",
+		ActorID: "P2",
+		Kind:    rules.ActionKindAdvancePhase,
+	})
+	if err != nil {
+		t.Fatalf("SubmitAction(rejected) returned error: %v", err)
+	}
+
+	prepareSinglePointWin(t, session)
+	_, err = session.SubmitAction(rules.Action{
+		ID:      "act-finish-match",
+		ActorID: "P1",
+		Kind:    rules.ActionKindAdvancePhase,
+	})
+	if err != nil {
+		t.Fatalf("SubmitAction(finished) returned error: %v", err)
+	}
+
+	logOutput := logBuffer.String()
+	for _, needle := range []string{
+		"action_rejected",
+		"action_accepted",
+		"match_finished",
+		"winner=P1",
+		"revision=1",
+	} {
+		if !strings.Contains(logOutput, needle) {
+			t.Fatalf("log output missing %q\nlogs:\n%s", needle, logOutput)
+		}
+	}
+
+	report, ok := session.LatestReport()
+	if !ok {
+		t.Fatal("LatestReport() = not found, want generated report")
+	}
+
+	if report.Path == "" {
+		t.Fatal("report path is empty")
+	}
+	if _, err := os.Stat(report.Path); err != nil {
+		t.Fatalf("os.Stat(report.Path) returned error: %v", err)
+	}
+	if !strings.Contains(report.Content, "# Match Report") {
+		t.Fatalf("report content missing title:\n%s", report.Content)
+	}
+	if !strings.Contains(report.Content, "Winner: P1") {
+		t.Fatalf("report content missing winner:\n%s", report.Content)
+	}
+	if !strings.Contains(report.Content, "act-finish-match") {
+		t.Fatalf("report content missing action timeline:\n%s", report.Content)
+	}
+}
+
+func TestSandboxSessionSubmitStillSucceedsWhenReportWriteFails(t *testing.T) {
+	reportFile, err := os.CreateTemp(t.TempDir(), "report-dir-is-file-*.tmp")
+	if err != nil {
+		t.Fatalf("os.CreateTemp returned error: %v", err)
+	}
+	if err := reportFile.Close(); err != nil {
+		t.Fatalf("reportFile.Close returned error: %v", err)
+	}
+
+	var logBuffer bytes.Buffer
+	session := NewSandboxSessionWithOptions(SandboxSessionOptions{
+		Logger:          log.New(&logBuffer, "", 0),
+		ReportDirectory: reportFile.Name(),
+	})
+	prepareSinglePointWin(t, session)
+
+	messages, err := session.SubmitAction(rules.Action{
+		ID:      "act-finish-report-fail",
+		ActorID: "P1",
+		Kind:    rules.ActionKindAdvancePhase,
+	})
+	if err != nil {
+		t.Fatalf("SubmitAction returned error: %v", err)
+	}
+
+	foundAccepted := false
+	for _, message := range messages {
+		if message.Name == "ActionAccepted" {
+			foundAccepted = true
+			break
+		}
+	}
+	if !foundAccepted {
+		t.Fatalf("messages did not include ActionAccepted: %#v", messages)
+	}
+
+	if _, ok := session.LatestReport(); ok {
+		t.Fatal("LatestReport unexpectedly exists after write failure")
+	}
+	if !strings.Contains(logBuffer.String(), "match_report_write_failed") {
+		t.Fatalf("expected write failure log, got:\n%s", logBuffer.String())
+	}
+}
+
+func prepareSinglePointWin(t *testing.T, session *SandboxSession) {
+	t.Helper()
+
+	session.mu.Lock()
+	defer session.mu.Unlock()
+
+	session.state.Turn.Phase = rules.PhaseState{
+		Name:        rules.PhaseEnd,
+		Step:        rules.StepAction,
+		AllowsStack: false,
+		StepEnded:   false,
+	}
+	session.state.Score.VictoryThreshold = 1
+
+	regionFound := false
+	for index := range session.state.Board.Cards {
+		card := &session.state.Board.Cards[index]
+		if card.CardID != "REGION-1" {
+			continue
+		}
+		card.InfluenceByPlayer = map[string]int{"P1": 1}
+		regionFound = true
+		break
+	}
+
+	if !regionFound {
+		t.Fatal("REGION-1 not found in canonical state")
 	}
 }

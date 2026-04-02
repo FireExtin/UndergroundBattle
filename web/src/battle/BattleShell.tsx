@@ -11,9 +11,18 @@ import {
   type LiveDebuggerAction
 } from "../debugger/liveModel";
 import type { MockMessageSet } from "../debugger/protocol";
-import { ActionComposer, type ComposerActionInput } from "./components/ActionComposer";
-import { BattleTable } from "./components/BattleTable";
-import { deriveBattleState, type BattlePlayerId } from "./model";
+import {
+  ActionComposer,
+  type ComposerActionInput,
+  type ComposerAutoFillHint
+} from "./components/ActionComposer";
+import { BattleTable, type BattleCardPick } from "./components/BattleTable";
+import {
+  deriveBattleInfoLogs,
+  deriveBattleState,
+  type BattleInfoLogEntry,
+  type BattlePlayerId
+} from "./model";
 
 // Purpose: Hosts the playable table-facing client shell over the existing authoritative sandbox HTTP endpoints.
 
@@ -28,6 +37,8 @@ export function BattleShell({ fallbackMessageSets }: BattleShellProps) {
     createInitialLiveDebuggerState
   );
   const [localPlayerId, setLocalPlayerId] = useState<BattlePlayerId>("P1");
+  const [autoFillHint, setAutoFillHint] = useState<ComposerAutoFillHint | undefined>(undefined);
+  const [logFilter, setLogFilter] = useState<"all" | "accepted" | "rejected" | "system">("all");
   const nextActionNumber = useRef(1);
 
   useEffect(() => {
@@ -63,6 +74,7 @@ export function BattleShell({ fallbackMessageSets }: BattleShellProps) {
   }, [fallbackMessageSets]);
 
   const battle = deriveBattleState(state.messages, localPlayerId);
+  const infoLogs = deriveBattleInfoLogs(state.messages);
   const winnerPlayerId = battle.match.winnerPlayerId ?? battle.score.winnerPlayerId ?? "";
   const disabledReason = deriveDisabledReason(state.mode, state.errorMessage, battle.match.status, winnerPlayerId);
 
@@ -96,6 +108,9 @@ export function BattleShell({ fallbackMessageSets }: BattleShellProps) {
         battle={battle}
         localPlayerId={localPlayerId}
         onLocalPlayerChanged={setLocalPlayerId}
+        onCardPicked={(picked) => {
+          setAutoFillHint((previous) => nextAutoFillHint(previous, picked));
+        }}
       />
 
       <ActionComposer
@@ -103,12 +118,35 @@ export function BattleShell({ fallbackMessageSets }: BattleShellProps) {
         battle={battle}
         pending={state.loading || state.submitting}
         disabledReason={disabledReason}
+        autoFillHint={autoFillHint}
         onSubmitAction={(action) =>
           void submitBattleAction(action, localPlayerId, nextActionNumber.current, dispatch, () => {
             nextActionNumber.current += 1;
           })
         }
       />
+
+      <section className="panel battle-info-logs" aria-label="对局信息日志">
+        <div className="battle-info-logs__header">
+          <h2>对局信息日志</h2>
+          <label className="battle-info-logs__filter">
+            <span>过滤</span>
+            <select
+              aria-label="日志过滤"
+              value={logFilter}
+              onChange={(event) => {
+                setLogFilter(event.target.value as "all" | "accepted" | "rejected" | "system");
+              }}
+            >
+              <option value="all">全部</option>
+              <option value="accepted">accepted</option>
+              <option value="rejected">rejected</option>
+              <option value="system">system</option>
+            </select>
+          </label>
+        </div>
+        <InfoLogList entries={filterInfoLogs(infoLogs, logFilter)} />
+      </section>
     </main>
   );
 }
@@ -189,4 +227,52 @@ function deriveDisabledReason(
   }
 
   return "";
+}
+
+function nextAutoFillHint(
+  previous: ComposerAutoFillHint | undefined,
+  picked: BattleCardPick
+): ComposerAutoFillHint {
+  const token = (previous?.token ?? 0) + 1;
+  if (picked.intent === "source") {
+    return {
+      token,
+      sourceCardId: picked.cardId
+    };
+  }
+
+  return {
+    token,
+    targetCardId: picked.cardId
+  };
+}
+
+function filterInfoLogs(
+  entries: BattleInfoLogEntry[],
+  filter: "all" | "accepted" | "rejected" | "system"
+) {
+  if (filter === "all") {
+    return entries;
+  }
+
+  return entries.filter((entry) => entry.kind === filter);
+}
+
+function InfoLogList({ entries }: { entries: BattleInfoLogEntry[] }) {
+  if (entries.length === 0) {
+    return <p className="muted">(暂无日志)</p>;
+  }
+
+  return (
+    <ol className="battle-info-logs__list">
+      {entries.map((entry) => (
+        <li key={entry.id} className={`battle-info-logs__item battle-info-logs__item--${entry.kind}`}>
+          <p>
+            <strong>{entry.summary}</strong>
+          </p>
+          <p className="muted">{entry.detail}</p>
+        </li>
+      ))}
+    </ol>
+  );
 }

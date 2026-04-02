@@ -7,9 +7,15 @@ type BattleTableProps = {
   battle: BattleState;
   localPlayerId: BattlePlayerId;
   onLocalPlayerChanged: (playerId: BattlePlayerId) => void;
+  onCardPicked: (picked: BattleCardPick) => void;
 };
 
-export function BattleTable({ battle, localPlayerId, onLocalPlayerChanged }: BattleTableProps) {
+export type BattleCardPick = {
+  cardId: string;
+  intent: "source" | "target";
+};
+
+export function BattleTable({ battle, localPlayerId, onLocalPlayerChanged, onCardPicked }: BattleTableProps) {
   return (
     <section className="battle-table" aria-label="战场桌面">
       <header className="battle-table__header">
@@ -60,17 +66,39 @@ export function BattleTable({ battle, localPlayerId, onLocalPlayerChanged }: Bat
             <article key={slot.slotId} className="contest-slot">
               <header>
                 <p>地区 {slot.order}</p>
-                <strong>{slot.regionCard?.name ?? "空地区槽"}</strong>
+                {slot.regionCard?.cardId ? (
+                  <button
+                    type="button"
+                    className="battle-region-button"
+                    onClick={() => {
+                      onCardPicked({ cardId: slot.regionCard!.cardId!, intent: "target" });
+                    }}
+                  >
+                    <strong>{slot.regionCard.name ?? slot.regionCard.cardId}</strong>
+                  </button>
+                ) : (
+                  <strong>空地区槽</strong>
+                )}
               </header>
               <p className="muted">regionId: {slot.regionCard?.cardId ?? "-"}</p>
               <div className="contest-slot__rows">
                 <div>
                   <p className="muted">对方驻场</p>
-                  <CardStrip cards={slot.opponentCards} fallback="(空)" compact />
+                  <CardStrip
+                    cards={slot.opponentCards}
+                    fallback="(空)"
+                    compact
+                    onVisibleCardPicked={(card) => pickTargetCard(card, onCardPicked)}
+                  />
                 </div>
                 <div>
                   <p className="muted">本方驻场</p>
-                  <CardStrip cards={slot.localCards} fallback="(空)" compact />
+                  <CardStrip
+                    cards={slot.localCards}
+                    fallback="(空)"
+                    compact
+                    onVisibleCardPicked={(card) => pickSourceCard(card, onCardPicked)}
+                  />
                 </div>
               </div>
             </article>
@@ -78,7 +106,17 @@ export function BattleTable({ battle, localPlayerId, onLocalPlayerChanged }: Bat
         </div>
         <div className="contest-free-zone">
           <p className="muted">未分配到地区的争夺区卡牌</p>
-          <CardStrip cards={battle.contest.unassignedTableCards} fallback="(空)" />
+          <CardStrip
+            cards={battle.contest.unassignedTableCards}
+            fallback="(空)"
+            onVisibleCardPicked={(card) => {
+              if ((card.ownerId ?? "") === localPlayerId) {
+                pickSourceCard(card, onCardPicked);
+                return;
+              }
+              pickTargetCard(card, onCardPicked);
+            }}
+          />
         </div>
       </section>
 
@@ -94,19 +132,43 @@ export function BattleTable({ battle, localPlayerId, onLocalPlayerChanged }: Bat
         <div className="battle-zone__stacks">
           <div>
             <p className="muted">本方手牌</p>
-            <CardStrip cards={battle.local.hand} fallback="(空)" />
+            <CardStrip
+              cards={battle.local.hand}
+              fallback="(空)"
+              onVisibleCardPicked={(card) => pickSourceCard(card, onCardPicked)}
+            />
           </div>
           <div>
             <p className="muted">本方桌面</p>
-            <CardStrip cards={battle.local.table} fallback="(空)" />
+            <CardStrip
+              cards={battle.local.table}
+              fallback="(空)"
+              onVisibleCardPicked={(card) => {
+                if (card.kind === "region") {
+                  pickTargetCard(card, onCardPicked);
+                  return;
+                }
+                pickSourceCard(card, onCardPicked);
+              }}
+            />
           </div>
           <div>
             <p className="muted">本方墓地</p>
-            <CardStrip cards={battle.local.discard} fallback="(空)" compact />
+            <CardStrip
+              cards={battle.local.discard}
+              fallback="(空)"
+              compact
+              onVisibleCardPicked={(card) => pickSourceCard(card, onCardPicked)}
+            />
           </div>
           <div>
             <p className="muted">本方计分区</p>
-            <CardStrip cards={battle.local.score} fallback="(空)" compact />
+            <CardStrip
+              cards={battle.local.score}
+              fallback="(空)"
+              compact
+              onVisibleCardPicked={(card) => pickSourceCard(card, onCardPicked)}
+            />
           </div>
         </div>
       </section>
@@ -127,9 +189,10 @@ type CardStripProps = {
   cards: CardView[];
   fallback: string;
   compact?: boolean;
+  onVisibleCardPicked?: (card: CardView) => void;
 };
 
-function CardStrip({ cards, fallback, compact = false }: CardStripProps) {
+function CardStrip({ cards, fallback, compact = false, onVisibleCardPicked }: CardStripProps) {
   if (cards.length === 0) {
     return <p className="muted">{fallback}</p>;
   }
@@ -139,14 +202,44 @@ function CardStrip({ cards, fallback, compact = false }: CardStripProps) {
       {cards.map((card, index) => {
         const key = card.cardId ?? `${card.ownerId}-${card.zone}-${index}`;
         const isVisible = card.visibility === "visible";
+        const canPick = isVisible && !!card.cardId && !!onVisibleCardPicked;
 
         return (
           <li key={key} className={isVisible ? "battle-card" : "battle-card battle-card--hidden"}>
-            <strong>{isVisible ? card.name ?? card.cardId : "Card Back"}</strong>
-            <p>{isVisible ? card.cardId ?? "-" : "hidden"}</p>
+            {canPick ? (
+              <button
+                type="button"
+                className="battle-card__button"
+                onClick={() => {
+                  onVisibleCardPicked(card);
+                }}
+              >
+                <strong>{card.name ?? card.cardId}</strong>
+                <p>{card.cardId ?? "-"}</p>
+              </button>
+            ) : (
+              <>
+                <strong>{isVisible ? card.name ?? card.cardId : "Card Back"}</strong>
+                <p>{isVisible ? card.cardId ?? "-" : "hidden"}</p>
+              </>
+            )}
           </li>
         );
       })}
     </ul>
   );
+}
+
+function pickSourceCard(card: CardView, onCardPicked: (picked: BattleCardPick) => void) {
+  if (!card.cardId) {
+    return;
+  }
+  onCardPicked({ cardId: card.cardId, intent: "source" });
+}
+
+function pickTargetCard(card: CardView, onCardPicked: (picked: BattleCardPick) => void) {
+  if (!card.cardId) {
+    return;
+  }
+  onCardPicked({ cardId: card.cardId, intent: "target" });
 }

@@ -1,5 +1,7 @@
 import { selectCurrentCards, selectCurrentPatch } from "../debugger/model";
 import type {
+  ActionAcceptedEnvelope,
+  ActionRejectedEnvelope,
   CardView,
   DebuggerProtocolEnvelope,
   MatchState,
@@ -62,6 +64,17 @@ export type BattleState = {
   opponent: BattleOpponentArea;
   contest: BattleContestState;
   actionCandidates: BattleActionCandidates;
+};
+
+export type BattleInfoLogKind = "accepted" | "rejected" | "system";
+
+export type BattleInfoLogEntry = {
+  id: string;
+  kind: BattleInfoLogKind;
+  summary: string;
+  detail: string;
+  revision?: number;
+  order: number;
 };
 
 const defaultMatch: MatchState = {
@@ -151,6 +164,50 @@ export function deriveBattleState(
       visibleCardIds: idsWithIdentity(cards.filter((card) => card.visibility === "visible"))
     }
   };
+}
+
+export function deriveBattleInfoLogs(messages: DebuggerProtocolEnvelope[]): BattleInfoLogEntry[] {
+  const entries: BattleInfoLogEntry[] = [];
+
+  for (let index = 0; index < messages.length; index++) {
+    const message = messages[index];
+
+    if (message.name === "ActionAccepted") {
+      entries.push(acceptedLog(message, index));
+      continue;
+    }
+
+    if (message.name === "ActionRejected") {
+      entries.push(rejectedLog(message, index));
+      continue;
+    }
+
+    if (message.name === "StatePatched") {
+      const view = message.payload.playerView ?? message.payload.spectatorView;
+      if (!view) {
+        continue;
+      }
+
+      const revision = message.payload.revision.number;
+      const scoreSummary = Object.keys(view.score.byPlayer)
+        .sort((left, right) => left.localeCompare(right))
+        .map((playerID) => `${playerID}:${view.score.byPlayer[playerID] ?? 0}`)
+        .join(" ");
+
+      const winner = view.match.winnerPlayerId ? ` winner=${view.match.winnerPlayerId}` : "";
+      entries.push({
+        id: `${message.messageId}:system`,
+        kind: "system",
+        summary: `SYSTEM rev ${revision} ${view.turn.phase.name}/${view.turn.phase.step}`,
+        detail: `priority=${view.turn.priority.currentPlayerId} score=${scoreSummary} status=${view.match.status}${winner}`,
+        revision,
+        order: messageOrder(message.messageId, index)
+      });
+    }
+  }
+
+  entries.sort((left, right) => right.order - left.order);
+  return entries;
 }
 
 function deriveContestState(
@@ -268,4 +325,40 @@ function cardStableKey(card: CardView) {
     card.cardId ?? "",
     card.name ?? ""
   ].join("|");
+}
+
+function acceptedLog(message: ActionAcceptedEnvelope, fallbackOrder: number): BattleInfoLogEntry {
+  const revision = message.payload.revision.number;
+  return {
+    id: `${message.messageId}:accepted`,
+    kind: "accepted",
+    summary: `ACCEPTED ${message.payload.action.actorId} -> ${message.payload.action.kind}`,
+    detail: `event=${message.payload.event.kind} phase=${message.payload.event.phase ?? "-"} priority=${message.payload.event.priorityPlayerId ?? "-"} stack=${message.payload.event.stackDepth}`,
+    revision,
+    order: messageOrder(message.messageId, fallbackOrder)
+  };
+}
+
+function rejectedLog(message: ActionRejectedEnvelope, fallbackOrder: number): BattleInfoLogEntry {
+  return {
+    id: `${message.messageId}:rejected`,
+    kind: "rejected",
+    summary: `REJECTED ${message.payload.action.actorId} -> ${message.payload.action.kind}`,
+    detail: `reason=${message.payload.legality.reasonCode ?? "-"} message=${message.payload.legality.messageKey ?? "-"}`,
+    order: messageOrder(message.messageId, fallbackOrder)
+  };
+}
+
+function messageOrder(messageId: string, fallback: number): number {
+  const match = /(\d+)$/.exec(messageId);
+  if (!match) {
+    return fallback + 1;
+  }
+
+  const parsed = Number(match[1]);
+  if (!Number.isFinite(parsed)) {
+    return fallback + 1;
+  }
+
+  return parsed;
 }

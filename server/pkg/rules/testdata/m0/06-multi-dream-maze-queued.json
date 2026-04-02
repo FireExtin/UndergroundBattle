@@ -62,6 +62,66 @@
             }
           },
           {
+            "ownerId": "TABLE",
+            "zone": "table",
+            "visibility": "visible",
+            "cardId": "REGION-1",
+            "name": "The Silver District",
+            "revealed": true,
+            "exhausted": false,
+            "destroyed": false,
+            "stats": {
+              "combat": 0,
+              "defense": 0,
+              "influence": 0,
+              "investigation": 0
+            },
+            "counters": {
+              "damage": 0,
+              "influence": 0
+            }
+          },
+          {
+            "ownerId": "TABLE",
+            "zone": "table",
+            "visibility": "visible",
+            "cardId": "REGION-2",
+            "name": "The Ash Quarter",
+            "revealed": true,
+            "exhausted": false,
+            "destroyed": false,
+            "stats": {
+              "combat": 0,
+              "defense": 0,
+              "influence": 0,
+              "investigation": 0
+            },
+            "counters": {
+              "damage": 0,
+              "influence": 0
+            }
+          },
+          {
+            "ownerId": "TABLE",
+            "zone": "table",
+            "visibility": "visible",
+            "cardId": "REGION-3",
+            "name": "The Gilded Gate",
+            "revealed": true,
+            "exhausted": false,
+            "destroyed": false,
+            "stats": {
+              "combat": 0,
+              "defense": 0,
+              "influence": 0,
+              "investigation": 0
+            },
+            "counters": {
+              "damage": 0,
+              "influence": 0
+            }
+          },
+          {
             "ownerId": "P1",
             "zone": "table",
             "visibility": "visible",
@@ -131,6 +191,66 @@
             "zone": "hand",
             "visibility": "hidden",
             "revealed": false,
+            "exhausted": false,
+            "destroyed": false,
+            "stats": {
+              "combat": 0,
+              "defense": 0,
+              "influence": 0,
+              "investigation": 0
+            },
+            "counters": {
+              "damage": 0,
+              "influence": 0
+            }
+          },
+          {
+            "ownerId": "TABLE",
+            "zone": "table",
+            "visibility": "visible",
+            "cardId": "REGION-1",
+            "name": "The Silver District",
+            "revealed": true,
+            "exhausted": false,
+            "destroyed": false,
+            "stats": {
+              "combat": 0,
+              "defense": 0,
+              "influence": 0,
+              "investigation": 0
+            },
+            "counters": {
+              "damage": 0,
+              "influence": 0
+            }
+          },
+          {
+            "ownerId": "TABLE",
+            "zone": "table",
+            "visibility": "visible",
+            "cardId": "REGION-2",
+            "name": "The Ash Quarter",
+            "revealed": true,
+            "exhausted": false,
+            "destroyed": false,
+            "stats": {
+              "combat": 0,
+              "defense": 0,
+              "influence": 0,
+              "investigation": 0
+            },
+            "counters": {
+              "damage": 0,
+              "influence": 0
+            }
+          },
+          {
+            "ownerId": "TABLE",
+            "zone": "table",
+            "visibility": "visible",
+            "cardId": "REGION-3",
+            "name": "The Gilded Gate",
+            "revealed": true,
             "exhausted": false,
             "destroyed": false,
             "stats": {
@@ -216,6 +336,66 @@
             "zone": "hand",
             "visibility": "hidden",
             "revealed": false,
+            "exhausted": false,
+            "destroyed": false,
+            "stats": {
+              "combat": 0,
+              "defense": 0,
+              "influence": 0,
+              "investigation": 0
+            },
+            "counters": {
+              "damage": 0,
+              "influence": 0
+            }
+          },
+          {
+            "ownerId": "TABLE",
+            "zone": "table",
+            "visibility": "visible",
+            "cardId": "REGION-1",
+            "name": "The Silver District",
+            "revealed": true,
+            "exhausted": false,
+            "destroyed": false,
+            "stats": {
+              "combat": 0,
+              "defense": 0,
+              "influence": 0,
+              "investigation": 0
+            },
+            "counters": {
+              "damage": 0,
+              "influence": 0
+            }
+          },
+          {
+            "ownerId": "TABLE",
+            "zone": "table",
+            "visibility": "visible",
+            "cardId": "REGION-2",
+            "name": "The Ash Quarter",
+            "revealed": true,
+            "exhausted": false,
+            "destroyed": false,
+            "stats": {
+              "combat": 0,
+              "defense": 0,
+              "influence": 0,
+              "investigation": 0
+            },
+            "counters": {
+              "damage": 0,
+              "influence": 0
+            }
+          },
+          {
+            "ownerId": "TABLE",
+            "zone": "table",
+            "visibility": "visible",
+            "cardId": "REGION-3",
+            "name": "The Gilded Gate",
+            "revealed": true,
             "exhausted": false,
             "destroyed": false,
             "stats": {

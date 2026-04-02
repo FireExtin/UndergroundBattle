@@ -25,8 +25,8 @@ func TestNewM0SandboxStateProvidesCanonicalBaseline(t *testing.T) {
 		t.Fatalf("active player = %q, want %q", state.Turn.ActivePlayerID, "P1")
 	}
 
-	if len(state.Board.Cards) != 4 {
-		t.Fatalf("card count = %d, want 4", len(state.Board.Cards))
+	if len(state.Board.Cards) != 7 {
+		t.Fatalf("card count = %d, want 7", len(state.Board.Cards))
 	}
 
 	if cardStateByID(t, state, "P1-HAND-SECRET").Name != "Secret Archive" {
@@ -35,6 +35,29 @@ func TestNewM0SandboxStateProvidesCanonicalBaseline(t *testing.T) {
 
 	if cardStateByID(t, state, "P2-TABLE-1").Counters.Damage != 1 {
 		t.Fatalf("P2 table card damage = %d, want 1", cardStateByID(t, state, "P2-TABLE-1").Counters.Damage)
+	}
+
+	for index, cardID := range []string{"REGION-1", "REGION-2", "REGION-3"} {
+		card := cardStateByID(t, state, cardID)
+		if card.Kind != CardKindRegion {
+			t.Fatalf("%s kind = %q, want %q", cardID, card.Kind, CardKindRegion)
+		}
+		if card.Zone != CardZoneTable {
+			t.Fatalf("%s zone = %q, want %q", cardID, card.Zone, CardZoneTable)
+		}
+		if card.RegionOrder != index+1 {
+			t.Fatalf("%s region order = %d, want %d", cardID, card.RegionOrder, index+1)
+		}
+		if !card.Revealed {
+			t.Fatalf("%s revealed = false, want true", cardID)
+		}
+	}
+
+	if cardStateByID(t, state, "P1-TABLE-1").RegionCardID != "REGION-1" {
+		t.Fatalf("P1-TABLE-1 region card = %q, want %q", cardStateByID(t, state, "P1-TABLE-1").RegionCardID, "REGION-1")
+	}
+	if cardStateByID(t, state, "P2-TABLE-1").RegionCardID != "REGION-2" {
+		t.Fatalf("P2-TABLE-1 region card = %q, want %q", cardStateByID(t, state, "P2-TABLE-1").RegionCardID, "REGION-2")
 	}
 }
 
@@ -477,13 +500,13 @@ func FuzzRecalculateContinuousEffectsRemainsDeterministic(f *testing.F) {
 
 		state.Turn.TurnNumber = turn
 		state.Board.Cards = append(state.Board.Cards, CardState{
-			CardID:       "fuzz-target",
-			Name:         "Fuzz Target",
-			OwnerID:      "P1",
-			Zone:         CardZoneTable,
+			CardID:         "fuzz-target",
+			Name:           "Fuzz Target",
+			OwnerID:        "P1",
+			Zone:           CardZoneTable,
 			VisibleToOwner: true,
-			Revealed:     true,
-			PrintedStats: CardNumericStats{Defense: 2},
+			Revealed:       true,
+			PrintedStats:   CardNumericStats{Defense: 2},
 		})
 		state.Board.Continuous.Active = append(state.Board.Continuous.Active, ContinuousEffect{
 			ID:           "ce:fuzz",

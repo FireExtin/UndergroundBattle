@@ -102,26 +102,139 @@ describe("BattleShell", () => {
     expect((await screen.findAllByText("Live server unavailable. Showing mock protocol data.")).length).toBeGreaterThan(0);
     expect(screen.getByRole("button", { name: "提交动作" })).toBeDisabled();
   });
+
+  it("auto-fills source and target from table card clicks", async () => {
+    const fetchMock = vi.fn().mockResolvedValue(createJSONResponse(buildMessages()));
+    vi.stubGlobal("fetch", fetchMock);
+
+    render(<BattleShell fallbackMessageSets={[]} />);
+    await screen.findByText("对方玩家区域");
+
+    fireEvent.change(screen.getByLabelText("Action Kind"), {
+      target: { value: "declare_attack" }
+    });
+
+    fireEvent.click(screen.getAllByRole("button", { name: /P1 Unit/ })[0]!);
+    expect(screen.getByLabelText("Source Card")).toHaveValue("p1-table-1");
+
+    fireEvent.click(screen.getAllByRole("button", { name: /P2 Unit/ })[0]!);
+    expect(screen.getByLabelText("Target Card")).toHaveValue("p2-table-1");
+  });
+
+  it("keeps manual source selection when auto-fill would otherwise override it", async () => {
+    const fetchMock = vi
+      .fn()
+      .mockResolvedValue(createJSONResponse(buildMessages({ includeExtraLocalTable: true })));
+    vi.stubGlobal("fetch", fetchMock);
+
+    render(<BattleShell fallbackMessageSets={[]} />);
+    await screen.findByText("对方玩家区域");
+
+    fireEvent.click(screen.getAllByRole("button", { name: /P1 Unit/ })[0]!);
+    expect(screen.getByLabelText("Source Card")).toHaveValue("p1-table-1");
+
+    fireEvent.change(screen.getByLabelText("Source Card"), {
+      target: { value: "p1-table-2" }
+    });
+    expect(screen.getByLabelText("Source Card")).toHaveValue("p1-table-2");
+
+    fireEvent.click(screen.getAllByRole("button", { name: /P1 Unit/ })[0]!);
+    expect(screen.getByLabelText("Source Card")).toHaveValue("p1-table-2");
+  });
+
+  it("shows action docs and supports info log filtering", async () => {
+    const fetchMock = vi
+      .fn()
+      .mockResolvedValue(createJSONResponse(buildMessages({ includeActionLogs: true })));
+    vi.stubGlobal("fetch", fetchMock);
+
+    render(<BattleShell fallbackMessageSets={[]} />);
+    await screen.findByText("对方玩家区域");
+
+    expect(screen.getByText("动作说明")).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "查看完整说明" })).toBeInTheDocument();
+
+    expect(screen.getByText(/ACCEPTED/)).toBeInTheDocument();
+    expect(screen.getByText(/REJECTED/)).toBeInTheDocument();
+
+    fireEvent.change(screen.getByLabelText("日志过滤"), {
+      target: { value: "rejected" }
+    });
+    expect(screen.getByText(/REJECTED/)).toBeInTheDocument();
+    expect(screen.queryByText(/ACCEPTED/)).not.toBeInTheDocument();
+  });
+
+  it("clears stale source card when switching actor perspective", async () => {
+    const fetchMock = vi.fn().mockResolvedValue(createJSONResponse(buildMessages()));
+    vi.stubGlobal("fetch", fetchMock);
+
+    render(<BattleShell fallbackMessageSets={[]} />);
+    await screen.findByText("对方玩家区域");
+
+    fireEvent.change(screen.getByLabelText("Action Kind"), {
+      target: { value: "declare_attack" }
+    });
+    fireEvent.change(screen.getByLabelText("Source Card"), {
+      target: { value: "p1-table-1" }
+    });
+    expect(screen.getByLabelText("Source Card")).toHaveValue("p1-table-1");
+
+    fireEvent.click(screen.getByRole("button", { name: "P2 视角" }));
+    expect(screen.getByLabelText("Source Card")).toHaveValue("");
+  });
 });
 
-function buildMessages(options?: { finished?: boolean }): DebuggerProtocolEnvelope[] {
+function buildMessages(options?: {
+  finished?: boolean;
+  includeActionLogs?: boolean;
+  includeExtraLocalTable?: boolean;
+}): DebuggerProtocolEnvelope[] {
   const finished = options?.finished === true;
+  const includeActionLogs = options?.includeActionLogs === true;
+  const includeExtraLocalTable = options?.includeExtraLocalTable === true;
 
-  return [
+  const envelopes: DebuggerProtocolEnvelope[] = [];
+  if (includeActionLogs) {
+    envelopes.push(
+      accepted("P1", "declare_attack", "damage_applied", 1),
+      rejected("P2", "declare_attack", "LEGALITY_FAILED_NOT_YOUR_PRIORITY")
+    );
+  }
+
+  const p1Cards = [
+    card({ cardId: "p1-hand-1", ownerId: "P1", zone: "hand", visibility: "visible", name: "P1 Hand", kind: "character" }),
+    card({ ownerId: "P2", zone: "hand", visibility: "hidden" }),
+    card({ cardId: "region-1", ownerId: "P1", zone: "table", visibility: "visible", name: "Region 1", kind: "region", regionOrder: 1 }),
+    card({ cardId: "region-2", ownerId: "P2", zone: "table", visibility: "visible", name: "Region 2", kind: "region", regionOrder: 2 }),
+    card({ cardId: "region-3", ownerId: "P1", zone: "table", visibility: "visible", name: "Region 3", kind: "region", regionOrder: 3 }),
+    card({ cardId: "p1-table-1", ownerId: "P1", zone: "table", visibility: "visible", name: "P1 Unit", kind: "character", regionCardId: "region-1" }),
+    card({ cardId: "p2-table-1", ownerId: "P2", zone: "table", visibility: "visible", name: "P2 Unit", kind: "character", regionCardId: "region-2" })
+  ];
+  if (includeExtraLocalTable) {
+    p1Cards.push(
+      card({
+        cardId: "p1-table-2",
+        ownerId: "P1",
+        zone: "table",
+        visibility: "visible",
+        name: "P1 Backup",
+        kind: "character",
+        regionCardId: "region-3"
+      })
+    );
+  }
+
+  envelopes.push(
     statePatched("P1", [
-      card({ cardId: "p1-hand-1", ownerId: "P1", zone: "hand", visibility: "visible", name: "P1 Hand", kind: "character" }),
-      card({ ownerId: "P2", zone: "hand", visibility: "hidden" }),
-      card({ cardId: "region-1", ownerId: "P1", zone: "table", visibility: "visible", name: "Region 1", kind: "region", regionOrder: 1 }),
-      card({ cardId: "region-2", ownerId: "P2", zone: "table", visibility: "visible", name: "Region 2", kind: "region", regionOrder: 2 }),
-      card({ cardId: "region-3", ownerId: "P1", zone: "table", visibility: "visible", name: "Region 3", kind: "region", regionOrder: 3 }),
-      card({ cardId: "p1-table-1", ownerId: "P1", zone: "table", visibility: "visible", name: "P1 Unit", kind: "character", regionCardId: "region-1" }),
-      card({ cardId: "p2-table-1", ownerId: "P2", zone: "table", visibility: "visible", name: "P2 Unit", kind: "character", regionCardId: "region-2" })
+      ...p1Cards
     ], { secret_society: 1 }, finished),
     statePatched("P2", [
       card({ ownerId: "P1", zone: "hand", visibility: "hidden" }),
       card({ cardId: "p2-hand-1", ownerId: "P2", zone: "hand", visibility: "visible", name: "P2 Hand", kind: "character" })
     ], { secret_society: 2 }, finished)
-  ];
+  );
+
+  return envelopes;
 }
 
 function statePatched(
@@ -233,4 +346,77 @@ function createJSONResponse(body: unknown): Response {
       "Content-Type": "application/json"
     }
   });
+}
+
+function accepted(
+  actorId: "P1" | "P2",
+  actionKind: string,
+  eventKind: string,
+  revision: number
+): DebuggerProtocolEnvelope {
+  return {
+    version: "0.1.0",
+    kind: "event",
+    messageId: `msg-accepted-${actorId}-${revision}`,
+    name: "ActionAccepted",
+    revision,
+    payload: {
+      type: "ActionAccepted",
+      action: {
+        id: `act-${actorId}-${revision}`,
+        actorId,
+        kind: actionKind
+      },
+      operation: {
+        id: `op-${actorId}-${revision}`,
+        actionId: `act-${actorId}-${revision}`,
+        actorId,
+        kind: actionKind,
+        status: "resolved",
+        requiresStack: false
+      },
+      event: {
+        id: `evt-${actorId}-${revision}`,
+        actionId: `act-${actorId}-${revision}`,
+        operationId: `op-${actorId}-${revision}`,
+        kind: eventKind,
+        revisionNumber: revision,
+        phase: "main",
+        step: "action",
+        priorityPlayerId: actorId,
+        priorityWindow: "action",
+        passCount: 0,
+        stackDepth: 0
+      },
+      revision: {
+        number: revision
+      }
+    }
+  };
+}
+
+function rejected(
+  actorId: "P1" | "P2",
+  actionKind: string,
+  reasonCode: string
+): DebuggerProtocolEnvelope {
+  return {
+    version: "0.1.0",
+    kind: "event",
+    messageId: `msg-rejected-${actorId}`,
+    name: "ActionRejected",
+    payload: {
+      type: "ActionRejected",
+      action: {
+        id: `act-rejected-${actorId}`,
+        actorId,
+        kind: actionKind
+      },
+      legality: {
+        ok: false,
+        reasonCode,
+        messageKey: "rules.legality.not_your_priority"
+      }
+    }
+  };
 }

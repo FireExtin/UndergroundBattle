@@ -1,11 +1,14 @@
 package api
 
 import (
+	"bytes"
 	"encoding/json"
+	"log"
 	"net/http"
 	"net/http/httptest"
 	"reflect"
 	"testing"
+	"time"
 
 	"undergroundbattle/server/pkg/rules"
 )
@@ -45,5 +48,73 @@ func TestResetEndpointRestoresCanonicalSandboxState(t *testing.T) {
 	}
 	if len(messages) != len(want.Players)+1 {
 		t.Fatalf("reset messages = %d, want %d", len(messages), len(want.Players)+1)
+	}
+}
+
+func TestLatestReportEndpointReturns404WhenNoReportExists(t *testing.T) {
+	session := NewSandboxSessionWithOptions(SandboxSessionOptions{
+		ReportDirectory: t.TempDir(),
+	})
+	handler := NewHandler(session, "")
+	request := httptest.NewRequest(http.MethodGet, "/api/debugger/reports/latest", nil)
+	recorder := httptest.NewRecorder()
+
+	handler.ServeHTTP(recorder, request)
+
+	if recorder.Code != http.StatusNotFound {
+		t.Fatalf("status code = %d, want %d", recorder.Code, http.StatusNotFound)
+	}
+
+	var payload map[string]string
+	if err := json.Unmarshal(recorder.Body.Bytes(), &payload); err != nil {
+		t.Fatalf("json.Unmarshal returned error: %v", err)
+	}
+	if payload["error"] != "report_not_found" {
+		t.Fatalf("error payload = %q, want %q", payload["error"], "report_not_found")
+	}
+}
+
+func TestLatestReportEndpointReturnsMostRecentReport(t *testing.T) {
+	var logBuffer bytes.Buffer
+	session := NewSandboxSessionWithOptions(SandboxSessionOptions{
+		Logger:          log.New(&logBuffer, "", 0),
+		ReportDirectory: t.TempDir(),
+		Now: func() time.Time {
+			return time.Date(2026, time.April, 2, 13, 0, 0, 0, time.UTC)
+		},
+	})
+	prepareSinglePointWin(t, session)
+
+	_, err := session.SubmitAction(rules.Action{
+		ID:      "act-http-report-finish",
+		ActorID: "P1",
+		Kind:    rules.ActionKindAdvancePhase,
+	})
+	if err != nil {
+		t.Fatalf("SubmitAction returned error: %v", err)
+	}
+
+	handler := NewHandler(session, "")
+	request := httptest.NewRequest(http.MethodGet, "/api/debugger/reports/latest", nil)
+	recorder := httptest.NewRecorder()
+
+	handler.ServeHTTP(recorder, request)
+
+	if recorder.Code != http.StatusOK {
+		t.Fatalf("status code = %d, want %d", recorder.Code, http.StatusOK)
+	}
+
+	var payload MatchReport
+	if err := json.Unmarshal(recorder.Body.Bytes(), &payload); err != nil {
+		t.Fatalf("json.Unmarshal returned error: %v", err)
+	}
+	if payload.Path == "" {
+		t.Fatal("payload.path is empty")
+	}
+	if payload.GameID != "game-sandbox-live" {
+		t.Fatalf("payload.gameId = %q, want %q", payload.GameID, "game-sandbox-live")
+	}
+	if payload.Revision != 1 {
+		t.Fatalf("payload.revision = %d, want %d", payload.Revision, 1)
 	}
 }

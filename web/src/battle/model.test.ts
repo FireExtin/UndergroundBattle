@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { deriveBattleState } from "./model";
+import { deriveBattleInfoLogs, deriveBattleState } from "./model";
 import type { CardView, DebuggerProtocolEnvelope, PlayerViewState } from "../debugger/protocol";
 
 describe("deriveBattleState", () => {
@@ -42,6 +42,122 @@ describe("deriveBattleState", () => {
     expect(state.local.hand).toHaveLength(0);
     expect(state.opponent.handCount).toBe(0);
     expect(state.contest.regions).toHaveLength(3);
+  });
+
+  it("builds info logs in reverse chronological order", () => {
+    const logs = deriveBattleInfoLogs([
+      {
+        version: "0.1.0",
+        kind: "event",
+        messageId: "msg-000002",
+        name: "ActionAccepted",
+        revision: 1,
+        payload: {
+          type: "ActionAccepted",
+          action: { id: "act-1", actorId: "P1", kind: "declare_attack" },
+          operation: {
+            id: "op-1",
+            actionId: "act-1",
+            actorId: "P1",
+            kind: "declare_attack",
+            status: "resolved",
+            requiresStack: false
+          },
+          event: {
+            id: "evt-1",
+            actionId: "act-1",
+            operationId: "op-1",
+            kind: "damage_applied",
+            revisionNumber: 1,
+            phase: "main",
+            step: "action",
+            priorityPlayerId: "P1",
+            priorityWindow: "action",
+            passCount: 0,
+            stackDepth: 0
+          },
+          revision: { number: 1 }
+        }
+      },
+      {
+        version: "0.1.0",
+        kind: "event",
+        messageId: "msg-000003",
+        name: "ActionRejected",
+        payload: {
+          type: "ActionRejected",
+          action: { id: "act-2", actorId: "P2", kind: "declare_attack" },
+          legality: {
+            ok: false,
+            reasonCode: "LEGALITY_FAILED_NOT_YOUR_PRIORITY",
+            messageKey: "rules.legality.not_your_priority"
+          }
+        }
+      },
+      {
+        version: "0.1.0",
+        kind: "view",
+        messageId: "msg-000004",
+        name: "StatePatched",
+        revision: 1,
+        payload: {
+          type: "StatePatched",
+          audienceKind: "player",
+          audienceId: "P1",
+          revision: { number: 1 },
+          event: {
+            id: "evt-system",
+            actionId: "act-system",
+            operationId: "op-system",
+            kind: "phase_advanced",
+            revisionNumber: 1,
+            phase: "main",
+            step: "action",
+            priorityPlayerId: "P1",
+            priorityWindow: "action",
+            passCount: 0,
+            stackDepth: 0
+          },
+          playerView: {
+            gameId: "game-battle-test",
+            viewerPlayerId: "P1",
+            revision: { number: 1 },
+            match: { status: "active" },
+            turn: {
+              turnNumber: 1,
+              activePlayerId: "P1",
+              priorityPlayerId: "P1",
+              priority: {
+                currentPlayerId: "P1",
+                passCount: 0,
+                windowKind: "action"
+              },
+              phase: {
+                name: "main",
+                step: "action",
+                allowsStack: true,
+                stepEnded: false
+              }
+            },
+            score: {
+              byPlayer: { P1: 0, P2: 0 },
+              victoryThreshold: 2
+            },
+            board: {
+              stack: [],
+              resolved: [],
+              randomResults: [],
+              cards: [card({ cardId: "x", ownerId: "P1", zone: "hand", visibility: "visible" })]
+            }
+          }
+        }
+      }
+    ]);
+
+    expect(logs).toHaveLength(3);
+    expect(logs[0]?.kind).toBe("system");
+    expect(logs[1]?.kind).toBe("rejected");
+    expect(logs[2]?.kind).toBe("accepted");
   });
 });
 

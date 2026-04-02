@@ -62,6 +62,22 @@ func NewHandler(session *SandboxSession, staticDir string) http.Handler {
 
 		writeJSON(writer, http.StatusOK, messages)
 	})
+	mux.HandleFunc("/api/debugger/reports/latest", func(writer http.ResponseWriter, request *http.Request) {
+		if request.Method != http.MethodGet {
+			writeMethodNotAllowed(writer, http.MethodGet)
+			return
+		}
+
+		report, ok := session.LatestReport()
+		if !ok {
+			writeJSON(writer, http.StatusNotFound, map[string]string{
+				"error": "report_not_found",
+			})
+			return
+		}
+
+		writeJSON(writer, http.StatusOK, report)
+	})
 
 	if staticDir == "" || !directoryExists(staticDir) {
 		return mux

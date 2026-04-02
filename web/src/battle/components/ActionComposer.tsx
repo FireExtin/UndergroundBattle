@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import type { Action } from "../../debugger/protocol";
 import type { BattlePlayerId, BattleState } from "../model";
@@ -24,11 +24,18 @@ const actionKindOptions = [
 
 export type ComposerActionInput = Omit<Action, "id" | "actorId">;
 
+export type ComposerAutoFillHint = {
+  token: number;
+  sourceCardId?: string;
+  targetCardId?: string;
+};
+
 type ActionComposerProps = {
   actorId: BattlePlayerId;
   battle: BattleState;
   pending: boolean;
   disabledReason: string;
+  autoFillHint?: ComposerAutoFillHint;
   onSubmitAction: (action: ComposerActionInput) => void;
 };
 
@@ -37,6 +44,7 @@ export function ActionComposer({
   battle,
   pending,
   disabledReason,
+  autoFillHint,
   onSubmitAction
 }: ActionComposerProps) {
   const [kind, setKind] = useState<string>("pass_priority");
@@ -47,6 +55,8 @@ export function ActionComposer({
   const [markerAmount, setMarkerAmount] = useState<string>("1");
   const [operationLabel, setOperationLabel] = useState<string>("");
   const [error, setError] = useState<string>("");
+  const [sourceManualLocked, setSourceManualLocked] = useState<boolean>(false);
+  const [targetManualLocked, setTargetManualLocked] = useState<boolean>(false);
 
   const sourceOptions = useMemo(() => {
     const ids = [
@@ -71,11 +81,82 @@ export function ActionComposer({
 
   const actionsDisabled = pending || disabledReason !== "";
 
+  useEffect(() => {
+    setTargetPlayerId(battle.opponentPlayerId);
+    setSourceManualLocked(false);
+    setTargetManualLocked(false);
+  }, [actorId, battle.opponentPlayerId]);
+
+  useEffect(() => {
+    if (sourceCardId.trim() !== "" && !sourceOptions.includes(sourceCardId)) {
+      setSourceCardId("");
+      setSourceManualLocked(false);
+    }
+  }, [sourceCardId, sourceOptions]);
+
+  useEffect(() => {
+    if (targetCardId.trim() !== "" && !targetOptions.includes(targetCardId)) {
+      setTargetCardId("");
+      setTargetManualLocked(false);
+    }
+  }, [targetCardId, targetOptions]);
+
+  useEffect(() => {
+    if (!autoFillHint) {
+      return;
+    }
+
+    const suggestedSource = autoFillHint.sourceCardId?.trim() ?? "";
+    if (suggestedSource !== "" && sourceOptions.includes(suggestedSource)) {
+      if (!sourceManualLocked || sourceCardId.trim() === "") {
+        setSourceCardId(suggestedSource);
+      }
+    }
+
+    const suggestedTarget = autoFillHint.targetCardId?.trim() ?? "";
+    if (suggestedTarget !== "" && targetOptions.includes(suggestedTarget)) {
+      if (!targetManualLocked || targetCardId.trim() === "") {
+        setTargetCardId(suggestedTarget);
+      }
+    }
+  }, [
+    autoFillHint,
+    sourceCardId,
+    sourceManualLocked,
+    sourceOptions,
+    targetCardId,
+    targetManualLocked,
+    targetOptions
+  ]);
+
   return (
     <section className="panel battle-actions" aria-label="动作面板">
       <h2>动作面板</h2>
       <p className="muted">Actor: {actorId}</p>
       {disabledReason ? <p className="muted">{disabledReason}</p> : null}
+      <details className="battle-actions__guide">
+        <summary>动作说明</summary>
+        <ul className="simple-list">
+          <li>
+            <strong>Pass Priority</strong>：在当前窗口内放弃响应，连续双方都 pass 后通常会结束当前步骤或结算栈。
+          </li>
+          <li>
+            <strong>Advance Phase</strong>：推进阶段（如 main→end / end→main），并触发规则书定义的阶段结算。
+          </li>
+          <li>
+            <strong>Declare Attack / Investigation</strong>：`Source Card` 选本方角色牌，`Target Card` 选敌方角色或地区。
+          </li>
+          <li>
+            <strong>Move Card</strong>：把一张驻场牌移动到目标地区，需同时填写 source/target。
+          </li>
+          <li>
+            <strong>Set/Remove Marker</strong>：用于秘社或卡牌标记增减，需填写 marker type/amount。
+          </li>
+        </ul>
+        <a href="/battle-action-guide.md" target="_blank" rel="noreferrer">
+          查看完整说明
+        </a>
+      </details>
 
       <div className="battle-actions__grid">
         <label className="battle-actions__field">
@@ -104,6 +185,7 @@ export function ActionComposer({
             value={sourceCardId}
             onChange={(event) => {
               setSourceCardId(event.target.value);
+              setSourceManualLocked(true);
               setError("");
             }}
             disabled={actionsDisabled}
@@ -124,6 +206,7 @@ export function ActionComposer({
             value={targetCardId}
             onChange={(event) => {
               setTargetCardId(event.target.value);
+              setTargetManualLocked(true);
               setError("");
             }}
             disabled={actionsDisabled}

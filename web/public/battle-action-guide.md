@@ -1,0 +1,62 @@
+# 对战动作完整说明
+
+## 核心原则
+- 前端只构造动作并提交，规则合法性与结算以 Go 规则核返回为准。
+- `Source Card` 通常填本方发起牌；`Target Card` 通常填敌方牌或地区牌。
+- 若动作不要求某字段，保持 `(none)` 即可。
+
+## 动作速览
+
+### `pass_priority`
+- 用途：放弃当前优先权。
+- 必填：无。
+
+### `advance_phase`
+- 用途：推进阶段（`main -> end -> main`）。
+- 必填：无。
+
+### `reveal_card`
+- 用途：公开一张可操作卡。
+- 必填：`Source Card`。
+
+### `inspect_card`
+- 用途：查看目标隐藏卡信息（受规则与权限影响）。
+- 必填：`Source Card`。
+
+### `declare_attack`
+- 用途：本方角色对目标角色发起攻击。
+- 必填：`Source Card` + `Target Card`。
+
+### `declare_investigation`
+- 用途：本方角色对目标地区执行调查/影响。
+- 必填：`Source Card` + `Target Card`（地区）。
+
+### `move_card`
+- 用途：在地区间移动驻场牌。
+- 必填：`Source Card` + `Target Card`（目标地区）。
+
+### `queue_operation`
+- 用途：提交可入栈/直解的卡牌操作。
+- 必填：`Source Card`。
+- 可选：`Target Card` / `Target Player` / `Operation Label`。
+
+### `set_marker` / `remove_marker`
+- 用途：设置/移除玩家级标记。
+- 必填：`Target Player` + `Marker Type` + `Marker Amount`。
+
+### `set_card_marker` / `remove_card_marker`
+- 用途：设置/移除卡牌级标记。
+- 必填：`Target Card` + `Marker Type` + `Marker Amount`。
+
+### `set_face_down`
+- 用途：将牌设为背面状态（暗藏部署等）。
+- 必填：`Source Card`。
+
+### `use_first_player_privilege`
+- 用途：使用先手特权（具体生效条件由规则核判断）。
+- 必填：无。
+
+## 常见排错
+- 返回 `ActionRejected`：优先看 reasonCode / messageKey / context。
+- 提交后无预期变化：查看日志面板里的 `StatePatched` 条目，确认阶段、优先权和分数。
+- 游戏结束后按钮禁用：属于正常行为，需 `重开对局` 开始新局。
