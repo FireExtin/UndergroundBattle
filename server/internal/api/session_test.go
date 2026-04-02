@@ -161,6 +161,33 @@ func TestSandboxSessionLogsAcceptedRejectedAndFinishedAtInfoLevel(t *testing.T) 
 	}
 }
 
+func TestSandboxSessionResetClearsLatestReport(t *testing.T) {
+	session := NewSandboxSessionWithOptions(SandboxSessionOptions{
+		ReportDirectory: t.TempDir(),
+	})
+	prepareSinglePointWin(t, session)
+
+	_, err := session.SubmitAction(rules.Action{
+		ID:      "act-reset-report-finish",
+		ActorID: "P1",
+		Kind:    rules.ActionKindAdvancePhase,
+	})
+	if err != nil {
+		t.Fatalf("SubmitAction returned error: %v", err)
+	}
+	if _, ok := session.LatestReport(); !ok {
+		t.Fatal("LatestReport() = not found, want generated report")
+	}
+
+	_, err = session.Reset()
+	if err != nil {
+		t.Fatalf("Reset returned error: %v", err)
+	}
+	if _, ok := session.LatestReport(); ok {
+		t.Fatal("LatestReport unexpectedly exists after reset")
+	}
+}
+
 func TestSandboxSessionSubmitStillSucceedsWhenReportWriteFails(t *testing.T) {
 	reportFile, err := os.CreateTemp(t.TempDir(), "report-dir-is-file-*.tmp")
 	if err != nil {
@@ -268,11 +295,25 @@ func TestSandboxSessionSetupStateTracksCurrentStep(t *testing.T) {
 		t.Fatalf("current step = %d, want 2", state.CurrentStep)
 	}
 
-	for step := 2; step <= 7; step++ {
+	for step := 2; step <= 6; step++ {
 		state, err = session.AdvanceSetup(SetupAdvanceInput{})
 		if err != nil {
 			t.Fatalf("AdvanceSetup(step=%d) returned error: %v", step, err)
 		}
+	}
+	if state.Completed {
+		t.Fatal("setup should not be completed before advancing step 7")
+	}
+	if state.CurrentStep != 7 {
+		t.Fatalf("current step = %d, want 7 before final advance", state.CurrentStep)
+	}
+	if isSetupStepCompleted(state.Steps, 7) {
+		t.Fatal("setup step 7 should not be marked completed before final advance")
+	}
+
+	state, err = session.AdvanceSetup(SetupAdvanceInput{})
+	if err != nil {
+		t.Fatalf("AdvanceSetup(step=7) returned error: %v", err)
 	}
 	if !state.Completed {
 		t.Fatal("setup should be completed after step 7")
@@ -280,6 +321,18 @@ func TestSandboxSessionSetupStateTracksCurrentStep(t *testing.T) {
 	if state.CurrentStep != 7 {
 		t.Fatalf("current step = %d, want 7", state.CurrentStep)
 	}
+	if !isSetupStepCompleted(state.Steps, 7) {
+		t.Fatal("setup step 7 should be marked completed after final advance")
+	}
+}
+
+func isSetupStepCompleted(steps []SetupStepStatus, targetStep int) bool {
+	for _, step := range steps {
+		if step.Step == targetStep {
+			return step.Completed
+		}
+	}
+	return false
 }
 
 func prepareSinglePointWin(t *testing.T, session *SandboxSession) {

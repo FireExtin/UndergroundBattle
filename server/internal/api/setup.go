@@ -170,7 +170,7 @@ func (session *SandboxSession) StartSetup(input SetupStartInput) (SetupState, er
 			"play": "play_card 已启用费用与忠诚校验；queue_operation 仍保留调试通道兼容。",
 		},
 	}
-	session.setup.Steps = buildSetupSteps(session.setup.CurrentStep)
+	session.setup.Steps = buildSetupSteps(session.setup.CurrentStep, session.setup.Completed)
 	session.setupRuntime = setupRuntimeState{
 		playerDeck: map[string][]setupCard{"P1": {}, "P2": {}},
 		playerHand: map[string][]setupCard{"P1": {}, "P2": {}},
@@ -281,7 +281,7 @@ func (session *SandboxSession) AdvanceSetup(input SetupAdvanceInput) (SetupState
 		return SetupState{}, fmt.Errorf("setup_step_invalid")
 	}
 
-	session.setup.Steps = buildSetupSteps(session.setup.CurrentStep)
+	session.setup.Steps = buildSetupSteps(session.setup.CurrentStep, session.setup.Completed)
 	return cloneSetupState(session.setup), nil
 }
 
@@ -453,7 +453,7 @@ func drawSetupCards(deck *[]setupCard, hand *[]setupCard, count int) {
 	}
 }
 
-func buildSetupSteps(currentStep int) []SetupStepStatus {
+func buildSetupSteps(currentStep int, setupCompleted bool) []SetupStepStatus {
 	titles := []string{
 		"玩家选择牌组",
 		"设置世界牌库",
@@ -466,7 +466,7 @@ func buildSetupSteps(currentStep int) []SetupStepStatus {
 	result := make([]SetupStepStatus, 0, len(titles))
 	for index, title := range titles {
 		step := index + 1
-		completed := step < currentStep || currentStep == setupStepTotal && step == setupStepTotal
+		completed := step < currentStep || (setupCompleted && step == currentStep)
 		result = append(result, SetupStepStatus{Step: step, Title: title, Completed: completed})
 	}
 	return result

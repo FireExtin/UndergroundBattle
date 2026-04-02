@@ -267,6 +267,7 @@ func (session *SandboxSession) resetLocked() ([]protocolEnvelope, error) {
 	session.projector = projector
 	session.setup = SetupState{}
 	session.setupRuntime = setupRuntimeState{}
+	session.latestReport = nil
 	session.nextMessageNumber = 1
 	messages, err := session.materializeBootstrapMessages(views)
 	if err != nil {

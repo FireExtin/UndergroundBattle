@@ -119,6 +119,37 @@ func TestLatestReportEndpointReturnsMostRecentReport(t *testing.T) {
 	}
 }
 
+func TestLatestReportEndpointReturns404AfterReset(t *testing.T) {
+	session := NewSandboxSessionWithOptions(SandboxSessionOptions{
+		ReportDirectory: t.TempDir(),
+	})
+	prepareSinglePointWin(t, session)
+	_, err := session.SubmitAction(rules.Action{
+		ID:      "act-http-report-reset-finish",
+		ActorID: "P1",
+		Kind:    rules.ActionKindAdvancePhase,
+	})
+	if err != nil {
+		t.Fatalf("SubmitAction returned error: %v", err)
+	}
+
+	handler := NewHandler(session, "")
+
+	resetRequest := httptest.NewRequest(http.MethodPost, "/api/debugger/reset", nil)
+	resetRecorder := httptest.NewRecorder()
+	handler.ServeHTTP(resetRecorder, resetRequest)
+	if resetRecorder.Code != http.StatusOK {
+		t.Fatalf("reset status code = %d, want %d", resetRecorder.Code, http.StatusOK)
+	}
+
+	reportRequest := httptest.NewRequest(http.MethodGet, "/api/debugger/reports/latest", nil)
+	reportRecorder := httptest.NewRecorder()
+	handler.ServeHTTP(reportRecorder, reportRequest)
+	if reportRecorder.Code != http.StatusNotFound {
+		t.Fatalf("status code = %d, want %d", reportRecorder.Code, http.StatusNotFound)
+	}
+}
+
 func TestSetupEndpointsStartAdvanceAndState(t *testing.T) {
 	session := NewSandboxSession()
 	handler := NewHandler(session, "")
