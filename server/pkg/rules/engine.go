@@ -315,7 +315,7 @@ func buildOperationWithLookup(state GameState, action Action, sourceLookup cardO
 		operation.TargetRegionCardID = action.TargetRegionCardID
 		operation.PlayMode = action.PlayMode
 		operation.Label = "play_card"
-		if cardIndex := findCardIndex(state, action.CardID); cardIndex >= 0 {
+		if cardIndex := findCardIndex(state, action.CardID); cardIndex >= 0 && cardIndex < len(state.Board.Cards) {
 			card := state.Board.Cards[cardIndex]
 			lookupID := card.DefinitionID
 			if lookupID == "" {
