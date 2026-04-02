@@ -4,7 +4,7 @@ import "testing"
 
 // Purpose: Verifies turn-based resource initialization/refill for battle V4.
 
-func TestNewGameStateInitializesActivePlayerResources(t *testing.T) {
+func TestNewGameStateInitializesBothPlayersResources(t *testing.T) {
 	state := NewGameState(InitialStateConfig{
 		GameID:         "test-resource-init",
 		ActivePlayerID: "P1",
@@ -17,12 +17,12 @@ func TestNewGameStateInitializesActivePlayerResources(t *testing.T) {
 		t.Fatalf("P1 resource = %#v, want current=1 max=1", p1)
 	}
 	p2 := state.Turn.Resources["P2"]
-	if p2.Current != 0 || p2.Max != 0 {
-		t.Fatalf("P2 resource = %#v, want current=0 max=0", p2)
+	if p2.Current != 1 || p2.Max != 1 {
+		t.Fatalf("P2 resource = %#v, want current=1 max=1", p2)
 	}
 }
 
-func TestAdvancePhaseEndToMainRefillsNextActivePlayerResources(t *testing.T) {
+func TestAdvancePhaseEndToMainRefillsBothPlayersResources(t *testing.T) {
 	state := NewGameState(InitialStateConfig{
 		GameID:         "test-resource-refill",
 		ActivePlayerID: "P1",
@@ -53,5 +53,9 @@ func TestAdvancePhaseEndToMainRefillsNextActivePlayerResources(t *testing.T) {
 	p2 := result.State.Turn.Resources["P2"]
 	if p2.Current != 2 || p2.Max != 2 {
 		t.Fatalf("P2 resource = %#v, want current=2 max=2", p2)
+	}
+	p1 := result.State.Turn.Resources["P1"]
+	if p1.Current != 2 || p1.Max != 2 {
+		t.Fatalf("P1 resource = %#v, want current=2 max=2", p1)
 	}
 }

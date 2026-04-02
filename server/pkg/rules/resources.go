@@ -6,29 +6,36 @@ import "strings"
 
 const maxTurnResource = 10
 
-// InitializeTurnResources ensures player resource entries exist and refills the current active player.
+// InitializeTurnResources ensures player resource entries exist and refills each player's turn pool.
 func InitializeTurnResources(state *GameState) {
 	if state == nil {
 		return
 	}
 	ensureTurnResourceEntries(&state.Turn, state.Players)
-	RefillActivePlayerResources(state)
+	refillTurnResourcesForAllPlayers(state)
 }
 
-// RefillActivePlayerResources refills the active player's resource pool to turn-based capacity.
+// RefillActivePlayerResources keeps the historical API surface while refilling both players.
+// The playable battle prototype allows both players to spend resources when they have priority.
 func RefillActivePlayerResources(state *GameState) {
+	refillTurnResourcesForAllPlayers(state)
+}
+
+func refillTurnResourcesForAllPlayers(state *GameState) {
 	if state == nil {
 		return
 	}
 	ensureTurnResourceEntries(&state.Turn, state.Players)
-	playerID := strings.TrimSpace(state.Turn.ActivePlayerID)
-	if playerID == "" {
-		return
-	}
 	capacity := turnResourceCapacity(state.Turn.TurnNumber)
-	state.Turn.Resources[playerID] = PlayerResourceState{
-		Current: capacity,
-		Max:     capacity,
+	for _, playerID := range state.Players {
+		playerID = strings.TrimSpace(playerID)
+		if playerID == "" {
+			continue
+		}
+		state.Turn.Resources[playerID] = PlayerResourceState{
+			Current: capacity,
+			Max:     capacity,
+		}
 	}
 }
 

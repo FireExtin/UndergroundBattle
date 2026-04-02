@@ -615,6 +615,69 @@ func TestPlayCardCharacterAllowsWhenActorHasPriorityButIsNotActivePlayer(t *test
 	}
 }
 
+func TestPlayCardFaceDownAllowsAfterBuildAssetWhenPriorityTransfersToP2(t *testing.T) {
+	state := NewGameState(InitialStateConfig{
+		GameID:         "play-card-p2-after-build-asset",
+		ActivePlayerID: "P1",
+		PlayerIDs:      []string{"P1", "P2"},
+		Seed:           20260402,
+	})
+	state.Turn.Priority.CurrentPlayerID = "P2"
+	state.Turn.PriorityPlayerID = "P2"
+	state.Board.Cards = append(state.Board.Cards,
+		CardState{
+			CardID:         "region-1",
+			Name:           "地区1",
+			Kind:           CardKindRegion,
+			OwnerID:        "TABLE",
+			Zone:           CardZoneTable,
+			VisibleToOwner: true,
+			Revealed:       true,
+			RegionOrder:    1,
+		},
+		CardState{
+			CardID:         "p2-build-source",
+			Name:           "P2 建立资产来源",
+			Kind:           CardKindAsset,
+			OwnerID:        "P2",
+			Zone:           CardZoneHand,
+			VisibleToOwner: true,
+		},
+		CardState{
+			CardID:         "p2-secret-character",
+			Name:           "P2 暗置角色",
+			Kind:           CardKindCharacter,
+			OwnerID:        "P2",
+			Zone:           CardZoneHand,
+			VisibleToOwner: true,
+			Cost:           2,
+			Color:          "黄",
+		},
+	)
+
+	result, err := SubmitAction(state, Action{
+		ID:      "act-p2-build-asset",
+		ActorID: "P2",
+		Kind:    ActionKindBuildAsset,
+		CardID:  "p2-build-source",
+	})
+	if err != nil {
+		t.Fatalf("build_asset failed: %v", err)
+	}
+
+	_, err = SubmitAction(result.State, Action{
+		ID:                 "act-p2-play-secret",
+		ActorID:            "P2",
+		Kind:               ActionKindPlayCard,
+		CardID:             "p2-secret-character",
+		PlayMode:           "face_down",
+		TargetRegionCardID: "region-1",
+	})
+	if err != nil {
+		t.Fatalf("play_card face_down failed after build_asset: %v", err)
+	}
+}
+
 func TestPlayCardRejectsWhenLoyaltyRequirementUnmet(t *testing.T) {
 	state := basePlayCardState()
 	state.Turn.Resources["P1"] = PlayerResourceState{Current: 4, Max: 4}

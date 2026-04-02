@@ -107,6 +107,7 @@ test("finished match disables actions and latest report endpoint is readable", a
   expect(p1Investigators.length).toBeGreaterThan(0);
 
   for (const investigator of p1Investigators) {
+    await ensurePriority(request, "P1");
     await postActionExpectAccepted(request, {
       id: nextActionID("act-e2e-investigate"),
       actorId: "P1",
