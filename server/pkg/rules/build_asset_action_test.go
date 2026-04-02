@@ -165,7 +165,7 @@ func TestBuildAssetAllowsUseAgainOnNextOwnTurn(t *testing.T) {
 	}
 }
 
-func TestBuildAssetRejectsWhenActorIsNotActivePlayer(t *testing.T) {
+func TestBuildAssetAllowsWhenActorHasPriorityButIsNotActivePlayer(t *testing.T) {
 	state := NewGameState(InitialStateConfig{
 		GameID:         "build-asset-not-active",
 		ActivePlayerID: "P1",
@@ -182,24 +182,16 @@ func TestBuildAssetRejectsWhenActorIsNotActivePlayer(t *testing.T) {
 		VisibleToOwner: true,
 	})
 
-	_, err := SubmitAction(state, Action{
+	result, err := SubmitAction(state, Action{
 		ID:      "act-build-asset-not-active",
 		ActorID: "P2",
 		Kind:    ActionKindBuildAsset,
 		CardID:  "p2-hand-build",
 	})
-	if err == nil {
-		t.Fatal("SubmitAction succeeded, want active-player rejection")
+	if err != nil {
+		t.Fatalf("SubmitAction returned error: %v", err)
 	}
-
-	var legalityErr *LegalityError
-	if !errors.As(err, &legalityErr) {
-		t.Fatalf("expected LegalityError, got %T", err)
-	}
-	if legalityErr.Code != ReasonCodeLegalityFailedActionProhibited {
-		t.Fatalf("error code = %q, want %q", legalityErr.Code, ReasonCodeLegalityFailedActionProhibited)
-	}
-	if legalityErr.MessageKey != "rules.build_asset.not_active_player" {
-		t.Fatalf("message key = %q, want %q", legalityErr.MessageKey, "rules.build_asset.not_active_player")
+	if result.Event.Kind != EventKindAssetBuilt {
+		t.Fatalf("event kind = %q, want %q", result.Event.Kind, EventKindAssetBuilt)
 	}
 }

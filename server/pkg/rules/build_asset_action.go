@@ -36,17 +36,6 @@ func checkBuildAssetActionLegality(state GameState, action Action) LegalityResul
 		)
 	}
 
-	if action.ActorID != state.Turn.ActivePlayerID {
-		return legalityFailure(
-			ReasonCodeLegalityFailedActionProhibited,
-			"rules.build_asset.not_active_player",
-			"turn.activePlayerId",
-			map[string]string{
-				"activePlayerId": state.Turn.ActivePlayerID,
-			},
-		)
-	}
-
 	if len(state.Board.Stack) != 0 {
 		return legalityFailure(
 			ReasonCodeLegalityFailedStackNotEmpty,

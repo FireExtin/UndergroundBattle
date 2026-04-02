@@ -567,7 +567,7 @@ func TestPlayCardFaceDownIgnoresLoyaltyRequirement(t *testing.T) {
 	}
 }
 
-func TestPlayCardCharacterRejectsWhenActorIsNotActivePlayer(t *testing.T) {
+func TestPlayCardCharacterAllowsWhenActorHasPriorityButIsNotActivePlayer(t *testing.T) {
 	state := basePlayCardState()
 	state.Turn.ActivePlayerID = "P1"
 	state.Turn.Priority.CurrentPlayerID = "P2"
@@ -594,7 +594,7 @@ func TestPlayCardCharacterRejectsWhenActorIsNotActivePlayer(t *testing.T) {
 		},
 	)
 
-	_, err := SubmitAction(state, Action{
+	result, err := SubmitAction(state, Action{
 		ID:                 "act-play-char-not-active",
 		ActorID:            "P2",
 		Kind:               ActionKindPlayCard,
@@ -602,19 +602,16 @@ func TestPlayCardCharacterRejectsWhenActorIsNotActivePlayer(t *testing.T) {
 		PlayMode:           "face_down",
 		TargetRegionCardID: "region-1",
 	})
-	if err == nil {
-		t.Fatal("SubmitAction succeeded, want active-player rejection")
+	if err != nil {
+		t.Fatalf("SubmitAction returned error: %v", err)
 	}
 
-	var legalityErr *LegalityError
-	if !errors.As(err, &legalityErr) {
-		t.Fatalf("expected LegalityError, got %T", err)
+	deployed := cardStateByID(t, result.State, "p2-char-non-active")
+	if deployed.Zone != CardZoneTable {
+		t.Fatalf("zone = %q, want %q", deployed.Zone, CardZoneTable)
 	}
-	if legalityErr.Code != ReasonCodeLegalityFailedActionProhibited {
-		t.Fatalf("error code = %q, want %q", legalityErr.Code, ReasonCodeLegalityFailedActionProhibited)
-	}
-	if legalityErr.MessageKey != "rules.play_card.not_active_player" {
-		t.Fatalf("message key = %q, want %q", legalityErr.MessageKey, "rules.play_card.not_active_player")
+	if !deployed.FaceDown {
+		t.Fatal("expected face-down deployment")
 	}
 }
 
