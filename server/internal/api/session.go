@@ -19,6 +19,7 @@ import (
 
 const protocolVersion = "0.1.0"
 const defaultMatchReportDirectory = "runtime/match-reports"
+const defaultMatchTraceDirectory = "runtime/match-traces"
 
 type protocolEnvelope struct {
 	Version   string          `json:"version"`
@@ -40,9 +41,19 @@ type MatchReport struct {
 	Content          string `json:"content"`
 }
 
+type MatchTrace struct {
+	GameID     string `json:"gameId"`
+	StartedAt  string `json:"startedAt"`
+	UpdatedAt  string `json:"updatedAt"`
+	Path       string `json:"path"`
+	EntryCount int    `json:"entryCount"`
+	Content    string `json:"content"`
+}
+
 type SandboxSessionOptions struct {
 	Logger          *log.Logger
 	ReportDirectory string
+	TraceDirectory  string
 	Now             func() time.Time
 }
 
@@ -56,8 +67,10 @@ type SandboxSession struct {
 	nextMessageNumber int
 	logger            *log.Logger
 	reportDirectory   string
+	traceDirectory    string
 	now               func() time.Time
 	latestReport      *MatchReport
+	latestTrace       *MatchTrace
 }
 
 func NewSandboxSession() *SandboxSession {
@@ -74,6 +87,12 @@ func NewSandboxSessionWithOptions(options SandboxSessionOptions) *SandboxSession
 	if reportDirectory == "" {
 		reportDirectory = defaultMatchReportDirectory
 	}
+	reportDirectory = resolveSandboxPath(reportDirectory)
+	traceDirectory := strings.TrimSpace(options.TraceDirectory)
+	if traceDirectory == "" {
+		traceDirectory = defaultMatchTraceDirectory
+	}
+	traceDirectory = resolveSandboxPath(traceDirectory)
 
 	now := options.Now
 	if now == nil {
@@ -84,6 +103,7 @@ func NewSandboxSessionWithOptions(options SandboxSessionOptions) *SandboxSession
 		nextMessageNumber: 1,
 		logger:            logger,
 		reportDirectory:   reportDirectory,
+		traceDirectory:    traceDirectory,
 		now:               now,
 	}
 	if _, err := session.resetLocked(); err != nil {
@@ -106,12 +126,34 @@ func (session *SandboxSession) SubmitAction(action rules.Action) ([]protocolEnve
 		return nil, errSetupNotCompleted
 	}
 
+	session.appendMatchTraceEntryLocked("action_submitted", map[string]any{
+		"id":                 action.ID,
+		"actorId":            action.ActorID,
+		"kind":               action.Kind,
+		"cardId":             action.CardID,
+		"targetCardId":       action.TargetCardID,
+		"targetPlayerId":     action.TargetPlayerID,
+		"targetRegionCardId": action.TargetRegionCardID,
+		"playMode":           action.PlayMode,
+	}, &session.state)
+
 	beforeMatch := session.state.Match
 	result, err := rules.SubmitActionWithProjection(session.state, action, session.projector)
 	if err != nil {
 		var legality *rules.LegalityError
 		if errors.As(err, &legality) {
 			session.logActionRejected(action, legality.Result)
+			session.appendMatchTraceEntryLocked("action_rejected", map[string]any{
+				"actionId":    action.ID,
+				"actorId":     action.ActorID,
+				"kind":        action.Kind,
+				"reasonCode":  legality.Result.ReasonCode,
+				"messageKey":  legality.Result.MessageKey,
+				"hook":        legality.Result.Hook,
+				"context":     legality.Result.Context,
+				"message":     legality.Message,
+				"errorString": err.Error(),
+			}, &session.state)
 			return session.appendDispatchBatch(rules.BuildRejectedDispatchBatch(action, legality.Result))
 		}
 
@@ -120,11 +162,23 @@ func (session *SandboxSession) SubmitAction(action rules.Action) ([]protocolEnve
 
 	session.state = result.State
 	session.logActionAccepted(result.Accepted, result.State)
+	session.appendMatchTraceEntryLocked("action_accepted", map[string]any{
+		"action":    result.Accepted.Action,
+		"operation": result.Accepted.Operation,
+		"event":     result.Accepted.Event,
+		"revision":  result.Accepted.Revision,
+	}, &session.state)
 	if beforeMatch.Status != rules.MatchStatusFinished && result.State.Match.Status == rules.MatchStatusFinished {
 		session.logMatchFinished(result.State)
 		if err := session.generateMatchReportLocked(result.State); err != nil {
 			session.logError("match_report_write_failed gameId=%s revision=%d err=%v", result.State.GameID, result.State.Revision.Number, err)
 		}
+		session.appendMatchTraceEntryLocked("match_finished", map[string]any{
+			"winner":           result.State.Match.WinnerPlayerID,
+			"endReason":        result.State.Match.EndReason,
+			"finishedRevision": result.State.Match.FinishedAtRevision,
+			"latestReportPath": latestReportPath(session.latestReport),
+		}, &session.state)
 	}
 	return session.appendDispatchBatch(result.Dispatch)
 }
@@ -145,6 +199,22 @@ func (session *SandboxSession) LatestReport() (MatchReport, bool) {
 	}
 
 	return *session.latestReport, true
+}
+
+func (session *SandboxSession) LatestTrace() (MatchTrace, bool) {
+	session.mu.Lock()
+	defer session.mu.Unlock()
+
+	if session.latestTrace == nil {
+		return MatchTrace{}, false
+	}
+
+	trace := *session.latestTrace
+	content, err := os.ReadFile(trace.Path)
+	if err == nil {
+		trace.Content = string(content)
+	}
+	return trace, true
 }
 
 func (session *SandboxSession) appendDispatchBatch(batch rules.DispatchBatch) ([]protocolEnvelope, error) {
@@ -268,7 +338,14 @@ func (session *SandboxSession) resetLocked() ([]protocolEnvelope, error) {
 	session.setup = SetupState{}
 	session.setupRuntime = setupRuntimeState{}
 	session.latestReport = nil
+	session.latestTrace = nil
 	session.nextMessageNumber = 1
+	if err := session.startMatchTraceLocked(state, "reset"); err != nil {
+		session.logError("match_trace_start_failed gameId=%s err=%v", state.GameID, err)
+	}
+	session.appendMatchTraceEntryLocked("session_reset", map[string]any{
+		"reason": "api.debugger.reset",
+	}, &session.state)
 	messages, err := session.materializeBootstrapMessages(views)
 	if err != nil {
 		return nil, err
@@ -326,6 +403,164 @@ func (session *SandboxSession) logError(format string, args ...any) {
 		return
 	}
 	session.logger.Printf("error "+format, args...)
+}
+
+func (session *SandboxSession) startMatchTraceLocked(state rules.GameState, trigger string) error {
+	startedAt := session.now().UTC()
+	if err := os.MkdirAll(session.traceDirectory, 0o755); err != nil {
+		return err
+	}
+
+	fileName := fmt.Sprintf("%s-%s.log", sanitizePathSegment(state.GameID), startedAt.Format("20060102T150405Z"))
+	tracePath := filepath.Join(session.traceDirectory, fileName)
+	absolutePath, err := filepath.Abs(tracePath)
+	if err != nil {
+		absolutePath = tracePath
+	}
+
+	var builder strings.Builder
+	builder.WriteString("# Match Trace\n\n")
+	builder.WriteString(fmt.Sprintf("- Game ID: %s\n", state.GameID))
+	builder.WriteString(fmt.Sprintf("- Started At: %s\n", startedAt.Format(time.RFC3339)))
+	builder.WriteString(fmt.Sprintf("- Trigger: %s\n", emptyAsDash(trigger)))
+	builder.WriteString("\n")
+	if err := os.WriteFile(absolutePath, []byte(builder.String()), 0o644); err != nil {
+		return err
+	}
+
+	session.latestTrace = &MatchTrace{
+		GameID:     state.GameID,
+		StartedAt:  startedAt.Format(time.RFC3339),
+		UpdatedAt:  startedAt.Format(time.RFC3339),
+		Path:       absolutePath,
+		EntryCount: 0,
+	}
+	return nil
+}
+
+func (session *SandboxSession) appendMatchTraceEntryLocked(kind string, payload any, state *rules.GameState) {
+	if session.latestTrace == nil {
+		return
+	}
+
+	at := session.now().UTC()
+	var builder strings.Builder
+	builder.WriteString(fmt.Sprintf("## %s %s\n\n", at.Format(time.RFC3339), emptyAsDash(kind)))
+	if payload != nil {
+		if data, err := json.MarshalIndent(payload, "", "  "); err == nil {
+			builder.WriteString("```json\n")
+			builder.Write(data)
+			builder.WriteString("\n```\n\n")
+		}
+	}
+	if state != nil {
+		builder.WriteString(renderTraceStateSnapshot(*state))
+		builder.WriteString("\n")
+	}
+
+	file, err := os.OpenFile(session.latestTrace.Path, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0o644)
+	if err != nil {
+		session.logError("match_trace_append_open_failed path=%s err=%v", session.latestTrace.Path, err)
+		return
+	}
+	defer func() {
+		_ = file.Close()
+	}()
+	if _, err := file.WriteString(builder.String()); err != nil {
+		session.logError("match_trace_append_write_failed path=%s err=%v", session.latestTrace.Path, err)
+		return
+	}
+
+	session.latestTrace.UpdatedAt = at.Format(time.RFC3339)
+	session.latestTrace.EntryCount++
+}
+
+func renderTraceStateSnapshot(state rules.GameState) string {
+	var builder strings.Builder
+	builder.WriteString("### State Snapshot\n\n")
+	builder.WriteString(fmt.Sprintf("- Revision: %d\n", state.Revision.Number))
+	builder.WriteString(fmt.Sprintf("- Match: %s\n", state.Match.Status))
+	builder.WriteString(fmt.Sprintf("- Winner: %s\n", emptyAsDash(state.Match.WinnerPlayerID)))
+	builder.WriteString(fmt.Sprintf("- Turn: %d\n", state.Turn.TurnNumber))
+	builder.WriteString(fmt.Sprintf("- Active Player: %s\n", emptyAsDash(state.Turn.ActivePlayerID)))
+	builder.WriteString(fmt.Sprintf("- Priority Player: %s\n", emptyAsDash(state.Turn.Priority.CurrentPlayerID)))
+	builder.WriteString(fmt.Sprintf("- Phase: %s/%s\n", state.Turn.Phase.Name, state.Turn.Phase.Step))
+	builder.WriteString(fmt.Sprintf("- Pass Count: %d\n", state.Turn.Priority.PassCount))
+	builder.WriteString(fmt.Sprintf("- Resources: %s\n", traceResourceSummary(state)))
+	builder.WriteString(fmt.Sprintf("- Score: %s\n", formatScore(state)))
+	builder.WriteString(fmt.Sprintf("- Board: %s\n", traceBoardSummary(state)))
+	return builder.String()
+}
+
+func traceResourceSummary(state rules.GameState) string {
+	if len(state.Turn.Resources) == 0 {
+		return "-"
+	}
+	parts := make([]string, 0, len(state.Players))
+	for _, playerID := range state.Players {
+		resource := state.Turn.Resources[playerID]
+		parts = append(parts, fmt.Sprintf("%s:%d/%d", playerID, resource.Current, resource.Max))
+	}
+	return strings.Join(parts, " ")
+}
+
+func traceBoardSummary(state rules.GameState) string {
+	type zoneCounter struct {
+		hand    int
+		deck    int
+		table   int
+		asset   int
+		discard int
+		score   int
+	}
+	byPlayer := make(map[string]zoneCounter, len(state.Players))
+	for _, playerID := range state.Players {
+		byPlayer[playerID] = zoneCounter{}
+	}
+
+	regions := 0
+	hiddenOnTable := 0
+	for _, card := range state.Board.Cards {
+		if card.Kind == rules.CardKindRegion && card.Zone == rules.CardZoneTable && !card.Destroyed {
+			regions++
+		}
+		if card.Zone == rules.CardZoneTable && card.FaceDown && !card.Destroyed {
+			hiddenOnTable++
+		}
+		counter := byPlayer[card.OwnerID]
+		switch card.Zone {
+		case rules.CardZoneHand:
+			counter.hand++
+		case rules.CardZoneDeck:
+			counter.deck++
+		case rules.CardZoneTable:
+			counter.table++
+		case rules.CardZoneAsset:
+			counter.asset++
+		case rules.CardZoneDiscard:
+			counter.discard++
+		case rules.CardZoneScore:
+			counter.score++
+		}
+		byPlayer[card.OwnerID] = counter
+	}
+
+	parts := make([]string, 0, len(state.Players)+2)
+	for _, playerID := range state.Players {
+		counter := byPlayer[playerID]
+		parts = append(parts, fmt.Sprintf("%s{hand=%d deck=%d table=%d asset=%d discard=%d score=%d}",
+			playerID, counter.hand, counter.deck, counter.table, counter.asset, counter.discard, counter.score))
+	}
+	parts = append(parts, fmt.Sprintf("regions=%d", regions))
+	parts = append(parts, fmt.Sprintf("hiddenTableCards=%d", hiddenOnTable))
+	return strings.Join(parts, " ")
+}
+
+func latestReportPath(report *MatchReport) string {
+	if report == nil {
+		return ""
+	}
+	return report.Path
 }
 
 func (session *SandboxSession) generateMatchReportLocked(state rules.GameState) error {
@@ -507,4 +742,43 @@ func emptyAsDash(value string) string {
 		return "-"
 	}
 	return value
+}
+
+func resolveSandboxPath(path string) string {
+	trimmed := strings.TrimSpace(path)
+	if trimmed == "" {
+		return ""
+	}
+	if filepath.IsAbs(trimmed) {
+		return trimmed
+	}
+	root, err := detectRepositoryRoot()
+	if err != nil || root == "" {
+		return trimmed
+	}
+	return filepath.Join(root, trimmed)
+}
+
+func detectRepositoryRoot() (string, error) {
+	workingDirectory, err := os.Getwd()
+	if err != nil {
+		return "", err
+	}
+	workingDirectory, err = filepath.Abs(workingDirectory)
+	if err != nil {
+		return "", err
+	}
+
+	cursor := workingDirectory
+	for {
+		goModPath := filepath.Join(cursor, "go.mod")
+		if _, err := os.Stat(goModPath); err == nil {
+			return cursor, nil
+		}
+		parent := filepath.Dir(cursor)
+		if parent == cursor {
+			return "", fmt.Errorf("repository root not found")
+		}
+		cursor = parent
+	}
 }

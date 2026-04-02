@@ -178,6 +178,7 @@ func (session *SandboxSession) StartSetup(input SetupStartInput) (SetupState, er
 	session.messages = nil
 	session.nextMessageNumber = 1
 	session.latestReport = nil
+	session.latestTrace = nil
 
 	state := rules.NewGameState(rules.InitialStateConfig{
 		GameID:         "game-sandbox-live",
@@ -187,6 +188,15 @@ func (session *SandboxSession) StartSetup(input SetupStartInput) (SetupState, er
 	})
 	session.state = state
 	session.projector = rules.NewProjectionEngine()
+	if err := session.startMatchTraceLocked(state, "setup_start"); err != nil {
+		session.logError("match_trace_start_failed gameId=%s err=%v", state.GameID, err)
+	}
+	session.appendMatchTraceEntryLocked("setup_started", map[string]any{
+		"seed":                seed,
+		"p1Societies":         session.setup.P1Societies,
+		"p2Societies":         session.setup.P2Societies,
+		"previousLoserPlayer": session.setup.PreviousLoserPlayer,
+	}, &session.state)
 
 	return cloneSetupState(session.setup), nil
 }
@@ -282,6 +292,15 @@ func (session *SandboxSession) AdvanceSetup(input SetupAdvanceInput) (SetupState
 	}
 
 	session.setup.Steps = buildSetupSteps(session.setup.CurrentStep, session.setup.Completed)
+	session.appendMatchTraceEntryLocked("setup_advanced", map[string]any{
+		"currentStep":      session.setup.CurrentStep,
+		"completed":        session.setup.Completed,
+		"lastStepMessage":  session.setup.LastStepMessage,
+		"startingPlayerId": session.setup.StartingPlayerID,
+		"worldDeckCount":   session.setup.WorldDeckCount,
+		"playerDeckCount":  session.setup.PlayerDeckCount,
+		"playerHandCount":  session.setup.PlayerHandCount,
+	}, &session.state)
 	return cloneSetupState(session.setup), nil
 }
 

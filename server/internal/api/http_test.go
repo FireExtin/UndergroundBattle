@@ -150,6 +150,48 @@ func TestLatestReportEndpointReturns404AfterReset(t *testing.T) {
 	}
 }
 
+func TestLatestTraceEndpointReturnsMostRecentTrace(t *testing.T) {
+	session := NewSandboxSessionWithOptions(SandboxSessionOptions{
+		TraceDirectory: t.TempDir(),
+		Now: func() time.Time {
+			return time.Date(2026, time.April, 3, 10, 30, 0, 0, time.UTC)
+		},
+	})
+	_, err := session.SubmitAction(rules.Action{
+		ID:      "act-http-trace-rejected",
+		ActorID: "P2",
+		Kind:    rules.ActionKindAdvancePhase,
+	})
+	if err != nil {
+		t.Fatalf("SubmitAction returned error: %v", err)
+	}
+
+	handler := NewHandler(session, "")
+	request := httptest.NewRequest(http.MethodGet, "/api/debugger/traces/latest", nil)
+	recorder := httptest.NewRecorder()
+	handler.ServeHTTP(recorder, request)
+	if recorder.Code != http.StatusOK {
+		t.Fatalf("status code = %d, want %d", recorder.Code, http.StatusOK)
+	}
+
+	var payload MatchTrace
+	if err := json.Unmarshal(recorder.Body.Bytes(), &payload); err != nil {
+		t.Fatalf("json.Unmarshal returned error: %v", err)
+	}
+	if payload.Path == "" {
+		t.Fatal("payload.path is empty")
+	}
+	if payload.EntryCount < 1 {
+		t.Fatalf("payload.entryCount = %d, want >= 1", payload.EntryCount)
+	}
+	if payload.Content == "" {
+		t.Fatal("payload.content is empty")
+	}
+	if !bytes.Contains([]byte(payload.Content), []byte("action_rejected")) {
+		t.Fatalf("payload.content missing action_rejected:\n%s", payload.Content)
+	}
+}
+
 func TestSetupEndpointsStartAdvanceAndState(t *testing.T) {
 	session := NewSandboxSession()
 	handler := NewHandler(session, "")

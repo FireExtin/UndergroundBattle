@@ -86,6 +86,22 @@ func NewHandler(session *SandboxSession, staticDir string) http.Handler {
 
 		writeJSON(writer, http.StatusOK, report)
 	})
+	mux.HandleFunc("/api/debugger/traces/latest", func(writer http.ResponseWriter, request *http.Request) {
+		if request.Method != http.MethodGet {
+			writeMethodNotAllowed(writer, http.MethodGet)
+			return
+		}
+
+		trace, ok := session.LatestTrace()
+		if !ok {
+			writeJSON(writer, http.StatusNotFound, map[string]string{
+				"error": "trace_not_found",
+			})
+			return
+		}
+
+		writeJSON(writer, http.StatusOK, trace)
+	})
 	mux.HandleFunc("/api/battle/setup/state", func(writer http.ResponseWriter, request *http.Request) {
 		if request.Method != http.MethodGet {
 			writeMethodNotAllowed(writer, http.MethodGet)

@@ -232,6 +232,72 @@ func TestSandboxSessionSubmitStillSucceedsWhenReportWriteFails(t *testing.T) {
 	}
 }
 
+func TestSandboxSessionWritesLiveTraceBeforeMatchFinish(t *testing.T) {
+	traceDir := t.TempDir()
+	session := NewSandboxSessionWithOptions(SandboxSessionOptions{
+		TraceDirectory: traceDir,
+		Now: func() time.Time {
+			return time.Date(2026, time.April, 3, 10, 0, 0, 0, time.UTC)
+		},
+	})
+
+	_, err := session.SubmitAction(rules.Action{
+		ID:      "act-trace-rejected-priority",
+		ActorID: "P2",
+		Kind:    rules.ActionKindAdvancePhase,
+	})
+	if err != nil {
+		t.Fatalf("SubmitAction(rejected) returned error: %v", err)
+	}
+
+	trace, ok := session.LatestTrace()
+	if !ok {
+		t.Fatal("LatestTrace() = not found, want generated trace")
+	}
+	if trace.Path == "" {
+		t.Fatal("trace path is empty")
+	}
+	if trace.EntryCount < 1 {
+		t.Fatalf("trace entry count = %d, want >= 1", trace.EntryCount)
+	}
+	if !strings.Contains(trace.Content, "action_rejected") {
+		t.Fatalf("trace content missing action_rejected:\n%s", trace.Content)
+	}
+	if !strings.Contains(trace.Content, "rules.legality.not_your_priority") {
+		t.Fatalf("trace content missing rejection reason:\n%s", trace.Content)
+	}
+}
+
+func TestSandboxSessionTraceIncludesSetupTransitions(t *testing.T) {
+	traceDir := t.TempDir()
+	session := NewSandboxSessionWithOptions(SandboxSessionOptions{
+		TraceDirectory: traceDir,
+		Now: func() time.Time {
+			return time.Date(2026, time.April, 3, 11, 0, 0, 0, time.UTC)
+		},
+	})
+
+	_, err := session.StartSetup(SetupStartInput{Seed: 20260403})
+	if err != nil {
+		t.Fatalf("StartSetup returned error: %v", err)
+	}
+	_, err = session.AdvanceSetup(SetupAdvanceInput{})
+	if err != nil {
+		t.Fatalf("AdvanceSetup returned error: %v", err)
+	}
+
+	trace, ok := session.LatestTrace()
+	if !ok {
+		t.Fatal("LatestTrace() = not found, want generated trace")
+	}
+	if !strings.Contains(trace.Content, "setup_started") {
+		t.Fatalf("trace content missing setup_started:\n%s", trace.Content)
+	}
+	if !strings.Contains(trace.Content, "setup_advanced") {
+		t.Fatalf("trace content missing setup_advanced:\n%s", trace.Content)
+	}
+}
+
 func TestSandboxSessionSetupFlowBlocksActionsUntilCompleted(t *testing.T) {
 	session := NewSandboxSession()
 
