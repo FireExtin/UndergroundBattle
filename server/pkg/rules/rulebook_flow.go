@@ -46,6 +46,7 @@ func applyRecoveryStep(state *GameState) {
 			discardExcessHandCards(state, secondPlayerID, defaultHandLimit)
 		case RecoveryStepPhaseClearDamageAndEndTurnEffects:
 			clearTableCharacterDamage(state)
+			readyTablePermanents(state)
 		case RecoveryStepPhaseTransferFirstPlayer:
 			state.Turn.ActivePlayerID = secondPlayerID
 		}
@@ -90,6 +91,23 @@ func clearTableCharacterDamage(state *GameState) {
 			continue
 		}
 		card.Counters.Damage = 0
+	}
+}
+
+func readyTablePermanents(state *GameState) {
+	if state == nil {
+		return
+	}
+
+	for index := range state.Board.Cards {
+		card := &state.Board.Cards[index]
+		if card.Zone != CardZoneTable || card.Destroyed {
+			continue
+		}
+		if card.Kind != CardKindCharacter && card.Kind != CardKindAsset {
+			continue
+		}
+		card.Exhausted = false
 	}
 }
 

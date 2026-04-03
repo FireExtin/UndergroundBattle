@@ -213,6 +213,8 @@ export type CardView = {
   keywords?: string[];
   stats: CardNumericStats;
   counters: CardCounters;
+  influenceByPlayer?: Record<string, number>;
+  controllerId?: string;
   markers?: Record<string, number>;
 };
 

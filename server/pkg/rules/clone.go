@@ -114,6 +114,7 @@ func cloneCardStates(cards []CardState) []CardState {
 		next.InspectedBy = slices.Clone(card.InspectedBy)
 		next.PrintedKeywords = slices.Clone(card.PrintedKeywords)
 		next.EffectiveKeywords = slices.Clone(card.EffectiveKeywords)
+		next.BaseInfluenceByPlayer = cloneIntMap(card.BaseInfluenceByPlayer)
 		next.InfluenceByPlayer = cloneIntMap(card.InfluenceByPlayer)
 		next.Permissions = slices.Clone(card.Permissions)
 		next.Prohibitions = slices.Clone(card.Prohibitions)

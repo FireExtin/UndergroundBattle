@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 
 import type { SetupAdvanceInput, SetupStartInput, SetupState } from "../../debugger/live";
 
@@ -41,20 +41,15 @@ export function SetupWizard({
   const [mulliganP2, setMulliganP2] = useState<string>("0");
   const [startingPlayerId, setStartingPlayerId] = useState<"P1" | "P2">("P1");
   const [usePreviousLoserChoice, setUsePreviousLoserChoice] = useState<boolean>(false);
-
-  const selectedP1Societies = useMemo(() => {
-    return uniqueSocieties([p1SocietyA, p1SocietyB]);
-  }, [p1SocietyA, p1SocietyB]);
-  const selectedP2Societies = useMemo(() => {
-    return uniqueSocieties([p2SocietyA, p2SocietyB]);
-  }, [p2SocietyA, p2SocietyB]);
+  const [selectionErrorMessage, setSelectionErrorMessage] = useState<string>("");
+  const activeErrorMessage = selectionErrorMessage || errorMessage;
 
   if (!setupState?.active) {
     return (
       <section className="panel battle-setup" aria-label="开局设置向导">
         <h1>隐秘世界 开局设置</h1>
         <p className="muted">准备开始《隐秘世界》卡牌游戏，请按规则顺序完成初始设置。</p>
-        {errorMessage ? <p className="custom-action-error">{errorMessage}</p> : null}
+        {activeErrorMessage ? <p className="custom-action-error">{activeErrorMessage}</p> : null}
         <ol className="simple-list">
           <li>玩家选择牌组（快速组牌：选择两个派系）。</li>
           <li>设置世界牌库（地区牌 DQJC107~DQJC116）。</li>
@@ -79,16 +74,16 @@ export function SetupWizard({
             prefix="P1"
             first={p1SocietyA}
             second={p1SocietyB}
-            onFirstChanged={setP1SocietyA}
-            onSecondChanged={setP1SocietyB}
+            onFirstChanged={(value) => updateSocietyChoice(value, setP1SocietyA, setSelectionErrorMessage)}
+            onSecondChanged={(value) => updateSocietyChoice(value, setP1SocietyB, setSelectionErrorMessage)}
             disabled={pending}
           />
           <SocietySelectors
             prefix="P2"
             first={p2SocietyA}
             second={p2SocietyB}
-            onFirstChanged={setP2SocietyA}
-            onSecondChanged={setP2SocietyB}
+            onFirstChanged={(value) => updateSocietyChoice(value, setP2SocietyA, setSelectionErrorMessage)}
+            onSecondChanged={(value) => updateSocietyChoice(value, setP2SocietyB, setSelectionErrorMessage)}
             disabled={pending}
           />
         </div>
@@ -97,13 +92,21 @@ export function SetupWizard({
             type="button"
             className="action-button"
             disabled={pending}
-            onClick={() =>
+            onClick={() => {
+              const p1Societies = trimSocieties([p1SocietyA, p1SocietyB]);
+              const p2Societies = trimSocieties([p2SocietyA, p2SocietyB]);
+              const validationMessage = validateSocietySelections(p1Societies, p2Societies);
+              if (validationMessage) {
+                setSelectionErrorMessage(validationMessage);
+                return;
+              }
+              setSelectionErrorMessage("");
               void onStartSetup({
                 seed: parsePositiveInt(seed),
-                p1Societies: selectedP1Societies,
-                p2Societies: selectedP2Societies
-              })
-            }
+                p1Societies,
+                p2Societies
+              });
+            }}
           >
             开始开局设置
           </button>
@@ -127,7 +130,7 @@ export function SetupWizard({
         当前步骤：第 {setupState.currentStep} / 7 步
         {setupState.lastStepMessage ? ` · ${setupState.lastStepMessage}` : ""}
       </p>
-      {errorMessage ? <p className="custom-action-error">{errorMessage}</p> : null}
+      {activeErrorMessage ? <p className="custom-action-error">{activeErrorMessage}</p> : null}
       <ol className="simple-list">
         {setupState.steps.map((step) => (
           <li key={step.step}>
@@ -167,16 +170,16 @@ export function SetupWizard({
               prefix="P1"
               first={p1SocietyA}
               second={p1SocietyB}
-              onFirstChanged={setP1SocietyA}
-              onSecondChanged={setP1SocietyB}
+              onFirstChanged={(value) => updateSocietyChoice(value, setP1SocietyA, setSelectionErrorMessage)}
+              onSecondChanged={(value) => updateSocietyChoice(value, setP1SocietyB, setSelectionErrorMessage)}
               disabled={pending}
             />
             <SocietySelectors
               prefix="P2"
               first={p2SocietyA}
               second={p2SocietyB}
-              onFirstChanged={setP2SocietyA}
-              onSecondChanged={setP2SocietyB}
+              onFirstChanged={(value) => updateSocietyChoice(value, setP2SocietyA, setSelectionErrorMessage)}
+              onSecondChanged={(value) => updateSocietyChoice(value, setP2SocietyB, setSelectionErrorMessage)}
               disabled={pending}
             />
           </>
@@ -249,8 +252,16 @@ export function SetupWizard({
           onClick={() => {
             const input: SetupAdvanceInput = {};
             if (setupState.currentStep === 1) {
-              input.p1Societies = selectedP1Societies;
-              input.p2Societies = selectedP2Societies;
+              const p1Societies = trimSocieties([p1SocietyA, p1SocietyB]);
+              const p2Societies = trimSocieties([p2SocietyA, p2SocietyB]);
+              const validationMessage = validateSocietySelections(p1Societies, p2Societies);
+              if (validationMessage) {
+                setSelectionErrorMessage(validationMessage);
+                return;
+              }
+              setSelectionErrorMessage("");
+              input.p1Societies = p1Societies;
+              input.p2Societies = p2Societies;
             } else if (setupState.currentStep === 6) {
               input.mulliganBottomCount = {
                 P1: parseNonNegativeInt(mulliganP1),
@@ -331,8 +342,28 @@ function SocietySelectors({
   );
 }
 
-function uniqueSocieties(values: string[]) {
-  return Array.from(new Set(values.map((value) => value.trim()).filter((value) => value !== "")));
+function updateSocietyChoice(
+  value: string,
+  setChoice: (value: string) => void,
+  setErrorMessage: (message: string) => void
+) {
+  setChoice(value);
+  setErrorMessage("");
+}
+
+function trimSocieties(values: string[]) {
+  return values.map((value) => value.trim()).filter((value) => value !== "");
+}
+
+function validateSocietySelections(p1Societies: string[], p2Societies: string[]) {
+  if (!hasTwoDistinctSocieties(p1Societies) || !hasTwoDistinctSocieties(p2Societies)) {
+    return "每位玩家必须选择两个不同派系。";
+  }
+  return "";
+}
+
+function hasTwoDistinctSocieties(values: string[]) {
+  return values.length === 2 && new Set(values).size === 2;
 }
 
 function parsePositiveInt(raw: string): number | undefined {

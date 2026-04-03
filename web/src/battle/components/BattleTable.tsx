@@ -37,6 +37,9 @@ export function BattleTable({ battle, localPlayerId, onLocalPlayerChanged, onCar
           <p className="muted">
             资源：P1 {formatResource(battle.turn.resources?.P1)} | P2 {formatResource(battle.turn.resources?.P2)}
           </p>
+          <p className="muted">
+            分数：P1 {battle.score.byPlayer.P1 ?? 0} | P2 {battle.score.byPlayer.P2 ?? 0} | 胜利阈值 {battle.score.victoryThreshold}
+          </p>
         </div>
         <div className="battle-table__viewer-switch" role="group" aria-label="视角切换">
           <button
@@ -114,6 +117,12 @@ export function BattleTable({ battle, localPlayerId, onLocalPlayerChanged, onCar
                     <strong>{slot.regionCard.name ?? slot.regionCard.cardId}</strong>
                     <p className="muted">
                       势力值 {slot.regionCard.stats.influence} · 分值 {slot.regionCard.regionScore ?? 0}
+                    </p>
+                    <p className="muted">
+                      当前控制：{formatRegionController(slot.regionCard.controllerId)}
+                    </p>
+                    <p className="muted">
+                      地区势力：P1 {slot.regionCard.influenceByPlayer?.P1 ?? 0} · P2 {slot.regionCard.influenceByPlayer?.P2 ?? 0}
                     </p>
                   </button>
                 ) : (
@@ -364,6 +373,13 @@ function cardLine(card: CardView) {
     return card.cardId ?? "-";
   }
   return parts.join(" · ");
+}
+
+function formatRegionController(controllerId: string | undefined) {
+  if (!controllerId) {
+    return "无人控制";
+  }
+  return controllerId;
 }
 
 function formatResource(resource: { current: number; max: number } | undefined) {

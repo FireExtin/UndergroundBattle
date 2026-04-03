@@ -41,14 +41,20 @@ func refreshRegionControlWithState(state *GameState, card *CardState) {
 		return
 	}
 
-	if len(card.InfluenceByPlayer) != 0 {
-		card.Counters.Influence = sumInfluence(card.InfluenceByPlayer)
+	baseInfluence := resolveBaseRegionInfluence(*card)
+	dynamicInfluence := map[string]int{}
+	if state != nil {
+		dynamicInfluence = deriveReadyCharacterRegionInfluence(*state, card.CardID)
 	}
+	totalInfluence := mergeInfluence(baseInfluence, dynamicInfluence)
+	card.InfluenceByPlayer = totalInfluence
+	card.RegionInfluenceDerived = len(dynamicInfluence) > 0
+	card.Counters.Influence = sumInfluence(totalInfluence)
 
 	bestPlayerID := ""
 	bestInfluence := 0
 	tied := false
-	for playerID, influence := range card.InfluenceByPlayer {
+	for playerID, influence := range totalInfluence {
 		if influence <= 0 {
 			continue
 		}
@@ -96,6 +102,59 @@ func refreshRegionControlWithState(state *GameState, card *CardState) {
 	}
 
 	card.ControllerID = ""
+}
+
+func resolveBaseRegionInfluence(card CardState) map[string]int {
+	if len(card.BaseInfluenceByPlayer) != 0 {
+		return cloneIntMap(card.BaseInfluenceByPlayer)
+	}
+	if card.RegionInfluenceDerived {
+		return nil
+	}
+	return cloneIntMap(card.InfluenceByPlayer)
+}
+
+func deriveReadyCharacterRegionInfluence(state GameState, regionCardID string) map[string]int {
+	if regionCardID == "" {
+		return nil
+	}
+
+	result := map[string]int{}
+	for _, card := range state.Board.Cards {
+		if card.Kind != CardKindCharacter || card.Zone != CardZoneTable || card.Destroyed || card.Exhausted {
+			continue
+		}
+		if card.RegionCardID != regionCardID {
+			continue
+		}
+		if card.OwnerID == "" {
+			continue
+		}
+		influence := card.EffectiveStats.Influence
+		if influence <= 0 {
+			continue
+		}
+		result[card.OwnerID] += influence
+	}
+	if len(result) == 0 {
+		return nil
+	}
+	return result
+}
+
+func mergeInfluence(base map[string]int, dynamic map[string]int) map[string]int {
+	if len(base) == 0 && len(dynamic) == 0 {
+		return nil
+	}
+
+	merged := cloneIntMap(base)
+	if merged == nil {
+		merged = map[string]int{}
+	}
+	for playerID, amount := range dynamic {
+		merged[playerID] += amount
+	}
+	return merged
 }
 
 func refreshRegionControl(card *CardState) {

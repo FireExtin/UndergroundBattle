@@ -134,6 +134,54 @@ func TestRulebookFlow_C02_EndToMainRecoveryDiscardAndDamageCleanup(t *testing.T)
 	}
 }
 
+func TestRulebookFlow_C02_EndToMainReadiesTablePermanents(t *testing.T) {
+	state := NewGameState(InitialStateConfig{
+		GameID:         "c02-ready-step",
+		ActivePlayerID: "P1",
+		PlayerIDs:      []string{"P1", "P2"},
+	})
+	state.Turn.Phase = phaseState(PhaseEnd)
+	resetPriorityWindow(&state.Turn, "P1", PriorityWindowAction)
+	state.Board.Cards = []CardState{
+		{
+			CardID:         "p1-table-ready-character",
+			Name:           "P1 Ready Character",
+			OwnerID:        "P1",
+			Zone:           CardZoneTable,
+			Kind:           CardKindCharacter,
+			VisibleToOwner: true,
+			Revealed:       true,
+			Exhausted:      true,
+		},
+		{
+			CardID:         "p2-table-ready-asset",
+			Name:           "P2 Ready Asset",
+			OwnerID:        "P2",
+			Zone:           CardZoneTable,
+			Kind:           CardKindAsset,
+			VisibleToOwner: true,
+			Revealed:       true,
+			Exhausted:      true,
+		},
+	}
+
+	result, err := SubmitAction(state, Action{
+		ID:      "act-c02-ready-step",
+		ActorID: "P1",
+		Kind:    ActionKindAdvancePhase,
+	})
+	if err != nil {
+		t.Fatalf("SubmitAction returned error: %v", err)
+	}
+
+	if cardStateByID(t, result.State, "p1-table-ready-character").Exhausted {
+		t.Fatal("P1 table character should be readied in recovery")
+	}
+	if cardStateByID(t, result.State, "p2-table-ready-asset").Exhausted {
+		t.Fatal("P2 table asset should be readied in recovery")
+	}
+}
+
 func TestRulebookFlow_C03_RegionWinFlowMovesRegionAndRefills(t *testing.T) {
 	state := NewGameState(InitialStateConfig{
 		GameID:         "c03-region-win",

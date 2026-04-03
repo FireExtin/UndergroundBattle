@@ -53,7 +53,9 @@ type CardState struct {
 	PrintedStats        CardNumericStats `json:"printedStats"`
 	EffectiveStats      CardNumericStats `json:"effectiveStats"`
 	Counters            CardCounters     `json:"counters"`
+	BaseInfluenceByPlayer map[string]int `json:"baseInfluenceByPlayer,omitempty"`
 	InfluenceByPlayer   map[string]int   `json:"influenceByPlayer,omitempty"`
+	RegionInfluenceDerived bool          `json:"regionInfluenceDerived,omitempty"`
 	ControllerID        string           `json:"controllerId,omitempty"`
 	Permissions         []string         `json:"permissions,omitempty"`
 	Prohibitions        []string         `json:"prohibitions,omitempty"`
@@ -86,6 +88,8 @@ type CardView struct {
 	Keywords     []string         `json:"keywords,omitempty"`
 	Stats        CardNumericStats `json:"stats"`
 	Counters     CardCounters     `json:"counters"`
+	InfluenceByPlayer map[string]int `json:"influenceByPlayer,omitempty"`
+	ControllerID string `json:"controllerId,omitempty"`
 	Markers      map[string]int   `json:"markers,omitempty"`
 }
 
@@ -274,6 +278,8 @@ func visibleCardView(card CardState, markers map[string]int) CardView {
 		Keywords:     visibleKeywords(card),
 		Stats:        visibleStats(card),
 		Counters:     card.Counters,
+		InfluenceByPlayer: cloneIntMap(card.InfluenceByPlayer),
+		ControllerID: card.ControllerID,
 		Markers:      markers,
 	}
 }

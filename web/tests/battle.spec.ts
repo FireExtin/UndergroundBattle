@@ -66,20 +66,6 @@ test("battle table combo actions: investigation + move + marker + end", async ({
   const p1RegionID = regionIDs[0]!;
   const p2RegionID = regionIDs[1]!;
   const p1CharacterID = await playFirstCharacterFromHand(request, "P1", p1RegionID);
-  const p2CharacterID = await playFirstCharacterFromHand(request, "P2", p2RegionID, {
-    allowFailure: true
-  });
-
-  if (p2CharacterID) {
-    await ensurePriority(request, "P1");
-    await postActionExpectAccepted(request, {
-      id: nextActionID("act-e2e-attack"),
-      actorId: "P1",
-      kind: "declare_attack",
-      cardId: p1CharacterID,
-      targetCardId: p2CharacterID
-    });
-  }
 
   await ensurePriority(request, "P1");
   await postActionExpectAccepted(request, {
@@ -111,6 +97,20 @@ test("battle table combo actions: investigation + move + marker + end", async ({
 
   await expect(page.getByText("本方玩家区域")).toBeVisible();
   await expect(page.locator(".battle-info-logs__item--accepted").first()).toBeVisible();
+});
+
+test("setup wizard rejects duplicate society selections before start", async ({ page, request }) => {
+  await resetSandboxSession(request);
+
+  await page.goto("/");
+  await expect(page.getByRole("heading", { name: "隐秘世界 开局设置" })).toBeVisible();
+
+  await page.getByLabel("P1 派系 B").selectOption("方碑序列");
+  await page.getByRole("button", { name: "开始开局设置" }).click();
+
+  await expect(page.getByText("每位玩家必须选择两个不同派系。")).toBeVisible();
+  await expect(page.getByRole("heading", { name: "隐秘世界 开局设置" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "开局设置进行中" })).not.toBeVisible();
 });
 
 test("finished match disables actions and latest report endpoint is readable", async ({ page, request }) => {

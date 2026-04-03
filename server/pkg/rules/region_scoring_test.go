@@ -38,6 +38,36 @@ func TestDeclareInvestigationTracksPerPlayerRegionInfluence(t *testing.T) {
 	}
 }
 
+func TestRegionControlUsesReadyCharactersInRegionAsDynamicInfluence(t *testing.T) {
+	state := newRoleActionTestState()
+	state.Board.Cards = []CardState{
+		testRegionCard("region-1"),
+		testCharacterCard("p1-influence-1", "P1", CardNumericStats{Combat: 1, Defense: 2, Influence: 2}),
+		testCharacterCard("p2-influence-1", "P2", CardNumericStats{Combat: 1, Defense: 2, Influence: 1}),
+		testCharacterCard("p2-exhausted-ignored", "P2", CardNumericStats{Combat: 1, Defense: 2, Influence: 3}),
+	}
+	state.Board.Cards[1].RegionCardID = "region-1"
+	state.Board.Cards[2].RegionCardID = "region-1"
+	state.Board.Cards[3].RegionCardID = "region-1"
+	state.Board.Cards[3].Exhausted = true
+
+	refreshAllRegionControl(&state)
+
+	region := cardStateByID(t, state, "region-1")
+	if region.InfluenceByPlayer["P1"] != 2 {
+		t.Fatalf("P1 dynamic influence = %d, want 2", region.InfluenceByPlayer["P1"])
+	}
+	if region.InfluenceByPlayer["P2"] != 1 {
+		t.Fatalf("P2 dynamic influence = %d, want 1", region.InfluenceByPlayer["P2"])
+	}
+	if region.Counters.Influence != 3 {
+		t.Fatalf("region total influence = %d, want 3", region.Counters.Influence)
+	}
+	if region.ControllerID != "P1" {
+		t.Fatalf("region controller = %q, want %q", region.ControllerID, "P1")
+	}
+}
+
 func TestEndOfTurnAwardsPointToControlledRegionOwner(t *testing.T) {
 	state := newRoleActionTestState()
 	state.Board.Cards = []CardState{

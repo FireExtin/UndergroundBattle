@@ -373,6 +373,38 @@ func TestProjectionCardViewIncludesKindAndRegionMetadata(t *testing.T) {
 	}
 }
 
+func TestProjectionCardViewIncludesRegionControlDetails(t *testing.T) {
+	state := NewGameState(InitialStateConfig{
+		GameID:         "game-projection-region-control",
+		ActivePlayerID: "P1",
+		PlayerIDs:      []string{"P1", "P2"},
+		Seed:           10,
+	})
+	state.Board.Cards = []CardState{
+		{
+			CardID:            "region-1",
+			Name:              "Region One",
+			Kind:              CardKindRegion,
+			OwnerID:           "TABLE",
+			Zone:              CardZoneTable,
+			Revealed:          true,
+			RegionOrder:       1,
+			InfluenceByPlayer: map[string]int{"P1": 2, "P2": 1},
+			ControllerID:      "P1",
+			Counters:          CardCounters{Influence: 3},
+		},
+	}
+
+	views := NewProjectionEngine().Generate(state)
+	projected := onlyCard(t, views.Players["P1"])
+	if projected.ControllerID != "P1" {
+		t.Fatalf("projected controller = %q, want %q", projected.ControllerID, "P1")
+	}
+	if projected.InfluenceByPlayer["P1"] != 2 || projected.InfluenceByPlayer["P2"] != 1 {
+		t.Fatalf("projected influenceByPlayer = %#v, want P1=2 P2=1", projected.InfluenceByPlayer)
+	}
+}
+
 func TestHiddenFaceDownCardStillCarriesRegionForOpponentProjection(t *testing.T) {
 	state := NewGameState(InitialStateConfig{
 		GameID:         "game-projection-hidden-region",

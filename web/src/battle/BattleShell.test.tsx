@@ -247,6 +247,20 @@ describe("BattleShell", () => {
     expect(screen.getAllByText("本方资产区").length).toBeGreaterThan(0);
   });
 
+  it("renders region control and influence details on the contest table", async () => {
+    const fetchMock = createBattleFetchMock({
+      setupStates: [completedSetupState()],
+      messages: buildMessages()
+    });
+    vi.stubGlobal("fetch", fetchMock);
+
+    render(<BattleShell fallbackMessageSets={[]} />);
+    await screen.findByText("对方玩家区域");
+
+    expect(screen.getByText("当前控制：P1")).toBeInTheDocument();
+    expect(screen.getByText("地区势力：P1 2 · P2 1")).toBeInTheDocument();
+  });
+
   it("submits establish asset shortcut as build_asset without extra target", async () => {
     const fetchMock = createBattleFetchMock({
       setupStates: [completedSetupState()],
@@ -564,7 +578,12 @@ function buildMessagesCards(includeExtraLocalTable = false, includeAssets = fals
       visibility: "visible",
       name: "Region 1",
       kind: "region",
-      regionOrder: 1
+      regionOrder: 1,
+      controllerId: "P1",
+      influenceByPlayer: {
+        P1: 2,
+        P2: 1
+      }
     }),
     card({
       cardId: "region-2",
