@@ -13,12 +13,12 @@ func TestFirstPlayerPrivilegeAction_ConsumesOnNonZeroTie(t *testing.T) {
 	})
 	state.Board.Cards = []CardState{
 		{
-			CardID:            "region-privilege",
-			Name:              "Region",
-			Kind:              CardKindRegion,
-			Zone:              CardZoneTable,
-			Revealed:          true,
-			InfluenceByPlayer: map[string]int{"P1": 2, "P2": 2},
+			CardID:                "region-privilege",
+			Name:                  "Region",
+			Kind:                  CardKindRegion,
+			Zone:                  CardZoneTable,
+			Revealed:              true,
+			BaseInfluenceByPlayer: map[string]int{"P1": 2, "P2": 2},
 		},
 	}
 
@@ -57,12 +57,12 @@ func TestFirstPlayerPrivilegeAction_RejectsWhenNoBreakableTie(t *testing.T) {
 	})
 	state.Board.Cards = []CardState{
 		{
-			CardID:            "region-no-tie",
-			Name:              "Region",
-			Kind:              CardKindRegion,
-			Zone:              CardZoneTable,
-			Revealed:          true,
-			InfluenceByPlayer: map[string]int{"P1": 3, "P2": 1},
+			CardID:                "region-no-tie",
+			Name:                  "Region",
+			Kind:                  CardKindRegion,
+			Zone:                  CardZoneTable,
+			Revealed:              true,
+			BaseInfluenceByPlayer: map[string]int{"P1": 3, "P2": 1},
 		},
 	}
 
@@ -92,12 +92,12 @@ func TestFirstPlayerPrivilegeAction_RejectsSecondUseSameTurn(t *testing.T) {
 	})
 	state.Board.Cards = []CardState{
 		{
-			CardID:            "region-tie-twice",
-			Name:              "Region",
-			Kind:              CardKindRegion,
-			Zone:              CardZoneTable,
-			Revealed:          true,
-			InfluenceByPlayer: map[string]int{"P1": 2, "P2": 2},
+			CardID:                "region-tie-twice",
+			Name:                  "Region",
+			Kind:                  CardKindRegion,
+			Zone:                  CardZoneTable,
+			Revealed:              true,
+			BaseInfluenceByPlayer: map[string]int{"P1": 2, "P2": 2},
 		},
 	}
 

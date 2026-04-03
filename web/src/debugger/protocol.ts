@@ -41,9 +41,6 @@ export type ActionPolicy = {
 
 export type RulesMetadata = {
   actionPolicies: ActionPolicy[];
-  payment: {
-    mode: "prototype";
-  };
   loyalty: {
     colorAliases: Array<{
       canonical: string;

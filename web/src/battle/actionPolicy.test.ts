@@ -17,7 +17,6 @@ describe("actionPolicy", () => {
         ]
       }
     ],
-    payment: { mode: "prototype" },
     loyalty: {
       colorAliases: [
         { canonical: "方碑序列", aliases: ["方碑"] },

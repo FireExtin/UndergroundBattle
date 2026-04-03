@@ -4,13 +4,10 @@ import "testing"
 
 // Purpose: Verifies turn-based resource initialization/refill for battle V4.
 
-func TestCurrentPaymentEngineUsesPrototypeMode(t *testing.T) {
+func TestCurrentPaymentEngineExists(t *testing.T) {
 	engine := CurrentPaymentEngine()
 	if engine == nil {
 		t.Fatal("CurrentPaymentEngine() returned nil")
-	}
-	if engine.Mode() != PaymentModePrototype {
-		t.Fatalf("payment mode = %q, want %q", engine.Mode(), PaymentModePrototype)
 	}
 }
 
@@ -29,9 +26,6 @@ func TestNewGameStateInitializesBothPlayersResources(t *testing.T) {
 	p2 := state.Turn.Resources["P2"]
 	if p2.Current != 1 || p2.Max != 1 {
 		t.Fatalf("P2 resource = %#v, want current=1 max=1", p2)
-	}
-	if CurrentPaymentMode() != PaymentModePrototype {
-		t.Fatalf("CurrentPaymentMode() = %q, want %q", CurrentPaymentMode(), PaymentModePrototype)
 	}
 }
 

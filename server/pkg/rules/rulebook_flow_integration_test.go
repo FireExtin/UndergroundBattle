@@ -194,7 +194,7 @@ func TestRulebookFlow_C03_RegionWinFlowMovesRegionAndRefills(t *testing.T) {
 	region := testRegionCard("region-win-1")
 	region.PrintedStats.Influence = 2 // Use printed influence as region win threshold in minimal model.
 	region.EffectiveStats.Influence = 2
-	region.InfluenceByPlayer = map[string]int{"P1": 2, "P2": 0}
+	region.BaseInfluenceByPlayer = map[string]int{"P1": 2, "P2": 0}
 	region.Counters.Influence = 2
 	region.ControllerID = "P1"
 	state.Board.Cards = []CardState{
@@ -272,7 +272,7 @@ func TestRulebookFlow_C03_EffectiveThresholdOverridesPrintedAndPreventsEarlyWin(
 	region := testRegionCard("region-threshold")
 	region.PrintedStats.Influence = 2
 	region.EffectiveStats.Influence = 3
-	region.InfluenceByPlayer = map[string]int{"P1": 2, "P2": 0}
+	region.BaseInfluenceByPlayer = map[string]int{"P1": 2, "P2": 0}
 	region.Counters.Influence = 2
 	region.ControllerID = "P1"
 	state.Board.Cards = []CardState{region}
@@ -308,7 +308,7 @@ func TestRulebookFlow_C05C06_FirstPlayerPrivilegeBreaksNonZeroTieOnce(t *testing
 	})
 
 	region := testRegionCard("region-tie")
-	region.InfluenceByPlayer = map[string]int{"P1": 2, "P2": 2}
+	region.BaseInfluenceByPlayer = map[string]int{"P1": 2, "P2": 2}
 	region.Counters.Influence = 4
 	state.Board.Cards = []CardState{region}
 
@@ -343,7 +343,7 @@ func TestRulebookFlow_C05_ZeroVsZeroDoesNotConsumePrivilege(t *testing.T) {
 	})
 
 	region := testRegionCard("region-zero")
-	region.InfluenceByPlayer = map[string]int{"P1": 0, "P2": 0}
+	region.BaseInfluenceByPlayer = map[string]int{"P1": 0, "P2": 0}
 	region.Counters.Influence = 0
 	state.Board.Cards = []CardState{region}
 
@@ -480,7 +480,7 @@ func TestRulebookFlow_C14_DrawFromEmptyDeckBothPlayersDrawMatch(t *testing.T) {
 
 func TestRegionControl_RefreshRegionControlWrapperStillComputesNonTieControl(t *testing.T) {
 	region := testRegionCard("region-wrapper")
-	region.InfluenceByPlayer = map[string]int{"P1": 2, "P2": 1}
+	region.BaseInfluenceByPlayer = map[string]int{"P1": 2, "P2": 1}
 
 	refreshRegionControl(&region)
 

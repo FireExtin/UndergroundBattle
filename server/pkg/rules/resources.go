@@ -2,17 +2,13 @@ package rules
 
 import "strings"
 
-// Purpose: Provides the minimal turn-based resource model used by battle V4 play_card legality.
+// Purpose: Provides the current authoritative payment implementation for battle actions.
 
 const maxTurnResource = 10
 
-type PrototypePaymentEngine struct{}
+type GamePaymentEngine struct{}
 
-func (PrototypePaymentEngine) Mode() PaymentMode {
-	return PaymentModePrototype
-}
-
-func (PrototypePaymentEngine) Initialize(state *GameState) {
+func (GamePaymentEngine) Initialize(state *GameState) {
 	if state == nil {
 		return
 	}
@@ -20,18 +16,18 @@ func (PrototypePaymentEngine) Initialize(state *GameState) {
 	refillTurnResourcesForAllPlayers(state)
 }
 
-func (PrototypePaymentEngine) RefillForTurn(state *GameState) {
+func (GamePaymentEngine) RefillForTurn(state *GameState) {
 	refillTurnResourcesForAllPlayers(state)
 }
 
-func (PrototypePaymentEngine) ResourceView(state GameState, playerID string) PlayerResourceState {
+func (GamePaymentEngine) ResourceView(state GameState, playerID string) PlayerResourceState {
 	if state.Turn.Resources == nil {
 		return PlayerResourceState{}
 	}
 	return state.Turn.Resources[playerID]
 }
 
-func (PrototypePaymentEngine) PayCost(state *GameState, playerID string, required int) bool {
+func (GamePaymentEngine) PayCost(state *GameState, playerID string, required int) bool {
 	if state == nil {
 		return false
 	}
@@ -52,50 +48,8 @@ func (PrototypePaymentEngine) PayCost(state *GameState, playerID string, require
 	return true
 }
 
-func (PrototypePaymentEngine) OnStepEnd(state *GameState) {
-	// Prototype mode doesn't clear resources on step end.
-}
-
-type RulebookPaymentEngine struct{}
-
-func (RulebookPaymentEngine) Mode() PaymentMode {
-	return PaymentModeRulebook
-}
-
-func (RulebookPaymentEngine) Initialize(state *GameState) {
-	if state == nil {
-		return
-	}
-	ensureTurnResourceEntries(&state.Turn, state.Players)
-	// Rulebook mode starts with 0 resources and needs explicit refill or asset exhaustion.
-}
-
-func (RulebookPaymentEngine) RefillForTurn(state *GameState) {
-	// Rulebook mode refill logic (e.g., refilling only static assets).
-}
-
-func (RulebookPaymentEngine) ResourceView(state GameState, playerID string) PlayerResourceState {
-	if state.Turn.Resources == nil {
-		return PlayerResourceState{}
-	}
-	return state.Turn.Resources[playerID]
-}
-
-func (RulebookPaymentEngine) PayCost(state *GameState, playerID string, required int) bool {
-	// Rulebook mode payment logic (e.g., deducting from floating resources).
-	return PrototypePaymentEngine{}.PayCost(state, playerID, required)
-}
-
-func (RulebookPaymentEngine) OnStepEnd(state *GameState) {
-	// Rulebook mode clears floating resources on step end.
-	if state == nil {
-		return
-	}
-	for playerID, pool := range state.Turn.Resources {
-		updated := pool
-		updated.Current = 0
-		state.Turn.Resources[playerID] = updated
-	}
+func (GamePaymentEngine) OnStepEnd(state *GameState) {
+	// Current battle flow keeps resources until explicit refill/next-turn overwrite.
 }
 
 // InitializeTurnResources ensures player resource entries exist and refills each player's turn pool.
@@ -107,8 +61,8 @@ func InitializeTurnResources(state *GameState) {
 	engine.Initialize(state)
 }
 
-// RefillActivePlayerResources keeps the historical API surface while refilling both players.
-// The playable battle prototype allows both players to spend resources when they have priority.
+// RefillActivePlayerResources refills the current shared battle resource view.
+// Current rules kernel still uses a simplified shared-pool model for playable battle flow.
 func RefillActivePlayerResources(state *GameState) {
 	engine := CurrentPaymentEngine()
 	if engine == nil {

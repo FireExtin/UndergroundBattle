@@ -24,6 +24,7 @@ export function BattleTable({ battle, localPlayerId, onLocalPlayerChanged, onCar
   const localAssets = battle.local.assets;
   const opponentCharacters = battle.opponent.table.filter((card) => card.kind === "character");
   const opponentAssets = battle.opponent.assets;
+  const playerOrder = derivePlayerOrder(battle);
 
   return (
     <section className="battle-table" aria-label="战场桌面">
@@ -35,10 +36,10 @@ export function BattleTable({ battle, localPlayerId, onLocalPlayerChanged, onCar
             回合 {battle.turn.turnNumber} | 当前玩家 {battle.turn.activePlayerId} | 优先权 {battle.turn.priority.currentPlayerId}
           </p>
           <p className="muted">
-            资源：P1 {formatResource(battle.turn.resources?.P1)} | P2 {formatResource(battle.turn.resources?.P2)}
+            资源：{formatPlayerValueSummary(battle.turn.resources, playerOrder, formatResource)}
           </p>
           <p className="muted">
-            分数：P1 {battle.score.byPlayer.P1 ?? 0} | P2 {battle.score.byPlayer.P2 ?? 0} | 胜利阈值 {battle.score.victoryThreshold}
+            分数：{formatPlayerValueSummary(battle.score.byPlayer, playerOrder)} | 胜利阈值 {battle.score.victoryThreshold}
           </p>
         </div>
         <div className="battle-table__viewer-switch" role="group" aria-label="视角切换">
@@ -122,7 +123,7 @@ export function BattleTable({ battle, localPlayerId, onLocalPlayerChanged, onCar
                       当前控制：{formatRegionController(slot.regionCard.controllerId)}
                     </p>
                     <p className="muted">
-                      地区势力：P1 {slot.regionCard.influenceByPlayer?.P1 ?? 0} · P2 {slot.regionCard.influenceByPlayer?.P2 ?? 0}
+                      地区势力：{formatPlayerValueSummary(slot.regionCard.influenceByPlayer, playerOrder)}
                     </p>
                   </button>
                 ) : (
@@ -380,6 +381,52 @@ function formatRegionController(controllerId: string | undefined) {
     return "无人控制";
   }
   return controllerId;
+}
+
+function derivePlayerOrder(battle: BattleState): string[] {
+  const ordered: string[] = [battle.localPlayerId, battle.opponentPlayerId];
+
+  for (const playerId of Object.keys(battle.score.byPlayer ?? {})) {
+    if (!ordered.includes(playerId)) {
+      ordered.push(playerId);
+    }
+  }
+
+  for (const playerId of Object.keys(battle.turn.resources ?? {})) {
+    if (!ordered.includes(playerId)) {
+      ordered.push(playerId);
+    }
+  }
+
+  return ordered;
+}
+
+export function formatPlayerValueSummary<T>(
+  values: Record<string, T> | undefined,
+  preferredOrder: string[],
+  formatter?: (value: T | undefined) => string
+) {
+  const format = formatter ?? ((value: T | undefined) => String(value ?? 0));
+  const seen = new Set<string>();
+  const orderedEntries: Array<[string, T | undefined]> = [];
+
+  for (const playerId of preferredOrder) {
+    if (seen.has(playerId)) {
+      continue;
+    }
+    seen.add(playerId);
+    orderedEntries.push([playerId, values?.[playerId]]);
+  }
+
+  for (const [playerId, value] of Object.entries(values ?? {})) {
+    if (seen.has(playerId)) {
+      continue;
+    }
+    seen.add(playerId);
+    orderedEntries.push([playerId, value]);
+  }
+
+  return orderedEntries.map(([playerId, value]) => `${playerId} ${format(value)}`).join(" · ");
 }
 
 function formatResource(resource: { current: number; max: number } | undefined) {

@@ -113,9 +113,6 @@ const defaultScore: ScoreState = {
 
 const defaultRulesMetadata: RulesMetadata = {
   actionPolicies: [],
-  payment: {
-    mode: "prototype"
-  },
   loyalty: {
     colorAliases: []
   },

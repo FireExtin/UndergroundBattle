@@ -68,12 +68,37 @@ func TestRegionControlUsesReadyCharactersInRegionAsDynamicInfluence(t *testing.T
 	}
 }
 
+func TestRegionControlIgnoresDestroyedCharactersInRegionInfluence(t *testing.T) {
+	state := newRoleActionTestState()
+	state.Board.Cards = []CardState{
+		testRegionCard("region-1"),
+		testCharacterCard("p1-destroyed", "P1", CardNumericStats{Combat: 1, Defense: 2, Influence: 4}),
+		testCharacterCard("p2-ready", "P2", CardNumericStats{Combat: 1, Defense: 2, Influence: 1}),
+	}
+	state.Board.Cards[1].RegionCardID = "region-1"
+	state.Board.Cards[1].Destroyed = true
+	state.Board.Cards[2].RegionCardID = "region-1"
+
+	refreshAllRegionControl(&state)
+
+	region := cardStateByID(t, state, "region-1")
+	if region.InfluenceByPlayer["P1"] != 0 {
+		t.Fatalf("destroyed character should contribute 0 influence, got %d", region.InfluenceByPlayer["P1"])
+	}
+	if region.InfluenceByPlayer["P2"] != 1 {
+		t.Fatalf("P2 dynamic influence = %d, want 1", region.InfluenceByPlayer["P2"])
+	}
+	if region.ControllerID != "P2" {
+		t.Fatalf("region controller = %q, want %q", region.ControllerID, "P2")
+	}
+}
+
 func TestEndOfTurnAwardsPointToControlledRegionOwner(t *testing.T) {
 	state := newRoleActionTestState()
 	state.Board.Cards = []CardState{
 		testRegionCard("region-1"),
 	}
-	state.Board.Cards[0].InfluenceByPlayer = map[string]int{"P1": 2, "P2": 1}
+	state.Board.Cards[0].BaseInfluenceByPlayer = map[string]int{"P1": 2, "P2": 1}
 	refreshAllRegionControl(&state)
 
 	state = mustSubmit(t, state, Action{
@@ -106,7 +131,7 @@ func TestEndOfTurnTieDoesNotAwardPoint(t *testing.T) {
 	state.Board.Cards = []CardState{
 		testRegionCard("region-1"),
 	}
-	state.Board.Cards[0].InfluenceByPlayer = map[string]int{"P1": 2, "P2": 2}
+	state.Board.Cards[0].BaseInfluenceByPlayer = map[string]int{"P1": 2, "P2": 2}
 	refreshAllRegionControl(&state)
 
 	state = mustSubmit(t, state, Action{
@@ -139,7 +164,7 @@ func TestVictoryIsDeclaredWhenThresholdReached(t *testing.T) {
 	state.Board.Cards = []CardState{
 		testRegionCard("region-1"),
 	}
-	state.Board.Cards[0].InfluenceByPlayer = map[string]int{"P1": 3}
+	state.Board.Cards[0].BaseInfluenceByPlayer = map[string]int{"P1": 3}
 	refreshAllRegionControl(&state)
 
 	for _, action := range []Action{
@@ -205,7 +230,7 @@ func TestRegionScoringReplayProducesSameState(t *testing.T) {
 	initial.Board.Cards = []CardState{
 		testRegionCard("region-1"),
 	}
-	initial.Board.Cards[0].InfluenceByPlayer = map[string]int{"P1": 2}
+	initial.Board.Cards[0].BaseInfluenceByPlayer = map[string]int{"P1": 2}
 	refreshAllRegionControl(&initial)
 
 	actions := []Action{
@@ -234,7 +259,7 @@ func TestWinnerStopsFurtherActionsWithStructuredReasonCode(t *testing.T) {
 	state.Board.Cards = []CardState{
 		testRegionCard("region-1"),
 	}
-	state.Board.Cards[0].InfluenceByPlayer = map[string]int{"P1": 3}
+	state.Board.Cards[0].BaseInfluenceByPlayer = map[string]int{"P1": 3}
 	refreshAllRegionControl(&state)
 
 	state = mustSubmit(t, state, Action{

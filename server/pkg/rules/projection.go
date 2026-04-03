@@ -29,68 +29,67 @@ const (
 
 // CardState is the authoritative hidden-information record stored only in FullState.
 type CardState struct {
-	CardID              string           `json:"cardId"`
-	DefinitionID        string           `json:"definitionId,omitempty"`
-	Name                string           `json:"name"`
-	Description         string           `json:"description,omitempty"`
-	FAQ                 string           `json:"faq,omitempty"`
-	Cost                int              `json:"cost,omitempty"`
-	Color               string           `json:"color,omitempty"`
-	Loyalty             string           `json:"loyalty,omitempty"`
-	Kind                CardKind         `json:"kind,omitempty"`
-	OwnerID             string           `json:"ownerId"`
-	Zone                CardZone         `json:"zone"`
-	RegionCardID        string           `json:"regionCardId,omitempty"`
-	RegionOrder         int              `json:"regionOrder,omitempty"`
-	RegionScore         int              `json:"regionScore,omitempty"`
-	VisibleToOwner      bool             `json:"visibleToOwner"`
-	Revealed            bool             `json:"revealed"`
-	FaceDown            bool             `json:"faceDown,omitempty"` // 暗藏部署状态
-	Exhausted           bool             `json:"exhausted"`
-	InspectedBy         []string         `json:"inspectedBy,omitempty"`
-	PrintedKeywords     []string         `json:"printedKeywords,omitempty"`
-	EffectiveKeywords   []string         `json:"effectiveKeywords,omitempty"`
-	PrintedStats        CardNumericStats `json:"printedStats"`
-	EffectiveStats      CardNumericStats `json:"effectiveStats"`
-	Counters            CardCounters     `json:"counters"`
-	BaseInfluenceByPlayer map[string]int `json:"baseInfluenceByPlayer,omitempty"`
-	InfluenceByPlayer   map[string]int   `json:"influenceByPlayer,omitempty"`
-	RegionInfluenceDerived bool          `json:"regionInfluenceDerived,omitempty"`
-	ControllerID        string           `json:"controllerId,omitempty"`
-	Permissions         []string         `json:"permissions,omitempty"`
-	Prohibitions        []string         `json:"prohibitions,omitempty"`
-	RequiredPermissions []string         `json:"requiredPermissions,omitempty"`
-	CostAdjustment      int              `json:"costAdjustment,omitempty"`
-	ActionQuota         int              `json:"actionQuota,omitempty"`
-	Destroyed           bool             `json:"destroyed"`
+	CardID                string           `json:"cardId"`
+	DefinitionID          string           `json:"definitionId,omitempty"`
+	Name                  string           `json:"name"`
+	Description           string           `json:"description,omitempty"`
+	FAQ                   string           `json:"faq,omitempty"`
+	Cost                  int              `json:"cost,omitempty"`
+	Color                 string           `json:"color,omitempty"`
+	Loyalty               string           `json:"loyalty,omitempty"`
+	Kind                  CardKind         `json:"kind,omitempty"`
+	OwnerID               string           `json:"ownerId"`
+	Zone                  CardZone         `json:"zone"`
+	RegionCardID          string           `json:"regionCardId,omitempty"`
+	RegionOrder           int              `json:"regionOrder,omitempty"`
+	RegionScore           int              `json:"regionScore,omitempty"`
+	VisibleToOwner        bool             `json:"visibleToOwner"`
+	Revealed              bool             `json:"revealed"`
+	FaceDown              bool             `json:"faceDown,omitempty"` // 暗藏部署状态
+	Exhausted             bool             `json:"exhausted"`
+	InspectedBy           []string         `json:"inspectedBy,omitempty"`
+	PrintedKeywords       []string         `json:"printedKeywords,omitempty"`
+	EffectiveKeywords     []string         `json:"effectiveKeywords,omitempty"`
+	PrintedStats          CardNumericStats `json:"printedStats"`
+	EffectiveStats        CardNumericStats `json:"effectiveStats"`
+	Counters              CardCounters     `json:"counters"`
+	BaseInfluenceByPlayer map[string]int   `json:"baseInfluenceByPlayer,omitempty"`
+	InfluenceByPlayer     map[string]int   `json:"influenceByPlayer,omitempty"`
+	ControllerID          string           `json:"controllerId,omitempty"`
+	Permissions           []string         `json:"permissions,omitempty"`
+	Prohibitions          []string         `json:"prohibitions,omitempty"`
+	RequiredPermissions   []string         `json:"requiredPermissions,omitempty"`
+	CostAdjustment        int              `json:"costAdjustment,omitempty"`
+	ActionQuota           int              `json:"actionQuota,omitempty"`
+	Destroyed             bool             `json:"destroyed"`
 }
 
 // CardView is the client-safe projection of a single card record.
 type CardView struct {
-	CardID       string           `json:"cardId,omitempty"`
-	Name         string           `json:"name,omitempty"`
-	Description  string           `json:"description,omitempty"`
-	FAQ          string           `json:"faq,omitempty"`
-	Cost         int              `json:"cost,omitempty"`
-	Color        string           `json:"color,omitempty"`
-	Loyalty      string           `json:"loyalty,omitempty"`
-	OwnerID      string           `json:"ownerId"`
-	Zone         CardZone         `json:"zone"`
-	Kind         string           `json:"kind,omitempty"`
-	RegionCardID string           `json:"regionCardId,omitempty"`
-	RegionOrder  int              `json:"regionOrder,omitempty"`
-	RegionScore  int              `json:"regionScore,omitempty"`
-	Visibility   string           `json:"visibility"`
-	Revealed     bool             `json:"revealed"`
-	FaceDown     bool             `json:"faceDown,omitempty"` // 是否面朝下
-	Exhausted    bool             `json:"exhausted"`
-	Destroyed    bool             `json:"destroyed"`
-	Keywords     []string         `json:"keywords,omitempty"`
-	Stats        CardNumericStats `json:"stats"`
-	Counters     CardCounters     `json:"counters"`
-	InfluenceByPlayer map[string]int `json:"influenceByPlayer,omitempty"`
-	ControllerID string `json:"controllerId,omitempty"`
-	Markers      map[string]int   `json:"markers,omitempty"`
+	CardID            string           `json:"cardId,omitempty"`
+	Name              string           `json:"name,omitempty"`
+	Description       string           `json:"description,omitempty"`
+	FAQ               string           `json:"faq,omitempty"`
+	Cost              int              `json:"cost,omitempty"`
+	Color             string           `json:"color,omitempty"`
+	Loyalty           string           `json:"loyalty,omitempty"`
+	OwnerID           string           `json:"ownerId"`
+	Zone              CardZone         `json:"zone"`
+	Kind              string           `json:"kind,omitempty"`
+	RegionCardID      string           `json:"regionCardId,omitempty"`
+	RegionOrder       int              `json:"regionOrder,omitempty"`
+	RegionScore       int              `json:"regionScore,omitempty"`
+	Visibility        string           `json:"visibility"`
+	Revealed          bool             `json:"revealed"`
+	FaceDown          bool             `json:"faceDown,omitempty"` // 是否面朝下
+	Exhausted         bool             `json:"exhausted"`
+	Destroyed         bool             `json:"destroyed"`
+	Keywords          []string         `json:"keywords,omitempty"`
+	Stats             CardNumericStats `json:"stats"`
+	Counters          CardCounters     `json:"counters"`
+	InfluenceByPlayer map[string]int   `json:"influenceByPlayer,omitempty"`
+	ControllerID      string           `json:"controllerId,omitempty"`
+	Markers           map[string]int   `json:"markers,omitempty"`
 }
 
 // ViewBoardState is the client-safe projection of board information.
@@ -257,30 +256,30 @@ func cardVisibleToPlayer(card CardState, viewerPlayerID string) bool {
 
 func visibleCardView(card CardState, markers map[string]int) CardView {
 	return CardView{
-		CardID:       card.CardID,
-		Name:         card.Name,
-		Description:  card.Description,
-		FAQ:          card.FAQ,
-		Cost:         card.Cost,
-		Color:        card.Color,
-		Loyalty:      card.Loyalty,
-		OwnerID:      card.OwnerID,
-		Zone:         card.Zone,
-		Kind:         string(card.Kind),
-		RegionCardID: card.RegionCardID,
-		RegionOrder:  card.RegionOrder,
-		RegionScore:  card.RegionScore,
-		Visibility:   "visible",
-		Revealed:     card.Revealed,
-		FaceDown:     card.FaceDown,
-		Exhausted:    card.Exhausted,
-		Destroyed:    card.Destroyed,
-		Keywords:     visibleKeywords(card),
-		Stats:        visibleStats(card),
-		Counters:     card.Counters,
+		CardID:            card.CardID,
+		Name:              card.Name,
+		Description:       card.Description,
+		FAQ:               card.FAQ,
+		Cost:              card.Cost,
+		Color:             card.Color,
+		Loyalty:           card.Loyalty,
+		OwnerID:           card.OwnerID,
+		Zone:              card.Zone,
+		Kind:              string(card.Kind),
+		RegionCardID:      card.RegionCardID,
+		RegionOrder:       card.RegionOrder,
+		RegionScore:       card.RegionScore,
+		Visibility:        "visible",
+		Revealed:          card.Revealed,
+		FaceDown:          card.FaceDown,
+		Exhausted:         card.Exhausted,
+		Destroyed:         card.Destroyed,
+		Keywords:          visibleKeywords(card),
+		Stats:             visibleStats(card),
+		Counters:          card.Counters,
 		InfluenceByPlayer: cloneIntMap(card.InfluenceByPlayer),
-		ControllerID: card.ControllerID,
-		Markers:      markers,
+		ControllerID:      card.ControllerID,
+		Markers:           markers,
 	}
 }
 

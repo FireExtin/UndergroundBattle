@@ -71,7 +71,6 @@ type ProjectionContract struct {
 
 type RulesMetadata struct {
 	ActionPolicies []ActionPolicy     `json:"actionPolicies"`
-	Payment        PaymentMetadata    `json:"payment"`
 	Loyalty        LoyaltyMetadata    `json:"loyalty"`
 	Projection     ProjectionContract `json:"projection"`
 }
@@ -99,9 +98,6 @@ var defaultActionPolicies = []ActionPolicy{
 
 var defaultRulesMetadata = RulesMetadata{
 	ActionPolicies: cloneActionPolicies(defaultActionPolicies),
-	Payment: PaymentMetadata{
-		Mode: PaymentModePrototype,
-	},
 	Loyalty: LoyaltyMetadata{
 		ColorAliases: cloneLoyaltyColorAliases(loyaltyColorAliases()),
 	},
@@ -126,9 +122,6 @@ func ActionPolicyForKind(kind ActionKind) (ActionPolicy, bool) {
 func cloneRulesMetadata(metadata RulesMetadata) RulesMetadata {
 	return RulesMetadata{
 		ActionPolicies: cloneActionPolicies(metadata.ActionPolicies),
-		Payment: PaymentMetadata{
-			Mode: metadata.Payment.Mode,
-		},
 		Loyalty: LoyaltyMetadata{
 			ColorAliases: cloneLoyaltyColorAliases(metadata.Loyalty.ColorAliases),
 		},

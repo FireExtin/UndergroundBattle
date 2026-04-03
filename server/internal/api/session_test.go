@@ -545,7 +545,7 @@ func prepareSinglePointWin(t *testing.T, session *SandboxSession) {
 		if card.CardID != "REGION-1" {
 			continue
 		}
-		card.InfluenceByPlayer = map[string]int{"P1": 1}
+		card.BaseInfluenceByPlayer = map[string]int{"P1": 1}
 		regionFound = true
 		break
 	}

@@ -40,9 +40,6 @@ func TestProjectionCarriesRulesMetadata(t *testing.T) {
 	if len(metadata.Loyalty.ColorAliases) == 0 {
 		t.Fatal("loyalty color aliases missing from projected metadata")
 	}
-	if metadata.Payment.Mode != PaymentModePrototype {
-		t.Fatalf("payment mode metadata = %q, want %q", metadata.Payment.Mode, PaymentModePrototype)
-	}
 	if !containsString(metadata.Projection.HiddenCardPreserves, "regionCardId") {
 		t.Fatalf("projection contract hiddenCardPreserves = %#v, want regionCardId", metadata.Projection.HiddenCardPreserves)
 	}

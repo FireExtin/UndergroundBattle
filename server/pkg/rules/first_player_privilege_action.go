@@ -83,11 +83,12 @@ func hasBreakableFirstPlayerTie(state GameState, firstPlayerID string) bool {
 }
 
 func hasBreakableTieOnRegion(state GameState, region CardState, firstPlayerID string) bool {
+	influenceByPlayer := deriveEffectiveRegionInfluence(&state, region)
 	top := 0
 	tiedPlayers := 0
 
 	for _, playerID := range state.Players {
-		value := region.InfluenceByPlayer[playerID]
+		value := influenceByPlayer[playerID]
 		if value <= 0 {
 			continue
 		}
@@ -105,7 +106,7 @@ func hasBreakableTieOnRegion(state GameState, region CardState, firstPlayerID st
 		return false
 	}
 
-	return region.InfluenceByPlayer[firstPlayerID] == top
+	return influenceByPlayer[firstPlayerID] == top
 }
 
 func payFirstPlayerPrivilegeCost(_ *GameState, _ string) bool {

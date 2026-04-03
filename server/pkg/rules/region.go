@@ -41,14 +41,8 @@ func refreshRegionControlWithState(state *GameState, card *CardState) {
 		return
 	}
 
-	baseInfluence := resolveBaseRegionInfluence(*card)
-	dynamicInfluence := map[string]int{}
-	if state != nil {
-		dynamicInfluence = deriveReadyCharacterRegionInfluence(*state, card.CardID)
-	}
-	totalInfluence := mergeInfluence(baseInfluence, dynamicInfluence)
+	totalInfluence := deriveEffectiveRegionInfluence(state, *card)
 	card.InfluenceByPlayer = totalInfluence
-	card.RegionInfluenceDerived = len(dynamicInfluence) > 0
 	card.Counters.Influence = sumInfluence(totalInfluence)
 
 	bestPlayerID := ""
@@ -104,16 +98,6 @@ func refreshRegionControlWithState(state *GameState, card *CardState) {
 	card.ControllerID = ""
 }
 
-func resolveBaseRegionInfluence(card CardState) map[string]int {
-	if len(card.BaseInfluenceByPlayer) != 0 {
-		return cloneIntMap(card.BaseInfluenceByPlayer)
-	}
-	if card.RegionInfluenceDerived {
-		return nil
-	}
-	return cloneIntMap(card.InfluenceByPlayer)
-}
-
 func deriveReadyCharacterRegionInfluence(state GameState, regionCardID string) map[string]int {
 	if regionCardID == "" {
 		return nil
@@ -140,6 +124,14 @@ func deriveReadyCharacterRegionInfluence(state GameState, regionCardID string) m
 		return nil
 	}
 	return result
+}
+
+func deriveEffectiveRegionInfluence(state *GameState, region CardState) map[string]int {
+	baseInfluence := cloneIntMap(region.BaseInfluenceByPlayer)
+	if state == nil {
+		return baseInfluence
+	}
+	return mergeInfluence(baseInfluence, deriveReadyCharacterRegionInfluence(*state, region.CardID))
 }
 
 func mergeInfluence(base map[string]int, dynamic map[string]int) map[string]int {

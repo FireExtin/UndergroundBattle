@@ -159,7 +159,6 @@ func addInfluenceCounter(card *CardState, controllerID string, amount int) {
 		card.InfluenceByPlayer = map[string]int{}
 	}
 	card.InfluenceByPlayer[controllerID] += amount
-	card.RegionInfluenceDerived = false
 }
 
 func addShieldCounter(card *CardState, amount int) {
