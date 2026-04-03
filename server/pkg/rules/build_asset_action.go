@@ -80,7 +80,9 @@ func checkBuildAssetActionLegality(state GameState, action Action) LegalityResul
 }
 
 func requiredBuildAssetCost(card CardState) int {
-	return effectivePlayCardCost(card)
+	// Building an asset is a board-conversion action, not a card-play payment.
+	// The source card's printed cost does not apply here.
+	return 0
 }
 
 func executeBuildAsset(state GameState, operation Operation) (GameState, Operation, Event, error) {

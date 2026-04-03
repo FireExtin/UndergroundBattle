@@ -49,7 +49,7 @@
 - `applyPhaseAdvance`
 - `play_card` legality / execution
 
-### 3. `play_card` 改为通过 PaymentEngine 查询与扣费
+### 3. `play_card` / `build_asset` 改为通过 PaymentEngine 走统一费用入口
 
 `play_card` 当前两处都改走统一引擎：
 
@@ -57,6 +57,12 @@
 - commit 阶段：调用 `engine.PayCost()`
 
 这意味着后续切换到 rulebook 模式时，不需要再去每个 action 里翻旧资源函数。
+
+`build_asset` 也已经接到同一条路径，但当前费用语义明确为：
+
+- 建立资产是卡牌从手牌转换到资产区的标准动作
+- 不支付该牌的印刷费用
+- 在 prototype 模式下会经过 `PaymentEngine`，但请求费用恒为 `0`
 
 ### 4. rules metadata 现在显式暴露 payment mode
 
@@ -107,7 +113,7 @@
 - 回合切换补费
 - `play_card`
 
-如果后面 `queue_operation` / `build_asset` / 其他费用动作进入正式语义，也要继续并轨到同一支付接口。
+如果后面 `queue_operation` / 其他费用动作进入正式语义，也要继续并轨到同一支付接口。
 
 ---
 
@@ -125,5 +131,5 @@
 ## 后续顺序
 
 1. 新增 `PaymentModeRulebook` 骨架，但先不切默认模式
-2. 让 `queue_operation` / `build_asset` 的费用路径也走 `PaymentEngine`
+2. 让 `queue_operation` 的费用路径也走 `PaymentEngine`
 3. 把“支付资源池快照”和“最终公共资源显示”拆开，避免 prototype 视图绑死未来规则书模型

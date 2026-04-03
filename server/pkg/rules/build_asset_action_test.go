@@ -195,3 +195,43 @@ func TestBuildAssetAllowsWhenActorHasPriorityButIsNotActivePlayer(t *testing.T) 
 		t.Fatalf("event kind = %q, want %q", result.Event.Kind, EventKindAssetBuilt)
 	}
 }
+
+func TestBuildAssetDoesNotChargePrintedCardCost(t *testing.T) {
+	state := NewGameState(InitialStateConfig{
+		GameID:         "build-asset-zero-cost",
+		ActivePlayerID: "P1",
+		PlayerIDs:      []string{"P1", "P2"},
+		Seed:           20260403,
+	})
+	state.Turn.Resources["P1"] = PlayerResourceState{Current: 1, Max: 1}
+	state.Board.Cards = append(state.Board.Cards, CardState{
+		CardID:         "p1-hand-expensive-build",
+		DefinitionID:   "JC090",
+		Name:           "灵魂契约",
+		Cost:           2,
+		Kind:           CardKindCharacter,
+		OwnerID:        "P1",
+		Zone:           CardZoneHand,
+		VisibleToOwner: true,
+	})
+
+	result, err := SubmitAction(state, Action{
+		ID:      "act-build-asset-zero-cost",
+		ActorID: "P1",
+		Kind:    ActionKindBuildAsset,
+		CardID:  "p1-hand-expensive-build",
+	})
+	if err != nil {
+		t.Fatalf("SubmitAction returned error: %v", err)
+	}
+
+	card := cardStateByID(t, result.State, "p1-hand-expensive-build")
+	if card.Zone != CardZoneAsset {
+		t.Fatalf("zone = %q, want %q", card.Zone, CardZoneAsset)
+	}
+
+	pool := result.State.Turn.Resources["P1"]
+	if pool.Current != 1 || pool.Max != 1 {
+		t.Fatalf("resources after build_asset = %#v, want unchanged current=1 max=1", pool)
+	}
+}
