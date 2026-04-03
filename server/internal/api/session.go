@@ -455,16 +455,130 @@ func (session *SandboxSession) appendMatchTraceEntryLocked(kind string, payload 
 
 	at := session.now().UTC()
 	var builder strings.Builder
-	builder.WriteString(fmt.Sprintf("## %s %s\n\n", at.Format(time.RFC3339), emptyAsDash(kind)))
-	if payload != nil {
-		if data, err := json.MarshalIndent(payload, "", "  "); err == nil {
-			builder.WriteString("```json\n")
-			builder.Write(data)
-			builder.WriteString("\n```\n\n")
+
+	// Game化的日志格式
+	switch kind {
+	case "action_submitted":
+		if data, ok := payload.(map[string]any); ok {
+			actorID := data["actorId"].(string)
+			var actionKind string
+			kindVal := data["kind"]
+			switch v := kindVal.(type) {
+			case string:
+				actionKind = v
+			default:
+				actionKind = fmt.Sprintf("%v", v)
+			}
+			builder.WriteString(fmt.Sprintf("## %s %s\n\n", at.Format(time.RFC3339), "action_submitted"))
+			builder.WriteString(fmt.Sprintf("**%s** 发起了动作: %s\n\n", actorID, formatActionKind(actionKind)))
+			if cardID, ok := data["cardId"].(string); ok && cardID != "" {
+				builder.WriteString(fmt.Sprintf("- 卡牌: %s\n", cardID))
+			}
+			if targetCardID, ok := data["targetCardId"].(string); ok && targetCardID != "" {
+				builder.WriteString(fmt.Sprintf("- 目标: %s\n", targetCardID))
+			}
+			builder.WriteString("\n")
+		}
+	case "action_accepted":
+		if data, ok := payload.(map[string]any); ok {
+			var actorID, actionKind string
+			actionVal := data["action"]
+			switch v := actionVal.(type) {
+			case map[string]any:
+				actorID = v["actorId"].(string)
+				kindVal := v["kind"]
+				switch kv := kindVal.(type) {
+				case string:
+					actionKind = kv
+				default:
+					actionKind = fmt.Sprintf("%v", kv)
+				}
+			default:
+				// 处理其他类型，如 rules.Action
+				actorID = "unknown"
+				actionKind = fmt.Sprintf("%v", v)
+			}
+			builder.WriteString(fmt.Sprintf("## %s %s\n\n", at.Format(time.RFC3339), "action_accepted"))
+			builder.WriteString(fmt.Sprintf("✅ **%s** 的动作已接受: %s\n\n", actorID, formatActionKind(actionKind)))
+			eventVal := data["event"]
+			var eventKind string
+			switch v := eventVal.(type) {
+			case map[string]any:
+				eventKindVal := v["kind"]
+				switch kv := eventKindVal.(type) {
+				case string:
+					eventKind = kv
+				default:
+					eventKind = fmt.Sprintf("%v", kv)
+				}
+			default:
+				eventKind = fmt.Sprintf("%v", v)
+			}
+			builder.WriteString(fmt.Sprintf("- 事件: %s\n", formatEventKind(eventKind)))
+			builder.WriteString("\n")
+		}
+	case "action_rejected":
+		if data, ok := payload.(map[string]any); ok {
+			// 提取 actorID
+			actorID := "unknown"
+			if id, ok := data["actorId"].(string); ok {
+				actorID = id
+			}
+
+			// 提取 actionKind
+			var actionKind string
+			kindVal := data["kind"]
+			switch v := kindVal.(type) {
+			case string:
+				actionKind = v
+			default:
+				actionKind = fmt.Sprintf("%v", v)
+			}
+
+			// 提取拒绝原因
+			reasonMessage := ""
+			if msg, ok := data["message"].(string); ok {
+				reasonMessage = msg
+			}
+
+			builder.WriteString(fmt.Sprintf("## %s %s\n\n", at.Format(time.RFC3339), "action_rejected"))
+			builder.WriteString(fmt.Sprintf("❌ **%s** 的动作被拒绝: %s\n\n", actorID, formatActionKind(actionKind)))
+			if reasonMessage != "" {
+				builder.WriteString(fmt.Sprintf("- 原因: %s\n", reasonMessage))
+			}
+			builder.WriteString("\n")
+		}
+	case "match_finished":
+		if data, ok := payload.(map[string]any); ok {
+			winner := data["winner"].(string)
+			var endReason string
+			endReasonVal := data["endReason"]
+			switch v := endReasonVal.(type) {
+			case string:
+				endReason = v
+			default:
+				endReason = fmt.Sprintf("%v", v)
+			}
+			builder.WriteString(fmt.Sprintf("## %s %s\n\n", at.Format(time.RFC3339), "match_finished"))
+			builder.WriteString("🏆 **游戏结束**\n\n")
+			builder.WriteString(fmt.Sprintf("- 获胜者: %s\n", emptyAsDash(winner)))
+			builder.WriteString(fmt.Sprintf("- 结束原因: %s\n\n", endReason))
+		}
+	default:
+		// 保持原有格式
+		builder.WriteString(fmt.Sprintf("## %s %s\n\n", at.Format(time.RFC3339), emptyAsDash(kind)))
+		if payload != nil {
+			if data, err := json.MarshalIndent(payload, "", "  "); err == nil {
+				builder.WriteString("```json\n")
+				builder.Write(data)
+				builder.WriteString("\n```\n\n")
+			}
 		}
 	}
+
+	// 状态快照 - 简化版
 	if state != nil {
-		builder.WriteString(renderTraceStateSnapshot(*state))
+		builder.WriteString(renderGameStateSnapshot(*state))
 		builder.WriteString("\n")
 	}
 
@@ -571,6 +685,71 @@ func latestReportPath(report *MatchReport) string {
 		return ""
 	}
 	return report.Path
+}
+
+func formatActionKind(kind string) string {
+	switch kind {
+	case "play_card":
+		return "打出卡牌"
+	case "build_asset":
+		return "构建资产"
+	case "pass_priority":
+		return "放弃优先权"
+	case "declare_attack":
+		return "发起攻击"
+	case "declare_investigation":
+		return "发起调查"
+	case "reveal_card":
+		return "揭示卡牌"
+	case "inspect_card":
+		return "检视卡牌"
+	case "set_marker":
+		return "设置标记物"
+	case "remove_marker":
+		return "移除标记物"
+	case "set_face_down":
+		return "设置面朝下"
+	default:
+		return kind
+	}
+}
+
+func formatEventKind(kind string) string {
+	switch kind {
+	case "card_played":
+		return "卡牌已打出"
+	case "asset_built":
+		return "资产已构建"
+	case "priority_passed":
+		return "优先权已传递"
+	case "investigation_applied":
+		return "调查已应用"
+	case "card_revealed":
+		return "卡牌已揭示"
+	case "card_inspected":
+		return "卡牌已检视"
+	case "marker_set":
+		return "标记物已设置"
+	case "marker_removed":
+		return "标记物已移除"
+	case "face_down_set":
+		return "已设置面朝下"
+	default:
+		return kind
+	}
+}
+
+func renderGameStateSnapshot(state rules.GameState) string {
+	var builder strings.Builder
+	builder.WriteString("### 游戏状态\n\n")
+	builder.WriteString(fmt.Sprintf("- 回合: %d\n", state.Turn.TurnNumber))
+	builder.WriteString(fmt.Sprintf("- 阶段: %s/%s\n", state.Turn.Phase.Name, state.Turn.Phase.Step))
+	builder.WriteString(fmt.Sprintf("- 当前玩家: %s\n", emptyAsDash(state.Turn.ActivePlayerID)))
+	builder.WriteString(fmt.Sprintf("- 优先权: %s\n", emptyAsDash(state.Turn.Priority.CurrentPlayerID)))
+	builder.WriteString(fmt.Sprintf("- 分数: %s\n", formatScore(state)))
+	builder.WriteString(fmt.Sprintf("- 资源: %s\n", traceResourceSummary(state)))
+	builder.WriteString(fmt.Sprintf("- 战场: %s\n", traceBoardSummary(state)))
+	return builder.String()
 }
 
 func (session *SandboxSession) generateMatchReportLocked(state rules.GameState) error {
