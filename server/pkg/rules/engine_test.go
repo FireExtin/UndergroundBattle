@@ -81,8 +81,8 @@ func TestSubmitActionAcceptsLegalQueueOperation(t *testing.T) {
 		t.Fatalf("priority window = %q, want %q", result.State.Turn.Priority.WindowKind, PriorityWindowResponse)
 	}
 
-	if result.State.Turn.Phase.Step != StepAction {
-		t.Fatalf("phase step = %q, want %q", result.State.Turn.Phase.Step, StepAction)
+	if result.State.Turn.Phase.Step != StepFirstPlayerAction {
+		t.Fatalf("phase step = %q, want %q", result.State.Turn.Phase.Step, StepFirstPlayerAction)
 	}
 
 	if result.Accepted.Type != "ActionAccepted" {
@@ -472,8 +472,8 @@ func TestDoublePassEndsStepWhenStackEmpty(t *testing.T) {
 		t.Fatalf("priority window = %q, want %q", result.State.Turn.Priority.WindowKind, PriorityWindowClosed)
 	}
 
-	if result.State.Turn.Phase.Step != StepEnded {
-		t.Fatalf("phase step = %q, want %q", result.State.Turn.Phase.Step, StepEnded)
+	if result.State.Turn.Phase.Step != StepFirstPlayerAction {
+		t.Fatalf("phase step = %q, want %q", result.State.Turn.Phase.Step, StepFirstPlayerAction)
 	}
 }
 

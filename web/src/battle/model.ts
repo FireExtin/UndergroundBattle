@@ -97,10 +97,14 @@ const defaultTurn: TurnState = {
   },
   phase: {
     name: "main",
-    step: "action",
+    step: "first_player_action",
     allowsStack: true,
     stepEnded: false
-  }
+  },
+  conflict: {
+    stage: ""
+  },
+  pendingPrompt: null
 };
 
 const defaultScore: ScoreState = {

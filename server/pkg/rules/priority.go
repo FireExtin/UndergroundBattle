@@ -48,13 +48,34 @@ func closePriorityWindow(turn *TurnState, currentPlayerID string) {
 }
 
 func reopenPhaseStep(turn *TurnState) {
-	turn.Phase.Step = StepAction
 	turn.Phase.StepEnded = false
+	if turn.Phase.Step == StepEnded {
+		turn.Phase.Step = StepAction
+	}
 }
 
 func closePhaseStep(turn *TurnState) {
-	turn.Phase.Step = StepEnded
 	turn.Phase.StepEnded = true
+}
+
+func currentStepPriorityLeader(state GameState) string {
+	if state.Turn.Phase.Name == PhaseConflict && state.Turn.Conflict.PriorityLeaderPlayerID != "" {
+		return state.Turn.Conflict.PriorityLeaderPlayerID
+	}
+	if state.Turn.Phase.Name == PhaseMain && state.Turn.Phase.Step == StepSecondPlayerAction {
+		return nextPriorityPlayerID(state, state.Turn.ActivePlayerID)
+	}
+	if state.Turn.ActivePlayerID != "" {
+		return state.Turn.ActivePlayerID
+	}
+	return currentPriorityPlayerID(state)
+}
+
+func resetPriorityToCurrentStepLeader(state *GameState, windowKind PriorityWindowKind) {
+	if state == nil {
+		return
+	}
+	resetPriorityWindow(&state.Turn, currentStepPriorityLeader(*state), windowKind)
 }
 
 func nextPriorityPlayerID(state GameState, currentPlayerID string) string {

@@ -36,6 +36,16 @@ export function BattleTable({ battle, localPlayerId, onLocalPlayerChanged, onCar
             回合 {battle.turn.turnNumber} | 当前玩家 {battle.turn.activePlayerId} | 优先权 {battle.turn.priority.currentPlayerId}
           </p>
           <p className="muted">
+            阶段 {battle.turn.phase.name}/{battle.turn.phase.step}
+            {battle.turn.conflict?.stage ? ` | 对抗窗口 ${battle.turn.conflict.stage}` : ""}
+            {battle.turn.conflict?.regionCardId ? ` | 地区 ${battle.turn.conflict.regionCardId}` : ""}
+          </p>
+          <p className="muted">
+            窗口 {battle.turn.priority.windowKind}
+            {battle.turn.conflict?.priorityLeaderPlayerId ? ` | 行动权领头者 ${battle.turn.conflict.priorityLeaderPlayerId}` : ""}
+            {battle.turn.pendingPrompt ? ` | 待处理提示 ${battle.turn.pendingPrompt.kind}` : ""}
+          </p>
+          <p className="muted">
             资源：{formatPlayerValueSummary(battle.turn.resources, playerOrder, formatResource)}
           </p>
           <p className="muted">
@@ -279,7 +289,7 @@ function CardStrip({ cards, fallback, compact = false, onVisibleCardPicked }: Ca
                 }}
                 >
                 <div className="battle-card__main">
-                  <strong>{card.name ?? card.cardId}</strong>
+                  <strong>{cardTitle(card, isVisible)}</strong>
                   <p className="battle-card__sub">{cardLine(card)}</p>
                 </div>
                 {isVisible && card.kind === "character" && (
@@ -293,8 +303,8 @@ function CardStrip({ cards, fallback, compact = false, onVisibleCardPicked }: Ca
             ) : (
               <>
                 <div className="battle-card__main">
-                  <strong>{isVisible ? card.name ?? card.cardId : "卡背"}</strong>
-                  <p className="battle-card__sub">{isVisible ? cardLine(card) : "隐藏"}</p>
+                  <strong>{isVisible ? cardTitle(card, isVisible) : hiddenCardTitle(card)}</strong>
+                  <p className="battle-card__sub">{isVisible ? cardLine(card) : hiddenCardLine(card)}</p>
                 </div>
                 {isVisible && card.kind === "character" && (
                   <div className="battle-card__stats">
@@ -361,6 +371,9 @@ function toCardPick(card: CardView): BattleCardPick {
 
 function cardLine(card: CardView) {
   const parts: string[] = [];
+  if (card.faceDown) {
+    parts.push("暗藏中");
+  }
   if (typeof card.cost === "number") {
     parts.push(`费用 ${card.cost}`);
   }
@@ -374,6 +387,30 @@ function cardLine(card: CardView) {
     return card.cardId ?? "-";
   }
   return parts.join(" · ");
+}
+
+function cardTitle(card: CardView, isVisible: boolean) {
+  if (!isVisible) {
+    return hiddenCardTitle(card);
+  }
+  if (card.faceDown) {
+    return `${card.name ?? card.cardId ?? "未知卡牌"}（暗藏）`;
+  }
+  return card.name ?? card.cardId ?? "未知卡牌";
+}
+
+function hiddenCardTitle(card: CardView) {
+  if (card.faceDown) {
+    return "暗藏者";
+  }
+  return "卡背";
+}
+
+function hiddenCardLine(card: CardView) {
+  if (card.faceDown) {
+    return "面朝下";
+  }
+  return "隐藏";
 }
 
 function formatRegionController(controllerId: string | undefined) {

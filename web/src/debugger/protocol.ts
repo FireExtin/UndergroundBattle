@@ -7,6 +7,8 @@ export type CardZone = "deck" | "hand" | "table" | "asset" | "discard" | "score"
 export type ActionActorConstraint = "any" | "priority_player" | "active_player";
 export type ActionFieldName =
   | "cardId"
+  | "abilityId"
+  | "promptId"
   | "targetPlayerId"
   | "targetCardId"
   | "targetRegionCardId"
@@ -57,6 +59,8 @@ export type Action = {
   actorId: string;
   kind: string;
   cardId?: string;
+  abilityId?: string;
+  promptId?: string;
   targetPlayerId?: string;
   targetCardId?: string;
   targetRegionCardId?: string;
@@ -65,6 +69,14 @@ export type Action = {
   randomMax?: number;
   markerType?: string;
   markerAmount?: number;
+  topCardIds?: string[];
+  bottomCardIds?: string[];
+  damageAssignments?: DamageAssignment[];
+};
+
+export type DamageAssignment = {
+  targetCardId: string;
+  amount: number;
 };
 
 export type CardOperationSource = {
@@ -91,6 +103,8 @@ export type Operation = {
   status: string;
   requiresStack: boolean;
   cardId?: string;
+  abilityId?: string;
+  promptId?: string;
   targetPlayerId?: string;
   targetCardId?: string;
   targetRegionCardId?: string;
@@ -101,6 +115,9 @@ export type Operation = {
   markerType?: string;
   markerAmount?: number;
   source?: CardOperationSource;
+  topCardIds?: string[];
+  bottomCardIds?: string[];
+  damageAssignments?: DamageAssignment[];
 };
 
 export type Event = {
@@ -152,6 +169,25 @@ export type PhaseState = {
   stepEnded: boolean;
 };
 
+export type ConflictState = {
+  regionOrder?: number;
+  regionCardId?: string;
+  stage?: string;
+  priorityLeaderPlayerId?: string;
+  pendingPromptId?: string;
+};
+
+export type PromptState = {
+  id: string;
+  kind: string;
+  ownerPlayerId: string;
+  regionCardId?: string;
+  peekCardIds?: string[];
+  eligibleTargetIds?: string[];
+  remainingAmount?: number;
+  difference?: number;
+};
+
 export type TurnState = {
   turnNumber: number;
   activePlayerId: string;
@@ -160,6 +196,8 @@ export type TurnState = {
   resources?: Record<string, PlayerResourceState>;
   priority: PriorityState;
   phase: PhaseState;
+  conflict?: ConflictState;
+  pendingPrompt?: PromptState | null;
 };
 
 export type ScoreState = {
@@ -205,6 +243,7 @@ export type CardView = {
   visibility: string;
   revealed: boolean;
   faceDown?: boolean;
+  faceDownRole?: string;
   exhausted: boolean;
   destroyed: boolean;
   keywords?: string[];

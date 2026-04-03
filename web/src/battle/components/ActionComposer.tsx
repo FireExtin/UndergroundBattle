@@ -10,13 +10,16 @@ import type { BattleCardPick } from "./BattleTable";
 const actionKindOptions = [
   { value: "play_card", label: "打出卡牌" },
   { value: "build_asset", label: "建立资产" },
+  { value: "reveal_face_down", label: "现身" },
+  { value: "activate_ability", label: "发动能力" },
   { value: "declare_attack", label: "发起攻击" },
   { value: "declare_investigation", label: "发起调查" },
   { value: "move_card", label: "移动卡牌" },
   { value: "set_marker", label: "设置玩家标志" },
   { value: "remove_marker", label: "移除玩家标志" },
   { value: "set_card_marker", label: "设置卡牌标记" },
-  { value: "remove_card_marker", label: "移除卡牌标记" }
+  { value: "remove_card_marker", label: "移除卡牌标记" },
+  { value: "resolve_prompt", label: "处理提示" }
 ] as const;
 
 export type ComposerActionInput = Omit<Action, "id" | "actorId">;
@@ -52,10 +55,14 @@ export function ActionComposer({
   const [targetCardId, setTargetCardId] = useState<string>("");
   const [targetRegionCardId, setTargetRegionCardId] = useState<string>("");
   const [playMode, setPlayMode] = useState<string>("face_up");
+  const [abilityId, setAbilityId] = useState<string>("");
   const [targetPlayerId, setTargetPlayerId] = useState<string>(battle.opponentPlayerId);
   const [markerType, setMarkerType] = useState<string>("secret_society");
   const [markerAmount, setMarkerAmount] = useState<string>("1");
+  const [investigationOrder, setInvestigationOrder] = useState<Record<string, "top" | "bottom">>({});
+  const [damageAssignments, setDamageAssignments] = useState<Record<string, string>>({});
   const [error, setError] = useState<string>("");
+  const ownedPrompt = battle.turn.pendingPrompt?.ownerPlayerId === actorId ? battle.turn.pendingPrompt : null;
 
   const cardLookup = useMemo(() => buildCardLookup(battle), [battle]);
   const sourceCardKind = cardLookup.get(sourceCardId)?.kind ?? "";
@@ -87,6 +94,29 @@ export function ActionComposer({
   useEffect(() => {
     setTargetPlayerId(battle.opponentPlayerId);
   }, [actorId, battle.opponentPlayerId]);
+
+  useEffect(() => {
+    if (!ownedPrompt) {
+      return;
+    }
+
+    setKind("resolve_prompt");
+    if (ownedPrompt.kind === "investigation_reward") {
+      const next: Record<string, "top" | "bottom"> = {};
+      for (const cardId of ownedPrompt.peekCardIds ?? []) {
+        next[cardId] = "top";
+      }
+      setInvestigationOrder(next);
+    }
+    if (ownedPrompt.kind === "battle_damage") {
+      const next: Record<string, string> = {};
+      const firstTarget = ownedPrompt.eligibleTargetIds?.[0] ?? "";
+      for (const targetId of ownedPrompt.eligibleTargetIds ?? []) {
+        next[targetId] = targetId === firstTarget ? String(ownedPrompt.remainingAmount ?? 0) : "0";
+      }
+      setDamageAssignments(next);
+    }
+  }, [ownedPrompt]);
 
   useEffect(() => {
     if (sourceCardId.trim() !== "" && !sourceOptions.includes(sourceCardId)) {
@@ -200,6 +230,62 @@ export function ActionComposer({
         </a>
       </details>
 
+      {ownedPrompt ? (
+        <section className="battle-actions__prompt" aria-label="待处理提示">
+          <p className="muted">
+            当前提示：{ownedPrompt.kind}
+            {ownedPrompt.regionCardId ? ` · 地区 ${ownedPrompt.regionCardId}` : ""}
+            {typeof ownedPrompt.difference === "number" ? ` · 差额 ${ownedPrompt.difference}` : ""}
+          </p>
+          {ownedPrompt.kind === "investigation_reward" ? (
+            <div className="battle-actions__prompt-list">
+              {(ownedPrompt.peekCardIds ?? []).map((cardId) => (
+                <label key={cardId} className="battle-actions__field">
+                  <span>{cardLabel(cardLookup, cardId)}</span>
+                  <select
+                    aria-label={`调查奖励-${cardId}`}
+                    value={investigationOrder[cardId] ?? "top"}
+                    onChange={(event) => {
+                      setInvestigationOrder((previous) => ({
+                        ...previous,
+                        [cardId]: event.target.value === "bottom" ? "bottom" : "top"
+                      }));
+                    }}
+                    disabled={actionsDisabled}
+                  >
+                    <option value="top">放回牌库顶</option>
+                    <option value="bottom">放到牌库底</option>
+                  </select>
+                </label>
+              ))}
+            </div>
+          ) : null}
+          {ownedPrompt.kind === "battle_damage" ? (
+            <div className="battle-actions__prompt-list">
+              {(ownedPrompt.eligibleTargetIds ?? []).map((targetId) => (
+                <label key={targetId} className="battle-actions__field">
+                  <span>{cardLabel(cardLookup, targetId)}</span>
+                  <input
+                    aria-label={`战斗伤害-${targetId}`}
+                    type="number"
+                    min={0}
+                    step={1}
+                    value={damageAssignments[targetId] ?? "0"}
+                    onChange={(event) => {
+                      setDamageAssignments((previous) => ({
+                        ...previous,
+                        [targetId]: event.target.value
+                      }));
+                    }}
+                    disabled={actionsDisabled}
+                  />
+                </label>
+              ))}
+            </div>
+          ) : null}
+        </section>
+      ) : null}
+
       <div className="battle-actions__grid">
         <label className="battle-actions__field">
           <span>动作类型</span>
@@ -212,7 +298,7 @@ export function ActionComposer({
             }}
             disabled={actionsDisabled}
           >
-            {actionKindOptions.map((option) => (
+            {availableActionOptions(ownedPrompt).map((option) => (
               <option key={option.value} value={option.value}>
                 {option.label}
               </option>
@@ -288,6 +374,19 @@ export function ActionComposer({
             <option value="face_up">明置</option>
             <option value="face_down">暗置</option>
           </select>
+        </label>
+
+        <label className="battle-actions__field">
+          <span>能力 ID</span>
+          <input
+            aria-label="能力 ID"
+            value={abilityId}
+            onChange={(event) => {
+              setAbilityId(event.target.value);
+              setError("");
+            }}
+            disabled={actionsDisabled}
+          />
         </label>
       </div>
 
@@ -398,7 +497,11 @@ export function ActionComposer({
       markerType,
       markerAmount,
       playMode,
-      sourceCardKind
+      sourceCardKind,
+      abilityId,
+      ownedPrompt,
+      investigationOrder,
+      damageAssignments
     });
     if (validation !== "") {
       setError(validation);
@@ -409,7 +512,15 @@ export function ActionComposer({
       kind
     };
 
-    if (isPlayCardActionKind(kind) || kind === "build_asset" || kind === "declare_attack" || kind === "declare_investigation" || kind === "move_card") {
+    if (
+      isPlayCardActionKind(kind) ||
+      kind === "build_asset" ||
+      kind === "declare_attack" ||
+      kind === "declare_investigation" ||
+      kind === "move_card" ||
+      kind === "reveal_face_down" ||
+      kind === "activate_ability"
+    ) {
       action.cardId = sourceCardId;
     }
 
@@ -433,6 +544,31 @@ export function ActionComposer({
       action.targetCardId = targetCardId;
       action.markerType = markerType;
       action.markerAmount = Number(markerAmount);
+    }
+
+    if (kind === "activate_ability") {
+      action.abilityId = abilityId.trim();
+      if (targetCardId.trim() !== "") {
+        action.targetCardId = targetCardId.trim();
+      }
+    }
+
+    if (kind === "resolve_prompt" && ownedPrompt) {
+      action.promptId = ownedPrompt.id;
+      if (ownedPrompt.kind === "investigation_reward") {
+        const topCardIds = (ownedPrompt.peekCardIds ?? []).filter((cardId) => investigationOrder[cardId] !== "bottom");
+        const bottomCardIds = (ownedPrompt.peekCardIds ?? []).filter((cardId) => investigationOrder[cardId] === "bottom");
+        action.topCardIds = topCardIds;
+        action.bottomCardIds = bottomCardIds;
+      }
+      if (ownedPrompt.kind === "battle_damage") {
+        action.damageAssignments = (ownedPrompt.eligibleTargetIds ?? [])
+          .map((targetCardId) => ({
+            targetCardId,
+            amount: Number(damageAssignments[targetCardId] ?? "0")
+          }))
+          .filter((assignment) => Number.isFinite(assignment.amount) && assignment.amount > 0);
+      }
     }
 
     if (isPlayCardActionKind(kind)) {
@@ -464,7 +600,32 @@ function validateBeforeSubmit(input: {
   markerAmount: string;
   playMode: string;
   sourceCardKind: string;
+  abilityId: string;
+  ownedPrompt: BattleState["turn"]["pendingPrompt"];
+  investigationOrder: Record<string, "top" | "bottom">;
+  damageAssignments: Record<string, string>;
 }) {
+  if (input.actionKind === "activate_ability" && input.abilityId.trim() === "") {
+    return "需要输入能力 ID";
+  }
+
+  if (input.actionKind === "resolve_prompt" && input.ownedPrompt) {
+    if (input.ownedPrompt.kind === "investigation_reward") {
+      const assigned = (input.ownedPrompt.peekCardIds ?? []).every((cardId) => input.investigationOrder[cardId] === "top" || input.investigationOrder[cardId] === "bottom");
+      return assigned ? "" : "需要为每张检视牌选择置顶或置底";
+    }
+    if (input.ownedPrompt.kind === "battle_damage") {
+      const total = (input.ownedPrompt.eligibleTargetIds ?? []).reduce(
+        (sum, targetId) => sum + Number(input.damageAssignments[targetId] ?? "0"),
+        0
+      );
+      if (total !== (input.ownedPrompt.remainingAmount ?? 0)) {
+        return `伤害分配总和必须等于 ${input.ownedPrompt.remainingAmount ?? 0}`;
+      }
+      return "";
+    }
+  }
+
   return validateActionInput(input.rulesMetadata, input);
 }
 
@@ -552,4 +713,11 @@ function uniq(values: string[]) {
 
 function isPlayCardActionKind(kind: string) {
   return kind === "play_card";
+}
+
+function availableActionOptions(ownedPrompt: BattleState["turn"]["pendingPrompt"]) {
+  if (ownedPrompt) {
+    return actionKindOptions.filter((option) => option.value === "resolve_prompt");
+  }
+  return actionKindOptions.filter((option) => option.value !== "resolve_prompt");
 }

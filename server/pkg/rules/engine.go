@@ -150,6 +150,8 @@ func checkLegalityWithLookup(state GameState, action Action, sourceLookup cardOp
 	switch action.Kind {
 	case ActionKindAdvancePhase:
 		return okLegalityResult()
+	case ActionKindResolvePrompt:
+		return checkResolvePromptActionLegality(state, action)
 	case ActionKindRevealCard, ActionKindInspectCard:
 		if action.CardID == "" {
 			return legalityFailure(
@@ -246,6 +248,10 @@ func checkLegalityWithLookup(state GameState, action Action, sourceLookup cardOp
 		}
 
 		return okLegalityResult()
+	case ActionKindRevealFaceDown:
+		return checkRevealFaceDownActionLegality(state, action)
+	case ActionKindActivateAbility:
+		return checkActivateAbilityActionLegality(state, action)
 	default:
 		return legalityFailure(
 			ReasonCodeRulesFailedUnknownActionKind,
@@ -281,6 +287,12 @@ func buildOperationWithLookup(state GameState, action Action, sourceLookup cardO
 		}
 		operation.Kind = OperationKindAdvancePhase
 		operation.NextPhase = nextPhase
+	case ActionKindResolvePrompt:
+		operation.Kind = OperationKindResolvePrompt
+		operation.PromptID = action.PromptID
+		operation.TopCardIDs = append([]string(nil), action.TopCardIDs...)
+		operation.BottomCardIDs = append([]string(nil), action.BottomCardIDs...)
+		operation.DamageAssignments = cloneDamageAssignments(action.DamageAssignments)
 	case ActionKindRevealCard:
 		operation.Kind = OperationKindRevealCard
 		operation.CardID = action.CardID
@@ -356,6 +368,20 @@ func buildOperationWithLookup(state GameState, action Action, sourceLookup cardO
 		operation.CardID = action.CardID
 		operation.TargetCardID = action.TargetCardID
 		operation.Label = "declare_investigation"
+	case ActionKindRevealFaceDown:
+		operation.Kind = OperationKindRevealFaceDown
+		operation.CardID = action.CardID
+		operation.RequiresStack = true
+		operation.Label = "reveal_face_down"
+	case ActionKindActivateAbility:
+		operation.Kind = OperationKindActivateAbility
+		operation.CardID = action.CardID
+		operation.AbilityID = action.AbilityID
+		operation.TargetCardID = action.TargetCardID
+		operation.Label = "activate_ability"
+		if ability, ok := lookupAbilityDefinition(action.AbilityID); ok {
+			operation.RequiresStack = ability.RequiresStack
+		}
 	case ActionKindQueueOperation:
 		if err := buildQueueOperationFromAction(action, sourceLookup, &operation); err != nil {
 			return Operation{}, err
@@ -386,6 +412,18 @@ func executeOperation(state GameState, operation Operation) (GameState, Operatio
 
 	if operation.Kind == OperationKindPlayCard {
 		return executePlayCard(working, operation)
+	}
+
+	if operation.Kind == OperationKindResolvePrompt {
+		return executeResolvePrompt(working, operation)
+	}
+
+	if operation.Kind == OperationKindRevealFaceDown {
+		return executeRevealFaceDown(working, operation)
+	}
+
+	if operation.Kind == OperationKindActivateAbility {
+		return executeActivateAbility(working, operation)
 	}
 
 	if operation.Kind == OperationKindCardEffect {
@@ -455,6 +493,8 @@ func executeOperation(state GameState, operation Operation) (GameState, Operatio
 		return executeMoveCard(working, operation)
 	case OperationKindDeclareInvestigation:
 		return executeDeclareInvestigation(working, operation)
+	case OperationKindResolvePrompt:
+		return executeResolvePrompt(working, operation)
 	case OperationKindCardEffect:
 		return executeCardEffect(working, operation)
 	case OperationKindResolveTopStack:
@@ -463,6 +503,10 @@ func executeOperation(state GameState, operation Operation) (GameState, Operatio
 		return executeRollRandom(working, operation)
 	case OperationKindSetFaceDown:
 		return executeSetFaceDown(working, operation)
+	case OperationKindRevealFaceDown:
+		return executeRevealFaceDown(working, operation)
+	case OperationKindActivateAbility:
+		return executeActivateAbility(working, operation)
 	case OperationKindUseFirstPlayerPrivilege:
 		return executeUseFirstPlayerPrivilege(working, operation)
 	default:
@@ -596,7 +640,7 @@ func executePassPriority(state GameState, operation Operation) (GameState, Opera
 			return GameState{}, Operation{}, Event{}, err
 		}
 		reopenPhaseStep(&working.Turn)
-		resetPriorityWindow(&working.Turn, working.Turn.ActivePlayerID, postResolutionWindowKind(working))
+		resetPriorityToCurrentStepLeader(&working, postResolutionWindowKind(working))
 
 		return working, operation, Event{
 			ID:               "evt:" + operation.ActionID,
@@ -615,7 +659,7 @@ func executePassPriority(state GameState, operation Operation) (GameState, Opera
 	}
 
 	closePhaseStep(&working.Turn)
-	closePriorityWindow(&working.Turn, working.Turn.ActivePlayerID)
+	closePriorityWindow(&working.Turn, currentStepPriorityLeader(working))
 
 	return working, operation, Event{
 		ID:               "evt:" + operation.ActionID,
@@ -644,7 +688,7 @@ func executeResolveTopStack(state GameState, operation Operation) (GameState, Op
 		return GameState{}, Operation{}, Event{}, err
 	}
 	reopenPhaseStep(&working.Turn)
-	resetPriorityWindow(&working.Turn, working.Turn.ActivePlayerID, postResolutionWindowKind(working))
+	resetPriorityToCurrentStepLeader(&working, postResolutionWindowKind(working))
 	operation.Status = OperationStatusResolved
 
 	return working, operation, Event{
@@ -727,20 +771,7 @@ func executeSetFaceDown(state GameState, operation Operation) (GameState, Operat
 }
 
 func applyPhaseAdvance(state GameState, operation Operation) GameState {
-	working := cloneGameState(state)
-	previousPhase := working.Turn.Phase.Name
-	working.Turn.Phase = phaseState(operation.NextPhase)
-
-	if previousPhase == PhaseEnd && operation.NextPhase == PhaseMain {
-		applyEndToMainRulebookFlow(&working, operation)
-		if engine := CurrentPaymentEngine(); engine != nil {
-			engine.RefillForTurn(&working)
-		}
-	}
-
-	resetPriorityWindow(&working.Turn, working.Turn.ActivePlayerID, PriorityWindowAction)
-	requestContinuousRecalculation(&working)
-	return working
+	return applyRulebookAdvance(state, operation)
 }
 
 func commitState(state GameState, action Action, operation Operation, event Event, projector *ProjectionEngine) SubmitResult {
@@ -812,7 +843,9 @@ func findCardIndex(state GameState, cardID string) int {
 func phaseState(name PhaseName) PhaseState {
 	switch name {
 	case PhaseMain:
-		return PhaseState{Name: PhaseMain, Step: StepAction, AllowsStack: true, StepEnded: false}
+		return PhaseState{Name: PhaseMain, Step: StepFirstPlayerAction, AllowsStack: true, StepEnded: false}
+	case PhaseConflict:
+		return PhaseState{Name: PhaseConflict, Step: StepAction, AllowsStack: true, StepEnded: false}
 	case PhaseEnd:
 		return PhaseState{Name: PhaseEnd, Step: StepAction, AllowsStack: false, StepEnded: false}
 	default:
@@ -823,6 +856,8 @@ func phaseState(name PhaseName) PhaseState {
 func nextPhaseName(current PhaseName) (PhaseName, error) {
 	switch current {
 	case PhaseMain:
+		return PhaseConflict, nil
+	case PhaseConflict:
 		return PhaseEnd, nil
 	case PhaseEnd:
 		return PhaseMain, nil
@@ -859,9 +894,12 @@ func actionRequiresPriority(kind ActionKind) bool {
 func actionRequiresEmptyStack(kind ActionKind) bool {
 	switch kind {
 	case ActionKindAdvancePhase,
+		ActionKindResolvePrompt,
 		ActionKindRevealCard,
 		ActionKindInspectCard,
 		ActionKindSetFaceDown,
+		ActionKindRevealFaceDown,
+		ActionKindActivateAbility,
 		ActionKindUseFirstPlayerPrivilege,
 		ActionKindBuildAsset,
 		ActionKindMoveCard,
@@ -904,6 +942,10 @@ func resolveStackedOperation(state GameState, operation Operation) (GameState, O
 		return resolveCardEffect(state, operation)
 	case OperationKindPlayCard:
 		return resolveStackedPlayCard(state, operation)
+	case OperationKindRevealFaceDown:
+		return resolveStackedRevealFaceDown(state, operation)
+	case OperationKindActivateAbility:
+		return resolveStackedActivatedAbility(state, operation)
 	default:
 		resolved := markOperationResolved(operation)
 		return finalizeResolvedOperation(state, resolved), resolved, nil

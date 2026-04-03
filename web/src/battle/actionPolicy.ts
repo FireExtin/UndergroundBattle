@@ -8,6 +8,7 @@ import type {
 export type ActionValidationInput = {
   actionKind: string;
   sourceCardId: string;
+  abilityId?: string;
   targetCardId: string;
   targetRegionCardId: string;
   targetPlayerId: string;
@@ -107,6 +108,8 @@ function validateFieldRule(rule: ActionFieldRule, input: ActionValidationInput) 
   switch (rule.field) {
     case "cardId":
       return validateRequiredText(input.sourceCardId, rule, "需要选择来源卡牌");
+    case "abilityId":
+      return validateRequiredText(input.abilityId ?? "", rule, "需要输入能力 ID");
     case "targetCardId":
       return validateRequiredText(input.targetCardId, rule, "需要选择目标卡牌");
     case "targetRegionCardId":

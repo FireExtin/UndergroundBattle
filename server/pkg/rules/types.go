@@ -7,12 +7,15 @@ type ActionKind string
 
 const (
 	ActionKindAdvancePhase            ActionKind = "advance_phase"
+	ActionKindResolvePrompt           ActionKind = "resolve_prompt"
 	ActionKindRevealCard              ActionKind = "reveal_card"
 	ActionKindInspectCard             ActionKind = "inspect_card"
 	ActionKindPassPriority            ActionKind = "pass_priority"
 	ActionKindQueueOperation          ActionKind = "queue_operation"
 	ActionKindDeclareAttack           ActionKind = "declare_attack"
 	ActionKindDeclareInvestigation    ActionKind = "declare_investigation"
+	ActionKindRevealFaceDown          ActionKind = "reveal_face_down"
+	ActionKindActivateAbility         ActionKind = "activate_ability"
 	ActionKindResolveTopStack         ActionKind = "resolve_top_stack"
 	ActionKindRollSeededRandom        ActionKind = "roll_seeded_random"
 	ActionKindSetMarker               ActionKind = "set_marker"    // 设置标记物
@@ -31,6 +34,7 @@ type OperationKind string
 
 const (
 	OperationKindAdvancePhase            OperationKind = "advance_phase"
+	OperationKindResolvePrompt           OperationKind = "resolve_prompt"
 	OperationKindRevealCard              OperationKind = "reveal_card"
 	OperationKindInspectCard             OperationKind = "inspect_card"
 	OperationKindPassPriority            OperationKind = "pass_priority"
@@ -38,6 +42,8 @@ const (
 	OperationKindCardEffect              OperationKind = "card_effect"
 	OperationKindDeclareAttack           OperationKind = "declare_attack"
 	OperationKindDeclareInvestigation    OperationKind = "declare_investigation"
+	OperationKindRevealFaceDown          OperationKind = "reveal_face_down"
+	OperationKindActivateAbility         OperationKind = "activate_ability"
 	OperationKindResolveTopStack         OperationKind = "resolve_top_stack"
 	OperationKindRollRandom              OperationKind = "roll_seeded_random"
 	OperationKindSetMarker               OperationKind = "set_marker"
@@ -67,6 +73,7 @@ const (
 	EventKindOperationEnqueued        EventKind = "operation_enqueued"
 	EventKindOperationResolved        EventKind = "operation_resolved"
 	EventKindPhaseAdvanced            EventKind = "phase_advanced"
+	EventKindPromptResolved           EventKind = "prompt_resolved"
 	EventKindCardInspected            EventKind = "card_inspected"
 	EventKindCardRevealed             EventKind = "card_revealed"
 	EventKindPriorityPassed           EventKind = "priority_passed"
@@ -76,6 +83,8 @@ const (
 	EventKindDamageApplied            EventKind = "damage_applied"
 	EventKindCardDestroyed            EventKind = "card_destroyed"
 	EventKindInvestigationApplied     EventKind = "investigation_applied"
+	EventKindFaceDownRevealed         EventKind = "face_down_revealed"
+	EventKindAbilityActivated         EventKind = "ability_activated"
 	EventKindMarkerSet                EventKind = "marker_set"
 	EventKindMarkerRemoved            EventKind = "marker_removed"
 	EventKindFaceDownSet              EventKind = "face_down_set"
@@ -86,31 +95,6 @@ const (
 	EventKindCardMarkerRemoved        EventKind = "card_marker_removed"
 	EventKindCardPlayed               EventKind = "card_played"
 	EventKindAssetBuilt               EventKind = "asset_built"
-)
-
-// PhaseName identifies the current minimal turn phase.
-type PhaseName string
-
-const (
-	PhaseMain PhaseName = "main"
-	PhaseEnd  PhaseName = "end"
-)
-
-// StepName identifies the finer-grained step inside one phase.
-type StepName string
-
-const (
-	StepAction StepName = "action"
-	StepEnded  StepName = "ended"
-)
-
-// PriorityWindowKind identifies whether players are in a normal action window, response window, or closed step.
-type PriorityWindowKind string
-
-const (
-	PriorityWindowAction   PriorityWindowKind = "action"
-	PriorityWindowResponse PriorityWindowKind = "response"
-	PriorityWindowClosed   PriorityWindowKind = "closed"
 )
 
 // CardExecutionKind identifies whether a card operation should route through pure DSL handling or a script entry.
@@ -240,18 +224,23 @@ type FullState = GameState
 
 // Action is the player intent submitted into the authoritative pipeline.
 type Action struct {
-	ID                 string     `json:"id"`
-	ActorID            string     `json:"actorId"`
-	Kind               ActionKind `json:"kind"`
-	CardID             string     `json:"cardId,omitempty"`
-	TargetPlayerID     string     `json:"targetPlayerId,omitempty"`
-	TargetCardID       string     `json:"targetCardId,omitempty"`
-	TargetRegionCardID string     `json:"targetRegionCardId,omitempty"`
-	PlayMode           string     `json:"playMode,omitempty"`
-	MarkerType         string     `json:"markerType,omitempty"`
-	MarkerAmount       int        `json:"markerAmount,omitempty"`
-	OperationLabel     string     `json:"operationLabel,omitempty"`
-	RandomMax          int        `json:"randomMax,omitempty"`
+	ID                 string             `json:"id"`
+	ActorID            string             `json:"actorId"`
+	Kind               ActionKind         `json:"kind"`
+	CardID             string             `json:"cardId,omitempty"`
+	AbilityID          string             `json:"abilityId,omitempty"`
+	PromptID           string             `json:"promptId,omitempty"`
+	TargetPlayerID     string             `json:"targetPlayerId,omitempty"`
+	TargetCardID       string             `json:"targetCardId,omitempty"`
+	TargetRegionCardID string             `json:"targetRegionCardId,omitempty"`
+	PlayMode           string             `json:"playMode,omitempty"`
+	MarkerType         string             `json:"markerType,omitempty"`
+	MarkerAmount       int                `json:"markerAmount,omitempty"`
+	OperationLabel     string             `json:"operationLabel,omitempty"`
+	RandomMax          int                `json:"randomMax,omitempty"`
+	TopCardIDs         []string           `json:"topCardIds,omitempty"`
+	BottomCardIDs      []string           `json:"bottomCardIds,omitempty"`
+	DamageAssignments  []DamageAssignment `json:"damageAssignments,omitempty"`
 }
 
 // EffectSpec is the executable subset of the shared CardLogic effect payload copied into Go-side operations.
@@ -293,6 +282,8 @@ type Operation struct {
 	Status             OperationStatus      `json:"status"`
 	RequiresStack      bool                 `json:"requiresStack"`
 	CardID             string               `json:"cardId,omitempty"`
+	AbilityID          string               `json:"abilityId,omitempty"`
+	PromptID           string               `json:"promptId,omitempty"`
 	TargetPlayerID     string               `json:"targetPlayerId,omitempty"`
 	TargetCardID       string               `json:"targetCardId,omitempty"`
 	TargetRegionCardID string               `json:"targetRegionCardId,omitempty"`
@@ -303,6 +294,9 @@ type Operation struct {
 	RandomMax          int                  `json:"randomMax,omitempty"`
 	NextPhase          PhaseName            `json:"nextPhase,omitempty"`
 	Source             *CardOperationSource `json:"source,omitempty"`
+	TopCardIDs         []string             `json:"topCardIds,omitempty"`
+	BottomCardIDs      []string             `json:"bottomCardIds,omitempty"`
+	DamageAssignments  []DamageAssignment   `json:"damageAssignments,omitempty"`
 }
 
 // Event records the committed result of a single action pipeline run.
@@ -376,6 +370,8 @@ type TurnState struct {
 	Resources                map[string]PlayerResourceState `json:"resources,omitempty"`
 	Priority                 PriorityState                  `json:"priority"`
 	Phase                    PhaseState                     `json:"phase"`
+	Conflict                 ConflictState                  `json:"conflict,omitempty"`
+	PendingPrompt            *PromptState                   `json:"pendingPrompt,omitempty"`
 }
 
 // PriorityState captures the current action holder plus consecutive pass tracking.

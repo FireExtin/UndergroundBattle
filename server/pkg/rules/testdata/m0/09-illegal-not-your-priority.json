@@ -13,7 +13,7 @@
     "revision": 0,
     "turn": {
       "phase": "main",
-      "step": "action"
+      "step": "first_player_action"
     },
     "priority": {
       "currentPlayerId": "P1",

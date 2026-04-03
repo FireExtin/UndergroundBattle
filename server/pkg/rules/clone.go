@@ -29,10 +29,23 @@ func cloneBoardState(state BoardState) BoardState {
 
 func cloneHistoryState(state HistoryState) HistoryState {
 	cloned := state
-	cloned.Actions = slices.Clone(state.Actions)
+	cloned.Actions = cloneActions(state.Actions)
 	cloned.Operations = cloneOperations(state.Operations)
 	cloned.Events = cloneEvents(state.Events)
 	cloned.Revisions = slices.Clone(state.Revisions)
+	return cloned
+}
+
+func cloneActions(actions []Action) []Action {
+	cloned := make([]Action, 0, len(actions))
+	for _, action := range actions {
+		next := action
+		next.TopCardIDs = slices.Clone(action.TopCardIDs)
+		next.BottomCardIDs = slices.Clone(action.BottomCardIDs)
+		next.DamageAssignments = cloneDamageAssignments(action.DamageAssignments)
+		cloned = append(cloned, next)
+	}
+
 	return cloned
 }
 
@@ -48,6 +61,9 @@ func cloneOperations(operations []Operation) []Operation {
 func cloneOperation(operation Operation) Operation {
 	cloned := operation
 	cloned.Source = cloneCardOperationSource(operation.Source)
+	cloned.TopCardIDs = slices.Clone(operation.TopCardIDs)
+	cloned.BottomCardIDs = slices.Clone(operation.BottomCardIDs)
+	cloned.DamageAssignments = cloneDamageAssignments(operation.DamageAssignments)
 	return cloned
 }
 
@@ -178,6 +194,28 @@ func cloneScoreState(state ScoreState) ScoreState {
 func cloneTurnState(state TurnState) TurnState {
 	cloned := state
 	cloned.Resources = cloneResourceMap(state.Resources)
+	cloned.PendingPrompt = clonePromptState(state.PendingPrompt)
+	return cloned
+}
+
+func clonePromptState(state *PromptState) *PromptState {
+	if state == nil {
+		return nil
+	}
+
+	cloned := *state
+	cloned.PeekCardIDs = slices.Clone(state.PeekCardIDs)
+	cloned.EligibleTargetIDs = slices.Clone(state.EligibleTargetIDs)
+	return &cloned
+}
+
+func cloneDamageAssignments(values []DamageAssignment) []DamageAssignment {
+	if len(values) == 0 {
+		return nil
+	}
+
+	cloned := make([]DamageAssignment, len(values))
+	copy(cloned, values)
 	return cloned
 }
 

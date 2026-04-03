@@ -16,6 +16,8 @@ type ActionFieldName string
 
 const (
 	ActionFieldNameCardID             ActionFieldName = "cardId"
+	ActionFieldNameAbilityID          ActionFieldName = "abilityId"
+	ActionFieldNamePromptID           ActionFieldName = "promptId"
 	ActionFieldNameTargetPlayerID     ActionFieldName = "targetPlayerId"
 	ActionFieldNameTargetCardID       ActionFieldName = "targetCardId"
 	ActionFieldNameTargetRegionCardID ActionFieldName = "targetRegionCardId"
@@ -77,12 +79,15 @@ type RulesMetadata struct {
 
 var defaultActionPolicies = []ActionPolicy{
 	{ActionKind: ActionKindAdvancePhase, ActorConstraint: ActionActorConstraintPriorityPlayer, RequiresPriority: true, RequiresEmptyStack: true},
+	{ActionKind: ActionKindResolvePrompt, ActorConstraint: ActionActorConstraintPriorityPlayer, RequiresPriority: true, RequiresEmptyStack: true, FieldRules: []ActionFieldRule{{Field: ActionFieldNamePromptID, Requirement: ActionFieldRequirementRequired}}},
 	{ActionKind: ActionKindRevealCard, ActorConstraint: ActionActorConstraintPriorityPlayer, RequiresPriority: true, RequiresEmptyStack: true, RequiresActionWindow: true, FieldRules: []ActionFieldRule{{Field: ActionFieldNameCardID, Requirement: ActionFieldRequirementRequired}}},
 	{ActionKind: ActionKindInspectCard, ActorConstraint: ActionActorConstraintPriorityPlayer, RequiresPriority: true, RequiresEmptyStack: true, RequiresActionWindow: true, FieldRules: []ActionFieldRule{{Field: ActionFieldNameCardID, Requirement: ActionFieldRequirementRequired}}},
 	{ActionKind: ActionKindPassPriority, ActorConstraint: ActionActorConstraintPriorityPlayer, RequiresPriority: true},
 	{ActionKind: ActionKindQueueOperation, ActorConstraint: ActionActorConstraintPriorityPlayer, RequiresPriority: true, FieldRules: []ActionFieldRule{{Field: ActionFieldNameCardID, Requirement: ActionFieldRequirementRequired}}},
 	{ActionKind: ActionKindDeclareAttack, ActorConstraint: ActionActorConstraintPriorityPlayer, RequiresPriority: true, RequiresEmptyStack: true, RequiresActionWindow: true, FieldRules: []ActionFieldRule{{Field: ActionFieldNameCardID, Requirement: ActionFieldRequirementRequired}, {Field: ActionFieldNameTargetCardID, Requirement: ActionFieldRequirementRequired}}},
 	{ActionKind: ActionKindDeclareInvestigation, ActorConstraint: ActionActorConstraintPriorityPlayer, RequiresPriority: true, RequiresEmptyStack: true, RequiresActionWindow: true, FieldRules: []ActionFieldRule{{Field: ActionFieldNameCardID, Requirement: ActionFieldRequirementRequired}, {Field: ActionFieldNameTargetCardID, Requirement: ActionFieldRequirementRequired}}},
+	{ActionKind: ActionKindRevealFaceDown, ActorConstraint: ActionActorConstraintPriorityPlayer, RequiresPriority: true, RequiresEmptyStack: true, RequiresActionWindow: true, FieldRules: []ActionFieldRule{{Field: ActionFieldNameCardID, Requirement: ActionFieldRequirementRequired}}},
+	{ActionKind: ActionKindActivateAbility, ActorConstraint: ActionActorConstraintPriorityPlayer, RequiresPriority: true, FieldRules: []ActionFieldRule{{Field: ActionFieldNameCardID, Requirement: ActionFieldRequirementRequired}, {Field: ActionFieldNameAbilityID, Requirement: ActionFieldRequirementRequired}, {Field: ActionFieldNameTargetCardID, Requirement: ActionFieldRequirementOptional}}},
 	{ActionKind: ActionKindResolveTopStack, ActorConstraint: ActionActorConstraintAny},
 	{ActionKind: ActionKindRollSeededRandom, ActorConstraint: ActionActorConstraintPriorityPlayer, RequiresPriority: true, RequiresEmptyStack: true, RequiresActionWindow: true, FieldRules: []ActionFieldRule{{Field: ActionFieldNameRandomMax, Requirement: ActionFieldRequirementRequired, MinimumInt: 1}}},
 	{ActionKind: ActionKindSetMarker, ActorConstraint: ActionActorConstraintPriorityPlayer, RequiresPriority: true, RequiresEmptyStack: true, RequiresActionWindow: true, FieldRules: []ActionFieldRule{{Field: ActionFieldNameTargetPlayerID, Requirement: ActionFieldRequirementOptional}, {Field: ActionFieldNameMarkerType, Requirement: ActionFieldRequirementRequired}, {Field: ActionFieldNameMarkerAmount, Requirement: ActionFieldRequirementRequired, MinimumInt: 1}}},

@@ -18,7 +18,7 @@
     "revision": 2,
     "turn": {
       "phase": "main",
-      "step": "ended"
+      "step": "first_player_action"
     },
     "priority": {
       "currentPlayerId": "P1",
