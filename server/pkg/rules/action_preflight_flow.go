@@ -30,6 +30,48 @@ func checkActionPreflightLegality(state GameState, action Action) LegalityResult
 				},
 			)
 		}
+		if policy.RequiresActionWindow && currentPriorityWindowKind(state) != PriorityWindowAction {
+			return legalityFailure(
+				ReasonCodeLegalityFailedActionWindowRequired,
+				"rules.legality.action_window_required",
+				"turn.priority.window",
+				map[string]string{
+					"windowKind": string(currentPriorityWindowKind(state)),
+				},
+			)
+		}
+		if len(policy.CardKindConstraints) > 0 && action.CardID != "" {
+			cardIndex := findCardIndex(state, action.CardID)
+			if cardIndex != -1 {
+				card := state.Board.Cards[cardIndex]
+				for _, constraint := range policy.CardKindConstraints {
+					if constraint.Kind == card.Kind {
+						if constraint.RequiresEmptyStack && len(state.Board.Stack) != 0 {
+							return legalityFailure(
+								ReasonCodeLegalityFailedStackNotEmpty,
+								"rules.legality.stack_not_empty",
+								"board.stack",
+								map[string]string{
+									"stackDepth": intString(len(state.Board.Stack)),
+									"actionKind": string(action.Kind),
+								},
+							)
+						}
+						if constraint.RequiresActionWindow && currentPriorityWindowKind(state) != PriorityWindowAction {
+							return legalityFailure(
+								ReasonCodeLegalityFailedActionWindowRequired,
+								"rules.legality.action_window_required",
+								"turn.priority.window",
+								map[string]string{
+									"windowKind": string(currentPriorityWindowKind(state)),
+								},
+							)
+						}
+						break
+					}
+				}
+			}
+		}
 	}
 
 	if action.TargetPlayerID != "" && !containsString(state.Players, action.TargetPlayerID) {

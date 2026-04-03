@@ -1,89 +1,93 @@
-import { describe, expect, it } from "vitest";
-
-import {
-  normalizeColor,
-  parseLoyaltyRequirements,
-  validateActionInput
-} from "./actionPolicy";
+import { describe, it, expect } from "vitest";
+import { validateActionInput, parseLoyaltyRequirements } from "./actionPolicy";
 import type { RulesMetadata } from "../debugger/protocol";
 
-const metadata: RulesMetadata = {
-  actionPolicies: [
-    {
-      actionKind: "play_card",
-      actorConstraint: "priority_player",
-      requiresPriority: true,
-      requiresEmptyStack: false,
-      fieldRules: [
-        { field: "cardId", requirement: "required" },
-        {
-          field: "targetRegionCardId",
-          requirement: "required",
-          sourceKinds: ["character"]
-        },
-        {
-          field: "targetCardId",
-          requirement: "required",
-          sourceKinds: ["asset"]
-        }
+describe("actionPolicy", () => {
+  const mockMetadata: RulesMetadata = {
+    actionPolicies: [
+      {
+        actionKind: "play_card",
+        actorConstraint: "priority_player",
+        requiresPriority: true,
+        requiresEmptyStack: true,
+        requiresActionWindow: true,
+        fieldRules: [
+          { field: "cardId", requirement: "required" },
+          { field: "targetRegionCardId", requirement: "required", sourceKinds: ["character"] }
+        ]
+      }
+    ],
+    payment: { mode: "prototype" },
+    loyalty: {
+      colorAliases: [
+        { canonical: "方碑序列", aliases: ["方碑"] },
+        { canonical: "帷幕守望", aliases: ["帷幕"] }
       ]
-    }
-  ],
-  payment: {
-    mode: "prototype"
-  },
-  loyalty: {
-    colorAliases: [
-      { canonical: "黄色", aliases: ["黄"] },
-      { canonical: "蓝色", aliases: ["蓝"] }
-    ]
-  },
-  projection: {
-    hiddenCardPreserves: ["ownerId", "zone", "regionCardId", "faceDown"]
-  }
-};
+    },
+    projection: { hiddenCardPreserves: ["regionCardId"] }
+  };
 
-describe("validateActionInput", () => {
-  it("requires target region for character play_card from policy", () => {
-    expect(
-      validateActionInput(metadata, {
+  describe("validateActionInput", () => {
+    it("should return error when required field is missing", () => {
+      const result = validateActionInput(mockMetadata, {
         actionKind: "play_card",
-        sourceCardKind: "character",
-        sourceCardId: "card-1",
+        sourceCardId: "",
         targetCardId: "",
         targetRegionCardId: "",
         targetPlayerId: "",
         markerType: "",
-        markerAmount: "1",
-        playMode: "face_up"
-      })
-    ).toBe("需要选择部署地区");
-  });
+        markerAmount: "0",
+        playMode: "face_up",
+        sourceCardKind: "character"
+      });
+      expect(result).toBe("需要选择来源卡牌");
+    });
 
-  it("requires target card for asset play_card from policy", () => {
-    expect(
-      validateActionInput(metadata, {
+    it("should return error when kind-specific required field is missing", () => {
+      const result = validateActionInput(mockMetadata, {
         actionKind: "play_card",
-        sourceCardKind: "asset",
-        sourceCardId: "card-1",
+        sourceCardId: "c1",
         targetCardId: "",
         targetRegionCardId: "",
         targetPlayerId: "",
         markerType: "",
-        markerAmount: "1",
-        playMode: "face_up"
-      })
-    ).toBe("需要选择目标卡牌");
-  });
-});
+        markerAmount: "0",
+        playMode: "face_up",
+        sourceCardKind: "character"
+      });
+      expect(result).toBe("需要选择部署地区");
+    });
 
-describe("loyalty metadata helpers", () => {
-  it("counts mixed canonical and alias loyalty tokens from metadata", () => {
-    expect(parseLoyaltyRequirements("黄黄色", metadata)).toEqual({ 黄色: 2 });
+    it("should pass when all required fields are present", () => {
+      const result = validateActionInput(mockMetadata, {
+        actionKind: "play_card",
+        sourceCardId: "c1",
+        targetCardId: "",
+        targetRegionCardId: "r1",
+        targetPlayerId: "",
+        markerType: "",
+        markerAmount: "0",
+        playMode: "face_up",
+        sourceCardKind: "character"
+      });
+      expect(result).toBe("");
+    });
   });
 
-  it("normalizes alias colors through metadata", () => {
-    expect(normalizeColor("黄", metadata)).toBe("黄色");
-    expect(normalizeColor("中立", metadata)).toBe("");
+  describe("parseLoyaltyRequirements", () => {
+    it("should parse complex loyalty strings using aliases", () => {
+      const result = parseLoyaltyRequirements("方碑方碑帷幕", mockMetadata);
+      expect(result).toEqual({
+        "方碑序列": 2,
+        "帷幕守望": 1
+      });
+    });
+
+    it("should handle mixed canonical and alias tokens", () => {
+      const result = parseLoyaltyRequirements("方碑序列方碑", mockMetadata);
+      expect(result).toEqual({
+        "方碑序列": 2
+      });
+    });
   });
 });

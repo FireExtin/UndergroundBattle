@@ -23,12 +23,20 @@ export type ActionFieldRule = {
   minimumInt?: number;
 };
 
+export type ActionCardKindConstraint = {
+  kind: string;
+  requiresEmptyStack: boolean;
+  requiresActionWindow: boolean;
+};
+
 export type ActionPolicy = {
   actionKind: string;
   actorConstraint: ActionActorConstraint;
   requiresPriority: boolean;
   requiresEmptyStack: boolean;
+  requiresActionWindow: boolean;
   fieldRules?: ActionFieldRule[];
+  cardKindConstraints?: ActionCardKindConstraint[];
 };
 
 export type RulesMetadata = {

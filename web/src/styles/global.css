@@ -369,6 +369,22 @@ body {
   gap: 0.25rem;
 }
 
+.battle-region-button {
+  appearance: none;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+  color: inherit;
+}
+
+.battle-region-button:focus-visible {
+  outline: 2px solid #0b5a8b;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
 .battle-region-meta {
   margin: 0.4rem 0;
   border: 1px solid #c3d7e4;
@@ -598,4 +614,83 @@ body {
   .contest-grid {
     grid-template-columns: 1fr;
   }
+}
+
+/* Enhanced Card Styles for PN-BASE-007 */
+.battle-card {
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden;
+}
+
+.battle-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(20, 70, 108, 0.2);
+}
+
+.battle-card__main {
+  display: grid;
+  gap: 0.1rem;
+}
+
+.battle-card__sub {
+  font-size: 0.68rem;
+  opacity: 0.85;
+}
+
+.battle-card__stats {
+  display: flex;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 0.2rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  font-family: ui-monospace, monospace;
+  font-weight: bold;
+  font-size: 0.75rem;
+}
+
+.stat-combat { color: #d0021b; }
+.stat-defense { color: #0b5a8b; }
+.stat-investigation { color: #f5a623; }
+
+.battle-card--exhausted {
+  opacity: 0.75;
+  filter: grayscale(0.4);
+  transform: rotate(2deg);
+}
+
+.battle-card--exhausted strong::after {
+  content: " (已横置)";
+  font-size: 0.65rem;
+  font-weight: normal;
+}
+
+.battle-card--face-down {
+  background: linear-gradient(135deg, #2c3e50 0%, #000000 100%);
+  border-color: #1a252f;
+}
+
+.battle-card--face-down strong,
+.battle-card--face-down p {
+  color: #ecf0f1;
+}
+
+.battle-card--destroyed {
+  opacity: 0.5;
+  filter: sepia(1) saturate(0.5);
+  text-decoration: line-through;
+}
+
+.battle-card--destroyed::before {
+  content: "已摧毁";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-15deg);
+  background: rgba(255, 0, 0, 0.7);
+  color: white;
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  z-index: 1;
 }

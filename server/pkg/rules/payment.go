@@ -6,6 +6,7 @@ type PaymentMode string
 
 const (
 	PaymentModePrototype PaymentMode = "prototype"
+	PaymentModeRulebook  PaymentMode = "rulebook"
 )
 
 type PaymentEngine interface {
@@ -14,6 +15,7 @@ type PaymentEngine interface {
 	RefillForTurn(*GameState)
 	ResourceView(GameState, string) PlayerResourceState
 	PayCost(*GameState, string, int) bool
+	OnStepEnd(*GameState)
 }
 
 type PaymentMetadata struct {

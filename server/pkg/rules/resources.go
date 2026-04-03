@@ -52,6 +52,52 @@ func (PrototypePaymentEngine) PayCost(state *GameState, playerID string, require
 	return true
 }
 
+func (PrototypePaymentEngine) OnStepEnd(state *GameState) {
+	// Prototype mode doesn't clear resources on step end.
+}
+
+type RulebookPaymentEngine struct{}
+
+func (RulebookPaymentEngine) Mode() PaymentMode {
+	return PaymentModeRulebook
+}
+
+func (RulebookPaymentEngine) Initialize(state *GameState) {
+	if state == nil {
+		return
+	}
+	ensureTurnResourceEntries(&state.Turn, state.Players)
+	// Rulebook mode starts with 0 resources and needs explicit refill or asset exhaustion.
+}
+
+func (RulebookPaymentEngine) RefillForTurn(state *GameState) {
+	// Rulebook mode refill logic (e.g., refilling only static assets).
+}
+
+func (RulebookPaymentEngine) ResourceView(state GameState, playerID string) PlayerResourceState {
+	if state.Turn.Resources == nil {
+		return PlayerResourceState{}
+	}
+	return state.Turn.Resources[playerID]
+}
+
+func (RulebookPaymentEngine) PayCost(state *GameState, playerID string, required int) bool {
+	// Rulebook mode payment logic (e.g., deducting from floating resources).
+	return PrototypePaymentEngine{}.PayCost(state, playerID, required)
+}
+
+func (RulebookPaymentEngine) OnStepEnd(state *GameState) {
+	// Rulebook mode clears floating resources on step end.
+	if state == nil {
+		return
+	}
+	for playerID, pool := range state.Turn.Resources {
+		updated := pool
+		updated.Current = 0
+		state.Turn.Resources[playerID] = updated
+	}
+}
+
 // InitializeTurnResources ensures player resource entries exist and refills each player's turn pool.
 func InitializeTurnResources(state *GameState) {
 	engine := CurrentPaymentEngine()

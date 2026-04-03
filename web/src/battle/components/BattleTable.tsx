@@ -255,7 +255,11 @@ function CardStrip({ cards, fallback, compact = false, onVisibleCardPicked }: Ca
         const canPick = isVisible && !!card.cardId && !!onVisibleCardPicked;
 
         return (
-          <li key={key} className={isVisible ? "battle-card" : "battle-card battle-card--hidden"}>
+          <li
+            key={key}
+            className={cardClasses(card, isVisible)}
+            style={cardStyle(card, isVisible)}
+          >
             {canPick ? (
               <button
                 type="button"
@@ -264,13 +268,31 @@ function CardStrip({ cards, fallback, compact = false, onVisibleCardPicked }: Ca
                   onVisibleCardPicked(card);
                 }}
                 >
-                <strong>{card.name ?? card.cardId}</strong>
-                <p>{cardLine(card)}</p>
+                <div className="battle-card__main">
+                  <strong>{card.name ?? card.cardId}</strong>
+                  <p className="battle-card__sub">{cardLine(card)}</p>
+                </div>
+                {isVisible && card.kind === "character" && (
+                  <div className="battle-card__stats">
+                    <span className="stat-combat" title="战斗力">{card.stats.combat}</span>
+                    <span className="stat-defense" title="防御力">{card.stats.defense}</span>
+                    <span className="stat-investigation" title="调查力">{card.stats.investigation}</span>
+                  </div>
+                )}
               </button>
             ) : (
               <>
-                <strong>{isVisible ? card.name ?? card.cardId : "卡背"}</strong>
-                <p>{isVisible ? cardLine(card) : "隐藏"}</p>
+                <div className="battle-card__main">
+                  <strong>{isVisible ? card.name ?? card.cardId : "卡背"}</strong>
+                  <p className="battle-card__sub">{isVisible ? cardLine(card) : "隐藏"}</p>
+                </div>
+                {isVisible && card.kind === "character" && (
+                  <div className="battle-card__stats">
+                    <span className="stat-combat" title="战斗力">{card.stats.combat}</span>
+                    <span className="stat-defense" title="防御力">{card.stats.defense}</span>
+                    <span className="stat-investigation" title="调查力">{card.stats.investigation}</span>
+                  </div>
+                )}
               </>
             )}
           </li>
@@ -278,6 +300,42 @@ function CardStrip({ cards, fallback, compact = false, onVisibleCardPicked }: Ca
       })}
     </ul>
   );
+}
+
+function cardClasses(card: CardView, isVisible: boolean) {
+  const classes = ["battle-card"];
+  if (!isVisible) {
+    classes.push("battle-card--hidden");
+  }
+  if (card.exhausted) {
+    classes.push("battle-card--exhausted");
+  }
+  if (card.faceDown) {
+    classes.push("battle-card--face-down");
+  }
+  if (card.destroyed) {
+    classes.push("battle-card--destroyed");
+  }
+  return classes.join(" ");
+}
+
+const colorMap: Record<string, string> = {
+  "方碑序列": "#4a90e2",
+  "帷幕守望": "#50e3c2",
+  "王座会": "#d0021b",
+  "国家机构": "#f5a623",
+  "中立": "#9b9b9b"
+};
+
+function cardStyle(card: CardView, isVisible: boolean) {
+  if (!isVisible || !card.color) {
+    return {};
+  }
+  const baseColor = colorMap[card.color] || "#ffffff";
+  return {
+    "--card-accent": baseColor,
+    borderLeft: `4px solid ${baseColor}`
+  } as React.CSSProperties;
 }
 
 function toCardPick(card: CardView): BattleCardPick {

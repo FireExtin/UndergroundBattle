@@ -270,6 +270,8 @@ type CardOperationSource struct {
 	SourcePath        string            `json:"sourcePath"`
 	BasicType         string            `json:"basicType,omitempty"`
 	LogicID           string            `json:"logicId"`
+	Cost              int               `json:"cost,omitempty"`
+	Loyalty           string            `json:"loyalty,omitempty"`
 	Speed             string            `json:"speed"`
 	TargetKinds       []string          `json:"targetKinds"`
 	RequiresStack     bool              `json:"requiresStack"`

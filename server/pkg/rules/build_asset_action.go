@@ -36,28 +36,6 @@ func checkBuildAssetActionLegality(state GameState, action Action) LegalityResul
 		)
 	}
 
-	if len(state.Board.Stack) != 0 {
-		return legalityFailure(
-			ReasonCodeLegalityFailedStackNotEmpty,
-			"rules.legality.stack_not_empty",
-			"board.stack",
-			map[string]string{
-				"stackDepth": intString(len(state.Board.Stack)),
-				"actionKind": string(action.Kind),
-			},
-		)
-	}
-	if currentPriorityWindowKind(state) != PriorityWindowAction {
-		return legalityFailure(
-			ReasonCodeLegalityFailedActionWindowRequired,
-			"rules.legality.action_window_required",
-			"turn.priority.window",
-			map[string]string{
-				"windowKind": string(currentPriorityWindowKind(state)),
-			},
-		)
-	}
-
 	if state.Board.Markers.GetMarker(action.ActorID, markerTypeBuildAssetUsed) > 0 {
 		return legalityFailure(
 			ReasonCodeLegalityFailedActionProhibited,
@@ -80,7 +58,29 @@ func checkBuildAssetActionLegality(state GameState, action Action) LegalityResul
 		)
 	}
 
+	requiredCost := requiredBuildAssetCost(card)
+	if engine := CurrentPaymentEngine(); engine != nil {
+		pool := engine.ResourceView(state, action.ActorID)
+		if pool.Current < requiredCost {
+			return legalityFailure(
+				ReasonCodeCostFailedUnpaid,
+				"rules.cost.unpaid",
+				"turn.resources",
+				map[string]string{
+					"actorId":  action.ActorID,
+					"cardId":   action.CardID,
+					"required": intString(requiredCost),
+					"current":  intString(pool.Current),
+				},
+			)
+		}
+	}
+
 	return okLegalityResult()
+}
+
+func requiredBuildAssetCost(card CardState) int {
+	return effectivePlayCardCost(card)
 }
 
 func executeBuildAsset(state GameState, operation Operation) (GameState, Operation, Event, error) {
@@ -126,6 +126,29 @@ func executeBuildAsset(state GameState, operation Operation) (GameState, Operati
 			Code:       ReasonCodeLegalityFailedActionProhibited,
 			Message:    "build asset prohibited by non-asset restriction",
 			MessageKey: "rules.build_asset.non_asset_prohibited",
+		}
+	}
+
+	requiredCost := requiredBuildAssetCost(*card)
+	if engine := CurrentPaymentEngine(); engine != nil {
+		if !engine.PayCost(&working, operation.ActorID, requiredCost) {
+			pool := engine.ResourceView(working, operation.ActorID)
+			return GameState{}, Operation{}, Event{}, &LegalityError{
+				Result: legalityFailure(
+					ReasonCodeCostFailedUnpaid,
+					"rules.cost.unpaid",
+					"turn.resources",
+					map[string]string{
+						"actorId":  operation.ActorID,
+						"cardId":   operation.CardID,
+						"required": intString(requiredCost),
+						"current":  intString(pool.Current),
+					},
+				),
+				Code:       ReasonCodeCostFailedUnpaid,
+				Message:    "build asset cost unpaid",
+				MessageKey: "rules.cost.unpaid",
+			}
 		}
 	}
 

@@ -198,6 +198,70 @@ func TestCommitRecordsActionLog(t *testing.T) {
 	}
 }
 
+func TestAdvancePhaseRemainsLegalAfterStepEnds(t *testing.T) {
+	state := NewGameState(InitialStateConfig{
+		GameID:         "game-advance-phase-after-step-end",
+		ActivePlayerID: "P1",
+		PlayerIDs:      []string{"P1", "P2"},
+		Seed:           17,
+	})
+
+	state = mustSubmit(t, state, Action{
+		ID:      "act-pass-1",
+		ActorID: "P1",
+		Kind:    ActionKindPassPriority,
+	})
+	state = mustSubmit(t, state, Action{
+		ID:      "act-pass-2",
+		ActorID: "P2",
+		Kind:    ActionKindPassPriority,
+	})
+
+	if !state.Turn.Phase.StepEnded {
+		t.Fatal("step should be ended after two passes on empty stack")
+	}
+	if state.Turn.Priority.WindowKind != PriorityWindowClosed {
+		t.Fatalf("priority window = %q, want %q", state.Turn.Priority.WindowKind, PriorityWindowClosed)
+	}
+
+	actorID := state.Turn.Priority.CurrentPlayerID
+	if actorID == "" {
+		actorID = "P1"
+	}
+
+	result, err := SubmitAction(state, Action{
+		ID:      "act-advance-after-step-end",
+		ActorID: actorID,
+		Kind:    ActionKindAdvancePhase,
+	})
+	if err != nil {
+		t.Fatalf("SubmitAction returned error: %v", err)
+	}
+	if result.Event.Kind != EventKindPhaseAdvanced {
+		t.Fatalf("event kind = %q, want %q", result.Event.Kind, EventKindPhaseAdvanced)
+	}
+}
+
+func TestQueueOperationRealCardRemainsDebugCompatibleWithoutPaymentOrLoyaltyChecks(t *testing.T) {
+	state := NewGameState(InitialStateConfig{
+		GameID:         "game-queue-operation-debug-compatible",
+		ActivePlayerID: "P1",
+		PlayerIDs:      []string{"P1", "P2"},
+		Seed:           19,
+	})
+	state.Turn.Resources["P1"] = PlayerResourceState{Current: 0, Max: 1}
+
+	legality := CheckLegality(state, Action{
+		ID:      "act-real-card-debug-compatible",
+		ActorID: "P1",
+		Kind:    ActionKindQueueOperation,
+		CardID:  "BQ010",
+	})
+	if !legality.OK {
+		t.Fatalf("queue_operation legality = %+v, want debug-compatible success", legality)
+	}
+}
+
 func TestReplayActionLogProducesSameState(t *testing.T) {
 	initial := NewGameState(InitialStateConfig{
 		GameID:         "game-replay",

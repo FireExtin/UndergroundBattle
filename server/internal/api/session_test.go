@@ -468,6 +468,54 @@ func TestSandboxSessionLifecycleTransitions(t *testing.T) {
 	}
 }
 
+func TestSandboxSessionSetupRejectsDuplicateSocietyChoicesAtStepOne(t *testing.T) {
+	session := NewSandboxSession()
+
+	_, err := session.StartSetup(SetupStartInput{
+		Seed:        20260403,
+		P1Societies: []string{"帷幕守望", "帷幕守望"},
+		P2Societies: []string{"王座会", "国家机构"},
+	})
+	if err != nil {
+		t.Fatalf("StartSetup returned error: %v", err)
+	}
+
+	_, err = session.AdvanceSetup(SetupAdvanceInput{
+		P1Societies: []string{"帷幕守望", "帷幕守望"},
+		P2Societies: []string{"王座会", "国家机构"},
+	})
+	if err == nil {
+		t.Fatal("AdvanceSetup succeeded with duplicate societies, want early rejection")
+	}
+	if !strings.Contains(err.Error(), "society_duplicate") {
+		t.Fatalf("AdvanceSetup error = %q, want society_duplicate", err.Error())
+	}
+}
+
+func TestSandboxSessionSetupRejectsSingleSocietyChoiceAtStepOne(t *testing.T) {
+	session := NewSandboxSession()
+
+	_, err := session.StartSetup(SetupStartInput{
+		Seed:        20260403,
+		P1Societies: []string{"帷幕守望"},
+		P2Societies: []string{"王座会", "国家机构"},
+	})
+	if err != nil {
+		t.Fatalf("StartSetup returned error: %v", err)
+	}
+
+	_, err = session.AdvanceSetup(SetupAdvanceInput{
+		P1Societies: []string{"帷幕守望"},
+		P2Societies: []string{"王座会", "国家机构"},
+	})
+	if err == nil {
+		t.Fatal("AdvanceSetup succeeded with one-society selection, want early rejection")
+	}
+	if !strings.Contains(err.Error(), "society_count_invalid") {
+		t.Fatalf("AdvanceSetup error = %q, want society_count_invalid", err.Error())
+	}
+}
+
 func isSetupStepCompleted(steps []SetupStepStatus, targetStep int) bool {
 	for _, step := range steps {
 		if step.Step == targetStep {

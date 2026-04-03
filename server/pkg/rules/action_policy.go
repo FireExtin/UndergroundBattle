@@ -40,12 +40,20 @@ type ActionFieldRule struct {
 	MinimumInt  int                    `json:"minimumInt,omitempty"`
 }
 
+type ActionCardKindConstraint struct {
+	Kind                 CardKind `json:"kind"`
+	RequiresEmptyStack   bool     `json:"requiresEmptyStack"`
+	RequiresActionWindow bool     `json:"requiresActionWindow"`
+}
+
 type ActionPolicy struct {
-	ActionKind         ActionKind            `json:"actionKind"`
-	ActorConstraint    ActionActorConstraint `json:"actorConstraint"`
-	RequiresPriority   bool                  `json:"requiresPriority"`
-	RequiresEmptyStack bool                  `json:"requiresEmptyStack"`
-	FieldRules         []ActionFieldRule     `json:"fieldRules,omitempty"`
+	ActionKind           ActionKind                 `json:"actionKind"`
+	ActorConstraint      ActionActorConstraint      `json:"actorConstraint"`
+	RequiresPriority     bool                       `json:"requiresPriority"`
+	RequiresEmptyStack   bool                       `json:"requiresEmptyStack"`
+	RequiresActionWindow bool                       `json:"requiresActionWindow"`
+	FieldRules           []ActionFieldRule          `json:"fieldRules,omitempty"`
+	CardKindConstraints  []ActionCardKindConstraint `json:"cardKindConstraints,omitempty"`
 }
 
 type LoyaltyColorAlias struct {
@@ -70,23 +78,23 @@ type RulesMetadata struct {
 
 var defaultActionPolicies = []ActionPolicy{
 	{ActionKind: ActionKindAdvancePhase, ActorConstraint: ActionActorConstraintPriorityPlayer, RequiresPriority: true, RequiresEmptyStack: true},
-	{ActionKind: ActionKindRevealCard, ActorConstraint: ActionActorConstraintPriorityPlayer, RequiresPriority: true, RequiresEmptyStack: true, FieldRules: []ActionFieldRule{{Field: ActionFieldNameCardID, Requirement: ActionFieldRequirementRequired}}},
-	{ActionKind: ActionKindInspectCard, ActorConstraint: ActionActorConstraintPriorityPlayer, RequiresPriority: true, RequiresEmptyStack: true, FieldRules: []ActionFieldRule{{Field: ActionFieldNameCardID, Requirement: ActionFieldRequirementRequired}}},
+	{ActionKind: ActionKindRevealCard, ActorConstraint: ActionActorConstraintPriorityPlayer, RequiresPriority: true, RequiresEmptyStack: true, RequiresActionWindow: true, FieldRules: []ActionFieldRule{{Field: ActionFieldNameCardID, Requirement: ActionFieldRequirementRequired}}},
+	{ActionKind: ActionKindInspectCard, ActorConstraint: ActionActorConstraintPriorityPlayer, RequiresPriority: true, RequiresEmptyStack: true, RequiresActionWindow: true, FieldRules: []ActionFieldRule{{Field: ActionFieldNameCardID, Requirement: ActionFieldRequirementRequired}}},
 	{ActionKind: ActionKindPassPriority, ActorConstraint: ActionActorConstraintPriorityPlayer, RequiresPriority: true},
 	{ActionKind: ActionKindQueueOperation, ActorConstraint: ActionActorConstraintPriorityPlayer, RequiresPriority: true, FieldRules: []ActionFieldRule{{Field: ActionFieldNameCardID, Requirement: ActionFieldRequirementRequired}}},
-	{ActionKind: ActionKindDeclareAttack, ActorConstraint: ActionActorConstraintPriorityPlayer, RequiresPriority: true, RequiresEmptyStack: true, FieldRules: []ActionFieldRule{{Field: ActionFieldNameCardID, Requirement: ActionFieldRequirementRequired}, {Field: ActionFieldNameTargetCardID, Requirement: ActionFieldRequirementRequired}}},
-	{ActionKind: ActionKindDeclareInvestigation, ActorConstraint: ActionActorConstraintPriorityPlayer, RequiresPriority: true, RequiresEmptyStack: true, FieldRules: []ActionFieldRule{{Field: ActionFieldNameCardID, Requirement: ActionFieldRequirementRequired}, {Field: ActionFieldNameTargetCardID, Requirement: ActionFieldRequirementRequired}}},
+	{ActionKind: ActionKindDeclareAttack, ActorConstraint: ActionActorConstraintPriorityPlayer, RequiresPriority: true, RequiresEmptyStack: true, RequiresActionWindow: true, FieldRules: []ActionFieldRule{{Field: ActionFieldNameCardID, Requirement: ActionFieldRequirementRequired}, {Field: ActionFieldNameTargetCardID, Requirement: ActionFieldRequirementRequired}}},
+	{ActionKind: ActionKindDeclareInvestigation, ActorConstraint: ActionActorConstraintPriorityPlayer, RequiresPriority: true, RequiresEmptyStack: true, RequiresActionWindow: true, FieldRules: []ActionFieldRule{{Field: ActionFieldNameCardID, Requirement: ActionFieldRequirementRequired}, {Field: ActionFieldNameTargetCardID, Requirement: ActionFieldRequirementRequired}}},
 	{ActionKind: ActionKindResolveTopStack, ActorConstraint: ActionActorConstraintAny},
-	{ActionKind: ActionKindRollSeededRandom, ActorConstraint: ActionActorConstraintPriorityPlayer, RequiresPriority: true, RequiresEmptyStack: true, FieldRules: []ActionFieldRule{{Field: ActionFieldNameRandomMax, Requirement: ActionFieldRequirementRequired, MinimumInt: 1}}},
-	{ActionKind: ActionKindSetMarker, ActorConstraint: ActionActorConstraintPriorityPlayer, RequiresPriority: true, RequiresEmptyStack: true, FieldRules: []ActionFieldRule{{Field: ActionFieldNameTargetPlayerID, Requirement: ActionFieldRequirementOptional}, {Field: ActionFieldNameMarkerType, Requirement: ActionFieldRequirementRequired}, {Field: ActionFieldNameMarkerAmount, Requirement: ActionFieldRequirementRequired, MinimumInt: 1}}},
-	{ActionKind: ActionKindRemoveMarker, ActorConstraint: ActionActorConstraintPriorityPlayer, RequiresPriority: true, RequiresEmptyStack: true, FieldRules: []ActionFieldRule{{Field: ActionFieldNameTargetPlayerID, Requirement: ActionFieldRequirementOptional}, {Field: ActionFieldNameMarkerType, Requirement: ActionFieldRequirementRequired}, {Field: ActionFieldNameMarkerAmount, Requirement: ActionFieldRequirementRequired}}},
-	{ActionKind: ActionKindSetFaceDown, ActorConstraint: ActionActorConstraintPriorityPlayer, RequiresPriority: true, RequiresEmptyStack: true, FieldRules: []ActionFieldRule{{Field: ActionFieldNameCardID, Requirement: ActionFieldRequirementRequired}}},
-	{ActionKind: ActionKindUseFirstPlayerPrivilege, ActorConstraint: ActionActorConstraintActivePlayer, RequiresPriority: true, RequiresEmptyStack: true},
-	{ActionKind: ActionKindMoveCard, ActorConstraint: ActionActorConstraintPriorityPlayer, RequiresPriority: true, RequiresEmptyStack: true, FieldRules: []ActionFieldRule{{Field: ActionFieldNameCardID, Requirement: ActionFieldRequirementRequired}, {Field: ActionFieldNameTargetCardID, Requirement: ActionFieldRequirementRequired}}},
-	{ActionKind: ActionKindSetCardMarker, ActorConstraint: ActionActorConstraintPriorityPlayer, RequiresPriority: true, RequiresEmptyStack: true, FieldRules: []ActionFieldRule{{Field: ActionFieldNameTargetCardID, Requirement: ActionFieldRequirementRequired}, {Field: ActionFieldNameMarkerType, Requirement: ActionFieldRequirementRequired}, {Field: ActionFieldNameMarkerAmount, Requirement: ActionFieldRequirementRequired, MinimumInt: 1}}},
-	{ActionKind: ActionKindRemoveCardMarker, ActorConstraint: ActionActorConstraintPriorityPlayer, RequiresPriority: true, RequiresEmptyStack: true, FieldRules: []ActionFieldRule{{Field: ActionFieldNameTargetCardID, Requirement: ActionFieldRequirementRequired}, {Field: ActionFieldNameMarkerType, Requirement: ActionFieldRequirementRequired}, {Field: ActionFieldNameMarkerAmount, Requirement: ActionFieldRequirementRequired}}},
-	{ActionKind: ActionKindPlayCard, ActorConstraint: ActionActorConstraintPriorityPlayer, RequiresPriority: true, FieldRules: []ActionFieldRule{{Field: ActionFieldNameCardID, Requirement: ActionFieldRequirementRequired}, {Field: ActionFieldNamePlayMode, Requirement: ActionFieldRequirementOptional}, {Field: ActionFieldNameTargetPlayerID, Requirement: ActionFieldRequirementOptional}, {Field: ActionFieldNameTargetRegionCardID, Requirement: ActionFieldRequirementRequired, SourceKinds: []CardKind{CardKindCharacter}}, {Field: ActionFieldNameTargetCardID, Requirement: ActionFieldRequirementRequired, SourceKinds: []CardKind{CardKindAsset}}}},
-	{ActionKind: ActionKindBuildAsset, ActorConstraint: ActionActorConstraintPriorityPlayer, RequiresPriority: true, RequiresEmptyStack: true, FieldRules: []ActionFieldRule{{Field: ActionFieldNameCardID, Requirement: ActionFieldRequirementRequired}}},
+	{ActionKind: ActionKindRollSeededRandom, ActorConstraint: ActionActorConstraintPriorityPlayer, RequiresPriority: true, RequiresEmptyStack: true, RequiresActionWindow: true, FieldRules: []ActionFieldRule{{Field: ActionFieldNameRandomMax, Requirement: ActionFieldRequirementRequired, MinimumInt: 1}}},
+	{ActionKind: ActionKindSetMarker, ActorConstraint: ActionActorConstraintPriorityPlayer, RequiresPriority: true, RequiresEmptyStack: true, RequiresActionWindow: true, FieldRules: []ActionFieldRule{{Field: ActionFieldNameTargetPlayerID, Requirement: ActionFieldRequirementOptional}, {Field: ActionFieldNameMarkerType, Requirement: ActionFieldRequirementRequired}, {Field: ActionFieldNameMarkerAmount, Requirement: ActionFieldRequirementRequired, MinimumInt: 1}}},
+	{ActionKind: ActionKindRemoveMarker, ActorConstraint: ActionActorConstraintPriorityPlayer, RequiresPriority: true, RequiresEmptyStack: true, RequiresActionWindow: true, FieldRules: []ActionFieldRule{{Field: ActionFieldNameTargetPlayerID, Requirement: ActionFieldRequirementOptional}, {Field: ActionFieldNameMarkerType, Requirement: ActionFieldRequirementRequired}, {Field: ActionFieldNameMarkerAmount, Requirement: ActionFieldRequirementRequired}}},
+	{ActionKind: ActionKindSetFaceDown, ActorConstraint: ActionActorConstraintPriorityPlayer, RequiresPriority: true, RequiresEmptyStack: true, RequiresActionWindow: true, FieldRules: []ActionFieldRule{{Field: ActionFieldNameCardID, Requirement: ActionFieldRequirementRequired}}},
+	{ActionKind: ActionKindUseFirstPlayerPrivilege, ActorConstraint: ActionActorConstraintActivePlayer, RequiresPriority: true, RequiresEmptyStack: true, RequiresActionWindow: true},
+	{ActionKind: ActionKindMoveCard, ActorConstraint: ActionActorConstraintPriorityPlayer, RequiresPriority: true, RequiresEmptyStack: true, RequiresActionWindow: true, FieldRules: []ActionFieldRule{{Field: ActionFieldNameCardID, Requirement: ActionFieldRequirementRequired}, {Field: ActionFieldNameTargetCardID, Requirement: ActionFieldRequirementRequired}}},
+	{ActionKind: ActionKindSetCardMarker, ActorConstraint: ActionActorConstraintPriorityPlayer, RequiresPriority: true, RequiresEmptyStack: true, RequiresActionWindow: true, FieldRules: []ActionFieldRule{{Field: ActionFieldNameTargetCardID, Requirement: ActionFieldRequirementRequired}, {Field: ActionFieldNameMarkerType, Requirement: ActionFieldRequirementRequired}, {Field: ActionFieldNameMarkerAmount, Requirement: ActionFieldRequirementRequired, MinimumInt: 1}}},
+	{ActionKind: ActionKindRemoveCardMarker, ActorConstraint: ActionActorConstraintPriorityPlayer, RequiresPriority: true, RequiresEmptyStack: true, RequiresActionWindow: true, FieldRules: []ActionFieldRule{{Field: ActionFieldNameTargetCardID, Requirement: ActionFieldRequirementRequired}, {Field: ActionFieldNameMarkerType, Requirement: ActionFieldRequirementRequired}, {Field: ActionFieldNameMarkerAmount, Requirement: ActionFieldRequirementRequired}}},
+	{ActionKind: ActionKindPlayCard, ActorConstraint: ActionActorConstraintPriorityPlayer, RequiresPriority: true, FieldRules: []ActionFieldRule{{Field: ActionFieldNameCardID, Requirement: ActionFieldRequirementRequired}, {Field: ActionFieldNamePlayMode, Requirement: ActionFieldRequirementOptional}, {Field: ActionFieldNameTargetPlayerID, Requirement: ActionFieldRequirementOptional}, {Field: ActionFieldNameTargetRegionCardID, Requirement: ActionFieldRequirementRequired, SourceKinds: []CardKind{CardKindCharacter}}, {Field: ActionFieldNameTargetCardID, Requirement: ActionFieldRequirementRequired, SourceKinds: []CardKind{CardKindAsset}}}, CardKindConstraints: []ActionCardKindConstraint{{Kind: CardKindCharacter, RequiresEmptyStack: true, RequiresActionWindow: true}, {Kind: CardKindAsset, RequiresEmptyStack: true, RequiresActionWindow: true}}},
+	{ActionKind: ActionKindBuildAsset, ActorConstraint: ActionActorConstraintPriorityPlayer, RequiresPriority: true, RequiresEmptyStack: true, RequiresActionWindow: true, FieldRules: []ActionFieldRule{{Field: ActionFieldNameCardID, Requirement: ActionFieldRequirementRequired}}},
 }
 
 var defaultRulesMetadata = RulesMetadata{
@@ -140,12 +148,26 @@ func cloneActionPolicies(policies []ActionPolicy) []ActionPolicy {
 
 func cloneActionPolicy(policy ActionPolicy) ActionPolicy {
 	return ActionPolicy{
-		ActionKind:         policy.ActionKind,
-		ActorConstraint:    policy.ActorConstraint,
-		RequiresPriority:   policy.RequiresPriority,
-		RequiresEmptyStack: policy.RequiresEmptyStack,
-		FieldRules:         cloneActionFieldRules(policy.FieldRules),
+		ActionKind:           policy.ActionKind,
+		ActorConstraint:      policy.ActorConstraint,
+		RequiresPriority:     policy.RequiresPriority,
+		RequiresEmptyStack:   policy.RequiresEmptyStack,
+		RequiresActionWindow: policy.RequiresActionWindow,
+		FieldRules:           cloneActionFieldRules(policy.FieldRules),
+		CardKindConstraints:  cloneActionCardKindConstraints(policy.CardKindConstraints),
 	}
+}
+
+func cloneActionCardKindConstraints(constraints []ActionCardKindConstraint) []ActionCardKindConstraint {
+	cloned := make([]ActionCardKindConstraint, 0, len(constraints))
+	for _, c := range constraints {
+		cloned = append(cloned, ActionCardKindConstraint{
+			Kind:                 c.Kind,
+			RequiresEmptyStack:   c.RequiresEmptyStack,
+			RequiresActionWindow: c.RequiresActionWindow,
+		})
+	}
+	return cloned
 }
 
 func cloneActionFieldRules(rules []ActionFieldRule) []ActionFieldRule {

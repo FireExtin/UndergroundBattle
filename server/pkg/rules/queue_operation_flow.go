@@ -121,6 +121,32 @@ func buildQueueOperationFromAction(action Action, sourceLookup cardOperationSour
 	return nil
 }
 
+func executeQueueOperation(state GameState, operation Operation) (GameState, Operation, Event, error) {
+	working := cloneGameState(state)
+
+	if operation.RequiresStack {
+		working, operation = defaultStackEngine.Push(working, operation)
+		reopenPhaseStep(&working.Turn)
+		resetPriorityWindow(&working.Turn, nextPriorityPlayerID(working, operation.ActorID), PriorityWindowResponse)
+
+		return working, operation, Event{
+			ID:               "evt:" + operation.ActionID,
+			ActionID:         operation.ActionID,
+			OperationID:      operation.ID,
+			Kind:             EventKindOperationEnqueued,
+			Phase:            working.Turn.Phase.Name,
+			Step:             working.Turn.Phase.Step,
+			PriorityPlayerID: currentPriorityPlayerID(working),
+			PriorityWindow:   currentPriorityWindowKind(working),
+			PassCount:        working.Turn.Priority.PassCount,
+			StackDepth:       len(working.Board.Stack),
+			RevisionNumber:   0,
+		}, nil
+	}
+
+	return executeCardEffect(working, operation)
+}
+
 func checkCardWindowLegality(state GameState, source CardOperationSource) LegalityResult {
 	windowKind := currentPriorityWindowKind(state)
 	switch source.Speed {

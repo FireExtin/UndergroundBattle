@@ -178,8 +178,10 @@ func (session *SandboxSession) SubmitAction(action rules.Action) ([]protocolEnve
 		if finishedRevision <= 0 {
 			finishedRevision = result.State.Revision.Number
 		}
-		session.lifecycle = newMatchFinishedLifecycle(session.latestReport, finishedRevision)
-		session.setup.Lifecycle = session.lifecycle
+		if err := session.Transition(newMatchFinishedLifecycle(session.latestReport, finishedRevision)); err != nil {
+			session.logError("match_finished_transition_failed gameId=%s err=%v", result.State.GameID, err)
+			return nil, err
+		}
 		session.appendMatchTraceEntryLocked("match_finished", map[string]any{
 			"winner":           result.State.Match.WinnerPlayerID,
 			"endReason":        result.State.Match.EndReason,
@@ -342,8 +344,8 @@ func (session *SandboxSession) resetLocked() ([]protocolEnvelope, error) {
 
 	session.state = state
 	session.projector = projector
-	session.lifecycle = newResetLifecycle()
-	session.setup = SetupState{Lifecycle: session.lifecycle}
+	session.setup = SetupState{}
+	_ = session.Transition(newResetLifecycle())
 	session.setupRuntime = setupRuntimeState{}
 	session.latestReport = nil
 	session.latestTrace = nil

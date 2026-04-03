@@ -31,6 +31,7 @@ type SetupStartInput struct {
 	Seed                uint64   `json:"seed,omitempty"`
 	P1Societies         []string `json:"p1Societies,omitempty"`
 	P2Societies         []string `json:"p2Societies,omitempty"`
+	AllowedSets         []string `json:"allowedSets,omitempty"`
 	PreviousLoserPlayer string   `json:"previousLoserPlayer,omitempty"`
 }
 
@@ -71,6 +72,7 @@ type SetupState struct {
 	Steps                []SetupStepStatus   `json:"steps"`
 	P1Societies          []string            `json:"p1Societies,omitempty"`
 	P2Societies          []string            `json:"p2Societies,omitempty"`
+	AllowedSets          []string            `json:"allowedSets,omitempty"`
 	MarkerPoolReady      bool                `json:"markerPoolReady"`
 	WorldDeckCount       int                 `json:"worldDeckCount"`
 	RevealedRegions      []SetupRegionView   `json:"revealedRegions,omitempty"`
@@ -137,8 +139,16 @@ var (
 func (session *SandboxSession) SetupState() SetupState {
 	session.mu.Lock()
 	defer session.mu.Unlock()
-	return cloneSetupState(session.setup)
+	return projectSetupState(session.setup, session.lifecycle)
 }
+
+const (
+	deckSizeMin    = 40
+	deckSizeMax    = 60
+	duplicateLimit = 3
+	societyLimit   = 2
+	FactionNeutral = "中立"
+)
 
 func (session *SandboxSession) StartSetup(input SetupStartInput) (SetupState, error) {
 	session.mu.Lock()
@@ -153,10 +163,10 @@ func (session *SandboxSession) StartSetup(input SetupStartInput) (SetupState, er
 		Active:              true,
 		Completed:           false,
 		CurrentStep:         1,
-		Lifecycle:           newSetupLifecycle(1),
 		Seed:                seed,
 		P1Societies:         slicesOrDefault(input.P1Societies, []string{"方碑序列", "帷幕守望"}),
 		P2Societies:         slicesOrDefault(input.P2Societies, []string{"王座会", "国家机构"}),
+		AllowedSets:         slicesOrDefault(input.AllowedSets, []string{"基础"}),
 		MarkerPoolReady:     false,
 		WorldDeckCount:      0,
 		PlayerDeckCount:     map[string]int{"P1": 0, "P2": 0},
@@ -164,16 +174,18 @@ func (session *SandboxSession) StartSetup(input SetupStartInput) (SetupState, er
 		MulliganUsed:        map[string]bool{"P1": false, "P2": false},
 		PreviousLoserPlayer: strings.TrimSpace(input.PreviousLoserPlayer),
 		RuntimeIgnoredScopes: map[string][]string{
-			"construct": {"society_limit", "deck_size_limit", "duplicate_limit"},
+			"construct": {}, // Now enforcing construction rules by default
 			"play":      {"queue_operation_cost_payment", "queue_operation_loyalty_requirement"},
 		},
 		RuntimeNotes: map[string]string{
-			"pool": "当前仅使用基础包 deckcard=true 候选卡。",
+			"pool": "当前按所选派系过滤基础包卡牌。",
 			"play": "play_card 已启用费用与忠诚校验；queue_operation 仍保留调试通道兼容。",
 		},
 	}
 	session.setup.Steps = newSetupSteps()
-	session.lifecycle = session.setup.Lifecycle
+	if err := session.Transition(newSetupLifecycle(1)); err != nil {
+		return SetupState{}, err
+	}
 	session.setupRuntime = setupRuntimeState{
 		playerDeck: map[string][]setupCard{"P1": {}, "P2": {}},
 		playerHand: map[string][]setupCard{"P1": {}, "P2": {}},
@@ -201,7 +213,7 @@ func (session *SandboxSession) StartSetup(input SetupStartInput) (SetupState, er
 		"previousLoserPlayer": session.setup.PreviousLoserPlayer,
 	}, &session.state)
 
-	return cloneSetupState(session.setup), nil
+	return projectSetupState(session.setup, session.lifecycle), nil
 }
 
 func (session *SandboxSession) AdvanceSetup(input SetupAdvanceInput) (SetupState, error) {
@@ -212,13 +224,25 @@ func (session *SandboxSession) AdvanceSetup(input SetupAdvanceInput) (SetupState
 		return SetupState{}, errSetupNotActive
 	}
 	if session.setup.Completed {
-		return cloneSetupState(session.setup), nil
+		return projectSetupState(session.setup, session.lifecycle), nil
 	}
 
 	switch session.setup.CurrentStep {
 	case 1:
-		session.setup.P1Societies = slicesOrDefault(input.P1Societies, session.setup.P1Societies)
-		session.setup.P2Societies = slicesOrDefault(input.P2Societies, session.setup.P2Societies)
+		p1Societies := normalizeSocietyChoices(slicesOrDefault(input.P1Societies, session.setup.P1Societies))
+		p2Societies := normalizeSocietyChoices(slicesOrDefault(input.P2Societies, session.setup.P2Societies))
+
+		if !session.isScopeIgnored("construct", "society_limit") {
+			if err := validateSocietyChoices("P1", p1Societies); err != nil {
+				return SetupState{}, err
+			}
+			if err := validateSocietyChoices("P2", p2Societies); err != nil {
+				return SetupState{}, err
+			}
+		}
+
+		session.setup.P1Societies = p1Societies
+		session.setup.P2Societies = p2Societies
 		session.setup.LastStepMessage = "步骤1完成：记录双方快速组牌选择。"
 		advanceSetupProgress(&session.setup, 1, 2)
 	case 2:
@@ -236,12 +260,25 @@ func (session *SandboxSession) AdvanceSetup(input SetupAdvanceInput) (SetupState
 		session.setup.LastStepMessage = "步骤3完成：标志已整理。"
 		advanceSetupProgress(&session.setup, 3, 4)
 	case 4:
-		cards, err := loadSetupPlayablePoolBaseOnly()
+		p1Pool, err := loadSetupPlayablePoolFiltered(session.setup.P1Societies, session.setup.AllowedSets)
 		if err != nil {
 			return SetupState{}, err
 		}
-		p1Deck := cloneSetupCards(cards)
-		p2Deck := cloneSetupCards(cards)
+		p2Pool, err := loadSetupPlayablePoolFiltered(session.setup.P2Societies, session.setup.AllowedSets)
+		if err != nil {
+			return SetupState{}, err
+		}
+
+		// Validation
+		if err := session.validateDeck("P1", p1Pool); err != nil {
+			return SetupState{}, err
+		}
+		if err := session.validateDeck("P2", p2Pool); err != nil {
+			return SetupState{}, err
+		}
+
+		p1Deck := cloneSetupCards(p1Pool)
+		p2Deck := cloneSetupCards(p2Pool)
 		shuffleSetupCards(p1Deck, int64(session.setup.Seed)+21)
 		shuffleSetupCards(p2Deck, int64(session.setup.Seed)+22)
 		attachInstances("P1", p1Deck)
@@ -254,7 +291,7 @@ func (session *SandboxSession) AdvanceSetup(input SetupAdvanceInput) (SetupState
 		session.setup.PlayerDeckCount["P2"] = len(p2Deck)
 		session.setup.PlayerHandCount["P1"] = 0
 		session.setup.PlayerHandCount["P2"] = 0
-		session.setup.LastStepMessage = "步骤4完成：双方玩家牌库已构建并完成洗牌语义。"
+		session.setup.LastStepMessage = "步骤4完成：双方玩家牌库已按派系构建。"
 		advanceSetupProgress(&session.setup, 4, 5)
 	case 5:
 		revealed := make([]setupCard, 0, 3)
@@ -295,7 +332,12 @@ func (session *SandboxSession) AdvanceSetup(input SetupAdvanceInput) (SetupState
 		return SetupState{}, fmt.Errorf("setup_step_invalid")
 	}
 
-	session.lifecycle = session.setup.Lifecycle
+	if !session.setup.Completed {
+		if err := session.Transition(newSetupLifecycle(session.setup.CurrentStep)); err != nil {
+			return SetupState{}, err
+		}
+	}
+
 	session.appendMatchTraceEntryLocked("setup_advanced", map[string]any{
 		"currentStep":      session.setup.CurrentStep,
 		"completed":        session.setup.Completed,
@@ -305,7 +347,119 @@ func (session *SandboxSession) AdvanceSetup(input SetupAdvanceInput) (SetupState
 		"playerDeckCount":  session.setup.PlayerDeckCount,
 		"playerHandCount":  session.setup.PlayerHandCount,
 	}, &session.state)
-	return cloneSetupState(session.setup), nil
+	return projectSetupState(session.setup, session.lifecycle), nil
+}
+
+func (session *SandboxSession) isScopeIgnored(scope string, detail string) bool {
+	if session.setup.RuntimeIgnoredScopes == nil {
+		return false
+	}
+	details, ok := session.setup.RuntimeIgnoredScopes[scope]
+	if !ok {
+		return false
+	}
+	for _, d := range details {
+		if d == detail {
+			return true
+		}
+	}
+	return false
+}
+
+func normalizeSocietyChoices(values []string) []string {
+	normalized := make([]string, 0, len(values))
+	for _, value := range values {
+		trimmed := strings.TrimSpace(value)
+		if trimmed == "" {
+			continue
+		}
+		normalized = append(normalized, trimmed)
+	}
+	return normalized
+}
+
+func validateSocietyChoices(playerID string, societies []string) error {
+	if len(societies) != societyLimit {
+		return fmt.Errorf("society_count_invalid: player %s has %d societies, want %d", playerID, len(societies), societyLimit)
+	}
+
+	seen := make(map[string]struct{}, len(societies))
+	for _, society := range societies {
+		if _, ok := seen[society]; ok {
+			return fmt.Errorf("society_duplicate: player %s selected %s more than once", playerID, society)
+		}
+		seen[society] = struct{}{}
+	}
+
+	return nil
+}
+
+func (session *SandboxSession) validateDeck(playerID string, cards []setupCard) error {
+	if !session.isScopeIgnored("construct", "deck_size_limit") {
+		if len(cards) < deckSizeMin || len(cards) > deckSizeMax {
+			return fmt.Errorf("deck_size_limit: player %s has %d cards, want %d-%d", playerID, len(cards), deckSizeMin, deckSizeMax)
+		}
+	}
+
+	if !session.isScopeIgnored("construct", "duplicate_limit") {
+		counts := make(map[string]int)
+		for _, card := range cards {
+			counts[card.DefinitionID]++
+			if counts[card.DefinitionID] > duplicateLimit {
+				return fmt.Errorf("duplicate_limit: player %s has %d copies of %s, max %d", playerID, counts[card.DefinitionID], card.DefinitionID, duplicateLimit)
+			}
+		}
+	}
+
+	return nil
+}
+
+func loadSetupPlayablePoolFiltered(societies []string, allowedSets []string) ([]setupCard, error) {
+	all, err := loadSetupPlayablePoolAllowedSets(allowedSets)
+	if err != nil {
+		return nil, err
+	}
+
+	societyMap := make(map[string]bool)
+	for _, s := range societies {
+		societyMap[s] = true
+	}
+
+	filtered := make([]setupCard, 0, len(all))
+	for _, card := range all {
+		s := strings.TrimSpace(card.Society)
+		if s == "" || s == FactionNeutral || societyMap[s] {
+			filtered = append(filtered, card)
+		}
+	}
+	return filtered, nil
+}
+
+func loadSetupPlayablePoolAllowedSets(allowedSets []string) ([]setupCard, error) {
+	cards, err := loadSetupCatalogCards()
+	if err != nil {
+		return nil, err
+	}
+
+	setMap := make(map[string]bool)
+	for _, s := range allowedSets {
+		setMap[s] = true
+	}
+
+	playable := make([]setupCard, 0, 128)
+	for _, card := range cards {
+		if !setMap[card.Set] || !card.DeckCard {
+			continue
+		}
+		if strings.TrimSpace(card.BasicType) == "地区" {
+			continue
+		}
+		playable = append(playable, card)
+	}
+	sort.Slice(playable, func(i int, j int) bool {
+		return playable[i].DefinitionID < playable[j].DefinitionID
+	})
+	return playable, nil
 }
 
 func (session *SandboxSession) finalizeSetupToMatchLocked(startingPlayerID string) error {
@@ -365,8 +519,9 @@ func (session *SandboxSession) finalizeSetupToMatchLocked(startingPlayerID strin
 	session.state = state
 	session.messages = cloneProtocolEnvelopes(messages)
 	session.nextMessageNumber = len(messages) + 1
-	session.lifecycle = newMatchActiveLifecycle()
-	session.setup.Lifecycle = session.lifecycle
+	if err := session.Transition(newMatchActiveLifecycle()); err != nil {
+		return err
+	}
 	return nil
 }
 
@@ -504,7 +659,6 @@ func advanceSetupProgress(state *SetupState, completedStep int, nextStep int) {
 	state.Active = true
 	state.Completed = false
 	state.CurrentStep = nextStep
-	state.Lifecycle = newSetupLifecycle(nextStep)
 }
 
 func completeFinalSetupStep(state *SetupState, completedStep int) {
@@ -549,6 +703,7 @@ func cloneSetupState(state SetupState) SetupState {
 	cloned := state
 	cloned.P1Societies = append([]string(nil), state.P1Societies...)
 	cloned.P2Societies = append([]string(nil), state.P2Societies...)
+	cloned.AllowedSets = append([]string(nil), state.AllowedSets...)
 	cloned.Steps = append([]SetupStepStatus(nil), state.Steps...)
 	cloned.RevealedRegions = append([]SetupRegionView(nil), state.RevealedRegions...)
 	cloned.PlayerDeckCount = cloneStringIntMap(state.PlayerDeckCount)
@@ -556,6 +711,12 @@ func cloneSetupState(state SetupState) SetupState {
 	cloned.MulliganUsed = cloneStringBoolMap(state.MulliganUsed)
 	cloned.RuntimeIgnoredScopes = cloneStringSliceMap(state.RuntimeIgnoredScopes)
 	cloned.RuntimeNotes = cloneStringStringMap(state.RuntimeNotes)
+	return cloned
+}
+
+func projectSetupState(state SetupState, lifecycle SessionLifecycle) SetupState {
+	cloned := cloneSetupState(state)
+	cloned.Lifecycle = lifecycle
 	return cloned
 }
 
@@ -674,27 +835,6 @@ func loadSetupRegionDeckBaseOnly() ([]setupCard, error) {
 		return regions[i].DefinitionID < regions[j].DefinitionID
 	})
 	return regions, nil
-}
-
-func loadSetupPlayablePoolBaseOnly() ([]setupCard, error) {
-	cards, err := loadSetupCatalogCards()
-	if err != nil {
-		return nil, err
-	}
-	playable := make([]setupCard, 0, 128)
-	for _, card := range cards {
-		if card.Set != "基础" || !card.DeckCard {
-			continue
-		}
-		if strings.TrimSpace(card.BasicType) == "地区" {
-			continue
-		}
-		playable = append(playable, card)
-	}
-	sort.Slice(playable, func(i int, j int) bool {
-		return playable[i].DefinitionID < playable[j].DefinitionID
-	})
-	return playable, nil
 }
 
 func loadSetupCatalogCards() ([]setupCard, error) {

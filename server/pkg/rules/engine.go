@@ -388,6 +388,10 @@ func executeOperation(state GameState, operation Operation) (GameState, Operatio
 		return executePlayCard(working, operation)
 	}
 
+	if operation.Kind == OperationKindCardEffect {
+		return executeQueueOperation(working, operation)
+	}
+
 	if operation.RequiresStack {
 		working, operation = defaultStackEngine.Push(working, operation)
 		reopenPhaseStep(&working.Turn)
@@ -410,6 +414,9 @@ func executeOperation(state GameState, operation Operation) (GameState, Operatio
 
 	switch operation.Kind {
 	case OperationKindAdvancePhase:
+		if engine := CurrentPaymentEngine(); engine != nil {
+			engine.OnStepEnd(&working)
+		}
 		working = applyPhaseAdvance(working, operation)
 		operation.Status = OperationStatusResolved
 

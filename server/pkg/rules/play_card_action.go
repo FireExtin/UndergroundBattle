@@ -116,27 +116,6 @@ func checkPlayCardActionLegality(state GameState, action Action, sourceLookup ca
 		}
 		return okLegalityResult()
 	case CardKindAsset:
-		if len(state.Board.Stack) != 0 {
-			return legalityFailure(
-				ReasonCodeLegalityFailedStackNotEmpty,
-				"rules.legality.stack_not_empty",
-				"board.stack",
-				map[string]string{
-					"stackDepth": intString(len(state.Board.Stack)),
-					"actionKind": string(action.Kind),
-				},
-			)
-		}
-		if currentPriorityWindowKind(state) != PriorityWindowAction {
-			return legalityFailure(
-				ReasonCodeLegalityFailedActionWindowRequired,
-				"rules.legality.action_window_required",
-				"turn.priority.window",
-				map[string]string{
-					"windowKind": string(currentPriorityWindowKind(state)),
-				},
-			)
-		}
 		if action.TargetCardID == "" {
 			return legalityFailure(
 				ReasonCodeTargetFailedMissing,
