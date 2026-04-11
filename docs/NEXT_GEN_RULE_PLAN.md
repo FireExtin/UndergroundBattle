@@ -99,8 +99,8 @@
   - 验收标准：调查奖励按差额检视并抓 1；战斗奖励进入伤害分配 prompt；二者均不入栈。
 - [x] **PN-ACT-004: 现身与行动能力正式动作**
   - 验收标准：`reveal_face_down` / `activate_ability` 进入统一 legality + stack 管线。
-- [ ] **PN-ACT-005: tie + 先手标志特权并入新 conflict 流程**
-  - 验收标准：调查 / 战斗 / 势力对抗打平时，先手标志特权能在新 phase/stage 模型下正确接管。
+- [x] **PN-ACT-005: tie + 先手标志特权并入新 conflict 流程** (completed 2026-04-11)
+  - 验收标准：调查 / 战斗 / 势力对抗打平时，先手标志特权能在新 phase/stage 模型下正确接管。 已添加 first-player privilege 字段并在 conflict tie 解析中作为首要判定，若无该特权则回退到 priority leader 判定，若仍无则无胜者。
 - [ ] **PN-ACT-006: 拦截 / 更完整战斗结算**
   - 验收标准：攻击者横置 -> 对方指定拦截 -> 计算伤害 -> 致命判定 -> 离场。
 - [ ] **PN-ACT-007: 能力注册表扩面**

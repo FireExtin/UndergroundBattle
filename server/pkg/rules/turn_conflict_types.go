@@ -22,11 +22,12 @@ const (
 )
 
 type ConflictState struct {
-	RegionOrder            int           `json:"regionOrder,omitempty"`
-	RegionCardID           string        `json:"regionCardId,omitempty"`
-	Stage                  ConflictStage `json:"stage,omitempty"`
-	PriorityLeaderPlayerID string        `json:"priorityLeaderPlayerId,omitempty"`
-	PendingPromptID        string        `json:"pendingPromptId,omitempty"`
+	RegionOrder                 int           `json:"regionOrder,omitempty"`
+	RegionCardID                string        `json:"regionCardId,omitempty"`
+	Stage                       ConflictStage `json:"stage,omitempty"`
+	PriorityLeaderPlayerID      string        `json:"priorityLeaderPlayerId,omitempty"`
+	FirstPlayerPrivilegeOwner   string        `json:"firstPlayerPrivilegeOwner,omitempty"`
+	PendingPromptID             string        `json:"pendingPromptId,omitempty"`
 }
 
 type PromptKind string
