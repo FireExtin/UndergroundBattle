@@ -226,7 +226,14 @@ func TestVictoryProjectionPublishesWinnerAndFinishedMatchState(t *testing.T) {
 		t.Fatalf("SubmitAction returned error: %v", err)
 	}
 
-	for viewerID, view := range result.Views.Players {
+	if len(result.Views.Players) != 2 {
+		t.Fatalf("projected player views = %d, want 2", len(result.Views.Players))
+	}
+	for _, viewerID := range []string{"P1", "P2"} {
+		view, ok := result.Views.Players[viewerID]
+		if !ok {
+			t.Fatalf("missing player view %q", viewerID)
+		}
 		if view.Match.Status != MatchStatusFinished {
 			t.Fatalf("%s projected match status = %q, want %q", viewerID, view.Match.Status, MatchStatusFinished)
 		}

@@ -178,7 +178,23 @@ function makeBattleState(overrides?: Partial<BattleState>): BattleState {
     ...overrides,
     turn: {
       ...battle.turn,
-      ...overrides?.turn
+      ...overrides?.turn,
+      priority: {
+        ...battle.turn.priority,
+        ...overrides?.turn?.priority
+      },
+      phase: {
+        ...battle.turn.phase,
+        ...overrides?.turn?.phase
+      },
+      conflict: {
+        ...battle.turn.conflict,
+        ...overrides?.turn?.conflict
+      },
+      resources: {
+        ...battle.turn.resources,
+        ...overrides?.turn?.resources
+      }
     },
     score: {
       ...battle.score,
