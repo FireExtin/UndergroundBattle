@@ -150,6 +150,7 @@ func executeResolvePrompt(state GameState, operation Operation) (GameState, Oper
 			}
 			addDamageCounter(&working.Board.Cards[index], assignment.Amount)
 		}
+		requestContinuousRecalculation(&working)
 		setConflictStage(&working, ConflictStagePostBattleFast)
 	default:
 		return GameState{}, Operation{}, Event{}, fmt.Errorf("%s", ReasonCodeLegalityFailedActionProhibited)

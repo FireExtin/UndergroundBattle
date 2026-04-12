@@ -44,6 +44,7 @@ func refreshRegionControlWithState(state *GameState, card *CardState) {
 	totalInfluence := deriveEffectiveRegionInfluence(state, *card)
 	card.InfluenceByPlayer = totalInfluence
 	card.Counters.Influence = sumInfluence(totalInfluence)
+	card.EffectiveStats.Influence = card.Counters.Influence
 
 	bestPlayerID := ""
 	bestInfluence := 0

@@ -163,19 +163,44 @@ func resolveRegionWins(state *GameState) {
 
 		cleanupWonRegionTableState(state, region.CardID)
 		winnerID := region.ControllerID
+		wonRegionOrder := region.RegionOrder
 		moveCardToScore(region)
 		state.Score.ByPlayer[winnerID]++
 
-		state.Board.Cards = append(state.Board.Cards, CardState{
-			CardID:         fmt.Sprintf("region:auto:%d", nextAutoRegionIndex),
-			Name:           "Auto Region",
-			Kind:           CardKindRegion,
-			Zone:           CardZoneTable,
-			VisibleToOwner: false,
-			Revealed:       true,
-		})
-		nextAutoRegionIndex++
+		if !refillRegionSlotFromWorldDeck(state, wonRegionOrder) {
+			state.Board.Cards = append(state.Board.Cards, CardState{
+				CardID:         fmt.Sprintf("region:auto:%d", nextAutoRegionIndex),
+				Name:           "Auto Region",
+				Kind:           CardKindRegion,
+				Zone:           CardZoneTable,
+				VisibleToOwner: false,
+				Revealed:       true,
+				RegionOrder:    wonRegionOrder,
+			})
+			nextAutoRegionIndex++
+		}
 	}
+}
+
+func refillRegionSlotFromWorldDeck(state *GameState, regionOrder int) bool {
+	if state == nil {
+		return false
+	}
+
+	deckIndex := topWorldRegionDeckIndex(*state)
+	if deckIndex < 0 {
+		return false
+	}
+
+	replacement := &state.Board.Cards[deckIndex]
+	replacement.Destroyed = false
+	replacement.Zone = CardZoneTable
+	replacement.Revealed = true
+	replacement.FaceDown = false
+	replacement.Exhausted = false
+	replacement.RegionCardID = ""
+	replacement.RegionOrder = regionOrder
+	return true
 }
 
 func cleanupWonRegionTableState(state *GameState, regionCardID string) {
@@ -237,6 +262,17 @@ func topDeckCardIndex(state GameState, playerID string) int {
 	return -1
 }
 
+func topWorldRegionDeckIndex(state GameState) int {
+	for index := len(state.Board.Cards) - 1; index >= 0; index-- {
+		card := state.Board.Cards[index]
+		if card.Kind != CardKindRegion || card.Zone != CardZoneDeck || card.Destroyed {
+			continue
+		}
+		return index
+	}
+	return -1
+}
+
 func applyDeckOutResult(state *GameState, failedPlayers []string) {
 	if state == nil || len(failedPlayers) == 0 {
 		return
@@ -271,8 +307,13 @@ func survivingPlayerID(players []string, failedPlayers []string) string {
 }
 
 func regionWinThreshold(region CardState) int {
-	if region.EffectiveStats.Influence > 0 {
-		return region.EffectiveStats.Influence
+	// Region scoring now uses explicit region score fields as the authoritative
+	// victory threshold. Dynamic EffectiveStats.Influence represents current
+	// control pressure on the table and must not be reused as the win threshold.
+	// A non-positive RegionScore means "fall back to printed threshold"; if both
+	// are non-positive, the region cannot be won via end-step threshold scoring.
+	if region.RegionScore > 0 {
+		return region.RegionScore
 	}
 	if region.PrintedStats.Influence > 0 {
 		return region.PrintedStats.Influence

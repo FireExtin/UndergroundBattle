@@ -405,6 +405,87 @@ func TestProjectionCardViewIncludesRegionControlDetails(t *testing.T) {
 	}
 }
 
+func TestProjectionCardViewUsesDynamicRegionInfluenceStats(t *testing.T) {
+	state := NewGameState(InitialStateConfig{
+		GameID:         "game-projection-region-stats",
+		ActivePlayerID: "P1",
+		PlayerIDs:      []string{"P1", "P2"},
+		Seed:           11,
+	})
+	state.Board.Cards = []CardState{
+		testRegionCard("region-1"),
+		testCharacterCard("p1-region-unit", "P1", CardNumericStats{Influence: 2}),
+		testCharacterCard("p2-region-unit", "P2", CardNumericStats{Influence: 1}),
+	}
+	state.Board.Cards[1].RegionCardID = "region-1"
+	state.Board.Cards[2].RegionCardID = "region-1"
+	refreshAllRegionControl(&state)
+
+	views := NewProjectionEngine().Generate(state)
+	projected := onlyCardByID(t, views.Players["P1"], "region-1")
+	if projected.Stats.Influence != 3 {
+		t.Fatalf("projected region influence stat = %d, want 3", projected.Stats.Influence)
+	}
+	if projected.ControllerID != "P1" {
+		t.Fatalf("projected controller = %q, want %q", projected.ControllerID, "P1")
+	}
+}
+
+func TestProjectionRegionReplacementStaysStableAcrossPlayersAndSpectator(t *testing.T) {
+	state := NewGameState(InitialStateConfig{
+		GameID:         "game-projection-region-replacement",
+		ActivePlayerID: "P1",
+		PlayerIDs:      []string{"P1", "P2"},
+		Seed:           12,
+	})
+	state.Board.Cards = []CardState{
+		{
+			CardID:            "region-old",
+			Name:              "Won Region",
+			Kind:              CardKindRegion,
+			Zone:              CardZoneScore,
+			Revealed:          true,
+			RegionOrder:       1,
+			ControllerID:      "P1",
+			InfluenceByPlayer: map[string]int{"P1": 3, "P2": 1},
+			EffectiveStats:    CardNumericStats{Influence: 4},
+		},
+		{
+			CardID:         "region:auto:1",
+			Name:           "New Region",
+			Kind:           CardKindRegion,
+			Zone:           CardZoneTable,
+			Revealed:       true,
+			RegionOrder:    2,
+			EffectiveStats: CardNumericStats{Influence: 0},
+		},
+	}
+
+	views := NewProjectionEngine().Generate(state)
+	for viewerID, view := range views.Players {
+		scored := onlyCardByID(t, view, "region-old")
+		if scored.Zone != CardZoneScore {
+			t.Fatalf("%s scored region zone = %q, want %q", viewerID, scored.Zone, CardZoneScore)
+		}
+		replacement := onlyCardByID(t, view, "region:auto:1")
+		if replacement.Zone != CardZoneTable {
+			t.Fatalf("%s replacement region zone = %q, want %q", viewerID, replacement.Zone, CardZoneTable)
+		}
+		if replacement.RegionOrder != 2 {
+			t.Fatalf("%s replacement region order = %d, want 2", viewerID, replacement.RegionOrder)
+		}
+	}
+
+	spectatorScored := onlySpectatorCardByID(t, views.Spectator, "region-old")
+	if spectatorScored.Zone != CardZoneScore {
+		t.Fatalf("spectator scored region zone = %q, want %q", spectatorScored.Zone, CardZoneScore)
+	}
+	spectatorReplacement := onlySpectatorCardByID(t, views.Spectator, "region:auto:1")
+	if spectatorReplacement.Zone != CardZoneTable {
+		t.Fatalf("spectator replacement region zone = %q, want %q", spectatorReplacement.Zone, CardZoneTable)
+	}
+}
+
 func TestHiddenFaceDownCardStillCarriesRegionForOpponentProjection(t *testing.T) {
 	state := NewGameState(InitialStateConfig{
 		GameID:         "game-projection-hidden-region",
@@ -475,4 +556,26 @@ func onlySpectatorCard(t *testing.T, view SpectatorViewState) CardView {
 	}
 
 	return view.Board.Cards[0]
+}
+
+func onlyCardByID(t *testing.T, view PlayerViewState, cardID string) CardView {
+	t.Helper()
+	for _, card := range view.Board.Cards {
+		if card.CardID == cardID {
+			return card
+		}
+	}
+	t.Fatalf("card %q not found in player projection", cardID)
+	return CardView{}
+}
+
+func onlySpectatorCardByID(t *testing.T, view SpectatorViewState, cardID string) CardView {
+	t.Helper()
+	for _, card := range view.Board.Cards {
+		if card.CardID == cardID {
+			return card
+		}
+	}
+	t.Fatalf("card %q not found in spectator projection", cardID)
+	return CardView{}
 }

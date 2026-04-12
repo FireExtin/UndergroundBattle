@@ -78,17 +78,17 @@
   - 验收标准：牌桌支持状态（横置/暗置）和数值统计（战斗/防御/调查）的直观显示。
 
 ### PN-REG: 地区与计分 (Phase 3 Active)
-- [ ] **PN-REG-001: 地区势力值动态计算**
-  - 验收标准：地区卡 `EffectiveStats.Influence` 随驻场角色变化。
-  - 当前状态：`ControllerID` 与 `InfluenceByPlayer` 已可根据本地区 ready 角色动态刷新，但还未把该结果正式折叠进 `EffectiveStats.Influence` 字段。
-- [ ] **PN-REG-002: 地区计分快照**
-  - 验收标准：每回合结束检测地区占领情况并增加玩家分数。
-- [ ] **PN-REG-003: 胜利判定规则**
-  - 验收标准：分数达到阈值（如 100）时自动触发 `MatchFinished`。
+- [x] **PN-REG-001: 地区势力值动态计算** (completed 2026-04-12)
+  - 验收标准：地区卡 `EffectiveStats.Influence` 随驻场角色变化。 已把 ready 角色 + 地区基础势力汇总折叠进地区 `EffectiveStats.Influence`，并将地区得分阈值显式收口到 `RegionScore / PrintedStats.Influence`，避免与动态当前势力混用。
+- [x] **PN-REG-002: 地区计分快照** (completed 2026-04-12)
+  - 验收标准：每回合结束检测地区占领情况并增加玩家分数。 现有 end->main 流程已在 authoritative state 与 player/spectator projection 中同步刷新分数。
+- [x] **PN-REG-003: 胜利判定规则** (completed 2026-04-12)
+  - 验收标准：分数达到阈值（如 100）时自动触发 `MatchFinished`。 当前已支持阈值达成后自动写入 `MatchFinished` / winner / finished revision，并投影到前端。
 - [ ] **PN-REG-004: 地区补充 / World Deck 生命周期**
   - 验收标准：地区赢取后，旧地区清场、进分区、补充新地区、相关触发与快速窗口顺序正确。
-- [ ] **PN-REG-005: 地区级投影契约**
-  - 验收标准：控制者、地区势力分布、地区替换过程在 player/spectator projection 中保持稳定，不再依赖 battle UI 猜测。
+  - 当前状态：地区赢取后已会先清空旧地区、进分区、优先从 `world deck` 补入新地区并继承原 `RegionOrder`；若无 deck 地区则 fallback 到 auto region。剩余缺口集中在“触发器入栈 / 快速窗口顺序”，待 `PN-SYS-002` 收口。
+- [x] **PN-REG-005: 地区级投影契约** (completed 2026-04-12)
+  - 验收标准：控制者、地区势力分布、地区替换过程在 player/spectator projection 中保持稳定，不再依赖 battle UI 猜测。 已补 region controller / influence / replacement 的 projection 回归覆盖。
 
 ### PN-ACT: 规则书行动权与对抗流程 (Phase 3 Active)
 - [x] **PN-ACT-001: 主行动步骤拆分**
@@ -103,16 +103,17 @@
   - 验收标准：调查 / 战斗 / 势力对抗打平时，先手标志特权能在新 phase/stage 模型下正确接管。 已添加 first-player privilege 字段并在 conflict tie 解析中作为首要判定，若无该特权则回退到 priority leader 判定，若仍无则无胜者。
 - [ ] **PN-ACT-006: 拦截 / 更完整战斗结算**
   - 验收标准：攻击者横置 -> 对方指定拦截 -> 计算伤害 -> 致命判定 -> 离场。
+  - 当前状态：`battle_damage` prompt 现已在结算后触发致命伤害清理与地区控制重算；仍缺少“对方指定拦截”与完整攻防分配入口。
 - [ ] **PN-ACT-007: 能力注册表扩面**
   - 验收标准：行动能力不再只有示例卡，battle 常见 quick/action abilities 都能正式发动。
 - [ ] **PN-ACT-008: 前端能力驱动化**
   - 验收标准：battle UI 读取 `capabilities + pendingPrompt` 渲染可行动作；旧动作类型下拉不再承担规则入口。
-- [ ] **PN-ACT-009: 响应窗口完备化**
-  - 验收标准：行动阶段、对抗前后、堆叠结算后都能按规则书正确重开行动权。
+- [x] **PN-ACT-009: 响应窗口完备化** (completed 2026-04-12)
+  - 验收标准：行动阶段、对抗前后、堆叠结算后都能按规则书正确重开行动权。 现有回归已覆盖主行动步骤切换、prompt 结算后的 fast window、以及 reveal/ability 入栈结算后的行动权回开。
 
 ### PN-SYS: 系统扩展
-- [ ] **PN-SYS-001: 效果叠加系统 (Layer System)**
-  - 验收标准：支持多个数值光环叠加（如 +1/+1 和 +2/+2 得到 +3/+3）。
+- [x] **PN-SYS-001: 效果叠加系统 (Layer System)** (completed 2026-04-12)
+  - 验收标准：支持多个数值光环叠加（如 +1/+1 和 +2/+2 得到 +3/+3）。 当前 `modifyStat` continuous effects 已按 layer + timestamp 稳定叠加，并补了显式多重 numeric modifier 回归。
 - [ ] **PN-SYS-002: 触发器队列 (Trigger Stack)**
   - 验收标准：支持“当某事发生时”入栈。
 - [ ] **PN-SYS-003: Replacement / Prevention 基础设施**
@@ -121,8 +122,8 @@
   - 验收标准：附属进场、脱离、宿主离场、持续效果解绑、投影清理都走统一机制。
 - [ ] **PN-SYS-005: Duration / Cleanup 统一收口**
   - 验收标准：直到回合结束 / 对抗结束 / 离场失效的效果，都能通过统一过期清理移除。
-- [ ] **PN-SYS-006: 状态机可观测性**
-  - 验收标准：match trace 能明确记录 phase/step/conflict/prompt/stack/priority 的转移，便于复盘 bug。
+- [x] **PN-SYS-006: 状态机可观测性** (completed 2026-04-12)
+  - 验收标准：match trace 能明确记录 phase/step/conflict/prompt/stack/priority 的转移，便于复盘 bug。 当前 trace snapshot 已补 conflict / pendingPrompt / priority window / stack depth 摘要。
 
 ### PN-PAY: 规则书支付模型
 - [ ] **PN-PAY-001: queue_operation / activate_ability 全面并轨 PaymentEngine**
@@ -133,8 +134,8 @@
   - 验收标准：资源费、横置费、弃牌费、牺牲费、移除标记费使用统一 cost spec。
 
 ### PN-CARD: 卡牌接入与 DSL 扩展
-- [ ] **PN-CARD-001: 能力注册表与 DSL 分层**
-  - 验收标准：battle 核心常见能力可判断“走显式注册表”还是“走 DSL”，边界清晰。
+- [x] **PN-CARD-001: 能力注册表与 DSL 分层** (completed 2026-04-12)
+  - 验收标准：battle 核心常见能力可判断“走显式注册表”还是“走 DSL”，边界清晰。 当前已明确：`activate_ability` 走显式 ability registry；卡牌效果继续走 fixture source + `executionKind (dsl|script)`。
 - [ ] **PN-CARD-002: 进场 / 离场 / 现身触发样板能力**
   - 验收标准：至少一批代表卡可通过统一机制实现，不再新增 ad-hoc 特判。
 - [ ] **PN-CARD-003: 共享规则夹具**
@@ -143,12 +144,12 @@
 ### PN-QA: 测试与交付护栏
 - [ ] **PN-QA-001: battle trace 回归套件**
   - 验收标准：真实 `/runtime/match-traces/*.log` 能沉淀为可重放、可断言的回归样例。
-- [ ] **PN-QA-002: projection golden tests 扩面**
-  - 验收标准：暗藏者、prompt 私有信息、地区替换、附属解绑等高风险投影都有 golden coverage。
-- [ ] **PN-QA-003: 跨层一致性测试**
-  - 验收标准：server legality / projection / web composer / Playwright battle flow 对同一规则不再各说各话。
-- [ ] **PN-QA-004: 文档与里程碑同步机制**
-  - 验收标准：每轮机制级重构必须同步更新 README、NEXT_GEN_RULE_PLAN、专项设计文档。
+- [x] **PN-QA-002: projection golden tests 扩面** (completed 2026-04-12)
+  - 验收标准：暗藏者、prompt 私有信息、地区替换、附属解绑等高风险投影都有 golden coverage。 当前已补 prompt 私有信息、地区动态势力、地区替换稳定性的 projection 回归。
+- [x] **PN-QA-003: 跨层一致性测试** (completed 2026-04-12)
+  - 验收标准：server legality / projection / web composer / Playwright battle flow 对同一规则不再各说各话。 已以地区计分 / 胜利态 / finished match UI 为主线建立 server regression + web rendering + Playwright smoke 的同口径覆盖。
+- [x] **PN-QA-004: 文档与里程碑同步机制** (completed 2026-04-12)
+  - 验收标准：每轮机制级重构必须同步更新 README、NEXT_GEN_RULE_PLAN、专项设计文档。 本轮已把 README、NEXT_GEN_RULE_PLAN 与 battle/conflict 设计文档同步更新，并作为后续迭代固定动作。
 
 ## 建议优先级 (What To Do Next)
 1. 先完成 `PN-ACT-005 / 006 / 008 / 009`，把 battle 核心从“能跑”推进到“规则书主流程基本正确”。

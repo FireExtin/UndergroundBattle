@@ -133,6 +133,22 @@
 - `web/src/battle/BattleShell.test.tsx`
   - battle shell 与动作面板回归继续通过
 
+## 2026-04-12 后续收口
+
+- `battle_damage` prompt 现在在分配伤害后会触发统一 lethal cleanup：
+  - 致命角色进入弃牌区
+  - `RegionCardID` 清空
+  - 地区控制立即重算
+- 对抗阶段的行动权回开补齐了更多回归：
+  - `post_battle_fast` 结束后会按规则书进入 `pre_influence_fast`
+  - `reveal_face_down` / `activate_ability` 结算完毕后，若堆叠清空则回到当前步骤的 `action window`
+- battle 核心中的“能力注册表 vs DSL”边界现口径为：
+  - `activate_ability`：显式 ability registry
+  - `queue_operation` / fixture 卡牌效果：`executionKind = dsl | script`
+- 地区相关投影也已与 conflict 主流程同步：
+  - 地区 `EffectiveStats.Influence` 代表当前总势力
+  - player / spectator projection 都会稳定展示地区控制者、按玩家分布的势力，以及地区替换后的新旧地区状态
+
 ## 验证命令
 
 ```bash

@@ -63,6 +63,9 @@ func TestRegionControlUsesReadyCharactersInRegionAsDynamicInfluence(t *testing.T
 	if region.Counters.Influence != 3 {
 		t.Fatalf("region total influence = %d, want 3", region.Counters.Influence)
 	}
+	if region.EffectiveStats.Influence != 3 {
+		t.Fatalf("region effective influence = %d, want 3", region.EffectiveStats.Influence)
+	}
 	if region.ControllerID != "P1" {
 		t.Fatalf("region controller = %q, want %q", region.ControllerID, "P1")
 	}
@@ -197,6 +200,55 @@ func TestVictoryIsDeclaredWhenThresholdReached(t *testing.T) {
 	}
 	if state.Match.FinishedAtRevision != state.Revision.Number {
 		t.Fatalf("finishedAtRevision = %d, want %d", state.Match.FinishedAtRevision, state.Revision.Number)
+	}
+}
+
+func TestVictoryProjectionPublishesWinnerAndFinishedMatchState(t *testing.T) {
+	state := newRoleActionTestState()
+	state.Score.VictoryThreshold = 1
+	state.Board.Cards = []CardState{
+		testRegionCard("region-1"),
+	}
+	state.Board.Cards[0].BaseInfluenceByPlayer = map[string]int{"P1": 3}
+	refreshAllRegionControl(&state)
+
+	state = mustSubmit(t, state, Action{
+		ID:      "act-victory-projection-1",
+		ActorID: "P1",
+		Kind:    ActionKindAdvancePhase,
+	})
+	result, err := SubmitAction(state, Action{
+		ID:      "act-victory-projection-2",
+		ActorID: "P1",
+		Kind:    ActionKindAdvancePhase,
+	})
+	if err != nil {
+		t.Fatalf("SubmitAction returned error: %v", err)
+	}
+
+	if len(result.Views.Players) != 2 {
+		t.Fatalf("projected player views = %d, want 2", len(result.Views.Players))
+	}
+	for _, viewerID := range []string{"P1", "P2"} {
+		view, ok := result.Views.Players[viewerID]
+		if !ok {
+			t.Fatalf("missing player view %q", viewerID)
+		}
+		if view.Match.Status != MatchStatusFinished {
+			t.Fatalf("%s projected match status = %q, want %q", viewerID, view.Match.Status, MatchStatusFinished)
+		}
+		if view.Match.WinnerPlayerID != "P1" {
+			t.Fatalf("%s projected winner = %q, want %q", viewerID, view.Match.WinnerPlayerID, "P1")
+		}
+		if view.Score.ByPlayer["P1"] != 1 {
+			t.Fatalf("%s projected P1 score = %d, want 1", viewerID, view.Score.ByPlayer["P1"])
+		}
+	}
+	if result.Views.Spectator.Match.Status != MatchStatusFinished {
+		t.Fatalf("spectator projected match status = %q, want %q", result.Views.Spectator.Match.Status, MatchStatusFinished)
+	}
+	if result.Views.Spectator.Match.WinnerPlayerID != "P1" {
+		t.Fatalf("spectator projected winner = %q, want %q", result.Views.Spectator.Match.WinnerPlayerID, "P1")
 	}
 }
 

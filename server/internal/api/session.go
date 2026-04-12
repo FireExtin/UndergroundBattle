@@ -608,12 +608,52 @@ func renderTraceStateSnapshot(state rules.GameState) string {
 	builder.WriteString(fmt.Sprintf("- Turn: %d\n", state.Turn.TurnNumber))
 	builder.WriteString(fmt.Sprintf("- Active Player: %s\n", emptyAsDash(state.Turn.ActivePlayerID)))
 	builder.WriteString(fmt.Sprintf("- Priority Player: %s\n", emptyAsDash(state.Turn.Priority.CurrentPlayerID)))
+	builder.WriteString(fmt.Sprintf("- Priority Window: %s\n", emptyAsDash(string(state.Turn.Priority.WindowKind))))
 	builder.WriteString(fmt.Sprintf("- Phase: %s/%s\n", state.Turn.Phase.Name, state.Turn.Phase.Step))
+	builder.WriteString(fmt.Sprintf("- Conflict: %s\n", traceConflictSummary(state)))
+	builder.WriteString(fmt.Sprintf("- Pending Prompt: %s\n", tracePendingPromptSummary(state)))
 	builder.WriteString(fmt.Sprintf("- Pass Count: %d\n", state.Turn.Priority.PassCount))
+	builder.WriteString(fmt.Sprintf("- Stack Depth: %d\n", len(state.Board.Stack)))
 	builder.WriteString(fmt.Sprintf("- Resources: %s\n", traceResourceSummary(state)))
 	builder.WriteString(fmt.Sprintf("- Score: %s\n", formatScore(state)))
 	builder.WriteString(fmt.Sprintf("- Board: %s\n", traceBoardSummary(state)))
 	return builder.String()
+}
+
+func traceConflictSummary(state rules.GameState) string {
+	conflict := state.Turn.Conflict
+	if conflict.RegionCardID == "" && conflict.Stage == "" && conflict.PriorityLeaderPlayerID == "" && conflict.PendingPromptID == "" {
+		return "-"
+	}
+
+	return fmt.Sprintf(
+		"region=%s order=%d stage=%s leader=%s privilege=%s pendingPrompt=%s",
+		emptyAsDash(conflict.RegionCardID),
+		conflict.RegionOrder,
+		emptyAsDash(string(conflict.Stage)),
+		emptyAsDash(conflict.PriorityLeaderPlayerID),
+		emptyAsDash(conflict.FirstPlayerPrivilegeOwner),
+		emptyAsDash(conflict.PendingPromptID),
+	)
+}
+
+func tracePendingPromptSummary(state rules.GameState) string {
+	prompt := state.Turn.PendingPrompt
+	if prompt == nil {
+		return "-"
+	}
+
+	return fmt.Sprintf(
+		"id=%s kind=%s owner=%s region=%s diff=%d remaining=%d eligible=%d peek=%d",
+		emptyAsDash(prompt.ID),
+		emptyAsDash(string(prompt.Kind)),
+		emptyAsDash(prompt.OwnerPlayerID),
+		emptyAsDash(prompt.RegionCardID),
+		prompt.Difference,
+		prompt.RemainingAmount,
+		len(prompt.EligibleTargetIDs),
+		len(prompt.PeekCardIDs),
+	)
 }
 
 func traceResourceSummary(state rules.GameState) string {
