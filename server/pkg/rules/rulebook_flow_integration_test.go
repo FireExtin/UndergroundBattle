@@ -194,7 +194,7 @@ func TestRulebookFlow_C03_RegionWinFlowMovesRegionAndRefills(t *testing.T) {
 	region := testRegionCard("region-win-1")
 	region.RegionOrder = 1
 	region.RegionScore = 2
-	region.PrintedStats.Influence = 2
+	region.PrintedStats.Influence = 5
 	region.BaseInfluenceByPlayer = map[string]int{"P1": 2, "P2": 0}
 	region.Counters.Influence = 2
 	region.ControllerID = "P1"

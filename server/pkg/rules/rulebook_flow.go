@@ -310,6 +310,8 @@ func regionWinThreshold(region CardState) int {
 	// Region scoring now uses explicit region score fields as the authoritative
 	// victory threshold. Dynamic EffectiveStats.Influence represents current
 	// control pressure on the table and must not be reused as the win threshold.
+	// A non-positive RegionScore means "fall back to printed threshold"; if both
+	// are non-positive, the region cannot be won via end-step threshold scoring.
 	if region.RegionScore > 0 {
 		return region.RegionScore
 	}
