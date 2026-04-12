@@ -144,6 +144,116 @@ func TestRulebookConflict_ResolveInvestigationRewardReordersAndDrawsExactlyOne(t
 	}
 }
 
+func TestRulebookConflict_ResolveBattleDamagePromptAppliesLethalCleanupAndReopensActionWindow(t *testing.T) {
+	state := NewGameState(InitialStateConfig{
+		GameID:         "conflict-battle-damage-cleanup",
+		ActivePlayerID: "P1",
+		PlayerIDs:      []string{"P1", "P2"},
+	})
+	state.Turn.Phase.Name = PhaseConflict
+	state.Turn.Conflict = ConflictState{
+		RegionOrder:            1,
+		RegionCardID:           "region-1",
+		Stage:                  ConflictStagePreBattleFast,
+		PriorityLeaderPlayerID: "P1",
+	}
+	resetPriorityWindow(&state.Turn, "P1", PriorityWindowAction)
+	state.Board.Cards = append(state.Board.Cards,
+		testRegionCard("region-1"),
+		CardState{
+			CardID:         "p1-battle-winner",
+			DefinitionID:   "P1BAT",
+			Name:           "战斗赢家",
+			Kind:           CardKindCharacter,
+			OwnerID:        "P1",
+			Zone:           CardZoneTable,
+			RegionCardID:   "region-1",
+			VisibleToOwner: true,
+			Revealed:       true,
+			PrintedStats:   CardNumericStats{Combat: 3, Defense: 3, Influence: 1},
+			EffectiveStats: CardNumericStats{Combat: 3, Defense: 3, Influence: 1},
+		},
+		CardState{
+			CardID:         "p2-battle-loser",
+			DefinitionID:   "P2BAT",
+			Name:           "战斗输家",
+			Kind:           CardKindCharacter,
+			OwnerID:        "P2",
+			Zone:           CardZoneTable,
+			RegionCardID:   "region-1",
+			VisibleToOwner: true,
+			Revealed:       true,
+			PrintedStats:   CardNumericStats{Combat: 1, Defense: 2, Influence: 2},
+			EffectiveStats: CardNumericStats{Combat: 1, Defense: 2, Influence: 2},
+		},
+	)
+	refreshAllRegionControl(&state)
+
+	state = mustSubmit(t, state, Action{
+		ID:      "act-battle-pass-p1",
+		ActorID: "P1",
+		Kind:    ActionKindPassPriority,
+	})
+	state = mustSubmit(t, state, Action{
+		ID:      "act-battle-pass-p2",
+		ActorID: "P2",
+		Kind:    ActionKindPassPriority,
+	})
+	state = mustSubmit(t, state, Action{
+		ID:      "act-battle-open-prompt",
+		ActorID: "P1",
+		Kind:    ActionKindAdvancePhase,
+	})
+
+	prompt := state.Turn.PendingPrompt
+	if prompt == nil {
+		t.Fatal("expected battle damage prompt to be opened")
+	}
+	if prompt.RemainingAmount != 2 {
+		t.Fatalf("remaining damage = %d, want 2", prompt.RemainingAmount)
+	}
+
+	result, err := SubmitAction(state, Action{
+		ID:       "act-battle-resolve-prompt",
+		ActorID:  "P1",
+		Kind:     ActionKindResolvePrompt,
+		PromptID: prompt.ID,
+		DamageAssignments: []DamageAssignment{
+			{TargetCardID: "p2-battle-loser", Amount: 2},
+		},
+	})
+	if err != nil {
+		t.Fatalf("SubmitAction returned error: %v", err)
+	}
+
+	loser := cardStateByID(t, result.State, "p2-battle-loser")
+	if !loser.Destroyed {
+		t.Fatal("battle damage should move lethal target to destroyed state")
+	}
+	if loser.Zone != CardZoneDiscard {
+		t.Fatalf("battle damage target zone = %q, want %q", loser.Zone, CardZoneDiscard)
+	}
+	if loser.RegionCardID != "" {
+		t.Fatalf("battle damage target region = %q, want empty after leaving play", loser.RegionCardID)
+	}
+	if result.State.Turn.PendingPrompt != nil {
+		t.Fatal("battle damage prompt should be cleared after resolution")
+	}
+	if result.State.Turn.Conflict.Stage != ConflictStagePostBattleFast {
+		t.Fatalf("conflict stage = %q, want %q", result.State.Turn.Conflict.Stage, ConflictStagePostBattleFast)
+	}
+	if result.State.Turn.Priority.CurrentPlayerID != "P1" {
+		t.Fatalf("priority player = %q, want P1 after battle prompt resolution", result.State.Turn.Priority.CurrentPlayerID)
+	}
+	if result.State.Turn.Priority.WindowKind != PriorityWindowAction {
+		t.Fatalf("priority window = %q, want %q", result.State.Turn.Priority.WindowKind, PriorityWindowAction)
+	}
+	region := cardStateByID(t, result.State, "region-1")
+	if region.ControllerID != "P1" {
+		t.Fatalf("region controller = %q, want %q after lethal cleanup recalculation", region.ControllerID, "P1")
+	}
+}
+
 func TestRulebookConflict_InvestigationPromptHidesPeekCardsFromOpponentAndSpectator(t *testing.T) {
 	state := baseConflictPromptState()
 
