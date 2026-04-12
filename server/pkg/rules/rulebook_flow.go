@@ -163,19 +163,44 @@ func resolveRegionWins(state *GameState) {
 
 		cleanupWonRegionTableState(state, region.CardID)
 		winnerID := region.ControllerID
+		wonRegionOrder := region.RegionOrder
 		moveCardToScore(region)
 		state.Score.ByPlayer[winnerID]++
 
-		state.Board.Cards = append(state.Board.Cards, CardState{
-			CardID:         fmt.Sprintf("region:auto:%d", nextAutoRegionIndex),
-			Name:           "Auto Region",
-			Kind:           CardKindRegion,
-			Zone:           CardZoneTable,
-			VisibleToOwner: false,
-			Revealed:       true,
-		})
-		nextAutoRegionIndex++
+		if !refillRegionSlotFromDeck(state, wonRegionOrder) {
+			state.Board.Cards = append(state.Board.Cards, CardState{
+				CardID:         fmt.Sprintf("region:auto:%d", nextAutoRegionIndex),
+				Name:           "Auto Region",
+				Kind:           CardKindRegion,
+				Zone:           CardZoneTable,
+				VisibleToOwner: false,
+				Revealed:       true,
+				RegionOrder:    wonRegionOrder,
+			})
+			nextAutoRegionIndex++
+		}
 	}
+}
+
+func refillRegionSlotFromDeck(state *GameState, regionOrder int) bool {
+	if state == nil {
+		return false
+	}
+
+	deckIndex := topWorldRegionDeckIndex(*state)
+	if deckIndex < 0 {
+		return false
+	}
+
+	replacement := &state.Board.Cards[deckIndex]
+	replacement.Destroyed = false
+	replacement.Zone = CardZoneTable
+	replacement.Revealed = true
+	replacement.FaceDown = false
+	replacement.Exhausted = false
+	replacement.RegionCardID = ""
+	replacement.RegionOrder = regionOrder
+	return true
 }
 
 func cleanupWonRegionTableState(state *GameState, regionCardID string) {
@@ -230,6 +255,17 @@ func topDeckCardIndex(state GameState, playerID string) int {
 	for index := len(state.Board.Cards) - 1; index >= 0; index-- {
 		card := state.Board.Cards[index]
 		if card.OwnerID != playerID || card.Zone != CardZoneDeck || card.Destroyed {
+			continue
+		}
+		return index
+	}
+	return -1
+}
+
+func topWorldRegionDeckIndex(state GameState) int {
+	for index := len(state.Board.Cards) - 1; index >= 0; index-- {
+		card := state.Board.Cards[index]
+		if card.Kind != CardKindRegion || card.Zone != CardZoneDeck || card.Destroyed {
 			continue
 		}
 		return index

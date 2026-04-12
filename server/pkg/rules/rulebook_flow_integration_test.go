@@ -192,6 +192,7 @@ func TestRulebookFlow_C03_RegionWinFlowMovesRegionAndRefills(t *testing.T) {
 	resetPriorityWindow(&state.Turn, "P1", PriorityWindowAction)
 
 	region := testRegionCard("region-win-1")
+	region.RegionOrder = 1
 	region.RegionScore = 2
 	region.PrintedStats.Influence = 2
 	region.BaseInfluenceByPlayer = map[string]int{"P1": 2, "P2": 0}
@@ -252,6 +253,9 @@ func TestRulebookFlow_C03_RegionWinFlowMovesRegionAndRefills(t *testing.T) {
 	for _, card := range result.State.Board.Cards {
 		if card.Kind == CardKindRegion && card.Zone == CardZoneTable && strings.HasPrefix(card.CardID, "region:auto:") {
 			refillFound = true
+			if card.RegionOrder != 1 {
+				t.Fatalf("auto refill region order = %d, want 1 to preserve won slot", card.RegionOrder)
+			}
 			break
 		}
 	}
@@ -263,6 +267,62 @@ func TestRulebookFlow_C03_RegionWinFlowMovesRegionAndRefills(t *testing.T) {
 	}
 	if result.Views.Spectator.Score.ByPlayer["P1"] != 1 {
 		t.Fatalf("spectator projected P1 score = %d, want 1", result.Views.Spectator.Score.ByPlayer["P1"])
+	}
+}
+
+func TestRulebookFlow_C03_RegionWinRefillsFromWorldDeckBeforeAutoFallback(t *testing.T) {
+	state := NewGameState(InitialStateConfig{
+		GameID:         "c03-region-world-deck-refill",
+		ActivePlayerID: "P1",
+		PlayerIDs:      []string{"P1", "P2"},
+	})
+	state.Turn.Phase = phaseState(PhaseEnd)
+	resetPriorityWindow(&state.Turn, "P1", PriorityWindowAction)
+
+	region := testRegionCard("region-win-world-deck")
+	region.RegionOrder = 2
+	region.RegionScore = 2
+	region.PrintedStats.Influence = 2
+	region.BaseInfluenceByPlayer = map[string]int{"P1": 2}
+	region.Counters.Influence = 2
+	region.ControllerID = "P1"
+	state.Board.Cards = []CardState{
+		region,
+		{
+			CardID:         "world-region-next",
+			Name:           "World Deck Region",
+			Kind:           CardKindRegion,
+			OwnerID:        "WORLD",
+			Zone:           CardZoneDeck,
+			VisibleToOwner: false,
+			Revealed:       false,
+			RegionOrder:    99,
+		},
+	}
+
+	result, err := SubmitAction(state, Action{
+		ID:      "act-c03-region-world-deck-refill",
+		ActorID: "P1",
+		Kind:    ActionKindAdvancePhase,
+	})
+	if err != nil {
+		t.Fatalf("SubmitAction returned error: %v", err)
+	}
+
+	nextRegion := cardStateByID(t, result.State, "world-region-next")
+	if nextRegion.Zone != CardZoneTable {
+		t.Fatalf("world deck replacement zone = %q, want %q", nextRegion.Zone, CardZoneTable)
+	}
+	if !nextRegion.Revealed {
+		t.Fatal("world deck replacement should be revealed when entering table")
+	}
+	if nextRegion.RegionOrder != 2 {
+		t.Fatalf("world deck replacement region order = %d, want 2 to preserve slot", nextRegion.RegionOrder)
+	}
+	for _, card := range result.State.Board.Cards {
+		if strings.HasPrefix(card.CardID, "region:auto:") {
+			t.Fatalf("unexpected auto region %q when world deck replacement exists", card.CardID)
+		}
 	}
 }
 
