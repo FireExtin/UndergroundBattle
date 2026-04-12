@@ -42,6 +42,64 @@ func TestRecalculateContinuousEffectsAppliesNumericModifier(t *testing.T) {
 	}
 }
 
+func TestRecalculateContinuousEffectsStacksMultipleNumericModifiers(t *testing.T) {
+	state := newContinuousTestState()
+	state.Board.Cards = []CardState{
+		{
+			CardID:       "card-stacked-1",
+			Name:         "Stacked Target",
+			OwnerID:      "P1",
+			Zone:         CardZoneTable,
+			Revealed:     true,
+			PrintedStats: CardNumericStats{Combat: 1, Defense: 2},
+		},
+	}
+	state.Board.Continuous = ContinuousEffectRegistry{
+		Active: []ContinuousEffect{
+			{
+				ID:           "ce:stacked-combat-1",
+				Layer:        LayerNumeric,
+				EffectKind:   "modifyStat",
+				TargetCardID: "card-stacked-1",
+				Stat:         "combat",
+				Amount:       1,
+				DurationKind: "permanent",
+				Timestamp:    1,
+			},
+			{
+				ID:           "ce:stacked-combat-2",
+				Layer:        LayerNumeric,
+				EffectKind:   "modifyStat",
+				TargetCardID: "card-stacked-1",
+				Stat:         "combat",
+				Amount:       2,
+				DurationKind: "permanent",
+				Timestamp:    2,
+			},
+			{
+				ID:           "ce:stacked-defense-1",
+				Layer:        LayerNumeric,
+				EffectKind:   "modifyStat",
+				TargetCardID: "card-stacked-1",
+				Stat:         "defense",
+				Amount:       1,
+				DurationKind: "permanent",
+				Timestamp:    3,
+			},
+		},
+	}
+
+	recalculated := RecalculateContinuousEffects(state)
+	target := cardStateByID(t, recalculated, "card-stacked-1")
+
+	if target.EffectiveStats.Combat != 4 {
+		t.Fatalf("effective combat = %d, want 4", target.EffectiveStats.Combat)
+	}
+	if target.EffectiveStats.Defense != 3 {
+		t.Fatalf("effective defense = %d, want 3", target.EffectiveStats.Defense)
+	}
+}
+
 func TestRecalculateContinuousEffectsProhibitionPrecedesPermission(t *testing.T) {
 	state := newContinuousTestState()
 	state.Board.Cards = []CardState{

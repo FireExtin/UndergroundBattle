@@ -86,6 +86,7 @@
   - 验收标准：分数达到阈值（如 100）时自动触发 `MatchFinished`。 当前已支持阈值达成后自动写入 `MatchFinished` / winner / finished revision，并投影到前端。
 - [ ] **PN-REG-004: 地区补充 / World Deck 生命周期**
   - 验收标准：地区赢取后，旧地区清场、进分区、补充新地区、相关触发与快速窗口顺序正确。
+  - 当前状态：地区赢取后已会先清空旧地区、进分区、优先从 `world deck` 补入新地区并继承原 `RegionOrder`；若无 deck 地区则 fallback 到 auto region。剩余缺口集中在“触发器入栈 / 快速窗口顺序”，待 `PN-SYS-002` 收口。
 - [x] **PN-REG-005: 地区级投影契约** (completed 2026-04-12)
   - 验收标准：控制者、地区势力分布、地区替换过程在 player/spectator projection 中保持稳定，不再依赖 battle UI 猜测。 已补 region controller / influence / replacement 的 projection 回归覆盖。
 
@@ -111,8 +112,8 @@
   - 验收标准：行动阶段、对抗前后、堆叠结算后都能按规则书正确重开行动权。 现有回归已覆盖主行动步骤切换、prompt 结算后的 fast window、以及 reveal/ability 入栈结算后的行动权回开。
 
 ### PN-SYS: 系统扩展
-- [ ] **PN-SYS-001: 效果叠加系统 (Layer System)**
-  - 验收标准：支持多个数值光环叠加（如 +1/+1 和 +2/+2 得到 +3/+3）。
+- [x] **PN-SYS-001: 效果叠加系统 (Layer System)** (completed 2026-04-12)
+  - 验收标准：支持多个数值光环叠加（如 +1/+1 和 +2/+2 得到 +3/+3）。 当前 `modifyStat` continuous effects 已按 layer + timestamp 稳定叠加，并补了显式多重 numeric modifier 回归。
 - [ ] **PN-SYS-002: 触发器队列 (Trigger Stack)**
   - 验收标准：支持“当某事发生时”入栈。
 - [ ] **PN-SYS-003: Replacement / Prevention 基础设施**
