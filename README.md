@@ -30,6 +30,8 @@
 - 2026-04-03 起，sandbox session 额外引入显式 `SessionLifecycle`；前端动作表单改为读取 Go projection 下发的 `rulesMetadata.actionPolicies` 做 schema-driven 预校验，不再自己维护动作分支规则。
 - 同日，当前资源池模型已被显式收口到 `PaymentEngine + PaymentModePrototype`；`TurnState.Resources` 仍是原型快照，不代表最终规则书支付模型。
 - 同日继续推进后，battle 主流程已具备规则书化的 `first_player_action / second_player_action / conflict` 主骨架；调查奖励与战斗奖励已进入 `PendingPrompt`；`reveal_face_down` 与第一版 `activate_ability` 已走正式权威动作管线。
+- 2026-04-12 继续推进后，地区当前势力已正式折叠进地区 `EffectiveStats.Influence`；地区计分 / 胜利判定 / player-spectator 投影已统一到同一条 authoritative 管线。
+- 同日，battle prompt 与 stack 结算后的行动权回开已补齐回归；match trace 额外记录了 `conflict / pendingPrompt / priority window / stack depth` 便于复盘。
 - 相关细节与阶段状态请继续参考 `docs/NEXT_GEN_RULE_PLAN.md` 与 git 提交记录。
 
 ---

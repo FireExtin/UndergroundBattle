@@ -271,8 +271,8 @@ func survivingPlayerID(players []string, failedPlayers []string) string {
 }
 
 func regionWinThreshold(region CardState) int {
-	if region.EffectiveStats.Influence > 0 {
-		return region.EffectiveStats.Influence
+	if region.RegionScore > 0 {
+		return region.RegionScore
 	}
 	if region.PrintedStats.Influence > 0 {
 		return region.PrintedStats.Influence

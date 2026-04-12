@@ -254,6 +254,49 @@ func TestRulebookConflict_ResolveBattleDamagePromptAppliesLethalCleanupAndReopen
 	}
 }
 
+func TestRulebookConflict_PostBattleFastWindowReopensBeforeInfluenceContest(t *testing.T) {
+	state := NewGameState(InitialStateConfig{
+		GameID:         "conflict-post-battle-fast-window",
+		ActivePlayerID: "P1",
+		PlayerIDs:      []string{"P1", "P2"},
+	})
+	state.Turn.Phase.Name = PhaseConflict
+	state.Turn.Conflict = ConflictState{
+		RegionOrder:            1,
+		RegionCardID:           "region-1",
+		Stage:                  ConflictStagePostBattleFast,
+		PriorityLeaderPlayerID: "P1",
+	}
+	resetPriorityWindow(&state.Turn, "P1", PriorityWindowAction)
+	state.Board.Cards = append(state.Board.Cards, testRegionCard("region-1"))
+
+	state = mustSubmit(t, state, Action{
+		ID:      "act-post-battle-pass-p1",
+		ActorID: "P1",
+		Kind:    ActionKindPassPriority,
+	})
+	state = mustSubmit(t, state, Action{
+		ID:      "act-post-battle-pass-p2",
+		ActorID: "P2",
+		Kind:    ActionKindPassPriority,
+	})
+	state = mustSubmit(t, state, Action{
+		ID:      "act-post-battle-advance",
+		ActorID: "P1",
+		Kind:    ActionKindAdvancePhase,
+	})
+
+	if state.Turn.Conflict.Stage != ConflictStagePreInfluenceFast {
+		t.Fatalf("conflict stage = %q, want %q", state.Turn.Conflict.Stage, ConflictStagePreInfluenceFast)
+	}
+	if state.Turn.Priority.WindowKind != PriorityWindowAction {
+		t.Fatalf("priority window = %q, want %q", state.Turn.Priority.WindowKind, PriorityWindowAction)
+	}
+	if state.Turn.Priority.CurrentPlayerID != "P1" {
+		t.Fatalf("priority player = %q, want %q", state.Turn.Priority.CurrentPlayerID, "P1")
+	}
+}
+
 func TestRulebookConflict_InvestigationPromptHidesPeekCardsFromOpponentAndSpectator(t *testing.T) {
 	state := baseConflictPromptState()
 
@@ -364,6 +407,12 @@ func TestRevealFaceDown_UsesStackAndPreservesExhaustedState(t *testing.T) {
 	if !card.Exhausted {
 		t.Fatal("revealed card should preserve exhausted state")
 	}
+	if resolved.Turn.Priority.WindowKind != PriorityWindowAction {
+		t.Fatalf("post-resolution priority window = %q, want %q", resolved.Turn.Priority.WindowKind, PriorityWindowAction)
+	}
+	if resolved.Turn.Priority.CurrentPlayerID != "P1" {
+		t.Fatalf("post-resolution priority player = %q, want %q", resolved.Turn.Priority.CurrentPlayerID, "P1")
+	}
 }
 
 func TestActivateAbility_JC003QuickAbilityPaysCostsAndExhaustsTargetThroughStack(t *testing.T) {
@@ -441,6 +490,12 @@ func TestActivateAbility_JC003QuickAbilityPaysCostsAndExhaustsTargetThroughStack
 
 	if !cardStateByID(t, resolved, "p2-target-character").Exhausted {
 		t.Fatal("target should become exhausted after quick ability resolution")
+	}
+	if resolved.Turn.Priority.WindowKind != PriorityWindowAction {
+		t.Fatalf("post-resolution priority window = %q, want %q", resolved.Turn.Priority.WindowKind, PriorityWindowAction)
+	}
+	if resolved.Turn.Priority.CurrentPlayerID != "P1" {
+		t.Fatalf("post-resolution priority player = %q, want %q", resolved.Turn.Priority.CurrentPlayerID, "P1")
 	}
 }
 

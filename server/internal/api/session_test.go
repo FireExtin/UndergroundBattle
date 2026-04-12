@@ -298,6 +298,51 @@ func TestSandboxSessionTraceIncludesSetupTransitions(t *testing.T) {
 	}
 }
 
+func TestRenderTraceStateSnapshotIncludesConflictAndPromptDetails(t *testing.T) {
+	state := rules.NewGameState(rules.InitialStateConfig{
+		GameID:         "trace-conflict-details",
+		ActivePlayerID: "P1",
+		PlayerIDs:      []string{"P1", "P2"},
+	})
+	state.Turn.Phase = rules.PhaseState{Name: rules.PhaseConflict, Step: rules.StepAction, AllowsStack: true}
+	state.Turn.Priority = rules.PriorityState{
+		CurrentPlayerID:    "P2",
+		PassCount:          1,
+		LastPassedPlayerID: "P1",
+		WindowKind:         rules.PriorityWindowResponse,
+	}
+	state.Turn.Conflict = rules.ConflictState{
+		RegionOrder:               2,
+		RegionCardID:              "region-2",
+		Stage:                     rules.ConflictStageBattleDamagePrompt,
+		PriorityLeaderPlayerID:    "P1",
+		FirstPlayerPrivilegeOwner: "P1",
+		PendingPromptID:           "prompt:battle_damage:region-2",
+	}
+	state.Turn.PendingPrompt = &rules.PromptState{
+		ID:                "prompt:battle_damage:region-2",
+		Kind:              rules.PromptKindBattleDamage,
+		OwnerPlayerID:     "P1",
+		RegionCardID:      "region-2",
+		EligibleTargetIDs: []string{"unit-1", "unit-2"},
+		RemainingAmount:   2,
+		Difference:        2,
+	}
+	state.Board.Stack = []rules.Operation{{ID: "stack-1"}}
+
+	snapshot := renderTraceStateSnapshot(state)
+	for _, fragment := range []string{
+		"Priority Window: response",
+		"Conflict: region=region-2 order=2 stage=battle_damage_prompt leader=P1 privilege=P1 pendingPrompt=prompt:battle_damage:region-2",
+		"Pending Prompt: id=prompt:battle_damage:region-2 kind=battle_damage owner=P1 region=region-2 diff=2 remaining=2 eligible=2 peek=0",
+		"Stack Depth: 1",
+	} {
+		if !strings.Contains(snapshot, fragment) {
+			t.Fatalf("snapshot missing %q:\n%s", fragment, snapshot)
+		}
+	}
+}
+
 func TestSandboxSessionSetupFlowBlocksActionsUntilCompleted(t *testing.T) {
 	session := NewSandboxSession()
 

@@ -192,8 +192,8 @@ func TestRulebookFlow_C03_RegionWinFlowMovesRegionAndRefills(t *testing.T) {
 	resetPriorityWindow(&state.Turn, "P1", PriorityWindowAction)
 
 	region := testRegionCard("region-win-1")
-	region.PrintedStats.Influence = 2 // Use printed influence as region win threshold in minimal model.
-	region.EffectiveStats.Influence = 2
+	region.RegionScore = 2
+	region.PrintedStats.Influence = 2
 	region.BaseInfluenceByPlayer = map[string]int{"P1": 2, "P2": 0}
 	region.Counters.Influence = 2
 	region.ControllerID = "P1"
@@ -258,9 +258,15 @@ func TestRulebookFlow_C03_RegionWinFlowMovesRegionAndRefills(t *testing.T) {
 	if !refillFound {
 		t.Fatal("expected an auto-refilled region card on table after region win")
 	}
+	if result.Views.Players["P1"].Score.ByPlayer["P1"] != 1 {
+		t.Fatalf("projected P1 score = %d, want 1", result.Views.Players["P1"].Score.ByPlayer["P1"])
+	}
+	if result.Views.Spectator.Score.ByPlayer["P1"] != 1 {
+		t.Fatalf("spectator projected P1 score = %d, want 1", result.Views.Spectator.Score.ByPlayer["P1"])
+	}
 }
 
-func TestRulebookFlow_C03_EffectiveThresholdOverridesPrintedAndPreventsEarlyWin(t *testing.T) {
+func TestRulebookFlow_C03_RegionScoreThresholdOverridesPrintedAndPreventsEarlyWin(t *testing.T) {
 	state := NewGameState(InitialStateConfig{
 		GameID:         "c03-effective-threshold",
 		ActivePlayerID: "P1",
@@ -271,7 +277,7 @@ func TestRulebookFlow_C03_EffectiveThresholdOverridesPrintedAndPreventsEarlyWin(
 
 	region := testRegionCard("region-threshold")
 	region.PrintedStats.Influence = 2
-	region.EffectiveStats.Influence = 3
+	region.RegionScore = 3
 	region.BaseInfluenceByPlayer = map[string]int{"P1": 2, "P2": 0}
 	region.Counters.Influence = 2
 	region.ControllerID = "P1"
@@ -288,7 +294,7 @@ func TestRulebookFlow_C03_EffectiveThresholdOverridesPrintedAndPreventsEarlyWin(
 
 	card := cardStateByID(t, result.State, "region-threshold")
 	if card.Zone != CardZoneTable {
-		t.Fatalf("region zone = %q, want %q when effective threshold is not met", card.Zone, CardZoneTable)
+		t.Fatalf("region zone = %q, want %q when region score threshold is not met", card.Zone, CardZoneTable)
 	}
 	if result.State.Score.ByPlayer["P1"] != 1 {
 		t.Fatalf("P1 score = %d, want 1 from controlled-region scoring only", result.State.Score.ByPlayer["P1"])
