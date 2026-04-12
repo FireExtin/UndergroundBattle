@@ -167,7 +167,7 @@ func resolveRegionWins(state *GameState) {
 		moveCardToScore(region)
 		state.Score.ByPlayer[winnerID]++
 
-		if !refillRegionSlotFromDeck(state, wonRegionOrder) {
+		if !refillRegionSlotFromWorldDeck(state, wonRegionOrder) {
 			state.Board.Cards = append(state.Board.Cards, CardState{
 				CardID:         fmt.Sprintf("region:auto:%d", nextAutoRegionIndex),
 				Name:           "Auto Region",
@@ -182,7 +182,7 @@ func resolveRegionWins(state *GameState) {
 	}
 }
 
-func refillRegionSlotFromDeck(state *GameState, regionOrder int) bool {
+func refillRegionSlotFromWorldDeck(state *GameState, regionOrder int) bool {
 	if state == nil {
 		return false
 	}
@@ -307,6 +307,9 @@ func survivingPlayerID(players []string, failedPlayers []string) string {
 }
 
 func regionWinThreshold(region CardState) int {
+	// Region scoring now uses explicit region score fields as the authoritative
+	// victory threshold. Dynamic EffectiveStats.Influence represents current
+	// control pressure on the table and must not be reused as the win threshold.
 	if region.RegionScore > 0 {
 		return region.RegionScore
 	}

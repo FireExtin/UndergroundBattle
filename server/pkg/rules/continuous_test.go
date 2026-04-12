@@ -42,7 +42,7 @@ func TestRecalculateContinuousEffectsAppliesNumericModifier(t *testing.T) {
 	}
 }
 
-func TestRecalculateContinuousEffectsStacksMultipleNumericModifiers(t *testing.T) {
+func TestRecalculateContinuousEffectsStacksMultipleNumericModifiersOnSameCard(t *testing.T) {
 	state := newContinuousTestState()
 	state.Board.Cards = []CardState{
 		{
