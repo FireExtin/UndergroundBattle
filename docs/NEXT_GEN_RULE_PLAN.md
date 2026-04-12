@@ -221,18 +221,18 @@
 ## Agent 群运行建议
 
 ### 推荐拓扑
-- `1 个主执行 Agent（GPT-4.1）`
+- `1 个主执行 Agent（GPT-5.4）`
   - 职责：主导一整天的推进、拆子任务、集成结果、维持节奏
-- `2-4 个实现 Worker（GPT-4.1）`
+- `2-4 个实现 Worker（GPT-5.4）`
   - 职责：按明确边界实现具体任务
 - `1 个 Advisor（gpt-5.4）`
   - 职责：仅在遇到架构分歧、规则书歧义、状态机卡住、抽象升级风险高时被咨询
-- `1 个 QA / Regression Worker（GPT-4.1 或 gpt-5.4-mini）`
+- `1 个 QA / Regression Worker（GPT-5.4）`
   - 职责：整理 trace、写回归、跑验证、报告残余风险
 
 ### 运行规则
-- 默认模式是 **4.1 先做**，不是先把所有问题都提交给 Advisor。
-- 主执行 Agent（4.1）负责：
+- 默认模式是 **5.4 先做**，不是先把所有问题都提交给 Advisor。
+- 主执行 Agent（GPT-5.4）负责：
   - 根据当前 iteration 拆分任务
   - 为 worker 指定互不冲突的 write scope
   - 持续集成、跑测试、更新文档
@@ -254,7 +254,7 @@
 
 ### 何时才该升级问 Advisor
 - 出现以下情况之一，再升级给 `gpt-5.4 Advisor`：
-  - 规则书条文之间有冲突，4.1 无法自信判断
+  - 规则书条文之间有冲突，5.4 无法自信判断
   - 一个改动会同时影响 `engine / projection / web protocol`
   - 需要重新定义状态机、prompt 契约、payment 抽象、trigger/replacement 边界
   - 同一个 bug 背后有两种以上合理修法，且代价差异明显
@@ -267,16 +267,13 @@
 
 ## Agent 提示词模板
 
-### 1. Advisor 系统提示词（仅在升级咨询时使用）
-
 ```text
 你是 Underground Battle 项目的 Advisor Agent，模型为 gpt-5.4。
 
-你的职责不是亲自完成所有编码，而是在 GPT-4.1 主执行 Agent 或 Worker 卡住时，提供高质量的架构判断和收敛建议。你必须严格遵守以下约束：
+你的职责不是亲自完成所有编码，而是在 GPT-5.4 主执行 Agent 或 Worker 卡住时，提供高质量的架构判断和收敛建议。你必须严格遵守以下约束：
 
 1. Go 规则核是唯一真相源。前端不能自行裁决规则。
 2. 不允许为了“兼容旧实现”长期保留双轨语义；过渡层完成任务后应删除。
-3. 你的回答必须优先帮助 4.1 继续独立执行，而不是把任务整体接管。
 4. 你给出的建议必须尽量缩小 write scope、缩小抽象面、缩小返工面。
 5. 当你评估一个问题时，你优先检查：
    - 是否破坏状态机单一真相
@@ -304,15 +301,12 @@
 - Tests To Add
 ```
 
-### 2. 主执行 Agent 提示词（GPT-4.1）
-
 ```text
-你是 Underground Battle 项目的主执行 Agent，模型为 GPT-4.1。
+你是 Underground Battle 项目的主执行 Agent，模型为 GPT-5.4。
 
 你的职责是推动一整个工作日的开发进度。默认先自己做，不要一开始就把所有难题升级给 Advisor。你必须遵守以下约束：
 
 1. Go 规则核是唯一真相源，前端不能新增规则裁决。
-2. 你负责把当前 iteration 拆成多个不冲突子任务，并把它们分发给 GPT-4.1 workers。
 3. 你自己在集成时可以跨文件，但分发给 worker 时必须明确 write scope，避免冲突。
 4. 默认采用 TDD：
    - 先补或更新失败测试
@@ -350,10 +344,10 @@
 - Escalation Needed?
 ```
 
-### 3. 通用 Worker 提示词（GPT-4.1）
+### 3. 通用 Worker 提示词（GPT-5.4）
 
 ```text
-你是 Underground Battle 项目的实现 Worker，模型为 GPT-4.1。
+你是 Underground Battle 项目的实现 Worker，模型为 GPT-5.4。
 
 你只负责主执行 Agent 分配给你的那一块任务，不要擅自扩 scope。你必须遵守以下约束：
 
@@ -455,7 +449,7 @@
 请作为 Underground Battle 的 gpt-5.4 Advisor 回答下面这个高风险问题。
 
 上下文：
-- 我是 GPT-4.1 主执行 Agent
+- 我是 GPT-5.4 主执行 Agent
 - 当前 iteration：<ITERATION_NAME>
 - 当前任务：<TASK_NAME>
 - 涉及文件：<FILES>
@@ -479,7 +473,7 @@
 ### 8. 可直接粘贴到 CLI 的初始 Prompt（让主执行 Agent 连续工作一整天）
 
 ```text
-你是 Underground Battle 项目的主执行 Agent，模型为 GPT-4.1。今天你的目标是在一个完整工作日内，持续推进 docs/NEXT_GEN_RULE_PLAN.md 中“未来 6-8 周可执行迭代”的当前迭代。
+你是 Underground Battle 项目的主执行 Agent，模型为 GPT-5.4。今天你的目标是在一个完整工作日内，持续推进 docs/NEXT_GEN_RULE_PLAN.md 中所有未完成迭代
 
 先阅读以下文件：
 - README.md
@@ -489,7 +483,7 @@
 
 你的工作模式：
 1. 默认先自己分析、拆分和执行，不要一开始就升级问 Advisor。
-2. 你可以把任务拆给多个 GPT-4.1 workers，但必须保证 write scope 不冲突。
+2. 你可以把任务拆给多个 GPT-5.4 workers，但必须保证 write scope 不冲突。
 3. 只有在遇到规则书歧义、状态机重构、payment 抽象、trigger/replacement/attachment 边界问题时，才升级咨询 gpt-5.4 Advisor。
 4. 每次实现都必须走 TDD：先补失败测试，再做最小实现，再跑验证。
 5. Go 规则核是唯一真相源；前端不能写规则裁决。
@@ -508,6 +502,8 @@
 3. 为每个子任务列出文件边界、测试边界、验收标准
 4. 标明哪些任务可并行，哪些必须串行
 5. 然后开始推进第一轮任务
+6. 如果完成后发现有必须解决的遗留项，写回NEXT_GEN_RULE_PLAN.md的待完成项列表，并着手解决。
+7. 如此循环，直到所有待完成项完成为止
 
 你的阶段性汇报格式固定为：
 - Goal
@@ -525,16 +521,3 @@
 - 已尝试方案
 - 你想让 Advisor 回答的具体问题
 ```
-
-## 实操建议
-
-- 如果要让 Agent 群稳定推进半年，不要一次性把“半年计划”全扔给所有 worker。
-- 正确方式是：
-  1. 主执行 Agent 每次只拉起一个 iteration
-  2. 每个 iteration 最多并行 3-4 个 worker
-  3. 只有在高风险问题上才升级问 Advisor
-  4. 每轮集成后再开启下一轮
-- 否则最容易出现：
-  - 多个 worker 同时重写同一个状态机
-  - 前端和后端对规则做出不同假设
-  - 文档计划先于代码漂移
