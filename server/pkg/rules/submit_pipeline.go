@@ -194,3 +194,33 @@ func submitActionWithoutProjection(state GameState, action Action) (SubmitResult
 func statesMatchDeterministic(left GameState, right GameState) bool {
 	return reflect.DeepEqual(left, right)
 }
+
+func commitState(state GameState, action Action, operation Operation, event Event, projector *ProjectionEngine) SubmitResult {
+	committed := cloneGameState(state)
+	revision := nextRevisionForCommit(committed, action, operation, event)
+
+	event.RevisionNumber = revision.Number
+	appendCommitHistory(&committed, action, operation, event, revision)
+	stampFinishedMatchRevision(&committed, revision)
+	committed = maybeRecalculateContinuousEffects(committed, revision)
+
+	views := ProjectionBundle{}
+	if projector != nil {
+		views = projector.Generate(committed)
+	}
+
+	result := SubmitResult{
+		State:     committed,
+		Operation: operation,
+		Event:     event,
+		Revision:  revision,
+		Views:     views,
+	}
+	result.Accepted = NewActionAccepted(action, operation, event, revision)
+	result.Patched = NewStatePatchedForPlayer(views, action.ActorID, event, revision)
+	if len(views.Players) != 0 || views.Spectator.GameID != "" {
+		result.Dispatch = BuildCommitDispatchBatch(result)
+	}
+
+	return result
+}

@@ -125,6 +125,38 @@ func appendResolvedOperation(state *GameState, operation Operation) {
 	state.Board.Resolved = append(state.Board.Resolved, cloneOperation(operation))
 }
 
+func nextRevisionForCommit(state GameState, action Action, operation Operation, event Event) Revision {
+	return Revision{
+		Number:      state.Revision.Number + 1,
+		ActionID:    action.ID,
+		OperationID: operation.ID,
+		EventID:     event.ID,
+	}
+}
+
+func appendCommitHistory(state *GameState, action Action, operation Operation, event Event, revision Revision) {
+	if state == nil {
+		return
+	}
+
+	state.History.Actions = append(state.History.Actions, action)
+	state.History.Operations = append(state.History.Operations, cloneOperation(operation))
+	state.History.Events = append(state.History.Events, cloneEvent(event))
+	state.History.Revisions = append(state.History.Revisions, revision)
+	state.Revision = revision
+}
+
+func stampFinishedMatchRevision(state *GameState, revision Revision) {
+	if state == nil {
+		return
+	}
+	if state.Match.Status != MatchStatusFinished || state.Match.FinishedAtRevision != 0 {
+		return
+	}
+
+	state.Match.FinishedAtRevision = revision.Number
+}
+
 func exhaustCard(card *CardState) {
 	if card == nil {
 		return

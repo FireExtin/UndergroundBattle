@@ -4,6 +4,101 @@
 - 当前已经有：最小规则核、priority/stack、projection、continuous effects、`inspect` 的 permission hook、`dealDamage` 对 `EffectiveStats.Defense` 的最小致命判定，以及第一批角色动作入口 `declare_attack / declare_investigation`。
 - 如果目标是“继续稳定接真实卡 DSL，并形成一个可扩展 alpha”，还差 4 个明确里程碑。做完这 4 个就够继续推进主卡池，不需要先上完整 dependency engine。
 
+## 2026-04-30 第二十次补记（下一轮执行拆分 + 第一轮收口）
+
+### 今日 iteration
+
+- **Iteration 1（已完成）**：继续收口 Transition API / submit pipeline，把 commit/history/revision 写入从 `engine.go` 挪到专用 helper，避免 orchestration 再次回流状态写入细节。
+- 本轮选择它作为第一刀的原因：
+  - 不引入新牌义，回归面最可控；
+  - 同时推进 `engine.go` 去重型 与 “禁止散写”长期护栏；
+  - 为后续 `XQ01` prerequisite、payment pipeline、fixture 扩批提供更稳定的落点。
+
+### 下一步最佳 4 项（按优先级）
+
+1. **Transition API / commit pipeline 收口（已完成本轮）**
+   - 文件边界：
+     - `server/pkg/rules/submit_pipeline.go`
+     - `server/pkg/rules/state_transitions.go`
+     - `server/pkg/rules/state_transitions_test.go`
+     - `server/pkg/rules/engine_modularity_guard_test.go`
+   - 测试边界：
+     - commit revision 生成
+     - history append clone 语义
+     - `FinishedAtRevision` 只在首次终局时盖章
+     - `engine.go` 禁止保留 commit/history 写入
+   - 验收标准：
+     - `engine.go` 只保留 orchestration / execution 分派
+     - commit/history/revision 写入只经 submit pipeline / transition helper
+     - focused Go tests 与全量 `go test ./server/...` 通过
+   - 并行性：**必须串行先做**
+
+2. **`XQ01` prerequisite V1：地区作用域能力限制模型**
+   - 文件边界：
+     - `server/pkg/rules/types.go`
+     - `server/pkg/rules/legality_shared.go`
+     - `server/pkg/rules/action_permission_flow.go`
+     - `server/pkg/rules/legality_catalog.go`
+     - `server/pkg/rules/action_permission_flow_test.go`
+     - `server/pkg/rules/legality_catalog_test.go`
+   - 测试边界：
+     - 仅限制同地区角色
+     - 仅限制 ability/action kinds，不误伤 attack/investigation 以外动作
+     - source 离场/横置/失效后限制解除
+   - 验收标准：
+     - 先落 prerequisite，不直接写错牌义的 production `XQ01`
+     - 不引入全局沉默，不污染 `engine.go`
+   - 并行性：**与 3 可并行设计，但实现建议在 1 后串行推进**
+
+3. **Payment / choice hook V0（先手特权成本与后续选择模型共用）**
+   - 文件边界：
+     - `server/pkg/rules/first_player_privilege_action.go`
+     - `server/pkg/rules/types.go`
+     - `server/pkg/rules/projection.go`
+     - `server/pkg/rules/rulebook_flow_integration_test.go`
+     - `server/pkg/rules/first_player_privilege_action_test.go`
+   - 测试边界：
+     - 有成本资源时可支付并记录
+     - 无法支付时返回稳定错误码
+     - replay / projection / turn reset 一致
+   - 验收标准：
+     - 不做完整费用系统，只做最小 authoritative payment record
+     - 后续 shield“是否消耗”、replacement/choice 可复用同一条记录路径
+   - 并行性：**可与 2 并行做设计，不建议并行改核心实现**
+
+4. **基础包 fixture 扩批（建立在 2/3 稳定后）**
+   - 文件边界：
+     - `shared/contracts/fixtures/*.fixture.json`
+     - `shared/contracts/normalized/card-logic.contracts.normalized.json`
+     - `tools/fixture-tools/src/*`
+     - `server/pkg/rules/dsl_handlers*.go`
+   - 测试边界：
+     - TS fixture gate
+     - Go contract/rules tests
+     - sandbox 中可提交/结算/回放
+   - 验收标准：
+     - 每批只扩 5-8 张基础包卡
+     - 不为扩卡引入 name-based 特判
+     - 每批都回写 docs 记录假设与 deferred 边界
+   - 并行性：**必须在 2/3 至少完成其一后再做**
+
+### 本轮完成情况
+
+- 已把 commit / history / revision / `FinishedAtRevision` 盖章逻辑从 `engine.go` 移到 submit pipeline + transition helper：
+  - 新增 `nextRevisionForCommit()`
+  - 新增 `appendCommitHistory()`
+  - 新增 `stampFinishedMatchRevision()`
+- 新增 guard，禁止 `engine.go` 再持有：
+  - `commitState`
+  - history append 写入
+  - `FinishedAtRevision` 直接赋值
+- 新增 transition 级测试，锁定：
+  - revision linkage
+  - history clone 语义
+  - match terminal revision stamping
+- 当前遗留：
+  - JS 侧本地依赖尚未安装，`web` / `tools/fixture-tools` 的 `npm test` 需在安装依赖后重跑。
+
 ## 2026-04-02 第十九次补记（Day1~Day5 串行落地）
 
 - 按“基础包优先、扩展后置”口径，已串行落地 4 个收口项（对应本轮实现 commit：`d7ae754`）：
