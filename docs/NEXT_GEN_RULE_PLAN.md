@@ -4,6 +4,59 @@
 - 当前已经有：最小规则核、priority/stack、projection、continuous effects、`inspect` 的 permission hook、`dealDamage` 对 `EffectiveStats.Defense` 的最小致命判定，以及第一批角色动作入口 `declare_attack / declare_investigation`。
 - 如果目标是“继续稳定接真实卡 DSL，并形成一个可扩展 alpha”，还差 4 个明确里程碑。做完这 4 个就够继续推进主卡池，不需要先上完整 dependency engine。
 
+## 2026-05-01 第二十三次补记（choice protocol V0 / first-player privilege）
+
+### 今日 iteration
+
+- **Iteration 4（已完成）**：先用 `use_first_player_privilege` 落第一条显式 choice record 路径，把“支付成本”的选择从隐式成功执行提升为 action / operation / event 都可回放的最小协议。
+
+### 本轮落地
+
+- 新增最小 `ChoiceRecord`，并接到：
+  - `Action.Choices`
+  - `Operation.Choices`
+  - `Event.Choices`
+- `use_first_player_privilege` 现在要求显式提交一个已接受 choice：
+  - `kind = pay_first_player_privilege_cost`
+  - `optionId = resource_marker`
+  - `accepted = true`
+- commit / protocol / history clone 已能稳定保留 choice records：
+  - history action 不再只做浅拷贝
+  - accepted/rejected protocol payload 会深拷贝 action
+  - history operation / event choice 不发生 aliasing
+- web live debugger 已同步：
+  - `Use First-Player Privilege` 预置动作会自动带上显式 payment choice
+
+### 文件边界
+
+- `server/pkg/rules/types.go`
+- `server/pkg/rules/clone.go`
+- `server/pkg/rules/protocol.go`
+- `server/pkg/rules/state_transitions.go`
+- `server/pkg/rules/engine.go`
+- `server/pkg/rules/first_player_privilege_action.go`
+- `server/pkg/rules/first_player_privilege_action_test.go`
+- `server/pkg/rules/state_transitions_test.go`
+- `web/src/debugger/protocol.ts`
+- `web/src/debugger/live.ts`
+- `web/src/debugger/live.test.ts`
+- `web/src/debugger/LiveDebuggerShell.test.tsx`
+
+### 验收结果
+
+- 已补齐 **choice protocol V0** 的第一条 authoritative 路径
+- 仍**未**实现：
+  - 服务器驱动的 pending choice / prompt 生命周期
+  - shield “是否消耗” 的防守方选择
+  - replacement choice 的统一交互时序
+  - 多选项 / 多步支付方案
+
+### 更新后的优先级
+
+1. **基础包 fixture 扩批**
+2. **shield choice follow-up**（把当前自动消耗升级为显式防守方 choice）
+3. **production `XQ01` 接线**（仍等待 trigger ability model）
+
 ## 2026-05-01 第二十二次补记（XQ01 region-scoped prerequisite 收口）
 
 ### 今日 iteration
