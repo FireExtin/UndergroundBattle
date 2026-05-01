@@ -181,8 +181,15 @@ func TestAppendCommitHistoryTransitionClonesOperationAndEvent(t *testing.T) {
 		Seed:           58,
 	})
 	source := &CardOperationSource{CardID: "CARD-1"}
-	operation := Operation{ID: "op-history-1", Source: source}
-	event := Event{ID: "evt-history-1"}
+	operation := Operation{
+		ID:      "op-history-1",
+		Source:  source,
+		Payment: &PaymentRecord{Kind: PaymentKindMarker, MarkerType: markerTypeResource, Amount: 1},
+	}
+	event := Event{
+		ID:      "evt-history-1",
+		Payment: &PaymentRecord{Kind: PaymentKindMarker, MarkerType: markerTypeResource, Amount: 1},
+	}
 	revision := Revision{Number: 1, ActionID: "act-history-1", OperationID: operation.ID, EventID: event.ID}
 
 	appendCommitHistory(&state, Action{ID: "act-history-1"}, operation, event, revision)
@@ -206,14 +213,22 @@ func TestAppendCommitHistoryTransitionClonesOperationAndEvent(t *testing.T) {
 	operation.ID = "mutated-op"
 	source.CardID = "mutated-card"
 	event.ID = "mutated-evt"
+	operation.Payment.MarkerType = "mutated-payment"
+	event.Payment.MarkerType = "mutated-payment"
 	if state.History.Operations[0].ID != "op-history-1" {
 		t.Fatalf("history operation should be detached from caller mutation, got %q", state.History.Operations[0].ID)
 	}
 	if state.History.Operations[0].Source == nil || state.History.Operations[0].Source.CardID != "CARD-1" {
 		t.Fatalf("history operation source should be deep-cloned, got %#v", state.History.Operations[0].Source)
 	}
+	if state.History.Operations[0].Payment == nil || state.History.Operations[0].Payment.MarkerType != markerTypeResource {
+		t.Fatalf("history operation payment should be deep-cloned, got %#v", state.History.Operations[0].Payment)
+	}
 	if state.History.Events[0].ID != "evt-history-1" {
 		t.Fatalf("history event should be detached from caller mutation, got %q", state.History.Events[0].ID)
+	}
+	if state.History.Events[0].Payment == nil || state.History.Events[0].Payment.MarkerType != markerTypeResource {
+		t.Fatalf("history event payment should be deep-cloned, got %#v", state.History.Events[0].Payment)
 	}
 }
 

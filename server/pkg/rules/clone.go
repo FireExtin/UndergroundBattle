@@ -46,6 +46,7 @@ func cloneOperations(operations []Operation) []Operation {
 
 func cloneOperation(operation Operation) Operation {
 	cloned := operation
+	cloned.Payment = clonePaymentRecord(operation.Payment)
 	cloned.Source = cloneCardOperationSource(operation.Source)
 	return cloned
 }
@@ -85,7 +86,17 @@ func cloneEvents(events []Event) []Event {
 func cloneEvent(event Event) Event {
 	cloned := event
 	cloned.RandomValue = cloneOptionalInt(event.RandomValue)
+	cloned.Payment = clonePaymentRecord(event.Payment)
 	return cloned
+}
+
+func clonePaymentRecord(record *PaymentRecord) *PaymentRecord {
+	if record == nil {
+		return nil
+	}
+
+	cloned := *record
+	return &cloned
 }
 
 func cloneOptionalInt(value *int) *int {

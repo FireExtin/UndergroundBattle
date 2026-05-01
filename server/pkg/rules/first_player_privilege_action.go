@@ -39,7 +39,8 @@ func checkFirstPlayerPrivilegeActionLegality(state GameState, action Action) Leg
 func executeUseFirstPlayerPrivilege(state GameState, operation Operation) (GameState, Operation, Event, error) {
 	working := cloneGameState(state)
 
-	if !payFirstPlayerPrivilegeCost(&working, operation.ActorID) {
+	payment, paid := payFirstPlayerPrivilegeCost(&working, operation.ActorID)
+	if !paid {
 		return GameState{}, Operation{}, Event{}, &LegalityError{
 			Result: legalityFailure(
 				ReasonCodeCostFailedUnpaid,
@@ -58,6 +59,7 @@ func executeUseFirstPlayerPrivilege(state GameState, operation Operation) (GameS
 	reopenPhaseStep(&working.Turn)
 	resetPriorityWindow(&working.Turn, operation.ActorID, PriorityWindowAction)
 	operation.Status = OperationStatusResolved
+	operation.Payment = clonePaymentRecord(payment)
 
 	return working, operation, Event{
 		ID:               "evt:" + operation.ActionID,
@@ -72,6 +74,7 @@ func executeUseFirstPlayerPrivilege(state GameState, operation Operation) (GameS
 		StackDepth:       len(working.Board.Stack),
 		TargetPlayerID:   operation.ActorID,
 		ResolvedTargetID: operation.ActorID,
+		Payment:          clonePaymentRecord(payment),
 		RevisionNumber:   0,
 	}, nil
 }
@@ -119,7 +122,19 @@ func hasBreakableTieOnRegion(state GameState, region CardState, firstPlayerID st
 	return region.InfluenceByPlayer[firstPlayerID] == top
 }
 
-func payFirstPlayerPrivilegeCost(_ *GameState, _ string) bool {
-	// Cost model hook. Current minimal engine does not track per-step resource pools yet.
-	return true
+func payFirstPlayerPrivilegeCost(state *GameState, actorID string) (*PaymentRecord, bool) {
+	if state == nil || actorID == "" {
+		return nil, false
+	}
+
+	if state.Board.Markers.GetMarker(actorID, markerTypeResource) < 1 {
+		return nil, false
+	}
+
+	removeMarkerCount(state, actorID, markerTypeResource, 1)
+	return &PaymentRecord{
+		Kind:       PaymentKindMarker,
+		MarkerType: markerTypeResource,
+		Amount:     1,
+	}, true
 }

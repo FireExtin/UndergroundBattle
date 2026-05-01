@@ -21,6 +21,7 @@ func TestFirstPlayerPrivilegeAction_ConsumesOnNonZeroTie(t *testing.T) {
 			InfluenceByPlayer: map[string]int{"P1": 2, "P2": 2},
 		},
 	}
+	state.Board.Markers.SetMarker("P1", markerTypeResource, 2)
 
 	result, err := SubmitAction(state, Action{
 		ID:      "act-first-player-privilege",
@@ -46,6 +47,24 @@ func TestFirstPlayerPrivilegeAction_ConsumesOnNonZeroTie(t *testing.T) {
 	}
 	if !result.State.Turn.FirstPlayerPrivilegeUsed {
 		t.Fatal("turn.firstPlayerPrivilegeUsed should be true after action resolves")
+	}
+	if got := result.State.Board.Markers.GetMarker("P1", markerTypeResource); got != 1 {
+		t.Fatalf("resource marker = %d, want 1 after paying cost", got)
+	}
+	if result.Operation.Payment == nil {
+		t.Fatal("operation payment should be recorded")
+	}
+	if result.Operation.Payment.MarkerType != markerTypeResource || result.Operation.Payment.Amount != 1 {
+		t.Fatalf("operation payment = %#v, want markerType=%q amount=1", result.Operation.Payment, markerTypeResource)
+	}
+	if result.Event.Payment == nil {
+		t.Fatal("event payment should be recorded")
+	}
+	if result.Event.Payment.MarkerType != markerTypeResource || result.Event.Payment.Amount != 1 {
+		t.Fatalf("event payment = %#v, want markerType=%q amount=1", result.Event.Payment, markerTypeResource)
+	}
+	if got := result.Views.Players["P1"].Markers[markerTypeResource]; got != 1 {
+		t.Fatalf("projected resource marker = %d, want 1", got)
 	}
 }
 
@@ -84,6 +103,41 @@ func TestFirstPlayerPrivilegeAction_RejectsWhenNoBreakableTie(t *testing.T) {
 	}
 }
 
+func TestFirstPlayerPrivilegeAction_RejectsWhenCostUnpaid(t *testing.T) {
+	state := NewGameState(InitialStateConfig{
+		GameID:         "first-player-privilege-unpaid",
+		ActivePlayerID: "P1",
+		PlayerIDs:      []string{"P1", "P2"},
+	})
+	state.Board.Cards = []CardState{
+		{
+			CardID:            "region-privilege-unpaid",
+			Name:              "Region",
+			Kind:              CardKindRegion,
+			Zone:              CardZoneTable,
+			Revealed:          true,
+			InfluenceByPlayer: map[string]int{"P1": 2, "P2": 2},
+		},
+	}
+
+	_, err := SubmitAction(state, Action{
+		ID:      "act-first-player-privilege-unpaid",
+		ActorID: "P1",
+		Kind:    ActionKindUseFirstPlayerPrivilege,
+	})
+	if err == nil {
+		t.Fatal("expected first-player privilege without enough cost resources to be rejected")
+	}
+
+	var legalityErr *LegalityError
+	if !errors.As(err, &legalityErr) {
+		t.Fatalf("expected LegalityError, got %T", err)
+	}
+	if legalityErr.Code != ReasonCodeCostFailedUnpaid {
+		t.Fatalf("code = %q, want %q", legalityErr.Code, ReasonCodeCostFailedUnpaid)
+	}
+}
+
 func TestFirstPlayerPrivilegeAction_RejectsSecondUseSameTurn(t *testing.T) {
 	state := NewGameState(InitialStateConfig{
 		GameID:         "first-player-privilege-twice",
@@ -100,6 +154,7 @@ func TestFirstPlayerPrivilegeAction_RejectsSecondUseSameTurn(t *testing.T) {
 			InfluenceByPlayer: map[string]int{"P1": 2, "P2": 2},
 		},
 	}
+	state.Board.Markers.SetMarker("P1", markerTypeResource, 2)
 
 	state = mustSubmit(t, state, Action{
 		ID:      "act-first-player-privilege-first",
@@ -125,5 +180,45 @@ func TestFirstPlayerPrivilegeAction_RejectsSecondUseSameTurn(t *testing.T) {
 	}
 	if legalityErr.Code != ReasonCodeLegalityFailedActionProhibited {
 		t.Fatalf("code = %q, want %q", legalityErr.Code, ReasonCodeLegalityFailedActionProhibited)
+	}
+}
+
+func TestFirstPlayerPrivilegeAction_ReplayPreservesPaymentSpend(t *testing.T) {
+	initial := NewGameState(InitialStateConfig{
+		GameID:         "first-player-privilege-replay",
+		ActivePlayerID: "P1",
+		PlayerIDs:      []string{"P1", "P2"},
+	})
+	initial.Board.Cards = []CardState{
+		{
+			CardID:            "region-privilege-replay",
+			Name:              "Region",
+			Kind:              CardKindRegion,
+			Zone:              CardZoneTable,
+			Revealed:          true,
+			InfluenceByPlayer: map[string]int{"P1": 2, "P2": 2},
+		},
+	}
+	initial.Board.Markers.SetMarker("P1", markerTypeResource, 1)
+
+	result, err := SubmitAction(initial, Action{
+		ID:      "act-first-player-privilege-replay",
+		ActorID: "P1",
+		Kind:    ActionKindUseFirstPlayerPrivilege,
+	})
+	if err != nil {
+		t.Fatalf("SubmitAction returned error: %v", err)
+	}
+
+	replayed, err := ReplayActions(initial, result.State.History.Actions)
+	if err != nil {
+		t.Fatalf("ReplayActions returned error: %v", err)
+	}
+
+	if got := replayed.Board.Markers.GetMarker("P1", markerTypeResource); got != 0 {
+		t.Fatalf("replayed resource marker = %d, want 0", got)
+	}
+	if got := replayed.Board.Markers.GetMarker("P1", markerTypeFirstPlayerPrivilegeUsed); got != 1 {
+		t.Fatalf("replayed used marker = %d, want 1", got)
 	}
 }

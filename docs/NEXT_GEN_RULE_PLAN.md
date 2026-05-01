@@ -4,6 +4,57 @@
 - 当前已经有：最小规则核、priority/stack、projection、continuous effects、`inspect` 的 permission hook、`dealDamage` 对 `EffectiveStats.Defense` 的最小致命判定，以及第一批角色动作入口 `declare_attack / declare_investigation`。
 - 如果目标是“继续稳定接真实卡 DSL，并形成一个可扩展 alpha”，还差 4 个明确里程碑。做完这 4 个就够继续推进主卡池，不需要先上完整 dependency engine。
 
+## 2026-05-01 第二十一次补记（Payment / choice hook V0）
+
+### 今日 iteration
+
+- **Iteration 2（已完成）**：为 `use_first_player_privilege` 接入最小 authoritative payment hook，不做完整费用系统，但把“支付 1 费用”从纯占位钩子推进为可验证状态变更 + 可回放记录。
+
+### 本轮落地
+
+- 先手特权动作现在要求支付 `1` 个玩家级 `resource` marker：
+  - 无资源时，动作在执行阶段以 `COST_FAILED_UNPAID` 拒绝；
+  - 支付成功后会真实扣减 `resource` marker。
+- 新增最小支付记录结构：
+  - `PaymentRecord`
+  - 当前仅支持 `marker` 型支付
+  - `Operation.Payment` / `Event.Payment` 会记录本次实际支付
+- 回放/历史一致性：
+  - history 中保留 payment record
+  - replay 后资源扣减结果保持一致
+- 投影一致性：
+  - 玩家投影中可直接看到支付后的剩余 `resource` marker
+
+### 文件边界
+
+- `server/pkg/rules/first_player_privilege_action.go`
+- `server/pkg/rules/types.go`
+- `server/pkg/rules/clone.go`
+- `server/pkg/rules/first_player_privilege_action_test.go`
+- `server/pkg/rules/state_transitions_test.go`
+
+### 测试边界
+
+- 有资源时成功支付并记录 payment
+- 无资源时返回 `COST_FAILED_UNPAID`
+- replay 后资源扣减与特权消耗保持一致
+- history clone 时 payment record 不发生 aliasing
+
+### 验收结果
+
+- 已满足“最小 authoritative payment record”目标
+- 仍**未**实现：
+  - 完整费用池
+  - 多费用来源组合支付
+  - 玩家选择是否支付 / 如何支付
+  - shield 可选消耗 / replacement choice 等统一 choice protocol
+
+### 更新后的优先级
+
+1. **`XQ01` prerequisite / 地区作用域能力限制**（若当前分支尚未与旧实现完全对齐，则先补齐并统一文档口径）
+2. **choice protocol V0**（把“可选支付/可选消耗”从自动执行提升为显式可回放选择）
+3. **基础包 fixture 扩批**
+
 ## 2026-04-30 第二十次补记（下一轮执行拆分 + 第一轮收口）
 
 ### 今日 iteration

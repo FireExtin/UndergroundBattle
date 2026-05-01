@@ -56,6 +56,20 @@ const (
 	OperationStatusResolved OperationStatus = "resolved"
 )
 
+// PaymentKind identifies the minimal authoritative payment source consumed by an action.
+type PaymentKind string
+
+const (
+	PaymentKindMarker PaymentKind = "marker"
+)
+
+// PaymentRecord stores one minimal, replayable payment fact.
+type PaymentRecord struct {
+	Kind       PaymentKind `json:"kind"`
+	MarkerType string      `json:"markerType,omitempty"`
+	Amount     int         `json:"amount,omitempty"`
+}
+
 // EventKind identifies the committed state transition emitted by the rules pipeline.
 type EventKind string
 
@@ -142,6 +156,10 @@ const (
 	MatchEndReasonVictoryThreshold MatchEndReason = "victory_threshold"
 	MatchEndReasonDeckOut          MatchEndReason = "deck_out"
 	MatchEndReasonDeckOutDraw      MatchEndReason = "deck_out_draw"
+)
+
+const (
+	markerTypeResource = "resource"
 )
 
 // CardNumericStats stores printed and effective numeric values used by the minimal rules kernel.
@@ -290,6 +308,7 @@ type Operation struct {
 	Label          string               `json:"label,omitempty"`
 	RandomMax      int                  `json:"randomMax,omitempty"`
 	NextPhase      PhaseName            `json:"nextPhase,omitempty"`
+	Payment        *PaymentRecord       `json:"payment,omitempty"`
 	Source         *CardOperationSource `json:"source,omitempty"`
 }
 
@@ -314,6 +333,7 @@ type Event struct {
 	MarkerAmount     int                `json:"markerAmount,omitempty"`
 	StackDepth       int                `json:"stackDepth"`
 	RandomValue      *int               `json:"randomValue,omitempty"`
+	Payment          *PaymentRecord     `json:"payment,omitempty"`
 	StepEnded        bool               `json:"stepEnded,omitempty"`
 	TargetPlayerID   string             `json:"targetPlayerId,omitempty"` // 目标玩家ID
 }
