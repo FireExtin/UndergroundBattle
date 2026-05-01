@@ -56,6 +56,28 @@ const (
 	OperationStatusResolved OperationStatus = "resolved"
 )
 
+// PaymentKind identifies the minimal authoritative payment source consumed by an action.
+type PaymentKind string
+
+const (
+	PaymentKindMarker PaymentKind = "marker"
+)
+
+// PaymentRecord stores one minimal, replayable payment fact.
+type PaymentRecord struct {
+	Kind       PaymentKind `json:"kind"`
+	MarkerType string      `json:"markerType,omitempty"`
+	Amount     int         `json:"amount,omitempty"`
+}
+
+// ChoiceRecord stores one minimal, replayable decision attached to an action pipeline.
+type ChoiceRecord struct {
+	Kind     string `json:"kind"`
+	PlayerID string `json:"playerId,omitempty"`
+	OptionID string `json:"optionId,omitempty"`
+	Accepted bool   `json:"accepted,omitempty"`
+}
+
 // EventKind identifies the committed state transition emitted by the rules pipeline.
 type EventKind string
 
@@ -142,6 +164,12 @@ const (
 	MatchEndReasonVictoryThreshold MatchEndReason = "victory_threshold"
 	MatchEndReasonDeckOut          MatchEndReason = "deck_out"
 	MatchEndReasonDeckOutDraw      MatchEndReason = "deck_out_draw"
+)
+
+const (
+	markerTypeResource = "resource"
+
+	targetRegionScopeSource = "source_region"
 )
 
 // CardNumericStats stores printed and effective numeric values used by the minimal rules kernel.
@@ -234,16 +262,17 @@ type FullState = GameState
 
 // Action is the player intent submitted into the authoritative pipeline.
 type Action struct {
-	ID             string     `json:"id"`
-	ActorID        string     `json:"actorId"`
-	Kind           ActionKind `json:"kind"`
-	CardID         string     `json:"cardId,omitempty"`
-	TargetPlayerID string     `json:"targetPlayerId,omitempty"`
-	TargetCardID   string     `json:"targetCardId,omitempty"`
-	MarkerType     string     `json:"markerType,omitempty"`
-	MarkerAmount   int        `json:"markerAmount,omitempty"`
-	OperationLabel string     `json:"operationLabel,omitempty"`
-	RandomMax      int        `json:"randomMax,omitempty"`
+	ID             string         `json:"id"`
+	ActorID        string         `json:"actorId"`
+	Kind           ActionKind     `json:"kind"`
+	CardID         string         `json:"cardId,omitempty"`
+	TargetPlayerID string         `json:"targetPlayerId,omitempty"`
+	TargetCardID   string         `json:"targetCardId,omitempty"`
+	MarkerType     string         `json:"markerType,omitempty"`
+	MarkerAmount   int            `json:"markerAmount,omitempty"`
+	OperationLabel string         `json:"operationLabel,omitempty"`
+	RandomMax      int            `json:"randomMax,omitempty"`
+	Choices        []ChoiceRecord `json:"choices,omitempty"`
 }
 
 // EffectSpec is the executable subset of the shared CardLogic effect payload copied into Go-side operations.
@@ -290,6 +319,8 @@ type Operation struct {
 	Label          string               `json:"label,omitempty"`
 	RandomMax      int                  `json:"randomMax,omitempty"`
 	NextPhase      PhaseName            `json:"nextPhase,omitempty"`
+	Payment        *PaymentRecord       `json:"payment,omitempty"`
+	Choices        []ChoiceRecord       `json:"choices,omitempty"`
 	Source         *CardOperationSource `json:"source,omitempty"`
 }
 
@@ -314,6 +345,8 @@ type Event struct {
 	MarkerAmount     int                `json:"markerAmount,omitempty"`
 	StackDepth       int                `json:"stackDepth"`
 	RandomValue      *int               `json:"randomValue,omitempty"`
+	Payment          *PaymentRecord     `json:"payment,omitempty"`
+	Choices          []ChoiceRecord     `json:"choices,omitempty"`
 	StepEnded        bool               `json:"stepEnded,omitempty"`
 	TargetPlayerID   string             `json:"targetPlayerId,omitempty"` // 目标玩家ID
 }

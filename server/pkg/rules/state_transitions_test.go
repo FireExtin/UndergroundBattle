@@ -156,6 +156,119 @@ func TestAppendResolvedOperationTransitionClonesOperation(t *testing.T) {
 	}
 }
 
+func TestNextRevisionForCommitTransition(t *testing.T) {
+	state := NewGameState(InitialStateConfig{
+		GameID:         "state-transition-revision",
+		ActivePlayerID: "P1",
+		Seed:           57,
+	})
+	state.Revision.Number = 4
+
+	revision := nextRevisionForCommit(state, Action{ID: "act-5"}, Operation{ID: "op-5"}, Event{ID: "evt-5"})
+
+	if revision.Number != 5 {
+		t.Fatalf("revision number = %d, want 5", revision.Number)
+	}
+	if revision.ActionID != "act-5" || revision.OperationID != "op-5" || revision.EventID != "evt-5" {
+		t.Fatalf("revision linkage = %#v, want act/op/event ids preserved", revision)
+	}
+}
+
+func TestAppendCommitHistoryTransitionClonesOperationAndEvent(t *testing.T) {
+	state := NewGameState(InitialStateConfig{
+		GameID:         "state-transition-history",
+		ActivePlayerID: "P1",
+		Seed:           58,
+	})
+	source := &CardOperationSource{CardID: "CARD-1"}
+	action := Action{
+		ID:      "act-history-1",
+		Choices: []ChoiceRecord{{Kind: firstPlayerPrivilegePaymentChoiceKind, PlayerID: "P1", OptionID: firstPlayerPrivilegePaymentChoiceOption, Accepted: true}},
+	}
+	operation := Operation{
+		ID:      "op-history-1",
+		Source:  source,
+		Payment: &PaymentRecord{Kind: PaymentKindMarker, MarkerType: markerTypeResource, Amount: 1},
+		Choices: []ChoiceRecord{{Kind: firstPlayerPrivilegePaymentChoiceKind, PlayerID: "P1", OptionID: firstPlayerPrivilegePaymentChoiceOption, Accepted: true}},
+	}
+	event := Event{
+		ID:      "evt-history-1",
+		Payment: &PaymentRecord{Kind: PaymentKindMarker, MarkerType: markerTypeResource, Amount: 1},
+		Choices: []ChoiceRecord{{Kind: firstPlayerPrivilegePaymentChoiceKind, PlayerID: "P1", OptionID: firstPlayerPrivilegePaymentChoiceOption, Accepted: true}},
+	}
+	revision := Revision{Number: 1, ActionID: "act-history-1", OperationID: operation.ID, EventID: event.ID}
+
+	appendCommitHistory(&state, action, operation, event, revision)
+
+	if len(state.History.Actions) != 1 || state.History.Actions[0].ID != "act-history-1" {
+		t.Fatalf("history actions = %#v, want committed action", state.History.Actions)
+	}
+	if len(state.History.Operations) != 1 || state.History.Operations[0].ID != operation.ID {
+		t.Fatalf("history operations = %#v, want committed operation", state.History.Operations)
+	}
+	if len(state.History.Events) != 1 || state.History.Events[0].ID != event.ID {
+		t.Fatalf("history events = %#v, want committed event", state.History.Events)
+	}
+	if len(state.History.Revisions) != 1 || state.History.Revisions[0].Number != revision.Number {
+		t.Fatalf("history revisions = %#v, want committed revision", state.History.Revisions)
+	}
+	if state.Revision.Number != revision.Number {
+		t.Fatalf("state revision = %d, want %d", state.Revision.Number, revision.Number)
+	}
+
+	action.Choices[0].OptionID = "mutated-choice"
+	operation.ID = "mutated-op"
+	source.CardID = "mutated-card"
+	event.ID = "mutated-evt"
+	operation.Payment.MarkerType = "mutated-payment"
+	event.Payment.MarkerType = "mutated-payment"
+	operation.Choices[0].OptionID = "mutated-choice"
+	event.Choices[0].OptionID = "mutated-choice"
+	if state.History.Actions[0].Choices == nil || state.History.Actions[0].Choices[0].OptionID != firstPlayerPrivilegePaymentChoiceOption {
+		t.Fatalf("history action choices should be deep-cloned, got %#v", state.History.Actions[0].Choices)
+	}
+	if state.History.Operations[0].ID != "op-history-1" {
+		t.Fatalf("history operation should be detached from caller mutation, got %q", state.History.Operations[0].ID)
+	}
+	if state.History.Operations[0].Source == nil || state.History.Operations[0].Source.CardID != "CARD-1" {
+		t.Fatalf("history operation source should be deep-cloned, got %#v", state.History.Operations[0].Source)
+	}
+	if state.History.Operations[0].Payment == nil || state.History.Operations[0].Payment.MarkerType != markerTypeResource {
+		t.Fatalf("history operation payment should be deep-cloned, got %#v", state.History.Operations[0].Payment)
+	}
+	if state.History.Operations[0].Choices == nil || state.History.Operations[0].Choices[0].OptionID != firstPlayerPrivilegePaymentChoiceOption {
+		t.Fatalf("history operation choices should be deep-cloned, got %#v", state.History.Operations[0].Choices)
+	}
+	if state.History.Events[0].ID != "evt-history-1" {
+		t.Fatalf("history event should be detached from caller mutation, got %q", state.History.Events[0].ID)
+	}
+	if state.History.Events[0].Payment == nil || state.History.Events[0].Payment.MarkerType != markerTypeResource {
+		t.Fatalf("history event payment should be deep-cloned, got %#v", state.History.Events[0].Payment)
+	}
+	if state.History.Events[0].Choices == nil || state.History.Events[0].Choices[0].OptionID != firstPlayerPrivilegePaymentChoiceOption {
+		t.Fatalf("history event choices should be deep-cloned, got %#v", state.History.Events[0].Choices)
+	}
+}
+
+func TestStampFinishedMatchRevisionTransition(t *testing.T) {
+	state := NewGameState(InitialStateConfig{
+		GameID:         "state-transition-match-finish",
+		ActivePlayerID: "P1",
+		Seed:           59,
+	})
+	state.Match.Status = MatchStatusFinished
+
+	stampFinishedMatchRevision(&state, Revision{Number: 7})
+	if state.Match.FinishedAtRevision != 7 {
+		t.Fatalf("finishedAtRevision = %d, want 7", state.Match.FinishedAtRevision)
+	}
+
+	stampFinishedMatchRevision(&state, Revision{Number: 9})
+	if state.Match.FinishedAtRevision != 7 {
+		t.Fatalf("finishedAtRevision should stay 7 once stamped, got %d", state.Match.FinishedAtRevision)
+	}
+}
+
 func TestAttachToHostTransitionCreatesAttachment(t *testing.T) {
 	state := NewGameState(InitialStateConfig{
 		GameID:         "state-transition-attach",

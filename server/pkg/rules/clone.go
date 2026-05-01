@@ -28,10 +28,24 @@ func cloneBoardState(state BoardState) BoardState {
 
 func cloneHistoryState(state HistoryState) HistoryState {
 	cloned := state
-	cloned.Actions = slices.Clone(state.Actions)
+	cloned.Actions = cloneActions(state.Actions)
 	cloned.Operations = cloneOperations(state.Operations)
 	cloned.Events = cloneEvents(state.Events)
 	cloned.Revisions = slices.Clone(state.Revisions)
+	return cloned
+}
+
+func cloneActions(actions []Action) []Action {
+	cloned := make([]Action, 0, len(actions))
+	for _, action := range actions {
+		cloned = append(cloned, cloneAction(action))
+	}
+	return cloned
+}
+
+func cloneAction(action Action) Action {
+	cloned := action
+	cloned.Choices = cloneChoiceRecords(action.Choices)
 	return cloned
 }
 
@@ -46,6 +60,8 @@ func cloneOperations(operations []Operation) []Operation {
 
 func cloneOperation(operation Operation) Operation {
 	cloned := operation
+	cloned.Payment = clonePaymentRecord(operation.Payment)
+	cloned.Choices = cloneChoiceRecords(operation.Choices)
 	cloned.Source = cloneCardOperationSource(operation.Source)
 	return cloned
 }
@@ -85,6 +101,29 @@ func cloneEvents(events []Event) []Event {
 func cloneEvent(event Event) Event {
 	cloned := event
 	cloned.RandomValue = cloneOptionalInt(event.RandomValue)
+	cloned.Payment = clonePaymentRecord(event.Payment)
+	cloned.Choices = cloneChoiceRecords(event.Choices)
+	return cloned
+}
+
+func clonePaymentRecord(record *PaymentRecord) *PaymentRecord {
+	if record == nil {
+		return nil
+	}
+
+	cloned := *record
+	return &cloned
+}
+
+func cloneChoiceRecords(records []ChoiceRecord) []ChoiceRecord {
+	if len(records) == 0 {
+		return nil
+	}
+
+	cloned := make([]ChoiceRecord, 0, len(records))
+	for _, record := range records {
+		cloned = append(cloned, record)
+	}
 	return cloned
 }
 

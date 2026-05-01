@@ -39,3 +39,17 @@ func TestScopeAppliesToActor(t *testing.T) {
 		t.Fatal("expected controller-only scope to apply to P1")
 	}
 }
+
+func TestMatchesTargetRegionRequirement(t *testing.T) {
+	source := CardState{RegionCardID: "region-1"}
+
+	if !matchesTargetRegionRequirement(source, "region-1", targetRegionScopeSource) {
+		t.Fatal("expected source_region requirement to match same region")
+	}
+	if matchesTargetRegionRequirement(source, "region-2", targetRegionScopeSource) {
+		t.Fatal("expected source_region requirement not to match other region")
+	}
+	if !matchesTargetRegionRequirement(source, "region-2", "region-2") {
+		t.Fatal("expected exact region requirement to match identical region")
+	}
+}

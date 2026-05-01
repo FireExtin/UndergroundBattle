@@ -33,9 +33,9 @@ func newLegalityError(result LegalityResult) *LegalityError {
 func NewActionAccepted(action Action, operation Operation, event Event, revision Revision) ActionAccepted {
 	return ActionAccepted{
 		Type:      "ActionAccepted",
-		Action:    action,
-		Operation: operation,
-		Event:     event,
+		Action:    cloneAction(action),
+		Operation: cloneOperation(operation),
+		Event:     cloneEvent(event),
 		Revision:  revision,
 	}
 }
@@ -44,7 +44,7 @@ func NewActionAccepted(action Action, operation Operation, event Event, revision
 func NewActionRejected(action Action, legality LegalityResult) ActionRejected {
 	return ActionRejected{
 		Type:     "ActionRejected",
-		Action:   action,
+		Action:   cloneAction(action),
 		Legality: legality,
 	}
 }

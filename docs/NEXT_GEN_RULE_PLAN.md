@@ -4,6 +4,250 @@
 - 当前已经有：最小规则核、priority/stack、projection、continuous effects、`inspect` 的 permission hook、`dealDamage` 对 `EffectiveStats.Defense` 的最小致命判定，以及第一批角色动作入口 `declare_attack / declare_investigation`。
 - 如果目标是“继续稳定接真实卡 DSL，并形成一个可扩展 alpha”，还差 4 个明确里程碑。做完这 4 个就够继续推进主卡池，不需要先上完整 dependency engine。
 
+## 2026-05-01 第二十三次补记（choice protocol V0 / first-player privilege）
+
+### 今日 iteration
+
+- **Iteration 4（已完成）**：先用 `use_first_player_privilege` 落第一条显式 choice record 路径，把“支付成本”的选择从隐式成功执行提升为 action / operation / event 都可回放的最小协议。
+
+### 本轮落地
+
+- 新增最小 `ChoiceRecord`，并接到：
+  - `Action.Choices`
+  - `Operation.Choices`
+  - `Event.Choices`
+- `use_first_player_privilege` 现在要求显式提交一个已接受 choice：
+  - `kind = pay_first_player_privilege_cost`
+  - `optionId = resource_marker`
+  - `accepted = true`
+- commit / protocol / history clone 已能稳定保留 choice records：
+  - history action 不再只做浅拷贝
+  - accepted/rejected protocol payload 会深拷贝 action
+  - history operation / event choice 不发生 aliasing
+- web live debugger 已同步：
+  - `Use First-Player Privilege` 预置动作会自动带上显式 payment choice
+
+### 文件边界
+
+- `server/pkg/rules/types.go`
+- `server/pkg/rules/clone.go`
+- `server/pkg/rules/protocol.go`
+- `server/pkg/rules/state_transitions.go`
+- `server/pkg/rules/engine.go`
+- `server/pkg/rules/first_player_privilege_action.go`
+- `server/pkg/rules/first_player_privilege_action_test.go`
+- `server/pkg/rules/state_transitions_test.go`
+- `web/src/debugger/protocol.ts`
+- `web/src/debugger/live.ts`
+- `web/src/debugger/live.test.ts`
+- `web/src/debugger/LiveDebuggerShell.test.tsx`
+
+### 验收结果
+
+- 已补齐 **choice protocol V0** 的第一条 authoritative 路径
+- 仍**未**实现：
+  - 服务器驱动的 pending choice / prompt 生命周期
+  - shield “是否消耗” 的防守方选择
+  - replacement choice 的统一交互时序
+  - 多选项 / 多步支付方案
+
+### 更新后的优先级
+
+1. **基础包 fixture 扩批**
+2. **shield choice follow-up**（把当前自动消耗升级为显式防守方 choice）
+3. **production `XQ01` 接线**（仍等待 trigger ability model）
+
+## 2026-05-01 第二十二次补记（XQ01 region-scoped prerequisite 收口）
+
+### 今日 iteration
+
+- **Iteration 3（已完成）**：补齐 `XQ01` prerequisite 剩余的“本地区”约束，让 action-permission prohibition 框架能够表达 **source region scoped** 规则，但仍不直接落 production `XQ01`。
+
+### 本轮落地
+
+- prohibition target condition 新增动态地区作用域语义：
+  - `RegionID = source_region`
+  - 含义：目标必须与来源卡位于同一 `RegionCardID`
+- `action_permission_flow` 现在会把 acted card 的 `RegionCardID` 带入 prohibition target condition。
+- action ability 映射已收窄：
+  - 当前只把 `declare_attack`
+  - `declare_investigation`
+  - 视为已支持的 `"action"` ability
+- 已覆盖的 prerequisite 行为：
+  - 同地区角色会被 prohibition 命中
+  - 不同地区不会误伤
+  - 非当前已支持的动作（如 `inspect`）不会被误判为 action ability
+  - 来源横置后限制失效
+
+### 文件边界
+
+- `server/pkg/rules/types.go`
+- `server/pkg/rules/legality_shared.go`
+- `server/pkg/rules/prohibition.go`
+- `server/pkg/rules/action_permission_flow.go`
+- `server/pkg/rules/legality_shared_test.go`
+- `server/pkg/rules/prohibition_test.go`
+- `server/pkg/rules/action_permission_flow_test.go`
+
+### 验收结果
+
+- 已补齐 “`AbilityKinds` + `RegionID`” 的最小 prerequisite 闭环
+- 仍**未**直接启用 production `XQ01`，原因：
+  - 当前引擎尚未有完整 trigger ability model
+  - 若现在落 production，会形成“只封行动能力、不封触发能力”的半实现牌义
+
+### 更新后的优先级
+
+1. **choice protocol V0**（把“可选支付/可选消耗”从自动执行提升为显式可回放选择）
+2. **基础包 fixture 扩批**
+3. **production `XQ01` 接线**（等 trigger ability model 至少有最小 authoritative 表达后再启用）
+
+## 2026-05-01 第二十一次补记（Payment / choice hook V0）
+
+### 今日 iteration
+
+- **Iteration 2（已完成）**：为 `use_first_player_privilege` 接入最小 authoritative payment hook，不做完整费用系统，但把“支付 1 费用”从纯占位钩子推进为可验证状态变更 + 可回放记录。
+
+### 本轮落地
+
+- 先手特权动作现在要求支付 `1` 个玩家级 `resource` marker：
+  - 无资源时，动作在执行阶段以 `COST_FAILED_UNPAID` 拒绝；
+  - 支付成功后会真实扣减 `resource` marker。
+- 新增最小支付记录结构：
+  - `PaymentRecord`
+  - 当前仅支持 `marker` 型支付
+  - `Operation.Payment` / `Event.Payment` 会记录本次实际支付
+- 回放/历史一致性：
+  - history 中保留 payment record
+  - replay 后资源扣减结果保持一致
+- 投影一致性：
+  - 玩家投影中可直接看到支付后的剩余 `resource` marker
+
+### 文件边界
+
+- `server/pkg/rules/first_player_privilege_action.go`
+- `server/pkg/rules/types.go`
+- `server/pkg/rules/clone.go`
+- `server/pkg/rules/first_player_privilege_action_test.go`
+- `server/pkg/rules/state_transitions_test.go`
+
+### 测试边界
+
+- 有资源时成功支付并记录 payment
+- 无资源时返回 `COST_FAILED_UNPAID`
+- replay 后资源扣减与特权消耗保持一致
+- history clone 时 payment record 不发生 aliasing
+
+### 验收结果
+
+- 已满足“最小 authoritative payment record”目标
+- 仍**未**实现：
+  - 完整费用池
+  - 多费用来源组合支付
+  - 玩家选择是否支付 / 如何支付
+  - shield 可选消耗 / replacement choice 等统一 choice protocol
+
+### 更新后的优先级
+
+1. **`XQ01` prerequisite / 地区作用域能力限制**（若当前分支尚未与旧实现完全对齐，则先补齐并统一文档口径）
+2. **choice protocol V0**（把“可选支付/可选消耗”从自动执行提升为显式可回放选择）
+3. **基础包 fixture 扩批**
+
+## 2026-04-30 第二十次补记（下一轮执行拆分 + 第一轮收口）
+
+### 今日 iteration
+
+- **Iteration 1（已完成）**：继续收口 Transition API / submit pipeline，把 commit/history/revision 写入从 `engine.go` 挪到专用 helper，避免 orchestration 再次回流状态写入细节。
+- 本轮选择它作为第一刀的原因：
+  - 不引入新牌义，回归面最可控；
+  - 同时推进 `engine.go` 去重型 与 “禁止散写”长期护栏；
+  - 为后续 `XQ01` prerequisite、payment pipeline、fixture 扩批提供更稳定的落点。
+
+### 下一步最佳 4 项（按优先级）
+
+1. **Transition API / commit pipeline 收口（已完成本轮）**
+   - 文件边界：
+     - `server/pkg/rules/submit_pipeline.go`
+     - `server/pkg/rules/state_transitions.go`
+     - `server/pkg/rules/state_transitions_test.go`
+     - `server/pkg/rules/engine_modularity_guard_test.go`
+   - 测试边界：
+     - commit revision 生成
+     - history append clone 语义
+     - `FinishedAtRevision` 只在首次终局时盖章
+     - `engine.go` 禁止保留 commit/history 写入
+   - 验收标准：
+     - `engine.go` 只保留 orchestration / execution 分派
+     - commit/history/revision 写入只经 submit pipeline / transition helper
+     - focused Go tests 与全量 `go test ./server/...` 通过
+   - 并行性：**必须串行先做**
+
+2. **`XQ01` prerequisite V1：地区作用域能力限制模型**
+   - 文件边界：
+     - `server/pkg/rules/types.go`
+     - `server/pkg/rules/legality_shared.go`
+     - `server/pkg/rules/action_permission_flow.go`
+     - `server/pkg/rules/legality_catalog.go`
+     - `server/pkg/rules/action_permission_flow_test.go`
+     - `server/pkg/rules/legality_catalog_test.go`
+   - 测试边界：
+     - 仅限制同地区角色
+     - 仅限制 ability/action kinds，不误伤 attack/investigation 以外动作
+     - source 离场/横置/失效后限制解除
+   - 验收标准：
+     - 先落 prerequisite，不直接写错牌义的 production `XQ01`
+     - 不引入全局沉默，不污染 `engine.go`
+   - 并行性：**与 3 可并行设计，但实现建议在 1 后串行推进**
+
+3. **Payment / choice hook V0（先手特权成本与后续选择模型共用）**
+   - 文件边界：
+     - `server/pkg/rules/first_player_privilege_action.go`
+     - `server/pkg/rules/types.go`
+     - `server/pkg/rules/projection.go`
+     - `server/pkg/rules/rulebook_flow_integration_test.go`
+     - `server/pkg/rules/first_player_privilege_action_test.go`
+   - 测试边界：
+     - 有成本资源时可支付并记录
+     - 无法支付时返回稳定错误码
+     - replay / projection / turn reset 一致
+   - 验收标准：
+     - 不做完整费用系统，只做最小 authoritative payment record
+     - 后续 shield“是否消耗”、replacement/choice 可复用同一条记录路径
+   - 并行性：**可与 2 并行做设计，不建议并行改核心实现**
+
+4. **基础包 fixture 扩批（建立在 2/3 稳定后）**
+   - 文件边界：
+     - `shared/contracts/fixtures/*.fixture.json`
+     - `shared/contracts/normalized/card-logic.contracts.normalized.json`
+     - `tools/fixture-tools/src/*`
+     - `server/pkg/rules/dsl_handlers*.go`
+   - 测试边界：
+     - TS fixture gate
+     - Go contract/rules tests
+     - sandbox 中可提交/结算/回放
+   - 验收标准：
+     - 每批只扩 5-8 张基础包卡
+     - 不为扩卡引入 name-based 特判
+     - 每批都回写 docs 记录假设与 deferred 边界
+   - 并行性：**必须在 2/3 至少完成其一后再做**
+
+### 本轮完成情况
+
+- 已把 commit / history / revision / `FinishedAtRevision` 盖章逻辑从 `engine.go` 移到 submit pipeline + transition helper：
+  - 新增 `nextRevisionForCommit()`
+  - 新增 `appendCommitHistory()`
+  - 新增 `stampFinishedMatchRevision()`
+- 新增 guard，禁止 `engine.go` 再持有：
+  - `commitState`
+  - history append 写入
+  - `FinishedAtRevision` 直接赋值
+- 新增 transition 级测试，锁定：
+  - revision linkage
+  - history clone 语义
+  - match terminal revision stamping
+- 当前遗留：
+  - JS 侧本地依赖尚未安装，`web` / `tools/fixture-tools` 的 `npm test` 需在安装依赖后重跑。
+
 ## 2026-04-02 第十九次补记（Day1~Day5 串行落地）
 
 - 按“基础包优先、扩展后置”口径，已串行落地 4 个收口项（对应本轮实现 commit：`d7ae754`）：

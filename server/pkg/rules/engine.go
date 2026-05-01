@@ -264,6 +264,7 @@ func buildOperationWithLookup(state GameState, action Action, sourceLookup cardO
 		TargetPlayerID: action.TargetPlayerID,
 		TargetCardID:   action.TargetCardID,
 		Status:         OperationStatusBuilt,
+		Choices:        cloneChoiceRecords(action.Choices),
 	}
 
 	switch action.Kind {
@@ -684,48 +685,6 @@ func applyPhaseAdvance(state GameState, operation Operation) GameState {
 	resetPriorityWindow(&working.Turn, working.Turn.ActivePlayerID, PriorityWindowAction)
 	requestContinuousRecalculation(&working)
 	return working
-}
-
-func commitState(state GameState, action Action, operation Operation, event Event, projector *ProjectionEngine) SubmitResult {
-	committed := cloneGameState(state)
-
-	revision := Revision{
-		Number:      committed.Revision.Number + 1,
-		ActionID:    action.ID,
-		OperationID: operation.ID,
-		EventID:     event.ID,
-	}
-
-	event.RevisionNumber = revision.Number
-
-	committed.History.Actions = append(committed.History.Actions, action)
-	committed.History.Operations = append(committed.History.Operations, operation)
-	committed.History.Events = append(committed.History.Events, cloneEvent(event))
-	committed.History.Revisions = append(committed.History.Revisions, revision)
-	committed.Revision = revision
-	if committed.Match.Status == MatchStatusFinished && committed.Match.FinishedAtRevision == 0 {
-		committed.Match.FinishedAtRevision = revision.Number
-	}
-	committed = maybeRecalculateContinuousEffects(committed, revision)
-	views := ProjectionBundle{}
-	if projector != nil {
-		views = projector.Generate(committed)
-	}
-
-	result := SubmitResult{
-		State:     committed,
-		Operation: operation,
-		Event:     event,
-		Revision:  revision,
-		Views:     views,
-	}
-	result.Accepted = NewActionAccepted(action, operation, event, revision)
-	result.Patched = NewStatePatchedForPlayer(views, action.ActorID, event, revision)
-	if len(views.Players) != 0 || views.Spectator.GameID != "" {
-		result.Dispatch = BuildCommitDispatchBatch(result)
-	}
-
-	return result
 }
 
 func hasActionID(state GameState, actionID string) bool {
