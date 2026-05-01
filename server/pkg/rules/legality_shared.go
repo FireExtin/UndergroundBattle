@@ -66,5 +66,21 @@ func cardMatchesTargetCondition(sourceCard CardState, targetCard CardState, cond
 		}
 	}
 
+	if !matchesTargetRegionRequirement(sourceCard, targetCard.RegionCardID, condition.RegionID) {
+		return false
+	}
+
 	return true
+}
+
+func matchesTargetRegionRequirement(sourceCard CardState, actualRegionID string, requiredRegionID string) bool {
+	if requiredRegionID == "" {
+		return true
+	}
+
+	if requiredRegionID == targetRegionScopeSource {
+		return sourceCard.RegionCardID != "" && actualRegionID == sourceCard.RegionCardID
+	}
+
+	return actualRegionID == requiredRegionID
 }

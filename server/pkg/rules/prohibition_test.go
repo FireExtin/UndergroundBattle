@@ -208,6 +208,71 @@ func TestProhibitionCheckerMatchesTargetCategory(t *testing.T) {
 	}
 }
 
+func TestProhibitionCheckerMatchesDynamicSourceRegionCondition(t *testing.T) {
+	state := NewGameState(InitialStateConfig{
+		GameID:         "test-source-region",
+		ActivePlayerID: "P1",
+		PlayerIDs:      []string{"P1", "P2"},
+	})
+	state.Board.Cards = []CardState{
+		{
+			CardID:       "XQ01-1",
+			DefinitionID: "XQ01",
+			Zone:         CardZoneTable,
+			Exhausted:    false,
+			Destroyed:    false,
+			ControllerID: "P1",
+			RegionCardID: "region-1",
+		},
+	}
+
+	checker := NewScopedProhibitionChecker([]ProhibitionRule{
+		{
+			SourceDefinitionID: "XQ01",
+			SourceCondition: CardCondition{
+				Zone:         CardZoneTable,
+				Ready:        true,
+				NotDestroyed: true,
+			},
+			Scope: ProhibitionScope{
+				Kind: ProhibitionScopeOpponentsOnly,
+			},
+			TargetCategory: TargetCategory{
+				ActionKinds: []ActionKind{ActionKindDeclareAttack},
+				Condition: &TargetCondition{
+					Kinds:        []CardKind{CardKindCharacter},
+					RegionID:     targetRegionScopeSource,
+					AbilityKinds: []string{"action"},
+				},
+			},
+		},
+	})
+
+	sameRegion := checker.Check(state, "P2", TargetCategory{
+		ActionKinds: []ActionKind{ActionKindDeclareAttack},
+		Condition: &TargetCondition{
+			Kinds:        []CardKind{CardKindCharacter},
+			RegionID:     "region-1",
+			AbilityKinds: []string{"action"},
+		},
+	})
+	if !sameRegion.Prohibited {
+		t.Fatal("expected same-region target category to be prohibited")
+	}
+
+	otherRegion := checker.Check(state, "P2", TargetCategory{
+		ActionKinds: []ActionKind{ActionKindDeclareAttack},
+		Condition: &TargetCondition{
+			Kinds:        []CardKind{CardKindCharacter},
+			RegionID:     "region-2",
+			AbilityKinds: []string{"action"},
+		},
+	})
+	if otherRegion.Prohibited {
+		t.Fatal("expected different-region target category not to be prohibited")
+	}
+}
+
 // TestProhibitionCheckerMultipleSources verifies that the checker handles multiple prohibition sources.
 func TestProhibitionCheckerMultipleSources(t *testing.T) {
 	state := NewGameState(InitialStateConfig{

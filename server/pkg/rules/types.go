@@ -160,6 +160,8 @@ const (
 
 const (
 	markerTypeResource = "resource"
+
+	targetRegionScopeSource = "source_region"
 )
 
 // CardNumericStats stores printed and effective numeric values used by the minimal rules kernel.

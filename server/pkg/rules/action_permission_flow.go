@@ -84,6 +84,7 @@ func evaluateActionAbilityKindProhibition(
 		Condition: &TargetCondition{
 			Kinds:        []CardKind{targetCard.Kind},
 			Keywords:     targetKeywords,
+			RegionID:     targetCard.RegionCardID,
 			AbilityKinds: abilityKinds,
 		},
 	}
@@ -109,12 +110,8 @@ func evaluateActionAbilityKindProhibition(
 
 func abilityKindsForActionKind(kind ActionKind) []string {
 	switch kind {
-	case ActionKindRevealCard,
-		ActionKindInspectCard,
-		ActionKindSetFaceDown,
-		ActionKindDeclareAttack,
-		ActionKindDeclareInvestigation,
-		ActionKindQueueOperation:
+	case ActionKindDeclareAttack,
+		ActionKindDeclareInvestigation:
 		return []string{"action"}
 	default:
 		return nil

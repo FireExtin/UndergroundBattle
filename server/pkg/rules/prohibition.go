@@ -36,7 +36,7 @@ func (c *ScopedProhibitionChecker) Check(
 			}
 
 			// Check if the target category matches
-			if !c.matchesTargetCategory(targetCategory, rule.TargetCategory) {
+			if !c.matchesTargetCategory(card, targetCategory, rule.TargetCategory) {
 				continue
 			}
 
@@ -73,6 +73,7 @@ func (c *ScopedProhibitionChecker) matchesScope(
 
 // matchesTargetCategory checks if the target category matches the prohibition rule.
 func (c *ScopedProhibitionChecker) matchesTargetCategory(
+	sourceCard CardState,
 	actual TargetCategory,
 	prohibited TargetCategory,
 ) bool {
@@ -118,7 +119,7 @@ func (c *ScopedProhibitionChecker) matchesTargetCategory(
 		if actual.Condition == nil {
 			return false
 		}
-		if !matchesProhibitionTargetCondition(*actual.Condition, *prohibited.Condition) {
+		if !matchesProhibitionTargetCondition(sourceCard, *actual.Condition, *prohibited.Condition) {
 			return false
 		}
 	}
@@ -126,7 +127,7 @@ func (c *ScopedProhibitionChecker) matchesTargetCategory(
 	return true
 }
 
-func matchesProhibitionTargetCondition(actual TargetCondition, prohibited TargetCondition) bool {
+func matchesProhibitionTargetCondition(sourceCard CardState, actual TargetCondition, prohibited TargetCondition) bool {
 	if len(prohibited.Kinds) > 0 && !cardKindSlicesOverlap(actual.Kinds, prohibited.Kinds) {
 		return false
 	}
@@ -135,7 +136,7 @@ func matchesProhibitionTargetCondition(actual TargetCondition, prohibited Target
 		return false
 	}
 
-	if prohibited.RegionID != "" && actual.RegionID != prohibited.RegionID {
+	if !matchesTargetRegionRequirement(sourceCard, actual.RegionID, prohibited.RegionID) {
 		return false
 	}
 
