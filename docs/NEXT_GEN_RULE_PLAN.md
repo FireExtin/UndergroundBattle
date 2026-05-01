@@ -4,6 +4,51 @@
 - 当前已经有：最小规则核、priority/stack、projection、continuous effects、`inspect` 的 permission hook、`dealDamage` 对 `EffectiveStats.Defense` 的最小致命判定，以及第一批角色动作入口 `declare_attack / declare_investigation`。
 - 如果目标是“继续稳定接真实卡 DSL，并形成一个可扩展 alpha”，还差 4 个明确里程碑。做完这 4 个就够继续推进主卡池，不需要先上完整 dependency engine。
 
+## 2026-05-01 第二十二次补记（XQ01 region-scoped prerequisite 收口）
+
+### 今日 iteration
+
+- **Iteration 3（已完成）**：补齐 `XQ01` prerequisite 剩余的“本地区”约束，让 action-permission prohibition 框架能够表达 **source region scoped** 规则，但仍不直接落 production `XQ01`。
+
+### 本轮落地
+
+- prohibition target condition 新增动态地区作用域语义：
+  - `RegionID = source_region`
+  - 含义：目标必须与来源卡位于同一 `RegionCardID`
+- `action_permission_flow` 现在会把 acted card 的 `RegionCardID` 带入 prohibition target condition。
+- action ability 映射已收窄：
+  - 当前只把 `declare_attack`
+  - `declare_investigation`
+  - 视为已支持的 `"action"` ability
+- 已覆盖的 prerequisite 行为：
+  - 同地区角色会被 prohibition 命中
+  - 不同地区不会误伤
+  - 非当前已支持的动作（如 `inspect`）不会被误判为 action ability
+  - 来源横置后限制失效
+
+### 文件边界
+
+- `server/pkg/rules/types.go`
+- `server/pkg/rules/legality_shared.go`
+- `server/pkg/rules/prohibition.go`
+- `server/pkg/rules/action_permission_flow.go`
+- `server/pkg/rules/legality_shared_test.go`
+- `server/pkg/rules/prohibition_test.go`
+- `server/pkg/rules/action_permission_flow_test.go`
+
+### 验收结果
+
+- 已补齐 “`AbilityKinds` + `RegionID`” 的最小 prerequisite 闭环
+- 仍**未**直接启用 production `XQ01`，原因：
+  - 当前引擎尚未有完整 trigger ability model
+  - 若现在落 production，会形成“只封行动能力、不封触发能力”的半实现牌义
+
+### 更新后的优先级
+
+1. **choice protocol V0**（把“可选支付/可选消耗”从自动执行提升为显式可回放选择）
+2. **基础包 fixture 扩批**
+3. **production `XQ01` 接线**（等 trigger ability model 至少有最小 authoritative 表达后再启用）
+
 ## 2026-05-01 第二十一次补记（Payment / choice hook V0）
 
 ### 今日 iteration
