@@ -181,18 +181,24 @@ func TestAppendCommitHistoryTransitionClonesOperationAndEvent(t *testing.T) {
 		Seed:           58,
 	})
 	source := &CardOperationSource{CardID: "CARD-1"}
+	action := Action{
+		ID:      "act-history-1",
+		Choices: []ChoiceRecord{{Kind: firstPlayerPrivilegePaymentChoiceKind, PlayerID: "P1", OptionID: firstPlayerPrivilegePaymentChoiceOption, Accepted: true}},
+	}
 	operation := Operation{
 		ID:      "op-history-1",
 		Source:  source,
 		Payment: &PaymentRecord{Kind: PaymentKindMarker, MarkerType: markerTypeResource, Amount: 1},
+		Choices: []ChoiceRecord{{Kind: firstPlayerPrivilegePaymentChoiceKind, PlayerID: "P1", OptionID: firstPlayerPrivilegePaymentChoiceOption, Accepted: true}},
 	}
 	event := Event{
 		ID:      "evt-history-1",
 		Payment: &PaymentRecord{Kind: PaymentKindMarker, MarkerType: markerTypeResource, Amount: 1},
+		Choices: []ChoiceRecord{{Kind: firstPlayerPrivilegePaymentChoiceKind, PlayerID: "P1", OptionID: firstPlayerPrivilegePaymentChoiceOption, Accepted: true}},
 	}
 	revision := Revision{Number: 1, ActionID: "act-history-1", OperationID: operation.ID, EventID: event.ID}
 
-	appendCommitHistory(&state, Action{ID: "act-history-1"}, operation, event, revision)
+	appendCommitHistory(&state, action, operation, event, revision)
 
 	if len(state.History.Actions) != 1 || state.History.Actions[0].ID != "act-history-1" {
 		t.Fatalf("history actions = %#v, want committed action", state.History.Actions)
@@ -210,11 +216,17 @@ func TestAppendCommitHistoryTransitionClonesOperationAndEvent(t *testing.T) {
 		t.Fatalf("state revision = %d, want %d", state.Revision.Number, revision.Number)
 	}
 
+	action.Choices[0].OptionID = "mutated-choice"
 	operation.ID = "mutated-op"
 	source.CardID = "mutated-card"
 	event.ID = "mutated-evt"
 	operation.Payment.MarkerType = "mutated-payment"
 	event.Payment.MarkerType = "mutated-payment"
+	operation.Choices[0].OptionID = "mutated-choice"
+	event.Choices[0].OptionID = "mutated-choice"
+	if state.History.Actions[0].Choices == nil || state.History.Actions[0].Choices[0].OptionID != firstPlayerPrivilegePaymentChoiceOption {
+		t.Fatalf("history action choices should be deep-cloned, got %#v", state.History.Actions[0].Choices)
+	}
 	if state.History.Operations[0].ID != "op-history-1" {
 		t.Fatalf("history operation should be detached from caller mutation, got %q", state.History.Operations[0].ID)
 	}
@@ -224,11 +236,17 @@ func TestAppendCommitHistoryTransitionClonesOperationAndEvent(t *testing.T) {
 	if state.History.Operations[0].Payment == nil || state.History.Operations[0].Payment.MarkerType != markerTypeResource {
 		t.Fatalf("history operation payment should be deep-cloned, got %#v", state.History.Operations[0].Payment)
 	}
+	if state.History.Operations[0].Choices == nil || state.History.Operations[0].Choices[0].OptionID != firstPlayerPrivilegePaymentChoiceOption {
+		t.Fatalf("history operation choices should be deep-cloned, got %#v", state.History.Operations[0].Choices)
+	}
 	if state.History.Events[0].ID != "evt-history-1" {
 		t.Fatalf("history event should be detached from caller mutation, got %q", state.History.Events[0].ID)
 	}
 	if state.History.Events[0].Payment == nil || state.History.Events[0].Payment.MarkerType != markerTypeResource {
 		t.Fatalf("history event payment should be deep-cloned, got %#v", state.History.Events[0].Payment)
+	}
+	if state.History.Events[0].Choices == nil || state.History.Events[0].Choices[0].OptionID != firstPlayerPrivilegePaymentChoiceOption {
+		t.Fatalf("history event choices should be deep-cloned, got %#v", state.History.Events[0].Choices)
 	}
 }
 

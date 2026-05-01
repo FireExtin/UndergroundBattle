@@ -69,7 +69,15 @@ describe("buildActionFromPreset", () => {
     expect(action).toMatchObject({
       id: "act-web-p1-9",
       actorId: "P1",
-      kind: "use_first_player_privilege"
+      kind: "use_first_player_privilege",
+      choices: [
+        {
+          kind: "pay_first_player_privilege_cost",
+          playerId: "P1",
+          optionId: "resource_marker",
+          accepted: true
+        }
+      ]
     });
   });
 });

@@ -34,6 +34,13 @@ export const liveActionPresets: LiveActionPreset[] = [
   { id: "useFirstPlayerPrivilege", label: "Use First-Player Privilege" }
 ];
 
+const firstPlayerPrivilegePaymentChoice = (playerId: Exclude<ViewerId, "spectator">) => ({
+  kind: "pay_first_player_privilege_cost",
+  playerId,
+  optionId: "resource_marker",
+  accepted: true
+});
+
 export async function fetchDebuggerMessages(): Promise<DebuggerProtocolEnvelope[]> {
   const response = await fetch("/api/debugger/messages", undefined);
   return readJSONResponse<DebuggerProtocolEnvelope[]>(response);
@@ -136,7 +143,8 @@ export function buildActionFromPreset(
     case "useFirstPlayerPrivilege":
       return {
         ...action,
-        kind: "use_first_player_privilege"
+        kind: "use_first_player_privilege",
+        choices: [firstPlayerPrivilegePaymentChoice(viewerId)]
       };
   }
 }

@@ -264,6 +264,7 @@ func buildOperationWithLookup(state GameState, action Action, sourceLookup cardO
 		TargetPlayerID: action.TargetPlayerID,
 		TargetCardID:   action.TargetCardID,
 		Status:         OperationStatusBuilt,
+		Choices:        cloneChoiceRecords(action.Choices),
 	}
 
 	switch action.Kind {

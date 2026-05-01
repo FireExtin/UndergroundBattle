@@ -70,6 +70,14 @@ type PaymentRecord struct {
 	Amount     int         `json:"amount,omitempty"`
 }
 
+// ChoiceRecord stores one minimal, replayable decision attached to an action pipeline.
+type ChoiceRecord struct {
+	Kind     string `json:"kind"`
+	PlayerID string `json:"playerId,omitempty"`
+	OptionID string `json:"optionId,omitempty"`
+	Accepted bool   `json:"accepted,omitempty"`
+}
+
 // EventKind identifies the committed state transition emitted by the rules pipeline.
 type EventKind string
 
@@ -254,16 +262,17 @@ type FullState = GameState
 
 // Action is the player intent submitted into the authoritative pipeline.
 type Action struct {
-	ID             string     `json:"id"`
-	ActorID        string     `json:"actorId"`
-	Kind           ActionKind `json:"kind"`
-	CardID         string     `json:"cardId,omitempty"`
-	TargetPlayerID string     `json:"targetPlayerId,omitempty"`
-	TargetCardID   string     `json:"targetCardId,omitempty"`
-	MarkerType     string     `json:"markerType,omitempty"`
-	MarkerAmount   int        `json:"markerAmount,omitempty"`
-	OperationLabel string     `json:"operationLabel,omitempty"`
-	RandomMax      int        `json:"randomMax,omitempty"`
+	ID             string         `json:"id"`
+	ActorID        string         `json:"actorId"`
+	Kind           ActionKind     `json:"kind"`
+	CardID         string         `json:"cardId,omitempty"`
+	TargetPlayerID string         `json:"targetPlayerId,omitempty"`
+	TargetCardID   string         `json:"targetCardId,omitempty"`
+	MarkerType     string         `json:"markerType,omitempty"`
+	MarkerAmount   int            `json:"markerAmount,omitempty"`
+	OperationLabel string         `json:"operationLabel,omitempty"`
+	RandomMax      int            `json:"randomMax,omitempty"`
+	Choices        []ChoiceRecord `json:"choices,omitempty"`
 }
 
 // EffectSpec is the executable subset of the shared CardLogic effect payload copied into Go-side operations.
@@ -311,6 +320,7 @@ type Operation struct {
 	RandomMax      int                  `json:"randomMax,omitempty"`
 	NextPhase      PhaseName            `json:"nextPhase,omitempty"`
 	Payment        *PaymentRecord       `json:"payment,omitempty"`
+	Choices        []ChoiceRecord       `json:"choices,omitempty"`
 	Source         *CardOperationSource `json:"source,omitempty"`
 }
 
@@ -336,6 +346,7 @@ type Event struct {
 	StackDepth       int                `json:"stackDepth"`
 	RandomValue      *int               `json:"randomValue,omitempty"`
 	Payment          *PaymentRecord     `json:"payment,omitempty"`
+	Choices          []ChoiceRecord     `json:"choices,omitempty"`
 	StepEnded        bool               `json:"stepEnded,omitempty"`
 	TargetPlayerID   string             `json:"targetPlayerId,omitempty"` // 目标玩家ID
 }

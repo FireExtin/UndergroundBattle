@@ -139,7 +139,7 @@ func appendCommitHistory(state *GameState, action Action, operation Operation, e
 		return
 	}
 
-	state.History.Actions = append(state.History.Actions, action)
+	state.History.Actions = append(state.History.Actions, cloneAction(action))
 	state.History.Operations = append(state.History.Operations, cloneOperation(operation))
 	state.History.Events = append(state.History.Events, cloneEvent(event))
 	state.History.Revisions = append(state.History.Revisions, revision)

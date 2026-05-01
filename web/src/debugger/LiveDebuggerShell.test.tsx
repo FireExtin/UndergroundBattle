@@ -265,7 +265,15 @@ describe("LiveDebuggerShell", () => {
     expect(privilegeBody).toMatchObject({
       id: "act-web-p1-4",
       actorId: "P1",
-      kind: "use_first_player_privilege"
+      kind: "use_first_player_privilege",
+      choices: [
+        {
+          kind: "pay_first_player_privilege_cost",
+          playerId: "P1",
+          optionId: "resource_marker",
+          accepted: true
+        }
+      ]
     });
   });
 

@@ -15,6 +15,14 @@ export type Action = {
   randomMax?: number;
   markerType?: string;
   markerAmount?: number;
+  choices?: ChoiceRecord[];
+};
+
+export type ChoiceRecord = {
+  kind: string;
+  playerId?: string;
+  optionId?: string;
+  accepted?: boolean;
 };
 
 export type CardOperationSource = {
@@ -48,6 +56,7 @@ export type Operation = {
   nextPhase?: string;
   markerType?: string;
   markerAmount?: number;
+  choices?: ChoiceRecord[];
   source?: CardOperationSource;
 };
 
@@ -72,6 +81,7 @@ export type Event = {
   sourceCardId?: string;
   targetCardId?: string;
   appliedAmount?: number;
+  choices?: ChoiceRecord[];
 };
 
 export type Revision = {
