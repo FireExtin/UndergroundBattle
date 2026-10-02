@@ -9,7 +9,7 @@
   },
   "reviewsSource": {
     "path": "docs/factions/card-reviews.json",
-    "sha256": "e6c7354d1a98f49633683d83e85990dec450d8c8c0027f8022759afb44aae0ea"
+    "sha256": "3d7304748f692f9e9d93ae81e72c38cbddea8e0044676e4569613de0ebc9191a"
   },
   "coverageSource": {
     "path": "rust-game/data/faction-coverage.json",
@@ -17,7 +17,7 @@
   },
   "specificationsSource": {
     "path": "docs/factions/card-specifications.json",
-    "sha256": "4e419f0604160dd1bca30eb65523c4cc28e086c125fe84c9b8f5a90cb7edcdbd"
+    "sha256": "8ecd2bf04dfb92f82ee65774b9353ed212f40bfc894aa20384725e328b77313a"
   },
   "recoverySource": {
     "path": "docs/factions/source-recovery.json",
@@ -29981,7 +29981,7 @@
         "colorKey": "黑",
         "basicType": "角色"
       },
-      "abilitySummary": "持续 若本地区有其他本方罪犯角色，则街头劫匪获得临时势力1和防御力+1。",
+      "abilitySummary": "持续 若本地区有其他本方罪犯角色，则街头劫匪获得永久势力1和防御力+1。",
       "confirmedMechanismIds": [
         "continuous",
         "temporaryIcons"
