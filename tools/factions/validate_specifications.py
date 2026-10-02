@@ -35,6 +35,8 @@ def validate_specifications(specifications, coverage, index, recovery):
         fields = s["fields"]
         status = source["status"]
         require(s["cardId"] == i and FIELDS <= set(fields), "Incomplete field inventory: " + i)
+        require(fields["colorKey"] in {None, "黄", "绿", "蓝", "红", "灰", "白", "黑", "紫", "中立"},
+                "Unknown or noncanonical source color key: " + i)
         require(status in {COMPLETE, "blocked"}, "Unknown source completion status: " + i)
         require(source["basis"] == "directOriginalImageReview", "Locator cannot complete a source specification: " + i)
         e = evidence.get(source["evidenceId"], {})

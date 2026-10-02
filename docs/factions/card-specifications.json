@@ -673,6 +673,91 @@
       "blockedCardIds": [],
       "gameImplementationAccepted": false,
       "independentUiPlaytestStatus": "notRun"
+    },
+    {
+      "id": "B13",
+      "groups": [
+        "序曲黄绿蓝红灰白黑36张原图"
+      ],
+      "cardIds": [
+        "XQ01",
+        "XQ02",
+        "XQ05",
+        "XQ06",
+        "XQ07",
+        "XQ08",
+        "XQ09",
+        "XQ10",
+        "XQ11",
+        "XQ13",
+        "XQ14",
+        "XQ15",
+        "XQ16",
+        "XQ17",
+        "XQ18",
+        "XQ19",
+        "XQ20",
+        "XQ21",
+        "XQ22",
+        "XQ23",
+        "XQ24",
+        "XQ25",
+        "XQ26",
+        "XQ27",
+        "XQ28",
+        "XQ29",
+        "XQ30",
+        "XQ31",
+        "XQ32",
+        "XQ33",
+        "XQ34",
+        "XQ35",
+        "XQ36",
+        "XQ37",
+        "XQ38",
+        "XQ39"
+      ],
+      "completedCardIds": [
+        "XQ01",
+        "XQ02",
+        "XQ05",
+        "XQ06",
+        "XQ07",
+        "XQ08",
+        "XQ09",
+        "XQ10",
+        "XQ11",
+        "XQ13",
+        "XQ14",
+        "XQ15",
+        "XQ16",
+        "XQ17",
+        "XQ18",
+        "XQ19",
+        "XQ20",
+        "XQ21",
+        "XQ22",
+        "XQ23",
+        "XQ24",
+        "XQ25",
+        "XQ26",
+        "XQ27",
+        "XQ28",
+        "XQ29",
+        "XQ30",
+        "XQ31",
+        "XQ32",
+        "XQ33",
+        "XQ34",
+        "XQ35",
+        "XQ36",
+        "XQ37",
+        "XQ38",
+        "XQ39"
+      ],
+      "blockedCardIds": [],
+      "gameImplementationAccepted": false,
+      "independentUiPlaytestStatus": "notRun"
     }
   ],
   "openQuestions": {
@@ -1053,11 +1138,15 @@
       ]
     },
     "martialLawRedCostRing": {
-      "question": "JC064/JC128费用圆额外红色轮廓可直接观察，现有原文未确认独立游戏含义；保留几何事实，不擅加快速打出能力。",
+      "question": "基础/序曲若干费用圆有额外红色轮廓，可直接观察；现有原文未确认独立游戏含义。保留几何事实，不擅加快速打出能力。",
       "evidenceIds": [
         "card-JC064",
         "manual-draw-identity",
-        "card-JC128"
+        "card-JC128",
+        "card-XQ01",
+        "card-XQ07",
+        "card-XQ22",
+        "card-XQ26"
       ]
     }
   },
@@ -3282,7 +3371,7 @@
       },
       "fields": {
         "name": "切尔诺贝利",
-        "subtitle": "永远石棺",
+        "subtitle": "水泥石棺",
         "nameInk": "white",
         "colorKey": null,
         "basicType": "地区",
@@ -18083,7 +18172,7 @@
         "name": "黑猫",
         "subtitle": null,
         "nameInk": "white",
-        "colorKey": "中",
+        "colorKey": "中立",
         "basicType": "角色",
         "subtypes": [
           "猫",
@@ -18189,7 +18278,7 @@
         "name": "无形捣蛋精",
         "subtitle": null,
         "nameInk": "white",
-        "colorKey": "中",
+        "colorKey": "中立",
         "basicType": "角色",
         "subtypes": [
           "幽灵"
@@ -18297,7 +18386,7 @@
         "name": "好奇的黑客",
         "subtitle": "无知而无畏",
         "nameInk": "white",
-        "colorKey": "中",
+        "colorKey": "中立",
         "basicType": "角色",
         "subtypes": [
           "人类",
@@ -18393,7 +18482,7 @@
         "name": "备用资金",
         "subtitle": null,
         "nameInk": "white",
-        "colorKey": "中",
+        "colorKey": "中立",
         "basicType": "附属",
         "subtypes": [
           "资源"
@@ -18495,7 +18584,7 @@
         "name": "柯尔特巨蟒左轮",
         "subtitle": null,
         "nameInk": "white",
-        "colorKey": "中",
+        "colorKey": "中立",
         "basicType": "附属",
         "subtypes": [
           "装备",
@@ -18606,7 +18695,7 @@
         "name": "红眼航班",
         "subtitle": null,
         "nameInk": "white",
-        "colorKey": "中",
+        "colorKey": "中立",
         "basicType": "附属",
         "subtypes": [
           "资源",
@@ -18826,7 +18915,7 @@
         "name": "守秘人",
         "subtitle": null,
         "nameInk": "white",
-        "colorKey": "中",
+        "colorKey": "中立",
         "basicType": "角色",
         "subtypes": [
           "人类"
@@ -18930,7 +19019,7 @@
         "name": "庄严圣像",
         "subtitle": null,
         "nameInk": "white",
-        "colorKey": "中",
+        "colorKey": "中立",
         "basicType": "附属",
         "subtypes": [
           "雕像"
@@ -19037,7 +19126,7 @@
         "name": "空鸣御守",
         "subtitle": "忠将遗甲",
         "nameInk": "white",
-        "colorKey": "中",
+        "colorKey": "中立",
         "basicType": "角色/附属",
         "subtypes": [
           "装备",
@@ -19162,7 +19251,7 @@
         "name": "哈克·亚当斯",
         "subtitle": "通灵侦探",
         "nameInk": "gold",
-        "colorKey": "中",
+        "colorKey": "中立",
         "basicType": "角色",
         "subtypes": [
           "人类",
@@ -19271,7 +19360,7 @@
         "name": "饮魂者朱迪",
         "subtitle": "可靠的助手",
         "nameInk": "gold",
-        "colorKey": "中",
+        "colorKey": "中立",
         "basicType": "角色",
         "subtypes": [
           "吸血鬼",
@@ -19380,7 +19469,7 @@
         "name": "尼古拉斯·勒梅",
         "subtitle": "炼金术大师",
         "nameInk": "gold",
-        "colorKey": "中",
+        "colorKey": "中立",
         "basicType": "角色",
         "subtypes": [
           "人类",
@@ -19542,7 +19631,8 @@
         "bq-targets",
         "bq-keywords-1",
         "bq-keywords-2",
-        "bq-construct"
+        "bq-construct",
+        "manual-normal-play"
       ],
       "implementationDesignStatus": "readyForBoundedDesign",
       "openQuestionIds": [],
@@ -19575,6 +19665,18 @@
           "scenario": "在战场对抗",
           "expected": "没有能力图标，不凭0费/中立赋予额外调查、战斗或势力。",
           "status": "notRun"
+        },
+        {
+          "id": "JC125-04",
+          "scenario": "己方正常行动窗口，手中路人，零资产且无额外费用/增费限制",
+          "expected": "无忠诚需求、费用0；选择合法地区后正面打出，入堆叠等待响应，不先建立资产。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC125-05",
+          "scenario": "非己方标准行动窗口或有待完成选择",
+          "expected": "0费不会免时机限制，不得当快速行动直接结算。",
+          "status": "notRun"
         }
       ]
     },
@@ -19602,7 +19704,7 @@
         "name": "产业扩张",
         "subtitle": null,
         "nameInk": "white",
-        "colorKey": "中",
+        "colorKey": "中立",
         "basicType": "事务",
         "subtypes": [
           "策略"
@@ -19701,7 +19803,7 @@
         "name": "终局",
         "subtitle": null,
         "nameInk": "white",
-        "colorKey": "中",
+        "colorKey": "中立",
         "basicType": "事务",
         "subtypes": [
           "灾难"
@@ -19800,7 +19902,7 @@
         "name": "替罪羊",
         "subtitle": null,
         "nameInk": "white",
-        "colorKey": "中",
+        "colorKey": "中立",
         "basicType": "事务",
         "subtypes": [
           "策略"
@@ -19911,7 +20013,7 @@
         "name": "操控心智",
         "subtitle": null,
         "nameInk": "white",
-        "colorKey": "中",
+        "colorKey": "中立",
         "basicType": "事务",
         "subtypes": [
           "法术",
@@ -20016,7 +20118,7 @@
         "name": "深入研究",
         "subtitle": null,
         "nameInk": "white",
-        "colorKey": "中",
+        "colorKey": "中立",
         "basicType": "事务",
         "subtypes": [
           "研究"
@@ -20114,7 +20216,7 @@
         "name": "空投物资",
         "subtitle": null,
         "nameInk": "white",
-        "colorKey": "中",
+        "colorKey": "中立",
         "basicType": "事务",
         "subtypes": [
           "策略"
@@ -20212,7 +20314,7 @@
         "name": "构筑静态障壁",
         "subtitle": null,
         "nameInk": "white",
-        "colorKey": "中",
+        "colorKey": "中立",
         "basicType": "事务",
         "subtypes": [
           "法术",
@@ -20316,7 +20418,7 @@
         "name": "操控死尸",
         "subtitle": null,
         "nameInk": "white",
-        "colorKey": "中",
+        "colorKey": "中立",
         "basicType": "事务",
         "subtypes": [
           "法术",
@@ -20422,7 +20524,7 @@
         "name": "审判",
         "subtitle": null,
         "nameInk": "white",
-        "colorKey": "中",
+        "colorKey": "中立",
         "basicType": "事务",
         "subtypes": [
           "灾难"
@@ -20514,7 +20616,7 @@
         "name": "余震",
         "subtitle": null,
         "nameInk": "white",
-        "colorKey": "中",
+        "colorKey": "中立",
         "basicType": "事务",
         "subtypes": [
           "灾难"
@@ -29448,6 +29550,225 @@
         }
       ]
     },
+    "XQ01": {
+      "cardId": "XQ01",
+      "batchId": "B13",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/XQ01 联会禁音使.jpg",
+        "imageSha256": "90cc8d87ab31e7e6ed4aaf6bec29f840494235d1273e7b18ff8ed4eb3d93ad1c",
+        "evidenceId": "card-XQ01",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "01/52",
+        "seriesSymbolObserved": "preludeKnot",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "联会禁言使",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "黄",
+        "basicType": "角色",
+        "subtypes": [
+          "人类",
+          "法师"
+        ],
+        "printedCollectorCode": "01/52",
+        "seriesSymbol": "preludeKnot",
+        "printedCost": 3,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "黄",
+            "count": 2
+          }
+        ],
+        "domains": [
+          {
+            "id": "mind",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "【持续】只要联会禁言使未横置，所有本地区的角色不能发动触发能力和行动能力。"
+        ],
+        "additionalPrintedSymbols": [
+          {
+            "kind": "costCircleRedOutline",
+            "description": "费用圆额外红色轮廓，独立游戏含义待原规则确认；不擅加快速打出能力。",
+            "status": "confirmed"
+          }
+        ]
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "【持续】只要联会禁言使未横置，所有本地区的角色不能发动触发能力和行动能力。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "exhaust",
+        "continuous"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "needsRuling",
+      "openQuestionIds": [
+        "martialLawRedCostRing"
+      ],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "XQ01-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "XQ02": {
+      "cardId": "XQ02",
+      "batchId": "B13",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/XQ02 轮回秘仪.jpg",
+        "imageSha256": "fa16c2cc3c0563676d03ec78156b77d8f9928e61adea25bb7af879ab67755a5c",
+        "evidenceId": "card-XQ02",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "02/52",
+        "seriesSymbolObserved": "preludeKnot",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "轮回秘仪",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "黄",
+        "basicType": "事务",
+        "subtypes": [
+          "法术",
+          "命运"
+        ],
+        "printedCollectorCode": "02/52",
+        "seriesSymbol": "preludeKnot",
+        "printedCost": 3,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "黄",
+            "count": 1
+          }
+        ],
+        "domains": [
+          {
+            "id": "stars",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "【标准行动】将轮回秘仪和目标玩家墓地中的所有牌洗入其拥有者的牌库。遏制1。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "【标准行动】将轮回秘仪和目标玩家墓地中的所有牌洗入其拥有者的牌库。遏制1。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "graveRecovery",
+        "deckChoice",
+        "repress"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "XQ02-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
     "XQ03": {
       "cardId": "XQ03",
       "batchId": "B03",
@@ -29703,6 +30024,806 @@
         }
       ]
     },
+    "XQ05": {
+      "cardId": "XQ05",
+      "batchId": "B13",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/XQ05 天火的捷列娃.jpg",
+        "imageSha256": "7555218e39f012a3010e817e4d2cd92b9955e8c57f9888e5e2d5391ff406c30f",
+        "evidenceId": "card-XQ05",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "05/52",
+        "seriesSymbolObserved": "preludeKnot",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "天火的捷列娃",
+        "subtitle": "“圣焰”",
+        "nameInk": "gold",
+        "colorKey": "黄",
+        "basicType": "角色",
+        "subtypes": [
+          "人类",
+          "法师"
+        ],
+        "printedCollectorCode": "05/52",
+        "seriesSymbol": "preludeKnot",
+        "printedCost": 5,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "黄",
+            "count": 3
+          }
+        ],
+        "domains": [
+          {
+            "id": "holy",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 1,
+          "combat": 2,
+          "influence": 1
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 2,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "领袖"
+        ],
+        "printedRuleTextLines": [
+          "领袖",
+          "【触发】当天火的捷列娃或另一个本方法师角色进场时，横置目标角色。该能力每回合只能发动一次。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "领袖",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "【触发】当天火的捷列娃或另一个本方法师角色进场时，横置目标角色。该能力每回合只能发动一次。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "leader",
+        "exhaust",
+        "priority",
+        "uniqueInPlay"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "XQ05-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "XQ06": {
+      "cardId": "XQ06",
+      "batchId": "B13",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/XQ06 入梦的费南迪尔.jpg",
+        "imageSha256": "85b76a3bfc02282271d8a34451d8c456e8951bb97737162c069cb5c212fb4a7a",
+        "evidenceId": "card-XQ06",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "06/52",
+        "seriesSymbolObserved": "preludeKnot",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "入梦的费南迪尔",
+        "subtitle": "捕梦者",
+        "nameInk": "gold",
+        "colorKey": "黄",
+        "basicType": "角色",
+        "subtypes": [
+          "人类",
+          "法师"
+        ],
+        "printedCollectorCode": "06/52",
+        "seriesSymbol": "preludeKnot",
+        "printedCost": 6,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "黄",
+            "count": 3
+          }
+        ],
+        "domains": [
+          {
+            "id": "stars",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 1,
+          "combat": 2,
+          "influence": 1
+        },
+        "temporaryIcons": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "领袖",
+          "灵体"
+        ],
+        "printedRuleTextLines": [
+          "领袖　灵体",
+          "【持续】防止入梦的费南迪尔将受到的所有非战斗伤害。",
+          "【进场触发】将位于本地区且已横置的目标角色封印在本方秘社上。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "领袖　灵体",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "【持续】防止入梦的费南迪尔将受到的所有非战斗伤害。",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-3",
+          "kind": "sourceTextOnly",
+          "printedText": "【进场触发】将位于本地区且已横置的目标角色封印在本方秘社上。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "leader",
+        "spirit",
+        "damagePrevention",
+        "seal",
+        "society",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "XQ06-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "XQ07": {
+      "cardId": "XQ07",
+      "batchId": "B13",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/XQ07 圣水.jpg",
+        "imageSha256": "944a254795fc17e946f7150de9a47649d8c6efa3006770850447503b06a22df9",
+        "evidenceId": "card-XQ07",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "07/52",
+        "seriesSymbolObserved": "preludeKnot",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "圣水",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "绿",
+        "basicType": "附属",
+        "subtypes": [
+          "装备",
+          "物品"
+        ],
+        "printedCollectorCode": "07/52",
+        "seriesSymbol": "preludeKnot",
+        "printedCost": 1,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "绿",
+            "count": 1
+          }
+        ],
+        "domains": [
+          {
+            "id": "holy",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "结附于目标本方角色",
+          "【快速行动】牺牲圣水：所有位于本地区，且具有魔法领域图标的角色，其印刷防御力成为1直到回合结束。"
+        ],
+        "additionalPrintedSymbols": [
+          {
+            "kind": "costCircleRedOutline",
+            "description": "费用圆额外红色轮廓，独立游戏含义待原规则确认；不擅加快速打出能力。",
+            "status": "confirmed"
+          }
+        ]
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "结附于目标本方角色",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "【快速行动】牺牲圣水：所有位于本地区，且具有魔法领域图标的角色，其印刷防御力成为1直到回合结束。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "attachment",
+        "sacrifice",
+        "continuous",
+        "priority"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "needsRuling",
+      "openQuestionIds": [
+        "martialLawRedCostRing"
+      ],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "XQ07-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ],
+      "designNotes": [
+        "改变印刷防御至1，不等于覆盖所有后续防御修正；所有同地区带领域角色均受影响。"
+      ]
+    },
+    "XQ08": {
+      "cardId": "XQ08",
+      "batchId": "B13",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/XQ08 银弹爆头.jpg",
+        "imageSha256": "1c906d7848aa0ad019e0cfa10ce4d0a13375eff772de5a553a6dd52d25473ff4",
+        "evidenceId": "card-XQ08",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "08/52",
+        "seriesSymbolObserved": "preludeKnot",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "银弹爆头",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "绿",
+        "basicType": "事务",
+        "subtypes": [
+          "战术"
+        ],
+        "printedCollectorCode": "08/52",
+        "seriesSymbol": "preludeKnot",
+        "printedCost": 3,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "绿",
+            "count": 1
+          }
+        ],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "只能在行动阶段打出",
+          "【快速行动】消灭目标非人类角色。若因此效果消灭的角色是吸血鬼，则你可以在其所在地区上放置一个本方势力标志。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "只能在行动阶段打出",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "【快速行动】消灭目标非人类角色。若因此效果消灭的角色是吸血鬼，则你可以在其所在地区上放置一个本方势力标志。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "confrontation",
+        "priority"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "XQ08-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "XQ09": {
+      "cardId": "XQ09",
+      "batchId": "B13",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/XQ09 临时征召.jpg",
+        "imageSha256": "b4fe2621527fa776ddccfce6d1111b644f78f6be81cb77fa178a94d0c8cdf78c",
+        "evidenceId": "card-XQ09",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "09/50",
+        "seriesSymbolObserved": "preludeKnot",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "临时征召",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "绿",
+        "basicType": "事务",
+        "subtypes": [
+          "策略"
+        ],
+        "printedCollectorCode": "09/50",
+        "seriesSymbol": "preludeKnot",
+        "printedCost": 4,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "绿",
+            "count": 2
+          }
+        ],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "【快速行动】将目标本方暗藏者翻面，且不需支付其费用。在回合结束时，若因此效果进场的角色仍然在场，将其翻面为暗藏者。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "【快速行动】将目标本方暗藏者翻面，且不需支付其费用。在回合结束时，若因此效果进场的角色仍然在场，将其翻面为暗藏者。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "hidden",
+        "priority"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "XQ09-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "XQ10": {
+      "cardId": "XQ10",
+      "batchId": "B13",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/XQ10 邪物克星.jpg",
+        "imageSha256": "43a47e8760c1aa31ea29ce2448c0ade3ee06a70db61779f10e2c3635c1be89ad",
+        "evidenceId": "card-XQ10",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "10/52",
+        "seriesSymbolObserved": "preludeKnot",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "邪物克星",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "绿",
+        "basicType": "角色",
+        "subtypes": [
+          "人类",
+          "猎手"
+        ],
+        "printedCollectorCode": "10/52",
+        "seriesSymbol": "preludeKnot",
+        "printedCost": 4,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "绿",
+            "count": 1
+          }
+        ],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 2,
+          "influence": 1
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 2,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "撤回"
+        ],
+        "printedRuleTextLines": [
+          "撤回",
+          "【手牌触发】当对手的卡牌或能力令你弃掉邪物克星时，你可以将其放置进场，且置于地区一。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "撤回",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "【手牌触发】当对手的卡牌或能力令你弃掉邪物克星时，你可以将其放置进场，且置于地区一。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "combatTraits",
+        "handAbility",
+        "deckChoice"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "XQ10-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "XQ11": {
+      "cardId": "XQ11",
+      "batchId": "B13",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/XQ11 伊丽莎白，“知更鸟”.jpg",
+        "imageSha256": "e98b9c77d065322251657f393e0ce9f61835dd8e90728f7221a702c579f2bd6c",
+        "evidenceId": "card-XQ11",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "11/52",
+        "seriesSymbolObserved": "preludeKnot",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "伊丽莎白，“知更鸟”",
+        "subtitle": "“猛禽”战术小组",
+        "nameInk": "gold",
+        "colorKey": "绿",
+        "basicType": "角色",
+        "subtypes": [
+          "人类",
+          "猎手"
+        ],
+        "printedCollectorCode": "11/52",
+        "seriesSymbol": "preludeKnot",
+        "printedCost": 3,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "绿",
+            "count": 1
+          }
+        ],
+        "domains": [
+          {
+            "id": "blood",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "撤回",
+          "杀伤1"
+        ],
+        "printedRuleTextLines": [
+          "撤回　杀伤1",
+          "【触发】当伊丽莎白，“知更鸟”进入一个地区时，你可以将其横置，若你如此做，消灭位于本地区，且印刷防御力大于或等于3的目标角色。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "撤回　杀伤1",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "【触发】当伊丽莎白，“知更鸟”进入一个地区时，你可以将其横置，若你如此做，消灭位于本地区，且印刷防御力大于或等于3的目标角色。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "combatTraits",
+        "exhaust",
+        "priority",
+        "uniqueInPlay"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "XQ11-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
     "XQ12": {
       "cardId": "XQ12",
       "batchId": "B03",
@@ -29830,6 +30951,3021 @@
           "id": "XQ12-04",
           "scenario": "指定玩家无手牌",
           "expected": "不能虚构弃牌或以无手牌自动判负。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "XQ13": {
+      "cardId": "XQ13",
+      "batchId": "B13",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/XQ13 焚血之道.jpg",
+        "imageSha256": "07656ef4e3406cc371ce5202fb88c64b68aec32cdc22e0adf660de41e23c836a",
+        "evidenceId": "card-XQ13",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "13/52",
+        "seriesSymbolObserved": "preludeKnot",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "焚血之道",
+        "subtitle": null,
+        "nameInk": "gold",
+        "colorKey": "蓝",
+        "basicType": "附属",
+        "subtypes": [
+          "道途",
+          "吸血鬼"
+        ],
+        "printedCollectorCode": "13/52",
+        "seriesSymbol": "preludeKnot",
+        "printedCost": 1,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "蓝",
+            "count": 3
+          }
+        ],
+        "domains": [
+          {
+            "id": "blood",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "结附于本方秘社",
+          "你只能操控至多一个道途。",
+          "【持续】所有本方吸血鬼角色，其上的所有永久调查、永久势力、临时调查和临时势力能力图标都替换为永久战斗1。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "结附于本方秘社",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "你只能操控至多一个道途。",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-3",
+          "kind": "sourceTextOnly",
+          "printedText": "【持续】所有本方吸血鬼角色，其上的所有永久调查、永久势力、临时调查和临时势力能力图标都替换为永久战斗1。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "attachment",
+        "society",
+        "continuous",
+        "temporaryIcons",
+        "uniqueInPlay"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "XQ13-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "XQ14": {
+      "cardId": "XQ14",
+      "batchId": "B13",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/XQ14 鲜血.jpg",
+        "imageSha256": "0baea888495adba62a7688be1b95c95b5ffa60d689c104b7ff3a26dd2340ffb2",
+        "evidenceId": "card-XQ14",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "14/52",
+        "seriesSymbolObserved": "preludeKnot",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "鲜血",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "蓝",
+        "basicType": "附属",
+        "subtypes": [
+          "状态"
+        ],
+        "printedCollectorCode": "14/52",
+        "seriesSymbol": "preludeKnot",
+        "printedCost": 1,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "蓝",
+            "count": 1
+          }
+        ],
+        "domains": [
+          {
+            "id": "blood",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "结附于目标吸血鬼角色",
+          "【持续】受此结附的角色获得防御+1和永久战斗1。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "结附于目标吸血鬼角色",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "【持续】受此结附的角色获得防御+1和永久战斗1。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "attachment",
+        "continuous",
+        "blood"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "XQ14-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "XQ15": {
+      "cardId": "XQ15",
+      "batchId": "B13",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/XQ15 爱弗罗德庄园.jpg",
+        "imageSha256": "8d0767d3561ce8c09c03b9abb67cb150b26e2e3d2a213cfd95c9a4865dbec78c",
+        "evidenceId": "card-XQ15",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "15/52",
+        "seriesSymbolObserved": "preludeKnot",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "爱弗罗德庄园",
+        "subtitle": "阴谋会聚之所",
+        "nameInk": "gold",
+        "colorKey": "蓝",
+        "basicType": "附属",
+        "subtypes": [
+          "领地"
+        ],
+        "printedCollectorCode": "15/52",
+        "seriesSymbol": "preludeKnot",
+        "printedCost": 2,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "蓝",
+            "count": 1
+          }
+        ],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "结附于本方秘社",
+          "【持续】所有你所拥有的人类角色牌，其人类类别改为吸血鬼类别。所有你所拥有的非人类且非吸血鬼角色牌，额外具有奴仆类别。（“拥有”是指所有在游戏开始时位于你牌库中的牌）"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "结附于本方秘社",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "【持续】所有你所拥有的人类角色牌，其人类类别改为吸血鬼类别。所有你所拥有的非人类且非吸血鬼角色牌，额外具有奴仆类别。（“拥有”是指所有在游戏开始时位于你牌库中的牌）",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "attachment",
+        "society",
+        "continuous",
+        "uniqueInPlay"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "XQ15-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ],
+      "designNotes": [
+        "拥有范围原文明确为游戏开始时牌库中的牌，跨区域改类别；不是只作用于当前场上操控角色。"
+      ]
+    },
+    "XQ16": {
+      "cardId": "XQ16",
+      "batchId": "B13",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/XQ16 法务部律师团.jpg",
+        "imageSha256": "2ae947c0c5dccd45ae495d3c828ce9b4e1453c34dfb6e24c5e61eea8338cff80",
+        "evidenceId": "card-XQ16",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "16/52",
+        "seriesSymbolObserved": "preludeKnot",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "法务部律师团",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "蓝",
+        "basicType": "角色",
+        "subtypes": [
+          "人类",
+          "律师"
+        ],
+        "printedCollectorCode": "16/52",
+        "seriesSymbol": "preludeKnot",
+        "printedCost": 2,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "蓝",
+            "count": 1
+          }
+        ],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "公开"
+        ],
+        "printedRuleTextLines": [
+          "公开",
+          "【进场触发】将另一个目标本方角色翻面为暗藏者。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "公开",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "【进场触发】将另一个目标本方角色翻面为暗藏者。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "public",
+        "hidden",
+        "priority"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "XQ16-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "XQ17": {
+      "cardId": "XQ17",
+      "batchId": "B13",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/XQ17 祭品.jpg",
+        "imageSha256": "e5ad8fe27074632eab8d6207eb2e6f08efb69d20f343f2d50701d30f5a5bb5eb",
+        "evidenceId": "card-XQ17",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "17/52",
+        "seriesSymbolObserved": "preludeKnot",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "祭品",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "红",
+        "basicType": "角色",
+        "subtypes": [
+          "人类"
+        ],
+        "printedCollectorCode": "17/52",
+        "seriesSymbol": "preludeKnot",
+        "printedCost": 1,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "红",
+            "count": 1
+          }
+        ],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "【死亡触发】抓一张牌，然后弃一张牌。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "【死亡触发】抓一张牌，然后弃一张牌。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "deckChoice",
+        "temporaryIcons"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "XQ17-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "XQ18": {
+      "cardId": "XQ18",
+      "batchId": "B13",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/XQ18 计时人.jpg",
+        "imageSha256": "c33ebe42e01874807b60ff591a8e94c62e0ce8bfb1bdef7626bfad10432ed10e",
+        "evidenceId": "card-XQ18",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "18/52",
+        "seriesSymbolObserved": "preludeKnot",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "计时人",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "红",
+        "basicType": "角色",
+        "subtypes": [
+          "人类",
+          "法师",
+          "邪教徒"
+        ],
+        "printedCollectorCode": "18/52",
+        "seriesSymbol": "preludeKnot",
+        "printedCost": 2,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "红",
+            "count": 2
+          }
+        ],
+        "domains": [
+          {
+            "id": "death",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "【现身触发】在目标角色或附属上放置或移除一个时间标志。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "【现身触发】在目标角色或附属上放置或移除一个时间标志。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "hidden",
+        "timeDestroy",
+        "temporaryIcons"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "XQ18-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "XQ19": {
+      "cardId": "XQ19",
+      "batchId": "B13",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/XQ19 熵力化身.jpg",
+        "imageSha256": "6c70ae44fd73ee1f1e7821654c876baa8525d65bbf6b4cfa13ffe7d4adf3a1eb",
+        "evidenceId": "card-XQ19",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "19/52",
+        "seriesSymbolObserved": "preludeKnot",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "熵力化身",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "红",
+        "basicType": "角色",
+        "subtypes": [
+          "幽灵"
+        ],
+        "printedCollectorCode": "19/52",
+        "seriesSymbol": "preludeKnot",
+        "printedCost": null,
+        "loyalty": [],
+        "domains": [
+          {
+            "id": "stars",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "灵体",
+          "杀伤3"
+        ],
+        "printedRuleTextLines": [
+          "灵体　杀伤3",
+          "熵力化身不能正面打出或付费现身。",
+          "【手牌标准行动】0：将熵力化身从你的手中放置进场，且置于地区一。你只能在场上有四个或更多时间标志时发动此能力。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "灵体　杀伤3",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "熵力化身不能正面打出或付费现身。",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-3",
+          "kind": "sourceTextOnly",
+          "printedText": "【手牌标准行动】0：将熵力化身从你的手中放置进场，且置于地区一。你只能在场上有四个或更多时间标志时发动此能力。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "spirit",
+        "combatTraits",
+        "handAbility",
+        "timeDestroy",
+        "temporaryIcons"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "XQ19-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ],
+      "costAppearance": "printedDash"
+    },
+    "XQ20": {
+      "cardId": "XQ20",
+      "batchId": "B13",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/XQ20 灵魂通道.jpg",
+        "imageSha256": "5d1d90b2e4845992f82bb7bbd0ffd7db723b040a77988708919e9ac6c4464204",
+        "evidenceId": "card-XQ20",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "20/52",
+        "seriesSymbolObserved": "preludeKnot",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "灵魂通道",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "红",
+        "basicType": "事务",
+        "subtypes": [
+          "法术",
+          "生命"
+        ],
+        "printedCollectorCode": "20/52",
+        "seriesSymbol": "preludeKnot",
+        "printedCost": 2,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "红",
+            "count": 1
+          }
+        ],
+        "domains": [
+          {
+            "id": "blood",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "【标准行动】将目标角色或附属上的所有指示物标志，移动到另一个由相同玩家操控的目标角色或附属上。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "【标准行动】将目标角色或附属上的所有指示物标志，移动到另一个由相同玩家操控的目标角色或附属上。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "timeDestroy",
+        "attachment",
+        "continuous",
+        "confrontation"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "XQ20-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "XQ21": {
+      "cardId": "XQ21",
+      "batchId": "B13",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/XQ21 臣服于命运.jpg",
+        "imageSha256": "affd8758c81f1695ec9a80a8f3e7c2a75a910b465b65b97f9da01a2f05aa252d",
+        "evidenceId": "card-XQ21",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "21/52",
+        "seriesSymbolObserved": "preludeKnot",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "臣服于命运",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "红",
+        "basicType": "事务",
+        "subtypes": [
+          "仪式"
+        ],
+        "printedCollectorCode": "21/52",
+        "seriesSymbol": "preludeKnot",
+        "printedCost": 1,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "红",
+            "count": 1
+          }
+        ],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "【额外费用】牺牲一个角色。",
+          "【快速行动】选择目标具有指示物标志的角色、附属或暗藏者，在其上放置一个相同类别的指示物标志。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "【额外费用】牺牲一个角色。",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "【快速行动】选择目标具有指示物标志的角色、附属或暗藏者，在其上放置一个相同类别的指示物标志。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "sacrifice",
+        "hidden",
+        "timeDestroy",
+        "priority"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "XQ21-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "XQ22": {
+      "cardId": "XQ22",
+      "batchId": "B13",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/XQ22 州议员贝伦·希恩斯.jpg",
+        "imageSha256": "a28fdc6056637aff8e569249285cff04de76cc117cc9c7967e180e99890a2840",
+        "evidenceId": "card-XQ22",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "22/52",
+        "seriesSymbolObserved": "preludeKnot",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "州议员贝伦·希恩斯",
+        "subtitle": "“处事圆滑”",
+        "nameInk": "gold",
+        "colorKey": "灰",
+        "basicType": "角色",
+        "subtypes": [
+          "人类",
+          "政治家"
+        ],
+        "printedCollectorCode": "22/52",
+        "seriesSymbol": "preludeKnot",
+        "printedCost": 3,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "灰",
+            "count": 1
+          }
+        ],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 2,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "公开"
+        ],
+        "printedRuleTextLines": [
+          "公开",
+          "【持续】只要州议员贝伦·希恩斯未横置，双方玩家就不能打出事务牌。",
+          "【快速行动】2：横置或重置州议员贝伦·希恩斯。双方玩家都能够发动该能力。"
+        ],
+        "additionalPrintedSymbols": [
+          {
+            "kind": "costCircleRedOutline",
+            "description": "费用圆额外红色轮廓，独立游戏含义待原规则确认；不擅加快速打出能力。",
+            "status": "confirmed"
+          }
+        ]
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "公开",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "【持续】只要州议员贝伦·希恩斯未横置，双方玩家就不能打出事务牌。",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-3",
+          "kind": "sourceTextOnly",
+          "printedText": "【快速行动】2：横置或重置州议员贝伦·希恩斯。双方玩家都能够发动该能力。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "public",
+        "exhaust",
+        "continuous",
+        "priority",
+        "uniqueInPlay"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "needsRuling",
+      "openQuestionIds": [
+        "martialLawRedCostRing"
+      ],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "XQ22-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "XQ23": {
+      "cardId": "XQ23",
+      "batchId": "B13",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/XQ23 谨慎的办事员.jpg",
+        "imageSha256": "7370d343be9e467716a3d7ada1d95abc012f5901ed15629e2f8d18065ea0769e",
+        "evidenceId": "card-XQ23",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "23/52",
+        "seriesSymbolObserved": "preludeKnot",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "谨慎的办事员",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "灰",
+        "basicType": "角色",
+        "subtypes": [
+          "人类",
+          "文员"
+        ],
+        "printedCollectorCode": "23/52",
+        "seriesSymbol": "preludeKnot",
+        "printedCost": 1,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "灰",
+            "count": 1
+          }
+        ],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "公开",
+          "撤回"
+        ],
+        "printedRuleTextLines": [
+          "公开　撤回",
+          "【快速行动】2，【横置】：将目标本方资产移回其拥有者手上，然后将谨慎的办事员横置并置于你的资产区作为一个资产。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "公开　撤回",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "【快速行动】2，【横置】：将目标本方资产移回其拥有者手上，然后将谨慎的办事员横置并置于你的资产区作为一个资产。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "public",
+        "combatTraits",
+        "exhaust",
+        "continuous",
+        "priority"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "XQ23-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "XQ24": {
+      "cardId": "XQ24",
+      "batchId": "B13",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/XQ24 防暴警察.jpg",
+        "imageSha256": "420b412908d7b86112e26c2ba0f94593a29c40bf8f6b54e8809ce489a66f61b8",
+        "evidenceId": "card-XQ24",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "24/50",
+        "seriesSymbolObserved": "preludeKnot",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "防暴警察",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "灰",
+        "basicType": "角色",
+        "subtypes": [
+          "人类",
+          "警察"
+        ],
+        "printedCollectorCode": "24/50",
+        "seriesSymbol": "preludeKnot",
+        "printedCost": 4,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "灰",
+            "count": 2
+          }
+        ],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 1,
+          "combat": 1,
+          "influence": 1
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 2,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "公开"
+        ],
+        "printedRuleTextLines": [
+          "公开",
+          "【进场触发】将所有与防暴警察位于相同地区，且印刷费用小于或等于3的角色翻面为暗藏者。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "公开",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "【进场触发】将所有与防暴警察位于相同地区，且印刷费用小于或等于3的角色翻面为暗藏者。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "public",
+        "hidden",
+        "priority"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "XQ24-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "XQ25": {
+      "cardId": "XQ25",
+      "batchId": "B13",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/XQ25 监控探头.jpg",
+        "imageSha256": "c755f3d8ac0b85c3ab619b01626b92ee316f73885a5dd5a8102d53f3691306a0",
+        "evidenceId": "card-XQ25",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "25/52",
+        "seriesSymbolObserved": "preludeKnot",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "监控探头",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "灰",
+        "basicType": "附属",
+        "subtypes": [
+          "设施"
+        ],
+        "printedCollectorCode": "25/52",
+        "seriesSymbol": "preludeKnot",
+        "printedCost": 2,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "灰",
+            "count": 2
+          }
+        ],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "结附于目标地区",
+          "【持续】只要监控探头未横置，玩家向其所结附的地区进行秘密派遣所需的费用额外增加1。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "结附于目标地区",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "【持续】只要监控探头未横置，玩家向其所结附的地区进行秘密派遣所需的费用额外增加1。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "attachment",
+        "exhaust",
+        "hidden",
+        "continuous",
+        "temporaryIcons"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "XQ25-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "XQ26": {
+      "cardId": "XQ26",
+      "batchId": "B13",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/XQ26 通缉令.jpg",
+        "imageSha256": "a4bb056437eb09c9fe2edc549a9416ecdd4488e4faf436714294f212de10c854",
+        "evidenceId": "card-XQ26",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "26/52",
+        "seriesSymbolObserved": "preludeKnot",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "通缉令",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "灰",
+        "basicType": "附属",
+        "subtypes": [
+          "局势"
+        ],
+        "printedCollectorCode": "26/52",
+        "seriesSymbol": "preludeKnot",
+        "printedCost": 1,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "灰",
+            "count": 2
+          }
+        ],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "结附于本方秘社",
+          "【进场触发】说出一个角色牌名称。",
+          "【强制触发】每当该名称的角色牌进场时，牺牲通缉令，然后消灭该角色。"
+        ],
+        "additionalPrintedSymbols": [
+          {
+            "kind": "costCircleRedOutline",
+            "description": "费用圆额外红色轮廓，独立游戏含义待原规则确认；不擅加快速打出能力。",
+            "status": "confirmed"
+          }
+        ]
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "结附于本方秘社",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "【进场触发】说出一个角色牌名称。",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-3",
+          "kind": "sourceTextOnly",
+          "printedText": "【强制触发】每当该名称的角色牌进场时，牺牲通缉令，然后消灭该角色。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "attachment",
+        "society",
+        "sacrifice",
+        "priority"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "needsRuling",
+      "openQuestionIds": [
+        "martialLawRedCostRing"
+      ],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "XQ26-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "XQ27": {
+      "cardId": "XQ27",
+      "batchId": "B13",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/XQ27 定点清除行动.jpg",
+        "imageSha256": "78f2d5e2422b611bbf159a33083d70c75bf2ac83103325550430a394e8a803b5",
+        "evidenceId": "card-XQ27",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "27/52",
+        "seriesSymbolObserved": "preludeKnot",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "定点清除行动",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "灰",
+        "basicType": "事务",
+        "subtypes": [
+          "阴谋"
+        ],
+        "printedCollectorCode": "27/52",
+        "seriesSymbol": "preludeKnot",
+        "printedCost": 4,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "灰",
+            "count": 2
+          }
+        ],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "【标准行动】消灭所有暗藏者。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "【标准行动】消灭所有暗藏者。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "hidden"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "XQ27-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "XQ28": {
+      "cardId": "XQ28",
+      "batchId": "B13",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/XQ28 冥想者.jpg",
+        "imageSha256": "493eb17c79cd202813a58e6c02bb603280d9fe21bf87d7535444b5b84ac09352",
+        "evidenceId": "card-XQ28",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "28/52",
+        "seriesSymbolObserved": "preludeKnot",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "冥想者",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "白",
+        "basicType": "角色",
+        "subtypes": [
+          "人类",
+          "僧侣"
+        ],
+        "printedCollectorCode": "28/52",
+        "seriesSymbol": "preludeKnot",
+        "printedCost": 2,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "白",
+            "count": 1
+          }
+        ],
+        "domains": [
+          {
+            "id": "mind",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "【进场触发】从你的牌库中寻找一张修行牌，将你的牌库洗牌，然后展示该牌并将其置于你的牌库顶。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "【进场触发】从你的牌库中寻找一张修行牌，将你的牌库洗牌，然后展示该牌并将其置于你的牌库顶。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "deckChoice"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "XQ28-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "XQ29": {
+      "cardId": "XQ29",
+      "batchId": "B13",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/XQ29 阿塔科拉安魂师.jpg",
+        "imageSha256": "c2cd4d2f93095128f35da0cff1a510f48d69321fb2125633a058bcf2cc6d9e5d",
+        "evidenceId": "card-XQ29",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "29/52",
+        "seriesSymbolObserved": "preludeKnot",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "阿塔科拉安魂师",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "白",
+        "basicType": "角色",
+        "subtypes": [
+          "人类",
+          "法师"
+        ],
+        "printedCollectorCode": "29/52",
+        "seriesSymbol": "preludeKnot",
+        "printedCost": 2,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "白",
+            "count": 2
+          }
+        ],
+        "domains": [
+          {
+            "id": "death",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "【快速行动】1：阿塔科拉安魂师获得永久调查1和声望直到回合结束，然后你可以将任一玩家墓地中的目标角色牌置于其拥有者的牌库底。该能力每回合只能发动一次。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "【快速行动】1：阿塔科拉安魂师获得永久调查1和声望直到回合结束，然后你可以将任一玩家墓地中的目标角色牌置于其拥有者的牌库底。该能力每回合只能发动一次。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "continuous",
+        "renown",
+        "graveRecovery",
+        "priority"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "XQ29-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "XQ30": {
+      "cardId": "XQ30",
+      "batchId": "B13",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/XQ30 阿瓦隆岛的迷雾.jpg",
+        "imageSha256": "db1fdd5830646c704e89186c4c2b616b9e734c9123e2c52a5aff40ca34f80917",
+        "evidenceId": "card-XQ30",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "30/52",
+        "seriesSymbolObserved": "preludeKnot",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "阿瓦隆岛的迷雾",
+        "subtitle": null,
+        "nameInk": "gold",
+        "colorKey": "白",
+        "basicType": "附属",
+        "subtypes": [
+          "结界"
+        ],
+        "printedCollectorCode": "30/52",
+        "seriesSymbol": "preludeKnot",
+        "printedCost": 2,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "白",
+            "count": 2
+          }
+        ],
+        "domains": [
+          {
+            "id": "stars",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "结附于本方秘社",
+          "【持续】所有本方角色获得防御+1，并失去所有永久战斗和临时战斗能力图标。",
+          "【快速行动】4，牺牲阿瓦隆岛的迷雾：将所有本回合中死亡的圣贤角色从墓地移回其拥有者的手中。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "结附于本方秘社",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "【持续】所有本方角色获得防御+1，并失去所有永久战斗和临时战斗能力图标。",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-3",
+          "kind": "sourceTextOnly",
+          "printedText": "【快速行动】4，牺牲阿瓦隆岛的迷雾：将所有本回合中死亡的圣贤角色从墓地移回其拥有者的手中。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "attachment",
+        "society",
+        "continuous",
+        "graveRecovery",
+        "sacrifice",
+        "priority",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "XQ30-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "XQ31": {
+      "cardId": "XQ31",
+      "batchId": "B13",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/XQ31 莫兰大主教.jpg",
+        "imageSha256": "2dcb08e58a96740154c96256725e376b6723431abb06e322c73f25d7700c00dc",
+        "evidenceId": "card-XQ31",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "31/52",
+        "seriesSymbolObserved": "preludeKnot",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "莫兰大主教",
+        "subtitle": "圣心会的特使",
+        "nameInk": "gold",
+        "colorKey": "白",
+        "basicType": "角色",
+        "subtypes": [
+          "人类",
+          "僧侣"
+        ],
+        "printedCollectorCode": "31/52",
+        "seriesSymbol": "preludeKnot",
+        "printedCost": 5,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "白",
+            "count": 3
+          }
+        ],
+        "domains": [
+          {
+            "id": "holy",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 2,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 2,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "领袖",
+          "公开",
+          "声望"
+        ],
+        "printedRuleTextLines": [
+          "领袖　公开　声望",
+          "【持续】所有本方声望角色获得防御+1，且不能成为敌方卡牌或能力的目标。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "领袖　公开　声望",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "【持续】所有本方声望角色获得防御+1，且不能成为敌方卡牌或能力的目标。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "leader",
+        "public",
+        "renown",
+        "continuous",
+        "barrier",
+        "uniqueInPlay"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "XQ31-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "XQ32": {
+      "cardId": "XQ32",
+      "batchId": "B13",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/XQ32 面壁苦修.jpg",
+        "imageSha256": "3f8306fc61ddb4f6fe6620526c00b58fd0b5c68e243411f1419ac5b3fe56b95f",
+        "evidenceId": "card-XQ32",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "32/52",
+        "seriesSymbolObserved": "preludeKnot",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "面壁苦修",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "白",
+        "basicType": "附属",
+        "subtypes": [
+          "修行"
+        ],
+        "printedCollectorCode": "32/52",
+        "seriesSymbol": "preludeKnot",
+        "printedCost": 1,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "白",
+            "count": 2
+          }
+        ],
+        "domains": [
+          {
+            "id": "mind",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": 1,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "结附于本方秘社",
+          "【触发】当你赢得一次调查对抗时，在面壁苦修上放置一个冥想标志。",
+          "【快速行动】自面壁苦修上移除至少四个冥想标志，将面壁苦修置入你的计分区：抓三张牌。"
+        ],
+        "additionalPrintedSymbols": [
+          {
+            "kind": "printedMeditationMarkerReference",
+            "description": "行动/触发正文以冥想命名的指示物，分数框实际为1。",
+            "status": "confirmed"
+          }
+        ]
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "结附于本方秘社",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "【触发】当你赢得一次调查对抗时，在面壁苦修上放置一个冥想标志。",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-3",
+          "kind": "sourceTextOnly",
+          "printedText": "【快速行动】自面壁苦修上移除至少四个冥想标志，将面壁苦修置入你的计分区：抓三张牌。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "attachment",
+        "society",
+        "confrontation",
+        "deckChoice",
+        "priority"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "XQ32-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "XQ33": {
+      "cardId": "XQ33",
+      "batchId": "B13",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/XQ33 慈悲.jpg",
+        "imageSha256": "8ac065bd0d1e700bd26330e657c60a016ef31513ea967808bc2907b9e3069537",
+        "evidenceId": "card-XQ33",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "33/52",
+        "seriesSymbolObserved": "preludeKnot",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "慈悲",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "白",
+        "basicType": "事务",
+        "subtypes": [
+          "法术",
+          "心灵"
+        ],
+        "printedCollectorCode": "33/52",
+        "seriesSymbol": "preludeKnot",
+        "printedCost": 4,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "白",
+            "count": 2
+          }
+        ],
+        "domains": [
+          {
+            "id": "holy",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "【标准行动】选择目标地区，将该地区上的所有具有永久战斗或临时战斗能力图标的角色洗入其拥有者的牌库。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "【标准行动】选择目标地区，将该地区上的所有具有永久战斗或临时战斗能力图标的角色洗入其拥有者的牌库。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "deckChoice",
+        "continuous",
+        "temporaryIcons"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "XQ33-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "XQ34": {
+      "cardId": "XQ34",
+      "batchId": "B13",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/XQ34 灵感.jpg",
+        "imageSha256": "2ca1f5a4b25d308f8af13a7a80018010deaf93f9abe2275bef1fa7656be13e04",
+        "evidenceId": "card-XQ34",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "34/52",
+        "seriesSymbolObserved": "preludeKnot",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "灵感",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "白",
+        "basicType": "事务",
+        "subtypes": [
+          "研究"
+        ],
+        "printedCollectorCode": "34/52",
+        "seriesSymbol": "preludeKnot",
+        "printedCost": 1,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "白",
+            "count": 1
+          }
+        ],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "【快速行动】抓一张牌。",
+          "【手牌触发】当你从手中弃掉灵感时，你可以支付1，若你如此做，抓一张牌。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "【快速行动】抓一张牌。",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "【手牌触发】当你从手中弃掉灵感时，你可以支付1，若你如此做，抓一张牌。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "deckChoice",
+        "handAbility",
+        "priority"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "XQ34-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "XQ35": {
+      "cardId": "XQ35",
+      "batchId": "B13",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/XQ35 白骨仆人.jpg",
+        "imageSha256": "16848181852ab99f7caa29cf84b65a1a018c644da3ad6b4e1aa0bb635c7920b3",
+        "evidenceId": "card-XQ35",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "35/52",
+        "seriesSymbolObserved": "preludeKnot",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "白骨仆人",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "黑",
+        "basicType": "角色",
+        "subtypes": [
+          "不死生物",
+          "骨骼",
+          "奴仆"
+        ],
+        "printedCollectorCode": "35/52",
+        "seriesSymbol": "preludeKnot",
+        "printedCost": null,
+        "loyalty": [],
+        "domains": [
+          {
+            "id": "death",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "白骨仆人不能正面打出或付费现身。",
+          "【墓地标准行动】1，将你墓地中的另一张角色牌封印在本方秘社上：将白骨仆人从你的墓地移回场上并横置，且置于地区一。该能力每回合只能发动一次。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "白骨仆人不能正面打出或付费现身。",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "【墓地标准行动】1，将你墓地中的另一张角色牌封印在本方秘社上：将白骨仆人从你的墓地移回场上并横置，且置于地区一。该能力每回合只能发动一次。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "graveRecovery",
+        "gravePlay",
+        "seal",
+        "society",
+        "exhaust"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "XQ35-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ],
+      "costAppearance": "printedDash",
+      "designNotes": [
+        "印刷费用是横杠，墓地行动费用1另列；封印另一张墓地角色是费用，复归横置且地区一；不可普通打出/翻面。"
+      ]
+    },
+    "XQ36": {
+      "cardId": "XQ36",
+      "batchId": "B13",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/XQ36 圣甲虫的清理员.jpg",
+        "imageSha256": "84b611615ecdbdf7940022160522187a28edb46322525e540fed1935de0526b9",
+        "evidenceId": "card-XQ36",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "36/52",
+        "seriesSymbolObserved": "preludeKnot",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "圣甲虫的清理员",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "黑",
+        "basicType": "角色",
+        "subtypes": [
+          "人类",
+          "雇员"
+        ],
+        "printedCollectorCode": "36/52",
+        "seriesSymbol": "preludeKnot",
+        "printedCost": 1,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "黑",
+            "count": 1
+          }
+        ],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "【进场触发】将每位玩家牌库顶的四张牌置于该玩家的墓地。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "【进场触发】将每位玩家牌库顶的四张牌置于该玩家的墓地。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "deckChoice"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "XQ36-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "XQ37": {
+      "cardId": "XQ37",
+      "batchId": "B13",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/XQ37 夜总会看门人.jpg",
+        "imageSha256": "93778bc4ffa69e5b79ad08738e3f31a78a669a049c42a43e68d04bd6398856b9",
+        "evidenceId": "card-XQ37",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "37/52",
+        "seriesSymbolObserved": "preludeKnot",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "夜总会看门人",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "黑",
+        "basicType": "角色",
+        "subtypes": [
+          "人类",
+          "罪犯"
+        ],
+        "printedCollectorCode": "37/52",
+        "seriesSymbol": "preludeKnot",
+        "printedCost": 2,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "黑",
+            "count": 1
+          }
+        ],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "【进场触发】若夜总会看门人位于有本方势力标志的地区，则在该地区上放置一个本方势力标志。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "【进场触发】若夜总会看门人位于有本方势力标志的地区，则在该地区上放置一个本方势力标志。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "confrontation"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "XQ37-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "XQ38": {
+      "cardId": "XQ38",
+      "batchId": "B13",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/XQ38 金特·易卜拉欣.jpg",
+        "imageSha256": "26c8311674325491157577a3d295c148ce1c6f27ded59c4d27979faf58e9204e",
+        "evidenceId": "card-XQ38",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "38/52",
+        "seriesSymbolObserved": "preludeKnot",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "金特·易卜拉欣",
+        "subtitle": "死灵学专家",
+        "nameInk": "gold",
+        "colorKey": "黑",
+        "basicType": "角色",
+        "subtypes": [
+          "人类",
+          "学者"
+        ],
+        "printedCollectorCode": "38/52",
+        "seriesSymbol": "preludeKnot",
+        "printedCost": 3,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "黑",
+            "count": 2
+          }
+        ],
+        "domains": [
+          {
+            "id": "death",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporaryIcons": {
+          "investigation": 2,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 2,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "【进场触发】将目标玩家牌库顶的三张牌置于其墓地。",
+          "【标准行动】2，【横置】，弃一张手牌：将你墓地中的目标角色牌置于你的手中。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "【进场触发】将目标玩家牌库顶的三张牌置于其墓地。",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "【标准行动】2，【横置】，弃一张手牌：将你墓地中的目标角色牌置于你的手中。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "deckChoice",
+        "graveRecovery",
+        "exhaust",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "XQ38-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "XQ39": {
+      "cardId": "XQ39",
+      "batchId": "B13",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/XQ39 方碑徽记.jpg",
+        "imageSha256": "1be69fe1f9cdf2e99f5b46b28ddeceb97c921ee3cc44c63d4ff084c0ac04f2ae",
+        "evidenceId": "card-XQ39",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "39/52",
+        "seriesSymbolObserved": "preludeKnot",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "方碑印记",
+        "subtitle": "方碑序列同盟",
+        "nameInk": "gold",
+        "colorKey": "黑",
+        "basicType": "附属",
+        "subtypes": [
+          "徽章"
+        ],
+        "printedCollectorCode": "39/52",
+        "seriesSymbol": "preludeKnot",
+        "printedCost": 2,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "黑",
+            "count": 1
+          }
+        ],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "结附于本方秘社",
+          "【快速行动】【横置】：本回合中你下一张正面打出或翻面的方碑序列牌的所需费用减少1。",
+          "【快速行动】2，【横置】：将你墓地中的目标角色牌置于你的牌库顶。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "结附于本方秘社",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "【快速行动】【横置】：本回合中你下一张正面打出或翻面的方碑序列牌的所需费用减少1。",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-3",
+          "kind": "sourceTextOnly",
+          "printedText": "【快速行动】2，【横置】：将你墓地中的目标角色牌置于你的牌库顶。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "attachment",
+        "society",
+        "costReduction",
+        "exhaust",
+        "graveRecovery",
+        "priority",
+        "uniqueInPlay"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "XQ39-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
           "status": "notRun"
         }
       ]

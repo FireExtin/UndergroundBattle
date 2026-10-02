@@ -9,15 +9,15 @@
   },
   "reviewsSource": {
     "path": "docs/factions/card-reviews.json",
-    "sha256": "de32a1e1e17166933cdff1cd8afd99777fce9c3834b5970870b0169bf2eed331"
+    "sha256": "474b667d19ba1fdc7eb2f8f86cf1320ce50be2760d8c78c045428c8a84ebd3b6"
   },
   "coverageSource": {
     "path": "rust-game/data/faction-coverage.json",
-    "sha256": "c48a383d47722606736df336efc2580ae571b04b1c74a0adf9f177bdc80d53c9"
+    "sha256": "47aed91df0751f3c8ef13455f004b5da5c01d97f3f2a5e81dedb9b910d53cbc3"
   },
   "specificationsSource": {
     "path": "docs/factions/card-specifications.json",
-    "sha256": "fa996b877c6c192d91a989aa4957de21133ac668c4ad15137b563af7a30017a0"
+    "sha256": "8e7a5456d89af0285077d2deff11be324073d47a6e9ab671b609bfd586ffa685"
   },
   "recoverySource": {
     "path": "docs/factions/source-recovery.json",
@@ -34,13 +34,13 @@
   "totals": {
     "archiveRecords": 685,
     "sourceImagesMissing": 13,
-    "primaryImageReviewed": 250,
-    "unreviewedWithImage": 422,
+    "primaryImageReviewed": 286,
+    "unreviewedWithImage": 386,
     "currentCatalogDefinitions": 29,
-    "completeSourceSpecifications": 230,
+    "completeSourceSpecifications": 266,
     "blockedSourceSpecifications": 5,
     "completeNonCardReferences": 1,
-    "completeSourceRecords": 231,
+    "completeSourceRecords": 267,
     "locatorSetCounts": {
       "TK": 11,
       "传奇": 44,
@@ -66,10 +66,10 @@
       "worldRegion": 29
     },
     "editionStatusCounts": {
-      "pinnedImageVariant": 231,
+      "pinnedImageVariant": 267,
       "testImageConfirmed": 6,
       "uncertain": 3,
-      "unreviewed": 445
+      "unreviewed": 409
     }
   },
   "records": [
@@ -21506,7 +21506,7 @@
       },
       "verifiedFields": {
         "name": "黑猫",
-        "colorKey": "中",
+        "colorKey": "中立",
         "basicType": "角色"
       },
       "abilitySummary": "公开　不能被装备结附；【快速行动】牺牲黑猫：本回合中，你下一张正面打出，且具有魔法领域图标的牌，其所需费用减少1。",
@@ -21590,7 +21590,7 @@
       },
       "verifiedFields": {
         "name": "无形捣蛋精",
-        "colorKey": "中",
+        "colorKey": "中立",
         "basicType": "角色"
       },
       "abilitySummary": "灵体；【进场强制触发】每位玩家各牺牲一个附属。",
@@ -21667,7 +21667,7 @@
       },
       "verifiedFields": {
         "name": "好奇的黑客",
-        "colorKey": "中",
+        "colorKey": "中立",
         "basicType": "角色"
       },
       "abilitySummary": "【标准行动】1，【横置】：目标玩家展示其手牌。你可以从中选择一张牌，并牺牲好奇的黑客，若你如此做，该玩家弃掉你所选择的牌。",
@@ -21746,7 +21746,7 @@
       },
       "verifiedFields": {
         "name": "备用资金",
-        "colorKey": "中",
+        "colorKey": "中立",
         "basicType": "附属"
       },
       "abilitySummary": "结附于本方秘社；【快速行动】【横置】：你获得1。",
@@ -21827,7 +21827,7 @@
       },
       "verifiedFields": {
         "name": "柯尔特巨蟒左轮",
-        "colorKey": "中",
+        "colorKey": "中立",
         "basicType": "附属"
       },
       "abilitySummary": "结附于目标角色；撤回（当所在的地区被赢取时，将该牌移回其拥有者手上，而非置于牌库底。）；【持续】受此结附的角色获得永久战斗1。",
@@ -21901,7 +21901,7 @@
       },
       "verifiedFields": {
         "name": "红眼航班",
-        "colorKey": "中",
+        "colorKey": "中立",
         "basicType": "附属"
       },
       "abilitySummary": "结附于本方秘社；【快速行动】1，【横置】：将目标本方角色移到目标地区。该能力只能在行动阶段发动。",
@@ -22054,7 +22054,7 @@
       },
       "verifiedFields": {
         "name": "守秘人",
-        "colorKey": "中",
+        "colorKey": "中立",
         "basicType": "角色"
       },
       "abilitySummary": "【现身触发】将你的一张手牌背面朝上封印在守秘人上。（你的对手不能检视该牌）；【死亡触发】展示封印在守秘人上的所有牌，你可以打出其中一张牌，视作它具有快速行动且不需要支付其费用（但仍需满足其忠诚需求）。将不打出的牌移回其拥有者手上。",
@@ -22140,7 +22140,7 @@
       },
       "verifiedFields": {
         "name": "庄严圣像",
-        "colorKey": "中",
+        "colorKey": "中立",
         "basicType": "附属"
       },
       "abilitySummary": "结附于目标地区；【触发】当你赢取本地区时，将庄严圣像置入你的资产区，令其成为一个资产。",
@@ -22221,7 +22221,7 @@
       },
       "verifiedFields": {
         "name": "空鸣御守",
-        "colorKey": "中",
+        "colorKey": "中立",
         "basicType": "角色/附属"
       },
       "abilitySummary": "公开　灵体　不能移动；【进场触发】将空鸣御守结附于目标位于相同地区的本方角色。；【触发】每当受此结附的角色将受到伤害时，该伤害改为对空鸣御守造成。",
@@ -22307,7 +22307,7 @@
       },
       "verifiedFields": {
         "name": "哈克·亚当斯",
-        "colorKey": "中",
+        "colorKey": "中立",
         "basicType": "角色"
       },
       "abilitySummary": "【快速行动】2：在目标角色或暗藏者上放置一个锁定标志。；【持续】只要哈克·亚当斯在场，所有具有锁定标志的角色或暗藏者不能翻面。",
@@ -22390,7 +22390,7 @@
       },
       "verifiedFields": {
         "name": "饮魂者朱迪",
-        "colorKey": "中",
+        "colorKey": "中立",
         "basicType": "角色"
       },
       "abilitySummary": "【快速行动】2：在目标角色或暗藏者上放置一个锁定标志。；【持续】只要饮魂者朱迪在场，所有具有锁定标志的角色或暗藏者失去所有永久势力和临时势力能力图标。",
@@ -22474,7 +22474,7 @@
       },
       "verifiedFields": {
         "name": "尼古拉斯·勒梅",
-        "colorKey": "中",
+        "colorKey": "中立",
         "basicType": "角色"
       },
       "abilitySummary": "【标准行动】3：在目标角色上放置一个哲人石标志。；【强制触发】当具有哲人石标志的角色死亡时，将其从墓地移回场上，并由其拥有者操控。该能力在尼古拉斯·勒梅离场后仍然生效。",
@@ -22614,7 +22614,7 @@
       },
       "verifiedFields": {
         "name": "产业扩张",
-        "colorKey": "中",
+        "colorKey": "中立",
         "basicType": "事务"
       },
       "abilitySummary": "【标准行动】将你牌库顶的一张牌正面置入你的资产区，令其成为一个资产。",
@@ -22685,7 +22685,7 @@
       },
       "verifiedFields": {
         "name": "终局",
-        "colorKey": "中",
+        "colorKey": "中立",
         "basicType": "事务"
       },
       "abilitySummary": "【标准行动】选择目标地区，移除该地区上的所有势力标志。然后若该地区上有三个或更多时间标志，则消灭该地区上的所有角色。",
@@ -22756,7 +22756,7 @@
       },
       "verifiedFields": {
         "name": "替罪羊",
-        "colorKey": "中",
+        "colorKey": "中立",
         "basicType": "事务"
       },
       "abilitySummary": "【标准行动】选择目标敌方玩家，除非他选择并移除三个他所拥有的势力标志，否则该玩家牺牲一个角色。",
@@ -22827,7 +22827,7 @@
       },
       "verifiedFields": {
         "name": "操控心智",
-        "colorKey": "中",
+        "colorKey": "中立",
         "basicType": "事务"
       },
       "abilitySummary": "【标准行动】你获得目标敌方角色的操控权直到回合结束。",
@@ -22896,7 +22896,7 @@
       },
       "verifiedFields": {
         "name": "深入研究",
-        "colorKey": "中",
+        "colorKey": "中立",
         "basicType": "事务"
       },
       "abilitySummary": "【标准行动】抓两张牌，然后弃一张手牌。",
@@ -22963,7 +22963,7 @@
       },
       "verifiedFields": {
         "name": "空投物资",
-        "colorKey": "中",
+        "colorKey": "中立",
         "basicType": "事务"
       },
       "abilitySummary": "【标准行动】从你的牌库中寻找一张牌，将该牌置于你的手中，然后将你的牌库洗牌。",
@@ -23030,7 +23030,7 @@
       },
       "verifiedFields": {
         "name": "构筑静态障壁",
-        "colorKey": "中",
+        "colorKey": "中立",
         "basicType": "事务"
       },
       "abilitySummary": "【标准行动】选择目标地区，横置所有位于该地区的角色。",
@@ -23095,7 +23095,7 @@
       },
       "verifiedFields": {
         "name": "操控死尸",
-        "colorKey": "中",
+        "colorKey": "中立",
         "basicType": "事务"
       },
       "abilitySummary": "【标准行动】选择目标地区，令你墓地中的目标角色牌正面进场并置于该地区，该角色额外具有不死生物类别。",
@@ -23163,7 +23163,7 @@
       },
       "verifiedFields": {
         "name": "审判",
-        "colorKey": "中",
+        "colorKey": "中立",
         "basicType": "事务"
       },
       "abilitySummary": "【标准行动】每位玩家牺牲一个资产。",
@@ -23229,7 +23229,7 @@
       },
       "verifiedFields": {
         "name": "余震",
-        "colorKey": "中",
+        "colorKey": "中立",
         "basicType": "事务"
       },
       "abilitySummary": "【额外费用】支付X。；【快速行动】消灭目标印刷费用为X的附属。",
@@ -43967,22 +43967,22 @@
     {
       "id": "XQ01",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/XQ01 联会禁音使.jpg",
           "sha256": "90cc8d87ab31e7e6ed4aaf6bec29f840494235d1273e7b18ff8ed4eb3d93ad1c"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/XQ01",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/XQ01",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XQ01",
+      "implementationDesignStatus": "needsRuling",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "联会禁音使",
         "set": "序曲",
@@ -44002,16 +44002,28 @@
         "keywords": [],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "联会禁言使",
+        "colorKey": "黄",
+        "basicType": "角色"
+      },
+      "abilitySummary": "【持续】只要联会禁言使未横置，所有本地区的角色不能发动触发能力和行动能力。",
+      "confirmedMechanismIds": [
+        "exhaust",
+        "continuous"
+      ],
       "candidateMechanismIds": [
         "continuous",
         "exhaust"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "targetPicker"
+      ],
+      "mechanismCoverage": {
+        "exhaust": "implemented",
+        "continuous": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -44026,22 +44038,22 @@
     {
       "id": "XQ02",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/XQ02 轮回秘仪.jpg",
           "sha256": "fa16c2cc3c0563676d03ec78156b77d8f9928e61adea25bb7af879ab67755a5c"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/XQ02",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/XQ02",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XQ02",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "轮回秘仪",
         "set": "序曲",
@@ -44061,17 +44073,37 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "轮回秘仪",
+        "colorKey": "黄",
+        "basicType": "事务"
+      },
+      "abilitySummary": "【标准行动】将轮回秘仪和目标玩家墓地中的所有牌洗入其拥有者的牌库。遏制1。",
+      "confirmedMechanismIds": [
+        "graveRecovery",
+        "deckChoice",
+        "repress"
+      ],
       "candidateMechanismIds": [
         "combatKeywords",
         "deckChoice",
         "graveRecovery"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "graveyardPicker",
+        "handPicker",
+        "markerEditor",
+        "orderPicker",
+        "playerPicker",
+        "regionPicker",
+        "searchPicker"
+      ],
+      "mechanismCoverage": {
+        "graveRecovery": "implemented",
+        "deckChoice": "partial",
+        "repress": "unimplemented"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -44232,22 +44264,22 @@
     {
       "id": "XQ05",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/XQ05 天火的捷列娃.jpg",
           "sha256": "7555218e39f012a3010e817e4d2cd92b9955e8c57f9888e5e2d5391ff406c30f"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/XQ05",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/XQ05",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XQ05",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "天火的捷列娃",
         "set": "序曲",
@@ -44269,16 +44301,35 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "天火的捷列娃",
+        "colorKey": "黄",
+        "basicType": "角色"
+      },
+      "abilitySummary": "领袖；【触发】当天火的捷列娃或另一个本方法师角色进场时，横置目标角色。该能力每回合只能发动一次。",
+      "confirmedMechanismIds": [
+        "leader",
+        "exhaust",
+        "priority",
+        "uniqueInPlay"
+      ],
       "candidateMechanismIds": [
         "exhaust",
         "leader"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "choicePicker",
+        "stack",
+        "targetPicker",
+        "uniquePrompt"
+      ],
+      "mechanismCoverage": {
+        "leader": "unimplemented",
+        "exhaust": "implemented",
+        "priority": "partial",
+        "uniqueInPlay": "implemented"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -44293,22 +44344,22 @@
     {
       "id": "XQ06",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/XQ06 入梦的费南迪尔.jpg",
           "sha256": "85b76a3bfc02282271d8a34451d8c456e8951bb97737162c069cb5c212fb4a7a"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/XQ06",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/XQ06",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XQ06",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "入梦的费南迪尔",
         "set": "序曲",
@@ -44331,9 +44382,21 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "入梦的费南迪尔",
+        "colorKey": "黄",
+        "basicType": "角色"
+      },
+      "abilitySummary": "领袖　灵体；【持续】防止入梦的费南迪尔将受到的所有非战斗伤害。；【进场触发】将位于本地区且已横置的目标角色封印在本方秘社上。",
+      "confirmedMechanismIds": [
+        "leader",
+        "spirit",
+        "damagePrevention",
+        "seal",
+        "society",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
       "candidateMechanismIds": [
         "damagePrevention",
         "exhaust",
@@ -44342,8 +44405,25 @@
         "spirit"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "damagePicker",
+        "domainSummary",
+        "iconBreakdown",
+        "sealedCards",
+        "societyPicker",
+        "societyZone",
+        "targetPicker",
+        "uniquePrompt"
+      ],
+      "mechanismCoverage": {
+        "leader": "unimplemented",
+        "spirit": "unimplemented",
+        "damagePrevention": "unimplemented",
+        "seal": "unimplemented",
+        "society": "unimplemented",
+        "uniqueInPlay": "implemented",
+        "temporaryIcons": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -44358,22 +44438,22 @@
     {
       "id": "XQ07",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/XQ07 圣水.jpg",
           "sha256": "944a254795fc17e946f7150de9a47649d8c6efa3006770850447503b06a22df9"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/XQ07",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/XQ07",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XQ07",
+      "implementationDesignStatus": "needsRuling",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "圣水",
         "set": "序曲",
@@ -44391,16 +44471,36 @@
         "keywords": [],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "圣水",
+        "colorKey": "绿",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标本方角色；【快速行动】牺牲圣水：所有位于本地区，且具有魔法领域图标的角色，其印刷防御力成为1直到回合结束。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "sacrifice",
+        "continuous",
+        "priority"
+      ],
       "candidateMechanismIds": [
         "attachment",
         "sacrifice"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "attachmentPicker",
+        "attachments",
+        "choicePicker",
+        "costPicker",
+        "stack"
+      ],
+      "mechanismCoverage": {
+        "attachment": "unimplemented",
+        "sacrifice": "implemented",
+        "continuous": "partial",
+        "priority": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -44415,22 +44515,22 @@
     {
       "id": "XQ08",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/XQ08 银弹爆头.jpg",
           "sha256": "1c906d7848aa0ad019e0cfa10ce4d0a13375eff772de5a553a6dd52d25473ff4"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/XQ08",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/XQ08",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XQ08",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "银弹爆头",
         "set": "序曲",
@@ -44448,13 +44548,29 @@
         "keywords": [],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "银弹爆头",
+        "colorKey": "绿",
+        "basicType": "事务"
+      },
+      "abilitySummary": "只能在行动阶段打出；【快速行动】消灭目标非人类角色。若因此效果消灭的角色是吸血鬼，则你可以在其所在地区上放置一个本方势力标志。",
+      "confirmedMechanismIds": [
+        "confrontation",
+        "priority"
+      ],
       "candidateMechanismIds": [],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "choicePicker",
+        "damagePicker",
+        "orderPicker",
+        "regionReturn",
+        "stack"
+      ],
+      "mechanismCoverage": {
+        "confrontation": "implemented",
+        "priority": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -44469,22 +44585,22 @@
     {
       "id": "XQ09",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/XQ09 临时征召.jpg",
           "sha256": "b4fe2621527fa776ddccfce6d1111b644f78f6be81cb77fa178a94d0c8cdf78c"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/XQ09",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/XQ09",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XQ09",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "临时征召",
         "set": "序曲",
@@ -44504,15 +44620,30 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "临时征召",
+        "colorKey": "绿",
+        "basicType": "事务"
+      },
+      "abilitySummary": "【快速行动】将目标本方暗藏者翻面，且不需支付其费用。在回合结束时，若因此效果进场的角色仍然在场，将其翻面为暗藏者。",
+      "confirmedMechanismIds": [
+        "hidden",
+        "priority"
+      ],
       "candidateMechanismIds": [
         "hidden"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "choicePicker",
+        "hiddenProjection",
+        "stack",
+        "targetPicker"
+      ],
+      "mechanismCoverage": {
+        "hidden": "implemented",
+        "priority": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -44527,22 +44658,22 @@
     {
       "id": "XQ10",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/XQ10 邪物克星.jpg",
           "sha256": "43a47e8760c1aa31ea29ce2448c0ade3ee06a70db61779f10e2c3635c1be89ad"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/XQ10",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/XQ10",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XQ10",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "邪物克星",
         "set": "序曲",
@@ -44564,16 +44695,34 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "邪物克星",
+        "colorKey": "绿",
+        "basicType": "角色"
+      },
+      "abilitySummary": "撤回；【手牌触发】当对手的卡牌或能力令你弃掉邪物克星时，你可以将其放置进场，且置于地区一。",
+      "confirmedMechanismIds": [
+        "combatTraits",
+        "handAbility",
+        "deckChoice"
+      ],
       "candidateMechanismIds": [
         "combatTraits",
         "deckChoice"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "damagePicker",
+        "handAbility",
+        "handPicker",
+        "orderPicker",
+        "searchPicker"
+      ],
+      "mechanismCoverage": {
+        "combatTraits": "implemented",
+        "handAbility": "unimplemented",
+        "deckChoice": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -44588,22 +44737,22 @@
     {
       "id": "XQ11",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/XQ11 伊丽莎白，“知更鸟”.jpg",
           "sha256": "e98b9c77d065322251657f393e0ce9f61835dd8e90728f7221a702c579f2bd6c"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/XQ11",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/XQ11",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XQ11",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "伊丽莎白，“知更鸟”",
         "set": "序曲",
@@ -44626,16 +44775,36 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "伊丽莎白，“知更鸟”",
+        "colorKey": "绿",
+        "basicType": "角色"
+      },
+      "abilitySummary": "撤回　杀伤1；【触发】当伊丽莎白，“知更鸟”进入一个地区时，你可以将其横置，若你如此做，消灭位于本地区，且印刷防御力大于或等于3的目标角色。",
+      "confirmedMechanismIds": [
+        "combatTraits",
+        "exhaust",
+        "priority",
+        "uniqueInPlay"
+      ],
       "candidateMechanismIds": [
         "combatTraits",
         "exhaust"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "choicePicker",
+        "damagePicker",
+        "stack",
+        "targetPicker",
+        "uniquePrompt"
+      ],
+      "mechanismCoverage": {
+        "combatTraits": "implemented",
+        "exhaust": "implemented",
+        "priority": "partial",
+        "uniqueInPlay": "implemented"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -44733,22 +44902,22 @@
     {
       "id": "XQ13",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/XQ13 焚血之道.jpg",
           "sha256": "07656ef4e3406cc371ce5202fb88c64b68aec32cdc22e0adf660de41e23c836a"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/XQ13",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/XQ13",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XQ13",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "焚血之道",
         "set": "序曲",
@@ -44766,17 +44935,40 @@
         "keywords": [],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "焚血之道",
+        "colorKey": "蓝",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于本方秘社；你只能操控至多一个道途。；【持续】所有本方吸血鬼角色，其上的所有永久调查、永久势力、临时调查和临时势力能力图标都替换为永久战斗1。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "society",
+        "continuous",
+        "temporaryIcons",
+        "uniqueInPlay"
+      ],
       "candidateMechanismIds": [
         "attachment",
         "continuous",
         "control"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "attachmentPicker",
+        "attachments",
+        "iconBreakdown",
+        "societyPicker",
+        "societyZone",
+        "uniquePrompt"
+      ],
+      "mechanismCoverage": {
+        "attachment": "unimplemented",
+        "society": "unimplemented",
+        "continuous": "partial",
+        "temporaryIcons": "partial",
+        "uniqueInPlay": "implemented"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -44791,22 +44983,22 @@
     {
       "id": "XQ14",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/XQ14 鲜血.jpg",
           "sha256": "0baea888495adba62a7688be1b95c95b5ffa60d689c104b7ff3a26dd2340ffb2"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/XQ14",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/XQ14",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XQ14",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "鲜血",
         "set": "序曲",
@@ -44824,16 +45016,32 @@
         "keywords": [],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "鲜血",
+        "colorKey": "蓝",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标吸血鬼角色；【持续】受此结附的角色获得防御+1和永久战斗1。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "continuous",
+        "blood"
+      ],
       "candidateMechanismIds": [
         "attachment",
         "continuous"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "attachmentPicker",
+        "attachments",
+        "sealedCards"
+      ],
+      "mechanismCoverage": {
+        "attachment": "unimplemented",
+        "continuous": "partial",
+        "blood": "unimplemented"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -44850,22 +45058,22 @@
     {
       "id": "XQ15",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/XQ15 爱弗罗德庄园.jpg",
           "sha256": "8d0767d3561ce8c09c03b9abb67cb150b26e2e3d2a213cfd95c9a4865dbec78c"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/XQ15",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/XQ15",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XQ15",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "爱弗罗德庄园",
         "set": "序曲",
@@ -44883,17 +45091,37 @@
         "keywords": [],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "爱弗罗德庄园",
+        "colorKey": "蓝",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于本方秘社；【持续】所有你所拥有的人类角色牌，其人类类别改为吸血鬼类别。所有你所拥有的非人类且非吸血鬼角色牌，额外具有奴仆类别。（“拥有”是指所有在游戏开始时位于你牌库中的牌）",
+      "confirmedMechanismIds": [
+        "attachment",
+        "society",
+        "continuous",
+        "uniqueInPlay"
+      ],
       "candidateMechanismIds": [
         "attachment",
         "continuous",
         "deckChoice"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "attachmentPicker",
+        "attachments",
+        "societyPicker",
+        "societyZone",
+        "uniquePrompt"
+      ],
+      "mechanismCoverage": {
+        "attachment": "unimplemented",
+        "society": "unimplemented",
+        "continuous": "partial",
+        "uniqueInPlay": "implemented"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -44908,22 +45136,22 @@
     {
       "id": "XQ16",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/XQ16 法务部律师团.jpg",
           "sha256": "2ae947c0c5dccd45ae495d3c828ce9b4e1453c34dfb6e24c5e61eea8338cff80"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/XQ16",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/XQ16",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XQ16",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "法务部律师团",
         "set": "序曲",
@@ -44945,16 +45173,33 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "法务部律师团",
+        "colorKey": "蓝",
+        "basicType": "角色"
+      },
+      "abilitySummary": "公开；【进场触发】将另一个目标本方角色翻面为暗藏者。",
+      "confirmedMechanismIds": [
+        "public",
+        "hidden",
+        "priority"
+      ],
       "candidateMechanismIds": [
         "hidden",
         "public"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "choicePicker",
+        "hiddenProjection",
+        "stack",
+        "targetPicker"
+      ],
+      "mechanismCoverage": {
+        "public": "implemented",
+        "hidden": "implemented",
+        "priority": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -44969,22 +45214,22 @@
     {
       "id": "XQ17",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/XQ17 祭品.jpg",
           "sha256": "e5ad8fe27074632eab8d6207eb2e6f08efb69d20f343f2d50701d30f5a5bb5eb"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/XQ17",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/XQ17",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XQ17",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "祭品",
         "set": "序曲",
@@ -45004,15 +45249,30 @@
         "keywords": [],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "祭品",
+        "colorKey": "红",
+        "basicType": "角色"
+      },
+      "abilitySummary": "【死亡触发】抓一张牌，然后弃一张牌。",
+      "confirmedMechanismIds": [
+        "deckChoice",
+        "temporaryIcons"
+      ],
       "candidateMechanismIds": [
         "deckChoice"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "handPicker",
+        "iconBreakdown",
+        "orderPicker",
+        "searchPicker"
+      ],
+      "mechanismCoverage": {
+        "deckChoice": "partial",
+        "temporaryIcons": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -45027,22 +45287,22 @@
     {
       "id": "XQ18",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/XQ18 计时人.jpg",
           "sha256": "c33ebe42e01874807b60ff591a8e94c62e0ce8bfb1bdef7626bfad10432ed10e"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/XQ18",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/XQ18",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XQ18",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "计时人",
         "set": "序曲",
@@ -45064,17 +45324,35 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "计时人",
+        "colorKey": "红",
+        "basicType": "角色"
+      },
+      "abilitySummary": "【现身触发】在目标角色或附属上放置或移除一个时间标志。",
+      "confirmedMechanismIds": [
+        "hidden",
+        "timeDestroy",
+        "temporaryIcons"
+      ],
       "candidateMechanismIds": [
         "attachment",
         "hidden",
         "timeDestroy"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "destroyedRegions",
+        "hiddenProjection",
+        "iconBreakdown",
+        "markerEditor",
+        "targetPicker"
+      ],
+      "mechanismCoverage": {
+        "hidden": "implemented",
+        "timeDestroy": "unimplemented",
+        "temporaryIcons": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -45089,22 +45367,22 @@
     {
       "id": "XQ19",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/XQ19 熵力化身.jpg",
           "sha256": "6c70ae44fd73ee1f1e7821654c876baa8525d65bbf6b4cfa13ffe7d4adf3a1eb"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/XQ19",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/XQ19",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XQ19",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "熵力化身",
         "set": "序曲",
@@ -45128,9 +45406,19 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "熵力化身",
+        "colorKey": "红",
+        "basicType": "角色"
+      },
+      "abilitySummary": "灵体　杀伤3；熵力化身不能正面打出或付费现身。；【手牌标准行动】0：将熵力化身从你的手中放置进场，且置于地区一。你只能在场上有四个或更多时间标志时发动此能力。",
+      "confirmedMechanismIds": [
+        "spirit",
+        "combatTraits",
+        "handAbility",
+        "timeDestroy",
+        "temporaryIcons"
+      ],
       "candidateMechanismIds": [
         "combatTraits",
         "handAbility",
@@ -45139,8 +45427,21 @@
         "timeDestroy"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "damagePicker",
+        "destroyedRegions",
+        "domainSummary",
+        "handAbility",
+        "iconBreakdown",
+        "markerEditor"
+      ],
+      "mechanismCoverage": {
+        "spirit": "unimplemented",
+        "combatTraits": "implemented",
+        "handAbility": "unimplemented",
+        "timeDestroy": "unimplemented",
+        "temporaryIcons": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -45155,22 +45456,22 @@
     {
       "id": "XQ20",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/XQ20 灵魂通道.jpg",
           "sha256": "5d1d90b2e4845992f82bb7bbd0ffd7db723b040a77988708919e9ac6c4464204"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/XQ20",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/XQ20",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XQ20",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "灵魂通道",
         "set": "序曲",
@@ -45188,9 +45489,18 @@
         "keywords": [],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "灵魂通道",
+        "colorKey": "红",
+        "basicType": "事务"
+      },
+      "abilitySummary": "【标准行动】将目标角色或附属上的所有指示物标志，移动到另一个由相同玩家操控的目标角色或附属上。",
+      "confirmedMechanismIds": [
+        "timeDestroy",
+        "attachment",
+        "continuous",
+        "confrontation"
+      ],
       "candidateMechanismIds": [
         "attachment",
         "control",
@@ -45198,8 +45508,21 @@
         "token"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "attachmentPicker",
+        "attachments",
+        "damagePicker",
+        "destroyedRegions",
+        "markerEditor",
+        "orderPicker",
+        "regionReturn"
+      ],
+      "mechanismCoverage": {
+        "timeDestroy": "unimplemented",
+        "attachment": "unimplemented",
+        "continuous": "partial",
+        "confrontation": "implemented"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -45214,22 +45537,22 @@
     {
       "id": "XQ21",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/XQ21 臣服于命运.jpg",
           "sha256": "affd8758c81f1695ec9a80a8f3e7c2a75a910b465b65b97f9da01a2f05aa252d"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/XQ21",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/XQ21",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XQ21",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "臣服于命运",
         "set": "序曲",
@@ -45247,9 +45570,18 @@
         "keywords": [],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "臣服于命运",
+        "colorKey": "红",
+        "basicType": "事务"
+      },
+      "abilitySummary": "【额外费用】牺牲一个角色。；【快速行动】选择目标具有指示物标志的角色、附属或暗藏者，在其上放置一个相同类别的指示物标志。",
+      "confirmedMechanismIds": [
+        "sacrifice",
+        "hidden",
+        "timeDestroy",
+        "priority"
+      ],
       "candidateMechanismIds": [
         "attachment",
         "hidden",
@@ -45257,8 +45589,21 @@
         "token"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "choicePicker",
+        "costPicker",
+        "destroyedRegions",
+        "hiddenProjection",
+        "markerEditor",
+        "stack",
+        "targetPicker"
+      ],
+      "mechanismCoverage": {
+        "sacrifice": "implemented",
+        "hidden": "implemented",
+        "timeDestroy": "unimplemented",
+        "priority": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -45273,22 +45618,22 @@
     {
       "id": "XQ22",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/XQ22 州议员贝伦·希恩斯.jpg",
           "sha256": "a28fdc6056637aff8e569249285cff04de76cc117cc9c7967e180e99890a2840"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/XQ22",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/XQ22",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XQ22",
+      "implementationDesignStatus": "needsRuling",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "州议员贝伦·希恩斯",
         "set": "序曲",
@@ -45310,17 +45655,38 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "州议员贝伦·希恩斯",
+        "colorKey": "灰",
+        "basicType": "角色"
+      },
+      "abilitySummary": "公开；【持续】只要州议员贝伦·希恩斯未横置，双方玩家就不能打出事务牌。；【快速行动】2：横置或重置州议员贝伦·希恩斯。双方玩家都能够发动该能力。",
+      "confirmedMechanismIds": [
+        "public",
+        "exhaust",
+        "continuous",
+        "priority",
+        "uniqueInPlay"
+      ],
       "candidateMechanismIds": [
         "continuous",
         "exhaust",
         "public"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "choicePicker",
+        "stack",
+        "targetPicker",
+        "uniquePrompt"
+      ],
+      "mechanismCoverage": {
+        "public": "implemented",
+        "exhaust": "implemented",
+        "continuous": "partial",
+        "priority": "partial",
+        "uniqueInPlay": "implemented"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -45335,22 +45701,22 @@
     {
       "id": "XQ23",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/XQ23 谨慎的办事员.jpg",
           "sha256": "7370d343be9e467716a3d7ada1d95abc012f5901ed15629e2f8d18065ea0769e"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/XQ23",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/XQ23",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XQ23",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "谨慎的办事员",
         "set": "序曲",
@@ -45373,17 +45739,38 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "谨慎的办事员",
+        "colorKey": "灰",
+        "basicType": "角色"
+      },
+      "abilitySummary": "公开　撤回；【快速行动】2，【横置】：将目标本方资产移回其拥有者手上，然后将谨慎的办事员横置并置于你的资产区作为一个资产。",
+      "confirmedMechanismIds": [
+        "public",
+        "combatTraits",
+        "exhaust",
+        "continuous",
+        "priority"
+      ],
       "candidateMechanismIds": [
         "combatTraits",
         "exhaust",
         "public"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "choicePicker",
+        "damagePicker",
+        "stack",
+        "targetPicker"
+      ],
+      "mechanismCoverage": {
+        "public": "implemented",
+        "combatTraits": "implemented",
+        "exhaust": "implemented",
+        "continuous": "partial",
+        "priority": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -45398,22 +45785,22 @@
     {
       "id": "XQ24",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/XQ24 防暴警察.jpg",
           "sha256": "420b412908d7b86112e26c2ba0f94593a29c40bf8f6b54e8809ce489a66f61b8"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/XQ24",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/XQ24",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XQ24",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "防暴警察",
         "set": "序曲",
@@ -45435,16 +45822,33 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "防暴警察",
+        "colorKey": "灰",
+        "basicType": "角色"
+      },
+      "abilitySummary": "公开；【进场触发】将所有与防暴警察位于相同地区，且印刷费用小于或等于3的角色翻面为暗藏者。",
+      "confirmedMechanismIds": [
+        "public",
+        "hidden",
+        "priority"
+      ],
       "candidateMechanismIds": [
         "hidden",
         "public"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "choicePicker",
+        "hiddenProjection",
+        "stack",
+        "targetPicker"
+      ],
+      "mechanismCoverage": {
+        "public": "implemented",
+        "hidden": "implemented",
+        "priority": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -45459,22 +45863,22 @@
     {
       "id": "XQ25",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/XQ25 监控探头.jpg",
           "sha256": "c755f3d8ac0b85c3ab619b01626b92ee316f73885a5dd5a8102d53f3691306a0"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/XQ25",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/XQ25",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XQ25",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "监控探头",
         "set": "序曲",
@@ -45493,17 +45897,39 @@
         "keywords": [],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "监控探头",
+        "colorKey": "灰",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标地区；【持续】只要监控探头未横置，玩家向其所结附的地区进行秘密派遣所需的费用额外增加1。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "exhaust",
+        "hidden",
+        "continuous",
+        "temporaryIcons"
+      ],
       "candidateMechanismIds": [
         "attachment",
         "continuous",
         "exhaust"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "attachmentPicker",
+        "attachments",
+        "hiddenProjection",
+        "iconBreakdown",
+        "targetPicker"
+      ],
+      "mechanismCoverage": {
+        "attachment": "unimplemented",
+        "exhaust": "implemented",
+        "hidden": "implemented",
+        "continuous": "partial",
+        "temporaryIcons": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -45518,22 +45944,22 @@
     {
       "id": "XQ26",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/XQ26 通缉令.jpg",
           "sha256": "a4bb056437eb09c9fe2edc549a9416ecdd4488e4faf436714294f212de10c854"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/XQ26",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/XQ26",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XQ26",
+      "implementationDesignStatus": "needsRuling",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "通缉令",
         "set": "序曲",
@@ -45551,16 +45977,38 @@
         "keywords": [],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "通缉令",
+        "colorKey": "灰",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于本方秘社；【进场触发】说出一个角色牌名称。；【强制触发】每当该名称的角色牌进场时，牺牲通缉令，然后消灭该角色。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "society",
+        "sacrifice",
+        "priority"
+      ],
       "candidateMechanismIds": [
         "attachment",
         "sacrifice"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "attachmentPicker",
+        "attachments",
+        "choicePicker",
+        "costPicker",
+        "societyPicker",
+        "societyZone",
+        "stack"
+      ],
+      "mechanismCoverage": {
+        "attachment": "unimplemented",
+        "society": "unimplemented",
+        "sacrifice": "implemented",
+        "priority": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -45575,22 +46023,22 @@
     {
       "id": "XQ27",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/XQ27 定点清除行动.jpg",
           "sha256": "78f2d5e2422b611bbf159a33083d70c75bf2ac83103325550430a394e8a803b5"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/XQ27",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/XQ27",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XQ27",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "定点清除行动",
         "set": "序曲",
@@ -45608,15 +46056,26 @@
         "keywords": [],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "定点清除行动",
+        "colorKey": "灰",
+        "basicType": "事务"
+      },
+      "abilitySummary": "【标准行动】消灭所有暗藏者。",
+      "confirmedMechanismIds": [
+        "hidden"
+      ],
       "candidateMechanismIds": [
         "hidden"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "hiddenProjection",
+        "targetPicker"
+      ],
+      "mechanismCoverage": {
+        "hidden": "implemented"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -45631,22 +46090,22 @@
     {
       "id": "XQ28",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/XQ28 冥想者.jpg",
           "sha256": "493eb17c79cd202813a58e6c02bb603280d9fe21bf87d7535444b5b84ac09352"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/XQ28",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/XQ28",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XQ28",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "冥想者",
         "set": "序曲",
@@ -45666,15 +46125,27 @@
         "keywords": [],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "冥想者",
+        "colorKey": "白",
+        "basicType": "角色"
+      },
+      "abilitySummary": "【进场触发】从你的牌库中寻找一张修行牌，将你的牌库洗牌，然后展示该牌并将其置于你的牌库顶。",
+      "confirmedMechanismIds": [
+        "deckChoice"
+      ],
       "candidateMechanismIds": [
         "deckChoice"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "handPicker",
+        "orderPicker",
+        "searchPicker"
+      ],
+      "mechanismCoverage": {
+        "deckChoice": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -45689,22 +46160,22 @@
     {
       "id": "XQ29",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/XQ29 阿塔科拉安魂师.jpg",
           "sha256": "c2cd4d2f93095128f35da0cff1a510f48d69321fb2125633a058bcf2cc6d9e5d"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/XQ29",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/XQ29",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XQ29",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "阿塔科拉安魂师",
         "set": "序曲",
@@ -45726,9 +46197,18 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "阿塔科拉安魂师",
+        "colorKey": "白",
+        "basicType": "角色"
+      },
+      "abilitySummary": "【快速行动】1：阿塔科拉安魂师获得永久调查1和声望直到回合结束，然后你可以将任一玩家墓地中的目标角色牌置于其拥有者的牌库底。该能力每回合只能发动一次。",
+      "confirmedMechanismIds": [
+        "continuous",
+        "renown",
+        "graveRecovery",
+        "priority"
+      ],
       "candidateMechanismIds": [
         "continuous",
         "deckChoice",
@@ -45736,8 +46216,19 @@
         "renown"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "choicePicker",
+        "graveyardPicker",
+        "regionPicker",
+        "stack",
+        "triggerPrompt"
+      ],
+      "mechanismCoverage": {
+        "continuous": "partial",
+        "renown": "unimplemented",
+        "graveRecovery": "implemented",
+        "priority": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -45752,22 +46243,22 @@
     {
       "id": "XQ30",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/XQ30 阿瓦隆岛的迷雾.jpg",
           "sha256": "db1fdd5830646c704e89186c4c2b616b9e734c9123e2c52a5aff40ca34f80917"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/XQ30",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/XQ30",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XQ30",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "阿瓦隆岛的迷雾",
         "set": "序曲",
@@ -45785,9 +46276,22 @@
         "keywords": [],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "阿瓦隆岛的迷雾",
+        "colorKey": "白",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于本方秘社；【持续】所有本方角色获得防御+1，并失去所有永久战斗和临时战斗能力图标。；【快速行动】4，牺牲阿瓦隆岛的迷雾：将所有本回合中死亡的圣贤角色从墓地移回其拥有者的手中。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "society",
+        "continuous",
+        "graveRecovery",
+        "sacrifice",
+        "priority",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
       "candidateMechanismIds": [
         "attachment",
         "continuous",
@@ -45795,8 +46299,29 @@
         "sacrifice"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "attachmentPicker",
+        "attachments",
+        "choicePicker",
+        "costPicker",
+        "graveyardPicker",
+        "iconBreakdown",
+        "regionPicker",
+        "societyPicker",
+        "societyZone",
+        "stack",
+        "uniquePrompt"
+      ],
+      "mechanismCoverage": {
+        "attachment": "unimplemented",
+        "society": "unimplemented",
+        "continuous": "partial",
+        "graveRecovery": "implemented",
+        "sacrifice": "implemented",
+        "priority": "partial",
+        "uniqueInPlay": "implemented",
+        "temporaryIcons": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -45811,22 +46336,22 @@
     {
       "id": "XQ31",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/XQ31 莫兰大主教.jpg",
           "sha256": "2dcb08e58a96740154c96256725e376b6723431abb06e322c73f25d7700c00dc"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/XQ31",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/XQ31",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XQ31",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "莫兰大主教",
         "set": "序曲",
@@ -45850,9 +46375,20 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "莫兰大主教",
+        "colorKey": "白",
+        "basicType": "角色"
+      },
+      "abilitySummary": "领袖　公开　声望；【持续】所有本方声望角色获得防御+1，且不能成为敌方卡牌或能力的目标。",
+      "confirmedMechanismIds": [
+        "leader",
+        "public",
+        "renown",
+        "continuous",
+        "barrier",
+        "uniqueInPlay"
+      ],
       "candidateMechanismIds": [
         "continuous",
         "leader",
@@ -45860,8 +46396,18 @@
         "renown"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "triggerPrompt",
+        "uniquePrompt"
+      ],
+      "mechanismCoverage": {
+        "leader": "unimplemented",
+        "public": "implemented",
+        "renown": "unimplemented",
+        "continuous": "partial",
+        "barrier": "implemented",
+        "uniqueInPlay": "implemented"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -45876,22 +46422,22 @@
     {
       "id": "XQ32",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/XQ32 面壁苦修.jpg",
           "sha256": "3f8306fc61ddb4f6fe6620526c00b58fd0b5c68e243411f1419ac5b3fe56b95f"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/XQ32",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/XQ32",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XQ32",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "面壁苦修",
         "set": "序曲",
@@ -45909,16 +46455,44 @@
         "keywords": [],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "面壁苦修",
+        "colorKey": "白",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于本方秘社；【触发】当你赢得一次调查对抗时，在面壁苦修上放置一个冥想标志。；【快速行动】自面壁苦修上移除至少四个冥想标志，将面壁苦修置入你的计分区：抓三张牌。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "society",
+        "confrontation",
+        "deckChoice",
+        "priority"
+      ],
       "candidateMechanismIds": [
         "attachment",
         "deckChoice"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "attachmentPicker",
+        "attachments",
+        "choicePicker",
+        "damagePicker",
+        "handPicker",
+        "orderPicker",
+        "regionReturn",
+        "searchPicker",
+        "societyPicker",
+        "societyZone",
+        "stack"
+      ],
+      "mechanismCoverage": {
+        "attachment": "unimplemented",
+        "society": "unimplemented",
+        "confrontation": "implemented",
+        "deckChoice": "partial",
+        "priority": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -45933,22 +46507,22 @@
     {
       "id": "XQ33",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/XQ33 慈悲.jpg",
           "sha256": "8ac065bd0d1e700bd26330e657c60a016ef31513ea967808bc2907b9e3069537"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/XQ33",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/XQ33",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XQ33",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "慈悲",
         "set": "序曲",
@@ -45966,15 +46540,32 @@
         "keywords": [],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "慈悲",
+        "colorKey": "白",
+        "basicType": "事务"
+      },
+      "abilitySummary": "【标准行动】选择目标地区，将该地区上的所有具有永久战斗或临时战斗能力图标的角色洗入其拥有者的牌库。",
+      "confirmedMechanismIds": [
+        "deckChoice",
+        "continuous",
+        "temporaryIcons"
+      ],
       "candidateMechanismIds": [
         "deckChoice"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "handPicker",
+        "iconBreakdown",
+        "orderPicker",
+        "searchPicker"
+      ],
+      "mechanismCoverage": {
+        "deckChoice": "partial",
+        "continuous": "partial",
+        "temporaryIcons": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -45989,22 +46580,22 @@
     {
       "id": "XQ34",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/XQ34 灵感.jpg",
           "sha256": "2ca1f5a4b25d308f8af13a7a80018010deaf93f9abe2275bef1fa7656be13e04"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/XQ34",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/XQ34",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XQ34",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "灵感",
         "set": "序曲",
@@ -46022,15 +46613,34 @@
         "keywords": [],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "灵感",
+        "colorKey": "白",
+        "basicType": "事务"
+      },
+      "abilitySummary": "【快速行动】抓一张牌。；【手牌触发】当你从手中弃掉灵感时，你可以支付1，若你如此做，抓一张牌。",
+      "confirmedMechanismIds": [
+        "deckChoice",
+        "handAbility",
+        "priority"
+      ],
       "candidateMechanismIds": [
         "deckChoice"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "choicePicker",
+        "handAbility",
+        "handPicker",
+        "orderPicker",
+        "searchPicker",
+        "stack"
+      ],
+      "mechanismCoverage": {
+        "deckChoice": "partial",
+        "handAbility": "unimplemented",
+        "priority": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -46045,22 +46655,22 @@
     {
       "id": "XQ35",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/XQ35 白骨仆人.jpg",
           "sha256": "16848181852ab99f7caa29cf84b65a1a018c644da3ad6b4e1aa0bb635c7920b3"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/XQ35",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/XQ35",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XQ35",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "白骨仆人",
         "set": "序曲",
@@ -46080,9 +46690,19 @@
         "keywords": [],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "白骨仆人",
+        "colorKey": "黑",
+        "basicType": "角色"
+      },
+      "abilitySummary": "白骨仆人不能正面打出或付费现身。；【墓地标准行动】1，将你墓地中的另一张角色牌封印在本方秘社上：将白骨仆人从你的墓地移回场上并横置，且置于地区一。该能力每回合只能发动一次。",
+      "confirmedMechanismIds": [
+        "graveRecovery",
+        "gravePlay",
+        "seal",
+        "society",
+        "exhaust"
+      ],
       "candidateMechanismIds": [
         "exhaust",
         "gravePlay",
@@ -46092,8 +46712,21 @@
         "seal"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "graveyardPicker",
+        "regionPicker",
+        "sealedCards",
+        "societyPicker",
+        "societyZone",
+        "targetPicker"
+      ],
+      "mechanismCoverage": {
+        "graveRecovery": "implemented",
+        "gravePlay": "unimplemented",
+        "seal": "unimplemented",
+        "society": "unimplemented",
+        "exhaust": "implemented"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -46108,22 +46741,22 @@
     {
       "id": "XQ36",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/XQ36 圣甲虫的清理员.jpg",
           "sha256": "84b611615ecdbdf7940022160522187a28edb46322525e540fed1935de0526b9"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/XQ36",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/XQ36",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XQ36",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "圣甲虫的清理员",
         "set": "序曲",
@@ -46143,16 +46776,28 @@
         "keywords": [],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "圣甲虫的清理员",
+        "colorKey": "黑",
+        "basicType": "角色"
+      },
+      "abilitySummary": "【进场触发】将每位玩家牌库顶的四张牌置于该玩家的墓地。",
+      "confirmedMechanismIds": [
+        "deckChoice"
+      ],
       "candidateMechanismIds": [
         "deckChoice",
         "graveRecovery"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "handPicker",
+        "orderPicker",
+        "searchPicker"
+      ],
+      "mechanismCoverage": {
+        "deckChoice": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -46167,22 +46812,22 @@
     {
       "id": "XQ37",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/XQ37 夜总会看门人.jpg",
           "sha256": "93778bc4ffa69e5b79ad08738e3f31a78a669a049c42a43e68d04bd6398856b9"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/XQ37",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/XQ37",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XQ37",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "夜总会看门人",
         "set": "序曲",
@@ -46202,13 +46847,25 @@
         "keywords": [],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "夜总会看门人",
+        "colorKey": "黑",
+        "basicType": "角色"
+      },
+      "abilitySummary": "【进场触发】若夜总会看门人位于有本方势力标志的地区，则在该地区上放置一个本方势力标志。",
+      "confirmedMechanismIds": [
+        "confrontation"
+      ],
       "candidateMechanismIds": [],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "damagePicker",
+        "orderPicker",
+        "regionReturn"
+      ],
+      "mechanismCoverage": {
+        "confrontation": "implemented"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -46223,22 +46880,22 @@
     {
       "id": "XQ38",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/XQ38 金特·易卜拉欣.jpg",
           "sha256": "26c8311674325491157577a3d295c148ce1c6f27ded59c4d27979faf58e9204e"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/XQ38",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/XQ38",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XQ38",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "金特·易卜拉欣",
         "set": "序曲",
@@ -46258,17 +46915,42 @@
         "keywords": [],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "金特·易卜拉欣",
+        "colorKey": "黑",
+        "basicType": "角色"
+      },
+      "abilitySummary": "【进场触发】将目标玩家牌库顶的三张牌置于其墓地。；【标准行动】2，【横置】，弃一张手牌：将你墓地中的目标角色牌置于你的手中。",
+      "confirmedMechanismIds": [
+        "deckChoice",
+        "graveRecovery",
+        "exhaust",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
       "candidateMechanismIds": [
         "deckChoice",
         "exhaust",
         "graveRecovery"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "graveyardPicker",
+        "handPicker",
+        "iconBreakdown",
+        "orderPicker",
+        "regionPicker",
+        "searchPicker",
+        "targetPicker",
+        "uniquePrompt"
+      ],
+      "mechanismCoverage": {
+        "deckChoice": "partial",
+        "graveRecovery": "implemented",
+        "exhaust": "implemented",
+        "uniqueInPlay": "implemented",
+        "temporaryIcons": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -46283,22 +46965,22 @@
     {
       "id": "XQ39",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/XQ39 方碑徽记.jpg",
           "sha256": "1be69fe1f9cdf2e99f5b46b28ddeceb97c921ee3cc44c63d4ff084c0ac04f2ae"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/XQ39",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/XQ39",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XQ39",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "方碑徽记",
         "set": "序曲",
@@ -46316,9 +46998,21 @@
         "keywords": [],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "方碑印记",
+        "colorKey": "黑",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于本方秘社；【快速行动】【横置】：本回合中你下一张正面打出或翻面的方碑序列牌的所需费用减少1。；【快速行动】2，【横置】：将你墓地中的目标角色牌置于你的牌库顶。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "society",
+        "costReduction",
+        "exhaust",
+        "graveRecovery",
+        "priority",
+        "uniqueInPlay"
+      ],
       "candidateMechanismIds": [
         "attachment",
         "costReduction",
@@ -46327,8 +47021,27 @@
         "graveRecovery"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "attachmentPicker",
+        "attachments",
+        "choicePicker",
+        "graveyardPicker",
+        "regionPicker",
+        "societyPicker",
+        "societyZone",
+        "stack",
+        "targetPicker",
+        "uniquePrompt"
+      ],
+      "mechanismCoverage": {
+        "attachment": "unimplemented",
+        "society": "unimplemented",
+        "costReduction": "partial",
+        "exhaust": "implemented",
+        "graveRecovery": "implemented",
+        "priority": "partial",
+        "uniqueInPlay": "implemented"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,

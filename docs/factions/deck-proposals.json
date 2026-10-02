@@ -1,0 +1,585 @@
+{
+  "schemaVersion": 1,
+  "auditedCommit": "286ad83ef5a54bc0caed26199ca4cfea269314bd",
+  "kind": "sourceVerifiedDesignCandidates",
+  "officialPreconstructedDecks": false,
+  "neutralCardCount": 0,
+  "gameAcceptance": "notAccepted",
+  "strategyUiPlaytest": "notRun",
+  "selectionEnabled": false,
+  "scope": "四组覆盖八色的独立50张设计候选；牌面已核但整副实现与试玩尚未接受。数量是本研究提案，不冒充原作牌表。",
+  "decks": [
+    {
+      "id": "yellow-green",
+      "label": "黄绿横置与猎手",
+      "colors": [
+        "黄",
+        "绿"
+      ],
+      "totalCards": 50,
+      "neutralCardCount": 0,
+      "entries": [
+        {
+          "cardId": "JC001",
+          "name": "通灵猫头鹰",
+          "count": 3,
+          "colorKey": "黄",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC001"
+        },
+        {
+          "cardId": "JC002",
+          "name": "巨石阵看护人",
+          "count": 3,
+          "colorKey": "黄",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC002"
+        },
+        {
+          "cardId": "JC003",
+          "name": "帷幕护卫",
+          "count": 3,
+          "colorKey": "黄",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC003"
+        },
+        {
+          "cardId": "JC004",
+          "name": "力场法师",
+          "count": 3,
+          "colorKey": "黄",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC004"
+        },
+        {
+          "cardId": "JC005",
+          "name": "裂解术",
+          "count": 3,
+          "colorKey": "黄",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC005"
+        },
+        {
+          "cardId": "JC006",
+          "name": "逆转异界之门",
+          "count": 3,
+          "colorKey": "黄",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC006"
+        },
+        {
+          "cardId": "JC007",
+          "name": "常春藤派学者",
+          "count": 3,
+          "colorKey": "黄",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC007"
+        },
+        {
+          "cardId": "JC008",
+          "name": "灵能激发",
+          "count": 2,
+          "colorKey": "黄",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC008"
+        },
+        {
+          "cardId": "JC014",
+          "name": "公路骑士",
+          "count": 3,
+          "colorKey": "绿",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC014"
+        },
+        {
+          "cardId": "JC015",
+          "name": "驱魔人",
+          "count": 3,
+          "colorKey": "绿",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC015"
+        },
+        {
+          "cardId": "JC016",
+          "name": "执行部精锐",
+          "count": 3,
+          "colorKey": "绿",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC016"
+        },
+        {
+          "cardId": "JC017",
+          "name": "除咒师",
+          "count": 3,
+          "colorKey": "绿",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC017"
+        },
+        {
+          "cardId": "JC018",
+          "name": "魔刃传人",
+          "count": 3,
+          "colorKey": "绿",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC018"
+        },
+        {
+          "cardId": "JC019",
+          "name": "弥尔顿的镇魔枪",
+          "count": 3,
+          "colorKey": "绿",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC019"
+        },
+        {
+          "cardId": "JC020",
+          "name": "隐蔽的飞刀",
+          "count": 3,
+          "colorKey": "绿",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC020"
+        },
+        {
+          "cardId": "JC021",
+          "name": "狭路相逢",
+          "count": 3,
+          "colorKey": "绿",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC021"
+        },
+        {
+          "cardId": "JC026",
+          "name": "洛特尼科夫",
+          "count": 3,
+          "colorKey": "绿",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC026"
+        }
+      ],
+      "sharedMechanismPriorities": [
+        "hidden",
+        "exhaust",
+        "priority",
+        "attachment",
+        "mobility",
+        "continuous"
+      ],
+      "implementationStage": "较先：共享目标/响应/横置与装备载体；一张牌的卡面整体验收后才能解锁",
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun"
+    },
+    {
+      "id": "blue-red",
+      "label": "蓝红血族与献祭",
+      "colors": [
+        "蓝",
+        "红"
+      ],
+      "totalCards": 50,
+      "neutralCardCount": 0,
+      "entries": [
+        {
+          "cardId": "JC028",
+          "name": "鲜血奴仆",
+          "count": 3,
+          "colorKey": "蓝",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC028"
+        },
+        {
+          "cardId": "JC029",
+          "name": "新生血族",
+          "count": 3,
+          "colorKey": "蓝",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC029"
+        },
+        {
+          "cardId": "JC030",
+          "name": "巨型蝙蝠",
+          "count": 3,
+          "colorKey": "蓝",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC030"
+        },
+        {
+          "cardId": "JC031",
+          "name": "唤灵师",
+          "count": 3,
+          "colorKey": "蓝",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC031"
+        },
+        {
+          "cardId": "JC033",
+          "name": "家族传承",
+          "count": 3,
+          "colorKey": "蓝",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC033"
+        },
+        {
+          "cardId": "JC034",
+          "name": "心兽之道",
+          "count": 3,
+          "colorKey": "蓝",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC034"
+        },
+        {
+          "cardId": "JC035",
+          "name": "传媒魔咒",
+          "count": 3,
+          "colorKey": "蓝",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC035"
+        },
+        {
+          "cardId": "JC039",
+          "name": "王座会徽记",
+          "count": 2,
+          "colorKey": "蓝",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC039"
+        },
+        {
+          "cardId": "JC042",
+          "name": "末日信徒",
+          "count": 3,
+          "colorKey": "红",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC042"
+        },
+        {
+          "cardId": "JC043",
+          "name": "纵火狂",
+          "count": 3,
+          "colorKey": "红",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC043"
+        },
+        {
+          "cardId": "JC044",
+          "name": "灾难使者",
+          "count": 3,
+          "colorKey": "红",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC044"
+        },
+        {
+          "cardId": "JC045",
+          "name": "钟摆祭司",
+          "count": 3,
+          "colorKey": "红",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC045"
+        },
+        {
+          "cardId": "JC048",
+          "name": "诅咒沙漏",
+          "count": 3,
+          "colorKey": "红",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC048"
+        },
+        {
+          "cardId": "JC049",
+          "name": "深渊细语",
+          "count": 3,
+          "colorKey": "红",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC049"
+        },
+        {
+          "cardId": "JC055",
+          "name": "安妮斯朵拉",
+          "count": 3,
+          "colorKey": "红",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC055"
+        },
+        {
+          "cardId": "XQ17",
+          "name": "祭品",
+          "count": 3,
+          "colorKey": "红",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/XQ17"
+        },
+        {
+          "cardId": "XQ18",
+          "name": "计时人",
+          "count": 3,
+          "colorKey": "红",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/XQ18"
+        }
+      ],
+      "sharedMechanismPriorities": [
+        "sacrifice",
+        "hidden",
+        "deckChoice",
+        "repress",
+        "timeDestroy",
+        "continuous"
+      ],
+      "implementationStage": "随后：牺牲/死亡事件、弃牌与遏制、标志生命周期，不先靠时间值假数据解锁",
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun"
+    },
+    {
+      "id": "gray-black",
+      "label": "灰黑暗藏者与墓地",
+      "colors": [
+        "灰",
+        "黑"
+      ],
+      "totalCards": 50,
+      "neutralCardCount": 0,
+      "entries": [
+        {
+          "cardId": "JC056",
+          "name": "地区警员",
+          "count": 3,
+          "colorKey": "灰",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC056"
+        },
+        {
+          "cardId": "JC057",
+          "name": "监控员",
+          "count": 3,
+          "colorKey": "灰",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC057"
+        },
+        {
+          "cardId": "JC058",
+          "name": "坚毅的刑警",
+          "count": 3,
+          "colorKey": "灰",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC058"
+        },
+        {
+          "cardId": "JC059",
+          "name": "安全保卫部门",
+          "count": 3,
+          "colorKey": "灰",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC059"
+        },
+        {
+          "cardId": "JC060",
+          "name": "神秘学顾问",
+          "count": 3,
+          "colorKey": "灰",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC060"
+        },
+        {
+          "cardId": "JC062",
+          "name": "调查档案",
+          "count": 3,
+          "colorKey": "灰",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC062"
+        },
+        {
+          "cardId": "JC063",
+          "name": "警车追捕",
+          "count": 3,
+          "colorKey": "灰",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC063"
+        },
+        {
+          "cardId": "JC065",
+          "name": "审问嫌疑人",
+          "count": 2,
+          "colorKey": "灰",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC065"
+        },
+        {
+          "cardId": "JC084",
+          "name": "街头混混",
+          "count": 3,
+          "colorKey": "黑",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC084"
+        },
+        {
+          "cardId": "JC085",
+          "name": "复生行尸",
+          "count": 3,
+          "colorKey": "黑",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC085"
+        },
+        {
+          "cardId": "JC086",
+          "name": "窃尸人",
+          "count": 3,
+          "colorKey": "黑",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC086"
+        },
+        {
+          "cardId": "JC087",
+          "name": "格鲁尼的走私客",
+          "count": 3,
+          "colorKey": "黑",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC087"
+        },
+        {
+          "cardId": "JC088",
+          "name": "职业杀手",
+          "count": 3,
+          "colorKey": "黑",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC088"
+        },
+        {
+          "cardId": "JC089",
+          "name": "毒血诅咒",
+          "count": 3,
+          "colorKey": "黑",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC089"
+        },
+        {
+          "cardId": "JC090",
+          "name": "灵魂契约",
+          "count": 3,
+          "colorKey": "黑",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC090"
+        },
+        {
+          "cardId": "JC091",
+          "name": "谋杀",
+          "count": 3,
+          "colorKey": "黑",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC091"
+        },
+        {
+          "cardId": "JC092",
+          "name": "死灵召唤",
+          "count": 3,
+          "colorKey": "黑",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC092"
+        }
+      ],
+      "sharedMechanismPriorities": [
+        "public",
+        "hidden",
+        "graveRecovery",
+        "priority",
+        "continuous",
+        "attachment"
+      ],
+      "implementationStage": "随后：位置/身份合法性、死亡后墓地区域选择；灰色友方效果需覆盖2V2队友",
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun"
+    },
+    {
+      "id": "white-purple",
+      "label": "白紫声望与封印",
+      "colors": [
+        "白",
+        "紫"
+      ],
+      "totalCards": 50,
+      "neutralCardCount": 0,
+      "entries": [
+        {
+          "cardId": "JC070",
+          "name": "虔心修士",
+          "count": 3,
+          "colorKey": "白",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC070"
+        },
+        {
+          "cardId": "JC071",
+          "name": "阿瓦隆隐士",
+          "count": 3,
+          "colorKey": "白",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC071"
+        },
+        {
+          "cardId": "JC072",
+          "name": "博学的贤者",
+          "count": 3,
+          "colorKey": "白",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC072"
+        },
+        {
+          "cardId": "JC073",
+          "name": "苏族捕梦网",
+          "count": 3,
+          "colorKey": "白",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC073"
+        },
+        {
+          "cardId": "JC074",
+          "name": "天空的教诲",
+          "count": 3,
+          "colorKey": "白",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC074"
+        },
+        {
+          "cardId": "JC075",
+          "name": "雪地救援队",
+          "count": 3,
+          "colorKey": "白",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC075"
+        },
+        {
+          "cardId": "JC076",
+          "name": "悟道僧人",
+          "count": 3,
+          "colorKey": "白",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC076"
+        },
+        {
+          "cardId": "JC078",
+          "name": "光能盾",
+          "count": 2,
+          "colorKey": "白",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC078"
+        },
+        {
+          "cardId": "JC098",
+          "name": "陷入疯狂的人群",
+          "count": 3,
+          "colorKey": "紫",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC098"
+        },
+        {
+          "cardId": "JC099",
+          "name": "徘徊的鬼魂",
+          "count": 3,
+          "colorKey": "紫",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC099"
+        },
+        {
+          "cardId": "JC100",
+          "name": "尖牙幻象",
+          "count": 3,
+          "colorKey": "紫",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC100"
+        },
+        {
+          "cardId": "JC101",
+          "name": "直视深渊",
+          "count": 3,
+          "colorKey": "紫",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC101"
+        },
+        {
+          "cardId": "JC102",
+          "name": "妖火",
+          "count": 3,
+          "colorKey": "紫",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC102"
+        },
+        {
+          "cardId": "JC103",
+          "name": "丧失理智的画家",
+          "count": 3,
+          "colorKey": "紫",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC103"
+        },
+        {
+          "cardId": "JC104",
+          "name": "占卜师",
+          "count": 3,
+          "colorKey": "紫",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC104"
+        },
+        {
+          "cardId": "JC105",
+          "name": "噩梦领主",
+          "count": 3,
+          "colorKey": "紫",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC105"
+        },
+        {
+          "cardId": "JC111",
+          "name": "混沌蝴蝶",
+          "count": 3,
+          "colorKey": "紫",
+          "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC111"
+        }
+      ],
+      "sharedMechanismPriorities": [
+        "renown",
+        "seal",
+        "spirit",
+        "barrier",
+        "graveRecovery",
+        "privatePeek"
+      ],
+      "implementationStage": "较后：声望受伤反馈、封印载体完整生命周期、灵体合法对抗与私密检视；不补造阻塞卡",
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun"
+    }
+  ]
+}
