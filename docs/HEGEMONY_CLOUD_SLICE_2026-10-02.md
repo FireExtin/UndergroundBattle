@@ -35,13 +35,13 @@
 - GET /api/rooms/:roomId/events（同 Bearer；SSE，data为本人View）
 - POST /api/rooms/:roomId/commands（同 Bearer）{commandId,expectedVersion,action:Action} → View；冲突409+{error,view}，拒绝400+{error,message}；重试相同commandId只返回原提交结果。
 - Session={roomId,inviteCode,token,seat,view}
-- View={roomId,inviteCode,version,mode,status:"lobby"|"playing"|"finished",you,players:[{id,seat,name,team,deckId,ready,eliminated,handCount,deckCount,score}],firstTeam,activeTeam,priorityTeam,turn,phase,step,winScore,winnerTeam?,regions:[{id,index,cardId,name,threshold,points,influence:[number,number],characters:[CardView]}],hand:[CardView],assets:[CardView],graveyard:[CardView],scoreCards:[CardView],stack:[{id,label,controller,cardId?,targetId?}],pendingChoice:Choice|null,legalActions:[Action & {id,label,description?}],log:[{version,text}],versions:{rules,cardPool,engine}}
+- View={roomId,inviteCode,version,mode,status:"lobby"|"playing"|"finished",you,players:[{id,seat,name,team,deckId,ready,eliminated,handCount,deckCount,score}],firstTeam,activeTeam,priorityTeam,turn,phase,step,winScore,winnerTeam?,regions:[{id,index,cardId,name,threshold,points,influence:[number,number],characters:[CardView]}],hand:[CardView],assets:[CardView],graveyard:[CardView],scoreCards:[CardView],stack:[{id,label,controller,cardId?,targetId?}],pendingChoice:Choice|null,legalActions:[Action & {id,label,description?}],log:[{version,text}],versions:{rules,cardPool,engine},waitingChoice:{playerId,kind,title}|null}
 - CardView={instanceId,cardId?,name,owner,controller,kind,region?,exhausted,faceDown,cost?,text?,icons?:{investigation,combat,influence},defense?,damage?,shield?,wounds?,color?,magic?}；对手/队友暗牌不得包含cardId/name/text/印刷属性，名称只能“暗藏者”。己方手牌只出现在自己的hand；其他玩家手牌只给数量。
 - Action={kind,cardId?,targetId?,region?:number,option?,choiceId?,selected?:string[],top?:string[],bottom?:string[],allocations?:{[instanceId]:number}}
 - Choice={id,kind,title,description,playerId,options:[{id,label,card?:CardView}],min?,max?,amount?,allowDecline?}，可选kind为mulligan/discard/order/investigation/damage/recipient/target/trigger/search/region_return；order/investigation使用top/bottom；damage使用allocations；其他使用selected，空selected代表允许的拒绝。
 - 房主start/restart、选牌组、准备等都经合法Action。所有动作由令牌确定actor，expectedVersion验证；等待选择时只有选择者有choose动作，选择权与priority分离。
 
-每局串行锁；SQLite事务先持久化完整状态、命令去重响应与日志，成功后广播/确认；固定版本和seed+命令可确定性回放。进出区域/翻面都要更新instance身份；旧引用不可打到新实体。
+每局串行锁；SQLite事务先持久化完整状态、命令去重响应与日志，成功后广播/确认；固定版本和seed+命令可确定性回放。跨手牌/牌库/墓地/场上的区域变化和翻面更新instance身份；地区间移动保留实体身份与状态；旧引用不可打到翻面后的新实体。
 
 ## 验收
 

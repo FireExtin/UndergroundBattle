@@ -4,3 +4,8 @@ dist/
 coverage/
 *.tsbuildinfo
 .DS_Store
+/target/
+/rust-game.sqlite3
+/rust-game.sqlite3-shm
+/rust-game.sqlite3-wal
+/review-artifacts/

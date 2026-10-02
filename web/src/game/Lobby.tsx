@@ -1,0 +1,64 @@
+import { useState } from 'react';
+import type { Catalog, Deck } from './types';
+
+export const deckThemes: Record<string, { mark: string; color: string; role: string }> = {
+  watchers: { mark: '◈', color: 'blue', role: '调查 · 控制' },
+  hunters: { mark: '⚔', color: 'red', role: '机动 · 战斗' },
+  keepers: { mark: '⌖', color: 'gold', role: '守备 · 势力' },
+  reclaimers: { mark: '✧', color: 'violet', role: '墓地 · 回收' },
+};
+
+export function DeckPicker({ decks, value, onChange, disabled = false, allowedIds }: { decks: Deck[]; value: string; onChange: (id: string) => void; disabled?: boolean; allowedIds?: string[] }) {
+  return <div className="hg-decks">{decks.map((deck, index) => {
+    const theme = deckThemes[deck.id] || { mark: '◈', color: 'blue', role: '秘社牌组' };
+    return <button type="button" key={deck.id} data-deck-id={deck.id} className={`hg-deck hg-deck-${theme.color} ${value === deck.id ? 'hg-selected' : ''}`} onClick={() => onChange(deck.id)} disabled={disabled || (allowedIds !== undefined && !allowedIds.includes(deck.id))} aria-pressed={value === deck.id}>
+      <span className="hg-deck-index">0{index + 1}</span><span className="hg-deck-sigil" aria-hidden="true">{theme.mark}</span>
+      <span className="hg-deck-role">{theme.role}</span><strong>{deck.name}</strong><span className="hg-deck-description">{deck.description}</span>
+      <span className="hg-deck-footer">{deck.cardCount} 张真实卡牌 <span>{value === deck.id ? '✓ 已选择' : '选择牌组 ↗'}</span></span>
+    </button>;
+  })}</div>;
+}
+
+export function Lobby({ catalog, busy, onCreate, onJoin, retry }: {
+  catalog: Catalog | null; busy: boolean;
+  onCreate: (name: string, mode: 'duel' | 'teams', deckId: string) => void;
+  onJoin: (invite: string, name: string, deckId: string) => void; retry: () => void;
+}) {
+  const initialInvite = new URL(location.href).searchParams.get('invite') || '';
+  const [name, setName] = useState('');
+  const [mode, setMode] = useState<'duel' | 'teams'>('duel');
+  const [invite, setInvite] = useState(initialInvite);
+  const [tab, setTab] = useState<'create' | 'join'>(initialInvite ? 'join' : 'create');
+  const [deckId, setDeckId] = useState('');
+  const selected = deckId || catalog?.decks[0]?.id || '';
+  const deck = catalog?.decks.find(item => item.id === selected);
+  return <main className="hg-lobby">
+    <section className="hg-hero">
+      <div className="hg-hero-orbit" aria-hidden="true"><span>◈</span><i /><i /></div>
+      <div className="hg-eyebrow">THE SECRET WORLD · 霸权</div>
+      <h1>世界的背面，<br /><em>等你落子。</em></h1>
+      <p>派遣秘社角色，争夺城市的隐秘权柄。<br />与一位对手交锋，或和伙伴并肩加入四人牌桌。</p>
+      <div className="hg-hero-features"><span>◈ 调查</span><span>⚔ 战斗</span><span>⚑ 势力</span></div>
+    </section>
+    <section className="hg-onboarding">
+      <div className="hg-section-title"><span className="hg-eyebrow">01 / 选择你的秘社</span><span className="hg-pool-badge">受限真实卡池预组</span></div>
+      <h2>四条通往霸权的道路</h2>
+      <p className="hg-muted">每套 50 张，来自已开放的真实卡牌。当前为受限卡池自组预组，并非官方四套预组。</p>
+      {catalog ? <><DeckPicker decks={catalog.decks} value={selected} onChange={setDeckId} disabled={busy} />
+        {deck && <details className="hg-deck-list"><summary>查看「{deck.name}」的 50 张组成</summary><ul>{deck.cards.map(item => <li key={item.cardId}><span>{catalog.cards.find(card => card.id === item.cardId)?.name || item.cardId}</span><b>× {item.count}</b></li>)}</ul></details>}
+      </> : <div className="hg-loading"><span>正在连接秘社档案…</span><button className="hg-button hg-button-quiet" onClick={retry}>重新连接</button></div>}
+      <form className="hg-entry-form" onSubmit={event => {
+        event.preventDefault(); if (!name.trim() || !selected || busy) return;
+        if (tab === 'create') onCreate(name.trim(), mode, selected); else if (invite.trim()) onJoin(invite.trim(), name.trim(), selected);
+      }}>
+        <div className="hg-section-title"><span className="hg-eyebrow">02 / 入席</span><div className="hg-tabs"><button type="button" className={tab === 'create' ? 'hg-tab-active' : ''} onClick={() => setTab('create')}>创建牌桌</button><button type="button" className={tab === 'join' ? 'hg-tab-active' : ''} onClick={() => setTab('join')}>邀请码加入</button></div></div>
+        <label className="hg-field">你的称呼<input value={name} onChange={event => setName(event.target.value)} maxLength={24} placeholder="让牌桌上的伙伴认出你" required autoComplete="nickname" disabled={busy} /></label>
+        {tab === 'create' ? <div className="hg-mode-select" role="group" aria-label="对战模式">
+          <button type="button" className={mode === 'duel' ? 'hg-selected' : ''} onClick={() => setMode('duel')} disabled={busy}><strong>两人对决 <span>1 VS 1</span></strong><small>3 个地区 · 先获 8 分胜利</small></button>
+          <button type="button" className={mode === 'teams' ? 'hg-selected' : ''} onClick={() => setMode('teams')} disabled={busy}><strong>四人协作 <span>2 VS 2</span></strong><small>5 个地区 · 团队先获 10 分胜利</small></button>
+        </div> : <label className="hg-field">邀请码<input value={invite} onChange={event => setInvite(event.target.value)} placeholder="粘贴伙伴发来的邀请码" required autoComplete="off" disabled={busy} /></label>}
+        <div className="hg-entry-bottom"><p>创建后分享邀请，所有玩家准备后由房主开始。<br />座位保存在此浏览器，刷新即可继续。</p><button className="hg-button hg-button-primary" type="submit" disabled={busy || !catalog || !name.trim() || (tab === 'join' && !invite.trim())}>{busy ? '正在入席…' : tab === 'create' ? '创建牌桌 →' : '加入牌桌 →'}</button></div>
+      </form>
+    </section>
+  </main>;
+}

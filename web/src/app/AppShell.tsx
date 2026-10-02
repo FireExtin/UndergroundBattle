@@ -1,7 +1,10 @@
 import { LiveDebuggerShell } from "../debugger/LiveDebuggerShell";
 import { defaultMockMessageSets } from "../debugger/mockProtocol";
+import { GameApp } from "../game/GameApp";
 
-// Purpose: Boots the live sandbox debugger first, while retaining mock protocol data as an offline fallback.
+// The cloud game is the default experience; the Go debugger remains explicitly accessible.
 export function AppShell() {
-  return <LiveDebuggerShell fallbackMessageSets={defaultMockMessageSets} />;
+  return window.location.pathname.startsWith('/legacy-debugger')
+    ? <LiveDebuggerShell fallbackMessageSets={defaultMockMessageSets} />
+    : <GameApp />;
 }
