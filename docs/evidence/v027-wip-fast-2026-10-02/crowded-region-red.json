@@ -1,0 +1,7 @@
+{
+  "passed": false,
+  "stateInjection": false,
+  "apiMoves": false,
+  "gamePosts": 0,
+  "failure": "Pointer center covered: i256 by i258"
+}

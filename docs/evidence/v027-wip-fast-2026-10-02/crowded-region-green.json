@@ -1,0 +1,95 @@
+{
+  "passed": true,
+  "stateInjection": false,
+  "apiMoves": false,
+  "gamePosts": 0,
+  "identity": {
+    "roomId": "ff197848ea29cf4010ba3c13",
+    "you": "p0",
+    "version": 485
+  },
+  "pointerChecks": [
+    {
+      "target": "i288",
+      "hit": "i288",
+      "width": 64,
+      "height": 84
+    },
+    {
+      "target": "i285",
+      "hit": "i285",
+      "width": 64,
+      "height": 84
+    },
+    {
+      "target": "i256",
+      "hit": "i256",
+      "width": 64,
+      "height": 84
+    },
+    {
+      "target": "i258",
+      "hit": "i258",
+      "width": 64,
+      "height": 84
+    },
+    {
+      "target": "i264",
+      "hit": "i264",
+      "width": 64,
+      "height": 84
+    },
+    {
+      "target": "i266",
+      "hit": "i266",
+      "width": 64,
+      "height": 84
+    },
+    {
+      "target": "i252",
+      "hit": "i252",
+      "width": 64,
+      "height": 84
+    },
+    {
+      "target": "i254",
+      "hit": "i254",
+      "width": 64,
+      "height": 84
+    },
+    {
+      "target": "i270",
+      "hit": "i270",
+      "width": 64,
+      "height": 84
+    },
+    {
+      "target": "i271",
+      "hit": "i271",
+      "width": 64,
+      "height": 84
+    },
+    {
+      "target": "i273",
+      "hit": "i273",
+      "width": 64,
+      "height": 84
+    },
+    {
+      "target": "i283",
+      "hit": "i283",
+      "width": 64,
+      "height": 84
+    },
+    {
+      "target": "i290",
+      "hit": "i290",
+      "width": 64,
+      "height": 84
+    }
+  ],
+  "viewport": [
+    1180,
+    760
+  ]
+}
