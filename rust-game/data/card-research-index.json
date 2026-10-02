@@ -9,15 +9,15 @@
   },
   "reviewsSource": {
     "path": "docs/factions/card-reviews.json",
-    "sha256": "73f4cb73d03a79058673f0e274441dbe168ddb1201efa040431d38961e521e87"
+    "sha256": "7ad01bbacb042aa26ef99f95f803da83031b74a7f51aa74415fe1a405fcdb084"
   },
   "coverageSource": {
     "path": "rust-game/data/faction-coverage.json",
-    "sha256": "cb80fc9000add836ec7d5e4c7c2335c6dc41d9def80ba6ebfea8ebba31867b39"
+    "sha256": "b64ba23d60f7c972980abe229eb977fac1cf3674d3ddad4677b43b4bf44c1461"
   },
   "specificationsSource": {
     "path": "docs/factions/card-specifications.json",
-    "sha256": "9414083e7a06506288082e2f9395dc6ef3ef9dc160cd8930955006538f2ce2eb"
+    "sha256": "625f3c306389d056f23759b95ddb1211d2fe108a5114d14a307c7a252ce2b3ff"
   },
   "recoverySource": {
     "path": "docs/factions/source-recovery.json",
@@ -34,13 +34,13 @@
   "totals": {
     "archiveRecords": 685,
     "sourceImagesMissing": 1,
-    "primaryImageReviewed": 623,
-    "unreviewedWithImage": 61,
+    "primaryImageReviewed": 647,
+    "unreviewedWithImage": 37,
     "currentCatalogDefinitions": 29,
-    "completeSourceSpecifications": 617,
+    "completeSourceSpecifications": 641,
     "blockedSourceSpecifications": 5,
     "completeNonCardReferences": 1,
-    "completeSourceRecords": 618,
+    "completeSourceRecords": 642,
     "locatorSetCounts": {
       "TK": 11,
       "传奇": 44,
@@ -66,11 +66,11 @@
       "worldRegion": 29
     },
     "editionStatusCounts": {
-      "pinnedImageVariant": 610,
+      "pinnedImageVariant": 634,
       "testArchivePinnedImageVariant": 2,
       "testImageConfirmed": 5,
       "uncertain": 1,
-      "unreviewed": 67
+      "unreviewed": 43
     }
   },
   "records": [
@@ -50090,22 +50090,22 @@
     {
       "id": "XG25",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/XG25 伥鬼.jpg",
           "sha256": "cf05544939b89fffc4c94fe38f0f2e463fd5091a8ea5293835613afc0f49a661"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/XG25",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/XG25",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XG25",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "伥鬼",
         "set": "星光",
@@ -50128,9 +50128,19 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "伥鬼",
+        "colorKey": "黑",
+        "basicType": "角色"
+      },
+      "abilitySummary": "灵体；行动①：将相邻地区的目标敌方角色移动到本地区。该能力每回合只能发动一次。若伥鬼被封印在角色上，该能力也可发动。；死亡触发 若本方秘社上有隐秘〔月形〕标志，将伥鬼封印在目标角色上，而非置于墓地。",
+      "confirmedMechanismIds": [
+        "spirit",
+        "mobility",
+        "seal",
+        "mysticContest",
+        "temporaryIcons"
+      ],
       "candidateMechanismIds": [
         "graveRecovery",
         "mobility",
@@ -50139,8 +50149,22 @@
         "spirit"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "domainSummary",
+        "iconBreakdown",
+        "regionPicker",
+        "sealedCards",
+        "simultaneousReveal",
+        "societyMarkers",
+        "targetPicker"
+      ],
+      "mechanismCoverage": {
+        "spirit": "unimplemented",
+        "mobility": "partial",
+        "seal": "unimplemented",
+        "mysticContest": "unimplemented",
+        "temporaryIcons": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -50155,22 +50179,22 @@
     {
       "id": "XG26",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/XG26 看场打手.jpg",
           "sha256": "cf75fa86f3bd93896b7bc948c10f4899a851b51d83bfd144237db225539bc2b0"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/XG26",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/XG26",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XG26",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "看场打手",
         "set": "星光",
@@ -50194,9 +50218,21 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "看场打手",
+        "colorKey": "黑",
+        "basicType": "角色"
+      },
+      "abilitySummary": "隐秘〔月形〕护卫1；持续 若位于有本方势力标志的地区，看场打手获得临时势力1。；快速行动①，牺牲看场打手：目标本方附属获得屏障直到回合结束。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "combatKeywords",
+        "continuous",
+        "temporaryIcons",
+        "sacrifice",
+        "attachment",
+        "barrier"
+      ],
       "candidateMechanismIds": [
         "attachment",
         "barrier",
@@ -50206,8 +50242,26 @@
         "sacrifice"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "attachmentPicker",
+        "attachments",
+        "choicePicker",
+        "costPicker",
+        "damagePicker",
+        "iconBreakdown",
+        "simultaneousReveal",
+        "societyMarkers",
+        "triggerPrompt"
+      ],
+      "mechanismCoverage": {
+        "mysticContest": "unimplemented",
+        "combatKeywords": "unimplemented",
+        "continuous": "partial",
+        "temporaryIcons": "partial",
+        "sacrifice": "implemented",
+        "attachment": "unimplemented",
+        "barrier": "implemented"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -50222,22 +50276,22 @@
     {
       "id": "XG27",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/XG27 悍狼的怨灵.jpg",
           "sha256": "9a0f4b89f0de85cb58499463bc2a7e91c476cf449ac2475f581a1e4245b4ceb0"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/XG27",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/XG27",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XG27",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "悍狼的怨灵",
         "set": "星光",
@@ -50259,9 +50313,20 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "悍狼的怨灵",
+        "colorKey": "黑",
+        "basicType": "角色"
+      },
+      "abilitySummary": "灵体；持续 你所打出的诅咒牌其所需费用减少①。；墓地触发 每当一个敌方角色死亡时，你可以支付①，然后将悍狼的怨灵以暗藏者状态从墓地放置进场，并置于该死亡角色之前所在的地区。",
+      "confirmedMechanismIds": [
+        "spirit",
+        "costReduction",
+        "graveRecovery",
+        "hidden",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
       "candidateMechanismIds": [
         "continuous",
         "costReduction",
@@ -50270,8 +50335,23 @@
         "spirit"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "domainSummary",
+        "graveyardPicker",
+        "hiddenProjection",
+        "iconBreakdown",
+        "regionPicker",
+        "targetPicker",
+        "uniquePrompt"
+      ],
+      "mechanismCoverage": {
+        "spirit": "unimplemented",
+        "costReduction": "partial",
+        "graveRecovery": "implemented",
+        "hidden": "implemented",
+        "uniqueInPlay": "implemented",
+        "temporaryIcons": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -50286,22 +50366,22 @@
     {
       "id": "XG28",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/XG28 违禁品临时收容所.jpg",
           "sha256": "068de04ce0996eacf8d65744093c3abb84bb4282a520e8664f01ec719fa2c87a"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/XG28",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/XG28",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XG28",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "违禁品临时收容所",
         "set": "星光",
@@ -50321,9 +50401,19 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "违禁品临时收容所",
+        "colorKey": "黑",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标地区；准备步骤触发 将你的牌库顶牌置于墓地。；行动②，横置：将你墓地中的目标角色牌置于你的手中。若本方秘社上有隐秘〔月形〕标志，重置违禁品临时收容所。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "deckChoice",
+        "graveRecovery",
+        "exhaust",
+        "mysticContest"
+      ],
       "candidateMechanismIds": [
         "attachment",
         "deckChoice",
@@ -50332,8 +50422,25 @@
         "mysticContest"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "attachmentPicker",
+        "attachments",
+        "graveyardPicker",
+        "handPicker",
+        "orderPicker",
+        "regionPicker",
+        "searchPicker",
+        "simultaneousReveal",
+        "societyMarkers",
+        "targetPicker"
+      ],
+      "mechanismCoverage": {
+        "attachment": "unimplemented",
+        "deckChoice": "partial",
+        "graveRecovery": "implemented",
+        "exhaust": "implemented",
+        "mysticContest": "unimplemented"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -50348,22 +50455,22 @@
     {
       "id": "XG29",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/XG29 昔日阴影.jpg",
           "sha256": "8b218bbffbb9c37c2bb6c09d819c1c57dfed0134abb98c4d87e39dc6a71557a8"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/XG29",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/XG29",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XG29",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "昔日阴影",
         "set": "星光",
@@ -50385,9 +50492,17 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "昔日阴影",
+        "colorKey": "紫",
+        "basicType": "角色"
+      },
+      "abilitySummary": "灵体；行动②，横置：将封印在昔日阴影上的目标牌移动并封印在另一个目标角色上。若移动的是梦魔牌，则对该目标角色造成1点创伤。",
+      "confirmedMechanismIds": [
+        "spirit",
+        "exhaust",
+        "seal"
+      ],
       "candidateMechanismIds": [
         "combatKeywords",
         "exhaust",
@@ -50397,8 +50512,16 @@
         "spirit"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "domainSummary",
+        "sealedCards",
+        "targetPicker"
+      ],
+      "mechanismCoverage": {
+        "spirit": "unimplemented",
+        "exhaust": "implemented",
+        "seal": "unimplemented"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -50413,22 +50536,22 @@
     {
       "id": "XG30",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/XG30 乔治·帕佐，幻象大师.jpg",
           "sha256": "d4e1aac8fec086e70ff53fd30a62e557b115d252370d97f47bfbb0590342ed34"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/XG30",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/XG30",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XG30",
+      "implementationDesignStatus": "needsRuling",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "乔治·帕佐，幻象大师",
         "set": "星光",
@@ -50451,9 +50574,19 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "乔治·帕佐，幻象大师",
+        "colorKey": "紫",
+        "basicType": "角色"
+      },
+      "abilitySummary": "触发 当一张本方卡牌被封印在敌方角色上时，横置该角色。；触发 每个回合的首次隐秘对抗结束时，将用于此次隐秘对抗的本方卡牌封印在目标角色上，而非洗入牌库。",
+      "confirmedMechanismIds": [
+        "seal",
+        "exhaust",
+        "mysticContest",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
       "candidateMechanismIds": [
         "deckChoice",
         "exhaust",
@@ -50461,8 +50594,21 @@
         "seal"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "iconBreakdown",
+        "sealedCards",
+        "simultaneousReveal",
+        "societyMarkers",
+        "targetPicker",
+        "uniquePrompt"
+      ],
+      "mechanismCoverage": {
+        "seal": "unimplemented",
+        "exhaust": "implemented",
+        "mysticContest": "unimplemented",
+        "uniqueInPlay": "implemented",
+        "temporaryIcons": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -50477,22 +50623,22 @@
     {
       "id": "XG31",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/XG31 谜之崔米拉奎亚.jpg",
           "sha256": "bdc714101f991530da59688a08c82214581e86ecf3cd968312c3906ef32ea6de"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/XG31",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/XG31",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XG31",
+      "implementationDesignStatus": "needsRuling",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "谜之崔米拉奎亚",
         "set": "星光",
@@ -50518,9 +50664,23 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "谜之崔米拉奎亚",
+        "colorKey": "紫",
+        "basicType": "角色"
+      },
+      "abilitySummary": "灵体；混乱；隐秘〔月形〕撤回；额外费用 每有一个具有永久调查或临时调查图标的敌方角色，打出或翻面谜之崔米拉奎亚所需的费用减少①。；行动 横置：对目标具有永久调查或临时调查图标的角色造成1点创伤。",
+      "confirmedMechanismIds": [
+        "spirit",
+        "chaos",
+        "mysticContest",
+        "combatKeywords",
+        "costReduction",
+        "hidden",
+        "exhaust",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
       "candidateMechanismIds": [
         "chaos",
         "combatKeywords",
@@ -50532,8 +50692,29 @@
         "spirit"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "damagePicker",
+        "domainSummary",
+        "hiddenProjection",
+        "iconBreakdown",
+        "randomDestination",
+        "simultaneousReveal",
+        "societyMarkers",
+        "targetPicker",
+        "triggerPrompt",
+        "uniquePrompt"
+      ],
+      "mechanismCoverage": {
+        "spirit": "unimplemented",
+        "chaos": "unimplemented",
+        "mysticContest": "unimplemented",
+        "combatKeywords": "unimplemented",
+        "costReduction": "partial",
+        "hidden": "implemented",
+        "exhaust": "implemented",
+        "uniqueInPlay": "implemented",
+        "temporaryIcons": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -50548,22 +50729,22 @@
     {
       "id": "XG32",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/XG32 贝兰丹娜的抚触.jpg",
           "sha256": "a48a8c698ab49aee62eabcc4ea2b14b2ba87e6faf2a0a2e4f8460fa701ca6fd8"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/XG32",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/XG32",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XG32",
+      "implementationDesignStatus": "needsRuling",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "贝兰丹娜的抚触",
         "set": "星光",
@@ -50581,16 +50762,35 @@
         "keywords": [],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "贝兰丹娜的抚触",
+        "colorKey": "紫",
+        "basicType": "事务"
+      },
+      "abilitySummary": "持续 若本方秘社为梦魔主母，则名为贝兰丹娜的抚触的牌，构筑时在牌组中的数量没有限制。；行动 横置目标角色。若横置的是本方梦魔角色，你可以在本方秘社上放置一个梦标志。",
+      "confirmedMechanismIds": [
+        "society",
+        "continuous",
+        "exhaust",
+        "token"
+      ],
       "candidateMechanismIds": [
         "continuous",
         "exhaust"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "societyPicker",
+        "societyZone",
+        "targetPicker",
+        "tokenTile"
+      ],
+      "mechanismCoverage": {
+        "society": "unimplemented",
+        "continuous": "partial",
+        "exhaust": "implemented",
+        "token": "unimplemented"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -50605,22 +50805,22 @@
     {
       "id": "XG33",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/XG33 精神折磨.jpg",
           "sha256": "8d117cd727185ddb7e0c1f4c60151a972f5bc573a9798729a696e37620416c43"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/XG33",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/XG33",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XG33",
+      "implementationDesignStatus": "needsRuling",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "精神折磨",
         "set": "星光",
@@ -50642,9 +50842,16 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "精神折磨",
+        "colorKey": "紫",
+        "basicType": "事务"
+      },
+      "abilitySummary": "行动 目标敌方玩家选择一个其所操控的角色，该角色受到1点创伤伤害。进行一次隐秘对抗。然后若你的隐秘等级高于敌方玩家，消灭所有其上有创伤标志的角色。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "token"
+      ],
       "candidateMechanismIds": [
         "combatKeywords",
         "control",
@@ -50652,8 +50859,15 @@
         "mysticContest"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "simultaneousReveal",
+        "societyMarkers",
+        "tokenTile"
+      ],
+      "mechanismCoverage": {
+        "mysticContest": "unimplemented",
+        "token": "unimplemented"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -50668,22 +50882,22 @@
     {
       "id": "XG34",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/XG34 血中孕生.jpg",
           "sha256": "91197c4e888d51dabea6ecf36835e88e9e0db19b0a25a3d9360097854dd6ea0f"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/XG34",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/XG34",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XG34",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "血中孕生",
         "set": "星光",
@@ -50703,17 +50917,36 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "血中孕生",
+        "colorKey": "紫",
+        "basicType": "事务"
+      },
+      "abilitySummary": "公开〔日形〕非资产；行动 自你牌库顶的十张牌中寻找任意数量的梦魔牌，将这些牌展示后置于你的手中，然后将其余的牌洗回牌库。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "nonAsset",
+        "deckChoice"
+      ],
       "candidateMechanismIds": [
         "deckChoice",
         "mysticContest",
         "nonAsset"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "assetSummary",
+        "handPicker",
+        "orderPicker",
+        "searchPicker",
+        "simultaneousReveal",
+        "societyMarkers"
+      ],
+      "mechanismCoverage": {
+        "mysticContest": "unimplemented",
+        "nonAsset": "unimplemented",
+        "deckChoice": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -50728,22 +50961,22 @@
     {
       "id": "XG35",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/XG35 痛苦的转变.jpg",
           "sha256": "e7087b69fdf952b2902d88d85ff0be69910719511b756b685115b652b74a5ba6"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/XG35",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/XG35",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XG35",
+      "implementationDesignStatus": "needsRuling",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "痛苦的转变",
         "set": "星光",
@@ -50763,17 +50996,37 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "痛苦的转变",
+        "colorKey": "紫",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标本方人类角色；触发 当受此结附的角色死亡时，若本方秘社上有隐秘〔月形〕标志，你可以从本方牌库中寻找一张非人类角色牌，将其放置进场并位于本地区，然后洗牌。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "mysticContest",
+        "deckChoice"
+      ],
       "candidateMechanismIds": [
         "attachment",
         "deckChoice",
         "mysticContest"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "attachmentPicker",
+        "attachments",
+        "handPicker",
+        "orderPicker",
+        "searchPicker",
+        "simultaneousReveal",
+        "societyMarkers"
+      ],
+      "mechanismCoverage": {
+        "attachment": "unimplemented",
+        "mysticContest": "unimplemented",
+        "deckChoice": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -50788,22 +51041,22 @@
     {
       "id": "XG36",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/XG36 保留地猎人.jpg",
           "sha256": "b18f7c7dfa7203c03a326b8a2a1da3aa0d541618486eca4fab29a3a00c150ae6"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/XG36",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/XG36",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XG36",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "保留地猎人",
         "set": "星光",
@@ -50827,9 +51080,20 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "保留地猎人",
+        "colorKey": "中立",
+        "basicType": "角色"
+      },
+      "abilitySummary": "隐秘+1；公开；非资产；持续 若位于荒野、山脉或已毁灭的地区，则保留地猎人获得永久调查1。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "public",
+        "nonAsset",
+        "continuous",
+        "timeDestroy",
+        "temporaryIcons"
+      ],
       "candidateMechanismIds": [
         "continuous",
         "mysticContest",
@@ -50838,8 +51102,22 @@
         "timeDestroy"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "assetSummary",
+        "destroyedRegions",
+        "iconBreakdown",
+        "markerEditor",
+        "simultaneousReveal",
+        "societyMarkers"
+      ],
+      "mechanismCoverage": {
+        "mysticContest": "unimplemented",
+        "public": "implemented",
+        "nonAsset": "unimplemented",
+        "continuous": "partial",
+        "timeDestroy": "unimplemented",
+        "temporaryIcons": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -50854,22 +51132,22 @@
     {
       "id": "XG37",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/XG37 玫之米歇尔.jpg",
           "sha256": "17645ff877849a6b8a943c4bfe1928acf392d95112366e95915dad6e0f85d17d"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/XG37",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/XG37",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XG37",
+      "implementationDesignStatus": "needsRuling",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "玫之米歇尔",
         "set": "星光",
@@ -50892,17 +51170,34 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "玫之米歇尔",
+        "colorKey": "中立",
+        "basicType": "角色"
+      },
+      "abilitySummary": "隐秘+3；非资产；唯一",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "nonAsset",
+        "uniqueInPlay"
+      ],
       "candidateMechanismIds": [
         "leader",
         "mysticContest",
         "nonAsset"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "assetSummary",
+        "simultaneousReveal",
+        "societyMarkers",
+        "uniquePrompt"
+      ],
+      "mechanismCoverage": {
+        "mysticContest": "unimplemented",
+        "nonAsset": "unimplemented",
+        "uniqueInPlay": "implemented"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -50917,22 +51212,22 @@
     {
       "id": "XG38",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/XG38 缅因猫“高兴”.jpg",
           "sha256": "33bfcf2856ab2a093e96c65de0f50e74e4f311811d06c4618dc6b8dce636a777"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/XG38",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/XG38",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XG38",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "缅因猫“高兴”",
         "set": "星光",
@@ -50955,9 +51250,20 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "缅因猫“高兴”",
+        "colorKey": "中立",
+        "basicType": "角色"
+      },
+      "abilitySummary": "隐秘+2；隐秘〔月形〕撤回；不能被装备结附；进场触发 进行一次隐秘对抗。然后若你的隐秘等级高于敌方玩家，抓两张牌。；持续 不能被事务牌指定为目标。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "combatKeywords",
+        "attachment",
+        "deckChoice",
+        "continuous",
+        "uniqueInPlay"
+      ],
       "candidateMechanismIds": [
         "attachment",
         "combatTraits",
@@ -50966,8 +51272,26 @@
         "mysticContest"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "attachmentPicker",
+        "attachments",
+        "damagePicker",
+        "handPicker",
+        "orderPicker",
+        "searchPicker",
+        "simultaneousReveal",
+        "societyMarkers",
+        "triggerPrompt",
+        "uniquePrompt"
+      ],
+      "mechanismCoverage": {
+        "mysticContest": "unimplemented",
+        "combatKeywords": "unimplemented",
+        "attachment": "unimplemented",
+        "deckChoice": "partial",
+        "continuous": "partial",
+        "uniqueInPlay": "implemented"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -50982,22 +51306,22 @@
     {
       "id": "XG39",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/XG39 驻唱歌手.jpg",
           "sha256": "b21a8a600f5c7412ec707321185cf0690a328691588b132354d24d8a11f63689"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/XG39",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/XG39",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XG39",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "驻唱歌手",
         "set": "星光",
@@ -51019,9 +51343,19 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "驻唱歌手",
+        "colorKey": "中立",
+        "basicType": "角色"
+      },
+      "abilitySummary": "隐秘〔月形〕声望；持续 每个回合中你所打出或付费翻面的第一张印刷费用大于或等于⑤的牌，其所需费用减少②。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "renown",
+        "costReduction",
+        "hidden",
+        "temporaryIcons"
+      ],
       "candidateMechanismIds": [
         "continuous",
         "costReduction",
@@ -51029,8 +51363,21 @@
         "renown"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "hiddenProjection",
+        "iconBreakdown",
+        "simultaneousReveal",
+        "societyMarkers",
+        "targetPicker",
+        "triggerPrompt"
+      ],
+      "mechanismCoverage": {
+        "mysticContest": "unimplemented",
+        "renown": "unimplemented",
+        "costReduction": "partial",
+        "hidden": "implemented",
+        "temporaryIcons": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -51045,22 +51392,22 @@
     {
       "id": "XG40",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/XG40 海啸.jpg",
           "sha256": "384acfa7ea580b0309d6bba6991316ee5825a192b55cf2dce8fa4c549d72c246"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/XG40",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/XG40",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XG40",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "海啸",
         "set": "星光",
@@ -51080,9 +51427,20 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "海啸",
+        "colorKey": "中立",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标地区；进场强制触发 毁灭受此结附的地区。然后若你的隐秘等级高于敌方玩家，抓一张牌。；持续 受此结附的地区额外具有水域类别。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "priority",
+        "timeDestroy",
+        "mysticContest",
+        "deckChoice",
+        "continuous"
+      ],
       "candidateMechanismIds": [
         "attachment",
         "continuous",
@@ -51091,8 +51449,27 @@
         "timeDestroy"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "attachmentPicker",
+        "attachments",
+        "choicePicker",
+        "destroyedRegions",
+        "handPicker",
+        "markerEditor",
+        "orderPicker",
+        "searchPicker",
+        "simultaneousReveal",
+        "societyMarkers",
+        "stack"
+      ],
+      "mechanismCoverage": {
+        "attachment": "unimplemented",
+        "priority": "partial",
+        "timeDestroy": "unimplemented",
+        "mysticContest": "unimplemented",
+        "deckChoice": "partial",
+        "continuous": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -51107,22 +51484,22 @@
     {
       "id": "XG41",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/XG41 余时清零.jpg",
           "sha256": "a51b743fcf8f5336bfc78bc9bdfab19b456fc81b16fb17c161bf6a631ec276c2"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/XG41",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/XG41",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XG41",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "余时清零",
         "set": "星光",
@@ -51143,9 +51520,17 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "余时清零",
+        "colorKey": "中立",
+        "basicType": "事务"
+      },
+      "abilitySummary": "额外费用 自本方角色或附属上移除X个时间标志。；行动 进行一次隐秘对抗。本次隐秘对抗中你所展示的牌获得隐秘+X。",
+      "confirmedMechanismIds": [
+        "timeDestroy",
+        "attachment",
+        "mysticContest"
+      ],
       "candidateMechanismIds": [
         "attachment",
         "continuous",
@@ -51153,8 +51538,19 @@
         "timeDestroy"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "attachmentPicker",
+        "attachments",
+        "destroyedRegions",
+        "markerEditor",
+        "simultaneousReveal",
+        "societyMarkers"
+      ],
+      "mechanismCoverage": {
+        "timeDestroy": "unimplemented",
+        "attachment": "unimplemented",
+        "mysticContest": "unimplemented"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -51169,22 +51565,22 @@
     {
       "id": "XG42",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/XG42 连环爆炸.jpg",
           "sha256": "744adcb777d326e916254800c6a0c7c45724466f29c8e6c50c2a7864a6aa4db8"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/XG42",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/XG42",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XG42",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "连环爆炸",
         "set": "星光",
@@ -51204,9 +51600,19 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "连环爆炸",
+        "colorKey": "中立",
+        "basicType": "事务"
+      },
+      "abilitySummary": "公开〔日形〕非资产；行动 选择一项：；消灭所有结附在秘社上的附属。；消灭所有结附在已毁灭的地区上的附属。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "nonAsset",
+        "attachment",
+        "society",
+        "timeDestroy"
+      ],
       "candidateMechanismIds": [
         "attachment",
         "mysticContest",
@@ -51214,8 +51620,24 @@
         "timeDestroy"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "assetSummary",
+        "attachmentPicker",
+        "attachments",
+        "destroyedRegions",
+        "markerEditor",
+        "simultaneousReveal",
+        "societyMarkers",
+        "societyPicker",
+        "societyZone"
+      ],
+      "mechanismCoverage": {
+        "mysticContest": "unimplemented",
+        "nonAsset": "unimplemented",
+        "attachment": "unimplemented",
+        "society": "unimplemented",
+        "timeDestroy": "unimplemented"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -51230,22 +51652,22 @@
     {
       "id": "XG43",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/XG43 暗夜密谋.jpg",
           "sha256": "f992f1881b37422fc69654c49044ff6dcd9abcfc6aa532cbc3908cd043597fef"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/XG43",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/XG43",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XG43",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "暗夜密谋",
         "set": "星光",
@@ -51264,17 +51686,36 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "暗夜密谋",
+        "colorKey": "中立",
+        "basicType": "事务"
+      },
+      "abilitySummary": "公开〔日形〕非资产；行动 目标玩家弃两张手牌。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "nonAsset",
+        "deckChoice"
+      ],
       "candidateMechanismIds": [
         "deckChoice",
         "mysticContest",
         "nonAsset"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "assetSummary",
+        "handPicker",
+        "orderPicker",
+        "searchPicker",
+        "simultaneousReveal",
+        "societyMarkers"
+      ],
+      "mechanismCoverage": {
+        "mysticContest": "unimplemented",
+        "nonAsset": "unimplemented",
+        "deckChoice": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -51289,22 +51730,22 @@
     {
       "id": "XG44",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/XG44 街垒.jpg",
           "sha256": "6d5a07cfa38c6ca88336b5d40cb9e8c79ac07e44d3b210d753552a52ed5eeb71"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/XG44",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/XG44",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XG44",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "街垒",
         "set": "星光",
@@ -51324,17 +51765,34 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "街垒",
+        "colorKey": "中立",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标地区；护卫2；持续 街垒可视同角色般被分配战斗伤害，且会因受到致命伤害而被消灭。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "combatKeywords",
+        "continuous"
+      ],
       "candidateMechanismIds": [
         "attachment",
         "combatTraits",
         "continuous"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "attachmentPicker",
+        "attachments",
+        "damagePicker",
+        "triggerPrompt"
+      ],
+      "mechanismCoverage": {
+        "attachment": "unimplemented",
+        "combatKeywords": "unimplemented",
+        "continuous": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -51349,22 +51807,22 @@
     {
       "id": "XG45",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/XG45 头版头条.jpg",
           "sha256": "6edc73fe5c37080727430852ff7249d9bab8bcdcd20492684773bc524ee4c5d7"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/XG45",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/XG45",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XG45",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "头版头条",
         "set": "星光",
@@ -51383,9 +51841,20 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "头版头条",
+        "colorKey": "中立",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于本方秘社；行动①，横置：目标角色获得或失去声望直到本回合结束。；行动 横置三个本方声望角色：在敌方秘社上放置一个公开〔日形〕标志。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "society",
+        "exhaust",
+        "renown",
+        "continuous",
+        "mysticContest"
+      ],
       "candidateMechanismIds": [
         "attachment",
         "continuous",
@@ -51394,8 +51863,24 @@
         "renown"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "attachmentPicker",
+        "attachments",
+        "simultaneousReveal",
+        "societyMarkers",
+        "societyPicker",
+        "societyZone",
+        "targetPicker",
+        "triggerPrompt"
+      ],
+      "mechanismCoverage": {
+        "attachment": "unimplemented",
+        "society": "unimplemented",
+        "exhaust": "implemented",
+        "renown": "unimplemented",
+        "continuous": "partial",
+        "mysticContest": "unimplemented"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -51410,22 +51895,22 @@
     {
       "id": "XG46",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/XG46 星光俱乐部.jpg",
           "sha256": "108422054bef338ad986a9470e29646294582ce527f3429d599c9c704359bd25"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/XG46",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/XG46",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XG46",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "星光俱乐部",
         "set": "星光",
@@ -51446,17 +51931,48 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "星光俱乐部",
+        "colorKey": "中立",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标地区；行动 弃一张演出或艺术家牌：在星光俱乐部上放置一个本方势力标志。双方玩家都能发动该能力，且每回合只能发动一次。；强制触发 每当有玩家赢得隐秘对抗时，在星光俱乐部上放置一个该玩家的势力标志。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "deckChoice",
+        "confrontation",
+        "mysticContest",
+        "priority",
+        "uniqueInPlay"
+      ],
       "candidateMechanismIds": [
         "attachment",
         "deckChoice",
         "mysticContest"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "attachmentPicker",
+        "attachments",
+        "choicePicker",
+        "damagePicker",
+        "handPicker",
+        "orderPicker",
+        "regionReturn",
+        "searchPicker",
+        "simultaneousReveal",
+        "societyMarkers",
+        "stack",
+        "uniquePrompt"
+      ],
+      "mechanismCoverage": {
+        "attachment": "unimplemented",
+        "deckChoice": "partial",
+        "confrontation": "implemented",
+        "mysticContest": "unimplemented",
+        "priority": "partial",
+        "uniqueInPlay": "implemented"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -51471,22 +51987,22 @@
     {
       "id": "XG47",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/XG47 嗜睡症候群.jpg",
           "sha256": "f75ec5208dc02c6db5036f8866c4423aeb4817dc79a803468c7af0be0a0929d3"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/XG47",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/XG47",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XG47",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "嗜睡症候群",
         "set": "星光",
@@ -51505,9 +52021,20 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "嗜睡症候群",
+        "colorKey": "中立",
+        "basicType": "附属"
+      },
+      "abilitySummary": "隐秘+3；撤回；结附于目标地区；持续 该地区上的所有角色和暗藏者略过重置步骤。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "combatKeywords",
+        "attachment",
+        "hidden",
+        "exhaust",
+        "continuous"
+      ],
       "candidateMechanismIds": [
         "attachment",
         "continuous",
@@ -51516,8 +52043,24 @@
         "mysticContest"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "attachmentPicker",
+        "attachments",
+        "damagePicker",
+        "hiddenProjection",
+        "simultaneousReveal",
+        "societyMarkers",
+        "targetPicker",
+        "triggerPrompt"
+      ],
+      "mechanismCoverage": {
+        "mysticContest": "unimplemented",
+        "combatKeywords": "unimplemented",
+        "attachment": "unimplemented",
+        "hidden": "implemented",
+        "exhaust": "implemented",
+        "continuous": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -51532,22 +52075,22 @@
     {
       "id": "XG48",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/XG48 铁笼拳击赛场.jpg",
           "sha256": "e0c82328c5d2163c66b305335fd8816f84a40cea97198785a08b43116bb670bc"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/XG48",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/XG48",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XG48",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "铁笼拳击赛场",
         "set": "星光",
@@ -51569,9 +52112,20 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "铁笼拳击赛场",
+        "colorKey": "中立",
+        "basicType": "附属"
+      },
+      "abilitySummary": "隐秘〔月形〕传闻；公开〔日形〕非资产；结附于本方秘社；进场触发 进行一次隐秘对抗。；持续 在进行隐秘对抗时，你所展示的罪犯角色牌获得隐秘+X。X为该牌能力栏内印刷的永久战斗和临时战斗能力图标数量之和。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "rumor",
+        "nonAsset",
+        "attachment",
+        "society",
+        "continuous"
+      ],
       "candidateMechanismIds": [
         "attachment",
         "continuous",
@@ -51580,8 +52134,24 @@
         "rumor"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "assetSummary",
+        "attachmentPicker",
+        "attachments",
+        "simultaneousReveal",
+        "societyMarkers",
+        "societyPicker",
+        "societyZone",
+        "triggerPrompt"
+      ],
+      "mechanismCoverage": {
+        "mysticContest": "unimplemented",
+        "rumor": "unimplemented",
+        "nonAsset": "unimplemented",
+        "attachment": "unimplemented",
+        "society": "unimplemented",
+        "continuous": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,

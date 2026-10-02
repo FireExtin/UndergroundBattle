@@ -11463,6 +11463,458 @@
       ],
       "editionStatus": "pinnedImageVariant",
       "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "XG25": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-XG25",
+      "verifiedFields": {
+        "name": "伥鬼",
+        "colorKey": "黑",
+        "basicType": "角色"
+      },
+      "abilitySummary": "灵体；行动①：将相邻地区的目标敌方角色移动到本地区。该能力每回合只能发动一次。若伥鬼被封印在角色上，该能力也可发动。；死亡触发 若本方秘社上有隐秘〔月形〕标志，将伥鬼封印在目标角色上，而非置于墓地。",
+      "confirmedMechanismIds": [
+        "spirit",
+        "mobility",
+        "seal",
+        "mysticContest",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "XG26": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-XG26",
+      "verifiedFields": {
+        "name": "看场打手",
+        "colorKey": "黑",
+        "basicType": "角色"
+      },
+      "abilitySummary": "隐秘〔月形〕护卫1；持续 若位于有本方势力标志的地区，看场打手获得临时势力1。；快速行动①，牺牲看场打手：目标本方附属获得屏障直到回合结束。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "combatKeywords",
+        "continuous",
+        "temporaryIcons",
+        "sacrifice",
+        "attachment",
+        "barrier"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "XG27": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-XG27",
+      "verifiedFields": {
+        "name": "悍狼的怨灵",
+        "colorKey": "黑",
+        "basicType": "角色"
+      },
+      "abilitySummary": "灵体；持续 你所打出的诅咒牌其所需费用减少①。；墓地触发 每当一个敌方角色死亡时，你可以支付①，然后将悍狼的怨灵以暗藏者状态从墓地放置进场，并置于该死亡角色之前所在的地区。",
+      "confirmedMechanismIds": [
+        "spirit",
+        "costReduction",
+        "graveRecovery",
+        "hidden",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "XG28": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-XG28",
+      "verifiedFields": {
+        "name": "违禁品临时收容所",
+        "colorKey": "黑",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标地区；准备步骤触发 将你的牌库顶牌置于墓地。；行动②，横置：将你墓地中的目标角色牌置于你的手中。若本方秘社上有隐秘〔月形〕标志，重置违禁品临时收容所。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "deckChoice",
+        "graveRecovery",
+        "exhaust",
+        "mysticContest"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "XG29": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-XG29",
+      "verifiedFields": {
+        "name": "昔日阴影",
+        "colorKey": "紫",
+        "basicType": "角色"
+      },
+      "abilitySummary": "灵体；行动②，横置：将封印在昔日阴影上的目标牌移动并封印在另一个目标角色上。若移动的是梦魔牌，则对该目标角色造成1点创伤。",
+      "confirmedMechanismIds": [
+        "spirit",
+        "exhaust",
+        "seal"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "XG30": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-XG30",
+      "verifiedFields": {
+        "name": "乔治·帕佐，幻象大师",
+        "colorKey": "紫",
+        "basicType": "角色"
+      },
+      "abilitySummary": "触发 当一张本方卡牌被封印在敌方角色上时，横置该角色。；触发 每个回合的首次隐秘对抗结束时，将用于此次隐秘对抗的本方卡牌封印在目标角色上，而非洗入牌库。",
+      "confirmedMechanismIds": [
+        "seal",
+        "exhaust",
+        "mysticContest",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "XG31": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-XG31",
+      "verifiedFields": {
+        "name": "谜之崔米拉奎亚",
+        "colorKey": "紫",
+        "basicType": "角色"
+      },
+      "abilitySummary": "灵体；混乱；隐秘〔月形〕撤回；额外费用 每有一个具有永久调查或临时调查图标的敌方角色，打出或翻面谜之崔米拉奎亚所需的费用减少①。；行动 横置：对目标具有永久调查或临时调查图标的角色造成1点创伤。",
+      "confirmedMechanismIds": [
+        "spirit",
+        "chaos",
+        "mysticContest",
+        "combatKeywords",
+        "costReduction",
+        "hidden",
+        "exhaust",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "XG32": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-XG32",
+      "verifiedFields": {
+        "name": "贝兰丹娜的抚触",
+        "colorKey": "紫",
+        "basicType": "事务"
+      },
+      "abilitySummary": "持续 若本方秘社为梦魔主母，则名为贝兰丹娜的抚触的牌，构筑时在牌组中的数量没有限制。；行动 横置目标角色。若横置的是本方梦魔角色，你可以在本方秘社上放置一个梦标志。",
+      "confirmedMechanismIds": [
+        "society",
+        "continuous",
+        "exhaust",
+        "token"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "XG33": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-XG33",
+      "verifiedFields": {
+        "name": "精神折磨",
+        "colorKey": "紫",
+        "basicType": "事务"
+      },
+      "abilitySummary": "行动 目标敌方玩家选择一个其所操控的角色，该角色受到1点创伤伤害。进行一次隐秘对抗。然后若你的隐秘等级高于敌方玩家，消灭所有其上有创伤标志的角色。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "token"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "XG34": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-XG34",
+      "verifiedFields": {
+        "name": "血中孕生",
+        "colorKey": "紫",
+        "basicType": "事务"
+      },
+      "abilitySummary": "公开〔日形〕非资产；行动 自你牌库顶的十张牌中寻找任意数量的梦魔牌，将这些牌展示后置于你的手中，然后将其余的牌洗回牌库。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "nonAsset",
+        "deckChoice"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "XG35": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-XG35",
+      "verifiedFields": {
+        "name": "痛苦的转变",
+        "colorKey": "紫",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标本方人类角色；触发 当受此结附的角色死亡时，若本方秘社上有隐秘〔月形〕标志，你可以从本方牌库中寻找一张非人类角色牌，将其放置进场并位于本地区，然后洗牌。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "mysticContest",
+        "deckChoice"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "XG36": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-XG36",
+      "verifiedFields": {
+        "name": "保留地猎人",
+        "colorKey": "中立",
+        "basicType": "角色"
+      },
+      "abilitySummary": "隐秘+1；公开；非资产；持续 若位于荒野、山脉或已毁灭的地区，则保留地猎人获得永久调查1。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "public",
+        "nonAsset",
+        "continuous",
+        "timeDestroy",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "XG37": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-XG37",
+      "verifiedFields": {
+        "name": "玫之米歇尔",
+        "colorKey": "中立",
+        "basicType": "角色"
+      },
+      "abilitySummary": "隐秘+3；非资产；唯一",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "nonAsset",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "XG38": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-XG38",
+      "verifiedFields": {
+        "name": "缅因猫“高兴”",
+        "colorKey": "中立",
+        "basicType": "角色"
+      },
+      "abilitySummary": "隐秘+2；隐秘〔月形〕撤回；不能被装备结附；进场触发 进行一次隐秘对抗。然后若你的隐秘等级高于敌方玩家，抓两张牌。；持续 不能被事务牌指定为目标。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "combatKeywords",
+        "attachment",
+        "deckChoice",
+        "continuous",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "XG39": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-XG39",
+      "verifiedFields": {
+        "name": "驻唱歌手",
+        "colorKey": "中立",
+        "basicType": "角色"
+      },
+      "abilitySummary": "隐秘〔月形〕声望；持续 每个回合中你所打出或付费翻面的第一张印刷费用大于或等于⑤的牌，其所需费用减少②。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "renown",
+        "costReduction",
+        "hidden",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "XG40": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-XG40",
+      "verifiedFields": {
+        "name": "海啸",
+        "colorKey": "中立",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标地区；进场强制触发 毁灭受此结附的地区。然后若你的隐秘等级高于敌方玩家，抓一张牌。；持续 受此结附的地区额外具有水域类别。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "priority",
+        "timeDestroy",
+        "mysticContest",
+        "deckChoice",
+        "continuous"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "XG41": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-XG41",
+      "verifiedFields": {
+        "name": "余时清零",
+        "colorKey": "中立",
+        "basicType": "事务"
+      },
+      "abilitySummary": "额外费用 自本方角色或附属上移除X个时间标志。；行动 进行一次隐秘对抗。本次隐秘对抗中你所展示的牌获得隐秘+X。",
+      "confirmedMechanismIds": [
+        "timeDestroy",
+        "attachment",
+        "mysticContest"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "XG42": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-XG42",
+      "verifiedFields": {
+        "name": "连环爆炸",
+        "colorKey": "中立",
+        "basicType": "事务"
+      },
+      "abilitySummary": "公开〔日形〕非资产；行动 选择一项：；消灭所有结附在秘社上的附属。；消灭所有结附在已毁灭的地区上的附属。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "nonAsset",
+        "attachment",
+        "society",
+        "timeDestroy"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "XG43": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-XG43",
+      "verifiedFields": {
+        "name": "暗夜密谋",
+        "colorKey": "中立",
+        "basicType": "事务"
+      },
+      "abilitySummary": "公开〔日形〕非资产；行动 目标玩家弃两张手牌。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "nonAsset",
+        "deckChoice"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "XG44": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-XG44",
+      "verifiedFields": {
+        "name": "街垒",
+        "colorKey": "中立",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标地区；护卫2；持续 街垒可视同角色般被分配战斗伤害，且会因受到致命伤害而被消灭。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "combatKeywords",
+        "continuous"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "XG45": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-XG45",
+      "verifiedFields": {
+        "name": "头版头条",
+        "colorKey": "中立",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于本方秘社；行动①，横置：目标角色获得或失去声望直到本回合结束。；行动 横置三个本方声望角色：在敌方秘社上放置一个公开〔日形〕标志。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "society",
+        "exhaust",
+        "renown",
+        "continuous",
+        "mysticContest"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "XG46": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-XG46",
+      "verifiedFields": {
+        "name": "星光俱乐部",
+        "colorKey": "中立",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标地区；行动 弃一张演出或艺术家牌：在星光俱乐部上放置一个本方势力标志。双方玩家都能发动该能力，且每回合只能发动一次。；强制触发 每当有玩家赢得隐秘对抗时，在星光俱乐部上放置一个该玩家的势力标志。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "deckChoice",
+        "confrontation",
+        "mysticContest",
+        "priority",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "XG47": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-XG47",
+      "verifiedFields": {
+        "name": "嗜睡症候群",
+        "colorKey": "中立",
+        "basicType": "附属"
+      },
+      "abilitySummary": "隐秘+3；撤回；结附于目标地区；持续 该地区上的所有角色和暗藏者略过重置步骤。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "combatKeywords",
+        "attachment",
+        "hidden",
+        "exhaust",
+        "continuous"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "XG48": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-XG48",
+      "verifiedFields": {
+        "name": "铁笼拳击赛场",
+        "colorKey": "中立",
+        "basicType": "附属"
+      },
+      "abilitySummary": "隐秘〔月形〕传闻；公开〔日形〕非资产；结附于本方秘社；进场触发 进行一次隐秘对抗。；持续 在进行隐秘对抗时，你所展示的罪犯角色牌获得隐秘+X。X为该牌能力栏内印刷的永久战斗和临时战斗能力图标数量之和。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "rumor",
+        "nonAsset",
+        "attachment",
+        "society",
+        "continuous"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
     }
   }
 }
