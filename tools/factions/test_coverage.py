@@ -6,6 +6,7 @@ import unittest
 
 from build_research_index import ROOT, build, serialize
 from validate_coverage import validate, validate_groups
+from validate_specifications import validate_specifications
 
 
 class CoverageTests(unittest.TestCase):
@@ -15,6 +16,8 @@ class CoverageTests(unittest.TestCase):
         cls.index = json.loads((ROOT / "rust-game/data/card-research-index.json").read_text())
         cls.reviews = json.loads((ROOT / "docs/factions/card-reviews.json").read_text())
         cls.groups = json.loads((ROOT / "docs/factions/acceptance-groups.json").read_text())
+        cls.specifications = json.loads((ROOT / "docs/factions/card-specifications.json").read_text())
+        cls.recovery = json.loads((ROOT / "docs/factions/source-recovery.json").read_text())
 
     def check(self, c=None, i=None, r=None, files=False):
         return validate(c or self.coverage, i or self.index, r or self.reviews, check_files=files)[0]
@@ -115,6 +118,43 @@ class CoverageTests(unittest.TestCase):
         errors = validate_groups(groups, self.coverage, self.index)
         self.assertTrue(any("cycle" in e for e in errors))
         self.assertTrue(any("original image review" in e for e in errors))
+
+    def source_errors(self, specs=None, index=None, recovery=None):
+        return validate_specifications(specs or self.specifications, self.coverage,
+                                       index or self.index, recovery or self.recovery)
+
+    def test_partial_image_review_cannot_be_counted_as_whole_card_verification(self):
+        index = copy.deepcopy(self.index)
+        c = next(c for c in index["records"] if c["id"] == "JC002")
+        c["fullCardVerification"] = "completeGameplayFieldsForPinnedImage"
+        c["fullSpecRef"] = "docs/factions/card-specifications.json#cards/JC002"
+        self.assertTrue(any("whole-card verification" in e for e in self.source_errors(index=index)))
+
+    def test_unreadable_field_cannot_be_counted_as_complete_source(self):
+        specs = copy.deepcopy(self.specifications)
+        specs["cards"]["MSJC08"]["sourceVerification"]["status"] = "completeGameplayFieldsForPinnedImage"
+        self.assertTrue(any("Blocked fields" in e for e in self.source_errors(specs=specs)))
+
+    def test_same_name_pdf_witness_or_failed_fetch_cannot_complete_missing_version(self):
+        recovery = copy.deepcopy(self.recovery)
+        recovery["originalPdfWitnesses"][0]["archiveBindingConfirmed"] = True
+        recovery["externalAttempts"][0]["useAsRuleEvidence"] = True
+        errors = self.source_errors(recovery=recovery)
+        self.assertTrue(any("same-name" in e for e in errors))
+        self.assertTrue(any("Failed network" in e for e in errors))
+
+    def test_normalizing_icons_cannot_move_source_exhaust_from_effect_to_cost(self):
+        specs = copy.deepcopy(self.specifications)
+        specs["cards"]["LC23"]["abilities"][0]["costs"] = {"exhaustSource": True}
+        self.assertTrue(any("activation cost" in e for e in self.source_errors(specs=specs)))
+
+    def test_hong_kong_and_reveal_trigger_cannot_be_simplified_into_other_events(self):
+        specs = copy.deepcopy(self.specifications)
+        specs["cards"]["DQJC116"]["abilities"][0]["order"] = ["reveal", "shuffle", "toHand"]
+        specs["cards"]["JC076"]["abilities"][1]["triggersOnNormalFaceUpPlay"] = True
+        errors = self.source_errors(specs=specs)
+        self.assertTrue(any("Hong Kong" in e for e in errors))
+        self.assertTrue(any("ordinary enter" in e for e in errors))
 
 
 if __name__ == "__main__":

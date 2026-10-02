@@ -14,6 +14,7 @@ from collections import Counter
 from pathlib import Path
 
 from build_research_index import ROOT, build, serialize
+from validate_specifications import validate_specifications
 
 STATUSES = {"implemented", "partial", "unimplemented", "uncertain"}
 OFFICIAL = {
@@ -211,6 +212,9 @@ def validate(coverage: dict, index: dict, reviews: dict, root: Path = ROOT,
 
     groups = json.loads((root / "docs/factions/acceptance-groups.json").read_text())
     errors.extend(validate_groups(groups, coverage, index))
+    specifications = json.loads((root / "docs/factions/card-specifications.json").read_text())
+    recovery = json.loads((root / "docs/factions/source-recovery.json").read_text())
+    errors.extend(validate_specifications(specifications, coverage, index, recovery))
 
     def check_source(p: str, expected: str, code: bool = False) -> None:
         path = root / p
@@ -228,7 +232,7 @@ def validate(coverage: dict, index: dict, reviews: dict, root: Path = ROOT,
         check_source(e["path"], e["sha256"])
         if e["kind"] == "pdfPage":
             require(e["pdfPage"] >= 1 and e["printedPage"] >= 1, "PDF references are 1-based")
-    for k in ["locatorSource", "reviewsSource", "coverageSource"]:
+    for k in ["locatorSource", "reviewsSource", "coverageSource", "specificationsSource", "recoverySource"]:
         check_source(index[k]["path"], index[k]["sha256"])
     archive = json.loads((root / index["locatorSource"]["path"]).read_text())
     require(set(records) == set(archive), "The all-record queue must not silently omit archive entries")

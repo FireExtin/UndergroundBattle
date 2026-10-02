@@ -1,0 +1,175 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-02",
+  "scope": "当前工作区原始文件及公开原稿入口；没有操作其他任务分支或绕过HTTP限制。",
+  "localSearch": {
+    "roots": [
+      "resource/ymsj-fun.github.io/cards",
+      "resource/ymsj-fun.github.io/public/docs"
+    ],
+    "methods": [
+      "same-ID file search over workspace",
+      "same-name original version search",
+      "rendered original PDF card illustrations"
+    ],
+    "sameIdStandaloneImagesRecovered": 0
+  },
+  "externalAttempts": [
+    {
+      "url": "https://ymsj-fun.github.io/",
+      "result": "HTTP403",
+      "useAsRuleEvidence": false
+    },
+    {
+      "url": "https://dou.vbcpascal.cn/",
+      "result": "HTTP503",
+      "useAsRuleEvidence": false
+    },
+    {
+      "url": "https://zhongchou.modian.com/item/127832.html",
+      "result": "HTTP403; web-reader timeout",
+      "useAsRuleEvidence": false
+    }
+  ],
+  "originalPdfWitnesses": [
+    {
+      "id": "bq-melbourne-W06-10",
+      "evidenceId": "bq-card-anatomy",
+      "candidateArchiveRecordId": "DQBQ02",
+      "archiveBindingConfirmed": false,
+      "observedFields": {
+        "name": "墨尔本",
+        "subtitle": "新征程",
+        "printedCollectorCode": "W06/10",
+        "basicType": "地区",
+        "subtypes": [
+          "城市",
+          "水域"
+        ],
+        "influenceThreshold": 3,
+        "points": 2,
+        "printedRuleTextLines": [
+          "【赢取触发】每位玩家自他的牌库中寻找一张事务牌，将该牌展示后置于其手中，然后洗牌。"
+        ]
+      },
+      "limitation": "原图是说明书内插图。只能核准该图观察版本；文件DQBQ02与W06/10身份/印次关系尚无原始证据，不能以同名文本吻合完成绑定。"
+    },
+    {
+      "id": "shoggoth-core-zone",
+      "evidenceId": "bq-core",
+      "candidateArchiveRecordId": "TK011",
+      "archiveBindingConfirmed": false,
+      "limitation": "原始规则页可支持核心区机制研究，不提供TK011整张原卡面、完整版本或数值核验。"
+    }
+  ],
+  "quarantinedRecords": [
+    {
+      "cardId": "DQBQ01",
+      "status": "missingSameIdOriginal",
+      "selectionEnabled": false,
+      "fullSourceVerification": "blocked",
+      "reason": "未恢复同ID原卡图；原始其他版、规则页或locator不能自动替代。",
+      "supplementalWitnessIds": []
+    },
+    {
+      "cardId": "DQBQ02",
+      "status": "missingSameIdOriginal",
+      "selectionEnabled": false,
+      "fullSourceVerification": "blocked",
+      "reason": "未恢复同ID原卡图；原始其他版、规则页或locator不能自动替代。",
+      "supplementalWitnessIds": [
+        "bq-melbourne-W06-10"
+      ]
+    },
+    {
+      "cardId": "DQBQ03",
+      "status": "missingSameIdOriginal",
+      "selectionEnabled": false,
+      "fullSourceVerification": "blocked",
+      "reason": "未恢复同ID原卡图；原始其他版、规则页或locator不能自动替代。",
+      "supplementalWitnessIds": []
+    },
+    {
+      "cardId": "DQBQ04",
+      "status": "missingSameIdOriginal",
+      "selectionEnabled": false,
+      "fullSourceVerification": "blocked",
+      "reason": "未恢复同ID原卡图；原始其他版、规则页或locator不能自动替代。",
+      "supplementalWitnessIds": []
+    },
+    {
+      "cardId": "DQBQ05",
+      "status": "missingSameIdOriginal",
+      "selectionEnabled": false,
+      "fullSourceVerification": "blocked",
+      "reason": "未恢复同ID原卡图；原始其他版、规则页或locator不能自动替代。",
+      "supplementalWitnessIds": []
+    },
+    {
+      "cardId": "DQBQ06",
+      "status": "missingSameIdOriginal",
+      "selectionEnabled": false,
+      "fullSourceVerification": "blocked",
+      "reason": "未恢复同ID原卡图；原始其他版、规则页或locator不能自动替代。",
+      "supplementalWitnessIds": []
+    },
+    {
+      "cardId": "DQBQ07",
+      "status": "missingSameIdOriginal",
+      "selectionEnabled": false,
+      "fullSourceVerification": "blocked",
+      "reason": "未恢复同ID原卡图；原始其他版、规则页或locator不能自动替代。",
+      "supplementalWitnessIds": []
+    },
+    {
+      "cardId": "DQBQ08",
+      "status": "missingSameIdOriginal",
+      "selectionEnabled": false,
+      "fullSourceVerification": "blocked",
+      "reason": "未恢复同ID原卡图；原始其他版、规则页或locator不能自动替代。",
+      "supplementalWitnessIds": []
+    },
+    {
+      "cardId": "DQBQ09",
+      "status": "missingSameIdOriginal",
+      "selectionEnabled": false,
+      "fullSourceVerification": "blocked",
+      "reason": "未恢复同ID原卡图；原始其他版、规则页或locator不能自动替代。",
+      "supplementalWitnessIds": []
+    },
+    {
+      "cardId": "DQBQ10",
+      "status": "missingSameIdOriginal",
+      "selectionEnabled": false,
+      "fullSourceVerification": "blocked",
+      "reason": "未恢复同ID原卡图；原始其他版、规则页或locator不能自动替代。",
+      "supplementalWitnessIds": []
+    },
+    {
+      "cardId": "TK004",
+      "status": "missingSameIdOriginal",
+      "selectionEnabled": false,
+      "fullSourceVerification": "blocked",
+      "reason": "未恢复同ID原卡图；原始其他版、规则页或locator不能自动替代。",
+      "supplementalWitnessIds": []
+    },
+    {
+      "cardId": "TK010",
+      "status": "missingSameIdOriginal",
+      "selectionEnabled": false,
+      "fullSourceVerification": "blocked",
+      "reason": "未恢复同ID原卡图；原始其他版、规则页或locator不能自动替代。",
+      "supplementalWitnessIds": []
+    },
+    {
+      "cardId": "TK011",
+      "status": "missingSameIdOriginal",
+      "selectionEnabled": false,
+      "fullSourceVerification": "blocked",
+      "reason": "未恢复同ID原卡图；原始其他版、规则页或locator不能自动替代。",
+      "supplementalWitnessIds": [
+        "shoggoth-core-zone"
+      ]
+    }
+  ]
+}

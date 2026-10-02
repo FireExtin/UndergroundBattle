@@ -16,6 +16,8 @@ ROOT = Path(__file__).resolve().parents[2]
 ARCHIVE = Path("resource/ymsj-fun.github.io/cards/cards.json")
 REVIEWS = Path("docs/factions/card-reviews.json")
 COVERAGE = Path("rust-game/data/faction-coverage.json")
+SPECIFICATIONS = Path("docs/factions/card-specifications.json")
+RECOVERY = Path("docs/factions/source-recovery.json")
 OUTPUT = Path("rust-game/data/card-research-index.json")
 
 # Search hints only. Full text, alternate spelling and semantics still need review.
@@ -88,6 +90,7 @@ def build(root: Path = ROOT) -> dict:
     archive = read(root, ARCHIVE)
     reviews = read(root, REVIEWS)["cards"]
     coverage = read(root, COVERAGE)
+    specifications = read(root, SPECIFICATIONS)["cards"]
     catalog_path = Path(coverage["currentPool"]["catalogPath"])
     if digest(root / catalog_path) != coverage["codeSnapshot"][str(catalog_path)]:
         raise ValueError("Catalog changed: re-audit coverage before rebuilding support labels")
@@ -103,6 +106,7 @@ def build(root: Path = ROOT) -> dict:
     for card_id, raw in sorted(archive.items()):
         image_paths = sorted(str(p.relative_to(root)) for p in cards_dir.glob(card_id + " *.jpg"))
         review = reviews.get(card_id)
+        spec = specifications.get(card_id)
         confirmed = review["confirmedMechanismIds"] if review else []
         searchable = "\n".join([raw["text"], raw["type"], *raw["keywords"]])
         candidates = sorted(i for i, terms in HINTS.items() if any(t in searchable for t in terms))
@@ -125,6 +129,9 @@ def build(root: Path = ROOT) -> dict:
             "sourceImages": [{"path": p, "sha256": digest(root / p)} for p in image_paths],
             "evidenceState": "primaryImageReviewed" if review else "missingImage" if not image_paths else "unreviewed",
             "reviewRef": "docs/factions/card-reviews.json#cards/" + card_id if review else None,
+            "fullCardVerification": spec["sourceVerification"]["status"] if spec else "notStarted",
+            "fullSpecRef": str(SPECIFICATIONS) + "#cards/" + card_id if spec else None,
+            "implementationDesignStatus": spec["implementationDesignStatus"] if spec else "notStarted",
             "editionStatus": edition,
             "locator": {k: raw[k] for k in [
                 "name", "set", "set-id", "type", "basic-type", "istoken", "deckcard",
@@ -155,6 +162,8 @@ def build(root: Path = ROOT) -> dict:
         "primaryImageReviewed": sum(c["evidenceState"] == "primaryImageReviewed" for c in records),
         "unreviewedWithImage": sum(c["evidenceState"] == "unreviewed" for c in records),
         "currentCatalogDefinitions": len(active),
+        "completeSourceSpecifications": sum(c["fullCardVerification"] == "completeGameplayFieldsForPinnedImage" for c in records),
+        "blockedSourceSpecifications": sum(c["fullCardVerification"] == "blocked" for c in records),
         "locatorSetCounts": dict(sorted(Counter(c["locator"]["set"] for c in records).items())),
         "locatorRoleCounts": dict(sorted(Counter(c["role"] for c in records).items())),
         "editionStatusCounts": dict(sorted(Counter(c["editionStatus"] for c in records).items())),
@@ -166,6 +175,8 @@ def build(root: Path = ROOT) -> dict:
         "locatorSource": {"path": str(ARCHIVE), "sha256": digest(root / ARCHIVE), "authoritativeRules": False},
         "reviewsSource": {"path": str(REVIEWS), "sha256": digest(root / REVIEWS)},
         "coverageSource": {"path": str(COVERAGE), "sha256": digest(root / COVERAGE)},
+        "specificationsSource": {"path": str(SPECIFICATIONS), "sha256": digest(root / SPECIFICATIONS)},
+        "recoverySource": {"path": str(RECOVERY), "sha256": digest(root / RECOVERY)},
         "policy": {
             "locatorFieldsAreVerified": False,
             "unreviewedCardsCanBeReleased": False,
