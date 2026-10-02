@@ -1,4 +1,5 @@
 import { RoomStore } from './store.mjs';
+import { retryOriginalCommand } from './storage-errors.mjs';
 
 export class HttpError extends Error {
   constructor(status, message, view) { super(message); this.status = status; this.view = view; }
@@ -118,6 +119,11 @@ export class RoomService {
     return this.view(room.state, seat);
   }
   async command(id, authorization, body) {
+    // The whole operation repeats its original actor, ID, version and intent.
+    // Receipt lookup precedes CAS, so even an unknown commit outcome is safe.
+    return retryOriginalCommand(() => this.commandAttempt(id, authorization, body));
+  }
+  async commandAttempt(id, authorization, body) {
     const seat = await this.authenticated(id, authorization);
     if (typeof body.commandId !== 'string' || !body.commandId || body.commandId.length > 128) bad('命令标识格式不正确');
     if (!Number.isSafeInteger(body.expectedVersion) || body.expectedVersion < 0) bad('版本格式不正确');

@@ -2,9 +2,9 @@
 //! Entire game state crosses JavaScript only as an opaque JSON string.
 use hegemony_server::{
     catalog as definitions,
-    model::{Action, Game, View},
+    model::{Action, Game, Versions, View},
 };
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 use wasm_bindgen::prelude::*;
 
 #[derive(Serialize)]
@@ -43,6 +43,22 @@ fn valid_seat(game: &Game, seat: usize) -> Result<(), JsValue> {
     } else {
         Ok(())
     }
+}
+
+/// Only version strings leave this reader; private state and u64 values stay in Rust.
+#[derive(Deserialize, Serialize)]
+struct StateIdentity {
+    state_schema: u32,
+    versions: Versions,
+}
+#[wasm_bindgen(js_name = stateIdentity)]
+pub fn state_identity(state: &str) -> Result<String, JsValue> {
+    let identity: StateIdentity =
+        serde_json::from_str(state).map_err(|_| error("Invalid persisted state identity"))?;
+    if identity.state_schema != 2 {
+        return Err(error("Unsupported persisted state schema"));
+    }
+    serde_json::to_string(&identity).map_err(|_| error("Identity serialization failed"))
 }
 fn encode(game: Game, seat: usize) -> Result<String, JsValue> {
     valid_seat(&game, seat)?;
