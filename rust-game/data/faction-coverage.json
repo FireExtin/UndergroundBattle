@@ -1708,7 +1708,11 @@
         "card-JZ46",
         "card-JZ50",
         "card-JZ58",
-        "card-JZ68"
+        "card-JZ68",
+        "card-XG11",
+        "card-XG15",
+        "card-XG19",
+        "card-XG20"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -1940,7 +1944,10 @@
         "card-WM094",
         "card-JZ33",
         "card-JZ42",
-        "card-JZ55"
+        "card-JZ55",
+        "card-XG02",
+        "card-XG04",
+        "card-XG18"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -2033,7 +2040,9 @@
         "card-JZ34",
         "card-JZ66",
         "card-JZ75",
-        "card-JZ76"
+        "card-JZ76",
+        "card-XG08",
+        "card-XG14"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -2117,7 +2126,8 @@
         "card-JZ47",
         "card-JZ69",
         "card-JZ72",
-        "card-JZ73"
+        "card-JZ73",
+        "card-XG17"
       ],
       "dependencies": [
         "hidden"
@@ -2242,7 +2252,12 @@
         "card-JZ70",
         "card-JZ73",
         "card-JZ75",
-        "card-JZ76"
+        "card-JZ76",
+        "card-XG02",
+        "card-XG05",
+        "card-XG06",
+        "card-XG10",
+        "card-XG22"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -2323,7 +2338,9 @@
         "card-JZ47",
         "card-JZ62",
         "card-JZ72",
-        "card-JZ73"
+        "card-JZ73",
+        "card-XG12",
+        "card-XG18"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -2438,7 +2455,9 @@
         "card-JZ21",
         "card-JZ47",
         "card-JZ66",
-        "card-JZ73"
+        "card-JZ73",
+        "card-XG02",
+        "card-XG23"
       ],
       "dependencies": [],
       "interactionIds": [],
@@ -2704,7 +2723,9 @@
         "card-JZ39",
         "card-JZ40",
         "card-JZ57",
-        "card-JZ76"
+        "card-JZ76",
+        "card-XG13",
+        "card-XG21"
       ],
       "dependencies": [
         "priority"
@@ -2771,7 +2792,11 @@
         "card-JZ15",
         "card-JZ33",
         "card-JZ42",
-        "card-JZ71"
+        "card-JZ71",
+        "card-XG06",
+        "card-XG13",
+        "card-XG14",
+        "card-XG15"
       ],
       "dependencies": [
         "loyalty",
@@ -3000,7 +3025,18 @@
         "card-JZ70",
         "card-JZ71",
         "card-JZ72",
-        "card-JZ74"
+        "card-JZ74",
+        "card-XG01",
+        "card-XG02",
+        "card-XG03",
+        "card-XG05",
+        "card-XG07",
+        "card-XG09",
+        "card-XG10",
+        "card-XG21",
+        "card-XG22",
+        "card-XG23",
+        "card-XG24"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -3188,7 +3224,16 @@
         "card-JZ72",
         "card-JZ73",
         "card-JZ75",
-        "card-JZ76"
+        "card-JZ76",
+        "card-XG08",
+        "card-XG12",
+        "card-XG15",
+        "card-XG16",
+        "card-XG17",
+        "card-XG18",
+        "card-XG20",
+        "card-XG22",
+        "card-XG24"
       ],
       "dependencies": [],
       "interactionIds": [],
@@ -3354,7 +3399,11 @@
         "card-JZ38",
         "card-JZ42",
         "card-JZ51",
-        "card-JZ56"
+        "card-JZ56",
+        "card-XG05",
+        "card-XG06",
+        "card-XG20",
+        "card-XG21"
       ],
       "dependencies": [
         "priority",
@@ -3561,7 +3610,17 @@
         "card-JZ72",
         "card-JZ73",
         "card-JZ75",
-        "card-JZ76"
+        "card-JZ76",
+        "card-XG03",
+        "card-XG05",
+        "card-XG06",
+        "card-XG10",
+        "card-XG12",
+        "card-XG15",
+        "card-XG16",
+        "card-XG20",
+        "card-XG21",
+        "card-XG24"
       ],
       "dependencies": [
         "priority"
@@ -3721,7 +3780,11 @@
         "card-WM041",
         "card-WM050",
         "card-WM064",
-        "card-JZ32"
+        "card-JZ32",
+        "card-XG17",
+        "card-XG18",
+        "card-XG21",
+        "card-XG22"
       ],
       "dependencies": [
         "confrontation"
@@ -3795,7 +3858,9 @@
         "card-JZ15",
         "card-JZ16",
         "card-JZ58",
-        "card-JZ64"
+        "card-JZ64",
+        "card-XG11",
+        "card-XG14"
       ],
       "dependencies": [
         "continuous",
@@ -3904,7 +3969,12 @@
         "card-JZ36",
         "card-JZ37",
         "card-JZ40",
-        "card-JZ42"
+        "card-JZ42",
+        "card-XG07",
+        "card-XG13",
+        "card-XG14",
+        "card-XG15",
+        "card-XG16"
       ],
       "dependencies": [
         "continuous",
@@ -4131,7 +4201,13 @@
         "card-JZ29",
         "card-JZ47",
         "card-JZ68",
-        "card-JZ69"
+        "card-JZ69",
+        "card-XG03",
+        "card-XG04",
+        "card-XG06",
+        "card-XG19",
+        "card-XG20",
+        "card-XG23"
       ],
       "dependencies": [
         "loyalty"
@@ -4167,7 +4243,8 @@
         "card-WM044",
         "card-WM074",
         "card-WM080",
-        "card-JZ17"
+        "card-JZ17",
+        "card-XG22"
       ],
       "dependencies": [
         "hidden",
@@ -4230,7 +4307,9 @@
         "card-JZ16",
         "card-JZ28",
         "card-JZ34",
-        "card-JZ52"
+        "card-JZ52",
+        "card-XG02",
+        "card-XG16"
       ],
       "dependencies": [
         "continuous",
@@ -4285,7 +4364,8 @@
         "card-JZ06",
         "card-JZ16",
         "card-JZ53",
-        "card-JZ60"
+        "card-JZ60",
+        "card-XG19"
       ],
       "dependencies": [
         "continuous"
@@ -4418,7 +4498,26 @@
         "card-WM090",
         "card-WM092",
         "card-WM093",
-        "card-WM097"
+        "card-WM097",
+        "card-XG02",
+        "card-XG04",
+        "card-XG05",
+        "card-XG06",
+        "card-XG07",
+        "card-XG08",
+        "card-XG09",
+        "card-XG11",
+        "card-XG13",
+        "card-XG14",
+        "card-XG16",
+        "card-XG17",
+        "card-XG18",
+        "card-XG19",
+        "card-XG20",
+        "card-XG21",
+        "card-XG22",
+        "card-XG23",
+        "card-XG24"
       ],
       "dependencies": [
         "society",
@@ -4461,7 +4560,9 @@
         "card-WM076",
         "card-WM077",
         "card-WM090",
-        "card-WM092"
+        "card-WM092",
+        "card-XG17",
+        "card-XG21"
       ],
       "dependencies": [
         "society",
@@ -4511,7 +4612,8 @@
         "card-WM082",
         "card-WM089",
         "card-WM095",
-        "card-WM098"
+        "card-WM098",
+        "card-XG22"
       ],
       "dependencies": [
         "seal",
@@ -4552,7 +4654,8 @@
         "card-BQ037",
         "card-BQ038",
         "card-BQ040",
-        "card-BQ041"
+        "card-BQ041",
+        "card-XG10"
       ],
       "dependencies": [
         "attachment",
@@ -4799,7 +4902,8 @@
         "card-JZ44",
         "card-JZ56",
         "card-JZ72",
-        "card-JZ76"
+        "card-JZ76",
+        "card-XG11"
       ],
       "dependencies": [
         "confrontation",
@@ -4871,7 +4975,9 @@
         "card-WM054",
         "card-WM058",
         "card-WM094",
-        "card-JZ17"
+        "card-JZ17",
+        "card-XG03",
+        "card-XG04"
       ],
       "dependencies": [
         "priority"
@@ -4981,7 +5087,9 @@
         "card-BQ099",
         "card-WM031",
         "card-WM070",
-        "card-WM079"
+        "card-WM079",
+        "card-XG14",
+        "card-XG15"
       ],
       "dependencies": [
         "hidden"
@@ -5280,7 +5388,14 @@
         "card-JZ70",
         "card-JZ71",
         "card-JZ72",
-        "card-JZ73"
+        "card-JZ73",
+        "card-XG01",
+        "card-XG07",
+        "card-XG11",
+        "card-XG13",
+        "card-XG14",
+        "card-XG15",
+        "card-XG17"
       ],
       "dependencies": [
         "confrontation",
@@ -5437,7 +5552,12 @@
         "card-JZ55",
         "card-JZ66",
         "card-JZ70",
-        "card-JZ71"
+        "card-JZ71",
+        "card-XG07",
+        "card-XG13",
+        "card-XG16",
+        "card-XG18",
+        "card-XG22"
       ],
       "dependencies": [
         "sacrifice"
@@ -10099,6 +10219,174 @@
       "sha256": "e452e7dc2eb605ed37147e0060d8eb3e2cf8f3af6920602f952b6356797c84cb",
       "visuallyReviewed": true,
       "topic": "大天狗纹身：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-XG01": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XG01 银钥探求者.jpg",
+      "sha256": "03b4a1ba4e7f084fd4c7a9999e9babb94b7fc2c6e855bb4679778d95a6be6fcd",
+      "visuallyReviewed": true,
+      "topic": "银钥探求者：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-XG02": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XG02 无瑕的索菲娅.jpg",
+      "sha256": "9ab15c0bfcd00f0fc19264ef738386f1212b4ef079bfc374148a7d71d91921ce",
+      "visuallyReviewed": true,
+      "topic": "无暇的索菲娅：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-XG03": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XG03 阿里阿德涅的魔咒.jpg",
+      "sha256": "f1fb1ce7d10c3f08d01620d6b9c2baeb3cfe27e40c31a2062bbf59f446f06a9a",
+      "visuallyReviewed": true,
+      "topic": "阿里阿德涅的魔咒：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-XG04": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XG04 斩断因果.jpg",
+      "sha256": "1cf13782d3ec2cf6594e302e7fa842c2465c141e63c9fbbc184def71c53596f3",
+      "visuallyReviewed": true,
+      "topic": "斩断因果：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-XG05": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XG05 德莫斯提尼的魔法立方.jpg",
+      "sha256": "97a679de72e59f9a5cbaf3caf7589a41ad5cad2febad0df01d65d5e8824c12ef",
+      "visuallyReviewed": true,
+      "topic": "德莫斯提尼的魔法立方：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-XG06": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XG06 磁欧石残片遗物.jpg",
+      "sha256": "035893438d946f81d15d9ba4ebd25348f09f75d9b291a20a09bf342d8f069bf0",
+      "visuallyReviewed": true,
+      "topic": "磁欧石残片遗物：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-XG07": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XG07 余弦切.jpg",
+      "sha256": "396ec126bed2d25beaa07bd006f21b293f7e355f49e4686f5fcf1d068f7080ff",
+      "visuallyReviewed": true,
+      "topic": "余弦切：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-XG08": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XG08 杀意浸染.jpg",
+      "sha256": "b4cc00d4398443fd6f7ddfefb5b7f22c3673826814476aa67e6ad52aa08296bd",
+      "visuallyReviewed": true,
+      "topic": "杀意浸染：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-XG09": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XG09 第四千三百二十次尝试.jpg",
+      "sha256": "5d591a1e9b01b5a1c158fd27187c345bc90f5a74047121d96ca829ecb07f614f",
+      "visuallyReviewed": true,
+      "topic": "第四千三百二十次尝试：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-XG10": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XG10 领地巡查使.jpg",
+      "sha256": "d5703bcd3a508ecf8266326b29b2bd4320f49557e9007c3b7302b537e5e337b9",
+      "visuallyReviewed": true,
+      "topic": "领地巡查使：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-XG11": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XG11 阴魂术士.jpg",
+      "sha256": "dd607b6945fbbe45cf3627832d08b9bea1e138a9c75a1eaabf2b0b5cff610ab1",
+      "visuallyReviewed": true,
+      "topic": "阴魂术士：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-XG12": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XG12 兽形变化.jpg",
+      "sha256": "0a5ff08cbd1bb2c181fe8c729bec1e7a2646019e744317b17dc83498700fe2fd",
+      "visuallyReviewed": true,
+      "topic": "兽形变化：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-XG13": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XG13 玛丽·林德博格.jpg",
+      "sha256": "3a7d2bf5d20abd2a5da6e5c8d9f777e72668b14aab7a87ccc507ceef9ecf803a",
+      "visuallyReviewed": true,
+      "topic": "玛丽·林德博格：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-XG14": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XG14 朽灭者.jpg",
+      "sha256": "91f54781af21e43350d32292fb6ca1801bf317c69009ae3cf099a79ee71dbd25",
+      "visuallyReviewed": true,
+      "topic": "朽灭者：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-XG15": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XG15 雾涌海怪.jpg",
+      "sha256": "af667f73a9657f904f653cffdf7c32b1714d2d130e2a081b89604e990c214379",
+      "visuallyReviewed": true,
+      "topic": "雾涌海怪：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-XG16": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XG16 计时人戴森·帕佐.jpg",
+      "sha256": "2117d9da3f7f5c00a0f283cc2b62d3b510c21d28127e35f22848dc1853fd8e27",
+      "visuallyReviewed": true,
+      "topic": "计时人戴森·帕佐：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-XG17": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XG17 专家研讨会.jpg",
+      "sha256": "92f9461932367199a9264b98db3000c30cae949ed30bed34c35eb34f446f54e8",
+      "visuallyReviewed": true,
+      "topic": "专家研讨会：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-XG18": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XG18 欧米伽小姐.jpg",
+      "sha256": "3f45307ac06fbf56f553768528a40ae16b57291bf035b5c80c0f998ac9b69f88",
+      "visuallyReviewed": true,
+      "topic": "欧米伽小姐：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-XG19": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XG19 枪火谈判.jpg",
+      "sha256": "b2d24aa248cd0ca74a6440737880f992ac4f3fbdc41d767ff1667d26796a00c2",
+      "visuallyReviewed": true,
+      "topic": "枪火谈判：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-XG20": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XG20 禁令.jpg",
+      "sha256": "acabbde2fdffe2eb962caf4b4cf811579b460172421a9b84f8ddb966c263cc00",
+      "visuallyReviewed": true,
+      "topic": "禁令：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-XG21": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XG21 计划：幻影英雄.jpg",
+      "sha256": "372042a35c1703e6872a5e81a4bc3300c81dd2b1afe2d224b87ed11640c16f71",
+      "visuallyReviewed": true,
+      "topic": "计划：幻影英雄：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-XG22": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XG22 马图塔·帕度柯妮.jpg",
+      "sha256": "0d143dec1cbb4c61f5a93c71e118315cd15d77c4883d8a7c2f8d5d6f089cd302",
+      "visuallyReviewed": true,
+      "topic": "马图塔·帕度柯妮：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-XG23": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XG23 阿拜多斯的挽歌.jpg",
+      "sha256": "2ab8d8cd508085c1945859ec65f81cbb80482f7ed3fa825bb3f3c7284db42806",
+      "visuallyReviewed": true,
+      "topic": "阿拜多斯的挽歌：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-XG24": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XG24 寂静的山谷.jpg",
+      "sha256": "5cbec5fb5739b6e2d1557898759a810d21c6c0d62896439f6fb2cb6c3167d344",
+      "visuallyReviewed": true,
+      "topic": "寂静的山谷：完整同ID原图与必要放大区逐项人工读取"
     }
   },
   "openQuestions": [

@@ -11007,6 +11007,462 @@
       ],
       "editionStatus": "pinnedImageVariant",
       "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "XG01": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-XG01",
+      "verifiedFields": {
+        "name": "银钥探求者",
+        "colorKey": "黄",
+        "basicType": "角色"
+      },
+      "abilitySummary": "触发 当你打出一张法术牌时，抓一张牌。",
+      "confirmedMechanismIds": [
+        "deckChoice",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "XG02": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-XG02",
+      "verifiedFields": {
+        "name": "无暇的索菲娅",
+        "colorKey": "黄",
+        "basicType": "角色"
+      },
+      "abilitySummary": "公开〔日形〕领袖；触发 当你打出一张法术牌时，将其复制并进入堆叠，你可以为之选择新目标。；快速行动 弃一张法术牌：无暇的索菲娅获得屏障直到回合结束，将其横置。",
+      "confirmedMechanismIds": [
+        "leader",
+        "mysticContest",
+        "priority",
+        "deckChoice",
+        "barrier",
+        "exhaust"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "XG03": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-XG03",
+      "verifiedFields": {
+        "name": "阿里阿德涅的魔咒",
+        "colorKey": "黄",
+        "basicType": "事务"
+      },
+      "abilitySummary": "非资产；阿里阿德涅的魔咒不能被终止。；行动 将目标具有魔法领域图标的角色、附属或资产置于其拥有者的牌库底。",
+      "confirmedMechanismIds": [
+        "nonAsset",
+        "cancel",
+        "deckChoice",
+        "attachment"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "XG04": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-XG04",
+      "verifiedFields": {
+        "name": "斩断因果",
+        "colorKey": "黄",
+        "basicType": "事务"
+      },
+      "abilitySummary": "非资产；快速行动 进行一次隐秘对抗。然后若你的隐秘等级高于敌方玩家，终止堆叠中的目标角色牌。（将被终止的卡牌置于其拥有者的墓地且不生效。）",
+      "confirmedMechanismIds": [
+        "nonAsset",
+        "mysticContest",
+        "cancel",
+        "priority"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "XG05": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-XG05",
+      "verifiedFields": {
+        "name": "德莫斯提尼的魔法立方",
+        "colorKey": "黄",
+        "basicType": "附属"
+      },
+      "abilitySummary": "隐秘+2；结附于本方秘社；进场触发 自你的牌库中寻找一张名为德莫斯提尼的角色牌，将其置于你的手中，然后洗牌。；触发 当敌方玩家将要重置一个角色时，除非其支付①，否则该角色不能被重置。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "attachment",
+        "society",
+        "deckChoice",
+        "exhaust"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "XG06": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-XG06",
+      "verifiedFields": {
+        "name": "磁欧石残片遗物",
+        "colorKey": "黄",
+        "basicType": "附属"
+      },
+      "abilitySummary": "公开〔日形〕非资产；结附于本方秘社；进场触发 选择一种魔法领域。；持续 只要磁欧石残片遗物未横置，你打出的所选魔法领域之法术牌，其所需费用减少①。",
+      "confirmedMechanismIds": [
+        "nonAsset",
+        "mysticContest",
+        "attachment",
+        "society",
+        "costReduction",
+        "exhaust"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "XG07": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-XG07",
+      "verifiedFields": {
+        "name": "余弦切",
+        "colorKey": "绿",
+        "basicType": "角色"
+      },
+      "abilitySummary": "隐秘+3；隐秘〔月形〕时间标志1；触发 每当本地区的一个本方角色死亡时，抓一张牌。；死亡触发 若其上有时间标志，你可以改为将余弦切置于你的牌库顶。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "timeDestroy",
+        "deckChoice",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "XG08": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-XG08",
+      "verifiedFields": {
+        "name": "杀意浸染",
+        "colorKey": "绿",
+        "basicType": "事务"
+      },
+      "abilitySummary": "行动 选择目标地区，在该地区进行一次战斗对抗。若本方秘社上没有公开〔日形〕标志，参与此次战斗对抗的目标本方角色获得永久战斗1直到回合结束。",
+      "confirmedMechanismIds": [
+        "confrontation",
+        "mysticContest",
+        "continuous"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "XG09": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-XG09",
+      "verifiedFields": {
+        "name": "第四千三百二十次尝试",
+        "colorKey": "绿",
+        "basicType": "事务"
+      },
+      "abilitySummary": "隐秘 在本次隐秘对抗后，自你的牌库中寻找一张名为余弦切的牌，将你的牌库洗牌，然后将其展示并置于你的牌库顶。；快速行动 消灭目标法师或非人类角色。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "deckChoice"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "XG10": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-XG10",
+      "verifiedFields": {
+        "name": "领地巡查使",
+        "colorKey": "蓝",
+        "basicType": "角色"
+      },
+      "abilitySummary": "行动①，横置：自你的牌库中寻找一张名为鲜血的附属牌，将其结附在目标吸血鬼角色上，然后洗牌。；行动⑤，横置：自你的牌库中寻找一张名为初拥的附属牌，将其结附在目标人类角色上，然后洗牌。",
+      "confirmedMechanismIds": [
+        "exhaust",
+        "deckChoice",
+        "attachment",
+        "blood"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "XG11": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-XG11",
+      "verifiedFields": {
+        "name": "阴魂术士",
+        "colorKey": "蓝",
+        "basicType": "角色"
+      },
+      "abilitySummary": "隐秘〔月形〕灵体；现身触发 若本方秘社上有一个隐秘〔月形〕标志，袭击1。若本方秘社上有两个，则再袭击1。若本方秘社上有三个，则再袭击1。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "spirit",
+        "hidden",
+        "combatKeywords",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "XG12": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-XG12",
+      "verifiedFields": {
+        "name": "兽形变化",
+        "colorKey": "蓝",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标吸血鬼角色；持续 受此结附的角色获得永久战斗2和机动，且额外具有蝙蝠类别。；行动②：将兽形变化结附到另一个吸血鬼角色上。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "continuous",
+        "mobility"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "XG13": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-XG13",
+      "verifiedFields": {
+        "name": "玛丽·林德博格",
+        "colorKey": "红",
+        "basicType": "角色"
+      },
+      "abilitySummary": "触发 每当另一个本方邪教徒进场时，若本方秘社上有隐秘〔月形〕标志，在该角色上放置一个时间标志。；快速行动 牺牲另一个邪教徒：本回合中你正面打出的下一张灾难牌或具有血脉图标的牌，其所需费用减少②。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "timeDestroy",
+        "sacrifice",
+        "costReduction",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "XG14": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-XG14",
+      "verifiedFields": {
+        "name": "朽灭者",
+        "colorKey": "红",
+        "basicType": "角色"
+      },
+      "abilitySummary": "混乱；隐秘〔月形〕灵体；时间标志1；额外费用 每有一个已毁灭的地区，正面打出朽灭者的所需费用减少②。；触发 当你打出一张灾难牌时，在目标已毁灭的地区上放置一个势力标志。",
+      "confirmedMechanismIds": [
+        "chaos",
+        "mysticContest",
+        "spirit",
+        "timeDestroy",
+        "costReduction",
+        "confrontation",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "XG15": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-XG15",
+      "verifiedFields": {
+        "name": "雾涌海怪",
+        "colorKey": "红",
+        "basicType": "角色"
+      },
+      "abilitySummary": "混乱；不能被装备结附；额外费用 每有一个已毁灭的地区，正面打出雾涌海怪的所需费用减少②。；现身触发 毁灭本地区。；持续 若位于水域地区，则雾涌海怪上的能力图标数量增加一倍。",
+      "confirmedMechanismIds": [
+        "chaos",
+        "attachment",
+        "timeDestroy",
+        "costReduction",
+        "hidden",
+        "continuous",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "XG16": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-XG16",
+      "verifiedFields": {
+        "name": "计时人戴森·帕佐",
+        "colorKey": "红",
+        "basicType": "角色"
+      },
+      "abilitySummary": "公开〔日形〕领袖；时间标志1；准备步骤触发 在目标角色或附属上放置X个时间标志，X为已毁灭的地区数量。；持续 在本方角色上每有一个时间标志，该本方角色就获得防御力+1。在敌方角色上每有一个时间标志，该敌方角色就获得防御力-1。",
+      "confirmedMechanismIds": [
+        "leader",
+        "mysticContest",
+        "timeDestroy",
+        "attachment",
+        "continuous",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "XG17": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-XG17",
+      "verifiedFields": {
+        "name": "专家研讨会",
+        "colorKey": "灰",
+        "basicType": "角色"
+      },
+      "abilitySummary": "公开；公开〔日形〕声望；持续 所有其他本方声望角色获得防御力+1。；触发 每当一个本方声望角色进场时，目标本方计划推进1。",
+      "confirmedMechanismIds": [
+        "public",
+        "mysticContest",
+        "renown",
+        "continuous",
+        "plan",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "XG18": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-XG18",
+      "verifiedFields": {
+        "name": "欧米伽小姐",
+        "colorKey": "灰",
+        "basicType": "角色"
+      },
+      "abilitySummary": "公开〔日形〕机动；持续 你可以从本方资产区中打出声望角色牌，就如同其在你手中一样。；强制触发 当你打出一张声望角色牌时，在双方秘社上各放置一个公开〔日形〕标志。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "mobility",
+        "renown",
+        "continuous",
+        "priority",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "XG19": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-XG19",
+      "verifiedFields": {
+        "name": "枪火谈判",
+        "colorKey": "灰",
+        "basicType": "事务"
+      },
+      "abilitySummary": "非资产；行动 选择目标地区，然后选择一项。若敌方秘社上有两个公开〔日形〕标志，则改为两项全选：；消灭该地区上的至多两个目标暗藏者。；在该地区生成两个警察角色指示物。",
+      "confirmedMechanismIds": [
+        "nonAsset",
+        "mysticContest",
+        "hidden",
+        "token"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "XG20": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-XG20",
+      "verifiedFields": {
+        "name": "禁令",
+        "colorKey": "灰",
+        "basicType": "附属"
+      },
+      "abilitySummary": "隐秘 若本方资产区中有政治家牌，+3；结附于本方秘社；非资产；进场触发 你选择一个数字。；持续 敌方玩家不能正面打出或付费翻面印刷费用为你所选择之数字的牌。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "attachment",
+        "society",
+        "nonAsset",
+        "continuous",
+        "hidden"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "XG21": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-XG21",
+      "verifiedFields": {
+        "name": "计划：幻影英雄",
+        "colorKey": "灰",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于本方秘社；隐秘〔月形〕秘密计划；可推进；行动 牺牲计划：幻影英雄：自你的牌库中寻找一张印刷费用小于X的声望角色牌，将其放置进场，且置于地区一，然后洗牌。X等于本附属上的推进标志数量。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "society",
+        "mysticContest",
+        "plan",
+        "sacrifice",
+        "deckChoice",
+        "renown"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "XG22": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-XG22",
+      "verifiedFields": {
+        "name": "马图塔·帕度柯妮",
+        "colorKey": "白",
+        "basicType": "角色"
+      },
+      "abilitySummary": "迟缓；声望；隐秘〔月形〕传闻；持续 若本方秘社上有隐秘〔月形〕标志，马图塔·帕度柯妮失去迟缓。；快速行动 横置：自你的牌库中寻找一张名为光能盾的牌，展示后置于你的手中，然后洗牌。",
+      "confirmedMechanismIds": [
+        "slow",
+        "renown",
+        "mysticContest",
+        "rumor",
+        "continuous",
+        "exhaust",
+        "deckChoice",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "XG23": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-XG23",
+      "verifiedFields": {
+        "name": "阿拜多斯的挽歌",
+        "colorKey": "白",
+        "basicType": "事务"
+      },
+      "abilitySummary": "公开〔日形〕非资产；快速行动 你和你墓地中的牌获得屏障直到回合结束。进行一次隐秘对抗。然后若你的隐秘等级高于敌方玩家，预测1。",
+      "confirmedMechanismIds": [
+        "nonAsset",
+        "mysticContest",
+        "barrier",
+        "deckChoice"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "XG24": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-XG24",
+      "verifiedFields": {
+        "name": "寂静的山谷",
+        "colorKey": "白",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标附属；进场触发 若本方秘社上有隐秘〔月形〕标志，抓一张牌。；持续 受此结附的附属，失去所有持续、触发和行动能力。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "mysticContest",
+        "deckChoice",
+        "continuous"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
     }
   }
 }
