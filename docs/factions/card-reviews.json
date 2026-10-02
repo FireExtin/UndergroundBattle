@@ -1,0 +1,1640 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-02",
+  "policy": "Partial primary-image reviews only, never automatically promote locator text to verified rules.",
+  "cards": {
+    "BQ010": {
+      "evidenceId": "card-BQ010",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "读心术",
+        "colorKey": "黄",
+        "basicType": "事务"
+      },
+      "abilitySummary": "隐秘+2、黄资产可封印；暴露非资产；检视目标手牌并抓1；封印触发检视。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "seal",
+        "nonAsset"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。",
+      "editionStatus": "uncertain",
+      "notes": "定位条目标为测试，但原图无TEST文字；图片收藏编号与文件ID不一致，不能认定已出版或只凭标签剔除。"
+    },
+    "BQ016": {
+      "evidenceId": "card-BQ016",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "受困仙子",
+        "colorKey": "绿",
+        "basicType": "角色"
+      },
+      "abilitySummary": "公开、不能移动；牺牲赋仙灵/猎手战斗和死亡抓牌直到结束。",
+      "confirmedMechanismIds": [
+        "public",
+        "continuous",
+        "sacrifice"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "BQ043": {
+      "evidenceId": "card-BQ043",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "繁荣者伊森哈德",
+        "colorKey": "红",
+        "basicType": "角色"
+      },
+      "abilitySummary": "核心修格斯角色；检索任务置顶；赢任务抓牌及名誉；核心生成触手。",
+      "confirmedMechanismIds": [
+        "core",
+        "task",
+        "token",
+        "deckChoice"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "BQ068": {
+      "evidenceId": "card-BQ068",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "易洛魁遗族祭司",
+        "colorKey": "白",
+        "basicType": "角色"
+      },
+      "abilitySummary": "本方角色死亡预测1；墓地角色牌置底作费用修正隐秘对抗。",
+      "confirmedMechanismIds": [
+        "deckChoice",
+        "mysticContest"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "BQ097": {
+      "evidenceId": "card-BQ097",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "灰败",
+        "colorKey": "紫",
+        "basicType": "角色"
+      },
+      "abilitySummary": "非资产、隐秘灵体；秘社封印数量阈值；墓地横置法师作封印入秘社并抓牌。",
+      "confirmedMechanismIds": [
+        "nonAsset",
+        "spirit",
+        "seal",
+        "handAbility"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "BQ105": {
+      "evidenceId": "card-BQ105",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "精算师爱娃",
+        "colorKey": "中立",
+        "basicType": "角色"
+      },
+      "abilitySummary": "非资产公开；设施或圣甲虫产业附属降1费。",
+      "confirmedMechanismIds": [
+        "nonAsset",
+        "public",
+        "costReduction"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。",
+      "editionStatus": "uncertain",
+      "notes": "定位条目标为测试，但原图无TEST文字；图片收藏编号与文件ID不一致，不能认定已出版或只凭标签剔除。"
+    },
+    "CQ12": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-CQ12",
+      "verifiedFields": {
+        "name": "深渊惧影盖罗涅",
+        "colorKey": "红",
+        "basicType": "角色"
+      },
+      "abilitySummary": "手牌行动：先兆展示自身并付费，准备步骤生成邪教徒，每回合限一次；额外费用牺牲角色，打出或付费现身降费。",
+      "confirmedMechanismIds": [
+        "handAbility",
+        "herald",
+        "token",
+        "sacrifice",
+        "costReduction",
+        "uniqueInPlay"
+      ],
+      "remainingReview": "数值、图标、全部规则文字、版次及可执行模型仍待完整复核；本次原图部分核验不等于整张牌规则验收。",
+      "editionStatus": "unreviewed"
+    },
+    "DQJC107": {
+      "evidenceId": "card-DQJC107",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "沉没的废墟",
+        "colorKey": null,
+        "basicType": "地区"
+      },
+      "abilitySummary": "赢取每玩家检索1牌，洗牌后放顶。",
+      "confirmedMechanismIds": [
+        "deckChoice"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "DQJC112": {
+      "evidenceId": "card-DQJC112",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "纽约",
+        "colorKey": null,
+        "basicType": "地区"
+      },
+      "abilitySummary": "赢取每玩家弃任意数量手牌，再抓等量。",
+      "confirmedMechanismIds": [
+        "deckChoice"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "DQJC113": {
+      "evidenceId": "card-DQJC113",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "切尔诺贝利",
+        "colorKey": null,
+        "basicType": "地区"
+      },
+      "abilitySummary": "赢取所有留场角色受1伤害。",
+      "confirmedMechanismIds": [
+        "confrontation"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "DQJC114": {
+      "evidenceId": "card-DQJC114",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "上海",
+        "colorKey": null,
+        "basicType": "地区"
+      },
+      "abilitySummary": "赢取所有玩家抓2或弃2二选一。",
+      "confirmedMechanismIds": [
+        "deckChoice"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "DQJC116": {
+      "evidenceId": "card-DQJC116",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "香港",
+        "colorKey": null,
+        "basicType": "地区"
+      },
+      "abilitySummary": "每玩家可检索附属；同时展示并入手，然后洗牌。",
+      "confirmedMechanismIds": [
+        "deckChoice"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "DQXQZY02": {
+      "evidenceId": "card-DQXQZY02",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "裂口女",
+        "colorKey": "中立",
+        "basicType": "遭遇角色"
+      },
+      "abilitySummary": "独立遭遇角色；利用和恐怖2。",
+      "confirmedMechanismIds": [
+        "encounter"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "JC002": {
+      "evidenceId": "card-JC002",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "巨石阵看护人",
+        "colorKey": "黄",
+        "basicType": "角色"
+      },
+      "abilitySummary": "现身横置本地区目标角色。",
+      "confirmedMechanismIds": [
+        "exhaust",
+        "hidden"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "JC003": {
+      "evidenceId": "card-JC003",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "帷幕护卫",
+        "colorKey": "黄",
+        "basicType": "角色"
+      },
+      "abilitySummary": "快速行动2加横置来源，横置目标角色或暗藏者。",
+      "confirmedMechanismIds": [
+        "exhaust",
+        "priority"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "JC006": {
+      "evidenceId": "card-JC006",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "逆转异界之门",
+        "colorKey": "黄",
+        "basicType": "事务"
+      },
+      "abilitySummary": "快速行动将目标有领域角色回拥有者手。",
+      "confirmedMechanismIds": [
+        "hidden",
+        "priority"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "JC014": {
+      "evidenceId": "card-JC014",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "公路骑士",
+        "colorKey": "绿",
+        "basicType": "角色"
+      },
+      "abilitySummary": "公开、对抗开始机动。",
+      "confirmedMechanismIds": [
+        "public",
+        "mobility"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "JC016": {
+      "evidenceId": "card-JC016",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "执行部精锐",
+        "colorKey": "绿",
+        "basicType": "角色"
+      },
+      "abilitySummary": "撤回、杀伤1；地区无敌角色加永久势力/临时调查。",
+      "confirmedMechanismIds": [
+        "combatTraits",
+        "continuous",
+        "temporaryIcons"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "JC028": {
+      "evidenceId": "card-JC028",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "鲜血奴仆",
+        "colorKey": "蓝",
+        "basicType": "角色"
+      },
+      "abilitySummary": "牺牲来源转鲜血附属结附吸血鬼，赋防御和战斗。",
+      "confirmedMechanismIds": [
+        "blood",
+        "attachment",
+        "sacrifice"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "JC032": {
+      "evidenceId": "card-JC032",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "血族长老",
+        "colorKey": "蓝",
+        "basicType": "角色"
+      },
+      "abilitySummary": "每回合一次，顶六张找吸血鬼展示暗藏进本地区，其余洗回。",
+      "confirmedMechanismIds": [
+        "deckChoice",
+        "hidden"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "JC042": {
+      "evidenceId": "card-JC042",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "末日信徒",
+        "colorKey": "红",
+        "basicType": "角色"
+      },
+      "abilitySummary": "牺牲自身令本回合下一张正面打出的红派系或血脉牌降2。",
+      "confirmedMechanismIds": [
+        "sacrifice",
+        "costReduction"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "JC049": {
+      "evidenceId": "card-JC049",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "深渊细语",
+        "colorKey": "红",
+        "basicType": "事务"
+      },
+      "abilitySummary": "额外牺牲角色；底两张置手，不算抓牌。",
+      "confirmedMechanismIds": [
+        "sacrifice",
+        "deckChoice"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "JC056": {
+      "evidenceId": "card-JC056",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "地区警员",
+        "colorKey": "灰",
+        "basicType": "角色"
+      },
+      "abilitySummary": "公开；进场横置本地区所有暗藏者。",
+      "confirmedMechanismIds": [
+        "public",
+        "exhaust",
+        "hidden"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "JC059": {
+      "evidenceId": "card-JC059",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "安全保卫部门",
+        "colorKey": "灰",
+        "basicType": "角色"
+      },
+      "abilitySummary": "公开；同地区其他本方角色+1防御。",
+      "confirmedMechanismIds": [
+        "public",
+        "continuous"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "JC063": {
+      "evidenceId": "card-JC063",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "警车追捕",
+        "colorKey": "灰",
+        "basicType": "事务"
+      },
+      "abilitySummary": "潜伏角色或暗藏者回手二选一。",
+      "confirmedMechanismIds": [
+        "hidden",
+        "priority"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "JC070": {
+      "evidenceId": "card-JC070",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "虔心修士",
+        "colorKey": "白",
+        "basicType": "角色"
+      },
+      "abilitySummary": "公开、声望。",
+      "confirmedMechanismIds": [
+        "public",
+        "renown"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "JC076": {
+      "evidenceId": "card-JC076",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "悟道僧人",
+        "colorKey": "白",
+        "basicType": "角色"
+      },
+      "abilitySummary": "声望；现身抓1。",
+      "confirmedMechanismIds": [
+        "renown",
+        "deckChoice"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "JC077": {
+      "evidenceId": "card-JC077",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "庇佑圣灵",
+        "colorKey": "白",
+        "basicType": "角色"
+      },
+      "abilitySummary": "灵体；同地区非灵体本方角色伤害转移到来源。",
+      "confirmedMechanismIds": [
+        "spirit",
+        "damagePrevention"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "JC085": {
+      "evidenceId": "card-JC085",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "复生行尸",
+        "colorKey": "黑",
+        "basicType": "角色"
+      },
+      "abilitySummary": "死亡领域资产赋临时势力；可从墓地正面打出，需费用/忠诚。",
+      "confirmedMechanismIds": [
+        "gravePlay",
+        "continuous"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "JC086": {
+      "evidenceId": "card-JC086",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "窃尸人",
+        "colorKey": "黑",
+        "basicType": "角色"
+      },
+      "abilitySummary": "墓地目标角色回手。",
+      "confirmedMechanismIds": [
+        "graveRecovery"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "JC091": {
+      "evidenceId": "card-JC091",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "谋杀",
+        "colorKey": "黑",
+        "basicType": "事务"
+      },
+      "abilitySummary": "仅行动阶段；快速行动消灭目标人类角色。",
+      "confirmedMechanismIds": [
+        "priority"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "JC092": {
+      "evidenceId": "card-JC092",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "死灵召唤",
+        "colorKey": "黑",
+        "basicType": "事务"
+      },
+      "abilitySummary": "墓地目标角色以暗藏者进入所选地区。",
+      "confirmedMechanismIds": [
+        "graveRecovery",
+        "hidden"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "JC099": {
+      "evidenceId": "card-JC099",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "徘徊的鬼魂",
+        "colorKey": "紫",
+        "basicType": "角色"
+      },
+      "abilitySummary": "灵体；现身封印牌库顶到本地区敌角色；未横置时封印敌失去领域。",
+      "confirmedMechanismIds": [
+        "seal",
+        "spirit",
+        "continuous"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "JC100": {
+      "evidenceId": "card-JC100",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "尖牙幻象",
+        "colorKey": "紫",
+        "basicType": "角色"
+      },
+      "abilitySummary": "灵体；现身可封印自身到同地区目标；封印后可付1使载体防御-1。",
+      "confirmedMechanismIds": [
+        "seal",
+        "spirit",
+        "continuous"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "JC108": {
+      "evidenceId": "card-JC108",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "乔治·帕佐，织梦人",
+        "colorKey": "紫",
+        "basicType": "角色"
+      },
+      "abilitySummary": "付费横置封印顶牌；来源在场时被封印敌不能重置。",
+      "confirmedMechanismIds": [
+        "seal",
+        "continuous"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "JC118": {
+      "evidenceId": "card-JC118",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "停战协议",
+        "colorKey": "中立",
+        "basicType": "事务"
+      },
+      "abilitySummary": "仅行动阶段；快速行动让目标地区本回合略过对抗。",
+      "confirmedMechanismIds": [
+        "priority",
+        "confrontation"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "JC124": {
+      "evidenceId": "card-JC124",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "尼古拉斯·勒梅",
+        "colorKey": "中立",
+        "basicType": "角色"
+      },
+      "abilitySummary": "放哲人石；带石角色死亡复生为其拥有者操控，来源离场仍有效。",
+      "confirmedMechanismIds": [
+        "token",
+        "continuous",
+        "graveRecovery"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "JC125": {
+      "evidenceId": "card-JC125",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "无知路人",
+        "colorKey": "中立",
+        "basicType": "角色"
+      },
+      "abilitySummary": "同名构筑无限制。",
+      "confirmedMechanismIds": [],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "JZ08": {
+      "evidenceId": "card-JZ08",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "幸运新人",
+        "colorKey": "绿",
+        "basicType": "角色"
+      },
+      "abilitySummary": "屏障。",
+      "confirmedMechanismIds": [
+        "barrier"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "JZ31": {
+      "evidenceId": "card-JZ31",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "破茧者秘教线人",
+        "colorKey": "红",
+        "basicType": "角色"
+      },
+      "abilitySummary": "宿主；死亡放本地区势力。",
+      "confirmedMechanismIds": [
+        "priority",
+        "confrontation"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "JZ54": {
+      "evidenceId": "card-JZ54",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "阿塔玛斯奉献仪式",
+        "colorKey": "黑",
+        "basicType": "事务"
+      },
+      "abilitySummary": "目标玩家自选牺牲角色。",
+      "confirmedMechanismIds": [
+        "sacrifice",
+        "priority"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "LC14": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-LC14",
+      "verifiedFields": {
+        "name": "米达伦",
+        "colorKey": "白",
+        "basicType": "角色"
+      },
+      "abilitySummary": "灵体、唯一、屏障；先兆展示自身并付费，准备步骤防止目标圣贤本回合所受伤害，每回合限一次。",
+      "confirmedMechanismIds": [
+        "spirit",
+        "leader",
+        "barrier",
+        "handAbility",
+        "herald",
+        "damagePrevention",
+        "uniqueInPlay"
+      ],
+      "remainingReview": "数值、图标、全部规则文字、版次及可执行模型仍待完整复核；本次原图部分核验不等于整张牌规则验收。",
+      "editionStatus": "unreviewed"
+    },
+    "LC15": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-LC15",
+      "verifiedFields": {
+        "name": "莲月合一",
+        "colorKey": "白",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附本方秘社；唯一、永恒、屏障。强制进场封印江莲与江月；两张封印牌分别影响法术/阴牌费用忠诚及准备步骤墓地回手。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "leader",
+        "eternal",
+        "barrier",
+        "seal",
+        "costReduction",
+        "loyalty",
+        "graveRecovery",
+        "priority",
+        "uniqueInPlay"
+      ],
+      "remainingReview": "数值、图标、全部规则文字、版次及可执行模型仍待完整复核；本次原图部分核验不等于整张牌规则验收。",
+      "editionStatus": "unreviewed"
+    },
+    "LC19": {
+      "evidenceId": "card-LC19",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "外科医生",
+        "colorKey": "中立",
+        "basicType": "角色"
+      },
+      "abilitySummary": "公开；行动2加横置移除本地区目标角色全部创伤。",
+      "confirmedMechanismIds": [
+        "public",
+        "healWounds"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "LC20": {
+      "evidenceId": "card-LC20",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "心理咨询师",
+        "colorKey": "中立",
+        "basicType": "角色"
+      },
+      "abilitySummary": "进场移除本地区目标角色全部创伤。",
+      "confirmedMechanismIds": [
+        "healWounds"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "LC21": {
+      "evidenceId": "card-LC21",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "称职的保镖",
+        "colorKey": "中立",
+        "basicType": "角色"
+      },
+      "abilitySummary": "公开、护卫1。",
+      "confirmedMechanismIds": [
+        "public",
+        "combatTraits"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "LC22": {
+      "evidenceId": "card-LC22",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "退役军人",
+        "colorKey": "中立",
+        "basicType": "角色"
+      },
+      "abilitySummary": "公开、护卫1。",
+      "confirmedMechanismIds": [
+        "public",
+        "combatTraits"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "LC23": {
+      "evidenceId": "card-LC23",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "安格鲁，“荆棘”",
+        "colorKey": "中立",
+        "basicType": "角色"
+      },
+      "abilitySummary": "独有；现身横置来源与本地区目标角色。",
+      "confirmedMechanismIds": [
+        "hidden",
+        "exhaust",
+        "uniqueInPlay"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "LC24": {
+      "evidenceId": "card-LC24",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "林中女巫",
+        "colorKey": "中立",
+        "basicType": "角色"
+      },
+      "abilitySummary": "进场预测2然后抓1。",
+      "confirmedMechanismIds": [
+        "deckChoice"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "MSBQ01": {
+      "evidenceId": "card-MSBQ01",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "龙之欢宴",
+        "colorKey": "蓝",
+        "basicType": "秘社",
+        "startingHand": 6
+      },
+      "abilitySummary": "初始检索鲜血封印秘社；角色离场时鲜血结附改封印。",
+      "confirmedMechanismIds": [
+        "society",
+        "blood",
+        "seal"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "MSBQ02": {
+      "evidenceId": "card-MSBQ02",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "修格斯",
+        "colorKey": "灰",
+        "basicType": "秘社",
+        "startingHand": 5
+      },
+      "abilitySummary": "失控/名誉点降命令费用；赢三张任务另获胜。",
+      "confirmedMechanismIds": [
+        "society",
+        "core",
+        "task"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "MSBQ03": {
+      "evidenceId": "card-MSBQ03",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "圣甲虫药业",
+        "colorKey": "黑",
+        "basicType": "秘社",
+        "startingHand": 6
+      },
+      "abilitySummary": "墓地尸体封印产业附属并赋势力图标；每局一次检索产业。",
+      "confirmedMechanismIds": [
+        "society",
+        "seal",
+        "attachment",
+        "continuous"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。",
+      "notes": "原图行动费用分别为1和3，定位JSON写2和3；本交付未采用其定位转写费用。"
+    },
+    "MSBQ04": {
+      "evidenceId": "card-MSBQ04",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "天闻山庄",
+        "colorKey": "中立",
+        "basicType": "秘社",
+        "startingHand": 6
+      },
+      "abilitySummary": "持先手加隐秘展示值；检视手牌、暗藏者或秘密计划。",
+      "confirmedMechanismIds": [
+        "society",
+        "mysticContest",
+        "plan"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "MSCQ01": {
+      "evidenceId": "card-MSCQ01",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "水月",
+        "colorKey": "黄",
+        "basicType": "秘社",
+        "startingHand": 6
+      },
+      "abilitySummary": "卜卦标志累积，法术预测与隐秘对抗修正。",
+      "confirmedMechanismIds": [
+        "society",
+        "mysticContest",
+        "deckChoice"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "MSCQ02": {
+      "evidenceId": "card-MSCQ02",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "诺尔维隐修会",
+        "colorKey": "红",
+        "basicType": "秘社",
+        "startingHand": 5
+      },
+      "abilitySummary": "初始毁灭地区3，四时间毁灭，赢毁灭地区抓牌。",
+      "confirmedMechanismIds": [
+        "society",
+        "timeDestroy",
+        "deckChoice"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "MSJC01": {
+      "evidenceId": "card-MSJC01",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "帷幕守望",
+        "colorKey": "黄",
+        "basicType": "秘社",
+        "startingHand": 6
+      },
+      "abilitySummary": "持先手时付费抓牌；每局一次检索相应派系独有牌。",
+      "confirmedMechanismIds": [
+        "society",
+        "deckChoice"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "MSJC02": {
+      "evidenceId": "card-MSJC02",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "猎魔人",
+        "colorKey": "绿",
+        "basicType": "秘社",
+        "startingHand": 6
+      },
+      "abilitySummary": "持先手时付费抓牌；每局一次检索相应派系独有牌。",
+      "confirmedMechanismIds": [
+        "society",
+        "deckChoice"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "MSJC03": {
+      "evidenceId": "card-MSJC03",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "王座会",
+        "colorKey": "蓝",
+        "basicType": "秘社",
+        "startingHand": 6
+      },
+      "abilitySummary": "持先手时付费抓牌；每局一次检索相应派系独有牌。",
+      "confirmedMechanismIds": [
+        "society",
+        "deckChoice"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "MSJC04": {
+      "evidenceId": "card-MSJC04",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "鸣钟教派",
+        "colorKey": "红",
+        "basicType": "秘社",
+        "startingHand": 6
+      },
+      "abilitySummary": "持先手时付费抓牌；每局一次检索相应派系独有牌。",
+      "confirmedMechanismIds": [
+        "society",
+        "deckChoice"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "MSJC05": {
+      "evidenceId": "card-MSJC05",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "国家机构",
+        "colorKey": "灰",
+        "basicType": "秘社",
+        "startingHand": 6
+      },
+      "abilitySummary": "持先手时付费抓牌；每局一次检索相应派系独有牌。",
+      "confirmedMechanismIds": [
+        "society",
+        "deckChoice"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "MSJC06": {
+      "evidenceId": "card-MSJC06",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "圣贤",
+        "colorKey": "白",
+        "basicType": "秘社",
+        "startingHand": 6
+      },
+      "abilitySummary": "持先手时付费抓牌；每局一次检索相应派系独有牌。",
+      "confirmedMechanismIds": [
+        "society",
+        "deckChoice"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "MSJC07": {
+      "evidenceId": "card-MSJC07",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "方碑序列",
+        "colorKey": "黑",
+        "basicType": "秘社",
+        "startingHand": 6
+      },
+      "abilitySummary": "持先手时付费抓牌；每局一次检索相应派系独有牌。",
+      "confirmedMechanismIds": [
+        "society",
+        "deckChoice"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "MSJC08": {
+      "evidenceId": "card-MSJC08",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "梦境行者",
+        "colorKey": "紫",
+        "basicType": "秘社",
+        "startingHand": 6
+      },
+      "abilitySummary": "持先手时付费抓牌；每局一次检索相应派系独有牌。",
+      "confirmedMechanismIds": [
+        "society",
+        "deckChoice"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "MSJC09": {
+      "evidenceId": "card-MSJC09",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "秘社",
+        "colorKey": "中立",
+        "basicType": "秘社",
+        "startingHand": 6
+      },
+      "abilitySummary": "持先手时付费抓牌。",
+      "confirmedMechanismIds": [
+        "society",
+        "deckChoice"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "MSJC10": {
+      "evidenceId": "card-MSJC10",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "貘组",
+        "colorKey": "黄",
+        "basicType": "秘社",
+        "startingHand": 6
+      },
+      "abilitySummary": "手牌封印、用封印换灵体或角色正面进场。",
+      "confirmedMechanismIds": [
+        "society",
+        "seal",
+        "spirit"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "MSJC11": {
+      "evidenceId": "card-MSJC11",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "S．P．T执行部",
+        "colorKey": "绿",
+        "basicType": "秘社",
+        "startingHand": 6
+      },
+      "abilitySummary": "赋杀伤1；同地区本方带永久战斗图标角色赋撤回。",
+      "confirmedMechanismIds": [
+        "society",
+        "combatTraits",
+        "continuous"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "MSJC12": {
+      "evidenceId": "card-MSJC12",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "爱弗罗德家族",
+        "colorKey": "蓝",
+        "basicType": "秘社",
+        "startingHand": 6
+      },
+      "abilitySummary": "低费本方人类赋奴仆；横置族群抓牌/令敌方弃牌。",
+      "confirmedMechanismIds": [
+        "society",
+        "attachment",
+        "continuous",
+        "deckChoice"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "MSJC13": {
+      "evidenceId": "card-MSJC13",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "计时者",
+        "colorKey": "红",
+        "basicType": "秘社",
+        "startingHand": 6
+      },
+      "abilitySummary": "放时间标志；消灭达到三标志的角色/附属后抓牌。",
+      "confirmedMechanismIds": [
+        "society",
+        "timeDestroy",
+        "deckChoice"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "MSJC14": {
+      "evidenceId": "card-MSJC14",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "哨兵",
+        "colorKey": "灰",
+        "basicType": "秘社",
+        "startingHand": 6
+      },
+      "abilitySummary": "锁定敵方暗藏者；本方角色移动到有锁定目标所在地区。",
+      "confirmedMechanismIds": [
+        "society",
+        "lock",
+        "mobility"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "MSJC15": {
+      "evidenceId": "card-MSJC15",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "隐士",
+        "colorKey": "白",
+        "basicType": "秘社",
+        "startingHand": 6
+      },
+      "abilitySummary": "初始隐秘标志；手牌≥4时展示角色并暗藏者进场。",
+      "confirmedMechanismIds": [
+        "society",
+        "mysticContest",
+        "hidden"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "MSJC16": {
+      "evidenceId": "card-MSJC16",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "颂亡者",
+        "colorKey": "黑",
+        "basicType": "秘社",
+        "startingHand": 5
+      },
+      "abilitySummary": "牌库置墓；封印7墓地牌作成本，墓地死亡领域角色正面进场。",
+      "confirmedMechanismIds": [
+        "society",
+        "seal",
+        "gravePlay"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "MSJC17": {
+      "evidenceId": "card-MSJC17",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "梦魇族群",
+        "colorKey": "紫",
+        "basicType": "秘社",
+        "startingHand": 6
+      },
+      "abilitySummary": "从牌库底抓牌；封印顶牌；墓地灵体回牌库顶。",
+      "confirmedMechanismIds": [
+        "society",
+        "seal",
+        "spirit",
+        "deckChoice"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "MSJZ01": {
+      "evidenceId": "card-MSJZ01",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "猛禽战术小组",
+        "colorKey": "绿",
+        "basicType": "秘社",
+        "startingHand": 6
+      },
+      "abilitySummary": "牺牲资产检索猛禽；装备结附猛禽角色降费。",
+      "confirmedMechanismIds": [
+        "society",
+        "attachment",
+        "costReduction",
+        "sacrifice"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "MSJZ02": {
+      "evidenceId": "card-MSJZ02",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "盛夏王廷",
+        "colorKey": "绿",
+        "basicType": "秘社",
+        "startingHand": 6
+      },
+      "abilitySummary": "生成仙灵斗士；控制四个仙灵时强制转变。",
+      "confirmedMechanismIds": [
+        "society",
+        "token",
+        "transform"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "MSJZ03": {
+      "evidenceId": "card-MSJZ03",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "末日钟",
+        "colorKey": "红",
+        "basicType": "秘社",
+        "startingHand": null
+      },
+      "abilitySummary": "非灾难不能打出或付费翻面；不能获分，三毁灭标志获胜；时间/毁灭与生成钟摆祭司。",
+      "confirmedMechanismIds": [
+        "society",
+        "timeDestroy",
+        "token"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "MSJZ04": {
+      "evidenceId": "card-MSJZ04",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "破茧者教团",
+        "colorKey": "红",
+        "basicType": "秘社",
+        "startingHand": 6
+      },
+      "abilitySummary": "起始检索至多五张不同名梦魇并封印；宿主死亡放梦魇暗藏者。",
+      "confirmedMechanismIds": [
+        "society",
+        "seal",
+        "hidden"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "MSLC01": {
+      "evidenceId": "card-MSLC01",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "联席会议观察员",
+        "colorKey": "黄",
+        "basicType": "秘社",
+        "startingHand": 6
+      },
+      "abilitySummary": "检视危机方手牌顶；预测；检索防暴构装体部署。",
+      "confirmedMechanismIds": [
+        "society",
+        "crisis",
+        "deckChoice"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "MSLC02": {
+      "evidenceId": "card-MSLC02",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "加利福尼亚猎团",
+        "colorKey": "绿",
+        "basicType": "秘社",
+        "startingHand": 6
+      },
+      "abilitySummary": "额外支线剧情；完成支线/赢区后付费抓牌。",
+      "confirmedMechanismIds": [
+        "society",
+        "crisis",
+        "deckChoice"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "MSLC03": {
+      "evidenceId": "card-MSLC03",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "洛杉矶警察局",
+        "colorKey": "灰",
+        "basicType": "秘社",
+        "startingHand": 6
+      },
+      "abilitySummary": "名誉点、洗支援牌库、空本方角色城市生成警察。",
+      "confirmedMechanismIds": [
+        "society",
+        "crisis",
+        "token"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "MSLC04": {
+      "evidenceId": "card-MSLC04",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "圣公会",
+        "colorKey": "白",
+        "basicType": "秘社",
+        "startingHand": 7
+      },
+      "abilitySummary": "威胁进度减1；横置僧侣于无势力地区放标志。",
+      "confirmedMechanismIds": [
+        "society",
+        "crisis",
+        "exhaust"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "MSLC05": {
+      "evidenceId": "card-MSLC05",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "劣地长老",
+        "colorKey": "白",
+        "basicType": "秘社",
+        "startingHand": 6
+      },
+      "abilitySummary": "生成黄昏界域；手牌更多时黄昏地区略过战斗。",
+      "confirmedMechanismIds": [
+        "society",
+        "token",
+        "continuous"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "MSLC06": {
+      "evidenceId": "card-MSLC06",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "居民武装",
+        "colorKey": "中立",
+        "basicType": "秘社",
+        "startingHand": 6
+      },
+      "abilitySummary": "检索无知路人进入城市；无领域人类赋战斗/防御标志。",
+      "confirmedMechanismIds": [
+        "society",
+        "token",
+        "continuous",
+        "deckChoice"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "MSWM01": {
+      "evidenceId": "card-MSWM01",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "曼纽家族",
+        "colorKey": "蓝",
+        "basicType": "秘社",
+        "startingHand": 6
+      },
+      "abilitySummary": "阴魂隐秘修正；本方吸血鬼/法师额外阴魂；未暴露时横置阴魂抓牌。",
+      "confirmedMechanismIds": [
+        "society",
+        "mysticContest",
+        "continuous"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "MSWM02": {
+      "evidenceId": "card-MSWM02",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "公众安全委员会",
+        "colorKey": "灰",
+        "basicType": "秘社",
+        "startingHand": 6
+      },
+      "abilitySummary": "一次移除目标秘社所有隐秘/暴露；弃媒体/互联网作隐秘对抗修正。",
+      "confirmedMechanismIds": [
+        "society",
+        "mysticContest"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "MSWM03": {
+      "evidenceId": "card-MSWM03",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "冷山帮",
+        "colorKey": "黑",
+        "basicType": "秘社",
+        "startingHand": 5
+      },
+      "abilitySummary": "起始检索黑市；弃牌横置罪犯抓牌，弃罪犯可使该角色潜伏。",
+      "confirmedMechanismIds": [
+        "society",
+        "deckChoice",
+        "hidden"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "MSWM04": {
+      "evidenceId": "card-MSWM04",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "梦魇主母",
+        "colorKey": "紫",
+        "basicType": "秘社",
+        "startingHand": 2
+      },
+      "abilitySummary": "忽略紫忠诚；复苏标志允许有限免付费打出/现身；检索贝兰丹娜。",
+      "confirmedMechanismIds": [
+        "society",
+        "mysticContest",
+        "costReduction",
+        "hidden"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "TEST015": {
+      "evidenceId": "card-TEST015",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "鼠群密探",
+        "colorKey": "蓝",
+        "basicType": "角色"
+      },
+      "abilitySummary": "不得装备；进场强制每玩家弃1；手牌弃来源付费隐秘对抗。",
+      "confirmedMechanismIds": [
+        "handAbility",
+        "mysticContest",
+        "priority"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。",
+      "editionStatus": "uncertain",
+      "notes": "定位条目标为测试，但原图无TEST文字；图片收藏编号与文件ID不一致，不能认定已出版或只凭标签剔除。"
+    },
+    "TEST027": {
+      "evidenceId": "card-TEST027",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "战术头盔",
+        "colorKey": "中立",
+        "basicType": "附属"
+      },
+      "abilitySummary": "原图有TEST；装备人类/吸血鬼；回收及赢战斗抓牌。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "deckChoice"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。",
+      "editionStatus": "testImageConfirmed"
+    },
+    "TEST033": {
+      "evidenceId": "card-TEST033",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "无形的星野",
+        "colorKey": "蓝",
+        "basicType": "角色"
+      },
+      "abilitySummary": "原图有TEST；条件隐秘灵体、附属时屏障、付费横置本回合不能消灭。",
+      "confirmedMechanismIds": [
+        "spirit",
+        "barrier",
+        "damagePrevention"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。",
+      "editionStatus": "testImageConfirmed"
+    },
+    "TEST034": {
+      "evidenceId": "card-TEST034",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "兽性直觉",
+        "colorKey": "蓝",
+        "basicType": "附属"
+      },
+      "abilitySummary": "原图有TEST；暴露非资产，吸血鬼附属赋调查及手牌隐秘能力。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "nonAsset",
+        "handAbility"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。",
+      "editionStatus": "testImageConfirmed"
+    },
+    "TEST042": {
+      "evidenceId": "card-TEST042",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "鸟居",
+        "colorKey": "中立",
+        "basicType": "附属"
+      },
+      "abilitySummary": "原图有TEST；地区神社、隐秘修正及从牌库顶正面打出角色/附属/秘社的持续许可。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "mysticContest",
+        "gravePlay"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。",
+      "editionStatus": "testImageConfirmed"
+    },
+    "TEST043": {
+      "evidenceId": "card-TEST043",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "意识漩涡",
+        "colorKey": "紫",
+        "basicType": "附属"
+      },
+      "abilitySummary": "原图有TEST；暴露非资产、秘社附属，死亡可封印秘社及封印换抓牌。",
+      "confirmedMechanismIds": [
+        "seal",
+        "attachment",
+        "nonAsset"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。",
+      "editionStatus": "testImageConfirmed"
+    },
+    "TEST052": {
+      "evidenceId": "card-TEST052",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "实验体管理员",
+        "colorKey": "黑",
+        "basicType": "角色"
+      },
+      "abilitySummary": "原图有TEST；秘社封印数量修正隐秘对抗、尸体封印产业。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "seal"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。",
+      "editionStatus": "testImageConfirmed"
+    },
+    "WM071": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM071",
+      "verifiedFields": {
+        "name": "贝兰丹娜",
+        "colorKey": "紫",
+        "basicType": "角色"
+      },
+      "abilitySummary": "领袖、混乱、条件机动；转生将进入墓地或被封印改洗入牌库，结束步骤检索梦境/梦魇并回手、封印或暗藏者进场。",
+      "confirmedMechanismIds": [
+        "leader",
+        "chaos",
+        "mobility",
+        "reincarnation",
+        "deckChoice",
+        "seal",
+        "hidden",
+        "uniqueInPlay"
+      ],
+      "remainingReview": "数值、图标、全部规则文字、版次及可执行模型仍待完整复核；本次原图部分核验不等于整张牌规则验收。",
+      "editionStatus": "unreviewed"
+    },
+    "XQ03": {
+      "evidenceId": "card-XQ03",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "力场束缚",
+        "colorKey": "黄",
+        "basicType": "事务"
+      },
+      "abilitySummary": "快速行动横置目标角色。",
+      "confirmedMechanismIds": [
+        "exhaust"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "XQ12": {
+      "evidenceId": "card-XQ12",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "暴躁血仆",
+        "colorKey": "蓝",
+        "basicType": "角色"
+      },
+      "abilitySummary": "死亡令目标玩家弃1手牌。",
+      "confirmedMechanismIds": [
+        "deckChoice",
+        "priority"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "XQ49": {
+      "evidenceId": "card-XQ49",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "葬礼",
+        "colorKey": "中立",
+        "basicType": "事务"
+      },
+      "abilitySummary": "任意墓地目标牌回其拥有者牌库底，然后抓1。",
+      "confirmedMechanismIds": [
+        "graveRecovery",
+        "deckChoice"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "ZHJZ65": {
+      "evidenceId": "card-ZHJZ65",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "葛丽特和汉塞尔",
+        "colorKey": "紫",
+        "basicType": "角色"
+      },
+      "abilitySummary": "JZ65转变面；封印数量作为防御、准备强制非灵体创伤。",
+      "confirmedMechanismIds": [
+        "transform",
+        "seal",
+        "healWounds",
+        "combatKeywords"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "ZHMSJZ02": {
+      "evidenceId": "card-ZHMSJZ02",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "凛冬王廷",
+        "colorKey": "绿",
+        "basicType": "秘社转变面",
+        "startingHand": null
+      },
+      "abilitySummary": "准备步骤强制每玩家牺牲角色；场上无角色则转变。",
+      "confirmedMechanismIds": [
+        "society",
+        "transform",
+        "sacrifice"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "ZHWM026": {
+      "evidenceId": "card-ZHWM026",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "古妮薇尔",
+        "colorKey": "蓝",
+        "basicType": "角色"
+      },
+      "abilitySummary": "WM026转变面；灵体，准备时按敌手牌数量转变。",
+      "confirmedMechanismIds": [
+        "transform",
+        "spirit"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "ZHWM048": {
+      "evidenceId": "card-ZHWM048",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "凛冬之风英迪拉",
+        "colorKey": "白",
+        "basicType": "角色"
+      },
+      "abilitySummary": "WM048转变面；隐秘机动、付费转变。",
+      "confirmedMechanismIds": [
+        "transform",
+        "mobility"
+      ],
+      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    }
+  }
+}
