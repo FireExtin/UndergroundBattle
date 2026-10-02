@@ -1721,6 +1721,32 @@ fn attachment_region_return_fixture() -> Value {
     patient.damage = 1;
     let patient_id = patient.id.clone();
     game.regions[0].cards.push(patient);
+    for (seat, definitions) in [(2, ["LC21", "LC20"]), (3, ["JC125", "LC23"])] {
+        for (index, definition) in definitions.into_iter().enumerate() {
+            let mut c = game.make_card(definition, seat);
+            c.face_down = index == 0;
+            if seat == 2 && index == 0 {
+                c.damage = 7;
+            }
+            game.regions[0].cards.push(c);
+        }
+    }
+    let old_definitions = game.regions[0]
+        .cards
+        .iter()
+        .chain(game.attachments.iter().map(|a| &a.card))
+        .map(|c| (c.id.clone(), c.definition.clone()))
+        .collect::<std::collections::BTreeMap<_, _>>();
+    let old_ids = old_definitions
+        .keys()
+        .cloned()
+        .collect::<std::collections::BTreeSet<_>>();
+    let old_prefixes = game
+        .players
+        .iter()
+        .map(|p| serde_json::to_string(&p.deck).unwrap())
+        .collect::<Vec<_>>();
+    let mut expected_bottoms = vec![Vec::<String>::new(); 4];
     let old_decks = game
         .players
         .iter()
@@ -1737,10 +1763,17 @@ fn attachment_region_return_fixture() -> Value {
     for seat in 0..4 {
         apply_game(&mut room, &mut steps, seat, Action::new("pass"));
     }
-    for seat in 0..2 {
+    for seat in 0..4 {
         let p = room.pending.clone().unwrap();
         assert_eq!(p.seat, seat);
-        assert_eq!(p.choice.options.len(), 3);
+        assert_eq!(p.choice.options.len(), if seat < 2 { 3 } else { 2 });
+        expected_bottoms[seat] = p
+            .choice
+            .options
+            .iter()
+            .rev()
+            .map(|o| old_definitions[&o.id].clone())
+            .collect();
         apply_game(
             &mut room,
             &mut steps,
@@ -1758,7 +1791,7 @@ fn attachment_region_return_fixture() -> Value {
                 ..Action::new("choose")
             },
         );
-        if seat == 0 {
+        if seat < 3 {
             assert!(room.regions[0].cards.iter().any(|c| c.id == aura_id));
             assert!(room.regions[0].cards.iter().any(|c| c.id == patient_id));
             assert_eq!(room.attachments.len(), 2);
@@ -1772,8 +1805,30 @@ fn attachment_region_return_fixture() -> Value {
         }
     }
     assert!(room.region_return.is_none() && room.attachments.is_empty());
-    for seat in 0..2 {
-        assert_eq!(room.players[seat].deck.len(), old_decks[seat] + 3);
+    let mut new_ids = std::collections::BTreeSet::new();
+    for seat in 0..4 {
+        assert_eq!(
+            room.players[seat].deck.len(),
+            old_decks[seat] + expected_bottoms[seat].len()
+        );
+        assert_eq!(
+            serde_json::to_string(&room.players[seat].deck[..old_decks[seat]]).unwrap(),
+            old_prefixes[seat]
+        );
+        let returned = &room.players[seat].deck[old_decks[seat]..];
+        assert_eq!(
+            returned
+                .iter()
+                .map(|c| c.definition.clone())
+                .collect::<Vec<_>>(),
+            expected_bottoms[seat]
+        );
+        for c in returned {
+            assert!(!old_ids.contains(&c.id) && new_ids.insert(c.id.clone()));
+            assert_eq!((c.owner, c.controller), (seat, seat));
+            assert!(!c.exhausted && !c.face_down);
+            assert_eq!((c.damage, c.wounds, c.shield), (0, 0, 0));
+        }
         assert!(room.players[seat].hand.is_empty() && room.players[seat].graveyard.is_empty());
     }
     assert!(room.log.iter().all(|l| !l.text.contains("死亡")));
@@ -1829,6 +1884,6 @@ fn main() {
         std::fs::write(output, serde_json::to_vec(&value).unwrap()).unwrap();
         return;
     }
-    let value = json!({"preparedResponse":prepared,"catalog":catalog::catalog(),"cases":[attachment_fixture(false),attachment_fixture(true),attachment_hk_fixture(),fixture("duel","18446744073709551615"),fixture("teams","9007199254740993"),response_fixture(),detective_fixture(false),detective_fixture(true),custom_deck_fixture(),friendly_icons_fixture(),pacing_fixture(false),pacing_fixture(true),world_fixture("DQJC108",false),world_fixture("DQJC109",false),world_fixture("DQJC110",false),world_fixture("DQJC111",false),world_fixture("DQJC115",false),world_fixture("DQJC116",false),world_fixture("DQJC116",true)],"rejectedStates":rejected_states});
+    let value = json!({"preparedResponse":prepared,"catalog":catalog::catalog(),"cases":[attachment_fixture(false),attachment_fixture(true),attachment_hk_fixture(),attachment_region_return_fixture(),fixture("duel","18446744073709551615"),fixture("teams","9007199254740993"),response_fixture(),detective_fixture(false),detective_fixture(true),custom_deck_fixture(),friendly_icons_fixture(),pacing_fixture(false),pacing_fixture(true),world_fixture("DQJC108",false),world_fixture("DQJC109",false),world_fixture("DQJC110",false),world_fixture("DQJC111",false),world_fixture("DQJC115",false),world_fixture("DQJC116",false),world_fixture("DQJC116",true)],"rejectedStates":rejected_states});
     std::fs::write(output, serde_json::to_vec(&value).unwrap()).unwrap();
 }

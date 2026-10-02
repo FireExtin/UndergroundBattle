@@ -1,9 +1,9 @@
 import type { Card, CardDefinition, Icons, Player } from './types';
 import './attachments.css';
 
-/** Concealed identities belong to their owner, including when controller is a teammate. */
+/** Match the server's concealed projection: only its current controller sees print. */
 export function visibleCard(card: Card, viewerId: string): Card {
-  if (!card.faceDown || card.owner === viewerId) return card;
+  if (!card.faceDown || card.controller === viewerId) return card;
   return { ...card, cardId: undefined, name: '暗藏者', kind: 'hidden', cost: undefined, effectiveCost: undefined,
     text: undefined, icons: undefined, defense: undefined, damage: undefined, shield: undefined,
     wounds: undefined, color: undefined, magic: undefined };
@@ -76,7 +76,7 @@ export function CardTile({ card: source, definition: sourceDefinition, selected,
   const color = card.color || definition?.color || '';
   const palette = color.includes('黄') ? 'gold' : color.includes('红') ? 'red' : color.includes('蓝') ? 'blue' : color.includes('绿') ? 'green' : color.includes('紫') ? 'violet' : 'neutral';
   return <button type="button" data-card-instance={card.instanceId} data-card-owner={card.owner} data-card-actionable={actionable} data-card-targeted={targeted} data-card-exhausted={card.exhausted} data-attachment-count={attachmentCount || undefined} className={`hg-card hg-card-${palette}${compact ? ' hg-card-compact' : ''}${selected ? ' hg-selected' : ''}${card.exhausted ? ' hg-exhausted' : ''}${actionable ? ' hg-card-actionable' : ''}${targeted ? ' hg-card-targeted' : ''}`} onClick={onSelect} onMouseEnter={onPreview} onMouseLeave={onPreviewEnd} onFocus={onPreview} onBlur={onPreviewEnd} aria-pressed={selected} aria-label={`查看${card.name}${card.exhausted ? '，已横置' : ''}${attachmentCount ? `，附属 ${attachmentCount} 张` : ''}`}>
-    {owner && <span className="hg-card-owner"><span className="hg-piece-avatar">{owner.name.slice(0, 1)}</span><span>{owner.name}{owner.id === viewerId ? ' · 你' : ''}</span><em>{actionable ? '可行动' : card.faceDown && owner.id === viewerId ? '查看自牌' : '浏览'}</em></span>}
+    {owner && <span className="hg-card-owner"><span className="hg-piece-avatar">{owner.name.slice(0, 1)}</span><span>{owner.name}{owner.id === viewerId ? ' · 你' : ''}</span><em>{actionable ? '可行动' : card.faceDown && card.controller === viewerId ? '查看自牌' : '浏览'}</em></span>}
     <CardContent card={card} definition={definition} compact={compact} attachmentCount={attachmentCount} />
   </button>;
 }

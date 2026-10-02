@@ -16,10 +16,12 @@ describe('concealed character presentation', () => {
     expect(screen.getByText('防御 1')).toBeInTheDocument();
     expect(screen.getByText('真实印刷文字')).toBeInTheDocument();
   });
-  it('never reveals a teammate’s or opponent’s concealed identity, even when a stale source includes print data', () => {
+  it('shows a concealed identity to its current controller and erases stale print for every other seat', () => {
     const card = { ...testCard, owner: 'p1', controller: 'p0', kind: 'hidden', faceDown: true, cost: 2, effectiveCost: 1,
       icons: { investigation: 7, combat: 8, influence: 9 } };
     const { rerender } = render(<CardTile card={card} definition={testCatalog.cards[0]} viewerId="p0" compact />);
+    expect(screen.getByRole('button', { name: '查看无知路人' })).toBeInTheDocument();
+    rerender(<CardTile card={card} definition={testCatalog.cards[0]} viewerId="p1" compact />);
     expect(screen.getByRole('button', { name: '查看暗藏者' })).toBeInTheDocument();
     expect(screen.queryByText('无知路人')).not.toBeInTheDocument();
     expect(screen.queryByText('真实印刷文字')).not.toBeInTheDocument();
@@ -28,8 +30,8 @@ describe('concealed character presentation', () => {
     expect(screen.queryByLabelText('图标：调查7，战斗8，势力9')).not.toBeInTheDocument();
     rerender(<CardTile card={card} definition={testCatalog.cards[0]} viewerId="p2" compact />);
     expect(screen.getByRole('button', { name: '查看暗藏者' })).toBeInTheDocument();
-    rerender(<CardTile card={card} definition={testCatalog.cards[0]} viewerId="p1" compact />);
-    expect(screen.getByRole('button', { name: '查看无知路人' })).toBeInTheDocument();
+    rerender(<CardTile card={{ ...card, controller: 'p1' }} definition={testCatalog.cards[0]} viewerId="p0" compact />);
+    expect(screen.getByRole('button', { name: '查看暗藏者' })).toBeInTheDocument();
   });
   it('explains an exhausted anonymous hidden card without suggesting that it participates in combat', () => {
     render(<CardContent card={{ ...testCard, cardId: undefined, kind: 'hidden', faceDown: true, exhausted: true }} compact />);
