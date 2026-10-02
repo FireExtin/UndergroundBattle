@@ -3695,7 +3695,7 @@
       "reviewStatus": "primaryImageReviewed",
       "evidenceId": "card-JC052",
       "verifiedFields": {
-        "name": "终焉的诗蔻蒂",
+        "name": "终焉的诗寇蒂",
         "colorKey": "红",
         "basicType": "角色"
       },
@@ -5313,7 +5313,7 @@
       "reviewStatus": "primaryImageReviewed",
       "evidenceId": "card-XQ45",
       "verifiedFields": {
-        "name": "破茧而出",
+        "name": "破颅而出",
         "colorKey": "紫",
         "basicType": "事务"
       },
@@ -5463,7 +5463,7 @@
       "reviewStatus": "primaryImageReviewed",
       "evidenceId": "card-LC03",
       "verifiedFields": {
-        "name": "希娅·克伦泽，“渡鸦”",
+        "name": "希妲·克伦泽，“渡鸦”",
         "colorKey": "绿",
         "basicType": "角色"
       },
@@ -6468,11 +6468,11 @@
       "reviewStatus": "primaryImageReviewed",
       "evidenceId": "card-BQ027",
       "verifiedFields": {
-        "name": "血裔",
+        "name": "血畜",
         "colorKey": "蓝",
         "basicType": "角色"
       },
-      "abilitySummary": "隐秘地区势力+2；在本次隐秘对抗后，目标本方吸血鬼饮血1。；快速行动 牺牲血裔：目标吸血鬼饮血1（将一张本方墓地中或封印在本方秘社上，名为鲜血的牌放置进场并结附于该角色上）。",
+      "abilitySummary": "隐秘地区势力+2；在本次隐秘对抗后，目标本方吸血鬼饮血1。；快速行动 牺牲血畜：目标吸血鬼饮血1（将一张本方墓地中或封印在本方秘社上，名为鲜血的牌放置进场并结附于该角色上）。",
       "confirmedMechanismIds": [
         "starlightInfluence",
         "blood",
@@ -10509,7 +10509,7 @@
       "reviewStatus": "primaryImageReviewed",
       "evidenceId": "card-JZ46",
       "verifiedFields": {
-        "name": "辟邪铜雕",
+        "name": "狴犴铜雕",
         "colorKey": "灰",
         "basicType": "附属"
       },
@@ -11028,11 +11028,11 @@
       "reviewStatus": "primaryImageReviewed",
       "evidenceId": "card-XG02",
       "verifiedFields": {
-        "name": "无暇的索菲娅",
+        "name": "无瑕的索菲娅",
         "colorKey": "黄",
         "basicType": "角色"
       },
-      "abilitySummary": "公开〔日形〕领袖；触发 当你打出一张法术牌时，将其复制并进入堆叠，你可以为之选择新目标。；快速行动 弃一张法术牌：无暇的索菲娅获得屏障直到回合结束，将其横置。",
+      "abilitySummary": "公开〔日形〕领袖；触发 当你打出一张法术牌时，将其复制并进入堆叠，你可以为之选择新目标。；快速行动 弃一张法术牌：无瑕的索菲娅获得屏障直到回合结束，将其横置。",
       "confirmedMechanismIds": [
         "leader",
         "mysticContest",
@@ -11972,11 +11972,11 @@
       "reviewStatus": "primaryImageReviewed",
       "evidenceId": "card-CQ04",
       "verifiedFields": {
-        "name": "计划：诘界博物学",
+        "name": "计划：诸界博物学",
         "colorKey": "黄",
         "basicType": "附属"
       },
-      "abilitySummary": "非资产；隐秘〔月形〕秘密计划；可推进；结附于本方秘社；行动 牺牲计划：诘界博物学：；若达成推进1，抓一张牌。；若达成推进3，将目标角色移回其拥有者手上。；若达成推进5，消灭目标附属。",
+      "abilitySummary": "非资产；隐秘〔月形〕秘密计划；可推进；结附于本方秘社；行动 牺牲计划：诸界博物学：；若达成推进1，抓一张牌。；若达成推进3，将目标角色移回其拥有者手上。；若达成推进5，消灭目标附属。",
       "confirmedMechanismIds": [
         "nonAsset",
         "mysticContest",
@@ -12164,11 +12164,11 @@
       "reviewStatus": "primaryImageReviewed",
       "evidenceId": "card-CQ15",
       "verifiedFields": {
-        "name": "无屠、阿鼻双剑",
+        "name": "元屠、阿鼻双剑",
         "colorKey": "红",
         "basicType": "附属"
       },
-      "abilitySummary": "结附于目标角色；持续 受此结附的角色获得永久战斗2和创伤2，并获得“行动 横置，将无屠、阿鼻双剑移回其拥有者手中：消灭目标角色，然后从其操控者的牌库、手牌和墓地中寻找至多三张同名的角色牌，将这些牌封印在本方秘社上，然后令该玩家洗牌。”的能力。",
+      "abilitySummary": "结附于目标角色；持续 受此结附的角色获得永久战斗2和创伤2，并获得“行动 横置，将元屠、阿鼻双剑移回其拥有者手中：消灭目标角色，然后从其操控者的牌库、手牌和墓地中寻找至多三张同名的角色牌，将这些牌封印在本方秘社上，然后令该玩家洗牌。”的能力。",
       "confirmedMechanismIds": [
         "attachment",
         "continuous",
@@ -12204,7 +12204,7 @@
       "reviewStatus": "primaryImageReviewed",
       "evidenceId": "card-CQ17",
       "verifiedFields": {
-        "name": "绍明中尉",
+        "name": "绍朗中尉",
         "colorKey": "灰",
         "basicType": "角色"
       },
@@ -12379,6 +12379,275 @@
         "deckChoice",
         "graveRecovery",
         "seal",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "CQ26": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-CQ26",
+      "verifiedFields": {
+        "name": "暮天使莉芮尔",
+        "colorKey": "黑",
+        "basicType": "角色"
+      },
+      "abilitySummary": "非资产；持续 若你的墓地中有七张或更多牌，暮天使莉芮尔获得临时调查1和永久战斗1。；触发 每当有一张或更多角色牌从本方牌库进入墓地时，你可以弃一张牌，若你如此做，抓一张牌。",
+      "confirmedMechanismIds": [
+        "nonAsset",
+        "continuous",
+        "deckChoice",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "CQ27": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-CQ27",
+      "verifiedFields": {
+        "name": "骨根灵主",
+        "colorKey": "黑",
+        "basicType": "角色"
+      },
+      "abilitySummary": "公开〔日形〕非资产；混乱；不能移动；准备步骤触发 将你墓地中的一张角色牌置于你的牌库底，然后在本地区生成一个行尸指示物角色。；墓地行动 牺牲三个角色：将骨根灵主从墓地放置进场。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "nonAsset",
+        "chaos",
+        "mobility",
+        "deckChoice",
+        "token",
+        "gravePlay",
+        "graveRecovery",
+        "sacrifice",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "CQ28": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-CQ28",
+      "verifiedFields": {
+        "name": "咒欲之门",
+        "colorKey": "黑",
+        "basicType": "事务"
+      },
+      "abilitySummary": "行动 选择两项，你可以重复选择同一项：；将你牌库顶的六张牌置于你的墓地。；选择目标地区，将你墓地中印刷费用小于或等于②的目标角色牌放置进场，并置于该地区。；目标角色获得防御力-1直到回合结束。；抓一张牌。",
+      "confirmedMechanismIds": [
+        "deckChoice",
+        "graveRecovery",
+        "continuous"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "CQ29": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-CQ29",
+      "verifiedFields": {
+        "name": "妖僧拉斯普京",
+        "colorKey": "紫",
+        "basicType": "角色"
+      },
+      "abilitySummary": "隐秘〔月形〕声望；隐秘〔月形〕传闻；持续 你所打出或付费现身的独有角色牌，可以用绿色、红色或紫色来代替任何种类忠诚需求。；触发 当另一个本方独有角色进场时，妖僧拉斯普京和该角色获得屏障直到回合结束。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "renown",
+        "rumor",
+        "loyalty",
+        "hidden",
+        "continuous",
+        "barrier",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "CQ30": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-CQ30",
+      "verifiedFields": {
+        "name": "疯狂之影刹奇拉",
+        "colorKey": "紫",
+        "basicType": "角色"
+      },
+      "abilitySummary": "隐秘+2；非资产；灵体；隐秘〔月形〕屏障；持续 除非是敌方玩家的行动步骤，否则所有敌方暗藏者不能付费翻面。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "nonAsset",
+        "spirit",
+        "barrier",
+        "continuous",
+        "hidden",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "CQ31": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-CQ31",
+      "verifiedFields": {
+        "name": "嗜杀怪客",
+        "colorKey": "紫",
+        "basicType": "角色"
+      },
+      "abilitySummary": "混乱；进场触发 消灭本地区印刷费用最低的角色。若有多个角色费用同为最低，则由你选择其中一个。；墓地触发 当你赢得一次隐秘对抗时，将嗜杀怪客从墓地中放置进场。",
+      "confirmedMechanismIds": [
+        "chaos",
+        "graveRecovery",
+        "mysticContest",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "CQ32": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-CQ32",
+      "verifiedFields": {
+        "name": "巡游的里戈莱托",
+        "colorKey": "紫",
+        "basicType": "角色"
+      },
+      "abilitySummary": "传闻；进场触发 进行一次隐秘对抗。本次隐秘对抗中你所展示的梦魔牌获得隐秘+2。；触发 当你赢得一次隐秘对抗时，将一张你墓地中的牌封印在目标敌方角色上。若所封印的是梦魔牌，你获得该角色的操控权直到回合结束。",
+      "confirmedMechanismIds": [
+        "rumor",
+        "mysticContest",
+        "seal",
+        "control",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "CQ33": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-CQ33",
+      "verifiedFields": {
+        "name": "血肉之屋",
+        "colorKey": "紫",
+        "basicType": "角色"
+      },
+      "abilitySummary": "准备步骤强制触发 每位玩家各选择一个其所操控的角色或附属并将其封印在血肉之屋上。（不能选择血肉之屋自身）；结束步骤强制触发 若你的隐秘等级高于敌方玩家，且有七张或更多牌封印在血肉之屋上，你赢得本地区。",
+      "confirmedMechanismIds": [
+        "priority",
+        "seal",
+        "attachment",
+        "mysticContest",
+        "confrontation",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "CQ34": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-CQ34",
+      "verifiedFields": {
+        "name": "灵能海豚基森",
+        "colorKey": "中立",
+        "basicType": "角色"
+      },
+      "abilitySummary": "非资产；隐秘〔月形〕传闻；现身触发 进行一次隐秘对抗。本次隐秘对抗中你所展示的艺术家牌获得隐秘+2。；准备步骤强制触发 若本方秘社上有隐秘〔月形〕标志，检视目标敌方玩家的手牌和牌库顶牌。",
+      "confirmedMechanismIds": [
+        "nonAsset",
+        "mysticContest",
+        "rumor",
+        "hidden",
+        "priority",
+        "privatePeek",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "CQ35": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-CQ35",
+      "verifiedFields": {
+        "name": "多功能人型作战平台",
+        "colorKey": "中立",
+        "basicType": "角色"
+      },
+      "abilitySummary": "公开；非资产；进场触发 选择一项，多功能人型作战平台获得所选择的能力图标和效果：；战斗模式：永久战斗2，创伤2。；侦察模式：永久调查1、临时势力1，撤回。；壁垒模式：永久战斗1、临时势力1、防御力+1，护卫3。；支援模式：临时调查1、临时战斗1、临时势力1，机动。",
+      "confirmedMechanismIds": [
+        "public",
+        "nonAsset",
+        "continuous",
+        "combatKeywords",
+        "mobility",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "CQ36": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-CQ36",
+      "verifiedFields": {
+        "name": "防暴构装体，八",
+        "colorKey": "中立",
+        "basicType": "角色"
+      },
+      "abilitySummary": "帷幕守望徽记·秘社限定；唯一；触发 当你打出一张法术牌时，或赢得一次隐秘对抗时，在其上放置一个永久战斗1能力图标标志。然后你可以横置本地区所有永久战斗能力图标少于防暴构装体，八的敌方角色。",
+      "confirmedMechanismIds": [
+        "society",
+        "uniqueInPlay",
+        "mysticContest",
+        "continuous",
+        "exhaust",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "CQ37": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-CQ37",
+      "verifiedFields": {
+        "name": "尼古拉斯·勒梅大师",
+        "colorKey": "中立",
+        "basicType": "角色"
+      },
+      "abilitySummary": "隐秘〔月形〕领袖；隐秘〔月形〕传闻；进场触发 进行一次隐秘对抗。本次隐秘对抗中你所展示的炼金牌获得隐秘+4。；触发 当你赢得一次隐秘对抗时，在目标地区上生成一个炼金巨像角色指示物。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "leader",
+        "rumor",
+        "token",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "CQ38": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-CQ38",
+      "verifiedFields": {
+        "name": "天之丛云",
+        "colorKey": "中立",
+        "basicType": "附属"
+      },
+      "abilitySummary": "非资产；结附于目标人类角色；持续 受此结附的角色获得永久战斗1、临时势力1，并获得声望。；触发 当受此结附的角色离场时，将天之丛云移回其拥有者手上，然后若本方秘社上有隐秘〔月形〕标志，抓一张牌。",
+      "confirmedMechanismIds": [
+        "nonAsset",
+        "attachment",
+        "continuous",
+        "renown",
+        "deckChoice",
+        "mysticContest",
+        "uniqueInPlay",
         "temporaryIcons"
       ],
       "editionStatus": "pinnedImageVariant",
