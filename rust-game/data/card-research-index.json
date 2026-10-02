@@ -17,7 +17,7 @@
   },
   "specificationsSource": {
     "path": "docs/factions/card-specifications.json",
-    "sha256": "afb7c0edfab7334daf97c581d5f843bfb6cef03148f685e504a575be300b0c5b"
+    "sha256": "43a5598e37432fc6febc3332715356849379ca6d433d0a6e5d5399efad255cb6"
   },
   "recoverySource": {
     "path": "docs/factions/source-recovery.json",
