@@ -4,7 +4,7 @@
 
 归档说明书明确列出 **八种颜色派系，另有褐色中立**。现有五副 50 张牌是受限卡池的自组预组，不能作为官方派系导航。完整归档的 **685 条记录已全部纳入待研索引**，但这不是 685 张可玩牌，也不是 685 张已核清规则的牌。
 
-本阶段完成全部颜色、归档秘社记录、组牌概念和当前源码边界的核验。截至 B01，101 条记录至少做过原图核验，其中 9 条完成锁定观察版本的所有游戏字段，92 条仍属部分核验；571 条有原图但尚未逐张核验，13 条缺少同 ID 独立原图。完整字段核验与原作机制/引擎/策略试玩验收分别计数，没有声称完成全卡规则转写或策略试玩。
+本阶段完成全部颜色、归档秘社记录、组牌概念和当前源码边界的核验。截至 B02，109 条记录至少做过原图核验，其中 28 条完成锁定观察版本的所有游戏字段，81 条仍属部分核验；563 条有原图但尚未逐张核验，13 条缺少同 ID 独立原图。完整字段核验与原作机制/引擎/策略试玩验收分别计数，没有声称完成全卡规则转写或策略试玩。
 
 ## 输入、证据与输出
 
@@ -21,10 +21,11 @@
 
 输出：
 
-- [faction-coverage.json](../../rust-game/data/faction-coverage.json)：八色及中立、38 条秘社记录、组牌规则、模式、51 项共享机制、原始证据清单及源码锚点。
+- [faction-coverage.json](../../rust-game/data/faction-coverage.json)：八色及中立、38 条秘社记录、组牌规则、模式、52 项共享机制、原始证据清单及源码锚点。
 - [card-reviews.json](card-reviews.json)：人工原图核验的部分字段、能力概述、确认的机制及剩余核验项。
 - [card-research-index.json](../../rust-game/data/card-research-index.json)：完整 685 条待研索引，保留所有版本/形态；原始定位字段与核验字段分开。
-- [card-specifications.json](card-specifications.json) 与 [B01-evidence-package.md](B01-evidence-package.md)：原图锁定版本的全游戏字段、能力边界、未解疑点和待执行验收场景。9 条完成、2 条未清字段阻塞，其余尚未开始整卡规格。
+- [card-specifications.json](card-specifications.json) 与 [B01-evidence-package.md](B01-evidence-package.md)：原图锁定版本的全游戏字段、能力边界、未解疑点和待执行验收场景。累计28条完成、3条未清字段阻塞，分批原稿和验收边界另见 B02-evidence-package.md。
+- [B02-evidence-package.md](B02-evidence-package.md)：JC058、私密检视、墓地正面打出、声望赋予、操控/结附等20条原图规格，包含19条完整和1条blocked。
 - [source-recovery.json](source-recovery.json)：缺图补证搜索、墨尔本/核心区 PDF 旁证、网络访问结果及13条隔离名单。
 - [implementation-plan.md](implementation-plan.md) 和 [acceptance-groups.json](acceptance-groups.json)：共享机制依赖、小步补全顺序和未来验收门槛。
 - [tools/factions](../../tools/factions)：可复现生成器、独立验证器与防止误解锁的回归测试。它们不读取规则文本来执行游戏，也不写生产卡池。
@@ -206,6 +207,7 @@
 | eternal | 永恒 | uncertain |
 | temporaryIcons | 临时能力图标 | partial |
 | uniqueInPlay | 独有（金色名称） | implemented |
+| privatePeek | 私密检视与持续检视权限 | unimplemented |
 
 几个容易被误判的边界：
 
@@ -248,4 +250,4 @@ python -m unittest discover -s tools/factions -p 'test_*.py' -v
 
 严格验证会检查原始文件哈希、证据关联、八色映射、秘社记录完整性、禁用策略、组牌/模式概念、当前 29 个注册 ID、复制数、机制依赖无环、源码/既有测试锚点和索引可复现。`--allow-code-drift` 只把源码快照/锚点变化报告为警告，仍不解锁卡；不得当作重新审计完成。
 
-截至 B01，实际运行的是上述独立 Python 校验与 20 项回归测试，全部通过。Rust 既有测试仅核对声明存在，没有在此环境运行；当前环境没有 cargo。也没有执行 UI/策略试玩、线上房间回归或发布验证。未完成的规则研究和未来验收要求见 implementation-plan.md。
+截至 B02，实际运行的是上述独立 Python 校验与 26 项回归测试，全部通过。Rust 既有测试仅核对声明存在，没有在此环境运行；当前环境没有 cargo。也没有执行 UI/策略试玩、线上房间回归或发布验证。未完成的规则研究和未来验收要求见 implementation-plan.md。

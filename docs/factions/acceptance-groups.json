@@ -66,12 +66,16 @@
         "priority",
         "continuous",
         "deckChoice",
-        "mobility"
+        "mobility",
+        "privatePeek"
       ],
       "representativeCardIds": [
         "JC003",
         "JC049",
-        "DQJC116"
+        "DQJC116",
+        "JC057",
+        "JC058",
+        "JC062"
       ],
       "representativesAreCompleteSpecs": false,
       "gates": [

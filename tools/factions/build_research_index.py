@@ -35,7 +35,7 @@ HINTS = {
     "continuous": ["持续", "获得", "失去", "视作空白"],
     "healWounds": ["创伤"], "attachment": ["结附", "附属", "回收"],
     "seal": ["封印"], "renown": ["声望"], "spirit": ["灵体"],
-    "lock": ["锁定", "检视"], "timeDestroy": ["时间标志", "毁灭"],
+    "lock": ["锁定"], "privatePeek": ["检视"], "timeDestroy": ["时间标志", "毁灭"],
     "damagePrevention": ["防止", "伤害改", "不受伤害"],
     "control": ["操控"], "transform": ["转变"], "blink": ["闪烁"],
     "nonAsset": ["非资产"], "slow": ["迟缓"], "leader": ["领袖", "唯一"],

@@ -102,4 +102,31 @@ def validate_specifications(specifications, coverage, index, recovery):
             "Hong Kong cannot reveal early or shuffle before simultaneous hand entry")
     require(specs["JC076"]["abilities"][1]["triggersOnNormalFaceUpPlay"] is False,
             "JC076 reveal trigger is not an ordinary enter trigger")
+    if "JC058" in specs:
+        ability = specs["JC058"]["abilities"][0]
+        require(ability["triggersOnNormalFaceUpPlay"] is False and ability["grantsPeekPermission"] is False,
+                "JC058 has reveal destruction, not normal enter or peek permission")
+        grave = specs["JC085"]["abilities"][1]
+        require(grave["sourceZone"] == "controllersGraveyard" and grave["normalPrintedCostAndLoyalty"]
+                and grave["faceUpOnly"] and not grave["firstMoveToHand"],
+                "JC085 grave play is direct face-up normal-cost play, not return to hand or secret deploy")
+        renown = specs["JC074"]["abilities"][0]
+        require(renown["duration"] == "untilEndOfTurn"
+                and renown["grants"]["permanentIcons"] == {"investigation": 2, "combat": 0, "influence": 0},
+                "JC074 grants two permanent investigation icons for a temporary duration")
+        control = specs["JC036"]["abilities"][1]
+        require(control["eligibilityUsesPrintedNotCurrentSubtype"] and control["otherSubtypesPreserved"]
+                and control["singleControlSourceRemovalRestores"] == "owner",
+                "JC036 printed-human eligibility, other types and owner restoration must be preserved")
+        peek = specs["JC057"]["abilities"][1]
+        require(peek["privateViewer"] == "sourceController" and not peek["entersStack"]
+                and not peek["targeted"] and peek["hiddenIdentityNotReplaced"]
+                and peek["requires"]["sourceUnexhausted"] and peek["requires"]["sameRegion"],
+                "JC057 continuous private peek cannot become public reveal, targeted action or permanent access")
+        targets = specs["JC062"]["abilities"][0]["target"]
+        require(targets["minimum"] == 0 and targets["maximum"] == 2,
+                "JC062 up-to-two targets must retain the zero-target draw route")
+        heal = specs["LC19"]["abilities"][1]
+        require(heal["costs"] == {"currency": 2, "exhaustSource": True}
+                and heal["notOrdinaryTurnDamage"], "LC19 original includes source exhaust and removes wounds, not turn damage")
     return errors

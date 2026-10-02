@@ -156,6 +156,44 @@ class CoverageTests(unittest.TestCase):
         self.assertTrue(any("Hong Kong" in e for e in errors))
         self.assertTrue(any("ordinary enter" in e for e in errors))
 
+    def test_jc058_cannot_inherit_peek_or_normal_enter_from_other_cards(self):
+        specs = copy.deepcopy(self.specifications)
+        specs["cards"]["JC058"]["abilities"][0]["grantsPeekPermission"] = True
+        specs["cards"]["JC058"]["abilities"][0]["triggersOnNormalFaceUpPlay"] = True
+        self.assertTrue(any("reveal destruction" in e for e in self.source_errors(specs=specs)))
+
+    def test_jc085_cannot_avoid_printed_payment_by_returning_to_hand(self):
+        specs = copy.deepcopy(self.specifications)
+        a = specs["cards"]["JC085"]["abilities"][1]
+        a["firstMoveToHand"] = True
+        a["normalPrintedCostAndLoyalty"] = False
+        self.assertTrue(any("direct face-up" in e for e in self.source_errors(specs=specs)))
+
+    def test_temporary_duration_cannot_turn_jc074_icons_into_white_icons(self):
+        specs = copy.deepcopy(self.specifications)
+        a = specs["cards"]["JC074"]["abilities"][0]
+        a["grants"]["permanentIcons"]["investigation"] = 0
+        a["duration"] = "permanent"
+        self.assertTrue(any("temporary duration" in e for e in self.source_errors(specs=specs)))
+
+    def test_jc036_cannot_recheck_current_type_and_self_destroy(self):
+        specs = copy.deepcopy(self.specifications)
+        specs["cards"]["JC036"]["abilities"][1]["eligibilityUsesPrintedNotCurrentSubtype"] = False
+        self.assertTrue(any("printed-human" in e for e in self.source_errors(specs=specs)))
+
+    def test_private_peek_cannot_be_public_or_lose_zero_target_route(self):
+        specs = copy.deepcopy(self.specifications)
+        specs["cards"]["JC057"]["abilities"][1]["privateViewer"] = "allPlayers"
+        specs["cards"]["JC062"]["abilities"][0]["target"]["minimum"] = 1
+        errors = self.source_errors(specs=specs)
+        self.assertTrue(any("continuous private peek" in e for e in errors))
+        self.assertTrue(any("zero-target" in e for e in errors))
+
+    def test_lc19_locator_omission_cannot_remove_printed_exhaust_cost(self):
+        specs = copy.deepcopy(self.specifications)
+        specs["cards"]["LC19"]["abilities"][1]["costs"].pop("exhaustSource")
+        self.assertTrue(any("source exhaust" in e for e in self.source_errors(specs=specs)))
+
 
 if __name__ == "__main__":
     unittest.main()

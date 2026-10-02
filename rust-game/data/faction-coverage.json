@@ -237,7 +237,8 @@
         "lock",
         "seal",
         "core",
-        "society"
+        "society",
+        "privatePeek"
       ],
       "selectionEnabled": false,
       "disabledReason": "当前只能选择受限卡池自组预组；未开放官方派系构筑或秘社牌。"
@@ -1660,7 +1661,8 @@
       "evidenceIds": [
         "bq-keywords-2",
         "bq-teams",
-        "card-JC014"
+        "card-JC014",
+        "card-JC061"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -1936,7 +1938,12 @@
       "limitations": "不存在通用持续层、文本空白、类型赋予、动态领域/能力与条件修改框架。",
       "evidenceIds": [
         "card-JC016",
-        "card-JC059"
+        "card-JC059",
+        "card-JC057",
+        "card-JC074",
+        "card-JC108",
+        "card-JC099",
+        "card-JC100"
       ],
       "dependencies": [],
       "interactionIds": [],
@@ -2052,7 +2059,8 @@
         "manual-seal",
         "bq-seal",
         "card-JC099",
-        "card-JC100"
+        "card-JC100",
+        "card-JC108"
       ],
       "dependencies": [
         "priority",
@@ -2083,7 +2091,8 @@
       "evidenceIds": [
         "bq-keywords-2",
         "card-JC070",
-        "card-JC076"
+        "card-JC076",
+        "card-JC074"
       ],
       "dependencies": [
         "confrontation"
@@ -2112,7 +2121,8 @@
       "evidenceIds": [
         "bq-keywords-2",
         "card-JC077",
-        "card-JC099"
+        "card-JC099",
+        "card-JC100"
       ],
       "dependencies": [
         "continuous",
@@ -2927,7 +2937,9 @@
       "limitations": "规则要求任意效果统计图标数量时总要包含临时图标；现有icons函数是对抗参与计数，未建立所有非对抗计数入口。",
       "evidenceIds": [
         "manual-pairing",
-        "card-JC016"
+        "card-JC016",
+        "card-JC057",
+        "card-JC108"
       ],
       "dependencies": [
         "confrontation",
@@ -2975,6 +2987,39 @@
       "existingTestNames": [
         "unique_mandatory_sacrifice_and_world_effects"
       ]
+    },
+    {
+      "id": "privatePeek",
+      "name": "私密检视与持续检视权限",
+      "status": "unimplemented",
+      "scope": "JC057现身检视手牌及未横置同区持续检视暗藏者，JC062至多两个目标暗藏者检视；区分检视与公开展示。",
+      "limitations": "基线有限池没有开放这些牌；不能依靠暗藏者原始信息可见字段宣称授权投影、权限撤销和多目标已实现。",
+      "evidenceIds": [
+        "card-JC057",
+        "card-JC062",
+        "faq-3"
+      ],
+      "dependencies": [
+        "hidden",
+        "continuous",
+        "priority"
+      ],
+      "interactionIds": [
+        "privatePeek",
+        "handPicker",
+        "targetPicker"
+      ],
+      "codeEvidence": [
+        {
+          "path": "rust-game/src/engine.rs",
+          "anchor": "fn card_view"
+        },
+        {
+          "path": "rust-game/src/rules.rs",
+          "anchor": "enum Op"
+        }
+      ],
+      "existingTestNames": []
     }
   ],
   "evidence": {
@@ -3973,6 +4018,62 @@
       "pdfPage": 4,
       "visuallyReviewed": true,
       "topic": "目标声明/复核、金色名称独有、规则优先级"
+    },
+    "card-JC058": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC058 坚毅的刑警.jpg",
+      "sha256": "6585e89991049cb05e75db43143320fd12bf6be781847648d551cb433e85119a",
+      "visuallyReviewed": true,
+      "topic": "坚毅的刑警：原图数值/图标/完整游戏文字与印刷编号"
+    },
+    "card-JC074": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC074 天空的教诲.jpg",
+      "sha256": "e34e5bb081f3ee459d99038c68d60f4be4a44af05baa4289759b730045140914",
+      "visuallyReviewed": true,
+      "topic": "天空的教诲：原图数值/图标/完整游戏文字与印刷编号"
+    },
+    "card-JC036": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC036 初拥.jpg",
+      "sha256": "017507e6a2a229f6541a4690b681ecd71fc09b35962b9673da70f5f035ddba83",
+      "visuallyReviewed": true,
+      "topic": "初拥：原图数值/图标/完整游戏文字与印刷编号"
+    },
+    "card-JC073": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC073 苏族捕梦网.jpg",
+      "sha256": "cebf528de52de72d7400d4c769c2642063342d75a01670e120b5bc71aba23d42",
+      "visuallyReviewed": true,
+      "topic": "苏族捕梦网：原图数值/图标/完整游戏文字与印刷编号"
+    },
+    "card-JC075": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC075 雪地救援队.jpg",
+      "sha256": "7db960c7050614dae10a8e752db2567670169e782986e39a789842259231e434",
+      "visuallyReviewed": true,
+      "topic": "雪地救援队：原图数值/图标/完整游戏文字与印刷编号"
+    },
+    "card-JC057": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC057 监控员.jpg",
+      "sha256": "acb8e6d6c421a37862b81e5f194af50a974888e74e252b0a594b7123a6d01678",
+      "visuallyReviewed": true,
+      "topic": "监控员：原图数值/图标/完整游戏文字与印刷编号"
+    },
+    "card-JC061": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC061 危机处理特派小组.jpg",
+      "sha256": "132918615db6a2233eed3f2d2d045c368c65348e43c52f101f17e4c4ecd756f6",
+      "visuallyReviewed": true,
+      "topic": "危机处理特派小组：原图数值/图标/完整游戏文字与印刷编号"
+    },
+    "card-JC062": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC062 调查档案.jpg",
+      "sha256": "7a66629a3059ff47d0707b267d165ea933b43caf95dcd92545655504361bde03",
+      "visuallyReviewed": true,
+      "topic": "调查档案：原图数值/图标/完整游戏文字与印刷编号"
     }
   },
   "openQuestions": [
