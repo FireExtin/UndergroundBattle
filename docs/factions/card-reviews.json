@@ -8400,11 +8400,11 @@
       "reviewStatus": "primaryImageReviewed",
       "evidenceId": "card-WM024",
       "verifiedFields": {
-        "name": "阿刺穆特杀手",
+        "name": "阿剌穆特杀手",
         "colorKey": "蓝",
         "basicType": "角色"
       },
-      "abilitySummary": "额外费用 敌方秘社上每有一个暴露标志，打出或付费现身阿刺穆特杀手的所需费用就减少②。；现身触发 袭击X，X等于敌方秘社上暴露标志的数量。若有其它角色因此效果死去，抓一张牌。",
+      "abilitySummary": "额外费用 敌方秘社上每有一个暴露标志，打出或付费现身阿剌穆特杀手的所需费用就减少②。；现身触发 袭击X，X等于敌方秘社上暴露标志的数量。若有其它角色因此效果死去，抓一张牌。",
       "confirmedMechanismIds": [
         "costReduction",
         "hidden",
@@ -8639,6 +8639,691 @@
         "society",
         "timeDestroy",
         "deckChoice"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM038": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM038",
+      "verifiedFields": {
+        "name": "信徒烙印",
+        "colorKey": "红",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标人类角色；持续 受此结附的角色额外具有邪教徒类别。；进场触发 在受此结附的角色上放置一个时间标志。；快速行动 横置，牺牲一个邪教徒：本回合中，你所打出的下一张血脉领域牌，其所需费用减少②。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "continuous",
+        "timeDestroy",
+        "exhaust",
+        "sacrifice",
+        "costReduction"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM039": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM039",
+      "verifiedFields": {
+        "name": "P.S.C.精神分析师",
+        "colorKey": "灰",
+        "basicType": "角色"
+      },
+      "abilitySummary": "机动；行动①：从本方秘社上移除一个暴露标志，P.S.C.精神分析师获得永久调查1直到本回合结束。该能力每回合只能发动一次。",
+      "confirmedMechanismIds": [
+        "mobility",
+        "mysticContest",
+        "continuous"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM040": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM040",
+      "verifiedFields": {
+        "name": "心理审察委员",
+        "colorKey": "灰",
+        "basicType": "角色"
+      },
+      "abilitySummary": "公开；机动；进场触发 移除所有秘社上的所有暴露标志，然后遏制X，X等于以此效果移除的暴露标志数量。；快速行动①，横置：在本方秘社上放置一个暴露标志，然后移除本地区上的所有本方角色上的创伤标志。",
+      "confirmedMechanismIds": [
+        "public",
+        "mobility",
+        "mysticContest",
+        "repress",
+        "exhaust",
+        "healWounds"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM041": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM041",
+      "verifiedFields": {
+        "name": "阿尔法先生",
+        "colorKey": "灰",
+        "basicType": "角色"
+      },
+      "abilitySummary": "领袖；声望；持续 所有本方公开角色获得声望。所有敌方角色失去声望。；强制触发 当你打出一张公开角色牌时，在本方秘社上放置一个暴露标志，然后抓一张牌。",
+      "confirmedMechanismIds": [
+        "leader",
+        "renown",
+        "continuous",
+        "public",
+        "mysticContest",
+        "deckChoice",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM042": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM042",
+      "verifiedFields": {
+        "name": "新闻管控",
+        "colorKey": "灰",
+        "basicType": "事务"
+      },
+      "abilitySummary": "传闻；快速行动 选择一项：；在所有秘社上各放置一个暴露标志。；从所有秘社上各移除一个暴露标志。",
+      "confirmedMechanismIds": [
+        "rumor",
+        "mysticContest"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM043": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM043",
+      "verifiedFields": {
+        "name": "精准打击",
+        "colorKey": "灰",
+        "basicType": "事务"
+      },
+      "abilitySummary": "隐秘+2：在本次隐秘对抗后，若本方秘社为哨兵，你可以在目标角色或暗藏者上放置一个锁定标志。；快速行动 选择一项：；在目标角色或暗藏者上放置一个锁定标志。；消灭其上有锁定标志的目标角色或暗藏者。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "society",
+        "lock",
+        "hidden"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM044": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM044",
+      "verifiedFields": {
+        "name": "情报分析中心",
+        "colorKey": "灰",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于本方秘社；持续 所有暗藏者获得迟缓。；触发 当你赢得隐秘对抗，检视目标暗藏者或秘密计划。；进场触发 若本方秘社为哨兵，在目标暗藏者上放置一个锁定标志。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "society",
+        "hidden",
+        "slow",
+        "mysticContest",
+        "privatePeek",
+        "plan",
+        "lock"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM045": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM045",
+      "verifiedFields": {
+        "name": "计划：新秩序",
+        "colorKey": "灰",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于本方秘社；秘密计划；可推进；强制触发 达成推进3时，牺牲计划：新秩序，将所有角色翻面为暗藏者。然后若有玩家在同一地区操控多个暗藏者，则将这些暗藏者洗混。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "society",
+        "plan",
+        "sacrifice",
+        "hidden"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM046": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM046",
+      "verifiedFields": {
+        "name": "计划：天眼",
+        "colorKey": "灰",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于本方秘社；秘密计划；可推进；强制触发 达成推进3时，牺牲计划：天眼，抓X张牌，X等于场上有锁定标志的角色和暗藏者数量之和。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "society",
+        "plan",
+        "sacrifice",
+        "deckChoice",
+        "lock",
+        "hidden"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM047": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM047",
+      "verifiedFields": {
+        "name": "计划：贝奥武夫",
+        "colorKey": "灰",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于本方秘社；秘密计划；可推进；强制触发 达成推进5时，牺牲计划：贝奥武夫，消灭所有具有魔法领域图标的角色。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "society",
+        "plan",
+        "sacrifice"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM049": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM049",
+      "verifiedFields": {
+        "name": "灯塔看护人",
+        "colorKey": "白",
+        "basicType": "角色"
+      },
+      "abilitySummary": "唯一；公开；现身强制触发 进行一次隐秘对抗，本次对抗中你获得+1。；准备步骤触发 若本方秘社上有三个隐秘标志，将灯塔看护人置入你的计分区。",
+      "confirmedMechanismIds": [
+        "leader",
+        "public",
+        "hidden",
+        "mysticContest",
+        "confrontation",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM050": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM050",
+      "verifiedFields": {
+        "name": "高文·卡尔森",
+        "colorKey": "白",
+        "basicType": "角色"
+      },
+      "abilitySummary": "公开；传闻；持续 若位于黄昏地区，或本地区有梦境，或其上封印有卡牌，高文·卡尔森获得声望和屏障并具有神圣领域1。；持续 双方秘社上每有一个暴露标志，高文·卡尔森就获得额外的永久战斗2和防御+1。",
+      "confirmedMechanismIds": [
+        "public",
+        "rumor",
+        "renown",
+        "barrier",
+        "seal",
+        "continuous",
+        "mysticContest",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM051": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM051",
+      "verifiedFields": {
+        "name": "梦幻泡影",
+        "colorKey": "白",
+        "basicType": "事务"
+      },
+      "abilitySummary": "非资产；行动 将印刷费用小于或等于X的目标角色或附属封印在其拥有者的秘社上。X等于本方秘社上隐秘标志的数量加1。",
+      "confirmedMechanismIds": [
+        "nonAsset",
+        "seal",
+        "mysticContest"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM052": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM052",
+      "verifiedFields": {
+        "name": "隐居",
+        "colorKey": "白",
+        "basicType": "事务"
+      },
+      "abilitySummary": "隐秘：若本方秘社为隐士，+5。；行动 从你手中展示一张角色牌，然后将其以暗藏者状态置于目标地区。若本方秘社为隐士，预测1。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "society",
+        "hidden",
+        "deckChoice"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM053": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM053",
+      "verifiedFields": {
+        "name": "学术交流会议",
+        "colorKey": "白",
+        "basicType": "事务"
+      },
+      "abilitySummary": "隐秘：若你的手牌数量等于或大于四张，+1。；非资产；行动 抓若干张牌，直到你的手牌数量等于四张。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "nonAsset",
+        "deckChoice"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM054": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM054",
+      "verifiedFields": {
+        "name": "宗祠",
+        "colorKey": "白",
+        "basicType": "附属"
+      },
+      "abilitySummary": "隐秘：若你的手牌数量等于或大于四张，+2。；结附于本方秘社；持续 敌方卡牌或能力不能使你从手上弃牌。；行动①，横置：将任一玩家墓地中的目标角色牌置于其拥有者的牌库底。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "attachment",
+        "society",
+        "cancel",
+        "exhaust",
+        "graveRecovery"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM055": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM055",
+      "verifiedFields": {
+        "name": "瓦伦丁的储存卡",
+        "colorKey": "白",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于本方秘社；触发 当你从手中打出一张法术牌时，在其结算后将该牌封印在瓦伦丁的储存卡上，而非置于墓地。；行动 横置：若本方秘社上有隐秘标志，牺牲瓦伦丁的储存卡。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "society",
+        "seal",
+        "exhaust",
+        "sacrifice",
+        "mysticContest",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM056": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM056",
+      "verifiedFields": {
+        "name": "赃物贩子",
+        "colorKey": "黑",
+        "basicType": "角色"
+      },
+      "abilitySummary": "行动②：将相邻地区上的一个本方势力标志移动至本地区。该能力每回合只能发动一次。",
+      "confirmedMechanismIds": [
+        "confrontation"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM057": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM057",
+      "verifiedFields": {
+        "name": "信息掮客",
+        "colorKey": "黑",
+        "basicType": "角色"
+      },
+      "abilitySummary": "行动②，横置：进行一次隐秘对抗。若敌方秘社上有隐秘标志，则敌方玩家也可以发动本能力。；触发 当你赢得隐秘对抗时，遏制1，然后你可以检视目标暗藏者或秘密计划。",
+      "confirmedMechanismIds": [
+        "exhaust",
+        "mysticContest",
+        "repress",
+        "privatePeek",
+        "hidden",
+        "plan",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM058": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM058",
+      "verifiedFields": {
+        "name": "“弹簧刀”钱斯",
+        "colorKey": "黑",
+        "basicType": "角色"
+      },
+      "abilitySummary": "触发 当一个本方罪犯角色成为敌方卡牌的目标时，其操控者需额外支付①，否则终止该卡牌。；现身触发 移除本地区上所有敌方势力标志。",
+      "confirmedMechanismIds": [
+        "cancel",
+        "priority",
+        "hidden",
+        "confrontation",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM059": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM059",
+      "verifiedFields": {
+        "name": "雨夜屠夫",
+        "colorKey": "黑",
+        "basicType": "角色"
+      },
+      "abilitySummary": "杀伤1；触发 当雨夜屠夫进入一个地区时，消灭位于该地区，且印刷费用小于或等于①的目标敌方角色。",
+      "confirmedMechanismIds": [
+        "combatTraits",
+        "mobility",
+        "priority",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM060": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM060",
+      "verifiedFields": {
+        "name": "多情达莉娅",
+        "colorKey": "黑",
+        "basicType": "角色"
+      },
+      "abilitySummary": "公开；现身触发 在本地区上放置X个本方势力标志。X等于本地区的其他本方罪犯数量之和。；触发 每当一个其他本方罪犯进场时，抓一张牌，然后弃一张牌，遏制2。",
+      "confirmedMechanismIds": [
+        "public",
+        "hidden",
+        "confrontation",
+        "deckChoice",
+        "repress",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM061": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM061",
+      "verifiedFields": {
+        "name": "土归土",
+        "colorKey": "黑",
+        "basicType": "事务"
+      },
+      "abilitySummary": "隐秘+2：在本次隐秘对抗后，将你牌库顶的一张牌置于本方墓地。；非资产；行动 将每位玩家牌库顶的五张牌置于其墓地。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "nonAsset",
+        "deckChoice"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM062": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM062",
+      "verifiedFields": {
+        "name": "跑路",
+        "colorKey": "黑",
+        "basicType": "事务"
+      },
+      "abilitySummary": "快速行动 令目标本方罪犯角色潜伏，然后你可以将其移动到一个相邻地区上。",
+      "confirmedMechanismIds": [
+        "hidden",
+        "mobility"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM063": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM063",
+      "verifiedFields": {
+        "name": "黑市",
+        "colorKey": "黑",
+        "basicType": "附属"
+      },
+      "abilitySummary": "持续 若敌方秘社上有隐秘标志，则敌方玩家也可以发动黑市的能力。；行动②，弃一张事务牌：抓一张牌。；行动①，弃一张角色牌：遏制2。；行动①，弃一张附属牌：在目标角色上放置一个永久战斗1能力图标标志。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "mysticContest",
+        "deckChoice",
+        "repress",
+        "continuous"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM064": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM064",
+      "verifiedFields": {
+        "name": "巨蟒纹身",
+        "colorKey": "黑",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标本方人类角色；持续 受此结附的角色获得永久调查1、永久战斗2、永久势力1和防御+2，并获得领袖和声望，且额外具有罪犯类别。；快速行动①，横置，牺牲一个罪犯：若目标本方暗藏者的正面是罪犯类别，则令其现身。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "continuous",
+        "leader",
+        "renown",
+        "exhaust",
+        "sacrifice",
+        "hidden"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM065": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM065",
+      "verifiedFields": {
+        "name": "诡辩家",
+        "colorKey": "紫",
+        "basicType": "角色"
+      },
+      "abilitySummary": "现身触发 本回合中，本地区上所进行的调查对抗，改为由能力图标较少的一方赢得。（对抗奖励也改为按较少的数量计算。）",
+      "confirmedMechanismIds": [
+        "hidden",
+        "confrontation"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM066": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM066",
+      "verifiedFields": {
+        "name": "原初牧者贝拉斯克斯",
+        "colorKey": "紫",
+        "basicType": "角色"
+      },
+      "abilitySummary": "灵体；传闻；触发 当原初牧者贝拉斯克斯或另一张卡牌被封印在本方角色或附属上时，若你的资产区具有紫色图标，在目标地区上生成一个梦魇角色指示物。",
+      "confirmedMechanismIds": [
+        "spirit",
+        "rumor",
+        "seal",
+        "token",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM067": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM067",
+      "verifiedFields": {
+        "name": "尖鸣突变体",
+        "colorKey": "紫",
+        "basicType": "角色"
+      },
+      "abilitySummary": "创伤1；持续 只要尖鸣突变体未横置，双方卡牌上的隐秘能力框视作空白。；快速行动 横置：将尖鸣突变体封印在目标具有临时调查或永久调查能力图标的角色上。若本方秘社上有隐秘标志，则你可以横置该角色，然后抓一张牌。",
+      "confirmedMechanismIds": [
+        "combatKeywords",
+        "continuous",
+        "mysticContest",
+        "exhaust",
+        "seal",
+        "deckChoice",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM068": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM068",
+      "verifiedFields": {
+        "name": "幽明生",
+        "colorKey": "紫",
+        "basicType": "角色"
+      },
+      "abilitySummary": "触发 每当有卡牌被封印在幽明生上时，在本地区放置一个本方势力标志。该能力每回合至多发动三次。；持续 若位于黄昏地区，或本地区有梦境，或其上封印有卡牌，幽明生获得灵体和机动。",
+      "confirmedMechanismIds": [
+        "seal",
+        "confrontation",
+        "continuous",
+        "spirit",
+        "mobility",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM069": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM069",
+      "verifiedFields": {
+        "name": "蠕动的灾祸",
+        "colorKey": "紫",
+        "basicType": "角色"
+      },
+      "abilitySummary": "隐秘+1：若你赢得本次隐秘对抗，将蠕动的灾祸封印在目标角色上。；灵体；触发 当蠕动的灾祸被封印在一个角色上时，若你的资产区具有紫色图标，该角色的印刷文本框视作空白，且失去所有能力图标直到回合结束。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "seal",
+        "spirit",
+        "continuous",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM070": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM070",
+      "verifiedFields": {
+        "name": "丝琪",
+        "colorKey": "紫",
+        "basicType": "角色"
+      },
+      "abilitySummary": "混乱；触发 当丝琪进入一个地区时，本地区上的目标角色失去所有永久势力和临时势力能力图标，丝琪获得这些图标直到回合结束。；行动 将一张你手中的人类牌封印在丝琪上：丝琪获得机动直到本回合结束。",
+      "confirmedMechanismIds": [
+        "chaos",
+        "continuous",
+        "temporaryIcons",
+        "seal",
+        "mobility",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM072": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM072",
+      "verifiedFields": {
+        "name": "虚实翻转",
+        "colorKey": "紫",
+        "basicType": "事务"
+      },
+      "abilitySummary": "非资产；行动 移除目标地区上的所有敌方势力标志，然后在该地区上放置等量的本方势力标志。",
+      "confirmedMechanismIds": [
+        "nonAsset",
+        "confrontation"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM073": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM073",
+      "verifiedFields": {
+        "name": "深渊的呼唤",
+        "colorKey": "紫",
+        "basicType": "事务"
+      },
+      "abilitySummary": "传闻；行动 对所有具有永久调查或临时调查能力图标的角色造成X点创伤，X为该角色上永久调查和临时调查能力图标的数量之和加1。",
+      "confirmedMechanismIds": [
+        "rumor",
+        "healWounds",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM074": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM074",
+      "verifiedFields": {
+        "name": "小径分叉的花园",
+        "colorKey": "紫",
+        "basicType": "附属"
+      },
+      "abilitySummary": "隐秘+6；结附于目标地区；持续 所有本地区的角色获得迟缓。；行动①，横置：预测1。在本方秘社上放置一个暴露标志。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "attachment",
+        "slow",
+        "exhaust",
+        "deckChoice"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM075": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM075",
+      "verifiedFields": {
+        "name": "第六感",
+        "colorKey": "紫",
+        "basicType": "附属"
+      },
+      "abilitySummary": "隐秘+4；非资产；传闻；结附于目标角色；持续 受此结附的角色获得临时调查1，若该角色是宿主，则改为获得永久调查1。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "nonAsset",
+        "rumor",
+        "attachment",
+        "continuous",
+        "temporaryIcons"
       ],
       "editionStatus": "pinnedImageVariant",
       "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
