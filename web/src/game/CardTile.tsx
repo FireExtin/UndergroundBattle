@@ -3,7 +3,7 @@ import type { Card, CardDefinition, Icons, Player } from './types';
 /** Concealed identities belong to their owner, including when controller is a teammate. */
 export function visibleCard(card: Card, viewerId: string): Card {
   if (!card.faceDown || card.owner === viewerId) return card;
-  return { ...card, cardId: undefined, name: '暗藏者', kind: 'hidden', cost: undefined,
+  return { ...card, cardId: undefined, name: '暗藏者', kind: 'hidden', cost: undefined, effectiveCost: undefined,
     text: undefined, icons: undefined, defense: undefined, damage: undefined, shield: undefined,
     wounds: undefined, color: undefined, magic: undefined };
 }
@@ -25,13 +25,17 @@ export function CardContent({ card: source, definition: sourceDefinition, compac
   const asset = card.kind === 'asset';
   const region = card.kind === 'region';
   const concealedCompact = compact && card.kind === 'hidden';
+  const printedCost = card.cost ?? definition?.cost ?? 0;
+  const actualCost = card.effectiveCost ?? printedCost;
+  const adjustedCost = card.effectiveCost !== undefined && actualCost !== printedCost;
   const permanent = definition?.icons?.permanent || definition?.permanentIcons || card.icons;
   const temporary = definition?.icons?.temporary || definition?.temporaryIcons;
   const hasTemporary = temporary && Object.values(temporary).some(n => n > 0);
   const type = hidden ? '身份未公开' : definition?.type || definition?.subtypes?.join(' · ') || ({ character: '角色', event: '事件', spell: '咒术', region: '地区', asset: '资产', hidden: '暗藏角色' }[card.kind] || '卡牌');
   return <>
-    <span className="hg-card-top"><span className="hg-card-kind">{type}</span>{!hidden && !asset && !region && <span className="hg-cost" title="费用">{card.cost ?? definition?.cost ?? 0}</span>}</span>
+    <span className="hg-card-top"><span className="hg-card-kind">{type}</span>{!hidden && !asset && !region && <span className={`hg-cost${adjustedCost ? ' hg-cost-adjusted' : ''}`} title={adjustedCost ? `当前费用 ${actualCost} · 印刷费用 ${printedCost}` : '费用'} aria-label={adjustedCost ? `当前费用 ${actualCost}，印刷费用 ${printedCost}` : `费用 ${actualCost}`}>{actualCost}</span>}</span>
     <strong className="hg-card-name">{hidden ? '暗藏者' : card.name}</strong>
+    {!compact && !hidden && !asset && !region && adjustedCost && <span className="hg-cost-explanation">当前费用 {actualCost} · 印刷费用 {printedCost}</span>}
     {!compact && <span className="hg-card-art" aria-hidden="true"><span>{hidden ? '？' : card.kind === 'event' ? '✧' : card.kind === 'region' ? '⌖' : '◈'}</span><i /></span>}
     {hidden ? <span className="hg-card-text">{concealedCompact ? '暗藏者 · 不受角色伤害' : '暗藏身份，等待揭示。'}</span> : <>
       <span className="hg-card-affiliation">{region ? `赢得 ${definition?.points ?? '—'} 分 · 控制阈值 ${definition?.threshold ?? '—'}` : asset ? `${card.color || '无派系'}${card.magic ? ` · ${card.magic}` : ''}` : <>{definition?.loyaltyText || (definition?.loyalty?.length ? `忠诚 ${definition.loyalty.join(' / ')}` : '无忠诚要求')}{(card.magic || definition?.magic) && ` · ${card.magic || definition?.magic}`}</>}</span>

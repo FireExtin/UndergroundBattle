@@ -19,8 +19,7 @@ fn error(message: impl AsRef<str>) -> JsValue {
     JsValue::from_str(message.as_ref())
 }
 fn decode(state: &str) -> Result<Game, JsValue> {
-    let game: Game =
-        serde_json::from_str(state).map_err(|_| error("Invalid persisted game state"))?;
+    let game = Game::from_persisted(state).map_err(error)?;
     if game.versions.rules != definitions::RULES_VERSION
         || game.versions.card_pool != definitions::POOL_VERSION
         || game.versions.engine != definitions::ENGINE_VERSION

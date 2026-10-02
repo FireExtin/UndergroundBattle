@@ -67,8 +67,8 @@ export const joinRoom = (inviteCode: string, name: string, deckId: string) => re
 });
 
 export function actionPayload(action: Action | (Action & { id: string; label: string; description?: string })): Action {
-  const { kind, cardId, targetId, region, option, choiceId, selected, top, bottom, allocations } = action;
-  return { kind, cardId, targetId, region, option, choiceId, selected, top, bottom, allocations };
+  const { kind, cardId, targetId, region, option, abilityId, costSelected, choiceId, selected, top, bottom, allocations } = action;
+  return { kind, cardId, targetId, region, option, abilityId, costSelected, choiceId, selected, top, bottom, allocations };
 }
 export const sendCommand = (session: SavedSession, version: number, action: Action, commandId: string = newCommandId()) => request<View>(`${roomPath(session)}/commands`, {
   method: 'POST', headers: { ...headers(session), 'Content-Type': 'application/json' },

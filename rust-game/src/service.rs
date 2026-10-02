@@ -179,6 +179,18 @@ impl Store {
     pub fn open(path: impl AsRef<FilePath>) -> Result<Self, ApiError> {
         let connection = Connection::open(path)?;
         connection.busy_timeout(Duration::from_secs(5))?;
+        if connection.query_row(
+            "SELECT COUNT(*) FROM sqlite_master WHERE type='table' AND name='rooms'",
+            [],
+            |r| r.get::<_, usize>(0),
+        )? > 0
+        {
+            let mut statement = connection.prepare("SELECT state FROM rooms")?;
+            let states = statement.query_map([], |r| r.get::<_, String>(0))?;
+            for state in states {
+                Game::from_persisted(&state?).map_err(ApiError::internal)?;
+            }
+        }
         connection.execute_batch("PRAGMA journal_mode=WAL; PRAGMA synchronous=FULL; PRAGMA foreign_keys=ON;
           CREATE TABLE IF NOT EXISTS rooms(id TEXT PRIMARY KEY,invite TEXT UNIQUE NOT NULL,initial_state TEXT NOT NULL,state TEXT NOT NULL);
           CREATE TABLE IF NOT EXISTS seats(room_id TEXT NOT NULL REFERENCES rooms(id),seat INTEGER NOT NULL,token_hash TEXT UNIQUE NOT NULL,PRIMARY KEY(room_id,seat));
@@ -191,7 +203,7 @@ impl Store {
             while let Some(row) = rows.next()? {
                 let id: String = row.get(0)?;
                 let state: String = row.get(1)?;
-                let game: Game = serde_json::from_str(&state)?;
+                let game = Game::from_persisted(&state).map_err(ApiError::internal)?;
                 if game.versions.rules != catalog::RULES_VERSION
                     || game.versions.card_pool != catalog::POOL_VERSION
                     || game.versions.engine != catalog::ENGINE_VERSION
@@ -415,7 +427,7 @@ impl Store {
         let replayed = replay_connection(&tx, id)?;
         let stored: String =
             tx.query_row("SELECT state FROM rooms WHERE id=?1", [id], |r| r.get(0))?;
-        let persisted: Game = serde_json::from_str(&stored)?;
+        let persisted = Game::from_persisted(&stored).map_err(ApiError::internal)?;
         let canonical = serde_json::to_vec(&persisted)?;
         let replay_bytes = serde_json::to_vec(&replayed)?;
         let journal_entries =
@@ -441,7 +453,7 @@ fn replay_connection(db: &Connection, id: &str) -> Result<Game, ApiError> {
         db.query_row("SELECT initial_state FROM rooms WHERE id=?1", [id], |r| {
             r.get(0)
         })?;
-    let mut game: Game = serde_json::from_str(&initial)?;
+    let mut game = Game::from_persisted(&initial).map_err(ApiError::internal)?;
     if game.versions.rules != catalog::RULES_VERSION
         || game.versions.card_pool != catalog::POOL_VERSION
         || game.versions.engine != catalog::ENGINE_VERSION

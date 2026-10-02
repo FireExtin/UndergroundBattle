@@ -12,6 +12,7 @@
       11,
       13,
       14,
+      15,
       16,
       17,
       18,
@@ -173,6 +174,71 @@
       "id": "DQJC116",
       "image": "resource/ymsj-fun.github.io/cards/DQJC116 香港.jpg",
       "sha256": "e9dfbc396a733b3bbe7ffcb2a6d67ea371ffe4ca4bd6fc0f4e74b1ee73485d4d",
+      "verified": true
+    },
+    {
+      "id": "JC042",
+      "image": "resource/ymsj-fun.github.io/cards/JC042 末日信徒.jpg",
+      "sha256": "242a17c708a96d27e95b23f9ab339e01d5b8c1eda282a2f7de8f51ba2c1bdbef",
+      "verified": true
+    },
+    {
+      "id": "JC049",
+      "image": "resource/ymsj-fun.github.io/cards/JC049 深渊细语.jpg",
+      "sha256": "340c3fbc650b755d72c31ca06a8c379bacb572df6df061a9c52d0fb386d02d58",
+      "verified": true
+    },
+    {
+      "id": "JC091",
+      "image": "resource/ymsj-fun.github.io/cards/JC091 谋杀.jpg",
+      "sha256": "2ea5d65c270a107371f7d69cb22de3e4e60f9e9db81d4e6959744bbfbf6d11cb",
+      "verified": true
+    },
+    {
+      "id": "JZ54",
+      "image": "resource/ymsj-fun.github.io/cards/JZ54 阿塔玛斯奉献仪式.jpg",
+      "sha256": "c7902515865a26e1276d9e7a4bbd05c511704f76aee504c73539737012624af4",
+      "verified": true
+    }
+  ],
+  "supplementalRules": [
+    {
+      "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界规则手册.pdf",
+      "sha256": "2a771874efbdb3ad8a339ea01ff62888766090d075fe2e013632c79de1aeba35",
+      "verifiedPhysicalPages": [
+        7,
+        9,
+        12
+      ]
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界勘误及释疑.pdf",
+      "sha256": "916aa6a9f50ac7e737b517358e0c4270f715d0ed7391d55c8fcb629392a71d38",
+      "verifiedPhysicalPages": [
+        3,
+        4
+      ]
+    }
+  ],
+  "reviewedExpansionGuides": [
+    {
+      "path": "resource/ymsj-fun.github.io/public/docs/帷幕之后说明书.jpg",
+      "sha256": "333388b60e719ee61a41a0009932b505315dff0042cf01edc0de4d8ac66f5761",
+      "verified": true
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/public/docs/间奏说明书.jpg",
+      "sha256": "efbe7e1e3711ca4b184b36f7801391afdec3b195d393cf17d2458215279f9b80",
+      "verified": true
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/public/docs/序曲说明书.jpg",
+      "sha256": "08491e7ec0a716ff6d626b73bf93c07fddecc46293b2ef3ed7cc9b673c2fb5d5",
+      "verified": true
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/public/docs/星光俱乐部说明书.jpg",
+      "sha256": "3bc9e70585a3bbc247deb9cb19639da7295589ae81dd543c6dbf0a51bde0357a",
       "verified": true
     }
   ]

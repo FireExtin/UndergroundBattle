@@ -5,7 +5,7 @@ use axum::{
     http::{Request, StatusCode},
 };
 use hegemony_server::{
-    model::Action,
+    model::{Action, ChoiceResolution, FrameChoice, Game, GuardState, Window},
     service::{self, Command, CreateRoom, JoinRoom, Store},
 };
 use http_body_util::BodyExt;
@@ -16,6 +16,229 @@ fn command(id: &str, version: u64, kind: &str) -> Command {
         expected_version: version,
         action: Action::new(kind),
     }
+}
+#[tokio::test]
+async fn paid_sacrifice_death_trigger_and_accepted_frame_restore_without_repayment() {
+    let dir = tempfile::tempdir().unwrap();
+    let db = dir.path().join("paid-frame.sqlite3");
+    let store = Store::open(&db).unwrap();
+    let (a, b) = pair(&store).await;
+    drop(store);
+    // Explicit initial room-layout fixture. No database writes occur after the command sequence starts.
+    let connection = rusqlite::Connection::open(&db).unwrap();
+    let initial: String = connection
+        .query_row("SELECT state FROM rooms WHERE id=?1", [&a.room_id], |r| {
+            r.get(0)
+        })
+        .unwrap();
+    let mut game = Game::from_persisted(&initial).unwrap();
+    for p in &mut game.players {
+        p.ready = true;
+    }
+    game.apply(0, Action::new("start")).unwrap();
+    while let Some(p) = game.pending.clone() {
+        game.apply(
+            p.seat,
+            Action {
+                choice_id: Some(p.choice.id),
+                selected: Some(vec![]),
+                ..Action::new("choose")
+            },
+        )
+        .unwrap();
+    }
+    game.window = Some(Window::Action(0));
+    game.first_team = 0;
+    game.active_team = 0;
+    game.priority_team = 0;
+    game.version = 1;
+    game.log.clear();
+    let sacrifice = game.make_card("XQ12", 1);
+    let source_id = sacrifice.id.clone();
+    let mut sacrifice = sacrifice;
+    sacrifice.controller = 0;
+    game.regions[0].cards.push(sacrifice);
+    let spell = game.make_card("JC049", 0);
+    let spell_id = spell.id.clone();
+    game.players[0].hand = vec![spell];
+    let discard = game.make_card("LC20", 1);
+    game.players[1].hand = vec![discard];
+    for _ in 0..2 {
+        let asset = game.make_card("JC042", 0);
+        game.players[0].assets.push(asset);
+    }
+    let serialized = serde_json::to_string(&game).unwrap();
+    connection
+        .execute(
+            "UPDATE rooms SET state=?2,initial_state=?2 WHERE id=?1",
+            rusqlite::params![a.room_id, serialized],
+        )
+        .unwrap();
+    connection
+        .execute("DELETE FROM journal WHERE room_id=?1", [&a.room_id])
+        .unwrap();
+    drop(connection);
+    let store = Store::open(&db).unwrap();
+    let cast = Command {
+        command_id: "paid-cast".into(),
+        expected_version: 1,
+        action: Action {
+            card_id: Some(spell_id),
+            cost_selected: Some(vec![source_id.clone()]),
+            ..Action::new("play")
+        },
+    };
+    let paid = store
+        .command(&a.room_id, &a.token, cast.clone())
+        .await
+        .unwrap();
+    assert_eq!(paid.pending_choice.as_ref().unwrap().kind, "trigger");
+    assert!(paid.assets.iter().all(|c| c.owner != "p0" || c.exhausted));
+    assert_eq!(paid.stack.len(), 1);
+    let first = store.replay(&a.room_id).unwrap();
+    assert!(first
+        .regions
+        .iter()
+        .all(|r| r.cards.iter().all(|c| c.id != source_id)));
+    assert_eq!(first.players[1].graveyard.len(), 1);
+    assert_eq!(first.stack[0].frame.as_ref().unwrap().already_paid.len(), 2);
+    drop(store);
+    let store = Store::open(&db).unwrap();
+    let retry = store.command(&a.room_id, &a.token, cast).await.unwrap();
+    assert_eq!(
+        serde_json::to_string(&retry).unwrap(),
+        serde_json::to_string(&paid).unwrap()
+    );
+    assert_eq!(store.state(&a.room_id, &a.token).await.unwrap().version, 2);
+    let choice = paid.pending_choice.unwrap();
+    store
+        .command(
+            &a.room_id,
+            &a.token,
+            Command {
+                command_id: "death-target".into(),
+                expected_version: 2,
+                action: Action {
+                    choice_id: Some(choice.id),
+                    selected: Some(vec!["p1".into()]),
+                    ..Action::new("choose")
+                },
+            },
+        )
+        .await
+        .unwrap();
+    store
+        .command(&a.room_id, &a.token, command("pass-a", 3, "pass"))
+        .await
+        .unwrap();
+    let middle = store
+        .command(&a.room_id, &b.token, command("pass-b", 4, "pass"))
+        .await
+        .unwrap();
+    let private = middle.pending_choice.as_ref().unwrap();
+    assert_eq!(private.kind, "discard");
+    let frame = store
+        .replay(&a.room_id)
+        .unwrap()
+        .pending
+        .unwrap()
+        .resolution;
+    let ChoiceResolution::Frame {
+        frame,
+        choice: FrameChoice::Discard { .. },
+    } = frame
+    else {
+        panic!("resumable accepted frame required")
+    };
+    assert!(matches!(frame.guard, GuardState::Accepted));
+    assert_eq!(frame.cursor, 1);
+    drop(store);
+    let store = Store::open(&db).unwrap();
+    assert_eq!(
+        serde_json::to_string(&store.state(&a.room_id, &b.token).await.unwrap()).unwrap(),
+        serde_json::to_string(&middle).unwrap()
+    );
+    let discard = Command {
+        command_id: "discard-once".into(),
+        expected_version: 5,
+        action: Action {
+            choice_id: Some(private.id.clone()),
+            selected: Some(vec![private.options[0].id.clone()]),
+            ..Action::new("choose")
+        },
+    };
+    store
+        .command(&a.room_id, &b.token, discard.clone())
+        .await
+        .unwrap();
+    store
+        .command(&a.room_id, &a.token, command("pass-a2", 6, "pass"))
+        .await
+        .unwrap();
+    let complete = store
+        .command(&a.room_id, &b.token, command("pass-b2", 7, "pass"))
+        .await
+        .unwrap();
+    assert!(complete.stack.is_empty() && complete.pending_choice.is_none());
+    assert_eq!(complete.players[0].hand_count, 2);
+    assert_eq!(complete.players[1].hand_count, 0);
+    let final_game = store.replay(&a.room_id).unwrap();
+    assert_eq!(final_game.players[1].graveyard.len(), 2);
+    assert_eq!(final_game.players[0].graveyard.len(), 1);
+    assert!(final_game.players[0].assets.iter().all(|c| c.exhausted));
+    store.command(&a.room_id, &b.token, discard).await.unwrap();
+    assert_eq!(store.state(&a.room_id, &a.token).await.unwrap().version, 8);
+    assert!(
+        Store::open_read_only(&db)
+            .unwrap()
+            .audit_replay(&a.room_id)
+            .unwrap()
+            .matches
+    );
+}
+#[tokio::test]
+async fn legacy_state_is_rejected_explicitly_without_silent_migration() {
+    let dir = tempfile::tempdir().unwrap();
+    let db = dir.path().join("legacy.sqlite3");
+    let store = Store::open(&db).unwrap();
+    let (a, _) = pair(&store).await;
+    drop(store);
+    let connection = rusqlite::Connection::open(&db).unwrap();
+    let stored: String = connection
+        .query_row("SELECT state FROM rooms WHERE id=?1", [&a.room_id], |r| {
+            r.get(0)
+        })
+        .unwrap();
+    let mut legacy: serde_json::Value = serde_json::from_str(&stored).unwrap();
+    legacy.as_object_mut().unwrap().remove("state_schema");
+    legacy["versions"]["engine"] = "rust-v0.1.0".into();
+    legacy["versions"]["cardPool"] = "limited-v1".into();
+    let legacy = serde_json::to_string(&legacy).unwrap();
+    connection
+        .execute(
+            "UPDATE rooms SET state=?2,initial_state=?2 WHERE id=?1",
+            rusqlite::params![a.room_id, legacy],
+        )
+        .unwrap();
+    drop(connection);
+    let error = match Store::open(&db) {
+        Err(e) => e,
+        Ok(_) => panic!("legacy room must not load"),
+    };
+    assert!(error.message.contains("旧局") && error.message.contains("静默迁移"));
+    let audit = Store::open_read_only(&db).unwrap();
+    assert!(audit
+        .audit_replay(&a.room_id)
+        .unwrap_err()
+        .message
+        .contains("旧局"));
+    let connection = rusqlite::Connection::open(&db).unwrap();
+    let after: String = connection
+        .query_row("SELECT state FROM rooms WHERE id=?1", [&a.room_id], |r| {
+            r.get(0)
+        })
+        .unwrap();
+    assert_eq!(after, legacy);
 }
 async fn pair(store: &Store) -> (service::Session, service::Session) {
     let a = store

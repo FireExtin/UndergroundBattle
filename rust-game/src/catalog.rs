@@ -3,8 +3,8 @@ use serde::{Deserialize, Serialize};
 use std::sync::OnceLock;
 
 pub const RULES_VERSION: &str = "hegemony-pdf-v1";
-pub const POOL_VERSION: &str = "limited-v1";
-pub const ENGINE_VERSION: &str = "rust-v0.1.0";
+pub const POOL_VERSION: &str = "limited-v2";
+pub const ENGINE_VERSION: &str = "rust-v0.2.0";
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -22,6 +22,16 @@ pub struct CardDefinition {
     pub color: String,
     #[serde(default)]
     pub magic: String,
+    #[serde(default)]
+    pub society: String,
+    #[serde(default)]
+    pub subtypes: Vec<String>,
+    #[serde(skip_deserializing)]
+    pub magic_icon: crate::rules::MagicIcon,
+    #[serde(skip_deserializing)]
+    pub rule_traits: crate::rules::Traits,
+    #[serde(skip_deserializing)]
+    pub abilities: Vec<AbilitySummary>,
     pub text: String,
     #[serde(default)]
     pub permanent_icons: Icons,
@@ -39,6 +49,20 @@ pub struct CardDefinition {
     pub unique: bool,
     #[serde(default = "yes")]
     pub supported: bool,
+}
+impl Default for crate::rules::MagicIcon {
+    fn default() -> Self {
+        Self::None
+    }
+}
+#[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct AbilitySummary {
+    pub key: String,
+    pub label: String,
+    pub timing: String,
+    pub costs: Vec<crate::rules::Cost>,
+    pub triggered: bool,
 }
 fn yes() -> bool {
     true
@@ -98,6 +122,30 @@ pub fn catalog() -> &'static Catalog {
                             .join("/")
                     })
                     .unwrap_or_default();
+                definition.magic_icon = match definition.magic.as_str() {
+                    "" => crate::rules::MagicIcon::None,
+                    "鲜血" | "血" => crate::rules::MagicIcon::Blood,
+                    "心灵" => crate::rules::MagicIcon::Mind,
+                    other => crate::rules::MagicIcon::Other(other.into()),
+                };
+                let rules = crate::rules::definition(&definition.id);
+                definition.rule_traits = rules.traits.clone();
+                definition.abilities = rules
+                    .abilities
+                    .iter()
+                    .map(|a| AbilitySummary {
+                        key: a.key.clone(),
+                        label: a.label.clone(),
+                        timing: match a.timing {
+                            crate::rules::Timing::Standard => "standard",
+                            crate::rules::Timing::Fast => "fast",
+                            crate::rules::Timing::ActionFast => "actionFast",
+                        }
+                        .into(),
+                        costs: a.costs.clone(),
+                        triggered: a.event.is_some(),
+                    })
+                    .collect();
                 definition
             })
             .collect();

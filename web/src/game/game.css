@@ -500,6 +500,24 @@
 .hg-reading-card .hg-temporary-label { font-size: 12px; }
 .hg-reading > p { font-size: 11px; color: #bdb8aa; margin-top: 14px; }
 .hg-hand-dock { position: fixed; z-index: 35; left: 0; right: 0; bottom: 0; border-top: 1px solid #b0986b; background: #19212af7; box-shadow: 0 -5px 25px #0006; padding: 10px max(18px, calc((100vw - 1536px) / 2)); }
+.hg-response-window { margin-bottom: 8px; padding: 8px 12px; border: 1px solid #b89b68; border-radius: 5px; background: #30312c; }
+.hg-response-heading { display: flex; justify-content: space-between; gap: 12px; color: #d5c3a0; font-size: 10px; }
+.hg-response-effect { display: flex; align-items: baseline; gap: 12px; margin: 3px 0; }
+.hg-response-effect > strong { color: #f0dfba; font-size: 13px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+.hg-response-effect > small { flex-shrink: 0; color: #b5b6b0; font-size: 10px; }
+.hg-response-status { display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 11px; color: #d6dace; }
+.hg-response-status .hg-button { padding: 4px 12px; min-height: 30px; font-size: 11px; flex-shrink: 0; }
+.hg-stack-targets { list-style: none; padding: 0; margin: 5px 0; max-height: 62px; overflow-y: auto; }
+.hg-stack-targets > li { display: flex; justify-content: space-between; gap: 12px; margin: 2px 0; font-size: 10px; color: #d6dace; }
+.hg-stack-targets b { font-weight: 600; }
+.hg-stack-targets small { font-size: 9px; color: #babfb5; }
+.hg-stack-targets em { font-size: 10px; font-style: normal; color: #c2d7a5; text-align: right; }
+.hg-stack-targets .hg-target-invalid { color: #e5b293; }
+.hg-stack > ol > li .hg-stack-targets { margin-top: 5px; }
+.hg-stack > ol > li .hg-stack-targets > li { padding: 0; border: 0; }
+.hg-cost-adjusted { background: #cad6bb; }
+.hg-cost-explanation { color: #536746; font-size: 10px; line-height: 1.6; }
+.hg-table { padding-bottom: calc(var(--hg-dock-height, 202px) + 35px); }
 .hg-dock-action { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-bottom: 9px; border-bottom: 1px solid #77817733; }
 .hg-dock-action > div:first-child { flex: 1; min-width: 0; }
 .hg-dock-action strong { display: block; font-size: 12px; color: #dccba8; }
@@ -535,7 +553,7 @@
   .hg-table .hg-player-avatar { width: 25px; height: 25px; font-size: 12px; }
 }
 @media (max-width: 760px) {
-  .hg-table { padding-bottom: 235px; }
+  .hg-table { padding-bottom: calc(var(--hg-dock-height, 202px) + 35px); }
   .hg-table .hg-players { display: flex; overflow-x: auto; padding-bottom: 6px; gap: 9px; }
   .hg-table .hg-player-strip { flex: 0 0 245px; }
   .hg-table .hg-player-strip dl { gap: 11px; }
@@ -545,7 +563,7 @@
   .hg-board-duel { grid-template-columns: repeat(3, 170px); }
   .hg-board-teams { grid-template-columns: repeat(5, 180px); }
   .hg-inspector { max-height: none; }
-  .hg-inspector.hg-inspector-active { bottom: 202px; max-height: calc(100dvh - 285px); z-index: 45; padding: 13px; background: #242c32; }
+  .hg-inspector.hg-inspector-active { bottom: calc(var(--hg-dock-height, 202px) + 8px); max-height: calc(100dvh - var(--hg-dock-height, 202px) - 85px); z-index: 45; padding: 13px; background: #242c32; }
   .hg-inspector-active .hg-inspected-card .hg-card-text { max-height: 85px; }
   .hg-inspector-active .hg-inspected-card { margin-top: 0; }
   .hg-inspector-active .hg-section-title { margin-bottom: 5px; }
@@ -554,6 +572,14 @@
   .hg-inspector-active .hg-small-read { margin-top: 5px; padding: 5px 10px; }
   .hg-inspector-active > p { margin: 5px 0; }
   .hg-hand-dock { padding: 9px 12px; }
+  .hg-response-window { padding: 7px 9px; }
+  .hg-response-heading { gap: 8px; font-size: 9px; }
+  .hg-response-heading > span:last-child { max-width: 60%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .hg-response-effect { gap: 8px; }
+  .hg-response-effect > strong { font-size: 12px; }
+  .hg-response-effect > small { font-size: 9px; }
+  .hg-response-status { font-size: 10px; }
+  .hg-response-status .hg-button { min-height: 32px; padding: 5px 8px; font-size: 10px; }
   .hg-hand-dock .hg-card-compact { flex-basis: 138px; width: 138px; }
   .hg-hand-dock .hg-hand { max-height: 108px; }
   .hg-hand-dock .hg-card-affiliation { font-size: 8px; }

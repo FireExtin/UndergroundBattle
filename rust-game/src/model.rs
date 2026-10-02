@@ -45,6 +45,10 @@ pub struct Action {
     pub bottom: Option<Vec<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub allocations: Option<BTreeMap<String, u32>>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub ability_id: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cost_selected: Option<Vec<String>>,
 }
 impl Action {
     pub fn new(kind: &str) -> Self {
@@ -80,6 +84,8 @@ pub struct CardView {
     pub face_down: bool,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub cost: Option<u32>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub effective_cost: Option<u32>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub text: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -159,6 +165,28 @@ pub struct StackView {
     pub card_id: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub target_id: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub ability_id: Option<String>,
+    pub targets: Vec<String>,
+    pub target_summaries: Vec<TargetSummary>,
+    pub resolution_state: String,
+}
+#[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct TargetSummary {
+    pub instance_id: String,
+    pub label: String,
+    pub kind: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub owner: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub controller: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub region: Option<usize>,
+    pub valid: bool,
+    pub status: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub invalid_reason: Option<String>,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct LogEntry {
@@ -275,6 +303,12 @@ pub enum Window {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Effect {
+    Declare {
+        declaration: Declaration,
+    },
+    Frame {
+        frame: Box<ResolutionFrame>,
+    },
     Draw {
         seat: usize,
         count: usize,
@@ -292,70 +326,6 @@ pub enum Effect {
         seat: usize,
         amount: usize,
         draw: bool,
-    },
-    Exhaust {
-        actor: usize,
-        target: String,
-        hidden: bool,
-        source: Option<String>,
-        #[serde(default)]
-        region: Option<usize>,
-    },
-    Heal {
-        actor: usize,
-        target: String,
-        #[serde(default)]
-        region: Option<usize>,
-    },
-    Police {
-        actor: usize,
-        region: usize,
-    },
-    Funeral {
-        actor: usize,
-        target: String,
-    },
-    Ceasefire {
-        region: usize,
-    },
-    Chase {
-        actor: usize,
-        target: String,
-        hide: bool,
-    },
-    Recover {
-        seat: usize,
-        target: String,
-    },
-    Summon {
-        seat: usize,
-        target: String,
-        region: usize,
-    },
-    Move {
-        target: String,
-        region: usize,
-    },
-    ReturnHand {
-        target: String,
-    },
-    Search {
-        seat: usize,
-        kind: String,
-    },
-    Death {
-        seat: usize,
-    },
-    Trigger {
-        seat: usize,
-        label: String,
-        effect: Box<Effect>,
-    },
-    TargetTrigger {
-        seat: usize,
-        label: String,
-        source: String,
-        mode: String,
     },
     Damage {
         seat: usize,
@@ -381,10 +351,6 @@ pub enum Effect {
         seat: usize,
         region: usize,
     },
-    RegionTrigger {
-        seat: usize,
-        definition: String,
-    },
     Cleanup,
     Bury {
         card: Card,
@@ -392,17 +358,6 @@ pub enum Effect {
     NextTurn,
     Unique {
         seat: usize,
-    },
-    GlobalDamage,
-    WorldMode {
-        seat: usize,
-    },
-    WorldAll {
-        draw: bool,
-    },
-    Swap {
-        seat: usize,
-        selected: Vec<String>,
     },
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
@@ -413,26 +368,103 @@ pub struct StackItem {
     pub card: Option<Card>,
     pub deploy_region: Option<usize>,
     pub reveal: bool,
-    pub effect: Option<Effect>,
     pub target: Option<String>,
+    pub frame: Option<ResolutionFrame>,
+}
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct SourceSnapshot {
+    pub card: Card,
+    pub region: Option<usize>,
+}
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct BoundTarget {
+    pub id: String,
+    pub spec: crate::rules::TargetSlotSpec,
+    pub public: TargetSummary,
+}
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub enum PaidCost {
+    Assets(Vec<String>),
+    Exhausted(String),
+    Sacrificed {
+        old_instance: String,
+        controller: usize,
+        owner: usize,
+    },
+}
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub enum GuardState {
+    Unchecked,
+    Accepted,
+    Cancelled,
+}
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct Step {
+    pub context: usize,
+    pub op: crate::rules::Op,
+}
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct ResolutionFrame {
+    pub frame_id: String,
+    pub ability_key: String,
+    pub actor: usize,
+    pub source: SourceSnapshot,
+    pub targets: Vec<BoundTarget>,
+    pub already_paid: Vec<PaidCost>,
+    pub guard: GuardState,
+    pub cursor: usize,
+    pub steps: Vec<Step>,
+    pub chosen_region: Option<usize>,
+}
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct Declaration {
+    pub actor: usize,
+    pub source: SourceSnapshot,
+    pub ability: crate::rules::AbilitySpec,
+}
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub enum DeclareChoice {
+    Accept,
+    Mode,
+    Target,
+}
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub enum FrameChoice {
+    Forecast { seat: usize },
+    Discard { seat: usize, redraw: bool },
+    Search { seat: usize, to_top: bool },
+    Sacrifice { seat: usize },
+}
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct CostModifier {
+    pub actor: usize,
+    pub filter: crate::rules::CardFilter,
+    pub amount: u32,
+    pub expires_turn: u32,
+    pub uses: u32,
+}
+#[derive(Clone, Copy, Debug, Serialize, Deserialize)]
+pub enum RemovalCause {
+    Sacrifice,
+    Destroy,
+    Lethal,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum ChoiceResolution {
+    Declare {
+        declaration: Declaration,
+        stage: DeclareChoice,
+    },
+    Frame {
+        frame: Box<ResolutionFrame>,
+        choice: FrameChoice,
+    },
     Mulligan,
     Discard {
         redraw: bool,
     },
     Forecast {
         draw: bool,
-    },
-    Trigger {
-        effect: Effect,
-        label: String,
-    },
-    TargetTrigger {
-        source: String,
-        mode: String,
-        label: String,
     },
     Damage {
         region: usize,
@@ -445,17 +477,7 @@ pub enum ChoiceResolution {
     Bottom {
         region: usize,
     },
-    Search {
-        to_top: bool,
-    },
-    ReturnHand,
-    Mobility {
-        source: String,
-    },
-    Death,
     Unique,
-    WorldMode,
-    Swap,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Pending {
@@ -465,6 +487,7 @@ pub struct Pending {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Game {
+    pub state_schema: u32,
     pub room_id: String,
     pub invite_code: String,
     pub mode: String,
@@ -490,7 +513,24 @@ pub struct Game {
     pub privilege_used: bool,
     pub log: Vec<LogEntry>,
     pub versions: Versions,
+    pub modifiers: Vec<CostModifier>,
 }
 pub fn player_id(seat: usize) -> String {
     format!("p{seat}")
+}
+impl Game {
+    pub fn from_persisted(state: &str) -> Result<Self, String> {
+        let header: serde_json::Value =
+            serde_json::from_str(state).map_err(|_| "持久状态不是有效JSON")?;
+        if header.get("state_schema").and_then(|v| v.as_u64()) != Some(2)
+            || header["versions"]["engine"].as_str() != Some(crate::catalog::ENGINE_VERSION)
+            || header["versions"]["cardPool"].as_str() != Some(crate::catalog::POOL_VERSION)
+            || header["versions"]["rules"].as_str() != Some(crate::catalog::RULES_VERSION)
+        {
+            return Err(
+                "持久局版本与v2规则核不兼容；旧局须使用原版本binary/数据库，不支持静默迁移".into(),
+            );
+        }
+        serde_json::from_str(state).map_err(|_| "v2持久状态字段无效".into())
+    }
 }

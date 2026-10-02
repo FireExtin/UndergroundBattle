@@ -14,6 +14,8 @@ Rust 对战服务默认监听 `8090`，并提供构建后的 `web/dist`。
 `npm run build` 完成 TypeScript 检查与生产构建。
 真实双浏览器与四浏览器对局由云端验收脚本覆盖。
 
+响应窗口的精确客户端测试包括：`preserves an authoritative fast sacrifice response on a nonempty stack and still passes a sole-pass stack window`、`cancels the old version timer and waits a full delay for the new authoritative pass`、`cancels a pending stack pass when either private or public chooser arrives midway`。它们验证 API 形状与交互时序，不代替真实卡牌费用、目标守卫及结算规则的内核测试或新版本真实对局验收。
+
 ## 状态与恢复
 
 - `api.ts` 通过 `Authorization: Bearer` 发送本机座位令牌；邀请链接只含房间邀请码。实时流使用认证 `fetch` 读取 SSE，不把令牌放入 URL。
@@ -26,6 +28,8 @@ Rust 对战服务默认监听 `8090`，并提供构建后的 `web/dist`。
 ## 展示与选择
 
 `CardTile` 从目录读取费用、忠诚、永久与白底先手图标、完整文字。地区上的简卡显示服务端即时图标、横置与伤害；点选后显示完整详情与当前合法动作。暗藏者及资产只呈现投影允许的信息。
+
+服务端提供手牌 `effectiveCost` 时，费用徽章使用当前实际费用（包括 0）；若与印刷费用不同，详情同时显示两者。客户端不解析卡牌文字计算减费，不把手牌减费推到现身费用。`abilityId` 与 `costSelected` 随服务端合法行动完整提交，客户端不自行选择额外牺牲费用。
 
 暗藏者小卡隐藏防御与伤害标记，标示“不受角色伤害”；自己暗藏牌的详情仍可查看原牌资料，供现身参考。选中手中最后一张角色且可以建立资产时，详情显示非阻塞的费用、忠诚与对抗取舍提示，保留完整合法动作。
 
@@ -41,4 +45,10 @@ Rust 对战服务默认监听 `8090`，并提供构建后的 `web/dist`。
 
 “无可用行动时自动让过”默认关闭，本机偏好保存于 `hegemony.autoPass.v1`。开启后仅在对局进行中、无本人或他人待选、唯一合法动作为让过、连接已确认且无进行中或未确认命令时等待 550 毫秒提交；版本与条件变化取消等待，每个版本只提交一次。它仍经同一命令确认流程，可随时关闭。
 
+非空堆栈的堆顶、优先权、响应或等待原因显示在屏幕底部固定操作区附近；“查看响应牌”打开服务端合法行动对应的牌，行动仍由玩家确认。后端 `targetSummaries` 提供公开目标身份、有效性与失效原因，客户端原样展示，不根据卡牌 ID 或当前区域猜测。`guardAccepted` 标为“已进入结算”，效果结束原因仍来自服务端行动记录。旧服务未提供目标摘要时保留原效果名称与响应操作，不虚构目标状态。固定区高度变化会调整手机详情的位置与牌桌底部留白。
+
+自动让过不因堆栈非空一律暂停：任何额外合法响应都会阻止提交，服务端恰好只给让过时仍可自动推进。若内核漏给合法响应，客户端无法据印刷文字补出它。
+
 主要自动化测试钩子：`data-card-instance`、`data-action-id`、`data-action-kind`、`data-deck-id`、`data-choice-id`、`data-choice-option`。新增 `data-card-owner` / `data-card-actionable` 标示公开归属与可操作性，`data-side` / `data-team` 标示地区视角，`data-next-step` 标示底栏下一步，`data-reading-card` 标示放大阅读对象。这些标识不包含座位令牌。
+
+响应布局验收使用 `.hg-response-window`、`data-stack-top`、`data-response-state`；公开目标使用 `data-target-instance`、`data-target-valid`、`data-target-status`。触发截图需本人视图中有非空 `stack`，响应操作截图另需 `legalActions` 同时有 `pass` 与带 `cardId` 的快速响应；目标失效截图需后端返回原实例的失效摘要，不用新实例替代旧引用。建议在 390px 手机检查固定区、响应按钮与弹出的卡牌操作均可触达。

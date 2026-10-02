@@ -16,13 +16,15 @@ bash rust-game-wasm/verify.sh
 
 `WASM_BINDGEN=/path/to/wasm-bindgen` selects an alternate CLI location. `build.sh` creates the ignored `rust-game-wasm/pkg/hegemony_wasm.js` ESM binding and `hegemony_wasm_bg.wasm`. `verify.sh` compiles the module, generates native fixture results, actually instantiates the WASM in Node, then compares every transition and each player's view.
 
-The completed local run compared **374 transitions and 1,119 player projections** across duel and four-player teams. Every opaque state string matched the native output byte for byte; every projected view matched. The run also exercised private choices and exact decimal seeds `18446744073709551615` and `9007199254740993`.
+The v2 fixtures cover duel and four-player teams plus an explicitly marked initial-layout scenario whose subsequent transitions use real JC042/JC091 response Actions, JZ54 sacrifice choices and LC24 frame forecast continuations. Every opaque state string and every player view is compared against native output. Decimal seeds `18446744073709551615` and `9007199254740993` remain exact.
 
-The generated WASM artifact was **803,612 bytes**, SHA-256:
+The completed final v2 run compared **394 transitions / 1,159 player projections**, all identical. Its generated module is **1,039,765 bytes**, SHA-256:
 
 ```text
-fb75e4c68f604c46febba70211d673d4d492c5994bc17dead7c5de26d8c330be
+b00480fe9490117d327ead03acc94774ccfc0377f9ff1993a330e7be0c2522cb
 ```
+
+The historical `84a2c59` v1 proof compared 374 transitions / 1,119 player projections; its 803,612-byte module SHA-256 was `fb75e4c68f604c46febba70211d673d4d492c5994bc17dead7c5de26d8c330be`. These are historical values, not the v2 artifact.
 
 ## Server-only interface
 
@@ -52,6 +54,6 @@ A runtime that imports a compiled `WebAssembly.Module` can pass that module to `
 
 ## Compatibility boundary
 
-The only shared-core behavior change made for this proof is the damage choice's UI metadata: `max` now reports the number of available targets instead of `usize::MAX`. Damage allocation validation is unchanged. This removes the architecture-dependent 64-bit/32-bit sentinel and makes fresh native and WASM states identical.
+V2 uses state schema 2, rules `hegemony-pdf-v1`, card pool `limited-v2`, engine `rust-v0.2.0`. The shared core now uses typed abilities, paid costs, bound target predicates and public snapshots, one whole-object guard, persisted effect cursors, source last-known information, and finite queries/modifiers. All 25 released player cards and five world types use that kernel. The original four decks remain intact; a fifth 50-card curated deck exposes the four newly verified cards.
 
-An old native room paused at a damage choice may retain `18446744073709551615` in its saved `max`. That historical state cannot be deserialized into 32-bit WASM without an explicit migration. No migration is included, and running native services or their databases were not changed by this proof.
+V1 states are explicitly rejected before typed deserialization. Keep original binaries/databases for old rooms and replay; no silent migration is supplied. Historical native damage choices could also contain a 64-bit `usize::MAX` value that cannot be read by 32-bit WASM. Current choice metadata uses actual target counts. Existing native processes and their old databases remain untouched.

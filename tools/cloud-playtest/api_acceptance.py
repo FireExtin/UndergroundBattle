@@ -77,7 +77,7 @@ def run(args):
     try:
         api = Api(service.base_url)
         status, catalog = api.request('GET', '/api/catalog')
-        assert status == 200 and len(catalog['decks']) == 4
+        assert status == 200 and len(catalog['decks']) >= 4
         decks = catalog['decks']
         status, host = api.request('POST', '/api/rooms', {'name': 'Probe A', 'mode': 'teams', 'deckId': decks[0]['id']})
         assert status == 200

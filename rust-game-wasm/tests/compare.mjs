@@ -15,7 +15,8 @@ for (const scenario of fixture.cases) {
   for (const step of scenario.steps) {
     const started = performance.now();
     let serialized;
-    if (step.operation === 'newGame') serialized = newGame(...step.args);
+    if (step.operation === 'initialFixture') { state = step.args[0]; serialized = JSON.stringify({ state, view: JSON.parse(view(state, step.seat)), version: step.version, seat: step.seat }); }
+    else if (step.operation === 'newGame') serialized = newGame(...step.args);
     else if (step.operation === 'joinGame') serialized = joinGame(state, ...step.args);
     else serialized = apply(state, step.args[0], JSON.stringify(step.args[1]));
     const result = JSON.parse(serialized); // Parse ONLY the outer envelope; .state stays an opaque string.

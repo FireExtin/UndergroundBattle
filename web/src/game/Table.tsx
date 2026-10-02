@@ -1,9 +1,11 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import type { CSSProperties } from 'react';
 import { CardContent, CardTile, visibleCard } from './CardTile';
 import { ChoicePanel } from './ChoicePanel';
 import { DeckPicker } from './Lobby';
 import { AutoPass } from './AutoPass';
 import { ReadModal } from './ReadModal';
+import { ResponseWindow, StackTargets } from './ResponseWindow';
 import type { Action, Card, CardDefinition, Catalog, LegalAction, Player, Region, View } from './types';
 
 const phaseNames: Record<string, string> = { start: '开始阶段', beginning: '开始阶段', action: '行动阶段', confrontation: '对抗阶段', conflict: '对抗阶段', end: '结束阶段', finished: '对局结束', lobby: '准备入席', investigation: '调查', combat: '战斗', influence: '势力', claim: '赢区窗口', win: '赢区窗口', fast: '快速行动窗口', draw: '抓牌', prepare: '重置与准备', mobility: '机动窗口', mulligan: '再调度', ready: '准备' };
@@ -97,6 +99,15 @@ export function Table({ view, catalog, busy, uncertain = false, connection = 'co
   const [selectedCard, setSelectedCard] = useState<string | null>(null);
   const [selectedRegion, setSelectedRegion] = useState<number | null>(null);
   const [reading, setReading] = useState<Card | null>(null);
+  const dock = useRef<HTMLElement>(null);
+  const [dockHeight, setDockHeight] = useState(202);
+  useEffect(() => {
+    if (!dock.current || typeof ResizeObserver === 'undefined') return;
+    const measure = () => setDockHeight(Math.ceil(dock.current?.getBoundingClientRect().height || 202));
+    const observer = new ResizeObserver(measure);
+    observer.observe(dock.current); measure();
+    return () => observer.disconnect();
+  }, []);
   const definitions = useMemo(() => new Map(catalog?.cards.map(card => [card.id, card]) || []), [catalog]);
   const allCards = [...view.hand, ...view.assets, ...view.graveyard, ...view.scoreCards, ...view.regions.flatMap(region => region.characters)].map(item => visibleCard(item, view.you));
   const card = allCards.find(item => item.instanceId === selectedCard);
@@ -126,7 +137,7 @@ export function Table({ view, catalog, busy, uncertain = false, connection = 'co
     : !view.legalActions.length ? `等待 ${teamName(view.priorityTeam, view)} 行动，可浏览牌桌`
     : view.legalActions.length === 1 && globalActions[0]?.kind === 'pass' ? '下一步：让过，推进当前窗口'
     : '下一步：点选可行动的手牌或地区角色';
-  return <main className="hg-table">
+  return <main className="hg-table" style={{ '--hg-dock-height': `${dockHeight}px` } as CSSProperties}>
     {view.status === 'finished' && <section className="hg-victory" role="status"><span aria-hidden="true">✧</span><div><small>对局结束</small><h1>{view.winnerTeam === you?.team ? '你的秘社取得了霸权' : `${view.winnerTeam === undefined ? '本局' : teamName(view.winnerTeam, view)}赢得了霸权`}</h1><p>胜利目标 {view.winScore} 分 · 可以查看牌桌与行动记录，或由房主发起新一局。</p></div><ActionButtons actions={view.legalActions.filter(action => action.kind === 'restart')} busy={busy} onAction={onAction} /></section>}
     <section className="hg-scoreboard">{teamOrder.map(team => {
       const score = view.players.filter(player => player.team === team).reduce((total, player) => total + player.score, 0);
@@ -159,10 +170,11 @@ export function Table({ view, catalog, busy, uncertain = false, connection = 'co
           <ActionButtons actions={regionActions} busy={busy} onAction={onAction} />{!regionActions.length && <p className="hg-wait-note">选择手牌可查看向此地区派遣的行动。</p>}
         </> : <><h2>{view.status === 'finished' ? '本局已结束' : view.pendingChoice ? '等待你的决定' : browsingOnly ? '正在等待其他玩家' : '选择一张可行动的牌'}</h2><p className="hg-wait-note">{nextStep}。手牌与下一步按钮始终在屏幕下方。</p></>}
       </section>
-      <section className="hg-stack"><div className="hg-section-title"><h2>待结算效果</h2><span>{view.stack.length}</span></div>{view.stack.length ? <ol>{[...view.stack].reverse().map(effect => <li key={effect.id}><strong>{effect.label}</strong><small>{view.players.find(player => player.id === effect.controller)?.name}</small></li>)}</ol> : <p className="hg-empty">目前没有待结算效果。</p>}</section>
+      <section className="hg-stack"><div className="hg-section-title"><h2>待结算效果</h2><span>{view.stack.length}</span></div>{view.stack.length ? <ol>{[...view.stack].reverse().map(effect => <li key={effect.id}><strong>{effect.label}</strong><small>{view.players.find(player => player.id === effect.controller)?.name}</small><StackTargets effect={effect} view={view} /></li>)}</ol> : <p className="hg-empty">目前没有待结算效果。</p>}</section>
       <details className="hg-log"><summary>行动记录 <span>最新在上 · {view.log.length} 条</span></summary><ol aria-label="牌桌行动记录">{[...view.log].reverse().slice(0, 50).map((entry, index) => <li key={`${entry.version}-${index}`}><span className="hg-log-dot" /><p>{entry.text}</p></li>)}</ol>{!view.log.length && <p className="hg-empty">等待第一步行动。</p>}</details>
     </aside></div>
-    <section className="hg-hand-dock" aria-label="固定手牌与下一步行动">
+    <section ref={dock} className="hg-hand-dock" aria-label="固定手牌与下一步行动">
+      <ResponseWindow view={view} busy={busy} uncertain={uncertain} connection={connection} onSelectCard={selectCard} />
       <div className="hg-dock-action" data-next-step={view.status === 'finished' ? 'finished' : view.pendingChoice ? 'choose' : browsingOnly ? 'wait' : view.legalActions.length === 1 && globalActions[0]?.kind === 'pass' ? 'pass' : 'act'}><div><strong>{nextStep}</strong><small>{busy ? '正在确认上一行动…' : browsingOnly ? '浏览不会交出优先权，也不会显示他人的暗牌。' : '所有按钮均来自牌桌当前允许的行动。'}</small></div>
         {view.pendingChoice ? <button className="hg-button hg-button-primary" onClick={() => { const panel = document.querySelector<HTMLElement>('.hg-choice'); panel?.scrollIntoView({ behavior: 'smooth', block: 'center' }); panel?.focus(); }}>前往完成选择 ↑</button>
           : globalActions.length ? <ActionButtons actions={globalActions} busy={busy} onAction={onAction} />

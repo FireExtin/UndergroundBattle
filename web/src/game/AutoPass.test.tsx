@@ -47,4 +47,40 @@ describe('opt-in automatic pass', () => {
     rerender(<AutoPass view={emptyWindow} busy={false} uncertain={false} connection="online" onAction={submit} />);
     advance(); expect(submit).toHaveBeenCalledExactlyOnceWith(pass);
   });
+  it('preserves an authoritative fast sacrifice response on a nonempty stack and still passes a sole-pass stack window', () => {
+    localStorage.setItem('hegemony.autoPass.v1', 'true'); const submit = vi.fn();
+    const stack = [{ id: 'opponent-effect', label: '对方指定角色', controller: 'p1', targetId: 'victim-instance', targets: ['victim-instance'] }];
+    const fast = { id: 'fast-sacrifice', kind: 'activate', label: '牺牲并响应', cardId: 'source-instance', abilityId: 'fast-sacrifice', costSelected: ['victim-instance'] };
+    const window: View = { ...emptyWindow, stack, legalActions: [pass, fast] };
+    const { rerender } = render(<AutoPass view={window} busy={false} uncertain={false} connection="online" onAction={submit} />);
+    advance(1200); expect(submit).not.toHaveBeenCalled();
+    rerender(<AutoPass view={{ ...window, version: 2, legalActions: [pass] }} busy={false} uncertain={false} connection="online" onAction={submit} />);
+    advance(300);
+    rerender(<AutoPass view={{ ...window, version: 3 }} busy={false} uncertain={false} connection="online" onAction={submit} />);
+    advance(1200); expect(submit).not.toHaveBeenCalled();
+    rerender(<AutoPass view={{ ...window, version: 4, legalActions: [pass] }} busy={false} uncertain={false} connection="online" onAction={submit} />);
+    advance(); expect(submit).toHaveBeenCalledExactlyOnceWith(pass);
+  });
+  it('cancels the old version timer and waits a full delay for the new authoritative pass', () => {
+    localStorage.setItem('hegemony.autoPass.v1', 'true'); const submit = vi.fn();
+    const { rerender } = render(<AutoPass view={emptyWindow} busy={false} uncertain={false} connection="online" onAction={submit} />);
+    advance(300);
+    const nextPass = { ...pass, id: 'pass-version-2' };
+    rerender(<AutoPass view={{ ...emptyWindow, version: 2, legalActions: [nextPass] }} busy={false} uncertain={false} connection="online" onAction={submit} />);
+    advance(250); expect(submit).not.toHaveBeenCalled();
+    advance(299); expect(submit).not.toHaveBeenCalled();
+    advance(1); expect(submit).toHaveBeenCalledExactlyOnceWith(nextPass);
+  });
+  it('cancels a pending stack pass when either private or public chooser arrives midway', () => {
+    localStorage.setItem('hegemony.autoPass.v1', 'true'); const submit = vi.fn();
+    const window = { ...emptyWindow, stack: [{ id: 'effect', label: '待结算', controller: 'p1' }] };
+    const { rerender } = render(<AutoPass view={window} busy={false} uncertain={false} connection="online" onAction={submit} />);
+    advance(300);
+    rerender(<AutoPass view={{ ...window, version: 2, pendingChoice: testChoice }} busy={false} uncertain={false} connection="online" onAction={submit} />);
+    advance(1000); expect(submit).not.toHaveBeenCalled();
+    rerender(<AutoPass view={{ ...window, version: 3 }} busy={false} uncertain={false} connection="online" onAction={submit} />);
+    advance(300);
+    rerender(<AutoPass view={{ ...window, version: 4, waitingChoice: { playerId: 'p1', kind: 'target', title: '选择牺牲角色' } }} busy={false} uncertain={false} connection="online" onAction={submit} />);
+    advance(1000); expect(submit).not.toHaveBeenCalled();
+  });
 });

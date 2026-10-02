@@ -55,7 +55,7 @@ def public_view(view):
 
 def action_payload(action):
     return {key: action[key] for key in (
-        "kind", "cardId", "targetId", "region", "option", "choiceId", "selected", "top", "bottom", "allocations",
+        "kind", "cardId", "targetId", "region", "option", "abilityId", "costSelected", "choiceId", "selected", "top", "bottom", "allocations",
     ) if key in action}
 
 

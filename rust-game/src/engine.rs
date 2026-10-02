@@ -2,6 +2,7 @@
 use crate::{
     catalog::{self, card},
     model::*,
+    rules::{self, Event, StaticModifier},
 };
 use std::collections::{BTreeMap, BTreeSet};
 
@@ -23,6 +24,8 @@ impl Game {
             return Err("未知牌组".into());
         }
         Ok(Self {
+            state_schema: 2,
+            modifiers: vec![],
             room_id,
             invite_code,
             mode,
@@ -75,23 +78,23 @@ impl Game {
             10
         }
     }
-    fn id(&mut self) -> String {
+    pub(crate) fn id(&mut self) -> String {
         self.sequence += 1;
         format!("i{}", self.sequence)
     }
-    fn random_below(&mut self, n: usize) -> usize {
+    pub(crate) fn random_below(&mut self, n: usize) -> usize {
         self.random ^= self.random << 13;
         self.random ^= self.random >> 7;
         self.random ^= self.random << 17;
         (self.random % n as u64) as usize
     }
-    fn shuffle<T>(&mut self, cards: &mut [T]) {
+    pub(crate) fn shuffle<T>(&mut self, cards: &mut [T]) {
         for i in (1..cards.len()).rev() {
             let j = self.random_below(i + 1);
             cards.swap(i, j)
         }
     }
-    fn fresh(&mut self, mut c: Card) -> Card {
+    pub(crate) fn fresh(&mut self, mut c: Card) -> Card {
         c.id = self.id();
         c
     }
@@ -108,7 +111,7 @@ impl Game {
             shield: 0,
         }
     }
-    fn note(&mut self, text: String) {
+    pub(crate) fn note(&mut self, text: String) {
         self.log.push(LogEntry {
             version: self.version,
             text,
@@ -130,7 +133,7 @@ impl Game {
         self.note(format!("{name} 加入座位 {}", seat + 1));
         Ok(seat)
     }
-    fn can_standard(&self, seat: usize) -> bool {
+    pub(crate) fn can_standard(&self, seat: usize) -> bool {
         self.status == "playing"
             && self.pending.is_none()
             && self.stack.is_empty()
@@ -138,13 +141,13 @@ impl Game {
             && self.window == Some(Window::Action(self.team(seat)))
             && !self.players[seat].eliminated
     }
-    fn can_fast(&self, seat: usize) -> bool {
+    pub(crate) fn can_fast(&self, seat: usize) -> bool {
         self.status == "playing"
             && self.pending.is_none()
             && self.priority_team == self.team(seat)
             && !self.players[seat].eliminated
     }
-    fn accessible(&self, seat: usize, region: usize) -> bool {
+    pub(crate) fn accessible(&self, seat: usize, region: usize) -> bool {
         region < self.regions.len()
             && (self.mode == "duel"
                 || if seat % 2 == 0 {
@@ -153,14 +156,14 @@ impl Game {
                     region >= 2
                 })
     }
-    fn resources(&self, seat: usize) -> u32 {
+    pub(crate) fn resources(&self, seat: usize) -> u32 {
         self.players[seat]
             .assets
             .iter()
             .filter(|c| !c.exhausted)
             .count() as u32
     }
-    fn loyalty(&self, seat: usize, definition: &str) -> bool {
+    pub(crate) fn loyalty(&self, seat: usize, definition: &str) -> bool {
         let mut available: BTreeMap<String, usize> = BTreeMap::new();
         for c in &self.players[seat].assets {
             let d = card(&c.definition);
@@ -177,7 +180,7 @@ impl Game {
             .iter()
             .all(|(k, v)| available.get(k).copied().unwrap_or(0) >= *v)
     }
-    fn pay(&mut self, seat: usize, amount: u32) -> RuleResult<()> {
+    pub(crate) fn pay(&mut self, seat: usize, amount: u32) -> RuleResult<()> {
         if self.resources(seat) < amount {
             return Err("可用资产不足".into());
         }
@@ -191,18 +194,18 @@ impl Game {
         }
         Ok(())
     }
-    fn board(&self, id: &str) -> Option<(usize, &Card)> {
+    pub(crate) fn board(&self, id: &str) -> Option<(usize, &Card)> {
         self.regions
             .iter()
             .enumerate()
             .find_map(|(i, r)| r.cards.iter().find(|c| c.id == id).map(|c| (i, c)))
     }
-    fn board_mut(&mut self, id: &str) -> Option<&mut Card> {
+    pub(crate) fn board_mut(&mut self, id: &str) -> Option<&mut Card> {
         self.regions
             .iter_mut()
             .find_map(|r| r.cards.iter_mut().find(|c| c.id == id))
     }
-    fn remove_board(&mut self, id: &str) -> Option<(usize, Card)> {
+    pub(crate) fn remove_board(&mut self, id: &str) -> Option<(usize, Card)> {
         for (i, r) in self.regions.iter_mut().enumerate() {
             if let Some(p) = r.cards.iter().position(|c| c.id == id) {
                 return Some((i, r.cards.remove(p)));
@@ -210,15 +213,13 @@ impl Game {
         }
         None
     }
-    fn is_enemy(&self, seat: usize, c: &Card) -> bool {
+    pub(crate) fn is_enemy(&self, seat: usize, c: &Card) -> bool {
         self.team(seat) != self.team(c.controller)
     }
-    fn targetable(&self, seat: usize, c: &Card) -> bool {
-        !self.is_enemy(seat, c)
-            || c.face_down
-            || !card(&c.definition).keywords.iter().any(|k| k == "屏障")
+    pub(crate) fn targetable(&self, seat: usize, c: &Card) -> bool {
+        !self.is_enemy(seat, c) || c.face_down || !rules::definition(&c.definition).traits.barrier
     }
-    fn shield_stops(&mut self, actor: usize, target: &str) -> bool {
+    pub(crate) fn shield_stops(&mut self, actor: usize, target: &str) -> bool {
         if let Some((_, c)) = self.board(target) {
             if self.is_enemy(actor, c) && c.shield > 0 {
                 self.board_mut(target).unwrap().shield -= 1;
@@ -243,15 +244,18 @@ impl Game {
         if self.team(c.controller) == self.first_team {
             result = result.add(d.temporary_icons);
         }
-        if c.definition == "JC016"
-            && !self.regions[region]
-                .cards
-                .iter()
-                .any(|other| !other.face_down && self.is_enemy(c.controller, other))
-        {
-            result.influence += 1;
-            if self.team(c.controller) == self.first_team {
-                result.investigation += 1;
+        for modifier in &rules::definition(&c.definition).modifiers {
+            if let StaticModifier::NoEnemyCharacters(permanent, temporary) = modifier {
+                if !self.regions[region].cards.iter().any(|other| {
+                    !other.face_down
+                        && card(&other.definition).kind == "character"
+                        && self.is_enemy(c.controller, other)
+                }) {
+                    result = result.add(*permanent);
+                    if self.team(c.controller) == self.first_team {
+                        result = result.add(*temporary);
+                    }
+                }
             }
         }
         result
@@ -261,26 +265,28 @@ impl Game {
             .cards
             .iter()
             .filter(|other| {
-                !other.face_down
-                    && other.definition == "JC059"
-                    && other.controller == c.controller
-                    && other.id != c.id
+                !other.face_down && other.controller == c.controller && other.id != c.id
             })
-            .count() as u32;
+            .flat_map(|other| rules::definition(&other.definition).modifiers.iter())
+            .map(|m| match m {
+                StaticModifier::OtherControlledCharactersDefense(n) => *n,
+                _ => 0,
+            })
+            .sum::<u32>();
         (card(&c.definition).defense.unwrap_or(0) + bonus).saturating_sub(c.wounds)
     }
-    fn reset_passes(&mut self) {
+    pub(crate) fn reset_passes(&mut self) {
         self.passed.clear();
         self.team_passed = [false; 2];
     }
-    fn priority_default(&self) -> usize {
+    pub(crate) fn priority_default(&self) -> usize {
         if let Some(Window::Action(team)) = self.window {
             team
         } else {
             self.first_team
         }
     }
-    fn begin_window(&mut self, window: Window) {
+    pub(crate) fn begin_window(&mut self, window: Window) {
         if let Window::Action(team) = window {
             self.active_team = team;
         }
@@ -288,14 +294,13 @@ impl Game {
         self.priority_team = self.priority_default();
         self.reset_passes();
     }
-    fn push_stack(
+    pub(crate) fn push_stack(
         &mut self,
         seat: usize,
         label: String,
         c: Option<Card>,
         region: Option<usize>,
         reveal: bool,
-        effect: Option<Effect>,
         target: Option<String>,
     ) {
         let id = self.id();
@@ -306,8 +311,8 @@ impl Game {
             card: c,
             deploy_region: region,
             reveal,
-            effect,
             target,
+            frame: None,
         });
         self.reset_passes();
     }
@@ -319,11 +324,12 @@ impl Game {
         let mut next = self.clone();
         next.version += 1;
         next.apply_inner(seat, action)?;
+        next.settle_deaths();
         next.drive()?;
         *self = next;
         Ok(())
     }
-    fn apply_inner(&mut self, seat: usize, a: Action) -> RuleResult<()> {
+    pub(crate) fn apply_inner(&mut self, seat: usize, a: Action) -> RuleResult<()> {
         if self.pending.is_some() {
             if a.kind != "choose" {
                 return Err("等待玩家完成选择".into());
@@ -395,7 +401,9 @@ impl Game {
                     return Err("只有角色可派遣".into());
                 }
                 if a.kind == "conceal" {
-                    if self.players[seat].conceal_used || d.keywords.iter().any(|k| k == "公开") {
+                    if self.players[seat].conceal_used
+                        || rules::definition(&c.definition).traits.public
+                    {
                         return Err("该角色不能秘密派遣或本回合已用".into());
                     }
                     self.pay(seat, 1)?;
@@ -414,7 +422,8 @@ impl Game {
                     if !self.loyalty(seat, &c.definition) {
                         return Err("忠诚不足".into());
                     }
-                    self.pay(seat, d.cost)?;
+                    let paid = self.pay_printed(seat, &c, true)?;
+                    let snapshot = self.source_snapshot(&c, Some(r));
                     let c = self.remove_hand(seat, id)?;
                     let c = self.fresh(c);
                     self.note(format!("{} 打出 {}", self.players[seat].name, d.name));
@@ -425,8 +434,19 @@ impl Game {
                         Some(r),
                         false,
                         None,
-                        None,
                     );
+                    self.stack.last_mut().unwrap().frame = Some(ResolutionFrame {
+                        frame_id: self.stack.last().unwrap().id.clone(),
+                        ability_key: "deploy".into(),
+                        actor: seat,
+                        source: snapshot,
+                        targets: vec![],
+                        already_paid: paid,
+                        guard: GuardState::Unchecked,
+                        cursor: 0,
+                        steps: vec![],
+                        chosen_region: Some(r),
+                    });
                 }
             }
             "reveal" => {
@@ -439,7 +459,9 @@ impl Game {
                 if !self.loyalty(seat, &c.definition) {
                     return Err("忠诚不足".into());
                 }
-                self.pay(seat, d.cost)?;
+                let snapshot = self.source_snapshot(c, Some(r));
+                let printed = c.clone();
+                let paid = self.pay_printed(seat, &printed, false)?;
                 let (_, mut c) = self.remove_board(id).unwrap();
                 c = self.fresh(c);
                 c.face_down = false;
@@ -451,8 +473,19 @@ impl Game {
                     Some(r),
                     true,
                     None,
-                    None,
                 );
+                self.stack.last_mut().unwrap().frame = Some(ResolutionFrame {
+                    frame_id: self.stack.last().unwrap().id.clone(),
+                    ability_key: "reveal".into(),
+                    actor: seat,
+                    source: snapshot,
+                    targets: vec![],
+                    already_paid: paid,
+                    guard: GuardState::Unchecked,
+                    cursor: 0,
+                    steps: vec![],
+                    chosen_region: Some(r),
+                });
             }
             "play" => {
                 let id = a.card_id.as_deref().ok_or("请选择事务")?;
@@ -466,91 +499,52 @@ impl Game {
                 if d.kind != "spell" {
                     return Err("该牌不是事务".into());
                 }
-                if c.definition == "JC092" && !standard {
-                    return Err("死灵召唤为标准行动".into());
-                }
-                if c.definition == "JC118" && !matches!(self.window, Some(Window::Action(_))) {
-                    return Err("停战协议只可在行动阶段".into());
-                }
+                let spec = self.ability_for_action(&c.definition, &a)?;
+                self.check_timing(seat, &spec)?;
                 if !self.loyalty(seat, &c.definition) {
                     return Err("忠诚不足".into());
                 }
-                let effect = self.event_effect(seat, &c.definition, &a)?;
-                self.pay(seat, d.cost)?;
+                let source = self.source_snapshot(&c, None);
+                let targets = self.bind_action(seat, &source, &spec, &a)?;
+                if spec.ops.iter().any(|op| {
+                    matches!(
+                        op,
+                        rules::Op::Move(_, rules::Destination::HiddenInChosenRegion)
+                    )
+                }) && a.region.is_none_or(|r| r >= self.regions.len())
+                {
+                    return Err("请选择合法地区".into());
+                }
+                let mut paid = self.pay_printed(seat, &c, true)?;
+                paid.extend(self.pay_ability_costs(seat, &source, &spec, &a)?);
                 let c = self.remove_hand(seat, id)?;
                 let c = self.fresh(c);
+                let frame = self.make_frame(seat, source, &spec, targets, paid, a.region);
                 self.note(format!("{} 打出 {}", self.players[seat].name, d.name));
-                self.push_stack(
-                    seat,
-                    d.name.clone(),
-                    Some(c),
-                    None,
-                    false,
-                    Some(effect),
-                    a.target_id.clone(),
-                );
+                self.push_frame(frame, d.name.clone(), Some(c));
             }
             "activate" => {
                 let id = a.card_id.as_deref().ok_or("请选择能力来源")?;
                 let (r, c) = self.board(id).ok_or("实体引用已失效")?;
                 if c.controller != seat || c.face_down {
-                    return Err("只能发动自己的正面角色能力".into());
+                    return Err("只能发动自己操控的正面角色能力".into());
                 }
-                let definition = c.definition.clone();
-                let target = a.target_id.as_deref().ok_or("请选择目标")?;
-                let effect = match definition.as_str() {
-                    "LC19" => {
-                        if !standard {
-                            return Err("外科医生是标准行动".into());
-                        }
-                        self.validate_board_target(seat, target, false, Some(r))?;
-                        Effect::Heal {
-                            actor: seat,
-                            target: target.into(),
-                            region: Some(r),
-                        }
-                    }
-                    "JC003" => {
-                        if c.exhausted {
-                            return Err("来源已横置".into());
-                        }
-                        let hidden = self.board(target).ok_or("目标实体已失效")?.1.face_down;
-                        self.validate_board_target(seat, target, hidden, None)?;
-                        Effect::Exhaust {
-                            actor: seat,
-                            target: target.into(),
-                            hidden,
-                            source: None,
-                            region: None,
-                        }
-                    }
-                    _ => return Err("该角色无可发动行动能力".into()),
-                };
-                self.pay(seat, 2)?;
-                if definition == "JC003" {
-                    self.board_mut(id).unwrap().exhausted = true;
-                }
-                self.note(format!(
-                    "{} 发动 {}",
-                    self.players[seat].name,
-                    card(&definition).name
-                ));
-                self.push_stack(
-                    seat,
-                    format!("{} 的能力", card(&definition).name),
-                    None,
-                    None,
-                    false,
-                    Some(effect),
-                    Some(target.into()),
-                );
+                let source = self.source_snapshot(c, Some(r));
+                let spec = self.ability_for_action(&c.definition, &a)?;
+                self.check_timing(seat, &spec)?;
+                let targets = self.bind_action(seat, &source, &spec, &a)?;
+                let paid = self.pay_ability_costs(seat, &source, &spec, &a)?;
+                let label = format!("{}：{}", card(&source.card.definition).name, spec.label);
+                let frame = self.make_frame(seat, source, &spec, targets, paid, a.region);
+                self.note(format!("{} 发动 {}", self.players[seat].name, label));
+                self.push_frame(frame, label, None);
             }
             "privilege" => return self.privilege(seat),
             _ => return Err("当前操作不合法".into()),
         }
         Ok(())
     }
-    fn remove_hand(&mut self, seat: usize, id: &str) -> RuleResult<Card> {
+    pub(crate) fn remove_hand(&mut self, seat: usize, id: &str) -> RuleResult<Card> {
         let p = self.players[seat]
             .hand
             .iter()
@@ -558,91 +552,9 @@ impl Game {
             .ok_or("手牌实体已失效")?;
         Ok(self.players[seat].hand.remove(p))
     }
-    fn validate_board_target(
-        &self,
-        actor: usize,
-        id: &str,
-        hidden: bool,
-        region: Option<usize>,
-    ) -> RuleResult<()> {
-        let (r, c) = self.board(id).ok_or("目标实体已失效")?;
-        if c.face_down != hidden
-            || region.is_some_and(|wanted| r != wanted)
-            || !self.targetable(actor, c)
-        {
-            return Err("目标类别、地区或屏障不合法".into());
-        }
-        Ok(())
-    }
-    fn event_effect(&self, seat: usize, definition: &str, a: &Action) -> RuleResult<Effect> {
-        let target = a.target_id.as_deref().unwrap_or("");
-        Ok(match definition {
-            "XQ49" => {
-                if !self
-                    .players
-                    .iter()
-                    .any(|p| p.graveyard.iter().any(|c| c.id == target))
-                {
-                    return Err("葬礼需要墓地目标".into());
-                }
-                Effect::Funeral {
-                    actor: seat,
-                    target: target.into(),
-                }
-            }
-            "JC118" => {
-                let region = a.region.ok_or("请选择地区")?;
-                if region >= self.regions.len() {
-                    return Err("无此地区".into());
-                }
-                Effect::Ceasefire { region }
-            }
-            "XQ03" => {
-                self.validate_board_target(seat, target, false, None)?;
-                Effect::Exhaust {
-                    actor: seat,
-                    target: target.into(),
-                    hidden: false,
-                    source: None,
-                    region: None,
-                }
-            }
-            "JC063" => {
-                let hide = match a.option.as_deref() {
-                    Some("hide") => true,
-                    Some("return") => false,
-                    _ => return Err("请选择潜伏或回手".into()),
-                };
-                self.validate_board_target(seat, target, !hide, None)?;
-                Effect::Chase {
-                    actor: seat,
-                    target: target.into(),
-                    hide,
-                }
-            }
-            "JC092" => {
-                let region = a.region.ok_or("请选择地区")?;
-                if region >= self.regions.len() {
-                    return Err("无此地区".into());
-                }
-                if !self.players[seat]
-                    .graveyard
-                    .iter()
-                    .any(|c| c.id == target && card(&c.definition).kind == "character")
-                {
-                    return Err("必须选择自己的墓地角色".into());
-                }
-                Effect::Summon {
-                    seat,
-                    target: target.into(),
-                    region,
-                }
-            }
-            _ => return Err("未实现事务，不开放".into()),
-        })
-    }
-    fn start(&mut self) -> RuleResult<()> {
+    pub(crate) fn start(&mut self) -> RuleResult<()> {
         self.status = "playing".into();
+        self.modifiers.clear();
         self.regions.clear();
         self.world.clear();
         self.stack.clear();
@@ -714,7 +626,7 @@ impl Game {
         ));
         Ok(())
     }
-    fn draw(&mut self, seat: usize, count: usize) -> RuleResult<()> {
+    pub(crate) fn draw(&mut self, seat: usize, count: usize) -> RuleResult<()> {
         if self.players[seat].eliminated {
             return Ok(());
         }
@@ -729,7 +641,7 @@ impl Game {
         }
         Ok(())
     }
-    fn eliminate(&mut self, seat: usize) {
+    pub(crate) fn eliminate(&mut self, seat: usize) {
         self.players[seat].eliminated = true;
         self.players[seat].hand.clear();
         self.players[seat].deck.clear();
@@ -745,17 +657,11 @@ impl Game {
             | Effect::Mulligan { seat: s }
             | Effect::Discard { seat: s, .. }
             | Effect::Forecast { seat: s, .. }
-            | Effect::Recover { seat: s, .. }
-            | Effect::Summon { seat: s, .. }
-            | Effect::Search { seat: s, .. }
-            | Effect::Death { seat: s }
-            | Effect::Trigger { seat: s, .. }
-            | Effect::TargetTrigger { seat: s, .. }
             | Effect::Damage { seat: s, .. }
-            | Effect::Unique { seat: s }
-            | Effect::WorldMode { seat: s }
-            | Effect::RegionTrigger { seat: s, .. } => *s != seat,
-            Effect::Bury { card: c } => c.owner != seat,
+            | Effect::Unique { seat: s } => *s != seat,
+            Effect::Declare { declaration } => declaration.actor != seat,
+            Effect::Frame { frame } => frame.actor != seat,
+            Effect::Bury { card } => card.owner != seat,
             _ => true,
         });
         self.note(format!("{} 牌库耗尽，退出游戏", self.players[seat].name));
@@ -764,14 +670,14 @@ impl Game {
             self.finish(1 - team);
         }
     }
-    fn living(&self, team: usize) -> Vec<usize> {
+    pub(crate) fn living(&self, team: usize) -> Vec<usize> {
         self.players
             .iter()
             .filter(|p| !p.eliminated && self.team(p.seat) == team)
             .map(|p| p.seat)
             .collect()
     }
-    fn finish(&mut self, team: usize) {
+    pub(crate) fn finish(&mut self, team: usize) {
         self.status = "finished".into();
         self.winner_team = Some(team);
         self.pending = None;
@@ -779,7 +685,7 @@ impl Game {
         self.stack.clear();
         self.note(format!("团队 {} 获胜", team + 1));
     }
-    fn check_win(&mut self) {
+    pub(crate) fn check_win(&mut self) {
         let mut scores = [0; 2];
         for p in &self.players {
             scores[self.team(p.seat)] += p
@@ -796,7 +702,7 @@ impl Game {
             }
         }
     }
-    fn pass(&mut self, seat: usize) -> RuleResult<()> {
+    pub(crate) fn pass(&mut self, seat: usize) -> RuleResult<()> {
         if self.passed.contains(&seat) {
             return Err("本轮已让过，等待队友".into());
         }
@@ -817,7 +723,7 @@ impl Game {
         }
         Ok(())
     }
-    fn resolve_stack(&mut self, mut item: StackItem) -> RuleResult<()> {
+    pub(crate) fn resolve_stack(&mut self, mut item: StackItem) -> RuleResult<()> {
         self.note(format!("结算：{}", item.label));
         if let Some(c) = item.card.take() {
             if let Some(region) = item.deploy_region {
@@ -832,65 +738,25 @@ impl Game {
                 self.effects.push_front(Effect::Bury { card: c });
             }
         }
-        if let Some(effect) = item.effect {
-            self.effects.push_front(effect);
-        }
+        let frame = item.frame.ok_or("v2堆叠对象缺少已支付的通用frame")?;
+        self.effects.push_front(Effect::Frame {
+            frame: Box::new(frame),
+        });
         Ok(())
     }
-    fn enter_triggers(&mut self, seat: usize, definition: &str, id: &str, reveal: bool) {
-        let label = format!("{}：进场触发", card(definition).name);
-        match definition {
-            "LC20" => self.effects.push_back(Effect::TargetTrigger {
-                seat,
-                label,
-                source: id.into(),
-                mode: "heal".into(),
-            }),
-            "LC23" if reveal => self.effects.push_back(Effect::TargetTrigger {
-                seat,
-                label: format!("{}：现身触发", card(definition).name),
-                source: id.into(),
-                mode: "angru".into(),
-            }),
-            "JC002" if reveal => self.effects.push_back(Effect::TargetTrigger {
-                seat,
-                label: format!("{}：现身触发", card(definition).name),
-                source: id.into(),
-                mode: "exhaust".into(),
-            }),
-            "LC24" => self.effects.push_back(Effect::Trigger {
-                seat,
-                label,
-                effect: Box::new(Effect::Forecast {
-                    seat,
-                    amount: 2,
-                    draw: true,
-                }),
-            }),
-            "JC056" => {
-                let region = self.board(id).unwrap().0;
-                self.effects.push_back(Effect::Trigger {
-                    seat,
-                    label,
-                    effect: Box::new(Effect::Police {
-                        actor: seat,
-                        region,
-                    }),
-                });
+    pub(crate) fn enter_triggers(&mut self, seat: usize, definition: &str, id: &str, reveal: bool) {
+        if let Some((r, c)) = self.board(id) {
+            let source = self.source_snapshot(c, Some(r));
+            self.emit_event(seat, source.clone(), Event::Enter);
+            if reveal {
+                self.emit_event(seat, source, Event::Reveal);
             }
-            "JC086" => self.effects.push_back(Effect::TargetTrigger {
-                seat,
-                label,
-                source: id.into(),
-                mode: "recover".into(),
-            }),
-            _ => {}
         }
         if card(definition).unique {
             self.effects.push_front(Effect::Unique { seat });
         }
     }
-    fn close_window(&mut self) -> RuleResult<()> {
+    pub(crate) fn close_window(&mut self) -> RuleResult<()> {
         match self.window.clone().ok_or("缺少步骤")? {
             Window::Prepare => {
                 for seat in 0..self.players.len() {
@@ -904,21 +770,35 @@ impl Game {
             }
             Window::Action(_) => {
                 self.begin_window(Window::Mobility);
-                let mut sources: Vec<_> = self
+                let mut sources = self
                     .regions
                     .iter()
-                    .flat_map(|r| r.cards.iter())
-                    .filter(|c| !c.face_down && !c.exhausted && c.definition == "JC014")
-                    .map(|c| (c.controller, c.id.clone()))
-                    .collect();
+                    .enumerate()
+                    .flat_map(|(r, reg)| {
+                        reg.cards
+                            .iter()
+                            .filter(|c| {
+                                !c.face_down
+                                    && !c.exhausted
+                                    && rules::definition(&c.definition)
+                                        .abilities
+                                        .iter()
+                                        .any(|a| a.event == Some(Event::ConfrontationStart))
+                            })
+                            .map(move |c| {
+                                (
+                                    c.controller,
+                                    SourceSnapshot {
+                                        card: c.clone(),
+                                        region: Some(r),
+                                    },
+                                )
+                            })
+                    })
+                    .collect::<Vec<_>>();
                 sources.sort_by_key(|(seat, _)| (self.team(*seat) != self.first_team, *seat));
                 for (seat, source) in sources {
-                    self.effects.push_back(Effect::TargetTrigger {
-                        seat,
-                        label: "公路骑士：机动".into(),
-                        source,
-                        mode: "mobility".into(),
-                    });
+                    self.emit_event(seat, source, Event::ConfrontationStart);
                 }
             }
             Window::Mobility => self.begin_window(Window::Before(0, 0)),
@@ -958,14 +838,14 @@ impl Game {
         }
         Ok(())
     }
-    fn contest_counts(&self, region: usize, contest: usize) -> [u32; 2] {
+    pub(crate) fn contest_counts(&self, region: usize, contest: usize) -> [u32; 2] {
         let mut counts = [0; 2];
         for c in &self.regions[region].cards {
             counts[self.team(c.controller)] += self.icons(c, region).at(contest);
         }
         counts
     }
-    fn contributors(&self, team: usize, region: usize, contest: usize) -> Vec<usize> {
+    pub(crate) fn contributors(&self, team: usize, region: usize, contest: usize) -> Vec<usize> {
         self.living(team)
             .into_iter()
             .filter(|s| {
@@ -976,7 +856,7 @@ impl Game {
             })
             .collect()
     }
-    fn reward(
+    pub(crate) fn reward(
         &mut self,
         team: usize,
         region: usize,
@@ -1005,9 +885,10 @@ impl Game {
                     self.team(c.controller) == team
                         && !c.face_down
                         && !c.exhausted
-                        && c.definition == "JC016"
+                        && rules::definition(&c.definition).traits.kill > 0
                 })
-                .count() as u32;
+                .map(|c| rules::definition(&c.definition).traits.kill)
+                .sum::<u32>();
             let total = amount + kills;
             if seats.len() > 1 {
                 self.effects.push_back(Effect::Recipient {
@@ -1058,7 +939,7 @@ impl Game {
         }
         Ok(())
     }
-    fn privilege(&mut self, seat: usize) -> RuleResult<()> {
+    pub(crate) fn privilege(&mut self, seat: usize) -> RuleResult<()> {
         let Some(Window::Before(region, contest)) = self.window else {
             return Err("仅可在对抗前发动先手特权".into());
         };
@@ -1081,7 +962,7 @@ impl Game {
         self.reward(self.first_team, region, contest, 1)?;
         Ok(())
     }
-    fn choice(
+    pub(crate) fn choice(
         &mut self,
         seat: usize,
         kind: &str,
@@ -1116,7 +997,7 @@ impl Game {
             },
         });
     }
-    fn option(
+    pub(crate) fn option(
         &self,
         c: &Card,
         viewer: usize,
@@ -1130,13 +1011,13 @@ impl Game {
             card: Some(projected),
         }
     }
-    fn drive(&mut self) -> RuleResult<()> {
+    pub(crate) fn drive(&mut self) -> RuleResult<()> {
         let mut processed = 0;
         while self.pending.is_none() && self.status == "playing" {
             // Mobility has a specific first-team-before-rear-team order. Do not
             // declare the next move until the current responsive stack resolves.
             if !self.stack.is_empty()
-                && matches!(self.effects.front(),Some(Effect::TargetTrigger{mode,..}) if mode=="mobility")
+                && matches!(self.effects.front(),Some(Effect::Declare{declaration}) if declaration.ability.event==Some(Event::ConfrontationStart))
             {
                 break;
             }
@@ -1151,8 +1032,10 @@ impl Game {
         }
         Ok(())
     }
-    fn effect(&mut self, e: Effect) -> RuleResult<()> {
+    pub(crate) fn effect(&mut self, e: Effect) -> RuleResult<()> {
         match e {
+            Effect::Declare { declaration } => self.declare_trigger(declaration)?,
+            Effect::Frame { frame } => self.resolve_frame(*frame)?,
             Effect::Draw { seat, count } => self.draw(seat, count)?,
             Effect::Mulligan { seat } => {
                 let options = self.players[seat]
@@ -1229,288 +1112,6 @@ impl Game {
                     );
                 }
             }
-            Effect::Exhaust {
-                actor,
-                target,
-                hidden,
-                source,
-                region,
-            } => {
-                if self
-                    .validate_board_target(actor, &target, hidden, region)
-                    .is_ok()
-                    && !self.shield_stops(actor, &target)
-                {
-                    if let Some(source) = source {
-                        if let Some(c) = self.board_mut(&source) {
-                            c.exhausted = true;
-                        }
-                    }
-                    if let Some(c) = self.board_mut(&target) {
-                        c.exhausted = true;
-                    }
-                }
-            }
-            Effect::Heal {
-                actor,
-                target,
-                region,
-            } => {
-                if self
-                    .validate_board_target(actor, &target, false, region)
-                    .is_ok()
-                    && !self.shield_stops(actor, &target)
-                {
-                    self.board_mut(&target).unwrap().wounds = 0;
-                }
-            }
-            Effect::Police { actor: _, region } => {
-                for c in &mut self.regions[region].cards {
-                    if c.face_down {
-                        c.exhausted = true;
-                    }
-                }
-            }
-            Effect::Funeral { actor, target } => {
-                for owner in 0..self.players.len() {
-                    if let Some(i) = self.players[owner]
-                        .graveyard
-                        .iter()
-                        .position(|c| c.id == target)
-                    {
-                        let c = self.players[owner].graveyard.remove(i);
-                        let c = self.fresh(c);
-                        self.players[owner].deck.push(c);
-                        self.draw(actor, 1)?;
-                        break;
-                    }
-                }
-            }
-            Effect::Ceasefire { region } => self.regions[region].skip = true,
-            Effect::Chase {
-                actor,
-                target,
-                hide,
-            } => {
-                if self
-                    .validate_board_target(actor, &target, !hide, None)
-                    .is_ok()
-                    && !self.shield_stops(actor, &target)
-                {
-                    if let Some((region, mut c)) = self.remove_board(&target) {
-                        c = self.fresh(c);
-                        if hide {
-                            c.face_down = true;
-                            c.damage = 0;
-                            c.wounds = 0;
-                            c.shield = 0;
-                            self.regions[region].cards.push(c);
-                        } else {
-                            c.face_down = false;
-                            c.exhausted = false;
-                            c.damage = 0;
-                            c.wounds = 0;
-                            c.shield = 0;
-                            let owner = c.owner;
-                            self.players[owner].hand.push(c);
-                        }
-                    }
-                }
-            }
-            Effect::Recover { seat, target } => {
-                if let Some(i) = self.players[seat]
-                    .graveyard
-                    .iter()
-                    .position(|c| c.id == target && card(&c.definition).kind == "character")
-                {
-                    let c = self.players[seat].graveyard.remove(i);
-                    let c = self.fresh(c);
-                    self.players[seat].hand.push(c);
-                }
-            }
-            Effect::Summon {
-                seat,
-                target,
-                region,
-            } => {
-                if let Some(i) = self.players[seat]
-                    .graveyard
-                    .iter()
-                    .position(|c| c.id == target && card(&c.definition).kind == "character")
-                {
-                    let mut c = self.players[seat].graveyard.remove(i);
-                    c = self.fresh(c);
-                    c.face_down = true;
-                    c.exhausted = false;
-                    c.damage = 0;
-                    c.wounds = 0;
-                    c.shield = 0;
-                    self.regions[region].cards.push(c);
-                }
-            }
-            Effect::Move { target, region } => {
-                if let Some((_, c)) = self.remove_board(&target) {
-                    let controller = c.controller;
-                    let definition = c.definition.clone();
-                    let id = c.id.clone();
-                    self.regions[region].cards.push(c);
-                    self.enter_triggers(controller, &definition, &id, false);
-                }
-            }
-            Effect::ReturnHand { target } => {
-                self.return_hand(&target);
-            }
-            Effect::Search { seat, kind } => {
-                if self.players[seat].eliminated {
-                    return Ok(());
-                }
-                let options: Vec<_> = self.players[seat]
-                    .deck
-                    .iter()
-                    .filter(|c| kind == "any" || card(&c.definition).kind == kind)
-                    .map(|c| self.option(c, seat, None, None))
-                    .collect();
-                if options.is_empty() {
-                    self.shuffle_player(seat);
-                    self.note(format!(
-                        "{} 检索：没有符合条件的牌",
-                        self.players[seat].name
-                    ));
-                } else {
-                    self.choice(
-                        seat,
-                        "search",
-                        if kind == "any" {
-                            "从牌库选择一张牌，洗牌后置于牌库顶".into()
-                        } else {
-                            format!("检索 {}", kind)
-                        },
-                        options,
-                        if kind == "any" { 1 } else { 0 },
-                        1,
-                        None,
-                        ChoiceResolution::Search {
-                            to_top: kind == "any",
-                        },
-                    );
-                }
-            }
-            Effect::Death { seat } => {
-                let options = self
-                    .players
-                    .iter()
-                    .filter(|p| !p.eliminated)
-                    .map(|p| ChoiceOption {
-                        id: player_id(p.seat),
-                        label: p.name.clone(),
-                        card: None,
-                    })
-                    .collect();
-                self.choice(
-                    seat,
-                    "target",
-                    "暴躁血仆：死亡触发，目标玩家弃一张手牌".into(),
-                    options,
-                    0,
-                    1,
-                    None,
-                    ChoiceResolution::Death,
-                );
-            }
-            Effect::Trigger {
-                seat,
-                label,
-                effect,
-            } => {
-                if !self.players[seat].eliminated {
-                    self.choice(
-                        seat,
-                        "trigger",
-                        label.clone(),
-                        vec![ChoiceOption {
-                            id: "accept".into(),
-                            label: "发动触发能力".into(),
-                            card: None,
-                        }],
-                        0,
-                        1,
-                        None,
-                        ChoiceResolution::Trigger {
-                            effect: *effect,
-                            label,
-                        },
-                    );
-                }
-            }
-            Effect::TargetTrigger {
-                seat,
-                label,
-                source,
-                mode,
-            } => {
-                if self.players[seat].eliminated {
-                    return Ok(());
-                }
-                let options: Vec<_> = if mode == "recover" {
-                    self.players[seat]
-                        .graveyard
-                        .iter()
-                        .filter(|c| card(&c.definition).kind == "character")
-                        .map(|c| self.option(c, seat, None, None))
-                        .collect()
-                } else if mode == "mobility" {
-                    if let Some((region, character)) = self
-                        .board(&source)
-                        .filter(|(_, c)| !c.face_down && !c.exhausted)
-                    {
-                        let _ = character;
-                        (0..self.regions.len())
-                            .filter(|r| {
-                                *r != region && (self.mode == "duel" || r.abs_diff(region) == 1)
-                            })
-                            .map(|r| ChoiceOption {
-                                id: format!("region:{r}"),
-                                label: format!(
-                                    "移动至 {}",
-                                    card(&self.regions[r].card.definition).name
-                                ),
-                                card: None,
-                            })
-                            .collect()
-                    } else {
-                        vec![]
-                    }
-                } else if let Some((region, _)) = self.board(&source) {
-                    self.regions[region]
-                        .cards
-                        .iter()
-                        .filter(|c| !c.face_down && self.targetable(seat, c))
-                        .map(|c| self.option(c, seat, Some(region), None))
-                        .collect()
-                } else {
-                    vec![]
-                };
-                if !options.is_empty() {
-                    self.choice(
-                        seat,
-                        "target",
-                        label.clone(),
-                        options,
-                        0,
-                        1,
-                        None,
-                        if mode == "mobility" {
-                            ChoiceResolution::Mobility { source }
-                        } else {
-                            ChoiceResolution::TargetTrigger {
-                                source,
-                                mode,
-                                label,
-                            }
-                        },
-                    );
-                }
-            }
             Effect::Damage {
                 seat,
                 region,
@@ -1578,7 +1179,11 @@ impl Game {
                 let retreat: Vec<_> = self.regions[region]
                     .cards
                     .iter()
-                    .filter(|c| c.owner == seat && !c.face_down && c.definition == "JC016")
+                    .filter(|c| {
+                        c.owner == seat
+                            && !c.face_down
+                            && rules::definition(&c.definition).traits.retreat
+                    })
                     .map(|c| c.id.clone())
                     .collect();
                 for id in retreat {
@@ -1632,102 +1237,42 @@ impl Game {
                 }
                 self.check_win();
                 if self.status == "playing" {
-                    if definition == "DQJC114" {
-                        self.effects.push_front(Effect::WorldMode { seat });
-                    } else {
-                        self.effects.push_front(Effect::Trigger {
-                            seat,
-                            label: format!("{}：赢取触发", card(&definition).name),
-                            effect: Box::new(Effect::RegionTrigger { seat, definition }),
-                        });
-                    }
+                    let source = self.source_snapshot(
+                        self.players[seat].score_cards.last().unwrap(),
+                        Some(region),
+                    );
+                    self.emit_event(seat, source, Event::RegionWon);
                 }
-            }
-            Effect::RegionTrigger { seat, definition } => match definition.as_str() {
-                "DQJC107" => {
-                    for s in 0..self.players.len() {
-                        self.effects.push_back(Effect::Search {
-                            seat: s,
-                            kind: "any".into(),
-                        });
-                    }
-                }
-                "DQJC112" => {
-                    for s in 0..self.players.len() {
-                        self.effects.push_back(Effect::Discard {
-                            seat: s,
-                            amount: self.players[s].hand.len(),
-                            redraw: true,
-                            optional: true,
-                        });
-                    }
-                }
-                "DQJC113" => self.effects.push_back(Effect::GlobalDamage),
-                "DQJC114" => self.effects.push_back(Effect::WorldMode { seat }),
-                "DQJC116" => {
-                    for s in 0..self.players.len() {
-                        self.effects.push_back(Effect::Search {
-                            seat: s,
-                            kind: "attachment".into(),
-                        });
-                    }
-                }
-                _ => return Err("地区效果未实现".into()),
-            },
-            Effect::GlobalDamage => {
-                let targets = self
-                    .regions
-                    .iter()
-                    .flat_map(|r| r.cards.iter())
-                    .filter(|c| !c.face_down)
-                    .map(|c| (c.id.clone(), 1))
-                    .collect();
-                self.damage(targets)?;
-            }
-            Effect::WorldMode { seat } => {
-                self.choice(
-                    seat,
-                    "trigger",
-                    "上海：选择每位玩家抓2张或弃2张".into(),
-                    vec![
-                        ChoiceOption {
-                            id: "draw".into(),
-                            label: "所有玩家抓两张牌".into(),
-                            card: None,
-                        },
-                        ChoiceOption {
-                            id: "discard".into(),
-                            label: "所有玩家各自选择弃两张牌".into(),
-                            card: None,
-                        },
-                    ],
-                    0,
-                    1,
-                    None,
-                    ChoiceResolution::WorldMode,
-                );
             }
             Effect::Unique { seat } => {
-                let options = self
-                    .regions
-                    .iter()
-                    .enumerate()
-                    .flat_map(|(r, region)| {
-                        region
-                            .cards
-                            .iter()
-                            .filter(move |c| {
-                                c.controller == seat && !c.face_down && c.definition == "LC23"
-                            })
-                            .map(move |c| (r, c))
-                    })
-                    .map(|(r, c)| self.option(c, seat, Some(r), None))
-                    .collect::<Vec<_>>();
+                let mut options = vec![];
+                let mut group = None;
+                for (r, region) in self.regions.iter().enumerate() {
+                    for c in &region.cards {
+                        if c.controller == seat && !c.face_down && card(&c.definition).unique {
+                            let name = &card(&c.definition).name;
+                            let count = self
+                                .regions
+                                .iter()
+                                .flat_map(|r| r.cards.iter())
+                                .filter(|other| {
+                                    other.controller == seat
+                                        && !other.face_down
+                                        && card(&other.definition).name == *name
+                                })
+                                .count();
+                            if count > 1 && group.as_ref().is_none_or(|n| n == name) {
+                                group = Some(name.clone());
+                                options.push(self.option(c, seat, Some(r), None));
+                            }
+                        }
+                    }
+                }
                 if options.len() > 1 {
                     self.choice(
                         seat,
                         "target",
-                        "独有：选择一张安格鲁牺牲".into(),
+                        "独有：选择同名独有角色中的一张牺牲".into(),
                         options,
                         1,
                         1,
@@ -1767,6 +1312,7 @@ impl Game {
             }
             Effect::NextTurn => {
                 self.turn += 1;
+                self.modifiers.clear();
                 self.first_team = 1 - self.first_team;
                 self.privilege_used = false;
                 for p in &mut self.players {
@@ -1788,30 +1334,15 @@ impl Game {
                     self.first_team + 1
                 ));
             }
-            Effect::WorldAll { draw } => {
-                for seat in 0..self.players.len() {
-                    self.effects.push_back(if draw {
-                        Effect::Draw { seat, count: 2 }
-                    } else {
-                        Effect::Discard {
-                            seat,
-                            amount: 2,
-                            redraw: false,
-                            optional: false,
-                        }
-                    });
-                }
-            }
-            Effect::Swap { .. } => return Err("不可达未开放效果".into()),
         }
         Ok(())
     }
-    fn shuffle_player(&mut self, seat: usize) {
+    pub(crate) fn shuffle_player(&mut self, seat: usize) {
         let mut deck = std::mem::take(&mut self.players[seat].deck);
         self.shuffle(&mut deck);
         self.players[seat].deck = deck;
     }
-    fn return_hand(&mut self, target: &str) {
+    pub(crate) fn return_hand(&mut self, target: &str) {
         if let Some((_, mut c)) = self.remove_board(target) {
             c = self.fresh(c);
             c.face_down = false;
@@ -1823,7 +1354,7 @@ impl Game {
             self.players[owner].hand.push(c);
         }
     }
-    fn to_bottom(&mut self, target: &str) {
+    pub(crate) fn to_bottom(&mut self, target: &str) {
         if let Some((_, mut c)) = self.remove_board(target) {
             c = self.fresh(c);
             c.face_down = false;
@@ -1835,25 +1366,10 @@ impl Game {
             self.players[owner].deck.push(c);
         }
     }
-    fn kill(&mut self, target: &str) {
-        if let Some((_, mut c)) = self.remove_board(target) {
-            let controller = c.controller;
-            let death = !c.face_down && c.definition == "XQ12";
-            c = self.fresh(c);
-            c.face_down = false;
-            c.exhausted = false;
-            c.damage = 0;
-            c.wounds = 0;
-            c.shield = 0;
-            let owner = c.owner;
-            self.players[owner].graveyard.push(c);
-            if death {
-                self.effects.push_back(Effect::Death { seat: controller });
-            }
-        }
+    pub(crate) fn kill(&mut self, target: &str) {
+        self.remove_dead(target, RemovalCause::Lethal);
     }
-    fn damage(&mut self, allocations: BTreeMap<String, u32>) -> RuleResult<()> {
-        let previous_effects = self.effects.len();
+    pub(crate) fn damage(&mut self, allocations: BTreeMap<String, u32>) -> RuleResult<()> {
         for (target, amount) in allocations {
             if let Some(c) = self.board_mut(&target) {
                 if !c.face_down {
@@ -1861,12 +1377,20 @@ impl Game {
                 }
             }
         }
+        self.settle_deaths();
+        Ok(())
+    }
+    pub(crate) fn settle_deaths(&mut self) {
+        let previous_effects = self.effects.len();
         // Loss of a defense aura is checked again after the simultaneous lethal set.
         loop {
             let mut dead = vec![];
             for (r, region) in self.regions.iter().enumerate() {
                 for c in &region.cards {
-                    if !c.face_down && c.damage >= self.defense(c, r) {
+                    if !c.face_down
+                        && card(&c.definition).kind == "character"
+                        && c.damage >= self.defense(c, r)
+                    {
                         dead.push(c.id.clone());
                     }
                 }
@@ -1884,13 +1408,15 @@ impl Game {
             .into_iter()
             .collect::<Vec<_>>();
         simultaneous.sort_by_key(|e| match e {
-            Effect::Death { seat } => (self.team(*seat) != self.first_team, *seat),
+            Effect::Declare { declaration } if declaration.ability.event == Some(Event::Death) => (
+                self.team(declaration.actor) != self.first_team,
+                declaration.actor,
+            ),
             _ => (true, usize::MAX),
         });
         self.effects.extend(simultaneous);
-        Ok(())
     }
-    fn choose(&mut self, seat: usize, a: Action) -> RuleResult<()> {
+    pub(crate) fn choose(&mut self, seat: usize, a: Action) -> RuleResult<()> {
         let p = self.pending.clone().ok_or("没有待选")?;
         if p.seat != seat || a.choice_id.as_deref() != Some(&p.choice.id) {
             return Err("选择者或选择ID不符".into());
@@ -1911,6 +1437,10 @@ impl Game {
             ChoiceResolution::Forecast { .. }
                 | ChoiceResolution::Bottom { .. }
                 | ChoiceResolution::Damage { .. }
+                | ChoiceResolution::Frame {
+                    choice: FrameChoice::Forecast { .. },
+                    ..
+                }
         ) && (selected.len() < p.choice.min.unwrap_or(0)
             || selected.len() > p.choice.max.unwrap_or(usize::MAX))
         {
@@ -1918,6 +1448,12 @@ impl Game {
         }
         self.pending = None;
         match p.resolution {
+            ChoiceResolution::Declare { declaration, stage } => {
+                self.choose_declaration(declaration, stage, selected)?
+            }
+            ChoiceResolution::Frame { frame, choice } => {
+                self.choose_frame(frame, choice, a, selected, option_ids)?
+            }
             ChoiceResolution::Mulligan => {
                 let mut held = vec![];
                 for id in selected {
@@ -1975,69 +1511,6 @@ impl Game {
                 }
                 self.note(format!("{} 完成预测排序", self.players[seat].name));
             }
-            ChoiceResolution::Trigger { effect, label } => {
-                if !selected.is_empty() {
-                    self.push_stack(seat, label, None, None, false, Some(effect), None);
-                }
-            }
-            ChoiceResolution::TargetTrigger {
-                source,
-                mode,
-                label,
-            } => {
-                if let Some(target) = selected.first() {
-                    let region = self.board(&source).map(|(r, _)| r);
-                    let effect = match mode.as_str() {
-                        "heal" => Effect::Heal {
-                            actor: seat,
-                            target: target.clone(),
-                            region,
-                        },
-                        "recover" => Effect::Recover {
-                            seat,
-                            target: target.clone(),
-                        },
-                        "exhaust" | "angru" => Effect::Exhaust {
-                            actor: seat,
-                            target: target.clone(),
-                            hidden: false,
-                            source: if mode == "angru" { Some(source) } else { None },
-                            region,
-                        },
-                        _ => return Err("未知目标触发".into()),
-                    };
-                    self.push_stack(
-                        seat,
-                        label,
-                        None,
-                        None,
-                        false,
-                        Some(effect),
-                        Some(target.clone()),
-                    );
-                }
-            }
-            ChoiceResolution::Mobility { source } => {
-                if let Some(target) = selected.first() {
-                    let region = target
-                        .strip_prefix("region:")
-                        .ok_or("地区选项无效")?
-                        .parse()
-                        .map_err(|_| "地区无效")?;
-                    self.push_stack(
-                        seat,
-                        "机动移动".into(),
-                        None,
-                        None,
-                        false,
-                        Some(Effect::Move {
-                            target: source,
-                            region,
-                        }),
-                        None,
-                    );
-                }
-            }
             ChoiceResolution::Damage { region } => {
                 let allocations = a.allocations.unwrap_or_default();
                 if !allocations.keys().all(|id| option_ids.contains(id))
@@ -2052,15 +1525,28 @@ impl Game {
                     .filter(|c| {
                         !c.face_down
                             && self.is_enemy(seat, c)
-                            && (c.definition == "LC21" || c.definition == "LC22")
+                            && rules::definition(&c.definition).traits.guard > 0
                     })
                     .collect::<Vec<_>>();
                 let total = p.choice.amount.unwrap_or(0);
                 let guard_assigned = guards
                     .iter()
-                    .map(|c| allocations.get(&c.id).copied().unwrap_or(0).min(1))
+                    .map(|c| {
+                        allocations
+                            .get(&c.id)
+                            .copied()
+                            .unwrap_or(0)
+                            .min(rules::definition(&c.definition).traits.guard)
+                    })
                     .sum::<u32>();
-                if guard_assigned < total.min(guards.len() as u32) {
+                if guard_assigned
+                    < total.min(
+                        guards
+                            .iter()
+                            .map(|c| rules::definition(&c.definition).traits.guard)
+                            .sum(),
+                    )
+                {
                     return Err("必须先向护卫分配护卫值".into());
                 }
                 self.damage(allocations)?;
@@ -2102,80 +1588,13 @@ impl Game {
                     self.to_bottom(&id);
                 }
             }
-            ChoiceResolution::Search { to_top } => {
-                let chosen = selected
-                    .first()
-                    .and_then(|id| self.players[seat].deck.iter().position(|c| c.id == *id))
-                    .map(|i| self.players[seat].deck.remove(i));
-                self.shuffle_player(seat);
-                if let Some(c) = chosen {
-                    let c = self.fresh(c);
-                    if to_top {
-                        self.players[seat].deck.insert(0, c);
-                        self.note(format!("{} 完成检索并置于牌库顶", self.players[seat].name));
-                    } else {
-                        let name = card(&c.definition).name.clone();
-                        self.players[seat].hand.push(c);
-                        self.note(format!("{} 展示检索的 {}", self.players[seat].name, name));
-                    }
-                }
-            }
-            ChoiceResolution::ReturnHand => {
-                self.return_hand(&selected[0]);
-            }
-            ChoiceResolution::Death => {
-                if let Some(target) = selected.first() {
-                    let recipient = target
-                        .strip_prefix('p')
-                        .unwrap()
-                        .parse::<usize>()
-                        .map_err(|_| "玩家无效")?;
-                    self.push_stack(
-                        seat,
-                        "暴躁血仆：死亡触发".into(),
-                        None,
-                        None,
-                        false,
-                        Some(Effect::Discard {
-                            seat: recipient,
-                            amount: 1,
-                            redraw: false,
-                            optional: false,
-                        }),
-                        Some(target.clone()),
-                    );
-                }
-            }
             ChoiceResolution::Unique => {
-                self.kill(&selected[0]);
+                self.remove_dead(&selected[0], RemovalCause::Sacrifice);
             }
-            ChoiceResolution::WorldMode => {
-                if let Some(mode) = selected.first() {
-                    self.push_stack(
-                        seat,
-                        format!(
-                            "上海：{}",
-                            if mode == "draw" {
-                                "所有玩家抓两张牌"
-                            } else {
-                                "所有玩家各弃两张牌"
-                            }
-                        ),
-                        None,
-                        None,
-                        false,
-                        Some(Effect::WorldAll {
-                            draw: mode == "draw",
-                        }),
-                        None,
-                    );
-                }
-            }
-            ChoiceResolution::Swap => return Err("未开放的选择".into()),
         }
         Ok(())
     }
-    fn card_view(
+    pub(crate) fn card_view(
         &self,
         c: &Card,
         viewer: usize,
@@ -2208,6 +1627,14 @@ impl Game {
             exhausted: c.exhausted,
             face_down: c.face_down,
             cost: if hidden || asset { None } else { Some(d.cost) },
+            effective_cost: if hidden
+                || asset
+                || !self.players[viewer].hand.iter().any(|own| own.id == c.id)
+            {
+                None
+            } else {
+                Some(self.effective_cost(c.controller, c))
+            },
             text: if hidden || asset {
                 None
             } else {
@@ -2360,13 +1787,34 @@ impl Game {
             stack: self
                 .stack
                 .iter()
-                .map(|s| StackView {
-                    id: s.id.clone(),
-                    label: s.label.clone(),
-                    controller: player_id(s.controller),
-                    card_id: s.card.as_ref().map(|c| c.definition.clone()),
-                    target_id: s.target.clone(),
+                .map(|s| {
+                    if let Some(frame) = &s.frame {
+                        self.frame_view(frame, s.label.clone(), "awaitingResponses")
+                    } else {
+                        StackView {
+                            id: s.id.clone(),
+                            label: s.label.clone(),
+                            controller: player_id(s.controller),
+                            card_id: s.card.as_ref().map(|c| c.definition.clone()),
+                            target_id: s.target.clone(),
+                            ability_id: None,
+                            targets: s.target.iter().cloned().collect(),
+                            target_summaries: vec![],
+                            resolution_state: "awaitingResponses".into(),
+                        }
+                    }
                 })
+                .chain(self.pending.iter().filter_map(|p| {
+                    if let ChoiceResolution::Frame { frame, .. } = &p.resolution {
+                        Some(self.frame_view(
+                            frame,
+                            format!("{}：结算中", card(&frame.source.card.definition).name),
+                            "resolving",
+                        ))
+                    } else {
+                        None
+                    }
+                }))
                 .collect(),
             pending_choice: self
                 .pending
@@ -2472,85 +1920,7 @@ impl Game {
                         }
                     }
                 } else if d.kind == "spell" {
-                    match c.definition.as_str() {
-                        "JC118" => {
-                            for r in 0..self.regions.len() {
-                                candidates.push((
-                                    Action {
-                                        card_id: Some(c.id.clone()),
-                                        region: Some(r),
-                                        ..Action::new("play")
-                                    },
-                                    format!(
-                                        "停战协议 → {}",
-                                        card(&self.regions[r].card.definition).name
-                                    ),
-                                ));
-                            }
-                        }
-                        "XQ49" => {
-                            for t in self.players.iter().flat_map(|p| p.graveyard.iter()) {
-                                candidates.push((
-                                    Action {
-                                        card_id: Some(c.id.clone()),
-                                        target_id: Some(t.id.clone()),
-                                        ..Action::new("play")
-                                    },
-                                    format!("葬礼 → {}", card(&t.definition).name),
-                                ));
-                            }
-                        }
-                        "JC092" => {
-                            for t in &self.players[seat].graveyard {
-                                for r in 0..self.regions.len() {
-                                    candidates.push((
-                                        Action {
-                                            card_id: Some(c.id.clone()),
-                                            target_id: Some(t.id.clone()),
-                                            region: Some(r),
-                                            ..Action::new("play")
-                                        },
-                                        format!(
-                                            "死灵召唤 {} → {}",
-                                            card(&t.definition).name,
-                                            card(&self.regions[r].card.definition).name
-                                        ),
-                                    ));
-                                }
-                            }
-                        }
-                        "XQ03" | "JC063" => {
-                            for (r, t) in &board {
-                                let name = self.card_view(t, seat, Some(*r), None).name;
-                                let options = if c.definition == "JC063" {
-                                    vec![Some("hide".to_string()), Some("return".to_string())]
-                                } else {
-                                    vec![None]
-                                };
-                                for option in options {
-                                    candidates.push((
-                                        Action {
-                                            card_id: Some(c.id.clone()),
-                                            target_id: Some(t.id.clone()),
-                                            option: option.clone(),
-                                            ..Action::new("play")
-                                        },
-                                        format!(
-                                            "{} {} → {}",
-                                            d.name,
-                                            match option.as_deref() {
-                                                Some("hide") => "潜伏",
-                                                Some("return") => "回手",
-                                                _ => "",
-                                            },
-                                            name
-                                        ),
-                                    ));
-                                }
-                            }
-                        }
-                        _ => {}
-                    }
+                    candidates.extend(self.rule_action_candidates(seat, c, None, "play"));
                 }
             }
             for (r, c) in &board {
@@ -2565,23 +1935,8 @@ impl Game {
                         },
                         format!("现身 {}", card(&c.definition).name),
                     ));
-                } else if c.definition == "LC19" || c.definition == "JC003" {
-                    for (tr, t) in &board {
-                        let target = self.card_view(t, seat, Some(*tr), None);
-                        candidates.push((
-                            Action {
-                                card_id: Some(c.id.clone()),
-                                target_id: Some(t.id.clone()),
-                                ..Action::new("activate")
-                            },
-                            format!(
-                                "{} 能力 → {}（地区{}）",
-                                card(&c.definition).name,
-                                target.name,
-                                r + 1
-                            ),
-                        ));
-                    }
+                } else {
+                    candidates.extend(self.rule_action_candidates(seat, c, Some(*r), "activate"));
                 }
             }
         }
@@ -2590,14 +1945,7 @@ impl Game {
             .filter_map(|(action, label)| {
                 let mut trial = self.clone();
                 if trial.apply_inner(seat, action.clone()).is_ok() {
-                    let id = format!(
-                        "{}:{}:{}:{}:{}",
-                        action.kind,
-                        action.card_id.as_deref().unwrap_or(""),
-                        action.target_id.as_deref().unwrap_or(""),
-                        action.region.map(|r| r.to_string()).unwrap_or_default(),
-                        action.option.as_deref().unwrap_or("")
-                    );
+                    let id = serde_json::to_string(&action).expect("legal action JSON");
                     Some(LegalAction {
                         action,
                         id,
@@ -2669,6 +2017,54 @@ mod tests {
             g.players[seat].assets.push(c);
         }
     }
+    fn region_effect_fixture(g: &mut Game, definition: &str) {
+        let c = g.make_card(definition, 0);
+        let source = g.source_snapshot(&c, None);
+        let spec = rules::definition(definition).abilities[0].clone();
+        if !spec.modes.is_empty() {
+            g.declare_trigger(Declaration {
+                actor: 0,
+                source,
+                ability: spec,
+            })
+            .unwrap();
+        } else {
+            let frame = g.make_frame(0, source, &spec, vec![], vec![], None);
+            g.effects.push_back(Effect::Frame {
+                frame: Box::new(frame),
+            });
+        }
+    }
+    fn move_fixture(g: &mut Game, target: &str, region: usize) {
+        let (r, c) = g.board(target).unwrap();
+        let source = g.source_snapshot(c, Some(r));
+        let slot = rules::TargetSlotSpec {
+            zone: rules::Zone::Region,
+            kind: rules::EntityKind::Any,
+            relation: rules::Relation::Any,
+            range: rules::Range::Anywhere,
+            subtype: None,
+            min: 1,
+            max: 1,
+        };
+        let id = format!("region:{region}");
+        let public = g.public_target(c.controller, &source, &slot, &id);
+        let mut spec = rules::definition("JC014").abilities[0].clone();
+        spec.requires_ready_source = false;
+        let frame = g.make_frame(
+            c.controller,
+            source,
+            &spec,
+            vec![BoundTarget {
+                id,
+                spec: slot,
+                public,
+            }],
+            vec![],
+            None,
+        );
+        g.resolve_frame(frame).unwrap();
+    }
     fn pass_stack(g: &mut Game) {
         let mut n = 0;
         while !g.stack.is_empty() && g.pending.is_none() {
@@ -2701,13 +2097,13 @@ mod tests {
     #[test]
     fn catalog_is_restricted_real_complete_and_decks_are_legal() {
         let c = catalog::catalog();
-        assert_eq!(c.cards.len(), 26);
+        assert_eq!(c.cards.len(), 30);
         assert_eq!(
             c.cards
                 .iter()
                 .filter(|d| d.kind == "character" || d.kind == "spell")
                 .count(),
-            21
+            25
         );
         for deck in &c.decks {
             assert_eq!(deck.card_count, 50);
@@ -2973,14 +2369,13 @@ mod tests {
     fn mobility_adjacent_only_and_preserves_entity() {
         let mut g = game("teams");
         let id = board(&mut g, "JC014", 0, 2);
+        board(&mut g, "JC059", 0, 2);
+        board(&mut g, "JC059", 0, 3);
         g.board_mut(&id).unwrap().damage = 1;
         g.begin_window(Window::Mobility);
-        g.effects.push_back(Effect::TargetTrigger {
-            seat: 0,
-            label: "机动".into(),
-            source: id.clone(),
-            mode: "mobility".into(),
-        });
+        let (r, c) = g.board(&id).unwrap();
+        let source = g.source_snapshot(c, Some(r));
+        g.emit_event(0, source, Event::ConfrontationStart);
         g.drive().unwrap();
         let p = g.pending.as_ref().unwrap();
         assert_eq!(
@@ -3161,11 +2556,7 @@ mod tests {
         assert_eq!(g.pending.as_ref().unwrap().choice.min, Some(1));
         select(&mut g, vec![first]);
         assert_eq!(g.players[0].graveyard.last().unwrap().definition, "LC23");
-        g.effect(Effect::RegionTrigger {
-            seat: 0,
-            definition: "DQJC107".into(),
-        })
-        .unwrap();
+        region_effect_fixture(&mut g, "DQJC107");
         g.drive().unwrap();
         let selected = g.pending.as_ref().unwrap().choice.options[4].id.clone();
         let definition = g.players[0].deck[4].definition.clone();
@@ -3173,31 +2564,19 @@ mod tests {
         assert_eq!(g.players[0].deck[0].definition, definition);
         let other = g.pending.as_ref().unwrap().choice.options[0].id.clone();
         select(&mut g, vec![other]);
-        g.effect(Effect::RegionTrigger {
-            seat: 0,
-            definition: "DQJC112".into(),
-        })
-        .unwrap();
+        region_effect_fixture(&mut g, "DQJC112");
         g.drive().unwrap();
         let h = g.players[0].hand.len();
         let pick = g.players[0].hand[0].id.clone();
         select(&mut g, vec![pick]);
         assert_eq!(g.players[0].hand.len(), h);
         select(&mut g, vec![]);
-        g.effect(Effect::RegionTrigger {
-            seat: 0,
-            definition: "DQJC116".into(),
-        })
-        .unwrap();
+        region_effect_fixture(&mut g, "DQJC116");
         let rng = g.random;
         g.drive().unwrap();
         assert!(g.pending.is_none());
         assert_ne!(g.random, rng);
-        g.effect(Effect::RegionTrigger {
-            seat: 0,
-            definition: "DQJC114".into(),
-        })
-        .unwrap();
+        region_effect_fixture(&mut g, "DQJC114");
         g.drive().unwrap();
         select(&mut g, vec!["discard".into()]);
         pass_stack(&mut g);
@@ -3215,11 +2594,7 @@ mod tests {
         let hidden = board(&mut g, "JC125", 1, 1);
         g.board_mut(&hidden).unwrap().face_down = true;
         let chara = board(&mut g, "JC125", 1, 1);
-        g.effect(Effect::RegionTrigger {
-            seat: 0,
-            definition: "DQJC113".into(),
-        })
-        .unwrap();
+        region_effect_fixture(&mut g, "DQJC113");
         g.drive().unwrap();
         assert!(g.board(&chara).is_none());
         assert!(g.board(&hidden).is_some());
@@ -3231,7 +2606,11 @@ mod tests {
             ..Action::new("choose")
         };
         match p.resolution {
-            ChoiceResolution::Forecast { .. } => {
+            ChoiceResolution::Forecast { .. }
+            | ChoiceResolution::Frame {
+                choice: FrameChoice::Forecast { .. },
+                ..
+            } => {
                 a.top = Some(p.choice.options.iter().map(|o| o.id.clone()).collect());
                 a.bottom = Some(vec![]);
             }
@@ -3336,11 +2715,7 @@ mod tests {
             },
         )
         .unwrap();
-        g.effect(Effect::Move {
-            target: target.clone(),
-            region: 1,
-        })
-        .unwrap();
+        move_fixture(&mut g, &target, 1);
         pass_stack(&mut g);
         assert_eq!(g.board(&target).unwrap().1.wounds, 1);
         let spell = hand(&mut g, "JC118", 0);
@@ -3363,6 +2738,525 @@ mod tests {
         g.drive().unwrap();
         assert!(g.regions[1].skip);
         assert_eq!(g.players[0].graveyard.last().unwrap().definition, "JC118");
+    }
+    #[test]
+    fn funeral_target_recovered_in_response_cancels_draw_without_refunding_cost() {
+        let mut g = game("duel");
+        // Initial layout fixture: a graveyard character and an already concealed thief.
+        // All changes after this setup use the same Actions as the live service.
+        let corpse = g.make_card("LC20", 1);
+        let old_target = corpse.id.clone();
+        g.players[1].graveyard.push(corpse);
+        let thief = board(&mut g, "JC086", 1, 0);
+        g.board_mut(&thief).unwrap().face_down = true;
+        resource(&mut g, 0, "JC125", 2);
+        resource(&mut g, 1, "JC086", 3);
+        let funeral = hand(&mut g, "XQ49", 0);
+        let actor_hand_before = g.players[0].hand.len();
+        let target_deck_before = g.players[1].deck.len();
+        let target_hand_before = g.players[1].hand.len();
+
+        g.apply(
+            0,
+            Action {
+                card_id: Some(funeral),
+                target_id: Some(old_target.clone()),
+                ..Action::new("play")
+            },
+        )
+        .unwrap();
+        assert_eq!(g.resources(0), 1);
+        g.apply(0, Action::new("pass")).unwrap();
+        g.apply(
+            1,
+            Action {
+                card_id: Some(thief),
+                ..Action::new("reveal")
+            },
+        )
+        .unwrap();
+        pass_stack(&mut g);
+        assert_eq!(g.pending.as_ref().unwrap().seat, 1);
+        assert_eq!(g.stack.len(), 1); // Funeral is still waiting under the entry trigger.
+        select(&mut g, vec![old_target.clone()]);
+        pass_stack(&mut g);
+
+        assert!(g.stack.is_empty() && g.pending.is_none());
+        assert!(g.players[1].graveyard.iter().all(|c| c.id != old_target));
+        assert_eq!(g.players[1].hand.len(), target_hand_before + 1);
+        let recovered = g.players[1].hand.last().unwrap();
+        assert_eq!(recovered.definition, "LC20");
+        assert_ne!(recovered.id, old_target);
+        assert_eq!(g.players[1].deck.len(), target_deck_before); // No Funeral move to deck.
+        assert_eq!(g.players[0].hand.len(), actor_hand_before - 1); // No attached draw.
+        assert_eq!(g.resources(0), 1); // The accepted cost remains paid.
+        assert_eq!(g.players[0].graveyard.last().unwrap().definition, "XQ49");
+    }
+    #[test]
+    fn response_hide_and_reveal_reenters_with_new_identity_old_spell_cannot_hit() {
+        let mut g = game("duel");
+        // Initial layout fixture; the response, flip, departure and reentry use Actions.
+        let old_target = board(&mut g, "LC20", 1, 0);
+        resource(&mut g, 0, "JC002", 2);
+        resource(&mut g, 1, "JC063", 4);
+        let binding = hand(&mut g, "XQ03", 0);
+        let chase = hand(&mut g, "JC063", 1);
+        g.apply(
+            0,
+            Action {
+                card_id: Some(binding),
+                target_id: Some(old_target.clone()),
+                ..Action::new("play")
+            },
+        )
+        .unwrap();
+        g.apply(0, Action::new("pass")).unwrap();
+        g.apply(
+            1,
+            Action {
+                card_id: Some(chase),
+                target_id: Some(old_target.clone()),
+                option: Some("hide".into()),
+                ..Action::new("play")
+            },
+        )
+        .unwrap();
+        g.apply(1, Action::new("pass")).unwrap();
+        g.apply(0, Action::new("pass")).unwrap(); // Only Chase resolves.
+        assert_eq!(g.stack.len(), 1);
+        assert!(g.board(&old_target).is_none());
+        let hidden = g.regions[0].cards[0].id.clone();
+        assert_ne!(hidden, old_target);
+        assert!(g.board(&hidden).unwrap().1.face_down);
+
+        g.apply(0, Action::new("pass")).unwrap();
+        g.apply(
+            1,
+            Action {
+                card_id: Some(hidden.clone()),
+                ..Action::new("reveal")
+            },
+        )
+        .unwrap();
+        assert!(g.board(&hidden).is_none()); // The character has left the board for the stack.
+        assert!(g.regions[0].cards.is_empty());
+        assert_eq!(g.stack.len(), 2);
+        g.apply(1, Action::new("pass")).unwrap();
+        g.apply(0, Action::new("pass")).unwrap(); // Only Reveal resolves and declares its trigger.
+        assert_eq!(g.stack.len(), 1);
+        assert_eq!(g.pending.as_ref().unwrap().seat, 1);
+        select(&mut g, vec![]); // Decline the optional LC20 entry trigger.
+        let reentered = g.regions[0].cards[0].id.clone();
+        assert_ne!(reentered, hidden);
+        assert_ne!(reentered, old_target);
+        assert!(!g.board(&reentered).unwrap().1.face_down);
+        pass_stack(&mut g);
+
+        assert_eq!(g.regions[0].cards.len(), 1);
+        assert_eq!(g.regions[0].cards[0].id, reentered);
+        assert!(!g.regions[0].cards[0].exhausted); // Old XQ03 does not target the new entity.
+        assert_eq!(g.resources(0), 0);
+        assert_eq!(g.resources(1), 0);
+        assert_eq!(g.players[0].graveyard.last().unwrap().definition, "XQ03");
+        assert_eq!(g.players[1].graveyard.last().unwrap().definition, "JC063");
+    }
+    #[test]
+    fn murder_response_sacrifices_disciple_as_cost_and_independent_reduction_resolves() {
+        let mut g = game("duel");
+        // Initial layout fixture; every declaration, payment, response and resolution is an Action.
+        let disciple = board(&mut g, "JC042", 0, 0);
+        resource(&mut g, 0, "JC042", 2);
+        resource(&mut g, 1, "JC091", 3);
+        let murder = hand(&mut g, "JC091", 1);
+        let future = hand(&mut g, "JC049", 0);
+        g.apply(0, Action::new("pass")).unwrap();
+        g.apply(
+            1,
+            Action {
+                card_id: Some(murder),
+                target_id: Some(disciple.clone()),
+                ..Action::new("play")
+            },
+        )
+        .unwrap();
+        g.apply(1, Action::new("pass")).unwrap();
+        g.apply(
+            0,
+            Action {
+                card_id: Some(disciple.clone()),
+                ..Action::new("activate")
+            },
+        )
+        .unwrap();
+        assert!(g.board(&disciple).is_none());
+        assert_eq!(g.players[0].graveyard.len(), 1); // Sacrifice is paid before the response can resolve.
+        assert!(g.modifiers.is_empty());
+        let view = g.view(1);
+        assert_eq!(view.stack[0].target_summaries[0].status, "missing");
+        assert!(!view.stack[0].target_summaries[0].valid);
+        let restored = Game::from_persisted(&serde_json::to_string(&g).unwrap()).unwrap();
+        assert_eq!(
+            serde_json::to_string(&restored).unwrap(),
+            serde_json::to_string(&g).unwrap()
+        );
+        pass_stack(&mut g);
+        assert_eq!(g.modifiers.len(), 1);
+        assert_eq!(g.modifiers[0].actor, 0);
+        assert_eq!(g.resources(1), 0); // Failed Murder does not refund its three assets.
+        assert_eq!(g.players[1].graveyard.last().unwrap().definition, "JC091");
+        assert_eq!(g.players[0].graveyard.len(), 1); // Original target was not destroyed again.
+        let discounted = g
+            .view(0)
+            .hand
+            .into_iter()
+            .find(|c| c.instance_id == future)
+            .unwrap();
+        assert_eq!(discounted.effective_cost, Some(0));
+        assert!(g
+            .log
+            .iter()
+            .any(|entry| entry.text.contains("整个卡牌或能力效果取消")));
+    }
+    #[test]
+    fn bottom_to_hand_insufficient_cards_does_not_draw_or_eliminate_and_pays_controlled_cost() {
+        for remaining in 0..=1 {
+            let mut g = game("duel");
+            // Initial fixture includes a character owned by the opponent but controlled by the caster.
+            let sacrifice = board(&mut g, "LC21", 1, 0);
+            g.board_mut(&sacrifice).unwrap().controller = 0;
+            resource(&mut g, 0, "JC042", 2);
+            let spell = hand(&mut g, "JC049", 0);
+            g.players[0].deck.truncate(remaining);
+            let hand_before = g.players[0].hand.len();
+            let old_bottom = g.players[0].deck.last().map(|c| c.id.clone());
+            let legal = g
+                .legal_actions(0)
+                .into_iter()
+                .find(|a| {
+                    a.action.card_id.as_deref() == Some(&spell)
+                        && a.action.cost_selected.as_ref() == Some(&vec![sacrifice.clone()])
+                })
+                .unwrap();
+            assert!(legal.label.contains("称职的保镖") && legal.label.contains(&sacrifice));
+            g.apply(0, legal.action).unwrap();
+            assert!(g.board(&sacrifice).is_none());
+            assert_eq!(g.resources(0), 0);
+            pass_stack(&mut g);
+            assert!(!g.players[0].eliminated);
+            assert_eq!(g.status, "playing");
+            assert_eq!(g.players[0].hand.len(), hand_before - 1 + remaining);
+            assert!(g.players[0].deck.is_empty());
+            if let Some(old) = old_bottom {
+                assert_ne!(g.players[0].hand.last().unwrap().id, old);
+            }
+            assert_eq!(g.players[1].graveyard.last().unwrap().definition, "LC21");
+            assert_eq!(g.players[0].graveyard.last().unwrap().definition, "JC049");
+        }
+    }
+    #[test]
+    fn invalid_additional_sacrifice_rolls_back_assets_modifier_and_every_state_field() {
+        let mut g = game("duel");
+        let disciple = board(&mut g, "JC042", 0, 0);
+        let enemy = board(&mut g, "LC21", 1, 0);
+        resource(&mut g, 0, "JC042", 2);
+        let spell = hand(&mut g, "JC049", 0);
+        g.apply(
+            0,
+            Action {
+                card_id: Some(disciple),
+                ..Action::new("activate")
+            },
+        )
+        .unwrap();
+        pass_stack(&mut g);
+        let before = serde_json::to_string(&g).unwrap();
+        assert!(g
+            .apply(
+                0,
+                Action {
+                    card_id: Some(spell),
+                    cost_selected: Some(vec![enemy]),
+                    ..Action::new("play")
+                }
+            )
+            .is_err());
+        assert_eq!(serde_json::to_string(&g).unwrap(), before);
+        assert_eq!(g.modifiers[0].uses, 1);
+        assert_eq!(g.resources(0), 2);
+    }
+    #[test]
+    fn reduction_only_face_up_play_matches_society_or_blood_loyalty_and_expires() {
+        let mut g = game("duel");
+        let disciple = board(&mut g, "JC042", 0, 0);
+        let hidden = board(&mut g, "LC23", 0, 1);
+        g.board_mut(&hidden).unwrap().face_down = true;
+        let target = board(&mut g, "LC21", 1, 0);
+        resource(&mut g, 0, "JC042", 4);
+        resource(&mut g, 0, "JC002", 2);
+        resource(&mut g, 0, "JC091", 2);
+        let nonmatching = hand(&mut g, "XQ03", 0);
+        let blood = hand(&mut g, "JZ54", 0);
+        g.apply(
+            0,
+            Action {
+                card_id: Some(disciple),
+                ..Action::new("activate")
+            },
+        )
+        .unwrap();
+        pass_stack(&mut g);
+        g.apply(
+            0,
+            Action {
+                card_id: Some(nonmatching),
+                target_id: Some(target),
+                ..Action::new("play")
+            },
+        )
+        .unwrap();
+        pass_stack(&mut g);
+        assert_eq!(g.modifiers[0].uses, 1);
+        let resources = g.resources(0);
+        g.apply(
+            0,
+            Action {
+                card_id: Some(hidden),
+                ..Action::new("reveal")
+            },
+        )
+        .unwrap();
+        assert_eq!(g.resources(0), resources - 3);
+        pass_stack(&mut g);
+        select(&mut g, vec![]);
+        assert_eq!(g.modifiers[0].uses, 1);
+        let resources = g.resources(0);
+        g.apply(
+            0,
+            Action {
+                card_id: Some(blood),
+                target_id: Some("p0".into()),
+                ..Action::new("play")
+            },
+        )
+        .unwrap();
+        assert_eq!(g.resources(0), resources);
+        assert_eq!(g.modifiers[0].uses, 0);
+        pass_stack(&mut g);
+        let id = g.pending.as_ref().unwrap().choice.options[0].id.clone();
+        select(&mut g, vec![id]);
+        // A separate no-red-assets fixture verifies reduction never supplies loyalty.
+        let mut no_loyalty = game("duel");
+        let source = board(&mut no_loyalty, "JC042", 0, 0);
+        let spell = hand(&mut no_loyalty, "JC049", 0);
+        let fee = board(&mut no_loyalty, "LC21", 0, 0);
+        no_loyalty
+            .apply(
+                0,
+                Action {
+                    card_id: Some(source),
+                    ..Action::new("activate")
+                },
+            )
+            .unwrap();
+        pass_stack(&mut no_loyalty);
+        let before = serde_json::to_string(&no_loyalty).unwrap();
+        assert!(no_loyalty
+            .apply(
+                0,
+                Action {
+                    card_id: Some(spell),
+                    cost_selected: Some(vec![fee]),
+                    ..Action::new("play")
+                }
+            )
+            .is_err());
+        assert_eq!(serde_json::to_string(&no_loyalty).unwrap(), before);
+        let turn = no_loyalty.turn;
+        while no_loyalty.turn == turn && no_loyalty.status == "playing" {
+            if no_loyalty.pending.is_some() {
+                let (seat, a) = bot_choice(&no_loyalty);
+                no_loyalty.apply(seat, a).unwrap();
+            } else {
+                let seat = no_loyalty
+                    .living(no_loyalty.priority_team)
+                    .into_iter()
+                    .find(|s| !no_loyalty.passed.contains(s))
+                    .unwrap();
+                no_loyalty.apply(seat, Action::new("pass")).unwrap();
+            }
+        }
+        assert!(no_loyalty.modifiers.is_empty());
+    }
+    #[test]
+    fn effect_sacrifice_private_choice_restores_accepted_guard_and_current_control() {
+        let mut g = game("duel");
+        let sacrifice = board(&mut g, "LC20", 0, 0);
+        g.board_mut(&sacrifice).unwrap().controller = 1;
+        resource(&mut g, 0, "JC091", 2);
+        let spell = hand(&mut g, "JZ54", 0);
+        g.apply(
+            0,
+            Action {
+                card_id: Some(spell),
+                target_id: Some("p1".into()),
+                ..Action::new("play")
+            },
+        )
+        .unwrap();
+        pass_stack(&mut g);
+        let pending = g.pending.clone().unwrap();
+        assert_eq!(pending.seat, 1);
+        assert_eq!(pending.choice.min, Some(1));
+        let ChoiceResolution::Frame { frame, .. } = &pending.resolution else {
+            panic!("generic frame continuation required")
+        };
+        assert!(matches!(frame.guard, GuardState::Accepted));
+        assert_eq!(frame.cursor, 1);
+        assert_eq!(frame.already_paid.len(), 1);
+        assert!(g.view(0).pending_choice.is_none());
+        assert_eq!(
+            g.view(0).stack.last().unwrap().target_summaries[0].status,
+            "guardAccepted"
+        );
+        let mut restored = Game::from_persisted(&serde_json::to_string(&g).unwrap()).unwrap();
+        let a = Action {
+            choice_id: Some(pending.choice.id),
+            selected: Some(vec![sacrifice.clone()]),
+            ..Action::new("choose")
+        };
+        g.apply(1, a.clone()).unwrap();
+        restored.apply(1, a).unwrap();
+        assert_eq!(
+            serde_json::to_string(&g).unwrap(),
+            serde_json::to_string(&restored).unwrap()
+        );
+        assert!(g.board(&sacrifice).is_none());
+        assert_eq!(g.resources(0), 0);
+        assert_eq!(g.players[0].graveyard.len(), 2);
+    }
+    #[test]
+    fn source_leaves_after_angru_trigger_target_exhaust_still_resolves() {
+        let mut g = game("duel");
+        let source = board(&mut g, "LC23", 0, 0);
+        g.board_mut(&source).unwrap().face_down = true;
+        let target = board(&mut g, "LC21", 1, 0);
+        resource(&mut g, 0, "JC125", 3);
+        resource(&mut g, 1, "JC091", 3);
+        let murder = hand(&mut g, "JC091", 1);
+        g.apply(
+            0,
+            Action {
+                card_id: Some(source),
+                ..Action::new("reveal")
+            },
+        )
+        .unwrap();
+        pass_stack(&mut g);
+        let revealed = g.regions[0]
+            .cards
+            .iter()
+            .find(|c| c.controller == 0)
+            .unwrap()
+            .id
+            .clone();
+        select(&mut g, vec![target.clone()]);
+        g.apply(0, Action::new("pass")).unwrap();
+        g.apply(
+            1,
+            Action {
+                card_id: Some(murder),
+                target_id: Some(revealed.clone()),
+                ..Action::new("play")
+            },
+        )
+        .unwrap();
+        g.apply(1, Action::new("pass")).unwrap();
+        g.apply(0, Action::new("pass")).unwrap();
+        assert!(g.board(&revealed).is_none());
+        assert!(!g.board(&target).unwrap().1.exhausted);
+        pass_stack(&mut g);
+        assert!(g.board(&target).unwrap().1.exhausted);
+    }
+    #[test]
+    fn teams_both_teammates_can_respond_and_reduction_belongs_to_fixed_actor() {
+        let mut g = game("teams");
+        let first = board(&mut g, "JC042", 0, 0);
+        let teammate = board(&mut g, "JC042", 1, 2);
+        resource(&mut g, 2, "JC091", 3);
+        let murder = hand(&mut g, "JC091", 2);
+        for seat in [0, 1] {
+            g.apply(seat, Action::new("pass")).unwrap();
+        }
+        g.apply(
+            2,
+            Action {
+                card_id: Some(murder),
+                target_id: Some(first.clone()),
+                ..Action::new("play")
+            },
+        )
+        .unwrap();
+        for seat in [2, 3] {
+            g.apply(seat, Action::new("pass")).unwrap();
+        }
+        g.apply(
+            0,
+            Action {
+                card_id: Some(first),
+                ..Action::new("activate")
+            },
+        )
+        .unwrap();
+        g.apply(0, Action::new("pass")).unwrap();
+        assert!(g.passed.contains(&0));
+        g.apply(
+            1,
+            Action {
+                card_id: Some(teammate),
+                ..Action::new("activate")
+            },
+        )
+        .unwrap();
+        assert!(g.passed.is_empty());
+        assert_eq!(g.priority_team, 0);
+        assert_eq!(g.stack.len(), 3);
+        for _ in 0..3 {
+            for seat in [0, 1, 2, 3] {
+                g.apply(seat, Action::new("pass")).unwrap();
+            }
+        }
+        assert!(g.stack.is_empty());
+        assert_eq!(
+            g.modifiers.iter().map(|m| m.actor).collect::<Vec<_>>(),
+            vec![1, 0]
+        );
+        assert_eq!(g.players[0].graveyard.len(), 1);
+        assert_eq!(g.players[1].graveyard.len(), 1);
+        assert_eq!(g.resources(2), 0);
+    }
+    #[test]
+    fn sacrifice_defense_aura_immediately_kills_zero_defense_character_at_stable_point() {
+        let mut g = game("duel");
+        let aura = board(&mut g, "JC059", 1, 0);
+        let patient = board(&mut g, "LC20", 1, 0);
+        g.board_mut(&patient).unwrap().wounds = 1;
+        assert_eq!(g.defense(g.board(&patient).unwrap().1, 0), 1);
+        resource(&mut g, 0, "JC091", 2);
+        let ritual = hand(&mut g, "JZ54", 0);
+        g.apply(
+            0,
+            Action {
+                card_id: Some(ritual),
+                target_id: Some("p1".into()),
+                ..Action::new("play")
+            },
+        )
+        .unwrap();
+        pass_stack(&mut g);
+        select(&mut g, vec![aura]);
+        assert!(g.board(&patient).is_none());
+        assert_eq!(g.players[1].graveyard.len(), 2);
+        assert_eq!(g.players[0].graveyard.last().unwrap().definition, "JZ54");
     }
     #[test]
     fn private_forecast_and_damage_choices_roundtrip_without_leaking() {

@@ -1,0 +1,780 @@
+//! Finite typed rule declarations. Card identifiers occur only in this binding table.
+use crate::model::Icons;
+use serde::{Deserialize, Serialize};
+use std::{collections::BTreeMap, sync::OnceLock};
+
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
+pub enum Timing {
+    Standard,
+    Fast,
+    ActionFast,
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
+pub enum Event {
+    Enter,
+    Reveal,
+    Death,
+    ConfrontationStart,
+    RegionWon,
+}
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub enum Cost {
+    Assets(u32),
+    ExhaustSource,
+    SacrificeSource,
+    SacrificeSelectedControlledCharacter,
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
+pub enum Zone {
+    Board,
+    Graveyard,
+    Player,
+    Region,
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
+pub enum EntityKind {
+    Any,
+    Character,
+    Hidden,
+    CharacterOrHidden,
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
+pub enum Relation {
+    Any,
+    ControlledByActor,
+    OwnedByActor,
+    EnemyTeam,
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
+pub enum Range {
+    Anywhere,
+    SourceRegion,
+    Mobility,
+}
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct TargetSlotSpec {
+    pub zone: Zone,
+    pub kind: EntityKind,
+    pub relation: Relation,
+    pub range: Range,
+    pub subtype: Option<String>,
+    pub min: usize,
+    pub max: usize,
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
+pub enum EntityRef {
+    Source,
+    Target(usize),
+}
+#[derive(Clone, Copy, Debug, Serialize, Deserialize)]
+pub enum RegionRef {
+    SourceRegion,
+    Target(usize),
+    Chosen,
+}
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct BoardSelector {
+    pub kind: EntityKind,
+    pub relation: Relation,
+    pub region: Option<RegionRef>,
+    pub subtype: Option<String>,
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
+pub enum PlayerRef {
+    Actor,
+    Context,
+    Target(usize),
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
+pub enum Destination {
+    OwnerHand,
+    OwnerDeckBottom,
+    ActorHand,
+    HiddenInChosenRegion,
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
+pub enum DeckEnd {
+    Top,
+    Bottom,
+}
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
+pub enum MagicIcon {
+    None,
+    Blood,
+    Mind,
+    Other(String),
+}
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub enum CardFilter {
+    Any,
+    Kind(String),
+    SocietyOrMagic { society: String, magic: MagicIcon },
+}
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub enum Op {
+    Exhaust(EntityRef),
+    HealWounds(EntityRef),
+    Move(EntityRef, Destination),
+    Hide(EntityRef),
+    MoveOnBoard {
+        entity: EntityRef,
+        region: RegionRef,
+    },
+    Destroy(EntityRef),
+    SacrificeChosen(PlayerRef),
+    Draw {
+        player: PlayerRef,
+        count: usize,
+        end: DeckEnd,
+    },
+    Forecast {
+        player: PlayerRef,
+        count: usize,
+    },
+    Discard {
+        player: PlayerRef,
+        count: Option<usize>,
+        redraw: bool,
+        optional: bool,
+    },
+    Search {
+        player: PlayerRef,
+        filter: CardFilter,
+        to_top: bool,
+        optional: bool,
+    },
+    ExhaustMatching(BoardSelector),
+    DamageMatching {
+        selector: BoardSelector,
+        amount: u32,
+    },
+    SkipRegionThisRound(RegionRef),
+    MoveBottomToHand {
+        player: PlayerRef,
+        count: usize,
+    },
+    CostReduction {
+        filter: CardFilter,
+        amount: u32,
+    },
+    ForEachLivingPlayer(Vec<Op>),
+}
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct Mode {
+    pub key: String,
+    pub label: String,
+    pub targets: Vec<TargetSlotSpec>,
+    pub ops: Vec<Op>,
+}
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct AbilitySpec {
+    pub key: String,
+    pub label: String,
+    pub timing: Timing,
+    pub costs: Vec<Cost>,
+    pub targets: Vec<TargetSlotSpec>,
+    pub ops: Vec<Op>,
+    pub event: Option<Event>,
+    pub modes: Vec<Mode>,
+    pub requires_ready_source: bool,
+}
+#[derive(Clone, Debug, Default, Serialize, Deserialize)]
+pub struct Traits {
+    pub public: bool,
+    pub barrier: bool,
+    pub guard: u32,
+    pub kill: u32,
+    pub retreat: bool,
+    pub unlimited_copies: bool,
+}
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub enum StaticModifier {
+    NoEnemyCharacters(Icons, Icons),
+    OtherControlledCharactersDefense(u32),
+}
+#[derive(Clone, Debug, Default, Serialize, Deserialize)]
+pub struct Definition {
+    pub traits: Traits,
+    pub abilities: Vec<AbilitySpec>,
+    pub modifiers: Vec<StaticModifier>,
+}
+
+fn target(zone: Zone, kind: EntityKind, relation: Relation, range: Range) -> TargetSlotSpec {
+    TargetSlotSpec {
+        zone,
+        kind,
+        relation,
+        range,
+        subtype: None,
+        min: 1,
+        max: 1,
+    }
+}
+fn ability(
+    key: &str,
+    label: &str,
+    timing: Timing,
+    costs: Vec<Cost>,
+    targets: Vec<TargetSlotSpec>,
+    ops: Vec<Op>,
+    event: Option<Event>,
+) -> AbilitySpec {
+    AbilitySpec {
+        key: key.into(),
+        label: label.into(),
+        timing,
+        costs,
+        targets,
+        ops,
+        event,
+        modes: vec![],
+        requires_ready_source: false,
+    }
+}
+fn with_abilities(abilities: Vec<AbilitySpec>) -> Definition {
+    Definition {
+        abilities,
+        ..Default::default()
+    }
+}
+
+pub fn definitions() -> &'static BTreeMap<String, Definition> {
+    static DEFINITIONS: OnceLock<BTreeMap<String, Definition>> = OnceLock::new();
+    DEFINITIONS.get_or_init(|| {
+        use EntityRef::{Source, Target};
+        use PlayerRef::{Actor, Context};
+        let local = target(
+            Zone::Board,
+            EntityKind::Character,
+            Relation::Any,
+            Range::SourceRegion,
+        );
+        let character = target(
+            Zone::Board,
+            EntityKind::Character,
+            Relation::Any,
+            Range::Anywhere,
+        );
+        let own_grave = target(
+            Zone::Graveyard,
+            EntityKind::Character,
+            Relation::OwnedByActor,
+            Range::Anywhere,
+        );
+        let player = target(
+            Zone::Player,
+            EntityKind::Any,
+            Relation::Any,
+            Range::Anywhere,
+        );
+        let region = target(
+            Zone::Region,
+            EntityKind::Any,
+            Relation::Any,
+            Range::Anywhere,
+        );
+        let mut m = BTreeMap::new();
+        m.insert(
+            "JC125".into(),
+            Definition {
+                traits: Traits {
+                    unlimited_copies: true,
+                    ..Default::default()
+                },
+                ..Default::default()
+            },
+        );
+        m.insert(
+            "LC19".into(),
+            with_abilities(vec![ability(
+                "heal",
+                "移除创伤",
+                Timing::Standard,
+                vec![Cost::Assets(2)],
+                vec![local.clone()],
+                vec![Op::HealWounds(Target(0))],
+                None,
+            )]),
+        );
+        m.insert(
+            "LC20".into(),
+            with_abilities(vec![ability(
+                "heal-entry",
+                "进场触发",
+                Timing::Fast,
+                vec![],
+                vec![local.clone()],
+                vec![Op::HealWounds(Target(0))],
+                Some(Event::Enter),
+            )]),
+        );
+        m.insert(
+            "LC21".into(),
+            Definition {
+                traits: Traits {
+                    public: true,
+                    guard: 1,
+                    ..Default::default()
+                },
+                ..Default::default()
+            },
+        );
+        m.insert(
+            "LC22".into(),
+            Definition {
+                traits: Traits {
+                    public: true,
+                    guard: 1,
+                    ..Default::default()
+                },
+                ..Default::default()
+            },
+        );
+        m.insert(
+            "LC23".into(),
+            with_abilities(vec![ability(
+                "exhaust-reveal",
+                "现身触发",
+                Timing::Fast,
+                vec![],
+                vec![local.clone()],
+                vec![Op::Exhaust(Source), Op::Exhaust(Target(0))],
+                Some(Event::Reveal),
+            )]),
+        );
+        m.insert(
+            "LC24".into(),
+            with_abilities(vec![ability(
+                "forecast-entry",
+                "进场触发",
+                Timing::Fast,
+                vec![],
+                vec![],
+                vec![
+                    Op::Forecast {
+                        player: Actor,
+                        count: 2,
+                    },
+                    Op::Draw {
+                        player: Actor,
+                        count: 1,
+                        end: DeckEnd::Top,
+                    },
+                ],
+                Some(Event::Enter),
+            )]),
+        );
+        m.insert(
+            "XQ49".into(),
+            with_abilities(vec![ability(
+                "funeral",
+                "快速行动",
+                Timing::Fast,
+                vec![],
+                vec![target(
+                    Zone::Graveyard,
+                    EntityKind::Any,
+                    Relation::Any,
+                    Range::Anywhere,
+                )],
+                vec![
+                    Op::Move(Target(0), Destination::OwnerDeckBottom),
+                    Op::Draw {
+                        player: Actor,
+                        count: 1,
+                        end: DeckEnd::Top,
+                    },
+                ],
+                None,
+            )]),
+        );
+        m.insert(
+            "JC118".into(),
+            with_abilities(vec![ability(
+                "ceasefire",
+                "快速行动",
+                Timing::ActionFast,
+                vec![],
+                vec![region.clone()],
+                vec![Op::SkipRegionThisRound(RegionRef::Target(0))],
+                None,
+            )]),
+        );
+        m.insert(
+            "JC002".into(),
+            with_abilities(vec![ability(
+                "exhaust-reveal",
+                "现身触发",
+                Timing::Fast,
+                vec![],
+                vec![local],
+                vec![Op::Exhaust(Target(0))],
+                Some(Event::Reveal),
+            )]),
+        );
+        m.insert(
+            "JC003".into(),
+            with_abilities(vec![ability(
+                "exhaust",
+                "快速行动",
+                Timing::Fast,
+                vec![Cost::Assets(2), Cost::ExhaustSource],
+                vec![target(
+                    Zone::Board,
+                    EntityKind::CharacterOrHidden,
+                    Relation::Any,
+                    Range::Anywhere,
+                )],
+                vec![Op::Exhaust(Target(0))],
+                None,
+            )]),
+        );
+        m.insert(
+            "XQ03".into(),
+            with_abilities(vec![ability(
+                "exhaust",
+                "快速行动",
+                Timing::Fast,
+                vec![],
+                vec![character.clone()],
+                vec![Op::Exhaust(Target(0))],
+                None,
+            )]),
+        );
+        let mut mobility = ability(
+            "mobility",
+            "机动",
+            Timing::Fast,
+            vec![],
+            vec![target(
+                Zone::Region,
+                EntityKind::Any,
+                Relation::Any,
+                Range::Mobility,
+            )],
+            vec![Op::MoveOnBoard {
+                entity: Source,
+                region: RegionRef::Target(0),
+            }],
+            Some(Event::ConfrontationStart),
+        );
+        mobility.requires_ready_source = true;
+        m.insert(
+            "JC014".into(),
+            Definition {
+                traits: Traits {
+                    public: true,
+                    ..Default::default()
+                },
+                abilities: vec![mobility],
+                ..Default::default()
+            },
+        );
+        m.insert(
+            "JC016".into(),
+            Definition {
+                traits: Traits {
+                    kill: 1,
+                    retreat: true,
+                    ..Default::default()
+                },
+                modifiers: vec![StaticModifier::NoEnemyCharacters(
+                    Icons {
+                        influence: 1,
+                        ..Default::default()
+                    },
+                    Icons {
+                        investigation: 1,
+                        ..Default::default()
+                    },
+                )],
+                ..Default::default()
+            },
+        );
+        m.insert(
+            "JZ08".into(),
+            Definition {
+                traits: Traits {
+                    barrier: true,
+                    ..Default::default()
+                },
+                ..Default::default()
+            },
+        );
+        m.insert(
+            "JC056".into(),
+            Definition {
+                traits: Traits {
+                    public: true,
+                    ..Default::default()
+                },
+                abilities: vec![ability(
+                    "exhaust-hidden-entry",
+                    "进场触发",
+                    Timing::Fast,
+                    vec![],
+                    vec![],
+                    vec![Op::ExhaustMatching(BoardSelector {
+                        kind: EntityKind::Hidden,
+                        relation: Relation::Any,
+                        region: Some(RegionRef::SourceRegion),
+                        subtype: None,
+                    })],
+                    Some(Event::Enter),
+                )],
+                ..Default::default()
+            },
+        );
+        m.insert(
+            "JC059".into(),
+            Definition {
+                traits: Traits {
+                    public: true,
+                    ..Default::default()
+                },
+                modifiers: vec![StaticModifier::OtherControlledCharactersDefense(1)],
+                ..Default::default()
+            },
+        );
+        let mut chase = ability(
+            "chase",
+            "快速行动",
+            Timing::Fast,
+            vec![],
+            vec![],
+            vec![],
+            None,
+        );
+        chase.modes = vec![
+            Mode {
+                key: "hide".into(),
+                label: "潜伏".into(),
+                targets: vec![character.clone()],
+                ops: vec![Op::Hide(Target(0))],
+            },
+            Mode {
+                key: "return".into(),
+                label: "回手".into(),
+                targets: vec![target(
+                    Zone::Board,
+                    EntityKind::Hidden,
+                    Relation::Any,
+                    Range::Anywhere,
+                )],
+                ops: vec![Op::Move(Target(0), Destination::OwnerHand)],
+            },
+        ];
+        m.insert("JC063".into(), with_abilities(vec![chase]));
+        m.insert(
+            "JC086".into(),
+            with_abilities(vec![ability(
+                "recover-entry",
+                "进场触发",
+                Timing::Fast,
+                vec![],
+                vec![own_grave.clone()],
+                vec![Op::Move(Target(0), Destination::ActorHand)],
+                Some(Event::Enter),
+            )]),
+        );
+        m.insert(
+            "XQ12".into(),
+            with_abilities(vec![ability(
+                "discard-death",
+                "死亡触发",
+                Timing::Fast,
+                vec![],
+                vec![player.clone()],
+                vec![Op::Discard {
+                    player: PlayerRef::Target(0),
+                    count: Some(1),
+                    redraw: false,
+                    optional: false,
+                }],
+                Some(Event::Death),
+            )]),
+        );
+        m.insert(
+            "JC092".into(),
+            with_abilities(vec![ability(
+                "summon",
+                "行动",
+                Timing::Standard,
+                vec![],
+                vec![own_grave],
+                vec![Op::Move(Target(0), Destination::HiddenInChosenRegion)],
+                None,
+            )]),
+        );
+        m.insert(
+            "JC042".into(),
+            with_abilities(vec![ability(
+                "reduce-next",
+                "快速行动",
+                Timing::Fast,
+                vec![Cost::SacrificeSource],
+                vec![],
+                vec![Op::CostReduction {
+                    filter: CardFilter::SocietyOrMagic {
+                        society: "鸣钟教派".into(),
+                        magic: MagicIcon::Blood,
+                    },
+                    amount: 2,
+                }],
+                None,
+            )]),
+        );
+        let mut human = character;
+        human.subtype = Some("人类".into());
+        m.insert(
+            "JC091".into(),
+            with_abilities(vec![ability(
+                "destroy-human",
+                "快速行动",
+                Timing::ActionFast,
+                vec![],
+                vec![human],
+                vec![Op::Destroy(Target(0))],
+                None,
+            )]),
+        );
+        m.insert(
+            "JC049".into(),
+            with_abilities(vec![ability(
+                "take-bottom",
+                "快速行动",
+                Timing::Fast,
+                vec![Cost::SacrificeSelectedControlledCharacter],
+                vec![],
+                vec![Op::MoveBottomToHand {
+                    player: Actor,
+                    count: 2,
+                }],
+                None,
+            )]),
+        );
+        m.insert(
+            "JZ54".into(),
+            with_abilities(vec![ability(
+                "sacrifice-player",
+                "快速行动",
+                Timing::Fast,
+                vec![],
+                vec![player],
+                vec![Op::SacrificeChosen(PlayerRef::Target(0))],
+                None,
+            )]),
+        );
+        m.insert(
+            "DQJC107".into(),
+            with_abilities(vec![ability(
+                "search-win",
+                "赢取触发",
+                Timing::Fast,
+                vec![],
+                vec![],
+                vec![Op::ForEachLivingPlayer(vec![Op::Search {
+                    player: Context,
+                    filter: CardFilter::Any,
+                    to_top: true,
+                    optional: false,
+                }])],
+                Some(Event::RegionWon),
+            )]),
+        );
+        m.insert(
+            "DQJC112".into(),
+            with_abilities(vec![ability(
+                "swap-win",
+                "赢取触发",
+                Timing::Fast,
+                vec![],
+                vec![],
+                vec![Op::ForEachLivingPlayer(vec![Op::Discard {
+                    player: Context,
+                    count: None,
+                    redraw: true,
+                    optional: true,
+                }])],
+                Some(Event::RegionWon),
+            )]),
+        );
+        m.insert(
+            "DQJC113".into(),
+            with_abilities(vec![ability(
+                "damage-win",
+                "赢取触发",
+                Timing::Fast,
+                vec![],
+                vec![],
+                vec![Op::DamageMatching {
+                    selector: BoardSelector {
+                        kind: EntityKind::Character,
+                        relation: Relation::Any,
+                        region: None,
+                        subtype: None,
+                    },
+                    amount: 1,
+                }],
+                Some(Event::RegionWon),
+            )]),
+        );
+        let mut worldmode = ability(
+            "mode-win",
+            "赢取触发",
+            Timing::Fast,
+            vec![],
+            vec![],
+            vec![],
+            Some(Event::RegionWon),
+        );
+        worldmode.modes = vec![
+            Mode {
+                key: "draw".into(),
+                label: "所有玩家抓两张牌".into(),
+                targets: vec![],
+                ops: vec![Op::ForEachLivingPlayer(vec![Op::Draw {
+                    player: Context,
+                    count: 2,
+                    end: DeckEnd::Top,
+                }])],
+            },
+            Mode {
+                key: "discard".into(),
+                label: "所有玩家各弃两张牌".into(),
+                targets: vec![],
+                ops: vec![Op::ForEachLivingPlayer(vec![Op::Discard {
+                    player: Context,
+                    count: Some(2),
+                    redraw: false,
+                    optional: false,
+                }])],
+            },
+        ];
+        m.insert("DQJC114".into(), with_abilities(vec![worldmode]));
+        m.insert(
+            "DQJC116".into(),
+            with_abilities(vec![ability(
+                "attachment-win",
+                "赢取触发",
+                Timing::Fast,
+                vec![],
+                vec![],
+                vec![Op::ForEachLivingPlayer(vec![Op::Search {
+                    player: Context,
+                    filter: CardFilter::Kind("attachment".into()),
+                    to_top: false,
+                    optional: true,
+                }])],
+                Some(Event::RegionWon),
+            )]),
+        );
+        m.get_mut("LC19").unwrap().traits.public = true;
+        m
+    })
+}
+pub fn definition(id: &str) -> &'static Definition {
+    definitions()
+        .get(id)
+        .expect("released card has complete typed rule declaration")
+}

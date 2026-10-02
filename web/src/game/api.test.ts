@@ -25,6 +25,18 @@ describe('cloud table API', () => {
     vi.stubGlobal('fetch', vi.fn().mockResolvedValue(new Response(JSON.stringify({ error: 'stale', view: testView }), { status: 409 })));
     await expect(getState(session)).rejects.toMatchObject({ status: 409, view: testView });
   });
+  it('forwards an authoritative ability and sacrifice cost selection without display metadata', async () => {
+    const fetchMock = vi.fn().mockResolvedValue(new Response(JSON.stringify(testView), { status: 200 }));
+    vi.stubGlobal('fetch', fetchMock);
+    await sendCommand(session, 8, {
+      id: 'fast-response', label: '牺牲角色并响应', description: '服务端合法费用', kind: 'activate',
+      cardId: 'source-instance', abilityId: 'quick-response', targetId: 'target-instance', costSelected: ['sacrificed-instance'],
+    } as Parameters<typeof actionPayload>[0], 'response-command');
+    expect(JSON.parse(fetchMock.mock.calls[0][1].body)).toEqual({
+      commandId: 'response-command', expectedVersion: 8,
+      action: { kind: 'activate', cardId: 'source-instance', abilityId: 'quick-response', targetId: 'target-instance', costSelected: ['sacrificed-instance'] },
+    });
+  });
   it('reads split UTF-8 and CRLF SSE frames through authenticated fetch', async () => {
     const bytes = new TextEncoder().encode(`: keepalive\r\n\r\ndata: ${JSON.stringify(testView)}\r\n\r\n`);
     const frames = [bytes.slice(0, 12), bytes.slice(12, bytes.length - 3), bytes.slice(bytes.length - 3, bytes.length - 1), bytes.slice(bytes.length - 1)];

@@ -16,6 +16,8 @@ export RUSTUP_HOME=/workspace/.cloud-setup/rustup
 export CARGO_HOME=/workspace/.cloud-setup/cargo
 ```
 
-默认端口 8090，数据库 `rust-game.sqlite3`，可用 `PORT`/`HEGEMONY_DB` 更改；数据库路径应位于持久卷。相同数据库重新启动恢复房间及待选，浏览器保留原座位令牌才能恢复既有座位。运行中 SQLite 备份使用 backup API，不单独复制正在写入的 WAL 主文件。
+默认端口 8090，数据库 `rust-game-v2.sqlite3`，可用 `PORT`/`HEGEMONY_DB` 更改；数据库路径应位于持久卷。v2 状态使用独立数据库，旧 `rust-v0.1.0` 对局继续由对应旧引擎加载，不做静默迁移。当前云端旧服务占用 8090/8091 时，新核心验收显式使用其他空闲端口和独立数据库。
+
+相同版本的数据库重新启动恢复房间及待选，浏览器保留原座位令牌才能恢复既有座位。运行中 SQLite 备份使用 backup API，不单独复制正在写入的 WAL 主文件。
 
 这是原生云端启动方法，不是 Worker 部署包。WASM 构建见 [规则核心说明](../../rust-game-wasm/README.md)。已有保存、恢复及只读回放证据见 [云端验收记录](../../docs/CLOUD_PLAYTEST_2026-10-02.md)。互联网入口仍需部署架构确定，本机健康检查不能替代互联网可玩验收。

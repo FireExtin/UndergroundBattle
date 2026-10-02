@@ -59,11 +59,12 @@ OBSERVE_FETCH = r"""(() => {
 
 
 class UiRun:
-    def __init__(self, browser, base_url, output, max_steps, policy='develop'):
+    def __init__(self, browser, base_url, output, max_steps, policy='develop', response_deck=False):
         self.browser, self.base, self.output = browser, base_url.rstrip('/'), Path(output)
         self.output.mkdir(parents=True, exist_ok=True)
         self.max_steps = max_steps
         self.policy_name = policy
+        self.response_deck = response_deck
         self.contexts, self.pages, self.errors = [], [], []
         self.expected_errors = []
         self.offline_probe_active = False
@@ -325,8 +326,12 @@ class UiRun:
             catalog = await host.evaluate('window.__cloudCatalog')
             self.catalog = {card['id']: card for card in catalog['cards']}
             decks = catalog['decks']
+            chosen_decks = [decks[seat]['id'] for seat in range(capacity)]
+            if self.response_deck:
+                assert any(deck['id'] == 'responders' for deck in decks), 'Response deck unavailable in this binary'
+                chosen_decks[-1] = 'responders'
             await self.screenshot('initial-lobby')
-            await host.locator('.hg-deck').nth(0).click()
+            await host.locator('.hg-deck[data-deck-id=' + json.dumps(chosen_decks[0]) + ']').click()
             await host.get_by_label('你的称呼').fill(f'Cloud {mode} A')
             if mode == 'teams':
                 await host.get_by_role('button', name=re.compile('四人协作')).click()
@@ -335,7 +340,7 @@ class UiRun:
             invitation = (await self.view(0))['inviteCode']
             for seat in range(1, capacity):
                 page = await self.new_seat(seat)
-                await page.locator('.hg-deck').nth(seat).click()
+                await page.locator('.hg-deck[data-deck-id=' + json.dumps(chosen_decks[seat]) + ']').click()
                 await page.get_by_role('button', name='邀请码加入', exact=True).click()
                 await page.get_by_label('你的称呼').fill(f'Cloud {mode} {chr(65 + seat)}')
                 await page.get_by_label('邀请码', exact=True).fill(invitation)
@@ -407,6 +412,7 @@ class UiRun:
                   'rejectedCommands': sum(record['httpStatus'] != 200 for record in self.records),
                   'independentContexts': len(self.contexts), 'coverage': dict(self.coverage),
                   'policy': self.policy_name,
+                  'responseDeckRequested': self.response_deck,
                   'recovery': self.recovery, 'screenshots': self.screenshots,
                   'browserErrors': self.errors, 'expectedBrowserErrors': self.expected_errors, 'final': public_view(view)}
         write_json(self.output / f'{self.mode}-summary.json', result)
@@ -420,7 +426,7 @@ async def main(args):
         results = []
         try:
             for mode in args.modes.split(','):
-                run = UiRun(browser, args.base_url, args.output, args.max_steps, args.policy)
+                run = UiRun(browser, args.base_url, args.output, args.max_steps, args.policy, args.response_deck)
                 results.append(await run.play(mode))
             write_json(Path(args.output) / 'browser-summary.json', results)
             print(json.dumps([{'scenario': r['scenario'], 'passed': r['passed'], 'steps': r['steps'], 'winnerTeam': r['final'].get('winnerTeam'), 'turn': r['final']['turn']} for r in results]), flush=True)
@@ -435,6 +441,7 @@ if __name__ == '__main__':
     parser.add_argument('--modes', default='duel,teams')
     parser.add_argument('--max-steps', type=int, default=4500)
     parser.add_argument('--policy', choices=['develop', 'initial'], default='develop')
+    parser.add_argument('--response-deck', action='store_true', help='Use responders for the final seat, keeping all seat decks distinct')
     parser.add_argument('--ready-timeout', type=int, default=45)
     parser.add_argument('--chromium', default='/usr/bin/chromium')
     asyncio.run(main(parser.parse_args()))
