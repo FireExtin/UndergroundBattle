@@ -500,6 +500,15 @@ async fn health() -> Json<serde_json::Value> {
 async fn get_catalog() -> Json<catalog::Catalog> {
     Json(catalog::catalog().clone())
 }
+async fn room_catalog(
+    State(store): State<Store>,
+    Path(id): Path<String>,
+    headers: HeaderMap,
+) -> Result<Json<catalog::Catalog>, ApiError> {
+    store.authenticate(&id, bearer(&headers)?)?;
+    store.lookup(&id)?; // Native databases accept only the current kernel's rooms.
+    Ok(Json(catalog::catalog().clone()))
+}
 async fn create_room(
     State(store): State<Store>,
     Json(request): Json<CreateRoom>,
@@ -550,6 +559,7 @@ pub fn router(store: Store) -> Router {
         .route("/api/rooms", post(create_room))
         .route("/api/rooms/join", post(join_room))
         .route("/api/rooms/{roomId}/state", get(get_state))
+        .route("/api/rooms/{roomId}/catalog", get(room_catalog))
         .route("/api/rooms/{roomId}/events", get(events))
         .route("/api/rooms/{roomId}/commands", post(post_command))
         .layer(DefaultBodyLimit::max(32 * 1024))

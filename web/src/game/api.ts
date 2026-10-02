@@ -100,8 +100,10 @@ function timedSignal(signal?: AbortSignal | null): AbortSignal {
 const headers = (session: SavedSession) => ({ Authorization: `Bearer ${session.token}` });
 const roomPath = (session: SavedSession) => `/api/rooms/${encodeURIComponent(session.roomId)}`;
 let supportsEntryReceipts = false;
-export const getCatalog = async (signal?: AbortSignal) => {
-  const catalog = await request<Catalog & { entryIdempotency?: boolean }>('/api/catalog', { signal });
+export const getCatalog = async (signal?: AbortSignal, session?: SavedSession | null) => {
+  const catalog = await request<Catalog & { entryIdempotency?: boolean }>(session ? `${roomPath(session)}/catalog` : '/api/catalog', {
+    signal, ...(session ? { headers: headers(session) } : {}),
+  });
   supportsEntryReceipts = catalog.entryIdempotency === true;
   return catalog;
 };

@@ -1,10 +1,19 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { actionPayload, ApiError, createRoom, getCatalog, getState, pollState, readSession, saveSession, sendCommand, streamEvents } from './api';
-import { testView } from './testFixtures';
+import { testCatalog, testView } from './testFixtures';
 
 const session = { roomId: 'room-test', inviteCode: 'INVITE', token: 'opaque-seat-token', seat: 0 };
 afterEach(() => { vi.unstubAllGlobals(); localStorage.clear(); });
 describe('cloud table API', () => {
+  it('reads the room catalog with the original seat credential outside the URL', async () => {
+    const fetchMock = vi.fn().mockResolvedValue(new Response(JSON.stringify(testCatalog), { status: 200 }));
+    vi.stubGlobal('fetch', fetchMock);
+    expect(await getCatalog(undefined, session)).toEqual(testCatalog);
+    const [url, init] = fetchMock.mock.calls[0];
+    expect(url).toBe('/api/rooms/room-test/catalog');
+    expect(url).not.toContain(session.token);
+    expect(init.headers.Authorization).toBe(`Bearer ${session.token}`);
+  });
   it('stores an opaque seat credential locally without storing a hidden table snapshot', () => {
     saveSession({ ...session, view: testView } as typeof session);
     expect(readSession()).toEqual(session);

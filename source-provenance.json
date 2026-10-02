@@ -1,5 +1,5 @@
 {
   "originalRepository": "https://github.com/FireExtin/UndergroundBattle.git",
-  "originalCommit": "286ad83ef5a54bc0caed26199ca4cfea269314bd",
-  "wasmSha256": "b5e0070333a71ff5b01f31406118f523af473c0bb96fb732d3276d3855d7daae"
+  "originalCommit": "b7cb6b59c01726b29eb33704a8c05c54b10bdb47",
+  "wasmSha256": "2d5dcbaae76aa5706fa77af6747068e94da39654d25df3e764efa48e73905089"
 }

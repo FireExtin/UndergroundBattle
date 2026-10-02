@@ -600,6 +600,23 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
             },
         );
         m.insert(
+            "JC058".into(),
+            with_abilities(vec![ability(
+                "destroy-hidden-reveal",
+                "现身触发",
+                Timing::Fast,
+                vec![],
+                vec![target(
+                    Zone::Board,
+                    EntityKind::Hidden,
+                    Relation::Any,
+                    Range::SourceRegion,
+                )],
+                vec![Op::Destroy(Target(0))],
+                Some(Event::Reveal),
+            )]),
+        );
+        m.insert(
             "JC059".into(),
             Definition {
                 traits: Traits {
@@ -843,7 +860,7 @@ mod tests {
     #[test]
     fn invalid_multi_target_ability_is_rejected_before_registration() {
         let mut registry = definitions().clone();
-        assert_eq!(registry.len(), 29);
+        assert_eq!(registry.len(), 30);
         let ability = &mut registry.get_mut("LC20").unwrap().abilities[0];
         ability.targets.push(ability.targets[0].clone());
         let error = validate_definitions(&registry).unwrap_err();

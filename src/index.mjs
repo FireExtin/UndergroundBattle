@@ -26,9 +26,10 @@ export default {
       const service = new RoomService(env.DB, kernel);
       if (request.method === 'POST' && url.pathname === '/api/rooms') return json(await service.create(await body(request)));
       if (request.method === 'POST' && url.pathname === '/api/rooms/join') return json(await service.join(await body(request)));
-      const match = url.pathname.match(/^\/api\/rooms\/([a-f0-9]{24})\/(state|commands|events)$/);
+      const match = url.pathname.match(/^\/api\/rooms\/([a-f0-9]{24})\/(state|commands|events|catalog)$/);
       if (!match) throw new HttpError(404, '接口不存在');
       const [, id, operation] = match;
+      if (operation === 'catalog' && request.method === 'GET') return json({ ...await service.catalog(id, request.headers.get('authorization')), transport: 'polling', entryIdempotency: true });
       if (operation === 'state' && request.method === 'GET') {
         const view = await service.state(id, request.headers.get('authorization'), url.searchParams.get('afterVersion'));
         return view ? json(view) : new Response(null, { status: 204, headers: { 'Cache-Control': 'no-store' } });

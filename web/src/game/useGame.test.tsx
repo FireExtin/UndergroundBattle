@@ -8,13 +8,46 @@ const session = { roomId: testView.roomId, inviteCode: 'INVITE', token: 'opaque-
 const json = (body: unknown, status = 200) => new Response(JSON.stringify(body), { status });
 afterEach(() => { vi.useRealTimers(); vi.restoreAllMocks(); vi.unstubAllGlobals(); localStorage.clear(); });
 describe('room lifecycle and reconciliation', () => {
+  it('shows the persisted room catalog and reloads the current catalog after returning to the lobby', async () => {
+    saveSession(session);
+    const oldCatalog = { ...testCatalog, engineVersion: 'rust-v0.2.1' };
+    const calls: { url: string; authorization?: string }[] = [];
+    vi.stubGlobal('fetch', vi.fn(async (url: string, init?: RequestInit) => {
+      calls.push({ url, authorization: (init?.headers as Record<string, string> | undefined)?.Authorization });
+      return url === '/api/catalog' ? json(testCatalog) : url.endsWith('/catalog') ? json(oldCatalog) : json(testView);
+    }));
+    const { result } = renderHook(useGame);
+    await waitFor(() => expect(result.current.catalog).toEqual(oldCatalog));
+    expect(calls.find(c => c.url.endsWith('/catalog'))).toEqual({ url: `/api/rooms/${session.roomId}/catalog`, authorization: `Bearer ${session.token}` });
+    act(() => result.current.leave());
+    await waitFor(() => expect(result.current.catalog).toEqual(testCatalog));
+    expect(result.current.session).toBeNull();
+  });
+  it('ignores a late old catalog after switching rooms even when the fetch ignores abort', async () => {
+    saveSession(session);
+    const next = { ...session, roomId: 'other-room', token: 'other-token' };
+    const nextCatalog = { ...testCatalog, engineVersion: 'other-engine' };
+    let release: ((response: Response) => void) | undefined;
+    vi.stubGlobal('fetch', vi.fn((url: string) => {
+      if (url === `/api/rooms/${session.roomId}/catalog`) return new Promise<Response>(resolve => { release = resolve; });
+      return Promise.resolve(url === `/api/rooms/${next.roomId}/catalog` ? json(nextCatalog)
+        : url === '/api/catalog' ? json(testCatalog) : json({ ...testView, roomId: url.includes(next.roomId) ? next.roomId : session.roomId }));
+    }));
+    const { result } = renderHook(useGame);
+    await waitFor(() => expect(release).toBeDefined());
+    act(() => { result.current.leave(); result.current.resume(next); });
+    await waitFor(() => expect(result.current.catalog).toEqual(nextCatalog));
+    await act(async () => { release!(json({ ...testCatalog, engineVersion: 'late-old-engine' })); });
+    expect(result.current.catalog).toEqual(nextCatalog);
+    expect(result.current.session).toEqual(next);
+  });
   it('never regresses a table when a delayed command returns behind a newer poll', () => {
     expect(newerView({ ...testView, version: 12 }, { ...testView, version: 9 }).version).toBe(12);
     expect(newerView(testView, { ...testView, version: 2 }).version).toBe(2);
     expect(newerView({ ...testView, version: 12 }, { ...testView, you: 'p1', version: 9 }).you).toBe('p1');
   });
   it('creates a room with a curated deck and preserves only this seat for reload', async () => {
-    const fetchMock = vi.fn(async (url: string) => url === '/api/catalog' ? json(testCatalog) : url === '/api/rooms' ? json({ ...session, view: testView }) : url.endsWith('/events') ? new Response(null) : json(testView));
+    const fetchMock = vi.fn(async (url: string) => url.endsWith('/catalog') ? json(testCatalog) : url === '/api/rooms' ? json({ ...session, view: testView }) : url.endsWith('/events') ? new Response(null) : json(testView));
     vi.stubGlobal('fetch', fetchMock);
     const { result } = renderHook(useGame);
     await waitFor(() => expect(result.current.catalog).toEqual(testCatalog));
@@ -32,7 +65,7 @@ describe('room lifecycle and reconciliation', () => {
     saveSession(session);
     const choice = { id: 'restore-choice', kind: 'mulligan', title: '再调度', description: '选择手牌', playerId: 'p0', options: [], allowDecline: true };
     const state = { ...testView, status: 'playing', pendingChoice: choice };
-    vi.stubGlobal('fetch', vi.fn(async (url: string) => url === '/api/catalog' ? json(testCatalog) : url.endsWith('/events') ? new Response(null) : url.endsWith('/commands') ? json({ error: 'stale', view: { ...state, version: 4 } }, 409) : json(state)));
+    vi.stubGlobal('fetch', vi.fn(async (url: string) => url.endsWith('/catalog') ? json(testCatalog) : url.endsWith('/events') ? new Response(null) : url.endsWith('/commands') ? json({ error: 'stale', view: { ...state, version: 4 } }, 409) : json(state)));
     const { result } = renderHook(useGame);
     await waitFor(() => expect(result.current.view?.pendingChoice?.id).toBe('restore-choice'));
     await act(async () => { await result.current.act({ kind: 'pass' }); });
@@ -47,7 +80,7 @@ describe('room lifecycle and reconciliation', () => {
     const requests: string[] = [];
     vi.stubGlobal('fetch', vi.fn(async (url: string) => {
       requests.push(url);
-      return url === '/api/catalog' ? json(testCatalog) : url === '/api/rooms' ? json({ ...next, view: nextView })
+      return url.endsWith('/catalog') ? json(testCatalog) : url === '/api/rooms' ? json({ ...next, view: nextView })
         : json(url.includes(next.roomId) ? nextView : oldView);
     }));
     const first = renderHook(useGame);
@@ -69,7 +102,7 @@ describe('room lifecycle and reconciliation', () => {
   });
   it('does not let an old in-flight state read pull a player back after returning to the lobby', async () => {
     saveSession(session); let release: ((response: Response) => void) | undefined;
-    vi.stubGlobal('fetch', vi.fn((url: string) => url === '/api/catalog' ? Promise.resolve(json(testCatalog))
+    vi.stubGlobal('fetch', vi.fn((url: string) => url.endsWith('/catalog') ? Promise.resolve(json(testCatalog))
       : new Promise<Response>(resolve => { release = resolve; })));
     const { result } = renderHook(useGame);
     await waitFor(() => expect(release).toBeDefined());
@@ -82,7 +115,7 @@ describe('room lifecycle and reconciliation', () => {
     saveSession(session);
     vi.stubGlobal('fetch', vi.fn(async (url: string) => {
       if (url.endsWith('/commands')) throw new Error('lost acknowledgement');
-      return url === '/api/catalog' ? json(testCatalog) : json(testView);
+      return url.endsWith('/catalog') ? json(testCatalog) : json(testView);
     }));
     const { result } = renderHook(useGame);
     await waitFor(() => expect(result.current.view).not.toBeNull());
@@ -99,7 +132,7 @@ describe('room lifecycle and reconciliation', () => {
     saveSession(session); const commands: Record<string, unknown>[] = []; let fail = true;
     vi.stubGlobal('fetch', vi.fn(async (url: string, init?: RequestInit) => {
       if (url.endsWith('/commands')) { commands.push(JSON.parse(String(init?.body))); if (fail) throw new Error('connection lost'); return json({ ...testView, version: 2 }); }
-      return url === '/api/catalog' ? json(testCatalog) : url.endsWith('/events') ? new Response(null) : json(testView);
+      return url.endsWith('/catalog') ? json(testCatalog) : url.endsWith('/events') ? new Response(null) : json(testView);
     }));
     const { result } = renderHook(useGame);
     await waitFor(() => expect(result.current.view).not.toBeNull());
@@ -122,7 +155,7 @@ describe('room lifecycle and reconciliation', () => {
         if (fail) throw new Error('lost acknowledgement');
         return json({ ...testView, version: 2 });
       }
-      return url === '/api/catalog' ? json(testCatalog) : json({ ...testView, you: actor === 'Bearer other-seat-token' ? 'p1' : 'p0' });
+      return url.endsWith('/catalog') ? json(testCatalog) : json({ ...testView, you: actor === 'Bearer other-seat-token' ? 'p1' : 'p0' });
     }));
     const { result } = renderHook(useGame);
     await waitFor(() => expect(result.current.view).not.toBeNull());
@@ -145,7 +178,7 @@ describe('room lifecycle and reconciliation', () => {
     savePending(command); const commands: Record<string, unknown>[] = [];
     vi.stubGlobal('fetch', vi.fn(async (url: string, init?: RequestInit) => {
       if (url.endsWith('/commands')) { commands.push(JSON.parse(String(init?.body))); return json({ ...testView, version: 2 }); }
-      return url === '/api/catalog' ? json(testCatalog) : url.endsWith('/events') ? new Response(null) : json({ ...testView, version: 9 });
+      return url.endsWith('/catalog') ? json(testCatalog) : url.endsWith('/events') ? new Response(null) : json({ ...testView, version: 9 });
     }));
     const { result } = renderHook(useGame);
     await waitFor(() => expect(commands).toHaveLength(1));
@@ -162,7 +195,7 @@ describe('room lifecycle and reconciliation', () => {
         if (polls.length === 1) return new Promise<Response>(resolve => { release = resolve; });
         return new Response(null, { status: 204 });
       }
-      return url === '/api/catalog' ? json(testCatalog) : json({ ...testView, version: 9 });
+      return url.endsWith('/catalog') ? json(testCatalog) : json({ ...testView, version: 9 });
     }));
     let result: ReturnType<typeof renderHook<ReturnType<typeof useGame>, unknown>>['result'];
     await act(async () => { ({ result } = renderHook(useGame)); await vi.advanceTimersByTimeAsync(0); });
@@ -181,7 +214,7 @@ describe('room lifecycle and reconciliation', () => {
   it('preserves the occupied seat and pending command when the private Site requires login', async () => {
     saveSession(session);
     savePending({ roomId: session.roomId, commandId: 'preserve-after-login', expectedVersion: 1, action: { kind: 'pass' } });
-    vi.stubGlobal('fetch', vi.fn(async (url: string) => url === '/api/catalog' ? json(testCatalog) : json({ message: 'Sign in required' }, 403)));
+    vi.stubGlobal('fetch', vi.fn(async (url: string) => url.endsWith('/catalog') ? json(testCatalog) : json({ message: 'Sign in required' }, 403)));
     const { result } = renderHook(useGame);
     await waitFor(() => expect(result.current.connection).toBe('offline'));
     expect(result.current.session).toEqual(session);
@@ -191,7 +224,7 @@ describe('room lifecycle and reconciliation', () => {
   });
   it('clears a seat only when the game service explicitly confirms an invalid seat token', async () => {
     saveSession(session);
-    vi.stubGlobal('fetch', vi.fn(async (url: string) => url === '/api/catalog' ? json(testCatalog) : json({ error: 'invalid_seat_token', message: 'invalid' }, 401)));
+    vi.stubGlobal('fetch', vi.fn(async (url: string) => url.endsWith('/catalog') ? json(testCatalog) : json({ error: 'invalid_seat_token', message: 'invalid' }, 401)));
     const { result } = renderHook(useGame);
     await waitFor(() => expect(result.current.session).toBeNull());
     expect(localStorage.getItem('hegemony.session.v1')).toBeNull();
@@ -205,7 +238,7 @@ describe('room lifecycle and reconciliation', () => {
         if (commands.length === 1) throw new Error('lost committed ACK');
         return blocked ? json({ message: 'Sign in required' }, 403) : json({ ...testView, version: 2 });
       }
-      return url === '/api/catalog' ? json(testCatalog) : json({ ...testView, version: 3 });
+      return url.endsWith('/catalog') ? json(testCatalog) : json({ ...testView, version: 3 });
     }));
     const { result } = renderHook(useGame);
     await waitFor(() => expect(result.current.view?.version).toBe(3));

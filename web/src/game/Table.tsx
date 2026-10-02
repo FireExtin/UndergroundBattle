@@ -63,7 +63,7 @@ export function RoomLobby({ view, catalog, busy, onAction }: { view: View; catal
       </article>;
     })}</div>
     {catalog && <details className="hg-room-prepare"><summary>更换牌组 <span>当前：{yourDeck?.name || '秘社牌组'}</span></summary><p className="hg-muted">可更换受限卡池预组，更换后须重新准备。</p>
-      <DeckPicker decks={catalog.decks} value={you?.deckId || ''} allowedIds={view.legalActions.filter(action => action.kind === 'deck').map(action => action.option || '')} disabled={busy || !view.legalActions.some(action => action.kind === 'deck')} onChange={id => {
+      <DeckPicker decks={catalog.decks} cards={catalog.cards} value={you?.deckId || ''} allowedIds={view.legalActions.filter(action => action.kind === 'deck').map(action => action.option || '')} disabled={busy || !view.legalActions.some(action => action.kind === 'deck')} onChange={id => {
         const action = view.legalActions.find(item => item.kind === 'deck' && item.option === id); if (action) onAction(action);
       }} />
     </details>}

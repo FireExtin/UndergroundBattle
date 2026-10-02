@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.1",
-  "engineVersion": "rust-v0.2.2",
+  "cardPoolVersion": "limited-v2.2",
+  "engineVersion": "rust-v0.2.3",
   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
   "cards": [
     {
@@ -618,6 +618,44 @@
       "society": "国家机构"
     },
     {
+      "id": "JC058",
+      "name": "坚毅的刑警",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "警察"
+      ],
+      "cost": 3,
+      "loyalty": [
+        "灰色"
+      ],
+      "loyaltyText": "灰色",
+      "color": "灰",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 1,
+          "combat": 1,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "现身触发：消灭本地区的目标暗藏者。",
+      "keywords": [],
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/cards.json",
+        "record": "JC058",
+        "image": "resource/ymsj-fun.github.io/cards/JC058 坚毅的刑警.jpg"
+      },
+      "unique": false,
+      "society": "国家机构"
+    },
+    {
       "id": "JC059",
       "name": "安全保卫部门",
       "kind": "character",
@@ -1229,7 +1267,7 @@
       "cards": [
         {
           "cardId": "JC125",
-          "count": 17
+          "count": 14
         },
         {
           "cardId": "LC19",
@@ -1265,6 +1303,10 @@
         },
         {
           "cardId": "JC056",
+          "count": 3
+        },
+        {
+          "cardId": "JC058",
           "count": 3
         },
         {
