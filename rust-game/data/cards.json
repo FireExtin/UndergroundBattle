@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
   "cardPoolVersion": "limited-v2.2",
-  "engineVersion": "rust-v0.2.3",
+  "engineVersion": "rust-v0.2.4",
   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
   "cards": [
     {
@@ -680,7 +680,7 @@
         }
       },
       "defense": 2,
-      "text": "公开（该角色不能被秘密派遣为暗藏者）\n持续：位于本地区的所有其他本方角色获得+1防御力。",
+      "text": "公开（该角色不能被秘密派遣为暗藏者）\n持续：位于本地区的所有其他友方角色获得+1防御力。",
       "keywords": [
         "公开"
       ],

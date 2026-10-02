@@ -199,7 +199,7 @@ pub struct Traits {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum StaticModifier {
     NoEnemyCharacters(Icons, Icons),
-    OtherControlledCharactersDefense(u32),
+    OtherFriendlyCharactersDefense(u32),
 }
 #[derive(Clone, Debug, Default, Serialize, Deserialize)]
 pub struct Definition {
@@ -623,7 +623,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
                     public: true,
                     ..Default::default()
                 },
-                modifiers: vec![StaticModifier::OtherControlledCharactersDefense(1)],
+                modifiers: vec![StaticModifier::OtherFriendlyCharactersDefense(1)],
                 ..Default::default()
             },
         );

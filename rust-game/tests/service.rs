@@ -18,6 +18,83 @@ fn command(id: &str, version: u64, kind: &str) -> Command {
     }
 }
 #[tokio::test]
+async fn command_id_reuse_requires_same_complete_typed_intent_before_and_after_reopen() {
+    let dir = tempfile::tempdir().unwrap();
+    let path = dir.path().join("intent.sqlite3");
+    let store = Store::open(&path).unwrap();
+    let (a, b) = pair(&store).await;
+    let original = command("stable-intent", 1, "ready");
+    let receipt = store
+        .command(&a.room_id, &a.token, original.clone())
+        .await
+        .unwrap();
+    store
+        .command(&a.room_id, &b.token, command("advance", 2, "ready"))
+        .await
+        .unwrap();
+    let before = serde_json::to_string(&store.state(&a.room_id, &a.token).await.unwrap()).unwrap();
+    let mut changed_payload = original.clone();
+    changed_payload.action.deck_draft = Some(hegemony_server::deck::preset("keepers").unwrap());
+    let mismatches = [
+        command("stable-intent", 3, "ready"),
+        command("stable-intent", 1, "deck"),
+        changed_payload,
+    ];
+    for changed in &mismatches {
+        let error = store
+            .command(&a.room_id, &a.token, changed.clone())
+            .await
+            .unwrap_err();
+        assert_eq!(error.status, StatusCode::CONFLICT);
+        assert_eq!(error.error, "command_id_conflict");
+        assert_eq!(
+            serde_json::to_string(&store.state(&a.room_id, &a.token).await.unwrap()).unwrap(),
+            before
+        );
+    }
+    drop(store);
+    let reopened = Store::open(&path).unwrap();
+    // Explicit null and omitted optional fields normalize to the same typed Action.
+    let normalized = Command {
+        action: serde_json::from_str("{\"kind\":\"ready\",\"option\":null}").unwrap(),
+        ..original
+    };
+    assert_eq!(
+        serde_json::to_string(
+            &reopened
+                .command(&a.room_id, &a.token, normalized)
+                .await
+                .unwrap()
+        )
+        .unwrap(),
+        serde_json::to_string(&receipt).unwrap()
+    );
+    for changed in mismatches {
+        assert_eq!(
+            reopened
+                .command(&a.room_id, &a.token, changed)
+                .await
+                .unwrap_err()
+                .status,
+            StatusCode::CONFLICT
+        );
+    }
+    assert_eq!(
+        serde_json::to_string(&reopened.state(&a.room_id, &a.token).await.unwrap()).unwrap(),
+        before
+    );
+    let db = rusqlite::Connection::open(&path).unwrap();
+    let count: u64 = db
+        .query_row(
+            "SELECT COUNT(*) FROM journal WHERE room_id=?1",
+            [&a.room_id],
+            |r| r.get(0),
+        )
+        .unwrap();
+    assert_eq!(count, 3); // Join plus the two accepted commands, no conflicting entries.
+    assert!(reopened.audit_replay(&a.room_id).unwrap().matches);
+}
+#[tokio::test]
 async fn paid_sacrifice_death_trigger_and_accepted_frame_restore_without_repayment() {
     let dir = tempfile::tempdir().unwrap();
     let db = dir.path().join("paid-frame.sqlite3");
@@ -206,6 +283,7 @@ async fn detective_reveal_choice_and_bound_frame_restore_without_repayment_or_pr
             name: "Detective".into(),
             mode: "duel".into(),
             deck_id: "keepers".into(),
+            deck_draft: None,
         })
         .await
         .unwrap();
@@ -214,6 +292,7 @@ async fn detective_reveal_choice_and_bound_frame_restore_without_repayment_or_pr
             invite_code: a.invite_code.clone(),
             name: "Hidden owner".into(),
             deck_id: "watchers".into(),
+            deck_draft: None,
         })
         .await
         .unwrap();
@@ -473,6 +552,7 @@ async fn pair(store: &Store) -> (service::Session, service::Session) {
             name: "Alice".into(),
             mode: "duel".into(),
             deck_id: "watchers".into(),
+            deck_draft: None,
         })
         .await
         .unwrap();
@@ -481,6 +561,7 @@ async fn pair(store: &Store) -> (service::Session, service::Session) {
             invite_code: a.invite_code.clone(),
             name: "Bob".into(),
             deck_id: "hunters".into(),
+            deck_draft: None,
         })
         .await
         .unwrap();
@@ -638,6 +719,7 @@ async fn room_catalog_requires_a_token_for_that_room_and_returns_current_pool() 
             name: "Other room".into(),
             mode: "duel".into(),
             deck_id: "keepers".into(),
+            deck_draft: None,
         })
         .await
         .unwrap();
@@ -778,7 +860,8 @@ async fn read_only_audit_cli_matches_seed_journal_and_detects_corruption() {
         .create(CreateRoom {
             name: "read-only".into(),
             mode: "duel".into(),
-            deck_id: "watchers".into()
+            deck_id: "watchers".into(),
+            deck_draft: None,
         })
         .await
         .is_err());

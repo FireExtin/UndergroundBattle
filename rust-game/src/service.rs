@@ -123,14 +123,20 @@ impl From<serde_json::Error> for ApiError {
 pub struct CreateRoom {
     pub name: String,
     pub mode: String,
+    #[serde(default)]
     pub deck_id: String,
+    #[serde(default)]
+    pub deck_draft: Option<crate::deck::DeckDraft>,
 }
 #[derive(Clone, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct JoinRoom {
     pub invite_code: String,
     pub name: String,
+    #[serde(default)]
     pub deck_id: String,
+    #[serde(default)]
+    pub deck_draft: Option<crate::deck::DeckDraft>,
 }
 #[derive(Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -150,8 +156,18 @@ pub struct Command {
 }
 #[derive(Serialize, Deserialize)]
 enum Journal {
-    Join { name: String, deck_id: String },
-    Command { seat: usize, command: Command },
+    Join {
+        name: String,
+        deck_id: String,
+    },
+    JoinWithDeck {
+        name: String,
+        deck_draft: crate::deck::DeckDraft,
+    },
+    Command {
+        seat: usize,
+        command: Command,
+    },
 }
 fn secure(bytes: usize) -> Result<String, ApiError> {
     let mut buf = vec![0; bytes];
@@ -248,14 +264,26 @@ impl Store {
         let token = secure(32)?;
         let mut seed = [0u8; 8];
         getrandom::fill(&mut seed).map_err(|_| ApiError::internal("安全随机源不可用"))?;
-        let game = Game::new(
-            id.clone(),
-            invite.clone(),
-            request.mode,
-            name(request.name)?,
-            request.deck_id,
-            u64::from_le_bytes(seed),
-        )
+        let n = name(request.name)?;
+        let game = if let Some(draft) = request.deck_draft {
+            Game::new_with_deck(
+                id.clone(),
+                invite.clone(),
+                request.mode,
+                n,
+                draft,
+                u64::from_le_bytes(seed),
+            )
+        } else {
+            Game::new(
+                id.clone(),
+                invite.clone(),
+                request.mode,
+                n,
+                request.deck_id,
+                u64::from_le_bytes(seed),
+            )
+        }
         .map_err(ApiError::bad)?;
         let serialized = serde_json::to_string(&game)?;
         let view = game.view(0);
@@ -299,14 +327,32 @@ impl Store {
         let mut current = target.game.lock().await;
         let mut next = current.clone();
         let n = name(request.name)?;
-        let deck = request.deck_id;
-        let seat = next.join(n.clone(), deck.clone()).map_err(ApiError::bad)?;
+        let (seat, journal) = if let Some(draft) = request.deck_draft {
+            let seat = next
+                .join_with_deck(n.clone(), draft.clone())
+                .map_err(ApiError::bad)?;
+            (
+                seat,
+                Journal::JoinWithDeck {
+                    name: n,
+                    deck_draft: draft,
+                },
+            )
+        } else {
+            let seat = next
+                .join(n.clone(), request.deck_id.clone())
+                .map_err(ApiError::bad)?;
+            (
+                seat,
+                Journal::Join {
+                    name: n,
+                    deck_id: request.deck_id,
+                },
+            )
+        };
         let token = secure(32)?;
         let serialized = serde_json::to_string(&next)?;
-        let entry = serde_json::to_string(&Journal::Join {
-            name: n,
-            deck_id: deck,
-        })?;
+        let entry = serde_json::to_string(&journal)?;
         {
             let mut db = self.inner.db.lock().unwrap();
             let tx = db.transaction()?;
@@ -348,18 +394,30 @@ impl Store {
         let seat = self.authenticate(id, token)?;
         let target = self.lookup(id)?;
         let mut current = target.game.lock().await;
-        let duplicate: Option<(usize, String)> = {
+        let duplicate: Option<(usize, u64, String, String)> = {
             let db = self.inner.db.lock().unwrap();
             db.query_row(
-                "SELECT seat,response FROM commands WHERE room_id=?1 AND command_id=?2",
+                "SELECT seat,expected_version,action,response FROM commands WHERE room_id=?1 AND command_id=?2",
                 params![id, command.command_id],
-                |r| Ok((r.get(0)?, r.get(1)?)),
+                |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?, r.get(3)?)),
             )
             .optional()?
         };
-        if let Some((original_seat, response)) = duplicate {
-            if original_seat != seat {
-                return Err(ApiError::bad("commandId已由另一座位使用"));
+        if let Some((original_seat, original_version, original_action, response)) = duplicate {
+            // Compare complete typed intent before returning a persisted receipt.
+            // JSON key order and omitted/null optional fields normalize on decoding.
+            let original_action: Action = serde_json::from_str(&original_action)?;
+            if original_seat != seat
+                || original_version != command.expected_version
+                || original_action != command.action
+            {
+                return Err(ApiError {
+                    status: StatusCode::CONFLICT,
+                    error: "command_id_conflict".into(),
+                    message: "commandId已用于另一座位、版本或动作；请为新意图生成新commandId"
+                        .into(),
+                    view: None,
+                });
             }
             return Ok(serde_json::from_str(&response)?);
         }
@@ -469,6 +527,10 @@ fn replay_connection(db: &Connection, id: &str) -> Result<Game, ApiError> {
         match serde_json::from_str::<Journal>(&entry)? {
             Journal::Join { name, deck_id } => {
                 game.join(name, deck_id).map_err(ApiError::internal)?;
+            }
+            Journal::JoinWithDeck { name, deck_draft } => {
+                game.join_with_deck(name, deck_draft)
+                    .map_err(ApiError::internal)?;
             }
             Journal::Command { seat, command } => {
                 if command.expected_version != game.version {

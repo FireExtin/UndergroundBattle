@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { performance } from 'node:perf_hooks';
-import { initSync, catalog, newGame, joinGame, apply, view } from '../pkg/hegemony_wasm.js';
+import { initSync, catalog, newGame, newGameWithDeck, joinGame, joinGameWithDeck, apply, view } from '../pkg/hegemony_wasm.js';
 
 const moduleBytes = await readFile(new URL('../pkg/hegemony_wasm_bg.wasm', import.meta.url));
 initSync({ module: moduleBytes });
@@ -17,7 +17,9 @@ for (const scenario of fixture.cases) {
     let serialized;
     if (step.operation === 'initialFixture') { state = step.args[0]; serialized = JSON.stringify({ state, view: JSON.parse(view(state, step.seat)), version: step.version, seat: step.seat }); }
     else if (step.operation === 'newGame') serialized = newGame(...step.args);
+    else if (step.operation === 'newGameWithDeck') serialized = newGameWithDeck(...step.args);
     else if (step.operation === 'joinGame') serialized = joinGame(state, ...step.args);
+    else if (step.operation === 'joinGameWithDeck') serialized = joinGameWithDeck(state, ...step.args);
     else serialized = apply(state, step.args[0], JSON.stringify(step.args[1]));
     const result = JSON.parse(serialized); // Parse ONLY the outer envelope; .state stays an opaque string.
     assert.equal(typeof result.state, 'string');

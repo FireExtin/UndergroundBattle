@@ -1,6 +1,6 @@
 //! Native oracle for the WASM ABI test; private state remains an opaque string in JS.
 use hegemony_server::{
-    catalog,
+    catalog, deck,
     model::{Action, ChoiceResolution, FrameChoice, Game, Window},
 };
 use serde_json::{json, Value};
@@ -488,6 +488,166 @@ fn fixture(mode: &str, seed: &str) -> Value {
     }
     json!({"name":mode,"seed":seed,"steps":steps})
 }
+fn custom_deck_fixture() -> Value {
+    let seed = "18446744073709551615";
+    let mut alpha = deck::preset("responders").unwrap();
+    alpha.id = "private-alpha-spec".into();
+    alpha.name = "响应自组".into();
+    let mut beta = deck::preset("keepers").unwrap();
+    beta.id = "private-beta-spec".into();
+    beta.name = "守护自组".into();
+    let mut game = Game::new_with_deck(
+        "wasm-custom-decks".into(),
+        "CUSTOM".into(),
+        "teams".into(),
+        "玩家0".into(),
+        alpha.clone(),
+        seed.parse().unwrap(),
+    )
+    .unwrap();
+    let mut steps = vec![step(
+        &game,
+        "newGameWithDeck",
+        json!([
+            game.room_id,
+            game.invite_code,
+            "teams",
+            "玩家0",
+            serde_json::to_string(&alpha).unwrap(),
+            seed,
+        ]),
+        0,
+    )];
+    alpha.cards.clear(); // Editing the saved draft cannot alter the accepted snapshot.
+    assert_eq!(
+        game.players[0]
+            .deck_snapshot
+            .as_ref()
+            .unwrap()
+            .cards
+            .iter()
+            .map(|c| c.count)
+            .sum::<usize>(),
+        50
+    );
+    game.join_with_deck("玩家1".into(), beta.clone()).unwrap();
+    steps.push(step(
+        &game,
+        "joinGameWithDeck",
+        json!(["玩家1", serde_json::to_string(&beta).unwrap()]),
+        1,
+    ));
+    assert!(!serde_json::to_string(&game.view(1))
+        .unwrap()
+        .contains("private-alpha-spec"));
+    assert!(!serde_json::to_string(&game.view(1))
+        .unwrap()
+        .contains("JC042"));
+    for seat in 2..4 {
+        game.join(format!("玩家{seat}"), "watchers".into()).unwrap();
+        steps.push(step(
+            &game,
+            "joinGame",
+            json!([format!("玩家{seat}"), "watchers"]),
+            seat,
+        ));
+    }
+    let mut gamma = deck::preset("hunters").unwrap();
+    gamma.id = "private-gamma-spec".into();
+    gamma.name = "追猎自组".into();
+    let change = Action {
+        deck_draft: Some(gamma.clone()),
+        ..Action::new("deck")
+    };
+    game.apply(2, change.clone()).unwrap();
+    steps.push(step(&game, "apply", json!([2, change]), 2));
+    for seat in 0..4 {
+        let action = Action::new("ready");
+        game.apply(seat, action.clone()).unwrap();
+        steps.push(step(&game, "apply", json!([seat, action]), seat));
+    }
+    let start = Action::new("start");
+    game.apply(0, start.clone()).unwrap();
+    steps.push(step(&game, "apply", json!([0, start]), 0));
+    while let Some(pending) = game.pending.clone() {
+        let action = Action {
+            choice_id: Some(pending.choice.id),
+            selected: Some(vec![]),
+            ..Action::new("choose")
+        };
+        game.apply(pending.seat, action.clone()).unwrap();
+        steps.push(step(
+            &game,
+            "apply",
+            json!([pending.seat, action]),
+            pending.seat,
+        ));
+    }
+    assert_eq!(game.players[2].deck_snapshot.as_ref(), Some(&gamma));
+    for player in &game.players {
+        assert_eq!(player.hand.len() + player.deck.len(), 50);
+    }
+    json!({"name":"custom-deck-create-join-lobby-freeze-and-start", "seed":seed, "steps":steps,
+        "rejectedActions":[[0,Action { deck_draft: Some(deck::preset("watchers").unwrap()), ..Action::new("deck") }]]})
+}
+fn friendly_icons_fixture() -> Value {
+    let seed = "9007199254740993";
+    let mut game = Game::new(
+        "wasm-friendly-icons".into(),
+        "FRIENDLY".into(),
+        "teams".into(),
+        "玩家0".into(),
+        "keepers".into(),
+        seed.parse().unwrap(),
+    )
+    .unwrap();
+    for seat in 1..4 {
+        game.join(format!("玩家{seat}"), "watchers".into()).unwrap();
+    }
+    for player in &mut game.players {
+        player.ready = true;
+    }
+    game.apply(0, Action::new("start")).unwrap();
+    while let Some(pending) = game.pending.clone() {
+        game.apply(
+            pending.seat,
+            Action {
+                choice_id: Some(pending.choice.id),
+                selected: Some(vec![]),
+                ..Action::new("choose")
+            },
+        )
+        .unwrap();
+    }
+    // Explicit initial layout verifies both kernels' public team calculations, not natural dealing.
+    game.first_team = 0;
+    let source = game.make_card("JC059", 0);
+    game.regions[0].cards.push(source);
+    let friend = game.make_card("LC20", 1);
+    let friend_id = friend.id.clone();
+    game.regions[0].cards.push(friend);
+    let enemy = game.make_card("LC20", 2);
+    game.regions[0].cards.push(enemy);
+    let mut hidden = game.make_card("LC24", 3);
+    hidden.face_down = true;
+    game.regions[0].cards.push(hidden);
+    let mut exhausted = game.make_card("LC21", 0);
+    exhausted.exhausted = true;
+    game.regions[0].cards.push(exhausted);
+    for seat in 0..4 {
+        assert_eq!(
+            game.view(seat).regions[0]
+                .characters
+                .iter()
+                .find(|c| c.instance_id == friend_id)
+                .unwrap()
+                .defense,
+            Some(catalog::card("LC20").defense.unwrap() + 1)
+        );
+    }
+    json!({"name":"friendly-teammate-defense-and-public-team-icons", "seed":seed,
+        "steps":[step(&game,"initialFixture",json!([serde_json::to_string(&game).unwrap()]),0)]})
+}
 fn main() {
     let output = std::env::args()
         .nth(1)
@@ -513,6 +673,11 @@ fn main() {
         assert!(Game::from_persisted(&state).is_err());
         rejected_states.push(state);
     }
-    let value = json!({"catalog":catalog::catalog(),"cases":[fixture("duel","18446744073709551615"),fixture("teams","9007199254740993"),response_fixture(),detective_fixture(false),detective_fixture(true)],"rejectedStates":rejected_states});
+    previous.versions.engine = "rust-v0.2.3".into();
+    previous.versions.card_pool = "limited-v2.2".into();
+    let state = serde_json::to_string(&previous).unwrap();
+    assert!(Game::from_persisted(&state).is_err());
+    rejected_states.push(state);
+    let value = json!({"catalog":catalog::catalog(),"cases":[fixture("duel","18446744073709551615"),fixture("teams","9007199254740993"),response_fixture(),detective_fixture(false),detective_fixture(true),custom_deck_fixture(),friendly_icons_fixture()],"rejectedStates":rejected_states});
     std::fs::write(output, serde_json::to_vec(&value).unwrap()).unwrap();
 }

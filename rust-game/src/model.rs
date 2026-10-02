@@ -49,6 +49,8 @@ pub struct Action {
     pub ability_id: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub cost_selected: Option<Vec<String>>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub deck_draft: Option<crate::deck::DeckDraft>,
 }
 impl Action {
     pub fn new(kind: &str) -> Self {
@@ -137,6 +139,8 @@ pub struct PlayerView {
     pub name: String,
     pub team: usize,
     pub deck_id: String,
+    #[serde(default)]
+    pub deck_name: String,
     pub ready: bool,
     pub eliminated: bool,
     pub hand_count: usize,
@@ -153,6 +157,10 @@ pub struct RegionView {
     pub threshold: u32,
     pub points: u32,
     pub influence: [u32; 2],
+    #[serde(default)]
+    pub icons_by_team: [Icons; 2],
+    #[serde(default)]
+    pub skip_confrontation: bool,
     pub characters: Vec<CardView>,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
@@ -237,6 +245,10 @@ pub struct View {
     pub log: Vec<LogEntry>,
     pub versions: Versions,
     pub waiting_choice: Option<WaitingChoice>,
+    #[serde(default)]
+    pub your_deck: Option<crate::deck::DeckDraft>,
+    #[serde(default)]
+    pub world_deck_count: usize,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Card {
@@ -255,6 +267,8 @@ pub struct Player {
     pub seat: usize,
     pub name: String,
     pub deck_id: String,
+    #[serde(default)]
+    pub deck_snapshot: Option<crate::deck::DeckDraft>,
     pub ready: bool,
     pub eliminated: bool,
     pub hand: Vec<Card>,
@@ -271,6 +285,7 @@ impl Player {
             seat,
             name,
             deck_id,
+            deck_snapshot: None,
             ready: false,
             eliminated: false,
             hand: vec![],

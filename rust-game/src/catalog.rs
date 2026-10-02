@@ -4,7 +4,7 @@ use std::sync::OnceLock;
 
 pub const RULES_VERSION: &str = "hegemony-pdf-v1";
 pub const POOL_VERSION: &str = "limited-v2.2";
-pub const ENGINE_VERSION: &str = "rust-v0.2.3";
+pub const ENGINE_VERSION: &str = "rust-v0.2.4";
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -49,6 +49,8 @@ pub struct CardDefinition {
     pub unique: bool,
     #[serde(default = "yes")]
     pub supported: bool,
+    #[serde(skip_deserializing)]
+    pub deck_copy_limit: Option<usize>,
 }
 impl Default for crate::rules::MagicIcon {
     fn default() -> Self {
@@ -68,7 +70,7 @@ fn yes() -> bool {
     true
 }
 
-#[derive(Clone, Debug, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct DeckEntry {
     pub card_id: String,
@@ -91,6 +93,7 @@ pub struct Catalog {
     pub engine_version: String,
     pub decks: Vec<DeckDefinition>,
     pub cards: Vec<CardDefinition>,
+    pub deck_build_rules: crate::deck::DeckBuildRules,
     #[serde(skip_serializing)]
     pub world: Vec<DeckEntry>,
 }
@@ -132,6 +135,7 @@ pub fn catalog() -> &'static Catalog {
                 };
                 let rules = crate::rules::definition(&definition.id);
                 definition.rule_traits = rules.traits.clone();
+                definition.deck_copy_limit = crate::deck::copy_limit(&definition);
                 definition.abilities = rules
                     .abilities
                     .iter()
@@ -160,6 +164,7 @@ pub fn catalog() -> &'static Catalog {
             engine_version: ENGINE_VERSION.into(),
             decks,
             cards,
+            deck_build_rules: crate::deck::build_rules(),
             world,
         }
     })

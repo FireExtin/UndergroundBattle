@@ -1,4 +1,5 @@
 pub mod catalog;
+pub mod deck;
 pub mod engine;
 pub mod model;
 mod resolution;
