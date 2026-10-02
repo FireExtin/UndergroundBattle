@@ -28,6 +28,7 @@ class AttachmentRun(UiRun):
         self.playwright, self.service = playwright, service
         self.mode = 'teams'
         self.post_count = 0
+        self.post_limit = 40
         self.post_results = []
         self.measurements = []
         self.checks = []
@@ -50,7 +51,7 @@ class AttachmentRun(UiRun):
         async def budget(route):
             request = route.request
             if request.method == 'POST' and '/api/' in request.url:
-                assert self.post_count < 40, 'UI POST budget exhausted'
+                assert self.post_count < self.post_limit, 'UI POST budget exhausted'
                 self.post_count += 1
             if not self.remote:
                 await route.continue_()

@@ -330,6 +330,19 @@ impl Game {
                     }
                 }
             }
+            if let StaticModifier::ConditionalIcons {
+                condition,
+                permanent,
+                temporary,
+            } = modifier
+            {
+                if self.icon_condition(c, region, condition) {
+                    result = result.add(*permanent);
+                    if self.team(c.controller) == self.first_team {
+                        result = result.add(*temporary);
+                    }
+                }
+            }
         }
         for attachment in self
             .attachments
@@ -489,12 +502,7 @@ impl Game {
                 if !self.accessible(seat, r) {
                     return Err("超出正常派遣距离".into());
                 }
-                let c = self.players[seat]
-                    .hand
-                    .iter()
-                    .find(|c| c.id == id)
-                    .ok_or("手牌引用已失效")?
-                    .clone();
+                let (c, play_source) = self.character_play_source(seat, id, a.kind == "conceal")?;
                 let d = card(&c.definition);
                 if d.kind != "character" {
                     return Err("只有角色可派遣".into());
@@ -522,8 +530,9 @@ impl Game {
                         return Err("忠诚不足".into());
                     }
                     let paid = self.pay_printed(seat, &c, true)?;
-                    let snapshot = self.source_snapshot(&c, Some(r));
-                    let c = self.remove_hand(seat, id)?;
+                    let mut snapshot = self.source_snapshot(&c, Some(r));
+                    snapshot.play_source = Some(play_source);
+                    let c = self.take_character_play_source(seat, id, play_source)?;
                     let c = self.fresh(c);
                     self.note(format!("{} 打出 {}", self.players[seat].name, d.name));
                     self.push_stack(
@@ -913,6 +922,7 @@ impl Game {
                                     SourceSnapshot {
                                         card: c.clone(),
                                         region: Some(r),
+                                        play_source: None,
                                     },
                                 )
                             })
@@ -2124,6 +2134,29 @@ impl Game {
                     candidates.extend(self.rule_action_candidates(seat, c, None, "play"));
                 }
             }
+            if self.can_standard(seat) {
+                for c in &self.players[seat].graveyard {
+                    if card(&c.definition).kind != "character"
+                        || !rules::definition(&c.definition).graveyard_face_up
+                    {
+                        continue;
+                    }
+                    for r in 0..self.regions.len() {
+                        candidates.push((
+                            Action {
+                                card_id: Some(c.id.clone()),
+                                region: Some(r),
+                                ..Action::new("deploy")
+                            },
+                            format!(
+                                "墓地正面打出 {} → {}",
+                                card(&c.definition).name,
+                                card(&self.regions[r].card.definition).name
+                            ),
+                        ));
+                    }
+                }
+            }
             for (r, c) in &board {
                 if c.controller != seat {
                     continue;
@@ -2299,7 +2332,7 @@ mod tests {
     #[test]
     fn catalog_is_restricted_real_complete_and_decks_are_legal() {
         let c = catalog::catalog();
-        assert_eq!(c.cards.len(), 37);
+        assert_eq!(c.cards.len(), 39);
         let active = c
             .cards
             .iter()
@@ -2313,7 +2346,7 @@ mod tests {
                 .collect::<BTreeSet<_>>()
         );
         assert!(active.contains("DQJC116"));
-        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 27);
+        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 29);
         assert_eq!(c.decks.len(), 5);
         for deck in &c.decks {
             assert_eq!(deck.card_count, 50);

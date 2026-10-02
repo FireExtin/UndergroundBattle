@@ -12,6 +12,7 @@ import * as intermediate from '../generated/legacy-v0.2.2/hegemony_wasm.js';
 import * as last from '../generated/legacy-v0.2.3/hegemony_wasm.js';
 import * as stable from '../generated/legacy-v0.2.4/hegemony_wasm.js';
 import * as paced from '../generated/legacy-v0.2.5/hegemony_wasm.js';
+import * as attached from '../generated/legacy-v0.2.6/hegemony_wasm.js';
 
 test('real workerd/WASM with D1 SQLite: concurrency, receipts, rollback and reopen', async t => {
   const persist = mkdtempSync(join(tmpdir(), 'hegemony-worker-d1-'));
@@ -26,7 +27,7 @@ test('real workerd/WASM with D1 SQLite: concurrency, receipts, rollback and reop
   const migration = readdirSync('drizzle').find(name => name.endsWith('.sql'));
   for (const sql of readFileSync('drizzle/' + migration, 'utf8').split('--> statement-breakpoint').filter(s => s.trim())) await db.prepare(sql).run();
   const pacedRooms = new Set();
-  const pacedVersions = new Set(['rust-v0.2.5', 'rust-v0.2.6']);
+  const pacedVersions = new Set(['rust-v0.2.5', 'rust-v0.2.6', 'rust-v0.2.7']);
   const durableView = value => pacedVersions.has(value?.versions?.engine) ? { ...value, serverNowMs: undefined } : value;
   const api = async (path, body, session) => {
     if (body?.action && pacedRooms.has(session?.roomId) && !['game','beginResponse','passResponse','cancelAndPass','submitResponse'].includes(body.action.kind)) {
@@ -47,8 +48,8 @@ test('real workerd/WASM with D1 SQLite: concurrency, receipts, rollback and reop
   const path = (session, action) => `/api/rooms/${session.roomId}/${action}`;
   try {
     const health = await api('/api/health'); assert.equal(health.body.transport, 'polling');
-    const catalog = await api('/api/catalog'); assert.equal(catalog.body.cards.length, 37); assert.equal(catalog.body.entryIdempotency, true);
-    assert.equal(catalog.body.engineVersion, 'rust-v0.2.6');
+    const catalog = await api('/api/catalog'); assert.equal(catalog.body.cards.length, 39); assert.equal(catalog.body.entryIdempotency, true);
+    assert.equal(catalog.body.engineVersion, 'rust-v0.2.7');
     assert.equal(catalog.body.deckBuildRules.minimumCards, 50);
     assert.equal(catalog.body.cards.find(card => card.id === 'JC125').deckCopyLimit, null);
     const create = { name: '甲', mode: 'teams', deckId: 'responders', requestId: key() };
@@ -112,6 +113,7 @@ test('real workerd/WASM with D1 SQLite: concurrency, receipts, rollback and reop
       [last, 'rust-v0.2.3', 'c', 'd', 'LEGACYTEST23'],
       [stable, 'rust-v0.2.4', 'b', 'e', 'LEGACYTEST24'],
       [paced, 'rust-v0.2.5', 'a', 'f', 'LEGACYTEST25'],
+      [attached, 'rust-v0.2.6', '9', '9', 'LEGACYTEST26'],
     ]) {
       oldKernel.initSync({ module: readFileSync((existsSync('rust-game-wasm') ? '' : '../') + `rust-game-wasm/legacy-v0.2.${engineVersion.slice(-1)}/hegemony_wasm_bg.wasm`) });
       const id = idChar.repeat(24), token = tokenChar.repeat(64);

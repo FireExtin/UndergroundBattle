@@ -43,6 +43,7 @@ copy(repository + 'rust-game-wasm/legacy-v0.2.2', 'rust-game-wasm/legacy-v0.2.2'
 copy(repository + 'rust-game-wasm/legacy-v0.2.3', 'rust-game-wasm/legacy-v0.2.3', true);
 copy(repository + 'rust-game-wasm/legacy-v0.2.4', 'rust-game-wasm/legacy-v0.2.4', true);
 copy(repository + 'rust-game-wasm/legacy-v0.2.5', 'rust-game-wasm/legacy-v0.2.5', true);
+copy(repository + 'rust-game-wasm/legacy-v0.2.6', 'rust-game-wasm/legacy-v0.2.6', true);
 writeFileSync(path.join(destination, '.gitignore'), 'node_modules/\ndist/\n.wrangler/\ngenerated/\npublic/\nweb/dist/\nrust-game/target/\nrust-game-wasm/target/\n.env*\n.sites-runtime/\n');
 const wasmSha256 = createHash('sha256').update(readFileSync(repository + 'rust-game-wasm/pkg/hegemony_wasm_bg.wasm')).digest('hex');
 const originalCommit = execFileSync('git', ['rev-parse', 'HEAD'], { cwd: repository, encoding: 'utf8' }).trim();

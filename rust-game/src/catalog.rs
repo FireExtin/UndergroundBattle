@@ -3,8 +3,8 @@ use serde::{Deserialize, Serialize};
 use std::sync::OnceLock;
 
 pub const RULES_VERSION: &str = "hegemony-pdf-v1";
-pub const POOL_VERSION: &str = "limited-v2.4";
-pub const ENGINE_VERSION: &str = "rust-v0.2.6";
+pub const POOL_VERSION: &str = "limited-v2.5";
+pub const ENGINE_VERSION: &str = "rust-v0.2.7";
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -131,6 +131,7 @@ pub fn catalog() -> &'static Catalog {
                     "" => crate::rules::MagicIcon::None,
                     "鲜血" | "血" => crate::rules::MagicIcon::Blood,
                     "心灵" => crate::rules::MagicIcon::Mind,
+                    "死亡" => crate::rules::MagicIcon::Death,
                     other => crate::rules::MagicIcon::Other(other.into()),
                 };
                 let rules = crate::rules::definition(&definition.id);

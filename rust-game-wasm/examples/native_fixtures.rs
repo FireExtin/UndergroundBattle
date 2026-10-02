@@ -1148,6 +1148,7 @@ fn world_fixture(id: &str, generic_search: bool) -> Value {
                 source: SourceSnapshot {
                     card: scored,
                     region: Some(0),
+                    play_source: None,
                 },
                 ability,
             },
@@ -1779,6 +1780,81 @@ fn attachment_region_return_fixture() -> Value {
     assert!(room.log.iter().all(|l| !l.text.contains("死亡")));
     json!({"name":"won-region-batch-cross-owner-equipment-and-aura","seed":"9007199254740993","steps":steps,"syntheticInitialLayout":true})
 }
+fn grave_play_fixture() -> Value {
+    let mut game = attachment_initial("teams", "777777777777777777777770");
+    let corpse = game.make_card("JC085", 0);
+    let old = corpse.id.clone();
+    game.players[0].graveyard.push(corpse);
+    for id in ["JC085", "JC084"] {
+        let c = game.make_card(id, 0);
+        game.players[0].assets.push(c);
+    }
+    let street = game.make_card("JC084", 1);
+    game.regions[2].cards.push(street);
+    game.regions[2].influence = [1, 1];
+    let mut room = RoomEnvelope::from_game(game);
+    let mut steps = vec![step(
+        &room,
+        "initialFixture",
+        json!([serde_json::to_string(&room).unwrap()]),
+        0,
+    )];
+    apply_game(
+        &mut room,
+        &mut steps,
+        0,
+        Action {
+            card_id: Some(old.clone()),
+            region: Some(2),
+            ..Action::new("deploy")
+        },
+    );
+    assert!(room.players[0].hand.is_empty() && room.players[0].graveyard.is_empty());
+    assert_eq!(
+        room.stack[0].frame.as_ref().unwrap().source.play_source,
+        Some(hegemony_server::model::PlaySource::Graveyard)
+    );
+    assert_eq!(
+        room.players[0]
+            .assets
+            .iter()
+            .filter(|c| c.exhausted)
+            .count(),
+        2
+    );
+    attachment_pass_top(&mut room, &mut steps);
+    let returned = room.regions[2]
+        .cards
+        .iter()
+        .find(|c| c.definition == "JC085")
+        .unwrap();
+    assert_ne!(returned.id, old);
+    assert!(!returned.face_down);
+    assert_eq!(
+        room.view(0, room.pacing.last_server_now_ms).regions[2]
+            .characters
+            .iter()
+            .find(|c| c.card_id.as_deref() == Some("JC085"))
+            .unwrap()
+            .icons
+            .unwrap()
+            .influence,
+        1
+    );
+    // The teammate's street thug uses team markers, while asset domains remain personal.
+    assert_eq!(
+        room.view(1, room.pacing.last_server_now_ms).regions[2]
+            .characters
+            .iter()
+            .find(|c| c.card_id.as_deref() == Some("JC084"))
+            .unwrap()
+            .icons
+            .unwrap()
+            .investigation,
+        1
+    );
+    json!({"name":"direct-grave-face-up-play-normal-cost-and-conditional-icons","seed":"9007199254740993","steps":steps,"syntheticInitialLayout":true})
+}
 fn main() {
     let output = std::env::args()
         .nth(1)
@@ -1822,8 +1898,22 @@ fn main() {
     };
     assert!(RoomEnvelope::from_persisted(&old_room).is_err());
     rejected_states.push(old_room);
+    let previous_six = {
+        let mut old = RoomEnvelope::from_game(previous.clone());
+        old.versions.engine = "rust-v0.2.6".into();
+        old.versions.card_pool = "limited-v2.4".into();
+        old.game.versions = old.versions.clone();
+        serde_json::to_string(&old).unwrap()
+    };
+    assert!(RoomEnvelope::from_persisted(&previous_six).is_err());
+    rejected_states.push(previous_six);
     let clock = pacing_fixture(false);
     let prepared = json!({"state":clock["steps"][0]["state"],"version":clock["steps"][0]["version"],"roomId":"ffffffffffffffffffffffff","firstAction":clock["steps"][1]["args"][1]["action"],"firstCommand":clock["steps"][1]["args"][1],"serverNowMs":clock["steps"][1]["args"][2],"seat":0});
+    if std::env::args().any(|a| a == "--slice-v027") {
+        let value = json!({"catalog":catalog::catalog(),"cases":[grave_play_fixture(),attachment_region_return_fixture(),clock],"preparedResponse":prepared,"rejectedStates":rejected_states});
+        std::fs::write(output, serde_json::to_vec(&value).unwrap()).unwrap();
+        return;
+    }
     if std::env::args().any(|a| a == "--slice-v026") {
         let value = json!({"catalog":catalog::catalog(),"cases":[attachment_fixture(false),attachment_fixture(true),attachment_hk_fixture(),attachment_region_return_fixture(),clock],"preparedResponse":prepared,"rejectedStates":rejected_states});
         std::fs::write(output, serde_json::to_vec(&value).unwrap()).unwrap();

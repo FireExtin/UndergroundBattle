@@ -319,6 +319,7 @@ impl Game {
         SourceSnapshot {
             card: c.clone(),
             region,
+            play_source: None,
         }
     }
     pub(crate) fn filter_card(&self, filter: &CardFilter, c: &Card) -> bool {

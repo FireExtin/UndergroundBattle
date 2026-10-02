@@ -183,5 +183,15 @@
     "url": "/cards/BQ022.jpg",
     "source": "resource/ymsj-fun.github.io/cards/BQ022 合金指虎.jpg",
     "sha256": "f1b58f299c3d901494c388be2123b325ca20c1f341106fe860d9761ded8231eb"
+  },
+  "JC084": {
+    "url": "/cards/JC084.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC084 街头混混.jpg",
+    "sha256": "3d068fa87dc6f9f7aef426637f71de22aef05f0f278dc096fad0ca50dee99872"
+  },
+  "JC085": {
+    "url": "/cards/JC085.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC085 复生行尸.jpg",
+    "sha256": "f568ed4c26fc244830d840f0133eb1a78111aceff53a4a345f8ca44c1552aee2"
   }
 }

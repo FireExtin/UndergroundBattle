@@ -418,6 +418,13 @@ pub struct StackItem {
 pub struct SourceSnapshot {
     pub card: Card,
     pub region: Option<usize>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub play_source: Option<PlaySource>,
+}
+#[derive(Clone, Copy, Debug, Serialize, Deserialize, PartialEq, Eq)]
+pub enum PlaySource {
+    Hand,
+    Graveyard,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct BoundTarget {
