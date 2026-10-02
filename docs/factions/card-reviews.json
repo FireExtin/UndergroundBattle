@@ -645,20 +645,23 @@
       "editionStatus": "pinnedImageVariant"
     },
     "JC124": {
-      "evidenceId": "card-JC124",
       "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC124",
       "verifiedFields": {
         "name": "尼古拉斯·勒梅",
-        "colorKey": "中立",
+        "colorKey": "中",
         "basicType": "角色"
       },
-      "abilitySummary": "放哲人石；带石角色死亡复生为其拥有者操控，来源离场仍有效。",
+      "abilitySummary": "【标准行动】3：在目标角色上放置一个哲人石标志。；【强制触发】当具有哲人石标志的角色死亡时，将其从墓地移回场上，并由其拥有者操控。该能力在尼古拉斯·勒梅离场后仍然生效。",
       "confirmedMechanismIds": [
-        "token",
-        "continuous",
-        "graveRecovery"
+        "graveRecovery",
+        "control",
+        "priority",
+        "uniqueInPlay",
+        "temporaryIcons"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
     },
     "JC125": {
       "evidenceId": "card-JC125",
@@ -4181,6 +4184,366 @@
         "privatePeek",
         "exhaust",
         "deckChoice",
+        "priority"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC112": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC112",
+      "verifiedFields": {
+        "name": "黑猫",
+        "colorKey": "中",
+        "basicType": "角色"
+      },
+      "abilitySummary": "公开　不能被装备结附；【快速行动】牺牲黑猫：本回合中，你下一张正面打出，且具有魔法领域图标的牌，其所需费用减少1。",
+      "confirmedMechanismIds": [
+        "public",
+        "attachment",
+        "sacrifice",
+        "costReduction",
+        "priority"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC113": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC113",
+      "verifiedFields": {
+        "name": "无形捣蛋精",
+        "colorKey": "中",
+        "basicType": "角色"
+      },
+      "abilitySummary": "灵体；【进场强制触发】每位玩家各牺牲一个附属。",
+      "confirmedMechanismIds": [
+        "spirit",
+        "attachment",
+        "sacrifice"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC114": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC114",
+      "verifiedFields": {
+        "name": "好奇的黑客",
+        "colorKey": "中",
+        "basicType": "角色"
+      },
+      "abilitySummary": "【标准行动】1，【横置】：目标玩家展示其手牌。你可以从中选择一张牌，并牺牲好奇的黑客，若你如此做，该玩家弃掉你所选择的牌。",
+      "confirmedMechanismIds": [
+        "exhaust",
+        "deckChoice",
+        "sacrifice",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC115": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC115",
+      "verifiedFields": {
+        "name": "备用资金",
+        "colorKey": "中",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于本方秘社；【快速行动】【横置】：你获得1。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "society",
+        "exhaust",
+        "priority"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC116": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC116",
+      "verifiedFields": {
+        "name": "柯尔特巨蟒左轮",
+        "colorKey": "中",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标角色；撤回（当所在的地区被赢取时，将该牌移回其拥有者手上，而非置于牌库底。）；【持续】受此结附的角色获得永久战斗1。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "combatTraits",
+        "continuous"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC117": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC117",
+      "verifiedFields": {
+        "name": "红眼航班",
+        "colorKey": "中",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于本方秘社；【快速行动】1，【横置】：将目标本方角色移到目标地区。该能力只能在行动阶段发动。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "society",
+        "exhaust",
+        "mobility",
+        "priority"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC119": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC119",
+      "verifiedFields": {
+        "name": "守秘人",
+        "colorKey": "中",
+        "basicType": "角色"
+      },
+      "abilitySummary": "【现身触发】将你的一张手牌背面朝上封印在守秘人上。（你的对手不能检视该牌）；【死亡触发】展示封印在守秘人上的所有牌，你可以打出其中一张牌，视作它具有快速行动且不需要支付其费用（但仍需满足其忠诚需求）。将不打出的牌移回其拥有者手上。",
+      "confirmedMechanismIds": [
+        "hidden",
+        "seal",
+        "privatePeek",
+        "gravePlay",
+        "priority",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC120": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC120",
+      "verifiedFields": {
+        "name": "庄严圣像",
+        "colorKey": "中",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标地区；【触发】当你赢取本地区时，将庄严圣像置入你的资产区，令其成为一个资产。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "confrontation",
+        "continuous",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC121": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC121",
+      "verifiedFields": {
+        "name": "空鸣御守",
+        "colorKey": "中",
+        "basicType": "角色/附属"
+      },
+      "abilitySummary": "公开　灵体　不能移动；【进场触发】将空鸣御守结附于目标位于相同地区的本方角色。；【触发】每当受此结附的角色将受到伤害时，该伤害改为对空鸣御守造成。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "public",
+        "spirit",
+        "mobility",
+        "damagePrevention",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC122": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC122",
+      "verifiedFields": {
+        "name": "哈克·亚当斯",
+        "colorKey": "中",
+        "basicType": "角色"
+      },
+      "abilitySummary": "【快速行动】2：在目标角色或暗藏者上放置一个锁定标志。；【持续】只要哈克·亚当斯在场，所有具有锁定标志的角色或暗藏者不能翻面。",
+      "confirmedMechanismIds": [
+        "lock",
+        "hidden",
+        "continuous",
+        "priority",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC123": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC123",
+      "verifiedFields": {
+        "name": "饮魂者朱迪",
+        "colorKey": "中",
+        "basicType": "角色"
+      },
+      "abilitySummary": "【快速行动】2：在目标角色或暗藏者上放置一个锁定标志。；【持续】只要饮魂者朱迪在场，所有具有锁定标志的角色或暗藏者失去所有永久势力和临时势力能力图标。",
+      "confirmedMechanismIds": [
+        "lock",
+        "hidden",
+        "continuous",
+        "priority",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC126": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC126",
+      "verifiedFields": {
+        "name": "产业扩张",
+        "colorKey": "中",
+        "basicType": "事务"
+      },
+      "abilitySummary": "【标准行动】将你牌库顶的一张牌正面置入你的资产区，令其成为一个资产。",
+      "confirmedMechanismIds": [
+        "deckChoice",
+        "continuous"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC127": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC127",
+      "verifiedFields": {
+        "name": "终局",
+        "colorKey": "中",
+        "basicType": "事务"
+      },
+      "abilitySummary": "【标准行动】选择目标地区，移除该地区上的所有势力标志。然后若该地区上有三个或更多时间标志，则消灭该地区上的所有角色。",
+      "confirmedMechanismIds": [
+        "confrontation",
+        "timeDestroy"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC128": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC128",
+      "verifiedFields": {
+        "name": "替罪羊",
+        "colorKey": "中",
+        "basicType": "事务"
+      },
+      "abilitySummary": "【标准行动】选择目标敌方玩家，除非他选择并移除三个他所拥有的势力标志，否则该玩家牺牲一个角色。",
+      "confirmedMechanismIds": [
+        "confrontation",
+        "sacrifice"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC129": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC129",
+      "verifiedFields": {
+        "name": "操控心智",
+        "colorKey": "中",
+        "basicType": "事务"
+      },
+      "abilitySummary": "【标准行动】你获得目标敌方角色的操控权直到回合结束。",
+      "confirmedMechanismIds": [
+        "control",
+        "priority"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC130": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC130",
+      "verifiedFields": {
+        "name": "深入研究",
+        "colorKey": "中",
+        "basicType": "事务"
+      },
+      "abilitySummary": "【标准行动】抓两张牌，然后弃一张手牌。",
+      "confirmedMechanismIds": [
+        "deckChoice"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC131": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC131",
+      "verifiedFields": {
+        "name": "空投物资",
+        "colorKey": "中",
+        "basicType": "事务"
+      },
+      "abilitySummary": "【标准行动】从你的牌库中寻找一张牌，将该牌置于你的手中，然后将你的牌库洗牌。",
+      "confirmedMechanismIds": [
+        "deckChoice"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC132": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC132",
+      "verifiedFields": {
+        "name": "构筑静态障壁",
+        "colorKey": "中",
+        "basicType": "事务"
+      },
+      "abilitySummary": "【标准行动】选择目标地区，横置所有位于该地区的角色。",
+      "confirmedMechanismIds": [
+        "exhaust"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC133": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC133",
+      "verifiedFields": {
+        "name": "操控死尸",
+        "colorKey": "中",
+        "basicType": "事务"
+      },
+      "abilitySummary": "【标准行动】选择目标地区，令你墓地中的目标角色牌正面进场并置于该地区，该角色额外具有不死生物类别。",
+      "confirmedMechanismIds": [
+        "graveRecovery",
+        "continuous"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC134": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC134",
+      "verifiedFields": {
+        "name": "审判",
+        "colorKey": "中",
+        "basicType": "事务"
+      },
+      "abilitySummary": "【标准行动】每位玩家牺牲一个资产。",
+      "confirmedMechanismIds": [
+        "sacrifice"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC135": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC135",
+      "verifiedFields": {
+        "name": "余震",
+        "colorKey": "中",
+        "basicType": "事务"
+      },
+      "abilitySummary": "【额外费用】支付X。；【快速行动】消灭目标印刷费用为X的附属。",
+      "confirmedMechanismIds": [
+        "attachment",
         "priority"
       ],
       "editionStatus": "pinnedImageVariant",
