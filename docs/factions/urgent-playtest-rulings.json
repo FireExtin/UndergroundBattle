@@ -1,0 +1,162 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-03",
+  "auditedCommit": "286ad83ef5a54bc0caed26199ca4cfea269314bd",
+  "sourcePolicy": "直接重看原PDF页、路人原图与10张地区原图；字段来自已核完整规格；运行实现单独固定SHA。",
+  "officialBaseWorld": {
+    "status": "confirmedBaseProductSetup",
+    "physicalCardCount": 10,
+    "distinctNames": 10,
+    "entries": [
+      {
+        "cardId": "DQJC107",
+        "name": "沉没的废墟",
+        "count": 1,
+        "printedCollectorCode": "W01/10",
+        "sourceSpecRef": "docs/factions/card-specifications.json#cards/DQJC107",
+        "evidenceId": "card-DQJC107"
+      },
+      {
+        "cardId": "DQJC108",
+        "name": "佛罗伦萨",
+        "count": 1,
+        "printedCollectorCode": "W 02/10",
+        "sourceSpecRef": "docs/factions/card-specifications.json#cards/DQJC108",
+        "evidenceId": "card-DQJC108"
+      },
+      {
+        "cardId": "DQJC109",
+        "name": "京都",
+        "count": 1,
+        "printedCollectorCode": "W 03/10",
+        "sourceSpecRef": "docs/factions/card-specifications.json#cards/DQJC109",
+        "evidenceId": "card-DQJC109"
+      },
+      {
+        "cardId": "DQJC110",
+        "name": "伦敦",
+        "count": 1,
+        "printedCollectorCode": "W 04/10",
+        "sourceSpecRef": "docs/factions/card-specifications.json#cards/DQJC110",
+        "evidenceId": "card-DQJC110"
+      },
+      {
+        "cardId": "DQJC111",
+        "name": "莫斯科",
+        "count": 1,
+        "printedCollectorCode": "W 05/10",
+        "sourceSpecRef": "docs/factions/card-specifications.json#cards/DQJC111",
+        "evidenceId": "card-DQJC111"
+      },
+      {
+        "cardId": "DQJC112",
+        "name": "纽约",
+        "count": 1,
+        "printedCollectorCode": "W06/10",
+        "sourceSpecRef": "docs/factions/card-specifications.json#cards/DQJC112",
+        "evidenceId": "card-DQJC112"
+      },
+      {
+        "cardId": "DQJC113",
+        "name": "切尔诺贝利",
+        "count": 1,
+        "printedCollectorCode": "W07/10",
+        "sourceSpecRef": "docs/factions/card-specifications.json#cards/DQJC113",
+        "evidenceId": "card-DQJC113"
+      },
+      {
+        "cardId": "DQJC114",
+        "name": "上海",
+        "count": 1,
+        "printedCollectorCode": "W08/10",
+        "sourceSpecRef": "docs/factions/card-specifications.json#cards/DQJC114",
+        "evidenceId": "card-DQJC114"
+      },
+      {
+        "cardId": "DQJC115",
+        "name": "死者之城",
+        "count": 1,
+        "printedCollectorCode": "W 09/10",
+        "sourceSpecRef": "docs/factions/card-specifications.json#cards/DQJC115",
+        "evidenceId": "card-DQJC115"
+      },
+      {
+        "cardId": "DQJC116",
+        "name": "香港",
+        "count": 1,
+        "printedCollectorCode": "W10/10",
+        "sourceSpecRef": "docs/factions/card-specifications.json#cards/DQJC116",
+        "evidenceId": "card-DQJC116"
+      }
+    ],
+    "evidenceIds": [
+      "guide-base-world",
+      "guide-base-world-setup",
+      "bq-card-anatomy"
+    ],
+    "inventoryBasis": "基础包十张地区取完整套牌，十个原图W01/10至W10/10各为不同名称；每张一份是该基础设置的实体组成，不是泛化为所有扩展任意牌库规则。",
+    "mixedExpansionSameNameRegionRule": "uncertain: 在现有八份原说明中未找到一条普遍的同名地区构筑上限；序曲明确同名遭遇角色仅一张，不能将其偷换成所有地区的通则。",
+    "selectionEnabled": false,
+    "runtimeAcceptance": "notAccepted"
+  },
+  "pinnedRuntimeWorld": {
+    "catalogPath": "rust-game/data/cards.json",
+    "entries": [
+      {
+        "cardId": "DQJC107",
+        "count": 3
+      },
+      {
+        "cardId": "DQJC112",
+        "count": 3
+      },
+      {
+        "cardId": "DQJC113",
+        "count": 2
+      },
+      {
+        "cardId": "DQJC114",
+        "count": 2
+      }
+    ],
+    "physicalCardCount": 10,
+    "definitionCount": 4,
+    "cause": "engine.start按catalog.world每项count生成独立实体；不同实体ID不改变同名切尔诺贝利被生成两份。",
+    "recommendedNextStep": "主线程补足全部10张原图定义/赢区效果与持久化/合法动作后，在新局使用各一张的官方基础世界牌库；不得以四定义反复复制声称完整官方世界。",
+    "liveRoomMutationAuthorized": false
+  },
+  "JC125": {
+    "name": "无知路人",
+    "printedCost": 0,
+    "loyalty": [],
+    "domains": [],
+    "defense": 1,
+    "icons": {
+      "permanent": {
+        "investigation": 0,
+        "combat": 0,
+        "influence": 0
+      },
+      "temporary": {
+        "investigation": 0,
+        "combat": 0,
+        "influence": 0
+      }
+    },
+    "normalFaceUpPlay": "己方行动步骤合法标准行动窗口，从手牌选本可进入的地区，支付实际所需费用；通常0且无忠诚，无须先建资产；入堆叠可响应。额外费用/增费/禁止打出仍按规则适用。",
+    "copyLimit": "该名称卡面明确构筑数量没有限制；牌组仍至少50。",
+    "doesNotGrant": "无限同名例外不授权用它替代派系特色，亦不免时机/地区限制或赋予对抗图标。",
+    "evidenceIds": [
+      "card-JC125",
+      "manual-normal-play"
+    ],
+    "runtimeAcceptance": "notAccepted"
+  },
+  "userDeckConstraint": {
+    "scope": "本任务后续候选预组",
+    "neutralCardCount": 0,
+    "unknownCardFieldsAllowed": false,
+    "officialRuleClaim": false,
+    "reason": "用户实玩明确拒绝17路人及中立牌充数；这是当前产品目标，不宣称官方构筑禁止中立。"
+  }
+}
