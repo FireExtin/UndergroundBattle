@@ -49,7 +49,7 @@ describe('official factions and curated deck boundaries', () => {
       expect(within(row as HTMLElement).getByText('未实现')).toBeInTheDocument();
     }
     expect(screen.queryByRole('button', { name: /圣贤|梦境行者|自由构筑|秘社选择/ })).not.toBeInTheDocument();
-    expect(screen.getByText(/秘社牌和自由构筑尚未开放/)).toBeInTheDocument();
+    expect(screen.getByText(/编辑、保存自己的牌组；秘社牌尚未开放/)).toBeInTheDocument();
     expect(screen.getByText(/不是第九个派系/)).toBeInTheDocument();
     expect(container.querySelector('[data-deck-id="watchers"]')).toHaveAttribute('data-deck-main-faction', 'yellow');
     expect(container.querySelector('[data-deck-id="hunters"]')).toHaveAttribute('data-deck-main-faction', 'green');

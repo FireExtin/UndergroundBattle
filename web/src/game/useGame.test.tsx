@@ -1,6 +1,6 @@
 import { act, renderHook, waitFor } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { readSavedSeats, savePending, saveSession } from './api';
+import { readSavedSeats, returnToLobby, savePending, saveSession } from './api';
 import { testCatalog, testView } from './testFixtures';
 import { newerView, useGame } from './useGame';
 
@@ -8,6 +8,41 @@ const session = { roomId: testView.roomId, inviteCode: 'INVITE', token: 'opaque-
 const json = (body: unknown, status = 200) => new Response(JSON.stringify(body), { status });
 afterEach(() => { vi.useRealTimers(); vi.restoreAllMocks(); vi.unstubAllGlobals(); localStorage.clear(); });
 describe('room lifecycle and reconciliation', () => {
+  it('rejoins its saved room through the invite without allocating another seat or changing the ready deck', async () => {
+    saveSession(session); returnToLobby();
+    const restored = { ...testView, players: testView.players.map(p => p.id === 'p0' ? { ...p, ready: true, deckId: 'watchers' } : p) };
+    const posts: string[] = [];
+    vi.stubGlobal('fetch', vi.fn(async (url: string, init?: RequestInit) => {
+      if (init?.method === 'POST') posts.push(url);
+      return url.endsWith('/catalog') ? json(testCatalog) : url === '/api/rooms/join'
+        ? json({ ...session, seat: 1, token: 'accidental-second-token', view: { ...testView, you: 'p1' } }) : json(restored);
+    }));
+    const { result } = renderHook(useGame);
+    await waitFor(() => expect(result.current.catalog).toEqual(testCatalog));
+    await act(async () => { await result.current.join(' invite ', 'changed name', 'hunters'); });
+    await waitFor(() => expect(result.current.view?.you).toBe('p0'));
+    expect(result.current.session).toEqual(session); expect(posts).toEqual([]);
+    expect(result.current.view?.players.find(p => p.id === 'p0')).toMatchObject({ ready: true, deckId: 'watchers' });
+    expect(readSavedSeats()).toEqual([session]);
+  });
+  it('preserves multiple historical seats and restores the last used matching seat even through a draft join', async () => {
+    const other = { ...session, seat: 1, token: 'second-existing-token' };
+    saveSession(session); saveSession(other); returnToLobby();
+    const posts: string[] = [];
+    vi.stubGlobal('fetch', vi.fn(async (url: string, init?: RequestInit) => {
+      if (init?.method === 'POST') posts.push(url);
+      const you = (init?.headers as Record<string, string> | undefined)?.Authorization === `Bearer ${other.token}` ? 'p1' : 'p0';
+      return url.endsWith('/catalog') ? json(testCatalog) : json({ ...testView, you });
+    }));
+    const { result } = renderHook(useGame);
+    await act(async () => { await result.current.joinDraft('INVITE', 'new name', { id: 'draft', name: 'draft', description: '', societyId: null, cards: [], rulesVersion: '', cardPoolVersion: '', engineVersion: '', updatedAt: '' }); });
+    await waitFor(() => expect(result.current.view?.you).toBe('p1'));
+    expect(result.current.session).toEqual(other); expect(posts).toEqual([]);
+    expect(readSavedSeats()).toEqual([session, other]);
+    act(() => { result.current.leave(); result.current.resume(session); });
+    await waitFor(() => expect(result.current.view?.you).toBe('p0'));
+    expect(readSavedSeats()).toEqual([other, session]);
+  });
   it('shows the persisted room catalog and reloads the current catalog after returning to the lobby', async () => {
     saveSession(session);
     const oldCatalog = { ...testCatalog, engineVersion: 'rust-v0.2.1' };
