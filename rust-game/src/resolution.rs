@@ -656,6 +656,31 @@ impl Game {
         frame.frame_id = self.stack.last().unwrap().id.clone();
         self.stack.last_mut().unwrap().frame = Some(frame);
     }
+    pub(crate) fn dispatch_frame(
+        &mut self,
+        mut frame: ResolutionFrame,
+        label: String,
+        transaction: Option<Card>,
+        policy: ResponsePolicy,
+    ) {
+        match policy {
+            ResponsePolicy::Respondable => self.push_frame(frame, label, transaction),
+            ResponsePolicy::Immediate => {
+                // The same guarded, paid, resumable frame runs without a response
+                // window. Independent events emitted by paying its costs remain
+                // queued and are declared after this immediate effect completes.
+                frame.frame_id = self.id();
+                self.reset_passes();
+                self.note(format!("立即结算（不可响应）：{label}"));
+                if let Some(card) = transaction {
+                    self.effects.push_front(Effect::Bury { card });
+                }
+                self.effects.push_front(Effect::Frame {
+                    frame: Box::new(frame),
+                });
+            }
+        }
+    }
     pub(crate) fn emit_event(&mut self, actor: usize, source: SourceSnapshot, event: Event) {
         for spec in rules::definition(&source.card.definition)
             .abilities
@@ -798,7 +823,7 @@ impl Game {
             vec![],
             None,
         );
-        self.push_frame(frame, label, None);
+        self.dispatch_frame(frame, label, None, declaration.ability.response_policy);
         Ok(())
     }
     fn frame_entity(frame: &ResolutionFrame, entity: EntityRef) -> Option<&str> {

@@ -1,5 +1,6 @@
 import { kernel } from './kernel.mjs';
 import { HttpError, RoomService } from './service.mjs';
+import { storageFailure } from './storage-errors.mjs';
 
 const json = (body, status = 200) => new Response(JSON.stringify(body), {
   status, headers: { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' },
@@ -19,7 +20,7 @@ export default {
     const url = new URL(request.url);
     if (!url.pathname.startsWith('/api/')) return env.ASSETS.fetch(request);
     try {
-      if (request.method === 'GET' && url.pathname === '/api/health') return json({ ok: true, service: 'hegemony-worker', engineVersion: 'rust-v0.2.1', transport: 'polling' });
+      if (request.method === 'GET' && url.pathname === '/api/health') return json({ ok: true, service: 'hegemony-worker', engineVersion: JSON.parse(kernel.catalog()).engineVersion, transport: 'polling' });
       if (request.method === 'GET' && url.pathname === '/api/catalog') return json({ ...JSON.parse(kernel.catalog()), transport: 'polling', entryIdempotency: true });
       // Ordinary DB binding queries go to the primary; no read-replica Sessions are used.
       const service = new RoomService(env.DB, kernel);
@@ -38,7 +39,7 @@ export default {
     } catch (error) {
       if (error instanceof HttpError) return json({ error: error.status === 401 ? 'invalid_seat_token' : 'request_failed', message: error.message, ...(error.view ? { view: error.view } : {}) }, error.status);
       // No room state, command body, token, invite, or database error details are logged.
-      console.error('hegemony persistence operation failed');
+      console.error('hegemony persistence operation failed', storageFailure(error));
       return json({ error: 'storage_error', message: '牌桌服务暂不可用，未确认此操作。请使用原请求重试。' }, 503);
     }
   },
