@@ -1,0 +1,33 @@
+{
+  "roomId": "ff197848ea29cf4010ba3c13",
+  "finishedAtUtc": "2026-10-02T22:01:47.281586+00:00",
+  "completeGame": true,
+  "combinedAcceptancePassed": false,
+  "mechanismCoverageFailure": "AssertionError: Complete game finished without naturally reaching grave play; mechanism UI remains untested",
+  "nativeEngine": "rust-v0.2.7",
+  "finalTurn": 7,
+  "finalStep": "region:4:influence:after",
+  "finalRevision": 1221,
+  "winnerTeam": 1,
+  "teamScores": [
+    8,
+    12
+  ],
+  "uiPostCount": 1175,
+  "publicCommandRecords": 1170,
+  "recordedHttpStatuses": {
+    "200": 1170
+  },
+  "entryAndUnclassifiedPostDifference": 5,
+  "differenceExplanation": "4 normal create/join posts; remaining 1 is not classified by the retained command trace, so do not claim all UI HTTP outcomes audited",
+  "browserErrors": [],
+  "graveChecks": [],
+  "conditionalObservationCount": 18,
+  "stateInjection": false,
+  "apiMoves": false,
+  "sameRoomDbAndFourProfilesResumed": true,
+  "ownedBrowserContextsClosed": true,
+  "ownedNativeServiceStopped": true,
+  "newGraveProbeStarted": false,
+  "v027Published": false
+}

@@ -1,0 +1,713 @@
+{
+  "passed": false,
+  "failure": "AssertionError: Complete game finished without naturally reaching grave play; mechanism UI remains untested",
+  "testType": "complete-natural-desktop-ui-game",
+  "mode": "teams",
+  "stateInjection": false,
+  "apiMoves": false,
+  "uiPostCount": 1175,
+  "uiPostBudget": 2400,
+  "browserErrors": [],
+  "coverage": {
+    "ready": 4,
+    "start": 1,
+    "choice:mulligan": 4,
+    "choose": 37,
+    "pass": 1020,
+    "asset": 16,
+    "conceal": 21,
+    "deploy": 14,
+    "passResponse": 50,
+    "privilege": 3,
+    "choice:trigger": 11,
+    "choice:damage": 2,
+    "choice:investigation": 3,
+    "reveal": 1,
+    "choice:region_return": 7,
+    "ordering:region-return": 7,
+    "choice:target": 3,
+    "choice:search": 1,
+    "choice:discard": 6,
+    "ordering:bottom": 1,
+    "play": 3
+  },
+  "graveChecks": [],
+  "conditionChecks": [
+    {
+      "cardId": "JC084",
+      "viewer": "p0",
+      "controller": "p0",
+      "version": 186,
+      "firstTeamEligible": false,
+      "exhausted": false,
+      "ownDeathAsset": true,
+      "teamDeathAsset": true,
+      "regionInfluence": [
+        0,
+        0
+      ],
+      "effectiveInfluence": 0,
+      "effectiveInvestigation": 0,
+      "passed": true
+    },
+    {
+      "cardId": "JC084",
+      "viewer": "p0",
+      "controller": "p0",
+      "version": 262,
+      "firstTeamEligible": false,
+      "exhausted": false,
+      "ownDeathAsset": true,
+      "teamDeathAsset": true,
+      "regionInfluence": [
+        0,
+        1
+      ],
+      "effectiveInfluence": 0,
+      "effectiveInvestigation": 0,
+      "passed": true
+    },
+    {
+      "cardId": "JC084",
+      "viewer": "p0",
+      "controller": "p0",
+      "version": 318,
+      "firstTeamEligible": true,
+      "exhausted": false,
+      "ownDeathAsset": true,
+      "teamDeathAsset": true,
+      "regionInfluence": [
+        0,
+        1
+      ],
+      "effectiveInfluence": 0,
+      "effectiveInvestigation": 1,
+      "passed": true
+    },
+    {
+      "cardId": "JC084",
+      "viewer": "p0",
+      "controller": "p0",
+      "version": 427,
+      "firstTeamEligible": true,
+      "exhausted": false,
+      "ownDeathAsset": true,
+      "teamDeathAsset": true,
+      "regionInfluence": [
+        0,
+        0
+      ],
+      "effectiveInfluence": 0,
+      "effectiveInvestigation": 0,
+      "passed": true
+    },
+    {
+      "cardId": "JC084",
+      "viewer": "p0",
+      "controller": "p0",
+      "version": 485,
+      "firstTeamEligible": false,
+      "exhausted": false,
+      "ownDeathAsset": true,
+      "teamDeathAsset": true,
+      "regionInfluence": [
+        0,
+        0
+      ],
+      "effectiveInfluence": 0,
+      "effectiveInvestigation": 0,
+      "passed": true
+    },
+    {
+      "cardId": "JC084",
+      "viewer": "p0",
+      "controller": "p0",
+      "version": 494,
+      "firstTeamEligible": false,
+      "exhausted": true,
+      "ownDeathAsset": true,
+      "teamDeathAsset": true,
+      "regionInfluence": [
+        0,
+        0
+      ],
+      "effectiveInfluence": 0,
+      "effectiveInvestigation": 0,
+      "passed": true
+    },
+    {
+      "cardId": "JC084",
+      "viewer": "p0",
+      "controller": "p0",
+      "version": 603,
+      "firstTeamEligible": false,
+      "exhausted": true,
+      "ownDeathAsset": true,
+      "teamDeathAsset": true,
+      "regionInfluence": [
+        0,
+        1
+      ],
+      "effectiveInfluence": 0,
+      "effectiveInvestigation": 0,
+      "passed": true
+    },
+    {
+      "cardId": "JC084",
+      "viewer": "p0",
+      "controller": "p0",
+      "version": 636,
+      "firstTeamEligible": false,
+      "exhausted": true,
+      "ownDeathAsset": true,
+      "teamDeathAsset": true,
+      "regionInfluence": [
+        0,
+        1
+      ],
+      "effectiveInfluence": 0,
+      "effectiveInvestigation": 0,
+      "passed": true
+    },
+    {
+      "cardId": "JC084",
+      "viewer": "p0",
+      "controller": "p0",
+      "version": 679,
+      "firstTeamEligible": true,
+      "exhausted": false,
+      "ownDeathAsset": true,
+      "teamDeathAsset": true,
+      "regionInfluence": [
+        0,
+        1
+      ],
+      "effectiveInfluence": 0,
+      "effectiveInvestigation": 1,
+      "passed": true
+    },
+    {
+      "cardId": "JC085",
+      "viewer": "p0",
+      "controller": "p0",
+      "version": 691,
+      "firstTeamEligible": true,
+      "exhausted": false,
+      "ownDeathAsset": true,
+      "teamDeathAsset": true,
+      "regionInfluence": [
+        0,
+        1
+      ],
+      "effectiveInfluence": 1,
+      "effectiveInvestigation": 0,
+      "passed": true
+    },
+    {
+      "cardId": "JC084",
+      "viewer": "p0",
+      "controller": "p0",
+      "version": 697,
+      "firstTeamEligible": true,
+      "exhausted": false,
+      "ownDeathAsset": true,
+      "teamDeathAsset": true,
+      "regionInfluence": [
+        0,
+        1
+      ],
+      "effectiveInfluence": 0,
+      "effectiveInvestigation": 1,
+      "passed": true
+    },
+    {
+      "cardId": "JC085",
+      "viewer": "p0",
+      "controller": "p0",
+      "version": 697,
+      "firstTeamEligible": true,
+      "exhausted": false,
+      "ownDeathAsset": true,
+      "teamDeathAsset": true,
+      "regionInfluence": [
+        0,
+        1
+      ],
+      "effectiveInfluence": 1,
+      "effectiveInvestigation": 0,
+      "passed": true
+    },
+    {
+      "cardId": "JC084",
+      "viewer": "p0",
+      "controller": "p0",
+      "version": 813,
+      "firstTeamEligible": true,
+      "exhausted": false,
+      "ownDeathAsset": true,
+      "teamDeathAsset": true,
+      "regionInfluence": [
+        0,
+        0
+      ],
+      "effectiveInfluence": 0,
+      "effectiveInvestigation": 0,
+      "passed": true
+    },
+    {
+      "cardId": "JC085",
+      "viewer": "p0",
+      "controller": "p0",
+      "version": 813,
+      "firstTeamEligible": true,
+      "exhausted": false,
+      "ownDeathAsset": true,
+      "teamDeathAsset": true,
+      "regionInfluence": [
+        0,
+        0
+      ],
+      "effectiveInfluence": 1,
+      "effectiveInvestigation": 0,
+      "passed": true
+    },
+    {
+      "cardId": "JC084",
+      "viewer": "p0",
+      "controller": "p0",
+      "version": 870,
+      "firstTeamEligible": false,
+      "exhausted": false,
+      "ownDeathAsset": true,
+      "teamDeathAsset": true,
+      "regionInfluence": [
+        0,
+        0
+      ],
+      "effectiveInfluence": 0,
+      "effectiveInvestigation": 0,
+      "passed": true
+    },
+    {
+      "cardId": "JC085",
+      "viewer": "p0",
+      "controller": "p0",
+      "version": 870,
+      "firstTeamEligible": false,
+      "exhausted": false,
+      "ownDeathAsset": true,
+      "teamDeathAsset": true,
+      "regionInfluence": [
+        0,
+        0
+      ],
+      "effectiveInfluence": 0,
+      "effectiveInvestigation": 0,
+      "passed": true
+    },
+    {
+      "cardId": "JC084",
+      "viewer": "p0",
+      "controller": "p0",
+      "version": 971,
+      "firstTeamEligible": false,
+      "exhausted": false,
+      "ownDeathAsset": true,
+      "teamDeathAsset": true,
+      "regionInfluence": [
+        0,
+        1
+      ],
+      "effectiveInfluence": 0,
+      "effectiveInvestigation": 0,
+      "passed": true
+    },
+    {
+      "cardId": "JC085",
+      "viewer": "p0",
+      "controller": "p0",
+      "version": 971,
+      "firstTeamEligible": false,
+      "exhausted": false,
+      "ownDeathAsset": true,
+      "teamDeathAsset": true,
+      "regionInfluence": [
+        0,
+        1
+      ],
+      "effectiveInfluence": 0,
+      "effectiveInvestigation": 0,
+      "passed": true
+    }
+  ],
+  "expiryRaces": [
+    {
+      "seat": 3,
+      "windowId": "response:13",
+      "kind": "normal-click-window-expired-before-post",
+      "gamePosts": 0
+    },
+    {
+      "seat": 0,
+      "windowId": "response:14",
+      "kind": "normal-click-window-expired-before-post",
+      "gamePosts": 0
+    },
+    {
+      "seat": 0,
+      "windowId": "response:15",
+      "kind": "normal-click-window-expired-before-post",
+      "gamePosts": 0
+    },
+    {
+      "seat": 3,
+      "windowId": "response:16",
+      "kind": "normal-click-window-expired-before-post",
+      "gamePosts": 0
+    },
+    {
+      "seat": 0,
+      "windowId": "response:18",
+      "kind": "normal-click-window-expired-before-post",
+      "gamePosts": 0
+    },
+    {
+      "seat": 2,
+      "windowId": "response:21",
+      "kind": "normal-response-ui-changed-before-post",
+      "gamePosts": 0
+    },
+    {
+      "seat": 1,
+      "windowId": "response:22",
+      "kind": "normal-response-ui-changed-before-post",
+      "gamePosts": 0
+    },
+    {
+      "seat": 2,
+      "windowId": "response:24",
+      "kind": "normal-response-ui-changed-before-post",
+      "gamePosts": 0
+    },
+    {
+      "seat": 0,
+      "windowId": "response:31",
+      "kind": "normal-response-ui-changed-before-post",
+      "gamePosts": 0
+    },
+    {
+      "seat": 0,
+      "windowId": "response:33",
+      "kind": "normal-response-ui-changed-before-post",
+      "gamePosts": 0
+    },
+    {
+      "seat": 2,
+      "windowId": "response:35",
+      "kind": "normal-response-ui-changed-before-post",
+      "gamePosts": 0
+    },
+    {
+      "seat": 3,
+      "windowId": "response:40",
+      "kind": "normal-response-ui-changed-before-post",
+      "gamePosts": 0
+    },
+    {
+      "seat": 0,
+      "windowId": "response:42",
+      "kind": "normal-response-ui-changed-before-post",
+      "gamePosts": 0
+    },
+    {
+      "seat": 0,
+      "windowId": "response:43",
+      "kind": "normal-response-ui-changed-before-post",
+      "gamePosts": 0
+    },
+    {
+      "seat": 0,
+      "windowId": "response:48",
+      "kind": "normal-response-ui-changed-before-post",
+      "gamePosts": 0
+    },
+    {
+      "seat": 2,
+      "windowId": "response:50",
+      "kind": "normal-response-ui-changed-before-post",
+      "gamePosts": 0
+    },
+    {
+      "seat": 0,
+      "windowId": "response:51",
+      "kind": "normal-response-ui-changed-before-post",
+      "gamePosts": 0
+    },
+    {
+      "seat": 0,
+      "windowId": "response:54",
+      "kind": "normal-response-ui-changed-before-post",
+      "gamePosts": 0
+    },
+    {
+      "seat": 2,
+      "windowId": "response:58",
+      "kind": "normal-response-ui-changed-before-post",
+      "gamePosts": 0
+    }
+  ],
+  "final": {
+    "version": 1221,
+    "mode": "teams",
+    "status": "finished",
+    "you": "p0",
+    "players": [
+      {
+        "id": "p0",
+        "seat": 0,
+        "name": "完整局teams甲",
+        "team": 0,
+        "deckId": "reclaimers",
+        "deckName": "墓地回声",
+        "ready": true,
+        "eliminated": false,
+        "handCount": 1,
+        "deckCount": 36,
+        "score": 3
+      },
+      {
+        "id": "p1",
+        "seat": 1,
+        "name": "完整局teams2",
+        "team": 0,
+        "deckId": "keepers",
+        "deckName": "城市守卫",
+        "ready": true,
+        "eliminated": false,
+        "handCount": 1,
+        "deckCount": 40,
+        "score": 5
+      },
+      {
+        "id": "p2",
+        "seat": 2,
+        "name": "完整局teams3",
+        "team": 1,
+        "deckId": "hunters",
+        "deckName": "公路猎手",
+        "ready": true,
+        "eliminated": false,
+        "handCount": 0,
+        "deckCount": 43,
+        "score": 6
+      },
+      {
+        "id": "p3",
+        "seat": 3,
+        "name": "完整局teams4",
+        "team": 1,
+        "deckId": "watchers",
+        "deckName": "帷幕调查",
+        "ready": true,
+        "eliminated": false,
+        "handCount": 0,
+        "deckCount": 42,
+        "score": 6
+      }
+    ],
+    "firstTeam": 0,
+    "activeTeam": 1,
+    "priorityTeam": 0,
+    "turn": 7,
+    "phase": "confrontation",
+    "step": "region:4:influence:after",
+    "winScore": 10,
+    "winnerTeam": 1,
+    "versions": {
+      "rules": "hegemony-pdf-v1",
+      "cardPool": "limited-v2.5",
+      "engine": "rust-v0.2.7"
+    },
+    "handCount": 1,
+    "assetCounts": {
+      "p0": 4,
+      "p1": 4,
+      "p2": 4,
+      "p3": 4
+    },
+    "regions": [
+      {
+        "index": 0,
+        "cardId": "DQJC107",
+        "name": "沉没的废墟",
+        "threshold": 4,
+        "points": 4,
+        "influence": [
+          3,
+          0
+        ],
+        "characters": []
+      },
+      {
+        "index": 1,
+        "cardId": "DQJC113",
+        "name": "切尔诺贝利",
+        "threshold": 3,
+        "points": 2,
+        "influence": [
+          0,
+          3
+        ],
+        "characters": []
+      },
+      {
+        "index": 2,
+        "cardId": "DQJC111",
+        "name": "莫斯科",
+        "threshold": 4,
+        "points": 3,
+        "influence": [
+          0,
+          2
+        ],
+        "characters": [
+          {
+            "instanceId": "i252",
+            "owner": "p0",
+            "controller": "p0",
+            "kind": "hidden",
+            "exhausted": false,
+            "faceDown": true
+          },
+          {
+            "instanceId": "i254",
+            "owner": "p1",
+            "controller": "p1",
+            "kind": "hidden",
+            "exhausted": false,
+            "faceDown": true
+          },
+          {
+            "instanceId": "i256",
+            "owner": "p2",
+            "controller": "p2",
+            "kind": "hidden",
+            "exhausted": false,
+            "faceDown": true
+          },
+          {
+            "instanceId": "i258",
+            "owner": "p3",
+            "controller": "p3",
+            "kind": "hidden",
+            "exhausted": false,
+            "faceDown": true
+          },
+          {
+            "instanceId": "i264",
+            "owner": "p2",
+            "controller": "p2",
+            "kind": "hidden",
+            "exhausted": false,
+            "faceDown": true
+          },
+          {
+            "instanceId": "i266",
+            "owner": "p3",
+            "controller": "p3",
+            "kind": "hidden",
+            "exhausted": false,
+            "faceDown": true
+          },
+          {
+            "instanceId": "i273",
+            "owner": "p1",
+            "controller": "p1",
+            "kind": "hidden",
+            "exhausted": false,
+            "faceDown": true
+          }
+        ]
+      },
+      {
+        "index": 3,
+        "cardId": "DQJC110",
+        "name": "伦敦",
+        "threshold": 4,
+        "points": 4,
+        "influence": [
+          0,
+          0
+        ],
+        "characters": []
+      },
+      {
+        "index": 4,
+        "cardId": "DQJC108",
+        "name": "佛罗伦萨",
+        "threshold": 4,
+        "points": 3,
+        "influence": [
+          0,
+          5
+        ],
+        "characters": []
+      }
+    ],
+    "pendingChoice": null,
+    "waitingChoice": null,
+    "legalActionKinds": [
+      "restart"
+    ],
+    "stackCount": 0,
+    "graveyardCount": 14,
+    "scoreCards": [
+      {
+        "instanceId": "i366",
+        "cardId": "DQJC116",
+        "owner": "p0",
+        "name": "香港"
+      },
+      {
+        "instanceId": "i326",
+        "cardId": "DQJC115",
+        "owner": "p1",
+        "name": "死者之城"
+      },
+      {
+        "instanceId": "i414",
+        "cardId": "DQJC114",
+        "owner": "p1",
+        "name": "上海"
+      },
+      {
+        "instanceId": "i377",
+        "cardId": "DQJC112",
+        "owner": "p2",
+        "name": "纽约"
+      },
+      {
+        "instanceId": "i460",
+        "cardId": "DQJC113",
+        "owner": "p2",
+        "name": "切尔诺贝利"
+      },
+      {
+        "instanceId": "i337",
+        "cardId": "DQJC109",
+        "owner": "p3",
+        "name": "京都"
+      },
+      {
+        "instanceId": "i472",
+        "cardId": "DQJC108",
+        "owner": "p3",
+        "name": "佛罗伦萨"
+      }
+    ]
+  },
+  "roomId": "ff197848ea29cf4010ba3c13",
+  "durationSeconds": 1741.6,
+  "resumedExistingRoom": true,
+  "priorUiPostCount": 682
+}
