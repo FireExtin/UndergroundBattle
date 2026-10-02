@@ -12,7 +12,8 @@
       "same-name original version search",
       "rendered original PDF card illustrations"
     ],
-    "sameIdStandaloneImagesRecovered": 0
+    "sameIdStandaloneImagesRecovered": 12,
+    "truncatedImagesRecovered": 1
   },
   "externalAttempts": [
     {
@@ -28,6 +29,16 @@
     {
       "url": "https://zhongchou.modian.com/item/127832.html",
       "result": "HTTP403; web-reader timeout",
+      "useAsRuleEvidence": false
+    },
+    {
+      "url": "https://ymsj-fun.github.io/cards/BQ029%20%E8%B5%A4%E9%B3%9E%E8%BF%91%E5%8D%AB.jpg",
+      "result": "HTTP403; no original read",
+      "useAsRuleEvidence": false
+    },
+    {
+      "url": "https://raw.githubusercontent.com/ymsj-fun/ymsj-fun.github.io/main/cards/BQ029%20%E8%B5%A4%E9%B3%9E%E8%BF%91%E5%8D%AB.jpg",
+      "result": "HTTP404; no original read",
       "useAsRuleEvidence": false
     }
   ],
@@ -64,104 +75,6 @@
   ],
   "quarantinedRecords": [
     {
-      "cardId": "DQBQ01",
-      "status": "missingSameIdOriginal",
-      "selectionEnabled": false,
-      "fullSourceVerification": "blocked",
-      "reason": "未恢复同ID原卡图；原始其他版、规则页或locator不能自动替代。",
-      "supplementalWitnessIds": []
-    },
-    {
-      "cardId": "DQBQ02",
-      "status": "missingSameIdOriginal",
-      "selectionEnabled": false,
-      "fullSourceVerification": "blocked",
-      "reason": "未恢复同ID原卡图；原始其他版、规则页或locator不能自动替代。",
-      "supplementalWitnessIds": [
-        "bq-melbourne-W06-10"
-      ]
-    },
-    {
-      "cardId": "DQBQ03",
-      "status": "missingSameIdOriginal",
-      "selectionEnabled": false,
-      "fullSourceVerification": "blocked",
-      "reason": "未恢复同ID原卡图；原始其他版、规则页或locator不能自动替代。",
-      "supplementalWitnessIds": []
-    },
-    {
-      "cardId": "DQBQ04",
-      "status": "missingSameIdOriginal",
-      "selectionEnabled": false,
-      "fullSourceVerification": "blocked",
-      "reason": "未恢复同ID原卡图；原始其他版、规则页或locator不能自动替代。",
-      "supplementalWitnessIds": []
-    },
-    {
-      "cardId": "DQBQ05",
-      "status": "missingSameIdOriginal",
-      "selectionEnabled": false,
-      "fullSourceVerification": "blocked",
-      "reason": "未恢复同ID原卡图；原始其他版、规则页或locator不能自动替代。",
-      "supplementalWitnessIds": []
-    },
-    {
-      "cardId": "DQBQ06",
-      "status": "missingSameIdOriginal",
-      "selectionEnabled": false,
-      "fullSourceVerification": "blocked",
-      "reason": "未恢复同ID原卡图；原始其他版、规则页或locator不能自动替代。",
-      "supplementalWitnessIds": []
-    },
-    {
-      "cardId": "DQBQ07",
-      "status": "missingSameIdOriginal",
-      "selectionEnabled": false,
-      "fullSourceVerification": "blocked",
-      "reason": "未恢复同ID原卡图；原始其他版、规则页或locator不能自动替代。",
-      "supplementalWitnessIds": []
-    },
-    {
-      "cardId": "DQBQ08",
-      "status": "missingSameIdOriginal",
-      "selectionEnabled": false,
-      "fullSourceVerification": "blocked",
-      "reason": "未恢复同ID原卡图；原始其他版、规则页或locator不能自动替代。",
-      "supplementalWitnessIds": []
-    },
-    {
-      "cardId": "DQBQ09",
-      "status": "missingSameIdOriginal",
-      "selectionEnabled": false,
-      "fullSourceVerification": "blocked",
-      "reason": "未恢复同ID原卡图；原始其他版、规则页或locator不能自动替代。",
-      "supplementalWitnessIds": []
-    },
-    {
-      "cardId": "DQBQ10",
-      "status": "missingSameIdOriginal",
-      "selectionEnabled": false,
-      "fullSourceVerification": "blocked",
-      "reason": "未恢复同ID原卡图；原始其他版、规则页或locator不能自动替代。",
-      "supplementalWitnessIds": []
-    },
-    {
-      "cardId": "TK004",
-      "status": "missingSameIdOriginal",
-      "selectionEnabled": false,
-      "fullSourceVerification": "blocked",
-      "reason": "未恢复同ID原卡图；原始其他版、规则页或locator不能自动替代。",
-      "supplementalWitnessIds": []
-    },
-    {
-      "cardId": "TK010",
-      "status": "missingSameIdOriginal",
-      "selectionEnabled": false,
-      "fullSourceVerification": "blocked",
-      "reason": "未恢复同ID原卡图；原始其他版、规则页或locator不能自动替代。",
-      "supplementalWitnessIds": []
-    },
-    {
       "cardId": "TK011",
       "status": "missingSameIdOriginal",
       "selectionEnabled": false,
@@ -189,5 +102,237 @@
       ],
       "failedSearchIsNotRuleEvidence": true
     }
-  ]
+  ],
+  "recoveredOriginals": [
+    {
+      "cardId": "DQBQ01",
+      "path": "docs/factions/recovered-originals/DQBQ01 洛杉矶.png",
+      "bytes": 374539,
+      "sha256": "1adf03035f1d6852bf0cbc77d49891353f5a32a9b46d7311c42399bb8cecbd0a",
+      "pixels": [
+        560,
+        400
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/ymsj-fun/ymsj-fun.github.io/5d72e3207860b7aaa1eec50b81bb4f9b8a697cb7/cards/DQBQ01%20%E6%B4%9B%E6%9D%89%E7%9F%B6.png",
+      "sourceRepositoryCommit": "5d72e3207860b7aaa1eec50b81bb4f9b8a697cb7",
+      "sourceRepositoryPath": "cards/DQBQ01 洛杉矶.png",
+      "archiveBindingConfirmed": true,
+      "originalImageReviewed": true,
+      "identityBasis": "sameIdOriginalRepositoryPinnedImage",
+      "selectionEnabled": false
+    },
+    {
+      "cardId": "DQBQ02",
+      "path": "docs/factions/recovered-originals/DQBQ02 墨尔本.png",
+      "bytes": 411427,
+      "sha256": "8be5f13be2a2f9cf5bdc44e37cb3cffb588c2a30f17591f249fcec195884a3fa",
+      "pixels": [
+        560,
+        400
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/ymsj-fun/ymsj-fun.github.io/5d72e3207860b7aaa1eec50b81bb4f9b8a697cb7/cards/DQBQ02%20%E5%A2%A8%E5%B0%94%E6%9C%AC.png",
+      "sourceRepositoryCommit": "5d72e3207860b7aaa1eec50b81bb4f9b8a697cb7",
+      "sourceRepositoryPath": "cards/DQBQ02 墨尔本.png",
+      "archiveBindingConfirmed": true,
+      "originalImageReviewed": true,
+      "identityBasis": "sameIdOriginalRepositoryPinnedImage",
+      "selectionEnabled": false
+    },
+    {
+      "cardId": "DQBQ03",
+      "path": "docs/factions/recovered-originals/DQBQ03 集体潜意识之海.png",
+      "bytes": 339458,
+      "sha256": "13612b114f028b3728d06819205f2390711183e7ce792856be4c1a53acbd81a4",
+      "pixels": [
+        560,
+        400
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/ymsj-fun/ymsj-fun.github.io/5d72e3207860b7aaa1eec50b81bb4f9b8a697cb7/cards/DQBQ03%20%E9%9B%86%E4%BD%93%E6%BD%9C%E6%84%8F%E8%AF%86%E4%B9%8B%E6%B5%B7.png",
+      "sourceRepositoryCommit": "5d72e3207860b7aaa1eec50b81bb4f9b8a697cb7",
+      "sourceRepositoryPath": "cards/DQBQ03 集体潜意识之海.png",
+      "archiveBindingConfirmed": true,
+      "originalImageReviewed": true,
+      "identityBasis": "sameIdOriginalRepositoryPinnedImage",
+      "selectionEnabled": false
+    },
+    {
+      "cardId": "DQBQ04",
+      "path": "docs/factions/recovered-originals/DQBQ04 巴塞罗那.png",
+      "bytes": 427122,
+      "sha256": "2672d8a0e542aeb56a46447a8fb771a205092c27a02e7eaabbbc2419899562e3",
+      "pixels": [
+        560,
+        400
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/ymsj-fun/ymsj-fun.github.io/5d72e3207860b7aaa1eec50b81bb4f9b8a697cb7/cards/DQBQ04%20%E5%B7%B4%E5%A1%9E%E7%BD%97%E9%82%A3.png",
+      "sourceRepositoryCommit": "5d72e3207860b7aaa1eec50b81bb4f9b8a697cb7",
+      "sourceRepositoryPath": "cards/DQBQ04 巴塞罗那.png",
+      "archiveBindingConfirmed": true,
+      "originalImageReviewed": true,
+      "identityBasis": "sameIdOriginalRepositoryPinnedImage",
+      "selectionEnabled": false
+    },
+    {
+      "cardId": "DQBQ05",
+      "path": "docs/factions/recovered-originals/DQBQ05 巴黎.png",
+      "bytes": 427527,
+      "sha256": "2bbcc90b88d6b30bc31400c0cff34690fee4ba677ac3aa8f7be9d03ce9c4b6f3",
+      "pixels": [
+        560,
+        400
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/ymsj-fun/ymsj-fun.github.io/5d72e3207860b7aaa1eec50b81bb4f9b8a697cb7/cards/DQBQ05%20%E5%B7%B4%E9%BB%8E.png",
+      "sourceRepositoryCommit": "5d72e3207860b7aaa1eec50b81bb4f9b8a697cb7",
+      "sourceRepositoryPath": "cards/DQBQ05 巴黎.png",
+      "archiveBindingConfirmed": true,
+      "originalImageReviewed": true,
+      "identityBasis": "sameIdOriginalRepositoryPinnedImage",
+      "selectionEnabled": false
+    },
+    {
+      "cardId": "DQBQ06",
+      "path": "docs/factions/recovered-originals/DQBQ06 日月潭.png",
+      "bytes": 407652,
+      "sha256": "4963a763266a214d6f475c2978ea97a61d5c616962313dc85d4231b60dc7ee6e",
+      "pixels": [
+        560,
+        400
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/ymsj-fun/ymsj-fun.github.io/5d72e3207860b7aaa1eec50b81bb4f9b8a697cb7/cards/DQBQ06%20%E6%97%A5%E6%9C%88%E6%BD%AD.png",
+      "sourceRepositoryCommit": "5d72e3207860b7aaa1eec50b81bb4f9b8a697cb7",
+      "sourceRepositoryPath": "cards/DQBQ06 日月潭.png",
+      "archiveBindingConfirmed": true,
+      "originalImageReviewed": true,
+      "identityBasis": "sameIdOriginalRepositoryPinnedImage",
+      "selectionEnabled": false
+    },
+    {
+      "cardId": "DQBQ07",
+      "path": "docs/factions/recovered-originals/DQBQ07 杭州.png",
+      "bytes": 425640,
+      "sha256": "fb9a762d3fb49a78d20eccf6e494cea5933a6b3c77f7b085435928f0313090f0",
+      "pixels": [
+        560,
+        400
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/ymsj-fun/ymsj-fun.github.io/5d72e3207860b7aaa1eec50b81bb4f9b8a697cb7/cards/DQBQ07%20%E6%9D%AD%E5%B7%9E.png",
+      "sourceRepositoryCommit": "5d72e3207860b7aaa1eec50b81bb4f9b8a697cb7",
+      "sourceRepositoryPath": "cards/DQBQ07 杭州.png",
+      "archiveBindingConfirmed": true,
+      "originalImageReviewed": true,
+      "identityBasis": "sameIdOriginalRepositoryPinnedImage",
+      "selectionEnabled": false
+    },
+    {
+      "cardId": "DQBQ08",
+      "path": "docs/factions/recovered-originals/DQBQ08 失落的神庙.png",
+      "bytes": 442582,
+      "sha256": "655f83e72f8708d9e6b5bda91383288ec8006e63d11f5be5f1df59ccddbe9266",
+      "pixels": [
+        560,
+        400
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/ymsj-fun/ymsj-fun.github.io/5d72e3207860b7aaa1eec50b81bb4f9b8a697cb7/cards/DQBQ08%20%E5%A4%B1%E8%90%BD%E7%9A%84%E7%A5%9E%E5%BA%99.png",
+      "sourceRepositoryCommit": "5d72e3207860b7aaa1eec50b81bb4f9b8a697cb7",
+      "sourceRepositoryPath": "cards/DQBQ08 失落的神庙.png",
+      "archiveBindingConfirmed": true,
+      "originalImageReviewed": true,
+      "identityBasis": "sameIdOriginalRepositoryPinnedImage",
+      "selectionEnabled": false
+    },
+    {
+      "cardId": "DQBQ09",
+      "path": "docs/factions/recovered-originals/DQBQ09 长滩.png",
+      "bytes": 377185,
+      "sha256": "a9fe153740d4ed78814729cc1cf55d590b98280069e5ba40ded55df38ef7f934",
+      "pixels": [
+        560,
+        400
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/ymsj-fun/ymsj-fun.github.io/5d72e3207860b7aaa1eec50b81bb4f9b8a697cb7/cards/DQBQ09%20%E9%95%BF%E6%BB%A9.png",
+      "sourceRepositoryCommit": "5d72e3207860b7aaa1eec50b81bb4f9b8a697cb7",
+      "sourceRepositoryPath": "cards/DQBQ09 长滩.png",
+      "archiveBindingConfirmed": true,
+      "originalImageReviewed": true,
+      "identityBasis": "sameIdOriginalRepositoryPinnedImage",
+      "selectionEnabled": false
+    },
+    {
+      "cardId": "DQBQ10",
+      "path": "docs/factions/recovered-originals/DQBQ10 华盛顿 D．C．.png",
+      "bytes": 391123,
+      "sha256": "8abe4adbdf7e11ad53c1e80ff2c17136521fcb6dfef195ac63b4393d1e1a2bba",
+      "pixels": [
+        560,
+        400
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/ymsj-fun/ymsj-fun.github.io/5d72e3207860b7aaa1eec50b81bb4f9b8a697cb7/cards/DQBQ10%20%E5%8D%8E%E7%9B%9B%E9%A1%BF%20D%EF%BC%8EC%EF%BC%8E.png",
+      "sourceRepositoryCommit": "5d72e3207860b7aaa1eec50b81bb4f9b8a697cb7",
+      "sourceRepositoryPath": "cards/DQBQ10 华盛顿 D．C．.png",
+      "archiveBindingConfirmed": true,
+      "originalImageReviewed": true,
+      "identityBasis": "sameIdOriginalRepositoryPinnedImage",
+      "selectionEnabled": false
+    },
+    {
+      "cardId": "TK004",
+      "path": "docs/factions/recovered-originals/TK004 炼金巨像.png",
+      "bytes": 296035,
+      "sha256": "9e036be2f4d290e5fe4e3642aaa6853282c2e8724c923c03582119ea1ec49c8b",
+      "pixels": [
+        294,
+        440
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/ymsj-fun/ymsj-fun.github.io/5d72e3207860b7aaa1eec50b81bb4f9b8a697cb7/cards/TK004%20%E7%82%BC%E9%87%91%E5%B7%A8%E5%83%8F.png",
+      "sourceRepositoryCommit": "5d72e3207860b7aaa1eec50b81bb4f9b8a697cb7",
+      "sourceRepositoryPath": "cards/TK004 炼金巨像.png",
+      "archiveBindingConfirmed": true,
+      "originalImageReviewed": true,
+      "identityBasis": "sameIdOriginalRepositoryPinnedImage",
+      "selectionEnabled": false
+    },
+    {
+      "cardId": "TK010",
+      "path": "docs/factions/recovered-originals/TK010 触手.png",
+      "bytes": 127495,
+      "sha256": "cd0e9486e0ce96c5fb01bfa90290518b1fe6a63bf5cf614c2e6c0155a95bb3ef",
+      "pixels": [
+        202,
+        300
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/ymsj-fun/ymsj-fun.github.io/5d72e3207860b7aaa1eec50b81bb4f9b8a697cb7/cards/TK010%20%E8%A7%A6%E6%89%8B.png",
+      "sourceRepositoryCommit": "5d72e3207860b7aaa1eec50b81bb4f9b8a697cb7",
+      "sourceRepositoryPath": "cards/TK010 触手.png",
+      "archiveBindingConfirmed": true,
+      "originalImageReviewed": true,
+      "identityBasis": "sameIdOriginalRepositoryPinnedImage",
+      "selectionEnabled": false
+    },
+    {
+      "cardId": "BQ029",
+      "path": "docs/factions/recovered-originals/BQ029 赤鳞近卫.jpg",
+      "bytes": 1355258,
+      "sha256": "849e95431dec1efb484059dd0f4b7074d91081b5d49179fd7ec1495aadd94a6e",
+      "pixels": [
+        400,
+        560
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/ymsj-fun/ymsj-fun.github.io/5d72e3207860b7aaa1eec50b81bb4f9b8a697cb7/cards/BQ029%20%E8%B5%A4%E9%B3%9E%E8%BF%91%E5%8D%AB.jpg",
+      "sourceRepositoryCommit": "5d72e3207860b7aaa1eec50b81bb4f9b8a697cb7",
+      "sourceRepositoryPath": "cards/BQ029 赤鳞近卫.jpg",
+      "archiveBindingConfirmed": true,
+      "originalImageReviewed": true,
+      "identityBasis": "sameIdOriginalRepositoryPinnedImage",
+      "selectionEnabled": false,
+      "supersededArchiveCopy": {
+        "path": "resource/ymsj-fun.github.io/cards/BQ029 赤鳞近卫.jpg",
+        "bytes": 8192,
+        "sha256": "da23e4b2c3fffc2b4f9eed6ffdf3b5fe1534baa7c43082b8c92524e4f56da447",
+        "reason": "8 KiB truncated JPEG cannot decode; preserved unchanged",
+        "recoveredStartsWithTruncatedCopy": true
+      }
+    }
+  ],
+  "lastRecoveryCheckedAt": "2026-10-03",
+  "recoveryScope": "公开原资料仓库固定提交5d72e3207860b7aaa1eec50b81bb4f9b8a697cb7的原始PNG/JPG；同ID原图直接查看后单独绑定。未改原resource镜像或可玩池。PDF同名插图仍按原先版次隔离。"
 }

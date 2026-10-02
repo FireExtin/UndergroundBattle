@@ -9,19 +9,19 @@
   },
   "reviewsSource": {
     "path": "docs/factions/card-reviews.json",
-    "sha256": "bdcc77ba8c39d27024d2d4e39e3b64a9d0781e44ab1dbb54b114278d5cb46eb9"
+    "sha256": "397acbe7ab898a4d6c24ebb35353f5d73209e86c6164cab5f4d22509a9a14d68"
   },
   "coverageSource": {
     "path": "rust-game/data/faction-coverage.json",
-    "sha256": "488377d39ce59ca609604b9218ef51a8dffd1ec87250a53a4288f97d00c14999"
+    "sha256": "919335ce75ce1244812c736c5d0018b8e5239e622f706445eb1ff9e0d67a280e"
   },
   "specificationsSource": {
     "path": "docs/factions/card-specifications.json",
-    "sha256": "10561c3f891d16081eb7c8f4268a685256c200f8185da9158e8e632adf918a48"
+    "sha256": "7953ef3d6e1bfc22ecff3dd7320fe56015b7020104da799b4c151502cac7b1fd"
   },
   "recoverySource": {
     "path": "docs/factions/source-recovery.json",
-    "sha256": "23e5f783790f5a940a6b10909546a6a4ed6914e64f1bb5b2cf7477ee403b5633"
+    "sha256": "f6aa22c6ae72ead29e1fb339f2749c32f930c0e3bf37e51cf5d59c5ee647cc40"
   },
   "policy": {
     "locatorFieldsAreVerified": false,
@@ -33,14 +33,14 @@
   },
   "totals": {
     "archiveRecords": 685,
-    "sourceImagesMissing": 13,
-    "primaryImageReviewed": 320,
-    "unreviewedWithImage": 352,
+    "sourceImagesMissing": 1,
+    "primaryImageReviewed": 333,
+    "unreviewedWithImage": 351,
     "currentCatalogDefinitions": 29,
-    "completeSourceSpecifications": 307,
+    "completeSourceSpecifications": 320,
     "blockedSourceSpecifications": 5,
     "completeNonCardReferences": 1,
-    "completeSourceRecords": 308,
+    "completeSourceRecords": 321,
     "locatorSetCounts": {
       "TK": 11,
       "传奇": 44,
@@ -66,11 +66,11 @@
       "worldRegion": 29
     },
     "editionStatusCounts": {
-      "pinnedImageVariant": 301,
+      "pinnedImageVariant": 314,
       "testArchivePinnedImageVariant": 2,
       "testImageConfirmed": 5,
       "uncertain": 2,
-      "unreviewed": 375
+      "unreviewed": 362
     }
   },
   "records": [
@@ -1903,22 +1903,26 @@
     {
       "id": "BQ029",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
+        {
+          "path": "docs/factions/recovered-originals/BQ029 赤鳞近卫.jpg",
+          "sha256": "849e95431dec1efb484059dd0f4b7074d91081b5d49179fd7ec1495aadd94a6e"
+        },
         {
           "path": "resource/ymsj-fun.github.io/cards/BQ029 赤鳞近卫.jpg",
           "sha256": "da23e4b2c3fffc2b4f9eed6ffdf3b5fe1534baa7c43082b8c92524e4f56da447"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/BQ029",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/BQ029",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/BQ029",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "赤鳞近卫",
         "set": "霸权",
@@ -1943,9 +1947,21 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "赤鳞近卫",
+        "colorKey": "蓝",
+        "basicType": "角色"
+      },
+      "abilitySummary": "非资产；袭击1；额外费用 你可以支付①。；进场触发 若已支付该牌的额外费用，或本方秘社上有隐秘标志，饮血1（将一张本方墓地中或封印在本方秘社上，名为鲜血的牌放置进场并结附于该角色上）。",
+      "confirmedMechanismIds": [
+        "nonAsset",
+        "combatKeywords",
+        "blood",
+        "seal",
+        "graveRecovery",
+        "attachment",
+        "mysticContest"
+      ],
       "candidateMechanismIds": [
         "attachment",
         "blood",
@@ -1956,8 +1972,28 @@
         "seal"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "assetSummary",
+        "attachmentPicker",
+        "attachments",
+        "damagePicker",
+        "graveyardPicker",
+        "regionPicker",
+        "sealedCards",
+        "simultaneousReveal",
+        "societyMarkers",
+        "targetPicker",
+        "triggerPrompt"
+      ],
+      "mechanismCoverage": {
+        "nonAsset": "unimplemented",
+        "combatKeywords": "unimplemented",
+        "blood": "unimplemented",
+        "seal": "unimplemented",
+        "graveRecovery": "implemented",
+        "attachment": "unimplemented",
+        "mysticContest": "unimplemented"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -10389,17 +10425,22 @@
     {
       "id": "DQBQ01",
       "role": "worldRegion",
-      "roleBasis": "locatorOnly",
-      "sourceImages": [],
-      "evidenceState": "missingImage",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "roleBasis": "primaryImage",
+      "sourceImages": [
+        {
+          "path": "docs/factions/recovered-originals/DQBQ01 洛杉矶.png",
+          "sha256": "1adf03035f1d6852bf0cbc77d49891353f5a32a9b46d7311c42399bb8cecbd0a"
+        }
+      ],
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/DQBQ01",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/DQBQ01",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/DQBQ01",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "洛杉矶",
         "set": "霸权",
@@ -10416,17 +10457,32 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "洛杉矶",
+        "colorKey": "中立",
+        "basicType": "地区"
+      },
+      "abilitySummary": "赢取触发 每位玩家预测X。X为该玩家操控的所有角色拥有的永久调查和临时调查图标数量之和加2。",
+      "confirmedMechanismIds": [
+        "deckChoice",
+        "temporaryIcons"
+      ],
       "candidateMechanismIds": [
         "control",
         "deckChoice"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
-      "engineStatus": "uncertain",
+      "interactionIds": [
+        "handPicker",
+        "iconBreakdown",
+        "orderPicker",
+        "searchPicker"
+      ],
+      "mechanismCoverage": {
+        "deckChoice": "partial",
+        "temporaryIcons": "partial"
+      },
+      "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
       "selectionEnabled": false,
@@ -10442,17 +10498,22 @@
     {
       "id": "DQBQ02",
       "role": "worldRegion",
-      "roleBasis": "locatorOnly",
-      "sourceImages": [],
-      "evidenceState": "missingImage",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "roleBasis": "primaryImage",
+      "sourceImages": [
+        {
+          "path": "docs/factions/recovered-originals/DQBQ02 墨尔本.png",
+          "sha256": "8be5f13be2a2f9cf5bdc44e37cb3cffb588c2a30f17591f249fcec195884a3fa"
+        }
+      ],
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/DQBQ02",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/DQBQ02",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/DQBQ02",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "墨尔本",
         "set": "霸权",
@@ -10467,16 +10528,28 @@
         "keywords": [],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "墨尔本",
+        "colorKey": "中立",
+        "basicType": "地区"
+      },
+      "abilitySummary": "赢取触发 每位玩家自他的牌库中寻找一张事务牌，将该牌展示后置于其手中，然后洗牌。",
+      "confirmedMechanismIds": [
+        "deckChoice"
+      ],
       "candidateMechanismIds": [
         "deckChoice"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
-      "engineStatus": "uncertain",
+      "interactionIds": [
+        "handPicker",
+        "orderPicker",
+        "searchPicker"
+      ],
+      "mechanismCoverage": {
+        "deckChoice": "partial"
+      },
+      "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
       "selectionEnabled": false,
@@ -10490,17 +10563,22 @@
     {
       "id": "DQBQ03",
       "role": "worldRegion",
-      "roleBasis": "locatorOnly",
-      "sourceImages": [],
-      "evidenceState": "missingImage",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "roleBasis": "primaryImage",
+      "sourceImages": [
+        {
+          "path": "docs/factions/recovered-originals/DQBQ03 集体潜意识之海.png",
+          "sha256": "13612b114f028b3728d06819205f2390711183e7ce792856be4c1a53acbd81a4"
+        }
+      ],
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/DQBQ03",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/DQBQ03",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/DQBQ03",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "集体潜意识之海",
         "set": "霸权",
@@ -10517,17 +10595,29 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "集体潜意识之海",
+        "colorKey": "中立",
+        "basicType": "地区"
+      },
+      "abilitySummary": "持续 所有位于本地区的角色获得灵体。；赢取触发 将所有其他地区上的角色移回其拥有者的手上。",
+      "confirmedMechanismIds": [
+        "spirit",
+        "continuous"
+      ],
       "candidateMechanismIds": [
         "continuous",
         "spirit"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
-      "engineStatus": "uncertain",
+      "interactionIds": [
+        "domainSummary"
+      ],
+      "mechanismCoverage": {
+        "spirit": "unimplemented",
+        "continuous": "partial"
+      },
+      "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
       "selectionEnabled": false,
@@ -10541,17 +10631,22 @@
     {
       "id": "DQBQ04",
       "role": "worldRegion",
-      "roleBasis": "locatorOnly",
-      "sourceImages": [],
-      "evidenceState": "missingImage",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "roleBasis": "primaryImage",
+      "sourceImages": [
+        {
+          "path": "docs/factions/recovered-originals/DQBQ04 巴塞罗那.png",
+          "sha256": "2672d8a0e542aeb56a46447a8fb771a205092c27a02e7eaabbbc2419899562e3"
+        }
+      ],
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/DQBQ04",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/DQBQ04",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/DQBQ04",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "巴塞罗那",
         "set": "霸权",
@@ -10566,16 +10661,28 @@
         "keywords": [],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "巴塞罗那",
+        "colorKey": "中立",
+        "basicType": "地区"
+      },
+      "abilitySummary": "赢取触发 每位玩家选择并弃掉任意数量的手牌，然后抓等量的牌。",
+      "confirmedMechanismIds": [
+        "deckChoice"
+      ],
       "candidateMechanismIds": [
         "deckChoice"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
-      "engineStatus": "uncertain",
+      "interactionIds": [
+        "handPicker",
+        "orderPicker",
+        "searchPicker"
+      ],
+      "mechanismCoverage": {
+        "deckChoice": "partial"
+      },
+      "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
       "selectionEnabled": false,
@@ -10589,17 +10696,22 @@
     {
       "id": "DQBQ05",
       "role": "worldRegion",
-      "roleBasis": "locatorOnly",
-      "sourceImages": [],
-      "evidenceState": "missingImage",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "roleBasis": "primaryImage",
+      "sourceImages": [
+        {
+          "path": "docs/factions/recovered-originals/DQBQ05 巴黎.png",
+          "sha256": "2bbcc90b88d6b30bc31400c0cff34690fee4ba677ac3aa8f7be9d03ce9c4b6f3"
+        }
+      ],
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/DQBQ05",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/DQBQ05",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/DQBQ05",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "巴黎",
         "set": "霸权",
@@ -10617,17 +10729,33 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "巴黎",
+        "colorKey": "中立",
+        "basicType": "地区"
+      },
+      "abilitySummary": "赢取触发 每位玩家抓一张牌。你可以进行一次隐秘对抗。",
+      "confirmedMechanismIds": [
+        "deckChoice",
+        "mysticContest"
+      ],
       "candidateMechanismIds": [
         "deckChoice",
         "mysticContest"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
-      "engineStatus": "uncertain",
+      "interactionIds": [
+        "handPicker",
+        "orderPicker",
+        "searchPicker",
+        "simultaneousReveal",
+        "societyMarkers"
+      ],
+      "mechanismCoverage": {
+        "deckChoice": "partial",
+        "mysticContest": "unimplemented"
+      },
+      "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
       "selectionEnabled": false,
@@ -10641,17 +10769,22 @@
     {
       "id": "DQBQ06",
       "role": "worldRegion",
-      "roleBasis": "locatorOnly",
-      "sourceImages": [],
-      "evidenceState": "missingImage",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "roleBasis": "primaryImage",
+      "sourceImages": [
+        {
+          "path": "docs/factions/recovered-originals/DQBQ06 日月潭.png",
+          "sha256": "4963a763266a214d6f475c2978ea97a61d5c616962313dc85d4231b60dc7ee6e"
+        }
+      ],
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/DQBQ06",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/DQBQ06",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/DQBQ06",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "日月潭",
         "set": "霸权",
@@ -10666,8 +10799,12 @@
         "keywords": [],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
+      "verifiedFields": {
+        "name": "日月潭",
+        "colorKey": "中立",
+        "basicType": "地区"
+      },
+      "abilitySummary": "赢取触发 每位玩家各选择一个其所操控的位于其他地区的角色，将该角色移回其拥有者手中。",
       "confirmedMechanismIds": [],
       "candidateMechanismIds": [
         "control"
@@ -10675,7 +10812,7 @@
       "candidateBasis": "heuristicLocatorSearchOnly",
       "interactionIds": [],
       "mechanismCoverage": {},
-      "engineStatus": "uncertain",
+      "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
       "selectionEnabled": false,
@@ -10689,17 +10826,22 @@
     {
       "id": "DQBQ07",
       "role": "worldRegion",
-      "roleBasis": "locatorOnly",
-      "sourceImages": [],
-      "evidenceState": "missingImage",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "roleBasis": "primaryImage",
+      "sourceImages": [
+        {
+          "path": "docs/factions/recovered-originals/DQBQ07 杭州.png",
+          "sha256": "fb9a762d3fb49a78d20eccf6e494cea5933a6b3c77f7b085435928f0313090f0"
+        }
+      ],
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/DQBQ07",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/DQBQ07",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/DQBQ07",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "杭州",
         "set": "霸权",
@@ -10716,16 +10858,31 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "杭州",
+        "colorKey": "中立",
+        "basicType": "地区"
+      },
+      "abilitySummary": "赢取触发 在每位玩家的秘社上各放置一个隐秘标志。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "society"
+      ],
       "candidateMechanismIds": [
         "mysticContest"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
-      "engineStatus": "uncertain",
+      "interactionIds": [
+        "simultaneousReveal",
+        "societyMarkers",
+        "societyPicker",
+        "societyZone"
+      ],
+      "mechanismCoverage": {
+        "mysticContest": "unimplemented",
+        "society": "unimplemented"
+      },
+      "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
       "selectionEnabled": false,
@@ -10739,17 +10896,22 @@
     {
       "id": "DQBQ08",
       "role": "worldRegion",
-      "roleBasis": "locatorOnly",
-      "sourceImages": [],
-      "evidenceState": "missingImage",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "roleBasis": "primaryImage",
+      "sourceImages": [
+        {
+          "path": "docs/factions/recovered-originals/DQBQ08 失落的神庙.png",
+          "sha256": "655f83e72f8708d9e6b5bda91383288ec8006e63d11f5be5f1df59ccddbe9266"
+        }
+      ],
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/DQBQ08",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/DQBQ08",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/DQBQ08",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "失落的神庙",
         "set": "霸权",
@@ -10764,16 +10926,28 @@
         "keywords": [],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "失落的神庙",
+        "colorKey": "中立",
+        "basicType": "地区"
+      },
+      "abilitySummary": "赢取触发 每位玩家自他的牌库中寻找一张牌，将该牌置于他的手中，然后洗牌。",
+      "confirmedMechanismIds": [
+        "deckChoice"
+      ],
       "candidateMechanismIds": [
         "deckChoice"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
-      "engineStatus": "uncertain",
+      "interactionIds": [
+        "handPicker",
+        "orderPicker",
+        "searchPicker"
+      ],
+      "mechanismCoverage": {
+        "deckChoice": "partial"
+      },
+      "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
       "selectionEnabled": false,
@@ -10787,17 +10961,22 @@
     {
       "id": "DQBQ09",
       "role": "worldRegion",
-      "roleBasis": "locatorOnly",
-      "sourceImages": [],
-      "evidenceState": "missingImage",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "roleBasis": "primaryImage",
+      "sourceImages": [
+        {
+          "path": "docs/factions/recovered-originals/DQBQ09 长滩.png",
+          "sha256": "a9fe153740d4ed78814729cc1cf55d590b98280069e5ba40ded55df38ef7f934"
+        }
+      ],
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/DQBQ09",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/DQBQ09",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/DQBQ09",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "长滩",
         "set": "霸权",
@@ -10812,17 +10991,33 @@
         "keywords": [],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "长滩",
+        "colorKey": "中立",
+        "basicType": "地区"
+      },
+      "abilitySummary": "赢取触发 每位玩家自他的牌库中寻找一张附属牌，将该牌展示后置于其手中，然后洗牌。",
+      "confirmedMechanismIds": [
+        "deckChoice",
+        "attachment"
+      ],
       "candidateMechanismIds": [
         "attachment",
         "deckChoice"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
-      "engineStatus": "uncertain",
+      "interactionIds": [
+        "attachmentPicker",
+        "attachments",
+        "handPicker",
+        "orderPicker",
+        "searchPicker"
+      ],
+      "mechanismCoverage": {
+        "deckChoice": "partial",
+        "attachment": "unimplemented"
+      },
+      "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
       "selectionEnabled": false,
@@ -10836,17 +11031,22 @@
     {
       "id": "DQBQ10",
       "role": "worldRegion",
-      "roleBasis": "locatorOnly",
-      "sourceImages": [],
-      "evidenceState": "missingImage",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "roleBasis": "primaryImage",
+      "sourceImages": [
+        {
+          "path": "docs/factions/recovered-originals/DQBQ10 华盛顿 D．C．.png",
+          "sha256": "8abe4adbdf7e11ad53c1e80ff2c17136521fcb6dfef195ac63b4393d1e1a2bba"
+        }
+      ],
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/DQBQ10",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/DQBQ10",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/DQBQ10",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "华盛顿 D．C．",
         "set": "霸权",
@@ -10861,16 +11061,34 @@
         "keywords": [],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "华盛顿D.C.",
+        "colorKey": "中立",
+        "basicType": "地区"
+      },
+      "abilitySummary": "赢取触发 由赢取华盛顿D.C.的玩家开始，每位玩家可以各将一个角色或附属牌从其手中放置进场，并置于目标地区或结附于合法目标。（不需要支付费用或满足忠诚需求。）",
+      "confirmedMechanismIds": [
+        "attachment",
+        "priority",
+        "loyalty"
+      ],
       "candidateMechanismIds": [
         "attachment"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
-      "engineStatus": "uncertain",
+      "interactionIds": [
+        "assetSummary",
+        "attachmentPicker",
+        "attachments",
+        "choicePicker",
+        "stack"
+      ],
+      "mechanismCoverage": {
+        "attachment": "unimplemented",
+        "priority": "partial",
+        "loyalty": "implemented"
+      },
+      "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
       "selectionEnabled": false,
@@ -34638,17 +34856,22 @@
     {
       "id": "TK004",
       "role": "generatedToken",
-      "roleBasis": "locatorOnly",
-      "sourceImages": [],
-      "evidenceState": "missingImage",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "roleBasis": "primaryImage",
+      "sourceImages": [
+        {
+          "path": "docs/factions/recovered-originals/TK004 炼金巨像.png",
+          "sha256": "9e036be2f4d290e5fe4e3642aaa6853282c2e8724c923c03582119ea1ec49c8b"
+        }
+      ],
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/TK004",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/TK004",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/TK004",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "炼金巨像",
         "set": "TK",
@@ -34671,9 +34894,18 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "炼金巨像",
+        "colorKey": "中立",
+        "basicType": "指示物角色"
+      },
+      "abilitySummary": "不能被附属结附；持续 当你进行一次隐秘对抗时，你所展示的中立牌获得地区势力+1。",
+      "confirmedMechanismIds": [
+        "token",
+        "attachment",
+        "mysticContest",
+        "starlightInfluence"
+      ],
       "candidateMechanismIds": [
         "attachment",
         "continuous",
@@ -34681,9 +34913,21 @@
         "token"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
-      "engineStatus": "uncertain",
+      "interactionIds": [
+        "attachmentPicker",
+        "attachments",
+        "regionInfluence",
+        "simultaneousReveal",
+        "societyMarkers",
+        "tokenTile"
+      ],
+      "mechanismCoverage": {
+        "token": "unimplemented",
+        "attachment": "unimplemented",
+        "mysticContest": "unimplemented",
+        "starlightInfluence": "unimplemented"
+      },
+      "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
       "selectionEnabled": false,
@@ -35074,17 +35318,22 @@
     {
       "id": "TK010",
       "role": "generatedToken",
-      "roleBasis": "locatorOnly",
-      "sourceImages": [],
-      "evidenceState": "missingImage",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "roleBasis": "primaryImage",
+      "sourceImages": [
+        {
+          "path": "docs/factions/recovered-originals/TK010 触手.png",
+          "sha256": "cd0e9486e0ce96c5fb01bfa90290518b1fe6a63bf5cf614c2e6c0155a95bb3ef"
+        }
+      ],
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/TK010",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/TK010",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/TK010",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "触手",
         "set": "TK",
@@ -35105,18 +35354,38 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "触手",
+        "colorKey": "红",
+        "basicType": "指示物角色"
+      },
+      "abilitySummary": "持续 本方核心角色获得防御+1。；持续 若本方核心角色位于本地区，触手获得临时战斗2。",
+      "confirmedMechanismIds": [
+        "token",
+        "core",
+        "continuous",
+        "temporaryIcons"
+      ],
       "candidateMechanismIds": [
         "continuous",
         "core",
         "token"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
-      "engineStatus": "uncertain",
+      "interactionIds": [
+        "commandPicker",
+        "coreZone",
+        "honorCounter",
+        "iconBreakdown",
+        "tokenTile"
+      ],
+      "mechanismCoverage": {
+        "token": "unimplemented",
+        "core": "unimplemented",
+        "continuous": "partial",
+        "temporaryIcons": "partial"
+      },
+      "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
       "selectionEnabled": false,

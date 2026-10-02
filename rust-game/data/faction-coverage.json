@@ -1576,7 +1576,8 @@
         "card-JC103",
         "card-JC104",
         "card-BQ117",
-        "card-DQJC108"
+        "card-DQJC108",
+        "card-DQBQ10"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -1849,7 +1850,8 @@
         "card-LC12",
         "card-LC13",
         "card-LC28",
-        "card-LC29"
+        "card-LC29",
+        "card-DQBQ10"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -2255,7 +2257,8 @@
         "card-TEST052",
         "card-LC09",
         "card-LC17",
-        "card-LC26"
+        "card-LC26",
+        "card-BQ029"
       ],
       "dependencies": [
         "hidden",
@@ -2521,7 +2524,13 @@
         "card-LC10",
         "card-LC13",
         "card-LC16",
-        "card-LC17"
+        "card-LC17",
+        "card-DQBQ01",
+        "card-DQBQ02",
+        "card-DQBQ04",
+        "card-DQBQ05",
+        "card-DQBQ08",
+        "card-DQBQ09"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -2630,7 +2639,9 @@
         "card-LC10",
         "card-LC12",
         "card-LC25",
-        "card-LC30"
+        "card-LC30",
+        "card-DQBQ03",
+        "card-TK010"
       ],
       "dependencies": [],
       "interactionIds": [],
@@ -2746,7 +2757,8 @@
         "card-XQ30",
         "card-XQ32",
         "card-XQ35",
-        "card-XQ39"
+        "card-XQ39",
+        "card-DQBQ07"
       ],
       "dependencies": [
         "priority",
@@ -2850,7 +2862,11 @@
         "card-LC18",
         "card-LC25",
         "card-LC26",
-        "card-LC30"
+        "card-LC30",
+        "card-DQBQ09",
+        "card-DQBQ10",
+        "card-TK004",
+        "card-BQ029"
       ],
       "dependencies": [
         "priority"
@@ -2912,7 +2928,8 @@
         "card-TEST043",
         "card-TEST052",
         "card-LC13",
-        "card-LC17"
+        "card-LC17",
+        "card-BQ029"
       ],
       "dependencies": [
         "priority",
@@ -3009,7 +3026,8 @@
         "card-XQ41",
         "card-XQ43",
         "card-TEST033",
-        "card-LC07"
+        "card-LC07",
+        "card-DQBQ03"
       ],
       "dependencies": [
         "continuous",
@@ -3261,7 +3279,8 @@
         "card-TEST034",
         "card-TEST043",
         "card-LC27",
-        "card-LC28"
+        "card-LC28",
+        "card-BQ029"
       ],
       "dependencies": [
         "loyalty"
@@ -3379,7 +3398,9 @@
         "card-TK009",
         "card-MSJZ03",
         "card-MSLC05",
-        "card-BQ117"
+        "card-BQ117",
+        "card-TK004",
+        "card-TK010"
       ],
       "dependencies": [
         "continuous"
@@ -3427,7 +3448,11 @@
         "card-ZHWM048",
         "card-TEST015",
         "card-TEST034",
-        "card-TEST052"
+        "card-TEST052",
+        "card-DQBQ05",
+        "card-DQBQ07",
+        "card-TK004",
+        "card-BQ029"
       ],
       "dependencies": [
         "society",
@@ -3521,7 +3546,8 @@
         "card-JC028",
         "bq-keywords-2",
         "card-MSBQ01",
-        "card-XQ14"
+        "card-XQ14",
+        "card-BQ029"
       ],
       "dependencies": [
         "attachment",
@@ -3597,7 +3623,8 @@
         "card-BQ114",
         "card-BQ115",
         "card-BQ116",
-        "card-LC29"
+        "card-LC29",
+        "card-TK010"
       ],
       "dependencies": [
         "society",
@@ -3663,7 +3690,8 @@
       "evidenceIds": [
         "starlight",
         "card-TEST042",
-        "card-TEST052"
+        "card-TEST052",
+        "card-TK004"
       ],
       "dependencies": [
         "attachment",
@@ -3705,7 +3733,8 @@
         "card-LC02",
         "card-LC16",
         "card-LC18",
-        "card-LC25"
+        "card-LC25",
+        "card-BQ029"
       ],
       "dependencies": [
         "confrontation",
@@ -4049,7 +4078,9 @@
         "card-LC07",
         "card-LC10",
         "card-LC17",
-        "card-LC25"
+        "card-LC25",
+        "card-DQBQ01",
+        "card-TK010"
       ],
       "dependencies": [
         "confrontation",
@@ -6827,6 +6858,97 @@
       "sha256": "31ce6bd49725e5db643adb13daaef3529b8fb8440691214a00dd9fe666c5041d",
       "visuallyReviewed": true,
       "topic": "J·罗伯茨，“海雕”：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-DQBQ01": {
+      "kind": "image",
+      "path": "docs/factions/recovered-originals/DQBQ01 洛杉矶.png",
+      "sha256": "1adf03035f1d6852bf0cbc77d49891353f5a32a9b46d7311c42399bb8cecbd0a",
+      "visuallyReviewed": true,
+      "topic": "洛杉矶：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-DQBQ02": {
+      "kind": "image",
+      "path": "docs/factions/recovered-originals/DQBQ02 墨尔本.png",
+      "sha256": "8be5f13be2a2f9cf5bdc44e37cb3cffb588c2a30f17591f249fcec195884a3fa",
+      "visuallyReviewed": true,
+      "topic": "墨尔本：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-DQBQ03": {
+      "kind": "image",
+      "path": "docs/factions/recovered-originals/DQBQ03 集体潜意识之海.png",
+      "sha256": "13612b114f028b3728d06819205f2390711183e7ce792856be4c1a53acbd81a4",
+      "visuallyReviewed": true,
+      "topic": "集体潜意识之海：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-DQBQ04": {
+      "kind": "image",
+      "path": "docs/factions/recovered-originals/DQBQ04 巴塞罗那.png",
+      "sha256": "2672d8a0e542aeb56a46447a8fb771a205092c27a02e7eaabbbc2419899562e3",
+      "visuallyReviewed": true,
+      "topic": "巴塞罗那：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-DQBQ05": {
+      "kind": "image",
+      "path": "docs/factions/recovered-originals/DQBQ05 巴黎.png",
+      "sha256": "2bbcc90b88d6b30bc31400c0cff34690fee4ba677ac3aa8f7be9d03ce9c4b6f3",
+      "visuallyReviewed": true,
+      "topic": "巴黎：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-DQBQ06": {
+      "kind": "image",
+      "path": "docs/factions/recovered-originals/DQBQ06 日月潭.png",
+      "sha256": "4963a763266a214d6f475c2978ea97a61d5c616962313dc85d4231b60dc7ee6e",
+      "visuallyReviewed": true,
+      "topic": "日月潭：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-DQBQ07": {
+      "kind": "image",
+      "path": "docs/factions/recovered-originals/DQBQ07 杭州.png",
+      "sha256": "fb9a762d3fb49a78d20eccf6e494cea5933a6b3c77f7b085435928f0313090f0",
+      "visuallyReviewed": true,
+      "topic": "杭州：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-DQBQ08": {
+      "kind": "image",
+      "path": "docs/factions/recovered-originals/DQBQ08 失落的神庙.png",
+      "sha256": "655f83e72f8708d9e6b5bda91383288ec8006e63d11f5be5f1df59ccddbe9266",
+      "visuallyReviewed": true,
+      "topic": "失落的神庙：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-DQBQ09": {
+      "kind": "image",
+      "path": "docs/factions/recovered-originals/DQBQ09 长滩.png",
+      "sha256": "a9fe153740d4ed78814729cc1cf55d590b98280069e5ba40ded55df38ef7f934",
+      "visuallyReviewed": true,
+      "topic": "长滩：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-DQBQ10": {
+      "kind": "image",
+      "path": "docs/factions/recovered-originals/DQBQ10 华盛顿 D．C．.png",
+      "sha256": "8abe4adbdf7e11ad53c1e80ff2c17136521fcb6dfef195ac63b4393d1e1a2bba",
+      "visuallyReviewed": true,
+      "topic": "华盛顿D.C.：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-TK004": {
+      "kind": "image",
+      "path": "docs/factions/recovered-originals/TK004 炼金巨像.png",
+      "sha256": "9e036be2f4d290e5fe4e3642aaa6853282c2e8724c923c03582119ea1ec49c8b",
+      "visuallyReviewed": true,
+      "topic": "炼金巨像：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-TK010": {
+      "kind": "image",
+      "path": "docs/factions/recovered-originals/TK010 触手.png",
+      "sha256": "cd0e9486e0ce96c5fb01bfa90290518b1fe6a63bf5cf614c2e6c0155a95bb3ef",
+      "visuallyReviewed": true,
+      "topic": "触手：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-BQ029": {
+      "kind": "image",
+      "path": "docs/factions/recovered-originals/BQ029 赤鳞近卫.jpg",
+      "sha256": "849e95431dec1efb484059dd0f4b7074d91081b5d49179fd7ec1495aadd94a6e",
+      "visuallyReviewed": true,
+      "topic": "赤鳞近卫：完整同ID原图与必要放大区逐项人工读取"
     }
   },
   "openQuestions": [

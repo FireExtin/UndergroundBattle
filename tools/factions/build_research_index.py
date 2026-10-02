@@ -91,6 +91,17 @@ def build(root: Path = ROOT) -> dict:
     reviews = read(root, REVIEWS)["cards"]
     coverage = read(root, COVERAGE)
     all_specifications = read(root, SPECIFICATIONS)
+    recovery = read(root, RECOVERY)
+    recovered = defaultdict(list)
+    for original in recovery.get("recoveredOriginals", []):
+        if not original["archiveBindingConfirmed"]:
+            continue
+        path = Path(original["path"])
+        if (not path.is_relative_to("docs/factions/recovered-originals")
+                or not path.name.startswith(original["cardId"] + " ")
+                or digest(root / path) != original["sha256"]):
+            raise ValueError("Recovered original identity/hash differs: " + original["cardId"])
+        recovered[original["cardId"]].append(str(path))
     specifications = all_specifications["cards"]
     non_card_references = all_specifications.get("nonCardReferences", {})
     catalog_path = Path(coverage["currentPool"]["catalogPath"])
@@ -106,7 +117,8 @@ def build(root: Path = ROOT) -> dict:
         by_name[card["name"]].append(card["id"])
     records = []
     for card_id, raw in sorted(archive.items()):
-        image_paths = sorted(str(p.relative_to(root)) for p in cards_dir.glob(card_id + " *.jpg"))
+        image_paths = sorted({str(p.relative_to(root)) for p in cards_dir.glob(card_id + " *")
+                              if p.suffix.lower() in {".jpg", ".jpeg", ".png"}} | set(recovered[card_id]))
         review = reviews.get(card_id)
         spec = specifications.get(card_id)
         reference = non_card_references.get(card_id)
