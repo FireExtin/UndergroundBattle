@@ -1638,7 +1638,10 @@
         "card-JC068",
         "card-JC087",
         "card-JC088",
-        "card-JC094"
+        "card-JC094",
+        "card-JC119",
+        "card-JC122",
+        "card-JC123"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -1805,7 +1808,16 @@
         "card-JC096",
         "card-JC106",
         "card-JC107",
-        "card-JC111"
+        "card-JC111",
+        "card-JC112",
+        "card-JC115",
+        "card-JC117",
+        "card-JC119",
+        "card-JC122",
+        "card-JC123",
+        "card-JC124",
+        "card-JC129",
+        "card-JC135"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -1858,7 +1870,10 @@
         "card-JC082",
         "card-JC087",
         "card-JC090",
-        "card-JC095"
+        "card-JC095",
+        "card-JC120",
+        "card-JC127",
+        "card-JC128"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -1901,7 +1916,9 @@
         "card-JC098",
         "card-JC067",
         "card-JC072",
-        "card-JC079"
+        "card-JC079",
+        "card-JC112",
+        "card-JC121"
       ],
       "dependencies": [
         "hidden"
@@ -1955,7 +1972,11 @@
         "card-JC082",
         "card-JC096",
         "card-JC110",
-        "card-JC111"
+        "card-JC111",
+        "card-JC114",
+        "card-JC115",
+        "card-JC117",
+        "card-JC132"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -2004,7 +2025,9 @@
         "card-JC021",
         "card-JC023",
         "card-JC024",
-        "card-JC064"
+        "card-JC064",
+        "card-JC117",
+        "card-JC121"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -2040,7 +2063,8 @@
         "card-MSJC11",
         "card-TK006",
         "card-JC046",
-        "card-JC087"
+        "card-JC087",
+        "card-JC116"
       ],
       "dependencies": [
         "confrontation"
@@ -2139,7 +2163,9 @@
         "card-MSJC17",
         "card-MSBQ03",
         "card-LC15",
-        "card-DQJC115"
+        "card-DQJC115",
+        "card-JC124",
+        "card-JC133"
       ],
       "dependencies": [
         "hidden",
@@ -2172,7 +2198,8 @@
       "limitations": "",
       "evidenceIds": [
         "card-JC085",
-        "faq-4"
+        "faq-4",
+        "card-JC119"
       ],
       "dependencies": [
         "priority",
@@ -2222,7 +2249,12 @@
         "card-JC064",
         "card-JC065",
         "card-JC094",
-        "card-JC096"
+        "card-JC096",
+        "card-JC112",
+        "card-JC113",
+        "card-JC114",
+        "card-JC128",
+        "card-JC134"
       ],
       "dependencies": [
         "priority"
@@ -2269,7 +2301,8 @@
         "card-JC039",
         "card-JC053",
         "card-JC055",
-        "card-JC081"
+        "card-JC081",
+        "card-JC112"
       ],
       "dependencies": [
         "loyalty",
@@ -2358,7 +2391,11 @@
         "card-JC083",
         "card-JC096",
         "card-JC109",
-        "card-JC111"
+        "card-JC111",
+        "card-JC114",
+        "card-JC126",
+        "card-JC130",
+        "card-JC131"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -2439,7 +2476,13 @@
         "card-JC084",
         "card-JC089",
         "card-JC106",
-        "card-JC109"
+        "card-JC109",
+        "card-JC116",
+        "card-JC120",
+        "card-JC122",
+        "card-JC123",
+        "card-JC126",
+        "card-JC133"
       ],
       "dependencies": [],
       "interactionIds": [],
@@ -2540,7 +2583,9 @@
         "card-JC043",
         "card-JC053",
         "card-JC068",
-        "card-JC082"
+        "card-JC082",
+        "card-JC115",
+        "card-JC117"
       ],
       "dependencies": [
         "priority",
@@ -2610,7 +2655,15 @@
         "card-JC089",
         "card-JC090",
         "card-JC107",
-        "card-JC111"
+        "card-JC111",
+        "card-JC112",
+        "card-JC113",
+        "card-JC115",
+        "card-JC116",
+        "card-JC117",
+        "card-JC120",
+        "card-JC121",
+        "card-JC135"
       ],
       "dependencies": [
         "priority"
@@ -2660,7 +2713,8 @@
         "card-JC013",
         "card-JC066",
         "card-JC109",
-        "card-JC110"
+        "card-JC110",
+        "card-JC119"
       ],
       "dependencies": [
         "priority",
@@ -2744,7 +2798,9 @@
         "card-JC106",
         "card-JC109",
         "card-JC110",
-        "card-JC111"
+        "card-JC111",
+        "card-JC113",
+        "card-JC121"
       ],
       "dependencies": [
         "continuous",
@@ -2774,7 +2830,9 @@
       "evidenceIds": [
         "card-MSJC14",
         "faq-3",
-        "card-JC069"
+        "card-JC069",
+        "card-JC122",
+        "card-JC123"
       ],
       "dependencies": [
         "hidden",
@@ -2813,7 +2871,8 @@
         "manual-marker-inheritance",
         "card-MSCQ02",
         "card-JC044",
-        "card-JC055"
+        "card-JC055",
+        "card-JC127"
       ],
       "dependencies": [
         "continuous",
@@ -2846,7 +2905,8 @@
         "card-JC077",
         "card-LC14",
         "card-JC078",
-        "card-JC019"
+        "card-JC019",
+        "card-JC121"
       ],
       "dependencies": [
         "confrontation"
@@ -2878,7 +2938,9 @@
         "card-MSJC10",
         "card-ZHMSJZ02",
         "card-DQXQZY02",
-        "card-DQXQZY03"
+        "card-DQXQZY03",
+        "card-JC124",
+        "card-JC129"
       ],
       "dependencies": [
         "continuous",
@@ -3718,7 +3780,12 @@
         "card-JC096",
         "card-JC106",
         "card-JC109",
-        "card-JC110"
+        "card-JC110",
+        "card-JC114",
+        "card-JC119",
+        "card-JC120",
+        "card-JC121",
+        "card-JC124"
       ],
       "dependencies": [
         "confrontation",
@@ -3786,7 +3853,10 @@
         "card-JC095",
         "card-JC096",
         "card-JC109",
-        "card-JC110"
+        "card-JC110",
+        "card-JC122",
+        "card-JC123",
+        "card-JC124"
       ],
       "dependencies": [
         "sacrifice"
@@ -3816,7 +3886,8 @@
         "faq-3",
         "card-MSBQ04",
         "card-MSLC01",
-        "card-JC111"
+        "card-JC111",
+        "card-JC119"
       ],
       "dependencies": [
         "hidden",
@@ -4352,7 +4423,7 @@
       "path": "resource/ymsj-fun.github.io/cards/JC124 尼古拉斯·勒梅.jpg",
       "sha256": "6434d8b3cce859ec4f3da4e92c374361f4619cd2cdbee96c0ce33dfc4804d34f",
       "visuallyReviewed": true,
-      "topic": "尼古拉斯·勒梅：标题、色/类别及下方规则框"
+      "topic": "尼古拉斯·勒梅：完整同ID原图与必要放大区逐项人工读取"
     },
     "card-JC125": {
       "kind": "image",
@@ -5803,6 +5874,153 @@
       "sha256": "8361b12f4ef0c0d0a717ec7528b3da3ee100fd21f0cc7a95da78e3a86267e087",
       "visuallyReviewed": true,
       "topic": "混沌蝴蝶：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-JC112": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC112 黑猫.jpg",
+      "sha256": "870b526451ed20441601cfed413a99e2e64a266d60daa698bb2066840383bd71",
+      "visuallyReviewed": true,
+      "topic": "黑猫：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-JC113": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC113 无形捣蛋精.jpg",
+      "sha256": "5813848b42f56cae7a831e631612efbc6350490df340426911daa5bcc556f705",
+      "visuallyReviewed": true,
+      "topic": "无形捣蛋精：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-JC114": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC114 好奇的黑客.jpg",
+      "sha256": "2cd5cc66ceb3c9a8f9d07d341558489adb170dcb680331c7620e5f1162be12c7",
+      "visuallyReviewed": true,
+      "topic": "好奇的黑客：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-JC115": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC115 备用资金.jpg",
+      "sha256": "0d12f97cefa8bea8efd94dfc8edcc002d7e74e9287be93b5514badab49f06a24",
+      "visuallyReviewed": true,
+      "topic": "备用资金：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-JC116": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC116 柯尔特巨蟒左轮.jpg",
+      "sha256": "5a314d56e3d6c660f381e45710dbf0964cf8560cfa170906b3d4e938abb90e16",
+      "visuallyReviewed": true,
+      "topic": "柯尔特巨蟒左轮：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-JC117": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC117 红眼航班.jpg",
+      "sha256": "4ecba691186f022c9923e892fbb02d015d56f3917b36b88fe67f2aad4a576080",
+      "visuallyReviewed": true,
+      "topic": "红眼航班：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-JC119": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC119 守秘人.jpg",
+      "sha256": "23688668d4af29f12a63e4e36ee28534ef191c55dc3c96f16b792d849579c0e9",
+      "visuallyReviewed": true,
+      "topic": "守秘人：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-JC120": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC120 庄严圣像.jpg",
+      "sha256": "e27e2cd5af90637cb380852ced1d6899ec8eed0e2ed27e3057e214f2d5f51660",
+      "visuallyReviewed": true,
+      "topic": "庄严圣像：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-JC121": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC121 空鸣御守.jpg",
+      "sha256": "1baf48b33c827a5fbc34c104ea7b7557ddd446bbebba904604cfff56ed1505d5",
+      "visuallyReviewed": true,
+      "topic": "空鸣御守：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-JC122": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC122 哈克·亚当斯.jpg",
+      "sha256": "ae7a8c658fdf86173480ef0b016e6af698a6fb2ed3fb08aa2f919866d8ccc584",
+      "visuallyReviewed": true,
+      "topic": "哈克·亚当斯：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-JC123": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC123 饮魂者朱迪.jpg",
+      "sha256": "1851a81381744266f5cf4b5c809659c4347a76b1da9d38a9eb4e005a057fe5fd",
+      "visuallyReviewed": true,
+      "topic": "饮魂者朱迪：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-JC126": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC126 产业扩张.jpg",
+      "sha256": "33ed0032c1e6983f25be998c66891f137f2f0975031493883f6cc1a9bb5e40e0",
+      "visuallyReviewed": true,
+      "topic": "产业扩张：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-JC127": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC127 终局.jpg",
+      "sha256": "9354245b7339a879596662bb4523351fb59d38eb22aed541c4f8bf29b0e750b2",
+      "visuallyReviewed": true,
+      "topic": "终局：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-JC128": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC128 替罪羊.jpg",
+      "sha256": "0c3fe0bf76cf463d47881161797a741a142dc6dd9a5e035a63b6bb01d55f4d1d",
+      "visuallyReviewed": true,
+      "topic": "替罪羊：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-JC129": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC129 操控心智.jpg",
+      "sha256": "0c99776d13e342b85c6d6f6cc476459ec6463e6bbdc146046460518c738a0b59",
+      "visuallyReviewed": true,
+      "topic": "操控心智：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-JC130": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC130 深入研究.jpg",
+      "sha256": "be7d3ec07aea099829f0b01ea506999810091c7b7a202a6bfb0f8ec32eb3055f",
+      "visuallyReviewed": true,
+      "topic": "深入研究：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-JC131": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC131 空投物资.jpg",
+      "sha256": "78b1cff75c50f96763ae2cfeb346524e9046f2e3a445a5e00268113365bc976f",
+      "visuallyReviewed": true,
+      "topic": "空投物资：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-JC132": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC132 构筑静态障壁.jpg",
+      "sha256": "219bb4062c3e9053b9fc9d309ad919ebe4b6a98c3af314c6987ca948b3eeb4f1",
+      "visuallyReviewed": true,
+      "topic": "构筑静态障壁：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-JC133": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC133 操控死尸.jpg",
+      "sha256": "6093d9a22ea2386b0cf95654c595bf1fab803a415bdc6f6fe19e13a9d2948eb5",
+      "visuallyReviewed": true,
+      "topic": "操控死尸：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-JC134": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC134 审判.jpg",
+      "sha256": "ef088d73941dffb44aaa8e4f70b0bc96f54ae428bd5a6617f03925a08326dbb9",
+      "visuallyReviewed": true,
+      "topic": "审判：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-JC135": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC135 余震.jpg",
+      "sha256": "dc4db06294dcd424602843801800cb12d1ca2678479ec12981003bccb81d6c2e",
+      "visuallyReviewed": true,
+      "topic": "余震：完整同ID原图与必要放大区逐项人工读取"
     }
   },
   "openQuestions": [
