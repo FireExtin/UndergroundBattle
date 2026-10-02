@@ -304,6 +304,53 @@ class CoverageTests(unittest.TestCase):
         specs["cards"]["MSWM04"]["abilities"][1]["otherColorAndDomainLoyaltyNotWaived"] = False
         self.assertTrue(any("allows only purple" in e for e in self.source_errors(specs=specs)))
 
+    def test_hand_action_does_not_cast_source_or_inherit_printed_play_loyalty(self):
+        specs = copy.deepcopy(self.specifications)
+        specs["cards"]["LC14"]["abilities"][1]["showingHandSourceDoesNotPlayIt"] = False
+        self.assertTrue(any("separate play loyalty" in e for e in self.source_errors(specs=specs)))
+
+    def test_horror_herald_condition_cannot_gain_mind_domain_or_guess_region(self):
+        specs = copy.deepcopy(self.specifications)
+        specs["cards"]["CQ12"]["abilities"][0]["condition"] = {"color": "红", "domain": "mind"}
+        specs["cards"]["CQ12"]["abilities"][0]["regionAnchorUnresolved"] = False
+        self.assertTrue(any("two-red" in e for e in self.source_errors(specs=specs)))
+
+    def test_shrike_cannot_gain_an_unprinted_wound_number_or_any_death_trigger(self):
+        specs = copy.deepcopy(self.specifications)
+        specs["cards"]["JZ10"]["abilities"][0]["printedWoundKeywordHasNoNumber"] = False
+        specs["cards"]["JZ10"]["abilities"][1]["notAnyDeathTrigger"] = False
+        self.assertTrue(any("assault-caused" in e for e in self.source_errors(specs=specs)))
+
+    def test_shield_entry_generation_cannot_be_erased_by_fixture_only_implementation(self):
+        specs = copy.deepcopy(self.specifications)
+        specs["cards"]["BQ007"]["abilities"][0]["shieldEntryMarkerCount"] = 0
+        self.assertTrue(any("shield entry generation" in e for e in self.source_errors(specs=specs)))
+
+    def test_police_dog_cannot_gain_exhaust_cost_or_temporary_icon(self):
+        specs = copy.deepcopy(self.specifications)
+        specs["cards"]["JC069"]["abilities"][2]["costs"]["exhaustSource"] = True
+        self.assertTrue(any("costs only two" in e for e in self.source_errors(specs=specs)))
+
+    def test_hourglass_cannot_silently_replace_region_wording_with_attachment(self):
+        specs = copy.deepcopy(self.specifications)
+        specs["cards"]["JC048"]["abilities"][1]["printedDamageAndSacrificeCounterRecipient"] = "thisAttachment"
+        self.assertTrue(any("silently rewritten" in e for e in self.source_errors(specs=specs)))
+
+    def test_erasure_cannot_target_non_card_abilities(self):
+        specs = copy.deepcopy(self.specifications)
+        specs["cards"]["XQ04"]["abilities"][0]["target"]["includesNonCardAbility"] = True
+        self.assertTrue(any("arbitrary abilities" in e for e in self.source_errors(specs=specs)))
+
+    def test_lotus_cannot_widen_yin_to_yin_and_yang_cards(self):
+        specs = copy.deepcopy(self.specifications)
+        specs["cards"]["LC15"]["abilities"][3]["playedCardSubtypeAny"] = ["法术", "阴", "阳"]
+        self.assertTrue(any("not yin-yang" in e for e in self.source_errors(specs=specs)))
+
+    def test_matron_cannot_cast_private_search_as_public_or_ignore_owner(self):
+        specs = copy.deepcopy(self.specifications)
+        specs["cards"]["WM071"]["abilities"][1]["destination"] = "controllersDeck"
+        self.assertTrue(any("owner shuffle" in e for e in self.source_errors(specs=specs)))
+
 
 if __name__ == "__main__":
     unittest.main()

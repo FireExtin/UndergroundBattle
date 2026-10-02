@@ -224,4 +224,43 @@ def validate_specifications(specifications, coverage, index, recovery):
                 and mother[1]["otherColorAndDomainLoyaltyNotWaived"] and mother[3]["costs"] == {"currency": 0}
                 and mother[3]["remainingLoyaltyRequirementsPreserved"],
                 "Dream mother allows only purple and waives card currency cost without other loyalty")
+    if "LC14" in specs:
+        metatron = specs["LC14"]
+        hand = metatron["abilities"][1]
+        require(metatron["fields"]["domains"] == [{"id": "holy", "count": 4}]
+                and not metatron["fields"]["loyalty"] and hand["activationStep"] == "preparation"
+                and hand["costs"] == {"publiclyShowThisSourceFromOwnHand": True, "currency": 2}
+                and hand["showingHandSourceDoesNotPlayIt"],
+                "LC14 hand action shows the hand source for two in preparation; four holy is its separate play loyalty")
+        horror = specs["CQ12"]["abilities"]
+        require(horror[0]["condition"] == {"controllersAssetColor": "红", "minimum": 2}
+                and horror[0]["regionAnchorUnresolved"] and horror[1]["appliesToBothNormalPlayAndPaidReveal"],
+                "CQ12 has two-red hand condition, unresolved hand-region anchor and an explicit paid-reveal reduction")
+        widow = specs["JZ10"]["abilities"]
+        require(widow[0]["printedWoundKeywordHasNoNumber"] and widow[1]["notAnyDeathTrigger"]
+                and widow[1]["requiresDeathCausedByThisSourcesAssault"],
+                "JZ10 wound keyword has no number and move-hide requires its own assault-caused death")
+        shield = specs["BQ007"]["abilities"][0]
+        require(shield["shieldEntryMarkerCount"] == 1 and shield["shieldProtectionIsForcedEnemyTargetTrigger"],
+                "BQ007 provides shield entry generation and forced enemy-target protection, not just fixture consumption")
+        dog = specs["JC069"]["abilities"][2]
+        require(dog["costs"] == {"currency": 2} and dog["noSourceExhaustCostPrinted"]
+                and dog["order"][-1] == "grantSourceOnePermanentInvestigationUntilEndOfTurn",
+                "JC069 costs only two and grants a permanent investigation icon for a temporary duration")
+        hourglass = specs["JC048"]["abilities"][1]
+        require(hourglass["printedAddMarkerRecipient"] == "thisAttachment"
+                and hourglass["printedDamageAndSacrificeCounterRecipient"] == "carrierRegion"
+                and hourglass["recipientMismatchUnresolved"] and specs["JC048"]["implementationDesignStatus"] == "needsRuling",
+                "JC048 attachment-versus-region marker wording must not be silently rewritten")
+        cancel = specs["XQ04"]["abilities"][0]["target"]
+        require(cancel["category"] == "stackCard" and cancel["includesPaidReveal"]
+                and not cancel["includesNonCardAbility"], "XQ04 terminates stack cards, not arbitrary abilities")
+        lotus = specs["LC15"]["abilities"]
+        require(lotus[3]["playedCardSubtypeAny"] == lotus[4]["cardSubtypeAny"] == ["法术", "阴"]
+                and lotus[2]["optional"] is False and lotus[4]["countsAsDraw"] is False,
+                "LC15 says spells or yin cards, not yin-yang; enter sealing is forced and grave recovery is not draw")
+        matron = specs["WM071"]["abilities"]
+        require(matron[1]["destination"] == "ownersDeck" and matron[1]["graveEntryEventOrderUnresolved"]
+                and matron[2]["search"]["category"] == "characterCard" and matron[2]["explicitPublicRevealNotPrinted"],
+                "WM071 preserves owner shuffle, unresolved transition events and private character-only search")
     return errors
