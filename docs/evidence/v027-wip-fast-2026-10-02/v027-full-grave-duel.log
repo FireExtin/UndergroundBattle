@@ -1,0 +1,10 @@
+{"mode": "duel", "posts": 50, "version": 49, "turn": 1, "score": [0, 0]}
+{"mode": "duel", "posts": 100, "version": 99, "turn": 2, "score": [0, 0]}
+{"mode": "duel", "posts": 150, "version": 149, "turn": 3, "score": [0, 0]}
+{"mode": "duel", "posts": 200, "version": 199, "turn": 4, "score": [0, 2]}
+{"mode": "duel", "posts": 250, "version": 249, "turn": 4, "score": [3, 2]}
+{"mode": "duel", "posts": 300, "version": 299, "turn": 5, "score": [3, 2]}
+{"mode": "duel", "posts": 350, "version": 349, "turn": 6, "score": [6, 2]}
+{"mode": "duel", "posts": 400, "version": 399, "turn": 7, "score": [6, 6]}
+{"mode": "duel", "posts": 450, "version": 449, "turn": 8, "score": [6, 6]}
+{"mode": "duel", "passed": true, "posts": 479, "failure": null, "roomId": "bc4b9d1321f4895835970a9f"}
