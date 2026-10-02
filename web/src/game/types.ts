@@ -1,0 +1,60 @@
+export type Icons = { investigation: number; combat: number; influence: number };
+export type CardDefinition = {
+  id: string; name: string; kind: string; type?: string; cost: number;
+  loyalty?: string[]; loyaltyText?: string; subtypes?: string[]; color?: string; magic?: string; text: string;
+  icons?: { permanent: Icons; temporary: Icons };
+  permanentIcons?: Icons; temporaryIcons?: Icons; defense?: number;
+  threshold?: number; points?: number; keywords?: string[]; supported?: boolean;
+  abilities?: { key: string; label: string; timing: 'standard' | 'fast' | 'actionFast'; triggered: boolean }[];
+};
+export type Card = {
+  instanceId: string; cardId?: string; name: string; owner: string; controller: string;
+  kind: string; region?: number; exhausted: boolean; faceDown: boolean;
+  cost?: number; effectiveCost?: number; text?: string; icons?: Icons; defense?: number; damage?: number;
+  shield?: number; wounds?: number; color?: string; magic?: string;
+};
+export type Action = {
+  kind: string; cardId?: string; targetId?: string; region?: number; option?: string;
+  abilityId?: string; costSelected?: string[];
+  choiceId?: string; selected?: string[]; top?: string[]; bottom?: string[];
+  allocations?: Record<string, number>;
+};
+export type LegalAction = Action & { id: string; label: string; description?: string };
+export type Choice = {
+  id: string; kind: string; title: string; description: string; playerId: string;
+  options: { id: string; label: string; card?: Card }[];
+  min?: number; max?: number; amount?: number; allowDecline?: boolean;
+};
+export type Player = {
+  id: string; seat: number; name: string; team: number; deckId: string;
+  ready: boolean; eliminated: boolean; handCount: number; deckCount: number; score: number;
+};
+export type Region = {
+  id: string; index: number; cardId: string; name: string; threshold: number;
+  points: number; influence: number[]; characters: Card[];
+};
+export type StackEffect = {
+  id: string; label: string; controller: string; cardId?: string; targetId?: string;
+  abilityId?: string; targets?: string[];
+  resolutionState?: 'awaitingResponses' | 'resolving';
+  targetSummaries?: {
+    instanceId: string; label: string; kind: string; owner?: string; controller?: string; region?: number;
+    valid: boolean; status: 'valid' | 'missing' | 'changed' | 'guardAccepted'; invalidReason?: string;
+  }[];
+};
+export type View = {
+  roomId: string; inviteCode: string; version: number; mode: 'duel' | 'teams';
+  status: 'lobby' | 'playing' | 'finished'; you: string; players: Player[];
+  firstTeam: number; activeTeam: number; priorityTeam: number; turn: number;
+  phase: string; step: string; winScore: number; winnerTeam?: number;
+  regions: Region[]; hand: Card[]; assets: Card[]; graveyard: Card[]; scoreCards: Card[];
+  stack: StackEffect[];
+  pendingChoice: Choice | null;
+  waitingChoice?: { playerId: string; title: string; kind: string } | null;
+  legalActions: LegalAction[]; log: { version: number; text: string }[];
+  versions: { rules: string; cardPool: string; engine: string };
+};
+export type Deck = { id: string; name: string; description: string; cardCount: number; cards: { cardId: string; count: number }[] };
+export type Catalog = { rulesVersion: string; cardPoolVersion: string; engineVersion: string; decks: Deck[]; cards: CardDefinition[] };
+export type Session = { roomId: string; inviteCode: string; token: string; seat: number; view: View };
+export type SavedSession = Omit<Session, 'view'>;

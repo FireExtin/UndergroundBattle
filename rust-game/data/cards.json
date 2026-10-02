@@ -1,0 +1,1415 @@
+{
+  "rulesVersion": "hegemony-pdf-v1",
+  "cardPoolVersion": "limited-v2.1",
+  "engineVersion": "rust-v0.2.1",
+  "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
+  "cards": [
+    {
+      "id": "JC125",
+      "name": "无知路人",
+      "kind": "character",
+      "subtypes": [
+        "人类"
+      ],
+      "cost": 0,
+      "loyalty": [],
+      "loyaltyText": "",
+      "color": "中立",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "持续：名称为无知路人的牌，构筑时在牌组中的数量没有限制。",
+      "keywords": [],
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/cards.json",
+        "record": "JC125",
+        "image": "resource/ymsj-fun.github.io/cards/JC125 无知路人.jpg"
+      },
+      "unique": false,
+      "society": ""
+    },
+    {
+      "id": "LC19",
+      "name": "外科医生",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "医疗员"
+      ],
+      "cost": 1,
+      "loyalty": [],
+      "loyaltyText": "",
+      "color": "中立",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "公开\n行动2，横置本卡：选择本地区的目标角色，移除该角色上的所有创伤标志。",
+      "keywords": [
+        "公开",
+        "创伤"
+      ],
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/cards.json",
+        "record": "LC19",
+        "image": "resource/ymsj-fun.github.io/cards/LC19 外科医生.jpg"
+      },
+      "unique": false,
+      "society": ""
+    },
+    {
+      "id": "LC20",
+      "name": "心理咨询师",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "医疗员"
+      ],
+      "cost": 2,
+      "loyalty": [],
+      "loyaltyText": "",
+      "color": "中立",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "进场触发：选择本地区的目标角色，移除该角色上的所有创伤标志。",
+      "keywords": [
+        "创伤"
+      ],
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/cards.json",
+        "record": "LC20",
+        "image": "resource/ymsj-fun.github.io/cards/LC20 心理咨询师.jpg"
+      },
+      "unique": false,
+      "society": ""
+    },
+    {
+      "id": "LC21",
+      "name": "称职的保镖",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "保镖"
+      ],
+      "cost": 1,
+      "loyalty": [],
+      "loyaltyText": "",
+      "color": "中立",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "公开 护卫1",
+      "keywords": [
+        "公开",
+        "护卫"
+      ],
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/cards.json",
+        "record": "LC21",
+        "image": "resource/ymsj-fun.github.io/cards/LC21 称职的保镖.jpg"
+      },
+      "unique": false,
+      "society": ""
+    },
+    {
+      "id": "LC22",
+      "name": "退役军人",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "士兵"
+      ],
+      "cost": 3,
+      "loyalty": [],
+      "loyaltyText": "",
+      "color": "中立",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        }
+      },
+      "defense": 1,
+      "text": "公开 护卫1",
+      "keywords": [
+        "公开",
+        "护卫"
+      ],
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/cards.json",
+        "record": "LC22",
+        "image": "resource/ymsj-fun.github.io/cards/LC22 退役军人.jpg"
+      },
+      "unique": false,
+      "society": ""
+    },
+    {
+      "id": "LC23",
+      "name": "安格鲁，“荆棘”",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "德鲁伊"
+      ],
+      "cost": 3,
+      "loyalty": [],
+      "loyaltyText": "",
+      "color": "中立",
+      "magic": "鲜血",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "现身触发：横置安格鲁，“荆棘”和本地区的目标角色。",
+      "keywords": [],
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/cards.json",
+        "record": "LC23",
+        "image": "resource/ymsj-fun.github.io/cards/LC23 安格鲁，“荆棘”.jpg"
+      },
+      "unique": true,
+      "society": ""
+    },
+    {
+      "id": "LC24",
+      "name": "林中女巫",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "法师",
+        "女巫"
+      ],
+      "cost": 4,
+      "loyalty": [],
+      "loyaltyText": "",
+      "color": "中立",
+      "magic": "心灵",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 2,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "进场触发：预测2，然后抓一张牌。",
+      "keywords": [
+        "预测"
+      ],
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/cards.json",
+        "record": "LC24",
+        "image": "resource/ymsj-fun.github.io/cards/LC24 林中女巫.jpg"
+      },
+      "unique": false,
+      "society": ""
+    },
+    {
+      "id": "XQ49",
+      "name": "葬礼",
+      "kind": "spell",
+      "subtypes": [
+        "事务-仪式"
+      ],
+      "cost": 1,
+      "loyalty": [],
+      "loyaltyText": "",
+      "color": "中立",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 0,
+      "text": "快速行动：将任一玩家墓地中的目标牌置于其拥有者的牌库底，然后抓一张牌。",
+      "keywords": [],
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/cards.json",
+        "record": "XQ49",
+        "image": "resource/ymsj-fun.github.io/cards/XQ49 葬礼.jpg"
+      },
+      "unique": false,
+      "society": ""
+    },
+    {
+      "id": "JC118",
+      "name": "停战协议",
+      "kind": "spell",
+      "subtypes": [
+        "事务-策略"
+      ],
+      "cost": 2,
+      "loyalty": [],
+      "loyaltyText": "",
+      "color": "中立",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 0,
+      "text": "只能在行动阶段打出。\n快速行动：选择目标地区，本回合中该地区略过对抗阶段。",
+      "keywords": [],
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/cards.json",
+        "record": "JC118",
+        "image": "resource/ymsj-fun.github.io/cards/JC118 停战协议.jpg"
+      },
+      "unique": false,
+      "society": ""
+    },
+    {
+      "id": "JC002",
+      "name": "巨石阵看护人",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "德鲁伊"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "黄色"
+      ],
+      "loyaltyText": "黄色",
+      "color": "黄",
+      "magic": "鲜血",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "现身触发：横置本地区的目标角色。",
+      "keywords": [],
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/cards.json",
+        "record": "JC002",
+        "image": "resource/ymsj-fun.github.io/cards/JC002 巨石阵看护人.jpg"
+      },
+      "unique": false,
+      "society": "帷幕守望"
+    },
+    {
+      "id": "JC003",
+      "name": "帷幕护卫",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "法师"
+      ],
+      "cost": 3,
+      "loyalty": [
+        "黄色"
+      ],
+      "loyaltyText": "黄色",
+      "color": "黄",
+      "magic": "心灵",
+      "icons": {
+        "permanent": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "快速行动2，横置：横置目标角色或暗藏者。",
+      "keywords": [],
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/cards.json",
+        "record": "JC003",
+        "image": "resource/ymsj-fun.github.io/cards/JC003 帷幕护卫.jpg"
+      },
+      "unique": false,
+      "society": "帷幕守望"
+    },
+    {
+      "id": "XQ03",
+      "name": "力场束缚",
+      "kind": "spell",
+      "subtypes": [
+        "事务-法术",
+        "空间"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "黄色"
+      ],
+      "loyaltyText": "黄色",
+      "color": "黄",
+      "magic": "心灵",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 0,
+      "text": "快速行动：横置目标角色。",
+      "keywords": [],
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/cards.json",
+        "record": "XQ03",
+        "image": "resource/ymsj-fun.github.io/cards/XQ03 力场束缚.jpg"
+      },
+      "unique": false,
+      "society": "帷幕守望"
+    },
+    {
+      "id": "JC014",
+      "name": "公路骑士",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "猎手"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "绿色",
+        "绿色"
+      ],
+      "loyaltyText": "绿色绿色",
+      "color": "绿",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 2,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "公开（该角色不能被秘密派遣为暗藏者）\n机动（在对抗阶段开始时，你可以将该角色移动至另一个地区。）",
+      "keywords": [
+        "机动",
+        "公开"
+      ],
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/cards.json",
+        "record": "JC014",
+        "image": "resource/ymsj-fun.github.io/cards/JC014 公路骑士.jpg"
+      },
+      "unique": false,
+      "society": "猎魔人"
+    },
+    {
+      "id": "JC016",
+      "name": "执行部精锐",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "特工"
+      ],
+      "cost": 3,
+      "loyalty": [
+        "绿色",
+        "绿色"
+      ],
+      "loyaltyText": "绿色绿色",
+      "color": "绿",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 2,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "撤回 杀伤1\n持续：若所在的地区没有敌方角色，执行部精锐就获得［白眼］［黑星］。",
+      "keywords": [
+        "撤回",
+        "杀伤"
+      ],
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/cards.json",
+        "record": "JC016",
+        "image": "resource/ymsj-fun.github.io/cards/JC016 执行部精锐.jpg"
+      },
+      "unique": false,
+      "society": "猎魔人"
+    },
+    {
+      "id": "JZ08",
+      "name": "幸运新人",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "猎手"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "绿色"
+      ],
+      "loyaltyText": "绿色",
+      "color": "绿",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "屏障（该角色不能成为敌方卡牌或能力的目标。）",
+      "keywords": [
+        "屏障"
+      ],
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/cards.json",
+        "record": "JZ08",
+        "image": "resource/ymsj-fun.github.io/cards/JZ08 幸运新人.jpg"
+      },
+      "unique": false,
+      "society": "猎魔人"
+    },
+    {
+      "id": "JC056",
+      "name": "地区警员",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "警察"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "灰色"
+      ],
+      "loyaltyText": "灰色",
+      "color": "灰",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "公开（该角色不能被秘密派遣为暗藏者）\n进场触发：横置所有本地区的暗藏者。",
+      "keywords": [
+        "公开"
+      ],
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/cards.json",
+        "record": "JC056",
+        "image": "resource/ymsj-fun.github.io/cards/JC056 地区警员.jpg"
+      },
+      "unique": false,
+      "society": "国家机构"
+    },
+    {
+      "id": "JC059",
+      "name": "安全保卫部门",
+      "kind": "character",
+      "subtypes": [
+        "人类"
+      ],
+      "cost": 3,
+      "loyalty": [],
+      "loyaltyText": "",
+      "color": "灰",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 2,
+          "influence": 0
+        }
+      },
+      "defense": 2,
+      "text": "公开（该角色不能被秘密派遣为暗藏者）\n持续：位于本地区的所有其他本方角色获得+1防御力。",
+      "keywords": [
+        "公开"
+      ],
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/cards.json",
+        "record": "JC059",
+        "image": "resource/ymsj-fun.github.io/cards/JC059 安全保卫部门.jpg"
+      },
+      "unique": false,
+      "society": "国家机构"
+    },
+    {
+      "id": "JC063",
+      "name": "警车追捕",
+      "kind": "spell",
+      "subtypes": [
+        "事务-策略"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "灰色"
+      ],
+      "loyaltyText": "灰色",
+      "color": "灰",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 0,
+      "text": "快速行动：选择一项：\n·将目标角色潜伏。（将该角色翻面为暗藏者）\n·将目标暗藏者移回其拥有者手上。",
+      "keywords": [
+        "潜伏"
+      ],
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/cards.json",
+        "record": "JC063",
+        "image": "resource/ymsj-fun.github.io/cards/JC063 警车追捕.jpg"
+      },
+      "unique": false,
+      "society": "国家机构"
+    },
+    {
+      "id": "JC086",
+      "name": "窃尸人",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "奴仆",
+        "罪犯"
+      ],
+      "cost": 3,
+      "loyalty": [
+        "黑色"
+      ],
+      "loyaltyText": "黑色",
+      "color": "黑",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 2,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "进场触发：将你墓地中的目标角色牌置于你的手中。",
+      "keywords": [],
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/cards.json",
+        "record": "JC086",
+        "image": "resource/ymsj-fun.github.io/cards/JC086 窃尸人.jpg"
+      },
+      "unique": false,
+      "society": "方碑序列"
+    },
+    {
+      "id": "XQ12",
+      "name": "暴躁血仆",
+      "kind": "character",
+      "subtypes": [
+        "吸血鬼",
+        "奴仆"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "蓝色",
+        "蓝色"
+      ],
+      "loyaltyText": "蓝色蓝色",
+      "color": "蓝",
+      "magic": "鲜血",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 1
+        }
+      },
+      "defense": 1,
+      "text": "死亡触发：目标玩家弃一张手牌。",
+      "keywords": [],
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/cards.json",
+        "record": "XQ12",
+        "image": "resource/ymsj-fun.github.io/cards/XQ12 暴躁血仆.jpg"
+      },
+      "unique": false,
+      "society": "王座会"
+    },
+    {
+      "id": "JC092",
+      "name": "死灵召唤",
+      "kind": "spell",
+      "subtypes": [
+        "事务-法术",
+        "召唤"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "黑色"
+      ],
+      "loyaltyText": "黑色",
+      "color": "黑",
+      "magic": "死亡",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 0,
+      "text": "行动：选择一个地区，将你墓地中的目标角色牌以暗藏者状态置于该地区。",
+      "keywords": [],
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/cards.json",
+        "record": "JC092",
+        "image": "resource/ymsj-fun.github.io/cards/JC092 死灵召唤.jpg"
+      },
+      "unique": false,
+      "society": "方碑序列"
+    },
+    {
+      "id": "DQJC107",
+      "name": "沉没的废墟",
+      "kind": "region",
+      "subtypes": [
+        "遗迹",
+        "水域"
+      ],
+      "cost": 0,
+      "loyalty": [],
+      "loyaltyText": "",
+      "color": "中立",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 0,
+      "text": "赢取触发：每位玩家从他的牌库中寻找一张牌，将他的牌库洗牌，然后将该牌置于其牌库顶。",
+      "keywords": [],
+      "threshold": 4,
+      "points": 4,
+      "unique": false,
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/DQJC107 沉没的废墟.jpg",
+        "record": "DQJC107"
+      },
+      "society": ""
+    },
+    {
+      "id": "DQJC112",
+      "name": "纽约",
+      "kind": "region",
+      "subtypes": [
+        "城市"
+      ],
+      "cost": 0,
+      "loyalty": [],
+      "loyaltyText": "",
+      "color": "中立",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 0,
+      "text": "赢取触发：每位玩家弃掉任意数量的手牌，然后抓等量的牌。",
+      "keywords": [],
+      "threshold": 4,
+      "points": 4,
+      "unique": false,
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/DQJC112 纽约.jpg",
+        "record": "DQJC112"
+      },
+      "society": ""
+    },
+    {
+      "id": "DQJC113",
+      "name": "切尔诺贝利",
+      "kind": "region",
+      "subtypes": [
+        "城市",
+        "遗迹"
+      ],
+      "cost": 0,
+      "loyalty": [],
+      "loyaltyText": "",
+      "color": "中立",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 0,
+      "text": "赢取触发：切尔诺贝利对场上的所有角色造成1点伤害。",
+      "keywords": [],
+      "threshold": 3,
+      "points": 2,
+      "unique": false,
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/DQJC113 切尔诺贝利.jpg",
+        "record": "DQJC113"
+      },
+      "society": ""
+    },
+    {
+      "id": "DQJC114",
+      "name": "上海",
+      "kind": "region",
+      "subtypes": [
+        "城市",
+        "水域"
+      ],
+      "cost": 0,
+      "loyalty": [],
+      "loyaltyText": "",
+      "color": "中立",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 0,
+      "text": "赢取触发：选择一项：\n·每位玩家抓两张牌。\n·每位玩家弃两张牌。",
+      "keywords": [],
+      "threshold": 4,
+      "points": 3,
+      "unique": false,
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/DQJC114 上海.jpg",
+        "record": "DQJC114"
+      },
+      "society": ""
+    },
+    {
+      "id": "JC042",
+      "name": "末日信徒",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "邪教徒"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "红色"
+      ],
+      "loyaltyText": "红色",
+      "color": "红",
+      "magic": "鲜血",
+      "society": "鸣钟教派",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "快速行动，牺牲末日信徒：本回合中你正面打出的下一张【鸣钟教派】牌或具有【血】图标的牌，其所需费用减少2。",
+      "keywords": [],
+      "unique": false,
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/cards.json",
+        "record": "JC042",
+        "image": "resource/ymsj-fun.github.io/cards/JC042 末日信徒.jpg"
+      }
+    },
+    {
+      "id": "JC049",
+      "name": "深渊细语",
+      "kind": "spell",
+      "subtypes": [
+        "法术",
+        "召唤"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "红色"
+      ],
+      "loyaltyText": "红色",
+      "color": "红",
+      "magic": "心灵",
+      "society": "鸣钟教派",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 0,
+      "text": "额外费用：牺牲一个角色。\n快速行动：将你牌库底的两张牌置于手中。",
+      "keywords": [],
+      "unique": false,
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/cards.json",
+        "record": "JC049",
+        "image": "resource/ymsj-fun.github.io/cards/JC049 深渊细语.jpg"
+      }
+    },
+    {
+      "id": "JC091",
+      "name": "谋杀",
+      "kind": "spell",
+      "subtypes": [
+        "阴谋"
+      ],
+      "cost": 3,
+      "loyalty": [
+        "黑色"
+      ],
+      "loyaltyText": "黑色",
+      "color": "黑",
+      "magic": "",
+      "society": "方碑序列",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 0,
+      "text": "只能在行动阶段打出。\n快速行动：消灭目标人类角色。",
+      "keywords": [],
+      "unique": false,
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/cards.json",
+        "record": "JC091",
+        "image": "resource/ymsj-fun.github.io/cards/JC091 谋杀.jpg"
+      }
+    },
+    {
+      "id": "JZ54",
+      "name": "阿塔玛斯奉献仪式",
+      "kind": "spell",
+      "subtypes": [
+        "仪式",
+        "死亡"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "黑色"
+      ],
+      "loyaltyText": "黑色",
+      "color": "黑",
+      "magic": "鲜血",
+      "society": "方碑序列",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 0,
+      "text": "快速行动：目标玩家牺牲一个角色。",
+      "keywords": [],
+      "unique": false,
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/cards.json",
+        "record": "JZ54",
+        "image": "resource/ymsj-fun.github.io/cards/JZ54 阿塔玛斯奉献仪式.jpg"
+      }
+    }
+  ],
+  "decks": [
+    {
+      "id": "watchers",
+      "name": "帷幕调查",
+      "description": "以检视、横置与调查奖励掌控节奏。50张受限卡池自组预组，非官方预组。",
+      "cardCount": 50,
+      "cards": [
+        {
+          "cardId": "JC125",
+          "count": 17
+        },
+        {
+          "cardId": "LC19",
+          "count": 3
+        },
+        {
+          "cardId": "LC20",
+          "count": 3
+        },
+        {
+          "cardId": "LC21",
+          "count": 3
+        },
+        {
+          "cardId": "LC22",
+          "count": 3
+        },
+        {
+          "cardId": "LC23",
+          "count": 3
+        },
+        {
+          "cardId": "LC24",
+          "count": 3
+        },
+        {
+          "cardId": "XQ49",
+          "count": 3
+        },
+        {
+          "cardId": "JC118",
+          "count": 3
+        },
+        {
+          "cardId": "JC002",
+          "count": 3
+        },
+        {
+          "cardId": "JC003",
+          "count": 3
+        },
+        {
+          "cardId": "XQ03",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "id": "hunters",
+      "name": "公路猎手",
+      "description": "机动与战斗压制，寻找空档赢取地区。50张受限卡池自组预组，非官方预组。",
+      "cardCount": 50,
+      "cards": [
+        {
+          "cardId": "JC125",
+          "count": 17
+        },
+        {
+          "cardId": "LC19",
+          "count": 3
+        },
+        {
+          "cardId": "LC20",
+          "count": 3
+        },
+        {
+          "cardId": "LC21",
+          "count": 3
+        },
+        {
+          "cardId": "LC22",
+          "count": 3
+        },
+        {
+          "cardId": "LC23",
+          "count": 3
+        },
+        {
+          "cardId": "LC24",
+          "count": 3
+        },
+        {
+          "cardId": "XQ49",
+          "count": 3
+        },
+        {
+          "cardId": "JC118",
+          "count": 3
+        },
+        {
+          "cardId": "JC014",
+          "count": 3
+        },
+        {
+          "cardId": "JC016",
+          "count": 3
+        },
+        {
+          "cardId": "JZ08",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "id": "keepers",
+      "name": "城市守卫",
+      "description": "区域防御与潜伏控制，稳步积累势力。50张受限卡池自组预组，非官方预组。",
+      "cardCount": 50,
+      "cards": [
+        {
+          "cardId": "JC125",
+          "count": 17
+        },
+        {
+          "cardId": "LC19",
+          "count": 3
+        },
+        {
+          "cardId": "LC20",
+          "count": 3
+        },
+        {
+          "cardId": "LC21",
+          "count": 3
+        },
+        {
+          "cardId": "LC22",
+          "count": 3
+        },
+        {
+          "cardId": "LC23",
+          "count": 3
+        },
+        {
+          "cardId": "LC24",
+          "count": 3
+        },
+        {
+          "cardId": "XQ49",
+          "count": 3
+        },
+        {
+          "cardId": "JC118",
+          "count": 3
+        },
+        {
+          "cardId": "JC056",
+          "count": 3
+        },
+        {
+          "cardId": "JC059",
+          "count": 3
+        },
+        {
+          "cardId": "JC063",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "id": "reclaimers",
+      "name": "墓地回声",
+      "description": "回收角色与秘密再部署，持续争夺。50张受限卡池自组预组，非官方预组。",
+      "cardCount": 50,
+      "cards": [
+        {
+          "cardId": "JC125",
+          "count": 17
+        },
+        {
+          "cardId": "LC19",
+          "count": 3
+        },
+        {
+          "cardId": "LC20",
+          "count": 3
+        },
+        {
+          "cardId": "LC21",
+          "count": 3
+        },
+        {
+          "cardId": "LC22",
+          "count": 3
+        },
+        {
+          "cardId": "LC23",
+          "count": 3
+        },
+        {
+          "cardId": "LC24",
+          "count": 3
+        },
+        {
+          "cardId": "XQ49",
+          "count": 3
+        },
+        {
+          "cardId": "JC118",
+          "count": 3
+        },
+        {
+          "cardId": "JC086",
+          "count": 3
+        },
+        {
+          "cardId": "XQ12",
+          "count": 3
+        },
+        {
+          "cardId": "JC092",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "id": "responders",
+      "name": "牺牲与响应",
+      "description": "自组受限卡池预组：牺牲费用、快速响应与墓地回收；非官方预组。",
+      "cardCount": 50,
+      "cards": [
+        {
+          "cardId": "JC125",
+          "count": 17
+        },
+        {
+          "cardId": "LC19",
+          "count": 3
+        },
+        {
+          "cardId": "LC20",
+          "count": 3
+        },
+        {
+          "cardId": "LC21",
+          "count": 3
+        },
+        {
+          "cardId": "LC22",
+          "count": 3
+        },
+        {
+          "cardId": "LC23",
+          "count": 3
+        },
+        {
+          "cardId": "LC24",
+          "count": 3
+        },
+        {
+          "cardId": "XQ49",
+          "count": 3
+        },
+        {
+          "cardId": "JC118",
+          "count": 3
+        },
+        {
+          "cardId": "JC042",
+          "count": 3
+        },
+        {
+          "cardId": "JC049",
+          "count": 2
+        },
+        {
+          "cardId": "JC091",
+          "count": 2
+        },
+        {
+          "cardId": "JZ54",
+          "count": 2
+        }
+      ]
+    }
+  ],
+  "world": [
+    {
+      "cardId": "DQJC107",
+      "count": 3
+    },
+    {
+      "cardId": "DQJC112",
+      "count": 3
+    },
+    {
+      "cardId": "DQJC113",
+      "count": 2
+    },
+    {
+      "cardId": "DQJC114",
+      "count": 2
+    }
+  ]
+}
