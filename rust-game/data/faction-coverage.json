@@ -1618,7 +1618,15 @@
         "card-MSJZ04",
         "card-DQJC108",
         "card-DQJC109",
-        "card-DQJC110"
+        "card-DQJC110",
+        "card-JC011",
+        "card-JC020",
+        "card-JC023",
+        "card-JC024",
+        "card-JC029",
+        "card-JC033",
+        "card-JC037",
+        "card-JC039"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -1750,7 +1758,23 @@
         "card-WM026",
         "card-ZHWM026",
         "card-WM048",
-        "card-ZHWM048"
+        "card-ZHWM048",
+        "card-JC004",
+        "card-JC005",
+        "card-JC006",
+        "card-JC008",
+        "card-JC009",
+        "card-JC012",
+        "card-JC017",
+        "card-JC019",
+        "card-JC020",
+        "card-JC021",
+        "card-JC024",
+        "card-JC025",
+        "card-JC027",
+        "card-JC031",
+        "card-JC035",
+        "card-JC039"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -1793,7 +1817,10 @@
         "card-DQJC114",
         "card-JC098",
         "card-MSLC05",
-        "card-DQWM005"
+        "card-DQWM005",
+        "card-JC022",
+        "card-JC034",
+        "card-JC035"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -1871,7 +1898,16 @@
         "card-BQ117",
         "card-DQCQ02",
         "card-DQCQ03",
-        "card-DQWM003"
+        "card-DQWM003",
+        "card-JC004",
+        "card-JC011",
+        "card-JC012",
+        "card-JC013",
+        "card-JC015",
+        "card-JC019",
+        "card-JC020",
+        "card-JC025",
+        "card-JC039"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -1916,7 +1952,10 @@
         "card-DQCQ02",
         "card-DQXQZY02",
         "card-DQXQZY03",
-        "card-ZHWM048"
+        "card-ZHWM048",
+        "card-JC021",
+        "card-JC023",
+        "card-JC024"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -1987,7 +2026,8 @@
         "card-JZ08",
         "bq-keywords-2",
         "card-LC14",
-        "card-LC15"
+        "card-LC15",
+        "card-JC017"
       ],
       "dependencies": [],
       "interactionIds": [],
@@ -2119,7 +2159,14 @@
         "card-TK008",
         "card-JC093",
         "card-MSJZ01",
-        "card-DQJC111"
+        "card-DQJC111",
+        "card-JC012",
+        "card-JC013",
+        "card-JC015",
+        "card-JC020",
+        "card-JC025",
+        "card-JC033",
+        "card-JC038"
       ],
       "dependencies": [
         "priority"
@@ -2158,7 +2205,12 @@
         "card-LC15",
         "card-JC103",
         "card-MSJZ01",
-        "card-BQ116"
+        "card-BQ116",
+        "card-JC012",
+        "card-JC025",
+        "card-JC026",
+        "card-JC033",
+        "card-JC039"
       ],
       "dependencies": [
         "loyalty",
@@ -2231,7 +2283,15 @@
         "card-DQCQ01",
         "card-DQJC111",
         "card-DQWM004",
-        "card-DQXQ01"
+        "card-DQXQ01",
+        "card-JC007",
+        "card-JC022",
+        "card-JC025",
+        "card-JC026",
+        "card-JC031",
+        "card-JC033",
+        "card-JC034",
+        "card-JC038"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -2287,7 +2347,19 @@
         "card-CQ39",
         "card-DQCQ02",
         "card-DQWM005",
-        "card-ZHJZ65"
+        "card-ZHJZ65",
+        "card-JC001",
+        "card-JC008",
+        "card-JC017",
+        "card-JC018",
+        "card-JC019",
+        "card-JC023",
+        "card-JC024",
+        "card-JC027",
+        "card-JC030",
+        "card-JC034",
+        "card-JC037",
+        "card-JC038"
       ],
       "dependencies": [],
       "interactionIds": [],
@@ -2378,7 +2450,13 @@
         "card-MSLC04",
         "card-MSLC05",
         "card-MSLC06",
-        "card-DQWM002"
+        "card-DQWM002",
+        "card-JC009",
+        "card-JC012",
+        "card-JC025",
+        "card-JC033",
+        "card-JC034",
+        "card-JC039"
       ],
       "dependencies": [
         "priority",
@@ -2422,7 +2500,22 @@
         "card-MSJZ01",
         "card-MSLC05",
         "card-BQ117",
-        "card-CQ39"
+        "card-CQ39",
+        "card-JC001",
+        "card-JC005",
+        "card-JC009",
+        "card-JC012",
+        "card-JC013",
+        "card-JC017",
+        "card-JC019",
+        "card-JC020",
+        "card-JC025",
+        "card-JC027",
+        "card-JC030",
+        "card-JC033",
+        "card-JC034",
+        "card-JC035",
+        "card-JC039"
       ],
       "dependencies": [
         "priority"
@@ -2467,7 +2560,9 @@
         "card-MSJZ04",
         "card-DQWM004",
         "card-JZ65",
-        "card-ZHJZ65"
+        "card-ZHJZ65",
+        "card-JC009",
+        "card-JC013"
       ],
       "dependencies": [
         "priority",
@@ -2502,7 +2597,8 @@
         "card-JC074",
         "card-JC080",
         "card-DQWM005",
-        "card-WM048"
+        "card-WM048",
+        "card-JC011"
       ],
       "dependencies": [
         "confrontation"
@@ -2540,7 +2636,9 @@
         "card-JC010",
         "card-TK005",
         "card-JC105",
-        "card-ZHWM026"
+        "card-ZHWM026",
+        "card-JC013",
+        "card-JC022"
       ],
       "dependencies": [
         "continuous",
@@ -2639,7 +2737,8 @@
         "bq-keywords-2",
         "card-JC077",
         "card-LC14",
-        "card-JC078"
+        "card-JC078",
+        "card-JC019"
       ],
       "dependencies": [
         "confrontation"
@@ -2836,7 +2935,12 @@
         "card-JC010",
         "card-BQ112",
         "card-BQ114",
-        "card-BQ115"
+        "card-BQ115",
+        "card-JC011",
+        "card-JC023",
+        "card-JC024",
+        "card-JC037",
+        "card-JC038"
       ],
       "dependencies": [
         "continuous",
@@ -3187,7 +3291,12 @@
         "bq-keywords-1",
         "bq-keywords-2",
         "card-JZ10",
-        "card-JC097"
+        "card-JC097",
+        "card-JC018",
+        "card-JC023",
+        "card-JC029",
+        "card-JC030",
+        "card-JC038"
       ],
       "dependencies": [
         "confrontation",
@@ -3462,7 +3571,20 @@
         "card-CQ39",
         "card-DQXQZY02",
         "card-DQXQZY03",
-        "card-ZHWM048"
+        "card-ZHWM048",
+        "card-JC001",
+        "card-JC004",
+        "card-JC007",
+        "card-JC013",
+        "card-JC015",
+        "card-JC018",
+        "card-JC023",
+        "card-JC024",
+        "card-JC027",
+        "card-JC029",
+        "card-JC031",
+        "card-JC035",
+        "card-JC037"
       ],
       "dependencies": [
         "confrontation",
@@ -3508,7 +3630,16 @@
         "card-WM026",
         "card-ZHWM026",
         "card-WM048",
-        "card-ZHWM048"
+        "card-ZHWM048",
+        "card-JC011",
+        "card-JC012",
+        "card-JC023",
+        "card-JC024",
+        "card-JC025",
+        "card-JC026",
+        "card-JC037",
+        "card-JC038",
+        "card-JC039"
       ],
       "dependencies": [
         "sacrifice"
@@ -3570,7 +3701,8 @@
       "evidenceIds": [
         "manual-repress",
         "card-JC040",
-        "card-DQXQZY03"
+        "card-DQXQZY03",
+        "card-JC009"
       ],
       "dependencies": [
         "priority",
@@ -3923,7 +4055,7 @@
       "path": "resource/ymsj-fun.github.io/cards/JC006 逆转异界之门.jpg",
       "sha256": "beec2b1d758e0186cdc4cb57e7c52d6e8df2a4623564e5f212b3d878abb91bf4",
       "visuallyReviewed": true,
-      "topic": "逆转异界之门：标题、色/类别及下方规则框"
+      "topic": "逆转异界之门：完整同ID原图与必要放大区逐项人工读取"
     },
     "card-JC014": {
       "kind": "image",
@@ -5050,6 +5182,225 @@
       "pdfPage": 11,
       "visuallyReviewed": true,
       "topic": "钥匙形先手标志的名称与功能；平局特权付1并展示、每回合一次"
+    },
+    "card-JC001": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC001 通灵猫头鹰.jpg",
+      "sha256": "33b9fd53b30630010a49a520d9e2b89d608822706e67e7c667682c3d1151e312",
+      "visuallyReviewed": true,
+      "topic": "通灵猫头鹰：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-JC004": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC004 力场法师.jpg",
+      "sha256": "d9209031b83d49c2eacdbedd2967384852acc51329093f362073c462dabf92c4",
+      "visuallyReviewed": true,
+      "topic": "力场法师：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-JC005": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC005 裂解术.jpg",
+      "sha256": "216c26cff74fe738dbc486e725828ddc8077705161b1fee566e9d806684364a1",
+      "visuallyReviewed": true,
+      "topic": "裂解术：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-JC007": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC007 常春藤派学者.jpg",
+      "sha256": "835b85f48270aa66f10f01fa4de7483b0ccf80dcf14e6dc5596639592e14f1ce",
+      "visuallyReviewed": true,
+      "topic": "常春藤派学者：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-JC008": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC008 灵能激发.jpg",
+      "sha256": "31340e2535e0909359860a090186b7a5032e84d6da94c8181baf32565b5d4f45",
+      "visuallyReviewed": true,
+      "topic": "灵能激发：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-JC009": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC009 远东六号科研所.jpg",
+      "sha256": "2bff2ff4905ccd1d776efdf4f0f46408acca16f2e5fb8662efc0c198a31352f8",
+      "visuallyReviewed": true,
+      "topic": "远东六号科研所：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-JC011": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC011 德莫斯提尼，大魔法师.jpg",
+      "sha256": "9bd1bee070004654d9f2850c05d23595a76543ed2e305e6e33c4e1db79bf68fe",
+      "visuallyReviewed": true,
+      "topic": "德莫斯提尼，大魔法师：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-JC012": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC012 帷幕守望徽记.jpg",
+      "sha256": "47aafc91d5dd46e5064d3cf13b720d943cc86828aa84c4fa974ba974ee784123",
+      "visuallyReviewed": true,
+      "topic": "帷幕守望徽记：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-JC013": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC013 貘.jpg",
+      "sha256": "71525bc9c2390e70f8091d80067de9146622b233a2b3eac4346722ae3ea28363",
+      "visuallyReviewed": true,
+      "topic": "貘：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-JC015": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC015 驱魔人.jpg",
+      "sha256": "84ab4fb4fdf5e44f35b8cb8d9a40531d57bb0edb64d29a9c15f80d6e1cd37e1e",
+      "visuallyReviewed": true,
+      "topic": "驱魔人：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-JC017": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC017 除咒师.jpg",
+      "sha256": "8500c9d1bf1fd134d74ec000ec287c0a7f49ee7d6ae45b836001bc777771967d",
+      "visuallyReviewed": true,
+      "topic": "除咒师：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-JC018": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC018 魔刃传人.jpg",
+      "sha256": "a764f6ad543c1aa25e287e42a508ecce2368277e64377c2969b2aff079b63af8",
+      "visuallyReviewed": true,
+      "topic": "魔刃传人：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-JC019": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC019 弥尔顿的镇魔枪.jpg",
+      "sha256": "fff009e7f220745f38887fd867ae540d4cc523c3c698f8c4c085e3323ec028f3",
+      "visuallyReviewed": true,
+      "topic": "弥尔顿的镇魔枪：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-JC020": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC020 隐蔽的飞刀.jpg",
+      "sha256": "2edb40dfa18d2df22b5b397957d0a03642ade3cee1a10f965bb5e55b0c4f7223",
+      "visuallyReviewed": true,
+      "topic": "隐蔽的飞刀：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-JC021": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC021 狭路相逢.jpg",
+      "sha256": "9803e01d37b0bd4737a245e1e5af01e16604b4d00a0c8808b33663bea432e43d",
+      "visuallyReviewed": true,
+      "topic": "狭路相逢：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-JC022": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC022 引路仙子.jpg",
+      "sha256": "30a8163c0b0692d6c954e36b21298df41a3805d12458133c7caf2b2f578dc3c0",
+      "visuallyReviewed": true,
+      "topic": "引路仙子：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-JC023": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC023 范·弥尔顿.jpg",
+      "sha256": "c30cab46962424b56fbcb84e9295e1a43fd71986e2a5445ef5c8553f23d86a58",
+      "visuallyReviewed": true,
+      "topic": "范·弥尔顿：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-JC024": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC024 S．P．T董事局.jpg",
+      "sha256": "af54277a77781ccc0d89fcda083439dcfc6a2239ecb534a372efcd30d6531635",
+      "visuallyReviewed": true,
+      "topic": "S.P.T.董事局：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-JC025": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC025 猎手论坛徽记.jpg",
+      "sha256": "68fd96a96189571d31fdf55f47ade248f9ffb554259f7a39c4f1b22f3999dd58",
+      "visuallyReviewed": true,
+      "topic": "猎手论坛徽记：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-JC026": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC026 洛特尼科夫.jpg",
+      "sha256": "ca7cddb79e58c4dc14b2a73f04f9d1e99e94763b1f6328421184dd329a61bf01",
+      "visuallyReviewed": true,
+      "topic": "洛特尼科夫：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-JC027": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC027 花园地精像.jpg",
+      "sha256": "11843e8fa042edaa149f63161edb0a5fccac2de3ef11f0bd7a99b658b760e46f",
+      "visuallyReviewed": true,
+      "topic": "花园地精像：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-JC029": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC029 新生血族.jpg",
+      "sha256": "b3da8f1546e2f8bbbaae8d3c4d4c79dd712cfa7f8d133fe1723efaa1fa152785",
+      "visuallyReviewed": true,
+      "topic": "新生血族：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-JC030": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC030 巨型蝙蝠.jpg",
+      "sha256": "e0627c1eec97eab04d8cbafb54c0d25ce496ab89e10e19a81485d84ad2915542",
+      "visuallyReviewed": true,
+      "topic": "巨型蝙蝠：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-JC031": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC031 唤灵师.jpg",
+      "sha256": "c5d64c9392c3627659b405bc422a49535d35368b5aef5cc50cfc85f2123e6436",
+      "visuallyReviewed": true,
+      "topic": "唤灵师：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-JC033": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC033 家族传承.jpg",
+      "sha256": "e504b78b9433732ed5b8034e463b10b03db86f65fc0cfec79c00b7a0ad738e30",
+      "visuallyReviewed": true,
+      "topic": "家族传承：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-JC034": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC034 心兽之道.jpg",
+      "sha256": "edde9a868361e90592c13fef469b025676ee23dfdf35f4f821f86871e5631bb3",
+      "visuallyReviewed": true,
+      "topic": "心兽之道：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-JC035": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC035 传媒魔咒.jpg",
+      "sha256": "e7f2cff71f3a511d5065ece513db9013d02e5685a7d7ee899de4afbc109fe319",
+      "visuallyReviewed": true,
+      "topic": "传媒魔咒：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-JC037": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC037 克里斯蒂娜·爱弗罗德.jpg",
+      "sha256": "6d4199bd890373683c100b78cebca1cb6e291346b3c8a4fc7b25beea1f2feece",
+      "visuallyReviewed": true,
+      "topic": "克里斯蒂娜·爱弗罗德：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-JC038": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC038 列恩·爱弗罗德.jpg",
+      "sha256": "9f84e160119ce8b109eee78171e3212769caf7a3bac6b17c6b6e24ef24772a92",
+      "visuallyReviewed": true,
+      "topic": "列恩·爱弗罗德：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-JC039": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC039 王座会徽记.jpg",
+      "sha256": "b18bc6ab425afd9f898841d69b106ed264ebf7391980f0e062c57a6426720146",
+      "visuallyReviewed": true,
+      "topic": "王座会徽记：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "faq-1": {
+      "kind": "pdfPage",
+      "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界勘误及释疑.pdf",
+      "sha256": "916aa6a9f50ac7e737b517358e0c4270f715d0ed7391d55c8fcb629392a71d38",
+      "printedPage": 1,
+      "pdfPage": 1,
+      "visuallyReviewed": true,
+      "topic": "原勘误：力场法师预先横置状态、裂解术目标范围、远东科研所封印成功前提、隐蔽飞刀载体及旧版编号差异"
     }
   },
   "openQuestions": [

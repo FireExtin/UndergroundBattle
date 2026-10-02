@@ -265,19 +265,19 @@
       "editionStatus": "pinnedImageVariant"
     },
     "JC006": {
-      "evidenceId": "card-JC006",
       "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC006",
       "verifiedFields": {
         "name": "逆转异界之门",
         "colorKey": "黄",
         "basicType": "事务"
       },
-      "abilitySummary": "快速行动将目标有领域角色回拥有者手。",
+      "abilitySummary": "【快速行动】将目标具有魔法领域图标的角色移回其拥有者手上。",
       "confirmedMechanismIds": [
-        "hidden",
         "priority"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
     },
     "JC014": {
       "evidenceId": "card-JC014",
@@ -2975,6 +2975,557 @@
         "mysticContest",
         "renown",
         "transform",
+        "priority",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC001": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC001",
+      "verifiedFields": {
+        "name": "通灵猫头鹰",
+        "colorKey": "黄",
+        "basicType": "角色"
+      },
+      "abilitySummary": "不能被装备结附。；【持续】若你的资产区具有心灵2，则通灵猫头鹰获得临时调查1。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "continuous",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC004": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC004",
+      "verifiedFields": {
+        "name": "力场法师",
+        "colorKey": "黄",
+        "basicType": "角色"
+      },
+      "abilitySummary": "【进场触发】令目标本地区的角色横置。若该角色已经横置，则将该角色移回其拥有者手上。",
+      "confirmedMechanismIds": [
+        "exhaust",
+        "priority",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC005": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC005",
+      "verifiedFields": {
+        "name": "裂解术",
+        "colorKey": "黄",
+        "basicType": "事务"
+      },
+      "abilitySummary": "【快速行动】消灭目标结附在角色上的附属。若你的资产区具有心灵1，则你可以目标任何附属。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "priority"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC007": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC007",
+      "verifiedFields": {
+        "name": "常春藤派学者",
+        "colorKey": "黄",
+        "basicType": "角色"
+      },
+      "abilitySummary": "【进场触发】从你的牌库中寻找一张印刷费用小于或等于2的法术或书籍牌，展示该牌后置于你的手中，然后洗牌。",
+      "confirmedMechanismIds": [
+        "deckChoice",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC008": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC008",
+      "verifiedFields": {
+        "name": "灵能激发",
+        "colorKey": "黄",
+        "basicType": "事务"
+      },
+      "abilitySummary": "【快速行动】本回合中，目标角色获得防御+1和永久战斗1。",
+      "confirmedMechanismIds": [
+        "continuous",
+        "priority"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC009": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC009",
+      "verifiedFields": {
+        "name": "远东六号科研所",
+        "colorKey": "黄",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于本方秘社；【进场触发】将目标角色封印在此牌上，然后遏制1。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "society",
+        "seal",
+        "repress",
+        "priority"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC011": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC011",
+      "verifiedFields": {
+        "name": "德莫斯提尼，大魔法师",
+        "colorKey": "黄",
+        "basicType": "角色"
+      },
+      "abilitySummary": "领袖　声望；【现身触发】横置所有本地区的敌方角色。",
+      "confirmedMechanismIds": [
+        "leader",
+        "renown",
+        "exhaust",
+        "hidden",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC012": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC012",
+      "verifiedFields": {
+        "name": "帷幕守望徽记",
+        "colorKey": "黄",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于本方秘社；【快速行动】【横置】本回合中你下一张正面打出或翻面的帷幕守望牌的所需费用减少1。；【快速行动】1，【横置】，牺牲此牌：令目标角色横置。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "society",
+        "costReduction",
+        "exhaust",
+        "sacrifice",
+        "priority",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC013": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC013",
+      "verifiedFields": {
+        "name": "貘",
+        "colorKey": "黄",
+        "basicType": "角色"
+      },
+      "abilitySummary": "灵体　不能被装备结附；【标准行动】牺牲此牌：令目标角色或附属横置，然后消灭所有封印在其上的牌。",
+      "confirmedMechanismIds": [
+        "spirit",
+        "attachment",
+        "exhaust",
+        "seal",
+        "sacrifice",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC015": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC015",
+      "verifiedFields": {
+        "name": "驱魔人",
+        "colorKey": "绿",
+        "basicType": "角色"
+      },
+      "abilitySummary": "【标准行动】【横置】，牺牲此牌：消灭目标印刷费用大于或等于3的非人类敌方角色。",
+      "confirmedMechanismIds": [
+        "sacrifice",
+        "exhaust",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC017": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC017",
+      "verifiedFields": {
+        "name": "除咒师",
+        "colorKey": "绿",
+        "basicType": "角色"
+      },
+      "abilitySummary": "【进场触发】消灭目标角色上所有敌方附属。该角色获得屏障直到回合结束。（屏障：该牌不能被对手控制的事务和能力目标。）",
+      "confirmedMechanismIds": [
+        "attachment",
+        "barrier",
+        "continuous",
+        "priority"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC018": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC018",
+      "verifiedFields": {
+        "name": "魔刃传人",
+        "colorKey": "绿",
+        "basicType": "角色"
+      },
+      "abilitySummary": "威名；【持续】你的资产区每具有心灵1，则魔刃传人获得永久战斗1。",
+      "confirmedMechanismIds": [
+        "combatKeywords",
+        "continuous",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC019": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC019",
+      "verifiedFields": {
+        "name": "弥尔顿的镇魔枪",
+        "colorKey": "绿",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标角色；【持续】受此结附角色获得永久战斗1和“【快速行动】【横置】对目标本地区的非人类角色造成1点不能被防止的伤害”的能力。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "continuous",
+        "exhaust",
+        "priority",
+        "damagePrevention"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC020": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC020",
+      "verifiedFields": {
+        "name": "隐蔽的飞刀",
+        "colorKey": "绿",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标本方角色；【快速行动】【横置】令目标本地区暗藏者横置。；【快速行动】牺牲此牌：对目标本地区角色造成1点伤害。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "exhaust",
+        "hidden",
+        "sacrifice",
+        "priority"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC021": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC021",
+      "verifiedFields": {
+        "name": "狭路相逢",
+        "colorKey": "绿",
+        "basicType": "事务"
+      },
+      "abilitySummary": "只能在行动阶段打出。；【快速行动】选择目标本方角色和/或目标敌方角色，将这些角色移到目标地区。",
+      "confirmedMechanismIds": [
+        "priority",
+        "mobility"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC022": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC022",
+      "verifiedFields": {
+        "name": "引路仙子",
+        "colorKey": "绿",
+        "basicType": "角色"
+      },
+      "abilitySummary": "灵体；【触发】当你赢得引路仙子所参与的战斗对抗时，抓一张牌。",
+      "confirmedMechanismIds": [
+        "spirit",
+        "confrontation",
+        "deckChoice"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC023": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC023",
+      "verifiedFields": {
+        "name": "范·弥尔顿",
+        "colorKey": "绿",
+        "basicType": "角色"
+      },
+      "abilitySummary": "领袖　威名　机动　袭击2；【持续】所有本地区的敌方暗藏者不能参与势力对抗。",
+      "confirmedMechanismIds": [
+        "leader",
+        "combatKeywords",
+        "mobility",
+        "hidden",
+        "continuous",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC024": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC024",
+      "verifiedFields": {
+        "name": "S.P.T.董事局",
+        "colorKey": "绿",
+        "basicType": "角色"
+      },
+      "abilitySummary": "领袖；【进场触发】所有其它本方角色获得机动直到回合结束。；【快速行动】2：S.P.T.董事局潜伏，并在下一个准备步骤开始时免费翻面现身。",
+      "confirmedMechanismIds": [
+        "leader",
+        "continuous",
+        "mobility",
+        "hidden",
+        "priority",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC025": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC025",
+      "verifiedFields": {
+        "name": "猎手论坛徽记",
+        "colorKey": "绿",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于本方秘社；【快速行动】【横置】本回合中你下一张正面打出或翻面的猎魔人牌的所需费用减少1。；【标准行动】1，【横置】，牺牲此牌：从你的牌库中寻找一张猎手牌，展示该牌后置于你的手中，然后洗牌。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "society",
+        "costReduction",
+        "exhaust",
+        "sacrifice",
+        "deckChoice",
+        "priority",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC026": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC026",
+      "verifiedFields": {
+        "name": "洛特尼科夫",
+        "colorKey": "绿",
+        "basicType": "角色"
+      },
+      "abilitySummary": "【持续】你每回合打出的第一张装备牌，所需费用减少1。；【进场触发】从你的牌库中寻找一张装备牌，展示该牌后置于你的手中，然后洗牌。",
+      "confirmedMechanismIds": [
+        "costReduction",
+        "deckChoice",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC027": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC027",
+      "verifiedFields": {
+        "name": "花园地精像",
+        "colorKey": "绿",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标地区；【快速行动】2：花园地精像成为一个地精角色，具有临时调查1、永久战斗1、永久势力1和防御1直到回合结束。（它仍然是附属。）",
+      "confirmedMechanismIds": [
+        "attachment",
+        "continuous",
+        "priority",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC029": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC029",
+      "verifiedFields": {
+        "name": "新生血族",
+        "colorKey": "蓝",
+        "basicType": "角色"
+      },
+      "abilitySummary": "袭击1（当该角色翻面现身进场时，你可以令其对本地区的目标角色造成1点伤害。）",
+      "confirmedMechanismIds": [
+        "combatKeywords",
+        "hidden",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC030": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC030",
+      "verifiedFields": {
+        "name": "巨型蝙蝠",
+        "colorKey": "蓝",
+        "basicType": "角色"
+      },
+      "abilitySummary": "袭击1　不能被装备结附；【持续】若你的资产区具有血脉2，则巨型蝙蝠获得永久调查1，并额外具有吸血鬼类别。",
+      "confirmedMechanismIds": [
+        "combatKeywords",
+        "attachment",
+        "continuous"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC031": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC031",
+      "verifiedFields": {
+        "name": "唤灵师",
+        "colorKey": "蓝",
+        "basicType": "角色"
+      },
+      "abilitySummary": "【触发】每当另一个本方角色死亡时，你可以令目标玩家弃一张手牌。若死去的是吸血鬼角色，则改为可以令目标玩家随机弃一张手牌。该能力每回合只能发动一次。",
+      "confirmedMechanismIds": [
+        "deckChoice",
+        "priority",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC033": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC033",
+      "verifiedFields": {
+        "name": "家族传承",
+        "colorKey": "蓝",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于本方秘社；【持续】所有本方暗藏者，付费翻面时所需费用减少1。；【标准行动】1，牺牲家族传承：从你的牌库中寻找一张吸血鬼角色牌，将该牌展示后以暗藏者状态置于目标地区，然后洗牌。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "society",
+        "costReduction",
+        "hidden",
+        "sacrifice",
+        "deckChoice"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC034": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC034",
+      "verifiedFields": {
+        "name": "心兽之道",
+        "colorKey": "蓝",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于本方秘社；你只能操控至多一个道途。；【持续】当你赢得一次战斗对抗时，若有本方吸血鬼角色参与了这次战斗对抗，你可以令目标对手弃一张手牌。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "society",
+        "continuous",
+        "confrontation",
+        "deckChoice"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC035": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC035",
+      "verifiedFields": {
+        "name": "传媒魔咒",
+        "colorKey": "蓝",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标地区；【准备步骤触发】若有对手的手牌数量少于或等于三张，你可以在本地区放置一个本方势力标志。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "confrontation",
+        "priority",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC037": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC037",
+      "verifiedFields": {
+        "name": "克里斯蒂娜·爱弗罗德",
+        "colorKey": "蓝",
+        "basicType": "角色"
+      },
+      "abilitySummary": "领袖；【持续】你每操控一个暗藏者，克里斯蒂娜·爱弗罗德就获得一个永久调查1。",
+      "confirmedMechanismIds": [
+        "leader",
+        "hidden",
+        "continuous",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC038": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC038",
+      "verifiedFields": {
+        "name": "列恩·爱弗罗德",
+        "colorKey": "蓝",
+        "basicType": "角色"
+      },
+      "abilitySummary": "领袖；【持续】所有其他本方王座会角色获得袭击1。；【标准行动】牺牲一个吸血鬼或奴仆角色：令目标对手弃一张手牌，然后你抓一张牌。",
+      "confirmedMechanismIds": [
+        "leader",
+        "continuous",
+        "combatKeywords",
+        "sacrifice",
+        "deckChoice",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC039": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC039",
+      "verifiedFields": {
+        "name": "王座会徽记",
+        "colorKey": "蓝",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于本方秘社；【快速行动】【横置】本回合中你下一张正面打出或翻面的王座会牌的所需费用减少1。；【快速行动】3，【横置】：令目标本方王座会角色潜伏。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "society",
+        "costReduction",
+        "exhaust",
+        "hidden",
         "priority",
         "uniqueInPlay"
       ],
