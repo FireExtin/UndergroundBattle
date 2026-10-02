@@ -31,6 +31,6 @@ Site 保留逐字相同的旧 WASM（SHA-256 `a6366ef6bc7df03ba666b33286d3a01c41
 
 私有 GitHub 分阶段提交 `cd991fb`（规则）、`286ad83`（兼容/存储）均已推送。官方 Sites workflow 完成构建、全部6项适配器测试、独立源码推送与打包。Site 源码 `b8445fedc801054684e8b67d9158470f95597b4d`，版本4，部署 `appgdep_6abfb7ddc5d88191a77971685de3599c`，2026-10-02 13:55:49 UTC succeeded，公开访问保持不变。新 WASM SHA-256 `b5e0070333a71ff5b01f31406118f523af473c0bb96fb732d3276d3855d7daae`。
 
-真实生产 D1 原四人房部署前后四席视图 hash 均相同、仍为v2004与旧核。部署后同原 pass 回执仍精确一致，状态未变化；健康接口报告新核v0.2.2。证据 `/tmp/hegemony-v022-deployed-compat-2026-10-02/{before,after}.json`。原房四人续测正在运行；不提前报告完整通过。
+真实生产 D1 原四人房部署前后四席视图 hash 均相同、仍为v2004与旧核。部署后同原 pass 回执仍精确一致，状态未变化；健康接口报告新核v0.2.2。证据 `/tmp/hegemony-v022-deployed-compat-2026-10-02/{before,after}.json`。原房四人续测已结束：同房原四席v2004继续1292个UI命令，全部接受、0拒绝，v3296、第21回合、第二队13–7胜出。没有新建、加入、重置或API玩法命令。补充浏览器报告没有pageerror；另有1次测试路由传输失败（synthetic503，原因other-suppressed），补充总证据仍为false。严格总验收保留历史503失败，不将完成对局改写为无错误通过。证据 `/tmp/hegemony-sites-browser-final-2026-10-02/continuation-v022/{teams-summary,continuation-evidence,qa-transport-events}.json`。
 
 新核独立普通发牌房 `00a8e0dc7fc2e387708472db`：谋杀/JC042对手联动准备653个合法命令后达到边界；未凑齐所需牌面与对方红忠诚资产，原报告仍为false。继续同一房同两席，用8个真实UI行动完成正常派遣、双方让过和空栈牺牲。能力提交为v662，响应对象数前后均0，费用来源进入拥有者墓地。测试脚本曾错误要求跨区保留旧instanceId；源码区域转换实际产生新身份，该脚本失败保留。修正断言后的**只读补充**确认来源离场、空栈、两席刷新精确、同原命令回执精确和状态不变，0新玩法命令、0浏览器/传输错误。证据 `/tmp/hegemony-v022-jc042-public-ui-2026-10-02/read-only-confirmation-after-zone-identity-fix/summary.json`。减费效果原生/WASM已验证；此次UI没有观察到符合条件的剩余手牌费用变化，不将此项计为UI费用展示验收。新核谋杀联动UI场景尚未完成。
