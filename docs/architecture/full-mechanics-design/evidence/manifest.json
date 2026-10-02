@@ -1,0 +1,763 @@
+{
+  "reviewDate": "2026-10-02",
+  "codeCommit": "7b87aa8ef6cb1921fece09bdc16fe25613815773",
+  "directoryCommit": "bada4758cf686e9988ecc51c3df3cf2cc7a50946",
+  "laterDirectoryCommit": "a7572e87ab80c9f36fa0112919cce107daa05b43",
+  "scope": "Independent design only; no runtime edits, deployment, credentials or live rooms",
+  "instructions": {
+    "AGENTS": "No applicable file found in repository/workspace ancestors",
+    "localSkills": "No applicable .agents/skills found",
+    "documentationPolicy": "docs/TASK_DOCUMENTATION_POLICY.md",
+    "serviceTier": "User stated manually switched to fast; no API verification claimed"
+  },
+  "runtime": {
+    "playerDefinitions": 26,
+    "worldDefinitions": 4,
+    "decks": 5,
+    "cardIds": [
+      "JC125",
+      "LC19",
+      "LC20",
+      "LC21",
+      "LC22",
+      "LC23",
+      "LC24",
+      "XQ49",
+      "JC118",
+      "JC002",
+      "JC003",
+      "XQ03",
+      "JC014",
+      "JC016",
+      "JZ08",
+      "JC056",
+      "JC058",
+      "JC059",
+      "JC063",
+      "JC086",
+      "XQ12",
+      "JC092",
+      "DQJC107",
+      "DQJC112",
+      "DQJC113",
+      "DQJC114",
+      "JC042",
+      "JC049",
+      "JC091",
+      "JZ54"
+    ],
+    "versions": {
+      "rulesVersion": "hegemony-pdf-v1",
+      "cardPoolVersion": "limited-v2.2",
+      "engineVersion": "rust-v0.2.3"
+    },
+    "stateSchema": 2
+  },
+  "metadata": [
+    {
+      "path": "docs/factions/README.md",
+      "sha256": "137f31bf0845809ded71b8b457620d16851667cc869213af1c1235d77d4c6a15",
+      "bytes": 28249
+    },
+    {
+      "path": "docs/factions/implementation-plan.md",
+      "sha256": "717c39fb9548969bfd8f470ce86cf50dbd6ab686bede54444e693df7ed964e7f",
+      "bytes": 9028
+    },
+    {
+      "path": "docs/factions/card-specifications.json",
+      "sha256": "4fa1e5fbb589a395da3996c2419c7e49c627a1ca216682599adb0085cf72ea56",
+      "bytes": 51585
+    },
+    {
+      "path": "rust-game/data/faction-coverage.json",
+      "sha256": "c331f76a52909e17d5459553c7c14060f124aa7238a28ac274933195cd492d32",
+      "bytes": 125637
+    },
+    {
+      "path": "rust-game/data/card-research-index.json",
+      "sha256": "b0e9be8749ea435acde83b98f13ca401c4f7440509d5726d04587f640849ffd4",
+      "bytes": 1433015
+    },
+    {
+      "path": "docs/TASK_DOCUMENTATION_POLICY.md",
+      "sha256": "c747e8e1127994b3ed7294039e43bdc914abfb3af7a4dda37f2404de0f8696e6",
+      "bytes": 984
+    }
+  ],
+  "codeSources": [
+    {
+      "path": "rust-game/src/catalog.rs",
+      "sha256": "9ac07ccd9dbb61bbb099307fa1d3007363a8a1145717f33a93250ea8d7f57411",
+      "bytes": 5907
+    },
+    {
+      "path": "rust-game/src/model.rs",
+      "sha256": "039a5fe9ca6bd83e6a13f22cc3e28612469ea82a76afaad895f0083325fec89e",
+      "bytes": 14929
+    },
+    {
+      "path": "rust-game/src/rules.rs",
+      "sha256": "0f0c27c62475be6da4cf8a3185cb2d74698f0961e24509c218691e9ad3372489",
+      "bytes": 26706
+    },
+    {
+      "path": "rust-game/src/resolution.rs",
+      "sha256": "591fc950d133b92a1058f9cf20ae779cd0241ec7cd94903b10cefc017966232e",
+      "bytes": 50062
+    },
+    {
+      "path": "rust-game/src/engine.rs",
+      "sha256": "719780ad90e90644d4d7e3a1a7798fc09e07456672b52bcc6d8e7ed758421878",
+      "bytes": 153656
+    },
+    {
+      "path": "rust-game/src/service.rs",
+      "sha256": "15ac6975a5875051d25c938e79346b4e12f7de62ab1f858753b4b82542920d25",
+      "bytes": 21134
+    },
+    {
+      "path": "rust-game/tests/service.rs",
+      "sha256": "d0255f34012c867b04b30893f5d604c9e522d6a10b310943fe4f465a5d7d6ffa",
+      "bytes": 28571
+    },
+    {
+      "path": "rust-game-wasm/src/lib.rs",
+      "sha256": "20515acc66c1d335eddef928e47d75500b6d33d164aae3fe92078b72ffa9cad1",
+      "bytes": 4049
+    },
+    {
+      "path": "rust-game-wasm/verify.sh",
+      "sha256": "8d39ede4c1db22416b0e03a8314884200f5dd0a77a690b3f4943d0d621b12675",
+      "bytes": 383
+    },
+    {
+      "path": "rust-game-wasm/tests/compare.mjs",
+      "sha256": "9d964d340646219c27a68e0f91f4598d948799e516b74c94822d53b7a6ac2ec2",
+      "bytes": 3418
+    },
+    {
+      "path": "rust-game-wasm/examples/native_fixtures.rs",
+      "sha256": "26f29d80e47f515516f47dd8aa3e95f0b775fe0eb7b8d9915c2c12ab1d2d03ab",
+      "bytes": 17846
+    },
+    {
+      "path": "sites/src/store.mjs",
+      "sha256": "2d278b8379b08805704458a67813542bf1f5bcd66d669cf5a37980d584ef7b85",
+      "bytes": 3257
+    },
+    {
+      "path": "sites/src/service.mjs",
+      "sha256": "87eee9c5fe68b6b0741511ebb9a5fffb96cf0e7f19a95047f1c40822dfaab91c",
+      "bytes": 9194
+    },
+    {
+      "path": "sites/src/kernel-router.mjs",
+      "sha256": "58cf71cfeb852b12a1d36170f7805e08f8ee1b4b41ed17d8b67d9fd548648513",
+      "bytes": 1196
+    },
+    {
+      "path": "sites/src/kernel.mjs",
+      "sha256": "85ef3d1a6cf3c733feb25e5a8c995f4d0a5ede1a5ebf7c5c3348b8a87192986e",
+      "bytes": 704
+    },
+    {
+      "path": "sites/src/storage-errors.mjs",
+      "sha256": "6979b752d13a2143f1e250051e5e2df1c81a7afef93727023b84ee8043b5f1a0",
+      "bytes": 2556
+    },
+    {
+      "path": "web/src/game/Table.tsx",
+      "sha256": "b738c6c94bb6f2db8d43a11092e1efd6e9a5dc42f07630c25ac097392d90271f",
+      "bytes": 26261
+    },
+    {
+      "path": "web/src/game/ChoicePanel.tsx",
+      "sha256": "bcf219396a2b2907151dcefd940fe9064335be979ad7b1a39674697f735197c4",
+      "bytes": 9021
+    },
+    {
+      "path": "web/src/game/ResponseWindow.tsx",
+      "sha256": "092fffd02a623dd6fbe38359d0133e0d1a35eeaebfde0e1a08c710d6972e8e1c",
+      "bytes": 3679
+    },
+    {
+      "path": "web/src/game/useGame.ts",
+      "sha256": "11a69507bdbfcd15625eb8a41316ce0340dd75d6e6bb616a4bf68cf4f4cbd5a9",
+      "bytes": 10084
+    },
+    {
+      "path": "web/src/game/AutoPass.tsx",
+      "sha256": "8fa96883d6a2819ffd9186cbcdf8c54475d41cb26bd78496a36dff68b63f0d29",
+      "bytes": 2650
+    },
+    {
+      "path": "rust-game/data/cards.json",
+      "sha256": "c1f8dc9c359f6352bbad91e74ff4d6478997319aaa75421ed399d76f01931f6a",
+      "bytes": 33739
+    }
+  ],
+  "originals": [
+    {
+      "kind": "pdf",
+      "path": "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+      "sha256": "a1e5bca72b8dbb374357feace28b7fbfd31136349ee23455d60f5f62e0a6b886",
+      "bytes": 15174985
+    },
+    {
+      "kind": "pdf",
+      "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界规则手册.pdf",
+      "sha256": "2a771874efbdb3ad8a339ea01ff62888766090d075fe2e013632c79de1aeba35",
+      "bytes": 4538093
+    },
+    {
+      "kind": "pdf",
+      "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界勘误及释疑.pdf",
+      "sha256": "916aa6a9f50ac7e737b517358e0c4270f715d0ed7391d55c8fcb629392a71d38",
+      "bytes": 516140
+    },
+    {
+      "kind": "pdf",
+      "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界玩家指南.pdf",
+      "sha256": "19a69ed1b99aedf7f0077b4780d444a19c1c97e98314f7e1df78c0708e6b65d2",
+      "bytes": 8417205
+    },
+    {
+      "id": "prelude",
+      "kind": "expansionImage",
+      "visuallyInspected": true,
+      "topic": "遭遇角色、利用、恐怖",
+      "path": "resource/ymsj-fun.github.io/public/docs/序曲说明书.jpg",
+      "sha256": "08491e7ec0a716ff6d626b73bf93c07fddecc46293b2ef3ed7cc9b673c2fb5d5",
+      "bytes": 3991508
+    },
+    {
+      "id": "intermezzo",
+      "kind": "expansionImage",
+      "visuallyInspected": true,
+      "topic": "转变、式神、毁灭、闪烁、非资产、迟缓",
+      "path": "resource/ymsj-fun.github.io/public/docs/间奏说明书.jpg",
+      "sha256": "efbe7e1e3711ca4b184b36f7801391afdec3b195d393cf17d2458215279f9b80",
+      "bytes": 3657997
+    },
+    {
+      "id": "veil",
+      "kind": "expansionImage",
+      "visuallyInspected": true,
+      "topic": "计划、隐秘对抗、传闻、七张勘误版本",
+      "path": "resource/ymsj-fun.github.io/public/docs/帷幕之后说明书.jpg",
+      "sha256": "333388b60e719ee61a41a0009932b505315dff0042cf01edc0de4d8ac66f5761",
+      "bytes": 2222653
+    },
+    {
+      "id": "starlight",
+      "kind": "expansionImage",
+      "visuallyInspected": true,
+      "topic": "非地区上的势力标志与隐秘等级",
+      "path": "resource/ymsj-fun.github.io/public/docs/星光俱乐部说明书.jpg",
+      "sha256": "3bc9e70585a3bbc247deb9cb19639da7295589ae81dd543c6dbf0a51bde0357a",
+      "bytes": 2994953
+    },
+    {
+      "id": "JC003",
+      "kind": "cardImage",
+      "visuallyInspected": true,
+      "observation": "目标角色或暗藏者，无本地区/敌方限制；2资源+横置是费用",
+      "completeNewCardAcceptance": false,
+      "path": "resource/ymsj-fun.github.io/cards/JC003 帷幕护卫.jpg",
+      "sha256": "027fc054dd7c7ef301108bf0b169e01f91228bf2e918b3ddb8d12e8d05603c3a",
+      "bytes": 324904
+    },
+    {
+      "id": "JC042",
+      "kind": "cardImage",
+      "visuallyInspected": true,
+      "observation": "牺牲费用；下一张正面指定类别减2；非现身",
+      "completeNewCardAcceptance": false,
+      "path": "resource/ymsj-fun.github.io/cards/JC042 末日信徒.jpg",
+      "sha256": "242a17c708a96d27e95b23f9ab339e01d5b8c1eda282a2f7de8f51ba2c1bdbef",
+      "bytes": 342837
+    },
+    {
+      "id": "JC049",
+      "kind": "cardImage",
+      "visuallyInspected": true,
+      "observation": "额外牺牲角色；底部两张入手不是抓牌",
+      "completeNewCardAcceptance": false,
+      "path": "resource/ymsj-fun.github.io/cards/JC049 深渊细语.jpg",
+      "sha256": "340c3fbc650b755d72c31ca06a8c379bacb572df6df061a9c52d0fb386d02d58",
+      "bytes": 331035
+    },
+    {
+      "id": "JC058",
+      "kind": "cardImage",
+      "visuallyInspected": true,
+      "observation": "现身触发而非普通进场；本地区目标暗藏者，可属任何玩家",
+      "completeNewCardAcceptance": false,
+      "path": "resource/ymsj-fun.github.io/cards/JC058 坚毅的刑警.jpg",
+      "sha256": "6585e89991049cb05e75db43143320fd12bf6be781847648d551cb433e85119a",
+      "bytes": 289748
+    },
+    {
+      "id": "JC077",
+      "kind": "cardImage",
+      "visuallyInspected": true,
+      "observation": "将受伤害触发；另一名本方非灵体角色转伤；多重时序未裁定",
+      "completeNewCardAcceptance": false,
+      "path": "resource/ymsj-fun.github.io/cards/JC077 庇佑圣灵.jpg",
+      "sha256": "c35355fdbf537b2562efb826ef4cb061f5d3c026dc928a43389c433da8fe2dbc",
+      "bytes": 323768
+    },
+    {
+      "id": "JC016",
+      "kind": "cardImage",
+      "visuallyInspected": true,
+      "observation": "敌方角色条件不包括暗藏者；临时调查+永久势力",
+      "completeNewCardAcceptance": false,
+      "path": "resource/ymsj-fun.github.io/cards/JC016 执行部精锐.jpg",
+      "sha256": "0a3b20635a7fa8e04d6f17ab7a7112a596ed0e7f21293d3e4f4a985463416c35",
+      "bytes": 305023
+    },
+    {
+      "id": "JC070",
+      "kind": "cardImage",
+      "visuallyInspected": true,
+      "observation": "1费用、白忠诚2，公开、声望",
+      "completeNewCardAcceptance": false,
+      "path": "resource/ymsj-fun.github.io/cards/JC070 虔心修士.jpg",
+      "sha256": "3dd1ef905e2cfb4d806b258fdde0b1ec1fe2adad7868bb5cd7dc0bcf9cfe9e1b",
+      "bytes": 328410
+    },
+    {
+      "id": "JC076",
+      "kind": "cardImage",
+      "visuallyInspected": true,
+      "observation": "现身抓1，声望；非一般进场",
+      "completeNewCardAcceptance": false,
+      "path": "resource/ymsj-fun.github.io/cards/JC076 悟道僧人.jpg",
+      "sha256": "4390ebf4eabcf44c541303bfb764061c1622cb483ed0e034ee9651571cee27ac",
+      "bytes": 326205
+    },
+    {
+      "id": "LC23",
+      "kind": "cardImage",
+      "visuallyInspected": true,
+      "observation": "金名；横置自身与目标是效果，不是费用",
+      "completeNewCardAcceptance": false,
+      "path": "resource/ymsj-fun.github.io/cards/LC23 安格鲁，“荆棘”.jpg",
+      "sha256": "977959c6deb74b125b18a8b40758deab354396fdffd49b0d9bcc57197144f1c8",
+      "bytes": 487166
+    },
+    {
+      "id": "MSJC01",
+      "kind": "cardImage",
+      "visuallyInspected": true,
+      "observation": "起手6/25黄限制、3费行动条件、4费本盘一次检索",
+      "completeNewCardAcceptance": false,
+      "path": "resource/ymsj-fun.github.io/cards/MSJC01 帷幕守望.jpg",
+      "sha256": "c61c887558cb184a532758eac5db766234c32a3a3605162a38c0899993e7bdf2",
+      "bytes": 263474
+    },
+    {
+      "id": "DQJC116",
+      "kind": "cardImage",
+      "visuallyInspected": true,
+      "observation": "所有玩家同时展示并入手，再洗牌",
+      "completeNewCardAcceptance": false,
+      "path": "resource/ymsj-fun.github.io/cards/DQJC116 香港.jpg",
+      "sha256": "e9dfbc396a733b3bbe7ffcb2a6d67ea371ffe4ca4bd6fc0f4e74b1ee73485d4d",
+      "bytes": 57210
+    },
+    {
+      "id": "JC028",
+      "kind": "cardImage",
+      "visuallyInspected": true,
+      "observation": "费用牺牲自己后作为鲜血附属；需要付款后实体引用",
+      "completeNewCardAcceptance": false,
+      "path": "resource/ymsj-fun.github.io/cards/JC028 鲜血奴仆.jpg",
+      "sha256": "a7b42c0aaf9e6a291ee06371d28c3863a43d3d5124dc8ac6e2ec7117bcb17eee",
+      "bytes": 329766
+    },
+    {
+      "id": "JC085",
+      "kind": "cardImage",
+      "visuallyInspected": true,
+      "observation": "墓地当手牌打出与有效领域条件；非先回手",
+      "completeNewCardAcceptance": false,
+      "path": "resource/ymsj-fun.github.io/cards/JC085 复生行尸.jpg",
+      "sha256": "f568ed4c26fc244830d840f0133eb1a78111aceff53a4a345f8ca44c1552aee2",
+      "bytes": 337881
+    },
+    {
+      "id": "JC099",
+      "kind": "cardImage",
+      "visuallyInspected": true,
+      "observation": "现身封印顶牌；ready连续移除带封印敌角的领域",
+      "completeNewCardAcceptance": false,
+      "path": "resource/ymsj-fun.github.io/cards/JC099 徘徊的鬼魂.jpg",
+      "sha256": "58b9ff41f21ed36b06735aafad64572dc1e714d0733be753c1f66ab576cd6563",
+      "bytes": 337735
+    },
+    {
+      "id": "MSJC14",
+      "kind": "cardImage",
+      "visuallyInspected": true,
+      "observation": "锁定标志与后续移动；不足以推定通用私人检视权限",
+      "completeNewCardAcceptance": false,
+      "path": "resource/ymsj-fun.github.io/cards/MSJC14 哨兵.jpg",
+      "sha256": "3d851c97d73d77de0a919d8a1140f3d2cfb6eb18e92a4438916249f83984ad2f",
+      "bytes": 255402
+    },
+    {
+      "id": "WM071",
+      "kind": "cardImage",
+      "visuallyInspected": true,
+      "observation": "转生印刷句无改为；洗回事件前后不得由转写推断",
+      "completeNewCardAcceptance": false,
+      "path": "resource/ymsj-fun.github.io/cards/WM071 贝兰丹娜.jpg",
+      "sha256": "c46593436d373593846be64ac2347e6b0be9d89044df2b12a510dd5c2958181b",
+      "bytes": 1310500
+    },
+    {
+      "id": "CQ12",
+      "kind": "cardImage",
+      "visuallyInspected": true,
+      "observation": "先兆展示成本/准备/每回合一次；手中本地区锚点疑问",
+      "completeNewCardAcceptance": false,
+      "path": "resource/ymsj-fun.github.io/cards/CQ12 深渊惧影盖罗涅.jpg",
+      "sha256": "a14fdc90817629bfee0e7865ea26254bd75b9c2765a49e6856d42b29216f720d",
+      "bytes": 1205853
+    },
+    {
+      "id": "LC15",
+      "kind": "cardImage",
+      "visuallyInspected": true,
+      "observation": "五领域、指定姓名关联、永恒缺定义",
+      "completeNewCardAcceptance": false,
+      "path": "resource/ymsj-fun.github.io/cards/LC15 莲月合一.jpg",
+      "sha256": "4b7196e02dba5be7e3c92a89c68b4697e90d6eaab25133830c62f97b6df8e297",
+      "bytes": 510736
+    },
+    {
+      "id": "MSJZ02",
+      "kind": "cardImage",
+      "visuallyInspected": true,
+      "observation": "盛夏正形态；条件转变/生成",
+      "completeNewCardAcceptance": false,
+      "path": "resource/ymsj-fun.github.io/cards/MSJZ02 盛夏王廷.jpg",
+      "sha256": "fdc2adeec1fc22e5d9916380f7e671c0a23c2c535287519adf87ab58e09b8293",
+      "bytes": 571931
+    },
+    {
+      "id": "ZHMSJZ02",
+      "kind": "cardImage",
+      "visuallyInspected": true,
+      "observation": "凛冬转变形态；准备强制牺牲及变回条件",
+      "completeNewCardAcceptance": false,
+      "path": "resource/ymsj-fun.github.io/cards/ZHMSJZ02 凛冬王廷.jpg",
+      "sha256": "7e8c5b56dc0a7fe358f6c8e2e13d3338b6fc6438e0873a00ead4ae8fb722a0d9",
+      "bytes": 411502
+    },
+    {
+      "id": "JC059",
+      "kind": "cardImage",
+      "visuallyInspected": true,
+      "observation": "后续增加独立目视：其他友方角色加防；代码仅同controller错误",
+      "completeNewCardAcceptance": false,
+      "path": "resource/ymsj-fun.github.io/cards/JC059 安全保卫部门.jpg",
+      "sha256": "7d9639d3115dcea8e42f21e1145397f3be4392a80fa0b6c040d7302139eff0ad",
+      "bytes": 299356
+    }
+  ],
+  "pdfPagesActuallyViewed": [
+    {
+      "id": "BQ2",
+      "path": "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+      "pdfPageOneBased": 2,
+      "visuallyInspected": true,
+      "topic": "八色与中立",
+      "renderedWith": "PyMuPDF page.get_pixmap(matrix=fitz.Matrix(1.55,1.55), alpha=False)"
+    },
+    {
+      "id": "BQ3",
+      "path": "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+      "pdfPageOneBased": 3,
+      "visuallyInspected": true,
+      "topic": "组件与基本区",
+      "renderedWith": "PyMuPDF page.get_pixmap(matrix=fitz.Matrix(1.55,1.55), alpha=False)"
+    },
+    {
+      "id": "BQ4",
+      "path": "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+      "pdfPageOneBased": 4,
+      "visuallyInspected": true,
+      "topic": "目标/不能优先/独有/胜利",
+      "renderedWith": "PyMuPDF page.get_pixmap(matrix=fitz.Matrix(1.55,1.55), alpha=False)"
+    },
+    {
+      "id": "BQ5",
+      "path": "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+      "pdfPageOneBased": 5,
+      "visuallyInspected": true,
+      "topic": "秘社及地区类型",
+      "renderedWith": "PyMuPDF page.get_pixmap(matrix=fitz.Matrix(1.55,1.55), alpha=False)"
+    },
+    {
+      "id": "BQ7",
+      "path": "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+      "pdfPageOneBased": 7,
+      "visuallyInspected": true,
+      "topic": "设置/忠诚/换牌",
+      "renderedWith": "PyMuPDF page.get_pixmap(matrix=fitz.Matrix(1.55,1.55), alpha=False)"
+    },
+    {
+      "id": "BQ8",
+      "path": "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+      "pdfPageOneBased": 8,
+      "visuallyInspected": true,
+      "topic": "桌面设置示意/资产有效属性",
+      "renderedWith": "PyMuPDF page.get_pixmap(matrix=fitz.Matrix(1.55,1.55), alpha=False)"
+    },
+    {
+      "id": "BQ9",
+      "path": "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+      "pdfPageOneBased": 9,
+      "visuallyInspected": true,
+      "topic": "回合步骤/临时图标",
+      "renderedWith": "PyMuPDF page.get_pixmap(matrix=fitz.Matrix(1.55,1.55), alpha=False)"
+    },
+    {
+      "id": "BQ10",
+      "path": "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+      "pdfPageOneBased": 10,
+      "visuallyInspected": true,
+      "topic": "三对抗/霸权赢区顺序/清理",
+      "renderedWith": "PyMuPDF page.get_pixmap(matrix=fitz.Matrix(1.55,1.55), alpha=False)"
+    },
+    {
+      "id": "BQ12",
+      "path": "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+      "pdfPageOneBased": 12,
+      "visuallyInspected": true,
+      "topic": "资产/暗藏/现身潜伏姿态",
+      "renderedWith": "PyMuPDF page.get_pixmap(matrix=fitz.Matrix(1.55,1.55), alpha=False)"
+    },
+    {
+      "id": "BQ15",
+      "path": "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+      "pdfPageOneBased": 15,
+      "visuallyInspected": true,
+      "topic": "优先权/LIFO/不可响应/额外费用",
+      "renderedWith": "PyMuPDF page.get_pixmap(matrix=fitz.Matrix(1.55,1.55), alpha=False)"
+    },
+    {
+      "id": "BQ16",
+      "path": "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+      "pdfPageOneBased": 16,
+      "visuallyInspected": true,
+      "topic": "领域/拥有控制/封印/宿主",
+      "renderedWith": "PyMuPDF page.get_pixmap(matrix=fitz.Matrix(1.55,1.55), alpha=False)"
+    },
+    {
+      "id": "BQ17",
+      "path": "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+      "pdfPageOneBased": 17,
+      "visuallyInspected": true,
+      "topic": "本方友方敌方/声明/替代与来源离场",
+      "renderedWith": "PyMuPDF page.get_pixmap(matrix=fitz.Matrix(1.55,1.55), alpha=False)"
+    },
+    {
+      "id": "BQ18",
+      "path": "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+      "pdfPageOneBased": 18,
+      "visuallyInspected": true,
+      "topic": "公开隐匿/传闻/创伤/终止",
+      "renderedWith": "PyMuPDF page.get_pixmap(matrix=fitz.Matrix(1.55,1.55), alpha=False)"
+    },
+    {
+      "id": "BQ19",
+      "path": "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+      "pdfPageOneBased": 19,
+      "visuallyInspected": true,
+      "topic": "灵体声望等关键词/闪烁/非资产/护盾",
+      "renderedWith": "PyMuPDF page.get_pixmap(matrix=fitz.Matrix(1.55,1.55), alpha=False)"
+    },
+    {
+      "id": "BQ20",
+      "path": "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+      "pdfPageOneBased": 20,
+      "visuallyInspected": true,
+      "topic": "任务/计划/隐秘对抗",
+      "renderedWith": "PyMuPDF page.get_pixmap(matrix=fitz.Matrix(1.55,1.55), alpha=False)"
+    },
+    {
+      "id": "BQ21",
+      "path": "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+      "pdfPageOneBased": 21,
+      "visuallyInspected": true,
+      "topic": "核心区/休整/失控/任务胜利",
+      "renderedWith": "PyMuPDF page.get_pixmap(matrix=fitz.Matrix(1.55,1.55), alpha=False)"
+    },
+    {
+      "id": "BQ22",
+      "path": "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+      "pdfPageOneBased": 22,
+      "visuallyInspected": true,
+      "topic": "霸权2V2全部核心规则",
+      "renderedWith": "PyMuPDF page.get_pixmap(matrix=fitz.Matrix(1.55,1.55), alpha=False)"
+    },
+    {
+      "id": "RM4",
+      "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界规则手册.pdf",
+      "pdfPageOneBased": 4,
+      "visuallyInspected": true,
+      "topic": "可选强制触发/玩家排序/重置",
+      "renderedWith": "PyMuPDF page.get_pixmap(matrix=fitz.Matrix(1.55,1.55), alpha=False)"
+    },
+    {
+      "id": "RM5",
+      "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界规则手册.pdf",
+      "pdfPageOneBased": 5,
+      "visuallyInspected": true,
+      "topic": "响应堆叠/独有",
+      "renderedWith": "PyMuPDF page.get_pixmap(matrix=fitz.Matrix(1.55,1.55), alpha=False)"
+    },
+    {
+      "id": "RM6",
+      "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界规则手册.pdf",
+      "pdfPageOneBased": 6,
+      "visuallyInspected": true,
+      "topic": "结附/多种宿主/封印生命周期",
+      "renderedWith": "PyMuPDF page.get_pixmap(matrix=fitz.Matrix(1.55,1.55), alpha=False)"
+    },
+    {
+      "id": "RM8",
+      "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界规则手册.pdf",
+      "pdfPageOneBased": 8,
+      "visuallyInspected": true,
+      "topic": "效果计算临时图标/灵体分类",
+      "renderedWith": "PyMuPDF page.get_pixmap(matrix=fitz.Matrix(1.55,1.55), alpha=False)"
+    },
+    {
+      "id": "RM12",
+      "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界规则手册.pdf",
+      "pdfPageOneBased": 12,
+      "visuallyInspected": true,
+      "topic": "牺牲/0伤/经典赢区顺序",
+      "renderedWith": "PyMuPDF page.get_pixmap(matrix=fitz.Matrix(1.55,1.55), alpha=False)"
+    },
+    {
+      "id": "RM13",
+      "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界规则手册.pdf",
+      "pdfPageOneBased": 13,
+      "visuallyInspected": true,
+      "topic": "资产空白/忠诚/抽牌/自身名称",
+      "renderedWith": "PyMuPDF page.get_pixmap(matrix=fitz.Matrix(1.55,1.55), alpha=False)"
+    },
+    {
+      "id": "FAQ3",
+      "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界勘误及释疑.pdf",
+      "pdfPageOneBased": 3,
+      "visuallyInspected": true,
+      "topic": "费用忠诚/底牌入手/付费现身/来源地区",
+      "renderedWith": "PyMuPDF page.get_pixmap(matrix=fitz.Matrix(1.55,1.55), alpha=False)"
+    },
+    {
+      "id": "FAQ4",
+      "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界勘误及释疑.pdf",
+      "pdfPageOneBased": 4,
+      "visuallyInspected": true,
+      "topic": "区域目标复核/伤害期间窗口/光环致死/墓地打出",
+      "renderedWith": "PyMuPDF page.get_pixmap(matrix=fitz.Matrix(1.55,1.55), alpha=False)"
+    },
+    {
+      "id": "FAQ5",
+      "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界勘误及释疑.pdf",
+      "pdfPageOneBased": 5,
+      "visuallyInspected": true,
+      "topic": "多类型附属/目标移动/手牌能力",
+      "renderedWith": "PyMuPDF page.get_pixmap(matrix=fitz.Matrix(1.55,1.55), alpha=False)"
+    },
+    {
+      "id": "PG14",
+      "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界玩家指南.pdf",
+      "pdfPageOneBased": 14,
+      "visuallyInspected": true,
+      "topic": "50张/同名3张/多色构筑",
+      "renderedWith": "PyMuPDF page.get_pixmap(matrix=fitz.Matrix(1.55,1.55), alpha=False)"
+    },
+    {
+      "id": "PG21",
+      "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界玩家指南.pdf",
+      "pdfPageOneBased": 21,
+      "visuallyInspected": true,
+      "topic": "经典2V2不同于霸权",
+      "renderedWith": "PyMuPDF page.get_pixmap(matrix=fitz.Matrix(1.55,1.55), alpha=False)"
+    },
+    {
+      "id": "PG24",
+      "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界玩家指南.pdf",
+      "pdfPageOneBased": 24,
+      "visuallyInspected": true,
+      "topic": "秘社独立与无秘社的秘社区",
+      "renderedWith": "PyMuPDF page.get_pixmap(matrix=fitz.Matrix(1.55,1.55), alpha=False)"
+    }
+  ],
+  "laterEvidence": {
+    "scope": "Only exact SHA fetched; read mechanism increment and index totals; separately inspected baseline JC059 original. Did not re-review all new card specs or run later 46-test suite.",
+    "addedMechanism": "privatePeek",
+    "indexTotals": {
+      "archiveRecords": 685,
+      "sourceImagesMissing": 13,
+      "primaryImageReviewed": 109,
+      "unreviewedWithImage": 563,
+      "currentCatalogDefinitions": 29,
+      "completeSourceSpecifications": 68,
+      "blockedSourceSpecifications": 4,
+      "locatorSetCounts": {
+        "TK": 11,
+        "传奇": 44,
+        "基础": 161,
+        "帷幕": 109,
+        "序曲": 55,
+        "星光": 48,
+        "洛城": 37,
+        "测试": 9,
+        "间奏": 82,
+        "霸权": 129
+      },
+      "locatorRoleCounts": {
+        "coreAreaReference": 1,
+        "generatedToken": 9,
+        "markerReference": 1,
+        "playerCardCandidate": 591,
+        "playerDualType": 4,
+        "playerTaskRegion": 7,
+        "society": 37,
+        "transformedView": 4,
+        "worldEncounter": 2,
+        "worldRegion": 29
+      },
+      "editionStatusCounts": {
+        "pinnedImageVariant": 68,
+        "testImageConfirmed": 6,
+        "uncertain": 3,
+        "unreviewed": 608
+      }
+    }
+  },
+  "unverified": [
+    "All 685 records were not independently reviewed",
+    "No full acceptance of any newly enabled card",
+    "No live D1/Sites or browser/UI gameplay",
+    "Future protocols and timer/deck-library APIs are design, not implemented",
+    "Rendered pages not in pdfPagesActuallyViewed were not counted as inspected"
+  ],
+  "externalSources": [
+    {
+      "url": "https://developers.cloudflare.com/d1/worker-api/d1-database/",
+      "claim": "batch sequential transaction with rollback on statement failure",
+      "readDuringReview": true
+    }
+  ]
+}

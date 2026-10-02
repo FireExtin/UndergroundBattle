@@ -1,0 +1,1071 @@
+{
+  "schemaVersion": 1,
+  "reviewedCode": "7b87aa8ef6cb1921fece09bdc16fe25613815773",
+  "baselineDirectory": "bada4758cf686e9988ecc51c3df3cf2cc7a50946",
+  "laterDirectory": "a7572e87ab80c9f36fa0112919cce107daa05b43",
+  "mechanisms": [
+    {
+      "id": "loyalty",
+      "current_status": "有限支持",
+      "abstractions": [
+        "K2",
+        "K3"
+      ],
+      "evidence": "BQ8 BQ12 BQ16 JC070 LC15",
+      "verified_scope": "资产颜色/单领域忠诚与未横置支付；横置不损忠诚",
+      "missing": "多领域数量、资源池、额外/可选支付、有效资产覆盖尚缺",
+      "acceptance_cases": [
+        "T01",
+        "T05",
+        "T17"
+      ],
+      "rule_gate": "部分扩展待卡级核准",
+      "ordinal": 1,
+      "name": "派系/领域忠诚与资产支付",
+      "baseline_catalog_status": "implemented"
+    },
+    {
+      "id": "hidden",
+      "current_status": "有限支持",
+      "abstractions": [
+        "K1",
+        "K3",
+        "K5"
+      ],
+      "evidence": "BQ12 BQ18 FAQ3",
+      "verified_scope": "秘密派遣、1势力暗藏者、付费现身、潜伏、旧目标失效",
+      "missing": "附属/封印清理、效果现身、权限授予、隐秘计划不能沿用单布尔",
+      "acceptance_cases": [
+        "T03",
+        "T04",
+        "T19",
+        "T22"
+      ],
+      "rule_gate": "已核有限行为",
+      "ordinal": 2,
+      "name": "秘密派遣、暗藏者、付费现身和潜伏",
+      "baseline_catalog_status": "implemented"
+    },
+    {
+      "id": "priority",
+      "current_status": "部分支持",
+      "abstractions": [
+        "K3",
+        "K4",
+        "K5",
+        "K7"
+      ],
+      "evidence": "BQ15 BQ17 RM4",
+      "verified_scope": "LIFO、原子付款、单目标复核和持久帧已有",
+      "missing": "强制触发、玩家排序、将发生事件、多目标、窗口ID与5秒意图尚缺",
+      "acceptance_cases": [
+        "T01",
+        "T02",
+        "T07",
+        "T23",
+        "T27"
+      ],
+      "rule_gate": "多目标/团队排序待裁定",
+      "ordinal": 3,
+      "name": "响应堆叠、付费与可恢复选择",
+      "baseline_catalog_status": "partial"
+    },
+    {
+      "id": "confrontation",
+      "current_status": "有限支持",
+      "abstractions": [
+        "K2",
+        "K4",
+        "K6"
+      ],
+      "evidence": "BQ9 BQ10 BQ22",
+      "verified_scope": "调查差值排序抓1、同时战斗伤害、势力、霸权赢区已有",
+      "missing": "关键词插槽、遭遇/任务、毁灭扣分、特殊胜利不能自动视为支持",
+      "acceptance_cases": [
+        "T10",
+        "T20",
+        "T21"
+      ],
+      "rule_gate": "霸权与经典分包",
+      "ordinal": 4,
+      "name": "调查、战斗、势力与赢区",
+      "baseline_catalog_status": "implemented"
+    },
+    {
+      "id": "public",
+      "current_status": "有限支持",
+      "abstractions": [
+        "K2",
+        "K3"
+      ],
+      "evidence": "BQ18 JC070",
+      "verified_scope": "正常秘密派遣禁用；效果潜伏仍可",
+      "missing": "能力授予/移除公开时须动态查询",
+      "acceptance_cases": [
+        "T03",
+        "T05"
+      ],
+      "rule_gate": "已核；勿禁一切潜伏",
+      "ordinal": 5,
+      "name": "公开",
+      "baseline_catalog_status": "implemented"
+    },
+    {
+      "id": "exhaust",
+      "current_status": "有限支持",
+      "abstractions": [
+        "K1",
+        "K2",
+        "K3",
+        "K6"
+      ],
+      "evidence": "BQ9 BQ12 JC003 LC23",
+      "verified_scope": "费用横置、效果横置与现有重置已有",
+      "missing": "秘社/附属重置、慢入场、转变的横置状态需统一",
+      "acceptance_cases": [
+        "T01",
+        "T04",
+        "T19"
+      ],
+      "rule_gate": "费用与效果必须区分",
+      "ordinal": 6,
+      "name": "横置与重置",
+      "baseline_catalog_status": "implemented"
+    },
+    {
+      "id": "mobility",
+      "current_status": "部分支持",
+      "abstractions": [
+        "K1",
+        "K4",
+        "K6"
+      ],
+      "evidence": "BQ19 BQ22 FAQ5",
+      "verified_scope": "JC014移动保留身份，2V2相邻，先手先完成",
+      "missing": "条件机动、多类型宿主移动、外部横移目标锚点未齐",
+      "acceptance_cases": [
+        "T03",
+        "T04",
+        "T21"
+      ],
+      "rule_gate": "移动后本地区锚点逐卡裁定",
+      "ordinal": 7,
+      "name": "机动与场上移动",
+      "baseline_catalog_status": "partial"
+    },
+    {
+      "id": "combatTraits",
+      "current_status": "有限支持",
+      "abstractions": [
+        "K2",
+        "K4",
+        "K6"
+      ],
+      "evidence": "BQ18 BQ19 JC016",
+      "verified_scope": "现有杀伤1、护卫1、撤回可用",
+      "missing": "动态授予、叠加和新版撤回分类需ModeProfile",
+      "acceptance_cases": [
+        "T10",
+        "T20"
+      ],
+      "rule_gate": "撤回持续/触发版次冲突 U03",
+      "ordinal": 8,
+      "name": "杀伤、护卫、撤回",
+      "baseline_catalog_status": "implemented"
+    },
+    {
+      "id": "barrier",
+      "current_status": "有限支持",
+      "abstractions": [
+        "K2",
+        "K3"
+      ],
+      "evidence": "BQ19",
+      "verified_scope": "敌方不能指定；范围效果不等于目标",
+      "missing": "附属/秘社等对象与动态授予需共用target query",
+      "acceptance_cases": [
+        "T03",
+        "T09"
+      ],
+      "rule_gate": "不扩大到所有选择",
+      "ordinal": 9,
+      "name": "屏障",
+      "baseline_catalog_status": "implemented"
+    },
+    {
+      "id": "shield",
+      "current_status": "部分支持",
+      "abstractions": [
+        "K3",
+        "K4"
+      ],
+      "evidence": "BQ19",
+      "verified_scope": "存在shield字段及结算扣盾夹具",
+      "missing": "缺获盾生产牌；当前guard扣盾不等于成为目标的强制触发",
+      "acceptance_cases": [
+        "T09",
+        "T07"
+      ],
+      "rule_gate": "U05 未裁定，不放行护盾卡",
+      "ordinal": 10,
+      "name": "护盾",
+      "baseline_catalog_status": "partial"
+    },
+    {
+      "id": "graveRecovery",
+      "current_status": "有限支持",
+      "abstractions": [
+        "K1",
+        "K3",
+        "K5"
+      ],
+      "evidence": "FAQ3 BQ17",
+      "verified_scope": "已有墓地回手、回拥有者库底、暗藏进场",
+      "missing": "多区合法性和付款后引用须转移结果；非墓地打出",
+      "acceptance_cases": [
+        "T03",
+        "T04"
+      ],
+      "rule_gate": "现有卡仍限原登记范围",
+      "ordinal": 11,
+      "name": "墓地回手/牌库底/暗藏者进场",
+      "baseline_catalog_status": "implemented"
+    },
+    {
+      "id": "gravePlay",
+      "current_status": "未实现",
+      "abstractions": [
+        "K1",
+        "K3"
+      ],
+      "evidence": "JC085 FAQ4",
+      "verified_scope": "没有来源区域许可入口",
+      "missing": "声明sourceZone、按正常费用/忠诚打出并进场；不先回手",
+      "acceptance_cases": [
+        "T15",
+        "T01"
+      ],
+      "rule_gate": "墓地打出不允许直接秘密派遣",
+      "ordinal": 12,
+      "name": "墓地/其他区域直接打出",
+      "baseline_catalog_status": "unimplemented"
+    },
+    {
+      "id": "sacrifice",
+      "current_status": "有限支持",
+      "abstractions": [
+        "K1",
+        "K3",
+        "K4"
+      ],
+      "evidence": "BQ16 JC042 JC049 JC028",
+      "verified_scope": "费用牺牲与效果自选牺牲分开；失败原子回滚",
+      "missing": "付款后新实例、移区替代是否满足成本、团队控制筛选",
+      "acceptance_cases": [
+        "T01",
+        "T02",
+        "T04",
+        "T08"
+      ],
+      "rule_gate": "U02/U06 费用替代未裁定",
+      "ordinal": 13,
+      "name": "牺牲费用与牺牲效果",
+      "baseline_catalog_status": "implemented"
+    },
+    {
+      "id": "costReduction",
+      "current_status": "部分支持",
+      "abstractions": [
+        "K2",
+        "K3",
+        "K4"
+      ],
+      "evidence": "BQ15 JC042 FAQ3 CQ12",
+      "verified_scope": "下一张正面指定类别-2，Immediate，保留忠诚/额外费",
+      "missing": "X、可选牺牲、连续减费、现身减费必须独立规格",
+      "acceptance_cases": [
+        "T02",
+        "T01",
+        "T16"
+      ],
+      "rule_gate": "不可由Fast自动推响应",
+      "ordinal": 14,
+      "name": "降费",
+      "baseline_catalog_status": "partial"
+    },
+    {
+      "id": "deckChoice",
+      "current_status": "部分支持",
+      "abstractions": [
+        "K1",
+        "K4",
+        "K5"
+      ],
+      "evidence": "BQ10 BQ20 JC049 DQJC116 MSJC01",
+      "verified_scope": "抓牌、底牌入手、预测和有限个人搜索已有",
+      "missing": "同时检索、不同公开权限/洗牌时点/失败搜寻语义不全",
+      "acceptance_cases": [
+        "T11",
+        "T12",
+        "T13"
+      ],
+      "rule_gate": "U14；香港仍隔离",
+      "ordinal": 15,
+      "name": "抓牌、弃牌、预测、检索及排序",
+      "baseline_catalog_status": "partial"
+    },
+    {
+      "id": "continuous",
+      "current_status": "部分支持",
+      "abstractions": [
+        "K2",
+        "K4"
+      ],
+      "evidence": "JC016 JC059 JC099 LC15 FAQ4",
+      "verified_scope": "两个有限数值修正；JC059当前只同controller，漏队友",
+      "missing": "多类型/领域/能力、控制、依赖环；JC059原图友方须修",
+      "acceptance_cases": [
+        "T05",
+        "T06",
+        "T18"
+      ],
+      "rule_gate": "U10；当前2V2具体缺陷",
+      "ordinal": 16,
+      "name": "持续数值修正与类型/能力赋予",
+      "baseline_catalog_status": "partial"
+    },
+    {
+      "id": "healWounds",
+      "current_status": "部分支持",
+      "abstractions": [
+        "K1",
+        "K2",
+        "K4"
+      ],
+      "evidence": "BQ18",
+      "verified_scope": "移除创伤与防御扣创伤已有",
+      "missing": "无生产创伤赋予；创伤替代战斗伤害和0伤事件需批次层",
+      "acceptance_cases": [
+        "T08",
+        "T10"
+      ],
+      "rule_gate": "不能宣传完整创伤策略",
+      "ordinal": 17,
+      "name": "移除创伤",
+      "baseline_catalog_status": "partial"
+    },
+    {
+      "id": "society",
+      "current_status": "未实现",
+      "abstractions": [
+        "K1",
+        "K2",
+        "K3",
+        "K6"
+      ],
+      "evidence": "BQ5 BQ7 PG24 MSJC01",
+      "verified_scope": "当前预组并无秘社实体与开局约束",
+      "missing": "独立区域、空秘社区、可选秘社、起手覆盖、构筑/次数",
+      "acceptance_cases": [
+        "T17",
+        "T16",
+        "T28"
+      ],
+      "rule_gate": "U13；个别副标题仍未清",
+      "ordinal": 18,
+      "name": "秘社牌与秘社区",
+      "baseline_catalog_status": "unimplemented"
+    },
+    {
+      "id": "attachment",
+      "current_status": "未实现",
+      "abstractions": [
+        "K1",
+        "K2",
+        "K4",
+        "K5"
+      ],
+      "evidence": "RM6 FAQ5 间奏 JC028",
+      "verified_scope": "尚无宿主图与双类型",
+      "missing": "typed host、有效结附许可、宿主失效清理、独立controller",
+      "acceptance_cases": [
+        "T04",
+        "T18",
+        "T19"
+      ],
+      "rule_gate": "附属在场，不能和封印合并",
+      "ordinal": 19,
+      "name": "附属/结附、回收与双类型牌",
+      "baseline_catalog_status": "unimplemented"
+    },
+    {
+      "id": "seal",
+      "current_status": "未实现",
+      "abstractions": [
+        "K1",
+        "K2",
+        "K4",
+        "K5"
+      ],
+      "evidence": "BQ16 RM6 JC099",
+      "verified_scope": "尚无封印区域",
+      "missing": "场外空白可检视、不可普通指定、宿主离场回owner手",
+      "acceptance_cases": [
+        "T04",
+        "T05",
+        "T22"
+      ],
+      "rule_gate": "特定卡的封印失败目的地逐卡核准",
+      "ordinal": 20,
+      "name": "封印与载体生命周期",
+      "baseline_catalog_status": "unimplemented"
+    },
+    {
+      "id": "renown",
+      "current_status": "未实现",
+      "abstractions": [
+        "K2",
+        "K4",
+        "K6"
+      ],
+      "evidence": "BQ19 JC070 JC076",
+      "verified_scope": "未执行声望奖励",
+      "missing": "地区全部对抗后比较未横置声望数，胜出至多额外1势力",
+      "acceptance_cases": [
+        "T10",
+        "T07"
+      ],
+      "rule_gate": "U07 2V2聚合口径需核定",
+      "ordinal": 21,
+      "name": "声望",
+      "baseline_catalog_status": "unimplemented"
+    },
+    {
+      "id": "spirit",
+      "current_status": "未实现",
+      "abstractions": [
+        "K2",
+        "K4"
+      ],
+      "evidence": "BQ19 RM8 JC077 JC099",
+      "verified_scope": "尚无领域比较/预防",
+      "missing": "有效领域数量查询和DamageIntent；不是领域种类数",
+      "acceptance_cases": [
+        "T05",
+        "T08"
+      ],
+      "rule_gate": "U03/U04/U07 分类/队伍/顺序",
+      "ordinal": 22,
+      "name": "灵体",
+      "baseline_catalog_status": "unimplemented"
+    },
+    {
+      "id": "lock",
+      "current_status": "未实现",
+      "abstractions": [
+        "K1",
+        "K2",
+        "K3",
+        "K5"
+      ],
+      "evidence": "MSJC14 FAQ3",
+      "verified_scope": "无锁定标志及其完整语义",
+      "missing": "标志作用域和选区过滤；个人检视不能凭锁定一词推导",
+      "acceptance_cases": [
+        "T22",
+        "T05"
+      ],
+      "rule_gate": "本次原图只确认锁定/后续移动，不足以泛化检视权",
+      "ordinal": 23,
+      "name": "锁定与检视暗藏者",
+      "baseline_catalog_status": "unimplemented"
+    },
+    {
+      "id": "timeDestroy",
+      "current_status": "未实现",
+      "abstractions": [
+        "K1",
+        "K2",
+        "K6"
+      ],
+      "evidence": "BQ19；其余时间卡仅目录定位",
+      "verified_scope": "无时间/毁灭状态",
+      "missing": "typed counter、地区状态与分值查询；时间规则另需整卡规格",
+      "acceptance_cases": [
+        "T20",
+        "T05"
+      ],
+      "rule_gate": "毁灭-1已核，时间/替代胜利不全核",
+      "ordinal": 24,
+      "name": "时间标志与毁灭地区",
+      "baseline_catalog_status": "unimplemented"
+    },
+    {
+      "id": "damagePrevention",
+      "current_status": "未实现",
+      "abstractions": [
+        "K2",
+        "K4",
+        "K5"
+      ],
+      "evidence": "BQ19 RM12 JC077",
+      "verified_scope": "当前damage直接赋伤，无预防阶段",
+      "missing": "ProspectiveEvent、连续预防、将发生触发、0伤不发事件",
+      "acceptance_cases": [
+        "T08",
+        "T07"
+      ],
+      "rule_gate": "U04/U06 不自创替代顺序",
+      "ordinal": 25,
+      "name": "通用防止/伤害替代",
+      "baseline_catalog_status": "unimplemented"
+    },
+    {
+      "id": "control",
+      "current_status": "未实现",
+      "abstractions": [
+        "K1",
+        "K2",
+        "K3",
+        "K4"
+      ],
+      "evidence": "BQ16 RM6 序曲",
+      "verified_scope": "有owner/controller字段，无控制效果生命周期",
+      "missing": "Controller Independent、ControlGrant、结束重算、目标复核",
+      "acceptance_cases": [
+        "T18",
+        "T03",
+        "T04"
+      ],
+      "rule_gate": "U10 不默认回owner或最后写入优先",
+      "ordinal": 26,
+      "name": "操控权变化",
+      "baseline_catalog_status": "unimplemented"
+    },
+    {
+      "id": "transform",
+      "current_status": "未实现",
+      "abstractions": [
+        "K1",
+        "K2",
+        "K4"
+      ],
+      "evidence": "间奏 MSJZ02 ZHMSJZ02",
+      "verified_scope": "没有形态字段",
+      "missing": "固定FormId配对；180度转变保持实体/姿态，不发伪进场",
+      "acceptance_cases": [
+        "T19",
+        "T17"
+      ],
+      "rule_gate": "进入默认形态与牌面配对逐卡核准",
+      "ordinal": 27,
+      "name": "转变与多形态",
+      "baseline_catalog_status": "unimplemented"
+    },
+    {
+      "id": "blink",
+      "current_status": "未实现",
+      "abstractions": [
+        "K1",
+        "K4"
+      ],
+      "evidence": "BQ19 间奏",
+      "verified_scope": "有hide/reveal原语但无完整闪烁协议",
+      "missing": "同一效果内潜伏再现身，清宿主，旧目标失效，事件保留",
+      "acceptance_cases": [
+        "T19",
+        "T04",
+        "T03"
+      ],
+      "rule_gate": "次数是否刷新见U08",
+      "ordinal": 28,
+      "name": "闪烁",
+      "baseline_catalog_status": "unimplemented"
+    },
+    {
+      "id": "nonAsset",
+      "current_status": "未实现",
+      "abstractions": [
+        "K2",
+        "K3"
+      ],
+      "evidence": "BQ19 间奏",
+      "verified_scope": "建立资产未按该特性过滤",
+      "missing": "RulePack限定buildAsset或allAssetTransfers范围",
+      "acceptance_cases": [
+        "T17",
+        "T04"
+      ],
+      "rule_gate": "U01 两版明确冲突",
+      "ordinal": 29,
+      "name": "非资产",
+      "baseline_catalog_status": "unimplemented"
+    },
+    {
+      "id": "slow",
+      "current_status": "未实现",
+      "abstractions": [
+        "K1",
+        "K2"
+      ],
+      "evidence": "间奏",
+      "verified_scope": "未处理迟缓入场",
+      "missing": "EnterPosture规则；不要把所有移动/转变当入场",
+      "acceptance_cases": [
+        "T19",
+        "T04"
+      ],
+      "rule_gate": "潜伏/现身与迟缓叠加逐卡验",
+      "ordinal": 30,
+      "name": "迟缓",
+      "baseline_catalog_status": "unimplemented"
+    },
+    {
+      "id": "leader",
+      "current_status": "未实现",
+      "abstractions": [
+        "K2",
+        "K4",
+        "K6"
+      ],
+      "evidence": "BQ19 WM071",
+      "verified_scope": "无领袖限制/唯一构筑",
+      "missing": "构筑唯一与在场领袖分开，控制/形态变化后复查",
+      "acceptance_cases": [
+        "T17",
+        "T18"
+      ],
+      "rule_gate": "进场冲突二选一牺牲已核；非进场冲突时点待核",
+      "ordinal": 31,
+      "name": "领袖与唯一构筑",
+      "baseline_catalog_status": "unimplemented"
+    },
+    {
+      "id": "token",
+      "current_status": "未实现",
+      "abstractions": [
+        "K1",
+        "K2",
+        "K4"
+      ],
+      "evidence": "CQ12 MSJZ02；模板未独立全核",
+      "verified_scope": "无生成模板实例机制",
+      "missing": "模板有限登记、生成实体owner/controller、类型及离场策略",
+      "acceptance_cases": [
+        "T04",
+        "T17",
+        "T19"
+      ],
+      "rule_gate": "U12 不能照搬token消失通则",
+      "ordinal": 32,
+      "name": "生成指示物角色/附属",
+      "baseline_catalog_status": "unimplemented"
+    },
+    {
+      "id": "mysticContest",
+      "current_status": "未实现",
+      "abstractions": [
+        "K2",
+        "K4",
+        "K5",
+        "K6"
+      ],
+      "evidence": "BQ20 BQ22 帷幕之后 星光",
+      "verified_scope": "没有隐秘/暴露/同时选手牌流程",
+      "missing": "ChoiceGroup、印刷费用比较、洗回、团队合计与个人标志",
+      "acceptance_cases": [
+        "T13",
+        "T12",
+        "T22"
+      ],
+      "rule_gate": "星光比较条件不能随意压成单标量",
+      "ordinal": 33,
+      "name": "隐秘对抗、隐秘/暴露与隐秘等级",
+      "baseline_catalog_status": "unimplemented"
+    },
+    {
+      "id": "plan",
+      "current_status": "未实现",
+      "abstractions": [
+        "K1",
+        "K3",
+        "K4",
+        "K5"
+      ],
+      "evidence": "BQ20 帷幕之后",
+      "verified_scope": "无计划类型、进度或秘密计划投影",
+      "missing": "结附秘社区、1费仍忠诚、推进不限回合次数、到阈值强制",
+      "acceptance_cases": [
+        "T14",
+        "T16",
+        "T22"
+      ],
+      "rule_gate": "不可借普通conceal的每回合次数",
+      "ordinal": 34,
+      "name": "秘密计划与推进",
+      "baseline_catalog_status": "unimplemented"
+    },
+    {
+      "id": "rumor",
+      "current_status": "未实现",
+      "abstractions": [
+        "K1",
+        "K4",
+        "K5"
+      ],
+      "evidence": "BQ18 帷幕之后",
+      "verified_scope": "无对应弃牌/入墓观察与替代",
+      "missing": "保留原文触发+改为的ProspectiveEvent，不事后盲补封印",
+      "acceptance_cases": [
+        "T14",
+        "T08"
+      ],
+      "rule_gate": "触发与替代冲突需卡级裁定",
+      "ordinal": 35,
+      "name": "传闻",
+      "baseline_catalog_status": "unimplemented"
+    },
+    {
+      "id": "blood",
+      "current_status": "未实现",
+      "abstractions": [
+        "K1",
+        "K2",
+        "K3",
+        "K4"
+      ],
+      "evidence": "JC028 BQ19",
+      "verified_scope": "无鲜血结附/饮血来源筛选",
+      "missing": "PaidTransfer引用、类型属性覆盖、宿主加值、封印源许可",
+      "acceptance_cases": [
+        "T04",
+        "T05",
+        "T01"
+      ],
+      "rule_gate": "费用后被响应移走不能复制快照",
+      "ordinal": 36,
+      "name": "鲜血附属与饮血",
+      "baseline_catalog_status": "unimplemented"
+    },
+    {
+      "id": "task",
+      "current_status": "未实现",
+      "abstractions": [
+        "K1",
+        "K3",
+        "K6"
+      ],
+      "evidence": "BQ20 BQ21",
+      "verified_scope": "只有固定世界地区槽",
+      "missing": "玩家牌打出并追加地区、稳定RegionId、任务计数/胜利",
+      "acceptance_cases": [
+        "T20",
+        "T17"
+      ],
+      "rule_gate": "不用世界牌定义或旧位置ID代替",
+      "ordinal": 37,
+      "name": "任务地区",
+      "baseline_catalog_status": "unimplemented"
+    },
+    {
+      "id": "core",
+      "current_status": "未实现",
+      "abstractions": [
+        "K1",
+        "K2",
+        "K3",
+        "K6"
+      ],
+      "evidence": "BQ21",
+      "verified_scope": "无核心区、休整、命令和名誉付款",
+      "missing": "来源区许可、离场返回选项、加费/名誉、失控/任务协议",
+      "acceptance_cases": [
+        "T20",
+        "T16",
+        "T11"
+      ],
+      "rule_gate": "仅按已核核心规则，不顺手引入其他模式",
+      "ordinal": 38,
+      "name": "核心角色、核心区与命令",
+      "baseline_catalog_status": "unimplemented"
+    },
+    {
+      "id": "encounter",
+      "current_status": "未实现",
+      "abstractions": [
+        "K1",
+        "K2",
+        "K3",
+        "K6"
+      ],
+      "evidence": "序曲",
+      "verified_scope": "世界牌只有普通地区，owner=seat0假设待替换",
+      "missing": "独立不友不敌、利用控制、离场回世界、恐怖调度/计数",
+      "acceptance_cases": [
+        "T21",
+        "T18",
+        "T05"
+      ],
+      "rule_gate": "不参与对抗/战斗伤害，非战斗仍可受伤",
+      "ordinal": 39,
+      "name": "遭遇角色、利用与恐怖",
+      "baseline_catalog_status": "unimplemented"
+    },
+    {
+      "id": "starlightInfluence",
+      "current_status": "未实现",
+      "abstractions": [
+        "K1",
+        "K2",
+        "K4",
+        "K6"
+      ],
+      "evidence": "星光",
+      "verified_scope": "势力仅存region.influence",
+      "missing": "按承载位置求地区总势力、对消、离场清除",
+      "acceptance_cases": [
+        "T20",
+        "T04"
+      ],
+      "rule_gate": "不能多份计数或忽略宿主移区",
+      "ordinal": 40,
+      "name": "附属上的地区势力",
+      "baseline_catalog_status": "unimplemented"
+    },
+    {
+      "id": "combatKeywords",
+      "current_status": "未实现",
+      "abstractions": [
+        "K2",
+        "K4",
+        "K6"
+      ],
+      "evidence": "BQ18 BQ19",
+      "verified_scope": "少量现有traits不等于全部战斗关键词",
+      "missing": "事件时点与有限参数：袭击/创伤/遏制/威名等逐项声明",
+      "acceptance_cases": [
+        "T10",
+        "T08"
+      ],
+      "rule_gate": "威名胜战最多1；新卡需整卡核验",
+      "ordinal": 41,
+      "name": "袭击、创伤、遏制、威名等战斗关键词",
+      "baseline_catalog_status": "unimplemented"
+    },
+    {
+      "id": "hiddenOnly",
+      "current_status": "未实现",
+      "abstractions": [
+        "K2",
+        "K3"
+      ],
+      "evidence": "BQ18",
+      "verified_scope": "未有限登记该特性",
+      "missing": "禁止正常正面打出，允许秘密派遣；效果移区许可另定",
+      "acceptance_cases": [
+        "T15",
+        "T17"
+      ],
+      "rule_gate": "不可推出所有效果都不能正面放入",
+      "ordinal": 42,
+      "name": "隐匿",
+      "baseline_catalog_status": "unimplemented"
+    },
+    {
+      "id": "cancel",
+      "current_status": "未实现",
+      "abstractions": [
+        "K3",
+        "K4"
+      ],
+      "evidence": "BQ18",
+      "verified_scope": "没有一般堆叠目标与终止操作",
+      "missing": "StackItem目标身份、终止卡与终止能力分开；不重付退费",
+      "acceptance_cases": [
+        "T09",
+        "T03"
+      ],
+      "rule_gate": "牌入墓与能力移除的目的地不能混同",
+      "ordinal": 43,
+      "name": "终止/取消与替代效果",
+      "baseline_catalog_status": "unimplemented"
+    },
+    {
+      "id": "handAbility",
+      "current_status": "未实现",
+      "abstractions": [
+        "K1",
+        "K3",
+        "K4",
+        "K5"
+      ],
+      "evidence": "FAQ5",
+      "verified_scope": "只有手牌正常打出入口",
+      "missing": "手牌来源声明、弃/展示成本、来源知情范围，非play事件",
+      "acceptance_cases": [
+        "T15",
+        "T22"
+      ],
+      "rule_gate": "具体神秘学博弈卡本次未独立核图",
+      "ordinal": 44,
+      "name": "手牌能力、神秘学博弈等",
+      "baseline_catalog_status": "unimplemented"
+    },
+    {
+      "id": "crisis",
+      "current_status": "未实现",
+      "abstractions": [
+        "K6"
+      ],
+      "evidence": "目录MSLC01..04定位；本次未独立核图",
+      "verified_scope": "本模式完整规则缺失",
+      "missing": "留ModeProfile扩展口，不补造剧情/危机方/支援流程",
+      "acceptance_cases": [
+        "T29"
+      ],
+      "rule_gate": "U11 整模式禁用",
+      "ordinal": 45,
+      "name": "洛城危机/支线剧情/威胁与支援",
+      "baseline_catalog_status": "uncertain"
+    },
+    {
+      "id": "chaos",
+      "current_status": "未实现",
+      "abstractions": [
+        "K1",
+        "K4",
+        "K6"
+      ],
+      "evidence": "BQ19 WM071",
+      "verified_scope": "无随机进入地区",
+      "missing": "确定性选择合法地区再Enter，不允许玩家指定替代随机",
+      "acceptance_cases": [
+        "T11",
+        "T21"
+      ],
+      "rule_gate": "空候选/距离交互须明确",
+      "ordinal": 46,
+      "name": "混乱",
+      "baseline_catalog_status": "unimplemented"
+    },
+    {
+      "id": "herald",
+      "current_status": "未实现",
+      "abstractions": [
+        "K3",
+        "K5",
+        "K6"
+      ],
+      "evidence": "CQ12",
+      "verified_scope": "无先兆手牌行动",
+      "missing": "准备窗口、展示来源作为费用、每回合额度；本人选择",
+      "acceptance_cases": [
+        "T15",
+        "T16",
+        "T22"
+      ],
+      "rule_gate": "U09 手中本地区锚点及展示期限",
+      "ordinal": 47,
+      "name": "先兆手牌行动",
+      "baseline_catalog_status": "unimplemented"
+    },
+    {
+      "id": "reincarnation",
+      "current_status": "未实现",
+      "abstractions": [
+        "K1",
+        "K4"
+      ],
+      "evidence": "WM071",
+      "verified_scope": "未实现；目录转写多出改为",
+      "missing": "保留原文when进入墓地/封印洗回的歧义，框架分别可表达",
+      "acceptance_cases": [
+        "T14",
+        "T08",
+        "T01"
+      ],
+      "rule_gate": "U02 禁用直到前后事件/成本裁定",
+      "ordinal": 48,
+      "name": "转生",
+      "baseline_catalog_status": "unimplemented"
+    },
+    {
+      "id": "eternal",
+      "current_status": "未实现",
+      "abstractions": [
+        "K2",
+        "K4"
+      ],
+      "evidence": "LC15",
+      "verified_scope": "仅确认关键词存在",
+      "missing": "预留能力特征，不猜不死/不离场/持续的含义",
+      "acceptance_cases": [
+        "T29"
+      ],
+      "rule_gate": "U11 缺完整定义",
+      "ordinal": 49,
+      "name": "永恒",
+      "baseline_catalog_status": "uncertain"
+    },
+    {
+      "id": "temporaryIcons",
+      "current_status": "部分支持",
+      "abstractions": [
+        "K2",
+        "K6"
+      ],
+      "evidence": "BQ9 RM8 序曲 JC016",
+      "verified_scope": "当前对抗按先手计临时图标",
+      "missing": "分Contest/EffectCount/Terror；当前icons不能通吃",
+      "acceptance_cases": [
+        "T05",
+        "T21"
+      ],
+      "rule_gate": "各用途有不同原文，不合并",
+      "ordinal": 50,
+      "name": "临时能力图标",
+      "baseline_catalog_status": "partial"
+    },
+    {
+      "id": "uniqueInPlay",
+      "current_status": "有限支持",
+      "abstractions": [
+        "K2",
+        "K4"
+      ],
+      "evidence": "BQ4 LC23",
+      "verified_scope": "同controller同名正面角色选择牺牲已有",
+      "missing": "附属/秘社等独有、有效名称/控制/形态变化重检尚缺",
+      "acceptance_cases": [
+        "T17",
+        "T18",
+        "T19"
+      ],
+      "rule_gate": "不同于唯一构筑/领袖；通用处置逐核",
+      "ordinal": 51,
+      "name": "独有（金色名称）",
+      "baseline_catalog_status": "implemented"
+    }
+  ],
+  "addenda": [
+    {
+      "id": "privatePeek",
+      "ordinal": 52,
+      "name": "私密检视与持续检视权限",
+      "current_status": "未实现",
+      "abstractions": [
+        "K2",
+        "K3",
+        "K5"
+      ],
+      "evidence": "a7572e8新增目录；JC057/JC062 本次未独立核图",
+      "verified_scope": "无生产权限授予；原有自身可见不能视为私人检视机制",
+      "missing": "KnowledgeGrant、持续条件失效撤销、检视与展示区分、多目标语义",
+      "acceptance_cases": [
+        "T22",
+        "T03"
+      ],
+      "rule_gate": "只记录固定增量；不得由该目录直接开放卡"
+    }
+  ]
+}
