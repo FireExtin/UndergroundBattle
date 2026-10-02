@@ -9327,6 +9327,445 @@
       ],
       "editionStatus": "pinnedImageVariant",
       "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM076": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM076",
+      "verifiedFields": {
+        "name": "卧底",
+        "colorKey": "中立",
+        "basicType": "角色"
+      },
+      "abilitySummary": "进场强制触发 目标敌方玩家获得卧底的操控权。；持续 在进行隐秘对抗时，你所展示的牌获得-3。；持续 敌方玩家可以随时检视你的秘密计划和本地区的暗藏者。",
+      "confirmedMechanismIds": [
+        "control",
+        "mysticContest",
+        "privatePeek",
+        "plan",
+        "hidden",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM077": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM077",
+      "verifiedFields": {
+        "name": "智囊团",
+        "colorKey": "中立",
+        "basicType": "角色"
+      },
+      "abilitySummary": "时间标志1；行动 自智囊团上移除一个时间标志：从你的牌库中寻找一张策略、计划或阴谋牌，将你的牌库洗牌，然后展示该牌并将其置于你的牌库顶。；行动 横置：目标计划推进2。",
+      "confirmedMechanismIds": [
+        "timeDestroy",
+        "deckChoice",
+        "exhaust",
+        "plan"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM078": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM078",
+      "verifiedFields": {
+        "name": "觅血猎犬",
+        "colorKey": "中立",
+        "basicType": "角色"
+      },
+      "abilitySummary": "不能被装备结附；创伤2；持续 若本地区上的敌方角色或暗藏者上有锁定或创伤标志，则觅血猎犬获得永久调查1。；行动②：将觅血猎犬移动到一个相邻地区上。该能力每回合只能发动一次。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "combatKeywords",
+        "hidden",
+        "lock",
+        "healWounds",
+        "continuous",
+        "mobility",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM079": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM079",
+      "verifiedFields": {
+        "name": "张角",
+        "colorKey": "中立",
+        "basicType": "角色"
+      },
+      "abilitySummary": "混乱；准备步骤触发 从你的牌库中寻找一张名为无知路人的角色牌，将该角色放置于目标地区，然后将你的牌库洗牌。；持续 若任一地区上有名为无知路人的本方角色，张角参与该地区的势力对抗。",
+      "confirmedMechanismIds": [
+        "chaos",
+        "deckChoice",
+        "confrontation",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM080": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM080",
+      "verifiedFields": {
+        "name": "米娅·格雷",
+        "colorKey": "中立",
+        "basicType": "角色"
+      },
+      "abilitySummary": "迟缓；快速行动 横置：将另一个位于本地区，且具有魔法领域图标的目标角色封印在米娅·格雷上。；准备步骤强制触发 若其上封印有卡牌，对米娅·格雷造成1点创伤。",
+      "confirmedMechanismIds": [
+        "slow",
+        "exhaust",
+        "seal",
+        "healWounds",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM081": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM081",
+      "verifiedFields": {
+        "name": "井中厉鬼",
+        "colorKey": "中立",
+        "basicType": "角色"
+      },
+      "abilitySummary": "灵体；不能移动；墓地行动②，横置一个名为枯井的本方附属：将井中尸鬼从墓地中放置进场并位于枯井所在的地区上。；行动 横置：对本地区上的目标角色造成X点创伤，X等于本地区上名为枯井的本方附属上所封印着的卡牌数量。",
+      "confirmedMechanismIds": [
+        "spirit",
+        "mobility",
+        "gravePlay",
+        "attachment",
+        "exhaust",
+        "seal",
+        "healWounds",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM082": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM082",
+      "verifiedFields": {
+        "name": "落单的麋鹿",
+        "colorKey": "中立",
+        "basicType": "角色"
+      },
+      "abilitySummary": "机动；传闻；不能被装备结附；触发 当落单的麋鹿进入荒野、山脉或已毁灭的地区时，抓一张牌。；持续 所有角色失去屏障，且不能获得屏障。",
+      "confirmedMechanismIds": [
+        "mobility",
+        "rumor",
+        "attachment",
+        "timeDestroy",
+        "deckChoice",
+        "barrier",
+        "continuous",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM083": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM083",
+      "verifiedFields": {
+        "name": "隐秘对抗",
+        "colorKey": "中立",
+        "basicType": "事务"
+      },
+      "abilitySummary": "隐秘+4；非资产；行动 进行一次隐秘对抗。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "nonAsset"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM084": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM084",
+      "verifiedFields": {
+        "name": "命运无常",
+        "colorKey": "中立",
+        "basicType": "事务"
+      },
+      "abilitySummary": "行动 每位玩家选择一项或多项，并各自进行：；牺牲一个附属，然后抓一张牌。；将一个本方角色横置并置于本方资产区作为一个资产。；移除两个本方势力标志，然后将本方墓地中的目标角色牌置于你的手中。",
+      "confirmedMechanismIds": [
+        "sacrifice",
+        "attachment",
+        "deckChoice",
+        "exhaust",
+        "loyalty",
+        "confrontation",
+        "graveRecovery"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM085": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM085",
+      "verifiedFields": {
+        "name": "冒失的召唤",
+        "colorKey": "中立",
+        "basicType": "事务"
+      },
+      "abilitySummary": "隐秘+3；额外费用 牺牲四个角色。；行动 选择目标地区，从你的牌库中寻找一张异界角色牌，将该角色放置进场并置于该地区，然后将你的牌库洗牌。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "sacrifice",
+        "deckChoice"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM086": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM086",
+      "verifiedFields": {
+        "name": "隔空御物",
+        "colorKey": "中立",
+        "basicType": "事务"
+      },
+      "abilitySummary": "持续 若你操控超能力者，你可以从本方资产区中打出隔空御物。（你需要支付其费用，并满足其忠诚需求。结算后将其置入墓地。）；行动 将你墓地中的目标装备附属移回场上，并结附于合法目标。",
+      "confirmedMechanismIds": [
+        "gravePlay",
+        "loyalty",
+        "attachment",
+        "graveRecovery"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM087": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM087",
+      "verifiedFields": {
+        "name": "羔羊之血",
+        "colorKey": "中立",
+        "basicType": "事务"
+      },
+      "abilitySummary": "非资产；快速行动 选择目标地区，本回合中若该地区上有本方角色因受到战斗伤害死去，或被敌方卡牌或能力消灭，则在回合结束时将这些角色从墓地移回该地区。",
+      "confirmedMechanismIds": [
+        "nonAsset",
+        "graveRecovery",
+        "confrontation"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM088": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM088",
+      "verifiedFields": {
+        "name": "现场调查",
+        "colorKey": "中立",
+        "basicType": "事务"
+      },
+      "abilitySummary": "非资产；行动 抓两张牌。你可以在目标秘社上放置或移除一个暴露标志。",
+      "confirmedMechanismIds": [
+        "nonAsset",
+        "deckChoice",
+        "mysticContest"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM089": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM089",
+      "verifiedFields": {
+        "name": "未解之谜",
+        "colorKey": "中立",
+        "basicType": "事务"
+      },
+      "abilitySummary": "隐秘+12；非资产；传闻；未解之谜不能正面打出。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "nonAsset",
+        "rumor"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM090": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM090",
+      "verifiedFields": {
+        "name": "茶叶占卜法",
+        "colorKey": "中立",
+        "basicType": "事务"
+      },
+      "abilitySummary": "隐秘+4；非资产；行动 选择一项：；检视目标玩家的手牌。；检视目标暗藏者或秘密计划。；预测1。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "nonAsset",
+        "privatePeek",
+        "hidden",
+        "plan",
+        "deckChoice"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM091": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM091",
+      "verifiedFields": {
+        "name": "灌顶宝瓶",
+        "colorKey": "中立",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于本方秘社；触发 当一个本方角色死亡时，将其上所有指示物标志移动到灌顶宝瓶上。；行动 牺牲灌顶宝瓶：将灌顶宝瓶上的所有指示物标志移动到目标角色上。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "society",
+        "token",
+        "sacrifice"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM092": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM092",
+      "verifiedFields": {
+        "name": "计划：神秘学研究",
+        "colorKey": "中立",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于本方秘社；秘密计划；可推进；快速行动 牺牲计划：神秘学研究：本回合的下一次隐秘对抗中你获得+X，X等于本附属上的推进标志数量。；秘密计划触发 当计划：神秘学研究在秘密状态被敌方玩家检视或消灭时，你抓两张牌。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "society",
+        "plan",
+        "sacrifice",
+        "mysticContest",
+        "deckChoice",
+        "privatePeek"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM093": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM093",
+      "verifiedFields": {
+        "name": "帷幕之后",
+        "colorKey": "中立",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于本方秘社；行动②，横置：进行一次隐秘对抗。双方玩家都可以发动本能力。；持续 若其秘社上有两个暴露标志，该玩家不能进行秘密派遣行动。若其秘社上有两个隐秘标志，该玩家进行秘密派遣行动的费用减少①。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "society",
+        "exhaust",
+        "mysticContest",
+        "hidden",
+        "costReduction",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM094": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM094",
+      "verifiedFields": {
+        "name": "临时指挥部",
+        "colorKey": "中立",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于本方秘社；行动X，横置：在目标暗藏者上放置X个锁定标志。该能力不能被响应。；强制触发 每当一个暗藏者现身时，除非其操控者为每个在其上的锁定标志支付①，否则终止之。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "society",
+        "exhaust",
+        "lock",
+        "hidden",
+        "priority",
+        "cancel",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM095": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM095",
+      "verifiedFields": {
+        "name": "午夜电台",
+        "colorKey": "中立",
+        "basicType": "附属"
+      },
+      "abilitySummary": "传闻；结附于本方秘社；持续 所有你所拥有的梦境、梦魇和幽灵牌获得传闻。",
+      "confirmedMechanismIds": [
+        "rumor",
+        "attachment",
+        "society",
+        "continuous"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM096": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM096",
+      "verifiedFields": {
+        "name": "琥珀囚笼",
+        "colorKey": "中立",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标角色；持续 受此结附的角色不能移动，不能参与调查、战斗和势力对抗，其行动能力也不能发动。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "continuous",
+        "mobility",
+        "confrontation"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM097": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM097",
+      "verifiedFields": {
+        "name": "衰变计时器",
+        "colorKey": "中立",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于本方秘社；快速行动 横置：在衰变计时器上放置一个时间标志。；快速行动 横置：将衰变计时器上的所有时间标志移动到目标角色或附属上。你只能在本方秘社上有隐秘标志时才能发动本能力。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "society",
+        "exhaust",
+        "timeDestroy",
+        "mysticContest"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM098": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM098",
+      "verifiedFields": {
+        "name": "枯井",
+        "colorKey": "中立",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标地区；强制触发 每当敌方玩家从手中弃掉一张传闻卡牌，或有传闻卡牌从敌方牌库置入墓地时，其传闻能力不能发动，改为将该牌封印在枯井上。；离场强制触发 将封印在枯井上的所有敌方卡牌洗入其拥有者的牌库。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "rumor",
+        "deckChoice",
+        "seal"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
     }
   }
 }
