@@ -1545,7 +1545,12 @@
         "card-XQ04",
         "card-JZ05",
         "card-JZ49",
-        "card-JC010"
+        "card-JC010",
+        "card-JC078",
+        "card-JC093",
+        "card-JC101",
+        "card-JC103",
+        "card-JC104"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -1664,7 +1669,18 @@
         "card-XQ04",
         "card-JZ05",
         "card-JZ49",
-        "card-JC010"
+        "card-JC010",
+        "card-TK008",
+        "card-TK009",
+        "card-JC040",
+        "card-JC078",
+        "card-JC080",
+        "card-JC093",
+        "card-JC101",
+        "card-JC102",
+        "card-JC103",
+        "card-JC104",
+        "card-JC105"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -1704,7 +1720,8 @@
         "card-DQJC107",
         "card-DQJC112",
         "card-DQJC113",
-        "card-DQJC114"
+        "card-DQJC114",
+        "card-JC098"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -1741,7 +1758,10 @@
         "card-LC21",
         "card-LC22",
         "card-JC014",
-        "card-JC059"
+        "card-JC059",
+        "card-TK003",
+        "card-JC080",
+        "card-JC098"
       ],
       "dependencies": [
         "hidden"
@@ -1772,7 +1792,8 @@
         "card-MSWM01",
         "card-MSWM02",
         "card-MSWM03",
-        "card-JC010"
+        "card-JC010",
+        "card-JC103"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -1840,7 +1861,8 @@
         "card-JC016",
         "card-LC21",
         "card-LC22",
-        "card-MSJC11"
+        "card-MSJC11",
+        "card-TK006"
       ],
       "dependencies": [
         "confrontation"
@@ -2003,7 +2025,9 @@
         "bq-seal",
         "card-XQ12",
         "card-CQ12",
-        "card-JC048"
+        "card-JC048",
+        "card-TK008",
+        "card-JC093"
       ],
       "dependencies": [
         "priority"
@@ -2039,7 +2063,8 @@
         "card-MSBQ02",
         "card-MSWM04",
         "card-CQ12",
-        "card-LC15"
+        "card-LC15",
+        "card-JC103"
       ],
       "dependencies": [
         "loyalty",
@@ -2094,7 +2119,10 @@
         "card-MSWM03",
         "card-MSWM04",
         "card-WM071",
-        "card-JZ49"
+        "card-JZ49",
+        "card-JC040",
+        "card-JC080",
+        "card-JC104"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -2137,7 +2165,13 @@
         "card-MSBQ03",
         "card-MSWM01",
         "card-JC069",
-        "card-JC045"
+        "card-JC045",
+        "card-TK002",
+        "card-TK009",
+        "card-JC093",
+        "card-JC098",
+        "card-JC101",
+        "card-JC105"
       ],
       "dependencies": [],
       "interactionIds": [],
@@ -2250,7 +2284,10 @@
         "card-MSBQ01",
         "card-MSBQ03",
         "card-LC15",
-        "card-JC048"
+        "card-JC048",
+        "card-TK002",
+        "card-JC093",
+        "card-JC101"
       ],
       "dependencies": [
         "priority"
@@ -2290,7 +2327,8 @@
         "card-MSBQ03",
         "card-WM071",
         "card-LC15",
-        "card-BQ007"
+        "card-BQ007",
+        "card-JC105"
       ],
       "dependencies": [
         "priority",
@@ -2322,7 +2360,8 @@
         "bq-keywords-2",
         "card-JC070",
         "card-JC076",
-        "card-JC074"
+        "card-JC074",
+        "card-JC080"
       ],
       "dependencies": [
         "confrontation"
@@ -2357,7 +2396,9 @@
         "card-MSJC17",
         "card-LC14",
         "card-BQ007",
-        "card-JC010"
+        "card-JC010",
+        "card-TK005",
+        "card-JC105"
       ],
       "dependencies": [
         "continuous",
@@ -2413,14 +2454,17 @@
       "id": "timeDestroy",
       "name": "时间标志与毁灭地区",
       "status": "unimplemented",
-      "scope": "时间标志与毁灭状态、计分区毁灭标志-1分及替代胜利。",
+      "scope": "时间标志与毁灭状态、计分区毁灭标志-1分及替代胜利。JC048按整个地区含下挂角色/附属的时间总数，而非只自身沙漏时间。",
       "limitations": "",
       "evidenceIds": [
         "intermezzo",
         "card-MSJC13",
         "card-MSJZ03",
         "card-JC045",
-        "card-JC048"
+        "card-JC048",
+        "card-TK008",
+        "card-TK009",
+        "manual-marker-inheritance"
       ],
       "dependencies": [
         "continuous",
@@ -2451,7 +2495,8 @@
       "evidenceIds": [
         "bq-keywords-2",
         "card-JC077",
-        "card-LC14"
+        "card-LC14",
+        "card-JC078"
       ],
       "dependencies": [
         "confrontation"
@@ -2600,7 +2645,8 @@
       "limitations": "",
       "evidenceIds": [
         "intermezzo",
-        "card-JZ49"
+        "card-JZ49",
+        "card-TK001"
       ],
       "dependencies": [
         "hidden",
@@ -2662,7 +2708,14 @@
         "card-MSLC03",
         "card-BQ043",
         "card-CQ12",
-        "card-BQ060"
+        "card-BQ060",
+        "card-TK001",
+        "card-TK002",
+        "card-TK003",
+        "card-TK005",
+        "card-TK006",
+        "card-TK008",
+        "card-TK009"
       ],
       "dependencies": [
         "continuous"
@@ -3209,7 +3262,14 @@
         "card-LC24",
         "card-JC059",
         "card-XQ12",
-        "card-JZ49"
+        "card-JZ49",
+        "card-TK002",
+        "card-TK003",
+        "card-TK005",
+        "card-JC098",
+        "card-JC103",
+        "card-JC104",
+        "card-JC105"
       ],
       "dependencies": [
         "confrontation",
@@ -3246,7 +3306,10 @@
         "card-WM071",
         "card-LC15",
         "card-BQ007",
-        "card-JC010"
+        "card-JC010",
+        "card-TK002",
+        "card-JC040",
+        "card-JC080"
       ],
       "dependencies": [
         "sacrifice"
@@ -3294,6 +3357,36 @@
         {
           "path": "rust-game/src/rules.rs",
           "anchor": "enum Op"
+        }
+      ],
+      "existingTestNames": []
+    },
+    {
+      "id": "repress",
+      "name": "遏制X",
+      "status": "unimplemented",
+      "scope": "原手册可选择目标玩家，由该玩家从全场选择移除X个其拥有的势力标志；不足X移除所有，不是发动者替其选择地区。",
+      "limitations": "固定基线没有遏制操作/目标玩家移势力选择续体；一般放势力或地区结算不能证明已实现。",
+      "evidenceIds": [
+        "manual-repress",
+        "card-JC040"
+      ],
+      "dependencies": [
+        "priority",
+        "confrontation"
+      ],
+      "interactionIds": [
+        "playerPicker",
+        "markerEditor"
+      ],
+      "codeEvidence": [
+        {
+          "path": "rust-game/src/rules.rs",
+          "anchor": "enum Op"
+        },
+        {
+          "path": "rust-game/src/model.rs",
+          "anchor": "enum FrameChoice"
         }
       ],
       "existingTestNames": []
@@ -4428,6 +4521,150 @@
       "sha256": "b0df023307d0924a8bd5e793e7652f6c3e76cb459fc82395827b1c4482f3cd33",
       "visuallyReviewed": true,
       "topic": "青手费南迪尔：完整原图数值、图标、游戏正文与实际印刷编号"
+    },
+    "manual-marker-inheritance": {
+      "kind": "pdfPage",
+      "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界规则手册.pdf",
+      "sha256": "2a771874efbdb3ad8a339ea01ff62888766090d075fe2e013632c79de1aeba35",
+      "printedPage": 11,
+      "pdfPage": 13,
+      "visuallyReviewed": true,
+      "topic": "角色标志也视作位于地区；附属标志也视作位于其所结附牌或区域；离场/翻面移标志"
+    },
+    "manual-repress": {
+      "kind": "pdfPage",
+      "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界规则手册.pdf",
+      "sha256": "2a771874efbdb3ad8a339ea01ff62888766090d075fe2e013632c79de1aeba35",
+      "printedPage": 3,
+      "pdfPage": 5,
+      "visuallyReviewed": true,
+      "topic": "遏制X选择目标玩家；该玩家选择移除自己拥有的势力标志，少于X时移除所有；独有适用于卡牌"
+    },
+    "card-TK001": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/TK001 行尸.jpg",
+      "sha256": "06cdd3b3396ef41cc1669192c5056cf0151460b5285f1645bede86809aa399e0",
+      "visuallyReviewed": true,
+      "topic": "行尸：完整原图及放大图标/正文逐项读取"
+    },
+    "card-TK002": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/TK002 黄昏界域.jpg",
+      "sha256": "0984571c18369b7c10545b59dc35333492ef3f6184bae3a27f62dc3e692e4c80",
+      "visuallyReviewed": true,
+      "topic": "黄昏界域：完整原图及放大图标/正文逐项读取"
+    },
+    "card-TK003": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/TK003 警察.jpg",
+      "sha256": "87655a55aca95302110ead41a70dc047e791fb33312cd73a2691071393fe654b",
+      "visuallyReviewed": true,
+      "topic": "警察：完整原图及放大图标/正文逐项读取"
+    },
+    "card-TK005": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/TK005 梦魇.jpg",
+      "sha256": "2913fbdcc624957442c80a4fbc987c9f17f70b151368897b6e1416c3a12647e5",
+      "visuallyReviewed": true,
+      "topic": "梦魔：完整原图及放大图标/正文逐项读取"
+    },
+    "card-TK006": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/TK006 仙灵斗士.jpg",
+      "sha256": "a3dcbb29525f0c0c4259e10e126ea190323a525178d54b98640f69455afde711",
+      "visuallyReviewed": true,
+      "topic": "仙灵斗士：完整原图及放大图标/正文逐项读取"
+    },
+    "card-TK008": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/TK008 邪教徒.jpg",
+      "sha256": "b5b76f1d15859421d7780829c491f5853e09723a85a17a4e02cad6132f75e779",
+      "visuallyReviewed": true,
+      "topic": "邪教徒：完整原图及放大图标/正文逐项读取"
+    },
+    "card-TK009": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/TK009 钟摆祭司.jpg",
+      "sha256": "53fab1195f462cad1c3499705a2dc6bc5d2d116d9a1edd8a991958e0cbb6f707",
+      "visuallyReviewed": true,
+      "topic": "钟摆祭司：完整原图及放大图标/正文逐项读取"
+    },
+    "card-JC040": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC040 安普莎，冥府的侍女.jpg",
+      "sha256": "ef2f30c5f794f900f66facc4fce7e90bb1edd9a56dc84c666331ae3ee2163750",
+      "visuallyReviewed": true,
+      "topic": "安普莎，冥府的侍女：完整原图及放大图标/正文逐项读取"
+    },
+    "card-JC078": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC078 光能盾.jpg",
+      "sha256": "d238d2c7412349579c00fa4a5a662e9214bdad13df25b8917ae1034251f7e2b9",
+      "visuallyReviewed": true,
+      "topic": "光能盾：完整原图及放大图标/正文逐项读取"
+    },
+    "card-JC080": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC080 凯拉·歌迪亚教授.jpg",
+      "sha256": "c7bafdf8ae63be47047da00b79539f3bd99618e4835da4c335630d4297942564",
+      "visuallyReviewed": true,
+      "topic": "凯拉·歌迪亚教授：完整原图及放大图标/正文逐项读取"
+    },
+    "card-JC093": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC093 怨灵咒刃.jpg",
+      "sha256": "ac3398f82103f6d50eb97b6bb3467244834c8e3867fb92c295d3c420b522bdd2",
+      "visuallyReviewed": true,
+      "topic": "怨灵咒刃：完整原图及放大图标/正文逐项读取"
+    },
+    "card-JC098": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC098 陷入疯狂的人群.jpg",
+      "sha256": "f81f095b8478640efa1cf4cff59cd6763b4e8296d440584d5d8cb1078a2206c9",
+      "visuallyReviewed": true,
+      "topic": "陷入疯狂的人群：完整原图及放大图标/正文逐项读取"
+    },
+    "card-JC101": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC101 直视深渊.jpg",
+      "sha256": "e5463cbdcd3e54a82c8d2af56712cee79c7ea659dcef0a276864a1ccb50e96f2",
+      "visuallyReviewed": true,
+      "topic": "直视深渊：完整原图及放大图标/正文逐项读取"
+    },
+    "card-JC102": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC102 妖火.jpg",
+      "sha256": "842fb9f07e9b8afbc0cecd6c224972c5643bad9b710daa518faceb59fc9a3b5d",
+      "visuallyReviewed": true,
+      "topic": "妖火：完整原图及放大图标/正文逐项读取"
+    },
+    "card-JC103": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC103 丧失理智的画家.jpg",
+      "sha256": "8eee910793908999e04487b65f0e9a398d11ef5b307b360ba6e9d2012adaed63",
+      "visuallyReviewed": true,
+      "topic": "丧失理智的画家：完整原图及放大图标/正文逐项读取"
+    },
+    "card-JC104": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC104 占卜师.jpg",
+      "sha256": "877aa980256730bb35350f1b99c2aa75b9110cd5905e61412664e2a89ef4e8da",
+      "visuallyReviewed": true,
+      "topic": "占卜师：完整原图及放大图标/正文逐项读取"
+    },
+    "card-JC105": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC105 噩梦领主.jpg",
+      "sha256": "90a884c4313bfe801e5ca6b5a6ce18c4505e2d25143325139095929d1cc1a79f",
+      "visuallyReviewed": true,
+      "topic": "噩梦领主：完整原图及放大图标/正文逐项读取"
+    },
+    "card-TK007": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/TK007 先手标志.jpg",
+      "sha256": "38bc1cead206f3c284de77cda3f5d5e67609107b9305b055d924e2c82822798c",
+      "visuallyReviewed": true,
+      "topic": "先手标志原图仅钥匙造型，无印刷卡牌正文/费用/编号；不伪造成完整卡面"
     }
   },
   "openQuestions": [

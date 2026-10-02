@@ -250,8 +250,11 @@ def validate_specifications(specifications, coverage, index, recovery):
         hourglass = specs["JC048"]["abilities"][1]
         require(hourglass["printedAddMarkerRecipient"] == "thisAttachment"
                 and hourglass["printedDamageAndSacrificeCounterRecipient"] == "carrierRegion"
-                and hourglass["recipientMismatchUnresolved"] and specs["JC048"]["implementationDesignStatus"] == "needsRuling",
-                "JC048 attachment-versus-region marker wording must not be silently rewritten")
+                and not hourglass["recipientMismatchUnresolved"]
+                and hourglass["regionTimeCountIncludesMarkersOnAllCharactersAndAttachmentsThere"]
+                and hourglass["markersRemainPhysicallyOnOriginalRecipient"]
+                and "manual-marker-inheritance" in specs["JC048"]["rulesEvidenceIds"],
+                "JC048 region count includes attached markers; printed recipients must not be silently rewritten")
         cancel = specs["XQ04"]["abilities"][0]["target"]
         require(cancel["category"] == "stackCard" and cancel["includesPaidReveal"]
                 and not cancel["includesNonCardAbility"], "XQ04 terminates stack cards, not arbitrary abilities")
@@ -263,4 +266,30 @@ def validate_specifications(specifications, coverage, index, recovery):
         require(matron[1]["destination"] == "ownersDeck" and matron[1]["graveEntryEventOrderUnresolved"]
                 and matron[2]["search"]["category"] == "characterCard" and matron[2]["explicitPublicRevealNotPrinted"],
                 "WM071 preserves owner shuffle, unresolved transition events and private character-only search")
+    if "TK001" in specs:
+        token_ids = {"TK001", "TK002", "TK003", "TK005", "TK006", "TK008", "TK009"}
+        require(all(specs[i]["fields"]["printedCost"] is None
+                    and specs[i]["fields"]["loyalty"] == []
+                    and specs[i]["fields"]["printedCollectorCode"] == "T"
+                    and specs[i]["constructionRole"] == "generatedTokenNotPlayerDeckCard" for i in token_ids),
+                "Token originals have no printed cast cost or loyalty; do not turn them into zero-cost player cards")
+        require("TK007" not in specs, "A key marker graphic cannot fabricate a complete printed card")
+        repress = specs["JC040"]["abilities"][0]["effect"]
+        require(repress["markerSelectionPlayer"] == repress["markerOwner"] == "targetPlayer"
+                and repress["scope"] == "allInPlay" and repress["targetNotRequiredToBeDiscardingPlayer"],
+                "JC040 repress target chooses its own all-board markers; triggering discard does not bind that target")
+        require(specs["JC080"]["abilities"][1]["doesNotTriggerForPutIntoHand"]
+                and specs["JC080"]["abilities"][1]["event"]["count"] == "actualCardsDrawnInThisEvent",
+                "JC080 uses actual draw count, not every hand entry or a fixed one")
+        curse = specs["JC101"]["abilities"][1]
+        require(curse["blankCarrierPrintedRulesText"] and curse["removeCarrierAllMagicDomainIcons"]
+                and curse["carrierAbilityIconsPreserved"] and curse["doesNotBlankAllExternalGrantedEffects"],
+                "JC101 blanks printed text and domains, preserving ability icons and external grants")
+        require(specs["JC102"]["abilities"][0]["allowedPhase"] == "action",
+                "JC102 fast timing cannot bypass the printed action-phase restriction")
+        bonus = specs["JC105"]["abilities"][1]
+        require(bonus["grantTemporaryIcons"] == {"investigation": 0, "combat": 0, "influence": 1}
+                and bonus["scope"]["excludeSourceInstance"]
+                and bonus["scope"]["controller"] == "sourceController",
+                "JC105 grants other own spirits temporary influence, not itself, permanent icons or teammates")
     return errors

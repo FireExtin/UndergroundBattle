@@ -351,6 +351,41 @@ class CoverageTests(unittest.TestCase):
         specs["cards"]["WM071"]["abilities"][1]["destination"] = "controllersDeck"
         self.assertTrue(any("owner shuffle" in e for e in self.source_errors(specs=specs)))
 
+    def test_token_originals_cannot_gain_zero_cast_cost_or_player_deck_permission(self):
+        specs = copy.deepcopy(self.specifications)
+        specs["cards"]["TK001"]["fields"]["printedCost"] = 0
+        self.assertTrue(any("zero-cost player cards" in e for e in self.source_errors(specs=specs)))
+
+    def test_hourglass_must_count_other_cards_markers_in_its_region(self):
+        specs = copy.deepcopy(self.specifications)
+        specs["cards"]["JC048"]["abilities"][1]["regionTimeCountIncludesMarkersOnAllCharactersAndAttachmentsThere"] = False
+        self.assertTrue(any("region count includes" in e for e in self.source_errors(specs=specs)))
+
+    def test_repress_marker_choice_belongs_to_target_player(self):
+        specs = copy.deepcopy(self.specifications)
+        specs["cards"]["JC040"]["abilities"][0]["effect"]["markerSelectionPlayer"] = "abilityController"
+        self.assertTrue(any("target chooses" in e for e in self.source_errors(specs=specs)))
+
+    def test_kayla_cannot_treat_search_to_hand_as_draw(self):
+        specs = copy.deepcopy(self.specifications)
+        specs["cards"]["JC080"]["abilities"][1]["doesNotTriggerForPutIntoHand"] = False
+        self.assertTrue(any("actual draw count" in e for e in self.source_errors(specs=specs)))
+
+    def test_abyss_text_blanking_does_not_remove_ability_icons(self):
+        specs = copy.deepcopy(self.specifications)
+        specs["cards"]["JC101"]["abilities"][1]["carrierAbilityIconsPreserved"] = False
+        self.assertTrue(any("preserving ability icons" in e for e in self.source_errors(specs=specs)))
+
+    def test_fast_faerie_fire_cannot_skip_phase_restriction(self):
+        specs = copy.deepcopy(self.specifications)
+        specs["cards"]["JC102"]["abilities"][0]["allowedPhase"] = "any"
+        self.assertTrue(any("action-phase restriction" in e for e in self.source_errors(specs=specs)))
+
+    def test_nightmare_lord_cannot_gain_own_or_permanent_aura(self):
+        specs = copy.deepcopy(self.specifications)
+        specs["cards"]["JC105"]["abilities"][1]["scope"]["excludeSourceInstance"] = False
+        self.assertTrue(any("other own spirits temporary" in e for e in self.source_errors(specs=specs)))
+
 
 if __name__ == "__main__":
     unittest.main()
