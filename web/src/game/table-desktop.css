@@ -77,7 +77,7 @@
 .hg-desktop-table.hg-table .hg-region-side[data-side="mine"] { border: 0; border-radius: 0 0 7px 7px; }
 .hg-desktop-table.hg-table .hg-region-side-label { height: 17px; margin: 0 0 4px; padding: 0; font-size: 8px; color: #adc0a6; }
 .hg-desktop-table.hg-table .hg-region-side-label b { font-size: 12px; color: #e4d39d; }
-.hg-desktop-table.hg-table .hg-region-characters { display: grid; grid-template-columns: repeat(var(--hg-card-count), minmax(0, 1fr)); align-items: center; justify-items: center; gap: 4px; flex: 1; min-height: 0; overflow: visible; padding: 2px 5px 4px; }
+.hg-desktop-table.hg-table .hg-region-characters { display: grid; grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: max(var(--hg-piece-width), var(--hg-piece-height)); align-items: center; justify-items: center; justify-content: start; gap: 8px; flex: 1; min-height: calc(max(var(--hg-piece-width), var(--hg-piece-height)) + 24px); overflow-x: auto; overflow-y: hidden; padding: 10px 8px 13px; scrollbar-width: thin; scrollbar-color: #b9a371 #172b23; }
 .hg-desktop-table.hg-table .hg-region-vacant { align-self: center; grid-column: 1 / -1; font-size: 10px; color: #93a58c55; letter-spacing: 4px; border: 0; min-height: 0; padding: 0; }
 .hg-desktop-table.hg-table .hg-region-center { display: grid; grid-template-columns: 25px minmax(0, 1fr) 28px; grid-template-rows: 33px 15px; gap: 0 7px; padding: 7px 9px; border: 1px solid #b8aa83; border-radius: 5px; margin: 0 8px; min-width: 0; width: auto; height: 65px; background: linear-gradient(125deg, #dddbc3, #bcbda0); color: #2c4033; box-shadow: 2px 3px 5px #07140e66; text-align: left; }
 .hg-desktop-table.hg-table .hg-region-number { font-family: Georgia, serif; font-size: 24px; color: #51604b; padding: 0; line-height: 1.2; }
@@ -179,7 +179,7 @@
 .hg-desktop-table.hg-table .hg-region-contest-icons b { border: 0; min-width: 0; font-size: 10px; margin: 0; padding: 0; }
 .hg-desktop-table.hg-table .hg-region-contest-icons i { font-style: normal; color: #9fb597; }
 /* A fan reserves half the widest card footprint at both ends, including tapped cards. */
-.hg-desktop-table.hg-table .hg-region-characters { padding-inline: calc(max(var(--hg-piece-width), var(--hg-piece-height)) / 2); }
+.hg-desktop-table.hg-table .hg-region-characters { padding-inline: 8px; }
 .hg-desktop-table.hg-table .hg-assets { --hg-asset-width: 52px; --hg-asset-height: 62px; height: var(--hg-asset-height); padding-inline: calc(max(var(--hg-asset-width), var(--hg-asset-height)) / 2); gap: 2px; justify-items: center; }
 .hg-desktop-table.hg-table .hg-mat-assets .hg-card { --hg-piece-width: var(--hg-asset-width); --hg-piece-height: var(--hg-asset-height); }
 .hg-desktop-table.hg-table .hg-hand-dock .hg-hand { height: var(--hg-piece-height); }
