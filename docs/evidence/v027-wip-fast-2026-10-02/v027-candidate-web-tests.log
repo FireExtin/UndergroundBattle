@@ -1,0 +1,18 @@
+
+> undergroundbattle-web@0.1.0 test
+> vitest --run
+
+
+ RUN  v4.1.2 /workspace/hegemony-v027-candidate-20261002/web
+
+
+ Test Files  18 passed (18)
+      Tests  160 passed (160)
+   Start at  22:30:09
+   Duration  19.06s (transform 1.89s, setup 3.76s, import 2.59s, tests 23.39s, environment 19.92s)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

@@ -1,0 +1,22 @@
+{
+  "originalCommit": "be93de3805ee53676242043ccb4bd91137a6589a",
+  "projectId": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+  "archiveSha256": "164117652c3d5ee4ff28723624c17e201b665eb43ae7642d3d467a5fbf475503",
+  "compressedBytes": 13733988,
+  "fileCount": 57,
+  "expandedFileBytes": 24335355,
+  "wasmFileCount": 7,
+  "wasmSha256": [
+    "21169e9d579886a55474b21aa506a4a9adca779428d7d11f2e966ae077656198",
+    "22299f6db9923a93ea7da7bd742afbf0a0b1e4de4ff3c41bd99f16860df3a971",
+    "2d5dcbaae76aa5706fa77af6747068e94da39654d25df3e764efa48e73905089",
+    "a6366ef6bc7df03ba666b33286d3a01c412ac6bf779d6396fcbf6affcdc43966",
+    "b5e0070333a71ff5b01f31406118f523af473c0bb96fb732d3276d3855d7daae",
+    "d4a9d88fe3c44d94da938c0351a4f1654d72514568c9f927fecd6d2f9f3ded3f",
+    "fcf7f714a9b09f566202c0a8b00571c0da55dfa255793f2cffd908003f6d660f"
+  ],
+  "siteSourcePushed": false,
+  "savedVersionCreated": false,
+  "deploymentRequested": false,
+  "stageScope": "bounded standalone source plus official bundle build/package, parent review only"
+}

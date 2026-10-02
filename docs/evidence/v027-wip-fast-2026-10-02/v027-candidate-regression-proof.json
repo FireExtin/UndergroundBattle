@@ -1,0 +1,44 @@
+{
+  "native": {
+    "unit": 65,
+    "integration": 32,
+    "total": 97,
+    "passed": true
+  },
+  "web": {
+    "files": 18,
+    "tests": 160,
+    "passed": true
+  },
+  "worker": {
+    "tests": 16,
+    "passed": true
+  },
+  "parity": {
+    "ok": true,
+    "wasmBytes": 1593545,
+    "transitions": 591,
+    "projections": 1889,
+    "quotes": 1,
+    "rejectedCommands": 6,
+    "choiceKinds": [
+      "investigation",
+      "mulligan",
+      "region_return",
+      "search",
+      "target",
+      "trigger"
+    ],
+    "slowestFixtureStepMs": 17.47,
+    "opaqueState": true,
+    "maximumU64SeedExact": true,
+    "nativeWasmStateAndViewsMatch": true
+  },
+  "build": {
+    "officialBundleBuild": true,
+    "officialBundlePackage": true,
+    "sourcePushed": false,
+    "savedVersion": false,
+    "deploy": false
+  }
+}

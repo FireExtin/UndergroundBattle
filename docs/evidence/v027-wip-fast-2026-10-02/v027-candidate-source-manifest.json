@@ -1,0 +1,15 @@
+{
+  "rust-game/data/cards.json": "155b0616cd1dd8f185d1388d7b7b1fa6eb6701b5ae052cb673deaccdb9f730d7",
+  "rust-game/src/attributes.rs": "97bf74643711a1868ec3c39494386da28e3779ccc87e3428b2322a7fd719858e",
+  "rust-game/src/play_sources.rs": "f1a80f2f4d34e2b4c61336b176e180dbca7551fbd82e752d3c80757418638dfd",
+  "rust-game/src/engine.rs": "e603426bae7e683e69c648c5adc1d8b8d3b80f11006b7d9a0b818cc4eeb048f3",
+  "rust-game/src/rules.rs": "c40e06864155107f44baf3d92ff3829d56c228594f8fbd135e20192ab4ea2010",
+  "rust-game/src/model.rs": "0d2cb13698a302f24eef9212d23403cd4405092706f8617050d55e16bfe16355",
+  "src/kernel.mjs": "101fdf668571e2aeeb1dfac9d47009281fd03e1cc70aa468db96829e6b47aaae",
+  "src/kernel-router.mjs": "e163dd6e984b7ac2036547f14cc4a49d54ce4aed30676a50f4d082bfa134ad77",
+  "src/service.mjs": "757930aad47a30dad7cd880b504b2c1a7b7a8c5a47905b6fba6f2f2647f88c02",
+  "src/store.mjs": "39d50fc38e515a959d51f13a5673f5b3603edbc420b120c2326f49607f66d4d9",
+  "web/src/game/table-desktop.css": "549142461f0ac1ca70649d29dc732665de0e60aeb3cce82989e093d58e519c55",
+  "web/src/game/useGame.ts": "6e3dd4d9739a3e8bc4a7c304b1770d3fbfb694f020b31a6169debe0b2389db37",
+  "web/src/game/cardScans.ts": "8a25c1d25ee5fae81b33cb2e271bfc3c61155dad31a9e879e4ab951ee74542ec"
+}

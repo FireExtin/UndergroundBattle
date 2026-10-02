@@ -1,0 +1,41 @@
+
+> test
+> node --test test/*.test.mjs
+
+✔ real workerd/WASM with D1 SQLite: concurrency, receipts, rollback and reopen (10136.691373ms)
+ℹ Provider emulation only; remote Cloudflare D1 acceptance is still required. Persisted at /tmp/hegemony-worker-d1-PxjsNz
+✔ real kernels preserve their full version tuple and reject unknown persisted identities (197.736863ms)
+✔ recovering a paid response receipt precedes all later clock evaluation (27.837043ms)
+✔ a matching-version GET persists an expired window before deciding to return 204 (3.585742ms)
+✔ an expired response commits only the system tick and never an accepted user receipt (1.417144ms)
+✔ a CAS conflict retries Begin with its original expected version and complete intent (2.224111ms)
+✔ a formal response cannot be rebased by the host after another seat wins CAS (1.602697ms)
+✔ client clock injection and nested Session commands are rejected before the reducer (0.633605ms)
+✔ quoting an active composition refreshes its clock and does not commit a draft or receipt (1.722825ms)
+✔ real Worker/D1 rust-v0.2.5 preserves composing, untimed choices, expiry and receipts through reopen (18805.434331ms)
+ℹ Synthetic local fixture; actual Worker/D1 writes, timers and reopen. No remote natural-play claim.
+✔ real Worker/D1 rust-v0.2.6 preserves composing, untimed choices, expiry and receipts through reopen (14991.062015ms)
+ℹ Synthetic local fixture; actual Worker/D1 writes, timers and reopen. No remote natural-play claim.
+✔ real Worker/D1 rust-v0.2.7 preserves composing, untimed choices, expiry and receipts through reopen (12115.689561ms)
+ℹ Synthetic local fixture; actual Worker/D1 writes, timers and reopen. No remote natural-play claim.
+hegemony storage retry { code: 'network_lost', retryable: true, attempt: 1 }
+✔ an ambiguous D1 commit retries the identical command and returns its receipt without applying twice (192.240274ms)
+✔ storage diagnostics expose fixed labels and do not retry quota, constraint or unknown failures (0.430766ms)
+hegemony storage retry { code: 'network_lost', retryable: true, attempt: 1 }
+hegemony storage retry { code: 'network_lost', retryable: true, attempt: 1 }
+hegemony storage retry { code: 'network_lost', retryable: true, attempt: 2 }
+✔ a failure before commit retries the original identity, while an exhausted failure never returns success (771.408435ms)
+✔ transient failures have a finite budget; HTTP rejections and unclassified failures are returned immediately (1.275116ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 46907.200778
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

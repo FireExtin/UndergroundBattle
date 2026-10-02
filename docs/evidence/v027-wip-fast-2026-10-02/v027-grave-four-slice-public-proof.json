@@ -1,0 +1,112 @@
+{
+  "roomId": "770437e0391cf84e654aada3",
+  "nativeUiOnly": true,
+  "uiPostCount": 897,
+  "observedPostResults": 897,
+  "allObservedPostResults200": true,
+  "committedCommands": 893,
+  "publicUiCommandTraceRows": 893,
+  "journalEntries": 902,
+  "revision": 902,
+  "graveChecks": [
+    {
+      "seat": 1,
+      "kind": "natural-grave-face-up-frame",
+      "version": 898,
+      "phase": "action",
+      "graveId": "i384",
+      "region": 2,
+      "controller": "p1",
+      "paidAssetIds": [
+        "i257",
+        "i265"
+      ],
+      "handUnchanged": true,
+      "otherSeatsAssetsUnchanged": true,
+      "passed": true
+    },
+    {
+      "seat": 1,
+      "kind": "natural-grave-fresh-face-up-entry",
+      "version": 902,
+      "instanceId": "i429",
+      "owner": "p1",
+      "controller": "p1",
+      "region": 2,
+      "passed": true
+    }
+  ],
+  "refreshAndReopenChecks": [
+    {
+      "kind": "four-seat-refresh-after-grave-entry",
+      "seat": 0,
+      "roomId": "770437e0391cf84e654aada3",
+      "version": 902,
+      "ownProjectionUnchanged": true,
+      "passed": true
+    },
+    {
+      "kind": "four-seat-refresh-after-grave-entry",
+      "seat": 1,
+      "roomId": "770437e0391cf84e654aada3",
+      "version": 902,
+      "ownProjectionUnchanged": true,
+      "passed": true
+    },
+    {
+      "kind": "four-seat-refresh-after-grave-entry",
+      "seat": 2,
+      "roomId": "770437e0391cf84e654aada3",
+      "version": 902,
+      "ownProjectionUnchanged": true,
+      "passed": true
+    },
+    {
+      "kind": "four-seat-refresh-after-grave-entry",
+      "seat": 3,
+      "roomId": "770437e0391cf84e654aada3",
+      "version": 902,
+      "ownProjectionUnchanged": true,
+      "passed": true
+    },
+    {
+      "kind": "four-seat-browser-and-service-reopen-after-grave-entry",
+      "seat": 0,
+      "roomId": "770437e0391cf84e654aada3",
+      "version": 902,
+      "ownProjectionUnchanged": true,
+      "passed": true
+    },
+    {
+      "kind": "four-seat-browser-and-service-reopen-after-grave-entry",
+      "seat": 1,
+      "roomId": "770437e0391cf84e654aada3",
+      "version": 902,
+      "ownProjectionUnchanged": true,
+      "passed": true
+    },
+    {
+      "kind": "four-seat-browser-and-service-reopen-after-grave-entry",
+      "seat": 2,
+      "roomId": "770437e0391cf84e654aada3",
+      "version": 902,
+      "ownProjectionUnchanged": true,
+      "passed": true
+    },
+    {
+      "kind": "four-seat-browser-and-service-reopen-after-grave-entry",
+      "seat": 3,
+      "roomId": "770437e0391cf84e654aada3",
+      "version": 902,
+      "ownProjectionUnchanged": true,
+      "passed": true
+    }
+  ],
+  "recoveryGamePosts": 0,
+  "originalFailedFourSeatEvidenceSha256": "eedab31fb23a8b24a57d39f3b4eae6ade1c5f5e6b941877cf575375a8b29d66f",
+  "originalFailedFourSeatEvidenceUnchanged": true,
+  "fullGameCompleted": false,
+  "oldSourceRoomsModified": false,
+  "stateInjection": false,
+  "apiGameMoves": false
+}

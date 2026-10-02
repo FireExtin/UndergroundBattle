@@ -20,6 +20,7 @@ class FullGame(AttachmentRun):
         assert not grave_slice or (grave_probe and mode=='teams')
         self.condition_checks=[]; self.condition_seen=set()
         self.expiry_races=[]
+        self.grave_recovery=[]
         self.resume=resume; self.previous=None
         if resume:
             self.previous=json.loads((self.output/'full-game-summary.json').read_text())
@@ -55,12 +56,37 @@ class FullGame(AttachmentRun):
             after=await self.view(seat)
             assert grave['cardId']=='JC085'
             assert all(c['instanceId']!=grave['instanceId'] for c in after['hand']+after['graveyard'])
-            assert after['stack'] and after['stack'][-1]['cardId']=='JC085'
-            exhausted=lambda v: sum(c['controller']==v['you'] and c['exhausted'] for c in v['assets'])
-            assert exhausted(after)-exhausted(before)==2
-            self.grave_entries.append({'seat':seat,'oldIds':{c['instanceId'] for r in before['regions'] for c in r['characters']},'region':action['region']})
-            self.grave_checks.append({'seat':seat,'kind':'natural-grave-face-up-frame','version':after['version'],'passed':True})
+            frame=after['stack'][-1]
+            assert frame['cardId']=='JC085' and frame['controller']==before['you']
+            assert before['phase']=='action' and before['hand']==after['hand']
+            prior={c['instanceId']:c for c in before['assets']}
+            paid=[c['instanceId'] for c in after['assets'] if c['controller']==before['you'] and c['exhausted'] and not prior[c['instanceId']]['exhausted']]
+            assert len(paid)==2
+            assert [c for c in before['assets'] if c['controller']!=before['you']]==[c for c in after['assets'] if c['controller']!=before['you']]
+            self.grave_entries.append({'seat':seat,'graveId':grave['instanceId'],'paidAssetIds':paid,'oldIds':{c['instanceId'] for r in before['regions'] for c in r['characters']},'region':action['region']})
+            self.grave_checks.append({'seat':seat,'kind':'natural-grave-face-up-frame','version':after['version'],'phase':before['phase'],'graveId':grave['instanceId'],'region':action['region'],'controller':frame['controller'],'paidAssetIds':paid,'handUnchanged':True,'otherSeatsAssetsUnchanged':True,'passed':True})
             await self.screenshot('natural-grave-paid-frame',seat)
+
+    async def verify_grave_recovery(self):
+        """Compare each seat with its own live view; never persist private hands."""
+        await self.sync(max(v['version'] for v in await self.views()))
+        baseline=await self.views()
+        assert all(not v['stack'] and not v.get('responseWindow') for v in baseline)
+        before_posts=self.post_count
+        stable=lambda v:{k:value for k,value in v.items() if k!='serverNowMs'}
+        async def check(kind):
+            await self.sync(baseline[0]['version'])
+            for seat,v in enumerate(await self.views()):
+                assert stable(v)==stable(baseline[seat]),f'{kind}: seat {seat} projection changed'
+                self.grave_recovery.append({'kind':kind,'seat':seat,'roomId':v['roomId'],'version':v['version'],'ownProjectionUnchanged':True,'passed':True})
+            assert self.post_count==before_posts,'Recovery issued a game POST'
+        await asyncio.gather(*(page.reload(wait_until='domcontentloaded') for page in self.pages))
+        await check('four-seat-refresh-after-grave-entry')
+        for context in self.contexts:await context.close()
+        self.contexts=[];self.pages=[]
+        self.service.restart()
+        for seat in range(4):await self.new_seat(seat)
+        await check('four-seat-browser-and-service-reopen-after-grave-entry')
     def policy(self,seat,view):
         if self.grave_probe:
             own_grave={c['instanceId'] for c in view.get('graveyard',[]) if c['owner']==view['you']}
@@ -108,7 +134,7 @@ class FullGame(AttachmentRun):
                 await self.sync(max(v['version'] for v in await self.views()))
             else:
                 await page.locator(f'.hg-deck[data-deck-id="{decks[0]}"]').click()
-                await page.get_by_label('你的称呼').fill(f'完整局{self.mode}甲')
+                await page.get_by_label('你的称呼').fill('墓地切片QA甲' if self.grave_slice else f'完整局{self.mode}甲')
                 if self.mode=='teams': await page.get_by_role('button',name=re.compile('四人协作')).click()
                 await page.get_by_role('button',name='创建牌桌 →',exact=True).click()
                 await page.wait_for_function('window.__cloudView?.status === "lobby"')
@@ -117,7 +143,7 @@ class FullGame(AttachmentRun):
                     page=await self.new_seat(seat)
                     await page.locator(f'.hg-deck[data-deck-id="{decks[seat]}"]').click()
                     await page.get_by_role('button',name='邀请码加入',exact=True).click()
-                    await page.get_by_label('你的称呼').fill(f'完整局{self.mode}{seat+1}')
+                    await page.get_by_label('你的称呼').fill(f'墓地切片QA{seat+1}' if self.grave_slice else f'完整局{self.mode}{seat+1}')
                     await page.get_by_label('邀请码',exact=True).fill(invite)
                     await page.get_by_role('button',name='加入牌桌 →',exact=True).click()
                     await page.wait_for_function('window.__cloudView?.status === "lobby"')
@@ -135,10 +161,13 @@ class FullGame(AttachmentRun):
                         v=views[entry['seat']]
                         entered=next(c for c in v['regions'][entry['region']]['characters'] if c['instanceId'] not in entry['oldIds'] and c.get('cardId')=='JC085' and c['controller']==v['you'])
                         assert not entered['faceDown']
-                        self.grave_checks.append({'seat':entry['seat'],'kind':'natural-grave-fresh-face-up-entry','version':v['version'],'passed':True})
+                        assert entered['owner']==v['you'] and entered['instanceId']!=entry.get('graveId')
+                        assert all(c['exhausted'] for c in v['assets'] if c['instanceId'] in entry.get('paidAssetIds',[]))
+                        self.grave_checks.append({'seat':entry['seat'],'kind':'natural-grave-fresh-face-up-entry','version':v['version'],'instanceId':entered['instanceId'],'owner':entered['owner'],'controller':entered['controller'],'region':entry['region'],'passed':True})
                     self.grave_entries.clear()
                 if self.grave_slice and any(c['kind']=='natural-grave-fresh-face-up-entry' for c in self.grave_checks):
                     await self.screenshot('natural-four-seat-grave-proved')
+                    await self.verify_grave_recovery()
                     result={'passed':True};break
                 if latest['status']=='finished':
                     await self.screenshot('complete-game')
@@ -189,7 +218,7 @@ class FullGame(AttachmentRun):
             if self.pages: await self.screenshot('full-game-failure')
         finally:
             v=await self.view(0) if self.pages else None
-            result.update(testType='bounded-natural-four-seat-grave-ui' if self.grave_slice else 'complete-natural-desktop-ui-game',mode=self.mode,stateInjection=False,apiMoves=False,uiPostCount=self.post_count,uiPostBudget=self.post_limit,browserErrors=self.errors,coverage=dict(self.coverage),graveChecks=self.grave_checks,conditionChecks=self.condition_checks,expiryRaces=self.expiry_races,final=public_view(v),roomId=v['roomId'] if v else None,durationSeconds=round(time.monotonic()-start,2),resumedExistingRoom=self.resume,priorUiPostCount=self.previous['uiPostCount'] if self.previous else 0,graveSliceOnly=self.grave_slice,completeGame=v['status']=='finished' if v else False,pendingGraveEntries=[{**e,'oldIds':sorted(e['oldIds'])} for e in self.grave_entries])
+            result.update(testType='bounded-natural-four-seat-grave-ui' if self.grave_slice else 'complete-natural-desktop-ui-game',mode=self.mode,stateInjection=False,apiMoves=False,uiPostCount=self.post_count,uiPostBudget=self.post_limit,browserErrors=self.errors,coverage=dict(self.coverage),graveChecks=self.grave_checks,graveRecovery=self.grave_recovery,postResults=self.post_results,conditionChecks=self.condition_checks,expiryRaces=self.expiry_races,final=public_view(v),roomId=v['roomId'] if v else None,durationSeconds=round(time.monotonic()-start,2),resumedExistingRoom=self.resume,priorUiPostCount=self.previous['uiPostCount'] if self.previous else 0,graveSliceOnly=self.grave_slice,completeGame=v['status']=='finished' if v else False,pendingGraveEntries=[{**e,'oldIds':sorted(e['oldIds'])} for e in self.grave_entries])
             write_json(self.output/'full-game-summary.json',result)
             for c in self.contexts: await c.close()
         print(json.dumps({'mode':self.mode,'passed':result['passed'],'posts':self.post_count,'failure':result.get('failure'),'roomId':result['roomId']}),flush=True)
