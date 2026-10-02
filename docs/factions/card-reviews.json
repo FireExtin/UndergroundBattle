@@ -45,36 +45,44 @@
       "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
     },
     "BQ043": {
-      "evidenceId": "card-BQ043",
       "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ043",
       "verifiedFields": {
         "name": "繁荣者伊森哈德",
         "colorKey": "红",
         "basicType": "角色"
       },
-      "abilitySummary": "核心修格斯角色；检索任务置顶；赢任务抓牌及名誉；核心生成触手。",
+      "abilitySummary": "进场触发 从你的牌库中寻找一张任务牌，洗牌后展示该牌并将其置于你的牌库顶。；触发 当你赢得一个任务地区时，抓一张牌，并获得1名誉点。；核心能力图标：在随机地区生成一个触手指示物角色。",
       "confirmedMechanismIds": [
         "core",
         "task",
+        "deckChoice",
         "token",
-        "deckChoice"
+        "uniqueInPlay"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
     },
     "BQ068": {
-      "evidenceId": "card-BQ068",
       "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ068",
       "verifiedFields": {
         "name": "易洛魁遗族祭司",
         "colorKey": "白",
         "basicType": "角色"
       },
-      "abilitySummary": "本方角色死亡预测1；墓地角色牌置底作费用修正隐秘对抗。",
+      "abilitySummary": "触发 当一个本方角色死亡时，预测1。；快速行动 横置：将本方墓地中的一张角色牌置于你的牌库底。本回合中，下一次隐秘对抗时你所展示的牌获得地区势力+1。",
       "confirmedMechanismIds": [
         "deckChoice",
-        "mysticContest"
+        "priority",
+        "exhaust",
+        "graveRecovery",
+        "mysticContest",
+        "starlightInfluence",
+        "temporaryIcons"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
     },
     "BQ097": {
       "evidenceId": "card-BQ097",
@@ -6669,6 +6677,668 @@
         "blood",
         "mysticContest",
         "starlightInfluence"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ039": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ039",
+      "verifiedFields": {
+        "name": "恫吓之瞳",
+        "colorKey": "蓝",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标角色；触发 当你赢得受此结附的角色所参与的战斗对抗时，目标敌方玩家弃一张手牌。；神秘学博弈②。（手牌行动②，从你手中弃掉此牌：进行一次隐秘对抗。）",
+      "confirmedMechanismIds": [
+        "attachment",
+        "confrontation",
+        "deckChoice",
+        "handAbility",
+        "mysticContest"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ040": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ040",
+      "verifiedFields": {
+        "name": "鲜血",
+        "colorKey": "蓝",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标吸血鬼角色；持续 受此结附的角色获得防御+1和永久战斗1。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "blood",
+        "continuous"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ041": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ041",
+      "verifiedFields": {
+        "name": "欢宴",
+        "colorKey": "蓝",
+        "basicType": "附属"
+      },
+      "abilitySummary": "撤回；结附于目标地区；触发 每当一个名为鲜血的附属结附于本地区的本方角色上时，除非目标敌方玩家支付②，否则令其弃一张手牌。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "combatTraits",
+        "blood",
+        "deckChoice",
+        "priority"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ042": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ042",
+      "verifiedFields": {
+        "name": "矛盾体",
+        "colorKey": "红",
+        "basicType": "角色"
+      },
+      "abilitySummary": "灵体；时间标志1；行动 自矛盾体上移除一个时间标志：消灭目标结附于本地区或秘社上的附属。该能力每回合只能发动一次。",
+      "confirmedMechanismIds": [
+        "spirit",
+        "timeDestroy",
+        "attachment",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ044": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ044",
+      "verifiedFields": {
+        "name": "夷灭者厄贝尼亚",
+        "colorKey": "红",
+        "basicType": "角色"
+      },
+      "abilitySummary": "触发 当你牺牲一个角色时，你可以支付③；若你如此做，敌方玩家牺牲一个角色或附属。本方秘社上每有一个失控标志，你可以少支付①。；核心能力图标：牺牲一个角色，抓一张牌，遏制1。",
+      "confirmedMechanismIds": [
+        "core",
+        "sacrifice",
+        "costReduction",
+        "deckChoice",
+        "repress",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ045": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ045",
+      "verifiedFields": {
+        "name": "追踪者赫卡忒",
+        "colorKey": "红",
+        "basicType": "角色"
+      },
+      "abilitySummary": "护盾1；行动②，横置一个本方触手角色：消灭其上有锁定标志的目标角色或暗藏者，你获得1名誉点。；核心能力图标：在目标角色或暗藏者上放置一个锁定标志。遏制1。",
+      "confirmedMechanismIds": [
+        "core",
+        "shield",
+        "exhaust",
+        "lock",
+        "hidden",
+        "repress",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ046": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ046",
+      "verifiedFields": {
+        "name": "探巡者莫佳娜",
+        "colorKey": "红",
+        "basicType": "角色"
+      },
+      "abilitySummary": "行动 支付1名誉点：将你牌库底的一张牌置于手中。该能力每回合只能发动一次。；核心能力图标：预测3。",
+      "confirmedMechanismIds": [
+        "core",
+        "deckChoice",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ047": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ047",
+      "verifiedFields": {
+        "name": "灭世魔",
+        "colorKey": "红",
+        "basicType": "角色"
+      },
+      "abilitySummary": "隐秘地区势力+3；传闻；杀伤1；进场强制触发 毁灭本地区。若本方秘社为末日钟，则每位玩家各牺牲四个资产。",
+      "confirmedMechanismIds": [
+        "starlightInfluence",
+        "rumor",
+        "combatTraits",
+        "timeDestroy",
+        "sacrifice",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ048": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ048",
+      "verifiedFields": {
+        "name": "位格压迫",
+        "colorKey": "红",
+        "basicType": "事务"
+      },
+      "abilitySummary": "快速行动 选择一项：重置本方核心角色，并在其上放置一个永久战斗1能力图标标志；对本方核心角色或触手角色所在地区的目标角色造成1点伤害；发动一次核心能力。",
+      "confirmedMechanismIds": [
+        "core",
+        "priority",
+        "exhaust",
+        "continuous"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ049": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ049",
+      "verifiedFields": {
+        "name": "吞噬蔓延",
+        "colorKey": "红",
+        "basicType": "事务"
+      },
+      "abilitySummary": "快速行动 选择一项：牺牲一个角色，你获得4名誉点；本方核心角色和触手角色获得机动直到回合结束，你获得1名誉点；在目标地区生成一个触手指示物角色，若该地区是本方任务地区，在该地区上放置一个本方势力标志。",
+      "confirmedMechanismIds": [
+        "core",
+        "priority",
+        "sacrifice",
+        "mobility",
+        "token",
+        "task",
+        "confrontation"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ050": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ050",
+      "verifiedFields": {
+        "name": "破坏欲",
+        "colorKey": "红",
+        "basicType": "事务"
+      },
+      "abilitySummary": "修格斯秘社限定；非资产；额外费用 若你操控本方核心角色，打出破坏欲的费用减少③。；行动 选择一项或多项：对目标角色造成1点伤害；消灭结附于敌方秘社的目标附属。",
+      "confirmedMechanismIds": [
+        "core",
+        "society",
+        "nonAsset",
+        "costReduction",
+        "attachment"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ051": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ051",
+      "verifiedFields": {
+        "name": "大暴走",
+        "colorKey": "红",
+        "basicType": "事务"
+      },
+      "abilitySummary": "修格斯秘社限定；行动 消灭本方核心角色和触手角色所在地区上的所有非核心角色和暗藏者。在本方秘社上放置若干个失控标志直到其数量为三个。",
+      "confirmedMechanismIds": [
+        "core",
+        "society",
+        "hidden",
+        "timeDestroy"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ052": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ052",
+      "verifiedFields": {
+        "name": "伊波·纳契的疯狂辞典",
+        "colorKey": "红",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于本方秘社；准备步骤触发 在随机地区上生成一个触手指示物角色。；持续 若本方核心角色在场上，或本方秘社上有隐秘标志，则所有本方触手角色获得永久势力1。；行动 牺牲三个本方触手角色：将本方核心角色从核心区放置进场并置于随机地区。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "core",
+        "society",
+        "token",
+        "mysticContest",
+        "continuous",
+        "sacrifice",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ053": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ053",
+      "verifiedFields": {
+        "name": "老看守",
+        "colorKey": "灰",
+        "basicType": "角色"
+      },
+      "abilitySummary": "公开；护卫1；进场触发；离场触发 从本方秘社上移除一个失控标志。",
+      "confirmedMechanismIds": [
+        "public",
+        "combatTraits",
+        "core",
+        "society"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ054": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ054",
+      "verifiedFields": {
+        "name": "沙地特种兵",
+        "colorKey": "灰",
+        "basicType": "角色"
+      },
+      "abilitySummary": "进场触发 横置本地区的目标暗藏者。；手牌触发 当你从手中弃掉沙地特种兵时，你可以在目标角色或暗藏者上放置一个锁定标志。",
+      "confirmedMechanismIds": [
+        "exhaust",
+        "hidden",
+        "handAbility",
+        "lock"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ055": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ055",
+      "verifiedFields": {
+        "name": "研究员戴维斯",
+        "colorKey": "灰",
+        "basicType": "角色"
+      },
+      "abilitySummary": "公开；持续 打出或付费现身本方核心角色的费用减少①。；持续 在进行隐秘对抗时，若本方核心角色在场，你所展示的牌获得地区势力+3。",
+      "confirmedMechanismIds": [
+        "public",
+        "core",
+        "costReduction",
+        "mysticContest",
+        "starlightInfluence",
+        "temporaryIcons",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ056": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ056",
+      "verifiedFields": {
+        "name": "便衣警探",
+        "colorKey": "灰",
+        "basicType": "角色"
+      },
+      "abilitySummary": "持续 若本地区有具有锁定标志的敌方角色或暗藏者，便衣警探获得临时调查1。；触发 当本方核心角色进场时，在目标角色或暗藏者上放置一个锁定标志，然后遏制1。",
+      "confirmedMechanismIds": [
+        "lock",
+        "hidden",
+        "core",
+        "repress",
+        "continuous",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ057": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ057",
+      "verifiedFields": {
+        "name": "皮特·冈萨雷斯",
+        "colorKey": "灰",
+        "basicType": "角色"
+      },
+      "abilitySummary": "公开；撤回；触发 当敌方玩家打出一张附属时，除非他额外支付②，否则你可以抓一张牌。；资产区行动 支付3名誉点：将皮特·冈萨雷斯从本方资产区放置进场并置于目标地区。",
+      "confirmedMechanismIds": [
+        "public",
+        "combatTraits",
+        "attachment",
+        "priority",
+        "deckChoice",
+        "core",
+        "temporaryIcons",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ058": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ058",
+      "verifiedFields": {
+        "name": "控制小组",
+        "colorKey": "灰",
+        "basicType": "角色"
+      },
+      "abilitySummary": "进场触发 从你的牌库中寻找一张任务牌，展示该牌后置于你的手中，然后洗牌。；触发 当你赢得一个地区时，你可以将位于该地区的本方核心角色移动至相邻地区，而非置于牌库底。；持续 本方核心角色获得永久调查1、永久战斗1和机动。",
+      "confirmedMechanismIds": [
+        "core",
+        "task",
+        "deckChoice",
+        "mobility",
+        "continuous",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ059": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ059",
+      "verifiedFields": {
+        "name": "伊尔级战斗集群",
+        "colorKey": "灰",
+        "basicType": "角色"
+      },
+      "abilitySummary": "公开；杀伤4；护卫4；护盾2；快速行动X，横置：从你的牌库中寻找一张印刷费用为X的士兵、工程师或机械角色牌，将其放置进场并置于本地区，然后洗牌。X不能大于5。；持续 本地区的所有本方角色获得撤回。",
+      "confirmedMechanismIds": [
+        "public",
+        "combatTraits",
+        "shield",
+        "priority",
+        "exhaust",
+        "deckChoice",
+        "continuous",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ061": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ061",
+      "verifiedFields": {
+        "name": "钻研故纸堆",
+        "colorKey": "灰",
+        "basicType": "事务"
+      },
+      "abilitySummary": "隐秘地区势力+5；行动 将你墓地中的计划、任务或命令牌置于你的手中。",
+      "confirmedMechanismIds": [
+        "starlightInfluence",
+        "graveRecovery",
+        "plan",
+        "task",
+        "core"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ062": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ062",
+      "verifiedFields": {
+        "name": "信息灌注",
+        "colorKey": "灰",
+        "basicType": "事务"
+      },
+      "abilitySummary": "行动 选择一项：在本方核心角色或触手角色上放置一个永久调查1能力图标标志，预测2；在目标角色或暗藏者上放置一个锁定标志，抓一张牌；进行一次隐秘对抗，在本次隐秘对抗中你所展示的命令牌获得地区势力+4。",
+      "confirmedMechanismIds": [
+        "core",
+        "continuous",
+        "deckChoice",
+        "lock",
+        "hidden",
+        "mysticContest",
+        "starlightInfluence"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ063": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ063",
+      "verifiedFields": {
+        "name": "神话威严",
+        "colorKey": "灰",
+        "basicType": "事务"
+      },
+      "abilitySummary": "修格斯秘社限定；行动 选择一项：将所有本方核心角色和触手角色所在地区的角色翻面为暗藏者，遏制1；将所有本方核心角色和触手角色所在地区的暗藏者移回其拥有者手上，遏制1；发动两次核心能力，遏制1。",
+      "confirmedMechanismIds": [
+        "core",
+        "society",
+        "hidden",
+        "repress"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ064": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ064",
+      "verifiedFields": {
+        "name": "提取样本",
+        "colorKey": "灰",
+        "basicType": "事务"
+      },
+      "abilitySummary": "隐秘地区势力+4；行动 从本方秘社上移除所有失控标志。每有一个标志因此被移除，就抓一张牌。",
+      "confirmedMechanismIds": [
+        "starlightInfluence",
+        "core",
+        "society",
+        "deckChoice"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ065": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ065",
+      "verifiedFields": {
+        "name": "计划：修格斯",
+        "colorKey": "灰",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于本方秘社；秘密计划；可推进；强制触发 达成推进时，牺牲计划：修格斯，将你的副名为修格斯的核心角色从本方核心区放置进场并置于目标地区，你可以在该角色上额外放置一个护盾标志。X等于该角色牌的印刷费用。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "society",
+        "plan",
+        "core",
+        "sacrifice",
+        "shield"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ066": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ066",
+      "verifiedFields": {
+        "name": "接头线人",
+        "colorKey": "灰",
+        "basicType": "附属"
+      },
+      "abilitySummary": "修格斯秘社限定；结附于本方秘社；进场触发 从你的牌库中寻找一张任务牌，将该牌放置进场，然后洗牌。；强制触发 当本方核心角色进入一个任务地区时，牺牲接头线人，在该地区上放置一个本方势力标志。",
+      "confirmedMechanismIds": [
+        "society",
+        "attachment",
+        "core",
+        "task",
+        "deckChoice",
+        "sacrifice",
+        "confrontation"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ067": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ067",
+      "verifiedFields": {
+        "name": "拟态",
+        "colorKey": "灰",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于本方秘社；持续 本方核心角色获得防御+1，然后本方核心区每有一个休整标志，就额外获得防御+1。；快速行动 支付1名誉点，牺牲拟态：本方核心角色获得屏障直到回合结束。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "core",
+        "continuous",
+        "priority",
+        "sacrifice",
+        "barrier"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ069": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ069",
+      "verifiedFields": {
+        "name": "忠心猎犬",
+        "colorKey": "白",
+        "basicType": "角色"
+      },
+      "abilitySummary": "不能被装备结附；护卫1；快速行动①，横置，牺牲忠心猎犬：若堆叠中的目标卡牌或能力以本方角色为目标，则终止之。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "combatTraits",
+        "priority",
+        "exhaust",
+        "sacrifice",
+        "cancel",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ070": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ070",
+      "verifiedFields": {
+        "name": "默温的无尽藏书",
+        "colorKey": "白",
+        "basicType": "角色"
+      },
+      "abilitySummary": "灵体；进场触发 选择封印在本方秘社上的目标牌，将该牌封印在默温的无尽藏书上。；快速行动 将一张封印在本方秘社上且名为精神锚点的牌洗入其拥有者的牌库：闪烁。",
+      "confirmedMechanismIds": [
+        "spirit",
+        "seal",
+        "priority",
+        "deckChoice",
+        "blink",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ071": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ071",
+      "verifiedFields": {
+        "name": "老迈的考古学家",
+        "colorKey": "白",
+        "basicType": "角色"
+      },
+      "abilitySummary": "公开；快速行动 牺牲老迈的考古学家：选择目标本方角色，本回合中当该角色死亡时，将其移回场上，置于其之前所在的地区并横置。",
+      "confirmedMechanismIds": [
+        "public",
+        "priority",
+        "sacrifice",
+        "graveRecovery",
+        "exhaust",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ072": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ072",
+      "verifiedFields": {
+        "name": "卢锡安博士",
+        "colorKey": "白",
+        "basicType": "角色"
+      },
+      "abilitySummary": "进场触发 进行一次隐秘对抗。本次隐秘对抗中你所展示的白色和黑色派系牌获得地区势力+2。；结束步骤触发 本回合中，若你曾赢得隐秘对抗，从你牌库顶的五张牌中寻找一张研究附属牌或副名为圣甲虫产业的附属牌，将其放置进场并结附于本地区，将其余的牌洗回牌库。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "starlightInfluence",
+        "deckChoice",
+        "attachment",
+        "temporaryIcons",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ073": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ073",
+      "verifiedFields": {
+        "name": "安宁",
+        "colorKey": "白",
+        "basicType": "事务"
+      },
+      "abilitySummary": "非资产；只能在行动阶段打出。；快速行动 将具有永久战斗或临时战斗能力图标的目标角色洗入其拥有者的牌库。",
+      "confirmedMechanismIds": [
+        "nonAsset",
+        "priority",
+        "deckChoice",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ074": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ074",
+      "verifiedFields": {
+        "name": "病理探究",
+        "colorKey": "白",
+        "basicType": "事务"
+      },
+      "abilitySummary": "非资产；行动 抓三张牌，然后从你手中弃一张牌。；神秘学博弈②。（手牌行动②，从你手中弃掉此牌：进行一次隐秘对抗。）",
+      "confirmedMechanismIds": [
+        "nonAsset",
+        "deckChoice",
+        "handAbility",
+        "mysticContest"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ075": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ075",
+      "verifiedFields": {
+        "name": "病理化验室",
+        "colorKey": "白",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标地区；准备步骤触发 若本方墓地中有七张或更多牌，抓一张牌。；手牌触发 当对手的卡牌或能力令你弃掉病理化验室时，你可以将其放置进场，且置于地区一。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "deckChoice",
+        "handAbility",
+        "graveRecovery"
       ],
       "editionStatus": "pinnedImageVariant",
       "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
