@@ -19,4 +19,8 @@
 
 B06/B07研究原稿已经合入。准确研究分支`097d9e6948636ce4b599d7ad7a11080bb7a4b651`隔离快照的生成器检查、来源校验、62项数据测试通过。最新游戏主线对其旧29定义审计产生代码/目录差异及2项重建守卫失败，原样保留；没有重写历史研究快照或由此开放未实现卡。
 
-私有云端证据位于`/workspace/.private-validation/hegemony-v024-evidence`、`hegemony-v024-web-final-{tests,build}.log`、`hegemony-v024-sites-{build,final-tests}.log`与`/workspace/hegemony-table-ui-preview/evidence`。真实0.2.4浏览器牌组流程、远程发布和旧生产房兼容正在执行，完成后补充精确结果。5秒响应意图尚未在本版本实现。
+真实0.2.4云端Chromium短流程通过：房间`1aeec9c7d331f3a74e31641c`最终v9，两桌面独立profile，以10次实际UI POST（2次创建/加入、8次游戏命令）完成含事务预组复制、命名/保存/刷新、不同自组入席、大厅保存不改冻结副本、明确选用取消ready、开局、再调度中原席位/choiceId/有序候选刷新恢复，并完成双方再调度。页面错误、console错误、requestfailed及HTTP>=400均为0。首次尝试在创建任何房间前因测试label定位超时而停止；失败记录保留，不计为产品通过。证据`/workspace/scratch/hegemony-custom-decks-v024-2026-10-02/summary.json`。
+
+原随机native3局自然JC058现身进入目标选择，发现匿名同名候选缺少公开归属/地区提示。普通地区目标已补目标序号、拥有者及不同操控者、地区编号；不改变CardContent身份过滤、选项ID或付款行为。31项相关组件检查通过，实际多人候选交互由明确合成组件测试验证，不能冒充自然多人场面。
+
+私有云端证据位于`/workspace/.private-validation/hegemony-v024-evidence`、`hegemony-v024-web-final-{tests,build}.log`、`hegemony-v024-sites-{build,final-tests}.log`与`/workspace/hegemony-table-ui-preview/evidence`。远程发布及旧生产房兼容正在执行；5秒响应意图尚未在本版本实现。
