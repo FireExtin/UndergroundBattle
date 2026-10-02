@@ -36,7 +36,7 @@ export default {
       if (operation === 'events') throw new HttpError(410, '本服务按版本轮询同步，请刷新客户端。');
       throw new HttpError(405, '请求方法不支持');
     } catch (error) {
-      if (error instanceof HttpError) return json({ error: 'request_failed', message: error.message, ...(error.view ? { view: error.view } : {}) }, error.status);
+      if (error instanceof HttpError) return json({ error: error.status === 401 ? 'invalid_seat_token' : 'request_failed', message: error.message, ...(error.view ? { view: error.view } : {}) }, error.status);
       // No room state, command body, token, invite, or database error details are logged.
       console.error('hegemony persistence operation failed');
       return json({ error: 'storage_error', message: '牌桌服务暂不可用，未确认此操作。请使用原请求重试。' }, 503);

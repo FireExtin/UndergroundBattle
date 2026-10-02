@@ -92,4 +92,45 @@ describe('room lifecycle and reconciliation', () => {
     expect(polls).toHaveLength(2); expect(polls[1]).toContain('afterVersion=9');
     expect(result!.current.connection).toBe('online');
   });
+  it('preserves the occupied seat and pending command when the private Site requires login', async () => {
+    saveSession(session);
+    savePending({ roomId: session.roomId, commandId: 'preserve-after-login', expectedVersion: 1, action: { kind: 'pass' } });
+    vi.stubGlobal('fetch', vi.fn(async (url: string) => url === '/api/catalog' ? json(testCatalog) : json({ message: 'Sign in required' }, 403)));
+    const { result } = renderHook(useGame);
+    await waitFor(() => expect(result.current.connection).toBe('offline'));
+    expect(result.current.session).toEqual(session);
+    expect(JSON.parse(localStorage.getItem('hegemony.session.v1')!)).toEqual(session);
+    expect(JSON.parse(localStorage.getItem('hegemony.pending.v1')!).commandId).toBe('preserve-after-login');
+    expect(result.current.error).toContain('需要重新登录');
+  });
+  it('clears a seat only when the game service explicitly confirms an invalid seat token', async () => {
+    saveSession(session);
+    vi.stubGlobal('fetch', vi.fn(async (url: string) => url === '/api/catalog' ? json(testCatalog) : json({ error: 'invalid_seat_token', message: 'invalid' }, 401)));
+    const { result } = renderHook(useGame);
+    await waitFor(() => expect(result.current.session).toBeNull());
+    expect(localStorage.getItem('hegemony.session.v1')).toBeNull();
+    expect(result.current.error).toContain('无法恢复');
+  });
+  it('keeps the original command after a lost ACK followed by a login gate, then reconciles its receipt', async () => {
+    saveSession(session); const commands: Record<string, unknown>[] = []; let blocked = true;
+    vi.stubGlobal('fetch', vi.fn(async (url: string, init?: RequestInit) => {
+      if (url.endsWith('/commands')) {
+        commands.push(JSON.parse(String(init?.body)));
+        if (commands.length === 1) throw new Error('lost committed ACK');
+        return blocked ? json({ message: 'Sign in required' }, 403) : json({ ...testView, version: 2 });
+      }
+      return url === '/api/catalog' ? json(testCatalog) : json({ ...testView, version: 3 });
+    }));
+    const { result } = renderHook(useGame);
+    await waitFor(() => expect(result.current.view?.version).toBe(3));
+    await act(async () => { await result.current.act({ kind: 'pass' }); });
+    expect(commands).toHaveLength(2); expect(commands[0]).toEqual(commands[1]);
+    expect(result.current.uncertain).toBe(true);
+    expect(localStorage.getItem('hegemony.pending.v1')).not.toBeNull();
+    blocked = false;
+    await act(async () => { await result.current.act({ kind: 'deploy', cardId: 'do-not-send-new' }); });
+    expect(commands).toHaveLength(3); expect(commands[2]).toEqual(commands[0]);
+    expect(result.current.view?.version).toBe(3); expect(result.current.uncertain).toBe(false);
+    expect(localStorage.getItem('hegemony.pending.v1')).toBeNull();
+  });
 });
