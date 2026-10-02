@@ -3103,6 +3103,7 @@ mod tests {
             .iter()
             .any(|c| c.definition == "JC056" && c.face_down));
     }
+
     #[test]
     fn all_transaction_effects_and_recursion_death_choice() {
         let mut g = game("duel");
