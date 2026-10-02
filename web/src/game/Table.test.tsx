@@ -12,9 +12,38 @@ describe('playable table', () => {
     expect(screen.queryByRole('button', { name: '派遣到地区一' })).not.toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', { name: '查看无知路人' }));
     expect(screen.getAllByText('真实印刷文字').length).toBeGreaterThan(0);
-    fireEvent.click(screen.getByRole('button', { name: '派遣到地区一' }));
+    fireEvent.click(screen.getByRole('button', { name: '派遣到地区一 · 地区 1' }));
     expect(submit).toHaveBeenCalledWith(action);
     expect(screen.queryByRole('button', { name: '不相关行动' })).not.toBeInTheDocument();
+  });
+  it.each(['deploy', 'move'])('distinguishes two same-name destinations for %s and highlights only the intended region', kind => {
+    const submit = vi.fn();
+    const regions = [1, 2].map(index => ({ id: `new-york-${index}`, index, cardId: 'DQJC112', name: '纽约', threshold: 4, points: 4, influence: [0, 0], characters: [] }));
+    const actions = regions.map(region => ({ id: `${kind}-${region.index}`, kind, cardId: testCard.instanceId, region: region.index, label: `${kind === 'deploy' ? '派遣' : '移动'} 无知路人 → 纽约` }));
+    render(<Table view={{ ...testView, status: 'playing', regions, legalActions: actions }} catalog={testCatalog} busy={false} onAction={submit} />);
+    fireEvent.click(screen.getByRole('button', { name: '查看无知路人' }));
+    const second = screen.getByRole('button', { name: `${kind === 'deploy' ? '派遣' : '移动'} 无知路人 → 地区 2 · 纽约` });
+    const third = screen.getByRole('button', { name: `${kind === 'deploy' ? '派遣' : '移动'} 无知路人 → 地区 3 · 纽约` });
+    const region2 = screen.getByRole('article', { name: '地区 2 · 纽约' });
+    const region3 = screen.getByRole('article', { name: '地区 3 · 纽约' });
+    fireEvent.mouseEnter(second);
+    expect(region2).toHaveAttribute('data-region-targeted', 'true');
+    expect(region3).toHaveAttribute('data-region-targeted', 'false');
+    fireEvent.focus(third);
+    expect(region2).toHaveAttribute('data-region-targeted', 'false');
+    expect(region3).toHaveAttribute('data-region-targeted', 'true');
+    expect(third).toHaveAttribute('aria-controls', region3.id);
+    fireEvent.click(third);
+    expect(submit).toHaveBeenCalledExactlyOnceWith(actions[1]);
+  });
+  it('keeps region-scoped actions identifiable when the board has repeated world names', () => {
+    const submit = vi.fn();
+    const regions = [1, 2].map(index => ({ id: `new-york-${index}`, index, cardId: 'DQJC112', name: '纽约', threshold: 4, points: 4, influence: [0, 0], characters: [] }));
+    const action = { id: 'select-region-2', kind: 'privilege', region: 2, label: '选择纽约地区' };
+    render(<Table view={{ ...testView, status: 'playing', regions, legalActions: [action] }} catalog={testCatalog} busy={false} onAction={submit} />);
+    fireEvent.click(screen.getByRole('button', { name: '查看地区3 纽约' }));
+    fireEvent.click(screen.getByRole('button', { name: '选择纽约地区 · 地区 3 · 纽约' }));
+    expect(submit).toHaveBeenCalledExactlyOnceWith(action);
   });
   it('distinguishes waiting chooser from the priority holder', () => {
     render(<Table view={{ ...testView, status: 'playing', legalActions: [], waitingChoice: { playerId: 'p0', kind: 'investigation', title: '排列调查牌' } }} catalog={testCatalog} busy={false} onAction={vi.fn()} />);

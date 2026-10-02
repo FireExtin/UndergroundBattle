@@ -3,16 +3,22 @@ import type { Action, Catalog, SavedSession, Session, View } from './types';
 const STORAGE_KEY = 'hegemony.session.v1';
 const PENDING_KEY = 'hegemony.pending.v1';
 const ENTRY_KEY = 'hegemony.entry.v1';
+const SEATS_KEY = 'hegemony.seats.v1';
+const SCREEN_KEY = 'hegemony.screen.v1';
 export function newCommandId(): string {
   if (typeof crypto.randomUUID === 'function') return crypto.randomUUID();
   // getRandomValues also works on HTTP development hosts without randomUUID support.
   return Array.from(crypto.getRandomValues(new Uint8Array(16)), byte => byte.toString(16).padStart(2, '0')).join('');
 }
-export type PendingCommand = { roomId: string; commandId: string; expectedVersion: number; action: Action };
+export type PendingCommand = { roomId: string; seat?: number; commandId: string; expectedVersion: number; action: Action };
 export function readPending(): PendingCommand | null {
   try {
     const value = JSON.parse(localStorage.getItem(PENDING_KEY) || 'null');
-    if (value && typeof value.roomId === 'string' && typeof value.commandId === 'string' && typeof value.expectedVersion === 'number' && typeof value.action?.kind === 'string') return value;
+    if (value && typeof value.roomId === 'string' && typeof value.commandId === 'string' && typeof value.expectedVersion === 'number' && typeof value.action?.kind === 'string') {
+      // Older clients recorded no seat; their last saved session is the original actor.
+      const original = readSession();
+      return { ...value, seat: Number.isInteger(value.seat) ? value.seat : original && original.roomId === value.roomId ? original.seat : undefined };
+    }
   } catch { /* Browser storage is optional. */ }
   return null;
 }
@@ -40,11 +46,41 @@ export function readSession(): SavedSession | null {
   } catch { /* A corrupted or unavailable storage must not block the lobby. */ }
   return null;
 }
+export function readSavedSeats(): SavedSession[] {
+  let seats: SavedSession[] = [];
+  try {
+    const values = JSON.parse(localStorage.getItem(SEATS_KEY) || '[]');
+    if (Array.isArray(values)) seats = values.filter(value => value && typeof value.roomId === 'string'
+      && typeof value.token === 'string' && typeof value.inviteCode === 'string' && Number.isInteger(value.seat));
+  } catch { /* A damaged history must not hide the legacy saved seat. */ }
+  const current = readSession();
+  if (current && !seats.some(seat => seat.roomId === current.roomId && seat.seat === current.seat)) seats.push(current);
+  return seats;
+}
+export function returnToLobby() {
+  try { localStorage.setItem(SCREEN_KEY, 'lobby'); } catch { /* This tab can still return. */ }
+}
+export function readActiveSession(): SavedSession | null {
+  try { if (localStorage.getItem(SCREEN_KEY) === 'lobby') return null; } catch { /* Restore a saved seat when possible. */ }
+  return readSession();
+}
+export function forgetSavedSeat(session: SavedSession) {
+  const keep = readSavedSeats().filter(seat => seat.roomId !== session.roomId || seat.seat !== session.seat);
+  try {
+    localStorage.setItem(SEATS_KEY, JSON.stringify(keep));
+    const current = readSession();
+    if (current?.roomId === session.roomId && current.seat === session.seat) localStorage.removeItem(STORAGE_KEY);
+  } catch { /* The UI also removes the invalid seat from its own state. */ }
+}
 export function saveSession(session: SavedSession | null) {
   try {
-    if (session) localStorage.setItem(STORAGE_KEY, JSON.stringify({
-      roomId: session.roomId, inviteCode: session.inviteCode, token: session.token, seat: session.seat,
-    }));
+    if (session) {
+      const saved = { roomId: session.roomId, inviteCode: session.inviteCode, token: session.token, seat: session.seat };
+      const seats = readSavedSeats().filter(seat => seat.roomId !== saved.roomId || seat.seat !== saved.seat);
+      localStorage.setItem(SEATS_KEY, JSON.stringify([...seats, saved]));
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(saved));
+      localStorage.setItem(SCREEN_KEY, 'table');
+    }
     else localStorage.removeItem(STORAGE_KEY);
   } catch { /* The current session remains usable if browser storage is disabled. */ }
 }

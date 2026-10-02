@@ -1,6 +1,6 @@
 import { act, renderHook, waitFor } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { savePending, saveSession } from './api';
+import { readSavedSeats, savePending, saveSession } from './api';
 import { testCatalog, testView } from './testFixtures';
 import { newerView, useGame } from './useGame';
 
@@ -11,6 +11,7 @@ describe('room lifecycle and reconciliation', () => {
   it('never regresses a table when a delayed command returns behind a newer poll', () => {
     expect(newerView({ ...testView, version: 12 }, { ...testView, version: 9 }).version).toBe(12);
     expect(newerView(testView, { ...testView, version: 2 }).version).toBe(2);
+    expect(newerView({ ...testView, version: 12 }, { ...testView, you: 'p1', version: 9 }).you).toBe('p1');
   });
   it('creates a room with a curated deck and preserves only this seat for reload', async () => {
     const fetchMock = vi.fn(async (url: string) => url === '/api/catalog' ? json(testCatalog) : url === '/api/rooms' ? json({ ...session, view: testView }) : url.endsWith('/events') ? new Response(null) : json(testView));
@@ -38,6 +39,62 @@ describe('room lifecycle and reconciliation', () => {
     expect(result.current.view?.version).toBe(4);
     expect(result.current.error).toContain('已同步最新状态'); expect(result.current.uncertain).toBe(false);
   });
+  it('keeps an explicit return to lobby after reload and preserves the old seat when creating another room', async () => {
+    saveSession(session);
+    const next = { roomId: 'new-duel-room', inviteCode: 'DUEL', token: 'new-opaque-token', seat: 0 };
+    const oldView = { ...testView, mode: 'teams' };
+    const nextView = { ...testView, roomId: next.roomId, inviteCode: next.inviteCode, mode: 'duel' };
+    const requests: string[] = [];
+    vi.stubGlobal('fetch', vi.fn(async (url: string) => {
+      requests.push(url);
+      return url === '/api/catalog' ? json(testCatalog) : url === '/api/rooms' ? json({ ...next, view: nextView })
+        : json(url.includes(next.roomId) ? nextView : oldView);
+    }));
+    const first = renderHook(useGame);
+    await waitFor(() => expect(first.result.current.view?.mode).toBe('teams'));
+    act(() => first.result.current.leave());
+    expect(first.result.current.session).toBeNull(); first.unmount();
+    const reloaded = renderHook(useGame);
+    await waitFor(() => expect(reloaded.result.current.catalog).toEqual(testCatalog));
+    expect(reloaded.result.current.session).toBeNull();
+    expect(reloaded.result.current.resumeAvailable).toBe(true);
+    await act(async () => { await reloaded.result.current.create('甲', 'duel', 'watchers'); });
+    expect(reloaded.result.current.view?.mode).toBe('duel');
+    expect(readSavedSeats()).toEqual([session, next]);
+    act(() => reloaded.result.current.leave());
+    act(() => reloaded.result.current.resume(session));
+    await waitFor(() => expect(reloaded.result.current.view?.mode).toBe('teams'));
+    expect(reloaded.result.current.session).toEqual(session);
+    expect(requests.filter(url => url === '/api/rooms')).toHaveLength(1);
+  });
+  it('does not let an old in-flight state read pull a player back after returning to the lobby', async () => {
+    saveSession(session); let release: ((response: Response) => void) | undefined;
+    vi.stubGlobal('fetch', vi.fn((url: string) => url === '/api/catalog' ? Promise.resolve(json(testCatalog))
+      : new Promise<Response>(resolve => { release = resolve; })));
+    const { result } = renderHook(useGame);
+    await waitFor(() => expect(release).toBeDefined());
+    act(() => result.current.leave());
+    await act(async () => { release!(json(testView)); });
+    expect(result.current.session).toBeNull(); expect(result.current.view).toBeNull();
+    expect(result.current.savedSeats).toEqual([session]);
+  });
+  it('keeps an uncertain command for its old room and refuses to discard it when opening another table', async () => {
+    saveSession(session);
+    vi.stubGlobal('fetch', vi.fn(async (url: string) => {
+      if (url.endsWith('/commands')) throw new Error('lost acknowledgement');
+      return url === '/api/catalog' ? json(testCatalog) : json(testView);
+    }));
+    const { result } = renderHook(useGame);
+    await waitFor(() => expect(result.current.view).not.toBeNull());
+    await act(async () => { await result.current.act({ kind: 'pass' }); });
+    const original = localStorage.getItem('hegemony.pending.v1');
+    act(() => result.current.leave());
+    await act(async () => { await result.current.create('新桌', 'duel', 'watchers'); });
+    expect(result.current.session).toBeNull();
+    expect(result.current.error).toContain('旧牌桌还有待确认行动');
+    expect(localStorage.getItem('hegemony.pending.v1')).toBe(original);
+    expect(result.current.savedSeats).toEqual([session]);
+  });
   it('retries a lost acknowledgement with the same identity and blocks unresolved new commands', async () => {
     saveSession(session); const commands: Record<string, unknown>[] = []; let fail = true;
     vi.stubGlobal('fetch', vi.fn(async (url: string, init?: RequestInit) => {
@@ -53,6 +110,35 @@ describe('room lifecycle and reconciliation', () => {
     await act(async () => { await result.current.act({ kind: 'deploy', cardId: 'never-send-new' }); });
     expect(commands).toHaveLength(3); expect(commands[2]).toEqual(commands[0]);
     expect(result.current.uncertain).toBe(false); expect(localStorage.getItem('hegemony.pending.v1')).toBeNull();
+  });
+  it('keeps an uncertain command bound to its original seat when the same browser has two seats in one room', async () => {
+    const other = { ...session, seat: 1, token: 'other-seat-token' };
+    saveSession(other); saveSession(session);
+    const commands: { actor: string | undefined; body: unknown }[] = []; let fail = true;
+    vi.stubGlobal('fetch', vi.fn(async (url: string, init?: RequestInit) => {
+      const actor = (init?.headers as Record<string, string> | undefined)?.Authorization;
+      if (url.endsWith('/commands')) {
+        commands.push({ actor, body: JSON.parse(String(init?.body)) });
+        if (fail) throw new Error('lost acknowledgement');
+        return json({ ...testView, version: 2 });
+      }
+      return url === '/api/catalog' ? json(testCatalog) : json({ ...testView, you: actor === 'Bearer other-seat-token' ? 'p1' : 'p0' });
+    }));
+    const { result } = renderHook(useGame);
+    await waitFor(() => expect(result.current.view).not.toBeNull());
+    await act(async () => { await result.current.act({ kind: 'pass' }); });
+    const original = localStorage.getItem('hegemony.pending.v1');
+    expect(JSON.parse(original!).seat).toBe(0);
+    act(() => result.current.leave());
+    act(() => result.current.resume(other));
+    expect(result.current.session).toBeNull(); expect(result.current.error).toContain('原席位');
+    expect(localStorage.getItem('hegemony.pending.v1')).toBe(original); expect(commands).toHaveLength(2);
+    fail = false;
+    act(() => result.current.resume(session));
+    await waitFor(() => expect(result.current.uncertain).toBe(false));
+    expect(commands).toHaveLength(3); expect(commands[2]).toEqual(commands[0]);
+    expect(commands.every(command => command.actor === 'Bearer opaque-token')).toBe(true);
+    expect(result.current.view?.you).toBe('p0'); expect(localStorage.getItem('hegemony.pending.v1')).toBeNull();
   });
   it('confirms an interrupted persisted command after reload without regressing the current state', async () => {
     saveSession(session); const command = { roomId: session.roomId, commandId: 'persisted-original', expectedVersion: 1, action: { kind: 'pass' } };
