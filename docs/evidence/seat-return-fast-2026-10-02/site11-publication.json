@@ -1,0 +1,45 @@
+{
+  "implementationCommit": "7d7b4113dffb1010e096edd9782ae57d050eb316",
+  "source": {
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "checkout_path": "/workspace/hegemony-sites-deploy",
+    "commit_sha": "f1474c5c4ed009da78b076dc36af24a48879c2a7",
+    "archive": "/workspace/.private-validation/hegemony-v026-fast-evidence/site-seat-return.tar.gz"
+  },
+  "version": {
+    "id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_a33b579ae0d88191b1e006f324516f06",
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "version_number": 11,
+    "source": {
+      "commit_sha": "f1474c5c4ed009da78b076dc36af24a48879c2a7"
+    },
+    "archive_storage": {
+      "archive_format": "tar",
+      "sediment_file_id": "file_00000000bc2081f5b67330bfafd9a2ad",
+      "content_hash": "sha256:fecd9339ab5a45c9af07026c589bcbcf3d43b8946614d6e46a98720531f43e6c",
+      "size_bytes": 22087680,
+      "file_count": 54
+    },
+    "screenshot_url": null,
+    "deployment_id": null
+  },
+  "deployment": {
+    "id": "appgdep_6ac01d65f6a48191ba87e95da504650e",
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "title": "隐秘世界 · 霸权",
+    "version_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_a33b579ae0d88191b1e006f324516f06",
+    "type": "publish",
+    "status": "succeeded",
+    "url": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site",
+    "has_mcp": false,
+    "screenshot_asset_pointer": null,
+    "provider_deployment_id": "site---6abf7bf54a7481918a50e1ef1509ca68",
+    "failure_message": null,
+    "env_set_revision": 0,
+    "updated_at": "2026-10-02T21:09:03.941917+00:00"
+  },
+  "currentWasmSha256": "d4a9d88fe3c44d94da938c0351a4f1654d72514568c9f927fecd6d2f9f3ded3f",
+  "audience": "public",
+  "accessRevision": 2,
+  "environmentRevision": 0
+}
