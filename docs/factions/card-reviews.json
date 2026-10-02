@@ -3531,6 +3531,660 @@
       ],
       "editionStatus": "pinnedImageVariant",
       "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC041": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC041",
+      "verifiedFields": {
+        "name": "禁婆",
+        "colorKey": "蓝",
+        "basicType": "角色"
+      },
+      "abilitySummary": "【快速暗藏者行动】2：令禁婆由暗藏者状态现身。你只能在其位于水域地区时发动此能力。；【现身强制触发】每位玩家各弃一张手牌。",
+      "confirmedMechanismIds": [
+        "hidden",
+        "deckChoice",
+        "priority",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC043": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC043",
+      "verifiedFields": {
+        "name": "纵火狂",
+        "colorKey": "红",
+        "basicType": "角色"
+      },
+      "abilitySummary": "【进场触发】消灭目标结附于秘社或本地区上的附属。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "society",
+        "priority",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC044": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC044",
+      "verifiedFields": {
+        "name": "灾难使者",
+        "colorKey": "红",
+        "basicType": "角色"
+      },
+      "abilitySummary": "时间标志1；【标准行动】自本方卡牌上移除一个时间标志：遏制1。（目标玩家选择并移除一个他所拥有的势力标志。）",
+      "confirmedMechanismIds": [
+        "timeDestroy",
+        "repress",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC046": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC046",
+      "verifiedFields": {
+        "name": "无面屠戮者",
+        "colorKey": "红",
+        "basicType": "角色"
+      },
+      "abilitySummary": "杀伤2；【现身强制触发】每位玩家各牺牲一个角色。",
+      "confirmedMechanismIds": [
+        "combatTraits",
+        "sacrifice",
+        "hidden",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC047": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC047",
+      "verifiedFields": {
+        "name": "烈火重围",
+        "colorKey": "红",
+        "basicType": "事务"
+      },
+      "abilitySummary": "【标准行动】对目标地区上的所有角色造成1点伤害。",
+      "confirmedMechanismIds": [
+        "priority"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC050": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC050",
+      "verifiedFields": {
+        "name": "丧钟回响",
+        "colorKey": "红",
+        "basicType": "事务"
+      },
+      "abilitySummary": "【标准行动】选择一个地区，消灭该地区上的所有角色和暗藏者。",
+      "confirmedMechanismIds": [
+        "hidden",
+        "priority"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC051": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC051",
+      "verifiedFields": {
+        "name": "诺恩纳格斯塔",
+        "colorKey": "红",
+        "basicType": "角色"
+      },
+      "abilitySummary": "领袖；【现身触发】自你的牌库中寻找一张徽章附属牌，将该牌放置进场并结附于合理的目标，然后洗牌。；【持续】所有其他本方鸣钟教派角色获得临时势力1。",
+      "confirmedMechanismIds": [
+        "leader",
+        "hidden",
+        "attachment",
+        "deckChoice",
+        "continuous",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC052": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC052",
+      "verifiedFields": {
+        "name": "终焉的诗蔻蒂",
+        "colorKey": "红",
+        "basicType": "角色"
+      },
+      "abilitySummary": "领袖；【进场触发】消灭所有本地区的其他角色和暗藏者。",
+      "confirmedMechanismIds": [
+        "leader",
+        "hidden",
+        "priority",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC053": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC053",
+      "verifiedFields": {
+        "name": "鸣钟教派徽记",
+        "colorKey": "红",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于本方秘社；【快速行动】【横置】本回合中你下一张正面打出或翻面的鸣钟教派牌的所需费用减少1。；【快速行动】2，【横置】：本回合中，若有敌方势力标志曾被移除，你可以抓一张牌。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "society",
+        "costReduction",
+        "exhaust",
+        "deckChoice",
+        "priority",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC054": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC054",
+      "verifiedFields": {
+        "name": "蒙古死亡蠕虫",
+        "colorKey": "红",
+        "basicType": "角色"
+      },
+      "abilitySummary": "【潜伏强制触发】蒙古死亡蠕虫对所有位于本地区的其他角色造成1点伤害。；【结束步骤强制触发】潜伏。（将该角色翻面为暗藏者）",
+      "confirmedMechanismIds": [
+        "hidden",
+        "priority",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC055": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC055",
+      "verifiedFields": {
+        "name": "安妮斯朵拉",
+        "colorKey": "红",
+        "basicType": "角色"
+      },
+      "abilitySummary": "【准备步骤触发】在目标角色或附属上放置一个时间标志。；【标准行动】自本方卡牌上移除X个时间标志：本回合中，你所打出的下一张灾难牌的所需费用减少X。",
+      "confirmedMechanismIds": [
+        "timeDestroy",
+        "costReduction",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC060": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC060",
+      "verifiedFields": {
+        "name": "神秘学顾问",
+        "colorKey": "灰",
+        "basicType": "角色"
+      },
+      "abilitySummary": "【持续】所有未印刷有魔法领域图标的友方角色获得心灵1图标和永久战斗1。",
+      "confirmedMechanismIds": [
+        "continuous"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC064": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC064",
+      "verifiedFields": {
+        "name": "戒严",
+        "colorKey": "灰",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标地区；【准备步骤强制触发】支付1，否则牺牲戒严。；【持续】所有非国家机构的角色牌不可正面打出在本地区，也不能移动进入本地区。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "sacrifice",
+        "continuous",
+        "mobility"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC065": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC065",
+      "verifiedFields": {
+        "name": "审问嫌疑人",
+        "colorKey": "灰",
+        "basicType": "事务"
+      },
+      "abilitySummary": "【快速行动】选择目标地区，然后目标对手牺牲一个位于该地区的暗藏者。遏制1。（目标玩家选择并移除一个他所拥有的势力标志。）",
+      "confirmedMechanismIds": [
+        "hidden",
+        "sacrifice",
+        "repress",
+        "priority"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC066": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC066",
+      "verifiedFields": {
+        "name": "封魔瓶瑟琳娜",
+        "colorKey": "灰",
+        "basicType": "角色"
+      },
+      "abilitySummary": "【进场触发】将本地区的目标角色或暗藏者封印于瑟琳娜上。；【持续】瑟琳娜额外具有被封印在其上的角色牌能力栏内的所有能力图标。",
+      "confirmedMechanismIds": [
+        "seal",
+        "hidden",
+        "continuous",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC067": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC067",
+      "verifiedFields": {
+        "name": "约翰·F·纳特里",
+        "colorKey": "灰",
+        "basicType": "角色"
+      },
+      "abilitySummary": "领袖　公开　声望；【持续】本地区在对抗阶段时额外进行一次势力对抗。",
+      "confirmedMechanismIds": [
+        "leader",
+        "public",
+        "renown",
+        "continuous",
+        "confrontation",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC068": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC068",
+      "verifiedFields": {
+        "name": "阿格斯IV",
+        "colorKey": "灰",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于本方秘社；【准备步骤强制触发】支付1，否则横置阿格斯IV。；【持续】只要阿格斯IV未横置，对手就不能进行秘密派遣行动。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "society",
+        "exhaust",
+        "hidden",
+        "continuous",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC071": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC071",
+      "verifiedFields": {
+        "name": "阿瓦隆隐士",
+        "colorKey": "白",
+        "basicType": "角色"
+      },
+      "abilitySummary": "【快速行动】【横置】本地区的另一个目标本方角色获得防御+1直到回合结束。",
+      "confirmedMechanismIds": [
+        "exhaust",
+        "continuous",
+        "priority"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC072": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC072",
+      "verifiedFields": {
+        "name": "博学的贤者",
+        "colorKey": "白",
+        "basicType": "角色"
+      },
+      "abilitySummary": "公开（该角色不能被秘密派遣为暗藏者）；【触发】当你赢得其所参与的调查对抗时，博学的贤者获得声望直到回合结束。",
+      "confirmedMechanismIds": [
+        "public",
+        "confrontation",
+        "renown",
+        "continuous"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC079": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC079",
+      "verifiedFields": {
+        "name": "圣婴",
+        "colorKey": "白",
+        "basicType": "角色"
+      },
+      "abilitySummary": "公开（该角色不能被秘密派遣为暗藏者）；【触发】当你赢取本地区时，将圣婴置入你的计分区，而非置入其拥有者的牌库底。",
+      "confirmedMechanismIds": [
+        "public",
+        "confrontation"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC081": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC081",
+      "verifiedFields": {
+        "name": "亚洛尔",
+        "colorKey": "白",
+        "basicType": "角色"
+      },
+      "abilitySummary": "灵体　除装备与祝福外不受附属；【额外费用】展示任意数量的手牌，你每展示一张圣贤牌或具有神圣1图标的牌，亚洛尔的所需费用就减少1。",
+      "confirmedMechanismIds": [
+        "spirit",
+        "attachment",
+        "costReduction",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC082": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC082",
+      "verifiedFields": {
+        "name": "索亚之书",
+        "colorKey": "白",
+        "basicType": "附属"
+      },
+      "abilitySummary": "选择一项：；借阅：结附于目标角色。【持续】受此结附的角色获得永久调查1。；收藏：结附于本方秘社。【快速行动】2，【横置】：本回合中，当你赢得下一次调查对抗时，你可以抓一张牌。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "society",
+        "continuous",
+        "exhaust",
+        "confrontation",
+        "deckChoice",
+        "priority",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC083": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC083",
+      "verifiedFields": {
+        "name": "睿智的斯芬克司",
+        "colorKey": "白",
+        "basicType": "角色"
+      },
+      "abilitySummary": "【准备步骤强制触发】选择一个数字，然后展示你牌库顶的一张牌。若所展示的牌的印刷费用和你选择的数字相同，则将该牌置于你手中。若不相同，将所展示的牌置于你的牌库底。",
+      "confirmedMechanismIds": [
+        "deckChoice",
+        "priority",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC084": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC084",
+      "verifiedFields": {
+        "name": "街头混混",
+        "colorKey": "黑",
+        "basicType": "角色"
+      },
+      "abilitySummary": "【持续】若位于有本方势力标志的地区，街头混混获得临时势力1。；【持续】若位于有敌方势力标志的地区，街头混混获得临时调查1。",
+      "confirmedMechanismIds": [
+        "continuous",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC087": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC087",
+      "verifiedFields": {
+        "name": "格鲁尼的走私客",
+        "colorKey": "黑",
+        "basicType": "角色"
+      },
+      "abilitySummary": "撤回；【触发】当格鲁尼的走私客进入一个地区时，你可以令本地区的目标本方角色潜伏，若你如此做，在该地区上放置一个本方势力标志。",
+      "confirmedMechanismIds": [
+        "combatTraits",
+        "hidden",
+        "confrontation",
+        "priority",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC088": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC088",
+      "verifiedFields": {
+        "name": "职业杀手",
+        "colorKey": "黑",
+        "basicType": "角色"
+      },
+      "abilitySummary": "【现身触发】消灭位于本地区，且印刷费用小于或等于2的目标角色。；【快速行动】2：潜伏。（将该角色翻面为暗藏者）",
+      "confirmedMechanismIds": [
+        "hidden",
+        "priority",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC089": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC089",
+      "verifiedFields": {
+        "name": "毒血诅咒",
+        "colorKey": "黑",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标角色；【持续】受此结附的角色获得防御-1和临时战斗2，并获得威名。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "continuous",
+        "combatKeywords",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC090": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC090",
+      "verifiedFields": {
+        "name": "灵魂契约",
+        "colorKey": "黑",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标地区；【触发】每当一个本方角色死去时，在受此结附的地区上放置一个本方势力标志。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "confrontation",
+        "priority"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC094": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC094",
+      "verifiedFields": {
+        "name": "威达的汀巴巴迪",
+        "colorKey": "黑",
+        "basicType": "角色"
+      },
+      "abilitySummary": "【标准行动】牺牲本地区的另一个角色：消灭目标角色或暗藏者。",
+      "confirmedMechanismIds": [
+        "sacrifice",
+        "hidden",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC095": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC095",
+      "verifiedFields": {
+        "name": "唐·格鲁尼",
+        "colorKey": "黑",
+        "basicType": "角色"
+      },
+      "abilitySummary": "领袖　声望；【进场触发】将本地区上的所有敌方势力标志移除，然后放置等量的本方势力标志。",
+      "confirmedMechanismIds": [
+        "leader",
+        "renown",
+        "confrontation",
+        "priority",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC096": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC096",
+      "verifiedFields": {
+        "name": "阿格里帕之犬",
+        "colorKey": "黑",
+        "basicType": "角色"
+      },
+      "abilitySummary": "【快速行动】1，【横置】，牺牲一个角色：抓一张牌。",
+      "confirmedMechanismIds": [
+        "exhaust",
+        "sacrifice",
+        "deckChoice",
+        "priority",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC106": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC106",
+      "verifiedFields": {
+        "name": "酒神秘仪",
+        "colorKey": "紫",
+        "basicType": "事务"
+      },
+      "abilitySummary": "【快速行动】本回合中，目标角色上的所有永久势力和临时势力能力图标都替换为临时战斗1，并获得灵体。",
+      "confirmedMechanismIds": [
+        "continuous",
+        "temporaryIcons",
+        "spirit",
+        "priority"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC107": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC107",
+      "verifiedFields": {
+        "name": "崩塌的时空",
+        "colorKey": "紫",
+        "basicType": "事务"
+      },
+      "abilitySummary": "【标准行动】消灭目标附属或资产。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "priority"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC109": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC109",
+      "verifiedFields": {
+        "name": "沉沦的巴德勒",
+        "colorKey": "紫",
+        "basicType": "角色"
+      },
+      "abilitySummary": "【结束步骤触发】从你的牌库中寻找一张灵体角色牌，将该牌封印在沉沦的巴德勒上，然后将你的牌库洗牌。；【持续】每有一张牌被封印在其上，沉沦的巴德勒就获得一个额外的临时战斗1。",
+      "confirmedMechanismIds": [
+        "seal",
+        "spirit",
+        "deckChoice",
+        "continuous",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC110": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC110",
+      "verifiedFields": {
+        "name": "闲人的绿地",
+        "colorKey": "紫",
+        "basicType": "角色"
+      },
+      "abilitySummary": "灵体；【手牌标准行动】4：将闲人的绿地封印在目标角色上。；【触发】当闲人的绿地被封印在一个角色上时，你可以横置或重置该角色。",
+      "confirmedMechanismIds": [
+        "spirit",
+        "handAbility",
+        "seal",
+        "exhaust",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JC111": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC111",
+      "verifiedFields": {
+        "name": "混沌蝴蝶",
+        "colorKey": "紫",
+        "basicType": "角色"
+      },
+      "abilitySummary": "灵体　不能被装备结附；【快速行动】1：检视目标玩家牌库顶的一张牌。；【标准行动】【横置】将目标玩家的牌库洗牌。",
+      "confirmedMechanismIds": [
+        "spirit",
+        "attachment",
+        "privatePeek",
+        "exhaust",
+        "deckChoice",
+        "priority"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
     }
   }
 }

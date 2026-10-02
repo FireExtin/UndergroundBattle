@@ -28,6 +28,12 @@ class CoverageTests(unittest.TestCase):
     def test_generated_index_is_reproducible(self):
         self.assertEqual(serialize(build()), (ROOT / "rust-game/data/card-research-index.json").read_text())
 
+    def test_rules_questions_cannot_cite_missing_evidence(self):
+        specifications = copy.deepcopy(self.specifications)
+        next(iter(specifications["openQuestions"].values()))["evidenceIds"] = ["missing-original-page"]
+        errors = validate_specifications(specifications, self.coverage, self.index, self.recovery)
+        self.assertTrue(any("Unknown question evidence" in error for error in errors))
+
     def test_all_28_base_pairs_include_white_and_purple_without_enabling_them(self):
         pairing = self.coverage["mixingRules"]["baseQuickPairing"]
         pairs = list(itertools.combinations(pairing["factionIds"], 2))
