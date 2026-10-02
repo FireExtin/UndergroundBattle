@@ -7572,7 +7572,17 @@
         "imageSha256": "ca7cddb79e58c4dc14b2a73f04f9d1e99e94763b1f6328421184dd329a61bf01",
         "evidenceId": "card-JC026",
         "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
-        "blockingFields": []
+        "blockingFields": [],
+        "fieldCorrectionEvidence": [
+          {
+            "reviewedAt": "2026-10-02",
+            "basis": "directOriginalImageReview",
+            "field": "fields.loyalty",
+            "before": "绿×1",
+            "after": "绿×2",
+            "note": "Root independently re-viewed the same SHA-pinned original; two green loyalty symbols at upper left. No runtime unlock."
+          }
+        ]
       },
       "edition": {
         "printedCollectorCode": "026/135",
@@ -7598,7 +7608,7 @@
           {
             "kind": "color",
             "value": "绿",
-            "count": 1
+            "count": 2
           }
         ],
         "domains": [],
@@ -15276,7 +15286,17 @@
         "imageSha256": "83853a1a4c3e6ecd9644f7bb5c843e70585d421f1792a0e4a141ebbe867d12f7",
         "evidenceId": "card-JC089",
         "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
-        "blockingFields": []
+        "blockingFields": [],
+        "fieldCorrectionEvidence": [
+          {
+            "reviewedAt": "2026-10-02",
+            "basis": "directOriginalImageReview",
+            "field": "fields.printedRuleTextLines[1] / abilities[1].printedText",
+            "before": "temporary combat 2",
+            "after": "permanent combat 1 and temporary combat 1",
+            "note": "Root independently re-viewed one unboxed and one boxed combat symbol in the same SHA-pinned original. Symbol-to-text normalization, not two temporary icons. No runtime unlock."
+          }
+        ]
       },
       "edition": {
         "printedCollectorCode": "089/135",
@@ -15327,7 +15347,7 @@
         "printedKeywords": [],
         "printedRuleTextLines": [
           "结附于目标角色",
-          "【持续】受此结附的角色获得防御-1和临时战斗2，并获得威名。"
+          "【持续】受此结附的角色获得防御-1、永久战斗1和临时战斗1，并获得威名。"
         ],
         "additionalPrintedSymbols": []
       },
@@ -15341,7 +15361,7 @@
         {
           "id": "printed-2",
           "kind": "sourceTextOnly",
-          "printedText": "【持续】受此结附的角色获得防御-1和临时战斗2，并获得威名。",
+          "printedText": "【持续】受此结附的角色获得防御-1、永久战斗1和临时战斗1，并获得威名。",
           "notExecutable": true
         }
       ],
