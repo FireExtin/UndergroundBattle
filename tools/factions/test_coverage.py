@@ -258,6 +258,52 @@ class CoverageTests(unittest.TestCase):
         specs["cards"]["MSJC17"]["abilities"][1]["doesNotChangeExplicitTopReference"] = False
         self.assertTrue(any("explicit deck-top" in e for e in self.source_errors(specs=specs)))
 
+    def test_unknown_printed_symbol_cannot_be_hidden_to_complete_a_source(self):
+        specs = copy.deepcopy(self.specifications)
+        source = specs["cards"]["MSWM04"]["sourceVerification"]
+        source["status"] = "completeGameplayFieldsForPinnedImage"
+        source["blockingFields"] = []
+        self.assertTrue(any("Unresolved additional" in e for e in self.source_errors(specs=specs)))
+
+    def test_shoggoth_trigger_cannot_be_made_optional(self):
+        specs = copy.deepcopy(self.specifications)
+        specs["cards"]["MSBQ02"]["abilities"][1]["optional"] = True
+        self.assertTrue(any("mandatory" in e for e in self.source_errors(specs=specs)))
+
+    def test_shoggoth_core_cannot_select_by_name_instead_of_subtitle(self):
+        specs = copy.deepcopy(self.specifications)
+        specs["cards"]["MSBQ02"]["abilities"][0]["restriction"]["selectedCoreCharacter"]["exactSubtitle"] = "任意"
+        self.assertTrue(any("character subtitle" in e for e in self.source_errors(specs=specs)))
+
+    def test_scarab_locator_cannot_override_original_cost_or_sealed_card_count(self):
+        specs = copy.deepcopy(self.specifications)
+        specs["cards"]["MSBQ03"]["abilities"][1]["costs"]["currency"] = 2
+        specs["cards"]["MSBQ03"]["abilities"][2]["sealedNonCharactersDoNotCount"] = False
+        errors = self.source_errors(specs=specs)
+        self.assertTrue(any("costs one" in e for e in errors))
+        self.assertTrue(any("per attachment" in e for e in errors))
+
+    def test_ownership_modifier_cannot_be_limited_to_current_controlled_board(self):
+        specs = copy.deepcopy(self.specifications)
+        specs["cards"]["MSWM01"]["abilities"][2]["scope"]["allZones"] = False
+        self.assertTrue(any("ownership across" in e for e in self.source_errors(specs=specs)))
+
+    def test_media_discard_must_remain_cost_and_use_printed_value(self):
+        specs = copy.deepcopy(self.specifications)
+        specs["cards"]["MSWM02"]["abilities"][2]["effect"]["bonusEqualsDiscardedCardsPrintedCost"] = False
+        self.assertTrue(any("PSC media" in e for e in self.source_errors(specs=specs)))
+
+    def test_gang_hiding_cannot_select_a_new_character_after_paying(self):
+        specs = copy.deepcopy(self.specifications)
+        specs["cards"]["MSWM03"]["abilities"][2]["costsBindSpecificDiscardedAndExhaustedInstances"] = False
+        self.assertTrue(any("same cost-exhausted" in e for e in self.source_errors(specs=specs)))
+
+    def test_dream_mother_cannot_allow_neutral_or_waive_every_loyalty(self):
+        specs = copy.deepcopy(self.specifications)
+        specs["cards"]["MSWM04"]["abilities"][0]["restriction"]["neutralAllowed"] = True
+        specs["cards"]["MSWM04"]["abilities"][1]["otherColorAndDomainLoyaltyNotWaived"] = False
+        self.assertTrue(any("allows only purple" in e for e in self.source_errors(specs=specs)))
+
 
 if __name__ == "__main__":
     unittest.main()

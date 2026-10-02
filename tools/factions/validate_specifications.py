@@ -5,7 +5,7 @@ FIELDS = {
     "name", "subtitle", "nameInk", "colorKey", "basicType", "subtypes",
     "printedCollectorCode", "seriesSymbol", "printedCost", "loyalty", "domains",
     "permanentIcons", "temporaryIcons", "defense", "startingHand",
-    "influenceThreshold", "points", "printedKeywords", "printedRuleTextLines",
+    "influenceThreshold", "points", "printedKeywords", "printedRuleTextLines", "additionalPrintedSymbols",
 }
 COMPLETE = "completeGameplayFieldsForPinnedImage"
 
@@ -42,6 +42,8 @@ def validate_specifications(specifications, coverage, index, recovery):
         if status == COMPLETE:
             completed.add(i)
             require(not source["blockingFields"], "Blocked fields cannot be counted as complete: " + i)
+            require(all(x["status"] == "confirmed" for x in fields["additionalPrintedSymbols"]),
+                    "Unresolved additional printed symbol cannot complete source fields: " + i)
         else:
             blocked.add(i)
             require(bool(source["blockingFields"]), "Blocked specification must identify unknown fields: " + i)
@@ -90,6 +92,13 @@ def validate_specifications(specifications, coverage, index, recovery):
             "A same-name PDF example cannot silently bind a missing archive version")
     require(all(not x["useAsRuleEvidence"] for x in recovery["externalAttempts"]),
             "Failed network recovery cannot become rule evidence")
+    for unresolved in recovery.get("unresolvedPrintedSymbols", []):
+        i = unresolved["cardId"]
+        require(i in specs and specs[i]["sourceVerification"]["status"] == "blocked"
+                and "additionalPrintedSymbols" in specs[i]["sourceVerification"]["blockingFields"]
+                and unresolved["interpretation"] is None and not unresolved["selectionEnabled"]
+                and unresolved["failedSearchIsNotRuleEvidence"],
+                "Unresolved printed-symbol recovery must preserve source quarantine: " + i)
     # Specific semantics where normalizing icons/costs commonly changes a card.
     lc = specs["LC23"]["abilities"][0]
     require(lc["costs"] == {} and lc["sourceExhaustIsEffectNotCost"] is True,
@@ -188,4 +197,31 @@ def validate_specifications(specifications, coverage, index, recovery):
         require(dreams[1]["drawOrigin"] == "deckBottom" and dreams[1]["doesNotReplaceSearchToHand"]
                 and dreams[1]["doesNotChangeExplicitTopReference"] and dreams[2]["source"] == "controllerDeckTop",
                 "MSJC17 bottom draw must retain explicit deck-top and search-to-hand operations")
+    if "MSBQ01" in specs:
+        forced = specs["MSBQ02"]["abilities"][1]
+        require(forced["kind"] == "forcedPlayedOrPaidRevealTrigger" and not forced["optional"]
+                and forced["maximumLossControlMarkers"] == 3, "Shoggoth red-play loss-of-control trigger is mandatory and capped at three")
+        core = specs["MSBQ02"]["abilities"][0]["restriction"]["selectedCoreCharacter"]
+        require(core == {"printedCategory": "characterCard", "exactSubtitle": "修格斯"},
+                "Shoggoth core selection is by character subtitle, not name or arbitrary core icon")
+        scarab = specs["MSBQ03"]["abilities"]
+        require(scarab[1]["costs"] == {"currency": 1, "exhaustSource": True}
+                and scarab[1]["corpseIsEffectSelectionNotCost"],
+                "Scarab first action costs one and source exhaust; corpse sealing is an effect")
+        require(scarab[2]["perCarrierSealedPrintedCharacterCount"] and scarab[2]["sealedNonCharactersDoNotCount"],
+                "Scarab influence counts sealed characters per attachment, not every sealed card")
+        specter = specs["MSWM01"]["abilities"][2]
+        require(specter["scope"]["owner"] == "abilityController" and specter["scope"]["allZones"]
+                and specter["duration"] == "thisGame", "Mannu specter modification follows ownership across all zones for this game")
+        psc = specs["MSWM02"]["abilities"][2]
+        require(psc["discardIsCostNotEffect"] and psc["effect"]["bonusEqualsDiscardedCardsPrintedCost"],
+                "PSC media discard is a cost and mystic bonus uses printed cost")
+        gang = specs["MSWM03"]["abilities"][2]
+        require(gang["costsBindSpecificDiscardedAndExhaustedInstances"] and gang["hideIsEffectNotCost"],
+                "Cold mountain hiding refers to the same cost-exhausted instance")
+        mother = specs["MSWM04"]["abilities"]
+        require(mother[0]["restriction"] == {"allowedColors": ["紫"], "neutralAllowed": False}
+                and mother[1]["otherColorAndDomainLoyaltyNotWaived"] and mother[3]["costs"] == {"currency": 0}
+                and mother[3]["remainingLoyaltyRequirementsPreserved"],
+                "Dream mother allows only purple and waives card currency cost without other loyalty")
     return errors

@@ -171,5 +171,23 @@
         "shoggoth-core-zone"
       ]
     }
+  ],
+  "unresolvedPrintedSymbols": [
+    {
+      "cardId": "MSWM04",
+      "evidenceId": "card-MSWM04",
+      "observedValue": 8,
+      "observedShape": "tealTriangleInsideGoldRing",
+      "interpretation": null,
+      "fullSourceVerification": "blocked",
+      "selectionEnabled": false,
+      "attempts": [
+        "查看同ID完整原图及放大区域",
+        "重新查看帷幕之后说明书.jpg、霸权卡面字段说明",
+        "本地public/docs目录及抽取文字辅助检索未找到定义",
+        "精准外部检索梦魇主母/秘社/8，未得到可采用的同作官方定义"
+      ],
+      "failedSearchIsNotRuleEvidence": true
+    }
   ]
 }

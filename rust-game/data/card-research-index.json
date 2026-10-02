@@ -9,19 +9,19 @@
   },
   "reviewsSource": {
     "path": "docs/factions/card-reviews.json",
-    "sha256": "2402a0a4d3b355ff9354d1f18db894155087faa63de2fce2836312db0c31f3f3"
+    "sha256": "f0360a0154dc43528a4d96ae1a721e551ee3a6a79d276756bbc28c155279411a"
   },
   "coverageSource": {
     "path": "rust-game/data/faction-coverage.json",
-    "sha256": "3a2a9bd83a5a733f090482593f0b2560ba139fc21b3708ff825de0fad20ccab3"
+    "sha256": "b0e5bd81401f1156862542399d7f675c210b367a975f042651c4df974f051906"
   },
   "specificationsSource": {
     "path": "docs/factions/card-specifications.json",
-    "sha256": "44f18d89bb8bf43c1bb646828c8df8cc09226af7d4dfd436aa7c4a20f655671e"
+    "sha256": "30aac3f34014c199f8776e6e1dd07762dd1b20e6d4989396c63dfd6d2bad6072"
   },
   "recoverySource": {
     "path": "docs/factions/source-recovery.json",
-    "sha256": "afc1639831d0fe2e091ab3c552c2ff4359623d7965405c4782799665c42f53ba"
+    "sha256": "23e5f783790f5a940a6b10909546a6a4ed6914e64f1bb5b2cf7477ee403b5633"
   },
   "policy": {
     "locatorFieldsAreVerified": false,
@@ -37,8 +37,8 @@
     "primaryImageReviewed": 109,
     "unreviewedWithImage": 563,
     "currentCatalogDefinitions": 29,
-    "completeSourceSpecifications": 61,
-    "blockedSourceSpecifications": 3,
+    "completeSourceSpecifications": 68,
+    "blockedSourceSpecifications": 4,
     "locatorSetCounts": {
       "TK": 11,
       "传奇": 44,
@@ -64,10 +64,10 @@
       "worldRegion": 29
     },
     "editionStatusCounts": {
-      "pinnedImageVariant": 61,
+      "pinnedImageVariant": 68,
       "testImageConfirmed": 6,
       "uncertain": 3,
-      "unreviewed": 615
+      "unreviewed": 608
     }
   },
   "records": [
@@ -26040,10 +26040,10 @@
       ],
       "evidenceState": "primaryImageReviewed",
       "reviewRef": "docs/factions/card-reviews.json#cards/MSBQ01",
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/MSBQ01",
+      "implementationDesignStatus": "needsRuling",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "龙之欢宴",
         "set": "霸权",
@@ -26072,7 +26072,10 @@
       "confirmedMechanismIds": [
         "society",
         "blood",
-        "seal"
+        "seal",
+        "attachment",
+        "priority",
+        "deckChoice"
       ],
       "candidateMechanismIds": [
         "attachment",
@@ -26085,16 +26088,25 @@
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
       "interactionIds": [
+        "attachmentPicker",
         "attachments",
+        "choicePicker",
+        "handPicker",
+        "orderPicker",
         "sealedCards",
+        "searchPicker",
         "societyPicker",
         "societyZone",
+        "stack",
         "targetPicker"
       ],
       "mechanismCoverage": {
         "society": "unimplemented",
         "blood": "unimplemented",
-        "seal": "unimplemented"
+        "seal": "unimplemented",
+        "attachment": "unimplemented",
+        "priority": "partial",
+        "deckChoice": "partial"
       },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
@@ -26119,10 +26131,10 @@
       ],
       "evidenceState": "primaryImageReviewed",
       "reviewRef": "docs/factions/card-reviews.json#cards/MSBQ02",
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/MSBQ02",
+      "implementationDesignStatus": "needsRuling",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "修格斯",
         "set": "霸权",
@@ -26157,7 +26169,10 @@
       "confirmedMechanismIds": [
         "society",
         "core",
-        "task"
+        "chaos",
+        "task",
+        "costReduction",
+        "priority"
       ],
       "candidateMechanismIds": [
         "chaos",
@@ -26169,17 +26184,23 @@
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
       "interactionIds": [
+        "choicePicker",
         "commandPicker",
         "coreZone",
         "honorCounter",
+        "randomDestination",
         "societyPicker",
         "societyZone",
+        "stack",
         "taskRegion"
       ],
       "mechanismCoverage": {
         "society": "unimplemented",
         "core": "unimplemented",
-        "task": "unimplemented"
+        "chaos": "unimplemented",
+        "task": "unimplemented",
+        "costReduction": "partial",
+        "priority": "partial"
       },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
@@ -26204,10 +26225,10 @@
       ],
       "evidenceState": "primaryImageReviewed",
       "reviewRef": "docs/factions/card-reviews.json#cards/MSBQ03",
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/MSBQ03",
+      "implementationDesignStatus": "needsRuling",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "圣甲虫药业",
         "set": "霸权",
@@ -26237,7 +26258,10 @@
         "society",
         "seal",
         "attachment",
-        "continuous"
+        "graveRecovery",
+        "continuous",
+        "deckChoice",
+        "priority"
       ],
       "candidateMechanismIds": [
         "attachment",
@@ -26252,16 +26276,26 @@
       "interactionIds": [
         "attachmentPicker",
         "attachments",
+        "choicePicker",
+        "graveyardPicker",
+        "handPicker",
+        "orderPicker",
+        "regionPicker",
         "sealedCards",
+        "searchPicker",
         "societyPicker",
         "societyZone",
+        "stack",
         "targetPicker"
       ],
       "mechanismCoverage": {
         "society": "unimplemented",
         "seal": "unimplemented",
         "attachment": "unimplemented",
-        "continuous": "partial"
+        "graveRecovery": "implemented",
+        "continuous": "partial",
+        "deckChoice": "partial",
+        "priority": "partial"
       },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
@@ -26286,10 +26320,10 @@
       ],
       "evidenceState": "primaryImageReviewed",
       "reviewRef": "docs/factions/card-reviews.json#cards/MSBQ04",
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/MSBQ04",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "天闻山庄",
         "set": "霸权",
@@ -26322,7 +26356,10 @@
       "confirmedMechanismIds": [
         "society",
         "mysticContest",
-        "plan"
+        "privatePeek",
+        "hidden",
+        "plan",
+        "priority"
       ],
       "candidateMechanismIds": [
         "continuous",
@@ -26335,17 +26372,25 @@
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
       "interactionIds": [
+        "choicePicker",
+        "handPicker",
         "hiddenProjection",
         "planProgress",
+        "privatePeek",
         "simultaneousReveal",
         "societyMarkers",
         "societyPicker",
-        "societyZone"
+        "societyZone",
+        "stack",
+        "targetPicker"
       ],
       "mechanismCoverage": {
         "society": "unimplemented",
         "mysticContest": "unimplemented",
-        "plan": "unimplemented"
+        "privatePeek": "unimplemented",
+        "hidden": "implemented",
+        "plan": "unimplemented",
+        "priority": "partial"
       },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
@@ -28726,10 +28771,10 @@
       ],
       "evidenceState": "primaryImageReviewed",
       "reviewRef": "docs/factions/card-reviews.json#cards/MSWM01",
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/MSWM01",
+      "implementationDesignStatus": "needsRuling",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "曼纽家族",
         "set": "帷幕",
@@ -28761,7 +28806,10 @@
       "confirmedMechanismIds": [
         "society",
         "mysticContest",
-        "continuous"
+        "continuous",
+        "deckChoice",
+        "exhaust",
+        "priority"
       ],
       "candidateMechanismIds": [
         "continuous",
@@ -28772,15 +28820,24 @@
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
       "interactionIds": [
+        "choicePicker",
+        "handPicker",
+        "orderPicker",
+        "searchPicker",
         "simultaneousReveal",
         "societyMarkers",
         "societyPicker",
-        "societyZone"
+        "societyZone",
+        "stack",
+        "targetPicker"
       ],
       "mechanismCoverage": {
         "society": "unimplemented",
         "mysticContest": "unimplemented",
-        "continuous": "partial"
+        "continuous": "partial",
+        "deckChoice": "partial",
+        "exhaust": "implemented",
+        "priority": "partial"
       },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
@@ -28805,10 +28862,10 @@
       ],
       "evidenceState": "primaryImageReviewed",
       "reviewRef": "docs/factions/card-reviews.json#cards/MSWM02",
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/MSWM02",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "公众安全委员会",
         "set": "帷幕",
@@ -28839,7 +28896,10 @@
       "abilitySummary": "一次移除目标秘社所有隐秘/暴露；弃媒体/互联网作隐秘对抗修正。",
       "confirmedMechanismIds": [
         "society",
-        "mysticContest"
+        "mysticContest",
+        "deckChoice",
+        "exhaust",
+        "priority"
       ],
       "candidateMechanismIds": [
         "continuous",
@@ -28850,14 +28910,23 @@
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
       "interactionIds": [
+        "choicePicker",
+        "handPicker",
+        "orderPicker",
+        "searchPicker",
         "simultaneousReveal",
         "societyMarkers",
         "societyPicker",
-        "societyZone"
+        "societyZone",
+        "stack",
+        "targetPicker"
       ],
       "mechanismCoverage": {
         "society": "unimplemented",
-        "mysticContest": "unimplemented"
+        "mysticContest": "unimplemented",
+        "deckChoice": "partial",
+        "exhaust": "implemented",
+        "priority": "partial"
       },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
@@ -28882,10 +28951,10 @@
       ],
       "evidenceState": "primaryImageReviewed",
       "reviewRef": "docs/factions/card-reviews.json#cards/MSWM03",
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/MSWM03",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "冷山帮",
         "set": "帷幕",
@@ -28916,7 +28985,9 @@
       "confirmedMechanismIds": [
         "society",
         "deckChoice",
-        "hidden"
+        "exhaust",
+        "hidden",
+        "priority"
       ],
       "candidateMechanismIds": [
         "attachment",
@@ -28928,18 +28999,22 @@
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
       "interactionIds": [
+        "choicePicker",
         "handPicker",
         "hiddenProjection",
         "orderPicker",
         "searchPicker",
         "societyPicker",
         "societyZone",
+        "stack",
         "targetPicker"
       ],
       "mechanismCoverage": {
         "society": "unimplemented",
         "deckChoice": "partial",
-        "hidden": "implemented"
+        "exhaust": "implemented",
+        "hidden": "implemented",
+        "priority": "partial"
       },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
@@ -28964,9 +29039,9 @@
       ],
       "evidenceState": "primaryImageReviewed",
       "reviewRef": "docs/factions/card-reviews.json#cards/MSWM04",
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "implementationDesignStatus": "notStarted",
+      "fullCardVerification": "blocked",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/MSWM04",
+      "implementationDesignStatus": "needsRuling",
       "editionStatus": "unreviewed",
       "locator": {
         "name": "梦魇主母",
@@ -28995,9 +29070,11 @@
       "abilitySummary": "忽略紫忠诚；复苏标志允许有限免付费打出/现身；检索贝兰丹娜。",
       "confirmedMechanismIds": [
         "society",
-        "mysticContest",
+        "loyalty",
         "costReduction",
-        "hidden"
+        "hidden",
+        "deckChoice",
+        "priority"
       ],
       "candidateMechanismIds": [
         "continuous",
@@ -29008,18 +29085,24 @@
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
       "interactionIds": [
+        "assetSummary",
+        "choicePicker",
+        "handPicker",
         "hiddenProjection",
-        "simultaneousReveal",
-        "societyMarkers",
+        "orderPicker",
+        "searchPicker",
         "societyPicker",
         "societyZone",
+        "stack",
         "targetPicker"
       ],
       "mechanismCoverage": {
         "society": "unimplemented",
-        "mysticContest": "unimplemented",
+        "loyalty": "implemented",
         "costReduction": "partial",
-        "hidden": "implemented"
+        "hidden": "implemented",
+        "deckChoice": "partial",
+        "priority": "partial"
       },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
