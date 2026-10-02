@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import { CardContent } from './CardTile';
+import { CardContent, CardTile } from './CardTile';
 import { testCard, testCatalog } from './testFixtures';
 
 describe('concealed character presentation', () => {
@@ -14,5 +14,16 @@ describe('concealed character presentation', () => {
     rerender(<CardContent card={card} definition={definition} />);
     expect(screen.getByText('防御 1')).toBeInTheDocument();
     expect(screen.getByText('真实印刷文字')).toBeInTheDocument();
+  });
+  it('never reveals a teammate’s or opponent’s concealed identity, even when a stale source includes print data', () => {
+    const card = { ...testCard, owner: 'p1', controller: 'p0', kind: 'hidden', faceDown: true };
+    const { rerender } = render(<CardTile card={card} definition={testCatalog.cards[0]} viewerId="p0" compact />);
+    expect(screen.getByRole('button', { name: '查看暗藏者' })).toBeInTheDocument();
+    expect(screen.queryByText('无知路人')).not.toBeInTheDocument();
+    expect(screen.queryByText('真实印刷文字')).not.toBeInTheDocument();
+    rerender(<CardTile card={card} definition={testCatalog.cards[0]} viewerId="p2" compact />);
+    expect(screen.getByRole('button', { name: '查看暗藏者' })).toBeInTheDocument();
+    rerender(<CardTile card={card} definition={testCatalog.cards[0]} viewerId="p1" compact />);
+    expect(screen.getByRole('button', { name: '查看无知路人' })).toBeInTheDocument();
   });
 });

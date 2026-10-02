@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { CardContent } from './CardTile';
-import type { Action, CardDefinition, Choice, LegalAction } from './types';
+import type { Action, Card, CardDefinition, Choice, LegalAction } from './types';
 
 export function buildChoiceAction(base: LegalAction, choice: Choice, selected: string[], top: string[], bottom: string[], allocations: Record<string, number>): Action {
   if (choice.kind === 'damage') return { ...base, choiceId: choice.id, allocations };
@@ -12,8 +12,11 @@ function move(ids: string[], id: string, delta: number) {
   if (index < 0 || target < 0 || target >= ids.length) return ids;
   const result = [...ids]; [result[index], result[target]] = [result[target], result[index]]; return result;
 }
-export function ChoicePanel({ choice, action, definitions, busy, onSubmit }: {
+export function ChoicePanel({ choice, action, definitions, busy, onSubmit, onReadCard, viewerId, playerLabels }: {
   choice: Choice; action?: LegalAction; definitions: Map<string, CardDefinition>; busy: boolean; onSubmit: (action: Action) => void;
+  onReadCard?: (card: Card) => void;
+  viewerId?: string;
+  playerLabels?: Record<string, string>;
 }) {
   const [selected, setSelected] = useState<string[]>(choice.kind === 'region_return' ? choice.options.map(option => option.id) : []);
   const [top, setTop] = useState(choice.options.map(option => option.id));
@@ -29,6 +32,14 @@ export function ChoicePanel({ choice, action, definitions, busy, onSubmit }: {
   const valid = damage ? assigned === amount : ordering ? top.length + bottom.length === choice.options.length
     : selected.length >= min && selected.length <= max && (selected.length > 0 || canDecline);
   const choose = (id: string) => setSelected(ids => ids.includes(id) ? ids.filter(value => value !== id) : ids.length < max ? [...ids, id] : ids);
+  const allocate = (id: string, requested: number) => setAllocations(current => {
+    const other = Object.entries(current).reduce((total, [key, value]) => total + (key === id ? 0 : value), 0);
+    return { ...current, [id]: Math.max(0, Math.min(amount - other, Math.floor(requested) || 0)) };
+  });
+  const tapDamage = (id: string) => {
+    if (amount === 1) setAllocations(Object.fromEntries(choice.options.map(option => [option.id, option.id === id ? 1 : 0])));
+    else allocate(id, (allocations[id] || 0) + 1);
+  };
   const submit = (decline = false) => {
     if (!action || (decline && !canDecline)) return;
     onSubmit(decline ? { ...action, choiceId: choice.id, selected: [] }
@@ -47,20 +58,20 @@ export function ChoicePanel({ choice, action, definitions, busy, onSubmit }: {
     {!ids.length && <li className="hg-empty">这里没有牌</li>}
   </ol>;
 
-  return <section className="hg-choice" data-choice-id={choice.id} aria-label="待完成的选择">
+  return <section className="hg-choice" data-choice-id={choice.id} aria-label="待完成的选择" tabIndex={-1}>
     <div className="hg-section-title"><span className="hg-eyebrow">轮到你选择</span><span className="hg-choice-tag">{damage ? `尚余 ${amount - assigned} 点` : ordering ? '自上而下排列' : `已选 ${selected.length} / ${max}`}</span></div>
     <h2>{choice.title}</h2><p>{choice.description}</p>
     {ordering ? <div className="hg-order-columns"><div><h3>牌库顶 · 最上面先抓</h3>{reorderList(top, 'top')}</div><div><h3>牌库底 · 自上而下</h3>{reorderList(bottom, 'bottom')}</div></div>
-      : damage ? <div className="hg-damage-options">{choice.options.map(option => <label key={option.id}><span><strong>{option.label}</strong>{option.card && <small>防御 {option.card.defense ?? '—'} · 已受伤 {option.card.damage ?? 0}</small>}</span>
-        <input type="number" min={0} max={amount - assigned + (allocations[option.id] || 0)} value={allocations[option.id] || 0} disabled={busy} aria-label={`给${option.label}分配伤害`} onChange={e => {
-          const available = amount - assigned + (allocations[option.id] || 0);
-          const value = Math.max(0, Math.min(available, Math.floor(Number(e.target.value) || 0)));
-          setAllocations({ ...allocations, [option.id]: value });
-        }} />
-      </label>)}</div>
+      : damage ? <><div className="hg-damage-meter"><span>总计 <b>{amount}</b></span><span>已分配 <b>{assigned}</b></span><span>剩余 <b>{amount - assigned}</b></span><small>{amount === 1 ? '点选角色分配这一点伤害，可切换目标。' : '点选角色或使用加减按钮分配，每次一点。'}</small></div><div className="hg-damage-options">{choice.options.map((option, index) => <div key={option.id} className={`hg-damage-row ${(allocations[option.id] || 0) > 0 ? 'hg-damage-assigned' : ''}`}>
+        <button type="button" className="hg-damage-target" data-choice-option={option.id} data-choice-target-number={index + 1} aria-label={`给${option.label}分配1点伤害`} aria-describedby={`${choice.id}-damage-${index}`} aria-pressed={(allocations[option.id] || 0) > 0} disabled={busy || (amount !== 1 && assigned >= amount)} onClick={() => tapDamage(option.id)}><span><strong>{option.label} <em className="hg-target-number">目标 {index + 1}</em></strong>{option.card && <small id={`${choice.id}-damage-${index}`}>{playerLabels?.[option.card.owner] || playerLabels?.[option.card.controller] || '公开角色'} 拥有 · 防御 {option.card.defense ?? '—'} · 已受伤 {option.card.damage ?? 0}{option.card.exhausted ? ' · 已横置' : ''}</small>}</span><b>+1</b></button>
+        <div className="hg-damage-adjust"><button type="button" disabled={busy || !allocations[option.id]} aria-label={`给${option.label}减少1点伤害`} onClick={() => allocate(option.id, (allocations[option.id] || 0) - 1)}>−</button>
+          <input type="number" inputMode="numeric" min={0} max={amount - assigned + (allocations[option.id] || 0)} value={allocations[option.id] || 0} disabled={busy} aria-label={`给${option.label}分配伤害`} onChange={event => allocate(option.id, Number(event.target.value))} />
+          <button type="button" disabled={busy || assigned >= amount} aria-label={`给${option.label}增加1点伤害`} onClick={() => allocate(option.id, (allocations[option.id] || 0) + 1)}>+</button>
+        </div>{option.card && onReadCard && <button type="button" className="hg-small-read" onClick={() => onReadCard(option.card!)}>放大阅读</button>}
+      </div>)}</div></>
       : <><div className="hg-choice-options">{choice.options.map(option => <button type="button" key={option.id} data-choice-option={option.id} className={`hg-choice-option ${selected.includes(option.id) ? 'hg-selected' : ''}`} disabled={busy || (!selected.includes(option.id) && selected.length >= max)} onClick={() => choose(option.id)} aria-pressed={selected.includes(option.id)}>
         <span className="hg-choice-check">{selected.includes(option.id) ? selected.indexOf(option.id) + 1 : '+'}</span>
-        {option.card ? <CardContent card={option.card} definition={definitions.get(option.card.cardId || '')} /> : <strong>{option.label}</strong>}
+        {option.card ? <CardContent card={option.card} definition={definitions.get(option.card.cardId || '')} viewerId={viewerId} /> : <strong>{option.label}</strong>}
       </button>)}</div>
       {choice.kind === 'region_return' && selected.length > 1 && <div className="hg-return-order"><h3>置于牌库底的顺序</h3>{selected.map((id, index) => <div key={id}><span>{index + 1}. {label(id)}</span><button disabled={index === 0 || busy} onClick={() => setSelected(move(selected, id, -1))} aria-label={`${label(id)}上移`}>↑</button><button disabled={index === selected.length - 1 || busy} onClick={() => setSelected(move(selected, id, 1))} aria-label={`${label(id)}下移`}>↓</button></div>)}</div>}
     </>}

@@ -2,6 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import { ChoicePanel } from './ChoicePanel';
 import { testChoice } from './testFixtures';
+import { testCard } from './testFixtures';
 
 const base = { id: 'choose-action', kind: 'choose', label: '选择', choiceId: 'choice-one' };
 describe('server-owned decisions', () => {
@@ -35,5 +36,22 @@ describe('server-owned decisions', () => {
     expect(screen.getByRole('spinbutton', { name: '给角色乙分配伤害' })).toHaveValue(1);
     fireEvent.click(screen.getByRole('button', { name: '确认选择' }));
     expect(submit.mock.calls[0][0]).toMatchObject({ allocations: { a: 2, b: 1 } });
+  });
+  it('lets a phone user assign one damage by tapping a target, switch it, and adjust without typing', () => {
+    const submit = vi.fn();
+    render(<ChoicePanel choice={{ ...testChoice, kind: 'damage', amount: 1, options: testChoice.options.map(option => ({ ...option, card: testCard })) }} action={base} definitions={new Map()} busy={false} onSubmit={submit} playerLabels={{ p0: '甲方玩家' }} />);
+    expect(screen.getByText('目标 1')).toBeInTheDocument();
+    expect(screen.getByText('目标 2')).toBeInTheDocument();
+    expect(screen.getAllByText('甲方玩家 拥有 · 防御 1 · 已受伤 0')).toHaveLength(2);
+    fireEvent.click(screen.getByRole('button', { name: '给角色乙分配1点伤害' }));
+    expect(screen.getByRole('spinbutton', { name: '给角色乙分配伤害' })).toHaveValue(1);
+    fireEvent.click(screen.getByRole('button', { name: '给角色甲分配1点伤害' }));
+    expect(screen.getByRole('spinbutton', { name: '给角色甲分配伤害' })).toHaveValue(1);
+    expect(screen.getByRole('spinbutton', { name: '给角色乙分配伤害' })).toHaveValue(0);
+    fireEvent.click(screen.getByRole('button', { name: '给角色甲减少1点伤害' }));
+    expect(screen.getByRole('button', { name: '确认选择' })).toBeDisabled();
+    fireEvent.click(screen.getByRole('button', { name: '给角色乙增加1点伤害' }));
+    fireEvent.click(screen.getByRole('button', { name: '确认选择' }));
+    expect(submit.mock.calls[0][0]).toMatchObject({ allocations: { a: 0, b: 1 } });
   });
 });

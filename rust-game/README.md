@@ -11,6 +11,14 @@ cargo run -p hegemony-server
 cargo test -p hegemony-server
 ```
 
+实际房间的离线审计使用只读 SQLite 快照，输出匹配结果、版本与 SHA-256 摘要，不输出牌面、seed 或令牌：
+
+```sh
+cargo run -p hegemony-server --bin hegemony-audit -- rust-game.sqlite3 ROOM_ID
+```
+
+可在房间 ID 后追加多个房间。全部精确匹配时退出 0；发现不一致时退出 1。审计不修改数据库，也可在服务运行时进行。
+
 默认监听 8090，SQLite 为当前目录的 rust-game.sqlite3，可通过 PORT、HEGEMONY_DB 设置。WEB_DIST 默认 web/dist；构建过的客户端由同一服务托管。开发客户端通过 Vite 的 /api 代理访问服务。
 
 Rust 1.90.0。本工作区的工具链在 /workspace/.cloud-setup/cargo/bin；如未在 PATH 中，可使用：

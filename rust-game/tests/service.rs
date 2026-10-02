@@ -1,3 +1,5 @@
+#![cfg(feature = "native")]
+
 use axum::{
     body::Body,
     http::{Request, StatusCode},
@@ -231,4 +233,75 @@ async fn authenticated_sse_projects_actor_view_and_updates_after_commit() {
     assert!(text.contains("id: 2"));
     assert!(text.contains("\"ready\":true"));
     assert!(!text.contains(&a.token) && !text.contains(&b.token));
+}
+
+#[tokio::test]
+async fn read_only_audit_cli_matches_seed_journal_and_detects_corruption() {
+    let dir = tempfile::tempdir().unwrap();
+    let db = dir.path().join("audit.sqlite3");
+    let store = Store::open(&db).unwrap();
+    let (a, b) = pair(&store).await;
+    store
+        .command(&a.room_id, &a.token, command("ready-a", 1, "ready"))
+        .await
+        .unwrap();
+    store
+        .command(&a.room_id, &b.token, command("ready-b", 2, "ready"))
+        .await
+        .unwrap();
+    store
+        .command(&a.room_id, &a.token, command("start", 3, "start"))
+        .await
+        .unwrap();
+    let audit = Store::open_read_only(&db).unwrap();
+    let report = audit.audit_replay(&a.room_id).unwrap();
+    assert!(report.matches);
+    assert_eq!(report.version, 4);
+    assert_eq!(report.journal_entries, 4);
+    assert_eq!(report.persisted_digest, report.replayed_digest);
+    let public = serde_json::to_string(&report).unwrap();
+    assert!(
+        !public.contains(&a.token)
+            && !public.contains(&b.token)
+            && !public.contains("Alice")
+            && !public.contains("JC125")
+    );
+    assert!(audit
+        .create(CreateRoom {
+            name: "read-only".into(),
+            mode: "duel".into(),
+            deck_id: "watchers".into()
+        })
+        .await
+        .is_err());
+    let output = std::process::Command::new(env!("CARGO_BIN_EXE_hegemony-audit"))
+        .arg(&db)
+        .arg(&a.room_id)
+        .output()
+        .unwrap();
+    assert!(output.status.success());
+    assert!(String::from_utf8(output.stdout)
+        .unwrap()
+        .contains("\"matches\":true"));
+    let mut altered = store.replay(&a.room_id).unwrap();
+    altered.turn += 1;
+    let db_conn = rusqlite::Connection::open(&db).unwrap();
+    db_conn
+        .execute(
+            "UPDATE rooms SET state=?2 WHERE id=?1",
+            rusqlite::params![a.room_id, serde_json::to_string(&altered).unwrap()],
+        )
+        .unwrap();
+    let mismatch = audit.audit_replay(&a.room_id).unwrap();
+    assert!(!mismatch.matches);
+    assert_ne!(mismatch.persisted_digest, mismatch.replayed_digest);
+    let output = std::process::Command::new(env!("CARGO_BIN_EXE_hegemony-audit"))
+        .arg(&db)
+        .arg(&a.room_id)
+        .output()
+        .unwrap();
+    assert_eq!(output.status.code(), Some(1));
+    let missing = dir.path().join("must-not-create.sqlite3");
+    assert!(Store::open_read_only(&missing).is_err());
+    assert!(!missing.exists());
 }

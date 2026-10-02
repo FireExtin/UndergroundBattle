@@ -1523,13 +1523,14 @@ impl Game {
                     .map(|c| self.option(c, seat, Some(region), None))
                     .collect();
                 if !options.is_empty() && amount > 0 {
+                    let target_count = options.len();
                     self.choice(
                         seat,
                         "damage",
                         format!("地区 {}：分配 {} 点同时战斗伤害", region + 1, amount),
                         options,
                         0,
-                        usize::MAX,
+                        target_count,
                         Some(amount),
                         ChoiceResolution::Damage { region },
                     );

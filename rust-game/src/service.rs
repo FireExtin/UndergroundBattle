@@ -13,7 +13,7 @@ use axum::{
     routing::{get, post},
     Json, Router,
 };
-use rusqlite::{params, Connection, OptionalExtension};
+use rusqlite::{params, Connection, OpenFlags, OptionalExtension};
 use serde::{Deserialize, Serialize};
 use sha2::{Digest, Sha256};
 use std::{
@@ -29,6 +29,18 @@ use tower_http::services::{ServeDir, ServeFile};
 #[derive(Clone)]
 pub struct Store {
     inner: Arc<Inner>,
+}
+#[derive(Debug, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct ReplayAudit {
+    pub room_id: String,
+    pub version: u64,
+    pub journal_entries: u64,
+    pub status: String,
+    pub matches: bool,
+    pub persisted_digest: String,
+    pub replayed_digest: String,
+    pub versions: crate::model::Versions,
 }
 struct Inner {
     db: Mutex<Connection>,
@@ -379,35 +391,86 @@ impl Store {
     /// Offline audit, never an HTTP endpoint: reproduce state using fixed versions + seed + ordered journal.
     pub fn replay(&self, id: &str) -> Result<Game, ApiError> {
         let db = self.inner.db.lock().unwrap();
-        let initial: String =
-            db.query_row("SELECT initial_state FROM rooms WHERE id=?1", [id], |r| {
+        replay_connection(&db, id)
+    }
+    /// Opens an existing database with SQLite read-only flags; does not migrate,
+    /// change pragmas, write state, or load tokens into the room service.
+    pub fn open_read_only(path: impl AsRef<FilePath>) -> Result<Self, ApiError> {
+        let db = Connection::open_with_flags(
+            path,
+            OpenFlags::SQLITE_OPEN_READ_ONLY | OpenFlags::SQLITE_OPEN_NO_MUTEX,
+        )?;
+        db.busy_timeout(Duration::from_secs(5))?;
+        Ok(Self {
+            inner: Arc::new(Inner {
+                db: Mutex::new(db),
+                rooms: Mutex::new(HashMap::new()),
+            }),
+        })
+    }
+    /// Consistent read snapshot, even while the normal service continues writing.
+    pub fn audit_replay(&self, id: &str) -> Result<ReplayAudit, ApiError> {
+        let mut db = self.inner.db.lock().unwrap();
+        let tx = db.transaction()?;
+        let replayed = replay_connection(&tx, id)?;
+        let stored: String =
+            tx.query_row("SELECT state FROM rooms WHERE id=?1", [id], |r| r.get(0))?;
+        let persisted: Game = serde_json::from_str(&stored)?;
+        let canonical = serde_json::to_vec(&persisted)?;
+        let replay_bytes = serde_json::to_vec(&replayed)?;
+        let journal_entries =
+            tx.query_row("SELECT COUNT(*) FROM journal WHERE room_id=?1", [id], |r| {
                 r.get(0)
             })?;
-        let mut game: Game = serde_json::from_str(&initial)?;
-        let mut statement =
-            db.prepare("SELECT version,entry FROM journal WHERE room_id=?1 ORDER BY version")?;
-        let mut rows = statement.query([id])?;
-        while let Some(row) = rows.next()? {
-            let version: u64 = row.get(0)?;
-            let entry: String = row.get(1)?;
-            match serde_json::from_str::<Journal>(&entry)? {
-                Journal::Join { name, deck_id } => {
-                    game.join(name, deck_id).map_err(ApiError::internal)?;
-                }
-                Journal::Command { seat, command } => {
-                    if command.expected_version != game.version {
-                        return Err(ApiError::internal("回放版本断裂"));
-                    }
-                    game.apply(seat, command.action)
-                        .map_err(ApiError::internal)?;
-                }
+        let result = ReplayAudit {
+            room_id: id.into(),
+            version: persisted.version,
+            journal_entries,
+            status: persisted.status.clone(),
+            matches: canonical == replay_bytes,
+            persisted_digest: format!("{:x}", Sha256::digest(&canonical)),
+            replayed_digest: format!("{:x}", Sha256::digest(&replay_bytes)),
+            versions: persisted.versions,
+        };
+        tx.commit()?;
+        Ok(result)
+    }
+}
+fn replay_connection(db: &Connection, id: &str) -> Result<Game, ApiError> {
+    let initial: String =
+        db.query_row("SELECT initial_state FROM rooms WHERE id=?1", [id], |r| {
+            r.get(0)
+        })?;
+    let mut game: Game = serde_json::from_str(&initial)?;
+    if game.versions.rules != catalog::RULES_VERSION
+        || game.versions.card_pool != catalog::POOL_VERSION
+        || game.versions.engine != catalog::ENGINE_VERSION
+    {
+        return Err(ApiError::internal("回放固定版本与当前引擎不符"));
+    }
+    let mut statement =
+        db.prepare("SELECT version,entry FROM journal WHERE room_id=?1 ORDER BY version")?;
+    let mut rows = statement.query([id])?;
+    while let Some(row) = rows.next()? {
+        let version: u64 = row.get(0)?;
+        let entry: String = row.get(1)?;
+        match serde_json::from_str::<Journal>(&entry)? {
+            Journal::Join { name, deck_id } => {
+                game.join(name, deck_id).map_err(ApiError::internal)?;
             }
-            if game.version != version {
-                return Err(ApiError::internal("回放版本不符"));
+            Journal::Command { seat, command } => {
+                if command.expected_version != game.version {
+                    return Err(ApiError::internal("回放版本断裂"));
+                }
+                game.apply(seat, command.action)
+                    .map_err(ApiError::internal)?;
             }
         }
-        Ok(game)
+        if game.version != version {
+            return Err(ApiError::internal("回放版本不符"));
+        }
     }
+    Ok(game)
 }
 fn bearer(headers: &HeaderMap) -> Result<&str, ApiError> {
     headers

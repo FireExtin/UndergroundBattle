@@ -9,3 +9,4 @@ coverage/
 /rust-game.sqlite3-shm
 /rust-game.sqlite3-wal
 /review-artifacts/
+/rust-game-wasm/pkg/

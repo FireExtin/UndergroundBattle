@@ -1,8 +1,9 @@
 import { useEffect, useMemo, useState } from 'react';
-import { CardContent, CardTile } from './CardTile';
+import { CardContent, CardTile, visibleCard } from './CardTile';
 import { ChoicePanel } from './ChoicePanel';
 import { DeckPicker } from './Lobby';
 import { AutoPass } from './AutoPass';
+import { ReadModal } from './ReadModal';
 import type { Action, Card, CardDefinition, Catalog, LegalAction, Player, Region, View } from './types';
 
 const phaseNames: Record<string, string> = { start: '开始阶段', beginning: '开始阶段', action: '行动阶段', confrontation: '对抗阶段', conflict: '对抗阶段', end: '结束阶段', finished: '对局结束', lobby: '准备入席', investigation: '调查', combat: '战斗', influence: '势力', claim: '赢区窗口', win: '赢区窗口', fast: '快速行动窗口', draw: '抓牌', prepare: '重置与准备', mobility: '机动窗口', mulligan: '再调度', ready: '准备' };
@@ -60,11 +61,13 @@ function PlayerStrip({ player, view, catalog }: { player: Player; view: View; ca
     const definition = catalog?.cards.find(item => item.id === card.cardId);
     const color = card.color || definition?.color;
     if (color) result.set(color, (result.get(color) || 0) + 1);
+    const magic = card.magic || definition?.magic;
+    if (magic) result.set(magic, (result.get(magic) || 0) + 1);
     return result;
   }, new Map<string, number>());
   return <div className={`hg-player-strip hg-team-${player.team}${player.id === view.you ? ' hg-player-you' : ''}`}>
-    <span className="hg-player-avatar">{player.name.slice(0, 1)}</span><div><strong>{player.name}{player.id === view.you && <small> · 你</small>}</strong><span>{catalog?.decks.find(deck => deck.id === player.deckId)?.name || '秘社'}{player.eliminated ? ' · 已出局' : ''}</span></div>
-    <dl><div><dt>手牌</dt><dd>{player.handCount}</dd></div><div><dt>牌库</dt><dd>{player.deckCount}</dd></div><div><dt>资产</dt><dd>{assets.length}</dd></div></dl>
+    <span className="hg-player-avatar">{player.name.slice(0, 1)}</span><div><strong>{player.name}{player.id === view.you && <small> · 你</small>}</strong><span>席位 {player.seat + 1} · {catalog?.decks.find(deck => deck.id === player.deckId)?.name || '秘社'}{player.eliminated ? ' · 已出局' : ''}</span></div>
+    <dl><div><dt>手牌</dt><dd>{player.handCount}</dd></div><div><dt>牌库</dt><dd>{player.deckCount}</dd></div><div><dt>资产</dt><dd>{assets.length}</dd></div><div><dt>可用费用</dt><dd>{assets.filter(card => !card.exhausted).length}</dd></div></dl>
     <span className="hg-loyalty-summary" title="资产提供的派系忠诚">{[...loyalty].map(([color, count]) => `${color} ${count}`).join(' · ') || '暂无派系资产'}</span>
   </div>;
 }
@@ -75,13 +78,14 @@ function RegionTile({ region, view, definitions, selected, available, onRegion, 
 }) {
   const renderSide = (team: number) => {
     const characters = region.characters.filter(card => view.players.find(player => player.id === card.controller)?.team === team);
-    return <div className={`hg-region-side hg-team-${team}`}><div className="hg-region-side-label"><span>{teamName(team, view)}</span><span>影响 <b>{region.influence[team] || 0}</b></span></div>
-      <div className="hg-region-characters">{characters.map(card => <CardTile key={card.instanceId} card={card} definition={definitions.get(card.cardId || '')} compact selected={selectedCard === card.instanceId} onSelect={() => onCard(card.instanceId)} />)}{!characters.length && <span className="hg-region-vacant">尚无角色</span>}</div>
+    const mine = view.players.find(player => player.id === view.you)?.team === team;
+    return <div className={`hg-region-side hg-team-${team}`} data-team={team} data-side={mine ? 'mine' : 'opponent'}><div className="hg-region-side-label"><span>{mine ? '我方' : '对方'} · {characters.length} 张角色</span><span>影响 <b>{region.influence[team] || 0}</b></span></div>
+      <div className="hg-region-characters" aria-label={`${region.name}${mine ? '我方' : '对方'}角色，可在区域内滚动`}>{characters.map(card => <CardTile key={card.instanceId} card={card} definition={definitions.get(card.cardId || '')} viewerId={view.you} owner={view.players.find(player => player.id === card.owner)} actionable={view.legalActions.some(action => action.cardId === card.instanceId || action.targetId === card.instanceId)} compact selected={selectedCard === card.instanceId} onSelect={() => onCard(card.instanceId)} />)}{!characters.length && <span className="hg-region-vacant">尚无角色</span>}</div>
     </div>;
   };
   return <article className={`hg-region ${selected ? 'hg-selected-region' : ''} ${available ? 'hg-region-available' : ''}`}>
     {renderSide(1 - (view.players.find(player => player.id === view.you)?.team ?? 0))}
-    <button type="button" className="hg-region-center" onClick={onRegion} aria-pressed={selected} aria-label={`查看地区${region.index + 1} ${region.name}`}>
+    <button type="button" className="hg-region-center" data-region-index={region.index} onClick={onRegion} aria-pressed={selected} aria-label={`查看地区${region.index + 1} ${region.name}`}>
       <span className="hg-region-number">0{region.index + 1}</span><span className="hg-region-title"><small>隐秘地区</small><strong>{region.name}</strong></span><span className="hg-region-value"><b>{region.points}</b><small>分</small></span>
       <span className="hg-region-threshold">控制阈值 <b>{region.threshold}</b>{available && <em>可执行行动</em>}</span>
     </button>
@@ -92,11 +96,15 @@ function RegionTile({ region, view, definitions, selected, available, onRegion, 
 export function Table({ view, catalog, busy, uncertain = false, connection = 'connecting', onAction }: { view: View; catalog: Catalog | null; busy: boolean; uncertain?: boolean; connection?: 'connecting' | 'online' | 'offline'; onAction: (action: Action) => void }) {
   const [selectedCard, setSelectedCard] = useState<string | null>(null);
   const [selectedRegion, setSelectedRegion] = useState<number | null>(null);
+  const [reading, setReading] = useState<Card | null>(null);
   const definitions = useMemo(() => new Map(catalog?.cards.map(card => [card.id, card]) || []), [catalog]);
-  const allCards = [...view.hand, ...view.assets, ...view.graveyard, ...view.scoreCards, ...view.regions.flatMap(region => region.characters)];
+  const allCards = [...view.hand, ...view.assets, ...view.graveyard, ...view.scoreCards, ...view.regions.flatMap(region => region.characters)].map(item => visibleCard(item, view.you));
   const card = allCards.find(item => item.instanceId === selectedCard);
   const region = view.regions.find(item => item.index === selectedRegion);
   const you = view.players.find(player => player.id === view.you);
+  const yourTeam = you?.team ?? 0;
+  const teamOrder = [yourTeam, 1 - yourTeam];
+  const seatOrder = [...view.players].sort((a, b) => teamOrder.indexOf(a.team) - teamOrder.indexOf(b.team) || a.seat - b.seat);
   useEffect(() => { if (selectedCard && !card) setSelectedCard(null); }, [selectedCard, card]);
   const selectCard = (id: string) => { setSelectedCard(id); setSelectedRegion(null); };
   const globalActions = view.legalActions.filter(action => !['choose', 'deck', 'ready', 'start', 'restart'].includes(action.kind) && !action.cardId && !action.targetId && action.region === undefined);
@@ -109,34 +117,61 @@ export function Table({ view, catalog, busy, uncertain = false, connection = 'co
   const choiceAction = view.legalActions.find(action => action.kind === 'choose' && (!action.choiceId || action.choiceId === view.pendingChoice?.id));
   const choicePlayer = view.pendingChoice?.playerId || view.waitingChoice?.playerId;
   const choiceName = view.players.find(player => player.id === choicePlayer)?.name;
-  const status = view.pendingChoice ? '请完成下方选择' : view.waitingChoice ? `等待 ${choiceName || '另一位玩家'}：${view.waitingChoice.title}`
+  const status = view.pendingChoice ? '请你完成下方选择' : view.waitingChoice ? `等待 ${choiceName || '另一位玩家'}：${view.waitingChoice.title}`
     : view.legalActions.length ? '轮到你参与行动' : `等待 ${teamName(view.priorityTeam, view)} 行动`;
+  const browsingOnly = view.status !== 'playing' || !view.legalActions.some(action => action.kind !== 'choose') || !!view.waitingChoice;
+  const nextStep = view.status === 'finished' ? '本局已结束，可回顾牌桌'
+    : view.pendingChoice ? `下一步：${view.pendingChoice.title}`
+    : view.waitingChoice ? `等待 ${choiceName || '另一位玩家'} 完成选择，可浏览牌桌`
+    : !view.legalActions.length ? `等待 ${teamName(view.priorityTeam, view)} 行动，可浏览牌桌`
+    : view.legalActions.length === 1 && globalActions[0]?.kind === 'pass' ? '下一步：让过，推进当前窗口'
+    : '下一步：点选可行动的手牌或地区角色';
   return <main className="hg-table">
     {view.status === 'finished' && <section className="hg-victory" role="status"><span aria-hidden="true">✧</span><div><small>对局结束</small><h1>{view.winnerTeam === you?.team ? '你的秘社取得了霸权' : `${view.winnerTeam === undefined ? '本局' : teamName(view.winnerTeam, view)}赢得了霸权`}</h1><p>胜利目标 {view.winScore} 分 · 可以查看牌桌与行动记录，或由房主发起新一局。</p></div><ActionButtons actions={view.legalActions.filter(action => action.kind === 'restart')} busy={busy} onAction={onAction} /></section>}
-    <section className="hg-scoreboard">{[0, 1].map(team => {
+    <section className="hg-scoreboard">{teamOrder.map(team => {
       const score = view.players.filter(player => player.team === team).reduce((total, player) => total + player.score, 0);
       return <div key={team} className={`hg-team-score hg-team-${team}`}><div><span className="hg-eyebrow">{team === you?.team ? '我方秘社' : '对方秘社'}</span><strong>{teamName(team, view)}</strong></div><span className="hg-score"><b>{score}</b><small>/ {view.winScore}</small></span><div className="hg-score-progress"><i style={{ width: `${Math.min(100, score / view.winScore * 100)}%` }} /></div></div>;
     })}<div className="hg-round"><span className="hg-eyebrow">第 {view.turn} 回合</span><strong>{phaseLabel(view.phase)}</strong><span>{phaseLabel(view.step)}</span></div></section>
     <div className="hg-phase-line"><span>先手 <b>{teamName(view.firstTeam, view)}</b></span><span>行动团队 <b>{teamName(view.activeTeam, view)}</b></span><span>优先权 <b>{teamName(view.priorityTeam, view)}</b></span><strong className={view.pendingChoice ? 'hg-your-choice' : ''}>{status}</strong></div>
     <AutoPass view={view} busy={busy} uncertain={uncertain} connection={connection} onAction={onAction} />
-    <div className="hg-players">{view.players.map(player => <PlayerStrip key={player.id} player={player} view={view} catalog={catalog} />)}</div>
-    {view.pendingChoice && <ChoicePanel key={view.pendingChoice.id} choice={view.pendingChoice} action={choiceAction} definitions={definitions} busy={busy} onSubmit={onAction} />}
+    <div className="hg-players">{seatOrder.map(player => <PlayerStrip key={player.id} player={player} view={view} catalog={catalog} />)}</div>
+    {view.pendingChoice && <ChoicePanel key={view.pendingChoice.id} choice={view.pendingChoice} action={choiceAction} definitions={definitions} busy={busy} onSubmit={onAction} onReadCard={setReading} viewerId={view.you} playerLabels={Object.fromEntries(view.players.map(player => [player.id, player.name]))} />}
     <div className="hg-play-layout"><div className="hg-play-main">
       <section className="hg-board-section"><div className="hg-section-title"><h2>世界版图 <small>{view.regions.length} 个地区</small></h2><span className="hg-muted">上方对方 · 下方我方</span></div>
         <div className={`hg-board hg-board-${view.mode}`}>{view.regions.map(item => <RegionTile key={item.id} region={item} view={view} definitions={definitions} selected={selectedRegion === item.index} selectedCard={selectedCard} available={view.legalActions.some(action => action.region === item.index && (!selectedCard || action.cardId === selectedCard))} onRegion={() => { setSelectedRegion(item.index); setSelectedCard(null); }} onCard={selectCard} />)}</div>
         <p className="hg-swipe-hint">↔ 横向滑动查看全部地区</p>
       </section>
-      <section className="hg-hand-section"><div className="hg-section-title"><h2>你的手牌 <small>{view.hand.length} 张</small></h2><span className="hg-muted">横向查看 · 点选卡牌行动</span></div>
-        <div className="hg-hand">{view.hand.map(item => <CardTile key={item.instanceId} card={item} definition={definitions.get(item.cardId || '')} selected={selectedCard === item.instanceId} onSelect={() => selectCard(item.instanceId)} />)}{!view.hand.length && <p className="hg-empty">目前没有手牌。</p>}</div>
-      </section>
-      <section className="hg-assets-section"><div className="hg-section-title"><h2>秘社资产</h2><span className="hg-muted">派系忠诚与费用来源</span></div><div className="hg-asset-groups">{view.players.map(player => <div key={player.id} className={`hg-asset-group hg-team-${player.team}`}><h3>{player.name}{player.id === view.you ? ' · 你' : ''}<small>{view.assets.filter(item => item.controller === player.id).length} 张</small></h3><div className="hg-assets">{view.assets.filter(item => item.controller === player.id).map(item => <CardTile key={item.instanceId} card={item} definition={definitions.get(item.cardId || '')} compact selected={selectedCard === item.instanceId} onSelect={() => selectCard(item.instanceId)} />)}{!view.assets.some(item => item.controller === player.id) && <p className="hg-empty">暂无资产</p>}</div></div>)}</div></section>
+      <details className="hg-assets-section"><summary>秘社资产 <span>费用与忠诚始终显示在上方玩家栏 · 展开看牌</span></summary><div className="hg-asset-groups">{seatOrder.map(player => <div key={player.id} className={`hg-asset-group hg-team-${player.team}`}><h3>{player.name}{player.id === view.you ? ' · 你' : ''}<small>{view.assets.filter(item => item.controller === player.id).length} 张</small></h3><div className="hg-assets">{view.assets.filter(item => item.controller === player.id).map(item => <CardTile key={item.instanceId} card={item} definition={definitions.get(item.cardId || '')} viewerId={view.you} compact selected={selectedCard === item.instanceId} onSelect={() => selectCard(item.instanceId)} />)}{!view.assets.some(item => item.controller === player.id) && <p className="hg-empty">暂无资产</p>}</div></div>)}</div></details>
       <details className="hg-public-zones"><summary>墓地与计分区 <span>墓地 {view.graveyard.length} · 计分牌 {view.scoreCards.length}</span></summary><div>{view.players.map(player => <section key={player.id}><h3>{player.name}</h3><h4>墓地</h4><div className="hg-zone-cards">{view.graveyard.filter(item => item.owner === player.id).map(item => <CardTile key={item.instanceId} card={item} definition={definitions.get(item.cardId || '')} compact selected={selectedCard === item.instanceId} onSelect={() => selectCard(item.instanceId)} />)}</div><h4>计分区</h4><div className="hg-zone-cards">{view.scoreCards.filter(item => item.owner === player.id).map(item => <CardTile key={item.instanceId} card={item} definition={definitions.get(item.cardId || '')} compact selected={selectedCard === item.instanceId} onSelect={() => selectCard(item.instanceId)} />)}</div></section>)}</div></details>
     </div><aside className="hg-table-aside">
-      <section className={`hg-inspector ${card || region ? 'hg-inspector-active' : ''}`}><div className="hg-section-title"><span className="hg-eyebrow">当前可用行动</span>{(card || region) && <button className="hg-inspector-close" onClick={() => { setSelectedCard(null); setSelectedRegion(null); }} aria-label="关闭卡牌详情">×</button>}</div>{card ? <><div className="hg-inspected-card"><CardContent card={card} definition={definitions.get(card.cardId || '')} /></div><p className="hg-muted">{view.players.find(player => player.id === card.controller)?.name} 操控{card.region !== undefined ? ` · 地区 ${card.region + 1}` : ''}</p>{lastHandCharacterToAsset && <p className="hg-strategy-note">转为资产后，手中将暂时没有角色。资产提供费用与忠诚，但不能参与对抗；每回合开始仍会抓一张牌。</p>}<ActionButtons actions={cardActions} busy={busy} onAction={onAction} />{!cardActions.length && <p className="hg-wait-note">当前时点此牌没有可执行行动。</p>}</> : region ? <><h2>{region.name}</h2><p>控制阈值 {region.threshold} · 赢得后 {region.points} 分</p><p className="hg-rule-text">{definitions.get(region.cardId)?.text}</p><ActionButtons actions={regionActions} busy={busy} onAction={onAction} />{!regionActions.length && <p className="hg-wait-note">选择手牌可查看向此地区派遣的行动。</p>}</> : <><h2>{view.status === 'finished' ? '本局已结束' : view.pendingChoice ? '等待你的决定' : '选择一张牌'}</h2><p className="hg-wait-note">{view.status === 'finished' ? '展开记录，回顾这场秘社交锋。' : view.pendingChoice ? '完成牌桌上方的选择后，游戏继续。' : '点选手牌、资产或地区角色。此处会显示该牌当前可执行的行动。'}</p></>}
-        {!!globalActions.length && <div className="hg-general-actions"><span className="hg-eyebrow">牌桌行动</span><ActionButtons actions={globalActions} busy={busy} onAction={onAction} /></div>}
+      <section className={`hg-inspector ${card || region ? 'hg-inspector-active' : ''}`}>
+        <div className="hg-section-title"><span className="hg-eyebrow">{browsingOnly ? '浏览牌桌 · 暂不可行动' : '当前可用行动'}</span>{(card || region) && <button className="hg-inspector-close" onClick={() => { setSelectedCard(null); setSelectedRegion(null); }} aria-label="关闭卡牌详情">×</button>}</div>
+        {card ? <>
+          <div className="hg-inspected-card" role="button" tabIndex={0} aria-label={`放大阅读${card.name}`} onClick={() => setReading(card)} onKeyDown={event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); setReading(card); } }}><CardContent card={card} definition={definitions.get(card.cardId || '')} /></div>
+          <button type="button" className="hg-small-read" onClick={() => setReading(card)}>放大文字与图标 ↗</button>
+          <p className="hg-muted">{view.players.find(player => player.id === card.owner)?.name} 拥有 · {view.players.find(player => player.id === card.controller)?.name} 操控{card.region !== undefined ? ` · 地区 ${card.region + 1}` : ''}</p>
+          {lastHandCharacterToAsset && <p className="hg-strategy-note">转为资产后，手中将暂时没有角色。资产提供费用与忠诚，但不能参与对抗；每回合开始仍会抓一张牌。</p>}
+          <ActionButtons actions={cardActions} busy={busy} onAction={onAction} />
+          {!cardActions.length && <p className="hg-wait-note">{browsingOnly ? '可以阅读公开牌与自己的暗牌。当前等待其他玩家，此牌暂不可行动。' : '当前时点此牌没有可执行行动，可浏览其他卡牌。'}</p>}
+        </> : region ? <>
+          <h2>{region.name}</h2><p>控制阈值 {region.threshold} · 赢得后 {region.points} 分</p><p className="hg-rule-text">{definitions.get(region.cardId)?.text}</p>
+          <button type="button" className="hg-small-read" onClick={() => setReading({ instanceId: region.id, cardId: region.cardId, name: region.name, kind: 'region', owner: view.you, controller: view.you, exhausted: false, faceDown: false })}>放大地区文字 ↗</button>
+          <ActionButtons actions={regionActions} busy={busy} onAction={onAction} />{!regionActions.length && <p className="hg-wait-note">选择手牌可查看向此地区派遣的行动。</p>}
+        </> : <><h2>{view.status === 'finished' ? '本局已结束' : view.pendingChoice ? '等待你的决定' : browsingOnly ? '正在等待其他玩家' : '选择一张可行动的牌'}</h2><p className="hg-wait-note">{nextStep}。手牌与下一步按钮始终在屏幕下方。</p></>}
       </section>
       <section className="hg-stack"><div className="hg-section-title"><h2>待结算效果</h2><span>{view.stack.length}</span></div>{view.stack.length ? <ol>{[...view.stack].reverse().map(effect => <li key={effect.id}><strong>{effect.label}</strong><small>{view.players.find(player => player.id === effect.controller)?.name}</small></li>)}</ol> : <p className="hg-empty">目前没有待结算效果。</p>}</section>
-      <section className="hg-log"><div className="hg-section-title"><h2>行动记录</h2><span>最新在上</span></div><ol aria-label="牌桌行动记录">{[...view.log].reverse().slice(0, 50).map((entry, index) => <li key={`${entry.version}-${index}`}><span className="hg-log-dot" /><p>{entry.text}</p></li>)}</ol>{!view.log.length && <p className="hg-empty">等待第一步行动。</p>}</section>
+      <details className="hg-log"><summary>行动记录 <span>最新在上 · {view.log.length} 条</span></summary><ol aria-label="牌桌行动记录">{[...view.log].reverse().slice(0, 50).map((entry, index) => <li key={`${entry.version}-${index}`}><span className="hg-log-dot" /><p>{entry.text}</p></li>)}</ol>{!view.log.length && <p className="hg-empty">等待第一步行动。</p>}</details>
     </aside></div>
+    <section className="hg-hand-dock" aria-label="固定手牌与下一步行动">
+      <div className="hg-dock-action" data-next-step={view.status === 'finished' ? 'finished' : view.pendingChoice ? 'choose' : browsingOnly ? 'wait' : view.legalActions.length === 1 && globalActions[0]?.kind === 'pass' ? 'pass' : 'act'}><div><strong>{nextStep}</strong><small>{busy ? '正在确认上一行动…' : browsingOnly ? '浏览不会交出优先权，也不会显示他人的暗牌。' : '所有按钮均来自牌桌当前允许的行动。'}</small></div>
+        {view.pendingChoice ? <button className="hg-button hg-button-primary" onClick={() => { const panel = document.querySelector<HTMLElement>('.hg-choice'); panel?.scrollIntoView({ behavior: 'smooth', block: 'center' }); panel?.focus(); }}>前往完成选择 ↑</button>
+          : globalActions.length ? <ActionButtons actions={globalActions} busy={busy} onAction={onAction} />
+          : <button className="hg-button hg-button-primary" disabled={browsingOnly || busy} onClick={() => document.querySelector<HTMLButtonElement>('.hg-card[data-card-actionable="true"]')?.focus()}>{browsingOnly ? '等待玩家 · 可浏览' : '选择卡牌行动'}</button>}
+      </div>
+      <section className="hg-hand-section"><div className="hg-section-title"><h2>你的手牌 <small>{view.hand.length} 张</small></h2><span className="hg-muted">横向滑动 · 点选查看全文与行动</span></div>
+        <div className="hg-hand">{view.hand.map(item => <CardTile key={item.instanceId} card={item} definition={definitions.get(item.cardId || '')} viewerId={view.you} compact actionable={view.legalActions.some(action => action.cardId === item.instanceId)} selected={selectedCard === item.instanceId} onSelect={() => selectCard(item.instanceId)} />)}{!view.hand.length && <p className="hg-empty">目前没有手牌。</p>}</div>
+      </section>
+    </section>
+    {reading && <ReadModal card={reading} definition={definitions.get(reading.cardId || '')} viewerId={view.you} onClose={() => setReading(null)} />}
   </main>;
 }
