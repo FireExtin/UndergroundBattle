@@ -90,7 +90,9 @@ def build(root: Path = ROOT) -> dict:
     archive = read(root, ARCHIVE)
     reviews = read(root, REVIEWS)["cards"]
     coverage = read(root, COVERAGE)
-    specifications = read(root, SPECIFICATIONS)["cards"]
+    all_specifications = read(root, SPECIFICATIONS)
+    specifications = all_specifications["cards"]
+    non_card_references = all_specifications.get("nonCardReferences", {})
     catalog_path = Path(coverage["currentPool"]["catalogPath"])
     if digest(root / catalog_path) != coverage["codeSnapshot"][str(catalog_path)]:
         raise ValueError("Catalog changed: re-audit coverage before rebuilding support labels")
@@ -107,6 +109,7 @@ def build(root: Path = ROOT) -> dict:
         image_paths = sorted(str(p.relative_to(root)) for p in cards_dir.glob(card_id + " *.jpg"))
         review = reviews.get(card_id)
         spec = specifications.get(card_id)
+        reference = non_card_references.get(card_id)
         confirmed = review["confirmedMechanismIds"] if review else []
         searchable = "\n".join([raw["text"], raw["type"], *raw["keywords"]])
         candidates = sorted(i for i, terms in HINTS.items() if any(t in searchable for t in terms))
@@ -131,6 +134,9 @@ def build(root: Path = ROOT) -> dict:
             "reviewRef": "docs/factions/card-reviews.json#cards/" + card_id if review else None,
             "fullCardVerification": spec["sourceVerification"]["status"] if spec else "notStarted",
             "fullSpecRef": str(SPECIFICATIONS) + "#cards/" + card_id if spec else None,
+            "sourceRecordVerification": spec["sourceVerification"]["status"] if spec else reference["sourceVerification"]["status"] if reference else "notStarted",
+            "sourceSpecificationKind": "printedCard" if spec else "nonCardReference" if reference else None,
+            "sourceSpecRef": str(SPECIFICATIONS) + "#cards/" + card_id if spec else str(SPECIFICATIONS) + "#nonCardReferences/" + card_id if reference else None,
             "implementationDesignStatus": spec["implementationDesignStatus"] if spec else "notStarted",
             "editionStatus": edition,
             "locator": {k: raw[k] for k in [
@@ -164,6 +170,8 @@ def build(root: Path = ROOT) -> dict:
         "currentCatalogDefinitions": len(active),
         "completeSourceSpecifications": sum(c["fullCardVerification"] == "completeGameplayFieldsForPinnedImage" for c in records),
         "blockedSourceSpecifications": sum(c["fullCardVerification"] == "blocked" for c in records),
+        "completeNonCardReferences": sum(c["sourceRecordVerification"] == "completeNonCardReference" for c in records),
+        "completeSourceRecords": sum(c["sourceRecordVerification"] in {"completeGameplayFieldsForPinnedImage", "completeNonCardReference"} for c in records),
         "locatorSetCounts": dict(sorted(Counter(c["locator"]["set"] for c in records).items())),
         "locatorRoleCounts": dict(sorted(Counter(c["role"] for c in records).items())),
         "editionStatusCounts": dict(sorted(Counter(c["editionStatus"] for c in records).items())),
