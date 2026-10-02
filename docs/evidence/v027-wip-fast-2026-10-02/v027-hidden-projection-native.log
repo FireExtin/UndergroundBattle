@@ -1,0 +1,9 @@
+   Compiling hegemony-server v0.1.0 (/workspace/UndergroundBattle/rust-game)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.68s
+     Running unittests src/lib.rs (/workspace/.private-validation/hegemony-v027-target/debug/deps/hegemony_server-fa35e11fc7b74bf5)
+
+running 1 test
+test engine::tests::normal_hide_resolution_projects_concealed_print_to_controller_instead_of_owner ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 63 filtered out; finished in 0.01s
+

@@ -513,3 +513,130 @@ async fn actual_hong_kong_attachment_commitments_are_private_and_resume_once_fro
         .unwrap();
     assert_eq!(receipts, 4);
 }
+
+#[tokio::test]
+async fn grave_play_sqlite_preserves_paid_origin_and_full_intent_receipt_across_reopen() {
+    use hegemony_server::model::PlaySource;
+    let dir = tempfile::tempdir().unwrap();
+    let path = dir.path().join("grave-play.sqlite3");
+    let (store, seats, _, _) = fixture(&path, "teams", false).await;
+    let mut g = store.replay(&seats[0].room_id).unwrap().game;
+    drop(store);
+    for r in &mut g.regions {
+        r.cards.clear();
+    }
+    for p in &mut g.players {
+        p.hand.clear();
+        p.assets.clear();
+        p.graveyard.clear();
+    }
+    let corpse = g.make_card("JC085", 0);
+    let old = corpse.id.clone();
+    g.players[0].graveyard.push(corpse);
+    for definition in ["JC085", "JC084"] {
+        let asset = g.make_card(definition, 0);
+        g.players[0].assets.push(asset);
+    }
+    // Explicit local initial fixture only; subsequent commands are authenticated.
+    let initial = serde_json::to_string(&RoomEnvelope::from_game(g)).unwrap();
+    let db = rusqlite::Connection::open(&path).unwrap();
+    db.execute(
+        "UPDATE rooms SET state=?2,initial_state=?2 WHERE id=?1",
+        params![seats[0].room_id, initial],
+    )
+    .unwrap();
+    drop(db);
+    let store = Store::open(&path).unwrap();
+    let (paid, command) = act(
+        &store,
+        &seats,
+        0,
+        Action {
+            card_id: Some(old.clone()),
+            region: Some(0),
+            ..Action::new("deploy")
+        },
+        "grave-paid",
+    )
+    .await;
+    assert!(paid.hand.is_empty() && paid.graveyard.is_empty());
+    assert_eq!(paid.stack.len(), 1);
+    assert_eq!(
+        paid.assets
+            .iter()
+            .filter(|c| c.controller == "p0" && c.exhausted)
+            .count(),
+        2
+    );
+    let state = store.replay(&seats[0].room_id).unwrap();
+    assert_eq!(
+        state.stack[0].frame.as_ref().unwrap().source.play_source,
+        Some(PlaySource::Graveyard)
+    );
+    let before = serde_json::to_string(&state).unwrap();
+    let mut altered = command.clone();
+    let SessionAction::Game { action } = &mut altered.action else {
+        panic!("expected game intent")
+    };
+    action.region = Some(1);
+    assert!(store
+        .command_at_now(&seats[0].room_id, &seats[0].token, altered, 1_000)
+        .await
+        .is_err());
+    assert_eq!(
+        serde_json::to_string(&store.replay(&seats[0].room_id).unwrap()).unwrap(),
+        before
+    );
+    drop(store);
+    let store = Store::open(&path).unwrap();
+    let receipt = store
+        .command_at_now(&seats[0].room_id, &seats[0].token, command.clone(), 99_999)
+        .await
+        .unwrap();
+    assert_eq!(
+        serde_json::to_string(&receipt).unwrap(),
+        serde_json::to_string(&paid).unwrap()
+    );
+    assert_eq!(
+        serde_json::to_string(&store.replay(&seats[0].room_id).unwrap()).unwrap(),
+        before
+    );
+    let mut counter = 0;
+    resolve_top(&store, &seats, &mut counter).await;
+    let final_state = store.replay(&seats[0].room_id).unwrap();
+    assert_eq!(final_state.regions[0].cards.len(), 1);
+    assert_eq!(final_state.regions[0].cards[0].definition, "JC085");
+    assert_ne!(final_state.regions[0].cards[0].id, old);
+    assert!(!final_state.regions[0].cards[0].face_down);
+    assert_eq!(
+        final_state
+            .icons(&final_state.regions[0].cards[0], 0)
+            .influence,
+        1
+    );
+    assert_eq!(
+        final_state.players[0]
+            .assets
+            .iter()
+            .filter(|c| c.exhausted)
+            .count(),
+        2
+    );
+    assert!(store.audit_replay(&seats[0].room_id).unwrap().matches);
+    drop(store);
+    let store = Store::open(&path).unwrap();
+    assert_eq!(
+        serde_json::to_string(
+            &store
+                .command_at_now(&seats[0].room_id, &seats[0].token, command, 99_999)
+                .await
+                .unwrap()
+        )
+        .unwrap(),
+        serde_json::to_string(&paid).unwrap()
+    );
+    assert_eq!(
+        serde_json::to_string(&store.replay(&seats[0].room_id).unwrap()).unwrap(),
+        serde_json::to_string(&final_state).unwrap()
+    );
+}

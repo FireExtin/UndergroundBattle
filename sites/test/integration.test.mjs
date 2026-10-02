@@ -125,8 +125,9 @@ test('real workerd/WASM with D1 SQLite: concurrency, receipts, rollback and reop
       const roomCatalog = await api(path(oldHost, 'catalog'), null, oldHost);
       assert.equal(roomCatalog.status, 200);
       assert.equal(roomCatalog.body.engineVersion, engineVersion);
-      const hasExtraGrayCharacter = ['rust-v0.2.3', 'rust-v0.2.4', 'rust-v0.2.5'].includes(engineVersion);
-      assert.equal(roomCatalog.body.cards.length, engineVersion === 'rust-v0.2.5' ? 36 : hasExtraGrayCharacter ? 30 : 29);
+      const hasExtraGrayCharacter = ['rust-v0.2.3', 'rust-v0.2.4', 'rust-v0.2.5', 'rust-v0.2.6'].includes(engineVersion);
+      const frozenCounts = { 'rust-v0.2.1': 29, 'rust-v0.2.2': 29, 'rust-v0.2.3': 30, 'rust-v0.2.4': 30, 'rust-v0.2.5': 36, 'rust-v0.2.6': 37 };
+      assert.equal(roomCatalog.body.cards.length, frozenCounts[engineVersion]);
       const oldKeepers = roomCatalog.body.decks.find(deck => deck.id === 'keepers');
       assert.equal(oldKeepers.cards.find(entry => entry.cardId === 'JC125').count, hasExtraGrayCharacter ? 14 : 17);
       assert.equal(oldKeepers.cards.some(entry => entry.cardId === 'JC058'), hasExtraGrayCharacter);
@@ -175,7 +176,7 @@ test('real workerd/WASM with D1 SQLite: concurrency, receipts, rollback and reop
     draft.cards[0].count += 1; // Editing the original browser draft cannot mutate the persisted copy.
     assert.deepEqual(durableView((await api(path(customHost, 'state'), null, customHost)).body), durableView(frozenHostView));
     for (const old of oldRooms) {
-      if (['rust-v0.2.4', 'rust-v0.2.5'].includes(old.engineVersion)) continue; // Frozen saved-deck kernels accept only their own-version drafts.
+      if (['rust-v0.2.4', 'rust-v0.2.5', 'rust-v0.2.6'].includes(old.engineVersion)) continue; // Frozen saved-deck kernels accept only their own-version drafts.
       const rejected = await api('/api/rooms/join', { ...customJoinBody, inviteCode: old.actors[0].inviteCode || (await store.room(old.id)).invite, requestId: key() });
       assert.equal(rejected.status, 400); assert.match(rejected.body.message, /旧牌桌/);
       assert.equal((await store.room(old.id)).state, old.opaque);

@@ -586,7 +586,26 @@ mod tests {
         let patient = field(&mut g, "JC125", 1, 0, false);
         attach(&mut g, 1, &host0);
         attach(&mut g, 0, &host1);
+        let hidden = field(&mut g, "LC21", 2, 0, true);
+        field(&mut g, "LC20", 2, 0, false);
+        field(&mut g, "JC125", 3, 0, true);
+        field(&mut g, "LC23", 3, 0, false);
+        g.board_mut(&hidden).unwrap().damage = 7;
         g.board_mut(&patient).unwrap().damage = 1;
+        g.board_mut(&host0).unwrap().exhausted = true;
+        g.board_mut(&host0).unwrap().shield = 2;
+        g.board_mut(&host1).unwrap().controller = 0;
+        let old_ids = g
+            .in_play_cards()
+            .iter()
+            .map(|(_, c)| c.id.clone())
+            .collect::<std::collections::BTreeSet<_>>();
+        let old_prefixes = g
+            .players
+            .iter()
+            .map(|p| serde_json::to_string(&p.deck).unwrap())
+            .collect::<Vec<_>>();
+        let mut expected_bottoms = vec![Vec::<String>::new(); 4];
         let old_decks = g.players.iter().map(|p| p.deck.len()).collect::<Vec<_>>();
         let old_equipment = g
             .players
@@ -597,10 +616,10 @@ mod tests {
         for seat in 0..4 {
             g.apply(seat, Action::new("pass")).unwrap();
         }
-        for seat in 0..2 {
+        for seat in 0..4 {
             let pending = g.pending.clone().unwrap();
             assert_eq!(pending.seat, seat);
-            assert_eq!(pending.choice.options.len(), 3);
+            assert_eq!(pending.choice.options.len(), if seat < 2 { 3 } else { 2 });
             let ids = pending
                 .choice
                 .options
@@ -608,6 +627,10 @@ mod tests {
                 .rev()
                 .map(|o| o.id.clone())
                 .collect::<Vec<_>>();
+            expected_bottoms[seat] = ids
+                .iter()
+                .map(|id| g.board(id).unwrap().1.definition.clone())
+                .collect();
             g = Game::from_persisted(&serde_json::to_string(&g).unwrap()).unwrap();
             g.apply(
                 seat,
@@ -618,7 +641,7 @@ mod tests {
                 },
             )
             .unwrap();
-            if seat == 0 {
+            if seat < 3 {
                 assert!(g.board(&aura).is_some());
                 assert!(g.board(&patient).is_some());
                 assert_eq!(g.attachments.len(), 2);
@@ -630,8 +653,30 @@ mod tests {
         }
         assert!(g.region_return.is_none());
         assert!(g.attachments.is_empty());
-        for seat in 0..2 {
-            assert_eq!(g.players[seat].deck.len(), old_decks[seat] + 3);
+        let mut new_ids = std::collections::BTreeSet::new();
+        for seat in 0..4 {
+            assert_eq!(
+                g.players[seat].deck.len(),
+                old_decks[seat] + expected_bottoms[seat].len()
+            );
+            assert_eq!(
+                serde_json::to_string(&g.players[seat].deck[..old_decks[seat]]).unwrap(),
+                old_prefixes[seat]
+            );
+            let returned = &g.players[seat].deck[old_decks[seat]..];
+            assert_eq!(
+                returned
+                    .iter()
+                    .map(|c| c.definition.clone())
+                    .collect::<Vec<_>>(),
+                expected_bottoms[seat]
+            );
+            for c in returned {
+                assert!(!old_ids.contains(&c.id) && new_ids.insert(c.id.clone()));
+                assert_eq!((c.owner, c.controller), (seat, seat));
+                assert!(!c.exhausted && !c.face_down);
+                assert_eq!((c.damage, c.wounds, c.shield), (0, 0, 0));
+            }
             assert!(g.players[seat].hand.iter().all(|c| c.definition != "BQ022"));
             assert!(g.players[seat].graveyard.is_empty());
             assert_eq!(
@@ -640,7 +685,7 @@ mod tests {
                     .iter()
                     .filter(|c| c.definition == "BQ022")
                     .count(),
-                old_equipment[seat] + 1
+                old_equipment[seat] + usize::from(seat < 2)
             );
         }
         assert!(g.log.iter().all(|l| !l.text.contains("死亡")));

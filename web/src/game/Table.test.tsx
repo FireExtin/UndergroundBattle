@@ -177,14 +177,19 @@ describe('playable table', () => {
     expect(container.querySelector('[data-card-instance="instance-a"]')).toHaveAttribute('aria-pressed', 'true');
     expect(screen.getByRole('button', { name: '对合法目标发动' })).toBeInTheDocument();
   });
-  it('sanitizes hover reading by owner when a concealed card is controlled by the viewing player', () => {
-    const secret = { ...testCard, instanceId: 'teammate-secret', owner: 'p1', controller: 'p0', faceDown: true, kind: 'hidden', name: '不应公开身份', text: '不应公开能力' };
-    render(<Table view={{ ...testView, status: 'playing', hand: [], regions: [{ id: 'r', index: 0, cardId: 'w', name: '香港', threshold: 3, points: 3, influence: [0, 0], characters: [secret] }] }} catalog={testCatalog} busy={false} onAction={vi.fn()} />);
+  it('reads authorized concealed print for its controller and sanitizes hover for its owner', () => {
+    const secret = { ...testCard, instanceId: 'teammate-secret', owner: 'p1', controller: 'p0', faceDown: true, kind: 'hidden', name: '获授权身份', text: '获授权能力' };
+    const players = [...testView.players, { ...testView.players[0], id: 'p1', seat: 1, team: 1, name: '乙' }];
+    const view = { ...testView, status: 'playing' as const, players, hand: [], regions: [{ id: 'r', index: 0, cardId: 'w', name: '香港', threshold: 3, points: 3, influence: [0, 0], characters: [secret] }] };
+    const { rerender } = render(<Table view={view} catalog={testCatalog} busy={false} onAction={vi.fn()} />);
+    fireEvent.mouseEnter(screen.getByRole('button', { name: '查看获授权身份' }));
+    expect(within(screen.getByRole('complementary', { name: '悬停阅读获授权身份' })).getByText('获授权能力')).toBeInTheDocument();
+    rerender(<Table view={{ ...view, you: 'p1' }} catalog={testCatalog} busy={false} onAction={vi.fn()} />);
     fireEvent.mouseEnter(screen.getByRole('button', { name: '查看暗藏者' }));
     const preview = screen.getByRole('complementary', { name: '悬停阅读暗藏者' });
     expect(within(preview).getByLabelText('图标：调查0，战斗0，势力1')).toBeInTheDocument();
-    expect(screen.queryByText('不应公开身份')).not.toBeInTheDocument();
-    expect(screen.queryByText('不应公开能力')).not.toBeInTheDocument();
+    expect(screen.queryByText('获授权身份')).not.toBeInTheDocument();
+    expect(screen.queryByText('获授权能力')).not.toBeInTheDocument();
   });
   it('keeps pending choices reachable in the temporary table layer and submits the original legal choice', () => {
     const submit = vi.fn();

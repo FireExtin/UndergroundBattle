@@ -145,9 +145,9 @@ class UiRun:
         identity = action.get('cardId') or action.get('targetId')
         if identity:
             card = page.locator('[data-card-instance=' + json.dumps(identity) + ']')
-            if not await card.is_visible():
-                details = page.locator('details.hg-public-zones')
-                if await details.count() and not await details.get_attribute('open'):
+            if await card.count() and not await card.first.is_visible():
+                details = card.first.locator('xpath=ancestor::details[1]')
+                if await details.count() and await details.get_attribute('open') is None:
                     await details.locator('summary').click()
             assert await card.count(), f'Contextual card {identity} absent from UI'
             await card.first.click()

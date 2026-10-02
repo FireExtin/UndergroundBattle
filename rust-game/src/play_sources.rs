@@ -54,17 +54,21 @@ mod tests {
     use super::*;
     use crate::model::{Action, Icons, Window};
 
-    fn fixture() -> Game {
+    fn fixture_mode(mode: &str) -> Game {
         let mut g = Game::new(
             "grave-play-tests".into(),
             "QA".into(),
-            "duel".into(),
+            mode.into(),
             "甲".into(),
             "reclaimers".into(),
             1,
         )
         .unwrap();
         g.join("乙".into(), "reclaimers".into()).unwrap();
+        if mode == "teams" {
+            g.join("丙".into(), "reclaimers".into()).unwrap();
+            g.join("丁".into(), "reclaimers".into()).unwrap();
+        }
         for p in &mut g.players {
             p.ready = true;
         }
@@ -95,6 +99,9 @@ mod tests {
         g.passed.clear();
         g.team_passed = [false; 2];
         g
+    }
+    fn fixture() -> Game {
+        fixture_mode("duel")
     }
     fn assets(g: &mut Game, actor: usize, ids: &[&str]) {
         for id in ids {
@@ -242,5 +249,31 @@ mod tests {
                 ..Icons::default()
             }
         );
+    }
+    #[test]
+    fn teams_do_not_share_personal_domains_and_moved_characters_query_their_current_region() {
+        let mut g = fixture_mode("teams");
+        let dead = g.make_card("JC085", 0);
+        g.regions[0].cards.push(dead);
+        assets(&mut g, 1, &["JC085"]);
+        assert_eq!(g.icons(&g.regions[0].cards[0], 0).influence, 0);
+        g.regions[0].cards[0].controller = 1;
+        assert_eq!(g.icons(&g.regions[0].cards[0], 0).influence, 1);
+        g.regions[0].cards[0].controller = 0;
+        assets(&mut g, 0, &["JC085"]);
+        g.players[0].assets[0].exhausted = true;
+        assert_eq!(g.icons(&g.regions[0].cards[0], 0).influence, 1);
+        let street = g.make_card("JC084", 1);
+        g.regions[0].cards.push(street);
+        g.regions[0].influence = [1, 1];
+        assert_eq!(g.icons(&g.regions[0].cards[1], 0).investigation, 1);
+        let moved = g.regions[0].cards.pop().unwrap();
+        g.regions[1].cards.push(moved);
+        assert_eq!(g.icons(&g.regions[1].cards[0], 1).influence, 0);
+        assert_eq!(g.icons(&g.regions[1].cards[0], 1).investigation, 0);
+        g.regions[1].influence = [1, 1];
+        assert_eq!(g.icons(&g.regions[1].cards[0], 1).influence, 1);
+        g.first_team = 1;
+        assert_eq!(g.icons(&g.regions[1].cards[0], 1).influence, 0);
     }
 }

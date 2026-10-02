@@ -20,4 +20,17 @@ describe('original card scan reading', () => {
     expect(screen.queryByRole('img')).not.toBeInTheDocument();
     expect(screen.queryByText('合金指虎')).not.toBeInTheDocument();
   });
+
+  it('lets the current controller read an authorized concealed original while erasing it for its owner and other seats', () => {
+    const card = { ...testCard, cardId: 'LC22', name: '退役军人', owner: 'p1', controller: 'p0', faceDown: true };
+    const { rerender } = render(<ReadModal card={card} viewerId="p0" onClose={vi.fn()} />);
+    fireEvent.click(screen.getByRole('button', { name: '原始牌面' }));
+    expect(screen.getByRole('img', { name: '退役军人原始牌面' })).toHaveAttribute('src', '/cards/LC22.jpg');
+    for (const viewerId of ['p1', 'p2', 'p3']) {
+      rerender(<ReadModal key={viewerId} card={card} viewerId={viewerId} onClose={vi.fn()} />);
+      expect(screen.getByRole('dialog', { name: '放大阅读暗藏者' })).toBeInTheDocument();
+      expect(screen.queryByRole('button', { name: '原始牌面' })).not.toBeInTheDocument();
+      expect(screen.queryByRole('img')).not.toBeInTheDocument();
+    }
+  });
 });

@@ -12,16 +12,37 @@ from attachment_v026 import AttachmentRun
 from common import IsolatedService, public_view, write_json
 
 class FullGame(AttachmentRun):
-    def __init__(self,p,service,output,mode,budget):
+    def __init__(self,p,service,output,mode,budget,grave_probe=False):
         super().__init__(p,service,output)
         self.mode=mode; self.post_limit=budget
+        self.grave_probe=grave_probe; self.grave_checks=[]; self.grave_entries=[]
+    async def legal_button(self, seat, action):
+        before=await self.view(seat)
+        grave=next((c for c in before.get('graveyard',[]) if c['instanceId']==action.get('cardId') and c['owner']==before['you']),None)
+        await super().legal_button(seat,action)
+        if grave and action['kind']=='deploy':
+            after=await self.view(seat)
+            assert grave['cardId']=='JC085'
+            assert all(c['instanceId']!=grave['instanceId'] for c in after['hand']+after['graveyard'])
+            assert after['stack'] and after['stack'][-1]['cardId']=='JC085'
+            exhausted=lambda v: sum(c['controller']==v['you'] and c['exhausted'] for c in v['assets'])
+            assert exhausted(after)-exhausted(before)==2
+            self.grave_entries.append({'seat':seat,'oldIds':{c['instanceId'] for r in before['regions'] for c in r['characters']},'region':action['region']})
+            self.grave_checks.append({'seat':seat,'kind':'natural-grave-face-up-frame','version':after['version'],'passed':True})
+            await self.screenshot('natural-grave-paid-frame',seat)
+    def policy(self,seat,view):
+        if self.grave_probe:
+            own_grave={c['instanceId'] for c in view.get('graveyard',[]) if c['owner']==view['you']}
+            grave=next((a for a in view.get('legalActions',[]) if a['kind']=='deploy' and a.get('cardId') in own_grave),None)
+            if grave: return grave
+        return super().policy(seat,view)
     async def play_full(self):
         start=time.monotonic(); capacity=2 if self.mode=='duel' else 4
         try:
             page=await self.new_seat(0)
             catalog=await page.evaluate('window.__cloudCatalog')
             self.catalog={c['id']:c for c in catalog['cards']}
-            decks=['watchers','hunters','keepers','reclaimers']
+            decks=['reclaimers','hunters','keepers','watchers'] if self.grave_probe else ['watchers','hunters','keepers','reclaimers']
             await page.locator(f'.hg-deck[data-deck-id="{decks[0]}"]').click()
             await page.get_by_label('你的称呼').fill(f'完整局{self.mode}甲')
             if self.mode=='teams': await page.get_by_role('button',name=re.compile('四人协作')).click()
@@ -43,6 +64,13 @@ class FullGame(AttachmentRun):
             while self.post_count < self.post_limit:
                 views=await self.views(); latest=max(views,key=lambda v:v['version'])
                 await self.sync(latest['version'])
+                if self.grave_entries and not latest['stack']:
+                    for entry in self.grave_entries:
+                        v=views[entry['seat']]
+                        entered=next(c for c in v['regions'][entry['region']]['characters'] if c['instanceId'] not in entry['oldIds'] and c.get('cardId')=='JC085' and c['controller']==v['you'])
+                        assert not entered['faceDown']
+                        self.grave_checks.append({'seat':entry['seat'],'kind':'natural-grave-fresh-face-up-entry','version':v['version'],'passed':True})
+                    self.grave_entries.clear()
                 if latest['status']=='finished':
                     await self.screenshot('complete-game')
                     result={'passed':True}; break
@@ -70,12 +98,13 @@ class FullGame(AttachmentRun):
                     print(json.dumps({'mode':self.mode,'posts':self.post_count,'version':v['version'],'turn':v['turn'],'score':[p['score'] for p in v['players']]}),flush=True)
             else: raise AssertionError('Full-game UI budget exhausted')
             assert not self.errors, 'Browser errors during normal play'
+            if self.grave_probe: assert any(c['kind']=='natural-grave-fresh-face-up-entry' for c in self.grave_checks), 'Complete game finished without naturally reaching grave play; mechanism UI remains untested'
         except Exception as error:
             result={'passed':False,'failure':f'{type(error).__name__}: {error}'}
             if self.pages: await self.screenshot('full-game-failure')
         finally:
             v=await self.view(0) if self.pages else None
-            result.update(testType='complete-natural-desktop-ui-game',mode=self.mode,stateInjection=False,apiMoves=False,uiPostCount=self.post_count,uiPostBudget=self.post_limit,browserErrors=self.errors,coverage=dict(self.coverage),final=public_view(v),roomId=v['roomId'] if v else None,durationSeconds=round(time.monotonic()-start,2))
+            result.update(testType='complete-natural-desktop-ui-game',mode=self.mode,stateInjection=False,apiMoves=False,uiPostCount=self.post_count,uiPostBudget=self.post_limit,browserErrors=self.errors,coverage=dict(self.coverage),graveChecks=self.grave_checks,final=public_view(v),roomId=v['roomId'] if v else None,durationSeconds=round(time.monotonic()-start,2))
             write_json(self.output/'full-game-summary.json',result)
             for c in self.contexts: await c.close()
         print(json.dumps({'mode':self.mode,'passed':result['passed'],'posts':self.post_count,'failure':result.get('failure'),'roomId':result['roomId']}),flush=True)
@@ -84,10 +113,11 @@ async def main(args):
     service=IsolatedService(args.binary,args.cwd,args.output,args.port,args.static_dir)
     service.start()
     try:
-        async with async_playwright() as p: await FullGame(p,service,Path(args.output).resolve(),args.mode,args.budget).play_full()
+        async with async_playwright() as p: await FullGame(p,service,Path(args.output).resolve(),args.mode,args.budget,args.grave_probe).play_full()
     finally: service.stop()
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--binary',required=True);p.add_argument('--cwd',default='.');p.add_argument('--static-dir',default='web/dist');p.add_argument('--output',required=True)
     p.add_argument('--mode',choices=['duel','teams'],required=True);p.add_argument('--budget',type=int,default=2000);p.add_argument('--port',type=int,default=8107)
+    p.add_argument('--grave-probe',action='store_true')
     asyncio.run(main(p.parse_args()))
