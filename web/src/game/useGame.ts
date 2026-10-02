@@ -154,25 +154,36 @@ export function useGame() {
     await resolvePending(session);
   };
 
+  const resume = (target?: SavedSession) => {
+    if (commandLock.current) return;
+    const saved = target || readSession() || savedSeats.at(-1);
+    if (!saved) return;
+    if (pending.current && !commandFor(pending.current, saved)) { setError('请先恢复待确认行动所在的原席位，再切换牌桌或席位。'); return; }
+    saveSession(saved); setSavedSeats(readSavedSeats()); activeSession.current = saved; acceptedVersion.current = 0;
+    setView(null); setSession(saved); setUncertain(!!pending.current); setError('');
+    if (new URL(location.href).searchParams.has('invite')) history.replaceState({}, '', location.pathname);
+  };
+  const join = (inviteCode: string, task: () => Promise<Session>) => {
+    const code = inviteCode.trim().toUpperCase();
+    const matching = readSavedSeats().filter(seat => seat.inviteCode.trim().toUpperCase() === code);
+    // The invite is a room locator. A stored token, never a display name, identifies its occupant.
+    const saved = matching.find(seat => commandFor(pending.current, seat)) || matching.at(-1);
+    if (saved) { resume(saved); return Promise.resolve(); }
+    return enter(task);
+  };
+
   return {
     catalog, session, view, error, busy, uncertain, connection, act,
     create: (name: string, mode: 'duel' | 'teams', deckId: string) => enter(() => createRoom(name, mode, deckId)),
-    join: (inviteCode: string, name: string, deckId: string) => enter(() => joinRoom(inviteCode, name, deckId)),
+    join: (inviteCode: string, name: string, deckId: string) => join(inviteCode, () => joinRoom(inviteCode, name, deckId)),
     createDraft: (name: string, mode: 'duel' | 'teams', draft: DeckDraft) => enter(() => createRoomWithDeck(name, mode, draft)),
-    joinDraft: (inviteCode: string, name: string, draft: DeckDraft) => enter(() => joinRoomWithDeck(inviteCode, name, draft)),
+    joinDraft: (inviteCode: string, name: string, draft: DeckDraft) => join(inviteCode, () => joinRoomWithDeck(inviteCode, name, draft)),
     dismissError: () => setError(''),
     retryCatalog: () => { setError(''); setCatalogRetry(n => n + 1); },
     retryPending: () => { if (session) void resolvePending(session); },
     savedSeats,
     resumeAvailable: !session && savedSeats.length > 0,
-    resume: (target?: SavedSession) => {
-      if (commandLock.current) return;
-      const saved = target || readSession() || savedSeats.at(-1);
-      if (!saved) return;
-      if (pending.current && !commandFor(pending.current, saved)) { setError('请先恢复待确认行动所在的原席位，再切换牌桌或席位。'); return; }
-      saveSession(saved); setSavedSeats(readSavedSeats()); activeSession.current = saved; acceptedVersion.current = 0;
-      setView(null); setSession(saved); setUncertain(!!pending.current); setError('');
-    },
+    resume,
     // Return to the lobby without destroying the only credential for an occupied seat.
     leave: () => { if (commandLock.current) return; returnToLobby(); activeSession.current = null; setSession(null); setView(null); setError(''); setUncertain(false); },
   };

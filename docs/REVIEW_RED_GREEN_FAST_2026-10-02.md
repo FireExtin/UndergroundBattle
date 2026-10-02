@@ -15,3 +15,7 @@
 下一切片 JC084/JC085 的有限条件图标与墓地正面出牌保存在 `codex/hegemony-v027-grave-play-20261002`，不随本修复解锁。v027 独立原生/WASM/七核/前端及双席479次正常UI整局已验；该整局自然发生墓地出牌并以新身份正面入场，最后6:9。四套零中立研究候选仍未解锁。独立四席 v026 整局继续验收；已有双席 v026 整局382次正常UI、8:5。DB、身份与手牌截图留本机，不上传。
 
 默认 WASM 对照585步、1865席位投影、1报价和6个拒绝请求全部一致。公开证据在 `docs/evidence/v026-review-red-green-2026-10-02/`，红测试是隔离副本故意制造的失败；正式工作树全绿。部署版本通过后追加。
+
+发布确认：实施e1e2dea581fbb97f1c2a64f7133179d50f1dd4d8；官方bundle构建、验证、推送和打包的Site源码5889aeba0fd18e6a3ccdfaa18f5d266cdccdf7df；Site10，deployment appgdep_6ac01892c1b48191938b156611457e80成功。原公开audience revision2与env revision0保持。发布后原匿名房主profile正常恢复房45845084f946f770e7aaf26d、lobby revision1，加载新JS index-NdWStdMt、健康端点200/engine6、原BQ022图SHA逐字相同，0游戏POST、无浏览器或传输错误。首次只读探针把health字段误写为engine，实际契约为engineVersion，修正后通过；未修改服务或重试游戏请求。
+
+待验收双席入口：https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site/?invite=0ADD203A461C ，仍只有原房主一席，原身份保留，未分享或伪造座位凭据。四席满桌75038039090bef579f32b5fb和旧C26房不动。v027新机制WIP已经合入本修复，最新验收记录随独立分支保存，不在Site10启用。
