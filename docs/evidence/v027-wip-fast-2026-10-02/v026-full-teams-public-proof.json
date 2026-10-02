@@ -1,0 +1,21 @@
+{
+  "roomId": "fb66561335d017fc61cf7400",
+  "engineVersion": "rust-v0.2.6",
+  "stateInjection": false,
+  "apiMoves": false,
+  "publicCommandRecords": 2375,
+  "httpStatuses": {
+    "200": 2375
+  },
+  "fourCreationAndJoinPosts": 4,
+  "finalWinnerTeam": 0,
+  "finalTeamScores": [
+    11,
+    4
+  ],
+  "priorBudgetExhaustionPreserved": true,
+  "priorToolFailuresPreserved": true,
+  "sameRoomDbAndProfilesResumed": true,
+  "nativeRulesFrozen": "rust-v0.2.6",
+  "frontendAtResume": "published Site12 common UI with original scans and crowded-region fix"
+}
