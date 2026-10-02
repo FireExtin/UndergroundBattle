@@ -107,6 +107,13 @@ pub struct CardView {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
+pub struct AttachmentView {
+    #[serde(flatten)]
+    pub card: CardView,
+    pub host_id: String,
+}
+#[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
 pub struct ChoiceOption {
     pub id: String,
     pub label: String,
@@ -235,6 +242,8 @@ pub struct View {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub winner_team: Option<usize>,
     pub regions: Vec<RegionView>,
+    #[serde(default)]
+    pub attachments: Vec<AttachmentView>,
     pub hand: Vec<CardView>,
     pub assets: Vec<CardView>,
     pub graveyard: Vec<CardView>,
@@ -261,6 +270,12 @@ pub struct Card {
     pub damage: u32,
     pub wounds: u32,
     pub shield: u32,
+}
+#[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct Attachment {
+    pub card: Card,
+    pub host_id: String,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Player {
@@ -304,6 +319,13 @@ pub struct Region {
     pub influence: [u32; 2],
     pub cards: Vec<Card>,
     pub skip: bool,
+}
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct RegionReturnBatch {
+    pub region: usize,
+    pub hand: Vec<String>,
+    pub bottom: Vec<Vec<String>>,
+    pub orders: Vec<Option<Vec<String>>>,
 }
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum Window {
@@ -360,6 +382,12 @@ pub enum Effect {
     },
     Bottom {
         seat: usize,
+        region: usize,
+    },
+    PrepareRegionReturn {
+        region: usize,
+    },
+    CommitRegionReturn {
         region: usize,
     },
     Score {
@@ -545,6 +573,10 @@ pub struct Game {
     pub turn: u32,
     pub winner_team: Option<usize>,
     pub regions: Vec<Region>,
+    #[serde(default)]
+    pub attachments: Vec<Attachment>,
+    #[serde(default)]
+    pub region_return: Option<RegionReturnBatch>,
     pub world: Vec<Card>,
     pub stack: Vec<StackItem>,
     pub pending: Option<Pending>,

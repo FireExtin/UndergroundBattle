@@ -7,8 +7,11 @@ import { Miniflare, convertV4MiniflareOptions } from 'miniflare';
 import { RoomStore } from '../src/store.mjs';
 import { digest } from '../src/service.mjs';
 
-test('real Worker/D1 persists independent composing members, untimed choices, expiry and original receipts through reopen', async t => {
-  const fixture = JSON.parse(readFileSync(new URL('./fixtures/prepared-response-v025.json', import.meta.url), 'utf8'));
+for (const [engineVersion, fixturePath] of [
+  ['rust-v0.2.5', './fixtures/prepared-response-v025.json'],
+  ['rust-v0.2.6', './fixtures/prepared-response-v026.json'],
+]) test(`real Worker/D1 ${engineVersion} preserves composing, untimed choices, expiry and receipts through reopen`, async t => {
+  const fixture = JSON.parse(readFileSync(new URL(fixturePath, import.meta.url), 'utf8'));
   const persist = mkdtempSync(join(tmpdir(), 'hegemony-session-d1-'));
   const options = convertV4MiniflareOptions({ name: 'hegemony-session', resourcePersistencePath: persist, modules: [
     { type: 'ESModule', path: resolve('dist/server/index.js') },
@@ -39,7 +42,7 @@ test('real Worker/D1 persists independent composing members, untimed choices, ex
   try {
     const paid = cmd(fixture.version, fixture.firstAction);
     const first = await api(0, 'commands', paid);
-    assert.equal(first.status, 200); assert.equal(first.body.versions.engine, 'rust-v0.2.5');
+    assert.equal(first.status, 200); assert.equal(first.body.versions.engine, engineVersion);
     assert.equal(first.body.roomId, id);
     const window = first.body.responseWindow;
     assert.equal(window.members.length, 2); assert(window.members.every(member => member.status === 'undecided'));

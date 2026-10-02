@@ -1,3 +1,4 @@
+mod attachment;
 pub mod catalog;
 pub mod deck;
 pub mod engine;

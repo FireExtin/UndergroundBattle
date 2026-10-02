@@ -199,7 +199,7 @@ impl Game {
             .map(|c| c.id.clone())
             .collect::<Vec<_>>();
         for id in selected {
-            if let Some((r, c)) = self.remove_board(&id) {
+            if let Some((r, c)) = self.leave_board(&id) {
                 let mut c = self.fresh(c);
                 c.face_down = true;
                 c.damage = 0;

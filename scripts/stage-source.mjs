@@ -27,6 +27,7 @@ const copy = (from, relative, directory = false) => {
 for (const file of ['package.json', 'package-lock.json', 'wrangler.jsonc', 'drizzle.config.ts', 'README.md', '.openai/hosting.json']) copy(project + file, file);
 for (const directory of ['src', 'db', 'drizzle', 'test', 'scripts']) copy(project + directory, directory, true);
 copy(repository + 'web/src', 'web/src', true);
+copy(repository + 'web/public', 'web/public', true);
 for (const file of ['package.json', 'package-lock.json', 'index.html', 'vite.config.ts', 'tsconfig.json', 'tsconfig.app.json', 'tsconfig.node.json']) copy(repository + 'web/' + file, 'web/' + file);
 for (const crate of ['rust-game', 'rust-game-wasm']) {
   copy(repository + crate + '/src', crate + '/src', true);
@@ -41,6 +42,7 @@ copy(repository + 'rust-game-wasm/legacy-v0.2.1', 'rust-game-wasm/legacy-v0.2.1'
 copy(repository + 'rust-game-wasm/legacy-v0.2.2', 'rust-game-wasm/legacy-v0.2.2', true);
 copy(repository + 'rust-game-wasm/legacy-v0.2.3', 'rust-game-wasm/legacy-v0.2.3', true);
 copy(repository + 'rust-game-wasm/legacy-v0.2.4', 'rust-game-wasm/legacy-v0.2.4', true);
+copy(repository + 'rust-game-wasm/legacy-v0.2.5', 'rust-game-wasm/legacy-v0.2.5', true);
 writeFileSync(path.join(destination, '.gitignore'), 'node_modules/\ndist/\n.wrangler/\ngenerated/\npublic/\nweb/dist/\nrust-game/target/\nrust-game-wasm/target/\n.env*\n.sites-runtime/\n');
 const wasmSha256 = createHash('sha256').update(readFileSync(repository + 'rust-game-wasm/pkg/hegemony_wasm_bg.wasm')).digest('hex');
 const originalCommit = execFileSync('git', ['rev-parse', 'HEAD'], { cwd: repository, encoding: 'utf8' }).trim();

@@ -42,6 +42,7 @@ pub enum Zone {
 pub enum EntityKind {
     Any,
     Character,
+    Attachment,
     Hidden,
     CharacterOrHidden,
 }
@@ -65,6 +66,8 @@ pub struct TargetSlotSpec {
     pub relation: Relation,
     pub range: Range,
     pub subtype: Option<String>,
+    #[serde(default)]
+    pub subtypes_any: Vec<String>,
     pub min: usize,
     pub max: usize,
 }
@@ -219,11 +222,23 @@ pub enum StaticModifier {
     NoEnemyCharacters(Icons, Icons),
     OtherFriendlyCharactersDefense(u32),
 }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
+pub enum HostLeaveDestination {
+    OwnerGraveyard,
+    OwnerHand,
+}
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct AttachmentSpec {
+    pub host: TargetSlotSpec,
+    pub host_icons: Icons,
+    pub host_leaves: HostLeaveDestination,
+}
 #[derive(Clone, Debug, Default, Serialize, Deserialize)]
 pub struct Definition {
     pub traits: Traits,
     pub abilities: Vec<AbilitySpec>,
     pub modifiers: Vec<StaticModifier>,
+    pub attachment: Option<AttachmentSpec>,
 }
 
 // These are interpreter limits, not rules for resolving partially invalid targets.
@@ -281,6 +296,30 @@ fn validate_definitions(definitions: &BTreeMap<String, Definition>) -> Result<()
         for ability in &definition.abilities {
             validate_ability(card_id, ability)?;
         }
+        if let Some(attachment) = &definition.attachment {
+            let host = &attachment.host;
+            if host.zone != Zone::Board
+                || host.kind != EntityKind::Character
+                || host.min != 1
+                || host.max != 1
+                || host.range != Range::Anywhere
+            {
+                return Err(format!(
+                    "cardId={card_id}: unsupported attachment host specification"
+                ));
+            }
+            if !definition.abilities.iter().any(|a| {
+                a.event.is_none()
+                    && a.timing == Timing::Standard
+                    && a.targets.len() == 1
+                    && serde_json::to_value(&a.targets[0]).unwrap()
+                        == serde_json::to_value(host).unwrap()
+            }) {
+                return Err(format!(
+                    "cardId={card_id}: attachment requires matching standard play target"
+                ));
+            }
+        }
     }
     Ok(())
 }
@@ -292,6 +331,7 @@ fn target(zone: Zone, kind: EntityKind, relation: Relation, range: Range) -> Tar
         relation,
         range,
         subtype: None,
+        subtypes_any: vec![],
         min: 1,
         max: 1,
     }
@@ -927,6 +967,36 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
                 )]),
             );
         }
+        let mut host = target(
+            Zone::Board,
+            EntityKind::Character,
+            Relation::Any,
+            Range::Anywhere,
+        );
+        host.subtypes_any = vec!["人类".into(), "吸血鬼".into()];
+        m.insert(
+            "BQ022".into(),
+            Definition {
+                abilities: vec![ability(
+                    "attach",
+                    "结附",
+                    Timing::Standard,
+                    vec![],
+                    vec![host.clone()],
+                    vec![],
+                    None,
+                )],
+                attachment: Some(AttachmentSpec {
+                    host,
+                    host_icons: Icons {
+                        combat: 1,
+                        ..Default::default()
+                    },
+                    host_leaves: HostLeaveDestination::OwnerHand,
+                }),
+                ..Default::default()
+            },
+        );
         validate_definitions(&m)
             .unwrap_or_else(|error| panic!("Invalid released rule declaration: {error}"));
         m
@@ -945,7 +1015,7 @@ mod tests {
     #[test]
     fn invalid_multi_target_ability_is_rejected_before_registration() {
         let mut registry = definitions().clone();
-        assert_eq!(registry.len(), 36);
+        assert_eq!(registry.len(), 37);
         let ability = &mut registry.get_mut("LC20").unwrap().abilities[0];
         ability.targets.push(ability.targets[0].clone());
         let error = validate_definitions(&registry).unwrap_err();

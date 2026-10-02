@@ -14,6 +14,7 @@ export type Card = {
   cost?: number; effectiveCost?: number; text?: string; icons?: Icons; defense?: number; damage?: number;
   shield?: number; wounds?: number; color?: string; magic?: string;
 };
+export type Attachment = Card & { hostId: string };
 export type Action = {
   kind: string; cardId?: string; targetId?: string; region?: number; option?: string;
   abilityId?: string; costSelected?: string[];
@@ -59,6 +60,7 @@ export type View = {
   firstTeam: number; activeTeam: number; priorityTeam: number; turn: number;
   phase: string; step: string; winScore: number; winnerTeam?: number;
   regions: Region[]; hand: Card[]; assets: Card[]; graveyard: Card[]; scoreCards: Card[];
+  attachments?: Attachment[];
   stack: StackEffect[];
   pendingChoice: Choice | null;
   waitingChoice?: { playerId: string; title: string; kind: string } | null;

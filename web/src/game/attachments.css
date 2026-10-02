@@ -1,0 +1,10 @@
+/* Attachment reading and server-projected stats; table geometry stays unchanged. */
+.hg-card-stat-row { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; }
+.hg-card-stat-row > small { font-size: 12px; color: #526154; }
+.hg-card-attachment-count { font-weight: 600; color: #285239; white-space: nowrap; }
+.hg-attached-cards { margin-top: 12px; padding-top: 9px; border-top: 1px solid #b0986b66; }
+.hg-attached-cards h3 { margin-bottom: 6px; }
+.hg-attachment-link { display: flex; width: 100%; justify-content: space-between; align-items: center; gap: 8px; margin-top: 5px; padding: 8px; border: 1px solid #b0986b88; border-radius: 4px; background: #203a2e; color: #eee4c9; text-align: left; }
+.hg-attachment-link small { display: block; font-size: 12px; color: #c5cdbd; }
+.hg-attachment-link > span:last-child { flex-shrink: 0; font-size: 12px; }
+.hg-attachment-context { margin-top: 8px; font-size: 13px; color: #d9d9c8; }
