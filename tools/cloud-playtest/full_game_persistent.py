@@ -12,20 +12,24 @@ from attachment_v026 import AttachmentRun
 from common import IsolatedService, public_view, write_json
 
 class FullGame(AttachmentRun):
-    def __init__(self,p,service,output,mode,budget,grave_probe=False,resume=False):
+    def __init__(self,p,service,output,mode,budget,grave_probe=False,resume=False,grave_slice=False):
         super().__init__(p,service,output)
         self.mode=mode; self.post_limit=budget
         self.grave_probe=grave_probe; self.grave_checks=[]; self.grave_entries=[]
+        self.grave_slice=grave_slice
+        assert not grave_slice or (grave_probe and mode=='teams')
         self.condition_checks=[]; self.condition_seen=set()
         self.expiry_races=[]
         self.resume=resume; self.previous=None
         if resume:
             self.previous=json.loads((self.output/'full-game-summary.json').read_text())
             assert self.previous['mode']==mode and not self.previous['passed']
+            assert self.previous.get('graveSliceOnly',False)==grave_slice
             self.post_count=self.previous['uiPostCount']; self.coverage.update(self.previous['coverage'])
             self.grave_checks=self.previous.get('graveChecks',[])
             self.condition_checks=self.previous.get('conditionChecks',[])
             self.expiry_races=self.previous.get('expiryRaces',[])
+            self.grave_entries=[{**e,'oldIds':set(e['oldIds'])} for e in self.previous.get('pendingGraveEntries',[])]
     def observe_conditions(self,views):
         for v in views:
             teams={p['id']:p['team'] for p in v['players']}
@@ -62,10 +66,31 @@ class FullGame(AttachmentRun):
             own_grave={c['instanceId'] for c in view.get('graveyard',[]) if c['owner']==view['you']}
             grave=next((a for a in view.get('legalActions',[]) if a['kind']=='deploy' and a.get('cardId') in own_grave),None)
             if grave: return grave
+            if self.grave_slice:
+                hidden_recur={c['instanceId'] for r in view['regions'] for c in r['characters'] if c['controller']==view['you'] and c['faceDown'] and c.get('cardId')=='JC085'}
+                reveal=next((a for a in view.get('legalActions',[]) if a['kind']=='reveal' and a.get('cardId') in hidden_recur),None)
+                if reveal:return reveal
             own_recur={c['instanceId'] for c in view['hand'] if c.get('cardId')=='JC085'}
             contested=next((a for a in view.get('legalActions',[]) if a['kind']=='deploy' and a.get('cardId') in own_recur and a.get('region')==2),None)
             if contested:return contested
         return super().policy(seat,view)
+    async def choose(self,seat,view):
+        choice=view['pendingChoice']
+        if not self.grave_slice or choice['kind']!='damage' or not any(o.get('card',{}).get('cardId')=='JC085' for o in choice['options']):
+            return await super().choose(seat,view)
+        # A deliberate, legal QA allocation after mandatory printed guards.
+        # Only this acting seat's real choice options are used.
+        panel=self.pages[seat].locator('.hg-choice');await panel.wait_for(state='visible')
+        self.coverage['choice:damage']+=1
+        options=choice['options'];amount=choice.get('amount',0);allocation=[0]*len(options)
+        for i,o in enumerate(options):
+            if amount and o.get('card',{}).get('cardId') in ('LC21','LC22'):
+                allocation[i]=1;amount-=1
+        if amount:
+            allocation[next(i for i,o in enumerate(options) if o.get('card',{}).get('cardId')=='JC085')]+=amount
+        for i,value in enumerate(allocation):
+            if value:await panel.get_by_role('spinbutton').nth(i).fill(str(value))
+        await self.submit(seat,panel.get_by_role('button',name='确认选择',exact=True).click,'choose')
     async def play_full(self):
         start=time.monotonic(); capacity=2 if self.mode=='duel' else 4
         try:
@@ -73,6 +98,7 @@ class FullGame(AttachmentRun):
             catalog=await page.evaluate('window.__cloudCatalog')
             self.catalog={c['id']:c for c in catalog['cards']}
             decks=['reclaimers','keepers','hunters','watchers'] if self.grave_probe and self.mode=='teams' else ['reclaimers','hunters','keepers','watchers'] if self.grave_probe else ['watchers','hunters','keepers','reclaimers']
+            if self.grave_slice:decks=['reclaimers']*capacity
             if self.resume:
                 await page.wait_for_function('window.__cloudView?.status === "playing"')
                 for seat in range(1,capacity):await self.new_seat(seat)
@@ -111,6 +137,9 @@ class FullGame(AttachmentRun):
                         assert not entered['faceDown']
                         self.grave_checks.append({'seat':entry['seat'],'kind':'natural-grave-fresh-face-up-entry','version':v['version'],'passed':True})
                     self.grave_entries.clear()
+                if self.grave_slice and any(c['kind']=='natural-grave-fresh-face-up-entry' for c in self.grave_checks):
+                    await self.screenshot('natural-four-seat-grave-proved')
+                    result={'passed':True};break
                 if latest['status']=='finished':
                     await self.screenshot('complete-game')
                     result={'passed':True}; break
@@ -160,7 +189,7 @@ class FullGame(AttachmentRun):
             if self.pages: await self.screenshot('full-game-failure')
         finally:
             v=await self.view(0) if self.pages else None
-            result.update(testType='complete-natural-desktop-ui-game',mode=self.mode,stateInjection=False,apiMoves=False,uiPostCount=self.post_count,uiPostBudget=self.post_limit,browserErrors=self.errors,coverage=dict(self.coverage),graveChecks=self.grave_checks,conditionChecks=self.condition_checks,expiryRaces=self.expiry_races,final=public_view(v),roomId=v['roomId'] if v else None,durationSeconds=round(time.monotonic()-start,2),resumedExistingRoom=self.resume,priorUiPostCount=self.previous['uiPostCount'] if self.previous else 0)
+            result.update(testType='bounded-natural-four-seat-grave-ui' if self.grave_slice else 'complete-natural-desktop-ui-game',mode=self.mode,stateInjection=False,apiMoves=False,uiPostCount=self.post_count,uiPostBudget=self.post_limit,browserErrors=self.errors,coverage=dict(self.coverage),graveChecks=self.grave_checks,conditionChecks=self.condition_checks,expiryRaces=self.expiry_races,final=public_view(v),roomId=v['roomId'] if v else None,durationSeconds=round(time.monotonic()-start,2),resumedExistingRoom=self.resume,priorUiPostCount=self.previous['uiPostCount'] if self.previous else 0,graveSliceOnly=self.grave_slice,completeGame=v['status']=='finished' if v else False,pendingGraveEntries=[{**e,'oldIds':sorted(e['oldIds'])} for e in self.grave_entries])
             write_json(self.output/'full-game-summary.json',result)
             for c in self.contexts: await c.close()
         print(json.dumps({'mode':self.mode,'passed':result['passed'],'posts':self.post_count,'failure':result.get('failure'),'roomId':result['roomId']}),flush=True)
@@ -169,7 +198,7 @@ async def main(args):
     service=IsolatedService(args.binary,args.cwd,args.output,args.port,args.static_dir)
     service.start()
     try:
-        async with async_playwright() as p: await FullGame(p,service,Path(args.output).resolve(),args.mode,args.budget,args.grave_probe,args.resume).play_full()
+        async with async_playwright() as p: await FullGame(p,service,Path(args.output).resolve(),args.mode,args.budget,args.grave_probe,args.resume,args.grave_slice).play_full()
     finally: service.stop()
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__)
@@ -177,4 +206,5 @@ if __name__=='__main__':
     p.add_argument('--mode',choices=['duel','teams'],required=True);p.add_argument('--budget',type=int,default=2000);p.add_argument('--port',type=int,default=8107)
     p.add_argument('--grave-probe',action='store_true')
     p.add_argument('--resume',action='store_true')
+    p.add_argument('--grave-slice',action='store_true',help='Explicit bounded four-reclaimers grave UI probe; never count it as a complete game')
     asyncio.run(main(p.parse_args()))
