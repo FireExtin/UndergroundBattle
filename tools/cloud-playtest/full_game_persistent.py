@@ -131,9 +131,14 @@ class FullGame(AttachmentRun):
                             if await button.count() and await button.is_enabled():
                                 before_posts=self.post_count
                                 try:await self.submit(seat,lambda:button.click(timeout=1000),'passResponse')
-                                except BrowserTimeout:
+                                except BrowserTimeout as error:
                                     if self.post_count!=before_posts:raise
-                                    await self.pages[seat].wait_for_function('(id)=>{const v=window.__cloudView;return v?.responseWindow?.id!==id || v?.pendingChoice || v?.waitingChoice || v?.responseWindow?.members.find(m=>m.playerId===v.you)?.status!=="undecided"}',arg=w['id'],timeout=4000)
+                                    with (self.output/'response-click-diagnostics.jsonl').open('a') as stream:
+                                        stream.write(json.dumps({'seat':seat,'windowId':w['id'],'browserCallLog':str(error)})+'\n')
+                                    if 'intercepts pointer events' in str(error):raise
+                                    # Five seconds plus the ordinary polling/render interval,
+                                    # rather than a timeout shorter than the response itself.
+                                    await self.pages[seat].wait_for_function('(id)=>{const v=window.__cloudView;return v?.responseWindow?.id!==id || v?.pendingChoice || v?.waitingChoice || v?.responseWindow?.members.find(m=>m.playerId===v.you)?.status!=="undecided"}',arg=w['id'],timeout=8000)
                                     self.expiry_races.append({'seat':seat,'windowId':w['id'],'kind':'normal-response-ui-changed-before-post','gamePosts':0})
                                 acted=True; break
                     if not acted:
