@@ -43,7 +43,7 @@ Site version7：`appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_ac04516c6f2c81
 
 原2.4自组房 `4a7fe14547f50bf1fb995f2a` 仍v9／2.4，两本人视图、目录、冻结牌组及两个原Ready ACK在发布前后完全一致。after浏览器错误和转发错误均0；before严格浏览器记录两条ERR_ABORTED的失败原样带入after，没有重设基线。证据 `/workspace/scratch/hegemony-custom-decks-sites-v6-2026-10-02/compat/{before,after}.json`。
 
-父亲自使用的旧四人房 `3355ede19422f27a2ce1e547`／邀请 `C26CE07F9A3C` 另有当时版本的重复地区，应继续保留。p0 Swarm为父，p1测试势力与p2测试战斗原控制器仍在；p3测试回收的非持久Chromium已退出，没有profile或已保存座位凭据，不能正常恢复。未通过其他席位、数据库或重建替代p3。父反馈1180×760文字过小及再调度操作栏需要内滚，下一UI切片单独验证；本发布不宣称已解决这些反馈或已接入原卡图。
+上游线程亲自使用的旧四人房 `3355ede19422f27a2ce1e547`／邀请 `C26CE07F9A3C` 另有当时版本的重复地区，应继续保留。p0 Swarm为上游测试席，p1测试势力与p2测试战斗原控制器仍在；p3测试回收的非持久Chromium已退出，没有profile或已保存座位凭据，不能正常恢复。未通过其他席位、数据库或重建替代p3。上游反馈1180×760文字过小及再调度操作栏需要内滚，上述 Site7 发布未解决这些阅读反馈；后续 Site8 阅读修复的独立验收见 [桌面阅读与换牌选择验收](READABILITY_ACCEPTANCE_2026-10-02.md)，原卡图仍未接入。
 
 ## 下一可玩切片
 

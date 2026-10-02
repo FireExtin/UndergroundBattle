@@ -25,3 +25,15 @@
 ## 原房间保留
 
 原公开测试房 `3355ede19422f27a2ce1e547`、邀请码 `C26CE07F9A3C` 未重建或被此 QA 房替换。p1、p2 原匿名控制器仍在，p1 换牌选择未代为提交；p3 的临时浏览器上下文已关闭，未保存可恢复的本席身份，不能继续冒充该席。没有读取其他玩家的凭据、数据库接管席位或重置房间。原会话丢失是继续原四人试玩的实际阻塞。
+
+## 实际发布及公网只读复核
+
+主仓库实现提交 `f8c6b44a1a56a1ec0f22e455cff6819a52e0238f` 已推送；官方构建流程通过 15 个文件、142 项前端测试与 TypeScript/Vite/Worker 构建，精确推送 Site 源码 `2757673f19805e00b76cb2a01a891a9ebca76565`。这次只有 UI 及研究资料变化，发布包验证五个冻结/当前 WASM 和数据库迁移哈希均未改变，没有重复未变动的原生和 Worker 规则套件。
+
+Site 8：`appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_309819e4023481919ccdbe0477566c10`。部署 `appgdep_6abffe55cda08191ad2623ddbe1a7fc1` 于 `2026-10-02T18:56:41.439178Z` 成功；入口 [公开游戏](https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site)。公开 audience revision 2 保持，未旋转 QA token。真实 health 仍返回 `rust-v0.2.5`。
+
+本地 gzip 发布包 1,801,001 字节、15 项文件，字节 SHA256 为 `61278c89fe3a60f7037922344880e000a3a7f20f731c0658550f17639bea08ec`；Sites 返回的归档存储标识另记在私有 `publication.json`，不把它与本地 gzip 字节哈希混用。包中没有原图/PDF、全量研究、数据库或浏览器身份。
+
+公网复用 Site7 已有双人房 `4e832f0868c0699c4ff10726` 的两份本人持久 profile，保持版本 6、原引擎/规则/卡池，以及排除动态 `serverNowMs` 的本人 View 稳定哈希。实际加载本版 CSS/JS；两个尺寸下手牌 128×126px、卡名 16px、状态 12px、实际放大正文 17px，悬浮和检查区均不碰行动栏。0 新房、0 游戏 POST；两席旧 UI 提交总数仍为 7。该房换牌已完成，不能声称在公网重新验证了换牌确认区；此项由上述 native 四人实际选择证据支持。
+
+第一轮只读保护工具误把所有 POST 拦截，包括两席各一次 Cloudflare `cdn-cgi/challenge-platform` 验证，引起 2 条 console error 和 2 条 requestfailed；其 strictFAIL 原样保留，几何和状态检查实际已通过。另保留初次输出序列化工具错误。随后仅一次收窄到游戏 POST 的同房只读复看，允许网站自身浏览器验证，四类错误均为 0，稳定哈希和版本仍匹配；没有重做截图/点击矩阵或覆盖首次失败。证据为 `/workspace/scratch/hg-v025-site7-20261002/layout-after-site8-readonly{,-followup}.json`。这一局部复看通过不能改写首次严格失败。
