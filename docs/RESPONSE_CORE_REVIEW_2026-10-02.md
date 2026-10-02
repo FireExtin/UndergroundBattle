@@ -1,6 +1,6 @@
 # 响应牺牲案例与通用规则核审查
 
-历史基线为 `84a2c59`（v0.1）；本次结果为 `hegemony-pdf-v1 / limited-v2 / rust-v0.2.0`，私有状态 schema 2。生产代码已经完成通用化，开放25张玩家牌和5种世界牌；不是685张注册卡的完整实现。本文件区分原稿事实、真实动作、浏览器场景与尚未核定的语义。
+当前集中修订提交为`d94baaf3e7caabfdb81e1b3cc2a537fefe355fd0`，版本`hegemony-pdf-v1 / limited-v2.1 / rust-v0.2.1`，私有状态 schema 2；可玩25张玩家牌和4种世界牌，香港已隔离。下文`84a2c59`（v0.1）及`8a16cf3`（v0.2.0、30定义）的验收明确作为历史记录，不能代替末尾的新版结果。类型化解释器只覆盖已开放的有限能力，不是685张注册卡或任意多目标/强制触发的完整实现。
 
 ## 已查看的原稿和卡图
 
@@ -20,8 +20,8 @@
 
 | 牌 | 原图关键行为 | 当前开放情况 |
 | --- | --- | --- |
-| JC042 末日信徒 | 费用1；快速能力牺牲自身作为费用；本回合下一张正面打出的鸣钟教派或血牌减费2 | v2开放；已通过双人、四人浏览器真实响应 |
-| JC091 谋杀 | 行动阶段快速，消灭目标人类角色 | v2开放；已通过双人、四人浏览器真实响应 |
+| JC042 末日信徒 | 费用1；快速能力牺牲自身作为费用；本回合下一张正面打出的鸣钟教派或血牌减费2 | 当前开放；v2.0历史双人、四人浏览器真实响应已通过，新版结果另记 |
+| JC091 谋杀 | 行动阶段快速，消灭目标人类角色 | 当前开放；v2.0历史双人、四人浏览器真实响应已通过，新版结果另记 |
 | JC049 深渊细语 | 额外费用牺牲一个角色；快速将牌库底两张放手中 | v2开放；原生真实动作验证费用、归属与少于两张的行为 |
 | JZ54 阿塔玛斯奉献仪式 | 快速，目标玩家牺牲一个角色 | v2开放；原生JSON状态恢复与WASM验证效果选择；未作JZ54专项SQLite集成或浏览器待选恢复 |
 | JC062 调查档案 | 检视至多两个目标暗藏者，然后抓1 | 未开放；多目标与非目标续效的真实用例，部分失效规则仍待裁决 |
@@ -69,7 +69,7 @@
 
 | 审查内容 | 准确源码入口 |
 | --- | --- |
-| 声明及30个绑定 | `rust-game/src/rules.rs`：`Cost`、`TargetSlotSpec`、`BoardSelector`、`Op`、`AbilitySpec`及`definitions()` |
+| 声明及29个当前绑定 | `rust-game/src/rules.rs`：`Cost`、`TargetSlotSpec`、`BoardSelector`、`Op`、`AbilitySpec`及`definitions()` |
 | 合法动作、目标和原子费用 | `rust-game/src/resolution.rs`：`rule_action_candidates`、`valid_binding`、`bind_action`、`pay_printed`、`pay_ability_costs`；`engine.rs`：`Game::apply`及`apply_inner` |
 | 入链与一次目标复核 | `resolution.rs`：`make_frame`、`push_frame`、`resolve_frame`；`engine.rs`：`resolve_stack` |
 | 触发与稳定死亡检查 | `resolution.rs`：`emit_event`、`declare_trigger`、`choose_declaration`；`engine.rs`：`remove_dead`、`settle_deaths` |
@@ -86,7 +86,7 @@
 
 开放边界是零目标，或一个目标槽且该槽恰好一个目标（`min=max=1`），包括模式和触发声明；不是任意多目标引擎。多目标部分失效暂不宣称已定；`resolve_frame`的入口失效整段取消只在上述边界下成立，不能据此决定未来多目标规则。新原语和新增整卡必须分开验收。旧引擎/数据库保留，状态格式及固定版本变化需要显式兼容边界，不能静默把旧局当成新格式。
 
-## 验证结果及其边界
+## v0.2.0的历史验证结果及其边界
 
 最终原生测试38项（31内核、7服务），前端62项（12文件），类型检查、构建及格式检查通过。WASM在Node中实际实例化，对照394次转换、1,159个本人视图，原生/WASM字节一致；测试包括真实JC042/JC091动作、JZ54牺牲选择和LC24预测续接。专项原生测试包括：
 
@@ -131,7 +131,7 @@
 
 ## 独立源码审查后的有界修订
 
-父端通过私有GitHub独立读过`8a16cf3`的声明、解释器、命令及事务路径。审查后的修订不是全部注册卡通用实现，范围仍为25张玩家牌及5种世界牌。
+父端通过私有GitHub独立读过`8a16cf3`的声明、解释器、命令及事务路径。以下审查修订随后与整池图像对账合并提交；最终范围为25张玩家牌及4种世界牌，不是全部注册卡通用实现。
 
 1. 注册前检查每个能力及其模式：最多一个目标槽，每槽`min=max=1`；禁止有限解释器不能执行的嵌套玩家遍历。错误包含牌号、能力键和模式键。绑定、触发声明及触发选择入口复用检查，删除候选生成的静默跳过。未来多目标卡必须先核定规则、实现相应绑定和选择流程，不能仅添加一个声明。
 2. 整段取消的入口检查仅在已开放零/单目标条件下证明。JC062零目标抓牌的原勘误不等于多个已选目标部分失效的裁决。
@@ -146,3 +146,77 @@
 `limited-v2.1`可玩范围为25张玩家牌及4种世界牌，五套50张玩家牌组不变；10张自组世界牌堆为沉没的废墟×3、纽约×3、切尔诺贝利×2、上海×2，并不称为官方预组世界牌堆。香港、外部横移牌、多目标和强制触发卡均不通过“先开放后猜测”补齐。
 
 LC19专门回归先在隔离的历史`8a16cf3`源码上运行，确实红灯：一项测试失败于`assert!(g.board(&doctor).unwrap().1.exhausted)`；公开限制及正常派遣此前检查均通过。不是凭新测试的存在声称见过失败。集中修订提交后，该同一回归纳入最终整套原生检查，验收结果另记。
+
+## 固定 d94baaf 的 v0.2.1 最终验证
+
+本段只记录集中修订后的固定源码`d94baaf3e7caabfdb81e1b3cc2a537fefe355fd0`。在全新独立`CARGO_TARGET_DIR=/tmp/hegemony-d94baaf-final-target`构建，避免历史红测试的共享target缓存；原生42项全部通过（35规则、7服务），其中LC19原有失败回归转绿。纯核无native feature、native binaries及格式检查通过；前端未变，其62项测试/12文件及类型构建结果沿用本次已有检查，没有重复跑完整浏览器局冒充新增前端覆盖。
+
+Node实际实例化新版WASM，与原生逐步比较397次转换和1,165个玩家视图，状态及投影全部一致，保留opaque state、最大u64种子精度和旧patch拒绝。明确的合成初始布局夹具包括LC19治疗付款/横置、JC042/JC091响应、JZ54牺牲待选及LC24预测续体，不能称为无注入浏览器对局。
+
+| 最终产物 | SHA-256 |
+| --- | --- |
+| `/tmp/hegemony-d94baaf-final-target/debug/hegemony-server` | `148d703b10fb20978b5e4f05345825c5e71a1d22c9c6b3b64080bc3e09d0f2cc` |
+| 同目录`hegemony-audit` | `e71937782d62dab5d7cdf055af63b51f9e296368520152b0afc10de0e5e76409` |
+| `rust-game-wasm/pkg/hegemony_wasm_bg.wasm`（1,040,341字节） | `a6366ef6bc7df03ba666b33286d3a01c412ac6bf779d6396fcbf6affcdc43966` |
+
+证据保留在私有云端`/tmp/hegemony-d94baaf-final-{native-tests,pure-build,native-build,wasm-build,wasm-parity}.log`及`/tmp/hegemony-d94baaf-final-wasm-fixtures.json`。主审查者独立核对三份产物哈希，并使用最终服务另外启动持久预览`http://127.0.0.1:8101/`，数据库`/workspace/UndergroundBattle/rust-game-v2.1.sqlite3`；`/api/health`确认rust-v0.2.1，`/api/catalog`确认29定义、香港不可用、五套各50张。旧8090/8091的rust-v0.1.0、8098的rust-v0.2.0仍健康，旧DB未迁移。该入口仅在云端loopback可访问，尚无已验证的Internet试玩入口。
+
+### 新版完整 UI 对局
+
+最终完整UI验收每模式只跑一次，固定binary与上述哈希一致，源码记录为d94baaf；自动让过保持默认关闭。包装器仅管理自有8099服务并记录证据，游戏API准备命令为0，创建后join、ready/start、出牌、所有待选及让过均由真实浏览器操作。两个模式均正常得分结束：
+
+| 新版完整UI局 | 牌组 | 终局 | UI接受命令 | 拒绝/非预期浏览器错误 |
+| --- | --- | --- | ---: | --- |
+| 双人，2个独立上下文 | watchers / responders | 第10回合，11–7，目标8 | 545（542游戏循环） | 0 / 0 |
+| 四人2V2，4个独立上下文 | watchers / hunters / keepers / responders | 第12回合，团队0为3、团队1为11，目标10；个人3/0/3/8 | 1,873（1,868游戏循环） | 0 / 0 |
+
+每局故意断线恢复的预期网络错误各1次单列。四人实际选择包含7次伤害、6次调查、6次回牌排序、4次检索、7次弃牌及5次触发，另有10次先手特权和1次主动能力；双人执行了调查、检索、弃牌、回牌排序及触发。两局均在再调度待选时实际刷新/断网恢复。服务正常退出码0后只停止自有8099，没有重跑长局。
+
+主审查者在服务停止后使用最终audit，只读重放完整DB，两个终局均`matches=true`，种子+journal精确等于持久状态；日志条数包含加入房间等记录，不等同UI游戏命令数。实际查看手机双人终局及四人终局截图，结束/得分反馈明确。
+
+| 完整UI房间 | 版本/日志条目 | 持久化与回放共同摘要 |
+| --- | ---: | --- |
+| `73c0fa78cc67e4c827633047`（双人） | 546 / 546 | `e5bd8cec4323a57e310fbb33212a84c4c90a2122f637a698acf3b03ff11b0fe4` |
+| `da677bd1327c6e8e844bd761`（四人） | 1876 / 1876 | `b9a7c19d29588b287546170fedaffd24d18ef456461294f1cfb15b66f5628b40` |
+
+证据在`/tmp/hegemony-cloud-playtest-v2.1-2026-10-02/`：`binary-and-service.json`、`source-build.json`、两份summary、全部UI动作trace、手机/桌面截图和`root-readonly-audit.jsonl`。这是脚本通过真实UI的云端验收，不能称为用户或其女朋友的真人新手体验。
+
+### 新版响应专项：保留通过和失败边界
+
+新双人专项按约定在准备超过15回合时停止：753个合法API命令、0个响应UI命令。双方已有JC042/JC091，但准备策略给缺色保留资产槽，双人一方不能建第三资产，另一方等待对手资源后才派遣，无法形成预期场面。诊断和失败DB保留，不改seed、补牌、改策略再盲目重跑；这不是双人响应验收通过，也没有引擎死锁证据。历史v2.0的双人响应通过记录仍单独保留。
+
+新四人专项一次通过，四个独立浏览器上下文：1,652个合法API准备命令、12个真实响应UI命令、1个命令去重API探针，均无状态注入或seed覆盖。真实链验证手机快速响应可达且自动让过不抢走该行动、费用牺牲后原目标已离场、四席让过只结算顶层、下层唯一pass自动推进、谋杀整段失效但3资产不退且入墓。链前及支付后分别刷新与重启，全部本人视图精确一致；非预期浏览器错误0，8次重启SSE截断明确单列预期。JZ54浏览器效果待选本次仍未覆盖，不扩大声明。
+
+主审查者使用上述最终audit二进制，分别只读重放已停止的专项DB，结果均`matches=true`。第一行只证明失败准备的状态与日志一致：
+
+| 新版专项房间 | 版本/日志条目 | 持久化与回放共同摘要 |
+| --- | ---: | --- |
+| `e1b481876b9b5d15f1020876`（双人准备未达场景） | 754 / 754 | `f8341e4ca186d285c7c213ed7a630bdceeea74c22cf47f60a5a602aaaa743e2c` |
+| `3c8b2d5970ccd1ff08f2e174`（四人响应通过） | 1667 / 1667 | `430033db63181d8b73d7fa5658fd1eeb22d24fcbd615df61f4ac1179a19ebeff` |
+
+报告分别位于`/tmp/hegemony-response-v2.1-2026-10-02/root-readonly-audit.jsonl`及子目录`teams/root-readonly-audit.jsonl`。主审查者也实际查看新版手机快速响应抽屉与原目标失效截图，关键响应提示和按钮在可见视口内。
+
+父端随后明确授权测试专用固定seed及逐步合法命令序列，代替随机长准备。新工具`response_fixed_seed.py`及`wasm_new_lobby.mjs`使用已验证的同一WASM `Game::new`生成全新host空lobby；在自有服务停止且该室无join、hand、deck、board、commands或journal时，仅替换初始seed/random并保留HTTP创建的真实凭证。没有改生产随机接口、规则或中途牌面。该测试明确`testOnlyFixedSeedLobbyBootstrap=true / seedOverride=true / intermediateStateInjection=false / countsAsCompleteUiGame=false`，不是无夹具完整局。
+
+固定seed来自只读历史成功双人初局；其364条准备prefix在新版实际HTTP逐条通过，合法动作/choiceId及每次before/after版本都吻合，至第8回合形成真实谋杀→末日信徒局面。随后2个独立浏览器执行7次UI命令及1个去重API探针，前述双人响应、付款前/后刷新和服务重启、原目标失效不退款均通过；非预期浏览器错误0，4次重启SSE截断单列预期。这是一次定向补验，没有随机重跑完整长局，原失败记录未覆盖。
+
+主审查者使用最终audit再只读检查这份已停止的DB：房间`244e2793513b55bd4b515f3e`，版本372 / journal372，`matches=true`，共同摘要`9e74f35c600c5627696e533cc3fe26298f47b907dec0248e872539a4d6950119`。报告、364行逐步校验、实际UI trace和手机截图位于`/tmp/hegemony-response-v2.1-fixedseed-2026-10-02/`；主审查者实际查看快速响应抽屉和原目标失效两图。测试私有seed文件不入Git，不更换生产公平洗牌。新版双/四响应专项由此均有通过证据，但准备方式分别如实标注。
+
+### Sites 部署能力调查结论
+
+本环境的Sites原生工具已发现且只读`list_sites(role=owner,limit=50)`成功：返回0个拥有的Site，无后续游标；本项目没有`.openai/hosting.json`或Worker房间适配器。尚未注册、保存或发布Site，没有生产URL。调查并非工具缺失或连接失败。`SITES_MANAGED_LINUX_CONTAINER`未设置，按Sites说明属于portable环境。
+
+当前Rust原生Axum/SQLite服务不能直接作为Sites服务器上传：Sites托管服务器要求Cloudflare Workers兼容输出。已通过的共享WASM核是可用的适配基础，不能把本机WASM parity说成已完成托管部署。仍须实现Worker房间HTTP/认证、版本与命令去重、跨实例串行/并发保护、提交后确认的持久化，以及订阅/恢复；持久数据需映射Sites支持的存储，不能把当前内存锁或本地SQLite文件搬过去假定语义不变。之后由Site所有者注册一个私有Site、推送对应源码、保存构建产物并发布，部署状态成功返回URL后才有外网入口。
+
+此结论来自已读取的Sites `sites-hosting/SKILL.md`、`sites-building/references/project-setup/portable.md`及`persistence-and-storage.md`，以及成功的只读连接调用；证据位于`/tmp/hegemony-sites-investigation-2026-10-02.json`。本次责任边界仍为云端实现和验收，发布由父线程持有，不因调查擅自创建另一Site。
+
+父端进一步询问DO绑定。准确状态为**Sites当前未暴露Durable Objects绑定支持**：已读manifest允许字段和存储说明列D1/R2，当前工具没有DO配置入口；这不证明平台内部绝不支持DO。未获明确支持前，不把DO当作可用的Sites部署前提。
+
+| 有界路线，尚未实现 | 最小适配 | 一致性与体验取舍 |
+| --- | --- | --- |
+| Sites Worker + 同一Rust WASM + D1 | 薄HTTP/认证层；不透明状态、房间版本、命令确认和journal持久化；按版本轮询 | 单房间版本CAS作为裁决点，替代本机房间锁；前台约1–2秒轮询、提交后即刻更新，后台降频。对手反馈有短延迟，不宣称WebSocket/SSE推送；多个房间会共享D1负载，须实测冷启动、限额及延迟 |
+| Sites前端 + 独立Cloudflare DO/WASM后端 | 同一WASM；DO房间串行、持久化与推送层；跨域及认证配置 | 房间串行与推送更直接，但需要额外Cloudflare账号、凭据及部署权，当前未获这些资源；仍需提交后确认、幂等、断点恢复和真实部署验证，不能仅靠DO类别保证正确 |
+
+D1路线是待验证的可行机制，不是已通过的部署实现。Worker读取版本v，调用同一WASM计算候选；在一个batch中条件更新`rooms WHERE version=v`并保存候选状态及提交标识，后续journal/原确认的条件插入必须只在该提交标识与新版本匹配时发生。CAS零行不会自动报错或让batch回滚，不能直接无条件INSERT journal/commands；失败候选必须丢弃。命令去重先于版本冲突，使用房间/身份/commandId唯一键，重复返回原确认；落盘失败不能确认。入座等房间变更也要通过同一并发协议。规则计算和PRNG都复用WASM，不重写规则。
+
+官方[D1 batch说明](https://developers.cloudflare.com/d1/worker-api/d1-database/)确认批量语句作为事务，语句失败回滚整体；[读取复制及Sessions说明](https://developers.cloudflare.com/d1/best-practices/read-replication/)说明副本可能滞后、bookmark提供顺序一致性。首版可使用主库读取，或正确传递Sessions/bookmark，客户端也只接受不倒退的版本。上述CAS条件旁写、同commandId并发、失败事务、四席竞态和刷新恢复需要在真实D1/Worker中验收，不能用当前SQLite/WASM结果替代。父端将与用户选路线，当前未同时实现两套。

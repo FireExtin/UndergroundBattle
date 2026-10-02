@@ -57,7 +57,16 @@ Action新增abilityId、costSelected。CardView为本人手牌给effectiveCost�
 
 ## 验证覆盖
 
-历史8a16cf3验收通过38项测试（31规则、7服务）及Native/WASM一致性。v2.1新增声明校验、移动原语事件边界、外科医生横置费用及旧版本拒绝回归；当前测试套件含42项（35规则、7服务），最终固定提交后的全量验收另行记录。
+固定提交d94baaf3e7caabfdb81e1b3cc2a537fefe355fd0在全新独立CARGO_TARGET_DIR=/tmp/hegemony-d94baaf-final-target完成42项测试（35规则、7服务），全部通过；纯核无native feature构建、native二进制构建和cargo fmt --all -- --check也通过。全量包含完整两人/四人/重开回放测试。当前Native/WASM实际逐步比较397次转换、1165个玩家视图，全部一致。历史8a16cf3的38项测试及WASM记录是旧v2.0证据。
+
+验收服务与审计程序位于/tmp/hegemony-d94baaf-final-target/debug/，SHA-256分别为：
+
+```text
+hegemony-server  148d703b10fb20978b5e4f05345825c5e71a1d22c9c6b3b64080bc3e09d0f2cc
+hegemony-audit   e71937782d62dab5d7cdf055af63b51f9e296368520152b0afc10de0e5e76409
+```
+
+这次使用独立目录避开旧版红测试产生的共享target缓存；共享target历史产物不是最终验收binary。
 
 规则测试涵盖25张牌和4种地区的印刷能力、临时图标、差值奖励、护卫和杀伤、屏障与护盾、同地区目标再验证、独有牺牲、墓地与牌库回收、机动顺序与响应、赢区牌底顺序和撤回、团队优先权和距离、弃牌和预测选择、隐藏投影、退出及队友续局，以及完整两人与四人游戏、重开和确定性回放。
 

@@ -18,11 +18,13 @@ bash rust-game-wasm/verify.sh
 
 The v2.1 fixtures cover duel and four-player teams plus an explicitly marked initial-layout scenario whose subsequent transitions use real JC042/JC091 response Actions, JZ54 sacrifice choices, LC24 frame forecast continuations and the LC19 heal exhaustion cost. The fixtures also require both native and WASM to reject previous-patch opaque states. Every opaque state string and every player view is compared against native output. Decimal seeds `18446744073709551615` and `9007199254740993` remain exact.
 
-The historical `8a16cf3` v2.0 run compared **394 transitions / 1,159 player projections**, all identical. Its generated module is **1,039,765 bytes**, SHA-256:
+The completed v2.1 run on fixed commit `d94baaf3e7caabfdb81e1b3cc2a537fefe355fd0`, built in the fresh `/tmp/hegemony-d94baaf-final-target`, compared **397 transitions / 1,165 player projections**, all identical. Node actually instantiated the module and verified opaque-state equality, private projections, exact maximum-u64 seeds, rejected repeat actions and previous-patch state rejection. Its generated module is **1,040,341 bytes**, SHA-256:
 
 ```text
-b00480fe9490117d327ead03acc94774ccfc0377f9ff1993a330e7be0c2522cb
+a6366ef6bc7df03ba666b33286d3a01c412ac6bf779d6396fcbf6affcdc43966
 ```
+
+The historical `8a16cf3` v2.0 run compared 394 transitions / 1,159 player projections; its 1,039,765-byte module SHA-256 was `b00480fe9490117d327ead03acc94774ccfc0377f9ff1993a330e7be0c2522cb`.
 
 The historical `84a2c59` v1 proof compared 374 transitions / 1,119 player projections; its 803,612-byte module SHA-256 was `fb75e4c68f604c46febba70211d673d4d492c5994bc17dead7c5de26d8c330be`. These are historical values, not the current v2.1 artifact.
 
