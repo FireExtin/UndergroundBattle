@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "production": true,
+  "normalOwnProfileRestored": true,
+  "roomId": "45845084f946f770e7aaf26d",
+  "roomVersion": 1,
+  "status": "lobby",
+  "seats": 1,
+  "engine": "rust-v0.2.6",
+  "healthHttp": 200,
+  "loadedBundle": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site/assets/index-NdWStdMt.js",
+  "originalScanSha256": "f1b58f299c3d901494c388be2123b325ca20c1f341106fe860d9761ded8231eb",
+  "gameUiPosts": 0,
+  "browserErrors": [],
+  "transportErrors": [],
+  "infrastructurePostCount": 1
+}

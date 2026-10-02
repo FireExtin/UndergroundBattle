@@ -1,0 +1,21 @@
+{
+  "implementationCommit": "e1e2dea581fbb97f1c2a64f7133179d50f1dd4d8",
+  "sourceCommit": "5889aeba0fd18e6a3ccdfaa18f5d266cdccdf7df",
+  "projectId": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+  "versionId": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_5b12b51c01748191bafefa29aa12934c",
+  "versionNumber": 10,
+  "deploymentId": "appgdep_6ac01892c1b48191938b156611457e80",
+  "status": "succeeded",
+  "url": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site",
+  "envSetRevision": 0,
+  "audience": "public",
+  "audienceRevision": 2,
+  "wasmSha256": "d4a9d88fe3c44d94da938c0351a4f1654d72514568c9f927fecd6d2f9f3ded3f",
+  "archive": {
+    "archive_format": "tar",
+    "sediment_file_id": "file_00000000cae4820c839846444c98f6e8",
+    "content_hash": "sha256:5e6034d1395d314b92cc6e8c772c2a3a9ef79c5074269e4b41fa5693c94ea354",
+    "size_bytes": 22087680,
+    "file_count": 54
+  }
+}
