@@ -1536,7 +1536,16 @@
         "card-JC042",
         "card-JC091",
         "card-JZ54",
-        "card-MSWM04"
+        "card-MSWM04",
+        "card-LC15",
+        "card-JZ10",
+        "card-BQ060",
+        "card-JC045",
+        "card-JC048",
+        "card-XQ04",
+        "card-JZ05",
+        "card-JZ49",
+        "card-JC010"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -1569,7 +1578,12 @@
         "card-MSJC15",
         "card-MSBQ04",
         "card-MSWM03",
-        "card-MSWM04"
+        "card-MSWM04",
+        "card-WM071",
+        "card-JZ10",
+        "card-JC069",
+        "card-JC097",
+        "card-JZ05"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -1635,7 +1649,22 @@
         "card-MSWM01",
         "card-MSWM02",
         "card-MSWM03",
-        "card-MSWM04"
+        "card-MSWM04",
+        "card-LC14",
+        "card-CQ12",
+        "card-WM071",
+        "card-LC15",
+        "card-JZ10",
+        "card-BQ007",
+        "card-BQ060",
+        "card-JC069",
+        "card-JC045",
+        "card-JC048",
+        "card-JC097",
+        "card-XQ04",
+        "card-JZ05",
+        "card-JZ49",
+        "card-JC010"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -1742,7 +1771,8 @@
         "card-MSJC12",
         "card-MSWM01",
         "card-MSWM02",
-        "card-MSWM03"
+        "card-MSWM03",
+        "card-JC010"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -1774,7 +1804,10 @@
         "bq-teams",
         "card-JC014",
         "card-JC061",
-        "card-MSJC14"
+        "card-MSJC14",
+        "card-WM071",
+        "card-JZ10",
+        "card-JC069"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -1842,7 +1875,9 @@
       "limitations": "",
       "evidenceIds": [
         "card-JZ08",
-        "bq-keywords-2"
+        "bq-keywords-2",
+        "card-LC14",
+        "card-LC15"
       ],
       "dependencies": [],
       "interactionIds": [],
@@ -1865,10 +1900,12 @@
       "name": "护盾",
       "status": "partial",
       "scope": "Card.shield与敌方指定时消耗护盾、终止来源效果有实现及夹具测试。",
-      "limitations": "所有生产实例初始shield=0；没有开放获得护盾牌或赋予护盾的Op，不能宣传可玩护盾策略。",
+      "limitations": "基线只消耗手工fixture标志，未登记原图BQ007护盾1进场生成、BQ060放盾或完整敌方指定强制触发时序。",
       "evidenceIds": [
         "bq-new",
-        "bq-keywords-2"
+        "bq-keywords-2",
+        "card-BQ007",
+        "card-BQ060"
       ],
       "dependencies": [],
       "interactionIds": [],
@@ -1898,7 +1935,8 @@
         "card-XQ49",
         "card-MSJC16",
         "card-MSJC17",
-        "card-MSBQ03"
+        "card-MSBQ03",
+        "card-LC15"
       ],
       "dependencies": [
         "hidden",
@@ -1963,7 +2001,9 @@
         "card-JC049",
         "card-JZ54",
         "bq-seal",
-        "card-XQ12"
+        "card-XQ12",
+        "card-CQ12",
+        "card-JC048"
       ],
       "dependencies": [
         "priority"
@@ -1997,7 +2037,9 @@
         "card-JC042",
         "faq-3",
         "card-MSBQ02",
-        "card-MSWM04"
+        "card-MSWM04",
+        "card-CQ12",
+        "card-LC15"
       ],
       "dependencies": [
         "loyalty",
@@ -2050,7 +2092,9 @@
         "card-MSWM01",
         "card-MSWM02",
         "card-MSWM03",
-        "card-MSWM04"
+        "card-MSWM04",
+        "card-WM071",
+        "card-JZ49"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -2091,7 +2135,9 @@
         "card-MSJC11",
         "card-MSJC12",
         "card-MSBQ03",
-        "card-MSWM01"
+        "card-MSWM01",
+        "card-JC069",
+        "card-JC045"
       ],
       "dependencies": [],
       "interactionIds": [],
@@ -2114,7 +2160,7 @@
       "name": "移除创伤",
       "status": "partial",
       "scope": "LC19/20能移除已有创伤；防御值会扣创伤。",
-      "limitations": "当前生产卡没有创伤X或赋予创伤的Op；不等于创伤能力完整支持。",
+      "limitations": "有限治疗不等于创伤生成体系。JZ10创伤字样无X，霸权创伤X标题与具体换算仍需分版本核准；不把普通回合伤害当创伤。",
       "evidenceIds": [
         "card-LC19",
         "card-LC20"
@@ -2166,7 +2212,8 @@
         "card-MSWM01",
         "card-MSWM02",
         "card-MSWM03",
-        "card-MSWM04"
+        "card-MSWM04",
+        "card-BQ007"
       ],
       "dependencies": [
         "priority",
@@ -2201,7 +2248,9 @@
         "card-JC028",
         "card-MSJC13",
         "card-MSBQ01",
-        "card-MSBQ03"
+        "card-MSBQ03",
+        "card-LC15",
+        "card-JC048"
       ],
       "dependencies": [
         "priority"
@@ -2238,7 +2287,10 @@
         "card-MSJC16",
         "card-MSJC17",
         "card-MSBQ01",
-        "card-MSBQ03"
+        "card-MSBQ03",
+        "card-WM071",
+        "card-LC15",
+        "card-BQ007"
       ],
       "dependencies": [
         "priority",
@@ -2302,7 +2354,10 @@
         "card-JC099",
         "card-JC100",
         "card-MSJC10",
-        "card-MSJC17"
+        "card-MSJC17",
+        "card-LC14",
+        "card-BQ007",
+        "card-JC010"
       ],
       "dependencies": [
         "continuous",
@@ -2331,7 +2386,8 @@
       "limitations": "",
       "evidenceIds": [
         "card-MSJC14",
-        "faq-3"
+        "faq-3",
+        "card-JC069"
       ],
       "dependencies": [
         "hidden",
@@ -2362,7 +2418,9 @@
       "evidenceIds": [
         "intermezzo",
         "card-MSJC13",
-        "card-MSJZ03"
+        "card-MSJZ03",
+        "card-JC045",
+        "card-JC048"
       ],
       "dependencies": [
         "continuous",
@@ -2392,7 +2450,8 @@
       "limitations": "",
       "evidenceIds": [
         "bq-keywords-2",
-        "card-JC077"
+        "card-JC077",
+        "card-LC14"
       ],
       "dependencies": [
         "confrontation"
@@ -2480,7 +2539,8 @@
       "limitations": "",
       "evidenceIds": [
         "intermezzo",
-        "bq-keywords-2"
+        "bq-keywords-2",
+        "card-JZ05"
       ],
       "dependencies": [
         "hidden",
@@ -2539,7 +2599,8 @@
       "scope": "进场必须横置。",
       "limitations": "",
       "evidenceIds": [
-        "intermezzo"
+        "intermezzo",
+        "card-JZ49"
       ],
       "dependencies": [
         "hidden",
@@ -2562,10 +2623,14 @@
       "id": "leader",
       "name": "领袖与唯一构筑",
       "status": "unimplemented",
-      "scope": "领袖是每玩家同一时间一张领袖；唯一是构筑一张；两者都区别于独有。",
-      "limitations": "",
+      "scope": "领袖：每位玩家场上只能控制1名，不同名也触发选择牺牲；唯一：同名构筑仅1张；均与金色名称独有不同。",
+      "limitations": "有限基线只实现同名独有在场检查，没有领袖跨名称上限或唯一构筑器。",
       "evidenceIds": [
-        "bq-keywords-2"
+        "bq-keywords-2",
+        "card-LC14",
+        "card-WM071",
+        "card-LC15",
+        "card-JC010"
       ],
       "dependencies": [
         "continuous",
@@ -2595,7 +2660,9 @@
       "evidenceIds": [
         "card-MSJZ02",
         "card-MSLC03",
-        "card-BQ043"
+        "card-BQ043",
+        "card-CQ12",
+        "card-BQ060"
       ],
       "dependencies": [
         "continuous"
@@ -2629,7 +2696,9 @@
         "card-MSJC15",
         "card-MSBQ04",
         "card-MSWM01",
-        "card-MSWM02"
+        "card-MSWM02",
+        "card-BQ007",
+        "card-BQ060"
       ],
       "dependencies": [
         "society",
@@ -2783,7 +2852,8 @@
       "evidenceIds": [
         "bq-core",
         "card-MSBQ02",
-        "card-BQ043"
+        "card-BQ043",
+        "card-BQ060"
       ],
       "dependencies": [
         "society",
@@ -2876,7 +2946,9 @@
       "limitations": "",
       "evidenceIds": [
         "bq-keywords-1",
-        "bq-keywords-2"
+        "bq-keywords-2",
+        "card-JZ10",
+        "card-JC097"
       ],
       "dependencies": [
         "confrontation",
@@ -2905,7 +2977,8 @@
       "scope": "与公开相反，只能秘密派遣而不能正面打出。",
       "limitations": "",
       "evidenceIds": [
-        "bq-keywords-1"
+        "bq-keywords-1",
+        "card-JC097"
       ],
       "dependencies": [
         "hidden"
@@ -2927,10 +3000,11 @@
       "id": "cancel",
       "name": "终止/取消与替代效果",
       "status": "unimplemented",
-      "scope": "堆叠上的目标卡移墓不结算；追加替代/强制触发需单独语义。",
+      "scope": "终止堆叠对象；XQ04明确只指定卡牌（含打出与付费翻面），不等于任意行动/触发能力。",
       "limitations": "",
       "evidenceIds": [
-        "bq-stack"
+        "bq-stack",
+        "card-XQ04"
       ],
       "dependencies": [
         "priority"
@@ -2958,7 +3032,9 @@
       "limitations": "",
       "evidenceIds": [
         "faq-5",
-        "card-TEST015"
+        "card-TEST015",
+        "card-LC14",
+        "card-CQ12"
       ],
       "dependencies": [
         "priority",
@@ -3068,7 +3144,7 @@
       "id": "reincarnation",
       "name": "转生",
       "status": "unimplemented",
-      "scope": "贝兰丹娜原图：从任何区域进入墓地或被封印时，改洗入拥有者牌库；需区别替代事件与事后触发。",
+      "scope": "WM071原图写任意区入墓或被封印时洗入拥有者牌库；进入事件与替代过渡的具体顺序仍待原规则定案。",
       "limitations": "所见原图的特定流程未在有限卡池内开放。",
       "evidenceIds": [
         "card-WM071"
@@ -3096,7 +3172,7 @@
       "id": "eternal",
       "name": "永恒",
       "status": "uncertain",
-      "scope": "莲月合一原图印有永恒，但所核说明页没有提供其完整定义；仅确认关键词存在。",
+      "scope": "LC15原图可读永恒关键词；已核说明文件未确认完整定义，规则设计保持uncertain。",
       "limitations": "未注册这些牌。永恒的语义尚待原始定义，不能由名称推断。",
       "evidenceIds": [
         "card-LC15"
@@ -3132,7 +3208,8 @@
         "card-LC22",
         "card-LC24",
         "card-JC059",
-        "card-XQ12"
+        "card-XQ12",
+        "card-JZ49"
       ],
       "dependencies": [
         "confrontation",
@@ -3163,7 +3240,13 @@
       "limitations": "没有借此宣称附属/秘社/控制变化后的通用独有流程；这些区域和操控变化尚未开放。",
       "evidenceIds": [
         "manual-unique",
-        "card-LC23"
+        "card-LC23",
+        "card-LC14",
+        "card-CQ12",
+        "card-WM071",
+        "card-LC15",
+        "card-BQ007",
+        "card-JC010"
       ],
       "dependencies": [
         "sacrifice"
@@ -4268,6 +4351,83 @@
       "sha256": "7a66629a3059ff47d0707b267d165ea933b43caf95dcd92545655504361bde03",
       "visuallyReviewed": true,
       "topic": "调查档案：原图数值/图标/完整游戏文字与印刷编号"
+    },
+    "card-JZ10": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JZ10 “伯劳”.jpg",
+      "sha256": "8f81bf3bcfe56c8d6d09fc201e1c96e0d087bbf2052ee76a83ff07aaf6b8e26d",
+      "visuallyReviewed": true,
+      "topic": "“伯劳”：完整原图数值、图标、游戏正文与实际印刷编号"
+    },
+    "card-BQ007": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/BQ007 塞西莉亚.jpg",
+      "sha256": "c5382f9e4e60a496571b4dd119534419f6d8e831a52adcf8595e9c888a9a7f6a",
+      "visuallyReviewed": true,
+      "topic": "塞西莉亚：完整原图数值、图标、游戏正文与实际印刷编号"
+    },
+    "card-BQ060": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/BQ060 裂变.jpg",
+      "sha256": "5be1ef3265c68c9c67395331146db754291bd553f8554f898c84cd2ee9a735c1",
+      "visuallyReviewed": true,
+      "topic": "裂变：完整原图数值、图标、游戏正文与实际印刷编号"
+    },
+    "card-JC069": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC069 警犬.jpg",
+      "sha256": "4336d72dc69c89ce8ffe9cdfe7ff8c76423ef4fb73b21a5a70df9b523b1963d4",
+      "visuallyReviewed": true,
+      "topic": "警犬：完整原图数值、图标、游戏正文与实际印刷编号"
+    },
+    "card-JC045": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC045 钟摆祭司.jpg",
+      "sha256": "7b79668cee2cab604341a79f86decb03587046b31f3c5586123bcc95561d3d60",
+      "visuallyReviewed": true,
+      "topic": "钟摆祭司：完整原图数值、图标、游戏正文与实际印刷编号"
+    },
+    "card-JC048": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC048 诅咒沙漏.jpg",
+      "sha256": "4344e488c07cfa57d891913a1dc14e68b295bd1001458a1267782d080f69d952",
+      "visuallyReviewed": true,
+      "topic": "诅咒沙漏：完整原图数值、图标、游戏正文与实际印刷编号"
+    },
+    "card-JC097": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC097 阿斯旺.jpg",
+      "sha256": "3e83f0398bdd11ac653ccd1adabd4c0677925bdc86a04539dc81fb9b0e85691f",
+      "visuallyReviewed": true,
+      "topic": "阿斯旺：完整原图数值、图标、游戏正文与实际印刷编号"
+    },
+    "card-XQ04": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XQ04 抹除现实.jpg",
+      "sha256": "f6df247ee4a7f4bf8816297cf238ba5c1f5a05ae55f46c557c2f1c344a7cbbbc",
+      "visuallyReviewed": true,
+      "topic": "抹除现实：完整原图数值、图标、游戏正文与实际印刷编号"
+    },
+    "card-JZ05": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JZ05 闪烁.jpg",
+      "sha256": "5be52f2facbaa09b3b730e25d483cc4a546edc349f1eae23e54c95e48101c6c8",
+      "visuallyReviewed": true,
+      "topic": "闪烁：完整原图数值、图标、游戏正文与实际印刷编号"
+    },
+    "card-JZ49": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JZ49 蹒跚行尸.jpg",
+      "sha256": "208b2370433fb420ba91e1557ad6633589e43b1391d2008d63ebee2ed90fdf62",
+      "visuallyReviewed": true,
+      "topic": "蹒跚行尸：完整原图数值、图标、游戏正文与实际印刷编号"
+    },
+    "card-JC010": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC010 青手费南迪尔.jpg",
+      "sha256": "b0df023307d0924a8bd5e793e7652f6c3e76cb459fc82395827b1c4482f3cd33",
+      "visuallyReviewed": true,
+      "topic": "青手费南迪尔：完整原图数值、图标、游戏正文与实际印刷编号"
     }
   },
   "openQuestions": [

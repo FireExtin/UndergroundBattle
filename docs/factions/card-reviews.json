@@ -114,15 +114,16 @@
       },
       "abilitySummary": "手牌行动：先兆展示自身并付费，准备步骤生成邪教徒，每回合限一次；额外费用牺牲角色，打出或付费现身降费。",
       "confirmedMechanismIds": [
-        "handAbility",
         "herald",
+        "handAbility",
         "token",
         "sacrifice",
         "costReduction",
-        "uniqueInPlay"
+        "uniqueInPlay",
+        "priority"
       ],
-      "remainingReview": "数值、图标、全部规则文字、版次及可执行模型仍待完整复核；本次原图部分核验不等于整张牌规则验收。",
-      "editionStatus": "unreviewed"
+      "remainingReview": "全部游戏字段已按固定原图核对，规则疑点/共享流程与未运行验收另见card-specifications.json。",
+      "editionStatus": "pinnedImageVariant"
     },
     "DQJC107": {
       "evidenceId": "card-DQJC107",
@@ -726,16 +727,17 @@
       },
       "abilitySummary": "灵体、唯一、屏障；先兆展示自身并付费，准备步骤防止目标圣贤本回合所受伤害，每回合限一次。",
       "confirmedMechanismIds": [
+        "herald",
+        "handAbility",
+        "damagePrevention",
         "spirit",
         "leader",
         "barrier",
-        "handAbility",
-        "herald",
-        "damagePrevention",
-        "uniqueInPlay"
+        "uniqueInPlay",
+        "priority"
       ],
-      "remainingReview": "数值、图标、全部规则文字、版次及可执行模型仍待完整复核；本次原图部分核验不等于整张牌规则验收。",
-      "editionStatus": "unreviewed"
+      "remainingReview": "全部游戏字段已按固定原图核对，规则疑点/共享流程与未运行验收另见card-specifications.json。",
+      "editionStatus": "pinnedImageVariant"
     },
     "LC15": {
       "reviewStatus": "primaryImageReviewed",
@@ -758,8 +760,8 @@
         "priority",
         "uniqueInPlay"
       ],
-      "remainingReview": "数值、图标、全部规则文字、版次及可执行模型仍待完整复核；本次原图部分核验不等于整张牌规则验收。",
-      "editionStatus": "unreviewed"
+      "remainingReview": "全部游戏字段已按固定原图核对，规则疑点/共享流程与未运行验收另见card-specifications.json。",
+      "editionStatus": "pinnedImageVariant"
     },
     "LC19": {
       "evidenceId": "card-LC19",
@@ -1696,10 +1698,11 @@
         "deckChoice",
         "seal",
         "hidden",
-        "uniqueInPlay"
+        "uniqueInPlay",
+        "priority"
       ],
-      "remainingReview": "数值、图标、全部规则文字、版次及可执行模型仍待完整复核；本次原图部分核验不等于整张牌规则验收。",
-      "editionStatus": "unreviewed"
+      "remainingReview": "全部游戏字段已按固定原图核对，规则疑点/共享流程与未运行验收另见card-specifications.json。",
+      "editionStatus": "pinnedImageVariant"
     },
     "XQ03": {
       "evidenceId": "card-XQ03",
@@ -1963,6 +1966,214 @@
         "privatePeek"
       ],
       "remainingReview": "整卡状态及完整观察版本规格见card-specifications.json；来源完成不代表规则设计疑点、引擎或UI已验收。",
+      "editionStatus": "pinnedImageVariant"
+    },
+    "JZ10": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ10",
+      "verifiedFields": {
+        "name": "“伯劳”",
+        "colorKey": "绿",
+        "basicType": "角色"
+      },
+      "abilitySummary": "创伤　袭击1；【触发】若有角色因“伯劳”的袭击能力而死亡，你可以将“伯劳”移动到另一个地区并潜伏。",
+      "confirmedMechanismIds": [
+        "combatKeywords",
+        "hidden",
+        "mobility",
+        "priority",
+        "loyalty"
+      ],
+      "remainingReview": "全部游戏字段已按固定原图核对，规则疑点/共享流程与未运行验收另见card-specifications.json。",
+      "editionStatus": "pinnedImageVariant"
+    },
+    "BQ007": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ007",
+      "verifiedFields": {
+        "name": "塞西莉亚",
+        "colorKey": "黄",
+        "basicType": "角色"
+      },
+      "abilitySummary": "灵体　护盾1；【进场强制触发】将本方墓地中所有名为精神锚点的牌封印在本方秘社上。；【触发】当隐秘对抗结束时，将用于展示的本方卡牌封印在本方秘社上，而非洗入牌库。",
+      "confirmedMechanismIds": [
+        "shield",
+        "spirit",
+        "seal",
+        "society",
+        "mysticContest",
+        "priority",
+        "uniqueInPlay"
+      ],
+      "remainingReview": "全部游戏字段已按固定原图核对，规则疑点/共享流程与未运行验收另见card-specifications.json。",
+      "editionStatus": "pinnedImageVariant"
+    },
+    "BQ060": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ060",
+      "verifiedFields": {
+        "name": "裂变",
+        "colorKey": "灰",
+        "basicType": "事务"
+      },
+      "abilitySummary": "修格斯秘社限定；【快速】行动　选择一项：；• 在本方核心角色上放置一个护盾标志。；• 进行一次隐秘对抗。；• 在目标地区生成一个触手指示物角色。",
+      "confirmedMechanismIds": [
+        "core",
+        "shield",
+        "mysticContest",
+        "token",
+        "priority",
+        "loyalty"
+      ],
+      "remainingReview": "全部游戏字段已按固定原图核对，规则疑点/共享流程与未运行验收另见card-specifications.json。",
+      "editionStatus": "pinnedImageVariant"
+    },
+    "JC069": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC069",
+      "verifiedFields": {
+        "name": "警犬",
+        "colorKey": "灰",
+        "basicType": "角色"
+      },
+      "abilitySummary": "不能被装备结附；【现身触发】在目标角色或暗藏者上放置一个锁定标志。；【快速】行动2：将警犬移动到目标具有锁定标志的角色或暗藏者所在的地区，警犬获得【永久调查】直到回合结束。该能力每回合只能发动一次。",
+      "confirmedMechanismIds": [
+        "lock",
+        "mobility",
+        "hidden",
+        "continuous",
+        "priority"
+      ],
+      "remainingReview": "全部游戏字段已按固定原图核对，规则疑点/共享流程与未运行验收另见card-specifications.json。",
+      "editionStatus": "pinnedImageVariant"
+    },
+    "JC045": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC045",
+      "verifiedFields": {
+        "name": "钟摆祭司",
+        "colorKey": "红",
+        "basicType": "角色"
+      },
+      "abilitySummary": "【触发】每当一个角色死去时，在钟摆祭司上放置一个时间标志。；【持续】在其上每有一个时间标志，钟摆祭司就获得一个【永久势力】。",
+      "confirmedMechanismIds": [
+        "timeDestroy",
+        "continuous",
+        "priority",
+        "loyalty"
+      ],
+      "remainingReview": "全部游戏字段已按固定原图核对，规则疑点/共享流程与未运行验收另见card-specifications.json。",
+      "editionStatus": "pinnedImageVariant"
+    },
+    "JC048": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC048",
+      "verifiedFields": {
+        "name": "诅咒沙漏",
+        "colorKey": "红",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标地区；【准备步骤强制触发】在诅咒沙漏上放置一个时间标志。然后该地区每有一个时间标志，就对位于该地区的所有角色造成1点伤害。然后若该地区上有三个或更多时间标志，则牺牲诅咒沙漏。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "timeDestroy",
+        "sacrifice",
+        "priority",
+        "loyalty"
+      ],
+      "remainingReview": "全部游戏字段已按固定原图核对，规则疑点/共享流程与未运行验收另见card-specifications.json。",
+      "editionStatus": "pinnedImageVariant"
+    },
+    "JC097": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC097",
+      "verifiedFields": {
+        "name": "阿斯旺",
+        "colorKey": "黑",
+        "basicType": "角色"
+      },
+      "abilitySummary": "隐匿（该角色不能正面打出，只能以秘密派遣方式作为暗藏者进场。）；袭击X，X等于你墓地中角色牌的数量。",
+      "confirmedMechanismIds": [
+        "hiddenOnly",
+        "combatKeywords",
+        "hidden",
+        "priority"
+      ],
+      "remainingReview": "全部游戏字段已按固定原图核对，规则疑点/共享流程与未运行验收另见card-specifications.json。",
+      "editionStatus": "pinnedImageVariant"
+    },
+    "XQ04": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-XQ04",
+      "verifiedFields": {
+        "name": "抹除现实",
+        "colorKey": "黄",
+        "basicType": "事务"
+      },
+      "abilitySummary": "【快速】行动：终止目标堆叠中的卡牌。（正面打出或翻面的牌都进入堆叠。将被终止的卡牌置于其拥有者的墓地且不生效。）",
+      "confirmedMechanismIds": [
+        "cancel",
+        "priority",
+        "loyalty"
+      ],
+      "remainingReview": "全部游戏字段已按固定原图核对，规则疑点/共享流程与未运行验收另见card-specifications.json。",
+      "editionStatus": "pinnedImageVariant"
+    },
+    "JZ05": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ05",
+      "verifiedFields": {
+        "name": "闪烁",
+        "colorKey": "黄",
+        "basicType": "事务"
+      },
+      "abilitySummary": "【快速】行动：令目标本方角色闪烁。（将该角色翻面为暗藏者，然后将其翻面现身至正面）",
+      "confirmedMechanismIds": [
+        "blink",
+        "hidden",
+        "priority",
+        "loyalty"
+      ],
+      "remainingReview": "全部游戏字段已按固定原图核对，规则疑点/共享流程与未运行验收另见card-specifications.json。",
+      "editionStatus": "pinnedImageVariant"
+    },
+    "JZ49": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ49",
+      "verifiedFields": {
+        "name": "蹒跚行尸",
+        "colorKey": "黑",
+        "basicType": "角色"
+      },
+      "abilitySummary": "迟缓（该角色横置进场）；【进场触发】将目标玩家牌库顶的两张牌置于其墓地。",
+      "confirmedMechanismIds": [
+        "slow",
+        "deckChoice",
+        "priority",
+        "loyalty",
+        "temporaryIcons"
+      ],
+      "remainingReview": "全部游戏字段已按固定原图核对，规则疑点/共享流程与未运行验收另见card-specifications.json。",
+      "editionStatus": "pinnedImageVariant"
+    },
+    "JC010": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC010",
+      "verifiedFields": {
+        "name": "青手费南迪尔",
+        "colorKey": "黄",
+        "basicType": "角色"
+      },
+      "abilitySummary": "领袖　灵体；【快速】行动【横置】：消灭目标已横置的角色。",
+      "confirmedMechanismIds": [
+        "leader",
+        "spirit",
+        "exhaust",
+        "priority",
+        "loyalty",
+        "uniqueInPlay"
+      ],
+      "remainingReview": "全部游戏字段已按固定原图核对，规则疑点/共享流程与未运行验收另见card-specifications.json。",
       "editionStatus": "pinnedImageVariant"
     }
   }
