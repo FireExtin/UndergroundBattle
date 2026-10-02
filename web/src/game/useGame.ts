@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { actionPayload, ApiError, createRoom, getCatalog, getState, joinRoom, newCommandId, readPending, readSession, savePending, saveSession, sendCommand, streamEvents, type PendingCommand } from './api';
+import { actionPayload, ApiError, createRoom, getCatalog, getState, joinRoom, newCommandId, pollState, readPending, readSession, savePending, saveSession, sendCommand, type PendingCommand } from './api';
 import type { Action, Catalog, SavedSession, Session, View } from './types';
 
 export function newerView(current: View | null, next: View): View {
@@ -18,9 +18,13 @@ export function useGame() {
   const pending = useRef<PendingCommand | null>(readPending());
   const [uncertain, setUncertain] = useState(!!pending.current);
   const activeRoom = useRef(session?.roomId);
+  const acceptedVersion = useRef(0);
   activeRoom.current = session?.roomId;
   const accept = useCallback((next: View) => {
-    if (next.roomId === activeRoom.current) setView(current => newerView(current, next));
+    if (next.roomId === activeRoom.current) {
+      acceptedVersion.current = Math.max(acceptedVersion.current, next.version);
+      setView(current => newerView(current, next));
+    }
   }, []);
 
   useEffect(() => {
@@ -34,31 +38,43 @@ export function useGame() {
     const controller = new AbortController();
     let timer: ReturnType<typeof setTimeout> | undefined;
     let attempts = 0;
+    let initialized = false;
+    let polling = false;
     const reconnect = async () => {
-      if (controller.signal.aborted) return;
-      setConnection('connecting');
+      if (controller.signal.aborted || polling) return;
+      polling = true;
+      if (!initialized) setConnection('connecting');
       try {
-        const state = await getState(session, controller.signal);
+        const state = initialized ? await pollState(session, acceptedVersion.current, controller.signal) : await getState(session, controller.signal);
         if (controller.signal.aborted) return;
-        accept(state); setConnection('online'); attempts = 0;
+        if (state) accept(state);
+        setConnection('online'); attempts = 0; initialized = true;
         if (pending.current?.roomId === session.roomId && !commandLock.current) {
           await resolvePending(session);
         }
-        await streamEvents(session, controller.signal, next => { accept(next); setConnection('online'); });
+        if (!controller.signal.aborted) timer = setTimeout(reconnect, document.visibilityState === 'hidden' ? 12000 : 1500);
+        return;
       } catch (e) {
         if (controller.signal.aborted) return;
         if (e instanceof ApiError && (e.status === 401 || e.status === 403 || e.status === 404)) {
           saveSession(null); savePending(null); pending.current = null; setUncertain(false); setSession(null); setView(null);
           setError('保存的座位已无法恢复。请使用邀请码重新加入牌桌。'); return;
         }
-      }
+      } finally { polling = false; }
       if (!controller.signal.aborted) {
         setConnection('offline'); attempts++;
         timer = setTimeout(reconnect, Math.min(1000 * 2 ** Math.min(attempts, 4), 15000));
       }
     };
+    const visible = () => {
+      if (document.visibilityState === 'visible' && !controller.signal.aborted) {
+        if (timer) clearTimeout(timer);
+        timer = setTimeout(reconnect, 0);
+      }
+    };
+    document.addEventListener('visibilitychange', visible);
     void reconnect();
-    return () => { controller.abort(); if (timer) clearTimeout(timer); };
+    return () => { controller.abort(); if (timer) clearTimeout(timer); document.removeEventListener('visibilitychange', visible); };
   }, [session, accept]);
 
   const enter = async (task: () => Promise<Session>) => {
@@ -68,6 +84,7 @@ export function useGame() {
       const next = await task();
       pending.current = null; savePending(null); setUncertain(false);
       saveSession(next); activeRoom.current = next.roomId;
+      acceptedVersion.current = next.view.version;
       setSession({ roomId: next.roomId, inviteCode: next.inviteCode, token: next.token, seat: next.seat });
       setView(next.view);
       // Invitations contain only a room code; seat credentials are stored locally.
@@ -124,7 +141,7 @@ export function useGame() {
     retryCatalog: () => { setError(''); setCatalogRetry(n => n + 1); },
     retryPending: () => { if (session) void resolvePending(session); },
     resumeAvailable: !session && !!readSession(),
-    resume: () => { const saved = readSession(); if (saved) { activeRoom.current = saved.roomId; setSession(saved); setUncertain(!!pending.current); setError(''); } },
+    resume: () => { const saved = readSession(); if (saved) { activeRoom.current = saved.roomId; acceptedVersion.current = 0; setSession(saved); setUncertain(!!pending.current); setError(''); } },
     // Return to the lobby without destroying the only credential for an occupied seat.
     leave: () => { activeRoom.current = undefined; setSession(null); setView(null); setError(''); setUncertain(false); },
   };

@@ -16,3 +16,6 @@ coverage/
 /rust-game-v2.1.sqlite3
 /rust-game-v2.1.sqlite3-shm
 /rust-game-v2.1.sqlite3-wal
+/sites/.wrangler/
+/sites/generated/
+/sites/public/

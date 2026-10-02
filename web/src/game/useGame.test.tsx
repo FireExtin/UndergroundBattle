@@ -6,9 +6,9 @@ import { newerView, useGame } from './useGame';
 
 const session = { roomId: testView.roomId, inviteCode: 'INVITE', token: 'opaque-token', seat: 0 };
 const json = (body: unknown, status = 200) => new Response(JSON.stringify(body), { status });
-afterEach(() => { vi.unstubAllGlobals(); localStorage.clear(); });
+afterEach(() => { vi.useRealTimers(); vi.restoreAllMocks(); vi.unstubAllGlobals(); localStorage.clear(); });
 describe('room lifecycle and reconciliation', () => {
-  it('never regresses a table when a delayed command returns behind an SSE update', () => {
+  it('never regresses a table when a delayed command returns behind a newer poll', () => {
     expect(newerView({ ...testView, version: 12 }, { ...testView, version: 9 }).version).toBe(12);
     expect(newerView(testView, { ...testView, version: 2 }).version).toBe(2);
   });
@@ -66,5 +66,30 @@ describe('room lifecycle and reconciliation', () => {
     await waitFor(() => expect(result.current.uncertain).toBe(false));
     expect(commands[0]).toMatchObject({ commandId: 'persisted-original', expectedVersion: 1, action: { kind: 'pass' } });
     expect(result.current.view?.version).toBe(9);
+  });
+  it('polls the latest version, avoids overlapping requests and resumes when visible', async () => {
+    vi.useFakeTimers(); saveSession(session);
+    const polls: string[] = []; let release: ((response: Response) => void) | undefined;
+    vi.stubGlobal('fetch', vi.fn(async (url: string) => {
+      if (url.includes('?afterVersion=')) {
+        polls.push(url);
+        if (polls.length === 1) return new Promise<Response>(resolve => { release = resolve; });
+        return new Response(null, { status: 204 });
+      }
+      return url === '/api/catalog' ? json(testCatalog) : json({ ...testView, version: 9 });
+    }));
+    let result: ReturnType<typeof renderHook<ReturnType<typeof useGame>, unknown>>['result'];
+    await act(async () => { ({ result } = renderHook(useGame)); await vi.advanceTimersByTimeAsync(0); });
+    expect(result!.current.connection).toBe('online');
+    await act(async () => { await vi.advanceTimersByTimeAsync(1500); });
+    expect(polls).toEqual([`/api/rooms/${session.roomId}/state?afterVersion=9`]);
+    vi.spyOn(document, 'visibilityState', 'get').mockReturnValue('visible');
+    await act(async () => { document.dispatchEvent(new Event('visibilitychange')); await vi.advanceTimersByTimeAsync(0); });
+    expect(polls).toHaveLength(1);
+    await act(async () => { release!(json({ ...testView, version: 8 })); await vi.advanceTimersByTimeAsync(0); });
+    expect(result!.current.view?.version).toBe(9);
+    await act(async () => { document.dispatchEvent(new Event('visibilitychange')); await vi.advanceTimersByTimeAsync(0); });
+    expect(polls).toHaveLength(2); expect(polls[1]).toContain('afterVersion=9');
+    expect(result!.current.connection).toBe('online');
   });
 });

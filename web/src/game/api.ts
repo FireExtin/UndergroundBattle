@@ -2,6 +2,7 @@ import type { Action, Catalog, SavedSession, Session, View } from './types';
 
 const STORAGE_KEY = 'hegemony.session.v1';
 const PENDING_KEY = 'hegemony.pending.v1';
+const ENTRY_KEY = 'hegemony.entry.v1';
 export function newCommandId(): string {
   if (typeof crypto.randomUUID === 'function') return crypto.randomUUID();
   // getRandomValues also works on HTTP development hosts without randomUUID support.
@@ -49,22 +50,58 @@ export function saveSession(session: SavedSession | null) {
 
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
   let response: Response;
-  try { response = await fetch(path, init); }
+  try { response = await fetch(path, { ...init, signal: timedSignal(init?.signal) }); }
   catch { throw new ApiError(0, '暂时无法连接牌桌服务，请检查连接后重试。'); }
   const body = await response.json().catch(() => ({}));
   if (!response.ok) throw new ApiError(response.status, body.message || body.error || '操作未完成，请重试。', body.view);
   return body as T;
 }
+function timedSignal(signal?: AbortSignal | null): AbortSignal {
+  const timeout = AbortSignal.timeout(12000);
+  return signal ? AbortSignal.any([signal, timeout]) : timeout;
+}
 const headers = (session: SavedSession) => ({ Authorization: `Bearer ${session.token}` });
 const roomPath = (session: SavedSession) => `/api/rooms/${encodeURIComponent(session.roomId)}`;
-export const getCatalog = (signal?: AbortSignal) => request<Catalog>('/api/catalog', { signal });
+let supportsEntryReceipts = false;
+export const getCatalog = async (signal?: AbortSignal) => {
+  const catalog = await request<Catalog & { entryIdempotency?: boolean }>('/api/catalog', { signal });
+  supportsEntryReceipts = catalog.entryIdempotency === true;
+  return catalog;
+};
 export const getState = (session: SavedSession, signal?: AbortSignal) => request<View>(`${roomPath(session)}/state`, { headers: headers(session), signal });
-export const createRoom = (name: string, mode: 'duel' | 'teams', deckId: string) => request<Session>('/api/rooms', {
-  method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name, mode, deckId }),
-});
-export const joinRoom = (inviteCode: string, name: string, deckId: string) => request<Session>('/api/rooms/join', {
-  method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ inviteCode, name, deckId }),
-});
+let entryMemory: { intent: string; requestId: string } | null = null;
+async function enterRoom(path: string, values: Record<string, string>): Promise<Session> {
+  const intent = JSON.stringify([path, values]);
+  try { entryMemory = JSON.parse(localStorage.getItem(ENTRY_KEY) || 'null') || entryMemory; } catch { /* Keep an in-memory recovery key. */ }
+  if (!entryMemory || entryMemory.intent !== intent || typeof entryMemory.requestId !== 'string') entryMemory = { intent, requestId: newCommandId() };
+  try { localStorage.setItem(ENTRY_KEY, JSON.stringify(entryMemory)); } catch { /* Storage may be disabled. */ }
+  const init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...values, requestId: entryMemory.requestId }) };
+  try {
+    let session: Session;
+    try { session = await request<Session>(path, init); }
+    catch (error) {
+      if (!supportsEntryReceipts || !(error instanceof ApiError) || (error.status !== 0 && error.status < 500)) throw error;
+      session = await request<Session>(path, init);
+    }
+    entryMemory = null;
+    try { localStorage.removeItem(ENTRY_KEY); } catch { /* No persistent storage. */ }
+    return session;
+  } catch (error) { throw error; /* Keep exactly the original request key for an explicit retry. */ }
+}
+export const createRoom = (name: string, mode: 'duel' | 'teams', deckId: string) => enterRoom('/api/rooms', { name, mode, deckId });
+export const joinRoom = (inviteCode: string, name: string, deckId: string) => enterRoom('/api/rooms/join', { inviteCode, name, deckId });
+
+/** One authenticated version poll. No token in URLs, no full hidden state. */
+export async function pollState(session: SavedSession, version: number, signal: AbortSignal): Promise<View | null> {
+  let response: Response;
+  try { response = await fetch(`${roomPath(session)}/state?afterVersion=${version}`, { headers: headers(session), signal: timedSignal(signal), cache: 'no-store' }); }
+  catch { throw new ApiError(0, '暂时无法连接牌桌服务，请检查连接后重试。'); }
+  if (response.status === 204) return null;
+  const body = await response.json().catch(() => ({}));
+  if (!response.ok) throw new ApiError(response.status, body.message || '同步暂不可用。', body.view);
+  if (body.roomId !== session.roomId || !Number.isSafeInteger(body.version)) throw new ApiError(0, '同步返回格式不正确。');
+  return body as View;
+}
 
 export function actionPayload(action: Action | (Action & { id: string; label: string; description?: string })): Action {
   const { kind, cardId, targetId, region, option, abilityId, costSelected, choiceId, selected, top, bottom, allocations } = action;

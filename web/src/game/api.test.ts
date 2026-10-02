@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { actionPayload, ApiError, getState, readSession, saveSession, sendCommand, streamEvents } from './api';
+import { actionPayload, ApiError, createRoom, getCatalog, getState, pollState, readSession, saveSession, sendCommand, streamEvents } from './api';
 import { testView } from './testFixtures';
 
 const session = { roomId: 'room-test', inviteCode: 'INVITE', token: 'opaque-seat-token', seat: 0 };
@@ -52,5 +52,39 @@ describe('cloud table API', () => {
     vi.stubGlobal('fetch', vi.fn().mockRejectedValue(new Error('lost acknowledgement')));
     await expect(sendCommand(session, 1, { kind: 'pass' }, 'same-command')).rejects.toBeInstanceOf(ApiError);
     await expect(sendCommand(session, 1, { kind: 'pass' }, 'same-command')).rejects.toMatchObject({ status: 0 });
+  });
+  it('polls only an authenticated version and accepts an unchanged 204', async () => {
+    const fetchMock = vi.fn().mockResolvedValue(new Response(null, { status: 204 }));
+    vi.stubGlobal('fetch', fetchMock);
+    const controller = new AbortController();
+    expect(await pollState(session, 17, controller.signal)).toBeNull();
+    const [url, init] = fetchMock.mock.calls[0];
+    expect(url).toBe('/api/rooms/room-test/state?afterVersion=17');
+    expect(init.headers.Authorization).toBe(`Bearer ${session.token}`);
+    expect(init.cache).toBe('no-store');
+    controller.abort(); expect(init.signal.aborted).toBe(true);
+  });
+  it('rejects a poll carrying another room or an unsafe version', async () => {
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValue(new Response(JSON.stringify({ ...testView, roomId: 'other' }), { status: 200 })));
+    await expect(pollState(session, 1, new AbortController().signal)).rejects.toMatchObject({ status: 0 });
+  });
+  it('recovers a lost lobby acknowledgement with the exact original request key', async () => {
+    const fetchMock = vi.fn().mockResolvedValueOnce(new Response(JSON.stringify({ entryIdempotency: true }), { status: 200 }))
+      .mockRejectedValueOnce(new Error('lost ACK')).mockResolvedValueOnce(new Response(JSON.stringify(session), { status: 200 }));
+    vi.stubGlobal('fetch', fetchMock); await getCatalog();
+    expect(await createRoom('甲', 'duel', 'responders')).toEqual(session);
+    expect(fetchMock.mock.calls[1][1].body).toBe(fetchMock.mock.calls[2][1].body);
+    expect(JSON.parse(fetchMock.mock.calls[1][1].body).requestId.length).toBeGreaterThanOrEqual(32);
+    expect(localStorage.getItem('hegemony.entry.v1')).toBeNull();
+  });
+  it('keeps a failed entry key for an explicit retry and does not retry legacy servers automatically', async () => {
+    const fetchMock = vi.fn().mockResolvedValueOnce(new Response('{}', { status: 200 }))
+      .mockRejectedValueOnce(new Error('lost ACK')).mockResolvedValueOnce(new Response(JSON.stringify(session), { status: 200 }));
+    vi.stubGlobal('fetch', fetchMock); await getCatalog();
+    await expect(createRoom('乙', 'duel', 'watchers')).rejects.toMatchObject({ status: 0 });
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+    const recovery = localStorage.getItem('hegemony.entry.v1'); expect(recovery).not.toBeNull();
+    await createRoom('乙', 'duel', 'watchers');
+    expect(fetchMock.mock.calls[1][1].body).toBe(fetchMock.mock.calls[2][1].body);
   });
 });

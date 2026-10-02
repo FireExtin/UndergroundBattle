@@ -10,7 +10,7 @@ export function GameApp() {
   const [help, setHelp] = useState(false);
   return <div className="hg-app">
     <header className="hg-header"><a href="/" className="hg-brand"><span className="hg-brand-mark">◈</span><span>隐秘世界 <b>霸权</b><small>SECRET WORLD · HEGEMONY</small></span></a><nav>
-      {game.session && <span className={`hg-connection hg-connection-${game.connection}`} role="status"><i />{game.connection === 'online' ? '牌桌已连接' : game.connection === 'connecting' ? '正在同步牌桌' : '连接中断 · 自动重连'}</span>}
+      {game.session && <span className={`hg-connection hg-connection-${game.connection}`} role="status" title="前台约每1.5秒轮询同步；操作提交后立即更新。"><i />{game.connection === 'online' ? '牌桌已同步 · 轮询' : game.connection === 'connecting' ? '正在同步牌桌' : '连接中断 · 自动重连'}</span>}
       <button className="hg-nav-button" onClick={() => setHelp(true)}>上手指南 <span>?</span></button>
     </nav></header>
     {game.error && <div className="hg-error" role="alert"><span>{game.error}</span><button onClick={game.dismissError} aria-label="关闭提示">×</button></div>}
