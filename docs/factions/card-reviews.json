@@ -5402,6 +5402,402 @@
       ],
       "editionStatus": "pinnedImageVariant",
       "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "LC01": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-LC01",
+      "verifiedFields": {
+        "name": "西比尔",
+        "colorKey": "黄",
+        "basicType": "角色"
+      },
+      "abilitySummary": "持续 你可以随时检视你的牌库顶牌。",
+      "confirmedMechanismIds": [
+        "privatePeek",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "LC02": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-LC02",
+      "verifiedFields": {
+        "name": "程安国，“黄雀”",
+        "colorKey": "绿",
+        "basicType": "角色"
+      },
+      "abilitySummary": "威名；隐匿；创伤袭击1；触发 当程安国，“黄雀”在暗藏者状态下将被敌方玩家检视或消灭时，或当一个印刷费用大于或等于三的敌方角色进入本地区时，你可以令其翻面现身而不需支付其费用。",
+      "confirmedMechanismIds": [
+        "hiddenOnly",
+        "hidden",
+        "privatePeek",
+        "combatKeywords",
+        "cancel",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "LC03": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-LC03",
+      "verifiedFields": {
+        "name": "希娅·克伦泽，“渡鸦”",
+        "colorKey": "绿",
+        "basicType": "角色"
+      },
+      "abilitySummary": "撤回；行动 横置：另一个副名为“猛禽”战术小组的目标角色获得机动直到回合结束。",
+      "confirmedMechanismIds": [
+        "combatTraits",
+        "exhaust",
+        "mobility",
+        "temporaryIcons",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "LC04": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-LC04",
+      "verifiedFields": {
+        "name": "卡德兰大王",
+        "colorKey": "红",
+        "basicType": "角色"
+      },
+      "abilitySummary": "领袖；混乱；进场强制触发 每位玩家各弃一张手牌，然后各牺牲一个角色，一个附属，一个暗藏者和一个资产。",
+      "confirmedMechanismIds": [
+        "leader",
+        "chaos",
+        "deckChoice",
+        "sacrifice",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "LC05": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-LC05",
+      "verifiedFields": {
+        "name": "教堂执事",
+        "colorKey": "白",
+        "basicType": "角色"
+      },
+      "abilitySummary": "公开；声望；进场触发 若你的资产区具有神圣1，则在本地区的另一个目标角色上放置一个防御+1标志。",
+      "confirmedMechanismIds": [
+        "public",
+        "renown",
+        "continuous"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "LC06": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-LC06",
+      "verifiedFields": {
+        "name": "瓦尔德修士",
+        "colorKey": "白",
+        "basicType": "角色"
+      },
+      "abilitySummary": "触发 当瓦尔德修士受到创伤时，抓两张牌。",
+      "confirmedMechanismIds": [
+        "healWounds",
+        "deckChoice",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "LC07": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-LC07",
+      "verifiedFields": {
+        "name": "先人魂魄",
+        "colorKey": "白",
+        "basicType": "角色"
+      },
+      "abilitySummary": "灵体；护卫1；触发 当先人魂魄受到伤害时，对本地区的另一个目标角色造成等量的创伤。",
+      "confirmedMechanismIds": [
+        "spirit",
+        "combatTraits",
+        "healWounds",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "LC08": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-LC08",
+      "verifiedFields": {
+        "name": "破除",
+        "colorKey": "白",
+        "basicType": "事务"
+      },
+      "abilitySummary": "额外费用 横置任意数量的本方僧侣，你每横置一个僧侣，破除的所需费用就减少①。；快速行动 消灭目标非人类且非天使角色。",
+      "confirmedMechanismIds": [
+        "exhaust",
+        "costReduction",
+        "priority"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "LC09": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-LC09",
+      "verifiedFields": {
+        "name": "辟邪十字架",
+        "colorKey": "白",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标角色；额外费用 若结附的目标是僧侣角色，则辟邪十字架的所需费用就减少②。；触发 当受此结附的角色死去时，你可以牺牲辟邪十字架，若你如此做，则将该角色移回场上，置于之前所在的地区并横置。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "costReduction",
+        "sacrifice",
+        "graveRecovery",
+        "exhaust"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "LC10": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-LC10",
+      "verifiedFields": {
+        "name": "圣公会教堂",
+        "colorKey": "白",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标地区；持续 所有位于本地区的本方僧侣角色获得防御+1。；行动 横置，横置一个本地区的本方僧侣角色：选择本地区的目标角色，移除该角色上的一个创伤标志。预测1。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "continuous",
+        "exhaust",
+        "healWounds",
+        "deckChoice",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "LC11": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-LC11",
+      "verifiedFields": {
+        "name": "荒野长老",
+        "colorKey": "白",
+        "basicType": "角色"
+      },
+      "abilitySummary": "触发 当你赢得荒野长老所参与的调查对抗后，略过本地区的战斗对抗步骤。；持续 若荒野长老位于黄昏地区，则其获得屏障。",
+      "confirmedMechanismIds": [
+        "confrontation",
+        "barrier"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "LC12": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-LC12",
+      "verifiedFields": {
+        "name": "阿瓦隆隐士",
+        "colorKey": "白",
+        "basicType": "角色"
+      },
+      "abilitySummary": "快速行动 横置：本地区的另一个目标本方角色获得防御+1直到回合结束。",
+      "confirmedMechanismIds": [
+        "priority",
+        "exhaust",
+        "continuous"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "LC13": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-LC13",
+      "verifiedFields": {
+        "name": "远古先祖的回应",
+        "colorKey": "白",
+        "basicType": "事务"
+      },
+      "abilitySummary": "快速行动 预测1，抓一张牌，威胁进度-1。你可以将远古先祖的回应封印于目标黄昏地区上。",
+      "confirmedMechanismIds": [
+        "priority",
+        "deckChoice",
+        "crisis",
+        "seal"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "LC16": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-LC16",
+      "verifiedFields": {
+        "name": "江月",
+        "colorKey": "灰",
+        "basicType": "角色"
+      },
+      "abilitySummary": "创伤2；准备步骤触发 从你的牌库中寻找一张法术牌或阴牌，将该牌置于你的墓地，然后将你的牌库洗牌。在目标地区上放置一个本方势力标志。",
+      "confirmedMechanismIds": [
+        "combatKeywords",
+        "deckChoice",
+        "confrontation",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "LC17": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-LC17",
+      "verifiedFields": {
+        "name": "江莲",
+        "colorKey": "紫",
+        "basicType": "角色"
+      },
+      "abilitySummary": "屏障；准备步骤触发 将一张你墓地中的法术牌或阴牌封印在江莲上，然后预测1。",
+      "confirmedMechanismIds": [
+        "barrier",
+        "seal",
+        "graveRecovery",
+        "deckChoice",
+        "temporaryIcons",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "LC18": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-LC18",
+      "verifiedFields": {
+        "name": "防暴构装体，九",
+        "colorKey": "中立",
+        "basicType": "角色"
+      },
+      "abilitySummary": "帷幕守望徽記 秘社限定；唯一；持续 若其上结附有武器，则防暴构装体，九获得创伤1。；死亡触发 若你的资产区具有心灵2，则对本地区的所有角色造成1点伤害。",
+      "confirmedMechanismIds": [
+        "leader",
+        "combatKeywords",
+        "attachment",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "LC25": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-LC25",
+      "verifiedFields": {
+        "name": "白银匕首",
+        "colorKey": "中立",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标人类角色；持续 受此结附的角色获得临时战斗1和创伤1。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "continuous",
+        "combatKeywords",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "LC26": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-LC26",
+      "verifiedFields": {
+        "name": "莫洛托夫鸡尾酒",
+        "colorKey": "中立",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标本方人类角色；行动①，牺牲莫洛托夫鸡尾酒：横置受此结附的角色，然后对本地区的目标角色造成1点创伤。；墓地行动①，横置一个名为无知路人的本方角色：将莫洛托夫鸡尾酒从本方墓地移回你的手中。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "sacrifice",
+        "exhaust",
+        "healWounds",
+        "graveRecovery",
+        "gravePlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "LC27": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-LC27",
+      "verifiedFields": {
+        "name": "狙击",
+        "colorKey": "中立",
+        "basicType": "事务"
+      },
+      "abilitySummary": "非资产；行动 对目标角色造成1点创伤。",
+      "confirmedMechanismIds": [
+        "nonAsset",
+        "healWounds"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "LC28": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-LC28",
+      "verifiedFields": {
+        "name": "刑讯",
+        "colorKey": "中立",
+        "basicType": "事务"
+      },
+      "abilitySummary": "非资产；刑讯不能被响应。；行动 消灭目标暗藏者。",
+      "confirmedMechanismIds": [
+        "nonAsset",
+        "priority",
+        "hidden"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "LC29": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-LC29",
+      "verifiedFields": {
+        "name": "组织营救",
+        "colorKey": "中立",
+        "basicType": "事务"
+      },
+      "abilitySummary": "快速行动 选择一项：将目标本方角色移回其拥有者手上；或你获得2名誉点。",
+      "confirmedMechanismIds": [
+        "priority",
+        "core"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "LC30": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-LC30",
+      "verifiedFields": {
+        "name": "J·罗伯茨，“海雕”",
+        "colorKey": "绿",
+        "basicType": "角色"
+      },
+      "abilitySummary": "护卫2；持续 每有一个武器附属结附于其上，J·罗伯茨就获得永久战斗1和防御+1。",
+      "confirmedMechanismIds": [
+        "combatTraits",
+        "attachment",
+        "continuous",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
     }
   }
 }

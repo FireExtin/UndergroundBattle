@@ -9,15 +9,15 @@
   },
   "reviewsSource": {
     "path": "docs/factions/card-reviews.json",
-    "sha256": "bb0b43810801988f55a7a9eff5da45e3237ec98eae51d221c706accb4778cddd"
+    "sha256": "bdcc77ba8c39d27024d2d4e39e3b64a9d0781e44ab1dbb54b114278d5cb46eb9"
   },
   "coverageSource": {
     "path": "rust-game/data/faction-coverage.json",
-    "sha256": "ecab4ed8f2c2af55c92dae85cc406a9efdc0e8f9b079d21ef9d7aa83a0183fbb"
+    "sha256": "488377d39ce59ca609604b9218ef51a8dffd1ec87250a53a4288f97d00c14999"
   },
   "specificationsSource": {
     "path": "docs/factions/card-specifications.json",
-    "sha256": "aa480f689946b68b50a4a7556a1a868a5177a4ac534374f20c777824b009fc06"
+    "sha256": "869ae0bd9a09516e06dd17d6081e630f7b526de4692199f0ee4d0bf1a480b340"
   },
   "recoverySource": {
     "path": "docs/factions/source-recovery.json",
@@ -34,13 +34,13 @@
   "totals": {
     "archiveRecords": 685,
     "sourceImagesMissing": 13,
-    "primaryImageReviewed": 298,
-    "unreviewedWithImage": 374,
+    "primaryImageReviewed": 320,
+    "unreviewedWithImage": 352,
     "currentCatalogDefinitions": 29,
-    "completeSourceSpecifications": 285,
+    "completeSourceSpecifications": 307,
     "blockedSourceSpecifications": 5,
     "completeNonCardReferences": 1,
-    "completeSourceRecords": 286,
+    "completeSourceRecords": 308,
     "locatorSetCounts": {
       "TK": 11,
       "传奇": 44,
@@ -66,11 +66,11 @@
       "worldRegion": 29
     },
     "editionStatusCounts": {
-      "pinnedImageVariant": 279,
+      "pinnedImageVariant": 301,
       "testArchivePinnedImageVariant": 2,
       "testImageConfirmed": 5,
       "uncertain": 2,
-      "unreviewed": 397
+      "unreviewed": 375
     }
   },
   "records": [
@@ -28045,22 +28045,22 @@
     {
       "id": "LC01",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/LC01 西比尔.jpg",
           "sha256": "a0defb07b43463cc882e15b993c73eda22ea77ca39062da71e6518a365cc5bd6"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/LC01",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/LC01",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/LC01",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "西比尔",
         "set": "洛城",
@@ -28080,17 +28080,35 @@
         "keywords": [],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "西比尔",
+        "colorKey": "黄",
+        "basicType": "角色"
+      },
+      "abilitySummary": "持续 你可以随时检视你的牌库顶牌。",
+      "confirmedMechanismIds": [
+        "privatePeek",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
       "candidateMechanismIds": [
         "continuous",
         "deckChoice",
         "privatePeek"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "handPicker",
+        "iconBreakdown",
+        "privatePeek",
+        "targetPicker",
+        "uniquePrompt"
+      ],
+      "mechanismCoverage": {
+        "privatePeek": "unimplemented",
+        "uniqueInPlay": "implemented",
+        "temporaryIcons": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -28105,22 +28123,22 @@
     {
       "id": "LC02",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/LC02 程安国，“黄雀”.jpg",
           "sha256": "338ceca8f7655b18181dd7f3a7be1e3b78e1636c32fcd22e53116c76062104d9"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/LC02",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/LC02",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/LC02",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "程安国，“黄雀”",
         "set": "洛城",
@@ -28145,9 +28163,20 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "程安国，“黄雀”",
+        "colorKey": "绿",
+        "basicType": "角色"
+      },
+      "abilitySummary": "威名；隐匿；创伤袭击1；触发 当程安国，“黄雀”在暗藏者状态下将被敌方玩家检视或消灭时，或当一个印刷费用大于或等于三的敌方角色进入本地区时，你可以令其翻面现身而不需支付其费用。",
+      "confirmedMechanismIds": [
+        "hiddenOnly",
+        "hidden",
+        "privatePeek",
+        "combatKeywords",
+        "cancel",
+        "uniqueInPlay"
+      ],
       "candidateMechanismIds": [
         "combatKeywords",
         "graveRecovery",
@@ -28157,8 +28186,24 @@
         "privatePeek"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "damagePicker",
+        "handPicker",
+        "hiddenProjection",
+        "privatePeek",
+        "stack",
+        "targetPicker",
+        "triggerPrompt",
+        "uniquePrompt"
+      ],
+      "mechanismCoverage": {
+        "hiddenOnly": "unimplemented",
+        "hidden": "implemented",
+        "privatePeek": "unimplemented",
+        "combatKeywords": "unimplemented",
+        "cancel": "unimplemented",
+        "uniqueInPlay": "implemented"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -28173,22 +28218,22 @@
     {
       "id": "LC03",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/LC03 希妲·克伦泽，“渡鸦”.jpg",
           "sha256": "5fb9428ea4a98f901d9555c9230df7dfa3353fc87d49a3501c997e8543753582"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/LC03",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/LC03",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/LC03",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "希妲·克伦泽，“渡鸦”",
         "set": "洛城",
@@ -28211,9 +28256,19 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "希娅·克伦泽，“渡鸦”",
+        "colorKey": "绿",
+        "basicType": "角色"
+      },
+      "abilitySummary": "撤回；行动 横置：另一个副名为“猛禽”战术小组的目标角色获得机动直到回合结束。",
+      "confirmedMechanismIds": [
+        "combatTraits",
+        "exhaust",
+        "mobility",
+        "temporaryIcons",
+        "uniqueInPlay"
+      ],
       "candidateMechanismIds": [
         "combatTraits",
         "continuous",
@@ -28221,8 +28276,20 @@
         "mobility"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "damagePicker",
+        "iconBreakdown",
+        "regionPicker",
+        "targetPicker",
+        "uniquePrompt"
+      ],
+      "mechanismCoverage": {
+        "combatTraits": "implemented",
+        "exhaust": "implemented",
+        "mobility": "partial",
+        "temporaryIcons": "partial",
+        "uniqueInPlay": "implemented"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -28237,22 +28304,22 @@
     {
       "id": "LC04",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/LC04 卡德兰大王.jpg",
           "sha256": "482c2967d5aa28c4f268b5491d9c2e0611a440d6bce2aa37c8502ce0b6cc020d"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/LC04",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/LC04",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/LC04",
+      "implementationDesignStatus": "needsRuling",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "卡德兰大王",
         "set": "洛城",
@@ -28275,9 +28342,20 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "卡德兰大王",
+        "colorKey": "红",
+        "basicType": "角色"
+      },
+      "abilitySummary": "领袖；混乱；进场强制触发 每位玩家各弃一张手牌，然后各牺牲一个角色，一个附属，一个暗藏者和一个资产。",
+      "confirmedMechanismIds": [
+        "leader",
+        "chaos",
+        "deckChoice",
+        "sacrifice",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
       "candidateMechanismIds": [
         "attachment",
         "chaos",
@@ -28287,8 +28365,24 @@
         "sacrifice"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "choicePicker",
+        "costPicker",
+        "handPicker",
+        "iconBreakdown",
+        "orderPicker",
+        "randomDestination",
+        "searchPicker",
+        "uniquePrompt"
+      ],
+      "mechanismCoverage": {
+        "leader": "unimplemented",
+        "chaos": "unimplemented",
+        "deckChoice": "partial",
+        "sacrifice": "implemented",
+        "uniqueInPlay": "implemented",
+        "temporaryIcons": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -28303,22 +28397,22 @@
     {
       "id": "LC05",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/LC05 教堂执事.jpg",
           "sha256": "f36785186b18c70f81a1a24247140688c3991f56f57f0907a4ab6e811536eebb"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/LC05",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/LC05",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/LC05",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "教堂执事",
         "set": "洛城",
@@ -28337,13 +28431,27 @@
         "keywords": [],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "教堂执事",
+        "colorKey": "白",
+        "basicType": "角色"
+      },
+      "abilitySummary": "公开；声望；进场触发 若你的资产区具有神圣1，则在本地区的另一个目标角色上放置一个防御+1标志。",
+      "confirmedMechanismIds": [
+        "public",
+        "renown",
+        "continuous"
+      ],
       "candidateMechanismIds": [],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "triggerPrompt"
+      ],
+      "mechanismCoverage": {
+        "public": "implemented",
+        "renown": "unimplemented",
+        "continuous": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -28358,22 +28466,22 @@
     {
       "id": "LC06",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/LC06 瓦尔德修士.jpg",
           "sha256": "46bcfd890d040fc0b9e558ba601867f402bcc1443851e0ccf7f7a9e1579154b6"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/LC06",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/LC06",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/LC06",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "瓦尔德修士",
         "set": "洛城",
@@ -28395,17 +28503,35 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "瓦尔德修士",
+        "colorKey": "白",
+        "basicType": "角色"
+      },
+      "abilitySummary": "触发 当瓦尔德修士受到创伤时，抓两张牌。",
+      "confirmedMechanismIds": [
+        "healWounds",
+        "deckChoice",
+        "uniqueInPlay"
+      ],
       "candidateMechanismIds": [
         "combatKeywords",
         "deckChoice",
         "healWounds"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "handPicker",
+        "orderPicker",
+        "searchPicker",
+        "targetPicker",
+        "uniquePrompt"
+      ],
+      "mechanismCoverage": {
+        "healWounds": "partial",
+        "deckChoice": "partial",
+        "uniqueInPlay": "implemented"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -28420,22 +28546,22 @@
     {
       "id": "LC07",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/LC07 先人魂魄.jpg",
           "sha256": "55147a4cd3138095a5eab2213f0cfc9c993f87f7478e8b2c38f36f7477ff8d56"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/LC07",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/LC07",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/LC07",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "先人魂魄",
         "set": "洛城",
@@ -28459,9 +28585,18 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "先人魂魄",
+        "colorKey": "白",
+        "basicType": "角色"
+      },
+      "abilitySummary": "灵体；护卫1；触发 当先人魂魄受到伤害时，对本地区的另一个目标角色造成等量的创伤。",
+      "confirmedMechanismIds": [
+        "spirit",
+        "combatTraits",
+        "healWounds",
+        "temporaryIcons"
+      ],
       "candidateMechanismIds": [
         "combatKeywords",
         "combatTraits",
@@ -28469,8 +28604,18 @@
         "spirit"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "damagePicker",
+        "domainSummary",
+        "iconBreakdown",
+        "targetPicker"
+      ],
+      "mechanismCoverage": {
+        "spirit": "unimplemented",
+        "combatTraits": "implemented",
+        "healWounds": "partial",
+        "temporaryIcons": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -28485,22 +28630,22 @@
     {
       "id": "LC08",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/LC08 破除.jpg",
           "sha256": "e38ba30c589de4d0e9938e81c74a365918ec0aceb897a9559e2614020e171f8e"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/LC08",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/LC08",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/LC08",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "破除",
         "set": "洛城",
@@ -28518,15 +28663,31 @@
         "keywords": [],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "破除",
+        "colorKey": "白",
+        "basicType": "事务"
+      },
+      "abilitySummary": "额外费用 横置任意数量的本方僧侣，你每横置一个僧侣，破除的所需费用就减少①。；快速行动 消灭目标非人类且非天使角色。",
+      "confirmedMechanismIds": [
+        "exhaust",
+        "costReduction",
+        "priority"
+      ],
       "candidateMechanismIds": [
         "exhaust"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "choicePicker",
+        "stack",
+        "targetPicker"
+      ],
+      "mechanismCoverage": {
+        "exhaust": "implemented",
+        "costReduction": "partial",
+        "priority": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -28541,22 +28702,22 @@
     {
       "id": "LC09",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/LC09 辟邪十字架.jpg",
           "sha256": "d3906c078561d883c9c3a998d005000e8e2df6a11565aeae7644186dc7eaa2ed"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/LC09",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/LC09",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/LC09",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "辟邪十字架",
         "set": "洛城",
@@ -28574,9 +28735,19 @@
         "keywords": [],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "辟邪十字架",
+        "colorKey": "白",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标角色；额外费用 若结附的目标是僧侣角色，则辟邪十字架的所需费用就减少②。；触发 当受此结附的角色死去时，你可以牺牲辟邪十字架，若你如此做，则将该角色移回场上，置于之前所在的地区并横置。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "costReduction",
+        "sacrifice",
+        "graveRecovery",
+        "exhaust"
+      ],
       "candidateMechanismIds": [
         "attachment",
         "costReduction",
@@ -28584,8 +28755,22 @@
         "sacrifice"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "attachmentPicker",
+        "attachments",
+        "choicePicker",
+        "costPicker",
+        "graveyardPicker",
+        "regionPicker",
+        "targetPicker"
+      ],
+      "mechanismCoverage": {
+        "attachment": "unimplemented",
+        "costReduction": "partial",
+        "sacrifice": "implemented",
+        "graveRecovery": "implemented",
+        "exhaust": "implemented"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -28600,22 +28785,22 @@
     {
       "id": "LC10",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/LC10 圣公会教堂.jpg",
           "sha256": "2a220dc438eae060cd8a67fef95a3361f7d43a6bb01d465e2b4dcfb989aa0d74"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/LC10",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/LC10",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/LC10",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "圣公会教堂",
         "set": "洛城",
@@ -28637,9 +28822,20 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "圣公会教堂",
+        "colorKey": "白",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标地区；持续 所有位于本地区的本方僧侣角色获得防御+1。；行动 横置，横置一个本地区的本方僧侣角色：选择本地区的目标角色，移除该角色上的一个创伤标志。预测1。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "continuous",
+        "exhaust",
+        "healWounds",
+        "deckChoice",
+        "temporaryIcons"
+      ],
       "candidateMechanismIds": [
         "attachment",
         "combatKeywords",
@@ -28649,8 +28845,23 @@
         "healWounds"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "attachmentPicker",
+        "attachments",
+        "handPicker",
+        "iconBreakdown",
+        "orderPicker",
+        "searchPicker",
+        "targetPicker"
+      ],
+      "mechanismCoverage": {
+        "attachment": "unimplemented",
+        "continuous": "partial",
+        "exhaust": "implemented",
+        "healWounds": "partial",
+        "deckChoice": "partial",
+        "temporaryIcons": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -28665,22 +28876,22 @@
     {
       "id": "LC11",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/LC11 荒野长老.jpg",
           "sha256": "9fdfe59a606ce2f7285a570a9f687f64592225e98b6f14a2733d62dbca86ce23"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/LC11",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/LC11",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/LC11",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "荒野长老",
         "set": "洛城",
@@ -28702,16 +28913,30 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "荒野长老",
+        "colorKey": "白",
+        "basicType": "角色"
+      },
+      "abilitySummary": "触发 当你赢得荒野长老所参与的调查对抗后，略过本地区的战斗对抗步骤。；持续 若荒野长老位于黄昏地区，则其获得屏障。",
+      "confirmedMechanismIds": [
+        "confrontation",
+        "barrier"
+      ],
       "candidateMechanismIds": [
         "barrier",
         "continuous"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "damagePicker",
+        "orderPicker",
+        "regionReturn"
+      ],
+      "mechanismCoverage": {
+        "confrontation": "implemented",
+        "barrier": "implemented"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -28726,22 +28951,22 @@
     {
       "id": "LC12",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/LC12 阿瓦隆隐士.jpg",
           "sha256": "2a13b5e0bf5fa11f320bcf31141cf0e68915a949f9031cd112b5c650420285cf"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/LC12",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/LC12",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/LC12",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "阿瓦隆隐士",
         "set": "洛城",
@@ -28761,16 +28986,32 @@
         "keywords": [],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "阿瓦隆隐士",
+        "colorKey": "白",
+        "basicType": "角色"
+      },
+      "abilitySummary": "快速行动 横置：本地区的另一个目标本方角色获得防御+1直到回合结束。",
+      "confirmedMechanismIds": [
+        "priority",
+        "exhaust",
+        "continuous"
+      ],
       "candidateMechanismIds": [
         "continuous",
         "exhaust"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "choicePicker",
+        "stack",
+        "targetPicker"
+      ],
+      "mechanismCoverage": {
+        "priority": "partial",
+        "exhaust": "implemented",
+        "continuous": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -28787,22 +29028,22 @@
     {
       "id": "LC13",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/LC13 远古先祖的回应.jpg",
           "sha256": "47eb61262198a436812914a476e705a2c3bc93c1c25ccf5d6ac4fd421d2b7bbc"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/LC13",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/LC13",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/LC13",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "远古先祖的回应",
         "set": "洛城",
@@ -28822,17 +29063,40 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "远古先祖的回应",
+        "colorKey": "白",
+        "basicType": "事务"
+      },
+      "abilitySummary": "快速行动 预测1，抓一张牌，威胁进度-1。你可以将远古先祖的回应封印于目标黄昏地区上。",
+      "confirmedMechanismIds": [
+        "priority",
+        "deckChoice",
+        "crisis",
+        "seal"
+      ],
       "candidateMechanismIds": [
         "crisis",
         "deckChoice",
         "seal"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "campaignProgress",
+        "choicePicker",
+        "handPicker",
+        "orderPicker",
+        "sealedCards",
+        "searchPicker",
+        "stack",
+        "targetPicker"
+      ],
+      "mechanismCoverage": {
+        "priority": "partial",
+        "deckChoice": "partial",
+        "crisis": "uncertain",
+        "seal": "unimplemented"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -29049,22 +29313,22 @@
     {
       "id": "LC16",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/LC16 江月.jpg",
           "sha256": "b4bf90be23b928af4ad00855d364f7e5857f85275d3a4bf146d267849ab7c882"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/LC16",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/LC16",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/LC16",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "江月",
         "set": "洛城",
@@ -29086,9 +29350,18 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "江月",
+        "colorKey": "灰",
+        "basicType": "角色"
+      },
+      "abilitySummary": "创伤2；准备步骤触发 从你的牌库中寻找一张法术牌或阴牌，将该牌置于你的墓地，然后将你的牌库洗牌。在目标地区上放置一个本方势力标志。",
+      "confirmedMechanismIds": [
+        "combatKeywords",
+        "deckChoice",
+        "confrontation",
+        "uniqueInPlay"
+      ],
       "candidateMechanismIds": [
         "combatKeywords",
         "deckChoice",
@@ -29096,8 +29369,21 @@
         "healWounds"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "damagePicker",
+        "handPicker",
+        "orderPicker",
+        "regionReturn",
+        "searchPicker",
+        "triggerPrompt",
+        "uniquePrompt"
+      ],
+      "mechanismCoverage": {
+        "combatKeywords": "unimplemented",
+        "deckChoice": "partial",
+        "confrontation": "implemented",
+        "uniqueInPlay": "implemented"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -29112,22 +29398,22 @@
     {
       "id": "LC17",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/LC17 江莲.jpg",
           "sha256": "3101545db4896f43bff5bfdfc95026ca1b6deb2190fd04170c43ca143ef7810e"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/LC17",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/LC17",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/LC17",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "江莲",
         "set": "洛城",
@@ -29150,9 +29436,20 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "江莲",
+        "colorKey": "紫",
+        "basicType": "角色"
+      },
+      "abilitySummary": "屏障；准备步骤触发 将一张你墓地中的法术牌或阴牌封印在江莲上，然后预测1。",
+      "confirmedMechanismIds": [
+        "barrier",
+        "seal",
+        "graveRecovery",
+        "deckChoice",
+        "temporaryIcons",
+        "uniqueInPlay"
+      ],
       "candidateMechanismIds": [
         "barrier",
         "deckChoice",
@@ -29160,8 +29457,25 @@
         "seal"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "graveyardPicker",
+        "handPicker",
+        "iconBreakdown",
+        "orderPicker",
+        "regionPicker",
+        "sealedCards",
+        "searchPicker",
+        "targetPicker",
+        "uniquePrompt"
+      ],
+      "mechanismCoverage": {
+        "barrier": "implemented",
+        "seal": "unimplemented",
+        "graveRecovery": "implemented",
+        "deckChoice": "partial",
+        "temporaryIcons": "partial",
+        "uniqueInPlay": "implemented"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -29176,22 +29490,22 @@
     {
       "id": "LC18",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/LC18 防暴构装体，九.jpg",
           "sha256": "0f121a146a577452d12c7a554503419efa06ab6b2ecb90118168afb78b432ffc"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/LC18",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/LC18",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/LC18",
+      "implementationDesignStatus": "needsRuling",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "防暴构装体，九",
         "set": "洛城",
@@ -29214,9 +29528,18 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "防暴构装体，九",
+        "colorKey": "中立",
+        "basicType": "角色"
+      },
+      "abilitySummary": "帷幕守望徽記 秘社限定；唯一；持续 若其上结附有武器，则防暴构装体，九获得创伤1。；死亡触发 若你的资产区具有心灵2，则对本地区的所有角色造成1点伤害。",
+      "confirmedMechanismIds": [
+        "leader",
+        "combatKeywords",
+        "attachment",
+        "uniqueInPlay"
+      ],
       "candidateMechanismIds": [
         "attachment",
         "combatKeywords",
@@ -29225,8 +29548,19 @@
         "leader"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "attachmentPicker",
+        "attachments",
+        "damagePicker",
+        "triggerPrompt",
+        "uniquePrompt"
+      ],
+      "mechanismCoverage": {
+        "leader": "unimplemented",
+        "combatKeywords": "unimplemented",
+        "attachment": "unimplemented",
+        "uniqueInPlay": "implemented"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -29717,22 +30051,22 @@
     {
       "id": "LC25",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/LC25 白银匕首.jpg",
           "sha256": "6a7204018bd696bb1d4dbd35d37bb673d5e72c6c03f29bb5ba0ce4340d7b030e"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/LC25",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/LC25",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/LC25",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "白银匕首",
         "set": "洛城",
@@ -29751,9 +30085,18 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "白银匕首",
+        "colorKey": "中立",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标人类角色；持续 受此结附的角色获得临时战斗1和创伤1。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "continuous",
+        "combatKeywords",
+        "temporaryIcons"
+      ],
       "candidateMechanismIds": [
         "attachment",
         "combatKeywords",
@@ -29761,8 +30104,19 @@
         "healWounds"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "attachmentPicker",
+        "attachments",
+        "damagePicker",
+        "iconBreakdown",
+        "triggerPrompt"
+      ],
+      "mechanismCoverage": {
+        "attachment": "unimplemented",
+        "continuous": "partial",
+        "combatKeywords": "unimplemented",
+        "temporaryIcons": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -29777,22 +30131,22 @@
     {
       "id": "LC26",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/LC26 莫洛托夫鸡尾酒.jpg",
           "sha256": "f97b600f99f4046bfd9a827798b5e1a100699d7f3cd204d5e2c971b30d9f3f68"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/LC26",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/LC26",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/LC26",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "莫洛托夫鸡尾酒",
         "set": "洛城",
@@ -29811,9 +30165,20 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "莫洛托夫鸡尾酒",
+        "colorKey": "中立",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标本方人类角色；行动①，牺牲莫洛托夫鸡尾酒：横置受此结附的角色，然后对本地区的目标角色造成1点创伤。；墓地行动①，横置一个名为无知路人的本方角色：将莫洛托夫鸡尾酒从本方墓地移回你的手中。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "sacrifice",
+        "exhaust",
+        "healWounds",
+        "graveRecovery",
+        "gravePlay"
+      ],
       "candidateMechanismIds": [
         "attachment",
         "combatKeywords",
@@ -29825,8 +30190,23 @@
         "sacrifice"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "attachmentPicker",
+        "attachments",
+        "choicePicker",
+        "costPicker",
+        "graveyardPicker",
+        "regionPicker",
+        "targetPicker"
+      ],
+      "mechanismCoverage": {
+        "attachment": "unimplemented",
+        "sacrifice": "implemented",
+        "exhaust": "implemented",
+        "healWounds": "partial",
+        "graveRecovery": "implemented",
+        "gravePlay": "unimplemented"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -29841,22 +30221,22 @@
     {
       "id": "LC27",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/LC27 狙击.jpg",
           "sha256": "3337bb2da5e5f8944d54d05be315fedf3aca6bfb2fd0b60d52bbf76a47bc0929"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/LC27",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/LC27",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/LC27",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "狙击",
         "set": "洛城",
@@ -29876,17 +30256,30 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "狙击",
+        "colorKey": "中立",
+        "basicType": "事务"
+      },
+      "abilitySummary": "非资产；行动 对目标角色造成1点创伤。",
+      "confirmedMechanismIds": [
+        "nonAsset",
+        "healWounds"
+      ],
       "candidateMechanismIds": [
         "combatKeywords",
         "healWounds",
         "nonAsset"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "assetSummary",
+        "targetPicker"
+      ],
+      "mechanismCoverage": {
+        "nonAsset": "unimplemented",
+        "healWounds": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -29901,22 +30294,22 @@
     {
       "id": "LC28",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/LC28 刑讯.jpg",
           "sha256": "74a6a21c625269b6982bc89e770393a1707bd50d8d43eb59e46c06122f808309"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/LC28",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/LC28",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/LC28",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "刑讯",
         "set": "洛城",
@@ -29935,16 +30328,34 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "刑讯",
+        "colorKey": "中立",
+        "basicType": "事务"
+      },
+      "abilitySummary": "非资产；刑讯不能被响应。；行动 消灭目标暗藏者。",
+      "confirmedMechanismIds": [
+        "nonAsset",
+        "priority",
+        "hidden"
+      ],
       "candidateMechanismIds": [
         "hidden",
         "nonAsset"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "assetSummary",
+        "choicePicker",
+        "hiddenProjection",
+        "stack",
+        "targetPicker"
+      ],
+      "mechanismCoverage": {
+        "nonAsset": "unimplemented",
+        "priority": "partial",
+        "hidden": "implemented"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -29959,22 +30370,22 @@
     {
       "id": "LC29",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/LC29 组织营救.jpg",
           "sha256": "ad962ed8e95987f40bd4ef391cb3176e735e6b7efc280a79d2fbbff4f1b5951d"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/LC29",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/LC29",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/LC29",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "组织营救",
         "set": "洛城",
@@ -29993,16 +30404,32 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "组织营救",
+        "colorKey": "中立",
+        "basicType": "事务"
+      },
+      "abilitySummary": "快速行动 选择一项：将目标本方角色移回其拥有者手上；或你获得2名誉点。",
+      "confirmedMechanismIds": [
+        "priority",
+        "core"
+      ],
       "candidateMechanismIds": [
         "continuous",
         "core"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "choicePicker",
+        "commandPicker",
+        "coreZone",
+        "honorCounter",
+        "stack"
+      ],
+      "mechanismCoverage": {
+        "priority": "partial",
+        "core": "unimplemented"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -30017,22 +30444,22 @@
     {
       "id": "LC30",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/LC30 J·罗伯茨，“海雕”.jpg",
           "sha256": "31ce6bd49725e5db643adb13daaef3529b8fb8440691214a00dd9fe666c5041d"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/LC30",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/LC30",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/LC30",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "J·罗伯茨，“海雕”",
         "set": "洛城",
@@ -30054,17 +30481,36 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "J·罗伯茨，“海雕”",
+        "colorKey": "绿",
+        "basicType": "角色"
+      },
+      "abilitySummary": "护卫2；持续 每有一个武器附属结附于其上，J·罗伯茨就获得永久战斗1和防御+1。",
+      "confirmedMechanismIds": [
+        "combatTraits",
+        "attachment",
+        "continuous",
+        "uniqueInPlay"
+      ],
       "candidateMechanismIds": [
         "attachment",
         "combatTraits",
         "continuous"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "attachmentPicker",
+        "attachments",
+        "damagePicker",
+        "uniquePrompt"
+      ],
+      "mechanismCoverage": {
+        "combatTraits": "implemented",
+        "attachment": "unimplemented",
+        "continuous": "partial",
+        "uniqueInPlay": "implemented"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
