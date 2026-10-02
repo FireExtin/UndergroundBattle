@@ -713,19 +713,19 @@
       "editionStatus": "pinnedImageVariant"
     },
     "JZ31": {
-      "evidenceId": "card-JZ31",
       "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ31",
       "verifiedFields": {
         "name": "破茧者秘教线人",
         "colorKey": "红",
         "basicType": "角色"
       },
-      "abilitySummary": "宿主；死亡放本地区势力。",
+      "abilitySummary": "死亡触发 在本地区上放置一个本方势力标志。",
       "confirmedMechanismIds": [
-        "priority",
         "confrontation"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
     },
     "JZ54": {
       "evidenceId": "card-JZ54",
@@ -9763,6 +9763,615 @@
         "rumor",
         "deckChoice",
         "seal"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ01": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ01",
+      "verifiedFields": {
+        "name": "芙瑞雅·迪",
+        "colorKey": "黄",
+        "basicType": "角色"
+      },
+      "abilitySummary": "触发 每当一个敌方角色被横置时，你可以支付②，若你如此做，令目标本方法师角色闪烁。",
+      "confirmedMechanismIds": [
+        "exhaust",
+        "blink",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ02": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ02",
+      "verifiedFields": {
+        "name": "西姆斯教授",
+        "colorKey": "黄",
+        "basicType": "角色"
+      },
+      "abilitySummary": "进场触发 从你的牌库中寻找一张空间法术牌，将该牌封印在西姆斯教授上，然后洗牌。",
+      "confirmedMechanismIds": [
+        "deckChoice",
+        "seal",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ03": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ03",
+      "verifiedFields": {
+        "name": "雪鸮信使",
+        "colorKey": "黄",
+        "basicType": "角色"
+      },
+      "abilitySummary": "不能被装备结附；进场触发 预测1。；触发 每当一个敌方非人类角色进入本地区时，你可以支付①，然后令雪鸮信使闪烁。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "deckChoice",
+        "mobility",
+        "blink"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ04": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ04",
+      "verifiedFields": {
+        "name": "传送门",
+        "colorKey": "黄",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标地区；行动 横置：选择本地区的目标本方角色或本方暗藏者，将其移动到另一个地区。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "exhaust",
+        "hidden",
+        "mobility"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ06": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ06",
+      "verifiedFields": {
+        "name": "时空浪潮",
+        "colorKey": "黄",
+        "basicType": "事务"
+      },
+      "abilitySummary": "行动 选择一个地区，将该地区上的所有角色和暗藏者移回其拥有者手中，然后移除该地区上的所有指示物标志，但势力标志除外。",
+      "confirmedMechanismIds": [
+        "hidden",
+        "deckChoice",
+        "token",
+        "confrontation"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ07": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ07",
+      "verifiedFields": {
+        "name": "咒法古卷",
+        "colorKey": "黄",
+        "basicType": "附属"
+      },
+      "abilitySummary": "选择一项：；借阅：结附于目标角色；触发 当受此结附的角色闪烁时，将咒法古卷改为收藏，然后抓两张牌。；收藏：结附于本方秘社；行动①，横置：预测1。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "society",
+        "blink",
+        "deckChoice",
+        "exhaust"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ09": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ09",
+      "verifiedFields": {
+        "name": "指挥官谢尔盖，“游隼”",
+        "colorKey": "绿",
+        "basicType": "角色"
+      },
+      "abilitySummary": "领袖；行动X：从你的牌库中寻找一张副名为“猛禽”战术小组，且印刷费用为X的角色牌，将其正面置于本地区，然后将你的牌库洗牌。该能力每回合只能发动一次。",
+      "confirmedMechanismIds": [
+        "leader",
+        "deckChoice",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ11": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ11",
+      "verifiedFields": {
+        "name": "幸运兔脚",
+        "colorKey": "绿",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标本方角色；快速行动 牺牲幸运兔脚：受此结附的角色获得屏障直到本回合结束。预测1。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "sacrifice",
+        "barrier",
+        "deckChoice"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ12": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ12",
+      "verifiedFields": {
+        "name": "贴心旅伴",
+        "colorKey": "绿",
+        "basicType": "角色"
+      },
+      "abilitySummary": "灵体；触发 当贴心旅伴进入一个地区时，在该地区的另一个目标角色上放置一个永久战斗1能力图标标志。",
+      "confirmedMechanismIds": [
+        "spirit",
+        "mobility",
+        "continuous"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ13": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ13",
+      "verifiedFields": {
+        "name": "迷梦窃贼",
+        "colorKey": "绿",
+        "basicType": "角色"
+      },
+      "abilitySummary": "触发 当敌方玩家赢得本地区的调查对抗时，你抓一张牌。",
+      "confirmedMechanismIds": [
+        "confrontation",
+        "deckChoice",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ14": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ14",
+      "verifiedFields": {
+        "name": "盛夏王廷传令官",
+        "colorKey": "绿",
+        "basicType": "角色"
+      },
+      "abilitySummary": "行动②，横置：从你的手牌中展示一张永久战斗和临时战斗能力图标数量总和小于或等于盛夏王廷传令官的仙灵角色牌，然后将该角色牌放置于本地区。",
+      "confirmedMechanismIds": [
+        "exhaust",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ15": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ15",
+      "verifiedFields": {
+        "name": "仙王奥伯龙",
+        "colorKey": "绿",
+        "basicType": "角色"
+      },
+      "abilitySummary": "领袖；灵体；持续 若你的秘社为盛夏王廷，则你正面打出仙灵牌的费用减少②。；触发 若你的秘社为凛冬王廷，则每当一个本方仙灵角色死亡时，抓一张牌。",
+      "confirmedMechanismIds": [
+        "leader",
+        "spirit",
+        "society",
+        "costReduction",
+        "deckChoice",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ16": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ16",
+      "verifiedFields": {
+        "name": "仙后泰坦尼亚",
+        "colorKey": "绿",
+        "basicType": "角色"
+      },
+      "abilitySummary": "领袖；灵体；持续 若你操控仙王奥伯龙，则仙后泰坦尼亚失去领袖，获得屏障。；准备步骤触发 在本地区生成一个仙灵斗士角色指示物。",
+      "confirmedMechanismIds": [
+        "leader",
+        "spirit",
+        "continuous",
+        "barrier",
+        "token",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ17": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ17",
+      "verifiedFields": {
+        "name": "月华独角兽",
+        "colorKey": "绿",
+        "basicType": "角色"
+      },
+      "abilitySummary": "持续 不能被卡牌或能力指定为目标。；持续 所有本地区的死亡领域角色获得迟缓。",
+      "confirmedMechanismIds": [
+        "continuous",
+        "cancel",
+        "slow"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ18": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ18",
+      "verifiedFields": {
+        "name": "冬将军",
+        "colorKey": "绿",
+        "basicType": "角色"
+      },
+      "abilitySummary": "屏障；触发 若你的秘社不是凛冬王廷，牺牲冬将军。；持续 冬将军的防御力等于本方仙灵角色数量。你每操控一个仙灵角色，冬将军就获得永久战斗1和永久势力1。",
+      "confirmedMechanismIds": [
+        "barrier",
+        "society",
+        "sacrifice",
+        "continuous",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ19": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ19",
+      "verifiedFields": {
+        "name": "阿卡迪亚之桥",
+        "colorKey": "绿",
+        "basicType": "事务"
+      },
+      "abilitySummary": "行动 将目标本方角色移动到目标地区，然后若该角色是仙灵，则其获得永久战斗1直到回合结束。",
+      "confirmedMechanismIds": [
+        "mobility",
+        "continuous"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ20": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ20",
+      "verifiedFields": {
+        "name": "秋日之歌",
+        "colorKey": "绿",
+        "basicType": "事务"
+      },
+      "abilitySummary": "额外费用 你可以牺牲X个仙灵角色。；行动 从你的牌库中寻找一张印刷费用小于或等于X的仙灵角色牌，将其置于目标地区，然后洗牌。若你的秘社为盛夏王廷，则将其转变为凛冬王廷。",
+      "confirmedMechanismIds": [
+        "sacrifice",
+        "deckChoice",
+        "society",
+        "transform"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ21": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ21",
+      "verifiedFields": {
+        "name": "仙子之翼刺青",
+        "colorKey": "绿",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标本方人类角色；持续 受此结附的角色额外具有仙灵类别。若你具有钥匙标志，该角色获得屏障。；行动 横置，牺牲一个仙灵角色：在目标角色上放置一个永久战斗1能力图标标志。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "continuous",
+        "barrier",
+        "exhaust",
+        "sacrifice"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ22": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ22",
+      "verifiedFields": {
+        "name": "暗夜游掠者",
+        "colorKey": "蓝",
+        "basicType": "角色"
+      },
+      "abilitySummary": "进场触发 若有敌方玩家的手牌数量少于或等于三张，则在本地区上放置一个本方势力标志。",
+      "confirmedMechanismIds": [
+        "confrontation",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ23": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ23",
+      "verifiedFields": {
+        "name": "血宴召集人",
+        "colorKey": "蓝",
+        "basicType": "角色"
+      },
+      "abilitySummary": "触发 当另一个本方吸血鬼角色在本地区现身时，你可以支付①，然后在该角色上放置一个永久战斗1能力图标标志，然后目标玩家弃一张手牌。",
+      "confirmedMechanismIds": [
+        "hidden",
+        "continuous",
+        "deckChoice",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ24": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ24",
+      "verifiedFields": {
+        "name": "卡迪纳追迹人",
+        "colorKey": "蓝",
+        "basicType": "角色"
+      },
+      "abilitySummary": "现身触发 若有敌方玩家的手牌数量少于或等于三张，则该玩家牺牲一个本地区的角色。",
+      "confirmedMechanismIds": [
+        "hidden",
+        "sacrifice"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ25": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ25",
+      "verifiedFields": {
+        "name": "卡迪纳猎杀者",
+        "colorKey": "蓝",
+        "basicType": "角色"
+      },
+      "abilitySummary": "进场触发 目标玩家随机选择一张手牌，将该牌封印在卡迪纳猎杀者上。",
+      "confirmedMechanismIds": [
+        "deckChoice",
+        "seal"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ26": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ26",
+      "verifiedFields": {
+        "name": "袖中毒物",
+        "colorKey": "蓝",
+        "basicType": "角色"
+      },
+      "abilitySummary": "隐匿；不能被装备结附；触发 当袖中毒物在暗藏者状态被敌方玩家检视或消灭时，若你的资产区具有两个蓝色图标，则随机消灭一个本地区上印刷费用最低的敌方角色。",
+      "confirmedMechanismIds": [
+        "hiddenOnly",
+        "attachment",
+        "hidden",
+        "privatePeek",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ27": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ27",
+      "verifiedFields": {
+        "name": "哈达莎·爱弗罗德",
+        "colorKey": "蓝",
+        "basicType": "角色"
+      },
+      "abilitySummary": "现身触发 你获得本地区的目标人类角色的操控权，该角色额外获得奴仆类别。该能力持续至哈达莎·爱弗罗德离场为止。",
+      "confirmedMechanismIds": [
+        "hidden",
+        "control",
+        "continuous",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ28": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ28",
+      "verifiedFields": {
+        "name": "霍瓦特·爱弗罗德",
+        "colorKey": "蓝",
+        "basicType": "角色"
+      },
+      "abilitySummary": "领袖；袭击2；触发 每当敌方玩家弃牌时，自你牌库顶的四张牌中寻找一张吸血鬼角色牌，将该牌展示后以暗藏者状态置于本地区，然后将其余的牌洗回牌库。",
+      "confirmedMechanismIds": [
+        "leader",
+        "combatKeywords",
+        "deckChoice",
+        "hidden",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ29": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ29",
+      "verifiedFields": {
+        "name": "锐齿颈环",
+        "colorKey": "蓝",
+        "basicType": "附属"
+      },
+      "abilitySummary": "非资产；结附于本方秘社；进场触发 目标玩家弃一张手牌。；触发 当一个本方吸血鬼角色现身时，你可以将锐齿颈环移回其拥有者手中。",
+      "confirmedMechanismIds": [
+        "nonAsset",
+        "attachment",
+        "society",
+        "deckChoice",
+        "hidden"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ30": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ30",
+      "verifiedFields": {
+        "name": "末世论者",
+        "colorKey": "红",
+        "basicType": "角色"
+      },
+      "abilitySummary": "公开；时间标志1；死亡触发 预测X，X等于末世论者上的时间标志数量。",
+      "confirmedMechanismIds": [
+        "public",
+        "timeDestroy",
+        "deckChoice"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ32": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ32",
+      "verifiedFields": {
+        "name": "癫狂的先知",
+        "colorKey": "红",
+        "basicType": "角色"
+      },
+      "abilitySummary": "持续 若位于已毁灭的地区，则癫狂的先知获得永久势力2和声望。；行动①，牺牲癫狂的先知：将一张名为诅咒沙漏的牌从本方墓地中放置进场，并结附于本地区。",
+      "confirmedMechanismIds": [
+        "timeDestroy",
+        "continuous",
+        "renown",
+        "sacrifice",
+        "graveRecovery",
+        "attachment",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ33": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ33",
+      "verifiedFields": {
+        "name": "蚀日星魔",
+        "colorKey": "红",
+        "basicType": "角色"
+      },
+      "abilitySummary": "额外费用 每有一个已毁灭的地区，正面打出蚀日星魔的所需费用减少②。；进场强制触发 对已毁灭的地区上的所有角色造成1点伤害。",
+      "confirmedMechanismIds": [
+        "timeDestroy",
+        "costReduction",
+        "priority"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ34": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ34",
+      "verifiedFields": {
+        "name": "主祭伊兹帕帕洛特",
+        "colorKey": "红",
+        "basicType": "角色"
+      },
+      "abilitySummary": "领袖；进场触发 牺牲另一个本地区的角色，然后毁灭本地区。；触发 每当另一个角色死去时，在目标已毁灭的地区上放置一个本方势力标志。",
+      "confirmedMechanismIds": [
+        "leader",
+        "sacrifice",
+        "timeDestroy",
+        "confrontation",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ35": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ35",
+      "verifiedFields": {
+        "name": "思维湮灭",
+        "colorKey": "红",
+        "basicType": "事务"
+      },
+      "abilitySummary": "行动 牺牲所有本方宿主角色，然后将这些角色牌从墓地移回场上，且分别置于其之前所在的地区。",
+      "confirmedMechanismIds": [
+        "sacrifice",
+        "graveRecovery"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ36": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ36",
+      "verifiedFields": {
+        "name": "血祭",
+        "colorKey": "红",
+        "basicType": "事务"
+      },
+      "abilitySummary": "额外费用 牺牲X个角色。；行动 在目标角色、附属或地区上放置X个时间标志，然后若该地区有四个或更多时间标志，则毁灭该地区。",
+      "confirmedMechanismIds": [
+        "sacrifice",
+        "timeDestroy",
+        "attachment"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ37": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ37",
+      "verifiedFields": {
+        "name": "终焉",
+        "colorKey": "红",
+        "basicType": "事务"
+      },
+      "abilitySummary": "行动 消灭所有角色、暗藏者和附属，毁灭所有地区。",
+      "confirmedMechanismIds": [
+        "hidden",
+        "attachment",
+        "timeDestroy"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ38": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ38",
+      "verifiedFields": {
+        "name": "仪式雕像",
+        "colorKey": "红",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于本方秘社；触发 每当一个本方宿主角色死亡时，其死亡触发能力额外发动一次。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "society",
+        "continuous"
       ],
       "editionStatus": "pinnedImageVariant",
       "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"

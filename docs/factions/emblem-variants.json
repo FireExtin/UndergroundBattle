@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "selectionEnabled": false,
+  "notAdditionalColors": true,
+  "basis": "directOriginalSocietyImageReview",
+  "variants": [
+    {
+      "id": "fairy-courts",
+      "colorKey": "绿",
+      "societyCardIds": [
+        "MSJZ02",
+        "ZHMSJZ02"
+      ],
+      "societyNames": [
+        "盛夏王廷",
+        "凛冬王廷"
+      ],
+      "observedEmblem": "带花纹叶片",
+      "evidenceIds": [
+        "card-MSJZ02",
+        "card-ZHMSJZ02",
+        "card-WM012",
+        "card-JZ12",
+        "card-JZ15"
+      ],
+      "note": "不同于绿底猎魔人独角兽徽记；仍为绿色。盛夏构筑允许绿色及仙灵牌，不推断所有叶片牌自动可用。",
+      "selectionEnabled": false
+    },
+    {
+      "id": "chrysalis-cult",
+      "colorKey": "红",
+      "societyCardIds": [
+        "MSJZ04"
+      ],
+      "societyNames": [
+        "破茧者教团"
+      ],
+      "observedEmblem": "两斜腿及顶横条构成的三角状徽记",
+      "evidenceIds": [
+        "card-MSJZ04",
+        "card-WM035",
+        "card-JZ31",
+        "card-JZ35",
+        "card-JZ38"
+      ],
+      "note": "不同于红底鸣钟教派眼形徽记；不是灰色国家机构。仍按红色及各秘社实际构筑限制。",
+      "selectionEnabled": false
+    }
+  ]
+}
