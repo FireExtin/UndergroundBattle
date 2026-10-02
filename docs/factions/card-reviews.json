@@ -10552,7 +10552,7 @@
         "colorKey": "黑",
         "basicType": "角色"
       },
-      "abilitySummary": "持续 若本地区有其他本方罪犯角色，则街头劫匪获得临时势力1和防御力+1。",
+      "abilitySummary": "持续 若本地区有其他本方罪犯角色，则街头劫匪获得永久势力1和防御力+1。",
       "confirmedMechanismIds": [
         "continuous",
         "temporaryIcons"

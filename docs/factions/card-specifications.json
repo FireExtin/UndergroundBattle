@@ -39916,7 +39916,7 @@
         "imagePath": "resource/ymsj-fun.github.io/cards/JZ40 蚀刻头骨.jpg",
         "imageSha256": "2d05f56e191a2a55e5636959f3db63d9693292f39042559934cb3231c987e354",
         "evidenceId": "card-JZ40",
-        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。 B23后逐图标四色背景放大复查。",
         "blockingFields": []
       },
       "edition": {
@@ -39954,12 +39954,12 @@
         "permanentIcons": {
           "investigation": 1,
           "combat": 0,
-          "influence": 0
+          "influence": 1
         },
         "temporaryIcons": {
           "investigation": 0,
           "combat": 0,
-          "influence": 1
+          "influence": 0
         },
         "defense": null,
         "startingHand": null,
@@ -40285,7 +40285,7 @@
         "imagePath": "resource/ymsj-fun.github.io/cards/JZ43 武装市民.jpg",
         "imageSha256": "bbc107878f8041757b38f7674f57b1d5d34028edc79a10551e9f629ae97f6826",
         "evidenceId": "card-JZ43",
-        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。 B23后逐图标四色背景放大复查。",
         "blockingFields": []
       },
       "edition": {
@@ -40312,12 +40312,12 @@
         "permanentIcons": {
           "investigation": 0,
           "combat": 0,
-          "influence": 0
+          "influence": 1
         },
         "temporaryIcons": {
           "investigation": 0,
           "combat": 1,
-          "influence": 1
+          "influence": 0
         },
         "defense": 1,
         "startingHand": null,
@@ -40395,7 +40395,7 @@
         "imagePath": "resource/ymsj-fun.github.io/cards/JZ44 洛杉矶巡警.jpg",
         "imageSha256": "b5ca6ecde925805b86eeac70bd796ad402695daf342835abfd669e9a157637eb",
         "evidenceId": "card-JZ44",
-        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。 B23后逐图标四色背景放大复查。",
         "blockingFields": []
       },
       "edition": {
@@ -40429,12 +40429,12 @@
         "permanentIcons": {
           "investigation": 0,
           "combat": 1,
-          "influence": 0
+          "influence": 1
         },
         "temporaryIcons": {
           "investigation": 0,
           "combat": 1,
-          "influence": 1
+          "influence": 0
         },
         "defense": 1,
         "startingHand": null,
@@ -40515,7 +40515,7 @@
         "imagePath": "resource/ymsj-fun.github.io/cards/JZ45 警用直升机.jpg",
         "imageSha256": "20e18006a7b2f032d7d236f909dc57d75bfc14dc3acf36291c7ca16f3962008f",
         "evidenceId": "card-JZ45",
-        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。 B23后逐图标四色背景放大复查。",
         "blockingFields": []
       },
       "edition": {
@@ -40550,12 +40550,12 @@
         "permanentIcons": {
           "investigation": 1,
           "combat": 1,
-          "influence": 0
+          "influence": 1
         },
         "temporaryIcons": {
           "investigation": 0,
           "combat": 0,
-          "influence": 1
+          "influence": 0
         },
         "defense": 3,
         "startingHand": null,
@@ -40650,7 +40650,7 @@
         "imagePath": "resource/ymsj-fun.github.io/cards/JZ46 狴犴铜雕.jpg",
         "imageSha256": "756bdb34307c84a5c5f1e9cc1b7e13f9112ae727e934847f6993169ae1451785",
         "evidenceId": "card-JZ46",
-        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。 B23后逐图标四色背景放大复查。",
         "blockingFields": []
       },
       "edition": {
@@ -40688,12 +40688,12 @@
         "permanentIcons": {
           "investigation": 0,
           "combat": 0,
-          "influence": 0
+          "influence": 1
         },
         "temporaryIcons": {
           "investigation": 0,
           "combat": 0,
-          "influence": 1
+          "influence": 0
         },
         "defense": null,
         "startingHand": null,
@@ -40933,7 +40933,7 @@
         "points": null,
         "printedKeywords": [],
         "printedRuleTextLines": [
-          "持续 若本地区有其他本方罪犯角色，则街头劫匪获得临时势力1和防御力+1。"
+          "持续 若本地区有其他本方罪犯角色，则街头劫匪获得永久势力1和防御力+1。"
         ],
         "additionalPrintedSymbols": []
       },
@@ -40941,7 +40941,7 @@
         {
           "id": "printed-1",
           "kind": "sourceTextOnly",
-          "printedText": "持续 若本地区有其他本方罪犯角色，则街头劫匪获得临时势力1和防御力+1。",
+          "printedText": "持续 若本地区有其他本方罪犯角色，则街头劫匪获得永久势力1和防御力+1。",
           "notExecutable": true
         }
       ],
@@ -41233,7 +41233,7 @@
         "imagePath": "resource/ymsj-fun.github.io/cards/JZ51 温迪戈.jpg",
         "imageSha256": "1b0311913bbf4a26c0e9e2dc2c0d6b656bd802cc6e831350f6f2500edf577dc0",
         "evidenceId": "card-JZ51",
-        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。 B23后逐图标四色背景放大复查。",
         "blockingFields": []
       },
       "edition": {
@@ -41270,12 +41270,12 @@
           }
         ],
         "permanentIcons": {
-          "investigation": 1,
+          "investigation": 0,
           "combat": 2,
           "influence": 0
         },
         "temporaryIcons": {
-          "investigation": 0,
+          "investigation": 1,
           "combat": 0,
           "influence": 0
         },
@@ -41348,7 +41348,7 @@
         "imagePath": "resource/ymsj-fun.github.io/cards/JZ52 大维齐尔迈哈穆德.jpg",
         "imageSha256": "7f9ad8adb68bdd84877ebdead2bc13ed04983099977333d2106486405c6478a3",
         "evidenceId": "card-JZ52",
-        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。 B23后逐图标四色背景放大复查。",
         "blockingFields": []
       },
       "edition": {
@@ -41385,12 +41385,12 @@
           }
         ],
         "permanentIcons": {
-          "investigation": 3,
+          "investigation": 0,
           "combat": 2,
           "influence": 2
         },
         "temporaryIcons": {
-          "investigation": 0,
+          "investigation": 3,
           "combat": 0,
           "influence": 0
         },
@@ -41471,7 +41471,7 @@
         "imagePath": "resource/ymsj-fun.github.io/cards/JZ53 尸舞舒拉密兹.jpg",
         "imageSha256": "a84d896c1b552dabda05a1fc12c55224275a31b63a8408446508775235cc4623",
         "evidenceId": "card-JZ53",
-        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。 B23后逐图标四色背景放大复查。",
         "blockingFields": []
       },
       "edition": {
@@ -41508,14 +41508,14 @@
           }
         ],
         "permanentIcons": {
-          "investigation": 1,
-          "combat": 0,
-          "influence": 0
-        },
-        "temporaryIcons": {
           "investigation": 0,
           "combat": 0,
-          "influence": 2
+          "influence": 1
+        },
+        "temporaryIcons": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 1
         },
         "defense": 1,
         "startingHand": null,
@@ -42190,7 +42190,7 @@
         "imagePath": "resource/ymsj-fun.github.io/cards/JZ59 骇人畸变体.jpg",
         "imageSha256": "b43bf4fc74654c089cf10429306980c2af12743d57d60b603efae03b28eae5f3",
         "evidenceId": "card-JZ59",
-        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。 B23后逐图标四色背景放大复查。",
         "blockingFields": []
       },
       "edition": {
@@ -42224,12 +42224,12 @@
         "permanentIcons": {
           "investigation": 0,
           "combat": 1,
-          "influence": 0
+          "influence": 1
         },
         "temporaryIcons": {
           "investigation": 0,
           "combat": 0,
-          "influence": 1
+          "influence": 0
         },
         "defense": 1,
         "startingHand": null,
@@ -42389,7 +42389,7 @@
         "imagePath": "resource/ymsj-fun.github.io/cards/JZ61 暗夜访客.jpg",
         "imageSha256": "5da40b475c306d3a295a6582576b9b720c8707050bdedfea3005b92578e4e37f",
         "evidenceId": "card-JZ61",
-        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。 B23后逐图标四色背景放大复查。",
         "blockingFields": []
       },
       "edition": {
@@ -42423,12 +42423,12 @@
         "permanentIcons": {
           "investigation": 0,
           "combat": 1,
-          "influence": 0
+          "influence": 1
         },
         "temporaryIcons": {
           "investigation": 0,
           "combat": 0,
-          "influence": 1
+          "influence": 0
         },
         "defense": 1,
         "startingHand": null,
@@ -42489,7 +42489,7 @@
         "imagePath": "resource/ymsj-fun.github.io/cards/JZ62 幻境之茧.jpg",
         "imageSha256": "521c7f043e7c6d0ea035ed15ba9ec1bb3d05a434d735dfcaec6e45c96d1f62c7",
         "evidenceId": "card-JZ62",
-        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。 B23后逐图标四色背景放大复查。",
         "blockingFields": []
       },
       "edition": {
@@ -42525,12 +42525,12 @@
           }
         ],
         "permanentIcons": {
-          "investigation": 0,
+          "investigation": 1,
           "combat": 0,
           "influence": 0
         },
         "temporaryIcons": {
-          "investigation": 1,
+          "investigation": 0,
           "combat": 0,
           "influence": 0
         },
@@ -42717,7 +42717,7 @@
         "imagePath": "resource/ymsj-fun.github.io/cards/JZ64 幽灵鲸.jpg",
         "imageSha256": "a536293861600b6a7fe2cedff38cca737270f69ac78131328c54f5d7c8a3f126",
         "evidenceId": "card-JZ64",
-        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。 B23后逐图标四色背景放大复查。",
         "blockingFields": []
       },
       "edition": {
@@ -42756,12 +42756,12 @@
         "permanentIcons": {
           "investigation": 1,
           "combat": 1,
-          "influence": 0
+          "influence": 1
         },
         "temporaryIcons": {
           "investigation": 0,
           "combat": 1,
-          "influence": 1
+          "influence": 0
         },
         "defense": 2,
         "startingHand": null,
@@ -43407,7 +43407,7 @@
         "imagePath": "resource/ymsj-fun.github.io/cards/JZ70 弗朗西斯科.jpg",
         "imageSha256": "1e6195fb4a81558c952cd4826c645698907e792ea77e913c3408ef6da21ced65",
         "evidenceId": "card-JZ70",
-        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。 B23后逐图标四色背景放大复查。",
         "blockingFields": []
       },
       "edition": {
@@ -43435,12 +43435,12 @@
         "permanentIcons": {
           "investigation": 0,
           "combat": 0,
-          "influence": 0
+          "influence": 1
         },
         "temporaryIcons": {
           "investigation": 0,
           "combat": 1,
-          "influence": 1
+          "influence": 0
         },
         "defense": 1,
         "startingHand": null,
@@ -43513,7 +43513,7 @@
         "imagePath": "resource/ymsj-fun.github.io/cards/JZ71 土御门真知子.jpg",
         "imageSha256": "6d13a367331ba24a3abb66f6ca804708fa5e18cd4cd740026cf811377ce1247b",
         "evidenceId": "card-JZ71",
-        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。 B23后逐图标四色背景放大复查。",
         "blockingFields": []
       },
       "edition": {
@@ -43557,12 +43557,12 @@
         "permanentIcons": {
           "investigation": 1,
           "combat": 0,
-          "influence": 0
+          "influence": 1
         },
         "temporaryIcons": {
           "investigation": 0,
           "combat": 1,
-          "influence": 1
+          "influence": 0
         },
         "defense": 2,
         "startingHand": null,
@@ -43633,7 +43633,7 @@
         "imagePath": "resource/ymsj-fun.github.io/cards/JZ72 稻荷神社童子.jpg",
         "imageSha256": "d75098e25ed4b1d492c9ec842461bce9804d286fd8743deb7e9e4ac09bbf5c85",
         "evidenceId": "card-JZ72",
-        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。 B23后逐图标四色背景放大复查。",
         "blockingFields": []
       },
       "edition": {
@@ -43665,12 +43665,12 @@
         "permanentIcons": {
           "investigation": 0,
           "combat": 0,
-          "influence": 0
+          "influence": 1
         },
         "temporaryIcons": {
           "investigation": 0,
           "combat": 0,
-          "influence": 1
+          "influence": 0
         },
         "defense": 1,
         "startingHand": null,
@@ -43761,7 +43761,7 @@
         "imagePath": "resource/ymsj-fun.github.io/cards/JZ73 道祖神.jpg",
         "imageSha256": "56c52e9f3531307ebc8fab68950950e1d6204d1918da8e206ef248266f2439f5",
         "evidenceId": "card-JZ73",
-        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。 B23后逐图标四色背景放大复查。",
         "blockingFields": []
       },
       "edition": {
@@ -43794,12 +43794,12 @@
         "permanentIcons": {
           "investigation": 1,
           "combat": 0,
-          "influence": 0
+          "influence": 1
         },
         "temporaryIcons": {
           "investigation": 0,
           "combat": 0,
-          "influence": 1
+          "influence": 0
         },
         "defense": "X",
         "startingHand": null,
