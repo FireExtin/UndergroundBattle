@@ -11915,6 +11915,474 @@
       ],
       "editionStatus": "pinnedImageVariant",
       "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "CQ01": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-CQ01",
+      "verifiedFields": {
+        "name": "导灵员裴恩熙",
+        "colorKey": "黄",
+        "basicType": "角色"
+      },
+      "abilitySummary": "持续 所有本方人工智能角色获得永久调查1。；持续 所有本方机械和魔像角色获得永久战斗1。；持续 若你操控人工智能角色，导灵员裴恩熙获得屏障。若你操控机械或魔像角色，导灵员裴恩熙获得机动。",
+      "confirmedMechanismIds": [
+        "continuous",
+        "barrier",
+        "mobility",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "CQ02": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-CQ02",
+      "verifiedFields": {
+        "name": "本杰明·富兰克林",
+        "colorKey": "黄",
+        "basicType": "角色"
+      },
+      "abilitySummary": "进场触发 自你牌库顶的四张牌中寻找任意数量的法术牌，将这些牌展示后置于你的手中，然后将其余的牌洗回牌库。若你的隐秘等级高于敌方玩家，则改为从牌库顶的八张牌中寻找。；触发 当你打出一张法术牌时，对目标角色造成1点伤害。",
+      "confirmedMechanismIds": [
+        "deckChoice",
+        "mysticContest",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "CQ03": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-CQ03",
+      "verifiedFields": {
+        "name": "空间转移术",
+        "colorKey": "黄",
+        "basicType": "事务"
+      },
+      "abilitySummary": "额外费用 你可以横置一个本方法师角色。；行动 将目标本方角色移动至另一个地区。若你已支付额外费用，横置该角色。",
+      "confirmedMechanismIds": [
+        "exhaust",
+        "mobility"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "CQ04": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-CQ04",
+      "verifiedFields": {
+        "name": "计划：诘界博物学",
+        "colorKey": "黄",
+        "basicType": "附属"
+      },
+      "abilitySummary": "非资产；隐秘〔月形〕秘密计划；可推进；结附于本方秘社；行动 牺牲计划：诘界博物学：；若达成推进1，抓一张牌。；若达成推进3，将目标角色移回其拥有者手上。；若达成推进5，消灭目标附属。",
+      "confirmedMechanismIds": [
+        "nonAsset",
+        "mysticContest",
+        "plan",
+        "attachment",
+        "society",
+        "sacrifice",
+        "deckChoice"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "CQ05": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-CQ05",
+      "verifiedFields": {
+        "name": "换生灵马克西姆",
+        "colorKey": "绿",
+        "basicType": "角色"
+      },
+      "abilitySummary": "隐秘+4；行动②：换生灵马克西姆成为目标角色的复制品，但其名称仍为换生灵马克西姆，且仅具有此能力。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "transform",
+        "continuous",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "CQ06": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-CQ06",
+      "verifiedFields": {
+        "name": "麦布女王",
+        "colorKey": "绿",
+        "basicType": "角色"
+      },
+      "abilitySummary": "非资产；领袖；持续 所有其他本方仙灵角色获得永久调查1。；触发 当你打出一张法术牌时，或赢得一次隐秘对抗后，在目标地区上生成一个仙灵斗士角色指示物。",
+      "confirmedMechanismIds": [
+        "nonAsset",
+        "leader",
+        "continuous",
+        "mysticContest",
+        "token",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "CQ07": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-CQ07",
+      "verifiedFields": {
+        "name": "菲碧·π",
+        "colorKey": "蓝",
+        "basicType": "角色"
+      },
+      "abilitySummary": "进场触发 若本方秘社上没有隐秘〔月形〕标志，则放置一个隐秘〔月形〕标志。；触发 当一个本方吸血鬼或法师角色成为敌方事务牌的目标时，抓一张牌。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "deckChoice",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "CQ08": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-CQ08",
+      "verifiedFields": {
+        "name": "诡异三姐妹",
+        "colorKey": "蓝",
+        "basicType": "角色"
+      },
+      "abilitySummary": "现身触发 从你的牌库中寻找一张名为诡异三姐妹的牌，展示后将该牌以暗藏者状态置于本地区，然后洗牌。；准备步骤触发 若你操控三个名为诡异三姐妹的角色，你可以从你的牌库中寻找一张独有吸血鬼角色牌，将该牌放置进场并置于本地区，然后洗牌。同名角色能力每回合只能触发一次。",
+      "confirmedMechanismIds": [
+        "hidden",
+        "deckChoice",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "CQ09": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-CQ09",
+      "verifiedFields": {
+        "name": "依莲娜·弗朗索瓦",
+        "colorKey": "蓝",
+        "basicType": "角色"
+      },
+      "abilitySummary": "现身触发 进行一次隐秘对抗。本次隐秘对抗中你所展示的吸血鬼、法师角色牌获得隐秘+3。；结束步骤触发 本回合中，若你曾赢得隐秘对抗，将你墓地中印刷费用小于或等于③的目标吸血鬼、法师角色牌放置进场，并置于本地区。",
+      "confirmedMechanismIds": [
+        "hidden",
+        "mysticContest",
+        "graveRecovery",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "CQ10": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-CQ10",
+      "verifiedFields": {
+        "name": "朱苏德拉·纳匹什提姆",
+        "colorKey": "蓝",
+        "basicType": "角色"
+      },
+      "abilitySummary": "公开〔日形〕领袖；进场触发 你抓一张牌，目标玩家弃一张手牌。你的秘社上每有一个隐秘〔月形〕标志，就重复一次该过程。；准备步骤触发 若你的手牌数量比所有其他玩家都多，在目标地区上放置一个本方势力标志。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "leader",
+        "deckChoice",
+        "confrontation",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "CQ11": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-CQ11",
+      "verifiedFields": {
+        "name": "暴乱煽动者",
+        "colorKey": "红",
+        "basicType": "角色"
+      },
+      "abilitySummary": "进场触发 在本地区生成一个邪教徒角色指示物。",
+      "confirmedMechanismIds": [
+        "token",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "CQ13": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-CQ13",
+      "verifiedFields": {
+        "name": "命定的薇儿丹迪",
+        "colorKey": "红",
+        "basicType": "角色"
+      },
+      "abilitySummary": "进场触发 若本方秘社为末日钟，毁灭目标地区，或在目标已毁灭的地区上放置一个本方势力标志。；快速行动③：进行一次隐秘对抗。若你赢得本次隐秘对抗，令命定的薇儿丹迪闪烁。；离场强制触发 消灭本地区上的所有其他角色。",
+      "confirmedMechanismIds": [
+        "society",
+        "timeDestroy",
+        "confrontation",
+        "mysticContest",
+        "blink",
+        "priority",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "CQ14": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-CQ14",
+      "verifiedFields": {
+        "name": "盖罗涅的召令",
+        "colorKey": "红",
+        "basicType": "事务"
+      },
+      "abilitySummary": "持续 若你操控名为盖罗涅的角色，你可以从墓地中打出盖罗涅的召令，如同其在你手中一样，但需要弃一张红色牌作为额外费用。；行动 在至多三个目标地区上生成至多三个邪教徒角色指示物，令这些角色横置进场。",
+      "confirmedMechanismIds": [
+        "continuous",
+        "gravePlay",
+        "deckChoice",
+        "token",
+        "exhaust"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "CQ15": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-CQ15",
+      "verifiedFields": {
+        "name": "无屠、阿鼻双剑",
+        "colorKey": "红",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标角色；持续 受此结附的角色获得永久战斗2和创伤2，并获得“行动 横置，将无屠、阿鼻双剑移回其拥有者手中：消灭目标角色，然后从其操控者的牌库、手牌和墓地中寻找至多三张同名的角色牌，将这些牌封印在本方秘社上，然后令该玩家洗牌。”的能力。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "continuous",
+        "combatKeywords",
+        "exhaust",
+        "deckChoice",
+        "seal",
+        "society",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "CQ16": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-CQ16",
+      "verifiedFields": {
+        "name": "前线士官",
+        "colorKey": "灰",
+        "basicType": "角色"
+      },
+      "abilitySummary": "公开；进场触发 在本地区的目标角色上放置一个锁定标志。；快速行动①，横置：从你的牌库中寻找一张印刷费用为①的士兵角色牌，将其放置进场并置于本地区，然后洗牌。",
+      "confirmedMechanismIds": [
+        "public",
+        "lock",
+        "exhaust",
+        "deckChoice"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "CQ17": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-CQ17",
+      "verifiedFields": {
+        "name": "绍明中尉",
+        "colorKey": "灰",
+        "basicType": "角色"
+      },
+      "abilitySummary": "公开；护卫1；持续 所有本地区的其他本方灰色角色获得永久战斗1和撤回。；快速行动②，横置：从你的牌库中寻找一张印刷费用为②的士兵角色牌，将其放置进场并置于本地区，然后洗牌。",
+      "confirmedMechanismIds": [
+        "public",
+        "combatKeywords",
+        "continuous",
+        "exhaust",
+        "deckChoice",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "CQ18": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-CQ18",
+      "verifiedFields": {
+        "name": "任秋雨",
+        "colorKey": "灰",
+        "basicType": "角色"
+      },
+      "abilitySummary": "隐秘+1；在本次隐秘对抗后，若本方秘社为哨兵，你可以在目标角色或暗藏者上放置一个锁定标志。；进场触发 在本地区的所有敌方角色和暗藏者上各放置一个锁定标志。；触发 当一个其上有锁定标志的敌方角色或暗藏者离场时，抓一张牌。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "society",
+        "lock",
+        "hidden",
+        "deckChoice",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "CQ19": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-CQ19",
+      "verifiedFields": {
+        "name": "达摩克里斯之剑",
+        "colorKey": "灰",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于本方秘社；进场触发 若本方秘社为哨兵，在达摩克里斯之剑上放置一个充能标志。；行动 横置：在达摩克里斯之剑上放置一个充能标志。；行动 横置，从达摩克里斯之剑上移除X个充能标志：对目标角色造成X点伤害。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "society",
+        "exhaust",
+        "token",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "CQ20": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-CQ20",
+      "verifiedFields": {
+        "name": "湖中夫人",
+        "colorKey": "白",
+        "basicType": "角色"
+      },
+      "abilitySummary": "非资产；隐秘〔月形〕传闻；额外费用 若你操控名为阿瓦隆隐士的角色，则湖中夫人的费用减少②。；行动⓪：在另一个目标角色上放置一个临时调查1、永久战斗1或临时势力1能力图标标志。该能力每回合只能发动一次。",
+      "confirmedMechanismIds": [
+        "nonAsset",
+        "mysticContest",
+        "rumor",
+        "costReduction",
+        "continuous",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "CQ21": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-CQ21",
+      "verifiedFields": {
+        "name": "舍生刃恭太郎",
+        "colorKey": "白",
+        "basicType": "角色"
+      },
+      "abilitySummary": "隐秘〔月形〕声望；隐秘〔月形〕威名；触发 每当你抓牌时，在舍生刃恭太郎上放置一个临时战斗1能力图标标志。；死亡触发 若本方秘社上有隐秘〔月形〕标志，抓X张牌。X等于舍生刃恭太郎上临时战斗和永久战斗能力图标数量之和。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "renown",
+        "combatKeywords",
+        "deckChoice",
+        "temporaryIcons",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "CQ22": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-CQ22",
+      "verifiedFields": {
+        "name": "费卢蒙德抄本",
+        "colorKey": "白",
+        "basicType": "附属"
+      },
+      "abilitySummary": "选择一项：；借阅：结附于目标本方角色；触发 当受此结附的角色成为事务牌的目标时，你抓一张牌。；收藏：结附于本方秘社；持续 在隐秘对抗时你所展示的白色牌获得隐秘+1。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "society",
+        "deckChoice",
+        "mysticContest",
+        "continuous",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "CQ23": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-CQ23",
+      "verifiedFields": {
+        "name": "断钢剑",
+        "colorKey": "白",
+        "basicType": "附属"
+      },
+      "abilitySummary": "屏障；结附于目标本方人类角色；持续 受此结附的角色获得永久战斗1、临时势力1、防御力+1和领袖。；强制触发 每当在受此结附的角色上放置一个指示物标志时，额外放置一个相同类别的指示物标志。",
+      "confirmedMechanismIds": [
+        "barrier",
+        "attachment",
+        "continuous",
+        "leader",
+        "token",
+        "priority",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "CQ24": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-CQ24",
+      "verifiedFields": {
+        "name": "卡门",
+        "colorKey": "黑",
+        "basicType": "角色"
+      },
+      "abilitySummary": "非资产；隐秘〔月形〕撤回；额外费用 你可以支付③。；进场触发 若已支付该牌的额外费用，或你的隐秘等级高于敌方玩家，则你获得目标印刷费用小于或等于⑤的敌方附属之操控权，你可以为该附属重新选择结附目标。",
+      "confirmedMechanismIds": [
+        "nonAsset",
+        "mysticContest",
+        "combatKeywords",
+        "control",
+        "attachment",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "CQ25": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-CQ25",
+      "verifiedFields": {
+        "name": "伥虎",
+        "colorKey": "黑",
+        "basicType": "角色"
+      },
+      "abilitySummary": "隐秘〔月形〕灵体；进场触发 进行一次隐秘对抗。本次隐秘对抗中你所展示的诅咒牌获得隐秘+2。；触发 每当本地区的一个本方角色死亡时，从本方牌库或墓地中寻找一张名为伥鬼的角色牌，将该牌封印在伥虎上。若从牌库中寻找，则洗牌。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "spirit",
+        "deckChoice",
+        "graveRecovery",
+        "seal",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
     }
   }
 }
