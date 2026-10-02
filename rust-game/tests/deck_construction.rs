@@ -229,7 +229,7 @@ async fn custom_deck_join_change_receipt_reopen_and_replay_keep_frozen_private_s
             })
             .await
             .is_err());
-        let unchanged = store.state(&a.room_id, &a.token).await.unwrap();
+        let unchanged = store.state_at_now(&a.room_id, &a.token, 0).await.unwrap();
         assert_eq!(unchanged.version, 0);
         assert_eq!(unchanged.players.len(), 1);
     }
@@ -257,12 +257,12 @@ async fn custom_deck_join_change_receipt_reopen_and_replay_keep_frozen_private_s
         50
     );
     assert!(
-        !serde_json::to_string(&store.state(&a.room_id, &b.token).await.unwrap())
+        !serde_json::to_string(&store.state_at_now(&a.room_id, &b.token, 0).await.unwrap())
             .unwrap()
             .contains("secret-alpha")
     );
     assert!(
-        !serde_json::to_string(&store.state(&a.room_id, &b.token).await.unwrap())
+        !serde_json::to_string(&store.state_at_now(&a.room_id, &b.token, 0).await.unwrap())
             .unwrap()
             .contains("JC042")
     );
@@ -279,18 +279,27 @@ async fn custom_deck_join_change_receipt_reopen_and_replay_keep_frozen_private_s
                     deck_draft: Some(invalid),
                     ..Action::new("deck")
                 }
+                .into()
             }
         )
         .await
         .is_err());
-    assert_eq!(store.state(&a.room_id, &a.token).await.unwrap().version, 1);
+    assert_eq!(
+        store
+            .state_at_now(&a.room_id, &a.token, 0)
+            .await
+            .unwrap()
+            .version,
+        1
+    );
     let change = Command {
         command_id: "replace-deck".into(),
         expected_version: 1,
         action: Action {
             deck_draft: Some(draft("secret-gamma")),
             ..Action::new("deck")
-        },
+        }
+        .into(),
     };
     let changed = store
         .command(&a.room_id, &a.token, change.clone())
@@ -299,7 +308,7 @@ async fn custom_deck_join_change_receipt_reopen_and_replay_keep_frozen_private_s
     drop(store);
     let store = Store::open(&path).unwrap();
     assert_eq!(
-        serde_json::to_string(&store.state(&a.room_id, &a.token).await.unwrap()).unwrap(),
+        serde_json::to_string(&store.state_at_now(&a.room_id, &a.token, 0).await.unwrap()).unwrap(),
         serde_json::to_string(&changed).unwrap()
     );
     let retry = store.command(&a.room_id, &a.token, change).await.unwrap();
@@ -307,7 +316,14 @@ async fn custom_deck_join_change_receipt_reopen_and_replay_keep_frozen_private_s
         serde_json::to_string(&retry).unwrap(),
         serde_json::to_string(&changed).unwrap()
     );
-    assert_eq!(store.state(&a.room_id, &a.token).await.unwrap().version, 2);
+    assert_eq!(
+        store
+            .state_at_now(&a.room_id, &a.token, 0)
+            .await
+            .unwrap()
+            .version,
+        2
+    );
     for (seat, token) in [(0, &a.token), (1, &b.token)] {
         store
             .command(
@@ -316,7 +332,7 @@ async fn custom_deck_join_change_receipt_reopen_and_replay_keep_frozen_private_s
                 Command {
                     command_id: format!("ready-{seat}"),
                     expected_version: 2 + seat as u64,
-                    action: Action::new("ready"),
+                    action: Action::new("ready").into(),
                 },
             )
             .await
@@ -329,7 +345,7 @@ async fn custom_deck_join_change_receipt_reopen_and_replay_keep_frozen_private_s
             Command {
                 command_id: "start".into(),
                 expected_version: 4,
-                action: Action::new("start"),
+                action: Action::new("start").into(),
             },
         )
         .await

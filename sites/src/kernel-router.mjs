@@ -6,8 +6,9 @@ export function routeKernels(current, previous) {
     && version.cardPool === catalog.cardPoolVersion && version.engine === catalog.engineVersion;
   const select = state => {
     const identity = JSON.parse(current.stateIdentity(state));
-    if (identity.state_schema !== 2) throw 'Unsupported persisted state schema';
-    const selected = kernels.find(({ catalog }) => matches(identity.versions, catalog));
+    if (![2, 3].includes(identity.state_schema)) throw 'Unsupported persisted state schema';
+    const selected = kernels.find(({ kernel, catalog }) => matches(identity.versions, catalog)
+      && identity.state_schema === (kernel.pollRoom ? 3 : 2));
     if (selected) return selected.kernel;
     throw 'Unsupported persisted rules/card-pool/engine version';
   };
@@ -30,5 +31,21 @@ export function routeKernels(current, previous) {
       return selected.apply(state, seat, action);
     },
     view: (state, ...args) => select(state).view(state, ...args),
+    supportsPacing: state => !!select(state).pollRoom,
+    applyRoom: (state, ...args) => {
+      const selected = select(state);
+      if (!selected.applyRoom) throw '旧牌桌保留原响应规则';
+      return selected.applyRoom(state, ...args);
+    },
+    pollRoom: (state, ...args) => {
+      const selected = select(state);
+      if (!selected.pollRoom) throw '旧牌桌保留原响应规则';
+      return selected.pollRoom(state, ...args);
+    },
+    quoteRoom: (state, ...args) => {
+      const selected = select(state);
+      if (!selected.quoteRoom) throw '旧牌桌尚不支持响应报价';
+      return selected.quoteRoom(state, ...args);
+    },
   };
 }

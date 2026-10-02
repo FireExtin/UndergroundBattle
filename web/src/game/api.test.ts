@@ -1,10 +1,41 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { actionPayload, ApiError, createRoom, createRoomWithDeck, getCatalog, getState, pollState, readSession, saveSession, sendCommand, streamEvents } from './api';
 import { testCatalog, testView } from './testFixtures';
+import { actionForRoom } from './api';
+import type { View } from './types';
 
 const session = { roomId: 'room-test', inviteCode: 'INVITE', token: 'opaque-seat-token', seat: 0 };
+const pacedView = (status: 'undecided' | 'composing' | 'passed'): View => ({ ...testView, serverNowMs: 1000,
+  responseWindow: { id: 'response:2', stackTopId: 'effect:7', holderTeam: 0, canBegin: true,
+    members: [{ playerId: testView.you, status, ...(status === 'undecided' ? { deadlineMs: 6000 } : {}) }],
+    ...(status === 'composing' ? { myIntentId: 'restored-intent' } : {}) }, pendingChoice: null });
 afterEach(() => { vi.unstubAllGlobals(); localStorage.clear(); });
 describe('cloud table API', () => {
+  it('keeps old room commands unchanged while wrapping new empty-stack and choice actions', () => {
+    expect(JSON.parse(JSON.stringify(actionForRoom(testView, { kind: 'pass' })))).toEqual({ kind: 'pass' });
+    expect(JSON.parse(JSON.stringify(actionForRoom({ ...testView, serverNowMs: 1000, responseWindow: null }, { kind: 'ready' })))).toEqual({ kind: 'game', action: { kind: 'ready' } });
+    const choice = { kind: 'choose', choiceId: 'pending-choice', selected: ['target-instance'] };
+    expect(JSON.parse(JSON.stringify(actionForRoom({ ...pacedView('composing'), pendingChoice: { id: 'pending-choice' } as View['pendingChoice'] }, choice)))).toEqual({ kind: 'game', action: choice });
+  });
+  it('requires intent before payment and binds cancellation and formal response to the restored server intent', () => {
+    const response = { kind: 'activate', cardId: 'source', abilityId: 'ability', targetId: 'target', costSelected: ['cost'] };
+    expect(() => actionForRoom(pacedView('undecided'), response)).toThrow('先选择连锁');
+    expect(actionForRoom(pacedView('undecided'), { kind: 'pass' })).toEqual({ kind: 'passResponse', windowId: 'response:2' });
+    expect(actionForRoom(pacedView('composing'), { kind: 'pass' })).toEqual({ kind: 'cancelAndPass', windowId: 'response:2', intentId: 'restored-intent' });
+    expect(JSON.parse(JSON.stringify(actionForRoom(pacedView('composing'), response)))).toEqual({ kind: 'submitResponse', windowId: 'response:2', intentId: 'restored-intent', action: response });
+    expect(() => actionForRoom(pacedView('passed'), response)).toThrow();
+    expect(() => actionForRoom(pacedView('passed'), { kind: 'pass' })).toThrow();
+  });
+  it('stores a complete response wrapper without UI labels and retries its original body after a lost ACK', async () => {
+    const fetchMock = vi.fn().mockRejectedValueOnce(new Error('lost ACK')).mockResolvedValueOnce(new Response(JSON.stringify(pacedView('composing')), { status: 200 }));
+    vi.stubGlobal('fetch', fetchMock);
+    const payload = actionForRoom(pacedView('composing'), { id: 'display-only', label: '响应', kind: 'play', cardId: 'source', targetId: 'target' } as Parameters<typeof actionPayload>[0]);
+    await expect(sendCommand(session, 7, payload, 'original-command-id')).rejects.toMatchObject({ status: 0 });
+    await sendCommand(session, 7, payload, 'original-command-id');
+    expect(fetchMock.mock.calls[0][1].body).toBe(fetchMock.mock.calls[1][1].body);
+    expect(JSON.parse(fetchMock.mock.calls[1][1].body)).toEqual({ commandId: 'original-command-id', expectedVersion: 7,
+      action: { kind: 'submitResponse', windowId: 'response:2', intentId: 'restored-intent', action: { kind: 'play', cardId: 'source', targetId: 'target' } } });
+  });
   it('reads the room catalog with the original seat credential outside the URL', async () => {
     const fetchMock = vi.fn().mockResolvedValue(new Response(JSON.stringify(testCatalog), { status: 200 }));
     vi.stubGlobal('fetch', fetchMock);

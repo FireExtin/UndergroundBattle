@@ -150,8 +150,25 @@ export async function pollState(session: SavedSession, version: number, signal: 
 }
 
 export function actionPayload(action: Action | (Action & { id: string; label: string; description?: string })): Action {
-  const { kind, cardId, targetId, region, option, abilityId, costSelected, choiceId, selected, top, bottom, allocations, deckDraft } = action;
-  return { kind, cardId, targetId, region, option, abilityId, costSelected, choiceId, selected, top, bottom, allocations, deckDraft };
+  const { kind, cardId, targetId, region, option, abilityId, costSelected, choiceId, selected, top, bottom, allocations, deckDraft, windowId, intentId } = action;
+  return { kind, cardId, targetId, region, option, abilityId, costSelected, choiceId, selected, top, bottom, allocations, deckDraft, windowId, intentId,
+    ...(action.action ? { action: actionPayload(action.action) } : {}) };
+}
+const sessionKinds = new Set(['game', 'beginResponse', 'passResponse', 'cancelAndPass', 'submitResponse']);
+/** Only the new room envelope wraps actions; pinned older rooms keep their exact request contract. */
+export function actionForRoom(view: View, action: Action): Action {
+  const payload = actionPayload(action);
+  if (view.serverNowMs === undefined || sessionKinds.has(payload.kind)) return payload;
+  const window = view.responseWindow;
+  if (!window || view.pendingChoice || view.waitingChoice) return { kind: 'game', action: payload };
+  const member = window.members.find(item => item.playerId === view.you);
+  if (payload.kind === 'pass') {
+    if (member?.status === 'undecided') return { kind: 'passResponse', windowId: window.id };
+    if (member?.status === 'composing' && window.myIntentId) return { kind: 'cancelAndPass', windowId: window.id, intentId: window.myIntentId };
+  } else if (member?.status === 'composing' && window.myIntentId) {
+    return { kind: 'submitResponse', windowId: window.id, intentId: window.myIntentId, action: payload };
+  }
+  throw new Error('请先选择连锁；已让过的窗口须等待牌桌继续。');
 }
 export const sendCommand = (session: SavedSession, version: number, action: Action, commandId: string = newCommandId()) => request<View>(`${roomPath(session)}/commands`, {
   method: 'POST', headers: { ...headers(session), 'Content-Type': 'application/json' },

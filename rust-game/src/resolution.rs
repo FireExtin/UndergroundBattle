@@ -615,11 +615,21 @@ impl Game {
     ) -> ResolutionFrame {
         let mut steps = vec![];
         for op in &spec.ops {
-            if let Op::ForEachLivingPlayer(ops) = op {
-                for p in self.players.iter().filter(|p| !p.eliminated) {
+            if let Op::ForEachLivingPlayer(ops) | Op::ForEachLivingPlayerFromActor(ops) = op {
+                let start = if matches!(op, Op::ForEachLivingPlayerFromActor(_)) {
+                    actor
+                } else {
+                    0
+                };
+                for seat in
+                    (0..self.players.len()).map(|offset| (start + offset) % self.players.len())
+                {
+                    if self.players[seat].eliminated {
+                        continue;
+                    }
                     for op in ops {
                         steps.push(Step {
-                            context: p.seat,
+                            context: seat,
                             op: op.clone(),
                         });
                     }
@@ -1181,7 +1191,51 @@ impl Game {
                     expires_turn: self.turn,
                     uses: 1,
                 }),
-                Op::ForEachLivingPlayer(_) => return Err("禁止嵌套的玩家遍历声明".into()),
+                Op::FreeReveal {
+                    player,
+                    require_loyalty,
+                } => {
+                    let seat = self.frame_player(&frame, step.context, player)?;
+                    if self.world_free_reveal_choice(frame.clone(), seat, require_loyalty) {
+                        return Ok(());
+                    }
+                }
+                Op::SacrificeAndDraw(player) => {
+                    let seat = self.frame_player(&frame, step.context, player)?;
+                    if self.world_sacrifice_choice(frame.clone(), seat) {
+                        return Ok(());
+                    }
+                }
+                Op::ChooseRegion => {
+                    self.world_region_choice(frame);
+                    return Ok(());
+                }
+                Op::GraveyardEntry { player, region } => {
+                    let seat = self.frame_player(&frame, step.context, player)?;
+                    let region = self
+                        .frame_region(&frame, region)
+                        .ok_or("缺少墓地进场地区")?;
+                    if self.world_graveyard_choice(frame.clone(), seat, region) {
+                        return Ok(());
+                    }
+                }
+                Op::HideMatching {
+                    except_subtype,
+                    mix_hidden,
+                } => self.world_hide(except_subtype.as_deref(), mix_hidden),
+                Op::SimultaneousSearch { filter } => {
+                    let participants = self
+                        .players
+                        .iter()
+                        .filter(|p| !p.eliminated)
+                        .map(|p| p.seat)
+                        .collect();
+                    self.world_search_next(frame, filter, participants, vec![])?;
+                    return Ok(());
+                }
+                Op::ForEachLivingPlayer(_) | Op::ForEachLivingPlayerFromActor(_) => {
+                    return Err("禁止嵌套的玩家遍历声明".into())
+                }
             }
             self.settle_deaths();
         }
@@ -1189,7 +1243,7 @@ impl Game {
     }
     pub(crate) fn choose_frame(
         &mut self,
-        frame: Box<ResolutionFrame>,
+        mut frame: Box<ResolutionFrame>,
         choice: FrameChoice,
         a: Action,
         selected: Vec<String>,
@@ -1265,6 +1319,56 @@ impl Game {
                     return Err("牺牲角色已不满足操控条件".into());
                 }
                 self.remove_dead(id, RemovalCause::Sacrifice);
+            }
+            FrameChoice::FreeReveal {
+                seat,
+                require_loyalty,
+            } => {
+                if let Some(id) = selected.first() {
+                    self.world_reveal(seat, id, require_loyalty)?;
+                }
+            }
+            FrameChoice::SacrificeDraw { seat } => {
+                let id = selected.first().ok_or("须选择一个角色牺牲")?;
+                let (region, c) = self
+                    .board(id)
+                    .filter(|(_, c)| {
+                        c.controller == seat
+                            && !c.face_down
+                            && card(&c.definition).kind == "character"
+                    })
+                    .ok_or("牺牲角色已失效")?;
+                let amount = self.defense(c, region) as usize;
+                self.remove_dead(id, RemovalCause::Sacrifice);
+                self.draw(seat, amount)?;
+            }
+            FrameChoice::Region => {
+                let region = selected
+                    .first()
+                    .and_then(|id| id.strip_prefix("region:"))
+                    .and_then(|r| r.parse::<usize>().ok())
+                    .filter(|r| *r < self.regions.len())
+                    .ok_or("地区选择已失效")?;
+                frame.chosen_region = Some(region);
+            }
+            FrameChoice::GraveyardEntry { seat, region } => {
+                self.world_graveyard_entry(
+                    seat,
+                    region,
+                    selected.first().ok_or("须选择墓地角色")?,
+                )?;
+            }
+            FrameChoice::SimultaneousSearch {
+                filter,
+                participants,
+                mut committed,
+            } => {
+                let seat = *participants
+                    .get(committed.len())
+                    .ok_or("检索承诺阶段已失效")?;
+                committed.push((seat, selected.first().cloned()));
+                self.world_search_next(*frame, filter, participants, committed)?;
+                return Ok(());
             }
         }
         self.effects.push_front(Effect::Frame { frame });

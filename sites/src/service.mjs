@@ -2,7 +2,7 @@ import { RoomStore } from './store.mjs';
 import { retryOriginalCommand } from './storage-errors.mjs';
 
 export class HttpError extends Error {
-  constructor(status, message, view) { super(message); this.status = status; this.view = view; }
+  constructor(status, message, view, code) { super(message); this.status = status; this.view = view; this.code = code; }
 }
 const bad = message => { throw new HttpError(400, message); };
 export function secure(bytes) {
@@ -25,8 +25,23 @@ const name = value => {
   return result;
 };
 const commandFields = new Set(['kind','cardId','targetId','region','option','choiceId','selected','top','bottom','allocations','abilityId','costSelected','deckDraft']);
+const sessionFields = {
+  game: ['kind', 'action'], beginResponse: ['kind', 'windowId', 'intentId'],
+  passResponse: ['kind', 'windowId'], cancelAndPass: ['kind', 'windowId', 'intentId'],
+  submitResponse: ['kind', 'windowId', 'intentId', 'action'],
+};
 export function normalizedAction(value) {
   if (!value || typeof value !== 'object' || Array.isArray(value) || typeof value.kind !== 'string') bad('行动格式不正确');
+  const fields = Object.hasOwn(sessionFields, value.kind) ? sessionFields[value.kind] : null;
+  if (fields) {
+    if (Object.keys(value).some(key => !fields.includes(key))) bad('响应意图含未知字段');
+    const result = Object.fromEntries(Object.entries(value).filter(([, v]) => v !== null));
+    if (fields.includes('action')) {
+      if (!value.action || Object.hasOwn(sessionFields, value.action.kind)) bad('请提交一个完整游戏动作');
+      result.action = normalizedAction(value.action);
+    }
+    return result;
+  }
   if (Object.keys(value).some(key => !commandFields.has(key))) bad('行动含未知字段');
   if (value.deckDraft != null && value.kind !== 'deck') bad('只有大厅更换牌组可提交构筑草稿');
   return Object.fromEntries(Object.entries(value).filter(([, v]) => v !== null));
@@ -53,8 +68,22 @@ function call(operation) {
   catch (error) { if (error instanceof HttpError) throw error; throw new HttpError(400, typeof error === 'string' ? error : '此行动当前不可执行'); }
 }
 export class RoomService {
-  constructor(db, kernel) { this.store = new RoomStore(db); this.kernel = kernel; }
+  constructor(db, kernel, now = Date.now) { this.store = new RoomStore(db); this.kernel = kernel; this.now = now; }
   view(state, seat) { return JSON.parse(this.kernel.view(state, seat)); }
+  async refreshedRoom(id, seat) {
+    for (let attempt = 0; attempt < 5; attempt++) {
+      const room = await this.store.room(id);
+      if (!room) throw new HttpError(404, '房间不存在');
+      if (!this.kernel.supportsPacing?.(room.state)) return { room, view: null };
+      const next = call(() => transition(this.kernel.pollRoom(room.state, seat, String(this.now()))));
+      if (!next.changed) return { room, view: next.view };
+      if (next.version !== room.version + 1) throw new Error('Unexpected clock revision');
+      const committed = await this.store.system({ id, expectedVersion: room.version, state: next.state,
+        version: next.version, nonce: secure(16), entry: JSON.stringify({ SessionEvents: { events: next.journal } }) });
+      if (committed) return { room: { ...room, state: next.state, version: next.version }, view: next.view };
+    }
+    throw new HttpError(409, '牌桌正在变化，请重新同步');
+  }
   async entryKey(body, values) {
     // Old clients without a request key remain compatible, but cannot recover a lost lobby ACK.
     const key = body.requestId ?? secure(32);
@@ -122,14 +151,10 @@ export class RoomService {
   }
   async state(id, authorization, afterVersion) {
     const seat = await this.authenticated(id, authorization);
-    if (afterVersion !== null) {
-      const known = await this.store.version(id);
-      if (known && afterVersion === String(known.version)) return null;
-    }
-    const room = await this.store.room(id);
-    if (!room) throw new HttpError(404, '房间不存在');
+    // A version poll must evaluate the persisted deadline even at an unchanged revision.
+    const { room, view } = await this.refreshedRoom(id, seat);
     if (afterVersion !== null && afterVersion === String(room.version)) return null;
-    return this.view(room.state, seat);
+    return view || this.view(room.state, seat);
   }
   async catalog(id, authorization) {
     await this.authenticated(id, authorization);
@@ -152,6 +177,9 @@ export class RoomService {
     if (previous) return previous;
     const room = await this.store.room(id);
     if (!room) throw new HttpError(404, '房间不存在');
+    if (this.kernel.supportsPacing?.(room.state)) {
+      return this.pacedCommand(id, seat, room, body, action, hash);
+    }
     if (room.version !== body.expectedVersion) {
       // A concurrent identical request may have committed after the first lookup.
       const concurrent = recovered(await this.store.receipt(id, body.commandId), hash);
@@ -169,5 +197,55 @@ export class RoomService {
     if (concurrent) return concurrent;
     const current = await this.store.room(id);
     throw new HttpError(409, '牌桌版本已变化', this.view(current.state, seat));
+  }
+  async pacedCommand(id, seat, initialRoom, body, action, hash) {
+    let room = initialRoom;
+    for (let attempt = 0; attempt < 5; attempt++) {
+      // Original receipt always wins over deadlines and a newer room revision.
+      const previous = recovered(await this.store.receipt(id, body.commandId), hash);
+      if (previous) return previous;
+      const command = { commandId: body.commandId, expectedVersion: body.expectedVersion, action };
+      const next = call(() => transition(this.kernel.applyRoom(room.state, seat, JSON.stringify(command), String(this.now()))));
+      if (!['accepted', 'rejected'].includes(next.outcome) || typeof next.changed !== 'boolean' || !Array.isArray(next.journal)) throw new Error('Unsafe session transition');
+      if (!next.changed) {
+        const concurrent = recovered(await this.store.receipt(id, body.commandId), hash);
+        if (concurrent) return concurrent;
+        this.rejectSession(next);
+        throw new Error('Accepted command did not advance revision');
+      }
+      if (next.version !== room.version + 1) throw new Error('Unexpected session revision');
+      const values = { id, expectedVersion: room.version, state: next.state, version: next.version, nonce: secure(16),
+        entry: JSON.stringify({ SessionEvents: { events: next.journal } }) };
+      const accepted = next.outcome === 'accepted';
+      const committed = accepted
+        ? await this.store.command({ ...values, seat, commandId: body.commandId, intentHash: hash, response: JSON.stringify(next.view) })
+        : await this.store.system(values);
+      if (committed) {
+        if (accepted) return next.view;
+        this.rejectSession(next);
+      }
+      const concurrent = recovered(await this.store.receipt(id, body.commandId), hash);
+      if (concurrent) return concurrent;
+      // The reducer itself permits only same-window Begin/Pass/Cancel to use a newer
+      // CAS base; the original ID, actor, expectedVersion and action remain identical.
+      room = await this.store.room(id);
+      if (!room) throw new HttpError(404, '房间不存在');
+    }
+    throw new HttpError(409, '牌桌正在变化，请使用原请求重试', this.view(room.state, seat));
+  }
+  rejectSession(next) {
+    const code = next.errorCode || 'invalid_action';
+    throw new HttpError(code === 'invalid_action' ? 400 : 409, next.errorMessage || '当前响应窗口已变化', next.view, code);
+  }
+  async quote(id, authorization, body) {
+    const seat = await this.authenticated(id, authorization);
+    if (typeof body.windowId !== 'string' || typeof body.intentId !== 'string'
+      || Object.keys(body).some(key => !['windowId', 'intentId', 'draft'].includes(key))) bad('响应报价格式不正确');
+    const { room } = await this.refreshedRoom(id, seat);
+    if (!this.kernel.supportsPacing?.(room.state)) bad('旧牌桌保留原响应规则');
+    const request = { windowId: body.windowId, intentId: body.intentId,
+      ...(body.draft == null ? {} : { draft: normalizedAction(body.draft) }) };
+    if (request.draft && Object.hasOwn(sessionFields, request.draft.kind)) bad('报价只接受游戏动作');
+    return call(() => JSON.parse(this.kernel.quoteRoom(room.state, seat, JSON.stringify(request))));
   }
 }

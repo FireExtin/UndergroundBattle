@@ -368,12 +368,20 @@ impl Game {
         self.reset_passes();
     }
     pub fn apply(&mut self, seat: usize, action: Action) -> RuleResult<()> {
+        self.apply_at_revision(seat, action, self.version + 1)
+    }
+    pub(crate) fn apply_at_revision(
+        &mut self,
+        seat: usize,
+        action: Action,
+        revision: u64,
+    ) -> RuleResult<()> {
         if seat >= self.players.len() {
             return Err("无此座位".into());
         }
         // Work on a clone: every rejected command is a strict no-op, including PRNG/ID counters.
         let mut next = self.clone();
-        next.version += 1;
+        next.version = revision;
         next.apply_inner(seat, action)?;
         next.settle_deaths();
         next.drive()?;
@@ -2172,7 +2180,7 @@ mod tests {
     #[test]
     fn catalog_is_restricted_real_complete_and_decks_are_legal() {
         let c = catalog::catalog();
-        assert_eq!(c.cards.len(), 30);
+        assert_eq!(c.cards.len(), 36);
         let active = c
             .cards
             .iter()
@@ -2185,7 +2193,7 @@ mod tests {
                 .cloned()
                 .collect::<BTreeSet<_>>()
         );
-        assert!(!active.contains("DQJC116"));
+        assert!(active.contains("DQJC116"));
         assert_eq!(
             c.cards
                 .iter()
@@ -2221,12 +2229,9 @@ mod tests {
         }
         assert_eq!(card("LC23").unique, true);
         assert!(card("JC125").text.contains("数量没有限制"));
-        let expected = BTreeMap::from([
-            ("DQJC107".to_string(), 3),
-            ("DQJC112".to_string(), 3),
-            ("DQJC113".to_string(), 2),
-            ("DQJC114".to_string(), 2),
-        ]);
+        let expected = (107..=116)
+            .map(|n| (format!("DQJC{n}"), 1))
+            .collect::<BTreeMap<_, _>>();
         assert_eq!(
             c.world
                 .iter()
@@ -2242,7 +2247,7 @@ mod tests {
         assert_eq!(actual, expected);
         let before = serde_json::to_string(&g).unwrap();
         assert!(std::panic::catch_unwind(std::panic::AssertUnwindSafe(|| {
-            g.make_card("DQJC116", 0)
+            g.make_card("unreviewed-world-card", 0)
         }))
         .is_err());
         assert_eq!(serde_json::to_string(&g).unwrap(), before);

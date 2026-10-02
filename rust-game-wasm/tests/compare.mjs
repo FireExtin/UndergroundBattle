@@ -2,13 +2,13 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { performance } from 'node:perf_hooks';
-import { initSync, catalog, newGame, newGameWithDeck, joinGame, joinGameWithDeck, apply, view } from '../pkg/hegemony_wasm.js';
+import { initSync, catalog, newGame, newGameWithDeck, joinGame, joinGameWithDeck, apply, applyRoom, pollRoom, quoteRoom, view } from '../pkg/hegemony_wasm.js';
 
 const moduleBytes = await readFile(new URL('../pkg/hegemony_wasm_bg.wasm', import.meta.url));
 initSync({ module: moduleBytes });
 const fixture = JSON.parse(await readFile(process.argv[2], 'utf8'));
 assert.deepEqual(JSON.parse(catalog()), fixture.catalog);
-let transitions = 0, projections = 0, slowestMs = 0;
+let transitions = 0, projections = 0, quotes = 0, rejectedCommands = 0, slowestMs = 0;
 const choiceKinds = new Set();
 for (const scenario of fixture.cases) {
   let state;
@@ -20,6 +20,8 @@ for (const scenario of fixture.cases) {
     else if (step.operation === 'newGameWithDeck') serialized = newGameWithDeck(...step.args);
     else if (step.operation === 'joinGame') serialized = joinGame(state, ...step.args);
     else if (step.operation === 'joinGameWithDeck') serialized = joinGameWithDeck(state, ...step.args);
+    else if (step.operation === 'applyRoom') serialized = applyRoom(state, step.args[0], JSON.stringify(step.args[1]), step.args[2]);
+    else if (step.operation === 'pollRoom') serialized = pollRoom(state, ...step.args);
     else serialized = apply(state, step.args[0], JSON.stringify(step.args[1]));
     const result = JSON.parse(serialized); // Parse ONLY the outer envelope; .state stays an opaque string.
     assert.equal(typeof result.state, 'string');
@@ -27,6 +29,7 @@ for (const scenario of fixture.cases) {
     assert.equal(result.version, step.version);
     assert.equal(result.seat, step.seat);
     assert.deepEqual(result.view, step.view);
+    if (step.transition) assert.deepEqual(result, step.transition, `${scenario.name}: full journal/outcome differs at revision ${step.version}`);
     state = result.state;
     assert.ok(state.includes(`"seed":${scenario.seed}`), 'u64 decimal seed lost precision');
     for (let seat = 0; seat < step.views.length; seat++) {
@@ -51,6 +54,14 @@ for (const scenario of fixture.cases) {
   for (const [seat, action] of scenario.rejectedActions ?? []) {
     assert.throws(() => apply(state, seat, JSON.stringify(action)));
   }
+  for (const rejected of scenario.rejectedCommands ?? []) {
+    assert.deepEqual(JSON.parse(applyRoom(state, rejected.seat, JSON.stringify(rejected.command), rejected.serverNow)), rejected.expected);
+    rejectedCommands++;
+  }
+  for (const quoted of scenario.quotes ?? []) {
+    assert.deepEqual(JSON.parse(quoteRoom(quoted.state, quoted.seat, JSON.stringify(quoted.request))), quoted.expected);
+    quotes++;
+  }
 }
 for (const previousState of fixture.rejectedStates ?? []) {
   assert.throws(() => view(previousState, 0));
@@ -58,4 +69,4 @@ for (const previousState of fixture.rejectedStates ?? []) {
 }
 assert.throws(() => newGame('bad', 'invite', 'duel', 'P0', 'watchers', '18446744073709551616'));
 assert.throws(() => newGame('bad', 'invite', 'duel', 'P0', 'watchers', '9007199254740993.0'));
-console.log(JSON.stringify({ ok: true, wasmBytes: moduleBytes.byteLength, transitions, projections, choiceKinds: [...choiceKinds].sort(), slowestFixtureStepMs: Math.round(slowestMs * 100) / 100, opaqueState: true, maximumU64SeedExact: true, nativeWasmStateAndViewsMatch: true }));
+console.log(JSON.stringify({ ok: true, wasmBytes: moduleBytes.byteLength, transitions, projections, quotes, rejectedCommands, choiceKinds: [...choiceKinds].sort(), slowestFixtureStepMs: Math.round(slowestMs * 100) / 100, opaqueState: true, maximumU64SeedExact: true, nativeWasmStateAndViewsMatch: true }));

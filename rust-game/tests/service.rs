@@ -5,7 +5,7 @@ use axum::{
     http::{Request, StatusCode},
 };
 use hegemony_server::{
-    model::{Action, ChoiceResolution, FrameChoice, Game, GuardState, Window},
+    model::{Action, ChoiceResolution, FrameChoice, GuardState, Window},
     service::{self, Command, CreateRoom, JoinRoom, Store},
 };
 use http_body_util::BodyExt;
@@ -14,7 +14,43 @@ fn command(id: &str, version: u64, kind: &str) -> Command {
     Command {
         command_id: id.into(),
         expected_version: version,
-        action: Action::new(kind),
+        action: Action::new(kind).into(),
+    }
+}
+// Test clients explicitly map manual pass to the current session window.
+// Paid actions remain untouched, so this cannot bypass Begin/Submit enforcement.
+trait SessionTestClient {
+    async fn session_command(
+        &self,
+        id: &str,
+        token: &str,
+        command: Command,
+    ) -> Result<hegemony_server::room::RoomView, service::ApiError>;
+}
+impl SessionTestClient for Store {
+    async fn session_command(
+        &self,
+        id: &str,
+        token: &str,
+        mut command: Command,
+    ) -> Result<hegemony_server::room::RoomView, service::ApiError> {
+        if matches!(&command.action, hegemony_server::room::SessionAction::Game { action } if action.kind == "pass")
+        {
+            let view = self.state_at_now(id, token, 0).await?;
+            if let Some(window) = view.response_window {
+                command.action = if let Some(intent_id) = window.my_intent_id {
+                    hegemony_server::room::SessionAction::CancelAndPass {
+                        window_id: window.id,
+                        intent_id,
+                    }
+                } else {
+                    hegemony_server::room::SessionAction::PassResponse {
+                        window_id: window.id,
+                    }
+                };
+            }
+        }
+        self.command(id, token, command).await
     }
 }
 #[tokio::test]
@@ -25,16 +61,19 @@ async fn command_id_reuse_requires_same_complete_typed_intent_before_and_after_r
     let (a, b) = pair(&store).await;
     let original = command("stable-intent", 1, "ready");
     let receipt = store
-        .command(&a.room_id, &a.token, original.clone())
+        .session_command(&a.room_id, &a.token, original.clone())
         .await
         .unwrap();
     store
-        .command(&a.room_id, &b.token, command("advance", 2, "ready"))
+        .session_command(&a.room_id, &b.token, command("advance", 2, "ready"))
         .await
         .unwrap();
-    let before = serde_json::to_string(&store.state(&a.room_id, &a.token).await.unwrap()).unwrap();
+    let before =
+        serde_json::to_string(&store.state_at_now(&a.room_id, &a.token, 0).await.unwrap()).unwrap();
     let mut changed_payload = original.clone();
-    changed_payload.action.deck_draft = Some(hegemony_server::deck::preset("keepers").unwrap());
+    if let hegemony_server::room::SessionAction::Game { action } = &mut changed_payload.action {
+        action.deck_draft = Some(hegemony_server::deck::preset("keepers").unwrap());
+    }
     let mismatches = [
         command("stable-intent", 3, "ready"),
         command("stable-intent", 1, "deck"),
@@ -42,13 +81,14 @@ async fn command_id_reuse_requires_same_complete_typed_intent_before_and_after_r
     ];
     for changed in &mismatches {
         let error = store
-            .command(&a.room_id, &a.token, changed.clone())
+            .session_command(&a.room_id, &a.token, changed.clone())
             .await
             .unwrap_err();
         assert_eq!(error.status, StatusCode::CONFLICT);
         assert_eq!(error.error, "command_id_conflict");
         assert_eq!(
-            serde_json::to_string(&store.state(&a.room_id, &a.token).await.unwrap()).unwrap(),
+            serde_json::to_string(&store.state_at_now(&a.room_id, &a.token, 0).await.unwrap())
+                .unwrap(),
             before
         );
     }
@@ -56,13 +96,16 @@ async fn command_id_reuse_requires_same_complete_typed_intent_before_and_after_r
     let reopened = Store::open(&path).unwrap();
     // Explicit null and omitted optional fields normalize to the same typed Action.
     let normalized = Command {
-        action: serde_json::from_str("{\"kind\":\"ready\",\"option\":null}").unwrap(),
+        action: serde_json::from_str(
+            "{\"kind\":\"game\",\"action\":{\"kind\":\"ready\",\"option\":null}}",
+        )
+        .unwrap(),
         ..original
     };
     assert_eq!(
         serde_json::to_string(
             &reopened
-                .command(&a.room_id, &a.token, normalized)
+                .session_command(&a.room_id, &a.token, normalized)
                 .await
                 .unwrap()
         )
@@ -72,7 +115,7 @@ async fn command_id_reuse_requires_same_complete_typed_intent_before_and_after_r
     for changed in mismatches {
         assert_eq!(
             reopened
-                .command(&a.room_id, &a.token, changed)
+                .session_command(&a.room_id, &a.token, changed)
                 .await
                 .unwrap_err()
                 .status,
@@ -80,7 +123,13 @@ async fn command_id_reuse_requires_same_complete_typed_intent_before_and_after_r
         );
     }
     assert_eq!(
-        serde_json::to_string(&reopened.state(&a.room_id, &a.token).await.unwrap()).unwrap(),
+        serde_json::to_string(
+            &reopened
+                .state_at_now(&a.room_id, &a.token, 0)
+                .await
+                .unwrap()
+        )
+        .unwrap(),
         before
     );
     let db = rusqlite::Connection::open(&path).unwrap();
@@ -108,7 +157,9 @@ async fn paid_sacrifice_death_trigger_and_accepted_frame_restore_without_repayme
             r.get(0)
         })
         .unwrap();
-    let mut game = Game::from_persisted(&initial).unwrap();
+    let mut game = hegemony_server::room::RoomEnvelope::from_persisted(&initial)
+        .unwrap()
+        .game;
     for p in &mut game.players {
         p.ready = true;
     }
@@ -144,7 +195,10 @@ async fn paid_sacrifice_death_trigger_and_accepted_frame_restore_without_repayme
         let asset = game.make_card("JC042", 0);
         game.players[0].assets.push(asset);
     }
-    let serialized = serde_json::to_string(&game).unwrap();
+    let serialized = serde_json::to_string(&hegemony_server::room::RoomEnvelope::from_game(
+        game.clone(),
+    ))
+    .unwrap();
     connection
         .execute(
             "UPDATE rooms SET state=?2,initial_state=?2 WHERE id=?1",
@@ -163,10 +217,11 @@ async fn paid_sacrifice_death_trigger_and_accepted_frame_restore_without_repayme
             card_id: Some(spell_id),
             cost_selected: Some(vec![source_id.clone()]),
             ..Action::new("play")
-        },
+        }
+        .into(),
     };
     let paid = store
-        .command(&a.room_id, &a.token, cast.clone())
+        .session_command(&a.room_id, &a.token, cast.clone())
         .await
         .unwrap();
     assert_eq!(paid.pending_choice.as_ref().unwrap().kind, "trigger");
@@ -181,15 +236,25 @@ async fn paid_sacrifice_death_trigger_and_accepted_frame_restore_without_repayme
     assert_eq!(first.stack[0].frame.as_ref().unwrap().already_paid.len(), 2);
     drop(store);
     let store = Store::open(&db).unwrap();
-    let retry = store.command(&a.room_id, &a.token, cast).await.unwrap();
+    let retry = store
+        .session_command(&a.room_id, &a.token, cast)
+        .await
+        .unwrap();
     assert_eq!(
         serde_json::to_string(&retry).unwrap(),
         serde_json::to_string(&paid).unwrap()
     );
-    assert_eq!(store.state(&a.room_id, &a.token).await.unwrap().version, 2);
-    let choice = paid.pending_choice.unwrap();
+    assert_eq!(
+        store
+            .state_at_now(&a.room_id, &a.token, 0)
+            .await
+            .unwrap()
+            .version,
+        2
+    );
+    let choice = paid.pending_choice.clone().unwrap();
     store
-        .command(
+        .session_command(
             &a.room_id,
             &a.token,
             Command {
@@ -199,17 +264,18 @@ async fn paid_sacrifice_death_trigger_and_accepted_frame_restore_without_repayme
                     choice_id: Some(choice.id),
                     selected: Some(vec!["p1".into()]),
                     ..Action::new("choose")
-                },
+                }
+                .into(),
             },
         )
         .await
         .unwrap();
     store
-        .command(&a.room_id, &a.token, command("pass-a", 3, "pass"))
+        .session_command(&a.room_id, &a.token, command("pass-a", 3, "pass"))
         .await
         .unwrap();
     let middle = store
-        .command(&a.room_id, &b.token, command("pass-b", 4, "pass"))
+        .session_command(&a.room_id, &b.token, command("pass-b", 4, "pass"))
         .await
         .unwrap();
     let private = middle.pending_choice.as_ref().unwrap();
@@ -218,6 +284,7 @@ async fn paid_sacrifice_death_trigger_and_accepted_frame_restore_without_repayme
         .replay(&a.room_id)
         .unwrap()
         .pending
+        .clone()
         .unwrap()
         .resolution;
     let ChoiceResolution::Frame {
@@ -232,7 +299,7 @@ async fn paid_sacrifice_death_trigger_and_accepted_frame_restore_without_repayme
     drop(store);
     let store = Store::open(&db).unwrap();
     assert_eq!(
-        serde_json::to_string(&store.state(&a.room_id, &b.token).await.unwrap()).unwrap(),
+        serde_json::to_string(&store.state_at_now(&a.room_id, &b.token, 0).await.unwrap()).unwrap(),
         serde_json::to_string(&middle).unwrap()
     );
     let discard = Command {
@@ -242,18 +309,19 @@ async fn paid_sacrifice_death_trigger_and_accepted_frame_restore_without_repayme
             choice_id: Some(private.id.clone()),
             selected: Some(vec![private.options[0].id.clone()]),
             ..Action::new("choose")
-        },
+        }
+        .into(),
     };
     store
-        .command(&a.room_id, &b.token, discard.clone())
+        .session_command(&a.room_id, &b.token, discard.clone())
         .await
         .unwrap();
     store
-        .command(&a.room_id, &a.token, command("pass-a2", 6, "pass"))
+        .session_command(&a.room_id, &a.token, command("pass-a2", 6, "pass"))
         .await
         .unwrap();
     let complete = store
-        .command(&a.room_id, &b.token, command("pass-b2", 7, "pass"))
+        .session_command(&a.room_id, &b.token, command("pass-b2", 7, "pass"))
         .await
         .unwrap();
     assert!(complete.stack.is_empty() && complete.pending_choice.is_none());
@@ -263,8 +331,18 @@ async fn paid_sacrifice_death_trigger_and_accepted_frame_restore_without_repayme
     assert_eq!(final_game.players[1].graveyard.len(), 2);
     assert_eq!(final_game.players[0].graveyard.len(), 1);
     assert!(final_game.players[0].assets.iter().all(|c| c.exhausted));
-    store.command(&a.room_id, &b.token, discard).await.unwrap();
-    assert_eq!(store.state(&a.room_id, &a.token).await.unwrap().version, 8);
+    store
+        .session_command(&a.room_id, &b.token, discard)
+        .await
+        .unwrap();
+    assert_eq!(
+        store
+            .state_at_now(&a.room_id, &a.token, 0)
+            .await
+            .unwrap()
+            .version,
+        8
+    );
     assert!(
         Store::open_read_only(&db)
             .unwrap()
@@ -305,7 +383,9 @@ async fn detective_reveal_choice_and_bound_frame_restore_without_repayment_or_pr
             r.get(0)
         })
         .unwrap();
-    let mut game = Game::from_persisted(&initial).unwrap();
+    let mut game = hegemony_server::room::RoomEnvelope::from_persisted(&initial)
+        .unwrap()
+        .game;
     for player in &mut game.players {
         player.ready = true;
     }
@@ -343,7 +423,10 @@ async fn detective_reveal_choice_and_bound_frame_restore_without_repayment_or_pr
         let asset = game.make_card("JC058", 0);
         game.players[0].assets.push(asset);
     }
-    let serialized = serde_json::to_string(&game).unwrap();
+    let serialized = serde_json::to_string(&hegemony_server::room::RoomEnvelope::from_game(
+        game.clone(),
+    ))
+    .unwrap();
     connection
         .execute(
             "UPDATE rooms SET state=?2,initial_state=?2 WHERE id=?1",
@@ -362,23 +445,24 @@ async fn detective_reveal_choice_and_bound_frame_restore_without_repayment_or_pr
         action: Action {
             card_id: Some(detective_id),
             ..Action::new("reveal")
-        },
+        }
+        .into(),
     };
     let paid = store
-        .command(&a.room_id, &a.token, reveal.clone())
+        .session_command(&a.room_id, &a.token, reveal.clone())
         .await
         .unwrap();
     assert_eq!(paid.stack.len(), 1);
     assert!(paid.assets.iter().all(|c| c.exhausted));
     store
-        .command(&a.room_id, &a.token, command("reveal-pass-a", 2, "pass"))
+        .session_command(&a.room_id, &a.token, command("reveal-pass-a", 2, "pass"))
         .await
         .unwrap();
     store
-        .command(&a.room_id, &b.token, command("reveal-pass-b", 3, "pass"))
+        .session_command(&a.room_id, &b.token, command("reveal-pass-b", 3, "pass"))
         .await
         .unwrap();
-    let choosing = store.state(&a.room_id, &a.token).await.unwrap();
+    let choosing = store.state_at_now(&a.room_id, &a.token, 0).await.unwrap();
     let choice = choosing.pending_choice.as_ref().unwrap();
     assert_eq!(choice.kind, "trigger");
     assert_eq!(choice.options.len(), 1);
@@ -387,7 +471,7 @@ async fn detective_reveal_choice_and_bound_frame_restore_without_repayment_or_pr
     assert_eq!(hidden.name, "暗藏者");
     assert!(hidden.card_id.is_none() && hidden.text.is_none() && hidden.cost.is_none());
     assert!(choosing.stack.is_empty());
-    let other = store.state(&a.room_id, &b.token).await.unwrap();
+    let other = store.state_at_now(&a.room_id, &b.token, 0).await.unwrap();
     assert!(other.pending_choice.is_none());
     assert_eq!(other.waiting_choice.as_ref().unwrap().player_id, "p0");
     let choose = Command {
@@ -397,36 +481,54 @@ async fn detective_reveal_choice_and_bound_frame_restore_without_repayment_or_pr
             choice_id: Some(choice.id.clone()),
             selected: Some(vec![target_id.clone()]),
             ..Action::new("choose")
-        },
+        }
+        .into(),
     };
     drop(store);
 
     let store = Store::open(&db).unwrap();
     assert_eq!(
-        serde_json::to_string(&store.state(&a.room_id, &a.token).await.unwrap()).unwrap(),
+        serde_json::to_string(&store.state_at_now(&a.room_id, &a.token, 0).await.unwrap()).unwrap(),
         serde_json::to_string(&choosing).unwrap()
     );
-    let retry = store.command(&a.room_id, &a.token, reveal).await.unwrap();
+    let retry = store
+        .session_command(&a.room_id, &a.token, reveal)
+        .await
+        .unwrap();
     assert_eq!(
         serde_json::to_string(&retry).unwrap(),
         serde_json::to_string(&paid).unwrap()
     );
-    assert_eq!(store.state(&a.room_id, &a.token).await.unwrap().version, 4);
+    assert_eq!(
+        store
+            .state_at_now(&a.room_id, &a.token, 0)
+            .await
+            .unwrap()
+            .version,
+        4
+    );
     let wrong_seat = Command {
         command_id: "wrong-chooser".into(),
         ..choose.clone()
     };
     assert_eq!(
         store
-            .command(&a.room_id, &b.token, wrong_seat)
+            .session_command(&a.room_id, &b.token, wrong_seat)
             .await
             .unwrap_err()
             .status,
         StatusCode::BAD_REQUEST
     );
-    assert_eq!(store.state(&a.room_id, &a.token).await.unwrap().version, 4);
+    assert_eq!(
+        store
+            .state_at_now(&a.room_id, &a.token, 0)
+            .await
+            .unwrap()
+            .version,
+        4
+    );
     let bound = store
-        .command(&a.room_id, &a.token, choose.clone())
+        .session_command(&a.room_id, &a.token, choose.clone())
         .await
         .unwrap();
     assert_eq!(bound.stack.len(), 1);
@@ -445,21 +547,31 @@ async fn detective_reveal_choice_and_bound_frame_restore_without_repayment_or_pr
 
     let store = Store::open(&db).unwrap();
     assert_eq!(
-        serde_json::to_string(&store.state(&a.room_id, &a.token).await.unwrap()).unwrap(),
+        serde_json::to_string(&store.state_at_now(&a.room_id, &a.token, 0).await.unwrap()).unwrap(),
         serde_json::to_string(&bound).unwrap()
     );
-    let retry = store.command(&a.room_id, &a.token, choose).await.unwrap();
+    let retry = store
+        .session_command(&a.room_id, &a.token, choose)
+        .await
+        .unwrap();
     assert_eq!(
         serde_json::to_string(&retry).unwrap(),
         serde_json::to_string(&bound).unwrap()
     );
-    assert_eq!(store.state(&a.room_id, &a.token).await.unwrap().version, 5);
+    assert_eq!(
+        store
+            .state_at_now(&a.room_id, &a.token, 0)
+            .await
+            .unwrap()
+            .version,
+        5
+    );
     store
-        .command(&a.room_id, &a.token, command("destroy-pass-a", 5, "pass"))
+        .session_command(&a.room_id, &a.token, command("destroy-pass-a", 5, "pass"))
         .await
         .unwrap();
     let complete = store
-        .command(&a.room_id, &b.token, command("destroy-pass-b", 6, "pass"))
+        .session_command(&a.room_id, &b.token, command("destroy-pass-b", 6, "pass"))
         .await
         .unwrap();
     assert!(
@@ -505,6 +617,8 @@ async fn legacy_state_is_rejected_explicitly_without_silent_migration() {
         ("rust-v0.2.0", "limited-v2", Some(2)),
         ("rust-v0.2.1", "limited-v2.1", Some(2)),
         ("rust-v0.2.2", "limited-v2.1", Some(2)),
+        ("rust-v0.2.3", "limited-v2.2", Some(2)),
+        ("rust-v0.2.4", "limited-v2.2", Some(2)),
     ] {
         let mut legacy: serde_json::Value = serde_json::from_str(&stored).unwrap();
         if let Some(schema) = schema {
@@ -571,58 +685,79 @@ async fn pair(store: &Store) -> (service::Session, service::Session) {
 async fn dedupe_conflicts_rejections_auth_and_replay_are_strict() {
     let store = Store::open(":memory:").unwrap();
     let (a, b) = pair(&store).await;
-    assert!(store.state(&a.room_id, &b.token).await.is_ok());
+    assert!(store.state_at_now(&a.room_id, &b.token, 0).await.is_ok());
     assert_eq!(
-        store.state(&a.room_id, "wrong").await.unwrap_err().status,
+        store
+            .state_at_now(&a.room_id, "wrong", 0)
+            .await
+            .unwrap_err()
+            .status,
         StatusCode::UNAUTHORIZED
     );
     let c = command("ready-a", 1, "ready");
     let ready = store
-        .command(&a.room_id, &a.token, c.clone())
+        .session_command(&a.room_id, &a.token, c.clone())
         .await
         .unwrap();
     assert_eq!(ready.version, 2);
     let ready_b = store
-        .command(&a.room_id, &b.token, command("ready-b", 2, "ready"))
+        .session_command(&a.room_id, &b.token, command("ready-b", 2, "ready"))
         .await
         .unwrap();
     assert_eq!(ready_b.version, 3);
-    let retry = store.command(&a.room_id, &a.token, c).await.unwrap();
+    let retry = store
+        .session_command(&a.room_id, &a.token, c)
+        .await
+        .unwrap();
     assert_eq!(
         serde_json::to_string(&retry).unwrap(),
         serde_json::to_string(&ready).unwrap()
     );
-    assert_eq!(store.state(&a.room_id, &a.token).await.unwrap().version, 3);
+    assert_eq!(
+        store
+            .state_at_now(&a.room_id, &a.token, 0)
+            .await
+            .unwrap()
+            .version,
+        3
+    );
     assert!(store
-        .command(&a.room_id, &b.token, command("ready-a", 3, "ready"))
+        .session_command(&a.room_id, &b.token, command("ready-a", 3, "ready"))
         .await
         .is_err());
     let err = store
-        .command(&a.room_id, &a.token, command("stale", 2, "start"))
+        .session_command(&a.room_id, &a.token, command("stale", 2, "start"))
         .await
         .unwrap_err();
     assert_eq!(err.status, StatusCode::CONFLICT);
     assert_eq!(err.view.unwrap().version, 3);
     assert!(store
-        .command(&a.room_id, &b.token, command("not-host", 3, "start"))
+        .session_command(&a.room_id, &b.token, command("not-host", 3, "start"))
         .await
         .is_err());
-    assert_eq!(store.state(&a.room_id, &a.token).await.unwrap().version, 3);
+    assert_eq!(
+        store
+            .state_at_now(&a.room_id, &a.token, 0)
+            .await
+            .unwrap()
+            .version,
+        3
+    );
     let start = store
-        .command(&a.room_id, &a.token, command("start", 3, "start"))
+        .session_command(&a.room_id, &a.token, command("start", 3, "start"))
         .await
         .unwrap();
     assert_eq!(start.version, 4);
     assert_eq!(start.pending_choice.as_ref().unwrap().kind, "mulligan");
     assert!(store
-        .state(&a.room_id, &b.token)
+        .state_at_now(&a.room_id, &b.token, 0)
         .await
         .unwrap()
         .pending_choice
         .is_none());
     let replay = store.replay(&a.room_id).unwrap();
     assert_eq!(
-        serde_json::to_string(&replay.view(0)).unwrap(),
+        serde_json::to_string(&replay.view(0, replay.pacing.last_server_now_ms)).unwrap(),
         serde_json::to_string(&start).unwrap()
     );
     let serialized = serde_json::to_string(&start).unwrap();
@@ -635,27 +770,30 @@ async fn sqlite_reopen_restores_identity_pending_choice_and_dedupe() {
     let store = Store::open(&db).unwrap();
     let (a, b) = pair(&store).await;
     store
-        .command(&a.room_id, &a.token, command("r-a", 1, "ready"))
+        .session_command(&a.room_id, &a.token, command("r-a", 1, "ready"))
         .await
         .unwrap();
     store
-        .command(&a.room_id, &b.token, command("r-b", 2, "ready"))
+        .session_command(&a.room_id, &b.token, command("r-b", 2, "ready"))
         .await
         .unwrap();
     let original = store
-        .command(&a.room_id, &a.token, command("s", 3, "start"))
+        .session_command(&a.room_id, &a.token, command("s", 3, "start"))
         .await
         .unwrap();
     drop(store);
     let recovered = Store::open(&db).unwrap();
-    let state = recovered.state(&a.room_id, &a.token).await.unwrap();
+    let state = recovered
+        .state_at_now(&a.room_id, &a.token, 0)
+        .await
+        .unwrap();
     assert_eq!(
         serde_json::to_string(&state).unwrap(),
         serde_json::to_string(&original).unwrap()
     );
     assert_eq!(state.hand.len(), 6);
     assert_eq!(state.players[0].deck_count, 44);
-    let p = state.pending_choice.unwrap();
+    let p = state.pending_choice.clone().unwrap();
     let choice = Command {
         command_id: "mulligan".into(),
         expected_version: 4,
@@ -664,17 +802,21 @@ async fn sqlite_reopen_restores_identity_pending_choice_and_dedupe() {
             choice_id: Some(p.id),
             selected: Some(vec![p.options[0].id.clone()]),
             ..Action::default()
-        },
+        }
+        .into(),
     };
     let changed = recovered
-        .command(&a.room_id, &a.token, choice.clone())
+        .session_command(&a.room_id, &a.token, choice.clone())
         .await
         .unwrap();
     assert_eq!(changed.version, 5);
     assert_ne!(changed.hand[0].instance_id, original.hand[0].instance_id);
     drop(recovered);
     let again = Store::open(&db).unwrap();
-    let retry = again.command(&a.room_id, &a.token, choice).await.unwrap();
+    let retry = again
+        .session_command(&a.room_id, &a.token, choice)
+        .await
+        .unwrap();
     assert_eq!(
         serde_json::to_string(&retry).unwrap(),
         serde_json::to_string(&changed).unwrap()
@@ -687,18 +829,18 @@ async fn failed_transaction_does_not_ack_or_mutate_state() {
     let db = dir.path().join("room.sqlite3");
     let store = Store::open(&db).unwrap();
     let (a, _) = pair(&store).await;
-    let before = store.state(&a.room_id, &a.token).await.unwrap();
+    let before = store.state_at_now(&a.room_id, &a.token, 0).await.unwrap();
     let external = rusqlite::Connection::open(&db).unwrap();
     external.execute_batch("CREATE TRIGGER deny_command BEFORE INSERT ON commands BEGIN SELECT RAISE(ABORT,'simulated durable-write failure'); END;").unwrap();
     assert_eq!(
         store
-            .command(&a.room_id, &a.token, command("fail", 1, "ready"))
+            .session_command(&a.room_id, &a.token, command("fail", 1, "ready"))
             .await
             .unwrap_err()
             .status,
         StatusCode::INTERNAL_SERVER_ERROR
     );
-    let after = store.state(&a.room_id, &a.token).await.unwrap();
+    let after = store.state_at_now(&a.room_id, &a.token, 0).await.unwrap();
     assert_eq!(
         serde_json::to_string(&before).unwrap(),
         serde_json::to_string(&after).unwrap()
@@ -706,7 +848,11 @@ async fn failed_transaction_does_not_ack_or_mutate_state() {
     drop(store);
     let recovered = Store::open(&db).unwrap();
     assert_eq!(
-        recovered.state(&a.room_id, &a.token).await.unwrap().version,
+        recovered
+            .state_at_now(&a.room_id, &a.token, 0)
+            .await
+            .unwrap()
+            .version,
         1
     );
 }
@@ -767,7 +913,14 @@ async fn room_catalog_requires_a_token_for_that_room_and_returns_current_pool() 
             .any(|c| c["id"] == "JC058"));
         assert!(!String::from_utf8(bytes.to_vec()).unwrap().contains(token));
     }
-    assert_eq!(store.state(&a.room_id, &a.token).await.unwrap().version, 1);
+    assert_eq!(
+        store
+            .state_at_now(&a.room_id, &a.token, 0)
+            .await
+            .unwrap()
+            .version,
+        1
+    );
 }
 #[tokio::test]
 async fn authenticated_sse_projects_actor_view_and_updates_after_commit() {
@@ -809,7 +962,7 @@ async fn authenticated_sse_projects_actor_view_and_updates_after_commit() {
     assert!(text.contains("\"you\":\"p1\""));
     assert!(text.contains("id: 1"));
     store
-        .command(&a.room_id, &a.token, command("change", 1, "ready"))
+        .session_command(&a.room_id, &a.token, command("change", 1, "ready"))
         .await
         .unwrap();
     let update = tokio::time::timeout(std::time::Duration::from_secs(1), body.frame())
@@ -832,15 +985,15 @@ async fn read_only_audit_cli_matches_seed_journal_and_detects_corruption() {
     let store = Store::open(&db).unwrap();
     let (a, b) = pair(&store).await;
     store
-        .command(&a.room_id, &a.token, command("ready-a", 1, "ready"))
+        .session_command(&a.room_id, &a.token, command("ready-a", 1, "ready"))
         .await
         .unwrap();
     store
-        .command(&a.room_id, &b.token, command("ready-b", 2, "ready"))
+        .session_command(&a.room_id, &b.token, command("ready-b", 2, "ready"))
         .await
         .unwrap();
     store
-        .command(&a.room_id, &a.token, command("start", 3, "start"))
+        .session_command(&a.room_id, &a.token, command("start", 3, "start"))
         .await
         .unwrap();
     let audit = Store::open_read_only(&db).unwrap();
@@ -875,7 +1028,7 @@ async fn read_only_audit_cli_matches_seed_journal_and_detects_corruption() {
         .unwrap()
         .contains("\"matches\":true"));
     let mut altered = store.replay(&a.room_id).unwrap();
-    altered.turn += 1;
+    altered.game.turn += 1;
     let db_conn = rusqlite::Connection::open(&db).unwrap();
     db_conn
         .execute(

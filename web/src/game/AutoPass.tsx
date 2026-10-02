@@ -20,7 +20,7 @@ export function AutoPass({ view, busy, uncertain, connection, onAction }: {
   const pass = view.legalActions.length === 1 && view.legalActions[0].kind === 'pass' ? view.legalActions[0] : null;
   const key = pass ? `${view.roomId}:${view.version}:${pass.id}` : '';
   const canPass = enabled && view.status === 'playing' && !view.pendingChoice && !view.waitingChoice
-    && !!pass && !busy && !uncertain && connection === 'online';
+    && !view.responseWindow && !!pass && !busy && !uncertain && connection === 'online';
 
   useEffect(() => {
     if (!canPass || !pass || sent.current === key) return;
@@ -36,6 +36,7 @@ export function AutoPass({ view, busy, uncertain, connection, onAction }: {
   const status = !enabled ? '关闭 · 由你手动让过'
     : view.status !== 'playing' ? '对局已结束，自动让过已暂停'
     : view.pendingChoice || view.waitingChoice ? '正在等待选择，自动让过已暂停'
+    : view.responseWindow ? '连锁决定期间，自动让过已暂停'
     : uncertain || busy ? '等待上一行动确认'
     : connection !== 'online' ? '连接恢复后继续'
     : !pass ? '有可用行动或等待他人，自动让过已暂停'

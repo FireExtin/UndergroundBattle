@@ -11,6 +11,19 @@ afterEach(() => { cleanup(); vi.useRealTimers(); localStorage.clear(); });
 const advance = (ms = 550) => act(() => vi.advanceTimersByTime(ms));
 
 describe('opt-in automatic pass', () => {
+  it('cancels the product timer for every projected intent status and resumes only after the server removes the window', () => {
+    localStorage.setItem('hegemony.autoPass.v1', 'true'); const submit = vi.fn();
+    const { rerender } = render(<AutoPass view={emptyWindow} busy={false} uncertain={false} connection="online" onAction={submit} />);
+    for (const status of ['undecided', 'composing', 'passed'] as const) {
+      advance(300);
+      rerender(<AutoPass view={{ ...emptyWindow, responseWindow: { id: 'intent-window', stackTopId: 'effect', holderTeam: 0, canBegin: false, members: [{ playerId: 'p0', status }] } }} busy={false} uncertain={false} connection="online" onAction={submit} />);
+      expect(screen.getByText('连锁决定期间，自动让过已暂停')).toBeInTheDocument();
+      advance(10_000); expect(submit).not.toHaveBeenCalled();
+      rerender(<AutoPass view={emptyWindow} busy={false} uncertain={false} connection="online" onAction={submit} />);
+    }
+    advance(549); expect(submit).not.toHaveBeenCalled();
+    advance(1); expect(submit).toHaveBeenCalledExactlyOnceWith(pass);
+  });
   it('defaults off, remembers opting in, submits once per version and cancels when stopped', () => {
     const submit = vi.fn();
     const { rerender } = render(<AutoPass view={emptyWindow} busy={false} uncertain={false} connection="online" onAction={submit} />);

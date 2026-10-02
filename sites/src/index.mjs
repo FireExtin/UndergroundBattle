@@ -26,7 +26,7 @@ export default {
       const service = new RoomService(env.DB, kernel);
       if (request.method === 'POST' && url.pathname === '/api/rooms') return json(await service.create(await body(request)));
       if (request.method === 'POST' && url.pathname === '/api/rooms/join') return json(await service.join(await body(request)));
-      const match = url.pathname.match(/^\/api\/rooms\/([a-f0-9]{24})\/(state|commands|events|catalog)$/);
+      const match = url.pathname.match(/^\/api\/rooms\/([a-f0-9]{24})\/(state|commands|events|catalog|quote)$/);
       if (!match) throw new HttpError(404, '接口不存在');
       const [, id, operation] = match;
       if (operation === 'catalog' && request.method === 'GET') return json({ ...await service.catalog(id, request.headers.get('authorization')), transport: 'polling', entryIdempotency: true });
@@ -35,10 +35,11 @@ export default {
         return view ? json(view) : new Response(null, { status: 204, headers: { 'Cache-Control': 'no-store' } });
       }
       if (operation === 'commands' && request.method === 'POST') return json(await service.command(id, request.headers.get('authorization'), await body(request)));
+      if (operation === 'quote' && request.method === 'POST') return json(await service.quote(id, request.headers.get('authorization'), await body(request)));
       if (operation === 'events') throw new HttpError(410, '本服务按版本轮询同步，请刷新客户端。');
       throw new HttpError(405, '请求方法不支持');
     } catch (error) {
-      if (error instanceof HttpError) return json({ error: error.status === 401 ? 'invalid_seat_token' : 'request_failed', message: error.message, ...(error.view ? { view: error.view } : {}) }, error.status);
+      if (error instanceof HttpError) return json({ error: error.code || (error.status === 401 ? 'invalid_seat_token' : 'request_failed'), message: error.message, ...(error.view ? { view: error.view } : {}) }, error.status);
       // No room state, command body, token, invite, or database error details are logged.
       console.error('hegemony persistence operation failed', storageFailure(error));
       return json({ error: 'storage_error', message: '牌桌服务暂不可用，未确认此操作。请使用原请求重试。' }, 503);

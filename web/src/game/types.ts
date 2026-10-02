@@ -20,6 +20,7 @@ export type Action = {
   choiceId?: string; selected?: string[]; top?: string[]; bottom?: string[];
   allocations?: Record<string, number>;
   deckDraft?: import('./deckLibrary').DeckDraft;
+  windowId?: string; intentId?: string; action?: Action;
 };
 export type LegalAction = Action & { id: string; label: string; description?: string };
 export type Choice = {
@@ -47,6 +48,11 @@ export type StackEffect = {
     valid: boolean; status: 'valid' | 'missing' | 'changed' | 'guardAccepted'; invalidReason?: string;
   }[];
 };
+export type ResponseIntentWindow = {
+  id: string; stackTopId: string; holderTeam: number;
+  members: { playerId: string; status: 'undecided' | 'composing' | 'passed'; deadlineMs?: number }[];
+  canBegin: boolean; myIntentId?: string;
+};
 export type View = {
   roomId: string; inviteCode: string; version: number; mode: 'duel' | 'teams';
   status: 'lobby' | 'playing' | 'finished'; you: string; players: Player[];
@@ -60,6 +66,8 @@ export type View = {
   versions: { rules: string; cardPool: string; engine: string };
   worldDeckCount?: number;
   yourDeck?: import('./deckLibrary').DeckDraft | null;
+  serverNowMs?: number;
+  responseWindow?: ResponseIntentWindow | null;
 };
 export type Deck = { id: string; name: string; description: string; cardCount: number; cards: { cardId: string; count: number }[] };
 export type Catalog = { rulesVersion: string; cardPoolVersion: string; engineVersion: string; decks: Deck[]; cards: CardDefinition[];
