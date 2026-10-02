@@ -1,5 +1,7 @@
 """Validate source-completion claims separately from engine and UI acceptance."""
 from __future__ import annotations
+from pathlib import PurePosixPath
+from urllib.parse import quote
 
 FIELDS = {
     "name", "subtitle", "nameInk", "colorKey", "basicType", "subtypes",
@@ -124,6 +126,28 @@ def validate_specifications(specifications, coverage, index, recovery):
             "A same-name PDF example cannot silently bind a missing archive version")
     require(all(not x["useAsRuleEvidence"] for x in recovery["externalAttempts"]),
             "Failed network recovery cannot become rule evidence")
+    recovered_ids = set()
+    for original in recovery.get("recoveredOriginals", []):
+        i = original["cardId"]
+        recovered_ids.add(i)
+        path = PurePosixPath(original["path"])
+        commit = original["sourceRepositoryCommit"]
+        source_path = original["sourceRepositoryPath"]
+        expected_url = ("https://raw.githubusercontent.com/ymsj-fun/ymsj-fun.github.io/"
+                        + commit + "/" + quote(source_path))
+        require(path.is_relative_to("docs/factions/recovered-originals")
+                and ".." not in path.parts and path.name.startswith(i + " ")
+                and source_path == "cards/" + path.name
+                and len(commit) == 40 and all(c in "0123456789abcdef" for c in commit)
+                and original["sourceUrl"] == expected_url,
+                "Recovered original must preserve exact ID and immutable public source: " + i)
+        require(original["archiveBindingConfirmed"] and original["originalImageReviewed"]
+                and original["identityBasis"] == "sameIdOriginalRepositoryPinnedImage"
+                and not original["selectionEnabled"]
+                and {"path": str(path), "sha256": original["sha256"]} in records.get(i, {}).get("sourceImages", [])
+                and i in specs and specs[i]["sourceVerification"]["imagePath"] == str(path),
+                "Recovered image must be reviewed and bound separately from gameplay acceptance: " + i)
+    require(recovered_ids.isdisjoint(missing), "Recovered originals cannot remain missing-image quarantine")
     for unresolved in recovery.get("unresolvedPrintedSymbols", []):
         i = unresolved["cardId"]
         require(i in specs and specs[i]["sourceVerification"]["status"] == "blocked"

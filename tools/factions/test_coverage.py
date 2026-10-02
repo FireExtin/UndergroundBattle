@@ -120,7 +120,7 @@ class CoverageTests(unittest.TestCase):
     def test_group_plan_cannot_hide_dependency_cycle_or_unreviewed_representative(self):
         groups = copy.deepcopy(self.groups)
         groups["groups"][0]["dependsOnGroupIds"] = [groups["groups"][0]["id"]]
-        groups["groups"][1]["representativeCardIds"] = ["DQBQ01"]
+        groups["groups"][1]["representativeCardIds"] = ["TK011"]
         errors = validate_groups(groups, self.coverage, self.index)
         self.assertTrue(any("cycle" in e for e in errors))
         self.assertTrue(any("original image review" in e for e in errors))
@@ -149,6 +149,24 @@ class CoverageTests(unittest.TestCase):
         errors = self.source_errors(recovery=recovery)
         self.assertTrue(any("same-name" in e for e in errors))
         self.assertTrue(any("Failed network" in e for e in errors))
+
+    def test_recovered_original_cannot_use_mutable_branch_or_wrong_identity(self):
+        recovery = copy.deepcopy(self.recovery)
+        recovery["recoveredOriginals"][0]["sourceRepositoryCommit"] = "master"
+        self.assertTrue(any("immutable public source" in e for e in self.source_errors(recovery=recovery)))
+        recovery = copy.deepcopy(self.recovery)
+        recovery["recoveredOriginals"][0]["cardId"] = "DQBQ02"
+        self.assertTrue(any("exact ID" in e for e in self.source_errors(recovery=recovery)))
+
+    def test_recovered_image_hash_must_match_observed_source_binding(self):
+        recovery = copy.deepcopy(self.recovery)
+        recovery["recoveredOriginals"][0]["sha256"] = "0" * 64
+        self.assertTrue(any("bound separately" in e for e in self.source_errors(recovery=recovery)))
+
+    def test_recovered_image_cannot_unlock_gameplay(self):
+        recovery = copy.deepcopy(self.recovery)
+        recovery["recoveredOriginals"][0]["selectionEnabled"] = True
+        self.assertTrue(any("gameplay acceptance" in e for e in self.source_errors(recovery=recovery)))
 
     def test_normalizing_icons_cannot_move_source_exhaust_from_effect_to_cost(self):
         specs = copy.deepcopy(self.specifications)
