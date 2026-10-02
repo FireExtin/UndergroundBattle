@@ -10375,6 +10375,638 @@
       ],
       "editionStatus": "pinnedImageVariant",
       "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ39": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ39",
+      "verifiedFields": {
+        "name": "恶魔刺青",
+        "colorKey": "红",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标人类角色；持续 受此结附的角色获得永久战斗1和杀伤1，且额外具有恶魔类别。；行动①，横置，牺牲一个恶魔角色：目标敌方玩家牺牲一个角色。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "continuous",
+        "combatKeywords",
+        "exhaust",
+        "sacrifice"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ40": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ40",
+      "verifiedFields": {
+        "name": "蚀刻头骨",
+        "colorKey": "红",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标地区；行动 牺牲蚀刻头骨：在目标角色或附属上放置一个时间标志，然后若该地区有四个或更多时间标志，则毁灭该地区。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "sacrifice",
+        "timeDestroy",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ41": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ41",
+      "verifiedFields": {
+        "name": "衰败之环",
+        "colorKey": "红",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标角色；进场触发 预测2。；触发 每当受此结附的角色受到伤害时，对该角色额外造成1点创伤。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "deckChoice",
+        "continuous"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ42": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ42",
+      "verifiedFields": {
+        "name": "末日钟降临",
+        "colorKey": "红",
+        "basicType": "事务"
+      },
+      "abilitySummary": "唯一；末日钟降临不能被响应；额外费用 每有一个已毁灭的地区，打出末日钟降临的所需费用减少④。；额外费用 自本方卡牌上移除X个时间标志，使打出末日钟降临的所需费用减少X。；行动 将你的秘社牌替换为末日钟。",
+      "confirmedMechanismIds": [
+        "uniqueInPlay",
+        "priority",
+        "timeDestroy",
+        "costReduction",
+        "society",
+        "transform"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ43": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ43",
+      "verifiedFields": {
+        "name": "武装市民",
+        "colorKey": "灰",
+        "basicType": "角色"
+      },
+      "abilitySummary": "公开；只能打出在城市地区。；进场触发 在本地区的目标角色上放置一个锁定标志。若该角色上已有锁定标志，则改为对其造成1点伤害。",
+      "confirmedMechanismIds": [
+        "public",
+        "lock",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ44": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ44",
+      "verifiedFields": {
+        "name": "洛杉矶巡警",
+        "colorKey": "灰",
+        "basicType": "角色"
+      },
+      "abilitySummary": "公开；护卫1；只能打出在城市地区。；进场触发 将本地区的目标罪犯角色翻面为暗藏者，然后抓一张牌。",
+      "confirmedMechanismIds": [
+        "public",
+        "combatKeywords",
+        "hidden",
+        "deckChoice",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ45": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ45",
+      "verifiedFields": {
+        "name": "警用直升机",
+        "colorKey": "灰",
+        "basicType": "角色"
+      },
+      "abilitySummary": "公开；机动；只能打出在城市地区。；进场触发 选择一项：；在本地区的目标角色或暗藏者上放置一个锁定标志。；消灭位于本地区，且其上有锁定标志的目标角色或暗藏者。",
+      "confirmedMechanismIds": [
+        "public",
+        "mobility",
+        "lock",
+        "hidden",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ46": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ46",
+      "verifiedFields": {
+        "name": "辟邪铜雕",
+        "colorKey": "灰",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标地区；行动 横置：检视本地区的目标暗藏者，若该暗藏者的正面是罪犯类别，则将其横置，并在其上放置一个锁定标志。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "privatePeek",
+        "hidden",
+        "exhaust",
+        "lock",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ47": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ47",
+      "verifiedFields": {
+        "name": "雷鸟",
+        "colorKey": "白",
+        "basicType": "角色"
+      },
+      "abilitySummary": "公开；机动；屏障；非资产；不能被附属结附",
+      "confirmedMechanismIds": [
+        "public",
+        "mobility",
+        "barrier",
+        "nonAsset",
+        "attachment"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ48": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ48",
+      "verifiedFields": {
+        "name": "街头劫匪",
+        "colorKey": "黑",
+        "basicType": "角色"
+      },
+      "abilitySummary": "持续 若本地区有其他本方罪犯角色，则街头劫匪获得临时势力1和防御力+1。",
+      "confirmedMechanismIds": [
+        "continuous",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ50": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ50",
+      "verifiedFields": {
+        "name": "墓穴食尸鬼",
+        "colorKey": "黑",
+        "basicType": "角色"
+      },
+      "abilitySummary": "现身触发 从你的牌库中寻找一张死亡领域的角色牌，将该牌置于你的墓地，然后洗牌。",
+      "confirmedMechanismIds": [
+        "hidden",
+        "deckChoice"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ51": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ51",
+      "verifiedFields": {
+        "name": "温迪戈",
+        "colorKey": "黑",
+        "basicType": "角色"
+      },
+      "abilitySummary": "进场触发 从你牌库顶的八张牌中寻找任意数量名为无名尸体的牌，将这些牌放置于本地区，然后将其余的牌洗回牌库。；墓地行动 将本方墓地中三张名为无名尸体的牌封印在本方秘社上：将温迪戈从墓地中放置进场。",
+      "confirmedMechanismIds": [
+        "deckChoice",
+        "graveRecovery",
+        "gravePlay",
+        "seal",
+        "society"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ52": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ52",
+      "verifiedFields": {
+        "name": "大维齐尔迈哈穆德",
+        "colorKey": "黑",
+        "basicType": "角色"
+      },
+      "abilitySummary": "领袖；持续 你不能从手中正面打出角色牌。；持续 你可以从墓地中正面打出死亡领域的角色牌，就如同其在你手中一样。",
+      "confirmedMechanismIds": [
+        "leader",
+        "gravePlay",
+        "continuous",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ53": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ53",
+      "verifiedFields": {
+        "name": "尸舞舒拉密兹",
+        "colorKey": "黑",
+        "basicType": "角色"
+      },
+      "abilitySummary": "进场触发 将你墓地中的目标死亡领域角色牌置于你的手中。；触发 每当一张角色牌离开你的墓地时，在目标地区生成一个行尸角色指示物。",
+      "confirmedMechanismIds": [
+        "graveRecovery",
+        "token",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ55": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ55",
+      "verifiedFields": {
+        "name": "传奇落幕",
+        "colorKey": "黑",
+        "basicType": "事务"
+      },
+      "abilitySummary": "传奇落幕不能被响应。；快速行动 消灭目标独有角色。",
+      "confirmedMechanismIds": [
+        "priority",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ56": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ56",
+      "verifiedFields": {
+        "name": "亡者之夜",
+        "colorKey": "黑",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于本方秘社；进场触发 选择食尸鬼、行尸或骷髅类别。；持续 你所选择类别之本方角色获得临时势力1和防御力+1。若你的墓地中有七张或更多牌，则这些角色再获得永久战斗1和创伤1。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "society",
+        "continuous",
+        "combatKeywords",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ57": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ57",
+      "verifiedFields": {
+        "name": "骷髅纹身",
+        "colorKey": "黑",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标人类角色；持续 受此结附的角色获得防御力+1，且额外具有不死生物和骷髅类别。；行动 横置，牺牲一个不死生物角色：将目标玩家牌库顶的两张牌置于其墓地。若所牺牲的是骷髅角色，则你可以抓一张牌。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "continuous",
+        "exhaust",
+        "sacrifice",
+        "deckChoice"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ58": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ58",
+      "verifiedFields": {
+        "name": "噩梦残像",
+        "colorKey": "紫",
+        "basicType": "角色"
+      },
+      "abilitySummary": "灵体；现身触发 遏制1。",
+      "confirmedMechanismIds": [
+        "spirit",
+        "hidden",
+        "repress",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ59": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ59",
+      "verifiedFields": {
+        "name": "骇人畸变体",
+        "colorKey": "紫",
+        "basicType": "角色"
+      },
+      "abilitySummary": "死亡触发 对本地区的目标角色造成1点创伤。",
+      "confirmedMechanismIds": [
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ60": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ60",
+      "verifiedFields": {
+        "name": "失控宿主",
+        "colorKey": "紫",
+        "basicType": "角色"
+      },
+      "abilitySummary": "死亡触发 在本地区生成一个梦魔角色指示物。",
+      "confirmedMechanismIds": [
+        "token",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ61": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ61",
+      "verifiedFields": {
+        "name": "暗夜访客",
+        "colorKey": "紫",
+        "basicType": "角色"
+      },
+      "abilitySummary": "死亡触发 从你的牌库中寻找一张名为噩梦残像的角色牌，展示该牌后置于你的手中，然后洗牌。",
+      "confirmedMechanismIds": [
+        "deckChoice",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ62": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ62",
+      "verifiedFields": {
+        "name": "幻境之茧",
+        "colorKey": "紫",
+        "basicType": "角色"
+      },
+      "abilitySummary": "不能移动；进场触发 从你的牌库中寻找一张印刷费用小于或等于③的非人类紫色角色牌，将该牌封印在幻境之茧上，然后洗牌。",
+      "confirmedMechanismIds": [
+        "mobility",
+        "deckChoice",
+        "seal",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ63": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ63",
+      "verifiedFields": {
+        "name": "噬想兽",
+        "colorKey": "紫",
+        "basicType": "角色"
+      },
+      "abilitySummary": "进场触发 横置本地区上具有永久调查或临时调查能力图标的目标角色。；行动 若噬想兽被封印中，你可以如同其在手中一般将其正面打出。（你仍需要支付其费用，且需满足其忠诚需求。）",
+      "confirmedMechanismIds": [
+        "exhaust",
+        "seal",
+        "continuous"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ64": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ64",
+      "verifiedFields": {
+        "name": "幽灵鲸",
+        "colorKey": "紫",
+        "basicType": "角色"
+      },
+      "abilitySummary": "灵体；触发 当另一个本方灵体角色进场或一张本方灵体角色牌被封印时，将你牌库底的一张牌置于手中。",
+      "confirmedMechanismIds": [
+        "spirit",
+        "seal",
+        "deckChoice",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ66": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ66",
+      "verifiedFields": {
+        "name": "沉眠的海拉忒密沃森",
+        "colorKey": "紫",
+        "basicType": "角色"
+      },
+      "abilitySummary": "屏障；持续 所有玩家在非抓牌步骤不能抓牌。；触发 当沉眠的海拉忒密沃森从任何区域进入墓地时，若你的资产区具有紫色图标，你可以改为将其封印在目标永城地区。；封印持续 封印着沉眠的海拉忒密沃森的地区略过调查对抗。",
+      "confirmedMechanismIds": [
+        "barrier",
+        "continuous",
+        "seal",
+        "confrontation",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ67": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ67",
+      "verifiedFields": {
+        "name": "失忆",
+        "colorKey": "紫",
+        "basicType": "事务"
+      },
+      "abilitySummary": "行动 目标玩家随机选择一张手牌，展示该牌并将其置于其拥有者的牌库顶。预测2。若你操控梦魔角色，你可以令该玩家洗牌。",
+      "confirmedMechanismIds": [
+        "deckChoice"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ68": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ68",
+      "verifiedFields": {
+        "name": "潜行伏击者",
+        "colorKey": "中立",
+        "basicType": "角色"
+      },
+      "abilitySummary": "隐匿；非资产；触发 当潜行伏击者在暗藏者状态被敌方玩家检视或消灭时，该玩家选择本地区中其所操控的一个角色，潜行伏击者对该角色造成1点创伤。",
+      "confirmedMechanismIds": [
+        "hiddenOnly",
+        "nonAsset",
+        "hidden",
+        "privatePeek"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ69": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ69",
+      "verifiedFields": {
+        "name": "失控的人潮",
+        "colorKey": "中立",
+        "basicType": "角色"
+      },
+      "abilitySummary": "公开；非资产；进场触发 遏制X，X等于本地区人类角色数量之和。",
+      "confirmedMechanismIds": [
+        "public",
+        "nonAsset",
+        "repress"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ70": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ70",
+      "verifiedFields": {
+        "name": "弗朗西斯科",
+        "colorKey": "中立",
+        "basicType": "角色"
+      },
+      "abilitySummary": "持续 在其上每结附一个纹身，弗朗西斯科就获得永久调查1和防御力+1。；快速行动①，横置：从你的牌库或墓地中寻找一张纹身附属牌，将其结附于本地区的目标人类角色上，然后若从牌库寻找过则洗牌。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "continuous",
+        "deckChoice",
+        "graveRecovery",
+        "exhaust",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ71": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ71",
+      "verifiedFields": {
+        "name": "土御门真知子",
+        "colorKey": "中立",
+        "basicType": "角色"
+      },
+      "abilitySummary": "持续 你所打出的式神角色牌，其所需费用减少①。；触发 当土御门真知子或本方式神角色进场时，预测3，然后将你牌库顶牌封印在目标阴阳师上。",
+      "confirmedMechanismIds": [
+        "costReduction",
+        "deckChoice",
+        "seal",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ72": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ72",
+      "verifiedFields": {
+        "name": "稻荷神社童子",
+        "colorKey": "中立",
+        "basicType": "角色/附属"
+      },
+      "abilitySummary": "公开；不能移动；护卫1；结附于目标地区；持续 若所结附的地区有神社附属，则稻荷神社童子获得永久战斗1。；持续 双方玩家都不能从自己的牌库寻找牌。",
+      "confirmedMechanismIds": [
+        "public",
+        "mobility",
+        "combatKeywords",
+        "attachment",
+        "continuous",
+        "deckChoice",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ73": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ73",
+      "verifiedFields": {
+        "name": "道祖神",
+        "colorKey": "中立",
+        "basicType": "角色/附属"
+      },
+      "abilitySummary": "公开；不能移动；结附于目标地区；持续 道祖神的防御力等于其所结附地区上的本方势力标志数量。；行动①，横置：本地区的所有角色失去屏障，且不能再获得屏障直到回合结束。",
+      "confirmedMechanismIds": [
+        "public",
+        "mobility",
+        "attachment",
+        "continuous",
+        "barrier",
+        "exhaust",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ74": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ74",
+      "verifiedFields": {
+        "name": "意外事故",
+        "colorKey": "中立",
+        "basicType": "事务"
+      },
+      "abilitySummary": "快速行动 遏制1。抓一张牌。",
+      "confirmedMechanismIds": [
+        "repress",
+        "deckChoice"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ75": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ75",
+      "verifiedFields": {
+        "name": "群众歇斯底里",
+        "colorKey": "中立",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标城市地区。；持续 只要群众歇斯底里未横置，受此结附的地区略过调查对抗步骤。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "exhaust",
+        "confrontation",
+        "continuous"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ76": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ76",
+      "verifiedFields": {
+        "name": "大天狗纹身",
+        "colorKey": "中立",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标人类角色；持续 受此结附的角色获得护卫1，且额外具有罪犯类别。；行动 横置，牺牲一个罪犯角色：若所牺牲角色所在地区上没有本方势力标志，则在该地区上放置一个本方势力标志。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "combatKeywords",
+        "continuous",
+        "exhaust",
+        "sacrifice",
+        "confrontation"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
     }
   }
 }
