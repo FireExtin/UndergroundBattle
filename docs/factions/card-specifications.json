@@ -1634,6 +1634,67 @@
       "blockedCardIds": [],
       "gameImplementationAccepted": false,
       "independentUiPlaytestStatus": "notRun"
+    },
+    {
+      "id": "B25",
+      "groups": [
+        "星光俱乐部25–48原图"
+      ],
+      "cardIds": [
+        "XG25",
+        "XG26",
+        "XG27",
+        "XG28",
+        "XG29",
+        "XG30",
+        "XG31",
+        "XG32",
+        "XG33",
+        "XG34",
+        "XG35",
+        "XG36",
+        "XG37",
+        "XG38",
+        "XG39",
+        "XG40",
+        "XG41",
+        "XG42",
+        "XG43",
+        "XG44",
+        "XG45",
+        "XG46",
+        "XG47",
+        "XG48"
+      ],
+      "completedCardIds": [
+        "XG25",
+        "XG26",
+        "XG27",
+        "XG28",
+        "XG29",
+        "XG30",
+        "XG31",
+        "XG32",
+        "XG33",
+        "XG34",
+        "XG35",
+        "XG36",
+        "XG37",
+        "XG38",
+        "XG39",
+        "XG40",
+        "XG41",
+        "XG42",
+        "XG43",
+        "XG44",
+        "XG45",
+        "XG46",
+        "XG47",
+        "XG48"
+      ],
+      "blockedCardIds": [],
+      "gameImplementationAccepted": false,
+      "independentUiPlaytestStatus": "notRun"
     }
   ],
   "openQuestions": {
@@ -2044,7 +2105,13 @@
         "card-JZ66",
         "card-JZ68",
         "card-JZ73",
-        "card-XG05"
+        "card-XG05",
+        "card-XG30",
+        "card-XG31",
+        "card-XG32",
+        "card-XG33",
+        "card-XG35",
+        "card-XG37"
       ]
     },
     "crisisColorEmblemMismatch": {
@@ -70327,6 +70394,2932 @@
       "acceptanceCases": [
         {
           "id": "XG24-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "XG25": {
+      "cardId": "XG25",
+      "batchId": "B25",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/XG25 伥鬼.jpg",
+        "imageSha256": "cf05544939b89fffc4c94fe38f0f2e463fd5091a8ea5293835613afc0f49a661",
+        "evidenceId": "card-XG25",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "25/48",
+        "seriesSymbolObserved": "星光四芒形符号",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "伥鬼",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "黑",
+        "basicType": "角色",
+        "subtypes": [
+          "幽灵",
+          "诅咒"
+        ],
+        "printedCollectorCode": "25/48",
+        "seriesSymbol": "星光四芒形符号",
+        "printedCost": 2,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "黑",
+            "count": 1
+          }
+        ],
+        "domains": [
+          {
+            "id": "death",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "灵体"
+        ],
+        "printedRuleTextLines": [
+          "灵体",
+          "行动①：将相邻地区的目标敌方角色移动到本地区。该能力每回合只能发动一次。若伥鬼被封印在角色上，该能力也可发动。",
+          "死亡触发 若本方秘社上有隐秘〔月形〕标志，将伥鬼封印在目标角色上，而非置于墓地。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "灵体",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "行动①：将相邻地区的目标敌方角色移动到本地区。该能力每回合只能发动一次。若伥鬼被封印在角色上，该能力也可发动。",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-3",
+          "kind": "sourceTextOnly",
+          "printedText": "死亡触发 若本方秘社上有隐秘〔月形〕标志，将伥鬼封印在目标角色上，而非置于墓地。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "spirit",
+        "mobility",
+        "seal",
+        "mysticContest",
+        "temporaryIcons"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "XG25-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "XG26": {
+      "cardId": "XG26",
+      "batchId": "B25",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/XG26 看场打手.jpg",
+        "imageSha256": "cf75fa86f3bd93896b7bc948c10f4899a851b51d83bfd144237db225539bc2b0",
+        "evidenceId": "card-XG26",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "26/48",
+        "seriesSymbolObserved": "星光四芒形符号",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "看场打手",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "黑",
+        "basicType": "角色",
+        "subtypes": [
+          "人类",
+          "罪犯"
+        ],
+        "printedCollectorCode": "26/48",
+        "seriesSymbol": "星光四芒形符号",
+        "printedCost": 1,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "黑",
+            "count": 1
+          }
+        ],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "隐秘〔月形〕护卫1"
+        ],
+        "printedRuleTextLines": [
+          "隐秘〔月形〕护卫1",
+          "持续 若位于有本方势力标志的地区，看场打手获得临时势力1。",
+          "快速行动①，牺牲看场打手：目标本方附属获得屏障直到回合结束。"
+        ],
+        "additionalPrintedSymbols": [
+          {
+            "id": "moon-ability",
+            "status": "confirmed",
+            "printedText": "护卫1前月形隐秘标志",
+            "interpretation": "独立印刷条件/栏位；不计入角色能力图标或忠诚。"
+          }
+        ]
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "隐秘〔月形〕护卫1",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "持续 若位于有本方势力标志的地区，看场打手获得临时势力1。",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-3",
+          "kind": "sourceTextOnly",
+          "printedText": "快速行动①，牺牲看场打手：目标本方附属获得屏障直到回合结束。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "combatKeywords",
+        "continuous",
+        "temporaryIcons",
+        "sacrifice",
+        "attachment",
+        "barrier"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "XG26-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "XG27": {
+      "cardId": "XG27",
+      "batchId": "B25",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/XG27 悍狼的怨灵.jpg",
+        "imageSha256": "9a0f4b89f0de85cb58499463bc2a7e91c476cf449ac2475f581a1e4245b4ceb0",
+        "evidenceId": "card-XG27",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "27/48",
+        "seriesSymbolObserved": "星光四芒形符号",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "悍狼的怨灵",
+        "subtitle": "背叛者等待救赎",
+        "nameInk": "gold",
+        "colorKey": "黑",
+        "basicType": "角色",
+        "subtypes": [
+          "幽灵"
+        ],
+        "printedCollectorCode": "27/48",
+        "seriesSymbol": "星光四芒形符号",
+        "printedCost": 4,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "黑",
+            "count": 1
+          }
+        ],
+        "domains": [
+          {
+            "id": "death",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 1,
+          "combat": 2,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "灵体",
+          "持续 你所打出的诅咒牌其所需费用减少①。",
+          "墓地触发 每当一个敌方角色死亡时，你可以支付①，然后将悍狼的怨灵以暗藏者状态从墓地放置进场，并置于该死亡角色之前所在的地区。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "灵体",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "持续 你所打出的诅咒牌其所需费用减少①。",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-3",
+          "kind": "sourceTextOnly",
+          "printedText": "墓地触发 每当一个敌方角色死亡时，你可以支付①，然后将悍狼的怨灵以暗藏者状态从墓地放置进场，并置于该死亡角色之前所在的地区。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "spirit",
+        "costReduction",
+        "graveRecovery",
+        "hidden",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "XG27-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "XG28": {
+      "cardId": "XG28",
+      "batchId": "B25",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/XG28 违禁品临时收容所.jpg",
+        "imageSha256": "068de04ce0996eacf8d65744093c3abb84bb4282a520e8664f01ec719fa2c87a",
+        "evidenceId": "card-XG28",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "28/48",
+        "seriesSymbolObserved": "星光四芒形符号",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "违禁品临时收容所",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "黑",
+        "basicType": "附属",
+        "subtypes": [
+          "设施",
+          "罪犯"
+        ],
+        "printedCollectorCode": "28/48",
+        "seriesSymbol": "星光四芒形符号",
+        "printedCost": 1,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "黑",
+            "count": 2
+          }
+        ],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "结附于目标地区",
+          "准备步骤触发 将你的牌库顶牌置于墓地。",
+          "行动②，横置：将你墓地中的目标角色牌置于你的手中。若本方秘社上有隐秘〔月形〕标志，重置违禁品临时收容所。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "结附于目标地区",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "准备步骤触发 将你的牌库顶牌置于墓地。",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-3",
+          "kind": "sourceTextOnly",
+          "printedText": "行动②，横置：将你墓地中的目标角色牌置于你的手中。若本方秘社上有隐秘〔月形〕标志，重置违禁品临时收容所。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "attachment",
+        "deckChoice",
+        "graveRecovery",
+        "exhaust",
+        "mysticContest"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "XG28-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "XG29": {
+      "cardId": "XG29",
+      "batchId": "B25",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/XG29 昔日阴影.jpg",
+        "imageSha256": "8b218bbffbb9c37c2bb6c09d819c1c57dfed0134abb98c4d87e39dc6a71557a8",
+        "evidenceId": "card-XG29",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "29/48",
+        "seriesSymbolObserved": "星光四芒形符号",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "昔日阴影",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "紫",
+        "basicType": "角色",
+        "subtypes": [
+          "幽灵",
+          "诅咒"
+        ],
+        "printedCollectorCode": "29/48",
+        "seriesSymbol": "星光四芒形符号",
+        "printedCost": 2,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "紫",
+            "count": 1
+          }
+        ],
+        "domains": [
+          {
+            "id": "mind",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "灵体"
+        ],
+        "printedRuleTextLines": [
+          "灵体",
+          "行动②，横置：将封印在昔日阴影上的目标牌移动并封印在另一个目标角色上。若移动的是梦魔牌，则对该目标角色造成1点创伤。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "灵体",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "行动②，横置：将封印在昔日阴影上的目标牌移动并封印在另一个目标角色上。若移动的是梦魔牌，则对该目标角色造成1点创伤。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "spirit",
+        "exhaust",
+        "seal"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "XG29-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "XG30": {
+      "cardId": "XG30",
+      "batchId": "B25",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/XG30 乔治·帕佐，幻象大师.jpg",
+        "imageSha256": "d4e1aac8fec086e70ff53fd30a62e557b115d252370d97f47bfbb0590342ed34",
+        "evidenceId": "card-XG30",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "30/48",
+        "seriesSymbolObserved": "星光四芒形符号",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "乔治·帕佐，幻象大师",
+        "subtitle": "迷失自我",
+        "nameInk": "gold",
+        "colorKey": "紫",
+        "basicType": "角色",
+        "subtypes": [
+          "人类",
+          "超能力者",
+          "演出"
+        ],
+        "printedCollectorCode": "30/48",
+        "seriesSymbol": "星光四芒形符号",
+        "printedCost": 5,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "紫",
+            "count": 3
+          }
+        ],
+        "domains": [
+          {
+            "id": "mind",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 2
+        },
+        "temporaryIcons": {
+          "investigation": 2,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 2,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "触发 当一张本方卡牌被封印在敌方角色上时，横置该角色。",
+          "触发 每个回合的首次隐秘对抗结束时，将用于此次隐秘对抗的本方卡牌封印在目标角色上，而非洗入牌库。"
+        ],
+        "additionalPrintedSymbols": [
+          {
+            "id": "red-cost-ring",
+            "status": "confirmed",
+            "printedText": "费用圆外红色轮廓",
+            "interpretation": "几何可读，独立含义未确认。"
+          }
+        ]
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "触发 当一张本方卡牌被封印在敌方角色上时，横置该角色。",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "触发 每个回合的首次隐秘对抗结束时，将用于此次隐秘对抗的本方卡牌封印在目标角色上，而非洗入牌库。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "seal",
+        "exhaust",
+        "mysticContest",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "needsRuling",
+      "openQuestionIds": [
+        "martialLawRedCostRing"
+      ],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "XG30-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "XG31": {
+      "cardId": "XG31",
+      "batchId": "B25",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/XG31 谜之崔米拉奎亚.jpg",
+        "imageSha256": "bdc714101f991530da59688a08c82214581e86ecf3cd968312c3906ef32ea6de",
+        "evidenceId": "card-XG31",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "31/48",
+        "seriesSymbolObserved": "星光四芒形符号",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "谜之崔米拉奎亚",
+        "subtitle": "笑面人",
+        "nameInk": "gold",
+        "colorKey": "紫",
+        "basicType": "角色",
+        "subtypes": [
+          "梦魔",
+          "梦境"
+        ],
+        "printedCollectorCode": "31/48",
+        "seriesSymbol": "星光四芒形符号",
+        "printedCost": 6,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "紫",
+            "count": 2
+          }
+        ],
+        "domains": [
+          {
+            "id": "stars",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporaryIcons": {
+          "investigation": 1,
+          "combat": 1,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "灵体",
+          "混乱",
+          "隐秘〔月形〕撤回"
+        ],
+        "printedRuleTextLines": [
+          "灵体；混乱；隐秘〔月形〕撤回",
+          "额外费用 每有一个具有永久调查或临时调查图标的敌方角色，打出或翻面谜之崔米拉奎亚所需的费用减少①。",
+          "行动 横置：对目标具有永久调查或临时调查图标的角色造成1点创伤。"
+        ],
+        "additionalPrintedSymbols": [
+          {
+            "id": "red-cost-ring",
+            "status": "confirmed",
+            "printedText": "费用圆外红色轮廓",
+            "interpretation": "几何可读，独立含义未确认。"
+          },
+          {
+            "id": "moon-ability",
+            "status": "confirmed",
+            "printedText": "撤回前月形隐秘标志",
+            "interpretation": "独立印刷条件/栏位；不计入角色能力图标或忠诚。"
+          }
+        ]
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "灵体；混乱；隐秘〔月形〕撤回",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "额外费用 每有一个具有永久调查或临时调查图标的敌方角色，打出或翻面谜之崔米拉奎亚所需的费用减少①。",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-3",
+          "kind": "sourceTextOnly",
+          "printedText": "行动 横置：对目标具有永久调查或临时调查图标的角色造成1点创伤。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "spirit",
+        "chaos",
+        "mysticContest",
+        "combatKeywords",
+        "costReduction",
+        "hidden",
+        "exhaust",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "needsRuling",
+      "openQuestionIds": [
+        "martialLawRedCostRing"
+      ],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "XG31-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "XG32": {
+      "cardId": "XG32",
+      "batchId": "B25",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/XG32 贝兰丹娜的抚触.jpg",
+        "imageSha256": "a48a8c698ab49aee62eabcc4ea2b14b2ba87e6faf2a0a2e4f8460fa701ca6fd8",
+        "evidenceId": "card-XG32",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "32/48",
+        "seriesSymbolObserved": "星光四芒形符号",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "贝兰丹娜的抚触",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "紫",
+        "basicType": "事务",
+        "subtypes": [
+          "法术",
+          "心灵",
+          "神话生物"
+        ],
+        "printedCollectorCode": "32/48",
+        "seriesSymbol": "星光四芒形符号",
+        "printedCost": 2,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "紫",
+            "count": 1
+          }
+        ],
+        "domains": [
+          {
+            "id": "mind",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "持续 若本方秘社为梦魔主母，则名为贝兰丹娜的抚触的牌，构筑时在牌组中的数量没有限制。",
+          "行动 横置目标角色。若横置的是本方梦魔角色，你可以在本方秘社上放置一个梦标志。"
+        ],
+        "additionalPrintedSymbols": [
+          {
+            "id": "red-cost-ring",
+            "status": "confirmed",
+            "printedText": "费用圆外红色轮廓",
+            "interpretation": "几何可读，独立含义未确认。"
+          }
+        ]
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "持续 若本方秘社为梦魔主母，则名为贝兰丹娜的抚触的牌，构筑时在牌组中的数量没有限制。",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "行动 横置目标角色。若横置的是本方梦魔角色，你可以在本方秘社上放置一个梦标志。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "society",
+        "continuous",
+        "exhaust",
+        "token"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "needsRuling",
+      "openQuestionIds": [
+        "martialLawRedCostRing"
+      ],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "XG32-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "XG33": {
+      "cardId": "XG33",
+      "batchId": "B25",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/XG33 精神折磨.jpg",
+        "imageSha256": "8d117cd727185ddb7e0c1f4c60151a972f5bc573a9798729a696e37620416c43",
+        "evidenceId": "card-XG33",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "33/48",
+        "seriesSymbolObserved": "星光四芒形符号",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "精神折磨",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "紫",
+        "basicType": "事务",
+        "subtypes": [
+          "诅咒",
+          "隐秘对抗"
+        ],
+        "printedCollectorCode": "33/48",
+        "seriesSymbol": "星光四芒形符号",
+        "printedCost": 2,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "紫",
+            "count": 1
+          }
+        ],
+        "domains": [
+          {
+            "id": "mind",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "行动 目标敌方玩家选择一个其所操控的角色，该角色受到1点创伤伤害。进行一次隐秘对抗。然后若你的隐秘等级高于敌方玩家，消灭所有其上有创伤标志的角色。"
+        ],
+        "additionalPrintedSymbols": [
+          {
+            "id": "red-cost-ring",
+            "status": "confirmed",
+            "printedText": "费用圆外红色轮廓",
+            "interpretation": "几何可读，独立含义未确认。"
+          }
+        ]
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "行动 目标敌方玩家选择一个其所操控的角色，该角色受到1点创伤伤害。进行一次隐秘对抗。然后若你的隐秘等级高于敌方玩家，消灭所有其上有创伤标志的角色。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "token"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "needsRuling",
+      "openQuestionIds": [
+        "martialLawRedCostRing"
+      ],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "XG33-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "XG34": {
+      "cardId": "XG34",
+      "batchId": "B25",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/XG34 血中孕生.jpg",
+        "imageSha256": "91197c4e888d51dabea6ecf36835e88e9e0db19b0a25a3d9360097854dd6ea0f",
+        "evidenceId": "card-XG34",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "34/48",
+        "seriesSymbolObserved": "星光四芒形符号",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "血中孕生",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "紫",
+        "basicType": "事务",
+        "subtypes": [
+          "法术",
+          "生命"
+        ],
+        "printedCollectorCode": "34/48",
+        "seriesSymbol": "星光四芒形符号",
+        "printedCost": 8,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "紫",
+            "count": 4
+          }
+        ],
+        "domains": [
+          {
+            "id": "blood",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "公开〔日形〕非资产"
+        ],
+        "printedRuleTextLines": [
+          "公开〔日形〕非资产",
+          "行动 自你牌库顶的十张牌中寻找任意数量的梦魔牌，将这些牌展示后置于你的手中，然后将其余的牌洗回牌库。"
+        ],
+        "additionalPrintedSymbols": [
+          {
+            "id": "sun-ability",
+            "status": "confirmed",
+            "printedText": "非资产前日形公开标志",
+            "interpretation": "独立印刷条件/栏位；不计入角色能力图标或忠诚。"
+          }
+        ]
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "公开〔日形〕非资产",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "行动 自你牌库顶的十张牌中寻找任意数量的梦魔牌，将这些牌展示后置于你的手中，然后将其余的牌洗回牌库。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "nonAsset",
+        "deckChoice"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "XG34-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "XG35": {
+      "cardId": "XG35",
+      "batchId": "B25",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/XG35 痛苦的转变.jpg",
+        "imageSha256": "e7087b69fdf952b2902d88d85ff0be69910719511b756b685115b652b74a5ba6",
+        "evidenceId": "card-XG35",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "35/48",
+        "seriesSymbolObserved": "星光四芒形符号",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "痛苦的转变",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "紫",
+        "basicType": "附属",
+        "subtypes": [
+          "状态",
+          "诅咒"
+        ],
+        "printedCollectorCode": "35/48",
+        "seriesSymbol": "星光四芒形符号",
+        "printedCost": 4,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "紫",
+            "count": 1
+          }
+        ],
+        "domains": [
+          {
+            "id": "blood",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "结附于目标本方人类角色",
+          "触发 当受此结附的角色死亡时，若本方秘社上有隐秘〔月形〕标志，你可以从本方牌库中寻找一张非人类角色牌，将其放置进场并位于本地区，然后洗牌。"
+        ],
+        "additionalPrintedSymbols": [
+          {
+            "id": "red-cost-ring",
+            "status": "confirmed",
+            "printedText": "费用圆外红色轮廓",
+            "interpretation": "几何可读，独立含义未确认。"
+          }
+        ]
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "结附于目标本方人类角色",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "触发 当受此结附的角色死亡时，若本方秘社上有隐秘〔月形〕标志，你可以从本方牌库中寻找一张非人类角色牌，将其放置进场并位于本地区，然后洗牌。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "attachment",
+        "mysticContest",
+        "deckChoice"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "needsRuling",
+      "openQuestionIds": [
+        "martialLawRedCostRing"
+      ],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "XG35-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "XG36": {
+      "cardId": "XG36",
+      "batchId": "B25",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/XG36 保留地猎人.jpg",
+        "imageSha256": "b18f7c7dfa7203c03a326b8a2a1da3aa0d541618486eca4fab29a3a00c150ae6",
+        "evidenceId": "card-XG36",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "36/48",
+        "seriesSymbolObserved": "星光四芒形符号",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "保留地猎人",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "中立",
+        "basicType": "角色",
+        "subtypes": [
+          "人类",
+          "猎手"
+        ],
+        "printedCollectorCode": "36/48",
+        "seriesSymbol": "星光四芒形符号",
+        "printedCost": 2,
+        "loyalty": [],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "公开",
+          "非资产"
+        ],
+        "printedRuleTextLines": [
+          "隐秘+1",
+          "公开；非资产",
+          "持续 若位于荒野、山脉或已毁灭的地区，则保留地猎人获得永久调查1。"
+        ],
+        "additionalPrintedSymbols": [
+          {
+            "id": "hidden-bar",
+            "status": "confirmed",
+            "printedText": "隐秘+1",
+            "interpretation": "独立印刷条件/栏位；不计入角色能力图标或忠诚。"
+          }
+        ]
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "隐秘+1",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "公开；非资产",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-3",
+          "kind": "sourceTextOnly",
+          "printedText": "持续 若位于荒野、山脉或已毁灭的地区，则保留地猎人获得永久调查1。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "public",
+        "nonAsset",
+        "continuous",
+        "timeDestroy",
+        "temporaryIcons"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "XG36-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "XG37": {
+      "cardId": "XG37",
+      "batchId": "B25",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/XG37 玫之米歇尔.jpg",
+        "imageSha256": "17645ff877849a6b8a943c4bfe1928acf392d95112366e95915dad6e0f85d17d",
+        "evidenceId": "card-XG37",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "37/48",
+        "seriesSymbolObserved": "星光四芒形符号",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "玫之米歇尔",
+        "subtitle": "灵能爆发",
+        "nameInk": "gold",
+        "colorKey": "中立",
+        "basicType": "角色",
+        "subtypes": [
+          "人类",
+          "超能力者"
+        ],
+        "printedCollectorCode": "37/48",
+        "seriesSymbol": "星光四芒形符号",
+        "printedCost": 3,
+        "loyalty": [],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 1,
+          "combat": 1,
+          "influence": 1
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "非资产",
+          "唯一"
+        ],
+        "printedRuleTextLines": [
+          "隐秘+3",
+          "非资产；唯一"
+        ],
+        "additionalPrintedSymbols": [
+          {
+            "id": "red-cost-ring",
+            "status": "confirmed",
+            "printedText": "费用圆外红色轮廓",
+            "interpretation": "几何可读，独立含义未确认。"
+          },
+          {
+            "id": "hidden-bar",
+            "status": "confirmed",
+            "printedText": "隐秘+3",
+            "interpretation": "独立印刷条件/栏位；不计入角色能力图标或忠诚。"
+          }
+        ]
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "隐秘+3",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "非资产；唯一",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "nonAsset",
+        "uniqueInPlay"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "needsRuling",
+      "openQuestionIds": [
+        "martialLawRedCostRing"
+      ],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "XG37-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "XG38": {
+      "cardId": "XG38",
+      "batchId": "B25",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/XG38 缅因猫“高兴”.jpg",
+        "imageSha256": "33bfcf2856ab2a093e96c65de0f50e74e4f311811d06c4618dc6b8dce636a777",
+        "evidenceId": "card-XG38",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "38/48",
+        "seriesSymbolObserved": "星光四芒形符号",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "缅因猫“高兴”",
+        "subtitle": "注视每位过路者",
+        "nameInk": "gold",
+        "colorKey": "中立",
+        "basicType": "角色",
+        "subtypes": [
+          "猫"
+        ],
+        "printedCollectorCode": "38/48",
+        "seriesSymbol": "星光四芒形符号",
+        "printedCost": 3,
+        "loyalty": [],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "隐秘〔月形〕撤回",
+          "不能被装备结附"
+        ],
+        "printedRuleTextLines": [
+          "隐秘+2",
+          "隐秘〔月形〕撤回；不能被装备结附",
+          "进场触发 进行一次隐秘对抗。然后若你的隐秘等级高于敌方玩家，抓两张牌。",
+          "持续 不能被事务牌指定为目标。"
+        ],
+        "additionalPrintedSymbols": [
+          {
+            "id": "hidden-bar",
+            "status": "confirmed",
+            "printedText": "隐秘+2",
+            "interpretation": "独立印刷条件/栏位；不计入角色能力图标或忠诚。"
+          },
+          {
+            "id": "moon-ability",
+            "status": "confirmed",
+            "printedText": "撤回前月形隐秘标志",
+            "interpretation": "独立印刷条件/栏位；不计入角色能力图标或忠诚。"
+          }
+        ]
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "隐秘+2",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "隐秘〔月形〕撤回；不能被装备结附",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-3",
+          "kind": "sourceTextOnly",
+          "printedText": "进场触发 进行一次隐秘对抗。然后若你的隐秘等级高于敌方玩家，抓两张牌。",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-4",
+          "kind": "sourceTextOnly",
+          "printedText": "持续 不能被事务牌指定为目标。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "combatKeywords",
+        "attachment",
+        "deckChoice",
+        "continuous",
+        "uniqueInPlay"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "XG38-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "XG39": {
+      "cardId": "XG39",
+      "batchId": "B25",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/XG39 驻唱歌手.jpg",
+        "imageSha256": "b21a8a600f5c7412ec707321185cf0690a328691588b132354d24d8a11f63689",
+        "evidenceId": "card-XG39",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "39/48",
+        "seriesSymbolObserved": "星光四芒形符号",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "驻唱歌手",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "中立",
+        "basicType": "角色",
+        "subtypes": [
+          "人类",
+          "艺术家",
+          "演出"
+        ],
+        "printedCollectorCode": "39/48",
+        "seriesSymbol": "星光四芒形符号",
+        "printedCost": 4,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "绿",
+            "count": 1
+          }
+        ],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporaryIcons": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "隐秘〔月形〕声望"
+        ],
+        "printedRuleTextLines": [
+          "隐秘〔月形〕声望",
+          "持续 每个回合中你所打出或付费翻面的第一张印刷费用大于或等于⑤的牌，其所需费用减少②。"
+        ],
+        "additionalPrintedSymbols": [
+          {
+            "id": "moon-ability",
+            "status": "confirmed",
+            "printedText": "声望前月形隐秘标志",
+            "interpretation": "独立印刷条件/栏位；不计入角色能力图标或忠诚。"
+          }
+        ]
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "隐秘〔月形〕声望",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "持续 每个回合中你所打出或付费翻面的第一张印刷费用大于或等于⑤的牌，其所需费用减少②。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "renown",
+        "costReduction",
+        "hidden",
+        "temporaryIcons"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "XG39-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "XG40": {
+      "cardId": "XG40",
+      "batchId": "B25",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/XG40 海啸.jpg",
+        "imageSha256": "384acfa7ea580b0309d6bba6991316ee5825a192b55cf2dce8fa4c549d72c246",
+        "evidenceId": "card-XG40",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "40/48",
+        "seriesSymbolObserved": "星光四芒形符号",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "海啸",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "中立",
+        "basicType": "附属",
+        "subtypes": [
+          "灾难"
+        ],
+        "printedCollectorCode": "40/48",
+        "seriesSymbol": "星光四芒形符号",
+        "printedCost": 3,
+        "loyalty": [],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "结附于目标地区",
+          "进场强制触发 毁灭受此结附的地区。然后若你的隐秘等级高于敌方玩家，抓一张牌。",
+          "持续 受此结附的地区额外具有水域类别。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "结附于目标地区",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "进场强制触发 毁灭受此结附的地区。然后若你的隐秘等级高于敌方玩家，抓一张牌。",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-3",
+          "kind": "sourceTextOnly",
+          "printedText": "持续 受此结附的地区额外具有水域类别。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "attachment",
+        "priority",
+        "timeDestroy",
+        "mysticContest",
+        "deckChoice",
+        "continuous"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "XG40-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "XG41": {
+      "cardId": "XG41",
+      "batchId": "B25",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/XG41 余时清零.jpg",
+        "imageSha256": "a51b743fcf8f5336bfc78bc9bdfab19b456fc81b16fb17c161bf6a631ec276c2",
+        "evidenceId": "card-XG41",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "41/48",
+        "seriesSymbolObserved": "星光四芒形符号",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "余时清零",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "中立",
+        "basicType": "事务",
+        "subtypes": [
+          "阴谋",
+          "隐秘对抗"
+        ],
+        "printedCollectorCode": "41/48",
+        "seriesSymbol": "星光四芒形符号",
+        "printedCost": 1,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "红",
+            "count": 1
+          }
+        ],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "额外费用 自本方角色或附属上移除X个时间标志。",
+          "行动 进行一次隐秘对抗。本次隐秘对抗中你所展示的牌获得隐秘+X。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "额外费用 自本方角色或附属上移除X个时间标志。",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "行动 进行一次隐秘对抗。本次隐秘对抗中你所展示的牌获得隐秘+X。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "timeDestroy",
+        "attachment",
+        "mysticContest"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "XG41-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "XG42": {
+      "cardId": "XG42",
+      "batchId": "B25",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/XG42 连环爆炸.jpg",
+        "imageSha256": "744adcb777d326e916254800c6a0c7c45724466f29c8e6c50c2a7864a6aa4db8",
+        "evidenceId": "card-XG42",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "42/48",
+        "seriesSymbolObserved": "星光四芒形符号",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "连环爆炸",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "中立",
+        "basicType": "事务",
+        "subtypes": [
+          "阴谋",
+          "灾难"
+        ],
+        "printedCollectorCode": "42/48",
+        "seriesSymbol": "星光四芒形符号",
+        "printedCost": 3,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "红",
+            "count": 1
+          }
+        ],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "公开〔日形〕非资产"
+        ],
+        "printedRuleTextLines": [
+          "公开〔日形〕非资产",
+          "行动 选择一项：",
+          "消灭所有结附在秘社上的附属。",
+          "消灭所有结附在已毁灭的地区上的附属。"
+        ],
+        "additionalPrintedSymbols": [
+          {
+            "id": "sun-ability",
+            "status": "confirmed",
+            "printedText": "非资产前日形公开标志",
+            "interpretation": "独立印刷条件/栏位；不计入角色能力图标或忠诚。"
+          }
+        ]
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "公开〔日形〕非资产",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "行动 选择一项：",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-3",
+          "kind": "sourceTextOnly",
+          "printedText": "消灭所有结附在秘社上的附属。",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-4",
+          "kind": "sourceTextOnly",
+          "printedText": "消灭所有结附在已毁灭的地区上的附属。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "nonAsset",
+        "attachment",
+        "society",
+        "timeDestroy"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "XG42-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "XG43": {
+      "cardId": "XG43",
+      "batchId": "B25",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/XG43 暗夜密谋.jpg",
+        "imageSha256": "f992f1881b37422fc69654c49044ff6dcd9abcfc6aa532cbc3908cd043597fef",
+        "evidenceId": "card-XG43",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "43/48",
+        "seriesSymbolObserved": "星光四芒形符号",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "暗夜密谋",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "中立",
+        "basicType": "事务",
+        "subtypes": [
+          "阴谋"
+        ],
+        "printedCollectorCode": "43/48",
+        "seriesSymbol": "星光四芒形符号",
+        "printedCost": 3,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "蓝",
+            "count": 1
+          }
+        ],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "公开〔日形〕非资产"
+        ],
+        "printedRuleTextLines": [
+          "公开〔日形〕非资产",
+          "行动 目标玩家弃两张手牌。"
+        ],
+        "additionalPrintedSymbols": [
+          {
+            "id": "sun-ability",
+            "status": "confirmed",
+            "printedText": "非资产前日形公开标志",
+            "interpretation": "独立印刷条件/栏位；不计入角色能力图标或忠诚。"
+          }
+        ]
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "公开〔日形〕非资产",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "行动 目标玩家弃两张手牌。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "nonAsset",
+        "deckChoice"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "XG43-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "XG44": {
+      "cardId": "XG44",
+      "batchId": "B25",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/XG44 街垒.jpg",
+        "imageSha256": "6d5a07cfa38c6ca88336b5d40cb9e8c79ac07e44d3b210d753552a52ed5eeb71",
+        "evidenceId": "card-XG44",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "44/48",
+        "seriesSymbolObserved": "星光四芒形符号",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "街垒",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "中立",
+        "basicType": "附属",
+        "subtypes": [
+          "设施"
+        ],
+        "printedCollectorCode": "44/48",
+        "seriesSymbol": "星光四芒形符号",
+        "printedCost": 1,
+        "loyalty": [],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 2,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "护卫2"
+        ],
+        "printedRuleTextLines": [
+          "结附于目标地区",
+          "护卫2",
+          "持续 街垒可视同角色般被分配战斗伤害，且会因受到致命伤害而被消灭。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "结附于目标地区",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "护卫2",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-3",
+          "kind": "sourceTextOnly",
+          "printedText": "持续 街垒可视同角色般被分配战斗伤害，且会因受到致命伤害而被消灭。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "attachment",
+        "combatKeywords",
+        "continuous"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "XG44-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "XG45": {
+      "cardId": "XG45",
+      "batchId": "B25",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/XG45 头版头条.jpg",
+        "imageSha256": "6edc73fe5c37080727430852ff7249d9bab8bcdcd20492684773bc524ee4c5d7",
+        "evidenceId": "card-XG45",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "45/48",
+        "seriesSymbolObserved": "星光四芒形符号",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "头版头条",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "中立",
+        "basicType": "附属",
+        "subtypes": [
+          "媒体"
+        ],
+        "printedCollectorCode": "45/48",
+        "seriesSymbol": "星光四芒形符号",
+        "printedCost": 1,
+        "loyalty": [],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "结附于本方秘社",
+          "行动①，横置：目标角色获得或失去声望直到本回合结束。",
+          "行动 横置三个本方声望角色：在敌方秘社上放置一个公开〔日形〕标志。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "结附于本方秘社",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "行动①，横置：目标角色获得或失去声望直到本回合结束。",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-3",
+          "kind": "sourceTextOnly",
+          "printedText": "行动 横置三个本方声望角色：在敌方秘社上放置一个公开〔日形〕标志。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "attachment",
+        "society",
+        "exhaust",
+        "renown",
+        "continuous",
+        "mysticContest"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "XG45-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "XG46": {
+      "cardId": "XG46",
+      "batchId": "B25",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/XG46 星光俱乐部.jpg",
+        "imageSha256": "108422054bef338ad986a9470e29646294582ce527f3429d599c9c704359bd25",
+        "evidenceId": "card-XG46",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "46/48",
+        "seriesSymbolObserved": "星光四芒形符号",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "星光俱乐部",
+        "subtitle": "神奇演出开场",
+        "nameInk": "gold",
+        "colorKey": "中立",
+        "basicType": "附属",
+        "subtypes": [
+          "设施",
+          "秘所"
+        ],
+        "printedCollectorCode": "46/48",
+        "seriesSymbol": "星光四芒形符号",
+        "printedCost": 1,
+        "loyalty": [],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "结附于目标地区",
+          "行动 弃一张演出或艺术家牌：在星光俱乐部上放置一个本方势力标志。双方玩家都能发动该能力，且每回合只能发动一次。",
+          "强制触发 每当有玩家赢得隐秘对抗时，在星光俱乐部上放置一个该玩家的势力标志。"
+        ],
+        "additionalPrintedSymbols": [
+          {
+            "id": "neutral-secret-place-emblem",
+            "status": "confirmed",
+            "printedText": "棕色背景秘所样徽记；不是额外基本颜色",
+            "interpretation": "独立印刷条件/栏位；不计入角色能力图标或忠诚。"
+          }
+        ]
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "结附于目标地区",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "行动 弃一张演出或艺术家牌：在星光俱乐部上放置一个本方势力标志。双方玩家都能发动该能力，且每回合只能发动一次。",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-3",
+          "kind": "sourceTextOnly",
+          "printedText": "强制触发 每当有玩家赢得隐秘对抗时，在星光俱乐部上放置一个该玩家的势力标志。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "attachment",
+        "deckChoice",
+        "confrontation",
+        "mysticContest",
+        "priority",
+        "uniqueInPlay"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "XG46-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "XG47": {
+      "cardId": "XG47",
+      "batchId": "B25",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/XG47 嗜睡症候群.jpg",
+        "imageSha256": "f75ec5208dc02c6db5036f8866c4423aeb4817dc79a803468c7af0be0a0929d3",
+        "evidenceId": "card-XG47",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "47/48",
+        "seriesSymbolObserved": "星光四芒形符号",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "嗜睡症候群",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "中立",
+        "basicType": "附属",
+        "subtypes": [
+          "疾病",
+          "灾难"
+        ],
+        "printedCollectorCode": "47/48",
+        "seriesSymbol": "星光四芒形符号",
+        "printedCost": 3,
+        "loyalty": [],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "撤回"
+        ],
+        "printedRuleTextLines": [
+          "隐秘+3",
+          "撤回",
+          "结附于目标地区",
+          "持续 该地区上的所有角色和暗藏者略过重置步骤。"
+        ],
+        "additionalPrintedSymbols": [
+          {
+            "id": "hidden-bar",
+            "status": "confirmed",
+            "printedText": "隐秘+3",
+            "interpretation": "独立印刷条件/栏位；不计入角色能力图标或忠诚。"
+          }
+        ]
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "隐秘+3",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "撤回",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-3",
+          "kind": "sourceTextOnly",
+          "printedText": "结附于目标地区",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-4",
+          "kind": "sourceTextOnly",
+          "printedText": "持续 该地区上的所有角色和暗藏者略过重置步骤。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "combatKeywords",
+        "attachment",
+        "hidden",
+        "exhaust",
+        "continuous"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "XG47-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "XG48": {
+      "cardId": "XG48",
+      "batchId": "B25",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/XG48 铁笼拳击赛场.jpg",
+        "imageSha256": "e0c82328c5d2163c66b305335fd8816f84a40cea97198785a08b43116bb670bc",
+        "evidenceId": "card-XG48",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "48/48",
+        "seriesSymbolObserved": "星光四芒形符号",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "铁笼拳击赛场",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "中立",
+        "basicType": "附属",
+        "subtypes": [
+          "设施",
+          "罪犯",
+          "演出"
+        ],
+        "printedCollectorCode": "48/48",
+        "seriesSymbol": "星光四芒形符号",
+        "printedCost": 2,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "黑",
+            "count": 1
+          }
+        ],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "隐秘〔月形〕传闻",
+          "公开〔日形〕非资产"
+        ],
+        "printedRuleTextLines": [
+          "隐秘〔月形〕传闻；公开〔日形〕非资产",
+          "结附于本方秘社",
+          "进场触发 进行一次隐秘对抗。",
+          "持续 在进行隐秘对抗时，你所展示的罪犯角色牌获得隐秘+X。X为该牌能力栏内印刷的永久战斗和临时战斗能力图标数量之和。"
+        ],
+        "additionalPrintedSymbols": [
+          {
+            "id": "moon-sun-abilities",
+            "status": "confirmed",
+            "printedText": "传闻前月形、非资产前日形分别印刷",
+            "interpretation": "独立印刷条件/栏位；不计入角色能力图标或忠诚。"
+          }
+        ]
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "隐秘〔月形〕传闻；公开〔日形〕非资产",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "结附于本方秘社",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-3",
+          "kind": "sourceTextOnly",
+          "printedText": "进场触发 进行一次隐秘对抗。",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-4",
+          "kind": "sourceTextOnly",
+          "printedText": "持续 在进行隐秘对抗时，你所展示的罪犯角色牌获得隐秘+X。X为该牌能力栏内印刷的永久战斗和临时战斗能力图标数量之和。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "rumor",
+        "nonAsset",
+        "attachment",
+        "society",
+        "continuous"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "XG48-source-boundary",
           "scenario": "进入实现前核对本观察版本的字段与完整正文",
           "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
           "status": "notRun"

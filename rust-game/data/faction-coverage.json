@@ -1712,7 +1712,11 @@
         "card-XG11",
         "card-XG15",
         "card-XG19",
-        "card-XG20"
+        "card-XG20",
+        "card-XG27",
+        "card-XG31",
+        "card-XG39",
+        "card-XG47"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -1947,7 +1951,9 @@
         "card-JZ55",
         "card-XG02",
         "card-XG04",
-        "card-XG18"
+        "card-XG18",
+        "card-XG40",
+        "card-XG46"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -2042,7 +2048,8 @@
         "card-JZ75",
         "card-JZ76",
         "card-XG08",
-        "card-XG14"
+        "card-XG14",
+        "card-XG46"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -2127,7 +2134,8 @@
         "card-JZ69",
         "card-JZ72",
         "card-JZ73",
-        "card-XG17"
+        "card-XG17",
+        "card-XG36"
       ],
       "dependencies": [
         "hidden"
@@ -2257,7 +2265,14 @@
         "card-XG05",
         "card-XG06",
         "card-XG10",
-        "card-XG22"
+        "card-XG22",
+        "card-XG28",
+        "card-XG29",
+        "card-XG30",
+        "card-XG31",
+        "card-XG32",
+        "card-XG45",
+        "card-XG47"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -2340,7 +2355,8 @@
         "card-JZ72",
         "card-JZ73",
         "card-XG12",
-        "card-XG18"
+        "card-XG18",
+        "card-XG25"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -2457,7 +2473,8 @@
         "card-JZ66",
         "card-JZ73",
         "card-XG02",
-        "card-XG23"
+        "card-XG23",
+        "card-XG26"
       ],
       "dependencies": [],
       "interactionIds": [],
@@ -2572,7 +2589,9 @@
         "card-JZ35",
         "card-JZ51",
         "card-JZ53",
-        "card-JZ70"
+        "card-JZ70",
+        "card-XG27",
+        "card-XG28"
       ],
       "dependencies": [
         "hidden",
@@ -2725,7 +2744,8 @@
         "card-JZ57",
         "card-JZ76",
         "card-XG13",
-        "card-XG21"
+        "card-XG21",
+        "card-XG26"
       ],
       "dependencies": [
         "priority"
@@ -2796,7 +2816,10 @@
         "card-XG06",
         "card-XG13",
         "card-XG14",
-        "card-XG15"
+        "card-XG15",
+        "card-XG27",
+        "card-XG31",
+        "card-XG39"
       ],
       "dependencies": [
         "loyalty",
@@ -3036,7 +3059,14 @@
         "card-XG21",
         "card-XG22",
         "card-XG23",
-        "card-XG24"
+        "card-XG24",
+        "card-XG28",
+        "card-XG34",
+        "card-XG35",
+        "card-XG38",
+        "card-XG40",
+        "card-XG43",
+        "card-XG46"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -3233,7 +3263,16 @@
         "card-XG18",
         "card-XG20",
         "card-XG22",
-        "card-XG24"
+        "card-XG24",
+        "card-XG26",
+        "card-XG32",
+        "card-XG36",
+        "card-XG38",
+        "card-XG40",
+        "card-XG44",
+        "card-XG45",
+        "card-XG47",
+        "card-XG48"
       ],
       "dependencies": [],
       "interactionIds": [],
@@ -3403,7 +3442,11 @@
         "card-XG05",
         "card-XG06",
         "card-XG20",
-        "card-XG21"
+        "card-XG21",
+        "card-XG32",
+        "card-XG42",
+        "card-XG45",
+        "card-XG48"
       ],
       "dependencies": [
         "priority",
@@ -3620,7 +3663,19 @@
         "card-XG16",
         "card-XG20",
         "card-XG21",
-        "card-XG24"
+        "card-XG24",
+        "card-XG26",
+        "card-XG28",
+        "card-XG35",
+        "card-XG38",
+        "card-XG40",
+        "card-XG41",
+        "card-XG42",
+        "card-XG44",
+        "card-XG45",
+        "card-XG46",
+        "card-XG47",
+        "card-XG48"
       ],
       "dependencies": [
         "priority"
@@ -3731,7 +3786,10 @@
         "card-JZ63",
         "card-JZ64",
         "card-JZ66",
-        "card-JZ71"
+        "card-JZ71",
+        "card-XG25",
+        "card-XG29",
+        "card-XG30"
       ],
       "dependencies": [
         "priority",
@@ -3784,7 +3842,9 @@
         "card-XG17",
         "card-XG18",
         "card-XG21",
-        "card-XG22"
+        "card-XG22",
+        "card-XG39",
+        "card-XG45"
       ],
       "dependencies": [
         "confrontation"
@@ -3860,7 +3920,11 @@
         "card-JZ58",
         "card-JZ64",
         "card-XG11",
-        "card-XG14"
+        "card-XG14",
+        "card-XG25",
+        "card-XG27",
+        "card-XG29",
+        "card-XG31"
       ],
       "dependencies": [
         "continuous",
@@ -3974,7 +4038,11 @@
         "card-XG13",
         "card-XG14",
         "card-XG15",
-        "card-XG16"
+        "card-XG16",
+        "card-XG36",
+        "card-XG40",
+        "card-XG41",
+        "card-XG42"
       ],
       "dependencies": [
         "continuous",
@@ -4207,7 +4275,13 @@
         "card-XG06",
         "card-XG19",
         "card-XG20",
-        "card-XG23"
+        "card-XG23",
+        "card-XG34",
+        "card-XG36",
+        "card-XG37",
+        "card-XG42",
+        "card-XG43",
+        "card-XG48"
       ],
       "dependencies": [
         "loyalty"
@@ -4365,7 +4439,9 @@
         "card-JZ16",
         "card-JZ53",
         "card-JZ60",
-        "card-XG19"
+        "card-XG19",
+        "card-XG32",
+        "card-XG33"
       ],
       "dependencies": [
         "continuous"
@@ -4517,7 +4593,27 @@
         "card-XG21",
         "card-XG22",
         "card-XG23",
-        "card-XG24"
+        "card-XG24",
+        "card-XG25",
+        "card-XG26",
+        "card-XG28",
+        "card-XG30",
+        "card-XG31",
+        "card-XG33",
+        "card-XG34",
+        "card-XG35",
+        "card-XG36",
+        "card-XG37",
+        "card-XG38",
+        "card-XG39",
+        "card-XG40",
+        "card-XG41",
+        "card-XG42",
+        "card-XG43",
+        "card-XG45",
+        "card-XG46",
+        "card-XG47",
+        "card-XG48"
       ],
       "dependencies": [
         "society",
@@ -4613,7 +4709,8 @@
         "card-WM089",
         "card-WM095",
         "card-WM098",
-        "card-XG22"
+        "card-XG22",
+        "card-XG48"
       ],
       "dependencies": [
         "seal",
@@ -4903,7 +5000,12 @@
         "card-JZ56",
         "card-JZ72",
         "card-JZ76",
-        "card-XG11"
+        "card-XG11",
+        "card-XG26",
+        "card-XG31",
+        "card-XG38",
+        "card-XG44",
+        "card-XG47"
       ],
       "dependencies": [
         "confrontation",
@@ -5089,7 +5191,8 @@
         "card-WM070",
         "card-WM079",
         "card-XG14",
-        "card-XG15"
+        "card-XG15",
+        "card-XG31"
       ],
       "dependencies": [
         "hidden"
@@ -5395,7 +5498,14 @@
         "card-XG13",
         "card-XG14",
         "card-XG15",
-        "card-XG17"
+        "card-XG17",
+        "card-XG25",
+        "card-XG26",
+        "card-XG27",
+        "card-XG30",
+        "card-XG31",
+        "card-XG36",
+        "card-XG39"
       ],
       "dependencies": [
         "confrontation",
@@ -5557,7 +5667,13 @@
         "card-XG13",
         "card-XG16",
         "card-XG18",
-        "card-XG22"
+        "card-XG22",
+        "card-XG27",
+        "card-XG30",
+        "card-XG31",
+        "card-XG37",
+        "card-XG38",
+        "card-XG46"
       ],
       "dependencies": [
         "sacrifice"
@@ -10387,6 +10503,174 @@
       "sha256": "5cbec5fb5739b6e2d1557898759a810d21c6c0d62896439f6fb2cb6c3167d344",
       "visuallyReviewed": true,
       "topic": "寂静的山谷：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-XG25": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XG25 伥鬼.jpg",
+      "sha256": "cf05544939b89fffc4c94fe38f0f2e463fd5091a8ea5293835613afc0f49a661",
+      "visuallyReviewed": true,
+      "topic": "伥鬼：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-XG26": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XG26 看场打手.jpg",
+      "sha256": "cf75fa86f3bd93896b7bc948c10f4899a851b51d83bfd144237db225539bc2b0",
+      "visuallyReviewed": true,
+      "topic": "看场打手：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-XG27": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XG27 悍狼的怨灵.jpg",
+      "sha256": "9a0f4b89f0de85cb58499463bc2a7e91c476cf449ac2475f581a1e4245b4ceb0",
+      "visuallyReviewed": true,
+      "topic": "悍狼的怨灵：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-XG28": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XG28 违禁品临时收容所.jpg",
+      "sha256": "068de04ce0996eacf8d65744093c3abb84bb4282a520e8664f01ec719fa2c87a",
+      "visuallyReviewed": true,
+      "topic": "违禁品临时收容所：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-XG29": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XG29 昔日阴影.jpg",
+      "sha256": "8b218bbffbb9c37c2bb6c09d819c1c57dfed0134abb98c4d87e39dc6a71557a8",
+      "visuallyReviewed": true,
+      "topic": "昔日阴影：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-XG30": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XG30 乔治·帕佐，幻象大师.jpg",
+      "sha256": "d4e1aac8fec086e70ff53fd30a62e557b115d252370d97f47bfbb0590342ed34",
+      "visuallyReviewed": true,
+      "topic": "乔治·帕佐，幻象大师：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-XG31": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XG31 谜之崔米拉奎亚.jpg",
+      "sha256": "bdc714101f991530da59688a08c82214581e86ecf3cd968312c3906ef32ea6de",
+      "visuallyReviewed": true,
+      "topic": "谜之崔米拉奎亚：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-XG32": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XG32 贝兰丹娜的抚触.jpg",
+      "sha256": "a48a8c698ab49aee62eabcc4ea2b14b2ba87e6faf2a0a2e4f8460fa701ca6fd8",
+      "visuallyReviewed": true,
+      "topic": "贝兰丹娜的抚触：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-XG33": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XG33 精神折磨.jpg",
+      "sha256": "8d117cd727185ddb7e0c1f4c60151a972f5bc573a9798729a696e37620416c43",
+      "visuallyReviewed": true,
+      "topic": "精神折磨：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-XG34": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XG34 血中孕生.jpg",
+      "sha256": "91197c4e888d51dabea6ecf36835e88e9e0db19b0a25a3d9360097854dd6ea0f",
+      "visuallyReviewed": true,
+      "topic": "血中孕生：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-XG35": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XG35 痛苦的转变.jpg",
+      "sha256": "e7087b69fdf952b2902d88d85ff0be69910719511b756b685115b652b74a5ba6",
+      "visuallyReviewed": true,
+      "topic": "痛苦的转变：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-XG36": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XG36 保留地猎人.jpg",
+      "sha256": "b18f7c7dfa7203c03a326b8a2a1da3aa0d541618486eca4fab29a3a00c150ae6",
+      "visuallyReviewed": true,
+      "topic": "保留地猎人：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-XG37": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XG37 玫之米歇尔.jpg",
+      "sha256": "17645ff877849a6b8a943c4bfe1928acf392d95112366e95915dad6e0f85d17d",
+      "visuallyReviewed": true,
+      "topic": "玫之米歇尔：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-XG38": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XG38 缅因猫“高兴”.jpg",
+      "sha256": "33bfcf2856ab2a093e96c65de0f50e74e4f311811d06c4618dc6b8dce636a777",
+      "visuallyReviewed": true,
+      "topic": "缅因猫“高兴”：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-XG39": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XG39 驻唱歌手.jpg",
+      "sha256": "b21a8a600f5c7412ec707321185cf0690a328691588b132354d24d8a11f63689",
+      "visuallyReviewed": true,
+      "topic": "驻唱歌手：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-XG40": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XG40 海啸.jpg",
+      "sha256": "384acfa7ea580b0309d6bba6991316ee5825a192b55cf2dce8fa4c549d72c246",
+      "visuallyReviewed": true,
+      "topic": "海啸：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-XG41": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XG41 余时清零.jpg",
+      "sha256": "a51b743fcf8f5336bfc78bc9bdfab19b456fc81b16fb17c161bf6a631ec276c2",
+      "visuallyReviewed": true,
+      "topic": "余时清零：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-XG42": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XG42 连环爆炸.jpg",
+      "sha256": "744adcb777d326e916254800c6a0c7c45724466f29c8e6c50c2a7864a6aa4db8",
+      "visuallyReviewed": true,
+      "topic": "连环爆炸：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-XG43": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XG43 暗夜密谋.jpg",
+      "sha256": "f992f1881b37422fc69654c49044ff6dcd9abcfc6aa532cbc3908cd043597fef",
+      "visuallyReviewed": true,
+      "topic": "暗夜密谋：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-XG44": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XG44 街垒.jpg",
+      "sha256": "6d5a07cfa38c6ca88336b5d40cb9e8c79ac07e44d3b210d753552a52ed5eeb71",
+      "visuallyReviewed": true,
+      "topic": "街垒：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-XG45": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XG45 头版头条.jpg",
+      "sha256": "6edc73fe5c37080727430852ff7249d9bab8bcdcd20492684773bc524ee4c5d7",
+      "visuallyReviewed": true,
+      "topic": "头版头条：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-XG46": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XG46 星光俱乐部.jpg",
+      "sha256": "108422054bef338ad986a9470e29646294582ce527f3429d599c9c704359bd25",
+      "visuallyReviewed": true,
+      "topic": "星光俱乐部：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-XG47": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XG47 嗜睡症候群.jpg",
+      "sha256": "f75ec5208dc02c6db5036f8866c4423aeb4817dc79a803468c7af0be0a0929d3",
+      "visuallyReviewed": true,
+      "topic": "嗜睡症候群：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-XG48": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XG48 铁笼拳击赛场.jpg",
+      "sha256": "e0c82328c5d2163c66b305335fd8816f84a40cea97198785a08b43116bb670bc",
+      "visuallyReviewed": true,
+      "topic": "铁笼拳击赛场：完整同ID原图与必要放大区逐项人工读取"
     }
   },
   "openQuestions": [
