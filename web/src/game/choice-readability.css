@@ -1,0 +1,38 @@
+/* Choices reserve their own footer; only the options scroll. */
+.hg-app .hg-choice {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.hg-choice-heading { flex: 0 0 auto; }
+.hg-choice-heading > p { color: #d6d7cc; font-size: 14px; line-height: 1.6; margin: 0 0 8px; }
+.hg-choice-heading > .hg-choice-scroll-hint { color: #decda6; font-size: 13px; margin-bottom: 14px; }
+.hg-choice-body { min-height: 0; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: auto; scrollbar-color: #b9a371 #172b23; padding: 8px 12px 12px 3px; }
+.hg-choice-body:focus-visible { outline: 2px solid #d7b779; outline-offset: -2px; }
+.hg-choice-option-entry { width: 174px; display: flex; flex-direction: column; gap: 7px; min-width: 0; }
+.hg-choice-option-entry > .hg-choice-option { width: 100%; flex: 1; }
+.hg-choice-option-entry > .hg-choice-read { margin: 0; width: 100%; min-height: 34px; text-align: center; font-size: 13px; }
+.hg-app .hg-choice-footer { flex: 0 0 auto; margin-top: 0; padding-top: 14px; background: #21392f; }
+.hg-app .hg-choice-footer > span { font-size: 14px; }
+
+@media (min-width: 1060px) {
+  .hg-app .hg-desktop-table.hg-table .hg-table-choice-layer { position: fixed; inset: 64px 0 0; padding: 16px; }
+  .hg-app .hg-desktop-table.hg-table .hg-choice { width: min(1060px, calc(100vw - 64px)); height: min(700px, calc(100dvh - 112px)); max-height: calc(100dvh - 112px); padding: 20px 22px 16px; background: #21392f; }
+  .hg-app .hg-desktop-table.hg-table .hg-choice-heading h2 { font-size: 23px; line-height: 1.4; }
+  .hg-app .hg-desktop-table.hg-table .hg-choice .hg-eyebrow { font-size: 12px; }
+  .hg-app .hg-desktop-table.hg-table .hg-choice-tag { font-size: 13px; }
+  .hg-app .hg-desktop-table.hg-table .hg-choice-body { flex: 1 1 auto; }
+  .hg-app .hg-desktop-table.hg-table .hg-choice-options { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 15px; }
+  .hg-app .hg-desktop-table.hg-table .hg-choice-option-entry { width: auto; }
+  .hg-app .hg-desktop-table.hg-table .hg-choice-option { padding: 13px; gap: 8px; }
+  .hg-app .hg-desktop-table.hg-table .hg-choice .hg-card-name { font-size: 18px; line-height: 1.4; }
+  .hg-app .hg-desktop-table.hg-table .hg-choice .hg-card-kind,
+  .hg-app .hg-desktop-table.hg-table .hg-choice .hg-card-affiliation,
+  .hg-app .hg-desktop-table.hg-table .hg-choice .hg-card-footer { font-size: 12px; line-height: 1.5; }
+  .hg-app .hg-desktop-table.hg-table .hg-choice .hg-card-text { font-size: 14px; line-height: 1.7; max-height: none; overflow: visible; }
+  .hg-app .hg-desktop-table.hg-table .hg-choice .hg-icons { font-size: 14px; gap: 14px; }
+  .hg-app .hg-desktop-table.hg-table .hg-choice .hg-icons b { font-size: 15px; }
+  .hg-app .hg-desktop-table.hg-table .hg-choice .hg-cost { width: 27px; height: 27px; font-size: 19px; }
+  .hg-app .hg-desktop-table.hg-table .hg-choice-footer { gap: 14px; min-height: 66px; }
+  .hg-app .hg-desktop-table.hg-table .hg-choice-footer .hg-button { font-size: 15px; min-height: 44px; }
+}

@@ -12,6 +12,36 @@ const boardChoice = { ...testChoice, options: [
 const playerLabels = { p0: '我方玩家', p1: '甲方玩家', p2: '乙方玩家' };
 const secretDefinitions = new Map(boardChoice.options.map(option => [option.card.cardId, { id: option.card.cardId, name: option.card.name, kind: 'character', cost: 7, text: option.card.text, permanentIcons: { investigation: 7, combat: 7, influence: 7 } }]));
 describe('server-owned decisions', () => {
+  it('reads a mulligan card independently without selecting it or submitting the decision', () => {
+    const submit = vi.fn();
+    const read = vi.fn();
+    const choice = { ...testChoice, kind: 'mulligan', min: 0, max: 6, allowDecline: true, options: [{ id: 'hand-a', label: testCard.name, card: testCard }] };
+    const { container } = render(<ChoicePanel choice={choice} action={base} definitions={new Map()} busy={false} onSubmit={submit} onReadCard={read} viewerId="p0" />);
+    const option = container.querySelector('[data-choice-option="hand-a"]')!;
+    fireEvent.click(screen.getByRole('button', { name: `放大阅读${testCard.name}` }));
+    expect(read).toHaveBeenCalledExactlyOnceWith(testCard);
+    expect(option).toHaveAttribute('aria-pressed', 'false');
+    expect(submit).not.toHaveBeenCalled();
+    fireEvent.click(option);
+    fireEvent.click(screen.getByRole('button', { name: `放大阅读${testCard.name}` }));
+    expect(option).toHaveAttribute('aria-pressed', 'true');
+    expect(submit).not.toHaveBeenCalled();
+    fireEvent.click(screen.getByRole('button', { name: '确认选择' }));
+    expect(submit).toHaveBeenCalledExactlyOnceWith({ ...base, choiceId: choice.id, selected: ['hand-a'] });
+  });
+
+  it('passes only a concealed public identity to a non-owner choice reader', () => {
+    const read = vi.fn();
+    const { container } = render(<ChoicePanel choice={boardChoice} action={base} definitions={secretDefinitions} busy={false} onSubmit={vi.fn()} onReadCard={read} viewerId="p0" playerLabels={playerLabels} />);
+    fireEvent.click(screen.getAllByRole('button', { name: '放大阅读暗藏者' })[1]);
+    expect(read).toHaveBeenCalledOnce();
+    expect(read.mock.calls[0][0]).toMatchObject({ name: '暗藏者', owner: 'p2', controller: 'p0', kind: 'hidden' });
+    expect(read.mock.calls[0][0].cardId).toBeUndefined();
+    expect(read.mock.calls[0][0].text).toBeUndefined();
+    expect(read.mock.calls[0][0].icons).toBeUndefined();
+    expect(container.textContent).not.toMatch(/私有身份|私有能力/);
+  });
+
   it.each([['anonymous-a', 1], ['anonymous-b', 2]] as const)('distinguishes anonymous board targets by public ownership and region and submits %s', (id, number) => {
     const submit = vi.fn();
     const { container } = render(<ChoicePanel choice={boardChoice} action={base} definitions={secretDefinitions} busy={false} onSubmit={submit} viewerId="p0" playerLabels={playerLabels} />);

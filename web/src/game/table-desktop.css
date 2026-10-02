@@ -275,3 +275,56 @@
 .hg-desktop-table.hg-table .hg-reading-card .hg-card-text { font-size: 17px; line-height: 1.9; max-height: none; overflow: visible; }
 .hg-desktop-table.hg-table .hg-reading-card .hg-card-footer { font-size: 13px; line-height: 1.6; }
 .hg-desktop-table.hg-table .hg-reading-card .hg-temporary-label { font-size: 12px; }
+
+/* Keep a readable hand and public state on short desktop windows. */
+@media (min-width: 1060px) {
+  .hg-app .hg-desktop-table.hg-table { min-height: 0; grid-template-rows: 44px 112px minmax(190px, 1fr) 112px 182px; }
+  /* Reserve both character footprints; only the central battlefield scrolls. */
+  .hg-app .hg-desktop-table.hg-table .hg-battlefield { overflow-y: auto; overflow-x: hidden; scrollbar-width: auto; scrollbar-color: #b9a371 #172b23; }
+  .hg-app .hg-desktop-table.hg-table .hg-board { min-height: calc(2 * var(--hg-piece-height) + 160px); grid-template-rows: minmax(0, 1fr); }
+  .hg-app .hg-desktop-table.hg-table .hg-battlefield-scroll-hint { font-size: 11px; color: #dccca9; }
+  .hg-app .hg-desktop-table.hg-table .hg-table-status { flex-wrap: wrap; align-content: center; gap: 2px 12px; font-size: 12px; }
+  .hg-app .hg-desktop-table.hg-table .hg-round { min-width: 180px; }
+  .hg-app .hg-desktop-table.hg-table .hg-round b { font-size: 14px; }
+  .hg-app .hg-desktop-table.hg-table .hg-round span { font-size: 12px; }
+  .hg-app .hg-desktop-table.hg-table .hg-phase-line { gap: 4px 12px; font-size: 12px; }
+  .hg-app .hg-desktop-table.hg-table .hg-phase-line > strong { font-size: 12px; }
+  .hg-app .hg-desktop-table.hg-table .hg-team-tally,
+  .hg-app .hg-desktop-table.hg-table .hg-table-records,
+  .hg-app .hg-desktop-table.hg-table .hg-player-strip > small,
+  .hg-app .hg-desktop-table.hg-table .hg-mat-resource { font-size: 12px; }
+  .hg-app .hg-desktop-table.hg-table .hg-player-strip { min-height: 24px; height: auto; }
+  .hg-app .hg-desktop-table.hg-table .hg-player-strip > strong { font-size: 14px; }
+  .hg-app .hg-desktop-table.hg-table .hg-region-side-label { font-size: 11px; height: 18px; }
+  .hg-app .hg-desktop-table.hg-table .hg-region-threshold,
+  .hg-app .hg-desktop-table.hg-table .hg-region-threshold em { font-size: 11px; }
+  .hg-app .hg-desktop-table.hg-table .hg-dock-action { height: 44px; gap: 12px; }
+  .hg-app .hg-desktop-table.hg-table .hg-dock-action strong { font-size: 14px; }
+  .hg-app .hg-desktop-table.hg-table .hg-dock-action small { font-size: 11px; }
+  .hg-app .hg-desktop-table.hg-table .hg-dock-action .hg-button { min-height: 36px; font-size: 14px; }
+  .hg-app .hg-desktop-table.hg-table .hg-auto-pass,
+  .hg-app .hg-desktop-table.hg-table .hg-auto-pass > span { font-size: 11px; }
+  .hg-app .hg-desktop-table.hg-table .hg-hand-dock .hg-hand-section { height: 138px; padding-top: 5px; }
+  .hg-app .hg-desktop-table.hg-table .hg-hand-label { top: 12px; font-size: 12px; }
+  .hg-app .hg-desktop-table.hg-table .hg-hand-label b { font-size: 23px; }
+  .hg-app .hg-desktop-table.hg-table .hg-hand-dock .hg-hand { height: 137px; justify-content: flex-start; overflow-x: auto; overflow-y: hidden; padding: 3px 7px 8px; scrollbar-width: auto; gap: 10px; }
+  .hg-app .hg-desktop-table.hg-table .hg-hand-dock .hg-hand .hg-card { flex: 0 0 128px; width: 128px; min-width: 128px; height: 126px; padding: 8px; gap: 5px; }
+  .hg-app .hg-desktop-table.hg-table .hg-hand-dock .hg-hand .hg-card-name { font-size: 16px; line-height: 1.35; min-height: 22px; }
+  .hg-app .hg-desktop-table.hg-table .hg-hand-dock .hg-card-kind,
+  .hg-app .hg-desktop-table.hg-table .hg-hand-dock .hg-card-affiliation,
+  .hg-app .hg-desktop-table.hg-table .hg-hand-dock .hg-card-footer { font-size: 11px; line-height: 1.4; }
+  .hg-app .hg-desktop-table.hg-table .hg-hand-dock .hg-icons { font-size: 13px; gap: 9px; }
+  .hg-app .hg-desktop-table.hg-table .hg-hand-dock .hg-icons b { font-size: 14px; }
+  .hg-app .hg-desktop-table.hg-table .hg-hand-dock .hg-cost { width: 22px; height: 22px; font-size: 16px; }
+  .hg-app .hg-desktop-table.hg-table .hg-inspector { bottom: 194px; width: 324px; background: #172f28; }
+  .hg-app .hg-desktop-table.hg-table .hg-inspected-card .hg-card-text { font-size: 15px; line-height: 1.8; }
+  .hg-app .hg-desktop-table.hg-table .hg-inspected-card .hg-card-affiliation { font-size: 12px; }
+  .hg-app .hg-desktop-table.hg-table .hg-inspector .hg-button { min-height: 36px; font-size: 13px; }
+  .hg-app .hg-desktop-table.hg-table .hg-inspector .hg-button small { font-size: 11px; }
+  .hg-app .hg-desktop-table.hg-table .hg-card-hover { width: 310px; top: auto; bottom: 200px; transform: none; max-height: calc(100dvh - 270px); overflow-y: auto; }
+  .hg-app .hg-desktop-table.hg-table .hg-card-hover .hg-card-text { font-size: 15px; line-height: 1.8; }
+  .hg-app .hg-desktop-table.hg-table .hg-card-hover .hg-card-affiliation { font-size: 12px; }
+}
+@media (min-width: 1060px) and (min-height: 821px) {
+  .hg-app .hg-desktop-table.hg-table { grid-template-rows: 44px 142px minmax(190px, 1fr) 112px 182px; }
+}
