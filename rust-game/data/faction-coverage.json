@@ -459,7 +459,10 @@
       "mechanismIds": [
         "society",
         "blood",
-        "seal"
+        "seal",
+        "attachment",
+        "priority",
+        "deckChoice"
       ],
       "status": "unimplemented",
       "selectionEnabled": false,
@@ -481,7 +484,10 @@
       "mechanismIds": [
         "society",
         "core",
-        "task"
+        "chaos",
+        "task",
+        "costReduction",
+        "priority"
       ],
       "status": "unimplemented",
       "selectionEnabled": false,
@@ -504,7 +510,10 @@
         "society",
         "seal",
         "attachment",
-        "continuous"
+        "graveRecovery",
+        "continuous",
+        "deckChoice",
+        "priority"
       ],
       "status": "unimplemented",
       "selectionEnabled": false,
@@ -526,7 +535,10 @@
       "mechanismIds": [
         "society",
         "mysticContest",
-        "plan"
+        "privatePeek",
+        "hidden",
+        "plan",
+        "priority"
       ],
       "status": "unimplemented",
       "selectionEnabled": false,
@@ -1201,7 +1213,10 @@
       "mechanismIds": [
         "society",
         "mysticContest",
-        "continuous"
+        "continuous",
+        "deckChoice",
+        "exhaust",
+        "priority"
       ],
       "status": "unimplemented",
       "selectionEnabled": false,
@@ -1222,7 +1237,10 @@
       "abilitySummary": "一次移除目标秘社所有隐秘/暴露；弃媒体/互联网作隐秘对抗修正。",
       "mechanismIds": [
         "society",
-        "mysticContest"
+        "mysticContest",
+        "deckChoice",
+        "exhaust",
+        "priority"
       ],
       "status": "unimplemented",
       "selectionEnabled": false,
@@ -1244,7 +1262,9 @@
       "mechanismIds": [
         "society",
         "deckChoice",
-        "hidden"
+        "exhaust",
+        "hidden",
+        "priority"
       ],
       "status": "unimplemented",
       "selectionEnabled": false,
@@ -1265,9 +1285,11 @@
       "abilitySummary": "忽略紫忠诚；复苏标志允许有限免付费打出/现身；检索贝兰丹娜。",
       "mechanismIds": [
         "society",
-        "mysticContest",
+        "loyalty",
         "costReduction",
-        "hidden"
+        "hidden",
+        "deckChoice",
+        "priority"
       ],
       "status": "unimplemented",
       "selectionEnabled": false,
@@ -1513,7 +1535,8 @@
         "card-XQ12",
         "card-JC042",
         "card-JC091",
-        "card-JZ54"
+        "card-JZ54",
+        "card-MSWM04"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -1543,7 +1566,10 @@
         "bq-setup",
         "bq-keywords-2",
         "card-JC002",
-        "card-MSJC15"
+        "card-MSJC15",
+        "card-MSBQ04",
+        "card-MSWM03",
+        "card-MSWM04"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -1601,7 +1627,15 @@
         "card-MSJC14",
         "card-MSJC15",
         "card-MSJC16",
-        "card-MSJC17"
+        "card-MSJC17",
+        "card-MSBQ01",
+        "card-MSBQ02",
+        "card-MSBQ03",
+        "card-MSBQ04",
+        "card-MSWM01",
+        "card-MSWM02",
+        "card-MSWM03",
+        "card-MSWM04"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -1705,7 +1739,10 @@
         "card-JC056",
         "card-JC002",
         "card-XQ03",
-        "card-MSJC12"
+        "card-MSJC12",
+        "card-MSWM01",
+        "card-MSWM02",
+        "card-MSWM03"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -1860,7 +1897,8 @@
         "card-JC092",
         "card-XQ49",
         "card-MSJC16",
-        "card-MSJC17"
+        "card-MSJC17",
+        "card-MSBQ03"
       ],
       "dependencies": [
         "hidden",
@@ -1957,7 +1995,9 @@
       "limitations": "没有通用翻面降费、持续多来源叠加、任意费用修改器；不能据此开放所有降费牌。",
       "evidenceIds": [
         "card-JC042",
-        "faq-3"
+        "faq-3",
+        "card-MSBQ02",
+        "card-MSWM04"
       ],
       "dependencies": [
         "loyalty",
@@ -2004,7 +2044,13 @@
         "card-MSJC13",
         "card-MSJC15",
         "card-MSJC16",
-        "card-MSJC17"
+        "card-MSJC17",
+        "card-MSBQ01",
+        "card-MSBQ03",
+        "card-MSWM01",
+        "card-MSWM02",
+        "card-MSWM03",
+        "card-MSWM04"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -2043,7 +2089,9 @@
         "card-JC100",
         "card-JC091",
         "card-MSJC11",
-        "card-MSJC12"
+        "card-MSJC12",
+        "card-MSBQ03",
+        "card-MSWM01"
       ],
       "dependencies": [],
       "interactionIds": [],
@@ -2110,7 +2158,15 @@
         "card-MSJC14",
         "card-MSJC15",
         "card-MSJC16",
-        "card-MSJC17"
+        "card-MSJC17",
+        "card-MSBQ01",
+        "card-MSBQ02",
+        "card-MSBQ03",
+        "card-MSBQ04",
+        "card-MSWM01",
+        "card-MSWM02",
+        "card-MSWM03",
+        "card-MSWM04"
       ],
       "dependencies": [
         "priority",
@@ -2143,7 +2199,9 @@
         "intermezzo",
         "faq-5",
         "card-JC028",
-        "card-MSJC13"
+        "card-MSJC13",
+        "card-MSBQ01",
+        "card-MSBQ03"
       ],
       "dependencies": [
         "priority"
@@ -2178,7 +2236,9 @@
         "card-JC108",
         "card-MSJC10",
         "card-MSJC16",
-        "card-MSJC17"
+        "card-MSJC17",
+        "card-MSBQ01",
+        "card-MSBQ03"
       ],
       "dependencies": [
         "priority",
@@ -2566,7 +2626,10 @@
         "starlight",
         "bq-new",
         "bq-teams",
-        "card-MSJC15"
+        "card-MSJC15",
+        "card-MSBQ04",
+        "card-MSWM01",
+        "card-MSWM02"
       ],
       "dependencies": [
         "society",
@@ -2596,7 +2659,8 @@
       "limitations": "",
       "evidenceIds": [
         "veil",
-        "bq-new"
+        "bq-new",
+        "card-MSBQ04"
       ],
       "dependencies": [
         "society",
@@ -2688,7 +2752,8 @@
       "limitations": "",
       "evidenceIds": [
         "bq-new",
-        "bq-core"
+        "bq-core",
+        "card-MSBQ02"
       ],
       "dependencies": [
         "confrontation",
@@ -2948,7 +3013,8 @@
       "limitations": "所见原图的特定流程未在有限卡池内开放。",
       "evidenceIds": [
         "bq-keywords-2",
-        "card-WM071"
+        "card-WM071",
+        "card-MSBQ02"
       ],
       "dependencies": [
         "hidden"
@@ -3124,7 +3190,8 @@
       "evidenceIds": [
         "card-JC057",
         "card-JC062",
-        "faq-3"
+        "faq-3",
+        "card-MSBQ04"
       ],
       "dependencies": [
         "hidden",

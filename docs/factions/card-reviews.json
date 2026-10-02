@@ -881,9 +881,13 @@
       "confirmedMechanismIds": [
         "society",
         "blood",
-        "seal"
+        "seal",
+        "attachment",
+        "priority",
+        "deckChoice"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "完整观察规格/额外印刷符号阻塞及未解规则见card-specifications.json；引擎和UI未验收。",
+      "editionStatus": "pinnedImageVariant"
     },
     "MSBQ02": {
       "evidenceId": "card-MSBQ02",
@@ -898,9 +902,13 @@
       "confirmedMechanismIds": [
         "society",
         "core",
-        "task"
+        "chaos",
+        "task",
+        "costReduction",
+        "priority"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "完整观察规格/额外印刷符号阻塞及未解规则见card-specifications.json；引擎和UI未验收。",
+      "editionStatus": "pinnedImageVariant"
     },
     "MSBQ03": {
       "evidenceId": "card-MSBQ03",
@@ -916,10 +924,14 @@
         "society",
         "seal",
         "attachment",
-        "continuous"
+        "graveRecovery",
+        "continuous",
+        "deckChoice",
+        "priority"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。",
-      "notes": "原图行动费用分别为1和3，定位JSON写2和3；本交付未采用其定位转写费用。"
+      "remainingReview": "完整观察规格/额外印刷符号阻塞及未解规则见card-specifications.json；引擎和UI未验收。",
+      "notes": "原图行动费用分别为1和3，定位JSON写2和3；本交付未采用其定位转写费用。",
+      "editionStatus": "pinnedImageVariant"
     },
     "MSBQ04": {
       "evidenceId": "card-MSBQ04",
@@ -934,9 +946,13 @@
       "confirmedMechanismIds": [
         "society",
         "mysticContest",
-        "plan"
+        "privatePeek",
+        "hidden",
+        "plan",
+        "priority"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "完整观察规格/额外印刷符号阻塞及未解规则见card-specifications.json；引擎和UI未验收。",
+      "editionStatus": "pinnedImageVariant"
     },
     "MSCQ01": {
       "evidenceId": "card-MSCQ01",
@@ -1477,9 +1493,13 @@
       "confirmedMechanismIds": [
         "society",
         "mysticContest",
-        "continuous"
+        "continuous",
+        "deckChoice",
+        "exhaust",
+        "priority"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "完整观察规格/额外印刷符号阻塞及未解规则见card-specifications.json；引擎和UI未验收。",
+      "editionStatus": "pinnedImageVariant"
     },
     "MSWM02": {
       "evidenceId": "card-MSWM02",
@@ -1493,9 +1513,13 @@
       "abilitySummary": "一次移除目标秘社所有隐秘/暴露；弃媒体/互联网作隐秘对抗修正。",
       "confirmedMechanismIds": [
         "society",
-        "mysticContest"
+        "mysticContest",
+        "deckChoice",
+        "exhaust",
+        "priority"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "完整观察规格/额外印刷符号阻塞及未解规则见card-specifications.json；引擎和UI未验收。",
+      "editionStatus": "pinnedImageVariant"
     },
     "MSWM03": {
       "evidenceId": "card-MSWM03",
@@ -1510,9 +1534,12 @@
       "confirmedMechanismIds": [
         "society",
         "deckChoice",
-        "hidden"
+        "exhaust",
+        "hidden",
+        "priority"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "完整观察规格/额外印刷符号阻塞及未解规则见card-specifications.json；引擎和UI未验收。",
+      "editionStatus": "pinnedImageVariant"
     },
     "MSWM04": {
       "evidenceId": "card-MSWM04",
@@ -1526,11 +1553,13 @@
       "abilitySummary": "忽略紫忠诚；复苏标志允许有限免付费打出/现身；检索贝兰丹娜。",
       "confirmedMechanismIds": [
         "society",
-        "mysticContest",
+        "loyalty",
         "costReduction",
-        "hidden"
+        "hidden",
+        "deckChoice",
+        "priority"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "完整观察规格/额外印刷符号阻塞及未解规则见card-specifications.json；引擎和UI未验收。"
     },
     "TEST015": {
       "evidenceId": "card-TEST015",
