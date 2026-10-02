@@ -71,7 +71,10 @@ class CoverageTests(unittest.TestCase):
 
     def test_unreviewed_locator_text_cannot_be_called_verified(self):
         i = copy.deepcopy(self.index)
-        card = next(c for c in i["records"] if c["evidenceState"] == "unreviewed")
+        # The readable corpus is complete. Revoke an existing review in this
+        # negative fixture to keep testing that locator values cannot promote it.
+        card = next(c for c in i["records"] if c["id"] == "JC003")
+        card["evidenceState"] = "unreviewed"
         card["verifiedFields"] = {"name": card["locator"]["name"]}
         card["confirmedMechanismIds"] = card["candidateMechanismIds"][:1]
         self.assertTrue(any("promoted" in e for e in self.check(i=i)))

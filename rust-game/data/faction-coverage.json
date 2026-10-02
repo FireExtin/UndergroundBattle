@@ -1579,7 +1579,8 @@
         "card-DQJC108",
         "card-DQBQ10",
         "card-WM084",
-        "card-WM086"
+        "card-WM086",
+        "card-CQ29"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -1719,7 +1720,10 @@
         "card-XG47",
         "card-CQ08",
         "card-CQ09",
-        "card-CQ18"
+        "card-CQ18",
+        "card-CQ29",
+        "card-CQ30",
+        "card-CQ34"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -1958,7 +1962,9 @@
         "card-XG40",
         "card-XG46",
         "card-CQ13",
-        "card-CQ23"
+        "card-CQ23",
+        "card-CQ33",
+        "card-CQ34"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -2056,7 +2062,8 @@
         "card-XG14",
         "card-XG46",
         "card-CQ10",
-        "card-CQ13"
+        "card-CQ13",
+        "card-CQ33"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -2144,7 +2151,8 @@
         "card-XG17",
         "card-XG36",
         "card-CQ16",
-        "card-CQ17"
+        "card-CQ17",
+        "card-CQ35"
       ],
       "dependencies": [
         "hidden"
@@ -2287,7 +2295,8 @@
         "card-CQ15",
         "card-CQ16",
         "card-CQ17",
-        "card-CQ19"
+        "card-CQ19",
+        "card-CQ36"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -2373,7 +2382,9 @@
         "card-XG18",
         "card-XG25",
         "card-CQ01",
-        "card-CQ03"
+        "card-CQ03",
+        "card-CQ27",
+        "card-CQ35"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -2493,7 +2504,9 @@
         "card-XG23",
         "card-XG26",
         "card-CQ01",
-        "card-CQ23"
+        "card-CQ23",
+        "card-CQ29",
+        "card-CQ30"
       ],
       "dependencies": [],
       "interactionIds": [],
@@ -2612,7 +2625,10 @@
         "card-XG27",
         "card-XG28",
         "card-CQ09",
-        "card-CQ25"
+        "card-CQ25",
+        "card-CQ27",
+        "card-CQ28",
+        "card-CQ31"
       ],
       "dependencies": [
         "hidden",
@@ -2658,7 +2674,8 @@
         "card-WM086",
         "card-JZ51",
         "card-JZ52",
-        "card-CQ14"
+        "card-CQ14",
+        "card-CQ27"
       ],
       "dependencies": [
         "priority",
@@ -2768,7 +2785,8 @@
         "card-XG13",
         "card-XG21",
         "card-XG26",
-        "card-CQ04"
+        "card-CQ04",
+        "card-CQ27"
       ],
       "dependencies": [
         "priority"
@@ -3103,7 +3121,11 @@
         "card-CQ18",
         "card-CQ21",
         "card-CQ22",
-        "card-CQ25"
+        "card-CQ25",
+        "card-CQ26",
+        "card-CQ27",
+        "card-CQ28",
+        "card-CQ38"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -3318,7 +3340,14 @@
         "card-CQ17",
         "card-CQ20",
         "card-CQ22",
-        "card-CQ23"
+        "card-CQ23",
+        "card-CQ26",
+        "card-CQ28",
+        "card-CQ29",
+        "card-CQ30",
+        "card-CQ35",
+        "card-CQ36",
+        "card-CQ38"
       ],
       "dependencies": [],
       "interactionIds": [],
@@ -3498,7 +3527,8 @@
         "card-CQ15",
         "card-CQ18",
         "card-CQ19",
-        "card-CQ22"
+        "card-CQ22",
+        "card-CQ36"
       ],
       "dependencies": [
         "priority",
@@ -3733,7 +3763,9 @@
         "card-CQ19",
         "card-CQ22",
         "card-CQ23",
-        "card-CQ24"
+        "card-CQ24",
+        "card-CQ33",
+        "card-CQ38"
       ],
       "dependencies": [
         "priority"
@@ -3849,7 +3881,9 @@
         "card-XG29",
         "card-XG30",
         "card-CQ15",
-        "card-CQ25"
+        "card-CQ25",
+        "card-CQ32",
+        "card-CQ33"
       ],
       "dependencies": [
         "priority",
@@ -3905,7 +3939,9 @@
         "card-XG22",
         "card-XG39",
         "card-XG45",
-        "card-CQ21"
+        "card-CQ21",
+        "card-CQ29",
+        "card-CQ38"
       ],
       "dependencies": [
         "confrontation"
@@ -3986,7 +4022,8 @@
         "card-XG27",
         "card-XG29",
         "card-XG31",
-        "card-CQ25"
+        "card-CQ25",
+        "card-CQ30"
       ],
       "dependencies": [
         "continuous",
@@ -4181,7 +4218,8 @@
         "card-JC129",
         "card-WM076",
         "card-JZ27",
-        "card-CQ24"
+        "card-CQ24",
+        "card-CQ32"
       ],
       "dependencies": [
         "continuous",
@@ -4353,7 +4391,13 @@
         "card-CQ04",
         "card-CQ06",
         "card-CQ20",
-        "card-CQ24"
+        "card-CQ24",
+        "card-CQ26",
+        "card-CQ27",
+        "card-CQ30",
+        "card-CQ34",
+        "card-CQ35",
+        "card-CQ38"
       ],
       "dependencies": [
         "loyalty"
@@ -4458,7 +4502,8 @@
         "card-XG16",
         "card-CQ06",
         "card-CQ10",
-        "card-CQ23"
+        "card-CQ23",
+        "card-CQ37"
       ],
       "dependencies": [
         "continuous",
@@ -4521,7 +4566,9 @@
         "card-CQ11",
         "card-CQ14",
         "card-CQ19",
-        "card-CQ23"
+        "card-CQ23",
+        "card-CQ27",
+        "card-CQ37"
       ],
       "dependencies": [
         "continuous"
@@ -4707,7 +4754,17 @@
         "card-CQ21",
         "card-CQ22",
         "card-CQ24",
-        "card-CQ25"
+        "card-CQ25",
+        "card-CQ27",
+        "card-CQ29",
+        "card-CQ30",
+        "card-CQ31",
+        "card-CQ32",
+        "card-CQ33",
+        "card-CQ34",
+        "card-CQ36",
+        "card-CQ37",
+        "card-CQ38"
       ],
       "dependencies": [
         "society",
@@ -4806,7 +4863,11 @@
         "card-WM098",
         "card-XG22",
         "card-XG48",
-        "card-CQ20"
+        "card-CQ20",
+        "card-CQ29",
+        "card-CQ32",
+        "card-CQ34",
+        "card-CQ37"
       ],
       "dependencies": [
         "seal",
@@ -5105,7 +5166,8 @@
         "card-CQ15",
         "card-CQ17",
         "card-CQ21",
-        "card-CQ24"
+        "card-CQ24",
+        "card-CQ35"
       ],
       "dependencies": [
         "confrontation",
@@ -5292,7 +5354,9 @@
         "card-WM079",
         "card-XG14",
         "card-XG15",
-        "card-XG31"
+        "card-XG31",
+        "card-CQ27",
+        "card-CQ31"
       ],
       "dependencies": [
         "hidden"
@@ -5619,7 +5683,18 @@
         "card-CQ21",
         "card-CQ23",
         "card-CQ24",
-        "card-CQ25"
+        "card-CQ25",
+        "card-CQ26",
+        "card-CQ27",
+        "card-CQ29",
+        "card-CQ31",
+        "card-CQ32",
+        "card-CQ33",
+        "card-CQ34",
+        "card-CQ35",
+        "card-CQ36",
+        "card-CQ37",
+        "card-CQ38"
       ],
       "dependencies": [
         "confrontation",
@@ -5805,7 +5880,18 @@
         "card-CQ21",
         "card-CQ22",
         "card-CQ23",
-        "card-CQ24"
+        "card-CQ24",
+        "card-CQ26",
+        "card-CQ27",
+        "card-CQ29",
+        "card-CQ30",
+        "card-CQ31",
+        "card-CQ32",
+        "card-CQ33",
+        "card-CQ34",
+        "card-CQ36",
+        "card-CQ37",
+        "card-CQ38"
       ],
       "dependencies": [
         "sacrifice"
@@ -5849,7 +5935,8 @@
         "card-WM092",
         "card-JZ26",
         "card-JZ46",
-        "card-JZ68"
+        "card-JZ68",
+        "card-CQ34"
       ],
       "dependencies": [
         "hidden",
@@ -7653,7 +7740,7 @@
       "path": "resource/ymsj-fun.github.io/cards/JC052 终焉的诗寇蒂.jpg",
       "sha256": "3b42cde3d48132e0ecbf73dd7ee78c6379c2319a0b83cb7304f24033ab361d33",
       "visuallyReviewed": true,
-      "topic": "终焉的诗蔻蒂：完整同ID原图与必要放大区逐项人工读取"
+      "topic": "终焉的诗寇蒂：完整同ID原图与必要放大区逐项人工读取"
     },
     "card-JC053": {
       "kind": "image",
@@ -8317,7 +8404,7 @@
       "path": "resource/ymsj-fun.github.io/cards/XQ45 破颅而出.jpg",
       "sha256": "6475556f30b08853ed5bb2e1c82b3314c73947fb59bc7d044060a5555f5ef8cf",
       "visuallyReviewed": true,
-      "topic": "破茧而出：完整同ID原图与必要放大区逐项人工读取"
+      "topic": "破颅而出：完整同ID原图与必要放大区逐项人工读取"
     },
     "card-XQ46": {
       "kind": "image",
@@ -8380,7 +8467,7 @@
       "path": "resource/ymsj-fun.github.io/cards/LC03 希妲·克伦泽，“渡鸦”.jpg",
       "sha256": "5fb9428ea4a98f901d9555c9230df7dfa3353fc87d49a3501c997e8543753582",
       "visuallyReviewed": true,
-      "topic": "希娅·克伦泽，“渡鸦”：完整同ID原图与必要放大区逐项人工读取"
+      "topic": "希妲·克伦泽，“渡鸦”：完整同ID原图与必要放大区逐项人工读取"
     },
     "card-LC04": {
       "kind": "image",
@@ -8772,7 +8859,7 @@
       "path": "resource/ymsj-fun.github.io/cards/BQ027 血畜.jpg",
       "sha256": "dd967ae165a1137d27f7259011277b2ef88872f86d6de2fbd6e05bbeda944567",
       "visuallyReviewed": true,
-      "topic": "血裔：完整同ID原图与必要放大区逐项人工读取"
+      "topic": "血畜：完整同ID原图与必要放大区逐项人工读取"
     },
     "card-BQ028": {
       "kind": "image",
@@ -10277,7 +10364,7 @@
       "path": "resource/ymsj-fun.github.io/cards/JZ46 狴犴铜雕.jpg",
       "sha256": "756bdb34307c84a5c5f1e9cc1b7e13f9112ae727e934847f6993169ae1451785",
       "visuallyReviewed": true,
-      "topic": "辟邪铜雕：完整同ID原图与必要放大区逐项人工读取"
+      "topic": "狴犴铜雕：完整同ID原图与必要放大区逐项人工读取"
     },
     "card-JZ47": {
       "kind": "image",
@@ -10480,7 +10567,7 @@
       "path": "resource/ymsj-fun.github.io/cards/XG02 无瑕的索菲娅.jpg",
       "sha256": "9ab15c0bfcd00f0fc19264ef738386f1212b4ef079bfc374148a7d71d91921ce",
       "visuallyReviewed": true,
-      "topic": "无暇的索菲娅：完整同ID原图与必要放大区逐项人工读取"
+      "topic": "无瑕的索菲娅：完整同ID原图与必要放大区逐项人工读取"
     },
     "card-XG03": {
       "kind": "image",
@@ -10830,7 +10917,7 @@
       "path": "resource/ymsj-fun.github.io/cards/CQ04 计划：诸界博物学.jpg",
       "sha256": "eb8f93f2262e6b51f18b92f0b81d4201191dcbada8c65e39b871c3f3dc51c7ac",
       "visuallyReviewed": true,
-      "topic": "计划：诘界博物学：完整同ID原图与必要放大区逐项人工读取"
+      "topic": "计划：诸界博物学：完整同ID原图与必要放大区逐项人工读取"
     },
     "card-CQ05": {
       "kind": "image",
@@ -10900,7 +10987,7 @@
       "path": "resource/ymsj-fun.github.io/cards/CQ15 元屠、阿鼻双剑.jpg",
       "sha256": "93c8bd987a7d4387fb6839d43907adafb46ab7d7c19b635d857ea970f061228f",
       "visuallyReviewed": true,
-      "topic": "无屠、阿鼻双剑：完整同ID原图与必要放大区逐项人工读取"
+      "topic": "元屠、阿鼻双剑：完整同ID原图与必要放大区逐项人工读取"
     },
     "card-CQ16": {
       "kind": "image",
@@ -10914,7 +11001,7 @@
       "path": "resource/ymsj-fun.github.io/cards/CQ17 绍朗中尉.jpg",
       "sha256": "9a0ab08d27170670b44fdb0376bec00641683f68e250a89bcba87514d642432d",
       "visuallyReviewed": true,
-      "topic": "绍明中尉：完整同ID原图与必要放大区逐项人工读取"
+      "topic": "绍朗中尉：完整同ID原图与必要放大区逐项人工读取"
     },
     "card-CQ18": {
       "kind": "image",
@@ -10971,6 +11058,97 @@
       "sha256": "9b18fbff8a4063a6cba2276032bd8653be61ee58f0948256b7531aaeed3638ab",
       "visuallyReviewed": true,
       "topic": "伥虎：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-CQ26": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/CQ26 暮天使莉芮尔.jpg",
+      "sha256": "7d6e38c0817d7740e680153ff5dbbdd13007f8743d15d654c36e1dcf29aa9b76",
+      "visuallyReviewed": true,
+      "topic": "暮天使莉芮尔：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-CQ27": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/CQ27 骨根灵主.jpg",
+      "sha256": "19c1a81185aaf17365c8888005b7ac4eb926db248e1349710b43de3b0aa1814d",
+      "visuallyReviewed": true,
+      "topic": "骨根灵主：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-CQ28": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/CQ28 咒欲之门.jpg",
+      "sha256": "f4ce0a675978579414f8204b5075db0fc6a9e164d504b005d13e75e1279199ab",
+      "visuallyReviewed": true,
+      "topic": "咒欲之门：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-CQ29": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/CQ29 妖僧拉斯普京.jpg",
+      "sha256": "f712d481375b85c2c2cdabfd214729e72fd9eb9c17ed6fea3b9bc44650aab087",
+      "visuallyReviewed": true,
+      "topic": "妖僧拉斯普京：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-CQ30": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/CQ30 疯狂之影刹奇拉.jpg",
+      "sha256": "e255b51c689db72c81cf4b8968918e5e149fb181409b70f7d41099fa7795b42d",
+      "visuallyReviewed": true,
+      "topic": "疯狂之影刹奇拉：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-CQ31": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/CQ31 嗜杀怪客.jpg",
+      "sha256": "993d64d2269ff10fc089b454d4f05d51b9dce840c2eab8c77fb7b8f9bc9be7ce",
+      "visuallyReviewed": true,
+      "topic": "嗜杀怪客：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-CQ32": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/CQ32 巡游的里戈莱托.jpg",
+      "sha256": "4f47cf99efc8c070cdf256698413e67909d904e2401e8aa771f7e7018520e747",
+      "visuallyReviewed": true,
+      "topic": "巡游的里戈莱托：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-CQ33": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/CQ33 血肉之屋.jpg",
+      "sha256": "d28700c1445c48989f16ce9b916142811a37bffdca4ee8b6beeda5dddd1ffb07",
+      "visuallyReviewed": true,
+      "topic": "血肉之屋：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-CQ34": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/CQ34 灵能海豚基森.jpg",
+      "sha256": "691e1462bea1fedc8d9ce86407bbbb712b98505da09f1e77c5d4cc19072caaf7",
+      "visuallyReviewed": true,
+      "topic": "灵能海豚基森：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-CQ35": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/CQ35 多功能人型作战平台.jpg",
+      "sha256": "c2d315a7a96dc1b9071e8b84053c237223c1d39cff33d5380c7f4323155ce82e",
+      "visuallyReviewed": true,
+      "topic": "多功能人型作战平台：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-CQ36": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/CQ36 防暴构装体，八.jpg",
+      "sha256": "5178bc30cc938d232f97130bd3015f82f149fb963c0cf3c6d2c28103e84c75bf",
+      "visuallyReviewed": true,
+      "topic": "防暴构装体，八：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-CQ37": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/CQ37 尼古拉斯·勒梅大师.jpg",
+      "sha256": "2b88c4b829b49382f6db062767dd7b2209bb3c6732a51afe56c88d26a7640119",
+      "visuallyReviewed": true,
+      "topic": "尼古拉斯·勒梅大师：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-CQ38": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/CQ38 天之丛云.jpg",
+      "sha256": "2792574c1be863f784faf27f271eb8423f74b1f60bf8096976cfe2a1e07ebae5",
+      "visuallyReviewed": true,
+      "topic": "天之丛云：完整同ID原图与必要放大区逐项人工读取"
     }
   },
   "openQuestions": [
