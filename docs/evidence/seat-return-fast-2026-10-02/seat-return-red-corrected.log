@@ -1,0 +1,105 @@
+
+> undergroundbattle-web@0.1.0 test
+> vitest --run src/game/useGame.test.tsx src/game/Help.test.tsx
+
+
+ RUN  v4.1.2 /workspace/hegemony-seat-return-fix/web
+
+ ❯ src/game/Help.test.tsx (1 test | 1 failed) 334ms
+     × closes with Escape and returns focus to the guide opener 329ms
+ ❯ src/game/useGame.test.tsx (17 tests | 2 failed) 3096ms
+     × rejoins its saved room through the invite without allocating another seat or changing the ready deck 1118ms
+     × preserves multiple historical seats and restores the last used matching seat even through a draft join 1014ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/game/Help.test.tsx > help keyboard dismissal > closes with Escape and returns focus to the guide opener
+Error: expect(element).toHaveFocus()
+
+Expected element with focus:
+  <button
+  aria-label="关闭指南"
+  class="hg-close"
+>
+  ×
+</button>
+Received element with focus:
+  <button />
+ ❯ src/game/Help.test.tsx:11:58
+      9|     const close = vi.fn();
+     10|     const { unmount } = render(<Help catalog={testCatalog} onClose={cl…
+     11|     expect(screen.getByRole('button', { name: '关闭指南' })).toHaveFocus();
+       |                                                          ^
+     12|     fireEvent.keyDown(document, { key: 'Escape' }); expect(close).toHa…
+     13|     unmount(); expect(opener).toHaveFocus(); opener.remove();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  src/game/useGame.test.tsx > room lifecycle and reconciliation > rejoins its saved room through the invite without allocating another seat or changing the ready deck
+AssertionError: expected 'p1' to be 'p0' // Object.is equality
+
+Ignored nodes: comments, script, style
+[36m<html>[39m
+  [36m<head />[39m
+  [36m<body>[39m
+    [36m<div />[39m
+  [36m</body>[39m
+[36m</html>[39m
+
+Expected: "p0"
+Received: "p1"
+
+ ❯ src/game/useGame.test.tsx:23:58
+     21|     await waitFor(() => expect(result.current.catalog).toEqual(testCat…
+     22|     await act(async () => { await result.current.join(' invite ', 'cha…
+     23|     await waitFor(() => expect(result.current.view?.you).toBe('p0'));
+       |                                                          ^
+     24|     expect(result.current.session).toEqual(session); expect(posts).toE…
+     25|     expect(result.current.view?.players.find(p => p.id === 'p0')).toMa…
+ ❯ runWithExpensiveErrorDiagnosticsDisabled ../../UndergroundBattle/web/node_modules/@testing-library/dom/dist/config.js:47:12
+ ❯ checkCallback ../../UndergroundBattle/web/node_modules/@testing-library/dom/dist/wait-for.js:124:77
+ ❯ Timeout.checkRealTimersCallback ../../UndergroundBattle/web/node_modules/@testing-library/dom/dist/wait-for.js:118:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  src/game/useGame.test.tsx > room lifecycle and reconciliation > preserves multiple historical seats and restores the last used matching seat even through a draft join
+AssertionError: expected undefined to be 'p1' // Object.is equality
+
+Ignored nodes: comments, script, style
+[36m<html>[39m
+  [36m<head />[39m
+  [36m<body>[39m
+    [36m<div />[39m
+  [36m</body>[39m
+[36m</html>[39m
+
+- Expected:
+"p1"
+
++ Received:
+undefined
+
+ ❯ src/game/useGame.test.tsx:39:58
+     37|     const { result } = renderHook(useGame);
+     38|     await act(async () => { await result.current.joinDraft('INVITE', '…
+     39|     await waitFor(() => expect(result.current.view?.you).toBe('p1'));
+       |                                                          ^
+     40|     expect(result.current.session).toEqual(other); expect(posts).toEqu…
+     41|     expect(readSavedSeats()).toEqual([session, other]);
+ ❯ runWithExpensiveErrorDiagnosticsDisabled ../../UndergroundBattle/web/node_modules/@testing-library/dom/dist/config.js:47:12
+ ❯ checkCallback ../../UndergroundBattle/web/node_modules/@testing-library/dom/dist/wait-for.js:124:77
+ ❯ Timeout.checkRealTimersCallback ../../UndergroundBattle/web/node_modules/@testing-library/dom/dist/wait-for.js:118:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  3 failed | 15 passed (18)
+   Start at  21:04:39
+   Duration  4.94s (transform 490ms, setup 516ms, import 566ms, tests 3.43s, environment 1.95s)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

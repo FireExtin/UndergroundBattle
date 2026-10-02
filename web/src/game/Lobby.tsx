@@ -73,7 +73,7 @@ export function Lobby({ catalog, busy, onCreate, onJoin, retry, onSelectDraft, o
           <button type="button" className={mode === 'duel' ? 'hg-selected' : ''} onClick={() => setMode('duel')} disabled={busy}><strong>两人对决 <span>1 VS 1</span></strong><small>3 个地区 · 先获 8 分胜利</small></button>
           <button type="button" className={mode === 'teams' ? 'hg-selected' : ''} onClick={() => setMode('teams')} disabled={busy}><strong>四人协作 <span>2 VS 2</span></strong><small>5 个地区 · 团队先获 10 分胜利</small></button>
         </div> : <label className="hg-field">邀请码<input value={invite} onChange={event => setInvite(event.target.value)} placeholder="粘贴伙伴发来的邀请码" required autoComplete="off" disabled={busy} /></label>}
-        <div className="hg-entry-bottom"><p>创建后分享邀请，所有玩家准备后由房主开始。<br />座位保存在此浏览器，刷新即可继续。</p><button className="hg-button hg-button-primary" type="submit" disabled={busy || !catalog || !entryAvailable || !name.trim() || (tab === 'join' && !invite.trim())}>{busy ? '正在入席…' : tab === 'create' ? '创建牌桌 →' : '加入牌桌 →'}</button></div>
+        <div className="hg-entry-bottom"><p>创建后分享邀请，所有玩家准备后由房主开始。<br />座位保存在此浏览器，刷新即可继续。{tab === 'join' && <><br />本机已有此房座位时会恢复原席，保留原称呼、牌组与准备状态。</>}</p><button className="hg-button hg-button-primary" type="submit" disabled={busy || !catalog || !entryAvailable || !name.trim() || (tab === 'join' && !invite.trim())}>{busy ? '正在入席…' : tab === 'create' ? '创建牌桌 →' : '加入牌桌 →'}</button></div>
       </form>
       <div id="hegemony-decks" className="hg-section-title"><span className="hg-eyebrow">02 / 选择自组预组</span><span className="hg-pool-badge">受限真实卡池预组</span></div>
       <h2>{catalog ? `${catalog.decks.length} 套自组预组` : '自组预组'}</h2>

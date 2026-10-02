@@ -54,7 +54,7 @@ export function RoomLobby({ view, catalog, busy, onAction }: { view: View; catal
     <section className="hg-room-controls" aria-label="准备与开始"><div><span className="hg-eyebrow">席位 {(you?.seat ?? 0) + 1} · 你的牌组</span><h2>{you?.deckName || yourDeck?.name || '秘社牌组'}</h2></div>
       <div className="hg-room-ready"><span>{view.players.filter(player => player.ready).length} / {capacity} 位玩家已准备</span><ActionButtons actions={starts} busy={busy} onAction={onAction} />{!starts.some(action => action.kind === 'start') && <p>{you?.seat === 0 ? '等所有座位入席并准备后，即可开始。' : '准备后等待房主开始对局。'}</p>}</div>
     </section>
-    <section className="hg-invite"><div><span className="hg-eyebrow">邀请伙伴入席</span><strong>{view.inviteCode}</strong><p>分享邀请码或邀请链接。每个浏览器独立占据一个座位。</p></div><button className="hg-button hg-button-primary" onClick={async () => {
+    <section className="hg-invite"><div><span className="hg-eyebrow">邀请伙伴入席</span><strong>{view.inviteCode}</strong><p>分享邀请码或邀请链接。伙伴使用自己的浏览器入席；本机再次加入会恢复原座位。</p></div><button className="hg-button hg-button-primary" onClick={async () => {
       try { await navigator.clipboard.writeText(`${location.origin}/?invite=${encodeURIComponent(view.inviteCode)}`); setCopied(true); setCopyError(false); }
       catch { setCopyError(true); }
     }}>{copied ? '✓ 邀请链接已复制' : '复制邀请链接 ↗'}</button>{copyError && <p role="status">浏览器无法复制，请手动分享上方邀请码。</p>}</section>

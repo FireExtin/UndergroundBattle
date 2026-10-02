@@ -1,0 +1,25 @@
+{
+  "passed": false,
+  "stateInjection": false,
+  "apiMoves": false,
+  "failure": "AssertionError: Returning through the same invite consumed another seat",
+  "uiPostCount": 3,
+  "postResults": [
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/dcbb69e361292a0a91cae8be/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/join"
+    }
+  ],
+  "browserErrors": []
+}

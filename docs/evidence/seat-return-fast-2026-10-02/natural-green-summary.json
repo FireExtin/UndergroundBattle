@@ -1,0 +1,33 @@
+{
+  "passed": true,
+  "stateInjection": false,
+  "apiMoves": false,
+  "roomId": "dc63c92c53451732628693e4",
+  "reentries": 2,
+  "occupants": 1,
+  "seat": 0,
+  "version": 1,
+  "ready": true,
+  "deckId": "watchers",
+  "history": [
+    {
+      "roomId": "dc63c92c53451732628693e4",
+      "seat": 0
+    }
+  ],
+  "guideEscape": true,
+  "uiPostCount": 2,
+  "postResults": [
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/dc63c92c53451732628693e4/commands"
+    }
+  ],
+  "browserErrors": []
+}
