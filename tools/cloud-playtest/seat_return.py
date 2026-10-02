@@ -8,9 +8,14 @@ from common import IsolatedService, write_json
 
 async def run(args):
     output=Path(args.output).resolve()
-    service=IsolatedService(args.binary,args.cwd,output,args.port,args.static_dir)
+    class Remote:
+        remote=True
+        base_url=args.url
+        def start(self):pass
+        def stop(self):pass
+    service=Remote() if args.url else IsolatedService(args.binary,args.cwd,output,args.port,args.static_dir)
     service.start()
-    result={'passed':False,'stateInjection':False,'apiMoves':False}
+    result={'passed':False,'stateInjection':False,'apiMoves':False,'deployedSite':bool(args.url),'siteBypassUsed':False}
     try:
         async with async_playwright() as p:
             qa=AttachmentRun(p,service,output)
@@ -42,14 +47,16 @@ async def run(args):
                 await page.get_by_role('dialog',name='上手指南').wait_for()
                 await page.keyboard.press('Escape')
                 await page.get_by_role('dialog',name='上手指南').wait_for(state='hidden')
+                health=await page.evaluate('async()=>{const r=await fetch("/api/health");return {status:r.status,body:await r.json()}}')
+                scripts=await page.locator('script[src]').evaluate_all('(s)=>s.map(x=>new URL(x.src).pathname)')
                 assert not qa.errors
                 assert qa.post_count==2, 'Re-entry must issue no create/join/ready mutation'
                 history=await page.evaluate('JSON.parse(localStorage.getItem("hegemony.seats.v1") || "[]").map(s=>({roomId:s.roomId,seat:s.seat}))')
-                result.update(passed=True,roomId=before['roomId'],reentries=2,occupants=1,seat=0,version=restored['version'],ready=player['ready'],deckId=player['deckId'],history=history,guideEscape=True)
+                result.update(passed=True,roomId=before['roomId'],reentries=2,occupants=1,seat=0,version=restored['version'],ready=player['ready'],deckId=player['deckId'],history=history,guideEscape=True,health=health,scriptAssets=scripts)
             except Exception as error:
                 result['failure']=f'{type(error).__name__}: {error}'
             finally:
-                result.update(uiPostCount=qa.post_count,postResults=qa.post_results,browserErrors=qa.errors)
+                result.update(uiPostCount=qa.post_count,postResults=qa.post_results,browserErrors=qa.errors,transportEvents=qa.transport_events,infrastructurePosts=qa.infrastructure_posts)
                 write_json(output/'seat-return-summary.json',result)
                 for c in qa.contexts:await c.close()
     finally:service.stop()
@@ -58,6 +65,8 @@ async def run(args):
 
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__)
-    p.add_argument('--binary',required=True);p.add_argument('--cwd',default='.');p.add_argument('--static-dir',required=True)
+    p.add_argument('--binary');p.add_argument('--cwd',default='.');p.add_argument('--static-dir',default='web/dist');p.add_argument('--url')
     p.add_argument('--output',required=True);p.add_argument('--port',type=int,default=8111)
-    asyncio.run(run(p.parse_args()))
+    args=p.parse_args()
+    if not args.url and not args.binary:p.error('--binary or --url is required')
+    asyncio.run(run(args))

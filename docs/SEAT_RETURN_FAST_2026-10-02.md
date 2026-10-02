@@ -13,3 +13,7 @@
 证据：`docs/evidence/seat-return-fast-2026-10-02/`。先前一条网页命令重复传入 `--run` 被CLI拒绝，未运行测试；只有 `*-red-corrected.log` 是红测依据。
 
 本切片无规则/WASM变化，发布复用同一Site、保留全部旧引擎及房间。v027完整四席实战另行验收，等待房恢复通过不能替代出牌和对局结算。
+
+发布：实现 `7d7b4113dffb1010e096edd9782ae57d050eb316` 已推主实施分支，官方bundle完成构建、15项Worker验证、精确源推送和54文件归档。Site11源码 `f1474c5c4ed009da78b076dc36af24a48879c2a7`，部署 `appgdep_6ac01d65f6a48191ba87e95da504650e` 成功，访问public/revision2、环境revision0未变，WASM仍为 `d4a9d88f…`。新worktree缺少ignored WASM包导致首次stage中止；补入已核SHA的v026包重跑后才发布，没有发布缺失/混合版本。
+
+线上匿名持久浏览器自然回归也通过：QA房 `79a1af9b220566a5caa135ad`，两次邀请码重返+刷新均原席、单一占用、原准备/牌组；加载 `/assets/index-D85K7SZJ.js`，health200/rust-v0.2.6，无浏览器或传输错误。全程2次游戏UI POST，另1次hosting浏览器校验POST单列；无Site绕过令牌、无状态注入或API游戏写入。验收profile留本机。
