@@ -2094,7 +2094,7 @@ mod tests {
     #[test]
     fn catalog_is_restricted_real_complete_and_decks_are_legal() {
         let c = catalog::catalog();
-        assert_eq!(c.cards.len(), 29);
+        assert_eq!(c.cards.len(), 30);
         let active = c
             .cards
             .iter()
@@ -2113,12 +2113,29 @@ mod tests {
                 .iter()
                 .filter(|d| d.kind == "character" || d.kind == "spell")
                 .count(),
-            25
+            26
         );
         assert_eq!(c.decks.len(), 5);
         for deck in &c.decks {
             assert_eq!(deck.card_count, 50);
             assert_eq!(deck.cards.iter().map(|x| x.count).sum::<usize>(), 50);
+            let detectives = deck
+                .cards
+                .iter()
+                .filter(|e| e.card_id == "JC058")
+                .map(|e| e.count)
+                .sum::<usize>();
+            assert_eq!(detectives, if deck.id == "keepers" { 3 } else { 0 });
+            if deck.id == "keepers" {
+                assert_eq!(
+                    deck.cards
+                        .iter()
+                        .find(|e| e.card_id == "JC125")
+                        .unwrap()
+                        .count,
+                    14
+                );
+            }
             for e in &deck.cards {
                 assert!(e.card_id == "JC125" || e.count <= 3);
                 assert_ne!(card(&e.card_id).kind, "region");
@@ -2189,6 +2206,287 @@ mod tests {
         assert_ne!(c.id, id);
         assert!(c.exhausted);
         assert!(!c.face_down);
+    }
+    #[test]
+    fn detective_only_reveal_triggers_once_can_decline_and_handles_exhausted_or_no_target() {
+        let mut deployed = game("duel");
+        let hidden = board(&mut deployed, "LC21", 1, 0);
+        deployed.board_mut(&hidden).unwrap().face_down = true;
+        let detective = hand(&mut deployed, "JC058", 0);
+        resource(&mut deployed, 0, "JC058", 3);
+        deployed
+            .apply(
+                0,
+                Action {
+                    card_id: Some(detective),
+                    region: Some(0),
+                    ..Action::new("deploy")
+                },
+            )
+            .unwrap();
+        pass_stack(&mut deployed);
+        assert!(deployed.pending.is_none()); // Ordinary face-up deployment is not Reveal.
+        assert!(deployed.board(&hidden).is_some());
+
+        for (has_target, exhausted) in [(true, false), (true, true), (false, false), (false, true)]
+        {
+            let mut g = game("duel");
+            // Explicit initial layout; every declaration and choice below is an Action.
+            let detective = board(&mut g, "JC058", 0, 0);
+            let c = g.board_mut(&detective).unwrap();
+            c.face_down = true;
+            c.exhausted = exhausted;
+            let target = has_target.then(|| {
+                let id = board(&mut g, "LC21", 1, 0);
+                g.board_mut(&id).unwrap().face_down = true;
+                id
+            });
+            resource(&mut g, 0, "JC058", 3);
+            g.apply(
+                0,
+                Action {
+                    card_id: Some(detective.clone()),
+                    ..Action::new("reveal")
+                },
+            )
+            .unwrap();
+            assert!(g.pending.is_none()); // The Reveal card must first resolve.
+            pass_stack(&mut g);
+            let revealed = g.regions[0]
+                .cards
+                .iter()
+                .find(|c| c.definition == "JC058")
+                .unwrap();
+            assert_ne!(revealed.id, detective);
+            assert!(!revealed.face_down);
+            assert_eq!(revealed.exhausted, exhausted);
+            assert_eq!(g.resources(0), 0);
+            if let Some(target) = target {
+                let pending = g.pending.as_ref().unwrap();
+                assert_eq!(pending.choice.kind, "trigger");
+                assert_eq!(pending.choice.options.len(), 1);
+                assert_eq!(pending.choice.options[0].id, target);
+                assert_eq!(pending.choice.allow_decline, Some(true));
+                select(&mut g, vec![]);
+                assert!(g.board(&target).is_some());
+            } else {
+                assert!(g.pending.is_none()); // No legal hidden target means no declaration.
+            }
+            assert!(g.stack.is_empty() && g.effects.is_empty() && g.pending.is_none());
+        }
+    }
+    #[test]
+    fn detective_targets_all_sides_same_region_without_private_leaks_or_hidden_death() {
+        let mut g = game("teams");
+        let detective = board(&mut g, "JC058", 0, 2);
+        g.board_mut(&detective).unwrap().face_down = true;
+        let own = board(&mut g, "JC125", 0, 2);
+        let teammate = board(&mut g, "LC21", 1, 2);
+        let enemy = board(&mut g, "XQ12", 2, 2);
+        let distant = board(&mut g, "LC20", 3, 1);
+        let already_revealing = board(&mut g, "JC125", 3, 2);
+        for id in [&own, &teammate, &enemy, &distant, &already_revealing] {
+            g.board_mut(id).unwrap().face_down = true;
+        }
+        let face_up = board(&mut g, "LC23", 2, 2);
+        resource(&mut g, 0, "JC058", 3);
+        resource(&mut g, 3, "JC125", 1);
+        for seat in [0, 1] {
+            g.apply(seat, Action::new("pass")).unwrap();
+        }
+        g.apply(
+            3,
+            Action {
+                card_id: Some(already_revealing.clone()),
+                ..Action::new("reveal")
+            },
+        )
+        .unwrap();
+        let revealing_stack_card = g.stack[0].card.as_ref().unwrap().id.clone();
+        for seat in [2, 3] {
+            g.apply(seat, Action::new("pass")).unwrap();
+        }
+        g.apply(
+            0,
+            Action {
+                card_id: Some(detective),
+                ..Action::new("reveal")
+            },
+        )
+        .unwrap();
+        for seat in [0, 1, 2, 3] {
+            g.apply(seat, Action::new("pass")).unwrap();
+        }
+        assert_eq!(g.stack.len(), 1); // The earlier Reveal is still a stack card, not a hidden entity.
+        let choice = g.pending.as_ref().unwrap().choice.clone();
+        assert_eq!(
+            choice
+                .options
+                .iter()
+                .map(|o| o.id.clone())
+                .collect::<BTreeSet<_>>(),
+            BTreeSet::from([own.clone(), teammate.clone(), enemy.clone()])
+        );
+        for excluded in [
+            &distant,
+            &face_up,
+            &already_revealing,
+            &revealing_stack_card,
+        ] {
+            assert!(choice.options.iter().all(|o| o.id != *excluded));
+        }
+        for id in [&teammate, &enemy] {
+            let c = choice
+                .options
+                .iter()
+                .find(|o| o.id == *id)
+                .unwrap()
+                .card
+                .as_ref()
+                .unwrap();
+            assert_eq!(c.name, "暗藏者");
+            assert!(c.card_id.is_none() && c.text.is_none() && c.cost.is_none());
+        }
+        assert_eq!(
+            choice
+                .options
+                .iter()
+                .find(|o| o.id == own)
+                .unwrap()
+                .card
+                .as_ref()
+                .unwrap()
+                .card_id
+                .as_deref(),
+            Some("JC125")
+        );
+        for viewer in [1, 2, 3] {
+            let view = g.view(viewer);
+            assert!(view.pending_choice.is_none());
+            assert_eq!(view.waiting_choice.unwrap().player_id, "p0");
+        }
+        let before = serde_json::to_string(&g).unwrap();
+        assert!(g
+            .apply(
+                0,
+                Action {
+                    choice_id: Some(choice.id.clone()),
+                    selected: Some(vec![face_up]),
+                    ..Action::new("choose")
+                }
+            )
+            .is_err());
+        assert_eq!(serde_json::to_string(&g).unwrap(), before);
+
+        for (target, owner) in [(own, 0), (teammate, 1), (enemy, 2)] {
+            let mut branch = Game::from_persisted(&before).unwrap();
+            select(&mut branch, vec![target.clone()]);
+            for viewer in 0..4 {
+                let view = branch.view(viewer);
+                let summary = &view.stack.last().unwrap().target_summaries[0];
+                assert!(summary.label.starts_with("暗藏者·"));
+                assert_eq!(summary.kind, "hidden");
+                assert!(summary.valid);
+            }
+            for seat in [0, 1, 2, 3] {
+                branch.apply(seat, Action::new("pass")).unwrap();
+            }
+            assert_eq!(branch.stack.len(), 1); // Full-team passing resolves only the top ability.
+            assert!(branch.pending.is_none()); // XQ12 is hidden, so its printed Death does not trigger.
+            assert!(branch.board(&target).is_none());
+            assert_eq!(branch.players[owner].graveyard.len(), 1);
+            assert_ne!(branch.players[owner].graveyard[0].id, target);
+            assert!(!branch.players[owner].graveyard[0].face_down);
+            pass_stack(&mut branch);
+            assert!(branch.pending.is_none());
+        }
+    }
+    #[test]
+    fn detective_target_reveal_cancels_without_refund_but_source_death_keeps_effect() {
+        for kill_source in [false, true] {
+            let mut g = game("duel");
+            let detective = board(&mut g, "JC058", 0, 0);
+            g.board_mut(&detective).unwrap().face_down = true;
+            let target = board(&mut g, if kill_source { "XQ12" } else { "LC21" }, 1, 0);
+            g.board_mut(&target).unwrap().face_down = true;
+            resource(&mut g, 0, "JC058", 3);
+            let murder = if kill_source {
+                resource(&mut g, 1, "JC091", 3);
+                Some(hand(&mut g, "JC091", 1))
+            } else {
+                resource(&mut g, 1, "JC125", card("LC21").cost as usize);
+                None
+            };
+            g.apply(
+                0,
+                Action {
+                    card_id: Some(detective),
+                    ..Action::new("reveal")
+                },
+            )
+            .unwrap();
+            pass_stack(&mut g);
+            let source = g.regions[0]
+                .cards
+                .iter()
+                .find(|c| c.definition == "JC058")
+                .unwrap()
+                .id
+                .clone();
+            select(&mut g, vec![target.clone()]);
+            assert_eq!(g.stack.len(), 1);
+            g.apply(0, Action::new("pass")).unwrap();
+            let response = if let Some(murder) = murder {
+                Action {
+                    card_id: Some(murder),
+                    target_id: Some(source.clone()),
+                    ..Action::new("play")
+                }
+            } else {
+                Action {
+                    card_id: Some(target.clone()),
+                    ..Action::new("reveal")
+                }
+            };
+            g.apply(1, response).unwrap();
+            if !kill_source {
+                let summary = &g.view(0).stack[0].target_summaries[0];
+                assert_eq!(summary.status, "missing"); // Declaration already removed the old hidden entity.
+                assert!(!summary.valid);
+            }
+            g.apply(1, Action::new("pass")).unwrap();
+            g.apply(0, Action::new("pass")).unwrap();
+            assert_eq!(g.stack.len(), 1);
+            assert_eq!(g.resources(0), 0);
+            assert_eq!(g.resources(1), 0);
+            if kill_source {
+                assert!(g.board(&source).is_none());
+                assert!(g.view(1).stack[0].target_summaries[0].valid);
+            }
+            let persisted = serde_json::to_string(&g).unwrap();
+            let mut resumed = Game::from_persisted(&persisted).unwrap();
+            assert_eq!(serde_json::to_string(&resumed).unwrap(), persisted);
+            pass_stack(&mut resumed);
+            assert!(resumed.stack.is_empty() && resumed.pending.is_none());
+            if kill_source {
+                assert!(resumed.board(&target).is_none());
+                assert_eq!(resumed.players[0].graveyard[0].definition, "JC058");
+                assert_eq!(resumed.players[1].graveyard.len(), 2); // Murder then the destroyed hidden XQ12.
+            } else {
+                assert!(resumed.players[1].graveyard.is_empty());
+                let new_target = resumed.regions[0]
+                    .cards
+                    .iter()
+                    .find(|c| c.definition == "LC21")
+                    .unwrap();
+                assert_ne!(new_target.id, target);
+                assert!(!new_target.face_down);
+                assert!(resumed
+                    .log
+                    .iter()
+                    .any(|e| e.text.contains("坚毅的刑警：原目标") && e.text.contains("费用不退")));
+            }
+        }
     }
     #[test]
     fn teams_require_all_passes_and_own_action_resets_pass_records() {

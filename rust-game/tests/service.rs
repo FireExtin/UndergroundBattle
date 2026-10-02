@@ -197,6 +197,217 @@ async fn paid_sacrifice_death_trigger_and_accepted_frame_restore_without_repayme
     );
 }
 #[tokio::test]
+async fn detective_reveal_choice_and_bound_frame_restore_without_repayment_or_private_leaks() {
+    let dir = tempfile::tempdir().unwrap();
+    let db = dir.path().join("detective.sqlite3");
+    let store = Store::open(&db).unwrap();
+    let a = store
+        .create(CreateRoom {
+            name: "Detective".into(),
+            mode: "duel".into(),
+            deck_id: "keepers".into(),
+        })
+        .await
+        .unwrap();
+    let b = store
+        .join(JoinRoom {
+            invite_code: a.invite_code.clone(),
+            name: "Hidden owner".into(),
+            deck_id: "watchers".into(),
+        })
+        .await
+        .unwrap();
+    drop(store);
+    // Explicit initial layout fixture, installed before the first command. All
+    // transitions below use authenticated versioned commands, never midgame SQL.
+    let connection = rusqlite::Connection::open(&db).unwrap();
+    let initial: String = connection
+        .query_row("SELECT state FROM rooms WHERE id=?1", [&a.room_id], |r| {
+            r.get(0)
+        })
+        .unwrap();
+    let mut game = Game::from_persisted(&initial).unwrap();
+    for player in &mut game.players {
+        player.ready = true;
+    }
+    game.apply(0, Action::new("start")).unwrap();
+    while let Some(pending) = game.pending.clone() {
+        game.apply(
+            pending.seat,
+            Action {
+                choice_id: Some(pending.choice.id),
+                selected: Some(vec![]),
+                ..Action::new("choose")
+            },
+        )
+        .unwrap();
+    }
+    game.window = Some(Window::Action(0));
+    game.first_team = 0;
+    game.active_team = 0;
+    game.priority_team = 0;
+    game.version = 1;
+    game.log.clear();
+    for player in &mut game.players {
+        player.hand.clear();
+    }
+    let mut detective = game.make_card("JC058", 0);
+    let detective_id = detective.id.clone();
+    detective.face_down = true;
+    detective.exhausted = true;
+    game.regions[0].cards.push(detective);
+    let mut target = game.make_card("XQ12", 1);
+    let target_id = target.id.clone();
+    target.face_down = true;
+    game.regions[0].cards.push(target);
+    for _ in 0..3 {
+        let asset = game.make_card("JC058", 0);
+        game.players[0].assets.push(asset);
+    }
+    let serialized = serde_json::to_string(&game).unwrap();
+    connection
+        .execute(
+            "UPDATE rooms SET state=?2,initial_state=?2 WHERE id=?1",
+            rusqlite::params![a.room_id, serialized],
+        )
+        .unwrap();
+    connection
+        .execute("DELETE FROM journal WHERE room_id=?1", [&a.room_id])
+        .unwrap();
+    drop(connection);
+
+    let store = Store::open(&db).unwrap();
+    let reveal = Command {
+        command_id: "detective-reveal".into(),
+        expected_version: 1,
+        action: Action {
+            card_id: Some(detective_id),
+            ..Action::new("reveal")
+        },
+    };
+    let paid = store
+        .command(&a.room_id, &a.token, reveal.clone())
+        .await
+        .unwrap();
+    assert_eq!(paid.stack.len(), 1);
+    assert!(paid.assets.iter().all(|c| c.exhausted));
+    store
+        .command(&a.room_id, &a.token, command("reveal-pass-a", 2, "pass"))
+        .await
+        .unwrap();
+    store
+        .command(&a.room_id, &b.token, command("reveal-pass-b", 3, "pass"))
+        .await
+        .unwrap();
+    let choosing = store.state(&a.room_id, &a.token).await.unwrap();
+    let choice = choosing.pending_choice.as_ref().unwrap();
+    assert_eq!(choice.kind, "trigger");
+    assert_eq!(choice.options.len(), 1);
+    assert_eq!(choice.options[0].id, target_id);
+    let hidden = choice.options[0].card.as_ref().unwrap();
+    assert_eq!(hidden.name, "暗藏者");
+    assert!(hidden.card_id.is_none() && hidden.text.is_none() && hidden.cost.is_none());
+    assert!(choosing.stack.is_empty());
+    let other = store.state(&a.room_id, &b.token).await.unwrap();
+    assert!(other.pending_choice.is_none());
+    assert_eq!(other.waiting_choice.as_ref().unwrap().player_id, "p0");
+    let choose = Command {
+        command_id: "detective-target".into(),
+        expected_version: 4,
+        action: Action {
+            choice_id: Some(choice.id.clone()),
+            selected: Some(vec![target_id.clone()]),
+            ..Action::new("choose")
+        },
+    };
+    drop(store);
+
+    let store = Store::open(&db).unwrap();
+    assert_eq!(
+        serde_json::to_string(&store.state(&a.room_id, &a.token).await.unwrap()).unwrap(),
+        serde_json::to_string(&choosing).unwrap()
+    );
+    let retry = store.command(&a.room_id, &a.token, reveal).await.unwrap();
+    assert_eq!(
+        serde_json::to_string(&retry).unwrap(),
+        serde_json::to_string(&paid).unwrap()
+    );
+    assert_eq!(store.state(&a.room_id, &a.token).await.unwrap().version, 4);
+    let wrong_seat = Command {
+        command_id: "wrong-chooser".into(),
+        ..choose.clone()
+    };
+    assert_eq!(
+        store
+            .command(&a.room_id, &b.token, wrong_seat)
+            .await
+            .unwrap_err()
+            .status,
+        StatusCode::BAD_REQUEST
+    );
+    assert_eq!(store.state(&a.room_id, &a.token).await.unwrap().version, 4);
+    let bound = store
+        .command(&a.room_id, &a.token, choose.clone())
+        .await
+        .unwrap();
+    assert_eq!(bound.stack.len(), 1);
+    assert_eq!(
+        bound.stack[0].target_summaries[0].label,
+        "暗藏者·Hidden owner"
+    );
+    assert!(bound.stack[0].target_summaries[0].valid);
+    let replay = store.replay(&a.room_id).unwrap();
+    let frame = replay.stack[0].frame.as_ref().unwrap();
+    assert!(matches!(frame.guard, GuardState::Unchecked));
+    assert_eq!(frame.cursor, 0);
+    assert!(frame.already_paid.is_empty()); // The trigger has no extra fee.
+    assert!(replay.players[0].assets.iter().all(|c| c.exhausted));
+    drop(store);
+
+    let store = Store::open(&db).unwrap();
+    assert_eq!(
+        serde_json::to_string(&store.state(&a.room_id, &a.token).await.unwrap()).unwrap(),
+        serde_json::to_string(&bound).unwrap()
+    );
+    let retry = store.command(&a.room_id, &a.token, choose).await.unwrap();
+    assert_eq!(
+        serde_json::to_string(&retry).unwrap(),
+        serde_json::to_string(&bound).unwrap()
+    );
+    assert_eq!(store.state(&a.room_id, &a.token).await.unwrap().version, 5);
+    store
+        .command(&a.room_id, &a.token, command("destroy-pass-a", 5, "pass"))
+        .await
+        .unwrap();
+    let complete = store
+        .command(&a.room_id, &b.token, command("destroy-pass-b", 6, "pass"))
+        .await
+        .unwrap();
+    assert!(
+        complete.stack.is_empty()
+            && complete.pending_choice.is_none()
+            && complete.waiting_choice.is_none()
+    );
+    let final_game = store.replay(&a.room_id).unwrap();
+    assert_eq!(final_game.players[1].graveyard.len(), 1);
+    assert_eq!(final_game.players[1].graveyard[0].definition, "XQ12");
+    assert_ne!(final_game.players[1].graveyard[0].id, target_id);
+    assert!(final_game.players[0].assets.iter().all(|c| c.exhausted));
+    let detective = final_game.regions[0]
+        .cards
+        .iter()
+        .find(|c| c.definition == "JC058")
+        .unwrap();
+    assert!(detective.exhausted && !detective.face_down);
+    assert!(
+        Store::open_read_only(&db)
+            .unwrap()
+            .audit_replay(&a.room_id)
+            .unwrap()
+            .matches
+    );
+}
+#[tokio::test]
 async fn legacy_state_is_rejected_explicitly_without_silent_migration() {
     let dir = tempfile::tempdir().unwrap();
     let db = dir.path().join("legacy.sqlite3");
@@ -213,6 +424,8 @@ async fn legacy_state_is_rejected_explicitly_without_silent_migration() {
     for (engine, pool, schema) in [
         ("rust-v0.1.0", "limited-v1", None),
         ("rust-v0.2.0", "limited-v2", Some(2)),
+        ("rust-v0.2.1", "limited-v2.1", Some(2)),
+        ("rust-v0.2.2", "limited-v2.1", Some(2)),
     ] {
         let mut legacy: serde_json::Value = serde_json::from_str(&stored).unwrap();
         if let Some(schema) = schema {
@@ -415,6 +628,64 @@ async fn failed_transaction_does_not_ack_or_mutate_state() {
         recovered.state(&a.room_id, &a.token).await.unwrap().version,
         1
     );
+}
+#[tokio::test]
+async fn room_catalog_requires_a_token_for_that_room_and_returns_current_pool() {
+    let store = Store::open(":memory:").unwrap();
+    let (a, b) = pair(&store).await;
+    let foreign = store
+        .create(CreateRoom {
+            name: "Other room".into(),
+            mode: "duel".into(),
+            deck_id: "keepers".into(),
+        })
+        .await
+        .unwrap();
+    let app = service::router(store.clone());
+    let endpoint = format!("/api/rooms/{}/catalog", a.room_id);
+    for token in [None, Some("wrong"), Some(foreign.token.as_str())] {
+        let mut request = Request::builder().uri(&endpoint);
+        if let Some(token) = token {
+            request = request.header("Authorization", format!("Bearer {token}"));
+        }
+        let response = app
+            .clone()
+            .oneshot(request.body(Body::empty()).unwrap())
+            .await
+            .unwrap();
+        assert_eq!(response.status(), StatusCode::UNAUTHORIZED);
+    }
+    for token in [&a.token, &b.token] {
+        let response = app
+            .clone()
+            .oneshot(
+                Request::builder()
+                    .uri(&endpoint)
+                    .header("Authorization", format!("Bearer {token}"))
+                    .body(Body::empty())
+                    .unwrap(),
+            )
+            .await
+            .unwrap();
+        assert_eq!(response.status(), StatusCode::OK);
+        let bytes = response.into_body().collect().await.unwrap().to_bytes();
+        let catalog: serde_json::Value = serde_json::from_slice(&bytes).unwrap();
+        assert_eq!(
+            catalog["engineVersion"],
+            hegemony_server::catalog::ENGINE_VERSION
+        );
+        assert_eq!(
+            catalog["cardPoolVersion"],
+            hegemony_server::catalog::POOL_VERSION
+        );
+        assert!(catalog["cards"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .any(|c| c["id"] == "JC058"));
+        assert!(!String::from_utf8(bytes.to_vec()).unwrap().contains(token));
+    }
+    assert_eq!(store.state(&a.room_id, &a.token).await.unwrap().version, 1);
 }
 #[tokio::test]
 async fn authenticated_sse_projects_actor_view_and_updates_after_commit() {

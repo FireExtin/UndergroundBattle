@@ -246,6 +246,157 @@ fn response_fixture() -> Value {
     assert!(rejected.apply(0, heal.clone()).is_err());
     json!({"name":"real-response-frame-continuation-and-heal-cost","seed":seed,"steps":steps,"rejectedActions":[[0,heal]]})
 }
+fn detective_fixture(kill_source: bool) -> Value {
+    let seed = "9007199254740993";
+    let mut game = Game::new(
+        format!("wasm-detective-{kill_source}"),
+        "DETECTIVE".into(),
+        "duel".into(),
+        "刑警操控者".into(),
+        "keepers".into(),
+        seed.parse().unwrap(),
+    )
+    .unwrap();
+    game.join("暗藏者操控者".into(), "watchers".into()).unwrap();
+    for player in &mut game.players {
+        player.ready = true;
+    }
+    game.apply(0, Action::new("start")).unwrap();
+    while let Some(pending) = game.pending.clone() {
+        game.apply(
+            pending.seat,
+            Action {
+                choice_id: Some(pending.choice.id),
+                selected: Some(vec![]),
+                ..Action::new("choose")
+            },
+        )
+        .unwrap();
+    }
+    // Explicit initial layout, identical opaque bytes in both kernels. Every later
+    // state is reached by an Action; this is not evidence of a naturally dealt game.
+    game.window = Some(Window::Action(0));
+    game.first_team = 0;
+    game.active_team = 0;
+    game.priority_team = 0;
+    for player in &mut game.players {
+        player.hand.clear();
+    }
+    let mut detective = game.make_card("JC058", 0);
+    let detective_id = detective.id.clone();
+    detective.face_down = true;
+    detective.exhausted = true;
+    game.regions[0].cards.push(detective);
+    let mut target = game.make_card(if kill_source { "XQ12" } else { "LC21" }, 1);
+    let target_id = target.id.clone();
+    target.face_down = true;
+    game.regions[0].cards.push(target);
+    for _ in 0..3 {
+        let asset = game.make_card("JC058", 0);
+        game.players[0].assets.push(asset);
+    }
+    let response = if kill_source {
+        let murder = game.make_card("JC091", 1);
+        let murder_id = murder.id.clone();
+        game.players[1].hand.push(murder);
+        for _ in 0..3 {
+            let asset = game.make_card("JC091", 1);
+            game.players[1].assets.push(asset);
+        }
+        Action {
+            card_id: Some(murder_id),
+            ..Action::new("play")
+        }
+    } else {
+        for _ in 0..catalog::card("LC21").cost {
+            let asset = game.make_card("JC125", 1);
+            game.players[1].assets.push(asset);
+        }
+        Action {
+            card_id: Some(target_id.clone()),
+            ..Action::new("reveal")
+        }
+    };
+    let mut steps = vec![step(
+        &game,
+        "initialFixture",
+        json!([serde_json::to_string(&game).unwrap()]),
+        0,
+    )];
+    let mut apply = |game: &mut Game, seat: usize, action: Action| {
+        game.apply(seat, action.clone()).unwrap();
+        steps.push(step(game, "apply", json!([seat, action]), seat));
+    };
+    apply(
+        &mut game,
+        0,
+        Action {
+            card_id: Some(detective_id.clone()),
+            ..Action::new("reveal")
+        },
+    );
+    for seat in [0, 1] {
+        apply(&mut game, seat, Action::new("pass"));
+    }
+    let pending = game.pending.as_ref().unwrap();
+    assert_eq!(pending.choice.options.len(), 1);
+    assert_eq!(
+        pending.choice.options[0].card.as_ref().unwrap().card_id,
+        None
+    );
+    let choose = Action {
+        choice_id: Some(pending.choice.id.clone()),
+        selected: Some(vec![target_id.clone()]),
+        ..Action::new("choose")
+    };
+    game = Game::from_persisted(&serde_json::to_string(&game).unwrap()).unwrap();
+    apply(&mut game, 0, choose.clone());
+    apply(&mut game, 0, Action::new("pass"));
+    let mut response = response;
+    if kill_source {
+        response.target_id = Some(
+            game.regions[0]
+                .cards
+                .iter()
+                .find(|c| c.definition == "JC058")
+                .unwrap()
+                .id
+                .clone(),
+        );
+    }
+    apply(&mut game, 1, response);
+    if !kill_source {
+        assert_eq!(game.view(0).stack[0].target_summaries[0].status, "missing");
+    }
+    for seat in [1, 0] {
+        apply(&mut game, seat, Action::new("pass"));
+    }
+    assert_eq!(game.stack.len(), 1);
+    game = Game::from_persisted(&serde_json::to_string(&game).unwrap()).unwrap();
+    for seat in [0, 1] {
+        apply(&mut game, seat, Action::new("pass"));
+    }
+    assert!(game.pending.is_none() && game.stack.is_empty());
+    assert!(game
+        .players
+        .iter()
+        .flat_map(|p| &p.assets)
+        .all(|a| a.exhausted));
+    if kill_source {
+        assert_eq!(game.players[0].graveyard[0].definition, "JC058");
+        assert_eq!(game.players[1].graveyard.len(), 2);
+    } else {
+        assert!(game.players[1].graveyard.is_empty());
+        let revealed = game.regions[0]
+            .cards
+            .iter()
+            .find(|c| c.definition == "LC21")
+            .unwrap();
+        assert_ne!(revealed.id, target_id);
+        assert!(!revealed.face_down);
+    }
+    json!({"name":if kill_source {"detective-source-death-independent-hidden-destroy"} else {"detective-target-reveal-invalidates-original-instance"},"seed":seed,"steps":steps,"rejectedActions":[[0,choose],[0,Action{card_id:Some(detective_id),..Action::new("reveal")}]]})
+}
 fn fixture(mode: &str, seed: &str) -> Value {
     let mut game = Game::new(
         format!("wasm-{mode}"),
@@ -354,6 +505,14 @@ fn main() {
     previous.versions.card_pool = "limited-v2".into();
     let previous_state = serde_json::to_string(&previous).unwrap();
     assert!(Game::from_persisted(&previous_state).is_err());
-    let value = json!({"catalog":catalog::catalog(),"cases":[fixture("duel","18446744073709551615"),fixture("teams","9007199254740993"),response_fixture()],"rejectedStates":[previous_state]});
+    let mut rejected_states = vec![previous_state];
+    for engine in ["rust-v0.2.1", "rust-v0.2.2"] {
+        previous.versions.engine = engine.into();
+        previous.versions.card_pool = "limited-v2.1".into();
+        let state = serde_json::to_string(&previous).unwrap();
+        assert!(Game::from_persisted(&state).is_err());
+        rejected_states.push(state);
+    }
+    let value = json!({"catalog":catalog::catalog(),"cases":[fixture("duel","18446744073709551615"),fixture("teams","9007199254740993"),response_fixture(),detective_fixture(false),detective_fixture(true)],"rejectedStates":rejected_states});
     std::fs::write(output, serde_json::to_vec(&value).unwrap()).unwrap();
 }

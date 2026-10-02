@@ -193,6 +193,12 @@
       "image": "resource/ymsj-fun.github.io/cards/JZ54 阿塔玛斯奉献仪式.jpg",
       "sha256": "c7902515865a26e1276d9e7a4bbd05c511704f76aee504c73539737012624af4",
       "verified": true
+    },
+    {
+      "id": "JC058",
+      "image": "resource/ymsj-fun.github.io/cards/JC058 坚毅的刑警.jpg",
+      "sha256": "6585e89991049cb05e75db43143320fd12bf6be781847648d551cb433e85119a",
+      "verified": true
     }
   ],
   "supplementalRules": [
