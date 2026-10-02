@@ -9,15 +9,15 @@
   },
   "reviewsSource": {
     "path": "docs/factions/card-reviews.json",
-    "sha256": "7ad01bbacb042aa26ef99f95f803da83031b74a7f51aa74415fe1a405fcdb084"
+    "sha256": "67f78c53c2e8a19ab546710b3b4a7f80aef9daf76a4c15f9a19f0e5755686b4f"
   },
   "coverageSource": {
     "path": "rust-game/data/faction-coverage.json",
-    "sha256": "b64ba23d60f7c972980abe229eb977fac1cf3674d3ddad4677b43b4bf44c1461"
+    "sha256": "749082c9b3159dbc3945e60b962613cf93ca7cda7ba511bc5590b7c76f42a19e"
   },
   "specificationsSource": {
     "path": "docs/factions/card-specifications.json",
-    "sha256": "625f3c306389d056f23759b95ddb1211d2fe108a5114d14a307c7a252ce2b3ff"
+    "sha256": "2ccebab58fd3cf5fda1a3e148d77ddc6c8775f1de712b5d27b03972b05eb2a91"
   },
   "recoverySource": {
     "path": "docs/factions/source-recovery.json",
@@ -34,13 +34,13 @@
   "totals": {
     "archiveRecords": 685,
     "sourceImagesMissing": 1,
-    "primaryImageReviewed": 647,
-    "unreviewedWithImage": 37,
+    "primaryImageReviewed": 671,
+    "unreviewedWithImage": 13,
     "currentCatalogDefinitions": 29,
-    "completeSourceSpecifications": 641,
+    "completeSourceSpecifications": 665,
     "blockedSourceSpecifications": 5,
     "completeNonCardReferences": 1,
-    "completeSourceRecords": 642,
+    "completeSourceRecords": 666,
     "locatorSetCounts": {
       "TK": 11,
       "传奇": 44,
@@ -66,11 +66,11 @@
       "worldRegion": 29
     },
     "editionStatusCounts": {
-      "pinnedImageVariant": 634,
+      "pinnedImageVariant": 658,
       "testArchivePinnedImageVariant": 2,
       "testImageConfirmed": 5,
       "uncertain": 1,
-      "unreviewed": 43
+      "unreviewed": 19
     }
   },
   "records": [
@@ -10495,22 +10495,22 @@
     {
       "id": "CQ01",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/CQ01 导灵员裴恩熙.jpg",
           "sha256": "b0d209b45252cefbd083bb3135a85110e0fd173679cf0b0cff6c72a57303bbb6"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/CQ01",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/CQ01",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/CQ01",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "导灵员裴恩熙",
         "set": "传奇",
@@ -10533,9 +10533,18 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "导灵员裴恩熙",
+        "colorKey": "黄",
+        "basicType": "角色"
+      },
+      "abilitySummary": "持续 所有本方人工智能角色获得永久调查1。；持续 所有本方机械和魔像角色获得永久战斗1。；持续 若你操控人工智能角色，导灵员裴恩熙获得屏障。若你操控机械或魔像角色，导灵员裴恩熙获得机动。",
+      "confirmedMechanismIds": [
+        "continuous",
+        "barrier",
+        "mobility",
+        "uniqueInPlay"
+      ],
       "candidateMechanismIds": [
         "barrier",
         "continuous",
@@ -10543,8 +10552,16 @@
         "mobility"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "regionPicker",
+        "uniquePrompt"
+      ],
+      "mechanismCoverage": {
+        "continuous": "partial",
+        "barrier": "implemented",
+        "mobility": "partial",
+        "uniqueInPlay": "implemented"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -10559,22 +10576,22 @@
     {
       "id": "CQ02",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/CQ02 本杰明·富兰克林.jpg",
           "sha256": "4c4e2fa55bb2725c9c43fab7effcdb0a0096bfad57d491e260ccd708a5b5a595"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/CQ02",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/CQ02",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/CQ02",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "本杰明·富兰克林",
         "set": "传奇",
@@ -10596,16 +10613,38 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "本杰明·富兰克林",
+        "colorKey": "黄",
+        "basicType": "角色"
+      },
+      "abilitySummary": "进场触发 自你牌库顶的四张牌中寻找任意数量的法术牌，将这些牌展示后置于你的手中，然后将其余的牌洗回牌库。若你的隐秘等级高于敌方玩家，则改为从牌库顶的八张牌中寻找。；触发 当你打出一张法术牌时，对目标角色造成1点伤害。",
+      "confirmedMechanismIds": [
+        "deckChoice",
+        "mysticContest",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
       "candidateMechanismIds": [
         "deckChoice",
         "mysticContest"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "handPicker",
+        "iconBreakdown",
+        "orderPicker",
+        "searchPicker",
+        "simultaneousReveal",
+        "societyMarkers",
+        "uniquePrompt"
+      ],
+      "mechanismCoverage": {
+        "deckChoice": "partial",
+        "mysticContest": "unimplemented",
+        "uniqueInPlay": "implemented",
+        "temporaryIcons": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -10620,22 +10659,22 @@
     {
       "id": "CQ03",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/CQ03 空间转移术.jpg",
           "sha256": "b2232c6a037fb9abfa4c0b7550c91574f599a2d54c5e95a88d4a89e0d7852f98"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/CQ03",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/CQ03",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/CQ03",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "空间转移术",
         "set": "传奇",
@@ -10653,16 +10692,29 @@
         "keywords": [],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "空间转移术",
+        "colorKey": "黄",
+        "basicType": "事务"
+      },
+      "abilitySummary": "额外费用 你可以横置一个本方法师角色。；行动 将目标本方角色移动至另一个地区。若你已支付额外费用，横置该角色。",
+      "confirmedMechanismIds": [
+        "exhaust",
+        "mobility"
+      ],
       "candidateMechanismIds": [
         "exhaust",
         "mobility"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "regionPicker",
+        "targetPicker"
+      ],
+      "mechanismCoverage": {
+        "exhaust": "implemented",
+        "mobility": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -10677,22 +10729,22 @@
     {
       "id": "CQ04",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/CQ04 计划：诸界博物学.jpg",
           "sha256": "eb8f93f2262e6b51f18b92f0b81d4201191dcbada8c65e39b871c3f3dc51c7ac"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/CQ04",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/CQ04",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/CQ04",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "计划：诸界博物学",
         "set": "传奇",
@@ -10715,9 +10767,21 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "计划：诘界博物学",
+        "colorKey": "黄",
+        "basicType": "附属"
+      },
+      "abilitySummary": "非资产；隐秘〔月形〕秘密计划；可推进；结附于本方秘社；行动 牺牲计划：诘界博物学：；若达成推进1，抓一张牌。；若达成推进3，将目标角色移回其拥有者手上。；若达成推进5，消灭目标附属。",
+      "confirmedMechanismIds": [
+        "nonAsset",
+        "mysticContest",
+        "plan",
+        "attachment",
+        "society",
+        "sacrifice",
+        "deckChoice"
+      ],
       "candidateMechanismIds": [
         "attachment",
         "deckChoice",
@@ -10727,8 +10791,31 @@
         "sacrifice"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "assetSummary",
+        "attachmentPicker",
+        "attachments",
+        "choicePicker",
+        "costPicker",
+        "handPicker",
+        "hiddenProjection",
+        "orderPicker",
+        "planProgress",
+        "searchPicker",
+        "simultaneousReveal",
+        "societyMarkers",
+        "societyPicker",
+        "societyZone"
+      ],
+      "mechanismCoverage": {
+        "nonAsset": "unimplemented",
+        "mysticContest": "unimplemented",
+        "plan": "unimplemented",
+        "attachment": "unimplemented",
+        "society": "unimplemented",
+        "sacrifice": "implemented",
+        "deckChoice": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -10743,22 +10830,22 @@
     {
       "id": "CQ05",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/CQ05 换生灵马克西姆.jpg",
           "sha256": "86a8b8f02b1893c3516d82babaea3f85eac3894e08946fbf53ac7ee4b45ad111"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/CQ05",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/CQ05",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/CQ05",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "换生灵马克西姆",
         "set": "传奇",
@@ -10780,15 +10867,34 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "换生灵马克西姆",
+        "colorKey": "绿",
+        "basicType": "角色"
+      },
+      "abilitySummary": "隐秘+4；行动②：换生灵马克西姆成为目标角色的复制品，但其名称仍为换生灵马克西姆，且仅具有此能力。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "transform",
+        "continuous",
+        "uniqueInPlay"
+      ],
       "candidateMechanismIds": [
         "mysticContest"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "formSwitcher",
+        "simultaneousReveal",
+        "societyMarkers",
+        "uniquePrompt"
+      ],
+      "mechanismCoverage": {
+        "mysticContest": "unimplemented",
+        "transform": "unimplemented",
+        "continuous": "partial",
+        "uniqueInPlay": "implemented"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -10803,22 +10909,22 @@
     {
       "id": "CQ06",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/CQ06 麦布女王.jpg",
           "sha256": "8aacab9cee2f0db0a8032f66f6aa8897f3b7f1b6e9768449fd148955d60a33e3"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/CQ06",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/CQ06",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/CQ06",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "麦布女王",
         "set": "传奇",
@@ -10845,9 +10951,21 @@
           "TK006 仙灵斗士"
         ]
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "麦布女王",
+        "colorKey": "绿",
+        "basicType": "角色"
+      },
+      "abilitySummary": "非资产；领袖；持续 所有其他本方仙灵角色获得永久调查1。；触发 当你打出一张法术牌时，或赢得一次隐秘对抗后，在目标地区上生成一个仙灵斗士角色指示物。",
+      "confirmedMechanismIds": [
+        "nonAsset",
+        "leader",
+        "continuous",
+        "mysticContest",
+        "token",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
       "candidateMechanismIds": [
         "continuous",
         "leader",
@@ -10856,8 +10974,23 @@
         "token"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "assetSummary",
+        "iconBreakdown",
+        "simultaneousReveal",
+        "societyMarkers",
+        "tokenTile",
+        "uniquePrompt"
+      ],
+      "mechanismCoverage": {
+        "nonAsset": "unimplemented",
+        "leader": "unimplemented",
+        "continuous": "partial",
+        "mysticContest": "unimplemented",
+        "token": "unimplemented",
+        "uniqueInPlay": "implemented",
+        "temporaryIcons": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -10872,22 +11005,22 @@
     {
       "id": "CQ07",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/CQ07 菲碧·π.jpg",
           "sha256": "984f31d092e4af4c4b7c5379fdbbf8d8da2899b36d34df7d18f2d660696551db"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/CQ07",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/CQ07",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/CQ07",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "菲碧·π",
         "set": "传奇",
@@ -10909,16 +11042,38 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "菲碧·π",
+        "colorKey": "蓝",
+        "basicType": "角色"
+      },
+      "abilitySummary": "进场触发 若本方秘社上没有隐秘〔月形〕标志，则放置一个隐秘〔月形〕标志。；触发 当一个本方吸血鬼或法师角色成为敌方事务牌的目标时，抓一张牌。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "deckChoice",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
       "candidateMechanismIds": [
         "deckChoice",
         "mysticContest"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "handPicker",
+        "iconBreakdown",
+        "orderPicker",
+        "searchPicker",
+        "simultaneousReveal",
+        "societyMarkers",
+        "uniquePrompt"
+      ],
+      "mechanismCoverage": {
+        "mysticContest": "unimplemented",
+        "deckChoice": "partial",
+        "uniqueInPlay": "implemented",
+        "temporaryIcons": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -10933,22 +11088,22 @@
     {
       "id": "CQ08",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/CQ08 诡异三姐妹.jpg",
           "sha256": "5bca98e9ff8590ee41e92290a136ed41d38d0d25840239e565851ed34094e75d"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/CQ08",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/CQ08",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/CQ08",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "诡异三姐妹",
         "set": "传奇",
@@ -10968,17 +11123,39 @@
         "keywords": [],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "诡异三姐妹",
+        "colorKey": "蓝",
+        "basicType": "角色"
+      },
+      "abilitySummary": "现身触发 从你的牌库中寻找一张名为诡异三姐妹的牌，展示后将该牌以暗藏者状态置于本地区，然后洗牌。；准备步骤触发 若你操控三个名为诡异三姐妹的角色，你可以从你的牌库中寻找一张独有吸血鬼角色牌，将该牌放置进场并置于本地区，然后洗牌。同名角色能力每回合只能触发一次。",
+      "confirmedMechanismIds": [
+        "hidden",
+        "deckChoice",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
       "candidateMechanismIds": [
         "control",
         "deckChoice",
         "hidden"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "handPicker",
+        "hiddenProjection",
+        "iconBreakdown",
+        "orderPicker",
+        "searchPicker",
+        "targetPicker",
+        "uniquePrompt"
+      ],
+      "mechanismCoverage": {
+        "hidden": "implemented",
+        "deckChoice": "partial",
+        "uniqueInPlay": "implemented",
+        "temporaryIcons": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -10993,22 +11170,22 @@
     {
       "id": "CQ09",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/CQ09 依莲娜·弗朗索瓦.jpg",
           "sha256": "2822860ecfd29ee98df34cb8f6a1ede534faae6b6b1d9ebc7fc5eec712984143"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/CQ09",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/CQ09",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/CQ09",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "依莲娜·弗朗索瓦",
         "set": "传奇",
@@ -11031,9 +11208,19 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "依莲娜·弗朗索瓦",
+        "colorKey": "蓝",
+        "basicType": "角色"
+      },
+      "abilitySummary": "现身触发 进行一次隐秘对抗。本次隐秘对抗中你所展示的吸血鬼、法师角色牌获得隐秘+3。；结束步骤触发 本回合中，若你曾赢得隐秘对抗，将你墓地中印刷费用小于或等于③的目标吸血鬼、法师角色牌放置进场，并置于本地区。",
+      "confirmedMechanismIds": [
+        "hidden",
+        "mysticContest",
+        "graveRecovery",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
       "candidateMechanismIds": [
         "continuous",
         "graveRecovery",
@@ -11041,8 +11228,23 @@
         "mysticContest"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "graveyardPicker",
+        "hiddenProjection",
+        "iconBreakdown",
+        "regionPicker",
+        "simultaneousReveal",
+        "societyMarkers",
+        "targetPicker",
+        "uniquePrompt"
+      ],
+      "mechanismCoverage": {
+        "hidden": "implemented",
+        "mysticContest": "unimplemented",
+        "graveRecovery": "implemented",
+        "uniqueInPlay": "implemented",
+        "temporaryIcons": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -11057,22 +11259,22 @@
     {
       "id": "CQ10",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/CQ10 朱苏德拉·纳匹什提姆.jpg",
           "sha256": "034b75bf01c010c74474f8357d089862603cfe27fc537b0dd2f537e541e7e2bb"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/CQ10",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/CQ10",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/CQ10",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "朱苏德拉·纳匹什提姆",
         "set": "传奇",
@@ -11095,17 +11297,45 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "朱苏德拉·纳匹什提姆",
+        "colorKey": "蓝",
+        "basicType": "角色"
+      },
+      "abilitySummary": "公开〔日形〕领袖；进场触发 你抓一张牌，目标玩家弃一张手牌。你的秘社上每有一个隐秘〔月形〕标志，就重复一次该过程。；准备步骤触发 若你的手牌数量比所有其他玩家都多，在目标地区上放置一个本方势力标志。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "leader",
+        "deckChoice",
+        "confrontation",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
       "candidateMechanismIds": [
         "deckChoice",
         "leader",
         "mysticContest"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "damagePicker",
+        "handPicker",
+        "iconBreakdown",
+        "orderPicker",
+        "regionReturn",
+        "searchPicker",
+        "simultaneousReveal",
+        "societyMarkers",
+        "uniquePrompt"
+      ],
+      "mechanismCoverage": {
+        "mysticContest": "unimplemented",
+        "leader": "unimplemented",
+        "deckChoice": "partial",
+        "confrontation": "implemented",
+        "uniqueInPlay": "implemented",
+        "temporaryIcons": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -11120,22 +11350,22 @@
     {
       "id": "CQ11",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/CQ11 暴乱煽动者.jpg",
           "sha256": "8906b607ea300248c417f346a7d5fee0b3bb215e525f06a5862bdfe04adaa2c4"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/CQ11",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/CQ11",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/CQ11",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "暴乱煽动者",
         "set": "传奇",
@@ -11157,15 +11387,28 @@
           "TK008 邪教徒"
         ]
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "暴乱煽动者",
+        "colorKey": "红",
+        "basicType": "角色"
+      },
+      "abilitySummary": "进场触发 在本地区生成一个邪教徒角色指示物。",
+      "confirmedMechanismIds": [
+        "token",
+        "temporaryIcons"
+      ],
       "candidateMechanismIds": [
         "token"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "iconBreakdown",
+        "tokenTile"
+      ],
+      "mechanismCoverage": {
+        "token": "unimplemented",
+        "temporaryIcons": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -11275,22 +11518,22 @@
     {
       "id": "CQ13",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/CQ13 命定的薇儿丹迪.jpg",
           "sha256": "393d38a51b63e1fcb59fff63f05e28a5531179f0de3bd63e52b5779e0c7ad968"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/CQ13",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/CQ13",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/CQ13",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "命定的薇儿丹迪",
         "set": "传奇",
@@ -11315,17 +11558,53 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "命定的薇儿丹迪",
+        "colorKey": "红",
+        "basicType": "角色"
+      },
+      "abilitySummary": "进场触发 若本方秘社为末日钟，毁灭目标地区，或在目标已毁灭的地区上放置一个本方势力标志。；快速行动③：进行一次隐秘对抗。若你赢得本次隐秘对抗，令命定的薇儿丹迪闪烁。；离场强制触发 消灭本地区上的所有其他角色。",
+      "confirmedMechanismIds": [
+        "society",
+        "timeDestroy",
+        "confrontation",
+        "mysticContest",
+        "blink",
+        "priority",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
       "candidateMechanismIds": [
         "blink",
         "mysticContest",
         "timeDestroy"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "choicePicker",
+        "damagePicker",
+        "destroyedRegions",
+        "iconBreakdown",
+        "markerEditor",
+        "orderPicker",
+        "regionReturn",
+        "simultaneousReveal",
+        "societyMarkers",
+        "societyPicker",
+        "societyZone",
+        "stack",
+        "uniquePrompt"
+      ],
+      "mechanismCoverage": {
+        "society": "unimplemented",
+        "timeDestroy": "unimplemented",
+        "confrontation": "implemented",
+        "mysticContest": "unimplemented",
+        "blink": "unimplemented",
+        "priority": "partial",
+        "uniqueInPlay": "implemented",
+        "temporaryIcons": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -11340,22 +11619,22 @@
     {
       "id": "CQ14",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/CQ14 盖罗涅的召令.jpg",
           "sha256": "61fc824fb7543d22664b7589c39ea8d659ca3af5de626033a42579be3d237422"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/CQ14",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/CQ14",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/CQ14",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "盖罗涅的召令",
         "set": "传奇",
@@ -11375,9 +11654,19 @@
           "TK008 邪教徒"
         ]
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "盖罗涅的召令",
+        "colorKey": "红",
+        "basicType": "事务"
+      },
+      "abilitySummary": "持续 若你操控名为盖罗涅的角色，你可以从墓地中打出盖罗涅的召令，如同其在你手中一样，但需要弃一张红色牌作为额外费用。；行动 在至多三个目标地区上生成至多三个邪教徒角色指示物，令这些角色横置进场。",
+      "confirmedMechanismIds": [
+        "continuous",
+        "gravePlay",
+        "deckChoice",
+        "token",
+        "exhaust"
+      ],
       "candidateMechanismIds": [
         "continuous",
         "control",
@@ -11387,8 +11676,21 @@
         "token"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "graveyardPicker",
+        "handPicker",
+        "orderPicker",
+        "searchPicker",
+        "targetPicker",
+        "tokenTile"
+      ],
+      "mechanismCoverage": {
+        "continuous": "partial",
+        "gravePlay": "unimplemented",
+        "deckChoice": "partial",
+        "token": "unimplemented",
+        "exhaust": "implemented"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -11403,22 +11705,22 @@
     {
       "id": "CQ15",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/CQ15 元屠、阿鼻双剑.jpg",
           "sha256": "93c8bd987a7d4387fb6839d43907adafb46ab7d7c19b635d857ea970f061228f"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/CQ15",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/CQ15",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/CQ15",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "元屠、阿鼻双剑",
         "set": "传奇",
@@ -11438,9 +11740,22 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "无屠、阿鼻双剑",
+        "colorKey": "红",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标角色；持续 受此结附的角色获得永久战斗2和创伤2，并获得“行动 横置，将无屠、阿鼻双剑移回其拥有者手中：消灭目标角色，然后从其操控者的牌库、手牌和墓地中寻找至多三张同名的角色牌，将这些牌封印在本方秘社上，然后令该玩家洗牌。”的能力。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "continuous",
+        "combatKeywords",
+        "exhaust",
+        "deckChoice",
+        "seal",
+        "society",
+        "uniqueInPlay"
+      ],
       "candidateMechanismIds": [
         "attachment",
         "combatKeywords",
@@ -11453,8 +11768,30 @@
         "seal"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "attachmentPicker",
+        "attachments",
+        "damagePicker",
+        "handPicker",
+        "orderPicker",
+        "sealedCards",
+        "searchPicker",
+        "societyPicker",
+        "societyZone",
+        "targetPicker",
+        "triggerPrompt",
+        "uniquePrompt"
+      ],
+      "mechanismCoverage": {
+        "attachment": "unimplemented",
+        "continuous": "partial",
+        "combatKeywords": "unimplemented",
+        "exhaust": "implemented",
+        "deckChoice": "partial",
+        "seal": "unimplemented",
+        "society": "unimplemented",
+        "uniqueInPlay": "implemented"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -11469,22 +11806,22 @@
     {
       "id": "CQ16",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/CQ16 前线士官.jpg",
           "sha256": "65cd0717f883edb1e5fa0d5910de04ebe329433ea355feeb6375cc2b1403ff93"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/CQ16",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/CQ16",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/CQ16",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "前线士官",
         "set": "传奇",
@@ -11506,9 +11843,18 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "前线士官",
+        "colorKey": "灰",
+        "basicType": "角色"
+      },
+      "abilitySummary": "公开；进场触发 在本地区的目标角色上放置一个锁定标志。；快速行动①，横置：从你的牌库中寻找一张印刷费用为①的士兵角色牌，将其放置进场并置于本地区，然后洗牌。",
+      "confirmedMechanismIds": [
+        "public",
+        "lock",
+        "exhaust",
+        "deckChoice"
+      ],
       "candidateMechanismIds": [
         "deckChoice",
         "exhaust",
@@ -11516,8 +11862,20 @@
         "public"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "handPicker",
+        "markerEditor",
+        "orderPicker",
+        "privatePeek",
+        "searchPicker",
+        "targetPicker"
+      ],
+      "mechanismCoverage": {
+        "public": "implemented",
+        "lock": "unimplemented",
+        "exhaust": "implemented",
+        "deckChoice": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -11532,22 +11890,22 @@
     {
       "id": "CQ17",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/CQ17 绍朗中尉.jpg",
           "sha256": "9a0ab08d27170670b44fdb0376bec00641683f68e250a89bcba87514d642432d"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/CQ17",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/CQ17",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/CQ17",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "绍朗中尉",
         "set": "传奇",
@@ -11571,9 +11929,21 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "绍明中尉",
+        "colorKey": "灰",
+        "basicType": "角色"
+      },
+      "abilitySummary": "公开；护卫1；持续 所有本地区的其他本方灰色角色获得永久战斗1和撤回。；快速行动②，横置：从你的牌库中寻找一张印刷费用为②的士兵角色牌，将其放置进场并置于本地区，然后洗牌。",
+      "confirmedMechanismIds": [
+        "public",
+        "combatKeywords",
+        "continuous",
+        "exhaust",
+        "deckChoice",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
       "candidateMechanismIds": [
         "combatTraits",
         "continuous",
@@ -11582,8 +11952,25 @@
         "public"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "damagePicker",
+        "handPicker",
+        "iconBreakdown",
+        "orderPicker",
+        "searchPicker",
+        "targetPicker",
+        "triggerPrompt",
+        "uniquePrompt"
+      ],
+      "mechanismCoverage": {
+        "public": "implemented",
+        "combatKeywords": "unimplemented",
+        "continuous": "partial",
+        "exhaust": "implemented",
+        "deckChoice": "partial",
+        "uniqueInPlay": "implemented",
+        "temporaryIcons": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -11598,22 +11985,22 @@
     {
       "id": "CQ18",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/CQ18 任秋雨.jpg",
           "sha256": "38e79b879bd53c793dfe9cdc7a10f11c854b399e13c22eeed307e71267fee639"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/CQ18",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/CQ18",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/CQ18",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "任秋雨",
         "set": "传奇",
@@ -11636,9 +12023,20 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "任秋雨",
+        "colorKey": "灰",
+        "basicType": "角色"
+      },
+      "abilitySummary": "隐秘+1；在本次隐秘对抗后，若本方秘社为哨兵，你可以在目标角色或暗藏者上放置一个锁定标志。；进场触发 在本地区的所有敌方角色和暗藏者上各放置一个锁定标志。；触发 当一个其上有锁定标志的敌方角色或暗藏者离场时，抓一张牌。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "society",
+        "lock",
+        "hidden",
+        "deckChoice",
+        "uniqueInPlay"
+      ],
       "candidateMechanismIds": [
         "deckChoice",
         "hidden",
@@ -11646,8 +12044,28 @@
         "mysticContest"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "handPicker",
+        "hiddenProjection",
+        "markerEditor",
+        "orderPicker",
+        "privatePeek",
+        "searchPicker",
+        "simultaneousReveal",
+        "societyMarkers",
+        "societyPicker",
+        "societyZone",
+        "targetPicker",
+        "uniquePrompt"
+      ],
+      "mechanismCoverage": {
+        "mysticContest": "unimplemented",
+        "society": "unimplemented",
+        "lock": "unimplemented",
+        "hidden": "implemented",
+        "deckChoice": "partial",
+        "uniqueInPlay": "implemented"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -11662,22 +12080,22 @@
     {
       "id": "CQ19",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/CQ19 达摩克里斯之剑.jpg",
           "sha256": "853bc6d38ea6503aaac6fadc25acb262ac41b550030cf1cb372af74ce03c67d1"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/CQ19",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/CQ19",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/CQ19",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "达摩克里斯之剑",
         "set": "传奇",
@@ -11695,16 +12113,40 @@
         "keywords": [],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "达摩克里斯之剑",
+        "colorKey": "灰",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于本方秘社；进场触发 若本方秘社为哨兵，在达摩克里斯之剑上放置一个充能标志。；行动 横置：在达摩克里斯之剑上放置一个充能标志。；行动 横置，从达摩克里斯之剑上移除X个充能标志：对目标角色造成X点伤害。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "society",
+        "exhaust",
+        "token",
+        "uniqueInPlay"
+      ],
       "candidateMechanismIds": [
         "attachment",
         "exhaust"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "attachmentPicker",
+        "attachments",
+        "societyPicker",
+        "societyZone",
+        "targetPicker",
+        "tokenTile",
+        "uniquePrompt"
+      ],
+      "mechanismCoverage": {
+        "attachment": "unimplemented",
+        "society": "unimplemented",
+        "exhaust": "implemented",
+        "token": "unimplemented",
+        "uniqueInPlay": "implemented"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -11719,22 +12161,22 @@
     {
       "id": "CQ20",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/CQ20 湖中夫人.jpg",
           "sha256": "2ab4038a1f09e007c2d705870a9ec81a5a3b5c2fb5b2741ff9b9774655143e14"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/CQ20",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/CQ20",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/CQ20",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "湖中夫人",
         "set": "传奇",
@@ -11758,9 +12200,21 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "湖中夫人",
+        "colorKey": "白",
+        "basicType": "角色"
+      },
+      "abilitySummary": "非资产；隐秘〔月形〕传闻；额外费用 若你操控名为阿瓦隆隐士的角色，则湖中夫人的费用减少②。；行动⓪：在另一个目标角色上放置一个临时调查1、永久战斗1或临时势力1能力图标标志。该能力每回合只能发动一次。",
+      "confirmedMechanismIds": [
+        "nonAsset",
+        "mysticContest",
+        "rumor",
+        "costReduction",
+        "continuous",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
       "candidateMechanismIds": [
         "control",
         "costReduction",
@@ -11769,8 +12223,23 @@
         "rumor"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "assetSummary",
+        "iconBreakdown",
+        "simultaneousReveal",
+        "societyMarkers",
+        "triggerPrompt",
+        "uniquePrompt"
+      ],
+      "mechanismCoverage": {
+        "nonAsset": "unimplemented",
+        "mysticContest": "unimplemented",
+        "rumor": "unimplemented",
+        "costReduction": "partial",
+        "continuous": "partial",
+        "uniqueInPlay": "implemented",
+        "temporaryIcons": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -11785,22 +12254,22 @@
     {
       "id": "CQ21",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/CQ21 舍生刃恭太郎.jpg",
           "sha256": "63b110f3886b3650e0d4ac9dd157e4a14f776c6aa9d97f3ee90a7dd89e3c1724"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/CQ21",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/CQ21",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/CQ21",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "舍生刃恭太郎",
         "set": "传奇",
@@ -11823,9 +12292,20 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "舍生刃恭太郎",
+        "colorKey": "白",
+        "basicType": "角色"
+      },
+      "abilitySummary": "隐秘〔月形〕声望；隐秘〔月形〕威名；触发 每当你抓牌时，在舍生刃恭太郎上放置一个临时战斗1能力图标标志。；死亡触发 若本方秘社上有隐秘〔月形〕标志，抓X张牌。X等于舍生刃恭太郎上临时战斗和永久战斗能力图标数量之和。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "renown",
+        "combatKeywords",
+        "deckChoice",
+        "temporaryIcons",
+        "uniqueInPlay"
+      ],
       "candidateMechanismIds": [
         "combatKeywords",
         "deckChoice",
@@ -11833,8 +12313,25 @@
         "renown"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "damagePicker",
+        "handPicker",
+        "iconBreakdown",
+        "orderPicker",
+        "searchPicker",
+        "simultaneousReveal",
+        "societyMarkers",
+        "triggerPrompt",
+        "uniquePrompt"
+      ],
+      "mechanismCoverage": {
+        "mysticContest": "unimplemented",
+        "renown": "unimplemented",
+        "combatKeywords": "unimplemented",
+        "deckChoice": "partial",
+        "temporaryIcons": "partial",
+        "uniqueInPlay": "implemented"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -11849,22 +12346,22 @@
     {
       "id": "CQ22",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/CQ22 费卢蒙德抄本.jpg",
           "sha256": "05d3f758a16dead0661a80c9989a2b0229e77b5a056b7e362003de4630d930e1"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/CQ22",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/CQ22",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/CQ22",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "费卢蒙德抄本",
         "set": "传奇",
@@ -11885,9 +12382,20 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "费卢蒙德抄本",
+        "colorKey": "白",
+        "basicType": "附属"
+      },
+      "abilitySummary": "选择一项：；借阅：结附于目标本方角色；触发 当受此结附的角色成为事务牌的目标时，你抓一张牌。；收藏：结附于本方秘社；持续 在隐秘对抗时你所展示的白色牌获得隐秘+1。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "society",
+        "deckChoice",
+        "mysticContest",
+        "continuous",
+        "uniqueInPlay"
+      ],
       "candidateMechanismIds": [
         "attachment",
         "continuous",
@@ -11895,8 +12403,26 @@
         "mysticContest"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "attachmentPicker",
+        "attachments",
+        "handPicker",
+        "orderPicker",
+        "searchPicker",
+        "simultaneousReveal",
+        "societyMarkers",
+        "societyPicker",
+        "societyZone",
+        "uniquePrompt"
+      ],
+      "mechanismCoverage": {
+        "attachment": "unimplemented",
+        "society": "unimplemented",
+        "deckChoice": "partial",
+        "mysticContest": "unimplemented",
+        "continuous": "partial",
+        "uniqueInPlay": "implemented"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -11911,22 +12437,22 @@
     {
       "id": "CQ23",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/CQ23 断钢剑.jpg",
           "sha256": "e0c2d53dc06f29e410c31f9075d76829184f9480834b3bfc58979eb3eb42c313"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/CQ23",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/CQ23",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/CQ23",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "断钢剑",
         "set": "传奇",
@@ -11947,9 +12473,22 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "断钢剑",
+        "colorKey": "白",
+        "basicType": "附属"
+      },
+      "abilitySummary": "屏障；结附于目标本方人类角色；持续 受此结附的角色获得永久战斗1、临时势力1、防御力+1和领袖。；强制触发 每当在受此结附的角色上放置一个指示物标志时，额外放置一个相同类别的指示物标志。",
+      "confirmedMechanismIds": [
+        "barrier",
+        "attachment",
+        "continuous",
+        "leader",
+        "token",
+        "priority",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
       "candidateMechanismIds": [
         "attachment",
         "barrier",
@@ -11958,8 +12497,25 @@
         "token"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "attachmentPicker",
+        "attachments",
+        "choicePicker",
+        "iconBreakdown",
+        "stack",
+        "tokenTile",
+        "uniquePrompt"
+      ],
+      "mechanismCoverage": {
+        "barrier": "implemented",
+        "attachment": "unimplemented",
+        "continuous": "partial",
+        "leader": "unimplemented",
+        "token": "unimplemented",
+        "priority": "partial",
+        "uniqueInPlay": "implemented",
+        "temporaryIcons": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -11974,22 +12530,22 @@
     {
       "id": "CQ24",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/CQ24 卡门.jpg",
           "sha256": "6867f1ea9a7da6a1f811a0c342c80e2879a2c82607dcb5167ce4d9c602f8c86d"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/CQ24",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/CQ24",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/CQ24",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "卡门",
         "set": "传奇",
@@ -12013,9 +12569,21 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "卡门",
+        "colorKey": "黑",
+        "basicType": "角色"
+      },
+      "abilitySummary": "非资产；隐秘〔月形〕撤回；额外费用 你可以支付③。；进场触发 若已支付该牌的额外费用，或你的隐秘等级高于敌方玩家，则你获得目标印刷费用小于或等于⑤的敌方附属之操控权，你可以为该附属重新选择结附目标。",
+      "confirmedMechanismIds": [
+        "nonAsset",
+        "mysticContest",
+        "combatKeywords",
+        "control",
+        "attachment",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
       "candidateMechanismIds": [
         "attachment",
         "combatTraits",
@@ -12025,8 +12593,27 @@
         "nonAsset"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "assetSummary",
+        "attachmentPicker",
+        "attachments",
+        "controlBadges",
+        "damagePicker",
+        "iconBreakdown",
+        "simultaneousReveal",
+        "societyMarkers",
+        "triggerPrompt",
+        "uniquePrompt"
+      ],
+      "mechanismCoverage": {
+        "nonAsset": "unimplemented",
+        "mysticContest": "unimplemented",
+        "combatKeywords": "unimplemented",
+        "control": "unimplemented",
+        "attachment": "unimplemented",
+        "uniqueInPlay": "implemented",
+        "temporaryIcons": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -12041,22 +12628,22 @@
     {
       "id": "CQ25",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/CQ25 伥虎.jpg",
           "sha256": "9b18fbff8a4063a6cba2276032bd8653be61ee58f0948256b7531aaeed3638ab"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/CQ25",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/CQ25",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/CQ25",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "伥虎",
         "set": "传奇",
@@ -12080,9 +12667,20 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "伥虎",
+        "colorKey": "黑",
+        "basicType": "角色"
+      },
+      "abilitySummary": "隐秘〔月形〕灵体；进场触发 进行一次隐秘对抗。本次隐秘对抗中你所展示的诅咒牌获得隐秘+2。；触发 每当本地区的一个本方角色死亡时，从本方牌库或墓地中寻找一张名为伥鬼的角色牌，将该牌封印在伥虎上。若从牌库中寻找，则洗牌。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "spirit",
+        "deckChoice",
+        "graveRecovery",
+        "seal",
+        "temporaryIcons"
+      ],
       "candidateMechanismIds": [
         "continuous",
         "deckChoice",
@@ -12092,8 +12690,27 @@
         "spirit"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "domainSummary",
+        "graveyardPicker",
+        "handPicker",
+        "iconBreakdown",
+        "orderPicker",
+        "regionPicker",
+        "sealedCards",
+        "searchPicker",
+        "simultaneousReveal",
+        "societyMarkers",
+        "targetPicker"
+      ],
+      "mechanismCoverage": {
+        "mysticContest": "unimplemented",
+        "spirit": "unimplemented",
+        "deckChoice": "partial",
+        "graveRecovery": "implemented",
+        "seal": "unimplemented",
+        "temporaryIcons": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
