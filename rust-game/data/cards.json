@@ -1495,6 +1495,45 @@
         "record": "JC085",
         "sha256": "f568ed4c26fc244830d840f0133eb1a78111aceff53a4a345f8ca44c1552aee2"
       }
+    },
+    {
+      "id": "JC088",
+      "name": "职业杀手",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "罪犯"
+      ],
+      "cost": 3,
+      "loyalty": [
+        "黑色"
+      ],
+      "loyaltyText": "黑色",
+      "color": "黑",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "现身触发：消灭位于本地区，且印刷费用小于或等于2的目标角色。\n快速行动：2：潜伏。（将该角色翻面为暗藏者）",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JC088",
+        "image": "resource/ymsj-fun.github.io/cards/JC088 职业杀手.jpg",
+        "sha256": "9c270203639dae978acb65e9255ac34b5a5d5192e681f8aafd63018ede301a5f"
+      },
+      "unique": false,
+      "society": "方碑序列"
     }
   ],
   "decks": [
@@ -1682,7 +1721,7 @@
       "cards": [
         {
           "cardId": "JC125",
-          "count": 11
+          "count": 8
         },
         {
           "cardId": "LC19",
@@ -1734,6 +1773,10 @@
         },
         {
           "cardId": "JC085",
+          "count": 3
+        },
+        {
+          "cardId": "JC088",
           "count": 3
         }
       ]

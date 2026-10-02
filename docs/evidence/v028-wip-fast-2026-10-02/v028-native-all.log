@@ -1,0 +1,160 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.14s
+     Running unittests src/lib.rs (/workspace/.private-validation/hegemony-v028-target/debug/deps/hegemony_server-fa35e11fc7b74bf5)
+
+running 67 tests
+test attachment::tests::invalid_host_type_destroys_instead_of_recycling_and_world_hide_uses_shared_cleanup ... ok
+test attachment::tests::actual_hide_recycles_to_owner_new_private_identity_without_response_or_hidden_attachment ... ok
+test attachment::tests::ordinary_move_preserves_equipment_but_host_departure_and_attachment_destruction_differ ... ok
+test attachment::tests::multiple_equipment_stacks_only_on_host_and_exhausted_host_contributes_zero ... ok
+test engine::tests::all_transaction_effects_and_recursion_death_choice ... ok
+test attachment::tests::attachment_missing_host_after_murder_response_buries_single_card_without_refund ... ok
+test engine::tests::assassin_reveal_target_that_hides_in_response_is_not_destroyed_or_repaid ... ok
+test attachment::tests::attachment_targets_public_humans_or_vampires_any_team_any_region_and_pays_atomically ... ok
+test engine::tests::assassin_paid_hide_preserves_exhaustion_and_returns_attachment_to_its_owner ... ok
+test engine::tests::board_move_primitive_preserves_entity_without_enter_or_unique_events ... ok
+test engine::tests::bottom_to_hand_insufficient_cards_does_not_draw_or_eliminate_and_pays_controlled_cost ... ok
+test engine::tests::catalog_is_restricted_real_complete_and_decks_are_legal ... ok
+test engine::tests::combat_difference_kill_guard_simultaneous_damage_and_barrier ... ok
+test engine::tests::detective_only_reveal_triggers_once_can_decline_and_handles_exhausted_or_no_target ... ok
+test engine::tests::assassin_reveal_uses_printed_cost_guard_for_all_four_owners_in_its_region ... ok
+test engine::tests::detective_target_reveal_cancels_without_refund_but_source_death_keeps_effect ... ok
+test engine::tests::disciple_reduction_on_empty_stack_is_immediate_and_restores_without_repayment ... ok
+test engine::tests::distance_public_restriction_and_rejected_command_are_noop ... ok
+test engine::tests::each_start_phase_draws_exactly_one_per_living_player ... ok
+test attachment::tests::won_region_batches_cross_owner_equipment_and_preserves_aura_until_every_order_is_saved ... ok
+test engine::tests::funeral_target_recovered_in_response_cancels_draw_without_refunding_cost ... ok
+test engine::tests::heal_entry_angru_and_witch_card_abilities ... ok
+test engine::tests::effect_sacrifice_private_choice_restores_accepted_guard_and_current_control ... ok
+test engine::tests::icon_difference_investigation_sorts_then_draws_one ... ok
+test engine::tests::hidden_information_projection_and_reveal_identity ... ok
+test engine::tests::influence_difference_cancels_enemy_and_privilege_requires_contribution ... ok
+test engine::tests::detective_targets_all_sides_same_region_without_private_leaks_or_hidden_death ... ok
+test engine::tests::immediate_policy_keeps_cost_death_trigger_responsive_and_choice_resumable ... ok
+test engine::tests::invalid_additional_sacrifice_rolls_back_assets_modifier_and_every_state_field ... ok
+test engine::tests::local_targets_revalidate_and_events_enter_graveyard_after_effect ... ok
+test engine::tests::mobility_adjacent_only_and_preserves_entity ... ok
+test engine::tests::mobility_first_team_resolves_before_rear_team_and_responses_resolve_lifo ... ok
+test engine::tests::normal_hide_resolution_projects_concealed_print_to_controller_instead_of_owner ... ok
+test engine::tests::police_security_and_chase_apply_printed_rules ... ok
+test engine::tests::reduction_only_face_up_play_matches_society_or_blood_loyalty_and_expires ... ok
+test engine::tests::response_hide_and_reveal_reenters_with_new_identity_old_spell_cannot_hit ... ok
+test engine::tests::murder_response_sacrifices_disciple_as_cost_and_independent_reduction_resolves ... ok
+test engine::tests::sacrifice_defense_aura_immediately_kills_zero_defense_character_at_stable_point ... ok
+test engine::tests::simultaneous_death_triggers_are_declared_first_team_then_rear_team ... ok
+test engine::tests::source_leaves_after_angru_trigger_target_exhaust_still_resolves ... ok
+test engine::tests::private_forecast_and_damage_choices_roundtrip_without_leaking ... ok
+test engine::tests::teams_both_teammates_can_respond_and_reduction_belongs_to_fixed_actor ... ok
+test engine::tests::surgeon_is_public_and_heal_pays_two_assets_and_exhausts_source_atomically ... ok
+test engine::tests::teams_require_all_passes_and_own_action_resets_pass_records ... ok
+test engine::tests::watchers_target_category_locks_and_shield_terminates ... ok
+test engine::tests::unique_mandatory_sacrifice_and_world_effects ... ok
+test engine::tests::won_region_returns_cards_ordered_and_retreat_hand_no_death ... ok
+test play_sources::tests::conditional_icons_use_controllers_assets_and_team_markers_with_first_team_and_posture ... ok
+test engine::tests::team_elimination_removes_owned_zones_and_stack_but_preserves_score ... ok
+test play_sources::tests::teams_do_not_share_personal_domains_and_moved_characters_query_their_current_region ... ok
+test rules::tests::invalid_mode_targets_and_nested_iteration_are_rejected_before_registration ... ok
+test rules::tests::invalid_multi_target_ability_is_rejected_before_registration ... ok
+test play_sources::tests::grave_play_pays_normal_cost_once_and_persists_its_origin_until_face_up_entry ... ok
+test world::tests::base_world_rejects_duplicate_fillers_missing_cards_and_unregistered_regions ... ok
+test play_sources::tests::grave_sources_reject_conceal_asset_unpermitted_foreign_loyalty_cost_and_phase_atomically ... ok
+test world::tests::florence_can_decline_and_does_not_change_ordinary_reveal_loyalty ... ok
+test world::tests::dead_city_retains_chosen_region_and_each_players_graveyard_choice_after_restore ... ok
+test world::tests::hong_kong_exact_binding_is_attachment_only_and_empty_search_does_not_draw ... ok
+test world::tests::kyoto_hides_only_nonhuman_face_up_characters_and_preserves_exhaustion ... ok
+test world::tests::duel_and_teams_start_with_ten_distinct_physical_regions_across_seeds ... ok
+test world::tests::london_mixes_existing_hidden_with_newly_hidden_per_controller_and_region_deterministically ... ok
+test world::tests::florence_rotates_independent_players_and_free_reveal_ignores_loyalty_under_adopted_faq ... ok
+test world::tests::simultaneous_search_keeps_commitments_private_and_decks_unchanged_until_all_players_choose ... ok
+test world::tests::world_values_match_the_ten_printed_originals ... ok
+test world::tests::printed_zero_cost_needs_no_assets_but_keeps_standard_timing_and_team_distance ... ok
+test world::tests::moscow_resumes_seat_order_and_uses_the_pre_sacrifice_defense_snapshot ... ok
+test engine::tests::deterministic_complete_duel_and_team_games_and_restart ... ok
+
+test result: ok. 67 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 23.01s
+
+     Running unittests src/bin/hegemony-audit.rs (/workspace/.private-validation/hegemony-v028-target/debug/deps/hegemony_audit-727fcd1b8b1c2c82)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (/workspace/.private-validation/hegemony-v028-target/debug/deps/hegemony_server-c2980c807bbe738b)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/attachment_service.rs (/workspace/.private-validation/hegemony-v028-target/debug/deps/attachment_service-d5f09b69bdc5e9df)
+
+running 3 tests
+test attachment_paid_stack_and_owner_recycle_restore_with_original_receipt_and_replay ... ok
+test grave_play_sqlite_preserves_paid_origin_and_full_intent_receipt_across_reopen ... ok
+test actual_hong_kong_attachment_commitments_are_private_and_resume_once_from_sqlite ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.21s
+
+     Running tests/deck_construction.rs (/workspace/.private-validation/hegemony-v028-target/debug/deps/deck_construction-2e9a2ff733d3c11c)
+
+running 5 tests
+test minimum_unlimited_multifaction_and_canonical_duplicate_entries ... ok
+test printed_name_groups_versions_and_unique_is_distinct_from_in_play_unique ... ok
+test malformed_disabled_overflow_versions_and_society_are_rejected ... ok
+test frozen_snapshot_private_views_lobby_changes_and_started_rejections ... ok
+test custom_deck_join_change_receipt_reopen_and_replay_keep_frozen_private_specs ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+     Running tests/jc059_friendly.rs (/workspace/.private-validation/hegemony-v028-target/debug/deps/jc059_friendly-c39e189174bd49d1)
+
+running 2 tests
+test friendly_defense_includes_teammate_but_not_enemy_other_region_hidden_or_source ... ok
+test public_region_totals_include_team_temporary_hidden_ready_and_static_icons_without_identity ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/room_pacing.rs (/workspace/.private-validation/hegemony-v028-target/debug/deps/room_pacing-6f72ea6f3fbc6277)
+
+running 6 tests
+test empty_stack_poll_has_no_revision_or_automatic_phase_advance_and_schema2_is_rejected ... ok
+test deadline_4999_accepts_begin_5000_expires_and_new_window_gets_fresh_time ... ok
+test repeated_begin_keeps_epoch_and_composing_without_timeout_cancel_is_a_real_pass ... ok
+test one_teammate_times_out_while_the_other_composes_without_global_pass_or_private_leak ... ok
+test teammates_begin_independently_but_formal_submit_changes_epoch_and_requires_requote ... ok
+test direct_paid_response_is_blocked_invalid_submit_does_not_pay_or_reset_and_pending_choice_has_no_clock ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+     Running tests/service.rs (/workspace/.private-validation/hegemony-v028-target/debug/deps/service-9ac54c6562eabe36)
+
+running 10 tests
+test authenticated_sse_projects_actor_view_and_updates_after_commit ... ok
+test failed_transaction_does_not_ack_or_mutate_state ... ok
+test dedupe_conflicts_rejections_auth_and_replay_are_strict ... ok
+test command_id_reuse_requires_same_complete_typed_intent_before_and_after_reopen ... ok
+test legacy_state_is_rejected_explicitly_without_silent_migration ... ok
+test room_catalog_requires_a_token_for_that_room_and_returns_current_pool ... ok
+test read_only_audit_cli_matches_seed_journal_and_detects_corruption ... ok
+test detective_reveal_choice_and_bound_frame_restore_without_repayment_or_private_leaks ... ok
+test sqlite_reopen_restores_identity_pending_choice_and_dedupe ... ok
+test paid_sacrifice_death_trigger_and_accepted_frame_restore_without_repayment ... ok
+
+test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.17s
+
+     Running tests/session_service.rs (/workspace/.private-validation/hegemony-v028-target/debug/deps/session_service-165094a247f97aac)
+
+running 6 tests
+test concurrent_join_cas_assigns_distinct_seats_and_replay_contains_both ... ok
+test failed_pacing_transaction_preserves_deadline_and_has_no_receipt_or_ack ... ok
+test begin_and_timeout_race_has_one_committed_order_and_replays ... ok
+test expired_rejected_begin_commits_only_system_journal_and_poll_stops_at_empty_stack ... ok
+test teammate_begins_from_one_revision_both_commit_without_rebasing_paid_actions ... ok
+test paid_response_reopen_quote_receipts_and_target_failure_keep_atomic_costs ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.15s
+
+   Doc-tests hegemony_server
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

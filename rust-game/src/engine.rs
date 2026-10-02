@@ -2279,6 +2279,7 @@ mod tests {
             range: rules::Range::Anywhere,
             subtype: None,
             subtypes_any: vec![],
+            printed_cost_max: None,
             min: 1,
             max: 1,
         };
@@ -2332,7 +2333,7 @@ mod tests {
     #[test]
     fn catalog_is_restricted_real_complete_and_decks_are_legal() {
         let c = catalog::catalog();
-        assert_eq!(c.cards.len(), 39);
+        assert_eq!(c.cards.len(), 40);
         let active = c
             .cards
             .iter()
@@ -2346,7 +2347,7 @@ mod tests {
                 .collect::<BTreeSet<_>>()
         );
         assert!(active.contains("DQJC116"));
-        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 29);
+        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 30);
         assert_eq!(c.decks.len(), 5);
         for deck in &c.decks {
             assert_eq!(deck.card_count, 50);
@@ -2436,6 +2437,169 @@ mod tests {
         assert!(c.exhausted);
         assert!(!c.face_down);
     }
+    #[test]
+    fn assassin_reveal_uses_printed_cost_guard_for_all_four_owners_in_its_region() {
+        let mut g = game("teams");
+        let source = board(&mut g, "JC088", 0, 2);
+        g.board_mut(&source).unwrap().face_down = true;
+        let accepted = [
+            board(&mut g, "JC125", 0, 2),
+            board(&mut g, "JC084", 1, 2),
+            board(&mut g, "JC085", 2, 2),
+            board(&mut g, "JC084", 3, 2),
+        ];
+        let expensive = board(&mut g, "JC086", 2, 2);
+        let hidden = board(&mut g, "JC084", 2, 2);
+        g.board_mut(&hidden).unwrap().face_down = true;
+        let outside = board(&mut g, "JC084", 3, 3);
+        resource(&mut g, 0, "JC088", 3);
+        g.apply(
+            0,
+            Action {
+                card_id: Some(source.clone()),
+                ..Action::new("reveal")
+            },
+        )
+        .unwrap();
+        pass_stack(&mut g);
+        let pending = g.pending.as_ref().unwrap();
+        assert_eq!(pending.choice.kind, "trigger");
+        assert_eq!(
+            pending
+                .choice
+                .options
+                .iter()
+                .map(|o| o.id.clone())
+                .collect::<BTreeSet<_>>(),
+            accepted.iter().cloned().collect()
+        );
+        assert_eq!(card("JC125").cost, 0);
+        assert_eq!(card("JC085").cost, 2);
+        assert!(card("JC086").cost > 2);
+        select(&mut g, vec![accepted[3].clone()]);
+        assert_eq!(
+            g.stack.last().unwrap().frame.as_ref().unwrap().targets[0]
+                .spec
+                .printed_cost_max,
+            Some(2)
+        );
+        let json = serde_json::to_string(&g).unwrap();
+        let mut g: Game = serde_json::from_str(&json).unwrap();
+        pass_stack(&mut g);
+        assert!(g.board(&accepted[3]).is_none());
+        assert_eq!(g.players[3].graveyard.last().unwrap().definition, "JC084");
+        for id in accepted
+            .iter()
+            .take(3)
+            .chain([&expensive, &hidden, &outside].into_iter())
+        {
+            assert!(g.board(id).is_some());
+        }
+
+        let mut ordinary = game("duel");
+        let victim = board(&mut ordinary, "JC085", 1, 0);
+        let source = hand(&mut ordinary, "JC088", 0);
+        resource(&mut ordinary, 0, "JC088", 3);
+        ordinary
+            .apply(
+                0,
+                Action {
+                    card_id: Some(source),
+                    region: Some(0),
+                    ..Action::new("deploy")
+                },
+            )
+            .unwrap();
+        pass_stack(&mut ordinary);
+        assert!(ordinary.pending.is_none() && ordinary.board(&victim).is_some());
+    }
+
+    #[test]
+    fn assassin_paid_hide_preserves_exhaustion_and_returns_attachment_to_its_owner() {
+        let mut g = game("duel");
+        let source = board(&mut g, "JC088", 0, 0);
+        g.board_mut(&source).unwrap().exhausted = true;
+        resource(&mut g, 0, "JC088", 1);
+        let rejected = serde_json::to_string(&g).unwrap();
+        let action = Action {
+            card_id: Some(source.clone()),
+            ability_id: Some("hide-self".into()),
+            ..Action::new("activate")
+        };
+        assert!(g.apply(0, action.clone()).is_err());
+        assert_eq!(serde_json::to_string(&g).unwrap(), rejected);
+        resource(&mut g, 0, "JC088", 1);
+        let equipment = g.make_card("BQ022", 1);
+        g.attachments.push(Attachment {
+            card: equipment,
+            host_id: source.clone(),
+        });
+        g.apply(0, action).unwrap();
+        assert_eq!(g.resources(0), 0);
+        assert!(g.board(&source).is_some());
+        pass_stack(&mut g);
+        assert!(g.board(&source).is_none());
+        let hidden = g.regions[0]
+            .cards
+            .iter()
+            .find(|c| c.definition == "JC088")
+            .unwrap();
+        assert!(hidden.face_down && hidden.exhausted);
+        assert_eq!(hidden.controller, 0);
+        assert!(g.attachments.is_empty());
+        assert_eq!(g.players[1].hand.last().unwrap().definition, "BQ022");
+        assert!(!g
+            .legal_actions(0)
+            .iter()
+            .any(|a| a.action.kind == "activate" && a.action.card_id.as_ref() == Some(&hidden.id)));
+    }
+
+    #[test]
+    fn assassin_reveal_target_that_hides_in_response_is_not_destroyed_or_repaid() {
+        let mut g = game("duel");
+        let source = board(&mut g, "JC088", 0, 0);
+        g.board_mut(&source).unwrap().face_down = true;
+        let target = board(&mut g, "JC085", 1, 0);
+        resource(&mut g, 0, "JC088", 3);
+        resource(&mut g, 1, "JC063", 4);
+        let hide = hand(&mut g, "JC063", 1);
+        g.apply(
+            0,
+            Action {
+                card_id: Some(source),
+                ..Action::new("reveal")
+            },
+        )
+        .unwrap();
+        pass_stack(&mut g);
+        select(&mut g, vec![target.clone()]);
+        g.apply(0, Action::new("pass")).unwrap();
+        g.apply(
+            1,
+            Action {
+                card_id: Some(hide),
+                target_id: Some(target.clone()),
+                option: Some("hide".into()),
+                ..Action::new("play")
+            },
+        )
+        .unwrap();
+        pass_stack(&mut g);
+        assert!(g.board(&target).is_none());
+        let saved = g.regions[0]
+            .cards
+            .iter()
+            .find(|c| c.definition == "JC085")
+            .unwrap();
+        assert_ne!(saved.id, target);
+        assert!(saved.face_down);
+        assert_eq!(g.resources(0), 0);
+        assert!(!g.players[1]
+            .graveyard
+            .iter()
+            .any(|c| c.definition == "JC085"));
+    }
+
     #[test]
     fn detective_only_reveal_triggers_once_can_decline_and_handles_exhausted_or_no_target() {
         let mut deployed = game("duel");
