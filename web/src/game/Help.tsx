@@ -1,4 +1,5 @@
 import type { Catalog } from './types';
+import { FactionCoverage } from './FactionCoverage';
 
 export function Help({ onClose, catalog }: { onClose: () => void; catalog: Catalog | null }) {
   const worldCount = new Set(catalog?.cards.filter(card => card.kind === 'region').map(card => card.id)).size;
@@ -14,6 +15,7 @@ export function Help({ onClose, catalog }: { onClose: () => void; catalog: Catal
       <li><b>调查 → 战斗 → 势力</b><span>双方比较参与角色的图标，获胜方获得图标差值 X 的奖励：调查排序牌库顶 X 张后抓 1 张，战斗分配 X 点伤害，势力放置 X 点影响。横置角色不参与对抗。</span></li>
       <li><b>赢得地区</b><span>势力先抵消对方影响，再增加差值。达到地区阈值后还有快速行动窗口；地区上的牌由各拥有者排序置于牌库底，再补充新地区。</span></li></ol>
     <div className="hg-help-notes"><p><b>白底图标</b>只在操控者团队持先手时生效。每团队每回合一次先手特权，使用者必须贡献至少一个图标。</p><p><b>四人位置</b>席位 1 / 3 可正常派遣到左侧三个地区，席位 2 / 4 到右侧三个地区，中间地区共享。所有可执行动作由牌桌实时给出。</p><p><b>初始手牌</b>为 6 张，可再调度一次：暂放任选手牌，抓等量，再将原牌洗回牌库。</p><p><b>当前卡池</b>是逐卡开放的受限真实卡牌池，{poolDescription}</p></div>
+    <FactionCoverage catalog={catalog} />
     <button className="hg-button hg-button-primary" onClick={onClose}>回到牌桌</button>
   </section></div>;
 }

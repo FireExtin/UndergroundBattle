@@ -1,20 +1,25 @@
 import { useState } from 'react';
-import type { Catalog, Deck } from './types';
+import { FactionCoverage } from './FactionCoverage';
+import { deckColors } from './factions';
+import type { CardDefinition, Catalog, Deck } from './types';
 
-export const deckThemes: Record<string, { mark: string; color: string; role: string }> = {
-  watchers: { mark: '◈', color: 'blue', role: '调查 · 控制' },
-  hunters: { mark: '⚔', color: 'red', role: '机动 · 战斗' },
-  keepers: { mark: '⌖', color: 'gold', role: '守备 · 势力' },
-  reclaimers: { mark: '✧', color: 'violet', role: '墓地 · 回收' },
+export const deckThemes: Record<string, { mark: string; role: string }> = {
+  watchers: { mark: '◈', role: '调查 · 控制' },
+  hunters: { mark: '⚔', role: '机动 · 战斗' },
+  keepers: { mark: '⌖', role: '守备 · 势力' },
+  reclaimers: { mark: '✧', role: '墓地 · 回收' },
+  responders: { mark: '⌁', role: '牺牲 · 响应' },
 };
 
-export function DeckPicker({ decks, value, onChange, disabled = false, allowedIds }: { decks: Deck[]; value: string; onChange: (id: string) => void; disabled?: boolean; allowedIds?: string[] }) {
+export function DeckPicker({ decks, cards, value, onChange, disabled = false, allowedIds }: { decks: Deck[]; cards: CardDefinition[]; value: string; onChange: (id: string) => void; disabled?: boolean; allowedIds?: string[] }) {
   return <div className="hg-decks">{decks.map((deck, index) => {
-    const theme = deckThemes[deck.id] || { mark: '◈', color: 'blue', role: '秘社牌组' };
-    return <button type="button" key={deck.id} data-deck-id={deck.id} className={`hg-deck hg-deck-${theme.color} ${value === deck.id ? 'hg-selected' : ''}`} onClick={() => onChange(deck.id)} disabled={disabled || (allowedIds !== undefined && !allowedIds.includes(deck.id))} aria-pressed={value === deck.id}>
+    const theme = deckThemes[deck.id] || { mark: '◈', role: '自组预组' };
+    const composition = deckColors(deck, cards);
+    return <button type="button" key={deck.id} data-deck-id={deck.id} data-deck-main-faction={composition.main.id} className={`hg-deck hg-deck-faction-${composition.main.id} ${value === deck.id ? 'hg-selected' : ''}`} onClick={() => onChange(deck.id)} disabled={disabled || (allowedIds !== undefined && !allowedIds.includes(deck.id))} aria-pressed={value === deck.id}>
       <span className="hg-deck-index">0{index + 1}</span><span className="hg-deck-sigil" aria-hidden="true">{theme.mark}</span>
       <span className="hg-deck-role">{theme.role}</span><strong>{deck.name}</strong><span className="hg-deck-description">{deck.description}</span>
-      <span className="hg-deck-footer">{deck.cardCount} 张真实卡牌 <span>{value === deck.id ? '✓ 已选择' : '选择牌组 ↗'}</span></span>
+      <span className="hg-deck-colors" aria-label={`${deck.name}的颜色组成`}>{composition.colors.map(({ faction, count }) => <span key={faction.id} className={`hg-faction-${faction.id}`} data-deck-faction={faction.id} data-card-count={count}><i className="hg-faction-swatch" aria-hidden="true" />{faction.color} · {faction.name} {count} 张</span>)}</span>
+      <span className="hg-deck-footer">{composition.total} 张 · 自组预组 <span>{value === deck.id ? '✓ 已选择' : '选择牌组 ↗'}</span></span>
     </button>;
   })}</div>;
 }
@@ -37,7 +42,7 @@ export function Lobby({ catalog, busy, onCreate, onJoin, retry }: {
       <div className="hg-hero-orbit" aria-hidden="true"><span>◈</span><i /><i /></div>
       <div className="hg-eyebrow">THE SECRET WORLD · 霸权</div>
       <h1>世界的背面，<br /><em>等你落子。</em></h1>
-      <p>派遣秘社角色，争夺城市的隐秘权柄。<br />与一位对手交锋，或和伙伴并肩加入四人牌桌。</p>
+      <p>派遣角色，争夺城市的隐秘权柄。<br />与一位对手交锋，或和伙伴并肩加入四人牌桌。</p>
       <div className="hg-hero-features"><span>◈ 调查</span><span>⚔ 战斗</span><span>⚑ 势力</span></div>
     </section>
     <section className="hg-onboarding">
@@ -54,13 +59,13 @@ export function Lobby({ catalog, busy, onCreate, onJoin, retry }: {
         </div> : <label className="hg-field">邀请码<input value={invite} onChange={event => setInvite(event.target.value)} placeholder="粘贴伙伴发来的邀请码" required autoComplete="off" disabled={busy} /></label>}
         <div className="hg-entry-bottom"><p>创建后分享邀请，所有玩家准备后由房主开始。<br />座位保存在此浏览器，刷新即可继续。</p><button className="hg-button hg-button-primary" type="submit" disabled={busy || !catalog || !name.trim() || (tab === 'join' && !invite.trim())}>{busy ? '正在入席…' : tab === 'create' ? '创建牌桌 →' : '加入牌桌 →'}</button></div>
       </form>
-      <div id="hegemony-decks" className="hg-section-title"><span className="hg-eyebrow">02 / 选择你的秘社</span><span className="hg-pool-badge">受限真实卡池预组</span></div>
-      <h2>{catalog ? `${catalog.decks.length} 条通往霸权的道路` : '通往霸权的道路'}</h2>
+      <div id="hegemony-decks" className="hg-section-title"><span className="hg-eyebrow">02 / 选择自组预组</span><span className="hg-pool-badge">受限真实卡池预组</span></div>
+      <h2>{catalog ? `${catalog.decks.length} 套自组预组` : '自组预组'}</h2>
       <p className="hg-muted">每套 50 张，来自已开放的真实卡牌。当前为受限卡池自组预组，并非官方预组。</p>
-      {catalog ? <><DeckPicker decks={catalog.decks} value={selected} onChange={setDeckId} disabled={busy} />
+      {catalog ? <><DeckPicker decks={catalog.decks} cards={catalog.cards} value={selected} onChange={setDeckId} disabled={busy} />
         {deck && <details className="hg-deck-list"><summary>查看「{deck.name}」的 {deck.cardCount} 张组成</summary><ul>{deck.cards.map(item => <li key={item.cardId}><span>{catalog.cards.find(card => card.id === item.cardId)?.name || item.cardId}</span><b>× {item.count}</b></li>)}</ul></details>}
-      </> : <div className="hg-loading"><span>正在连接秘社档案…</span><button className="hg-button hg-button-quiet" onClick={retry}>重新连接</button></div>}
-
+      </> : <div className="hg-loading"><span>正在连接牌组档案…</span><button className="hg-button hg-button-quiet" onClick={retry}>重新连接</button></div>}
+      <FactionCoverage catalog={catalog} />
     </section>
   </main>;
 }
