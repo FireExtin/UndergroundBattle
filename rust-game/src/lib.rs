@@ -1,5 +1,5 @@
-pub mod catalog;
 mod attachment;
+pub mod catalog;
 pub mod deck;
 pub mod engine;
 pub mod model;

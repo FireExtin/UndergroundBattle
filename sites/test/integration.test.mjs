@@ -200,7 +200,7 @@ test('real workerd/WASM with D1 SQLite: concurrency, receipts, rollback and reop
     assert.deepEqual((await api('/api/rooms/join', customJoinBody)).body, customGuest);
     for (const old of oldRooms) {
       for (const [i, actor] of old.actors.entries()) {
-        assert.deepEqual((await api(path(actor, 'state'), null, actor)).body, old.views[i]);
+        assert.deepEqual(durableView((await api(path(actor, 'state'), null, actor)).body), durableView(old.views[i]));
         assert.deepEqual((await api(path(actor, 'catalog'), null, actor)).body, old.catalog);
       }
       assert.equal((await new RoomStore(db).room(old.id)).state, old.opaque);

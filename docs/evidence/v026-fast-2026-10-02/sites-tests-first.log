@@ -1,0 +1,90 @@
+
+> test
+> node --test test/*.test.mjs
+
+✖ real workerd/WASM with D1 SQLite: concurrency, receipts, rollback and reopen (6438.497561ms)
+✔ real kernels preserve their full version tuple and reject unknown persisted identities (178.599656ms)
+✔ recovering a paid response receipt precedes all later clock evaluation (15.560331ms)
+✔ a matching-version GET persists an expired window before deciding to return 204 (3.9278ms)
+✔ an expired response commits only the system tick and never an accepted user receipt (2.826276ms)
+✔ a CAS conflict retries Begin with its original expected version and complete intent (1.874708ms)
+✔ a formal response cannot be rebased by the host after another seat wins CAS (2.306915ms)
+✔ client clock injection and nested Session commands are rejected before the reducer (0.798925ms)
+✔ quoting an active composition refreshes its clock and does not commit a draft or receipt (2.219023ms)
+✔ real Worker/D1 rust-v0.2.5 preserves composing, untimed choices, expiry and receipts through reopen (18460.562958ms)
+ℹ Synthetic local fixture; actual Worker/D1 writes, timers and reopen. No remote natural-play claim.
+✖ real Worker/D1 rust-v0.2.6 preserves composing, untimed choices, expiry and receipts through reopen (3658.729698ms)
+hegemony storage retry { code: 'network_lost', retryable: true, attempt: 1 }
+✔ an ambiguous D1 commit retries the identical command and returns its receipt without applying twice (251.509092ms)
+✔ storage diagnostics expose fixed labels and do not retry quota, constraint or unknown failures (0.866281ms)
+hegemony storage retry { code: 'network_lost', retryable: true, attempt: 1 }
+hegemony storage retry { code: 'network_lost', retryable: true, attempt: 1 }
+hegemony storage retry { code: 'network_lost', retryable: true, attempt: 2 }
+✔ a failure before commit retries the original identity, while an exhausted failure never returns success (758.769069ms)
+✔ transient failures have a finite budget; HTTP rejections and unclassified failures are returned immediately (0.793849ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 13
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 24145.384127
+
+✖ failing tests:
+
+test at test/integration.test.mjs:16:1
+✖ real workerd/WASM with D1 SQLite: concurrency, receipts, rollback and reopen (6438.497561ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    {
+      activeTeam: 0,
+      assets: [],
+      firstTeam: 1,
+      graveyard: [],
+  ...
+      scoreCards: [],
+  +   serverNowMs: 1790970600720,
+  -   serverNowMs: 1790970596037,
+      stack: [],
+      status: 'playing',
+      step: 'prepare',
+      turn: 1,
+      version: 4,
+  
+      at TestContext.<anonymous> (file:///workspace/UndergroundBattle/sites/test/integration.test.mjs:203:16)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { roomId: 'aaaaaaaaaaaaaaaaaaaaaaaa', inviteCode: 'LEGACYTEST25', version: 4, mode: 'duel', status: 'playing', you: 'p0', players: [ [Object], [Object] ], firstTeam: 1, activeTeam: 0, priorityTeam: 1, turn: 1, phase: 'start', step: 'prepare', winScore: 8, regions: [ [Object], [Object], [Object] ], hand: [ [Object], [Object], [Object], [Object], [Object], [Object] ], assets: [], graveyard: [], scoreCards: [], stack: [], pendingChoice: { id: 'i123', kind: 'mulligan', title: '一次再调度：暂放任意手牌，抓等量，再洗回原牌', description: '选择符合数量限制的选项，然后确认。', playerId: 'p0', options: [Array], min: 0, max: 6, allowDecline: true }, legalActions: [ [Object] ], log: [ [Object], [Object] ], versions: { rules: 'hegemony-pdf-v1', cardPool: 'limited-v2.3', engine: 'rust-v0.2.5' }, waitingChoice: { playerId: 'p0', kind: 'mulligan', title: '一次再调度：暂放任意手牌，抓等量，再洗回原牌' }, yourDeck: { id: 'watchers', name: '帷幕调查', description: '以检视、横置与调查奖励掌控节奏。50张受限卡池自组预组，非官方预组。', societyId: null, cards: [Array], rulesVersion: 'hegemony-pdf-v1', cardPoolVersion: 'limited-v2.3', engineVersion: 'rust-v0.2.5', updatedAt: '' }, worldDeckCount: 7, serverNowMs: 1790970600720, responseWindow: null },
+    expected: { roomId: 'aaaaaaaaaaaaaaaaaaaaaaaa', inviteCode: 'LEGACYTEST25', version: 4, mode: 'duel', status: 'playing', you: 'p0', players: [ [Object], [Object] ], firstTeam: 1, activeTeam: 0, priorityTeam: 1, turn: 1, phase: 'start', step: 'prepare', winScore: 8, regions: [ [Object], [Object], [Object] ], hand: [ [Object], [Object], [Object], [Object], [Object], [Object] ], assets: [], graveyard: [], scoreCards: [], stack: [], pendingChoice: { id: 'i123', kind: 'mulligan', title: '一次再调度：暂放任意手牌，抓等量，再洗回原牌', description: '选择符合数量限制的选项，然后确认。', playerId: 'p0', options: [Array], min: 0, max: 6, allowDecline: true }, legalActions: [ [Object] ], log: [ [Object], [Object] ], versions: { rules: 'hegemony-pdf-v1', cardPool: 'limited-v2.3', engine: 'rust-v0.2.5' }, waitingChoice: { playerId: 'p0', kind: 'mulligan', title: '一次再调度：暂放任意手牌，抓等量，再洗回原牌' }, yourDeck: { id: 'watchers', name: '帷幕调查', description: '以检视、横置与调查奖励掌控节奏。50张受限卡池自组预组，非官方预组。', societyId: null, cards: [Array], rulesVersion: 'hegemony-pdf-v1', cardPoolVersion: 'limited-v2.3', engineVersion: 'rust-v0.2.5', updatedAt: '' }, worldDeckCount: 7, serverNowMs: 1790970596037, responseWindow: null },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at test/session-integration.test.mjs:13:4
+✖ real Worker/D1 rust-v0.2.6 preserves composing, untimed choices, expiry and receipts through reopen (3658.729698ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  400 !== 200
+  
+      at TestContext.<anonymous> (file:///workspace/UndergroundBattle/sites/test/session-integration.test.mjs:45:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 400,
+    expected: 200,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

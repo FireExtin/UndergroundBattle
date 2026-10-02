@@ -22,7 +22,8 @@ impl Game {
     }
     // Non-target queries deliberately do not apply targetability, barriers or shields.
     fn matching_board(&self, frame: &ResolutionFrame, selector: &BoardSelector) -> Vec<String> {
-        self.in_play_cards().into_iter()
+        self.in_play_cards()
+            .into_iter()
             .filter(|(r, c)| {
                 let d = card(&c.definition);
                 let kind = match selector.kind {
@@ -140,7 +141,18 @@ impl Game {
                                             .and_then(|c| c.region)
                                             .map(|r| format!("·地区{}", r + 1))
                                             .unwrap_or_default(),
-                                        t.card.as_ref().map(|c| format!("·拥有者{}", self.players[c.owner.strip_prefix('p').and_then(|s| s.parse::<usize>().ok()).unwrap()].name)).unwrap_or_default(),
+                                        t.card
+                                            .as_ref()
+                                            .map(|c| format!(
+                                                "·拥有者{}",
+                                                self.players[c
+                                                    .owner
+                                                    .strip_prefix('p')
+                                                    .and_then(|s| s.parse::<usize>().ok())
+                                                    .unwrap()]
+                                                .name
+                                            ))
+                                            .unwrap_or_default(),
                                         t.id
                                     ))
                                     .unwrap_or_default(),
@@ -452,7 +464,7 @@ impl Game {
                     let kind = match spec.kind {
                         EntityKind::Any => true,
                         EntityKind::Character => !c.face_down && d.kind == "character",
-                    EntityKind::Attachment => !c.face_down && d.kind == "attachment",
+                        EntityKind::Attachment => !c.face_down && d.kind == "attachment",
                         EntityKind::Hidden => c.face_down,
                         EntityKind::CharacterOrHidden => c.face_down || d.kind == "character",
                     };
@@ -468,7 +480,9 @@ impl Game {
                             .subtype
                             .as_ref()
                             .is_none_or(|s| !c.face_down && d.subtypes.contains(s))
-                        && (spec.subtypes_any.is_empty() || (!c.face_down && spec.subtypes_any.iter().any(|s| d.subtypes.contains(s))))
+                        && (spec.subtypes_any.is_empty()
+                            || (!c.face_down
+                                && spec.subtypes_any.iter().any(|s| d.subtypes.contains(s))))
                         && (spec.zone != Zone::Board || self.targetable(actor, c))
                 })
             }
@@ -481,7 +495,9 @@ impl Game {
         spec: &TargetSlotSpec,
     ) -> Vec<ChoiceOption> {
         let options: Vec<ChoiceOption> = match spec.zone {
-            Zone::Board => self.in_play_cards().into_iter()
+            Zone::Board => self
+                .in_play_cards()
+                .into_iter()
                 .map(|(r, c)| self.option(c, actor, Some(r), None))
                 .collect(),
             Zone::Graveyard => self
@@ -934,7 +950,9 @@ impl Game {
         true
     }
     pub(crate) fn resolve_frame(&mut self, mut frame: ResolutionFrame) -> RuleResult<()> {
-        if !self.accept_frame_guard(&mut frame) { return Ok(()); }
+        if !self.accept_frame_guard(&mut frame) {
+            return Ok(());
+        }
         while frame.cursor < frame.steps.len() && self.status == "playing" {
             let step = frame.steps[frame.cursor].clone();
             frame.cursor += 1;

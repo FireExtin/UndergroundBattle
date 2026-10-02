@@ -1414,97 +1414,370 @@ fn world_fixture(id: &str, generic_search: bool) -> Value {
 }
 
 fn attachment_initial(mode: &str, room_id: &str) -> Game {
-    let mut game = Game::new(room_id.into(), "ATTACH".into(), mode.into(), "玩家0".into(), "hunters".into(), 9007199254740993).unwrap();
-    for seat in 1..game.capacity() { game.join(format!("玩家{seat}"), "hunters".into()).unwrap(); }
-    for p in &mut game.players { p.ready = true; }
+    let mut game = Game::new(
+        room_id.into(),
+        "ATTACH".into(),
+        mode.into(),
+        "玩家0".into(),
+        "hunters".into(),
+        9007199254740993,
+    )
+    .unwrap();
+    for seat in 1..game.capacity() {
+        game.join(format!("玩家{seat}"), "hunters".into()).unwrap();
+    }
+    for p in &mut game.players {
+        p.ready = true;
+    }
     game.apply(0, Action::new("start")).unwrap();
-    while game.pending.is_some() { let (seat,a)=pick_choice(&game); game.apply(seat,a).unwrap(); }
-    for p in &mut game.players { p.hand.clear(); p.assets.clear(); }
-    for r in &mut game.regions { r.cards.clear(); }
-    game.first_team=0; game.active_team=0; game.priority_team=0;
-    game.window=Some(Window::Action(0)); game.passed.clear(); game.team_passed=[false;2];
+    while game.pending.is_some() {
+        let (seat, a) = pick_choice(&game);
+        game.apply(seat, a).unwrap();
+    }
+    for p in &mut game.players {
+        p.hand.clear();
+        p.assets.clear();
+    }
+    for r in &mut game.regions {
+        r.cards.clear();
+    }
+    game.first_team = 0;
+    game.active_team = 0;
+    game.priority_team = 0;
+    game.window = Some(Window::Action(0));
+    game.passed.clear();
+    game.team_passed = [false; 2];
     game
 }
 fn attachment_pass_top(room: &mut RoomEnvelope, steps: &mut Vec<Value>) {
-    let n=room.game.stack.len(); assert!(n>0);
-    while room.game.stack.len()>=n && room.pending.is_none() {
-        let seat=(0..room.players.len()).find(|s|room.team(*s)==room.priority_team&&!room.passed.contains(s)).unwrap();
-        apply_game(room,steps,seat,Action::new("pass"));
+    let n = room.game.stack.len();
+    assert!(n > 0);
+    while room.game.stack.len() >= n && room.pending.is_none() {
+        let seat = (0..room.players.len())
+            .find(|s| room.team(*s) == room.priority_team && !room.passed.contains(s))
+            .unwrap();
+        apply_game(room, steps, seat, Action::new("pass"));
     }
 }
 fn attachment_fixture(cancel: bool) -> Value {
     // Only the starting layout is synthetic; the complete play/response/cleanup
     // sequence is expressed as public, legal session commands.
-    let mut game=attachment_initial("teams",if cancel {"666666666666666666666661"} else {"666666666666666666666660"});
-    let host=game.make_card("LC22",2); let host_id=host.id.clone(); game.regions[4].cards.push(host);
-    let mut hidden=game.make_card("LC22",3); hidden.face_down=true; game.regions[3].cards.push(hidden);
-    let equipment=game.make_card("BQ022",0); let equipment_id=equipment.id.clone(); game.players[0].hand.push(equipment);
-    let chase=game.make_card("JC063",0); let chase_id=chase.id.clone(); game.players[0].hand.push(chase);
-    for _ in 0..3 {let c=game.make_card("JC063",0); game.players[0].assets.push(c);}
-    let murder=game.make_card("JC091",2);let murder_id=murder.id.clone();game.players[2].hand.push(murder);
-    for _ in 0..3 {let c=game.make_card("JC091",2);game.players[2].assets.push(c);}
-    let mut room=RoomEnvelope::from_game(game);
-    let mut steps=vec![step(&room,"initialFixture",json!([serde_json::to_string(&room).unwrap()]),0)];
-    apply_game(&mut room,&mut steps,0,Action{card_id:Some(equipment_id),target_id:Some(host_id.clone()),..Action::new("play")});
+    let mut game = attachment_initial(
+        "teams",
+        if cancel {
+            "666666666666666666666661"
+        } else {
+            "666666666666666666666660"
+        },
+    );
+    let host = game.make_card("LC22", 2);
+    let host_id = host.id.clone();
+    game.regions[4].cards.push(host);
+    let mut hidden = game.make_card("LC22", 3);
+    hidden.face_down = true;
+    game.regions[3].cards.push(hidden);
+    let equipment = game.make_card("BQ022", 0);
+    let equipment_id = equipment.id.clone();
+    game.players[0].hand.push(equipment);
+    let chase = game.make_card("JC063", 0);
+    let chase_id = chase.id.clone();
+    game.players[0].hand.push(chase);
+    for _ in 0..3 {
+        let c = game.make_card("JC063", 0);
+        game.players[0].assets.push(c);
+    }
+    let murder = game.make_card("JC091", 2);
+    let murder_id = murder.id.clone();
+    game.players[2].hand.push(murder);
+    for _ in 0..3 {
+        let c = game.make_card("JC091", 2);
+        game.players[2].assets.push(c);
+    }
+    let mut room = RoomEnvelope::from_game(game);
+    let mut steps = vec![step(
+        &room,
+        "initialFixture",
+        json!([serde_json::to_string(&room).unwrap()]),
+        0,
+    )];
+    apply_game(
+        &mut room,
+        &mut steps,
+        0,
+        Action {
+            card_id: Some(equipment_id),
+            target_id: Some(host_id.clone()),
+            ..Action::new("play")
+        },
+    );
     assert!(room.attachments.is_empty());
     if cancel {
-        for seat in 0..2 {apply_game(&mut room,&mut steps,seat,Action::new("pass"));}
-        apply_game(&mut room,&mut steps,2,Action{card_id:Some(murder_id),target_id:Some(host_id.clone()),..Action::new("play")});
-        attachment_pass_top(&mut room,&mut steps);
-        assert!(room.regions[4].cards.is_empty()); assert_eq!(room.game.stack.len(),1);
-        attachment_pass_top(&mut room,&mut steps);
+        for seat in 0..2 {
+            apply_game(&mut room, &mut steps, seat, Action::new("pass"));
+        }
+        apply_game(
+            &mut room,
+            &mut steps,
+            2,
+            Action {
+                card_id: Some(murder_id),
+                target_id: Some(host_id.clone()),
+                ..Action::new("play")
+            },
+        );
+        attachment_pass_top(&mut room, &mut steps);
+        assert!(room.regions[4].cards.is_empty());
+        assert_eq!(room.game.stack.len(), 1);
+        attachment_pass_top(&mut room, &mut steps);
         assert!(room.attachments.is_empty());
-        assert_eq!(room.players[0].graveyard.iter().filter(|c|c.definition=="BQ022").count(),1);
-        assert_eq!(room.players[0].assets.iter().filter(|c|c.exhausted).count(),1);
+        assert_eq!(
+            room.players[0]
+                .graveyard
+                .iter()
+                .filter(|c| c.definition == "BQ022")
+                .count(),
+            1
+        );
+        assert_eq!(
+            room.players[0]
+                .assets
+                .iter()
+                .filter(|c| c.exhausted)
+                .count(),
+            1
+        );
     } else {
-        attachment_pass_top(&mut room,&mut steps);
-        assert_eq!(room.attachments.len(),1);assert_eq!(room.view(1,room.pacing.last_server_now_ms).regions[4].icons_by_team[1].combat,2);
-        for viewer in 0..4 {let v=room.view(viewer,room.pacing.last_server_now_ms);assert_eq!(v.attachments[0].host_id,host_id);assert_eq!(v.attachments[0].card.region,Some(4));}
-        let old=room.attachments[0].card.id.clone();
-        apply_game(&mut room,&mut steps,0,Action{card_id:Some(chase_id),target_id:Some(host_id.clone()),option:Some("hide".into()),..Action::new("play")});
-        attachment_pass_top(&mut room,&mut steps);
-        assert!(room.attachments.is_empty());assert!(room.game.stack.is_empty());assert!(room.pending.is_none());
-        let returned=room.players[0].hand.iter().find(|c|c.definition=="BQ022").unwrap();assert_ne!(returned.id,old);
-        assert!(room.players[2].hand.iter().all(|c|c.definition!="BQ022"));
+        attachment_pass_top(&mut room, &mut steps);
+        assert_eq!(room.attachments.len(), 1);
+        assert_eq!(
+            room.view(1, room.pacing.last_server_now_ms).regions[4].icons_by_team[1].combat,
+            2
+        );
+        for viewer in 0..4 {
+            let v = room.view(viewer, room.pacing.last_server_now_ms);
+            assert_eq!(v.attachments[0].host_id, host_id);
+            assert_eq!(v.attachments[0].card.region, Some(4));
+        }
+        let old = room.attachments[0].card.id.clone();
+        apply_game(
+            &mut room,
+            &mut steps,
+            0,
+            Action {
+                card_id: Some(chase_id),
+                target_id: Some(host_id.clone()),
+                option: Some("hide".into()),
+                ..Action::new("play")
+            },
+        );
+        attachment_pass_top(&mut room, &mut steps);
+        assert!(room.attachments.is_empty());
+        assert!(room.game.stack.is_empty());
+        assert!(room.pending.is_none());
+        let returned = room.players[0]
+            .hand
+            .iter()
+            .find(|c| c.definition == "BQ022")
+            .unwrap();
+        assert_ne!(returned.id, old);
+        assert!(room.players[2].hand.iter().all(|c| c.definition != "BQ022"));
     }
-    assert!(steps.len()<30);
+    assert!(steps.len() < 30);
     json!({"name":if cancel{"attachment-target-murder-response-cancelled"}else{"attachment-enemy-host-and-hide-owner-recycle"},"seed":"9007199254740993","steps":steps,"syntheticInitialLayout":true})
 }
 fn attachment_hk_fixture() -> Value {
-    let mut game=attachment_initial("teams","666666666666666666666662");
-    if let Some(at)=game.regions.iter().position(|r|r.card.definition=="DQJC116"){game.regions.swap(0,at);}else{
-        let at=game.world.iter().position(|c|c.definition=="DQJC116").unwrap();std::mem::swap(&mut game.regions[0].card,&mut game.world[at]);
+    let mut game = attachment_initial("teams", "666666666666666666666662");
+    if let Some(at) = game
+        .regions
+        .iter()
+        .position(|r| r.card.definition == "DQJC116")
+    {
+        game.regions.swap(0, at);
+    } else {
+        let at = game
+            .world
+            .iter()
+            .position(|c| c.definition == "DQJC116")
+            .unwrap();
+        std::mem::swap(&mut game.regions[0].card, &mut game.world[at]);
     }
-    game.window=Some(Window::Win(0,0));
+    game.window = Some(Window::Win(0, 0));
     for seat in 0..4 {
         game.players[seat].deck.clear();
-        for _ in 0..2{let c=game.make_card("BQ022",seat);game.players[seat].deck.push(c);}
-        for _ in 0..4{let c=game.make_card("JC125",seat);game.players[seat].deck.push(c);}
-    }
-    let original=game.players.iter().map(|p|p.deck.iter().map(|c|c.id.clone()).collect::<Vec<_>>()).collect::<Vec<_>>();
-    let mut room=RoomEnvelope::from_game(game);
-    let mut steps=vec![step(&room,"initialFixture",json!([serde_json::to_string(&room).unwrap()]),0)];
-    for seat in 0..4{apply_game(&mut room,&mut steps,seat,Action::new("pass"));}
-    let p=room.pending.clone().unwrap();
-    apply_game(&mut room,&mut steps,p.seat,Action{choice_id:Some(p.choice.id),selected:Some(vec!["accept".into()]),..Action::new("choose")});
-    attachment_pass_top(&mut room,&mut steps);
-    for seat in 0..4 {
-        let p=room.pending.clone().unwrap();assert_eq!(p.seat,seat);assert_eq!(p.choice.options.len(),2);
-        assert!(p.choice.options.iter().all(|o|o.card.as_ref().unwrap().card_id.as_deref()==Some("BQ022")));
-        for other in 0..4{if other!=seat{assert!(room.view(other,room.pacing.last_server_now_ms).pending_choice.is_none());}}
-        assert!(room.pacing.window.is_none());
-        let selected=if seat==1{vec![]}else{vec![p.choice.options[0].id.clone()]};
-        apply_game(&mut room,&mut steps,seat,Action{choice_id:Some(p.choice.id),selected:Some(selected),..Action::new("choose")});
-        if seat<3 {
-            assert!(room.players.iter().all(|p|p.hand.is_empty()));
-            assert_eq!(room.players.iter().map(|p|p.deck.iter().map(|c|c.id.clone()).collect::<Vec<_>>()).collect::<Vec<_>>(),original);
-            assert!(room.log.iter().all(|l|!l.text.contains("同时展示检索")));
+        for _ in 0..2 {
+            let c = game.make_card("BQ022", seat);
+            game.players[seat].deck.push(c);
+        }
+        for _ in 0..4 {
+            let c = game.make_card("JC125", seat);
+            game.players[seat].deck.push(c);
         }
     }
-    assert_eq!(room.players.iter().map(|p|p.hand.len()).collect::<Vec<_>>(),vec![1,0,1,1]);
-    assert_eq!(room.log.iter().filter(|l|l.text.contains("同时展示检索")&&l.text.contains("合金指虎")).count(),3);
-    assert!(steps.len()<30);
+    let original = game
+        .players
+        .iter()
+        .map(|p| p.deck.iter().map(|c| c.id.clone()).collect::<Vec<_>>())
+        .collect::<Vec<_>>();
+    let mut room = RoomEnvelope::from_game(game);
+    let mut steps = vec![step(
+        &room,
+        "initialFixture",
+        json!([serde_json::to_string(&room).unwrap()]),
+        0,
+    )];
+    for seat in 0..4 {
+        apply_game(&mut room, &mut steps, seat, Action::new("pass"));
+    }
+    let p = room.pending.clone().unwrap();
+    apply_game(
+        &mut room,
+        &mut steps,
+        p.seat,
+        Action {
+            choice_id: Some(p.choice.id),
+            selected: Some(vec!["accept".into()]),
+            ..Action::new("choose")
+        },
+    );
+    attachment_pass_top(&mut room, &mut steps);
+    for seat in 0..4 {
+        let p = room.pending.clone().unwrap();
+        assert_eq!(p.seat, seat);
+        assert_eq!(p.choice.options.len(), 2);
+        assert!(p
+            .choice
+            .options
+            .iter()
+            .all(|o| o.card.as_ref().unwrap().card_id.as_deref() == Some("BQ022")));
+        for other in 0..4 {
+            if other != seat {
+                assert!(room
+                    .view(other, room.pacing.last_server_now_ms)
+                    .pending_choice
+                    .is_none());
+            }
+        }
+        assert!(room.pacing.window.is_none());
+        let selected = if seat == 1 {
+            vec![]
+        } else {
+            vec![p.choice.options[0].id.clone()]
+        };
+        apply_game(
+            &mut room,
+            &mut steps,
+            seat,
+            Action {
+                choice_id: Some(p.choice.id),
+                selected: Some(selected),
+                ..Action::new("choose")
+            },
+        );
+        if seat < 3 {
+            assert!(room.players.iter().all(|p| p.hand.is_empty()));
+            assert_eq!(
+                room.players
+                    .iter()
+                    .map(|p| p.deck.iter().map(|c| c.id.clone()).collect::<Vec<_>>())
+                    .collect::<Vec<_>>(),
+                original
+            );
+            assert!(room.log.iter().all(|l| !l.text.contains("同时展示检索")));
+        }
+    }
+    assert_eq!(
+        room.players
+            .iter()
+            .map(|p| p.hand.len())
+            .collect::<Vec<_>>(),
+        vec![1, 0, 1, 1]
+    );
+    assert_eq!(
+        room.log
+            .iter()
+            .filter(|l| l.text.contains("同时展示检索") && l.text.contains("合金指虎"))
+            .count(),
+        3
+    );
+    assert!(steps.len() < 30);
     json!({"name":"actual-hong-kong-nonempty-attachment-search","seed":"9007199254740993","steps":steps,"syntheticInitialLayout":true,"genericOperationOnly":false})
+}
+fn attachment_region_return_fixture() -> Value {
+    let mut game = attachment_initial("teams", "666666666666666666666663");
+    for seat in 0..2 {
+        let host = game.make_card("LC22", seat);
+        let host_id = host.id.clone();
+        game.regions[0].cards.push(host);
+        let equipment = game.make_card("BQ022", 1 - seat);
+        game.attachments.push(hegemony_server::model::Attachment {
+            card: equipment,
+            host_id,
+        });
+    }
+    let aura = game.make_card("JC059", 0);
+    let aura_id = aura.id.clone();
+    game.regions[0].cards.push(aura);
+    let mut patient = game.make_card("JC125", 1);
+    patient.damage = 1;
+    let patient_id = patient.id.clone();
+    game.regions[0].cards.push(patient);
+    let old_decks = game
+        .players
+        .iter()
+        .map(|p| p.deck.len())
+        .collect::<Vec<_>>();
+    game.window = Some(Window::Win(0, 0));
+    let mut room = RoomEnvelope::from_game(game);
+    let mut steps = vec![step(
+        &room,
+        "initialFixture",
+        json!([serde_json::to_string(&room).unwrap()]),
+        0,
+    )];
+    for seat in 0..4 {
+        apply_game(&mut room, &mut steps, seat, Action::new("pass"));
+    }
+    for seat in 0..2 {
+        let p = room.pending.clone().unwrap();
+        assert_eq!(p.seat, seat);
+        assert_eq!(p.choice.options.len(), 3);
+        apply_game(
+            &mut room,
+            &mut steps,
+            seat,
+            Action {
+                choice_id: Some(p.choice.id),
+                bottom: Some(
+                    p.choice
+                        .options
+                        .iter()
+                        .rev()
+                        .map(|o| o.id.clone())
+                        .collect(),
+                ),
+                ..Action::new("choose")
+            },
+        );
+        if seat == 0 {
+            assert!(room.regions[0].cards.iter().any(|c| c.id == aura_id));
+            assert!(room.regions[0].cards.iter().any(|c| c.id == patient_id));
+            assert_eq!(room.attachments.len(), 2);
+            assert_eq!(
+                room.players
+                    .iter()
+                    .map(|p| p.deck.len())
+                    .collect::<Vec<_>>(),
+                old_decks
+            );
+        }
+    }
+    assert!(room.region_return.is_none() && room.attachments.is_empty());
+    for seat in 0..2 {
+        assert_eq!(room.players[seat].deck.len(), old_decks[seat] + 3);
+        assert!(room.players[seat].hand.is_empty() && room.players[seat].graveyard.is_empty());
+    }
+    assert!(room.log.iter().all(|l| !l.text.contains("死亡")));
+    json!({"name":"won-region-batch-cross-owner-equipment-and-aura","seed":"9007199254740993","steps":steps,"syntheticInitialLayout":true})
 }
 fn main() {
     let output = std::env::args()
@@ -1540,13 +1813,21 @@ fn main() {
     let state = serde_json::to_string(&previous).unwrap();
     assert!(RoomEnvelope::from_persisted(&state).is_err());
     rejected_states.push(state);
-    let old_room = { let mut old = RoomEnvelope::from_game(previous.clone()); old.versions.engine = "rust-v0.2.5".into(); old.versions.card_pool = "limited-v2.3".into(); old.game.versions = old.versions.clone(); serde_json::to_string(&old).unwrap() };
-    assert!(RoomEnvelope::from_persisted(&old_room).is_err()); rejected_states.push(old_room);
+    let old_room = {
+        let mut old = RoomEnvelope::from_game(previous.clone());
+        old.versions.engine = "rust-v0.2.5".into();
+        old.versions.card_pool = "limited-v2.3".into();
+        old.game.versions = old.versions.clone();
+        serde_json::to_string(&old).unwrap()
+    };
+    assert!(RoomEnvelope::from_persisted(&old_room).is_err());
+    rejected_states.push(old_room);
     let clock = pacing_fixture(false);
-    let prepared = json!({"state":clock["steps"][1]["state"],"version":clock["steps"][1]["version"],"roomId":"ffffffffffffffffffffffff","firstAction":clock["steps"][2]["args"][1]["action"],"firstCommand":clock["steps"][2]["args"][1],"serverNowMs":clock["steps"][2]["args"][2],"seat":0});
+    let prepared = json!({"state":clock["steps"][0]["state"],"version":clock["steps"][0]["version"],"roomId":"ffffffffffffffffffffffff","firstAction":clock["steps"][1]["args"][1]["action"],"firstCommand":clock["steps"][1]["args"][1],"serverNowMs":clock["steps"][1]["args"][2],"seat":0});
     if std::env::args().any(|a| a == "--slice-v026") {
-        let value = json!({"catalog":catalog::catalog(),"cases":[attachment_fixture(false),attachment_fixture(true),attachment_hk_fixture(),clock],"preparedResponse":prepared,"rejectedStates":rejected_states});
-        std::fs::write(output,serde_json::to_vec(&value).unwrap()).unwrap(); return;
+        let value = json!({"catalog":catalog::catalog(),"cases":[attachment_fixture(false),attachment_fixture(true),attachment_hk_fixture(),attachment_region_return_fixture(),clock],"preparedResponse":prepared,"rejectedStates":rejected_states});
+        std::fs::write(output, serde_json::to_vec(&value).unwrap()).unwrap();
+        return;
     }
     let value = json!({"preparedResponse":prepared,"catalog":catalog::catalog(),"cases":[attachment_fixture(false),attachment_fixture(true),attachment_hk_fixture(),fixture("duel","18446744073709551615"),fixture("teams","9007199254740993"),response_fixture(),detective_fixture(false),detective_fixture(true),custom_deck_fixture(),friendly_icons_fixture(),pacing_fixture(false),pacing_fixture(true),world_fixture("DQJC108",false),world_fixture("DQJC109",false),world_fixture("DQJC110",false),world_fixture("DQJC111",false),world_fixture("DQJC115",false),world_fixture("DQJC116",false),world_fixture("DQJC116",true)],"rejectedStates":rejected_states});
     std::fs::write(output, serde_json::to_vec(&value).unwrap()).unwrap();

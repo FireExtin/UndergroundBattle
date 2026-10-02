@@ -1,0 +1,1 @@
+{"ok":true,"wasmBytes":1579569,"transitions":58,"projections":232,"quotes":1,"rejectedCommands":0,"choiceKinds":["region_return","search","trigger"],"slowestFixtureStepMs":17.79,"opaqueState":true,"maximumU64SeedExact":true,"nativeWasmStateAndViewsMatch":true}

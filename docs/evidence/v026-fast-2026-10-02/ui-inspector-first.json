@@ -1,0 +1,373 @@
+{
+  "passed": false,
+  "failure": "KeyError: 'icons'",
+  "testType": "natural-four-seat-persistent-browser-ui",
+  "stateInjection": false,
+  "apiMoves": false,
+  "uiPostCount": 25,
+  "uiPostBudget": 40,
+  "postResults": [
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/join"
+    },
+    {
+      "seat": 2,
+      "status": 200,
+      "endpoint": "rooms/join"
+    },
+    {
+      "seat": 3,
+      "status": 200,
+      "endpoint": "rooms/join"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/e9bb7ec394221a604f1440ac/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/e9bb7ec394221a604f1440ac/commands"
+    },
+    {
+      "seat": 2,
+      "status": 200,
+      "endpoint": "rooms/e9bb7ec394221a604f1440ac/commands"
+    },
+    {
+      "seat": 3,
+      "status": 200,
+      "endpoint": "rooms/e9bb7ec394221a604f1440ac/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/e9bb7ec394221a604f1440ac/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/e9bb7ec394221a604f1440ac/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/e9bb7ec394221a604f1440ac/commands"
+    },
+    {
+      "seat": 2,
+      "status": 200,
+      "endpoint": "rooms/e9bb7ec394221a604f1440ac/commands"
+    },
+    {
+      "seat": 3,
+      "status": 200,
+      "endpoint": "rooms/e9bb7ec394221a604f1440ac/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/e9bb7ec394221a604f1440ac/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/e9bb7ec394221a604f1440ac/commands"
+    },
+    {
+      "seat": 2,
+      "status": 200,
+      "endpoint": "rooms/e9bb7ec394221a604f1440ac/commands"
+    },
+    {
+      "seat": 3,
+      "status": 200,
+      "endpoint": "rooms/e9bb7ec394221a604f1440ac/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/e9bb7ec394221a604f1440ac/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/e9bb7ec394221a604f1440ac/commands"
+    },
+    {
+      "seat": 2,
+      "status": 200,
+      "endpoint": "rooms/e9bb7ec394221a604f1440ac/commands"
+    },
+    {
+      "seat": 3,
+      "status": 200,
+      "endpoint": "rooms/e9bb7ec394221a604f1440ac/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/e9bb7ec394221a604f1440ac/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/e9bb7ec394221a604f1440ac/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/e9bb7ec394221a604f1440ac/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/e9bb7ec394221a604f1440ac/commands"
+    }
+  ],
+  "checks": [
+    {
+      "name": "real-five-second-response-window",
+      "passed": true
+    }
+  ],
+  "measurements": [
+    {
+      "seat": 0,
+      "mulliganFooterVisible": true,
+      "viewport": [
+        1180,
+        760
+      ]
+    },
+    {
+      "seat": 1,
+      "mulliganFooterVisible": true,
+      "viewport": [
+        1180,
+        760
+      ]
+    },
+    {
+      "seat": 2,
+      "mulliganFooterVisible": true,
+      "viewport": [
+        1180,
+        760
+      ]
+    },
+    {
+      "seat": 3,
+      "mulliganFooterVisible": true,
+      "viewport": [
+        1180,
+        760
+      ]
+    },
+    {
+      "seat": 0,
+      "minimumHandWidth": 128,
+      "fiveRegions": true,
+      "horizontalOverflow": false
+    },
+    {
+      "seat": 1,
+      "minimumHandWidth": 128,
+      "fiveRegions": true,
+      "horizontalOverflow": false
+    },
+    {
+      "seat": 2,
+      "minimumHandWidth": 128,
+      "fiveRegions": true,
+      "horizontalOverflow": false
+    },
+    {
+      "seat": 3,
+      "minimumHandWidth": 128,
+      "fiveRegions": true,
+      "horizontalOverflow": false
+    }
+  ],
+  "browserErrors": [],
+  "final": {
+    "version": 28,
+    "mode": "teams",
+    "status": "playing",
+    "you": "p0",
+    "players": [
+      {
+        "id": "p0",
+        "seat": 0,
+        "name": "附属验收甲",
+        "team": 0,
+        "deckId": "hunters",
+        "deckName": "公路猎手",
+        "ready": true,
+        "eliminated": false,
+        "handCount": 4,
+        "deckCount": 43,
+        "score": 0
+      },
+      {
+        "id": "p1",
+        "seat": 1,
+        "name": "附属验收2",
+        "team": 0,
+        "deckId": "hunters",
+        "deckName": "公路猎手",
+        "ready": true,
+        "eliminated": false,
+        "handCount": 6,
+        "deckCount": 43,
+        "score": 0
+      },
+      {
+        "id": "p2",
+        "seat": 2,
+        "name": "附属验收3",
+        "team": 1,
+        "deckId": "hunters",
+        "deckName": "公路猎手",
+        "ready": true,
+        "eliminated": false,
+        "handCount": 7,
+        "deckCount": 43,
+        "score": 0
+      },
+      {
+        "id": "p3",
+        "seat": 3,
+        "name": "附属验收4",
+        "team": 1,
+        "deckId": "hunters",
+        "deckName": "公路猎手",
+        "ready": true,
+        "eliminated": false,
+        "handCount": 7,
+        "deckCount": 43,
+        "score": 0
+      }
+    ],
+    "firstTeam": 0,
+    "activeTeam": 0,
+    "priorityTeam": 0,
+    "turn": 1,
+    "phase": "action",
+    "step": "team:0",
+    "winScore": 10,
+    "versions": {
+      "rules": "hegemony-pdf-v1",
+      "cardPool": "limited-v2.4",
+      "engine": "rust-v0.2.6"
+    },
+    "handCount": 4,
+    "assetCounts": {
+      "p0": 1,
+      "p1": 1,
+      "p2": 0,
+      "p3": 0
+    },
+    "regions": [
+      {
+        "index": 0,
+        "cardId": "DQJC113",
+        "name": "切尔诺贝利",
+        "threshold": 3,
+        "points": 2,
+        "influence": [
+          0,
+          0
+        ],
+        "characters": [
+          {
+            "instanceId": "i287",
+            "owner": "p0",
+            "controller": "p0",
+            "kind": "character",
+            "exhausted": false,
+            "faceDown": false,
+            "cardId": "JC125",
+            "name": "无知路人",
+            "icons": {
+              "investigation": 0,
+              "combat": 1,
+              "influence": 0
+            },
+            "defense": 1,
+            "damage": 0,
+            "wounds": 0,
+            "shield": 0
+          }
+        ]
+      },
+      {
+        "index": 1,
+        "cardId": "DQJC114",
+        "name": "上海",
+        "threshold": 4,
+        "points": 3,
+        "influence": [
+          0,
+          0
+        ],
+        "characters": []
+      },
+      {
+        "index": 2,
+        "cardId": "DQJC111",
+        "name": "莫斯科",
+        "threshold": 4,
+        "points": 3,
+        "influence": [
+          0,
+          0
+        ],
+        "characters": []
+      },
+      {
+        "index": 3,
+        "cardId": "DQJC107",
+        "name": "沉没的废墟",
+        "threshold": 4,
+        "points": 4,
+        "influence": [
+          0,
+          0
+        ],
+        "characters": []
+      },
+      {
+        "index": 4,
+        "cardId": "DQJC116",
+        "name": "香港",
+        "threshold": 3,
+        "points": 3,
+        "influence": [
+          0,
+          0
+        ],
+        "characters": []
+      }
+    ],
+    "pendingChoice": null,
+    "waitingChoice": null,
+    "legalActionKinds": [
+      "deploy",
+      "pass"
+    ],
+    "stackCount": 0,
+    "graveyardCount": 0,
+    "scoreCards": []
+  },
+  "roomId": "e9bb7ec394221a604f1440ac",
+  "durationSeconds": 61.72
+}

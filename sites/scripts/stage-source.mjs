@@ -27,6 +27,7 @@ const copy = (from, relative, directory = false) => {
 for (const file of ['package.json', 'package-lock.json', 'wrangler.jsonc', 'drizzle.config.ts', 'README.md', '.openai/hosting.json']) copy(project + file, file);
 for (const directory of ['src', 'db', 'drizzle', 'test', 'scripts']) copy(project + directory, directory, true);
 copy(repository + 'web/src', 'web/src', true);
+copy(repository + 'web/public', 'web/public', true);
 for (const file of ['package.json', 'package-lock.json', 'index.html', 'vite.config.ts', 'tsconfig.json', 'tsconfig.app.json', 'tsconfig.node.json']) copy(repository + 'web/' + file, 'web/' + file);
 for (const crate of ['rust-game', 'rust-game-wasm']) {
   copy(repository + crate + '/src', crate + '/src', true);

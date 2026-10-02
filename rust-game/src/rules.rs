@@ -298,16 +298,26 @@ fn validate_definitions(definitions: &BTreeMap<String, Definition>) -> Result<()
         }
         if let Some(attachment) = &definition.attachment {
             let host = &attachment.host;
-            if host.zone != Zone::Board || host.kind != EntityKind::Character
-                || host.min != 1 || host.max != 1 || host.range != Range::Anywhere
+            if host.zone != Zone::Board
+                || host.kind != EntityKind::Character
+                || host.min != 1
+                || host.max != 1
+                || host.range != Range::Anywhere
             {
-                return Err(format!("cardId={card_id}: unsupported attachment host specification"));
+                return Err(format!(
+                    "cardId={card_id}: unsupported attachment host specification"
+                ));
             }
-            if !definition.abilities.iter().any(|a| a.event.is_none()
-                && a.timing == Timing::Standard && a.targets.len() == 1
-                && serde_json::to_value(&a.targets[0]).unwrap() == serde_json::to_value(host).unwrap())
-            {
-                return Err(format!("cardId={card_id}: attachment requires matching standard play target"));
+            if !definition.abilities.iter().any(|a| {
+                a.event.is_none()
+                    && a.timing == Timing::Standard
+                    && a.targets.len() == 1
+                    && serde_json::to_value(&a.targets[0]).unwrap()
+                        == serde_json::to_value(host).unwrap()
+            }) {
+                return Err(format!(
+                    "cardId={card_id}: attachment requires matching standard play target"
+                ));
             }
         }
     }
@@ -957,17 +967,36 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
                 )]),
             );
         }
-        let mut host = target(Zone::Board, EntityKind::Character, Relation::Any, Range::Anywhere);
+        let mut host = target(
+            Zone::Board,
+            EntityKind::Character,
+            Relation::Any,
+            Range::Anywhere,
+        );
         host.subtypes_any = vec!["人类".into(), "吸血鬼".into()];
-        m.insert("BQ022".into(), Definition {
-            abilities: vec![ability("attach", "结附", Timing::Standard, vec![], vec![host.clone()], vec![], None)],
-            attachment: Some(AttachmentSpec {
-                host,
-                host_icons: Icons { combat: 1, ..Default::default() },
-                host_leaves: HostLeaveDestination::OwnerHand,
-            }),
-            ..Default::default()
-        });
+        m.insert(
+            "BQ022".into(),
+            Definition {
+                abilities: vec![ability(
+                    "attach",
+                    "结附",
+                    Timing::Standard,
+                    vec![],
+                    vec![host.clone()],
+                    vec![],
+                    None,
+                )],
+                attachment: Some(AttachmentSpec {
+                    host,
+                    host_icons: Icons {
+                        combat: 1,
+                        ..Default::default()
+                    },
+                    host_leaves: HostLeaveDestination::OwnerHand,
+                }),
+                ..Default::default()
+            },
+        );
         validate_definitions(&m)
             .unwrap_or_else(|error| panic!("Invalid released rule declaration: {error}"));
         m

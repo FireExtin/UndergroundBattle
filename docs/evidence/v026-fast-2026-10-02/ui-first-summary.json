@@ -1,0 +1,400 @@
+{
+  "passed": false,
+  "failure": "AssertionError: Natural draw did not reach an attachment within the POST budget",
+  "testType": "natural-four-seat-persistent-browser-ui",
+  "stateInjection": false,
+  "apiMoves": false,
+  "uiPostCount": 36,
+  "uiPostBudget": 40,
+  "postResults": [
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/join"
+    },
+    {
+      "seat": 2,
+      "status": 200,
+      "endpoint": "rooms/join"
+    },
+    {
+      "seat": 3,
+      "status": 200,
+      "endpoint": "rooms/join"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/4ed465d8e443c60ba92e6f37/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/4ed465d8e443c60ba92e6f37/commands"
+    },
+    {
+      "seat": 2,
+      "status": 200,
+      "endpoint": "rooms/4ed465d8e443c60ba92e6f37/commands"
+    },
+    {
+      "seat": 3,
+      "status": 200,
+      "endpoint": "rooms/4ed465d8e443c60ba92e6f37/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/4ed465d8e443c60ba92e6f37/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/4ed465d8e443c60ba92e6f37/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/4ed465d8e443c60ba92e6f37/commands"
+    },
+    {
+      "seat": 2,
+      "status": 200,
+      "endpoint": "rooms/4ed465d8e443c60ba92e6f37/commands"
+    },
+    {
+      "seat": 3,
+      "status": 200,
+      "endpoint": "rooms/4ed465d8e443c60ba92e6f37/commands"
+    },
+    {
+      "seat": 2,
+      "status": 200,
+      "endpoint": "rooms/4ed465d8e443c60ba92e6f37/commands"
+    },
+    {
+      "seat": 3,
+      "status": 200,
+      "endpoint": "rooms/4ed465d8e443c60ba92e6f37/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/4ed465d8e443c60ba92e6f37/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/4ed465d8e443c60ba92e6f37/commands"
+    },
+    {
+      "seat": 2,
+      "status": 200,
+      "endpoint": "rooms/4ed465d8e443c60ba92e6f37/commands"
+    },
+    {
+      "seat": 3,
+      "status": 200,
+      "endpoint": "rooms/4ed465d8e443c60ba92e6f37/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/4ed465d8e443c60ba92e6f37/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/4ed465d8e443c60ba92e6f37/commands"
+    },
+    {
+      "seat": 2,
+      "status": 200,
+      "endpoint": "rooms/4ed465d8e443c60ba92e6f37/commands"
+    },
+    {
+      "seat": 2,
+      "status": 200,
+      "endpoint": "rooms/4ed465d8e443c60ba92e6f37/commands"
+    },
+    {
+      "seat": 3,
+      "status": 200,
+      "endpoint": "rooms/4ed465d8e443c60ba92e6f37/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/4ed465d8e443c60ba92e6f37/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/4ed465d8e443c60ba92e6f37/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/4ed465d8e443c60ba92e6f37/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/4ed465d8e443c60ba92e6f37/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/4ed465d8e443c60ba92e6f37/commands"
+    },
+    {
+      "seat": 2,
+      "status": 200,
+      "endpoint": "rooms/4ed465d8e443c60ba92e6f37/commands"
+    },
+    {
+      "seat": 3,
+      "status": 200,
+      "endpoint": "rooms/4ed465d8e443c60ba92e6f37/commands"
+    },
+    {
+      "seat": 2,
+      "status": 200,
+      "endpoint": "rooms/4ed465d8e443c60ba92e6f37/commands"
+    },
+    {
+      "seat": 3,
+      "status": 200,
+      "endpoint": "rooms/4ed465d8e443c60ba92e6f37/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/4ed465d8e443c60ba92e6f37/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/4ed465d8e443c60ba92e6f37/commands"
+    },
+    {
+      "seat": 2,
+      "status": 200,
+      "endpoint": "rooms/4ed465d8e443c60ba92e6f37/commands"
+    }
+  ],
+  "checks": [],
+  "measurements": [
+    {
+      "seat": 0,
+      "mulliganFooterVisible": true,
+      "viewport": [
+        1180,
+        760
+      ]
+    },
+    {
+      "seat": 1,
+      "mulliganFooterVisible": true,
+      "viewport": [
+        1180,
+        760
+      ]
+    },
+    {
+      "seat": 2,
+      "mulliganFooterVisible": true,
+      "viewport": [
+        1180,
+        760
+      ]
+    },
+    {
+      "seat": 3,
+      "mulliganFooterVisible": true,
+      "viewport": [
+        1180,
+        760
+      ]
+    },
+    {
+      "seat": 0,
+      "minimumHandWidth": 128,
+      "fiveRegions": true,
+      "horizontalOverflow": false
+    },
+    {
+      "seat": 1,
+      "minimumHandWidth": 128,
+      "fiveRegions": true,
+      "horizontalOverflow": false
+    },
+    {
+      "seat": 2,
+      "minimumHandWidth": 128,
+      "fiveRegions": true,
+      "horizontalOverflow": false
+    },
+    {
+      "seat": 3,
+      "minimumHandWidth": 128,
+      "fiveRegions": true,
+      "horizontalOverflow": false
+    }
+  ],
+  "browserErrors": [],
+  "final": {
+    "version": 35,
+    "mode": "teams",
+    "status": "playing",
+    "you": "p0",
+    "players": [
+      {
+        "id": "p0",
+        "seat": 0,
+        "name": "附属验收甲",
+        "team": 0,
+        "deckId": "hunters",
+        "deckName": "公路猎手",
+        "ready": true,
+        "eliminated": false,
+        "handCount": 6,
+        "deckCount": 43,
+        "score": 0
+      },
+      {
+        "id": "p1",
+        "seat": 1,
+        "name": "附属验收2",
+        "team": 0,
+        "deckId": "hunters",
+        "deckName": "公路猎手",
+        "ready": true,
+        "eliminated": false,
+        "handCount": 7,
+        "deckCount": 43,
+        "score": 0
+      },
+      {
+        "id": "p2",
+        "seat": 2,
+        "name": "附属验收3",
+        "team": 1,
+        "deckId": "hunters",
+        "deckName": "公路猎手",
+        "ready": true,
+        "eliminated": false,
+        "handCount": 6,
+        "deckCount": 43,
+        "score": 0
+      },
+      {
+        "id": "p3",
+        "seat": 3,
+        "name": "附属验收4",
+        "team": 1,
+        "deckId": "hunters",
+        "deckName": "公路猎手",
+        "ready": true,
+        "eliminated": false,
+        "handCount": 7,
+        "deckCount": 43,
+        "score": 0
+      }
+    ],
+    "firstTeam": 1,
+    "activeTeam": 0,
+    "priorityTeam": 1,
+    "turn": 1,
+    "phase": "confrontation",
+    "step": "region:0:investigation:before",
+    "winScore": 10,
+    "versions": {
+      "rules": "hegemony-pdf-v1",
+      "cardPool": "limited-v2.4",
+      "engine": "rust-v0.2.6"
+    },
+    "handCount": 6,
+    "assetCounts": {
+      "p0": 1,
+      "p1": 0,
+      "p2": 1,
+      "p3": 0
+    },
+    "regions": [
+      {
+        "index": 0,
+        "cardId": "DQJC107",
+        "name": "沉没的废墟",
+        "threshold": 4,
+        "points": 4,
+        "influence": [
+          0,
+          0
+        ],
+        "characters": []
+      },
+      {
+        "index": 1,
+        "cardId": "DQJC114",
+        "name": "上海",
+        "threshold": 4,
+        "points": 3,
+        "influence": [
+          0,
+          0
+        ],
+        "characters": []
+      },
+      {
+        "index": 2,
+        "cardId": "DQJC116",
+        "name": "香港",
+        "threshold": 3,
+        "points": 3,
+        "influence": [
+          0,
+          0
+        ],
+        "characters": []
+      },
+      {
+        "index": 3,
+        "cardId": "DQJC113",
+        "name": "切尔诺贝利",
+        "threshold": 3,
+        "points": 2,
+        "influence": [
+          0,
+          0
+        ],
+        "characters": []
+      },
+      {
+        "index": 4,
+        "cardId": "DQJC112",
+        "name": "纽约",
+        "threshold": 4,
+        "points": 4,
+        "influence": [
+          0,
+          0
+        ],
+        "characters": []
+      }
+    ],
+    "pendingChoice": null,
+    "waitingChoice": null,
+    "legalActionKinds": [],
+    "stackCount": 0,
+    "graveyardCount": 0,
+    "scoreCards": []
+  },
+  "roomId": "4ed465d8e443c60ba92e6f37",
+  "durationSeconds": 57.56
+}

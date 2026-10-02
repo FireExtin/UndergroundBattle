@@ -1,0 +1,18 @@
+
+> undergroundbattle-web@0.1.0 test
+> vitest --run
+
+
+ RUN  v4.1.2 /workspace/UndergroundBattle/web
+
+
+ Test Files  17 passed (17)
+      Tests  156 passed (156)
+   Start at  19:55:49
+   Duration  14.01s (transform 1.34s, setup 2.64s, import 1.83s, tests 18.60s, environment 13.62s)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

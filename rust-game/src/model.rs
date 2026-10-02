@@ -320,6 +320,13 @@ pub struct Region {
     pub cards: Vec<Card>,
     pub skip: bool,
 }
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct RegionReturnBatch {
+    pub region: usize,
+    pub hand: Vec<String>,
+    pub bottom: Vec<Vec<String>>,
+    pub orders: Vec<Option<Vec<String>>>,
+}
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum Window {
     Prepare,
@@ -375,6 +382,12 @@ pub enum Effect {
     },
     Bottom {
         seat: usize,
+        region: usize,
+    },
+    PrepareRegionReturn {
+        region: usize,
+    },
+    CommitRegionReturn {
         region: usize,
     },
     Score {
@@ -562,6 +575,8 @@ pub struct Game {
     pub regions: Vec<Region>,
     #[serde(default)]
     pub attachments: Vec<Attachment>,
+    #[serde(default)]
+    pub region_return: Option<RegionReturnBatch>,
     pub world: Vec<Card>,
     pub stack: Vec<StackItem>,
     pub pending: Option<Pending>,

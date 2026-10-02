@@ -70,6 +70,7 @@ impl Game {
             winner_team: None,
             regions: vec![],
             attachments: vec![],
+            region_return: None,
             world: vec![],
             stack: vec![],
             pending: None,
@@ -247,16 +248,28 @@ impl Game {
             .iter()
             .enumerate()
             .find_map(|(i, r)| r.cards.iter().find(|c| c.id == id).map(|c| (i, c)))
-            .or_else(|| self.attachments.iter().find(|a| a.card.id == id).and_then(|a| {
-                self.regions.iter().position(|r| r.cards.iter().any(|c| c.id == a.host_id))
-                    .map(|r| (r, &a.card))
-            }))
+            .or_else(|| {
+                self.attachments
+                    .iter()
+                    .find(|a| a.card.id == id)
+                    .and_then(|a| {
+                        self.regions
+                            .iter()
+                            .position(|r| r.cards.iter().any(|c| c.id == a.host_id))
+                            .map(|r| (r, &a.card))
+                    })
+            })
     }
     pub(crate) fn board_mut(&mut self, id: &str) -> Option<&mut Card> {
         self.regions
             .iter_mut()
             .find_map(|r| r.cards.iter_mut().find(|c| c.id == id))
-            .or_else(|| self.attachments.iter_mut().find(|a| a.card.id == id).map(|a| &mut a.card))
+            .or_else(|| {
+                self.attachments
+                    .iter_mut()
+                    .find(|a| a.card.id == id)
+                    .map(|a| &mut a.card)
+            })
     }
     pub(crate) fn remove_board(&mut self, id: &str) -> Option<(usize, Card)> {
         for (i, r) in self.regions.iter_mut().enumerate() {
@@ -318,7 +331,11 @@ impl Game {
                 }
             }
         }
-        for attachment in self.attachments.iter().filter(|a| a.host_id == c.id && self.attachment_host_valid(a)) {
+        for attachment in self
+            .attachments
+            .iter()
+            .filter(|a| a.host_id == c.id && self.attachment_host_valid(a))
+        {
             if let Some(spec) = &rules::definition(&attachment.card.definition).attachment {
                 result = result.add(spec.host_icons);
             }
@@ -639,6 +656,7 @@ impl Game {
         self.modifiers.clear();
         self.regions.clear();
         self.attachments.clear();
+        self.region_return = None;
         self.world.clear();
         self.stack.clear();
         self.pending = None;
@@ -726,9 +744,16 @@ impl Game {
         self.players[seat].deck.clear();
         self.players[seat].assets.clear();
         self.players[seat].graveyard.clear();
-        let leaving = self.regions.iter().flat_map(|r| r.cards.iter())
-            .filter(|c| c.owner == seat).map(|c| c.id.clone()).collect::<Vec<_>>();
-        for id in leaving { self.host_leaves(&id); }
+        let leaving = self
+            .regions
+            .iter()
+            .flat_map(|r| r.cards.iter())
+            .filter(|c| c.owner == seat)
+            .map(|c| c.id.clone())
+            .collect::<Vec<_>>();
+        for id in leaving {
+            self.host_leaves(&id);
+        }
         self.attachments.retain(|a| a.card.owner != seat);
         for r in &mut self.regions {
             r.cards.retain(|c| c.owner != seat);
@@ -835,7 +860,9 @@ impl Game {
                 self.effects.push_front(Effect::Bury { card: c });
             }
         }
-        self.effects.push_front(Effect::Frame { frame: Box::new(frame) });
+        self.effects.push_front(Effect::Frame {
+            frame: Box::new(frame),
+        });
         Ok(())
     }
     pub(crate) fn enter_triggers(&mut self, seat: usize, definition: &str, id: &str, reveal: bool) {
@@ -917,12 +944,16 @@ impl Game {
                 }
             }
             Window::Win(region, seat) => {
+                self.effects
+                    .push_back(Effect::PrepareRegionReturn { region });
                 for owner in 0..self.players.len() {
                     self.effects.push_back(Effect::Bottom {
                         seat: owner,
                         region,
                     });
                 }
+                self.effects
+                    .push_back(Effect::CommitRegionReturn { region });
                 self.effects.push_back(Effect::Score { seat, region });
                 self.begin_window(Window::After(region, 2));
             }
@@ -1270,7 +1301,40 @@ impl Game {
                 ));
                 self.begin_window(Window::Win(region, seat));
             }
+            Effect::PrepareRegionReturn { region } => self.prepare_region_return(region)?,
+            Effect::CommitRegionReturn { region } => self.commit_region_return(region)?,
             Effect::Bottom { seat, region } => {
+                if self
+                    .region_return
+                    .as_ref()
+                    .is_some_and(|batch| batch.region == region)
+                {
+                    let ids = self.region_return.as_ref().unwrap().bottom[seat].clone();
+                    let options = ids
+                        .iter()
+                        .map(|id| {
+                            self.board(id)
+                                .map(|(_, c)| self.option(c, seat, Some(region), None))
+                                .ok_or("赢区回底对象已失效")
+                        })
+                        .collect::<Result<Vec<_>, _>>()?;
+                    if options.len() <= 1 {
+                        self.region_return.as_mut().unwrap().orders[seat] = Some(ids);
+                    } else {
+                        let n = options.len();
+                        self.choice(
+                            seat,
+                            "region_return",
+                            "排列自己的回底牌；所有人确认后一起移区".into(),
+                            options,
+                            n,
+                            n,
+                            None,
+                            ChoiceResolution::Bottom { region },
+                        );
+                    }
+                    return Ok(());
+                }
                 let retreat: Vec<_> = self.regions[region]
                     .cards
                     .iter()
@@ -1677,6 +1741,15 @@ impl Game {
                 if set != option_ids || set.len() != ordered.len() {
                     return Err("请完整排列自己的所有地区牌".into());
                 }
+                if let Some(batch) = &mut self.region_return {
+                    if batch.region != region
+                        || batch.bottom[seat].iter().cloned().collect::<BTreeSet<_>>() != set
+                    {
+                        return Err("赢区回底批次已失效".into());
+                    }
+                    batch.orders[seat] = Some(ordered);
+                    return Ok(());
+                }
                 for id in ordered {
                     if self.board(&id).is_some_and(|(r, _)| r != region) {
                         return Err("地区引用失效".into());
@@ -1874,12 +1947,16 @@ impl Game {
             win_score: self.win_score(),
             winner_team: self.winner_team,
             regions,
-            attachments: self.attachments.iter().filter_map(|a| {
-                self.board(&a.host_id).map(|(r, _)| AttachmentView {
-                    card: self.card_view(&a.card, seat, Some(r), Some("attachment")),
-                    host_id: a.host_id.clone(),
+            attachments: self
+                .attachments
+                .iter()
+                .filter_map(|a| {
+                    self.board(&a.host_id).map(|(r, _)| AttachmentView {
+                        card: self.card_view(&a.card, seat, Some(r), Some("attachment")),
+                        host_id: a.host_id.clone(),
+                    })
                 })
-            }).collect(),
+                .collect(),
             hand: self.players[seat]
                 .hand
                 .iter()
@@ -2236,13 +2313,7 @@ mod tests {
                 .collect::<BTreeSet<_>>()
         );
         assert!(active.contains("DQJC116"));
-        assert_eq!(
-            c.cards
-                .iter()
-                .filter(|d| d.kind != "region")
-                .count(),
-            27
-        );
+        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 27);
         assert_eq!(c.decks.len(), 5);
         for deck in &c.decks {
             assert_eq!(deck.card_count, 50);
