@@ -4,7 +4,7 @@
 
 归档说明书明确列出 **八种颜色派系，另有褐色中立**。现有五副 50 张牌是受限卡池的自组预组，不能作为官方派系导航。完整归档的 **685 条记录已全部纳入待研索引**，但这不是 685 张可玩牌，也不是 685 张已核清规则的牌。
 
-本阶段完成全部颜色、归档秘社记录、组牌概念和当前源码边界的核验。截至 B03，109 条记录至少做过原图核验，其中 47 条完成锁定观察版本的所有游戏字段，62 条仍属部分核验；563 条有原图但尚未逐张核验，13 条缺少同 ID 独立原图。完整字段核验与原作机制/引擎/策略试玩验收分别计数，没有声称完成全卡规则转写或策略试玩。
+本阶段完成全部颜色、归档秘社记录、组牌概念和当前源码边界的核验。截至 B04，109 条记录至少做过原图核验，其中 61 条完成锁定观察版本的所有游戏字段，48 条仍属部分核验；563 条有原图但尚未逐张核验，13 条缺少同 ID 独立原图。完整字段核验与原作机制/引擎/策略试玩验收分别计数，没有声称完成全卡规则转写或策略试玩。
 
 ## 输入、证据与输出
 
@@ -24,9 +24,10 @@
 - [faction-coverage.json](../../rust-game/data/faction-coverage.json)：八色及中立、38 条秘社记录、组牌规则、模式、52 项共享机制、原始证据清单及源码锚点。
 - [card-reviews.json](card-reviews.json)：人工原图核验的部分字段、能力概述、确认的机制及剩余核验项。
 - [card-research-index.json](../../rust-game/data/card-research-index.json)：完整 685 条待研索引，保留所有版本/形态；原始定位字段与核验字段分开。
-- [card-specifications.json](card-specifications.json) 与 [B01-evidence-package.md](B01-evidence-package.md)：原图锁定版本的全游戏字段、能力边界、未解疑点和待执行验收场景。累计47条完成、3条未清字段阻塞，分批原稿和验收边界另见 B02/B03-evidence-package.md。
+- [card-specifications.json](card-specifications.json) 与 [B01-evidence-package.md](B01-evidence-package.md)：原图锁定版本的全游戏字段、能力边界、未解疑点和待执行验收场景。累计61条完成、3条未清字段阻塞，分批原稿和验收边界另见 B02/B03/B04-evidence-package.md。
 - [B02-evidence-package.md](B02-evidence-package.md)：JC058、私密检视、墓地正面打出、声望赋予、操控/结附等20条原图规格，包含19条完整和1条blocked。
 - [B03-evidence-package.md](B03-evidence-package.md)：剩余19条现有牌池完整原图规格；校正JC059友方范围及护卫伤害分配语义。
+- [B04-evidence-package.md](B04-evidence-package.md)：14条基础秘社完整规格，包含构筑例外、额外费用、双目标移动和底抓语义。
 - [source-recovery.json](source-recovery.json)：缺图补证搜索、墨尔本/核心区 PDF 旁证、网络访问结果及13条隔离名单。
 - [implementation-plan.md](implementation-plan.md) 和 [acceptance-groups.json](acceptance-groups.json)：共享机制依赖、小步补全顺序和未来验收门槛。
 - [tools/factions](../../tools/factions)：可复现生成器、独立验证器与防止误解锁的回归测试。它们不读取规则文本来执行游戏，也不写生产卡池。

@@ -9,15 +9,15 @@
   },
   "reviewsSource": {
     "path": "docs/factions/card-reviews.json",
-    "sha256": "4617649b69ed9d47e2575ccd45bf62f8fc4864060b9347df873b4662bfc32609"
+    "sha256": "2402a0a4d3b355ff9354d1f18db894155087faa63de2fce2836312db0c31f3f3"
   },
   "coverageSource": {
     "path": "rust-game/data/faction-coverage.json",
-    "sha256": "bad0c212da38a283c29d8b90ffcc4f4f21983583fc7462e7fb7bac6c7d8e8d75"
+    "sha256": "3a2a9bd83a5a733f090482593f0b2560ba139fc21b3708ff825de0fad20ccab3"
   },
   "specificationsSource": {
     "path": "docs/factions/card-specifications.json",
-    "sha256": "61fc8b77f303e6340992fff110a408327ce891b11f043702b7b44e76a3af112b"
+    "sha256": "44f18d89bb8bf43c1bb646828c8df8cc09226af7d4dfd436aa7c4a20f655671e"
   },
   "recoverySource": {
     "path": "docs/factions/source-recovery.json",
@@ -37,7 +37,7 @@
     "primaryImageReviewed": 109,
     "unreviewedWithImage": 563,
     "currentCatalogDefinitions": 29,
-    "completeSourceSpecifications": 47,
+    "completeSourceSpecifications": 61,
     "blockedSourceSpecifications": 3,
     "locatorSetCounts": {
       "TK": 11,
@@ -64,10 +64,10 @@
       "worldRegion": 29
     },
     "editionStatusCounts": {
-      "pinnedImageVariant": 47,
+      "pinnedImageVariant": 61,
       "testImageConfirmed": 6,
       "uncertain": 3,
-      "unreviewed": 629
+      "unreviewed": 615
     }
   },
   "records": [
@@ -26612,10 +26612,10 @@
       ],
       "evidenceState": "primaryImageReviewed",
       "reviewRef": "docs/factions/card-reviews.json#cards/MSJC02",
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/MSJC02",
+      "implementationDesignStatus": "needsRuling",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "猎魔人",
         "set": "基础",
@@ -26642,8 +26642,9 @@
       },
       "abilitySummary": "持先手时付费抓牌；每局一次检索相应派系独有牌。",
       "confirmedMechanismIds": [
-        "society",
-        "deckChoice"
+        "deckChoice",
+        "priority",
+        "society"
       ],
       "candidateMechanismIds": [
         "continuous",
@@ -26653,15 +26654,18 @@
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
       "interactionIds": [
+        "choicePicker",
         "handPicker",
         "orderPicker",
         "searchPicker",
         "societyPicker",
-        "societyZone"
+        "societyZone",
+        "stack"
       ],
       "mechanismCoverage": {
-        "society": "unimplemented",
-        "deckChoice": "partial"
+        "deckChoice": "partial",
+        "priority": "partial",
+        "society": "unimplemented"
       },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
@@ -26686,10 +26690,10 @@
       ],
       "evidenceState": "primaryImageReviewed",
       "reviewRef": "docs/factions/card-reviews.json#cards/MSJC03",
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/MSJC03",
+      "implementationDesignStatus": "needsRuling",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "王座会",
         "set": "基础",
@@ -26716,8 +26720,9 @@
       },
       "abilitySummary": "持先手时付费抓牌；每局一次检索相应派系独有牌。",
       "confirmedMechanismIds": [
-        "society",
-        "deckChoice"
+        "deckChoice",
+        "priority",
+        "society"
       ],
       "candidateMechanismIds": [
         "continuous",
@@ -26727,15 +26732,18 @@
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
       "interactionIds": [
+        "choicePicker",
         "handPicker",
         "orderPicker",
         "searchPicker",
         "societyPicker",
-        "societyZone"
+        "societyZone",
+        "stack"
       ],
       "mechanismCoverage": {
-        "society": "unimplemented",
-        "deckChoice": "partial"
+        "deckChoice": "partial",
+        "priority": "partial",
+        "society": "unimplemented"
       },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
@@ -26760,10 +26768,10 @@
       ],
       "evidenceState": "primaryImageReviewed",
       "reviewRef": "docs/factions/card-reviews.json#cards/MSJC04",
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/MSJC04",
+      "implementationDesignStatus": "needsRuling",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "鸣钟教派",
         "set": "基础",
@@ -26790,8 +26798,9 @@
       },
       "abilitySummary": "持先手时付费抓牌；每局一次检索相应派系独有牌。",
       "confirmedMechanismIds": [
-        "society",
-        "deckChoice"
+        "deckChoice",
+        "priority",
+        "society"
       ],
       "candidateMechanismIds": [
         "continuous",
@@ -26801,15 +26810,18 @@
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
       "interactionIds": [
+        "choicePicker",
         "handPicker",
         "orderPicker",
         "searchPicker",
         "societyPicker",
-        "societyZone"
+        "societyZone",
+        "stack"
       ],
       "mechanismCoverage": {
-        "society": "unimplemented",
-        "deckChoice": "partial"
+        "deckChoice": "partial",
+        "priority": "partial",
+        "society": "unimplemented"
       },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
@@ -26834,10 +26846,10 @@
       ],
       "evidenceState": "primaryImageReviewed",
       "reviewRef": "docs/factions/card-reviews.json#cards/MSJC05",
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/MSJC05",
+      "implementationDesignStatus": "needsRuling",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "国家机构",
         "set": "基础",
@@ -26864,8 +26876,9 @@
       },
       "abilitySummary": "持先手时付费抓牌；每局一次检索相应派系独有牌。",
       "confirmedMechanismIds": [
-        "society",
-        "deckChoice"
+        "deckChoice",
+        "priority",
+        "society"
       ],
       "candidateMechanismIds": [
         "continuous",
@@ -26875,15 +26888,18 @@
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
       "interactionIds": [
+        "choicePicker",
         "handPicker",
         "orderPicker",
         "searchPicker",
         "societyPicker",
-        "societyZone"
+        "societyZone",
+        "stack"
       ],
       "mechanismCoverage": {
-        "society": "unimplemented",
-        "deckChoice": "partial"
+        "deckChoice": "partial",
+        "priority": "partial",
+        "society": "unimplemented"
       },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
@@ -26908,10 +26924,10 @@
       ],
       "evidenceState": "primaryImageReviewed",
       "reviewRef": "docs/factions/card-reviews.json#cards/MSJC06",
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/MSJC06",
+      "implementationDesignStatus": "needsRuling",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "圣贤",
         "set": "基础",
@@ -26938,8 +26954,9 @@
       },
       "abilitySummary": "持先手时付费抓牌；每局一次检索相应派系独有牌。",
       "confirmedMechanismIds": [
-        "society",
-        "deckChoice"
+        "deckChoice",
+        "priority",
+        "society"
       ],
       "candidateMechanismIds": [
         "continuous",
@@ -26949,15 +26966,18 @@
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
       "interactionIds": [
+        "choicePicker",
         "handPicker",
         "orderPicker",
         "searchPicker",
         "societyPicker",
-        "societyZone"
+        "societyZone",
+        "stack"
       ],
       "mechanismCoverage": {
-        "society": "unimplemented",
-        "deckChoice": "partial"
+        "deckChoice": "partial",
+        "priority": "partial",
+        "society": "unimplemented"
       },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
@@ -26982,10 +27002,10 @@
       ],
       "evidenceState": "primaryImageReviewed",
       "reviewRef": "docs/factions/card-reviews.json#cards/MSJC07",
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/MSJC07",
+      "implementationDesignStatus": "needsRuling",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "方碑序列",
         "set": "基础",
@@ -27012,8 +27032,9 @@
       },
       "abilitySummary": "持先手时付费抓牌；每局一次检索相应派系独有牌。",
       "confirmedMechanismIds": [
-        "society",
-        "deckChoice"
+        "deckChoice",
+        "priority",
+        "society"
       ],
       "candidateMechanismIds": [
         "continuous",
@@ -27023,15 +27044,18 @@
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
       "interactionIds": [
+        "choicePicker",
         "handPicker",
         "orderPicker",
         "searchPicker",
         "societyPicker",
-        "societyZone"
+        "societyZone",
+        "stack"
       ],
       "mechanismCoverage": {
-        "society": "unimplemented",
-        "deckChoice": "partial"
+        "deckChoice": "partial",
+        "priority": "partial",
+        "society": "unimplemented"
       },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
@@ -27211,10 +27235,10 @@
       ],
       "evidenceState": "primaryImageReviewed",
       "reviewRef": "docs/factions/card-reviews.json#cards/MSJC10",
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/MSJC10",
+      "implementationDesignStatus": "needsRuling",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "貘组",
         "set": "基础",
@@ -27243,8 +27267,11 @@
       },
       "abilitySummary": "手牌封印、用封印换灵体或角色正面进场。",
       "confirmedMechanismIds": [
-        "society",
+        "control",
+        "deckChoice",
+        "priority",
         "seal",
+        "society",
         "spirit"
       ],
       "candidateMechanismIds": [
@@ -27258,15 +27285,24 @@
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
       "interactionIds": [
+        "choicePicker",
+        "controlBadges",
         "domainSummary",
+        "handPicker",
+        "orderPicker",
         "sealedCards",
+        "searchPicker",
         "societyPicker",
         "societyZone",
+        "stack",
         "targetPicker"
       ],
       "mechanismCoverage": {
-        "society": "unimplemented",
+        "control": "unimplemented",
+        "deckChoice": "partial",
+        "priority": "partial",
         "seal": "unimplemented",
+        "society": "unimplemented",
         "spirit": "unimplemented"
       },
       "engineStatus": "unimplemented",
@@ -27292,10 +27328,10 @@
       ],
       "evidenceState": "primaryImageReviewed",
       "reviewRef": "docs/factions/card-reviews.json#cards/MSJC11",
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/MSJC11",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "S．P．T执行部",
         "set": "基础",
@@ -27318,16 +27354,17 @@
         ]
       },
       "verifiedFields": {
-        "name": "S．P．T执行部",
+        "name": "S.P.T.执行部",
         "colorKey": "绿",
         "basicType": "秘社",
         "startingHand": 6
       },
       "abilitySummary": "赋杀伤1；同地区本方带永久战斗图标角色赋撤回。",
       "confirmedMechanismIds": [
-        "society",
         "combatTraits",
-        "continuous"
+        "continuous",
+        "priority",
+        "society"
       ],
       "candidateMechanismIds": [
         "combatTraits",
@@ -27337,14 +27374,17 @@
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
       "interactionIds": [
+        "choicePicker",
         "damagePicker",
         "societyPicker",
-        "societyZone"
+        "societyZone",
+        "stack"
       ],
       "mechanismCoverage": {
-        "society": "unimplemented",
         "combatTraits": "implemented",
-        "continuous": "partial"
+        "continuous": "partial",
+        "priority": "partial",
+        "society": "unimplemented"
       },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
@@ -27369,10 +27409,10 @@
       ],
       "evidenceState": "primaryImageReviewed",
       "reviewRef": "docs/factions/card-reviews.json#cards/MSJC12",
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/MSJC12",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "爱弗罗德家族",
         "set": "基础",
@@ -27397,10 +27437,11 @@
       },
       "abilitySummary": "低费本方人类赋奴仆；横置族群抓牌/令敌方弃牌。",
       "confirmedMechanismIds": [
-        "society",
-        "attachment",
         "continuous",
-        "deckChoice"
+        "deckChoice",
+        "exhaust",
+        "priority",
+        "society"
       ],
       "candidateMechanismIds": [
         "continuous",
@@ -27410,19 +27451,21 @@
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
       "interactionIds": [
-        "attachmentPicker",
-        "attachments",
+        "choicePicker",
         "handPicker",
         "orderPicker",
         "searchPicker",
         "societyPicker",
-        "societyZone"
+        "societyZone",
+        "stack",
+        "targetPicker"
       ],
       "mechanismCoverage": {
-        "society": "unimplemented",
-        "attachment": "unimplemented",
         "continuous": "partial",
-        "deckChoice": "partial"
+        "deckChoice": "partial",
+        "exhaust": "implemented",
+        "priority": "partial",
+        "society": "unimplemented"
       },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
@@ -27447,10 +27490,10 @@
       ],
       "evidenceState": "primaryImageReviewed",
       "reviewRef": "docs/factions/card-reviews.json#cards/MSJC13",
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/MSJC13",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "计时者",
         "set": "基础",
@@ -27479,9 +27522,11 @@
       },
       "abilitySummary": "放时间标志；消灭达到三标志的角色/附属后抓牌。",
       "confirmedMechanismIds": [
+        "attachment",
+        "deckChoice",
+        "priority",
         "society",
-        "timeDestroy",
-        "deckChoice"
+        "timeDestroy"
       ],
       "candidateMechanismIds": [
         "attachment",
@@ -27493,18 +27538,24 @@
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
       "interactionIds": [
+        "attachmentPicker",
+        "attachments",
+        "choicePicker",
         "destroyedRegions",
         "handPicker",
         "markerEditor",
         "orderPicker",
         "searchPicker",
         "societyPicker",
-        "societyZone"
+        "societyZone",
+        "stack"
       ],
       "mechanismCoverage": {
+        "attachment": "unimplemented",
+        "deckChoice": "partial",
+        "priority": "partial",
         "society": "unimplemented",
-        "timeDestroy": "unimplemented",
-        "deckChoice": "partial"
+        "timeDestroy": "unimplemented"
       },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
@@ -27529,10 +27580,10 @@
       ],
       "evidenceState": "primaryImageReviewed",
       "reviewRef": "docs/factions/card-reviews.json#cards/MSJC14",
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/MSJC14",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "哨兵",
         "set": "基础",
@@ -27559,9 +27610,10 @@
       },
       "abilitySummary": "锁定敵方暗藏者；本方角色移动到有锁定目标所在地区。",
       "confirmedMechanismIds": [
-        "society",
         "lock",
-        "mobility"
+        "mobility",
+        "priority",
+        "society"
       ],
       "candidateMechanismIds": [
         "continuous",
@@ -27573,16 +27625,19 @@
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
       "interactionIds": [
+        "choicePicker",
         "markerEditor",
         "privatePeek",
         "regionPicker",
         "societyPicker",
-        "societyZone"
+        "societyZone",
+        "stack"
       ],
       "mechanismCoverage": {
-        "society": "unimplemented",
         "lock": "unimplemented",
-        "mobility": "partial"
+        "mobility": "partial",
+        "priority": "partial",
+        "society": "unimplemented"
       },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
@@ -27607,10 +27662,10 @@
       ],
       "evidenceState": "primaryImageReviewed",
       "reviewRef": "docs/factions/card-reviews.json#cards/MSJC15",
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/MSJC15",
+      "implementationDesignStatus": "needsRuling",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "隐士",
         "set": "基础",
@@ -27639,9 +27694,11 @@
       },
       "abilitySummary": "初始隐秘标志；手牌≥4时展示角色并暗藏者进场。",
       "confirmedMechanismIds": [
-        "society",
+        "deckChoice",
+        "hidden",
         "mysticContest",
-        "hidden"
+        "priority",
+        "society"
       ],
       "candidateMechanismIds": [
         "continuous",
@@ -27652,17 +27709,24 @@
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
       "interactionIds": [
+        "choicePicker",
+        "handPicker",
         "hiddenProjection",
+        "orderPicker",
+        "searchPicker",
         "simultaneousReveal",
         "societyMarkers",
         "societyPicker",
         "societyZone",
+        "stack",
         "targetPicker"
       ],
       "mechanismCoverage": {
-        "society": "unimplemented",
+        "deckChoice": "partial",
+        "hidden": "implemented",
         "mysticContest": "unimplemented",
-        "hidden": "implemented"
+        "priority": "partial",
+        "society": "unimplemented"
       },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
@@ -27687,10 +27751,10 @@
       ],
       "evidenceState": "primaryImageReviewed",
       "reviewRef": "docs/factions/card-reviews.json#cards/MSJC16",
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/MSJC16",
+      "implementationDesignStatus": "needsRuling",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "颂亡者",
         "set": "基础",
@@ -27717,9 +27781,11 @@
       },
       "abilitySummary": "牌库置墓；封印7墓地牌作成本，墓地死亡领域角色正面进场。",
       "confirmedMechanismIds": [
-        "society",
+        "deckChoice",
+        "graveRecovery",
+        "priority",
         "seal",
-        "gravePlay"
+        "society"
       ],
       "candidateMechanismIds": [
         "continuous",
@@ -27731,16 +27797,24 @@
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
       "interactionIds": [
+        "choicePicker",
         "graveyardPicker",
+        "handPicker",
+        "orderPicker",
+        "regionPicker",
         "sealedCards",
+        "searchPicker",
         "societyPicker",
         "societyZone",
+        "stack",
         "targetPicker"
       ],
       "mechanismCoverage": {
-        "society": "unimplemented",
+        "deckChoice": "partial",
+        "graveRecovery": "implemented",
+        "priority": "partial",
         "seal": "unimplemented",
-        "gravePlay": "unimplemented"
+        "society": "unimplemented"
       },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
@@ -27765,10 +27839,10 @@
       ],
       "evidenceState": "primaryImageReviewed",
       "reviewRef": "docs/factions/card-reviews.json#cards/MSJC17",
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/MSJC17",
+      "implementationDesignStatus": "needsRuling",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "梦魇族群",
         "set": "基础",
@@ -27797,10 +27871,12 @@
       },
       "abilitySummary": "从牌库底抓牌；封印顶牌；墓地灵体回牌库顶。",
       "confirmedMechanismIds": [
-        "society",
+        "deckChoice",
+        "graveRecovery",
+        "priority",
         "seal",
-        "spirit",
-        "deckChoice"
+        "society",
+        "spirit"
       ],
       "candidateMechanismIds": [
         "continuous",
@@ -27813,20 +27889,26 @@
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
       "interactionIds": [
+        "choicePicker",
         "domainSummary",
+        "graveyardPicker",
         "handPicker",
         "orderPicker",
+        "regionPicker",
         "sealedCards",
         "searchPicker",
         "societyPicker",
         "societyZone",
+        "stack",
         "targetPicker"
       ],
       "mechanismCoverage": {
-        "society": "unimplemented",
+        "deckChoice": "partial",
+        "graveRecovery": "implemented",
+        "priority": "partial",
         "seal": "unimplemented",
-        "spirit": "unimplemented",
-        "deckChoice": "partial"
+        "society": "unimplemented",
+        "spirit": "unimplemented"
       },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",

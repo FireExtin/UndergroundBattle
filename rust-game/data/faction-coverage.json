@@ -612,6 +612,7 @@
       "abilitySummary": "持先手时付费抓牌；每局一次检索相应派系独有牌。",
       "mechanismIds": [
         "society",
+        "priority",
         "deckChoice"
       ],
       "status": "unimplemented",
@@ -633,6 +634,7 @@
       "abilitySummary": "持先手时付费抓牌；每局一次检索相应派系独有牌。",
       "mechanismIds": [
         "society",
+        "priority",
         "deckChoice"
       ],
       "status": "unimplemented",
@@ -654,6 +656,7 @@
       "abilitySummary": "持先手时付费抓牌；每局一次检索相应派系独有牌。",
       "mechanismIds": [
         "society",
+        "priority",
         "deckChoice"
       ],
       "status": "unimplemented",
@@ -675,6 +678,7 @@
       "abilitySummary": "持先手时付费抓牌；每局一次检索相应派系独有牌。",
       "mechanismIds": [
         "society",
+        "priority",
         "deckChoice"
       ],
       "status": "unimplemented",
@@ -696,6 +700,7 @@
       "abilitySummary": "持先手时付费抓牌；每局一次检索相应派系独有牌。",
       "mechanismIds": [
         "society",
+        "priority",
         "deckChoice"
       ],
       "status": "unimplemented",
@@ -717,6 +722,7 @@
       "abilitySummary": "持先手时付费抓牌；每局一次检索相应派系独有牌。",
       "mechanismIds": [
         "society",
+        "priority",
         "deckChoice"
       ],
       "status": "unimplemented",
@@ -781,7 +787,10 @@
       "mechanismIds": [
         "society",
         "seal",
-        "spirit"
+        "spirit",
+        "deckChoice",
+        "priority",
+        "control"
       ],
       "status": "unimplemented",
       "selectionEnabled": false,
@@ -792,7 +801,7 @@
     },
     {
       "cardId": "MSJC11",
-      "name": "S．P．T执行部",
+      "name": "S.P.T.执行部",
       "colorKey": "绿",
       "productLocator": "基础",
       "role": "initial",
@@ -803,7 +812,8 @@
       "mechanismIds": [
         "society",
         "combatTraits",
-        "continuous"
+        "continuous",
+        "priority"
       ],
       "status": "unimplemented",
       "selectionEnabled": false,
@@ -824,9 +834,10 @@
       "abilitySummary": "低费本方人类赋奴仆；横置族群抓牌/令敌方弃牌。",
       "mechanismIds": [
         "society",
-        "attachment",
         "continuous",
-        "deckChoice"
+        "deckChoice",
+        "exhaust",
+        "priority"
       ],
       "status": "unimplemented",
       "selectionEnabled": false,
@@ -848,7 +859,9 @@
       "mechanismIds": [
         "society",
         "timeDestroy",
-        "deckChoice"
+        "attachment",
+        "deckChoice",
+        "priority"
       ],
       "status": "unimplemented",
       "selectionEnabled": false,
@@ -870,7 +883,8 @@
       "mechanismIds": [
         "society",
         "lock",
-        "mobility"
+        "mobility",
+        "priority"
       ],
       "status": "unimplemented",
       "selectionEnabled": false,
@@ -891,8 +905,10 @@
       "abilitySummary": "初始隐秘标志；手牌≥4时展示角色并暗藏者进场。",
       "mechanismIds": [
         "society",
+        "hidden",
         "mysticContest",
-        "hidden"
+        "deckChoice",
+        "priority"
       ],
       "status": "unimplemented",
       "selectionEnabled": false,
@@ -914,7 +930,9 @@
       "mechanismIds": [
         "society",
         "seal",
-        "gravePlay"
+        "graveRecovery",
+        "deckChoice",
+        "priority"
       ],
       "status": "unimplemented",
       "selectionEnabled": false,
@@ -937,7 +955,9 @@
         "society",
         "seal",
         "spirit",
-        "deckChoice"
+        "graveRecovery",
+        "deckChoice",
+        "priority"
       ],
       "status": "unimplemented",
       "selectionEnabled": false,
@@ -1522,7 +1542,8 @@
       "evidenceIds": [
         "bq-setup",
         "bq-keywords-2",
-        "card-JC002"
+        "card-JC002",
+        "card-MSJC15"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -1566,7 +1587,21 @@
         "card-DQJC114",
         "card-JC042",
         "card-JC091",
-        "card-JZ54"
+        "card-JZ54",
+        "card-MSJC02",
+        "card-MSJC03",
+        "card-MSJC04",
+        "card-MSJC05",
+        "card-MSJC06",
+        "card-MSJC07",
+        "card-MSJC10",
+        "card-MSJC11",
+        "card-MSJC12",
+        "card-MSJC13",
+        "card-MSJC14",
+        "card-MSJC15",
+        "card-MSJC16",
+        "card-MSJC17"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -1669,7 +1704,8 @@
         "card-JC003",
         "card-JC056",
         "card-JC002",
-        "card-XQ03"
+        "card-XQ03",
+        "card-MSJC12"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -1700,7 +1736,8 @@
         "bq-keywords-2",
         "bq-teams",
         "card-JC014",
-        "card-JC061"
+        "card-JC061",
+        "card-MSJC14"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -1732,7 +1769,8 @@
         "bq-keywords-2",
         "card-JC016",
         "card-LC21",
-        "card-LC22"
+        "card-LC22",
+        "card-MSJC11"
       ],
       "dependencies": [
         "confrontation"
@@ -1820,7 +1858,9 @@
       "evidenceIds": [
         "card-JC086",
         "card-JC092",
-        "card-XQ49"
+        "card-XQ49",
+        "card-MSJC16",
+        "card-MSJC17"
       ],
       "dependencies": [
         "hidden",
@@ -1952,7 +1992,19 @@
         "card-XQ12",
         "card-DQJC107",
         "card-DQJC112",
-        "card-DQJC114"
+        "card-DQJC114",
+        "card-MSJC02",
+        "card-MSJC03",
+        "card-MSJC04",
+        "card-MSJC05",
+        "card-MSJC06",
+        "card-MSJC07",
+        "card-MSJC10",
+        "card-MSJC12",
+        "card-MSJC13",
+        "card-MSJC15",
+        "card-MSJC16",
+        "card-MSJC17"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -1989,7 +2041,9 @@
         "card-JC108",
         "card-JC099",
         "card-JC100",
-        "card-JC091"
+        "card-JC091",
+        "card-MSJC11",
+        "card-MSJC12"
       ],
       "dependencies": [],
       "interactionIds": [],
@@ -2042,7 +2096,21 @@
       "scope": "可选初始秘社、不计入50张、起始手牌覆盖、不可离场、构筑限制和秘社能力。",
       "limitations": "",
       "evidenceIds": [
-        "guide-societies"
+        "guide-societies",
+        "card-MSJC02",
+        "card-MSJC03",
+        "card-MSJC04",
+        "card-MSJC05",
+        "card-MSJC06",
+        "card-MSJC07",
+        "card-MSJC10",
+        "card-MSJC11",
+        "card-MSJC12",
+        "card-MSJC13",
+        "card-MSJC14",
+        "card-MSJC15",
+        "card-MSJC16",
+        "card-MSJC17"
       ],
       "dependencies": [
         "priority",
@@ -2074,7 +2142,8 @@
         "manual-seal",
         "intermezzo",
         "faq-5",
-        "card-JC028"
+        "card-JC028",
+        "card-MSJC13"
       ],
       "dependencies": [
         "priority"
@@ -2106,7 +2175,10 @@
         "bq-seal",
         "card-JC099",
         "card-JC100",
-        "card-JC108"
+        "card-JC108",
+        "card-MSJC10",
+        "card-MSJC16",
+        "card-MSJC17"
       ],
       "dependencies": [
         "priority",
@@ -2168,7 +2240,9 @@
         "bq-keywords-2",
         "card-JC077",
         "card-JC099",
-        "card-JC100"
+        "card-JC100",
+        "card-MSJC10",
+        "card-MSJC17"
       ],
       "dependencies": [
         "continuous",
@@ -2286,7 +2360,8 @@
       "limitations": "",
       "evidenceIds": [
         "bq-seal",
-        "faq-3"
+        "faq-3",
+        "card-MSJC10"
       ],
       "dependencies": [
         "continuous",
@@ -2490,7 +2565,8 @@
         "veil",
         "starlight",
         "bq-new",
-        "bq-teams"
+        "bq-teams",
+        "card-MSJC15"
       ],
       "dependencies": [
         "society",

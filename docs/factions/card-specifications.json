@@ -162,6 +162,50 @@
       "blockedCardIds": [],
       "gameImplementationAccepted": false,
       "independentUiPlaytestStatus": "notRun"
+    },
+    {
+      "id": "B04",
+      "groups": [
+        "G01-foundation",
+        "G03-societies",
+        "G04-lifecycle",
+        "G05-multizone"
+      ],
+      "cardIds": [
+        "MSJC02",
+        "MSJC03",
+        "MSJC04",
+        "MSJC05",
+        "MSJC06",
+        "MSJC07",
+        "MSJC10",
+        "MSJC11",
+        "MSJC12",
+        "MSJC13",
+        "MSJC14",
+        "MSJC15",
+        "MSJC16",
+        "MSJC17"
+      ],
+      "completedCardIds": [
+        "MSJC02",
+        "MSJC03",
+        "MSJC04",
+        "MSJC05",
+        "MSJC06",
+        "MSJC07",
+        "MSJC10",
+        "MSJC11",
+        "MSJC12",
+        "MSJC13",
+        "MSJC14",
+        "MSJC15",
+        "MSJC16",
+        "MSJC17"
+      ],
+      "blockedCardIds": [],
+      "gameImplementationAccepted": false,
+      "independentUiPlaytestStatus": "notRun"
     }
   ],
   "openQuestions": {
@@ -218,6 +262,29 @@
         "card-JC062",
         "faq-3",
         "bq-targets"
+      ]
+    },
+    "sealedChoicePrintedFields": {
+      "question": "MSJC10第三行动明确选择封印在秘社上的角色牌，封印牌通用规则通常没有卡面信息；要保留此明确授权的印刷类别选择例外及私密投影，不能依赖通常角色目标器。",
+      "evidenceIds": [
+        "card-MSJC10",
+        "manual-seal"
+      ]
+    },
+    "partialEffectWithoutChoice": {
+      "question": "MSJC10第一行动手牌封印在效果段，没有可选星辰手牌时不能擅改成额外费用；未能完成前半段时后半抓牌的通用结算门槛须从原规则进一步定案。",
+      "evidenceIds": [
+        "card-MSJC10",
+        "bq-stack",
+        "bq-targets"
+      ]
+    },
+    "costAndTargetOverlap": {
+      "question": "MSJC16先声明墓地角色目标、再付封印七张墓地牌费用；同牌能否同时选为目标与费用尚需通用声明规则裁定，确定其费用离开墓地后不能按旧墓地目标复活。",
+      "evidenceIds": [
+        "card-MSJC16",
+        "bq-targets",
+        "bq-stack"
       ]
     }
   },
@@ -6005,6 +6072,973 @@
         }
       ]
     },
+    "MSJC02": {
+      "cardId": "MSJC02",
+      "batchId": "B04",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/MSJC02 猎魔人.jpg",
+        "imageSha256": "915a723573028050980cb665d0de85f5e5fd5a6de1b54e3d7664e69882edc807",
+        "evidenceId": "card-MSJC02",
+        "scope": "逐张查看原图及放大文字区域，完成锁定观察版本的全部游戏字段；不转写背景故事，不声称其他印次或游戏实现验收。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "Society 02/17",
+        "seriesSymbolObserved": "wineGlass",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA、实读印刷号锁定观察版本；R字样保留，不推断其日期或别版等价。"
+      },
+      "fields": {
+        "name": "猎魔人",
+        "subtitle": "猎杀异种战团",
+        "nameInk": "gold",
+        "colorKey": "绿",
+        "basicType": "秘社",
+        "subtypes": [
+          "群体"
+        ],
+        "printedCollectorCode": "Society 02/17",
+        "seriesSymbol": "wineGlass",
+        "printedCost": null,
+        "loyalty": [],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": 6,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "【持续】构筑时你的牌组中需包含25张或更多【绿】派系的牌。",
+          "【行动】3，【横置】：若你具有【先手标志】，则抓一张牌。",
+          "【行动】4，【横置】：从你的牌库中寻找一张【绿】独有牌，展示该牌后置于你的手中，然后将你的牌库洗牌。该能力每局游戏只能发动一次。"
+        ]
+      },
+      "abilities": [
+        {
+          "id": "construction",
+          "kind": "constructionStatic",
+          "printedText": "【持续】构筑时你的牌组中需包含25张或更多【绿】派系的牌。",
+          "restriction": {
+            "minimumCardsOfColor": "绿",
+            "count": 25,
+            "countsExtraSocietyCard": false
+          }
+        },
+        {
+          "id": "drawWithInitiative",
+          "kind": "standardAction",
+          "printedText": "【行动】3，【横置】：若你具有【先手标志】，则抓一张牌。",
+          "costs": {
+            "currency": 3,
+            "exhaustSource": true
+          },
+          "condition": "controllerHasInitiative",
+          "effect": {
+            "kind": "draw",
+            "count": 1
+          }
+        },
+        {
+          "id": "onceSearch",
+          "kind": "standardAction",
+          "printedText": "【行动】4，【横置】：从你的牌库中寻找一张【绿】独有牌，展示该牌后置于你的手中，然后将你的牌库洗牌。该能力每局游戏只能发动一次。",
+          "costs": {
+            "currency": 4,
+            "exhaustSource": true
+          },
+          "search": {
+            "owner": "controller",
+            "color": "绿",
+            "goldNameUnique": true,
+            "count": 1
+          },
+          "order": [
+            "search",
+            "reveal",
+            "toHand",
+            "shuffle"
+          ],
+          "countsAsDraw": false,
+          "limit": {
+            "perGameActivations": 1,
+            "consumedOnActivation": true
+          }
+        }
+      ],
+      "confirmedMechanismIds": [
+        "society",
+        "priority",
+        "deckChoice"
+      ],
+      "rulesEvidenceIds": [
+        "guide-societies",
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "bq-targets",
+        "bq-teams",
+        "bq-construct"
+      ],
+      "implementationDesignStatus": "needsRuling",
+      "openQuestionIds": [
+        "conditionalActivation"
+      ],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "locatorDiscrepancies": [],
+      "acceptanceCases": [
+        {
+          "id": "MSJC02-01",
+          "scenario": "构筑时本色只有24张，额外秘社也是本色",
+          "expected": "不以秘社补到25；秘社不计入玩家牌组。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC02-02",
+          "scenario": "支付3发动抓牌行动",
+          "expected": "同时横置秘社；先手为效果条件，缺先手的发动规则仍待统一裁定。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC02-03",
+          "scenario": "支付4检索相应派系独有牌",
+          "expected": "按金色名称独有，公开展示、进手、再洗牌；入手不是抓牌。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC02-04",
+          "scenario": "检索能力发动后被终止",
+          "expected": "每局发动次数仍已消耗；不能再发动。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC02-05",
+          "scenario": "同一回合另一行动试图再次横置来源",
+          "expected": "秘社已横置不能重复支付，后续重置步骤应重置秘社。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "MSJC03": {
+      "cardId": "MSJC03",
+      "batchId": "B04",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/MSJC03 王座会.jpg",
+        "imageSha256": "07463a18a5cc6726f098bedc10304ef6c4032929cff72535d5f9227338e45f29",
+        "evidenceId": "card-MSJC03",
+        "scope": "逐张查看原图及放大文字区域，完成锁定观察版本的全部游戏字段；不转写背景故事，不声称其他印次或游戏实现验收。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "Society 03/17",
+        "seriesSymbolObserved": "wineGlass",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA、实读印刷号锁定观察版本；R字样保留，不推断其日期或别版等价。"
+      },
+      "fields": {
+        "name": "王座会",
+        "subtitle": "通往至高王座",
+        "nameInk": "gold",
+        "colorKey": "蓝",
+        "basicType": "秘社",
+        "subtypes": [
+          "法师结社",
+          "吸血鬼"
+        ],
+        "printedCollectorCode": "Society 03/17",
+        "seriesSymbol": "wineGlass",
+        "printedCost": null,
+        "loyalty": [],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": 6,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "【持续】构筑时你的牌组中需包含25张或更多【蓝】派系的牌。",
+          "【行动】3，【横置】：若你具有【先手标志】，则抓一张牌。",
+          "【行动】4，【横置】：从你的牌库中寻找一张【蓝】独有牌，展示该牌后置于你的手中，然后将你的牌库洗牌。该能力每局游戏只能发动一次。"
+        ]
+      },
+      "abilities": [
+        {
+          "id": "construction",
+          "kind": "constructionStatic",
+          "printedText": "【持续】构筑时你的牌组中需包含25张或更多【蓝】派系的牌。",
+          "restriction": {
+            "minimumCardsOfColor": "蓝",
+            "count": 25,
+            "countsExtraSocietyCard": false
+          }
+        },
+        {
+          "id": "drawWithInitiative",
+          "kind": "standardAction",
+          "printedText": "【行动】3，【横置】：若你具有【先手标志】，则抓一张牌。",
+          "costs": {
+            "currency": 3,
+            "exhaustSource": true
+          },
+          "condition": "controllerHasInitiative",
+          "effect": {
+            "kind": "draw",
+            "count": 1
+          }
+        },
+        {
+          "id": "onceSearch",
+          "kind": "standardAction",
+          "printedText": "【行动】4，【横置】：从你的牌库中寻找一张【蓝】独有牌，展示该牌后置于你的手中，然后将你的牌库洗牌。该能力每局游戏只能发动一次。",
+          "costs": {
+            "currency": 4,
+            "exhaustSource": true
+          },
+          "search": {
+            "owner": "controller",
+            "color": "蓝",
+            "goldNameUnique": true,
+            "count": 1
+          },
+          "order": [
+            "search",
+            "reveal",
+            "toHand",
+            "shuffle"
+          ],
+          "countsAsDraw": false,
+          "limit": {
+            "perGameActivations": 1,
+            "consumedOnActivation": true
+          }
+        }
+      ],
+      "confirmedMechanismIds": [
+        "society",
+        "priority",
+        "deckChoice"
+      ],
+      "rulesEvidenceIds": [
+        "guide-societies",
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "bq-targets",
+        "bq-teams",
+        "bq-construct"
+      ],
+      "implementationDesignStatus": "needsRuling",
+      "openQuestionIds": [
+        "conditionalActivation"
+      ],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "locatorDiscrepancies": [],
+      "acceptanceCases": [
+        {
+          "id": "MSJC03-01",
+          "scenario": "构筑时本色只有24张，额外秘社也是本色",
+          "expected": "不以秘社补到25；秘社不计入玩家牌组。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC03-02",
+          "scenario": "支付3发动抓牌行动",
+          "expected": "同时横置秘社；先手为效果条件，缺先手的发动规则仍待统一裁定。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC03-03",
+          "scenario": "支付4检索相应派系独有牌",
+          "expected": "按金色名称独有，公开展示、进手、再洗牌；入手不是抓牌。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC03-04",
+          "scenario": "检索能力发动后被终止",
+          "expected": "每局发动次数仍已消耗；不能再发动。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC03-05",
+          "scenario": "同一回合另一行动试图再次横置来源",
+          "expected": "秘社已横置不能重复支付，后续重置步骤应重置秘社。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "MSJC04": {
+      "cardId": "MSJC04",
+      "batchId": "B04",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/MSJC04 鸣钟教派.jpg",
+        "imageSha256": "a6ba66c7fb73acdbe4cab001e6330d0f339c46e12b6d3e714307196e9fd23cf3",
+        "evidenceId": "card-MSJC04",
+        "scope": "逐张查看原图及放大文字区域，完成锁定观察版本的全部游戏字段；不转写背景故事，不声称其他印次或游戏实现验收。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "Society 04/17",
+        "seriesSymbolObserved": "wineGlass",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA、实读印刷号锁定观察版本；R字样保留，不推断其日期或别版等价。"
+      },
+      "fields": {
+        "name": "鸣钟教派",
+        "subtitle": "末日钟的侍奉者",
+        "nameInk": "gold",
+        "colorKey": "红",
+        "basicType": "秘社",
+        "subtypes": [
+          "秘密教派"
+        ],
+        "printedCollectorCode": "Society 04/17",
+        "seriesSymbol": "wineGlass",
+        "printedCost": null,
+        "loyalty": [],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": 6,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "【持续】构筑时你的牌组中需包含25张或更多【红】派系的牌。",
+          "【行动】3，【横置】：若你具有【先手标志】，则抓一张牌。",
+          "【行动】4，【横置】：从你的牌库中寻找一张【红】独有牌，展示该牌后置于你的手中，然后将你的牌库洗牌。该能力每局游戏只能发动一次。"
+        ]
+      },
+      "abilities": [
+        {
+          "id": "construction",
+          "kind": "constructionStatic",
+          "printedText": "【持续】构筑时你的牌组中需包含25张或更多【红】派系的牌。",
+          "restriction": {
+            "minimumCardsOfColor": "红",
+            "count": 25,
+            "countsExtraSocietyCard": false
+          }
+        },
+        {
+          "id": "drawWithInitiative",
+          "kind": "standardAction",
+          "printedText": "【行动】3，【横置】：若你具有【先手标志】，则抓一张牌。",
+          "costs": {
+            "currency": 3,
+            "exhaustSource": true
+          },
+          "condition": "controllerHasInitiative",
+          "effect": {
+            "kind": "draw",
+            "count": 1
+          }
+        },
+        {
+          "id": "onceSearch",
+          "kind": "standardAction",
+          "printedText": "【行动】4，【横置】：从你的牌库中寻找一张【红】独有牌，展示该牌后置于你的手中，然后将你的牌库洗牌。该能力每局游戏只能发动一次。",
+          "costs": {
+            "currency": 4,
+            "exhaustSource": true
+          },
+          "search": {
+            "owner": "controller",
+            "color": "红",
+            "goldNameUnique": true,
+            "count": 1
+          },
+          "order": [
+            "search",
+            "reveal",
+            "toHand",
+            "shuffle"
+          ],
+          "countsAsDraw": false,
+          "limit": {
+            "perGameActivations": 1,
+            "consumedOnActivation": true
+          }
+        }
+      ],
+      "confirmedMechanismIds": [
+        "society",
+        "priority",
+        "deckChoice"
+      ],
+      "rulesEvidenceIds": [
+        "guide-societies",
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "bq-targets",
+        "bq-teams",
+        "bq-construct"
+      ],
+      "implementationDesignStatus": "needsRuling",
+      "openQuestionIds": [
+        "conditionalActivation"
+      ],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "locatorDiscrepancies": [],
+      "acceptanceCases": [
+        {
+          "id": "MSJC04-01",
+          "scenario": "构筑时本色只有24张，额外秘社也是本色",
+          "expected": "不以秘社补到25；秘社不计入玩家牌组。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC04-02",
+          "scenario": "支付3发动抓牌行动",
+          "expected": "同时横置秘社；先手为效果条件，缺先手的发动规则仍待统一裁定。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC04-03",
+          "scenario": "支付4检索相应派系独有牌",
+          "expected": "按金色名称独有，公开展示、进手、再洗牌；入手不是抓牌。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC04-04",
+          "scenario": "检索能力发动后被终止",
+          "expected": "每局发动次数仍已消耗；不能再发动。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC04-05",
+          "scenario": "同一回合另一行动试图再次横置来源",
+          "expected": "秘社已横置不能重复支付，后续重置步骤应重置秘社。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "MSJC05": {
+      "cardId": "MSJC05",
+      "batchId": "B04",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/MSJC05 国家机构.jpg",
+        "imageSha256": "d71e7c3df37a7c857cfb74c9988261ad722c5f3012ca49c75151fd407dab59f3",
+        "evidenceId": "card-MSJC05",
+        "scope": "逐张查看原图及放大文字区域，完成锁定观察版本的全部游戏字段；不转写背景故事，不声称其他印次或游戏实现验收。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "Society 05/17",
+        "seriesSymbolObserved": "wineGlass",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA、实读印刷号锁定观察版本；R字样保留，不推断其日期或别版等价。"
+      },
+      "fields": {
+        "name": "国家机构",
+        "subtitle": "政府权力",
+        "nameInk": "gold",
+        "colorKey": "灰",
+        "basicType": "秘社",
+        "subtypes": [
+          "机构"
+        ],
+        "printedCollectorCode": "Society 05/17",
+        "seriesSymbol": "wineGlass",
+        "printedCost": null,
+        "loyalty": [],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": 6,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "【持续】构筑时你的牌组中需包含25张或更多【灰】派系的牌。",
+          "【行动】3，【横置】：若你具有【先手标志】，则抓一张牌。",
+          "【行动】4，【横置】：从你的牌库中寻找一张【灰】独有牌，展示该牌后置于你的手中，然后将你的牌库洗牌。该能力每局游戏只能发动一次。"
+        ]
+      },
+      "abilities": [
+        {
+          "id": "construction",
+          "kind": "constructionStatic",
+          "printedText": "【持续】构筑时你的牌组中需包含25张或更多【灰】派系的牌。",
+          "restriction": {
+            "minimumCardsOfColor": "灰",
+            "count": 25,
+            "countsExtraSocietyCard": false
+          }
+        },
+        {
+          "id": "drawWithInitiative",
+          "kind": "standardAction",
+          "printedText": "【行动】3，【横置】：若你具有【先手标志】，则抓一张牌。",
+          "costs": {
+            "currency": 3,
+            "exhaustSource": true
+          },
+          "condition": "controllerHasInitiative",
+          "effect": {
+            "kind": "draw",
+            "count": 1
+          }
+        },
+        {
+          "id": "onceSearch",
+          "kind": "standardAction",
+          "printedText": "【行动】4，【横置】：从你的牌库中寻找一张【灰】独有牌，展示该牌后置于你的手中，然后将你的牌库洗牌。该能力每局游戏只能发动一次。",
+          "costs": {
+            "currency": 4,
+            "exhaustSource": true
+          },
+          "search": {
+            "owner": "controller",
+            "color": "灰",
+            "goldNameUnique": true,
+            "count": 1
+          },
+          "order": [
+            "search",
+            "reveal",
+            "toHand",
+            "shuffle"
+          ],
+          "countsAsDraw": false,
+          "limit": {
+            "perGameActivations": 1,
+            "consumedOnActivation": true
+          }
+        }
+      ],
+      "confirmedMechanismIds": [
+        "society",
+        "priority",
+        "deckChoice"
+      ],
+      "rulesEvidenceIds": [
+        "guide-societies",
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "bq-targets",
+        "bq-teams",
+        "bq-construct"
+      ],
+      "implementationDesignStatus": "needsRuling",
+      "openQuestionIds": [
+        "conditionalActivation"
+      ],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "locatorDiscrepancies": [],
+      "acceptanceCases": [
+        {
+          "id": "MSJC05-01",
+          "scenario": "构筑时本色只有24张，额外秘社也是本色",
+          "expected": "不以秘社补到25；秘社不计入玩家牌组。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC05-02",
+          "scenario": "支付3发动抓牌行动",
+          "expected": "同时横置秘社；先手为效果条件，缺先手的发动规则仍待统一裁定。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC05-03",
+          "scenario": "支付4检索相应派系独有牌",
+          "expected": "按金色名称独有，公开展示、进手、再洗牌；入手不是抓牌。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC05-04",
+          "scenario": "检索能力发动后被终止",
+          "expected": "每局发动次数仍已消耗；不能再发动。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC05-05",
+          "scenario": "同一回合另一行动试图再次横置来源",
+          "expected": "秘社已横置不能重复支付，后续重置步骤应重置秘社。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "MSJC06": {
+      "cardId": "MSJC06",
+      "batchId": "B04",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/MSJC06 圣贤.jpg",
+        "imageSha256": "38b76c70bda5759a9963a05c398b845f5c7e22c7f12fe2507b9a1ac123cda2a7",
+        "evidenceId": "card-MSJC06",
+        "scope": "逐张查看原图及放大文字区域，完成锁定观察版本的全部游戏字段；不转写背景故事，不声称其他印次或游戏实现验收。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "Society 06/17",
+        "seriesSymbolObserved": "wineGlass",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA、实读印刷号锁定观察版本；R字样保留，不推断其日期或别版等价。"
+      },
+      "fields": {
+        "name": "圣贤",
+        "subtitle": "辉煌之道",
+        "nameInk": "gold",
+        "colorKey": "白",
+        "basicType": "秘社",
+        "subtypes": [
+          "群体"
+        ],
+        "printedCollectorCode": "Society 06/17",
+        "seriesSymbol": "wineGlass",
+        "printedCost": null,
+        "loyalty": [],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": 6,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "【持续】构筑时你的牌组中需包含25张或更多【白】派系的牌。",
+          "【行动】3，【横置】：若你具有【先手标志】，则抓一张牌。",
+          "【行动】4，【横置】：从你的牌库中寻找一张【白】独有牌，展示该牌后置于你的手中，然后将你的牌库洗牌。该能力每局游戏只能发动一次。"
+        ]
+      },
+      "abilities": [
+        {
+          "id": "construction",
+          "kind": "constructionStatic",
+          "printedText": "【持续】构筑时你的牌组中需包含25张或更多【白】派系的牌。",
+          "restriction": {
+            "minimumCardsOfColor": "白",
+            "count": 25,
+            "countsExtraSocietyCard": false
+          }
+        },
+        {
+          "id": "drawWithInitiative",
+          "kind": "standardAction",
+          "printedText": "【行动】3，【横置】：若你具有【先手标志】，则抓一张牌。",
+          "costs": {
+            "currency": 3,
+            "exhaustSource": true
+          },
+          "condition": "controllerHasInitiative",
+          "effect": {
+            "kind": "draw",
+            "count": 1
+          }
+        },
+        {
+          "id": "onceSearch",
+          "kind": "standardAction",
+          "printedText": "【行动】4，【横置】：从你的牌库中寻找一张【白】独有牌，展示该牌后置于你的手中，然后将你的牌库洗牌。该能力每局游戏只能发动一次。",
+          "costs": {
+            "currency": 4,
+            "exhaustSource": true
+          },
+          "search": {
+            "owner": "controller",
+            "color": "白",
+            "goldNameUnique": true,
+            "count": 1
+          },
+          "order": [
+            "search",
+            "reveal",
+            "toHand",
+            "shuffle"
+          ],
+          "countsAsDraw": false,
+          "limit": {
+            "perGameActivations": 1,
+            "consumedOnActivation": true
+          }
+        }
+      ],
+      "confirmedMechanismIds": [
+        "society",
+        "priority",
+        "deckChoice"
+      ],
+      "rulesEvidenceIds": [
+        "guide-societies",
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "bq-targets",
+        "bq-teams",
+        "bq-construct"
+      ],
+      "implementationDesignStatus": "needsRuling",
+      "openQuestionIds": [
+        "conditionalActivation"
+      ],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "locatorDiscrepancies": [],
+      "acceptanceCases": [
+        {
+          "id": "MSJC06-01",
+          "scenario": "构筑时本色只有24张，额外秘社也是本色",
+          "expected": "不以秘社补到25；秘社不计入玩家牌组。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC06-02",
+          "scenario": "支付3发动抓牌行动",
+          "expected": "同时横置秘社；先手为效果条件，缺先手的发动规则仍待统一裁定。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC06-03",
+          "scenario": "支付4检索相应派系独有牌",
+          "expected": "按金色名称独有，公开展示、进手、再洗牌；入手不是抓牌。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC06-04",
+          "scenario": "检索能力发动后被终止",
+          "expected": "每局发动次数仍已消耗；不能再发动。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC06-05",
+          "scenario": "同一回合另一行动试图再次横置来源",
+          "expected": "秘社已横置不能重复支付，后续重置步骤应重置秘社。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "MSJC07": {
+      "cardId": "MSJC07",
+      "batchId": "B04",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/MSJC07 方碑序列.jpg",
+        "imageSha256": "e9cd1af04560733f28e3bcfee4c687f6a2e5218b93862b5a74d4f35f6a8f3ed7",
+        "evidenceId": "card-MSJC07",
+        "scope": "逐张查看原图及放大文字区域，完成锁定观察版本的全部游戏字段；不转写背景故事，不声称其他印次或游戏实现验收。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "Society 07/17",
+        "seriesSymbolObserved": "wineGlass",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA、实读印刷号锁定观察版本；R字样保留，不推断其日期或别版等价。"
+      },
+      "fields": {
+        "name": "方碑序列",
+        "subtitle": "恐怖同盟",
+        "nameInk": "gold",
+        "colorKey": "黑",
+        "basicType": "秘社",
+        "subtypes": [
+          "法师结社"
+        ],
+        "printedCollectorCode": "Society 07/17",
+        "seriesSymbol": "wineGlass",
+        "printedCost": null,
+        "loyalty": [],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": 6,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "【持续】构筑时你的牌组中需包含25张或更多【黑】派系的牌。",
+          "【行动】3，【横置】：若你具有【先手标志】，则抓一张牌。",
+          "【行动】4，【横置】：从你的牌库中寻找一张【黑】独有牌，展示该牌后置于你的手中，然后将你的牌库洗牌。该能力每局游戏只能发动一次。"
+        ]
+      },
+      "abilities": [
+        {
+          "id": "construction",
+          "kind": "constructionStatic",
+          "printedText": "【持续】构筑时你的牌组中需包含25张或更多【黑】派系的牌。",
+          "restriction": {
+            "minimumCardsOfColor": "黑",
+            "count": 25,
+            "countsExtraSocietyCard": false
+          }
+        },
+        {
+          "id": "drawWithInitiative",
+          "kind": "standardAction",
+          "printedText": "【行动】3，【横置】：若你具有【先手标志】，则抓一张牌。",
+          "costs": {
+            "currency": 3,
+            "exhaustSource": true
+          },
+          "condition": "controllerHasInitiative",
+          "effect": {
+            "kind": "draw",
+            "count": 1
+          }
+        },
+        {
+          "id": "onceSearch",
+          "kind": "standardAction",
+          "printedText": "【行动】4，【横置】：从你的牌库中寻找一张【黑】独有牌，展示该牌后置于你的手中，然后将你的牌库洗牌。该能力每局游戏只能发动一次。",
+          "costs": {
+            "currency": 4,
+            "exhaustSource": true
+          },
+          "search": {
+            "owner": "controller",
+            "color": "黑",
+            "goldNameUnique": true,
+            "count": 1
+          },
+          "order": [
+            "search",
+            "reveal",
+            "toHand",
+            "shuffle"
+          ],
+          "countsAsDraw": false,
+          "limit": {
+            "perGameActivations": 1,
+            "consumedOnActivation": true
+          }
+        }
+      ],
+      "confirmedMechanismIds": [
+        "society",
+        "priority",
+        "deckChoice"
+      ],
+      "rulesEvidenceIds": [
+        "guide-societies",
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "bq-targets",
+        "bq-teams",
+        "bq-construct"
+      ],
+      "implementationDesignStatus": "needsRuling",
+      "openQuestionIds": [
+        "conditionalActivation"
+      ],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "locatorDiscrepancies": [],
+      "acceptanceCases": [
+        {
+          "id": "MSJC07-01",
+          "scenario": "构筑时本色只有24张，额外秘社也是本色",
+          "expected": "不以秘社补到25；秘社不计入玩家牌组。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC07-02",
+          "scenario": "支付3发动抓牌行动",
+          "expected": "同时横置秘社；先手为效果条件，缺先手的发动规则仍待统一裁定。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC07-03",
+          "scenario": "支付4检索相应派系独有牌",
+          "expected": "按金色名称独有，公开展示、进手、再洗牌；入手不是抓牌。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC07-04",
+          "scenario": "检索能力发动后被终止",
+          "expected": "每局发动次数仍已消耗；不能再发动。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC07-05",
+          "scenario": "同一回合另一行动试图再次横置来源",
+          "expected": "秘社已横置不能重复支付，后续重置步骤应重置秘社。",
+          "status": "notRun"
+        }
+      ]
+    },
     "MSJC08": {
       "cardId": "MSJC08",
       "batchId": "B01",
@@ -6282,6 +7316,1427 @@
           "id": "MSJC09-05",
           "scenario": "牌库获得手牌的事件分类",
           "expected": "第一能力的抓1确实是抓牌。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "MSJC10": {
+      "cardId": "MSJC10",
+      "batchId": "B04",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/MSJC10 貘组.jpg",
+        "imageSha256": "76e0b6845b3f64466ff5780742126d354c42e55d02c5c8376967db19f4f63776",
+        "evidenceId": "card-MSJC10",
+        "scope": "逐张查看原图及放大文字区域，完成锁定观察版本的全部游戏字段；不转写背景故事，不声称其他印次或游戏实现验收。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "Society 10/17",
+        "seriesSymbolObserved": "wineGlass",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA、实读印刷号锁定观察版本；R字样保留，不推断其日期或别版等价。"
+      },
+      "fields": {
+        "name": "貘组",
+        "subtitle": "众梦的牧者",
+        "nameInk": "gold",
+        "colorKey": "黄",
+        "basicType": "秘社",
+        "subtypes": [
+          "法师结社",
+          "分支"
+        ],
+        "printedCollectorCode": "Society 10/17",
+        "seriesSymbol": "wineGlass",
+        "printedCost": null,
+        "loyalty": [],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": 6,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "【持续】构筑时你的牌组中只能包含【黄】和【中立】派系的牌，以及其他派系【星辰】领域的牌。",
+          "【行动】2，【横置】：从你的手中选择一张【星辰】领域的牌，将其封印在貘组上，然后抓一张牌。",
+          "【行动】2，【横置】，将一张封印在貘组上的牌置于你的牌库底：目标角色获得或失去灵体能力直到回合结束。",
+          "【行动】4，【横置】，将两张封印在貘组上的牌置于你的牌库底：选择目标地区，令一张封印在貘组上的角色牌正面进场并置于该地区，且由你操控。"
+        ]
+      },
+      "abilities": [
+        {
+          "id": "construction",
+          "kind": "constructionStatic",
+          "printedText": "【持续】构筑时你的牌组中只能包含【黄】和【中立】派系的牌，以及其他派系【星辰】领域的牌。",
+          "restriction": {
+            "allowedAny": [
+              {
+                "color": "黄"
+              },
+              {
+                "color": "中立"
+              },
+              {
+                "domain": "stars"
+              }
+            ]
+          }
+        },
+        {
+          "id": "sealHandThenDraw",
+          "kind": "standardAction",
+          "printedText": "【行动】2，【横置】：从你的手中选择一张【星辰】领域的牌，将其封印在貘组上，然后抓一张牌。",
+          "costs": {
+            "currency": 2,
+            "exhaustSource": true
+          },
+          "chooseInEffect": {
+            "zone": "controllersHand",
+            "domain": "stars"
+          },
+          "order": [
+            "sealChosenHandCardOnThisSociety",
+            "drawOne"
+          ],
+          "handCardIsEffectNotCost": true
+        },
+        {
+          "id": "changeSpirit",
+          "kind": "standardAction",
+          "printedText": "【行动】2，【横置】，将一张封印在貘组上的牌置于你的牌库底：目标角色获得或失去灵体能力直到回合结束。",
+          "costs": {
+            "currency": 2,
+            "exhaustSource": true,
+            "thisSocietySealedCardsToOwnersDeckBottom": 1
+          },
+          "target": {
+            "category": "faceUpCharacter",
+            "controller": "any"
+          },
+          "effect": {
+            "choose": "grantOrRemoveSpirit",
+            "duration": "untilEndOfTurn"
+          },
+          "sealedCardBottomIsCost": true
+        },
+        {
+          "id": "sealedCharacterIntoPlay",
+          "kind": "standardAction",
+          "printedText": "【行动】4，【横置】，将两张封印在貘组上的牌置于你的牌库底：选择目标地区，令一张封印在貘组上的角色牌正面进场并置于该地区，且由你操控。",
+          "costs": {
+            "currency": 4,
+            "exhaustSource": true,
+            "thisSocietySealedCardsToOwnersDeckBottom": 2
+          },
+          "target": {
+            "category": "region"
+          },
+          "chooseInEffect": {
+            "zone": "sealedOnThisSociety",
+            "printedCategory": "characterCard"
+          },
+          "effect": {
+            "faceUpIntoTargetRegion": true,
+            "controller": "abilityController",
+            "payChosenCardCostOrLoyalty": false
+          },
+          "sealedCardBottomIsCost": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "society",
+        "seal",
+        "spirit",
+        "deckChoice",
+        "priority",
+        "control"
+      ],
+      "rulesEvidenceIds": [
+        "guide-societies",
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "bq-targets",
+        "bq-teams",
+        "bq-construct"
+      ],
+      "implementationDesignStatus": "needsRuling",
+      "openQuestionIds": [
+        "sealedChoicePrintedFields",
+        "partialEffectWithoutChoice"
+      ],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "locatorDiscrepancies": [],
+      "acceptanceCases": [
+        {
+          "id": "MSJC10-01",
+          "scenario": "构筑放入其他色星辰事务",
+          "expected": "允许星辰领域牌，不限定星辰角色。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC10-02",
+          "scenario": "第一行动没有星辰手牌可选",
+          "expected": "选择封印位于效果段；不能从卡面擅加星辰手牌为额外费用/发动门槛，仍需统一不可完成部分的处理。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC10-03",
+          "scenario": "第一行动完成封印后抓牌",
+          "expected": "先封手牌再抓，不能先抓新牌当原选择。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC10-04",
+          "scenario": "第二行动支付一张已有封印到底",
+          "expected": "在费用中处理，不到效果结算后才减封印。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC10-05",
+          "scenario": "第三行动付两张封印并选择剩余封印角色",
+          "expected": "付款牌已经离开封印集合，不能再作进场选择；角色正面由发动者操控且不付该角色印刷费。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC10-06",
+          "scenario": "改变灵体后回合结束",
+          "expected": "仅此来源的临时赋予/移除结束，不能永久改印刷能力。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "MSJC11": {
+      "cardId": "MSJC11",
+      "batchId": "B04",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/MSJC11 S．P．T执行部.jpg",
+        "imageSha256": "df9964832e48bfef57bcaa0d5f4db67ce2ab9fe0e371ffecc2736c1728b1b853",
+        "evidenceId": "card-MSJC11",
+        "scope": "逐张查看原图及放大文字区域，完成锁定观察版本的全部游戏字段；不转写背景故事，不声称其他印次或游戏实现验收。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "Society 11/17",
+        "seriesSymbolObserved": "wineGlass",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA、实读印刷号锁定观察版本；R字样保留，不推断其日期或别版等价。"
+      },
+      "fields": {
+        "name": "S.P.T.执行部",
+        "subtitle": "直属特遣队",
+        "nameInk": "gold",
+        "colorKey": "绿",
+        "basicType": "秘社",
+        "subtypes": [
+          "企业",
+          "部门"
+        ],
+        "printedCollectorCode": "Society 11/17",
+        "seriesSymbol": "wineGlass",
+        "printedCost": null,
+        "loyalty": [],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": 6,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "【持续】构筑时你的牌组中只能包含【绿】和【中立】派系的牌，以及其他派系带有【永久战斗】能力图标的人类角色牌。",
+          "【行动】3，【横置】：目标角色获得杀伤1直到回合结束。",
+          "【行动】3，【横置】：选择目标地区，所有位于该地区，且带有【永久战斗】能力图标的本方角色获得撤回直到回合结束。"
+        ]
+      },
+      "abilities": [
+        {
+          "id": "construction",
+          "kind": "constructionStatic",
+          "printedText": "【持续】构筑时你的牌组中只能包含【绿】和【中立】派系的牌，以及其他派系带有【永久战斗】能力图标的人类角色牌。",
+          "restriction": {
+            "allowedAny": [
+              {
+                "color": "绿"
+              },
+              {
+                "color": "中立"
+              },
+              {
+                "category": "characterCard",
+                "subtype": "人类",
+                "permanentCombatMinimum": 1
+              }
+            ]
+          }
+        },
+        {
+          "id": "grantKill",
+          "kind": "standardAction",
+          "printedText": "【行动】3，【横置】：目标角色获得杀伤1直到回合结束。",
+          "costs": {
+            "currency": 3,
+            "exhaustSource": true
+          },
+          "target": {
+            "category": "faceUpCharacter",
+            "controller": "any"
+          },
+          "grants": {
+            "kill": 1
+          },
+          "duration": "untilEndOfTurn",
+          "killAddsToExisting": true
+        },
+        {
+          "id": "grantRetreat",
+          "kind": "standardAction",
+          "printedText": "【行动】3，【横置】：选择目标地区，所有位于该地区，且带有【永久战斗】能力图标的本方角色获得撤回直到回合结束。",
+          "costs": {
+            "currency": 3,
+            "exhaustSource": true
+          },
+          "target": {
+            "category": "region"
+          },
+          "scope": {
+            "category": "faceUpCharacter",
+            "controller": "abilityController",
+            "permanentCombatMinimum": 1
+          },
+          "grants": {
+            "keywords": [
+              "撤回"
+            ]
+          },
+          "duration": "untilEndOfTurn"
+        }
+      ],
+      "confirmedMechanismIds": [
+        "society",
+        "combatTraits",
+        "continuous",
+        "priority"
+      ],
+      "rulesEvidenceIds": [
+        "guide-societies",
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "bq-targets",
+        "bq-teams",
+        "bq-construct"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "locatorDiscrepancies": [
+        {
+          "field": "nameTypography",
+          "locatorValue": "S．P．T执行部",
+          "originalValue": "S.P.T.执行部",
+          "basis": "原图标题三个字母后各有圆点；标点差异不是额外规则版本。"
+        }
+      ],
+      "acceptanceCases": [
+        {
+          "id": "MSJC11-01",
+          "scenario": "构筑其他色人类且只有临时战斗",
+          "expected": "不能凭白底临时战斗满足永久战斗限制。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC11-02",
+          "scenario": "已有杀伤1角色再获杀伤1",
+          "expected": "杀伤可累加为2，直到此授予回合结束。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC11-03",
+          "scenario": "撤回地区中有队友角色",
+          "expected": "原图本方，不自动授予队友；且角色需有永久战斗。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC11-04",
+          "scenario": "两项行动各需3与横置",
+          "expected": "不能漏秘社横置或用同一次横置支付两个行动。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "MSJC12": {
+      "cardId": "MSJC12",
+      "batchId": "B04",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/MSJC12 爱弗罗德家族.jpg",
+        "imageSha256": "31d71c702fb3bc44e421633cb241cacd4dd3cb734e2fa1917dadc25955fba51e",
+        "evidenceId": "card-MSJC12",
+        "scope": "逐张查看原图及放大文字区域，完成锁定观察版本的全部游戏字段；不转写背景故事，不声称其他印次或游戏实现验收。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "Society 12/17",
+        "seriesSymbolObserved": "wineGlass",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA、实读印刷号锁定观察版本；R字样保留，不推断其日期或别版等价。"
+      },
+      "fields": {
+        "name": "爱弗罗德家族",
+        "subtitle": "黑色家族",
+        "nameInk": "gold",
+        "colorKey": "蓝",
+        "basicType": "秘社",
+        "subtypes": [
+          "家族",
+          "吸血鬼"
+        ],
+        "printedCollectorCode": "Society 12/17",
+        "seriesSymbol": "wineGlass",
+        "printedCost": null,
+        "loyalty": [],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": 6,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "【持续】构筑时你的牌组中只能包含【蓝】和【中立】派系的牌，以及其他派系吸血鬼或奴仆角色牌。",
+          "【持续】所有印刷费用小于或等于2的本方人类角色额外具有奴仆类别。",
+          "【行动】1，【横置】，横置三个本方奴仆角色：抓一张牌。",
+          "【行动】2，【横置】，横置三个本方吸血鬼角色：目标敌方玩家弃一张牌。"
+        ]
+      },
+      "abilities": [
+        {
+          "id": "construction",
+          "kind": "constructionStatic",
+          "printedText": "【持续】构筑时你的牌组中只能包含【蓝】和【中立】派系的牌，以及其他派系吸血鬼或奴仆角色牌。",
+          "restriction": {
+            "allowedAny": [
+              {
+                "color": "蓝"
+              },
+              {
+                "color": "中立"
+              },
+              {
+                "category": "characterCard",
+                "subtypeAny": [
+                  "吸血鬼",
+                  "奴仆"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "grantSlave",
+          "kind": "conditionalStatic",
+          "printedText": "【持续】所有印刷费用小于或等于2的本方人类角色额外具有奴仆类别。",
+          "scope": {
+            "category": "faceUpCharacter",
+            "controller": "sourceController",
+            "subtype": "人类",
+            "printedCostMaximum": 2
+          },
+          "addSubtype": "奴仆",
+          "otherSubtypesPreserved": true
+        },
+        {
+          "id": "slaveDraw",
+          "kind": "standardAction",
+          "printedText": "【行动】1，【横置】，横置三个本方奴仆角色：抓一张牌。",
+          "costs": {
+            "currency": 1,
+            "exhaustSource": true,
+            "exhaustDistinctControlledCharacters": {
+              "subtype": "奴仆",
+              "count": 3
+            }
+          },
+          "effect": {
+            "drawOne": true
+          },
+          "threeCharacterExhaustIsCost": true
+        },
+        {
+          "id": "vampireDiscard",
+          "kind": "standardAction",
+          "printedText": "【行动】2，【横置】，横置三个本方吸血鬼角色：目标敌方玩家弃一张牌。",
+          "costs": {
+            "currency": 2,
+            "exhaustSource": true,
+            "exhaustDistinctControlledCharacters": {
+              "subtype": "吸血鬼",
+              "count": 3
+            }
+          },
+          "target": {
+            "category": "enemyPlayer"
+          },
+          "effect": {
+            "discardCount": 1,
+            "choiceBy": "targetPlayer"
+          },
+          "threeCharacterExhaustIsCost": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "society",
+        "continuous",
+        "deckChoice",
+        "exhaust",
+        "priority"
+      ],
+      "rulesEvidenceIds": [
+        "guide-societies",
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "bq-targets",
+        "bq-teams",
+        "bq-construct"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "locatorDiscrepancies": [],
+      "acceptanceCases": [
+        {
+          "id": "MSJC12-01",
+          "scenario": "本方印刷费用2的人类被持续降费/加费",
+          "expected": "奴仆条件仍读印刷费，不读当前付款数。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC12-02",
+          "scenario": "本方有三个未横置奴仆但分布不同地区",
+          "expected": "卡面没有地区限制，三名不同角色作费用；各必须可横置。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC12-03",
+          "scenario": "只有两名可横置奴仆",
+          "expected": "不能用同一名横置两次补足三个，也不在付款后才让玩家补选。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC12-04",
+          "scenario": "第二行动指定队友/自身",
+          "expected": "目标敌方玩家限制不满足。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC12-05",
+          "scenario": "三角色费用已付后行动终止",
+          "expected": "费用不返还；不能把三横置变成取消效果的一部分。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "MSJC13": {
+      "cardId": "MSJC13",
+      "batchId": "B04",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/MSJC13 计时者.jpg",
+        "imageSha256": "4bbdcc0a008cfc5984f1b812ad0ba3b107535cf1e2ff20e5bb765899edfb91fb",
+        "evidenceId": "card-MSJC13",
+        "scope": "逐张查看原图及放大文字区域，完成锁定观察版本的全部游戏字段；不转写背景故事，不声称其他印次或游戏实现验收。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "Society 13/17",
+        "seriesSymbolObserved": "wineGlass",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA、实读印刷号锁定观察版本；R字样保留，不推断其日期或别版等价。"
+      },
+      "fields": {
+        "name": "计时者",
+        "subtitle": "终末的阴谋家",
+        "nameInk": "gold",
+        "colorKey": "红",
+        "basicType": "秘社",
+        "subtypes": [
+          "秘密教派",
+          "分支"
+        ],
+        "printedCollectorCode": "Society 13/17",
+        "seriesSymbol": "wineGlass",
+        "printedCost": null,
+        "loyalty": [],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": 6,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "【持续】构筑时你的牌组中，非【红】且非【中立】派系的牌不能超过12张。",
+          "【行动】2，【横置】：在目标角色或附属上放置一个时间标志。",
+          "【行动】3，【横置】：消灭所有其上有三个或更多时间标志的角色和附属，然后每有一个角色或附属因此法被消灭，就抓一张牌。"
+        ]
+      },
+      "abilities": [
+        {
+          "id": "construction",
+          "kind": "constructionStatic",
+          "printedText": "【持续】构筑时你的牌组中，非【红】且非【中立】派系的牌不能超过12张。",
+          "restriction": {
+            "uncappedColors": [
+              "红",
+              "中立"
+            ],
+            "maximumOtherColorCardsCombined": 12
+          }
+        },
+        {
+          "id": "placeTime",
+          "kind": "standardAction",
+          "printedText": "【行动】2，【横置】：在目标角色或附属上放置一个时间标志。",
+          "costs": {
+            "currency": 2,
+            "exhaustSource": true
+          },
+          "target": {
+            "categoryAny": [
+              "faceUpCharacter",
+              "attachment"
+            ],
+            "controller": "any"
+          },
+          "addTimeMarkers": 1
+        },
+        {
+          "id": "timeSweep",
+          "kind": "standardAction",
+          "printedText": "【行动】3，【横置】：消灭所有其上有三个或更多时间标志的角色和附属，然后每有一个角色或附属因此法被消灭，就抓一张牌。",
+          "costs": {
+            "currency": 3,
+            "exhaustSource": true
+          },
+          "scope": {
+            "categoryAny": [
+              "faceUpCharacter",
+              "attachment"
+            ],
+            "timeMarkerMinimum": 3,
+            "controller": "any"
+          },
+          "targeted": false,
+          "order": [
+            "destroyAllMatching",
+            "drawOnePerDirectlyDestroyedMatchingObject"
+          ],
+          "countCollateralAttachmentCleanupAsDirectDestruction": false
+        }
+      ],
+      "confirmedMechanismIds": [
+        "society",
+        "timeDestroy",
+        "attachment",
+        "deckChoice",
+        "priority"
+      ],
+      "rulesEvidenceIds": [
+        "guide-societies",
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "bq-targets",
+        "bq-teams",
+        "bq-construct"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "locatorDiscrepancies": [],
+      "acceptanceCases": [
+        {
+          "id": "MSJC13-01",
+          "scenario": "构筑黑6紫6，红/中立其他牌",
+          "expected": "非红且非中立合计12允许；13张拒绝，不给每个外色各12。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC13-02",
+          "scenario": "选敌方角色或附属放时间",
+          "expected": "卡面没有本方或地区限制；目标资格正常复核。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC13-03",
+          "scenario": "扫场时有两标志和三标志对象",
+          "expected": "仅三或以上角色/附属受直接消灭范围。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC13-04",
+          "scenario": "三标志载体带两标志附属",
+          "expected": "附属可能由载体离场清理，但不是因此扫场直接消灭对象，不凭此多抓1。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC13-05",
+          "scenario": "场上双方有合格对象",
+          "expected": "范围同时影响双方，不改成敌方指定移除。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "MSJC14": {
+      "cardId": "MSJC14",
+      "batchId": "B04",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/MSJC14 哨兵.jpg",
+        "imageSha256": "3d851c97d73d77de0a919d8a1140f3d2cfb6eb18e92a4438916249f83984ad2f",
+        "evidenceId": "card-MSJC14",
+        "scope": "逐张查看原图及放大文字区域，完成锁定观察版本的全部游戏字段；不转写背景故事，不声称其他印次或游戏实现验收。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "Society 14/17",
+        "seriesSymbolObserved": "wineGlass",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA、实读印刷号锁定观察版本；R字样保留，不推断其日期或别版等价。"
+      },
+      "fields": {
+        "name": "哨兵",
+        "subtitle": "国际超自然监控中心",
+        "nameInk": "gold",
+        "colorKey": "灰",
+        "basicType": "秘社",
+        "subtypes": [
+          "机构"
+        ],
+        "printedCollectorCode": "Society 14/17",
+        "seriesSymbol": "wineGlass",
+        "printedCost": null,
+        "loyalty": [],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": 6,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "【持续】构筑时你的牌组中只能包含【灰】和【中立】派系的牌，以及其他派系不具有魔法领域图标的牌。",
+          "【行动】3，【横置】：在目标敌方暗藏者上放置一个锁定标志。",
+          "【行动】3，【横置】：选择目标本方角色，将其移动到目标具有锁定标志的角色或暗藏者所在的地区。"
+        ]
+      },
+      "abilities": [
+        {
+          "id": "construction",
+          "kind": "constructionStatic",
+          "printedText": "【持续】构筑时你的牌组中只能包含【灰】和【中立】派系的牌，以及其他派系不具有魔法领域图标的牌。",
+          "restriction": {
+            "allowedAny": [
+              {
+                "color": "灰"
+              },
+              {
+                "color": "中立"
+              },
+              {
+                "domainCount": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "lockHidden",
+          "kind": "standardAction",
+          "printedText": "【行动】3，【横置】：在目标敌方暗藏者上放置一个锁定标志。",
+          "costs": {
+            "currency": 3,
+            "exhaustSource": true
+          },
+          "target": {
+            "category": "hiddenCharacter",
+            "enemy": true,
+            "printedRegionRestriction": null
+          },
+          "addLockMarkers": 1
+        },
+        {
+          "id": "moveToLockedObject",
+          "kind": "standardAction",
+          "printedText": "【行动】3，【横置】：选择目标本方角色，将其移动到目标具有锁定标志的角色或暗藏者所在的地区。",
+          "costs": {
+            "currency": 3,
+            "exhaustSource": true
+          },
+          "targets": [
+            {
+              "id": "movingCharacter",
+              "category": "faceUpCharacter",
+              "controller": "abilityController"
+            },
+            {
+              "id": "lockedAnchor",
+              "categoryAny": [
+                "faceUpCharacter",
+                "hiddenCharacter"
+              ],
+              "lockMarkerMinimum": 1,
+              "controller": "any"
+            }
+          ],
+          "destination": "currentRegionOfLockedAnchor",
+          "normalMovePreservesInstance": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "society",
+        "lock",
+        "mobility",
+        "priority"
+      ],
+      "rulesEvidenceIds": [
+        "guide-societies",
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "bq-targets",
+        "bq-teams",
+        "bq-construct"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "locatorDiscrepancies": [],
+      "acceptanceCases": [
+        {
+          "id": "MSJC14-01",
+          "scenario": "构筑其他色没有领域但有颜色忠诚的事务",
+          "expected": "没有魔法领域即可，不能误要求无忠诚。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC14-02",
+          "scenario": "指定敌方暗藏者放锁定",
+          "expected": "不是私密检视或现身，不能公开暗藏者正面。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC14-03",
+          "scenario": "移动本方角色与带锁定锚点选定",
+          "expected": "需要两个独立目标类别，不能压成一个targetID。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC14-04",
+          "scenario": "锚点在响应中离场/失去锁定",
+          "expected": "旧锚点资格复核，不能追踪同名新实例或任意地区。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC14-05",
+          "scenario": "锚点地区与移动角色当前地区相同",
+          "expected": "移动须不同地区，不能用原地移动伪造进入地区事件。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "MSJC15": {
+      "cardId": "MSJC15",
+      "batchId": "B04",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/MSJC15 隐士.jpg",
+        "imageSha256": "3884d0cf964a8a3c4853b1fa282b4333d1e2fbe132f0e6e0edc901fb32dd2e44",
+        "evidenceId": "card-MSJC15",
+        "scope": "逐张查看原图及放大文字区域，完成锁定观察版本的全部游戏字段；不转写背景故事，不声称其他印次或游戏实现验收。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "Society R15/17",
+        "seriesSymbolObserved": "wineGlass",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA、实读印刷号锁定观察版本；R字样保留，不推断其日期或别版等价。"
+      },
+      "fields": {
+        "name": "隐士",
+        "subtitle": "独善其身者",
+        "nameInk": "gold",
+        "colorKey": "白",
+        "basicType": "秘社",
+        "subtypes": [
+          "群体"
+        ],
+        "printedCollectorCode": "Society R15/17",
+        "seriesSymbol": "wineGlass",
+        "printedCost": null,
+        "loyalty": [],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": 6,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "【持续】构筑时你的牌组中，非【白】且非【中立】派系的牌不能超过12张。",
+          "【触发】在每局游戏开始时，在本方秘社上放置一个【隐秘】标志。",
+          "【行动】3，【横置】：选择目标地区，若你的手牌数量大于或等于四张，你可以从手中展示一张角色牌，然后将其以暗藏者状态置于该地区。"
+        ]
+      },
+      "abilities": [
+        {
+          "id": "construction",
+          "kind": "constructionStatic",
+          "printedText": "【持续】构筑时你的牌组中，非【白】且非【中立】派系的牌不能超过12张。",
+          "restriction": {
+            "uncappedColors": [
+              "白",
+              "中立"
+            ],
+            "maximumOtherColorCardsCombined": 12
+          }
+        },
+        {
+          "id": "initialSecret",
+          "kind": "optionalGameStartTrigger",
+          "printedText": "【触发】在每局游戏开始时，在本方秘社上放置一个【隐秘】标志。",
+          "effect": {
+            "thisSocietySecretMarkers": 1
+          }
+        },
+        {
+          "id": "handToHidden",
+          "kind": "standardAction",
+          "printedText": "【行动】3，【横置】：选择目标地区，若你的手牌数量大于或等于四张，你可以从手中展示一张角色牌，然后将其以暗藏者状态置于该地区。",
+          "costs": {
+            "currency": 3,
+            "exhaustSource": true
+          },
+          "target": {
+            "category": "region"
+          },
+          "condition": "controllersHandCountAtResolutionAtLeastFour",
+          "chooseInEffect": {
+            "zone": "controllersHand",
+            "category": "characterCard",
+            "optional": true
+          },
+          "order": [
+            "checkHandCount",
+            "publiclyRevealChosenCharacter",
+            "hiddenIntoTargetRegion"
+          ],
+          "countsAsSecretDeploy": false,
+          "chosenCharacterCostOrLoyaltyNotPaid": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "society",
+        "hidden",
+        "mysticContest",
+        "deckChoice",
+        "priority"
+      ],
+      "rulesEvidenceIds": [
+        "guide-societies",
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "bq-targets",
+        "bq-teams",
+        "bq-construct"
+      ],
+      "implementationDesignStatus": "needsRuling",
+      "openQuestionIds": [
+        "conditionalActivation"
+      ],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "locatorDiscrepancies": [],
+      "acceptanceCases": [
+        {
+          "id": "MSJC15-01",
+          "scenario": "开始游戏",
+          "expected": "起手6，秘社获隐秘1，不能把隐秘误成先手或名誉点。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC15-02",
+          "scenario": "结算时手牌4张，选其中角色",
+          "expected": "先检查4，再展示并移暗藏者；移后3不使已完成条件追溯失败。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC15-03",
+          "scenario": "响应中手牌由4降为3",
+          "expected": "效果段条件复核，不作无条件暗藏者进场。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC15-04",
+          "scenario": "公开角色由此效果置入暗藏者",
+          "expected": "不是秘密派遣标准动作，不付所选角色费，不以公开直接禁止。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC15-05",
+          "scenario": "原已秘密派遣一次",
+          "expected": "卡牌效果置入不额外使用或受限于派遣标准动作次数。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "MSJC16": {
+      "cardId": "MSJC16",
+      "batchId": "B04",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/MSJC16 颂亡者.jpg",
+        "imageSha256": "958c5d2b20829289ac4480ab2fb96a02ddb8b75cd7f3dfeec65718afc49a8899",
+        "evidenceId": "card-MSJC16",
+        "scope": "逐张查看原图及放大文字区域，完成锁定观察版本的全部游戏字段；不转写背景故事，不声称其他印次或游戏实现验收。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "Society 16/17",
+        "seriesSymbolObserved": "wineGlass",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA、实读印刷号锁定观察版本；R字样保留，不推断其日期或别版等价。"
+      },
+      "fields": {
+        "name": "颂亡者",
+        "subtitle": "葬仪主祭",
+        "nameInk": "gold",
+        "colorKey": "黑",
+        "basicType": "秘社",
+        "subtypes": [
+          "法师结社",
+          "分支"
+        ],
+        "printedCollectorCode": "Society 16/17",
+        "seriesSymbol": "wineGlass",
+        "printedCost": null,
+        "loyalty": [],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": 5,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "【持续】构筑时你的牌组中只能包含【黑】和【中立】派系的牌，以及其他派系【死亡】领域的牌。",
+          "【触发】在第一个回合的准备步骤开始时，将你牌库顶的三张牌置于你的墓地。",
+          "【行动】3，【横置】：将你牌库顶的一张牌置于你的墓地。",
+          "【行动】6，【横置】，将你墓地中的七张牌封印在颂亡者上：选择目标地区，令你墓地中的目标【死亡】领域的角色牌正面进场并置于该地区。"
+        ]
+      },
+      "abilities": [
+        {
+          "id": "construction",
+          "kind": "constructionStatic",
+          "printedText": "【持续】构筑时你的牌组中只能包含【黑】和【中立】派系的牌，以及其他派系【死亡】领域的牌。",
+          "restriction": {
+            "allowedAny": [
+              {
+                "color": "黑"
+              },
+              {
+                "color": "中立"
+              },
+              {
+                "domain": "death"
+              }
+            ]
+          }
+        },
+        {
+          "id": "initialMill",
+          "kind": "optionalFirstTurnPreparationStartTrigger",
+          "printedText": "【触发】在第一个回合的准备步骤开始时，将你牌库顶的三张牌置于你的墓地。",
+          "source": "controllerDeckTop",
+          "count": 3,
+          "destination": "controllersGraveyard",
+          "notGameStartTiming": true,
+          "countsAsDraw": false
+        },
+        {
+          "id": "millOne",
+          "kind": "standardAction",
+          "printedText": "【行动】3，【横置】：将你牌库顶的一张牌置于你的墓地。",
+          "costs": {
+            "currency": 3,
+            "exhaustSource": true
+          },
+          "source": "controllerDeckTop",
+          "count": 1,
+          "destination": "controllersGraveyard",
+          "countsAsDraw": false
+        },
+        {
+          "id": "deathCharacterIntoPlay",
+          "kind": "standardAction",
+          "printedText": "【行动】6，【横置】，将你墓地中的七张牌封印在颂亡者上：选择目标地区，令你墓地中的目标【死亡】领域的角色牌正面进场并置于该地区。",
+          "costs": {
+            "currency": 6,
+            "exhaustSource": true,
+            "sealOwnGraveyardCardsOnThisSociety": 7
+          },
+          "targets": [
+            {
+              "id": "destination",
+              "category": "region"
+            },
+            {
+              "id": "graveCharacter",
+              "zone": "controllersGraveyard",
+              "category": "characterCard",
+              "domain": "death"
+            }
+          ],
+          "effect": {
+            "faceUpIntoTargetRegion": true,
+            "payChosenCharacterCostOrLoyalty": false
+          },
+          "sevenSealsIsCostNotEffect": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "society",
+        "seal",
+        "graveRecovery",
+        "deckChoice",
+        "priority"
+      ],
+      "rulesEvidenceIds": [
+        "guide-societies",
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "bq-targets",
+        "bq-teams",
+        "bq-construct"
+      ],
+      "implementationDesignStatus": "needsRuling",
+      "openQuestionIds": [
+        "costAndTargetOverlap"
+      ],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "locatorDiscrepancies": [],
+      "acceptanceCases": [
+        {
+          "id": "MSJC16-01",
+          "scenario": "开始游戏与第一回合准备开始",
+          "expected": "起手5；置墓3在第一回合准备开始触发，不提前并入起始洗牌/抓牌。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC16-02",
+          "scenario": "每回合准备开始",
+          "expected": "没有重复首回合置墓3；不能每回合都置墓。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC16-03",
+          "scenario": "复活行动付款",
+          "expected": "先支付6、横置秘社、封印自己墓地7张；七张封印是费用。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC16-04",
+          "scenario": "墓地目标角色没有死亡领域",
+          "expected": "不能用死亡子类别替代领域徽记，也不能只因黑色就满足。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC16-05",
+          "scenario": "七封费用中使用同一张已选目标角色",
+          "expected": "该牌已离开墓地，不能从封印区域完成旧目标复活；是否可声明此重叠选择须按统一费用/目标规则核准。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC16-06",
+          "scenario": "墓地死亡角色正面进场",
+          "expected": "不是墓地正常打出权限，不能把JC085的正常付款规则硬套到本效果置入。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "MSJC17": {
+      "cardId": "MSJC17",
+      "batchId": "B04",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/MSJC17 梦魇族群.jpg",
+        "imageSha256": "5c468d00dd15d7066e8f5e922c35e9ac6bb41df647f3cf3a2f4ba87b92f754d6",
+        "evidenceId": "card-MSJC17",
+        "scope": "逐张查看原图及放大文字区域，完成锁定观察版本的全部游戏字段；不转写背景故事，不声称其他印次或游戏实现验收。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "Society 17/17",
+        "seriesSymbolObserved": "wineGlass",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA、实读印刷号锁定观察版本；R字样保留，不推断其日期或别版等价。"
+      },
+      "fields": {
+        "name": "梦魇族群",
+        "subtitle": "深渊异族",
+        "nameInk": "gold",
+        "colorKey": "紫",
+        "basicType": "秘社",
+        "subtypes": [
+          "群体",
+          "梦境"
+        ],
+        "printedCollectorCode": "Society 17/17",
+        "seriesSymbol": "wineGlass",
+        "printedCost": null,
+        "loyalty": [],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": 6,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "【持续】构筑时你的牌组中只能包含【紫】和【中立】派系的牌，以及其他派系的灵体角色或梦境牌。",
+          "【持续】你从牌库底抓牌，而非牌库顶。",
+          "【行动】3，【横置】：若你具有【先手标志】，则将你牌库顶的一张牌封印在目标角色上。",
+          "【行动】4，【横置】：将你墓地中的目标灵体角色牌置于你的牌库顶。"
+        ]
+      },
+      "abilities": [
+        {
+          "id": "construction",
+          "kind": "constructionStatic",
+          "printedText": "【持续】构筑时你的牌组中只能包含【紫】和【中立】派系的牌，以及其他派系的灵体角色或梦境牌。",
+          "restriction": {
+            "allowedAny": [
+              {
+                "color": "紫"
+              },
+              {
+                "color": "中立"
+              },
+              {
+                "category": "characterCard",
+                "keyword": "灵体"
+              },
+              {
+                "subtype": "梦境"
+              }
+            ]
+          }
+        },
+        {
+          "id": "drawFromBottom",
+          "kind": "drawDirectionStatic",
+          "printedText": "【持续】你从牌库底抓牌，而非牌库顶。",
+          "appliesTo": "controllerDrawEvents",
+          "drawOrigin": "deckBottom",
+          "doesNotReplaceSearchToHand": true,
+          "doesNotChangeExplicitTopReference": true
+        },
+        {
+          "id": "topSeal",
+          "kind": "standardAction",
+          "printedText": "【行动】3，【横置】：若你具有【先手标志】，则将你牌库顶的一张牌封印在目标角色上。",
+          "costs": {
+            "currency": 3,
+            "exhaustSource": true
+          },
+          "condition": "controllerHasInitiative",
+          "target": {
+            "category": "faceUpCharacter",
+            "controller": "any",
+            "printedRegionRestriction": null
+          },
+          "source": "controllerDeckTop",
+          "effect": "sealOnTarget"
+        },
+        {
+          "id": "spiritGraveToTop",
+          "kind": "standardAction",
+          "printedText": "【行动】4，【横置】：将你墓地中的目标灵体角色牌置于你的牌库顶。",
+          "costs": {
+            "currency": 4,
+            "exhaustSource": true
+          },
+          "target": {
+            "zone": "controllersGraveyard",
+            "category": "characterCard",
+            "keyword": "灵体"
+          },
+          "effect": "toControllersDeckTop",
+          "countsAsDraw": false
+        }
+      ],
+      "confirmedMechanismIds": [
+        "society",
+        "seal",
+        "spirit",
+        "graveRecovery",
+        "deckChoice",
+        "priority"
+      ],
+      "rulesEvidenceIds": [
+        "guide-societies",
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "bq-targets",
+        "bq-teams",
+        "bq-construct"
+      ],
+      "implementationDesignStatus": "needsRuling",
+      "openQuestionIds": [
+        "conditionalActivation"
+      ],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "locatorDiscrepancies": [],
+      "acceptanceCases": [
+        {
+          "id": "MSJC17-01",
+          "scenario": "构筑其他色梦境事务或灵体角色",
+          "expected": "梦境不是仅角色，灵体分支才限制角色。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC17-02",
+          "scenario": "任何普通抓牌指令",
+          "expected": "操控者从底抓；队友不自动从底抓。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC17-03",
+          "scenario": "顶牌封印行动或墓地灵体回顶",
+          "expected": "明确顶仍是顶，不被底抓改成底操作。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC17-04",
+          "scenario": "牌库检索牌置手",
+          "expected": "不是抓牌，底抓持续不重写其来源。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC17-05",
+          "scenario": "发动顶牌封印但结算时不具有先手",
+          "expected": "先手条件在效果段，变化检查/能否无先手发动仍按统一条件行动核准。",
           "status": "notRun"
         }
       ]
@@ -6654,5 +9109,5 @@
       ]
     }
   },
-  "acceptanceCaseScope": "除明确写四人流程的香港案例外，本批确定性场景以1V1为准；不声称白色声望/灵体在2V2中的全部解释已核清。"
+  "acceptanceCaseScope": "除明确写四人流程或2V2的案例外，确定性场景以1V1为准；不声称复杂模块的多人解释已经全部核清。"
 }
