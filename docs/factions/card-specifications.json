@@ -51,6 +51,63 @@
       ],
       "gameImplementationAccepted": false,
       "independentUiPlaytestStatus": "notRun"
+    },
+    {
+      "id": "B02",
+      "groups": [
+        "G01-foundation",
+        "G02-keywords",
+        "G04-lifecycle",
+        "G05-multizone"
+      ],
+      "cardIds": [
+        "JC028",
+        "JC032",
+        "JC036",
+        "JC056",
+        "JC057",
+        "JC058",
+        "JC061",
+        "JC062",
+        "JC063",
+        "JC073",
+        "JC074",
+        "JC075",
+        "JC085",
+        "JC086",
+        "JC092",
+        "JC099",
+        "JC100",
+        "JC108",
+        "LC19",
+        "LC20"
+      ],
+      "completedCardIds": [
+        "JC028",
+        "JC032",
+        "JC036",
+        "JC056",
+        "JC057",
+        "JC058",
+        "JC061",
+        "JC062",
+        "JC063",
+        "JC073",
+        "JC074",
+        "JC075",
+        "JC085",
+        "JC086",
+        "JC092",
+        "JC099",
+        "JC100",
+        "LC19",
+        "LC20"
+      ],
+      "blockedCardIds": [
+        "JC108"
+      ],
+      "gameImplementationAccepted": false,
+      "independentUiPlaytestStatus": "notRun"
     }
   ],
   "openQuestions": {
@@ -68,6 +125,45 @@
         "card-MSJC01",
         "card-MSJC09",
         "bq-stack"
+      ]
+    },
+    "faqRevealTerminology": {
+      "question": "旧FAQ称编号051刑警/056警车的“进场”或“翻面中不再可指定暗藏者”；现原图058/135刑警明确现身触发。原卡限制不被旧例扩展；需将旧FAQ目标状态解释与当前规则版本显式关联。",
+      "evidenceIds": [
+        "faq-3",
+        "card-JC058",
+        "card-JC063"
+      ]
+    },
+    "controlLayerOrdering": {
+      "question": "初拥原文和旧FAQ清楚规定单一控制源及潜伏清理，但多个控制变化的持续层/时戳顺序需统一规则；不可任意选最近写入值。",
+      "evidenceIds": [
+        "faq-3",
+        "card-JC036",
+        "manual-seal"
+      ]
+    },
+    "bloodConversionIdentity": {
+      "question": "JC028改为鲜血的名称、类型、无图标/防御及强化已确定；未写清的色/领域/费用等转换属性不能凭BQ040或XQ14同名版本补造。",
+      "evidenceIds": [
+        "card-JC028",
+        "manual-draw-identity"
+      ]
+    },
+    "sealedTransitionAbility": {
+      "question": "JC100封印后卡面通常空白但有明确被封印触发，需要封印事件的来源快照/印刷例外设计；不能让通用空白阻止卡面授权触发。",
+      "evidenceIds": [
+        "card-JC100",
+        "manual-seal",
+        "faq-4"
+      ]
+    },
+    "multiTargetInvalidation": {
+      "question": "JC062允许0至2目标且0目标可抓1；已有目标在响应中部分或全失效时，整体能力的失效/余部结算规则尚需原始综合说明，不能从0目标许可推出。",
+      "evidenceIds": [
+        "card-JC062",
+        "faq-3",
+        "bq-targets"
       ]
     }
   },
@@ -459,6 +555,434 @@
         }
       ]
     },
+    "JC028": {
+      "cardId": "JC028",
+      "batchId": "B02",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/JC028 鲜血奴仆.jpg",
+        "imageSha256": "a7b42c0aaf9e6a291ee06371d28c3863a43d3d5124dc8ac6e2ec7117bcb17eee",
+        "evidenceId": "card-JC028",
+        "scope": "锁定原图的完整游戏字段；不转写背景文字，不声称其他印次等价或最新出版版本。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "028/135",
+        "seriesSymbolObserved": "wineGlass",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "观察版本由同ID原图SHA与实际印刷编号锁定。FAQ旧编号只作独立解释证据，不据此改变新版卡面。"
+      },
+      "fields": {
+        "name": "鲜血奴仆",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "蓝",
+        "basicType": "角色",
+        "subtypes": [
+          "吸血鬼",
+          "奴仆"
+        ],
+        "printedCollectorCode": "028/135",
+        "seriesSymbol": "wineGlass",
+        "printedCost": 1,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "蓝",
+            "count": 1
+          }
+        ],
+        "domains": [
+          {
+            "id": "blood",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "【快速】行动　牺牲鲜血奴仆：将鲜血奴仆移回场上，成为一个名为鲜血的附属并结附于目标吸血鬼角色。鲜血不具有能力图标和防御力，且具有“受此结附的角色获得+1防御和额外的【永久战斗】”的能力。"
+        ]
+      },
+      "abilities": [
+        {
+          "id": "becomeBlood",
+          "kind": "fastAction",
+          "printedText": "牺牲鲜血奴仆：将鲜血奴仆移回场上，成为一个名为鲜血的附属并结附于目标吸血鬼角色。",
+          "costs": {
+            "sacrificeThisSource": true
+          },
+          "target": {
+            "category": "faceUpCharacter",
+            "subtype": "吸血鬼",
+            "controller": "any"
+          },
+          "effect": {
+            "kind": "returnSacrificedSourceAsNamedAttachment",
+            "name": "鲜血",
+            "baseIcons": null,
+            "defense": null,
+            "grantsCarrier": {
+              "defense": 1,
+              "permanentIcons": {
+                "investigation": 0,
+                "combat": 1,
+                "influence": 0
+              }
+            }
+          },
+          "notGeneratedToken": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "sacrifice",
+        "attachment",
+        "blood",
+        "continuous",
+        "priority",
+        "loyalty"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-removal",
+        "manual-seal",
+        "bq-targets",
+        "bq-keywords-2"
+      ],
+      "implementationDesignStatus": "needsRuling",
+      "openQuestionIds": [
+        "bloodConversionIdentity"
+      ],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "locatorDiscrepancies": [],
+      "acceptanceCases": [
+        {
+          "id": "JC028-01",
+          "scenario": "发动并选择合法吸血鬼角色",
+          "expected": "源牌先被牺牲作费用，后从墓地返回为鲜血附属，不能直接生成另一张血牌取代原牌。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC028-02",
+          "scenario": "回归为鲜血状态",
+          "expected": "不保留源角色的战斗图标或防御字段；载体获得+1防御及1永久战斗。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC028-03",
+          "scenario": "载体在响应中失效",
+          "expected": "费用不返还；不能把变形附属结附到非法目标。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC028-04",
+          "scenario": "比较BQ040或XQ14鲜血定义",
+          "expected": "不能自动复制另一版鲜血的费用/领域等；卡面没有说明的变形属性仍需确认。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "JC032": {
+      "cardId": "JC032",
+      "batchId": "B02",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/JC032 血族长老.jpg",
+        "imageSha256": "ebeb0a13c62cdf10569f4aa9f300998aff53a65788d756f055e9696f35489b4b",
+        "evidenceId": "card-JC032",
+        "scope": "锁定原图的完整游戏字段；不转写背景文字，不声称其他印次等价或最新出版版本。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "032/135",
+        "seriesSymbolObserved": "wineGlass",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "观察版本由同ID原图SHA与实际印刷编号锁定。FAQ旧编号只作独立解释证据，不据此改变新版卡面。"
+      },
+      "fields": {
+        "name": "血族长老",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "蓝",
+        "basicType": "角色",
+        "subtypes": [
+          "吸血鬼"
+        ],
+        "printedCollectorCode": "032/135",
+        "seriesSymbol": "wineGlass",
+        "printedCost": 5,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "蓝",
+            "count": 2
+          }
+        ],
+        "domains": [
+          {
+            "id": "death",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 1,
+          "combat": 1,
+          "influence": 2
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 3,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "【行动】2：自你牌库顶的六张牌中寻找一张吸血鬼角色牌，将该牌展示后以暗藏者状态置于本地区，然后将其余的牌洗回牌库。该能力每回合只能发动一次。"
+        ]
+      },
+      "abilities": [
+        {
+          "id": "topSixVampire",
+          "kind": "standardAction",
+          "printedText": "自你牌库顶的六张牌中寻找一张吸血鬼角色牌，将该牌展示后以暗藏者状态置于本地区，然后将其余的牌洗回牌库。该能力每回合只能发动一次。",
+          "costs": {
+            "currency": 2
+          },
+          "search": {
+            "source": "topSixOwnDeck",
+            "category": "characterCard",
+            "subtype": "吸血鬼"
+          },
+          "order": [
+            "privateInspectSix",
+            "chooseMatchingCard",
+            "publicReveal",
+            "hiddenIntoSourceRegion",
+            "shuffleRemainingBackIntoDeck"
+          ],
+          "limit": {
+            "perTurnActivations": 1
+          },
+          "countsAsSecretDeploy": false
+        }
+      ],
+      "confirmedMechanismIds": [
+        "deckChoice",
+        "hidden",
+        "priority",
+        "loyalty"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-removal",
+        "manual-seal",
+        "bq-targets",
+        "bq-keywords-2"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "locatorDiscrepancies": [],
+      "acceptanceCases": [
+        {
+          "id": "JC032-01",
+          "scenario": "牌库顶6张有合格吸血鬼角色",
+          "expected": "选中牌先展示，再暗藏者进本地区；其余洗回整个牌库。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC032-02",
+          "scenario": "检查顶6张后未选中牌",
+          "expected": "不能凭空创建暗藏者；私密检视不得公开余牌。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC032-03",
+          "scenario": "已发动一次但效果被终止",
+          "expected": "本回合不能再发动，按发动次数而非成功次数计。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC032-04",
+          "scenario": "本回合已正常秘密派遣",
+          "expected": "本效果的置入不是秘密派遣标准动作，不增加该动作次数或额外支付1。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "JC036": {
+      "cardId": "JC036",
+      "batchId": "B02",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/JC036 初拥.jpg",
+        "imageSha256": "017507e6a2a229f6541a4690b681ecd71fc09b35962b9673da70f5f035ddba83",
+        "evidenceId": "card-JC036",
+        "scope": "锁定原图的完整游戏字段；不转写背景文字，不声称其他印次等价或最新出版版本。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "036/135",
+        "seriesSymbolObserved": "wineGlass",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "观察版本由同ID原图SHA与实际印刷编号锁定。FAQ旧编号只作独立解释证据，不据此改变新版卡面。"
+      },
+      "fields": {
+        "name": "初拥",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "蓝",
+        "basicType": "附属",
+        "subtypes": [
+          "状态",
+          "吸血鬼"
+        ],
+        "printedCollectorCode": "036/135",
+        "seriesSymbol": "wineGlass",
+        "printedCost": 5,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "蓝",
+            "count": 2
+          }
+        ],
+        "domains": [
+          {
+            "id": "blood",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "结附于目标印刷类别为人类的角色",
+          "【持续】你获得受此结附角色的操控权，将该角色的人类类别改为吸血鬼类别。"
+        ]
+      },
+      "abilities": [
+        {
+          "id": "attach",
+          "kind": "attachmentRestriction",
+          "printedText": "结附于目标印刷类别为人类的角色",
+          "target": {
+            "category": "faceUpCharacter",
+            "printedSubtype": "人类",
+            "controller": "any"
+          }
+        },
+        {
+          "id": "controlAndType",
+          "kind": "attachedStatic",
+          "printedText": "你获得受此结附角色的操控权，将该角色的人类类别改为吸血鬼类别。",
+          "grantsControlTo": "attachmentController",
+          "replacesSubtype": {
+            "from": "人类",
+            "to": "吸血鬼"
+          },
+          "otherSubtypesPreserved": true,
+          "eligibilityUsesPrintedNotCurrentSubtype": true,
+          "singleControlSourceRemovalRestores": "owner",
+          "clarificationEvidenceId": "faq-3"
+        }
+      ],
+      "confirmedMechanismIds": [
+        "attachment",
+        "control",
+        "continuous",
+        "loyalty"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-removal",
+        "manual-seal",
+        "bq-targets",
+        "bq-keywords-2",
+        "faq-3"
+      ],
+      "implementationDesignStatus": "needsRuling",
+      "openQuestionIds": [
+        "controlLayerOrdering"
+      ],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "locatorDiscrepancies": [],
+      "acceptanceCases": [
+        {
+          "id": "JC036-01",
+          "scenario": "结附原印刷人类/特工的敌方角色",
+          "expected": "获得操控且现类别为吸血鬼/特工，原印刷类别仍记录人类/特工。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC036-02",
+          "scenario": "转换为吸血鬼后检验结附合法性",
+          "expected": "仍按印刷人类合法，不因当前人类类别被替换而自我消灭。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC036-03",
+          "scenario": "初拥被消灭，场上无其他操控变化来源",
+          "expected": "旧FAQ明确角色归还其拥有者操控。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC036-04",
+          "scenario": "载体潜伏",
+          "expected": "初拥被消灭，暗藏者操控权交还拥有者。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC036-05",
+          "scenario": "多个操控变化同时存在",
+          "expected": "先定义持续层/先后顺序；本规格不猜测冲突时最终操控者。",
+          "status": "notRun"
+        }
+      ]
+    },
     "JC049": {
       "cardId": "JC049",
       "batchId": "B01",
@@ -581,6 +1105,785 @@
           "id": "JC049-04",
           "scenario": "额外费用支付后事务被后续效果终止",
           "expected": "费用和牺牲不返还；不得把费用步骤重新执行。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "JC056": {
+      "cardId": "JC056",
+      "batchId": "B02",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/JC056 地区警员.jpg",
+        "imageSha256": "75503118eee2b80d23f59ea950884c152f33d28d552d0d051ed872f441810e6d",
+        "evidenceId": "card-JC056",
+        "scope": "锁定原图的完整游戏字段；不转写背景文字，不声称其他印次等价或最新出版版本。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "056/135",
+        "seriesSymbolObserved": "wineGlass",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "观察版本由同ID原图SHA与实际印刷编号锁定。FAQ旧编号只作独立解释证据，不据此改变新版卡面。"
+      },
+      "fields": {
+        "name": "地区警员",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "灰",
+        "basicType": "角色",
+        "subtypes": [
+          "人类",
+          "警察"
+        ],
+        "printedCollectorCode": "056/135",
+        "seriesSymbol": "wineGlass",
+        "printedCost": 2,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "灰",
+            "count": 1
+          }
+        ],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 1
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "公开"
+        ],
+        "printedRuleTextLines": [
+          "公开（该角色不能被秘密派遣为暗藏者）",
+          "【进场触发】横置所有本地区的暗藏者。"
+        ]
+      },
+      "abilities": [
+        {
+          "id": "public",
+          "kind": "staticKeyword",
+          "printedText": "公开（该角色不能被秘密派遣为暗藏者）"
+        },
+        {
+          "id": "exhaustAllHidden",
+          "kind": "optionalEnterTrigger",
+          "printedText": "横置所有本地区的暗藏者。",
+          "scope": "allHiddenInSourceRegion",
+          "targeted": false,
+          "triggersOnReveal": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "public",
+        "hidden",
+        "exhaust",
+        "priority",
+        "loyalty"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-removal",
+        "manual-seal",
+        "bq-targets",
+        "bq-keywords-2"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "locatorDiscrepancies": [],
+      "acceptanceCases": [
+        {
+          "id": "JC056-01",
+          "scenario": "角色进场或由暗藏者现身",
+          "expected": "均可触发进场能力；这是进场，非仅现身。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC056-02",
+          "scenario": "同地区双方均有暗藏者",
+          "expected": "范围影响所有暗藏者，不仅敌方；不弹逐个指定目标选择。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC056-03",
+          "scenario": "正常秘密派遣此牌",
+          "expected": "公开禁止；其他效果将其暗藏者进场不由此禁止。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC056-04",
+          "scenario": "场上范围效果执行",
+          "expected": "不应调用检视正面字段来判定暗藏者，更不能把范围效果当指定目标消耗护盾。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "JC057": {
+      "cardId": "JC057",
+      "batchId": "B02",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/JC057 监控员.jpg",
+        "imageSha256": "acb8e6d6c421a37862b81e5f194af50a974888e74e252b0a594b7123a6d01678",
+        "evidenceId": "card-JC057",
+        "scope": "锁定原图的完整游戏字段；不转写背景文字，不声称其他印次等价或最新出版版本。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "057/135",
+        "seriesSymbolObserved": "wineGlass",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "观察版本由同ID原图SHA与实际印刷编号锁定。FAQ旧编号只作独立解释证据，不据此改变新版卡面。"
+      },
+      "fields": {
+        "name": "监控员",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "灰",
+        "basicType": "角色",
+        "subtypes": [
+          "人类",
+          "工程师"
+        ],
+        "printedCollectorCode": "057/135",
+        "seriesSymbol": "wineGlass",
+        "printedCost": 2,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "灰",
+            "count": 1
+          }
+        ],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 1
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "【现身触发】检视目标玩家的手牌。",
+          "【持续】只要监控员未横置，你可以随时检视与其本地区的任一暗藏者。"
+        ]
+      },
+      "abilities": [
+        {
+          "id": "peekHand",
+          "kind": "optionalRevealTrigger",
+          "printedText": "检视目标玩家的手牌。",
+          "target": {
+            "category": "player",
+            "controller": "any"
+          },
+          "privateViewer": "abilityController",
+          "doesNotPubliclyReveal": true
+        },
+        {
+          "id": "peekHidden",
+          "kind": "continuousInspectionPermission",
+          "printedText": "只要监控员未横置，你可以随时检视与其本地区的任一暗藏者。",
+          "requires": {
+            "sourceFaceUpInPlay": true,
+            "sourceUnexhausted": true,
+            "sameRegion": true
+          },
+          "privateViewer": "sourceController",
+          "targeted": false,
+          "costs": {},
+          "entersStack": false,
+          "hiddenIdentityNotReplaced": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "privatePeek",
+        "hidden",
+        "continuous",
+        "priority",
+        "temporaryIcons",
+        "loyalty"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-removal",
+        "manual-seal",
+        "bq-targets",
+        "bq-keywords-2",
+        "faq-3"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "locatorDiscrepancies": [],
+      "acceptanceCases": [
+        {
+          "id": "JC057-01",
+          "scenario": "普通正面打出监控员",
+          "expected": "不产生现身手牌检视。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC057-02",
+          "scenario": "未横置正面监控员同区存在敌方暗藏者",
+          "expected": "其操控者可私密检视；对手/观众不能由同一投影看到。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC057-03",
+          "scenario": "监控员横置、潜伏或移到另一地区",
+          "expected": "撤销不满足条件的实时检视权限；不声称能抹掉人的历史记忆。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC057-04",
+          "scenario": "持续检视暗藏者",
+          "expected": "不现身、不替换实体、不支付费用或新增堆叠，也不等同指定目标。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "JC058": {
+      "cardId": "JC058",
+      "batchId": "B02",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/JC058 坚毅的刑警.jpg",
+        "imageSha256": "6585e89991049cb05e75db43143320fd12bf6be781847648d551cb433e85119a",
+        "evidenceId": "card-JC058",
+        "scope": "锁定原图的完整游戏字段；不转写背景文字，不声称其他印次等价或最新出版版本。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "058/135",
+        "seriesSymbolObserved": "wineGlass",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "观察版本由同ID原图SHA与实际印刷编号锁定。FAQ旧编号只作独立解释证据，不据此改变新版卡面。"
+      },
+      "fields": {
+        "name": "坚毅的刑警",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "灰",
+        "basicType": "角色",
+        "subtypes": [
+          "人类",
+          "警察"
+        ],
+        "printedCollectorCode": "058/135",
+        "seriesSymbol": "wineGlass",
+        "printedCost": 3,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "灰",
+            "count": 1
+          }
+        ],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 1,
+          "combat": 1,
+          "influence": 1
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "【现身触发】消灭本地区的目标暗藏者。"
+        ]
+      },
+      "abilities": [
+        {
+          "id": "destroyHiddenOnReveal",
+          "kind": "optionalRevealTrigger",
+          "printedText": "消灭本地区的目标暗藏者。",
+          "target": {
+            "category": "hiddenCharacter",
+            "controller": "any",
+            "sameSourceRegion": true
+          },
+          "costs": {},
+          "triggersOnNormalFaceUpPlay": false,
+          "grantsPeekPermission": false
+        }
+      ],
+      "confirmedMechanismIds": [
+        "hidden",
+        "priority",
+        "loyalty"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-removal",
+        "manual-seal",
+        "bq-targets",
+        "bq-keywords-2",
+        "faq-3"
+      ],
+      "implementationDesignStatus": "needsRuling",
+      "openQuestionIds": [
+        "faqRevealTerminology"
+      ],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "locatorDiscrepancies": [],
+      "acceptanceCases": [
+        {
+          "id": "JC058-01",
+          "scenario": "正面打出刑警",
+          "expected": "没有现身触发，不能因此消灭暗藏者。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC058-02",
+          "scenario": "刑警现身并指定本地区暗藏者",
+          "expected": "进入可响应的消灭能力堆叠；此能力不检视目标正面。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC058-03",
+          "scenario": "指定目标随后付费现身为新实例",
+          "expected": "消灭能力失效，不把已选旧身份重定向至新角色。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC058-04",
+          "scenario": "目标暗藏者已宣布付费现身、翻面能力在堆叠中",
+          "expected": "旧FAQ明确此时不能用刑警指定该正在翻面的牌；保留版次说明，不隐藏物理区/目标状态差别。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC058-05",
+          "scenario": "试图选其他地区暗藏者",
+          "expected": "本地区限制不满足。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "JC061": {
+      "cardId": "JC061",
+      "batchId": "B02",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/JC061 危机处理特派小组.jpg",
+        "imageSha256": "132918615db6a2233eed3f2d2d045c368c65348e43c52f101f17e4c4ecd756f6",
+        "evidenceId": "card-JC061",
+        "scope": "锁定原图的完整游戏字段；不转写背景文字，不声称其他印次等价或最新出版版本。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "061/135",
+        "seriesSymbolObserved": "wineGlass",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "观察版本由同ID原图SHA与实际印刷编号锁定。FAQ旧编号只作独立解释证据，不据此改变新版卡面。"
+      },
+      "fields": {
+        "name": "危机处理特派小组",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "灰",
+        "basicType": "角色",
+        "subtypes": [
+          "人类",
+          "特工"
+        ],
+        "printedCollectorCode": "061/135",
+        "seriesSymbol": "wineGlass",
+        "printedCost": 5,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "灰",
+            "count": 2
+          }
+        ],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 1,
+          "combat": 2,
+          "influence": 1
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 2,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "机动"
+        ],
+        "printedRuleTextLines": [
+          "机动",
+          "【触发】当危机处理特派小组进入一个地区，你可以支付1，若你如此做，消灭位于该地区的目标暗藏者。"
+        ]
+      },
+      "abilities": [
+        {
+          "id": "mobility",
+          "kind": "optionalConfrontationStartTrigger",
+          "printedText": "机动"
+        },
+        {
+          "id": "enteredRegion",
+          "kind": "optionalEnterRegionTrigger",
+          "printedText": "当危机处理特派小组进入一个地区，你可以支付1，若你如此做，消灭位于该地区的目标暗藏者。",
+          "optionalPayment": 1,
+          "target": {
+            "category": "hiddenCharacter",
+            "enteredRegion": true,
+            "controller": "any"
+          },
+          "doesNotRequireFreshEnter": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "mobility",
+        "hidden",
+        "priority",
+        "loyalty"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-removal",
+        "manual-seal",
+        "bq-targets",
+        "bq-keywords-2",
+        "faq-3"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "locatorDiscrepancies": [],
+      "acceptanceCases": [
+        {
+          "id": "JC061-01",
+          "scenario": "正面打出、现身、他区域放入或机动进入地区",
+          "expected": "原始FAQ均说明进入地区触发；不能只监听新实例Enter。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC061-02",
+          "scenario": "同实例机动从A到B",
+          "expected": "不重复普通进场/独有事件，但触发进入B的能力。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC061-03",
+          "scenario": "不付可选1",
+          "expected": "不消灭目标；不能把可选触发的价格当此角色打出附加费。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC061-04",
+          "scenario": "角色被横置",
+          "expected": "机动按霸权说明不能发动，其他入区效果与触发另依原文。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "JC062": {
+      "cardId": "JC062",
+      "batchId": "B02",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/JC062 调查档案.jpg",
+        "imageSha256": "7a66629a3059ff47d0707b267d165ea933b43caf95dcd92545655504361bde03",
+        "evidenceId": "card-JC062",
+        "scope": "锁定原图的完整游戏字段；不转写背景文字，不声称其他印次等价或最新出版版本。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "062/135",
+        "seriesSymbolObserved": "wineGlass",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "观察版本由同ID原图SHA与实际印刷编号锁定。FAQ旧编号只作独立解释证据，不据此改变新版卡面。"
+      },
+      "fields": {
+        "name": "调查档案",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "灰",
+        "basicType": "事务",
+        "subtypes": [
+          "策略"
+        ],
+        "printedCollectorCode": "062/135",
+        "seriesSymbol": "wineGlass",
+        "printedCost": 1,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "灰",
+            "count": 1
+          }
+        ],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "【快速】行动：检视至多两个目标暗藏者。抓一张牌。"
+        ]
+      },
+      "abilities": [
+        {
+          "id": "peekAndDraw",
+          "kind": "fastTransaction",
+          "printedText": "检视至多两个目标暗藏者。抓一张牌。",
+          "target": {
+            "minimum": 0,
+            "maximum": 2,
+            "category": "hiddenCharacter",
+            "controller": "any",
+            "printedRegionRestriction": null
+          },
+          "privateViewer": "abilityController",
+          "order": [
+            "privateInspectChosenTargets",
+            "drawOne"
+          ],
+          "zeroTargetsAllowed": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "privatePeek",
+        "hidden",
+        "priority",
+        "deckChoice",
+        "loyalty"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-removal",
+        "manual-seal",
+        "bq-targets",
+        "bq-keywords-2",
+        "faq-3"
+      ],
+      "implementationDesignStatus": "needsRuling",
+      "openQuestionIds": [
+        "multiTargetInvalidation"
+      ],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "locatorDiscrepancies": [],
+      "acceptanceCases": [
+        {
+          "id": "JC062-01",
+          "scenario": "场上没有可检视暗藏者或选择0目标",
+          "expected": "原始FAQ明确仍可打出，仅为抓1。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC062-02",
+          "scenario": "选2个不同合法暗藏者",
+          "expected": "只发动者私密检视，两次检视不替换暗藏者身份；然后抓1。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC062-03",
+          "scenario": "有已选目标在响应中现身",
+          "expected": "需明确多目标部分失效/全失效的结算门槛，不能由0目标案例推断必然抓牌。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC062-04",
+          "scenario": "观众或敌方读取状态",
+          "expected": "不能把选择后的正面资料放进所有玩家共享投影。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "JC063": {
+      "cardId": "JC063",
+      "batchId": "B02",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/JC063 警车追捕.jpg",
+        "imageSha256": "1b20b9c7392543bf975b6391d227e03e4f50f3fd3134e7c6aa494e7357f88165",
+        "evidenceId": "card-JC063",
+        "scope": "锁定原图的完整游戏字段；不转写背景文字，不声称其他印次等价或最新出版版本。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "063/135",
+        "seriesSymbolObserved": "wineGlass",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "观察版本由同ID原图SHA与实际印刷编号锁定。FAQ旧编号只作独立解释证据，不据此改变新版卡面。"
+      },
+      "fields": {
+        "name": "警车追捕",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "灰",
+        "basicType": "事务",
+        "subtypes": [
+          "策略"
+        ],
+        "printedCollectorCode": "063/135",
+        "seriesSymbol": "wineGlass",
+        "printedCost": 2,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "灰",
+            "count": 1
+          }
+        ],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "【快速】行动　选择一项：",
+          "• 将目标角色潜伏。（将该角色翻面为暗藏者）",
+          "• 将目标暗藏者移回其拥有者手上。"
+        ]
+      },
+      "abilities": [
+        {
+          "id": "modal",
+          "kind": "fastModalTransaction",
+          "printedText": "选择一项：将目标角色潜伏，或将目标暗藏者移回其拥有者手上。",
+          "chooseModeBeforePayment": true,
+          "modeCannotChangeAfterDeclaration": true,
+          "modes": [
+            {
+              "id": "hide",
+              "targetCategory": "faceUpCharacter",
+              "effect": "hideAsNewHiddenInstance"
+            },
+            {
+              "id": "return",
+              "targetCategory": "hiddenCharacter",
+              "effect": "returnToOwnerHand"
+            }
+          ]
+        }
+      ],
+      "confirmedMechanismIds": [
+        "hidden",
+        "priority",
+        "loyalty"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-removal",
+        "manual-seal",
+        "bq-targets",
+        "bq-keywords-2"
+      ],
+      "implementationDesignStatus": "needsRuling",
+      "openQuestionIds": [
+        "faqRevealTerminology"
+      ],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "locatorDiscrepancies": [],
+      "acceptanceCases": [
+        {
+          "id": "JC063-01",
+          "scenario": "付款声明回手模式，之后目标现身",
+          "expected": "原暗藏者目标失效，不能切换为潜伏模式。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC063-02",
+          "scenario": "付款声明潜伏模式，之后目标已潜伏",
+          "expected": "旧角色目标失效；不能把新暗藏者再次按原角色结算。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC063-03",
+          "scenario": "目标已声明付费现身且在堆叠中",
+          "expected": "按旧FAQ，此时回手模式不能指定该正在翻面的牌。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC063-04",
+          "scenario": "潜伏载有附属/封印的角色",
+          "expected": "离场生命周期须处理附属、封印和新身份，不仅改faceDown标记。",
           "status": "notRun"
         }
       ]
@@ -712,6 +2015,411 @@
           "id": "JC070-05",
           "scenario": "声望数相等或我方声望角色已横置",
           "expected": "不产生声望奖励。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "JC073": {
+      "cardId": "JC073",
+      "batchId": "B02",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/JC073 苏族捕梦网.jpg",
+        "imageSha256": "cebf528de52de72d7400d4c769c2642063342d75a01670e120b5bc71aba23d42",
+        "evidenceId": "card-JC073",
+        "scope": "锁定原图的完整游戏字段；不转写背景文字，不声称其他印次等价或最新出版版本。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "073/135",
+        "seriesSymbolObserved": "wineGlass",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "观察版本由同ID原图SHA与实际印刷编号锁定。FAQ旧编号只作独立解释证据，不据此改变新版卡面。"
+      },
+      "fields": {
+        "name": "苏族捕梦网",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "白",
+        "basicType": "附属",
+        "subtypes": [
+          "装备",
+          "护身符"
+        ],
+        "printedCollectorCode": "073/135",
+        "seriesSymbol": "wineGlass",
+        "printedCost": 3,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "白",
+            "count": 1
+          }
+        ],
+        "domains": [
+          {
+            "id": "stars",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "结附于目标角色",
+          "【持续】受此结附的角色获得【临时调查】和屏障（不能被敌方的卡牌或能力指定为目标）。"
+        ]
+      },
+      "abilities": [
+        {
+          "id": "attach",
+          "kind": "attachmentRestriction",
+          "printedText": "结附于目标角色",
+          "target": {
+            "category": "faceUpCharacter",
+            "controller": "any"
+          }
+        },
+        {
+          "id": "bonus",
+          "kind": "attachedStatic",
+          "printedText": "受此结附的角色获得临时调查和屏障。",
+          "grants": {
+            "temporaryIcons": {
+              "investigation": 1,
+              "combat": 0,
+              "influence": 0
+            },
+            "keywords": [
+              "屏障"
+            ]
+          }
+        }
+      ],
+      "confirmedMechanismIds": [
+        "attachment",
+        "continuous",
+        "temporaryIcons",
+        "barrier",
+        "loyalty"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-removal",
+        "manual-seal",
+        "bq-targets",
+        "bq-keywords-2",
+        "faq-4"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "locatorDiscrepancies": [],
+      "acceptanceCases": [
+        {
+          "id": "JC073-01",
+          "scenario": "合法结附角色",
+          "expected": "增加1临时调查和屏障，不把调查变永久图标。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC073-02",
+          "scenario": "敌方指定载体为目标",
+          "expected": "屏障阻止指定；范围非指定效果按原FAQ仍能影响。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC073-03",
+          "scenario": "载体潜伏或离场",
+          "expected": "附属消灭、其赋予的能力结束；不能留在暗藏者上继续屏障。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC073-04",
+          "scenario": "只有该附属授予屏障、附属被消灭",
+          "expected": "屏障结束，不永久写在载体字段上。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "JC074": {
+      "cardId": "JC074",
+      "batchId": "B02",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/JC074 天空的教诲.jpg",
+        "imageSha256": "e34e5bb081f3ee459d99038c68d60f4be4a44af05baa4289759b730045140914",
+        "evidenceId": "card-JC074",
+        "scope": "锁定原图的完整游戏字段；不转写背景文字，不声称其他印次等价或最新出版版本。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "074/135",
+        "seriesSymbolObserved": "wineGlass",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "观察版本由同ID原图SHA与实际印刷编号锁定。FAQ旧编号只作独立解释证据，不据此改变新版卡面。"
+      },
+      "fields": {
+        "name": "天空的教诲",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "白",
+        "basicType": "事务",
+        "subtypes": [
+          "法术",
+          "预言"
+        ],
+        "printedCollectorCode": "074/135",
+        "seriesSymbol": "wineGlass",
+        "printedCost": 2,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "白",
+            "count": 1
+          }
+        ],
+        "domains": [
+          {
+            "id": "stars",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "【快速】行动：目标角色获得【永久调查】【永久调查】和声望直到回合结束。"
+        ]
+      },
+      "abilities": [
+        {
+          "id": "temporaryRenown",
+          "kind": "fastTransaction",
+          "printedText": "目标角色获得【永久调查】【永久调查】和声望直到回合结束。",
+          "target": {
+            "category": "faceUpCharacter",
+            "controller": "any"
+          },
+          "grants": {
+            "permanentIcons": {
+              "investigation": 2,
+              "combat": 0,
+              "influence": 0
+            },
+            "keywords": [
+              "声望"
+            ]
+          },
+          "duration": "untilEndOfTurn"
+        }
+      ],
+      "confirmedMechanismIds": [
+        "renown",
+        "continuous",
+        "priority",
+        "loyalty"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-removal",
+        "manual-seal",
+        "bq-targets",
+        "bq-keywords-2"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "locatorDiscrepancies": [],
+      "acceptanceCases": [
+        {
+          "id": "JC074-01",
+          "scenario": "选合法角色并结算",
+          "expected": "加2永久调查并获声望，不替换已有图标。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC074-02",
+          "scenario": "角色原本已有声望",
+          "expected": "仍只有一个声望角色，不因关键词来源数变成2人或叠加奖励。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC074-03",
+          "scenario": "本回合结束时到达持续效果清理点",
+          "expected": "临时授予的调查/声望结束，原有声望和原有调查仍保留。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC074-04",
+          "scenario": "在结算前目标潜伏产生新身份",
+          "expected": "旧目标失效，不给新暗藏者写入正面特征。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "JC075": {
+      "cardId": "JC075",
+      "batchId": "B02",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/JC075 雪地救援队.jpg",
+        "imageSha256": "7db960c7050614dae10a8e752db2567670169e782986e39a789842259231e434",
+        "evidenceId": "card-JC075",
+        "scope": "锁定原图的完整游戏字段；不转写背景文字，不声称其他印次等价或最新出版版本。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "075/135",
+        "seriesSymbolObserved": "wineGlass",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "观察版本由同ID原图SHA与实际印刷编号锁定。FAQ旧编号只作独立解释证据，不据此改变新版卡面。"
+      },
+      "fields": {
+        "name": "雪地救援队",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "白",
+        "basicType": "角色",
+        "subtypes": [
+          "人类",
+          "医疗员"
+        ],
+        "printedCollectorCode": "075/135",
+        "seriesSymbol": "wineGlass",
+        "printedCost": 1,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "白",
+            "count": 1
+          }
+        ],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "公开"
+        ],
+        "printedRuleTextLines": [
+          "公开（该角色不能被秘密派遣为暗藏者）",
+          "【快速】行动2，【横置】：将另一个目标本方角色移回其拥有者手上。"
+        ]
+      },
+      "abilities": [
+        {
+          "id": "public",
+          "kind": "staticKeyword",
+          "printedText": "公开（该角色不能被秘密派遣为暗藏者）"
+        },
+        {
+          "id": "rescue",
+          "kind": "fastAction",
+          "printedText": "将另一个目标本方角色移回其拥有者手上。",
+          "costs": {
+            "currency": 2,
+            "exhaustSource": true
+          },
+          "target": {
+            "category": "faceUpCharacter",
+            "controller": "sourceController",
+            "excludeSource": true,
+            "printedRegionRestriction": null
+          },
+          "effect": "returnToOwnerHand"
+        }
+      ],
+      "confirmedMechanismIds": [
+        "public",
+        "priority",
+        "exhaust",
+        "loyalty"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-removal",
+        "manual-seal",
+        "bq-targets",
+        "bq-keywords-2"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "locatorDiscrepancies": [],
+      "acceptanceCases": [
+        {
+          "id": "JC075-01",
+          "scenario": "指定来源自身",
+          "expected": "另一个限制禁止。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC075-02",
+          "scenario": "选择本方操控但拥有者为敌方的角色",
+          "expected": "目标控制者合法，返回敌方拥有者手，不进发动者手。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC075-03",
+          "scenario": "2V2试图选择队友角色",
+          "expected": "本方与友方需分开；卡面写本方，不因同队就自动允许。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC075-04",
+          "scenario": "付费后目标失效",
+          "expected": "已付2及来源横置不返还，不能更换新目标。",
           "status": "notRun"
         }
       ]
@@ -975,6 +2683,1077 @@
           "id": "JC077-04",
           "scenario": "伤害防止与可响应的改伤触发同时发生",
           "expected": "在实现前确定事件/防止/改伤的优先顺序，不能假造已通过。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "JC085": {
+      "cardId": "JC085",
+      "batchId": "B02",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/JC085 复生行尸.jpg",
+        "imageSha256": "f568ed4c26fc244830d840f0133eb1a78111aceff53a4a345f8ca44c1552aee2",
+        "evidenceId": "card-JC085",
+        "scope": "锁定原图的完整游戏字段；不转写背景文字，不声称其他印次等价或最新出版版本。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "085/135",
+        "seriesSymbolObserved": "wineGlass",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "观察版本由同ID原图SHA与实际印刷编号锁定。FAQ旧编号只作独立解释证据，不据此改变新版卡面。"
+      },
+      "fields": {
+        "name": "复生行尸",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "黑",
+        "basicType": "角色",
+        "subtypes": [
+          "不死生物",
+          "行尸"
+        ],
+        "printedCollectorCode": "085/135",
+        "seriesSymbol": "wineGlass",
+        "printedCost": 2,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "黑",
+            "count": 1
+          }
+        ],
+        "domains": [
+          {
+            "id": "death",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "【持续】若你的资产区具有【死亡】，则复生行尸获得【临时势力】。",
+          "【墓地行动】你可以从墓地中正面打出复生行尸，就如同其在你手中一样。（你仍需要支付其费用，且需满足其忠诚需求。）"
+        ]
+      },
+      "abilities": [
+        {
+          "id": "deathAssetBonus",
+          "kind": "conditionalStatic",
+          "printedText": "若你的资产区具有【死亡】，则复生行尸获得【临时势力】。",
+          "condition": "controllerHasDeathDomainAsset",
+          "grants": {
+            "temporaryIcons": {
+              "investigation": 0,
+              "combat": 0,
+              "influence": 1
+            }
+          }
+        },
+        {
+          "id": "playFromGrave",
+          "kind": "graveyardPlayPermission",
+          "printedText": "你可以从墓地中正面打出复生行尸，就如同其在你手中一样。（你仍需要支付其费用，且需满足其忠诚需求。）",
+          "sourceZone": "controllersGraveyard",
+          "normalPrintedCostAndLoyalty": true,
+          "faceUpOnly": true,
+          "firstMoveToHand": false,
+          "permissionOnlyForThisCardInstance": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "gravePlay",
+        "continuous",
+        "temporaryIcons",
+        "loyalty"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-removal",
+        "manual-seal",
+        "bq-targets",
+        "bq-keywords-2",
+        "faq-4"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "locatorDiscrepancies": [],
+      "acceptanceCases": [
+        {
+          "id": "JC085-01",
+          "scenario": "此牌在自己墓地、满足黑忠诚和2费用且处于正常打出时机",
+          "expected": "直接从墓地声明正面打出、选地区并付款；不中转手牌。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC085-02",
+          "scenario": "墓地秘密派遣此牌",
+          "expected": "旧FAQ明确不允许；墓地权限仅为正面打出。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC085-03",
+          "scenario": "未满足忠诚/无法付款",
+          "expected": "拒绝且墓地、手牌、资产、堆叠保持原状。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC085-04",
+          "scenario": "其已在场且死亡资产已横置",
+          "expected": "资产领域仍在，条件临时势力仍获得；参与对抗另按先手规则。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "JC086": {
+      "cardId": "JC086",
+      "batchId": "B02",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/JC086 窃尸人.jpg",
+        "imageSha256": "1bd405a60feeb41d60611050f4a37dd90dc971e1808ba712b66fe0cd37d2d743",
+        "evidenceId": "card-JC086",
+        "scope": "锁定原图的完整游戏字段；不转写背景文字，不声称其他印次等价或最新出版版本。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "086/135",
+        "seriesSymbolObserved": "wineGlass",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "观察版本由同ID原图SHA与实际印刷编号锁定。FAQ旧编号只作独立解释证据，不据此改变新版卡面。"
+      },
+      "fields": {
+        "name": "窃尸人",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "黑",
+        "basicType": "角色",
+        "subtypes": [
+          "人类",
+          "奴仆",
+          "罪犯"
+        ],
+        "printedCollectorCode": "086/135",
+        "seriesSymbol": "wineGlass",
+        "printedCost": 3,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "黑",
+            "count": 1
+          }
+        ],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 2,
+          "influence": 1
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "【进场触发】将你墓地中的目标角色牌置于你的手中。"
+        ]
+      },
+      "abilities": [
+        {
+          "id": "recover",
+          "kind": "optionalEnterTrigger",
+          "printedText": "将你墓地中的目标角色牌置于你的手中。",
+          "target": {
+            "zone": "controllersGraveyard",
+            "category": "characterCard",
+            "count": 1
+          },
+          "effect": "toControllersHand",
+          "triggersOnReveal": true,
+          "countsAsDraw": false
+        }
+      ],
+      "confirmedMechanismIds": [
+        "graveRecovery",
+        "deckChoice",
+        "priority",
+        "loyalty"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-removal",
+        "manual-seal",
+        "bq-targets",
+        "bq-keywords-2"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "locatorDiscrepancies": [],
+      "acceptanceCases": [
+        {
+          "id": "JC086-01",
+          "scenario": "正面打出或现身",
+          "expected": "均可发动恢复角色牌的进场触发。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC086-02",
+          "scenario": "选择他人墓地牌或自己墓地非角色牌",
+          "expected": "目标不合法。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC086-03",
+          "scenario": "目标牌响应中离开墓地",
+          "expected": "触发失效，不改变已完成的窃尸人进场或返还打出费用。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC086-04",
+          "scenario": "选中角色牌入手",
+          "expected": "不是抓牌，不直接放入战场。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "JC092": {
+      "cardId": "JC092",
+      "batchId": "B02",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/JC092 死灵召唤.jpg",
+        "imageSha256": "ea1ca5644c38831b659f29dcf4c7ec0cb5dc5a758b0b793ed120b24b74295947",
+        "evidenceId": "card-JC092",
+        "scope": "锁定原图的完整游戏字段；不转写背景文字，不声称其他印次等价或最新出版版本。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "092/135",
+        "seriesSymbolObserved": "wineGlass",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "观察版本由同ID原图SHA与实际印刷编号锁定。FAQ旧编号只作独立解释证据，不据此改变新版卡面。"
+      },
+      "fields": {
+        "name": "死灵召唤",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "黑",
+        "basicType": "事务",
+        "subtypes": [
+          "法术",
+          "召唤"
+        ],
+        "printedCollectorCode": "092/135",
+        "seriesSymbol": "wineGlass",
+        "printedCost": 2,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "黑",
+            "count": 1
+          }
+        ],
+        "domains": [
+          {
+            "id": "death",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "【行动】选择一个地区，将你墓地中的目标角色牌以暗藏者状态置于该地区。"
+        ]
+      },
+      "abilities": [
+        {
+          "id": "graveHidden",
+          "kind": "standardTransaction",
+          "printedText": "选择一个地区，将你墓地中的目标角色牌以暗藏者状态置于该地区。",
+          "target": {
+            "zone": "controllersGraveyard",
+            "category": "characterCard",
+            "count": 1
+          },
+          "chooseDestinationRegion": true,
+          "effect": "freshHiddenInstanceInChosenRegion",
+          "normalTargetCardCostOrLoyaltyNotPaid": true,
+          "countsAsSecretDeploy": false
+        }
+      ],
+      "confirmedMechanismIds": [
+        "graveRecovery",
+        "hidden",
+        "priority",
+        "loyalty"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-removal",
+        "manual-seal",
+        "bq-targets",
+        "bq-keywords-2"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "locatorDiscrepancies": [],
+      "acceptanceCases": [
+        {
+          "id": "JC092-01",
+          "scenario": "声明此事务",
+          "expected": "支付事务本身2和黑忠诚，选地区与自己墓地角色牌。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC092-02",
+          "scenario": "所选角色印刷费用很高或有公开",
+          "expected": "效果置于暗藏者不支付该角色费用/忠诚，也不是受公开禁止的秘密派遣动作。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC092-03",
+          "scenario": "本回合已经秘密派遣",
+          "expected": "不阻止此效果，也不重复消耗秘密派遣次数。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC092-04",
+          "scenario": "角色牌在响应中被他效移出墓地",
+          "expected": "旧目标失效，不把另一个墓地对象或同名新实例当目标。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "JC099": {
+      "cardId": "JC099",
+      "batchId": "B02",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/JC099 徘徊的鬼魂.jpg",
+        "imageSha256": "58b9ff41f21ed36b06735aafad64572dc1e714d0733be753c1f66ab576cd6563",
+        "evidenceId": "card-JC099",
+        "scope": "锁定原图的完整游戏字段；不转写背景文字，不声称其他印次等价或最新出版版本。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "099/135",
+        "seriesSymbolObserved": "wineGlass",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "观察版本由同ID原图SHA与实际印刷编号锁定。FAQ旧编号只作独立解释证据，不据此改变新版卡面。"
+      },
+      "fields": {
+        "name": "徘徊的鬼魂",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "紫",
+        "basicType": "角色",
+        "subtypes": [
+          "幽灵"
+        ],
+        "printedCollectorCode": "099/135",
+        "seriesSymbol": "wineGlass",
+        "printedCost": 2,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "紫",
+            "count": 1
+          }
+        ],
+        "domains": [
+          {
+            "id": "death",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 1
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "灵体",
+          "【现身触发】将你牌库顶的一张牌封印在本地区的目标敌方角色上。",
+          "【持续】只要徘徊的鬼魂在场且未横置，所有其上有牌封印的敌方角色失去魔法领域图标。"
+        ]
+      },
+      "abilities": [
+        {
+          "id": "spirit",
+          "kind": "staticDamagePreventionKeyword",
+          "printedText": "灵体"
+        },
+        {
+          "id": "topSeal",
+          "kind": "optionalRevealTrigger",
+          "printedText": "将你牌库顶的一张牌封印在本地区的目标敌方角色上。",
+          "target": {
+            "category": "faceUpCharacter",
+            "enemy": true,
+            "sameSourceRegion": true
+          },
+          "sourceCardZone": "controllerDeckTop",
+          "effect": "sealOnTarget"
+        },
+        {
+          "id": "removeDomains",
+          "kind": "conditionalStatic",
+          "printedText": "只要徘徊的鬼魂在场且未横置，所有其上有牌封印的敌方角色失去魔法领域图标。",
+          "condition": "sourceInPlayAndUnexhausted",
+          "scope": "allEnemyCharactersWithAnySealedCards",
+          "printedRegionRestriction": null
+        }
+      ],
+      "confirmedMechanismIds": [
+        "spirit",
+        "seal",
+        "continuous",
+        "hidden",
+        "priority",
+        "loyalty"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-removal",
+        "manual-seal",
+        "bq-targets",
+        "bq-keywords-2"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "locatorDiscrepancies": [
+        {
+          "field": "textSelfReference",
+          "locatorValue": "徘徊的幽灵",
+          "originalValue": "徘徊的鬼魂",
+          "basis": "原图标题和持续正文一致，locator正文误写。"
+        }
+      ],
+      "acceptanceCases": [
+        {
+          "id": "JC099-01",
+          "scenario": "普通正面打出",
+          "expected": "不产生现身封印触发。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC099-02",
+          "scenario": "选择封印目标",
+          "expected": "仅同地区敌方正面角色；封印牌来自牌库顶，不从手牌挑选。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC099-03",
+          "scenario": "未横置来源在场，另一地区敌方角色有封印牌",
+          "expected": "持续能力没有地区限制，亦移除该角色领域。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC099-04",
+          "scenario": "横置来源或使其离场",
+          "expected": "此来源施加的领域移除结束；不是永久删除印刷领域。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "JC100": {
+      "cardId": "JC100",
+      "batchId": "B02",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/JC100 尖牙幻象.jpg",
+        "imageSha256": "b553723ef129810f53d131bc50695090326dcb2456f944c14a48e56bdf28a046",
+        "evidenceId": "card-JC100",
+        "scope": "锁定原图的完整游戏字段；不转写背景文字，不声称其他印次等价或最新出版版本。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "100/135",
+        "seriesSymbolObserved": "wineGlass",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "观察版本由同ID原图SHA与实际印刷编号锁定。FAQ旧编号只作独立解释证据，不据此改变新版卡面。"
+      },
+      "fields": {
+        "name": "尖牙幻象",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "紫",
+        "basicType": "角色",
+        "subtypes": [
+          "梦魇",
+          "梦境"
+        ],
+        "printedCollectorCode": "100/135",
+        "seriesSymbol": "wineGlass",
+        "printedCost": 3,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "紫",
+            "count": 1
+          }
+        ],
+        "domains": [
+          {
+            "id": "stars",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 2,
+          "influence": 1
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "灵体",
+          "【现身触发】你可以将尖牙幻象封印在目标位于相同地区的角色上。",
+          "【触发】当尖牙幻象被封印在一个角色上时，你可以支付1，若你如此做，令该角色获得-1【防御】直到回合结束。"
+        ]
+      },
+      "abilities": [
+        {
+          "id": "spirit",
+          "kind": "staticDamagePreventionKeyword",
+          "printedText": "灵体"
+        },
+        {
+          "id": "sealSelf",
+          "kind": "optionalRevealTrigger",
+          "printedText": "你可以将尖牙幻象封印在目标位于相同地区的角色上。",
+          "target": {
+            "category": "faceUpCharacter",
+            "sameSourceRegion": true,
+            "controller": "any"
+          },
+          "sealedObject": "thisSourceInstance"
+        },
+        {
+          "id": "sealedDebuff",
+          "kind": "optionalBecameSealedTrigger",
+          "printedText": "当尖牙幻象被封印在一个角色上时，你可以支付1，若你如此做，令该角色获得-1防御直到回合结束。",
+          "optionalPayment": 1,
+          "effect": {
+            "hostDefenseDelta": -1,
+            "duration": "untilEndOfTurn"
+          },
+          "firesFromSealTransition": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "spirit",
+        "seal",
+        "continuous",
+        "priority",
+        "loyalty"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-removal",
+        "manual-seal",
+        "bq-targets",
+        "bq-keywords-2",
+        "faq-4"
+      ],
+      "implementationDesignStatus": "needsRuling",
+      "openQuestionIds": [
+        "sealedTransitionAbility"
+      ],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "locatorDiscrepancies": [],
+      "acceptanceCases": [
+        {
+          "id": "JC100-01",
+          "scenario": "现身后接受封印触发",
+          "expected": "该源角色离场成为载体上的封印牌，不是附属。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC100-02",
+          "scenario": "封印后不支付可选1",
+          "expected": "不施加防御减值。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC100-03",
+          "scenario": "防御1载体被减至0",
+          "expected": "按原始FAQ立即消灭载体，然后尖牙幻象回其拥有者手中。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC100-04",
+          "scenario": "封印后回合结束",
+          "expected": "防御减值结束，但封印关系不因持续时限结束而自动解除。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "JC108": {
+      "cardId": "JC108",
+      "batchId": "B02",
+      "sourceVerification": {
+        "status": "blocked",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/JC108 乔治·帕佐，织梦人.jpg",
+        "imageSha256": "bd1b633c2f2ccd4a389524d83ee487ee75a475f27de286f071d38588eaeb5863",
+        "evidenceId": "card-JC108",
+        "scope": "锁定原图的完整游戏字段；不转写背景文字，不声称其他印次等价或最新出版版本。",
+        "blockingFields": [
+          "subtitle"
+        ]
+      },
+      "edition": {
+        "printedCollectorCode": "108/135",
+        "seriesSymbolObserved": "wineGlass",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "观察版本由同ID原图SHA与实际印刷编号锁定。FAQ旧编号只作独立解释证据，不据此改变新版卡面。"
+      },
+      "fields": {
+        "name": "乔治·帕佐，织梦人",
+        "subtitle": null,
+        "nameInk": "gold",
+        "colorKey": "紫",
+        "basicType": "角色",
+        "subtypes": [
+          "人类",
+          "超能力者"
+        ],
+        "printedCollectorCode": "108/135",
+        "seriesSymbol": "wineGlass",
+        "printedCost": 5,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "紫",
+            "count": 3
+          }
+        ],
+        "domains": [
+          {
+            "id": "mind",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 2
+        },
+        "temporaryIcons": {
+          "investigation": 2,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 2,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "【快速】行动1，【横置】：将你牌库顶的一张牌封印在目标角色上。",
+          "【持续】只要乔治·帕佐，织梦人在场，所有其上有牌封印的敌方角色于重置步骤中不能被重置。"
+        ]
+      },
+      "abilities": [
+        {
+          "id": "topSeal",
+          "kind": "fastAction",
+          "printedText": "将你牌库顶的一张牌封印在目标角色上。",
+          "costs": {
+            "currency": 1,
+            "exhaustSource": true
+          },
+          "target": {
+            "category": "faceUpCharacter",
+            "controller": "any",
+            "printedRegionRestriction": null
+          },
+          "effect": "sealControllersDeckTop"
+        },
+        {
+          "id": "preventReset",
+          "kind": "conditionalStatic",
+          "printedText": "只要乔治·帕佐，织梦人在场，所有其上有牌封印的敌方角色于重置步骤中不能被重置。",
+          "condition": "sourceInPlay",
+          "scope": "allEnemyCharactersWithAnySealedCards",
+          "onlyResetStep": true,
+          "sourceNeedNotBeUnexhausted": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "seal",
+        "continuous",
+        "hidden",
+        "priority",
+        "temporaryIcons",
+        "uniqueInPlay",
+        "loyalty"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-removal",
+        "manual-seal",
+        "bq-targets",
+        "bq-keywords-2"
+      ],
+      "implementationDesignStatus": "needsRuling",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "locatorDiscrepancies": [],
+      "acceptanceCases": [
+        {
+          "id": "JC108-01",
+          "scenario": "来源横置但仍在场",
+          "expected": "重置步骤限制仍有效；不同于JC099的未横置条件。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC108-02",
+          "scenario": "有其他来源封印在敌方角色上的牌",
+          "expected": "也满足持续能力；不限定为本来源亲自封印的牌。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC108-03",
+          "scenario": "重置步骤之外有重置效果",
+          "expected": "卡面只限制重置步骤，不能擅自扩大到所有重置。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC108-04",
+          "scenario": "原图副名称字形未清",
+          "expected": "整卡保持blocked；已读行动和数字可供设计参考，不能计为整卡完成。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "LC19": {
+      "cardId": "LC19",
+      "batchId": "B02",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/LC19 外科医生.jpg",
+        "imageSha256": "41c0fe55aff401721ec54fbb08174d52d36747f0821e32c6ddc5006bba9e9f71",
+        "evidenceId": "card-LC19",
+        "scope": "锁定原图的完整游戏字段；不转写背景文字，不声称其他印次等价或最新出版版本。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "19/30",
+        "seriesSymbolObserved": "citySkyline",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "观察版本由同ID原图SHA与实际印刷编号锁定。FAQ旧编号只作独立解释证据，不据此改变新版卡面。"
+      },
+      "fields": {
+        "name": "外科医生",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "中立",
+        "basicType": "角色",
+        "subtypes": [
+          "人类",
+          "医疗员"
+        ],
+        "printedCollectorCode": "19/30",
+        "seriesSymbol": "citySkyline",
+        "printedCost": 1,
+        "loyalty": [],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "公开"
+        ],
+        "printedRuleTextLines": [
+          "公开",
+          "【行动】2，【横置】：选择本地区的目标角色，移除该角色上的所有创伤标志。"
+        ]
+      },
+      "abilities": [
+        {
+          "id": "public",
+          "kind": "staticKeyword",
+          "printedText": "公开"
+        },
+        {
+          "id": "healWounds",
+          "kind": "standardAction",
+          "printedText": "选择本地区的目标角色，移除该角色上的所有创伤标志。",
+          "costs": {
+            "currency": 2,
+            "exhaustSource": true
+          },
+          "target": {
+            "category": "faceUpCharacter",
+            "sameSourceRegion": true,
+            "controller": "any"
+          },
+          "effect": "removeAllWoundMarkers",
+          "notOrdinaryTurnDamage": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "healWounds",
+        "priority",
+        "public",
+        "exhaust"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-removal",
+        "manual-seal",
+        "bq-targets",
+        "bq-keywords-2"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "locatorDiscrepancies": [
+        {
+          "field": "abilityCost",
+          "locatorValue": "行动2（没有横置）",
+          "originalValue": "行动2、横置来源",
+          "basis": "费用位置的横置图标在冒号前。"
+        }
+      ],
+      "acceptanceCases": [
+        {
+          "id": "LC19-01",
+          "scenario": "选择本地区敌方角色",
+          "expected": "卡面没有本方限定，允许治疗敌方。",
+          "status": "notRun"
+        },
+        {
+          "id": "LC19-02",
+          "scenario": "治疗创伤",
+          "expected": "移除所有创伤标志，不移除回合伤害，不视为恢复卡牌印刷防御。",
+          "status": "notRun"
+        },
+        {
+          "id": "LC19-03",
+          "scenario": "没有合法生产方式获得创伤的当前卡池",
+          "expected": "本规格只核定治疗，不宣称创伤生成体系已实现。",
+          "status": "notRun"
+        },
+        {
+          "id": "LC19-04",
+          "scenario": "行动费用或触发来源验证",
+          "expected": "外科医生须付2及横置来源；心理咨询师是无此费用的进场触发。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "LC20": {
+      "cardId": "LC20",
+      "batchId": "B02",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/LC20 心理咨询师.jpg",
+        "imageSha256": "961b508b54f78c561b98268da91d901a3536a330aef0ea8a49b81b9f6a278248",
+        "evidenceId": "card-LC20",
+        "scope": "锁定原图的完整游戏字段；不转写背景文字，不声称其他印次等价或最新出版版本。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "20/30",
+        "seriesSymbolObserved": "citySkyline",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "观察版本由同ID原图SHA与实际印刷编号锁定。FAQ旧编号只作独立解释证据，不据此改变新版卡面。"
+      },
+      "fields": {
+        "name": "心理咨询师",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "中立",
+        "basicType": "角色",
+        "subtypes": [
+          "人类",
+          "医疗员"
+        ],
+        "printedCollectorCode": "20/30",
+        "seriesSymbol": "citySkyline",
+        "printedCost": 2,
+        "loyalty": [],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "【进场触发】选择本地区的目标角色，移除该角色上的所有创伤标志。"
+        ]
+      },
+      "abilities": [
+        {
+          "id": "healWounds",
+          "kind": "optionalEnterTrigger",
+          "printedText": "选择本地区的目标角色，移除该角色上的所有创伤标志。",
+          "costs": {},
+          "target": {
+            "category": "faceUpCharacter",
+            "sameSourceRegion": true,
+            "controller": "any"
+          },
+          "effect": "removeAllWoundMarkers",
+          "notOrdinaryTurnDamage": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "healWounds",
+        "priority",
+        "temporaryIcons"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-removal",
+        "manual-seal",
+        "bq-targets",
+        "bq-keywords-2"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "locatorDiscrepancies": [],
+      "acceptanceCases": [
+        {
+          "id": "LC20-01",
+          "scenario": "选择本地区敌方角色",
+          "expected": "卡面没有本方限定，允许治疗敌方。",
+          "status": "notRun"
+        },
+        {
+          "id": "LC20-02",
+          "scenario": "治疗创伤",
+          "expected": "移除所有创伤标志，不移除回合伤害，不视为恢复卡牌印刷防御。",
+          "status": "notRun"
+        },
+        {
+          "id": "LC20-03",
+          "scenario": "没有合法生产方式获得创伤的当前卡池",
+          "expected": "本规格只核定治疗，不宣称创伤生成体系已实现。",
+          "status": "notRun"
+        },
+        {
+          "id": "LC20-04",
+          "scenario": "行动费用或触发来源验证",
+          "expected": "外科医生须付2及横置来源；心理咨询师是无此费用的进场触发。",
           "status": "notRun"
         }
       ]

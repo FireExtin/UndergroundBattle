@@ -302,11 +302,15 @@
       },
       "abilitySummary": "牺牲来源转鲜血附属结附吸血鬼，赋防御和战斗。",
       "confirmedMechanismIds": [
-        "blood",
         "attachment",
+        "blood",
+        "continuous",
+        "loyalty",
+        "priority",
         "sacrifice"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "整卡状态及完整观察版本规格见card-specifications.json；来源完成不代表规则设计疑点、引擎或UI已验收。",
+      "editionStatus": "pinnedImageVariant"
     },
     "JC032": {
       "evidenceId": "card-JC032",
@@ -319,9 +323,12 @@
       "abilitySummary": "每回合一次，顶六张找吸血鬼展示暗藏进本地区，其余洗回。",
       "confirmedMechanismIds": [
         "deckChoice",
-        "hidden"
+        "hidden",
+        "loyalty",
+        "priority"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "整卡状态及完整观察版本规格见card-specifications.json；来源完成不代表规则设计疑点、引擎或UI已验收。",
+      "editionStatus": "pinnedImageVariant"
     },
     "JC042": {
       "evidenceId": "card-JC042",
@@ -366,11 +373,14 @@
       },
       "abilitySummary": "公开；进场横置本地区所有暗藏者。",
       "confirmedMechanismIds": [
-        "public",
         "exhaust",
-        "hidden"
+        "hidden",
+        "loyalty",
+        "priority",
+        "public"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "整卡状态及完整观察版本规格见card-specifications.json；来源完成不代表规则设计疑点、引擎或UI已验收。",
+      "editionStatus": "pinnedImageVariant"
     },
     "JC059": {
       "evidenceId": "card-JC059",
@@ -398,9 +408,11 @@
       "abilitySummary": "潜伏角色或暗藏者回手二选一。",
       "confirmedMechanismIds": [
         "hidden",
+        "loyalty",
         "priority"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "整卡状态及完整观察版本规格见card-specifications.json；来源完成不代表规则设计疑点、引擎或UI已验收。",
+      "editionStatus": "pinnedImageVariant"
     },
     "JC070": {
       "evidenceId": "card-JC070",
@@ -467,10 +479,13 @@
       },
       "abilitySummary": "死亡领域资产赋临时势力；可从墓地正面打出，需费用/忠诚。",
       "confirmedMechanismIds": [
+        "continuous",
         "gravePlay",
-        "continuous"
+        "loyalty",
+        "temporaryIcons"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "整卡状态及完整观察版本规格见card-specifications.json；来源完成不代表规则设计疑点、引擎或UI已验收。",
+      "editionStatus": "pinnedImageVariant"
     },
     "JC086": {
       "evidenceId": "card-JC086",
@@ -482,9 +497,13 @@
       },
       "abilitySummary": "墓地目标角色回手。",
       "confirmedMechanismIds": [
-        "graveRecovery"
+        "deckChoice",
+        "graveRecovery",
+        "loyalty",
+        "priority"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "整卡状态及完整观察版本规格见card-specifications.json；来源完成不代表规则设计疑点、引擎或UI已验收。",
+      "editionStatus": "pinnedImageVariant"
     },
     "JC091": {
       "evidenceId": "card-JC091",
@@ -511,9 +530,12 @@
       "abilitySummary": "墓地目标角色以暗藏者进入所选地区。",
       "confirmedMechanismIds": [
         "graveRecovery",
-        "hidden"
+        "hidden",
+        "loyalty",
+        "priority"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "整卡状态及完整观察版本规格见card-specifications.json；来源完成不代表规则设计疑点、引擎或UI已验收。",
+      "editionStatus": "pinnedImageVariant"
     },
     "JC099": {
       "evidenceId": "card-JC099",
@@ -525,11 +547,15 @@
       },
       "abilitySummary": "灵体；现身封印牌库顶到本地区敌角色；未横置时封印敌失去领域。",
       "confirmedMechanismIds": [
+        "continuous",
+        "hidden",
+        "loyalty",
+        "priority",
         "seal",
-        "spirit",
-        "continuous"
+        "spirit"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "整卡状态及完整观察版本规格见card-specifications.json；来源完成不代表规则设计疑点、引擎或UI已验收。",
+      "editionStatus": "pinnedImageVariant"
     },
     "JC100": {
       "evidenceId": "card-JC100",
@@ -541,11 +567,14 @@
       },
       "abilitySummary": "灵体；现身可封印自身到同地区目标；封印后可付1使载体防御-1。",
       "confirmedMechanismIds": [
+        "continuous",
+        "loyalty",
+        "priority",
         "seal",
-        "spirit",
-        "continuous"
+        "spirit"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "整卡状态及完整观察版本规格见card-specifications.json；来源完成不代表规则设计疑点、引擎或UI已验收。",
+      "editionStatus": "pinnedImageVariant"
     },
     "JC108": {
       "evidenceId": "card-JC108",
@@ -557,10 +586,15 @@
       },
       "abilitySummary": "付费横置封印顶牌；来源在场时被封印敌不能重置。",
       "confirmedMechanismIds": [
+        "continuous",
+        "hidden",
+        "loyalty",
+        "priority",
         "seal",
-        "continuous"
+        "temporaryIcons",
+        "uniqueInPlay"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "整卡状态及完整观察版本规格见card-specifications.json；来源完成不代表规则设计疑点、引擎或UI已验收。"
     },
     "JC118": {
       "evidenceId": "card-JC118",
@@ -704,10 +738,13 @@
       },
       "abilitySummary": "公开；行动2加横置移除本地区目标角色全部创伤。",
       "confirmedMechanismIds": [
-        "public",
-        "healWounds"
+        "exhaust",
+        "healWounds",
+        "priority",
+        "public"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "整卡状态及完整观察版本规格见card-specifications.json；来源完成不代表规则设计疑点、引擎或UI已验收。",
+      "editionStatus": "pinnedImageVariant"
     },
     "LC20": {
       "evidenceId": "card-LC20",
@@ -719,9 +756,12 @@
       },
       "abilitySummary": "进场移除本地区目标角色全部创伤。",
       "confirmedMechanismIds": [
-        "healWounds"
+        "healWounds",
+        "priority",
+        "temporaryIcons"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "整卡状态及完整观察版本规格见card-specifications.json；来源完成不代表规则设计疑点、引擎或UI已验收。",
+      "editionStatus": "pinnedImageVariant"
     },
     "LC21": {
       "evidenceId": "card-LC21",
@@ -1663,6 +1703,153 @@
         "mobility"
       ],
       "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+    },
+    "JC058": {
+      "evidenceId": "card-JC058",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "坚毅的刑警",
+        "colorKey": "灰",
+        "basicType": "角色"
+      },
+      "abilitySummary": "【现身触发】消灭本地区的目标暗藏者。",
+      "confirmedMechanismIds": [
+        "hidden",
+        "loyalty",
+        "priority"
+      ],
+      "remainingReview": "整卡状态及完整观察版本规格见card-specifications.json；来源完成不代表规则设计疑点、引擎或UI已验收。",
+      "editionStatus": "pinnedImageVariant"
+    },
+    "JC074": {
+      "evidenceId": "card-JC074",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "天空的教诲",
+        "colorKey": "白",
+        "basicType": "事务"
+      },
+      "abilitySummary": "【快速】行动：目标角色获得【永久调查】【永久调查】和声望直到回合结束。",
+      "confirmedMechanismIds": [
+        "continuous",
+        "loyalty",
+        "priority",
+        "renown"
+      ],
+      "remainingReview": "整卡状态及完整观察版本规格见card-specifications.json；来源完成不代表规则设计疑点、引擎或UI已验收。",
+      "editionStatus": "pinnedImageVariant"
+    },
+    "JC036": {
+      "evidenceId": "card-JC036",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "初拥",
+        "colorKey": "蓝",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标印刷类别为人类的角色；【持续】你获得受此结附角色的操控权，将该角色的人类类别改为吸血鬼类别。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "continuous",
+        "control",
+        "loyalty"
+      ],
+      "remainingReview": "整卡状态及完整观察版本规格见card-specifications.json；来源完成不代表规则设计疑点、引擎或UI已验收。",
+      "editionStatus": "pinnedImageVariant"
+    },
+    "JC073": {
+      "evidenceId": "card-JC073",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "苏族捕梦网",
+        "colorKey": "白",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标角色；【持续】受此结附的角色获得【临时调查】和屏障（不能被敌方的卡牌或能力指定为目标）。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "barrier",
+        "continuous",
+        "loyalty",
+        "temporaryIcons"
+      ],
+      "remainingReview": "整卡状态及完整观察版本规格见card-specifications.json；来源完成不代表规则设计疑点、引擎或UI已验收。",
+      "editionStatus": "pinnedImageVariant"
+    },
+    "JC075": {
+      "evidenceId": "card-JC075",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "雪地救援队",
+        "colorKey": "白",
+        "basicType": "角色"
+      },
+      "abilitySummary": "公开（该角色不能被秘密派遣为暗藏者）；【快速】行动2，【横置】：将另一个目标本方角色移回其拥有者手上。",
+      "confirmedMechanismIds": [
+        "exhaust",
+        "loyalty",
+        "priority",
+        "public"
+      ],
+      "remainingReview": "整卡状态及完整观察版本规格见card-specifications.json；来源完成不代表规则设计疑点、引擎或UI已验收。",
+      "editionStatus": "pinnedImageVariant"
+    },
+    "JC057": {
+      "evidenceId": "card-JC057",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "监控员",
+        "colorKey": "灰",
+        "basicType": "角色"
+      },
+      "abilitySummary": "【现身触发】检视目标玩家的手牌。；【持续】只要监控员未横置，你可以随时检视与其本地区的任一暗藏者。",
+      "confirmedMechanismIds": [
+        "continuous",
+        "hidden",
+        "loyalty",
+        "priority",
+        "privatePeek",
+        "temporaryIcons"
+      ],
+      "remainingReview": "整卡状态及完整观察版本规格见card-specifications.json；来源完成不代表规则设计疑点、引擎或UI已验收。",
+      "editionStatus": "pinnedImageVariant"
+    },
+    "JC061": {
+      "evidenceId": "card-JC061",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "危机处理特派小组",
+        "colorKey": "灰",
+        "basicType": "角色"
+      },
+      "abilitySummary": "机动；【触发】当危机处理特派小组进入一个地区，你可以支付1，若你如此做，消灭位于该地区的目标暗藏者。",
+      "confirmedMechanismIds": [
+        "hidden",
+        "loyalty",
+        "mobility",
+        "priority"
+      ],
+      "remainingReview": "整卡状态及完整观察版本规格见card-specifications.json；来源完成不代表规则设计疑点、引擎或UI已验收。",
+      "editionStatus": "pinnedImageVariant"
+    },
+    "JC062": {
+      "evidenceId": "card-JC062",
+      "reviewStatus": "primaryImageReviewed",
+      "verifiedFields": {
+        "name": "调查档案",
+        "colorKey": "灰",
+        "basicType": "事务"
+      },
+      "abilitySummary": "【快速】行动：检视至多两个目标暗藏者。抓一张牌。",
+      "confirmedMechanismIds": [
+        "deckChoice",
+        "hidden",
+        "loyalty",
+        "priority",
+        "privatePeek"
+      ],
+      "remainingReview": "整卡状态及完整观察版本规格见card-specifications.json；来源完成不代表规则设计疑点、引擎或UI已验收。",
+      "editionStatus": "pinnedImageVariant"
     }
   }
 }

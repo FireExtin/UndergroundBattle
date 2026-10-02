@@ -9,15 +9,15 @@
   },
   "reviewsSource": {
     "path": "docs/factions/card-reviews.json",
-    "sha256": "a6bf190a89b60f2e4058f647404d9a9bfbe63270fbcf1081ad50d394da2ff3e6"
+    "sha256": "f450e335165778c5e5794433446ffc44a6777f7d6ffac0df2cd056a3d4966c63"
   },
   "coverageSource": {
     "path": "rust-game/data/faction-coverage.json",
-    "sha256": "c331f76a52909e17d5459553c7c14060f124aa7238a28ac274933195cd492d32"
+    "sha256": "d57ed5afb17afa6f053c4c204d099f1cd39f2bfdd053a39f0ec06c66205bff6c"
   },
   "specificationsSource": {
     "path": "docs/factions/card-specifications.json",
-    "sha256": "4fa1e5fbb589a395da3996c2419c7e49c627a1ca216682599adb0085cf72ea56"
+    "sha256": "6c65f2f1a94d21c677aea5f6ed976f83f7fec48c077b6b11f2869396dc9b8d5e"
   },
   "recoverySource": {
     "path": "docs/factions/source-recovery.json",
@@ -34,11 +34,11 @@
   "totals": {
     "archiveRecords": 685,
     "sourceImagesMissing": 13,
-    "primaryImageReviewed": 101,
-    "unreviewedWithImage": 571,
+    "primaryImageReviewed": 109,
+    "unreviewedWithImage": 563,
     "currentCatalogDefinitions": 29,
-    "completeSourceSpecifications": 9,
-    "blockedSourceSpecifications": 2,
+    "completeSourceSpecifications": 28,
+    "blockedSourceSpecifications": 3,
     "locatorSetCounts": {
       "TK": 11,
       "传奇": 44,
@@ -64,10 +64,10 @@
       "worldRegion": 29
     },
     "editionStatusCounts": {
-      "pinnedImageVariant": 9,
+      "pinnedImageVariant": 28,
       "testImageConfirmed": 6,
       "uncertain": 3,
-      "unreviewed": 667
+      "unreviewed": 648
     }
   },
   "records": [
@@ -670,9 +670,9 @@
       ],
       "candidateMechanismIds": [
         "deckChoice",
-        "lock",
         "mysticContest",
         "nonAsset",
+        "privatePeek",
         "seal"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
@@ -1766,7 +1766,7 @@
         "attachment",
         "deckChoice",
         "hidden",
-        "lock"
+        "privatePeek"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
       "interactionIds": [],
@@ -9323,9 +9323,9 @@
         "continuous",
         "deckChoice",
         "hidden",
-        "lock",
         "mysticContest",
         "nonAsset",
+        "privatePeek",
         "rumor"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
@@ -12919,10 +12919,10 @@
       ],
       "evidenceState": "primaryImageReviewed",
       "reviewRef": "docs/factions/card-reviews.json#cards/JC028",
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/JC028",
+      "implementationDesignStatus": "needsRuling",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "鲜血奴仆",
         "set": "基础",
@@ -12949,8 +12949,11 @@
       },
       "abilitySummary": "牺牲来源转鲜血附属结附吸血鬼，赋防御和战斗。",
       "confirmedMechanismIds": [
-        "blood",
         "attachment",
+        "blood",
+        "continuous",
+        "loyalty",
+        "priority",
         "sacrifice"
       ],
       "candidateMechanismIds": [
@@ -12961,15 +12964,20 @@
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
       "interactionIds": [
+        "assetSummary",
         "attachmentPicker",
         "attachments",
         "choicePicker",
         "costPicker",
-        "sealedCards"
+        "sealedCards",
+        "stack"
       ],
       "mechanismCoverage": {
-        "blood": "unimplemented",
         "attachment": "unimplemented",
+        "blood": "unimplemented",
+        "continuous": "partial",
+        "loyalty": "implemented",
+        "priority": "partial",
         "sacrifice": "implemented"
       },
       "engineStatus": "unimplemented",
@@ -13167,10 +13175,10 @@
       ],
       "evidenceState": "primaryImageReviewed",
       "reviewRef": "docs/factions/card-reviews.json#cards/JC032",
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/JC032",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "血族长老",
         "set": "基础",
@@ -13198,7 +13206,9 @@
       "abilitySummary": "每回合一次，顶六张找吸血鬼展示暗藏进本地区，其余洗回。",
       "confirmedMechanismIds": [
         "deckChoice",
-        "hidden"
+        "hidden",
+        "loyalty",
+        "priority"
       ],
       "candidateMechanismIds": [
         "deckChoice",
@@ -13206,15 +13216,20 @@
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
       "interactionIds": [
+        "assetSummary",
+        "choicePicker",
         "handPicker",
         "hiddenProjection",
         "orderPicker",
         "searchPicker",
+        "stack",
         "targetPicker"
       ],
       "mechanismCoverage": {
         "deckChoice": "partial",
-        "hidden": "implemented"
+        "hidden": "implemented",
+        "loyalty": "implemented",
+        "priority": "partial"
       },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
@@ -13398,19 +13413,19 @@
     {
       "id": "JC036",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/JC036 初拥.jpg",
           "sha256": "017507e6a2a229f6541a4690b681ecd71fc09b35962b9673da70f5f035ddba83"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/JC036",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/JC036",
+      "implementationDesignStatus": "needsRuling",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "初拥",
         "set": "基础",
@@ -13428,16 +13443,35 @@
         "keywords": [],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "初拥",
+        "colorKey": "蓝",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标印刷类别为人类的角色；【持续】你获得受此结附角色的操控权，将该角色的人类类别改为吸血鬼类别。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "continuous",
+        "control",
+        "loyalty"
+      ],
       "candidateMechanismIds": [
         "attachment",
         "continuous"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "assetSummary",
+        "attachmentPicker",
+        "attachments",
+        "controlBadges"
+      ],
+      "mechanismCoverage": {
+        "attachment": "unimplemented",
+        "continuous": "partial",
+        "control": "unimplemented",
+        "loyalty": "implemented"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -14585,10 +14619,10 @@
       ],
       "evidenceState": "primaryImageReviewed",
       "reviewRef": "docs/factions/card-reviews.json#cards/JC056",
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/JC056",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "地区警员",
         "set": "基础",
@@ -14617,9 +14651,11 @@
       },
       "abilitySummary": "公开；进场横置本地区所有暗藏者。",
       "confirmedMechanismIds": [
-        "public",
         "exhaust",
-        "hidden"
+        "hidden",
+        "loyalty",
+        "priority",
+        "public"
       ],
       "candidateMechanismIds": [
         "exhaust",
@@ -14628,13 +14664,18 @@
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
       "interactionIds": [
+        "assetSummary",
+        "choicePicker",
         "hiddenProjection",
+        "stack",
         "targetPicker"
       ],
       "mechanismCoverage": {
-        "public": "implemented",
         "exhaust": "implemented",
-        "hidden": "implemented"
+        "hidden": "implemented",
+        "loyalty": "implemented",
+        "priority": "partial",
+        "public": "implemented"
       },
       "engineStatus": "partial",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
@@ -14650,19 +14691,19 @@
     {
       "id": "JC057",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/JC057 监控员.jpg",
           "sha256": "acb8e6d6c421a37862b81e5f194af50a974888e74e252b0a594b7123a6d01678"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/JC057",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/JC057",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "监控员",
         "set": "基础",
@@ -14682,18 +14723,45 @@
         "keywords": [],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "监控员",
+        "colorKey": "灰",
+        "basicType": "角色"
+      },
+      "abilitySummary": "【现身触发】检视目标玩家的手牌。；【持续】只要监控员未横置，你可以随时检视与其本地区的任一暗藏者。",
+      "confirmedMechanismIds": [
+        "continuous",
+        "hidden",
+        "loyalty",
+        "priority",
+        "privatePeek",
+        "temporaryIcons"
+      ],
       "candidateMechanismIds": [
         "continuous",
         "exhaust",
         "hidden",
-        "lock"
+        "privatePeek"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "assetSummary",
+        "choicePicker",
+        "handPicker",
+        "hiddenProjection",
+        "iconBreakdown",
+        "privatePeek",
+        "stack",
+        "targetPicker"
+      ],
+      "mechanismCoverage": {
+        "continuous": "partial",
+        "hidden": "implemented",
+        "loyalty": "implemented",
+        "priority": "partial",
+        "privatePeek": "unimplemented",
+        "temporaryIcons": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -14708,19 +14776,19 @@
     {
       "id": "JC058",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/JC058 坚毅的刑警.jpg",
           "sha256": "6585e89991049cb05e75db43143320fd12bf6be781847648d551cb433e85119a"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/JC058",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/JC058",
+      "implementationDesignStatus": "needsRuling",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "坚毅的刑警",
         "set": "基础",
@@ -14740,15 +14808,33 @@
         "keywords": [],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "坚毅的刑警",
+        "colorKey": "灰",
+        "basicType": "角色"
+      },
+      "abilitySummary": "【现身触发】消灭本地区的目标暗藏者。",
+      "confirmedMechanismIds": [
+        "hidden",
+        "loyalty",
+        "priority"
+      ],
       "candidateMechanismIds": [
         "hidden"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "assetSummary",
+        "choicePicker",
+        "hiddenProjection",
+        "stack",
+        "targetPicker"
+      ],
+      "mechanismCoverage": {
+        "hidden": "implemented",
+        "loyalty": "implemented",
+        "priority": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -14887,19 +14973,19 @@
     {
       "id": "JC061",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/JC061 危机处理特派小组.jpg",
           "sha256": "132918615db6a2233eed3f2d2d045c368c65348e43c52f101f17e4c4ecd756f6"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/JC061",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/JC061",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "危机处理特派小组",
         "set": "基础",
@@ -14921,17 +15007,38 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "危机处理特派小组",
+        "colorKey": "灰",
+        "basicType": "角色"
+      },
+      "abilitySummary": "机动；【触发】当危机处理特派小组进入一个地区，你可以支付1，若你如此做，消灭位于该地区的目标暗藏者。",
+      "confirmedMechanismIds": [
+        "hidden",
+        "loyalty",
+        "mobility",
+        "priority"
+      ],
       "candidateMechanismIds": [
         "crisis",
         "hidden",
         "mobility"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "assetSummary",
+        "choicePicker",
+        "hiddenProjection",
+        "regionPicker",
+        "stack",
+        "targetPicker"
+      ],
+      "mechanismCoverage": {
+        "hidden": "implemented",
+        "loyalty": "implemented",
+        "mobility": "partial",
+        "priority": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -14946,19 +15053,19 @@
     {
       "id": "JC062",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/JC062 调查档案.jpg",
           "sha256": "7a66629a3059ff47d0707b267d165ea933b43caf95dcd92545655504361bde03"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/JC062",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/JC062",
+      "implementationDesignStatus": "needsRuling",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "调查档案",
         "set": "基础",
@@ -14976,17 +15083,43 @@
         "keywords": [],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "调查档案",
+        "colorKey": "灰",
+        "basicType": "事务"
+      },
+      "abilitySummary": "【快速】行动：检视至多两个目标暗藏者。抓一张牌。",
+      "confirmedMechanismIds": [
+        "deckChoice",
+        "hidden",
+        "loyalty",
+        "priority",
+        "privatePeek"
+      ],
       "candidateMechanismIds": [
         "deckChoice",
         "hidden",
-        "lock"
+        "privatePeek"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "assetSummary",
+        "choicePicker",
+        "handPicker",
+        "hiddenProjection",
+        "orderPicker",
+        "privatePeek",
+        "searchPicker",
+        "stack",
+        "targetPicker"
+      ],
+      "mechanismCoverage": {
+        "deckChoice": "partial",
+        "hidden": "implemented",
+        "loyalty": "implemented",
+        "priority": "partial",
+        "privatePeek": "unimplemented"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -15010,10 +15143,10 @@
       ],
       "evidenceState": "primaryImageReviewed",
       "reviewRef": "docs/factions/card-reviews.json#cards/JC063",
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/JC063",
+      "implementationDesignStatus": "needsRuling",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "警车追捕",
         "set": "基础",
@@ -15041,6 +15174,7 @@
       "abilitySummary": "潜伏角色或暗藏者回手二选一。",
       "confirmedMechanismIds": [
         "hidden",
+        "loyalty",
         "priority"
       ],
       "candidateMechanismIds": [
@@ -15048,6 +15182,7 @@
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
       "interactionIds": [
+        "assetSummary",
         "choicePicker",
         "hiddenProjection",
         "stack",
@@ -15055,6 +15190,7 @@
       ],
       "mechanismCoverage": {
         "hidden": "implemented",
+        "loyalty": "implemented",
         "priority": "partial"
       },
       "engineStatus": "partial",
@@ -15616,19 +15752,19 @@
     {
       "id": "JC073",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/JC073 苏族捕梦网.jpg",
           "sha256": "cebf528de52de72d7400d4c769c2642063342d75a01670e120b5bc71aba23d42"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/JC073",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/JC073",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "苏族捕梦网",
         "set": "基础",
@@ -15648,17 +15784,38 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "苏族捕梦网",
+        "colorKey": "白",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标角色；【持续】受此结附的角色获得【临时调查】和屏障（不能被敌方的卡牌或能力指定为目标）。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "barrier",
+        "continuous",
+        "loyalty",
+        "temporaryIcons"
+      ],
       "candidateMechanismIds": [
         "attachment",
         "barrier",
         "continuous"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "assetSummary",
+        "attachmentPicker",
+        "attachments",
+        "iconBreakdown"
+      ],
+      "mechanismCoverage": {
+        "attachment": "unimplemented",
+        "barrier": "implemented",
+        "continuous": "partial",
+        "loyalty": "implemented",
+        "temporaryIcons": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -15673,19 +15830,19 @@
     {
       "id": "JC074",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/JC074 天空的教诲.jpg",
           "sha256": "e34e5bb081f3ee459d99038c68d60f4be4a44af05baa4289759b730045140914"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/JC074",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/JC074",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "天空的教诲",
         "set": "基础",
@@ -15705,16 +15862,35 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "天空的教诲",
+        "colorKey": "白",
+        "basicType": "事务"
+      },
+      "abilitySummary": "【快速】行动：目标角色获得【永久调查】【永久调查】和声望直到回合结束。",
+      "confirmedMechanismIds": [
+        "continuous",
+        "loyalty",
+        "priority",
+        "renown"
+      ],
       "candidateMechanismIds": [
         "continuous",
         "renown"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "assetSummary",
+        "choicePicker",
+        "stack",
+        "triggerPrompt"
+      ],
+      "mechanismCoverage": {
+        "continuous": "partial",
+        "loyalty": "implemented",
+        "priority": "partial",
+        "renown": "unimplemented"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -15729,19 +15905,19 @@
     {
       "id": "JC075",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/JC075 雪地救援队.jpg",
           "sha256": "7db960c7050614dae10a8e752db2567670169e782986e39a789842259231e434"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/JC075",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/JC075",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "雪地救援队",
         "set": "基础",
@@ -15763,17 +15939,36 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "雪地救援队",
+        "colorKey": "白",
+        "basicType": "角色"
+      },
+      "abilitySummary": "公开（该角色不能被秘密派遣为暗藏者）；【快速】行动2，【横置】：将另一个目标本方角色移回其拥有者手上。",
+      "confirmedMechanismIds": [
+        "exhaust",
+        "loyalty",
+        "priority",
+        "public"
+      ],
       "candidateMechanismIds": [
         "exhaust",
         "hidden",
         "public"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "assetSummary",
+        "choicePicker",
+        "stack",
+        "targetPicker"
+      ],
+      "mechanismCoverage": {
+        "exhaust": "implemented",
+        "loyalty": "implemented",
+        "priority": "partial",
+        "public": "implemented"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -16356,10 +16551,10 @@
       ],
       "evidenceState": "primaryImageReviewed",
       "reviewRef": "docs/factions/card-reviews.json#cards/JC085",
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/JC085",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "复生行尸",
         "set": "基础",
@@ -16386,8 +16581,10 @@
       },
       "abilitySummary": "死亡领域资产赋临时势力；可从墓地正面打出，需费用/忠诚。",
       "confirmedMechanismIds": [
+        "continuous",
         "gravePlay",
-        "continuous"
+        "loyalty",
+        "temporaryIcons"
       ],
       "candidateMechanismIds": [
         "continuous",
@@ -16397,11 +16594,15 @@
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
       "interactionIds": [
-        "graveyardPicker"
+        "assetSummary",
+        "graveyardPicker",
+        "iconBreakdown"
       ],
       "mechanismCoverage": {
+        "continuous": "partial",
         "gravePlay": "unimplemented",
-        "continuous": "partial"
+        "loyalty": "implemented",
+        "temporaryIcons": "partial"
       },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
@@ -16426,10 +16627,10 @@
       ],
       "evidenceState": "primaryImageReviewed",
       "reviewRef": "docs/factions/card-reviews.json#cards/JC086",
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/JC086",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "窃尸人",
         "set": "基础",
@@ -16456,18 +16657,30 @@
       },
       "abilitySummary": "墓地目标角色回手。",
       "confirmedMechanismIds": [
-        "graveRecovery"
+        "deckChoice",
+        "graveRecovery",
+        "loyalty",
+        "priority"
       ],
       "candidateMechanismIds": [
         "graveRecovery"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
       "interactionIds": [
+        "assetSummary",
+        "choicePicker",
         "graveyardPicker",
-        "regionPicker"
+        "handPicker",
+        "orderPicker",
+        "regionPicker",
+        "searchPicker",
+        "stack"
       ],
       "mechanismCoverage": {
-        "graveRecovery": "implemented"
+        "deckChoice": "partial",
+        "graveRecovery": "implemented",
+        "loyalty": "implemented",
+        "priority": "partial"
       },
       "engineStatus": "partial",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
@@ -16780,10 +16993,10 @@
       ],
       "evidenceState": "primaryImageReviewed",
       "reviewRef": "docs/factions/card-reviews.json#cards/JC092",
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/JC092",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "死灵召唤",
         "set": "基础",
@@ -16809,7 +17022,9 @@
       "abilitySummary": "墓地目标角色以暗藏者进入所选地区。",
       "confirmedMechanismIds": [
         "graveRecovery",
-        "hidden"
+        "hidden",
+        "loyalty",
+        "priority"
       ],
       "candidateMechanismIds": [
         "graveRecovery",
@@ -16817,14 +17032,19 @@
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
       "interactionIds": [
+        "assetSummary",
+        "choicePicker",
         "graveyardPicker",
         "hiddenProjection",
         "regionPicker",
+        "stack",
         "targetPicker"
       ],
       "mechanismCoverage": {
         "graveRecovery": "implemented",
-        "hidden": "implemented"
+        "hidden": "implemented",
+        "loyalty": "implemented",
+        "priority": "partial"
       },
       "engineStatus": "partial",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
@@ -17196,10 +17416,10 @@
       ],
       "evidenceState": "primaryImageReviewed",
       "reviewRef": "docs/factions/card-reviews.json#cards/JC099",
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/JC099",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "徘徊的鬼魂",
         "set": "基础",
@@ -17228,9 +17448,12 @@
       },
       "abilitySummary": "灵体；现身封印牌库顶到本地区敌角色；未横置时封印敌失去领域。",
       "confirmedMechanismIds": [
+        "continuous",
+        "hidden",
+        "loyalty",
+        "priority",
         "seal",
-        "spirit",
-        "continuous"
+        "spirit"
       ],
       "candidateMechanismIds": [
         "continuous",
@@ -17242,14 +17465,21 @@
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
       "interactionIds": [
+        "assetSummary",
+        "choicePicker",
         "domainSummary",
+        "hiddenProjection",
         "sealedCards",
+        "stack",
         "targetPicker"
       ],
       "mechanismCoverage": {
+        "continuous": "partial",
+        "hidden": "implemented",
+        "loyalty": "implemented",
+        "priority": "partial",
         "seal": "unimplemented",
-        "spirit": "unimplemented",
-        "continuous": "partial"
+        "spirit": "unimplemented"
       },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
@@ -17274,10 +17504,10 @@
       ],
       "evidenceState": "primaryImageReviewed",
       "reviewRef": "docs/factions/card-reviews.json#cards/JC100",
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/JC100",
+      "implementationDesignStatus": "needsRuling",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "尖牙幻象",
         "set": "基础",
@@ -17306,9 +17536,11 @@
       },
       "abilitySummary": "灵体；现身可封印自身到同地区目标；封印后可付1使载体防御-1。",
       "confirmedMechanismIds": [
+        "continuous",
+        "loyalty",
+        "priority",
         "seal",
-        "spirit",
-        "continuous"
+        "spirit"
       ],
       "candidateMechanismIds": [
         "continuous",
@@ -17318,14 +17550,19 @@
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
       "interactionIds": [
+        "assetSummary",
+        "choicePicker",
         "domainSummary",
         "sealedCards",
+        "stack",
         "targetPicker"
       ],
       "mechanismCoverage": {
+        "continuous": "partial",
+        "loyalty": "implemented",
+        "priority": "partial",
         "seal": "unimplemented",
-        "spirit": "unimplemented",
-        "continuous": "partial"
+        "spirit": "unimplemented"
       },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
@@ -17541,7 +17778,7 @@
       "confirmedMechanismIds": [],
       "candidateMechanismIds": [
         "deckChoice",
-        "lock"
+        "privatePeek"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
       "interactionIds": [],
@@ -17738,9 +17975,9 @@
       ],
       "evidenceState": "primaryImageReviewed",
       "reviewRef": "docs/factions/card-reviews.json#cards/JC108",
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "implementationDesignStatus": "notStarted",
+      "fullCardVerification": "blocked",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/JC108",
+      "implementationDesignStatus": "needsRuling",
       "editionStatus": "unreviewed",
       "locator": {
         "name": "乔治·帕佐，织梦人",
@@ -17768,8 +18005,13 @@
       },
       "abilitySummary": "付费横置封印顶牌；来源在场时被封印敌不能重置。",
       "confirmedMechanismIds": [
+        "continuous",
+        "hidden",
+        "loyalty",
+        "priority",
         "seal",
-        "continuous"
+        "temporaryIcons",
+        "uniqueInPlay"
       ],
       "candidateMechanismIds": [
         "continuous",
@@ -17779,12 +18021,23 @@
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
       "interactionIds": [
+        "assetSummary",
+        "choicePicker",
+        "hiddenProjection",
+        "iconBreakdown",
         "sealedCards",
-        "targetPicker"
+        "stack",
+        "targetPicker",
+        "uniquePrompt"
       ],
       "mechanismCoverage": {
+        "continuous": "partial",
+        "hidden": "implemented",
+        "loyalty": "implemented",
+        "priority": "partial",
         "seal": "unimplemented",
-        "continuous": "partial"
+        "temporaryIcons": "partial",
+        "uniqueInPlay": "implemented"
       },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
@@ -17960,7 +18213,7 @@
         "attachment",
         "deckChoice",
         "exhaust",
-        "lock",
+        "privatePeek",
         "spirit"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
@@ -18420,7 +18673,7 @@
       "confirmedMechanismIds": [],
       "candidateMechanismIds": [
         "hidden",
-        "lock",
+        "privatePeek",
         "seal"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
@@ -20802,7 +21055,7 @@
         "attachment",
         "hidden",
         "hiddenOnly",
-        "lock"
+        "privatePeek"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
       "interactionIds": [],
@@ -21987,7 +22240,8 @@
         "attachment",
         "exhaust",
         "hidden",
-        "lock"
+        "lock",
+        "privatePeek"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
       "interactionIds": [],
@@ -23278,8 +23532,8 @@
         "healWounds",
         "hidden",
         "hiddenOnly",
-        "lock",
-        "nonAsset"
+        "nonAsset",
+        "privatePeek"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
       "interactionIds": [],
@@ -23804,7 +24058,7 @@
       "candidateMechanismIds": [
         "continuous",
         "deckChoice",
-        "lock"
+        "privatePeek"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
       "interactionIds": [],
@@ -23869,7 +24123,7 @@
         "healWounds",
         "hidden",
         "hiddenOnly",
-        "lock"
+        "privatePeek"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
       "interactionIds": [],
@@ -24913,10 +25167,10 @@
       ],
       "evidenceState": "primaryImageReviewed",
       "reviewRef": "docs/factions/card-reviews.json#cards/LC19",
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/LC19",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "外科医生",
         "set": "洛城",
@@ -24945,8 +25199,10 @@
       },
       "abilitySummary": "公开；行动2加横置移除本地区目标角色全部创伤。",
       "confirmedMechanismIds": [
-        "public",
-        "healWounds"
+        "exhaust",
+        "healWounds",
+        "priority",
+        "public"
       ],
       "candidateMechanismIds": [
         "combatKeywords",
@@ -24955,11 +25211,15 @@
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
       "interactionIds": [
+        "choicePicker",
+        "stack",
         "targetPicker"
       ],
       "mechanismCoverage": {
-        "public": "implemented",
-        "healWounds": "partial"
+        "exhaust": "implemented",
+        "healWounds": "partial",
+        "priority": "partial",
+        "public": "implemented"
       },
       "engineStatus": "partial",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
@@ -24984,10 +25244,10 @@
       ],
       "evidenceState": "primaryImageReviewed",
       "reviewRef": "docs/factions/card-reviews.json#cards/LC20",
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/LC20",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "心理咨询师",
         "set": "洛城",
@@ -25015,7 +25275,9 @@
       },
       "abilitySummary": "进场移除本地区目标角色全部创伤。",
       "confirmedMechanismIds": [
-        "healWounds"
+        "healWounds",
+        "priority",
+        "temporaryIcons"
       ],
       "candidateMechanismIds": [
         "combatKeywords",
@@ -25023,10 +25285,15 @@
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
       "interactionIds": [
+        "choicePicker",
+        "iconBreakdown",
+        "stack",
         "targetPicker"
       ],
       "mechanismCoverage": {
-        "healWounds": "partial"
+        "healWounds": "partial",
+        "priority": "partial",
+        "temporaryIcons": "partial"
       },
       "engineStatus": "partial",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
@@ -25969,9 +26236,9 @@
         "continuous",
         "exhaust",
         "hidden",
-        "lock",
         "mysticContest",
         "plan",
+        "privatePeek",
         "society"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
@@ -27857,7 +28124,7 @@
         "crisis",
         "deckChoice",
         "exhaust",
-        "lock",
+        "privatePeek",
         "society"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
@@ -32379,6 +32646,7 @@
         "lock",
         "mysticContest",
         "plan",
+        "privatePeek",
         "slow"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
@@ -33173,9 +33441,9 @@
         "combatKeywords",
         "exhaust",
         "hidden",
-        "lock",
         "mysticContest",
-        "plan"
+        "plan",
+        "privatePeek"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
       "interactionIds": [],
@@ -34358,9 +34626,9 @@
         "continuous",
         "control",
         "hidden",
-        "lock",
         "mysticContest",
-        "plan"
+        "plan",
+        "privatePeek"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
       "interactionIds": [],
@@ -35181,10 +35449,10 @@
       "candidateMechanismIds": [
         "deckChoice",
         "hidden",
-        "lock",
         "mysticContest",
         "nonAsset",
-        "plan"
+        "plan",
+        "privatePeek"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
       "interactionIds": [],
@@ -35299,9 +35567,9 @@
         "attachment",
         "continuous",
         "deckChoice",
-        "lock",
         "mysticContest",
         "plan",
+        "privatePeek",
         "sacrifice"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
