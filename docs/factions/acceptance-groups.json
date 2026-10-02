@@ -1,0 +1,495 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Planned implementation/acceptance groups, never release metadata or playable definitions.",
+  "auditedCommit": "286ad83ef5a54bc0caed26199ca4cfea269314bd",
+  "allGroupsAreUnaccepted": true,
+  "sourceReviewRequiredBeforeImplementation": true,
+  "rulesUnknownBlockers": [
+    "nonAssetEdition",
+    "sourceRegion",
+    "editionMismatch",
+    "missingImages",
+    "societyModes",
+    "eternalDefinition"
+  ],
+  "groups": [
+    {
+      "id": "G00-navigation",
+      "name": "只读官方导航与目录",
+      "kind": "readOnlyUi",
+      "status": "planned",
+      "releaseApproved": false,
+      "dependsOnGroupIds": [],
+      "mechanismIds": [
+        "society"
+      ],
+      "representativeCardIds": [
+        "MSJC01",
+        "MSJC08",
+        "MSJZ03",
+        "ZHMSJZ02"
+      ],
+      "representativesAreCompleteSpecs": false,
+      "gates": [
+        "completePrimarySourceSpec",
+        "boundedRulesDesign",
+        "engineAndPersistenceRegression",
+        "legalActionsAndPrivateProjection",
+        "usableUiChoices",
+        "independentStrategyUiPlaytest",
+        "feedbackFixAndRegression",
+        "mainImplementationOwnerReview"
+      ],
+      "checks": [
+        "官方八色/中立和五副自组预组分开展示",
+        "白紫可浏览但不可发送未实现开局命令",
+        "无来源或覆盖漂移保持禁用"
+      ],
+      "strategyUiPlaytest": {
+        "tool": "dot",
+        "minimumIndependentTesters": 2,
+        "maximumIndependentTesters": 4,
+        "style": "humanStyleActualUi",
+        "status": "notRun",
+        "apiOnlyIsSufficient": false,
+        "feedbackFixAndRegressionRequired": true
+      }
+    },
+    {
+      "id": "G01-foundation",
+      "name": "触发、费用、目标与可恢复选择",
+      "kind": "engineDesign",
+      "status": "planned",
+      "releaseApproved": false,
+      "dependsOnGroupIds": [],
+      "mechanismIds": [
+        "priority",
+        "continuous",
+        "deckChoice",
+        "mobility"
+      ],
+      "representativeCardIds": [
+        "JC003",
+        "JC049",
+        "DQJC116"
+      ],
+      "representativesAreCompleteSpecs": false,
+      "gates": [
+        "completePrimarySourceSpec",
+        "boundedRulesDesign",
+        "engineAndPersistenceRegression",
+        "legalActionsAndPrivateProjection",
+        "usableUiChoices",
+        "independentStrategyUiPlaytest",
+        "feedbackFixAndRegression",
+        "mainImplementationOwnerReview"
+      ],
+      "checks": [
+        "费用失败全状态不变，费用成功后失效不退款",
+        "可选/强制、多目标和多玩家窗口顺序分别核验",
+        "个人和同步私密选择不得泄露，恢复不重复支付"
+      ],
+      "strategyUiPlaytest": {
+        "tool": "dot",
+        "minimumIndependentTesters": 2,
+        "maximumIndependentTesters": 4,
+        "style": "humanStyleActualUi",
+        "status": "notRun",
+        "apiOnlyIsSufficient": false,
+        "feedbackFixAndRegressionRequired": true
+      }
+    },
+    {
+      "id": "G02-keywords",
+      "name": "简单关键字与伤害/图标层",
+      "kind": "cardBatch",
+      "status": "planned",
+      "releaseApproved": false,
+      "dependsOnGroupIds": [
+        "G01-foundation"
+      ],
+      "mechanismIds": [
+        "renown",
+        "spirit",
+        "damagePrevention",
+        "shield",
+        "healWounds",
+        "slow",
+        "chaos",
+        "combatKeywords",
+        "hiddenOnly",
+        "leader",
+        "temporaryIcons",
+        "uniqueInPlay"
+      ],
+      "representativeCardIds": [
+        "JC070",
+        "JC076",
+        "JC077",
+        "LC14",
+        "WM071"
+      ],
+      "representativesAreCompleteSpecs": false,
+      "gates": [
+        "completePrimarySourceSpec",
+        "boundedRulesDesign",
+        "engineAndPersistenceRegression",
+        "legalActionsAndPrivateProjection",
+        "usableUiChoices",
+        "independentStrategyUiPlaytest",
+        "feedbackFixAndRegression",
+        "mainImplementationOwnerReview"
+      ],
+      "checks": [
+        "声望与威名不按人数叠加",
+        "护盾/创伤必须有可达的生产赋予路径",
+        "临时图标、迟缓、混乱、灵体和替代伤害逐条原图验收"
+      ],
+      "strategyUiPlaytest": {
+        "tool": "dot",
+        "minimumIndependentTesters": 2,
+        "maximumIndependentTesters": 4,
+        "style": "humanStyleActualUi",
+        "status": "notRun",
+        "apiOnlyIsSufficient": false,
+        "feedbackFixAndRegressionRequired": true
+      }
+    },
+    {
+      "id": "G03-societies",
+      "name": "基础秘社与构筑校验",
+      "kind": "cardBatch",
+      "status": "planned",
+      "releaseApproved": false,
+      "dependsOnGroupIds": [
+        "G01-foundation"
+      ],
+      "mechanismIds": [
+        "society",
+        "loyalty"
+      ],
+      "representativeCardIds": [
+        "MSJC01",
+        "MSJC08",
+        "MSJC09"
+      ],
+      "representativesAreCompleteSpecs": false,
+      "gates": [
+        "completePrimarySourceSpec",
+        "boundedRulesDesign",
+        "engineAndPersistenceRegression",
+        "legalActionsAndPrivateProjection",
+        "usableUiChoices",
+        "independentStrategyUiPlaytest",
+        "feedbackFixAndRegression",
+        "mainImplementationOwnerReview"
+      ],
+      "checks": [
+        "秘社另放不计50张，开局手牌按卡面",
+        "同名上限、印刷例外和任意色一般规则分开",
+        "复杂秘社与转变/非初始记录继续禁用"
+      ],
+      "strategyUiPlaytest": {
+        "tool": "dot",
+        "minimumIndependentTesters": 2,
+        "maximumIndependentTesters": 4,
+        "style": "humanStyleActualUi",
+        "status": "notRun",
+        "apiOnlyIsSufficient": false,
+        "feedbackFixAndRegressionRequired": true
+      }
+    },
+    {
+      "id": "G04-lifecycle",
+      "name": "附属、封印与控制生命周期",
+      "kind": "cardBatch",
+      "status": "planned",
+      "releaseApproved": false,
+      "dependsOnGroupIds": [
+        "G01-foundation",
+        "G03-societies"
+      ],
+      "mechanismIds": [
+        "attachment",
+        "seal",
+        "control",
+        "blink"
+      ],
+      "representativeCardIds": [
+        "JC028",
+        "JC099",
+        "JC100",
+        "MSJC10",
+        "LC15"
+      ],
+      "representativesAreCompleteSpecs": false,
+      "gates": [
+        "completePrimarySourceSpec",
+        "boundedRulesDesign",
+        "engineAndPersistenceRegression",
+        "legalActionsAndPrivateProjection",
+        "usableUiChoices",
+        "independentStrategyUiPlaytest",
+        "feedbackFixAndRegression",
+        "mainImplementationOwnerReview"
+      ],
+      "checks": [
+        "载体潜伏/离场正确处理附属与封印及拥有者",
+        "原实体移动与新实体重入区分，旧目标不得命中新对象",
+        "不能指定封印牌；控制返还、双类型和闪烁需独立测试"
+      ],
+      "strategyUiPlaytest": {
+        "tool": "dot",
+        "minimumIndependentTesters": 2,
+        "maximumIndependentTesters": 4,
+        "style": "humanStyleActualUi",
+        "status": "notRun",
+        "apiOnlyIsSufficient": false,
+        "feedbackFixAndRegressionRequired": true
+      }
+    },
+    {
+      "id": "G05-multizone",
+      "name": "墓地/手牌能力与替代入区",
+      "kind": "cardBatch",
+      "status": "planned",
+      "releaseApproved": false,
+      "dependsOnGroupIds": [
+        "G01-foundation",
+        "G04-lifecycle"
+      ],
+      "mechanismIds": [
+        "gravePlay",
+        "handAbility",
+        "herald",
+        "rumor",
+        "cancel",
+        "reincarnation",
+        "graveRecovery"
+      ],
+      "representativeCardIds": [
+        "JC085",
+        "MSJC16",
+        "CQ12",
+        "LC14",
+        "WM071"
+      ],
+      "representativesAreCompleteSpecs": false,
+      "gates": [
+        "completePrimarySourceSpec",
+        "boundedRulesDesign",
+        "engineAndPersistenceRegression",
+        "legalActionsAndPrivateProjection",
+        "usableUiChoices",
+        "independentStrategyUiPlaytest",
+        "feedbackFixAndRegression",
+        "mainImplementationOwnerReview"
+      ],
+      "checks": [
+        "墓地直接打出并非先回手，仍核费用忠诚",
+        "先兆展示为费用并保留准备步骤/每回合限制",
+        "转生从任意区域进墓/封印的替代及洗牌不能做事后触发"
+      ],
+      "strategyUiPlaytest": {
+        "tool": "dot",
+        "minimumIndependentTesters": 2,
+        "maximumIndependentTesters": 4,
+        "style": "humanStyleActualUi",
+        "status": "notRun",
+        "apiOnlyIsSufficient": false,
+        "feedbackFixAndRegressionRequired": true
+      }
+    },
+    {
+      "id": "G06-generation",
+      "name": "指示物、时间、毁灭与转变",
+      "kind": "cardBatch",
+      "status": "planned",
+      "releaseApproved": false,
+      "dependsOnGroupIds": [
+        "G02-keywords",
+        "G03-societies",
+        "G04-lifecycle"
+      ],
+      "mechanismIds": [
+        "token",
+        "timeDestroy",
+        "transform"
+      ],
+      "representativeCardIds": [
+        "MSJC13",
+        "MSCQ02",
+        "MSJZ02",
+        "MSJZ03",
+        "ZHMSJZ02"
+      ],
+      "representativesAreCompleteSpecs": false,
+      "gates": [
+        "completePrimarySourceSpec",
+        "boundedRulesDesign",
+        "engineAndPersistenceRegression",
+        "legalActionsAndPrivateProjection",
+        "usableUiChoices",
+        "independentStrategyUiPlaytest",
+        "feedbackFixAndRegression",
+        "mainImplementationOwnerReview"
+      ],
+      "checks": [
+        "生成指示物与转变面不计入玩家可构筑池",
+        "毁灭标志限制、分数修正与替代胜利原文验收",
+        "强制转变/牺牲顺序、形态持续层与恢复保存一致"
+      ],
+      "strategyUiPlaytest": {
+        "tool": "dot",
+        "minimumIndependentTesters": 2,
+        "maximumIndependentTesters": 4,
+        "style": "humanStyleActualUi",
+        "status": "notRun",
+        "apiOnlyIsSufficient": false,
+        "feedbackFixAndRegressionRequired": true
+      }
+    },
+    {
+      "id": "G07-secrecy",
+      "name": "隐秘对抗、计划及星光扩展",
+      "kind": "cardBatch",
+      "status": "planned",
+      "releaseApproved": false,
+      "dependsOnGroupIds": [
+        "G01-foundation",
+        "G03-societies",
+        "G04-lifecycle"
+      ],
+      "mechanismIds": [
+        "mysticContest",
+        "plan",
+        "starlightInfluence"
+      ],
+      "representativeCardIds": [
+        "MSCQ01",
+        "MSBQ04",
+        "MSWM01",
+        "MSWM02"
+      ],
+      "representativesAreCompleteSpecs": false,
+      "gates": [
+        "completePrimarySourceSpec",
+        "boundedRulesDesign",
+        "engineAndPersistenceRegression",
+        "legalActionsAndPrivateProjection",
+        "usableUiChoices",
+        "independentStrategyUiPlaytest",
+        "feedbackFixAndRegression",
+        "mainImplementationOwnerReview"
+      ],
+      "checks": [
+        "同时秘密选择和展示有完整UI并且隔离私密信息",
+        "隐秘/暴露、计划的隐私与推进条件逐牌确认",
+        "非地区势力/隐秘不同于普通地区积分，不自动胜区"
+      ],
+      "strategyUiPlaytest": {
+        "tool": "dot",
+        "minimumIndependentTesters": 2,
+        "maximumIndependentTesters": 4,
+        "style": "humanStyleActualUi",
+        "status": "notRun",
+        "apiOnlyIsSufficient": false,
+        "feedbackFixAndRegressionRequired": true
+      }
+    },
+    {
+      "id": "G08-hegemony",
+      "name": "鲜血、核心区、任务与命令",
+      "kind": "cardBatch",
+      "status": "planned",
+      "releaseApproved": false,
+      "dependsOnGroupIds": [
+        "G04-lifecycle",
+        "G06-generation"
+      ],
+      "mechanismIds": [
+        "blood",
+        "core",
+        "task"
+      ],
+      "representativeCardIds": [
+        "MSBQ01",
+        "MSBQ02",
+        "BQ043"
+      ],
+      "representativesAreCompleteSpecs": false,
+      "gates": [
+        "completePrimarySourceSpec",
+        "boundedRulesDesign",
+        "engineAndPersistenceRegression",
+        "legalActionsAndPrivateProjection",
+        "usableUiChoices",
+        "independentStrategyUiPlaytest",
+        "feedbackFixAndRegression",
+        "mainImplementationOwnerReview"
+      ],
+      "checks": [
+        "饮血从墓地/秘社封印取鲜血，载体离场生命周期正确",
+        "核心区名誉点/失控/休整与命令费用分开核准",
+        "任务三张替代获胜和地区任务双身份不混用"
+      ],
+      "strategyUiPlaytest": {
+        "tool": "dot",
+        "minimumIndependentTesters": 2,
+        "maximumIndependentTesters": 4,
+        "style": "humanStyleActualUi",
+        "status": "notRun",
+        "apiOnlyIsSufficient": false,
+        "feedbackFixAndRegressionRequired": true
+      }
+    },
+    {
+      "id": "G09-world-modes",
+      "name": "世界遭遇与专用模式",
+      "kind": "modeBatch",
+      "status": "planned",
+      "releaseApproved": false,
+      "dependsOnGroupIds": [
+        "G01-foundation",
+        "G03-societies",
+        "G06-generation"
+      ],
+      "mechanismIds": [
+        "encounter",
+        "crisis"
+      ],
+      "representativeCardIds": [
+        "DQXQZY02",
+        "MSLC01",
+        "MSLC02",
+        "MSLC03",
+        "MSLC04"
+      ],
+      "representativesAreCompleteSpecs": false,
+      "gates": [
+        "completePrimarySourceSpec",
+        "boundedRulesDesign",
+        "engineAndPersistenceRegression",
+        "legalActionsAndPrivateProjection",
+        "usableUiChoices",
+        "independentStrategyUiPlaytest",
+        "feedbackFixAndRegression",
+        "mainImplementationOwnerReview"
+      ],
+      "checks": [
+        "先获取缺失模式手册和DQBQ原图再设计洛城/统治者入口",
+        "世界遭遇的利用/恐怖与世界地区分别建模",
+        "经典2V2、霸权2V2、统治者、洛城使用各自设置和胜利判定"
+      ],
+      "strategyUiPlaytest": {
+        "tool": "dot",
+        "minimumIndependentTesters": 2,
+        "maximumIndependentTesters": 4,
+        "style": "humanStyleActualUi",
+        "status": "notRun",
+        "apiOnlyIsSufficient": false,
+        "feedbackFixAndRegressionRequired": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,3982 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Official navigation and research coverage only; never an engine card registry.",
+  "auditedCommit": "286ad83ef5a54bc0caed26199ca4cfea269314bd",
+  "reviewedAt": "2026-10-02",
+  "scopeBoundary": "本仓库归档原始说明与卡图；不声称涵盖归档之外产品。",
+  "statuses": {
+    "implemented": "仅所列有限行为在当前源码与既有测试中存在；不代表全色/全产品完整。",
+    "partial": "有原语或部分登记牌，仍有明确未覆盖内容。",
+    "unimplemented": "当前Rust可玩核无相应完整声明/状态/入口。",
+    "uncertain": "来源或版次/完整流程未核清；默认不解锁。"
+  },
+  "sourcePolicy": "原始渲染页/原图为规则证据；685条JSON只定位。",
+  "codeSnapshot": {
+    "rust-game/data/cards.json": "44ecc4ed638c9962319e804fa889ce7525fc40f66d42c5b2d5cb888edd2d60a4",
+    "rust-game/src/rules.rs": "8ee95206d15d49350b0489172bb7d2aeb500554682d97e2bfd17162b11d46fea",
+    "rust-game/src/engine.rs": "1e5cf414168914eece3ee42c50412f93bf7b5394b416969f3eaa3336554a103a",
+    "rust-game/src/resolution.rs": "591fc950d133b92a1058f9cf20ae779cd0241ec7cd94903b10cefc017966232e",
+    "rust-game/src/model.rs": "039a5fe9ca6bd83e6a13f22cc3e28612469ea82a76afaad895f0083325fec89e",
+    "rust-game/src/catalog.rs": "3a7d689b7fc8d2fefe2da74024f9a0f9917dc848489b678f880fe4cfedecff4a",
+    "rust-game/src/service.rs": "2c7309ed9b1eac3ef3c4a55ea5508029a172302468a30ab16e9506e58ae9f8e1",
+    "web/src/game/Lobby.tsx": "4df546d43e0f2802e7a7bb4341753c3412323ec5929be68b69db55ca6ca7ac32"
+  },
+  "currentPool": {
+    "catalogPath": "rust-game/data/cards.json",
+    "cardPoolVersion": "limited-v2.1",
+    "engineVersion": "rust-v0.2.2",
+    "playerDefinitions": 25,
+    "worldDefinitions": 4,
+    "curatedDecks": 5,
+    "worldCards": 10,
+    "quarantinedCardIds": [
+      "DQJC116"
+    ],
+    "playableModeKeys": [
+      "duel",
+      "teams"
+    ]
+  },
+  "uiPolicy": {
+    "officialNavigationSelectionEnabled": false,
+    "societySelectionEnabled": false,
+    "basePairingSelectionEnabled": false,
+    "deckPickerUsesCatalog": true,
+    "unknownOrStaleCoverage": "标注待复核，保持官方浏览只读；选牌组只认可运行时catalog。",
+    "conceptLabels": {
+      "factions": "官方颜色派系",
+      "societies": "官方秘社牌（未开放）",
+      "curatedDecks": "受限卡池自组预组",
+      "pairing": "基础版两派系快速组牌（规则说明）"
+    }
+  },
+  "factions": [
+    {
+      "id": "yellow",
+      "name": "帷幕守望",
+      "colorKey": "黄",
+      "colorName": "黄色",
+      "kind": "colorFaction",
+      "official": true,
+      "themeSummary": "调查、法师、横置与领域/心灵控制",
+      "themeIsExclusive": false,
+      "evidenceIds": [
+        "bq-factions",
+        "guide-factions",
+        "card-JC002",
+        "card-JC003",
+        "card-JC006",
+        "card-MSJC10"
+      ],
+      "representativeCardIds": [
+        "JC002",
+        "JC003",
+        "JC006",
+        "MSJC10"
+      ],
+      "status": "partial",
+      "catalogPlayerCardIds": [
+        "JC002",
+        "JC003",
+        "XQ03"
+      ],
+      "catalogPlayerCardCount": 3,
+      "missingMechanismIds": [
+        "seal",
+        "spirit",
+        "society",
+        "attachment"
+      ],
+      "selectionEnabled": false,
+      "disabledReason": "当前只能选择受限卡池自组预组；未开放官方派系构筑或秘社牌。"
+    },
+    {
+      "id": "green",
+      "name": "猎魔人",
+      "colorKey": "绿",
+      "colorName": "绿色",
+      "kind": "colorFaction",
+      "official": true,
+      "themeSummary": "猎手、机动、装备与战斗",
+      "themeIsExclusive": false,
+      "evidenceIds": [
+        "bq-factions",
+        "guide-factions",
+        "card-JC014",
+        "card-JC016",
+        "card-JZ08",
+        "card-MSJZ01"
+      ],
+      "representativeCardIds": [
+        "JC014",
+        "JC016",
+        "JZ08",
+        "MSJZ01"
+      ],
+      "status": "partial",
+      "catalogPlayerCardIds": [
+        "JC014",
+        "JC016",
+        "JZ08"
+      ],
+      "catalogPlayerCardCount": 3,
+      "missingMechanismIds": [
+        "attachment",
+        "token",
+        "transform",
+        "society"
+      ],
+      "selectionEnabled": false,
+      "disabledReason": "当前只能选择受限卡池自组预组；未开放官方派系构筑或秘社牌。"
+    },
+    {
+      "id": "blue",
+      "name": "王座会",
+      "colorKey": "蓝",
+      "colorName": "蓝色",
+      "kind": "colorFaction",
+      "official": true,
+      "themeSummary": "吸血鬼、奴仆、鲜血、调度与控制",
+      "themeIsExclusive": false,
+      "evidenceIds": [
+        "bq-factions",
+        "guide-factions",
+        "card-XQ12",
+        "card-JC028",
+        "card-JC032",
+        "card-MSJC12"
+      ],
+      "representativeCardIds": [
+        "XQ12",
+        "JC028",
+        "JC032",
+        "MSJC12"
+      ],
+      "status": "partial",
+      "catalogPlayerCardIds": [
+        "XQ12"
+      ],
+      "catalogPlayerCardCount": 1,
+      "missingMechanismIds": [
+        "blood",
+        "attachment",
+        "control",
+        "society"
+      ],
+      "selectionEnabled": false,
+      "disabledReason": "当前只能选择受限卡池自组预组；未开放官方派系构筑或秘社牌。"
+    },
+    {
+      "id": "red",
+      "name": "鸣钟教派",
+      "colorKey": "红",
+      "colorName": "红色",
+      "kind": "colorFaction",
+      "official": true,
+      "themeSummary": "牺牲、降费、灾难与时间",
+      "themeIsExclusive": false,
+      "evidenceIds": [
+        "bq-factions",
+        "guide-factions",
+        "card-JC042",
+        "card-JC049",
+        "card-MSJC13",
+        "card-MSJZ03"
+      ],
+      "representativeCardIds": [
+        "JC042",
+        "JC049",
+        "MSJC13",
+        "MSJZ03"
+      ],
+      "status": "partial",
+      "catalogPlayerCardIds": [
+        "JC042",
+        "JC049"
+      ],
+      "catalogPlayerCardCount": 2,
+      "missingMechanismIds": [
+        "timeDestroy",
+        "combatKeywords",
+        "society"
+      ],
+      "selectionEnabled": false,
+      "disabledReason": "当前只能选择受限卡池自组预组；未开放官方派系构筑或秘社牌。"
+    },
+    {
+      "id": "gray",
+      "name": "国家机构",
+      "colorKey": "灰",
+      "colorName": "灰色",
+      "kind": "colorFaction",
+      "official": true,
+      "themeSummary": "公开、防守、暗藏者针对与锁定",
+      "themeIsExclusive": false,
+      "evidenceIds": [
+        "bq-factions",
+        "guide-factions",
+        "card-JC056",
+        "card-JC059",
+        "card-JC063",
+        "card-MSJC14"
+      ],
+      "representativeCardIds": [
+        "JC056",
+        "JC059",
+        "JC063",
+        "MSJC14"
+      ],
+      "status": "partial",
+      "catalogPlayerCardIds": [
+        "JC056",
+        "JC059",
+        "JC063"
+      ],
+      "catalogPlayerCardCount": 3,
+      "missingMechanismIds": [
+        "lock",
+        "seal",
+        "core",
+        "society"
+      ],
+      "selectionEnabled": false,
+      "disabledReason": "当前只能选择受限卡池自组预组；未开放官方派系构筑或秘社牌。"
+    },
+    {
+      "id": "white",
+      "name": "圣贤",
+      "colorKey": "白",
+      "colorName": "白色",
+      "kind": "colorFaction",
+      "official": true,
+      "themeSummary": "声望、防护、灵体与调查",
+      "themeIsExclusive": false,
+      "evidenceIds": [
+        "bq-factions",
+        "guide-factions",
+        "card-JC070",
+        "card-JC076",
+        "card-JC077",
+        "card-MSJC15"
+      ],
+      "representativeCardIds": [
+        "JC070",
+        "JC076",
+        "JC077",
+        "MSJC15"
+      ],
+      "status": "unimplemented",
+      "catalogPlayerCardIds": [],
+      "catalogPlayerCardCount": 0,
+      "missingMechanismIds": [
+        "renown",
+        "spirit",
+        "damagePrevention",
+        "society"
+      ],
+      "selectionEnabled": false,
+      "disabledReason": "当前只能选择受限卡池自组预组；未开放官方派系构筑或秘社牌。"
+    },
+    {
+      "id": "black",
+      "name": "方碑序列",
+      "colorKey": "黑",
+      "colorName": "黑色",
+      "kind": "colorFaction",
+      "official": true,
+      "themeSummary": "墓地回收、复生、牺牲与死亡",
+      "themeIsExclusive": false,
+      "evidenceIds": [
+        "bq-factions",
+        "guide-factions",
+        "card-JC086",
+        "card-JC092",
+        "card-JC085",
+        "card-MSJC16"
+      ],
+      "representativeCardIds": [
+        "JC086",
+        "JC092",
+        "JC085",
+        "MSJC16"
+      ],
+      "status": "partial",
+      "catalogPlayerCardIds": [
+        "JC086",
+        "JC092",
+        "JC091",
+        "JZ54"
+      ],
+      "catalogPlayerCardCount": 4,
+      "missingMechanismIds": [
+        "gravePlay",
+        "seal",
+        "attachment",
+        "society"
+      ],
+      "selectionEnabled": false,
+      "disabledReason": "当前只能选择受限卡池自组预组；未开放官方派系构筑或秘社牌。"
+    },
+    {
+      "id": "purple",
+      "name": "梦境行者",
+      "colorKey": "紫",
+      "colorName": "紫色",
+      "kind": "colorFaction",
+      "official": true,
+      "themeSummary": "封印、灵体、潜伏、牌库与梦境",
+      "themeIsExclusive": false,
+      "evidenceIds": [
+        "bq-factions",
+        "guide-factions",
+        "card-JC099",
+        "card-JC100",
+        "card-JC108",
+        "card-MSJC17"
+      ],
+      "representativeCardIds": [
+        "JC099",
+        "JC100",
+        "JC108",
+        "MSJC17"
+      ],
+      "status": "unimplemented",
+      "catalogPlayerCardIds": [],
+      "catalogPlayerCardCount": 0,
+      "missingMechanismIds": [
+        "seal",
+        "spirit",
+        "continuous",
+        "society"
+      ],
+      "selectionEnabled": false,
+      "disabledReason": "当前只能选择受限卡池自组预组；未开放官方派系构筑或秘社牌。"
+    },
+    {
+      "id": "neutral",
+      "name": "中立",
+      "colorKey": "中立",
+      "colorName": "褐色",
+      "kind": "neutral",
+      "official": true,
+      "themeSummary": "通用牌与支援；不是第九个颜色派系",
+      "themeIsExclusive": false,
+      "evidenceIds": [
+        "bq-factions",
+        "guide-factions",
+        "card-JC125",
+        "card-LC19",
+        "card-XQ49",
+        "card-MSJC09"
+      ],
+      "representativeCardIds": [
+        "JC125",
+        "LC19",
+        "XQ49",
+        "MSJC09"
+      ],
+      "status": "partial",
+      "catalogPlayerCardIds": [
+        "JC125",
+        "LC19",
+        "LC20",
+        "LC21",
+        "LC22",
+        "LC23",
+        "LC24",
+        "XQ49",
+        "JC118"
+      ],
+      "catalogPlayerCardCount": 9,
+      "missingMechanismIds": [
+        "society",
+        "attachment",
+        "token"
+      ],
+      "selectionEnabled": false,
+      "disabledReason": "当前只能选择受限卡池自组预组；未开放官方派系构筑或秘社牌。"
+    }
+  ],
+  "magicDomains": [
+    {
+      "id": "mind",
+      "name": "心灵",
+      "notFactionColor": true,
+      "evidenceIds": [
+        "manual-domains",
+        "bq-seal"
+      ]
+    },
+    {
+      "id": "holy",
+      "name": "神圣",
+      "notFactionColor": true,
+      "evidenceIds": [
+        "manual-domains",
+        "bq-seal"
+      ]
+    },
+    {
+      "id": "stars",
+      "name": "星辰",
+      "notFactionColor": true,
+      "evidenceIds": [
+        "manual-domains",
+        "bq-seal"
+      ]
+    },
+    {
+      "id": "death",
+      "name": "死亡",
+      "notFactionColor": true,
+      "evidenceIds": [
+        "manual-domains",
+        "bq-seal"
+      ]
+    },
+    {
+      "id": "blood",
+      "name": "血脉",
+      "notFactionColor": true,
+      "evidenceIds": [
+        "manual-domains",
+        "bq-seal"
+      ]
+    }
+  ],
+  "societies": [
+    {
+      "cardId": "MSBQ01",
+      "name": "龙之欢宴",
+      "colorKey": "蓝",
+      "productLocator": "霸权",
+      "role": "initial",
+      "canStartByPrintedCard": true,
+      "startingHand": 6,
+      "restrictionSummary": "蓝/绿/中立；鲜血不限同名数量。",
+      "abilitySummary": "初始检索鲜血封印秘社；角色离场时鲜血结附改封印。",
+      "mechanismIds": [
+        "society",
+        "blood",
+        "seal"
+      ],
+      "status": "unimplemented",
+      "selectionEnabled": false,
+      "evidenceIds": [
+        "card-MSBQ01"
+      ],
+      "notes": ""
+    },
+    {
+      "cardId": "MSBQ02",
+      "name": "修格斯",
+      "colorKey": "灰",
+      "productLocator": "霸权",
+      "role": "initial",
+      "canStartByPrintedCard": true,
+      "startingHand": 5,
+      "restrictionSummary": "灰/红/中立；选修格斯核心；至少12张命令。",
+      "abilitySummary": "失控/名誉点降命令费用；赢三张任务另获胜。",
+      "mechanismIds": [
+        "society",
+        "core",
+        "task"
+      ],
+      "status": "unimplemented",
+      "selectionEnabled": false,
+      "evidenceIds": [
+        "card-MSBQ02"
+      ],
+      "notes": ""
+    },
+    {
+      "cardId": "MSBQ03",
+      "name": "圣甲虫药业",
+      "colorKey": "黑",
+      "productLocator": "霸权",
+      "role": "initial",
+      "canStartByPrintedCard": true,
+      "startingHand": 6,
+      "restrictionSummary": "黑/白/中立；无名尸体不限同名数量。",
+      "abilitySummary": "墓地尸体封印产业附属并赋势力图标；每局一次检索产业。",
+      "mechanismIds": [
+        "society",
+        "seal",
+        "attachment",
+        "continuous"
+      ],
+      "status": "unimplemented",
+      "selectionEnabled": false,
+      "evidenceIds": [
+        "card-MSBQ03"
+      ],
+      "notes": ""
+    },
+    {
+      "cardId": "MSBQ04",
+      "name": "天闻山庄",
+      "colorKey": "中立",
+      "productLocator": "霸权",
+      "role": "initial",
+      "canStartByPrintedCard": true,
+      "startingHand": 6,
+      "restrictionSummary": "任意一个颜色派系和中立。",
+      "abilitySummary": "持先手加隐秘展示值；检视手牌、暗藏者或秘密计划。",
+      "mechanismIds": [
+        "society",
+        "mysticContest",
+        "plan"
+      ],
+      "status": "unimplemented",
+      "selectionEnabled": false,
+      "evidenceIds": [
+        "card-MSBQ04"
+      ],
+      "notes": ""
+    },
+    {
+      "cardId": "MSCQ01",
+      "name": "水月",
+      "colorKey": "黄",
+      "productLocator": "传奇",
+      "role": "initial",
+      "canStartByPrintedCard": true,
+      "startingHand": 6,
+      "restrictionSummary": "黄/中立，另可含其他色法师或法术。",
+      "abilitySummary": "卜卦标志累积，法术预测与隐秘对抗修正。",
+      "mechanismIds": [
+        "society",
+        "mysticContest",
+        "deckChoice"
+      ],
+      "status": "unimplemented",
+      "selectionEnabled": false,
+      "evidenceIds": [
+        "card-MSCQ01"
+      ],
+      "notes": ""
+    },
+    {
+      "cardId": "MSCQ02",
+      "name": "诺尔维隐修会",
+      "colorKey": "红",
+      "productLocator": "传奇",
+      "role": "initial",
+      "canStartByPrintedCard": true,
+      "startingHand": 5,
+      "restrictionSummary": "红/中立，另可含灾难、时间和命运牌。",
+      "abilitySummary": "初始毁灭地区3，四时间毁灭，赢毁灭地区抓牌。",
+      "mechanismIds": [
+        "society",
+        "timeDestroy",
+        "deckChoice"
+      ],
+      "status": "unimplemented",
+      "selectionEnabled": false,
+      "evidenceIds": [
+        "card-MSCQ02"
+      ],
+      "notes": ""
+    },
+    {
+      "cardId": "MSJC01",
+      "name": "帷幕守望",
+      "colorKey": "黄",
+      "productLocator": "基础",
+      "role": "initial",
+      "canStartByPrintedCard": true,
+      "startingHand": 6,
+      "restrictionSummary": "至少25张黄牌。",
+      "abilitySummary": "持先手时付费抓牌；每局一次检索相应派系独有牌。",
+      "mechanismIds": [
+        "society",
+        "deckChoice"
+      ],
+      "status": "unimplemented",
+      "selectionEnabled": false,
+      "evidenceIds": [
+        "card-MSJC01"
+      ],
+      "notes": ""
+    },
+    {
+      "cardId": "MSJC02",
+      "name": "猎魔人",
+      "colorKey": "绿",
+      "productLocator": "基础",
+      "role": "initial",
+      "canStartByPrintedCard": true,
+      "startingHand": 6,
+      "restrictionSummary": "至少25张绿牌。",
+      "abilitySummary": "持先手时付费抓牌；每局一次检索相应派系独有牌。",
+      "mechanismIds": [
+        "society",
+        "deckChoice"
+      ],
+      "status": "unimplemented",
+      "selectionEnabled": false,
+      "evidenceIds": [
+        "card-MSJC02"
+      ],
+      "notes": ""
+    },
+    {
+      "cardId": "MSJC03",
+      "name": "王座会",
+      "colorKey": "蓝",
+      "productLocator": "基础",
+      "role": "initial",
+      "canStartByPrintedCard": true,
+      "startingHand": 6,
+      "restrictionSummary": "至少25张蓝牌。",
+      "abilitySummary": "持先手时付费抓牌；每局一次检索相应派系独有牌。",
+      "mechanismIds": [
+        "society",
+        "deckChoice"
+      ],
+      "status": "unimplemented",
+      "selectionEnabled": false,
+      "evidenceIds": [
+        "card-MSJC03"
+      ],
+      "notes": ""
+    },
+    {
+      "cardId": "MSJC04",
+      "name": "鸣钟教派",
+      "colorKey": "红",
+      "productLocator": "基础",
+      "role": "initial",
+      "canStartByPrintedCard": true,
+      "startingHand": 6,
+      "restrictionSummary": "至少25张红牌。",
+      "abilitySummary": "持先手时付费抓牌；每局一次检索相应派系独有牌。",
+      "mechanismIds": [
+        "society",
+        "deckChoice"
+      ],
+      "status": "unimplemented",
+      "selectionEnabled": false,
+      "evidenceIds": [
+        "card-MSJC04"
+      ],
+      "notes": ""
+    },
+    {
+      "cardId": "MSJC05",
+      "name": "国家机构",
+      "colorKey": "灰",
+      "productLocator": "基础",
+      "role": "initial",
+      "canStartByPrintedCard": true,
+      "startingHand": 6,
+      "restrictionSummary": "至少25张灰牌。",
+      "abilitySummary": "持先手时付费抓牌；每局一次检索相应派系独有牌。",
+      "mechanismIds": [
+        "society",
+        "deckChoice"
+      ],
+      "status": "unimplemented",
+      "selectionEnabled": false,
+      "evidenceIds": [
+        "card-MSJC05"
+      ],
+      "notes": ""
+    },
+    {
+      "cardId": "MSJC06",
+      "name": "圣贤",
+      "colorKey": "白",
+      "productLocator": "基础",
+      "role": "initial",
+      "canStartByPrintedCard": true,
+      "startingHand": 6,
+      "restrictionSummary": "至少25张白牌。",
+      "abilitySummary": "持先手时付费抓牌；每局一次检索相应派系独有牌。",
+      "mechanismIds": [
+        "society",
+        "deckChoice"
+      ],
+      "status": "unimplemented",
+      "selectionEnabled": false,
+      "evidenceIds": [
+        "card-MSJC06"
+      ],
+      "notes": ""
+    },
+    {
+      "cardId": "MSJC07",
+      "name": "方碑序列",
+      "colorKey": "黑",
+      "productLocator": "基础",
+      "role": "initial",
+      "canStartByPrintedCard": true,
+      "startingHand": 6,
+      "restrictionSummary": "至少25张黑牌。",
+      "abilitySummary": "持先手时付费抓牌；每局一次检索相应派系独有牌。",
+      "mechanismIds": [
+        "society",
+        "deckChoice"
+      ],
+      "status": "unimplemented",
+      "selectionEnabled": false,
+      "evidenceIds": [
+        "card-MSJC07"
+      ],
+      "notes": ""
+    },
+    {
+      "cardId": "MSJC08",
+      "name": "梦境行者",
+      "colorKey": "紫",
+      "productLocator": "基础",
+      "role": "initial",
+      "canStartByPrintedCard": true,
+      "startingHand": 6,
+      "restrictionSummary": "至少25张紫牌。",
+      "abilitySummary": "持先手时付费抓牌；每局一次检索相应派系独有牌。",
+      "mechanismIds": [
+        "society",
+        "deckChoice"
+      ],
+      "status": "unimplemented",
+      "selectionEnabled": false,
+      "evidenceIds": [
+        "card-MSJC08"
+      ],
+      "notes": ""
+    },
+    {
+      "cardId": "MSJC09",
+      "name": "秘社",
+      "colorKey": "中立",
+      "productLocator": "基础",
+      "role": "initial",
+      "canStartByPrintedCard": true,
+      "startingHand": 6,
+      "restrictionSummary": "无专属构筑条款；仍遵守一般构筑。",
+      "abilitySummary": "持先手时付费抓牌。",
+      "mechanismIds": [
+        "society",
+        "deckChoice"
+      ],
+      "status": "unimplemented",
+      "selectionEnabled": false,
+      "evidenceIds": [
+        "card-MSJC09"
+      ],
+      "notes": ""
+    },
+    {
+      "cardId": "MSJC10",
+      "name": "貘组",
+      "colorKey": "黄",
+      "productLocator": "基础",
+      "role": "initial",
+      "canStartByPrintedCard": true,
+      "startingHand": 6,
+      "restrictionSummary": "黄/中立，另可含其他色星辰领域牌。",
+      "abilitySummary": "手牌封印、用封印换灵体或角色正面进场。",
+      "mechanismIds": [
+        "society",
+        "seal",
+        "spirit"
+      ],
+      "status": "unimplemented",
+      "selectionEnabled": false,
+      "evidenceIds": [
+        "card-MSJC10"
+      ],
+      "notes": ""
+    },
+    {
+      "cardId": "MSJC11",
+      "name": "S．P．T执行部",
+      "colorKey": "绿",
+      "productLocator": "基础",
+      "role": "initial",
+      "canStartByPrintedCard": true,
+      "startingHand": 6,
+      "restrictionSummary": "绿/中立，另可含带永久战斗图标的人类角色。",
+      "abilitySummary": "赋杀伤1；同地区本方带永久战斗图标角色赋撤回。",
+      "mechanismIds": [
+        "society",
+        "combatTraits",
+        "continuous"
+      ],
+      "status": "unimplemented",
+      "selectionEnabled": false,
+      "evidenceIds": [
+        "card-MSJC11"
+      ],
+      "notes": ""
+    },
+    {
+      "cardId": "MSJC12",
+      "name": "爱弗罗德家族",
+      "colorKey": "蓝",
+      "productLocator": "基础",
+      "role": "initial",
+      "canStartByPrintedCard": true,
+      "startingHand": 6,
+      "restrictionSummary": "蓝/中立，另可含吸血鬼或奴仆角色。",
+      "abilitySummary": "低费本方人类赋奴仆；横置族群抓牌/令敌方弃牌。",
+      "mechanismIds": [
+        "society",
+        "attachment",
+        "continuous",
+        "deckChoice"
+      ],
+      "status": "unimplemented",
+      "selectionEnabled": false,
+      "evidenceIds": [
+        "card-MSJC12"
+      ],
+      "notes": ""
+    },
+    {
+      "cardId": "MSJC13",
+      "name": "计时者",
+      "colorKey": "红",
+      "productLocator": "基础",
+      "role": "initial",
+      "canStartByPrintedCard": true,
+      "startingHand": 6,
+      "restrictionSummary": "非红且非中立至多12张。",
+      "abilitySummary": "放时间标志；消灭达到三标志的角色/附属后抓牌。",
+      "mechanismIds": [
+        "society",
+        "timeDestroy",
+        "deckChoice"
+      ],
+      "status": "unimplemented",
+      "selectionEnabled": false,
+      "evidenceIds": [
+        "card-MSJC13"
+      ],
+      "notes": ""
+    },
+    {
+      "cardId": "MSJC14",
+      "name": "哨兵",
+      "colorKey": "灰",
+      "productLocator": "基础",
+      "role": "initial",
+      "canStartByPrintedCard": true,
+      "startingHand": 6,
+      "restrictionSummary": "灰/中立，另可含无魔法领域图标的其他色牌。",
+      "abilitySummary": "锁定敵方暗藏者；本方角色移动到有锁定目标所在地区。",
+      "mechanismIds": [
+        "society",
+        "lock",
+        "mobility"
+      ],
+      "status": "unimplemented",
+      "selectionEnabled": false,
+      "evidenceIds": [
+        "card-MSJC14"
+      ],
+      "notes": ""
+    },
+    {
+      "cardId": "MSJC15",
+      "name": "隐士",
+      "colorKey": "白",
+      "productLocator": "基础",
+      "role": "initial",
+      "canStartByPrintedCard": true,
+      "startingHand": 6,
+      "restrictionSummary": "非白且非中立至多12张。",
+      "abilitySummary": "初始隐秘标志；手牌≥4时展示角色并暗藏者进场。",
+      "mechanismIds": [
+        "society",
+        "mysticContest",
+        "hidden"
+      ],
+      "status": "unimplemented",
+      "selectionEnabled": false,
+      "evidenceIds": [
+        "card-MSJC15"
+      ],
+      "notes": ""
+    },
+    {
+      "cardId": "MSJC16",
+      "name": "颂亡者",
+      "colorKey": "黑",
+      "productLocator": "基础",
+      "role": "initial",
+      "canStartByPrintedCard": true,
+      "startingHand": 5,
+      "restrictionSummary": "黑/中立，另可含死亡领域牌。",
+      "abilitySummary": "牌库置墓；封印7墓地牌作成本，墓地死亡领域角色正面进场。",
+      "mechanismIds": [
+        "society",
+        "seal",
+        "gravePlay"
+      ],
+      "status": "unimplemented",
+      "selectionEnabled": false,
+      "evidenceIds": [
+        "card-MSJC16"
+      ],
+      "notes": ""
+    },
+    {
+      "cardId": "MSJC17",
+      "name": "梦魇族群",
+      "colorKey": "紫",
+      "productLocator": "基础",
+      "role": "initial",
+      "canStartByPrintedCard": true,
+      "startingHand": 6,
+      "restrictionSummary": "紫/中立，另可含灵体角色或梦境牌。",
+      "abilitySummary": "从牌库底抓牌；封印顶牌；墓地灵体回牌库顶。",
+      "mechanismIds": [
+        "society",
+        "seal",
+        "spirit",
+        "deckChoice"
+      ],
+      "status": "unimplemented",
+      "selectionEnabled": false,
+      "evidenceIds": [
+        "card-MSJC17"
+      ],
+      "notes": ""
+    },
+    {
+      "cardId": "MSJZ01",
+      "name": "猛禽战术小组",
+      "colorKey": "绿",
+      "productLocator": "间奏",
+      "role": "initial",
+      "canStartByPrintedCard": true,
+      "startingHand": 6,
+      "restrictionSummary": "至少15张副名“猛禽”战术小组牌。",
+      "abilitySummary": "牺牲资产检索猛禽；装备结附猛禽角色降费。",
+      "mechanismIds": [
+        "society",
+        "attachment",
+        "costReduction",
+        "sacrifice"
+      ],
+      "status": "unimplemented",
+      "selectionEnabled": false,
+      "evidenceIds": [
+        "card-MSJZ01"
+      ],
+      "notes": ""
+    },
+    {
+      "cardId": "MSJZ02",
+      "name": "盛夏王廷",
+      "colorKey": "绿",
+      "productLocator": "间奏",
+      "role": "initial",
+      "canStartByPrintedCard": true,
+      "startingHand": 6,
+      "restrictionSummary": "绿牌和仙灵牌；不默认允许非仙灵中立。",
+      "abilitySummary": "生成仙灵斗士；控制四个仙灵时强制转变。",
+      "mechanismIds": [
+        "society",
+        "token",
+        "transform"
+      ],
+      "status": "unimplemented",
+      "selectionEnabled": false,
+      "evidenceIds": [
+        "card-MSJZ02"
+      ],
+      "notes": ""
+    },
+    {
+      "cardId": "MSJZ03",
+      "name": "末日钟",
+      "colorKey": "红",
+      "productLocator": "间奏",
+      "role": "nonInitial",
+      "canStartByPrintedCard": false,
+      "startingHand": null,
+      "restrictionSummary": "不能作为初始秘社牌。",
+      "abilitySummary": "非灾难不能打出或付费翻面；不能获分，三毁灭标志获胜；时间/毁灭与生成钟摆祭司。",
+      "mechanismIds": [
+        "society",
+        "timeDestroy",
+        "token"
+      ],
+      "status": "unimplemented",
+      "selectionEnabled": false,
+      "evidenceIds": [
+        "card-MSJZ03"
+      ],
+      "notes": ""
+    },
+    {
+      "cardId": "MSJZ04",
+      "name": "破茧者教团",
+      "colorKey": "红",
+      "productLocator": "间奏",
+      "role": "initial",
+      "canStartByPrintedCard": true,
+      "startingHand": 6,
+      "restrictionSummary": "红/紫/中立。",
+      "abilitySummary": "起始检索至多五张不同名梦魇并封印；宿主死亡放梦魇暗藏者。",
+      "mechanismIds": [
+        "society",
+        "seal",
+        "hidden"
+      ],
+      "status": "unimplemented",
+      "selectionEnabled": false,
+      "evidenceIds": [
+        "card-MSJZ04"
+      ],
+      "notes": ""
+    },
+    {
+      "cardId": "MSLC01",
+      "name": "联席会议观察员",
+      "colorKey": "黄",
+      "productLocator": "洛城",
+      "role": "initial",
+      "canStartByPrintedCard": true,
+      "startingHand": 6,
+      "restrictionSummary": "黄/中立。",
+      "abilitySummary": "检视危机方手牌顶；预测；检索防暴构装体部署。",
+      "mechanismIds": [
+        "society",
+        "crisis",
+        "deckChoice"
+      ],
+      "status": "unimplemented",
+      "selectionEnabled": false,
+      "evidenceIds": [
+        "card-MSLC01"
+      ],
+      "notes": ""
+    },
+    {
+      "cardId": "MSLC02",
+      "name": "加利福尼亚猎团",
+      "colorKey": "绿",
+      "productLocator": "洛城",
+      "role": "initial",
+      "canStartByPrintedCard": true,
+      "startingHand": 6,
+      "restrictionSummary": "绿/中立。",
+      "abilitySummary": "额外支线剧情；完成支线/赢区后付费抓牌。",
+      "mechanismIds": [
+        "society",
+        "crisis",
+        "deckChoice"
+      ],
+      "status": "unimplemented",
+      "selectionEnabled": false,
+      "evidenceIds": [
+        "card-MSLC02"
+      ],
+      "notes": ""
+    },
+    {
+      "cardId": "MSLC03",
+      "name": "洛杉矶警察局",
+      "colorKey": "灰",
+      "productLocator": "洛城",
+      "role": "initial",
+      "canStartByPrintedCard": true,
+      "startingHand": 6,
+      "restrictionSummary": "灰/中立。",
+      "abilitySummary": "名誉点、洗支援牌库、空本方角色城市生成警察。",
+      "mechanismIds": [
+        "society",
+        "crisis",
+        "token"
+      ],
+      "status": "unimplemented",
+      "selectionEnabled": false,
+      "evidenceIds": [
+        "card-MSLC03"
+      ],
+      "notes": ""
+    },
+    {
+      "cardId": "MSLC04",
+      "name": "圣公会",
+      "colorKey": "白",
+      "productLocator": "洛城",
+      "role": "initial",
+      "canStartByPrintedCard": true,
+      "startingHand": 7,
+      "restrictionSummary": "白/中立。",
+      "abilitySummary": "威胁进度减1；横置僧侣于无势力地区放标志。",
+      "mechanismIds": [
+        "society",
+        "crisis",
+        "exhaust"
+      ],
+      "status": "unimplemented",
+      "selectionEnabled": false,
+      "evidenceIds": [
+        "card-MSLC04"
+      ],
+      "notes": ""
+    },
+    {
+      "cardId": "MSLC05",
+      "name": "劣地长老",
+      "colorKey": "白",
+      "productLocator": "洛城",
+      "role": "initial",
+      "canStartByPrintedCard": true,
+      "startingHand": 6,
+      "restrictionSummary": "白/中立，另可含其他色星辰领域牌。",
+      "abilitySummary": "生成黄昏界域；手牌更多时黄昏地区略过战斗。",
+      "mechanismIds": [
+        "society",
+        "token",
+        "continuous"
+      ],
+      "status": "unimplemented",
+      "selectionEnabled": false,
+      "evidenceIds": [
+        "card-MSLC05"
+      ],
+      "notes": ""
+    },
+    {
+      "cardId": "MSLC06",
+      "name": "居民武装",
+      "colorKey": "中立",
+      "productLocator": "洛城",
+      "role": "initial",
+      "canStartByPrintedCard": true,
+      "startingHand": 6,
+      "restrictionSummary": "仅中立。",
+      "abilitySummary": "检索无知路人进入城市；无领域人类赋战斗/防御标志。",
+      "mechanismIds": [
+        "society",
+        "token",
+        "continuous",
+        "deckChoice"
+      ],
+      "status": "unimplemented",
+      "selectionEnabled": false,
+      "evidenceIds": [
+        "card-MSLC06"
+      ],
+      "notes": ""
+    },
+    {
+      "cardId": "MSWM01",
+      "name": "曼纽家族",
+      "colorKey": "蓝",
+      "productLocator": "帷幕",
+      "role": "initial",
+      "canStartByPrintedCard": true,
+      "startingHand": 6,
+      "restrictionSummary": "蓝/黄/中立，另可含吸血鬼或阴魂。",
+      "abilitySummary": "阴魂隐秘修正；本方吸血鬼/法师额外阴魂；未暴露时横置阴魂抓牌。",
+      "mechanismIds": [
+        "society",
+        "mysticContest",
+        "continuous"
+      ],
+      "status": "unimplemented",
+      "selectionEnabled": false,
+      "evidenceIds": [
+        "card-MSWM01"
+      ],
+      "notes": ""
+    },
+    {
+      "cardId": "MSWM02",
+      "name": "公众安全委员会",
+      "colorKey": "灰",
+      "productLocator": "帷幕",
+      "role": "initial",
+      "canStartByPrintedCard": true,
+      "startingHand": 6,
+      "restrictionSummary": "灰/黄/中立，另可含特工、媒体或互联网。",
+      "abilitySummary": "一次移除目标秘社所有隐秘/暴露；弃媒体/互联网作隐秘对抗修正。",
+      "mechanismIds": [
+        "society",
+        "mysticContest"
+      ],
+      "status": "unimplemented",
+      "selectionEnabled": false,
+      "evidenceIds": [
+        "card-MSWM02"
+      ],
+      "notes": ""
+    },
+    {
+      "cardId": "MSWM03",
+      "name": "冷山帮",
+      "colorKey": "黑",
+      "productLocator": "帷幕",
+      "role": "initial",
+      "canStartByPrintedCard": true,
+      "startingHand": 5,
+      "restrictionSummary": "非黑且非中立至多12张。",
+      "abilitySummary": "起始检索黑市；弃牌横置罪犯抓牌，弃罪犯可使该角色潜伏。",
+      "mechanismIds": [
+        "society",
+        "deckChoice",
+        "hidden"
+      ],
+      "status": "unimplemented",
+      "selectionEnabled": false,
+      "evidenceIds": [
+        "card-MSWM03"
+      ],
+      "notes": ""
+    },
+    {
+      "cardId": "MSWM04",
+      "name": "梦魇主母",
+      "colorKey": "紫",
+      "productLocator": "帷幕",
+      "role": "initial",
+      "canStartByPrintedCard": true,
+      "startingHand": 2,
+      "restrictionSummary": "仅紫牌。",
+      "abilitySummary": "忽略紫忠诚；复苏标志允许有限免付费打出/现身；检索贝兰丹娜。",
+      "mechanismIds": [
+        "society",
+        "mysticContest",
+        "costReduction",
+        "hidden"
+      ],
+      "status": "unimplemented",
+      "selectionEnabled": false,
+      "evidenceIds": [
+        "card-MSWM04"
+      ],
+      "notes": ""
+    },
+    {
+      "cardId": "ZHMSJZ02",
+      "name": "凛冬王廷",
+      "colorKey": "绿",
+      "productLocator": "间奏",
+      "role": "transformed",
+      "canStartByPrintedCard": false,
+      "startingHand": null,
+      "restrictionSummary": "盛夏王廷的转变形态；不独立构筑。",
+      "abilitySummary": "准备步骤强制每玩家牺牲角色；场上无角色则转变。",
+      "mechanismIds": [
+        "society",
+        "transform",
+        "sacrifice"
+      ],
+      "status": "unimplemented",
+      "selectionEnabled": false,
+      "evidenceIds": [
+        "card-ZHMSJZ02"
+      ],
+      "notes": "归档istoken=true，但原图为转变面，不按普通指示物计。"
+    }
+  ],
+  "mixingRules": {
+    "baseQuickPairing": {
+      "factionIds": [
+        "yellow",
+        "green",
+        "blue",
+        "red",
+        "gray",
+        "white",
+        "black",
+        "purple"
+      ],
+      "chooseDistinct": 2,
+      "cardsPerFaction": 25,
+      "totalCards": 50,
+      "evidenceIds": [
+        "guide-pairing",
+        "guide-construct",
+        "manual-pairing"
+      ],
+      "status": "unimplemented",
+      "selectionEnabled": false,
+      "note": "28种无序两色组合是这条规则的算术推论；不是28套已经开放牌组。"
+    },
+    "customConstruction": {
+      "minimumPlayerCards": 50,
+      "maxSameName": 3,
+      "societyOptional": true,
+      "societyCountsTowardMinimum": false,
+      "allowsAnyNumberOfColorsBeforeSocietyRestriction": true,
+      "printedExceptionsMustBeApplied": true,
+      "evidenceIds": [
+        "guide-construct",
+        "guide-societies",
+        "bq-construct",
+        "card-JC125"
+      ],
+      "status": "partial",
+      "selectionEnabled": false,
+      "note": "有固定50张预组合法性测试，无自定义列表API或秘社限制验证。"
+    },
+    "hegemonyPreconstructed": {
+      "societyCardIds": [
+        "MSJC10",
+        "MSBQ01",
+        "MSBQ03",
+        "MSBQ02"
+      ],
+      "officialNames": [
+        "貘组",
+        "龙之欢宴",
+        "圣甲虫药业",
+        "修格斯"
+      ],
+      "evidenceIds": [
+        "bq-construct"
+      ],
+      "status": "unimplemented",
+      "selectionEnabled": false
+    }
+  },
+  "curatedDecks": [
+    {
+      "deckId": "watchers",
+      "name": "帷幕调查",
+      "kind": "curatedLimited",
+      "officialPreconstructed": false,
+      "cardCount": 50,
+      "factionCardCounts": {
+        "neutral": 41,
+        "yellow": 9
+      },
+      "selectionEnabled": true,
+      "status": "implemented",
+      "runtimeAuthority": "/api/catalog.decks",
+      "scope": "只承诺现有登记牌，不承诺所属派系完整实现。"
+    },
+    {
+      "deckId": "hunters",
+      "name": "公路猎手",
+      "kind": "curatedLimited",
+      "officialPreconstructed": false,
+      "cardCount": 50,
+      "factionCardCounts": {
+        "neutral": 41,
+        "green": 9
+      },
+      "selectionEnabled": true,
+      "status": "implemented",
+      "runtimeAuthority": "/api/catalog.decks",
+      "scope": "只承诺现有登记牌，不承诺所属派系完整实现。"
+    },
+    {
+      "deckId": "keepers",
+      "name": "城市守卫",
+      "kind": "curatedLimited",
+      "officialPreconstructed": false,
+      "cardCount": 50,
+      "factionCardCounts": {
+        "neutral": 41,
+        "gray": 9
+      },
+      "selectionEnabled": true,
+      "status": "implemented",
+      "runtimeAuthority": "/api/catalog.decks",
+      "scope": "只承诺现有登记牌，不承诺所属派系完整实现。"
+    },
+    {
+      "deckId": "reclaimers",
+      "name": "墓地回声",
+      "kind": "curatedLimited",
+      "officialPreconstructed": false,
+      "cardCount": 50,
+      "factionCardCounts": {
+        "neutral": 41,
+        "black": 6,
+        "blue": 3
+      },
+      "selectionEnabled": true,
+      "status": "implemented",
+      "runtimeAuthority": "/api/catalog.decks",
+      "scope": "只承诺现有登记牌，不承诺所属派系完整实现。"
+    },
+    {
+      "deckId": "responders",
+      "name": "牺牲与响应",
+      "kind": "curatedLimited",
+      "officialPreconstructed": false,
+      "cardCount": 50,
+      "factionCardCounts": {
+        "neutral": 41,
+        "red": 5,
+        "black": 4
+      },
+      "selectionEnabled": true,
+      "status": "implemented",
+      "runtimeAuthority": "/api/catalog.decks",
+      "scope": "只承诺现有登记牌，不承诺所属派系完整实现。"
+    }
+  ],
+  "modes": [
+    {
+      "id": "duel",
+      "name": "霸权1V1",
+      "status": "partial",
+      "selectionEnabled": true,
+      "evidenceIds": [
+        "bq-setup"
+      ],
+      "note": "三地区、8分已支持；仅有限玩家/世界池，未含全部霸权机制。"
+    },
+    {
+      "id": "teams",
+      "name": "霸权2V2",
+      "status": "partial",
+      "selectionEnabled": true,
+      "evidenceIds": [
+        "bq-teams"
+      ],
+      "note": "同侧、五地区、10分、距离/相邻机动和团队步骤已支持；隐秘对抗仍未支持。"
+    },
+    {
+      "id": "classicTeams",
+      "name": "经典基础版2V2",
+      "status": "unimplemented",
+      "selectionEnabled": false,
+      "evidenceIds": [
+        "classic-teams"
+      ],
+      "note": "12分、对坐、顺时针个人行动步骤，不能用teams冒充。"
+    },
+    {
+      "id": "tyrant",
+      "name": "统治者1V2/1V3",
+      "status": "unimplemented",
+      "selectionEnabled": false,
+      "evidenceIds": [
+        "tyrant-1",
+        "tyrant-2"
+      ],
+      "note": "需要额外指令牌库和谋划；非修格斯命令牌。"
+    },
+    {
+      "id": "crisis",
+      "name": "洛城危机/剧情",
+      "status": "uncertain",
+      "selectionEnabled": false,
+      "evidenceIds": [
+        "card-MSLC01",
+        "card-MSLC02",
+        "card-MSLC03",
+        "card-MSLC04"
+      ],
+      "note": "卡图能证明专用机制，归档缺完整模式手册。"
+    }
+  ],
+  "mechanisms": [
+    {
+      "id": "loyalty",
+      "name": "派系/领域忠诚与资产支付",
+      "status": "implemented",
+      "scope": "有限牌池按所有资产统计颜色/领域；已横置资产仍供忠诚，费用另按未横置资产支付。",
+      "limitations": "",
+      "evidenceIds": [
+        "bq-setup",
+        "manual-domains"
+      ],
+      "dependencies": [],
+      "interactionIds": [
+        "assetSummary"
+      ],
+      "codeEvidence": [
+        {
+          "path": "rust-game/src/engine.rs",
+          "anchor": "fn loyalty"
+        },
+        {
+          "path": "rust-game/src/engine.rs",
+          "anchor": "fn pay"
+        }
+      ],
+      "existingTestNames": [
+        "reduction_only_face_up_play_matches_society_or_blood_loyalty_and_expires"
+      ]
+    },
+    {
+      "id": "hidden",
+      "name": "秘密派遣、暗藏者、付费现身和潜伏",
+      "status": "implemented",
+      "scope": "有限池提供秘密派遣、1势力暗藏者、忠诚检查、现身、潜伏、隐藏投影与新实例身份。",
+      "limitations": "",
+      "evidenceIds": [
+        "bq-setup",
+        "bq-keywords-2"
+      ],
+      "dependencies": [],
+      "interactionIds": [
+        "hiddenProjection",
+        "targetPicker"
+      ],
+      "codeEvidence": [
+        {
+          "path": "rust-game/src/engine.rs",
+          "anchor": "fn card_view"
+        },
+        {
+          "path": "rust-game/src/resolution.rs",
+          "anchor": "Op::Hide"
+        }
+      ],
+      "existingTestNames": [
+        "hidden_information_projection_and_reveal_identity",
+        "response_hide_and_reveal_reenters_with_new_identity_old_spell_cannot_hit"
+      ]
+    },
+    {
+      "id": "priority",
+      "name": "响应堆叠、付费与可恢复选择",
+      "status": "partial",
+      "scope": "有限声明核心支持快速响应、原子付款、固定行动者、单目标复核和续体恢复。",
+      "limitations": "只支持零目标或一个min=max=1目标槽；尚无通用强制触发、任意多目标、取消/替代框架。",
+      "evidenceIds": [
+        "bq-stack"
+      ],
+      "dependencies": [],
+      "interactionIds": [
+        "stack",
+        "choicePicker"
+      ],
+      "codeEvidence": [
+        {
+          "path": "rust-game/src/rules.rs",
+          "anchor": "enum Op"
+        },
+        {
+          "path": "rust-game/src/rules.rs",
+          "anchor": "validate_ability"
+        },
+        {
+          "path": "rust-game/src/resolution.rs",
+          "anchor": "GuardState::Accepted"
+        }
+      ],
+      "existingTestNames": [
+        "murder_response_sacrifices_disciple_as_cost_and_independent_reduction_resolves"
+      ]
+    },
+    {
+      "id": "confrontation",
+      "name": "调查、战斗、势力与赢区",
+      "status": "implemented",
+      "scope": "有限池执行差值奖励、调查排序抓1、同时战斗伤害、势力抵消、赢区前窗口与底牌选择。",
+      "limitations": "",
+      "evidenceIds": [
+        "bq-setup",
+        "bq-teams"
+      ],
+      "dependencies": [],
+      "interactionIds": [
+        "orderPicker",
+        "damagePicker",
+        "regionReturn"
+      ],
+      "codeEvidence": [
+        {
+          "path": "rust-game/src/engine.rs",
+          "anchor": "fn reward"
+        },
+        {
+          "path": "rust-game/src/engine.rs",
+          "anchor": "Window::Win"
+        }
+      ],
+      "existingTestNames": [
+        "icon_difference_investigation_sorts_then_draws_one",
+        "combat_difference_kill_guard_simultaneous_damage_and_barrier",
+        "influence_difference_cancels_enemy_and_privilege_requires_contribution",
+        "won_region_returns_cards_ordered_and_retreat_hand_no_death"
+      ]
+    },
+    {
+      "id": "public",
+      "name": "公开",
+      "status": "implemented",
+      "scope": "有公开特性的角色不能正常秘密派遣，仍能被效果潜伏。",
+      "limitations": "",
+      "evidenceIds": [
+        "bq-keywords-1",
+        "card-JC056"
+      ],
+      "dependencies": [
+        "hidden"
+      ],
+      "interactionIds": [],
+      "codeEvidence": [
+        {
+          "path": "rust-game/src/rules.rs",
+          "anchor": "pub public: bool"
+        }
+      ],
+      "existingTestNames": [
+        "distance_public_restriction_and_rejected_command_are_noop"
+      ]
+    },
+    {
+      "id": "exhaust",
+      "name": "横置与重置",
+      "status": "implemented",
+      "scope": "已开放牌的横置、回合重置与不参与对抗语义。",
+      "limitations": "",
+      "evidenceIds": [
+        "card-JC003",
+        "card-JC056"
+      ],
+      "dependencies": [],
+      "interactionIds": [
+        "targetPicker"
+      ],
+      "codeEvidence": [
+        {
+          "path": "rust-game/src/rules.rs",
+          "anchor": "Exhaust(EntityRef)"
+        },
+        {
+          "path": "rust-game/src/resolution.rs",
+          "anchor": "Op::Exhaust"
+        }
+      ],
+      "existingTestNames": [
+        "watchers_target_category_locks_and_shield_terminates",
+        "police_security_and_chase_apply_printed_rules"
+      ]
+    },
+    {
+      "id": "mobility",
+      "name": "机动与场上移动",
+      "status": "partial",
+      "scope": "JC014可在对抗阶段开始移动；2V2仅相邻地区；移动保留实体并仅发EnterRegion。",
+      "limitations": "没有开放外部横移目标牌，条件机动及复杂载体移动需另验。",
+      "evidenceIds": [
+        "bq-keywords-2",
+        "bq-teams",
+        "card-JC014"
+      ],
+      "dependencies": [],
+      "interactionIds": [
+        "regionPicker"
+      ],
+      "codeEvidence": [
+        {
+          "path": "rust-game/src/rules.rs",
+          "anchor": "\"mobility\""
+        },
+        {
+          "path": "rust-game/src/resolution.rs",
+          "anchor": "Op::MoveOnBoard"
+        }
+      ],
+      "existingTestNames": [
+        "mobility_adjacent_only_and_preserves_entity",
+        "board_move_primitive_preserves_entity_without_enter_or_unique_events"
+      ]
+    },
+    {
+      "id": "combatTraits",
+      "name": "杀伤、护卫、撤回",
+      "status": "implemented",
+      "scope": "当前JC016杀伤1/撤回，LC21/22护卫1；限已开放牌。",
+      "limitations": "",
+      "evidenceIds": [
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "card-JC016",
+        "card-LC21"
+      ],
+      "dependencies": [
+        "confrontation"
+      ],
+      "interactionIds": [
+        "damagePicker"
+      ],
+      "codeEvidence": [
+        {
+          "path": "rust-game/src/rules.rs",
+          "anchor": "pub guard: u32"
+        },
+        {
+          "path": "rust-game/src/rules.rs",
+          "anchor": "pub kill: u32"
+        },
+        {
+          "path": "rust-game/src/rules.rs",
+          "anchor": "pub retreat: bool"
+        }
+      ],
+      "existingTestNames": [
+        "combat_difference_kill_guard_simultaneous_damage_and_barrier",
+        "won_region_returns_cards_ordered_and_retreat_hand_no_death"
+      ]
+    },
+    {
+      "id": "barrier",
+      "name": "屏障",
+      "status": "implemented",
+      "scope": "拒绝敌方指定有屏障的正面角色；非指定范围效果另走选择器。",
+      "limitations": "",
+      "evidenceIds": [
+        "card-JZ08",
+        "bq-keywords-2"
+      ],
+      "dependencies": [],
+      "interactionIds": [],
+      "codeEvidence": [
+        {
+          "path": "rust-game/src/engine.rs",
+          "anchor": "fn targetable"
+        },
+        {
+          "path": "rust-game/src/resolution.rs",
+          "anchor": "fn matching_board"
+        }
+      ],
+      "existingTestNames": [
+        "combat_difference_kill_guard_simultaneous_damage_and_barrier"
+      ]
+    },
+    {
+      "id": "shield",
+      "name": "护盾",
+      "status": "partial",
+      "scope": "Card.shield与敌方指定时消耗护盾、终止来源效果有实现及夹具测试。",
+      "limitations": "所有生产实例初始shield=0；没有开放获得护盾牌或赋予护盾的Op，不能宣传可玩护盾策略。",
+      "evidenceIds": [
+        "bq-new",
+        "bq-keywords-2"
+      ],
+      "dependencies": [],
+      "interactionIds": [],
+      "codeEvidence": [
+        {
+          "path": "rust-game/src/engine.rs",
+          "anchor": "fn shield_stops"
+        },
+        {
+          "path": "rust-game/src/model.rs",
+          "anchor": "pub shield: u32"
+        }
+      ],
+      "existingTestNames": [
+        "watchers_target_category_locks_and_shield_terminates"
+      ]
+    },
+    {
+      "id": "graveRecovery",
+      "name": "墓地回手/牌库底/暗藏者进场",
+      "status": "implemented",
+      "scope": "JC086墓地角色回手，JC092墓地角色暗藏者进场，XQ49任意墓地牌回拥有者牌库底。",
+      "limitations": "",
+      "evidenceIds": [
+        "card-JC086",
+        "card-JC092",
+        "card-XQ49"
+      ],
+      "dependencies": [
+        "hidden",
+        "priority"
+      ],
+      "interactionIds": [
+        "graveyardPicker",
+        "regionPicker"
+      ],
+      "codeEvidence": [
+        {
+          "path": "rust-game/src/rules.rs",
+          "anchor": "HiddenInChosenRegion"
+        },
+        {
+          "path": "rust-game/src/rules.rs",
+          "anchor": "OwnerDeckBottom"
+        }
+      ],
+      "existingTestNames": [
+        "all_transaction_effects_and_recursion_death_choice",
+        "funeral_target_recovered_in_response_cancels_draw_without_refunding_cost"
+      ]
+    },
+    {
+      "id": "gravePlay",
+      "name": "墓地/其他区域直接打出",
+      "status": "unimplemented",
+      "scope": "复生行尸的墓地行动不是先回手；需要区域来源声明与忠诚、费用、正常进场。",
+      "limitations": "",
+      "evidenceIds": [
+        "card-JC085",
+        "faq-4"
+      ],
+      "dependencies": [
+        "priority",
+        "loyalty"
+      ],
+      "interactionIds": [
+        "graveyardPicker"
+      ],
+      "codeEvidence": [
+        {
+          "path": "rust-game/src/rules.rs",
+          "anchor": "enum Zone"
+        },
+        {
+          "path": "rust-game/src/engine.rs",
+          "anchor": "fn legal_actions"
+        }
+      ],
+      "existingTestNames": []
+    },
+    {
+      "id": "sacrifice",
+      "name": "牺牲费用与牺牲效果",
+      "status": "implemented",
+      "scope": "当前角色牺牲成本和目标玩家自选牺牲效果区分；不冒充消灭。",
+      "limitations": "",
+      "evidenceIds": [
+        "card-JC042",
+        "card-JC049",
+        "card-JZ54",
+        "bq-seal"
+      ],
+      "dependencies": [
+        "priority"
+      ],
+      "interactionIds": [
+        "costPicker",
+        "choicePicker"
+      ],
+      "codeEvidence": [
+        {
+          "path": "rust-game/src/rules.rs",
+          "anchor": "SacrificeSelectedControlledCharacter"
+        },
+        {
+          "path": "rust-game/src/model.rs",
+          "anchor": "enum RemovalCause"
+        }
+      ],
+      "existingTestNames": [
+        "invalid_additional_sacrifice_rolls_back_assets_modifier_and_every_state_field",
+        "effect_sacrifice_private_choice_restores_accepted_guard_and_current_control"
+      ]
+    },
+    {
+      "id": "costReduction",
+      "name": "降费",
+      "status": "partial",
+      "scope": "JC042只对下一张正面打出的鸣钟教派或血脉牌降2费，仍检查忠诚/追加费用并回合清理。",
+      "limitations": "没有通用翻面降费、持续多来源叠加、任意费用修改器；不能据此开放所有降费牌。",
+      "evidenceIds": [
+        "card-JC042",
+        "faq-3"
+      ],
+      "dependencies": [
+        "loyalty",
+        "priority"
+      ],
+      "interactionIds": [],
+      "codeEvidence": [
+        {
+          "path": "rust-game/src/rules.rs",
+          "anchor": "CostReduction"
+        },
+        {
+          "path": "rust-game/src/resolution.rs",
+          "anchor": "CardFilter::SocietyOrMagic"
+        }
+      ],
+      "existingTestNames": [
+        "reduction_only_face_up_play_matches_society_or_blood_loyalty_and_expires"
+      ]
+    },
+    {
+      "id": "deckChoice",
+      "name": "抓牌、弃牌、预测、检索及排序",
+      "status": "partial",
+      "scope": "当前公开牌支持抓牌、底牌入手、弃牌、预测、有限检索和个人选择续体。",
+      "limitations": "香港同时展示、入手再洗牌仍关闭；不同集合/区域检索与同步选择不能自动视为已实现。",
+      "evidenceIds": [
+        "card-LC24",
+        "card-JC049",
+        "faq-3"
+      ],
+      "dependencies": [],
+      "interactionIds": [
+        "orderPicker",
+        "handPicker",
+        "searchPicker"
+      ],
+      "codeEvidence": [
+        {
+          "path": "rust-game/src/rules.rs",
+          "anchor": "Forecast"
+        },
+        {
+          "path": "rust-game/src/model.rs",
+          "anchor": "enum FrameChoice"
+        }
+      ],
+      "existingTestNames": [
+        "bottom_to_hand_insufficient_cards_does_not_draw_or_eliminate_and_pays_controlled_cost",
+        "private_forecast_and_damage_choices_roundtrip_without_leaking"
+      ]
+    },
+    {
+      "id": "continuous",
+      "name": "持续数值修正与类型/能力赋予",
+      "status": "partial",
+      "scope": "已开放两个有限修正：JC016无敌角色加图标与JC059同地区其他本方角色+1防御。",
+      "limitations": "不存在通用持续层、文本空白、类型赋予、动态领域/能力与条件修改框架。",
+      "evidenceIds": [
+        "card-JC016",
+        "card-JC059"
+      ],
+      "dependencies": [],
+      "interactionIds": [],
+      "codeEvidence": [
+        {
+          "path": "rust-game/src/rules.rs",
+          "anchor": "enum StaticModifier"
+        },
+        {
+          "path": "rust-game/src/engine.rs",
+          "anchor": "fn defense"
+        }
+      ],
+      "existingTestNames": [
+        "sacrifice_defense_aura_immediately_kills_zero_defense_character_at_stable_point"
+      ]
+    },
+    {
+      "id": "healWounds",
+      "name": "移除创伤",
+      "status": "partial",
+      "scope": "LC19/20能移除已有创伤；防御值会扣创伤。",
+      "limitations": "当前生产卡没有创伤X或赋予创伤的Op；不等于创伤能力完整支持。",
+      "evidenceIds": [
+        "card-LC19",
+        "card-LC20"
+      ],
+      "dependencies": [],
+      "interactionIds": [
+        "targetPicker"
+      ],
+      "codeEvidence": [
+        {
+          "path": "rust-game/src/rules.rs",
+          "anchor": "HealWounds"
+        },
+        {
+          "path": "rust-game/src/engine.rs",
+          "anchor": "saturating_sub(c.wounds)"
+        }
+      ],
+      "existingTestNames": [
+        "surgeon_is_public_and_heal_pays_two_assets_and_exhausts_source_atomically"
+      ]
+    },
+    {
+      "id": "society",
+      "name": "秘社牌与秘社区",
+      "status": "unimplemented",
+      "scope": "可选初始秘社、不计入50张、起始手牌覆盖、不可离场、构筑限制和秘社能力。",
+      "limitations": "",
+      "evidenceIds": [
+        "guide-societies"
+      ],
+      "dependencies": [
+        "priority",
+        "loyalty"
+      ],
+      "interactionIds": [
+        "societyPicker",
+        "societyZone"
+      ],
+      "codeEvidence": [
+        {
+          "path": "rust-game/src/rules.rs",
+          "anchor": "enum Op"
+        },
+        {
+          "path": "rust-game/src/model.rs",
+          "anchor": "pub struct Player"
+        }
+      ],
+      "existingTestNames": []
+    },
+    {
+      "id": "attachment",
+      "name": "附属/结附、回收与双类型牌",
+      "status": "unimplemented",
+      "scope": "载体关系、目标合法性、载体离场/潜伏清理、拥有者/操控者及角色附属双身份。",
+      "limitations": "",
+      "evidenceIds": [
+        "manual-seal",
+        "intermezzo",
+        "faq-5",
+        "card-JC028"
+      ],
+      "dependencies": [
+        "priority"
+      ],
+      "interactionIds": [
+        "attachmentPicker",
+        "attachments"
+      ],
+      "codeEvidence": [
+        {
+          "path": "rust-game/src/rules.rs",
+          "anchor": "enum Op"
+        },
+        {
+          "path": "rust-game/src/model.rs",
+          "anchor": "pub struct Player"
+        }
+      ],
+      "existingTestNames": []
+    },
+    {
+      "id": "seal",
+      "name": "封印与载体生命周期",
+      "status": "unimplemented",
+      "scope": "被封印牌不在场、可查看、不能指定；载体离场或潜伏时回拥有者手。",
+      "limitations": "",
+      "evidenceIds": [
+        "manual-seal",
+        "bq-seal",
+        "card-JC099",
+        "card-JC100"
+      ],
+      "dependencies": [
+        "priority",
+        "attachment"
+      ],
+      "interactionIds": [
+        "sealedCards",
+        "targetPicker"
+      ],
+      "codeEvidence": [
+        {
+          "path": "rust-game/src/rules.rs",
+          "anchor": "enum Op"
+        },
+        {
+          "path": "rust-game/src/model.rs",
+          "anchor": "pub struct Player"
+        }
+      ],
+      "existingTestNames": []
+    },
+    {
+      "id": "renown",
+      "name": "声望",
+      "status": "unimplemented",
+      "scope": "地区全部对抗结束后比较未横置声望角色数；胜出可额外放1势力，不按人数叠加。",
+      "limitations": "",
+      "evidenceIds": [
+        "bq-keywords-2",
+        "card-JC070",
+        "card-JC076"
+      ],
+      "dependencies": [
+        "confrontation"
+      ],
+      "interactionIds": [
+        "triggerPrompt"
+      ],
+      "codeEvidence": [
+        {
+          "path": "rust-game/src/rules.rs",
+          "anchor": "enum Op"
+        },
+        {
+          "path": "rust-game/src/model.rs",
+          "anchor": "pub struct Player"
+        }
+      ],
+      "existingTestNames": []
+    },
+    {
+      "id": "spirit",
+      "name": "灵体",
+      "status": "unimplemented",
+      "scope": "同地区双方有效魔法领域图标比较，敌方少于己方时防止灵体受到的所有伤害。",
+      "limitations": "",
+      "evidenceIds": [
+        "bq-keywords-2",
+        "card-JC077",
+        "card-JC099"
+      ],
+      "dependencies": [
+        "continuous",
+        "damagePrevention"
+      ],
+      "interactionIds": [
+        "domainSummary"
+      ],
+      "codeEvidence": [
+        {
+          "path": "rust-game/src/rules.rs",
+          "anchor": "enum Op"
+        },
+        {
+          "path": "rust-game/src/model.rs",
+          "anchor": "pub struct Player"
+        }
+      ],
+      "existingTestNames": []
+    },
+    {
+      "id": "lock",
+      "name": "锁定与检视暗藏者",
+      "status": "unimplemented",
+      "scope": "锁定需计数、查看权限与目标规则；并非所有灰牌都带锁定。",
+      "limitations": "",
+      "evidenceIds": [
+        "card-MSJC14",
+        "faq-3"
+      ],
+      "dependencies": [
+        "hidden",
+        "continuous"
+      ],
+      "interactionIds": [
+        "privatePeek",
+        "markerEditor"
+      ],
+      "codeEvidence": [
+        {
+          "path": "rust-game/src/rules.rs",
+          "anchor": "enum Op"
+        },
+        {
+          "path": "rust-game/src/model.rs",
+          "anchor": "pub struct Player"
+        }
+      ],
+      "existingTestNames": []
+    },
+    {
+      "id": "timeDestroy",
+      "name": "时间标志与毁灭地区",
+      "status": "unimplemented",
+      "scope": "时间标志与毁灭状态、计分区毁灭标志-1分及替代胜利。",
+      "limitations": "",
+      "evidenceIds": [
+        "intermezzo",
+        "card-MSJC13",
+        "card-MSJZ03"
+      ],
+      "dependencies": [
+        "continuous",
+        "confrontation"
+      ],
+      "interactionIds": [
+        "markerEditor",
+        "destroyedRegions"
+      ],
+      "codeEvidence": [
+        {
+          "path": "rust-game/src/rules.rs",
+          "anchor": "enum Op"
+        },
+        {
+          "path": "rust-game/src/model.rs",
+          "anchor": "pub struct Player"
+        }
+      ],
+      "existingTestNames": []
+    },
+    {
+      "id": "damagePrevention",
+      "name": "通用防止/伤害替代",
+      "status": "unimplemented",
+      "scope": "灵体、光能盾及庇佑圣灵的防止/转移需要明确的伤害结算层。",
+      "limitations": "",
+      "evidenceIds": [
+        "bq-keywords-2",
+        "card-JC077"
+      ],
+      "dependencies": [
+        "confrontation"
+      ],
+      "interactionIds": [
+        "damagePicker"
+      ],
+      "codeEvidence": [
+        {
+          "path": "rust-game/src/rules.rs",
+          "anchor": "enum Op"
+        },
+        {
+          "path": "rust-game/src/model.rs",
+          "anchor": "pub struct Player"
+        }
+      ],
+      "existingTestNames": []
+    },
+    {
+      "id": "control",
+      "name": "操控权变化",
+      "status": "unimplemented",
+      "scope": "所有权不变；效果结束、载体潜伏/离场时恢复控制等。",
+      "limitations": "",
+      "evidenceIds": [
+        "bq-seal",
+        "faq-3"
+      ],
+      "dependencies": [
+        "continuous",
+        "attachment"
+      ],
+      "interactionIds": [
+        "controlBadges"
+      ],
+      "codeEvidence": [
+        {
+          "path": "rust-game/src/rules.rs",
+          "anchor": "enum Op"
+        },
+        {
+          "path": "rust-game/src/model.rs",
+          "anchor": "pub struct Player"
+        }
+      ],
+      "existingTestNames": []
+    },
+    {
+      "id": "transform",
+      "name": "转变与多形态",
+      "status": "unimplemented",
+      "scope": "转变通过旋转180度切换规则与属性，区别于潜伏/现身。",
+      "limitations": "",
+      "evidenceIds": [
+        "intermezzo",
+        "card-MSJZ02",
+        "card-ZHMSJZ02",
+        "card-ZHJZ65"
+      ],
+      "dependencies": [
+        "continuous"
+      ],
+      "interactionIds": [
+        "formSwitcher"
+      ],
+      "codeEvidence": [
+        {
+          "path": "rust-game/src/rules.rs",
+          "anchor": "enum Op"
+        },
+        {
+          "path": "rust-game/src/model.rs",
+          "anchor": "pub struct Player"
+        }
+      ],
+      "existingTestNames": []
+    },
+    {
+      "id": "blink",
+      "name": "闪烁",
+      "status": "unimplemented",
+      "scope": "一次效果中潜伏再现身，离场/进场、附属/封印清理与旧目标失效需原子语义。",
+      "limitations": "",
+      "evidenceIds": [
+        "intermezzo",
+        "bq-keywords-2"
+      ],
+      "dependencies": [
+        "hidden",
+        "attachment",
+        "seal",
+        "priority"
+      ],
+      "interactionIds": [
+        "stack"
+      ],
+      "codeEvidence": [
+        {
+          "path": "rust-game/src/rules.rs",
+          "anchor": "enum Op"
+        },
+        {
+          "path": "rust-game/src/model.rs",
+          "anchor": "pub struct Player"
+        }
+      ],
+      "existingTestNames": []
+    },
+    {
+      "id": "nonAsset",
+      "name": "非资产",
+      "status": "unimplemented",
+      "scope": "版次不同：间奏图忽略所有置资产效果，霸权P18只禁止建立资产，其他效果仍可变资产。",
+      "limitations": "",
+      "evidenceIds": [
+        "intermezzo",
+        "bq-keywords-2",
+        "card-BQ097"
+      ],
+      "dependencies": [
+        "loyalty"
+      ],
+      "interactionIds": [
+        "assetSummary"
+      ],
+      "codeEvidence": [
+        {
+          "path": "rust-game/src/rules.rs",
+          "anchor": "enum Op"
+        },
+        {
+          "path": "rust-game/src/model.rs",
+          "anchor": "pub struct Player"
+        }
+      ],
+      "existingTestNames": []
+    },
+    {
+      "id": "slow",
+      "name": "迟缓",
+      "status": "unimplemented",
+      "scope": "进场必须横置。",
+      "limitations": "",
+      "evidenceIds": [
+        "intermezzo"
+      ],
+      "dependencies": [
+        "hidden",
+        "exhaust"
+      ],
+      "interactionIds": [],
+      "codeEvidence": [
+        {
+          "path": "rust-game/src/rules.rs",
+          "anchor": "enum Op"
+        },
+        {
+          "path": "rust-game/src/model.rs",
+          "anchor": "pub struct Player"
+        }
+      ],
+      "existingTestNames": []
+    },
+    {
+      "id": "leader",
+      "name": "领袖与唯一构筑",
+      "status": "unimplemented",
+      "scope": "领袖是每玩家同一时间一张领袖；唯一是构筑一张；两者都区别于独有。",
+      "limitations": "",
+      "evidenceIds": [
+        "bq-keywords-2"
+      ],
+      "dependencies": [
+        "continuous",
+        "society"
+      ],
+      "interactionIds": [
+        "uniquePrompt"
+      ],
+      "codeEvidence": [
+        {
+          "path": "rust-game/src/rules.rs",
+          "anchor": "enum Op"
+        },
+        {
+          "path": "rust-game/src/model.rs",
+          "anchor": "pub struct Player"
+        }
+      ],
+      "existingTestNames": []
+    },
+    {
+      "id": "token",
+      "name": "生成指示物角色/附属",
+      "status": "unimplemented",
+      "scope": "有限模板生成实体、消失、归属与类型，不与普通卡牌/转变反面混计。",
+      "limitations": "",
+      "evidenceIds": [
+        "card-MSJZ02",
+        "card-MSLC03",
+        "card-BQ043"
+      ],
+      "dependencies": [
+        "continuous"
+      ],
+      "interactionIds": [
+        "tokenTile"
+      ],
+      "codeEvidence": [
+        {
+          "path": "rust-game/src/rules.rs",
+          "anchor": "enum Op"
+        },
+        {
+          "path": "rust-game/src/model.rs",
+          "anchor": "pub struct Player"
+        }
+      ],
+      "existingTestNames": []
+    },
+    {
+      "id": "mysticContest",
+      "name": "隐秘对抗、隐秘/暴露与隐秘等级",
+      "status": "unimplemented",
+      "scope": "同时选择展示手牌比印刷费及修正，洗回；隐秘/暴露抵消并改变手牌上限；2V2团队求和。",
+      "limitations": "",
+      "evidenceIds": [
+        "veil",
+        "starlight",
+        "bq-new",
+        "bq-teams"
+      ],
+      "dependencies": [
+        "society",
+        "deckChoice"
+      ],
+      "interactionIds": [
+        "simultaneousReveal",
+        "societyMarkers"
+      ],
+      "codeEvidence": [
+        {
+          "path": "rust-game/src/rules.rs",
+          "anchor": "enum Op"
+        },
+        {
+          "path": "rust-game/src/model.rs",
+          "anchor": "pub struct Player"
+        }
+      ],
+      "existingTestNames": []
+    },
+    {
+      "id": "plan",
+      "name": "秘密计划与推进",
+      "status": "unimplemented",
+      "scope": "1费计划结附秘社，可背面打出但仍检查忠诚；推进不限制每回合次数；到阈值强制展示/牺牲。",
+      "limitations": "",
+      "evidenceIds": [
+        "veil",
+        "bq-new"
+      ],
+      "dependencies": [
+        "society",
+        "attachment",
+        "mysticContest",
+        "priority"
+      ],
+      "interactionIds": [
+        "hiddenProjection",
+        "planProgress"
+      ],
+      "codeEvidence": [
+        {
+          "path": "rust-game/src/rules.rs",
+          "anchor": "enum Op"
+        },
+        {
+          "path": "rust-game/src/model.rs",
+          "anchor": "pub struct Player"
+        }
+      ],
+      "existingTestNames": []
+    },
+    {
+      "id": "rumor",
+      "name": "传闻",
+      "status": "unimplemented",
+      "scope": "从手牌弃掉或从牌库入墓时，可改封印到场上目标角色。",
+      "limitations": "",
+      "evidenceIds": [
+        "veil",
+        "bq-keywords-1"
+      ],
+      "dependencies": [
+        "seal",
+        "priority"
+      ],
+      "interactionIds": [
+        "triggerPrompt"
+      ],
+      "codeEvidence": [
+        {
+          "path": "rust-game/src/rules.rs",
+          "anchor": "enum Op"
+        },
+        {
+          "path": "rust-game/src/model.rs",
+          "anchor": "pub struct Player"
+        }
+      ],
+      "existingTestNames": []
+    },
+    {
+      "id": "blood",
+      "name": "鲜血附属与饮血",
+      "status": "unimplemented",
+      "scope": "吸血鬼鲜血角色转附属、从墓地/秘社封印中结附；需载体及角色/附属身份变更。",
+      "limitations": "",
+      "evidenceIds": [
+        "card-JC028",
+        "bq-keywords-2",
+        "card-MSBQ01"
+      ],
+      "dependencies": [
+        "attachment",
+        "seal"
+      ],
+      "interactionIds": [
+        "attachments",
+        "sealedCards"
+      ],
+      "codeEvidence": [
+        {
+          "path": "rust-game/src/rules.rs",
+          "anchor": "enum Op"
+        },
+        {
+          "path": "rust-game/src/model.rs",
+          "anchor": "pub struct Player"
+        }
+      ],
+      "existingTestNames": []
+    },
+    {
+      "id": "task",
+      "name": "任务地区",
+      "status": "unimplemented",
+      "scope": "在玩家牌组中、有费用/派系，打出后追加争夺地区；非世界牌库普通地区。",
+      "limitations": "",
+      "evidenceIds": [
+        "bq-new",
+        "bq-core"
+      ],
+      "dependencies": [
+        "confrontation",
+        "loyalty"
+      ],
+      "interactionIds": [
+        "taskRegion"
+      ],
+      "codeEvidence": [
+        {
+          "path": "rust-game/src/rules.rs",
+          "anchor": "enum Op"
+        },
+        {
+          "path": "rust-game/src/model.rs",
+          "anchor": "pub struct Player"
+        }
+      ],
+      "existingTestNames": []
+    },
+    {
+      "id": "core",
+      "name": "核心角色、核心区与命令",
+      "status": "unimplemented",
+      "scope": "修格斯选核心、区外能力及命令调用、休整加费、失控随机地区与任务替代胜利。",
+      "limitations": "",
+      "evidenceIds": [
+        "bq-core",
+        "card-MSBQ02",
+        "card-BQ043"
+      ],
+      "dependencies": [
+        "society",
+        "task",
+        "token",
+        "priority"
+      ],
+      "interactionIds": [
+        "coreZone",
+        "commandPicker",
+        "honorCounter"
+      ],
+      "codeEvidence": [
+        {
+          "path": "rust-game/src/rules.rs",
+          "anchor": "enum Op"
+        },
+        {
+          "path": "rust-game/src/model.rs",
+          "anchor": "pub struct Player"
+        }
+      ],
+      "existingTestNames": []
+    },
+    {
+      "id": "encounter",
+      "name": "遭遇角色、利用与恐怖",
+      "status": "unimplemented",
+      "scope": "世界牌库中的公用遭遇牌，独立状态、利用转控制、世界区回流与对抗间移动。",
+      "limitations": "",
+      "evidenceIds": [
+        "prelude",
+        "card-DQXQZY02"
+      ],
+      "dependencies": [
+        "control",
+        "mobility",
+        "confrontation"
+      ],
+      "interactionIds": [
+        "encounterTile",
+        "useEncounter"
+      ],
+      "codeEvidence": [
+        {
+          "path": "rust-game/src/rules.rs",
+          "anchor": "enum Op"
+        },
+        {
+          "path": "rust-game/src/model.rs",
+          "anchor": "pub struct Player"
+        }
+      ],
+      "existingTestNames": []
+    },
+    {
+      "id": "starlightInfluence",
+      "name": "附属上的地区势力",
+      "status": "unimplemented",
+      "scope": "星光俱乐部上的标志仍属所在地势力，离场移除并参与抵消。",
+      "limitations": "",
+      "evidenceIds": [
+        "starlight"
+      ],
+      "dependencies": [
+        "attachment",
+        "confrontation"
+      ],
+      "interactionIds": [
+        "attachments",
+        "regionInfluence"
+      ],
+      "codeEvidence": [
+        {
+          "path": "rust-game/src/rules.rs",
+          "anchor": "enum Op"
+        },
+        {
+          "path": "rust-game/src/model.rs",
+          "anchor": "pub struct Player"
+        }
+      ],
+      "existingTestNames": []
+    },
+    {
+      "id": "combatKeywords",
+      "name": "袭击、创伤、遏制、威名等战斗关键词",
+      "status": "unimplemented",
+      "scope": "尚无通用战斗事件及这些关键词的声明/结算支持。",
+      "limitations": "",
+      "evidenceIds": [
+        "bq-keywords-1",
+        "bq-keywords-2"
+      ],
+      "dependencies": [
+        "confrontation",
+        "continuous"
+      ],
+      "interactionIds": [
+        "damagePicker",
+        "triggerPrompt"
+      ],
+      "codeEvidence": [
+        {
+          "path": "rust-game/src/rules.rs",
+          "anchor": "enum Op"
+        },
+        {
+          "path": "rust-game/src/model.rs",
+          "anchor": "pub struct Player"
+        }
+      ],
+      "existingTestNames": []
+    },
+    {
+      "id": "hiddenOnly",
+      "name": "隐匿",
+      "status": "unimplemented",
+      "scope": "与公开相反，只能秘密派遣而不能正面打出。",
+      "limitations": "",
+      "evidenceIds": [
+        "bq-keywords-1"
+      ],
+      "dependencies": [
+        "hidden"
+      ],
+      "interactionIds": [],
+      "codeEvidence": [
+        {
+          "path": "rust-game/src/rules.rs",
+          "anchor": "enum Op"
+        },
+        {
+          "path": "rust-game/src/model.rs",
+          "anchor": "pub struct Player"
+        }
+      ],
+      "existingTestNames": []
+    },
+    {
+      "id": "cancel",
+      "name": "终止/取消与替代效果",
+      "status": "unimplemented",
+      "scope": "堆叠上的目标卡移墓不结算；追加替代/强制触发需单独语义。",
+      "limitations": "",
+      "evidenceIds": [
+        "bq-stack"
+      ],
+      "dependencies": [
+        "priority"
+      ],
+      "interactionIds": [
+        "stack"
+      ],
+      "codeEvidence": [
+        {
+          "path": "rust-game/src/rules.rs",
+          "anchor": "enum Op"
+        },
+        {
+          "path": "rust-game/src/model.rs",
+          "anchor": "pub struct Player"
+        }
+      ],
+      "existingTestNames": []
+    },
+    {
+      "id": "handAbility",
+      "name": "手牌能力、神秘学博弈等",
+      "status": "unimplemented",
+      "scope": "从手牌弃牌作为费用并声明能力，不等于打出该牌。",
+      "limitations": "",
+      "evidenceIds": [
+        "faq-5",
+        "card-TEST015"
+      ],
+      "dependencies": [
+        "priority",
+        "mysticContest"
+      ],
+      "interactionIds": [
+        "handAbility"
+      ],
+      "codeEvidence": [
+        {
+          "path": "rust-game/src/rules.rs",
+          "anchor": "enum Op"
+        },
+        {
+          "path": "rust-game/src/model.rs",
+          "anchor": "pub struct Player"
+        }
+      ],
+      "existingTestNames": []
+    },
+    {
+      "id": "crisis",
+      "name": "洛城危机/支线剧情/威胁与支援",
+      "status": "uncertain",
+      "scope": "原图MSLC01..04明确指向危机方、支线、支援与威胁；本归档未附该模式完整说明，不能补造完整流程。",
+      "limitations": "Rust无此模式；普通LC19..24已按对战牌开放，不代表洛城模式已实现。",
+      "evidenceIds": [
+        "card-MSLC01",
+        "card-MSLC02",
+        "card-MSLC03",
+        "card-MSLC04"
+      ],
+      "dependencies": [
+        "society"
+      ],
+      "interactionIds": [
+        "campaignProgress"
+      ],
+      "codeEvidence": [
+        {
+          "path": "rust-game/src/engine.rs",
+          "anchor": "模式必须为 duel 或 teams"
+        }
+      ],
+      "existingTestNames": []
+    },
+    {
+      "id": "chaos",
+      "name": "混乱",
+      "status": "unimplemented",
+      "scope": "混乱角色进场时随机选择地区，不能由玩家指定进入地区。",
+      "limitations": "所见原图的特定流程未在有限卡池内开放。",
+      "evidenceIds": [
+        "bq-keywords-2",
+        "card-WM071"
+      ],
+      "dependencies": [
+        "hidden"
+      ],
+      "interactionIds": [
+        "randomDestination"
+      ],
+      "codeEvidence": [
+        {
+          "path": "rust-game/src/rules.rs",
+          "anchor": "enum Op"
+        },
+        {
+          "path": "rust-game/src/model.rs",
+          "anchor": "pub struct Card"
+        }
+      ],
+      "existingTestNames": []
+    },
+    {
+      "id": "herald",
+      "name": "先兆手牌行动",
+      "status": "unimplemented",
+      "scope": "原图将从手中展示来源牌列为先兆费用；所见两牌限准备步骤且每回合一次。",
+      "limitations": "所见原图的特定流程未在有限卡池内开放。",
+      "evidenceIds": [
+        "card-CQ12",
+        "card-LC14"
+      ],
+      "dependencies": [
+        "handAbility",
+        "priority"
+      ],
+      "interactionIds": [
+        "handAbility",
+        "revealAsCost"
+      ],
+      "codeEvidence": [
+        {
+          "path": "rust-game/src/rules.rs",
+          "anchor": "enum Op"
+        },
+        {
+          "path": "rust-game/src/model.rs",
+          "anchor": "pub struct Card"
+        }
+      ],
+      "existingTestNames": []
+    },
+    {
+      "id": "reincarnation",
+      "name": "转生",
+      "status": "unimplemented",
+      "scope": "贝兰丹娜原图：从任何区域进入墓地或被封印时，改洗入拥有者牌库；需区别替代事件与事后触发。",
+      "limitations": "所见原图的特定流程未在有限卡池内开放。",
+      "evidenceIds": [
+        "card-WM071"
+      ],
+      "dependencies": [
+        "seal",
+        "deckChoice"
+      ],
+      "interactionIds": [
+        "replacementPreview"
+      ],
+      "codeEvidence": [
+        {
+          "path": "rust-game/src/rules.rs",
+          "anchor": "enum Op"
+        },
+        {
+          "path": "rust-game/src/model.rs",
+          "anchor": "pub struct Card"
+        }
+      ],
+      "existingTestNames": []
+    },
+    {
+      "id": "eternal",
+      "name": "永恒",
+      "status": "uncertain",
+      "scope": "莲月合一原图印有永恒，但所核说明页没有提供其完整定义；仅确认关键词存在。",
+      "limitations": "未注册这些牌。永恒的语义尚待原始定义，不能由名称推断。",
+      "evidenceIds": [
+        "card-LC15"
+      ],
+      "dependencies": [],
+      "interactionIds": [
+        "keywordHelp"
+      ],
+      "codeEvidence": [
+        {
+          "path": "rust-game/src/rules.rs",
+          "anchor": "enum Op"
+        },
+        {
+          "path": "rust-game/src/model.rs",
+          "anchor": "pub struct Card"
+        }
+      ],
+      "existingTestNames": []
+    },
+    {
+      "id": "temporaryIcons",
+      "name": "临时能力图标",
+      "status": "partial",
+      "scope": "当前对抗按先手团队启用临时图标，JC016的条件临时图标修正亦处理。",
+      "limitations": "规则要求任意效果统计图标数量时总要包含临时图标；现有icons函数是对抗参与计数，未建立所有非对抗计数入口。",
+      "evidenceIds": [
+        "manual-pairing",
+        "card-JC016"
+      ],
+      "dependencies": [
+        "confrontation",
+        "continuous"
+      ],
+      "interactionIds": [
+        "iconBreakdown"
+      ],
+      "codeEvidence": [
+        {
+          "path": "rust-game/src/engine.rs",
+          "anchor": "pub fn icons"
+        },
+        {
+          "path": "rust-game/src/engine.rs",
+          "anchor": "result.add(d.temporary_icons)"
+        }
+      ],
+      "existingTestNames": [
+        "icon_difference_investigation_sorts_then_draws_one"
+      ]
+    },
+    {
+      "id": "uniqueInPlay",
+      "name": "独有（金色名称）",
+      "status": "implemented",
+      "scope": "有限牌池的LC23：同一玩家控制同名正面角色时选择牺牲其中一张；按当前名称分组。独有区别于领袖和唯一构筑。",
+      "limitations": "没有借此宣称附属/秘社/控制变化后的通用独有流程；这些区域和操控变化尚未开放。",
+      "evidenceIds": [
+        "manual-unique",
+        "card-LC23"
+      ],
+      "dependencies": [
+        "sacrifice"
+      ],
+      "interactionIds": [
+        "uniquePrompt"
+      ],
+      "codeEvidence": [
+        {
+          "path": "rust-game/src/engine.rs",
+          "anchor": "Effect::Unique { seat }"
+        }
+      ],
+      "existingTestNames": [
+        "unique_mandatory_sacrifice_and_world_effects"
+      ]
+    }
+  ],
+  "evidence": {
+    "bq-factions": {
+      "kind": "pdfPage",
+      "path": "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+      "sha256": "a1e5bca72b8dbb374357feace28b7fbfd31136349ee23455d60f5f62e0a6b886",
+      "printedPage": 1,
+      "pdfPage": 2,
+      "visuallyReviewed": true,
+      "topic": "八个颜色派系与中立、四套秘社预组"
+    },
+    "bq-setup": {
+      "kind": "pdfPage",
+      "path": "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+      "sha256": "a1e5bca72b8dbb374357feace28b7fbfd31136349ee23455d60f5f62e0a6b886",
+      "printedPage": 6,
+      "pdfPage": 7,
+      "visuallyReviewed": true,
+      "topic": "忠诚、起始手牌、秘社设置"
+    },
+    "bq-construct": {
+      "kind": "pdfPage",
+      "path": "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+      "sha256": "a1e5bca72b8dbb374357feace28b7fbfd31136349ee23455d60f5f62e0a6b886",
+      "printedPage": 13,
+      "pdfPage": 14,
+      "visuallyReviewed": true,
+      "topic": "自定义构筑与四套官方霸权预组牌表"
+    },
+    "bq-stack": {
+      "kind": "pdfPage",
+      "path": "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+      "sha256": "a1e5bca72b8dbb374357feace28b7fbfd31136349ee23455d60f5f62e0a6b886",
+      "printedPage": 14,
+      "pdfPage": 15,
+      "visuallyReviewed": true,
+      "topic": "堆叠、响应、追加费用、不能被响应的费用"
+    },
+    "bq-seal": {
+      "kind": "pdfPage",
+      "path": "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+      "sha256": "a1e5bca72b8dbb374357feace28b7fbfd31136349ee23455d60f5f62e0a6b886",
+      "printedPage": 15,
+      "pdfPage": 16,
+      "visuallyReviewed": true,
+      "topic": "封印、领域、拥有者与操控者"
+    },
+    "bq-keywords-1": {
+      "kind": "pdfPage",
+      "path": "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+      "sha256": "a1e5bca72b8dbb374357feace28b7fbfd31136349ee23455d60f5f62e0a6b886",
+      "printedPage": 17,
+      "pdfPage": 18,
+      "visuallyReviewed": true,
+      "topic": "公开/隐匿、袭击、传闻、回收、创伤、杀伤、护卫、遏制"
+    },
+    "bq-keywords-2": {
+      "kind": "pdfPage",
+      "path": "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+      "sha256": "a1e5bca72b8dbb374357feace28b7fbfd31136349ee23455d60f5f62e0a6b886",
+      "printedPage": 18,
+      "pdfPage": 19,
+      "visuallyReviewed": true,
+      "topic": "声望、灵体、领袖、预测、机动、威名、撤回、非资产、闪烁、唯一、护盾、饮血、混乱"
+    },
+    "bq-new": {
+      "kind": "pdfPage",
+      "path": "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+      "sha256": "a1e5bca72b8dbb374357feace28b7fbfd31136349ee23455d60f5f62e0a6b886",
+      "printedPage": 19,
+      "pdfPage": 20,
+      "visuallyReviewed": true,
+      "topic": "任务地区、计划、隐秘对抗、护盾、饮血"
+    },
+    "bq-core": {
+      "kind": "pdfPage",
+      "path": "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+      "sha256": "a1e5bca72b8dbb374357feace28b7fbfd31136349ee23455d60f5f62e0a6b886",
+      "printedPage": 20,
+      "pdfPage": 21,
+      "visuallyReviewed": true,
+      "topic": "修格斯、核心区、名誉点、休整、失控、命令与任务胜利"
+    },
+    "bq-teams": {
+      "kind": "pdfPage",
+      "path": "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+      "sha256": "a1e5bca72b8dbb374357feace28b7fbfd31136349ee23455d60f5f62e0a6b886",
+      "printedPage": 21,
+      "pdfPage": 22,
+      "visuallyReviewed": true,
+      "topic": "同侧队伍、10分、五地区、距离、共同步骤与隐秘对抗"
+    },
+    "guide-factions": {
+      "kind": "pdfPage",
+      "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界玩家指南.pdf",
+      "sha256": "19a69ed1b99aedf7f0077b4780d444a19c1c97e98314f7e1df78c0708e6b65d2",
+      "printedPage": 1,
+      "pdfPage": 3,
+      "visuallyReviewed": true,
+      "topic": "八个颜色派系与褐色中立"
+    },
+    "guide-pairing": {
+      "kind": "pdfPage",
+      "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界玩家指南.pdf",
+      "sha256": "19a69ed1b99aedf7f0077b4780d444a19c1c97e98314f7e1df78c0708e6b65d2",
+      "printedPage": 6,
+      "pdfPage": 8,
+      "visuallyReviewed": true,
+      "topic": "基础版任意两派系25+25快速组牌"
+    },
+    "guide-construct": {
+      "kind": "pdfPage",
+      "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界玩家指南.pdf",
+      "sha256": "19a69ed1b99aedf7f0077b4780d444a19c1c97e98314f7e1df78c0708e6b65d2",
+      "printedPage": 12,
+      "pdfPage": 14,
+      "visuallyReviewed": true,
+      "topic": "50张、同名3张、允许多色及可选秘社"
+    },
+    "guide-societies": {
+      "kind": "pdfPage",
+      "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界玩家指南.pdf",
+      "sha256": "19a69ed1b99aedf7f0077b4780d444a19c1c97e98314f7e1df78c0708e6b65d2",
+      "printedPage": 22,
+      "pdfPage": 24,
+      "visuallyReviewed": true,
+      "topic": "秘社牌不入牌库且不计入50张、起始手牌和构筑限制"
+    },
+    "classic-teams": {
+      "kind": "pdfPage",
+      "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界玩家指南.pdf",
+      "sha256": "19a69ed1b99aedf7f0077b4780d444a19c1c97e98314f7e1df78c0708e6b65d2",
+      "printedPage": 19,
+      "pdfPage": 21,
+      "visuallyReviewed": true,
+      "topic": "经典2V2：12分、对坐、顺时针个人行动步骤"
+    },
+    "tyrant-1": {
+      "kind": "pdfPage",
+      "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界玩家指南.pdf",
+      "sha256": "19a69ed1b99aedf7f0077b4780d444a19c1c97e98314f7e1df78c0708e6b65d2",
+      "printedPage": 20,
+      "pdfPage": 22,
+      "visuallyReviewed": true,
+      "topic": "统治者1V2/1V3需额外指令牌组"
+    },
+    "tyrant-2": {
+      "kind": "pdfPage",
+      "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界玩家指南.pdf",
+      "sha256": "19a69ed1b99aedf7f0077b4780d444a19c1c97e98314f7e1df78c0708e6b65d2",
+      "printedPage": 21,
+      "pdfPage": 23,
+      "visuallyReviewed": true,
+      "topic": "统治者额外指令、谋划与共同步骤"
+    },
+    "manual-seal": {
+      "kind": "pdfPage",
+      "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界规则手册.pdf",
+      "sha256": "2a771874efbdb3ad8a339ea01ff62888766090d075fe2e013632c79de1aeba35",
+      "printedPage": 4,
+      "pdfPage": 6,
+      "visuallyReviewed": true,
+      "topic": "封印出场、不可指定、载体离场回手和附属生命周期"
+    },
+    "manual-domains": {
+      "kind": "pdfPage",
+      "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界规则手册.pdf",
+      "sha256": "2a771874efbdb3ad8a339ea01ff62888766090d075fe2e013632c79de1aeba35",
+      "printedPage": 7,
+      "pdfPage": 9,
+      "visuallyReviewed": true,
+      "topic": "五种领域、秘社牌、八派系与无派系中立"
+    },
+    "faq-3": {
+      "kind": "pdfPage",
+      "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界勘误及释疑.pdf",
+      "sha256": "916aa6a9f50ac7e737b517358e0c4270f715d0ed7391d55c8fcb629392a71d38",
+      "printedPage": 3,
+      "pdfPage": 3,
+      "visuallyReviewed": true,
+      "topic": "底牌入手不算抓牌、暗藏者响应、降费不免忠诚"
+    },
+    "faq-4": {
+      "kind": "pdfPage",
+      "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界勘误及释疑.pdf",
+      "sha256": "916aa6a9f50ac7e737b517358e0c4270f715d0ed7391d55c8fcb629392a71d38",
+      "printedPage": 4,
+      "pdfPage": 4,
+      "visuallyReviewed": true,
+      "topic": "声望关联、封印、位置合法性疑例"
+    },
+    "faq-5": {
+      "kind": "pdfPage",
+      "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界勘误及释疑.pdf",
+      "sha256": "916aa6a9f50ac7e737b517358e0c4270f715d0ed7391d55c8fcb629392a71d38",
+      "printedPage": 5,
+      "pdfPage": 5,
+      "visuallyReviewed": true,
+      "topic": "双类型、手牌能力、梦魇族群再调度"
+    },
+    "prelude": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/public/docs/序曲说明书.jpg",
+      "sha256": "08491e7ec0a716ff6d626b73bf93c07fddecc46293b2ef3ed7cc9b673c2fb5d5",
+      "visuallyReviewed": true,
+      "topic": "遭遇角色、利用、恐怖"
+    },
+    "intermezzo": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/public/docs/间奏说明书.jpg",
+      "sha256": "efbe7e1e3711ca4b184b36f7801391afdec3b195d393cf17d2458215279f9b80",
+      "visuallyReviewed": true,
+      "topic": "转变、式神、毁灭、闪烁、非资产、迟缓"
+    },
+    "veil": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/public/docs/帷幕之后说明书.jpg",
+      "sha256": "333388b60e719ee61a41a0009932b505315dff0042cf01edc0de4d8ac66f5761",
+      "visuallyReviewed": true,
+      "topic": "计划、隐秘对抗、传闻、七张勘误版本"
+    },
+    "starlight": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/public/docs/星光俱乐部说明书.jpg",
+      "sha256": "3bc9e70585a3bbc247deb9cb19639da7295589ae81dd543c6dbf0a51bde0357a",
+      "visuallyReviewed": true,
+      "topic": "非地区上的势力标志与隐秘等级"
+    },
+    "card-BQ010": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/BQ010 读心术.jpg",
+      "sha256": "03ca24007d2230830dbbf0a62bac4d88c1ba33f54c4764e60b4ce87c834424de",
+      "visuallyReviewed": true,
+      "topic": "读心术：标题、色/类别及下方规则框"
+    },
+    "card-BQ016": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/BQ016 受困仙子.jpg",
+      "sha256": "5e9825832f3a994b0ab083b5d469c316d0a7f7270d53bb918d908339b4d8ab10",
+      "visuallyReviewed": true,
+      "topic": "受困仙子：标题、色/类别及下方规则框"
+    },
+    "card-BQ043": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/BQ043 繁荣者伊森哈德.jpg",
+      "sha256": "3256002199d5398dacb466768283961c225fac37cb472abfb14346aabb3cbef5",
+      "visuallyReviewed": true,
+      "topic": "繁荣者伊森哈德：标题、色/类别及下方规则框"
+    },
+    "card-BQ068": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/BQ068 易洛魁遗族祭司.jpg",
+      "sha256": "7eac50ae67d5b41909a3328ebb4fab813b648523890898f2ab0cc7822666948f",
+      "visuallyReviewed": true,
+      "topic": "易洛魁遗族祭司：标题、色/类别及下方规则框"
+    },
+    "card-BQ097": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/BQ097 灰败.jpg",
+      "sha256": "06614ebfa013bf8e1f7c7e93359b2782ecfe58494614d264dd6d885137e9630e",
+      "visuallyReviewed": true,
+      "topic": "灰败：标题、色/类别及下方规则框"
+    },
+    "card-BQ105": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/BQ105 精算师爱娃.jpg",
+      "sha256": "9c989c6012e2bb46b5a1917e8c4a8867336ae677b0e0416ab13d01cd0e175083",
+      "visuallyReviewed": true,
+      "topic": "精算师爱娃：标题、色/类别及下方规则框"
+    },
+    "card-DQJC107": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/DQJC107 沉没的废墟.jpg",
+      "sha256": "339b9a130ea9c0a82bc5a20d34892a4de52b2ea777a1b0cfec340876d6a4b2b8",
+      "visuallyReviewed": true,
+      "topic": "沉没的废墟：标题、色/类别及下方规则框"
+    },
+    "card-DQJC112": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/DQJC112 纽约.jpg",
+      "sha256": "9efd49e63ad90c4849bcf123aec4c83cd63e8f135113c374412526be875832ad",
+      "visuallyReviewed": true,
+      "topic": "纽约：标题、色/类别及下方规则框"
+    },
+    "card-DQJC113": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/DQJC113 切尔诺贝利.jpg",
+      "sha256": "3dcac24ae99667ac037001d85f54eb5b77bf83643222769726395571e7135c6e",
+      "visuallyReviewed": true,
+      "topic": "切尔诺贝利：标题、色/类别及下方规则框"
+    },
+    "card-DQJC114": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/DQJC114 上海.jpg",
+      "sha256": "7ded8662b423543bccedf93e67c098cf0effdd73791b30cc6aaa4acf7bf2a3f2",
+      "visuallyReviewed": true,
+      "topic": "上海：标题、色/类别及下方规则框"
+    },
+    "card-DQJC116": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/DQJC116 香港.jpg",
+      "sha256": "e9dfbc396a733b3bbe7ffcb2a6d67ea371ffe4ca4bd6fc0f4e74b1ee73485d4d",
+      "visuallyReviewed": true,
+      "topic": "香港：标题、色/类别及下方规则框"
+    },
+    "card-DQXQZY02": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/DQXQZY02 裂口女.jpg",
+      "sha256": "89177662f0004dcf6a2af5c182fc125f9cd9ba45b5253cf50fb98ddfe5114ca7",
+      "visuallyReviewed": true,
+      "topic": "裂口女：标题、色/类别及下方规则框"
+    },
+    "card-JC002": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC002 巨石阵看护人.jpg",
+      "sha256": "21a698ae184e7f909d24ac5374c3eaf7af77f1043b91048cfc8c5a46f9b08680",
+      "visuallyReviewed": true,
+      "topic": "巨石阵看护人：标题、色/类别及下方规则框"
+    },
+    "card-JC003": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC003 帷幕护卫.jpg",
+      "sha256": "027fc054dd7c7ef301108bf0b169e01f91228bf2e918b3ddb8d12e8d05603c3a",
+      "visuallyReviewed": true,
+      "topic": "帷幕护卫：标题、色/类别及下方规则框"
+    },
+    "card-JC006": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC006 逆转异界之门.jpg",
+      "sha256": "beec2b1d758e0186cdc4cb57e7c52d6e8df2a4623564e5f212b3d878abb91bf4",
+      "visuallyReviewed": true,
+      "topic": "逆转异界之门：标题、色/类别及下方规则框"
+    },
+    "card-JC014": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC014 公路骑士.jpg",
+      "sha256": "cd1969552197b3111e72ee4bb0725dc4ff513ddb8c940b568b7221699c248bb6",
+      "visuallyReviewed": true,
+      "topic": "公路骑士：标题、色/类别及下方规则框"
+    },
+    "card-JC016": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC016 执行部精锐.jpg",
+      "sha256": "0a3b20635a7fa8e04d6f17ab7a7112a596ed0e7f21293d3e4f4a985463416c35",
+      "visuallyReviewed": true,
+      "topic": "执行部精锐：标题、色/类别及下方规则框"
+    },
+    "card-JC028": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC028 鲜血奴仆.jpg",
+      "sha256": "a7b42c0aaf9e6a291ee06371d28c3863a43d3d5124dc8ac6e2ec7117bcb17eee",
+      "visuallyReviewed": true,
+      "topic": "鲜血奴仆：标题、色/类别及下方规则框"
+    },
+    "card-JC032": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC032 血族长老.jpg",
+      "sha256": "ebeb0a13c62cdf10569f4aa9f300998aff53a65788d756f055e9696f35489b4b",
+      "visuallyReviewed": true,
+      "topic": "血族长老：标题、色/类别及下方规则框"
+    },
+    "card-JC042": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC042 末日信徒.jpg",
+      "sha256": "242a17c708a96d27e95b23f9ab339e01d5b8c1eda282a2f7de8f51ba2c1bdbef",
+      "visuallyReviewed": true,
+      "topic": "末日信徒：标题、色/类别及下方规则框"
+    },
+    "card-JC049": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC049 深渊细语.jpg",
+      "sha256": "340c3fbc650b755d72c31ca06a8c379bacb572df6df061a9c52d0fb386d02d58",
+      "visuallyReviewed": true,
+      "topic": "深渊细语：标题、色/类别及下方规则框"
+    },
+    "card-JC056": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC056 地区警员.jpg",
+      "sha256": "75503118eee2b80d23f59ea950884c152f33d28d552d0d051ed872f441810e6d",
+      "visuallyReviewed": true,
+      "topic": "地区警员：标题、色/类别及下方规则框"
+    },
+    "card-JC059": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC059 安全保卫部门.jpg",
+      "sha256": "7d9639d3115dcea8e42f21e1145397f3be4392a80fa0b6c040d7302139eff0ad",
+      "visuallyReviewed": true,
+      "topic": "安全保卫部门：标题、色/类别及下方规则框"
+    },
+    "card-JC063": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC063 警车追捕.jpg",
+      "sha256": "1b20b9c7392543bf975b6391d227e03e4f50f3fd3134e7c6aa494e7357f88165",
+      "visuallyReviewed": true,
+      "topic": "警车追捕：标题、色/类别及下方规则框"
+    },
+    "card-JC070": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC070 虔心修士.jpg",
+      "sha256": "3dd1ef905e2cfb4d806b258fdde0b1ec1fe2adad7868bb5cd7dc0bcf9cfe9e1b",
+      "visuallyReviewed": true,
+      "topic": "虔心修士：标题、色/类别及下方规则框"
+    },
+    "card-JC076": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC076 悟道僧人.jpg",
+      "sha256": "4390ebf4eabcf44c541303bfb764061c1622cb483ed0e034ee9651571cee27ac",
+      "visuallyReviewed": true,
+      "topic": "悟道僧人：标题、色/类别及下方规则框"
+    },
+    "card-JC077": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC077 庇佑圣灵.jpg",
+      "sha256": "c35355fdbf537b2562efb826ef4cb061f5d3c026dc928a43389c433da8fe2dbc",
+      "visuallyReviewed": true,
+      "topic": "庇佑圣灵：标题、色/类别及下方规则框"
+    },
+    "card-JC085": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC085 复生行尸.jpg",
+      "sha256": "f568ed4c26fc244830d840f0133eb1a78111aceff53a4a345f8ca44c1552aee2",
+      "visuallyReviewed": true,
+      "topic": "复生行尸：标题、色/类别及下方规则框"
+    },
+    "card-JC086": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC086 窃尸人.jpg",
+      "sha256": "1bd405a60feeb41d60611050f4a37dd90dc971e1808ba712b66fe0cd37d2d743",
+      "visuallyReviewed": true,
+      "topic": "窃尸人：标题、色/类别及下方规则框"
+    },
+    "card-JC091": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC091 谋杀.jpg",
+      "sha256": "2ea5d65c270a107371f7d69cb22de3e4e60f9e9db81d4e6959744bbfbf6d11cb",
+      "visuallyReviewed": true,
+      "topic": "谋杀：标题、色/类别及下方规则框"
+    },
+    "card-JC092": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC092 死灵召唤.jpg",
+      "sha256": "ea1ca5644c38831b659f29dcf4c7ec0cb5dc5a758b0b793ed120b24b74295947",
+      "visuallyReviewed": true,
+      "topic": "死灵召唤：标题、色/类别及下方规则框"
+    },
+    "card-JC099": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC099 徘徊的鬼魂.jpg",
+      "sha256": "58b9ff41f21ed36b06735aafad64572dc1e714d0733be753c1f66ab576cd6563",
+      "visuallyReviewed": true,
+      "topic": "徘徊的鬼魂：标题、色/类别及下方规则框"
+    },
+    "card-JC100": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC100 尖牙幻象.jpg",
+      "sha256": "b553723ef129810f53d131bc50695090326dcb2456f944c14a48e56bdf28a046",
+      "visuallyReviewed": true,
+      "topic": "尖牙幻象：标题、色/类别及下方规则框"
+    },
+    "card-JC108": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC108 乔治·帕佐，织梦人.jpg",
+      "sha256": "bd1b633c2f2ccd4a389524d83ee487ee75a475f27de286f071d38588eaeb5863",
+      "visuallyReviewed": true,
+      "topic": "乔治·帕佐，织梦人：标题、色/类别及下方规则框"
+    },
+    "card-JC118": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC118 停战协议.jpg",
+      "sha256": "0f112c86afcfd0e9b2b6dea66597e24e57a95155f1b624534b2f9a4b980df97a",
+      "visuallyReviewed": true,
+      "topic": "停战协议：标题、色/类别及下方规则框"
+    },
+    "card-JC124": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC124 尼古拉斯·勒梅.jpg",
+      "sha256": "6434d8b3cce859ec4f3da4e92c374361f4619cd2cdbee96c0ce33dfc4804d34f",
+      "visuallyReviewed": true,
+      "topic": "尼古拉斯·勒梅：标题、色/类别及下方规则框"
+    },
+    "card-JC125": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JC125 无知路人.jpg",
+      "sha256": "6392c2cdc2d9ea43deca6b26594618a2093ae887bd03d5ad29d130c7e329993a",
+      "visuallyReviewed": true,
+      "topic": "无知路人：标题、色/类别及下方规则框"
+    },
+    "card-JZ08": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JZ08 幸运新人.jpg",
+      "sha256": "343561bd351e06811f9a1fc77b6a9fe08e6dfbace83d8c8abb8f6b43fb031d12",
+      "visuallyReviewed": true,
+      "topic": "幸运新人：标题、色/类别及下方规则框"
+    },
+    "card-JZ31": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JZ31 破茧者秘教线人.jpg",
+      "sha256": "57a1fd51243ab4616af46f4fb8a6a1ef46a09ab3c9a11ed2fe2fc90d8b83babf",
+      "visuallyReviewed": true,
+      "topic": "破茧者秘教线人：标题、色/类别及下方规则框"
+    },
+    "card-JZ54": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JZ54 阿塔玛斯奉献仪式.jpg",
+      "sha256": "c7902515865a26e1276d9e7a4bbd05c511704f76aee504c73539737012624af4",
+      "visuallyReviewed": true,
+      "topic": "阿塔玛斯奉献仪式：标题、色/类别及下方规则框"
+    },
+    "card-LC19": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/LC19 外科医生.jpg",
+      "sha256": "41c0fe55aff401721ec54fbb08174d52d36747f0821e32c6ddc5006bba9e9f71",
+      "visuallyReviewed": true,
+      "topic": "外科医生：标题、色/类别及下方规则框"
+    },
+    "card-LC20": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/LC20 心理咨询师.jpg",
+      "sha256": "961b508b54f78c561b98268da91d901a3536a330aef0ea8a49b81b9f6a278248",
+      "visuallyReviewed": true,
+      "topic": "心理咨询师：标题、色/类别及下方规则框"
+    },
+    "card-LC21": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/LC21 称职的保镖.jpg",
+      "sha256": "62b05d9f5349d53dd6d47dae7077566c1f5735529bc2bd813a45c1d7c3a183b9",
+      "visuallyReviewed": true,
+      "topic": "称职的保镖：标题、色/类别及下方规则框"
+    },
+    "card-LC22": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/LC22 退役军人.jpg",
+      "sha256": "26976ae01006603182b666cef0ea6960bc5d218dc904f2b1c760f3719f142b35",
+      "visuallyReviewed": true,
+      "topic": "退役军人：标题、色/类别及下方规则框"
+    },
+    "card-LC23": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/LC23 安格鲁，“荆棘”.jpg",
+      "sha256": "977959c6deb74b125b18a8b40758deab354396fdffd49b0d9bcc57197144f1c8",
+      "visuallyReviewed": true,
+      "topic": "安格鲁，“荆棘”：标题、色/类别及下方规则框"
+    },
+    "card-LC24": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/LC24 林中女巫.jpg",
+      "sha256": "05b4c30ee93bb8ea9b96636e9da3fbcaa560f206aaa5b6c73b5c5ac283fddccb",
+      "visuallyReviewed": true,
+      "topic": "林中女巫：标题、色/类别及下方规则框"
+    },
+    "card-MSBQ01": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/MSBQ01 龙之欢宴.jpg",
+      "sha256": "91403c1c0af4ce700bfbde7061c0d123869a83d85a648a96fec00640302e9d3d",
+      "visuallyReviewed": true,
+      "topic": "龙之欢宴：标题、色/类别及下方规则框"
+    },
+    "card-MSBQ02": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/MSBQ02 修格斯.jpg",
+      "sha256": "d91745c377071d62e4073a839f24666127aaa5b59fd648db1801ac19ce6fd713",
+      "visuallyReviewed": true,
+      "topic": "修格斯：标题、色/类别及下方规则框"
+    },
+    "card-MSBQ03": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/MSBQ03 圣甲虫药业.jpg",
+      "sha256": "efeaa853e66ff3d49c2fe5dc5834b9799238e9833d1285626595078ddbe0838f",
+      "visuallyReviewed": true,
+      "topic": "圣甲虫药业：标题、色/类别及下方规则框"
+    },
+    "card-MSBQ04": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/MSBQ04 天闻山庄.jpg",
+      "sha256": "f7c6ab2c3e73e1c5edd521bd73647016e059a1886f260da56c29655587936739",
+      "visuallyReviewed": true,
+      "topic": "天闻山庄：标题、色/类别及下方规则框"
+    },
+    "card-MSCQ01": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/MSCQ01 水月.jpg",
+      "sha256": "6d8d39705e082cdf29061a5dc143f5da40a5c44185eae96be4675bd394d0cfd8",
+      "visuallyReviewed": true,
+      "topic": "水月：标题、色/类别及下方规则框"
+    },
+    "card-MSCQ02": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/MSCQ02 诺尔维隐修会.jpg",
+      "sha256": "b5807e65cf0166dfff9a501be22745c3d76e9f39cf69202564a94b2a5086074c",
+      "visuallyReviewed": true,
+      "topic": "诺尔维隐修会：标题、色/类别及下方规则框"
+    },
+    "card-MSJC01": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/MSJC01 帷幕守望.jpg",
+      "sha256": "c61c887558cb184a532758eac5db766234c32a3a3605162a38c0899993e7bdf2",
+      "visuallyReviewed": true,
+      "topic": "帷幕守望：标题、色/类别及下方规则框"
+    },
+    "card-MSJC02": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/MSJC02 猎魔人.jpg",
+      "sha256": "915a723573028050980cb665d0de85f5e5fd5a6de1b54e3d7664e69882edc807",
+      "visuallyReviewed": true,
+      "topic": "猎魔人：标题、色/类别及下方规则框"
+    },
+    "card-MSJC03": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/MSJC03 王座会.jpg",
+      "sha256": "07463a18a5cc6726f098bedc10304ef6c4032929cff72535d5f9227338e45f29",
+      "visuallyReviewed": true,
+      "topic": "王座会：标题、色/类别及下方规则框"
+    },
+    "card-MSJC04": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/MSJC04 鸣钟教派.jpg",
+      "sha256": "a6ba66c7fb73acdbe4cab001e6330d0f339c46e12b6d3e714307196e9fd23cf3",
+      "visuallyReviewed": true,
+      "topic": "鸣钟教派：标题、色/类别及下方规则框"
+    },
+    "card-MSJC05": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/MSJC05 国家机构.jpg",
+      "sha256": "d71e7c3df37a7c857cfb74c9988261ad722c5f3012ca49c75151fd407dab59f3",
+      "visuallyReviewed": true,
+      "topic": "国家机构：标题、色/类别及下方规则框"
+    },
+    "card-MSJC06": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/MSJC06 圣贤.jpg",
+      "sha256": "38b76c70bda5759a9963a05c398b845f5c7e22c7f12fe2507b9a1ac123cda2a7",
+      "visuallyReviewed": true,
+      "topic": "圣贤：标题、色/类别及下方规则框"
+    },
+    "card-MSJC07": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/MSJC07 方碑序列.jpg",
+      "sha256": "e9cd1af04560733f28e3bcfee4c687f6a2e5218b93862b5a74d4f35f6a8f3ed7",
+      "visuallyReviewed": true,
+      "topic": "方碑序列：标题、色/类别及下方规则框"
+    },
+    "card-MSJC08": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/MSJC08 梦境行者.jpg",
+      "sha256": "28c3f965daa40a83d081b03b6f0b72a0ac4006ebf465575ede3b221f633e72a1",
+      "visuallyReviewed": true,
+      "topic": "梦境行者：标题、色/类别及下方规则框"
+    },
+    "card-MSJC09": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/MSJC09 秘社.jpg",
+      "sha256": "41e478a3f38ead83477498fd88131831a5fd843be364c1c0daa3ba10153c2302",
+      "visuallyReviewed": true,
+      "topic": "秘社：标题、色/类别及下方规则框"
+    },
+    "card-MSJC10": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/MSJC10 貘组.jpg",
+      "sha256": "76e0b6845b3f64466ff5780742126d354c42e55d02c5c8376967db19f4f63776",
+      "visuallyReviewed": true,
+      "topic": "貘组：标题、色/类别及下方规则框"
+    },
+    "card-MSJC11": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/MSJC11 S．P．T执行部.jpg",
+      "sha256": "df9964832e48bfef57bcaa0d5f4db67ce2ab9fe0e371ffecc2736c1728b1b853",
+      "visuallyReviewed": true,
+      "topic": "S．P．T执行部：标题、色/类别及下方规则框"
+    },
+    "card-MSJC12": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/MSJC12 爱弗罗德家族.jpg",
+      "sha256": "31d71c702fb3bc44e421633cb241cacd4dd3cb734e2fa1917dadc25955fba51e",
+      "visuallyReviewed": true,
+      "topic": "爱弗罗德家族：标题、色/类别及下方规则框"
+    },
+    "card-MSJC13": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/MSJC13 计时者.jpg",
+      "sha256": "4bbdcc0a008cfc5984f1b812ad0ba3b107535cf1e2ff20e5bb765899edfb91fb",
+      "visuallyReviewed": true,
+      "topic": "计时者：标题、色/类别及下方规则框"
+    },
+    "card-MSJC14": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/MSJC14 哨兵.jpg",
+      "sha256": "3d851c97d73d77de0a919d8a1140f3d2cfb6eb18e92a4438916249f83984ad2f",
+      "visuallyReviewed": true,
+      "topic": "哨兵：标题、色/类别及下方规则框"
+    },
+    "card-MSJC15": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/MSJC15 隐士.jpg",
+      "sha256": "3884d0cf964a8a3c4853b1fa282b4333d1e2fbe132f0e6e0edc901fb32dd2e44",
+      "visuallyReviewed": true,
+      "topic": "隐士：标题、色/类别及下方规则框"
+    },
+    "card-MSJC16": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/MSJC16 颂亡者.jpg",
+      "sha256": "958c5d2b20829289ac4480ab2fb96a02ddb8b75cd7f3dfeec65718afc49a8899",
+      "visuallyReviewed": true,
+      "topic": "颂亡者：标题、色/类别及下方规则框"
+    },
+    "card-MSJC17": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/MSJC17 梦魇族群.jpg",
+      "sha256": "5c468d00dd15d7066e8f5e922c35e9ac6bb41df647f3cf3a2f4ba87b92f754d6",
+      "visuallyReviewed": true,
+      "topic": "梦魇族群：标题、色/类别及下方规则框"
+    },
+    "card-MSJZ01": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/MSJZ01 猛禽战术小组.jpg",
+      "sha256": "7442b931ee71ebdf5dac58371565981ab323b4451991c1c856f1e080c81fc3ed",
+      "visuallyReviewed": true,
+      "topic": "猛禽战术小组：标题、色/类别及下方规则框"
+    },
+    "card-MSJZ02": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/MSJZ02 盛夏王廷.jpg",
+      "sha256": "fdc2adeec1fc22e5d9916380f7e671c0a23c2c535287519adf87ab58e09b8293",
+      "visuallyReviewed": true,
+      "topic": "盛夏王廷：标题、色/类别及下方规则框"
+    },
+    "card-MSJZ03": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/MSJZ03 末日钟.jpg",
+      "sha256": "56051dc91558ed994570aee388aefa0d2f34e8b4b8e813ddc96ee923aaf3a5f2",
+      "visuallyReviewed": true,
+      "topic": "末日钟：标题、色/类别及下方规则框"
+    },
+    "card-MSJZ04": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/MSJZ04 破茧者教团.jpg",
+      "sha256": "9ac85802bb8114b8dbdc0aa83d5c70dd38a35f1736c94a2ab2631a05d5c69b75",
+      "visuallyReviewed": true,
+      "topic": "破茧者教团：标题、色/类别及下方规则框"
+    },
+    "card-MSLC01": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/MSLC01 联席会议观察员.jpg",
+      "sha256": "10959af5c3636389efbe53988717baf7192157dce34aceb93d1bc31b9fdc49ac",
+      "visuallyReviewed": true,
+      "topic": "联席会议观察员：标题、色/类别及下方规则框"
+    },
+    "card-MSLC02": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/MSLC02 加利福尼亚猎团.jpg",
+      "sha256": "b648bb4a92bdf4300c1b23e68e7df1e64df0da8bdf4c066444cf5e654d4a8500",
+      "visuallyReviewed": true,
+      "topic": "加利福尼亚猎团：标题、色/类别及下方规则框"
+    },
+    "card-MSLC03": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/MSLC03 洛杉矶警察局.jpg",
+      "sha256": "b74f2e8d5b5da9ba911455d0d4357128c00ca4731bfb0425d8a2277f70a2ee86",
+      "visuallyReviewed": true,
+      "topic": "洛杉矶警察局：标题、色/类别及下方规则框"
+    },
+    "card-MSLC04": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/MSLC04 圣公会.jpg",
+      "sha256": "b7ee02aca2e4c705667fd4ede03cf8db414289b31fd1ad21bc52af018aa172da",
+      "visuallyReviewed": true,
+      "topic": "圣公会：标题、色/类别及下方规则框"
+    },
+    "card-MSLC05": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/MSLC05 劣地长老.jpg",
+      "sha256": "82d43a2efe9079bcaa4c5eb1cfaf4f4e1ef03317513fb87a5b29cb4af7975c01",
+      "visuallyReviewed": true,
+      "topic": "劣地长老：标题、色/类别及下方规则框"
+    },
+    "card-MSLC06": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/MSLC06 居民武装.jpg",
+      "sha256": "dfa8d7a5f1becde0e7d25e54f7305d948136dbe15a3d0041ae88e505216eaecc",
+      "visuallyReviewed": true,
+      "topic": "居民武装：标题、色/类别及下方规则框"
+    },
+    "card-MSWM01": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/MSWM01 曼纽家族.jpg",
+      "sha256": "137856482891485cc92ea659ff473da5ad5b7335dbe8b31cf662850d9e37346d",
+      "visuallyReviewed": true,
+      "topic": "曼纽家族：标题、色/类别及下方规则框"
+    },
+    "card-MSWM02": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/MSWM02 公众安全委员会.jpg",
+      "sha256": "5558c826295a0254220d0f4a14bb6160c8a8b326efb375fd73fb593525f4f128",
+      "visuallyReviewed": true,
+      "topic": "公众安全委员会：标题、色/类别及下方规则框"
+    },
+    "card-MSWM03": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/MSWM03 冷山帮.jpg",
+      "sha256": "3d8ea586e95a97418dca1c40537ed25774ef7b80d746e4c6b87befda9638de6f",
+      "visuallyReviewed": true,
+      "topic": "冷山帮：标题、色/类别及下方规则框"
+    },
+    "card-MSWM04": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/MSWM04 梦魇主母.jpg",
+      "sha256": "334629ce1f16f5b5d452030079506e1846c69d458b8eae93eb60627defd5828e",
+      "visuallyReviewed": true,
+      "topic": "梦魇主母：标题、色/类别及下方规则框"
+    },
+    "card-TEST015": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/TEST015 鼠群密探.jpg",
+      "sha256": "73aed851e2997daa4b39da5a770331c9db7480a432ed1456eda2eb754a60caba",
+      "visuallyReviewed": true,
+      "topic": "鼠群密探：标题、色/类别及下方规则框"
+    },
+    "card-TEST027": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/TEST027 战术头盔.jpg",
+      "sha256": "24e8ac3af89b45530f95a41993007c37fc6c0f24ac705da1224bd58aef0953b5",
+      "visuallyReviewed": true,
+      "topic": "战术头盔：标题、色/类别及下方规则框"
+    },
+    "card-TEST033": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/TEST033 无形的星野.jpg",
+      "sha256": "bd0c2dc1243a3ae083f0160e3ce8c15c34850c8667a75b26400cb79ea15a5dcc",
+      "visuallyReviewed": true,
+      "topic": "无形的星野：标题、色/类别及下方规则框"
+    },
+    "card-TEST034": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/TEST034 兽性直觉.jpg",
+      "sha256": "51b211a96598671a2fc92dd3192dac1fb146a1bdfdde2e219febe8e7754b0ee5",
+      "visuallyReviewed": true,
+      "topic": "兽性直觉：标题、色/类别及下方规则框"
+    },
+    "card-TEST042": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/TEST042 鸟居.jpg",
+      "sha256": "6f27776d0e75b613ad3ea0279cf51ccbbd34864c3b25361e9824332140715978",
+      "visuallyReviewed": true,
+      "topic": "鸟居：标题、色/类别及下方规则框"
+    },
+    "card-TEST043": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/TEST043 意识漩涡.jpg",
+      "sha256": "42e59a25f12525779484900ce67264551891a7d47a79dd2facc2bfc7aca47ddb",
+      "visuallyReviewed": true,
+      "topic": "意识漩涡：标题、色/类别及下方规则框"
+    },
+    "card-TEST052": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/TEST052 实验体管理员.jpg",
+      "sha256": "da5339fc6423d3706fceb66b7cc1c2b511c4a50866fb48029aa63fe6b26e5714",
+      "visuallyReviewed": true,
+      "topic": "实验体管理员：标题、色/类别及下方规则框"
+    },
+    "card-XQ03": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XQ03 力场束缚.jpg",
+      "sha256": "c6e85106105d23ef55df70ba06d6c8878b6ce279a727908fbdeab0a8495679b0",
+      "visuallyReviewed": true,
+      "topic": "力场束缚：标题、色/类别及下方规则框"
+    },
+    "card-XQ12": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XQ12 暴躁血仆.jpg",
+      "sha256": "4e9f3afa5f7f22d99fc89284e91586fba78a8ff2ee8827fc6a6ceeb41889fdc8",
+      "visuallyReviewed": true,
+      "topic": "暴躁血仆：标题、色/类别及下方规则框"
+    },
+    "card-XQ49": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XQ49 葬礼.jpg",
+      "sha256": "8b160c52b18e49a7ef39085b63cc9a1b18531c02dc0ae3d92e2fedd874a29aca",
+      "visuallyReviewed": true,
+      "topic": "葬礼：标题、色/类别及下方规则框"
+    },
+    "card-ZHJZ65": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/ZHJZ65 葛丽特和汉塞尔.jpg",
+      "sha256": "f51c66b98506abf16854052f6d7c7a177b9af392bc7fb164c51dac93cc7e6233",
+      "visuallyReviewed": true,
+      "topic": "葛丽特和汉塞尔：标题、色/类别及下方规则框"
+    },
+    "card-ZHMSJZ02": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/ZHMSJZ02 凛冬王廷.jpg",
+      "sha256": "7e8c5b56dc0a7fe358f6c8e2e13d3338b6fc6438e0873a00ead4ae8fb722a0d9",
+      "visuallyReviewed": true,
+      "topic": "凛冬王廷：标题、色/类别及下方规则框"
+    },
+    "card-ZHWM026": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/ZHWM026 古妮薇尔.jpg",
+      "sha256": "665aa2f70395be7ea99b8f8efbd8664ad79551fd5a0ea8fe0da2e52b619ec114",
+      "visuallyReviewed": true,
+      "topic": "古妮薇尔：标题、色/类别及下方规则框"
+    },
+    "card-ZHWM048": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/ZHWM048 凛冬之风英迪拉.jpg",
+      "sha256": "56c654f0b7dd4258203fd6c763db98148b6c372c4e09a9e610d84f75130e520b",
+      "visuallyReviewed": true,
+      "topic": "凛冬之风英迪拉：标题、色/类别及下方规则框"
+    },
+    "card-CQ12": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/CQ12 深渊惧影盖罗涅.jpg",
+      "sha256": "a14fdc90817629bfee0e7865ea26254bd75b9c2765a49e6856d42b29216f720d",
+      "visuallyReviewed": true,
+      "topic": "深渊惧影盖罗涅：原图部分字段与机制边界核验"
+    },
+    "card-LC14": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/LC14 米达伦.jpg",
+      "sha256": "a7a08230cb27edc5c96c9e5fa7eb01259a593ea6fcde926416bc0a4eeba241a7",
+      "visuallyReviewed": true,
+      "topic": "米达伦：原图部分字段与机制边界核验"
+    },
+    "card-LC15": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/LC15 莲月合一.jpg",
+      "sha256": "4b7196e02dba5be7e3c92a89c68b4697e90d6eaab25133830c62f97b6df8e297",
+      "visuallyReviewed": true,
+      "topic": "莲月合一：原图部分字段与机制边界核验"
+    },
+    "card-WM071": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/WM071 贝兰丹娜.jpg",
+      "sha256": "c46593436d373593846be64ac2347e6b0be9d89044df2b12a510dd5c2958181b",
+      "visuallyReviewed": true,
+      "topic": "贝兰丹娜：原图部分字段与机制边界核验"
+    },
+    "manual-pairing": {
+      "kind": "pdfPage",
+      "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界规则手册.pdf",
+      "sha256": "2a771874efbdb3ad8a339ea01ff62888766090d075fe2e013632c79de1aeba35",
+      "printedPage": 6,
+      "pdfPage": 8,
+      "visuallyReviewed": true,
+      "topic": "快速两派系组牌、临时图标与防止/替代事件"
+    },
+    "manual-unique": {
+      "kind": "pdfPage",
+      "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界规则手册.pdf",
+      "sha256": "2a771874efbdb3ad8a339ea01ff62888766090d075fe2e013632c79de1aeba35",
+      "printedPage": 3,
+      "pdfPage": 5,
+      "visuallyReviewed": true,
+      "topic": "金色名字的独有，同名本方在场选择牺牲；追加费用与堆叠"
+    }
+  },
+  "openQuestions": [
+    {
+      "id": "nonAssetEdition",
+      "evidenceIds": [
+        "intermezzo",
+        "bq-keywords-2"
+      ],
+      "question": "非资产在不同说明书是否为勘误或版次差异？先按被选规则包固定语义，不能混用。"
+    },
+    {
+      "id": "sourceRegion",
+      "evidenceIds": [
+        "faq-4",
+        "faq-5"
+      ],
+      "question": "来源在同一实例横移时，本地区目标按声明地还是结算地锚定？当前只有自移动JC014，不解锁相关组合。"
+    },
+    {
+      "id": "editionMismatch",
+      "evidenceIds": [
+        "card-BQ010",
+        "card-BQ105",
+        "card-TEST015"
+      ],
+      "question": "set=测试但原图无TEST；图上编号与文件ID及霸权说明不同，需版本/印次确认。"
+    },
+    {
+      "id": "missingImages",
+      "evidenceIds": [
+        "bq-construct"
+      ],
+      "question": "DQBQ01..10、TK004/010/011没有同ID原图；不能把别版同名图绑定作最终证据。"
+    },
+    {
+      "id": "societyModes",
+      "evidenceIds": [
+        "card-MSLC01",
+        "card-MSLC03"
+      ],
+      "question": "洛城专用能力转入霸权对战如何适用？没有原文授权前维持未开放。"
+    },
+    {
+      "id": "eternalDefinition",
+      "evidenceIds": [
+        "card-LC15"
+      ],
+      "question": "莲月合一的永恒定义需补原始说明；当前只确认原图出现此关键词，不假定其效果。"
+    }
+  ]
+}
