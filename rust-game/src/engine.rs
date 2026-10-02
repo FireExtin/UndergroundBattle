@@ -3071,6 +3071,43 @@ mod tests {
             .any(|c| c.definition == "JC056" && c.face_down));
     }
     #[test]
+    fn normal_hide_resolution_projects_concealed_print_to_controller_instead_of_owner() {
+        let mut g = game("duel");
+        // Synthetic control transfer: no admitted card can naturally perform it.
+        // The hide transition and subsequent projection use normal engine paths.
+        let target = board(&mut g, "LC22", 1, 0);
+        g.board_mut(&target).unwrap().controller = 0;
+        let spell = hand(&mut g, "JC063", 0);
+        resource(&mut g, 0, "JC056", 5);
+        g.apply(
+            0,
+            Action {
+                card_id: Some(spell),
+                target_id: Some(target),
+                option: Some("hide".into()),
+                ..Action::new("play")
+            },
+        )
+        .unwrap();
+        pass_stack(&mut g);
+        let controlled = g.regions[0]
+            .cards
+            .iter()
+            .find(|c| c.definition == "LC22")
+            .unwrap();
+        assert_eq!((controlled.owner, controlled.controller), (1, 0));
+        assert!(controlled.face_down);
+        let mine = g.view(0);
+        let former_owner = g.view(1);
+        assert_eq!(
+            mine.regions[0].characters[0].card_id.as_deref(),
+            Some("LC22")
+        );
+        assert!(former_owner.regions[0].characters[0].card_id.is_none());
+        assert!(former_owner.regions[0].characters[0].text.is_none());
+        assert_eq!(former_owner.regions[0].characters[0].name, "暗藏者");
+    }
+    #[test]
     fn all_transaction_effects_and_recursion_death_choice() {
         let mut g = game("duel");
         let c = g.make_card("LC21", 1);

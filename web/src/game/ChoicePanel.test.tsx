@@ -7,9 +7,9 @@ import { testCard } from './testFixtures';
 const base = { id: 'choose-action', kind: 'choose', label: '选择', choiceId: 'choice-one' };
 const boardChoice = { ...testChoice, options: [
   { id: 'anonymous-a', label: '标签中的私有身份甲', card: { ...testCard, instanceId: 'anonymous-a', cardId: 'secret-a', owner: 'p1', controller: 'p1', region: 0, faceDown: true, name: '私有身份甲', text: '私有能力甲' } },
-  { id: 'anonymous-b', label: '标签中的私有身份乙', card: { ...testCard, instanceId: 'anonymous-b', cardId: 'secret-b', owner: 'p2', controller: 'p0', region: 2, faceDown: true, name: '私有身份乙', text: '私有能力乙' } },
+  { id: 'anonymous-b', label: '标签中的私有身份乙', card: { ...testCard, instanceId: 'anonymous-b', cardId: 'secret-b', owner: 'p2', controller: 'p3', region: 2, faceDown: true, name: '私有身份乙', text: '私有能力乙' } },
 ] };
-const playerLabels = { p0: '我方玩家', p1: '甲方玩家', p2: '乙方玩家' };
+const playerLabels = { p0: '我方玩家', p1: '甲方玩家', p2: '乙方玩家', p3: '丁方玩家' };
 const secretDefinitions = new Map(boardChoice.options.map(option => [option.card.cardId, { id: option.card.cardId, name: option.card.name, kind: 'character', cost: 7, text: option.card.text, permanentIcons: { investigation: 7, combat: 7, influence: 7 } }]));
 describe('server-owned decisions', () => {
   it('reads a mulligan card independently without selecting it or submitting the decision', () => {
@@ -30,12 +30,12 @@ describe('server-owned decisions', () => {
     expect(submit).toHaveBeenCalledExactlyOnceWith({ ...base, choiceId: choice.id, selected: ['hand-a'] });
   });
 
-  it('passes only a concealed public identity to a non-owner choice reader', () => {
+  it('passes only a concealed public identity to a non-controller choice reader', () => {
     const read = vi.fn();
     const { container } = render(<ChoicePanel choice={boardChoice} action={base} definitions={secretDefinitions} busy={false} onSubmit={vi.fn()} onReadCard={read} viewerId="p0" playerLabels={playerLabels} />);
     fireEvent.click(screen.getAllByRole('button', { name: '放大阅读暗藏者' })[1]);
     expect(read).toHaveBeenCalledOnce();
-    expect(read.mock.calls[0][0]).toMatchObject({ name: '暗藏者', owner: 'p2', controller: 'p0', kind: 'hidden' });
+    expect(read.mock.calls[0][0]).toMatchObject({ name: '暗藏者', owner: 'p2', controller: 'p3', kind: 'hidden' });
     expect(read.mock.calls[0][0].cardId).toBeUndefined();
     expect(read.mock.calls[0][0].text).toBeUndefined();
     expect(read.mock.calls[0][0].icons).toBeUndefined();
@@ -46,7 +46,7 @@ describe('server-owned decisions', () => {
     const submit = vi.fn();
     const { container } = render(<ChoicePanel choice={boardChoice} action={base} definitions={secretDefinitions} busy={false} onSubmit={submit} viewerId="p0" playerLabels={playerLabels} />);
     const first = screen.getByRole('button', { name: /目标 1.*甲方玩家 拥有.*地区 1/ });
-    const second = screen.getByRole('button', { name: /目标 2.*乙方玩家 拥有.*我方玩家 操控.*地区 3/ });
+    const second = screen.getByRole('button', { name: /目标 2.*乙方玩家 拥有.*丁方玩家 操控.*地区 3/ });
     expect(first).toHaveAttribute('data-choice-target-number', '1');
     expect(second).toHaveAttribute('data-choice-target-number', '2');
     expect(within(first).getByText('暗藏者', { exact: true })).toBeInTheDocument();
