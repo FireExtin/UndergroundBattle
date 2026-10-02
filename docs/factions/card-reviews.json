@@ -134,9 +134,12 @@
       },
       "abilitySummary": "赢取每玩家检索1牌，洗牌后放顶。",
       "confirmedMechanismIds": [
-        "deckChoice"
+        "confrontation",
+        "deckChoice",
+        "priority"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "整卡观察版本字段见card-specifications.json；来源完成不代表实现或UI验收。",
+      "editionStatus": "pinnedImageVariant"
     },
     "DQJC112": {
       "evidenceId": "card-DQJC112",
@@ -148,9 +151,12 @@
       },
       "abilitySummary": "赢取每玩家弃任意数量手牌，再抓等量。",
       "confirmedMechanismIds": [
-        "deckChoice"
+        "confrontation",
+        "deckChoice",
+        "priority"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "整卡观察版本字段见card-specifications.json；来源完成不代表实现或UI验收。",
+      "editionStatus": "pinnedImageVariant"
     },
     "DQJC113": {
       "evidenceId": "card-DQJC113",
@@ -162,9 +168,11 @@
       },
       "abilitySummary": "赢取所有留场角色受1伤害。",
       "confirmedMechanismIds": [
-        "confrontation"
+        "confrontation",
+        "priority"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "整卡观察版本字段见card-specifications.json；来源完成不代表实现或UI验收。",
+      "editionStatus": "pinnedImageVariant"
     },
     "DQJC114": {
       "evidenceId": "card-DQJC114",
@@ -176,9 +184,12 @@
       },
       "abilitySummary": "赢取所有玩家抓2或弃2二选一。",
       "confirmedMechanismIds": [
-        "deckChoice"
+        "confrontation",
+        "deckChoice",
+        "priority"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "整卡观察版本字段见card-specifications.json；来源完成不代表实现或UI验收。",
+      "editionStatus": "pinnedImageVariant"
     },
     "DQJC116": {
       "evidenceId": "card-DQJC116",
@@ -222,9 +233,12 @@
       "abilitySummary": "现身横置本地区目标角色。",
       "confirmedMechanismIds": [
         "exhaust",
-        "hidden"
+        "hidden",
+        "loyalty",
+        "priority"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "整卡观察版本字段见card-specifications.json；来源完成不代表实现或UI验收。",
+      "editionStatus": "pinnedImageVariant"
     },
     "JC003": {
       "evidenceId": "card-JC003",
@@ -269,10 +283,13 @@
       },
       "abilitySummary": "公开、对抗开始机动。",
       "confirmedMechanismIds": [
-        "public",
-        "mobility"
+        "loyalty",
+        "mobility",
+        "priority",
+        "public"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "整卡观察版本字段见card-specifications.json；来源完成不代表实现或UI验收。",
+      "editionStatus": "pinnedImageVariant"
     },
     "JC016": {
       "evidenceId": "card-JC016",
@@ -340,10 +357,13 @@
       },
       "abilitySummary": "牺牲自身令本回合下一张正面打出的红派系或血脉牌降2。",
       "confirmedMechanismIds": [
-        "sacrifice",
-        "costReduction"
+        "costReduction",
+        "loyalty",
+        "priority",
+        "sacrifice"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "整卡观察版本字段见card-specifications.json；来源完成不代表实现或UI验收。",
+      "editionStatus": "pinnedImageVariant"
     },
     "JC049": {
       "evidenceId": "card-JC049",
@@ -390,12 +410,15 @@
         "colorKey": "灰",
         "basicType": "角色"
       },
-      "abilitySummary": "公开；同地区其他本方角色+1防御。",
+      "abilitySummary": "公开；原图同地区其他友方角色+1防御，含同队友方，排除来源自身。基线只检查同操控者，2V2不齐。",
       "confirmedMechanismIds": [
+        "continuous",
+        "loyalty",
         "public",
-        "continuous"
+        "temporaryIcons"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "整卡观察版本字段见card-specifications.json；来源完成不代表实现或UI验收。",
+      "editionStatus": "pinnedImageVariant"
     },
     "JC063": {
       "evidenceId": "card-JC063",
@@ -515,9 +538,12 @@
       },
       "abilitySummary": "仅行动阶段；快速行动消灭目标人类角色。",
       "confirmedMechanismIds": [
+        "continuous",
+        "loyalty",
         "priority"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "整卡观察版本字段见card-specifications.json；来源完成不代表实现或UI验收。",
+      "editionStatus": "pinnedImageVariant"
     },
     "JC092": {
       "evidenceId": "card-JC092",
@@ -606,10 +632,11 @@
       },
       "abilitySummary": "仅行动阶段；快速行动让目标地区本回合略过对抗。",
       "confirmedMechanismIds": [
-        "priority",
-        "confrontation"
+        "confrontation",
+        "priority"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "整卡观察版本字段见card-specifications.json；来源完成不代表实现或UI验收。",
+      "editionStatus": "pinnedImageVariant"
     },
     "JC124": {
       "evidenceId": "card-JC124",
@@ -637,7 +664,8 @@
       },
       "abilitySummary": "同名构筑无限制。",
       "confirmedMechanismIds": [],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "整卡观察版本字段见card-specifications.json；来源完成不代表实现或UI验收。",
+      "editionStatus": "pinnedImageVariant"
     },
     "JZ08": {
       "evidenceId": "card-JZ08",
@@ -649,9 +677,12 @@
       },
       "abilitySummary": "屏障。",
       "confirmedMechanismIds": [
-        "barrier"
+        "barrier",
+        "loyalty",
+        "priority"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "整卡观察版本字段见card-specifications.json；来源完成不代表实现或UI验收。",
+      "editionStatus": "pinnedImageVariant"
     },
     "JZ31": {
       "evidenceId": "card-JZ31",
@@ -678,10 +709,12 @@
       },
       "abilitySummary": "目标玩家自选牺牲角色。",
       "confirmedMechanismIds": [
-        "sacrifice",
-        "priority"
+        "loyalty",
+        "priority",
+        "sacrifice"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "整卡观察版本字段见card-specifications.json；来源完成不代表实现或UI验收。",
+      "editionStatus": "pinnedImageVariant"
     },
     "LC14": {
       "reviewStatus": "primaryImageReviewed",
@@ -773,10 +806,13 @@
       },
       "abilitySummary": "公开、护卫1。",
       "confirmedMechanismIds": [
+        "combatTraits",
+        "confrontation",
         "public",
-        "combatTraits"
+        "temporaryIcons"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "整卡观察版本字段见card-specifications.json；来源完成不代表实现或UI验收。",
+      "editionStatus": "pinnedImageVariant"
     },
     "LC22": {
       "evidenceId": "card-LC22",
@@ -788,10 +824,13 @@
       },
       "abilitySummary": "公开、护卫1。",
       "confirmedMechanismIds": [
+        "combatTraits",
+        "confrontation",
         "public",
-        "combatTraits"
+        "temporaryIcons"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "整卡观察版本字段见card-specifications.json；来源完成不代表实现或UI验收。",
+      "editionStatus": "pinnedImageVariant"
     },
     "LC23": {
       "evidenceId": "card-LC23",
@@ -822,9 +861,12 @@
       },
       "abilitySummary": "进场预测2然后抓1。",
       "confirmedMechanismIds": [
-        "deckChoice"
+        "deckChoice",
+        "priority",
+        "temporaryIcons"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "整卡观察版本字段见card-specifications.json；来源完成不代表实现或UI验收。",
+      "editionStatus": "pinnedImageVariant"
     },
     "MSBQ01": {
       "evidenceId": "card-MSBQ01",
@@ -1606,9 +1648,12 @@
       },
       "abilitySummary": "快速行动横置目标角色。",
       "confirmedMechanismIds": [
-        "exhaust"
+        "exhaust",
+        "loyalty",
+        "priority"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "整卡观察版本字段见card-specifications.json；来源完成不代表实现或UI验收。",
+      "editionStatus": "pinnedImageVariant"
     },
     "XQ12": {
       "evidenceId": "card-XQ12",
@@ -1621,9 +1666,13 @@
       "abilitySummary": "死亡令目标玩家弃1手牌。",
       "confirmedMechanismIds": [
         "deckChoice",
-        "priority"
+        "loyalty",
+        "priority",
+        "sacrifice",
+        "temporaryIcons"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "整卡观察版本字段见card-specifications.json；来源完成不代表实现或UI验收。",
+      "editionStatus": "pinnedImageVariant"
     },
     "XQ49": {
       "evidenceId": "card-XQ49",
@@ -1635,10 +1684,12 @@
       },
       "abilitySummary": "任意墓地目标牌回其拥有者牌库底，然后抓1。",
       "confirmedMechanismIds": [
+        "deckChoice",
         "graveRecovery",
-        "deckChoice"
+        "priority"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "整卡观察版本字段见card-specifications.json；来源完成不代表实现或UI验收。",
+      "editionStatus": "pinnedImageVariant"
     },
     "ZHJZ65": {
       "evidenceId": "card-ZHJZ65",

@@ -129,4 +129,28 @@ def validate_specifications(specifications, coverage, index, recovery):
         heal = specs["LC19"]["abilities"][1]
         require(heal["costs"] == {"currency": 2, "exhaustSource": True}
                 and heal["notOrdinaryTurnDamage"], "LC19 original includes source exhaust and removes wounds, not turn damage")
+    if "JC125" in specs:
+        for i in ["LC21", "LC22"]:
+            guard = specs[i]["abilities"][1]
+            require(guard["requiresAssignAtLeastXBeforeOtherCharacters"] and not guard["damageReduction"]
+                    and guard["doesNotChangeNonCombatDamage"], "Guard is combat allocation priority, not damage reduction: " + i)
+        security = specs["JC059"]
+        aura = security["abilities"][1]
+        require(not security["fields"]["loyalty"] and aura["scope"]["relation"] == "friendly"
+                and aura["scope"]["excludeSource"] and aura["teamsFriendlyIncludesTeammate"],
+                "JC059 has zero printed loyalty and affects other friendly characters, including teammates")
+        require(specs["DQJC107"]["abilities"][0]["order"] == ["eachPlayerSearchOneOwnDeck",
+                    "shuffleEachPlayersRemainingDeck", "chosenCardOnEachOwnersDeckTop"],
+                "Sunken ruins must shuffle before putting the chosen card on top")
+        for i in ["JC118", "JC091"]:
+            fast = specs[i]["abilities"][0]
+            require(fast["playRestriction"] == {"phase": "action"} and fast["fastDoesNotWaivePhaseRestriction"],
+                    "Fast timing must retain an explicit action-phase restriction: " + i)
+        discount = specs["JC042"]["abilities"][0]
+        require(discount["doesNotReducePaidReveal"] and discount["eligiblePlay"] == {
+                    "faceUpOnly": True, "eitherColor": "红", "orDomain": "blood"},
+                "JC042 next matching face-up discount cannot apply to paid reveal")
+        nuclear = specs["DQJC113"]["abilities"][0]
+        require(nuclear["damage"] == 1 and nuclear["notDestroyAll"] and not nuclear["targeted"],
+                "Chernobyl deals one damage; it does not automatically destroy all characters")
     return errors

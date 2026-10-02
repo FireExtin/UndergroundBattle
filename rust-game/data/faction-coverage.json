@@ -1484,7 +1484,16 @@
       "limitations": "",
       "evidenceIds": [
         "bq-setup",
-        "manual-domains"
+        "manual-domains",
+        "card-JC002",
+        "card-XQ03",
+        "card-JC014",
+        "card-JZ08",
+        "card-JC059",
+        "card-XQ12",
+        "card-JC042",
+        "card-JC091",
+        "card-JZ54"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -1512,7 +1521,8 @@
       "limitations": "",
       "evidenceIds": [
         "bq-setup",
-        "bq-keywords-2"
+        "bq-keywords-2",
+        "card-JC002"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -1541,7 +1551,22 @@
       "scope": "有限声明核心支持快速响应、原子付款、固定行动者、单目标复核和续体恢复。",
       "limitations": "只支持零目标或一个min=max=1目标槽；尚无通用强制触发、任意多目标、取消/替代框架。",
       "evidenceIds": [
-        "bq-stack"
+        "bq-stack",
+        "card-LC24",
+        "card-XQ49",
+        "card-JC118",
+        "card-JC002",
+        "card-XQ03",
+        "card-JC014",
+        "card-JZ08",
+        "card-XQ12",
+        "card-DQJC107",
+        "card-DQJC112",
+        "card-DQJC113",
+        "card-DQJC114",
+        "card-JC042",
+        "card-JC091",
+        "card-JZ54"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -1574,7 +1599,14 @@
       "limitations": "",
       "evidenceIds": [
         "bq-setup",
-        "bq-teams"
+        "bq-teams",
+        "card-LC21",
+        "card-LC22",
+        "card-JC118",
+        "card-DQJC107",
+        "card-DQJC112",
+        "card-DQJC113",
+        "card-DQJC114"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -1607,7 +1639,11 @@
       "limitations": "",
       "evidenceIds": [
         "bq-keywords-1",
-        "card-JC056"
+        "card-JC056",
+        "card-LC21",
+        "card-LC22",
+        "card-JC014",
+        "card-JC059"
       ],
       "dependencies": [
         "hidden"
@@ -1631,7 +1667,9 @@
       "limitations": "",
       "evidenceIds": [
         "card-JC003",
-        "card-JC056"
+        "card-JC056",
+        "card-JC002",
+        "card-XQ03"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -1693,7 +1731,8 @@
         "bq-keywords-1",
         "bq-keywords-2",
         "card-JC016",
-        "card-LC21"
+        "card-LC21",
+        "card-LC22"
       ],
       "dependencies": [
         "confrontation"
@@ -1845,7 +1884,8 @@
         "card-JC042",
         "card-JC049",
         "card-JZ54",
-        "bq-seal"
+        "bq-seal",
+        "card-XQ12"
       ],
       "dependencies": [
         "priority"
@@ -1907,7 +1947,12 @@
       "evidenceIds": [
         "card-LC24",
         "card-JC049",
-        "faq-3"
+        "faq-3",
+        "card-XQ49",
+        "card-XQ12",
+        "card-DQJC107",
+        "card-DQJC112",
+        "card-DQJC114"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -1934,8 +1979,8 @@
       "id": "continuous",
       "name": "持续数值修正与类型/能力赋予",
       "status": "partial",
-      "scope": "已开放两个有限修正：JC016无敌角色加图标与JC059同地区其他本方角色+1防御。",
-      "limitations": "不存在通用持续层、文本空白、类型赋予、动态领域/能力与条件修改框架。",
+      "scope": "已开放两个有限修正：JC016无敌角色加图标与JC059同地区其他同操控者角色+1防御；后者仅1V1范围与原图一致。",
+      "limitations": "JC059原图写其他友方角色，基线defense只检查同一controller，2V2队友尚未覆盖。亦不存在通用持续层、文本空白、类型赋予、动态领域/能力与条件修改框架。",
       "evidenceIds": [
         "card-JC016",
         "card-JC059",
@@ -1943,7 +1988,8 @@
         "card-JC074",
         "card-JC108",
         "card-JC099",
-        "card-JC100"
+        "card-JC100",
+        "card-JC091"
       ],
       "dependencies": [],
       "interactionIds": [],
@@ -2939,7 +2985,12 @@
         "manual-pairing",
         "card-JC016",
         "card-JC057",
-        "card-JC108"
+        "card-JC108",
+        "card-LC21",
+        "card-LC22",
+        "card-LC24",
+        "card-JC059",
+        "card-XQ12"
       ],
       "dependencies": [
         "confrontation",

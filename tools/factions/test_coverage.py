@@ -125,9 +125,10 @@ class CoverageTests(unittest.TestCase):
 
     def test_partial_image_review_cannot_be_counted_as_whole_card_verification(self):
         index = copy.deepcopy(self.index)
-        c = next(c for c in index["records"] if c["id"] == "JC002")
+        c = next(c for c in index["records"] if c["evidenceState"] == "primaryImageReviewed"
+                 and c["fullCardVerification"] == "notStarted")
         c["fullCardVerification"] = "completeGameplayFieldsForPinnedImage"
-        c["fullSpecRef"] = "docs/factions/card-specifications.json#cards/JC002"
+        c["fullSpecRef"] = "docs/factions/card-specifications.json#cards/" + c["id"]
         self.assertTrue(any("whole-card verification" in e for e in self.source_errors(index=index)))
 
     def test_unreadable_field_cannot_be_counted_as_complete_source(self):
@@ -193,6 +194,37 @@ class CoverageTests(unittest.TestCase):
         specs = copy.deepcopy(self.specifications)
         specs["cards"]["LC19"]["abilities"][1]["costs"].pop("exhaustSource")
         self.assertTrue(any("source exhaust" in e for e in self.source_errors(specs=specs)))
+
+    def test_guard_is_damage_allocation_priority_not_damage_reduction(self):
+        specs = copy.deepcopy(self.specifications)
+        specs["cards"]["LC21"]["abilities"][1]["damageReduction"] = True
+        self.assertTrue(any("allocation priority" in e for e in self.source_errors(specs=specs)))
+
+    def test_security_aura_cannot_gain_loyalty_or_exclude_friendly_teammates(self):
+        specs = copy.deepcopy(self.specifications)
+        specs["cards"]["JC059"]["fields"]["loyalty"] = [{"kind": "color", "value": "灰", "count": 1}]
+        specs["cards"]["JC059"]["abilities"][1]["scope"]["relation"] = "ownController"
+        self.assertTrue(any("friendly" in e for e in self.source_errors(specs=specs)))
+
+    def test_world_search_must_shuffle_before_placing_chosen_card_on_top(self):
+        specs = copy.deepcopy(self.specifications)
+        specs["cards"]["DQJC107"]["abilities"][0]["order"] = ["search", "top", "shuffle"]
+        self.assertTrue(any("shuffle before" in e for e in self.source_errors(specs=specs)))
+
+    def test_fast_cards_cannot_drop_explicit_action_phase_restriction(self):
+        specs = copy.deepcopy(self.specifications)
+        specs["cards"]["JC091"]["abilities"][0]["fastDoesNotWaivePhaseRestriction"] = False
+        self.assertTrue(any("action-phase" in e for e in self.source_errors(specs=specs)))
+
+    def test_next_faceup_discount_cannot_apply_to_paid_reveal(self):
+        specs = copy.deepcopy(self.specifications)
+        specs["cards"]["JC042"]["abilities"][0]["doesNotReducePaidReveal"] = False
+        self.assertTrue(any("paid reveal" in e for e in self.source_errors(specs=specs)))
+
+    def test_global_one_damage_cannot_become_automatic_board_destruction(self):
+        specs = copy.deepcopy(self.specifications)
+        specs["cards"]["DQJC113"]["abilities"][0]["notDestroyAll"] = False
+        self.assertTrue(any("one damage" in e for e in self.source_errors(specs=specs)))
 
 
 if __name__ == "__main__":
