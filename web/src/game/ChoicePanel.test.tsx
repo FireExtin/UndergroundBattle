@@ -1,11 +1,52 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, within } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import { ChoicePanel } from './ChoicePanel';
 import { testChoice } from './testFixtures';
 import { testCard } from './testFixtures';
 
 const base = { id: 'choose-action', kind: 'choose', label: '选择', choiceId: 'choice-one' };
+const boardChoice = { ...testChoice, options: [
+  { id: 'anonymous-a', label: '标签中的私有身份甲', card: { ...testCard, instanceId: 'anonymous-a', cardId: 'secret-a', owner: 'p1', controller: 'p1', region: 0, faceDown: true, name: '私有身份甲', text: '私有能力甲' } },
+  { id: 'anonymous-b', label: '标签中的私有身份乙', card: { ...testCard, instanceId: 'anonymous-b', cardId: 'secret-b', owner: 'p2', controller: 'p0', region: 2, faceDown: true, name: '私有身份乙', text: '私有能力乙' } },
+] };
+const playerLabels = { p0: '我方玩家', p1: '甲方玩家', p2: '乙方玩家' };
+const secretDefinitions = new Map(boardChoice.options.map(option => [option.card.cardId, { id: option.card.cardId, name: option.card.name, kind: 'character', cost: 7, text: option.card.text, permanentIcons: { investigation: 7, combat: 7, influence: 7 } }]));
 describe('server-owned decisions', () => {
+  it.each([['anonymous-a', 1], ['anonymous-b', 2]] as const)('distinguishes anonymous board targets by public ownership and region and submits %s', (id, number) => {
+    const submit = vi.fn();
+    const { container } = render(<ChoicePanel choice={boardChoice} action={base} definitions={secretDefinitions} busy={false} onSubmit={submit} viewerId="p0" playerLabels={playerLabels} />);
+    const first = screen.getByRole('button', { name: /目标 1.*甲方玩家 拥有.*地区 1/ });
+    const second = screen.getByRole('button', { name: /目标 2.*乙方玩家 拥有.*我方玩家 操控.*地区 3/ });
+    expect(first).toHaveAttribute('data-choice-target-number', '1');
+    expect(second).toHaveAttribute('data-choice-target-number', '2');
+    expect(within(first).getByText('暗藏者', { exact: true })).toBeInTheDocument();
+    expect(within(second).getByText('暗藏者', { exact: true })).toBeInTheDocument();
+    expect(container.textContent).not.toMatch(/私有身份|私有能力/);
+    expect(screen.queryByLabelText('图标：调查7，战斗7，势力7')).not.toBeInTheDocument();
+    const target = number === 1 ? first : second;
+    expect(target).toHaveAttribute('data-choice-option', id);
+    fireEvent.click(target);
+    fireEvent.click(screen.getByRole('button', { name: '确认选择' }));
+    expect(submit).toHaveBeenCalledExactlyOnceWith({ ...base, choiceId: boardChoice.id, selected: [id] });
+  });
+
+  it('disables board target selection and submission while busy', () => {
+    const submit = vi.fn();
+    render(<ChoicePanel choice={boardChoice} action={base} definitions={secretDefinitions} busy onSubmit={submit} viewerId="p0" playerLabels={playerLabels} />);
+    const target = screen.getByRole('button', { name: /目标 2.*乙方玩家 拥有.*地区 3/ });
+    expect(target).toBeDisabled();
+    expect(screen.getByRole('button', { name: '正在提交…' })).toBeDisabled();
+    fireEvent.click(target);
+    fireEvent.click(screen.getByRole('button', { name: '正在提交…' }));
+    expect(submit).not.toHaveBeenCalled();
+  });
+
+  it('keeps hand-only mulligan candidates free of board target metadata', () => {
+    render(<ChoicePanel choice={{ ...testChoice, kind: 'mulligan', options: [{ id: 'hand-a', label: testCard.name, card: testCard }] }} action={base} definitions={new Map()} busy={false} onSubmit={vi.fn()} viewerId="p0" playerLabels={playerLabels} />);
+    expect(screen.queryByText(/目标 \d/)).not.toBeInTheDocument();
+    expect(screen.queryByText(/甲方玩家 拥有|地区 \d/)).not.toBeInTheDocument();
+  });
+
   it('requires a selected target and only offers decline when explicitly allowed', () => {
     const submit = vi.fn();
     const { rerender } = render(<ChoicePanel choice={testChoice} action={base} definitions={new Map()} busy={false} onSubmit={submit} />);
