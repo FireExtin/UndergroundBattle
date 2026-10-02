@@ -11,6 +11,7 @@ mkdirSync(project + 'generated', { recursive: true });
 for (const name of ['hegemony_wasm.js', 'hegemony_wasm_bg.wasm']) cpSync(root + 'rust-game-wasm/pkg/' + name, project + 'generated/' + name);
 cpSync(root + 'rust-game-wasm/legacy-v0.2.1', project + 'generated/legacy-v0.2.1', { recursive: true });
 cpSync(root + 'rust-game-wasm/legacy-v0.2.2', project + 'generated/legacy-v0.2.2', { recursive: true });
+cpSync(root + 'rust-game-wasm/legacy-v0.2.3', project + 'generated/legacy-v0.2.3', { recursive: true });
 rmSync(project + 'dist', { recursive: true, force: true });
 const config = project + '.wrangler/config';
 mkdirSync(config, { recursive: true });

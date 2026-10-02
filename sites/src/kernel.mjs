@@ -1,11 +1,14 @@
 import * as current from '../generated/hegemony_wasm.js';
 import * as previous from '../generated/legacy-v0.2.1/hegemony_wasm.js';
 import * as intermediate from '../generated/legacy-v0.2.2/hegemony_wasm.js';
+import * as last from '../generated/legacy-v0.2.3/hegemony_wasm.js';
 import currentModule from '../generated/hegemony_wasm_bg.wasm';
 import previousModule from '../generated/legacy-v0.2.1/hegemony_wasm_bg.wasm';
 import intermediateModule from '../generated/legacy-v0.2.2/hegemony_wasm_bg.wasm';
+import lastModule from '../generated/legacy-v0.2.3/hegemony_wasm_bg.wasm';
 import { routeKernels } from './kernel-router.mjs';
 current.initSync({ module: currentModule });
 previous.initSync({ module: previousModule });
 intermediate.initSync({ module: intermediateModule });
-export const kernel = routeKernels(current, [previous, intermediate]);
+last.initSync({ module: lastModule });
+export const kernel = routeKernels(current, [previous, intermediate, last]);

@@ -5,6 +5,7 @@ export type CardDefinition = {
   icons?: { permanent: Icons; temporary: Icons };
   permanentIcons?: Icons; temporaryIcons?: Icons; defense?: number;
   threshold?: number; points?: number; keywords?: string[]; supported?: boolean;
+  deckCopyLimit?: number | null;
   abilities?: { key: string; label: string; timing: 'standard' | 'fast' | 'actionFast'; triggered: boolean }[];
 };
 export type Card = {
@@ -18,6 +19,7 @@ export type Action = {
   abilityId?: string; costSelected?: string[];
   choiceId?: string; selected?: string[]; top?: string[]; bottom?: string[];
   allocations?: Record<string, number>;
+  deckDraft?: import('./deckLibrary').DeckDraft;
 };
 export type LegalAction = Action & { id: string; label: string; description?: string };
 export type Choice = {
@@ -27,11 +29,14 @@ export type Choice = {
 };
 export type Player = {
   id: string; seat: number; name: string; team: number; deckId: string;
+  deckName?: string;
   ready: boolean; eliminated: boolean; handCount: number; deckCount: number; score: number;
 };
 export type Region = {
   id: string; index: number; cardId: string; name: string; threshold: number;
   points: number; influence: number[]; characters: Card[];
+  iconsByTeam?: [Icons, Icons];
+  skipConfrontation?: boolean;
 };
 export type StackEffect = {
   id: string; label: string; controller: string; cardId?: string; targetId?: string;
@@ -53,8 +58,11 @@ export type View = {
   waitingChoice?: { playerId: string; title: string; kind: string } | null;
   legalActions: LegalAction[]; log: { version: number; text: string }[];
   versions: { rules: string; cardPool: string; engine: string };
+  worldDeckCount?: number;
+  yourDeck?: import('./deckLibrary').DeckDraft | null;
 };
 export type Deck = { id: string; name: string; description: string; cardCount: number; cards: { cardId: string; count: number }[] };
-export type Catalog = { rulesVersion: string; cardPoolVersion: string; engineVersion: string; decks: Deck[]; cards: CardDefinition[] };
+export type Catalog = { rulesVersion: string; cardPoolVersion: string; engineVersion: string; decks: Deck[]; cards: CardDefinition[];
+  deckBuildRules?: { minimumCards: number; serviceCardCapacity: number; societySupported: boolean } };
 export type Session = { roomId: string; inviteCode: string; token: string; seat: number; view: View };
 export type SavedSession = Omit<Session, 'view'>;

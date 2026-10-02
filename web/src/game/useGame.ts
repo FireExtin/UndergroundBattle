@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { actionPayload, ApiError, createRoom, forgetSavedSeat, getCatalog, getState, joinRoom, newCommandId, pollState, readActiveSession, readPending, readSavedSeats, readSession, returnToLobby, savePending, saveSession, sendCommand, type PendingCommand } from './api';
+import { actionPayload, ApiError, createRoom, createRoomWithDeck, forgetSavedSeat, getCatalog, getState, joinRoom, joinRoomWithDeck, newCommandId, pollState, readActiveSession, readPending, readSavedSeats, readSession, returnToLobby, savePending, saveSession, sendCommand, type PendingCommand } from './api';
 import type { Action, Catalog, SavedSession, Session, View } from './types';
+import type { DeckDraft } from './deckLibrary';
 
 export function newerView(current: View | null, next: View): View {
   return current && current.roomId === next.roomId && current.you === next.you && current.version > next.version ? current : next;
@@ -154,6 +155,8 @@ export function useGame() {
     catalog, session, view, error, busy, uncertain, connection, act,
     create: (name: string, mode: 'duel' | 'teams', deckId: string) => enter(() => createRoom(name, mode, deckId)),
     join: (inviteCode: string, name: string, deckId: string) => enter(() => joinRoom(inviteCode, name, deckId)),
+    createDraft: (name: string, mode: 'duel' | 'teams', draft: DeckDraft) => enter(() => createRoomWithDeck(name, mode, draft)),
+    joinDraft: (inviteCode: string, name: string, draft: DeckDraft) => enter(() => joinRoomWithDeck(inviteCode, name, draft)),
     dismissError: () => setError(''),
     retryCatalog: () => { setError(''); setCatalogRetry(n => n + 1); },
     retryPending: () => { if (session) void resolvePending(session); },
