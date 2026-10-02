@@ -3928,6 +3928,51 @@
       "pdfPage": 5,
       "visuallyReviewed": true,
       "topic": "金色名字的独有，同名本方在场选择牺牲；追加费用与堆叠"
+    },
+    "manual-trigger-reset": {
+      "kind": "pdfPage",
+      "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界规则手册.pdf",
+      "sha256": "2a771874efbdb3ad8a339ea01ff62888766090d075fe2e013632c79de1aeba35",
+      "printedPage": 2,
+      "pdfPage": 4,
+      "visuallyReviewed": true,
+      "topic": "触发可选/强制、进场与现身区别、所有场上牌的重置"
+    },
+    "manual-removal": {
+      "kind": "pdfPage",
+      "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界规则手册.pdf",
+      "sha256": "2a771874efbdb3ad8a339ea01ff62888766090d075fe2e013632c79de1aeba35",
+      "printedPage": 10,
+      "pdfPage": 12,
+      "visuallyReviewed": true,
+      "topic": "牺牲只能本方、伤害、拥有者和赢区顺序"
+    },
+    "manual-draw-identity": {
+      "kind": "pdfPage",
+      "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界规则手册.pdf",
+      "sha256": "2a771874efbdb3ad8a339ea01ff62888766090d075fe2e013632c79de1aeba35",
+      "printedPage": 11,
+      "pdfPage": 13,
+      "visuallyReviewed": true,
+      "topic": "抓牌与置于手中、忠诚、自我指代名称只指此实例"
+    },
+    "bq-card-anatomy": {
+      "kind": "pdfPage",
+      "path": "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+      "sha256": "a1e5bca72b8dbb374357feace28b7fbfd31136349ee23455d60f5f62e0a6b886",
+      "printedPage": 4,
+      "pdfPage": 5,
+      "visuallyReviewed": true,
+      "topic": "秘社/地区字段、墨尔本原图W06/10，3势力上限及2分"
+    },
+    "bq-targets": {
+      "kind": "pdfPage",
+      "path": "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+      "sha256": "a1e5bca72b8dbb374357feace28b7fbfd31136349ee23455d60f5f62e0a6b886",
+      "printedPage": 3,
+      "pdfPage": 4,
+      "visuallyReviewed": true,
+      "topic": "目标声明/复核、金色名称独有、规则优先级"
     }
   },
   "openQuestions": [

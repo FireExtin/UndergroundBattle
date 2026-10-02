@@ -12,6 +12,8 @@
 
 实施前应新增一份完整、人工核准的卡级规则规格，再把它映射到有限声明式操作。研究索引不应成为规则 DSL；保留原图与人工规格作为上游，生产 `cards.json` 与规则声明作为下游。不能通过批量导入原始文本、为未知操作写空函数或默认 `supported=true` 来开放卡。
 
+后续 B01 已提供 [card-specifications.json](card-specifications.json) 中9张牌的完整观察版本游戏字段与2张未清字段的秘社规格；证据和可实施边界见 [B01-evidence-package.md](B01-evidence-package.md)。`fullCardVerification` 是来源核验状态；`implementationDesignStatus` 另标伤害层/条件行动待定问题；`gameAcceptance` 和 UI 试玩依然未通过。不得用完成原稿核验自动提升生产支持。
+
 ## 共享机制的依赖与边界
 
 依赖数据在 `faction-coverage.json.mechanisms[].dependencies`，代表补全设计需要的概念依赖，不是声称现有引擎已有这些依赖。`interactionIds` 表示需解决的 UI 类别，不是已存在的 React 组件名。

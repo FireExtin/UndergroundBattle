@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "reviewedAt": "2026-10-02",
-  "policy": "Partial primary-image reviews only, never automatically promote locator text to verified rules.",
+  "policy": "人工原图核验；完整游戏字段规格另存card-specifications.json，部分核验和完整规格不能互相冒充。",
   "cards": {
     "BQ010": {
       "evidenceId": "card-BQ010",
@@ -190,9 +190,12 @@
       },
       "abilitySummary": "每玩家可检索附属；同时展示并入手，然后洗牌。",
       "confirmedMechanismIds": [
-        "deckChoice"
+        "confrontation",
+        "deckChoice",
+        "priority"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "锁定原图版本的全部游戏字段核验见card-specifications.json；其他印次等价、规则疑点、引擎和UI实施验收仍未完成。",
+      "editionStatus": "pinnedImageVariant"
     },
     "DQXQZY02": {
       "evidenceId": "card-DQXQZY02",
@@ -234,9 +237,12 @@
       "abilitySummary": "快速行动2加横置来源，横置目标角色或暗藏者。",
       "confirmedMechanismIds": [
         "exhaust",
+        "hidden",
+        "loyalty",
         "priority"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "锁定原图版本的全部游戏字段核验见card-specifications.json；其他印次等价、规则疑点、引擎和UI实施验收仍未完成。",
+      "editionStatus": "pinnedImageVariant"
     },
     "JC006": {
       "evidenceId": "card-JC006",
@@ -280,9 +286,11 @@
       "confirmedMechanismIds": [
         "combatTraits",
         "continuous",
+        "loyalty",
         "temporaryIcons"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "锁定原图版本的全部游戏字段核验见card-specifications.json；其他印次等价、规则疑点、引擎和UI实施验收仍未完成。",
+      "editionStatus": "pinnedImageVariant"
     },
     "JC028": {
       "evidenceId": "card-JC028",
@@ -340,10 +348,13 @@
       },
       "abilitySummary": "额外牺牲角色；底两张置手，不算抓牌。",
       "confirmedMechanismIds": [
-        "sacrifice",
-        "deckChoice"
+        "deckChoice",
+        "loyalty",
+        "priority",
+        "sacrifice"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "锁定原图版本的全部游戏字段核验见card-specifications.json；其他印次等价、规则疑点、引擎和UI实施验收仍未完成。",
+      "editionStatus": "pinnedImageVariant"
     },
     "JC056": {
       "evidenceId": "card-JC056",
@@ -401,10 +412,13 @@
       },
       "abilitySummary": "公开、声望。",
       "confirmedMechanismIds": [
+        "loyalty",
         "public",
-        "renown"
+        "renown",
+        "temporaryIcons"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "锁定原图版本的全部游戏字段核验见card-specifications.json；其他印次等价、规则疑点、引擎和UI实施验收仍未完成。",
+      "editionStatus": "pinnedImageVariant"
     },
     "JC076": {
       "evidenceId": "card-JC076",
@@ -416,10 +430,14 @@
       },
       "abilitySummary": "声望；现身抓1。",
       "confirmedMechanismIds": [
+        "deckChoice",
+        "hidden",
+        "loyalty",
         "renown",
-        "deckChoice"
+        "temporaryIcons"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "锁定原图版本的全部游戏字段核验见card-specifications.json；其他印次等价、规则疑点、引擎和UI实施验收仍未完成。",
+      "editionStatus": "pinnedImageVariant"
     },
     "JC077": {
       "evidenceId": "card-JC077",
@@ -431,10 +449,13 @@
       },
       "abilitySummary": "灵体；同地区非灵体本方角色伤害转移到来源。",
       "confirmedMechanismIds": [
-        "spirit",
-        "damagePrevention"
+        "damagePrevention",
+        "loyalty",
+        "priority",
+        "spirit"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "锁定原图版本的全部游戏字段核验见card-specifications.json；其他印次等价、规则疑点、引擎和UI实施验收仍未完成。",
+      "editionStatus": "pinnedImageVariant"
     },
     "JC085": {
       "evidenceId": "card-JC085",
@@ -742,11 +763,14 @@
       },
       "abilitySummary": "独有；现身横置来源与本地区目标角色。",
       "confirmedMechanismIds": [
-        "hidden",
         "exhaust",
+        "hidden",
+        "priority",
+        "temporaryIcons",
         "uniqueInPlay"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "锁定原图版本的全部游戏字段核验见card-specifications.json；其他印次等价、规则疑点、引擎和UI实施验收仍未完成。",
+      "editionStatus": "pinnedImageVariant"
     },
     "LC24": {
       "evidenceId": "card-LC24",
@@ -877,10 +901,12 @@
       },
       "abilitySummary": "持先手时付费抓牌；每局一次检索相应派系独有牌。",
       "confirmedMechanismIds": [
-        "society",
-        "deckChoice"
+        "deckChoice",
+        "priority",
+        "society"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "锁定原图版本的全部游戏字段核验见card-specifications.json；其他印次等价、规则疑点、引擎和UI实施验收仍未完成。",
+      "editionStatus": "pinnedImageVariant"
     },
     "MSJC02": {
       "evidenceId": "card-MSJC02",
@@ -989,8 +1015,9 @@
       },
       "abilitySummary": "持先手时付费抓牌；每局一次检索相应派系独有牌。",
       "confirmedMechanismIds": [
-        "society",
-        "deckChoice"
+        "deckChoice",
+        "priority",
+        "society"
       ],
       "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
     },
@@ -1005,10 +1032,11 @@
       },
       "abilitySummary": "持先手时付费抓牌。",
       "confirmedMechanismIds": [
-        "society",
-        "deckChoice"
+        "deckChoice",
+        "priority",
+        "society"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "行动、费用和起手等游戏字段见card-specifications.json；低分辨率副名称未清，整卡状态blocked；引擎与UI未验收。"
     },
     "MSJC10": {
       "evidenceId": "card-MSJC10",

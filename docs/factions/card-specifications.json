@@ -1,0 +1,1551 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Manually verified gameplay fields for pinned original variants and reviewable design cases, not executable rules or release approval.",
+  "auditedCommit": "286ad83ef5a54bc0caed26199ca4cfea269314bd",
+  "reviewedAt": "2026-10-02",
+  "symbolNormalization": {
+    "policy": "图形规范化为带方括号的语义名称与数字，不宣称是原图逐字Unicode。",
+    "快速": "闪电行动图标",
+    "横置": "箭头横置本牌图标，位于冒号前才作为费用",
+    "先手标志": "钥匙形标志",
+    "永久图标": "黑底能力图标",
+    "临时图标": "白底能力图标",
+    "黄/紫等": "原图颜色派系徽记/色块",
+    "血脉": "原图红色血脉领域，locator有鲜血别名"
+  },
+  "batches": [
+    {
+      "id": "B01",
+      "groups": [
+        "G01-foundation",
+        "G02-keywords",
+        "G03-societies"
+      ],
+      "cardIds": [
+        "DQJC116",
+        "JC003",
+        "JC016",
+        "JC049",
+        "JC070",
+        "JC076",
+        "JC077",
+        "LC23",
+        "MSJC01",
+        "MSJC08",
+        "MSJC09"
+      ],
+      "completedCardIds": [
+        "DQJC116",
+        "JC003",
+        "JC016",
+        "JC049",
+        "JC070",
+        "JC076",
+        "JC077",
+        "LC23",
+        "MSJC01"
+      ],
+      "blockedCardIds": [
+        "MSJC08",
+        "MSJC09"
+      ],
+      "gameImplementationAccepted": false,
+      "independentUiPlaytestStatus": "notRun"
+    }
+  ],
+  "openQuestions": {
+    "damageRedirectionTiming": {
+      "question": "JC077的可选、可响应触发与即将造成伤害/灵体防止的事件顺序，需要完整伤害层设计；卡面确认了改伤目标和条件，但没有通用流程图。",
+      "evidenceIds": [
+        "card-JC077",
+        "manual-trigger-reset",
+        "bq-keywords-2"
+      ]
+    },
+    "conditionalActivation": {
+      "question": "秘社“若你具有先手标志，则抓1”位于效果段：缺先手时能否仍付费发动，以及结算中变化的检查点，需统一条件行动语义；不得凭UI便利添加卡面没有的发动限制。",
+      "evidenceIds": [
+        "card-MSJC01",
+        "card-MSJC09",
+        "bq-stack"
+      ]
+    }
+  },
+  "cards": {
+    "DQJC116": {
+      "cardId": "DQJC116",
+      "batchId": "B01",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/DQJC116 香港.jpg",
+        "imageSha256": "e9dfbc396a733b3bbe7ffcb2a6d67ea371ffe4ca4bd6fc0f4e74b1ee73485d4d",
+        "evidenceId": "card-DQJC116",
+        "scope": "所有影响游戏的可读卡面字段；背景描述不转写。完整核验只对锁定的这张原图版本成立，不声称任何别版等价。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "W10/10",
+        "seriesSymbolObserved": "wineGlass",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA及印刷编号锁定观察版本；不把文件ID或locator序号当印刷编号，不声称是最新印次。"
+      },
+      "fields": {
+        "name": "香港",
+        "subtitle": "秘密交易",
+        "nameInk": "white",
+        "colorKey": null,
+        "basicType": "地区",
+        "subtypes": [
+          "城市",
+          "水域"
+        ],
+        "printedCollectorCode": "W10/10",
+        "seriesSymbol": "wineGlass",
+        "printedCost": null,
+        "loyalty": [],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": null,
+        "influenceThreshold": 3,
+        "points": 3,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "【赢取触发】每位玩家可以从他的牌库中寻找一张附属牌，同时展示并置于各自手中，然后将牌库洗牌。"
+        ]
+      },
+      "abilities": [
+        {
+          "id": "simultaneousAttachmentSearch",
+          "kind": "optionalWinTrigger",
+          "printedText": "每位玩家可以从他的牌库中寻找一张附属牌，同时展示并置于各自手中，然后将牌库洗牌。",
+          "participants": "everyPlayer",
+          "perPlayerSearch": {
+            "optional": true,
+            "category": "attachmentCard",
+            "count": 1
+          },
+          "order": [
+            "allPlayersCommitPrivateSearch",
+            "simultaneousReveal",
+            "simultaneousMoveToEachOwnersHand",
+            "shuffleEachPlayersDeck"
+          ],
+          "countsAsDraw": false
+        }
+      ],
+      "confirmedMechanismIds": [
+        "confrontation",
+        "deckChoice",
+        "priority"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "bq-targets"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "DQJC116-01",
+          "scenario": "两人各选附属，第一人已选而第二人未选",
+          "expected": "第二人选择前不得公开第一人的具体选择。",
+          "status": "notRun"
+        },
+        {
+          "id": "DQJC116-02",
+          "scenario": "四人对战触发“每位玩家”",
+          "expected": "四名玩家各有独立选择，而非每队一次。",
+          "status": "notRun"
+        },
+        {
+          "id": "DQJC116-03",
+          "scenario": "两人选择完成，其中一人放弃检索",
+          "expected": "所有实际选择同时展示并同时入各自手中，然后各自洗牌。",
+          "status": "notRun"
+        },
+        {
+          "id": "DQJC116-04",
+          "scenario": "有抓牌监听能力",
+          "expected": "入手不算抓牌，不触发抓牌监听。",
+          "status": "notRun"
+        },
+        {
+          "id": "DQJC116-05",
+          "scenario": "选择等待期间序列化后恢复",
+          "expected": "保留每位玩家的未公开承诺，不泄露、不重复入手或洗牌。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "JC003": {
+      "cardId": "JC003",
+      "batchId": "B01",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/JC003 帷幕护卫.jpg",
+        "imageSha256": "027fc054dd7c7ef301108bf0b169e01f91228bf2e918b3ddb8d12e8d05603c3a",
+        "evidenceId": "card-JC003",
+        "scope": "所有影响游戏的可读卡面字段；背景描述不转写。完整核验只对锁定的这张原图版本成立，不声称任何别版等价。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "003/135",
+        "seriesSymbolObserved": "wineGlass",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA及印刷编号锁定观察版本；不把文件ID或locator序号当印刷编号，不声称是最新印次。"
+      },
+      "fields": {
+        "name": "帷幕护卫",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "黄",
+        "basicType": "角色",
+        "subtypes": [
+          "人类",
+          "法师"
+        ],
+        "printedCollectorCode": "003/135",
+        "seriesSymbol": "wineGlass",
+        "printedCost": 3,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "黄",
+            "count": 1
+          }
+        ],
+        "domains": [
+          {
+            "id": "mind",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "【快速】行动2，【横置】：横置目标角色或暗藏者。"
+        ]
+      },
+      "abilities": [
+        {
+          "id": "exhaust",
+          "kind": "fastAction",
+          "printedText": "【快速】行动2，【横置】：横置目标角色或暗藏者。",
+          "costs": {
+            "currency": 2,
+            "exhaustSource": true
+          },
+          "sourceZone": "boardFaceUp",
+          "target": {
+            "count": 1,
+            "categories": [
+              "faceUpCharacter",
+              "hiddenCharacter"
+            ],
+            "controller": "any",
+            "printedRegionRestriction": null
+          },
+          "effect": "exhaustTarget"
+        }
+      ],
+      "confirmedMechanismIds": [
+        "priority",
+        "exhaust",
+        "hidden",
+        "loyalty"
+      ],
+      "rulesEvidenceIds": [
+        "bq-targets",
+        "bq-stack",
+        "manual-domains"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "JC003-01",
+          "scenario": "拥有2可付费资产和未横置来源，选择合法敌方角色",
+          "expected": "支付2并横置来源；响应结束后横置目标。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC003-02",
+          "scenario": "选择暗藏者后该目标在响应中现身为新实例",
+          "expected": "不能把原目标重定向到新实例；费用不返还。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC003-03",
+          "scenario": "追加横置来源的费用不能支付",
+          "expected": "命令拒绝，资产、来源、堆叠均不改变。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC003-04",
+          "scenario": "查看敌方暗藏者合法动作和选择器",
+          "expected": "只显示公开暗藏者身份，不泄露正面牌名。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "JC016": {
+      "cardId": "JC016",
+      "batchId": "B01",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/JC016 执行部精锐.jpg",
+        "imageSha256": "0a3b20635a7fa8e04d6f17ab7a7112a596ed0e7f21293d3e4f4a985463416c35",
+        "evidenceId": "card-JC016",
+        "scope": "所有影响游戏的可读卡面字段；背景描述不转写。完整核验只对锁定的这张原图版本成立，不声称任何别版等价。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "016/135",
+        "seriesSymbolObserved": "wineGlass",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA及印刷编号锁定观察版本；不把文件ID或locator序号当印刷编号，不声称是最新印次。"
+      },
+      "fields": {
+        "name": "执行部精锐",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "绿",
+        "basicType": "角色",
+        "subtypes": [
+          "人类",
+          "特工"
+        ],
+        "printedCollectorCode": "016/135",
+        "seriesSymbol": "wineGlass",
+        "printedCost": 3,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "绿",
+            "count": 2
+          }
+        ],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 2,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "撤回",
+          "杀伤1"
+        ],
+        "printedRuleTextLines": [
+          "撤回　杀伤1",
+          "【持续】若本地区没有敌方角色，执行部精锐就获得【临时调查】【永久势力】。"
+        ]
+      },
+      "abilities": [
+        {
+          "id": "retreat",
+          "kind": "keyword",
+          "printedText": "撤回"
+        },
+        {
+          "id": "kill",
+          "kind": "keyword",
+          "printedText": "杀伤1",
+          "amount": 1
+        },
+        {
+          "id": "emptyEnemyBonus",
+          "kind": "conditionalStatic",
+          "printedText": "若本地区没有敌方角色，执行部精锐就获得【临时调查】【永久势力】。",
+          "condition": "noEnemyFaceUpCharacterInSourceRegion",
+          "grants": {
+            "temporaryIcons": {
+              "investigation": 1,
+              "combat": 0,
+              "influence": 0
+            },
+            "permanentIcons": {
+              "investigation": 0,
+              "combat": 0,
+              "influence": 1
+            }
+          }
+        }
+      ],
+      "confirmedMechanismIds": [
+        "combatTraits",
+        "continuous",
+        "temporaryIcons",
+        "loyalty"
+      ],
+      "rulesEvidenceIds": [
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "manual-pairing"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "JC016-01",
+          "scenario": "只有敌方暗藏者在本地区",
+          "expected": "暗藏者不是正面角色，不阻止条件图标。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC016-02",
+          "scenario": "未持先手且无敌角色",
+          "expected": "条件永久势力有效，条件临时调查不参与对抗。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC016-03",
+          "scenario": "在敌方正面角色出现/离开后重新计算",
+          "expected": "条件修正随场面变化，不永久写死卡牌数值。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC016-04",
+          "scenario": "地区被赢取且该角色尚在该区",
+          "expected": "按霸权撤回规则移回拥有者手中，非牌库底。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "JC049": {
+      "cardId": "JC049",
+      "batchId": "B01",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/JC049 深渊细语.jpg",
+        "imageSha256": "340c3fbc650b755d72c31ca06a8c379bacb572df6df061a9c52d0fb386d02d58",
+        "evidenceId": "card-JC049",
+        "scope": "所有影响游戏的可读卡面字段；背景描述不转写。完整核验只对锁定的这张原图版本成立，不声称任何别版等价。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "049/135",
+        "seriesSymbolObserved": "wineGlass",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA及印刷编号锁定观察版本；不把文件ID或locator序号当印刷编号，不声称是最新印次。"
+      },
+      "fields": {
+        "name": "深渊细语",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "红",
+        "basicType": "事务",
+        "subtypes": [
+          "法术",
+          "召唤"
+        ],
+        "printedCollectorCode": "049/135",
+        "seriesSymbol": "wineGlass",
+        "printedCost": 2,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "红",
+            "count": 1
+          }
+        ],
+        "domains": [
+          {
+            "id": "mind",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "【额外费用】牺牲一个角色。",
+          "【快速】行动：将你牌库底的两张牌置于手中。"
+        ]
+      },
+      "abilities": [
+        {
+          "id": "bottomToHand",
+          "kind": "fastTransaction",
+          "printedText": "将你牌库底的两张牌置于手中。",
+          "costs": {
+            "printedCurrency": 2,
+            "sacrificeControlledFaceUpCharacter": 1
+          },
+          "target": null,
+          "effect": {
+            "kind": "ownerDeckBottomToHand",
+            "count": 2,
+            "countsAsDraw": false
+          }
+        }
+      ],
+      "confirmedMechanismIds": [
+        "priority",
+        "sacrifice",
+        "deckChoice",
+        "loyalty"
+      ],
+      "rulesEvidenceIds": [
+        "bq-stack",
+        "manual-removal",
+        "manual-draw-identity",
+        "faq-3"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "JC049-01",
+          "scenario": "满足红忠诚、可支付2且有本方正面角色",
+          "expected": "以牺牲该角色作为不可响应的额外费用，事务之后入堆叠。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC049-02",
+          "scenario": "试图牺牲敌方角色或本方暗藏者",
+          "expected": "不能支付该费用；整条命令不提交。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC049-03",
+          "scenario": "结算时牌库至少两张",
+          "expected": "牌库底两张转入手牌，不触发抓牌相关能力。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC049-04",
+          "scenario": "额外费用支付后事务被后续效果终止",
+          "expected": "费用和牺牲不返还；不得把费用步骤重新执行。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "JC070": {
+      "cardId": "JC070",
+      "batchId": "B01",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/JC070 虔心修士.jpg",
+        "imageSha256": "3dd1ef905e2cfb4d806b258fdde0b1ec1fe2adad7868bb5cd7dc0bcf9cfe9e1b",
+        "evidenceId": "card-JC070",
+        "scope": "所有影响游戏的可读卡面字段；背景描述不转写。完整核验只对锁定的这张原图版本成立，不声称任何别版等价。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "070/135",
+        "seriesSymbolObserved": "wineGlass",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA及印刷编号锁定观察版本；不把文件ID或locator序号当印刷编号，不声称是最新印次。"
+      },
+      "fields": {
+        "name": "虔心修士",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "白",
+        "basicType": "角色",
+        "subtypes": [
+          "人类",
+          "僧侣"
+        ],
+        "printedCollectorCode": "070/135",
+        "seriesSymbol": "wineGlass",
+        "printedCost": 1,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "白",
+            "count": 2
+          }
+        ],
+        "domains": [
+          {
+            "id": "holy",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "公开",
+          "声望"
+        ],
+        "printedRuleTextLines": [
+          "公开（该角色不能被秘密派遣为暗藏者）",
+          "声望（当一个地区的所有对抗结束后，在该地区上若你比对手操控更多未横置的声望角色，则你可以在该地区额外放置一个本方势力标志。）"
+        ]
+      },
+      "abilities": [
+        {
+          "id": "public",
+          "kind": "staticKeyword",
+          "printedText": "公开（该角色不能被秘密派遣为暗藏者）"
+        },
+        {
+          "id": "renown",
+          "kind": "optionalRegionConfrontationsEndedTrigger",
+          "printedText": "声望（当一个地区的所有对抗结束后，在该地区上若你比对手操控更多未横置的声望角色，则你可以在该地区额外放置一个本方势力标志。）",
+          "effect": "oneExtraInfluenceIfMoreUnexhaustedRenownCharacters",
+          "stackable": false
+        }
+      ],
+      "confirmedMechanismIds": [
+        "public",
+        "renown",
+        "temporaryIcons",
+        "loyalty"
+      ],
+      "rulesEvidenceIds": [
+        "manual-seal",
+        "manual-pairing",
+        "bq-keywords-2"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "JC070-01",
+          "scenario": "1资产可支付但只有1白资产",
+          "expected": "白忠诚需2，不能正面打出。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC070-02",
+          "scenario": "尝试秘密派遣此牌",
+          "expected": "公开禁止此标准动作；这条禁止不阻止卡牌效果令其潜伏。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC070-03",
+          "scenario": "未持先手且角色未横置",
+          "expected": "白底调查图标不参与对抗；其他效果统计图标仍需计入。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC070-04",
+          "scenario": "该地区全部对抗后我方2个未横置声望、敌方1个",
+          "expected": "可额外放1势力，不能放2。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC070-05",
+          "scenario": "声望数相等或我方声望角色已横置",
+          "expected": "不产生声望奖励。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "JC076": {
+      "cardId": "JC076",
+      "batchId": "B01",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/JC076 悟道僧人.jpg",
+        "imageSha256": "4390ebf4eabcf44c541303bfb764061c1622cb483ed0e034ee9651571cee27ac",
+        "evidenceId": "card-JC076",
+        "scope": "所有影响游戏的可读卡面字段；背景描述不转写。完整核验只对锁定的这张原图版本成立，不声称任何别版等价。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "076/135",
+        "seriesSymbolObserved": "wineGlass",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA及印刷编号锁定观察版本；不把文件ID或locator序号当印刷编号，不声称是最新印次。"
+      },
+      "fields": {
+        "name": "悟道僧人",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "白",
+        "basicType": "角色",
+        "subtypes": [
+          "人类",
+          "僧侣"
+        ],
+        "printedCollectorCode": "076/135",
+        "seriesSymbol": "wineGlass",
+        "printedCost": 3,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "白",
+            "count": 1
+          }
+        ],
+        "domains": [
+          {
+            "id": "holy",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 2,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "声望"
+        ],
+        "printedRuleTextLines": [
+          "声望（当一个地区的所有对抗结束后，在该地区上若你比对手操控更多未横置的声望角色，则你可以在该地区额外放置一个本方势力标志。）",
+          "【现身触发】抓一张牌。"
+        ]
+      },
+      "abilities": [
+        {
+          "id": "renown",
+          "kind": "optionalRegionConfrontationsEndedTrigger",
+          "printedText": "声望（当一个地区的所有对抗结束后，在该地区上若你比对手操控更多未横置的声望角色，则你可以在该地区额外放置一个本方势力标志。）",
+          "effect": "oneExtraInfluenceIfMoreUnexhaustedRenownCharacters",
+          "stackable": false
+        },
+        {
+          "id": "drawOnReveal",
+          "kind": "optionalRevealTrigger",
+          "printedText": "抓一张牌。",
+          "effect": {
+            "kind": "draw",
+            "count": 1
+          },
+          "triggersOnNormalFaceUpPlay": false
+        }
+      ],
+      "confirmedMechanismIds": [
+        "renown",
+        "deckChoice",
+        "temporaryIcons",
+        "hidden",
+        "loyalty"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "bq-keywords-2"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "JC076-01",
+          "scenario": "从手牌正面打出",
+          "expected": "不触发现身抓牌；原文不是进场触发。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC076-02",
+          "scenario": "暗藏者成功付费现身",
+          "expected": "可触发抓1，正面防御1且临时调查2。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC076-03",
+          "scenario": "现身能力加入堆叠后来源离场",
+          "expected": "来源离场本身不终止独立能力；按一般来源规则结算。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC076-04",
+          "scenario": "另一声望角色在同区",
+          "expected": "合并比较人数，声望最多额外1势力，不对每张重复计奖。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "JC077": {
+      "cardId": "JC077",
+      "batchId": "B01",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/JC077 庇佑圣灵.jpg",
+        "imageSha256": "c35355fdbf537b2562efb826ef4cb061f5d3c026dc928a43389c433da8fe2dbc",
+        "evidenceId": "card-JC077",
+        "scope": "所有影响游戏的可读卡面字段；背景描述不转写。完整核验只对锁定的这张原图版本成立，不声称任何别版等价。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "077/135",
+        "seriesSymbolObserved": "wineGlass",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA及印刷编号锁定观察版本；不把文件ID或locator序号当印刷编号，不声称是最新印次。"
+      },
+      "fields": {
+        "name": "庇佑圣灵",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "白",
+        "basicType": "角色",
+        "subtypes": [
+          "幽灵"
+        ],
+        "printedCollectorCode": "077/135",
+        "seriesSymbol": "wineGlass",
+        "printedCost": 3,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "白",
+            "count": 1
+          }
+        ],
+        "domains": [
+          {
+            "id": "holy",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "灵体"
+        ],
+        "printedRuleTextLines": [
+          "灵体",
+          "【触发】每当一个位于相同地区，且非灵体的本方角色将受到伤害时，该伤害改为对庇佑圣灵造成。"
+        ]
+      },
+      "abilities": [
+        {
+          "id": "spirit",
+          "kind": "staticDamagePreventionKeyword",
+          "printedText": "灵体",
+          "condition": "opponentHasFewerMagicDomainIconsInSourceRegion",
+          "effect": "preventAllDamageToThisSpirit"
+        },
+        {
+          "id": "redirect",
+          "kind": "optionalBeforeDamageTrigger",
+          "printedText": "每当一个位于相同地区，且非灵体的本方角色将受到伤害时，该伤害改为对庇佑圣灵造成。",
+          "eventSubject": {
+            "sameRegionAsSource": true,
+            "controller": "sourceController",
+            "spirit": false
+          },
+          "redirectTo": "thisSourceInstance",
+          "notTargeted": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "spirit",
+        "damagePrevention",
+        "priority",
+        "loyalty"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-pairing",
+        "manual-draw-identity",
+        "bq-keywords-2"
+      ],
+      "implementationDesignStatus": "needsRuling",
+      "openQuestionIds": [
+        "damageRedirectionTiming"
+      ],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "JC077-01",
+          "scenario": "同地区非灵体本方角色将受2伤害且接受该触发",
+          "expected": "伤害改至此来源实例，不分摊为多笔新伤害。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC077-02",
+          "scenario": "受伤角色在其他地区、是敌方或已有灵体",
+          "expected": "不满足此触发条件。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC077-03",
+          "scenario": "我方领域图标总数大于敌方",
+          "expected": "灵体防止其将受到的所有伤害；相等时不防止。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC077-04",
+          "scenario": "伤害防止与可响应的改伤触发同时发生",
+          "expected": "在实现前确定事件/防止/改伤的优先顺序，不能假造已通过。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "LC23": {
+      "cardId": "LC23",
+      "batchId": "B01",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/LC23 安格鲁，“荆棘”.jpg",
+        "imageSha256": "977959c6deb74b125b18a8b40758deab354396fdffd49b0d9bcc57197144f1c8",
+        "evidenceId": "card-LC23",
+        "scope": "所有影响游戏的可读卡面字段；背景描述不转写。完整核验只对锁定的这张原图版本成立，不声称任何别版等价。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "23/30",
+        "seriesSymbolObserved": "citySkyline",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA及印刷编号锁定观察版本；不把文件ID或locator序号当印刷编号，不声称是最新印次。"
+      },
+      "fields": {
+        "name": "安格鲁，“荆棘”",
+        "subtitle": "独行德鲁伊",
+        "nameInk": "gold",
+        "colorKey": "中立",
+        "basicType": "角色",
+        "subtypes": [
+          "人类",
+          "德鲁伊"
+        ],
+        "printedCollectorCode": "23/30",
+        "seriesSymbol": "citySkyline",
+        "printedCost": 3,
+        "loyalty": [],
+        "domains": [
+          {
+            "id": "blood",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 1
+        },
+        "temporaryIcons": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "【现身触发】横置安格鲁，“荆棘”和本地区的目标角色。"
+        ]
+      },
+      "abilities": [
+        {
+          "id": "exhaustOnReveal",
+          "kind": "optionalRevealTrigger",
+          "printedText": "横置安格鲁，“荆棘”和本地区的目标角色。",
+          "costs": {},
+          "target": {
+            "count": 1,
+            "category": "faceUpCharacter",
+            "sourceRegionRequired": true
+          },
+          "effects": [
+            "exhaustThisSourceInstance",
+            "exhaustTarget"
+          ],
+          "sourceExhaustIsEffectNotCost": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "exhaust",
+        "priority",
+        "hidden",
+        "temporaryIcons",
+        "uniqueInPlay"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-pairing",
+        "manual-unique",
+        "manual-draw-identity",
+        "bq-targets"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "LC23-01",
+          "scenario": "从手牌正面打出",
+          "expected": "不会产生现身触发。",
+          "status": "notRun"
+        },
+        {
+          "id": "LC23-02",
+          "scenario": "未横置暗藏者现身并选择合法同区角色",
+          "expected": "来源和目标的横置都属于效果，不是启动费用。",
+          "status": "notRun"
+        },
+        {
+          "id": "LC23-03",
+          "scenario": "现身前暗藏者已横置",
+          "expected": "现身保持横置；不能因来源已横置就拒绝无横置费用的触发。",
+          "status": "notRun"
+        },
+        {
+          "id": "LC23-04",
+          "scenario": "控制另一个同名独有正面角色后第二个进场",
+          "expected": "选择牺牲同名独有中的一张；不要把所有金色名称角色混成一个领袖组。",
+          "status": "notRun"
+        },
+        {
+          "id": "LC23-05",
+          "scenario": "目标响应后离场或到另一地区",
+          "expected": "根据结算复核使整个指定效果失效，不仅保留来源的半段横置。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "MSJC01": {
+      "cardId": "MSJC01",
+      "batchId": "B01",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/MSJC01 帷幕守望.jpg",
+        "imageSha256": "c61c887558cb184a532758eac5db766234c32a3a3605162a38c0899993e7bdf2",
+        "evidenceId": "card-MSJC01",
+        "scope": "所有影响游戏的可读卡面字段；背景描述不转写。完整核验只对锁定的这张原图版本成立，不声称任何别版等价。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "Society 01/17",
+        "seriesSymbolObserved": "wineGlass",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA及印刷编号锁定观察版本；不把文件ID或locator序号当印刷编号，不声称是最新印次。"
+      },
+      "fields": {
+        "name": "帷幕守望",
+        "subtitle": "世界守护者",
+        "nameInk": "gold",
+        "colorKey": "黄",
+        "basicType": "秘社",
+        "subtypes": [
+          "法师结社"
+        ],
+        "printedCollectorCode": "Society 01/17",
+        "seriesSymbol": "wineGlass",
+        "printedCost": null,
+        "loyalty": [],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": 6,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "【持续】构筑时你的牌组中需包含25张或更多【黄】派系的牌。",
+          "【行动】3，【横置】：若你具有【先手标志】，则抓一张牌。",
+          "【行动】4，【横置】：从你的牌库中寻找一张【黄】独有牌，展示该牌后置于你的手中，然后将你的牌库洗牌。该能力每局游戏只能发动一次。"
+        ]
+      },
+      "abilities": [
+        {
+          "id": "construction",
+          "kind": "constructionStatic",
+          "printedText": "【持续】构筑时你的牌组中需包含25张或更多【黄】派系的牌。",
+          "restriction": {
+            "minimumCardsOfColor": "黄",
+            "count": 25,
+            "countsExtraSocietyCard": false
+          }
+        },
+        {
+          "id": "drawWithInitiative",
+          "kind": "standardAction",
+          "printedText": "【行动】3，【横置】：若你具有【先手标志】，则抓一张牌。",
+          "costs": {
+            "currency": 3,
+            "exhaustSource": true
+          },
+          "condition": "controllerHasInitiative",
+          "effect": {
+            "kind": "draw",
+            "count": 1
+          }
+        },
+        {
+          "id": "onceSearch",
+          "kind": "standardAction",
+          "printedText": "【行动】4，【横置】：从你的牌库中寻找一张【黄】独有牌，展示该牌后置于你的手中，然后将你的牌库洗牌。该能力每局游戏只能发动一次。",
+          "costs": {
+            "currency": 4,
+            "exhaustSource": true
+          },
+          "search": {
+            "owner": "controller",
+            "color": "黄",
+            "goldNameUnique": true,
+            "count": 1
+          },
+          "order": [
+            "search",
+            "reveal",
+            "toHand",
+            "shuffle"
+          ],
+          "countsAsDraw": false,
+          "limit": {
+            "perGameActivations": 1,
+            "consumedOnActivation": true
+          }
+        }
+      ],
+      "confirmedMechanismIds": [
+        "society",
+        "priority",
+        "deckChoice"
+      ],
+      "rulesEvidenceIds": [
+        "guide-societies",
+        "manual-trigger-reset",
+        "manual-unique",
+        "manual-draw-identity",
+        "bq-card-anatomy"
+      ],
+      "implementationDesignStatus": "needsRuling",
+      "openQuestionIds": [
+        "conditionalActivation"
+      ],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "MSJC01-01",
+          "scenario": "建立使用此秘社的合法牌组",
+          "expected": "秘社额外设置、不可离场、不计50张，起始手牌为6。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC01-02",
+          "scenario": "发动第一行动，具备先手和3费用",
+          "expected": "支付3且横置秘社，结算条件满足则抓1。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC01-03",
+          "scenario": "同一回合再次支付4试图发动第二行动",
+          "expected": "已横置来源不能再次支付横置费用。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC01-04",
+          "scenario": "下回合重置步骤",
+          "expected": "在场已横置秘社重置，不能只重置角色/附属/资产。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC01-05",
+          "scenario": "第一次检索能力发动后被终止，再次尝试",
+          "expected": "检索每局发动次数已用，不因效果未成功而返还。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "MSJC08": {
+      "cardId": "MSJC08",
+      "batchId": "B01",
+      "sourceVerification": {
+        "status": "blocked",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/MSJC08 梦境行者.jpg",
+        "imageSha256": "28c3f965daa40a83d081b03b6f0b72a0ac4006ebf465575ede3b221f633e72a1",
+        "evidenceId": "card-MSJC08",
+        "scope": "所有影响游戏的可读卡面字段；背景描述不转写。完整核验只对锁定的这张原图版本成立，不声称任何别版等价。",
+        "blockingFields": [
+          "subtitle"
+        ]
+      },
+      "edition": {
+        "printedCollectorCode": "Society 08/17",
+        "seriesSymbolObserved": "wineGlass",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA及印刷编号锁定观察版本；不把文件ID或locator序号当印刷编号，不声称是最新印次。"
+      },
+      "fields": {
+        "name": "梦境行者",
+        "subtitle": null,
+        "nameInk": "gold",
+        "colorKey": "紫",
+        "basicType": "秘社",
+        "subtypes": [
+          "群体",
+          "梦境"
+        ],
+        "printedCollectorCode": "Society 08/17",
+        "seriesSymbol": "wineGlass",
+        "printedCost": null,
+        "loyalty": [],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": 6,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "【持续】构筑时你的牌组中需包含25张或更多【紫】派系的牌。",
+          "【行动】3，【横置】：若你具有【先手标志】，则抓一张牌。",
+          "【行动】4，【横置】：从你的牌库中寻找一张【紫】独有牌，展示该牌后置于你的手中，然后将你的牌库洗牌。该能力每局游戏只能发动一次。"
+        ]
+      },
+      "abilities": [
+        {
+          "id": "construction",
+          "kind": "constructionStatic",
+          "printedText": "【持续】构筑时你的牌组中需包含25张或更多【紫】派系的牌。",
+          "restriction": {
+            "minimumCardsOfColor": "紫",
+            "count": 25,
+            "countsExtraSocietyCard": false
+          }
+        },
+        {
+          "id": "drawWithInitiative",
+          "kind": "standardAction",
+          "printedText": "【行动】3，【横置】：若你具有【先手标志】，则抓一张牌。",
+          "costs": {
+            "currency": 3,
+            "exhaustSource": true
+          },
+          "condition": "controllerHasInitiative",
+          "effect": {
+            "kind": "draw",
+            "count": 1
+          }
+        },
+        {
+          "id": "onceSearch",
+          "kind": "standardAction",
+          "printedText": "【行动】4，【横置】：从你的牌库中寻找一张【紫】独有牌，展示该牌后置于你的手中，然后将你的牌库洗牌。该能力每局游戏只能发动一次。",
+          "costs": {
+            "currency": 4,
+            "exhaustSource": true
+          },
+          "search": {
+            "owner": "controller",
+            "color": "紫",
+            "goldNameUnique": true,
+            "count": 1
+          },
+          "order": [
+            "search",
+            "reveal",
+            "toHand",
+            "shuffle"
+          ],
+          "countsAsDraw": false,
+          "limit": {
+            "perGameActivations": 1,
+            "consumedOnActivation": true
+          }
+        }
+      ],
+      "confirmedMechanismIds": [
+        "society",
+        "priority",
+        "deckChoice"
+      ],
+      "rulesEvidenceIds": [
+        "guide-societies",
+        "manual-trigger-reset",
+        "manual-unique",
+        "manual-draw-identity",
+        "bq-card-anatomy"
+      ],
+      "implementationDesignStatus": "needsRuling",
+      "openQuestionIds": [
+        "conditionalActivation"
+      ],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "MSJC08-01",
+          "scenario": "建立使用此秘社的合法牌组",
+          "expected": "秘社额外设置、不可离场、不计50张，起始手牌为6。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC08-02",
+          "scenario": "发动第一行动，具备先手和3费用",
+          "expected": "支付3且横置秘社，结算条件满足则抓1。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC08-03",
+          "scenario": "同一回合再次支付4试图发动第二行动",
+          "expected": "已横置来源不能再次支付横置费用。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC08-04",
+          "scenario": "下回合重置步骤",
+          "expected": "在场已横置秘社重置，不能只重置角色/附属/资产。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC08-05",
+          "scenario": "第一次检索能力发动后被终止，再次尝试",
+          "expected": "检索每局发动次数已用，不因效果未成功而返还。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "MSJC09": {
+      "cardId": "MSJC09",
+      "batchId": "B01",
+      "sourceVerification": {
+        "status": "blocked",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/MSJC09 秘社.jpg",
+        "imageSha256": "41e478a3f38ead83477498fd88131831a5fd843be364c1c0daa3ba10153c2302",
+        "evidenceId": "card-MSJC09",
+        "scope": "所有影响游戏的可读卡面字段；背景描述不转写。完整核验只对锁定的这张原图版本成立，不声称任何别版等价。小号副名称字形未清，不猜。",
+        "blockingFields": [
+          "subtitle"
+        ]
+      },
+      "edition": {
+        "printedCollectorCode": "Society 09/17",
+        "seriesSymbolObserved": "wineGlass",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA及印刷编号锁定观察版本；不把文件ID或locator序号当印刷编号，不声称是最新印次。"
+      },
+      "fields": {
+        "name": "秘社",
+        "subtitle": null,
+        "nameInk": "gold",
+        "colorKey": "中立",
+        "basicType": "秘社",
+        "subtypes": [],
+        "printedCollectorCode": "Society 09/17",
+        "seriesSymbol": "wineGlass",
+        "printedCost": null,
+        "loyalty": [],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": 6,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "【行动】3，【横置】：若你具有【先手标志】，则抓一张牌。"
+        ]
+      },
+      "abilities": [
+        {
+          "id": "drawWithInitiative",
+          "kind": "standardAction",
+          "printedText": "【行动】3，【横置】：若你具有【先手标志】，则抓一张牌。",
+          "costs": {
+            "currency": 3,
+            "exhaustSource": true
+          },
+          "condition": "controllerHasInitiative",
+          "effect": {
+            "kind": "draw",
+            "count": 1
+          }
+        }
+      ],
+      "confirmedMechanismIds": [
+        "society",
+        "priority",
+        "deckChoice"
+      ],
+      "rulesEvidenceIds": [
+        "guide-societies",
+        "manual-trigger-reset",
+        "manual-unique",
+        "manual-draw-identity",
+        "bq-card-anatomy"
+      ],
+      "implementationDesignStatus": "needsRuling",
+      "openQuestionIds": [
+        "conditionalActivation"
+      ],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "MSJC09-01",
+          "scenario": "建立使用此秘社的合法牌组",
+          "expected": "秘社额外设置、不可离场、不计50张，起始手牌为6。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC09-02",
+          "scenario": "发动第一行动，具备先手和3费用",
+          "expected": "支付3且横置秘社，结算条件满足则抓1。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC09-03",
+          "scenario": "同一回合再次发动第一行动",
+          "expected": "已横置来源不能再次支付横置费用。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC09-04",
+          "scenario": "下回合重置步骤",
+          "expected": "在场已横置秘社重置，不能只重置角色/附属/资产。",
+          "status": "notRun"
+        },
+        {
+          "id": "MSJC09-05",
+          "scenario": "牌库获得手牌的事件分类",
+          "expected": "第一能力的抓1确实是抓牌。",
+          "status": "notRun"
+        }
+      ]
+    }
+  },
+  "acceptanceCaseScope": "除明确写四人流程的香港案例外，本批确定性场景以1V1为准；不声称白色声望/灵体在2V2中的全部解释已核清。"
+}
