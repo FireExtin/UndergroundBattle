@@ -151,7 +151,7 @@
 
 同名集合只提示复核，不自动去重：鲜血 BQ040 / XQ14；洛杉矶 DQBQ01 / DQWM005；钟摆祭司 JC045 / TK009；阿瓦隆隐士 JC071 / LC12。正式版、扩展版、生成指示物或别的印次须逐张判定。
 
-测试标签中的六条原图有 TEST 代码：TEST027、TEST033、TEST034、TEST042、TEST043、TEST052。另三条 BQ010、BQ105、TEST015 原图没有相应 TEST 标记或编号与 locator 冲突，标为 uncertain。不能只按定位标签判为“确定测试牌”，也不能当正式牌直接开放。
+五条记录经原图确认具有TEST标记：TEST027、TEST033、TEST034、TEST042、TEST052。TEST015、TEST043以testArchivePinnedImageVariant保留定位测试标签与固定原图观察版本，不据此断言正式产品身份；BQ105以pinnedImageVariant保存实印097/116，BQ010身份仍uncertain且实印005/116。不能只按定位标签判定产品身份，也不能把来源完整自动当作正式牌开放。
 
 截至B16R，仅TK011仍缺同ID原图。此前隔离的DQBQ01–10、TK004、TK010已从原资料仓库固定提交恢复PNG，直接查看后绑定独立来源；原resource镜像未修改。BQ029原存档JPG被截断，恢复完整副本并保留两份SHA。
 
