@@ -1083,6 +1083,93 @@
       "blockedCardIds": [],
       "gameImplementationAccepted": false,
       "independentUiPlaytestStatus": "notRun"
+    },
+    {
+      "id": "B18",
+      "groups": [
+        "霸权白黑紫中立最后36张",
+        "圣甲虫产业与墓地替代区域",
+        "封印回场与属性图标"
+      ],
+      "cardIds": [
+        "BQ076",
+        "BQ077",
+        "BQ078",
+        "BQ079",
+        "BQ080",
+        "BQ081",
+        "BQ082",
+        "BQ083",
+        "BQ084",
+        "BQ085",
+        "BQ086",
+        "BQ087",
+        "BQ088",
+        "BQ089",
+        "BQ090",
+        "BQ091",
+        "BQ092",
+        "BQ093",
+        "BQ094",
+        "BQ095",
+        "BQ096",
+        "BQ097",
+        "BQ098",
+        "BQ099",
+        "BQ100",
+        "BQ101",
+        "BQ102",
+        "BQ103",
+        "BQ104",
+        "BQ105",
+        "BQ106",
+        "BQ107",
+        "BQ108",
+        "BQ109",
+        "BQ110",
+        "BQ111"
+      ],
+      "completedCardIds": [
+        "BQ076",
+        "BQ077",
+        "BQ078",
+        "BQ079",
+        "BQ080",
+        "BQ081",
+        "BQ082",
+        "BQ083",
+        "BQ084",
+        "BQ085",
+        "BQ086",
+        "BQ087",
+        "BQ088",
+        "BQ089",
+        "BQ090",
+        "BQ091",
+        "BQ092",
+        "BQ093",
+        "BQ094",
+        "BQ095",
+        "BQ096",
+        "BQ097",
+        "BQ098",
+        "BQ099",
+        "BQ100",
+        "BQ101",
+        "BQ102",
+        "BQ103",
+        "BQ104",
+        "BQ105",
+        "BQ106",
+        "BQ107",
+        "BQ108",
+        "BQ109",
+        "BQ110",
+        "BQ111"
+      ],
+      "blockedCardIds": [],
+      "gameImplementationAccepted": false,
+      "independentUiPlaytestStatus": "notRun"
     }
   ],
   "openQuestions": {
@@ -1271,7 +1358,8 @@
         "bq-core",
         "card-BQ060",
         "card-BQ065",
-        "card-BQ067"
+        "card-BQ067",
+        "card-BQ107"
       ]
     },
     "tentacleDefinitionMissing": {
@@ -1484,7 +1572,8 @@
         "card-LC04",
         "card-LC18",
         "manual-domains",
-        "card-MSLC01"
+        "card-MSLC01",
+        "card-BQ096"
       ]
     },
     "BQ061RecoveryQuantity": {
@@ -10497,6 +10586,4194 @@
       "acceptanceCases": [
         {
           "id": "BQ075-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "BQ076": {
+      "cardId": "BQ076",
+      "batchId": "B18",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/BQ076 心脑系统重塑实验室.jpg",
+        "imageSha256": "cc38491a100d2aa6e478afb617ee2aacbc3e766c74189f1651fa61379a0e400b",
+        "evidenceId": "card-BQ076",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "064/116",
+        "seriesSymbolObserved": "霸权三角环符号",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "心脑系统重塑实验室",
+        "subtitle": "圣甲虫产业",
+        "nameInk": "white",
+        "colorKey": "白",
+        "basicType": "附属",
+        "subtypes": [
+          "设施",
+          "研究"
+        ],
+        "printedCollectorCode": "064/116",
+        "seriesSymbol": "霸权三角环符号",
+        "printedCost": 2,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "白",
+            "count": 1
+          }
+        ],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "结附于目标地区",
+          "触发 当一个副名为圣甲虫产业的本方附属进场时，将本方墓地中的目标角色牌封印在心脑系统重塑实验室上。",
+          "触发 当你将抓牌时，你可以略过本次抓牌，改为将一张封印在本附属上的牌置于手中。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "结附于目标地区",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "触发 当一个副名为圣甲虫产业的本方附属进场时，将本方墓地中的目标角色牌封印在心脑系统重塑实验室上。",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-3",
+          "kind": "sourceTextOnly",
+          "printedText": "触发 当你将抓牌时，你可以略过本次抓牌，改为将一张封印在本附属上的牌置于手中。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "attachment",
+        "seal",
+        "graveRecovery",
+        "deckChoice"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "BQ076-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "BQ077": {
+      "cardId": "BQ077",
+      "batchId": "B18",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/BQ077 近海食人鱼.jpg",
+        "imageSha256": "e1a86f244d35599454a5eae84013cbdadec4535157a4b94ad7c8b588e9851043",
+        "evidenceId": "card-BQ077",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "075/116",
+        "seriesSymbolObserved": "霸权三角环符号",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "近海食人鱼",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "黑",
+        "basicType": "角色",
+        "subtypes": [
+          "鱼"
+        ],
+        "printedCollectorCode": "075/116",
+        "seriesSymbol": "霸权三角环符号",
+        "printedCost": 1,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "黑",
+            "count": 1
+          }
+        ],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "不能被装备结附"
+        ],
+        "printedRuleTextLines": [
+          "不能被装备结附",
+          "持续 若位于水域地区，近海食人鱼获得永久战斗1。",
+          "墓地触发 当近海食人鱼从牌库进入本方墓地时，你可以将其放置进场并置于目标水域地区。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "不能被装备结附",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "持续 若位于水域地区，近海食人鱼获得永久战斗1。",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-3",
+          "kind": "sourceTextOnly",
+          "printedText": "墓地触发 当近海食人鱼从牌库进入本方墓地时，你可以将其放置进场并置于目标水域地区。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "attachment",
+        "continuous",
+        "graveRecovery"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "BQ077-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "BQ078": {
+      "cardId": "BQ078",
+      "batchId": "B18",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/BQ078 专业清理员.jpg",
+        "imageSha256": "d1f6b348c636dd7eb82e367b5cd8abcda4d93bb3fe1ecc7bf95bac3ed36446ea",
+        "evidenceId": "card-BQ078",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "36/50",
+        "seriesSymbolObserved": "霸权三角环符号",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "专业清理员",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "黑",
+        "basicType": "角色",
+        "subtypes": [
+          "人类",
+          "雇员"
+        ],
+        "printedCollectorCode": "36/50",
+        "seriesSymbol": "霸权三角环符号",
+        "printedCost": 2,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "黑",
+            "count": 1
+          }
+        ],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "公开"
+        ],
+        "printedRuleTextLines": [
+          "公开",
+          "进场触发 将目标玩家牌库顶的四张牌置于该玩家的墓地。",
+          "死亡触发 将你墓地中的一张名为无名尸体的牌置于你的手中。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "公开",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "进场触发 将目标玩家牌库顶的四张牌置于该玩家的墓地。",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-3",
+          "kind": "sourceTextOnly",
+          "printedText": "死亡触发 将你墓地中的一张名为无名尸体的牌置于你的手中。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "public",
+        "deckChoice",
+        "graveRecovery",
+        "temporaryIcons"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "BQ078-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "BQ079": {
+      "cardId": "BQ079",
+      "batchId": "B18",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/BQ079 亡嚎食尸鬼.jpg",
+        "imageSha256": "fcde5f7ff03c98b8dd35c4ba5a0bf65a626fe502d60935a7a7c649434694cb48",
+        "evidenceId": "card-BQ079",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "074/116",
+        "seriesSymbolObserved": "霸权三角环符号",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "亡嚎食尸鬼",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "黑",
+        "basicType": "角色",
+        "subtypes": [
+          "不死生物",
+          "食尸鬼"
+        ],
+        "printedCollectorCode": "074/116",
+        "seriesSymbol": "霸权三角环符号",
+        "printedCost": 2,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "黑",
+            "count": 1
+          }
+        ],
+        "domains": [
+          {
+            "id": "death",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 1
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "准备步骤强制触发 将你墓地中的一张牌置于你的牌库底，否则牺牲亡嚎食尸鬼。",
+          "触发 每当一张名为无名尸体的牌进入你的墓地时，在亡嚎食尸鬼上放置一个永久战斗1和防御+1能力图标标志。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "准备步骤强制触发 将你墓地中的一张牌置于你的牌库底，否则牺牲亡嚎食尸鬼。",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "触发 每当一张名为无名尸体的牌进入你的墓地时，在亡嚎食尸鬼上放置一个永久战斗1和防御+1能力图标标志。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "graveRecovery",
+        "sacrifice",
+        "continuous",
+        "healWounds"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "BQ079-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "BQ080": {
+      "cardId": "BQ080",
+      "batchId": "B18",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/BQ080 回收专员.jpg",
+        "imageSha256": "5181897442261a2db4040ddfaae40fd8d7ff8c0673f30c43768608d16d921faa",
+        "evidenceId": "card-BQ080",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "36/50",
+        "seriesSymbolObserved": "霸权三角环符号",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "回收专员",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "黑",
+        "basicType": "角色",
+        "subtypes": [
+          "人类",
+          "雇员",
+          "学者"
+        ],
+        "printedCollectorCode": "36/50",
+        "seriesSymbol": "霸权三角环符号",
+        "printedCost": 3,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "黑",
+            "count": 1
+          }
+        ],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporaryIcons": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "公开",
+          "撤回"
+        ],
+        "printedRuleTextLines": [
+          "公开；撤回",
+          "进场触发 将你墓地中的目标角色牌置于你的手中。",
+          "触发 当一个副名为圣甲虫产业的本方附属进场时，令回收专员潜伏。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "公开；撤回",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "进场触发 将你墓地中的目标角色牌置于你的手中。",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-3",
+          "kind": "sourceTextOnly",
+          "printedText": "触发 当一个副名为圣甲虫产业的本方附属进场时，令回收专员潜伏。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "public",
+        "combatTraits",
+        "graveRecovery",
+        "hidden",
+        "temporaryIcons"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "BQ080-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "BQ081": {
+      "cardId": "BQ081",
+      "batchId": "B18",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/BQ081 凋零食腐怪.jpg",
+        "imageSha256": "b756871bdbc90a17a24c219ec3380f09e999ab7b64042335bb9f679cea7dac4f",
+        "evidenceId": "card-BQ081",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "074/116",
+        "seriesSymbolObserved": "霸权三角环符号",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "凋零食腐怪",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "黑",
+        "basicType": "角色",
+        "subtypes": [
+          "不死生物",
+          "食尸鬼",
+          "植物"
+        ],
+        "printedCollectorCode": "074/116",
+        "seriesSymbol": "霸权三角环符号",
+        "printedCost": 3,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "黑",
+            "count": 1
+          }
+        ],
+        "domains": [
+          {
+            "id": "death",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 1
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "隐秘+1：在本次隐秘对抗后，将你牌库顶的三张牌置于本方墓地。",
+          "进场触发 将你墓地中的一张角色牌置于你的牌库底，若你如此做，消灭目标附属。"
+        ],
+        "additionalPrintedSymbols": [
+          {
+            "id": "hidden-contest-bonus",
+            "status": "confirmed",
+            "printedText": "隐秘 +1",
+            "interpretation": "隐秘地区势力栏，独立于能力图标。"
+          }
+        ]
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "隐秘+1：在本次隐秘对抗后，将你牌库顶的三张牌置于本方墓地。",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "进场触发 将你墓地中的一张角色牌置于你的牌库底，若你如此做，消灭目标附属。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "deckChoice",
+        "graveRecovery",
+        "attachment",
+        "temporaryIcons"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "BQ081-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "BQ082": {
+      "cardId": "BQ082",
+      "batchId": "B18",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/BQ082 毒药专家塞巴斯蒂安.jpg",
+        "imageSha256": "ef15bde65ff5020d6bb568357d52127faf9c29238aa241cacc70e92baf0ae750",
+        "evidenceId": "card-BQ082",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "36/50",
+        "seriesSymbolObserved": "霸权三角环符号",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "毒药专家塞巴斯蒂安",
+        "subtitle": "首席药剂师",
+        "nameInk": "gold",
+        "colorKey": "黑",
+        "basicType": "角色",
+        "subtypes": [
+          "人类",
+          "罪犯",
+          "学者"
+        ],
+        "printedCollectorCode": "36/50",
+        "seriesSymbol": "霸权三角环符号",
+        "printedCost": 4,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "黑",
+            "count": 2
+          }
+        ],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporaryIcons": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "公开",
+          "进场触发 进行一次隐秘对抗。本次隐秘对抗中你所展示的牌获得+2。若你赢得本次隐秘对抗，将你墓地中的目标角色牌横置放置进场，并置于本地区。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "公开",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "进场触发 进行一次隐秘对抗。本次隐秘对抗中你所展示的牌获得+2。若你赢得本次隐秘对抗，将你墓地中的目标角色牌横置放置进场，并置于本地区。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "public",
+        "mysticContest",
+        "graveRecovery",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "BQ082-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "BQ083": {
+      "cardId": "BQ083",
+      "batchId": "B18",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/BQ083 索命骷髅.jpg",
+        "imageSha256": "619db97c8309d903e3781448c6ad35db91bb5f2e4b5660b6e0eef65fcbd6e675",
+        "evidenceId": "card-BQ083",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "06/07",
+        "seriesSymbolObserved": "霸权三角环符号",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "索命骷髅",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "黑",
+        "basicType": "角色",
+        "subtypes": [
+          "不死生物",
+          "骷髅",
+          "诅咒"
+        ],
+        "printedCollectorCode": "06/07",
+        "seriesSymbol": "霸权三角环符号",
+        "printedCost": 4,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "黑",
+            "count": 3
+          }
+        ],
+        "domains": [
+          {
+            "id": "death",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 1
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "进场触发 消灭本地区的目标角色。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "进场触发 消灭本地区的目标角色。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "priority"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "BQ083-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "BQ084": {
+      "cardId": "BQ084",
+      "batchId": "B18",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/BQ084 战栗凶灵.jpg",
+        "imageSha256": "c6e661db496bbde8718a5af312ec64704f597d41bce424f9a0034132a16080af",
+        "evidenceId": "card-BQ084",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "25/48",
+        "seriesSymbolObserved": "霸权三角环符号",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "战栗凶灵",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "黑",
+        "basicType": "角色",
+        "subtypes": [
+          "梦境",
+          "幽灵"
+        ],
+        "printedCollectorCode": "25/48",
+        "seriesSymbol": "霸权三角环符号",
+        "printedCost": 5,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "黑",
+            "count": 1
+          }
+        ],
+        "domains": [
+          {
+            "id": "stars",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "非资产",
+          "灵体"
+        ],
+        "printedRuleTextLines": [
+          "非资产；灵体",
+          "进场触发 你可以将一张封印在本方秘社上且名为精神锚点的牌洗入其拥有者的牌库，若你如此做，将你墓地中的目标角色牌放置进场并置于本地区。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "非资产；灵体",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "进场触发 你可以将一张封印在本方秘社上且名为精神锚点的牌洗入其拥有者的牌库，若你如此做，将你墓地中的目标角色牌放置进场并置于本地区。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "nonAsset",
+        "spirit",
+        "seal",
+        "graveRecovery",
+        "temporaryIcons"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "BQ084-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "BQ085": {
+      "cardId": "BQ085",
+      "batchId": "B18",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/BQ085 三号骸堆.jpg",
+        "imageSha256": "30fdec32ce8e636596509253fe4fa666c08672e4e2cdbf5932115a6454502816",
+        "evidenceId": "card-BQ085",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "074/116",
+        "seriesSymbolObserved": "霸权三角环符号",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "三号骸堆",
+        "subtitle": "食尸鬼之王",
+        "nameInk": "gold",
+        "colorKey": "黑",
+        "basicType": "角色",
+        "subtypes": [
+          "不死生物",
+          "食尸鬼"
+        ],
+        "printedCollectorCode": "074/116",
+        "seriesSymbol": "霸权三角环符号",
+        "printedCost": 5,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "黑",
+            "count": 2
+          }
+        ],
+        "domains": [
+          {
+            "id": "death",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 2,
+          "influence": 2
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "defense": 3,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "准备步骤强制触发 将你墓地中的两张牌置于你的牌库底，否则牺牲三号骸堆。",
+          "触发 当一个本方非食尸鬼角色死亡时，你可以从本方墓地中将目标食尸鬼角色牌横置放置进场并置于本地区。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "准备步骤强制触发 将你墓地中的两张牌置于你的牌库底，否则牺牲三号骸堆。",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "触发 当一个本方非食尸鬼角色死亡时，你可以从本方墓地中将目标食尸鬼角色牌横置放置进场并置于本地区。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "graveRecovery",
+        "sacrifice",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "BQ085-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "BQ086": {
+      "cardId": "BQ086",
+      "batchId": "B18",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/BQ086 雅加达的萨迪金.jpg",
+        "imageSha256": "0a1ba46138c000ee4025aadf1b365048d1536fbb7f3feb0a7c536c9a3d100407",
+        "evidenceId": "card-BQ086",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "083/116",
+        "seriesSymbolObserved": "霸权三角环符号",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "雅加达的萨迪金",
+        "subtitle": "黄衣死神",
+        "nameInk": "gold",
+        "colorKey": "黑",
+        "basicType": "角色",
+        "subtypes": [
+          "人类",
+          "法师",
+          "罪犯"
+        ],
+        "printedCollectorCode": "083/116",
+        "seriesSymbol": "霸权三角环符号",
+        "printedCost": 6,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "黑",
+            "count": 3
+          }
+        ],
+        "domains": [
+          {
+            "id": "death",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 1
+        },
+        "temporaryIcons": {
+          "investigation": 2,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 3,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "创伤1"
+        ],
+        "printedRuleTextLines": [
+          "创伤1",
+          "触发 当一个本方角色死亡时，目标敌方玩家牺牲一个角色或暗藏者。",
+          "进场触发 将你墓地中名为无名尸体的目标牌封印在目标本方研究附属上。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "创伤1",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "触发 当一个本方角色死亡时，目标敌方玩家牺牲一个角色或暗藏者。",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-3",
+          "kind": "sourceTextOnly",
+          "printedText": "进场触发 将你墓地中名为无名尸体的目标牌封印在目标本方研究附属上。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "combatKeywords",
+        "sacrifice",
+        "hidden",
+        "seal",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "BQ086-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "BQ087": {
+      "cardId": "BQ087",
+      "batchId": "B18",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/BQ087 赫雀瑟，黄金之蛇.jpg",
+        "imageSha256": "1ff416b5daa1cce35093529702d28f4319c197a46e9001cd54cde4b9dd73ef76",
+        "evidenceId": "card-BQ087",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "52/76",
+        "seriesSymbolObserved": "霸权三角环符号",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "赫雀瑟，黄金之蛇",
+        "subtitle": "魔特之子",
+        "nameInk": "gold",
+        "colorKey": "黑",
+        "basicType": "角色",
+        "subtypes": [
+          "人类",
+          "法师"
+        ],
+        "printedCollectorCode": "52/76",
+        "seriesSymbol": "霸权三角环符号",
+        "printedCost": 7,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "黑",
+            "count": 3
+          }
+        ],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 1
+        },
+        "temporaryIcons": {
+          "investigation": 3,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 5,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "领袖",
+          "传闻"
+        ],
+        "printedRuleTextLines": [
+          "领袖；传闻",
+          "准备步骤触发 将你墓地中的目标角色牌放置进场并置于随机地区。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "领袖；传闻",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "准备步骤触发 将你墓地中的目标角色牌放置进场并置于随机地区。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "leader",
+        "rumor",
+        "graveRecovery",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "BQ087-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "BQ088": {
+      "cardId": "BQ088",
+      "batchId": "B18",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/BQ088 生化泄露.jpg",
+        "imageSha256": "1a9665d4cc1fbed411f6e4592a056cf2d2b86db904a4677af4c518d029b25fb9",
+        "evidenceId": "card-BQ088",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "081/116",
+        "seriesSymbolObserved": "霸权三角环符号",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "生化泄露",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "黑",
+        "basicType": "事务",
+        "subtypes": [
+          "研究",
+          "灾难"
+        ],
+        "printedCollectorCode": "081/116",
+        "seriesSymbol": "霸权三角环符号",
+        "printedCost": 1,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "黑",
+            "count": 1
+          }
+        ],
+        "domains": [
+          {
+            "id": "death",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "行动 将你的牌库顶牌置于墓地，在目标地区生成一个行尸指示物角色，然后你可以将本方墓地中一张名为无名尸体的牌封印在副名为圣甲虫产业的本方附属上。你的秘社上每有一个隐秘标志，就可以重复一次该过程。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "行动 将你的牌库顶牌置于墓地，在目标地区生成一个行尸指示物角色，然后你可以将本方墓地中一张名为无名尸体的牌封印在副名为圣甲虫产业的本方附属上。你的秘社上每有一个隐秘标志，就可以重复一次该过程。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "deckChoice",
+        "token",
+        "seal",
+        "mysticContest"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "BQ088-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "BQ089": {
+      "cardId": "BQ089",
+      "batchId": "B18",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/BQ089 生化改造手术.jpg",
+        "imageSha256": "8cb7a6a1a1b605847e36d3419811576c36f482f5e762eb79e0ea0429188970e0",
+        "evidenceId": "card-BQ089",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "081/116",
+        "seriesSymbolObserved": "霸权三角环符号",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "生化改造手术",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "黑",
+        "basicType": "事务",
+        "subtypes": [
+          "研究"
+        ],
+        "printedCollectorCode": "081/116",
+        "seriesSymbol": "霸权三角环符号",
+        "printedCost": 2,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "黑",
+            "count": 2
+          }
+        ],
+        "domains": [
+          {
+            "id": "death",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "非资产"
+        ],
+        "printedRuleTextLines": [
+          "非资产",
+          "行动 选择目标地区，将你墓地中印刷费用小于或等于③的目标角色牌放置进场并置于该地区。若本方秘社上有隐秘标志，则改为将你墓地中印刷费用小于或等于⑤的目标角色牌放置进场并置于该地区。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "非资产",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "行动 选择目标地区，将你墓地中印刷费用小于或等于③的目标角色牌放置进场并置于该地区。若本方秘社上有隐秘标志，则改为将你墓地中印刷费用小于或等于⑤的目标角色牌放置进场并置于该地区。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "nonAsset",
+        "graveRecovery",
+        "mysticContest"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "BQ089-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "BQ090": {
+      "cardId": "BQ090",
+      "batchId": "B18",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/BQ090 淘汰弱者.jpg",
+        "imageSha256": "67ffb95243390ea8d1a9533830ef26241ec7625a1df314e203547b3804857c3e",
+        "evidenceId": "card-BQ090",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "081/116",
+        "seriesSymbolObserved": "霸权三角环符号",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "淘汰弱者",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "黑",
+        "basicType": "事务",
+        "subtypes": [
+          "法术",
+          "死亡"
+        ],
+        "printedCollectorCode": "081/116",
+        "seriesSymbol": "霸权三角环符号",
+        "printedCost": 2,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "黑",
+            "count": 1
+          }
+        ],
+        "domains": [
+          {
+            "id": "death",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "非资产"
+        ],
+        "printedRuleTextLines": [
+          "非资产",
+          "快速行动 消灭印刷费用小于或等于③的目标角色。",
+          "神秘学博弈②。（手牌行动②，从你手中弃掉此牌：进行一次隐秘对抗。）"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "非资产",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "快速行动 消灭印刷费用小于或等于③的目标角色。",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-3",
+          "kind": "sourceTextOnly",
+          "printedText": "神秘学博弈②。（手牌行动②，从你手中弃掉此牌：进行一次隐秘对抗。）",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "nonAsset",
+        "priority",
+        "handAbility",
+        "mysticContest"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "BQ090-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "BQ091": {
+      "cardId": "BQ091",
+      "batchId": "B18",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/BQ091 废弃收容所.jpg",
+        "imageSha256": "ea26d41e901c780856d92b819fe1806a14f53229e62b86713b8daa52429275a2",
+        "evidenceId": "card-BQ091",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "28/48",
+        "seriesSymbolObserved": "霸权三角环符号",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "废弃收容所",
+        "subtitle": "圣甲虫产业",
+        "nameInk": "white",
+        "colorKey": "黑",
+        "basicType": "附属",
+        "subtypes": [
+          "设施",
+          "研究"
+        ],
+        "printedCollectorCode": "28/48",
+        "seriesSymbol": "霸权三角环符号",
+        "printedCost": 1,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "黑",
+            "count": 1
+          }
+        ],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "结附于目标地区",
+          "准备步骤触发 将你的牌库顶牌置于墓地。",
+          "持续 若本方墓地中有七张或更多牌，废弃收容所获得永久调查1。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "结附于目标地区",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "准备步骤触发 将你的牌库顶牌置于墓地。",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-3",
+          "kind": "sourceTextOnly",
+          "printedText": "持续 若本方墓地中有七张或更多牌，废弃收容所获得永久调查1。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "attachment",
+        "deckChoice",
+        "continuous"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "BQ091-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "BQ092": {
+      "cardId": "BQ092",
+      "batchId": "B18",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/BQ092 巴哈马群岛基金中心.jpg",
+        "imageSha256": "5b69295d844278f651226f007b2669b7ec2a8cc56e8bc89ab4bfa6e3714036fe",
+        "evidenceId": "card-BQ092",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "56/98",
+        "seriesSymbolObserved": "霸权三角环符号",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "巴哈马群岛基金中心",
+        "subtitle": "圣甲虫产业",
+        "nameInk": "white",
+        "colorKey": "黑",
+        "basicType": "附属",
+        "subtypes": [
+          "设施",
+          "资源"
+        ],
+        "printedCollectorCode": "56/98",
+        "seriesSymbol": "霸权三角环符号",
+        "printedCost": 1,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "黑",
+            "count": 1
+          }
+        ],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "结附于目标地区",
+          "快速行动，横置一个副名为圣甲虫产业的本方附属：你获得①直到本步骤结束。",
+          "神秘学博弈②。（手牌行动②，从你手中弃掉此牌：进行一次隐秘对抗。）"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "结附于目标地区",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "快速行动，横置一个副名为圣甲虫产业的本方附属：你获得①直到本步骤结束。",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-3",
+          "kind": "sourceTextOnly",
+          "printedText": "神秘学博弈②。（手牌行动②，从你手中弃掉此牌：进行一次隐秘对抗。）",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "attachment",
+        "exhaust",
+        "handAbility",
+        "mysticContest",
+        "priority"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "BQ092-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "BQ093": {
+      "cardId": "BQ093",
+      "batchId": "B18",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/BQ093 样本陈列室.jpg",
+        "imageSha256": "d182614e9928ab4cd2f5159b107fb93d2e487762bf202ade0215c06437916f0c",
+        "evidenceId": "card-BQ093",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "56/98",
+        "seriesSymbolObserved": "霸权三角环符号",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "样本陈列室",
+        "subtitle": "圣甲虫产业",
+        "nameInk": "white",
+        "colorKey": "黑",
+        "basicType": "附属",
+        "subtypes": [
+          "设施",
+          "研究"
+        ],
+        "printedCollectorCode": "56/98",
+        "seriesSymbol": "霸权三角环符号",
+        "printedCost": 2,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "黑",
+            "count": 1
+          }
+        ],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "结附于目标地区",
+          "触发 当一个副名为圣甲虫产业的本方附属进场时，将你的牌库顶牌置于墓地。",
+          "触发 当一张角色牌被封印在副名为圣甲虫产业的本方附属上时，该附属获得永久调查1直到回合结束。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "结附于目标地区",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "触发 当一个副名为圣甲虫产业的本方附属进场时，将你的牌库顶牌置于墓地。",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-3",
+          "kind": "sourceTextOnly",
+          "printedText": "触发 当一张角色牌被封印在副名为圣甲虫产业的本方附属上时，该附属获得永久调查1直到回合结束。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "attachment",
+        "deckChoice",
+        "seal",
+        "continuous"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "BQ093-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "BQ094": {
+      "cardId": "BQ094",
+      "batchId": "B18",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/BQ094 费格马变量实验室.jpg",
+        "imageSha256": "263178b503125e854f8f26e4564ff2c0be29c67d3bd7630485b9e48494f550e0",
+        "evidenceId": "card-BQ094",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "079/116",
+        "seriesSymbolObserved": "霸权三角环符号",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "费格马变量实验室",
+        "subtitle": "圣甲虫产业",
+        "nameInk": "white",
+        "colorKey": "黑",
+        "basicType": "附属",
+        "subtypes": [
+          "设施",
+          "研究"
+        ],
+        "printedCollectorCode": "079/116",
+        "seriesSymbol": "霸权三角环符号",
+        "printedCost": 3,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "黑",
+            "count": 1
+          }
+        ],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "非资产"
+        ],
+        "printedRuleTextLines": [
+          "非资产",
+          "结附于目标地区",
+          "强制触发 每当一个本方角色死亡时，在受此结附的地区上放置一个本方势力标志。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "非资产",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "结附于目标地区",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-3",
+          "kind": "sourceTextOnly",
+          "printedText": "强制触发 每当一个本方角色死亡时，在受此结附的地区上放置一个本方势力标志。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "nonAsset",
+        "attachment",
+        "confrontation",
+        "temporaryIcons"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "BQ094-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "BQ095": {
+      "cardId": "BQ095",
+      "batchId": "B18",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/BQ095 圣甲虫药业集团总部.jpg",
+        "imageSha256": "42f82a8ceb0d3513c0861995026f2891ae64d20699c3c49d44aa5a4120a749cc",
+        "evidenceId": "card-BQ095",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "28/48",
+        "seriesSymbolObserved": "霸权三角环符号",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "圣甲虫药业集团总部",
+        "subtitle": "圣甲虫产业",
+        "nameInk": "gold",
+        "colorKey": "黑",
+        "basicType": "附属",
+        "subtypes": [
+          "设施",
+          "研究"
+        ],
+        "printedCollectorCode": "28/48",
+        "seriesSymbol": "霸权三角环符号",
+        "printedCost": 6,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "黑",
+            "count": 3
+          }
+        ],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "结附于本方秘社",
+          "进场触发 为本方秘社创建一个名为集团总部的区域。将本方墓地中的所有牌置于集团总部区。本局游戏中，你所拥有的卡牌上注明本方墓地的，改为集团总部区，将被置入本方墓地的，改为置入集团总部区。",
+          "准备步骤触发 抓两张牌，然后弃一张牌。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "结附于本方秘社",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "进场触发 为本方秘社创建一个名为集团总部的区域。将本方墓地中的所有牌置于集团总部区。本局游戏中，你所拥有的卡牌上注明本方墓地的，改为集团总部区，将被置入本方墓地的，改为置入集团总部区。",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-3",
+          "kind": "sourceTextOnly",
+          "printedText": "准备步骤触发 抓两张牌，然后弃一张牌。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "attachment",
+        "society",
+        "graveRecovery",
+        "deckChoice",
+        "continuous",
+        "uniqueInPlay"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "BQ095-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "BQ096": {
+      "cardId": "BQ096",
+      "batchId": "B18",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/BQ096 烈焰宁芙妃卓拉.jpg",
+        "imageSha256": "fd1ebc02094e2d3371bf67052186776a70a617b5a4c329f3f69f91bf633eeeb4",
+        "evidenceId": "card-BQ096",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "68/98",
+        "seriesSymbolObserved": "霸权三角环符号",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "烈焰宁芙妃卓拉",
+        "subtitle": "火舞者",
+        "nameInk": "gold",
+        "colorKey": "紫",
+        "basicType": "角色",
+        "subtypes": [
+          "宁芙",
+          "法师"
+        ],
+        "printedCollectorCode": "68/98",
+        "seriesSymbol": "霸权三角环符号",
+        "printedCost": 2,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "紫",
+            "count": 1
+          }
+        ],
+        "domains": [
+          {
+            "id": "stars",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "灵体"
+        ],
+        "printedRuleTextLines": [
+          "灵体",
+          "行动，横置，将你墓地中的两张牌封印在本方秘社上：对本地区具有魔法领域图标的目标角色造成1点伤害。",
+          "持续 若本方秘社上封印有七张或更多牌，烈焰宁芙妃卓拉获得临时调查3。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "灵体",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "行动，横置，将你墓地中的两张牌封印在本方秘社上：对本地区具有魔法领域图标的目标角色造成1点伤害。",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-3",
+          "kind": "sourceTextOnly",
+          "printedText": "持续 若本方秘社上封印有七张或更多牌，烈焰宁芙妃卓拉获得临时调查3。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "spirit",
+        "exhaust",
+        "seal",
+        "continuous",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "needsRuling",
+      "openQuestionIds": [
+        "crisisColorEmblemMismatch"
+      ],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "BQ096-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ],
+      "observedIdentityDistinctions": {
+        "frame": "紫色",
+        "upperRightEmblem": "紫背景白色叶片/圣贤样徽记",
+        "notAutomaticallyAssignedSociety": true
+      }
+    },
+    "BQ097": {
+      "cardId": "BQ097",
+      "batchId": "B18",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/BQ097 灰败.jpg",
+        "imageSha256": "06614ebfa013bf8e1f7c7e93359b2782ecfe58494614d264dd6d885137e9630e",
+        "evidenceId": "card-BQ097",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "67/98",
+        "seriesSymbolObserved": "霸权三角环符号",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "灰败",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "紫",
+        "basicType": "角色",
+        "subtypes": [
+          "梦境"
+        ],
+        "printedCollectorCode": "67/98",
+        "seriesSymbol": "霸权三角环符号",
+        "printedCost": 2,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "紫",
+            "count": 1
+          }
+        ],
+        "domains": [
+          {
+            "id": "stars",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "非资产",
+          "灵体"
+        ],
+        "printedRuleTextLines": [
+          "非资产；灵体",
+          "持续 若有七张或更多卡牌封印在本方秘社上，灰败获得永久调查1和永久势力1。",
+          "墓地行动 横置一个未横置的本方法师角色：将灰败从墓地封印在本方秘社上，然后抓一张牌。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "非资产；灵体",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "持续 若有七张或更多卡牌封印在本方秘社上，灰败获得永久调查1和永久势力1。",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-3",
+          "kind": "sourceTextOnly",
+          "printedText": "墓地行动 横置一个未横置的本方法师角色：将灰败从墓地封印在本方秘社上，然后抓一张牌。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "nonAsset",
+        "spirit",
+        "seal",
+        "gravePlay",
+        "deckChoice",
+        "continuous"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "BQ097-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "BQ098": {
+      "cardId": "BQ098",
+      "batchId": "B18",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/BQ098 达｀克哈.jpg",
+        "imageSha256": "30961877237a30447f5ce5897cd289e41c44b9bad99c5fd4b69653d0ce29eba2",
+        "evidenceId": "card-BQ098",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "68/98",
+        "seriesSymbolObserved": "霸权三角环符号",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "达’克哈",
+        "subtitle": "识海的吞咽者",
+        "nameInk": "gold",
+        "colorKey": "紫",
+        "basicType": "角色",
+        "subtypes": [
+          "相位怪物",
+          "异界",
+          "梦境"
+        ],
+        "printedCollectorCode": "68/98",
+        "seriesSymbol": "霸权三角环符号",
+        "printedCost": 4,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "紫",
+            "count": 1
+          }
+        ],
+        "domains": [
+          {
+            "id": "stars",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 2,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 2,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "结束步骤强制触发 若有卡牌于本回合中被封印在本方秘社上，进行一次隐秘对抗。本次隐秘对抗中敌方玩家所展示的牌获得-1。",
+          "持续 若达’克哈被封印在角色、附属或本方秘社上，你可以如同其在手中一般将其正面打出。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "结束步骤强制触发 若有卡牌于本回合中被封印在本方秘社上，进行一次隐秘对抗。本次隐秘对抗中敌方玩家所展示的牌获得-1。",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "持续 若达’克哈被封印在角色、附属或本方秘社上，你可以如同其在手中一般将其正面打出。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "seal",
+        "mysticContest",
+        "gravePlay",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "BQ098-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "BQ099": {
+      "cardId": "BQ099",
+      "batchId": "B18",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/BQ099 幼年比蒙巨兽.jpg",
+        "imageSha256": "e6c92eac60e8400dce8a7fefbc070b72d9f9a06e6248c657a244ee0f3a73448d",
+        "evidenceId": "card-BQ099",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "69/98",
+        "seriesSymbolObserved": "霸权三角环符号",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "幼年比蒙巨兽",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "紫",
+        "basicType": "角色",
+        "subtypes": [
+          "神话生物",
+          "野兽",
+          "灾难"
+        ],
+        "printedCollectorCode": "69/98",
+        "seriesSymbol": "霸权三角环符号",
+        "printedCost": 6,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "紫",
+            "count": 1
+          }
+        ],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 3,
+          "influence": 3
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "defense": 3,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "非资产",
+          "传闻",
+          "混乱",
+          "护盾1"
+        ],
+        "printedRuleTextLines": [
+          "非资产；传闻；混乱；护盾1",
+          "幼年比蒙巨兽不能被终止。",
+          "持续 本地区略过调查对抗步骤。",
+          "持续 本地区的暗藏者获得迟缓。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "非资产；传闻；混乱；护盾1",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "幼年比蒙巨兽不能被终止。",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-3",
+          "kind": "sourceTextOnly",
+          "printedText": "持续 本地区略过调查对抗步骤。",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-4",
+          "kind": "sourceTextOnly",
+          "printedText": "持续 本地区的暗藏者获得迟缓。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "nonAsset",
+        "rumor",
+        "chaos",
+        "shield",
+        "cancel",
+        "confrontation",
+        "slow",
+        "temporaryIcons"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "BQ099-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "BQ100": {
+      "cardId": "BQ100",
+      "batchId": "B18",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/BQ100 无垠宫殿.jpg",
+        "imageSha256": "4b6a45db229fb9099caae25c843c2c8a56602144bb64a02f2ec2af469a70e2c7",
+        "evidenceId": "card-BQ100",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "69/98",
+        "seriesSymbolObserved": "霸权三角环符号",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "无垠宫殿",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "紫",
+        "basicType": "角色",
+        "subtypes": [
+          "梦境",
+          "造物"
+        ],
+        "printedCollectorCode": "69/98",
+        "seriesSymbol": "霸权三角环符号",
+        "printedCost": 8,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "紫",
+            "count": 2
+          }
+        ],
+        "domains": [
+          {
+            "id": "stars",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 2,
+          "combat": 1,
+          "influence": 2
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "灵体"
+        ],
+        "printedRuleTextLines": [
+          "灵体",
+          "额外费用 每有一张牌封印在本方秘社上，无垠宫殿的所需费用就减少①。",
+          "持续 每回合中你可以正面打出一张由你拥有，且封印在角色、附属或你秘社上的角色牌，如同其在你手中一般。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "灵体",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "额外费用 每有一张牌封印在本方秘社上，无垠宫殿的所需费用就减少①。",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-3",
+          "kind": "sourceTextOnly",
+          "printedText": "持续 每回合中你可以正面打出一张由你拥有，且封印在角色、附属或你秘社上的角色牌，如同其在你手中一般。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "spirit",
+        "costReduction",
+        "seal",
+        "gravePlay",
+        "temporaryIcons"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "BQ100-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "BQ101": {
+      "cardId": "BQ101",
+      "batchId": "B18",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/BQ101 漩涡体质.jpg",
+        "imageSha256": "5c717aa51479024705dd5659c5402f3558c896da40a54a36334fe80d570c0089",
+        "evidenceId": "card-BQ101",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "30/48",
+        "seriesSymbolObserved": "霸权三角环符号",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "漩涡体质",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "紫",
+        "basicType": "附属",
+        "subtypes": [
+          "梦境",
+          "状态"
+        ],
+        "printedCollectorCode": "30/48",
+        "seriesSymbol": "霸权三角环符号",
+        "printedCost": 2,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "紫",
+            "count": 2
+          }
+        ],
+        "domains": [
+          {
+            "id": "stars",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "隐秘+4",
+          "结附于本方角色",
+          "触发 当受此结附的角色死亡时，你可以将一张封印在本方秘社上的角色牌放置进场并置于本地区。"
+        ],
+        "additionalPrintedSymbols": [
+          {
+            "id": "hidden-contest-bonus",
+            "status": "confirmed",
+            "printedText": "隐秘 +4",
+            "interpretation": "隐秘地区势力栏，独立于能力图标。"
+          }
+        ]
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "隐秘+4",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "结附于本方角色",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-3",
+          "kind": "sourceTextOnly",
+          "printedText": "触发 当受此结附的角色死亡时，你可以将一张封印在本方秘社上的角色牌放置进场并置于本地区。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "attachment",
+        "seal",
+        "graveRecovery",
+        "mysticContest"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "BQ101-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "BQ102": {
+      "cardId": "BQ102",
+      "batchId": "B18",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/BQ102 心理阴影.jpg",
+        "imageSha256": "555bc2349ed813bb2aae006274f71bf1c1da987c78aeff7354865db1334b7abb",
+        "evidenceId": "card-BQ102",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "101/116",
+        "seriesSymbolObserved": "霸权三角环符号",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "心理阴影",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "中立",
+        "basicType": "角色",
+        "subtypes": [
+          "梦境",
+          "梦魇"
+        ],
+        "printedCollectorCode": "101/116",
+        "seriesSymbol": "霸权三角环符号",
+        "printedCost": 1,
+        "loyalty": [],
+        "domains": [
+          {
+            "id": "mind",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "灵体"
+        ],
+        "printedRuleTextLines": [
+          "灵体",
+          "快速行动 将一张手牌封印在本方秘社上：心理阴影获得永久战斗1、临时势力1和防御+1直到回合结束。该能力每回合只能发动一次。",
+          "神秘学博弈②。（手牌行动②，从你手中弃掉此牌：进行一次隐秘对抗。）"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "灵体",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "快速行动 将一张手牌封印在本方秘社上：心理阴影获得永久战斗1、临时势力1和防御+1直到回合结束。该能力每回合只能发动一次。",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-3",
+          "kind": "sourceTextOnly",
+          "printedText": "神秘学博弈②。（手牌行动②，从你手中弃掉此牌：进行一次隐秘对抗。）",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "spirit",
+        "seal",
+        "continuous",
+        "handAbility",
+        "mysticContest",
+        "temporaryIcons"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "BQ102-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "BQ103": {
+      "cardId": "BQ103",
+      "batchId": "B18",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/BQ103 雪原狼.jpg",
+        "imageSha256": "ac24c24873a733e53d905e003d9c0eb260ad946bb9fb3c04835ada80673488f4",
+        "evidenceId": "card-BQ103",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "104/116",
+        "seriesSymbolObserved": "霸权三角环符号",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "雪原狼",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "中立",
+        "basicType": "角色",
+        "subtypes": [
+          "狼"
+        ],
+        "printedCollectorCode": "104/116",
+        "seriesSymbol": "霸权三角环符号",
+        "printedCost": 1,
+        "loyalty": [],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "非资产",
+          "机动",
+          "不能被装备结附"
+        ],
+        "printedRuleTextLines": [
+          "非资产；机动；不能被装备结附",
+          "现身触发 从你的牌库中寻找一张名为雪原狼的牌，展示该牌后置于你的手中，然后洗牌。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "非资产；机动；不能被装备结附",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "现身触发 从你的牌库中寻找一张名为雪原狼的牌，展示该牌后置于你的手中，然后洗牌。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "nonAsset",
+        "mobility",
+        "attachment",
+        "hidden",
+        "deckChoice"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "BQ103-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "BQ104": {
+      "cardId": "BQ104",
+      "batchId": "B18",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/BQ104 猎头顾问.jpg",
+        "imageSha256": "dbee5b3829cf0c46b2820beccefda28708c3c8e87c589dbefce1e975faa916eb",
+        "evidenceId": "card-BQ104",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "097/116",
+        "seriesSymbolObserved": "霸权三角环符号",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "猎头顾问",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "中立",
+        "basicType": "角色",
+        "subtypes": [
+          "人类",
+          "雇员"
+        ],
+        "printedCollectorCode": "097/116",
+        "seriesSymbol": "霸权三角环符号",
+        "printedCost": 3,
+        "loyalty": [],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "公开"
+        ],
+        "printedRuleTextLines": [
+          "公开",
+          "进场触发 从你的牌库中寻找一张印刷费用小于或等于③的雇员角色牌，展示后以暗藏者状态置于本地区，然后洗牌。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "公开",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "进场触发 从你的牌库中寻找一张印刷费用小于或等于③的雇员角色牌，展示后以暗藏者状态置于本地区，然后洗牌。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "public",
+        "deckChoice",
+        "hidden"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "BQ104-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "BQ105": {
+      "cardId": "BQ105",
+      "batchId": "B18",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/BQ105 精算师爱娃.jpg",
+        "imageSha256": "9c989c6012e2bb46b5a1917e8c4a8867336ae677b0e0416ab13d01cd0e175083",
+        "evidenceId": "card-BQ105",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "097/116",
+        "seriesSymbolObserved": "霸权三角环符号",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "精算师爱娃",
+        "subtitle": "运营总监",
+        "nameInk": "gold",
+        "colorKey": "中立",
+        "basicType": "角色",
+        "subtypes": [
+          "人类",
+          "雇员"
+        ],
+        "printedCollectorCode": "097/116",
+        "seriesSymbol": "霸权三角环符号",
+        "printedCost": 2,
+        "loyalty": [],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "非资产",
+          "公开"
+        ],
+        "printedRuleTextLines": [
+          "非资产；公开",
+          "持续 你所打出的设施附属牌或副名为圣甲虫产业的附属牌，其所需费用减少①。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "非资产；公开",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "持续 你所打出的设施附属牌或副名为圣甲虫产业的附属牌，其所需费用减少①。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "nonAsset",
+        "public",
+        "attachment",
+        "costReduction",
+        "uniqueInPlay"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "BQ105-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "BQ106": {
+      "cardId": "BQ106",
+      "batchId": "B18",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/BQ106 若拉·雅罗文科大师.jpg",
+        "imageSha256": "25abd45d499bcb9c0bedd7eed6f9396fdb4a0ddb28fc3ad9289358d557e2f54f",
+        "evidenceId": "card-BQ106",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "101/116",
+        "seriesSymbolObserved": "霸权三角环符号",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "若拉·雅罗文科大师",
+        "subtitle": "隐秘的守护者",
+        "nameInk": "gold",
+        "colorKey": "中立",
+        "basicType": "角色",
+        "subtypes": [
+          "人类",
+          "法师"
+        ],
+        "printedCollectorCode": "101/116",
+        "seriesSymbol": "霸权三角环符号",
+        "printedCost": 3,
+        "loyalty": [],
+        "domains": [
+          {
+            "id": "holy",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "非资产",
+          "护盾1"
+        ],
+        "printedRuleTextLines": [
+          "非资产；护盾1",
+          "触发 当你打出一张法术牌，或赢得一次隐秘对抗时，在目标本方角色或暗藏者上放置一个护盾标志。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "非资产；护盾1",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "触发 当你打出一张法术牌，或赢得一次隐秘对抗时，在目标本方角色或暗藏者上放置一个护盾标志。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "nonAsset",
+        "shield",
+        "mysticContest",
+        "hidden",
+        "uniqueInPlay"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "BQ106-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "BQ107": {
+      "cardId": "BQ107",
+      "batchId": "B18",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/BQ107 古语专家佩德罗.jpg",
+        "imageSha256": "23d4dd5b502c004d9a8108a05913f46f878f4ae10e30391b54d1b524d51c5176",
+        "evidenceId": "card-BQ107",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "101/116",
+        "seriesSymbolObserved": "霸权三角环符号",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "古语专家佩德罗",
+        "subtitle": "监管者",
+        "nameInk": "gold",
+        "colorKey": "中立",
+        "basicType": "角色",
+        "subtypes": [
+          "人类",
+          "法师",
+          "特工"
+        ],
+        "printedCollectorCode": "101/116",
+        "seriesSymbol": "霸权三角环符号",
+        "printedCost": 4,
+        "loyalty": [],
+        "domains": [
+          {
+            "id": "mind",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 1
+        },
+        "temporaryIcons": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 2,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "修格斯秘社限定"
+        ],
+        "printedRuleTextLines": [
+          "修格斯秘社限定",
+          "进场触发 若本方核心角色牌位于核心区，从游戏外选择另一张副名为修格斯的角色牌并将其替换为你的新核心角色。",
+          "触发 当你发动一次核心能力时，你可以支付1名誉点然后抓一张牌。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "修格斯秘社限定",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "进场触发 若本方核心角色牌位于核心区，从游戏外选择另一张副名为修格斯的角色牌并将其替换为你的新核心角色。",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-3",
+          "kind": "sourceTextOnly",
+          "printedText": "触发 当你发动一次核心能力时，你可以支付1名誉点然后抓一张牌。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "core",
+        "deckChoice",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "needsRuling",
+      "openQuestionIds": [
+        "coreObjectOperations"
+      ],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "BQ107-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "BQ108": {
+      "cardId": "BQ108",
+      "batchId": "B18",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/BQ108 山火.jpg",
+        "imageSha256": "9b284b77bc5480da4eab0671998d630e05fff950634d4a36c55f0ff127194dfd",
+        "evidenceId": "card-BQ108",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "101/116",
+        "seriesSymbolObserved": "霸权三角环符号",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "山火",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "中立",
+        "basicType": "事务",
+        "subtypes": [
+          "灾难"
+        ],
+        "printedCollectorCode": "101/116",
+        "seriesSymbol": "霸权三角环符号",
+        "printedCost": 1,
+        "loyalty": [],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "快速行动 每位玩家各牺牲一个附属。遏制1。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "快速行动 每位玩家各牺牲一个附属。遏制1。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "sacrifice",
+        "attachment",
+        "repress"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "BQ108-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "BQ109": {
+      "cardId": "BQ109",
+      "batchId": "B18",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/BQ109 基础测试.jpg",
+        "imageSha256": "edee52d612f6127e5931b56bdac3adb5609cb29f40d6d4b853023451c0490677",
+        "evidenceId": "card-BQ109",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "101/116",
+        "seriesSymbolObserved": "霸权三角环符号",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "基础测试",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "中立",
+        "basicType": "附属",
+        "subtypes": [
+          "命令",
+          "行动"
+        ],
+        "printedCollectorCode": "101/116",
+        "seriesSymbol": "霸权三角环符号",
+        "printedCost": 1,
+        "loyalty": [],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "行动 选择一项：",
+          "重置本方核心角色。将其移动至目标地区。",
+          "本方核心角色上获得防御+1直到回合结束，抓一张牌。",
+          "在目标任务地区上放置一个本方势力标志。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "行动 选择一项：",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "重置本方核心角色。将其移动至目标地区。",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-3",
+          "kind": "sourceTextOnly",
+          "printedText": "本方核心角色上获得防御+1直到回合结束，抓一张牌。",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-4",
+          "kind": "sourceTextOnly",
+          "printedText": "在目标任务地区上放置一个本方势力标志。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "core",
+        "exhaust",
+        "mobility",
+        "continuous",
+        "deckChoice",
+        "task",
+        "confrontation"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "BQ109-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "BQ110": {
+      "cardId": "BQ110",
+      "batchId": "B18",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/BQ110 M16步枪.jpg",
+        "imageSha256": "5a4c7f533153d73772c11beef0644a9ccd85cb32b55d7a3caa61ff09978a4be2",
+        "evidenceId": "card-BQ110",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "101/116",
+        "seriesSymbolObserved": "霸权三角环符号",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "M16步枪",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "中立",
+        "basicType": "附属",
+        "subtypes": [
+          "装备",
+          "武器"
+        ],
+        "printedCollectorCode": "101/116",
+        "seriesSymbol": "霸权三角环符号",
+        "printedCost": 2,
+        "loyalty": [],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "回收"
+        ],
+        "printedRuleTextLines": [
+          "结附于目标角色",
+          "回收（当受此结附的角色离场时，将该附属移回你的手中）",
+          "持续 受此结附的角色获得永久战斗1、临时势力1和创伤1。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "结附于目标角色",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "回收（当受此结附的角色离场时，将该附属移回你的手中）",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-3",
+          "kind": "sourceTextOnly",
+          "printedText": "持续 受此结附的角色获得永久战斗1、临时势力1和创伤1。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "attachment",
+        "graveRecovery",
+        "continuous",
+        "combatKeywords",
+        "temporaryIcons"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "BQ110-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "BQ111": {
+      "cardId": "BQ111",
+      "batchId": "B18",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/BQ111 生化防毒面具.jpg",
+        "imageSha256": "e9a9d9f55a4ea60ec830d5c74896dd1c060a53aec8d9e21b2cb702fffd03dadf",
+        "evidenceId": "card-BQ111",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "101/116",
+        "seriesSymbolObserved": "霸权三角环符号",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "生化防毒面具",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "中立",
+        "basicType": "附属",
+        "subtypes": [
+          "装备"
+        ],
+        "printedCollectorCode": "101/116",
+        "seriesSymbol": "霸权三角环符号",
+        "printedCost": 1,
+        "loyalty": [],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "回收"
+        ],
+        "printedRuleTextLines": [
+          "结附于目标人类角色",
+          "回收（当受此结附的角色离场时，将该附属移回你的手中）",
+          "持续 受此结附的角色获得防御+1和“死亡触发 将你牌库顶的两张牌置于本方墓地”的能力。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "结附于目标人类角色",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "回收（当受此结附的角色离场时，将该附属移回你的手中）",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-3",
+          "kind": "sourceTextOnly",
+          "printedText": "持续 受此结附的角色获得防御+1和“死亡触发 将你牌库顶的两张牌置于本方墓地”的能力。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "attachment",
+        "graveRecovery",
+        "continuous",
+        "deckChoice"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "BQ111-source-boundary",
           "scenario": "进入实现前核对本观察版本的字段与完整正文",
           "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
           "status": "notRun"
