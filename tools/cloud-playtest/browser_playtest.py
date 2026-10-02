@@ -75,8 +75,10 @@ class UiRun:
         self.catalog = {}
         self.mode = ''
 
-    async def new_seat(self, seat):
+    async def new_seat(self, seat, session=None):
         context = await self.browser.new_context(viewport={"width": 1512, "height": 1040}, locale='zh-CN')
+        if session is not None:
+            await context.add_init_script('if(!localStorage.getItem("hegemony.session.v1"))localStorage.setItem("hegemony.session.v1",' + json.dumps(json.dumps(session)) + ');')
         await context.add_init_script(OBSERVE_FETCH)
         page = await context.new_page()
         page.on('pageerror', lambda error: self.errors.append({"seat": seat, "kind": "pageerror", "message": str(error)}))
@@ -121,10 +123,12 @@ class UiRun:
             await click()
         response = await pending.value
         body = await response.json()
-        actual = json.loads(response.request.post_data or '{}').get('action', {})
+        submitted = json.loads(response.request.post_data or '{}')
+        actual = submitted.get('action', {})
         # Actual request fields have opaque instance IDs, no hand definitions or credentials.
         record = {"seat": seat, "kind": intended_kind, "httpStatus": response.status,
                   "before": public_view(before), "action": actual,
+                  "commandId": submitted.get("commandId"), "expectedVersion": submitted.get("expectedVersion"),
                   "after": public_view(body if response.ok else body.get('view'))}
         if not response.ok:
             record['error'] = {key: body.get(key) for key in ('error', 'message')}
@@ -354,44 +358,7 @@ class UiRun:
                 view = await self.view(seat)
                 await self.legal_button(seat, next(a for a in view['legalActions'] if a['kind'] == 'ready'))
             await self.legal_button(0, next(a for a in (await self.view(0))['legalActions'] if a['kind'] == 'start'))
-            spatial = False
-            for step in range(self.max_steps):
-                views = await self.views()
-                current = max(views, key=lambda v: v['version'])
-                if current['status'] == 'finished':
-                    await self.screenshot('finished', 0)
-                    # Mobile reuses one authenticated browser seat, preserving its view.
-                    await self.pages[0].set_viewport_size({'width': 390, 'height': 844})
-                    await self.screenshot('mobile-finished', 0)
-                    overflow = await self.pages[0].evaluate('document.documentElement.scrollWidth > innerWidth + 1')
-                    assert not overflow, 'Mobile viewport has horizontal document overflow'
-                    return self.summary(current, started, step)
-                chosen = next(((seat, view) for seat, view in enumerate(views) if view.get('pendingChoice')), None)
-                if chosen:
-                    seat, view = chosen
-                    if not self.recovery:
-                        await self.verify_recovery(seat, view)
-                        view = await self.view(seat)
-                    await self.choose(seat, view)
-                else:
-                    candidates = [(seat, self.policy(seat, view)) for seat, view in enumerate(views)]
-                    # In team action steps, every eligible teammate develops before passing.
-                    chosen = next(((seat, action) for seat, action in candidates if action and action['kind'] != 'pass'), None)
-                    if chosen is None:
-                        chosen = next(((seat, action) for seat, action in candidates if action), None)
-                    assert chosen, f'No legal UI action at version {current["version"]}, {current["phase"]} {current["step"]}'
-                    await self.legal_button(*chosen)
-                latest = await self.view(0)
-                if not spatial and sum(len(r['characters']) for r in latest['regions']) >= capacity:
-                    await self.screenshot('spatial-board')
-                    await self.pages[0].set_viewport_size({'width': 390, 'height': 844})
-                    await self.screenshot('mobile-board')
-                    assert not await self.pages[0].evaluate('document.documentElement.scrollWidth > innerWidth + 1'), 'Mobile board has horizontal document overflow'
-                    await self.pages[0].set_viewport_size({'width': 1512, 'height': 1040})
-                    spatial = True
-                if step % 50 == 0:
-                    print(json.dumps({'mode': mode, 'step': step, 'version': latest['version'], 'turn': latest['turn'], 'scores': [p['score'] for p in latest['players']]}, ensure_ascii=False), flush=True)
-            raise RuntimeError(f'{mode} exceeded {self.max_steps} legal UI actions')
+            return await self.play_loop(started, capacity)
         except Exception as error:
             view = await self.view(0) if self.pages else None
             if self.pages:
@@ -403,6 +370,77 @@ class UiRun:
         finally:
             for context in self.contexts:
                 await context.close()
+
+    async def resume(self, sessions):
+        """Restore this runner's existing seats; never create, join, start or seed a game."""
+        self.mode = 'teams'
+        started = time.time()
+        assert len(sessions) == 4 and [s['seat'] for s in sessions] == list(range(4))
+        assert len({s['roomId'] for s in sessions}) == 1
+        try:
+            for seat, session in enumerate(sessions):
+                await self.new_seat(seat, session)
+            await self.pages[0].wait_for_function('window.__cloudView')
+            await self.sync((await self.view(0))['version'])
+            views = await self.views()
+            assert all(v['roomId'] == sessions[0]['roomId'] and v['versions']['engine'] == 'rust-v0.2.1' for v in views)
+            catalog = await self.pages[0].evaluate('window.__cloudCatalog')
+            self.catalog = {card['id']: card for card in catalog['cards']}
+            self.recovery.append({'kind': 'restore-four-original-seats', 'version': views[0]['version'], 'passed': True})
+            await self.screenshot('resumed-original-room')
+            return await self.play_loop(started, 4)
+        except Exception as error:
+            view = await self.view(0) if self.pages else None
+            if self.pages:
+                await self.screenshot('continuation-failure')
+            result = self.summary(view, started, len(self.records))
+            result.update(passed=False, failureType=type(error).__name__)
+            write_json(self.output / 'teams-summary.json', result)
+            raise
+        finally:
+            for context in self.contexts:
+                await context.close()
+
+    async def play_loop(self, started, capacity):
+        mode = self.mode
+        spatial = False
+        for step in range(self.max_steps):
+            views = await self.views()
+            current = max(views, key=lambda v: v['version'])
+            if current['status'] == 'finished':
+                await self.screenshot('finished', 0)
+                # Mobile reuses one authenticated browser seat, preserving its view.
+                await self.pages[0].set_viewport_size({'width': 390, 'height': 844})
+                await self.screenshot('mobile-finished', 0)
+                overflow = await self.pages[0].evaluate('document.documentElement.scrollWidth > innerWidth + 1')
+                assert not overflow, 'Mobile viewport has horizontal document overflow'
+                return self.summary(current, started, step)
+            chosen = next(((seat, view) for seat, view in enumerate(views) if view.get('pendingChoice')), None)
+            if chosen:
+                seat, view = chosen
+                if not self.recovery:
+                    await self.verify_recovery(seat, view)
+                    view = await self.view(seat)
+                await self.choose(seat, view)
+            else:
+                candidates = [(seat, self.policy(seat, view)) for seat, view in enumerate(views)]
+                # In team action steps, every eligible teammate develops before passing.
+                chosen = next(((seat, action) for seat, action in candidates if action and action['kind'] != 'pass'), None)
+                if chosen is None:
+                    chosen = next(((seat, action) for seat, action in candidates if action), None)
+                assert chosen, f'No legal UI action at version {current["version"]}, {current["phase"]} {current["step"]}'
+                await self.legal_button(*chosen)
+            latest = await self.view(0)
+            if not spatial and sum(len(r['characters']) for r in latest['regions']) >= capacity:
+                await self.screenshot('spatial-board')
+                await self.pages[0].set_viewport_size({'width': 390, 'height': 844})
+                await self.screenshot('mobile-board')
+                assert not await self.pages[0].evaluate('document.documentElement.scrollWidth > innerWidth + 1'), 'Mobile board has horizontal document overflow'
+                await self.pages[0].set_viewport_size({'width': 1512, 'height': 1040})
+                spatial = True
+            if step % 50 == 0:
+                print(json.dumps({'mode': mode, 'step': step, 'version': latest['version'], 'turn': latest['turn'], 'scores': [p['score'] for p in latest['players']]}, ensure_ascii=False), flush=True)
+        raise RuntimeError(f'{mode} exceeded {self.max_steps} legal UI actions')
 
     def summary(self, view, started, steps):
         write_json(self.output / f'{self.mode}-actions.json', self.records)
