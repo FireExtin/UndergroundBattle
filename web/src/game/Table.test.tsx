@@ -1,9 +1,55 @@
 import { fireEvent, render, screen, within } from '@testing-library/react';
-import { describe, expect, it, vi } from 'vitest';
-import { Table } from './Table';
-import { testCatalog, testView } from './testFixtures';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { RoomLobby, Table } from './Table';
+import { createDeckDraft, DECK_LIBRARY_STORAGE_KEY, readDeckLibrary, saveDeckLibrary } from './deckLibrary';
+import { testCatalog, testView, testChoice } from './testFixtures';
 import { testCard } from './testFixtures';
-import type { View } from './types';
+import type { Catalog, View } from './types';
+
+describe('room deck selection', () => {
+  const catalog: Catalog = { ...testCatalog, deckBuildRules: { minimumCards: 50, serviceCardCapacity: 2048, societySupported: false }, cards: testCatalog.cards.map(card => ({ ...card, supported: true, deckCopyLimit: null })) };
+  const saved = { ...createDeckDraft(catalog, catalog.decks[0]), name: '已保存的牌组' };
+  const frozen = { ...saved, id: 'frozen-deck', name: '冻结牌组' };
+  const view: View = { ...testView, yourDeck: frozen, players: [{ ...testView.players[0], deckName: frozen.name, ready: true }], legalActions: [{ id: 'deck', kind: 'deck', option: 'watchers', label: '更换预组' }] };
+  beforeEach(() => { localStorage.removeItem(DECK_LIBRARY_STORAGE_KEY); saveDeckLibrary([saved]); });
+  afterEach(() => localStorage.removeItem(DECK_LIBRARY_STORAGE_KEY));
+
+  it('saves edits locally and sends a full draft only after explicit selection, retaining the frozen public name', () => {
+    const submit = vi.fn();
+    render(<RoomLobby view={view} catalog={catalog} busy={false} onAction={submit} />);
+    fireEvent.click(screen.getByText('更换牌组'));
+    expect(screen.getByRole('textbox', { name: '牌组名称' })).toHaveValue(saved.name);
+    fireEvent.change(screen.getByRole('textbox', { name: '牌组名称' }), { target: { value: '修改后的草稿' } });
+    fireEvent.click(screen.getByRole('button', { name: '保存牌组' }));
+    expect(readDeckLibrary().drafts[0].name).toBe('修改后的草稿');
+    expect(submit).not.toHaveBeenCalled();
+    expect(screen.getByRole('heading', { name: '冻结牌组' })).toBeInTheDocument();
+    expect(screen.getByText('✓ 已准备')).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: '保存并选择此牌组' }));
+    expect(submit).toHaveBeenCalledExactlyOnceWith({ kind: 'deck', deckDraft: readDeckLibrary().drafts[0] });
+    expect(screen.getByRole('heading', { name: '冻结牌组' })).toBeInTheDocument();
+    expect(screen.getByText(/选择其他牌组后将取消准备/)).toBeInTheDocument();
+  });
+
+  it('disables the saved deck editor and selection while confirming an action', () => {
+    const submit = vi.fn();
+    render(<RoomLobby view={view} catalog={catalog} busy onAction={submit} />);
+    fireEvent.click(screen.getByText('更换牌组'));
+    expect(screen.getByRole('textbox', { name: '牌组名称' })).toBeDisabled();
+    const select = screen.getByRole('button', { name: '保存并选择此牌组' });
+    expect(select).toBeDisabled();
+    fireEvent.click(select);
+    expect(submit).not.toHaveBeenCalled();
+  });
+
+  it.each(['legacy catalog', 'missing frozen draft', 'no legal deck action'])('does not expose saved deck selection for %s', missing => {
+    render(<RoomLobby view={{ ...view, ...(missing === 'missing frozen draft' ? { yourDeck: undefined } : {}), ...(missing === 'no legal deck action' ? { legalActions: testView.legalActions } : {}) }} catalog={missing === 'legacy catalog' ? testCatalog : catalog} busy={false} onAction={vi.fn()} />);
+    fireEvent.click(screen.getByText('更换牌组'));
+    expect(screen.queryByRole('heading', { name: '命名、编辑与选择牌组' })).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: '保存并选择此牌组' })).not.toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: '冻结牌组' })).toBeInTheDocument();
+  });
+});
 
 describe('playable table', () => {
   it('shows readable cards and only the selected card’s server-authored actions', () => {
@@ -101,4 +147,83 @@ describe('playable table', () => {
     expect(container.querySelector('.hg-dock-action')).toHaveAttribute('data-next-step', 'wait');
     expect(screen.getByRole('button', { name: '等待玩家 · 可浏览' })).toBeDisabled();
   });
+  it('keeps teammate resources and hidden hands in separate mats on the same table side', () => {
+    const players = Array.from({ length: 4 }, (_, seat) => ({ ...testView.players[0], id: `p${seat}`, seat, name: `玩家${seat}`, team: Math.floor(seat / 2), deckName: `独立牌组${seat}` }));
+    const { container } = render(<Table view={{ ...testView, status: 'playing', mode: 'teams', players }} catalog={testCatalog} busy={false} onAction={vi.fn()} />);
+    const mine = screen.getByRole('region', { name: '我方玩家区' });
+    const opponent = screen.getByRole('region', { name: '对方玩家区' });
+    expect(within(mine).getByRole('region', { name: '玩家0的玩家区' })).toBeInTheDocument();
+    expect(within(mine).getByRole('region', { name: '玩家1的玩家区' })).toBeInTheDocument();
+    expect(within(opponent).getByRole('region', { name: '玩家2的玩家区' })).toBeInTheDocument();
+    expect(within(opponent).getByRole('region', { name: '玩家3的玩家区' })).toBeInTheDocument();
+    for (const player of players) {
+      expect(screen.getByLabelText(`${player.name}的牌库，49张`)).toBeInTheDocument();
+      expect(screen.getByText(`席位 ${player.seat + 1} · ${player.deckName}`)).toBeInTheDocument();
+      expect(screen.getByLabelText(`${player.name}的秘社区，尚未实现`)).toBeInTheDocument();
+    }
+    expect(container.querySelector('[data-hand-owner="p1"]')).toHaveAttribute('data-hand-count', '1');
+    expect(container.querySelectorAll('[data-pile-kind="graveyard"]')).toHaveLength(4);
+  });
+  it('highlights only server-authored card targets and keeps the source selected when a target is clicked', () => {
+    const enemy = { ...testCard, instanceId: 'enemy', owner: 'p1', controller: 'p1', name: '合法目标' };
+    const other = { ...enemy, instanceId: 'other', name: '非目标' };
+    const opponent = { ...testView.players[0], id: 'p1', seat: 1, team: 1, name: '乙' };
+    const action = { id: 'target-action', kind: 'play', cardId: testCard.instanceId, targetId: enemy.instanceId, label: '对合法目标发动' };
+    const { container } = render(<Table view={{ ...testView, status: 'playing', players: [...testView.players, opponent], legalActions: [action], regions: [{ id: 'r', index: 0, cardId: 'w', name: '香港', threshold: 3, points: 3, influence: [0, 0], characters: [enemy, other] }] }} catalog={testCatalog} busy={false} onAction={vi.fn()} />);
+    fireEvent.click(screen.getByRole('button', { name: '查看无知路人' }));
+    expect(container.querySelector('[data-card-instance="enemy"]')).toHaveAttribute('data-card-targeted', 'true');
+    expect(container.querySelector('[data-card-instance="other"]')).toHaveAttribute('data-card-targeted', 'false');
+    fireEvent.click(screen.getByRole('button', { name: '查看合法目标' }));
+    expect(container.querySelector('[data-card-instance="instance-a"]')).toHaveAttribute('aria-pressed', 'true');
+    expect(screen.getByRole('button', { name: '对合法目标发动' })).toBeInTheDocument();
+  });
+  it('sanitizes hover reading by owner when a concealed card is controlled by the viewing player', () => {
+    const secret = { ...testCard, instanceId: 'teammate-secret', owner: 'p1', controller: 'p0', faceDown: true, kind: 'hidden', name: '不应公开身份', text: '不应公开能力' };
+    render(<Table view={{ ...testView, status: 'playing', hand: [], regions: [{ id: 'r', index: 0, cardId: 'w', name: '香港', threshold: 3, points: 3, influence: [0, 0], characters: [secret] }] }} catalog={testCatalog} busy={false} onAction={vi.fn()} />);
+    fireEvent.mouseEnter(screen.getByRole('button', { name: '查看暗藏者' }));
+    const preview = screen.getByRole('complementary', { name: '悬停阅读暗藏者' });
+    expect(within(preview).getByLabelText('图标：调查0，战斗0，势力1')).toBeInTheDocument();
+    expect(screen.queryByText('不应公开身份')).not.toBeInTheDocument();
+    expect(screen.queryByText('不应公开能力')).not.toBeInTheDocument();
+  });
+  it('keeps pending choices reachable in the temporary table layer and submits the original legal choice', () => {
+    const submit = vi.fn();
+    const action = { id: 'choose', kind: 'choose', label: '确认', choiceId: testChoice.id };
+    render(<Table view={{ ...testView, status: 'playing', pendingChoice: testChoice, legalActions: [action] }} catalog={testCatalog} busy={false} onAction={submit} />);
+    const panel = screen.getByRole('region', { name: '待完成的选择' });
+    fireEvent.click(within(panel).getByRole('button', { name: /角色甲/ }));
+    fireEvent.click(within(panel).getByRole('button', { name: '确认选择' }));
+    expect(submit).toHaveBeenCalledExactlyOnceWith({ ...action, choiceId: testChoice.id, selected: ['a'] });
+  });
+
+  it('shows a world deck count only when the frozen room projection supplies it', () => {
+    const { rerender } = render(<Table view={{ ...testView, status: 'playing' }} catalog={testCatalog} busy={false} onAction={vi.fn()} />);
+    const pile = screen.getByLabelText('世界牌库');
+    expect(pile.querySelector('b')).toBeNull();
+    rerender(<Table view={{ ...testView, status: 'playing', worldDeckCount: 7 }} catalog={testCatalog} busy={false} onAction={vi.fn()} />);
+    expect(within(pile).getByText('7')).toBeInTheDocument();
+  });
+
+  it('uses the optional authoritative contest totals and labels accumulated influence as markers', () => {
+    const region = { id: 'r', index: 0, cardId: 'w', name: '香港', threshold: 3, points: 3, influence: [2, 1], characters: [testCard] };
+    const { rerender } = render(<Table view={{ ...testView, status: 'playing', regions: [{ ...region, iconsByTeam: [{ investigation: 7, combat: 6, influence: 5 }, { investigation: 3, combat: 2, influence: 1 }] }] }} catalog={testCatalog} busy={false} onAction={vi.fn()} />);
+    expect(screen.getByRole('img', { name: '当前对抗图标：我方，调查7，战斗6，势力5' })).toBeInTheDocument();
+    expect(screen.getByRole('img', { name: '当前对抗图标：对方，调查3，战斗2，势力1' })).toBeInTheDocument();
+    expect(screen.getAllByText('势力标志')).toHaveLength(2);
+    rerender(<Table view={{ ...testView, status: 'playing', regions: [region] }} catalog={testCatalog} busy={false} onAction={vi.fn()} />);
+    expect(screen.queryByRole('img', { name: /当前对抗图标/ })).not.toBeInTheDocument();
+    expect(screen.getAllByText('势力标志')).toHaveLength(2);
+  });
+
+  it('shows the public skip-comparison flag and its reading explanation without inferring from a card ID', () => {
+    const region = { id: 'r', index: 0, cardId: 'same-world-card', name: '香港', threshold: 3, points: 3, influence: [0, 0], characters: [] };
+    const { rerender } = render(<Table view={{ ...testView, status: 'playing', regions: [{ ...region, skipConfrontation: true }] }} catalog={testCatalog} busy={false} onAction={vi.fn()} />);
+    expect(screen.getByText('本回合略过对抗比较')).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: '查看地区1 香港' }));
+    expect(within(screen.getByRole('complementary', { name: '选牌行动' })).getByText('本回合略过对抗比较。')).toBeInTheDocument();
+    rerender(<Table view={{ ...testView, status: 'playing', regions: [region] }} catalog={testCatalog} busy={false} onAction={vi.fn()} />);
+    expect(screen.queryByText('本回合略过对抗比较')).not.toBeInTheDocument();
+    expect(screen.queryByText('本回合略过对抗比较。')).not.toBeInTheDocument();
+  });
+
 });

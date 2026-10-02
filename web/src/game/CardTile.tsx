@@ -9,6 +9,10 @@ export function visibleCard(card: Card, viewerId: string): Card {
 }
 
 const emptyIcons: Icons = { investigation: 0, combat: 0, influence: 0 };
+// Hegemony printed P11: these are the generic hidden entity's icons,
+// not the concealed card's printed identity or a client-side modifier result.
+const hiddenIcons: Icons = { investigation: 0, combat: 0, influence: 1 };
+const hiddenRule = '暗藏者 · 基础势力 1 · 不受任何伤害';
 export function IconStrip({ icons, temporary = false }: { icons?: Icons; temporary?: boolean }) {
   const values = icons || emptyIcons;
   return <span className={`hg-icons ${temporary ? 'hg-icons-temporary' : ''}`} aria-label={`${temporary ? '先手图标' : '图标'}：调查${values.investigation}，战斗${values.combat}，势力${values.influence}`}>
@@ -37,9 +41,9 @@ export function CardContent({ card: source, definition: sourceDefinition, compac
     <strong className="hg-card-name">{hidden ? '暗藏者' : card.name}</strong>
     {!compact && !hidden && !asset && !region && adjustedCost && <span className="hg-cost-explanation">当前费用 {actualCost} · 印刷费用 {printedCost}</span>}
     {!compact && <span className="hg-card-art" aria-hidden="true"><span>{hidden ? '？' : card.kind === 'event' ? '✧' : card.kind === 'region' ? '⌖' : '◈'}</span><i /></span>}
-    {hidden ? <span className="hg-card-text">{concealedCompact ? '暗藏者 · 不受角色伤害' : '暗藏身份，等待揭示。'}</span> : <>
+    {hidden ? <><IconStrip icons={hiddenIcons} /><span className="hg-card-text">{hiddenRule}。{card.exhausted ? '已横置，不参与对抗。' : '在地区内且未横置时参与势力对抗。'}</span></> : <>
       <span className="hg-card-affiliation">{region ? `赢得 ${definition?.points ?? '—'} 分 · 控制阈值 ${definition?.threshold ?? '—'}` : asset ? `${card.color || '无派系'}${card.magic ? ` · ${card.magic}` : ''}` : <>{definition?.loyaltyText || (definition?.loyalty?.length ? `忠诚 ${definition.loyalty.join(' / ')}` : '无忠诚要求')}{(card.magic || definition?.magic) && ` · ${card.magic || definition?.magic}`}</>}</span>
-      {!asset && !region && <IconStrip icons={compact ? card.icons || permanent : permanent} />}
+      {!asset && !region && <IconStrip icons={concealedCompact ? hiddenIcons : compact ? card.icons || permanent : permanent} />}
       {!compact && hasTemporary && <span className="hg-temporary-label">先手 <IconStrip icons={temporary} temporary /></span>}
       {!compact && <span className="hg-card-text">{asset ? '未横置时可提供 1 费用，并提供所示派系与魔法忠诚。' : card.text || definition?.text || '此牌没有额外能力。'}</span>}
       <span className="hg-card-footer">
@@ -48,21 +52,21 @@ export function CardContent({ card: source, definition: sourceDefinition, compac
         {!concealedCompact && !!card.wounds && <span className="hg-hurt">创伤 {card.wounds}</span>}
         {!concealedCompact && !!card.shield && <span>护盾 {card.shield}</span>}
         {card.exhausted && <span className="hg-exhausted-label">已横置</span>}
-        {card.faceDown && <span>{concealedCompact ? '暗藏者 · 不受角色伤害' : '暗藏'}</span>}
+        {card.faceDown && <span>{hiddenRule}{card.exhausted ? ' · 横置不参与对抗' : ''}</span>}
       </span>
     </>}
   </>;
 }
 
-export function CardTile({ card: source, definition: sourceDefinition, selected, onSelect, compact = false, viewerId, owner, actionable = false }: {
+export function CardTile({ card: source, definition: sourceDefinition, selected, onSelect, compact = false, viewerId, owner, actionable = false, targeted = false, onPreview, onPreviewEnd }: {
   card: Card; definition?: CardDefinition; selected?: boolean; onSelect?: () => void; compact?: boolean;
-  viewerId?: string; owner?: Player; actionable?: boolean;
+  viewerId?: string; owner?: Player; actionable?: boolean; targeted?: boolean; onPreview?: () => void; onPreviewEnd?: () => void;
 }) {
   const card = viewerId ? visibleCard(source, viewerId) : source;
   const definition = card.cardId ? sourceDefinition : undefined;
   const color = card.color || definition?.color || '';
   const palette = color.includes('黄') ? 'gold' : color.includes('红') ? 'red' : color.includes('蓝') ? 'blue' : color.includes('绿') ? 'green' : color.includes('紫') ? 'violet' : 'neutral';
-  return <button type="button" data-card-instance={card.instanceId} data-card-owner={card.owner} data-card-actionable={actionable} className={`hg-card hg-card-${palette}${compact ? ' hg-card-compact' : ''}${selected ? ' hg-selected' : ''}${card.exhausted ? ' hg-exhausted' : ''}${actionable ? ' hg-card-actionable' : ''}`} onClick={onSelect} aria-pressed={selected} aria-label={`查看${card.name}${card.exhausted ? '，已横置' : ''}`}>
+  return <button type="button" data-card-instance={card.instanceId} data-card-owner={card.owner} data-card-actionable={actionable} data-card-targeted={targeted} data-card-exhausted={card.exhausted} className={`hg-card hg-card-${palette}${compact ? ' hg-card-compact' : ''}${selected ? ' hg-selected' : ''}${card.exhausted ? ' hg-exhausted' : ''}${actionable ? ' hg-card-actionable' : ''}${targeted ? ' hg-card-targeted' : ''}`} onClick={onSelect} onMouseEnter={onPreview} onMouseLeave={onPreviewEnd} onFocus={onPreview} onBlur={onPreviewEnd} aria-pressed={selected} aria-label={`查看${card.name}${card.exhausted ? '，已横置' : ''}`}>
     {owner && <span className="hg-card-owner"><span className="hg-piece-avatar">{owner.name.slice(0, 1)}</span><span>{owner.name}{owner.id === viewerId ? ' · 你' : ''}</span><em>{actionable ? '可行动' : card.faceDown && owner.id === viewerId ? '查看自牌' : '浏览'}</em></span>}
     <CardContent card={card} definition={definition} compact={compact} />
   </button>;

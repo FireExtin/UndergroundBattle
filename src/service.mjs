@@ -24,11 +24,18 @@ const name = value => {
   if (!result || Array.from(result).length > 40) bad('昵称长度须为1至40字');
   return result;
 };
-const commandFields = new Set(['kind','cardId','targetId','region','option','choiceId','selected','top','bottom','allocations','abilityId','costSelected']);
+const commandFields = new Set(['kind','cardId','targetId','region','option','choiceId','selected','top','bottom','allocations','abilityId','costSelected','deckDraft']);
 export function normalizedAction(value) {
   if (!value || typeof value !== 'object' || Array.isArray(value) || typeof value.kind !== 'string') bad('行动格式不正确');
   if (Object.keys(value).some(key => !commandFields.has(key))) bad('行动含未知字段');
+  if (value.deckDraft != null && value.kind !== 'deck') bad('只有大厅更换牌组可提交构筑草稿');
   return Object.fromEntries(Object.entries(value).filter(([, v]) => v !== null));
+}
+function deckSelection(body) {
+  if (body.deckDraft === undefined) return { deckId: body.deckId };
+  if (body.deckId !== undefined) bad('请选择一个预组或一个自定义牌组');
+  if (!body.deckDraft || typeof body.deckDraft !== 'object' || Array.isArray(body.deckDraft)) bad('自定义牌组格式不正确');
+  return { deckDraft: body.deckDraft };
 }
 function transition(raw) {
   const next = JSON.parse(raw);
@@ -55,13 +62,15 @@ export class RoomService {
     return { requestHash: await digest(key), intentHash: await intent(values) };
   }
   async create(body) {
-    const values = { kind: 'create', name: name(body.name), mode: body.mode, deckId: body.deckId };
+    const values = { kind: 'create', name: name(body.name), mode: body.mode, ...deckSelection(body) };
     const key = await this.entryKey(body, values);
     const previous = recovered(await this.store.entryReceipt(key.requestHash), key.intentHash);
     if (previous) return previous;
     const id = secure(12), invite = secure(6).toUpperCase(), token = secure(32), nonce = secure(16);
     const seed = BigInt('0x' + secure(8)).toString();
-    const next = call(() => transition(this.kernel.newGame(id, invite, values.mode, values.name, values.deckId, seed)));
+    const next = call(() => transition(values.deckDraft
+      ? this.kernel.newGameWithDeck(id, invite, values.mode, values.name, JSON.stringify(values.deckDraft), seed)
+      : this.kernel.newGame(id, invite, values.mode, values.name, values.deckId, seed)));
     const response = { roomId: id, inviteCode: invite, token, seat: 0, view: next.view };
     try {
       await this.store.create({ id, invite, state: next.state, nonce, tokenHash: await digest(token), ...key, response: JSON.stringify(response) });
@@ -74,7 +83,7 @@ export class RoomService {
   }
   async join(body) {
     if (typeof body.inviteCode !== 'string') bad('请输入邀请码');
-    const values = { kind: 'join', inviteCode: body.inviteCode.trim().toUpperCase(), name: name(body.name), deckId: body.deckId };
+    const values = { kind: 'join', inviteCode: body.inviteCode.trim().toUpperCase(), name: name(body.name), ...deckSelection(body) };
     const key = await this.entryKey(body, values);
     for (let attempt = 0; attempt < 5; attempt++) {
       const previous = recovered(await this.store.entryReceipt(key.requestHash), key.intentHash);
@@ -82,7 +91,9 @@ export class RoomService {
       const room = await this.store.byInvite(values.inviteCode);
       if (!room) throw new HttpError(404, '房间不存在');
       let next;
-      try { next = call(() => transition(this.kernel.joinGame(room.state, values.name, values.deckId))); }
+      try { next = call(() => transition(values.deckDraft
+        ? this.kernel.joinGameWithDeck(room.state, values.name, JSON.stringify(values.deckDraft))
+        : this.kernel.joinGame(room.state, values.name, values.deckId))); }
       catch (error) {
         const concurrent = recovered(await this.store.entryReceipt(key.requestHash), key.intentHash);
         if (concurrent) return concurrent;
@@ -93,7 +104,9 @@ export class RoomService {
       const response = { roomId: room.id, inviteCode: room.invite, token, seat: next.seat, view: next.view };
       const committed = await this.store.join({ id: room.id, expectedVersion: room.version, state: next.state, version: next.version, nonce,
         seat: next.seat, tokenHash: await digest(token), ...key, response: JSON.stringify(response),
-        entry: JSON.stringify({ Join: { name: values.name, deck_id: values.deckId } }) });
+        entry: JSON.stringify(values.deckDraft
+          ? { JoinWithDeck: { name: values.name, deck_draft: values.deckDraft } }
+          : { Join: { name: values.name, deck_id: values.deckId } }) });
       if (committed) return response;
     }
     const previous = recovered(await this.store.entryReceipt(key.requestHash), key.intentHash);

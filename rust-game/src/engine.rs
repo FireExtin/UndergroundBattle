@@ -17,11 +17,39 @@ impl Game {
         deck_id: String,
         seed: u64,
     ) -> RuleResult<Self> {
-        if mode != "duel" && mode != "teams" {
-            return Err("模式必须为 duel 或 teams".into());
-        }
         if catalog::deck(&deck_id).is_none() {
             return Err("未知牌组".into());
+        }
+        Self::new_lobby(
+            room_id,
+            invite_code,
+            mode,
+            Player::new(0, name, deck_id),
+            seed,
+        )
+    }
+    pub fn new_with_deck(
+        room_id: String,
+        invite_code: String,
+        mode: String,
+        name: String,
+        draft: crate::deck::DeckDraft,
+        seed: u64,
+    ) -> RuleResult<Self> {
+        let snapshot = crate::deck::validate(draft)?;
+        let mut player = Player::new(0, name, "custom".into());
+        player.deck_snapshot = Some(snapshot);
+        Self::new_lobby(room_id, invite_code, mode, player, seed)
+    }
+    fn new_lobby(
+        room_id: String,
+        invite_code: String,
+        mode: String,
+        player: Player,
+        seed: u64,
+    ) -> RuleResult<Self> {
+        if mode != "duel" && mode != "teams" {
+            return Err("模式必须为 duel 或 teams".into());
         }
         Ok(Self {
             state_schema: 2,
@@ -31,7 +59,7 @@ impl Game {
             mode,
             version: 0,
             status: "lobby".into(),
-            players: vec![Player::new(0, name, deck_id)],
+            players: vec![player],
             seed,
             random: seed.max(1),
             sequence: 0,
@@ -131,6 +159,23 @@ impl Game {
         }
         let seat = self.players.len();
         self.players.push(Player::new(seat, name.clone(), deck_id));
+        self.version += 1;
+        self.note(format!("{name} 加入座位 {}", seat + 1));
+        Ok(seat)
+    }
+    pub fn join_with_deck(
+        &mut self,
+        name: String,
+        draft: crate::deck::DeckDraft,
+    ) -> RuleResult<usize> {
+        if self.status != "lobby" || self.players.len() >= self.capacity() {
+            return Err("房间已开始或座位已满".into());
+        }
+        let snapshot = crate::deck::validate(draft)?;
+        let seat = self.players.len();
+        let mut player = Player::new(seat, name.clone(), "custom".into());
+        player.deck_snapshot = Some(snapshot);
+        self.players.push(player);
         self.version += 1;
         self.note(format!("{name} 加入座位 {}", seat + 1));
         Ok(seat)
@@ -267,11 +312,15 @@ impl Game {
             .cards
             .iter()
             .filter(|other| {
-                !other.face_down && other.controller == c.controller && other.id != c.id
+                !c.face_down
+                    && card(&c.definition).kind == "character"
+                    && !other.face_down
+                    && self.team(other.controller) == self.team(c.controller)
+                    && other.id != c.id
             })
             .flat_map(|other| rules::definition(&other.definition).modifiers.iter())
             .map(|m| match m {
-                StaticModifier::OtherControlledCharactersDefense(n) => *n,
+                StaticModifier::OtherFriendlyCharactersDefense(n) => *n,
                 _ => 0,
             })
             .sum::<u32>();
@@ -345,11 +394,16 @@ impl Game {
                     return Ok(());
                 }
                 "deck" if self.status == "lobby" => {
-                    let id = a.option.ok_or("请选择牌组")?;
-                    if catalog::deck(&id).is_none() {
-                        return Err("未知牌组".into());
+                    if let Some(draft) = a.deck_draft {
+                        let snapshot = crate::deck::validate(draft)?;
+                        self.players[seat].deck_id = "custom".into();
+                        self.players[seat].deck_snapshot = Some(snapshot);
+                    } else {
+                        let id = a.option.ok_or("请选择牌组")?;
+                        crate::deck::preset(&id)?;
+                        self.players[seat].deck_id = id;
+                        self.players[seat].deck_snapshot = None;
                     }
-                    self.players[seat].deck_id = id;
                     self.players[seat].ready = false;
                     return Ok(());
                 }
@@ -571,10 +625,12 @@ impl Game {
             self.players[seat].graveyard.clear();
             self.players[seat].score_cards.clear();
             self.players[seat].eliminated = false;
-            let entries = catalog::deck(&self.players[seat].deck_id)
-                .unwrap()
-                .cards
-                .clone();
+            let snapshot = match self.players[seat].deck_snapshot.clone() {
+                Some(snapshot) => crate::deck::validate(snapshot)?,
+                None => crate::deck::preset(&self.players[seat].deck_id)?,
+            };
+            let entries = snapshot.cards.clone();
+            self.players[seat].deck_snapshot = Some(snapshot);
             let mut pile = vec![];
             for entry in entries {
                 for _ in 0..entry.count {
@@ -1714,6 +1770,17 @@ impl Game {
                     threshold: d.threshold.unwrap_or(0),
                     points: d.points.unwrap_or(0),
                     influence: r.influence,
+                    skip_confrontation: r.skip,
+                    icons_by_team: {
+                        let investigation = self.contest_counts(index, 0);
+                        let combat = self.contest_counts(index, 1);
+                        let influence = self.contest_counts(index, 2);
+                        [0, 1].map(|team| Icons {
+                            investigation: investigation[team],
+                            combat: combat[team],
+                            influence: influence[team],
+                        })
+                    },
                     characters: r
                         .cards
                         .iter()
@@ -1738,6 +1805,12 @@ impl Game {
                     name: p.name.clone(),
                     team: self.team(p.seat),
                     deck_id: p.deck_id.clone(),
+                    deck_name: p
+                        .deck_snapshot
+                        .as_ref()
+                        .map(|d| d.name.clone())
+                        .or_else(|| catalog::deck(&p.deck_id).map(|d| d.name.clone()))
+                        .unwrap_or_default(),
                     ready: p.ready,
                     eliminated: p.eliminated,
                     hand_count: p.hand.len(),
@@ -1826,6 +1899,11 @@ impl Game {
             legal_actions: self.legal_actions(seat),
             log: self.log.clone(),
             versions: self.versions.clone(),
+            your_deck: self.players[seat]
+                .deck_snapshot
+                .clone()
+                .or_else(|| crate::deck::preset(&self.players[seat].deck_id).ok()),
+            world_deck_count: self.world.len(),
         }
     }
     pub fn legal_actions(&self, seat: usize) -> Vec<LegalAction> {

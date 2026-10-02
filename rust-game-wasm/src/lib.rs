@@ -108,6 +108,43 @@ pub fn join_game(state: &str, name: &str, deck_id: &str) -> Result<String, JsVal
     let seat = game.join(name.into(), deck_id.into()).map_err(error)?;
     encode(game, seat)
 }
+#[wasm_bindgen(js_name = newGameWithDeck)]
+pub fn new_game_with_deck(
+    room_id: &str,
+    invite_code: &str,
+    mode: &str,
+    name: &str,
+    deck_json: &str,
+    seed_decimal: &str,
+) -> Result<String, JsValue> {
+    let seed = seed_decimal
+        .parse::<u64>()
+        .map_err(|_| error("Seed must be a decimal u64 string"))?;
+    let draft = serde_json::from_str(deck_json).map_err(|_| error("Invalid deck draft JSON"))?;
+    let game = Game::new_with_deck(
+        room_id.into(),
+        invite_code.into(),
+        mode.into(),
+        name.into(),
+        draft,
+        seed,
+    )
+    .map_err(error)?;
+    encode(game, 0)
+}
+#[wasm_bindgen(js_name = joinGameWithDeck)]
+pub fn join_game_with_deck(state: &str, name: &str, deck_json: &str) -> Result<String, JsValue> {
+    let mut game = decode(state)?;
+    let draft = serde_json::from_str(deck_json).map_err(|_| error("Invalid deck draft JSON"))?;
+    let seat = game.join_with_deck(name.into(), draft).map_err(error)?;
+    encode(game, seat)
+}
+#[wasm_bindgen(js_name = roomCatalog)]
+pub fn room_catalog(state: &str, seat: usize) -> Result<String, JsValue> {
+    let game = decode(state)?;
+    valid_seat(&game, seat)?;
+    catalog()
+}
 
 #[wasm_bindgen]
 pub fn apply(state: &str, seat: usize, action_json: &str) -> Result<String, JsValue> {

@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { actionPayload, ApiError, createRoom, getCatalog, getState, pollState, readSession, saveSession, sendCommand, streamEvents } from './api';
+import { actionPayload, ApiError, createRoom, createRoomWithDeck, getCatalog, getState, pollState, readSession, saveSession, sendCommand, streamEvents } from './api';
 import { testCatalog, testView } from './testFixtures';
 
 const session = { roomId: 'room-test', inviteCode: 'INVITE', token: 'opaque-seat-token', seat: 0 };
@@ -95,5 +95,20 @@ describe('cloud table API', () => {
     const recovery = localStorage.getItem('hegemony.entry.v1'); expect(recovery).not.toBeNull();
     await createRoom('乙', 'duel', 'watchers');
     expect(fetchMock.mock.calls[1][1].body).toBe(fetchMock.mock.calls[2][1].body);
+  });
+  it('recovers a custom deck entry with the original draft and request identity', async () => {
+    const draft = { id: 'draft-a', name: '我的牌组', description: '', societyId: null,
+      cards: [{ cardId: 'JC125', count: 50 }], rulesVersion: 'rules1', cardPoolVersion: 'pool1', engineVersion: 'engine1', updatedAt: '2026-10-02T16:00:00Z' };
+    const fetchMock = vi.fn().mockResolvedValueOnce(new Response(JSON.stringify({ entryIdempotency: true }), { status: 200 }))
+      .mockRejectedValueOnce(new Error('lost ACK')).mockResolvedValueOnce(new Response(JSON.stringify(session), { status: 200 }))
+      .mockResolvedValueOnce(new Response(JSON.stringify(testView), { status: 200 }));
+    vi.stubGlobal('fetch', fetchMock); await getCatalog();
+    expect(await createRoomWithDeck('构筑玩家', 'teams', draft)).toEqual(session);
+    expect(fetchMock.mock.calls[1][1].body).toBe(fetchMock.mock.calls[2][1].body);
+    expect(JSON.parse(fetchMock.mock.calls[1][1].body)).toMatchObject({ name: '构筑玩家', mode: 'teams', deckDraft: draft });
+    expect(JSON.parse(fetchMock.mock.calls[1][1].body)).not.toHaveProperty('deckId');
+    expect(localStorage.getItem('hegemony.entry.v1')).toBeNull();
+    await sendCommand(session, 7, { kind: 'deck', deckDraft: draft }, 'draft-command');
+    expect(JSON.parse(fetchMock.mock.calls[3][1].body)).toEqual({ commandId: 'draft-command', expectedVersion: 7, action: { kind: 'deck', deckDraft: draft } });
   });
 });

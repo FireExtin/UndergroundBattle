@@ -1,4 +1,5 @@
 import type { Action, Catalog, SavedSession, Session, View } from './types';
+import type { DeckDraft } from './deckLibrary';
 
 const STORAGE_KEY = 'hegemony.session.v1';
 const PENDING_KEY = 'hegemony.pending.v1';
@@ -113,7 +114,7 @@ export const getState = async (session: SavedSession, signal?: AbortSignal) => {
   return view;
 };
 let entryMemory: { intent: string; requestId: string } | null = null;
-async function enterRoom(path: string, values: Record<string, string>): Promise<Session> {
+async function enterRoom(path: string, values: Record<string, unknown>): Promise<Session> {
   const intent = JSON.stringify([path, values]);
   try { entryMemory = JSON.parse(localStorage.getItem(ENTRY_KEY) || 'null') || entryMemory; } catch { /* Keep an in-memory recovery key. */ }
   if (!entryMemory || entryMemory.intent !== intent || typeof entryMemory.requestId !== 'string') entryMemory = { intent, requestId: newCommandId() };
@@ -133,6 +134,8 @@ async function enterRoom(path: string, values: Record<string, string>): Promise<
 }
 export const createRoom = (name: string, mode: 'duel' | 'teams', deckId: string) => enterRoom('/api/rooms', { name, mode, deckId });
 export const joinRoom = (inviteCode: string, name: string, deckId: string) => enterRoom('/api/rooms/join', { inviteCode, name, deckId });
+export const createRoomWithDeck = (name: string, mode: 'duel' | 'teams', deckDraft: DeckDraft) => enterRoom('/api/rooms', { name, mode, deckDraft });
+export const joinRoomWithDeck = (inviteCode: string, name: string, deckDraft: DeckDraft) => enterRoom('/api/rooms/join', { inviteCode, name, deckDraft });
 
 /** One authenticated version poll. No token in URLs, no full hidden state. */
 export async function pollState(session: SavedSession, version: number, signal: AbortSignal): Promise<View | null> {
@@ -147,8 +150,8 @@ export async function pollState(session: SavedSession, version: number, signal: 
 }
 
 export function actionPayload(action: Action | (Action & { id: string; label: string; description?: string })): Action {
-  const { kind, cardId, targetId, region, option, abilityId, costSelected, choiceId, selected, top, bottom, allocations } = action;
-  return { kind, cardId, targetId, region, option, abilityId, costSelected, choiceId, selected, top, bottom, allocations };
+  const { kind, cardId, targetId, region, option, abilityId, costSelected, choiceId, selected, top, bottom, allocations, deckDraft } = action;
+  return { kind, cardId, targetId, region, option, abilityId, costSelected, choiceId, selected, top, bottom, allocations, deckDraft };
 }
 export const sendCommand = (session: SavedSession, version: number, action: Action, commandId: string = newCommandId()) => request<View>(`${roomPath(session)}/commands`, {
   method: 'POST', headers: { ...headers(session), 'Content-Type': 'application/json' },

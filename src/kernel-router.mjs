@@ -14,8 +14,21 @@ export function routeKernels(current, previous) {
   return {
     catalog: state => (state === undefined ? current : select(state)).catalog(),
     newGame: (...args) => current.newGame(...args),
+    newGameWithDeck: (...args) => {
+      if (!current.newGameWithDeck) throw '此版本尚未支持自定义牌组';
+      return current.newGameWithDeck(...args);
+    },
     joinGame: (state, ...args) => select(state).joinGame(state, ...args),
-    apply: (state, ...args) => select(state).apply(state, ...args),
+    joinGameWithDeck: (state, ...args) => {
+      const selected = select(state);
+      if (!selected.joinGameWithDeck) throw '这张旧牌桌保留原规则，只能选择其原有预组';
+      return selected.joinGameWithDeck(state, ...args);
+    },
+    apply: (state, seat, action) => {
+      const selected = select(state);
+      if (JSON.parse(action).deckDraft != null && !selected.joinGameWithDeck) throw '这张旧牌桌保留原规则，只能选择其原有预组';
+      return selected.apply(state, seat, action);
+    },
     view: (state, ...args) => select(state).view(state, ...args),
   };
 }
