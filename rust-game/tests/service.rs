@@ -236,7 +236,9 @@ async fn legacy_state_is_rejected_explicitly_without_silent_migration() {
             Ok(_) => panic!("legacy room must not load: {engine}"),
         };
         assert!(error.message.contains("旧局") && error.message.contains("静默迁移"));
-        assert!(error.message.contains("rust-v0.2.1"));
+        assert!(error
+            .message
+            .contains(hegemony_server::catalog::ENGINE_VERSION));
         let audit = Store::open_read_only(&db).unwrap();
         assert!(audit
             .audit_replay(&a.room_id)

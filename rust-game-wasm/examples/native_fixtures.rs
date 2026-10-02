@@ -177,7 +177,9 @@ fn response_fixture() -> Value {
             ..Action::new("activate")
         },
     );
-    for seat in [0, 1, 0, 1] {
+    assert_eq!(game.modifiers.len(), 1);
+    assert_eq!(game.stack.len(), 1);
+    for seat in [0, 1] {
         apply(&mut game, seat, Action::new("pass"));
     }
     apply(

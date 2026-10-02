@@ -4,7 +4,7 @@ use std::sync::OnceLock;
 
 pub const RULES_VERSION: &str = "hegemony-pdf-v1";
 pub const POOL_VERSION: &str = "limited-v2.1";
-pub const ENGINE_VERSION: &str = "rust-v0.2.1";
+pub const ENGINE_VERSION: &str = "rust-v0.2.2";
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]

@@ -523,7 +523,7 @@ impl Game {
                 let c = self.fresh(c);
                 let frame = self.make_frame(seat, source, &spec, targets, paid, a.region);
                 self.note(format!("{} 打出 {}", self.players[seat].name, d.name));
-                self.push_frame(frame, d.name.clone(), Some(c));
+                self.dispatch_frame(frame, d.name.clone(), Some(c), spec.response_policy);
             }
             "activate" => {
                 let id = a.card_id.as_deref().ok_or("请选择能力来源")?;
@@ -539,7 +539,7 @@ impl Game {
                 let label = format!("{}：{}", card(&source.card.definition).name, spec.label);
                 let frame = self.make_frame(seat, source, &spec, targets, paid, a.region);
                 self.note(format!("{} 发动 {}", self.players[seat].name, label));
-                self.push_frame(frame, label, None);
+                self.dispatch_frame(frame, label, None, spec.response_policy);
             }
             "privilege" => return self.privilege(seat),
             _ => return Err("当前操作不合法".into()),
@@ -3025,8 +3025,13 @@ mod tests {
         )
         .unwrap();
         assert!(g.board(&disciple).is_none());
-        assert_eq!(g.players[0].graveyard.len(), 1); // Sacrifice is paid before the response can resolve.
-        assert!(g.modifiers.is_empty());
+        assert_eq!(g.players[0].graveyard.len(), 1); // Sacrifice is a paid cost.
+                                                     // Cost reduction resolves immediately; it never offers its own response window.
+        assert_eq!(g.modifiers.len(), 1);
+        assert_eq!(g.modifiers[0].actor, 0);
+        assert_eq!(g.stack.len(), 1); // Only the original Murder remains on the stack.
+        assert_eq!(g.stack[0].card.as_ref().unwrap().definition, "JC091");
+        assert!(g.pending.is_none());
         let view = g.view(1);
         assert_eq!(view.stack[0].target_summaries[0].status, "missing");
         assert!(!view.stack[0].target_summaries[0].valid);
@@ -3035,7 +3040,9 @@ mod tests {
             serde_json::to_string(&restored).unwrap(),
             serde_json::to_string(&g).unwrap()
         );
-        pass_stack(&mut g);
+        g.apply(0, Action::new("pass")).unwrap();
+        g.apply(1, Action::new("pass")).unwrap();
+        assert!(g.stack.is_empty()); // One full pass round resolves the original Murder.
         assert_eq!(g.modifiers.len(), 1);
         assert_eq!(g.modifiers[0].actor, 0);
         assert_eq!(g.resources(1), 0); // Failed Murder does not refund its three assets.
@@ -3052,6 +3059,129 @@ mod tests {
             .log
             .iter()
             .any(|entry| entry.text.contains("整个卡牌或能力效果取消")));
+    }
+    #[test]
+    fn disciple_reduction_on_empty_stack_is_immediate_and_restores_without_repayment() {
+        let mut g = game("duel");
+        let disciple = board(&mut g, "JC042", 0, 0);
+        let action = Action {
+            card_id: Some(disciple.clone()),
+            ..Action::new("activate")
+        };
+        assert!(g.stack.is_empty());
+        let priority = g.priority_team;
+        let window = g.window.clone();
+        g.apply(0, action.clone()).unwrap();
+        assert_eq!(g.modifiers.len(), 1);
+        assert_eq!(g.modifiers[0].actor, 0);
+        assert!(g.stack.is_empty());
+        assert!(g.effects.is_empty());
+        assert!(g.pending.is_none());
+        assert_eq!(g.priority_team, priority);
+        assert_eq!(g.window, window);
+        assert!(g.passed.is_empty());
+        assert!(g.board(&disciple).is_none());
+        assert_eq!(g.players[0].graveyard.len(), 1);
+
+        let serialized = serde_json::to_string(&g).unwrap();
+        let mut restored = Game::from_persisted(&serialized).unwrap();
+        assert!(restored.apply(0, action).is_err());
+        assert_eq!(serde_json::to_string(&restored).unwrap(), serialized);
+        // Same schema and pool do not make a previous engine state compatible.
+        let mut previous: serde_json::Value = serde_json::from_str(&serialized).unwrap();
+        previous["versions"]["engine"] = "rust-v0.2.1".into();
+        let error = Game::from_persisted(&serde_json::to_string(&previous).unwrap()).unwrap_err();
+        assert!(error.contains(catalog::ENGINE_VERSION));
+    }
+    #[test]
+    fn immediate_policy_keeps_cost_death_trigger_responsive_and_choice_resumable() {
+        let mut g = game("duel");
+        let target = board(&mut g, "LC21", 1, 0);
+        let fee = board(&mut g, "XQ12", 1, 0);
+        g.board_mut(&fee).unwrap().controller = 0;
+        resource(&mut g, 0, "JC002", 2);
+        let spell = hand(&mut g, "XQ03", 0);
+        g.apply(
+            0,
+            Action {
+                card_id: Some(spell),
+                target_id: Some(target.clone()),
+                ..Action::new("play")
+            },
+        )
+        .unwrap();
+        let lower_stack_id = g.stack[0].id.clone();
+        // Explicit primitive contract fixture: XQ12 has its real Death trigger,
+        // but this synthetic paid program is not an additional released card ability.
+        // JC042 itself has no Death trigger in the supported pool.
+        let (region, c) = g.board(&fee).unwrap();
+        let source = g.source_snapshot(c, Some(region));
+        let spec = rules::definition("JC042").abilities[0].clone();
+        let paid = g
+            .pay_ability_costs(0, &source, &spec, &Action::new("activate"))
+            .unwrap();
+        assert!(matches!(
+            &paid[..],
+            [PaidCost::Sacrificed {
+                controller: 0,
+                owner: 1,
+                ..
+            }]
+        ));
+        let frame = g.make_frame(0, source, &spec, vec![], paid, None);
+        g.dispatch_frame(
+            frame,
+            "不可响应的原语测试".into(),
+            None,
+            spec.response_policy,
+        );
+        g.settle_deaths();
+        g.drive().unwrap();
+        assert_eq!(g.modifiers.len(), 1);
+        assert_eq!(g.stack.len(), 1);
+        assert_eq!(g.stack[0].id, lower_stack_id);
+        assert!(g.board(&fee).is_none());
+        assert_eq!(g.players[1].graveyard.len(), 1);
+        let pending = g.pending.as_ref().unwrap();
+        assert_eq!(pending.seat, 0); // Death belongs to the last controller, not the owner.
+        let ChoiceResolution::Declare { declaration, .. } = &pending.resolution else {
+            panic!("fee death must retain its independent declaration");
+        };
+        assert_eq!(declaration.ability.event, Some(Event::Death));
+        assert_eq!(
+            declaration.ability.response_policy,
+            rules::ResponsePolicy::Respondable
+        );
+        let serialized = serde_json::to_string(&g).unwrap();
+        let mut restored = Game::from_persisted(&serialized).unwrap();
+        assert_eq!(serde_json::to_string(&restored).unwrap(), serialized);
+        select(&mut restored, vec!["p1".into()]);
+        assert_eq!(restored.stack.len(), 2); // Death gets its own normal response window.
+        assert_eq!(restored.stack[0].id, lower_stack_id);
+        assert_eq!(restored.players[1].graveyard.len(), 1);
+        restored.apply(0, Action::new("pass")).unwrap();
+        restored.apply(1, Action::new("pass")).unwrap();
+        assert_eq!(restored.stack.len(), 1);
+        assert_eq!(restored.stack[0].id, lower_stack_id);
+        let pending = restored.pending.as_ref().unwrap();
+        assert_eq!(pending.seat, 1);
+        let ChoiceResolution::Frame { frame, .. } = &pending.resolution else {
+            panic!("death discard must retain its resumable frame");
+        };
+        assert!(matches!(frame.guard, GuardState::Accepted));
+        assert_eq!(frame.cursor, 1);
+        let discarded = pending.choice.options[0].id.clone();
+        let serialized = serde_json::to_string(&restored).unwrap();
+        let mut resumed = Game::from_persisted(&serialized).unwrap();
+        assert_eq!(serde_json::to_string(&resumed).unwrap(), serialized);
+        select(&mut resumed, vec![discarded]);
+        assert!(resumed.pending.is_none());
+        assert_eq!(resumed.modifiers.len(), 1); // No repeated immediate effect or sacrifice.
+        assert_eq!(resumed.players[1].graveyard.len(), 2);
+        assert_eq!(resumed.stack.len(), 1);
+        pass_stack(&mut resumed);
+        assert!(resumed.board(&target).unwrap().1.exhausted);
+        assert_eq!(resumed.players[1].graveyard.len(), 2);
     }
     #[test]
     fn bottom_to_hand_insufficient_cards_does_not_draw_or_eliminate_and_pays_controlled_cost() {
@@ -3355,16 +3485,15 @@ mod tests {
         .unwrap();
         assert!(g.passed.is_empty());
         assert_eq!(g.priority_team, 0);
-        assert_eq!(g.stack.len(), 3);
-        for _ in 0..3 {
-            for seat in [0, 1, 2, 3] {
-                g.apply(seat, Action::new("pass")).unwrap();
-            }
+        assert_eq!(g.stack.len(), 1); // Immediate reductions add no responsive objects.
+        assert_eq!(g.modifiers.len(), 2);
+        for seat in [0, 1, 2, 3] {
+            g.apply(seat, Action::new("pass")).unwrap();
         }
         assert!(g.stack.is_empty());
         assert_eq!(
             g.modifiers.iter().map(|m| m.actor).collect::<Vec<_>>(),
-            vec![1, 0]
+            vec![0, 1]
         );
         assert_eq!(g.players[0].graveyard.len(), 1);
         assert_eq!(g.players[1].graveyard.len(), 1);

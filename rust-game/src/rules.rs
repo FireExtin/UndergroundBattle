@@ -9,6 +9,12 @@ pub enum Timing {
     Fast,
     ActionFast,
 }
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Serialize, Deserialize)]
+pub enum ResponsePolicy {
+    #[default]
+    Respondable,
+    Immediate,
+}
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum Event {
     Enter,
@@ -172,6 +178,8 @@ pub struct AbilitySpec {
     pub key: String,
     pub label: String,
     pub timing: Timing,
+    #[serde(default)]
+    pub response_policy: ResponsePolicy,
     pub costs: Vec<Cost>,
     pub targets: Vec<TargetSlotSpec>,
     pub ops: Vec<Op>,
@@ -281,6 +289,7 @@ fn ability(
         key: key.into(),
         label: label.into(),
         timing,
+        response_policy: ResponsePolicy::Respondable,
         costs,
         targets,
         ops,
@@ -671,24 +680,23 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
                 None,
             )]),
         );
-        m.insert(
-            "JC042".into(),
-            with_abilities(vec![ability(
-                "reduce-next",
-                "快速行动",
-                Timing::Fast,
-                vec![Cost::SacrificeSource],
-                vec![],
-                vec![Op::CostReduction {
-                    filter: CardFilter::SocietyOrMagic {
-                        society: "鸣钟教派".into(),
-                        magic: MagicIcon::Blood,
-                    },
-                    amount: 2,
-                }],
-                None,
-            )]),
+        let mut reduce_next = ability(
+            "reduce-next",
+            "快速行动",
+            Timing::Fast,
+            vec![Cost::SacrificeSource],
+            vec![],
+            vec![Op::CostReduction {
+                filter: CardFilter::SocietyOrMagic {
+                    society: "鸣钟教派".into(),
+                    magic: MagicIcon::Blood,
+                },
+                amount: 2,
+            }],
+            None,
         );
+        reduce_next.response_policy = ResponsePolicy::Immediate;
+        m.insert("JC042".into(), with_abilities(vec![reduce_next]));
         let mut human = character;
         human.subtype = Some("人类".into());
         m.insert(
