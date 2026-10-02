@@ -7,7 +7,7 @@ use the real intent buttons; full-game budgets are distinct from slice probes.
 """
 import argparse, asyncio, json, re, time
 from pathlib import Path
-from playwright.async_api import async_playwright
+from playwright.async_api import async_playwright, TimeoutError as BrowserTimeout
 from attachment_v026 import AttachmentRun
 from common import IsolatedService, public_view, write_json
 
@@ -17,6 +17,7 @@ class FullGame(AttachmentRun):
         self.mode=mode; self.post_limit=budget
         self.grave_probe=grave_probe; self.grave_checks=[]; self.grave_entries=[]
         self.condition_checks=[]; self.condition_seen=set()
+        self.expiry_races=[]
         self.resume=resume; self.previous=None
         if resume:
             self.previous=json.loads((self.output/'full-game-summary.json').read_text())
@@ -24,6 +25,7 @@ class FullGame(AttachmentRun):
             self.post_count=self.previous['uiPostCount']; self.coverage.update(self.previous['coverage'])
             self.grave_checks=self.previous.get('graveChecks',[])
             self.condition_checks=self.previous.get('conditionChecks',[])
+            self.expiry_races=self.previous.get('expiryRaces',[])
     def observe_conditions(self,views):
         for v in views:
             teams={p['id']:p['team'] for p in v['players']}
@@ -115,14 +117,25 @@ class FullGame(AttachmentRun):
                 chosen=next(((s,v) for s,v in enumerate(views) if v.get('pendingChoice')),None)
                 if chosen:
                     seat,v=chosen; await self.choose(seat,v)
+                elif latest.get('waitingChoice'):
+                    # A timed transition can create a private chooser while its
+                    # own client is still receiving that same public revision.
+                    await asyncio.sleep(.1); continue
                 elif latest.get('stack') and latest.get('responseWindow'):
                     acted=False
                     for seat,v in enumerate(views):
                         w=v.get('responseWindow'); member=next((m for m in (w or {}).get('members',[]) if m['playerId']==v['you']),None)
                         if member and member['status']=='undecided':
+                            if member.get('deadlineMs',0)-time.time()*1000<1800:continue
                             button=self.pages[seat].get_by_role('button',name='不连锁，让过',exact=True)
-                            if await button.is_enabled():
-                                await self.submit(seat,button.click,'passResponse'); acted=True; break
+                            if await button.count() and await button.is_enabled():
+                                before_posts=self.post_count
+                                try:await self.submit(seat,lambda:button.click(timeout=1000),'passResponse')
+                                except BrowserTimeout:
+                                    if self.post_count!=before_posts:raise
+                                    await self.pages[seat].wait_for_function('(id)=>{const v=window.__cloudView;return v?.responseWindow?.id!==id || v?.pendingChoice || v?.waitingChoice || v?.responseWindow?.members.find(m=>m.playerId===v.you)?.status!=="undecided"}',arg=w['id'],timeout=4000)
+                                    self.expiry_races.append({'seat':seat,'windowId':w['id'],'kind':'normal-response-ui-changed-before-post','gamePosts':0})
+                                acted=True; break
                     if not acted:
                         await asyncio.sleep(.1)
                         continue
@@ -142,7 +155,7 @@ class FullGame(AttachmentRun):
             if self.pages: await self.screenshot('full-game-failure')
         finally:
             v=await self.view(0) if self.pages else None
-            result.update(testType='complete-natural-desktop-ui-game',mode=self.mode,stateInjection=False,apiMoves=False,uiPostCount=self.post_count,uiPostBudget=self.post_limit,browserErrors=self.errors,coverage=dict(self.coverage),graveChecks=self.grave_checks,conditionChecks=self.condition_checks,final=public_view(v),roomId=v['roomId'] if v else None,durationSeconds=round(time.monotonic()-start,2),resumedExistingRoom=self.resume,priorUiPostCount=self.previous['uiPostCount'] if self.previous else 0)
+            result.update(testType='complete-natural-desktop-ui-game',mode=self.mode,stateInjection=False,apiMoves=False,uiPostCount=self.post_count,uiPostBudget=self.post_limit,browserErrors=self.errors,coverage=dict(self.coverage),graveChecks=self.grave_checks,conditionChecks=self.condition_checks,expiryRaces=self.expiry_races,final=public_view(v),roomId=v['roomId'] if v else None,durationSeconds=round(time.monotonic()-start,2),resumedExistingRoom=self.resume,priorUiPostCount=self.previous['uiPostCount'] if self.previous else 0)
             write_json(self.output/'full-game-summary.json',result)
             for c in self.contexts: await c.close()
         print(json.dumps({'mode':self.mode,'passed':result['passed'],'posts':self.post_count,'failure':result.get('failure'),'roomId':result['roomId']}),flush=True)
