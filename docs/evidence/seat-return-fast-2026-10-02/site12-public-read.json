@@ -1,0 +1,27 @@
+{
+  "passed": true,
+  "roomId": "79a1af9b220566a5caa135ad",
+  "seat": 0,
+  "version": 1,
+  "scripts": [
+    "/assets/index-B45OmgXz.js"
+  ],
+  "styles": [
+    "/assets/index-z77gM5Ok.css"
+  ],
+  "health": {
+    "status": 200,
+    "body": {
+      "ok": true,
+      "service": "hegemony-worker",
+      "engineVersion": "rust-v0.2.6",
+      "transport": "polling"
+    }
+  },
+  "guideEscape": true,
+  "uiPostCount": 0,
+  "browserErrors": [],
+  "transportEvents": [],
+  "infrastructurePosts": [],
+  "siteBypassUsed": false
+}
