@@ -1840,7 +1840,9 @@
         "card-XQ30",
         "card-XQ32",
         "card-XQ34",
-        "card-XQ39"
+        "card-XQ39",
+        "card-XQ45",
+        "card-TEST033"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -1900,7 +1902,9 @@
         "card-XQ08",
         "card-XQ20",
         "card-XQ32",
-        "card-XQ37"
+        "card-XQ37",
+        "card-XQ51",
+        "card-TEST027"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -1950,7 +1954,10 @@
         "card-XQ22",
         "card-XQ23",
         "card-XQ24",
-        "card-XQ31"
+        "card-XQ31",
+        "card-XQ46",
+        "card-XQ48",
+        "card-XQ51"
       ],
       "dependencies": [
         "hidden"
@@ -2017,7 +2024,9 @@
         "card-XQ25",
         "card-XQ35",
         "card-XQ38",
-        "card-XQ39"
+        "card-XQ39",
+        "card-XQ40",
+        "card-TEST033"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -2109,7 +2118,8 @@
         "card-XQ10",
         "card-XQ11",
         "card-XQ19",
-        "card-XQ23"
+        "card-XQ23",
+        "card-XQ42"
       ],
       "dependencies": [
         "confrontation"
@@ -2148,7 +2158,8 @@
         "card-LC14",
         "card-LC15",
         "card-JC017",
-        "card-XQ31"
+        "card-XQ31",
+        "card-TEST033"
       ],
       "dependencies": [],
       "interactionIds": [],
@@ -2217,7 +2228,9 @@
         "card-XQ30",
         "card-XQ35",
         "card-XQ38",
-        "card-XQ39"
+        "card-XQ39",
+        "card-TEST043",
+        "card-TEST052"
       ],
       "dependencies": [
         "hidden",
@@ -2252,7 +2265,8 @@
         "card-JC085",
         "faq-4",
         "card-JC119",
-        "card-XQ35"
+        "card-XQ35",
+        "card-TEST042"
       ],
       "dependencies": [
         "priority",
@@ -2311,7 +2325,8 @@
         "card-XQ07",
         "card-XQ21",
         "card-XQ26",
-        "card-XQ30"
+        "card-XQ30",
+        "card-XQ50"
       ],
       "dependencies": [
         "priority"
@@ -2462,7 +2477,14 @@
         "card-XQ33",
         "card-XQ34",
         "card-XQ36",
-        "card-XQ38"
+        "card-XQ38",
+        "card-XQ40",
+        "card-XQ41",
+        "card-XQ42",
+        "card-XQ44",
+        "card-XQ48",
+        "card-TEST015",
+        "card-TEST027"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -2562,7 +2584,11 @@
         "card-XQ29",
         "card-XQ30",
         "card-XQ31",
-        "card-XQ33"
+        "card-XQ33",
+        "card-XQ43",
+        "card-XQ47",
+        "card-XQ52",
+        "card-TEST034"
       ],
       "dependencies": [],
       "interactionIds": [],
@@ -2761,7 +2787,17 @@
         "card-XQ26",
         "card-XQ30",
         "card-XQ32",
-        "card-XQ39"
+        "card-XQ39",
+        "card-XQ42",
+        "card-XQ43",
+        "card-XQ47",
+        "card-XQ50",
+        "card-TEST015",
+        "card-TEST027",
+        "card-TEST033",
+        "card-TEST034",
+        "card-TEST042",
+        "card-TEST043"
       ],
       "dependencies": [
         "priority"
@@ -2814,7 +2850,14 @@
         "card-JC110",
         "card-JC119",
         "card-XQ06",
-        "card-XQ35"
+        "card-XQ35",
+        "card-XQ40",
+        "card-XQ41",
+        "card-XQ44",
+        "card-XQ45",
+        "card-TEST042",
+        "card-TEST043",
+        "card-TEST052"
       ],
       "dependencies": [
         "priority",
@@ -2855,7 +2898,9 @@
         "card-JC072",
         "card-JC095",
         "card-XQ29",
-        "card-XQ31"
+        "card-XQ31",
+        "card-XQ48",
+        "card-XQ51"
       ],
       "dependencies": [
         "confrontation"
@@ -2904,7 +2949,10 @@
         "card-JC113",
         "card-JC121",
         "card-XQ06",
-        "card-XQ19"
+        "card-XQ19",
+        "card-XQ41",
+        "card-XQ43",
+        "card-TEST033"
       ],
       "dependencies": [
         "continuous",
@@ -3152,7 +3200,9 @@
         "card-BQ114",
         "card-BQ115",
         "card-BQ116",
-        "card-DQXQ01"
+        "card-DQXQ01",
+        "card-TEST034",
+        "card-TEST043"
       ],
       "dependencies": [
         "loyalty"
@@ -3313,7 +3363,10 @@
         "card-DQWM002",
         "card-DQWM003",
         "card-WM048",
-        "card-ZHWM048"
+        "card-ZHWM048",
+        "card-TEST015",
+        "card-TEST034",
+        "card-TEST052"
       ],
       "dependencies": [
         "society",
@@ -3546,7 +3599,9 @@
       "scope": "星光俱乐部上的标志仍属所在地势力，离场移除并参与抵消。",
       "limitations": "",
       "evidenceIds": [
-        "starlight"
+        "starlight",
+        "card-TEST042",
+        "card-TEST052"
       ],
       "dependencies": [
         "attachment",
@@ -3640,7 +3695,8 @@
       "limitations": "",
       "evidenceIds": [
         "bq-stack",
-        "card-XQ04"
+        "card-XQ04",
+        "card-TEST033"
       ],
       "dependencies": [
         "priority"
@@ -3674,7 +3730,8 @@
         "card-JC110",
         "card-XQ10",
         "card-XQ19",
-        "card-XQ34"
+        "card-XQ34",
+        "card-TEST034"
       ],
       "dependencies": [
         "priority",
@@ -3910,7 +3967,12 @@
         "card-XQ25",
         "card-XQ30",
         "card-XQ33",
-        "card-XQ38"
+        "card-XQ38",
+        "card-XQ41",
+        "card-XQ43",
+        "card-TEST015",
+        "card-TEST033",
+        "card-TEST042"
       ],
       "dependencies": [
         "confrontation",
@@ -3991,7 +4053,10 @@
         "card-XQ30",
         "card-XQ31",
         "card-XQ38",
-        "card-XQ39"
+        "card-XQ39",
+        "card-XQ43",
+        "card-XQ51",
+        "card-TEST033"
       ],
       "dependencies": [
         "sacrifice"
@@ -4895,49 +4960,49 @@
       "path": "resource/ymsj-fun.github.io/cards/TEST015 鼠群密探.jpg",
       "sha256": "73aed851e2997daa4b39da5a770331c9db7480a432ed1456eda2eb754a60caba",
       "visuallyReviewed": true,
-      "topic": "鼠群密探：标题、色/类别及下方规则框"
+      "topic": "鼠群密探：完整同ID原图与必要放大区逐项人工读取"
     },
     "card-TEST027": {
       "kind": "image",
       "path": "resource/ymsj-fun.github.io/cards/TEST027 战术头盔.jpg",
       "sha256": "24e8ac3af89b45530f95a41993007c37fc6c0f24ac705da1224bd58aef0953b5",
       "visuallyReviewed": true,
-      "topic": "战术头盔：标题、色/类别及下方规则框"
+      "topic": "战术头盔：完整同ID原图与必要放大区逐项人工读取"
     },
     "card-TEST033": {
       "kind": "image",
       "path": "resource/ymsj-fun.github.io/cards/TEST033 无形的星野.jpg",
       "sha256": "bd0c2dc1243a3ae083f0160e3ce8c15c34850c8667a75b26400cb79ea15a5dcc",
       "visuallyReviewed": true,
-      "topic": "无形的星野：标题、色/类别及下方规则框"
+      "topic": "无形的星野：完整同ID原图与必要放大区逐项人工读取"
     },
     "card-TEST034": {
       "kind": "image",
       "path": "resource/ymsj-fun.github.io/cards/TEST034 兽性直觉.jpg",
       "sha256": "51b211a96598671a2fc92dd3192dac1fb146a1bdfdde2e219febe8e7754b0ee5",
       "visuallyReviewed": true,
-      "topic": "兽性直觉：标题、色/类别及下方规则框"
+      "topic": "兽性直觉：完整同ID原图与必要放大区逐项人工读取"
     },
     "card-TEST042": {
       "kind": "image",
       "path": "resource/ymsj-fun.github.io/cards/TEST042 鸟居.jpg",
       "sha256": "6f27776d0e75b613ad3ea0279cf51ccbbd34864c3b25361e9824332140715978",
       "visuallyReviewed": true,
-      "topic": "鸟居：标题、色/类别及下方规则框"
+      "topic": "鸟居：完整同ID原图与必要放大区逐项人工读取"
     },
     "card-TEST043": {
       "kind": "image",
       "path": "resource/ymsj-fun.github.io/cards/TEST043 意识漩涡.jpg",
       "sha256": "42e59a25f12525779484900ce67264551891a7d47a79dd2facc2bfc7aca47ddb",
       "visuallyReviewed": true,
-      "topic": "意识漩涡：标题、色/类别及下方规则框"
+      "topic": "意识漩涡：完整同ID原图与必要放大区逐项人工读取"
     },
     "card-TEST052": {
       "kind": "image",
       "path": "resource/ymsj-fun.github.io/cards/TEST052 实验体管理员.jpg",
       "sha256": "da5339fc6423d3706fceb66b7cc1c2b511c4a50866fb48029aa63fe6b26e5714",
       "visuallyReviewed": true,
-      "topic": "实验体管理员：标题、色/类别及下方规则框"
+      "topic": "实验体管理员：完整同ID原图与必要放大区逐项人工读取"
     },
     "card-XQ03": {
       "kind": "image",
@@ -6436,6 +6501,90 @@
       "pdfPage": 4,
       "visuallyReviewed": true,
       "topic": "正常打出是己方行动步骤标准行动，确认忠诚、选择地区、支付费用、入堆叠并等待响应"
+    },
+    "card-XQ40": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XQ40 催眠术表演者.jpg",
+      "sha256": "b4f4e3f294d9ee1893d5b6d11124f0c12e472076e52f6365bdde7ffe49d6162c",
+      "visuallyReviewed": true,
+      "topic": "催眠术表演者：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-XQ41": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XQ41 启迪之梦.jpg",
+      "sha256": "02a56f5d1fe9d57121591f19d96f3756a8cf4ab60725ba292474758e5d0af179",
+      "visuallyReviewed": true,
+      "topic": "启迪之梦：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-XQ42": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XQ42 幻华.jpg",
+      "sha256": "8e8a52417d1f1cf55bf7b8bac75061e648d6cb353eca6f00500e98f6388db23c",
+      "visuallyReviewed": true,
+      "topic": "幻华：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-XQ43": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XQ43 具现化.jpg",
+      "sha256": "6e950624afff514a9ffed208fe51dc4137e5114b3f67a24bb0e694be0c935c93",
+      "visuallyReviewed": true,
+      "topic": "具现化：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-XQ44": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XQ44 随风入梦.jpg",
+      "sha256": "d4f41bf42958d15358bc7fcb1119967ab94bd187c758273952fd6b70475de047",
+      "visuallyReviewed": true,
+      "topic": "随风入梦：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-XQ45": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XQ45 破颅而出.jpg",
+      "sha256": "6475556f30b08853ed5bb2e1c82b3314c73947fb59bc7d044060a5555f5ef8cf",
+      "visuallyReviewed": true,
+      "topic": "破茧而出：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-XQ46": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XQ46 无名尸体.jpg",
+      "sha256": "d58e71df94753dde04595f5aa84de4039fcbbe594883acc018e2c06ddb103a89",
+      "visuallyReviewed": true,
+      "topic": "无名尸体：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-XQ47": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XQ47 防弹战术背心.jpg",
+      "sha256": "9b370fb92ad2e1c3ac6f33d3402ab2c8cbdea1898aae4c4a386f17631d654a03",
+      "visuallyReviewed": true,
+      "topic": "防弹战术背心：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-XQ48": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XQ48 街头演说家.jpg",
+      "sha256": "0cd31207bda681093839e86e5bb87cee624a3c0a657c70b60fa765f439089746",
+      "visuallyReviewed": true,
+      "topic": "街头演说家：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-XQ50": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XQ50 电磁风暴.jpg",
+      "sha256": "65fe7225e2556d149d1c31cba8b0815319d20242ea44511cde7361e33affa74b",
+      "visuallyReviewed": true,
+      "topic": "电磁风暴：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-XQ51": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XQ51 凯特琳女士.jpg",
+      "sha256": "36ab763d63160bd45b24f0900abc1a005ce29080ca584b7a3651dbacff91f026",
+      "visuallyReviewed": true,
+      "topic": "凯特琳女士：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-XQ52": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/XQ52 无知路人（女）.jpg",
+      "sha256": "a8cb1fa5c6a14aaf5e5ccbddf0912e7d3eeabde43665b4e4cd9e0c6ba3562b10",
+      "visuallyReviewed": true,
+      "topic": "无知路人：完整同ID原图与必要放大区逐项人工读取"
     }
   },
   "openQuestions": [

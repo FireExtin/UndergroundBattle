@@ -1593,122 +1593,136 @@
       "remainingReview": "完整观察规格/额外印刷符号阻塞及未解规则见card-specifications.json；引擎和UI未验收。"
     },
     "TEST015": {
-      "evidenceId": "card-TEST015",
       "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-TEST015",
       "verifiedFields": {
         "name": "鼠群密探",
         "colorKey": "蓝",
         "basicType": "角色"
       },
-      "abilitySummary": "不得装备；进场强制每玩家弃1；手牌弃来源付费隐秘对抗。",
+      "abilitySummary": "不能被装备结附；进场强制触发 每位玩家各弃一张手牌。；神秘学博弈②。（手牌行动②，从你手中弃掉此牌：进行一次隐秘对抗。）",
       "confirmedMechanismIds": [
+        "attachment",
+        "deckChoice",
         "handAbility",
         "mysticContest",
-        "priority"
+        "temporaryIcons"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。",
-      "editionStatus": "uncertain",
-      "notes": "定位条目标为测试，但原图无TEST文字；图片收藏编号与文件ID不一致，不能认定已出版或只凭标签剔除。"
+      "editionStatus": "testArchivePinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
     },
     "TEST027": {
-      "evidenceId": "card-TEST027",
       "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-TEST027",
       "verifiedFields": {
         "name": "战术头盔",
         "colorKey": "中立",
         "basicType": "附属"
       },
-      "abilitySummary": "原图有TEST；装备人类/吸血鬼；回收及赢战斗抓牌。",
+      "abilitySummary": "结附于目标人类或吸血鬼角色；回收（当受此结附的角色离场时，将该附属移回你的手中）；触发 当你赢得受此结附的角色所参与的战斗对抗时，抓一张牌。",
       "confirmedMechanismIds": [
         "attachment",
-        "deckChoice"
+        "deckChoice",
+        "confrontation"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。",
-      "editionStatus": "testImageConfirmed"
+      "editionStatus": "testImageConfirmed",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
     },
     "TEST033": {
-      "evidenceId": "card-TEST033",
       "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-TEST033",
       "verifiedFields": {
         "name": "无形的星野",
         "colorKey": "蓝",
         "basicType": "角色"
       },
-      "abilitySummary": "原图有TEST；条件隐秘灵体、附属时屏障、付费横置本回合不能消灭。",
+      "abilitySummary": "灵体；持续 若有附属结附于其上，无形的星野获得屏障。；快速行动②：横置无形的星野。本回合中其不能被消灭（该角色不会因致命伤害或其他消灭效应而死亡）。",
       "confirmedMechanismIds": [
         "spirit",
+        "attachment",
         "barrier",
-        "damagePrevention"
+        "exhaust",
+        "priority",
+        "cancel",
+        "temporaryIcons",
+        "uniqueInPlay"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。",
-      "editionStatus": "testImageConfirmed"
+      "editionStatus": "testImageConfirmed",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
     },
     "TEST034": {
-      "evidenceId": "card-TEST034",
       "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-TEST034",
       "verifiedFields": {
         "name": "兽性直觉",
         "colorKey": "蓝",
         "basicType": "附属"
       },
-      "abilitySummary": "原图有TEST；暴露非资产，吸血鬼附属赋调查及手牌隐秘能力。",
+      "abilitySummary": "非资产；结附于目标吸血鬼角色；持续 受此结附的角色获得永久调查1。；神秘学博弈②。（手牌行动②，从你手中弃掉此牌：进行一次隐秘对抗。）",
       "confirmedMechanismIds": [
-        "attachment",
         "nonAsset",
-        "handAbility"
+        "attachment",
+        "continuous",
+        "handAbility",
+        "mysticContest"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。",
-      "editionStatus": "testImageConfirmed"
+      "editionStatus": "testImageConfirmed",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
     },
     "TEST042": {
-      "evidenceId": "card-TEST042",
       "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-TEST042",
       "verifiedFields": {
         "name": "鸟居",
         "colorKey": "中立",
         "basicType": "附属"
       },
-      "abilitySummary": "原图有TEST；地区神社、隐秘修正及从牌库顶正面打出角色/附属/秘社的持续许可。",
+      "abilitySummary": "隐秘地区势力+1；结附于目标地区；持续 每回合中你可以正面打出一张由你拥有，且封印在角色、附属或你秘社上的角色牌，如同其在你手中一般。",
       "confirmedMechanismIds": [
+        "starlightInfluence",
         "attachment",
-        "mysticContest",
-        "gravePlay"
+        "seal",
+        "gravePlay",
+        "temporaryIcons"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。",
-      "editionStatus": "testImageConfirmed"
+      "editionStatus": "testImageConfirmed",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
     },
     "TEST043": {
-      "evidenceId": "card-TEST043",
       "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-TEST043",
       "verifiedFields": {
         "name": "意识漩涡",
         "colorKey": "紫",
         "basicType": "附属"
       },
-      "abilitySummary": "原图有TEST；暴露非资产、秘社附属，死亡可封印秘社及封印换抓牌。",
+      "abilitySummary": "非资产；结附于本方秘社；触发 每当一个本方角色死亡时，你可以将其封印在本方秘社上并支付①，若你如此做，将另一张封印在本方秘社上的牌置于手中。",
       "confirmedMechanismIds": [
-        "seal",
+        "nonAsset",
         "attachment",
-        "nonAsset"
+        "seal",
+        "graveRecovery"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。",
-      "editionStatus": "testImageConfirmed"
+      "editionStatus": "testArchivePinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
     },
     "TEST052": {
-      "evidenceId": "card-TEST052",
       "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-TEST052",
       "verifiedFields": {
         "name": "实验体管理员",
-        "colorKey": "黑",
+        "colorKey": "灰",
         "basicType": "角色"
       },
-      "abilitySummary": "原图有TEST；秘社封印数量修正隐秘对抗、尸体封印产业。",
+      "abilitySummary": "持续 在进行隐秘对抗时，你所展示的牌获得地区势力+X，X等于封印在本方角色或附属上名为无名尸体的牌的数量之和。；进场触发 将你墓地中名为无名尸体的目标牌封印在目标副名为圣甲虫产业的本方附属上。",
       "confirmedMechanismIds": [
         "mysticContest",
-        "seal"
+        "starlightInfluence",
+        "seal",
+        "graveRecovery"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。",
-      "editionStatus": "testImageConfirmed"
+      "editionStatus": "testImageConfirmed",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
     },
     "WM071": {
       "reviewStatus": "primaryImageReviewed",
@@ -5185,6 +5199,206 @@
         "graveRecovery",
         "priority",
         "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "XQ40": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-XQ40",
+      "verifiedFields": {
+        "name": "催眠术表演者",
+        "colorKey": "紫",
+        "basicType": "角色"
+      },
+      "abilitySummary": "行动②，横置：抓一张牌，然后将一张你的手牌封印在目标角色上。",
+      "confirmedMechanismIds": [
+        "seal",
+        "deckChoice",
+        "exhaust"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "XQ41": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-XQ41",
+      "verifiedFields": {
+        "name": "启迪之梦",
+        "colorKey": "紫",
+        "basicType": "角色"
+      },
+      "abilitySummary": "灵体；触发 当启迪之梦被封印在一个角色上时，抓一张牌。",
+      "confirmedMechanismIds": [
+        "spirit",
+        "seal",
+        "deckChoice",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "XQ42": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-XQ42",
+      "verifiedFields": {
+        "name": "幻华",
+        "colorKey": "紫",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标地区；撤回（当所在的地区被赢取时，将该牌移回其拥有者手上，而非置于牌库底。）；进场触发 抓一张牌。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "combatTraits",
+        "deckChoice"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "XQ43": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-XQ43",
+      "verifiedFields": {
+        "name": "具现化",
+        "colorKey": "紫",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标地区；持续 所有位于具现化所结附地区内的灵体角色，其上的所有临时调查、临时战斗、临时势力能力图标分别替换为永久调查、永久战斗、永久势力。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "spirit",
+        "continuous",
+        "temporaryIcons",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "XQ44": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-XQ44",
+      "verifiedFields": {
+        "name": "随风入梦",
+        "colorKey": "紫",
+        "basicType": "事务"
+      },
+      "abilitySummary": "行动 从你的牌库中寻找一张梦境牌，将该牌封印在目标角色上，然后洗牌。",
+      "confirmedMechanismIds": [
+        "seal",
+        "deckChoice"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "XQ45": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-XQ45",
+      "verifiedFields": {
+        "name": "破茧而出",
+        "colorKey": "紫",
+        "basicType": "事务"
+      },
+      "abilitySummary": "快速行动 选择目标角色，若有其他卡牌被封印在其上，则消灭该角色。",
+      "confirmedMechanismIds": [
+        "priority",
+        "seal"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "XQ46": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-XQ46",
+      "verifiedFields": {
+        "name": "无名尸体",
+        "colorKey": "中立",
+        "basicType": "角色"
+      },
+      "abilitySummary": "公开",
+      "confirmedMechanismIds": [
+        "public"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "XQ47": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-XQ47",
+      "verifiedFields": {
+        "name": "防弹战术背心",
+        "colorKey": "中立",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标角色；行动②：将防弹战术背心结附在另一个目标角色上。；持续 受此结附的角色获得防御+1。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "continuous"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "XQ48": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-XQ48",
+      "verifiedFields": {
+        "name": "街头演说家",
+        "colorKey": "中立",
+        "basicType": "角色"
+      },
+      "abilitySummary": "公开；声望；进场触发 自你的牌库中寻找至多三张名为无知路人的牌，将他们放置进场且置于街头演说家所在的地区，然后洗牌。",
+      "confirmedMechanismIds": [
+        "public",
+        "renown",
+        "deckChoice"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "XQ50": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-XQ50",
+      "verifiedFields": {
+        "name": "电磁风暴",
+        "colorKey": "中立",
+        "basicType": "事务"
+      },
+      "abilitySummary": "额外费用 牺牲一个资产。；行动 消灭所有印刷费用小于或等于X的附属。X为你所牺牲的资产的印刷费用。",
+      "confirmedMechanismIds": [
+        "sacrifice",
+        "attachment"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "XQ51": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-XQ51",
+      "verifiedFields": {
+        "name": "凯特琳女士",
+        "colorKey": "中立",
+        "basicType": "角色"
+      },
+      "abilitySummary": "公开；声望；进场触发 本回合中，本地区略过战斗对抗步骤。",
+      "confirmedMechanismIds": [
+        "public",
+        "renown",
+        "confrontation",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "XQ52": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-XQ52",
+      "verifiedFields": {
+        "name": "无知路人",
+        "colorKey": "中立",
+        "basicType": "角色"
+      },
+      "abilitySummary": "持续 名称为无知路人的牌，构筑时在牌组中的数量没有限制。",
+      "confirmedMechanismIds": [
+        "continuous"
       ],
       "editionStatus": "pinnedImageVariant",
       "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
