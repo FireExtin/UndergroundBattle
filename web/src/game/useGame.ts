@@ -38,9 +38,13 @@ export function useGame() {
 
   useEffect(() => {
     const controller = new AbortController();
-    getCatalog(controller.signal).then(setCatalog).catch(e => { if (!controller.signal.aborted) setError(e.message); });
+    const matchesSession = () => session ? isActive(session) : activeSession.current === null;
+    setCatalog(null);
+    getCatalog(controller.signal, session).then(next => {
+      if (!controller.signal.aborted && matchesSession()) setCatalog(next);
+    }).catch(e => { if (!controller.signal.aborted && matchesSession()) setError(e.message); });
     return () => controller.abort();
-  }, [catalogRetry]);
+  }, [session, catalogRetry]);
 
   useEffect(() => {
     if (!session) return;

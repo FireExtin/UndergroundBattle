@@ -32,9 +32,13 @@ for (const crate of ['rust-game', 'rust-game-wasm']) {
   copy(repository + crate + '/src', crate + '/src', true);
   for (const file of ['Cargo.toml', 'Cargo.lock']) if (existsSync(repository + crate + '/' + file)) copy(repository + crate + '/' + file, crate + '/' + file);
 }
-copy(repository + 'rust-game/data', 'rust-game/data', true);
+// Only executable card definitions belong in the bounded Site source.
+// Research/evidence indexes can contain every archived record and stay private in the original repository.
+rmSync(path.join(destination, 'rust-game/data'), { recursive: true, force: true });
+copy(repository + 'rust-game/data/cards.json', 'rust-game/data/cards.json');
 for (const file of ['hegemony_wasm.js', 'hegemony_wasm_bg.wasm']) copy(repository + 'rust-game-wasm/pkg/' + file, 'rust-game-wasm/pkg/' + file);
 copy(repository + 'rust-game-wasm/legacy-v0.2.1', 'rust-game-wasm/legacy-v0.2.1', true);
+copy(repository + 'rust-game-wasm/legacy-v0.2.2', 'rust-game-wasm/legacy-v0.2.2', true);
 writeFileSync(path.join(destination, '.gitignore'), 'node_modules/\ndist/\n.wrangler/\ngenerated/\npublic/\nweb/dist/\nrust-game/target/\nrust-game-wasm/target/\n.env*\n.sites-runtime/\n');
 const wasmSha256 = createHash('sha256').update(readFileSync(repository + 'rust-game-wasm/pkg/hegemony_wasm_bg.wasm')).digest('hex');
 const originalCommit = execFileSync('git', ['rev-parse', 'HEAD'], { cwd: repository, encoding: 'utf8' }).trim();

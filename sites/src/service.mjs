@@ -118,6 +118,12 @@ export class RoomService {
     if (afterVersion !== null && afterVersion === String(room.version)) return null;
     return this.view(room.state, seat);
   }
+  async catalog(id, authorization) {
+    await this.authenticated(id, authorization);
+    const room = await this.store.room(id);
+    if (!room) throw new HttpError(404, '房间不存在');
+    return JSON.parse(this.kernel.catalog(room.state));
+  }
   async command(id, authorization, body) {
     // The whole operation repeats its original actor, ID, version and intent.
     // Receipt lookup precedes CAS, so even an unknown commit outcome is safe.
