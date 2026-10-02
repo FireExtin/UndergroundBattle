@@ -1669,7 +1669,12 @@
         "card-BQ086",
         "card-BQ103",
         "card-BQ104",
-        "card-BQ106"
+        "card-BQ106",
+        "card-WM013",
+        "card-WM014",
+        "card-WM022",
+        "card-WM024",
+        "card-WM025"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -1891,7 +1896,11 @@
         "card-BQ073",
         "card-BQ083",
         "card-BQ090",
-        "card-BQ092"
+        "card-BQ092",
+        "card-WM007",
+        "card-WM008",
+        "card-WM011",
+        "card-WM017"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -1961,7 +1970,11 @@
         "card-BQ066",
         "card-BQ094",
         "card-BQ099",
-        "card-BQ109"
+        "card-BQ109",
+        "card-WM014",
+        "card-WM015",
+        "card-WM025",
+        "card-WM032"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -2027,7 +2040,12 @@
         "card-BQ080",
         "card-BQ082",
         "card-BQ104",
-        "card-BQ105"
+        "card-BQ105",
+        "card-WM001",
+        "card-WM003",
+        "card-WM013",
+        "card-WM023",
+        "card-WM029"
       ],
       "dependencies": [
         "hidden"
@@ -2118,7 +2136,13 @@
         "card-BQ071",
         "card-BQ092",
         "card-BQ096",
-        "card-BQ109"
+        "card-BQ109",
+        "card-WM003",
+        "card-WM007",
+        "card-WM011",
+        "card-WM013",
+        "card-WM023",
+        "card-WM034"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -2178,7 +2202,9 @@
         "card-BQ049",
         "card-BQ058",
         "card-BQ103",
-        "card-BQ109"
+        "card-BQ109",
+        "card-WM013",
+        "card-WM020"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -2230,7 +2256,11 @@
         "card-BQ057",
         "card-BQ059",
         "card-BQ069",
-        "card-BQ080"
+        "card-BQ080",
+        "card-WM002",
+        "card-WM005",
+        "card-WM014",
+        "card-WM020"
       ],
       "dependencies": [
         "confrontation"
@@ -2276,7 +2306,10 @@
         "card-BQ017",
         "card-BQ018",
         "card-BQ019",
-        "card-BQ067"
+        "card-BQ067",
+        "card-WM012",
+        "card-WM025",
+        "card-WM029"
       ],
       "dependencies": [],
       "interactionIds": [],
@@ -2379,7 +2412,10 @@
         "card-BQ095",
         "card-BQ101",
         "card-BQ110",
-        "card-BQ111"
+        "card-BQ111",
+        "card-WM010",
+        "card-WM018",
+        "card-WM033"
       ],
       "dependencies": [
         "hidden",
@@ -2419,7 +2455,8 @@
         "card-LC26",
         "card-BQ097",
         "card-BQ098",
-        "card-BQ100"
+        "card-BQ100",
+        "card-WM018"
       ],
       "dependencies": [
         "priority",
@@ -2499,7 +2536,10 @@
         "card-BQ079",
         "card-BQ085",
         "card-BQ086",
-        "card-BQ108"
+        "card-BQ108",
+        "card-WM010",
+        "card-WM034",
+        "card-WM036"
       ],
       "dependencies": [
         "priority"
@@ -2557,7 +2597,10 @@
         "card-BQ050",
         "card-BQ055",
         "card-BQ100",
-        "card-BQ105"
+        "card-BQ105",
+        "card-WM013",
+        "card-WM024",
+        "card-WM025"
       ],
       "dependencies": [
         "loyalty",
@@ -2729,7 +2772,19 @@
         "card-BQ104",
         "card-BQ107",
         "card-BQ109",
-        "card-BQ111"
+        "card-BQ111",
+        "card-WM001",
+        "card-WM003",
+        "card-WM004",
+        "card-WM005",
+        "card-WM006",
+        "card-WM010",
+        "card-WM019",
+        "card-WM022",
+        "card-WM024",
+        "card-WM027",
+        "card-WM035",
+        "card-WM037"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -2868,7 +2923,18 @@
         "card-BQ102",
         "card-BQ109",
         "card-BQ110",
-        "card-BQ111"
+        "card-BQ111",
+        "card-WM006",
+        "card-WM012",
+        "card-WM014",
+        "card-WM015",
+        "card-WM016",
+        "card-WM018",
+        "card-WM019",
+        "card-WM020",
+        "card-WM029",
+        "card-WM030",
+        "card-WM035"
       ],
       "dependencies": [],
       "interactionIds": [],
@@ -2902,7 +2968,8 @@
         "card-LC26",
         "card-LC27",
         "card-BQ024",
-        "card-BQ079"
+        "card-BQ079",
+        "card-WM031"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -2998,7 +3065,14 @@
         "card-BQ064",
         "card-BQ065",
         "card-BQ066",
-        "card-BQ095"
+        "card-BQ095",
+        "card-WM010",
+        "card-WM018",
+        "card-WM019",
+        "card-WM027",
+        "card-WM028",
+        "card-WM036",
+        "card-WM037"
       ],
       "dependencies": [
         "priority",
@@ -3151,7 +3225,14 @@
         "card-BQ105",
         "card-BQ108",
         "card-BQ110",
-        "card-BQ111"
+        "card-BQ111",
+        "card-WM009",
+        "card-WM010",
+        "card-WM018",
+        "card-WM019",
+        "card-WM020",
+        "card-WM027",
+        "card-WM028"
       ],
       "dependencies": [
         "priority"
@@ -3241,7 +3322,9 @@
         "card-BQ098",
         "card-BQ100",
         "card-BQ101",
-        "card-BQ102"
+        "card-BQ102",
+        "card-WM027",
+        "card-WM029"
       ],
       "dependencies": [
         "priority",
@@ -3285,7 +3368,8 @@
         "card-XQ31",
         "card-XQ48",
         "card-XQ51",
-        "card-LC05"
+        "card-LC05",
+        "card-WM029"
       ],
       "dependencies": [
         "confrontation"
@@ -3433,7 +3517,13 @@
         "card-XQ21",
         "card-BQ042",
         "card-BQ047",
-        "card-BQ051"
+        "card-BQ051",
+        "card-WM030",
+        "card-WM032",
+        "card-WM033",
+        "card-WM034",
+        "card-WM036",
+        "card-WM037"
       ],
       "dependencies": [
         "continuous",
@@ -3469,7 +3559,8 @@
         "card-JC019",
         "card-JC121",
         "card-XQ06",
-        "card-BQ024"
+        "card-BQ024",
+        "card-WM014"
       ],
       "dependencies": [
         "confrontation"
@@ -3569,7 +3660,8 @@
         "intermezzo",
         "bq-keywords-2",
         "card-JZ05",
-        "card-BQ070"
+        "card-BQ070",
+        "card-WM004"
       ],
       "dependencies": [
         "hidden",
@@ -3633,7 +3725,11 @@
         "card-BQ099",
         "card-BQ103",
         "card-BQ105",
-        "card-BQ106"
+        "card-BQ106",
+        "card-WM008",
+        "card-WM009",
+        "card-WM010",
+        "card-WM036"
       ],
       "dependencies": [
         "loyalty"
@@ -3663,7 +3759,9 @@
         "intermezzo",
         "card-JZ49",
         "card-TK001",
-        "card-BQ099"
+        "card-BQ099",
+        "card-WM011",
+        "card-WM023"
       ],
       "dependencies": [
         "hidden",
@@ -3713,7 +3811,11 @@
         "card-LC18",
         "card-BQ008",
         "card-BQ015",
-        "card-BQ087"
+        "card-BQ087",
+        "card-WM006",
+        "card-WM025",
+        "card-WM034",
+        "card-WM035"
       ],
       "dependencies": [
         "continuous",
@@ -3760,7 +3862,9 @@
         "card-TK010",
         "card-BQ049",
         "card-BQ052",
-        "card-BQ088"
+        "card-BQ088",
+        "card-WM029",
+        "card-WM031"
       ],
       "dependencies": [
         "continuous"
@@ -3842,7 +3946,29 @@
         "card-BQ098",
         "card-BQ101",
         "card-BQ102",
-        "card-BQ106"
+        "card-BQ106",
+        "card-WM001",
+        "card-WM002",
+        "card-WM004",
+        "card-WM005",
+        "card-WM006",
+        "card-WM007",
+        "card-WM009",
+        "card-WM010",
+        "card-WM012",
+        "card-WM015",
+        "card-WM016",
+        "card-WM018",
+        "card-WM021",
+        "card-WM022",
+        "card-WM024",
+        "card-WM025",
+        "card-WM027",
+        "card-WM028",
+        "card-WM030",
+        "card-WM032",
+        "card-WM036",
+        "card-WM037"
       ],
       "dependencies": [
         "society",
@@ -3875,7 +4001,8 @@
         "bq-new",
         "card-MSBQ04",
         "card-BQ061",
-        "card-BQ065"
+        "card-BQ065",
+        "card-WM010"
       ],
       "dependencies": [
         "society",
@@ -3911,7 +4038,12 @@
         "card-BQ015",
         "card-BQ047",
         "card-BQ087",
-        "card-BQ099"
+        "card-BQ099",
+        "card-WM006",
+        "card-WM012",
+        "card-WM016",
+        "card-WM017",
+        "card-WM033"
       ],
       "dependencies": [
         "seal",
@@ -4189,7 +4321,9 @@
         "card-BQ035",
         "card-BQ038",
         "card-BQ086",
-        "card-BQ110"
+        "card-BQ110",
+        "card-WM024",
+        "card-WM031"
       ],
       "dependencies": [
         "confrontation",
@@ -4220,7 +4354,8 @@
       "evidenceIds": [
         "bq-keywords-1",
         "card-JC097",
-        "card-LC02"
+        "card-LC02",
+        "card-WM002"
       ],
       "dependencies": [
         "hidden"
@@ -4253,7 +4388,8 @@
         "card-BQ019",
         "card-BQ034",
         "card-BQ069",
-        "card-BQ099"
+        "card-BQ099",
+        "card-WM008"
       ],
       "dependencies": [
         "priority"
@@ -4360,7 +4496,8 @@
         "card-WM071",
         "card-MSBQ02",
         "card-LC04",
-        "card-BQ099"
+        "card-BQ099",
+        "card-WM031"
       ],
       "dependencies": [
         "hidden"
@@ -4599,7 +4736,21 @@
         "card-BQ100",
         "card-BQ102",
         "card-BQ107",
-        "card-BQ110"
+        "card-BQ110",
+        "card-WM002",
+        "card-WM003",
+        "card-WM004",
+        "card-WM005",
+        "card-WM015",
+        "card-WM017",
+        "card-WM019",
+        "card-WM022",
+        "card-WM024",
+        "card-WM025",
+        "card-WM031",
+        "card-WM033",
+        "card-WM034",
+        "card-WM035"
       ],
       "dependencies": [
         "confrontation",
@@ -4716,7 +4867,18 @@
         "card-BQ098",
         "card-BQ105",
         "card-BQ106",
-        "card-BQ107"
+        "card-BQ107",
+        "card-WM003",
+        "card-WM006",
+        "card-WM013",
+        "card-WM015",
+        "card-WM019",
+        "card-WM023",
+        "card-WM025",
+        "card-WM027",
+        "card-WM028",
+        "card-WM034",
+        "card-WM035"
       ],
       "dependencies": [
         "sacrifice"
@@ -8215,6 +8377,258 @@
       "sha256": "e9a9d9f55a4ea60ec830d5c74896dd1c060a53aec8d9e21b2cb702fffd03dadf",
       "visuallyReviewed": true,
       "topic": "生化防毒面具：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-WM001": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/WM001 粗心学生.jpg",
+      "sha256": "089ee576ce01321951c9faa044f8418ce787f802ef806a04efcbfa21ad7dda0d",
+      "visuallyReviewed": true,
+      "topic": "粗心学生：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-WM002": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/WM002 联会观察员.jpg",
+      "sha256": "4617a415fce1bff58c1a7b7be9ff5b2396f498977040eaf86e7072b75dd3bffe",
+      "visuallyReviewed": true,
+      "topic": "联会观察员：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-WM003": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/WM003 千机庙离.jpg",
+      "sha256": "2409ef206e3af93d1eece3ec0bf4ba00a9e3d0c12a8e70443877cc8a28cc9bff",
+      "visuallyReviewed": true,
+      "topic": "千机庙离：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-WM004": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/WM004 相位转化师.jpg",
+      "sha256": "a1c31c37c76379c8b1602150f8ca899258d1522dd101db40d6dd89046edec83f",
+      "visuallyReviewed": true,
+      "topic": "相位转化师：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-WM005": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/WM005 剑宫使节.jpg",
+      "sha256": "a16597922a8522cb703d31d2e506c997f41e4775f882c2fcc588f81737e1289b",
+      "visuallyReviewed": true,
+      "topic": "剑宫使节：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-WM006": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/WM006 阿兰斯托曼v3．0.jpg",
+      "sha256": "f2c567c25abe36e096a93187a34c2b6747dc5404c9c7ba9a9640ab27ec5bee2e",
+      "visuallyReviewed": true,
+      "topic": "阿兰斯托曼v3.0：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-WM007": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/WM007 天国之火.jpg",
+      "sha256": "34680bcdfaff9079ab5b8d3696aa236f33d6082a9b6514256c355170bd7172a1",
+      "visuallyReviewed": true,
+      "topic": "天国之火：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-WM008": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/WM008 扭曲命运.jpg",
+      "sha256": "ef293c7ff6ec40470cfec895980c4d22ac95caef45038af0676f0ec46aa719db",
+      "visuallyReviewed": true,
+      "topic": "扭曲命运：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-WM009": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/WM009 尘归尘.jpg",
+      "sha256": "b17e909cc7a438affb4d74ff53f8dbc314dba3a1b7ed40e6c4fe77b1081f9a23",
+      "visuallyReviewed": true,
+      "topic": "尘归尘：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-WM010": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/WM010 计划：萨尔贡之笛.jpg",
+      "sha256": "64df5823b1b329541e4854b735b225143e678bdd922398fe6900e89f1c359990",
+      "visuallyReviewed": true,
+      "topic": "计划：萨尔贡之笛：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-WM011": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/WM011 亚太区投资部主管.jpg",
+      "sha256": "e5624cdba473165368794e9446326ab91d014d03f0e7b394591a34798573d041",
+      "visuallyReviewed": true,
+      "topic": "亚太区投资部主管：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-WM012": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/WM012 皓月歌者.jpg",
+      "sha256": "5eb0b2b7e68cb93a4ca52fdcbb50596447d032b9dafcd69d82f70355d02699f4",
+      "visuallyReviewed": true,
+      "topic": "皓月歌者：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-WM013": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/WM013 指挥车“鹫堡”.jpg",
+      "sha256": "ed3a02b678bf61073fdde578fad7318d3fdcabb1311c81ddf0131a0454c679b4",
+      "visuallyReviewed": true,
+      "topic": "指挥车“鹫堡”：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-WM014": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/WM014 执行部特遣组.jpg",
+      "sha256": "f008c3298a2320e26b993d0d853c0b968112dfe22dcf28826ee8311607804d13",
+      "visuallyReviewed": true,
+      "topic": "执行部特遣组：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-WM015": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/WM015 神探雷蒙德·哈米特.jpg",
+      "sha256": "313c076add6bc29eb8806cfbde08308010a54a5b817cae50bb66960c52530ee8",
+      "visuallyReviewed": true,
+      "topic": "神探雷蒙德·哈米特：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-WM016": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/WM016 跟踪.jpg",
+      "sha256": "5d1d4c4bf1dddd4808135fb4d48f63c4f70c46c712c010b37803afff1c78a446",
+      "visuallyReviewed": true,
+      "topic": "跟踪：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-WM017": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/WM017 砰！.jpg",
+      "sha256": "63f9eae3196882740793d5d2bc8d3e1bb10e21a2e43d0392ae04592ed44a96a5",
+      "visuallyReviewed": true,
+      "topic": "砰！：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-WM018": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/WM018 镇魂曲.jpg",
+      "sha256": "e3233b72fe583489e60dc1d7b4c972bfd57a17c222ba8027d868133e1a94c11f",
+      "visuallyReviewed": true,
+      "topic": "镇魂曲：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-WM019": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/WM019 火力压制.jpg",
+      "sha256": "3a0b9c9a052b25e28d0779cee1bd1c6754030dd26e704d46d66e5d57f2f5d8e1",
+      "visuallyReviewed": true,
+      "topic": "火力压制：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-WM020": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/WM020 奥德修斯E型外骨骼.jpg",
+      "sha256": "1befb46a8c82208ecb3fc25c74a71c037886da5b7721e82f742a89ca0d6c6e70",
+      "visuallyReviewed": true,
+      "topic": "奥德修斯E型外骨骼：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-WM021": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/WM021 秘闻记录官.jpg",
+      "sha256": "22d864303eab37f544bfac26ba4919b0891d7f0b94f5333170261ea8dac9b615",
+      "visuallyReviewed": true,
+      "topic": "秘闻记录官：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-WM022": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/WM022 阴影之子.jpg",
+      "sha256": "3697718819e5ca9bbc3af27390837ecbbd5cdc0bf2fa86b934669b34e49107ff",
+      "visuallyReviewed": true,
+      "topic": "阴影之子：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-WM023": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/WM023 尽职的珍珠.jpg",
+      "sha256": "b209fe484e37b930ce4d64be078bd3e72a10bdff5250bfd38ba97cb7648cee85",
+      "visuallyReviewed": true,
+      "topic": "尽职的珍珠：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-WM024": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/WM024 阿剌穆特杀手.jpg",
+      "sha256": "78c85bc44106d49f054e1dc090d8161bebfcfb605942d04f2611323d87822120",
+      "visuallyReviewed": true,
+      "topic": "阿刺穆特杀手：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-WM025": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/WM025 安哥拉·曼纽.jpg",
+      "sha256": "419c1c6188dbd2d793a527da238757fbe61de3f1992fcc902e124103e1651622",
+      "visuallyReviewed": true,
+      "topic": "安哥拉·曼纽：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-WM027": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/WM027 阴影之道.jpg",
+      "sha256": "f7a2fcfe47a2f412029229df4a01e89a8c3db7bb67fb5deeb3b78230d09fcfa0",
+      "visuallyReviewed": true,
+      "topic": "阴影之道：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-WM028": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/WM028 曼纽的阴影厅堂.jpg",
+      "sha256": "f0d66f992939844fcdcc1844de1855e3def4a73c0e8af578fbcb595ce98a7aee",
+      "visuallyReviewed": true,
+      "topic": "曼纽的阴影厅堂：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-WM029": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/WM029 被胁迫的政要.jpg",
+      "sha256": "576d904670d85d64c33d92d5dda21142ca7faa6a079816ecd26b13480a2e8987",
+      "visuallyReviewed": true,
+      "topic": "被胁迫的政要：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-WM030": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/WM030 狂热信众.jpg",
+      "sha256": "f9280a0ed2be33c2af400aadc9a7200da10ed080cf5efff91913a970cc6db2c4",
+      "visuallyReviewed": true,
+      "topic": "狂热信众：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-WM031": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/WM031 凌虐恶魔.jpg",
+      "sha256": "3a879800f043f5d7fe336c2dc900e912623dec76e16932630dd63fa59f5d94f2",
+      "visuallyReviewed": true,
+      "topic": "凌虐恶魔：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-WM032": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/WM032 扭曲的布道者.jpg",
+      "sha256": "2b450a098a54fef26aa65a186ee4cceeec4badf27389b39602a5fce27002b519",
+      "visuallyReviewed": true,
+      "topic": "扭曲的布道者：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-WM033": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/WM033 钟楼怪客.jpg",
+      "sha256": "0c0162afcfb414e9cd339b6daf84d1649a28da7e1621fbd41bb8d742edc21b5f",
+      "visuallyReviewed": true,
+      "topic": "钟楼怪客：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-WM034": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/WM034 消逝的乌尔德.jpg",
+      "sha256": "9f1e5f9ce6e9b6eaf3e69c33b2e30bcde3114044d35951a993b1b2fc3d38f700",
+      "visuallyReviewed": true,
+      "topic": "消逝的乌尔德：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-WM035": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/WM035 安东尼·布洛克.jpg",
+      "sha256": "d4c8fc49f6d4b5548ae4d9e6c12210ed818ef590d9e4042d0669e3bbca1d475a",
+      "visuallyReviewed": true,
+      "topic": "安东尼·布洛克：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-WM036": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/WM036 烬归烬.jpg",
+      "sha256": "afe11bd32b191576058e6f2f6c8369f606dc58731c82133037ef2cb2c1f11395",
+      "visuallyReviewed": true,
+      "topic": "烬归烬：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-WM037": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/WM037 戴森的计谋.jpg",
+      "sha256": "e5af8b1e0846a91fa44550cd76407cf6579c07d5acc5d24a1bbb2410a8bebf1b",
+      "visuallyReviewed": true,
+      "topic": "戴森的计谋：完整同ID原图与必要放大区逐项人工读取"
     }
   },
   "openQuestions": [

@@ -7976,6 +7976,672 @@
       ],
       "editionStatus": "pinnedImageVariant",
       "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM001": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM001",
+      "verifiedFields": {
+        "name": "粗心学生",
+        "colorKey": "黄",
+        "basicType": "角色"
+      },
+      "abilitySummary": "隐秘+3：在本次隐秘对抗后，若你的资产区具有黄色图标，预测1。；公开；进场触发 抓一张牌，然后弃一张牌。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "public",
+        "deckChoice"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM002": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM002",
+      "verifiedFields": {
+        "name": "联会观察员",
+        "colorKey": "黄",
+        "basicType": "角色"
+      },
+      "abilitySummary": "隐匿；撤回；进场触发 进行一次隐秘对抗。",
+      "confirmedMechanismIds": [
+        "hiddenOnly",
+        "combatTraits",
+        "mysticContest",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM003": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM003",
+      "verifiedFields": {
+        "name": "千机庙离",
+        "colorKey": "黄",
+        "basicType": "角色"
+      },
+      "abilitySummary": "公开；快速行动⑤，横置：从你的牌库中寻找一张牌，将该牌置于你的手中，然后洗牌。",
+      "confirmedMechanismIds": [
+        "public",
+        "exhaust",
+        "deckChoice",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM004": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM004",
+      "verifiedFields": {
+        "name": "相位转化师",
+        "colorKey": "黄",
+        "basicType": "角色"
+      },
+      "abilitySummary": "隐秘：在本次隐秘对抗后，若你的资产区具有黄色图标3，你可以令目标本方角色闪烁。；快速行动②：闪烁。；快速行动 弃一张牌：将相位转化师移回其拥有者手上。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "blink",
+        "deckChoice",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM005": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM005",
+      "verifiedFields": {
+        "name": "剑宫使节",
+        "colorKey": "黄",
+        "basicType": "角色"
+      },
+      "abilitySummary": "隐秘：在本次隐秘对抗后，若你的资产区具有黄色图标及血脉领域图标，抓一张牌。；护卫2；触发 当你赢得一次隐秘对抗时，抓一张牌。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "deckChoice",
+        "combatTraits",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM006": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM006",
+      "verifiedFields": {
+        "name": "阿兰斯托曼v3.0",
+        "colorKey": "黄",
+        "basicType": "角色"
+      },
+      "abilitySummary": "领袖；传闻；持续 阿兰斯托曼v3.0获得防御+X，且你在隐秘对抗时获得+X，X等于你所操控的其他互联网、媒体、工程师数量之和。；触发 当对手在其抓牌步骤抓牌时，若本方秘社上没有暴露标志，你可以抓等量的牌。",
+      "confirmedMechanismIds": [
+        "leader",
+        "rumor",
+        "continuous",
+        "mysticContest",
+        "deckChoice",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM007": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM007",
+      "verifiedFields": {
+        "name": "天国之火",
+        "colorKey": "黄",
+        "basicType": "事务"
+      },
+      "abilitySummary": "隐秘+2：在本次隐秘对抗后，若你的资产区具有黄色图标或心灵领域图标2，横置目标角色。；快速行动 对已横置的目标角色造成4点伤害。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "exhaust",
+        "priority"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM008": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM008",
+      "verifiedFields": {
+        "name": "扭曲命运",
+        "colorKey": "黄",
+        "basicType": "事务"
+      },
+      "abilitySummary": "非资产；快速行动 终止目标堆叠中的事务牌。（将被终止的卡牌置于其拥有者的墓地且不生效。）",
+      "confirmedMechanismIds": [
+        "nonAsset",
+        "cancel",
+        "priority"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM009": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM009",
+      "verifiedFields": {
+        "name": "尘归尘",
+        "colorKey": "黄",
+        "basicType": "事务"
+      },
+      "abilitySummary": "隐秘：在本次隐秘对抗后，若你的资产区具有黄色图标，你可以支付②，然后消灭目标附属。；非资产；行动 消灭所有附属。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "nonAsset",
+        "attachment"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM010": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM010",
+      "verifiedFields": {
+        "name": "计划：萨尔贡之笛",
+        "colorKey": "黄",
+        "basicType": "附属"
+      },
+      "abilitySummary": "非资产；秘密计划；可推进；结附于本方秘社；强制触发 达成推进2时，牺牲计划：萨尔贡之笛，将目标印刷费用大于或等于⑤的角色置于其拥有者的牌库顶。；墓地触发 当你赢得隐秘对抗时，你可以将计划：萨尔贡之笛从墓地置于你的手中。",
+      "confirmedMechanismIds": [
+        "nonAsset",
+        "plan",
+        "attachment",
+        "society",
+        "sacrifice",
+        "deckChoice",
+        "graveRecovery",
+        "mysticContest"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM011": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM011",
+      "verifiedFields": {
+        "name": "亚太区投资部主管",
+        "colorKey": "绿",
+        "basicType": "角色"
+      },
+      "abilitySummary": "迟缓；快速行动 横置：你获得①。",
+      "confirmedMechanismIds": [
+        "slow",
+        "exhaust",
+        "priority"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM012": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM012",
+      "verifiedFields": {
+        "name": "皓月歌者",
+        "colorKey": "绿",
+        "basicType": "角色"
+      },
+      "abilitySummary": "传闻；进场触发 若本方秘社上没有暴露标志，所有其他本方仙灵和猎手角色获得屏障直到本回合结束。",
+      "confirmedMechanismIds": [
+        "rumor",
+        "mysticContest",
+        "barrier",
+        "continuous"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM013": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM013",
+      "verifiedFields": {
+        "name": "指挥车“鹫堡”",
+        "colorKey": "绿",
+        "basicType": "角色"
+      },
+      "abilitySummary": "公开；持续 每个回合中你所打出或付费现身的第一张副名为“猛禽”战术小组的牌，其所需费用减少②。；行动 横置：将指挥车“鹫堡”和本地区的另一个本方角色移动到一个相邻地区。",
+      "confirmedMechanismIds": [
+        "public",
+        "costReduction",
+        "hidden",
+        "exhaust",
+        "mobility",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM014": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM014",
+      "verifiedFields": {
+        "name": "执行部特遣组",
+        "colorKey": "绿",
+        "basicType": "角色"
+      },
+      "abilitySummary": "持续 若本方秘社为S.P.T执行部，或本方分数少于敌方，则执行部特遣组获得防御+1、杀伤1和撤回。；触发 当你赢得执行部特遣组所参与的战斗对抗时，你可以不造成战斗伤害，改为消灭本地区的目标暗藏者。",
+      "confirmedMechanismIds": [
+        "continuous",
+        "combatTraits",
+        "confrontation",
+        "hidden",
+        "damagePrevention"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM015": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM015",
+      "verifiedFields": {
+        "name": "神探雷蒙德·哈米特",
+        "colorKey": "绿",
+        "basicType": "角色"
+      },
+      "abilitySummary": "持续 在对抗阶段，若本方秘社上没有暴露标志，则神探雷蒙德·哈米特上的所有永久战斗能力图标可视作永久调查和永久势力，所有临时战斗能力图标可视作临时调查和临时势力。",
+      "confirmedMechanismIds": [
+        "continuous",
+        "confrontation",
+        "mysticContest",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM016": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM016",
+      "verifiedFields": {
+        "name": "跟踪",
+        "colorKey": "绿",
+        "basicType": "事务"
+      },
+      "abilitySummary": "隐秘：在本次隐秘对抗后，目标猎手或仙灵角色获得永久调查1直到回合结束。；传闻；快速行动 从目标秘社上移除至多两个隐秘标志。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "continuous",
+        "rumor"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM017": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM017",
+      "verifiedFields": {
+        "name": "砰！",
+        "colorKey": "绿",
+        "basicType": "事务"
+      },
+      "abilitySummary": "传闻；行动 选择一个本方角色，该角色对本地区的另一个目标角色造成X点伤害，X等于该本方角色的永久战斗和临时战斗能力图标数量之和。",
+      "confirmedMechanismIds": [
+        "rumor",
+        "priority",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM018": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM018",
+      "verifiedFields": {
+        "name": "镇魂曲",
+        "colorKey": "绿",
+        "basicType": "附属"
+      },
+      "abilitySummary": "隐秘+4；结附于本方秘社；持续 所有墓地中的牌不能成为卡牌或能力的目标，不能在墓地中发动行动和触发能力，角色或附属不能从墓地进场。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "attachment",
+        "society",
+        "gravePlay",
+        "graveRecovery",
+        "continuous"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM019": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM019",
+      "verifiedFields": {
+        "name": "火力压制",
+        "colorKey": "绿",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于本方秘社；准备步骤触发 若本方角色的永久战斗和临时战斗图标数量之和大于敌方，抓一张牌；若小于或等于敌方，则你可以支付②然后在目标本方角色上放置一个永久战斗1能力图标标志。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "society",
+        "deckChoice",
+        "continuous",
+        "temporaryIcons",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM020": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM020",
+      "verifiedFields": {
+        "name": "奥德修斯E型外骨骼",
+        "colorKey": "绿",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标人类角色；持续 受此结附的角色获得永久战斗2和防御+1，并获得机动和护卫2。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "continuous",
+        "mobility",
+        "combatTraits"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM021": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM021",
+      "verifiedFields": {
+        "name": "秘闻记录官",
+        "colorKey": "蓝",
+        "basicType": "角色"
+      },
+      "abilitySummary": "隐秘+5；持续 在进行隐秘对抗时，你所展示的吸血鬼牌获得+2。",
+      "confirmedMechanismIds": [
+        "mysticContest"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM022": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM022",
+      "verifiedFields": {
+        "name": "阴影之子",
+        "colorKey": "蓝",
+        "basicType": "角色"
+      },
+      "abilitySummary": "现身强制触发 进行一次隐秘对抗。；触发 当你每回合首次赢得隐秘对抗时，目标玩家弃一张手牌。",
+      "confirmedMechanismIds": [
+        "hidden",
+        "mysticContest",
+        "deckChoice",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM023": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM023",
+      "verifiedFields": {
+        "name": "尽职的珍珠",
+        "colorKey": "蓝",
+        "basicType": "角色"
+      },
+      "abilitySummary": "公开；迟缓；行动①，横置：选择目标地区，将一张法师或吸血鬼独有角色牌从你手中放置进场并位于该地区。",
+      "confirmedMechanismIds": [
+        "public",
+        "slow",
+        "exhaust",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM024": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM024",
+      "verifiedFields": {
+        "name": "阿刺穆特杀手",
+        "colorKey": "蓝",
+        "basicType": "角色"
+      },
+      "abilitySummary": "额外费用 敌方秘社上每有一个暴露标志，打出或付费现身阿刺穆特杀手的所需费用就减少②。；现身触发 袭击X，X等于敌方秘社上暴露标志的数量。若有其它角色因此效果死去，抓一张牌。",
+      "confirmedMechanismIds": [
+        "costReduction",
+        "hidden",
+        "mysticContest",
+        "combatKeywords",
+        "deckChoice",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM025": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM025",
+      "verifiedFields": {
+        "name": "安哥拉·曼纽",
+        "colorKey": "蓝",
+        "basicType": "角色"
+      },
+      "abilitySummary": "领袖；屏障；触发 当你赢得隐秘对抗时，在每个有本方吸血鬼角色的地区上放置一个本方势力标志。；持续 所有本方吸血鬼角色的现身费用减少X，X等于本方秘社上隐秘标志的数量。",
+      "confirmedMechanismIds": [
+        "leader",
+        "barrier",
+        "mysticContest",
+        "confrontation",
+        "hidden",
+        "costReduction",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM027": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM027",
+      "verifiedFields": {
+        "name": "阴影之道",
+        "colorKey": "蓝",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于本方秘社；你只能操控至多一个道途。；触发 当你赢得隐秘对抗时，若你操控吸血鬼角色或本方秘社上有隐秘标志，你可以从敌方玩家牌库顶的十张牌中寻找一张牌，将该牌封印在其拥有者的秘社上，然后将其余的牌洗回其牌库。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "society",
+        "mysticContest",
+        "seal",
+        "deckChoice",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM028": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM028",
+      "verifiedFields": {
+        "name": "曼纽的阴影厅堂",
+        "colorKey": "蓝",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于本方秘社；准备步骤强制触发 若你具有钥匙标志，则进行一次隐秘对抗。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "society",
+        "mysticContest",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM029": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM029",
+      "verifiedFields": {
+        "name": "被胁迫的政要",
+        "colorKey": "红",
+        "basicType": "角色"
+      },
+      "abilitySummary": "公开；持续 若其上有指示物标志，被胁迫的政要获得声望。若有卡牌封印在其上，被胁迫的政要获得屏障。；死亡触发 本回合中，所有其上有指示物标志的角色获得声望，所有有卡牌封印在其上的角色获得屏障。",
+      "confirmedMechanismIds": [
+        "public",
+        "token",
+        "renown",
+        "seal",
+        "barrier",
+        "continuous"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM030": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM030",
+      "verifiedFields": {
+        "name": "狂热信众",
+        "colorKey": "红",
+        "basicType": "角色"
+      },
+      "abilitySummary": "持续 所有位于已毁灭的地区的本方邪教徒角色获得永久势力1。；持续 若本方秘社上有三个隐秘标志，则所有本方邪教徒角色获得永久调查1。",
+      "confirmedMechanismIds": [
+        "timeDestroy",
+        "continuous",
+        "mysticContest"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM031": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM031",
+      "verifiedFields": {
+        "name": "凌虐恶魔",
+        "colorKey": "红",
+        "basicType": "角色"
+      },
+      "abilitySummary": "创伤1；混乱；强制触发 本回合中当首次有指示物标志置于凌虐恶魔上时，每位玩家各选择一个其所操控的角色，凌虐恶魔对这些角色各造成1点创伤。",
+      "confirmedMechanismIds": [
+        "combatKeywords",
+        "chaos",
+        "token",
+        "healWounds",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM032": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM032",
+      "verifiedFields": {
+        "name": "扭曲的布道者",
+        "colorKey": "红",
+        "basicType": "角色"
+      },
+      "abilitySummary": "隐秘：若场上有已毁灭的地区，或你的计分区中有毁灭标志，+3。；触发 当你赢得一次隐秘对抗时，在所有已毁灭的地区上放置一个本方势力标志。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "timeDestroy",
+        "confrontation"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM033": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM033",
+      "verifiedFields": {
+        "name": "钟楼怪客",
+        "colorKey": "红",
+        "basicType": "角色"
+      },
+      "abilitySummary": "时间标志1；传闻；行动 自钟楼怪客上移除一个时间标志：将一张法术或灾难牌从本方墓地移回你的手中。该能力每回合只能发动一次。",
+      "confirmedMechanismIds": [
+        "timeDestroy",
+        "rumor",
+        "graveRecovery",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM034": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM034",
+      "verifiedFields": {
+        "name": "消逝的乌尔德",
+        "colorKey": "红",
+        "basicType": "角色"
+      },
+      "abilitySummary": "领袖；时间标志1；行动 横置，从消逝的乌尔德上移除一个时间标志：消灭所有其他角色。；准备步骤强制触发 若消逝的乌尔德上没有时间标志，则牺牲之。",
+      "confirmedMechanismIds": [
+        "leader",
+        "timeDestroy",
+        "exhaust",
+        "sacrifice",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM035": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM035",
+      "verifiedFields": {
+        "name": "安东尼·布洛克",
+        "colorKey": "红",
+        "basicType": "角色"
+      },
+      "abilitySummary": "领袖；持续 所有本方人类角色额外具有宿主类别。；触发 每当一个本方宿主角色死亡时，抓一张牌。",
+      "confirmedMechanismIds": [
+        "leader",
+        "continuous",
+        "deckChoice",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM036": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM036",
+      "verifiedFields": {
+        "name": "烬归烬",
+        "colorKey": "红",
+        "basicType": "事务"
+      },
+      "abilitySummary": "隐秘+2：在本次隐秘对抗后，若本方秘社为计时者，你可以在目标角色或附属上放置一个时间标志。；非资产；行动 每位玩家牺牲一个角色。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "society",
+        "timeDestroy",
+        "nonAsset",
+        "sacrifice"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM037": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM037",
+      "verifiedFields": {
+        "name": "戴森的计谋",
+        "colorKey": "红",
+        "basicType": "事务"
+      },
+      "abilitySummary": "隐秘+1：在本次隐秘对抗后，若本方秘社为计时者，在目标角色或附属上放置一个时间标志。；行动 弃一张牌，然后将你牌库底的两张牌置于手中。若场上有四个或更多时间标志，你可以进行一次隐秘对抗。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "society",
+        "timeDestroy",
+        "deckChoice"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
     }
   }
 }
