@@ -129,6 +129,23 @@ pub enum Op {
     },
     Destroy(EntityRef),
     SacrificeChosen(PlayerRef),
+    SacrificeAndDraw(PlayerRef),
+    FreeReveal {
+        player: PlayerRef,
+        require_loyalty: bool,
+    },
+    ChooseRegion,
+    GraveyardEntry {
+        player: PlayerRef,
+        region: RegionRef,
+    },
+    HideMatching {
+        except_subtype: Option<String>,
+        mix_hidden: bool,
+    },
+    SimultaneousSearch {
+        filter: CardFilter,
+    },
     Draw {
         player: PlayerRef,
         count: usize,
@@ -165,6 +182,7 @@ pub enum Op {
         amount: u32,
     },
     ForEachLivingPlayer(Vec<Op>),
+    ForEachLivingPlayerFromActor(Vec<Op>),
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Mode {
@@ -231,11 +249,13 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
             }
         }
         for op in ops {
-            if let Op::ForEachLivingPlayer(body) = op {
-                if body
-                    .iter()
-                    .any(|op| matches!(op, Op::ForEachLivingPlayer(_)))
-                {
+            if let Op::ForEachLivingPlayer(body) | Op::ForEachLivingPlayerFromActor(body) = op {
+                if body.iter().any(|op| {
+                    matches!(
+                        op,
+                        Op::ForEachLivingPlayer(_) | Op::ForEachLivingPlayerFromActor(_)
+                    )
+                }) {
                     return Err(format!(
                         "{location}: nested ForEachLivingPlayer is unsupported"
                     ));
@@ -842,6 +862,71 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
             },
         ];
         m.insert("DQJC114".into(), with_abilities(vec![worldmode]));
+        for (id, key, ops) in [
+            // Adopt the archived Florence FAQ for this release (user ruling).
+            (
+                "DQJC108",
+                "free-reveal-win",
+                vec![Op::ForEachLivingPlayerFromActor(vec![Op::FreeReveal {
+                    player: Context,
+                    require_loyalty: false,
+                }])],
+            ),
+            (
+                "DQJC109",
+                "nonhuman-hide-win",
+                vec![Op::HideMatching {
+                    except_subtype: Some("人类".into()),
+                    mix_hidden: false,
+                }],
+            ),
+            (
+                "DQJC110",
+                "hide-and-mix-win",
+                vec![Op::HideMatching {
+                    except_subtype: None,
+                    mix_hidden: true,
+                }],
+            ),
+            (
+                "DQJC111",
+                "sacrifice-draw-win",
+                vec![Op::ForEachLivingPlayerFromActor(vec![
+                    Op::SacrificeAndDraw(Context),
+                ])],
+            ),
+            (
+                "DQJC115",
+                "graveyard-entry-win",
+                vec![
+                    Op::ChooseRegion,
+                    Op::ForEachLivingPlayerFromActor(vec![Op::GraveyardEntry {
+                        player: Context,
+                        region: RegionRef::Chosen,
+                    }]),
+                ],
+            ),
+            (
+                "DQJC116",
+                "simultaneous-search-win",
+                vec![Op::SimultaneousSearch {
+                    filter: CardFilter::Kind("attachment".into()),
+                }],
+            ),
+        ] {
+            m.insert(
+                id.into(),
+                with_abilities(vec![ability(
+                    key,
+                    "赢取触发",
+                    Timing::Fast,
+                    vec![],
+                    vec![],
+                    ops,
+                    Some(Event::RegionWon),
+                )]),
+            );
+        }
         validate_definitions(&m)
             .unwrap_or_else(|error| panic!("Invalid released rule declaration: {error}"));
         m
@@ -860,7 +945,7 @@ mod tests {
     #[test]
     fn invalid_multi_target_ability_is_rejected_before_registration() {
         let mut registry = definitions().clone();
-        assert_eq!(registry.len(), 30);
+        assert_eq!(registry.len(), 36);
         let ability = &mut registry.get_mut("LC20").unwrap().abilities[0];
         ability.targets.push(ability.targets[0].clone());
         let error = validate_definitions(&registry).unwrap_err();

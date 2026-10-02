@@ -37,4 +37,13 @@ export class RoomStore {
     ]);
     return result[0].meta.changes === 1;
   }
+  async system({ id, expectedVersion, state, version, nonce, entry }) {
+    const result = await this.db.batch([
+      this.stmt('UPDATE rooms SET state=?,version=?,attempt_nonce=? WHERE id=? AND version=?',
+        state, version, nonce, id, expectedVersion),
+      this.stmt('INSERT INTO journal(room_id,version,entry) SELECT id,?,? FROM rooms WHERE id=? AND version=? AND attempt_nonce=?',
+        version, entry, id, version, nonce),
+    ]);
+    return result[0].meta.changes === 1;
+  }
 }

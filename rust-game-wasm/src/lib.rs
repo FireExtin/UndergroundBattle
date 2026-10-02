@@ -2,7 +2,8 @@
 //! Entire game state crosses JavaScript only as an opaque JSON string.
 use hegemony_server::{
     catalog as definitions,
-    model::{Action, Game, Versions, View},
+    model::{Game, Versions},
+    room::{QuoteRequest, RoomCommand, RoomEnvelope, RoomView},
 };
 use serde::{Deserialize, Serialize};
 use wasm_bindgen::prelude::*;
@@ -11,15 +12,15 @@ use wasm_bindgen::prelude::*;
 struct Transition {
     /// Private server storage. NEVER return this string to a browser.
     state: String,
-    view: View,
+    view: RoomView,
     version: u64,
     seat: usize,
 }
 fn error(message: impl AsRef<str>) -> JsValue {
     JsValue::from_str(message.as_ref())
 }
-fn decode(state: &str) -> Result<Game, JsValue> {
-    let game = Game::from_persisted(state).map_err(error)?;
+fn decode(state: &str) -> Result<RoomEnvelope, JsValue> {
+    let game = RoomEnvelope::from_persisted(state).map_err(error)?;
     if game.versions.rules != definitions::RULES_VERSION
         || game.versions.card_pool != definitions::POOL_VERSION
         || game.versions.engine != definitions::ENGINE_VERSION
@@ -37,7 +38,7 @@ fn decode(state: &str) -> Result<Game, JsValue> {
     }
     Ok(game)
 }
-fn valid_seat(game: &Game, seat: usize) -> Result<(), JsValue> {
+fn valid_seat(game: &RoomEnvelope, seat: usize) -> Result<(), JsValue> {
     if seat >= game.players.len() {
         Err(error("Invalid authenticated seat"))
     } else {
@@ -55,15 +56,15 @@ struct StateIdentity {
 pub fn state_identity(state: &str) -> Result<String, JsValue> {
     let identity: StateIdentity =
         serde_json::from_str(state).map_err(|_| error("Invalid persisted state identity"))?;
-    if identity.state_schema != 2 {
+    if identity.state_schema != 2 && identity.state_schema != 3 {
         return Err(error("Unsupported persisted state schema"));
     }
     serde_json::to_string(&identity).map_err(|_| error("Identity serialization failed"))
 }
-fn encode(game: Game, seat: usize) -> Result<String, JsValue> {
+fn encode(game: RoomEnvelope, seat: usize) -> Result<String, JsValue> {
     valid_seat(&game, seat)?;
     let state = serde_json::to_string(&game).map_err(|_| error("State serialization failed"))?;
-    let view = game.view(seat);
+    let view = game.view(seat, game.pacing.last_server_now_ms);
     serde_json::to_string(&Transition {
         state,
         view,
@@ -99,13 +100,14 @@ pub fn new_game(
         seed,
     )
     .map_err(error)?;
-    encode(game, 0)
+    encode(RoomEnvelope::from_game(game), 0)
 }
 
 #[wasm_bindgen(js_name = joinGame)]
 pub fn join_game(state: &str, name: &str, deck_id: &str) -> Result<String, JsValue> {
     let mut game = decode(state)?;
-    let seat = game.join(name.into(), deck_id.into()).map_err(error)?;
+    let seat = game.game.join(name.into(), deck_id.into()).map_err(error)?;
+    game.revision = game.game.version;
     encode(game, seat)
 }
 #[wasm_bindgen(js_name = newGameWithDeck)]
@@ -130,13 +132,17 @@ pub fn new_game_with_deck(
         seed,
     )
     .map_err(error)?;
-    encode(game, 0)
+    encode(RoomEnvelope::from_game(game), 0)
 }
 #[wasm_bindgen(js_name = joinGameWithDeck)]
 pub fn join_game_with_deck(state: &str, name: &str, deck_json: &str) -> Result<String, JsValue> {
     let mut game = decode(state)?;
     let draft = serde_json::from_str(deck_json).map_err(|_| error("Invalid deck draft JSON"))?;
-    let seat = game.join_with_deck(name.into(), draft).map_err(error)?;
+    let seat = game
+        .game
+        .join_with_deck(name.into(), draft)
+        .map_err(error)?;
+    game.revision = game.game.version;
     encode(game, seat)
 }
 #[wasm_bindgen(js_name = roomCatalog)]
@@ -147,18 +153,55 @@ pub fn room_catalog(state: &str, seat: usize) -> Result<String, JsValue> {
 }
 
 #[wasm_bindgen]
-pub fn apply(state: &str, seat: usize, action_json: &str) -> Result<String, JsValue> {
-    let mut game = decode(state)?;
-    valid_seat(&game, seat)?;
-    let action: Action =
-        serde_json::from_str(action_json).map_err(|_| error("Invalid action JSON"))?;
-    game.apply(seat, action).map_err(error)?;
-    encode(game, seat)
+pub fn apply(_state: &str, _seat: usize, _action_json: &str) -> Result<String, JsValue> {
+    Err(error(
+        "schema3 requires applyRoom with the complete command and trusted server time",
+    ))
+}
+
+#[wasm_bindgen(js_name = applyRoom)]
+pub fn apply_room(
+    state: &str,
+    seat: usize,
+    command_json: &str,
+    server_now_decimal: &str,
+) -> Result<String, JsValue> {
+    let room = decode(state)?;
+    valid_seat(&room, seat)?;
+    let command: RoomCommand =
+        serde_json::from_str(command_json).map_err(|_| error("Invalid session command JSON"))?;
+    let now = server_now_decimal
+        .parse::<u64>()
+        .map_err(|_| error("Trusted server time must be a decimal u64 string"))?;
+    let transition = room.transition(seat, Some(command), now).map_err(error)?;
+    serde_json::to_string(&transition).map_err(|_| error("Transition serialization failed"))
+}
+
+#[wasm_bindgen(js_name = pollRoom)]
+pub fn poll_room(state: &str, seat: usize, server_now_decimal: &str) -> Result<String, JsValue> {
+    let room = decode(state)?;
+    valid_seat(&room, seat)?;
+    let now = server_now_decimal
+        .parse::<u64>()
+        .map_err(|_| error("Trusted server time must be a decimal u64 string"))?;
+    serde_json::to_string(&room.transition(seat, None, now).map_err(error)?)
+        .map_err(|_| error("Poll serialization failed"))
+}
+
+#[wasm_bindgen(js_name = quoteRoom)]
+pub fn quote_room(state: &str, seat: usize, request_json: &str) -> Result<String, JsValue> {
+    let room = decode(state)?;
+    valid_seat(&room, seat)?;
+    let request: QuoteRequest =
+        serde_json::from_str(request_json).map_err(|_| error("Invalid quote JSON"))?;
+    serde_json::to_string(&room.quote(seat, request).map_err(error)?)
+        .map_err(|_| error("Quote serialization failed"))
 }
 
 #[wasm_bindgen]
 pub fn view(state: &str, seat: usize) -> Result<String, JsValue> {
     let game = decode(state)?;
     valid_seat(&game, seat)?;
-    serde_json::to_string(&game.view(seat)).map_err(|_| error("View serialization failed"))
+    serde_json::to_string(&game.view(seat, game.pacing.last_server_now_ms))
+        .map_err(|_| error("View serialization failed"))
 }

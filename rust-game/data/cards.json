@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.2",
-  "engineVersion": "rust-v0.2.4",
+  "cardPoolVersion": "limited-v2.3",
+  "engineVersion": "rust-v0.2.5",
   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
   "cards": [
     {
@@ -1144,6 +1144,241 @@
         "record": "JZ54",
         "image": "resource/ymsj-fun.github.io/cards/JZ54 阿塔玛斯奉献仪式.jpg"
       }
+    },
+    {
+      "id": "DQJC108",
+      "name": "佛罗伦萨",
+      "kind": "region",
+      "subtypes": [
+        "城市"
+      ],
+      "cost": 0,
+      "loyalty": [],
+      "loyaltyText": "",
+      "color": "",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "threshold": 4,
+      "points": 3,
+      "keywords": [],
+      "text": "【赢取触发】由赢取佛罗伦萨的玩家开始，每位玩家可以各将一个由其操控的暗藏者翻面，且不需支付其费用。",
+      "abilities": [],
+      "supported": true,
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/DQJC108 佛罗伦萨.jpg",
+        "record": "DQJC108",
+        "sha256": "5dd2014f700e73b7f8dda56b6c281f29946b6d36a96bdd3838af4b2b393f7c6e"
+      },
+      "unique": false,
+      "society": ""
+    },
+    {
+      "id": "DQJC109",
+      "name": "京都",
+      "kind": "region",
+      "subtypes": [
+        "城市"
+      ],
+      "cost": 0,
+      "loyalty": [],
+      "loyaltyText": "",
+      "color": "",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "threshold": 3,
+      "points": 3,
+      "keywords": [],
+      "text": "【赢取触发】将所有非人类角色翻面为暗藏者。",
+      "abilities": [],
+      "supported": true,
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/DQJC109 京都.jpg",
+        "record": "DQJC109",
+        "sha256": "337e5a45432d1ad434f971e66938e7506fc2997649648b21b7a6b1246306c60a"
+      },
+      "unique": false,
+      "society": ""
+    },
+    {
+      "id": "DQJC110",
+      "name": "伦敦",
+      "kind": "region",
+      "subtypes": [
+        "城市"
+      ],
+      "cost": 0,
+      "loyalty": [],
+      "loyaltyText": "",
+      "color": "",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "threshold": 4,
+      "points": 4,
+      "keywords": [],
+      "text": "【赢取触发】将所有角色翻面为暗藏者。然后若有玩家在同一地区操控多个暗藏者，则将这些暗藏者洗混。",
+      "abilities": [],
+      "supported": true,
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/DQJC110 伦敦.jpg",
+        "record": "DQJC110",
+        "sha256": "ecafefa26f0d3fa1aca9f63ecb50dcb21c1a51c157890516e94676880d8a1026"
+      },
+      "unique": false,
+      "society": ""
+    },
+    {
+      "id": "DQJC111",
+      "name": "莫斯科",
+      "kind": "region",
+      "subtypes": [
+        "城市"
+      ],
+      "cost": 0,
+      "loyalty": [],
+      "loyaltyText": "",
+      "color": "",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "threshold": 4,
+      "points": 3,
+      "keywords": [],
+      "text": "【赢取触发】由赢取莫斯科的玩家开始，每位玩家各牺牲一个角色，然后抓等同于他所牺牲角色的防御力数值的牌。",
+      "abilities": [],
+      "supported": true,
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/DQJC111 莫斯科.jpg",
+        "record": "DQJC111",
+        "sha256": "e2bc64426c121d41404d758a24b863f4c527a4f69e0582811599e2bc60471e41"
+      },
+      "unique": false,
+      "society": ""
+    },
+    {
+      "id": "DQJC115",
+      "name": "死者之城",
+      "kind": "region",
+      "subtypes": [
+        "城市"
+      ],
+      "cost": 0,
+      "loyalty": [],
+      "loyaltyText": "",
+      "color": "",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "threshold": 3,
+      "points": 2,
+      "keywords": [],
+      "text": "【赢取触发】选择一个地区，由赢取死者之城的玩家开始，每位玩家各将自己墓地中的一张角色牌正面进场并放置于该地区。",
+      "abilities": [],
+      "supported": true,
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/DQJC115 死者之城.jpg",
+        "record": "DQJC115",
+        "sha256": "66fa6d8ceb4ff3529c0d43386782aeac5553c564a761ec47d4e351beb91d0e94"
+      },
+      "unique": false,
+      "society": ""
+    },
+    {
+      "id": "DQJC116",
+      "name": "香港",
+      "kind": "region",
+      "subtypes": [
+        "城市",
+        "水域"
+      ],
+      "cost": 0,
+      "loyalty": [],
+      "loyaltyText": "",
+      "color": "",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "threshold": 3,
+      "points": 3,
+      "keywords": [],
+      "text": "【赢取触发】每位玩家可以从他的牌库中寻找一张附属牌，同时展示并置于各自手中，然后将牌库洗牌。",
+      "abilities": [],
+      "supported": true,
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/DQJC116 香港.jpg",
+        "record": "DQJC116",
+        "sha256": "e9dfbc396a733b3bbe7ffcb2a6d67ea371ffe4ca4bd6fc0f4e74b1ee73485d4d"
+      },
+      "unique": false,
+      "society": ""
     }
   ],
   "decks": [
@@ -1439,19 +1674,43 @@
   "world": [
     {
       "cardId": "DQJC107",
-      "count": 3
+      "count": 1
+    },
+    {
+      "cardId": "DQJC108",
+      "count": 1
+    },
+    {
+      "cardId": "DQJC109",
+      "count": 1
+    },
+    {
+      "cardId": "DQJC110",
+      "count": 1
+    },
+    {
+      "cardId": "DQJC111",
+      "count": 1
     },
     {
       "cardId": "DQJC112",
-      "count": 3
+      "count": 1
     },
     {
       "cardId": "DQJC113",
-      "count": 2
+      "count": 1
     },
     {
       "cardId": "DQJC114",
-      "count": 2
+      "count": 1
+    },
+    {
+      "cardId": "DQJC115",
+      "count": 1
+    },
+    {
+      "cardId": "DQJC116",
+      "count": 1
     }
   ]
 }

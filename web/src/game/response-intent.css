@@ -1,0 +1,5 @@
+.hg-response-intent-actions { display: flex; align-items: center; flex-wrap: wrap; justify-content: flex-end; gap: 6px; }
+.hg-response-intent-actions:empty { display: none; }
+.hg-response-intent-meta { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 5px; font-size: 10px; color: #d4d6bd; }
+.hg-response-intent-meta [role="timer"] { color: #e6cf92; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.hg-response-intent-meta small { font-size: 10px; }

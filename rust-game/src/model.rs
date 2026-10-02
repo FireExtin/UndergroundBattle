@@ -445,10 +445,37 @@ pub enum DeclareChoice {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum FrameChoice {
-    Forecast { seat: usize },
-    Discard { seat: usize, redraw: bool },
-    Search { seat: usize, to_top: bool },
-    Sacrifice { seat: usize },
+    Forecast {
+        seat: usize,
+    },
+    Discard {
+        seat: usize,
+        redraw: bool,
+    },
+    Search {
+        seat: usize,
+        to_top: bool,
+    },
+    Sacrifice {
+        seat: usize,
+    },
+    FreeReveal {
+        seat: usize,
+        require_loyalty: bool,
+    },
+    SacrificeDraw {
+        seat: usize,
+    },
+    Region,
+    GraveyardEntry {
+        seat: usize,
+        region: usize,
+    },
+    SimultaneousSearch {
+        filter: crate::rules::CardFilter,
+        participants: Vec<usize>,
+        committed: Vec<(usize, Option<String>)>,
+    },
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct CostModifier {

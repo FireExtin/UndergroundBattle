@@ -3,8 +3,8 @@ use serde::{Deserialize, Serialize};
 use std::sync::OnceLock;
 
 pub const RULES_VERSION: &str = "hegemony-pdf-v1";
-pub const POOL_VERSION: &str = "limited-v2.2";
-pub const ENGINE_VERSION: &str = "rust-v0.2.4";
+pub const POOL_VERSION: &str = "limited-v2.3";
+pub const ENGINE_VERSION: &str = "rust-v0.2.5";
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -157,7 +157,9 @@ pub fn catalog() -> &'static Catalog {
             .collect();
         let decks =
             serde_json::from_value(raw["decks"].clone()).expect("verified curated deck list");
-        let world = serde_json::from_value(raw["world"].clone()).expect("curated world entries");
+        let world: Vec<DeckEntry> =
+            serde_json::from_value(raw["world"].clone()).expect("curated world entries");
+        validate_base_world(&world, &cards).expect("one complete printed base-world set");
         Catalog {
             rules_version: RULES_VERSION.into(),
             card_pool_version: POOL_VERSION.into(),
@@ -168,6 +170,34 @@ pub fn catalog() -> &'static Catalog {
             world,
         }
     })
+}
+pub(crate) fn validate_base_world(
+    world: &[DeckEntry],
+    cards: &[CardDefinition],
+) -> Result<(), String> {
+    let expected = (107..=116)
+        .map(|n| format!("DQJC{n}"))
+        .collect::<std::collections::BTreeSet<_>>();
+    let mut ids = std::collections::BTreeSet::new();
+    let mut names = std::collections::BTreeSet::new();
+    for entry in world {
+        let definition = cards
+            .iter()
+            .find(|c| c.id == entry.card_id)
+            .ok_or("世界牌未注册")?;
+        if entry.count != 1
+            || definition.kind != "region"
+            || !definition.supported
+            || !ids.insert(entry.card_id.clone())
+            || !names.insert(definition.name.clone())
+        {
+            return Err("基础世界必须使用十种原地区各一张，不能重复填充".into());
+        }
+    }
+    if ids != expected {
+        return Err("基础世界缺少或替换了原地区".into());
+    }
+    Ok(())
 }
 pub fn card(id: &str) -> &'static CardDefinition {
     catalog()

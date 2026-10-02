@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { actionPayload, ApiError, createRoom, createRoomWithDeck, forgetSavedSeat, getCatalog, getState, joinRoom, joinRoomWithDeck, newCommandId, pollState, readActiveSession, readPending, readSavedSeats, readSession, returnToLobby, savePending, saveSession, sendCommand, type PendingCommand } from './api';
+import { actionForRoom, ApiError, createRoom, createRoomWithDeck, forgetSavedSeat, getCatalog, getState, joinRoom, joinRoomWithDeck, newCommandId, pollState, readActiveSession, readPending, readSavedSeats, readSession, returnToLobby, savePending, saveSession, sendCommand, type PendingCommand } from './api';
 import type { Action, Catalog, SavedSession, Session, View } from './types';
 import type { DeckDraft } from './deckLibrary';
 
@@ -146,7 +146,10 @@ export function useGame() {
   const act = async (action: Action) => {
     if (!session || !view || commandLock.current) return;
     if (pending.current) { await resolvePending(session); return; }
-    pending.current = { roomId: session.roomId, seat: session.seat, commandId: newCommandId(), expectedVersion: view.version, action: actionPayload(action) };
+    let payload: Action;
+    try { payload = actionForRoom(view, action); }
+    catch (error) { setError(error instanceof Error ? error.message : '当前响应窗口已变化，请重新选择。'); return; }
+    pending.current = { roomId: session.roomId, seat: session.seat, commandId: newCommandId(), expectedVersion: view.version, action: payload };
     savePending(pending.current);
     await resolvePending(session);
   };
