@@ -1651,7 +1651,14 @@
         "card-XQ25",
         "card-XQ27",
         "card-LC02",
-        "card-LC28"
+        "card-LC28",
+        "card-BQ001",
+        "card-BQ006",
+        "card-BQ020",
+        "card-BQ028",
+        "card-BQ032",
+        "card-BQ036",
+        "card-BQ037"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -1851,7 +1858,15 @@
         "card-LC13",
         "card-LC28",
         "card-LC29",
-        "card-DQBQ10"
+        "card-DQBQ10",
+        "card-BQ005",
+        "card-BQ015",
+        "card-BQ016",
+        "card-BQ017",
+        "card-BQ019",
+        "card-BQ020",
+        "card-BQ023",
+        "card-BQ027"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -1969,7 +1984,9 @@
         "card-XQ46",
         "card-XQ48",
         "card-XQ51",
-        "card-LC05"
+        "card-LC05",
+        "card-BQ016",
+        "card-BQ026"
       ],
       "dependencies": [
         "hidden"
@@ -2044,7 +2061,13 @@
         "card-LC09",
         "card-LC10",
         "card-LC12",
-        "card-LC26"
+        "card-LC26",
+        "card-BQ005",
+        "card-BQ008",
+        "card-BQ013",
+        "card-BQ017",
+        "card-BQ023",
+        "card-BQ025"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -2096,7 +2119,11 @@
         "card-JC064",
         "card-JC117",
         "card-JC121",
-        "card-LC03"
+        "card-LC03",
+        "card-BQ016",
+        "card-BQ020",
+        "card-BQ026",
+        "card-BQ035"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -2183,7 +2210,10 @@
         "card-XQ31",
         "card-TEST033",
         "card-LC11",
-        "card-LC17"
+        "card-LC17",
+        "card-BQ017",
+        "card-BQ018",
+        "card-BQ019"
       ],
       "dependencies": [],
       "interactionIds": [],
@@ -2258,7 +2288,11 @@
         "card-LC09",
         "card-LC17",
         "card-LC26",
-        "card-BQ029"
+        "card-BQ029",
+        "card-BQ017",
+        "card-BQ025",
+        "card-BQ027",
+        "card-BQ032"
       ],
       "dependencies": [
         "hidden",
@@ -2358,7 +2392,11 @@
         "card-XQ50",
         "card-LC04",
         "card-LC09",
-        "card-LC26"
+        "card-LC26",
+        "card-BQ016",
+        "card-BQ027",
+        "card-BQ034",
+        "card-BQ036"
       ],
       "dependencies": [
         "priority"
@@ -2409,7 +2447,9 @@
         "card-JC112",
         "card-XQ39",
         "card-LC08",
-        "card-LC09"
+        "card-LC09",
+        "card-BQ013",
+        "card-BQ014"
       ],
       "dependencies": [
         "loyalty",
@@ -2530,7 +2570,28 @@
         "card-DQBQ04",
         "card-DQBQ05",
         "card-DQBQ08",
-        "card-DQBQ09"
+        "card-DQBQ09",
+        "card-BQ001",
+        "card-BQ003",
+        "card-BQ004",
+        "card-BQ006",
+        "card-BQ009",
+        "card-BQ010",
+        "card-BQ011",
+        "card-BQ012",
+        "card-BQ014",
+        "card-BQ015",
+        "card-BQ016",
+        "card-BQ020",
+        "card-BQ021",
+        "card-BQ023",
+        "card-BQ024",
+        "card-BQ025",
+        "card-BQ028",
+        "card-BQ030",
+        "card-BQ031",
+        "card-BQ033",
+        "card-BQ036"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -2641,7 +2702,16 @@
         "card-LC25",
         "card-LC30",
         "card-DQBQ03",
-        "card-TK010"
+        "card-TK010",
+        "card-BQ002",
+        "card-BQ008",
+        "card-BQ009",
+        "card-BQ016",
+        "card-BQ018",
+        "card-BQ022",
+        "card-BQ024",
+        "card-BQ026",
+        "card-BQ035"
       ],
       "dependencies": [],
       "interactionIds": [],
@@ -2673,7 +2743,8 @@
         "card-LC07",
         "card-LC10",
         "card-LC26",
-        "card-LC27"
+        "card-LC27",
+        "card-BQ024"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -2758,7 +2829,9 @@
         "card-XQ32",
         "card-XQ35",
         "card-XQ39",
-        "card-DQBQ07"
+        "card-DQBQ07",
+        "card-BQ009",
+        "card-BQ012"
       ],
       "dependencies": [
         "priority",
@@ -2866,7 +2939,25 @@
         "card-DQBQ09",
         "card-DQBQ10",
         "card-TK004",
-        "card-BQ029"
+        "card-BQ029",
+        "card-BQ002",
+        "card-BQ017",
+        "card-BQ019",
+        "card-BQ021",
+        "card-BQ022",
+        "card-BQ023",
+        "card-BQ024",
+        "card-BQ025",
+        "card-BQ026",
+        "card-BQ027",
+        "card-BQ028",
+        "card-BQ030",
+        "card-BQ031",
+        "card-BQ032",
+        "card-BQ034",
+        "card-BQ035",
+        "card-BQ036",
+        "card-BQ038"
       ],
       "dependencies": [
         "priority"
@@ -2929,7 +3020,22 @@
         "card-TEST052",
         "card-LC13",
         "card-LC17",
-        "card-BQ029"
+        "card-BQ029",
+        "card-BQ001",
+        "card-BQ003",
+        "card-BQ004",
+        "card-BQ005",
+        "card-BQ006",
+        "card-BQ008",
+        "card-BQ009",
+        "card-BQ010",
+        "card-BQ011",
+        "card-BQ014",
+        "card-BQ015",
+        "card-BQ018",
+        "card-BQ027",
+        "card-BQ032",
+        "card-BQ033"
       ],
       "dependencies": [
         "priority",
@@ -3027,7 +3133,11 @@
         "card-XQ43",
         "card-TEST033",
         "card-LC07",
-        "card-DQBQ03"
+        "card-DQBQ03",
+        "card-BQ006",
+        "card-BQ008",
+        "card-BQ018",
+        "card-BQ033"
       ],
       "dependencies": [
         "continuous",
@@ -3138,7 +3248,8 @@
         "card-JC078",
         "card-JC019",
         "card-JC121",
-        "card-XQ06"
+        "card-XQ06",
+        "card-BQ024"
       ],
       "dependencies": [
         "confrontation"
@@ -3280,7 +3391,17 @@
         "card-TEST043",
         "card-LC27",
         "card-LC28",
-        "card-BQ029"
+        "card-BQ029",
+        "card-BQ005",
+        "card-BQ008",
+        "card-BQ010",
+        "card-BQ014",
+        "card-BQ015",
+        "card-BQ019",
+        "card-BQ020",
+        "card-BQ021",
+        "card-BQ031",
+        "card-BQ032"
       ],
       "dependencies": [
         "loyalty"
@@ -3356,7 +3477,9 @@
         "card-XQ06",
         "card-XQ31",
         "card-LC04",
-        "card-LC18"
+        "card-LC18",
+        "card-BQ008",
+        "card-BQ015"
       ],
       "dependencies": [
         "continuous",
@@ -3452,7 +3575,20 @@
         "card-DQBQ05",
         "card-DQBQ07",
         "card-TK004",
-        "card-BQ029"
+        "card-BQ029",
+        "card-BQ001",
+        "card-BQ002",
+        "card-BQ010",
+        "card-BQ011",
+        "card-BQ014",
+        "card-BQ017",
+        "card-BQ019",
+        "card-BQ020",
+        "card-BQ024",
+        "card-BQ031",
+        "card-BQ032",
+        "card-BQ036",
+        "card-BQ038"
       ],
       "dependencies": [
         "society",
@@ -3515,7 +3651,8 @@
       "limitations": "",
       "evidenceIds": [
         "veil",
-        "bq-keywords-1"
+        "bq-keywords-1",
+        "card-BQ015"
       ],
       "dependencies": [
         "seal",
@@ -3547,7 +3684,14 @@
         "bq-keywords-2",
         "card-MSBQ01",
         "card-XQ14",
-        "card-BQ029"
+        "card-BQ029",
+        "card-BQ027",
+        "card-BQ031",
+        "card-BQ032",
+        "card-BQ034",
+        "card-BQ035",
+        "card-BQ037",
+        "card-BQ038"
       ],
       "dependencies": [
         "attachment",
@@ -3691,7 +3835,15 @@
         "starlight",
         "card-TEST042",
         "card-TEST052",
-        "card-TK004"
+        "card-TK004",
+        "card-BQ001",
+        "card-BQ004",
+        "card-BQ010",
+        "card-BQ021",
+        "card-BQ027",
+        "card-BQ034",
+        "card-BQ036",
+        "card-BQ038"
       ],
       "dependencies": [
         "attachment",
@@ -3734,7 +3886,12 @@
         "card-LC16",
         "card-LC18",
         "card-LC25",
-        "card-BQ029"
+        "card-BQ029",
+        "card-BQ018",
+        "card-BQ031",
+        "card-BQ032",
+        "card-BQ035",
+        "card-BQ038"
       ],
       "dependencies": [
         "confrontation",
@@ -3793,7 +3950,10 @@
         "bq-stack",
         "card-XQ04",
         "card-TEST033",
-        "card-LC02"
+        "card-LC02",
+        "card-BQ015",
+        "card-BQ019",
+        "card-BQ034"
       ],
       "dependencies": [
         "priority"
@@ -3828,7 +3988,12 @@
         "card-XQ10",
         "card-XQ19",
         "card-XQ34",
-        "card-TEST034"
+        "card-TEST034",
+        "card-BQ002",
+        "card-BQ011",
+        "card-BQ019",
+        "card-BQ020",
+        "card-BQ032"
       ],
       "dependencies": [
         "priority",
@@ -4080,7 +4245,24 @@
         "card-LC17",
         "card-LC25",
         "card-DQBQ01",
-        "card-TK010"
+        "card-TK010",
+        "card-BQ002",
+        "card-BQ003",
+        "card-BQ004",
+        "card-BQ006",
+        "card-BQ008",
+        "card-BQ016",
+        "card-BQ017",
+        "card-BQ018",
+        "card-BQ026",
+        "card-BQ028",
+        "card-BQ030",
+        "card-BQ031",
+        "card-BQ032",
+        "card-BQ033",
+        "card-BQ034",
+        "card-BQ035",
+        "card-BQ037"
       ],
       "dependencies": [
         "confrontation",
@@ -4173,7 +4355,13 @@
         "card-LC16",
         "card-LC17",
         "card-LC18",
-        "card-LC30"
+        "card-LC30",
+        "card-BQ008",
+        "card-BQ017",
+        "card-BQ031",
+        "card-BQ034",
+        "card-BQ036",
+        "card-BQ037"
       ],
       "dependencies": [
         "sacrifice"
@@ -4206,7 +4394,10 @@
         "card-JC111",
         "card-JC119",
         "card-LC01",
-        "card-LC02"
+        "card-LC02",
+        "card-BQ010",
+        "card-BQ028",
+        "card-BQ037"
       ],
       "dependencies": [
         "hidden",
@@ -4243,7 +4434,8 @@
         "card-JC009",
         "card-JC044",
         "card-JC065",
-        "card-XQ02"
+        "card-XQ02",
+        "card-BQ009"
       ],
       "dependencies": [
         "priority",
@@ -4498,14 +4690,14 @@
       "path": "resource/ymsj-fun.github.io/cards/BQ010 读心术.jpg",
       "sha256": "03ca24007d2230830dbbf0a62bac4d88c1ba33f54c4764e60b4ce87c834424de",
       "visuallyReviewed": true,
-      "topic": "读心术：标题、色/类别及下方规则框"
+      "topic": "读心术：完整同ID原图与必要放大区逐项人工读取"
     },
     "card-BQ016": {
       "kind": "image",
       "path": "resource/ymsj-fun.github.io/cards/BQ016 受困仙子.jpg",
       "sha256": "5e9825832f3a994b0ab083b5d469c316d0a7f7270d53bb918d908339b4d8ab10",
       "visuallyReviewed": true,
-      "topic": "受困仙子：标题、色/类别及下方规则框"
+      "topic": "受困仙子：完整同ID原图与必要放大区逐项人工读取"
     },
     "card-BQ043": {
       "kind": "image",
@@ -6949,6 +7141,244 @@
       "sha256": "849e95431dec1efb484059dd0f4b7074d91081b5d49179fd7ec1495aadd94a6e",
       "visuallyReviewed": true,
       "topic": "赤鳞近卫：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-BQ001": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/BQ001 脑叶专家.jpg",
+      "sha256": "c2c6de0b1d71e37a913c9b2e2c358a0e28702037d6983430bc7bc10a9a1b78a1",
+      "visuallyReviewed": true,
+      "topic": "脑叶专家：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-BQ002": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/BQ002 敏锐的猫头鹰.jpg",
+      "sha256": "87bc08dd33413c9304d78475cf4327ed74544a48da2506fb2896996b1b1beaa0",
+      "visuallyReviewed": true,
+      "topic": "敏锐的猫头鹰：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-BQ003": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/BQ003 领航员.jpg",
+      "sha256": "2bc954adefe9a0809d69523be65a8fab0a9ea0b638d1cf8f81b43d7ca69ddb36",
+      "visuallyReviewed": true,
+      "topic": "领航员：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-BQ004": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/BQ004 奇兽设计师.jpg",
+      "sha256": "e30db270f63e88bc7b1cb3e35fb145ef78757221dd9e5b4bd2fb3880efa6d82d",
+      "visuallyReviewed": true,
+      "topic": "奇兽设计师：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-BQ005": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/BQ005 多重梦境迷宫.jpg",
+      "sha256": "8b847e1e9a96865d472e402bb9242e200ed9bdad65407a3ae9c135e388af177e",
+      "visuallyReviewed": true,
+      "topic": "多重梦境迷宫：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-BQ006": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/BQ006 梦境塑造师.jpg",
+      "sha256": "7fb69223d51fc3d7afba405dc107518afcc9e2d34f3e76dc061f282541d1f41f",
+      "visuallyReviewed": true,
+      "topic": "梦境塑造师：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-BQ008": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/BQ008 费南迪尔·哈里曼.jpg",
+      "sha256": "b50a82db31fbc25557673d69b71d8dd54271de20739c1bff7cc9f02b60db4310",
+      "visuallyReviewed": true,
+      "topic": "费南迪尔·哈里曼：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-BQ009": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/BQ009 精神锚点.jpg",
+      "sha256": "2f572697eeaec6b66322d5f5b4c15ddb97b89c778c4c8190ca1e2782e198f586",
+      "visuallyReviewed": true,
+      "topic": "精神锚点：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-BQ011": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/BQ011 藏于深层意识.jpg",
+      "sha256": "6f9e466ccc6bce0b6c500dfeb1d1eb30c959d23b3b0ff72ba9c7d72709eeb8ad",
+      "visuallyReviewed": true,
+      "topic": "藏于深层意识：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-BQ012": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/BQ012 水镜占卜.jpg",
+      "sha256": "2e9b5d867c1762c4bf40052a2149020c0c3cd689d1c33e2c2bcac784e88bf7f6",
+      "visuallyReviewed": true,
+      "topic": "水镜占卜：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-BQ013": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/BQ013 召现雷霆.jpg",
+      "sha256": "b1922d3a3a2e4d9e442b9f0851ff39d1c845b009f79691a942e6804e84659114",
+      "visuallyReviewed": true,
+      "topic": "召现雷霆：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-BQ014": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/BQ014 心灵拓扑学.jpg",
+      "sha256": "64d7393891ea01f74223f9c33b0ad047db80a11d65d54e0b25dc5ddbba737654",
+      "visuallyReviewed": true,
+      "topic": "心灵拓扑学：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-BQ015": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/BQ015 “愿景”.jpg",
+      "sha256": "9587c6b8970e20a5c68fd15b87fb01e18e6e400abc23edfec374388c83c76ff4",
+      "visuallyReviewed": true,
+      "topic": "“愿景”：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-BQ017": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/BQ017 星野葵.jpg",
+      "sha256": "14d68ab01e83c14d8f174b2e16b0818472ce0b20d617d7e07adb5db4db93d657",
+      "visuallyReviewed": true,
+      "topic": "星野葵：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-BQ018": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/BQ018 仲夏欢宴.jpg",
+      "sha256": "c23124930727759ea589dbbc73920a77adfbc860afd9872652bca500033719e1",
+      "visuallyReviewed": true,
+      "topic": "仲夏欢宴：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-BQ019": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/BQ019 超越极限.jpg",
+      "sha256": "d63cf2e6e72f8ead705ed5d6252322d01bfdf831d23b6a4abca0bde1a3c8f41d",
+      "visuallyReviewed": true,
+      "topic": "超越极限：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-BQ020": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/BQ020 夜巡.jpg",
+      "sha256": "26f1c491d55667fec794995c69611680196473bdd520ff7c64ad68554dd1ec72",
+      "visuallyReviewed": true,
+      "topic": "夜巡：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-BQ021": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/BQ021 获取装备.jpg",
+      "sha256": "ffdb332a3bbdfa1663dd869e27ad836264f223ca26bdb5f1639860a3d2e99b4e",
+      "visuallyReviewed": true,
+      "topic": "获取装备：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-BQ022": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/BQ022 合金指虎.jpg",
+      "sha256": "f1b58f299c3d901494c388be2123b325ca20c1f341106fe860d9761ded8231eb",
+      "visuallyReviewed": true,
+      "topic": "合金指虎：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-BQ023": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/BQ023 私人军械库.jpg",
+      "sha256": "8108e1507f44ef9b5f7a6ae8b4e6e6151094c6db5606de00834621519c59d444",
+      "visuallyReviewed": true,
+      "topic": "私人军械库：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-BQ024": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/BQ024 脊椎强殖装甲.jpg",
+      "sha256": "96a74fa7ed0c887fdb4f24a4a1ea2636455c83b5d830aeaaa9f5689d5a238e37",
+      "visuallyReviewed": true,
+      "topic": "脊椎强殖装甲：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-BQ025": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/BQ025 百变王牌.jpg",
+      "sha256": "26208cccbb1d38bd50d88d9616414754fe7cfb95cd2f6f64617d526b985feaa1",
+      "visuallyReviewed": true,
+      "topic": "百变王牌：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-BQ026": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/BQ026 吸血蝙蝠群.jpg",
+      "sha256": "4c5760661d57f4e4038f2f73f71aeaa8155dcf7430bfe06141315b66e18e7d59",
+      "visuallyReviewed": true,
+      "topic": "吸血蝙蝠群：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-BQ027": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/BQ027 血畜.jpg",
+      "sha256": "dd967ae165a1137d27f7259011277b2ef88872f86d6de2fbd6e05bbeda944567",
+      "visuallyReviewed": true,
+      "topic": "血裔：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-BQ028": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/BQ028 水沟鼠群密探.jpg",
+      "sha256": "edefc7294d8df74c8b36dda31591197c878d02c0a7d9b725e0805a3796a32ea6",
+      "visuallyReviewed": true,
+      "topic": "水沟鼠群密探：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-BQ030": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/BQ030 裁定官.jpg",
+      "sha256": "85aaa7444b65060ab09f33f2ea9057647f88c961ff103fcca0c0763ce2564b86",
+      "visuallyReviewed": true,
+      "topic": "裁定官：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-BQ031": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/BQ031 雾羽千军.jpg",
+      "sha256": "dd88435ca5a6b01796701cf33fca64f334cd34456f48bda669c562d0599a84d1",
+      "visuallyReviewed": true,
+      "topic": "雾羽千军：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-BQ032": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/BQ032 宴会司仪.jpg",
+      "sha256": "ca020f841642add8e436480bfd5e5a61b301213323e8893db18bd9e253f50fd4",
+      "visuallyReviewed": true,
+      "topic": "宴会司仪：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-BQ033": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/BQ033 热夜之梦.jpg",
+      "sha256": "a00ff13389fddf8e27073ec3e507f979d5c12b6eeffb8cf28211a5fdaef8ede8",
+      "visuallyReviewed": true,
+      "topic": "热夜之梦：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-BQ034": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/BQ034 雾羽弥生.jpg",
+      "sha256": "f91de56f6dfdaa41bb0d32759fcf32ad01985dc4c00998fc0753e8622fec59b2",
+      "visuallyReviewed": true,
+      "topic": "雾羽弥生：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-BQ035": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/BQ035 幽冥骑士.jpg",
+      "sha256": "52500e1a2eac4bb3ab1e9dc56c971669cea058b48f328ff09c42ebd24b7761b5",
+      "visuallyReviewed": true,
+      "topic": "幽冥骑士：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-BQ036": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/BQ036 菲尼克斯.jpg",
+      "sha256": "832c1951bd6444a951a407a60a5a37f1132cb7bcb2d2c317bdac3ea702483555",
+      "visuallyReviewed": true,
+      "topic": "菲尼克斯：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-BQ037": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/BQ037 穿刺公弗拉德三世.jpg",
+      "sha256": "c01ec903a562e241d0300be9c12e875aa8d2fac473654703aaaa694979554101",
+      "visuallyReviewed": true,
+      "topic": "穿刺公弗拉德三世：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-BQ038": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/BQ038 掠食时刻.jpg",
+      "sha256": "c7354353a2a33c7be7e5878ba489f88f6179d73df7f3b171eb8112fc121d32d9",
+      "visuallyReviewed": true,
+      "topic": "掠食时刻：完整同ID原图与必要放大区逐项人工读取"
     }
   },
   "openQuestions": [

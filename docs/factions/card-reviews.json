@@ -4,38 +4,45 @@
   "policy": "人工原图核验；完整游戏字段规格另存card-specifications.json，部分核验和完整规格不能互相冒充。",
   "cards": {
     "BQ010": {
-      "evidenceId": "card-BQ010",
       "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ010",
       "verifiedFields": {
         "name": "读心术",
         "colorKey": "黄",
         "basicType": "事务"
       },
-      "abilitySummary": "隐秘+2、黄资产可封印；暴露非资产；检视目标手牌并抓1；封印触发检视。",
+      "abilitySummary": "隐秘地区势力+2；在本次隐秘对抗后，若你的资产区具有黄色派系资产，则将读心术封印在本方秘社上。；非资产；行动 检视目标玩家的手牌。抓一张牌。；触发 当读心术被封印在本方秘社上时，检视目标玩家的手牌。",
       "confirmedMechanismIds": [
+        "starlightInfluence",
         "mysticContest",
         "seal",
-        "nonAsset"
+        "nonAsset",
+        "privatePeek",
+        "deckChoice"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。",
       "editionStatus": "uncertain",
-      "notes": "定位条目标为测试，但原图无TEST文字；图片收藏编号与文件ID不一致，不能认定已出版或只凭标签剔除。"
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
     },
     "BQ016": {
-      "evidenceId": "card-BQ016",
       "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ016",
       "verifiedFields": {
         "name": "受困仙子",
         "colorKey": "绿",
         "basicType": "角色"
       },
-      "abilitySummary": "公开、不能移动；牺牲赋仙灵/猎手战斗和死亡抓牌直到结束。",
+      "abilitySummary": "公开；不能移动；快速行动 牺牲受困仙子：所有本方仙灵和猎手角色获得永久战斗1和“死亡触发 抓一张牌”直到回合结束。",
       "confirmedMechanismIds": [
         "public",
+        "mobility",
+        "priority",
+        "sacrifice",
         "continuous",
-        "sacrifice"
+        "deckChoice",
+        "temporaryIcons"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
     },
     "BQ043": {
       "evidenceId": "card-BQ043",
@@ -6007,6 +6014,661 @@
         "graveRecovery",
         "attachment",
         "mysticContest"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ001": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ001",
+      "verifiedFields": {
+        "name": "脑叶专家",
+        "colorKey": "黄",
+        "basicType": "角色"
+      },
+      "abilitySummary": "持续 在进行隐秘对抗时，你所展示的牌获得地区势力+X，X等于封印在本方秘社上的名为精神锚点之卡牌的数量。；现身触发 从你手中选择一张星辰领域的牌，将其封印在本方秘社上，然后抓一张牌。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "starlightInfluence",
+        "seal",
+        "deckChoice",
+        "hidden"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ002": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ002",
+      "verifiedFields": {
+        "name": "敏锐的猫头鹰",
+        "colorKey": "黄",
+        "basicType": "角色"
+      },
+      "abilitySummary": "不能被装备结附；持续 若本方秘社上有隐秘标志，则敏锐的猫头鹰获得临时调查1。；神秘学博弈②。（手牌行动②，从你手中弃掉此牌：进行一次隐秘对抗。）",
+      "confirmedMechanismIds": [
+        "attachment",
+        "continuous",
+        "mysticContest",
+        "temporaryIcons",
+        "handAbility"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ003": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ003",
+      "verifiedFields": {
+        "name": "领航员",
+        "colorKey": "黄",
+        "basicType": "角色"
+      },
+      "abilitySummary": "触发 当你打出一张法术牌时，将你的牌库顶牌封印在本方秘社上。；进场触发 从你的牌库中寻找一张名为精神锚点的牌，展示该牌，然后洗牌并将该牌置于牌库顶。",
+      "confirmedMechanismIds": [
+        "seal",
+        "deckChoice",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ004": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ004",
+      "verifiedFields": {
+        "name": "奇兽设计师",
+        "colorKey": "黄",
+        "basicType": "角色"
+      },
+      "abilitySummary": "隐秘地区势力+5；触发 当一个本方梦境进场时，你可以从手中选择一张星辰领域的牌，将其封印在本方秘社上，然后抓一张牌。",
+      "confirmedMechanismIds": [
+        "starlightInfluence",
+        "seal",
+        "deckChoice",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ005": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ005",
+      "verifiedFields": {
+        "name": "多重梦境迷宫",
+        "colorKey": "黄",
+        "basicType": "角色"
+      },
+      "abilitySummary": "非资产；触发 当一张牌被封印在本方秘社上，重置多重梦境迷宫。；快速行动 横置：横置目标角色、附属或资产。",
+      "confirmedMechanismIds": [
+        "nonAsset",
+        "seal",
+        "exhaust",
+        "priority"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ006": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ006",
+      "verifiedFields": {
+        "name": "梦境塑造师",
+        "colorKey": "黄",
+        "basicType": "角色"
+      },
+      "abilitySummary": "灵体；现身触发 选择目标地区，自你的牌库中寻找一张印刷费用小于或等于X的梦境角色牌，将其放置进场并置于该地区，然后洗牌。X等于封印在本方秘社上的卡牌数量。",
+      "confirmedMechanismIds": [
+        "spirit",
+        "hidden",
+        "deckChoice",
+        "seal",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ008": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ008",
+      "verifiedFields": {
+        "name": "费南迪尔·哈里曼",
+        "colorKey": "黄",
+        "basicType": "角色"
+      },
+      "abilitySummary": "领袖；非资产；灵体；触发 每当一个本方法师角色进场时，将目标已横置的角色封印在本方秘社上。；持续 当计算本方秘社上封印的牌之数量时，每张封印在其上的精神锚点可视作两张牌。",
+      "confirmedMechanismIds": [
+        "leader",
+        "nonAsset",
+        "spirit",
+        "seal",
+        "exhaust",
+        "continuous",
+        "temporaryIcons",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ009": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ009",
+      "verifiedFields": {
+        "name": "精神锚点",
+        "colorKey": "黄",
+        "basicType": "事务"
+      },
+      "abilitySummary": "（结算此牌没有效果）；持续 若本方秘社为貘组，则名为精神锚点的牌，构筑时在牌组中的数量没有限制。；触发 当精神锚点被封印在本方秘社上时，你可以遏制1或预测1。",
+      "confirmedMechanismIds": [
+        "seal",
+        "repress",
+        "deckChoice",
+        "society",
+        "continuous"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ011": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ011",
+      "verifiedFields": {
+        "name": "藏于深层意识",
+        "colorKey": "黄",
+        "basicType": "事务"
+      },
+      "abilitySummary": "行动 从你的牌库中寻找一张牌，将该牌封印在本方秘社上，然后洗牌。若本方秘社上有隐秘标志，则改为寻找三张牌。；神秘学博弈②。（手牌行动②，从你手中弃掉此牌：进行一次隐秘对抗。）",
+      "confirmedMechanismIds": [
+        "seal",
+        "deckChoice",
+        "mysticContest",
+        "handAbility"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ012": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ012",
+      "verifiedFields": {
+        "name": "水镜占卜",
+        "colorKey": "黄",
+        "basicType": "事务"
+      },
+      "abilitySummary": "行动 在本方秘社上放置一个卜卦标志。预测X，抓X张牌，X等于本方秘社上卜卦标志的数量。",
+      "confirmedMechanismIds": [
+        "society",
+        "deckChoice"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ013": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ013",
+      "verifiedFields": {
+        "name": "召现雷霆",
+        "colorKey": "黄",
+        "basicType": "事务"
+      },
+      "abilitySummary": "额外费用 横置任意数量的本方法师角色，你每横置一个角色，打出召现雷霆的费用就减少①。；行动 选择目标地区，对该地区上所有已横置的角色造成4点伤害，然后横置所有未横置的角色。",
+      "confirmedMechanismIds": [
+        "exhaust",
+        "costReduction"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ014": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ014",
+      "verifiedFields": {
+        "name": "心灵拓扑学",
+        "colorKey": "黄",
+        "basicType": "事务"
+      },
+      "abilitySummary": "非资产；额外费用 本方秘社上每有一个隐秘标志，心灵拓扑学的所需费用就减少①。；行动 抓三张牌，然后将一张手牌封印在本方秘社上。",
+      "confirmedMechanismIds": [
+        "nonAsset",
+        "costReduction",
+        "mysticContest",
+        "seal",
+        "deckChoice"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ015": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ015",
+      "verifiedFields": {
+        "name": "“愿景”",
+        "colorKey": "黄",
+        "basicType": "事务"
+      },
+      "abilitySummary": "唯一；非资产；传闻；“愿景”不能被响应。；行动 将你牌库中的所有牌封印在本方秘社上。本局游戏中，你不能抓牌。",
+      "confirmedMechanismIds": [
+        "leader",
+        "nonAsset",
+        "rumor",
+        "priority",
+        "seal",
+        "deckChoice",
+        "cancel"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ017": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ017",
+      "verifiedFields": {
+        "name": "星野葵",
+        "colorKey": "绿",
+        "basicType": "角色"
+      },
+      "abilitySummary": "进场触发 若本方秘社上没有暴露标志，将你墓地中的目标装备或武器附属牌放置进场并结附于星野葵上。；快速行动①：横置星野葵，其获得屏障直到回合结束。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "graveRecovery",
+        "attachment",
+        "priority",
+        "exhaust",
+        "barrier",
+        "temporaryIcons",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ018": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ018",
+      "verifiedFields": {
+        "name": "仲夏欢宴",
+        "colorKey": "绿",
+        "basicType": "角色"
+      },
+      "abilitySummary": "灵体；威名；进场触发 若有名为精神锚点的牌封印在本方秘社上，目标灵体角色获得永久战斗2和屏障直到回合结束。",
+      "confirmedMechanismIds": [
+        "spirit",
+        "combatKeywords",
+        "seal",
+        "continuous",
+        "barrier",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ019": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ019",
+      "verifiedFields": {
+        "name": "超越极限",
+        "colorKey": "绿",
+        "basicType": "事务"
+      },
+      "abilitySummary": "非资产；快速行动 目标本方角色获得屏障直到回合结束。若有附属结附于其上，则本回合中该角色不能被消灭（该角色不会因致命伤害或其他消灭效应而死亡）。；神秘学博弈②。",
+      "confirmedMechanismIds": [
+        "nonAsset",
+        "priority",
+        "barrier",
+        "attachment",
+        "cancel",
+        "handAbility",
+        "mysticContest"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ020": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ020",
+      "verifiedFields": {
+        "name": "夜巡",
+        "colorKey": "绿",
+        "basicType": "事务"
+      },
+      "abilitySummary": "非资产；快速行动 将目标本方暗藏者移动到相邻地区，抓一张牌。；神秘学博弈②。（手牌行动②，从你手中弃掉此牌：进行一次隐秘对抗。）",
+      "confirmedMechanismIds": [
+        "nonAsset",
+        "priority",
+        "hidden",
+        "mobility",
+        "deckChoice",
+        "handAbility",
+        "mysticContest"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ021": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ021",
+      "verifiedFields": {
+        "name": "获取装备",
+        "colorKey": "绿",
+        "basicType": "事务"
+      },
+      "abilitySummary": "隐秘地区势力+3；非资产；行动 从你的牌库中寻找一张装备、武器或状态附属牌，展示后置于你的手中，然后洗牌。",
+      "confirmedMechanismIds": [
+        "starlightInfluence",
+        "nonAsset",
+        "deckChoice",
+        "attachment"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ022": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ022",
+      "verifiedFields": {
+        "name": "合金指虎",
+        "colorKey": "绿",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标人类或吸血鬼角色；回收（当受此结附的角色离场时，将该附属移回你的手中）；持续 受此结附的角色获得永久战斗1。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "continuous"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ023": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ023",
+      "verifiedFields": {
+        "name": "私人军械库",
+        "colorKey": "绿",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于本方秘社；持续 你可以在快速行动的时机打出装备和武器附属。；行动③，横置：从你的牌库中寻找一张装备或武器牌，展示后将其置于你的手中，然后洗牌。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "priority",
+        "exhaust",
+        "deckChoice"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ024": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ024",
+      "verifiedFields": {
+        "name": "脊椎强殖装甲",
+        "colorKey": "绿",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标人类或吸血鬼角色；进场触发 若本方秘社上没有暴露标志，抓一张牌。；持续 你每操控一个结附于角色上的附属，受此结附的角色就获得永久战斗1、永久调查1和防御+1。；持续 防止受此结附的角色将受到的创伤。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "deckChoice",
+        "mysticContest",
+        "continuous",
+        "damagePrevention",
+        "healWounds"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ025": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ025",
+      "verifiedFields": {
+        "name": "百变王牌",
+        "colorKey": "绿",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标角色；触发 当受此结附的角色死亡时，若百变王牌未横置，则从你的牌库顶开始展示卡牌，直到展示出一张角色牌为止，将该角色放置进场并置于本地区，将百变王牌横置并结附于其上，然后将其余展示的牌洗回牌库。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "deckChoice",
+        "exhaust",
+        "graveRecovery"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ026": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ026",
+      "verifiedFields": {
+        "name": "吸血蝙蝠群",
+        "colorKey": "蓝",
+        "basicType": "角色/附属"
+      },
+      "abilitySummary": "公开；机动；不能被装备结附；触发 当吸血蝙蝠群进入一个地区时，你可以将其结附于本地区的目标本方吸血鬼角色。；持续 若结附于角色上，吸血蝙蝠群不能移动，受其结附的角色不能成为敌方事务牌的目标。",
+      "confirmedMechanismIds": [
+        "public",
+        "mobility",
+        "attachment",
+        "continuous",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ027": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ027",
+      "verifiedFields": {
+        "name": "血裔",
+        "colorKey": "蓝",
+        "basicType": "角色"
+      },
+      "abilitySummary": "隐秘地区势力+2；在本次隐秘对抗后，目标本方吸血鬼饮血1。；快速行动 牺牲血裔：目标吸血鬼饮血1（将一张本方墓地中或封印在本方秘社上，名为鲜血的牌放置进场并结附于该角色上）。",
+      "confirmedMechanismIds": [
+        "starlightInfluence",
+        "blood",
+        "sacrifice",
+        "priority",
+        "graveRecovery",
+        "seal",
+        "attachment"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ028": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ028",
+      "verifiedFields": {
+        "name": "水沟鼠群密探",
+        "colorKey": "蓝",
+        "basicType": "角色"
+      },
+      "abilitySummary": "不能被装备结附；现身触发 检视目标玩家的手牌。你可以选择其中一张附属牌，该玩家弃掉该牌。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "hidden",
+        "privatePeek",
+        "deckChoice",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ030": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ030",
+      "verifiedFields": {
+        "name": "裁定官",
+        "colorKey": "蓝",
+        "basicType": "角色"
+      },
+      "abilitySummary": "触发 当一个附属结附于本方角色上时，抓一张牌。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "deckChoice",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ031": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ031",
+      "verifiedFields": {
+        "name": "雾羽千军",
+        "colorKey": "蓝",
+        "basicType": "角色"
+      },
+      "abilitySummary": "非资产；袭击1；触发 当一个附属结附于本方吸血鬼或忍者上时，目标敌方玩家弃一张手牌。该能力每回合只能发动一次。；触发 当你赢得一次隐秘对抗时，饮血1。",
+      "confirmedMechanismIds": [
+        "nonAsset",
+        "combatKeywords",
+        "attachment",
+        "deckChoice",
+        "mysticContest",
+        "blood",
+        "temporaryIcons",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ032": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ032",
+      "verifiedFields": {
+        "name": "宴会司仪",
+        "colorKey": "蓝",
+        "basicType": "角色"
+      },
+      "abilitySummary": "非资产；袭击1；现身触发 饮血2（将至多两张本方墓地中和/或封印在本方秘社上，名为鲜血的牌放置进场并结附于该角色上）。；神秘学博弈②。（手牌行动②，从你手中弃掉此牌：进行一次隐秘对抗。）",
+      "confirmedMechanismIds": [
+        "nonAsset",
+        "combatKeywords",
+        "hidden",
+        "blood",
+        "graveRecovery",
+        "seal",
+        "attachment",
+        "handAbility",
+        "mysticContest",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ033": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ033",
+      "verifiedFields": {
+        "name": "热夜之梦",
+        "colorKey": "蓝",
+        "basicType": "角色"
+      },
+      "abilitySummary": "灵体；额外费用 将一张封印在本方秘社上且名为精神锚点的牌洗入其拥有者的牌库。；进场触发 目标玩家随机弃一张手牌。",
+      "confirmedMechanismIds": [
+        "spirit",
+        "seal",
+        "deckChoice",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ034": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ034",
+      "verifiedFields": {
+        "name": "雾羽弥生",
+        "colorKey": "蓝",
+        "basicType": "角色"
+      },
+      "abilitySummary": "隐秘地区势力+1；在本次隐秘对抗后，目标本方吸血鬼饮血1。；进场触发 饮血1。；触发 当一个本方吸血鬼角色成为敌方卡牌的目标时，你可以牺牲一个结附于其上的本方附属，然后终止该卡牌。",
+      "confirmedMechanismIds": [
+        "starlightInfluence",
+        "blood",
+        "attachment",
+        "sacrifice",
+        "cancel",
+        "temporaryIcons",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ035": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ035",
+      "verifiedFields": {
+        "name": "幽冥骑士",
+        "colorKey": "蓝",
+        "basicType": "角色"
+      },
+      "abilitySummary": "机动；威名；持续 所有有名为鲜血的附属结附于其上的本方吸血鬼角色获得机动。；持续 所有有装备或武器附属结附于其上的本方吸血鬼角色获得威名。",
+      "confirmedMechanismIds": [
+        "mobility",
+        "combatKeywords",
+        "blood",
+        "attachment",
+        "continuous",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ036": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ036",
+      "verifiedFields": {
+        "name": "菲尼克斯",
+        "colorKey": "蓝",
+        "basicType": "角色"
+      },
+      "abilitySummary": "现身触发 自你牌库顶的六张牌中寻找任意数量的装备、武器或状态附属牌，将这些牌展示后置于你的手中，将其余牌洗回牌库。；行动①，牺牲一个结附于本方角色上的本方附属：进行一次隐秘对抗。本次隐秘对抗中你所展示的牌获得地区势力+2。",
+      "confirmedMechanismIds": [
+        "hidden",
+        "deckChoice",
+        "attachment",
+        "sacrifice",
+        "mysticContest",
+        "starlightInfluence",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ037": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ037",
+      "verifiedFields": {
+        "name": "穿刺公弗拉德三世",
+        "colorKey": "蓝",
+        "basicType": "角色"
+      },
+      "abilitySummary": "触发 当另一个本方吸血鬼角色进场时，该角色和穿刺公弗拉德三世饮血1。；行动①：若目标本方暗藏者的正面是吸血鬼角色，你可以令其现身。该能力每回合只能发动一次。",
+      "confirmedMechanismIds": [
+        "blood",
+        "hidden",
+        "privatePeek",
+        "temporaryIcons",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ038": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ038",
+      "verifiedFields": {
+        "name": "掠食时刻",
+        "colorKey": "蓝",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于本方秘社；触发 每当一个本方角色袭击时，你可以令其饮血1。；触发 在进行隐秘对抗时，你所展示的牌获得地区势力+X，X等于结附有装备、武器或状态附属牌的本方角色数量。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "combatKeywords",
+        "blood",
+        "mysticContest",
+        "starlightInfluence"
       ],
       "editionStatus": "pinnedImageVariant",
       "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
