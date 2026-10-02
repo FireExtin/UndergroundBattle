@@ -1,0 +1,13 @@
+   Compiling hegemony-server v0.1.0 (/workspace/UndergroundBattle/rust-game)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.56s
+     Running unittests src/lib.rs (/workspace/.private-validation/hegemony-v027-target/debug/deps/hegemony_server-fa35e11fc7b74bf5)
+
+running 5 tests
+test play_sources::tests::conditional_icons_use_controllers_assets_and_team_markers_with_first_team_and_posture ... ok
+test play_sources::tests::teams_do_not_share_personal_domains_and_moved_characters_query_their_current_region ... ok
+test play_sources::tests::grave_play_pays_normal_cost_once_and_persists_its_origin_until_face_up_entry ... ok
+test play_sources::tests::late_confrontation_grave_entry_waits_for_a_standard_action_window ... ok
+test play_sources::tests::grave_sources_reject_conceal_asset_unpermitted_foreign_loyalty_cost_and_phase_atomically ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 60 filtered out; finished in 0.02s
+

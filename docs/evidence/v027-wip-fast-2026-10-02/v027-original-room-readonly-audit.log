@@ -1,0 +1,1 @@
+{"roomId":"ff197848ea29cf4010ba3c13","version":1221,"journalEntries":1221,"status":"finished","matches":true,"persistedDigest":"892835331a13e3b31de001e5616ae748e392a269610ed318200714c976932ed6","replayedDigest":"892835331a13e3b31de001e5616ae748e392a269610ed318200714c976932ed6","versions":{"rules":"hegemony-pdf-v1","cardPool":"limited-v2.5","engine":"rust-v0.2.7"}}

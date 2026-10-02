@@ -1,0 +1,160 @@
+{
+  "roomId": "ff197848ea29cf4010ba3c13",
+  "readOnlySqlite": true,
+  "dataPolicy": "Only public grave/assets/face-up board fields and seat0 own permitted projection were inspected; no other hand or hidden identity read.",
+  "classification": "natural-path-no-standard-action-before-victory",
+  "corpseFaceUpId": "i347",
+  "corpseGraveId": "i467",
+  "deathRevision": 1144,
+  "deathAtUtc": "2026-10-02T21:57:34.440000+00:00",
+  "cause": {
+    "sourceCardId": "DQJC113",
+    "abilityId": "damage-win",
+    "frameId": "i462",
+    "publicLabel": "切尔诺贝利：赢取触发"
+  },
+  "graveSightings": {
+    "firstVisibleReceiptVersion": 1145,
+    "lastVisibleReceiptVersion": 1221,
+    "receiptCount": 77
+  },
+  "seat0PostDeathPermittedViews": [
+    {
+      "version": 1145,
+      "phase": "confrontation",
+      "step": "region:1:influence:after",
+      "legalGraveDeployCount": 0
+    },
+    {
+      "version": 1149,
+      "phase": "confrontation",
+      "step": "region:2:investigation:before",
+      "legalGraveDeployCount": 0
+    },
+    {
+      "version": 1153,
+      "phase": "confrontation",
+      "step": "region:2:investigation:after",
+      "legalGraveDeployCount": 0
+    },
+    {
+      "version": 1157,
+      "phase": "confrontation",
+      "step": "region:2:combat:before",
+      "legalGraveDeployCount": 0
+    },
+    {
+      "version": 1161,
+      "phase": "confrontation",
+      "step": "region:2:combat:after",
+      "legalGraveDeployCount": 0
+    },
+    {
+      "version": 1165,
+      "phase": "confrontation",
+      "step": "region:2:influence:before",
+      "legalGraveDeployCount": 0
+    },
+    {
+      "version": 1169,
+      "phase": "confrontation",
+      "step": "region:2:influence:after",
+      "legalGraveDeployCount": 0
+    },
+    {
+      "version": 1173,
+      "phase": "confrontation",
+      "step": "region:3:investigation:before",
+      "legalGraveDeployCount": 0
+    },
+    {
+      "version": 1177,
+      "phase": "confrontation",
+      "step": "region:3:investigation:after",
+      "legalGraveDeployCount": 0
+    },
+    {
+      "version": 1181,
+      "phase": "confrontation",
+      "step": "region:3:combat:before",
+      "legalGraveDeployCount": 0
+    },
+    {
+      "version": 1185,
+      "phase": "confrontation",
+      "step": "region:3:combat:after",
+      "legalGraveDeployCount": 0
+    },
+    {
+      "version": 1189,
+      "phase": "confrontation",
+      "step": "region:3:influence:before",
+      "legalGraveDeployCount": 0
+    },
+    {
+      "version": 1193,
+      "phase": "confrontation",
+      "step": "region:3:influence:after",
+      "legalGraveDeployCount": 0
+    },
+    {
+      "version": 1197,
+      "phase": "confrontation",
+      "step": "region:4:investigation:before",
+      "legalGraveDeployCount": 0
+    },
+    {
+      "version": 1201,
+      "phase": "confrontation",
+      "step": "region:4:investigation:after",
+      "legalGraveDeployCount": 0
+    },
+    {
+      "version": 1205,
+      "phase": "confrontation",
+      "step": "region:4:combat:before",
+      "legalGraveDeployCount": 0
+    },
+    {
+      "version": 1209,
+      "phase": "confrontation",
+      "step": "region:4:combat:after",
+      "legalGraveDeployCount": 0
+    },
+    {
+      "version": 1213,
+      "phase": "confrontation",
+      "step": "region:4:influence:before",
+      "legalGraveDeployCount": 0
+    },
+    {
+      "version": 1217,
+      "phase": "confrontation",
+      "step": "region:4:win",
+      "legalGraveDeployCount": 0
+    }
+  ],
+  "standardActionPhaseAfterDeathSeen": false,
+  "legalGraveDeployAfterDeathSeen": false,
+  "finalRevision": 1221,
+  "finalTurn": 7,
+  "finalStatus": "finished",
+  "nextRound8ActuallyPlayed": false,
+  "minimalSyntheticWindowRegression": "After(1,2) rejects atomically; same card/resources in explicit Action(0) fixture pays2 into Graveyard-source frame; finished rejects atomically",
+  "originalRoomJournalReplayMatches": true,
+  "committedCommandCount": 1171,
+  "publicUiCommandTraceCount": 1170,
+  "committedCommandMissingFromUiTrace": [
+    {
+      "seat": 0,
+      "expectedVersion": 529,
+      "responseVersion": 530,
+      "action": {
+        "kind": "passResponse",
+        "windowId": "response:18"
+      }
+    }
+  ],
+  "postCountAccounting": "1175 = 1171 committed game commands + 4 normal create/join; returned HTTP200 is observed for1170 trace entries",
+  "toolDiagnosticCorrection": "A click timeout/UI transition does not prove zero posted/committed writes; preserve original response18 false zero-post marker and require ledger audit."
+}

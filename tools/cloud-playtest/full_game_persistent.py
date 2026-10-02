@@ -168,7 +168,7 @@ class FullGame(AttachmentRun):
                                     # Five seconds plus the ordinary polling/render interval,
                                     # rather than a timeout shorter than the response itself.
                                     await self.pages[seat].wait_for_function('(id)=>{const v=window.__cloudView;return v?.responseWindow?.id!==id || v?.pendingChoice || v?.waitingChoice || v?.responseWindow?.members.find(m=>m.playerId===v.you)?.status!=="undecided"}',arg=w['id'],timeout=8000)
-                                    self.expiry_races.append({'seat':seat,'windowId':w['id'],'kind':'normal-response-ui-changed-before-post','gamePosts':0})
+                                    self.expiry_races.append({'seat':seat,'windowId':w['id'],'kind':'response-click-timed-out-ui-advanced','uiPostCountAtCatch':before_posts,'uiPostCountAfterRecovery':self.post_count,'requestCommitStatus':'not-established-by-click-timeout'})
                                 acted=True; break
                     if not acted:
                         await asyncio.sleep(.1)

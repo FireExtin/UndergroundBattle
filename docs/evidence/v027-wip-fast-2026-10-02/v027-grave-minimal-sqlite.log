@@ -1,0 +1,8 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.06s
+     Running tests/attachment_service.rs (/workspace/.private-validation/hegemony-v027-target/debug/deps/attachment_service-d5f09b69bdc5e9df)
+
+running 1 test
+test grave_play_sqlite_preserves_paid_origin_and_full_intent_receipt_across_reopen ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered out; finished in 0.15s
+

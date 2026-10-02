@@ -150,6 +150,61 @@ mod tests {
         );
     }
     #[test]
+    fn late_confrontation_grave_entry_waits_for_a_standard_action_window() {
+        // Public four-seat evidence: Chernobyl killed JC085 during the final
+        // round's influence-after window. The game ended before another action
+        // phase. This is an explicit local fixture, not a modified UI room.
+        let mut g = fixture_mode("teams");
+        assets(&mut g, 0, &["JC085", "JC084"]);
+        let c = g.make_card("JC085", 0);
+        let old = c.id.clone();
+        g.players[0].graveyard.push(c);
+        g.turn = 7;
+        g.window = Some(Window::After(1, 2));
+        let action = Action {
+            card_id: Some(old.clone()),
+            region: Some(2),
+            ..Action::new("deploy")
+        };
+        assert!(!g.view(0).legal_actions.iter().any(|a| a.action == action));
+        let before = serde_json::to_string(&g).unwrap();
+        assert!(g.apply(0, action.clone()).is_err());
+        assert_eq!(serde_json::to_string(&g).unwrap(), before);
+
+        // Contrast the same permission, card and available payment in a normal
+        // action window. No claim that round eight happened in the real game.
+        let mut standard = g.clone();
+        standard.turn = 8;
+        standard.first_team = 1;
+        standard.window = Some(Window::Action(0));
+        assert!(standard
+            .view(0)
+            .legal_actions
+            .iter()
+            .any(|a| a.action == action));
+        standard.apply(0, action.clone()).unwrap();
+        assert!(standard.players[0].hand.is_empty());
+        assert!(standard.players[0].graveyard.is_empty());
+        assert_eq!(
+            standard.stack[0].frame.as_ref().unwrap().source.play_source,
+            Some(PlaySource::Graveyard)
+        );
+        assert_eq!(
+            standard.players[0]
+                .assets
+                .iter()
+                .filter(|c| c.exhausted)
+                .count(),
+            2
+        );
+
+        g.status = "finished".into();
+        assert!(!g.view(0).legal_actions.iter().any(|a| a.action == action));
+        let before = serde_json::to_string(&g).unwrap();
+        assert!(g.apply(0, action).is_err());
+        assert_eq!(serde_json::to_string(&g).unwrap(), before);
+    }
+    #[test]
     fn grave_sources_reject_conceal_asset_unpermitted_foreign_loyalty_cost_and_phase_atomically() {
         let mut g = fixture();
         assets(&mut g, 0, &["JC085", "JC084"]);
