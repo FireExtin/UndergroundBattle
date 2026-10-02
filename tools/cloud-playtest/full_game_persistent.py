@@ -16,6 +16,24 @@ class FullGame(AttachmentRun):
         super().__init__(p,service,output)
         self.mode=mode; self.post_limit=budget
         self.grave_probe=grave_probe; self.grave_checks=[]; self.grave_entries=[]
+        self.condition_checks=[]; self.condition_seen=set()
+    def observe_conditions(self,views):
+        for v in views:
+            teams={p['id']:p['team'] for p in v['players']}
+            for region in v['regions']:
+                for c in region['characters']:
+                    if c.get('cardId') not in ('JC084','JC085') or c['faceDown']:continue
+                    team=teams[c['controller']];first=team==v['firstTeam'] and not c['exhausted']
+                    own_death=any(a['controller']==c['controller'] and a.get('magic')=='死亡' for a in v['assets'])
+                    team_death=any(teams[a['controller']]==team and a.get('magic')=='死亡' for a in v['assets'])
+                    if c['cardId']=='JC085': expected=(int(first and own_death),0)
+                    else:expected=(int(first and region['influence'][team]>0),int(first and region['influence'][1-team]>0))
+                    actual=(c['icons']['influence'],c['icons']['investigation'])
+                    assert actual==expected,f'Conditional icons differ for {c["cardId"]}: {actual} vs {expected}'
+                    key=(c['cardId'],first,c['exhausted'],own_death,team_death,tuple(region['influence']),actual)
+                    if key not in self.condition_seen:
+                        self.condition_seen.add(key)
+                        self.condition_checks.append({'cardId':c['cardId'],'viewer':v['you'],'controller':c['controller'],'version':v['version'],'firstTeamEligible':first,'exhausted':c['exhausted'],'ownDeathAsset':own_death,'teamDeathAsset':team_death,'regionInfluence':region['influence'],'effectiveInfluence':actual[0],'effectiveInvestigation':actual[1],'passed':True})
     async def legal_button(self, seat, action):
         before=await self.view(seat)
         grave=next((c for c in before.get('graveyard',[]) if c['instanceId']==action.get('cardId') and c['owner']==before['you']),None)
@@ -42,7 +60,7 @@ class FullGame(AttachmentRun):
             page=await self.new_seat(0)
             catalog=await page.evaluate('window.__cloudCatalog')
             self.catalog={c['id']:c for c in catalog['cards']}
-            decks=['reclaimers','hunters','keepers','watchers'] if self.grave_probe else ['watchers','hunters','keepers','reclaimers']
+            decks=['reclaimers','keepers','hunters','watchers'] if self.grave_probe and self.mode=='teams' else ['reclaimers','hunters','keepers','watchers'] if self.grave_probe else ['watchers','hunters','keepers','reclaimers']
             await page.locator(f'.hg-deck[data-deck-id="{decks[0]}"]').click()
             await page.get_by_label('你的称呼').fill(f'完整局{self.mode}甲')
             if self.mode=='teams': await page.get_by_role('button',name=re.compile('四人协作')).click()
@@ -64,6 +82,7 @@ class FullGame(AttachmentRun):
             while self.post_count < self.post_limit:
                 views=await self.views(); latest=max(views,key=lambda v:v['version'])
                 await self.sync(latest['version'])
+                if self.grave_probe:self.observe_conditions(views)
                 if self.grave_entries and not latest['stack']:
                     for entry in self.grave_entries:
                         v=views[entry['seat']]
@@ -104,7 +123,7 @@ class FullGame(AttachmentRun):
             if self.pages: await self.screenshot('full-game-failure')
         finally:
             v=await self.view(0) if self.pages else None
-            result.update(testType='complete-natural-desktop-ui-game',mode=self.mode,stateInjection=False,apiMoves=False,uiPostCount=self.post_count,uiPostBudget=self.post_limit,browserErrors=self.errors,coverage=dict(self.coverage),graveChecks=self.grave_checks,final=public_view(v),roomId=v['roomId'] if v else None,durationSeconds=round(time.monotonic()-start,2))
+            result.update(testType='complete-natural-desktop-ui-game',mode=self.mode,stateInjection=False,apiMoves=False,uiPostCount=self.post_count,uiPostBudget=self.post_limit,browserErrors=self.errors,coverage=dict(self.coverage),graveChecks=self.grave_checks,conditionChecks=self.condition_checks,final=public_view(v),roomId=v['roomId'] if v else None,durationSeconds=round(time.monotonic()-start,2))
             write_json(self.output/'full-game-summary.json',result)
             for c in self.contexts: await c.close()
         print(json.dumps({'mode':self.mode,'passed':result['passed'],'posts':self.post_count,'failure':result.get('failure'),'roomId':result['roomId']}),flush=True)

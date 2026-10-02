@@ -269,7 +269,7 @@ class UiRun:
         if self.mode == 'duel':
             preferred = 0 if own['team'] == 0 or view['turn'] == 1 else 1
         else:
-            preferred = 2 if view['turn'] <= 2 else (0 if seat % 2 == 0 else 4)
+            preferred = 2 if view['turn'] <= 2 else (seat % 2 if own['team'] == 0 else 3 + seat % 2)
         def deploy_score(action):
             region = view['regions'][action['region']]
             enemy_count = sum(next(p['team'] for p in view['players'] if p['id'] == c['controller']) != own['team'] for c in region['characters'])
