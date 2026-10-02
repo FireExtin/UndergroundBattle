@@ -27,6 +27,9 @@ def validate_specifications(specifications, coverage, index, recovery):
             "Unknown specification or recovery schema")
     require(specifications["auditedCommit"] == coverage["auditedCommit"], "Specification baseline differs")
     require(set(specs) <= set(records), "Full specification has no archive identity")
+    for question_id, question in specifications["openQuestions"].items():
+        require(set(question.get("evidenceIds", [])) <= set(evidence),
+                "Unknown question evidence: " + question_id)
     for i, s in specs.items():
         source = s["sourceVerification"]
         fields = s["fields"]
