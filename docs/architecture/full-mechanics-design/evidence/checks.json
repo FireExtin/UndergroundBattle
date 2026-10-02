@@ -1,0 +1,106 @@
+{
+  "codeCommit": "7b87aa8ef6cb1921fece09bdc16fe25613815773",
+  "executed": [
+    {
+      "id": "native",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "hegemony-server"
+      ],
+      "exitCode": 0,
+      "result": {
+        "unitPassed": 40,
+        "servicePassed": 9
+      },
+      "log": "native-tests.log"
+    },
+    {
+      "id": "wasm",
+      "command": [
+        "bash",
+        "rust-game-wasm/verify.sh"
+      ],
+      "exitCode": 0,
+      "result": {
+        "transitions": 417,
+        "projections": 1205,
+        "opaqueState": true,
+        "maximumU64SeedExact": true,
+        "nativeWasmStateAndViewsMatch": true
+      },
+      "log": "wasm-parity.log"
+    },
+    {
+      "id": "storage",
+      "command": [
+        "node",
+        "--test",
+        "sites/test/storage-retry.test.mjs"
+      ],
+      "exitCode": 0,
+      "result": {
+        "passed": 4
+      },
+      "log": "storage-tests.log"
+    },
+    {
+      "id": "receipt-probe",
+      "command": [
+        "cargo",
+        "run",
+        "--locked",
+        "-p",
+        "hegemony-server",
+        "--example",
+        "design_receipt_probe"
+      ],
+      "exitCode": 0,
+      "result": "Observed missing changed-intent rejection in native. Probe success is not correctness success.",
+      "log": "native-receipt-probe.log"
+    },
+    {
+      "id": "coverage",
+      "command": [
+        "python3",
+        "tools/factions/validate_coverage.py",
+        "--allow-code-drift"
+      ],
+      "exitCode": 1,
+      "result": {
+        "errors": 4,
+        "warnings": 6
+      },
+      "log": "coverage-check.log"
+    },
+    {
+      "id": "coverage-unit",
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/factions",
+        "-p",
+        "test_coverage.py"
+      ],
+      "exitCode": 1,
+      "result": {
+        "run": 20,
+        "passed": 18,
+        "errors": 2
+      },
+      "log": "coverage-unit-tests.log"
+    }
+  ],
+  "notExecuted": [
+    "full workerd/D1 integration",
+    "kernel-routing generated-bundle test",
+    "React/browser gameplay",
+    "a7572e8 complete directory suite",
+    "planned new mechanics/response timer/deck-library tests"
+  ]
+}

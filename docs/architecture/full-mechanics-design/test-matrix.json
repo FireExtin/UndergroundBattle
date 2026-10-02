@@ -1,0 +1,353 @@
+{
+  "schemaVersion": 1,
+  "reviewedCode": "7b87aa8ef6cb1921fece09bdc16fe25613815773",
+  "note": "Existing test names are executable baseline coverage only. Full future scenarios are specifications, not already passing tests.",
+  "cases": [
+    {
+      "id": "T01",
+      "title": "声明与付款",
+      "setupAndActions": "actor 有恰好 2 个 ready 资产，JC003 在场，目标先合法后失效；JC049 另试牺牲敌控、友控但非本人控、自己控制的异主角色",
+      "assertions": "不合法费用全状态 no-op；正确支付由 actor 承担；忠诚仍计横置资产；结算失效不退费；来源横置费用与效果横置分开",
+      "basisAndCoverage": "BQ4/16/17，JC003/049；已有付款 no-op 与底牌测试，团队费用候选需扩",
+      "existingRustTests": [
+        "invalid_additional_sacrifice_rolls_back_assets_modifier_and_every_state_field",
+        "surgeon_is_public_and_heal_pays_two_assets_and_exhausts_source_atomically"
+      ],
+      "futureScenarioStatus": "requires_additional_implementation_or_rule_ruling",
+      "fullyPassed": false
+    },
+    {
+      "id": "T02",
+      "title": "Immediate 与独立触发",
+      "setupAndActions": "空栈及敌方法术已入栈两种情况下发动 JC042；另用有死亡触发的费用对象夹具",
+      "assertions": "减费不产生可响应顶项；来源已牺牲仍获减费；独立死亡触发可选/响应；下张正面合类别才消费，现身不消费，回合末失效",
+      "basisAndCoverage": "BQ15/JC042/FAQ3；现有四个 JC042 相关测试",
+      "existingRustTests": [
+        "disciple_reduction_on_empty_stack_is_immediate_and_restores_without_repayment",
+        "immediate_policy_keeps_cost_death_trigger_responsive_and_choice_resumable",
+        "murder_response_sacrifices_disciple_as_cost_and_independent_reduction_resolves",
+        "reduction_only_face_up_play_matches_society_or_blood_loyalty_and_expires"
+      ],
+      "futureScenarioStatus": "requires_additional_implementation_or_rule_ruling",
+      "fullyPassed": false
+    },
+    {
+      "id": "T03",
+      "title": "目标身份与来源",
+      "setupAndActions": "对暗藏者指定后其付费现身/潜伏再现身；LC23 来源在响应中死亡；本地区目标横移",
+      "assertions": "旧目标实例失效整帧取消且不退款；来源离场不抹掉已接受效果；本地区锚点按规格；中途选择恢复不二次 guard",
+      "basisAndCoverage": "BQ4/17、FAQ3/4/5、LC23；已有 hide/reveal、local target、source leaves",
+      "existingRustTests": [
+        "response_hide_and_reveal_reenters_with_new_identity_old_spell_cannot_hit",
+        "source_leaves_after_angru_trigger_target_exhaust_still_resolves",
+        "local_targets_revalidate_and_events_enter_graveyard_after_effect"
+      ],
+      "futureScenarioStatus": "requires_additional_implementation_or_rule_ruling",
+      "fullyPassed": false
+    },
+    {
+      "id": "T04",
+      "title": "生命周期/宿主",
+      "setupAndActions": "actor 控制异主宿主 H；H 附有异控 A、A 又有合法附属 B，H 封印 S；依次测试横移、潜伏、消灭、赢区回底；另用 JC028 费用牺牲后响应移动墓地新实例",
+      "assertions": "横移保身份并带合法宿主树；普通潜伏/离场：sealed 回 owner 手、attachments 消灭；霸权赢区：同批在场附属回 owner 库底；无重复对象/环；JC028 不找同名、不复制快照",
+      "basisAndCoverage": "BQ10/12/16、RM6、FAQ5、JC028；完整宿主场景待实现",
+      "existingRustTests": [
+        "board_move_primitive_preserves_entity_without_enter_or_unique_events"
+      ],
+      "futureScenarioStatus": "requires_additional_implementation_or_rule_ruling",
+      "fullyPassed": false
+    },
+    {
+      "id": "T05",
+      "title": "有效属性与关系",
+      "setupAndActions": "后手 JC016，敌方仅暗藏者；加入五领域 LC15、ready JC099 和封印宿主；改变来源横置/控制/形态",
+      "assertions": "对抗临时图标与效果计数不同；暗藏者不是敌方角色；领域按图标数量/有效状态；资产文本空白；依赖循环拒绝、不靠顺序碰运气",
+      "basisAndCoverage": "RM8、BQ9/19、序曲、JC016/099/LC15；只有两种数值修正已有",
+      "existingRustTests": [
+        "police_security_and_chase_apply_printed_rules"
+      ],
+      "futureScenarioStatus": "requires_additional_implementation_or_rule_ruling",
+      "fullyPassed": false
+    },
+    {
+      "id": "T06",
+      "title": "连锁死亡与友方光环",
+      "setupAndActions": "2V2 seat0 JC059，与 seat1 同区已有伤角色；移走/牺牲 JC059；另放 seat2 敌角作对照",
+      "assertions": "友方 seat1 应先获+1防，敌方不获；光环失效立即形成新死亡波，不等下一命令；同波名单先冻结",
+      "basisAndCoverage": "JC059 原图友方、FAQ4；当前同 controller 实现会漏队友；现有 aura 测试只证局部",
+      "existingRustTests": [
+        "sacrifice_defense_aura_immediately_kills_zero_defense_character_at_stable_point"
+      ],
+      "futureScenarioStatus": "requires_additional_implementation_or_rule_ruling",
+      "fullyPassed": false
+    },
+    {
+      "id": "T07",
+      "title": "同时触发/强制",
+      "setupAndActions": "同一玩家同波产生两个可选触发，对手有一个；玩家交换自己两项顺序；另加一个明确强制项；两队友同波作为未裁定子案",
+      "assertions": "玩家能选择自己的次序/放弃可选项，强制项不能 decline；先后手入栈/LIFO正确；Mobility 例外保持；未裁定团队序列应被 gate",
+      "basisAndCoverage": "RM4、BQ19；现有 simultaneous death 只验证固定座位顺序，不能替代新测试",
+      "existingRustTests": [
+        "simultaneous_death_triggers_are_declared_first_team_then_rear_team",
+        "mobility_first_team_resolves_before_rear_team_and_responses_resolve_lifo"
+      ],
+      "futureScenarioStatus": "requires_additional_implementation_or_rule_ruling",
+      "fullyPassed": false
+    },
+    {
+      "id": "T08",
+      "title": "伤害、预防/转移",
+      "setupAndActions": "战斗伤害同批打两角，一角灵体满足预防，另一有 JC077；费用移区遇转生/遭遇再试",
+      "assertions": "无普通自由窗口插入分配→伤害；0实伤不发Damage；将发生触发暂停可恢复；未裁定多重转移/付款替代拒绝开放",
+      "basisAndCoverage": "RM12、FAQ4、BQ19、JC077/WM071；仅普通同时伤害已有",
+      "existingRustTests": [
+        "combat_difference_kill_guard_simultaneous_damage_and_barrier"
+      ],
+      "futureScenarioStatus": "requires_additional_implementation_or_rule_ruling",
+      "fullyPassed": false
+    },
+    {
+      "id": "T09",
+      "title": "屏障/护盾/终止",
+      "setupAndActions": "敌方指定屏障、范围作用屏障、成为目标时一盾、再尝试终止栈中卡与能力",
+      "assertions": "屏障只挡指定；护盾触发时点不拖到普通guard；取消实体卡按规则去墓，不伪造能力实体；费用不返；多目标语义未知即 gate",
+      "basisAndCoverage": "BQ18/19；现有 shield 仅人为赋值夹具，非生产证明",
+      "existingRustTests": [
+        "watchers_target_category_locks_and_shield_terminates"
+      ],
+      "futureScenarioStatus": "requires_additional_implementation_or_rule_ruling",
+      "fullyPassed": false
+    },
+    {
+      "id": "T10",
+      "title": "对抗关键词",
+      "setupAndActions": "调查差值大于牌库；伤害有护卫/杀伤；声望数量 3 对 1；威名多来源且敌方无角色；横置参与者",
+      "assertions": "调查排序后只抓1；同源伤害同时；声望只额外1；威名不按来源数无限叠加；横置不参与；关键词位置遵原文",
+      "basisAndCoverage": "BQ10/18/19；前三类有限测试已有，声望等需新增",
+      "existingRustTests": [
+        "icon_difference_investigation_sorts_then_draws_one",
+        "combat_difference_kill_guard_simultaneous_damage_and_barrier",
+        "influence_difference_cancels_enemy_and_privilege_requires_contribution"
+      ],
+      "futureScenarioStatus": "requires_additional_implementation_or_rule_ruling",
+      "fullyPassed": false
+    },
+    {
+      "id": "T11",
+      "title": "牌库与随机",
+      "setupAndActions": "JC049 牌库 0/1/2 张；固定seed连续搜寻/洗牌/混乱，合法目的地空/单个/多个；两端用最大u64",
+      "assertions": "底牌入手不当Draw；随机调用次序一致；空集合显式处理；不按请求到达顺序改随机；native/WASM同值",
+      "basisAndCoverage": "JC049、BQ19/20；底牌/u64已有，随机新机制待加",
+      "existingRustTests": [
+        "bottom_to_hand_insufficient_cards_does_not_draw_or_eliminate_and_pays_controlled_cost"
+      ],
+      "futureScenarioStatus": "requires_additional_implementation_or_rule_ruling",
+      "fullyPassed": false
+    },
+    {
+      "id": "T12",
+      "title": "香港同时搜索",
+      "setupAndActions": "四个牌库各有不同附属；按 0,1,2,3 及 3,1,0,2 顺序提交；在已提交两人时重开",
+      "assertions": "未收齐前不公开任何选中卡、不提前入手/洗牌；收齐一次性展示/入手再依稳定顺序洗；重试不替换答案；最终等价",
+      "basisAndCoverage": "DQJC116 原图；当前禁止开放，不能用零附属空搜索验收",
+      "existingRustTests": [],
+      "futureScenarioStatus": "requires_additional_implementation_or_rule_ruling",
+      "fullyPassed": false
+    },
+    {
+      "id": "T13",
+      "title": "隐秘对抗/团队",
+      "setupAndActions": "四人顶牌入手后各选一张；选择期间互查各席view；双方费用合计相同/不同时分别结算",
+      "assertions": "顶牌入手不是Draw；选择不可偷看队友；同时公开，印刷费用+专门修正；所选洗回；团队结果后个人标志处理正确",
+      "basisAndCoverage": "BQ20/22、帷幕之后；待实现",
+      "existingRustTests": [],
+      "futureScenarioStatus": "requires_additional_implementation_or_rule_ruling",
+      "fullyPassed": false
+    },
+    {
+      "id": "T14",
+      "title": "计划/传闻/转生",
+      "setupAndActions": "无秘社牌但有秘社区；背面计划付1并检忠诚，连续推进至阈值；手牌弃传闻/库入墓；WM071 入墓和被封印",
+      "assertions": "不误用每回合一次；到阈值强制；传闻仅适用规定原因；转生前后事件未裁定场景不默认为替代",
+      "basisAndCoverage": "BQ18/20、PG24、WM071；待实现/部分 gate",
+      "existingRustTests": [],
+      "futureScenarioStatus": "requires_additional_implementation_or_rule_ruling",
+      "fullyPassed": false
+    },
+    {
+      "id": "T15",
+      "title": "来源区域能力",
+      "setupAndActions": "JC085 从墓地正常打出及错误秘密派遣；先兆只准备步骤展示并付费；手牌弃牌成本能力",
+      "assertions": "从墓地打出仍正常费用/忠诚且发正确play/enter；手牌能力不误发打出事件；展示只在正式付款后；CQ12 地区锚点 gate",
+      "basisAndCoverage": "FAQ4/5、JC085、CQ12；待实现",
+      "existingRustTests": [],
+      "futureScenarioStatus": "requires_additional_implementation_or_rule_ruling",
+      "fullyPassed": false
+    },
+    {
+      "id": "T16",
+      "title": "次数与限期",
+      "setupAndActions": "普通秘密派遣、特权、MSJC01 本盘一次、先兆每回合一次；响应取消、来源变控、潜伏、跨回合重开",
+      "assertions": "每项依明确 UsageScope 与消耗点；不能通过reload/换控自动刷新；未知闪烁次数边界禁用；计划推进不受误限",
+      "basisAndCoverage": "BQ12/20、MSJC01/CQ12；现有基础used字段，通用 ledger 待实现",
+      "existingRustTests": [
+        "reduction_only_face_up_play_matches_society_or_blood_loyalty_and_expires"
+      ],
+      "futureScenarioStatus": "requires_additional_implementation_or_rule_ruling",
+      "fullyPassed": false
+    },
+    {
+      "id": "T17",
+      "title": "构筑与在场约束",
+      "setupAndActions": "无秘社混色合法牌组、JC070 低费高忠诚、同名跨版本过量、生成物/反面混入、独有/领袖/唯一分别触发",
+      "assertions": "构筑规则分开；秘社不计50；例外有依据；独有不仅部署时检查；领袖进场冲突二选一牺牲，非进场冲突未核则gate",
+      "basisAndCoverage": "BQ4/19、PG14/24、原图；已有固定预组/LC23局部",
+      "existingRustTests": [
+        "catalog_is_restricted_real_complete_and_decks_are_legal",
+        "unique_mandatory_sacrifice_and_world_effects"
+      ],
+      "futureScenarioStatus": "requires_additional_implementation_or_rule_ruling",
+      "fullyPassed": false
+    },
+    {
+      "id": "T18",
+      "title": "控制与拥有",
+      "setupAndActions": "异主角色被操控、宿主异控附属、来源离场另一控制效果仍在；Independent 遭遇被选敌方目标",
+      "assertions": "owner不改；旧帧actor不改；附属不自动随控；Independent不等敌方；复杂冲突无裁定则gate",
+      "basisAndCoverage": "BQ16/RM6/序曲；仅字段与固定actor测试已有",
+      "existingRustTests": [
+        "teams_both_teammates_can_respond_and_reduction_belongs_to_fixed_actor"
+      ],
+      "futureScenarioStatus": "requires_additional_implementation_or_rule_ruling",
+      "fullyPassed": false
+    },
+    {
+      "id": "T19",
+      "title": "转变/闪烁/迟缓",
+      "setupAndActions": "盛夏→凛冬保横置及标志；闪烁附有封印/附属角色；迟缓正常进场与普通横移作对照",
+      "assertions": "转变不发enter/reveal；闪烁旧目标失效且清宿主，事件保留；慢只影响实际入场；不会重复一个物理对象",
+      "basisAndCoverage": "间奏/BQ12/19、MSJZ02；待实现，hide/reveal已有局部",
+      "existingRustTests": [
+        "response_hide_and_reveal_reenters_with_new_identity_old_spell_cannot_hit"
+      ],
+      "futureScenarioStatus": "requires_additional_implementation_or_rule_ruling",
+      "fullyPassed": false
+    },
+    {
+      "id": "T20",
+      "title": "地区/势力/核心",
+      "setupAndActions": "赢区前绑定 RegionId，补区后再查旧目标；任务追加末尾；毁灭计分；附属势力随宿主离场；核心离场回区加休整；回合末同时清伤及失去临时防御",
+      "assertions": "旧目标不重定向新地区；霸权先回牌后得区；势力无双计；核心返回/名誉支付/任务胜利有独立步骤；清理批次不因瞬间先降防而误杀",
+      "basisAndCoverage": "BQ10/19/20/21、星光；普通霸权流程已有，其余待实现",
+      "existingRustTests": [
+        "won_region_returns_cards_ordered_and_retreat_hand_no_death"
+      ],
+      "futureScenarioStatus": "requires_additional_implementation_or_rule_ruling",
+      "fullyPassed": false
+    },
+    {
+      "id": "T21",
+      "title": "遭遇/混乱/移动",
+      "setupAndActions": "独立遭遇进场、利用双方争夺、横移与离场；临时图标先/后手恐怖比较",
+      "assertions": "独立不参对抗/不受战斗伤害；可非战斗指定受伤；回世界替代正确；恐怖用专门临时口径；随机固定",
+      "basisAndCoverage": "序曲/BQ19；待实现",
+      "existingRustTests": [],
+      "futureScenarioStatus": "requires_additional_implementation_or_rule_ruling",
+      "fullyPassed": false
+    },
+    {
+      "id": "T22",
+      "title": "权限非干扰",
+      "setupAndActions": "两份状态仅他人手牌/暗藏内容不同；分别请求本席view/quote/error/SSE；授予个人检视后来源横置/离场；同时组半完成",
+      "assertions": "未授权时可见结构相同；队友无特权；授予后仅本人变化，失效撤销当前权限；stack/log/receipt不漏；历史已知事实不强行抹除",
+      "basisAndCoverage": "BQ22/RM6；hidden/reveal既有测试 + 新privatePeek增量待原图全核",
+      "existingRustTests": [
+        "hidden_information_projection_and_reveal_identity",
+        "private_forecast_and_damage_choices_roundtrip_without_leaking",
+        "detective_targets_all_sides_same_region_without_private_leaks_or_hidden_death"
+      ],
+      "futureScenarioStatus": "requires_additional_implementation_or_rule_ruling",
+      "fullyPassed": false
+    },
+    {
+      "id": "T23",
+      "title": "中断恢复",
+      "setupAndActions": "在付款后、guard接受后、将发生事件、每个死亡波/触发排序、同时组半提交、效果可选付款前分别保存重开",
+      "assertions": "与不中断状态/公开轨迹相同；不二次付款、不重新选随机、不重复触发；旧choiceId拒绝；恢复只给本人候选",
+      "basisAndCoverage": "现有frame与SQLite恢复测试；新增所有中断点需扩",
+      "existingRustTests": [
+        "paid_sacrifice_death_trigger_and_accepted_frame_restore_without_repayment",
+        "detective_reveal_choice_and_bound_frame_restore_without_repayment_or_private_leaks",
+        "sqlite_reopen_restores_identity_pending_choice_and_dedupe"
+      ],
+      "futureScenarioStatus": "requires_additional_implementation_or_rule_ruling",
+      "fullyPassed": false
+    },
+    {
+      "id": "T24",
+      "title": "竞争与收据",
+      "setupAndActions": "两个不同命令争同version；同意图重复、同ID不同意图、提交成功ACK丢失、批次中间故障；两服务实现跑相同表",
+      "assertions": "至多一条CAS成功；状态/日志/收据不可分离；原意图重试成功，异意图冲突；不在回执前发布新view",
+      "basisAndCoverage": "Worker store/service 源码 + native probe；完整D1集成本次未重跑",
+      "existingRustTests": [
+        "dedupe_conflicts_rejections_auth_and_replay_are_strict",
+        "failed_transaction_does_not_ack_or_mutate_state"
+      ],
+      "futureScenarioStatus": "requires_additional_implementation_or_rule_ruling",
+      "fullyPassed": false
+    },
+    {
+      "id": "T25",
+      "title": "版本/跨目标",
+      "setupAndActions": "当前与两旧tuple读写，各自room catalog；未知tuple/schema；u64 seed与同录入journal两端运行",
+      "assertions": "不混用新定义；未知版本明确拒绝；同输入state/views一致；新版计时系统事件作为显式输入重放",
+      "basisAndCoverage": "当前parity417/1205通过；legacy路由源码/测试已读未执行",
+      "existingRustTests": [
+        "legacy_state_is_rejected_explicitly_without_silent_migration",
+        "deterministic_complete_duel_and_team_games_and_restart"
+      ],
+      "futureScenarioStatus": "requires_additional_implementation_or_rule_ruling",
+      "fullyPassed": false
+    },
+    {
+      "id": "T26",
+      "title": "牌桌声明",
+      "setupAndActions": "在横屏桌面点JC003→目标→付款，LC23触发/香港同时选择；切视角、重连、候选很多",
+      "assertions": "不要求读后端Op/ID；高亮合法目标，费用/可响应性明确；座位旋转不变距离；quote不消耗资源/RNG；性能不靠全笛卡尔枚举",
+      "basisAndCoverage": "当前React Table/ChoicePanel/ResponseWindow已读；真实UI待实现验收",
+      "existingRustTests": [],
+      "futureScenarioStatus": "requires_additional_implementation_or_rule_ruling",
+      "fullyPassed": false
+    },
+    {
+      "id": "T27",
+      "title": "5秒连锁意图",
+      "setupAndActions": "fake clock 4999/5000ms 边界；Begin和Timeout竞争；重复Begin、取消并让过、旧window提交、断线；2V2一人pass另一人编辑；空栈行动阶段",
+      "assertions": "单一CAS赢家；Begin不付费不入栈，不能延时重置；已提交不可撤销；两队友都pass才交权；新窗新ID；空栈正常行动不被5秒结束；操作时限未定不擅超时",
+      "basisAndCoverage": "用户明确联网政策 + BQ15/22；未来测试，不能声称纸面5秒",
+      "existingRustTests": [],
+      "futureScenarioStatus": "requires_additional_implementation_or_rule_ruling",
+      "fullyPassed": false
+    },
+    {
+      "id": "T28",
+      "title": "个人卡组库",
+      "setupAndActions": "编辑/命名保存/重开，非法卡组草稿，切旧pool；开局后编辑源deck；导出导入；丢本机存储",
+      "assertions": "持久保存位置明确；合法性服务器重验；match snapshot不变；未实现/反面/生成物拒入局；无账号云恢复不编造",
+      "basisAndCoverage": "用户新增需求 + PG14/24；未来测试",
+      "existingRustTests": [],
+      "futureScenarioStatus": "requires_additional_implementation_or_rule_ruling",
+      "fullyPassed": false
+    },
+    {
+      "id": "T29",
+      "title": "禁用机制",
+      "setupAndActions": "永恒、危机模式、缺原图卡、未核多目标/替代冲突组合尝试存合法卡组或开局",
+      "assertions": "可读浏览不等于可开局；给明确待核原因；无空Op、无默认supported=true放行；规则包不能装载未知能力",
+      "basisAndCoverage": "目录证据/原文缺口；未来接受清单测试",
+      "existingRustTests": [],
+      "futureScenarioStatus": "requires_additional_implementation_or_rule_ruling",
+      "fullyPassed": false
+    }
+  ]
+}

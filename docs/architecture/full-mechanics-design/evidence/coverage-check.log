@@ -1,0 +1,10 @@
+WARNING: Source snapshot changed: rust-game/data/cards.json
+WARNING: Source snapshot changed: rust-game/src/rules.rs
+WARNING: Source snapshot changed: rust-game/src/engine.rs
+WARNING: Source snapshot changed: rust-game/src/catalog.rs
+WARNING: Source snapshot changed: rust-game/src/service.rs
+WARNING: Source snapshot changed: web/src/game/Lobby.tsx
+ERROR: Research implementation labels must match the actual finite registry
+ERROR: Runtime count stale
+ERROR: Faction coverage must count player definitions, not world cards or copies: gray
+ERROR: Deck color composition must come from actual cards: keepers

@@ -1,0 +1,33 @@
+..E..E..............
+======================================================================
+ERROR: test_checked_in_data_and_original_hashes_are_consistent (test_coverage.CoverageTests.test_checked_in_data_and_original_hashes_are_consistent)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/UndergroundBattle-architecture/tools/factions/test_coverage.py", line 26, in test_checked_in_data_and_original_hashes_are_consistent
+    self.assertEqual(self.check(files=True), [])
+                     ^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/UndergroundBattle-architecture/tools/factions/test_coverage.py", line 23, in check
+    return validate(c or self.coverage, i or self.index, r or self.reviews, check_files=files)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/UndergroundBattle-architecture/tools/factions/validate_coverage.py", line 273, in validate
+    require((root / "rust-game/data/card-research-index.json").read_text() == serialize(build(root)),
+                                                                                        ^^^^^^^^^^^
+  File "/workspace/UndergroundBattle-architecture/tools/factions/build_research_index.py", line 96, in build
+    raise ValueError("Catalog changed: re-audit coverage before rebuilding support labels")
+ValueError: Catalog changed: re-audit coverage before rebuilding support labels
+
+======================================================================
+ERROR: test_generated_index_is_reproducible (test_coverage.CoverageTests.test_generated_index_is_reproducible)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/UndergroundBattle-architecture/tools/factions/test_coverage.py", line 29, in test_generated_index_is_reproducible
+    self.assertEqual(serialize(build()), (ROOT / "rust-game/data/card-research-index.json").read_text())
+                               ^^^^^^^
+  File "/workspace/UndergroundBattle-architecture/tools/factions/build_research_index.py", line 96, in build
+    raise ValueError("Catalog changed: re-audit coverage before rebuilding support labels")
+ValueError: Catalog changed: re-audit coverage before rebuilding support labels
+
+----------------------------------------------------------------------
+Ran 20 tests in 0.428s
+
+FAILED (errors=2)

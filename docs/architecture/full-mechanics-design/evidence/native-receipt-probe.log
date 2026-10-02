@@ -1,0 +1,5 @@
+   Compiling hegemony-server v0.1.0 (/tmp/ub-architecture-build/rust-game)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.47s
+     Running `/tmp/ub-architecture-target/debug/examples/design_receipt_probe`
+OBSERVED: same seat + commandId with changed action and expectedVersion returns original receipt; state remains version 2
+DESIRED: reject changed intent; preserve exact original-intent retries
