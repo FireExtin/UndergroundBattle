@@ -171,12 +171,6 @@
       "verified": true
     },
     {
-      "id": "DQJC116",
-      "image": "resource/ymsj-fun.github.io/cards/DQJC116 香港.jpg",
-      "sha256": "e9dfbc396a733b3bbe7ffcb2a6d67ea371ffe4ca4bd6fc0f4e74b1ee73485d4d",
-      "verified": true
-    },
-    {
       "id": "JC042",
       "image": "resource/ymsj-fun.github.io/cards/JC042 末日信徒.jpg",
       "sha256": "242a17c708a96d27e95b23f9ab339e01d5b8c1eda282a2f7de8f51ba2c1bdbef",
@@ -207,6 +201,7 @@
       "sha256": "2a771874efbdb3ad8a339ea01ff62888766090d075fe2e013632c79de1aeba35",
       "verifiedPhysicalPages": [
         7,
+        8,
         9,
         12
       ]
@@ -216,7 +211,8 @@
       "sha256": "916aa6a9f50ac7e737b517358e0c4270f715d0ed7391d55c8fcb629392a71d38",
       "verifiedPhysicalPages": [
         3,
-        4
+        4,
+        5
       ]
     }
   ],
@@ -240,6 +236,15 @@
       "path": "resource/ymsj-fun.github.io/public/docs/星光俱乐部说明书.jpg",
       "sha256": "3bc9e70585a3bbc247deb9cb19639da7295589ae81dd543c6dbf0a51bde0357a",
       "verified": true
+    }
+  ],
+  "quarantinedCards": [
+    {
+      "id": "DQJC116",
+      "image": "resource/ymsj-fun.github.io/cards/DQJC116 香港.jpg",
+      "sha256": "e9dfbc396a733b3bbe7ffcb2a6d67ea371ffe4ca4bd6fc0f4e74b1ee73485d4d",
+      "verified": true,
+      "reason": "Original requires simultaneous reveal and hand placement before shuffling; current interpreter does not implement grouped simultaneous search. No eligible attachments in the limited pool do not prove completeness."
     }
   ]
 }

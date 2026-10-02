@@ -7,6 +7,6 @@ cargo build --locked --target-dir "$project_dir/target" -p hegemony-server --bin
 npm --prefix web ci --ignore-scripts --no-audit --no-fund
 npm --prefix web run build
 export WEB_DIST="$project_dir/web/dist"
-export HEGEMONY_DB="${HEGEMONY_DB:-$project_dir/rust-game-v2.sqlite3}"
+export HEGEMONY_DB="${HEGEMONY_DB:-$project_dir/rust-game-v2.1.sqlite3}"
 export PORT="${PORT:-8090}"
 exec "$project_dir/target/debug/hegemony-server"

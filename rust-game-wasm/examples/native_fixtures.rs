@@ -119,6 +119,13 @@ fn response_fixture() -> Value {
     game.regions[0].cards.push(disciple);
     let victim = game.make_card("LC20", 1);
     game.regions[0].cards.push(victim);
+    let doctor = game.make_card("LC19", 0);
+    let doctor_id = doctor.id.clone();
+    game.regions[1].cards.push(doctor);
+    let mut wounded = game.make_card("JC059", 0);
+    wounded.wounds = 1;
+    let wounded_id = wounded.id.clone();
+    game.regions[1].cards.push(wounded);
     let murder = game.make_card("JC091", 1);
     let murder_id = murder.id.clone();
     game.players[1].hand = vec![murder];
@@ -131,6 +138,10 @@ fn response_fixture() -> Value {
         let asset = game.make_card("JC042", 0);
         game.players[0].assets.push(asset);
         let asset = game.make_card("JC091", 0);
+        game.players[0].assets.push(asset);
+    }
+    for _ in 0..2 {
+        let asset = game.make_card("JC125", 0);
         game.players[0].assets.push(asset);
     }
     for _ in 0..3 {
@@ -202,7 +213,36 @@ fn response_fixture() -> Value {
     }
     let (seat, choice) = pick_choice(&game);
     apply(&mut game, seat, choice);
-    json!({"name":"real-response-and-frame-continuation","seed":seed,"steps":steps})
+    let heal = Action {
+        card_id: Some(doctor_id.clone()),
+        target_id: Some(wounded_id.clone()),
+        ability_id: Some("heal".into()),
+        ..Action::new("activate")
+    };
+    apply(&mut game, 0, heal.clone());
+    assert!(
+        game.regions[1]
+            .cards
+            .iter()
+            .find(|c| c.id == doctor_id)
+            .unwrap()
+            .exhausted
+    );
+    for seat in [0, 1] {
+        apply(&mut game, seat, Action::new("pass"));
+    }
+    assert_eq!(
+        game.regions[1]
+            .cards
+            .iter()
+            .find(|c| c.id == wounded_id)
+            .unwrap()
+            .wounds,
+        0
+    );
+    let mut rejected = game.clone();
+    assert!(rejected.apply(0, heal.clone()).is_err());
+    json!({"name":"real-response-frame-continuation-and-heal-cost","seed":seed,"steps":steps,"rejectedActions":[[0,heal]]})
 }
 fn fixture(mode: &str, seed: &str) -> Value {
     let mut game = Game::new(
@@ -299,6 +339,19 @@ fn main() {
     let output = std::env::args()
         .nth(1)
         .expect("Usage: native_fixtures <output.json>");
-    let value = json!({"catalog":catalog::catalog(),"cases":[fixture("duel","18446744073709551615"),fixture("teams","9007199254740993"),response_fixture()]});
+    let mut previous = Game::new(
+        "previous-patch".into(),
+        "OLD".into(),
+        "duel".into(),
+        "P0".into(),
+        "watchers".into(),
+        1,
+    )
+    .unwrap();
+    previous.versions.engine = "rust-v0.2.0".into();
+    previous.versions.card_pool = "limited-v2".into();
+    let previous_state = serde_json::to_string(&previous).unwrap();
+    assert!(Game::from_persisted(&previous_state).is_err());
+    let value = json!({"catalog":catalog::catalog(),"cases":[fixture("duel","18446744073709551615"),fixture("teams","9007199254740993"),response_fixture()],"rejectedStates":[previous_state]});
     std::fs::write(output, serde_json::to_vec(&value).unwrap()).unwrap();
 }

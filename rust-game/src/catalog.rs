@@ -3,8 +3,8 @@ use serde::{Deserialize, Serialize};
 use std::sync::OnceLock;
 
 pub const RULES_VERSION: &str = "hegemony-pdf-v1";
-pub const POOL_VERSION: &str = "limited-v2";
-pub const ENGINE_VERSION: &str = "rust-v0.2.0";
+pub const POOL_VERSION: &str = "limited-v2.1";
+pub const ENGINE_VERSION: &str = "rust-v0.2.1";
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -91,6 +91,8 @@ pub struct Catalog {
     pub engine_version: String,
     pub decks: Vec<DeckDefinition>,
     pub cards: Vec<CardDefinition>,
+    #[serde(skip_serializing)]
+    pub world: Vec<DeckEntry>,
 }
 
 pub fn catalog() -> &'static Catalog {
@@ -151,12 +153,14 @@ pub fn catalog() -> &'static Catalog {
             .collect();
         let decks =
             serde_json::from_value(raw["decks"].clone()).expect("verified curated deck list");
+        let world = serde_json::from_value(raw["world"].clone()).expect("curated world entries");
         Catalog {
             rules_version: RULES_VERSION.into(),
             card_pool_version: POOL_VERSION.into(),
             engine_version: ENGINE_VERSION.into(),
             decks,
             cards,
+            world,
         }
     })
 }

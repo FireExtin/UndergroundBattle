@@ -46,6 +46,13 @@ for (const scenario of fixture.cases) {
   assert.throws(() => view(state, 99));
   assert.throws(() => apply(state, 99, '{"kind":"pass"}'));
   assert.throws(() => apply(state, 0, '{not JSON}'));
+  for (const [seat, action] of scenario.rejectedActions ?? []) {
+    assert.throws(() => apply(state, seat, JSON.stringify(action)));
+  }
+}
+for (const previousState of fixture.rejectedStates ?? []) {
+  assert.throws(() => view(previousState, 0));
+  assert.throws(() => apply(previousState, 0, '{"kind":"pass"}'));
 }
 assert.throws(() => newGame('bad', 'invite', 'duel', 'P0', 'watchers', '18446744073709551616'));
 assert.throws(() => newGame('bad', 'invite', 'duel', 'P0', 'watchers', '9007199254740993.0'));

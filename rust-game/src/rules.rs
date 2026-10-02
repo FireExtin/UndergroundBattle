@@ -12,6 +12,7 @@ pub enum Timing {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum Event {
     Enter,
+    EnterRegion,
     Reveal,
     Death,
     ConfrontationStart,
@@ -199,6 +200,63 @@ pub struct Definition {
     pub modifiers: Vec<StaticModifier>,
 }
 
+// These are interpreter limits, not rules for resolving partially invalid targets.
+// Reject unsupported declarations before publishing actions or offering trigger choices.
+pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(), String> {
+    fn validate_program(
+        location: &str,
+        targets: &[TargetSlotSpec],
+        ops: &[Op],
+    ) -> Result<(), String> {
+        if targets.len() > 1 {
+            return Err(format!(
+                "{location}: unsupported target slots {}; only zero or one slot is supported",
+                targets.len()
+            ));
+        }
+        for (index, slot) in targets.iter().enumerate() {
+            if slot.min != 1 || slot.max != 1 {
+                return Err(format!(
+                    "{location}: target slot {index} requires min=max=1, got min={} max={}",
+                    slot.min, slot.max
+                ));
+            }
+        }
+        for op in ops {
+            if let Op::ForEachLivingPlayer(body) = op {
+                if body
+                    .iter()
+                    .any(|op| matches!(op, Op::ForEachLivingPlayer(_)))
+                {
+                    return Err(format!(
+                        "{location}: nested ForEachLivingPlayer is unsupported"
+                    ));
+                }
+            }
+        }
+        Ok(())
+    }
+    let location = format!("cardId={card_id} abilityKey={}", ability.key);
+    validate_program(&location, &ability.targets, &ability.ops)?;
+    for mode in &ability.modes {
+        validate_program(
+            &format!("{location} modeKey={}", mode.key),
+            &mode.targets,
+            &mode.ops,
+        )?;
+    }
+    Ok(())
+}
+
+fn validate_definitions(definitions: &BTreeMap<String, Definition>) -> Result<(), String> {
+    for (card_id, definition) in definitions {
+        for ability in &definition.abilities {
+            validate_ability(card_id, ability)?;
+        }
+    }
+    Ok(())
+}
+
 fn target(zone: Zone, kind: EntityKind, relation: Relation, range: Range) -> TargetSlotSpec {
     TargetSlotSpec {
         zone,
@@ -286,15 +344,22 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         );
         m.insert(
             "LC19".into(),
-            with_abilities(vec![ability(
-                "heal",
-                "移除创伤",
-                Timing::Standard,
-                vec![Cost::Assets(2)],
-                vec![local.clone()],
-                vec![Op::HealWounds(Target(0))],
-                None,
-            )]),
+            Definition {
+                traits: Traits {
+                    public: true,
+                    ..Default::default()
+                },
+                abilities: vec![ability(
+                    "heal",
+                    "移除创伤",
+                    Timing::Standard,
+                    vec![Cost::Assets(2), Cost::ExhaustSource],
+                    vec![local.clone()],
+                    vec![Op::HealWounds(Target(0))],
+                    None,
+                )],
+                ..Default::default()
+            },
         );
         m.insert(
             "LC20".into(),
@@ -752,24 +817,8 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
             },
         ];
         m.insert("DQJC114".into(), with_abilities(vec![worldmode]));
-        m.insert(
-            "DQJC116".into(),
-            with_abilities(vec![ability(
-                "attachment-win",
-                "赢取触发",
-                Timing::Fast,
-                vec![],
-                vec![],
-                vec![Op::ForEachLivingPlayer(vec![Op::Search {
-                    player: Context,
-                    filter: CardFilter::Kind("attachment".into()),
-                    to_top: false,
-                    optional: true,
-                }])],
-                Some(Event::RegionWon),
-            )]),
-        );
-        m.get_mut("LC19").unwrap().traits.public = true;
+        validate_definitions(&m)
+            .unwrap_or_else(|error| panic!("Invalid released rule declaration: {error}"));
         m
     })
 }
@@ -777,4 +826,54 @@ pub fn definition(id: &str) -> &'static Definition {
     definitions()
         .get(id)
         .expect("released card has complete typed rule declaration")
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn invalid_multi_target_ability_is_rejected_before_registration() {
+        let mut registry = definitions().clone();
+        assert_eq!(registry.len(), 29);
+        let ability = &mut registry.get_mut("LC20").unwrap().abilities[0];
+        ability.targets.push(ability.targets[0].clone());
+        let error = validate_definitions(&registry).unwrap_err();
+        assert!(error.contains("cardId=LC20 abilityKey=heal-entry"));
+        assert!(error.contains("unsupported target slots 2"));
+
+        let ability = &mut registry.get_mut("LC20").unwrap().abilities[0];
+        ability.targets.pop();
+        ability.targets[0].min = 0;
+        ability.targets[0].max = 2;
+        let error = validate_definitions(&registry).unwrap_err();
+        assert!(error.contains("cardId=LC20 abilityKey=heal-entry"));
+        assert!(error.contains("requires min=max=1, got min=0 max=2"));
+    }
+
+    #[test]
+    fn invalid_mode_targets_and_nested_iteration_are_rejected_before_registration() {
+        let mut registry = definitions().clone();
+        let mode = &mut registry.get_mut("JC063").unwrap().abilities[0].modes[0];
+        mode.targets.push(mode.targets[0].clone());
+        let error = validate_definitions(&registry).unwrap_err();
+        assert!(error.contains("cardId=JC063 abilityKey=chase modeKey=hide"));
+        assert!(error.contains("unsupported target slots 2"));
+
+        let mode = &mut registry.get_mut("JC063").unwrap().abilities[0].modes[0];
+        mode.targets.pop();
+        mode.targets[0].max = 2;
+        let error = validate_definitions(&registry).unwrap_err();
+        assert!(error.contains("modeKey=hide"));
+        assert!(error.contains("requires min=max=1, got min=1 max=2"));
+
+        let mode = &mut registry.get_mut("JC063").unwrap().abilities[0].modes[0];
+        mode.targets[0].max = 1;
+        mode.ops = vec![Op::ForEachLivingPlayer(vec![Op::ForEachLivingPlayer(
+            vec![],
+        )])];
+        let error = validate_definitions(&registry).unwrap_err();
+        assert!(error.contains("cardId=JC063 abilityKey=chase modeKey=hide"));
+        assert!(error.contains("nested ForEachLivingPlayer is unsupported"));
+    }
 }

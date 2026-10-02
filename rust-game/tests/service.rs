@@ -209,36 +209,48 @@ async fn legacy_state_is_rejected_explicitly_without_silent_migration() {
             r.get(0)
         })
         .unwrap();
-    let mut legacy: serde_json::Value = serde_json::from_str(&stored).unwrap();
-    legacy.as_object_mut().unwrap().remove("state_schema");
-    legacy["versions"]["engine"] = "rust-v0.1.0".into();
-    legacy["versions"]["cardPool"] = "limited-v1".into();
-    let legacy = serde_json::to_string(&legacy).unwrap();
-    connection
-        .execute(
-            "UPDATE rooms SET state=?2,initial_state=?2 WHERE id=?1",
-            rusqlite::params![a.room_id, legacy],
-        )
-        .unwrap();
     drop(connection);
-    let error = match Store::open(&db) {
-        Err(e) => e,
-        Ok(_) => panic!("legacy room must not load"),
-    };
-    assert!(error.message.contains("旧局") && error.message.contains("静默迁移"));
-    let audit = Store::open_read_only(&db).unwrap();
-    assert!(audit
-        .audit_replay(&a.room_id)
-        .unwrap_err()
-        .message
-        .contains("旧局"));
-    let connection = rusqlite::Connection::open(&db).unwrap();
-    let after: String = connection
-        .query_row("SELECT state FROM rooms WHERE id=?1", [&a.room_id], |r| {
-            r.get(0)
-        })
-        .unwrap();
-    assert_eq!(after, legacy);
+    for (engine, pool, schema) in [
+        ("rust-v0.1.0", "limited-v1", None),
+        ("rust-v0.2.0", "limited-v2", Some(2)),
+    ] {
+        let mut legacy: serde_json::Value = serde_json::from_str(&stored).unwrap();
+        if let Some(schema) = schema {
+            legacy["state_schema"] = schema.into();
+        } else {
+            legacy.as_object_mut().unwrap().remove("state_schema");
+        }
+        legacy["versions"]["engine"] = engine.into();
+        legacy["versions"]["cardPool"] = pool.into();
+        let legacy = serde_json::to_string(&legacy).unwrap();
+        let connection = rusqlite::Connection::open(&db).unwrap();
+        connection
+            .execute(
+                "UPDATE rooms SET state=?2,initial_state=?2 WHERE id=?1",
+                rusqlite::params![a.room_id, legacy],
+            )
+            .unwrap();
+        drop(connection);
+        let error = match Store::open(&db) {
+            Err(e) => e,
+            Ok(_) => panic!("legacy room must not load: {engine}"),
+        };
+        assert!(error.message.contains("旧局") && error.message.contains("静默迁移"));
+        assert!(error.message.contains("rust-v0.2.1"));
+        let audit = Store::open_read_only(&db).unwrap();
+        assert!(audit
+            .audit_replay(&a.room_id)
+            .unwrap_err()
+            .message
+            .contains("旧局"));
+        let connection = rusqlite::Connection::open(&db).unwrap();
+        let after: String = connection
+            .query_row("SELECT state FROM rooms WHERE id=?1", [&a.room_id], |r| {
+                r.get(0)
+            })
+            .unwrap();
+        assert_eq!(after, legacy);
+    }
 }
 async fn pair(store: &Store) -> (service::Session, service::Session) {
     let a = store

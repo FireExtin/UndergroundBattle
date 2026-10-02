@@ -29,11 +29,11 @@ def character_cards(view):
 
 
 class Fixture:
-    def __init__(self, api, output, mode, max_steps):
+    def __init__(self, api, output, mode, max_steps, engine_version='rust-v0.2.0'):
         self.api, self.output, self.mode, self.max_steps = api, output, mode, max_steps
         self.sessions, self.records, self.probes = [], [], []
         status, self.catalog = api.request('GET', '/api/catalog')
-        assert status == 200 and self.catalog['engineVersion'] == 'rust-v0.2.0'
+        assert status == 200 and self.catalog['engineVersion'] == engine_version
         assert next(d for d in self.catalog['decks'] if d['id'] == 'responders')['cardCount'] == 50
         self.definitions = {c['id']: c for c in self.catalog['cards']}
         status, host = api.request('POST', '/api/rooms', {'name': '响应甲', 'mode': mode, 'deckId': 'responders'})
@@ -433,7 +433,7 @@ def main(args):
         with sync_playwright() as playwright:
             browser = playwright.chromium.launch(executable_path=args.chromium, headless=True, args=['--no-sandbox', '--disable-dev-shm-usage'])
             for mode in args.modes:
-                fixture = Fixture(Api(service.base_url), output, mode, args.max_steps)
+                fixture = Fixture(Api(service.base_url), output, mode, args.max_steps, args.engine_version)
                 actor, defender, action, target = fixture.prepare()
                 print(json.dumps({'mode': mode, 'preparedTurn': fixture.views()[0]['turn'], 'fixtureCommands': len(fixture.records), 'attacker': actor, 'defender': defender}), flush=True)
                 run = BrowserResponse(browser, fixture, service, output)
@@ -460,11 +460,11 @@ def main(args):
                 finally:
                     run.close()
             browser.close()
-        write_json(output / 'response-summary.json', {'passed': True, 'engineVersion': 'rust-v0.2.0', 'binary': str(binary), 'binarySha256': digest,
+        write_json(output / 'response-summary.json', {'passed': True, 'engineVersion': args.engine_version, 'binary': str(binary), 'binarySha256': digest,
                    'port': args.port, 'cases': cases, 'ownedServiceStopped': True})
         print(json.dumps({'passed': True, 'binarySha256': digest, 'cases': [{'mode': c['mode'], 'fixture': c['fixtureAcceptedCommands'], 'ui': c['uiAcceptedCommands']} for c in cases]}), flush=True)
     except Exception as error:
-        write_json(output / 'response-summary.json', {'passed': False, 'engineVersion': 'rust-v0.2.0', 'binary': str(binary),
+        write_json(output / 'response-summary.json', {'passed': False, 'engineVersion': args.engine_version, 'binary': str(binary),
                    'binarySha256': digest, 'port': args.port, 'cases': cases, 'failure': f'{type(error).__name__}: {error}',
                    'ownedServiceStopped': True})
         raise
@@ -475,6 +475,7 @@ def main(args):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--binary', default='/tmp/hegemony-response-v2-2026-10-02/bin/hegemony-server')
+    parser.add_argument('--engine-version', default='rust-v0.2.0')
     parser.add_argument('--cwd', default='.')
     parser.add_argument('--output', default='/tmp/hegemony-response-v2-2026-10-02')
     parser.add_argument('--port', type=int, default=8096)

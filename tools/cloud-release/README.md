@@ -16,7 +16,7 @@ export RUSTUP_HOME=/workspace/.cloud-setup/rustup
 export CARGO_HOME=/workspace/.cloud-setup/cargo
 ```
 
-默认端口 8090，数据库 `rust-game-v2.sqlite3`，可用 `PORT`/`HEGEMONY_DB` 更改；数据库路径应位于持久卷。v2 状态使用独立数据库，旧 `rust-v0.1.0` 对局继续由对应旧引擎加载，不做静默迁移。当前云端旧服务占用 8090/8091 时，新核心验收显式使用其他空闲端口和独立数据库。
+默认端口 8090，数据库 `rust-game-v2.1.sqlite3`，可用 `PORT`/`HEGEMONY_DB` 更改；数据库路径应位于持久卷。v2.1为外科医生费用修复后的 `rust-v0.2.1 / limited-v2.1`，状态 schema 仍为2，但固定版本拒绝将v0.1/v0.2.0旧局当作新局加载；旧对局须使用对应原二进制与数据库。当前云端旧服务占用8090/8091/8098时，新核心显式使用其他空闲端口和独立数据库。
 
 相同版本的数据库重新启动恢复房间及待选，浏览器保留原座位令牌才能恢复既有座位。运行中 SQLite 备份使用 backup API，不单独复制正在写入的 WAL 主文件。
 

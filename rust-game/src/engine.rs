@@ -99,6 +99,8 @@ impl Game {
         c
     }
     pub fn make_card(&mut self, definition: &str, owner: usize) -> Card {
+        // Only active definitions may be instantiated, before allocating an identity.
+        card(definition);
         Card {
             id: self.id(),
             definition: definition.into(),
@@ -582,16 +584,10 @@ impl Game {
             self.shuffle(&mut pile);
             self.players[seat].deck = pile;
         }
-        let world_ids: Vec<_> = catalog::catalog()
-            .cards
-            .iter()
-            .filter(|d| d.kind == "region")
-            .map(|d| d.id.clone())
-            .collect();
         let mut world = vec![];
-        for definition in world_ids {
-            for _ in 0..2 {
-                world.push(self.make_card(&definition, 0));
+        for entry in &catalog::catalog().world {
+            for _ in 0..entry.count {
+                world.push(self.make_card(&entry.card_id, 0));
             }
         }
         self.shuffle(&mut world);
@@ -748,6 +744,7 @@ impl Game {
         if let Some((r, c)) = self.board(id) {
             let source = self.source_snapshot(c, Some(r));
             self.emit_event(seat, source.clone(), Event::Enter);
+            self.emit_event(seat, source.clone(), Event::EnterRegion);
             if reveal {
                 self.emit_event(seat, source, Event::Reveal);
             }
@@ -2097,7 +2094,20 @@ mod tests {
     #[test]
     fn catalog_is_restricted_real_complete_and_decks_are_legal() {
         let c = catalog::catalog();
-        assert_eq!(c.cards.len(), 30);
+        assert_eq!(c.cards.len(), 29);
+        let active = c
+            .cards
+            .iter()
+            .map(|d| d.id.clone())
+            .collect::<BTreeSet<_>>();
+        assert_eq!(
+            active,
+            rules::definitions()
+                .keys()
+                .cloned()
+                .collect::<BTreeSet<_>>()
+        );
+        assert!(!active.contains("DQJC116"));
         assert_eq!(
             c.cards
                 .iter()
@@ -2105,6 +2115,7 @@ mod tests {
                 .count(),
             25
         );
+        assert_eq!(c.decks.len(), 5);
         for deck in &c.decks {
             assert_eq!(deck.card_count, 50);
             assert_eq!(deck.cards.iter().map(|x| x.count).sum::<usize>(), 50);
@@ -2115,6 +2126,31 @@ mod tests {
         }
         assert_eq!(card("LC23").unique, true);
         assert!(card("JC125").text.contains("数量没有限制"));
+        let expected = BTreeMap::from([
+            ("DQJC107".to_string(), 3),
+            ("DQJC112".to_string(), 3),
+            ("DQJC113".to_string(), 2),
+            ("DQJC114".to_string(), 2),
+        ]);
+        assert_eq!(
+            c.world
+                .iter()
+                .map(|e| (e.card_id.clone(), e.count))
+                .collect::<BTreeMap<_, _>>(),
+            expected
+        );
+        let mut g = game("duel");
+        let mut actual = BTreeMap::new();
+        for card in g.regions.iter().map(|r| &r.card).chain(g.world.iter()) {
+            *actual.entry(card.definition.clone()).or_insert(0) += 1;
+        }
+        assert_eq!(actual, expected);
+        let before = serde_json::to_string(&g).unwrap();
+        assert!(std::panic::catch_unwind(std::panic::AssertUnwindSafe(|| {
+            g.make_card("DQJC116", 0)
+        }))
+        .is_err());
+        assert_eq!(serde_json::to_string(&g).unwrap(), before);
     }
     #[test]
     fn hidden_information_projection_and_reveal_identity() {
@@ -2297,6 +2333,111 @@ mod tests {
         assert!(g.privilege_used);
         assert_eq!(g.pending.as_ref().unwrap().choice.amount, Some(1));
     }
+    #[test]
+    fn board_move_primitive_preserves_entity_without_enter_or_unique_events() {
+        // Explicit primitive fixture: LC20 has no card ability that moves itself.
+        let mut g = game("duel");
+        board(&mut g, "JC059", 0, 0);
+        board(&mut g, "JC059", 0, 1);
+        let counselor = board(&mut g, "LC20", 0, 0);
+        let c = g.board_mut(&counselor).unwrap();
+        c.exhausted = true;
+        c.damage = 1;
+        let original = serde_json::to_string(g.board(&counselor).unwrap().1).unwrap();
+
+        move_fixture(&mut g, &counselor, 1);
+        let (region, c) = g.board(&counselor).unwrap();
+        assert_eq!(region, 1);
+        assert_eq!(serde_json::to_string(c).unwrap(), original);
+        assert!(
+            g.effects.is_empty(),
+            "moving must not declare LC20's Enter ability"
+        );
+
+        let before_same_region = serde_json::to_string(&g).unwrap();
+        move_fixture(&mut g, &counselor, 1);
+        assert_eq!(serde_json::to_string(&g).unwrap(), before_same_region);
+
+        let unique = board(&mut g, "LC23", 0, 0);
+        move_fixture(&mut g, &unique, 1);
+        assert!(g.effects.is_empty(), "moving must not re-run Unique checks");
+
+        g.enter_triggers(0, "LC20", &counselor, false);
+        assert_eq!(g.effects.len(), 1);
+        assert!(matches!(
+            g.effects.front(),
+            Some(Effect::Declare { declaration })
+                if declaration.ability.event == Some(Event::Enter)
+        ));
+        g.enter_triggers(0, "LC23", &unique, true);
+        assert!(g
+            .effects
+            .iter()
+            .any(|effect| matches!(effect, Effect::Unique { .. })));
+        assert!(g.effects.iter().any(|effect| matches!(
+            effect,
+            Effect::Declare { declaration }
+                if declaration.ability.event == Some(Event::Reveal)
+        )));
+    }
+
+    #[test]
+    fn surgeon_is_public_and_heal_pays_two_assets_and_exhausts_source_atomically() {
+        let mut g = game("duel");
+        let doctor = hand(&mut g, "LC19", 0);
+        let target = board(&mut g, "JC059", 0, 0);
+        g.board_mut(&target).unwrap().wounds = 1;
+        resource(&mut g, 0, "JC125", 6);
+
+        let before_conceal = serde_json::to_string(&g).unwrap();
+        assert!(g
+            .apply(
+                0,
+                Action {
+                    card_id: Some(doctor.clone()),
+                    region: Some(0),
+                    ..Action::new("conceal")
+                }
+            )
+            .is_err());
+        assert_eq!(serde_json::to_string(&g).unwrap(), before_conceal);
+        g.apply(
+            0,
+            Action {
+                card_id: Some(doctor),
+                region: Some(0),
+                ..Action::new("deploy")
+            },
+        )
+        .unwrap();
+        pass_stack(&mut g);
+        let doctor = g.regions[0]
+            .cards
+            .iter()
+            .find(|c| c.definition == "LC19")
+            .unwrap()
+            .id
+            .clone();
+        let heal = Action {
+            card_id: Some(doctor.clone()),
+            target_id: Some(target.clone()),
+            ability_id: Some("heal".into()),
+            ..Action::new("activate")
+        };
+        let before_payment = g.resources(0);
+        g.apply(0, heal.clone()).unwrap();
+        assert_eq!(g.resources(0), before_payment - 2);
+        assert!(g.board(&doctor).unwrap().1.exhausted);
+        assert_eq!(g.board(&target).unwrap().1.wounds, 1);
+        pass_stack(&mut g);
+        assert_eq!(g.board(&target).unwrap().1.wounds, 0);
+
+        let before_repeat = serde_json::to_string(&g).unwrap();
+        let error = g.apply(0, heal).unwrap_err();
+        assert!(error.contains("横置"));
+        assert_eq!(serde_json::to_string(&g).unwrap(), before_repeat);
+    }
+
     #[test]
     fn heal_entry_angru_and_witch_card_abilities() {
         let mut g = game("duel");
@@ -2571,11 +2712,6 @@ mod tests {
         select(&mut g, vec![pick]);
         assert_eq!(g.players[0].hand.len(), h);
         select(&mut g, vec![]);
-        region_effect_fixture(&mut g, "DQJC116");
-        let rng = g.random;
-        g.drive().unwrap();
-        assert!(g.pending.is_none());
-        assert_ne!(g.random, rng);
         region_effect_fixture(&mut g, "DQJC114");
         g.drive().unwrap();
         select(&mut g, vec!["discard".into()]);

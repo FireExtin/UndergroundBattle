@@ -73,9 +73,6 @@ impl Game {
             };
             for mode in modes {
                 let slots = mode.map_or(&ability.targets, |m| &m.targets);
-                if slots.len() > 1 {
-                    continue;
-                }
                 let targets = slots
                     .first()
                     .map(|s| {
@@ -528,9 +525,7 @@ impl Game {
         spec: &AbilitySpec,
         a: &Action,
     ) -> RuleResult<Vec<BoundTarget>> {
-        if spec.targets.len() > 1 || spec.targets.iter().any(|s| s.min != 1 || s.max != 1) {
-            return Err("尚未核定的多目标规则不可开放".into());
-        }
+        rules::validate_ability(&source.card.definition, spec)?;
         spec.targets
             .iter()
             .map(|slot| {
@@ -677,6 +672,7 @@ impl Game {
         }
     }
     pub(crate) fn declare_trigger(&mut self, declaration: Declaration) -> RuleResult<()> {
+        rules::validate_ability(&declaration.source.card.definition, &declaration.ability)?;
         let actor = declaration.actor;
         let spec = &declaration.ability;
         if self.players[actor].eliminated {
@@ -741,13 +737,24 @@ impl Game {
         stage: DeclareChoice,
         selected: Vec<String>,
     ) -> RuleResult<()> {
+        rules::validate_ability(&declaration.source.card.definition, &declaration.ability)?;
         let Some(selected) = selected.first() else {
             return Ok(());
         };
         let targets = match stage {
             DeclareChoice::Accept => vec![],
             DeclareChoice::Target => {
-                let slot = declaration.ability.targets[0].clone();
+                let slot = declaration
+                    .ability
+                    .targets
+                    .first()
+                    .cloned()
+                    .ok_or_else(|| {
+                        format!(
+                            "cardId={} abilityKey={}: target choice requires a target slot",
+                            declaration.source.card.definition, declaration.ability.key
+                        )
+                    })?;
                 if !self.valid_binding(declaration.actor, &declaration.source, &slot, selected) {
                     return Err("触发目标已失效".into());
                 }
@@ -945,12 +952,13 @@ impl Game {
                         Self::frame_entity(&frame, entity),
                         self.frame_region(&frame, region),
                     ) {
-                        if let Some((_, c)) = self.remove_board(id) {
-                            let actor = c.controller;
-                            let definition = c.definition.clone();
-                            let id = c.id.clone();
-                            self.regions[region].cards.push(c);
-                            self.enter_triggers(actor, &definition, &id, false);
+                        if self.board(id).is_some_and(|(from, _)| from != region) {
+                            if let Some((_, c)) = self.remove_board(id) {
+                                let actor = c.controller;
+                                let source = self.source_snapshot(&c, Some(region));
+                                self.regions[region].cards.push(c);
+                                self.emit_event(actor, source, Event::EnterRegion);
+                            }
                         }
                     }
                 }
@@ -1204,7 +1212,9 @@ impl Game {
                     .first()
                     .and_then(|id| self.players[seat].deck.iter().position(|c| c.id == *id))
                     .map(|i| self.players[seat].deck.remove(i));
-                self.shuffle_player(seat);
+                if to_top {
+                    self.shuffle_player(seat);
+                }
                 if let Some(c) = c {
                     let c = self.fresh(c);
                     if to_top {
@@ -1217,6 +1227,9 @@ impl Game {
                         ));
                         self.players[seat].hand.push(c);
                     }
+                }
+                if !to_top {
+                    self.shuffle_player(seat);
                 }
             }
             FrameChoice::Sacrifice { seat } => {

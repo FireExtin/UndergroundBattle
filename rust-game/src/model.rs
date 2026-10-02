@@ -527,9 +527,11 @@ impl Game {
             || header["versions"]["cardPool"].as_str() != Some(crate::catalog::POOL_VERSION)
             || header["versions"]["rules"].as_str() != Some(crate::catalog::RULES_VERSION)
         {
-            return Err(
-                "持久局版本与v2规则核不兼容；旧局须使用原版本binary/数据库，不支持静默迁移".into(),
-            );
+            return Err(format!(
+                "持久局版本与当前规则核不兼容（需要schema=2、engine={}、cardPool={}）；旧局须使用原版本binary/数据库，不支持静默迁移",
+                crate::catalog::ENGINE_VERSION,
+                crate::catalog::POOL_VERSION
+            ));
         }
         serde_json::from_str(state).map_err(|_| "v2持久状态字段无效".into())
     }

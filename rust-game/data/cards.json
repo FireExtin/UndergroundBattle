@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2",
-  "engineVersion": "rust-v0.2.0",
+  "cardPoolVersion": "limited-v2.1",
+  "engineVersion": "rust-v0.2.1",
   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
   "cards": [
     {
@@ -65,7 +65,7 @@
         }
       },
       "defense": 1,
-      "text": "公开\n行动2：选择本地区的目标角色，移除该角色上的所有创伤标志。",
+      "text": "公开\n行动2，横置本卡：选择本地区的目标角色，移除该角色上的所有创伤标志。",
       "keywords": [
         "公开",
         "创伤"
@@ -957,43 +957,6 @@
       "society": ""
     },
     {
-      "id": "DQJC116",
-      "name": "香港",
-      "kind": "region",
-      "subtypes": [
-        "城市",
-        "水域"
-      ],
-      "cost": 0,
-      "loyalty": [],
-      "loyaltyText": "",
-      "color": "中立",
-      "magic": "",
-      "icons": {
-        "permanent": {
-          "investigation": 0,
-          "combat": 0,
-          "influence": 0
-        },
-        "temporary": {
-          "investigation": 0,
-          "combat": 0,
-          "influence": 0
-        }
-      },
-      "defense": 0,
-      "text": "赢取触发：每位玩家可以自他的牌库中寻找一张附属牌，同时展示并置于各自手中，然后洗牌。",
-      "keywords": [],
-      "threshold": 3,
-      "points": 3,
-      "unique": false,
-      "source": {
-        "file": "resource/ymsj-fun.github.io/cards/DQJC116 香港.jpg",
-        "record": "DQJC116"
-      },
-      "society": ""
-    },
-    {
       "id": "JC042",
       "name": "末日信徒",
       "kind": "character",
@@ -1434,11 +1397,11 @@
   "world": [
     {
       "cardId": "DQJC107",
-      "count": 2
+      "count": 3
     },
     {
       "cardId": "DQJC112",
-      "count": 2
+      "count": 3
     },
     {
       "cardId": "DQJC113",
@@ -1446,10 +1409,6 @@
     },
     {
       "cardId": "DQJC114",
-      "count": 2
-    },
-    {
-      "cardId": "DQJC116",
       "count": 2
     }
   ]
