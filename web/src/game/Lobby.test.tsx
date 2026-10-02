@@ -13,7 +13,7 @@ describe('Chinese invitation lobby', () => {
     fireEvent.click(screen.getByRole('button', { name: /四人协作/ }));
     fireEvent.click(screen.getByRole('button', { name: '创建牌桌 →' }));
     expect(create).toHaveBeenCalledWith('队长', 'teams', 'hunters');
-    expect(screen.getByText(/并非官方四套预组/)).toBeInTheDocument();
+    expect(screen.getByText(/并非官方预组/)).toBeInTheDocument();
   });
   it('opens invitation links directly in join mode and submits only a room code', () => {
     history.replaceState({}, '', '/?invite=ROOM-ONLY'); const join = vi.fn();

@@ -1,10 +1,12 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { actionPayload, ApiError, createRoom, getCatalog, getState, joinRoom, newCommandId, pollState, readPending, readSession, savePending, saveSession, sendCommand, type PendingCommand } from './api';
+import { actionPayload, ApiError, createRoom, forgetSavedSeat, getCatalog, getState, joinRoom, newCommandId, pollState, readActiveSession, readPending, readSavedSeats, readSession, returnToLobby, savePending, saveSession, sendCommand, type PendingCommand } from './api';
 import type { Action, Catalog, SavedSession, Session, View } from './types';
 
 export function newerView(current: View | null, next: View): View {
-  return current && current.roomId === next.roomId && current.version > next.version ? current : next;
+  return current && current.roomId === next.roomId && current.you === next.you && current.version > next.version ? current : next;
 }
+const commandFor = (command: PendingCommand | null, session: SavedSession | null) => !!command && !!session
+  && command.roomId === session.roomId && command.seat === session.seat;
 const invalidSeatToken = (error: unknown) => error instanceof ApiError && (error.code === 'invalid_seat_token'
   || (error.code === 'unauthorized' && error.message === '需要此房间的座位令牌'));
 const needsSiteLogin = (error: unknown) => error instanceof ApiError && (error.status === 401 || error.status === 403) && !invalidSeatToken(error);
@@ -12,7 +14,8 @@ const loginMessage = '访问牌桌需要重新登录。座位和未确认行动�
 
 export function useGame() {
   const [catalog, setCatalog] = useState<Catalog | null>(null);
-  const [session, setSession] = useState<SavedSession | null>(readSession);
+  const [session, setSession] = useState<SavedSession | null>(readActiveSession);
+  const [savedSeats, setSavedSeats] = useState<SavedSession[]>(readSavedSeats);
   const [view, setView] = useState<View | null>(null);
   const [error, setError] = useState('');
   const [busy, setBusy] = useState(false);
@@ -20,12 +23,14 @@ export function useGame() {
   const [catalogRetry, setCatalogRetry] = useState(0);
   const commandLock = useRef(false);
   const pending = useRef<PendingCommand | null>(readPending());
-  const [uncertain, setUncertain] = useState(!!pending.current);
-  const activeRoom = useRef(session?.roomId);
+  const [uncertain, setUncertain] = useState(commandFor(pending.current, session));
+  const activeSession = useRef(session);
   const acceptedVersion = useRef(0);
-  activeRoom.current = session?.roomId;
+  activeSession.current = session;
+  const isActive = (captured: SavedSession) => activeSession.current?.roomId === captured.roomId
+    && activeSession.current.seat === captured.seat && activeSession.current.token === captured.token;
   const accept = useCallback((next: View) => {
-    if (next.roomId === activeRoom.current) {
+    if (next.roomId === activeSession.current?.roomId && next.you === `p${activeSession.current.seat}`) {
       acceptedVersion.current = Math.max(acceptedVersion.current, next.version);
       setView(current => newerView(current, next));
     }
@@ -50,18 +55,20 @@ export function useGame() {
       if (!initialized) setConnection('connecting');
       try {
         const state = initialized ? await pollState(session, acceptedVersion.current, controller.signal) : await getState(session, controller.signal);
-        if (controller.signal.aborted) return;
+        if (controller.signal.aborted || !isActive(session)) return;
         if (state) accept(state);
         setConnection('online'); attempts = 0; initialized = true;
-        if (pending.current?.roomId === session.roomId && !commandLock.current) {
+        if (commandFor(pending.current, session) && !commandLock.current) {
           await resolvePending(session);
         }
         if (!controller.signal.aborted) timer = setTimeout(reconnect, document.visibilityState === 'hidden' ? 12000 : 1500);
         return;
       } catch (e) {
-        if (controller.signal.aborted) return;
+        if (controller.signal.aborted || !isActive(session)) return;
         if (invalidSeatToken(e) || (e instanceof ApiError && e.code === 'room_not_found')) {
-          saveSession(null); savePending(null); pending.current = null; setUncertain(false); setSession(null); setView(null);
+          forgetSavedSeat(session); setSavedSeats(readSavedSeats()); returnToLobby();
+          if (commandFor(pending.current, session)) { savePending(null); pending.current = null; }
+          activeSession.current = null; setUncertain(false); setSession(null); setView(null);
           setError('保存的座位已无法恢复。请使用邀请码重新加入牌桌。'); return;
         }
         if (needsSiteLogin(e)) setError(loginMessage);
@@ -84,11 +91,12 @@ export function useGame() {
 
   const enter = async (task: () => Promise<Session>) => {
     if (commandLock.current) return;
+    if (pending.current) { setError('旧牌桌还有待确认行动，请先回到该牌桌确认，再新建或加入另一桌。'); return; }
     commandLock.current = true; setBusy(true); setError('');
     try {
       const next = await task();
       pending.current = null; savePending(null); setUncertain(false);
-      saveSession(next); activeRoom.current = next.roomId;
+      saveSession(next); setSavedSeats(readSavedSeats()); activeSession.current = next;
       acceptedVersion.current = next.view.version;
       setSession({ roomId: next.roomId, inviteCode: next.inviteCode, token: next.token, seat: next.seat });
       setView(next.view);
@@ -100,7 +108,7 @@ export function useGame() {
 
   const resolvePending = async (currentSession: SavedSession) => {
     const command = pending.current;
-    if (!command || command.roomId !== currentSession.roomId || commandLock.current) return;
+    if (!commandFor(command, currentSession) || !command || commandLock.current) return;
     commandLock.current = true; setBusy(true); setError('');
     let confirmed = false;
     try {
@@ -114,7 +122,7 @@ export function useGame() {
       accept(result); confirmed = true;
     }
     catch (e) {
-      if (activeRoom.current !== command.roomId) return;
+      if (!isActive(currentSession)) return;
       confirmed = e instanceof ApiError && e.status >= 400 && e.status < 500 && !needsSiteLogin(e);
       if (e instanceof ApiError && e.view) accept(e.view);
       else { try { accept(await getState(currentSession)); } catch { /* Keep the last confirmed table visible. */ } }
@@ -123,7 +131,7 @@ export function useGame() {
         : !confirmed ? '行动结果暂未确认，已尝试同步牌桌。请确认上一行动后继续；重试不会重复执行。'
         : e instanceof Error ? `操作未执行：${e.message}` : '操作未执行，请重试。');
     } finally {
-      if (activeRoom.current === command.roomId) {
+      if (isActive(currentSession)) {
         if (confirmed) { pending.current = null; savePending(null); }
         setUncertain(!confirmed);
       }
@@ -133,7 +141,7 @@ export function useGame() {
   const act = async (action: Action) => {
     if (!session || !view || commandLock.current) return;
     if (pending.current) { await resolvePending(session); return; }
-    pending.current = { roomId: session.roomId, commandId: newCommandId(), expectedVersion: view.version, action: actionPayload(action) };
+    pending.current = { roomId: session.roomId, seat: session.seat, commandId: newCommandId(), expectedVersion: view.version, action: actionPayload(action) };
     savePending(pending.current);
     await resolvePending(session);
   };
@@ -145,9 +153,17 @@ export function useGame() {
     dismissError: () => setError(''),
     retryCatalog: () => { setError(''); setCatalogRetry(n => n + 1); },
     retryPending: () => { if (session) void resolvePending(session); },
-    resumeAvailable: !session && !!readSession(),
-    resume: () => { const saved = readSession(); if (saved) { activeRoom.current = saved.roomId; acceptedVersion.current = 0; setSession(saved); setUncertain(!!pending.current); setError(''); } },
+    savedSeats,
+    resumeAvailable: !session && savedSeats.length > 0,
+    resume: (target?: SavedSession) => {
+      if (commandLock.current) return;
+      const saved = target || readSession() || savedSeats.at(-1);
+      if (!saved) return;
+      if (pending.current && !commandFor(pending.current, saved)) { setError('请先恢复待确认行动所在的原席位，再切换牌桌或席位。'); return; }
+      saveSession(saved); setSavedSeats(readSavedSeats()); activeSession.current = saved; acceptedVersion.current = 0;
+      setView(null); setSession(saved); setUncertain(!!pending.current); setError('');
+    },
     // Return to the lobby without destroying the only credential for an occupied seat.
-    leave: () => { activeRoom.current = undefined; setSession(null); setView(null); setError(''); setUncertain(false); },
+    leave: () => { if (commandLock.current) return; returnToLobby(); activeSession.current = null; setSession(null); setView(null); setError(''); setUncertain(false); },
   };
 }

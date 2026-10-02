@@ -21,9 +21,20 @@ function teamName(team: number, view: View) {
   const names = view.players.filter(player => player.team === team).map(player => player.name);
   return names.length ? names.join(' / ') : `团队 ${team + 1}`;
 }
-function ActionButtons({ actions, busy, onAction }: { actions: LegalAction[]; busy: boolean; onAction: (action: Action) => void }) {
-  return <div className="hg-actions">{actions.map(action => <button type="button" key={action.id} data-action-id={action.id} data-action-kind={action.kind} className={`hg-button ${['start', 'restart', 'ready'].includes(action.kind) ? 'hg-button-primary' : action.kind === 'pass' ? 'hg-button-quiet' : 'hg-button-action'}`} disabled={busy} onClick={() => onAction(action)} title={action.description}>
-    <span>{action.label}</span>{action.description && <small>{action.description}</small>}
+function regionLabel(index: number, regions: Region[]) {
+  const region = regions.find(item => item.index === index);
+  return `地区 ${index + 1}${region ? ` · ${region.name}` : ''}`;
+}
+function actionLabel(action: LegalAction, regions: Region[]) {
+  if (action.region === undefined) return action.label;
+  const destination = regionLabel(action.region, regions);
+  const arrow = action.label.lastIndexOf('→');
+  return arrow < 0 ? `${action.label} · ${destination}` : `${action.label.slice(0, arrow + 1)} ${destination}`;
+}
+function ActionButtons({ actions, busy, onAction, regions = [], onRegionPreview }: { actions: LegalAction[]; busy: boolean; onAction: (action: Action) => void; regions?: Region[]; onRegionPreview?: (region: number | null) => void }) {
+  return <div className="hg-actions">{actions.map(action => <button type="button" key={action.id} data-action-id={action.id} data-action-kind={action.kind} data-action-region={action.region} aria-controls={action.region === undefined ? undefined : `hg-region-${action.region}`} className={`hg-button ${['start', 'restart', 'ready'].includes(action.kind) ? 'hg-button-primary' : action.kind === 'pass' ? 'hg-button-quiet' : 'hg-button-action'}`} disabled={busy} onClick={() => onAction(action)} title={action.description}
+    onMouseEnter={() => onRegionPreview?.(action.region ?? null)} onMouseLeave={() => onRegionPreview?.(null)} onFocus={() => onRegionPreview?.(action.region ?? null)} onBlur={() => onRegionPreview?.(null)} onPointerDown={() => onRegionPreview?.(action.region ?? null)}>
+    <span>{actionLabel(action, regions)}</span>{action.description && <small>{action.description}</small>}
   </button>)}</div>;
 }
 
@@ -36,6 +47,9 @@ export function RoomLobby({ view, catalog, busy, onAction }: { view: View; catal
   const starts = view.legalActions.filter(action => action.kind === 'start' || action.kind === 'ready');
   return <main className="hg-room-lobby">
     <div className="hg-room-welcome"><span className="hg-eyebrow">牌桌已经就绪</span><h1>等待秘社集结</h1><p>{view.mode === 'duel' ? '两人对决 · 3 个地区 · 8 分胜利' : '四人协作 · 5 个地区 · 团队 10 分胜利'}</p></div>
+    <section className="hg-room-controls" aria-label="准备与开始"><div><span className="hg-eyebrow">席位 {(you?.seat ?? 0) + 1} · 你的牌组</span><h2>{yourDeck?.name || '秘社牌组'}</h2></div>
+      <div className="hg-room-ready"><span>{view.players.filter(player => player.ready).length} / {capacity} 位玩家已准备</span><ActionButtons actions={starts} busy={busy} onAction={onAction} />{!starts.some(action => action.kind === 'start') && <p>{you?.seat === 0 ? '等所有座位入席并准备后，即可开始。' : '准备后等待房主开始对局。'}</p>}</div>
+    </section>
     <section className="hg-invite"><div><span className="hg-eyebrow">邀请伙伴入席</span><strong>{view.inviteCode}</strong><p>分享邀请码或邀请链接。每个浏览器独立占据一个座位。</p></div><button className="hg-button hg-button-primary" onClick={async () => {
       try { await navigator.clipboard.writeText(`${location.origin}/?invite=${encodeURIComponent(view.inviteCode)}`); setCopied(true); setCopyError(false); }
       catch { setCopyError(true); }
@@ -48,12 +62,11 @@ export function RoomLobby({ view, catalog, busy, onAction }: { view: View; catal
         <span>{player ? catalog?.decks.find(deck => deck.id === player.deckId)?.name || '秘社牌组' : '用邀请码加入'}</span><span className={`hg-ready ${player?.ready ? 'hg-is-ready' : ''}`}>{player ? player.ready ? '✓ 已准备' : '尚未准备' : '空座'}</span>
       </article>;
     })}</div>
-    <section className="hg-room-prepare"><div><span className="hg-eyebrow">你的牌组</span><h2>{yourDeck?.name || '选择秘社牌组'}</h2><p className="hg-muted">准备前可更换受限卡池预组。所有玩家准备后，由房主开始。</p></div>
-      {catalog && <DeckPicker decks={catalog.decks} value={you?.deckId || ''} allowedIds={view.legalActions.filter(action => action.kind === 'deck').map(action => action.option || '')} disabled={busy || !view.legalActions.some(action => action.kind === 'deck')} onChange={id => {
+    {catalog && <details className="hg-room-prepare"><summary>更换牌组 <span>当前：{yourDeck?.name || '秘社牌组'}</span></summary><p className="hg-muted">可更换受限卡池预组，更换后须重新准备。</p>
+      <DeckPicker decks={catalog.decks} value={you?.deckId || ''} allowedIds={view.legalActions.filter(action => action.kind === 'deck').map(action => action.option || '')} disabled={busy || !view.legalActions.some(action => action.kind === 'deck')} onChange={id => {
         const action = view.legalActions.find(item => item.kind === 'deck' && item.option === id); if (action) onAction(action);
-      }} />}
-      <div className="hg-room-ready"><span>{view.players.filter(player => player.ready).length} / {capacity} 位玩家已准备</span><ActionButtons actions={starts} busy={busy} onAction={onAction} />{!starts.some(action => action.kind === 'start') && <p>{you?.seat === 0 ? '等所有座位入席并准备后，即可开始。' : '准备后等待房主开始对局。'}</p>}</div>
-    </section>
+      }} />
+    </details>}
   </main>;
 }
 
@@ -74,8 +87,8 @@ function PlayerStrip({ player, view, catalog }: { player: Player; view: View; ca
   </div>;
 }
 
-function RegionTile({ region, view, definitions, selected, available, onRegion, onCard, selectedCard }: {
-  region: Region; view: View; definitions: Map<string, CardDefinition>; selected: boolean; available: boolean;
+function RegionTile({ region, view, definitions, selected, targeted, available, onRegion, onCard, selectedCard }: {
+  region: Region; view: View; definitions: Map<string, CardDefinition>; selected: boolean; targeted: boolean; available: boolean;
   onRegion: () => void; onCard: (id: string) => void; selectedCard: string | null;
 }) {
   const renderSide = (team: number) => {
@@ -85,7 +98,7 @@ function RegionTile({ region, view, definitions, selected, available, onRegion, 
       <div className="hg-region-characters" aria-label={`${region.name}${mine ? '我方' : '对方'}角色，可在区域内滚动`}>{characters.map(card => <CardTile key={card.instanceId} card={card} definition={definitions.get(card.cardId || '')} viewerId={view.you} owner={view.players.find(player => player.id === card.owner)} actionable={view.legalActions.some(action => action.cardId === card.instanceId || action.targetId === card.instanceId)} compact selected={selectedCard === card.instanceId} onSelect={() => onCard(card.instanceId)} />)}{!characters.length && <span className="hg-region-vacant">尚无角色</span>}</div>
     </div>;
   };
-  return <article className={`hg-region ${selected ? 'hg-selected-region' : ''} ${available ? 'hg-region-available' : ''}`}>
+  return <article id={`hg-region-${region.index}`} aria-label={regionLabel(region.index, view.regions)} data-region-targeted={targeted} className={`hg-region ${selected ? 'hg-selected-region' : ''} ${targeted ? 'hg-targeted' : ''} ${available ? 'hg-region-available' : ''}`}>
     {renderSide(1 - (view.players.find(player => player.id === view.you)?.team ?? 0))}
     <button type="button" className="hg-region-center" data-region-index={region.index} onClick={onRegion} aria-pressed={selected} aria-label={`查看地区${region.index + 1} ${region.name}`}>
       <span className="hg-region-number">0{region.index + 1}</span><span className="hg-region-title"><small>隐秘地区</small><strong>{region.name}</strong></span><span className="hg-region-value"><b>{region.points}</b><small>分</small></span>
@@ -98,6 +111,7 @@ function RegionTile({ region, view, definitions, selected, available, onRegion, 
 export function Table({ view, catalog, busy, uncertain = false, connection = 'connecting', onAction }: { view: View; catalog: Catalog | null; busy: boolean; uncertain?: boolean; connection?: 'connecting' | 'online' | 'offline'; onAction: (action: Action) => void }) {
   const [selectedCard, setSelectedCard] = useState<string | null>(null);
   const [selectedRegion, setSelectedRegion] = useState<number | null>(null);
+  const [previewRegion, setPreviewRegion] = useState<number | null>(null);
   const [reading, setReading] = useState<Card | null>(null);
   const dock = useRef<HTMLElement>(null);
   const [dockHeight, setDockHeight] = useState(202);
@@ -117,6 +131,7 @@ export function Table({ view, catalog, busy, uncertain = false, connection = 'co
   const teamOrder = [yourTeam, 1 - yourTeam];
   const seatOrder = [...view.players].sort((a, b) => teamOrder.indexOf(a.team) - teamOrder.indexOf(b.team) || a.seat - b.seat);
   useEffect(() => { if (selectedCard && !card) setSelectedCard(null); }, [selectedCard, card]);
+  useEffect(() => { setPreviewRegion(null); }, [view.version, selectedCard, selectedRegion]);
   const selectCard = (id: string) => { setSelectedCard(id); setSelectedRegion(null); };
   const globalActions = view.legalActions.filter(action => !['choose', 'deck', 'ready', 'start', 'restart'].includes(action.kind) && !action.cardId && !action.targetId && action.region === undefined);
   const cardActions = view.legalActions.filter(action => action.kind !== 'choose' && selectedCard && (action.cardId === selectedCard || action.targetId === selectedCard));
@@ -149,7 +164,7 @@ export function Table({ view, catalog, busy, uncertain = false, connection = 'co
     {view.pendingChoice && <ChoicePanel key={view.pendingChoice.id} choice={view.pendingChoice} action={choiceAction} definitions={definitions} busy={busy} onSubmit={onAction} onReadCard={setReading} viewerId={view.you} playerLabels={Object.fromEntries(view.players.map(player => [player.id, player.name]))} />}
     <div className="hg-play-layout"><div className="hg-play-main">
       <section className="hg-board-section"><div className="hg-section-title"><h2>世界版图 <small>{view.regions.length} 个地区</small></h2><span className="hg-muted">上方对方 · 下方我方</span></div>
-        <div className={`hg-board hg-board-${view.mode}`}>{view.regions.map(item => <RegionTile key={item.id} region={item} view={view} definitions={definitions} selected={selectedRegion === item.index} selectedCard={selectedCard} available={view.legalActions.some(action => action.region === item.index && (!selectedCard || action.cardId === selectedCard))} onRegion={() => { setSelectedRegion(item.index); setSelectedCard(null); }} onCard={selectCard} />)}</div>
+        <div className={`hg-board hg-board-${view.mode}`}>{view.regions.map(item => <RegionTile key={item.id} region={item} view={view} definitions={definitions} selected={selectedRegion === item.index} targeted={previewRegion === item.index} selectedCard={selectedCard} available={view.legalActions.some(action => action.region === item.index && (!selectedCard || action.cardId === selectedCard))} onRegion={() => { setSelectedRegion(item.index); setSelectedCard(null); }} onCard={selectCard} />)}</div>
         <p className="hg-swipe-hint">↔ 横向滑动查看全部地区</p>
       </section>
       <details className="hg-assets-section"><summary>秘社资产 <span>费用与忠诚始终显示在上方玩家栏 · 展开看牌</span></summary><div className="hg-asset-groups">{seatOrder.map(player => <div key={player.id} className={`hg-asset-group hg-team-${player.team}`}><h3>{player.name}{player.id === view.you ? ' · 你' : ''}<small>{view.assets.filter(item => item.controller === player.id).length} 张</small></h3><div className="hg-assets">{view.assets.filter(item => item.controller === player.id).map(item => <CardTile key={item.instanceId} card={item} definition={definitions.get(item.cardId || '')} viewerId={view.you} compact selected={selectedCard === item.instanceId} onSelect={() => selectCard(item.instanceId)} />)}{!view.assets.some(item => item.controller === player.id) && <p className="hg-empty">暂无资产</p>}</div></div>)}</div></details>
@@ -162,12 +177,12 @@ export function Table({ view, catalog, busy, uncertain = false, connection = 'co
           <button type="button" className="hg-small-read" onClick={() => setReading(card)}>放大文字与图标 ↗</button>
           <p className="hg-muted">{view.players.find(player => player.id === card.owner)?.name} 拥有 · {view.players.find(player => player.id === card.controller)?.name} 操控{card.region !== undefined ? ` · 地区 ${card.region + 1}` : ''}</p>
           {lastHandCharacterToAsset && <p className="hg-strategy-note">转为资产后，手中将暂时没有角色。资产提供费用与忠诚，但不能参与对抗；每回合开始仍会抓一张牌。</p>}
-          <ActionButtons actions={cardActions} busy={busy} onAction={onAction} />
+          <ActionButtons actions={cardActions} busy={busy} onAction={onAction} regions={view.regions} onRegionPreview={setPreviewRegion} />
           {!cardActions.length && <p className="hg-wait-note">{browsingOnly ? '可以阅读公开牌与自己的暗牌。当前等待其他玩家，此牌暂不可行动。' : '当前时点此牌没有可执行行动，可浏览其他卡牌。'}</p>}
         </> : region ? <>
-          <h2>{region.name}</h2><p>控制阈值 {region.threshold} · 赢得后 {region.points} 分</p><p className="hg-rule-text">{definitions.get(region.cardId)?.text}</p>
+          <h2>{regionLabel(region.index, view.regions)}</h2><p>控制阈值 {region.threshold} · 赢得后 {region.points} 分</p><p className="hg-rule-text">{definitions.get(region.cardId)?.text}</p>
           <button type="button" className="hg-small-read" onClick={() => setReading({ instanceId: region.id, cardId: region.cardId, name: region.name, kind: 'region', owner: view.you, controller: view.you, exhausted: false, faceDown: false })}>放大地区文字 ↗</button>
-          <ActionButtons actions={regionActions} busy={busy} onAction={onAction} />{!regionActions.length && <p className="hg-wait-note">选择手牌可查看向此地区派遣的行动。</p>}
+          <ActionButtons actions={regionActions} busy={busy} onAction={onAction} regions={view.regions} onRegionPreview={setPreviewRegion} />{!regionActions.length && <p className="hg-wait-note">选择手牌可查看向此地区派遣的行动。</p>}
         </> : <><h2>{view.status === 'finished' ? '本局已结束' : view.pendingChoice ? '等待你的决定' : browsingOnly ? '正在等待其他玩家' : '选择一张可行动的牌'}</h2><p className="hg-wait-note">{nextStep}。手牌与下一步按钮始终在屏幕下方。</p></>}
       </section>
       <section className="hg-stack"><div className="hg-section-title"><h2>待结算效果</h2><span>{view.stack.length}</span></div>{view.stack.length ? <ol>{[...view.stack].reverse().map(effect => <li key={effect.id}><strong>{effect.label}</strong><small>{view.players.find(player => player.id === effect.controller)?.name}</small><StackTargets effect={effect} view={view} /></li>)}</ol> : <p className="hg-empty">目前没有待结算效果。</p>}</section>
