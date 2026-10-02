@@ -1,0 +1,8 @@
+{
+  "testType": "plain-http-client-read-only",
+  "status": 403,
+  "body": "error code: 1010",
+  "server": "envoy",
+  "gamePostCount": 0,
+  "browserResult": "Separate normal anonymous Chromium UI and browser health returned success; no proxy change, TLS override or Site bypass token."
+}

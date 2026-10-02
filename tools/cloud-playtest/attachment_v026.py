@@ -3,7 +3,8 @@
 
 Every seat has its own persistent Chromium profile. The fetch observer reads
 only that seat's normal projected responses. Credentials and hands stay local.
-All POST requests, including creation/join, share a strict forty-request budget.
+Game UI POSTs, including creation/join, share a forty-request budget. Hosting
+browser verification traffic is observed separately and is never blocked.
 """
 import argparse
 import asyncio
@@ -32,6 +33,9 @@ class AttachmentRun(UiRun):
         self.checks = []
         self.remote = getattr(service, 'remote', False)
         self.transport_events = []
+        self.infrastructure_posts = []
+        self.health = None
+        self.scan_sha256 = None
 
     async def new_seat(self, seat, session=None):
         assert session is None, 'Only normal profile restoration is allowed'
@@ -74,7 +78,16 @@ class AttachmentRun(UiRun):
         page = context.pages[0] if context.pages else await context.new_page()
         page.on('pageerror', lambda error: self.errors.append({'seat': seat, 'kind': 'pageerror', 'message': str(error)}))
         page.on('console', lambda msg: self.errors.append({'seat': seat, 'kind': 'console', 'message': msg.text}) if msg.type == 'error' else None)
-        page.on('response', lambda r: self.post_results.append({'seat': seat, 'status': r.status, 'endpoint': r.url.split('/api/', 1)[-1]}) if r.request.method == 'POST' else None)
+        def observe_post(response):
+            if response.request.method != 'POST':
+                return
+            if '/api/' in response.url:
+                self.post_results.append({'seat': seat, 'status': response.status, 'endpoint': urlsplit(response.url).path.split('/api/', 1)[-1]})
+            else:
+                # Challenge URLs contain ephemeral verification material. Keep
+                # counts/status only; never persist cookies or challenge paths.
+                self.infrastructure_posts.append({'seat': seat, 'status': response.status, 'kind': 'hosting-browser-verification'})
+        page.on('response', observe_post)
         self.contexts.append(context)
         self.pages.append(page)
         await page.goto(self.base, wait_until='domcontentloaded')
@@ -153,7 +166,8 @@ class AttachmentRun(UiRun):
             if resume:
                 previous = json.loads((self.output / 'attachment-ui-summary.json').read_text())
                 self.post_count = previous['uiPostCount']
-                self.post_results = previous['postResults']
+                self.post_results = [r for r in previous['postResults'] if not r['endpoint'].startswith('https://')]
+                self.infrastructure_posts = previous.get('infrastructurePosts', []) + [{'seat': r['seat'], 'status': r['status'], 'kind': 'hosting-browser-verification'} for r in previous['postResults'] if r['endpoint'].startswith('https://')]
                 self.checks = previous['checks']
                 self.measurements = previous['measurements']
                 for seat in range(4):
@@ -163,6 +177,8 @@ class AttachmentRun(UiRun):
                 assert (await self.view(0))['roomId'] == previous['roomId']
                 c = await self.pages[0].evaluate('window.__cloudCatalog')
                 self.catalog = {card['id']: card for card in c['cards']}
+                if self.remote:
+                    await self.read_public_build()
                 await self.inspect_attachment()
                 result = await self.finish_recovery(started)
                 return result
@@ -245,6 +261,7 @@ class AttachmentRun(UiRun):
             result.update(testType='natural-four-seat-persistent-browser-ui', stateInjection=False,
                           apiMoves=False, uiPostCount=self.post_count, uiPostBudget=40,
                           deployedSite=self.remote, siteBypassUsed=False, transportEvents=self.transport_events,
+                          infrastructurePosts=self.infrastructure_posts, health=self.health, originalScanSha256=self.scan_sha256,
                           postResults=self.post_results, checks=self.checks, measurements=self.measurements,
                           browserErrors=self.errors, final=public_view(final),
                           roomId=final.get('roomId') if final else None,
@@ -254,6 +271,14 @@ class AttachmentRun(UiRun):
                 await context.close()
         print(json.dumps(result, ensure_ascii=False), flush=True)
         assert result['passed'], result.get('failure')
+
+    async def read_public_build(self):
+        self.health = await self.pages[0].evaluate('async () => { const r=await fetch("/api/health"); if(!r.ok) throw new Error("Browser health failed"); return r.json(); }')
+        assert self.health['engineVersion'] == (await self.view(0))['versions']['engine']
+        self.scan_sha256 = await self.pages[0].evaluate('async () => { const r=await fetch("/cards/BQ022.jpg"); if(!r.ok) throw new Error("Original scan fetch failed"); const hash=await crypto.subtle.digest("SHA-256",await r.arrayBuffer()); return Array.from(new Uint8Array(hash)).map(x=>x.toString(16).padStart(2,"0")).join(""); }')
+        expected = json.loads((Path(__file__).resolve().parents[2] / 'web/public/card-scans.json').read_text())['BQ022']['sha256']
+        assert self.scan_sha256 == expected
+        self.checks.append({'name': 'public-browser-health-and-original-scan-sha256', 'passed': True})
 
     async def finish_recovery(self, started):
         version = (await self.view(0))['version']

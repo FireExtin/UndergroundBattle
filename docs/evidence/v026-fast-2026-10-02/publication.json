@@ -1,0 +1,39 @@
+{
+  "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+  "implementation_commit": "525469e3a49e6b3715ef0f3ece19b17599e1a2a4",
+  "site_source_commit": "1f92f5f5f56cd4b1ad97f4fe4da7c0b1e5f775ec",
+  "saved_version": {
+    "id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_2081b0060c288191bfc195fe6cbc61b8",
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "version_number": 9,
+    "source": {
+      "commit_sha": "1f92f5f5f56cd4b1ad97f4fe4da7c0b1e5f775ec"
+    },
+    "archive_storage": {
+      "archive_format": "tar",
+      "sediment_file_id": "file_00000000961081f59936660874d08e83",
+      "content_hash": "sha256:7ba49c019f19839fccaed6878c56fd446dd4a2a1e23658f15ae618ea33c872bc",
+      "size_bytes": 22087680,
+      "file_count": 54
+    },
+    "screenshot_url": null,
+    "deployment_id": null
+  },
+  "deployment": {
+    "id": "appgdep_6ac00da829b881919172717735f05826",
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "title": "隐秘世界 · 霸权",
+    "version_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_2081b0060c288191bfc195fe6cbc61b8",
+    "type": "publish",
+    "status": "succeeded",
+    "url": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site",
+    "has_mcp": false,
+    "screenshot_asset_pointer": "sediment://file_00000000ff3c81f5a736045d86704994",
+    "provider_deployment_id": "site---6abf7bf54a7481918a50e1ef1509ca68",
+    "failure_message": null,
+    "env_set_revision": 0,
+    "updated_at": "2026-10-02T20:02:45.321447+00:00"
+  },
+  "workflow": "Official bundled site-workflow.mjs open + install + build-site.mjs + 15 Worker tests + push + package; then native save/deploy",
+  "siteBypassUsed": false
+}
