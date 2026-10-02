@@ -9,15 +9,15 @@
   },
   "reviewsSource": {
     "path": "docs/factions/card-reviews.json",
-    "sha256": "13d6762f78156a56dae86ee66114266417697d636a46f581590795ff06f1252a"
+    "sha256": "e6c7354d1a98f49633683d83e85990dec450d8c8c0027f8022759afb44aae0ea"
   },
   "coverageSource": {
     "path": "rust-game/data/faction-coverage.json",
-    "sha256": "72cf0f471bc58d7d2cdec1b0f1553e367083cd6ac368e0b108e682cd7d63b490"
+    "sha256": "78722901fbb9a399ff41d1133536e5d16fd94e6d5fcd4e7c2533e2b4ca6c584c"
   },
   "specificationsSource": {
     "path": "docs/factions/card-specifications.json",
-    "sha256": "392c9c0ed56b383a55ba907cb87ccbb2a23149a2f2a141ca927e904a63391450"
+    "sha256": "4e419f0604160dd1bca30eb65523c4cc28e086c125fe84c9b8f5a90cb7edcdbd"
   },
   "recoverySource": {
     "path": "docs/factions/source-recovery.json",
@@ -34,13 +34,13 @@
   "totals": {
     "archiveRecords": 685,
     "sourceImagesMissing": 1,
-    "primaryImageReviewed": 564,
-    "unreviewedWithImage": 120,
+    "primaryImageReviewed": 599,
+    "unreviewedWithImage": 85,
     "currentCatalogDefinitions": 29,
-    "completeSourceSpecifications": 558,
+    "completeSourceSpecifications": 593,
     "blockedSourceSpecifications": 5,
     "completeNonCardReferences": 1,
-    "completeSourceRecords": 559,
+    "completeSourceRecords": 594,
     "locatorSetCounts": {
       "TK": 11,
       "传奇": 44,
@@ -66,11 +66,11 @@
       "worldRegion": 29
     },
     "editionStatusCounts": {
-      "pinnedImageVariant": 551,
+      "pinnedImageVariant": 586,
       "testArchivePinnedImageVariant": 2,
       "testImageConfirmed": 5,
       "uncertain": 1,
-      "unreviewed": 126
+      "unreviewed": 91
     }
   },
   "records": [
@@ -29170,22 +29170,22 @@
     {
       "id": "JZ39",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/JZ39 恶魔刺青.jpg",
           "sha256": "4bfac05a9d9f65d6d5c11fd69eded848bda7472c6b7940c735d6722ae3fb5a75"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/JZ39",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/JZ39",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/JZ39",
+      "implementationDesignStatus": "needsRuling",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "恶魔刺青",
         "set": "间奏",
@@ -29205,9 +29205,19 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "恶魔刺青",
+        "colorKey": "红",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标人类角色；持续 受此结附的角色获得永久战斗1和杀伤1，且额外具有恶魔类别。；行动①，横置，牺牲一个恶魔角色：目标敌方玩家牺牲一个角色。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "continuous",
+        "combatKeywords",
+        "exhaust",
+        "sacrifice"
+      ],
       "candidateMechanismIds": [
         "attachment",
         "combatTraits",
@@ -29216,8 +29226,22 @@
         "sacrifice"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "attachmentPicker",
+        "attachments",
+        "choicePicker",
+        "costPicker",
+        "damagePicker",
+        "targetPicker",
+        "triggerPrompt"
+      ],
+      "mechanismCoverage": {
+        "attachment": "unimplemented",
+        "continuous": "partial",
+        "combatKeywords": "unimplemented",
+        "exhaust": "implemented",
+        "sacrifice": "implemented"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -29232,22 +29256,22 @@
     {
       "id": "JZ40",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/JZ40 蚀刻头骨.jpg",
           "sha256": "2d05f56e191a2a55e5636959f3db63d9693292f39042559934cb3231c987e354"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/JZ40",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/JZ40",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/JZ40",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "蚀刻头骨",
         "set": "间奏",
@@ -29269,17 +29293,39 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "蚀刻头骨",
+        "colorKey": "红",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标地区；行动 牺牲蚀刻头骨：在目标角色或附属上放置一个时间标志，然后若该地区有四个或更多时间标志，则毁灭该地区。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "sacrifice",
+        "timeDestroy",
+        "temporaryIcons"
+      ],
       "candidateMechanismIds": [
         "attachment",
         "sacrifice",
         "timeDestroy"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "attachmentPicker",
+        "attachments",
+        "choicePicker",
+        "costPicker",
+        "destroyedRegions",
+        "iconBreakdown",
+        "markerEditor"
+      ],
+      "mechanismCoverage": {
+        "attachment": "unimplemented",
+        "sacrifice": "implemented",
+        "timeDestroy": "unimplemented",
+        "temporaryIcons": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -29294,22 +29340,22 @@
     {
       "id": "JZ41",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/JZ41 衰败之环.jpg",
           "sha256": "2564cc22e52e2604588dc656ce682e9d30b950a695eb690a7d6a027c2f9d509a"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/JZ41",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/JZ41",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/JZ41",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "衰败之环",
         "set": "间奏",
@@ -29330,9 +29376,17 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "衰败之环",
+        "colorKey": "红",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标角色；进场触发 预测2。；触发 每当受此结附的角色受到伤害时，对该角色额外造成1点创伤。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "deckChoice",
+        "continuous"
+      ],
       "candidateMechanismIds": [
         "attachment",
         "combatKeywords",
@@ -29340,8 +29394,18 @@
         "healWounds"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "attachmentPicker",
+        "attachments",
+        "handPicker",
+        "orderPicker",
+        "searchPicker"
+      ],
+      "mechanismCoverage": {
+        "attachment": "unimplemented",
+        "deckChoice": "partial",
+        "continuous": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -29356,22 +29420,22 @@
     {
       "id": "JZ42",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/JZ42 末日钟降临.jpg",
           "sha256": "a1e754694aa8b45153a678f49fbfa7139d3bdaa0be55d88da7216ca88efb90f2"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/JZ42",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/JZ42",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/JZ42",
+      "implementationDesignStatus": "needsRuling",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "末日钟降临",
         "set": "间奏",
@@ -29395,9 +29459,20 @@
           "MSJZ03 末日钟"
         ]
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "末日钟降临",
+        "colorKey": "红",
+        "basicType": "事务"
+      },
+      "abilitySummary": "唯一；末日钟降临不能被响应；额外费用 每有一个已毁灭的地区，打出末日钟降临的所需费用减少④。；额外费用 自本方卡牌上移除X个时间标志，使打出末日钟降临的所需费用减少X。；行动 将你的秘社牌替换为末日钟。",
+      "confirmedMechanismIds": [
+        "uniqueInPlay",
+        "priority",
+        "timeDestroy",
+        "costReduction",
+        "society",
+        "transform"
+      ],
       "candidateMechanismIds": [
         "costReduction",
         "eternal",
@@ -29405,8 +29480,24 @@
         "timeDestroy"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "choicePicker",
+        "destroyedRegions",
+        "formSwitcher",
+        "markerEditor",
+        "societyPicker",
+        "societyZone",
+        "stack",
+        "uniquePrompt"
+      ],
+      "mechanismCoverage": {
+        "uniqueInPlay": "implemented",
+        "priority": "partial",
+        "timeDestroy": "unimplemented",
+        "costReduction": "partial",
+        "society": "unimplemented",
+        "transform": "unimplemented"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -29421,22 +29512,22 @@
     {
       "id": "JZ43",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/JZ43 武装市民.jpg",
           "sha256": "bbc107878f8041757b38f7674f57b1d5d34028edc79a10551e9f629ae97f6826"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/JZ43",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/JZ43",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/JZ43",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "武装市民",
         "set": "间奏",
@@ -29458,16 +29549,32 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "武装市民",
+        "colorKey": "灰",
+        "basicType": "角色"
+      },
+      "abilitySummary": "公开；只能打出在城市地区。；进场触发 在本地区的目标角色上放置一个锁定标志。若该角色上已有锁定标志，则改为对其造成1点伤害。",
+      "confirmedMechanismIds": [
+        "public",
+        "lock",
+        "temporaryIcons"
+      ],
       "candidateMechanismIds": [
         "lock",
         "public"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "iconBreakdown",
+        "markerEditor",
+        "privatePeek"
+      ],
+      "mechanismCoverage": {
+        "public": "implemented",
+        "lock": "unimplemented",
+        "temporaryIcons": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -29482,22 +29589,22 @@
     {
       "id": "JZ44",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/JZ44 洛杉矶巡警.jpg",
           "sha256": "b5ca6ecde925805b86eeac70bd796ad402695daf342835abfd669e9a157637eb"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/JZ44",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/JZ44",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/JZ44",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "洛杉矶巡警",
         "set": "间奏",
@@ -29520,9 +29627,19 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "洛杉矶巡警",
+        "colorKey": "灰",
+        "basicType": "角色"
+      },
+      "abilitySummary": "公开；护卫1；只能打出在城市地区。；进场触发 将本地区的目标罪犯角色翻面为暗藏者，然后抓一张牌。",
+      "confirmedMechanismIds": [
+        "public",
+        "combatKeywords",
+        "hidden",
+        "deckChoice",
+        "temporaryIcons"
+      ],
       "candidateMechanismIds": [
         "combatTraits",
         "deckChoice",
@@ -29530,8 +29647,23 @@
         "public"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "damagePicker",
+        "handPicker",
+        "hiddenProjection",
+        "iconBreakdown",
+        "orderPicker",
+        "searchPicker",
+        "targetPicker",
+        "triggerPrompt"
+      ],
+      "mechanismCoverage": {
+        "public": "implemented",
+        "combatKeywords": "unimplemented",
+        "hidden": "implemented",
+        "deckChoice": "partial",
+        "temporaryIcons": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -29546,22 +29678,22 @@
     {
       "id": "JZ45",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/JZ45 警用直升机.jpg",
           "sha256": "20e18006a7b2f032d7d236f909dc57d75bfc14dc3acf36291c7ca16f3962008f"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/JZ45",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/JZ45",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/JZ45",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "警用直升机",
         "set": "间奏",
@@ -29584,9 +29716,19 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "警用直升机",
+        "colorKey": "灰",
+        "basicType": "角色"
+      },
+      "abilitySummary": "公开；机动；只能打出在城市地区。；进场触发 选择一项：；在本地区的目标角色或暗藏者上放置一个锁定标志。；消灭位于本地区，且其上有锁定标志的目标角色或暗藏者。",
+      "confirmedMechanismIds": [
+        "public",
+        "mobility",
+        "lock",
+        "hidden",
+        "temporaryIcons"
+      ],
       "candidateMechanismIds": [
         "hidden",
         "lock",
@@ -29594,8 +29736,21 @@
         "public"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "hiddenProjection",
+        "iconBreakdown",
+        "markerEditor",
+        "privatePeek",
+        "regionPicker",
+        "targetPicker"
+      ],
+      "mechanismCoverage": {
+        "public": "implemented",
+        "mobility": "partial",
+        "lock": "unimplemented",
+        "hidden": "implemented",
+        "temporaryIcons": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -29610,22 +29765,22 @@
     {
       "id": "JZ46",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/JZ46 狴犴铜雕.jpg",
           "sha256": "756bdb34307c84a5c5f1e9cc1b7e13f9112ae727e934847f6993169ae1451785"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/JZ46",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/JZ46",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/JZ46",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "狴犴铜雕",
         "set": "间奏",
@@ -29644,9 +29799,20 @@
         "keywords": [],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "辟邪铜雕",
+        "colorKey": "灰",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标地区；行动 横置：检视本地区的目标暗藏者，若该暗藏者的正面是罪犯类别，则将其横置，并在其上放置一个锁定标志。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "privatePeek",
+        "hidden",
+        "exhaust",
+        "lock",
+        "temporaryIcons"
+      ],
       "candidateMechanismIds": [
         "attachment",
         "exhaust",
@@ -29655,8 +29821,24 @@
         "privatePeek"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "attachmentPicker",
+        "attachments",
+        "handPicker",
+        "hiddenProjection",
+        "iconBreakdown",
+        "markerEditor",
+        "privatePeek",
+        "targetPicker"
+      ],
+      "mechanismCoverage": {
+        "attachment": "unimplemented",
+        "privatePeek": "unimplemented",
+        "hidden": "implemented",
+        "exhaust": "implemented",
+        "lock": "unimplemented",
+        "temporaryIcons": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -29671,22 +29853,22 @@
     {
       "id": "JZ47",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/JZ47 雷鸟.jpg",
           "sha256": "d4cf6b96dc3aa9e27308e02246315e6fe60e6e718f864cf8941fcd837e5973b5"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/JZ47",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/JZ47",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/JZ47",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "雷鸟",
         "set": "间奏",
@@ -29711,9 +29893,19 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "雷鸟",
+        "colorKey": "白",
+        "basicType": "角色"
+      },
+      "abilitySummary": "公开；机动；屏障；非资产；不能被附属结附",
+      "confirmedMechanismIds": [
+        "public",
+        "mobility",
+        "barrier",
+        "nonAsset",
+        "attachment"
+      ],
       "candidateMechanismIds": [
         "attachment",
         "barrier",
@@ -29722,8 +29914,19 @@
         "public"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "assetSummary",
+        "attachmentPicker",
+        "attachments",
+        "regionPicker"
+      ],
+      "mechanismCoverage": {
+        "public": "implemented",
+        "mobility": "partial",
+        "barrier": "implemented",
+        "nonAsset": "unimplemented",
+        "attachment": "unimplemented"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -29738,22 +29941,22 @@
     {
       "id": "JZ48",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/JZ48 街头劫匪.jpg",
           "sha256": "a9a5da75938c22872cca524776356b10f2a0250370d3ba3ed3b31deb332e5b4f"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/JZ48",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/JZ48",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/JZ48",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "街头劫匪",
         "set": "间奏",
@@ -29773,15 +29976,27 @@
         "keywords": [],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "街头劫匪",
+        "colorKey": "黑",
+        "basicType": "角色"
+      },
+      "abilitySummary": "持续 若本地区有其他本方罪犯角色，则街头劫匪获得临时势力1和防御力+1。",
+      "confirmedMechanismIds": [
+        "continuous",
+        "temporaryIcons"
+      ],
       "candidateMechanismIds": [
         "continuous"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "iconBreakdown"
+      ],
+      "mechanismCoverage": {
+        "continuous": "partial",
+        "temporaryIcons": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -29883,22 +30098,22 @@
     {
       "id": "JZ50",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/JZ50 墓穴食尸鬼.jpg",
           "sha256": "403e44bb5f7f0ff8715acb267a8369c3715b2dc752d7fe612de085da29b523e7"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/JZ50",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/JZ50",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/JZ50",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "墓穴食尸鬼",
         "set": "间奏",
@@ -29918,17 +30133,33 @@
         "keywords": [],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "墓穴食尸鬼",
+        "colorKey": "黑",
+        "basicType": "角色"
+      },
+      "abilitySummary": "现身触发 从你的牌库中寻找一张死亡领域的角色牌，将该牌置于你的墓地，然后洗牌。",
+      "confirmedMechanismIds": [
+        "hidden",
+        "deckChoice"
+      ],
       "candidateMechanismIds": [
         "deckChoice",
         "graveRecovery",
         "hidden"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "handPicker",
+        "hiddenProjection",
+        "orderPicker",
+        "searchPicker",
+        "targetPicker"
+      ],
+      "mechanismCoverage": {
+        "hidden": "implemented",
+        "deckChoice": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -29943,22 +30174,22 @@
     {
       "id": "JZ51",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/JZ51 温迪戈.jpg",
           "sha256": "1b0311913bbf4a26c0e9e2dc2c0d6b656bd802cc6e831350f6f2500edf577dc0"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/JZ51",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/JZ51",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/JZ51",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "温迪戈",
         "set": "间奏",
@@ -29978,9 +30209,19 @@
         "keywords": [],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "温迪戈",
+        "colorKey": "黑",
+        "basicType": "角色"
+      },
+      "abilitySummary": "进场触发 从你牌库顶的八张牌中寻找任意数量名为无名尸体的牌，将这些牌放置于本地区，然后将其余的牌洗回牌库。；墓地行动 将本方墓地中三张名为无名尸体的牌封印在本方秘社上：将温迪戈从墓地中放置进场。",
+      "confirmedMechanismIds": [
+        "deckChoice",
+        "graveRecovery",
+        "gravePlay",
+        "seal",
+        "society"
+      ],
       "candidateMechanismIds": [
         "deckChoice",
         "gravePlay",
@@ -29989,8 +30230,24 @@
         "seal"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "graveyardPicker",
+        "handPicker",
+        "orderPicker",
+        "regionPicker",
+        "sealedCards",
+        "searchPicker",
+        "societyPicker",
+        "societyZone",
+        "targetPicker"
+      ],
+      "mechanismCoverage": {
+        "deckChoice": "partial",
+        "graveRecovery": "implemented",
+        "gravePlay": "unimplemented",
+        "seal": "unimplemented",
+        "society": "unimplemented"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -30005,22 +30262,22 @@
     {
       "id": "JZ52",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/JZ52 大维齐尔迈哈穆德.jpg",
           "sha256": "7f9ad8adb68bdd84877ebdead2bc13ed04983099977333d2106486405c6478a3"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/JZ52",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/JZ52",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/JZ52",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "大维齐尔迈哈穆德",
         "set": "间奏",
@@ -30042,17 +30299,34 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "大维齐尔迈哈穆德",
+        "colorKey": "黑",
+        "basicType": "角色"
+      },
+      "abilitySummary": "领袖；持续 你不能从手中正面打出角色牌。；持续 你可以从墓地中正面打出死亡领域的角色牌，就如同其在你手中一样。",
+      "confirmedMechanismIds": [
+        "leader",
+        "gravePlay",
+        "continuous",
+        "uniqueInPlay"
+      ],
       "candidateMechanismIds": [
         "continuous",
         "graveRecovery",
         "leader"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "graveyardPicker",
+        "uniquePrompt"
+      ],
+      "mechanismCoverage": {
+        "leader": "unimplemented",
+        "gravePlay": "unimplemented",
+        "continuous": "partial",
+        "uniqueInPlay": "implemented"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -30067,22 +30341,22 @@
     {
       "id": "JZ53",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/JZ53 尸舞舒拉密兹.jpg",
           "sha256": "a84d896c1b552dabda05a1fc12c55224275a31b63a8408446508775235cc4623"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/JZ53",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/JZ53",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/JZ53",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "尸舞舒拉密兹",
         "set": "间奏",
@@ -30104,16 +30378,36 @@
           "TK001 行尸"
         ]
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "尸舞舒拉密兹",
+        "colorKey": "黑",
+        "basicType": "角色"
+      },
+      "abilitySummary": "进场触发 将你墓地中的目标死亡领域角色牌置于你的手中。；触发 每当一张角色牌离开你的墓地时，在目标地区生成一个行尸角色指示物。",
+      "confirmedMechanismIds": [
+        "graveRecovery",
+        "token",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
       "candidateMechanismIds": [
         "graveRecovery",
         "token"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "graveyardPicker",
+        "iconBreakdown",
+        "regionPicker",
+        "tokenTile",
+        "uniquePrompt"
+      ],
+      "mechanismCoverage": {
+        "graveRecovery": "implemented",
+        "token": "unimplemented",
+        "uniqueInPlay": "implemented",
+        "temporaryIcons": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -30201,22 +30495,22 @@
     {
       "id": "JZ55",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/JZ55 传奇落幕.jpg",
           "sha256": "9155faa90be22aa66e56148dfacd0d517eb7b6f7b56fd1b45b71a6804719784a"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/JZ55",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/JZ55",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/JZ55",
+      "implementationDesignStatus": "needsRuling",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "传奇落幕",
         "set": "间奏",
@@ -30234,13 +30528,27 @@
         "keywords": [],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "传奇落幕",
+        "colorKey": "黑",
+        "basicType": "事务"
+      },
+      "abilitySummary": "传奇落幕不能被响应。；快速行动 消灭目标独有角色。",
+      "confirmedMechanismIds": [
+        "priority",
+        "uniqueInPlay"
+      ],
       "candidateMechanismIds": [],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "choicePicker",
+        "stack",
+        "uniquePrompt"
+      ],
+      "mechanismCoverage": {
+        "priority": "partial",
+        "uniqueInPlay": "implemented"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -30255,22 +30563,22 @@
     {
       "id": "JZ56",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/JZ56 亡者之夜.jpg",
           "sha256": "cc3a5c11a4c65cac841f187aaddcdf8b128a6bf191e71c338bbda3eef8d0ad31"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/JZ56",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/JZ56",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/JZ56",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "亡者之夜",
         "set": "间奏",
@@ -30290,9 +30598,19 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "亡者之夜",
+        "colorKey": "黑",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于本方秘社；进场触发 选择食尸鬼、行尸或骷髅类别。；持续 你所选择类别之本方角色获得临时势力1和防御力+1。若你的墓地中有七张或更多牌，则这些角色再获得永久战斗1和创伤1。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "society",
+        "continuous",
+        "combatKeywords",
+        "temporaryIcons"
+      ],
       "candidateMechanismIds": [
         "attachment",
         "combatKeywords",
@@ -30301,8 +30619,22 @@
         "healWounds"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "attachmentPicker",
+        "attachments",
+        "damagePicker",
+        "iconBreakdown",
+        "societyPicker",
+        "societyZone",
+        "triggerPrompt"
+      ],
+      "mechanismCoverage": {
+        "attachment": "unimplemented",
+        "society": "unimplemented",
+        "continuous": "partial",
+        "combatKeywords": "unimplemented",
+        "temporaryIcons": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -30317,22 +30649,22 @@
     {
       "id": "JZ57",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/JZ57 骷髅纹身.jpg",
           "sha256": "a9de7e904fe18c5cc5f00887add743ffea83fb2e112d291a10b1afa014e79bf4"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/JZ57",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/JZ57",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/JZ57",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "骷髅纹身",
         "set": "间奏",
@@ -30350,9 +30682,19 @@
         "keywords": [],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "骷髅纹身",
+        "colorKey": "黑",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标人类角色；持续 受此结附的角色获得防御力+1，且额外具有不死生物和骷髅类别。；行动 横置，牺牲一个不死生物角色：将目标玩家牌库顶的两张牌置于其墓地。若所牺牲的是骷髅角色，则你可以抓一张牌。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "continuous",
+        "exhaust",
+        "sacrifice",
+        "deckChoice"
+      ],
       "candidateMechanismIds": [
         "attachment",
         "continuous",
@@ -30362,8 +30704,23 @@
         "sacrifice"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "attachmentPicker",
+        "attachments",
+        "choicePicker",
+        "costPicker",
+        "handPicker",
+        "orderPicker",
+        "searchPicker",
+        "targetPicker"
+      ],
+      "mechanismCoverage": {
+        "attachment": "unimplemented",
+        "continuous": "partial",
+        "exhaust": "implemented",
+        "sacrifice": "implemented",
+        "deckChoice": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -30378,22 +30735,22 @@
     {
       "id": "JZ58",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/JZ58 噩梦残像.jpg",
           "sha256": "4cb1892b435cc14fd3f9d8310b428a16eaf5cc5afe1c870760a3dcc457d4dd95"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/JZ58",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/JZ58",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/JZ58",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "噩梦残像",
         "set": "间奏",
@@ -30416,17 +30773,38 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "噩梦残像",
+        "colorKey": "紫",
+        "basicType": "角色"
+      },
+      "abilitySummary": "灵体；现身触发 遏制1。",
+      "confirmedMechanismIds": [
+        "spirit",
+        "hidden",
+        "repress",
+        "temporaryIcons"
+      ],
       "candidateMechanismIds": [
         "combatKeywords",
         "hidden",
         "spirit"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "domainSummary",
+        "hiddenProjection",
+        "iconBreakdown",
+        "markerEditor",
+        "playerPicker",
+        "targetPicker"
+      ],
+      "mechanismCoverage": {
+        "spirit": "unimplemented",
+        "hidden": "implemented",
+        "repress": "unimplemented",
+        "temporaryIcons": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -30441,22 +30819,22 @@
     {
       "id": "JZ59",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/JZ59 骇人畸变体.jpg",
           "sha256": "b43bf4fc74654c089cf10429306980c2af12743d57d60b603efae03b28eae5f3"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/JZ59",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/JZ59",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/JZ59",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "骇人畸变体",
         "set": "间奏",
@@ -30478,16 +30856,26 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "骇人畸变体",
+        "colorKey": "紫",
+        "basicType": "角色"
+      },
+      "abilitySummary": "死亡触发 对本地区的目标角色造成1点创伤。",
+      "confirmedMechanismIds": [
+        "temporaryIcons"
+      ],
       "candidateMechanismIds": [
         "combatKeywords",
         "healWounds"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "iconBreakdown"
+      ],
+      "mechanismCoverage": {
+        "temporaryIcons": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -30502,22 +30890,22 @@
     {
       "id": "JZ60",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/JZ60 失控宿主.jpg",
           "sha256": "dc5550dc5778cbb38abb11594315045447eb07162b01626b11cd751b649c558b"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/JZ60",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/JZ60",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/JZ60",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "失控宿主",
         "set": "间奏",
@@ -30539,15 +30927,28 @@
           "TK005 梦魇"
         ]
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "失控宿主",
+        "colorKey": "紫",
+        "basicType": "角色"
+      },
+      "abilitySummary": "死亡触发 在本地区生成一个梦魔角色指示物。",
+      "confirmedMechanismIds": [
+        "token",
+        "temporaryIcons"
+      ],
       "candidateMechanismIds": [
         "token"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "iconBreakdown",
+        "tokenTile"
+      ],
+      "mechanismCoverage": {
+        "token": "unimplemented",
+        "temporaryIcons": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -30562,22 +30963,22 @@
     {
       "id": "JZ61",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/JZ61 暗夜访客.jpg",
           "sha256": "5da40b475c306d3a295a6582576b9b720c8707050bdedfea3005b92578e4e37f"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/JZ61",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/JZ61",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/JZ61",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "暗夜访客",
         "set": "间奏",
@@ -30597,15 +30998,30 @@
         "keywords": [],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "暗夜访客",
+        "colorKey": "紫",
+        "basicType": "角色"
+      },
+      "abilitySummary": "死亡触发 从你的牌库中寻找一张名为噩梦残像的角色牌，展示该牌后置于你的手中，然后洗牌。",
+      "confirmedMechanismIds": [
+        "deckChoice",
+        "temporaryIcons"
+      ],
       "candidateMechanismIds": [
         "deckChoice"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "handPicker",
+        "iconBreakdown",
+        "orderPicker",
+        "searchPicker"
+      ],
+      "mechanismCoverage": {
+        "deckChoice": "partial",
+        "temporaryIcons": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -30620,22 +31036,22 @@
     {
       "id": "JZ62",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/JZ62 幻境之茧.jpg",
           "sha256": "521c7f043e7c6d0ea035ed15ba9ec1bb3d05a434d735dfcaec6e45c96d1f62c7"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/JZ62",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/JZ62",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/JZ62",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "幻境之茧",
         "set": "间奏",
@@ -30655,17 +31071,39 @@
         "keywords": [],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "幻境之茧",
+        "colorKey": "紫",
+        "basicType": "角色"
+      },
+      "abilitySummary": "不能移动；进场触发 从你的牌库中寻找一张印刷费用小于或等于③的非人类紫色角色牌，将该牌封印在幻境之茧上，然后洗牌。",
+      "confirmedMechanismIds": [
+        "mobility",
+        "deckChoice",
+        "seal",
+        "temporaryIcons"
+      ],
       "candidateMechanismIds": [
         "deckChoice",
         "mobility",
         "seal"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "handPicker",
+        "iconBreakdown",
+        "orderPicker",
+        "regionPicker",
+        "sealedCards",
+        "searchPicker",
+        "targetPicker"
+      ],
+      "mechanismCoverage": {
+        "mobility": "partial",
+        "deckChoice": "partial",
+        "seal": "unimplemented",
+        "temporaryIcons": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -30680,22 +31118,22 @@
     {
       "id": "JZ63",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/JZ63 噬想兽.jpg",
           "sha256": "42d7dd35e8fb27b68abdcc5805df6fb8ed8e326f765b919bcc1b578de7700630"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/JZ63",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/JZ63",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/JZ63",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "噬想兽",
         "set": "间奏",
@@ -30715,16 +31153,31 @@
         "keywords": [],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "噬想兽",
+        "colorKey": "紫",
+        "basicType": "角色"
+      },
+      "abilitySummary": "进场触发 横置本地区上具有永久调查或临时调查能力图标的目标角色。；行动 若噬想兽被封印中，你可以如同其在手中一般将其正面打出。（你仍需要支付其费用，且需满足其忠诚需求。）",
+      "confirmedMechanismIds": [
+        "exhaust",
+        "seal",
+        "continuous"
+      ],
       "candidateMechanismIds": [
         "exhaust",
         "seal"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "sealedCards",
+        "targetPicker"
+      ],
+      "mechanismCoverage": {
+        "exhaust": "implemented",
+        "seal": "unimplemented",
+        "continuous": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -30739,22 +31192,22 @@
     {
       "id": "JZ64",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/JZ64 幽灵鲸.jpg",
           "sha256": "a536293861600b6a7fe2cedff38cca737270f69ac78131328c54f5d7c8a3f126"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/JZ64",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/JZ64",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/JZ64",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "幽灵鲸",
         "set": "间奏",
@@ -30776,17 +31229,39 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "幽灵鲸",
+        "colorKey": "紫",
+        "basicType": "角色"
+      },
+      "abilitySummary": "灵体；触发 当另一个本方灵体角色进场或一张本方灵体角色牌被封印时，将你牌库底的一张牌置于手中。",
+      "confirmedMechanismIds": [
+        "spirit",
+        "seal",
+        "deckChoice",
+        "temporaryIcons"
+      ],
       "candidateMechanismIds": [
         "deckChoice",
         "seal",
         "spirit"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "domainSummary",
+        "handPicker",
+        "iconBreakdown",
+        "orderPicker",
+        "sealedCards",
+        "searchPicker",
+        "targetPicker"
+      ],
+      "mechanismCoverage": {
+        "spirit": "unimplemented",
+        "seal": "unimplemented",
+        "deckChoice": "partial",
+        "temporaryIcons": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -30887,22 +31362,22 @@
     {
       "id": "JZ66",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/JZ66 沉眠的海拉忒密沃森.jpg",
           "sha256": "e85e4bbfa53bff7340047cb642c1a18830ccfefa9cc1a283e4a260490be75d20"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/JZ66",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/JZ66",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/JZ66",
+      "implementationDesignStatus": "needsRuling",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "沉眠的海拉忒密沃森",
         "set": "间奏",
@@ -30924,9 +31399,19 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "沉眠的海拉忒密沃森",
+        "colorKey": "紫",
+        "basicType": "角色"
+      },
+      "abilitySummary": "屏障；持续 所有玩家在非抓牌步骤不能抓牌。；触发 当沉眠的海拉忒密沃森从任何区域进入墓地时，若你的资产区具有紫色图标，你可以改为将其封印在目标永城地区。；封印持续 封印着沉眠的海拉忒密沃森的地区略过调查对抗。",
+      "confirmedMechanismIds": [
+        "barrier",
+        "continuous",
+        "seal",
+        "confrontation",
+        "uniqueInPlay"
+      ],
       "candidateMechanismIds": [
         "barrier",
         "continuous",
@@ -30935,8 +31420,21 @@
         "seal"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "damagePicker",
+        "orderPicker",
+        "regionReturn",
+        "sealedCards",
+        "targetPicker",
+        "uniquePrompt"
+      ],
+      "mechanismCoverage": {
+        "barrier": "implemented",
+        "continuous": "partial",
+        "seal": "unimplemented",
+        "confrontation": "implemented",
+        "uniqueInPlay": "implemented"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -30951,22 +31449,22 @@
     {
       "id": "JZ67",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/JZ67 失忆.jpg",
           "sha256": "a6554b81e081c7292a32f2bf13ce269f276580f9a852e1df232c60c2c36ff477"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/JZ67",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/JZ67",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/JZ67",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "失忆",
         "set": "间奏",
@@ -30986,16 +31484,28 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "失忆",
+        "colorKey": "紫",
+        "basicType": "事务"
+      },
+      "abilitySummary": "行动 目标玩家随机选择一张手牌，展示该牌并将其置于其拥有者的牌库顶。预测2。若你操控梦魔角色，你可以令该玩家洗牌。",
+      "confirmedMechanismIds": [
+        "deckChoice"
+      ],
       "candidateMechanismIds": [
         "control",
         "deckChoice"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "handPicker",
+        "orderPicker",
+        "searchPicker"
+      ],
+      "mechanismCoverage": {
+        "deckChoice": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -31010,22 +31520,22 @@
     {
       "id": "JZ68",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/JZ68 潜行伏击者.jpg",
           "sha256": "dd204316d8ad27e53daab0c3bc85a7130e1e8c5d214fef007b92137671b5ca78"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/JZ68",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/JZ68",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/JZ68",
+      "implementationDesignStatus": "needsRuling",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "潜行伏击者",
         "set": "间奏",
@@ -31048,9 +31558,18 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "潜行伏击者",
+        "colorKey": "中立",
+        "basicType": "角色"
+      },
+      "abilitySummary": "隐匿；非资产；触发 当潜行伏击者在暗藏者状态被敌方玩家检视或消灭时，该玩家选择本地区中其所操控的一个角色，潜行伏击者对该角色造成1点创伤。",
+      "confirmedMechanismIds": [
+        "hiddenOnly",
+        "nonAsset",
+        "hidden",
+        "privatePeek"
+      ],
       "candidateMechanismIds": [
         "combatKeywords",
         "control",
@@ -31061,8 +31580,19 @@
         "privatePeek"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "assetSummary",
+        "handPicker",
+        "hiddenProjection",
+        "privatePeek",
+        "targetPicker"
+      ],
+      "mechanismCoverage": {
+        "hiddenOnly": "unimplemented",
+        "nonAsset": "unimplemented",
+        "hidden": "implemented",
+        "privatePeek": "unimplemented"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -31077,22 +31607,22 @@
     {
       "id": "JZ69",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/JZ69 失控的人潮.jpg",
           "sha256": "30bc81b32eacacc4cc7efb15e60ca4f2474a68af384f704c0ec0abefe6ec20c0"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/JZ69",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/JZ69",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/JZ69",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "失控的人潮",
         "set": "间奏",
@@ -31115,17 +31645,33 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "失控的人潮",
+        "colorKey": "中立",
+        "basicType": "角色"
+      },
+      "abilitySummary": "公开；非资产；进场触发 遏制X，X等于本地区人类角色数量之和。",
+      "confirmedMechanismIds": [
+        "public",
+        "nonAsset",
+        "repress"
+      ],
       "candidateMechanismIds": [
         "combatKeywords",
         "nonAsset",
         "public"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "assetSummary",
+        "markerEditor",
+        "playerPicker"
+      ],
+      "mechanismCoverage": {
+        "public": "implemented",
+        "nonAsset": "unimplemented",
+        "repress": "unimplemented"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -31140,22 +31686,22 @@
     {
       "id": "JZ70",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/JZ70 弗朗西斯科.jpg",
           "sha256": "1e6195fb4a81558c952cd4826c645698907e792ea77e913c3408ef6da21ced65"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/JZ70",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/JZ70",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/JZ70",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "弗朗西斯科",
         "set": "间奏",
@@ -31174,9 +31720,21 @@
         "keywords": [],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "弗朗西斯科",
+        "colorKey": "中立",
+        "basicType": "角色"
+      },
+      "abilitySummary": "持续 在其上每结附一个纹身，弗朗西斯科就获得永久调查1和防御力+1。；快速行动①，横置：从你的牌库或墓地中寻找一张纹身附属牌，将其结附于本地区的目标人类角色上，然后若从牌库寻找过则洗牌。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "continuous",
+        "deckChoice",
+        "graveRecovery",
+        "exhaust",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
       "candidateMechanismIds": [
         "attachment",
         "continuous",
@@ -31185,8 +31743,27 @@
         "graveRecovery"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "attachmentPicker",
+        "attachments",
+        "graveyardPicker",
+        "handPicker",
+        "iconBreakdown",
+        "orderPicker",
+        "regionPicker",
+        "searchPicker",
+        "targetPicker",
+        "uniquePrompt"
+      ],
+      "mechanismCoverage": {
+        "attachment": "unimplemented",
+        "continuous": "partial",
+        "deckChoice": "partial",
+        "graveRecovery": "implemented",
+        "exhaust": "implemented",
+        "uniqueInPlay": "implemented",
+        "temporaryIcons": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -31201,22 +31778,22 @@
     {
       "id": "JZ71",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/JZ71 土御门真知子.jpg",
           "sha256": "6d13a367331ba24a3abb66f6ca804708fa5e18cd4cd740026cf811377ce1247b"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/JZ71",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/JZ71",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/JZ71",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "土御门真知子",
         "set": "间奏",
@@ -31237,9 +31814,19 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "土御门真知子",
+        "colorKey": "中立",
+        "basicType": "角色"
+      },
+      "abilitySummary": "持续 你所打出的式神角色牌，其所需费用减少①。；触发 当土御门真知子或本方式神角色进场时，预测3，然后将你牌库顶牌封印在目标阴阳师上。",
+      "confirmedMechanismIds": [
+        "costReduction",
+        "deckChoice",
+        "seal",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
       "candidateMechanismIds": [
         "continuous",
         "costReduction",
@@ -31247,8 +31834,22 @@
         "seal"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "handPicker",
+        "iconBreakdown",
+        "orderPicker",
+        "sealedCards",
+        "searchPicker",
+        "targetPicker",
+        "uniquePrompt"
+      ],
+      "mechanismCoverage": {
+        "costReduction": "partial",
+        "deckChoice": "partial",
+        "seal": "unimplemented",
+        "uniqueInPlay": "implemented",
+        "temporaryIcons": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -31263,22 +31864,22 @@
     {
       "id": "JZ72",
       "role": "playerDualType",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/JZ72 稻荷神社童子.jpg",
           "sha256": "d75098e25ed4b1d492c9ec842461bce9804d286fd8743deb7e9e4ac09bbf5c85"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/JZ72",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/JZ72",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/JZ72",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "稻荷神社童子",
         "set": "间奏",
@@ -31300,9 +31901,21 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "稻荷神社童子",
+        "colorKey": "中立",
+        "basicType": "角色/附属"
+      },
+      "abilitySummary": "公开；不能移动；护卫1；结附于目标地区；持续 若所结附的地区有神社附属，则稻荷神社童子获得永久战斗1。；持续 双方玩家都不能从自己的牌库寻找牌。",
+      "confirmedMechanismIds": [
+        "public",
+        "mobility",
+        "combatKeywords",
+        "attachment",
+        "continuous",
+        "deckChoice",
+        "temporaryIcons"
+      ],
       "candidateMechanismIds": [
         "attachment",
         "combatTraits",
@@ -31312,8 +31925,26 @@
         "public"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "attachmentPicker",
+        "attachments",
+        "damagePicker",
+        "handPicker",
+        "iconBreakdown",
+        "orderPicker",
+        "regionPicker",
+        "searchPicker",
+        "triggerPrompt"
+      ],
+      "mechanismCoverage": {
+        "public": "implemented",
+        "mobility": "partial",
+        "combatKeywords": "unimplemented",
+        "attachment": "unimplemented",
+        "continuous": "partial",
+        "deckChoice": "partial",
+        "temporaryIcons": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -31328,22 +31959,22 @@
     {
       "id": "JZ73",
       "role": "playerDualType",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/JZ73 道祖神.jpg",
           "sha256": "56c52e9f3531307ebc8fab68950950e1d6204d1918da8e206ef248266f2439f5"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/JZ73",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/JZ73",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/JZ73",
+      "implementationDesignStatus": "needsRuling",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "道祖神",
         "set": "间奏",
@@ -31365,9 +31996,21 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "道祖神",
+        "colorKey": "中立",
+        "basicType": "角色/附属"
+      },
+      "abilitySummary": "公开；不能移动；结附于目标地区；持续 道祖神的防御力等于其所结附地区上的本方势力标志数量。；行动①，横置：本地区的所有角色失去屏障，且不能再获得屏障直到回合结束。",
+      "confirmedMechanismIds": [
+        "public",
+        "mobility",
+        "attachment",
+        "continuous",
+        "barrier",
+        "exhaust",
+        "temporaryIcons"
+      ],
       "candidateMechanismIds": [
         "attachment",
         "barrier",
@@ -31377,8 +32020,22 @@
         "public"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "attachmentPicker",
+        "attachments",
+        "iconBreakdown",
+        "regionPicker",
+        "targetPicker"
+      ],
+      "mechanismCoverage": {
+        "public": "implemented",
+        "mobility": "partial",
+        "attachment": "unimplemented",
+        "continuous": "partial",
+        "barrier": "implemented",
+        "exhaust": "implemented",
+        "temporaryIcons": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -31393,22 +32050,22 @@
     {
       "id": "JZ74",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/JZ74 意外事故.jpg",
           "sha256": "3915ef2565eff330862507076c052942322e59f47039f31f7c0ebe658181f085"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/JZ74",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/JZ74",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/JZ74",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "意外事故",
         "set": "间奏",
@@ -31427,16 +32084,32 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "意外事故",
+        "colorKey": "中立",
+        "basicType": "事务"
+      },
+      "abilitySummary": "快速行动 遏制1。抓一张牌。",
+      "confirmedMechanismIds": [
+        "repress",
+        "deckChoice"
+      ],
       "candidateMechanismIds": [
         "combatKeywords",
         "deckChoice"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "handPicker",
+        "markerEditor",
+        "orderPicker",
+        "playerPicker",
+        "searchPicker"
+      ],
+      "mechanismCoverage": {
+        "repress": "unimplemented",
+        "deckChoice": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -31451,22 +32124,22 @@
     {
       "id": "JZ75",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/JZ75 群众歇斯底里.jpg",
           "sha256": "67365d991776aeb0c478f426f7b9a311be068b176baf2655a63d8e4c1eaa6f8d"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/JZ75",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/JZ75",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/JZ75",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "群众歇斯底里",
         "set": "间奏",
@@ -31483,17 +32156,38 @@
         "keywords": [],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "群众歇斯底里",
+        "colorKey": "中立",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标城市地区。；持续 只要群众歇斯底里未横置，受此结附的地区略过调查对抗步骤。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "exhaust",
+        "confrontation",
+        "continuous"
+      ],
       "candidateMechanismIds": [
         "attachment",
         "continuous",
         "exhaust"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "attachmentPicker",
+        "attachments",
+        "damagePicker",
+        "orderPicker",
+        "regionReturn",
+        "targetPicker"
+      ],
+      "mechanismCoverage": {
+        "attachment": "unimplemented",
+        "exhaust": "implemented",
+        "confrontation": "implemented",
+        "continuous": "partial"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
@@ -31508,22 +32202,22 @@
     {
       "id": "JZ76",
       "role": "playerCardCandidate",
-      "roleBasis": "locatorOnly",
+      "roleBasis": "primaryImage",
       "sourceImages": [
         {
           "path": "resource/ymsj-fun.github.io/cards/JZ76 大天狗纹身.jpg",
           "sha256": "e452e7dc2eb605ed37147e0060d8eb3e2cf8f3af6920602f952b6356797c84cb"
         }
       ],
-      "evidenceState": "unreviewed",
-      "reviewRef": null,
-      "fullCardVerification": "notStarted",
-      "fullSpecRef": null,
-      "sourceRecordVerification": "notStarted",
-      "sourceSpecificationKind": null,
-      "sourceSpecRef": null,
-      "implementationDesignStatus": "notStarted",
-      "editionStatus": "unreviewed",
+      "evidenceState": "primaryImageReviewed",
+      "reviewRef": "docs/factions/card-reviews.json#cards/JZ76",
+      "fullCardVerification": "completeGameplayFieldsForPinnedImage",
+      "fullSpecRef": "docs/factions/card-specifications.json#cards/JZ76",
+      "sourceRecordVerification": "completeGameplayFieldsForPinnedImage",
+      "sourceSpecificationKind": "printedCard",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/JZ76",
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "editionStatus": "pinnedImageVariant",
       "locator": {
         "name": "大天狗纹身",
         "set": "间奏",
@@ -31542,9 +32236,20 @@
         ],
         "related": []
       },
-      "verifiedFields": {},
-      "abilitySummary": null,
-      "confirmedMechanismIds": [],
+      "verifiedFields": {
+        "name": "大天狗纹身",
+        "colorKey": "中立",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标人类角色；持续 受此结附的角色获得护卫1，且额外具有罪犯类别。；行动 横置，牺牲一个罪犯角色：若所牺牲角色所在地区上没有本方势力标志，则在该地区上放置一个本方势力标志。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "combatKeywords",
+        "continuous",
+        "exhaust",
+        "sacrifice",
+        "confrontation"
+      ],
       "candidateMechanismIds": [
         "attachment",
         "combatTraits",
@@ -31553,8 +32258,25 @@
         "sacrifice"
       ],
       "candidateBasis": "heuristicLocatorSearchOnly",
-      "interactionIds": [],
-      "mechanismCoverage": {},
+      "interactionIds": [
+        "attachmentPicker",
+        "attachments",
+        "choicePicker",
+        "costPicker",
+        "damagePicker",
+        "orderPicker",
+        "regionReturn",
+        "targetPicker",
+        "triggerPrompt"
+      ],
+      "mechanismCoverage": {
+        "attachment": "unimplemented",
+        "combatKeywords": "unimplemented",
+        "continuous": "partial",
+        "exhaust": "implemented",
+        "sacrifice": "implemented",
+        "confrontation": "implemented"
+      },
       "engineStatus": "unimplemented",
       "engineStatusScope": "Full original-card equivalence is not accepted; current catalog IDs have finite handwritten implementations only.",
       "inCurrentCatalog": false,
