@@ -1,0 +1,118 @@
+   Compiling cfg-if v1.0.5
+   Compiling once_cell v1.21.4
+   Compiling libc v0.2.189
+   Compiling pin-project-lite v0.2.17
+   Compiling futures-core v0.3.34
+   Compiling bytes v1.12.1
+   Compiling smallvec v1.16.2
+   Compiling itoa v1.0.18
+   Compiling scopeguard v1.2.0
+   Compiling lock_api v0.4.14
+   Compiling tracing-core v0.1.36
+   Compiling log v0.4.34
+   Compiling http v1.5.0
+   Compiling tracing v0.1.44
+   Compiling serde_core v1.0.229
+   Compiling tower-service v0.3.3
+   Compiling typenum v1.20.1
+   Compiling errno v0.3.14
+   Compiling parking_lot_core v0.9.12
+   Compiling parking_lot v0.12.5
+   Compiling signal-hook-registry v1.4.8
+   Compiling mio v1.2.3
+   Compiling socket2 v0.6.5
+   Compiling http-body v1.1.0
+   Compiling generic-array v0.14.7
+   Compiling tokio v1.53.1
+   Compiling zerocopy v0.8.59
+   Compiling slab v0.4.12
+   Compiling httpdate v1.0.3
+   Compiling percent-encoding v2.3.2
+   Compiling tower-layer v0.3.3
+   Compiling mime v0.3.17
+   Compiling unicase v2.9.0
+   Compiling bitflags v2.13.2
+   Compiling futures-task v0.3.34
+   Compiling futures-util v0.3.34
+   Compiling mime_guess v2.0.5
+   Compiling httparse v1.10.1
+   Compiling http-body-util v0.1.5
+   Compiling futures-channel v0.3.34
+   Compiling sync_wrapper v1.0.2
+   Compiling atomic-waker v1.1.2
+   Compiling getrandom v0.4.3
+   Compiling regex-syntax v0.8.11
+   Compiling rustix v1.1.5
+   Compiling serde v1.0.229
+   Compiling regex-automata v0.4.18
+   Compiling ahash v0.8.12
+   Compiling hashbrown v0.14.5
+   Compiling hyper v1.11.1
+   Compiling zmij v1.0.23
+   Compiling form_urlencoded v1.2.2
+   Compiling block-buffer v0.10.4
+   Compiling crypto-common v0.1.7
+   Compiling lazy_static v1.5.1
+   Compiling ryu v1.0.23
+   Compiling linux-raw-sys v0.12.1
+   Compiling futures-sink v0.3.34
+   Compiling memchr v2.8.3
+   Compiling tokio-util v0.7.19
+   Compiling serde_json v1.0.151
+   Compiling matchers v0.2.0
+   Compiling hyper-util v0.1.21
+   Compiling serde_urlencoded v0.7.1
+   Compiling sharded-slab v0.1.7
+   Compiling digest v0.10.7
+   Compiling libsqlite3-sys v0.30.1
+   Compiling hashlink v0.9.1
+   Compiling tower v0.5.3
+   Compiling axum-core v0.5.6
+   Compiling serde_path_to_error v0.1.20
+   Compiling tracing-log v0.2.0
+   Compiling thread_local v1.1.10
+   Compiling cpufeatures v0.2.17
+   Compiling fastrand v2.5.0
+   Compiling fallible-streaming-iterator v0.1.9
+   Compiling matchit v0.8.4
+   Compiling fallible-iterator v0.3.0
+   Compiling nu-ansi-term v0.50.3
+   Compiling http-range-header v0.4.2
+   Compiling tracing-subscriber v0.3.23
+   Compiling tower-http v0.6.11
+   Compiling rusqlite v0.32.1
+   Compiling axum v0.8.9
+   Compiling tempfile v3.27.0
+   Compiling sha2 v0.10.9
+   Compiling async-stream v0.3.6
+   Compiling getrandom v0.3.4
+   Compiling hegemony-server v0.1.0 (/workspace/UndergroundBattle/rust-game)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 27.85s
+     Running unittests src/lib.rs (/workspace/.private-validation/hegemony-v026-target/debug/deps/hegemony_server-fa35e11fc7b74bf5)
+
+running 6 tests
+
+thread 'attachment::tests::actual_hide_recycles_to_owner_new_private_identity_without_response_or_hidden_attachment' panicked at rust-game/src/attachment.rs:214:99:
+called `Result::unwrap()` on an `Err` value: "请选择模式"
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test attachment::tests::actual_hide_recycles_to_owner_new_private_identity_without_response_or_hidden_attachment ... FAILED
+test attachment::tests::invalid_host_type_destroys_instead_of_recycling_and_world_hide_uses_shared_cleanup ... ok
+
+thread 'attachment::tests::attachment_targets_public_humans_or_vampires_any_team_any_region_and_pays_atomically' panicked at rust-game/src/attachment.rs:157:9:
+assertion `left == right` failed
+  left: 5
+ right: 4
+test attachment::tests::attachment_targets_public_humans_or_vampires_any_team_any_region_and_pays_atomically ... FAILED
+test attachment::tests::ordinary_move_preserves_equipment_but_host_departure_and_attachment_destruction_differ ... ok
+test attachment::tests::multiple_equipment_stacks_only_on_host_and_exhausted_host_contributes_zero ... ok
+test attachment::tests::attachment_missing_host_after_murder_response_buries_single_card_without_refund ... ok
+
+failures:
+
+failures:
+    attachment::tests::actual_hide_recycles_to_owner_new_private_identity_without_response_or_hidden_attachment
+    attachment::tests::attachment_targets_public_humans_or_vampires_any_team_any_region_and_pays_atomically
+
+test result: FAILED. 4 passed; 2 failed; 0 ignored; 0 measured; 52 filtered out; finished in 0.01s
+
+error: test failed, to rerun pass `-p hegemony-server --lib`

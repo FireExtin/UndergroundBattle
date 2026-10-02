@@ -22,15 +22,13 @@ impl Game {
     }
     // Non-target queries deliberately do not apply targetability, barriers or shields.
     fn matching_board(&self, frame: &ResolutionFrame, selector: &BoardSelector) -> Vec<String> {
-        self.regions
-            .iter()
-            .enumerate()
-            .flat_map(|(r, region)| region.cards.iter().map(move |c| (r, c)))
+        self.in_play_cards().into_iter()
             .filter(|(r, c)| {
                 let d = card(&c.definition);
                 let kind = match selector.kind {
                     EntityKind::Any => true,
                     EntityKind::Character => !c.face_down && d.kind == "character",
+                    EntityKind::Attachment => !c.face_down && d.kind == "attachment",
                     EntityKind::Hidden => c.face_down,
                     EntityKind::CharacterOrHidden => c.face_down || d.kind == "character",
                 };
@@ -135,13 +133,14 @@ impl Game {
                                 target
                                     .as_ref()
                                     .map(|t| format!(
-                                        " → {}{} [{}]",
+                                        " → {}{}{} [{}]",
                                         t.label,
                                         t.card
                                             .as_ref()
                                             .and_then(|c| c.region)
                                             .map(|r| format!("·地区{}", r + 1))
                                             .unwrap_or_default(),
+                                        t.card.as_ref().map(|c| format!("·拥有者{}", self.players[c.owner.strip_prefix('p').and_then(|s| s.parse::<usize>().ok()).unwrap()].name)).unwrap_or_default(),
                                         t.id
                                     ))
                                     .unwrap_or_default(),
@@ -453,6 +452,7 @@ impl Game {
                     let kind = match spec.kind {
                         EntityKind::Any => true,
                         EntityKind::Character => !c.face_down && d.kind == "character",
+                    EntityKind::Attachment => !c.face_down && d.kind == "attachment",
                         EntityKind::Hidden => c.face_down,
                         EntityKind::CharacterOrHidden => c.face_down || d.kind == "character",
                     };
@@ -468,6 +468,7 @@ impl Game {
                             .subtype
                             .as_ref()
                             .is_none_or(|s| !c.face_down && d.subtypes.contains(s))
+                        && (spec.subtypes_any.is_empty() || (!c.face_down && spec.subtypes_any.iter().any(|s| d.subtypes.contains(s))))
                         && (spec.zone != Zone::Board || self.targetable(actor, c))
                 })
             }
@@ -480,11 +481,7 @@ impl Game {
         spec: &TargetSlotSpec,
     ) -> Vec<ChoiceOption> {
         let options: Vec<ChoiceOption> = match spec.zone {
-            Zone::Board => self
-                .regions
-                .iter()
-                .enumerate()
-                .flat_map(|(r, reg)| reg.cards.iter().map(move |c| (r, c)))
+            Zone::Board => self.in_play_cards().into_iter()
                 .map(|(r, c)| self.option(c, actor, Some(r), None))
                 .collect(),
             Zone::Graveyard => self
@@ -871,7 +868,7 @@ impl Game {
         c
     }
     pub(crate) fn remove_dead(&mut self, target: &str, cause: RemovalCause) {
-        if let Some((region, c)) = self.remove_board(target) {
+        if let Some((region, c)) = self.leave_board(target) {
             let snapshot = self.source_snapshot(&c, Some(region));
             let controller = c.controller;
             let character = !c.face_down && card(&c.definition).kind == "character";
@@ -893,7 +890,7 @@ impl Game {
         }
     }
     fn take_entity(&mut self, id: &str) -> Option<Card> {
-        if let Some((_, c)) = self.remove_board(id) {
+        if let Some((_, c)) = self.leave_board(id) {
             return Some(c);
         }
         for p in &mut self.players {
@@ -903,7 +900,7 @@ impl Game {
         }
         None
     }
-    pub(crate) fn resolve_frame(&mut self, mut frame: ResolutionFrame) -> RuleResult<()> {
+    pub(crate) fn accept_frame_guard(&mut self, frame: &mut ResolutionFrame) -> bool {
         if matches!(frame.guard, GuardState::Unchecked) {
             if frame
                 .targets
@@ -921,19 +918,23 @@ impl Game {
                         .collect::<Vec<_>>()
                         .join("、")
                 ));
-                return Ok(());
+                return false;
             }
             for target in &frame.targets {
                 if target.spec.zone == Zone::Board && self.shield_stops(frame.actor, &target.id) {
                     frame.guard = GuardState::Cancelled;
-                    return Ok(());
+                    return false;
                 }
             }
             frame.guard = GuardState::Accepted;
         }
         if matches!(frame.guard, GuardState::Cancelled) {
-            return Ok(());
+            return false;
         }
+        true
+    }
+    pub(crate) fn resolve_frame(&mut self, mut frame: ResolutionFrame) -> RuleResult<()> {
+        if !self.accept_frame_guard(&mut frame) { return Ok(()); }
         while frame.cursor < frame.steps.len() && self.status == "playing" {
             let step = frame.steps[frame.cursor].clone();
             frame.cursor += 1;
@@ -972,7 +973,7 @@ impl Game {
                 }
                 Op::Hide(entity) => {
                     if let Some(id) = Self::frame_entity(&frame, entity) {
-                        if let Some((r, c)) = self.remove_board(id) {
+                        if let Some((r, c)) = self.leave_board(id) {
                             let mut c = self.fresh(c);
                             c.face_down = true;
                             c.damage = 0;

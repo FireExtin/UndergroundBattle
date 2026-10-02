@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.3",
-  "engineVersion": "rust-v0.2.5",
+  "cardPoolVersion": "limited-v2.4",
+  "engineVersion": "rust-v0.2.6",
   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
   "cards": [
     {
@@ -1379,6 +1379,44 @@
       },
       "unique": false,
       "society": ""
+    },
+    {
+      "id": "BQ022",
+      "name": "合金指虎",
+      "kind": "attachment",
+      "subtypes": [
+        "装备",
+        "武器"
+      ],
+      "cost": 1,
+      "loyalty": [],
+      "loyaltyText": "",
+      "color": "绿",
+      "magic": "",
+      "society": "猎魔人",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 0,
+      "text": "结附于目标人类或吸血鬼角色。\n回收（当受此结附的角色离场时，将该附属移回你的手中）\n持续：受此结附的角色获得永久战斗1。",
+      "keywords": [
+        "回收"
+      ],
+      "unique": false,
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/cards.json",
+        "record": "BQ022",
+        "image": "resource/ymsj-fun.github.io/cards/BQ022 合金指虎.jpg"
+      }
     }
   ],
   "decks": [
@@ -1446,7 +1484,7 @@
       "cards": [
         {
           "cardId": "JC125",
-          "count": 17
+          "count": 14
         },
         {
           "cardId": "LC19",
@@ -1490,6 +1528,10 @@
         },
         {
           "cardId": "JZ08",
+          "count": 3
+        },
+        {
+          "cardId": "BQ022",
           "count": 3
         }
       ]

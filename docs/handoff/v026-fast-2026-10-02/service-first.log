@@ -1,0 +1,64 @@
+   Compiling hegemony-server v0.1.0 (/workspace/UndergroundBattle/rust-game)
+error[E0382]: borrow of partially moved value: `view`
+   --> rust-game/tests/attachment_service.rs:51:67
+    |
+ 47 |     let session=if let Some(w)=view.response_window {
+    |                             - value partially moved here
+...
+ 51 |     let command=RoomCommand{command_id:id.into(),expected_version:view.version,action:session};
+    |                                                                   ^^^^ value borrowed here after partial move
+    |
+    = note: partial move occurs because value has type `ResponseWindowView`, which does not implement the `Copy` trait
+    = note: borrow occurs due to deref coercion to `View`
+note: deref defined here
+   --> /workspace/UndergroundBattle/rust-game/src/room.rs:115:5
+    |
+115 |     type Target = View;
+    |     ^^^^^^^^^^^
+help: borrow this binding in the pattern to avoid moving the value
+    |
+ 47 |     let session=if let Some(ref w)=view.response_window {
+    |                             +++
+
+error[E0507]: cannot move out of dereference of `RoomView`
+   --> rust-game/tests/attachment_service.rs:103:11
+    |
+103 |     let p=store.state_at_now(&seats[0].room_id,&seats[0].token,0).await.unwrap().pending_choice.unwrap();
+    |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -------- value moved due to this method call
+    |           |
+    |           help: consider calling `.as_ref()` or `.as_mut()` to borrow the type's contents
+    |           move occurs because value has type `Option<Choice>`, which does not implement the `Copy` trait
+    |
+note: `Option::<T>::unwrap` takes ownership of the receiver `self`, which moves value
+   --> /rustc/1159e78c4747b02ef996e55082b704c09b970588/library/core/src/option.rs:1006:25
+help: you can `clone` the value and consume it, but this might not be your desired behavior
+    |
+103 |     let p=<Option<Choice> as Clone>::clone(&store.state_at_now(&seats[0].room_id,&seats[0].token,0).await.unwrap().pending_choice).unwrap();
+    |           ++++++++++++++++++++++++++++++++++                                                                                     +
+help: consider cloning the value if the performance cost is acceptable
+    |
+103 |     let p=store.state_at_now(&seats[0].room_id,&seats[0].token,0).await.unwrap().pending_choice.clone().unwrap();
+    |                                                                                                ++++++++
+
+error[E0507]: cannot move out of dereference of `RoomView`
+   --> rust-game/tests/attachment_service.rs:110:20
+    |
+110 |         let choice=mine.pending_choice.unwrap();assert_eq!(choice.kind,"search");assert_eq!(choice.options.len(),2);
+    |                    ^^^^^^^^^^^^^^^^^^^ -------- value moved due to this method call
+    |                    |
+    |                    help: consider calling `.as_ref()` or `.as_mut()` to borrow the type's contents
+    |                    move occurs because value has type `Option<Choice>`, which does not implement the `Copy` trait
+    |
+help: you can `clone` the value and consume it, but this might not be your desired behavior
+    |
+110 |         let choice=<Option<Choice> as Clone>::clone(&mine.pending_choice).unwrap();assert_eq!(choice.kind,"search");assert_eq!(choice.options.len(),2);
+    |                    ++++++++++++++++++++++++++++++++++                   +
+help: consider cloning the value if the performance cost is acceptable
+    |
+110 |         let choice=mine.pending_choice.clone().unwrap();assert_eq!(choice.kind,"search");assert_eq!(choice.options.len(),2);
+    |                                       ++++++++
+
+Some errors have detailed explanations: E0382, E0507.
+For more information about an error, try `rustc --explain E0382`.
+error: could not compile `hegemony-server` (test "attachment_service") due to 3 previous errors
+warning: build failed, waiting for other jobs to finish...

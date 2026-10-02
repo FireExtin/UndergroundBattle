@@ -107,6 +107,13 @@ pub struct CardView {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
+pub struct AttachmentView {
+    #[serde(flatten)]
+    pub card: CardView,
+    pub host_id: String,
+}
+#[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
 pub struct ChoiceOption {
     pub id: String,
     pub label: String,
@@ -235,6 +242,8 @@ pub struct View {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub winner_team: Option<usize>,
     pub regions: Vec<RegionView>,
+    #[serde(default)]
+    pub attachments: Vec<AttachmentView>,
     pub hand: Vec<CardView>,
     pub assets: Vec<CardView>,
     pub graveyard: Vec<CardView>,
@@ -261,6 +270,12 @@ pub struct Card {
     pub damage: u32,
     pub wounds: u32,
     pub shield: u32,
+}
+#[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct Attachment {
+    pub card: Card,
+    pub host_id: String,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Player {
@@ -545,6 +560,8 @@ pub struct Game {
     pub turn: u32,
     pub winner_team: Option<usize>,
     pub regions: Vec<Region>,
+    #[serde(default)]
+    pub attachments: Vec<Attachment>,
     pub world: Vec<Card>,
     pub stack: Vec<StackItem>,
     pub pending: Option<Pending>,

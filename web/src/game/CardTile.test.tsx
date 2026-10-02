@@ -51,3 +51,42 @@ describe('concealed character presentation', () => {
     expect(screen.queryByText('当前费用 1 · 印刷费用 3')).not.toBeInTheDocument();
   });
 });
+
+describe('attachment and current-stat reading', () => {
+  it('shows authoritative effective icons and defense separately from print, including zero values', () => {
+    const definition = { ...testCatalog.cards[0], defense: 1, permanentIcons: { investigation: 1, combat: 1, influence: 1 } };
+    const card = { ...testCard, region: 0, icons: { investigation: 2, combat: 7, influence: 4 }, defense: 3 };
+    const { rerender } = render(<CardContent card={card} definition={definition} attachmentCount={2} />);
+    expect(screen.getByLabelText('当前有效图标：调查2，战斗7，势力4')).toBeInTheDocument();
+    expect(screen.getByLabelText('印刷图标：调查1，战斗1，势力1')).toBeInTheDocument();
+    expect(screen.getByText('当前防御 3 · 印刷防御 1')).toBeInTheDocument();
+    expect(screen.getByLabelText('附属 2 张')).toBeInTheDocument();
+    rerender(<CardContent card={{ ...card, exhausted: true, icons: { investigation: 0, combat: 0, influence: 0 }, defense: 0 }} definition={definition} />);
+    expect(screen.getByLabelText('当前有效图标：调查0，战斗0，势力0')).toBeInTheDocument();
+    expect(screen.getByText('当前防御 0 · 印刷防御 1')).toBeInTheDocument();
+    expect(screen.getByLabelText('印刷图标：调查1，战斗1，势力1')).toBeInTheDocument();
+  });
+
+  it('does not describe effective values as print when the frozen catalog is unavailable', () => {
+    render(<CardContent card={{ ...testCard, region: 0, icons: { investigation: 0, combat: 6, influence: 0 } }} />);
+    expect(screen.getByLabelText('当前有效图标：调查0，战斗6，势力0')).toBeInTheDocument();
+    expect(screen.queryByText('印刷图标')).not.toBeInTheDocument();
+  });
+
+  it('identifies a face-up attachment without presenting it as an independent fighting character', () => {
+    const card = { ...testCard, kind: 'attachment', name: '示例附属', cost: 1, defense: undefined, icons: undefined };
+    const definition = { ...testCatalog.cards[0], kind: 'attachment', subtypes: ['物品'], text: '宿主获得印刷能力。' };
+    render(<CardContent card={card} definition={definition} />);
+    expect(screen.getByText('附属 · 物品')).toBeInTheDocument();
+    expect(screen.getByLabelText('费用 1')).toBeInTheDocument();
+    expect(screen.queryByLabelText('图标：调查0，战斗0，势力1')).not.toBeInTheDocument();
+    expect(screen.getByText('真实印刷文字')).toBeInTheDocument();
+  });
+
+  it('keeps world reading values separate from character effective stats', () => {
+    render(<CardContent card={{ ...testCard, kind: 'region', region: 0 }} definition={{ ...testCatalog.cards[0], points: 3, threshold: 4 }} />);
+    expect(screen.getByText('赢得 3 分 · 控制阈值 4')).toBeInTheDocument();
+    expect(screen.queryByText('当前有效')).not.toBeInTheDocument();
+    expect(screen.queryByText('印刷图标')).not.toBeInTheDocument();
+  });
+});

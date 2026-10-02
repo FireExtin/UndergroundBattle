@@ -69,6 +69,7 @@ impl Game {
             turn: 0,
             winner_team: None,
             regions: vec![],
+            attachments: vec![],
             world: vec![],
             stack: vec![],
             pending: None,
@@ -246,17 +247,26 @@ impl Game {
             .iter()
             .enumerate()
             .find_map(|(i, r)| r.cards.iter().find(|c| c.id == id).map(|c| (i, c)))
+            .or_else(|| self.attachments.iter().find(|a| a.card.id == id).and_then(|a| {
+                self.regions.iter().position(|r| r.cards.iter().any(|c| c.id == a.host_id))
+                    .map(|r| (r, &a.card))
+            }))
     }
     pub(crate) fn board_mut(&mut self, id: &str) -> Option<&mut Card> {
         self.regions
             .iter_mut()
             .find_map(|r| r.cards.iter_mut().find(|c| c.id == id))
+            .or_else(|| self.attachments.iter_mut().find(|a| a.card.id == id).map(|a| &mut a.card))
     }
     pub(crate) fn remove_board(&mut self, id: &str) -> Option<(usize, Card)> {
         for (i, r) in self.regions.iter_mut().enumerate() {
             if let Some(p) = r.cards.iter().position(|c| c.id == id) {
                 return Some((i, r.cards.remove(p)));
             }
+        }
+        if let Some(index) = self.attachments.iter().position(|a| a.card.id == id) {
+            let region = self.board(&self.attachments[index].host_id)?.0;
+            return Some((region, self.attachments.remove(index).card));
         }
         None
     }
@@ -287,6 +297,9 @@ impl Game {
             };
         }
         let d = card(&c.definition);
+        if d.kind != "character" {
+            return Icons::default();
+        }
         let mut result = d.permanent_icons;
         if self.team(c.controller) == self.first_team {
             result = result.add(d.temporary_icons);
@@ -303,6 +316,11 @@ impl Game {
                         result = result.add(*temporary);
                     }
                 }
+            }
+        }
+        for attachment in self.attachments.iter().filter(|a| a.host_id == c.id && self.attachment_host_valid(a)) {
+            if let Some(spec) = &rules::definition(&attachment.card.definition).attachment {
+                result = result.add(spec.host_icons);
             }
         }
         result
@@ -552,7 +570,7 @@ impl Game {
                 });
             }
             "play" => {
-                let id = a.card_id.as_deref().ok_or("请选择事务")?;
+                let id = a.card_id.as_deref().ok_or("请选择事务或附属")?;
                 let c = self.players[seat]
                     .hand
                     .iter()
@@ -560,8 +578,8 @@ impl Game {
                     .ok_or("手牌引用已失效")?
                     .clone();
                 let d = card(&c.definition);
-                if d.kind != "spell" {
-                    return Err("该牌不是事务".into());
+                if d.kind != "spell" && d.kind != "attachment" {
+                    return Err("该牌不是事务或附属".into());
                 }
                 let spec = self.ability_for_action(&c.definition, &a)?;
                 self.check_timing(seat, &spec)?;
@@ -620,6 +638,7 @@ impl Game {
         self.status = "playing".into();
         self.modifiers.clear();
         self.regions.clear();
+        self.attachments.clear();
         self.world.clear();
         self.stack.clear();
         self.pending = None;
@@ -707,6 +726,10 @@ impl Game {
         self.players[seat].deck.clear();
         self.players[seat].assets.clear();
         self.players[seat].graveyard.clear();
+        let leaving = self.regions.iter().flat_map(|r| r.cards.iter())
+            .filter(|c| c.owner == seat).map(|c| c.id.clone()).collect::<Vec<_>>();
+        for id in leaving { self.host_leaves(&id); }
+        self.attachments.retain(|a| a.card.owner != seat);
         for r in &mut self.regions {
             r.cards.retain(|c| c.owner != seat);
         }
@@ -785,6 +808,7 @@ impl Game {
     }
     pub(crate) fn resolve_stack(&mut self, mut item: StackItem) -> RuleResult<()> {
         self.note(format!("结算：{}", item.label));
+        let mut frame = item.frame.take().ok_or("v2堆叠对象缺少已支付的通用frame")?;
         if let Some(c) = item.card.take() {
             if let Some(region) = item.deploy_region {
                 let mut c = self.fresh(c);
@@ -793,15 +817,25 @@ impl Game {
                 let definition = c.definition.clone();
                 self.regions[region].cards.push(c);
                 self.enter_triggers(item.controller, &definition, &id, item.reveal);
+            } else if card(&c.definition).kind == "attachment" {
+                if self.accept_frame_guard(&mut frame) {
+                    let host_id = frame.targets.first().ok_or("附属缺少宿主目标")?.id.clone();
+                    let mut c = self.fresh(c);
+                    c.face_down = false;
+                    c.controller = item.controller;
+                    let id = c.id.clone();
+                    let definition = c.definition.clone();
+                    self.attachments.push(Attachment { card: c, host_id });
+                    self.enter_triggers(item.controller, &definition, &id, false);
+                } else {
+                    self.effects.push_front(Effect::Bury { card: c });
+                }
             } else {
                 // Transactions enter the graveyard after executing their effect.
                 self.effects.push_front(Effect::Bury { card: c });
             }
         }
-        let frame = item.frame.ok_or("v2堆叠对象缺少已支付的通用frame")?;
-        self.effects.push_front(Effect::Frame {
-            frame: Box::new(frame),
-        });
+        self.effects.push_front(Effect::Frame { frame: Box::new(frame) });
         Ok(())
     }
     pub(crate) fn enter_triggers(&mut self, seat: usize, definition: &str, id: &str, reveal: bool) {
@@ -1404,7 +1438,7 @@ impl Game {
         self.players[seat].deck = deck;
     }
     pub(crate) fn return_hand(&mut self, target: &str) {
-        if let Some((_, mut c)) = self.remove_board(target) {
+        if let Some((_, mut c)) = self.leave_board(target) {
             c = self.fresh(c);
             c.face_down = false;
             c.exhausted = false;
@@ -1416,7 +1450,7 @@ impl Game {
         }
     }
     pub(crate) fn to_bottom(&mut self, target: &str) {
-        if let Some((_, mut c)) = self.remove_board(target) {
+        if let Some((_, mut c)) = self.leave_board(target) {
             c = self.fresh(c);
             c.face_down = false;
             c.exhausted = false;
@@ -1442,6 +1476,7 @@ impl Game {
         Ok(())
     }
     pub(crate) fn settle_deaths(&mut self) {
+        self.settle_attachments();
         let previous_effects = self.effects.len();
         // Loss of a defense aura is checked again after the simultaneous lethal set.
         loop {
@@ -1839,6 +1874,12 @@ impl Game {
             win_score: self.win_score(),
             winner_team: self.winner_team,
             regions,
+            attachments: self.attachments.iter().filter_map(|a| {
+                self.board(&a.host_id).map(|(r, _)| AttachmentView {
+                    card: self.card_view(&a.card, seat, Some(r), Some("attachment")),
+                    host_id: a.host_id.clone(),
+                })
+            }).collect(),
             hand: self.players[seat]
                 .hand
                 .iter()
@@ -2002,7 +2043,7 @@ impl Game {
                             ));
                         }
                     }
-                } else if d.kind == "spell" {
+                } else if d.kind == "spell" || d.kind == "attachment" {
                     candidates.extend(self.rule_action_candidates(seat, c, None, "play"));
                 }
             }
@@ -2127,6 +2168,7 @@ mod tests {
             relation: rules::Relation::Any,
             range: rules::Range::Anywhere,
             subtype: None,
+            subtypes_any: vec![],
             min: 1,
             max: 1,
         };
@@ -2180,7 +2222,7 @@ mod tests {
     #[test]
     fn catalog_is_restricted_real_complete_and_decks_are_legal() {
         let c = catalog::catalog();
-        assert_eq!(c.cards.len(), 36);
+        assert_eq!(c.cards.len(), 37);
         let active = c
             .cards
             .iter()
@@ -2197,9 +2239,9 @@ mod tests {
         assert_eq!(
             c.cards
                 .iter()
-                .filter(|d| d.kind == "character" || d.kind == "spell")
+                .filter(|d| d.kind != "region")
                 .count(),
-            26
+            27
         );
         assert_eq!(c.decks.len(), 5);
         for deck in &c.decks {
