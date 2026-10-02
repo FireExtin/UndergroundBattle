@@ -5,6 +5,10 @@ import type { Action, Catalog, SavedSession, Session, View } from './types';
 export function newerView(current: View | null, next: View): View {
   return current && current.roomId === next.roomId && current.version > next.version ? current : next;
 }
+const invalidSeatToken = (error: unknown) => error instanceof ApiError && (error.code === 'invalid_seat_token'
+  || (error.code === 'unauthorized' && error.message === '需要此房间的座位令牌'));
+const needsSiteLogin = (error: unknown) => error instanceof ApiError && (error.status === 401 || error.status === 403) && !invalidSeatToken(error);
+const loginMessage = '访问牌桌需要重新登录。座位和未确认行动已保留，请登录后刷新页面继续。';
 
 export function useGame() {
   const [catalog, setCatalog] = useState<Catalog | null>(null);
@@ -56,10 +60,11 @@ export function useGame() {
         return;
       } catch (e) {
         if (controller.signal.aborted) return;
-        if (e instanceof ApiError && (e.status === 401 || e.status === 403 || e.status === 404)) {
+        if (invalidSeatToken(e) || (e instanceof ApiError && e.code === 'room_not_found')) {
           saveSession(null); savePending(null); pending.current = null; setUncertain(false); setSession(null); setView(null);
           setError('保存的座位已无法恢复。请使用邀请码重新加入牌桌。'); return;
         }
+        if (needsSiteLogin(e)) setError(loginMessage);
       } finally { polling = false; }
       if (!controller.signal.aborted) {
         setConnection('offline'); attempts++;
@@ -110,10 +115,10 @@ export function useGame() {
     }
     catch (e) {
       if (activeRoom.current !== command.roomId) return;
-      confirmed = e instanceof ApiError && e.status >= 400 && e.status < 500;
+      confirmed = e instanceof ApiError && e.status >= 400 && e.status < 500 && !needsSiteLogin(e);
       if (e instanceof ApiError && e.view) accept(e.view);
       else { try { accept(await getState(currentSession)); } catch { /* Keep the last confirmed table visible. */ } }
-      setError(e instanceof ApiError && e.status === 409
+      setError(needsSiteLogin(e) ? loginMessage : e instanceof ApiError && e.status === 409
         ? '牌桌刚刚发生了变化，已同步最新状态。请查看当前可用行动后重新选择。'
         : !confirmed ? '行动结果暂未确认，已尝试同步牌桌。请确认上一行动后继续；重试不会重复执行。'
         : e instanceof Error ? `操作未执行：${e.message}` : '操作未执行，请重试。');

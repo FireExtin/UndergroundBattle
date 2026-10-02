@@ -26,8 +26,9 @@ export function savePending(command: PendingCommand | null) {
 export class ApiError extends Error {
   status: number;
   view?: View;
-  constructor(status: number, message: string, view?: View) {
-    super(message); this.status = status; this.view = view;
+  code?: string;
+  constructor(status: number, message: string, view?: View, code?: string) {
+    super(message); this.status = status; this.view = view; this.code = code;
   }
 }
 
@@ -53,7 +54,7 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
   try { response = await fetch(path, { ...init, signal: timedSignal(init?.signal) }); }
   catch { throw new ApiError(0, '暂时无法连接牌桌服务，请检查连接后重试。'); }
   const body = await response.json().catch(() => ({}));
-  if (!response.ok) throw new ApiError(response.status, body.message || body.error || '操作未完成，请重试。', body.view);
+  if (!response.ok) throw new ApiError(response.status, body.message || body.error || '操作未完成，请重试。', body.view, typeof body.error === 'string' ? body.error : undefined);
   return body as T;
 }
 function timedSignal(signal?: AbortSignal | null): AbortSignal {
@@ -68,7 +69,11 @@ export const getCatalog = async (signal?: AbortSignal) => {
   supportsEntryReceipts = catalog.entryIdempotency === true;
   return catalog;
 };
-export const getState = (session: SavedSession, signal?: AbortSignal) => request<View>(`${roomPath(session)}/state`, { headers: headers(session), signal });
+export const getState = async (session: SavedSession, signal?: AbortSignal) => {
+  const view = await request<View>(`${roomPath(session)}/state`, { headers: headers(session), signal });
+  if (view.roomId !== session.roomId || !Number.isSafeInteger(view.version)) throw new ApiError(0, '同步返回格式不正确，请登录后重新同步。');
+  return view;
+};
 let entryMemory: { intent: string; requestId: string } | null = null;
 async function enterRoom(path: string, values: Record<string, string>): Promise<Session> {
   const intent = JSON.stringify([path, values]);
@@ -98,7 +103,7 @@ export async function pollState(session: SavedSession, version: number, signal: 
   catch { throw new ApiError(0, '暂时无法连接牌桌服务，请检查连接后重试。'); }
   if (response.status === 204) return null;
   const body = await response.json().catch(() => ({}));
-  if (!response.ok) throw new ApiError(response.status, body.message || '同步暂不可用。', body.view);
+  if (!response.ok) throw new ApiError(response.status, body.message || '同步暂不可用。', body.view, typeof body.error === 'string' ? body.error : undefined);
   if (body.roomId !== session.roomId || !Number.isSafeInteger(body.version)) throw new ApiError(0, '同步返回格式不正确。');
   return body as View;
 }

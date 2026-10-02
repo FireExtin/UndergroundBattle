@@ -49,7 +49,8 @@ test('real workerd/WASM with D1 SQLite: concurrency, receipts, rollback and reop
     const retryJoin = await api('/api/rooms/join', joins[0]); assert.deepEqual(retryJoin.body, joined[0].body);
     assert.equal((await api('/api/rooms/join', { ...joins[0], name: '不同' })).status, 409);
     assert.deepEqual(await counts(host.roomId), [4, 0, 3]);
-    assert.equal((await api(path(host, 'state'))).status, 401);
+    const unauthenticated = await api(path(host, 'state'));
+    assert.equal(unauthenticated.status, 401); assert.equal(unauthenticated.body.error, 'invalid_seat_token');
     assert.equal((await api(path(host, 'state') + '?afterVersion=3', null, host)).status, 204);
     const original = { commandId: key(), expectedVersion: 3, action: { kind: 'ready' } };
     const identical = await Promise.all([api(path(host, 'commands'), original, host), api(path(host, 'commands'), original, host)]);
