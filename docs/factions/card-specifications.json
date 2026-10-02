@@ -287,6 +287,57 @@
       "blockedCardIds": [],
       "gameImplementationAccepted": false,
       "independentUiPlaytestStatus": "notRun"
+    },
+    {
+      "id": "B07",
+      "groups": [
+        "G01-foundation",
+        "G02-keywords",
+        "G04-lifecycle",
+        "G05-multizone",
+        "G06-generation"
+      ],
+      "cardIds": [
+        "JC040",
+        "JC078",
+        "JC080",
+        "JC093",
+        "JC098",
+        "JC101",
+        "JC102",
+        "JC103",
+        "JC104",
+        "JC105",
+        "TK001",
+        "TK002",
+        "TK003",
+        "TK005",
+        "TK006",
+        "TK008",
+        "TK009"
+      ],
+      "completedCardIds": [
+        "JC040",
+        "JC078",
+        "JC080",
+        "JC093",
+        "JC098",
+        "JC101",
+        "JC102",
+        "JC103",
+        "JC104",
+        "JC105",
+        "TK001",
+        "TK002",
+        "TK003",
+        "TK005",
+        "TK006",
+        "TK008",
+        "TK009"
+      ],
+      "blockedCardIds": [],
+      "gameImplementationAccepted": false,
+      "independentUiPlaytestStatus": "notRun"
     }
   ],
   "openQuestions": {
@@ -477,16 +528,19 @@
       ]
     },
     "tentacleDefinitionMissing": {
-      "question": "BQ060生成触手已读清，但同ID原指示物图TK004缺失；没有拿locator数值或其他版近似图充当触手完整定义。",
+      "question": "BQ060生成触手已读清；目录候选为TK010而非TK004（炼金巨像），TK010同ID原图缺失。该关联来自目录定位，不能确认完整指示物数值，不能借近似图补齐。",
       "evidenceIds": [
         "card-BQ060"
       ]
     },
     "hourglassMarkerRecipient": {
-      "question": "JC048明确先在沙漏上放时间，随后伤害和牺牲两处却写该地区的时间；归属/印刷勘误未核清，不能偷改两处文字后称完整规则已经定案。",
+      "question": "B06的沙漏放置/地区计数疑点在B07已由原规则手册解决；保留发现与证据，不再作为未解设计阻塞。",
       "evidenceIds": [
-        "card-JC048"
-      ]
+        "card-JC048",
+        "manual-marker-inheritance"
+      ],
+      "status": "resolvedByOriginalRulebook",
+      "resolution": "规则手册印刷P11/PDF13明确：角色上的标志也视作位于其地区，附属上的标志也视作位于其所结附牌或区域。地区计数包含自身沙漏及其他在该地区的卡牌时间，不把印刷文字改成仅该牌时间。"
     },
     "derivedAssaultXTiming": {
       "question": "JC097袭击X按自己墓地角色数，响应中数量变化时检查点尚需明确；不要用费用中X需预先选择的规则替代动态派生X。",
@@ -502,6 +556,26 @@
         "manual-seal",
         "faq-3",
         "bq-keywords-2"
+      ]
+    },
+    "generatedTokenLifecycle": {
+      "question": "生成指示物原图已经逐项读清，但跨区、潜伏、封印、复制和离场消失的统一规则需要原说明完整支持，不能仅凭指示物字样套别的游戏生命周期。无印刷费用不等于可按0费正常打出。",
+      "evidenceIds": [
+        "card-TK001",
+        "card-TK002",
+        "card-TK003",
+        "card-TK005",
+        "card-TK006",
+        "card-TK008",
+        "card-TK009"
+      ]
+    },
+    "deathSealTransition": {
+      "question": "JC105死亡触发中支付2并改封印而非墓地的文字已清；对象是否在死亡过渡留置、与死亡/入墓事件及其他替代目的地的先后须统一，不按已入墓的同名检索处理。",
+      "evidenceIds": [
+        "card-JC105",
+        "manual-seal",
+        "manual-removal"
       ]
     }
   },
@@ -2655,6 +2729,143 @@
         }
       ]
     },
+    "JC040": {
+      "cardId": "JC040",
+      "batchId": "B07",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/JC040 安普莎，冥府的侍女.jpg",
+        "imageSha256": "ef2f30c5f794f900f66facc4fce7e90bb1edd9a56dc84c666331ae3ee2163750",
+        "evidenceId": "card-JC040",
+        "scope": "完整原图、数值和图标/正文放大区人工核对；无印刷费用的生成指示物使用null，不伪造0费可构筑牌。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "040/135",
+        "seriesSymbolObserved": "wineGlass",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "同ID原图SHA与实读印刷号锁定；T是原图统一指示物记号，不能从文件ID推断出版序号或产品。"
+      },
+      "fields": {
+        "name": "安普莎，冥府的侍女",
+        "subtitle": "赫克缇的仆人",
+        "nameInk": "gold",
+        "colorKey": "蓝",
+        "basicType": "角色",
+        "subtypes": [
+          "女妖",
+          "奴仆"
+        ],
+        "printedCollectorCode": "040/135",
+        "seriesSymbol": "wineGlass",
+        "printedCost": 4,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "蓝",
+            "count": 2
+          }
+        ],
+        "domains": [
+          {
+            "id": "death",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 2
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "【触发】每当敌方玩家弃牌时，遏制X。X等于此次弃牌的数量。"
+        ],
+        "additionalPrintedSymbols": [],
+        "nameInkNote": "安普莎为金，冥府的侍女为白；完整观测名保留，不按称号生成另一张牌。"
+      },
+      "abilities": [
+        {
+          "id": "discardRepress",
+          "kind": "optionalEnemyDiscardTrigger",
+          "printedText": "每当敌方玩家弃牌时，遏制X。X等于此次弃牌的数量。",
+          "event": {
+            "category": "opponentPlayerDiscard",
+            "count": "actualCardsDiscardedInThisEvent"
+          },
+          "effect": {
+            "repressCount": "eventDiscardCount",
+            "targetCategory": "player",
+            "targetNotRequiredToBeDiscardingPlayer": true,
+            "markerSelectionPlayer": "targetPlayer",
+            "markerOwner": "targetPlayer",
+            "scope": "allInPlay",
+            "insufficientMarkersRemoveAll": true
+          }
+        }
+      ],
+      "confirmedMechanismIds": [
+        "repress",
+        "deckChoice",
+        "priority",
+        "uniqueInPlay"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "manual-repress",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "locatorDiscrepancies": [],
+      "acceptanceCases": [
+        {
+          "id": "JC040-01",
+          "scenario": "敌方一事件弃三张",
+          "expected": "一次触发X3，不把三张当三个独立X1，也不把检索入手当弃牌。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC040-02",
+          "scenario": "选择遏制玩家",
+          "expected": "原手册关键词选择目标玩家，卡面未指定必须是刚弃牌者。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC040-03",
+          "scenario": "移除势力决定权",
+          "expected": "由目标玩家选其全场拥有的势力；发动者不能替其指定地区。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC040-04",
+          "scenario": "目标仅有两势力、X为3",
+          "expected": "移除全部两枚，不虚构第三枚。",
+          "status": "notRun"
+        }
+      ]
+    },
     "JC042": {
       "cardId": "JC042",
       "batchId": "B03",
@@ -3016,9 +3227,11 @@
           ],
           "printedAddMarkerRecipient": "thisAttachment",
           "printedDamageAndSacrificeCounterRecipient": "carrierRegion",
-          "recipientMismatchUnresolved": true,
+          "recipientMismatchUnresolved": false,
           "damageTargeted": false,
-          "optional": false
+          "optional": false,
+          "regionTimeCountIncludesMarkersOnAllCharactersAndAttachmentsThere": true,
+          "markersRemainPhysicallyOnOriginalRecipient": true
         }
       ],
       "confirmedMechanismIds": [
@@ -3037,12 +3250,11 @@
         "bq-keywords-1",
         "bq-keywords-2",
         "bq-new",
-        "intermezzo"
+        "intermezzo",
+        "manual-marker-inheritance"
       ],
-      "implementationDesignStatus": "needsRuling",
-      "openQuestionIds": [
-        "hourglassMarkerRecipient"
-      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
       "selectionEnabled": false,
       "gameAcceptance": "notAccepted",
       "strategyUiPlaytest": "notRun",
@@ -3057,7 +3269,7 @@
         {
           "id": "JC048-02",
           "scenario": "核对后文计数位置",
-          "expected": "两处原文都写该地区，不能偷偷把文字改成沙漏然后计完整规则已定案。",
+          "expected": "计数整个结附地区的时间，包括位于地区内角色/附属上的时间；标志实际仍在原接收者，不限自身沙漏。",
           "status": "notRun"
         },
         {
@@ -3069,7 +3281,13 @@
         {
           "id": "JC048-04",
           "scenario": "准备步骤",
-          "expected": "强制触发不能跳过；标志归属语义定案前不开放。",
+          "expected": "强制触发不能跳过；先在自身放时间，再按地区含下挂卡牌时间总数处理伤害和至少3的牺牲条件。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC048-05",
+          "scenario": "沙漏原有1时间，同地区祭司有1时间，准备触发",
+          "expected": "沙漏增加1后地区计3，对该地区每个正面角色造成3伤，再按地区阈值牺牲沙漏；不把标志移动到地区牌本身。",
           "status": "notRun"
         }
       ]
@@ -5087,6 +5305,271 @@
         }
       ]
     },
+    "JC078": {
+      "cardId": "JC078",
+      "batchId": "B07",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/JC078 光能盾.jpg",
+        "imageSha256": "d238d2c7412349579c00fa4a5a662e9214bdad13df25b8917ae1034251f7e2b9",
+        "evidenceId": "card-JC078",
+        "scope": "完整原图、数值和图标/正文放大区人工核对；无印刷费用的生成指示物使用null，不伪造0费可构筑牌。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "078/135",
+        "seriesSymbolObserved": "wineGlass",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "同ID原图SHA与实读印刷号锁定；T是原图统一指示物记号，不能从文件ID推断出版序号或产品。"
+      },
+      "fields": {
+        "name": "光能盾",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "白",
+        "basicType": "事务",
+        "subtypes": [
+          "法术",
+          "能量"
+        ],
+        "printedCollectorCode": "078/135",
+        "seriesSymbol": "wineGlass",
+        "printedCost": 1,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "白",
+            "count": 1
+          }
+        ],
+        "domains": [
+          {
+            "id": "holy",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "【快速】行动：本回合中，为目标角色防止接下来将受到的所有伤害。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "preventTurnDamage",
+          "kind": "fastTransaction",
+          "printedText": "本回合中，为目标角色防止接下来将受到的所有伤害。",
+          "target": {
+            "category": "faceUpCharacter",
+            "controller": "any",
+            "printedRegionRestriction": null
+          },
+          "duration": "thisTurn",
+          "preventAllFutureDamage": true,
+          "doesNotHealAlreadyReceivedDamage": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "damagePrevention",
+        "priority",
+        "loyalty"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "manual-repress",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "locatorDiscrepancies": [],
+      "acceptanceCases": [
+        {
+          "id": "JC078-01",
+          "scenario": "目标之前已有伤害",
+          "expected": "只防后续伤害，不治疗已经受到的伤害。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC078-02",
+          "scenario": "回合内多次不同来源伤害",
+          "expected": "全部未来伤害被防，不只下一次或战斗伤害。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC078-03",
+          "scenario": "选择其他地区敌方角色",
+          "expected": "原文没有本方、本地区或白色限制。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "JC080": {
+      "cardId": "JC080",
+      "batchId": "B07",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/JC080 凯拉·歌迪亚教授.jpg",
+        "imageSha256": "c7bafdf8ae63be47047da00b79539f3bd99618e4835da4c335630d4297942564",
+        "evidenceId": "card-JC080",
+        "scope": "完整原图、数值和图标/正文放大区人工核对；无印刷费用的生成指示物使用null，不伪造0费可构筑牌。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "080/135",
+        "seriesSymbolObserved": "wineGlass",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "同ID原图SHA与实读印刷号锁定；T是原图统一指示物记号，不能从文件ID推断出版序号或产品。"
+      },
+      "fields": {
+        "name": "凯拉·歌迪亚教授",
+        "subtitle": "神话研究员",
+        "nameInk": "gold",
+        "colorKey": "白",
+        "basicType": "角色",
+        "subtypes": [
+          "人类",
+          "学者"
+        ],
+        "printedCollectorCode": "080/135",
+        "seriesSymbol": "wineGlass",
+        "printedCost": 6,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "白",
+            "count": 3
+          }
+        ],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 3,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 2,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "公开",
+          "声望"
+        ],
+        "printedRuleTextLines": [
+          "公开　声望",
+          "【触发】每当你抓牌时，你可以在本地区上放置X个本方势力标志。X等于此次抓牌的数量。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "keywords",
+          "kind": "staticKeywords",
+          "printedText": "公开、声望"
+        },
+        {
+          "id": "drawInfluence",
+          "kind": "optionalControllersDrawTrigger",
+          "printedText": "每当你抓牌时，你可以在本地区上放置X个本方势力标志。X等于此次抓牌的数量。",
+          "event": {
+            "player": "sourceController",
+            "category": "drawCards",
+            "count": "actualCardsDrawnInThisEvent"
+          },
+          "effect": {
+            "region": "sourceRegion",
+            "influenceOwner": "sourceController",
+            "count": "eventDrawCount"
+          },
+          "doesNotTriggerForPutIntoHand": true,
+          "noPrintedOncePerTurnLimit": true,
+          "noPrintedReadyRequirement": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "public",
+        "renown",
+        "deckChoice",
+        "priority",
+        "uniqueInPlay"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "manual-repress",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "locatorDiscrepancies": [],
+      "acceptanceCases": [
+        {
+          "id": "JC080-01",
+          "scenario": "一次抓三张",
+          "expected": "一次触发本地区放3，不缩成固定1。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC080-02",
+          "scenario": "底牌/检索牌置于手中",
+          "expected": "不是抓牌，不触发；明确抓牌的替代底抓仍属于抓牌。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC080-03",
+          "scenario": "本源已横置",
+          "expected": "触发文本无未横置限制，不因横置而失去抓牌触发。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC080-04",
+          "scenario": "队友抓牌",
+          "expected": "你指来源操控者，不扩大为友方。",
+          "status": "notRun"
+        }
+      ]
+    },
     "JC085": {
       "cardId": "JC085",
       "batchId": "B02",
@@ -5600,6 +6083,158 @@
         }
       ]
     },
+    "JC093": {
+      "cardId": "JC093",
+      "batchId": "B07",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/JC093 怨灵咒刃.jpg",
+        "imageSha256": "ac3398f82103f6d50eb97b6bb3467244834c8e3867fb92c295d3c420b522bdd2",
+        "evidenceId": "card-JC093",
+        "scope": "完整原图、数值和图标/正文放大区人工核对；无印刷费用的生成指示物使用null，不伪造0费可构筑牌。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "093/135",
+        "seriesSymbolObserved": "wineGlass",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "同ID原图SHA与实读印刷号锁定；T是原图统一指示物记号，不能从文件ID推断出版序号或产品。"
+      },
+      "fields": {
+        "name": "怨灵咒刃",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "黑",
+        "basicType": "附属",
+        "subtypes": [
+          "装备",
+          "武器"
+        ],
+        "printedCollectorCode": "093/135",
+        "seriesSymbol": "wineGlass",
+        "printedCost": 1,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "黑",
+            "count": 2
+          }
+        ],
+        "domains": [
+          {
+            "id": "death",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "结附于目标角色",
+          "【快速】行动　牺牲一个角色：受此结附的角色获得【永久战斗】【永久势力】直到回合结束。该能力每回合至多只能发动两次。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "attach",
+          "kind": "attachmentRestriction",
+          "printedText": "结附于目标角色",
+          "carrier": {
+            "category": "faceUpCharacter",
+            "controller": "any"
+          }
+        },
+        {
+          "id": "sacrificeForCarrier",
+          "kind": "fastAction",
+          "printedText": "牺牲一个角色：受此结附的角色获得永久战斗、永久势力直到回合结束。",
+          "costs": {
+            "sacrificeDistinctControlledFaceUpCharacters": 1
+          },
+          "effect": {
+            "recipient": "thisAttachmentsCarrier",
+            "grantPermanentIcons": {
+              "investigation": 0,
+              "combat": 1,
+              "influence": 1
+            }
+          },
+          "duration": "untilEndOfTurn",
+          "noCurrencyOrSourceExhaustCostPrinted": true,
+          "limit": {
+            "perTurnActivations": 2,
+            "consumedOnActivation": true
+          },
+          "sacrificedCharacterNotRequiredToBeCarrier": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "attachment",
+        "sacrifice",
+        "continuous",
+        "priority",
+        "loyalty"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "manual-repress",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "locatorDiscrepancies": [],
+      "acceptanceCases": [
+        {
+          "id": "JC093-01",
+          "scenario": "以自己另一角色支付",
+          "expected": "牺牲不要求载体；源是附属，不能把附属当角色牺牲。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC093-02",
+          "scenario": "源结附敌方角色",
+          "expected": "原图目标不限本方，效果给予其载体，不改给发动者选的新角色。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC093-03",
+          "scenario": "一回合两次发动都结算",
+          "expected": "合计可授永久战斗2/势力2至回合结束，第三次拒绝。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC093-04",
+          "scenario": "发动被终止",
+          "expected": "已牺牲角色和已用次数不返还。",
+          "status": "notRun"
+        }
+      ]
+    },
     "JC097": {
       "cardId": "JC097",
       "batchId": "B06",
@@ -5726,6 +6361,124 @@
           "id": "JC097-03",
           "scenario": "响应中墓地角色数量变化",
           "expected": "X检查时点待核，不把变化后的状态静默套在声明时快照。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "JC098": {
+      "cardId": "JC098",
+      "batchId": "B07",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/JC098 陷入疯狂的人群.jpg",
+        "imageSha256": "f81f095b8478640efa1cf4cff59cd6763b4e8296d440584d5d8cb1078a2206c9",
+        "evidenceId": "card-JC098",
+        "scope": "完整原图、数值和图标/正文放大区人工核对；无印刷费用的生成指示物使用null，不伪造0费可构筑牌。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "098/135",
+        "seriesSymbolObserved": "wineGlass",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "同ID原图SHA与实读印刷号锁定；T是原图统一指示物记号，不能从文件ID推断出版序号或产品。"
+      },
+      "fields": {
+        "name": "陷入疯狂的人群",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "紫",
+        "basicType": "角色",
+        "subtypes": [
+          "人类"
+        ],
+        "printedCollectorCode": "098/135",
+        "seriesSymbol": "wineGlass",
+        "printedCost": 1,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "紫",
+            "count": 2
+          }
+        ],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "公开"
+        ],
+        "printedRuleTextLines": [
+          "公开（该角色不能被秘密派遣为暗藏者）",
+          "【持续】本地区略过调查对抗步骤。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "public",
+          "kind": "constructionKeyword",
+          "printedText": "公开（该角色不能被秘密派遣为暗藏者）"
+        },
+        {
+          "id": "skipInvestigation",
+          "kind": "regionalStatic",
+          "printedText": "本地区略过调查对抗步骤。",
+          "region": "sourceRegion",
+          "skipWholeConfrontationStep": "investigation",
+          "appliesToAllPlayersInRegion": true,
+          "otherConfrontationStepsPreserved": true,
+          "noPrintedReadyRequirement": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "public",
+        "continuous",
+        "confrontation",
+        "temporaryIcons"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "manual-repress",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "locatorDiscrepancies": [],
+      "acceptanceCases": [
+        {
+          "id": "JC098-01",
+          "scenario": "来源所在地区调查",
+          "expected": "整步略过，不是仅本方调查数归零，也不是调查平局。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC098-02",
+          "scenario": "来源横置",
+          "expected": "持续能力仍在；战斗和势力步骤仍照常。",
           "status": "notRun"
         }
       ]
@@ -6022,6 +6775,676 @@
           "id": "JC100-04",
           "scenario": "封印后回合结束",
           "expected": "防御减值结束，但封印关系不因持续时限结束而自动解除。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "JC101": {
+      "cardId": "JC101",
+      "batchId": "B07",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/JC101 直视深渊.jpg",
+        "imageSha256": "e5463cbdcd3e54a82c8d2af56712cee79c7ea659dcef0a276864a1ccb50e96f2",
+        "evidenceId": "card-JC101",
+        "scope": "完整原图、数值和图标/正文放大区人工核对；无印刷费用的生成指示物使用null，不伪造0费可构筑牌。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "101/135",
+        "seriesSymbolObserved": "wineGlass",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "同ID原图SHA与实读印刷号锁定；T是原图统一指示物记号，不能从文件ID推断出版序号或产品。"
+      },
+      "fields": {
+        "name": "直视深渊",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "紫",
+        "basicType": "附属",
+        "subtypes": [
+          "状态",
+          "诅咒"
+        ],
+        "printedCollectorCode": "101/135",
+        "seriesSymbol": "wineGlass",
+        "printedCost": 1,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "紫",
+            "count": 2
+          }
+        ],
+        "domains": [
+          {
+            "id": "mind",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "结附于目标角色",
+          "【持续】受此结附的角色，其印刷文本框视作空白，且失去所有魔法领域图标。（不影响能力栏内的能力图标）"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "attach",
+          "kind": "attachmentRestriction",
+          "printedText": "结附于目标角色",
+          "carrier": {
+            "category": "faceUpCharacter",
+            "controller": "any"
+          }
+        },
+        {
+          "id": "blankPrintedRules",
+          "kind": "carrierStatic",
+          "printedText": "受此结附的角色，其印刷文本框视作空白，且失去所有魔法领域图标。（不影响能力栏内的能力图标）",
+          "blankCarrierPrintedRulesText": true,
+          "removeCarrierAllMagicDomainIcons": true,
+          "carrierAbilityIconsPreserved": true,
+          "doesNotBlankAllExternalGrantedEffects": true,
+          "endsWhenAttachmentLeaves": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "attachment",
+        "continuous",
+        "priority",
+        "loyalty"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "manual-repress",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "locatorDiscrepancies": [],
+      "acceptanceCases": [
+        {
+          "id": "JC101-01",
+          "scenario": "结附有关键词、行动、触发的角色",
+          "expected": "印刷正文被视空白，领域图标全部失去；能力栏的调查/战斗/势力保持。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC101-02",
+          "scenario": "来自其他载体的赋予效果",
+          "expected": "仅印刷文本空白，不自动抹除全部外部赋予。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC101-03",
+          "scenario": "附属离场",
+          "expected": "移除本持续修正，恢复原印刷正文/领域；已入堆叠能力按独立来源规则处理。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "JC102": {
+      "cardId": "JC102",
+      "batchId": "B07",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/JC102 妖火.jpg",
+        "imageSha256": "842fb9f07e9b8afbc0cecd6c224972c5643bad9b710daa518faceb59fc9a3b5d",
+        "evidenceId": "card-JC102",
+        "scope": "完整原图、数值和图标/正文放大区人工核对；无印刷费用的生成指示物使用null，不伪造0费可构筑牌。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "102/135",
+        "seriesSymbolObserved": "wineGlass",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "同ID原图SHA与实读印刷号锁定；T是原图统一指示物记号，不能从文件ID推断出版序号或产品。"
+      },
+      "fields": {
+        "name": "妖火",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "紫",
+        "basicType": "事务",
+        "subtypes": [
+          "法术",
+          "阴"
+        ],
+        "printedCollectorCode": "102/135",
+        "seriesSymbol": "wineGlass",
+        "printedCost": 2,
+        "loyalty": [],
+        "domains": [
+          {
+            "id": "blood",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "只能在行动阶段打出。",
+          "【快速】行动：对目标角色造成1点伤害。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "phasePlayRestriction",
+          "kind": "playPermissionRestriction",
+          "printedText": "只能在行动阶段打出。",
+          "allowedPhase": "action"
+        },
+        {
+          "id": "oneDamage",
+          "kind": "fastTransaction",
+          "printedText": "对目标角色造成1点伤害。",
+          "target": {
+            "category": "faceUpCharacter",
+            "controller": "any",
+            "printedRegionRestriction": null
+          },
+          "damage": 1
+        }
+      ],
+      "confirmedMechanismIds": [
+        "priority"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "manual-repress",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "locatorDiscrepancies": [],
+      "acceptanceCases": [
+        {
+          "id": "JC102-01",
+          "scenario": "准备/对抗阶段尝试快速妖火",
+          "expected": "阶段限定拒绝，即使响应堆叠也不能越过。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC102-02",
+          "scenario": "行动阶段对方快速响应时打出",
+          "expected": "满足阶段限制，可走快速时机，不把限制误写成只自己标准行动。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC102-03",
+          "scenario": "忠诚要求核对",
+          "expected": "费用2，无紫色忠诚；血脉1不是颜色忠诚1。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "JC103": {
+      "cardId": "JC103",
+      "batchId": "B07",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/JC103 丧失理智的画家.jpg",
+        "imageSha256": "8eee910793908999e04487b65f0e9a398d11ef5b307b360ba6e9d2012adaed63",
+        "evidenceId": "card-JC103",
+        "scope": "完整原图、数值和图标/正文放大区人工核对；无印刷费用的生成指示物使用null，不伪造0费可构筑牌。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "103/135",
+        "seriesSymbolObserved": "wineGlass",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "同ID原图SHA与实读印刷号锁定；T是原图统一指示物记号，不能从文件ID推断出版序号或产品。"
+      },
+      "fields": {
+        "name": "丧失理智的画家",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "紫",
+        "basicType": "角色",
+        "subtypes": [
+          "人类",
+          "艺术家"
+        ],
+        "printedCollectorCode": "103/135",
+        "seriesSymbol": "wineGlass",
+        "printedCost": 3,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "紫",
+            "count": 1
+          }
+        ],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "【快速】行动【横置】：本回合中你下一张正面打出或付费翻面的【紫】牌，所需费用减少1。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "nextPurpleReduction",
+          "kind": "fastAction",
+          "printedText": "本回合中你下一张正面打出或付费翻面的紫牌，所需费用减少1。",
+          "costs": {
+            "exhaustSource": true
+          },
+          "matchingColor": "紫",
+          "appliesToBothNormalPlayAndPaidReveal": true,
+          "reduction": 1,
+          "duration": "thisTurn",
+          "consumedByNextMatchingUse": true,
+          "noCurrencyCostPrinted": true,
+          "loyaltyNotWaived": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "exhaust",
+        "costReduction",
+        "priority",
+        "loyalty",
+        "temporaryIcons"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "manual-repress",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "locatorDiscrepancies": [],
+      "acceptanceCases": [
+        {
+          "id": "JC103-01",
+          "scenario": "支付横置发动",
+          "expected": "无货币费；对本回合下一张紫牌正面打出或付费翻面降1。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC103-02",
+          "scenario": "先打非紫牌或秘密派遣",
+          "expected": "不属于匹配使用；不能消费或获得本次优惠。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC103-03",
+          "scenario": "核对图标",
+          "expected": "永久调查1/势力1、临时战斗1，无领域图标；不要把能力栏势力当神圣领域。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "JC104": {
+      "cardId": "JC104",
+      "batchId": "B07",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/JC104 占卜师.jpg",
+        "imageSha256": "877aa980256730bb35350f1b99c2aa75b9110cd5905e61412664e2a89ef4e8da",
+        "evidenceId": "card-JC104",
+        "scope": "完整原图、数值和图标/正文放大区人工核对；无印刷费用的生成指示物使用null，不伪造0费可构筑牌。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "104/135",
+        "seriesSymbolObserved": "wineGlass",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "同ID原图SHA与实读印刷号锁定；T是原图统一指示物记号，不能从文件ID推断出版序号或产品。"
+      },
+      "fields": {
+        "name": "占卜师",
+        "subtitle": "神秘的吉卜赛妇人",
+        "nameInk": "white",
+        "colorKey": "紫",
+        "basicType": "角色",
+        "subtypes": [
+          "人类",
+          "法师"
+        ],
+        "printedCollectorCode": "104/135",
+        "seriesSymbol": "wineGlass",
+        "printedCost": 2,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "紫",
+            "count": 1
+          }
+        ],
+        "domains": [
+          {
+            "id": "stars",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "【进场触发】预测3。（检视你牌库顶的三张牌，将其中任意数量的牌以任意顺序置于你的牌库顶，将其余的牌以任意顺序置于你的牌库底。）"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "entryForecast",
+          "kind": "optionalEnterTrigger",
+          "printedText": "预测3。",
+          "forecastCount": 3,
+          "source": "controllersDeckTop",
+          "chooseTopSubsetAndOrder": true,
+          "chooseRemainderBottomOrder": true,
+          "doesNotDraw": true,
+          "privateViewer": "sourceController",
+          "triggersOnReveal": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "deckChoice",
+        "priority",
+        "temporaryIcons",
+        "loyalty"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "manual-repress",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "locatorDiscrepancies": [],
+      "acceptanceCases": [
+        {
+          "id": "JC104-01",
+          "scenario": "三张预测",
+          "expected": "可选0至3张留顶，各自任意排序，其余置底；没有结束后强制抓牌。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC104-02",
+          "scenario": "对手/旁观者投影",
+          "expected": "私密检视不公开牌面或排序；不能把选择续体公开给所有人。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC104-03",
+          "scenario": "现身",
+          "expected": "正面进场触发也会发生，不限从手通常打出。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "JC105": {
+      "cardId": "JC105",
+      "batchId": "B07",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/JC105 噩梦领主.jpg",
+        "imageSha256": "90a884c4313bfe801e5ca6b5a6ce18c4505e2d25143325139095929d1cc1a79f",
+        "evidenceId": "card-JC105",
+        "scope": "完整原图、数值和图标/正文放大区人工核对；无印刷费用的生成指示物使用null，不伪造0费可构筑牌。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "105/135",
+        "seriesSymbolObserved": "wineGlass",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "同ID原图SHA与实读印刷号锁定；T是原图统一指示物记号，不能从文件ID推断出版序号或产品。"
+      },
+      "fields": {
+        "name": "噩梦领主",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "紫",
+        "basicType": "角色",
+        "subtypes": [
+          "梦魔",
+          "梦境"
+        ],
+        "printedCollectorCode": "105/135",
+        "seriesSymbol": "wineGlass",
+        "printedCost": 4,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "紫",
+            "count": 2
+          }
+        ],
+        "domains": [
+          {
+            "id": "stars",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "灵体"
+        ],
+        "printedRuleTextLines": [
+          "灵体",
+          "【持续】所有其他本方灵体角色获得【临时势力】。",
+          "【触发】当另一个本方灵体角色死去时，你可以支付2，若你如此做，则将该角色封印在目标角色上，而非置入墓地。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "spirit",
+          "kind": "combatParticipationKeyword",
+          "printedText": "灵体",
+          "doesNotParticipateInCombatConfrontation": true
+        },
+        {
+          "id": "otherOwnSpirits",
+          "kind": "conditionalStatic",
+          "printedText": "所有其他本方灵体角色获得临时势力。",
+          "scope": {
+            "controller": "sourceController",
+            "category": "faceUpCharacter",
+            "keyword": "灵体",
+            "excludeSourceInstance": true,
+            "region": "any"
+          },
+          "grantTemporaryIcons": {
+            "investigation": 0,
+            "combat": 0,
+            "influence": 1
+          }
+        },
+        {
+          "id": "sealDyingSpirit",
+          "kind": "optionalOtherOwnSpiritDeathTrigger",
+          "printedText": "当另一个本方灵体角色死去时，你可以支付2，若你如此做，则将该角色封印在目标角色上，而非置入墓地。",
+          "event": {
+            "controller": "sourceController",
+            "category": "faceUpCharacter",
+            "keyword": "灵体",
+            "excludeSourceInstance": true
+          },
+          "paymentInsideResolution": {
+            "currency": 2,
+            "optional": true
+          },
+          "target": {
+            "category": "faceUpCharacter",
+            "controller": "any",
+            "printedRegionRestriction": null
+          },
+          "effect": "sealThatDyingCharacterOnTargetInsteadOfGraveyard",
+          "zoneTransitionOrderUnresolved": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "spirit",
+        "continuous",
+        "seal",
+        "priority",
+        "temporaryIcons"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "manual-repress",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2"
+      ],
+      "implementationDesignStatus": "needsRuling",
+      "openQuestionIds": [
+        "deathSealTransition"
+      ],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "locatorDiscrepancies": [],
+      "acceptanceCases": [
+        {
+          "id": "JC105-01",
+          "scenario": "领主与另一灵体本方角色",
+          "expected": "只另一角色获得临时势力1；不是永久图标，不给来源自身。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC105-02",
+          "scenario": "其他地区队友灵体",
+          "expected": "本方不扩大成友方；自己操控其他地区灵体则属于范围。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC105-03",
+          "scenario": "另一本方灵体死亡",
+          "expected": "触发结算中可选择付2；不把2当提前行动费用。",
+          "status": "notRun"
+        },
+        {
+          "id": "JC105-04",
+          "scenario": "改封印而非墓地",
+          "expected": "需要保存死亡对象/拥有者和目标关系，不能先丢入墓再找同名牌。",
           "status": "notRun"
         }
       ]
@@ -12465,6 +13888,817 @@
           "status": "notRun"
         }
       ]
+    },
+    "TK001": {
+      "cardId": "TK001",
+      "batchId": "B07",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/TK001 行尸.jpg",
+        "imageSha256": "06cdd3b3396ef41cc1669192c5056cf0151460b5285f1645bede86809aa399e0",
+        "evidenceId": "card-TK001",
+        "scope": "完整原图、数值和图标/正文放大区人工核对；无印刷费用的生成指示物使用null，不伪造0费可构筑牌。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "T",
+        "seriesSymbolObserved": null,
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "同ID原图SHA与实读印刷号锁定；T是原图统一指示物记号，不能从文件ID推断出版序号或产品。"
+      },
+      "fields": {
+        "name": "行尸",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "黑",
+        "basicType": "指示物角色",
+        "subtypes": [
+          "不死生物",
+          "行尸"
+        ],
+        "printedCollectorCode": "T",
+        "seriesSymbol": null,
+        "printedCost": null,
+        "loyalty": [],
+        "domains": [
+          {
+            "id": "death",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "迟缓"
+        ],
+        "printedRuleTextLines": [
+          "迟缓（该角色横置进场）"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "slow",
+          "kind": "entryExhaustionKeyword",
+          "printedText": "迟缓（该角色横置进场）",
+          "faceUpEntryExhausted": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "token",
+        "slow"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "manual-repress",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2"
+      ],
+      "implementationDesignStatus": "needsRuling",
+      "openQuestionIds": [
+        "generatedTokenLifecycle"
+      ],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "locatorDiscrepancies": [],
+      "acceptanceCases": [
+        {
+          "id": "TK001-01",
+          "scenario": "生成行尸",
+          "expected": "黑色指示物角色，永久战斗1、防御1，横置进场。",
+          "status": "notRun"
+        },
+        {
+          "id": "TK001-02",
+          "scenario": "将其当零费普通手牌打出",
+          "expected": "没有印刷费用；null不等于0，也不提供普通玩家牌构筑许可。",
+          "status": "notRun"
+        }
+      ],
+      "constructionRole": "generatedTokenNotPlayerDeckCard"
+    },
+    "TK002": {
+      "cardId": "TK002",
+      "batchId": "B07",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/TK002 黄昏界域.jpg",
+        "imageSha256": "0984571c18369b7c10545b59dc35333492ef3f6184bae3a27f62dc3e692e4c80",
+        "evidenceId": "card-TK002",
+        "scope": "完整原图、数值和图标/正文放大区人工核对；无印刷费用的生成指示物使用null，不伪造0费可构筑牌。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "T",
+        "seriesSymbolObserved": null,
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "同ID原图SHA与实读印刷号锁定；T是原图统一指示物记号，不能从文件ID推断出版序号或产品。"
+      },
+      "fields": {
+        "name": "黄昏界域",
+        "subtitle": null,
+        "nameInk": "gold",
+        "colorKey": "紫",
+        "basicType": "指示物附属",
+        "subtypes": [
+          "黄昏",
+          "异界"
+        ],
+        "printedCollectorCode": "T",
+        "seriesSymbol": null,
+        "printedCost": null,
+        "loyalty": [],
+        "domains": [
+          {
+            "id": "stars",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "结附于目标地区",
+          "【持续】受此结附的地区额外具有黄昏和异界类别。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "attach",
+          "kind": "attachmentRestriction",
+          "printedText": "结附于目标地区",
+          "carrier": {
+            "category": "region"
+          }
+        },
+        {
+          "id": "extraTypes",
+          "kind": "conditionalStatic",
+          "printedText": "受此结附的地区额外具有黄昏和异界类别。",
+          "addCarrierSubtypes": [
+            "黄昏",
+            "异界"
+          ],
+          "otherCarrierSubtypesPreserved": true
+        },
+        {
+          "id": "goldTitle",
+          "kind": "uniquePrintedIdentity",
+          "printedText": "金色名称",
+          "sameNameUniqueLimitPerControllerInPlay": 1
+        }
+      ],
+      "confirmedMechanismIds": [
+        "token",
+        "attachment",
+        "continuous",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "manual-repress",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2"
+      ],
+      "implementationDesignStatus": "needsRuling",
+      "openQuestionIds": [
+        "generatedTokenLifecycle"
+      ],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "locatorDiscrepancies": [],
+      "acceptanceCases": [
+        {
+          "id": "TK002-01",
+          "scenario": "生成并结附",
+          "expected": "指示物附属而非角色，无防御字段，有临时调查1。",
+          "status": "notRun"
+        },
+        {
+          "id": "TK002-02",
+          "scenario": "地区已有其他类别",
+          "expected": "额外加入黄昏/异界，不覆盖原印刷类别。",
+          "status": "notRun"
+        },
+        {
+          "id": "TK002-03",
+          "scenario": "同一玩家控制同名金色指示物附属",
+          "expected": "原手册独有适用于卡牌，不仅角色；相关生成/牺牲流程仍未实现。",
+          "status": "notRun"
+        }
+      ],
+      "constructionRole": "generatedTokenNotPlayerDeckCard"
+    },
+    "TK003": {
+      "cardId": "TK003",
+      "batchId": "B07",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/TK003 警察.jpg",
+        "imageSha256": "87655a55aca95302110ead41a70dc047e791fb33312cd73a2691071393fe654b",
+        "evidenceId": "card-TK003",
+        "scope": "完整原图、数值和图标/正文放大区人工核对；无印刷费用的生成指示物使用null，不伪造0费可构筑牌。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "T",
+        "seriesSymbolObserved": null,
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "同ID原图SHA与实读印刷号锁定；T是原图统一指示物记号，不能从文件ID推断出版序号或产品。"
+      },
+      "fields": {
+        "name": "警察",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "灰",
+        "basicType": "指示物角色",
+        "subtypes": [
+          "人类",
+          "警察"
+        ],
+        "printedCollectorCode": "T",
+        "seriesSymbol": null,
+        "printedCost": null,
+        "loyalty": [],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "公开"
+        ],
+        "printedRuleTextLines": [
+          "公开"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "public",
+          "kind": "constructionKeyword",
+          "printedText": "公开",
+          "cannotBeSecretlyDeployedFromHand": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "token",
+        "public",
+        "temporaryIcons"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "manual-repress",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2"
+      ],
+      "implementationDesignStatus": "needsRuling",
+      "openQuestionIds": [
+        "generatedTokenLifecycle"
+      ],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "locatorDiscrepancies": [],
+      "acceptanceCases": [
+        {
+          "id": "TK003-01",
+          "scenario": "生成警察",
+          "expected": "临时战斗1、永久势力1、防御1；不是两个临时图标。",
+          "status": "notRun"
+        },
+        {
+          "id": "TK003-02",
+          "scenario": "丧失先手",
+          "expected": "只临时战斗失效，永久势力仍可计入。",
+          "status": "notRun"
+        }
+      ],
+      "constructionRole": "generatedTokenNotPlayerDeckCard"
+    },
+    "TK005": {
+      "cardId": "TK005",
+      "batchId": "B07",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/TK005 梦魇.jpg",
+        "imageSha256": "2913fbdcc624957442c80a4fbc987c9f17f70b151368897b6e1416c3a12647e5",
+        "evidenceId": "card-TK005",
+        "scope": "完整原图、数值和图标/正文放大区人工核对；无印刷费用的生成指示物使用null，不伪造0费可构筑牌。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "T",
+        "seriesSymbolObserved": null,
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "同ID原图SHA与实读印刷号锁定；T是原图统一指示物记号，不能从文件ID推断出版序号或产品。"
+      },
+      "fields": {
+        "name": "梦魔",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "紫",
+        "basicType": "指示物角色",
+        "subtypes": [
+          "梦魔"
+        ],
+        "printedCollectorCode": "T",
+        "seriesSymbol": null,
+        "printedCost": null,
+        "loyalty": [],
+        "domains": [
+          {
+            "id": "mind",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "灵体"
+        ],
+        "printedRuleTextLines": [
+          "灵体"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "spirit",
+          "kind": "combatParticipationKeyword",
+          "printedText": "灵体",
+          "doesNotParticipateInCombatConfrontation": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "token",
+        "spirit",
+        "temporaryIcons"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "manual-repress",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2"
+      ],
+      "implementationDesignStatus": "needsRuling",
+      "openQuestionIds": [
+        "generatedTokenLifecycle"
+      ],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "locatorDiscrepancies": [],
+      "acceptanceCases": [
+        {
+          "id": "TK005-01",
+          "scenario": "生成梦魔",
+          "expected": "临时势力1、防御1、心灵领域1；无调查或战斗图标。",
+          "status": "notRun"
+        },
+        {
+          "id": "TK005-02",
+          "scenario": "其他效果赋予战斗图标",
+          "expected": "灵体仍不能参与战斗对抗；灵体不等于防止所有伤害。",
+          "status": "notRun"
+        }
+      ],
+      "constructionRole": "generatedTokenNotPlayerDeckCard"
+    },
+    "TK006": {
+      "cardId": "TK006",
+      "batchId": "B07",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/TK006 仙灵斗士.jpg",
+        "imageSha256": "a3dcbb29525f0c0c4259e10e126ea190323a525178d54b98640f69455afde711",
+        "evidenceId": "card-TK006",
+        "scope": "完整原图、数值和图标/正文放大区人工核对；无印刷费用的生成指示物使用null，不伪造0费可构筑牌。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "T",
+        "seriesSymbolObserved": null,
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "同ID原图SHA与实读印刷号锁定；T是原图统一指示物记号，不能从文件ID推断出版序号或产品。"
+      },
+      "fields": {
+        "name": "仙灵斗士",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "绿",
+        "basicType": "指示物角色",
+        "subtypes": [
+          "仙灵"
+        ],
+        "printedCollectorCode": "T",
+        "seriesSymbol": null,
+        "printedCost": null,
+        "loyalty": [],
+        "domains": [
+          {
+            "id": "stars",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "护卫1"
+        ],
+        "printedRuleTextLines": [
+          "护卫1"
+        ],
+        "additionalPrintedSymbols": [],
+        "organizationGlyphObserved": "greenFaerieWing"
+      },
+      "abilities": [
+        {
+          "id": "guard",
+          "kind": "combatKeyword",
+          "printedText": "护卫1",
+          "combatDamageReduction": 1
+        }
+      ],
+      "confirmedMechanismIds": [
+        "token",
+        "combatTraits"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "manual-repress",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2"
+      ],
+      "implementationDesignStatus": "needsRuling",
+      "openQuestionIds": [
+        "generatedTokenLifecycle"
+      ],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "locatorDiscrepancies": [],
+      "acceptanceCases": [
+        {
+          "id": "TK006-01",
+          "scenario": "生成斗士",
+          "expected": "永久战斗1、防御1、星辰领域1、护卫1。",
+          "status": "notRun"
+        },
+        {
+          "id": "TK006-02",
+          "scenario": "查看其组织徽记",
+          "expected": "原图绿色仙灵翅翼图案单独保留，不据此新增第九个颜色派系。",
+          "status": "notRun"
+        }
+      ],
+      "constructionRole": "generatedTokenNotPlayerDeckCard"
+    },
+    "TK008": {
+      "cardId": "TK008",
+      "batchId": "B07",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/TK008 邪教徒.jpg",
+        "imageSha256": "b5b76f1d15859421d7780829c491f5853e09723a85a17a4e02cad6132f75e779",
+        "evidenceId": "card-TK008",
+        "scope": "完整原图、数值和图标/正文放大区人工核对；无印刷费用的生成指示物使用null，不伪造0费可构筑牌。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "T",
+        "seriesSymbolObserved": null,
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "同ID原图SHA与实读印刷号锁定；T是原图统一指示物记号，不能从文件ID推断出版序号或产品。"
+      },
+      "fields": {
+        "name": "邪教徒",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "红",
+        "basicType": "指示物角色",
+        "subtypes": [
+          "人类",
+          "邪教徒"
+        ],
+        "printedCollectorCode": "T",
+        "seriesSymbol": null,
+        "printedCost": null,
+        "loyalty": [],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "【行动】牺牲三个邪教徒角色：毁灭目标地区。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "destroyBySacrifice",
+          "kind": "standardAction",
+          "printedText": "牺牲三个邪教徒角色：毁灭目标地区。",
+          "costs": {
+            "sacrificeDistinctControlledFaceUpCharacters": {
+              "subtype": "邪教徒",
+              "count": 3
+            }
+          },
+          "sourceNotRequiredAmongSacrificedCharacters": true,
+          "noCurrencyOrSourceExhaustCostPrinted": true,
+          "target": {
+            "category": "region"
+          },
+          "effect": "destroyTargetRegion"
+        }
+      ],
+      "confirmedMechanismIds": [
+        "token",
+        "sacrifice",
+        "timeDestroy",
+        "priority"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "manual-repress",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2"
+      ],
+      "implementationDesignStatus": "needsRuling",
+      "openQuestionIds": [
+        "generatedTokenLifecycle"
+      ],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "locatorDiscrepancies": [],
+      "acceptanceCases": [
+        {
+          "id": "TK008-01",
+          "scenario": "支付三邪教徒费用",
+          "expected": "须三个不同本方操控正面邪教徒；不能牺牲一个三次，也不能牺牲敌方。",
+          "status": "notRun"
+        },
+        {
+          "id": "TK008-02",
+          "scenario": "选择三名其他本方邪教徒",
+          "expected": "卡面未要求来源包含在代价中，也未印横置来源。",
+          "status": "notRun"
+        },
+        {
+          "id": "TK008-03",
+          "scenario": "毁灭地区",
+          "expected": "按规则包标记毁灭；不是自动获得该地区或立刻移除地区。",
+          "status": "notRun"
+        }
+      ],
+      "constructionRole": "generatedTokenNotPlayerDeckCard"
+    },
+    "TK009": {
+      "cardId": "TK009",
+      "batchId": "B07",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/TK009 钟摆祭司.jpg",
+        "imageSha256": "53fab1195f462cad1c3499705a2dc6bc5d2d116d9a1edd8a991958e0cbb6f707",
+        "evidenceId": "card-TK009",
+        "scope": "完整原图、数值和图标/正文放大区人工核对；无印刷费用的生成指示物使用null，不伪造0费可构筑牌。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "T",
+        "seriesSymbolObserved": null,
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "同ID原图SHA与实读印刷号锁定；T是原图统一指示物记号，不能从文件ID推断出版序号或产品。"
+      },
+      "fields": {
+        "name": "钟摆祭司",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "红",
+        "basicType": "指示物角色",
+        "subtypes": [
+          "人类",
+          "法师",
+          "邪教徒"
+        ],
+        "printedCollectorCode": "T",
+        "seriesSymbol": null,
+        "printedCost": null,
+        "loyalty": [],
+        "domains": [
+          {
+            "id": "blood",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 1,
+          "combat": 2,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 2,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "【触发】每当一个角色死亡时，在钟摆祭司上放置一个时间标志。",
+          "【持续】在其上每有一个时间标志，钟摆祭司就获得一个额外的【永久势力】。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "timeFromAnyDeath",
+          "kind": "optionalCharacterDeathTrigger",
+          "printedText": "每当一个角色死亡时，在钟摆祭司上放置一个时间标志。",
+          "event": {
+            "category": "faceUpCharacter",
+            "controller": "any",
+            "region": "any"
+          },
+          "addTimeToThisSource": 1,
+          "notAnyLeavePlayTrigger": true
+        },
+        {
+          "id": "timeInfluence",
+          "kind": "conditionalStatic",
+          "printedText": "在其上每有一个时间标志，钟摆祭司就获得一个额外的永久势力。",
+          "perTimeMarkerPermanentInfluence": 1
+        }
+      ],
+      "confirmedMechanismIds": [
+        "token",
+        "timeDestroy",
+        "continuous",
+        "priority"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "manual-repress",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2"
+      ],
+      "implementationDesignStatus": "needsRuling",
+      "openQuestionIds": [
+        "generatedTokenLifecycle"
+      ],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "locatorDiscrepancies": [],
+      "acceptanceCases": [
+        {
+          "id": "TK009-01",
+          "scenario": "与JC045同名对照",
+          "expected": "这是无费用/忠诚印刷的指示物角色，不能复制JC045的4费红忠诚2作为自身属性。",
+          "status": "notRun"
+        },
+        {
+          "id": "TK009-02",
+          "scenario": "三时间而没有其他效果",
+          "expected": "增加3永久势力；自身没有时间阈值牺牲或毁灭文字。",
+          "status": "notRun"
+        }
+      ],
+      "constructionRole": "generatedTokenNotPlayerDeckCard"
     },
     "WM071": {
       "cardId": "WM071",

@@ -2175,6 +2175,319 @@
       ],
       "remainingReview": "全部游戏字段已按固定原图核对，规则疑点/共享流程与未运行验收另见card-specifications.json。",
       "editionStatus": "pinnedImageVariant"
+    },
+    "TK001": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-TK001",
+      "verifiedFields": {
+        "name": "行尸",
+        "colorKey": "黑",
+        "basicType": "指示物角色"
+      },
+      "abilitySummary": "迟缓（该角色横置进场）",
+      "confirmedMechanismIds": [
+        "token",
+        "slow"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "所有游戏字段已按固定原图核对；共享规则、待裁定项和未运行验收另见card-specifications.json。"
+    },
+    "TK002": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-TK002",
+      "verifiedFields": {
+        "name": "黄昏界域",
+        "colorKey": "紫",
+        "basicType": "指示物附属"
+      },
+      "abilitySummary": "结附于目标地区；【持续】受此结附的地区额外具有黄昏和异界类别。",
+      "confirmedMechanismIds": [
+        "token",
+        "attachment",
+        "continuous",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "所有游戏字段已按固定原图核对；共享规则、待裁定项和未运行验收另见card-specifications.json。"
+    },
+    "TK003": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-TK003",
+      "verifiedFields": {
+        "name": "警察",
+        "colorKey": "灰",
+        "basicType": "指示物角色"
+      },
+      "abilitySummary": "公开",
+      "confirmedMechanismIds": [
+        "token",
+        "public",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "所有游戏字段已按固定原图核对；共享规则、待裁定项和未运行验收另见card-specifications.json。"
+    },
+    "TK005": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-TK005",
+      "verifiedFields": {
+        "name": "梦魔",
+        "colorKey": "紫",
+        "basicType": "指示物角色"
+      },
+      "abilitySummary": "灵体",
+      "confirmedMechanismIds": [
+        "token",
+        "spirit",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "所有游戏字段已按固定原图核对；共享规则、待裁定项和未运行验收另见card-specifications.json。"
+    },
+    "TK006": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-TK006",
+      "verifiedFields": {
+        "name": "仙灵斗士",
+        "colorKey": "绿",
+        "basicType": "指示物角色"
+      },
+      "abilitySummary": "护卫1",
+      "confirmedMechanismIds": [
+        "token",
+        "combatTraits"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "所有游戏字段已按固定原图核对；共享规则、待裁定项和未运行验收另见card-specifications.json。"
+    },
+    "TK008": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-TK008",
+      "verifiedFields": {
+        "name": "邪教徒",
+        "colorKey": "红",
+        "basicType": "指示物角色"
+      },
+      "abilitySummary": "【行动】牺牲三个邪教徒角色：毁灭目标地区。",
+      "confirmedMechanismIds": [
+        "token",
+        "sacrifice",
+        "timeDestroy",
+        "priority"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "所有游戏字段已按固定原图核对；共享规则、待裁定项和未运行验收另见card-specifications.json。"
+    },
+    "TK009": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-TK009",
+      "verifiedFields": {
+        "name": "钟摆祭司",
+        "colorKey": "红",
+        "basicType": "指示物角色"
+      },
+      "abilitySummary": "【触发】每当一个角色死亡时，在钟摆祭司上放置一个时间标志。；【持续】在其上每有一个时间标志，钟摆祭司就获得一个额外的【永久势力】。",
+      "confirmedMechanismIds": [
+        "token",
+        "timeDestroy",
+        "continuous",
+        "priority"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "所有游戏字段已按固定原图核对；共享规则、待裁定项和未运行验收另见card-specifications.json。"
+    },
+    "JC040": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC040",
+      "verifiedFields": {
+        "name": "安普莎，冥府的侍女",
+        "colorKey": "蓝",
+        "basicType": "角色"
+      },
+      "abilitySummary": "【触发】每当敌方玩家弃牌时，遏制X。X等于此次弃牌的数量。",
+      "confirmedMechanismIds": [
+        "repress",
+        "deckChoice",
+        "priority",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "所有游戏字段已按固定原图核对；共享规则、待裁定项和未运行验收另见card-specifications.json。"
+    },
+    "JC078": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC078",
+      "verifiedFields": {
+        "name": "光能盾",
+        "colorKey": "白",
+        "basicType": "事务"
+      },
+      "abilitySummary": "【快速】行动：本回合中，为目标角色防止接下来将受到的所有伤害。",
+      "confirmedMechanismIds": [
+        "damagePrevention",
+        "priority",
+        "loyalty"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "所有游戏字段已按固定原图核对；共享规则、待裁定项和未运行验收另见card-specifications.json。"
+    },
+    "JC080": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC080",
+      "verifiedFields": {
+        "name": "凯拉·歌迪亚教授",
+        "colorKey": "白",
+        "basicType": "角色"
+      },
+      "abilitySummary": "公开　声望；【触发】每当你抓牌时，你可以在本地区上放置X个本方势力标志。X等于此次抓牌的数量。",
+      "confirmedMechanismIds": [
+        "public",
+        "renown",
+        "deckChoice",
+        "priority",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "所有游戏字段已按固定原图核对；共享规则、待裁定项和未运行验收另见card-specifications.json。"
+    },
+    "JC093": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC093",
+      "verifiedFields": {
+        "name": "怨灵咒刃",
+        "colorKey": "黑",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标角色；【快速】行动　牺牲一个角色：受此结附的角色获得【永久战斗】【永久势力】直到回合结束。该能力每回合至多只能发动两次。",
+      "confirmedMechanismIds": [
+        "attachment",
+        "sacrifice",
+        "continuous",
+        "priority",
+        "loyalty"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "所有游戏字段已按固定原图核对；共享规则、待裁定项和未运行验收另见card-specifications.json。"
+    },
+    "JC098": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC098",
+      "verifiedFields": {
+        "name": "陷入疯狂的人群",
+        "colorKey": "紫",
+        "basicType": "角色"
+      },
+      "abilitySummary": "公开（该角色不能被秘密派遣为暗藏者）；【持续】本地区略过调查对抗步骤。",
+      "confirmedMechanismIds": [
+        "public",
+        "continuous",
+        "confrontation",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "所有游戏字段已按固定原图核对；共享规则、待裁定项和未运行验收另见card-specifications.json。"
+    },
+    "JC101": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC101",
+      "verifiedFields": {
+        "name": "直视深渊",
+        "colorKey": "紫",
+        "basicType": "附属"
+      },
+      "abilitySummary": "结附于目标角色；【持续】受此结附的角色，其印刷文本框视作空白，且失去所有魔法领域图标。（不影响能力栏内的能力图标）",
+      "confirmedMechanismIds": [
+        "attachment",
+        "continuous",
+        "priority",
+        "loyalty"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "所有游戏字段已按固定原图核对；共享规则、待裁定项和未运行验收另见card-specifications.json。"
+    },
+    "JC102": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC102",
+      "verifiedFields": {
+        "name": "妖火",
+        "colorKey": "紫",
+        "basicType": "事务"
+      },
+      "abilitySummary": "只能在行动阶段打出。；【快速】行动：对目标角色造成1点伤害。",
+      "confirmedMechanismIds": [
+        "priority"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "所有游戏字段已按固定原图核对；共享规则、待裁定项和未运行验收另见card-specifications.json。"
+    },
+    "JC103": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC103",
+      "verifiedFields": {
+        "name": "丧失理智的画家",
+        "colorKey": "紫",
+        "basicType": "角色"
+      },
+      "abilitySummary": "【快速】行动【横置】：本回合中你下一张正面打出或付费翻面的【紫】牌，所需费用减少1。",
+      "confirmedMechanismIds": [
+        "exhaust",
+        "costReduction",
+        "priority",
+        "loyalty",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "所有游戏字段已按固定原图核对；共享规则、待裁定项和未运行验收另见card-specifications.json。"
+    },
+    "JC104": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC104",
+      "verifiedFields": {
+        "name": "占卜师",
+        "colorKey": "紫",
+        "basicType": "角色"
+      },
+      "abilitySummary": "【进场触发】预测3。（检视你牌库顶的三张牌，将其中任意数量的牌以任意顺序置于你的牌库顶，将其余的牌以任意顺序置于你的牌库底。）",
+      "confirmedMechanismIds": [
+        "deckChoice",
+        "priority",
+        "temporaryIcons",
+        "loyalty"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "所有游戏字段已按固定原图核对；共享规则、待裁定项和未运行验收另见card-specifications.json。"
+    },
+    "JC105": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JC105",
+      "verifiedFields": {
+        "name": "噩梦领主",
+        "colorKey": "紫",
+        "basicType": "角色"
+      },
+      "abilitySummary": "灵体；【持续】所有其他本方灵体角色获得【临时势力】。；【触发】当另一个本方灵体角色死去时，你可以支付2，若你如此做，则将该角色封印在目标角色上，而非置入墓地。",
+      "confirmedMechanismIds": [
+        "spirit",
+        "continuous",
+        "seal",
+        "priority",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "所有游戏字段已按固定原图核对；共享规则、待裁定项和未运行验收另见card-specifications.json。"
+    },
+    "TK007": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-TK007",
+      "verifiedFields": {
+        "imageArtifactKind": "keyShapedNonCardMarker"
+      },
+      "abilitySummary": "只有钥匙形图形，无卡牌游戏字段。先手标志规则另来自原说明，不能把TK007文件ID当印刷编号。",
+      "confirmedMechanismIds": [
+        "temporaryIcons"
+      ],
+      "remainingReview": "非卡牌图形不能套完整卡面规格；本批保留独立部分图像核验，不为凑完成数伪造名称或编号。"
     }
   }
 }
