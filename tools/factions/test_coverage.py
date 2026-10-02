@@ -386,6 +386,16 @@ class CoverageTests(unittest.TestCase):
         specs["cards"]["JC105"]["abilities"][1]["scope"]["excludeSourceInstance"] = False
         self.assertTrue(any("other own spirits temporary" in e for e in self.source_errors(specs=specs)))
 
+    def test_non_card_key_marker_cannot_fabricate_printed_card_fields(self):
+        specs = copy.deepcopy(self.specifications)
+        specs["nonCardReferences"]["TK007"]["noPrintedCardFields"] = False
+        self.assertTrue(any("fabricate or override" in e for e in self.source_errors(specs=specs)))
+
+    def test_printed_variable_defense_needs_its_source_definition(self):
+        specs = copy.deepcopy(self.specifications)
+        specs["cards"]["ZHJZ65"]["variablePrintedValues"] = []
+        self.assertTrue(any("defined printed X" in e for e in self.source_errors(specs=specs)))
+
 
 if __name__ == "__main__":
     unittest.main()

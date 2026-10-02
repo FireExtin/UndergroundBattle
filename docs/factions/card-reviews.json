@@ -210,18 +210,23 @@
       "editionStatus": "pinnedImageVariant"
     },
     "DQXQZY02": {
-      "evidenceId": "card-DQXQZY02",
       "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-DQXQZY02",
       "verifiedFields": {
         "name": "裂口女",
         "colorKey": "中立",
         "basicType": "遭遇角色"
       },
-      "abilitySummary": "独立遭遇角色；利用和恐怖2。",
+      "abilitySummary": "优先进入：顺序最末位的城市地区。；【行动】支付【势力2】：利用。；恐怖2（在战斗对抗开始时，你可以将位于相同地区，且能力图标数量少于或等于2的目标敌方角色移动到另一个地区。）",
       "confirmedMechanismIds": [
-        "encounter"
+        "encounter",
+        "control",
+        "mobility",
+        "priority",
+        "temporaryIcons"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
     },
     "JC002": {
       "evidenceId": "card-JC002",
@@ -957,38 +962,40 @@
       "editionStatus": "pinnedImageVariant"
     },
     "MSCQ01": {
-      "evidenceId": "card-MSCQ01",
       "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-MSCQ01",
       "verifiedFields": {
         "name": "水月",
         "colorKey": "黄",
-        "basicType": "秘社",
-        "startingHand": 6
+        "basicType": "秘社"
       },
-      "abilitySummary": "卜卦标志累积，法术预测与隐秘对抗修正。",
+      "abilitySummary": "【持续】构筑时你的牌组中只能包含【黄】和【中立】派系的牌，以及其他派系的法师和法术牌。；【行动】2：在水月上放置一个卦标志。；【触发】当你打出一张法术牌时，预测X。X等于水月上的卦标志数量。；【行动】3，【横置】：若水月上有卦标志，进行一次隐秘对抗。本次隐秘对抗中你所展示的牌获得【隐秘对抗+X】。X等于水月上的卦标志的数量。",
       "confirmedMechanismIds": [
         "society",
+        "deckChoice",
         "mysticContest",
-        "deckChoice"
+        "priority"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
     },
     "MSCQ02": {
-      "evidenceId": "card-MSCQ02",
       "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-MSCQ02",
       "verifiedFields": {
         "name": "诺尔维隐修会",
         "colorKey": "红",
-        "basicType": "秘社",
-        "startingHand": 5
+        "basicType": "秘社"
       },
-      "abilitySummary": "初始毁灭地区3，四时间毁灭，赢毁灭地区抓牌。",
+      "abilitySummary": "【持续】构筑时你的牌组中只能包含【红】或【中立】派系的牌，以及灾难、时间和命运牌。；【触发】在游戏开始时，设置初始地区牌后，毁灭地区三。；【持续】若有地区上有四个或更多时间标志，毁灭该地区。；【触发】当你赢得一个已毁灭的地区时，抓一张牌。",
       "confirmedMechanismIds": [
         "society",
         "timeDestroy",
-        "deckChoice"
+        "deckChoice",
+        "priority"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
     },
     "MSJC01": {
       "evidenceId": "card-MSJC01",
@@ -1311,176 +1318,195 @@
       "editionStatus": "pinnedImageVariant"
     },
     "MSJZ01": {
-      "evidenceId": "card-MSJZ01",
       "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-MSJZ01",
       "verifiedFields": {
         "name": "猛禽战术小组",
         "colorKey": "绿",
-        "basicType": "秘社",
-        "startingHand": 6
+        "basicType": "秘社"
       },
-      "abilitySummary": "牺牲资产检索猛禽；装备结附猛禽角色降费。",
+      "abilitySummary": "【持续】构筑时你的牌组中需要至少包含15张副名为“猛禽”战术小组的牌。；【行动】2，【横置】，牺牲一个资产：从你的牌库中寻找一张副名为“猛禽”战术小组的牌，展示该牌后置于你的手中，然后洗牌。；【行动】【横置】：本回合中你所打出的下一张装备附属牌，若其所结附的目标是副名为“猛禽”战术小组的角色，则所需费用减少1。",
       "confirmedMechanismIds": [
         "society",
+        "deckChoice",
+        "sacrifice",
         "attachment",
         "costReduction",
-        "sacrifice"
+        "priority"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
     },
     "MSJZ02": {
-      "evidenceId": "card-MSJZ02",
       "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-MSJZ02",
       "verifiedFields": {
         "name": "盛夏王廷",
         "colorKey": "绿",
-        "basicType": "秘社",
-        "startingHand": 6
+        "basicType": "秘社"
       },
-      "abilitySummary": "生成仙灵斗士；控制四个仙灵时强制转变。",
+      "abilitySummary": "【持续】构筑时你的牌组中只能包含【绿】派系的牌，以及仙灵牌。；【行动】3，【横置】：若你具有【先手标志】，则在目标地区上生成一个仙灵斗士角色指示物。；【强制触发】当你操控四个或更多仙灵角色时，转变。",
       "confirmedMechanismIds": [
         "society",
         "token",
-        "transform"
+        "transform",
+        "priority"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
     },
     "MSJZ03": {
-      "evidenceId": "card-MSJZ03",
       "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-MSJZ03",
       "verifiedFields": {
         "name": "末日钟",
         "colorKey": "红",
-        "basicType": "秘社",
-        "startingHand": null
+        "basicType": "秘社"
       },
-      "abilitySummary": "非灾难不能打出或付费翻面；不能获分，三毁灭标志获胜；时间/毁灭与生成钟摆祭司。",
+      "abilitySummary": "不能作为初始秘社牌。；【持续】你不能打出或付费翻面非灾难类别的牌。；【持续】你不能获得分数。若你的计分区中有三个或更多毁灭标志，则你赢得本局游戏的胜利。；【行动】【横置】：在目标角色、附属或地区上放置一个时间标志，然后该地区上有四个或更多时间标志，毁灭该地区。；【行动】【横置】，弃一张牌：在目标地区上生成一个钟摆祭司角色指示物。",
       "confirmedMechanismIds": [
         "society",
         "timeDestroy",
-        "token"
+        "token",
+        "deckChoice",
+        "priority"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
     },
     "MSJZ04": {
-      "evidenceId": "card-MSJZ04",
       "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-MSJZ04",
       "verifiedFields": {
         "name": "破茧者教团",
         "colorKey": "红",
-        "basicType": "秘社",
-        "startingHand": 6
+        "basicType": "秘社"
       },
-      "abilitySummary": "起始检索至多五张不同名梦魇并封印；宿主死亡放梦魇暗藏者。",
+      "abilitySummary": "【持续】构筑时你的牌组中只能包含【红】和【中立】派系的牌。；【触发】在抓取起始手牌前，从你的牌库中寻找至多五张梦魔角色牌，且他们的名称不能相同，将这些牌封印在破茧者教团上，然后洗牌。；【触发】当一个本方宿主角色死亡时，你可以支付1然后将一张封印在破茧者教团上的梦魔角色牌以暗藏者状态置于该地区。",
       "confirmedMechanismIds": [
         "society",
         "seal",
-        "hidden"
+        "hidden",
+        "deckChoice",
+        "priority"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
     },
     "MSLC01": {
-      "evidenceId": "card-MSLC01",
       "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-MSLC01",
       "verifiedFields": {
         "name": "联席会议观察员",
         "colorKey": "黄",
-        "basicType": "秘社",
-        "startingHand": 6
+        "basicType": "秘社"
       },
-      "abilitySummary": "检视危机方手牌顶；预测；检索防暴构装体部署。",
+      "abilitySummary": "【持续】构筑时你的牌组中只能包含【黄】和【中立】派系的牌。；【准备步骤强制触发】若你具有【先手标志】，则你可以检视危机方手牌区顶的一张牌。；【行动】2，【横置】：预测1。；【行动】6，【横置】：若敌方角色数量大于本方角色，则从你的牌库中寻找一张名为防爆构装体的角色牌，将该牌放置于敌方角色最多的地区，然后将你的牌库洗牌。",
       "confirmedMechanismIds": [
         "society",
         "crisis",
-        "deckChoice"
+        "privatePeek",
+        "deckChoice",
+        "priority"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
     },
     "MSLC02": {
-      "evidenceId": "card-MSLC02",
       "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-MSLC02",
       "verifiedFields": {
         "name": "加利福尼亚猎团",
         "colorKey": "绿",
-        "basicType": "秘社",
-        "startingHand": 6
+        "basicType": "秘社"
       },
-      "abilitySummary": "额外支线剧情；完成支线/赢区后付费抓牌。",
+      "abilitySummary": "【持续】构筑时你的牌组中只能包含【绿】和【中立】派系的牌。；【持续】你可以额外进行一个支线剧情。（将该支线剧情放置于你的秘社区。）；【触发】当你完成一个支线剧情或赢取一个地区时，你可以支付1，若你如此做，抓一张牌。",
       "confirmedMechanismIds": [
         "society",
         "crisis",
-        "deckChoice"
+        "deckChoice",
+        "priority"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
     },
     "MSLC03": {
-      "evidenceId": "card-MSLC03",
       "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-MSLC03",
       "verifiedFields": {
         "name": "洛杉矶警察局",
         "colorKey": "灰",
-        "basicType": "秘社",
-        "startingHand": 6
+        "basicType": "秘社"
       },
-      "abilitySummary": "名誉点、洗支援牌库、空本方角色城市生成警察。",
+      "abilitySummary": "【持续】构筑时你的牌组中只能包含【灰】和【中立】派系的牌。；【触发】在每局游戏开始时，你获得【名誉点1】。当你放弃一局游戏时，你失去【名誉点1】。；【行动】1，【横置】：将支援牌库洗牌。；【行动】支付【名誉点2】或3，【横置】：选择目标城市地区，若该地区没有本方角色，则在该地区生成一个警察指示物角色。",
       "confirmedMechanismIds": [
         "society",
         "crisis",
-        "token"
+        "core",
+        "token",
+        "deckChoice",
+        "priority"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
     },
     "MSLC04": {
-      "evidenceId": "card-MSLC04",
       "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-MSLC04",
       "verifiedFields": {
         "name": "圣公会",
         "colorKey": "白",
-        "basicType": "秘社",
-        "startingHand": 7
+        "basicType": "秘社"
       },
-      "abilitySummary": "威胁进度减1；横置僧侣于无势力地区放标志。",
+      "abilitySummary": "【持续】构筑时你的牌组中只能包含【白】和【中立】派系的牌。；【行动】2，【横置】：威胁进度【-1】。；【行动】3，【横置】：横置一个本方僧侣，然后若其所在地区上没有势力标志，则放置一个本方势力标志。",
       "confirmedMechanismIds": [
         "society",
         "crisis",
-        "exhaust"
+        "exhaust",
+        "priority"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
     },
     "MSLC05": {
-      "evidenceId": "card-MSLC05",
       "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-MSLC05",
       "verifiedFields": {
         "name": "劣地长老",
         "colorKey": "白",
-        "basicType": "秘社",
-        "startingHand": 6
+        "basicType": "秘社"
       },
-      "abilitySummary": "生成黄昏界域；手牌更多时黄昏地区略过战斗。",
+      "abilitySummary": "【持续】构筑时你的牌组中只能包含【白】和【中立】派系的牌，以及其他派系【星辰】领域的牌。；【行动】3，【横置】：若你具有【先手标志】，则在目标地区上生成一个黄昏界域独有附属指示物。；【持续】若你的手牌数量比对手的更多，则所有黄昏界地区略过战斗对抗步骤。",
       "confirmedMechanismIds": [
         "society",
         "token",
-        "continuous"
+        "attachment",
+        "continuous",
+        "confrontation",
+        "priority"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
     },
     "MSLC06": {
-      "evidenceId": "card-MSLC06",
       "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-MSLC06",
       "verifiedFields": {
         "name": "居民武装",
         "colorKey": "中立",
-        "basicType": "秘社",
-        "startingHand": 6
+        "basicType": "秘社"
       },
-      "abilitySummary": "检索无知路人进入城市；无领域人类赋战斗/防御标志。",
+      "abilitySummary": "【持续】构筑时你的牌组中只能包含【中立】派系的牌。；【行动】1，【横置】：自你的牌库中寻找一张名为无知路人的牌，将该牌放置进场且位于目标城市地区，然后将你的牌库洗牌。；【行动】2，【横置】：选择不具有魔法领域图标的目标本方人类角色，在该角色上放置一个【临时战斗】或【防御+1】能力图标标志。",
       "confirmedMechanismIds": [
         "society",
-        "token",
+        "crisis",
+        "deckChoice",
         "continuous",
-        "deckChoice"
+        "temporaryIcons",
+        "priority"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
     },
     "MSWM01": {
       "evidenceId": "card-MSWM01",
@@ -1758,68 +1784,82 @@
       "editionStatus": "pinnedImageVariant"
     },
     "ZHJZ65": {
-      "evidenceId": "card-ZHJZ65",
       "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-ZHJZ65",
       "verifiedFields": {
         "name": "葛丽特和汉塞尔",
         "colorKey": "紫",
         "basicType": "角色"
       },
-      "abilitySummary": "JZ65转变面；封印数量作为防御、准备强制非灵体创伤。",
+      "abilitySummary": "【持续】其防御力等于葛丽特和汉塞尔上封印着的牌的数量。；【准备步骤强制触发】对本地区的所有非灵体角色造成1点创伤。",
       "confirmedMechanismIds": [
-        "transform",
         "seal",
+        "transform",
+        "continuous",
         "healWounds",
-        "combatKeywords"
+        "priority",
+        "uniqueInPlay"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
     },
     "ZHMSJZ02": {
-      "evidenceId": "card-ZHMSJZ02",
       "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-ZHMSJZ02",
       "verifiedFields": {
         "name": "凛冬王廷",
         "colorKey": "绿",
-        "basicType": "秘社转变面",
-        "startingHand": null
+        "basicType": "秘社"
       },
-      "abilitySummary": "准备步骤强制每玩家牺牲角色；场上无角色则转变。",
+      "abilitySummary": "【持续】你牌组中的仙灵牌全部包含【绿】派系。；【行动】3，【横置】：若你具有【先手标志】，则在目标地区上每位玩家将一个仙灵角色置于其拥有者手中。；【准备步骤强制触发】每位玩家横置一个角色，然后若场上没有角色，转变。",
       "confirmedMechanismIds": [
         "society",
         "transform",
-        "sacrifice"
+        "control",
+        "exhaust",
+        "mobility",
+        "priority"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
     },
     "ZHWM026": {
-      "evidenceId": "card-ZHWM026",
       "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-ZHWM026",
       "verifiedFields": {
         "name": "古妮薇尔",
         "colorKey": "蓝",
         "basicType": "角色"
       },
-      "abilitySummary": "WM026转变面；灵体，准备时按敌手牌数量转变。",
+      "abilitySummary": "灵体；【准备步骤强制触发】若有敌方玩家的手牌数量少于或等于二张，转变。",
       "confirmedMechanismIds": [
+        "spirit",
         "transform",
-        "spirit"
+        "priority",
+        "uniqueInPlay"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
     },
     "ZHWM048": {
-      "evidenceId": "card-ZHWM048",
       "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-ZHWM048",
       "verifiedFields": {
         "name": "凛冬之风英迪拉",
         "colorKey": "白",
         "basicType": "角色"
       },
-      "abilitySummary": "WM048转变面；隐秘机动、付费转变。",
+      "abilitySummary": "【隐秘】机动；【快速】行动1：转变。",
       "confirmedMechanismIds": [
+        "mysticContest",
+        "mobility",
         "transform",
-        "mobility"
+        "priority",
+        "temporaryIcons",
+        "uniqueInPlay"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
     },
     "JC058": {
       "evidenceId": "card-JC058",
@@ -2487,7 +2527,459 @@
       "confirmedMechanismIds": [
         "temporaryIcons"
       ],
-      "remainingReview": "非卡牌图形不能套完整卡面规格；本批保留独立部分图像核验，不为凑完成数伪造名称或编号。"
+      "remainingReview": "非卡牌参考已按原钥匙图与规则手册完成，见nonCardReferences/TK007；不套完整卡面或解锁为玩家牌。"
+    },
+    "BQ112": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ112",
+      "verifiedFields": {
+        "name": "冰封古陵寝",
+        "colorKey": "中立",
+        "basicType": "任务/地区"
+      },
+      "abilitySummary": "修格斯秘社限定　唯一　非资产；【进场触发】抓一张牌，你可以将本方核心角色移动至本地区。；【赢取触发】你获得【名誉点2】。你可以将本方核心角色从核心区放置进场，并位于地区一。在本方核心角色上放置一个护盾标志。",
+      "confirmedMechanismIds": [
+        "task",
+        "core",
+        "leader",
+        "nonAsset",
+        "deckChoice",
+        "mobility",
+        "shield",
+        "priority"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ113": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ113",
+      "verifiedFields": {
+        "name": "蝉屋",
+        "colorKey": "中立",
+        "basicType": "任务/地区"
+      },
+      "abilitySummary": "修格斯秘社限定　非资产；【进场触发】进行一次隐秘对抗。你可以将本方核心角色移动至本地区。；【持续】若蝉屋在本方计分区中，在进行隐秘对抗时你所展示的牌获得【隐秘对抗+1】，在赢得隐秘对抗后你可以发动一次【核心】能力。",
+      "confirmedMechanismIds": [
+        "task",
+        "core",
+        "nonAsset",
+        "mysticContest",
+        "mobility",
+        "priority"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ114": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ114",
+      "verifiedFields": {
+        "name": "冻原哨所",
+        "colorKey": "中立",
+        "basicType": "任务/地区"
+      },
+      "abilitySummary": "修格斯秘社限定　唯一　非资产；【进场触发】你获得【名誉点1】，你可以将本方核心角色移动至本地区。；【持续】若冻原哨所在本方计分区中，本方核心角色获得【临时调查】【永久势力】和【防御+1】，且本方秘社上每有一个失控标志，其就额外获得【永久战斗】。",
+      "confirmedMechanismIds": [
+        "task",
+        "core",
+        "leader",
+        "nonAsset",
+        "mobility",
+        "continuous",
+        "temporaryIcons",
+        "priority"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ115": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ115",
+      "verifiedFields": {
+        "name": "水没镇区",
+        "colorKey": "中立",
+        "basicType": "任务/地区"
+      },
+      "abilitySummary": "修格斯秘社限定　唯一　非资产；【进场触发】发动一次【核心】能力。你可以将本方核心角色移动至本地区。；【持续】当你发动一次【核心】能力时，若水没镇区在本方计分区中，你可以抓一张牌。",
+      "confirmedMechanismIds": [
+        "task",
+        "core",
+        "leader",
+        "nonAsset",
+        "deckChoice",
+        "mobility",
+        "priority"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ116": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ116",
+      "verifiedFields": {
+        "name": "流浪者聚居地",
+        "colorKey": "中立",
+        "basicType": "任务/地区"
+      },
+      "abilitySummary": "非资产；【进场触发】发动一次【核心】能力。你可以将本方核心角色移动至本地区。；【持续】若流浪者聚居地在本方计分区中，打出或付费现身本方核心角色的费用减少1，且该角色牌不能被响应。",
+      "confirmedMechanismIds": [
+        "task",
+        "core",
+        "nonAsset",
+        "mobility",
+        "costReduction",
+        "priority"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "BQ117": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-BQ117",
+      "verifiedFields": {
+        "name": "失控的小镇",
+        "colorKey": "中立",
+        "basicType": "任务/地区"
+      },
+      "abilitySummary": "【进场触发】你可以横置X个本方研究附属，然后在目标地区上生成X个行尸指示物角色。；【赢取触发】在目标地区上每有一个本方不死生物角色，就在该地区上放置一个本方势力标志。",
+      "confirmedMechanismIds": [
+        "task",
+        "attachment",
+        "token",
+        "exhaust",
+        "priority",
+        "loyalty"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "CQ39": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-CQ39",
+      "verifiedFields": {
+        "name": "超元域",
+        "colorKey": "中立",
+        "basicType": "任务/地区"
+      },
+      "abilitySummary": "【持续】所有本地区的工程师获得【临时调查】【永久势力】。；【持续】若超元域在本方计分区内，则视作你操控一个具有互联网/媒体子类别的附属。",
+      "confirmedMechanismIds": [
+        "task",
+        "attachment",
+        "continuous",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "DQCQ01": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-DQCQ01",
+      "verifiedFields": {
+        "name": "劣地巴德兰兹",
+        "colorKey": null,
+        "basicType": "地区"
+      },
+      "abilitySummary": "【赢取触发】每位玩家预测5，然后你可以进行一次隐秘对抗。",
+      "confirmedMechanismIds": [
+        "deckChoice",
+        "mysticContest",
+        "priority"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "DQCQ02": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-DQCQ02",
+      "verifiedFields": {
+        "name": "加州一号公路",
+        "colorKey": null,
+        "basicType": "地区"
+      },
+      "abilitySummary": "【持续】所有本地区的角色获得“【行动】【横置】：移动至相邻地区”的能力。",
+      "confirmedMechanismIds": [
+        "continuous",
+        "mobility",
+        "exhaust",
+        "priority"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "DQCQ03": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-DQCQ03",
+      "verifiedFields": {
+        "name": "梦之回廊",
+        "colorKey": null,
+        "basicType": "地区"
+      },
+      "abilitySummary": "【行动】1，横置一个位于本地区的角色：进行一次隐秘对抗。双方玩家都可以发动本能力，且每回合只能各发动一次。；【赢取触发】移除所有秘社上的【暴露】和【隐秘】标志。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "exhaust",
+        "priority"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "DQJC108": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-DQJC108",
+      "verifiedFields": {
+        "name": "佛罗伦萨",
+        "colorKey": null,
+        "basicType": "地区"
+      },
+      "abilitySummary": "【赢取触发】由赢取佛罗伦萨的玩家开始，每位玩家可以各将一个由其操控的暗藏者翻面，且不需支付其费用。",
+      "confirmedMechanismIds": [
+        "hidden",
+        "priority",
+        "loyalty"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "DQJC109": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-DQJC109",
+      "verifiedFields": {
+        "name": "京都",
+        "colorKey": null,
+        "basicType": "地区"
+      },
+      "abilitySummary": "【赢取触发】将所有非人类角色翻面为暗藏者。",
+      "confirmedMechanismIds": [
+        "hidden",
+        "priority"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "DQJC110": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-DQJC110",
+      "verifiedFields": {
+        "name": "伦敦",
+        "colorKey": null,
+        "basicType": "地区"
+      },
+      "abilitySummary": "【赢取触发】将所有角色翻面为暗藏者。然后若有玩家在同一地区操控多个暗藏者，则将这些暗藏者洗混。",
+      "confirmedMechanismIds": [
+        "hidden",
+        "priority"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "DQJC111": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-DQJC111",
+      "verifiedFields": {
+        "name": "莫斯科",
+        "colorKey": null,
+        "basicType": "地区"
+      },
+      "abilitySummary": "【赢取触发】由赢取莫斯科的玩家开始，每位玩家各牺牲一个角色，然后抓等同于他所牺牲角色的防御力数值的牌。",
+      "confirmedMechanismIds": [
+        "sacrifice",
+        "deckChoice",
+        "priority"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "DQJC115": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-DQJC115",
+      "verifiedFields": {
+        "name": "死者之城",
+        "colorKey": null,
+        "basicType": "地区"
+      },
+      "abilitySummary": "【赢取触发】选择一个地区，由赢取死者之城的玩家开始，每位玩家各将自己墓地中的一张角色牌正面进场并放置于该地区。",
+      "confirmedMechanismIds": [
+        "graveRecovery",
+        "priority"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "DQWM001": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-DQWM001",
+      "verifiedFields": {
+        "name": "武陵源",
+        "colorKey": null,
+        "basicType": "地区"
+      },
+      "abilitySummary": "【赢取强制触发】进行一次隐秘对抗。；【赢取触发】本局游戏中，你获胜所需的分数减少2。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "priority"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "DQWM002": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-DQWM002",
+      "verifiedFields": {
+        "name": "埃里伯斯山",
+        "colorKey": null,
+        "basicType": "地区"
+      },
+      "abilitySummary": "【赢取触发】在所有秘社上各放置一个【隐秘】标志。",
+      "confirmedMechanismIds": [
+        "society",
+        "mysticContest",
+        "priority"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "DQWM003": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-DQWM003",
+      "verifiedFields": {
+        "name": "古城瓦莱塔",
+        "colorKey": null,
+        "basicType": "地区"
+      },
+      "abilitySummary": "【行动】1，横置一个位于本地区的角色：进行一次隐秘对抗。双方玩家都可以发动本能力，且每回合只能各发动一次。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "exhaust",
+        "priority"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "DQWM004": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-DQWM004",
+      "verifiedFields": {
+        "name": "亚伯拉罕湖",
+        "colorKey": null,
+        "basicType": "地区"
+      },
+      "abilitySummary": "【进场强制触发】每位玩家各将其牌库顶牌封印在该地区上。；【赢取触发】你可以将封印在该地区上的所有牌洗入其拥有者的牌库。",
+      "confirmedMechanismIds": [
+        "seal",
+        "deckChoice",
+        "priority"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "DQWM005": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-DQWM005",
+      "verifiedFields": {
+        "name": "洛杉矶",
+        "colorKey": null,
+        "basicType": "地区"
+      },
+      "abilitySummary": "【持续】该地区在对抗阶段时额外进行一次势力对抗。；【持续】该地区上所有角色的声望能力额外触发一次。",
+      "confirmedMechanismIds": [
+        "confrontation",
+        "renown",
+        "continuous"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "DQXQ01": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-DQXQ01",
+      "verifiedFields": {
+        "name": "拉斯维加斯",
+        "colorKey": null,
+        "basicType": "地区"
+      },
+      "abilitySummary": "【赢取触发】每位玩家各展示其牌库顶牌，若所展示牌的印刷费用为偶数，则他可以将该牌置于其资产区作为一个资产，否则需将该牌洗回牌库。（0为偶数）",
+      "confirmedMechanismIds": [
+        "deckChoice",
+        "nonAsset",
+        "priority"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "DQXQZY03": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-DQXQZY03",
+      "verifiedFields": {
+        "name": "瘦长鬼影",
+        "colorKey": "中立",
+        "basicType": "遭遇角色"
+      },
+      "abilitySummary": "优先进入：顺序最末位的地区。；【行动】2，支付【势力3】：利用。；恐怖3；【触发】当一个敌方角色因恐怖离开瘦长鬼影所在的地区时，遏制2。",
+      "confirmedMechanismIds": [
+        "encounter",
+        "control",
+        "mobility",
+        "repress",
+        "priority",
+        "temporaryIcons"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "JZ65": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-JZ65",
+      "verifiedFields": {
+        "name": "葛丽特和汉塞尔",
+        "colorKey": "紫",
+        "basicType": "角色"
+      },
+      "abilitySummary": "【强制触发】当葛丽特和汉塞尔上封印着三张或更多牌时，转变。",
+      "confirmedMechanismIds": [
+        "seal",
+        "transform",
+        "priority",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM026": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM026",
+      "verifiedFields": {
+        "name": "古妮薇尔",
+        "colorKey": "蓝",
+        "basicType": "角色"
+      },
+      "abilitySummary": "【死亡触发】转变，而非置入墓地。",
+      "confirmedMechanismIds": [
+        "transform",
+        "priority",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
+    },
+    "WM048": {
+      "reviewStatus": "primaryImageReviewed",
+      "evidenceId": "card-WM048",
+      "verifiedFields": {
+        "name": "凛冬之风英迪拉",
+        "colorKey": "白",
+        "basicType": "角色"
+      },
+      "abilitySummary": "【隐秘】声望；【快速】行动1：转变。",
+      "confirmedMechanismIds": [
+        "mysticContest",
+        "renown",
+        "transform",
+        "priority",
+        "uniqueInPlay"
+      ],
+      "editionStatus": "pinnedImageVariant",
+      "remainingReview": "完整观察字段见card-specifications.json；未解规则和模式差异另记，所有实现/UI验收未运行。"
     }
   }
 }

@@ -559,8 +559,9 @@
       "abilitySummary": "卜卦标志累积，法术预测与隐秘对抗修正。",
       "mechanismIds": [
         "society",
+        "deckChoice",
         "mysticContest",
-        "deckChoice"
+        "priority"
       ],
       "status": "unimplemented",
       "selectionEnabled": false,
@@ -582,7 +583,8 @@
       "mechanismIds": [
         "society",
         "timeDestroy",
-        "deckChoice"
+        "deckChoice",
+        "priority"
       ],
       "status": "unimplemented",
       "selectionEnabled": false,
@@ -990,9 +992,11 @@
       "abilitySummary": "牺牲资产检索猛禽；装备结附猛禽角色降费。",
       "mechanismIds": [
         "society",
+        "deckChoice",
+        "sacrifice",
         "attachment",
         "costReduction",
-        "sacrifice"
+        "priority"
       ],
       "status": "unimplemented",
       "selectionEnabled": false,
@@ -1014,7 +1018,8 @@
       "mechanismIds": [
         "society",
         "token",
-        "transform"
+        "transform",
+        "priority"
       ],
       "status": "unimplemented",
       "selectionEnabled": false,
@@ -1036,7 +1041,9 @@
       "mechanismIds": [
         "society",
         "timeDestroy",
-        "token"
+        "token",
+        "deckChoice",
+        "priority"
       ],
       "status": "unimplemented",
       "selectionEnabled": false,
@@ -1058,7 +1065,9 @@
       "mechanismIds": [
         "society",
         "seal",
-        "hidden"
+        "hidden",
+        "deckChoice",
+        "priority"
       ],
       "status": "unimplemented",
       "selectionEnabled": false,
@@ -1076,11 +1085,13 @@
       "canStartByPrintedCard": true,
       "startingHand": 6,
       "restrictionSummary": "黄/中立。",
-      "abilitySummary": "检视危机方手牌顶；预测；检索防暴构装体部署。",
+      "abilitySummary": "检视危机方手牌区顶；预测1；直接检索防爆构装体进入敌方角色最多地区。",
       "mechanismIds": [
         "society",
         "crisis",
-        "deckChoice"
+        "privatePeek",
+        "deckChoice",
+        "priority"
       ],
       "status": "unimplemented",
       "selectionEnabled": false,
@@ -1102,7 +1113,8 @@
       "mechanismIds": [
         "society",
         "crisis",
-        "deckChoice"
+        "deckChoice",
+        "priority"
       ],
       "status": "unimplemented",
       "selectionEnabled": false,
@@ -1124,7 +1136,10 @@
       "mechanismIds": [
         "society",
         "crisis",
-        "token"
+        "core",
+        "token",
+        "deckChoice",
+        "priority"
       ],
       "status": "unimplemented",
       "selectionEnabled": false,
@@ -1146,7 +1161,8 @@
       "mechanismIds": [
         "society",
         "crisis",
-        "exhaust"
+        "exhaust",
+        "priority"
       ],
       "status": "unimplemented",
       "selectionEnabled": false,
@@ -1168,7 +1184,10 @@
       "mechanismIds": [
         "society",
         "token",
-        "continuous"
+        "attachment",
+        "continuous",
+        "confrontation",
+        "priority"
       ],
       "status": "unimplemented",
       "selectionEnabled": false,
@@ -1189,9 +1208,11 @@
       "abilitySummary": "检索无知路人进入城市；无领域人类赋战斗/防御标志。",
       "mechanismIds": [
         "society",
-        "token",
+        "crisis",
+        "deckChoice",
         "continuous",
-        "deckChoice"
+        "temporaryIcons",
+        "priority"
       ],
       "status": "unimplemented",
       "selectionEnabled": false,
@@ -1311,7 +1332,10 @@
       "mechanismIds": [
         "society",
         "transform",
-        "sacrifice"
+        "control",
+        "exhaust",
+        "mobility",
+        "priority"
       ],
       "status": "unimplemented",
       "selectionEnabled": false,
@@ -1550,7 +1574,9 @@
         "card-JC093",
         "card-JC101",
         "card-JC103",
-        "card-JC104"
+        "card-JC104",
+        "card-BQ117",
+        "card-DQJC108"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -1588,7 +1614,11 @@
         "card-JZ10",
         "card-JC069",
         "card-JC097",
-        "card-JZ05"
+        "card-JZ05",
+        "card-MSJZ04",
+        "card-DQJC108",
+        "card-DQJC109",
+        "card-DQJC110"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -1680,7 +1710,47 @@
         "card-JC102",
         "card-JC103",
         "card-JC104",
-        "card-JC105"
+        "card-JC105",
+        "card-MSJZ01",
+        "card-MSJZ02",
+        "card-ZHMSJZ02",
+        "card-MSJZ03",
+        "card-MSJZ04",
+        "card-MSCQ01",
+        "card-MSCQ02",
+        "card-MSLC01",
+        "card-MSLC02",
+        "card-MSLC03",
+        "card-MSLC04",
+        "card-MSLC05",
+        "card-MSLC06",
+        "card-BQ112",
+        "card-BQ113",
+        "card-BQ114",
+        "card-BQ115",
+        "card-BQ116",
+        "card-BQ117",
+        "card-DQCQ01",
+        "card-DQCQ02",
+        "card-DQCQ03",
+        "card-DQJC108",
+        "card-DQJC109",
+        "card-DQJC110",
+        "card-DQJC111",
+        "card-DQJC115",
+        "card-DQWM001",
+        "card-DQWM002",
+        "card-DQWM003",
+        "card-DQWM004",
+        "card-DQXQ01",
+        "card-DQXQZY02",
+        "card-DQXQZY03",
+        "card-JZ65",
+        "card-ZHJZ65",
+        "card-WM026",
+        "card-ZHWM026",
+        "card-WM048",
+        "card-ZHWM048"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -1721,7 +1791,9 @@
         "card-DQJC112",
         "card-DQJC113",
         "card-DQJC114",
-        "card-JC098"
+        "card-JC098",
+        "card-MSLC05",
+        "card-DQWM005"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -1793,7 +1865,13 @@
         "card-MSWM02",
         "card-MSWM03",
         "card-JC010",
-        "card-JC103"
+        "card-JC103",
+        "card-ZHMSJZ02",
+        "card-MSLC04",
+        "card-BQ117",
+        "card-DQCQ02",
+        "card-DQCQ03",
+        "card-DQWM003"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -1828,7 +1906,17 @@
         "card-MSJC14",
         "card-WM071",
         "card-JZ10",
-        "card-JC069"
+        "card-JC069",
+        "card-ZHMSJZ02",
+        "card-BQ112",
+        "card-BQ113",
+        "card-BQ114",
+        "card-BQ115",
+        "card-BQ116",
+        "card-DQCQ02",
+        "card-DQXQZY02",
+        "card-DQXQZY03",
+        "card-ZHWM048"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -1927,7 +2015,8 @@
         "bq-new",
         "bq-keywords-2",
         "card-BQ007",
-        "card-BQ060"
+        "card-BQ060",
+        "card-BQ112"
       ],
       "dependencies": [],
       "interactionIds": [],
@@ -1958,7 +2047,8 @@
         "card-MSJC16",
         "card-MSJC17",
         "card-MSBQ03",
-        "card-LC15"
+        "card-LC15",
+        "card-DQJC115"
       ],
       "dependencies": [
         "hidden",
@@ -2027,7 +2117,9 @@
         "card-CQ12",
         "card-JC048",
         "card-TK008",
-        "card-JC093"
+        "card-JC093",
+        "card-MSJZ01",
+        "card-DQJC111"
       ],
       "dependencies": [
         "priority"
@@ -2064,7 +2156,9 @@
         "card-MSWM04",
         "card-CQ12",
         "card-LC15",
-        "card-JC103"
+        "card-JC103",
+        "card-MSJZ01",
+        "card-BQ116"
       ],
       "dependencies": [
         "loyalty",
@@ -2122,7 +2216,22 @@
         "card-JZ49",
         "card-JC040",
         "card-JC080",
-        "card-JC104"
+        "card-JC104",
+        "card-MSJZ01",
+        "card-MSJZ03",
+        "card-MSJZ04",
+        "card-MSCQ01",
+        "card-MSCQ02",
+        "card-MSLC01",
+        "card-MSLC02",
+        "card-MSLC03",
+        "card-MSLC06",
+        "card-BQ112",
+        "card-BQ115",
+        "card-DQCQ01",
+        "card-DQJC111",
+        "card-DQWM004",
+        "card-DQXQ01"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -2171,7 +2280,14 @@
         "card-JC093",
         "card-JC098",
         "card-JC101",
-        "card-JC105"
+        "card-JC105",
+        "card-MSLC05",
+        "card-MSLC06",
+        "card-BQ114",
+        "card-CQ39",
+        "card-DQCQ02",
+        "card-DQWM005",
+        "card-ZHJZ65"
       ],
       "dependencies": [],
       "interactionIds": [],
@@ -2197,7 +2313,8 @@
       "limitations": "有限治疗不等于创伤生成体系。JZ10创伤字样无X，霸权创伤X标题与具体换算仍需分版本核准；不把普通回合伤害当创伤。",
       "evidenceIds": [
         "card-LC19",
-        "card-LC20"
+        "card-LC20",
+        "card-ZHJZ65"
       ],
       "dependencies": [],
       "interactionIds": [
@@ -2247,7 +2364,21 @@
         "card-MSWM02",
         "card-MSWM03",
         "card-MSWM04",
-        "card-BQ007"
+        "card-BQ007",
+        "card-MSJZ01",
+        "card-MSJZ02",
+        "card-ZHMSJZ02",
+        "card-MSJZ03",
+        "card-MSJZ04",
+        "card-MSCQ01",
+        "card-MSCQ02",
+        "card-MSLC01",
+        "card-MSLC02",
+        "card-MSLC03",
+        "card-MSLC04",
+        "card-MSLC05",
+        "card-MSLC06",
+        "card-DQWM002"
       ],
       "dependencies": [
         "priority",
@@ -2287,7 +2418,11 @@
         "card-JC048",
         "card-TK002",
         "card-JC093",
-        "card-JC101"
+        "card-JC101",
+        "card-MSJZ01",
+        "card-MSLC05",
+        "card-BQ117",
+        "card-CQ39"
       ],
       "dependencies": [
         "priority"
@@ -2328,7 +2463,11 @@
         "card-WM071",
         "card-LC15",
         "card-BQ007",
-        "card-JC105"
+        "card-JC105",
+        "card-MSJZ04",
+        "card-DQWM004",
+        "card-JZ65",
+        "card-ZHJZ65"
       ],
       "dependencies": [
         "priority",
@@ -2361,7 +2500,9 @@
         "card-JC070",
         "card-JC076",
         "card-JC074",
-        "card-JC080"
+        "card-JC080",
+        "card-DQWM005",
+        "card-WM048"
       ],
       "dependencies": [
         "confrontation"
@@ -2398,7 +2539,8 @@
         "card-BQ007",
         "card-JC010",
         "card-TK005",
-        "card-JC105"
+        "card-JC105",
+        "card-ZHWM026"
       ],
       "dependencies": [
         "continuous",
@@ -2464,7 +2606,8 @@
         "card-JC048",
         "card-TK008",
         "card-TK009",
-        "manual-marker-inheritance"
+        "manual-marker-inheritance",
+        "card-MSCQ02"
       ],
       "dependencies": [
         "continuous",
@@ -2525,7 +2668,10 @@
       "evidenceIds": [
         "bq-seal",
         "faq-3",
-        "card-MSJC10"
+        "card-MSJC10",
+        "card-ZHMSJZ02",
+        "card-DQXQZY02",
+        "card-DQXQZY03"
       ],
       "dependencies": [
         "continuous",
@@ -2556,7 +2702,12 @@
         "intermezzo",
         "card-MSJZ02",
         "card-ZHMSJZ02",
-        "card-ZHJZ65"
+        "card-ZHJZ65",
+        "card-JZ65",
+        "card-WM026",
+        "card-ZHWM026",
+        "card-WM048",
+        "card-ZHWM048"
       ],
       "dependencies": [
         "continuous"
@@ -2617,7 +2768,13 @@
       "evidenceIds": [
         "intermezzo",
         "bq-keywords-2",
-        "card-BQ097"
+        "card-BQ097",
+        "card-BQ112",
+        "card-BQ113",
+        "card-BQ114",
+        "card-BQ115",
+        "card-BQ116",
+        "card-DQXQ01"
       ],
       "dependencies": [
         "loyalty"
@@ -2676,7 +2833,10 @@
         "card-LC14",
         "card-WM071",
         "card-LC15",
-        "card-JC010"
+        "card-JC010",
+        "card-BQ112",
+        "card-BQ114",
+        "card-BQ115"
       ],
       "dependencies": [
         "continuous",
@@ -2715,7 +2875,10 @@
         "card-TK005",
         "card-TK006",
         "card-TK008",
-        "card-TK009"
+        "card-TK009",
+        "card-MSJZ03",
+        "card-MSLC05",
+        "card-BQ117"
       ],
       "dependencies": [
         "continuous"
@@ -2751,7 +2914,16 @@
         "card-MSWM01",
         "card-MSWM02",
         "card-BQ007",
-        "card-BQ060"
+        "card-BQ060",
+        "card-MSCQ01",
+        "card-BQ113",
+        "card-DQCQ01",
+        "card-DQCQ03",
+        "card-DQWM001",
+        "card-DQWM002",
+        "card-DQWM003",
+        "card-WM048",
+        "card-ZHWM048"
       ],
       "dependencies": [
         "society",
@@ -2875,7 +3047,14 @@
       "evidenceIds": [
         "bq-new",
         "bq-core",
-        "card-MSBQ02"
+        "card-MSBQ02",
+        "card-BQ112",
+        "card-BQ113",
+        "card-BQ114",
+        "card-BQ115",
+        "card-BQ116",
+        "card-BQ117",
+        "card-CQ39"
       ],
       "dependencies": [
         "confrontation",
@@ -2906,7 +3085,13 @@
         "bq-core",
         "card-MSBQ02",
         "card-BQ043",
-        "card-BQ060"
+        "card-BQ060",
+        "card-MSLC03",
+        "card-BQ112",
+        "card-BQ113",
+        "card-BQ114",
+        "card-BQ115",
+        "card-BQ116"
       ],
       "dependencies": [
         "society",
@@ -2939,7 +3124,8 @@
       "limitations": "",
       "evidenceIds": [
         "prelude",
-        "card-DQXQZY02"
+        "card-DQXQZY02",
+        "card-DQXQZY03"
       ],
       "dependencies": [
         "control",
@@ -3118,7 +3304,8 @@
         "card-MSLC01",
         "card-MSLC02",
         "card-MSLC03",
-        "card-MSLC04"
+        "card-MSLC04",
+        "card-MSLC06"
       ],
       "dependencies": [
         "society"
@@ -3269,7 +3456,13 @@
         "card-JC098",
         "card-JC103",
         "card-JC104",
-        "card-JC105"
+        "card-JC105",
+        "card-MSLC06",
+        "card-BQ114",
+        "card-CQ39",
+        "card-DQXQZY02",
+        "card-DQXQZY03",
+        "card-ZHWM048"
       ],
       "dependencies": [
         "confrontation",
@@ -3309,7 +3502,13 @@
         "card-JC010",
         "card-TK002",
         "card-JC040",
-        "card-JC080"
+        "card-JC080",
+        "card-JZ65",
+        "card-ZHJZ65",
+        "card-WM026",
+        "card-ZHWM026",
+        "card-WM048",
+        "card-ZHWM048"
       ],
       "dependencies": [
         "sacrifice"
@@ -3337,7 +3536,8 @@
         "card-JC057",
         "card-JC062",
         "faq-3",
-        "card-MSBQ04"
+        "card-MSBQ04",
+        "card-MSLC01"
       ],
       "dependencies": [
         "hidden",
@@ -3369,7 +3569,8 @@
       "limitations": "固定基线没有遏制操作/目标玩家移势力选择续体；一般放势力或地区结算不能证明已实现。",
       "evidenceIds": [
         "manual-repress",
-        "card-JC040"
+        "card-JC040",
+        "card-DQXQZY03"
       ],
       "dependencies": [
         "priority",
@@ -3701,7 +3902,7 @@
       "path": "resource/ymsj-fun.github.io/cards/DQXQZY02 裂口女.jpg",
       "sha256": "89177662f0004dcf6a2af5c182fc125f9cd9ba45b5253cf50fb98ddfe5114ca7",
       "visuallyReviewed": true,
-      "topic": "裂口女：标题、色/类别及下方规则框"
+      "topic": "裂口女：完整同ID原图与必要放大区逐项人工读取"
     },
     "card-JC002": {
       "kind": "image",
@@ -3974,14 +4175,14 @@
       "path": "resource/ymsj-fun.github.io/cards/MSCQ01 水月.jpg",
       "sha256": "6d8d39705e082cdf29061a5dc143f5da40a5c44185eae96be4675bd394d0cfd8",
       "visuallyReviewed": true,
-      "topic": "水月：标题、色/类别及下方规则框"
+      "topic": "水月：完整同ID原图与必要放大区逐项人工读取"
     },
     "card-MSCQ02": {
       "kind": "image",
       "path": "resource/ymsj-fun.github.io/cards/MSCQ02 诺尔维隐修会.jpg",
       "sha256": "b5807e65cf0166dfff9a501be22745c3d76e9f39cf69202564a94b2a5086074c",
       "visuallyReviewed": true,
-      "topic": "诺尔维隐修会：标题、色/类别及下方规则框"
+      "topic": "诺尔维隐修会：完整同ID原图与必要放大区逐项人工读取"
     },
     "card-MSJC01": {
       "kind": "image",
@@ -4107,70 +4308,70 @@
       "path": "resource/ymsj-fun.github.io/cards/MSJZ01 猛禽战术小组.jpg",
       "sha256": "7442b931ee71ebdf5dac58371565981ab323b4451991c1c856f1e080c81fc3ed",
       "visuallyReviewed": true,
-      "topic": "猛禽战术小组：标题、色/类别及下方规则框"
+      "topic": "猛禽战术小组：完整同ID原图与必要放大区逐项人工读取"
     },
     "card-MSJZ02": {
       "kind": "image",
       "path": "resource/ymsj-fun.github.io/cards/MSJZ02 盛夏王廷.jpg",
       "sha256": "fdc2adeec1fc22e5d9916380f7e671c0a23c2c535287519adf87ab58e09b8293",
       "visuallyReviewed": true,
-      "topic": "盛夏王廷：标题、色/类别及下方规则框"
+      "topic": "盛夏王廷：完整同ID原图与必要放大区逐项人工读取"
     },
     "card-MSJZ03": {
       "kind": "image",
       "path": "resource/ymsj-fun.github.io/cards/MSJZ03 末日钟.jpg",
       "sha256": "56051dc91558ed994570aee388aefa0d2f34e8b4b8e813ddc96ee923aaf3a5f2",
       "visuallyReviewed": true,
-      "topic": "末日钟：标题、色/类别及下方规则框"
+      "topic": "末日钟：完整同ID原图与必要放大区逐项人工读取"
     },
     "card-MSJZ04": {
       "kind": "image",
       "path": "resource/ymsj-fun.github.io/cards/MSJZ04 破茧者教团.jpg",
       "sha256": "9ac85802bb8114b8dbdc0aa83d5c70dd38a35f1736c94a2ab2631a05d5c69b75",
       "visuallyReviewed": true,
-      "topic": "破茧者教团：标题、色/类别及下方规则框"
+      "topic": "破茧者教团：完整同ID原图与必要放大区逐项人工读取"
     },
     "card-MSLC01": {
       "kind": "image",
       "path": "resource/ymsj-fun.github.io/cards/MSLC01 联席会议观察员.jpg",
       "sha256": "10959af5c3636389efbe53988717baf7192157dce34aceb93d1bc31b9fdc49ac",
       "visuallyReviewed": true,
-      "topic": "联席会议观察员：标题、色/类别及下方规则框"
+      "topic": "联席会议观察员：完整同ID原图与必要放大区逐项人工读取"
     },
     "card-MSLC02": {
       "kind": "image",
       "path": "resource/ymsj-fun.github.io/cards/MSLC02 加利福尼亚猎团.jpg",
       "sha256": "b648bb4a92bdf4300c1b23e68e7df1e64df0da8bdf4c066444cf5e654d4a8500",
       "visuallyReviewed": true,
-      "topic": "加利福尼亚猎团：标题、色/类别及下方规则框"
+      "topic": "加利福尼亚猎团：完整同ID原图与必要放大区逐项人工读取"
     },
     "card-MSLC03": {
       "kind": "image",
       "path": "resource/ymsj-fun.github.io/cards/MSLC03 洛杉矶警察局.jpg",
       "sha256": "b74f2e8d5b5da9ba911455d0d4357128c00ca4731bfb0425d8a2277f70a2ee86",
       "visuallyReviewed": true,
-      "topic": "洛杉矶警察局：标题、色/类别及下方规则框"
+      "topic": "洛杉矶警察局：完整同ID原图与必要放大区逐项人工读取"
     },
     "card-MSLC04": {
       "kind": "image",
       "path": "resource/ymsj-fun.github.io/cards/MSLC04 圣公会.jpg",
       "sha256": "b7ee02aca2e4c705667fd4ede03cf8db414289b31fd1ad21bc52af018aa172da",
       "visuallyReviewed": true,
-      "topic": "圣公会：标题、色/类别及下方规则框"
+      "topic": "圣公会：完整同ID原图与必要放大区逐项人工读取"
     },
     "card-MSLC05": {
       "kind": "image",
       "path": "resource/ymsj-fun.github.io/cards/MSLC05 劣地长老.jpg",
       "sha256": "82d43a2efe9079bcaa4c5eb1cfaf4f4e1ef03317513fb87a5b29cb4af7975c01",
       "visuallyReviewed": true,
-      "topic": "劣地长老：标题、色/类别及下方规则框"
+      "topic": "劣地长老：完整同ID原图与必要放大区逐项人工读取"
     },
     "card-MSLC06": {
       "kind": "image",
       "path": "resource/ymsj-fun.github.io/cards/MSLC06 居民武装.jpg",
       "sha256": "dfa8d7a5f1becde0e7d25e54f7305d948136dbe15a3d0041ae88e505216eaecc",
       "visuallyReviewed": true,
-      "topic": "居民武装：标题、色/类别及下方规则框"
+      "topic": "居民武装：完整同ID原图与必要放大区逐项人工读取"
     },
     "card-MSWM01": {
       "kind": "image",
@@ -4275,28 +4476,28 @@
       "path": "resource/ymsj-fun.github.io/cards/ZHJZ65 葛丽特和汉塞尔.jpg",
       "sha256": "f51c66b98506abf16854052f6d7c7a177b9af392bc7fb164c51dac93cc7e6233",
       "visuallyReviewed": true,
-      "topic": "葛丽特和汉塞尔：标题、色/类别及下方规则框"
+      "topic": "葛丽特和汉塞尔：完整同ID原图与必要放大区逐项人工读取"
     },
     "card-ZHMSJZ02": {
       "kind": "image",
       "path": "resource/ymsj-fun.github.io/cards/ZHMSJZ02 凛冬王廷.jpg",
       "sha256": "7e8c5b56dc0a7fe358f6c8e2e13d3338b6fc6438e0873a00ead4ae8fb722a0d9",
       "visuallyReviewed": true,
-      "topic": "凛冬王廷：标题、色/类别及下方规则框"
+      "topic": "凛冬王廷：完整同ID原图与必要放大区逐项人工读取"
     },
     "card-ZHWM026": {
       "kind": "image",
       "path": "resource/ymsj-fun.github.io/cards/ZHWM026 古妮薇尔.jpg",
       "sha256": "665aa2f70395be7ea99b8f8efbd8664ad79551fd5a0ea8fe0da2e52b619ec114",
       "visuallyReviewed": true,
-      "topic": "古妮薇尔：标题、色/类别及下方规则框"
+      "topic": "古妮薇尔：完整同ID原图与必要放大区逐项人工读取"
     },
     "card-ZHWM048": {
       "kind": "image",
       "path": "resource/ymsj-fun.github.io/cards/ZHWM048 凛冬之风英迪拉.jpg",
       "sha256": "56c654f0b7dd4258203fd6c763db98148b6c372c4e09a9e610d84f75130e520b",
       "visuallyReviewed": true,
-      "topic": "凛冬之风英迪拉：标题、色/类别及下方规则框"
+      "topic": "凛冬之风英迪拉：完整同ID原图与必要放大区逐项人工读取"
     },
     "card-CQ12": {
       "kind": "image",
@@ -4665,6 +4866,190 @@
       "sha256": "38bc1cead206f3c284de77cda3f5d5e67609107b9305b055d924e2c82822798c",
       "visuallyReviewed": true,
       "topic": "先手标志原图仅钥匙造型，无印刷卡牌正文/费用/编号；不伪造成完整卡面"
+    },
+    "card-BQ112": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/BQ112 冰封古陵寝.jpg",
+      "sha256": "50955f6b3f6e8f2617a842fc62f8e70b502ffa69bc521fe63c030fc47ed1fe5b",
+      "visuallyReviewed": true,
+      "topic": "冰封古陵寝：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-BQ113": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/BQ113 蝉屋.jpg",
+      "sha256": "dce6125247cecaddd7dce8615417c2a7f35a3f5f3c7220ce78cbd3268bfb2ecc",
+      "visuallyReviewed": true,
+      "topic": "蝉屋：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-BQ114": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/BQ114 冻原哨所.jpg",
+      "sha256": "4eda8ce55d36fa7bfc54e7948bc03e460bfb00aa4446d46f27ced1b8bb5e9ca7",
+      "visuallyReviewed": true,
+      "topic": "冻原哨所：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-BQ115": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/BQ115 水没镇区.jpg",
+      "sha256": "b7b602671ecd6c142fb4a1a72e9f9e68778c5cbbf6878271071bca594329cea3",
+      "visuallyReviewed": true,
+      "topic": "水没镇区：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-BQ116": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/BQ116 流浪者聚居地.jpg",
+      "sha256": "21e2eb4298cf418b2d2fe23503159a823a7827e64a75f99f889a3ce8c3150783",
+      "visuallyReviewed": true,
+      "topic": "流浪者聚居地：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-BQ117": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/BQ117 失控的小镇.jpg",
+      "sha256": "c5384eb6975f6a60a5aeb819f770d9b79244591897db0af8f3f0b06053de8d22",
+      "visuallyReviewed": true,
+      "topic": "失控的小镇：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-CQ39": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/CQ39 超元域.jpg",
+      "sha256": "2f650d256b9c84f0d1859bab2cf0d440901b0dd31f2536bffaf930b062a0a1bb",
+      "visuallyReviewed": true,
+      "topic": "超元域：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-DQCQ01": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/DQCQ01 劣地巴德兰兹.jpg",
+      "sha256": "56aa5bcd0a8e5cb0522908d1bdded323a25a289eeb4164a5237743a80abedd1d",
+      "visuallyReviewed": true,
+      "topic": "劣地巴德兰兹：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-DQCQ02": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/DQCQ02 加州一号公路.jpg",
+      "sha256": "9c8803be486e15b45c05d03d0894b0b051f44294ec959482d86b6e57d7c2e7d2",
+      "visuallyReviewed": true,
+      "topic": "加州一号公路：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-DQCQ03": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/DQCQ03 梦之回廊.jpg",
+      "sha256": "99296001227cb5896af5424e1cac349e37f2f7b47f0b4489bffd110a9c4ffa29",
+      "visuallyReviewed": true,
+      "topic": "梦之回廊：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-DQJC108": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/DQJC108 佛罗伦萨.jpg",
+      "sha256": "5dd2014f700e73b7f8dda56b6c281f29946b6d36a96bdd3838af4b2b393f7c6e",
+      "visuallyReviewed": true,
+      "topic": "佛罗伦萨：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-DQJC109": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/DQJC109 京都.jpg",
+      "sha256": "337e5a45432d1ad434f971e66938e7506fc2997649648b21b7a6b1246306c60a",
+      "visuallyReviewed": true,
+      "topic": "京都：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-DQJC110": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/DQJC110 伦敦.jpg",
+      "sha256": "ecafefa26f0d3fa1aca9f63ecb50dcb21c1a51c157890516e94676880d8a1026",
+      "visuallyReviewed": true,
+      "topic": "伦敦：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-DQJC111": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/DQJC111 莫斯科.jpg",
+      "sha256": "e2bc64426c121d41404d758a24b863f4c527a4f69e0582811599e2bc60471e41",
+      "visuallyReviewed": true,
+      "topic": "莫斯科：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-DQJC115": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/DQJC115 死者之城.jpg",
+      "sha256": "66fa6d8ceb4ff3529c0d43386782aeac5553c564a761ec47d4e351beb91d0e94",
+      "visuallyReviewed": true,
+      "topic": "死者之城：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-DQWM001": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/DQWM001 武陵源.jpg",
+      "sha256": "8037a819c83411e4d6c098e9d43a72cea7d5811e801c43875bab5d6c219bd905",
+      "visuallyReviewed": true,
+      "topic": "武陵源：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-DQWM002": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/DQWM002 埃里伯斯山.jpg",
+      "sha256": "e1de873db445a586c21171029cba2ef58653d964e4ab6ac8407e0295ee0f4255",
+      "visuallyReviewed": true,
+      "topic": "埃里伯斯山：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-DQWM003": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/DQWM003 古城瓦莱塔.jpg",
+      "sha256": "bd6a1204e5b6581df645c8757aa71b56576853f020df11b7078a9ce2ebad259b",
+      "visuallyReviewed": true,
+      "topic": "古城瓦莱塔：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-DQWM004": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/DQWM004 亚伯拉罕湖.jpg",
+      "sha256": "5670e92ff73a13174959d90c59e568d06753d0507ecf95a78003344fe0507976",
+      "visuallyReviewed": true,
+      "topic": "亚伯拉罕湖：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-DQWM005": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/DQWM005 洛杉矶.jpg",
+      "sha256": "a790442a01180198b9aae140f59865d96adbe308aa1a5dcd528d6b642bc2729b",
+      "visuallyReviewed": true,
+      "topic": "洛杉矶：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-DQXQ01": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/DQXQ01 拉斯维加斯.jpg",
+      "sha256": "150433ee4c856331734d9cfd9c1d1b3088129c107154fff49476a75d7c5ca88d",
+      "visuallyReviewed": true,
+      "topic": "拉斯维加斯：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-DQXQZY03": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/DQXQZY03 瘦长鬼影.jpg",
+      "sha256": "cad28357dd9f5b7f0070301587262af80a62a5a35632818b76f6f5f607fded16",
+      "visuallyReviewed": true,
+      "topic": "瘦长鬼影：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-JZ65": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/JZ65 葛丽特和汉塞尔.jpg",
+      "sha256": "7c848a3ac655068dd593c8866e457d45d68da86adb3dca35e152cba1fff5950c",
+      "visuallyReviewed": true,
+      "topic": "葛丽特和汉塞尔：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-WM026": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/WM026 古妮薇尔.jpg",
+      "sha256": "75a671983008abff26bfb01369d444eb7709a89ddab02cacc58da43fcd2ffdeb",
+      "visuallyReviewed": true,
+      "topic": "古妮薇尔：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "card-WM048": {
+      "kind": "image",
+      "path": "resource/ymsj-fun.github.io/cards/WM048 凛冬之风英迪拉.jpg",
+      "sha256": "d23c130c8029ad0ef99538f282dfe5c79c12eeceff97c4a9a1949250447754f5",
+      "visuallyReviewed": true,
+      "topic": "凛冬之风英迪拉：完整同ID原图与必要放大区逐项人工读取"
+    },
+    "manual-initiative": {
+      "kind": "pdfPage",
+      "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界规则手册.pdf",
+      "sha256": "2a771874efbdb3ad8a339ea01ff62888766090d075fe2e013632c79de1aeba35",
+      "printedPage": 9,
+      "pdfPage": 11,
+      "visuallyReviewed": true,
+      "topic": "钥匙形先手标志的名称与功能；平局特权付1并展示、每回合一次"
     }
   },
   "openQuestions": [

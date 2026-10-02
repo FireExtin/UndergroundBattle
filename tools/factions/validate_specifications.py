@@ -54,7 +54,10 @@ def validate_specifications(specifications, coverage, index, recovery):
                 "Print identity must be observed, not guessed from locator or release year: " + i)
         for key in ["printedCost", "defense", "startingHand", "influenceThreshold", "points"]:
             value = fields[key]
-            require(value is None or type(value) is int and value >= 0, "Numeric field must be verified integer or explicit N/A: " + i)
+            symbolic = value == "X" and any(x.get("field") == key and x.get("symbol") == "X"
+                                            and x.get("definitionText") for x in s.get("variablePrintedValues", []))
+            require(value is None or type(value) is int and value >= 0 or symbolic,
+                    "Numeric field must be verified integer, defined printed X or explicit N/A: " + i)
         for key in ["permanentIcons", "temporaryIcons"]:
             require(set(fields[key]) == {"investigation", "combat", "influence"}
                     and all(type(v) is int and v >= 0 for v in fields[key].values()), "Invalid icon vector: " + i)
@@ -66,15 +69,39 @@ def validate_specifications(specifications, coverage, index, recovery):
                 and s["strategyUiPlaytest"] == "notRun", "Source review cannot approve gameplay or UI: " + i)
         require(all(x["status"] == "notRun" for x in s["acceptanceCases"]), "Do not fabricate game-test results: " + i)
         require(records[i]["fullCardVerification"] == status
-                and records[i]["fullSpecRef"] == "docs/factions/card-specifications.json#cards/" + i,
+                and records[i]["fullSpecRef"] == "docs/factions/card-specifications.json#cards/" + i
+                and records[i]["sourceRecordVerification"] == status
+                and records[i]["sourceSpecificationKind"] == "printedCard",
                 "Index completion claim differs from manual full specification: " + i)
 
     for i, r in records.items():
         if i not in specs:
             require(r["fullCardVerification"] == "notStarted" and r["fullSpecRef"] is None,
                     "Partial image review or locator must not count as whole-card verification: " + i)
+            if i not in specifications.get("nonCardReferences", {}):
+                require(r["sourceRecordVerification"] == "notStarted" and r["sourceSpecRef"] is None,
+                        "Unreviewed or partial records cannot gain whole-source completion: " + i)
     require(index["totals"]["completeSourceSpecifications"] == len(completed)
             and index["totals"]["blockedSourceSpecifications"] == len(blocked), "Full-source counts differ")
+    references = specifications.get("nonCardReferences", {})
+    for i, reference in references.items():
+        source = reference["sourceVerification"]
+        r = records.get(i, {})
+        e = evidence.get(source["evidenceId"], {})
+        require(i == "TK007" and i not in specs and r.get("role") == "markerReference"
+                and reference["artifactKind"] == "nonCardKeyMarker" and reference["noPrintedCardFields"] is True,
+                "Non-card reference must not fabricate or override a printed card: " + i)
+        require(source["status"] == "completeNonCardReference" and source["basis"] == "originalImageAndOriginalRulebook"
+                and source["imagePath"] == e.get("path") and source["imageSha256"] == e.get("sha256")
+                and e.get("visuallyReviewed") is True and set(reference["rulesEvidenceIds"]) <= set(evidence),
+                "Non-card reference needs its original graphic and reviewed rulebook: " + i)
+        require(reference["labelBasis"] == "originalRulebookDefinition" and not reference["selectionEnabled"]
+                and r.get("sourceRecordVerification") == source["status"]
+                and r.get("sourceSpecRef") == "docs/factions/card-specifications.json#nonCardReferences/" + i,
+                "Marker label is a rulebook definition, never a printed card name or playable choice: " + i)
+    require(index["totals"]["completeNonCardReferences"] == len(references)
+            and index["totals"]["completeSourceRecords"] == len(completed) + len(references),
+            "Card and non-card completion totals must remain separate")
     batch_complete = set()
     batch_blocked = set()
     for b in specifications["batches"]:
