@@ -153,4 +153,39 @@ def validate_specifications(specifications, coverage, index, recovery):
         nuclear = specs["DQJC113"]["abilities"][0]
         require(nuclear["damage"] == 1 and nuclear["notDestroyAll"] and not nuclear["targeted"],
                 "Chernobyl deals one damage; it does not automatically destroy all characters")
+    if "MSJC10" in specs:
+        for i in ["MSJC02", "MSJC03", "MSJC04", "MSJC05", "MSJC06", "MSJC07"]:
+            abilities = specs[i]["abilities"]
+            require(abilities[1]["costs"] == {"currency": 3, "exhaustSource": True}
+                    and abilities[2]["costs"] == {"currency": 4, "exhaustSource": True}
+                    and abilities[2]["search"]["goldNameUnique"],
+                    "Base society actions retain source-exhaust costs and unique-card search: " + i)
+        tapir = specs["MSJC10"]["abilities"]
+        require(tapir[1]["handCardIsEffectNotCost"] and tapir[1]["costs"] == {"currency": 2, "exhaustSource": True}
+                and tapir[2]["sealedCardBottomIsCost"] and tapir[3]["sealedCardBottomIsCost"]
+                and tapir[2]["costs"]["thisSocietySealedCardsToOwnersDeckBottom"] == 1
+                and tapir[3]["costs"]["thisSocietySealedCardsToOwnersDeckBottom"] == 2,
+                "MSJC10 hand sealing is an effect; sealed-to-bottom movements are activation costs")
+        family = specs["MSJC12"]["abilities"]
+        require(family[1]["scope"]["printedCostMaximum"] == 2 and family[1]["otherSubtypesPreserved"]
+                and all(a["threeCharacterExhaustIsCost"] and a["costs"]["exhaustDistinctControlledCharacters"]["count"] == 3
+                        for a in family[2:]),
+                "MSJC12 reads printed cost and requires three distinct characters exhausted as costs")
+        for i, color in [("MSJC13", "红"), ("MSJC15", "白")]:
+            r = specs[i]["abilities"][0]["restriction"]
+            require(r == {"uncappedColors": [color, "中立"], "maximumOtherColorCardsCombined": 12},
+                    "Other-color cap is twelve combined, not a strict two-color ban or per-color allowance: " + i)
+        sentinel = specs["MSJC14"]["abilities"][2]
+        require(len(sentinel["targets"]) == 2 and sentinel["destination"] == "currentRegionOfLockedAnchor",
+                "MSJC14 movement has two independently guarded targets")
+        funeral = specs["MSJC16"]["abilities"]
+        require(funeral[1]["kind"] == "optionalFirstTurnPreparationStartTrigger" and funeral[1]["notGameStartTiming"]
+                and funeral[3]["sevenSealsIsCostNotEffect"]
+                and funeral[3]["costs"]["sealOwnGraveyardCardsOnThisSociety"] == 7
+                and "gravePlay" not in specs["MSJC16"]["confirmedMechanismIds"],
+                "MSJC16 first-turn trigger and seven-seal cost are not ordinary grave play")
+        dreams = specs["MSJC17"]["abilities"]
+        require(dreams[1]["drawOrigin"] == "deckBottom" and dreams[1]["doesNotReplaceSearchToHand"]
+                and dreams[1]["doesNotChangeExplicitTopReference"] and dreams[2]["source"] == "controllerDeckTop",
+                "MSJC17 bottom draw must retain explicit deck-top and search-to-hand operations")
     return errors

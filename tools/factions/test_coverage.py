@@ -226,6 +226,38 @@ class CoverageTests(unittest.TestCase):
         specs["cards"]["DQJC113"]["abilities"][0]["notDestroyAll"] = False
         self.assertTrue(any("one damage" in e for e in self.source_errors(specs=specs)))
 
+    def test_tapir_sealing_and_sealed_to_bottom_have_different_cost_positions(self):
+        specs = copy.deepcopy(self.specifications)
+        specs["cards"]["MSJC10"]["abilities"][1]["handCardIsEffectNotCost"] = False
+        specs["cards"]["MSJC10"]["abilities"][2]["sealedCardBottomIsCost"] = False
+        self.assertTrue(any("activation costs" in e for e in self.source_errors(specs=specs)))
+
+    def test_family_cannot_move_three_character_exhaustions_into_effects(self):
+        specs = copy.deepcopy(self.specifications)
+        specs["cards"]["MSJC12"]["abilities"][2]["threeCharacterExhaustIsCost"] = False
+        self.assertTrue(any("distinct characters" in e for e in self.source_errors(specs=specs)))
+
+    def test_society_color_cap_cannot_become_exactly_two_colors(self):
+        specs = copy.deepcopy(self.specifications)
+        specs["cards"]["MSJC13"]["abilities"][0]["restriction"]["maximumOtherColorCardsCombined"] = 0
+        self.assertTrue(any("twelve combined" in e for e in self.source_errors(specs=specs)))
+
+    def test_sentinel_move_cannot_drop_its_locked_anchor_target(self):
+        specs = copy.deepcopy(self.specifications)
+        specs["cards"]["MSJC14"]["abilities"][2]["targets"].pop()
+        self.assertTrue(any("two independently" in e for e in self.source_errors(specs=specs)))
+
+    def test_funeral_society_trigger_and_effect_cannot_be_ordinary_grave_play(self):
+        specs = copy.deepcopy(self.specifications)
+        specs["cards"]["MSJC16"]["abilities"][1]["notGameStartTiming"] = False
+        specs["cards"]["MSJC16"]["confirmedMechanismIds"].append("gravePlay")
+        self.assertTrue(any("not ordinary grave play" in e for e in self.source_errors(specs=specs)))
+
+    def test_bottom_draw_cannot_invert_every_deck_top_reference(self):
+        specs = copy.deepcopy(self.specifications)
+        specs["cards"]["MSJC17"]["abilities"][1]["doesNotChangeExplicitTopReference"] = False
+        self.assertTrue(any("explicit deck-top" in e for e in self.source_errors(specs=specs)))
+
 
 if __name__ == "__main__":
     unittest.main()

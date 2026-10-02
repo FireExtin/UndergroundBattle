@@ -1001,10 +1001,12 @@
       },
       "abilitySummary": "持先手时付费抓牌；每局一次检索相应派系独有牌。",
       "confirmedMechanismIds": [
-        "society",
-        "deckChoice"
+        "deckChoice",
+        "priority",
+        "society"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "全部游戏字段见card-specifications.json，规则疑点与实现/UI验收另计。",
+      "editionStatus": "pinnedImageVariant"
     },
     "MSJC03": {
       "evidenceId": "card-MSJC03",
@@ -1017,10 +1019,12 @@
       },
       "abilitySummary": "持先手时付费抓牌；每局一次检索相应派系独有牌。",
       "confirmedMechanismIds": [
-        "society",
-        "deckChoice"
+        "deckChoice",
+        "priority",
+        "society"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "全部游戏字段见card-specifications.json，规则疑点与实现/UI验收另计。",
+      "editionStatus": "pinnedImageVariant"
     },
     "MSJC04": {
       "evidenceId": "card-MSJC04",
@@ -1033,10 +1037,12 @@
       },
       "abilitySummary": "持先手时付费抓牌；每局一次检索相应派系独有牌。",
       "confirmedMechanismIds": [
-        "society",
-        "deckChoice"
+        "deckChoice",
+        "priority",
+        "society"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "全部游戏字段见card-specifications.json，规则疑点与实现/UI验收另计。",
+      "editionStatus": "pinnedImageVariant"
     },
     "MSJC05": {
       "evidenceId": "card-MSJC05",
@@ -1049,10 +1055,12 @@
       },
       "abilitySummary": "持先手时付费抓牌；每局一次检索相应派系独有牌。",
       "confirmedMechanismIds": [
-        "society",
-        "deckChoice"
+        "deckChoice",
+        "priority",
+        "society"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "全部游戏字段见card-specifications.json，规则疑点与实现/UI验收另计。",
+      "editionStatus": "pinnedImageVariant"
     },
     "MSJC06": {
       "evidenceId": "card-MSJC06",
@@ -1065,10 +1073,12 @@
       },
       "abilitySummary": "持先手时付费抓牌；每局一次检索相应派系独有牌。",
       "confirmedMechanismIds": [
-        "society",
-        "deckChoice"
+        "deckChoice",
+        "priority",
+        "society"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "全部游戏字段见card-specifications.json，规则疑点与实现/UI验收另计。",
+      "editionStatus": "pinnedImageVariant"
     },
     "MSJC07": {
       "evidenceId": "card-MSJC07",
@@ -1081,10 +1091,12 @@
       },
       "abilitySummary": "持先手时付费抓牌；每局一次检索相应派系独有牌。",
       "confirmedMechanismIds": [
-        "society",
-        "deckChoice"
+        "deckChoice",
+        "priority",
+        "society"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "全部游戏字段见card-specifications.json，规则疑点与实现/UI验收另计。",
+      "editionStatus": "pinnedImageVariant"
     },
     "MSJC08": {
       "evidenceId": "card-MSJC08",
@@ -1131,28 +1143,34 @@
       },
       "abilitySummary": "手牌封印、用封印换灵体或角色正面进场。",
       "confirmedMechanismIds": [
-        "society",
+        "control",
+        "deckChoice",
+        "priority",
         "seal",
+        "society",
         "spirit"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "全部游戏字段见card-specifications.json，规则疑点与实现/UI验收另计。",
+      "editionStatus": "pinnedImageVariant"
     },
     "MSJC11": {
       "evidenceId": "card-MSJC11",
       "reviewStatus": "primaryImageReviewed",
       "verifiedFields": {
-        "name": "S．P．T执行部",
+        "name": "S.P.T.执行部",
         "colorKey": "绿",
         "basicType": "秘社",
         "startingHand": 6
       },
       "abilitySummary": "赋杀伤1；同地区本方带永久战斗图标角色赋撤回。",
       "confirmedMechanismIds": [
-        "society",
         "combatTraits",
-        "continuous"
+        "continuous",
+        "priority",
+        "society"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "全部游戏字段见card-specifications.json，规则疑点与实现/UI验收另计。",
+      "editionStatus": "pinnedImageVariant"
     },
     "MSJC12": {
       "evidenceId": "card-MSJC12",
@@ -1165,12 +1183,14 @@
       },
       "abilitySummary": "低费本方人类赋奴仆；横置族群抓牌/令敌方弃牌。",
       "confirmedMechanismIds": [
-        "society",
-        "attachment",
         "continuous",
-        "deckChoice"
+        "deckChoice",
+        "exhaust",
+        "priority",
+        "society"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "全部游戏字段见card-specifications.json，规则疑点与实现/UI验收另计。",
+      "editionStatus": "pinnedImageVariant"
     },
     "MSJC13": {
       "evidenceId": "card-MSJC13",
@@ -1183,11 +1203,14 @@
       },
       "abilitySummary": "放时间标志；消灭达到三标志的角色/附属后抓牌。",
       "confirmedMechanismIds": [
+        "attachment",
+        "deckChoice",
+        "priority",
         "society",
-        "timeDestroy",
-        "deckChoice"
+        "timeDestroy"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "全部游戏字段见card-specifications.json，规则疑点与实现/UI验收另计。",
+      "editionStatus": "pinnedImageVariant"
     },
     "MSJC14": {
       "evidenceId": "card-MSJC14",
@@ -1200,11 +1223,13 @@
       },
       "abilitySummary": "锁定敵方暗藏者；本方角色移动到有锁定目标所在地区。",
       "confirmedMechanismIds": [
-        "society",
         "lock",
-        "mobility"
+        "mobility",
+        "priority",
+        "society"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "全部游戏字段见card-specifications.json，规则疑点与实现/UI验收另计。",
+      "editionStatus": "pinnedImageVariant"
     },
     "MSJC15": {
       "evidenceId": "card-MSJC15",
@@ -1217,11 +1242,14 @@
       },
       "abilitySummary": "初始隐秘标志；手牌≥4时展示角色并暗藏者进场。",
       "confirmedMechanismIds": [
-        "society",
+        "deckChoice",
+        "hidden",
         "mysticContest",
-        "hidden"
+        "priority",
+        "society"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "全部游戏字段见card-specifications.json，规则疑点与实现/UI验收另计。",
+      "editionStatus": "pinnedImageVariant"
     },
     "MSJC16": {
       "evidenceId": "card-MSJC16",
@@ -1234,11 +1262,14 @@
       },
       "abilitySummary": "牌库置墓；封印7墓地牌作成本，墓地死亡领域角色正面进场。",
       "confirmedMechanismIds": [
-        "society",
+        "deckChoice",
+        "graveRecovery",
+        "priority",
         "seal",
-        "gravePlay"
+        "society"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "全部游戏字段见card-specifications.json，规则疑点与实现/UI验收另计。",
+      "editionStatus": "pinnedImageVariant"
     },
     "MSJC17": {
       "evidenceId": "card-MSJC17",
@@ -1251,12 +1282,15 @@
       },
       "abilitySummary": "从牌库底抓牌；封印顶牌；墓地灵体回牌库顶。",
       "confirmedMechanismIds": [
-        "society",
+        "deckChoice",
+        "graveRecovery",
+        "priority",
         "seal",
-        "spirit",
-        "deckChoice"
+        "society",
+        "spirit"
       ],
-      "remainingReview": "数值/图标、完整逐字能力、触发/持续精确模型、版次与合法交互仍须逐字段复核；此摘要不执行规则。"
+      "remainingReview": "全部游戏字段见card-specifications.json，规则疑点与实现/UI验收另计。",
+      "editionStatus": "pinnedImageVariant"
     },
     "MSJZ01": {
       "evidenceId": "card-MSJZ01",
