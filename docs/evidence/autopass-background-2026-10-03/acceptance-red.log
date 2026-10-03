@@ -1,0 +1,109 @@
+
+ RUN  v4.1.2 /workspace/UndergroundBattle/web
+
+ × proposals/autopass-background/acceptance-red.spec.jsx > PROPOSAL ONLY: background 3s when AutoPass enabled and playing > discovers a turn within 3s even when the last accepted view is not our turn, then waits the existing 550ms 59ms
+   → expected [] to deeply equal [ 3000 ]
+ × proposals/autopass-background/acceptance-red.spec.jsx > PROPOSAL ONLY: background 3s when AutoPass enabled and playing > rearms a sleeping 12s timer when the user turns AutoPass on without replacing the polling lifecycle 169ms
+   → expected [] to deeply equal [ 4000 ]
+ × proposals/autopass-background/acceptance-red.spec.jsx > PROPOSAL ONLY: background 3s when AutoPass enabled and playing > keeps 3s synchronization while waiting for another seat chooser but sends no automatic command 4ms
+   → expected [] to deeply equal [ 3000 ]
+ × proposals/autopass-background/acceptance-red.spec.jsx > PROPOSAL ONLY: background 3s when AutoPass enabled and playing > uses the in-memory opt-in when preference persistence fails instead of rereading storage to choose 12s 21ms
+   → expected [] to deeply equal [ 3000 ]
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  proposals/autopass-background/acceptance-red.spec.jsx > PROPOSAL ONLY: background 3s when AutoPass enabled and playing > discovers a turn within 3s even when the last accepted view is not our turn, then waits the existing 550ms
+AssertionError: expected [] to deeply equal [ 3000 ]
+
+- Expected
++ Received
+
+- [
+-   3000,
+- ]
++ []
+
+ ❯ proposals/autopass-background/acceptance-red.spec.jsx:16:50
+     14|     h.server.view = { ...playing, version: 2, legalActions: [pass] };
+     15|     await advance(2_999);
+     16|     expect(h.polls().map(event => event.timeMs)).toEqual([3_000]);
+       |                                                  ^
+     17|     expect(h.current().view.version).toBe(2);
+     18|     await advance(549); expect(h.commands()).toHaveLength(0);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  proposals/autopass-background/acceptance-red.spec.jsx > PROPOSAL ONLY: background 3s when AutoPass enabled and playing > rearms a sleeping 12s timer when the user turns AutoPass on without replacing the polling lifecycle
+AssertionError: expected [] to deeply equal [ 4000 ]
+
+- Expected
++ Received
+
+- [
+-   4000,
+- ]
++ []
+
+ ❯ proposals/autopass-background/acceptance-red.spec.jsx:28:50
+     26|     fireEvent.click(screen.getByRole('switch'));
+     27|     await advance(3_000);
+     28|     expect(h.polls().map(event => event.timeMs)).toEqual([4_000]);
+       |                                                  ^
+     29|     expect(h.trace.filter(event => event.kind === 'initial-state')).to…
+     30|     expect(h.commands()).toHaveLength(0);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  proposals/autopass-background/acceptance-red.spec.jsx > PROPOSAL ONLY: background 3s when AutoPass enabled and playing > keeps 3s synchronization while waiting for another seat chooser but sends no automatic command
+AssertionError: expected [] to deeply equal [ 3000 ]
+
+- Expected
++ Received
+
+- [
+-   3000,
+- ]
++ []
+
+ ❯ proposals/autopass-background/acceptance-red.spec.jsx:37:50
+     35|       legalActions: [pass], waitingChoice: { playerId: 'p1', kind: 'ta…
+     36|     await advance(3_000);
+     37|     expect(h.polls().map(event => event.timeMs)).toEqual([3_000]);
+       |                                                  ^
+     38|     expect(h.commands()).toHaveLength(0);
+     39|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  proposals/autopass-background/acceptance-red.spec.jsx > PROPOSAL ONLY: background 3s when AutoPass enabled and playing > uses the in-memory opt-in when preference persistence fails instead of rereading storage to choose 12s
+AssertionError: expected [] to deeply equal [ 3000 ]
+
+- Expected
++ Received
+
+- [
+-   3000,
+- ]
++ []
+
+ ❯ proposals/autopass-background/acceptance-red.spec.jsx:52:50
+     50|     expect(localStorage.getItem('hegemony.autoPass.v1')).toBe('false');
+     51|     await advance(3_000);
+     52|     expect(h.polls().map(event => event.timeMs)).toEqual([3_000]);
+       |                                                  ^
+     53|   });
+     54| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  4 failed (4)
+   Start at  12:55:09
+   Duration  1.58s (transform 173ms, setup 183ms, import 162ms, tests 254ms, environment 721ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

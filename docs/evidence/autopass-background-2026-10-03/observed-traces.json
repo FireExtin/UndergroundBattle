@@ -1,0 +1,590 @@
+{
+  "source": "0ec1d7643fff64b3f8c98cdac343b11fea49d10e",
+  "method": "released React hook + AutoPass; jsdom fake clock; synthetic fetch only; zero RTT unless deferred",
+  "measurements": [
+    {
+      "scenario": "first discovery while last view has no legal action",
+      "serverTransitionMs": 1,
+      "discoveredMs": 12000,
+      "commandMs": 12550,
+      "eventToPostMs": 12549,
+      "trace": [
+        {
+          "kind": "initial-state",
+          "timeMs": 0,
+          "afterVersion": null
+        },
+        {
+          "kind": "poll",
+          "timeMs": 12000,
+          "afterVersion": 1
+        },
+        {
+          "kind": "command",
+          "timeMs": 12550,
+          "commandId": "d3ddebfd-87c6-43b4-b2f2-309bfcc846df",
+          "expectedVersion": 2,
+          "action": {
+            "kind": "pass"
+          }
+        }
+      ]
+    },
+    {
+      "scenario": "background AutoPass on playing",
+      "windowMs": 60000,
+      "periodicStateGets": 5,
+      "initialStateGets": 1,
+      "trace": [
+        {
+          "kind": "initial-state",
+          "timeMs": 0,
+          "afterVersion": null
+        },
+        {
+          "kind": "poll",
+          "timeMs": 12000,
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 24000,
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 36000,
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 48000,
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 60000,
+          "afterVersion": 1
+        }
+      ]
+    },
+    {
+      "scenario": "background AutoPass off playing",
+      "windowMs": 60000,
+      "periodicStateGets": 5,
+      "initialStateGets": 1,
+      "trace": [
+        {
+          "kind": "initial-state",
+          "timeMs": 0,
+          "afterVersion": null
+        },
+        {
+          "kind": "poll",
+          "timeMs": 12000,
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 24000,
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 36000,
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 48000,
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 60000,
+          "afterVersion": 1
+        }
+      ]
+    },
+    {
+      "scenario": "background room lobby AutoPass on",
+      "windowMs": 60000,
+      "periodicStateGets": 5,
+      "initialStateGets": 1,
+      "trace": [
+        {
+          "kind": "initial-state",
+          "timeMs": 0,
+          "afterVersion": null
+        },
+        {
+          "kind": "poll",
+          "timeMs": 12000,
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 24000,
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 36000,
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 48000,
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 60000,
+          "afterVersion": 1
+        }
+      ]
+    },
+    {
+      "scenario": "background finished AutoPass on",
+      "windowMs": 60000,
+      "periodicStateGets": 5,
+      "initialStateGets": 1,
+      "trace": [
+        {
+          "kind": "initial-state",
+          "timeMs": 0,
+          "afterVersion": null
+        },
+        {
+          "kind": "poll",
+          "timeMs": 12000,
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 24000,
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 36000,
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 48000,
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 60000,
+          "afterVersion": 1
+        }
+      ]
+    },
+    {
+      "scenario": "foreground playing",
+      "windowMs": 60000,
+      "periodicStateGets": 40,
+      "initialStateGets": 1,
+      "trace": [
+        {
+          "kind": "initial-state",
+          "timeMs": 0,
+          "afterVersion": null
+        },
+        {
+          "kind": "poll",
+          "timeMs": 1500,
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 3000,
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 4500,
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 6000,
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 7500,
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 9000,
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 10500,
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 12000,
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 13500,
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 15000,
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 16500,
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 18000,
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 19500,
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 21000,
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 22500,
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 24000,
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 25500,
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 27000,
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 28500,
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 30000,
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 31500,
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 33000,
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 34500,
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 36000,
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 37500,
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 39000,
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 40500,
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 42000,
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 43500,
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 45000,
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 46500,
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 48000,
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 49500,
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 51000,
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 52500,
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 54000,
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 55500,
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 57000,
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 58500,
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 60000,
+          "afterVersion": 1
+        }
+      ]
+    },
+    {
+      "scenario": "public lobby without an active seat",
+      "windowMs": 60000,
+      "periodicStateGets": 0,
+      "initialStateGets": 0,
+      "trace": []
+    },
+    {
+      "scenario": "visible immediate refresh, one in-flight poll",
+      "trace": [
+        {
+          "kind": "initial-state",
+          "timeMs": 0,
+          "afterVersion": null
+        },
+        {
+          "kind": "poll",
+          "timeMs": 100,
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 1600,
+          "afterVersion": 1
+        }
+      ]
+    },
+    {
+      "scenario": "in-flight command blocks manual/new automatic command; unchanged version never duplicates",
+      "trace": [
+        {
+          "kind": "initial-state",
+          "timeMs": 0,
+          "afterVersion": null
+        },
+        {
+          "kind": "command",
+          "timeMs": 550,
+          "commandId": "ba33b886-24e6-4fe6-9f72-f3230bfdba91",
+          "expectedVersion": 1,
+          "action": {
+            "kind": "pass"
+          }
+        },
+        {
+          "kind": "poll",
+          "timeMs": 12000,
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 24000,
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 36000,
+          "afterVersion": 1
+        }
+      ]
+    },
+    {
+      "scenario": "lost acknowledgement retries, no new identity or action",
+      "trace": [
+        {
+          "kind": "initial-state",
+          "timeMs": 0,
+          "afterVersion": null
+        },
+        {
+          "kind": "command",
+          "timeMs": 550,
+          "commandId": "60a95853-70a8-46e7-87dc-87314ef88c94",
+          "expectedVersion": 1,
+          "action": {
+            "kind": "pass"
+          }
+        },
+        {
+          "kind": "command",
+          "timeMs": 550,
+          "commandId": "60a95853-70a8-46e7-87dc-87314ef88c94",
+          "expectedVersion": 1,
+          "action": {
+            "kind": "pass"
+          }
+        },
+        {
+          "kind": "initial-state",
+          "timeMs": 550,
+          "afterVersion": null
+        },
+        {
+          "kind": "poll",
+          "timeMs": 12000,
+          "afterVersion": 1
+        },
+        {
+          "kind": "command",
+          "timeMs": 12000,
+          "commandId": "60a95853-70a8-46e7-87dc-87314ef88c94",
+          "expectedVersion": 1,
+          "action": {
+            "kind": "pass"
+          }
+        },
+        {
+          "kind": "command",
+          "timeMs": 12000,
+          "commandId": "60a95853-70a8-46e7-87dc-87314ef88c94",
+          "expectedVersion": 1,
+          "action": {
+            "kind": "pass"
+          }
+        },
+        {
+          "kind": "initial-state",
+          "timeMs": 12000,
+          "afterVersion": null
+        },
+        {
+          "kind": "command",
+          "timeMs": 12000,
+          "commandId": "60a95853-70a8-46e7-87dc-87314ef88c94",
+          "expectedVersion": 1,
+          "action": {
+            "kind": "pass"
+          }
+        }
+      ]
+    },
+    {
+      "scenario": "private chooser accepted at 300ms cancels old 550ms timer",
+      "trace": [
+        {
+          "kind": "initial-state",
+          "timeMs": 0,
+          "afterVersion": null
+        },
+        {
+          "kind": "poll",
+          "timeMs": 300,
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 1800,
+          "afterVersion": 2
+        }
+      ]
+    },
+    {
+      "scenario": "public chooser accepted at 300ms cancels old 550ms timer",
+      "trace": [
+        {
+          "kind": "initial-state",
+          "timeMs": 0,
+          "afterVersion": null
+        },
+        {
+          "kind": "poll",
+          "timeMs": 300,
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 1800,
+          "afterVersion": 2
+        }
+      ]
+    },
+    {
+      "scenario": "response intent window accepted at 300ms cancels old 550ms timer",
+      "trace": [
+        {
+          "kind": "initial-state",
+          "timeMs": 0,
+          "afterVersion": null
+        },
+        {
+          "kind": "poll",
+          "timeMs": 300,
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 1800,
+          "afterVersion": 2
+        }
+      ]
+    }
+  ]
+}

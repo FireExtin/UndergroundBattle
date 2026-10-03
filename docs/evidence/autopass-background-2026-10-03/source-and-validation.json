@@ -1,0 +1,82 @@
+{
+  "releasedSource": "0ec1d7643fff64b3f8c98cdac343b11fea49d10e",
+  "site16Source": "f5764e8a99f74585eedd74a82786912f20e837fe",
+  "privateBranch": "codex/autopass-background-proposal-20261003",
+  "runtimeFiles": [
+    {
+      "path": "web/src/game/useGame.ts",
+      "baselineGitBlob": "7ffa006c1e2397aa6711bf1e4b79d966f7560d20",
+      "sha256": "7d72f2f268cd257473c97b270e497cbee50fdd2d72128dd0282f4dce189e2e40",
+      "currentEqualsReleasedSource": true,
+      "currentEqualsSite16Source": true
+    },
+    {
+      "path": "web/src/game/AutoPass.tsx",
+      "baselineGitBlob": "47cfbb61f927efd326537b1d5602ec155fa5f3fa",
+      "sha256": "b459d65304e7d340a894675d1aa643370f70d200075af7848a68597ab463e850",
+      "currentEqualsReleasedSource": true,
+      "currentEqualsSite16Source": true
+    },
+    {
+      "path": "web/src/game/GameApp.tsx",
+      "baselineGitBlob": "6dcc87f999a5510651f19540cf992dab55bd7c7b",
+      "sha256": "a6d1097e7cbadedae3224201c9b87c99f098010c2112a87863bce586ec22c284",
+      "currentEqualsReleasedSource": true,
+      "currentEqualsSite16Source": true
+    },
+    {
+      "path": "web/src/game/Table.tsx",
+      "baselineGitBlob": "d41e59490ce5cc3cc0de6ae6ecd17d74a8592909",
+      "sha256": "b01f5fdea8ffe591b3bf1be84d8851245c4e5d83ffbbcf3bf1fa88551380c643",
+      "currentEqualsReleasedSource": true,
+      "currentEqualsSite16Source": true
+    },
+    {
+      "path": "web/src/game/playerStorage.ts",
+      "baselineGitBlob": "d26d8a18d840487478809c1d935a59251fccdabd",
+      "sha256": "51021f2c97ebba051009ba44415652ef3c75194a1cc6f1249ec148519db43e44",
+      "currentEqualsReleasedSource": true,
+      "currentEqualsSite16Source": true
+    },
+    {
+      "path": "web/src/game/api.ts",
+      "baselineGitBlob": "2dda69c158e43dc372e2ea5cd22d279428a1fd8e",
+      "sha256": "2a9011a3bca5f04015f8c55084cdd7ba0e2803215336811315ce0326fbe700c4",
+      "currentEqualsReleasedSource": true,
+      "currentEqualsSite16Source": true
+    },
+    {
+      "path": "web/vite.config.ts",
+      "baselineGitBlob": "78409b29a78d6b747f2e46bd77879e7775760c73",
+      "sha256": "160eb74814156cb71d247d68bafee48239e19006a13adef9f186c035be5326b4",
+      "currentEqualsReleasedSource": true,
+      "currentEqualsSite16Source": true
+    },
+    {
+      "path": "sites/src/service.mjs",
+      "baselineGitBlob": "096df088beee128399183bfe23912f53f117b5cf",
+      "sha256": "757930aad47a30dad7cd880b504b2c1a7b7a8c5a47905b6fba6f2f2647f88c02",
+      "currentEqualsReleasedSource": true
+    }
+  ],
+  "validation": {
+    "defaultFrontend": {
+      "files": 21,
+      "passed": 187,
+      "failed": 0
+    },
+    "releasedBehaviorObservations": {
+      "passed": 13,
+      "failed": 0
+    },
+    "proposalAcceptance": {
+      "passed": 0,
+      "expectedRed": 4,
+      "exitCode": 1,
+      "failure": "expected poll at 3000/4000ms, received []"
+    }
+  },
+  "productionChanges": [],
+  "publicWrites": [],
+  "realRoomAccess": false
+}

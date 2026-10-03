@@ -1,0 +1,103 @@
+{
+  "source": "0ec1d7643fff64b3f8c98cdac343b11fea49d10e",
+  "method": "deterministic isolated mathematical model; no live API, actual browser, or engine",
+  "assumptions": [
+    "healthy online state reads",
+    "zero RTT",
+    "no browser timer throttling",
+    "no pending command reconciliation duration",
+    "initial full GET and command POST excluded from steady periodic GET counts"
+  ],
+  "proposedDelayPolicyMs": {
+    "foreground": 1500,
+    "hiddenPlayingAutoPassOn": 3000,
+    "hiddenOtherwise": 12000,
+    "publicLobbyNoActiveSeatPeriodicPolls": 0
+  },
+  "firstDiscoveryAtServerTransition1Ms": [
+    {
+      "policy": "released",
+      "staleViewKnowsOurTurn": false,
+      "firstPollMs": 12000,
+      "autoPostMs": 12550,
+      "eventToPostMs": 12549
+    },
+    {
+      "policy": "fast only after stale view knows our turn",
+      "staleViewKnowsOurTurn": false,
+      "firstPollMs": 12000,
+      "autoPostMs": 12550,
+      "eventToPostMs": 12549
+    },
+    {
+      "policy": "proposed playing + opt-in, independent of whose turn",
+      "staleViewKnowsOurTurn": false,
+      "firstPollMs": 3000,
+      "autoPostMs": 3550,
+      "eventToPostMs": 3549
+    }
+  ],
+  "uniformArrivalLatencyModels": [
+    {
+      "pollDelayMs": 12000,
+      "autoPassDelayMs": 550,
+      "uniformArrivalSamples": 120000,
+      "eventToPostMeanMs": 6550.0,
+      "eventToPostP95Ms": 11949.95,
+      "eventToPostSupremumMs": 12550
+    },
+    {
+      "pollDelayMs": 3000,
+      "autoPassDelayMs": 550,
+      "uniformArrivalSamples": 120000,
+      "eventToPostMeanMs": 2050.0,
+      "eventToPostP95Ms": 3399.988,
+      "eventToPostSupremumMs": 3550
+    }
+  ],
+  "fourActiveSeatLoadModels": [
+    {
+      "scenario": "one visible, three hidden opt-in",
+      "currentPeriodicStateGetsPerMinute": 55.0,
+      "proposedPeriodicStateGetsPerMinute": 100.0,
+      "increasePerMinute": 45.0,
+      "increasePercent": 81.818
+    },
+    {
+      "scenario": "four hidden opt-in",
+      "currentPeriodicStateGetsPerMinute": 20.0,
+      "proposedPeriodicStateGetsPerMinute": 80.0,
+      "increasePerMinute": 60.0,
+      "increasePercent": 300.0
+    },
+    {
+      "scenario": "four visible",
+      "currentPeriodicStateGetsPerMinute": 160.0,
+      "proposedPeriodicStateGetsPerMinute": 160.0,
+      "increasePerMinute": 0.0,
+      "increasePercent": 0.0
+    },
+    {
+      "scenario": "one visible, one hidden opt-in, two hidden off",
+      "currentPeriodicStateGetsPerMinute": 55.0,
+      "proposedPeriodicStateGetsPerMinute": 70.0,
+      "increasePerMinute": 15.0,
+      "increasePercent": 27.273
+    },
+    {
+      "scenario": "four hidden off",
+      "currentPeriodicStateGetsPerMinute": 20.0,
+      "proposedPeriodicStateGetsPerMinute": 20.0,
+      "increasePerMinute": 0.0,
+      "increasePercent": 0.0
+    }
+  ],
+  "nonzeroRttRateFormula": "For a seat: 60 / (chosen_delay_seconds + state_RTT_seconds + awaited_pending_reconciliation_seconds) periodic GETs/minute; sum across active seats.",
+  "realLimitations": [
+    "Browser background throttling/suspension can extend both polling and 550ms submission timers without bound.",
+    "A stale lobby view keeps the slower cadence until it discovers playing; this proposal improves playing-to-turn discovery, not lobby-to-start discovery.",
+    "Response intent windows and private/public choosers pause automatic commands; 3s polling does not automatically complete those decisions.",
+    "204 saves response body bytes but the server still authenticates, reads room/D1 and may process existing deadline ticks.",
+    "Faster pending recovery may issue the original command retry sooner; it must preserve the original id/version/action."
+  ]
+}

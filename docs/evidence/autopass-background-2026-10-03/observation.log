@@ -1,0 +1,27 @@
+
+ RUN  v4.1.2 /workspace/UndergroundBattle/web
+
+ ✓ proposals/autopass-background/observation.spec.jsx > released background AutoPass observations > discovers a new sole-pass turn at 12s and posts at 12.55s although AutoPass was enabled before discovery 36ms
+ ✓ proposals/autopass-background/observation.spec.jsx > released background AutoPass observations > measures background AutoPass on playing over 60s, excluding the immediate initial read 6ms
+ ✓ proposals/autopass-background/observation.spec.jsx > released background AutoPass observations > measures background AutoPass off playing over 60s, excluding the immediate initial read 5ms
+ ✓ proposals/autopass-background/observation.spec.jsx > released background AutoPass observations > measures background room lobby AutoPass on over 60s, excluding the immediate initial read 11ms
+ ✓ proposals/autopass-background/observation.spec.jsx > released background AutoPass observations > measures background finished AutoPass on over 60s, excluding the immediate initial read 5ms
+ ✓ proposals/autopass-background/observation.spec.jsx > released background AutoPass observations > measures foreground playing over 60s, excluding the immediate initial read 8ms
+ ✓ proposals/autopass-background/observation.spec.jsx > released background AutoPass observations > measures public lobby without an active seat over 60s, excluding the immediate initial read 3ms
+ ✓ proposals/autopass-background/observation.spec.jsx > released background AutoPass observations > resumes immediately on becoming visible and does not overlap an in-flight poll 5ms
+ ✓ proposals/autopass-background/observation.spec.jsx > released background AutoPass observations > keeps the command lock across background polls and sends one AutoPass command for an unchanged version 13ms
+ ✓ proposals/autopass-background/observation.spec.jsx > released background AutoPass observations > reconciles lost acknowledgements using only the original command identity, version and action 6ms
+ ✓ proposals/autopass-background/observation.spec.jsx > released background AutoPass observations > cancels a queued AutoPass when a private chooser is accepted and keeps state synchronization active 5ms
+ ✓ proposals/autopass-background/observation.spec.jsx > released background AutoPass observations > cancels a queued AutoPass when a public chooser is accepted and keeps state synchronization active 4ms
+ ✓ proposals/autopass-background/observation.spec.jsx > released background AutoPass observations > cancels a queued AutoPass when a response intent window is accepted and keeps state synchronization active 3ms
+
+ Test Files  1 passed (1)
+      Tests  13 passed (13)
+   Start at  12:55:09
+   Duration  1.19s (transform 106ms, setup 179ms, import 109ms, tests 112ms, environment 534ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
