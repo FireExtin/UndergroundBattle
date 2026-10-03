@@ -654,3 +654,8 @@
   .hg-faction-coverage > ul > li { grid-template-columns: 1fr; }
   .hg-faction-coverage > ul > li > span:nth-child(2) { padding-left: 15px; }
 }
+
+/* Explicit player identity selection, separate from the room invitation. */
+.hg-player-session { max-width: 1160px; margin: 12px auto; padding: 12px 20px; border: 1px solid var(--hg-line, #4d4757); border-radius: 8px; }
+.hg-player-session p { margin: 6px 0; font-size: 13px; line-height: 1.6; }
+.hg-player-session > div { display: flex; flex-wrap: wrap; gap: 8px; }
