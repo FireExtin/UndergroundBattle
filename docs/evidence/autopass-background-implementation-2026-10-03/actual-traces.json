@@ -1,0 +1,1740 @@
+{
+  "method": "actual useGame + controlled AutoPass, fake clock, synthetic fetch only, zero RTT except deferred cases",
+  "observations": [
+    {
+      "scenario": "first discovery while stale view is not our turn",
+      "serverTransitionMs": 1,
+      "discoveredMs": 3000,
+      "commandMs": 3550,
+      "eventToPostMs": 3549,
+      "trace": [
+        {
+          "kind": "initial-state",
+          "timeMs": 0,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": null
+        },
+        {
+          "kind": "poll",
+          "timeMs": 3000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "command",
+          "timeMs": 3550,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "commandId": "504143e5-9dd6-4de5-9e4d-e735ae2aa965",
+          "expectedVersion": 2,
+          "action": {
+            "kind": "pass"
+          }
+        }
+      ]
+    },
+    {
+      "scenario": "enable at 1000ms, rearm healthy idle timer to 4000ms",
+      "trace": [
+        {
+          "kind": "initial-state",
+          "timeMs": 0,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": null
+        },
+        {
+          "kind": "poll",
+          "timeMs": 4000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        }
+      ]
+    },
+    {
+      "scenario": "other-seat chooser continues fast sync, no automatic decision",
+      "trace": [
+        {
+          "kind": "initial-state",
+          "timeMs": 0,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": null
+        },
+        {
+          "kind": "poll",
+          "timeMs": 3000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        }
+      ]
+    },
+    {
+      "scenario": "storage write failure retains live opt-in",
+      "trace": [
+        {
+          "kind": "initial-state",
+          "timeMs": 0,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": null
+        },
+        {
+          "kind": "poll",
+          "timeMs": 3000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        }
+      ]
+    },
+    {
+      "scenario": "background playing AutoPass on (including repeated 204)",
+      "periodicGetsIn60s": 20,
+      "trace": [
+        {
+          "kind": "initial-state",
+          "timeMs": 0,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": null
+        },
+        {
+          "kind": "poll",
+          "timeMs": 3000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 6000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 9000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 12000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 15000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 18000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 21000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 24000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 27000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 30000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 33000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 36000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 39000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 42000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 45000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 48000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 51000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 54000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 57000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 60000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        }
+      ]
+    },
+    {
+      "scenario": "background playing AutoPass off",
+      "periodicGetsIn60s": 5,
+      "trace": [
+        {
+          "kind": "initial-state",
+          "timeMs": 0,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": null
+        },
+        {
+          "kind": "poll",
+          "timeMs": 12000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 24000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 36000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 48000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 60000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        }
+      ]
+    },
+    {
+      "scenario": "background room lobby AutoPass on",
+      "periodicGetsIn60s": 5,
+      "trace": [
+        {
+          "kind": "initial-state",
+          "timeMs": 0,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": null
+        },
+        {
+          "kind": "poll",
+          "timeMs": 12000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 24000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 36000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 48000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 60000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        }
+      ]
+    },
+    {
+      "scenario": "background finished AutoPass on",
+      "periodicGetsIn60s": 5,
+      "trace": [
+        {
+          "kind": "initial-state",
+          "timeMs": 0,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": null
+        },
+        {
+          "kind": "poll",
+          "timeMs": 12000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 24000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 36000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 48000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 60000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        }
+      ]
+    },
+    {
+      "scenario": "foreground playing AutoPass on",
+      "periodicGetsIn60s": 40,
+      "trace": [
+        {
+          "kind": "initial-state",
+          "timeMs": 0,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": null
+        },
+        {
+          "kind": "poll",
+          "timeMs": 1500,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 3000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 4500,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 6000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 7500,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 9000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 10500,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 12000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 13500,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 15000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 16500,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 18000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 19500,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 21000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 22500,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 24000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 25500,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 27000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 28500,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 30000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 31500,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 33000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 34500,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 36000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 37500,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 39000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 40500,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 42000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 43500,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 45000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 46500,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 48000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 49500,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 51000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 52500,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 54000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 55500,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 57000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 58500,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 60000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        }
+      ]
+    },
+    {
+      "scenario": "public lobby without an active seat",
+      "periodicGetsIn60s": 0,
+      "trace": []
+    },
+    {
+      "scenario": "off at 300ms cancels pass, next poll 12300ms",
+      "trace": [
+        {
+          "kind": "initial-state",
+          "timeMs": 0,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": null
+        },
+        {
+          "kind": "poll",
+          "timeMs": 12300,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        }
+      ]
+    },
+    {
+      "scenario": "finished accepted at 3s downgrades to 12s",
+      "trace": [
+        {
+          "kind": "initial-state",
+          "timeMs": 0,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": null
+        },
+        {
+          "kind": "poll",
+          "timeMs": 3000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 15000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 2
+        },
+        {
+          "kind": "poll",
+          "timeMs": 27000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 2
+        }
+      ]
+    },
+    {
+      "scenario": "finished command ACK at 1s rearms to 13s",
+      "trace": [
+        {
+          "kind": "initial-state",
+          "timeMs": 0,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": null
+        },
+        {
+          "kind": "command",
+          "timeMs": 1000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "commandId": "97582c55-148f-4296-9346-ba7e13f4f2bb",
+          "expectedVersion": 1,
+          "action": {
+            "kind": "pass"
+          }
+        },
+        {
+          "kind": "poll",
+          "timeMs": 13000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 2
+        }
+      ]
+    },
+    {
+      "scenario": "older playing poll never changes finished policy",
+      "trace": [
+        {
+          "kind": "initial-state",
+          "timeMs": 0,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": null
+        },
+        {
+          "kind": "poll",
+          "timeMs": 12000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 10
+        },
+        {
+          "kind": "poll",
+          "timeMs": 24000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 10
+        }
+      ]
+    },
+    {
+      "scenario": "foreground toggles do not shift 1.5s cadence",
+      "trace": [
+        {
+          "kind": "initial-state",
+          "timeMs": 0,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": null
+        },
+        {
+          "kind": "poll",
+          "timeMs": 1500,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 3000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        }
+      ]
+    },
+    {
+      "scenario": "visibility lifecycle unchanged, hidden next interval 3s",
+      "trace": [
+        {
+          "kind": "initial-state",
+          "timeMs": 0,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": null
+        },
+        {
+          "kind": "poll",
+          "timeMs": 1500,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 4500,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 5000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 6500,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        }
+      ]
+    },
+    {
+      "scenario": "20 new versions in 60s retain one polling lifecycle",
+      "trace": [
+        {
+          "kind": "initial-state",
+          "timeMs": 0,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": null
+        },
+        {
+          "kind": "poll",
+          "timeMs": 3000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 6000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 2
+        },
+        {
+          "kind": "poll",
+          "timeMs": 9000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 3
+        },
+        {
+          "kind": "poll",
+          "timeMs": 12000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 4
+        },
+        {
+          "kind": "poll",
+          "timeMs": 15000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 5
+        },
+        {
+          "kind": "poll",
+          "timeMs": 18000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 6
+        },
+        {
+          "kind": "poll",
+          "timeMs": 21000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 7
+        },
+        {
+          "kind": "poll",
+          "timeMs": 24000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 8
+        },
+        {
+          "kind": "poll",
+          "timeMs": 27000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 9
+        },
+        {
+          "kind": "poll",
+          "timeMs": 30000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 10
+        },
+        {
+          "kind": "poll",
+          "timeMs": 33000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 11
+        },
+        {
+          "kind": "poll",
+          "timeMs": 36000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 12
+        },
+        {
+          "kind": "poll",
+          "timeMs": 39000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 13
+        },
+        {
+          "kind": "poll",
+          "timeMs": 42000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 14
+        },
+        {
+          "kind": "poll",
+          "timeMs": 45000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 15
+        },
+        {
+          "kind": "poll",
+          "timeMs": 48000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 16
+        },
+        {
+          "kind": "poll",
+          "timeMs": 51000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 17
+        },
+        {
+          "kind": "poll",
+          "timeMs": 54000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 18
+        },
+        {
+          "kind": "poll",
+          "timeMs": 57000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 19
+        },
+        {
+          "kind": "poll",
+          "timeMs": 60000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 20
+        }
+      ]
+    },
+    {
+      "scenario": "lobby-to-start limitation retained",
+      "trace": [
+        {
+          "kind": "initial-state",
+          "timeMs": 0,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": null
+        },
+        {
+          "kind": "poll",
+          "timeMs": 12000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 15000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 2
+        }
+      ]
+    },
+    {
+      "scenario": "in-flight GET completed at 14s uses latest opt-in true",
+      "trace": [
+        {
+          "kind": "initial-state",
+          "timeMs": 0,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": null
+        },
+        {
+          "kind": "poll",
+          "timeMs": 12000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 17000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        }
+      ]
+    },
+    {
+      "scenario": "in-flight GET completed at 14s uses latest opt-in false",
+      "trace": [
+        {
+          "kind": "initial-state",
+          "timeMs": 0,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": null
+        },
+        {
+          "kind": "poll",
+          "timeMs": 12000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 26000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        }
+      ]
+    },
+    {
+      "scenario": "offline backoff preserved, recovery returns to 3s",
+      "trace": [
+        {
+          "kind": "initial-state",
+          "timeMs": 0,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": null
+        },
+        {
+          "kind": "poll",
+          "timeMs": 3000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 5000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 9000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 17000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 32000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 47000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 50000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        }
+      ]
+    },
+    {
+      "scenario": "namespace switch, scoped preference and refresh identity",
+      "trace": [
+        {
+          "kind": "initial-state",
+          "timeMs": 0,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": null
+        },
+        {
+          "kind": "initial-state",
+          "timeMs": 0,
+          "authorization": "Bearer synthetic-independent-token",
+          "afterVersion": null
+        },
+        {
+          "kind": "initial-state",
+          "timeMs": 0,
+          "authorization": "Bearer synthetic-independent-token",
+          "afterVersion": null
+        },
+        {
+          "kind": "poll",
+          "timeMs": 12000,
+          "authorization": "Bearer synthetic-independent-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "initial-state",
+          "timeMs": 12000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": null
+        },
+        {
+          "kind": "poll",
+          "timeMs": 15000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        }
+      ]
+    },
+    {
+      "scenario": "single live memory source, persisted off read on reload",
+      "trace": [
+        {
+          "kind": "initial-state",
+          "timeMs": 0,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": null
+        },
+        {
+          "kind": "poll",
+          "timeMs": 3000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "initial-state",
+          "timeMs": 3000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": null
+        },
+        {
+          "kind": "poll",
+          "timeMs": 15000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        }
+      ]
+    },
+    {
+      "scenario": "leave clears fast loop and late state",
+      "trace": [
+        {
+          "kind": "initial-state",
+          "timeMs": 0,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": null
+        },
+        {
+          "kind": "poll",
+          "timeMs": 3000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        }
+      ]
+    },
+    {
+      "scenario": "late old seat 200 cannot contaminate new lobby or token",
+      "trace": [
+        {
+          "kind": "initial-state",
+          "timeMs": 0,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": null
+        },
+        {
+          "kind": "poll",
+          "timeMs": 3000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "initial-state",
+          "timeMs": 3000,
+          "authorization": "Bearer synthetic-other-seat-token",
+          "afterVersion": null
+        },
+        {
+          "kind": "poll",
+          "timeMs": 15000,
+          "authorization": "Bearer synthetic-other-seat-token",
+          "afterVersion": 10
+        }
+      ]
+    },
+    {
+      "scenario": "late old seat 401 cannot contaminate new lobby or token",
+      "trace": [
+        {
+          "kind": "initial-state",
+          "timeMs": 0,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": null
+        },
+        {
+          "kind": "poll",
+          "timeMs": 3000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "initial-state",
+          "timeMs": 3000,
+          "authorization": "Bearer synthetic-other-seat-token",
+          "afterVersion": null
+        },
+        {
+          "kind": "poll",
+          "timeMs": 15000,
+          "authorization": "Bearer synthetic-other-seat-token",
+          "afterVersion": 10
+        }
+      ]
+    },
+    {
+      "scenario": "same-token ABA still rejects old aborted effect",
+      "trace": [
+        {
+          "kind": "initial-state",
+          "timeMs": 0,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": null
+        },
+        {
+          "kind": "poll",
+          "timeMs": 3000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "initial-state",
+          "timeMs": 3000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": null
+        },
+        {
+          "kind": "poll",
+          "timeMs": 6000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 3
+        }
+      ]
+    },
+    {
+      "scenario": "player-mode initial GET ABA preserves newly accepted lobby and 12s policy",
+      "trace": [
+        {
+          "kind": "initial-state",
+          "timeMs": 0,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": null
+        },
+        {
+          "kind": "initial-state",
+          "timeMs": 2000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": null
+        },
+        {
+          "kind": "poll",
+          "timeMs": 14000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 3
+        }
+      ]
+    },
+    {
+      "scenario": "POST lock and late ACK cannot revive earlier playing state",
+      "trace": [
+        {
+          "kind": "initial-state",
+          "timeMs": 0,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": null
+        },
+        {
+          "kind": "command",
+          "timeMs": 550,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "commandId": "4abc1167-62f7-4d09-acc7-2524cf1e232d",
+          "expectedVersion": 1,
+          "action": {
+            "kind": "pass"
+          }
+        },
+        {
+          "kind": "poll",
+          "timeMs": 3000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 15000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 3
+        }
+      ]
+    },
+    {
+      "scenario": "one automatic command per authoritative pass version",
+      "trace": [
+        {
+          "kind": "initial-state",
+          "timeMs": 0,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": null
+        },
+        {
+          "kind": "command",
+          "timeMs": 550,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "commandId": "13cc4d25-7626-4f34-9a1f-b68d84ba531b",
+          "expectedVersion": 1,
+          "action": {
+            "kind": "pass"
+          }
+        },
+        {
+          "kind": "poll",
+          "timeMs": 3000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 6000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 9000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 12000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "poll",
+          "timeMs": 15000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "command",
+          "timeMs": 15550,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "commandId": "d1d530ec-2b5b-45b8-b950-dbaaa84ffdda",
+          "expectedVersion": 2,
+          "action": {
+            "kind": "pass"
+          }
+        },
+        {
+          "kind": "poll",
+          "timeMs": 18000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 2
+        },
+        {
+          "kind": "poll",
+          "timeMs": 21000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 2
+        }
+      ]
+    },
+    {
+      "scenario": "3s lost ACK reconciliation preserves original paced command, manual recovery true",
+      "trace": [
+        {
+          "kind": "initial-state",
+          "timeMs": 0,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": null
+        },
+        {
+          "kind": "command",
+          "timeMs": 550,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "commandId": "01ae544f-2dab-4c17-a66b-0f2c18487224",
+          "expectedVersion": 1,
+          "action": {
+            "kind": "game",
+            "action": {
+              "kind": "pass"
+            }
+          }
+        },
+        {
+          "kind": "command",
+          "timeMs": 550,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "commandId": "01ae544f-2dab-4c17-a66b-0f2c18487224",
+          "expectedVersion": 1,
+          "action": {
+            "kind": "game",
+            "action": {
+              "kind": "pass"
+            }
+          }
+        },
+        {
+          "kind": "initial-state",
+          "timeMs": 550,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": null
+        },
+        {
+          "kind": "poll",
+          "timeMs": 3000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "command",
+          "timeMs": 3000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "commandId": "01ae544f-2dab-4c17-a66b-0f2c18487224",
+          "expectedVersion": 1,
+          "action": {
+            "kind": "game",
+            "action": {
+              "kind": "pass"
+            }
+          }
+        },
+        {
+          "kind": "command",
+          "timeMs": 3000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "commandId": "01ae544f-2dab-4c17-a66b-0f2c18487224",
+          "expectedVersion": 1,
+          "action": {
+            "kind": "game",
+            "action": {
+              "kind": "pass"
+            }
+          }
+        },
+        {
+          "kind": "initial-state",
+          "timeMs": 3000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": null
+        },
+        {
+          "kind": "command",
+          "timeMs": 3000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "commandId": "01ae544f-2dab-4c17-a66b-0f2c18487224",
+          "expectedVersion": 1,
+          "action": {
+            "kind": "game",
+            "action": {
+              "kind": "pass"
+            }
+          }
+        },
+        {
+          "kind": "poll",
+          "timeMs": 6000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 3
+        }
+      ]
+    },
+    {
+      "scenario": "3s lost ACK reconciliation preserves original paced command, manual recovery false",
+      "trace": [
+        {
+          "kind": "initial-state",
+          "timeMs": 0,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": null
+        },
+        {
+          "kind": "command",
+          "timeMs": 550,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "commandId": "e5f10c20-79f1-4c6c-a00b-8528c2b94679",
+          "expectedVersion": 1,
+          "action": {
+            "kind": "game",
+            "action": {
+              "kind": "pass"
+            }
+          }
+        },
+        {
+          "kind": "command",
+          "timeMs": 550,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "commandId": "e5f10c20-79f1-4c6c-a00b-8528c2b94679",
+          "expectedVersion": 1,
+          "action": {
+            "kind": "game",
+            "action": {
+              "kind": "pass"
+            }
+          }
+        },
+        {
+          "kind": "initial-state",
+          "timeMs": 550,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": null
+        },
+        {
+          "kind": "poll",
+          "timeMs": 3000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "command",
+          "timeMs": 3000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "commandId": "e5f10c20-79f1-4c6c-a00b-8528c2b94679",
+          "expectedVersion": 1,
+          "action": {
+            "kind": "game",
+            "action": {
+              "kind": "pass"
+            }
+          }
+        },
+        {
+          "kind": "command",
+          "timeMs": 3000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "commandId": "e5f10c20-79f1-4c6c-a00b-8528c2b94679",
+          "expectedVersion": 1,
+          "action": {
+            "kind": "game",
+            "action": {
+              "kind": "pass"
+            }
+          }
+        },
+        {
+          "kind": "initial-state",
+          "timeMs": 3000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": null
+        },
+        {
+          "kind": "poll",
+          "timeMs": 6000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 1
+        },
+        {
+          "kind": "command",
+          "timeMs": 6000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "commandId": "e5f10c20-79f1-4c6c-a00b-8528c2b94679",
+          "expectedVersion": 1,
+          "action": {
+            "kind": "game",
+            "action": {
+              "kind": "pass"
+            }
+          }
+        },
+        {
+          "kind": "poll",
+          "timeMs": 9000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 3
+        }
+      ]
+    },
+    {
+      "scenario": "persisted original receipt reconciles before first fast sleep",
+      "trace": [
+        {
+          "kind": "initial-state",
+          "timeMs": 0,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": null
+        },
+        {
+          "kind": "command",
+          "timeMs": 0,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "commandId": "synthetic-original-before-reload",
+          "expectedVersion": 1,
+          "action": {
+            "kind": "pass"
+          }
+        },
+        {
+          "kind": "poll",
+          "timeMs": 3000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 5
+        }
+      ]
+    },
+    {
+      "scenario": "private choice accepted at 3s cancels pass queued at 2.8s, keeps 3s sync",
+      "trace": [
+        {
+          "kind": "initial-state",
+          "timeMs": 0,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": null
+        },
+        {
+          "kind": "command",
+          "timeMs": 2800,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "commandId": "4cc33d57-24f3-4b50-9bfc-98c43c592759",
+          "expectedVersion": 1,
+          "action": {
+            "kind": "pass"
+          }
+        },
+        {
+          "kind": "poll",
+          "timeMs": 3000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 2
+        },
+        {
+          "kind": "poll",
+          "timeMs": 6000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 3
+        },
+        {
+          "kind": "poll",
+          "timeMs": 9000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 3
+        }
+      ]
+    },
+    {
+      "scenario": "public choice accepted at 3s cancels pass queued at 2.8s, keeps 3s sync",
+      "trace": [
+        {
+          "kind": "initial-state",
+          "timeMs": 0,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": null
+        },
+        {
+          "kind": "command",
+          "timeMs": 2800,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "commandId": "de20374f-6ec3-4f2f-8f9a-f4ca8ad0c855",
+          "expectedVersion": 1,
+          "action": {
+            "kind": "pass"
+          }
+        },
+        {
+          "kind": "poll",
+          "timeMs": 3000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 2
+        },
+        {
+          "kind": "poll",
+          "timeMs": 6000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 3
+        },
+        {
+          "kind": "poll",
+          "timeMs": 9000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 3
+        }
+      ]
+    },
+    {
+      "scenario": "response undecided accepted at 3s cancels pass queued at 2.8s, keeps 3s sync",
+      "trace": [
+        {
+          "kind": "initial-state",
+          "timeMs": 0,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": null
+        },
+        {
+          "kind": "command",
+          "timeMs": 2800,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "commandId": "e34d3cb1-a182-43eb-aa7b-3d03cec942f2",
+          "expectedVersion": 1,
+          "action": {
+            "kind": "pass"
+          }
+        },
+        {
+          "kind": "poll",
+          "timeMs": 3000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 2
+        },
+        {
+          "kind": "poll",
+          "timeMs": 6000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 3
+        },
+        {
+          "kind": "poll",
+          "timeMs": 9000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 3
+        }
+      ]
+    },
+    {
+      "scenario": "response composing accepted at 3s cancels pass queued at 2.8s, keeps 3s sync",
+      "trace": [
+        {
+          "kind": "initial-state",
+          "timeMs": 0,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": null
+        },
+        {
+          "kind": "command",
+          "timeMs": 2800,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "commandId": "7fb3083a-4135-4547-99c0-9e6f328a41fe",
+          "expectedVersion": 1,
+          "action": {
+            "kind": "pass"
+          }
+        },
+        {
+          "kind": "poll",
+          "timeMs": 3000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 2
+        },
+        {
+          "kind": "poll",
+          "timeMs": 6000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 3
+        },
+        {
+          "kind": "poll",
+          "timeMs": 9000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 3
+        }
+      ]
+    },
+    {
+      "scenario": "response passed accepted at 3s cancels pass queued at 2.8s, keeps 3s sync",
+      "trace": [
+        {
+          "kind": "initial-state",
+          "timeMs": 0,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": null
+        },
+        {
+          "kind": "command",
+          "timeMs": 2800,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "commandId": "d96c5a9b-ae92-4874-9464-2a0403c20dd4",
+          "expectedVersion": 1,
+          "action": {
+            "kind": "pass"
+          }
+        },
+        {
+          "kind": "poll",
+          "timeMs": 3000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 2
+        },
+        {
+          "kind": "poll",
+          "timeMs": 6000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 3
+        },
+        {
+          "kind": "poll",
+          "timeMs": 9000,
+          "authorization": "Bearer synthetic-not-a-real-token",
+          "afterVersion": 3
+        }
+      ]
+    }
+  ]
+}

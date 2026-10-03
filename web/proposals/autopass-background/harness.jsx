@@ -38,7 +38,8 @@ export async function mountSynthetic({ view = playing, enabled = false, hidden =
   function Harness() {
     current = useGame();
     return current.view && current.view.status !== 'lobby'
-      ? <AutoPass view={current.view} busy={current.busy} uncertain={current.uncertain} connection={current.connection} onAction={current.act} />
+      ? <AutoPass view={current.view} busy={current.busy} uncertain={current.uncertain} connection={current.connection} onAction={current.act}
+        enabled={current.autoPassEnabled} onEnabledChange={current.setAutoPassEnabled} />
       : null;
   }
   const mounted = render(<Harness />);

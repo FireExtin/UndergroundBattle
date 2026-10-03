@@ -1,0 +1,18 @@
+
+ RUN  v4.1.2 /workspace/UndergroundBattle/web
+
+ ✓ proposals/autopass-background/acceptance-red.spec.jsx > original acceptance: background 3s when AutoPass enabled and playing > discovers a turn within 3s even when the last accepted view is not our turn, then waits the existing 550ms 38ms
+ ✓ proposals/autopass-background/acceptance-red.spec.jsx > original acceptance: background 3s when AutoPass enabled and playing > rearms a sleeping 12s timer when the user turns AutoPass on without replacing the polling lifecycle 135ms
+ ✓ proposals/autopass-background/acceptance-red.spec.jsx > original acceptance: background 3s when AutoPass enabled and playing > keeps 3s synchronization while waiting for another seat chooser but sends no automatic command 6ms
+ ✓ proposals/autopass-background/acceptance-red.spec.jsx > original acceptance: background 3s when AutoPass enabled and playing > uses the in-memory opt-in when preference persistence fails instead of rereading storage to choose 12s 26ms
+
+ Test Files  1 passed (1)
+      Tests  4 passed (4)
+   Start at  13:45:37
+   Duration  1.25s (transform 130ms, setup 133ms, import 123ms, tests 206ms, environment 629ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

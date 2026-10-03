@@ -1,5 +1,5 @@
-// Purpose: deliberately red requirements for the reviewed proposal, never default/release tests.
-// These assertions target existing production components; no simulated policy implements them.
+// Purpose: replay the original proposal criteria; historical red evidence is pinned to 0ec1d7.
+// Default equivalents now live in src/game/AutoPassPolling.test.jsx; both target production code.
 import { cleanup, fireEvent, screen } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { advance, mountSynthetic, pass, playing } from './harness';
@@ -7,7 +7,7 @@ import { advance, mountSynthetic, pass, playing } from './harness';
 beforeEach(() => { localStorage.clear(); sessionStorage.clear(); vi.useFakeTimers(); vi.setSystemTime(0); });
 afterEach(() => { cleanup(); vi.useRealTimers(); vi.restoreAllMocks(); vi.unstubAllGlobals(); localStorage.clear(); sessionStorage.clear(); });
 
-describe('PROPOSAL ONLY: background 3s when AutoPass enabled and playing', () => {
+describe('original acceptance: background 3s when AutoPass enabled and playing', () => {
   it('discovers a turn within 3s even when the last accepted view is not our turn, then waits the existing 550ms', async () => {
     const h = await mountSynthetic({ enabled: true });
     await advance(1);

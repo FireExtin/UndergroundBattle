@@ -1,0 +1,65 @@
+{
+  "publishedSource": "0ec1d7643fff64b3f8c98cdac343b11fea49d10e",
+  "proposalCommit": "59f229cab6f2a5a0aceec358a4c0b3fd04e597a6",
+  "implementationBranch": "codex/autopass-background-implementation-20261003",
+  "productionFileCount": 4,
+  "productionFiles": [
+    {
+      "path": "web/src/game/AutoPass.tsx",
+      "publishedSha256": "b459d65304e7d340a894675d1aa643370f70d200075af7848a68597ab463e850",
+      "candidateSha256": "e67d9cb58bcc01fe9dca06a2d11775922bc284e765d78cb6e75f05554e10d649",
+      "candidateBytes": 2461
+    },
+    {
+      "path": "web/src/game/GameApp.tsx",
+      "publishedSha256": "a6d1097e7cbadedae3224201c9b87c99f098010c2112a87863bce586ec22c284",
+      "candidateSha256": "5ea4879b1eaa37311d5886a76bbd24a859a8173b3d26e3e3c09250a7d7c2cc37",
+      "candidateBytes": 4661
+    },
+    {
+      "path": "web/src/game/Table.tsx",
+      "publishedSha256": "b01f5fdea8ffe591b3bf1be84d8851245c4e5d83ffbbcf3bf1fa88551380c643",
+      "candidateSha256": "47b87f1d7255bec4f9c0869a9413be69f2584d4045cf29c4bfeae5731a790faa",
+      "candidateBytes": 31730
+    },
+    {
+      "path": "web/src/game/useGame.ts",
+      "publishedSha256": "7d72f2f268cd257473c97b270e497cbee50fdd2d72128dd0282f4dce189e2e40",
+      "candidateSha256": "e824e2522507222790c5d4dd4afed6037e2b4943dfa628098c9fe56ff95eab5f",
+      "candidateBytes": 14476
+    }
+  ],
+  "productionDiffSha256": "b8bafecf53fb93ac1d671c2ad8dd850c9ba9a5294e2c79ccbac498b7794913fa",
+  "protectedSourceScopesUnchanged": [
+    "rust-game",
+    "rust-game-wasm",
+    "server",
+    "sites",
+    "shared",
+    "organized_content",
+    "web/public",
+    "web/package.json",
+    "web/package-lock.json",
+    "web/vite.config.ts",
+    "web/tsconfig.app.json",
+    "web/tsconfig.node.json",
+    "web/src/game/api.ts",
+    "web/src/game/playerStorage.ts"
+  ],
+  "checks": {
+    "defaultFrontendFiles": 22,
+    "defaultFrontendPassed": 225,
+    "newDefaultPollingTests": 38,
+    "originalFourAcceptanceReplayedPassed": 4,
+    "typescriptAndViteBuild": "passed"
+  },
+  "sitesStage": {
+    "source": "f5764e8a99f74585eedd74a82786912f20e837fe",
+    "workingTreeClean": true
+  },
+  "wasmBuildRun": false,
+  "backendBuildRun": false,
+  "deployed": false,
+  "pushed": false,
+  "liveRoomAccess": false
+}

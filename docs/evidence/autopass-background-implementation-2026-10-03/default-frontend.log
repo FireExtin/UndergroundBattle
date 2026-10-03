@@ -1,0 +1,262 @@
+
+> undergroundbattle-web@0.1.0 test
+> vitest --run --reporter=verbose
+
+
+ RUN  v4.1.2 /workspace/UndergroundBattle/web
+
+ ✓ src/game/Table.test.tsx > room deck selection > saves edits locally and sends a full draft only after explicit selection, retaining the frozen public name 588ms
+ ✓ src/game/Table.test.tsx > room deck selection > disables the saved deck editor and selection while confirming an action 127ms
+ ✓ src/game/Table.test.tsx > room deck selection > does not expose saved deck selection for legacy catalog 25ms
+ ✓ src/game/Table.test.tsx > room deck selection > does not expose saved deck selection for missing frozen draft 19ms
+ ✓ src/game/Table.test.tsx > room deck selection > does not expose saved deck selection for no legal deck action 22ms
+ ✓ src/game/Table.test.tsx > playable table > shows readable cards and only the selected card’s server-authored actions 77ms
+ ✓ src/game/Table.test.tsx > playable table > distinguishes two same-name destinations for deploy and highlights only the intended region 117ms
+ ✓ src/game/Table.test.tsx > playable table > distinguishes two same-name destinations for move and highlights only the intended region 83ms
+ ✓ src/game/Table.test.tsx > playable table > keeps region-scoped actions identifiable when the board has repeated world names 67ms
+ ✓ src/game/Table.test.tsx > playable table > distinguishes waiting chooser from the priority holder 15ms
+ ✓ src/game/PlayerSessions.test.tsx > explicit independent player sessions through normal UI > starts a new tab’s independent seat directly from the ordinary table and preserves the ordinary reload screen 1037ms
+ ✓ src/game/Table.test.tsx > playable table > keeps an opponent stack effect beside the dock, submits its server-authored response and shows an invalidated old target 126ms
+ ✓ src/game/Table.test.tsx > playable table > keeps the viewing team below the world in every seat, identifies pieces and opens an owner-only readable card 396ms
+ ✓ src/game/PlayerSessions.test.tsx > explicit independent player sessions through normal UI > locks the direct ordinary-table switch while a command is pending and keeps that lock after lobby return 501ms
+ ✓ src/game/Table.test.tsx > playable table > keeps teammate resources and hidden hands in separate mats on the same table side 93ms
+ ✓ src/game/Table.test.tsx > playable table > highlights only server-authored card targets and keeps the source selected when a target is clicked 117ms
+ ✓ src/game/Table.test.tsx > playable table > reads authorized concealed print for its controller and sanitizes hover for its owner 84ms
+ ✓ src/game/PlayerSessions.test.tsx > explicit independent player sessions through normal UI > warns before replacing an independent session or switching back that this seat may become unrecoverable 398ms
+ ✓ src/game/Table.test.tsx > playable table > keeps pending choices reachable in the temporary table layer and submits the original legal choice 66ms
+ ✓ src/game/Table.test.tsx > playable table > shows a world deck count only when the frozen room projection supplies it 10ms
+ ✓ src/game/Table.test.tsx > playable table > uses the optional authoritative contest totals and labels accumulated influence as markers 32ms
+ ✓ src/game/Table.test.tsx > playable table > shows the public skip-comparison flag and its reading explanation without inferring from a card ID 54ms
+ ✓ src/game/PlayerSessions.test.tsx > explicit independent player sessions through normal UI > keeps automatic pass opt-in separate from the ordinary seat and restores the ordinary preference 690ms
+ ✓ src/game/useGame.test.tsx > room lifecycle and reconciliation > rejoins its saved room through the invite without allocating another seat or changing the ready deck 96ms
+ ✓ src/game/useGame.test.tsx > room lifecycle and reconciliation > preserves multiple historical seats and restores the last used matching seat even through a draft join 82ms
+ ✓ src/game/useGame.test.tsx > room lifecycle and reconciliation > shows the persisted room catalog and reloads the current catalog after returning to the lobby 115ms
+ ✓ src/game/useGame.test.tsx > room lifecycle and reconciliation > ignores a late old catalog after switching rooms even when the fetch ignores abort 60ms
+ ✓ src/game/useGame.test.tsx > room lifecycle and reconciliation > never regresses a table when a delayed command returns behind a newer poll 1ms
+ ✓ src/game/useGame.test.tsx > room lifecycle and reconciliation > creates a room with a curated deck and preserves only this seat for reload 62ms
+ ✓ src/game/useGame.test.tsx > room lifecycle and reconciliation > restores persisted chooser state and reconciles a visible 409 instead of hiding it 61ms
+ ✓ src/game/PlayerSessions.test.tsx > explicit independent player sessions through normal UI > isolates same-invite seats, refreshes the current identity and returns to the ordinary saved seat 968ms
+ ✓ src/game/V028DeckEntry.test.jsx > edits all nine v028 cards through normal controls, saves/reloads, and enters four seats with the selected draft 3584ms
+ ✓ src/game/V028DeckEntry.test.jsx > keeps the v027 39-card builder frozen and rejects a saved v028 nine-card draft without rewriting provenance 288ms
+ ✓ src/game/useGame.test.tsx > room lifecycle and reconciliation > keeps an explicit return to lobby after reload and preserves the old seat when creating another room 175ms
+ ✓ src/game/useGame.test.tsx > room lifecycle and reconciliation > does not let an old in-flight state read pull a player back after returning to the lobby 8ms
+ ✓ src/game/useGame.test.tsx > room lifecycle and reconciliation > keeps an uncertain command for its old room and refuses to discard it when opening another table 59ms
+ ✓ src/game/useGame.test.tsx > room lifecycle and reconciliation > retries a lost acknowledgement with the same identity and blocks unresolved new commands 58ms
+ ✓ src/game/useGame.test.tsx > room lifecycle and reconciliation > keeps an uncertain command bound to its original seat when the same browser has two seats in one room 108ms
+ ✓ src/game/useGame.test.tsx > room lifecycle and reconciliation > confirms an interrupted persisted command after reload without regressing the current state 54ms
+ ✓ src/game/useGame.test.tsx > room lifecycle and reconciliation > polls the latest version, avoids overlapping requests and resumes when visible 11ms
+ ✓ src/game/useGame.test.tsx > room lifecycle and reconciliation > preserves the occupied seat and pending command when the private Site requires login 54ms
+ ✓ src/game/useGame.test.tsx > room lifecycle and reconciliation > clears a seat only when the game service explicitly confirms an invalid seat token 54ms
+ ✓ src/game/useGame.test.tsx > room lifecycle and reconciliation > keeps the original command after a lost ACK followed by a login gate, then reconciles its receipt 56ms
+ ✓ src/game/PlayerSessions.test.tsx > explicit independent player sessions through normal UI > allocates no identity on refresh or lobby return; only an explicit new session can join another seat 577ms
+ ✓ src/game/PlayerSessions.test.tsx > explicit independent player sessions through normal UI > uses a fresh entry receipt in a new scope and keeps identical retries inside that scope 278ms
+ ✓ src/game/PlayerSessions.test.tsx > explicit independent player sessions through normal UI > blocks switching scopes while an original paid/action command remains unconfirmed, including in the lobby 282ms
+ ✓ src/game/Lobby.test.tsx > Chinese invitation lobby > lets a player choose a 50-card deck and create a four-seat team room 366ms
+ ✓ src/game/Lobby.test.tsx > Chinese invitation lobby > opens invitation links directly in join mode and submits only a room code 65ms
+ ✓ src/game/PlayerSessions.test.tsx > explicit independent player sessions through normal UI > refreshes an independent unconfirmed command with the original actor and command ID 324ms
+ ✓ src/game/DeckLibrary.test.tsx > local named deck editor > copies a preset, names and saves it, reloads it, and selects a full public draft 276ms
+ ✓ src/game/Lobby.test.tsx > Chinese invitation lobby > does not send a custom draft ID through the preset entry callbacks 240ms
+ ✓ src/game/DeckLibrary.test.tsx > local named deck editor > saves an incomplete draft while blocking selection, then filters and adjusts cards 132ms
+ ✓ src/game/DeckLibrary.test.tsx > local named deck editor > copies a spell-containing preset, searches transactions, adds one, and selects the corrected deck 154ms
+ ✓ src/game/Lobby.test.tsx > Chinese invitation lobby > routes a selected custom draft as a full object to the create callback 227ms
+ ✓ src/game/Lobby.test.tsx > Chinese invitation lobby > keeps draft editing separate from the chosen snapshot and joins through the custom callback 153ms
+ ✓ src/game/DeckLibrary.test.tsx > local named deck editor > shows copy violations immediately and allows a draft to be saved for later correction 109ms
+ ✓ src/game/DeckLibrary.test.tsx > local named deck editor > never enables adding regions or unsupported cards and searches only the supplied catalog 84ms
+ ✓ src/game/PlayerSessions.test.tsx > explicit independent player sessions through normal UI > ignores other-tab storage events and joins a different invitation only with its own credentials 407ms
+ ✓ src/game/DeckLibrary.test.tsx > local named deck editor > keeps obsolete draft provenance until the user explicitly revalidates it 59ms
+ ✓ src/game/DeckLibrary.test.tsx > local named deck editor > recovers from corrupt storage and reports a failed save without selecting an unsaved draft 62ms
+ ✓ src/game/DeckLibrary.test.tsx > local named deck editor > does not certify custom decks when construction metadata is missing 57ms
+ ✓ src/game/PlayerSessions.test.tsx > explicit independent player sessions through normal UI > reports unavailable tab storage without copying or clearing ordinary credentials 170ms
+ ✓ src/game/PlayerSessions.test.tsx > explicit independent player sessions through normal UI > makes closing the independent page session lose its recovery while ordinary seats survive 347ms
+ ✓ src/debugger/LiveDebuggerShell.test.tsx > LiveDebuggerShell > loads live protocol messages from HTTP on mount 85ms
+ ✓ src/debugger/LiveDebuggerShell.test.tsx > LiveDebuggerShell > submits preset actions and appends returned protocol messages 189ms
+ ✓ src/debugger/LiveDebuggerShell.test.tsx > LiveDebuggerShell > disables action controls when the live patch already has a winner 50ms
+ ✓ src/debugger/LiveDebuggerShell.test.tsx > LiveDebuggerShell > resets the sandbox and replaces the feed with a fresh bootstrap state 75ms
+stderr | src/debugger/LiveDebuggerShell.test.tsx > LiveDebuggerShell > submits marker, face-down, and first-player privilege presets with expected action payloads
+Encountered two children with the same key, `msg-live-rejected-1`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.
+
+stderr | src/debugger/LiveDebuggerShell.test.tsx > LiveDebuggerShell > submits marker, face-down, and first-player privilege presets with expected action payloads
+Encountered two children with the same key, `msg-live-rejected-1`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.
+
+stderr | src/debugger/LiveDebuggerShell.test.tsx > LiveDebuggerShell > submits marker, face-down, and first-player privilege presets with expected action payloads
+Encountered two children with the same key, `msg-live-rejected-1`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.
+Encountered two children with the same key, `msg-live-rejected-1`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.
+
+stderr | src/debugger/LiveDebuggerShell.test.tsx > LiveDebuggerShell > submits marker, face-down, and first-player privilege presets with expected action payloads
+Encountered two children with the same key, `msg-live-rejected-1`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.
+Encountered two children with the same key, `msg-live-rejected-1`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.
+
+stderr | src/debugger/LiveDebuggerShell.test.tsx > LiveDebuggerShell > submits marker, face-down, and first-player privilege presets with expected action payloads
+Encountered two children with the same key, `msg-live-rejected-1`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.
+Encountered two children with the same key, `msg-live-rejected-1`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.
+Encountered two children with the same key, `msg-live-rejected-1`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.
+
+ ✓ src/debugger/LiveDebuggerShell.test.tsx > LiveDebuggerShell > allows action submission again after resetting from a game-over patch 121ms
+ ✓ src/game/Attachments.test.tsx > public attachment presentation > uses only server-authored hosts, including an opponent in another region, and forwards the original play action 261ms
+ ✓ src/game/Attachments.test.tsx > public attachment presentation > counts and reads mounted cards without treating them as region characters or recomputing the host bonus 70ms
+ ✓ src/debugger/LiveDebuggerShell.test.tsx > LiveDebuggerShell > submits marker, face-down, and first-player privilege presets with expected action payloads 120ms
+ ✓ src/debugger/LiveDebuggerShell.test.tsx > LiveDebuggerShell > falls back to mock protocol data when the live server is unavailable 37ms
+ ✓ src/debugger/LiveDebuggerShell.test.tsx > LiveDebuggerShell > shows custom action JSON validation errors without calling action API 48ms
+ ✓ src/game/Attachments.test.tsx > public attachment presentation > updates an open attachment reader from the latest moved host and keeps the same attachment identity 87ms
+ ✓ src/debugger/LiveDebuggerShell.test.tsx > LiveDebuggerShell > submits custom JSON action payloads with generated id/actor defaults 51ms
+ ✓ src/game/ChoicePanel.test.tsx > server-owned decisions > reads a mulligan card independently without selecting it or submitting the decision 258ms
+ ✓ src/game/ChoicePanel.test.tsx > server-owned decisions > passes only a concealed public identity to a non-controller choice reader 36ms
+ ✓ src/game/Attachments.test.tsx > public attachment presentation > closes an open public reader when the attachment returns to another owner’s hidden hand 116ms
+ ✓ src/debugger/LiveDebuggerShell.test.tsx > LiveDebuggerShell > disables custom action submit for spectator view 78ms
+ ✓ src/debugger/LiveDebuggerShell.test.tsx > LiveDebuggerShell > disables custom action submit when game is over and re-enables after reset 88ms
+ ✓ src/game/ChoicePanel.test.tsx > server-owned decisions > distinguishes anonymous board targets by public ownership and region and submits anonymous-a 77ms
+ ✓ src/game/ChoicePanel.test.tsx > server-owned decisions > distinguishes anonymous board targets by public ownership and region and submits anonymous-b 61ms
+ ✓ src/game/Attachments.test.tsx > public attachment presentation > uses the newest own-hand projection after recovery and drops the old host context 128ms
+ ✓ src/game/ChoicePanel.test.tsx > server-owned decisions > disables board target selection and submission while busy 45ms
+ ✓ src/game/ChoicePanel.test.tsx > server-owned decisions > keeps hand-only mulligan candidates free of board target metadata 6ms
+ ✓ src/game/ChoicePanel.test.tsx > server-owned decisions > requires a selected target and only offers decline when explicitly allowed 54ms
+ ✓ src/game/Attachments.test.tsx > public attachment presentation > clears the reading selection on a viewer change rather than reusing a face from the previous seat 100ms
+ ✓ src/game/Attachments.test.tsx > public attachment presentation > reads a chooser-only search card from the current choice and closes it when that private projection ends 74ms
+ ✓ src/game/Attachments.test.tsx > public attachment presentation > keeps an old room readable without an attachments field 22ms
+ ✓ src/game/ChoicePanel.test.tsx > server-owned decisions > allows explicit investigation top/bottom order without losing options 50ms
+ ✓ src/game/ChoicePanel.test.tsx > server-owned decisions > constrains damage allocations to the exact shared total 55ms
+ ✓ src/game/ChoicePanel.test.tsx > server-owned decisions > lets a phone user assign one damage by tapping a target, switch it, and adjust without typing 88ms
+ ✓ src/game/AutoPassPolling.test.jsx > approved background AutoPass acceptance (former four red tests) > discovers a turn within 3s even when the last accepted view is not our turn, then waits the existing 550ms 36ms
+ ✓ src/game/DialogIsolation.test.tsx > table choice modal isolation > removes background AutoPass and navigation from the accessible tree and confines Tab in both directions 333ms
+ ✓ src/game/DialogIsolation.test.tsx > table choice modal isolation > keeps Escape inert and submits zero-selection keep only through the explicit button 50ms
+ ✓ src/game/AutoPassPolling.test.jsx > approved background AutoPass acceptance (former four red tests) > rearms a sleeping 12s timer when the user turns AutoPass on without replacing the polling lifecycle 134ms
+ ✓ src/game/AutoPassPolling.test.jsx > approved background AutoPass acceptance (former four red tests) > keeps 3s synchronization while waiting for another seat chooser but sends no automatic command 5ms
+ ✓ src/game/AutoPassPolling.test.jsx > approved background AutoPass acceptance (former four red tests) > uses the in-memory opt-in when preference persistence fails instead of rereading storage to choose 12s 17ms
+ ✓ src/game/AutoPassPolling.test.jsx > fast polling policy and lifecycle > measures background playing AutoPass on (including repeated 204) for 60s 5ms
+ ✓ src/game/AutoPassPolling.test.jsx > fast polling policy and lifecycle > measures background playing AutoPass off for 60s 3ms
+ ✓ src/game/AutoPassPolling.test.jsx > fast polling policy and lifecycle > measures background room lobby AutoPass on for 60s 3ms
+ ✓ src/game/AutoPassPolling.test.jsx > fast polling policy and lifecycle > measures background finished AutoPass on for 60s 3ms
+ ✓ src/game/AutoPassPolling.test.jsx > fast polling policy and lifecycle > measures foreground playing AutoPass on for 60s 5ms
+ ✓ src/game/AutoPassPolling.test.jsx > fast polling policy and lifecycle > measures public lobby without an active seat for 60s 2ms
+ ✓ src/game/AutoPassPolling.test.jsx > fast polling policy and lifecycle > stops a queued 550ms pass and returns to 12s when switched off 15ms
+ ✓ src/game/AutoPassPolling.test.jsx > fast polling policy and lifecycle > uses 12s after a poll accepts finished, including subsequent 204 responses 4ms
+ ✓ src/game/AutoPassPolling.test.jsx > fast polling policy and lifecycle > rearms an idle healthy timer when a command acknowledgement finishes the game 4ms
+ ✓ src/game/AutoPassPolling.test.jsx > fast polling policy and lifecycle > does not let an older playing view restore fast polling after finished 3ms
+ ✓ src/game/DialogIsolation.test.tsx > table choice modal isolation > makes the nested reader the sole active layer and returns to its choice opener without losing selection 195ms
+ ✓ src/game/factions.test.tsx > official factions and curated deck boundaries > counts distinct live player definitions, excluding worlds, societies and unreleased records 2ms
+ ✓ src/game/DialogIsolation.test.tsx > table choice modal isolation > keeps a late-arriving choice beneath the open guide and restores the choice when the guide closes 128ms
+ ✓ src/game/DialogIsolation.test.tsx > table choice modal isolation > leaves normal browsing accessible when another seat is making a choice 28ms
+ ✓ src/game/AutoPassPolling.test.jsx > fast polling policy and lifecycle > keeps the foreground 1.5s deadline across preference changes 22ms
+ ✓ src/game/AutoPassPolling.test.jsx > fast polling policy and lifecycle > keeps the last foreground timer when hidden and resumes immediately when visible 3ms
+ ✓ src/game/AutoPassPolling.test.jsx > fast polling policy and lifecycle > does not rebuild the polling effect for each accepted version 11ms
+ ✓ src/game/AutoPassPolling.test.jsx > fast polling policy and lifecycle > discovers playing from a stale lobby at 12s, then uses 3s 3ms
+ ✓ src/game/AutoPassPolling.test.jsx > fast polling policy and lifecycle > does not overlap an in-flight GET; completion uses the latest opt-in true 8ms
+ ✓ src/game/AutoPassPolling.test.jsx > fast polling policy and lifecycle > does not overlap an in-flight GET; completion uses the latest opt-in false 11ms
+ ✓ src/game/AutoPassPolling.test.jsx > fast polling policy and lifecycle > preserves 2/4/8/15s offline backoff across preference changes, then resumes 3s after recovery 14ms
+ ✓ src/game/AutoPassPolling.test.jsx > fast polling identity, commands and chooser boundaries > keeps player namespaces isolated, restores ordinary preference and reloads without new identity 36ms
+ ✓ src/game/AutoPassPolling.test.jsx > fast polling identity, commands and chooser boundaries > ignores other-tab storage changes until a reload instead of using storage as a second live preference 12ms
+ ✓ src/game/factions.test.tsx > official factions and curated deck boundaries > keeps eight faction descriptions separate from five selectable curated decks and does not unlock societies or construction 509ms
+ ✓ src/game/factions.test.tsx > official factions and curated deck boundaries > recomputes coverage and deck copies after a catalog change instead of preserving an audit snapshot or neutral 41 9ms
+ ✓ src/game/factions.test.tsx > official factions and curated deck boundaries > keeps room deck changes gated by server-approved deck IDs despite visible faction information 68ms
+ ✓ src/game/AutoPassPolling.test.jsx > fast polling identity, commands and chooser boundaries > cleans fast timers on leave and ignores a late state fetch even when fetch ignores abort 4ms
+ ✓ src/game/AutoPassPolling.test.jsx > fast polling identity, commands and chooser boundaries > rejects an old same-room seat response (200) after switching to another seat/lobby 4ms
+ ✓ src/game/AutoPassPolling.test.jsx > fast polling identity, commands and chooser boundaries > rejects an old same-room seat response (401) after switching to another seat/lobby 4ms
+ ✓ src/game/AutoPassPolling.test.jsx > fast polling identity, commands and chooser boundaries > rejects an aborted old response even after returning to the same seat token (ABA) 9ms
+ ✓ src/game/AutoPassPolling.test.jsx > fast polling identity, commands and chooser boundaries > clears the last view across player-mode switches and rejects a late initial GET after ordinary-scope ABA 5ms
+ ✓ src/game/AutoPassPolling.test.jsx > fast polling identity, commands and chooser boundaries > holds the POST lock across 3s reads and ignores an older playing ACK after a newer finished poll 8ms
+ ✓ src/game/AutoPassPolling.test.jsx > fast polling identity, commands and chooser boundaries > never duplicates an unchanged pass version across fast 204 polls, but permits a new authoritative version 7ms
+ ✓ src/game/AutoPassPolling.test.jsx > fast polling identity, commands and chooser boundaries > retries lost ACKs with original actor/id/version/paced action; manual recovery true 6ms
+ ✓ src/game/AutoPassPolling.test.jsx > fast polling identity, commands and chooser boundaries > retries lost ACKs with original actor/id/version/paced action; manual recovery false 7ms
+ ✓ src/game/AutoPassPolling.test.jsx > fast polling identity, commands and chooser boundaries > restores a persisted original command on reload without regressing the newer view or opt-in 4ms
+ ✓ src/game/AutoPassPolling.test.jsx > fast polling identity, commands and chooser boundaries > a natural fast poll cancels the 550ms timer when private choice arrives 5ms
+ ✓ src/game/AutoPassPolling.test.jsx > fast polling identity, commands and chooser boundaries > a natural fast poll cancels the 550ms timer when public choice arrives 4ms
+ ✓ src/game/AutoPassPolling.test.jsx > fast polling identity, commands and chooser boundaries > a natural fast poll cancels the 550ms timer when response undecided arrives 5ms
+ ✓ src/game/AutoPassPolling.test.jsx > fast polling identity, commands and chooser boundaries > a natural fast poll cancels the 550ms timer when response composing arrives 4ms
+ ✓ src/game/AutoPassPolling.test.jsx > fast polling identity, commands and chooser boundaries > a natural fast poll cancels the 550ms timer when response passed arrives 4ms
+ ✓ src/debugger/DebuggerShell.test.tsx > DebuggerShell > renders the stack with the top item first 173ms
+ ✓ src/debugger/DebuggerShell.test.tsx > DebuggerShell > renders the action log in message order 30ms
+ ✓ src/debugger/DebuggerShell.test.tsx > DebuggerShell > shows the current revision for the selected viewer 13ms
+ ✓ src/debugger/DebuggerShell.test.tsx > DebuggerShell > shows the active player plus public score and winner 44ms
+ ✓ src/game/ReadModal.test.tsx > original card scan reading > opens the original rescue/forecast card for JC075 215ms
+ ✓ src/game/ReadModal.test.tsx > original card scan reading > opens the original rescue/forecast card for JC104 28ms
+ ✓ src/game/ReadModal.test.tsx > original card scan reading > opens the newly admitted original face for JC001 50ms
+ ✓ src/debugger/DebuggerShell.test.tsx > DebuggerShell > renders structured legality failure details 12ms
+ ✓ src/debugger/DebuggerShell.test.tsx > DebuggerShell > switches per-player views and preserves hidden-information differences 73ms
+ ✓ src/debugger/DebuggerShell.test.tsx > DebuggerShell > shows face-down status and marker summary when patch includes them 8ms
+ ✓ src/debugger/DebuggerShell.test.tsx > DebuggerShell > shows shield counters and shield_consumed event details 10ms
+ ✓ src/game/ResponseWindow.test.tsx > public stack projection > uses public target labels and server validity even when no matching board instance exists 43ms
+ ✓ src/game/ResponseWindow.test.tsx > public stack projection > shows private and public choice pauses separately from responding 5ms
+ ✓ src/game/ResponseWindow.test.tsx > public stack projection > keeps older stack views usable when target summaries and resolution state are absent 6ms
+ ✓ src/game/ReadModal.test.tsx > original card scan reading > opens the newly admitted original face for BQ083 39ms
+ ✓ src/game/ReadModal.test.tsx > original card scan reading > opens the newly admitted original face for JC006 53ms
+ ✓ src/game/ReadModal.test.tsx > original card scan reading > opens the newly admitted original face for XQ16 20ms
+ ✓ src/game/ReadModal.test.tsx > original card scan reading > opens the next local original face for JC007 23ms
+ ✓ src/game/ResponseWindow.test.tsx > server-owned response intent > shows the server-sampled five seconds and waits for confirmation at zero without passing locally 170ms
+ ✓ src/game/ResponseWindow.test.tsx > server-owned response intent > begins an intent for this window without choosing or paying for a card 17ms
+ ✓ src/game/ResponseWindow.test.tsx > server-owned response intent > lets only this undecided member pass when its private begin qualification is false 16ms
+ ✓ src/game/ResponseWindow.test.tsx > server-owned response intent > rebases elapsed display on a fresh trusted server sample 28ms
+ ✓ src/game/ResponseWindow.test.tsx > server-owned response intent > restores composing from the server intent, keeps selection untimed and cancels that same intent 14ms
+ ✓ src/game/ResponseWindow.test.tsx > server-owned response intent > keeps a passed teammate separate from another member still composing without reopening responses 8ms
+ ✓ src/game/ReadModal.test.tsx > original card scan reading > opens the next local original face for JC047 17ms
+ ✓ src/game/ReadModal.test.tsx > original card scan reading > opens an admitted original face and keeps keyboard focus within the reader 26ms
+ ✓ src/game/ReadModal.test.tsx > original card scan reading > does not request a face or expose the scan control for another player’s hidden card 10ms
+ ✓ src/game/ReadModal.test.tsx > original card scan reading > lets the current controller read an authorized concealed original while erasing it for its owner and other seats 34ms
+ ✓ src/game/ResponseWindow.test.tsx > server-owned response intent > does not send decision or cancellation commands while blocked by { busy: true } 25ms
+ ✓ src/game/ResponseWindow.test.tsx > server-owned response intent > does not send decision or cancellation commands while blocked by { uncertain: true } 25ms
+ ✓ src/game/ResponseWindow.test.tsx > server-owned response intent > does not send decision or cancellation commands while blocked by { connection: 'offline' } 20ms
+ ✓ src/game/ResponseWindow.test.tsx > server-owned response intent > does not send decision or cancellation commands while blocked by { connection: 'connecting' } 19ms
+ ✓ src/game/ResponseWindow.test.tsx > server-owned response intent > does not time a pending game choice or offer intent commands during it 5ms
+ ✓ src/game/AutoPass.test.tsx > opt-in automatic pass > cancels the product timer for every projected intent status and resumes only after the server removes the window 35ms
+ ✓ src/game/AutoPass.test.tsx > opt-in automatic pass > reflects its controlled preference, submits once per version and cancels when stopped 119ms
+ ✓ src/game/AutoPass.test.tsx > opt-in automatic pass > cancels pending automation for real actions, any chooser, unsafe connection or unconfirmed command 8ms
+ ✓ src/game/AutoPass.test.tsx > opt-in automatic pass > preserves an authoritative fast sacrifice response on a nonempty stack and still passes a sole-pass stack window 3ms
+ ✓ src/game/AutoPass.test.tsx > opt-in automatic pass > cancels the old version timer and waits a full delay for the new authoritative pass 3ms
+ ✓ src/game/AutoPass.test.tsx > opt-in automatic pass > cancels a pending stack pass when either private or public chooser arrives midway 3ms
+ ✓ src/game/Help.test.tsx > help keyboard dismissal > closes with Escape and returns focus to the guide opener 180ms
+ ✓ src/game/CardTile.test.tsx > concealed character presentation > shows damage immunity on own concealed board cards while preserving printed data in inspection 32ms
+ ✓ src/game/CardTile.test.tsx > concealed character presentation > shows a concealed identity to its current controller and erases stale print for every other seat 136ms
+ ✓ src/game/CardTile.test.tsx > concealed character presentation > explains an exhausted anonymous hidden card without suggesting that it participates in combat 4ms
+ ✓ src/game/CardTile.test.tsx > concealed character presentation > shows the server effective cost and its printed cost without calculating reductions 9ms
+ ✓ src/game/CardTile.test.tsx > attachment and current-stat reading > shows authoritative effective icons and defense separately from print, including zero values 7ms
+ ✓ src/game/CardTile.test.tsx > attachment and current-stat reading > does not describe effective values as print when the frozen catalog is unavailable 4ms
+ ✓ src/game/CardTile.test.tsx > attachment and current-stat reading > identifies a face-up attachment without presenting it as an independent fighting character 3ms
+ ✓ src/game/CardTile.test.tsx > attachment and current-stat reading > keeps world reading values separate from character effective stats 12ms
+ ✓ src/game/api.test.ts > cloud table API > keeps old room commands unchanged while wrapping new empty-stack and choice actions 2ms
+ ✓ src/game/api.test.ts > cloud table API > requires intent before payment and binds cancellation and formal response to the restored server intent 1ms
+ ✓ src/game/api.test.ts > cloud table API > stores a complete response wrapper without UI labels and retries its original body after a lost ACK 4ms
+ ✓ src/game/api.test.ts > cloud table API > reads the room catalog with the original seat credential outside the URL 1ms
+ ✓ src/game/api.test.ts > cloud table API > stores an opaque seat credential locally without storing a hidden table snapshot 1ms
+ ✓ src/game/api.test.ts > cloud table API > sends a bearer token and canonical authoritative action with command identity and version 1ms
+ ✓ src/game/api.test.ts > cloud table API > preserves the reconciliation view on version conflict 1ms
+ ✓ src/game/api.test.ts > cloud table API > forwards an authoritative ability and sacrifice cost selection without display metadata 1ms
+ ✓ src/game/api.test.ts > cloud table API > reads split UTF-8 and CRLF SSE frames through authenticated fetch 6ms
+ ✓ src/game/api.test.ts > cloud table API > distinguishes lost transport from a confirmed rejection 1ms
+ ✓ src/game/api.test.ts > cloud table API > polls only an authenticated version and accepts an unchanged 204 1ms
+ ✓ src/game/api.test.ts > cloud table API > rejects a poll carrying another room or an unsafe version 1ms
+ ✓ src/game/api.test.ts > cloud table API > recovers a lost lobby acknowledgement with the exact original request key 1ms
+ ✓ src/game/api.test.ts > cloud table API > keeps a failed entry key for an explicit retry and does not retry legacy servers automatically 1ms
+ ✓ src/game/api.test.ts > cloud table API > recovers a custom deck entry with the original draft and request identity 1ms
+ ✓ src/game/deckLibrary.test.ts > explicit construction rules > copies and validates a supported preset containing the live spell kind 4ms
+ ✓ src/game/deckLibrary.test.ts > explicit construction rules > accepts arbitrary faction mixing and only metadata-declared unlimited copies 1ms
+ ✓ src/game/deckLibrary.test.ts > explicit construction rules > aggregates limits by printed name across IDs and repeated entries 1ms
+ ✓ src/game/deckLibrary.test.ts > explicit construction rules > uses an explicit unique construction limit rather than battlefield uniqueness 0ms
+ ✓ src/game/deckLibrary.test.ts > explicit construction rules > blocks missing and conflicting metadata without guessing an exception 1ms
+ ✓ src/game/deckLibrary.test.ts > explicit construction rules > blocks unknown, region, unimplemented, and secret-society choices 0ms
+ ✓ src/game/deckLibrary.test.ts > explicit construction rules > separates the formal minimum from the advertised service capacity 1ms
+ ✓ src/game/deckLibrary.test.ts > explicit construction rules > preserves old provenance until an explicit version revalidation 1ms
+ ✓ src/game/deckLibrary.test.ts > browser deck library storage > saves invalid drafts while storing only public draft fields 1ms
+ ✓ src/game/deckLibrary.test.ts > browser deck library storage > recovers good entries alongside malformed drafts and ignores unknown stored fields 2ms
+ ✓ src/game/deckLibrary.test.ts > browser deck library storage > does not overwrite malformed or future-version data merely by reading it 1ms
+ ✓ src/game/deckLibrary.test.ts > browser deck library storage > reports unavailable or quota-limited storage without throwing 0ms
+ ✓ src/debugger/live.test.ts > liveActionPresets > exposes marker and face-down presets 2ms
+ ✓ src/debugger/live.test.ts > buildActionFromPreset > builds set_marker action that targets acting player 1ms
+ ✓ src/debugger/live.test.ts > buildActionFromPreset > builds remove_marker action that targets acting player 0ms
+ ✓ src/debugger/live.test.ts > buildActionFromPreset > builds set_face_down action for acting player's table card 0ms
+ ✓ src/debugger/live.test.ts > buildActionFromPreset > builds explicit use_first_player_privilege action 0ms
+ ✓ src/debugger/live.test.ts > buildActionFromCustomJSON > fills id and actor defaults when custom JSON omits them 0ms
+ ✓ src/debugger/live.test.ts > buildActionFromCustomJSON > keeps explicit id and actor from custom JSON 0ms
+ ✓ src/debugger/live.test.ts > buildActionFromCustomJSON > rejects invalid JSON input 1ms
+ ✓ src/debugger/live.test.ts > buildActionFromCustomJSON > rejects non-object JSON input 0ms
+ ✓ src/debugger/live.test.ts > buildActionFromCustomJSON > rejects object JSON without kind 0ms
+ ✓ src/lib/project.test.ts > getProjectOverview > returns the repository invariants used by the scaffold UI 2ms
+
+ Test Files  22 passed (22)
+      Tests  225 passed (225)
+   Start at  13:45:36
+   Duration  13.12s (transform 1.13s, setup 2.21s, import 1.71s, tests 21.27s, environment 10.19s)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

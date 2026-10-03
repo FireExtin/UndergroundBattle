@@ -1,0 +1,32 @@
+{
+  "method": "measured real React hook/AutoPass with jsdom fake clock and synthetic fetch; no real browsers or live rooms",
+  "baseline": {
+    "source": "0ec1d7643fff64b3f8c98cdac343b11fea49d10e",
+    "discoveredMs": 12000,
+    "commandMs": 12550,
+    "eventToPostMs": 12549
+  },
+  "implemented": {
+    "serverTransitionMs": 1,
+    "discoveredMs": 3000,
+    "commandMs": 3550,
+    "eventToPostMs": 3549
+  },
+  "improvementMs": 9000,
+  "actualPerSeatPeriodicGetsIn60s": {
+    "background playing AutoPass on (including repeated 204)": 20,
+    "background playing AutoPass off": 5,
+    "background room lobby AutoPass on": 5,
+    "background finished AutoPass on": 5,
+    "foreground playing AutoPass on": 40,
+    "public lobby without an active seat": 0
+  },
+  "fourSeatCompositionsOfMeasuredSingleSeatCounts": {
+    "oneVisibleThreeHiddenEnabled": 100,
+    "fourHiddenEnabled": 80,
+    "fourVisible": 160,
+    "fourHiddenOff": 20
+  },
+  "compositionCaveat": "These are sums of independently measured single-client counts, not simultaneous four-browser public QA. Initial reads/catalog/POSTs/RTT/throttling are excluded.",
+  "safetyMeasurements": 38
+}
