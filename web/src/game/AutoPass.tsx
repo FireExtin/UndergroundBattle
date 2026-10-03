@@ -1,19 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import type { Action, View } from './types';
-import { playerStorage } from './playerStorage';
-
-const PREFERENCE_KEY = 'hegemony.autoPass.v1';
-function readPreference() {
-  try { return playerStorage().getItem(PREFERENCE_KEY) === 'true'; }
-  catch { return false; }
-}
 
 /** Opt-in convenience for empty windows; every submission still follows the command pipeline. */
-export function AutoPass({ view, busy, uncertain, connection, onAction }: {
+export function AutoPass({ view, busy, uncertain, connection, onAction, enabled, onEnabledChange }: {
   view: View; busy: boolean; uncertain: boolean;
   connection: 'connecting' | 'online' | 'offline'; onAction: (action: Action) => void;
+  enabled: boolean; onEnabledChange: (enabled: boolean) => void;
 }) {
-  const [enabled, setEnabled] = useState(readPreference);
   const [lastAutoKey, setLastAutoKey] = useState('');
   const sent = useRef('');
   const submit = useRef(onAction);
@@ -45,10 +38,7 @@ export function AutoPass({ view, busy, uncertain, connection, onAction }: {
     : '当前仅能让过，将自动继续';
 
   return <div className={`hg-auto-pass ${enabled ? 'hg-auto-pass-enabled' : ''}`}>
-    <label><input type="checkbox" role="switch" aria-label="无可用行动时自动让过" checked={enabled} onChange={event => {
-      setEnabled(event.target.checked);
-      try { playerStorage().setItem(PREFERENCE_KEY, String(event.target.checked)); } catch { /* This tab still remembers the preference. */ }
-    }} /><span>无可用行动时自动让过</span></label>
+    <label><input type="checkbox" role="switch" aria-label="无可用行动时自动让过" checked={enabled} onChange={event => onEnabledChange(event.target.checked)} /><span>无可用行动时自动让过</span></label>
     <span role="status">{status}</span><small>仅当唯一可用动作是“让过”时生效，可随时关闭。</small>
   </div>;
 }

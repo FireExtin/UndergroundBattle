@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { actionForRoom, ApiError, createRoom, createRoomWithDeck, forgetSavedSeat, getCatalog, getState, joinRoom, joinRoomWithDeck, newCommandId, pollState, readActiveSession, readPending, readSavedSeats, readSession, returnToLobby, savePending, saveSession, sendCommand, type PendingCommand } from './api';
 import type { Action, Catalog, SavedSession, Session, View } from './types';
 import type { DeckDraft } from './deckLibrary';
-import { readPlayerMode, selectPlayerMode, type PlayerMode } from './playerStorage';
+import { playerStorage, readPlayerMode, selectPlayerMode, type PlayerMode } from './playerStorage';
 
 export function newerView(current: View | null, next: View): View {
   return current && current.roomId === next.roomId && current.you === next.you && current.version > next.version ? current : next;
@@ -13,6 +13,11 @@ const invalidSeatToken = (error: unknown) => error instanceof ApiError && (error
   || (error.code === 'unauthorized' && error.message === '需要此房间的座位令牌'));
 const needsSiteLogin = (error: unknown) => error instanceof ApiError && (error.status === 401 || error.status === 403) && !invalidSeatToken(error);
 const loginMessage = '访问牌桌需要重新登录。座位和未确认行动已保留，请登录后刷新页面继续。';
+const AUTO_PASS_KEY = 'hegemony.autoPass.v1';
+const readAutoPassPreference = () => {
+  try { return playerStorage().getItem(AUTO_PASS_KEY) === 'true'; }
+  catch { return false; }
+};
 
 export function useGame() {
   const [playerMode, setPlayerMode] = useState(readPlayerMode);
@@ -24,6 +29,10 @@ export function useGame() {
   const [busy, setBusy] = useState(false);
   const [connection, setConnection] = useState<'connecting' | 'online' | 'offline'>('connecting');
   const [catalogRetry, setCatalogRetry] = useState(0);
+  const [autoPassEnabled, setAutoPassState] = useState(readAutoPassPreference);
+  const autoPassPreference = useRef(autoPassEnabled);
+  const acceptedView = useRef<View | null>(null);
+  const rearmPolling = useRef<(() => void) | null>(null);
   const commandLock = useRef(false);
   const pending = useRef<PendingCommand | null>(readPending());
   const [uncertain, setUncertain] = useState(commandFor(pending.current, session));
@@ -35,8 +44,15 @@ export function useGame() {
   const accept = useCallback((next: View) => {
     if (next.roomId === activeSession.current?.roomId && next.you === `p${activeSession.current.seat}`) {
       acceptedVersion.current = Math.max(acceptedVersion.current, next.version);
-      setView(current => newerView(current, next));
+      acceptedView.current = newerView(acceptedView.current, next);
+      setView(acceptedView.current);
+      rearmPolling.current?.();
     }
+  }, []);
+  const setAutoPassEnabled = useCallback((enabled: boolean) => {
+    autoPassPreference.current = enabled; setAutoPassState(enabled);
+    try { playerStorage().setItem(AUTO_PASS_KEY, String(enabled)); } catch { /* Keep this player's in-memory preference. */ }
+    rearmPolling.current?.();
   }, []);
 
   useEffect(() => {
@@ -56,6 +72,22 @@ export function useGame() {
     let attempts = 0;
     let initialized = false;
     let polling = false;
+    let scheduledDelay: number | null = null;
+    const delay = () => document.visibilityState === 'hidden'
+      ? autoPassPreference.current && acceptedView.current?.status === 'playing' ? 3000 : 12000
+      : 1500;
+    const schedule = (ms: number, healthy: boolean) => {
+      if (timer !== undefined) clearTimeout(timer);
+      scheduledDelay = healthy ? ms : null;
+      timer = setTimeout(() => { timer = undefined; scheduledDelay = null; void reconnect(); }, ms);
+    };
+    const rearm = () => {
+      // Preference/status changes only rearm an idle healthy timer, never an in-flight read or backoff.
+      if (controller.signal.aborted || !isActive(session) || polling || timer === undefined || scheduledDelay === null) return;
+      const nextDelay = delay();
+      if (nextDelay !== scheduledDelay) schedule(nextDelay, true);
+    };
+    rearmPolling.current = rearm;
     const reconnect = async () => {
       if (controller.signal.aborted || polling) return;
       polling = true;
@@ -68,32 +100,36 @@ export function useGame() {
         if (commandFor(pending.current, session) && !commandLock.current) {
           await resolvePending(session);
         }
-        if (!controller.signal.aborted) timer = setTimeout(reconnect, document.visibilityState === 'hidden' ? 12000 : 1500);
+        if (!controller.signal.aborted && isActive(session)) schedule(delay(), true);
         return;
       } catch (e) {
         if (controller.signal.aborted || !isActive(session)) return;
         if (invalidSeatToken(e) || (e instanceof ApiError && e.code === 'room_not_found')) {
           forgetSavedSeat(session); setSavedSeats(readSavedSeats()); returnToLobby();
           if (commandFor(pending.current, session)) { savePending(null); pending.current = null; }
-          activeSession.current = null; setUncertain(false); setSession(null); setView(null);
+          activeSession.current = null; acceptedView.current = null; acceptedVersion.current = 0;
+          setUncertain(false); setSession(null); setView(null);
           setError('保存的座位已无法恢复。请使用邀请码重新加入牌桌。'); return;
         }
         if (needsSiteLogin(e)) setError(loginMessage);
       } finally { polling = false; }
-      if (!controller.signal.aborted) {
+      if (!controller.signal.aborted && isActive(session)) {
         setConnection('offline'); attempts++;
-        timer = setTimeout(reconnect, Math.min(1000 * 2 ** Math.min(attempts, 4), 15000));
+        schedule(Math.min(1000 * 2 ** Math.min(attempts, 4), 15000), false);
       }
     };
     const visible = () => {
       if (document.visibilityState === 'visible' && !controller.signal.aborted) {
-        if (timer) clearTimeout(timer);
-        timer = setTimeout(reconnect, 0);
+        schedule(0, false);
       }
     };
     document.addEventListener('visibilitychange', visible);
     void reconnect();
-    return () => { controller.abort(); if (timer) clearTimeout(timer); document.removeEventListener('visibilitychange', visible); };
+    return () => {
+      controller.abort(); if (timer !== undefined) clearTimeout(timer);
+      if (rearmPolling.current === rearm) rearmPolling.current = null;
+      document.removeEventListener('visibilitychange', visible);
+    };
   }, [session, accept]);
 
   const enter = async (task: () => Promise<Session>) => {
@@ -105,6 +141,7 @@ export function useGame() {
       pending.current = null; savePending(null); setUncertain(false);
       saveSession(next); setSavedSeats(readSavedSeats()); activeSession.current = next;
       acceptedVersion.current = next.view.version;
+      acceptedView.current = next.view;
       setSession({ roomId: next.roomId, inviteCode: next.inviteCode, token: next.token, seat: next.seat });
       setView(next.view);
       // Invitations contain only a room code; seat credentials are stored locally.
@@ -161,7 +198,7 @@ export function useGame() {
     const saved = target || readSession() || savedSeats.at(-1);
     if (!saved) return;
     if (pending.current && !commandFor(pending.current, saved)) { setError('请先恢复待确认行动所在的原席位，再切换牌桌或席位。'); return; }
-    saveSession(saved); setSavedSeats(readSavedSeats()); activeSession.current = saved; acceptedVersion.current = 0;
+    saveSession(saved); setSavedSeats(readSavedSeats()); activeSession.current = saved; acceptedVersion.current = 0; acceptedView.current = null;
     setView(null); setSession(saved); setUncertain(!!pending.current); setError('');
     if (new URL(location.href).searchParams.has('invite')) history.replaceState({}, '', location.pathname);
   };
@@ -180,14 +217,15 @@ export function useGame() {
     try { selectPlayerMode(mode, mode === 'independent' ? newCommandId() : undefined); }
     catch (e) { setError(e instanceof Error ? e.message : '无法切换玩家会话。'); return; }
     const next = readActiveSession();
-    pending.current = readPending(); activeSession.current = next; acceptedVersion.current = 0;
+    pending.current = readPending(); activeSession.current = next; acceptedVersion.current = 0; acceptedView.current = null;
+    autoPassPreference.current = readAutoPassPreference(); setAutoPassState(autoPassPreference.current);
     setPlayerMode(mode); setSavedSeats(readSavedSeats()); setSession(next); setView(null);
     setUncertain(commandFor(pending.current, next)); setError(''); setConnection('connecting');
     setCatalog(null); setCatalogRetry(n => n + 1);
   };
 
   return {
-    catalog, session, view, error, busy, uncertain, connection, act, playerMode,
+    catalog, session, view, error, busy, uncertain, connection, act, playerMode, autoPassEnabled, setAutoPassEnabled,
     playerModeLocked: busy || !!pending.current,
     startIndependentSession: () => switchPlayerMode('independent'),
     useOrdinarySession: () => switchPlayerMode('ordinary'),
@@ -202,6 +240,6 @@ export function useGame() {
     resumeAvailable: !session && savedSeats.length > 0,
     resume,
     // Return to the lobby without destroying the only credential for an occupied seat.
-    leave: () => { if (commandLock.current) return; returnToLobby(); activeSession.current = null; setSession(null); setView(null); setError(''); setUncertain(false); },
+    leave: () => { if (commandLock.current) return; returnToLobby(); activeSession.current = null; acceptedView.current = null; acceptedVersion.current = 0; setSession(null); setView(null); setError(''); setUncertain(false); },
   };
 }
