@@ -14,6 +14,16 @@ const props = { catalog: testCatalog, busy: false, connection: 'online' as const
 const open = () => { fireEvent.click(screen.getByRole('button', { name: '查看葬礼' })); fireEvent.click(screen.getByRole('button', { name: '葬礼：发动' })); };
 
 describe('object actions on a synthetic table', () => {
+  it('shows description-only distinctions as separately named object actions', () => {
+    const variants = [{ ...actions[0], description: '方式甲' }, { ...actions[1], description: '方式乙' }];
+    const { container } = render(<Table {...props} view={{ ...view, legalActions: variants }} onAction={vi.fn()} />);
+    fireEvent.click(screen.getByRole('button', { name: '查看葬礼' }));
+    expect(screen.getByRole('button', { name: '葬礼：发动 · 方式甲' })).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: '葬礼：发动 · 方式乙' }));
+    expect(container.querySelector('[data-card-instance="grave-1"]')).toHaveAttribute('data-card-targeted', 'true');
+    expect(container.querySelector('[data-card-instance="grave-0"]')).toBeNull();
+  });
+
   it('keeps ability, mode, and explicit sacrifice alternatives distinct while narrowing target highlights to the chosen action', () => {
     const variants = [
       { ...actions[0], costSelected: ['cost-a'], label: '葬礼：模式甲 → 墓地角色1（费用：牺牲甲）' },
@@ -48,6 +58,41 @@ describe('object actions on a synthetic table', () => {
     render(<Table {...props} view={{ ...view, attachments: undefined, legalActions: [orphan] }} onAction={submit} />);
     fireEvent.click(screen.getByRole('button', { name: orphan.label }));
     expect(submit).toHaveBeenCalledExactlyOnceWith(orphan);
+  });
+
+  it('blocks an unprojected target without offering numbered blind selections', () => {
+    const submit = vi.fn();
+    render(<Table {...props} view={{ ...view, graveyard: [], legalActions: [actions[0]] }} onAction={submit} />);
+    open();
+    expect(screen.getByText(/部分目标当前未显示，无法选择这些目标/)).toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: /服务端目标/ })).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: /^确认 ·/ })).not.toBeInTheDocument();
+    expect(screen.getByRole('button', { name: '点选高亮对象后确认' })).toBeDisabled();
+    fireEvent.click(screen.getByRole('button', { name: '取消选目标' }));
+    expect(submit).not.toHaveBeenCalled();
+  });
+
+  it('blocks a selected target removed from the projection even if revision and legal action stay unchanged', () => {
+    const submit = vi.fn();
+    const { rerender } = render(<Table {...props} view={view} onAction={submit} />);
+    open(); fireEvent.click(screen.getByRole('button', { name: '查看墓地角色1' }));
+    rerender(<Table {...props} view={{ ...view, graveyard: graves.slice(1) }} onAction={submit} />);
+    expect(screen.queryByRole('button', { name: /^确认 ·/ })).not.toBeInTheDocument();
+    expect(screen.getByText(/部分目标当前未显示，无法选择这些目标/)).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: '查看墓地角色2' }));
+    fireEvent.click(screen.getByRole('button', { name: `确认 · ${actions[1].label}` }));
+    expect(submit).toHaveBeenCalledExactlyOnceWith(actions[1]);
+  });
+
+  it('blocks an old-room global action whose destination is not projected', () => {
+    const submit = vi.fn();
+    const orphan = { ...actions[0], cardId: 'unprojected-source', label: '旧房间缺失目标行动' };
+    render(<Table {...props} view={{ ...view, graveyard: [], legalActions: [orphan] }} onAction={submit} />);
+    const button = screen.getByRole('button', { name: orphan.label });
+    expect(button).toBeDisabled();
+    expect(button).toHaveAttribute('title', '目标当前未显示，请等待牌桌更新。');
+    fireEvent.click(button);
+    expect(submit).not.toHaveBeenCalled();
   });
 
   it('replaces seven funeral combination buttons with player graveyard targets and confirms the untouched legal action once', () => {

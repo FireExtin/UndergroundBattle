@@ -54,11 +54,14 @@ describe('room deck selection', () => {
 describe('playable table', () => {
   it('shows readable cards and only the selected card’s server-authored actions', () => {
     const submit = vi.fn(); const action = { id: 'deploy-a', kind: 'deploy', label: '派遣到地区一', cardId: 'instance-a', region: 0 };
-    render(<Table view={{ ...testView, status: 'playing', hand: [testCard, { ...testCard, instanceId: 'another-card', name: '另一张牌' }], legalActions: [action, { id: 'unrelated', kind: 'asset', label: '不相关行动', cardId: 'another-card' }] }} catalog={testCatalog} busy={false} onAction={submit} />);
+    const regions = [{ id: 'region-one', index: 0, cardId: 'DQJC112', name: '纽约', threshold: 4, points: 4, influence: [0, 0], characters: [] }];
+    render(<Table view={{ ...testView, status: 'playing', regions, hand: [testCard, { ...testCard, instanceId: 'another-card', name: '另一张牌' }], legalActions: [action, { id: 'unrelated', kind: 'asset', label: '不相关行动', cardId: 'another-card' }] }} catalog={testCatalog} busy={false} onAction={submit} />);
     expect(screen.queryByRole('button', { name: '派遣到地区一' })).not.toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', { name: '查看无知路人' }));
     expect(screen.getAllByText('真实印刷文字').length).toBeGreaterThan(0);
-    fireEvent.click(screen.getByRole('button', { name: '派遣到地区一 · 地区 1' }));
+    fireEvent.click(screen.getByRole('button', { name: '派遣到地区一' }));
+    fireEvent.click(screen.getByRole('button', { name: '查看地区1 纽约' }));
+    fireEvent.click(screen.getByRole('button', { name: '确认 · 派遣到地区一 · 地区 1 · 纽约' }));
     expect(submit).toHaveBeenCalledWith(action);
     expect(screen.queryByRole('button', { name: '不相关行动' })).not.toBeInTheDocument();
   });
