@@ -1,0 +1,230 @@
+{
+  "repositorySource": "8f700cdcb90cfb5847d75b33bd02a69fa65d8664",
+  "siteSource": "26463698d2c6f17dea9fc3ca2f971e0824072263",
+  "deployment": "appgdep_6ac10edee3c88191832efb878a504e31",
+  "runtimeDefinitions": 48,
+  "sourceByteChecks": [
+    {
+      "repositoryPath": "rust-game/src/play_sources.rs",
+      "sitePath": "rust-game/src/play_sources.rs",
+      "bytes": 12029,
+      "sha256": "f1a80f2f4d34e2b4c61336b176e180dbca7551fbd82e752d3c80757418638dfd",
+      "site17BytesEqual": true
+    },
+    {
+      "repositoryPath": "rust-game/src/engine.rs",
+      "sitePath": "rust-game/src/engine.rs",
+      "bytes": 238331,
+      "sha256": "6424e382cd9b06ba70e40c2d03f9c468ae8cfa5ddfcd14def6a8a07246307b42",
+      "site17BytesEqual": true
+    },
+    {
+      "repositoryPath": "rust-game/src/room.rs",
+      "sitePath": "rust-game/src/room.rs",
+      "bytes": 25965,
+      "sha256": "dc83ff7706936efc9212e3f7a8be79965912d92769092c20df8df11d2d08d56d",
+      "site17BytesEqual": true
+    },
+    {
+      "repositoryPath": "rust-game/src/model.rs",
+      "sitePath": "rust-game/src/model.rs",
+      "bytes": 16942,
+      "sha256": "0d2cb13698a302f24eef9212d23403cd4405092706f8617050d55e16bfe16355",
+      "site17BytesEqual": true
+    },
+    {
+      "repositoryPath": "rust-game/src/main.rs",
+      "sitePath": "rust-game/src/main.rs",
+      "bytes": 822,
+      "sha256": "b19047fc01dd00d864860551b41b2b8be883c04d77b158691b3bdc44252acf2e",
+      "site17BytesEqual": true
+    },
+    {
+      "repositoryPath": "rust-game/src/catalog.rs",
+      "sitePath": "rust-game/src/catalog.rs",
+      "bytes": 7339,
+      "sha256": "8d097e72da27c084acbce20d5464024ed25c669c1e063c18aff1b6f3d63c5e47",
+      "site17BytesEqual": true
+    },
+    {
+      "repositoryPath": "rust-game/src/resolution.rs",
+      "sitePath": "rust-game/src/resolution.rs",
+      "bytes": 56035,
+      "sha256": "2aa0d66bb0d562595f98e3d9faa2af149eb92c05a06035d4f99cc635508c2c42",
+      "site17BytesEqual": true
+    },
+    {
+      "repositoryPath": "rust-game/src/lib.rs",
+      "sitePath": "rust-game/src/lib.rs",
+      "bytes": 212,
+      "sha256": "e5f095897837f98dc13564a1f563585d3d991b4eacc352a86e23a9ca853ee163",
+      "site17BytesEqual": true
+    },
+    {
+      "repositoryPath": "rust-game/src/rules.rs",
+      "sitePath": "rust-game/src/rules.rs",
+      "bytes": 41461,
+      "sha256": "e1781b1cd04f8df3e96d950079acf99b84b349c44419f59dcf366c1d998638c3",
+      "site17BytesEqual": true
+    },
+    {
+      "repositoryPath": "rust-game/src/attributes.rs",
+      "sitePath": "rust-game/src/attributes.rs",
+      "bytes": 1125,
+      "sha256": "97bf74643711a1868ec3c39494386da28e3779ccc87e3428b2322a7fd719858e",
+      "site17BytesEqual": true
+    },
+    {
+      "repositoryPath": "rust-game/src/service.rs",
+      "sitePath": "rust-game/src/service.rs",
+      "bytes": 29014,
+      "sha256": "c086433fe3e9b408332c1426c5637b4c1f6c649b2c40b382f4e5f1a102a5b512",
+      "site17BytesEqual": true
+    },
+    {
+      "repositoryPath": "rust-game/src/world.rs",
+      "sitePath": "rust-game/src/world.rs",
+      "bytes": 27106,
+      "sha256": "84f3670bf2f24fdd9c9c8f3e18eccc8ca88bf809598baa0cbc0ebe808570eef1",
+      "site17BytesEqual": true
+    },
+    {
+      "repositoryPath": "rust-game/src/attachment.rs",
+      "sitePath": "rust-game/src/attachment.rs",
+      "bytes": 26547,
+      "sha256": "aa6fa58bcaea26bfe45201dfe9100ff7feb8664e946efc7db127e7fa1e7049b7",
+      "site17BytesEqual": true
+    },
+    {
+      "repositoryPath": "rust-game/src/deck.rs",
+      "sitePath": "rust-game/src/deck.rs",
+      "bytes": 5830,
+      "sha256": "dc4238c613be05d4ee62b54a4b8855cb1dad3c449ee867baa9f8a14427d91f47",
+      "site17BytesEqual": true
+    },
+    {
+      "repositoryPath": "rust-game/src/bin/hegemony-audit.rs",
+      "sitePath": "rust-game/src/bin/hegemony-audit.rs",
+      "bytes": 627,
+      "sha256": "6e1d4f5cb0b803f9aa4bc233dfb2445cbddb2801522846963aa2caf2b2090e2e",
+      "site17BytesEqual": true
+    },
+    {
+      "repositoryPath": "rust-game/data/cards.json",
+      "sitePath": "rust-game/data/cards.json",
+      "bytes": 53220,
+      "sha256": "303d80b2672960086da75658746a29fef28ec9047ed7e9cf4728622dfa3b2c82",
+      "site17BytesEqual": true
+    },
+    {
+      "repositoryPath": "web/src/game/Table.tsx",
+      "sitePath": "web/src/game/Table.tsx",
+      "bytes": 31730,
+      "sha256": "47b87f1d7255bec4f9c0869a9413be69f2584d4045cf29c4bfeae5731a790faa",
+      "site17BytesEqual": true
+    },
+    {
+      "repositoryPath": "web/src/game/deckLibrary.ts",
+      "sitePath": "web/src/game/deckLibrary.ts",
+      "bytes": 9881,
+      "sha256": "2a573e08644b6f42d0331ff9f64c5ceee656d7de5ec6388eb25bb7aa8e850338",
+      "site17BytesEqual": true
+    },
+    {
+      "repositoryPath": "web/src/game/DeckLibrary.tsx",
+      "sitePath": "web/src/game/DeckLibrary.tsx",
+      "bytes": 12872,
+      "sha256": "95d441ca73ecba42c1e243eefd71e8ab8d15f7ec85adfebc2aa905ff7e34b9ca",
+      "site17BytesEqual": true
+    },
+    {
+      "repositoryPath": "web/src/game/types.ts",
+      "sitePath": "web/src/game/types.ts",
+      "bytes": 4278,
+      "sha256": "869803d0ceb82f27a74fe10297cb772f31e224c32bf5103cbf298e7a9e8977d8",
+      "site17BytesEqual": true
+    },
+    {
+      "repositoryPath": "web/src/game/CardTile.tsx",
+      "sitePath": "web/src/game/CardTile.tsx",
+      "bytes": 8525,
+      "sha256": "559d50d0a5a22f6d226aee53ee8d38276981f1d7da54e614a12ca5e413fa65eb",
+      "site17BytesEqual": true
+    },
+    {
+      "repositoryPath": "web/src/game/ChoicePanel.tsx",
+      "sitePath": "web/src/game/ChoicePanel.tsx",
+      "bytes": 10816,
+      "sha256": "010487c18c877559f67a673e2440bafce79c0089db4266d142314cb46ce50fbc",
+      "site17BytesEqual": true
+    },
+    {
+      "repositoryPath": "web/src/game/factions.ts",
+      "sitePath": "web/src/game/factions.ts",
+      "bytes": 3114,
+      "sha256": "99a3c6f43f07775ee6e42c97ae2ceaf6e452c9757c3ca0afbb678c981d2ce3f5",
+      "site17BytesEqual": true
+    },
+    {
+      "repositoryPath": "web/src/game/Table.test.tsx",
+      "sitePath": "web/src/game/Table.test.tsx",
+      "bytes": 21424,
+      "sha256": "bfab22eb780eb341a74bd45641057bb9af99f693897a03f8fda6e8d0cdc40ebd",
+      "site17BytesEqual": true
+    },
+    {
+      "repositoryPath": "web/src/game/deckLibrary.test.ts",
+      "sitePath": "web/src/game/deckLibrary.test.ts",
+      "bytes": 9170,
+      "sha256": "583c1499cbef54fe1b1a0891ba94873d9833bbd3cd8a36735ab8b4bcf18a4d67",
+      "site17BytesEqual": true
+    },
+    {
+      "repositoryPath": "sites/src/kernel.mjs",
+      "sitePath": "src/kernel.mjs",
+      "bytes": 1689,
+      "sha256": "556660e23e78ae68182a2636e1b53ef36ff9fc8043770a6c36c5a9e51894e26b",
+      "site17BytesEqual": true
+    },
+    {
+      "repositoryPath": "sites/src/index.mjs",
+      "sitePath": "src/index.mjs",
+      "bytes": 3552,
+      "sha256": "f6a1ae35a0361e2bad5422a9ab6d2e0a2c766c1e40c1c62bb0fe1446d5877551",
+      "site17BytesEqual": true
+    },
+    {
+      "repositoryPath": "sites/src/service.mjs",
+      "sitePath": "src/service.mjs",
+      "bytes": 15118,
+      "sha256": "757930aad47a30dad7cd880b504b2c1a7b7a8c5a47905b6fba6f2f2647f88c02",
+      "site17BytesEqual": true
+    },
+    {
+      "repositoryPath": "sites/src/storage-errors.mjs",
+      "sitePath": "src/storage-errors.mjs",
+      "bytes": 2556,
+      "sha256": "6979b752d13a2143f1e250051e5e2df1c81a7afef93727023b84ee8043b5f1a0",
+      "site17BytesEqual": true
+    },
+    {
+      "repositoryPath": "sites/src/store.mjs",
+      "sitePath": "src/store.mjs",
+      "bytes": 3748,
+      "sha256": "39d50fc38e515a959d51f13a5673f5b3603edbc420b120c2326f49607f66d4d9",
+      "site17BytesEqual": true
+    },
+    {
+      "repositoryPath": "sites/src/kernel-router.mjs",
+      "sitePath": "src/kernel-router.mjs",
+      "bytes": 2576,
+      "sha256": "e163dd6e984b7ac2036547f14cc4a49d54ce4aed30676a50f4d082bfa134ad77",
+      "site17BytesEqual": true
+    }
+  ],
+  "priorNativeWorkerValidationCode": "b8d96e583f4600a5f86758654cef9a4cc4075092",
+  "nativeWorkerSourceDriftSincePriorValidation": [],
+  "validationThisTask": "Source equality, source reads, visual rule/card inspection, artifact checks only. No tests, browser, room access, build, push or deploy.",
+  "independentUi": "Only parent-reported observations, bounded in handoff memo.",
+  "matrix52PerRowReaudit": "Not completed; stopped at parent direction; existing full matrix retained as historical input."
+}
