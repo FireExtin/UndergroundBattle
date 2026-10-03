@@ -1,0 +1,95 @@
+{
+  "cardChecks": [
+    {
+      "id": "JC088",
+      "editable": true,
+      "threeAccepted": true,
+      "fourRejected": true
+    },
+    {
+      "id": "JC001",
+      "editable": true,
+      "threeAccepted": true,
+      "fourRejected": true
+    },
+    {
+      "id": "BQ083",
+      "editable": true,
+      "threeAccepted": true,
+      "fourRejected": true
+    },
+    {
+      "id": "JC006",
+      "editable": true,
+      "threeAccepted": true,
+      "fourRejected": true
+    },
+    {
+      "id": "XQ16",
+      "editable": true,
+      "threeAccepted": true,
+      "fourRejected": true
+    },
+    {
+      "id": "JC047",
+      "editable": true,
+      "threeAccepted": true,
+      "fourRejected": true
+    },
+    {
+      "id": "JC007",
+      "editable": true,
+      "threeAccepted": true,
+      "fourRejected": true
+    }
+  ],
+  "recipes": [
+    {
+      "name": "本地亲测草稿：黄调查与检索",
+      "total": 50,
+      "valid": true,
+      "colors": {
+        "中立": 32,
+        "黄": 18
+      },
+      "magic": {
+        "鲜血": 6,
+        "心灵": 15
+      }
+    },
+    {
+      "name": "本地亲测草稿：黑回收与蓝潜伏",
+      "total": 50,
+      "valid": true,
+      "colors": {
+        "中立": 26,
+        "黑": 18,
+        "蓝": 6
+      },
+      "magic": {
+        "鲜血": 6,
+        "心灵": 3,
+        "死亡": 9
+      }
+    },
+    {
+      "name": "本地亲测草稿：红牺牲与群伤",
+      "total": 50,
+      "valid": true,
+      "colors": {
+        "中立": 38,
+        "红": 8,
+        "黑": 4
+      },
+      "magic": {
+        "鲜血": 8,
+        "心灵": 5
+      }
+    }
+  ],
+  "wrongVersionRejected": true,
+  "wasm": {
+    "bytes": 1615204,
+    "sha256": "e5693d738d8b6161ebf2ab65427d419609f8c91206ca0a96c259dfa340d6dded"
+  }
+}

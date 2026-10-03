@@ -1,0 +1,13 @@
+   Compiling hegemony-server v0.1.0 (/workspace/UndergroundBattle/rust-game)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 7.84s
+     Running tests/deck_construction.rs (/workspace/.rust/targets/two-cards-local/debug/deps/deck_construction-2e9a2ff733d3c11c)
+
+running 5 tests
+test minimum_unlimited_multifaction_and_canonical_duplicate_entries ... ok
+test printed_name_groups_versions_and_unique_is_distinct_from_in_play_unique ... ok
+test malformed_disabled_overflow_versions_and_society_are_rejected ... ok
+test frozen_snapshot_private_views_lobby_changes_and_started_rejections ... ok
+test custom_deck_join_change_receipt_reopen_and_replay_keep_frozen_private_specs ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+
