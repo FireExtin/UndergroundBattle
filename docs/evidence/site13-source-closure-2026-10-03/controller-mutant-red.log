@@ -1,0 +1,283 @@
+
+> undergroundbattle-web@0.1.0 test
+> vitest --run src/game/CardTile.test.tsx src/game/ReadModal.test.tsx
+
+
+ RUN  v4.1.2 /workspace/.private-validation/site13-controller-mutant/web
+
+ ❯ src/game/CardTile.test.tsx (8 tests | 1 failed) 222ms
+     × shows a concealed identity to its current controller and erases stale print for every other seat 154ms
+ ❯ src/game/ReadModal.test.tsx (3 tests | 1 failed) 279ms
+     × lets the current controller read an authorized concealed original while erasing it for its owner and other seats 60ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/game/CardTile.test.tsx > concealed character presentation > shows a concealed identity to its current controller and erases stale print for every other seat
+TestingLibraryElementError: Unable to find an accessible element with the role "button" and name "查看无知路人"
+
+Here are the accessible roles:
+
+  button:
+
+  Name "查看暗藏者":
+  [36m<button[39m
+    [33maria-label[39m=[32m"查看暗藏者"[39m
+    [33mclass[39m=[32m"hg-card hg-card-neutral hg-card-compact"[39m
+    [33mdata-card-actionable[39m=[32m"false"[39m
+    [33mdata-card-exhausted[39m=[32m"false"[39m
+    [33mdata-card-instance[39m=[32m"instance-a"[39m
+    [33mdata-card-owner[39m=[32m"p1"[39m
+    [33mdata-card-targeted[39m=[32m"false"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  strong:
+
+  Name "":
+  [36m<strong[39m
+    [33mclass[39m=[32m"hg-card-name"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<button[39m
+      [33maria-label[39m=[32m"查看暗藏者"[39m
+      [33mclass[39m=[32m"hg-card hg-card-neutral hg-card-compact"[39m
+      [33mdata-card-actionable[39m=[32m"false"[39m
+      [33mdata-card-exhausted[39m=[32m"false"[39m
+      [33mdata-card-instance[39m=[32m"instance-a"[39m
+      [33mdata-card-owner[39m=[32m"p1"[39m
+      [33mdata-card-targeted[39m=[32m"false"[39m
+      [33mtype[39m=[32m"button"[39m
+    [36m>[39m
+      [36m<span[39m
+        [33mclass[39m=[32m"hg-card-top"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"hg-card-kind"[39m
+        [36m>[39m
+          [0m身份未公开[0m
+        [36m</span>[39m
+      [36m</span>[39m
+      [36m<strong[39m
+        [33mclass[39m=[32m"hg-card-name"[39m
+      [36m>[39m
+        [0m暗藏者[0m
+      [36m</strong>[39m
+      [36m<span[39m
+        [33maria-label[39m=[32m"图标：调查0，战斗0，势力1"[39m
+        [33mclass[39m=[32m"hg-icons "[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mtitle[39m=[32m"调查"[39m
+        [36m>[39m
+          [0m◈ [0m
+          [36m<b>[39m
+            [0m0[0m
+          [36m</b>[39m
+        [36m</span>[39m
+        [36m<span[39m
+          [33mtitle[39m=[32m"战斗"[39m
+        [36m>[39m
+          [0m⚔ [0m
+          [36m<b>[39m
+            [0m0[0m
+          [36m</b>[39m
+        [36m</span>[39m
+        [36m<span[39m
+          [33mtitle[39m=[32m"势力"[39m
+        [36m>[39m
+          [0m⚑ [0m
+          [36m<b>[39m
+            [0m1[0m
+          [36m</b>[39m
+        [36m</span>[39m
+      [36m</span>[39m
+      [36m<span[39m
+        [33mclass[39m=[32m"hg-card-text"[39m
+      [36m>[39m
+        [0m暗藏者 · 基础势力 1 · 不受任何伤害[0m
+        [0m。[0m
+        [0m在地区内且未横置时参与势力对抗。[0m
+      [36m</span>[39m
+    [36m</button>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ Object.getElementError ../../../UndergroundBattle/web/node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ ../../../UndergroundBattle/web/node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ ../../../UndergroundBattle/web/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ ../../../UndergroundBattle/web/node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ src/game/CardTile.test.tsx:23:19
+     21|       icons: { investigation: 7, combat: 8, influence: 9 } };
+     22|     const { rerender } = render(<CardTile card={card} definition={test…
+     23|     expect(screen.getByRole('button', { name: '查看无知路人' })).toBeInTheDo…
+       |                   ^
+     24|     rerender(<CardTile card={card} definition={testCatalog.cards[0]} v…
+     25|     expect(screen.getByRole('button', { name: '查看暗藏者' })).toBeInTheDoc…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  src/game/ReadModal.test.tsx > original card scan reading > lets the current controller read an authorized concealed original while erasing it for its owner and other seats
+TestingLibraryElementError: Unable to find an accessible element with the role "button" and name "原始牌面"
+
+Here are the accessible roles:
+
+  dialog:
+
+  Name "放大阅读暗藏者":
+  [36m<section[39m
+    [33maria-label[39m=[32m"放大阅读暗藏者"[39m
+    [33maria-modal[39m=[32m"true"[39m
+    [33mclass[39m=[32m"hg-modal hg-reading"[39m
+    [33mdata-reading-card[39m=[32m"instance-a"[39m
+    [33mrole[39m=[32m"dialog"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  button:
+
+  Name "关闭放大阅读":
+  [36m<button[39m
+    [33maria-label[39m=[32m"关闭放大阅读"[39m
+    [33mclass[39m=[32m"hg-close"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  strong:
+
+  Name "":
+  [36m<strong[39m
+    [33mclass[39m=[32m"hg-card-name"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "":
+  [36m<p />[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"hg-modal-backdrop"[39m
+    [36m>[39m
+      [36m<section[39m
+        [33maria-label[39m=[32m"放大阅读暗藏者"[39m
+        [33maria-modal[39m=[32m"true"[39m
+        [33mclass[39m=[32m"hg-modal hg-reading"[39m
+        [33mdata-reading-card[39m=[32m"instance-a"[39m
+        [33mrole[39m=[32m"dialog"[39m
+      [36m>[39m
+        [36m<button[39m
+          [33maria-label[39m=[32m"关闭放大阅读"[39m
+          [33mclass[39m=[32m"hg-close"[39m
+        [36m>[39m
+          [0m×[0m
+        [36m</button>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"hg-eyebrow"[39m
+        [36m>[39m
+          [0m卡牌档案 · 放大阅读[0m
+        [36m</span>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"hg-reading-card"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"hg-card-top"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"hg-card-kind"[39m
+            [36m>[39m
+              [0m身份未公开[0m
+            [36m</span>[39m
+          [36m</span>[39m
+          [36m<strong[39m
+            [33mclass[39m=[32m"hg-card-name"[39m
+          [36m>[39m
+            [0m暗藏者[0m
+          [36m</strong>[39m
+          [36m<span[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"hg-card-art"[39m
+          [36m>[39m
+            [36m<span>[39m
+              [0m？[0m
+            [36m</span>[39m
+            [36m<i />[39m
+          [36m</span>[39m
+          [36m<span[39m
+            [33maria-label[39m=[32m"图标：调查0，战斗0，势力1"[39m
+            [33mclass[39m=[32m"hg-icons "[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mtitle[39m=[32m"调查"[39m
+            [36m>[39m
+              [0m◈ [0m
+              [36m<b>[39m
+                [0m0[0m
+              [36m</b>[39m
+            [36m</span>[39m
+            [36m<span[39m
+              [33mtitle[39m=[32m"战斗"[39m
+            [36m>[39m
+              [0m⚔ [0m
+              [36m<b>[39m
+                [0m0[0m
+              [36m</b>[39m
+            [36m</span>[39m
+            [36m<span[39m
+              [33mtitle[39m=[32m"势力"[39m
+            [36m>[39m
+              [0m⚑ [0m
+              [36m<b>[39m
+                [0m1[0m
+              [36m</b>[39m
+            [36m</span>[39m
+          [36m</span>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"hg-card-text"[39m
+          [36m>[39m
+            [0m暗藏者 · 基础势力 1 · 不受任何伤害[0m
+            [0m。[0m
+            [0m在地区内且未横置时参与势力对抗。[0m
+          [36m</span>[39m
+        [36m</div>[39m
+        [36m<p>[39m
+          [0m◈ 调查 · ⚔ 战斗 · ⚑ 势力。白底图标仅在操控者团队持先手时生效。[0m
+        [36m</p>[39m
+      [36m</section>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ Object.getElementError ../../../UndergroundBattle/web/node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ ../../../UndergroundBattle/web/node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ ../../../UndergroundBattle/web/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ ../../../UndergroundBattle/web/node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ src/game/ReadModal.test.tsx:27:28
+     25|     const card = { ...testCard, cardId: 'LC22', name: '退役军人', owner: '…
+     26|     const { rerender } = render(<ReadModal card={card} viewerId="p0" o…
+     27|     fireEvent.click(screen.getByRole('button', { name: '原始牌面' }));
+       |                            ^
+     28|     expect(screen.getByRole('img', { name: '退役军人原始牌面' })).toHaveAttrib…
+     29|     for (const viewerId of ['p1', 'p2', 'p3']) {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  2 failed | 9 passed (11)
+   Start at  01:51:46
+   Duration  992ms (transform 133ms, setup 211ms, import 137ms, tests 502ms, environment 830ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

@@ -119,6 +119,7 @@ class FullGame(AttachmentRun):
         await self.submit(seat,panel.get_by_role('button',name='确认选择',exact=True).click,'choose')
     async def play_full(self):
         start=time.monotonic(); capacity=2 if self.mode=='duel' else 4
+        result={'passed':False,'failure':'QA run did not complete'}
         try:
             page=await self.new_seat(0)
             catalog=await page.evaluate('window.__cloudCatalog')
@@ -213,14 +214,21 @@ class FullGame(AttachmentRun):
             else: raise AssertionError('Full-game UI budget exhausted')
             assert not self.errors, 'Browser errors during normal play'
             if self.grave_probe: assert any(c['kind']=='natural-grave-fresh-face-up-entry' for c in self.grave_checks), 'Complete game finished without naturally reaching grave play; mechanism UI remains untested'
+        except asyncio.CancelledError:
+            result={'passed':False,'cancelled':True,'failure':'CancelledError: QA run cancelled'}
+            raise
         except Exception as error:
             result={'passed':False,'failure':f'{type(error).__name__}: {error}'}
             if self.pages: await self.screenshot('full-game-failure')
         finally:
-            v=await self.view(0) if self.pages else None
+            v=None
+            try:
+                if self.pages:v=await self.view(0)
+            except Exception as error:
+                result['finalObservationFailure']=type(error).__name__
             result.update(testType='bounded-natural-four-seat-grave-ui' if self.grave_slice else 'complete-natural-desktop-ui-game',mode=self.mode,stateInjection=False,apiMoves=False,uiPostCount=self.post_count,uiPostBudget=self.post_limit,browserErrors=self.errors,coverage=dict(self.coverage),graveChecks=self.grave_checks,graveRecovery=self.grave_recovery,postResults=self.post_results,conditionChecks=self.condition_checks,expiryRaces=self.expiry_races,final=public_view(v),roomId=v['roomId'] if v else None,durationSeconds=round(time.monotonic()-start,2),resumedExistingRoom=self.resume,priorUiPostCount=self.previous['uiPostCount'] if self.previous else 0,graveSliceOnly=self.grave_slice,completeGame=v['status']=='finished' if v else False,pendingGraveEntries=[{**e,'oldIds':sorted(e['oldIds'])} for e in self.grave_entries])
             write_json(self.output/'full-game-summary.json',result)
-            for c in self.contexts: await c.close()
+            await asyncio.gather(*(c.close() for c in self.contexts),return_exceptions=True)
         print(json.dumps({'mode':self.mode,'passed':result['passed'],'posts':self.post_count,'failure':result.get('failure'),'roomId':result['roomId']}),flush=True)
         assert result['passed'], result.get('failure')
 async def main(args):

@@ -1,0 +1,61 @@
+EE
+======================================================================
+ERROR: test_cancelled_run_records_failure_and_closes_owned_browser (test_full_game_persistent.CancellationTests.test_cancelled_run_records_failure_and_closes_owned_browser)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/.private-validation/site13-cancel-baseline/full_game_persistent.py", line 123, in play_full
+    page=await self.new_seat(0)
+         ^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.private-validation/site13-cancel-baseline/test_full_game_persistent.py", line 24, in new_seat
+    await asyncio.Future()
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/asyncio/base_events.py", line 691, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/workspace/.private-validation/site13-cancel-baseline/test_full_game_persistent.py", line 38, in test_cancelled_run_records_failure_and_closes_owned_browser
+    await task
+  File "/workspace/.private-validation/site13-cancel-baseline/full_game_persistent.py", line 221, in play_full
+    result.update(testType='bounded-natural-four-seat-grave-ui' if self.grave_slice else 'complete-natural-desktop-ui-game',mode=self.mode,stateInjection=False,apiMoves=False,uiPostCount=self.post_count,uiPostBudget=self.post_limit,browserErrors=self.errors,coverage=dict(self.coverage),graveChecks=self.grave_checks,graveRecovery=self.grave_recovery,postResults=self.post_results,conditionChecks=self.condition_checks,expiryRaces=self.expiry_races,final=public_view(v),roomId=v['roomId'] if v else None,durationSeconds=round(time.monotonic()-start,2),resumedExistingRoom=self.resume,priorUiPostCount=self.previous['uiPostCount'] if self.previous else 0,graveSliceOnly=self.grave_slice,completeGame=v['status']=='finished' if v else False,pendingGraveEntries=[{**e,'oldIds':sorted(e['oldIds'])} for e in self.grave_entries])
+    ^^^^^^
+UnboundLocalError: cannot access local variable 'result' where it is not associated with a value
+
+======================================================================
+ERROR: test_unavailable_final_page_still_preserves_cancellation_and_cleanup (test_full_game_persistent.CancellationTests.test_unavailable_final_page_still_preserves_cancellation_and_cleanup)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/.private-validation/site13-cancel-baseline/full_game_persistent.py", line 123, in play_full
+    page=await self.new_seat(0)
+         ^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.private-validation/site13-cancel-baseline/test_full_game_persistent.py", line 57, in new_seat
+    await asyncio.Future()
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/asyncio/base_events.py", line 691, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/workspace/.private-validation/site13-cancel-baseline/test_full_game_persistent.py", line 71, in test_unavailable_final_page_still_preserves_cancellation_and_cleanup
+    await task
+  File "/workspace/.private-validation/site13-cancel-baseline/full_game_persistent.py", line 220, in play_full
+    v=await self.view(0) if self.pages else None
+      ^^^^^^^^^^^^^^^^^^
+  File "/workspace/.private-validation/site13-cancel-baseline/test_full_game_persistent.py", line 60, in view
+    raise RuntimeError('Page was already closed')
+RuntimeError: Page was already closed
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.006s
+
+FAILED (errors=2)

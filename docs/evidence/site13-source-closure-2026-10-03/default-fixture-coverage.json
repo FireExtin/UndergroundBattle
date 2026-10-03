@@ -1,0 +1,18 @@
+{
+  "implementationSHA": "37a09a2cc0088845657eafd7088f54a2bbc19012",
+  "fixCommitsAreAncestors": {
+    "34affdd8667ee0e9bcdfb9bad4d458165a696d4a": true,
+    "e1e2dea581fbb97f1c2a64f7133179d50f1dd4d8": true
+  },
+  "defaultNativeExporterCaseCount": 21,
+  "wonRegionFixtureName": "won-region-batch-cross-owner-equipment-and-aura",
+  "wonRegionFixtureSteps": 9,
+  "regionReturnChooserSeats": [
+    "p0",
+    "p1",
+    "p2",
+    "p3"
+  ],
+  "nativeExporterPresentInSiteCheckout": false,
+  "explanation": "Sites stage-source copies crate src/data/WASM, excludes examples and integration tests. D is a default verifier fix in the original implementation commit, not a deployed verifier endpoint."
+}

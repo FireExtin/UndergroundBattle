@@ -1,0 +1,168 @@
+{
+  "passed": false,
+  "cancelled": true,
+  "failure": "CancelledError: QA run cancelled",
+  "roomId": "d7ade3fc2732dc003eb5b04f",
+  "uiPostCount": 16,
+  "graveChecks": [],
+  "graveRecovery": [],
+  "final": {
+    "version": 15,
+    "mode": "teams",
+    "status": "playing",
+    "you": "p0",
+    "players": [
+      {
+        "id": "p0",
+        "seat": 0,
+        "name": "墓地切片QA甲",
+        "team": 0,
+        "deckId": "reclaimers",
+        "deckName": "墓地回声",
+        "ready": true,
+        "eliminated": false,
+        "handCount": 6,
+        "deckCount": 44,
+        "score": 0
+      },
+      {
+        "id": "p1",
+        "seat": 1,
+        "name": "墓地切片QA2",
+        "team": 0,
+        "deckId": "reclaimers",
+        "deckName": "墓地回声",
+        "ready": true,
+        "eliminated": false,
+        "handCount": 6,
+        "deckCount": 44,
+        "score": 0
+      },
+      {
+        "id": "p2",
+        "seat": 2,
+        "name": "墓地切片QA3",
+        "team": 1,
+        "deckId": "reclaimers",
+        "deckName": "墓地回声",
+        "ready": true,
+        "eliminated": false,
+        "handCount": 6,
+        "deckCount": 44,
+        "score": 0
+      },
+      {
+        "id": "p3",
+        "seat": 3,
+        "name": "墓地切片QA4",
+        "team": 1,
+        "deckId": "reclaimers",
+        "deckName": "墓地回声",
+        "ready": true,
+        "eliminated": false,
+        "handCount": 6,
+        "deckCount": 44,
+        "score": 0
+      }
+    ],
+    "firstTeam": 1,
+    "activeTeam": 0,
+    "priorityTeam": 0,
+    "turn": 1,
+    "phase": "start",
+    "step": "prepare",
+    "winScore": 10,
+    "versions": {
+      "rules": "hegemony-pdf-v1",
+      "cardPool": "limited-v2.5",
+      "engine": "rust-v0.2.7"
+    },
+    "handCount": 6,
+    "assetCounts": {
+      "p0": 0,
+      "p1": 0,
+      "p2": 0,
+      "p3": 0
+    },
+    "regions": [
+      {
+        "index": 0,
+        "cardId": "DQJC112",
+        "name": "纽约",
+        "threshold": 4,
+        "points": 4,
+        "influence": [
+          0,
+          0
+        ],
+        "characters": []
+      },
+      {
+        "index": 1,
+        "cardId": "DQJC114",
+        "name": "上海",
+        "threshold": 4,
+        "points": 3,
+        "influence": [
+          0,
+          0
+        ],
+        "characters": []
+      },
+      {
+        "index": 2,
+        "cardId": "DQJC107",
+        "name": "沉没的废墟",
+        "threshold": 4,
+        "points": 4,
+        "influence": [
+          0,
+          0
+        ],
+        "characters": []
+      },
+      {
+        "index": 3,
+        "cardId": "DQJC110",
+        "name": "伦敦",
+        "threshold": 4,
+        "points": 4,
+        "influence": [
+          0,
+          0
+        ],
+        "characters": []
+      },
+      {
+        "index": 4,
+        "cardId": "DQJC116",
+        "name": "香港",
+        "threshold": 3,
+        "points": 3,
+        "influence": [
+          0,
+          0
+        ],
+        "characters": []
+      }
+    ],
+    "pendingChoice": null,
+    "waitingChoice": null,
+    "legalActionKinds": [],
+    "stackCount": 0,
+    "graveyardCount": 0,
+    "scoreCards": []
+  },
+  "stateInjection": false,
+  "apiMoves": false,
+  "browserErrors": [],
+  "independentAcceptance": false,
+  "autonomousPlayStoppedByTaskSteering": true,
+  "uiPostStatuses": {
+    "200": 16
+  },
+  "profileDirectoriesKeptLocal": true,
+  "ownedBrowserProcessesAfterStop": 0,
+  "oldExecutorProfilesAvailable": false,
+  "parentRoomD9A53962F8E8Touched": false
+}

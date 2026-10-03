@@ -1,0 +1,624 @@
+{
+  "siteSHA": "197fba9ca5dec95c09a68ddb4066c9f246a4a548",
+  "provenance": {
+    "originalRepository": "https://github.com/FireExtin/UndergroundBattle.git",
+    "originalCommit": "37a09a2cc0088845657eafd7088f54a2bbc19012",
+    "wasmSha256": "21169e9d579886a55474b21aa506a4a9adca779428d7d11f2e966ae077656198"
+  },
+  "sourceFileCount": 117,
+  "allSourceFilesMatch": true,
+  "files": [
+    {
+      "path": ".openai/hosting.json",
+      "sha256": "ed3a4753f9e2960e88424decbf7efb0b2d8583852f8b9200154674cda5ce25d2",
+      "matchesImplementation": true
+    },
+    {
+      "path": "README.md",
+      "sha256": "ae2a428a3da6f121c0f31f230cb24bce73fed571d32ac0a2ce319750e7aed270",
+      "matchesImplementation": true
+    },
+    {
+      "path": "db/schema.ts",
+      "sha256": "73e99c1f820fc1fbb86216028b5adcca874b5eac3062070c9fabe691fe832e6a",
+      "matchesImplementation": true
+    },
+    {
+      "path": "drizzle.config.ts",
+      "sha256": "1b971da8f8eb163e47ae808af9207df95367dbf15c6c8a54d39ac3a095101be6",
+      "matchesImplementation": true
+    },
+    {
+      "path": "drizzle/0000_numerous_lucky_pierre.sql",
+      "sha256": "e7e71337892cba7558c9bd5a3c3beb78c109fa93d1775f0b13e5377030a78b43",
+      "matchesImplementation": true
+    },
+    {
+      "path": "drizzle/meta/0000_snapshot.json",
+      "sha256": "a4e0d437f9b6d1c5f9cf2de0fbb7082f7a2dadf33f64e91cb0d7fc67780d254c",
+      "matchesImplementation": true
+    },
+    {
+      "path": "drizzle/meta/_journal.json",
+      "sha256": "568a9e1bf452c42d07a8f4067732cc82fe6fbb1e0951efb750e3028d02b8f561",
+      "matchesImplementation": true
+    },
+    {
+      "path": "package-lock.json",
+      "sha256": "aa5349f37a028150bc3a6496cec9c9a95fa21becace91f698e911940323d270a",
+      "matchesImplementation": true
+    },
+    {
+      "path": "package.json",
+      "sha256": "0d8c6a457e318dd148e4864201b4ae4b518371ad6184f0a006c6312dcdc110cb",
+      "matchesImplementation": true
+    },
+    {
+      "path": "rust-game-wasm/Cargo.toml",
+      "sha256": "51894b470981069cce185e88ab4f2dd4a9de00b0c2bc5f0685be19e270153789",
+      "matchesImplementation": true
+    },
+    {
+      "path": "rust-game-wasm/src/lib.rs",
+      "sha256": "e813ff003dfad6063d117333412e3dd15e70dd19967aa2b6279a30fe86deb4f3",
+      "matchesImplementation": true
+    },
+    {
+      "path": "rust-game/Cargo.toml",
+      "sha256": "85ac05c21b1c24ad9e03dbead26ad39ba1da71b9d29489a8d710ef95d2fc10b1",
+      "matchesImplementation": true
+    },
+    {
+      "path": "rust-game/data/cards.json",
+      "sha256": "155b0616cd1dd8f185d1388d7b7b1fa6eb6701b5ae052cb673deaccdb9f730d7",
+      "matchesImplementation": true
+    },
+    {
+      "path": "rust-game/src/attachment.rs",
+      "sha256": "80f6dfe012c1aa6ec58e6cbde98133635347536c2f19f33e71b31240b17e645b",
+      "matchesImplementation": true
+    },
+    {
+      "path": "rust-game/src/attributes.rs",
+      "sha256": "97bf74643711a1868ec3c39494386da28e3779ccc87e3428b2322a7fd719858e",
+      "matchesImplementation": true
+    },
+    {
+      "path": "rust-game/src/bin/hegemony-audit.rs",
+      "sha256": "6e1d4f5cb0b803f9aa4bc233dfb2445cbddb2801522846963aa2caf2b2090e2e",
+      "matchesImplementation": true
+    },
+    {
+      "path": "rust-game/src/catalog.rs",
+      "sha256": "b7a6afc62811f9fa6a6688b4188ea35188f41a5310bd42a95a0d25e5aabec849",
+      "matchesImplementation": true
+    },
+    {
+      "path": "rust-game/src/deck.rs",
+      "sha256": "dc4238c613be05d4ee62b54a4b8855cb1dad3c449ee867baa9f8a14427d91f47",
+      "matchesImplementation": true
+    },
+    {
+      "path": "rust-game/src/engine.rs",
+      "sha256": "e603426bae7e683e69c648c5adc1d8b8d3b80f11006b7d9a0b818cc4eeb048f3",
+      "matchesImplementation": true
+    },
+    {
+      "path": "rust-game/src/lib.rs",
+      "sha256": "e5f095897837f98dc13564a1f563585d3d991b4eacc352a86e23a9ca853ee163",
+      "matchesImplementation": true
+    },
+    {
+      "path": "rust-game/src/main.rs",
+      "sha256": "684862eda29c8f6d88f1a688c87f448d3885dd5e06193da283a4d1075a72300a",
+      "matchesImplementation": true
+    },
+    {
+      "path": "rust-game/src/model.rs",
+      "sha256": "0d2cb13698a302f24eef9212d23403cd4405092706f8617050d55e16bfe16355",
+      "matchesImplementation": true
+    },
+    {
+      "path": "rust-game/src/play_sources.rs",
+      "sha256": "f1a80f2f4d34e2b4c61336b176e180dbca7551fbd82e752d3c80757418638dfd",
+      "matchesImplementation": true
+    },
+    {
+      "path": "rust-game/src/resolution.rs",
+      "sha256": "15edad084c182a98b1082132ec52e35a53c22977301484b2417173da6be92405",
+      "matchesImplementation": true
+    },
+    {
+      "path": "rust-game/src/room.rs",
+      "sha256": "dc83ff7706936efc9212e3f7a8be79965912d92769092c20df8df11d2d08d56d",
+      "matchesImplementation": true
+    },
+    {
+      "path": "rust-game/src/rules.rs",
+      "sha256": "c40e06864155107f44baf3d92ff3829d56c228594f8fbd135e20192ab4ea2010",
+      "matchesImplementation": true
+    },
+    {
+      "path": "rust-game/src/service.rs",
+      "sha256": "c086433fe3e9b408332c1426c5637b4c1f6c649b2c40b382f4e5f1a102a5b512",
+      "matchesImplementation": true
+    },
+    {
+      "path": "rust-game/src/world.rs",
+      "sha256": "84f3670bf2f24fdd9c9c8f3e18eccc8ca88bf809598baa0cbc0ebe808570eef1",
+      "matchesImplementation": true
+    },
+    {
+      "path": "scripts/build.mjs",
+      "sha256": "15446d422c22319d797e1caed8c98cddf17eed37b9687448bc408cc0d80a20e4",
+      "matchesImplementation": true
+    },
+    {
+      "path": "scripts/stage-source.mjs",
+      "sha256": "c94b7389cd26124f64750813279ba3e23c57ce14d0d64c065a0b04f0f27cf31b",
+      "matchesImplementation": true
+    },
+    {
+      "path": "src/index.mjs",
+      "sha256": "f6a1ae35a0361e2bad5422a9ab6d2e0a2c766c1e40c1c62bb0fe1446d5877551",
+      "matchesImplementation": true
+    },
+    {
+      "path": "src/kernel-router.mjs",
+      "sha256": "e163dd6e984b7ac2036547f14cc4a49d54ce4aed30676a50f4d082bfa134ad77",
+      "matchesImplementation": true
+    },
+    {
+      "path": "src/kernel.mjs",
+      "sha256": "101fdf668571e2aeeb1dfac9d47009281fd03e1cc70aa468db96829e6b47aaae",
+      "matchesImplementation": true
+    },
+    {
+      "path": "src/service.mjs",
+      "sha256": "757930aad47a30dad7cd880b504b2c1a7b7a8c5a47905b6fba6f2f2647f88c02",
+      "matchesImplementation": true
+    },
+    {
+      "path": "src/storage-errors.mjs",
+      "sha256": "6979b752d13a2143f1e250051e5e2df1c81a7afef93727023b84ee8043b5f1a0",
+      "matchesImplementation": true
+    },
+    {
+      "path": "src/store.mjs",
+      "sha256": "39d50fc38e515a959d51f13a5673f5b3603edbc420b120c2326f49607f66d4d9",
+      "matchesImplementation": true
+    },
+    {
+      "path": "test/fixtures/prepared-response-v025.json",
+      "sha256": "41252046030a23ee55582bfe26815cd7984b9a895dc14c10edf82a4200a5faa7",
+      "matchesImplementation": true
+    },
+    {
+      "path": "test/fixtures/prepared-response-v026.json",
+      "sha256": "ea51975720b3d36c32a695620a5093d994ab1fbbc0bd256f377eccb5275a9be7",
+      "matchesImplementation": true
+    },
+    {
+      "path": "test/fixtures/prepared-response-v027.json",
+      "sha256": "6bd803f9aa4d71168e83271c226408922bb1b774da65947e1e4334b5e7c5ba8b",
+      "matchesImplementation": true
+    },
+    {
+      "path": "test/integration.test.mjs",
+      "sha256": "1db4183ade4d0637d5f363bd319e5a5868c8216067ee3ef02d052bdd978d30c3",
+      "matchesImplementation": true
+    },
+    {
+      "path": "test/kernel-routing.test.mjs",
+      "sha256": "f4399076dae9989e6ea3d1cbccb0f077926bc4326d0faf4626407c4d038e0bc8",
+      "matchesImplementation": true
+    },
+    {
+      "path": "test/session-host.test.mjs",
+      "sha256": "ccd56a4ea866abd4ceb7e30e17d265cff53638d9bbbfe8b13f73c976a7370f5b",
+      "matchesImplementation": true
+    },
+    {
+      "path": "test/session-integration.test.mjs",
+      "sha256": "fa8b4bc403dae6180b47577d8458e8a92eb57d54187bff1d320a73d5680aa11d",
+      "matchesImplementation": true
+    },
+    {
+      "path": "test/storage-retry.test.mjs",
+      "sha256": "fcf318007cb116300ca83ba2d821b5eec5ddfe16b287c151a8aa5f8e1121d881",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/index.html",
+      "sha256": "bda13861efc90cc0628d795a13b24a630943740158df5be7b0e550608f770a4d",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/package-lock.json",
+      "sha256": "bdc310d32e869dacf31b2bcf1f6b83ffbe7235a72b372820069e9cfd0911e12d",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/package.json",
+      "sha256": "6a15d4542603ada58f671bd3a575c26159e56ae303c0bb1d42f9cc3d3c2dcf74",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/App.tsx",
+      "sha256": "01f2aa2800f655c3fcb58709aeae3f8f748da1be2417b5382196d11fc0d994be",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/app/AppShell.tsx",
+      "sha256": "312862186ab6a684c1c676afd75d7121df21b49ed2d6915cc8849d8eb2a6927c",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/components/ProjectOverview.tsx",
+      "sha256": "b4374a57f25cc017bf0b41a8629684b408aa3c5038a945c3d571c8b1d5c2d9b1",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/debugger/DebuggerShell.test.tsx",
+      "sha256": "d77d2878904bab58015d7c3dd80227994d2152fb07a6e9be180e684335f61be0",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/debugger/DebuggerShell.tsx",
+      "sha256": "2ae500e1763c6014df351c0e9f33892145c6b2112e1ce06ef34e13a84b8aa24a",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/debugger/LiveDebuggerShell.test.tsx",
+      "sha256": "fd12526ba8663bece88c330995ff1b7daddadea257b8ff3cf91beb3d3bd2ec0c",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/debugger/LiveDebuggerShell.tsx",
+      "sha256": "5b9a3344bf15d8cf071a99d345b0dc88d41a2562900bf154e780451a3f85ada9",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/debugger/components/ActionControlsPanel.tsx",
+      "sha256": "a5859140f79c5afdc8443388a034d1880cd98aaff2510be005d744973362a6e6",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/debugger/components/ActionLogPanel.tsx",
+      "sha256": "d0e19239e0264ba714555be652ce095d1c0cbd68d86ad6076f2cbfb445d9c08a",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/debugger/components/LegalityFailurePanel.tsx",
+      "sha256": "36c787c6c22be0bb075d6ed7c63d5a90a4c3400d5a766a65f27fa3f7f45bc99e",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/debugger/components/MatchStatusPanel.tsx",
+      "sha256": "bbc4734aded12af1aedbaf63f5f24fcf3116b27fb300e0f185418a1586942566",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/debugger/components/PlayerViewPanel.tsx",
+      "sha256": "0329e54e2b3d4a4116088fa6ee59f003e0e605a990a0f0bde5f4450a9515ee1b",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/debugger/components/StackPanel.tsx",
+      "sha256": "658fa770a1de5a4f1c93e43d0c6984103f3820ea1d1500671666664b4f6b7904",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/debugger/components/ViewerSwitcher.tsx",
+      "sha256": "4cafa675b869b8eddb3ae737d61b587263cb00940de336b4ef9db0ff351990f2",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/debugger/live.test.ts",
+      "sha256": "05ba07e38bc1c345b236bed46a53d5aed9eec96fd557405d07e5ce03de592234",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/debugger/live.ts",
+      "sha256": "2cf54adcd46cad42cbd43b1a9dc97f5ed7e0163d64f9ae3bd1f17bd8251812a0",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/debugger/liveModel.ts",
+      "sha256": "6d5e84c4d941edd0c020ff72bba85004fb435381673b449fc0922e9b08105e33",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/debugger/mockProtocol.ts",
+      "sha256": "5781dc64455ca8010cf59120e3cdfea97a86431bfe912059b29226b76fd87e6a",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/debugger/model.ts",
+      "sha256": "95d887b10c615c1a3dc1794364daac0a642f12da32e09178ae16f24b5c7bb782",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/debugger/protocol.ts",
+      "sha256": "27303e4e320f9c9332c2e606ac25962116eb7ec6bd9f609bef8fde0448f69ebd",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/game/Attachments.test.tsx",
+      "sha256": "b8aad77a23a28472f79bfbec85457cbbc47dd05b94670e676b7a2b88f02d14c1",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/game/AutoPass.test.tsx",
+      "sha256": "4de351d7b8d7f3b916b471de74e28666ab5e58841676ab9457836fa2a520a5f6",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/game/AutoPass.tsx",
+      "sha256": "08df6e57f94e8f0774ca254fe7e127254027a43262b23eeed5bf9ca635ca8699",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/game/CardTile.test.tsx",
+      "sha256": "e959e7fa72a1e2793b5b68426b1e22490fd0c954bb1b9aa3e7e94aec2bb62832",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/game/CardTile.tsx",
+      "sha256": "559d50d0a5a22f6d226aee53ee8d38276981f1d7da54e614a12ca5e413fa65eb",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/game/ChoicePanel.test.tsx",
+      "sha256": "2a5449b6fb6e39d1b3d55452daf9bc2a2987b0dec76e23e047402a3de6810b88",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/game/ChoicePanel.tsx",
+      "sha256": "65203df552f1c57776fe9e54d43a220022c6a08cc9889ef7a4f433222503da36",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/game/DeckLibrary.test.tsx",
+      "sha256": "58af5c7d188482c248d0428841ac8d6b39c8dad46085b3d9cbf0241ce5520746",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/game/DeckLibrary.tsx",
+      "sha256": "95d441ca73ecba42c1e243eefd71e8ab8d15f7ec85adfebc2aa905ff7e34b9ca",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/game/FactionCoverage.tsx",
+      "sha256": "39b936acadf9800e5b6e86c24f0cca7524a8b71c6cf3c24caff0cd99d1dd34c3",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/game/GameApp.tsx",
+      "sha256": "6462857f7f29247453714d5de7571b53cf123a2a128214102dd40840af56ffb8",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/game/Help.test.tsx",
+      "sha256": "fd26815d3e9fe2a7062ac3d2adb401098db3411056a339b4ecf579f9783398b3",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/game/Help.tsx",
+      "sha256": "46a93bc9994ff86aeae6e957328355fe921daaeec9cf46a9a1aef43989aa0645",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/game/Lobby.test.tsx",
+      "sha256": "a8bf3e60cad21ab4e06ae9e0191520a9c732f15aff2f91d303035d95f1364267",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/game/Lobby.tsx",
+      "sha256": "10ad1d4ef0ea449a2a3dfdc0780374c9281d8462d247615910760ee81772fbec",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/game/README.md",
+      "sha256": "06dc18c23c18e54296e5e70b3fb475140c44714f5900f59756619db49fb745d0",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/game/ReadModal.test.tsx",
+      "sha256": "4b50b7fd20b60d83f13f50c99c555ff4029196c91f831646c416abb30673e6f4",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/game/ReadModal.tsx",
+      "sha256": "15e9baabfe5c1050d55fe0ae6fac26d4383c2a8a4b795cc43b8a5444fd195896",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/game/ResponseWindow.test.tsx",
+      "sha256": "9b73285ada78515f70a4df0d3f37abeaa44233ee3141a5b2f3a27af10a5006a1",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/game/ResponseWindow.tsx",
+      "sha256": "2f16a2e7314ec2ba925a7e496e0047fdbb38d87afd2ec64d39ef509e5efbdbc0",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/game/Table.test.tsx",
+      "sha256": "3f8fce8e47e5c9e54b041f1471ad0cd4d7ef8f21a2e97157041a31582feceffb",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/game/Table.tsx",
+      "sha256": "0dd22a4dab2ecc68c91c6f3dd8a08cf8712d9f8c04de2495c6419caa2af73a30",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/game/api.test.ts",
+      "sha256": "fa50b96e3890983e812be99f446facf0764db07c20d6656e4e724dbb80f7d95b",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/game/api.ts",
+      "sha256": "d454f8dc33fbde6da8053364a8474f0b40b846db34934e7234d89d70fd7023ed",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/game/attachments.css",
+      "sha256": "0f9c23613166385b8d232c70390f4fb60f964026db221946a7616a20fb67e7b4",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/game/cardScans.ts",
+      "sha256": "8a25c1d25ee5fae81b33cb2e271bfc3c61155dad31a9e879e4ab951ee74542ec",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/game/choice-readability.css",
+      "sha256": "0be57810a5757ed8e872a96b9db2d96aa3deb84bb67e7ced60e86eeb23e8ec44",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/game/deck-library.css",
+      "sha256": "db17397b57b48c5f0cc916beebe6f527c8b893f598290f6f874ae06a2c2a9721",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/game/deckLibrary.test.ts",
+      "sha256": "583c1499cbef54fe1b1a0891ba94873d9833bbd3cd8a36735ab8b4bcf18a4d67",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/game/deckLibrary.ts",
+      "sha256": "2a573e08644b6f42d0331ff9f64c5ceee656d7de5ec6388eb25bb7aa8e850338",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/game/factions.test.tsx",
+      "sha256": "9caed3d58c464c2b8e0b1d6f52b6e2651fff20d2420856910561e4e445af6c91",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/game/factions.ts",
+      "sha256": "99a3c6f43f07775ee6e42c97ae2ceaf6e452c9757c3ca0afbb678c981d2ce3f5",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/game/game.css",
+      "sha256": "e165c1d6ccf3f811b2ed861393fadd6279e45ae6c288f4ea88f3a22225506c54",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/game/response-intent.css",
+      "sha256": "337a3cfe984244bc080d5d485b2d8332870e32cb773d9e429239e8dc0f64b8fe",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/game/table-desktop.css",
+      "sha256": "549142461f0ac1ca70649d29dc732665de0e60aeb3cce82989e093d58e519c55",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/game/testFixtures.ts",
+      "sha256": "7b6f9758e218b12eb4207ee86f74d989b738aa13aa2b24f4e0f0453b472a6757",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/game/types.ts",
+      "sha256": "869803d0ceb82f27a74fe10297cb772f31e224c32bf5103cbf298e7a9e8977d8",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/game/useGame.test.tsx",
+      "sha256": "665b2560d7097fce931b81789c3a153f9e3c95206aad5d192665b4f598944719",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/game/useGame.ts",
+      "sha256": "6e3dd4d9739a3e8bc4a7c304b1770d3fbfb694f020b31a6169debe0b2389db37",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/lib/project.test.ts",
+      "sha256": "2924362695391e42ea792ba428f225392497c43b6939ba632aa4c31623ca45fa",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/lib/project.ts",
+      "sha256": "7b5fb2fefe52db2564e58a73683cb679a6b88a3c6c833e6a79eb7affc4f04f7d",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/main.tsx",
+      "sha256": "e0ac8e002a4c435bec84a25797cb52b9805869f450f926de101b5109d468fae1",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/styles/global.css",
+      "sha256": "16d24049b829c1fe61933bf5ea89e2ca7dd2886722123d588b457ff451351aaf",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/test/setup.ts",
+      "sha256": "c8a77125a54df951f6e0df8d427a7f2902d38b08afd24e9f5e4e49671b77d17f",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/src/vite-env.d.ts",
+      "sha256": "9612ffbb2aa8b3b71c1ad509fef1a8fad92399fdb7bef52f9600fb8cfc05201a",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/tsconfig.app.json",
+      "sha256": "f2a7feb1daf24deb9112b478c714eed1d2d61f8f59610f44751ef70318c5bed1",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/tsconfig.json",
+      "sha256": "c14bc73bac07443677f61403be4d35b8c5cb376686cfdd85f7240ab6ddfc593f",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/tsconfig.node.json",
+      "sha256": "dfe6bec888fe2fba5b2c4d7985a9492334832b42c6a6dc212eab493ad94a51f7",
+      "matchesImplementation": true
+    },
+    {
+      "path": "web/vite.config.ts",
+      "sha256": "31cfcba1e13d0eed257c1fb75ac9ffe5ff5220ac54bbf9d893e0714e8ebb3bc1",
+      "matchesImplementation": true
+    },
+    {
+      "path": "wrangler.jsonc",
+      "sha256": "7cd60bc5e5e9f377f6816c7eab154df58224d851548db8234c2b2d08e051f4f6",
+      "matchesImplementation": true
+    }
+  ],
+  "legacyKernels": [
+    {
+      "version": "legacy-v0.2.1",
+      "wasmSha256": "a6366ef6bc7df03ba666b33286d3a01c412ac6bf779d6396fcbf6affcdc43966"
+    },
+    {
+      "version": "legacy-v0.2.2",
+      "wasmSha256": "b5e0070333a71ff5b01f31406118f523af473c0bb96fb732d3276d3855d7daae"
+    },
+    {
+      "version": "legacy-v0.2.3",
+      "wasmSha256": "2d5dcbaae76aa5706fa77af6747068e94da39654d25df3e764efa48e73905089"
+    },
+    {
+      "version": "legacy-v0.2.4",
+      "wasmSha256": "fcf7f714a9b09f566202c0a8b00571c0da55dfa255793f2cffd908003f6d660f"
+    },
+    {
+      "version": "legacy-v0.2.5",
+      "wasmSha256": "22299f6db9923a93ea7da7bd742afbf0a0b1e4de4ff3c41bd99f16860df3a971"
+    },
+    {
+      "version": "legacy-v0.2.6",
+      "wasmSha256": "d4a9d88fe3c44d94da938c0351a4f1654d72514568c9f927fecd6d2f9f3ded3f"
+    }
+  ],
+  "wasmSha256": "21169e9d579886a55474b21aa506a4a9adca779428d7d11f2e966ae077656198"
+}

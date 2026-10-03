@@ -1,0 +1,18 @@
+
+> undergroundbattle-web@0.1.0 test
+> vitest --run src/game/CardTile.test.tsx src/game/ReadModal.test.tsx
+
+
+ RUN  v4.1.2 /workspace/UndergroundBattle/web
+
+
+ Test Files  2 passed (2)
+      Tests  11 passed (11)
+   Start at  01:54:06
+   Duration  846ms (transform 109ms, setup 179ms, import 105ms, tests 422ms, environment 708ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
