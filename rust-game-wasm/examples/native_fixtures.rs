@@ -2002,6 +2002,108 @@ fn assassin_fixture() -> Value {
         .any(|c| c.definition == "JC088" && c.face_down));
     json!({"name":"printed-cost-reveal-guard-and-paid-self-hide","seed":"9007199254740993","steps":steps,"syntheticInitialLayout":true})
 }
+fn two_card_fixture() -> Value {
+    // Explicit finite initial fixture: controller differs from owner. All later
+    // transitions are ordinary authenticated-equivalent public session commands.
+    let mut game = attachment_initial("teams", "888888888888888888888882");
+    let mut owl = game.make_card("JC001", 2);
+    owl.controller = 1;
+    owl.face_down = true;
+    let old_owl = owl.id.clone();
+    game.regions[2].cards.push(owl);
+    for n in 0..2 {
+        let mut asset = game.make_card("JC003", 1);
+        asset.exhausted = n == 0;
+        game.players[1].assets.push(asset);
+    }
+    let skeleton = game.make_card("BQ083", 0);
+    let skeleton_id = skeleton.id.clone();
+    game.players[0].hand.push(skeleton);
+    for _ in 0..4 {
+        let asset = game.make_card("JC085", 0);
+        game.players[0].assets.push(asset);
+    }
+    let outside = game.make_card("JC125", 3);
+    let outside_id = outside.id.clone();
+    game.regions[3].cards.push(outside);
+    let mut room = RoomEnvelope::from_game(game);
+    let mut steps = vec![step(
+        &room,
+        "initialFixture",
+        json!([serde_json::to_string(&room).unwrap()]),
+        1,
+    )];
+    for viewer in [0, 2, 3] {
+        assert!(
+            room.view(viewer, room.pacing.last_server_now_ms).regions[2].characters[0]
+                .card_id
+                .is_none()
+        );
+    }
+    assert_eq!(
+        room.view(1, room.pacing.last_server_now_ms).regions[2].characters[0]
+            .card_id
+            .as_deref(),
+        Some("JC001")
+    );
+    apply_game(
+        &mut room,
+        &mut steps,
+        1,
+        Action {
+            card_id: Some(old_owl.clone()),
+            ..Action::new("reveal")
+        },
+    );
+    attachment_pass_top(&mut room, &mut steps);
+    let revealed = room.regions[2]
+        .cards
+        .iter()
+        .find(|c| c.definition == "JC001")
+        .unwrap()
+        .clone();
+    assert_ne!(revealed.id, old_owl);
+    assert!(room.players[1].assets.iter().all(|c| c.exhausted));
+    assert_eq!(room.icons(&revealed, 2).investigation, 1);
+    assert_eq!(room.icons(&revealed, 2).influence, 1);
+    apply_game(
+        &mut room,
+        &mut steps,
+        0,
+        Action {
+            card_id: Some(skeleton_id),
+            region: Some(2),
+            ..Action::new("deploy")
+        },
+    );
+    attachment_pass_top(&mut room, &mut steps);
+    let p = room.pending.clone().unwrap();
+    assert!(p.choice.options.iter().any(|o| o.id == revealed.id));
+    assert!(!p.choice.options.iter().any(|o| o.id == outside_id));
+    assert!(room.players[0].assets.iter().all(|c| c.exhausted));
+    apply_game(
+        &mut room,
+        &mut steps,
+        0,
+        Action {
+            choice_id: Some(p.choice.id),
+            selected: Some(vec![revealed.id.clone()]),
+            ..Action::new("choose")
+        },
+    );
+    attachment_pass_top(&mut room, &mut steps);
+    assert!(!room.regions[2].cards.iter().any(|c| c.id == revealed.id));
+    assert!(room.players[2]
+        .graveyard
+        .iter()
+        .any(|c| c.definition == "JC001"));
+    assert!(room.players[1]
+        .graveyard
+        .iter()
+        .all(|c| c.definition != "JC001"));
+    assert!(room.regions[3].cards.iter().any(|c| c.id == outside_id));
+    json!({"name":"owl-controller-mind-two-and-skeleton-paid-entry","seed":"9007199254740993","steps":steps,"syntheticInitialLayout":true})
+}
 fn main() {
     let output = std::env::args()
         .nth(1)
@@ -2075,6 +2177,16 @@ fn main() {
         std::fs::write(output, serde_json::to_vec(&value).unwrap()).unwrap();
         return;
     }
+    let two_cards = two_card_fixture();
+    let two_initial: RoomEnvelope =
+        serde_json::from_str(two_cards["steps"][0]["state"].as_str().unwrap()).unwrap();
+    let prepared_two_cards = json!({
+        "syntheticInitialLayout":true,"roomId":two_initial.room_id,"version":two_initial.revision,
+        "state":two_cards["steps"][0]["state"],"firstAction":two_cards["steps"][1]["args"][1]["action"],
+        "oldOwlId":two_initial.regions[2].cards[0].id,
+        "skeletonId":two_initial.players[0].hand[0].id,
+        "outsideId":two_initial.regions[3].cards[0].id,
+    });
     let assassin = assassin_fixture();
     let initial: RoomEnvelope =
         serde_json::from_str(assassin["steps"][0]["state"].as_str().unwrap()).unwrap();
@@ -2086,6 +2198,6 @@ fn main() {
         "targetId":targets.iter().find(|c| c.definition == "JC084").unwrap().id,
         "expensiveTargetId":targets.iter().find(|c| c.definition == "JC086").unwrap().id
     });
-    let value = json!({"preparedAssassin":prepared_assassin,"preparedResponse":prepared,"catalog":catalog::catalog(),"cases":[assassin,attachment_fixture(false),attachment_fixture(true),attachment_hk_fixture(),attachment_region_return_fixture(),grave_play_fixture(),fixture("duel","18446744073709551615"),fixture("teams","9007199254740993"),response_fixture(),detective_fixture(false),detective_fixture(true),custom_deck_fixture(),friendly_icons_fixture(),pacing_fixture(false),pacing_fixture(true),world_fixture("DQJC108",false),world_fixture("DQJC109",false),world_fixture("DQJC110",false),world_fixture("DQJC111",false),world_fixture("DQJC115",false),world_fixture("DQJC116",false),world_fixture("DQJC116",true)],"rejectedStates":rejected_states});
+    let value = json!({"preparedTwoCards":prepared_two_cards,"preparedAssassin":prepared_assassin,"preparedResponse":prepared,"catalog":catalog::catalog(),"cases":[two_cards,assassin,attachment_fixture(false),attachment_fixture(true),attachment_hk_fixture(),attachment_region_return_fixture(),grave_play_fixture(),fixture("duel","18446744073709551615"),fixture("teams","9007199254740993"),response_fixture(),detective_fixture(false),detective_fixture(true),custom_deck_fixture(),friendly_icons_fixture(),pacing_fixture(false),pacing_fixture(true),world_fixture("DQJC108",false),world_fixture("DQJC109",false),world_fixture("DQJC110",false),world_fixture("DQJC111",false),world_fixture("DQJC115",false),world_fixture("DQJC116",false),world_fixture("DQJC116",true)],"rejectedStates":rejected_states});
     std::fs::write(output, serde_json::to_vec(&value).unwrap()).unwrap();
 }

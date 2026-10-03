@@ -70,6 +70,8 @@ pub struct TargetSlotSpec {
     pub subtypes_any: Vec<String>,
     #[serde(default)]
     pub printed_cost_max: Option<u32>,
+    #[serde(default)]
+    pub equipment_host: bool,
     pub min: usize,
     pub max: usize,
 }
@@ -219,6 +221,8 @@ pub struct Traits {
     pub kill: u32,
     pub retreat: bool,
     pub unlimited_copies: bool,
+    #[serde(default)]
+    pub cannot_be_equipped: bool,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum StaticModifier {
@@ -347,6 +351,7 @@ fn target(zone: Zone, kind: EntityKind, relation: Relation, range: Range) -> Tar
         subtype: None,
         subtypes_any: vec![],
         printed_cost_max: None,
+        equipment_host: false,
         min: 1,
         max: 1,
     }
@@ -445,6 +450,44 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
                 ],
                 ..Definition::default()
             },
+        );
+        m.insert(
+            "JC001".into(),
+            Definition {
+                traits: Traits {
+                    cannot_be_equipped: true,
+                    ..Default::default()
+                },
+                modifiers: vec![StaticModifier::ConditionalIcons {
+                    condition: IconCondition::AssetDomain {
+                        magic: MagicIcon::Mind,
+                        minimum: 2,
+                    },
+                    permanent: Icons::default(),
+                    temporary: Icons {
+                        investigation: 1,
+                        ..Icons::default()
+                    },
+                }],
+                ..Definition::default()
+            },
+        );
+        m.insert(
+            "BQ083".into(),
+            with_abilities(vec![ability(
+                "destroy-local-entry",
+                "进场触发",
+                Timing::Fast,
+                vec![],
+                vec![target(
+                    Zone::Board,
+                    EntityKind::Character,
+                    Relation::Any,
+                    Range::SourceRegion,
+                )],
+                vec![Op::Destroy(Target(0))],
+                Some(Event::Enter),
+            )]),
         );
         m.insert(
             "JC085".into(),
@@ -1067,6 +1110,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
             Range::Anywhere,
         );
         host.subtypes_any = vec!["人类".into(), "吸血鬼".into()];
+        host.equipment_host = true;
         m.insert(
             "BQ022".into(),
             Definition {
@@ -1108,7 +1152,8 @@ mod tests {
     #[test]
     fn invalid_multi_target_ability_is_rejected_before_registration() {
         let mut registry = definitions().clone();
-        assert_eq!(registry.len(), 40);
+        assert_eq!(registry.len(), crate::catalog::catalog().cards.len());
+        assert!(registry.contains_key("JC001") && registry.contains_key("BQ083"));
         let ability = &mut registry.get_mut("LC20").unwrap().abilities[0];
         ability.targets.push(ability.targets[0].clone());
         let error = validate_definitions(&registry).unwrap_err();

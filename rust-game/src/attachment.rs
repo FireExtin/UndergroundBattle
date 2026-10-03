@@ -91,6 +91,13 @@ impl Game {
             Relation::EnemyTeam => self.is_enemy(attachment.card.controller, host),
         };
         kind && relation
+            && (!card(&attachment.card.definition)
+                .subtypes
+                .iter()
+                .any(|s| s == "装备")
+                || !rules::definition(&host.definition)
+                    .traits
+                    .cannot_be_equipped)
             && spec
                 .host
                 .subtype

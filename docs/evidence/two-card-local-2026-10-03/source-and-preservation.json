@@ -1,0 +1,462 @@
+{
+  "base": "cdf85ce0e574e7e5c0a840b1993057e034dafabf",
+  "frozenAndServerFiles": [
+    {
+      "path": "rust-game-wasm/legacy-v0.2.1/README.md",
+      "sha256": "b9433ca54fa80ad8460f9cffe5f88d82e348b1d2293ebdb4893dc9b46b786334",
+      "bytes": 443,
+      "unchanged": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.1/hegemony_wasm.js",
+      "sha256": "69f5f988232d411b0d76dc6a6cae5c0fc749ab556774d30544da26a07e5c98ca",
+      "bytes": 11122,
+      "unchanged": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.1/hegemony_wasm_bg.wasm",
+      "sha256": "a6366ef6bc7df03ba666b33286d3a01c412ac6bf779d6396fcbf6affcdc43966",
+      "bytes": 1040341,
+      "unchanged": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.1/package.json",
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035",
+      "bytes": 33,
+      "unchanged": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.2/README.md",
+      "sha256": "8ab2e94b7269ae12b6880dc36616ca43ae65d1892b4ed2bd1b9a3623455f72d3",
+      "bytes": 419,
+      "unchanged": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.2/hegemony_wasm.js",
+      "sha256": "bb5709b94df02970729dbf80ea5ab3308343040f867d71a8142aa4b9cfafe229",
+      "bytes": 11810,
+      "unchanged": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.2/hegemony_wasm_bg.wasm",
+      "sha256": "b5e0070333a71ff5b01f31406118f523af473c0bb96fb732d3276d3855d7daae",
+      "bytes": 1052149,
+      "unchanged": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.2/package.json",
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035",
+      "bytes": 33,
+      "unchanged": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.3/README.md",
+      "sha256": "6e484031279fbd587cb414d83498b32c29fa37b6087b1ff4999e58cf4e366cf7",
+      "bytes": 408,
+      "unchanged": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.3/hegemony_wasm.js",
+      "sha256": "bb5709b94df02970729dbf80ea5ab3308343040f867d71a8142aa4b9cfafe229",
+      "bytes": 11810,
+      "unchanged": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.3/hegemony_wasm_bg.wasm",
+      "sha256": "2d5dcbaae76aa5706fa77af6747068e94da39654d25df3e764efa48e73905089",
+      "bytes": 1053904,
+      "unchanged": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.3/package.json",
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035",
+      "bytes": 33,
+      "unchanged": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.4/README.md",
+      "sha256": "1fa8d67c2dff9fa4bb4cdcb9b60ea918fc863ad48fc3734abc666a90317a3df2",
+      "bytes": 514,
+      "unchanged": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.4/hegemony_wasm.js",
+      "sha256": "282efbac8975c8cde3e728298ab3870b3aa11a8df0a60bff6debe87af6fcdc58",
+      "bytes": 15219,
+      "unchanged": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.4/hegemony_wasm_bg.wasm",
+      "sha256": "fcf7f714a9b09f566202c0a8b00571c0da55dfa255793f2cffd908003f6d660f",
+      "bytes": 1111835,
+      "unchanged": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.4/package.json",
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035",
+      "bytes": 33,
+      "unchanged": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.5/README.md",
+      "sha256": "c28487a28ef96c8cc7b85647970b2d7416a394c5164ac2b86db712b16099b25c",
+      "bytes": 1272,
+      "unchanged": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.5/hegemony_wasm.js",
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+      "bytes": 18203,
+      "unchanged": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.5/hegemony_wasm_bg.wasm",
+      "sha256": "22299f6db9923a93ea7da7bd742afbf0a0b1e4de4ff3c41bd99f16860df3a971",
+      "bytes": 1487505,
+      "unchanged": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.5/package.json",
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035",
+      "bytes": 33,
+      "unchanged": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.6/hegemony_wasm.js",
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+      "bytes": 18203,
+      "unchanged": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.6/hegemony_wasm_bg.wasm",
+      "sha256": "d4a9d88fe3c44d94da938c0351a4f1654d72514568c9f927fecd6d2f9f3ded3f",
+      "bytes": 1579569,
+      "unchanged": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.6/package.json",
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035",
+      "bytes": 33,
+      "unchanged": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.7/README.md",
+      "sha256": "121cb52effa59fb1cb126f859c05d28898e5dcee5a4217336629015b114a42cd",
+      "bytes": 700,
+      "unchanged": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.7/hegemony_wasm.d.ts",
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758",
+      "bytes": 3921,
+      "unchanged": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.7/hegemony_wasm.js",
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+      "bytes": 18203,
+      "unchanged": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.7/hegemony_wasm_bg.wasm",
+      "sha256": "21169e9d579886a55474b21aa506a4a9adca779428d7d11f2e966ae077656198",
+      "bytes": 1593545,
+      "unchanged": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.7/hegemony_wasm_bg.wasm.d.ts",
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3",
+      "bytes": 1944,
+      "unchanged": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.7/package.json",
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035",
+      "bytes": 33,
+      "unchanged": true
+    },
+    {
+      "path": "sites/drizzle/0000_numerous_lucky_pierre.sql",
+      "sha256": "e7e71337892cba7558c9bd5a3c3beb78c109fa93d1775f0b13e5377030a78b43",
+      "bytes": 1523,
+      "unchanged": true
+    },
+    {
+      "path": "sites/drizzle/meta/0000_snapshot.json",
+      "sha256": "a4e0d437f9b6d1c5f9cf2de0fbb7082f7a2dadf33f64e91cb0d7fc67780d254c",
+      "bytes": 7714,
+      "unchanged": true
+    },
+    {
+      "path": "sites/drizzle/meta/_journal.json",
+      "sha256": "568a9e1bf452c42d07a8f4067732cc82fe6fbb1e0951efb750e3028d02b8f561",
+      "bytes": 211,
+      "unchanged": true
+    },
+    {
+      "path": "sites/src/index.mjs",
+      "sha256": "f6a1ae35a0361e2bad5422a9ab6d2e0a2c766c1e40c1c62bb0fe1446d5877551",
+      "bytes": 3552,
+      "unchanged": true
+    },
+    {
+      "path": "sites/src/kernel-router.mjs",
+      "sha256": "e163dd6e984b7ac2036547f14cc4a49d54ce4aed30676a50f4d082bfa134ad77",
+      "bytes": 2576,
+      "unchanged": true
+    },
+    {
+      "path": "sites/src/kernel.mjs",
+      "sha256": "556660e23e78ae68182a2636e1b53ef36ff9fc8043770a6c36c5a9e51894e26b",
+      "bytes": 1689,
+      "unchanged": true
+    },
+    {
+      "path": "sites/src/service.mjs",
+      "sha256": "757930aad47a30dad7cd880b504b2c1a7b7a8c5a47905b6fba6f2f2647f88c02",
+      "bytes": 15118,
+      "unchanged": true
+    },
+    {
+      "path": "sites/src/storage-errors.mjs",
+      "sha256": "6979b752d13a2143f1e250051e5e2df1c81a7afef93727023b84ee8043b5f1a0",
+      "bytes": 2556,
+      "unchanged": true
+    },
+    {
+      "path": "sites/src/store.mjs",
+      "sha256": "39d50fc38e515a959d51f13a5673f5b3603edbc420b120c2326f49607f66d4d9",
+      "bytes": 3748,
+      "unchanged": true
+    }
+  ],
+  "decksWorldAndPrior40DefinitionsUnchanged": true,
+  "newIds": [
+    "JC001",
+    "BQ083"
+  ],
+  "originalSources": {
+    "JC001": {
+      "cardId": "JC001",
+      "batchId": "B10",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/JC001 通灵猫头鹰.jpg",
+        "imageSha256": "33b9fd53b30630010a49a520d9e2b89d608822706e67e7c667682c3d1151e312",
+        "evidenceId": "card-JC001",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "001/135",
+        "seriesSymbolObserved": "wineGlass",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "通灵猫头鹰",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "黄",
+        "basicType": "角色",
+        "subtypes": [
+          "鸟",
+          "魔宠"
+        ],
+        "printedCollectorCode": "001/135",
+        "seriesSymbol": "wineGlass",
+        "printedCost": 1,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "黄",
+            "count": 1
+          }
+        ],
+        "domains": [
+          {
+            "id": "mind",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "不能被装备结附。",
+          "【持续】若你的资产区具有心灵2，则通灵猫头鹰获得临时调查1。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "不能被装备结附。",
+          "notExecutable": true
+        },
+        {
+          "id": "printed-2",
+          "kind": "sourceTextOnly",
+          "printedText": "【持续】若你的资产区具有心灵2，则通灵猫头鹰获得临时调查1。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "attachment",
+        "continuous",
+        "temporaryIcons"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "JC001-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    },
+    "BQ083": {
+      "cardId": "BQ083",
+      "batchId": "B18",
+      "reviewedAt": "2026-10-03",
+      "sourceVerification": {
+        "status": "completeGameplayFieldsForPinnedImage",
+        "basis": "directOriginalImageReview",
+        "imagePath": "resource/ymsj-fun.github.io/cards/BQ083 索命骷髅.jpg",
+        "imageSha256": "619db97c8309d903e3781448c6ad35db91bb5f2e4b5660b6e0eef65fcbd6e675",
+        "evidenceId": "card-BQ083",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "blockingFields": []
+      },
+      "edition": {
+        "printedCollectorCode": "06/07",
+        "seriesSymbolObserved": "霸权三角环符号",
+        "releaseYear": null,
+        "releaseYearClaimed": false,
+        "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+      },
+      "fields": {
+        "name": "索命骷髅",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "黑",
+        "basicType": "角色",
+        "subtypes": [
+          "不死生物",
+          "骷髅",
+          "诅咒"
+        ],
+        "printedCollectorCode": "06/07",
+        "seriesSymbol": "霸权三角环符号",
+        "printedCost": 4,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "黑",
+            "count": 3
+          }
+        ],
+        "domains": [
+          {
+            "id": "death",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 1
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "进场触发 消灭本地区的目标角色。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "abilities": [
+        {
+          "id": "printed-1",
+          "kind": "sourceTextOnly",
+          "printedText": "进场触发 消灭本地区的目标角色。",
+          "notExecutable": true
+        }
+      ],
+      "confirmedMechanismIds": [
+        "priority"
+      ],
+      "rulesEvidenceIds": [
+        "manual-trigger-reset",
+        "manual-draw-identity",
+        "manual-seal",
+        "manual-removal",
+        "manual-unique",
+        "manual-marker-inheritance",
+        "bq-targets",
+        "bq-keywords-1",
+        "bq-keywords-2",
+        "bq-core",
+        "intermezzo"
+      ],
+      "implementationDesignStatus": "readyForBoundedDesign",
+      "openQuestionIds": [],
+      "selectionEnabled": false,
+      "gameAcceptance": "notAccepted",
+      "strategyUiPlaytest": "notRun",
+      "acceptanceCases": [
+        {
+          "id": "BQ083-source-boundary",
+          "scenario": "进入实现前核对本观察版本的字段与完整正文",
+          "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+          "status": "notRun"
+        }
+      ]
+    }
+  },
+  "candidateWasm": {
+    "bytes": 1605331,
+    "sha256": "4249016c2f714a641754a34d0e372b12d393b7524d600c08d70a1f63d7c206a0"
+  }
+}

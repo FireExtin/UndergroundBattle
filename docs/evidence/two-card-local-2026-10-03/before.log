@@ -1,0 +1,43 @@
+   Compiling hegemony-server v0.1.0 (/workspace/UndergroundBattle/rust-game)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 6.68s
+     Running unittests src/lib.rs (/workspace/.rust/targets/two-cards-local/debug/deps/hegemony_server-fa35e11fc7b74bf5)
+
+running 4 tests
+test engine::tests::next_batch_skeleton_cannot_deploy_without_loyalty_and_hidden_deploy_does_not_trigger ... FAILED
+test engine::tests::next_batch_owl_uses_controller_mind_two_and_temporary_icons_only ... FAILED
+test engine::tests::next_batch_skeleton_deploy_pays_four_and_enter_targets_all_sides_in_same_region ... FAILED
+test engine::tests::next_batch_owl_equipment_host_predicate_blocks_without_blocking_other_targets ... FAILED
+
+failures:
+
+---- engine::tests::next_batch_skeleton_cannot_deploy_without_loyalty_and_hidden_deploy_does_not_trigger stdout ----
+
+thread 'engine::tests::next_batch_skeleton_cannot_deploy_without_loyalty_and_hidden_deploy_does_not_trigger' panicked at rust-game/src/catalog.rs:208:28:
+unsupported card BQ083
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- engine::tests::next_batch_owl_uses_controller_mind_two_and_temporary_icons_only stdout ----
+
+thread 'engine::tests::next_batch_owl_uses_controller_mind_two_and_temporary_icons_only' panicked at rust-game/src/catalog.rs:208:28:
+unsupported card JC001
+
+---- engine::tests::next_batch_skeleton_deploy_pays_four_and_enter_targets_all_sides_in_same_region stdout ----
+
+thread 'engine::tests::next_batch_skeleton_deploy_pays_four_and_enter_targets_all_sides_in_same_region' panicked at rust-game/src/catalog.rs:208:28:
+unsupported card BQ083
+
+---- engine::tests::next_batch_owl_equipment_host_predicate_blocks_without_blocking_other_targets stdout ----
+
+thread 'engine::tests::next_batch_owl_equipment_host_predicate_blocks_without_blocking_other_targets' panicked at rust-game/src/catalog.rs:208:28:
+unsupported card JC001
+
+
+failures:
+    engine::tests::next_batch_owl_equipment_host_predicate_blocks_without_blocking_other_targets
+    engine::tests::next_batch_owl_uses_controller_mind_two_and_temporary_icons_only
+    engine::tests::next_batch_skeleton_cannot_deploy_without_loyalty_and_hidden_deploy_does_not_trigger
+    engine::tests::next_batch_skeleton_deploy_pays_four_and_enter_targets_all_sides_in_same_region
+
+test result: FAILED. 0 passed; 4 failed; 0 ignored; 0 measured; 71 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `-p hegemony-server --lib`

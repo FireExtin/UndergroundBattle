@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.5",
-  "engineVersion": "rust-v0.2.7",
+  "cardPoolVersion": "limited-v2.6",
+  "engineVersion": "rust-v0.2.8",
   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
   "cards": [
     {
@@ -1534,6 +1534,85 @@
       },
       "unique": false,
       "society": "方碑序列"
+    },
+    {
+      "id": "JC001",
+      "name": "通灵猫头鹰",
+      "kind": "character",
+      "subtypes": [
+        "鸟",
+        "魔宠"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "黄色"
+      ],
+      "loyaltyText": "黄色",
+      "color": "黄",
+      "magic": "心灵",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        }
+      },
+      "defense": 1,
+      "text": "不能被装备结附。\n【持续】若你的资产区具有心灵2，则通灵猫头鹰获得临时调查1。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JC001",
+        "image": "resource/ymsj-fun.github.io/cards/JC001 通灵猫头鹰.jpg"
+      },
+      "unique": false,
+      "society": "帷幕守望"
+    },
+    {
+      "id": "BQ083",
+      "name": "索命骷髅",
+      "kind": "character",
+      "subtypes": [
+        "不死生物",
+        "骷髅",
+        "诅咒"
+      ],
+      "cost": 4,
+      "loyalty": [
+        "黑色",
+        "黑色",
+        "黑色"
+      ],
+      "loyaltyText": "黑色黑色黑色",
+      "color": "黑",
+      "magic": "死亡",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "进场触发 消灭本地区的目标角色。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "BQ083",
+        "image": "resource/ymsj-fun.github.io/cards/BQ083 索命骷髅.jpg"
+      },
+      "unique": false,
+      "society": ""
     }
   ],
   "decks": [

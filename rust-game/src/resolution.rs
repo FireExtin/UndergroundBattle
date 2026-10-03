@@ -476,6 +476,8 @@ impl Game {
                         Relation::EnemyTeam => self.is_enemy(actor, c),
                     };
                     kind && relation
+                        && (!spec.equipment_host
+                            || !rules::definition(&c.definition).traits.cannot_be_equipped)
                         && spec
                             .printed_cost_max
                             .is_none_or(|max| !c.face_down && d.cost <= max)

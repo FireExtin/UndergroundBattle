@@ -1,0 +1,25 @@
+   Compiling hegemony-server v0.1.0 (/workspace/UndergroundBattle/rust-game)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 3.03s
+     Running unittests src/lib.rs (/workspace/.rust/targets/two-cards-local/debug/deps/hegemony_server-fa35e11fc7b74bf5)
+
+running 4 tests
+test engine::tests::next_batch_skeleton_deploy_pays_four_and_enter_targets_all_sides_in_same_region ... FAILED
+test engine::tests::next_batch_owl_equipment_host_predicate_blocks_without_blocking_other_targets ... ok
+test engine::tests::next_batch_skeleton_cannot_deploy_without_loyalty_and_hidden_deploy_does_not_trigger ... ok
+test engine::tests::next_batch_owl_uses_controller_mind_two_and_temporary_icons_only ... ok
+
+failures:
+
+---- engine::tests::next_batch_skeleton_deploy_pays_four_and_enter_targets_all_sides_in_same_region stdout ----
+
+thread 'engine::tests::next_batch_skeleton_deploy_pays_four_and_enter_targets_all_sides_in_same_region' panicked at rust-game/src/engine.rs:2500:53:
+assertion failed: !options.iter().any(|o| o.id == *id)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    engine::tests::next_batch_skeleton_deploy_pays_four_and_enter_targets_all_sides_in_same_region
+
+test result: FAILED. 3 passed; 1 failed; 0 ignored; 0 measured; 71 filtered out; finished in 0.01s
+
+error: test failed, to rerun pass `-p hegemony-server --lib`

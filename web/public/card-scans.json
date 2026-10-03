@@ -198,5 +198,15 @@
     "url": "/cards/JC088.jpg",
     "source": "resource/ymsj-fun.github.io/cards/JC088 职业杀手.jpg",
     "sha256": "9c270203639dae978acb65e9255ac34b5a5d5192e681f8aafd63018ede301a5f"
+  },
+  "JC001": {
+    "url": "/cards/JC001.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC001 通灵猫头鹰.jpg",
+    "sha256": "33b9fd53b30630010a49a520d9e2b89d608822706e67e7c667682c3d1151e312"
+  },
+  "BQ083": {
+    "url": "/cards/BQ083.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/BQ083 索命骷髅.jpg",
+    "sha256": "619db97c8309d903e3781448c6ad35db91bb5f2e4b5660b6e0eef65fcbd6e675"
   }
 }

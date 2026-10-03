@@ -5,10 +5,10 @@
     "resource/ymsj-fun.github.io/cards/cards.json": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
     "docs/factions/card-specifications.json": "43a5598e37432fc6febc3332715356849379ca6d433d0a6e5d5399efad255cb6",
     "rust-game/data/card-research-index.json": "8ebc08d35c4891051cd47dc611eb80462abaeb6325a4f5fc3b06f8ce364384cf",
-    "rust-game/data/cards.json": "e733dae5cc33e70236c5ffc774d9475e1196fa67e1d9f18f34b60eb4b5c7438e",
-    "rust-game/src/rules.rs": "4a4f27190e014c4ffefdc9524dfa635838b1fa856905683261682c12e4cd3236",
+    "rust-game/data/cards.json": "62e5b8f967a3f1ee5fbae3ab22924ad39d3b1b7317aca050144af77f65e379fe",
+    "rust-game/src/rules.rs": "a131837a10fe99aa955a5b2d48f5651642f461f31ad6f4c4f2add5331f20b521",
     "rust-game/src/catalog.rs": "8d097e72da27c084acbce20d5464024ed25c669c1e063c18aff1b6f3d63c5e47",
-    "rust-game/src/attachment.rs": "80f6dfe012c1aa6ec58e6cbde98133635347536c2f19f33e71b31240b17e645b",
+    "rust-game/src/attachment.rs": "b2a4601376f57ece7bc25d575d8003cdaea4c93a77f3ba7d240f10d06741c8e3",
     "rust-game/src/play_sources.rs": "f1a80f2f4d34e2b4c61336b176e180dbca7551fbd82e752d3c80757418638dfd",
     "rust-game/src/world.rs": "84f3670bf2f24fdd9c9c8f3e18eccc8ca88bf809598baa0cbc0ebe808570eef1"
   },
@@ -24,12 +24,12 @@
     "sourceComplete": 678,
     "sourceBlocked": 5,
     "sourceMissing": 1,
-    "runtimeDefinitions": 40,
-    "runtimeNonRegions": 30,
+    "runtimeDefinitions": 42,
+    "runtimeNonRegions": 32,
     "cardStatus": {
-      "implementedBounded": 38,
+      "implementedBounded": 40,
       "partial": 0,
-      "unimplemented": 534,
+      "unimplemented": 532,
       "needsRuling": 112
     },
     "mechanismStatus": {
@@ -85,7 +85,9 @@
     "BQ022",
     "JC084",
     "JC085",
-    "JC088"
+    "JC088",
+    "JC001",
+    "BQ083"
   ],
   "cards": [
     {
@@ -2734,10 +2736,10 @@
       "sourceStatus": "completeGameplayFieldsForPinnedImage",
       "imagePath": "resource/ymsj-fun.github.io/cards/BQ083 索命骷髅.jpg",
       "imageSha256": "619db97c8309d903e3781448c6ad35db91bb5f2e4b5660b6e0eef65fcbd6e675",
-      "status": "unimplemented",
-      "inCurrentCatalog": false,
-      "serverSelectionEnabled": false,
-      "finiteEngineBehavior": "absent",
+      "status": "implementedBounded",
+      "inCurrentCatalog": true,
+      "serverSelectionEnabled": true,
+      "finiteEngineBehavior": "completeForCurrentBoundedDefinition",
       "openQuestions": [],
       "closedVersionQuestion": null,
       "independentAcceptance": "notEstablishedByThisMatrix",
@@ -2748,7 +2750,8 @@
         "priority"
       ],
       "evidence": [
-        "docs/factions/card-specifications.json"
+        "rust-game/data/cards.json",
+        "rust-game/src/rules.rs"
       ]
     },
     {
@@ -6050,10 +6053,10 @@
       "sourceStatus": "completeGameplayFieldsForPinnedImage",
       "imagePath": "resource/ymsj-fun.github.io/cards/JC001 通灵猫头鹰.jpg",
       "imageSha256": "33b9fd53b30630010a49a520d9e2b89d608822706e67e7c667682c3d1151e312",
-      "status": "unimplemented",
-      "inCurrentCatalog": false,
-      "serverSelectionEnabled": false,
-      "finiteEngineBehavior": "absent",
+      "status": "implementedBounded",
+      "inCurrentCatalog": true,
+      "serverSelectionEnabled": true,
+      "finiteEngineBehavior": "completeForCurrentBoundedDefinition",
       "openQuestions": [],
       "closedVersionQuestion": null,
       "independentAcceptance": "notEstablishedByThisMatrix",
@@ -6067,7 +6070,8 @@
         "temporaryIcons"
       ],
       "evidence": [
-        "docs/factions/card-specifications.json"
+        "rust-game/data/cards.json",
+        "rust-game/src/rules.rs"
       ]
     },
     {
