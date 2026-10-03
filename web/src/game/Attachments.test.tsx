@@ -29,7 +29,7 @@ describe('public attachment presentation', () => {
     expect(container.querySelector('[data-card-instance="not-a-target"]')).toHaveAttribute('data-card-targeted', 'false');
     fireEvent.click(screen.getByRole('button', { name: '查看公开宿主' }));
     expect(container.querySelector('[data-card-instance="attachment-1"]')).toHaveAttribute('aria-pressed', 'true');
-    fireEvent.click(screen.getByRole('button', { name: action.label }));
+    fireEvent.click(screen.getByRole('button', { name: `确认 · ${action.label}` }));
     expect(submit).toHaveBeenCalledExactlyOnceWith(action);
   });
 
