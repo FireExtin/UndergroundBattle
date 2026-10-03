@@ -1,0 +1,356 @@
+
+> undergroundbattle-web@0.1.0 test
+> vitest --run src/game/ReadModal.test.tsx
+
+
+ RUN  v4.1.2 /workspace/UndergroundBattle/web
+
+ ❯ src/game/ReadModal.test.tsx (7 tests | 2 failed) 366ms
+     × opens the newly admitted original face for JC006 59ms
+     × opens the newly admitted original face for XQ16 44ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/game/ReadModal.test.tsx > original card scan reading > opens the newly admitted original face for JC006
+TestingLibraryElementError: Unable to find an accessible element with the role "button" and name "原始牌面"
+
+Here are the accessible roles:
+
+  dialog:
+
+  Name "放大阅读逆转异界之门":
+  [36m<section[39m
+    [33maria-label[39m=[32m"放大阅读逆转异界之门"[39m
+    [33maria-modal[39m=[32m"true"[39m
+    [33mclass[39m=[32m"hg-modal hg-reading"[39m
+    [33mdata-reading-card[39m=[32m"instance-a"[39m
+    [33mrole[39m=[32m"dialog"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  button:
+
+  Name "关闭放大阅读":
+  [36m<button[39m
+    [33maria-label[39m=[32m"关闭放大阅读"[39m
+    [33mclass[39m=[32m"hg-close"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  strong:
+
+  Name "":
+  [36m<strong[39m
+    [33mclass[39m=[32m"hg-card-name"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "":
+  [36m<p />[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"hg-modal-backdrop"[39m
+    [36m>[39m
+      [36m<section[39m
+        [33maria-label[39m=[32m"放大阅读逆转异界之门"[39m
+        [33maria-modal[39m=[32m"true"[39m
+        [33mclass[39m=[32m"hg-modal hg-reading"[39m
+        [33mdata-reading-card[39m=[32m"instance-a"[39m
+        [33mrole[39m=[32m"dialog"[39m
+      [36m>[39m
+        [36m<button[39m
+          [33maria-label[39m=[32m"关闭放大阅读"[39m
+          [33mclass[39m=[32m"hg-close"[39m
+        [36m>[39m
+          [0m×[0m
+        [36m</button>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"hg-eyebrow"[39m
+        [36m>[39m
+          [0m卡牌档案 · 放大阅读[0m
+        [36m</span>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"hg-reading-card"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"hg-card-top"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"hg-card-kind"[39m
+            [36m>[39m
+              [0m角色[0m
+            [36m</span>[39m
+            [36m<span[39m
+              [33maria-label[39m=[32m"费用 0"[39m
+              [33mclass[39m=[32m"hg-cost"[39m
+              [33mtitle[39m=[32m"费用"[39m
+            [36m>[39m
+              [0m0[0m
+            [36m</span>[39m
+          [36m</span>[39m
+          [36m<strong[39m
+            [33mclass[39m=[32m"hg-card-name"[39m
+          [36m>[39m
+            [0m逆转异界之门[0m
+          [36m</strong>[39m
+          [36m<span[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"hg-card-art"[39m
+          [36m>[39m
+            [36m<span>[39m
+              [0m◈[0m
+            [36m</span>[39m
+            [36m<i />[39m
+          [36m</span>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"hg-card-affiliation"[39m
+          [36m>[39m
+            [0m无忠诚要求[0m
+          [36m</span>[39m
+          [36m<span[39m
+            [33maria-label[39m=[32m"图标：调查0，战斗0，势力1"[39m
+            [33mclass[39m=[32m"hg-icons "[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mtitle[39m=[32m"调查"[39m
+            [36m>[39m
+              [0m◈ [0m
+              [36m<b>[39m
+                [0m0[0m
+              [36m</b>[39m
+            [36m</span>[39m
+            [36m<span[39m
+              [33mtitle[39m=[32m"战斗"[39m
+            [36m>[39m
+              [0m⚔ [0m
+              [36m<b>[39m
+                [0m0[0m
+              [36m</b>[39m
+            [36m</span>[39m
+            [36m<span[39m
+              [33mtitle[39m=[32m"势力"[39m
+            [36m>[39m
+              [0m⚑ [0m
+              [36m<b>[39m
+                [0m1[0m
+              [36m</b>[39m
+            [36m</span>[39m
+          [36m</span>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"hg-card-text"[39m
+          [36m>[39m
+            [0m真实印刷文字[0m
+          [36m</span>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"hg-card-footer"[39m
+          [36m>[39m
+            [36m<span>[39m
+              [0m防御 1[0m
+            [36m</span>[39m
+          [36m</span>[39m
+        [36m</div>[39m
+        [36m<p>[39m
+          [0m◈ 调查 · ⚔ 战斗 · ⚑ 势力。白底图标仅在操控者团队持先手时生效。[0m
+        [36m</p>[39m
+      [36m</section>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ src/game/ReadModal.test.tsx:9:28
+      7|   it.each([['JC001', '通灵猫头鹰'], ['BQ083', '索命骷髅'], ['JC006', '逆转异界之门'],…
+      8|     render(<ReadModal card={{ ...testCard, cardId, name }} viewerId="p…
+      9|     fireEvent.click(screen.getByRole('button', { name: '原始牌面' }));
+       |                            ^
+     10|     expect(screen.getByRole('img', { name: `${name}原始牌面` })).toHaveAtt…
+     11|     expect(screen.getByRole('link', { name: `打开${name}原始牌面全图` })).toHa…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  src/game/ReadModal.test.tsx > original card scan reading > opens the newly admitted original face for XQ16
+TestingLibraryElementError: Unable to find an accessible element with the role "button" and name "原始牌面"
+
+Here are the accessible roles:
+
+  dialog:
+
+  Name "放大阅读法务部律师团":
+  [36m<section[39m
+    [33maria-label[39m=[32m"放大阅读法务部律师团"[39m
+    [33maria-modal[39m=[32m"true"[39m
+    [33mclass[39m=[32m"hg-modal hg-reading"[39m
+    [33mdata-reading-card[39m=[32m"instance-a"[39m
+    [33mrole[39m=[32m"dialog"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  button:
+
+  Name "关闭放大阅读":
+  [36m<button[39m
+    [33maria-label[39m=[32m"关闭放大阅读"[39m
+    [33mclass[39m=[32m"hg-close"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  strong:
+
+  Name "":
+  [36m<strong[39m
+    [33mclass[39m=[32m"hg-card-name"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "":
+  [36m<p />[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"hg-modal-backdrop"[39m
+    [36m>[39m
+      [36m<section[39m
+        [33maria-label[39m=[32m"放大阅读法务部律师团"[39m
+        [33maria-modal[39m=[32m"true"[39m
+        [33mclass[39m=[32m"hg-modal hg-reading"[39m
+        [33mdata-reading-card[39m=[32m"instance-a"[39m
+        [33mrole[39m=[32m"dialog"[39m
+      [36m>[39m
+        [36m<button[39m
+          [33maria-label[39m=[32m"关闭放大阅读"[39m
+          [33mclass[39m=[32m"hg-close"[39m
+        [36m>[39m
+          [0m×[0m
+        [36m</button>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"hg-eyebrow"[39m
+        [36m>[39m
+          [0m卡牌档案 · 放大阅读[0m
+        [36m</span>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"hg-reading-card"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"hg-card-top"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"hg-card-kind"[39m
+            [36m>[39m
+              [0m角色[0m
+            [36m</span>[39m
+            [36m<span[39m
+              [33maria-label[39m=[32m"费用 0"[39m
+              [33mclass[39m=[32m"hg-cost"[39m
+              [33mtitle[39m=[32m"费用"[39m
+            [36m>[39m
+              [0m0[0m
+            [36m</span>[39m
+          [36m</span>[39m
+          [36m<strong[39m
+            [33mclass[39m=[32m"hg-card-name"[39m
+          [36m>[39m
+            [0m法务部律师团[0m
+          [36m</strong>[39m
+          [36m<span[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"hg-card-art"[39m
+          [36m>[39m
+            [36m<span>[39m
+              [0m◈[0m
+            [36m</span>[39m
+            [36m<i />[39m
+          [36m</span>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"hg-card-affiliation"[39m
+          [36m>[39m
+            [0m无忠诚要求[0m
+          [36m</span>[39m
+          [36m<span[39m
+            [33maria-label[39m=[32m"图标：调查0，战斗0，势力1"[39m
+            [33mclass[39m=[32m"hg-icons "[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mtitle[39m=[32m"调查"[39m
+            [36m>[39m
+              [0m◈ [0m
+              [36m<b>[39m
+                [0m0[0m
+              [36m</b>[39m
+            [36m</span>[39m
+            [36m<span[39m
+              [33mtitle[39m=[32m"战斗"[39m
+            [36m>[39m
+              [0m⚔ [0m
+              [36m<b>[39m
+                [0m0[0m
+              [36m</b>[39m
+            [36m</span>[39m
+            [36m<span[39m
+              [33mtitle[39m=[32m"势力"[39m
+            [36m>[39m
+              [0m⚑ [0m
+              [36m<b>[39m
+                [0m1[0m
+              [36m</b>[39m
+            [36m</span>[39m
+          [36m</span>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"hg-card-text"[39m
+          [36m>[39m
+            [0m真实印刷文字[0m
+          [36m</span>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"hg-card-footer"[39m
+          [36m>[39m
+            [36m<span>[39m
+              [0m防御 1[0m
+            [36m</span>[39m
+          [36m</span>[39m
+        [36m</div>[39m
+        [36m<p>[39m
+          [0m◈ 调查 · ⚔ 战斗 · ⚑ 势力。白底图标仅在操控者团队持先手时生效。[0m
+        [36m</p>[39m
+      [36m</section>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ src/game/ReadModal.test.tsx:9:28
+      7|   it.each([['JC001', '通灵猫头鹰'], ['BQ083', '索命骷髅'], ['JC006', '逆转异界之门'],…
+      8|     render(<ReadModal card={{ ...testCard, cardId, name }} viewerId="p…
+      9|     fireEvent.click(screen.getByRole('button', { name: '原始牌面' }));
+       |                            ^
+     10|     expect(screen.getByRole('img', { name: `${name}原始牌面` })).toHaveAtt…
+     11|     expect(screen.getByRole('link', { name: `打开${name}原始牌面全图` })).toHa…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 5 passed (7)
+   Start at  07:35:05
+   Duration  1.01s (transform 65ms, setup 101ms, import 62ms, tests 366ms, environment 366ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

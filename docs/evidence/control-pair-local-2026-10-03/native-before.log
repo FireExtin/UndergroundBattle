@@ -1,0 +1,57 @@
+   Compiling hegemony-server v0.1.0 (/workspace/UndergroundBattle/rust-game)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 3.64s
+     Running unittests src/lib.rs (/workspace/.rust/targets/two-cards-local/debug/deps/hegemony_server-fa35e11fc7b74bf5)
+
+running 6 tests
+test engine::tests::control_pair_lawyer_can_decline_and_without_another_friend_has_no_trigger_choice ... FAILED
+test engine::tests::control_pair_gate_pays_two_returns_to_owner_and_recycles_normal_attachment ... FAILED
+test engine::tests::control_pair_gate_revalidates_after_response_hide_without_refunding_payment ... FAILED
+test engine::tests::control_pair_gate_requires_a_visible_character_with_any_magic_domain ... FAILED
+test engine::tests::control_pair_lawyer_revalidates_after_enemy_response_without_rehiding_new_instance ... FAILED
+test engine::tests::control_pair_lawyer_is_public_and_hides_another_friendly_controller_anywhere ... FAILED
+
+failures:
+
+---- engine::tests::control_pair_lawyer_can_decline_and_without_another_friend_has_no_trigger_choice stdout ----
+
+thread 'engine::tests::control_pair_lawyer_can_decline_and_without_another_friend_has_no_trigger_choice' panicked at rust-game/src/catalog.rs:208:28:
+unsupported card XQ16
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- engine::tests::control_pair_gate_pays_two_returns_to_owner_and_recycles_normal_attachment stdout ----
+
+thread 'engine::tests::control_pair_gate_pays_two_returns_to_owner_and_recycles_normal_attachment' panicked at rust-game/src/catalog.rs:208:28:
+unsupported card JC006
+
+---- engine::tests::control_pair_gate_revalidates_after_response_hide_without_refunding_payment stdout ----
+
+thread 'engine::tests::control_pair_gate_revalidates_after_response_hide_without_refunding_payment' panicked at rust-game/src/catalog.rs:208:28:
+unsupported card JC006
+
+---- engine::tests::control_pair_gate_requires_a_visible_character_with_any_magic_domain stdout ----
+
+thread 'engine::tests::control_pair_gate_requires_a_visible_character_with_any_magic_domain' panicked at rust-game/src/catalog.rs:208:28:
+unsupported card JC006
+
+---- engine::tests::control_pair_lawyer_revalidates_after_enemy_response_without_rehiding_new_instance stdout ----
+
+thread 'engine::tests::control_pair_lawyer_revalidates_after_enemy_response_without_rehiding_new_instance' panicked at rust-game/src/catalog.rs:208:28:
+unsupported card XQ16
+
+---- engine::tests::control_pair_lawyer_is_public_and_hides_another_friendly_controller_anywhere stdout ----
+
+thread 'engine::tests::control_pair_lawyer_is_public_and_hides_another_friendly_controller_anywhere' panicked at rust-game/src/catalog.rs:208:28:
+unsupported card XQ16
+
+
+failures:
+    engine::tests::control_pair_gate_pays_two_returns_to_owner_and_recycles_normal_attachment
+    engine::tests::control_pair_gate_requires_a_visible_character_with_any_magic_domain
+    engine::tests::control_pair_gate_revalidates_after_response_hide_without_refunding_payment
+    engine::tests::control_pair_lawyer_can_decline_and_without_another_friend_has_no_trigger_choice
+    engine::tests::control_pair_lawyer_is_public_and_hides_another_friendly_controller_anywhere
+    engine::tests::control_pair_lawyer_revalidates_after_enemy_response_without_rehiding_new_instance
+
+test result: FAILED. 0 passed; 6 failed; 0 ignored; 0 measured; 76 filtered out; finished in 0.01s
+
+error: test failed, to rerun pass `-p hegemony-server --lib`

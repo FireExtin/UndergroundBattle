@@ -1,0 +1,62 @@
+   Compiling hegemony-server v0.1.0 (/workspace/UndergroundBattle/rust-game)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 7.97s
+     Running unittests src/lib.rs (/workspace/.rust/targets/two-cards-local/debug/deps/hegemony_server-fa35e11fc7b74bf5)
+
+running 6 tests
+test engine::tests::control_pair_lawyer_can_decline_and_without_another_friend_has_no_trigger_choice ... ok
+test engine::tests::control_pair_gate_revalidates_after_response_hide_without_refunding_payment ... ok
+test engine::tests::control_pair_gate_pays_two_returns_to_owner_and_recycles_normal_attachment ... ok
+test engine::tests::control_pair_lawyer_revalidates_after_enemy_response_without_rehiding_new_instance ... ok
+test engine::tests::control_pair_gate_requires_a_visible_character_with_any_magic_domain ... ok
+test engine::tests::control_pair_lawyer_is_public_and_hides_another_friendly_controller_anywhere ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 76 filtered out; finished in 0.02s
+
+     Running unittests src/bin/hegemony-audit.rs (/workspace/.rust/targets/two-cards-local/debug/deps/hegemony_audit-727fcd1b8b1c2c82)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (/workspace/.rust/targets/two-cards-local/debug/deps/hegemony_server-c2980c807bbe738b)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/attachment_service.rs (/workspace/.rust/targets/two-cards-local/debug/deps/attachment_service-d5f09b69bdc5e9df)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 3 filtered out; finished in 0.00s
+
+     Running tests/deck_construction.rs (/workspace/.rust/targets/two-cards-local/debug/deps/deck_construction-2e9a2ff733d3c11c)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 5 filtered out; finished in 0.00s
+
+     Running tests/jc059_friendly.rs (/workspace/.rust/targets/two-cards-local/debug/deps/jc059_friendly-c39e189174bd49d1)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 2 filtered out; finished in 0.00s
+
+     Running tests/room_pacing.rs (/workspace/.rust/targets/two-cards-local/debug/deps/room_pacing-6f72ea6f3fbc6277)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 6 filtered out; finished in 0.00s
+
+     Running tests/service.rs (/workspace/.rust/targets/two-cards-local/debug/deps/service-9ac54c6562eabe36)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 10 filtered out; finished in 0.00s
+
+     Running tests/session_service.rs (/workspace/.rust/targets/two-cards-local/debug/deps/session_service-165094a247f97aac)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 6 filtered out; finished in 0.00s
+

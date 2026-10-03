@@ -1,0 +1,106 @@
+   Compiling hegemony-server v0.1.0 (/workspace/UndergroundBattle/rust-game)
+   Compiling hegemony-wasm v0.1.0 (/workspace/UndergroundBattle/rust-game-wasm)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 14.99s
+     Running unittests src/lib.rs (/workspace/.rust/targets/two-cards-local/debug/deps/hegemony_server-1dda351edd28690f)
+
+running 82 tests
+test attachment::tests::actual_hide_recycles_to_owner_new_private_identity_without_response_or_hidden_attachment ... ok
+test attachment::tests::invalid_host_type_destroys_instead_of_recycling_and_world_hide_uses_shared_cleanup ... ok
+test attachment::tests::ordinary_move_preserves_equipment_but_host_departure_and_attachment_destruction_differ ... ok
+test attachment::tests::multiple_equipment_stacks_only_on_host_and_exhausted_host_contributes_zero ... ok
+test engine::tests::all_transaction_effects_and_recursion_death_choice ... ok
+test attachment::tests::attachment_missing_host_after_murder_response_buries_single_card_without_refund ... ok
+test engine::tests::assassin_reveal_can_decline_or_have_no_target_and_keeps_exhaustion ... ok
+test engine::tests::assassin_paid_hide_preserves_exhaustion_and_returns_attachment_to_its_owner ... ok
+test engine::tests::assassin_reveal_target_that_hides_in_response_is_not_destroyed_or_repaid ... ok
+test attachment::tests::attachment_targets_public_humans_or_vampires_any_team_any_region_and_pays_atomically ... ok
+test engine::tests::assassin_reveal_uses_printed_cost_guard_for_all_four_owners_in_its_region ... ok
+test engine::tests::board_move_primitive_preserves_entity_without_enter_or_unique_events ... ok
+test engine::tests::assassin_self_hide_uses_controller_payment_and_privacy_after_control_transfer ... ok
+test engine::tests::bottom_to_hand_insufficient_cards_does_not_draw_or_eliminate_and_pays_controlled_cost ... ok
+test engine::tests::catalog_is_restricted_real_complete_and_decks_are_legal ... FAILED
+test engine::tests::combat_difference_kill_guard_simultaneous_damage_and_barrier ... ok
+test engine::tests::assassin_self_hide_responds_to_its_trigger_without_cancelling_the_paid_frame ... ok
+test engine::tests::control_pair_gate_pays_two_returns_to_owner_and_recycles_normal_attachment ... ok
+test engine::tests::control_pair_gate_revalidates_after_response_hide_without_refunding_payment ... ok
+test engine::tests::control_pair_lawyer_can_decline_and_without_another_friend_has_no_trigger_choice ... ok
+test attachment::tests::won_region_batches_cross_owner_equipment_and_preserves_aura_until_every_order_is_saved ... ok
+test engine::tests::detective_only_reveal_triggers_once_can_decline_and_handles_exhausted_or_no_target ... ok
+test engine::tests::control_pair_lawyer_revalidates_after_enemy_response_without_rehiding_new_instance ... ok
+test engine::tests::control_pair_gate_requires_a_visible_character_with_any_magic_domain ... ok
+test engine::tests::detective_target_reveal_cancels_without_refund_but_source_death_keeps_effect ... ok
+test engine::tests::disciple_reduction_on_empty_stack_is_immediate_and_restores_without_repayment ... ok
+test engine::tests::control_pair_lawyer_is_public_and_hides_another_friendly_controller_anywhere ... ok
+test engine::tests::each_start_phase_draws_exactly_one_per_living_player ... ok
+test engine::tests::distance_public_restriction_and_rejected_command_are_noop ... ok
+test engine::tests::funeral_target_recovered_in_response_cancels_draw_without_refunding_cost ... ok
+test engine::tests::heal_entry_angru_and_witch_card_abilities ... ok
+test engine::tests::effect_sacrifice_private_choice_restores_accepted_guard_and_current_control ... ok
+test engine::tests::icon_difference_investigation_sorts_then_draws_one ... ok
+test engine::tests::hidden_information_projection_and_reveal_identity ... ok
+test engine::tests::influence_difference_cancels_enemy_and_privilege_requires_contribution ... ok
+test engine::tests::invalid_additional_sacrifice_rolls_back_assets_modifier_and_every_state_field ... ok
+test engine::tests::local_targets_revalidate_and_events_enter_graveyard_after_effect ... ok
+test engine::tests::immediate_policy_keeps_cost_death_trigger_responsive_and_choice_resumable ... ok
+test engine::tests::mobility_adjacent_only_and_preserves_entity ... ok
+test engine::tests::detective_targets_all_sides_same_region_without_private_leaks_or_hidden_death ... ok
+test engine::tests::mobility_first_team_resolves_before_rear_team_and_responses_resolve_lifo ... ok
+test engine::tests::next_batch_owl_equipment_host_predicate_blocks_without_blocking_other_targets ... ok
+test engine::tests::next_batch_skeleton_cannot_deploy_without_loyalty_and_hidden_deploy_does_not_trigger ... ok
+test engine::tests::murder_response_sacrifices_disciple_as_cost_and_independent_reduction_resolves ... ok
+test engine::tests::next_batch_skeleton_deploy_pays_four_and_enter_targets_all_sides_in_same_region ... ok
+test engine::tests::normal_hide_resolution_projects_concealed_print_to_controller_instead_of_owner ... ok
+test engine::tests::next_batch_owl_uses_controller_mind_two_and_temporary_icons_only ... ok
+test engine::tests::next_batch_skeleton_trigger_can_decline_and_revalidates_after_target_or_source_hides ... ok
+test engine::tests::police_security_and_chase_apply_printed_rules ... ok
+test engine::tests::response_hide_and_reveal_reenters_with_new_identity_old_spell_cannot_hit ... ok
+test engine::tests::sacrifice_defense_aura_immediately_kills_zero_defense_character_at_stable_point ... ok
+test engine::tests::simultaneous_death_triggers_are_declared_first_team_then_rear_team ... ok
+test engine::tests::source_leaves_after_angru_trigger_target_exhaust_still_resolves ... ok
+test engine::tests::reduction_only_face_up_play_matches_society_or_blood_loyalty_and_expires ... ok
+test engine::tests::surgeon_is_public_and_heal_pays_two_assets_and_exhausts_source_atomically ... ok
+test engine::tests::team_elimination_removes_owned_zones_and_stack_but_preserves_score ... ok
+test engine::tests::teams_both_teammates_can_respond_and_reduction_belongs_to_fixed_actor ... ok
+test engine::tests::teams_require_all_passes_and_own_action_resets_pass_records ... ok
+test engine::tests::watchers_target_category_locks_and_shield_terminates ... ok
+test engine::tests::won_region_returns_cards_ordered_and_retreat_hand_no_death ... ok
+test engine::tests::unique_mandatory_sacrifice_and_world_effects ... ok
+test play_sources::tests::conditional_icons_use_controllers_assets_and_team_markers_with_first_team_and_posture ... ok
+test play_sources::tests::grave_play_pays_normal_cost_once_and_persists_its_origin_until_face_up_entry ... ok
+test engine::tests::private_forecast_and_damage_choices_roundtrip_without_leaking ... ok
+test play_sources::tests::teams_do_not_share_personal_domains_and_moved_characters_query_their_current_region ... ok
+test rules::tests::invalid_mode_targets_and_nested_iteration_are_rejected_before_registration ... ok
+test rules::tests::invalid_multi_target_ability_is_rejected_before_registration ... ok
+test world::tests::base_world_rejects_duplicate_fillers_missing_cards_and_unregistered_regions ... ok
+test play_sources::tests::late_confrontation_grave_entry_waits_for_a_standard_action_window ... ok
+test play_sources::tests::grave_sources_reject_conceal_asset_unpermitted_foreign_loyalty_cost_and_phase_atomically ... ok
+test world::tests::duel_and_teams_start_with_ten_distinct_physical_regions_across_seeds ... ok
+test world::tests::florence_can_decline_and_does_not_change_ordinary_reveal_loyalty ... ok
+test world::tests::hong_kong_exact_binding_is_attachment_only_and_empty_search_does_not_draw ... ok
+test world::tests::kyoto_hides_only_nonhuman_face_up_characters_and_preserves_exhaustion ... ok
+test world::tests::dead_city_retains_chosen_region_and_each_players_graveyard_choice_after_restore ... ok
+test world::tests::london_mixes_existing_hidden_with_newly_hidden_per_controller_and_region_deterministically ... ok
+test world::tests::florence_rotates_independent_players_and_free_reveal_ignores_loyalty_under_adopted_faq ... ok
+test world::tests::simultaneous_search_keeps_commitments_private_and_decks_unchanged_until_all_players_choose ... ok
+test world::tests::world_values_match_the_ten_printed_originals ... ok
+test world::tests::printed_zero_cost_needs_no_assets_but_keeps_standard_timing_and_team_distance ... ok
+test world::tests::moscow_resumes_seat_order_and_uses_the_pre_sacrifice_defense_snapshot ... ok
+test engine::tests::deterministic_complete_duel_and_team_games_and_restart ... ok
+
+failures:
+
+---- engine::tests::catalog_is_restricted_real_complete_and_decks_are_legal stdout ----
+
+thread 'engine::tests::catalog_is_restricted_real_complete_and_decks_are_legal' panicked at rust-game/src/engine.rs:2353:9:
+assertion `left == right` failed
+  left: 34
+ right: 32
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    engine::tests::catalog_is_restricted_real_complete_and_decks_are_legal
+
+test result: FAILED. 81 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 17.00s
+
+error: test failed, to rerun pass `-p hegemony-server --lib`

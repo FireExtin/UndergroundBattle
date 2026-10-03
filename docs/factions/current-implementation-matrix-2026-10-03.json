@@ -5,10 +5,10 @@
     "resource/ymsj-fun.github.io/cards/cards.json": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
     "docs/factions/card-specifications.json": "43a5598e37432fc6febc3332715356849379ca6d433d0a6e5d5399efad255cb6",
     "rust-game/data/card-research-index.json": "8ebc08d35c4891051cd47dc611eb80462abaeb6325a4f5fc3b06f8ce364384cf",
-    "rust-game/data/cards.json": "62e5b8f967a3f1ee5fbae3ab22924ad39d3b1b7317aca050144af77f65e379fe",
-    "rust-game/src/rules.rs": "a131837a10fe99aa955a5b2d48f5651642f461f31ad6f4c4f2add5331f20b521",
+    "rust-game/data/cards.json": "416106c9de27ae288550b0b3f64ad9b5ea40327dc9bee37c8941c05f5d33a8db",
+    "rust-game/src/rules.rs": "61ea19fb911a28c0dc1335d71371372df834c421db5789d658a78b783df78bb3",
     "rust-game/src/catalog.rs": "8d097e72da27c084acbce20d5464024ed25c669c1e063c18aff1b6f3d63c5e47",
-    "rust-game/src/attachment.rs": "b2a4601376f57ece7bc25d575d8003cdaea4c93a77f3ba7d240f10d06741c8e3",
+    "rust-game/src/attachment.rs": "aa6fa58bcaea26bfe45201dfe9100ff7feb8664e946efc7db127e7fa1e7049b7",
     "rust-game/src/play_sources.rs": "f1a80f2f4d34e2b4c61336b176e180dbca7551fbd82e752d3c80757418638dfd",
     "rust-game/src/world.rs": "84f3670bf2f24fdd9c9c8f3e18eccc8ca88bf809598baa0cbc0ebe808570eef1"
   },
@@ -24,12 +24,12 @@
     "sourceComplete": 678,
     "sourceBlocked": 5,
     "sourceMissing": 1,
-    "runtimeDefinitions": 42,
-    "runtimeNonRegions": 32,
+    "runtimeDefinitions": 44,
+    "runtimeNonRegions": 34,
     "cardStatus": {
-      "implementedBounded": 40,
+      "implementedBounded": 42,
       "partial": 0,
-      "unimplemented": 532,
+      "unimplemented": 530,
       "needsRuling": 112
     },
     "mechanismStatus": {
@@ -87,7 +87,9 @@
     "JC085",
     "JC088",
     "JC001",
-    "BQ083"
+    "BQ083",
+    "JC006",
+    "XQ16"
   ],
   "cards": [
     {
@@ -6198,10 +6200,10 @@
       "sourceStatus": "completeGameplayFieldsForPinnedImage",
       "imagePath": "resource/ymsj-fun.github.io/cards/JC006 逆转异界之门.jpg",
       "imageSha256": "beec2b1d758e0186cdc4cb57e7c52d6e8df2a4623564e5f212b3d878abb91bf4",
-      "status": "unimplemented",
-      "inCurrentCatalog": false,
-      "serverSelectionEnabled": false,
-      "finiteEngineBehavior": "absent",
+      "status": "implementedBounded",
+      "inCurrentCatalog": true,
+      "serverSelectionEnabled": true,
+      "finiteEngineBehavior": "completeForCurrentBoundedDefinition",
       "openQuestions": [],
       "closedVersionQuestion": null,
       "independentAcceptance": "notEstablishedByThisMatrix",
@@ -6212,7 +6214,8 @@
         "priority"
       ],
       "evidence": [
-        "docs/factions/card-specifications.json"
+        "rust-game/data/cards.json",
+        "rust-game/src/rules.rs"
       ]
     },
     {
@@ -20230,10 +20233,10 @@
       "sourceStatus": "completeGameplayFieldsForPinnedImage",
       "imagePath": "resource/ymsj-fun.github.io/cards/XQ16 法务部律师团.jpg",
       "imageSha256": "2ae947c0c5dccd45ae495d3c828ce9b4e1453c34dfb6e24c5e61eea8338cff80",
-      "status": "unimplemented",
-      "inCurrentCatalog": false,
-      "serverSelectionEnabled": false,
-      "finiteEngineBehavior": "absent",
+      "status": "implementedBounded",
+      "inCurrentCatalog": true,
+      "serverSelectionEnabled": true,
+      "finiteEngineBehavior": "completeForCurrentBoundedDefinition",
       "openQuestions": [],
       "closedVersionQuestion": null,
       "independentAcceptance": "notEstablishedByThisMatrix",
@@ -20247,7 +20250,8 @@
         "priority"
       ],
       "evidence": [
-        "docs/factions/card-specifications.json"
+        "rust-game/data/cards.json",
+        "rust-game/src/rules.rs"
       ]
     },
     {

@@ -2281,6 +2281,8 @@ mod tests {
             subtypes_any: vec![],
             printed_cost_max: None,
             equipment_host: false,
+            requires_magic: false,
+            exclude_source: false,
             min: 1,
             max: 1,
         };
@@ -2334,7 +2336,7 @@ mod tests {
     #[test]
     fn catalog_is_restricted_real_complete_and_decks_are_legal() {
         let c = catalog::catalog();
-        assert_eq!(c.cards.len(), 42);
+        assert_eq!(c.cards.len(), 44);
         let active = c
             .cards
             .iter()
@@ -2348,7 +2350,7 @@ mod tests {
                 .collect::<BTreeSet<_>>()
         );
         assert!(active.contains("DQJC116"));
-        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 32);
+        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 34);
         assert_eq!(c.decks.len(), 5);
         for deck in &c.decks {
             assert_eq!(deck.card_count, 50);
@@ -2698,6 +2700,358 @@ mod tests {
                     .any(|c| c.definition == "JC125" && c.face_down));
             }
         }
+    }
+
+    #[test]
+    fn control_pair_gate_requires_a_visible_character_with_any_magic_domain() {
+        assert_eq!(card("JC006").cost, 2);
+        assert_eq!(card("JC006").loyalty, vec!["黄色"]);
+        assert_eq!(card("JC006").subtypes, vec!["法术", "异界"]);
+        assert_eq!(card("JC006").magic_icon, rules::MagicIcon::Mind);
+        let mut g = game("teams");
+        let source = hand(&mut g, "JC006", 0);
+        resource(&mut g, 0, "JC003", 2);
+        let accepted = [
+            board(&mut g, "JC001", 0, 0),
+            board(&mut g, "JC002", 1, 1),
+            board(&mut g, "JC085", 2, 2),
+            board(&mut g, "BQ083", 3, 4),
+        ];
+        g.board_mut(&accepted[0]).unwrap().exhausted = true;
+        let plain = board(&mut g, "JC125", 2, 3);
+        let hidden = board(&mut g, "JC001", 1, 4);
+        g.board_mut(&hidden).unwrap().face_down = true;
+        let equipment = g.make_card("BQ022", 2);
+        let equipment_id = equipment.id.clone();
+        g.attachments.push(Attachment {
+            card: equipment,
+            host_id: accepted[1].clone(),
+        });
+        let targets = g
+            .view(0)
+            .legal_actions
+            .iter()
+            .filter(|a| {
+                a.action.kind == "play" && a.action.card_id.as_deref() == Some(source.as_str())
+            })
+            .filter_map(|a| a.action.target_id.clone())
+            .collect::<BTreeSet<_>>();
+        assert_eq!(targets, accepted.iter().cloned().collect());
+        for target in [plain, hidden, equipment_id] {
+            let before = serde_json::to_string(&g).unwrap();
+            assert!(g
+                .apply(
+                    0,
+                    Action {
+                        card_id: Some(source.clone()),
+                        target_id: Some(target),
+                        ..Action::new("play")
+                    }
+                )
+                .is_err());
+            assert_eq!(serde_json::to_string(&g).unwrap(), before);
+        }
+    }
+    #[test]
+    fn control_pair_gate_pays_two_returns_to_owner_and_recycles_normal_attachment() {
+        let mut g = game("teams");
+        let source = hand(&mut g, "JC006", 0);
+        let host = board(&mut g, "JC002", 2, 4);
+        g.board_mut(&host).unwrap().controller = 0;
+        let equipment = g.make_card("BQ022", 3);
+        let equipment_id = equipment.id.clone();
+        g.attachments.push(Attachment {
+            card: equipment,
+            host_id: host.clone(),
+        });
+        assert!(g.attachment_host_valid(&g.attachments[0]));
+        resource(&mut g, 0, "JC085", 2);
+        let before = serde_json::to_string(&g).unwrap();
+        assert!(g
+            .apply(
+                0,
+                Action {
+                    card_id: Some(source.clone()),
+                    target_id: Some(host.clone()),
+                    ..Action::new("play")
+                }
+            )
+            .unwrap_err()
+            .contains("忠诚"));
+        assert_eq!(serde_json::to_string(&g).unwrap(), before);
+        resource(&mut g, 0, "JC003", 2);
+        g.apply(
+            0,
+            Action {
+                card_id: Some(source),
+                target_id: Some(host.clone()),
+                ..Action::new("play")
+            },
+        )
+        .unwrap();
+        assert_eq!(g.resources(0), 2);
+        assert!(g.board(&host).is_some());
+        let mut g: Game = serde_json::from_str(&serde_json::to_string(&g).unwrap()).unwrap();
+        pass_stack(&mut g);
+        assert!(g.board(&host).is_none() && g.attachments.is_empty());
+        let returned = g.players[2].hand.last().unwrap();
+        assert_eq!(
+            (
+                returned.definition.as_str(),
+                returned.owner,
+                returned.controller
+            ),
+            ("JC002", 2, 2)
+        );
+        assert_ne!(returned.id, host);
+        let recycled = g.players[3].hand.last().unwrap();
+        assert_eq!(
+            (
+                recycled.definition.as_str(),
+                recycled.owner,
+                recycled.controller
+            ),
+            ("BQ022", 3, 3)
+        );
+        assert_ne!(recycled.id, equipment_id);
+        assert_eq!(g.players[0].graveyard.last().unwrap().definition, "JC006");
+        assert_eq!(g.resources(0), 2);
+    }
+    #[test]
+    fn control_pair_gate_revalidates_after_response_hide_without_refunding_payment() {
+        let mut g = game("duel");
+        let target = board(&mut g, "JC001", 1, 0);
+        let gate = hand(&mut g, "JC006", 0);
+        let chase = hand(&mut g, "JC063", 1);
+        resource(&mut g, 0, "JC003", 2);
+        resource(&mut g, 1, "JC063", 2);
+        g.apply(
+            0,
+            Action {
+                card_id: Some(gate),
+                target_id: Some(target.clone()),
+                ..Action::new("play")
+            },
+        )
+        .unwrap();
+        g.apply(0, Action::new("pass")).unwrap();
+        g.apply(
+            1,
+            Action {
+                card_id: Some(chase),
+                target_id: Some(target.clone()),
+                option: Some("hide".into()),
+                ..Action::new("play")
+            },
+        )
+        .unwrap();
+        let mut g: Game = serde_json::from_str(&serde_json::to_string(&g).unwrap()).unwrap();
+        pass_stack(&mut g);
+        assert!(g.board(&target).is_none());
+        let hidden = g.regions[0]
+            .cards
+            .iter()
+            .find(|c| c.definition == "JC001")
+            .unwrap();
+        assert!(hidden.face_down && hidden.id != target);
+        assert!(!g.players[1].hand.iter().any(|c| c.definition == "JC001"));
+        assert_eq!(g.resources(0), 0);
+        assert_eq!(g.players[0].graveyard.last().unwrap().definition, "JC006");
+    }
+    #[test]
+    fn control_pair_lawyer_is_public_and_hides_another_friendly_controller_anywhere() {
+        assert_eq!(card("XQ16").cost, 2);
+        assert_eq!(card("XQ16").loyalty, vec!["蓝色"]);
+        assert_eq!(card("XQ16").subtypes, vec!["人类", "律师"]);
+        assert_eq!(card("XQ16").magic_icon, rules::MagicIcon::None);
+        assert_eq!(card("XQ16").permanent_icons.influence, 1);
+        let mut g = game("teams");
+        let source = hand(&mut g, "XQ16", 0);
+        let own = board(&mut g, "JC088", 0, 2);
+        let ally = board(&mut g, "JC001", 2, 4);
+        g.board_mut(&ally).unwrap().controller = 1;
+        let enemy = board(&mut g, "JC085", 0, 1);
+        g.board_mut(&enemy).unwrap().controller = 2;
+        let public_ally = board(&mut g, "LC21", 1, 3);
+        let hidden = board(&mut g, "JC125", 1, 0);
+        g.board_mut(&hidden).unwrap().face_down = true;
+        resource(&mut g, 0, "XQ16", 2);
+        let before = serde_json::to_string(&g).unwrap();
+        assert!(g
+            .apply(
+                0,
+                Action {
+                    card_id: Some(source.clone()),
+                    region: Some(0),
+                    ..Action::new("conceal")
+                }
+            )
+            .is_err());
+        assert_eq!(serde_json::to_string(&g).unwrap(), before);
+        g.apply(
+            0,
+            Action {
+                card_id: Some(source.clone()),
+                region: Some(0),
+                ..Action::new("deploy")
+            },
+        )
+        .unwrap();
+        assert_eq!(g.resources(0), 0);
+        pass_stack(&mut g);
+        let new_source = g.regions[0]
+            .cards
+            .iter()
+            .find(|c| c.definition == "XQ16")
+            .unwrap()
+            .id
+            .clone();
+        assert_ne!(source, new_source);
+        let pending = g.pending.clone().unwrap();
+        let targets = pending
+            .choice
+            .options
+            .iter()
+            .map(|o| o.id.clone())
+            .collect::<BTreeSet<_>>();
+        assert_eq!(
+            targets,
+            [own, ally.clone(), public_ally.clone()]
+                .into_iter()
+                .collect()
+        );
+        for target in [new_source.clone(), enemy, hidden] {
+            let before = serde_json::to_string(&g).unwrap();
+            assert!(g
+                .apply(
+                    0,
+                    Action {
+                        choice_id: Some(pending.choice.id.clone()),
+                        selected: Some(vec![target]),
+                        ..Action::new("choose")
+                    }
+                )
+                .is_err());
+            assert_eq!(serde_json::to_string(&g).unwrap(), before);
+        }
+        // Public forbids secret deployment; a legal effect may still hide it.
+        let mut public_branch = g.clone();
+        select(&mut public_branch, vec![public_ally.clone()]);
+        pass_stack(&mut public_branch);
+        assert!(public_branch.board(&public_ally).is_none());
+        assert!(public_branch.regions[3]
+            .cards
+            .iter()
+            .any(|c| c.definition == "LC21" && c.face_down));
+        select(&mut g, vec![ally.clone()]);
+        assert!(g.board(&ally).is_some());
+        let mut g: Game = serde_json::from_str(&serde_json::to_string(&g).unwrap()).unwrap();
+        pass_stack(&mut g);
+        assert!(g.board(&ally).is_none());
+        let fresh = g.regions[4]
+            .cards
+            .iter()
+            .find(|c| c.definition == "JC001")
+            .unwrap();
+        assert!(fresh.face_down && fresh.id != ally);
+        assert_eq!((fresh.owner, fresh.controller), (2, 1));
+        for viewer in 0..4 {
+            let view = g.view(viewer);
+            let c = view.regions[4]
+                .characters
+                .iter()
+                .find(|c| c.instance_id == fresh.id)
+                .unwrap();
+            assert_eq!(
+                c.card_id.as_deref(),
+                if viewer == 1 { Some("JC001") } else { None }
+            );
+        }
+        assert!(g.board(&new_source).is_some());
+    }
+    #[test]
+    fn control_pair_lawyer_can_decline_and_without_another_friend_has_no_trigger_choice() {
+        for with_friend in [false, true] {
+            let mut g = game("duel");
+            let enemy = board(&mut g, "JC001", 1, 0);
+            let friend = with_friend.then(|| board(&mut g, "JC125", 0, 1));
+            let source = hand(&mut g, "XQ16", 0);
+            resource(&mut g, 0, "XQ16", 2);
+            g.apply(
+                0,
+                Action {
+                    card_id: Some(source),
+                    region: Some(0),
+                    ..Action::new("deploy")
+                },
+            )
+            .unwrap();
+            pass_stack(&mut g);
+            if with_friend {
+                select(&mut g, vec![]);
+            }
+            assert!(g.pending.is_none() && g.stack.is_empty());
+            assert!(g.board(&enemy).is_some());
+            if let Some(friend) = friend {
+                assert!(!g.board(&friend).unwrap().1.face_down);
+            }
+            assert_eq!(g.resources(0), 0);
+        }
+    }
+    #[test]
+    fn control_pair_lawyer_revalidates_after_enemy_response_without_rehiding_new_instance() {
+        let mut g = game("teams");
+        let target = board(&mut g, "JC001", 1, 4);
+        let lawyer = hand(&mut g, "XQ16", 0);
+        let chase = hand(&mut g, "JC063", 2);
+        resource(&mut g, 0, "XQ16", 2);
+        resource(&mut g, 2, "JC063", 2);
+        g.apply(
+            0,
+            Action {
+                card_id: Some(lawyer),
+                region: Some(0),
+                ..Action::new("deploy")
+            },
+        )
+        .unwrap();
+        pass_stack(&mut g);
+        select(&mut g, vec![target.clone()]);
+        for seat in [0, 1] {
+            g.apply(seat, Action::new("pass")).unwrap();
+        }
+        g.apply(
+            2,
+            Action {
+                card_id: Some(chase),
+                target_id: Some(target.clone()),
+                option: Some("hide".into()),
+                ..Action::new("play")
+            },
+        )
+        .unwrap();
+        // Resolve only the response, then retain the old target guard in a saved frame.
+        while g.stack.len() > 1 {
+            let seat = g
+                .living(g.priority_team)
+                .into_iter()
+                .find(|s| !g.passed.contains(s))
+                .unwrap();
+            g.apply(seat, Action::new("pass")).unwrap();
+        }
+        let fresh = g.regions[4]
+            .cards
+            .iter()
+            .find(|c| c.definition == "JC001")
+            .unwrap()
+            .id
+            .clone();
+        assert_ne!(fresh, target);
+        let mut g: Game = serde_json::from_str(&serde_json::to_string(&g).unwrap()).unwrap();
+        pass_stack(&mut g);
+        assert_eq!(g.regions[4].cards[0].id, fresh);
+        assert!(g.regions[4].cards[0].face_down);
+        assert_eq!(g.resources(0), 0);
     }
 
     #[test]

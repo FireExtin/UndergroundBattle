@@ -37,6 +37,7 @@ impl Game {
                     Relation::Any => true,
                     Relation::ControlledByActor => c.controller == frame.actor,
                     Relation::OwnedByActor => c.owner == frame.actor,
+                    Relation::FriendlyTeam => !self.is_enemy(frame.actor, c),
                     Relation::EnemyTeam => self.is_enemy(frame.actor, c),
                 };
                 kind && relation
@@ -473,9 +474,13 @@ impl Game {
                         Relation::Any => true,
                         Relation::ControlledByActor => c.controller == actor,
                         Relation::OwnedByActor => c.owner == actor,
+                        Relation::FriendlyTeam => !self.is_enemy(actor, c),
                         Relation::EnemyTeam => self.is_enemy(actor, c),
                     };
                     kind && relation
+                        && (!spec.requires_magic
+                            || (!c.face_down && d.magic_icon != MagicIcon::None))
+                        && (!spec.exclude_source || c.id != source.card.id)
                         && (!spec.equipment_host
                             || !rules::definition(&c.definition).traits.cannot_be_equipped)
                         && spec

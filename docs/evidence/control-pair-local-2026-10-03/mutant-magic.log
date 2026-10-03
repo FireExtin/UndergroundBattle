@@ -1,0 +1,24 @@
+   Compiling hegemony-server v0.1.0 (/workspace/.private-validation/control-pair-mutants-20261003/magic/rust-game)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 8.30s
+     Running unittests src/lib.rs (/workspace/.rust/targets/control-pair-mutant-magic/debug/deps/hegemony_server-974b000ea7fe75a3)
+
+running 1 test
+test engine::tests::control_pair_gate_requires_a_visible_character_with_any_magic_domain ... FAILED
+
+failures:
+
+---- engine::tests::control_pair_gate_requires_a_visible_character_with_any_magic_domain stdout ----
+
+thread 'engine::tests::control_pair_gate_requires_a_visible_character_with_any_magic_domain' panicked at rust-game/src/engine.rs:2739:9:
+assertion `left == right` failed
+  left: {"i242", "i243", "i244", "i245", "i246"}
+ right: {"i242", "i243", "i244", "i245"}
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    engine::tests::control_pair_gate_requires_a_visible_character_with_any_magic_domain
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 81 filtered out; finished in 0.01s
+
+error: test failed, to rerun pass `-p hegemony-server --lib`

@@ -1,0 +1,31 @@
+
+> build
+> node scripts/build.mjs
+
+
+> undergroundbattle-web@0.1.0 build
+> tsc --noEmit -p tsconfig.app.json && tsc --noEmit -p tsconfig.node.json && vite build
+
+vite v8.0.3 building client environment for production...
+[2Ktransforming...✓ 52 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.47 kB │ gzip:  0.34 kB
+dist/assets/index-z77gM5Ok.css   91.37 kB │ gzip: 18.29 kB
+dist/assets/index-BfdJVuG0.js   301.16 kB │ gzip: 93.22 kB
+
+✓ built in 265ms
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mProxy environment variables detected. We'll use your proxy for fetch requests.[0m
+
+
+
+ ⛅️ wrangler 4.146.0
+────────────────────
+✨ Read 50 files from the assets directory /workspace/UndergroundBattle/sites/public
+Total Upload: 10426.51 KiB / gzip: 2928.11 KiB
+Your Worker has access to the following bindings:
+Binding                    Resource         
+env.DB (hegemony)          D1 Database      
+env.ASSETS                 Assets           
+
+--dry-run: exiting now.

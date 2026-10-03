@@ -51,6 +51,7 @@ pub enum Relation {
     Any,
     ControlledByActor,
     OwnedByActor,
+    FriendlyTeam,
     EnemyTeam,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
@@ -72,6 +73,10 @@ pub struct TargetSlotSpec {
     pub printed_cost_max: Option<u32>,
     #[serde(default)]
     pub equipment_host: bool,
+    #[serde(default)]
+    pub requires_magic: bool,
+    #[serde(default)]
+    pub exclude_source: bool,
     pub min: usize,
     pub max: usize,
 }
@@ -352,6 +357,8 @@ fn target(zone: Zone, kind: EntityKind, relation: Relation, range: Range) -> Tar
         subtypes_any: vec![],
         printed_cost_max: None,
         equipment_host: false,
+        requires_magic: false,
+        exclude_source: false,
         min: 1,
         max: 1,
     }
@@ -421,6 +428,46 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
             Range::Anywhere,
         );
         let mut m = BTreeMap::new();
+        let mut magic_character = character.clone();
+        magic_character.requires_magic = true;
+        m.insert(
+            "JC006".into(),
+            with_abilities(vec![ability(
+                "return-magic",
+                "快速行动",
+                Timing::Fast,
+                vec![],
+                vec![magic_character],
+                vec![Op::Move(Target(0), Destination::OwnerHand)],
+                None,
+            )]),
+        );
+        let mut another_friend = target(
+            Zone::Board,
+            EntityKind::Character,
+            Relation::FriendlyTeam,
+            Range::Anywhere,
+        );
+        another_friend.exclude_source = true;
+        m.insert(
+            "XQ16".into(),
+            Definition {
+                traits: Traits {
+                    public: true,
+                    ..Default::default()
+                },
+                abilities: vec![ability(
+                    "hide-friend-entry",
+                    "进场触发",
+                    Timing::Fast,
+                    vec![],
+                    vec![another_friend],
+                    vec![Op::Hide(Target(0))],
+                    Some(Event::Enter),
+                )],
+                ..Default::default()
+            },
+        );
         m.insert(
             "JC084".into(),
             Definition {

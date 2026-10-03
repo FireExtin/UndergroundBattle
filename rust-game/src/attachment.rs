@@ -88,6 +88,7 @@ impl Game {
             Relation::Any => true,
             Relation::ControlledByActor => host.controller == attachment.card.controller,
             Relation::OwnedByActor => host.owner == attachment.card.controller,
+            Relation::FriendlyTeam => !self.is_enemy(attachment.card.controller, host),
             Relation::EnemyTeam => self.is_enemy(attachment.card.controller, host),
         };
         kind && relation

@@ -1,0 +1,8 @@
+   Compiling hegemony-server v0.1.0 (/workspace/UndergroundBattle/rust-game)
+   Compiling hegemony-wasm v0.1.0 (/workspace/UndergroundBattle/rust-game-wasm)
+    Finished `release` profile [optimized] target(s) in 10.15s
+   Compiling hegemony-server v0.1.0 (/workspace/UndergroundBattle/rust-game)
+   Compiling hegemony-wasm v0.1.0 (/workspace/UndergroundBattle/rust-game-wasm)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 4.93s
+     Running `/workspace/.rust/targets/two-cards-local/debug/examples/native_fixtures /tmp/hegemony-wasm-fixture.xgCtxA.json`
+{"ok":true,"wasmBytes":1610821,"transitions":639,"projections":2081,"quotes":1,"rejectedCommands":6,"choiceKinds":["investigation","mulligan","region_return","search","target","trigger"],"slowestFixtureStepMs":13.29,"opaqueState":true,"maximumU64SeedExact":true,"nativeWasmStateAndViewsMatch":true}

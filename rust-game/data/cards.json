@@ -1613,6 +1613,86 @@
       },
       "unique": false,
       "society": ""
+    },
+    {
+      "id": "JC006",
+      "name": "逆转异界之门",
+      "kind": "spell",
+      "subtypes": [
+        "法术",
+        "异界"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "黄色"
+      ],
+      "loyaltyText": "黄色",
+      "color": "黄",
+      "magic": "心灵",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "【快速行动】将目标具有魔法领域图标的角色移回其拥有者手上。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JC006",
+        "image": "resource/ymsj-fun.github.io/cards/JC006 逆转异界之门.jpg",
+        "sha256": "beec2b1d758e0186cdc4cb57e7c52d6e8df2a4623564e5f212b3d878abb91bf4"
+      },
+      "unique": false,
+      "society": "帷幕守望"
+    },
+    {
+      "id": "XQ16",
+      "name": "法务部律师团",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "律师"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "蓝色"
+      ],
+      "loyaltyText": "蓝色",
+      "color": "蓝",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "公开\n【进场触发】将另一个目标本方角色翻面为暗藏者。",
+      "keywords": [
+        "公开"
+      ],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "XQ16",
+        "image": "resource/ymsj-fun.github.io/cards/XQ16 法务部律师团.jpg",
+        "sha256": "2ae947c0c5dccd45ae495d3c828ce9b4e1453c34dfb6e24c5e61eea8338cff80"
+      },
+      "unique": false,
+      "society": "王座会"
     }
   ],
   "decks": [

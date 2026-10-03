@@ -208,5 +208,15 @@
     "url": "/cards/BQ083.jpg",
     "source": "resource/ymsj-fun.github.io/cards/BQ083 索命骷髅.jpg",
     "sha256": "619db97c8309d903e3781448c6ad35db91bb5f2e4b5660b6e0eef65fcbd6e675"
+  },
+  "JC006": {
+    "url": "/cards/JC006.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC006 逆转异界之门.jpg",
+    "sha256": "beec2b1d758e0186cdc4cb57e7c52d6e8df2a4623564e5f212b3d878abb91bf4"
+  },
+  "XQ16": {
+    "url": "/cards/XQ16.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/XQ16 法务部律师团.jpg",
+    "sha256": "2ae947c0c5dccd45ae495d3c828ce9b4e1453c34dfb6e24c5e61eea8338cff80"
   }
 }

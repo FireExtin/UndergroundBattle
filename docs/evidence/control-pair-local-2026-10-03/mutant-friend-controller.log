@@ -1,0 +1,26 @@
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+   Compiling hegemony-server v0.1.0 (/workspace/.private-validation/control-pair-mutants-20261003/friend-controller/rust-game)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 8.82s
+     Running unittests src/lib.rs (/workspace/.rust/targets/control-pair-mutant-friend-controller/debug/deps/hegemony_server-974b000ea7fe75a3)
+
+running 1 test
+test engine::tests::control_pair_lawyer_is_public_and_hides_another_friendly_controller_anywhere ... FAILED
+
+failures:
+
+---- engine::tests::control_pair_lawyer_is_public_and_hides_another_friendly_controller_anywhere stdout ----
+
+thread 'engine::tests::control_pair_lawyer_is_public_and_hides_another_friendly_controller_anywhere' panicked at rust-game/src/engine.rs:2917:9:
+assertion `left == right` failed
+  left: {"i240", "i242"}
+ right: {"i240", "i241", "i243"}
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    engine::tests::control_pair_lawyer_is_public_and_hides_another_friendly_controller_anywhere
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 81 filtered out; finished in 0.01s
+
+error: test failed, to rerun pass `-p hegemony-server --lib`
