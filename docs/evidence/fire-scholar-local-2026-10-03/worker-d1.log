@@ -1,0 +1,38 @@
+✔ real Worker/D1 persists printed-cost guard and pays self-hide once through reopen (3478.571731ms)
+✔ real Worker/D1 restores paid magic return and another friendly controller hide (4631.430252ms)
+✔ real Worker/D1 restores paid region damage and private printed spell/book search (4205.401433ms)
+✔ real workerd/WASM with D1 SQLite: concurrency, receipts, rollback and reopen (3188.180473ms)
+ℹ Provider emulation only; remote Cloudflare D1 acceptance is still required. Persisted at /tmp/hegemony-worker-d1-a5XheC
+✔ real kernels preserve their full version tuple and reject unknown persisted identities (134.902336ms)
+✔ recovering a paid response receipt precedes all later clock evaluation (14.137228ms)
+✔ a matching-version GET persists an expired window before deciding to return 204 (2.870933ms)
+✔ an expired response commits only the system tick and never an accepted user receipt (3.635973ms)
+✔ a CAS conflict retries Begin with its original expected version and complete intent (1.40735ms)
+✔ a formal response cannot be rebased by the host after another seat wins CAS (3.361177ms)
+✔ client clock injection and nested Session commands are rejected before the reducer (0.365079ms)
+✔ quoting an active composition refreshes its clock and does not commit a draft or receipt (0.779292ms)
+✔ real Worker/D1 rust-v0.2.5 preserves composing, untimed choices, expiry and receipts through reopen (11602.277884ms)
+ℹ Synthetic local fixture; actual Worker/D1 writes, timers and reopen. No remote natural-play claim.
+✔ real Worker/D1 rust-v0.2.6 preserves composing, untimed choices, expiry and receipts through reopen (11432.338208ms)
+ℹ Synthetic local fixture; actual Worker/D1 writes, timers and reopen. No remote natural-play claim.
+✔ real Worker/D1 rust-v0.2.7 preserves composing, untimed choices, expiry and receipts through reopen (11486.965898ms)
+ℹ Synthetic local fixture; actual Worker/D1 writes, timers and reopen. No remote natural-play claim.
+✔ real Worker/D1 rust-v0.2.8 preserves composing, untimed choices, expiry and receipts through reopen (11480.975752ms)
+ℹ Synthetic local fixture; actual Worker/D1 writes, timers and reopen. No remote natural-play claim.
+hegemony storage retry { code: 'network_lost', retryable: true, attempt: 1 }
+✔ an ambiguous D1 commit retries the identical command and returns its receipt without applying twice (247.207772ms)
+✔ storage diagnostics expose fixed labels and do not retry quota, constraint or unknown failures (0.343328ms)
+hegemony storage retry { code: 'network_lost', retryable: true, attempt: 1 }
+hegemony storage retry { code: 'network_lost', retryable: true, attempt: 1 }
+hegemony storage retry { code: 'network_lost', retryable: true, attempt: 2 }
+✔ a failure before commit retries the original identity, while an exhausted failure never returns success (812.948781ms)
+✔ transient failures have a finite budget; HTTP rejections and unclassified failures are returned immediately (0.688587ms)
+✔ real Worker/D1 restores controller-only owl identity and paid skeleton entry trigger (3109.326357ms)
+ℹ tests 21
+ℹ suites 0
+ℹ pass 21
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 51323.087069

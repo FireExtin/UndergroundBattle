@@ -5,8 +5,8 @@
     "resource/ymsj-fun.github.io/cards/cards.json": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
     "docs/factions/card-specifications.json": "43a5598e37432fc6febc3332715356849379ca6d433d0a6e5d5399efad255cb6",
     "rust-game/data/card-research-index.json": "8ebc08d35c4891051cd47dc611eb80462abaeb6325a4f5fc3b06f8ce364384cf",
-    "rust-game/data/cards.json": "416106c9de27ae288550b0b3f64ad9b5ea40327dc9bee37c8941c05f5d33a8db",
-    "rust-game/src/rules.rs": "61ea19fb911a28c0dc1335d71371372df834c421db5789d658a78b783df78bb3",
+    "rust-game/data/cards.json": "d8a456be6dc31197952a1d9f72e5228d3a49edadf27085fbf66eaaf899d707e5",
+    "rust-game/src/rules.rs": "1dc097421491ccdf5766445a9f35d1d18a7fd5aeffc8680529e6611699cbc824",
     "rust-game/src/catalog.rs": "8d097e72da27c084acbce20d5464024ed25c669c1e063c18aff1b6f3d63c5e47",
     "rust-game/src/attachment.rs": "aa6fa58bcaea26bfe45201dfe9100ff7feb8664e946efc7db127e7fa1e7049b7",
     "rust-game/src/play_sources.rs": "f1a80f2f4d34e2b4c61336b176e180dbca7551fbd82e752d3c80757418638dfd",
@@ -24,12 +24,12 @@
     "sourceComplete": 678,
     "sourceBlocked": 5,
     "sourceMissing": 1,
-    "runtimeDefinitions": 44,
-    "runtimeNonRegions": 34,
+    "runtimeDefinitions": 46,
+    "runtimeNonRegions": 36,
     "cardStatus": {
-      "implementedBounded": 42,
+      "implementedBounded": 44,
       "partial": 0,
-      "unimplemented": 530,
+      "unimplemented": 528,
       "needsRuling": 112
     },
     "mechanismStatus": {
@@ -89,7 +89,9 @@
     "JC001",
     "BQ083",
     "JC006",
-    "XQ16"
+    "XQ16",
+    "JC047",
+    "JC007"
   ],
   "cards": [
     {
@@ -6227,10 +6229,10 @@
       "sourceStatus": "completeGameplayFieldsForPinnedImage",
       "imagePath": "resource/ymsj-fun.github.io/cards/JC007 常春藤派学者.jpg",
       "imageSha256": "835b85f48270aa66f10f01fa4de7483b0ccf80dcf14e6dc5596639592e14f1ce",
-      "status": "unimplemented",
-      "inCurrentCatalog": false,
-      "serverSelectionEnabled": false,
-      "finiteEngineBehavior": "absent",
+      "status": "implementedBounded",
+      "inCurrentCatalog": true,
+      "serverSelectionEnabled": true,
+      "finiteEngineBehavior": "completeForCurrentBoundedDefinition",
       "openQuestions": [],
       "closedVersionQuestion": null,
       "independentAcceptance": "notEstablishedByThisMatrix",
@@ -6242,7 +6244,8 @@
         "temporaryIcons"
       ],
       "evidence": [
-        "docs/factions/card-specifications.json"
+        "rust-game/data/cards.json",
+        "rust-game/src/rules.rs"
       ]
     },
     {
@@ -7453,10 +7456,10 @@
       "sourceStatus": "completeGameplayFieldsForPinnedImage",
       "imagePath": "resource/ymsj-fun.github.io/cards/JC047 烈火重围.jpg",
       "imageSha256": "74d7e3c4bf75c52538fce551dda97f28e5b51d7d64ffbe89c9d427296a3ce9d6",
-      "status": "unimplemented",
-      "inCurrentCatalog": false,
-      "serverSelectionEnabled": false,
-      "finiteEngineBehavior": "absent",
+      "status": "implementedBounded",
+      "inCurrentCatalog": true,
+      "serverSelectionEnabled": true,
+      "finiteEngineBehavior": "completeForCurrentBoundedDefinition",
       "openQuestions": [],
       "closedVersionQuestion": null,
       "independentAcceptance": "notEstablishedByThisMatrix",
@@ -7467,7 +7470,8 @@
         "priority"
       ],
       "evidence": [
-        "docs/factions/card-specifications.json"
+        "rust-game/data/cards.json",
+        "rust-game/src/rules.rs"
       ]
     },
     {

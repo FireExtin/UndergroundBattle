@@ -324,14 +324,7 @@ impl Game {
         }
     }
     pub(crate) fn filter_card(&self, filter: &CardFilter, c: &Card) -> bool {
-        let d = card(&c.definition);
-        match filter {
-            CardFilter::Any => true,
-            CardFilter::Kind(k) => d.kind == *k,
-            CardFilter::SocietyOrMagic { society, magic } => {
-                d.society == *society || d.magic_icon == *magic
-            }
-        }
+        filter.matches(card(&c.definition))
     }
     pub(crate) fn effective_cost(&self, actor: usize, c: &Card) -> u32 {
         card(&c.definition).cost.saturating_sub(

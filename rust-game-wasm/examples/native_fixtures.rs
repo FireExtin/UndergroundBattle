@@ -2208,6 +2208,137 @@ fn control_pair_fixture() -> Value {
     }
     json!({"name":"magic-return-owner-and-public-lawyer-friendly-hide","seed":"9007199254740993","steps":steps,"syntheticInitialLayout":true})
 }
+fn fire_scholar_fixture() -> Value {
+    // Explicit synthetic initial layout; all later actions follow real room commands.
+    let mut game = attachment_initial("teams", "888888888888888888888884");
+    for definition in ["JC047", "JC007"] {
+        let c = game.make_card(definition, 0);
+        game.players[0].hand.push(c);
+    }
+    let fire_id = game.players[0].hand[0].id.clone();
+    let scholar_id = game.players[0].hand[1].id.clone();
+    for definition in [
+        "JC042", "JC042", "JC042", "JC003", "JC003", "JC003", "JC003",
+    ] {
+        let c = game.make_card(definition, 0);
+        game.players[0].assets.push(c);
+    }
+    for seat in 0..4 {
+        let mut c = game.make_card(if seat == 2 { "JZ08" } else { "JC125" }, seat);
+        if seat == 0 {
+            c.controller = 1;
+        }
+        game.regions[2].cards.push(c);
+    }
+    let host_id = game.regions[2].cards[0].id.clone();
+    let equipment = game.make_card("BQ022", 1);
+    game.attachments.push(Attachment {
+        card: equipment,
+        host_id,
+    });
+    let mut hidden = game.make_card("JC001", 2);
+    hidden.controller = 1;
+    hidden.face_down = true;
+    let hidden_id = hidden.id.clone();
+    game.regions[2].cards.push(hidden);
+    let outside = game.make_card("JC125", 3);
+    let outside_id = outside.id.clone();
+    game.regions[3].cards.push(outside);
+    game.players[0].deck = ["JC006", "XQ03", "JC049", "JC063", "BQ022", "JC125"]
+        .into_iter()
+        .map(|d| game.make_card(d, 0))
+        .collect();
+    let eligible = game.players[0].deck[..3]
+        .iter()
+        .map(|c| c.id.clone())
+        .collect::<Vec<_>>();
+    let picked = eligible[1].clone();
+    let mut room = RoomEnvelope::from_game(game);
+    let mut steps = vec![step(
+        &room,
+        "initialFixture",
+        json!([serde_json::to_string(&room).unwrap()]),
+        0,
+    )];
+    apply_game(
+        &mut room,
+        &mut steps,
+        0,
+        Action {
+            card_id: Some(fire_id),
+            region: Some(2),
+            ..Action::new("play")
+        },
+    );
+    attachment_pass_top(&mut room, &mut steps);
+    assert_eq!(room.regions[2].cards.len(), 1);
+    assert_eq!(room.regions[2].cards[0].id, hidden_id);
+    assert_eq!(room.regions[3].cards[0].id, outside_id);
+    assert!(room.attachments.is_empty());
+    assert_eq!(room.players[1].hand.last().unwrap().definition, "BQ022");
+    for seat in 0..4 {
+        assert!(room.players[seat]
+            .graveyard
+            .iter()
+            .any(|c| c.definition == if seat == 2 { "JZ08" } else { "JC125" }));
+    }
+    apply_game(
+        &mut room,
+        &mut steps,
+        0,
+        Action {
+            card_id: Some(scholar_id),
+            region: Some(0),
+            ..Action::new("deploy")
+        },
+    );
+    attachment_pass_top(&mut room, &mut steps);
+    let id = room.pending.as_ref().unwrap().choice.id.clone();
+    apply_game(
+        &mut room,
+        &mut steps,
+        0,
+        Action {
+            choice_id: Some(id),
+            selected: Some(vec!["accept".into()]),
+            ..Action::new("choose")
+        },
+    );
+    attachment_pass_top(&mut room, &mut steps);
+    let pending = room.pending.clone().unwrap();
+    assert_eq!(pending.choice.kind, "search");
+    assert_eq!(
+        pending
+            .choice
+            .options
+            .iter()
+            .map(|o| o.id.clone())
+            .collect::<Vec<_>>(),
+        eligible
+    );
+    for seat in 1..4 {
+        assert!(room
+            .view(seat, room.pacing.last_server_now_ms)
+            .pending_choice
+            .is_none());
+    }
+    apply_game(
+        &mut room,
+        &mut steps,
+        0,
+        Action {
+            choice_id: Some(pending.choice.id),
+            selected: Some(vec![picked.clone()]),
+            ..Action::new("choose")
+        },
+    );
+    assert_eq!(room.players[0].hand.len(), 1);
+    assert_eq!(room.players[0].hand[0].definition, "XQ03");
+    assert_ne!(room.players[0].hand[0].id, picked);
+    assert!(room.players[0].assets.iter().all(|c| c.exhausted));
+    json!({"name":"red-region-damage-and-yellow-printed-spell-book-search","seed":"9007199254740993","steps":steps,"syntheticInitialLayout":true})
+}
+
 fn main() {
     let output = std::env::args()
         .nth(1)
@@ -2281,6 +2412,16 @@ fn main() {
         std::fs::write(output, serde_json::to_vec(&value).unwrap()).unwrap();
         return;
     }
+    let fire_scholar = fire_scholar_fixture();
+    let fire_initial: RoomEnvelope =
+        serde_json::from_str(fire_scholar["steps"][0]["state"].as_str().unwrap()).unwrap();
+    let prepared_fire_scholar = json!({"syntheticInitialLayout":true,"roomId":fire_initial.room_id,"version":fire_initial.revision,
+        "state":fire_scholar["steps"][0]["state"],"firstAction":fire_scholar["steps"][1]["args"][1]["action"],
+        "fireId":fire_initial.players[0].hand[0].id,"scholarId":fire_initial.players[0].hand[1].id,
+        "hiddenId":fire_initial.regions[2].cards[4].id,"outsideId":fire_initial.regions[3].cards[0].id,
+        "deadIds":fire_initial.regions[2].cards[..4].iter().map(|c|c.id.clone()).collect::<Vec<_>>(),
+        "eligibleIds":fire_initial.players[0].deck[..3].iter().map(|c|c.id.clone()).collect::<Vec<_>>(),
+        "excludedIds":fire_initial.players[0].deck[3..].iter().map(|c|c.id.clone()).collect::<Vec<_>>()});
     let control_pair = control_pair_fixture();
     let control_initial: RoomEnvelope =
         serde_json::from_str(control_pair["steps"][0]["state"].as_str().unwrap()).unwrap();
@@ -2312,6 +2453,6 @@ fn main() {
         "targetId":targets.iter().find(|c| c.definition == "JC084").unwrap().id,
         "expensiveTargetId":targets.iter().find(|c| c.definition == "JC086").unwrap().id
     });
-    let value = json!({"preparedControlPair":prepared_control_pair,"preparedTwoCards":prepared_two_cards,"preparedAssassin":prepared_assassin,"preparedResponse":prepared,"catalog":catalog::catalog(),"cases":[control_pair,two_cards,assassin,attachment_fixture(false),attachment_fixture(true),attachment_hk_fixture(),attachment_region_return_fixture(),grave_play_fixture(),fixture("duel","18446744073709551615"),fixture("teams","9007199254740993"),response_fixture(),detective_fixture(false),detective_fixture(true),custom_deck_fixture(),friendly_icons_fixture(),pacing_fixture(false),pacing_fixture(true),world_fixture("DQJC108",false),world_fixture("DQJC109",false),world_fixture("DQJC110",false),world_fixture("DQJC111",false),world_fixture("DQJC115",false),world_fixture("DQJC116",false),world_fixture("DQJC116",true)],"rejectedStates":rejected_states});
+    let value = json!({"preparedFireScholar":prepared_fire_scholar,"preparedControlPair":prepared_control_pair,"preparedTwoCards":prepared_two_cards,"preparedAssassin":prepared_assassin,"preparedResponse":prepared,"catalog":catalog::catalog(),"cases":[fire_scholar,control_pair,two_cards,assassin,attachment_fixture(false),attachment_fixture(true),attachment_hk_fixture(),attachment_region_return_fixture(),grave_play_fixture(),fixture("duel","18446744073709551615"),fixture("teams","9007199254740993"),response_fixture(),detective_fixture(false),detective_fixture(true),custom_deck_fixture(),friendly_icons_fixture(),pacing_fixture(false),pacing_fixture(true),world_fixture("DQJC108",false),world_fixture("DQJC109",false),world_fixture("DQJC110",false),world_fixture("DQJC111",false),world_fixture("DQJC115",false),world_fixture("DQJC116",false),world_fixture("DQJC116",true)],"rejectedStates":rejected_states});
     std::fs::write(output, serde_json::to_vec(&value).unwrap()).unwrap();
 }

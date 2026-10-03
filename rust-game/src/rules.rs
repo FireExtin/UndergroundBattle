@@ -128,7 +128,35 @@ pub enum MagicIcon {
 pub enum CardFilter {
     Any,
     Kind(String),
-    SocietyOrMagic { society: String, magic: MagicIcon },
+    SocietyOrMagic {
+        society: String,
+        magic: MagicIcon,
+    },
+    PrintedCostAndSubtypes {
+        max_cost: u32,
+        subtypes: Vec<String>,
+    },
+}
+impl CardFilter {
+    pub(crate) fn matches(&self, definition: &crate::catalog::CardDefinition) -> bool {
+        match self {
+            Self::Any => true,
+            Self::Kind(kind) => definition.kind == *kind,
+            Self::SocietyOrMagic { society, magic } => {
+                definition.society == *society || definition.magic_icon == *magic
+            }
+            Self::PrintedCostAndSubtypes { max_cost, subtypes } => {
+                definition.cost <= *max_cost
+                    && subtypes.iter().any(|subtype| {
+                        definition.subtypes.iter().any(|printed| {
+                            // Early admitted spells retain the exact legacy "事务-法术" label.
+                            printed == subtype
+                                || printed.strip_prefix("事务-") == Some(subtype.as_str())
+                        })
+                    })
+            }
+        }
+    }
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
@@ -428,6 +456,46 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
             Range::Anywhere,
         );
         let mut m = BTreeMap::new();
+        m.insert(
+            "JC047".into(),
+            with_abilities(vec![ability(
+                "damage-region",
+                "标准行动",
+                Timing::Standard,
+                vec![],
+                vec![region.clone()],
+                vec![Op::DamageMatching {
+                    selector: BoardSelector {
+                        kind: EntityKind::Character,
+                        relation: Relation::Any,
+                        region: Some(RegionRef::Target(0)),
+                        subtype: None,
+                    },
+                    amount: 1,
+                }],
+                None,
+            )]),
+        );
+        m.insert(
+            "JC007".into(),
+            with_abilities(vec![ability(
+                "search-cheap-spell-book-entry",
+                "进场触发",
+                Timing::Fast,
+                vec![],
+                vec![],
+                vec![Op::Search {
+                    player: Actor,
+                    filter: CardFilter::PrintedCostAndSubtypes {
+                        max_cost: 2,
+                        subtypes: vec!["法术".into(), "书籍".into()],
+                    },
+                    to_top: false,
+                    optional: false,
+                }],
+                Some(Event::Enter),
+            )]),
+        );
         let mut magic_character = character.clone();
         magic_character.requires_magic = true;
         m.insert(

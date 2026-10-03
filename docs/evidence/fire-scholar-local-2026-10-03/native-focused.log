@@ -1,0 +1,15 @@
+   Compiling hegemony-server v0.1.0 (/workspace/UndergroundBattle/rust-game)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.93s
+     Running unittests src/lib.rs (/workspace/.rust/targets/two-cards-local/debug/deps/hegemony_server-fa35e11fc7b74bf5)
+
+running 7 tests
+test engine::tests::fire_scholar_fire_collects_current_characters_after_a_response_hide ... ok
+test engine::tests::fire_scholar_scholar_can_decline_entry_and_empty_search_still_shuffles ... ok
+test engine::tests::fire_scholar_scholar_filter_accepts_books_and_legacy_spells_but_uses_printed_cost ... ok
+test engine::tests::fire_scholar_scholar_secret_deployment_waits_for_normal_reveal_entry ... ok
+test engine::tests::fire_scholar_fire_damages_all_visible_seats_and_barriers_only_in_its_region ... ok
+test engine::tests::fire_scholar_fire_has_exact_printed_fields_and_standard_region_payment ... ok
+test engine::tests::fire_scholar_scholar_filters_printed_spell_cost_then_reveals_and_shuffles ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 82 filtered out; finished in 0.02s
+

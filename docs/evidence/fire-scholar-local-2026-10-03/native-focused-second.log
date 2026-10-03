@@ -1,0 +1,35 @@
+   Compiling hegemony-server v0.1.0 (/workspace/UndergroundBattle/rust-game)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.91s
+     Running unittests src/lib.rs (/workspace/.rust/targets/two-cards-local/debug/deps/hegemony_server-fa35e11fc7b74bf5)
+
+running 6 tests
+test engine::tests::fire_scholar_fire_collects_current_characters_after_a_response_hide ... ok
+test engine::tests::fire_scholar_scholar_filters_printed_spell_cost_then_reveals_and_shuffles ... FAILED
+test engine::tests::fire_scholar_scholar_can_decline_entry_and_empty_search_still_shuffles ... ok
+test engine::tests::fire_scholar_fire_damages_all_visible_seats_and_barriers_only_in_its_region ... FAILED
+test engine::tests::fire_scholar_scholar_secret_deployment_waits_for_normal_reveal_entry ... ok
+test engine::tests::fire_scholar_fire_has_exact_printed_fields_and_standard_region_payment ... ok
+
+failures:
+
+---- engine::tests::fire_scholar_scholar_filters_printed_spell_cost_then_reveals_and_shuffles stdout ----
+
+thread 'engine::tests::fire_scholar_scholar_filters_printed_spell_cost_then_reveals_and_shuffles' panicked at rust-game/src/engine.rs:2895:9:
+assertion `left == right` failed
+  left: {"i244", "i247"}
+ right: {"i244", "i245", "i246", "i247"}
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- engine::tests::fire_scholar_fire_damages_all_visible_seats_and_barriers_only_in_its_region stdout ----
+
+thread 'engine::tests::fire_scholar_fire_damages_all_visible_seats_and_barriers_only_in_its_region' panicked at rust-game/src/engine.rs:2805:39:
+called `Option::unwrap()` on a `None` value
+
+
+failures:
+    engine::tests::fire_scholar_fire_damages_all_visible_seats_and_barriers_only_in_its_region
+    engine::tests::fire_scholar_scholar_filters_printed_spell_cost_then_reveals_and_shuffles
+
+test result: FAILED. 4 passed; 2 failed; 0 ignored; 0 measured; 82 filtered out; finished in 0.01s
+
+error: test failed, to rerun pass `-p hegemony-server --lib`

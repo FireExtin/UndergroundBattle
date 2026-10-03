@@ -1693,6 +1693,84 @@
       },
       "unique": false,
       "society": "王座会"
+    },
+    {
+      "id": "JC047",
+      "name": "烈火重围",
+      "kind": "spell",
+      "subtypes": [
+        "灾难"
+      ],
+      "cost": 3,
+      "loyalty": [
+        "红色"
+      ],
+      "loyaltyText": "红色",
+      "color": "红",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "【标准行动】对目标地区上的所有角色造成1点伤害。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JC047",
+        "image": "resource/ymsj-fun.github.io/cards/JC047 烈火重围.jpg",
+        "sha256": "74d7e3c4bf75c52538fce551dda97f28e5b51d7d64ffbe89c9d427296a3ce9d6"
+      },
+      "unique": false,
+      "society": "鸣钟教派"
+    },
+    {
+      "id": "JC007",
+      "name": "常春藤派学者",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "学者"
+      ],
+      "cost": 4,
+      "loyalty": [
+        "黄色",
+        "黄色"
+      ],
+      "loyaltyText": "黄色 黄色",
+      "color": "黄",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 1
+        }
+      },
+      "defense": 1,
+      "text": "【进场触发】从你的牌库中寻找一张印刷费用小于或等于2的法术或书籍牌，展示该牌后置于你的手中，然后洗牌。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JC007",
+        "image": "resource/ymsj-fun.github.io/cards/JC007 常春藤派学者.jpg",
+        "sha256": "835b85f48270aa66f10f01fa4de7483b0ccf80dcf14e6dc5596639592e14f1ce"
+      },
+      "unique": false,
+      "society": "帷幕守望"
     }
   ],
   "decks": [

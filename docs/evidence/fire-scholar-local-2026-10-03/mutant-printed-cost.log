@@ -1,0 +1,105 @@
+   Compiling proc-macro2 v1.0.107
+   Compiling quote v1.0.47
+   Compiling libc v0.2.189
+   Compiling version_check v0.9.5
+   Compiling once_cell v1.21.4
+   Compiling smallvec v1.16.2
+   Compiling parking_lot_core v0.9.12
+   Compiling scopeguard v1.2.0
+   Compiling lock_api v0.4.14
+   Compiling tracing-core v0.1.36
+   Compiling log v0.4.34
+   Compiling serde_core v1.0.229
+   Compiling syn v3.0.6
+   Compiling syn v2.0.119
+   Compiling errno v0.3.14
+   Compiling parking_lot v0.12.5
+   Compiling signal-hook-registry v1.4.8
+   Compiling socket2 v0.6.5
+   Compiling mio v1.2.3
+   Compiling generic-array v0.14.7
+   Compiling zerocopy v0.8.59
+   Compiling ahash v0.8.12
+   Compiling typenum v1.20.1
+   Compiling httparse v1.10.1
+   Compiling shlex v2.0.1
+   Compiling find-msvc-tools v0.1.14
+   Compiling cc v1.5.1
+   Compiling tokio-macros v2.7.2
+   Compiling tokio v1.53.1
+   Compiling tracing-attributes v0.1.31
+   Compiling pkg-config v0.3.34
+   Compiling percent-encoding v2.3.2
+   Compiling unicase v2.9.0
+   Compiling tracing v0.1.44
+   Compiling mime v0.3.17
+   Compiling vcpkg v0.2.15
+   Compiling httpdate v1.0.3
+   Compiling mime_guess v2.0.5
+   Compiling libsqlite3-sys v0.30.1
+   Compiling serde_derive v1.0.229
+   Compiling futures-channel v0.3.34
+   Compiling serde_json v1.0.151
+   Compiling regex-syntax v0.8.11
+   Compiling atomic-waker v1.1.2
+   Compiling hashbrown v0.14.5
+   Compiling regex-automata v0.4.18
+   Compiling hyper v1.11.1
+   Compiling serde v1.0.229
+   Compiling form_urlencoded v1.2.2
+   Compiling crypto-common v0.1.7
+   Compiling block-buffer v0.10.4
+   Compiling lazy_static v1.5.1
+   Compiling memchr v2.8.3
+   Compiling ryu v1.0.23
+   Compiling getrandom v0.3.4
+   Compiling futures-sink v0.3.34
+   Compiling tokio-util v0.7.19
+   Compiling serde_urlencoded v0.7.1
+   Compiling sharded-slab v0.1.7
+   Compiling digest v0.10.7
+   Compiling hyper-util v0.1.21
+   Compiling matchers v0.2.0
+   Compiling tower v0.5.3
+   Compiling hashlink v0.9.1
+   Compiling getrandom v0.4.3
+   Compiling axum-core v0.5.6
+   Compiling async-stream-impl v0.3.6
+   Compiling serde_path_to_error v0.1.20
+   Compiling tracing-log v0.2.0
+   Compiling thread_local v1.1.10
+   Compiling fallible-streaming-iterator v0.1.9
+   Compiling http-range-header v0.4.2
+   Compiling matchit v0.8.4
+   Compiling nu-ansi-term v0.50.3
+   Compiling fallible-iterator v0.3.0
+   Compiling cpufeatures v0.2.17
+   Compiling sha2 v0.10.9
+   Compiling tracing-subscriber v0.3.23
+   Compiling axum v0.8.9
+   Compiling tower-http v0.6.11
+   Compiling rusqlite v0.32.1
+   Compiling tempfile v3.27.0
+   Compiling async-stream v0.3.6
+   Compiling hegemony-server v0.1.0 (/workspace/.private-validation/fire-scholar-local-20261003/mutants/printed-cost/rust-game)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 40.94s
+     Running unittests src/lib.rs (/workspace/.rust/targets/control-pair-mutant-friend-controller/debug/deps/hegemony_server-fa35e11fc7b74bf5)
+
+running 1 test
+test engine::tests::fire_scholar_scholar_filter_accepts_books_and_legacy_spells_but_uses_printed_cost ... FAILED
+
+failures:
+
+---- engine::tests::fire_scholar_scholar_filter_accepts_books_and_legacy_spells_but_uses_printed_cost stdout ----
+
+thread 'engine::tests::fire_scholar_scholar_filter_accepts_books_and_legacy_spells_but_uses_printed_cost' panicked at rust-game/src/engine.rs:3047:9:
+assertion failed: !filter.matches(&book)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    engine::tests::fire_scholar_scholar_filter_accepts_books_and_legacy_spells_but_uses_printed_cost
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 88 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `-p hegemony-server --lib`

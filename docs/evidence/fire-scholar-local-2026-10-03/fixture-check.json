@@ -1,0 +1,12 @@
+{
+  "unchangedPriorPreparedFixtures": [
+    "preparedControlPair",
+    "preparedTwoCards",
+    "preparedAssassin",
+    "preparedResponse"
+  ],
+  "cases": 25,
+  "newScenario": "red-region-damage-and-yellow-printed-spell-book-search",
+  "newScenarioSteps": 17,
+  "syntheticInitialLayout": true
+}

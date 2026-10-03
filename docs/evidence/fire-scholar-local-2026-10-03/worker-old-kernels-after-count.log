@@ -1,0 +1,10 @@
+✔ real workerd/WASM with D1 SQLite: concurrency, receipts, rollback and reopen (2644.471991ms)
+ℹ Provider emulation only; remote Cloudflare D1 acceptance is still required. Persisted at /tmp/hegemony-worker-d1-Y2IGeA
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3013.018824

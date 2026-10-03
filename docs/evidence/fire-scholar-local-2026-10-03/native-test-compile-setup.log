@@ -1,0 +1,18 @@
+   Compiling hegemony-server v0.1.0 (/workspace/UndergroundBattle/rust-game)
+error[E0599]: no method named `contains` found for reference `&model::LogEntry` in the current scope
+    --> rust-game/src/engine.rs:2775:76
+     |
+2775 |         for seat in 0..4 { assert!(g.view(seat).log.iter().any(|line| line.contains("展示检索的 力场束缚"))); }
+     |                                                                            ^^^^^^^^ method not found in `&model::LogEntry`
+     |
+     = help: items from traits can only be used if the trait is implemented and in scope
+     = note: the following traits define an item `contains`, perhaps you need to implement one of them:
+             candidate #1: `RangeBounds`
+             candidate #2: `bitflags::traits::Flags`
+help: one of the expressions' fields has a method of the same name
+     |
+2775 |         for seat in 0..4 { assert!(g.view(seat).log.iter().any(|line| line.text.contains("展示检索的 力场束缚"))); }
+     |                                                                            +++++
+
+For more information about this error, try `rustc --explain E0599`.
+error: could not compile `hegemony-server` (lib test) due to 1 previous error

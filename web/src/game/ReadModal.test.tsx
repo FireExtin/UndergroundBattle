@@ -10,6 +10,12 @@ describe('original card scan reading', () => {
     expect(screen.getByRole('img', { name: `${name}原始牌面` })).toHaveAttribute('src', `/cards/${cardId}.jpg`);
     expect(screen.getByRole('link', { name: `打开${name}原始牌面全图` })).toHaveAttribute('href', `/cards/${cardId}.jpg`);
   });
+  it.each([['JC007', '常春藤派学者'], ['JC047', '烈火重围']])('opens the next local original face for %s', (cardId, name) => {
+    render(<ReadModal card={{ ...testCard, cardId, name }} viewerId="p0" onClose={vi.fn()} />);
+    fireEvent.click(screen.getByRole('button', { name: '原始牌面' }));
+    expect(screen.getByRole('img', { name: name + '原始牌面' })).toHaveAttribute('src', '/cards/' + cardId + '.jpg');
+  });
+
   it('opens an admitted original face and keeps keyboard focus within the reader', () => {
     render(<ReadModal card={{ ...testCard, cardId: 'BQ022', name: '合金指虎', owner: 'p1', controller: 'p1' }} viewerId="p0" onClose={vi.fn()} />);
     fireEvent.keyDown(document, { key: 'Tab' });

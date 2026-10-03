@@ -1,0 +1,451 @@
+{
+  "base": "618065cc578fdabd31166c8e16e85b97b66edd6d",
+  "frozenAndServerFiles": [
+    {
+      "path": "rust-game-wasm/legacy-v0.2.1/README.md",
+      "bytes": 443,
+      "sha256": "b9433ca54fa80ad8460f9cffe5f88d82e348b1d2293ebdb4893dc9b46b786334",
+      "unchanged": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.1/hegemony_wasm.js",
+      "bytes": 11122,
+      "sha256": "69f5f988232d411b0d76dc6a6cae5c0fc749ab556774d30544da26a07e5c98ca",
+      "unchanged": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.1/hegemony_wasm_bg.wasm",
+      "bytes": 1040341,
+      "sha256": "a6366ef6bc7df03ba666b33286d3a01c412ac6bf779d6396fcbf6affcdc43966",
+      "unchanged": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.1/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035",
+      "unchanged": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.2/README.md",
+      "bytes": 419,
+      "sha256": "8ab2e94b7269ae12b6880dc36616ca43ae65d1892b4ed2bd1b9a3623455f72d3",
+      "unchanged": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.2/hegemony_wasm.js",
+      "bytes": 11810,
+      "sha256": "bb5709b94df02970729dbf80ea5ab3308343040f867d71a8142aa4b9cfafe229",
+      "unchanged": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.2/hegemony_wasm_bg.wasm",
+      "bytes": 1052149,
+      "sha256": "b5e0070333a71ff5b01f31406118f523af473c0bb96fb732d3276d3855d7daae",
+      "unchanged": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.2/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035",
+      "unchanged": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.3/README.md",
+      "bytes": 408,
+      "sha256": "6e484031279fbd587cb414d83498b32c29fa37b6087b1ff4999e58cf4e366cf7",
+      "unchanged": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.3/hegemony_wasm.js",
+      "bytes": 11810,
+      "sha256": "bb5709b94df02970729dbf80ea5ab3308343040f867d71a8142aa4b9cfafe229",
+      "unchanged": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.3/hegemony_wasm_bg.wasm",
+      "bytes": 1053904,
+      "sha256": "2d5dcbaae76aa5706fa77af6747068e94da39654d25df3e764efa48e73905089",
+      "unchanged": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.3/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035",
+      "unchanged": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.4/README.md",
+      "bytes": 514,
+      "sha256": "1fa8d67c2dff9fa4bb4cdcb9b60ea918fc863ad48fc3734abc666a90317a3df2",
+      "unchanged": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.4/hegemony_wasm.js",
+      "bytes": 15219,
+      "sha256": "282efbac8975c8cde3e728298ab3870b3aa11a8df0a60bff6debe87af6fcdc58",
+      "unchanged": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.4/hegemony_wasm_bg.wasm",
+      "bytes": 1111835,
+      "sha256": "fcf7f714a9b09f566202c0a8b00571c0da55dfa255793f2cffd908003f6d660f",
+      "unchanged": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.4/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035",
+      "unchanged": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.5/README.md",
+      "bytes": 1272,
+      "sha256": "c28487a28ef96c8cc7b85647970b2d7416a394c5164ac2b86db712b16099b25c",
+      "unchanged": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.5/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+      "unchanged": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.5/hegemony_wasm_bg.wasm",
+      "bytes": 1487505,
+      "sha256": "22299f6db9923a93ea7da7bd742afbf0a0b1e4de4ff3c41bd99f16860df3a971",
+      "unchanged": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.5/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035",
+      "unchanged": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.6/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+      "unchanged": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.6/hegemony_wasm_bg.wasm",
+      "bytes": 1579569,
+      "sha256": "d4a9d88fe3c44d94da938c0351a4f1654d72514568c9f927fecd6d2f9f3ded3f",
+      "unchanged": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.6/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035",
+      "unchanged": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.7/README.md",
+      "bytes": 700,
+      "sha256": "121cb52effa59fb1cb126f859c05d28898e5dcee5a4217336629015b114a42cd",
+      "unchanged": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.7/hegemony_wasm.d.ts",
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758",
+      "unchanged": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.7/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+      "unchanged": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.7/hegemony_wasm_bg.wasm",
+      "bytes": 1593545,
+      "sha256": "21169e9d579886a55474b21aa506a4a9adca779428d7d11f2e966ae077656198",
+      "unchanged": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.7/hegemony_wasm_bg.wasm.d.ts",
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3",
+      "unchanged": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.7/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035",
+      "unchanged": true
+    },
+    {
+      "path": "sites/drizzle/0000_numerous_lucky_pierre.sql",
+      "bytes": 1523,
+      "sha256": "e7e71337892cba7558c9bd5a3c3beb78c109fa93d1775f0b13e5377030a78b43",
+      "unchanged": true
+    },
+    {
+      "path": "sites/drizzle/meta/0000_snapshot.json",
+      "bytes": 7714,
+      "sha256": "a4e0d437f9b6d1c5f9cf2de0fbb7082f7a2dadf33f64e91cb0d7fc67780d254c",
+      "unchanged": true
+    },
+    {
+      "path": "sites/drizzle/meta/_journal.json",
+      "bytes": 211,
+      "sha256": "568a9e1bf452c42d07a8f4067732cc82fe6fbb1e0951efb750e3028d02b8f561",
+      "unchanged": true
+    },
+    {
+      "path": "sites/src/index.mjs",
+      "bytes": 3552,
+      "sha256": "f6a1ae35a0361e2bad5422a9ab6d2e0a2c766c1e40c1c62bb0fe1446d5877551",
+      "unchanged": true
+    },
+    {
+      "path": "sites/src/kernel-router.mjs",
+      "bytes": 2576,
+      "sha256": "e163dd6e984b7ac2036547f14cc4a49d54ce4aed30676a50f4d082bfa134ad77",
+      "unchanged": true
+    },
+    {
+      "path": "sites/src/kernel.mjs",
+      "bytes": 1689,
+      "sha256": "556660e23e78ae68182a2636e1b53ef36ff9fc8043770a6c36c5a9e51894e26b",
+      "unchanged": true
+    },
+    {
+      "path": "sites/src/service.mjs",
+      "bytes": 15118,
+      "sha256": "757930aad47a30dad7cd880b504b2c1a7b7a8c5a47905b6fba6f2f2647f88c02",
+      "unchanged": true
+    },
+    {
+      "path": "sites/src/storage-errors.mjs",
+      "bytes": 2556,
+      "sha256": "6979b752d13a2143f1e250051e5e2df1c81a7afef93727023b84ee8043b5f1a0",
+      "unchanged": true
+    },
+    {
+      "path": "sites/src/store.mjs",
+      "bytes": 3748,
+      "sha256": "39d50fc38e515a959d51f13a5673f5b3603edbc420b120c2326f49607f66d4d9",
+      "unchanged": true
+    }
+  ],
+  "original44DefinitionsUnchanged": true,
+  "fivePrebuiltDecksAndWorldUnchanged": true,
+  "prior44ScanBytesAndMetadataUnchanged": true,
+  "sources": {
+    "JC047": {
+      "spec": {
+        "cardId": "JC047",
+        "batchId": "B11",
+        "reviewedAt": "2026-10-03",
+        "sourceVerification": {
+          "status": "completeGameplayFieldsForPinnedImage",
+          "basis": "directOriginalImageReview",
+          "imagePath": "resource/ymsj-fun.github.io/cards/JC047 烈火重围.jpg",
+          "imageSha256": "74d7e3c4bf75c52538fce551dda97f28e5b51d7d64ffbe89c9d427296a3ce9d6",
+          "evidenceId": "card-JC047",
+          "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+          "blockingFields": []
+        },
+        "edition": {
+          "printedCollectorCode": "047/135",
+          "seriesSymbolObserved": "wineGlass",
+          "releaseYear": null,
+          "releaseYearClaimed": false,
+          "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+        },
+        "fields": {
+          "name": "烈火重围",
+          "subtitle": null,
+          "nameInk": "white",
+          "colorKey": "红",
+          "basicType": "事务",
+          "subtypes": [
+            "灾难"
+          ],
+          "printedCollectorCode": "047/135",
+          "seriesSymbol": "wineGlass",
+          "printedCost": 3,
+          "loyalty": [
+            {
+              "kind": "color",
+              "value": "红",
+              "count": 1
+            }
+          ],
+          "domains": [],
+          "permanentIcons": {
+            "investigation": 0,
+            "combat": 0,
+            "influence": 0
+          },
+          "temporaryIcons": {
+            "investigation": 0,
+            "combat": 0,
+            "influence": 0
+          },
+          "defense": null,
+          "startingHand": null,
+          "influenceThreshold": null,
+          "points": null,
+          "printedKeywords": [],
+          "printedRuleTextLines": [
+            "【标准行动】对目标地区上的所有角色造成1点伤害。"
+          ],
+          "additionalPrintedSymbols": []
+        },
+        "abilities": [
+          {
+            "id": "printed-1",
+            "kind": "sourceTextOnly",
+            "printedText": "【标准行动】对目标地区上的所有角色造成1点伤害。",
+            "notExecutable": true
+          }
+        ],
+        "confirmedMechanismIds": [
+          "priority"
+        ],
+        "rulesEvidenceIds": [
+          "manual-trigger-reset",
+          "manual-draw-identity",
+          "manual-seal",
+          "manual-removal",
+          "manual-unique",
+          "manual-marker-inheritance",
+          "bq-targets",
+          "bq-keywords-1",
+          "bq-keywords-2",
+          "bq-core",
+          "intermezzo"
+        ],
+        "implementationDesignStatus": "readyForBoundedDesign",
+        "openQuestionIds": [],
+        "selectionEnabled": false,
+        "gameAcceptance": "notAccepted",
+        "strategyUiPlaytest": "notRun",
+        "acceptanceCases": [
+          {
+            "id": "JC047-source-boundary",
+            "scenario": "进入实现前核对本观察版本的字段与完整正文",
+            "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+            "status": "notRun"
+          }
+        ]
+      },
+      "imageHashMatches": true,
+      "originalScanMatches": true
+    },
+    "JC007": {
+      "spec": {
+        "cardId": "JC007",
+        "batchId": "B10",
+        "reviewedAt": "2026-10-03",
+        "sourceVerification": {
+          "status": "completeGameplayFieldsForPinnedImage",
+          "basis": "directOriginalImageReview",
+          "imagePath": "resource/ymsj-fun.github.io/cards/JC007 常春藤派学者.jpg",
+          "imageSha256": "835b85f48270aa66f10f01fa4de7483b0ccf80dcf14e6dc5596639592e14f1ce",
+          "evidenceId": "card-JC007",
+          "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+          "blockingFields": []
+        },
+        "edition": {
+          "printedCollectorCode": "007/135",
+          "seriesSymbolObserved": "wineGlass",
+          "releaseYear": null,
+          "releaseYearClaimed": false,
+          "identityPolicy": "原图SHA与实读编号/系列符号锁定；不从文件ID或set字段推断印次。"
+        },
+        "fields": {
+          "name": "常春藤派学者",
+          "subtitle": null,
+          "nameInk": "white",
+          "colorKey": "黄",
+          "basicType": "角色",
+          "subtypes": [
+            "人类",
+            "学者"
+          ],
+          "printedCollectorCode": "007/135",
+          "seriesSymbol": "wineGlass",
+          "printedCost": 4,
+          "loyalty": [
+            {
+              "kind": "color",
+              "value": "黄",
+              "count": 2
+            }
+          ],
+          "domains": [],
+          "permanentIcons": {
+            "investigation": 0,
+            "combat": 0,
+            "influence": 1
+          },
+          "temporaryIcons": {
+            "investigation": 1,
+            "combat": 0,
+            "influence": 1
+          },
+          "defense": 1,
+          "startingHand": null,
+          "influenceThreshold": null,
+          "points": null,
+          "printedKeywords": [],
+          "printedRuleTextLines": [
+            "【进场触发】从你的牌库中寻找一张印刷费用小于或等于2的法术或书籍牌，展示该牌后置于你的手中，然后洗牌。"
+          ],
+          "additionalPrintedSymbols": []
+        },
+        "abilities": [
+          {
+            "id": "printed-1",
+            "kind": "sourceTextOnly",
+            "printedText": "【进场触发】从你的牌库中寻找一张印刷费用小于或等于2的法术或书籍牌，展示该牌后置于你的手中，然后洗牌。",
+            "notExecutable": true
+          }
+        ],
+        "confirmedMechanismIds": [
+          "deckChoice",
+          "temporaryIcons"
+        ],
+        "rulesEvidenceIds": [
+          "manual-trigger-reset",
+          "manual-draw-identity",
+          "manual-seal",
+          "manual-removal",
+          "manual-unique",
+          "manual-marker-inheritance",
+          "bq-targets",
+          "bq-keywords-1",
+          "bq-keywords-2",
+          "bq-core",
+          "intermezzo"
+        ],
+        "implementationDesignStatus": "readyForBoundedDesign",
+        "openQuestionIds": [],
+        "selectionEnabled": false,
+        "gameAcceptance": "notAccepted",
+        "strategyUiPlaytest": "notRun",
+        "acceptanceCases": [
+          {
+            "id": "JC007-source-boundary",
+            "scenario": "进入实现前核对本观察版本的字段与完整正文",
+            "expected": "费用/图标/目标与模式限制按本原图规格；还须完成共享规则设计、引擎与持久化、合法动作、UI和独立试玩，不凭来源完成数解锁。",
+            "status": "notRun"
+          }
+        ]
+      },
+      "imageHashMatches": true,
+      "originalScanMatches": true
+    }
+  },
+  "wasmBytes": 1615204,
+  "wasmSha256": "e5693d738d8b6161ebf2ab65427d419609f8c91206ca0a96c259dfa340d6dded",
+  "catalogVersions": {
+    "rules": "hegemony-pdf-v1",
+    "pool": "limited-v2.6",
+    "engine": "rust-v0.2.8"
+  }
+}

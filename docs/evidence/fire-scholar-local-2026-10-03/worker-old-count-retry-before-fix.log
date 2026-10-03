@@ -1,0 +1,29 @@
+✖ real workerd/WASM with D1 SQLite: concurrency, receipts, rollback and reopen (527.866355ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 891.355947
+
+✖ failing tests:
+
+test at test/integration.test.mjs:18:1
+✖ real workerd/WASM with D1 SQLite: concurrency, receipts, rollback and reopen (527.866355ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  46 !== 44
+  
+      at TestContext.<anonymous> (file:///workspace/UndergroundBattle/sites/test/integration.test.mjs:52:55)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 46,
+    expected: 44,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
