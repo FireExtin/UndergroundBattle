@@ -16,4 +16,15 @@ JC016＋BQ022仍共同构筑合法、在游戏中可达。赢区撤回/回收的
 
 父线程报告的纽约自然验证仅引用其边界：宿主末位选择、C确认后刷新仍等待D、双方全部确认后共同移区、附属未进手、计分及纽约换牌已通过。精确隐藏底序、新instance依自动回归；香港自然触发及完整整局仍在继续。本执行者不进入父房、不自主代打，不把纽约扩成全局验收。
 
+四独立标签AutoPass的体验观察另行记录，不阻塞本次发布：当前前台1.5秒、后台12秒轮询，父线程发现部分空窗口等待较久；尚不能把整轮耗时精确归因于轮询。后续以单浏览器四席连续空窗测量“窗口建立→各席同步→各席AutoPass→关闭”的p50/p95，并记录前后台与HTTP请求数。可对照仅AutoPass开启且最新投影显示该席待响应时的12秒→3秒后台同步；理论单次轮询等待上界缩短75%，该阶段轮询请求频率约4倍，实际端到端收益待实测。本候选不改此周期、不让服务器替玩家决定、不增加WebSocket架构。
+
 输入来自仓库已审源码、Site15本地发布源码与冻结WASM实际目录；输出为本说明、入口集成测试、只读 `tools/research/audit_v028_candidate.py`、整合验证证据及统一审阅材料。公开推送、同Site保存/部署及最终SHA由后续发布记录绑定；不改变项目、域名、公开访问策略或任何D1历史房。
+
+## 统一审阅入口
+
+- [验证结果与生产/测试文件分类](evidence/v028-integrated-2026-10-03/validation-summary.json)，测试输入代码提交为 `b8d96e583f4600a5f86758654cef9a4cc4075092`；后续仅证据与说明提交不会改变这些输入。
+- [全部生产语义差异](evidence/v028-integrated-2026-10-03/production-vs-published-ui131.diff)，相对于线上UI链1312361，Rust明确仅比较cfg(test)前生产段；新原图与冻结WASM二进制以清单SHA核验。
+- [完整游戏代码和测试diff](evidence/v028-integrated-2026-10-03/full-game-code-and-tests-vs-ui131.diff)，保留原始git diff，含全部原生新卡测试、默认WASM oracle、Worker/D1及界面测试。
+- [发布UI与本地941链的差异](evidence/v028-integrated-2026-10-03/ui-from-local941.diff)；生产UI逐字等同已发布1312361，新增只有验证文件。
+- [实际目录、七冻结核、预组差异与构建模块](evidence/v028-integrated-2026-10-03/candidate-source-and-kernels.json)，同时核对12个UI与11个持久化服务/配置文件。
+- [48牌阵营与归属说明](CARD_AFFILIATION_OWNERSHIP_AUDIT_2026-10-03.md) 与 [53e47ca精确生产差异](evidence/semantic-scope-audit-2026-10-03/53e47ca-production.diff)。

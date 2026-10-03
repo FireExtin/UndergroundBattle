@@ -1,0 +1,2731 @@
+{
+  "sourceCommitAtAudit": "b8d96e583f4600a5f86758654cef9a4cc4075092",
+  "cardParent": "9413068a944529032a686b39b77dc88890c657a1",
+  "publishedUiParent": "13123619e315f986d1d9934046ee76338e5327aa",
+  "publishedSiteSource": "074def9eb5bdf49fe6a5df5ef18ebd70bbce5453",
+  "scope": "Local read-only audit; no external Site/room/database access, push, save-version or deployment.",
+  "versions": {
+    "rulesVersion": "hegemony-pdf-v1",
+    "cardPoolVersion": "limited-v2.6",
+    "engineVersion": "rust-v0.2.8"
+  },
+  "catalogCounts": {
+    "candidate": 48,
+    "published": 39,
+    "added": 9,
+    "candidatePlayerCards": 38
+  },
+  "addedIds": [
+    "BQ083",
+    "JC001",
+    "JC006",
+    "JC007",
+    "JC047",
+    "JC075",
+    "JC088",
+    "JC104",
+    "XQ16"
+  ],
+  "frozenKernelCount": 7,
+  "totalKernelCount": 8,
+  "frozenCatalogs": [
+    {
+      "rules": "hegemony-pdf-v1",
+      "pool": "limited-v2.1",
+      "engine": "rust-v0.2.1",
+      "cards": 29,
+      "decks": [
+        {
+          "id": "watchers",
+          "name": "帷幕调查",
+          "description": "以检视、横置与调查奖励掌控节奏。50张受限卡池自组预组，非官方预组。",
+          "cardCount": 50,
+          "cards": [
+            {
+              "cardId": "JC125",
+              "count": 17
+            },
+            {
+              "cardId": "LC19",
+              "count": 3
+            },
+            {
+              "cardId": "LC20",
+              "count": 3
+            },
+            {
+              "cardId": "LC21",
+              "count": 3
+            },
+            {
+              "cardId": "LC22",
+              "count": 3
+            },
+            {
+              "cardId": "LC23",
+              "count": 3
+            },
+            {
+              "cardId": "LC24",
+              "count": 3
+            },
+            {
+              "cardId": "XQ49",
+              "count": 3
+            },
+            {
+              "cardId": "JC118",
+              "count": 3
+            },
+            {
+              "cardId": "JC002",
+              "count": 3
+            },
+            {
+              "cardId": "JC003",
+              "count": 3
+            },
+            {
+              "cardId": "XQ03",
+              "count": 3
+            }
+          ]
+        },
+        {
+          "id": "hunters",
+          "name": "公路猎手",
+          "description": "机动与战斗压制，寻找空档赢取地区。50张受限卡池自组预组，非官方预组。",
+          "cardCount": 50,
+          "cards": [
+            {
+              "cardId": "JC125",
+              "count": 17
+            },
+            {
+              "cardId": "LC19",
+              "count": 3
+            },
+            {
+              "cardId": "LC20",
+              "count": 3
+            },
+            {
+              "cardId": "LC21",
+              "count": 3
+            },
+            {
+              "cardId": "LC22",
+              "count": 3
+            },
+            {
+              "cardId": "LC23",
+              "count": 3
+            },
+            {
+              "cardId": "LC24",
+              "count": 3
+            },
+            {
+              "cardId": "XQ49",
+              "count": 3
+            },
+            {
+              "cardId": "JC118",
+              "count": 3
+            },
+            {
+              "cardId": "JC014",
+              "count": 3
+            },
+            {
+              "cardId": "JC016",
+              "count": 3
+            },
+            {
+              "cardId": "JZ08",
+              "count": 3
+            }
+          ]
+        },
+        {
+          "id": "keepers",
+          "name": "城市守卫",
+          "description": "区域防御与潜伏控制，稳步积累势力。50张受限卡池自组预组，非官方预组。",
+          "cardCount": 50,
+          "cards": [
+            {
+              "cardId": "JC125",
+              "count": 17
+            },
+            {
+              "cardId": "LC19",
+              "count": 3
+            },
+            {
+              "cardId": "LC20",
+              "count": 3
+            },
+            {
+              "cardId": "LC21",
+              "count": 3
+            },
+            {
+              "cardId": "LC22",
+              "count": 3
+            },
+            {
+              "cardId": "LC23",
+              "count": 3
+            },
+            {
+              "cardId": "LC24",
+              "count": 3
+            },
+            {
+              "cardId": "XQ49",
+              "count": 3
+            },
+            {
+              "cardId": "JC118",
+              "count": 3
+            },
+            {
+              "cardId": "JC056",
+              "count": 3
+            },
+            {
+              "cardId": "JC059",
+              "count": 3
+            },
+            {
+              "cardId": "JC063",
+              "count": 3
+            }
+          ]
+        },
+        {
+          "id": "reclaimers",
+          "name": "墓地回声",
+          "description": "回收角色与秘密再部署，持续争夺。50张受限卡池自组预组，非官方预组。",
+          "cardCount": 50,
+          "cards": [
+            {
+              "cardId": "JC125",
+              "count": 17
+            },
+            {
+              "cardId": "LC19",
+              "count": 3
+            },
+            {
+              "cardId": "LC20",
+              "count": 3
+            },
+            {
+              "cardId": "LC21",
+              "count": 3
+            },
+            {
+              "cardId": "LC22",
+              "count": 3
+            },
+            {
+              "cardId": "LC23",
+              "count": 3
+            },
+            {
+              "cardId": "LC24",
+              "count": 3
+            },
+            {
+              "cardId": "XQ49",
+              "count": 3
+            },
+            {
+              "cardId": "JC118",
+              "count": 3
+            },
+            {
+              "cardId": "JC086",
+              "count": 3
+            },
+            {
+              "cardId": "XQ12",
+              "count": 3
+            },
+            {
+              "cardId": "JC092",
+              "count": 3
+            }
+          ]
+        },
+        {
+          "id": "responders",
+          "name": "牺牲与响应",
+          "description": "自组受限卡池预组：牺牲费用、快速响应与墓地回收；非官方预组。",
+          "cardCount": 50,
+          "cards": [
+            {
+              "cardId": "JC125",
+              "count": 17
+            },
+            {
+              "cardId": "LC19",
+              "count": 3
+            },
+            {
+              "cardId": "LC20",
+              "count": 3
+            },
+            {
+              "cardId": "LC21",
+              "count": 3
+            },
+            {
+              "cardId": "LC22",
+              "count": 3
+            },
+            {
+              "cardId": "LC23",
+              "count": 3
+            },
+            {
+              "cardId": "LC24",
+              "count": 3
+            },
+            {
+              "cardId": "XQ49",
+              "count": 3
+            },
+            {
+              "cardId": "JC118",
+              "count": 3
+            },
+            {
+              "cardId": "JC042",
+              "count": 3
+            },
+            {
+              "cardId": "JC049",
+              "count": 2
+            },
+            {
+              "cardId": "JC091",
+              "count": 2
+            },
+            {
+              "cardId": "JZ54",
+              "count": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rules": "hegemony-pdf-v1",
+      "pool": "limited-v2.1",
+      "engine": "rust-v0.2.2",
+      "cards": 29,
+      "decks": [
+        {
+          "id": "watchers",
+          "name": "帷幕调查",
+          "description": "以检视、横置与调查奖励掌控节奏。50张受限卡池自组预组，非官方预组。",
+          "cardCount": 50,
+          "cards": [
+            {
+              "cardId": "JC125",
+              "count": 17
+            },
+            {
+              "cardId": "LC19",
+              "count": 3
+            },
+            {
+              "cardId": "LC20",
+              "count": 3
+            },
+            {
+              "cardId": "LC21",
+              "count": 3
+            },
+            {
+              "cardId": "LC22",
+              "count": 3
+            },
+            {
+              "cardId": "LC23",
+              "count": 3
+            },
+            {
+              "cardId": "LC24",
+              "count": 3
+            },
+            {
+              "cardId": "XQ49",
+              "count": 3
+            },
+            {
+              "cardId": "JC118",
+              "count": 3
+            },
+            {
+              "cardId": "JC002",
+              "count": 3
+            },
+            {
+              "cardId": "JC003",
+              "count": 3
+            },
+            {
+              "cardId": "XQ03",
+              "count": 3
+            }
+          ]
+        },
+        {
+          "id": "hunters",
+          "name": "公路猎手",
+          "description": "机动与战斗压制，寻找空档赢取地区。50张受限卡池自组预组，非官方预组。",
+          "cardCount": 50,
+          "cards": [
+            {
+              "cardId": "JC125",
+              "count": 17
+            },
+            {
+              "cardId": "LC19",
+              "count": 3
+            },
+            {
+              "cardId": "LC20",
+              "count": 3
+            },
+            {
+              "cardId": "LC21",
+              "count": 3
+            },
+            {
+              "cardId": "LC22",
+              "count": 3
+            },
+            {
+              "cardId": "LC23",
+              "count": 3
+            },
+            {
+              "cardId": "LC24",
+              "count": 3
+            },
+            {
+              "cardId": "XQ49",
+              "count": 3
+            },
+            {
+              "cardId": "JC118",
+              "count": 3
+            },
+            {
+              "cardId": "JC014",
+              "count": 3
+            },
+            {
+              "cardId": "JC016",
+              "count": 3
+            },
+            {
+              "cardId": "JZ08",
+              "count": 3
+            }
+          ]
+        },
+        {
+          "id": "keepers",
+          "name": "城市守卫",
+          "description": "区域防御与潜伏控制，稳步积累势力。50张受限卡池自组预组，非官方预组。",
+          "cardCount": 50,
+          "cards": [
+            {
+              "cardId": "JC125",
+              "count": 17
+            },
+            {
+              "cardId": "LC19",
+              "count": 3
+            },
+            {
+              "cardId": "LC20",
+              "count": 3
+            },
+            {
+              "cardId": "LC21",
+              "count": 3
+            },
+            {
+              "cardId": "LC22",
+              "count": 3
+            },
+            {
+              "cardId": "LC23",
+              "count": 3
+            },
+            {
+              "cardId": "LC24",
+              "count": 3
+            },
+            {
+              "cardId": "XQ49",
+              "count": 3
+            },
+            {
+              "cardId": "JC118",
+              "count": 3
+            },
+            {
+              "cardId": "JC056",
+              "count": 3
+            },
+            {
+              "cardId": "JC059",
+              "count": 3
+            },
+            {
+              "cardId": "JC063",
+              "count": 3
+            }
+          ]
+        },
+        {
+          "id": "reclaimers",
+          "name": "墓地回声",
+          "description": "回收角色与秘密再部署，持续争夺。50张受限卡池自组预组，非官方预组。",
+          "cardCount": 50,
+          "cards": [
+            {
+              "cardId": "JC125",
+              "count": 17
+            },
+            {
+              "cardId": "LC19",
+              "count": 3
+            },
+            {
+              "cardId": "LC20",
+              "count": 3
+            },
+            {
+              "cardId": "LC21",
+              "count": 3
+            },
+            {
+              "cardId": "LC22",
+              "count": 3
+            },
+            {
+              "cardId": "LC23",
+              "count": 3
+            },
+            {
+              "cardId": "LC24",
+              "count": 3
+            },
+            {
+              "cardId": "XQ49",
+              "count": 3
+            },
+            {
+              "cardId": "JC118",
+              "count": 3
+            },
+            {
+              "cardId": "JC086",
+              "count": 3
+            },
+            {
+              "cardId": "XQ12",
+              "count": 3
+            },
+            {
+              "cardId": "JC092",
+              "count": 3
+            }
+          ]
+        },
+        {
+          "id": "responders",
+          "name": "牺牲与响应",
+          "description": "自组受限卡池预组：牺牲费用、快速响应与墓地回收；非官方预组。",
+          "cardCount": 50,
+          "cards": [
+            {
+              "cardId": "JC125",
+              "count": 17
+            },
+            {
+              "cardId": "LC19",
+              "count": 3
+            },
+            {
+              "cardId": "LC20",
+              "count": 3
+            },
+            {
+              "cardId": "LC21",
+              "count": 3
+            },
+            {
+              "cardId": "LC22",
+              "count": 3
+            },
+            {
+              "cardId": "LC23",
+              "count": 3
+            },
+            {
+              "cardId": "LC24",
+              "count": 3
+            },
+            {
+              "cardId": "XQ49",
+              "count": 3
+            },
+            {
+              "cardId": "JC118",
+              "count": 3
+            },
+            {
+              "cardId": "JC042",
+              "count": 3
+            },
+            {
+              "cardId": "JC049",
+              "count": 2
+            },
+            {
+              "cardId": "JC091",
+              "count": 2
+            },
+            {
+              "cardId": "JZ54",
+              "count": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rules": "hegemony-pdf-v1",
+      "pool": "limited-v2.2",
+      "engine": "rust-v0.2.3",
+      "cards": 30,
+      "decks": [
+        {
+          "id": "watchers",
+          "name": "帷幕调查",
+          "description": "以检视、横置与调查奖励掌控节奏。50张受限卡池自组预组，非官方预组。",
+          "cardCount": 50,
+          "cards": [
+            {
+              "cardId": "JC125",
+              "count": 17
+            },
+            {
+              "cardId": "LC19",
+              "count": 3
+            },
+            {
+              "cardId": "LC20",
+              "count": 3
+            },
+            {
+              "cardId": "LC21",
+              "count": 3
+            },
+            {
+              "cardId": "LC22",
+              "count": 3
+            },
+            {
+              "cardId": "LC23",
+              "count": 3
+            },
+            {
+              "cardId": "LC24",
+              "count": 3
+            },
+            {
+              "cardId": "XQ49",
+              "count": 3
+            },
+            {
+              "cardId": "JC118",
+              "count": 3
+            },
+            {
+              "cardId": "JC002",
+              "count": 3
+            },
+            {
+              "cardId": "JC003",
+              "count": 3
+            },
+            {
+              "cardId": "XQ03",
+              "count": 3
+            }
+          ]
+        },
+        {
+          "id": "hunters",
+          "name": "公路猎手",
+          "description": "机动与战斗压制，寻找空档赢取地区。50张受限卡池自组预组，非官方预组。",
+          "cardCount": 50,
+          "cards": [
+            {
+              "cardId": "JC125",
+              "count": 17
+            },
+            {
+              "cardId": "LC19",
+              "count": 3
+            },
+            {
+              "cardId": "LC20",
+              "count": 3
+            },
+            {
+              "cardId": "LC21",
+              "count": 3
+            },
+            {
+              "cardId": "LC22",
+              "count": 3
+            },
+            {
+              "cardId": "LC23",
+              "count": 3
+            },
+            {
+              "cardId": "LC24",
+              "count": 3
+            },
+            {
+              "cardId": "XQ49",
+              "count": 3
+            },
+            {
+              "cardId": "JC118",
+              "count": 3
+            },
+            {
+              "cardId": "JC014",
+              "count": 3
+            },
+            {
+              "cardId": "JC016",
+              "count": 3
+            },
+            {
+              "cardId": "JZ08",
+              "count": 3
+            }
+          ]
+        },
+        {
+          "id": "keepers",
+          "name": "城市守卫",
+          "description": "区域防御与潜伏控制，稳步积累势力。50张受限卡池自组预组，非官方预组。",
+          "cardCount": 50,
+          "cards": [
+            {
+              "cardId": "JC125",
+              "count": 14
+            },
+            {
+              "cardId": "LC19",
+              "count": 3
+            },
+            {
+              "cardId": "LC20",
+              "count": 3
+            },
+            {
+              "cardId": "LC21",
+              "count": 3
+            },
+            {
+              "cardId": "LC22",
+              "count": 3
+            },
+            {
+              "cardId": "LC23",
+              "count": 3
+            },
+            {
+              "cardId": "LC24",
+              "count": 3
+            },
+            {
+              "cardId": "XQ49",
+              "count": 3
+            },
+            {
+              "cardId": "JC118",
+              "count": 3
+            },
+            {
+              "cardId": "JC056",
+              "count": 3
+            },
+            {
+              "cardId": "JC058",
+              "count": 3
+            },
+            {
+              "cardId": "JC059",
+              "count": 3
+            },
+            {
+              "cardId": "JC063",
+              "count": 3
+            }
+          ]
+        },
+        {
+          "id": "reclaimers",
+          "name": "墓地回声",
+          "description": "回收角色与秘密再部署，持续争夺。50张受限卡池自组预组，非官方预组。",
+          "cardCount": 50,
+          "cards": [
+            {
+              "cardId": "JC125",
+              "count": 17
+            },
+            {
+              "cardId": "LC19",
+              "count": 3
+            },
+            {
+              "cardId": "LC20",
+              "count": 3
+            },
+            {
+              "cardId": "LC21",
+              "count": 3
+            },
+            {
+              "cardId": "LC22",
+              "count": 3
+            },
+            {
+              "cardId": "LC23",
+              "count": 3
+            },
+            {
+              "cardId": "LC24",
+              "count": 3
+            },
+            {
+              "cardId": "XQ49",
+              "count": 3
+            },
+            {
+              "cardId": "JC118",
+              "count": 3
+            },
+            {
+              "cardId": "JC086",
+              "count": 3
+            },
+            {
+              "cardId": "XQ12",
+              "count": 3
+            },
+            {
+              "cardId": "JC092",
+              "count": 3
+            }
+          ]
+        },
+        {
+          "id": "responders",
+          "name": "牺牲与响应",
+          "description": "自组受限卡池预组：牺牲费用、快速响应与墓地回收；非官方预组。",
+          "cardCount": 50,
+          "cards": [
+            {
+              "cardId": "JC125",
+              "count": 17
+            },
+            {
+              "cardId": "LC19",
+              "count": 3
+            },
+            {
+              "cardId": "LC20",
+              "count": 3
+            },
+            {
+              "cardId": "LC21",
+              "count": 3
+            },
+            {
+              "cardId": "LC22",
+              "count": 3
+            },
+            {
+              "cardId": "LC23",
+              "count": 3
+            },
+            {
+              "cardId": "LC24",
+              "count": 3
+            },
+            {
+              "cardId": "XQ49",
+              "count": 3
+            },
+            {
+              "cardId": "JC118",
+              "count": 3
+            },
+            {
+              "cardId": "JC042",
+              "count": 3
+            },
+            {
+              "cardId": "JC049",
+              "count": 2
+            },
+            {
+              "cardId": "JC091",
+              "count": 2
+            },
+            {
+              "cardId": "JZ54",
+              "count": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rules": "hegemony-pdf-v1",
+      "pool": "limited-v2.2",
+      "engine": "rust-v0.2.4",
+      "cards": 30,
+      "decks": [
+        {
+          "id": "watchers",
+          "name": "帷幕调查",
+          "description": "以检视、横置与调查奖励掌控节奏。50张受限卡池自组预组，非官方预组。",
+          "cardCount": 50,
+          "cards": [
+            {
+              "cardId": "JC125",
+              "count": 17
+            },
+            {
+              "cardId": "LC19",
+              "count": 3
+            },
+            {
+              "cardId": "LC20",
+              "count": 3
+            },
+            {
+              "cardId": "LC21",
+              "count": 3
+            },
+            {
+              "cardId": "LC22",
+              "count": 3
+            },
+            {
+              "cardId": "LC23",
+              "count": 3
+            },
+            {
+              "cardId": "LC24",
+              "count": 3
+            },
+            {
+              "cardId": "XQ49",
+              "count": 3
+            },
+            {
+              "cardId": "JC118",
+              "count": 3
+            },
+            {
+              "cardId": "JC002",
+              "count": 3
+            },
+            {
+              "cardId": "JC003",
+              "count": 3
+            },
+            {
+              "cardId": "XQ03",
+              "count": 3
+            }
+          ]
+        },
+        {
+          "id": "hunters",
+          "name": "公路猎手",
+          "description": "机动与战斗压制，寻找空档赢取地区。50张受限卡池自组预组，非官方预组。",
+          "cardCount": 50,
+          "cards": [
+            {
+              "cardId": "JC125",
+              "count": 17
+            },
+            {
+              "cardId": "LC19",
+              "count": 3
+            },
+            {
+              "cardId": "LC20",
+              "count": 3
+            },
+            {
+              "cardId": "LC21",
+              "count": 3
+            },
+            {
+              "cardId": "LC22",
+              "count": 3
+            },
+            {
+              "cardId": "LC23",
+              "count": 3
+            },
+            {
+              "cardId": "LC24",
+              "count": 3
+            },
+            {
+              "cardId": "XQ49",
+              "count": 3
+            },
+            {
+              "cardId": "JC118",
+              "count": 3
+            },
+            {
+              "cardId": "JC014",
+              "count": 3
+            },
+            {
+              "cardId": "JC016",
+              "count": 3
+            },
+            {
+              "cardId": "JZ08",
+              "count": 3
+            }
+          ]
+        },
+        {
+          "id": "keepers",
+          "name": "城市守卫",
+          "description": "区域防御与潜伏控制，稳步积累势力。50张受限卡池自组预组，非官方预组。",
+          "cardCount": 50,
+          "cards": [
+            {
+              "cardId": "JC125",
+              "count": 14
+            },
+            {
+              "cardId": "LC19",
+              "count": 3
+            },
+            {
+              "cardId": "LC20",
+              "count": 3
+            },
+            {
+              "cardId": "LC21",
+              "count": 3
+            },
+            {
+              "cardId": "LC22",
+              "count": 3
+            },
+            {
+              "cardId": "LC23",
+              "count": 3
+            },
+            {
+              "cardId": "LC24",
+              "count": 3
+            },
+            {
+              "cardId": "XQ49",
+              "count": 3
+            },
+            {
+              "cardId": "JC118",
+              "count": 3
+            },
+            {
+              "cardId": "JC056",
+              "count": 3
+            },
+            {
+              "cardId": "JC058",
+              "count": 3
+            },
+            {
+              "cardId": "JC059",
+              "count": 3
+            },
+            {
+              "cardId": "JC063",
+              "count": 3
+            }
+          ]
+        },
+        {
+          "id": "reclaimers",
+          "name": "墓地回声",
+          "description": "回收角色与秘密再部署，持续争夺。50张受限卡池自组预组，非官方预组。",
+          "cardCount": 50,
+          "cards": [
+            {
+              "cardId": "JC125",
+              "count": 17
+            },
+            {
+              "cardId": "LC19",
+              "count": 3
+            },
+            {
+              "cardId": "LC20",
+              "count": 3
+            },
+            {
+              "cardId": "LC21",
+              "count": 3
+            },
+            {
+              "cardId": "LC22",
+              "count": 3
+            },
+            {
+              "cardId": "LC23",
+              "count": 3
+            },
+            {
+              "cardId": "LC24",
+              "count": 3
+            },
+            {
+              "cardId": "XQ49",
+              "count": 3
+            },
+            {
+              "cardId": "JC118",
+              "count": 3
+            },
+            {
+              "cardId": "JC086",
+              "count": 3
+            },
+            {
+              "cardId": "XQ12",
+              "count": 3
+            },
+            {
+              "cardId": "JC092",
+              "count": 3
+            }
+          ]
+        },
+        {
+          "id": "responders",
+          "name": "牺牲与响应",
+          "description": "自组受限卡池预组：牺牲费用、快速响应与墓地回收；非官方预组。",
+          "cardCount": 50,
+          "cards": [
+            {
+              "cardId": "JC125",
+              "count": 17
+            },
+            {
+              "cardId": "LC19",
+              "count": 3
+            },
+            {
+              "cardId": "LC20",
+              "count": 3
+            },
+            {
+              "cardId": "LC21",
+              "count": 3
+            },
+            {
+              "cardId": "LC22",
+              "count": 3
+            },
+            {
+              "cardId": "LC23",
+              "count": 3
+            },
+            {
+              "cardId": "LC24",
+              "count": 3
+            },
+            {
+              "cardId": "XQ49",
+              "count": 3
+            },
+            {
+              "cardId": "JC118",
+              "count": 3
+            },
+            {
+              "cardId": "JC042",
+              "count": 3
+            },
+            {
+              "cardId": "JC049",
+              "count": 2
+            },
+            {
+              "cardId": "JC091",
+              "count": 2
+            },
+            {
+              "cardId": "JZ54",
+              "count": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rules": "hegemony-pdf-v1",
+      "pool": "limited-v2.3",
+      "engine": "rust-v0.2.5",
+      "cards": 36,
+      "decks": [
+        {
+          "id": "watchers",
+          "name": "帷幕调查",
+          "description": "以检视、横置与调查奖励掌控节奏。50张受限卡池自组预组，非官方预组。",
+          "cardCount": 50,
+          "cards": [
+            {
+              "cardId": "JC125",
+              "count": 17
+            },
+            {
+              "cardId": "LC19",
+              "count": 3
+            },
+            {
+              "cardId": "LC20",
+              "count": 3
+            },
+            {
+              "cardId": "LC21",
+              "count": 3
+            },
+            {
+              "cardId": "LC22",
+              "count": 3
+            },
+            {
+              "cardId": "LC23",
+              "count": 3
+            },
+            {
+              "cardId": "LC24",
+              "count": 3
+            },
+            {
+              "cardId": "XQ49",
+              "count": 3
+            },
+            {
+              "cardId": "JC118",
+              "count": 3
+            },
+            {
+              "cardId": "JC002",
+              "count": 3
+            },
+            {
+              "cardId": "JC003",
+              "count": 3
+            },
+            {
+              "cardId": "XQ03",
+              "count": 3
+            }
+          ]
+        },
+        {
+          "id": "hunters",
+          "name": "公路猎手",
+          "description": "机动与战斗压制，寻找空档赢取地区。50张受限卡池自组预组，非官方预组。",
+          "cardCount": 50,
+          "cards": [
+            {
+              "cardId": "JC125",
+              "count": 17
+            },
+            {
+              "cardId": "LC19",
+              "count": 3
+            },
+            {
+              "cardId": "LC20",
+              "count": 3
+            },
+            {
+              "cardId": "LC21",
+              "count": 3
+            },
+            {
+              "cardId": "LC22",
+              "count": 3
+            },
+            {
+              "cardId": "LC23",
+              "count": 3
+            },
+            {
+              "cardId": "LC24",
+              "count": 3
+            },
+            {
+              "cardId": "XQ49",
+              "count": 3
+            },
+            {
+              "cardId": "JC118",
+              "count": 3
+            },
+            {
+              "cardId": "JC014",
+              "count": 3
+            },
+            {
+              "cardId": "JC016",
+              "count": 3
+            },
+            {
+              "cardId": "JZ08",
+              "count": 3
+            }
+          ]
+        },
+        {
+          "id": "keepers",
+          "name": "城市守卫",
+          "description": "区域防御与潜伏控制，稳步积累势力。50张受限卡池自组预组，非官方预组。",
+          "cardCount": 50,
+          "cards": [
+            {
+              "cardId": "JC125",
+              "count": 14
+            },
+            {
+              "cardId": "LC19",
+              "count": 3
+            },
+            {
+              "cardId": "LC20",
+              "count": 3
+            },
+            {
+              "cardId": "LC21",
+              "count": 3
+            },
+            {
+              "cardId": "LC22",
+              "count": 3
+            },
+            {
+              "cardId": "LC23",
+              "count": 3
+            },
+            {
+              "cardId": "LC24",
+              "count": 3
+            },
+            {
+              "cardId": "XQ49",
+              "count": 3
+            },
+            {
+              "cardId": "JC118",
+              "count": 3
+            },
+            {
+              "cardId": "JC056",
+              "count": 3
+            },
+            {
+              "cardId": "JC058",
+              "count": 3
+            },
+            {
+              "cardId": "JC059",
+              "count": 3
+            },
+            {
+              "cardId": "JC063",
+              "count": 3
+            }
+          ]
+        },
+        {
+          "id": "reclaimers",
+          "name": "墓地回声",
+          "description": "回收角色与秘密再部署，持续争夺。50张受限卡池自组预组，非官方预组。",
+          "cardCount": 50,
+          "cards": [
+            {
+              "cardId": "JC125",
+              "count": 17
+            },
+            {
+              "cardId": "LC19",
+              "count": 3
+            },
+            {
+              "cardId": "LC20",
+              "count": 3
+            },
+            {
+              "cardId": "LC21",
+              "count": 3
+            },
+            {
+              "cardId": "LC22",
+              "count": 3
+            },
+            {
+              "cardId": "LC23",
+              "count": 3
+            },
+            {
+              "cardId": "LC24",
+              "count": 3
+            },
+            {
+              "cardId": "XQ49",
+              "count": 3
+            },
+            {
+              "cardId": "JC118",
+              "count": 3
+            },
+            {
+              "cardId": "JC086",
+              "count": 3
+            },
+            {
+              "cardId": "XQ12",
+              "count": 3
+            },
+            {
+              "cardId": "JC092",
+              "count": 3
+            }
+          ]
+        },
+        {
+          "id": "responders",
+          "name": "牺牲与响应",
+          "description": "自组受限卡池预组：牺牲费用、快速响应与墓地回收；非官方预组。",
+          "cardCount": 50,
+          "cards": [
+            {
+              "cardId": "JC125",
+              "count": 17
+            },
+            {
+              "cardId": "LC19",
+              "count": 3
+            },
+            {
+              "cardId": "LC20",
+              "count": 3
+            },
+            {
+              "cardId": "LC21",
+              "count": 3
+            },
+            {
+              "cardId": "LC22",
+              "count": 3
+            },
+            {
+              "cardId": "LC23",
+              "count": 3
+            },
+            {
+              "cardId": "LC24",
+              "count": 3
+            },
+            {
+              "cardId": "XQ49",
+              "count": 3
+            },
+            {
+              "cardId": "JC118",
+              "count": 3
+            },
+            {
+              "cardId": "JC042",
+              "count": 3
+            },
+            {
+              "cardId": "JC049",
+              "count": 2
+            },
+            {
+              "cardId": "JC091",
+              "count": 2
+            },
+            {
+              "cardId": "JZ54",
+              "count": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rules": "hegemony-pdf-v1",
+      "pool": "limited-v2.4",
+      "engine": "rust-v0.2.6",
+      "cards": 37,
+      "decks": [
+        {
+          "id": "watchers",
+          "name": "帷幕调查",
+          "description": "以检视、横置与调查奖励掌控节奏。50张受限卡池自组预组，非官方预组。",
+          "cardCount": 50,
+          "cards": [
+            {
+              "cardId": "JC125",
+              "count": 17
+            },
+            {
+              "cardId": "LC19",
+              "count": 3
+            },
+            {
+              "cardId": "LC20",
+              "count": 3
+            },
+            {
+              "cardId": "LC21",
+              "count": 3
+            },
+            {
+              "cardId": "LC22",
+              "count": 3
+            },
+            {
+              "cardId": "LC23",
+              "count": 3
+            },
+            {
+              "cardId": "LC24",
+              "count": 3
+            },
+            {
+              "cardId": "XQ49",
+              "count": 3
+            },
+            {
+              "cardId": "JC118",
+              "count": 3
+            },
+            {
+              "cardId": "JC002",
+              "count": 3
+            },
+            {
+              "cardId": "JC003",
+              "count": 3
+            },
+            {
+              "cardId": "XQ03",
+              "count": 3
+            }
+          ]
+        },
+        {
+          "id": "hunters",
+          "name": "公路猎手",
+          "description": "机动与战斗压制，寻找空档赢取地区。50张受限卡池自组预组，非官方预组。",
+          "cardCount": 50,
+          "cards": [
+            {
+              "cardId": "JC125",
+              "count": 14
+            },
+            {
+              "cardId": "LC19",
+              "count": 3
+            },
+            {
+              "cardId": "LC20",
+              "count": 3
+            },
+            {
+              "cardId": "LC21",
+              "count": 3
+            },
+            {
+              "cardId": "LC22",
+              "count": 3
+            },
+            {
+              "cardId": "LC23",
+              "count": 3
+            },
+            {
+              "cardId": "LC24",
+              "count": 3
+            },
+            {
+              "cardId": "XQ49",
+              "count": 3
+            },
+            {
+              "cardId": "JC118",
+              "count": 3
+            },
+            {
+              "cardId": "JC014",
+              "count": 3
+            },
+            {
+              "cardId": "JC016",
+              "count": 3
+            },
+            {
+              "cardId": "JZ08",
+              "count": 3
+            },
+            {
+              "cardId": "BQ022",
+              "count": 3
+            }
+          ]
+        },
+        {
+          "id": "keepers",
+          "name": "城市守卫",
+          "description": "区域防御与潜伏控制，稳步积累势力。50张受限卡池自组预组，非官方预组。",
+          "cardCount": 50,
+          "cards": [
+            {
+              "cardId": "JC125",
+              "count": 14
+            },
+            {
+              "cardId": "LC19",
+              "count": 3
+            },
+            {
+              "cardId": "LC20",
+              "count": 3
+            },
+            {
+              "cardId": "LC21",
+              "count": 3
+            },
+            {
+              "cardId": "LC22",
+              "count": 3
+            },
+            {
+              "cardId": "LC23",
+              "count": 3
+            },
+            {
+              "cardId": "LC24",
+              "count": 3
+            },
+            {
+              "cardId": "XQ49",
+              "count": 3
+            },
+            {
+              "cardId": "JC118",
+              "count": 3
+            },
+            {
+              "cardId": "JC056",
+              "count": 3
+            },
+            {
+              "cardId": "JC058",
+              "count": 3
+            },
+            {
+              "cardId": "JC059",
+              "count": 3
+            },
+            {
+              "cardId": "JC063",
+              "count": 3
+            }
+          ]
+        },
+        {
+          "id": "reclaimers",
+          "name": "墓地回声",
+          "description": "回收角色与秘密再部署，持续争夺。50张受限卡池自组预组，非官方预组。",
+          "cardCount": 50,
+          "cards": [
+            {
+              "cardId": "JC125",
+              "count": 17
+            },
+            {
+              "cardId": "LC19",
+              "count": 3
+            },
+            {
+              "cardId": "LC20",
+              "count": 3
+            },
+            {
+              "cardId": "LC21",
+              "count": 3
+            },
+            {
+              "cardId": "LC22",
+              "count": 3
+            },
+            {
+              "cardId": "LC23",
+              "count": 3
+            },
+            {
+              "cardId": "LC24",
+              "count": 3
+            },
+            {
+              "cardId": "XQ49",
+              "count": 3
+            },
+            {
+              "cardId": "JC118",
+              "count": 3
+            },
+            {
+              "cardId": "JC086",
+              "count": 3
+            },
+            {
+              "cardId": "XQ12",
+              "count": 3
+            },
+            {
+              "cardId": "JC092",
+              "count": 3
+            }
+          ]
+        },
+        {
+          "id": "responders",
+          "name": "牺牲与响应",
+          "description": "自组受限卡池预组：牺牲费用、快速响应与墓地回收；非官方预组。",
+          "cardCount": 50,
+          "cards": [
+            {
+              "cardId": "JC125",
+              "count": 17
+            },
+            {
+              "cardId": "LC19",
+              "count": 3
+            },
+            {
+              "cardId": "LC20",
+              "count": 3
+            },
+            {
+              "cardId": "LC21",
+              "count": 3
+            },
+            {
+              "cardId": "LC22",
+              "count": 3
+            },
+            {
+              "cardId": "LC23",
+              "count": 3
+            },
+            {
+              "cardId": "LC24",
+              "count": 3
+            },
+            {
+              "cardId": "XQ49",
+              "count": 3
+            },
+            {
+              "cardId": "JC118",
+              "count": 3
+            },
+            {
+              "cardId": "JC042",
+              "count": 3
+            },
+            {
+              "cardId": "JC049",
+              "count": 2
+            },
+            {
+              "cardId": "JC091",
+              "count": 2
+            },
+            {
+              "cardId": "JZ54",
+              "count": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rules": "hegemony-pdf-v1",
+      "pool": "limited-v2.5",
+      "engine": "rust-v0.2.7",
+      "cards": 39,
+      "decks": [
+        {
+          "id": "watchers",
+          "name": "帷幕调查",
+          "description": "以检视、横置与调查奖励掌控节奏。50张受限卡池自组预组，非官方预组。",
+          "cardCount": 50,
+          "cards": [
+            {
+              "cardId": "JC125",
+              "count": 17
+            },
+            {
+              "cardId": "LC19",
+              "count": 3
+            },
+            {
+              "cardId": "LC20",
+              "count": 3
+            },
+            {
+              "cardId": "LC21",
+              "count": 3
+            },
+            {
+              "cardId": "LC22",
+              "count": 3
+            },
+            {
+              "cardId": "LC23",
+              "count": 3
+            },
+            {
+              "cardId": "LC24",
+              "count": 3
+            },
+            {
+              "cardId": "XQ49",
+              "count": 3
+            },
+            {
+              "cardId": "JC118",
+              "count": 3
+            },
+            {
+              "cardId": "JC002",
+              "count": 3
+            },
+            {
+              "cardId": "JC003",
+              "count": 3
+            },
+            {
+              "cardId": "XQ03",
+              "count": 3
+            }
+          ]
+        },
+        {
+          "id": "hunters",
+          "name": "公路猎手",
+          "description": "机动与战斗压制，寻找空档赢取地区。50张受限卡池自组预组，非官方预组。",
+          "cardCount": 50,
+          "cards": [
+            {
+              "cardId": "JC125",
+              "count": 14
+            },
+            {
+              "cardId": "LC19",
+              "count": 3
+            },
+            {
+              "cardId": "LC20",
+              "count": 3
+            },
+            {
+              "cardId": "LC21",
+              "count": 3
+            },
+            {
+              "cardId": "LC22",
+              "count": 3
+            },
+            {
+              "cardId": "LC23",
+              "count": 3
+            },
+            {
+              "cardId": "LC24",
+              "count": 3
+            },
+            {
+              "cardId": "XQ49",
+              "count": 3
+            },
+            {
+              "cardId": "JC118",
+              "count": 3
+            },
+            {
+              "cardId": "JC014",
+              "count": 3
+            },
+            {
+              "cardId": "JC016",
+              "count": 3
+            },
+            {
+              "cardId": "JZ08",
+              "count": 3
+            },
+            {
+              "cardId": "BQ022",
+              "count": 3
+            }
+          ]
+        },
+        {
+          "id": "keepers",
+          "name": "城市守卫",
+          "description": "区域防御与潜伏控制，稳步积累势力。50张受限卡池自组预组，非官方预组。",
+          "cardCount": 50,
+          "cards": [
+            {
+              "cardId": "JC125",
+              "count": 14
+            },
+            {
+              "cardId": "LC19",
+              "count": 3
+            },
+            {
+              "cardId": "LC20",
+              "count": 3
+            },
+            {
+              "cardId": "LC21",
+              "count": 3
+            },
+            {
+              "cardId": "LC22",
+              "count": 3
+            },
+            {
+              "cardId": "LC23",
+              "count": 3
+            },
+            {
+              "cardId": "LC24",
+              "count": 3
+            },
+            {
+              "cardId": "XQ49",
+              "count": 3
+            },
+            {
+              "cardId": "JC118",
+              "count": 3
+            },
+            {
+              "cardId": "JC056",
+              "count": 3
+            },
+            {
+              "cardId": "JC058",
+              "count": 3
+            },
+            {
+              "cardId": "JC059",
+              "count": 3
+            },
+            {
+              "cardId": "JC063",
+              "count": 3
+            }
+          ]
+        },
+        {
+          "id": "reclaimers",
+          "name": "墓地回声",
+          "description": "回收角色与秘密再部署，持续争夺。50张受限卡池自组预组，非官方预组。",
+          "cardCount": 50,
+          "cards": [
+            {
+              "cardId": "JC125",
+              "count": 11
+            },
+            {
+              "cardId": "LC19",
+              "count": 3
+            },
+            {
+              "cardId": "LC20",
+              "count": 3
+            },
+            {
+              "cardId": "LC21",
+              "count": 3
+            },
+            {
+              "cardId": "LC22",
+              "count": 3
+            },
+            {
+              "cardId": "LC23",
+              "count": 3
+            },
+            {
+              "cardId": "LC24",
+              "count": 3
+            },
+            {
+              "cardId": "XQ49",
+              "count": 3
+            },
+            {
+              "cardId": "JC118",
+              "count": 3
+            },
+            {
+              "cardId": "JC086",
+              "count": 3
+            },
+            {
+              "cardId": "XQ12",
+              "count": 3
+            },
+            {
+              "cardId": "JC092",
+              "count": 3
+            },
+            {
+              "cardId": "JC084",
+              "count": 3
+            },
+            {
+              "cardId": "JC085",
+              "count": 3
+            }
+          ]
+        },
+        {
+          "id": "responders",
+          "name": "牺牲与响应",
+          "description": "自组受限卡池预组：牺牲费用、快速响应与墓地回收；非官方预组。",
+          "cardCount": 50,
+          "cards": [
+            {
+              "cardId": "JC125",
+              "count": 17
+            },
+            {
+              "cardId": "LC19",
+              "count": 3
+            },
+            {
+              "cardId": "LC20",
+              "count": 3
+            },
+            {
+              "cardId": "LC21",
+              "count": 3
+            },
+            {
+              "cardId": "LC22",
+              "count": 3
+            },
+            {
+              "cardId": "LC23",
+              "count": 3
+            },
+            {
+              "cardId": "LC24",
+              "count": 3
+            },
+            {
+              "cardId": "XQ49",
+              "count": 3
+            },
+            {
+              "cardId": "JC118",
+              "count": 3
+            },
+            {
+              "cardId": "JC042",
+              "count": 3
+            },
+            {
+              "cardId": "JC049",
+              "count": 2
+            },
+            {
+              "cardId": "JC091",
+              "count": 2
+            },
+            {
+              "cardId": "JZ54",
+              "count": 2
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "frozenFiles": [
+    {
+      "file": "rust-game-wasm/legacy-v0.2.1/README.md",
+      "bytes": 443,
+      "sha256": "b9433ca54fa80ad8460f9cffe5f88d82e348b1d2293ebdb4893dc9b46b786334",
+      "unchangedFromCardChain": true,
+      "comparedToPublishedSite15": true
+    },
+    {
+      "file": "rust-game-wasm/legacy-v0.2.1/hegemony_wasm.js",
+      "bytes": 11122,
+      "sha256": "69f5f988232d411b0d76dc6a6cae5c0fc749ab556774d30544da26a07e5c98ca",
+      "unchangedFromCardChain": true,
+      "comparedToPublishedSite15": true
+    },
+    {
+      "file": "rust-game-wasm/legacy-v0.2.1/hegemony_wasm_bg.wasm",
+      "bytes": 1040341,
+      "sha256": "a6366ef6bc7df03ba666b33286d3a01c412ac6bf779d6396fcbf6affcdc43966",
+      "unchangedFromCardChain": true,
+      "comparedToPublishedSite15": true
+    },
+    {
+      "file": "rust-game-wasm/legacy-v0.2.1/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035",
+      "unchangedFromCardChain": true,
+      "comparedToPublishedSite15": true
+    },
+    {
+      "file": "rust-game-wasm/legacy-v0.2.2/README.md",
+      "bytes": 419,
+      "sha256": "8ab2e94b7269ae12b6880dc36616ca43ae65d1892b4ed2bd1b9a3623455f72d3",
+      "unchangedFromCardChain": true,
+      "comparedToPublishedSite15": true
+    },
+    {
+      "file": "rust-game-wasm/legacy-v0.2.2/hegemony_wasm.js",
+      "bytes": 11810,
+      "sha256": "bb5709b94df02970729dbf80ea5ab3308343040f867d71a8142aa4b9cfafe229",
+      "unchangedFromCardChain": true,
+      "comparedToPublishedSite15": true
+    },
+    {
+      "file": "rust-game-wasm/legacy-v0.2.2/hegemony_wasm_bg.wasm",
+      "bytes": 1052149,
+      "sha256": "b5e0070333a71ff5b01f31406118f523af473c0bb96fb732d3276d3855d7daae",
+      "unchangedFromCardChain": true,
+      "comparedToPublishedSite15": true
+    },
+    {
+      "file": "rust-game-wasm/legacy-v0.2.2/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035",
+      "unchangedFromCardChain": true,
+      "comparedToPublishedSite15": true
+    },
+    {
+      "file": "rust-game-wasm/legacy-v0.2.3/README.md",
+      "bytes": 408,
+      "sha256": "6e484031279fbd587cb414d83498b32c29fa37b6087b1ff4999e58cf4e366cf7",
+      "unchangedFromCardChain": true,
+      "comparedToPublishedSite15": true
+    },
+    {
+      "file": "rust-game-wasm/legacy-v0.2.3/hegemony_wasm.js",
+      "bytes": 11810,
+      "sha256": "bb5709b94df02970729dbf80ea5ab3308343040f867d71a8142aa4b9cfafe229",
+      "unchangedFromCardChain": true,
+      "comparedToPublishedSite15": true
+    },
+    {
+      "file": "rust-game-wasm/legacy-v0.2.3/hegemony_wasm_bg.wasm",
+      "bytes": 1053904,
+      "sha256": "2d5dcbaae76aa5706fa77af6747068e94da39654d25df3e764efa48e73905089",
+      "unchangedFromCardChain": true,
+      "comparedToPublishedSite15": true
+    },
+    {
+      "file": "rust-game-wasm/legacy-v0.2.3/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035",
+      "unchangedFromCardChain": true,
+      "comparedToPublishedSite15": true
+    },
+    {
+      "file": "rust-game-wasm/legacy-v0.2.4/README.md",
+      "bytes": 514,
+      "sha256": "1fa8d67c2dff9fa4bb4cdcb9b60ea918fc863ad48fc3734abc666a90317a3df2",
+      "unchangedFromCardChain": true,
+      "comparedToPublishedSite15": true
+    },
+    {
+      "file": "rust-game-wasm/legacy-v0.2.4/hegemony_wasm.js",
+      "bytes": 15219,
+      "sha256": "282efbac8975c8cde3e728298ab3870b3aa11a8df0a60bff6debe87af6fcdc58",
+      "unchangedFromCardChain": true,
+      "comparedToPublishedSite15": true
+    },
+    {
+      "file": "rust-game-wasm/legacy-v0.2.4/hegemony_wasm_bg.wasm",
+      "bytes": 1111835,
+      "sha256": "fcf7f714a9b09f566202c0a8b00571c0da55dfa255793f2cffd908003f6d660f",
+      "unchangedFromCardChain": true,
+      "comparedToPublishedSite15": true
+    },
+    {
+      "file": "rust-game-wasm/legacy-v0.2.4/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035",
+      "unchangedFromCardChain": true,
+      "comparedToPublishedSite15": true
+    },
+    {
+      "file": "rust-game-wasm/legacy-v0.2.5/README.md",
+      "bytes": 1272,
+      "sha256": "c28487a28ef96c8cc7b85647970b2d7416a394c5164ac2b86db712b16099b25c",
+      "unchangedFromCardChain": true,
+      "comparedToPublishedSite15": true
+    },
+    {
+      "file": "rust-game-wasm/legacy-v0.2.5/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+      "unchangedFromCardChain": true,
+      "comparedToPublishedSite15": true
+    },
+    {
+      "file": "rust-game-wasm/legacy-v0.2.5/hegemony_wasm_bg.wasm",
+      "bytes": 1487505,
+      "sha256": "22299f6db9923a93ea7da7bd742afbf0a0b1e4de4ff3c41bd99f16860df3a971",
+      "unchangedFromCardChain": true,
+      "comparedToPublishedSite15": true
+    },
+    {
+      "file": "rust-game-wasm/legacy-v0.2.5/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035",
+      "unchangedFromCardChain": true,
+      "comparedToPublishedSite15": true
+    },
+    {
+      "file": "rust-game-wasm/legacy-v0.2.6/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+      "unchangedFromCardChain": true,
+      "comparedToPublishedSite15": true
+    },
+    {
+      "file": "rust-game-wasm/legacy-v0.2.6/hegemony_wasm_bg.wasm",
+      "bytes": 1579569,
+      "sha256": "d4a9d88fe3c44d94da938c0351a4f1654d72514568c9f927fecd6d2f9f3ded3f",
+      "unchangedFromCardChain": true,
+      "comparedToPublishedSite15": true
+    },
+    {
+      "file": "rust-game-wasm/legacy-v0.2.6/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035",
+      "unchangedFromCardChain": true,
+      "comparedToPublishedSite15": true
+    },
+    {
+      "file": "rust-game-wasm/legacy-v0.2.7/README.md",
+      "bytes": 700,
+      "sha256": "121cb52effa59fb1cb126f859c05d28898e5dcee5a4217336629015b114a42cd",
+      "unchangedFromCardChain": true,
+      "comparedToPublishedSite15": false
+    },
+    {
+      "file": "rust-game-wasm/legacy-v0.2.7/hegemony_wasm.d.ts",
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758",
+      "unchangedFromCardChain": true,
+      "comparedToPublishedSite15": false
+    },
+    {
+      "file": "rust-game-wasm/legacy-v0.2.7/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+      "unchangedFromCardChain": true,
+      "comparedToPublishedSite15": true
+    },
+    {
+      "file": "rust-game-wasm/legacy-v0.2.7/hegemony_wasm_bg.wasm",
+      "bytes": 1593545,
+      "sha256": "21169e9d579886a55474b21aa506a4a9adca779428d7d11f2e966ae077656198",
+      "unchangedFromCardChain": true,
+      "comparedToPublishedSite15": true
+    },
+    {
+      "file": "rust-game-wasm/legacy-v0.2.7/hegemony_wasm_bg.wasm.d.ts",
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3",
+      "unchangedFromCardChain": true,
+      "comparedToPublishedSite15": false
+    },
+    {
+      "file": "rust-game-wasm/legacy-v0.2.7/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035",
+      "unchangedFromCardChain": true,
+      "comparedToPublishedSite15": false
+    }
+  ],
+  "cardChainFilesUnchanged": [
+    {
+      "file": "rust-game-wasm/src/lib.rs",
+      "sha256": "e813ff003dfad6063d117333412e3dd15e70dd19967aa2b6279a30fe86deb4f3"
+    },
+    {
+      "file": "rust-game/data/cards.json",
+      "sha256": "303d80b2672960086da75658746a29fef28ec9047ed7e9cf4728622dfa3b2c82"
+    },
+    {
+      "file": "rust-game/src/attachment.rs",
+      "sha256": "aa6fa58bcaea26bfe45201dfe9100ff7feb8664e946efc7db127e7fa1e7049b7"
+    },
+    {
+      "file": "rust-game/src/attributes.rs",
+      "sha256": "97bf74643711a1868ec3c39494386da28e3779ccc87e3428b2322a7fd719858e"
+    },
+    {
+      "file": "rust-game/src/bin/hegemony-audit.rs",
+      "sha256": "6e1d4f5cb0b803f9aa4bc233dfb2445cbddb2801522846963aa2caf2b2090e2e"
+    },
+    {
+      "file": "rust-game/src/catalog.rs",
+      "sha256": "8d097e72da27c084acbce20d5464024ed25c669c1e063c18aff1b6f3d63c5e47"
+    },
+    {
+      "file": "rust-game/src/deck.rs",
+      "sha256": "dc4238c613be05d4ee62b54a4b8855cb1dad3c449ee867baa9f8a14427d91f47"
+    },
+    {
+      "file": "rust-game/src/engine.rs",
+      "sha256": "6424e382cd9b06ba70e40c2d03f9c468ae8cfa5ddfcd14def6a8a07246307b42"
+    },
+    {
+      "file": "rust-game/src/lib.rs",
+      "sha256": "e5f095897837f98dc13564a1f563585d3d991b4eacc352a86e23a9ca853ee163"
+    },
+    {
+      "file": "rust-game/src/main.rs",
+      "sha256": "b19047fc01dd00d864860551b41b2b8be883c04d77b158691b3bdc44252acf2e"
+    },
+    {
+      "file": "rust-game/src/model.rs",
+      "sha256": "0d2cb13698a302f24eef9212d23403cd4405092706f8617050d55e16bfe16355"
+    },
+    {
+      "file": "rust-game/src/play_sources.rs",
+      "sha256": "f1a80f2f4d34e2b4c61336b176e180dbca7551fbd82e752d3c80757418638dfd"
+    },
+    {
+      "file": "rust-game/src/resolution.rs",
+      "sha256": "2aa0d66bb0d562595f98e3d9faa2af149eb92c05a06035d4f99cc635508c2c42"
+    },
+    {
+      "file": "rust-game/src/room.rs",
+      "sha256": "dc83ff7706936efc9212e3f7a8be79965912d92769092c20df8df11d2d08d56d"
+    },
+    {
+      "file": "rust-game/src/rules.rs",
+      "sha256": "e1781b1cd04f8df3e96d950079acf99b84b349c44419f59dcf366c1d998638c3"
+    },
+    {
+      "file": "rust-game/src/service.rs",
+      "sha256": "c086433fe3e9b408332c1426c5637b4c1f6c649b2c40b382f4e5f1a102a5b512"
+    },
+    {
+      "file": "rust-game/src/world.rs",
+      "sha256": "84f3670bf2f24fdd9c9c8f3e18eccc8ca88bf809598baa0cbc0ebe808570eef1"
+    }
+  ],
+  "publishedUiFilesUnchanged": [
+    {
+      "file": "web/src/game/AutoPass.tsx",
+      "sha256": "b459d65304e7d340a894675d1aa643370f70d200075af7848a68597ab463e850"
+    },
+    {
+      "file": "web/src/game/ChoicePanel.tsx",
+      "sha256": "010487c18c877559f67a673e2440bafce79c0089db4266d142314cb46ce50fbc"
+    },
+    {
+      "file": "web/src/game/GameApp.tsx",
+      "sha256": "a6d1097e7cbadedae3224201c9b87c99f098010c2112a87863bce586ec22c284"
+    },
+    {
+      "file": "web/src/game/Help.tsx",
+      "sha256": "72561b99e010f503ccb7f910846a0b20ddd1c7eeeadf0c52c6ebd59d6a3a95d6"
+    },
+    {
+      "file": "web/src/game/Lobby.tsx",
+      "sha256": "e113d73922980dcc3e006943df72ae6064f85a2d87e1665703a95004e89f9228"
+    },
+    {
+      "file": "web/src/game/ReadModal.tsx",
+      "sha256": "94fb706f115a3669b5891f107835d0e1f34d4e58475e488f3ecebe5c76bfe126"
+    },
+    {
+      "file": "web/src/game/Table.tsx",
+      "sha256": "b01f5fdea8ffe591b3bf1be84d8851245c4e5d83ffbbcf3bf1fa88551380c643"
+    },
+    {
+      "file": "web/src/game/api.ts",
+      "sha256": "2a9011a3bca5f04015f8c55084cdd7ba0e2803215336811315ce0326fbe700c4"
+    },
+    {
+      "file": "web/src/game/game.css",
+      "sha256": "92475ffc439541f2d7a4fc5a8932d21109e554085a4b1a1c1f02cbb3875db318"
+    },
+    {
+      "file": "web/src/game/playerStorage.ts",
+      "sha256": "51021f2c97ebba051009ba44415652ef3c75194a1cc6f1249ec148519db43e44"
+    },
+    {
+      "file": "web/src/game/useDialogFocus.ts",
+      "sha256": "9cebc3f5641da9ca95432a4b0bbf08a5e1fbf8ee2ee94d7b0a0907f038930847"
+    },
+    {
+      "file": "web/src/game/useGame.ts",
+      "sha256": "7d72f2f268cd257473c97b270e497cbee50fdd2d72128dd0282f4dce189e2e40"
+    }
+  ],
+  "persistentServiceFilesUnchanged": [
+    {
+      "file": "sites/.openai/hosting.json",
+      "sha256": "ed3a4753f9e2960e88424decbf7efb0b2d8583852f8b9200154674cda5ce25d2"
+    },
+    {
+      "file": "sites/db/schema.ts",
+      "sha256": "73e99c1f820fc1fbb86216028b5adcca874b5eac3062070c9fabe691fe832e6a"
+    },
+    {
+      "file": "sites/drizzle/0000_numerous_lucky_pierre.sql",
+      "sha256": "e7e71337892cba7558c9bd5a3c3beb78c109fa93d1775f0b13e5377030a78b43"
+    },
+    {
+      "file": "sites/drizzle/meta/0000_snapshot.json",
+      "sha256": "a4e0d437f9b6d1c5f9cf2de0fbb7082f7a2dadf33f64e91cb0d7fc67780d254c"
+    },
+    {
+      "file": "sites/drizzle/meta/_journal.json",
+      "sha256": "568a9e1bf452c42d07a8f4067732cc82fe6fbb1e0951efb750e3028d02b8f561"
+    },
+    {
+      "file": "sites/src/index.mjs",
+      "sha256": "f6a1ae35a0361e2bad5422a9ab6d2e0a2c766c1e40c1c62bb0fe1446d5877551"
+    },
+    {
+      "file": "sites/src/kernel-router.mjs",
+      "sha256": "e163dd6e984b7ac2036547f14cc4a49d54ce4aed30676a50f4d082bfa134ad77"
+    },
+    {
+      "file": "sites/src/service.mjs",
+      "sha256": "757930aad47a30dad7cd880b504b2c1a7b7a8c5a47905b6fba6f2f2647f88c02"
+    },
+    {
+      "file": "sites/src/storage-errors.mjs",
+      "sha256": "6979b752d13a2143f1e250051e5e2df1c81a7afef93727023b84ee8043b5f1a0"
+    },
+    {
+      "file": "sites/src/store.mjs",
+      "sha256": "39d50fc38e515a959d51f13a5673f5b3603edbc420b120c2326f49607f66d4d9"
+    },
+    {
+      "file": "sites/wrangler.jsonc",
+      "sha256": "7cd60bc5e5e9f377f6816c7eab154df58224d851548db8234c2b2d08e051f4f6"
+    }
+  ],
+  "presetDifferenceFromPublishedV027": {
+    "unchanged": [
+      "watchers",
+      "hunters",
+      "keepers",
+      "responders"
+    ],
+    "changedOnly": [
+      "reclaimers"
+    ],
+    "reclaimersBefore": {
+      "id": "reclaimers",
+      "name": "墓地回声",
+      "description": "回收角色与秘密再部署，持续争夺。50张受限卡池自组预组，非官方预组。",
+      "cardCount": 50,
+      "cards": [
+        {
+          "cardId": "JC125",
+          "count": 11
+        },
+        {
+          "cardId": "LC19",
+          "count": 3
+        },
+        {
+          "cardId": "LC20",
+          "count": 3
+        },
+        {
+          "cardId": "LC21",
+          "count": 3
+        },
+        {
+          "cardId": "LC22",
+          "count": 3
+        },
+        {
+          "cardId": "LC23",
+          "count": 3
+        },
+        {
+          "cardId": "LC24",
+          "count": 3
+        },
+        {
+          "cardId": "XQ49",
+          "count": 3
+        },
+        {
+          "cardId": "JC118",
+          "count": 3
+        },
+        {
+          "cardId": "JC086",
+          "count": 3
+        },
+        {
+          "cardId": "XQ12",
+          "count": 3
+        },
+        {
+          "cardId": "JC092",
+          "count": 3
+        },
+        {
+          "cardId": "JC084",
+          "count": 3
+        },
+        {
+          "cardId": "JC085",
+          "count": 3
+        }
+      ]
+    },
+    "reclaimersAfter": {
+      "id": "reclaimers",
+      "name": "墓地回声",
+      "description": "回收角色与秘密再部署，持续争夺。50张受限卡池自组预组，非官方预组。",
+      "cardCount": 50,
+      "cards": [
+        {
+          "cardId": "JC125",
+          "count": 8
+        },
+        {
+          "cardId": "LC19",
+          "count": 3
+        },
+        {
+          "cardId": "LC20",
+          "count": 3
+        },
+        {
+          "cardId": "LC21",
+          "count": 3
+        },
+        {
+          "cardId": "LC22",
+          "count": 3
+        },
+        {
+          "cardId": "LC23",
+          "count": 3
+        },
+        {
+          "cardId": "LC24",
+          "count": 3
+        },
+        {
+          "cardId": "XQ49",
+          "count": 3
+        },
+        {
+          "cardId": "JC118",
+          "count": 3
+        },
+        {
+          "cardId": "JC086",
+          "count": 3
+        },
+        {
+          "cardId": "XQ12",
+          "count": 3
+        },
+        {
+          "cardId": "JC092",
+          "count": 3
+        },
+        {
+          "cardId": "JC084",
+          "count": 3
+        },
+        {
+          "cardId": "JC085",
+          "count": 3
+        },
+        {
+          "cardId": "JC088",
+          "count": 3
+        }
+      ]
+    }
+  },
+  "rawImageEntryChecks": [
+    {
+      "id": "BQ083",
+      "original": "resource/ymsj-fun.github.io/cards/BQ083 索命骷髅.jpg",
+      "sha256": "619db97c8309d903e3781448c6ad35db91bb5f2e4b5660b6e0eef65fcbd6e675",
+      "webAndBuiltBytesEqualOriginal": true
+    },
+    {
+      "id": "JC001",
+      "original": "resource/ymsj-fun.github.io/cards/JC001 通灵猫头鹰.jpg",
+      "sha256": "33b9fd53b30630010a49a520d9e2b89d608822706e67e7c667682c3d1151e312",
+      "webAndBuiltBytesEqualOriginal": true
+    },
+    {
+      "id": "JC006",
+      "original": "resource/ymsj-fun.github.io/cards/JC006 逆转异界之门.jpg",
+      "sha256": "beec2b1d758e0186cdc4cb57e7c52d6e8df2a4623564e5f212b3d878abb91bf4",
+      "webAndBuiltBytesEqualOriginal": true
+    },
+    {
+      "id": "JC007",
+      "original": "resource/ymsj-fun.github.io/cards/JC007 常春藤派学者.jpg",
+      "sha256": "835b85f48270aa66f10f01fa4de7483b0ccf80dcf14e6dc5596639592e14f1ce",
+      "webAndBuiltBytesEqualOriginal": true
+    },
+    {
+      "id": "JC047",
+      "original": "resource/ymsj-fun.github.io/cards/JC047 烈火重围.jpg",
+      "sha256": "74d7e3c4bf75c52538fce551dda97f28e5b51d7d64ffbe89c9d427296a3ce9d6",
+      "webAndBuiltBytesEqualOriginal": true
+    },
+    {
+      "id": "JC075",
+      "original": "resource/ymsj-fun.github.io/cards/JC075 雪地救援队.jpg",
+      "sha256": "7db960c7050614dae10a8e752db2567670169e782986e39a789842259231e434",
+      "webAndBuiltBytesEqualOriginal": true
+    },
+    {
+      "id": "JC088",
+      "original": "resource/ymsj-fun.github.io/cards/JC088 职业杀手.jpg",
+      "sha256": "9c270203639dae978acb65e9255ac34b5a5d5192e681f8aafd63018ede301a5f",
+      "webAndBuiltBytesEqualOriginal": true
+    },
+    {
+      "id": "JC104",
+      "original": "resource/ymsj-fun.github.io/cards/JC104 占卜师.jpg",
+      "sha256": "877aa980256730bb35350f1b99c2aa75b9110cd5905e61412664e2a89ef4e8da",
+      "webAndBuiltBytesEqualOriginal": true
+    },
+    {
+      "id": "XQ16",
+      "original": "resource/ymsj-fun.github.io/cards/XQ16 法务部律师团.jpg",
+      "sha256": "2ae947c0c5dccd45ae495d3c828ce9b4e1453c34dfb6e24c5e61eea8338cff80",
+      "webAndBuiltBytesEqualOriginal": true
+    }
+  ],
+  "currentWasm": {
+    "bytes": 1619119,
+    "sha256": "6bbd2ce9ffdefdb3c24b7c0ca1786440ce087e4be34cff6af7f6c4af5e7bbc51"
+  },
+  "builtWasmModules": [
+    {
+      "file": "sites/dist/server/96de17ad82a1b3f0b0985c213dd16a6d94534e21-hegemony_wasm_bg.wasm",
+      "bytes": 1040341,
+      "sha256": "a6366ef6bc7df03ba666b33286d3a01c412ac6bf779d6396fcbf6affcdc43966"
+    },
+    {
+      "file": "sites/dist/server/a39807bf4fddeabdaff091708270c46327ed3054-hegemony_wasm_bg.wasm",
+      "bytes": 1487505,
+      "sha256": "22299f6db9923a93ea7da7bd742afbf0a0b1e4de4ff3c41bd99f16860df3a971"
+    },
+    {
+      "file": "sites/dist/server/a68ab3f82cd7a031043d944cf8664b1c799cfcb7-hegemony_wasm_bg.wasm",
+      "bytes": 1111835,
+      "sha256": "fcf7f714a9b09f566202c0a8b00571c0da55dfa255793f2cffd908003f6d660f"
+    },
+    {
+      "file": "sites/dist/server/cc17f1945d85631fe619f43e68c74bd3248f799b-hegemony_wasm_bg.wasm",
+      "bytes": 1052149,
+      "sha256": "b5e0070333a71ff5b01f31406118f523af473c0bb96fb732d3276d3855d7daae"
+    },
+    {
+      "file": "sites/dist/server/d91c9d4dd1ec2803e6a58fd106ce7c033c58eea7-hegemony_wasm_bg.wasm",
+      "bytes": 1053904,
+      "sha256": "2d5dcbaae76aa5706fa77af6747068e94da39654d25df3e764efa48e73905089"
+    },
+    {
+      "file": "sites/dist/server/eaa2eaaf31b83260b754edaf48b9f7ffbbce9e40-hegemony_wasm_bg.wasm",
+      "bytes": 1593545,
+      "sha256": "21169e9d579886a55474b21aa506a4a9adca779428d7d11f2e966ae077656198"
+    },
+    {
+      "file": "sites/dist/server/ee003401472d13e4502c346d8b55646812369e0b-hegemony_wasm_bg.wasm",
+      "bytes": 1619119,
+      "sha256": "6bbd2ce9ffdefdb3c24b7c0ca1786440ce087e4be34cff6af7f6c4af5e7bbc51"
+    },
+    {
+      "file": "sites/dist/server/fc9e6623cd273ad282dbd911ae2c5a320f09ffa5-hegemony_wasm_bg.wasm",
+      "bytes": 1579569,
+      "sha256": "d4a9d88fe3c44d94da938c0351a4f1654d72514568c9f927fecd6d2f9f3ded3f"
+    }
+  ],
+  "rulingBoundary": "JC016+BQ022 remains individually admitted and jointly legal/reachable; Win retreat/recycling priority pending. No ban or priority change.",
+  "restorationBoundary": "Default real Worker/D1 local regression restores v021-v027 catalogs, opaque states and receipts after workerd reopen; no public historical room acceptance claimed."
+}

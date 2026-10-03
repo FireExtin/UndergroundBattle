@@ -1,0 +1,48 @@
+
+> test
+> node --test test/*.test.mjs
+
+✔ real Worker/D1 persists printed-cost guard and pays self-hide once through reopen (7094.286798ms)
+✔ real Worker/D1 restores paid magic return and another actor-controlled hide, rejecting a teammate (9246.09948ms)
+✔ real Worker/D1 restores paid region damage and private printed spell/book search (7795.106317ms)
+✔ real workerd/WASM with D1 SQLite: concurrency, receipts, rollback and reopen (7314.249796ms)
+ℹ Provider emulation only; remote Cloudflare D1 acceptance is still required. Persisted at /tmp/hegemony-worker-d1-nWXYNo
+✔ real kernels preserve their full version tuple and reject unknown persisted identities (236.811702ms)
+✔ real Worker/D1 restores controller-only paid rescue and private forecast-three ordering (8819.782153ms)
+✔ recovering a paid response receipt precedes all later clock evaluation (45.872929ms)
+✔ a matching-version GET persists an expired window before deciding to return 204 (2.092171ms)
+✔ an expired response commits only the system tick and never an accepted user receipt (1.287061ms)
+✔ a CAS conflict retries Begin with its original expected version and complete intent (1.023552ms)
+✔ a formal response cannot be rebased by the host after another seat wins CAS (1.053186ms)
+✔ client clock injection and nested Session commands are rejected before the reducer (0.375274ms)
+✔ quoting an active composition refreshes its clock and does not commit a draft or receipt (1.518203ms)
+✔ real Worker/D1 rust-v0.2.5 preserves composing, untimed choices, expiry and receipts through reopen (13977.177669ms)
+ℹ Synthetic local fixture; actual Worker/D1 writes, timers and reopen. No remote natural-play claim.
+✔ real Worker/D1 rust-v0.2.6 preserves composing, untimed choices, expiry and receipts through reopen (11386.323195ms)
+ℹ Synthetic local fixture; actual Worker/D1 writes, timers and reopen. No remote natural-play claim.
+✔ real Worker/D1 rust-v0.2.7 preserves composing, untimed choices, expiry and receipts through reopen (11452.022161ms)
+ℹ Synthetic local fixture; actual Worker/D1 writes, timers and reopen. No remote natural-play claim.
+✔ real Worker/D1 rust-v0.2.8 preserves composing, untimed choices, expiry and receipts through reopen (11558.159534ms)
+ℹ Synthetic local fixture; actual Worker/D1 writes, timers and reopen. No remote natural-play claim.
+hegemony storage retry { code: 'network_lost', retryable: true, attempt: 1 }
+✔ an ambiguous D1 commit retries the identical command and returns its receipt without applying twice (203.70894ms)
+✔ storage diagnostics expose fixed labels and do not retry quota, constraint or unknown failures (0.414092ms)
+hegemony storage retry { code: 'network_lost', retryable: true, attempt: 1 }
+hegemony storage retry { code: 'network_lost', retryable: true, attempt: 1 }
+hegemony storage retry { code: 'network_lost', retryable: true, attempt: 2 }
+✔ a failure before commit retries the original identity, while an exhausted failure never returns success (802.400532ms)
+✔ transient failures have a finite budget; HTTP rejections and unclassified failures are returned immediately (0.762437ms)
+✔ real Worker/D1 restores controller-only owl identity and paid skeleton entry trigger (4067.265017ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 22
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 58908.904523
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

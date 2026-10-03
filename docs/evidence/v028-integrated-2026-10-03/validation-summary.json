@@ -1,0 +1,152 @@
+{
+  "testedCodeCommit": "b8d96e583f4600a5f86758654cef9a4cc4075092",
+  "sourceParents": [
+    "9413068a944529032a686b39b77dc88890c657a1",
+    "13123619e315f986d1d9934046ee76338e5327aa"
+  ],
+  "validation": {
+    "native": {
+      "library": 100,
+      "integration": 32,
+      "passed": 132
+    },
+    "frontend": {
+      "passed": 187,
+      "files": 21,
+      "allNineDeckEntryTestIncluded": true
+    },
+    "defaultWorkerD1": {
+      "passed": 22,
+      "failed": 0,
+      "localEmulationOnly": true
+    },
+    "defaultNativeWasm": {
+      "cases": 26,
+      "ok": true,
+      "wasmBytes": 1619119,
+      "transitions": 678,
+      "projections": 2237,
+      "quotes": 1,
+      "rejectedCommands": 6,
+      "choiceKinds": [
+        "investigation",
+        "mulligan",
+        "region_return",
+        "search",
+        "target",
+        "trigger"
+      ],
+      "slowestFixtureStepMs": 12.85,
+      "opaqueState": true,
+      "maximumU64SeedExact": true,
+      "nativeWasmStateAndViewsMatch": true
+    },
+    "wasmReleaseBuild": true,
+    "typescriptViteBuild": true,
+    "workerDryRunBuild": true
+  },
+  "defaultScenarioNames": [
+    "white-paid-rescue-and-purple-private-forecast-three",
+    "red-region-damage-and-yellow-printed-spell-book-search",
+    "magic-return-owner-and-public-lawyer-self-controller-hide",
+    "owl-controller-mind-two-and-skeleton-paid-entry",
+    "printed-cost-reveal-guard-and-paid-self-hide",
+    "attachment-enemy-host-and-hide-owner-recycle",
+    "attachment-target-murder-response-cancelled",
+    "actual-hong-kong-nonempty-attachment-search",
+    "won-region-batch-cross-owner-equipment-and-aura",
+    "direct-grave-face-up-play-normal-cost-and-conditional-icons",
+    "duel",
+    "teams",
+    "real-response-frame-continuation-and-heal-cost",
+    "detective-target-reveal-invalidates-original-instance",
+    "detective-source-death-independent-hidden-destroy",
+    "custom-deck-create-join-lobby-freeze-and-start",
+    "friendly-teammate-defense-and-public-team-icons",
+    "4999-parallel-intents-quote-repeat-cancel-and-untimed-composition",
+    "5000-expiry-rejected-command-commits-only-system-tick",
+    "real-world-win-trigger-DQJC108",
+    "real-world-win-trigger-DQJC109",
+    "real-world-win-trigger-DQJC110",
+    "real-world-win-trigger-DQJC111",
+    "real-world-win-trigger-DQJC115",
+    "real-world-win-trigger-DQJC116",
+    "generic-simultaneous-character-search-not-hong-kong-binding"
+  ],
+  "defaultOracleSha256": "8a6491334c92e4cc10004f74d46dfd60b6f36009ee373a6fbd4003d71f4c7e30",
+  "defaultOracleBytes": 65364056,
+  "productionFilesRelativeToPublishedUi131": [
+    "rust-game-wasm/legacy-v0.2.7/hegemony_wasm.d.ts",
+    "rust-game-wasm/legacy-v0.2.7/hegemony_wasm.js",
+    "rust-game-wasm/legacy-v0.2.7/hegemony_wasm_bg.wasm.d.ts",
+    "rust-game-wasm/legacy-v0.2.7/package.json",
+    "rust-game/data/cards.json",
+    "rust-game/src/attachment.rs",
+    "rust-game/src/catalog.rs",
+    "rust-game/src/engine.rs",
+    "rust-game/src/main.rs",
+    "rust-game/src/resolution.rs",
+    "rust-game/src/rules.rs",
+    "sites/scripts/build.mjs",
+    "sites/scripts/stage-source.mjs",
+    "sites/src/kernel.mjs",
+    "web/public/card-scans.json",
+    "web/src/game/cardScans.ts"
+  ],
+  "testAndFixtureFilesRelativeToPublishedUi131": [
+    "rust-game-wasm/examples/native_fixtures.rs",
+    "rust-game/examples/semantic_scope_audit.rs",
+    "sites/test/assassin-integration.test.mjs",
+    "sites/test/control-pair-integration.test.mjs",
+    "sites/test/fire-scholar-integration.test.mjs",
+    "sites/test/fixtures/prepared-assassin-v028.json",
+    "sites/test/fixtures/prepared-control-pair-v028.json",
+    "sites/test/fixtures/prepared-fire-scholar-v028.json",
+    "sites/test/fixtures/prepared-rescue-forecast-v028.json",
+    "sites/test/fixtures/prepared-response-v028.json",
+    "sites/test/fixtures/prepared-two-cards-v028.json",
+    "sites/test/integration.test.mjs",
+    "sites/test/kernel-routing.test.mjs",
+    "sites/test/rescue-forecast-integration.test.mjs",
+    "sites/test/session-integration.test.mjs",
+    "sites/test/two-card-integration.test.mjs",
+    "web/src/game/ReadModal.test.tsx",
+    "web/src/game/V028DeckEntry.test.jsx",
+    "web/vite.config.ts"
+  ],
+  "supportFiles": [
+    ".gitignore",
+    "rust-game-wasm/legacy-v0.2.7/README.md",
+    "tools/cloud-playtest/README.md",
+    "tools/cloud-playtest/full_game_persistent.py",
+    "tools/cloud-playtest/test_full_game_persistent.py",
+    "tools/research/audit_card_affiliation_scope.py",
+    "tools/research/audit_v028_candidate.py",
+    "tools/research/build_current_coverage_matrix.py"
+  ],
+  "binaryAdditions": [
+    "rust-game-wasm/legacy-v0.2.7/hegemony_wasm_bg.wasm",
+    "web/public/cards/BQ083.jpg",
+    "web/public/cards/JC001.jpg",
+    "web/public/cards/JC006.jpg",
+    "web/public/cards/JC007.jpg",
+    "web/public/cards/JC047.jpg",
+    "web/public/cards/JC075.jpg",
+    "web/public/cards/JC088.jpg",
+    "web/public/cards/JC104.jpg",
+    "web/public/cards/XQ16.jpg"
+  ],
+  "wasm": {
+    "bytes": 1619119,
+    "sha256": "6bbd2ce9ffdefdb3c24b7c0ca1786440ce087e4be34cff6af7f6c4af5e7bbc51"
+  },
+  "integrationProductionChangesBeyondReviewedCardAndUiChains": 0,
+  "newVerificationFiles": [
+    "web/src/game/V028DeckEntry.test.jsx",
+    "web/vite.config.ts",
+    "tools/research/audit_v028_candidate.py"
+  ],
+  "testDevelopmentBoundary": "Fixed incorrect harness expectations (save timestamp, explicit start, null pending choice), and used JSX plus explicit test discovery for Node/WASM test; no production bug fix claimed.",
+  "rulesPending": "JC016+BQ022 remains admitted and jointly legal/reachable; Win retreat/recycling priority unresolved.",
+  "parentNaturalQaBoundary": "Parent reports New York whole-region batch return selection/waiting/refreshed state/counts/scoring and exchanges passed; precise hidden order and instances use automatic regression. Hong Kong and whole game remain ongoing. Executor did not visit any public room."
+}

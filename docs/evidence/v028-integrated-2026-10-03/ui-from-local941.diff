@@ -1,0 +1,999 @@
+diff --git a/web/src/game/Attachments.test.tsx b/web/src/game/Attachments.test.tsx
+index 66e7057..20201fc 100644
+--- a/web/src/game/Attachments.test.tsx
++++ b/web/src/game/Attachments.test.tsx
+@@ -79,6 +79,8 @@ describe('public attachment presentation', () => {
+     const dialog = screen.getByRole('dialog', { name: '放大阅读测试附属' });
+     expect(within(dialog).getByLabelText('当前费用 0，印刷费用 1')).toBeInTheDocument();
+     expect(within(dialog).queryByText(/附着于/)).not.toBeInTheDocument();
++    expect(screen.queryByRole('button', { name: '查看公开宿主' })).not.toBeInTheDocument();
++    fireEvent.click(within(dialog).getByRole('button', { name: '关闭放大阅读' }));
+     expect(screen.getByRole('button', { name: '查看公开宿主' })).not.toHaveAttribute('data-attachment-count');
+   });
+ 
+diff --git a/web/src/game/AutoPass.tsx b/web/src/game/AutoPass.tsx
+index fc813a8..47cfbb6 100644
+--- a/web/src/game/AutoPass.tsx
++++ b/web/src/game/AutoPass.tsx
+@@ -1,9 +1,10 @@
+ import { useEffect, useRef, useState } from 'react';
+ import type { Action, View } from './types';
++import { playerStorage } from './playerStorage';
+ 
+ const PREFERENCE_KEY = 'hegemony.autoPass.v1';
+ function readPreference() {
+-  try { return localStorage.getItem(PREFERENCE_KEY) === 'true'; }
++  try { return playerStorage().getItem(PREFERENCE_KEY) === 'true'; }
+   catch { return false; }
+ }
+ 
+@@ -46,7 +47,7 @@ export function AutoPass({ view, busy, uncertain, connection, onAction }: {
+   return <div className={`hg-auto-pass ${enabled ? 'hg-auto-pass-enabled' : ''}`}>
+     <label><input type="checkbox" role="switch" aria-label="无可用行动时自动让过" checked={enabled} onChange={event => {
+       setEnabled(event.target.checked);
+-      try { localStorage.setItem(PREFERENCE_KEY, String(event.target.checked)); } catch { /* This tab still remembers the preference. */ }
++      try { playerStorage().setItem(PREFERENCE_KEY, String(event.target.checked)); } catch { /* This tab still remembers the preference. */ }
+     }} /><span>无可用行动时自动让过</span></label>
+     <span role="status">{status}</span><small>仅当唯一可用动作是“让过”时生效，可随时关闭。</small>
+   </div>;
+diff --git a/web/src/game/ChoicePanel.tsx b/web/src/game/ChoicePanel.tsx
+index d4bc8a4..79a7cc1 100644
+--- a/web/src/game/ChoicePanel.tsx
++++ b/web/src/game/ChoicePanel.tsx
+@@ -1,5 +1,6 @@
+-import { useState } from 'react';
++import { useRef, useState } from 'react';
+ import { CardContent, visibleCard } from './CardTile';
++import { useDialogFocus } from './useDialogFocus';
+ import type { Action, Card, CardDefinition, Choice, LegalAction } from './types';
+ import './choice-readability.css';
+ 
+@@ -13,12 +14,16 @@ function move(ids: string[], id: string, delta: number) {
+   if (index < 0 || target < 0 || target >= ids.length) return ids;
+   const result = [...ids]; [result[index], result[target]] = [result[target], result[index]]; return result;
+ }
+-export function ChoicePanel({ choice, action, definitions, busy, onSubmit, onReadCard, viewerId, playerLabels }: {
++export function ChoicePanel({ choice, action, definitions, busy, onSubmit, onReadCard, viewerId, playerLabels, modal = false, modalActive = true }: {
+   choice: Choice; action?: LegalAction; definitions: Map<string, CardDefinition>; busy: boolean; onSubmit: (action: Action) => void;
+   onReadCard?: (card: Card) => void;
+   viewerId?: string;
+   playerLabels?: Record<string, string>;
++  modal?: boolean;
++  modalActive?: boolean;
+ }) {
++  const dialog = useRef<HTMLElement>(null);
++  useDialogFocus(dialog, modal && modalActive);
+   const [selected, setSelected] = useState<string[]>(choice.kind === 'region_return' ? choice.options.map(option => option.id) : []);
+   const [top, setTop] = useState(choice.options.map(option => option.id));
+   const [bottom, setBottom] = useState<string[]>([]);
+@@ -61,7 +66,7 @@ export function ChoicePanel({ choice, action, definitions, busy, onSubmit, onRea
+     {!ids.length && <li className="hg-empty">这里没有牌</li>}
+   </ol>;
+ 
+-  return <section className="hg-choice" data-choice-id={choice.id} aria-label="待完成的选择" tabIndex={-1}>
++  return <section ref={dialog} className="hg-choice" data-choice-id={choice.id} role={modal ? 'dialog' : undefined} aria-modal={modal ? true : undefined} aria-label="待完成的选择" tabIndex={-1}>
+     <div className="hg-choice-heading">
+     <div className="hg-section-title"><span className="hg-eyebrow">轮到你选择</span><span className="hg-choice-tag">{damage ? `尚余 ${amount - assigned} 点` : ordering ? '自上而下排列' : `已选 ${selected.length} / ${max}`}</span></div>
+     <h2>{choice.title}</h2><p>{choice.description}</p>
+diff --git a/web/src/game/DialogIsolation.test.tsx b/web/src/game/DialogIsolation.test.tsx
+new file mode 100644
+index 0000000..afb5f16
+--- /dev/null
++++ b/web/src/game/DialogIsolation.test.tsx
+@@ -0,0 +1,108 @@
++import { fireEvent, render, screen, waitFor, within } from '@testing-library/react';
++import { describe, expect, it, vi } from 'vitest';
++import { Help } from './Help';
++import { Table } from './Table';
++import { testCard, testCatalog, testView } from './testFixtures';
++import type { Choice, View } from './types';
++
++const mulligan: Choice = {
++  id: 'modal-mulligan', kind: 'mulligan', title: '起手再调度', description: '选牌后明确确认',
++  playerId: 'p0', min: 0, max: 1, allowDecline: true,
++  options: [{ id: testCard.instanceId, label: testCard.name, card: testCard }],
++};
++const choose = { id: 'modal-choose', kind: 'choose', label: '选择', choiceId: mulligan.id };
++const playing: View = { ...testView, status: 'playing', legalActions: [] };
++const choosing: View = { ...playing, pendingChoice: mulligan, legalActions: [choose] };
++
++describe('table choice modal isolation', () => {
++  it('removes background AutoPass and navigation from the accessible tree and confines Tab in both directions', () => {
++    const submit = vi.fn();
++    const content = (view: View) => <div><header aria-hidden="false"><button>牌桌导航</button></header><Table view={view} catalog={testCatalog} busy={false} onAction={submit} /></div>;
++    const { rerender, container } = render(content(playing));
++    const autoPass = screen.getByRole('switch', { name: '无可用行动时自动让过' });
++    autoPass.focus();
++    rerender(content(choosing));
++    expect(screen.queryByRole('switch', { name: '无可用行动时自动让过' })).not.toBeInTheDocument();
++    expect(screen.queryByRole('button', { name: '牌桌导航' })).not.toBeInTheDocument();
++    expect(autoPass.closest('[inert]')).not.toBeNull();
++    const dialog = screen.getByRole('dialog', { name: '待完成的选择' });
++    expect(dialog).toHaveAttribute('aria-modal', 'true');
++    expect(dialog.contains(document.activeElement)).toBe(true);
++    const confirm = within(dialog).getByRole('button', { name: '确认选择' });
++    confirm.focus(); fireEvent.keyDown(document, { key: 'Tab' });
++    expect(within(dialog).getByRole('region', { name: '选择选项，可滚动查看' })).toHaveFocus();
++    fireEvent.keyDown(document, { key: 'Tab', shiftKey: true });
++    expect(confirm).toHaveFocus();
++    autoPass.focus();
++    expect(dialog.contains(document.activeElement)).toBe(true);
++    expect(autoPass).not.toBeChecked(); expect(submit).not.toHaveBeenCalled();
++    rerender(content(playing));
++    expect(autoPass).toHaveFocus();
++    expect(autoPass.closest('[inert]')).toBeNull();
++    expect(container.querySelector('header')).toHaveAttribute('aria-hidden', 'false');
++    expect(screen.getByRole('button', { name: '牌桌导航' })).toBeInTheDocument();
++  });
++
++  it('keeps Escape inert and submits zero-selection keep only through the explicit button', () => {
++    const submit = vi.fn();
++    render(<Table view={choosing} catalog={testCatalog} busy={false} onAction={submit} />);
++    const dialog = screen.getByRole('dialog', { name: '待完成的选择' });
++    fireEvent.keyDown(document, { key: 'Escape' });
++    expect(dialog).toBeInTheDocument(); expect(submit).not.toHaveBeenCalled();
++    fireEvent.click(within(dialog).getByRole('button', { name: '保留全部手牌' }));
++    expect(submit).toHaveBeenCalledExactlyOnceWith({ ...choose, selected: [] });
++  });
++
++  it('makes the nested reader the sole active layer and returns to its choice opener without losing selection', () => {
++    const submit = vi.fn();
++    render(<Table view={choosing} catalog={testCatalog} busy={false} onAction={submit} />);
++    const choiceDialog = screen.getByRole('dialog', { name: '待完成的选择' });
++    const option = choiceDialog.querySelector<HTMLButtonElement>('[data-choice-option]')!;
++    fireEvent.click(option);
++    const opener = within(choiceDialog).getByRole('button', { name: '放大阅读无知路人' });
++    opener.focus(); fireEvent.click(opener);
++    const reader = screen.getByRole('dialog', { name: '放大阅读无知路人' });
++    expect(reader.closest('[inert]')).toBeNull();
++    expect(choiceDialog.closest('[inert]')).not.toBeNull();
++    expect(screen.queryByRole('dialog', { name: '待完成的选择' })).not.toBeInTheDocument();
++    expect(within(reader).getByRole('button', { name: '关闭放大阅读' })).toHaveFocus();
++    fireEvent.click(within(reader).getByRole('button', { name: '原始牌面' }));
++    expect(within(reader).getByRole('img', { name: '无知路人原始牌面' })).toHaveAttribute('src', '/cards/JC125.jpg');
++    for (let i = 0; i < 12; i++) {
++      fireEvent.keyDown(document, { key: 'Tab', shiftKey: i % 2 === 0 });
++      expect(reader.contains(document.activeElement)).toBe(true);
++    }
++    fireEvent.keyDown(document, { key: 'Escape' });
++    expect(screen.queryByRole('dialog', { name: '放大阅读无知路人' })).not.toBeInTheDocument();
++    expect(opener).toHaveFocus(); expect(choiceDialog.closest('[inert]')).toBeNull();
++    expect(option).toHaveAttribute('aria-pressed', 'true');
++    fireEvent.keyDown(document, { key: 'Escape' });
++    expect(choiceDialog).toBeInTheDocument(); expect(submit).not.toHaveBeenCalled();
++    fireEvent.click(within(choiceDialog).getByRole('button', { name: '确认选择' }));
++    expect(submit).toHaveBeenCalledExactlyOnceWith({ ...choose, selected: [testCard.instanceId] });
++  });
++
++  it('keeps a late-arriving choice beneath the open guide and restores the choice when the guide closes', async () => {
++    const content = (view: View, help: boolean) => <div><header><button>打开指南</button></header><Table key={view.version} view={view} catalog={testCatalog} busy={false} modalPaused={help} onAction={vi.fn()} />{help && <Help catalog={testCatalog} onClose={vi.fn()} />}</div>;
++    const { rerender } = render(content(playing, false));
++    const opener = screen.getByRole('button', { name: '打开指南' }); opener.focus();
++    rerender(content(playing, true));
++    const updated = { ...choosing, version: 2 };
++    rerender(content(updated, true));
++    const guide = screen.getByRole('dialog', { name: '上手指南' });
++    expect(guide.closest('[inert]')).toBeNull();
++    await waitFor(() => expect(screen.queryByRole('dialog', { name: '待完成的选择' })).not.toBeInTheDocument());
++    for (let i = 0; i < 6; i++) { fireEvent.keyDown(document, { key: 'Tab' }); expect(guide.contains(document.activeElement)).toBe(true); }
++    rerender(content(updated, false));
++    const choiceDialog = screen.getByRole('dialog', { name: '待完成的选择' });
++    expect(choiceDialog.closest('[inert]')).toBeNull();
++    expect(choiceDialog.contains(document.activeElement)).toBe(true);
++  });
++
++  it('leaves normal browsing accessible when another seat is making a choice', () => {
++    render(<Table view={{ ...playing, waitingChoice: { playerId: 'p1', kind: 'mulligan', title: '起手再调度' } }} catalog={testCatalog} busy={false} onAction={vi.fn()} />);
++    expect(screen.getByRole('switch', { name: '无可用行动时自动让过' }).closest('[inert]')).toBeNull();
++    fireEvent.click(screen.getByRole('button', { name: '查看无知路人' }));
++    expect(screen.getByRole('complementary', { name: '选牌行动' })).toBeInTheDocument();
++  });
++});
+diff --git a/web/src/game/GameApp.tsx b/web/src/game/GameApp.tsx
+index f6ec9ae..6dcc87f 100644
+--- a/web/src/game/GameApp.tsx
++++ b/web/src/game/GameApp.tsx
+@@ -14,10 +14,18 @@ export function GameApp() {
+       {game.session && <button className="hg-nav-button" disabled={game.busy} onClick={game.leave} title="保留当前座位，回到大厅选择两人或四人新牌桌">返回大厅 / 新建牌桌</button>}
+       <button className="hg-nav-button" onClick={() => setHelp(true)}>上手指南 <span>?</span></button>
+     </nav></header>
++    <section className="hg-player-session" aria-label="玩家会话">
++      <strong>{game.playerMode === 'independent' ? '独立玩家会话 · 当前标签' : '普通玩家会话'}</strong>
++      <p>{game.playerMode === 'independent' ? '刷新保留此标签的席位。关闭标签可能失去此独立座位的恢复方式。复制标签可能沿用原席；需要另一位玩家时，请返回大厅后显式开始新的独立玩家会话。' : '在此浏览器恢复原席。需要在另一个标签作为另一位玩家入席时，请显式开始新的独立玩家会话。'}</p>
++      {game.session && game.playerMode === 'ordinary' && <p>只切换当前标签；普通玩家的座位和牌桌恢复方式保留。</p>}
++      {!game.session && game.playerMode === 'independent' && <p>开始新会话或切回普通后，此独立席位可能无法恢复；需要多席请另开标签。</p>}
++      {(!game.session || game.playerMode === 'ordinary') && <div><button className="hg-button hg-button-quiet" disabled={game.playerModeLocked} onClick={game.startIndependentSession}>开始新的独立玩家会话</button>
++        {game.playerMode === 'independent' && <button className="hg-button hg-button-quiet" disabled={game.playerModeLocked} onClick={game.useOrdinarySession}>切回普通玩家会话</button>}</div>}
++    </section>
+     {game.error && <div className="hg-error" role="alert"><span>{game.error}</span><button onClick={game.dismissError} aria-label="关闭提示">×</button></div>}
+     {game.uncertain && <div className="hg-unconfirmed" role="status"><span>上一行动等待确认；牌桌将在恢复连接后继续。</span><button className="hg-button hg-button-primary" disabled={game.busy} onClick={game.retryPending}>确认上一行动</button></div>}
+     {game.resumeAvailable && <div className="hg-return-seat"><p>旧牌桌座位已保留。可以新建另一桌，也可回到下方牌桌。</p><div>{game.savedSeats.map(seat => <button key={`${seat.roomId}-${seat.seat}`} className="hg-button hg-button-quiet" onClick={() => game.resume(seat)}>回到牌桌 {seat.inviteCode} · 席位 {seat.seat + 1}</button>)}</div></div>}
+-    {!game.session ? <Lobby catalog={game.catalog} busy={game.busy} onCreate={game.create} onJoin={game.join} onCreateDraft={game.createDraft} onJoinDraft={game.joinDraft} retry={game.retryCatalog} /> : !game.view ? <main className="hg-resume"><span className="hg-brand-mark">◈</span><h1>正在恢复你的座位</h1><p>同步手牌、牌桌与尚未完成的选择…</p><p className="hg-muted">连接恢复后会自动继续。</p><button className="hg-button hg-button-quiet" onClick={game.leave}>返回大厅，保留此座位</button></main> : game.view.status === 'lobby' ? <RoomLobby view={game.view} catalog={game.catalog} busy={game.busy || game.uncertain} onAction={game.act} /> : <Table view={game.view} catalog={game.catalog} busy={game.busy || game.uncertain} uncertain={game.uncertain} connection={game.connection} onAction={game.act} />}
++    {!game.session ? <Lobby independent={game.playerMode === 'independent'} catalog={game.catalog} busy={game.busy} onCreate={game.create} onJoin={game.join} onCreateDraft={game.createDraft} onJoinDraft={game.joinDraft} retry={game.retryCatalog} /> : !game.view ? <main className="hg-resume"><span className="hg-brand-mark">◈</span><h1>正在恢复你的座位</h1><p>同步手牌、牌桌与尚未完成的选择…</p><p className="hg-muted">连接恢复后会自动继续。</p><button className="hg-button hg-button-quiet" onClick={game.leave}>返回大厅，保留此座位</button></main> : game.view.status === 'lobby' ? <RoomLobby view={game.view} catalog={game.catalog} busy={game.busy || game.uncertain} onAction={game.act} /> : <Table modalPaused={help} view={game.view} catalog={game.catalog} busy={game.busy || game.uncertain} uncertain={game.uncertain} connection={game.connection} onAction={game.act} />}
+     <footer className="hg-footer"><span>受限已实现卡池 · 自组与预组 · 邀请制云端牌桌</span></footer>
+     {help && <Help catalog={game.catalog} onClose={() => setHelp(false)} />}
+   </div>;
+diff --git a/web/src/game/Help.tsx b/web/src/game/Help.tsx
+index a2b8925..911b00e 100644
+--- a/web/src/game/Help.tsx
++++ b/web/src/game/Help.tsx
+@@ -1,25 +1,18 @@
+-import { useEffect, useRef } from 'react';
++import { useRef } from 'react';
+ import type { Catalog } from './types';
+ import { FactionCoverage } from './FactionCoverage';
++import { useDialogFocus } from './useDialogFocus';
+ 
+ export function Help({ onClose, catalog }: { onClose: () => void; catalog: Catalog | null }) {
+-  const close = useRef<HTMLButtonElement>(null);
+-  const dismiss = useRef(onClose);
+-  dismiss.current = onClose;
+-  useEffect(() => {
+-    const previous = document.activeElement as HTMLElement | null;
+-    close.current?.focus();
+-    const escape = (event: KeyboardEvent) => { if (event.key === 'Escape') dismiss.current(); };
+-    document.addEventListener('keydown', escape);
+-    return () => { document.removeEventListener('keydown', escape); previous?.focus(); };
+-  }, []);
++  const modal = useRef<HTMLElement>(null);
++  useDialogFocus(modal, true, onClose);
+   const worldCount = new Set(catalog?.cards.filter(card => card.kind === 'region').map(card => card.id)).size;
+   const deckSizes = [...new Set(catalog?.decks.map(deck => deck.cardCount))];
+   const poolDescription = catalog
+     ? `使用 ${catalog.decks.length} 套${deckSizes.length === 1 ? ` ${deckSizes[0]} 张` : ''}自组预组与 ${worldCount} 种已开放世界牌。`
+     : '牌组档案正在加载。';
+-  return <div className="hg-modal-backdrop" onClick={onClose}><section className="hg-help hg-modal" role="dialog" aria-modal="true" aria-label="上手指南" onClick={event => event.stopPropagation()}>
+-    <button ref={close} className="hg-close" onClick={onClose} aria-label="关闭指南">×</button><span className="hg-eyebrow">新手档案 / HOW TO PLAY</span><h2>将世界纳入你的版图</h2>
++  return <div className="hg-modal-backdrop" onClick={onClose}><section ref={modal} tabIndex={-1} className="hg-help hg-modal" role="dialog" aria-modal="true" aria-label="上手指南" onClick={event => event.stopPropagation()}>
++    <button className="hg-close" onClick={onClose} aria-label="关闭指南">×</button><span className="hg-eyebrow">新手档案 / HOW TO PLAY</span><h2>将世界纳入你的版图</h2>
+     <p>争夺地区，把赢得的地区收入计分区。两人对决先得 <b>8 分</b>，四人协作团队先得 <b>10 分</b>。</p>
+     <ol className="hg-help-steps"><li><b>建立你的资产</b><span>将手牌置为资产，提供费用与忠诚；派遣角色到地区，参与对抗。点选一张牌即可查看本时点可用的行动。</span></li>
+       <li><b>轮流行动，让过推进</b><span>牌桌显示行动团队和当前优先权。四人协作中，全队让过才交出行动；任一队员行动会重置本队让过记录。</span></li>
+diff --git a/web/src/game/Lobby.tsx b/web/src/game/Lobby.tsx
+index bf57070..7171392 100644
+--- a/web/src/game/Lobby.tsx
++++ b/web/src/game/Lobby.tsx
+@@ -27,8 +27,8 @@ export function DeckPicker({ decks, cards, value, onChange, disabled = false, al
+   })}</div>;
+ }
+ 
+-export function Lobby({ catalog, busy, onCreate, onJoin, retry, onSelectDraft, onCreateDraft, onJoinDraft }: {
+-  catalog: Catalog | null; busy: boolean;
++export function Lobby({ independent = false, catalog, busy, onCreate, onJoin, retry, onSelectDraft, onCreateDraft, onJoinDraft }: {
++  independent?: boolean; catalog: Catalog | null; busy: boolean;
+   onCreate: (name: string, mode: 'duel' | 'teams', deckId: string) => void;
+   onJoin: (invite: string, name: string, deckId: string) => void; retry: () => void;
+   onSelectDraft?: (draft: DeckDraft) => void;
+@@ -73,7 +73,7 @@ export function Lobby({ catalog, busy, onCreate, onJoin, retry, onSelectDraft, o
+           <button type="button" className={mode === 'duel' ? 'hg-selected' : ''} onClick={() => setMode('duel')} disabled={busy}><strong>两人对决 <span>1 VS 1</span></strong><small>3 个地区 · 先获 8 分胜利</small></button>
+           <button type="button" className={mode === 'teams' ? 'hg-selected' : ''} onClick={() => setMode('teams')} disabled={busy}><strong>四人协作 <span>2 VS 2</span></strong><small>5 个地区 · 团队先获 10 分胜利</small></button>
+         </div> : <label className="hg-field">邀请码<input value={invite} onChange={event => setInvite(event.target.value)} placeholder="粘贴伙伴发来的邀请码" required autoComplete="off" disabled={busy} /></label>}
+-        <div className="hg-entry-bottom"><p>创建后分享邀请，所有玩家准备后由房主开始。<br />座位保存在此浏览器，刷新即可继续。{tab === 'join' && <><br />本机已有此房座位时会恢复原席，保留原称呼、牌组与准备状态。</>}</p><button className="hg-button hg-button-primary" type="submit" disabled={busy || !catalog || !entryAvailable || !name.trim() || (tab === 'join' && !invite.trim())}>{busy ? '正在入席…' : tab === 'create' ? '创建牌桌 →' : '加入牌桌 →'}</button></div>
++        <div className="hg-entry-bottom"><p>创建后分享邀请，所有玩家准备后由房主开始。<br />{independent ? '座位保存在当前标签，刷新即可继续。' : '座位保存在此浏览器，刷新即可继续。'}{tab === 'join' && <><br />当前玩家会话已有此房座位时会恢复原席，保留原称呼、牌组与准备状态。</>}</p><button className="hg-button hg-button-primary" type="submit" disabled={busy || !catalog || !entryAvailable || !name.trim() || (tab === 'join' && !invite.trim())}>{busy ? '正在入席…' : tab === 'create' ? '创建牌桌 →' : '加入牌桌 →'}</button></div>
+       </form>
+       <div id="hegemony-decks" className="hg-section-title"><span className="hg-eyebrow">02 / 选择自组预组</span><span className="hg-pool-badge">受限真实卡池预组</span></div>
+       <h2>{catalog ? `${catalog.decks.length} 套自组预组` : '自组预组'}</h2>
+diff --git a/web/src/game/PlayerSessions.test.tsx b/web/src/game/PlayerSessions.test.tsx
+new file mode 100644
+index 0000000..eb4c459
+--- /dev/null
++++ b/web/src/game/PlayerSessions.test.tsx
+@@ -0,0 +1,217 @@
++import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
++import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
++import { GameApp } from './GameApp';
++import { testCatalog, testView } from './testFixtures';
++import type { SavedSession } from './types';
++
++const json = (body: unknown, status = 200) => new Response(JSON.stringify(body), { status });
++let seats: SavedSession[];
++let posts: { url: string; body: Record<string, unknown>; authorization?: string }[];
++let reads: { url: string; authorization?: string }[];
++let rejectEntry: boolean;
++let rejectCommand: boolean;
++let playing: boolean;
++beforeEach(() => {
++  localStorage.clear(); sessionStorage.clear(); history.replaceState({}, '', '/');
++  seats = []; posts = []; reads = []; rejectEntry = false; rejectCommand = false; playing = false;
++  vi.stubGlobal('fetch', vi.fn(async (url: string, init?: RequestInit) => {
++    const authorization = new Headers(init?.headers).get('Authorization') || undefined;
++    if (init?.method === 'POST') {
++      const body = JSON.parse(String(init.body)); posts.push({ url, body, authorization });
++      if (url.endsWith('/commands')) return rejectCommand ? json({ message: 'lost acknowledgement' }, 503) : json(viewFor(authorization));
++      if (rejectEntry) return json({ message: 'entry temporarily unavailable' }, 503);
++      const code = String(body.inviteCode || 'INVITE').toUpperCase();
++      const seat = seats.filter(s => s.inviteCode === code).length;
++      const saved = { roomId: `room-${code}`, inviteCode: code, token: `test-opaque-${seats.length}`, seat };
++      seats.push(saved); return json({ ...saved, view: viewFor(`Bearer ${saved.token}`) });
++    }
++    reads.push({ url, authorization });
++    return url.endsWith('/catalog') ? json({ ...testCatalog, entryIdempotency: true }) : json(viewFor(authorization));
++  }));
++});
++afterEach(() => { cleanup(); vi.restoreAllMocks(); vi.unstubAllGlobals(); localStorage.clear(); sessionStorage.clear(); });
++function viewFor(authorization?: string) {
++  const saved = seats.find(s => authorization === `Bearer ${s.token}`) || seats.at(-1);
++  return { ...testView, status: playing ? 'playing' : 'lobby', legalActions: playing ? [] : testView.legalActions,
++    roomId: saved?.roomId || 'room-INVITE', inviteCode: saved?.inviteCode || 'INVITE',
++    you: `p${saved?.seat || 0}`, players: seats.filter(s => s.roomId === saved?.roomId).map(s => ({ ...testView.players[0], id: `p${s.seat}`, seat: s.seat })) };
++}
++async function lobbyReady() { await waitFor(() => expect(screen.getByRole('button', { name: '创建牌桌 →' })).toBeInTheDocument()); }
++async function create() {
++  await lobbyReady(); fireEvent.change(screen.getByLabelText('你的称呼'), { target: { value: '测试玩家' } });
++  fireEvent.click(screen.getByRole('button', { name: '创建牌桌 →' }));
++  if (playing) await screen.findByRole('switch', { name: '无可用行动时自动让过' });
++  else await screen.findByText('等待秘社集结');
++}
++async function lobby() { fireEvent.click(screen.getByRole('button', { name: '返回大厅 / 新建牌桌' })); await lobbyReady(); }
++async function independent() { fireEvent.click(screen.getByRole('button', { name: '开始新的独立玩家会话' })); await screen.findByText('独立玩家会话 · 当前标签'); }
++async function join(code = 'INVITE') {
++  fireEvent.click(screen.getByRole('button', { name: '邀请码加入' }));
++  fireEvent.change(screen.getByLabelText('你的称呼'), { target: { value: '测试玩家' } });
++  fireEvent.change(screen.getByLabelText('邀请码'), { target: { value: code } });
++  await waitFor(() => expect(screen.getByRole('button', { name: '加入牌桌 →' })).toBeEnabled());
++  fireEvent.click(screen.getByRole('button', { name: '加入牌桌 →' }));
++  if (playing) await screen.findByRole('switch', { name: '无可用行动时自动让过' });
++  else await screen.findByText('等待秘社集结');
++}
++const entries = () => posts.filter(p => !p.url.endsWith('/commands'));
++
++describe('explicit independent player sessions through normal UI', () => {
++  it('starts a new tab’s independent seat directly from the ordinary table and preserves the ordinary reload screen', async () => {
++    playing = true;
++    let app = render(<GameApp />); await create();
++    const ordinary = localStorage.getItem('hegemony.session.v1');
++    const history = localStorage.getItem('hegemony.seats.v1');
++    expect(localStorage.getItem('hegemony.screen.v1')).toBe('table');
++    app.unmount();
++    // A fresh second tab sees the same ordinary localStorage and its own empty page session.
++    app = render(<GameApp />); await screen.findByRole('switch', { name: '无可用行动时自动让过' });
++    expect(screen.getByRole('button', { name: '开始新的独立玩家会话' })).toBeEnabled();
++    expect(screen.getByText('只切换当前标签；普通玩家的座位和牌桌恢复方式保留。')).toBeInTheDocument();
++    await independent(); await lobbyReady();
++    expect(localStorage.getItem('hegemony.screen.v1')).toBe('table');
++    await join();
++    expect(seats.map(s => s.seat)).toEqual([0, 1]);
++    expect(localStorage.getItem('hegemony.session.v1')).toBe(ordinary);
++    expect(localStorage.getItem('hegemony.seats.v1')).toBe(history);
++    expect(localStorage.getItem('hegemony.screen.v1')).toBe('table');
++    expect(posts.filter(p => p.url.endsWith('/commands'))).toHaveLength(0);
++    app.unmount(); sessionStorage.clear(); // Model returning to the ordinary tab’s page session.
++    app = render(<GameApp />); await screen.findByRole('switch', { name: '无可用行动时自动让过' });
++    await waitFor(() => expect(reads.at(-1)?.authorization).toBe(`Bearer ${seats[0].token}`));
++    expect(screen.queryByRole('button', { name: '创建牌桌 →' })).not.toBeInTheDocument();
++    expect(entries()).toHaveLength(2);
++  });
++  it('locks the direct ordinary-table switch while a command is pending and keeps that lock after lobby return', async () => {
++    render(<GameApp />); await create(); rejectCommand = true;
++    fireEvent.click(screen.getByRole('button', { name: '准备' }));
++    const tableSwitch = screen.getByRole('button', { name: '开始新的独立玩家会话' });
++    expect(tableSwitch).toBeDisabled();
++    await screen.findByRole('button', { name: '确认上一行动' });
++    await waitFor(() => expect(screen.getByRole('button', { name: '返回大厅 / 新建牌桌' })).toBeEnabled());
++    expect(tableSwitch).toBeDisabled();
++    const pending = localStorage.getItem('hegemony.pending.v1');
++    await lobby();
++    const lobbySwitch = screen.getByRole('button', { name: '开始新的独立玩家会话' });
++    expect(lobbySwitch).toBeDisabled(); fireEvent.click(lobbySwitch);
++    expect(localStorage.getItem('hegemony.pending.v1')).toBe(pending);
++    expect(localStorage.getItem('hegemony.screen.v1')).toBe('lobby');
++    expect(sessionStorage.getItem('hegemony.playerSession.v1')).toBeNull();
++    expect(entries()).toHaveLength(1);
++  });
++  it('warns before replacing an independent session or switching back that this seat may become unrecoverable', async () => {
++    render(<GameApp />); await lobbyReady(); await independent(); await join(); await lobby();
++    expect(screen.getByText('开始新会话或切回普通后，此独立席位可能无法恢复；需要多席请另开标签。')).toBeInTheDocument();
++    expect(screen.getByRole('button', { name: '开始新的独立玩家会话' })).toBeEnabled();
++    expect(screen.getByRole('button', { name: '切回普通玩家会话' })).toBeEnabled();
++    fireEvent.click(screen.getByRole('button', { name: '切回普通玩家会话' }));
++    expect(screen.queryByRole('button', { name: '回到牌桌 INVITE · 席位 1' })).not.toBeInTheDocument();
++    expect(entries()).toHaveLength(1);
++  });
++  it('keeps automatic pass opt-in separate from the ordinary seat and restores the ordinary preference', async () => {
++    playing = true; render(<GameApp />); await lobbyReady();
++    fireEvent.change(screen.getByLabelText('你的称呼'), { target: { value: '测试玩家' } });
++    fireEvent.click(screen.getByRole('button', { name: '创建牌桌 →' }));
++    const ordinarySwitch = await screen.findByRole('switch', { name: '无可用行动时自动让过' });
++    fireEvent.click(ordinarySwitch); expect(ordinarySwitch).toBeChecked();
++    await lobby(); await independent();
++    fireEvent.click(screen.getByRole('button', { name: '邀请码加入' }));
++    fireEvent.change(screen.getByLabelText('你的称呼'), { target: { value: '测试玩家' } });
++    fireEvent.change(screen.getByLabelText('邀请码'), { target: { value: 'INVITE' } });
++    await waitFor(() => expect(screen.getByRole('button', { name: '加入牌桌 →' })).toBeEnabled());
++    fireEvent.click(screen.getByRole('button', { name: '加入牌桌 →' }));
++    expect(await screen.findByRole('switch', { name: '无可用行动时自动让过' })).not.toBeChecked();
++    await lobby(); fireEvent.click(screen.getByRole('button', { name: '切回普通玩家会话' }));
++    fireEvent.click(await screen.findByRole('button', { name: '回到牌桌 INVITE · 席位 1' }));
++    expect(await screen.findByRole('switch', { name: '无可用行动时自动让过' })).toBeChecked();
++    expect(posts.filter(p => p.url.endsWith('/commands'))).toHaveLength(0);
++  });
++  it('isolates same-invite seats, refreshes the current identity and returns to the ordinary saved seat', async () => {
++    let app = render(<GameApp />); await create(); const ordinary = localStorage.getItem('hegemony.session.v1');
++    await lobby(); await independent(); expect(entries()).toHaveLength(1);
++    await join(); expect(seats.map(s => s.seat)).toEqual([0, 1]);
++    expect(localStorage.getItem('hegemony.session.v1')).toBe(ordinary);
++    app.unmount(); app = render(<GameApp />); await screen.findByText('等待秘社集结');
++    await waitFor(() => expect(reads.at(-1)?.authorization).toBe(`Bearer ${seats[1].token}`));
++    await lobby(); await join(' invite '); expect(entries()).toHaveLength(2);
++    await lobby(); fireEvent.click(screen.getByRole('button', { name: '切回普通玩家会话' }));
++    fireEvent.click(await screen.findByRole('button', { name: '回到牌桌 INVITE · 席位 1' }));
++    await screen.findByText('等待秘社集结');
++    await waitFor(() => expect(reads.at(-1)?.authorization).toBe(`Bearer ${seats[0].token}`));
++    expect(entries()).toHaveLength(2);
++    expect(reads.every(r => !r.url.includes('test-opaque') && !r.url.includes('player-session'))).toBe(true);
++  });
++  it('allocates no identity on refresh or lobby return; only an explicit new session can join another seat', async () => {
++    let app = render(<GameApp />); await lobbyReady(); await independent(); await join();
++    app.unmount(); app = render(<GameApp />); await screen.findByText('等待秘社集结');
++    expect(entries()).toHaveLength(1);
++    await lobby(); await join(); expect(entries()).toHaveLength(1);
++    await lobby(); await independent(); expect(entries()).toHaveLength(1); await join();
++    expect(entries()).toHaveLength(2); expect(seats.map(s => s.seat)).toEqual([0, 1]);
++  });
++  it('uses a fresh entry receipt in a new scope and keeps identical retries inside that scope', async () => {
++    render(<GameApp />); await lobbyReady(); rejectEntry = true;
++    fireEvent.change(screen.getByLabelText('你的称呼'), { target: { value: '测试玩家' } });
++    fireEvent.click(screen.getByRole('button', { name: '创建牌桌 →' })); await screen.findByRole('alert');
++    const ordinaryId = entries()[0].body.requestId; expect(entries()[1].body.requestId).toBe(ordinaryId);
++    await independent(); await lobbyReady();
++    fireEvent.change(screen.getByLabelText('你的称呼'), { target: { value: '测试玩家' } });
++    await waitFor(() => expect(screen.getByRole('button', { name: '创建牌桌 →' })).toBeEnabled());
++    fireEvent.click(screen.getByRole('button', { name: '创建牌桌 →' })); await screen.findByRole('alert');
++    expect(entries()[2].body.requestId).not.toBe(ordinaryId); expect(entries()[3].body).toEqual(entries()[2].body);
++    rejectEntry = false; fireEvent.click(screen.getByRole('button', { name: '创建牌桌 →' }));
++    await screen.findByText('等待秘社集结'); expect(entries()[4].body).toEqual(entries()[2].body);
++  });
++  it('blocks switching scopes while an original paid/action command remains unconfirmed, including in the lobby', async () => {
++    render(<GameApp />); await create(); rejectCommand = true;
++    fireEvent.click(screen.getByRole('button', { name: '准备' }));
++    await screen.findByRole('button', { name: '确认上一行动' });
++    await waitFor(() => expect(screen.getByRole('button', { name: '返回大厅 / 新建牌桌' })).toBeEnabled());
++    const pending = localStorage.getItem('hegemony.pending.v1'); expect(pending).not.toBeNull();
++    await lobby(); fireEvent.click(screen.getByRole('button', { name: '开始新的独立玩家会话' }));
++    expect(screen.queryByText('独立玩家会话 · 当前标签')).not.toBeInTheDocument();
++    expect(localStorage.getItem('hegemony.pending.v1')).toBe(pending); expect(entries()).toHaveLength(1);
++  });
++  it('refreshes an independent unconfirmed command with the original actor and command ID', async () => {
++    let app = render(<GameApp />); await lobbyReady(); await independent(); await join();
++    rejectCommand = true; fireEvent.click(screen.getByRole('button', { name: '准备' }));
++    await screen.findByRole('button', { name: '确认上一行动' });
++    await waitFor(() => expect(screen.getByRole('button', { name: '返回大厅 / 新建牌桌' })).toBeEnabled());
++    const originals = posts.filter(p => p.url.endsWith('/commands'));
++    expect(originals).toHaveLength(2); expect(originals[1]).toEqual(originals[0]);
++    expect(localStorage.getItem('hegemony.pending.v1')).toBeNull();
++    app.unmount(); rejectCommand = false; app = render(<GameApp />);
++    await screen.findByText('等待秘社集结');
++    await waitFor(() => expect(posts.filter(p => p.url.endsWith('/commands'))).toHaveLength(3));
++    expect(posts.filter(p => p.url.endsWith('/commands'))[2]).toEqual(originals[0]);
++    await waitFor(() => expect(screen.queryByRole('button', { name: '确认上一行动' })).not.toBeInTheDocument());
++    expect(entries()).toHaveLength(1);
++  });
++  it('ignores other-tab storage events and joins a different invitation only with its own credentials', async () => {
++    render(<GameApp />); await create(); await lobby(); await independent(); await join();
++    const count = reads.length;
++    window.dispatchEvent(new StorageEvent('storage', { key: 'hegemony.session.v1', newValue: 'another-tab-event', storageArea: localStorage }));
++    await lobby(); await join('OTHER');
++    expect(entries()).toHaveLength(3); expect(seats.at(-1)?.inviteCode).toBe('OTHER');
++    expect(reads.slice(count).filter(r => r.authorization).every(r => r.authorization !== `Bearer ${seats[0].token}`)).toBe(true);
++  });
++  it('reports unavailable tab storage without copying or clearing ordinary credentials', async () => {
++    render(<GameApp />); await create(); await lobby(); const ordinary = localStorage.getItem('hegemony.session.v1');
++    const original = Storage.prototype.setItem;
++    vi.spyOn(Storage.prototype, 'setItem').mockImplementation(function (this: Storage, key, value) {
++      if (this === sessionStorage) throw new DOMException('blocked', 'SecurityError'); original.call(this, key, value);
++    });
++    fireEvent.click(screen.getByRole('button', { name: '开始新的独立玩家会话' }));
++    expect(await screen.findByRole('alert')).toHaveTextContent('独立玩家会话');
++    expect(localStorage.getItem('hegemony.session.v1')).toBe(ordinary); expect(entries()).toHaveLength(1);
++  });
++  it('makes closing the independent page session lose its recovery while ordinary seats survive', async () => {
++    const app = render(<GameApp />); await create(); await lobby(); await independent(); await join();
++    expect(screen.getByText(/关闭标签可能失去此独立座位的恢复方式/)).toBeInTheDocument();
++    app.unmount(); sessionStorage.clear(); // Model the browser ending the page session, never seed credentials.
++    render(<GameApp />); await lobbyReady();
++    expect(await screen.findByRole('button', { name: '回到牌桌 INVITE · 席位 1' })).toBeInTheDocument();
++    expect(screen.queryByRole('button', { name: '回到牌桌 INVITE · 席位 2' })).not.toBeInTheDocument();
++    expect(entries()).toHaveLength(2);
++  });
++});
+diff --git a/web/src/game/ReadModal.tsx b/web/src/game/ReadModal.tsx
+index 8ba22e1..5faaec1 100644
+--- a/web/src/game/ReadModal.tsx
++++ b/web/src/game/ReadModal.tsx
+@@ -1,33 +1,17 @@
+-import { useEffect, useRef, useState } from 'react';
++import { useRef, useState } from 'react';
+ import { CardContent, visibleCard } from './CardTile';
+ import { cardScanUrl } from './cardScans';
+ import type { Card, CardDefinition } from './types';
++import { useDialogFocus } from './useDialogFocus';
+ 
+-export function ReadModal({ card, definition, viewerId, onClose, context }: { card: Card; definition?: CardDefinition; viewerId: string; onClose: () => void; context?: string }) {
+-  const close = useRef<HTMLButtonElement>(null);
++export function ReadModal({ card, definition, viewerId, onClose, context, active = true }: { card: Card; definition?: CardDefinition; viewerId: string; onClose: () => void; context?: string; active?: boolean }) {
+   const modal = useRef<HTMLElement>(null);
+-  const dismiss = useRef(onClose);
+-  dismiss.current = onClose;
++  useDialogFocus(modal, active, onClose);
+   const safe = visibleCard(card, viewerId);
+   const scan = cardScanUrl(safe.cardId);
+   const [showScan, setShowScan] = useState(false);
+-  useEffect(() => {
+-    const previous = document.activeElement as HTMLElement | null;
+-    close.current?.focus();
+-    const escape = (event: KeyboardEvent) => {
+-      if (event.key === 'Escape') dismiss.current();
+-      if (event.key === 'Tab') {
+-        const controls = Array.from(modal.current?.querySelectorAll<HTMLElement>('button:not(:disabled), a[href]') || []);
+-        const current = controls.indexOf(document.activeElement as HTMLElement);
+-        event.preventDefault();
+-        controls[(current + (event.shiftKey ? -1 : 1) + controls.length) % controls.length]?.focus();
+-      }
+-    };
+-    document.addEventListener('keydown', escape);
+-    return () => { document.removeEventListener('keydown', escape); previous?.focus(); };
+-  }, []);
+-  return <div className="hg-modal-backdrop" onClick={onClose}><section ref={modal} className="hg-modal hg-reading" data-reading-card={safe.instanceId} role="dialog" aria-modal="true" aria-label={`放大阅读${safe.name}`} onClick={event => event.stopPropagation()}>
+-    <button ref={close} className="hg-close" onClick={onClose} aria-label="关闭放大阅读">×</button><span className="hg-eyebrow">卡牌档案 · 放大阅读</span>
++  return <div className="hg-modal-backdrop" onClick={onClose}><section ref={modal} tabIndex={-1} className="hg-modal hg-reading" data-reading-card={safe.instanceId} role="dialog" aria-modal="true" aria-label={`放大阅读${safe.name}`} onClick={event => event.stopPropagation()}>
++    <button className="hg-close" onClick={onClose} aria-label="关闭放大阅读">×</button><span className="hg-eyebrow">卡牌档案 · 放大阅读</span>
+     {context && <p className="hg-attachment-context">{context}</p>}
+     {scan && <div className="hg-reading-tabs" role="group" aria-label="阅读内容"><button type="button" className="hg-button hg-button-quiet" aria-pressed={!showScan} onClick={() => setShowScan(false)}>当前状态与文字</button><button type="button" className="hg-button hg-button-quiet" aria-pressed={showScan} onClick={() => setShowScan(true)}>原始牌面</button></div>}
+     {showScan && scan ? <div className="hg-source-reading"><a href={scan} target="_blank" rel="noreferrer" aria-label={`打开${safe.name}原始牌面全图`}><img src={scan} alt={`${safe.name}原始牌面`} /></a><p>点击牌面打开原图。印刷值请结合当前状态中的修正查看。</p></div> : <><div className="hg-reading-card"><CardContent card={safe} definition={safe.cardId ? definition : undefined} /></div><p>◈ 调查 · ⚔ 战斗 · ⚑ 势力。白底图标仅在操控者团队持先手时生效。</p></>}
+diff --git a/web/src/game/Table.test.tsx b/web/src/game/Table.test.tsx
+index 77dcdf9..e939554 100644
+--- a/web/src/game/Table.test.tsx
++++ b/web/src/game/Table.test.tsx
+@@ -145,6 +145,8 @@ describe('playable table', () => {
+     expect(screen.getAllByText('私密文字4').length).toBeGreaterThan(0);
+     expect(screen.queryByText('私密文字1')).not.toBeInTheDocument();
+     expect(container.querySelector('.hg-dock-action')).toHaveAttribute('data-next-step', 'wait');
++    expect(screen.queryByRole('button', { name: '等待玩家 · 可浏览' })).not.toBeInTheDocument();
++    fireEvent.keyDown(document, { key: 'Escape' });
+     expect(screen.getByRole('button', { name: '等待玩家 · 可浏览' })).toBeDisabled();
+   });
+   it('keeps teammate resources and hidden hands in separate mats on the same table side', () => {
+@@ -195,7 +197,7 @@ describe('playable table', () => {
+     const submit = vi.fn();
+     const action = { id: 'choose', kind: 'choose', label: '确认', choiceId: testChoice.id };
+     render(<Table view={{ ...testView, status: 'playing', pendingChoice: testChoice, legalActions: [action] }} catalog={testCatalog} busy={false} onAction={submit} />);
+-    const panel = screen.getByRole('region', { name: '待完成的选择' });
++    const panel = screen.getByRole('dialog', { name: '待完成的选择' });
+     fireEvent.click(within(panel).getByRole('button', { name: /角色甲/ }));
+     fireEvent.click(within(panel).getByRole('button', { name: '确认选择' }));
+     expect(submit).toHaveBeenCalledExactlyOnceWith({ ...action, choiceId: testChoice.id, selected: ['a'] });
+diff --git a/web/src/game/Table.tsx b/web/src/game/Table.tsx
+index 3923e1a..d41e594 100644
+--- a/web/src/game/Table.tsx
++++ b/web/src/game/Table.tsx
+@@ -126,7 +126,7 @@ function RegionTile({ region, view, definitions, selected, targeted, available,
+   </article>;
+ }
+ 
+-export function Table({ view, catalog, busy, uncertain = false, connection = 'connecting', onAction }: { view: View; catalog: Catalog | null; busy: boolean; uncertain?: boolean; connection?: 'connecting' | 'online' | 'offline'; onAction: (action: Action) => void }) {
++export function Table({ view, catalog, busy, uncertain = false, connection = 'connecting', modalPaused = false, onAction }: { view: View; catalog: Catalog | null; busy: boolean; uncertain?: boolean; connection?: 'connecting' | 'online' | 'offline'; modalPaused?: boolean; onAction: (action: Action) => void }) {
+   const [selectedCard, setSelectedCard] = useState<string | null>(null);
+   const [selectedTarget, setSelectedTarget] = useState<string | null>(null);
+   const [selectedRegion, setSelectedRegion] = useState<number | null>(null);
+@@ -200,7 +200,7 @@ export function Table({ view, catalog, busy, uncertain = false, connection = 'co
+       {card ? <><div className="hg-inspected-card" role="button" tabIndex={0} aria-label={`放大阅读${card.name}`} onClick={() => readCard(card)} onKeyDown={event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); readCard(card); } }}><CardContent card={card} definition={definitions.get(card.cardId || '')} viewerId={view.you} /></div><button type="button" className="hg-small-read" onClick={() => readCard(card)}>放大文字与图标 ↗</button>{selectedAttachment && <p className="hg-attachment-context">{attachmentContext(selectedAttachment)}</p>}{attachedCards.length > 0 && <section className="hg-attached-cards" aria-label="此角色的附属"><h3>附属 · {attachedCards.length} 张</h3>{attachedCards.map(item => <button key={item.instanceId} type="button" className="hg-attachment-link" data-attachment-instance={item.instanceId} data-attachment-host={item.hostId} onClick={() => readCard(item)} aria-label={`放大阅读附属${visibleCard(item, view.you).name}`}><span><strong>{visibleCard(item, view.you).name}</strong><small>{attachmentContext(item)}</small></span><span>阅读 ↗</span></button>)}</section>}{lastHandCharacterToAsset && <p className="hg-strategy-note">转为资产后，手中将暂时没有角色。资产提供费用与忠诚，但不能参与对抗。</p>}<ActionButtons actions={cardActions} busy={busy} onAction={onAction} regions={view.regions} onRegionPreview={setPreviewRegion} />{!cardActions.length && <p className="hg-wait-note">当前时点此牌没有可执行行动，可继续浏览牌桌。</p>}</> : region && <><h2>{regionLabel(region.index, view.regions)}</h2><p>控制阈值 {region.threshold} · 赢得后 {region.points} 分</p>{region.skipConfrontation && <p className="hg-skip-explanation">本回合略过对抗比较。</p>}<p className="hg-rule-text">{definitions.get(region.cardId)?.text}</p><button type="button" className="hg-small-read" onClick={() => readCard({ instanceId: region.id, cardId: region.cardId, name: region.name, kind: 'region', owner: view.you, controller: view.you, exhausted: false, faceDown: false })}>放大地区文字 ↗</button><ActionButtons actions={regionActions} busy={busy} onAction={onAction} regions={view.regions} onRegionPreview={setPreviewRegion} />{!regionActions.length && <p className="hg-wait-note">选择手牌可查看向此地区派遣的行动。</p>}</>}
+     </aside>}
+     {hover && !reading && <aside className="hg-card-hover" aria-label={`悬停阅读${hover.name}`} data-hover-card={hover.instanceId}><CardContent card={hover} definition={definitions.get(hover.cardId || '')} viewerId={view.you} /></aside>}
+-    {view.pendingChoice && <div className="hg-table-choice-layer"><ChoicePanel key={view.pendingChoice.id} choice={view.pendingChoice} action={choiceAction} definitions={definitions} busy={busy} onSubmit={onAction} onReadCard={readCard} viewerId={view.you} playerLabels={Object.fromEntries(view.players.map(player => [player.id, player.name]))} /></div>}
++    {view.pendingChoice && <div className="hg-table-choice-layer"><ChoicePanel modal modalActive={!readingCard && !modalPaused} key={view.pendingChoice.id} choice={view.pendingChoice} action={choiceAction} definitions={definitions} busy={busy} onSubmit={onAction} onReadCard={readCard} viewerId={view.you} playerLabels={Object.fromEntries(view.players.map(player => [player.id, player.name]))} /></div>}
+     {view.status === 'finished' && <section className="hg-victory" role="status"><span aria-hidden="true">✧</span><div><small>对局结束</small><h1>{view.winnerTeam === you?.team ? '你的秘社取得了霸权' : `${view.winnerTeam === undefined ? '本局' : teamName(view.winnerTeam, view)}赢得了霸权`}</h1><p>胜利目标 {view.winScore} 分 · 可以回顾牌桌，或由房主发起新一局。</p></div><ActionButtons actions={view.legalActions.filter(action => action.kind === 'restart')} busy={busy} onAction={onAction} /></section>}
+     {readingCard && <ReadModal card={readingCard} definition={definitions.get(readingCard.cardId || '')} viewerId={view.you} context={readingAttachment ? attachmentContext(readingAttachment) : undefined} onClose={() => setReading(null)} />}
+   </main>;
+diff --git a/web/src/game/V028DeckEntry.test.jsx b/web/src/game/V028DeckEntry.test.jsx
+new file mode 100644
+index 0000000..7c577f6
+--- /dev/null
++++ b/web/src/game/V028DeckEntry.test.jsx
+@@ -0,0 +1,94 @@
++import { readFileSync } from 'node:fs';
++import { resolve } from 'node:path';
++import { fireEvent, render, screen } from '@testing-library/react';
++import { afterEach, expect, it, vi } from 'vitest';
++import * as current from '../../../rust-game-wasm/pkg/hegemony_wasm.js';
++import * as frozen from '../../../rust-game-wasm/legacy-v0.2.7/hegemony_wasm.js';
++import { DeckLibrary } from './DeckLibrary';
++import { DECK_LIBRARY_STORAGE_KEY, readDeckLibrary } from './deckLibrary';
++
++// Real compiled catalogs: no hand-written supported/copy-limit metadata.
++current.initSync({ module: readFileSync(resolve('../rust-game-wasm/pkg/hegemony_wasm_bg.wasm')) });
++frozen.initSync({ module: readFileSync(resolve('../rust-game-wasm/legacy-v0.2.7/hegemony_wasm_bg.wasm')) });
++const catalog = JSON.parse(current.catalog());
++const oldCatalog = JSON.parse(frozen.catalog());
++const added = ['BQ083', 'JC001', 'JC006', 'JC007', 'JC047', 'JC075', 'JC088', 'JC104', 'XQ16'];
++const entered = [...added, 'JC016', 'BQ022'];
++afterEach(() => localStorage.removeItem(DECK_LIBRARY_STORAGE_KEY));
++
++it('edits all nine v028 cards through normal controls, saves/reloads, and enters four seats with the selected draft', () => {
++  localStorage.removeItem(DECK_LIBRARY_STORAGE_KEY);
++  expect(catalog.engineVersion).toBe('rust-v0.2.8');
++  expect(catalog.cards).toHaveLength(48);
++  expect(catalog.cards.filter(card => !oldCatalog.cards.some(old => old.id === card.id)).map(card => card.id).sort()).toEqual(added);
++  const select = vi.fn();
++  const editor = render(<DeckLibrary catalog={catalog} onSelectDraft={select} />);
++  fireEvent.change(screen.getByRole('textbox', { name: '牌组名称' }), { target: { value: 'v028九卡自组' } });
++  for (const id of [...entered, 'JC125']) {
++    const card = catalog.cards.find(value => value.id === id);
++    fireEvent.click(screen.getByRole('button', { name: `添加 ${card.name}（${id}）` }));
++    fireEvent.change(screen.getByRole('spinbutton', { name: `${card.name}（${id}）张数` }), { target: { value: id === 'JC125' ? '17' : '3' } });
++  }
++  const selectButton = () => screen.getByRole('button', { name: '保存并选择此牌组' });
++  expect(selectButton()).toBeEnabled();
++  const lawyer = catalog.cards.find(card => card.id === 'XQ16');
++  const lawyerCount = screen.getByRole('spinbutton', { name: `${lawyer.name}（XQ16）张数` });
++  fireEvent.change(lawyerCount, { target: { value: '4' } });
++  expect(selectButton()).toBeDisabled();
++  fireEvent.change(lawyerCount, { target: { value: '3' } });
++  const neutralCount = screen.getByRole('spinbutton', { name: '无知路人（JC125）张数' });
++  fireEvent.change(neutralCount, { target: { value: '16' } });
++  expect(selectButton()).toBeDisabled();
++  fireEvent.change(neutralCount, { target: { value: '17' } });
++  fireEvent.click(screen.getByRole('button', { name: '保存牌组' }));
++  const saved = readDeckLibrary().drafts[0];
++  expect(saved.cards).toHaveLength(12);
++  for (const id of entered) expect(saved.cards).toContainEqual({ cardId: id, count: 3 });
++  editor.unmount();
++  render(<DeckLibrary catalog={catalog} onSelectDraft={select} />);
++  expect(screen.getByRole('textbox', { name: '牌组名称' })).toHaveValue('v028九卡自组');
++  fireEvent.click(selectButton());
++  const draft = select.mock.calls[0][0];
++  expect({ ...draft, updatedAt: saved.updatedAt }).toEqual(saved);
++  expect(Date.parse(draft.updatedAt)).toBeGreaterThanOrEqual(Date.parse(saved.updatedAt));
++  // Local kernel acceptance, distinct from public natural UI play.
++  let result = JSON.parse(current.newGameWithDeck('local-nine-card-entry', 'invite', 'teams', 'P0', JSON.stringify(draft), '42'));
++  for (let seat = 1; seat < 4; seat++) result = JSON.parse(current.joinGameWithDeck(result.state, `P${seat}`, JSON.stringify(draft)));
++  for (let seat = 0; seat < 4; seat++) {
++    const before = result.version;
++    result = JSON.parse(current.applyRoom(result.state, seat, JSON.stringify({ commandId: `ready-${seat}`, expectedVersion: result.version, action: { kind: 'game', action: { kind: 'ready' } } }), '1000'));
++    expect(result.version).toBe(before + 1);
++    expect(result.outcome).toBe('accepted');
++  }
++  result = JSON.parse(current.applyRoom(result.state, 0, JSON.stringify({ commandId: 'start', expectedVersion: result.version, action: { kind: 'game', action: { kind: 'start' } } }), '1000'));
++  expect(result.outcome).toBe('accepted');
++  for (let guard = 0; guard < 12; guard++) {
++    const views = [0, 1, 2, 3].map(seat => JSON.parse(current.view(result.state, seat)));
++    const seat = views.findIndex(view => view.pendingChoice);
++    if (seat < 0) break;
++    result = JSON.parse(current.applyRoom(result.state, seat, JSON.stringify({ commandId: `setup-${guard}`, expectedVersion: result.version, action: { kind: 'game', action: { kind: 'choose', choiceId: views[seat].pendingChoice.id, selected: [] } } }), '1000'));
++    expect(result.outcome).toBe('accepted');
++  }
++  for (let seat = 0; seat < 4; seat++) expect(JSON.parse(current.view(result.state, seat)).pendingChoice).toBeNull();
++  const envelope = JSON.parse(result.state);
++  expect(envelope.game.players).toHaveLength(4);
++  for (const player of envelope.game.players) {
++    expect(player.hand.length + player.deck.length).toBe(50);
++    for (const id of entered) expect([...player.hand, ...player.deck].filter(card => card.definition === id)).toHaveLength(3);
++  }
++});
++
++it('keeps the v027 39-card builder frozen and rejects a saved v028 nine-card draft without rewriting provenance', () => {
++  const draft = { id: 'nine-saved', name: '保留v028来源', description: '', societyId: null,
++    cards: [{ cardId: 'JC125', count: 23 }, ...added.map(cardId => ({ cardId, count: 3 }))],
++    rulesVersion: catalog.rulesVersion, cardPoolVersion: catalog.cardPoolVersion, engineVersion: catalog.engineVersion, updatedAt: '2026-10-03T00:00:00Z' };
++  localStorage.setItem(DECK_LIBRARY_STORAGE_KEY, JSON.stringify({ version: 1, drafts: [draft] }));
++  expect(oldCatalog.engineVersion).toBe('rust-v0.2.7');
++  expect(oldCatalog.cards).toHaveLength(39);
++  const select = vi.fn();
++  render(<DeckLibrary catalog={oldCatalog} onSelectDraft={select} />);
++  for (const id of added) expect(screen.queryByRole('button', { name: new RegExp(`^添加 .*（${id}）$`) })).not.toBeInTheDocument();
++  expect(screen.getByRole('button', { name: '保存并选择此牌组' })).toBeDisabled();
++  expect(readDeckLibrary().drafts[0]).toEqual(draft);
++  expect(select).not.toHaveBeenCalled();
++});
+diff --git a/web/src/game/api.ts b/web/src/game/api.ts
+index b66dd75..2dda69c 100644
+--- a/web/src/game/api.ts
++++ b/web/src/game/api.ts
+@@ -1,5 +1,6 @@
+ import type { Action, Catalog, SavedSession, Session, View } from './types';
+ import type { DeckDraft } from './deckLibrary';
++import { playerStorage } from './playerStorage';
+ 
+ const STORAGE_KEY = 'hegemony.session.v1';
+ const PENDING_KEY = 'hegemony.pending.v1';
+@@ -14,7 +15,7 @@ export function newCommandId(): string {
+ export type PendingCommand = { roomId: string; seat?: number; commandId: string; expectedVersion: number; action: Action };
+ export function readPending(): PendingCommand | null {
+   try {
+-    const value = JSON.parse(localStorage.getItem(PENDING_KEY) || 'null');
++    const value = JSON.parse(playerStorage().getItem(PENDING_KEY) || 'null');
+     if (value && typeof value.roomId === 'string' && typeof value.commandId === 'string' && typeof value.expectedVersion === 'number' && typeof value.action?.kind === 'string') {
+       // Older clients recorded no seat; their last saved session is the original actor.
+       const original = readSession();
+@@ -25,8 +26,8 @@ export function readPending(): PendingCommand | null {
+ }
+ export function savePending(command: PendingCommand | null) {
+   try {
+-    if (command) localStorage.setItem(PENDING_KEY, JSON.stringify(command));
+-    else localStorage.removeItem(PENDING_KEY);
++    if (command) playerStorage().setItem(PENDING_KEY, JSON.stringify(command));
++    else playerStorage().removeItem(PENDING_KEY);
+   } catch { /* Preserve the in-memory command while this tab is open. */ }
+ }
+ 
+@@ -41,7 +42,7 @@ export class ApiError extends Error {
+ 
+ export function readSession(): SavedSession | null {
+   try {
+-    const value = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
++    const value = JSON.parse(playerStorage().getItem(STORAGE_KEY) || 'null');
+     if (value && typeof value.roomId === 'string' && typeof value.token === 'string'
+       && typeof value.inviteCode === 'string' && Number.isInteger(value.seat)) return value;
+   } catch { /* A corrupted or unavailable storage must not block the lobby. */ }
+@@ -50,7 +51,7 @@ export function readSession(): SavedSession | null {
+ export function readSavedSeats(): SavedSession[] {
+   let seats: SavedSession[] = [];
+   try {
+-    const values = JSON.parse(localStorage.getItem(SEATS_KEY) || '[]');
++    const values = JSON.parse(playerStorage().getItem(SEATS_KEY) || '[]');
+     if (Array.isArray(values)) seats = values.filter(value => value && typeof value.roomId === 'string'
+       && typeof value.token === 'string' && typeof value.inviteCode === 'string' && Number.isInteger(value.seat));
+   } catch { /* A damaged history must not hide the legacy saved seat. */ }
+@@ -59,18 +60,18 @@ export function readSavedSeats(): SavedSession[] {
+   return seats;
+ }
+ export function returnToLobby() {
+-  try { localStorage.setItem(SCREEN_KEY, 'lobby'); } catch { /* This tab can still return. */ }
++  try { playerStorage().setItem(SCREEN_KEY, 'lobby'); } catch { /* This tab can still return. */ }
+ }
+ export function readActiveSession(): SavedSession | null {
+-  try { if (localStorage.getItem(SCREEN_KEY) === 'lobby') return null; } catch { /* Restore a saved seat when possible. */ }
++  try { if (playerStorage().getItem(SCREEN_KEY) === 'lobby') return null; } catch { /* Restore a saved seat when possible. */ }
+   return readSession();
+ }
+ export function forgetSavedSeat(session: SavedSession) {
+   const keep = readSavedSeats().filter(seat => seat.roomId !== session.roomId || seat.seat !== session.seat);
+   try {
+-    localStorage.setItem(SEATS_KEY, JSON.stringify(keep));
++    playerStorage().setItem(SEATS_KEY, JSON.stringify(keep));
+     const current = readSession();
+-    if (current?.roomId === session.roomId && current.seat === session.seat) localStorage.removeItem(STORAGE_KEY);
++    if (current?.roomId === session.roomId && current.seat === session.seat) playerStorage().removeItem(STORAGE_KEY);
+   } catch { /* The UI also removes the invalid seat from its own state. */ }
+ }
+ export function saveSession(session: SavedSession | null) {
+@@ -78,11 +79,11 @@ export function saveSession(session: SavedSession | null) {
+     if (session) {
+       const saved = { roomId: session.roomId, inviteCode: session.inviteCode, token: session.token, seat: session.seat };
+       const seats = readSavedSeats().filter(seat => seat.roomId !== saved.roomId || seat.seat !== saved.seat);
+-      localStorage.setItem(SEATS_KEY, JSON.stringify([...seats, saved]));
+-      localStorage.setItem(STORAGE_KEY, JSON.stringify(saved));
+-      localStorage.setItem(SCREEN_KEY, 'table');
++      playerStorage().setItem(SEATS_KEY, JSON.stringify([...seats, saved]));
++      playerStorage().setItem(STORAGE_KEY, JSON.stringify(saved));
++      playerStorage().setItem(SCREEN_KEY, 'table');
+     }
+-    else localStorage.removeItem(STORAGE_KEY);
++    else playerStorage().removeItem(STORAGE_KEY);
+   } catch { /* The current session remains usable if browser storage is disabled. */ }
+ }
+ 
+@@ -113,13 +114,17 @@ export const getState = async (session: SavedSession, signal?: AbortSignal) => {
+   if (view.roomId !== session.roomId || !Number.isSafeInteger(view.version)) throw new ApiError(0, '同步返回格式不正确，请登录后重新同步。');
+   return view;
+ };
+-let entryMemory: { intent: string; requestId: string } | null = null;
++const entryMemory = new Map<string, { intent: string; requestId: string }>();
+ async function enterRoom(path: string, values: Record<string, unknown>): Promise<Session> {
+   const intent = JSON.stringify([path, values]);
+-  try { entryMemory = JSON.parse(localStorage.getItem(ENTRY_KEY) || 'null') || entryMemory; } catch { /* Keep an in-memory recovery key. */ }
+-  if (!entryMemory || entryMemory.intent !== intent || typeof entryMemory.requestId !== 'string') entryMemory = { intent, requestId: newCommandId() };
+-  try { localStorage.setItem(ENTRY_KEY, JSON.stringify(entryMemory)); } catch { /* Storage may be disabled. */ }
+-  const init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...values, requestId: entryMemory.requestId }) };
++  // Capture the namespace before awaiting; a late acknowledgement cannot clear another scope's receipt.
++  const storage = playerStorage();
++  let receipt = entryMemory.get(storage.scope);
++  try { receipt = JSON.parse(storage.getItem(ENTRY_KEY) || 'null') || receipt; } catch { /* Keep an in-memory recovery key. */ }
++  if (!receipt || receipt.intent !== intent || typeof receipt.requestId !== 'string') receipt = { intent, requestId: newCommandId() };
++  entryMemory.set(storage.scope, receipt);
++  try { storage.setItem(ENTRY_KEY, JSON.stringify(receipt)); } catch { /* Storage may be disabled. */ }
++  const init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...values, requestId: receipt.requestId }) };
+   try {
+     let session: Session;
+     try { session = await request<Session>(path, init); }
+@@ -127,8 +132,8 @@ async function enterRoom(path: string, values: Record<string, unknown>): Promise
+       if (!supportsEntryReceipts || !(error instanceof ApiError) || (error.status !== 0 && error.status < 500)) throw error;
+       session = await request<Session>(path, init);
+     }
+-    entryMemory = null;
+-    try { localStorage.removeItem(ENTRY_KEY); } catch { /* No persistent storage. */ }
++    entryMemory.delete(storage.scope);
++    try { storage.removeItem(ENTRY_KEY); } catch { /* No persistent storage. */ }
+     return session;
+   } catch (error) { throw error; /* Keep exactly the original request key for an explicit retry. */ }
+ }
+diff --git a/web/src/game/game.css b/web/src/game/game.css
+index 83ad442..ce306d9 100644
+--- a/web/src/game/game.css
++++ b/web/src/game/game.css
+@@ -654,3 +654,8 @@
+   .hg-faction-coverage > ul > li { grid-template-columns: 1fr; }
+   .hg-faction-coverage > ul > li > span:nth-child(2) { padding-left: 15px; }
+ }
++
++/* Explicit player identity selection, separate from the room invitation. */
++.hg-player-session { max-width: 1160px; margin: 12px auto; padding: 12px 20px; border: 1px solid var(--hg-line, #4d4757); border-radius: 8px; }
++.hg-player-session p { margin: 6px 0; font-size: 13px; line-height: 1.6; }
++.hg-player-session > div { display: flex; flex-wrap: wrap; gap: 8px; }
+diff --git a/web/src/game/playerStorage.ts b/web/src/game/playerStorage.ts
+new file mode 100644
+index 0000000..d26d8a1
+--- /dev/null
++++ b/web/src/game/playerStorage.ts
+@@ -0,0 +1,35 @@
++/** A namespace selects browser storage; it never authenticates a seat or goes to the server. */
++const MODE_KEY = 'hegemony.playerSession.v1';
++export type PlayerMode = 'ordinary' | 'independent';
++function namespace(): string | null {
++  const id = sessionStorage.getItem(MODE_KEY);
++  if (id === null) return null;
++  if (!/^[a-zA-Z0-9-]{16,64}$/.test(id)) throw new Error('独立玩家会话存储已损坏，请显式切回普通玩家会话。');
++  return id;
++}
++export function readPlayerMode(): PlayerMode {
++  try { return namespace() ? 'independent' : 'ordinary'; }
++  catch { return 'independent'; } // Do not silently read ordinary credentials on a storage failure.
++}
++export function playerStorage() {
++  const id = namespace();
++  const storage = id ? sessionStorage : localStorage;
++  const keyFor = (key: string) => id ? `hegemony.player.${id}.${key}` : key;
++  return { scope: id || 'ordinary',
++    getItem: (key: string) => storage.getItem(keyFor(key)),
++    setItem: (key: string, value: string) => storage.setItem(keyFor(key), value),
++    removeItem: (key: string) => storage.removeItem(keyFor(key)),
++  };
++}
++export function selectPlayerMode(mode: PlayerMode, id?: string) {
++  try {
++    if (mode === 'independent') {
++      if (!id || !/^[a-zA-Z0-9-]{16,64}$/.test(id)) throw new Error('invalid namespace');
++      sessionStorage.setItem(MODE_KEY, id);
++      if (namespace() !== id) throw new Error('tab storage did not persist');
++    } else {
++      sessionStorage.removeItem(MODE_KEY);
++      if (namespace() !== null) throw new Error('tab storage did not clear');
++    }
++  } catch { throw new Error('无法保存独立玩家会话设置，请检查当前标签是否允许浏览器存储。原座位未更改。'); }
++}
+diff --git a/web/src/game/useDialogFocus.ts b/web/src/game/useDialogFocus.ts
+new file mode 100644
+index 0000000..2f6448f
+--- /dev/null
++++ b/web/src/game/useDialogFocus.ts
+@@ -0,0 +1,86 @@
++import { useLayoutEffect, useRef } from 'react';
++import type { RefObject } from 'react';
++
++const focusable = 'button, input, select, textarea, a[href], summary, [tabindex]';
++
++/** The owning component chooses the active layer; no global modal stack is needed. */
++export function useDialogFocus(dialog: RefObject<HTMLElement | null>, active: boolean, onEscape?: () => void) {
++  const previous = useRef<HTMLElement | null>(null);
++  const captured = useRef(false);
++  const lastFocus = useRef<HTMLElement | null>(null);
++  const dismiss = useRef(onEscape);
++  dismiss.current = onEscape;
++
++  useLayoutEffect(() => {
++    if (!active || !dialog.current) return;
++    const root = dialog.current;
++    if (!captured.current) {
++      previous.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
++      captured.current = true;
++    }
++    const saved = new Map<HTMLElement, { inert: string | null; hidden: string | null }>();
++    const parents: HTMLElement[] = [];
++    let branch: HTMLElement = root;
++    while (branch.parentElement) {
++      parents.push(branch.parentElement);
++      branch = branch.parentElement;
++      if (branch === document.body) break;
++    }
++    const isolate = () => {
++      let current: HTMLElement = root;
++      for (const parent of parents) {
++        for (const sibling of parent.children) {
++          if (sibling === current || !(sibling instanceof HTMLElement) || saved.has(sibling)) continue;
++          saved.set(sibling, { inert: sibling.getAttribute('inert'), hidden: sibling.getAttribute('aria-hidden') });
++          sibling.setAttribute('inert', '');
++          sibling.setAttribute('aria-hidden', 'true');
++        }
++        current = parent;
++      }
++    };
++    const controls = () => Array.from(root.querySelectorAll<HTMLElement>(focusable)).filter(element =>
++      element.tabIndex >= 0 && !element.matches(':disabled') && !element.closest('[inert], [hidden], [aria-hidden="true"]')
++      && getComputedStyle(element).display !== 'none' && getComputedStyle(element).visibility !== 'hidden');
++    const focusInside = () => {
++      const available = controls();
++      const target = lastFocus.current && available.includes(lastFocus.current) ? lastFocus.current : available[0] || root;
++      target.focus();
++    };
++    const keydown = (event: KeyboardEvent) => {
++      if (event.key === 'Escape') {
++        event.preventDefault(); event.stopPropagation();
++        dismiss.current?.();
++      } else if (event.key === 'Tab') {
++        const available = controls();
++        const index = available.indexOf(document.activeElement as HTMLElement);
++        event.preventDefault(); event.stopPropagation();
++        const next = index < 0 ? (event.shiftKey ? available.length - 1 : 0)
++          : (index + (event.shiftKey ? -1 : 1) + available.length) % available.length;
++        (available[next] || root).focus();
++      }
++    };
++    const focusin = (event: FocusEvent) => {
++      if (event.target instanceof HTMLElement && root.contains(event.target)) lastFocus.current = event.target;
++      else focusInside();
++    };
++    // Focus the dialog before hiding its opener from the accessibility tree.
++    if (!root.contains(document.activeElement)) focusInside();
++    isolate();
++    const observer = new MutationObserver(isolate);
++    parents.forEach(parent => observer.observe(parent, { childList: true }));
++    document.addEventListener('keydown', keydown, true);
++    document.addEventListener('focusin', focusin, true);
++    return () => {
++      observer.disconnect();
++      document.removeEventListener('keydown', keydown, true);
++      document.removeEventListener('focusin', focusin, true);
++      saved.forEach((attributes, element) => {
++        if (attributes.inert === null) element.removeAttribute('inert'); else element.setAttribute('inert', attributes.inert);
++        if (attributes.hidden === null) element.removeAttribute('aria-hidden'); else element.setAttribute('aria-hidden', attributes.hidden);
++      });
++    };
++  }, [active, dialog]);
++
++  // Pausing for a nested reader releases isolation without moving focus back to the table.
++  useLayoutEffect(() => () => { if (previous.current?.isConnected) previous.current.focus(); }, []);
++}
+diff --git a/web/src/game/useGame.ts b/web/src/game/useGame.ts
+index 55a1a03..7ffa006 100644
+--- a/web/src/game/useGame.ts
++++ b/web/src/game/useGame.ts
+@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
+ import { actionForRoom, ApiError, createRoom, createRoomWithDeck, forgetSavedSeat, getCatalog, getState, joinRoom, joinRoomWithDeck, newCommandId, pollState, readActiveSession, readPending, readSavedSeats, readSession, returnToLobby, savePending, saveSession, sendCommand, type PendingCommand } from './api';
+ import type { Action, Catalog, SavedSession, Session, View } from './types';
+ import type { DeckDraft } from './deckLibrary';
++import { readPlayerMode, selectPlayerMode, type PlayerMode } from './playerStorage';
+ 
+ export function newerView(current: View | null, next: View): View {
+   return current && current.roomId === next.roomId && current.you === next.you && current.version > next.version ? current : next;
+@@ -14,6 +15,7 @@ const needsSiteLogin = (error: unknown) => error instanceof ApiError && (error.s
+ const loginMessage = '访问牌桌需要重新登录。座位和未确认行动已保留，请登录后刷新页面继续。';
+ 
+ export function useGame() {
++  const [playerMode, setPlayerMode] = useState(readPlayerMode);
+   const [catalog, setCatalog] = useState<Catalog | null>(null);
+   const [session, setSession] = useState<SavedSession | null>(readActiveSession);
+   const [savedSeats, setSavedSeats] = useState<SavedSession[]>(readSavedSeats);
+@@ -172,8 +174,23 @@ export function useGame() {
+     return enter(task);
+   };
+ 
++  const switchPlayerMode = (mode: PlayerMode) => {
++    if (commandLock.current) return;
++    if (pending.current) { setError('当前会话还有待确认行动，请先恢复原席确认，再切换玩家会话。'); return; }
++    try { selectPlayerMode(mode, mode === 'independent' ? newCommandId() : undefined); }
++    catch (e) { setError(e instanceof Error ? e.message : '无法切换玩家会话。'); return; }
++    const next = readActiveSession();
++    pending.current = readPending(); activeSession.current = next; acceptedVersion.current = 0;
++    setPlayerMode(mode); setSavedSeats(readSavedSeats()); setSession(next); setView(null);
++    setUncertain(commandFor(pending.current, next)); setError(''); setConnection('connecting');
++    setCatalog(null); setCatalogRetry(n => n + 1);
++  };
++
+   return {
+-    catalog, session, view, error, busy, uncertain, connection, act,
++    catalog, session, view, error, busy, uncertain, connection, act, playerMode,
++    playerModeLocked: busy || !!pending.current,
++    startIndependentSession: () => switchPlayerMode('independent'),
++    useOrdinarySession: () => switchPlayerMode('ordinary'),
+     create: (name: string, mode: 'duel' | 'teams', deckId: string) => enter(() => createRoom(name, mode, deckId)),
+     join: (inviteCode: string, name: string, deckId: string) => join(inviteCode, () => joinRoom(inviteCode, name, deckId)),
+     createDraft: (name: string, mode: 'duel' | 'teams', draft: DeckDraft) => enter(() => createRoomWithDeck(name, mode, draft)),

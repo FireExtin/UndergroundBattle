@@ -1,0 +1,1573 @@
+--- a/rust-game-wasm/legacy-v0.2.7/hegemony_wasm.d.ts
++++ b/rust-game-wasm/legacy-v0.2.7/hegemony_wasm.d.ts
+@@ -0,0 +1,59 @@
++/* tslint:disable */
++/* eslint-disable */
++export function stateIdentity(state: string): string;
++export function catalog(): string;
++export function newGame(room_id: string, invite_code: string, mode: string, name: string, deck_id: string, seed_decimal: string): string;
++export function joinGame(state: string, name: string, deck_id: string): string;
++export function newGameWithDeck(room_id: string, invite_code: string, mode: string, name: string, deck_json: string, seed_decimal: string): string;
++export function joinGameWithDeck(state: string, name: string, deck_json: string): string;
++export function roomCatalog(state: string, seat: number): string;
++export function apply(_state: string, _seat: number, _action_json: string): string;
++export function applyRoom(state: string, seat: number, command_json: string, server_now_decimal: string): string;
++export function pollRoom(state: string, seat: number, server_now_decimal: string): string;
++export function quoteRoom(state: string, seat: number, request_json: string): string;
++export function view(state: string, seat: number): string;
++
++export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembly.Module;
++
++export interface InitOutput {
++  readonly memory: WebAssembly.Memory;
++  readonly stateIdentity: (a: number, b: number) => [number, number, number, number];
++  readonly catalog: () => [number, number, number, number];
++  readonly newGame: (a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number, i: number, j: number, k: number, l: number) => [number, number, number, number];
++  readonly joinGame: (a: number, b: number, c: number, d: number, e: number, f: number) => [number, number, number, number];
++  readonly newGameWithDeck: (a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number, i: number, j: number, k: number, l: number) => [number, number, number, number];
++  readonly joinGameWithDeck: (a: number, b: number, c: number, d: number, e: number, f: number) => [number, number, number, number];
++  readonly roomCatalog: (a: number, b: number, c: number) => [number, number, number, number];
++  readonly apply: (a: number, b: number, c: number, d: number, e: number) => [number, number, number, number];
++  readonly applyRoom: (a: number, b: number, c: number, d: number, e: number, f: number, g: number) => [number, number, number, number];
++  readonly pollRoom: (a: number, b: number, c: number, d: number, e: number) => [number, number, number, number];
++  readonly quoteRoom: (a: number, b: number, c: number, d: number, e: number) => [number, number, number, number];
++  readonly view: (a: number, b: number, c: number) => [number, number, number, number];
++  readonly __wbindgen_export_0: WebAssembly.Table;
++  readonly __wbindgen_malloc: (a: number, b: number) => number;
++  readonly __wbindgen_realloc: (a: number, b: number, c: number, d: number) => number;
++  readonly __externref_table_dealloc: (a: number) => void;
++  readonly __wbindgen_free: (a: number, b: number, c: number) => void;
++  readonly __wbindgen_start: () => void;
++}
++
++export type SyncInitInput = BufferSource | WebAssembly.Module;
++/**
++* Instantiates the given `module`, which can either be bytes or
++* a precompiled `WebAssembly.Module`.
++*
++* @param {{ module: SyncInitInput }} module - Passing `SyncInitInput` directly is deprecated.
++*
++* @returns {InitOutput}
++*/
++export function initSync(module: { module: SyncInitInput } | SyncInitInput): InitOutput;
++
++/**
++* If `module_or_path` is {RequestInfo} or {URL}, makes a request and
++* for everything else, calls `WebAssembly.instantiate` directly.
++*
++* @param {{ module_or_path: InitInput | Promise<InitInput> }} module_or_path - Passing `InitInput` directly is deprecated.
++*
++* @returns {Promise<InitOutput>}
++*/
++export default function __wbg_init (module_or_path?: { module_or_path: InitInput | Promise<InitInput> } | InitInput | Promise<InitInput>): Promise<InitOutput>;
+--- a/rust-game-wasm/legacy-v0.2.7/hegemony_wasm.js
++++ b/rust-game-wasm/legacy-v0.2.7/hegemony_wasm.js
+@@ -0,0 +1,577 @@
++let wasm;
++
++let cachedUint8ArrayMemory0 = null;
++
++function getUint8ArrayMemory0() {
++    if (cachedUint8ArrayMemory0 === null || cachedUint8ArrayMemory0.byteLength === 0) {
++        cachedUint8ArrayMemory0 = new Uint8Array(wasm.memory.buffer);
++    }
++    return cachedUint8ArrayMemory0;
++}
++
++let cachedTextDecoder = new TextDecoder('utf-8', { ignoreBOM: true, fatal: true });
++
++cachedTextDecoder.decode();
++
++const MAX_SAFARI_DECODE_BYTES = 2146435072;
++let numBytesDecoded = 0;
++function decodeText(ptr, len) {
++    numBytesDecoded += len;
++    if (numBytesDecoded >= MAX_SAFARI_DECODE_BYTES) {
++        cachedTextDecoder = new TextDecoder('utf-8', { ignoreBOM: true, fatal: true });
++        cachedTextDecoder.decode();
++        numBytesDecoded = len;
++    }
++    return cachedTextDecoder.decode(getUint8ArrayMemory0().subarray(ptr, ptr + len));
++}
++
++function getStringFromWasm0(ptr, len) {
++    ptr = ptr >>> 0;
++    return decodeText(ptr, len);
++}
++
++let WASM_VECTOR_LEN = 0;
++
++const cachedTextEncoder = new TextEncoder();
++
++if (!('encodeInto' in cachedTextEncoder)) {
++    cachedTextEncoder.encodeInto = function (arg, view) {
++        const buf = cachedTextEncoder.encode(arg);
++        view.set(buf);
++        return {
++            read: arg.length,
++            written: buf.length
++        };
++    }
++}
++
++function passStringToWasm0(arg, malloc, realloc) {
++
++    if (realloc === undefined) {
++        const buf = cachedTextEncoder.encode(arg);
++        const ptr = malloc(buf.length, 1) >>> 0;
++        getUint8ArrayMemory0().subarray(ptr, ptr + buf.length).set(buf);
++        WASM_VECTOR_LEN = buf.length;
++        return ptr;
++    }
++
++    let len = arg.length;
++    let ptr = malloc(len, 1) >>> 0;
++
++    const mem = getUint8ArrayMemory0();
++
++    let offset = 0;
++
++    for (; offset < len; offset++) {
++        const code = arg.charCodeAt(offset);
++        if (code > 0x7F) break;
++        mem[ptr + offset] = code;
++    }
++
++    if (offset !== len) {
++        if (offset !== 0) {
++            arg = arg.slice(offset);
++        }
++        ptr = realloc(ptr, len, len = offset + arg.length * 3, 1) >>> 0;
++        const view = getUint8ArrayMemory0().subarray(ptr + offset, ptr + len);
++        const ret = cachedTextEncoder.encodeInto(arg, view);
++
++        offset += ret.written;
++        ptr = realloc(ptr, len, offset, 1) >>> 0;
++    }
++
++    WASM_VECTOR_LEN = offset;
++    return ptr;
++}
++
++function takeFromExternrefTable0(idx) {
++    const value = wasm.__wbindgen_export_0.get(idx);
++    wasm.__externref_table_dealloc(idx);
++    return value;
++}
++/**
++ * @param {string} state
++ * @returns {string}
++ */
++export function stateIdentity(state) {
++    let deferred3_0;
++    let deferred3_1;
++    try {
++        const ptr0 = passStringToWasm0(state, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
++        const len0 = WASM_VECTOR_LEN;
++        const ret = wasm.stateIdentity(ptr0, len0);
++        var ptr2 = ret[0];
++        var len2 = ret[1];
++        if (ret[3]) {
++            ptr2 = 0; len2 = 0;
++            throw takeFromExternrefTable0(ret[2]);
++        }
++        deferred3_0 = ptr2;
++        deferred3_1 = len2;
++        return getStringFromWasm0(ptr2, len2);
++    } finally {
++        wasm.__wbindgen_free(deferred3_0, deferred3_1, 1);
++    }
++}
++
++/**
++ * @returns {string}
++ */
++export function catalog() {
++    let deferred2_0;
++    let deferred2_1;
++    try {
++        const ret = wasm.catalog();
++        var ptr1 = ret[0];
++        var len1 = ret[1];
++        if (ret[3]) {
++            ptr1 = 0; len1 = 0;
++            throw takeFromExternrefTable0(ret[2]);
++        }
++        deferred2_0 = ptr1;
++        deferred2_1 = len1;
++        return getStringFromWasm0(ptr1, len1);
++    } finally {
++        wasm.__wbindgen_free(deferred2_0, deferred2_1, 1);
++    }
++}
++
++/**
++ * @param {string} room_id
++ * @param {string} invite_code
++ * @param {string} mode
++ * @param {string} name
++ * @param {string} deck_id
++ * @param {string} seed_decimal
++ * @returns {string}
++ */
++export function newGame(room_id, invite_code, mode, name, deck_id, seed_decimal) {
++    let deferred8_0;
++    let deferred8_1;
++    try {
++        const ptr0 = passStringToWasm0(room_id, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
++        const len0 = WASM_VECTOR_LEN;
++        const ptr1 = passStringToWasm0(invite_code, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
++        const len1 = WASM_VECTOR_LEN;
++        const ptr2 = passStringToWasm0(mode, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
++        const len2 = WASM_VECTOR_LEN;
++        const ptr3 = passStringToWasm0(name, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
++        const len3 = WASM_VECTOR_LEN;
++        const ptr4 = passStringToWasm0(deck_id, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
++        const len4 = WASM_VECTOR_LEN;
++        const ptr5 = passStringToWasm0(seed_decimal, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
++        const len5 = WASM_VECTOR_LEN;
++        const ret = wasm.newGame(ptr0, len0, ptr1, len1, ptr2, len2, ptr3, len3, ptr4, len4, ptr5, len5);
++        var ptr7 = ret[0];
++        var len7 = ret[1];
++        if (ret[3]) {
++            ptr7 = 0; len7 = 0;
++            throw takeFromExternrefTable0(ret[2]);
++        }
++        deferred8_0 = ptr7;
++        deferred8_1 = len7;
++        return getStringFromWasm0(ptr7, len7);
++    } finally {
++        wasm.__wbindgen_free(deferred8_0, deferred8_1, 1);
++    }
++}
++
++/**
++ * @param {string} state
++ * @param {string} name
++ * @param {string} deck_id
++ * @returns {string}
++ */
++export function joinGame(state, name, deck_id) {
++    let deferred5_0;
++    let deferred5_1;
++    try {
++        const ptr0 = passStringToWasm0(state, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
++        const len0 = WASM_VECTOR_LEN;
++        const ptr1 = passStringToWasm0(name, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
++        const len1 = WASM_VECTOR_LEN;
++        const ptr2 = passStringToWasm0(deck_id, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
++        const len2 = WASM_VECTOR_LEN;
++        const ret = wasm.joinGame(ptr0, len0, ptr1, len1, ptr2, len2);
++        var ptr4 = ret[0];
++        var len4 = ret[1];
++        if (ret[3]) {
++            ptr4 = 0; len4 = 0;
++            throw takeFromExternrefTable0(ret[2]);
++        }
++        deferred5_0 = ptr4;
++        deferred5_1 = len4;
++        return getStringFromWasm0(ptr4, len4);
++    } finally {
++        wasm.__wbindgen_free(deferred5_0, deferred5_1, 1);
++    }
++}
++
++/**
++ * @param {string} room_id
++ * @param {string} invite_code
++ * @param {string} mode
++ * @param {string} name
++ * @param {string} deck_json
++ * @param {string} seed_decimal
++ * @returns {string}
++ */
++export function newGameWithDeck(room_id, invite_code, mode, name, deck_json, seed_decimal) {
++    let deferred8_0;
++    let deferred8_1;
++    try {
++        const ptr0 = passStringToWasm0(room_id, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
++        const len0 = WASM_VECTOR_LEN;
++        const ptr1 = passStringToWasm0(invite_code, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
++        const len1 = WASM_VECTOR_LEN;
++        const ptr2 = passStringToWasm0(mode, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
++        const len2 = WASM_VECTOR_LEN;
++        const ptr3 = passStringToWasm0(name, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
++        const len3 = WASM_VECTOR_LEN;
++        const ptr4 = passStringToWasm0(deck_json, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
++        const len4 = WASM_VECTOR_LEN;
++        const ptr5 = passStringToWasm0(seed_decimal, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
++        const len5 = WASM_VECTOR_LEN;
++        const ret = wasm.newGameWithDeck(ptr0, len0, ptr1, len1, ptr2, len2, ptr3, len3, ptr4, len4, ptr5, len5);
++        var ptr7 = ret[0];
++        var len7 = ret[1];
++        if (ret[3]) {
++            ptr7 = 0; len7 = 0;
++            throw takeFromExternrefTable0(ret[2]);
++        }
++        deferred8_0 = ptr7;
++        deferred8_1 = len7;
++        return getStringFromWasm0(ptr7, len7);
++    } finally {
++        wasm.__wbindgen_free(deferred8_0, deferred8_1, 1);
++    }
++}
++
++/**
++ * @param {string} state
++ * @param {string} name
++ * @param {string} deck_json
++ * @returns {string}
++ */
++export function joinGameWithDeck(state, name, deck_json) {
++    let deferred5_0;
++    let deferred5_1;
++    try {
++        const ptr0 = passStringToWasm0(state, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
++        const len0 = WASM_VECTOR_LEN;
++        const ptr1 = passStringToWasm0(name, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
++        const len1 = WASM_VECTOR_LEN;
++        const ptr2 = passStringToWasm0(deck_json, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
++        const len2 = WASM_VECTOR_LEN;
++        const ret = wasm.joinGameWithDeck(ptr0, len0, ptr1, len1, ptr2, len2);
++        var ptr4 = ret[0];
++        var len4 = ret[1];
++        if (ret[3]) {
++            ptr4 = 0; len4 = 0;
++            throw takeFromExternrefTable0(ret[2]);
++        }
++        deferred5_0 = ptr4;
++        deferred5_1 = len4;
++        return getStringFromWasm0(ptr4, len4);
++    } finally {
++        wasm.__wbindgen_free(deferred5_0, deferred5_1, 1);
++    }
++}
++
++/**
++ * @param {string} state
++ * @param {number} seat
++ * @returns {string}
++ */
++export function roomCatalog(state, seat) {
++    let deferred3_0;
++    let deferred3_1;
++    try {
++        const ptr0 = passStringToWasm0(state, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
++        const len0 = WASM_VECTOR_LEN;
++        const ret = wasm.roomCatalog(ptr0, len0, seat);
++        var ptr2 = ret[0];
++        var len2 = ret[1];
++        if (ret[3]) {
++            ptr2 = 0; len2 = 0;
++            throw takeFromExternrefTable0(ret[2]);
++        }
++        deferred3_0 = ptr2;
++        deferred3_1 = len2;
++        return getStringFromWasm0(ptr2, len2);
++    } finally {
++        wasm.__wbindgen_free(deferred3_0, deferred3_1, 1);
++    }
++}
++
++/**
++ * @param {string} _state
++ * @param {number} _seat
++ * @param {string} _action_json
++ * @returns {string}
++ */
++export function apply(_state, _seat, _action_json) {
++    let deferred4_0;
++    let deferred4_1;
++    try {
++        const ptr0 = passStringToWasm0(_state, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
++        const len0 = WASM_VECTOR_LEN;
++        const ptr1 = passStringToWasm0(_action_json, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
++        const len1 = WASM_VECTOR_LEN;
++        const ret = wasm.apply(ptr0, len0, _seat, ptr1, len1);
++        var ptr3 = ret[0];
++        var len3 = ret[1];
++        if (ret[3]) {
++            ptr3 = 0; len3 = 0;
++            throw takeFromExternrefTable0(ret[2]);
++        }
++        deferred4_0 = ptr3;
++        deferred4_1 = len3;
++        return getStringFromWasm0(ptr3, len3);
++    } finally {
++        wasm.__wbindgen_free(deferred4_0, deferred4_1, 1);
++    }
++}
++
++/**
++ * @param {string} state
++ * @param {number} seat
++ * @param {string} command_json
++ * @param {string} server_now_decimal
++ * @returns {string}
++ */
++export function applyRoom(state, seat, command_json, server_now_decimal) {
++    let deferred5_0;
++    let deferred5_1;
++    try {
++        const ptr0 = passStringToWasm0(state, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
++        const len0 = WASM_VECTOR_LEN;
++        const ptr1 = passStringToWasm0(command_json, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
++        const len1 = WASM_VECTOR_LEN;
++        const ptr2 = passStringToWasm0(server_now_decimal, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
++        const len2 = WASM_VECTOR_LEN;
++        const ret = wasm.applyRoom(ptr0, len0, seat, ptr1, len1, ptr2, len2);
++        var ptr4 = ret[0];
++        var len4 = ret[1];
++        if (ret[3]) {
++            ptr4 = 0; len4 = 0;
++            throw takeFromExternrefTable0(ret[2]);
++        }
++        deferred5_0 = ptr4;
++        deferred5_1 = len4;
++        return getStringFromWasm0(ptr4, len4);
++    } finally {
++        wasm.__wbindgen_free(deferred5_0, deferred5_1, 1);
++    }
++}
++
++/**
++ * @param {string} state
++ * @param {number} seat
++ * @param {string} server_now_decimal
++ * @returns {string}
++ */
++export function pollRoom(state, seat, server_now_decimal) {
++    let deferred4_0;
++    let deferred4_1;
++    try {
++        const ptr0 = passStringToWasm0(state, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
++        const len0 = WASM_VECTOR_LEN;
++        const ptr1 = passStringToWasm0(server_now_decimal, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
++        const len1 = WASM_VECTOR_LEN;
++        const ret = wasm.pollRoom(ptr0, len0, seat, ptr1, len1);
++        var ptr3 = ret[0];
++        var len3 = ret[1];
++        if (ret[3]) {
++            ptr3 = 0; len3 = 0;
++            throw takeFromExternrefTable0(ret[2]);
++        }
++        deferred4_0 = ptr3;
++        deferred4_1 = len3;
++        return getStringFromWasm0(ptr3, len3);
++    } finally {
++        wasm.__wbindgen_free(deferred4_0, deferred4_1, 1);
++    }
++}
++
++/**
++ * @param {string} state
++ * @param {number} seat
++ * @param {string} request_json
++ * @returns {string}
++ */
++export function quoteRoom(state, seat, request_json) {
++    let deferred4_0;
++    let deferred4_1;
++    try {
++        const ptr0 = passStringToWasm0(state, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
++        const len0 = WASM_VECTOR_LEN;
++        const ptr1 = passStringToWasm0(request_json, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
++        const len1 = WASM_VECTOR_LEN;
++        const ret = wasm.quoteRoom(ptr0, len0, seat, ptr1, len1);
++        var ptr3 = ret[0];
++        var len3 = ret[1];
++        if (ret[3]) {
++            ptr3 = 0; len3 = 0;
++            throw takeFromExternrefTable0(ret[2]);
++        }
++        deferred4_0 = ptr3;
++        deferred4_1 = len3;
++        return getStringFromWasm0(ptr3, len3);
++    } finally {
++        wasm.__wbindgen_free(deferred4_0, deferred4_1, 1);
++    }
++}
++
++/**
++ * @param {string} state
++ * @param {number} seat
++ * @returns {string}
++ */
++export function view(state, seat) {
++    let deferred3_0;
++    let deferred3_1;
++    try {
++        const ptr0 = passStringToWasm0(state, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
++        const len0 = WASM_VECTOR_LEN;
++        const ret = wasm.view(ptr0, len0, seat);
++        var ptr2 = ret[0];
++        var len2 = ret[1];
++        if (ret[3]) {
++            ptr2 = 0; len2 = 0;
++            throw takeFromExternrefTable0(ret[2]);
++        }
++        deferred3_0 = ptr2;
++        deferred3_1 = len2;
++        return getStringFromWasm0(ptr2, len2);
++    } finally {
++        wasm.__wbindgen_free(deferred3_0, deferred3_1, 1);
++    }
++}
++
++const EXPECTED_RESPONSE_TYPES = new Set(['basic', 'cors', 'default']);
++
++async function __wbg_load(module, imports) {
++    if (typeof Response === 'function' && module instanceof Response) {
++        if (typeof WebAssembly.instantiateStreaming === 'function') {
++            try {
++                return await WebAssembly.instantiateStreaming(module, imports);
++
++            } catch (e) {
++                const validResponse = module.ok && EXPECTED_RESPONSE_TYPES.has(module.type);
++
++                if (validResponse && module.headers.get('Content-Type') !== 'application/wasm') {
++                    console.warn("`WebAssembly.instantiateStreaming` failed because your server does not serve Wasm with `application/wasm` MIME type. Falling back to `WebAssembly.instantiate` which is slower. Original error:\n", e);
++
++                } else {
++                    throw e;
++                }
++            }
++        }
++
++        const bytes = await module.arrayBuffer();
++        return await WebAssembly.instantiate(bytes, imports);
++
++    } else {
++        const instance = await WebAssembly.instantiate(module, imports);
++
++        if (instance instanceof WebAssembly.Instance) {
++            return { instance, module };
++
++        } else {
++            return instance;
++        }
++    }
++}
++
++function __wbg_get_imports() {
++    const imports = {};
++    imports.wbg = {};
++    imports.wbg.__wbindgen_cast_2241b6af4c4b2941 = function(arg0, arg1) {
++        // Cast intrinsic for `Ref(String) -> Externref`.
++        const ret = getStringFromWasm0(arg0, arg1);
++        return ret;
++    };
++    imports.wbg.__wbindgen_init_externref_table = function() {
++        const table = wasm.__wbindgen_export_0;
++        const offset = table.grow(4);
++        table.set(0, undefined);
++        table.set(offset + 0, undefined);
++        table.set(offset + 1, null);
++        table.set(offset + 2, true);
++        table.set(offset + 3, false);
++        ;
++    };
++
++    return imports;
++}
++
++function __wbg_init_memory(imports, memory) {
++
++}
++
++function __wbg_finalize_init(instance, module) {
++    wasm = instance.exports;
++    __wbg_init.__wbindgen_wasm_module = module;
++    cachedUint8ArrayMemory0 = null;
++
++
++    wasm.__wbindgen_start();
++    return wasm;
++}
++
++function initSync(module) {
++    if (wasm !== undefined) return wasm;
++
++
++    if (typeof module !== 'undefined') {
++        if (Object.getPrototypeOf(module) === Object.prototype) {
++            ({module} = module)
++        } else {
++            console.warn('using deprecated parameters for `initSync()`; pass a single object instead')
++        }
++    }
++
++    const imports = __wbg_get_imports();
++
++    __wbg_init_memory(imports);
++
++    if (!(module instanceof WebAssembly.Module)) {
++        module = new WebAssembly.Module(module);
++    }
++
++    const instance = new WebAssembly.Instance(module, imports);
++
++    return __wbg_finalize_init(instance, module);
++}
++
++async function __wbg_init(module_or_path) {
++    if (wasm !== undefined) return wasm;
++
++
++    if (typeof module_or_path !== 'undefined') {
++        if (Object.getPrototypeOf(module_or_path) === Object.prototype) {
++            ({module_or_path} = module_or_path)
++        } else {
++            console.warn('using deprecated parameters for the initialization function; pass a single object instead')
++        }
++    }
++
++    if (typeof module_or_path === 'undefined') {
++        module_or_path = new URL('hegemony_wasm_bg.wasm', import.meta.url);
++    }
++    const imports = __wbg_get_imports();
++
++    if (typeof module_or_path === 'string' || (typeof Request === 'function' && module_or_path instanceof Request) || (typeof URL === 'function' && module_or_path instanceof URL)) {
++        module_or_path = fetch(module_or_path);
++    }
++
++    __wbg_init_memory(imports);
++
++    const { instance, module } = await __wbg_load(await module_or_path, imports);
++
++    return __wbg_finalize_init(instance, module);
++}
++
++export { initSync };
++export default __wbg_init;
+--- a/rust-game-wasm/legacy-v0.2.7/hegemony_wasm_bg.wasm.d.ts
++++ b/rust-game-wasm/legacy-v0.2.7/hegemony_wasm_bg.wasm.d.ts
+@@ -0,0 +1,21 @@
++/* tslint:disable */
++/* eslint-disable */
++export const memory: WebAssembly.Memory;
++export const stateIdentity: (a: number, b: number) => [number, number, number, number];
++export const catalog: () => [number, number, number, number];
++export const newGame: (a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number, i: number, j: number, k: number, l: number) => [number, number, number, number];
++export const joinGame: (a: number, b: number, c: number, d: number, e: number, f: number) => [number, number, number, number];
++export const newGameWithDeck: (a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number, i: number, j: number, k: number, l: number) => [number, number, number, number];
++export const joinGameWithDeck: (a: number, b: number, c: number, d: number, e: number, f: number) => [number, number, number, number];
++export const roomCatalog: (a: number, b: number, c: number) => [number, number, number, number];
++export const apply: (a: number, b: number, c: number, d: number, e: number) => [number, number, number, number];
++export const applyRoom: (a: number, b: number, c: number, d: number, e: number, f: number, g: number) => [number, number, number, number];
++export const pollRoom: (a: number, b: number, c: number, d: number, e: number) => [number, number, number, number];
++export const quoteRoom: (a: number, b: number, c: number, d: number, e: number) => [number, number, number, number];
++export const view: (a: number, b: number, c: number) => [number, number, number, number];
++export const __wbindgen_export_0: WebAssembly.Table;
++export const __wbindgen_malloc: (a: number, b: number) => number;
++export const __wbindgen_realloc: (a: number, b: number, c: number, d: number) => number;
++export const __externref_table_dealloc: (a: number) => void;
++export const __wbindgen_free: (a: number, b: number, c: number) => void;
++export const __wbindgen_start: () => void;
+--- a/rust-game-wasm/legacy-v0.2.7/package.json
++++ b/rust-game-wasm/legacy-v0.2.7/package.json
+@@ -0,0 +1 @@
++{"type":"module","private":true}
+--- a/rust-game/data/cards.json
++++ b/rust-game/data/cards.json
+@@ -1,7 +1,7 @@
+ {
+   "rulesVersion": "hegemony-pdf-v1",
+-  "cardPoolVersion": "limited-v2.5",
+-  "engineVersion": "rust-v0.2.7",
++  "cardPoolVersion": "limited-v2.6",
++  "engineVersion": "rust-v0.2.8",
+   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
+   "cards": [
+     {
+@@ -1495,6 +1495,364 @@
+         "record": "JC085",
+         "sha256": "f568ed4c26fc244830d840f0133eb1a78111aceff53a4a345f8ca44c1552aee2"
+       }
++    },
++    {
++      "id": "JC088",
++      "name": "职业杀手",
++      "kind": "character",
++      "subtypes": [
++        "人类",
++        "罪犯"
++      ],
++      "cost": 3,
++      "loyalty": [
++        "黑色"
++      ],
++      "loyaltyText": "黑色",
++      "color": "黑",
++      "magic": "",
++      "icons": {
++        "permanent": {
++          "investigation": 0,
++          "combat": 1,
++          "influence": 0
++        },
++        "temporary": {
++          "investigation": 0,
++          "combat": 1,
++          "influence": 0
++        }
++      },
++      "defense": 1,
++      "text": "现身触发：消灭位于本地区，且印刷费用小于或等于2的目标角色。\n快速行动：2：潜伏。（将该角色翻面为暗藏者）",
++      "keywords": [],
++      "source": {
++        "file": "docs/factions/card-specifications.json",
++        "record": "JC088",
++        "image": "resource/ymsj-fun.github.io/cards/JC088 职业杀手.jpg",
++        "sha256": "9c270203639dae978acb65e9255ac34b5a5d5192e681f8aafd63018ede301a5f"
++      },
++      "unique": false,
++      "society": "方碑序列"
++    },
++    {
++      "id": "JC001",
++      "name": "通灵猫头鹰",
++      "kind": "character",
++      "subtypes": [
++        "鸟",
++        "魔宠"
++      ],
++      "cost": 1,
++      "loyalty": [
++        "黄色"
++      ],
++      "loyaltyText": "黄色",
++      "color": "黄",
++      "magic": "心灵",
++      "icons": {
++        "permanent": {
++          "investigation": 0,
++          "combat": 0,
++          "influence": 0
++        },
++        "temporary": {
++          "investigation": 0,
++          "combat": 0,
++          "influence": 1
++        }
++      },
++      "defense": 1,
++      "text": "不能被装备结附。\n【持续】若你的资产区具有心灵2，则通灵猫头鹰获得临时调查1。",
++      "keywords": [],
++      "source": {
++        "file": "docs/factions/card-specifications.json",
++        "record": "JC001",
++        "image": "resource/ymsj-fun.github.io/cards/JC001 通灵猫头鹰.jpg"
++      },
++      "unique": false,
++      "society": "帷幕守望"
++    },
++    {
++      "id": "BQ083",
++      "name": "索命骷髅",
++      "kind": "character",
++      "subtypes": [
++        "不死生物",
++        "骷髅",
++        "诅咒"
++      ],
++      "cost": 4,
++      "loyalty": [
++        "黑色",
++        "黑色",
++        "黑色"
++      ],
++      "loyaltyText": "黑色黑色黑色",
++      "color": "黑",
++      "magic": "死亡",
++      "icons": {
++        "permanent": {
++          "investigation": 0,
++          "combat": 1,
++          "influence": 1
++        },
++        "temporary": {
++          "investigation": 0,
++          "combat": 0,
++          "influence": 0
++        }
++      },
++      "defense": 1,
++      "text": "进场触发 消灭本地区的目标角色。",
++      "keywords": [],
++      "source": {
++        "file": "docs/factions/card-specifications.json",
++        "record": "BQ083",
++        "image": "resource/ymsj-fun.github.io/cards/BQ083 索命骷髅.jpg"
++      },
++      "unique": false,
++      "society": ""
++    },
++    {
++      "id": "JC006",
++      "name": "逆转异界之门",
++      "kind": "spell",
++      "subtypes": [
++        "法术",
++        "异界"
++      ],
++      "cost": 2,
++      "loyalty": [
++        "黄色"
++      ],
++      "loyaltyText": "黄色",
++      "color": "黄",
++      "magic": "心灵",
++      "icons": {
++        "permanent": {
++          "investigation": 0,
++          "combat": 0,
++          "influence": 0
++        },
++        "temporary": {
++          "investigation": 0,
++          "combat": 0,
++          "influence": 0
++        }
++      },
++      "defense": null,
++      "text": "【快速行动】将目标具有魔法领域图标的角色移回其拥有者手上。",
++      "keywords": [],
++      "source": {
++        "file": "docs/factions/card-specifications.json",
++        "record": "JC006",
++        "image": "resource/ymsj-fun.github.io/cards/JC006 逆转异界之门.jpg",
++        "sha256": "beec2b1d758e0186cdc4cb57e7c52d6e8df2a4623564e5f212b3d878abb91bf4"
++      },
++      "unique": false,
++      "society": "帷幕守望"
++    },
++    {
++      "id": "XQ16",
++      "name": "法务部律师团",
++      "kind": "character",
++      "subtypes": [
++        "人类",
++        "律师"
++      ],
++      "cost": 2,
++      "loyalty": [
++        "蓝色"
++      ],
++      "loyaltyText": "蓝色",
++      "color": "蓝",
++      "magic": "",
++      "icons": {
++        "permanent": {
++          "investigation": 0,
++          "combat": 0,
++          "influence": 1
++        },
++        "temporary": {
++          "investigation": 0,
++          "combat": 0,
++          "influence": 0
++        }
++      },
++      "defense": 1,
++      "text": "公开\n【进场触发】将另一个目标本方角色翻面为暗藏者。",
++      "keywords": [
++        "公开"
++      ],
++      "source": {
++        "file": "docs/factions/card-specifications.json",
++        "record": "XQ16",
++        "image": "resource/ymsj-fun.github.io/cards/XQ16 法务部律师团.jpg",
++        "sha256": "2ae947c0c5dccd45ae495d3c828ce9b4e1453c34dfb6e24c5e61eea8338cff80"
++      },
++      "unique": false,
++      "society": "王座会"
++    },
++    {
++      "id": "JC047",
++      "name": "烈火重围",
++      "kind": "spell",
++      "subtypes": [
++        "灾难"
++      ],
++      "cost": 3,
++      "loyalty": [
++        "红色"
++      ],
++      "loyaltyText": "红色",
++      "color": "红",
++      "magic": "",
++      "icons": {
++        "permanent": {
++          "investigation": 0,
++          "combat": 0,
++          "influence": 0
++        },
++        "temporary": {
++          "investigation": 0,
++          "combat": 0,
++          "influence": 0
++        }
++      },
++      "defense": null,
++      "text": "【标准行动】对目标地区上的所有角色造成1点伤害。",
++      "keywords": [],
++      "source": {
++        "file": "docs/factions/card-specifications.json",
++        "record": "JC047",
++        "image": "resource/ymsj-fun.github.io/cards/JC047 烈火重围.jpg",
++        "sha256": "74d7e3c4bf75c52538fce551dda97f28e5b51d7d64ffbe89c9d427296a3ce9d6"
++      },
++      "unique": false,
++      "society": "鸣钟教派"
++    },
++    {
++      "id": "JC007",
++      "name": "常春藤派学者",
++      "kind": "character",
++      "subtypes": [
++        "人类",
++        "学者"
++      ],
++      "cost": 4,
++      "loyalty": [
++        "黄色",
++        "黄色"
++      ],
++      "loyaltyText": "黄色 黄色",
++      "color": "黄",
++      "magic": "",
++      "icons": {
++        "permanent": {
++          "investigation": 0,
++          "combat": 0,
++          "influence": 1
++        },
++        "temporary": {
++          "investigation": 1,
++          "combat": 0,
++          "influence": 1
++        }
++      },
++      "defense": 1,
++      "text": "【进场触发】从你的牌库中寻找一张印刷费用小于或等于2的法术或书籍牌，展示该牌后置于你的手中，然后洗牌。",
++      "keywords": [],
++      "source": {
++        "file": "docs/factions/card-specifications.json",
++        "record": "JC007",
++        "image": "resource/ymsj-fun.github.io/cards/JC007 常春藤派学者.jpg",
++        "sha256": "835b85f48270aa66f10f01fa4de7483b0ccf80dcf14e6dc5596639592e14f1ce"
++      },
++      "unique": false,
++      "society": "帷幕守望"
++    },
++    {
++      "id": "JC075",
++      "name": "雪地救援队",
++      "subtitle": null,
++      "kind": "character",
++      "subtypes": [
++        "人类",
++        "医疗员"
++      ],
++      "cost": 1,
++      "loyalty": [
++        "白色"
++      ],
++      "loyaltyText": "白色",
++      "color": "白",
++      "magic": "",
++      "icons": {
++        "permanent": {
++          "investigation": 0,
++          "combat": 0,
++          "influence": 1
++        },
++        "temporary": {
++          "investigation": 0,
++          "combat": 0,
++          "influence": 0
++        }
++      },
++      "defense": 1,
++      "text": "公开（该角色不能被秘密派遣为暗藏者）\n【快速】行动2，【横置】：将另一个目标本方角色移回其拥有者手上。",
++      "keywords": [
++        "公开"
++      ],
++      "source": {
++        "file": "docs/factions/card-specifications.json",
++        "record": "JC075",
++        "image": "resource/ymsj-fun.github.io/cards/JC075 雪地救援队.jpg",
++        "sha256": "7db960c7050614dae10a8e752db2567670169e782986e39a789842259231e434"
++      },
++      "unique": false,
++      "society": "圣贤"
++    },
++    {
++      "id": "JC104",
++      "name": "占卜师",
++      "subtitle": "神秘的吉卜赛妇人",
++      "kind": "character",
++      "subtypes": [
++        "人类",
++        "法师"
++      ],
++      "cost": 2,
++      "loyalty": [
++        "紫色"
++      ],
++      "loyaltyText": "紫色",
++      "color": "紫",
++      "magic": "星辰",
++      "icons": {
++        "permanent": {
++          "investigation": 0,
++          "combat": 0,
++          "influence": 0
++        },
++        "temporary": {
++          "investigation": 1,
++          "combat": 0,
++          "influence": 0
++        }
++      },
++      "defense": 1,
++      "text": "【进场触发】预测3。（检视你牌库顶的三张牌，将其中任意数量的牌以任意顺序置于你的牌库顶，将其余的牌以任意顺序置于你的牌库底。）",
++      "keywords": [],
++      "source": {
++        "file": "docs/factions/card-specifications.json",
++        "record": "JC104",
++        "image": "resource/ymsj-fun.github.io/cards/JC104 占卜师.jpg",
++        "sha256": "877aa980256730bb35350f1b99c2aa75b9110cd5905e61412664e2a89ef4e8da"
++      },
++      "unique": false,
++      "society": "梦境行者"
+     }
+   ],
+   "decks": [
+@@ -1682,7 +2040,7 @@
+       "cards": [
+         {
+           "cardId": "JC125",
+-          "count": 11
++          "count": 8
+         },
+         {
+           "cardId": "LC19",
+@@ -1734,6 +2092,10 @@
+         },
+         {
+           "cardId": "JC085",
++          "count": 3
++        },
++        {
++          "cardId": "JC088",
+           "count": 3
+         }
+       ]
+--- a/rust-game/src/attachment.rs
++++ b/rust-game/src/attachment.rs
+@@ -88,9 +88,17 @@
+             Relation::Any => true,
+             Relation::ControlledByActor => host.controller == attachment.card.controller,
+             Relation::OwnedByActor => host.owner == attachment.card.controller,
++            Relation::FriendlyTeam => !self.is_enemy(attachment.card.controller, host),
+             Relation::EnemyTeam => self.is_enemy(attachment.card.controller, host),
+         };
+         kind && relation
++            && (!card(&attachment.card.definition)
++                .subtypes
++                .iter()
++                .any(|s| s == "装备")
++                || !rules::definition(&host.definition)
++                    .traits
++                    .cannot_be_equipped)
+             && spec
+                 .host
+                 .subtype
+--- a/rust-game/src/catalog.rs
++++ b/rust-game/src/catalog.rs
+@@ -3,8 +3,8 @@
+ use std::sync::OnceLock;
+ 
+ pub const RULES_VERSION: &str = "hegemony-pdf-v1";
+-pub const POOL_VERSION: &str = "limited-v2.5";
+-pub const ENGINE_VERSION: &str = "rust-v0.2.7";
++pub const POOL_VERSION: &str = "limited-v2.6";
++pub const ENGINE_VERSION: &str = "rust-v0.2.8";
+ 
+ #[derive(Clone, Debug, Serialize, Deserialize)]
+ #[serde(rename_all = "camelCase")]
+--- a/rust-game/src/main.rs
++++ b/rust-game/src/main.rs
+@@ -5,7 +5,7 @@
+     tracing_subscriber::fmt()
+         .with_env_filter(tracing_subscriber::EnvFilter::from_default_env())
+         .init();
+-    let database = std::env::var("HEGEMONY_DB").unwrap_or_else(|_| "rust-game-v2.7.sqlite3".into());
++    let database = std::env::var("HEGEMONY_DB").unwrap_or_else(|_| "rust-game-v2.8.sqlite3".into());
+     let port = std::env::var("PORT").unwrap_or_else(|_| "8090".into());
+     let address = format!("0.0.0.0:{port}");
+     let app = service::router(service::Store::open(&database)?);
+--- a/rust-game/src/resolution.rs
++++ b/rust-game/src/resolution.rs
+@@ -37,6 +37,7 @@
+                     Relation::Any => true,
+                     Relation::ControlledByActor => c.controller == frame.actor,
+                     Relation::OwnedByActor => c.owner == frame.actor,
++                    Relation::FriendlyTeam => !self.is_enemy(frame.actor, c),
+                     Relation::EnemyTeam => self.is_enemy(frame.actor, c),
+                 };
+                 kind && relation
+@@ -323,14 +324,7 @@
+         }
+     }
+     pub(crate) fn filter_card(&self, filter: &CardFilter, c: &Card) -> bool {
+-        let d = card(&c.definition);
+-        match filter {
+-            CardFilter::Any => true,
+-            CardFilter::Kind(k) => d.kind == *k,
+-            CardFilter::SocietyOrMagic { society, magic } => {
+-                d.society == *society || d.magic_icon == *magic
+-            }
+-        }
++        filter.matches(card(&c.definition))
+     }
+     pub(crate) fn effective_cost(&self, actor: usize, c: &Card) -> u32 {
+         card(&c.definition).cost.saturating_sub(
+@@ -473,9 +467,18 @@
+                         Relation::Any => true,
+                         Relation::ControlledByActor => c.controller == actor,
+                         Relation::OwnedByActor => c.owner == actor,
++                        Relation::FriendlyTeam => !self.is_enemy(actor, c),
+                         Relation::EnemyTeam => self.is_enemy(actor, c),
+                     };
+                     kind && relation
++                        && (!spec.requires_magic
++                            || (!c.face_down && d.magic_icon != MagicIcon::None))
++                        && (!spec.exclude_source || c.id != source.card.id)
++                        && (!spec.equipment_host
++                            || !rules::definition(&c.definition).traits.cannot_be_equipped)
++                        && spec
++                            .printed_cost_max
++                            .is_none_or(|max| !c.face_down && d.cost <= max)
+                         && (spec.range != Range::SourceRegion || region == source.region)
+                         && spec
+                             .subtype
+--- a/rust-game/src/rules.rs
++++ b/rust-game/src/rules.rs
+@@ -51,6 +51,7 @@
+     Any,
+     ControlledByActor,
+     OwnedByActor,
++    FriendlyTeam,
+     EnemyTeam,
+ }
+ #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
+@@ -68,6 +69,14 @@
+     pub subtype: Option<String>,
+     #[serde(default)]
+     pub subtypes_any: Vec<String>,
++    #[serde(default)]
++    pub printed_cost_max: Option<u32>,
++    #[serde(default)]
++    pub equipment_host: bool,
++    #[serde(default)]
++    pub requires_magic: bool,
++    #[serde(default)]
++    pub exclude_source: bool,
+     pub min: usize,
+     pub max: usize,
+ }
+@@ -119,7 +128,35 @@
+ pub enum CardFilter {
+     Any,
+     Kind(String),
+-    SocietyOrMagic { society: String, magic: MagicIcon },
++    SocietyOrMagic {
++        society: String,
++        magic: MagicIcon,
++    },
++    PrintedCostAndSubtypes {
++        max_cost: u32,
++        subtypes: Vec<String>,
++    },
++}
++impl CardFilter {
++    pub(crate) fn matches(&self, definition: &crate::catalog::CardDefinition) -> bool {
++        match self {
++            Self::Any => true,
++            Self::Kind(kind) => definition.kind == *kind,
++            Self::SocietyOrMagic { society, magic } => {
++                definition.society == *society || definition.magic_icon == *magic
++            }
++            Self::PrintedCostAndSubtypes { max_cost, subtypes } => {
++                definition.cost <= *max_cost
++                    && subtypes.iter().any(|subtype| {
++                        definition.subtypes.iter().any(|printed| {
++                            // Early admitted spells retain the exact legacy "事务-法术" label.
++                            printed == subtype
++                                || printed.strip_prefix("事务-") == Some(subtype.as_str())
++                        })
++                    })
++            }
++        }
++    }
+ }
+ #[derive(Clone, Debug, Serialize, Deserialize)]
+ pub enum Op {
+@@ -217,6 +254,8 @@
+     pub kill: u32,
+     pub retreat: bool,
+     pub unlimited_copies: bool,
++    #[serde(default)]
++    pub cannot_be_equipped: bool,
+ }
+ #[derive(Clone, Debug, Serialize, Deserialize)]
+ pub enum StaticModifier {
+@@ -344,6 +383,10 @@
+         range,
+         subtype: None,
+         subtypes_any: vec![],
++        printed_cost_max: None,
++        equipment_host: false,
++        requires_magic: false,
++        exclude_source: false,
+         min: 1,
+         max: 1,
+     }
+@@ -413,6 +456,127 @@
+             Range::Anywhere,
+         );
+         let mut m = BTreeMap::new();
++        let mut another_own = target(
++            Zone::Board,
++            EntityKind::Character,
++            Relation::ControlledByActor,
++            Range::Anywhere,
++        );
++        another_own.exclude_source = true;
++        m.insert(
++            "JC075".into(),
++            Definition {
++                traits: Traits {
++                    public: true,
++                    ..Default::default()
++                },
++                abilities: vec![ability(
++                    "rescue",
++                    "快速行动",
++                    Timing::Fast,
++                    vec![Cost::Assets(2), Cost::ExhaustSource],
++                    vec![another_own],
++                    vec![Op::Move(Target(0), Destination::OwnerHand)],
++                    None,
++                )],
++                ..Default::default()
++            },
++        );
++        m.insert(
++            "JC104".into(),
++            with_abilities(vec![ability(
++                "forecast-entry",
++                "进场触发",
++                Timing::Fast,
++                vec![],
++                vec![],
++                vec![Op::Forecast {
++                    player: Actor,
++                    count: 3,
++                }],
++                Some(Event::Enter),
++            )]),
++        );
++        m.insert(
++            "JC047".into(),
++            with_abilities(vec![ability(
++                "damage-region",
++                "标准行动",
++                Timing::Standard,
++                vec![],
++                vec![region.clone()],
++                vec![Op::DamageMatching {
++                    selector: BoardSelector {
++                        kind: EntityKind::Character,
++                        relation: Relation::Any,
++                        region: Some(RegionRef::Target(0)),
++                        subtype: None,
++                    },
++                    amount: 1,
++                }],
++                None,
++            )]),
++        );
++        m.insert(
++            "JC007".into(),
++            with_abilities(vec![ability(
++                "search-cheap-spell-book-entry",
++                "进场触发",
++                Timing::Fast,
++                vec![],
++                vec![],
++                vec![Op::Search {
++                    player: Actor,
++                    filter: CardFilter::PrintedCostAndSubtypes {
++                        max_cost: 2,
++                        subtypes: vec!["法术".into(), "书籍".into()],
++                    },
++                    to_top: false,
++                    optional: false,
++                }],
++                Some(Event::Enter),
++            )]),
++        );
++        let mut magic_character = character.clone();
++        magic_character.requires_magic = true;
++        m.insert(
++            "JC006".into(),
++            with_abilities(vec![ability(
++                "return-magic",
++                "快速行动",
++                Timing::Fast,
++                vec![],
++                vec![magic_character],
++                vec![Op::Move(Target(0), Destination::OwnerHand)],
++                None,
++            )]),
++        );
++        let mut another_friend = target(
++            Zone::Board,
++            EntityKind::Character,
++            Relation::ControlledByActor,
++            Range::Anywhere,
++        );
++        another_friend.exclude_source = true;
++        m.insert(
++            "XQ16".into(),
++            Definition {
++                traits: Traits {
++                    public: true,
++                    ..Default::default()
++                },
++                abilities: vec![ability(
++                    "hide-friend-entry",
++                    "进场触发",
++                    Timing::Fast,
++                    vec![],
++                    vec![another_friend],
++                    vec![Op::Hide(Target(0))],
++                    Some(Event::Enter),
++                )],
++                ..Default::default()
++            },
++        );
+         m.insert(
+             "JC084".into(),
+             Definition {
+@@ -442,6 +606,44 @@
+                 ],
+                 ..Definition::default()
+             },
++        );
++        m.insert(
++            "JC001".into(),
++            Definition {
++                traits: Traits {
++                    cannot_be_equipped: true,
++                    ..Default::default()
++                },
++                modifiers: vec![StaticModifier::ConditionalIcons {
++                    condition: IconCondition::AssetDomain {
++                        magic: MagicIcon::Mind,
++                        minimum: 2,
++                    },
++                    permanent: Icons::default(),
++                    temporary: Icons {
++                        investigation: 1,
++                        ..Icons::default()
++                    },
++                }],
++                ..Definition::default()
++            },
++        );
++        m.insert(
++            "BQ083".into(),
++            with_abilities(vec![ability(
++                "destroy-local-entry",
++                "进场触发",
++                Timing::Fast,
++                vec![],
++                vec![target(
++                    Zone::Board,
++                    EntityKind::Character,
++                    Relation::Any,
++                    Range::SourceRegion,
++                )],
++                vec![Op::Destroy(Target(0))],
++                Some(Event::Enter),
++            )]),
+         );
+         m.insert(
+             "JC085".into(),
+@@ -776,6 +978,36 @@
+             },
+         ];
+         m.insert("JC063".into(), with_abilities(vec![chase]));
++        let mut cheap_character = target(
++            Zone::Board,
++            EntityKind::Character,
++            Relation::Any,
++            Range::SourceRegion,
++        );
++        cheap_character.printed_cost_max = Some(2);
++        m.insert(
++            "JC088".into(),
++            with_abilities(vec![
++                ability(
++                    "destroy-cheap-reveal",
++                    "现身触发",
++                    Timing::Fast,
++                    vec![],
++                    vec![cheap_character],
++                    vec![Op::Destroy(Target(0))],
++                    Some(Event::Reveal),
++                ),
++                ability(
++                    "hide-self",
++                    "快速行动",
++                    Timing::Fast,
++                    vec![Cost::Assets(2)],
++                    vec![],
++                    vec![Op::Hide(Source)],
++                    None,
++                ),
++            ]),
++        );
+         m.insert(
+             "JC086".into(),
+             with_abilities(vec![ability(
+@@ -1034,6 +1266,7 @@
+             Range::Anywhere,
+         );
+         host.subtypes_any = vec!["人类".into(), "吸血鬼".into()];
++        host.equipment_host = true;
+         m.insert(
+             "BQ022".into(),
+             Definition {
+--- a/sites/scripts/build.mjs
++++ b/sites/scripts/build.mjs
+@@ -15,6 +15,7 @@
+ cpSync(root + 'rust-game-wasm/legacy-v0.2.4', project + 'generated/legacy-v0.2.4', { recursive: true });
+ cpSync(root + 'rust-game-wasm/legacy-v0.2.5', project + 'generated/legacy-v0.2.5', { recursive: true });
+ cpSync(root + 'rust-game-wasm/legacy-v0.2.6', project + 'generated/legacy-v0.2.6', { recursive: true });
++cpSync(root + 'rust-game-wasm/legacy-v0.2.7', project + 'generated/legacy-v0.2.7', { recursive: true });
+ rmSync(project + 'dist', { recursive: true, force: true });
+ const config = project + '.wrangler/config';
+ mkdirSync(config, { recursive: true });
+--- a/sites/scripts/stage-source.mjs
++++ b/sites/scripts/stage-source.mjs
+@@ -44,6 +44,7 @@
+ copy(repository + 'rust-game-wasm/legacy-v0.2.4', 'rust-game-wasm/legacy-v0.2.4', true);
+ copy(repository + 'rust-game-wasm/legacy-v0.2.5', 'rust-game-wasm/legacy-v0.2.5', true);
+ copy(repository + 'rust-game-wasm/legacy-v0.2.6', 'rust-game-wasm/legacy-v0.2.6', true);
++copy(repository + 'rust-game-wasm/legacy-v0.2.7', 'rust-game-wasm/legacy-v0.2.7', true);
+ writeFileSync(path.join(destination, '.gitignore'), 'node_modules/\ndist/\n.wrangler/\ngenerated/\npublic/\nweb/dist/\nrust-game/target/\nrust-game-wasm/target/\n.env*\n.sites-runtime/\n');
+ const wasmSha256 = createHash('sha256').update(readFileSync(repository + 'rust-game-wasm/pkg/hegemony_wasm_bg.wasm')).digest('hex');
+ const originalCommit = execFileSync('git', ['rev-parse', 'HEAD'], { cwd: repository, encoding: 'utf8' }).trim();
+--- a/sites/src/kernel.mjs
++++ b/sites/src/kernel.mjs
+@@ -5,6 +5,7 @@
+ import * as stable from '../generated/legacy-v0.2.4/hegemony_wasm.js';
+ import * as paced from '../generated/legacy-v0.2.5/hegemony_wasm.js';
+ import * as attached from '../generated/legacy-v0.2.6/hegemony_wasm.js';
++import * as grave from '../generated/legacy-v0.2.7/hegemony_wasm.js';
+ import currentModule from '../generated/hegemony_wasm_bg.wasm';
+ import previousModule from '../generated/legacy-v0.2.1/hegemony_wasm_bg.wasm';
+ import intermediateModule from '../generated/legacy-v0.2.2/hegemony_wasm_bg.wasm';
+@@ -12,6 +13,7 @@
+ import stableModule from '../generated/legacy-v0.2.4/hegemony_wasm_bg.wasm';
+ import pacedModule from '../generated/legacy-v0.2.5/hegemony_wasm_bg.wasm';
+ import attachedModule from '../generated/legacy-v0.2.6/hegemony_wasm_bg.wasm';
++import graveModule from '../generated/legacy-v0.2.7/hegemony_wasm_bg.wasm';
+ import { routeKernels } from './kernel-router.mjs';
+ current.initSync({ module: currentModule });
+ previous.initSync({ module: previousModule });
+@@ -20,4 +22,5 @@
+ stable.initSync({ module: stableModule });
+ paced.initSync({ module: pacedModule });
+ attached.initSync({ module: attachedModule });
+-export const kernel = routeKernels(current, [previous, intermediate, last, stable, paced, attached]);
++grave.initSync({ module: graveModule });
++export const kernel = routeKernels(current, [previous, intermediate, last, stable, paced, attached, grave]);
+--- a/web/public/card-scans.json
++++ b/web/public/card-scans.json
+@@ -193,5 +193,50 @@
+     "url": "/cards/JC085.jpg",
+     "source": "resource/ymsj-fun.github.io/cards/JC085 复生行尸.jpg",
+     "sha256": "f568ed4c26fc244830d840f0133eb1a78111aceff53a4a345f8ca44c1552aee2"
++  },
++  "JC088": {
++    "url": "/cards/JC088.jpg",
++    "source": "resource/ymsj-fun.github.io/cards/JC088 职业杀手.jpg",
++    "sha256": "9c270203639dae978acb65e9255ac34b5a5d5192e681f8aafd63018ede301a5f"
++  },
++  "JC001": {
++    "url": "/cards/JC001.jpg",
++    "source": "resource/ymsj-fun.github.io/cards/JC001 通灵猫头鹰.jpg",
++    "sha256": "33b9fd53b30630010a49a520d9e2b89d608822706e67e7c667682c3d1151e312"
++  },
++  "BQ083": {
++    "url": "/cards/BQ083.jpg",
++    "source": "resource/ymsj-fun.github.io/cards/BQ083 索命骷髅.jpg",
++    "sha256": "619db97c8309d903e3781448c6ad35db91bb5f2e4b5660b6e0eef65fcbd6e675"
++  },
++  "JC006": {
++    "url": "/cards/JC006.jpg",
++    "source": "resource/ymsj-fun.github.io/cards/JC006 逆转异界之门.jpg",
++    "sha256": "beec2b1d758e0186cdc4cb57e7c52d6e8df2a4623564e5f212b3d878abb91bf4"
++  },
++  "XQ16": {
++    "url": "/cards/XQ16.jpg",
++    "source": "resource/ymsj-fun.github.io/cards/XQ16 法务部律师团.jpg",
++    "sha256": "2ae947c0c5dccd45ae495d3c828ce9b4e1453c34dfb6e24c5e61eea8338cff80"
++  },
++  "JC047": {
++    "url": "/cards/JC047.jpg",
++    "source": "resource/ymsj-fun.github.io/cards/JC047 烈火重围.jpg",
++    "sha256": "74d7e3c4bf75c52538fce551dda97f28e5b51d7d64ffbe89c9d427296a3ce9d6"
++  },
++  "JC007": {
++    "url": "/cards/JC007.jpg",
++    "source": "resource/ymsj-fun.github.io/cards/JC007 常春藤派学者.jpg",
++    "sha256": "835b85f48270aa66f10f01fa4de7483b0ccf80dcf14e6dc5596639592e14f1ce"
++  },
++  "JC075": {
++    "url": "/cards/JC075.jpg",
++    "source": "resource/ymsj-fun.github.io/cards/JC075 雪地救援队.jpg",
++    "sha256": "7db960c7050614dae10a8e752db2567670169e782986e39a789842259231e434"
++  },
++  "JC104": {
++    "url": "/cards/JC104.jpg",
++    "source": "resource/ymsj-fun.github.io/cards/JC104 占卜师.jpg",
++    "sha256": "877aa980256730bb35350f1b99c2aa75b9110cd5905e61412664e2a89ef4e8da"
+   }
+ }
+--- a/web/src/game/cardScans.ts
++++ b/web/src/game/cardScans.ts
+@@ -38,6 +38,15 @@
+   "DQJC116": "/cards/DQJC116.jpg",
+   "BQ022": "/cards/BQ022.jpg",
+   "JC084": "/cards/JC084.jpg",
+-  "JC085": "/cards/JC085.jpg"
++  "JC085": "/cards/JC085.jpg",
++  "JC088": "/cards/JC088.jpg",
++  "JC001": "/cards/JC001.jpg",
++  "BQ083": "/cards/BQ083.jpg",
++  "JC006": "/cards/JC006.jpg",
++  "XQ16": "/cards/XQ16.jpg",
++  "JC047": "/cards/JC047.jpg",
++  "JC007": "/cards/JC007.jpg",
++  "JC075": "/cards/JC075.jpg",
++  "JC104": "/cards/JC104.jpg"
+ };
+ export const cardScanUrl = (cardId?: string) => cardId ? scans[cardId] : undefined;
