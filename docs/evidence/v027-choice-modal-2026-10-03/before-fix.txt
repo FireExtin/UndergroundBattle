@@ -1,0 +1,2700 @@
+
+> undergroundbattle-web@0.1.0 test
+> vitest --run src/game/DialogIsolation.test.tsx
+
+
+ RUN  v4.1.2 /workspace/UndergroundBattle-v027-player-sessions/web
+
+ ❯ src/game/DialogIsolation.test.tsx (5 tests | 4 failed) 1072ms
+     × removes background AutoPass and navigation from the accessible tree and confines Tab in both directions 198ms
+     × keeps Escape inert and submits zero-selection keep only through the explicit button 288ms
+     × makes the nested reader the sole active layer and returns to its choice opener without losing selection 261ms
+     × keeps a late-arriving choice beneath the open guide and restores the choice when the guide closes 295ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/game/DialogIsolation.test.tsx > table choice modal isolation > removes background AutoPass and navigation from the accessible tree and confines Tab in both directions
+Error: expect(element).not.toBeInTheDocument()
+
+expected document not to contain element, found <input
+  aria-label="无可用行动时自动让过"
+  role="switch"
+  type="checkbox"
+/> instead
+ ❯ src/game/DialogIsolation.test.tsx:25:70
+     23|     autoPass.focus();
+     24|     rerender(content(choosing));
+     25|     expect(screen.queryByRole('switch', { name: '无可用行动时自动让过' })).not.t…
+       |                                                                      ^
+     26|     expect(screen.queryByRole('button', { name: '牌桌导航' })).not.toBeInT…
+     27|     expect(autoPass.closest('[inert]')).not.toBeNull();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  src/game/DialogIsolation.test.tsx > table choice modal isolation > keeps Escape inert and submits zero-selection keep only through the explicit button
+TestingLibraryElementError: Unable to find an accessible element with the role "dialog" and name "待完成的选择"
+
+Here are the accessible roles:
+
+  main:
+
+  Name "":
+  [36m<main[39m
+    [33mclass[39m=[32m"hg-table hg-desktop-table hg-desktop-duel"[39m
+    [33mdata-table-layout[39m=[32m"overhead"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  strong:
+
+  Name "":
+  [36m<strong[39m
+    [33mclass[39m=[32m"hg-your-choice"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<strong />[39m
+
+  Name "":
+  [36m<strong />[39m
+
+  Name "":
+  [36m<strong />[39m
+
+  Name "":
+  [36m<strong[39m
+    [33mclass[39m=[32m"hg-card-name"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<strong[39m
+    [33mclass[39m=[32m"hg-card-name"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  group:
+
+  Name "":
+  [36m<details[39m
+    [33mclass[39m=[32m"hg-table-records"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<details[39m
+    [33mclass[39m=[32m"hg-public-zones hg-table-pile hg-graveyard-pile"[39m
+    [33mdata-pile-kind[39m=[32m"graveyard"[39m
+    [33mdata-pile-owner[39m=[32m"p0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<details[39m
+    [33mclass[39m=[32m"hg-public-zones hg-table-pile hg-scoreCards-pile"[39m
+    [33mdata-pile-kind[39m=[32m"scoreCards"[39m
+    [33mdata-pile-owner[39m=[32m"p0"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  list:
+
+  Name "牌桌行动记录":
+  [36m<ol[39m
+    [33maria-label[39m=[32m"牌桌行动记录"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  region:
+
+  Name "对方玩家区":
+  [36m<section[39m
+    [33maria-label[39m=[32m"对方玩家区"[39m
+    [33mclass[39m=[32m"hg-team-edge hg-opponent-edge"[39m
+    [33mdata-side[39m=[32m"opponent"[39m
+  [36m/>[39m
+
+  Name "中央世界与争夺区，可上下滚动查看双方角色":
+  [36m<section[39m
+    [33maria-label[39m=[32m"中央世界与争夺区，可上下滚动查看双方角色"[39m
+    [33mclass[39m=[32m"hg-battlefield"[39m
+    [33mtabindex[39m=[32m"0"[39m
+    [33mtitle[39m=[32m"中央地区可上下滚动；手牌与行动栏保持在下方。"[39m
+  [36m/>[39m
+
+  Name "我方玩家区":
+  [36m<section[39m
+    [33maria-label[39m=[32m"我方玩家区"[39m
+    [33mclass[39m=[32m"hg-team-edge hg-mine-edge"[39m
+    [33mdata-side[39m=[32m"mine"[39m
+  [36m/>[39m
+
+  Name "甲的玩家区":
+  [36m<section[39m
+    [33maria-label[39m=[32m"甲的玩家区"[39m
+    [33mclass[39m=[32m"hg-player-mat hg-team-0 hg-player-you"[39m
+    [33mdata-player-zone[39m=[32m"p0"[39m
+    [33mdata-side[39m=[32m"mine"[39m
+    [33mdata-team[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "固定手牌与下一步行动":
+  [36m<section[39m
+    [33maria-label[39m=[32m"固定手牌与下一步行动"[39m
+    [33mclass[39m=[32m"hg-hand-dock"[39m
+  [36m/>[39m
+
+  Name "你的手牌":
+  [36m<section[39m
+    [33maria-label[39m=[32m"你的手牌"[39m
+    [33mclass[39m=[32m"hg-hand-section"[39m
+  [36m/>[39m
+
+  Name "待完成的选择":
+  [36m<section[39m
+    [33maria-label[39m=[32m"待完成的选择"[39m
+    [33mclass[39m=[32m"hg-choice"[39m
+    [33mdata-choice-id[39m=[32m"modal-mulligan"[39m
+    [33mtabindex[39m=[32m"-1"[39m
+  [36m/>[39m
+
+  Name "选择选项，可滚动查看":
+  [36m<div[39m
+    [33maria-describedby[39m=[32m"modal-mulligan-scroll-hint"[39m
+    [33maria-label[39m=[32m"选择选项，可滚动查看"[39m
+    [33mclass[39m=[32m"hg-choice-body"[39m
+    [33mrole[39m=[32m"region"[39m
+    [33mtabindex[39m=[32m"0"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  heading:
+
+  Name "甲 · 墓地":
+  [36m<h3 />[39m
+
+  Name "甲 · 计分":
+  [36m<h3 />[39m
+
+  Name "起手再调度":
+  [36m<h2 />[39m
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-empty"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-empty"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-choice-scroll-hint"[39m
+    [33mid[39m=[32m"modal-mulligan-scroll-hint"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  switch:
+
+  Name "无可用行动时自动让过":
+  [36m<input[39m
+    [33maria-label[39m=[32m"无可用行动时自动让过"[39m
+    [33mrole[39m=[32m"switch"[39m
+    [33mtype[39m=[32m"checkbox"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  status:
+
+  Name "":
+  [36m<span[39m
+    [33mrole[39m=[32m"status"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  button:
+
+  Name "前往完成选择 ↑":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-button hg-button-primary"[39m
+  [36m/>[39m
+
+  Name "查看无知路人":
+  [36m<button[39m
+    [33maria-label[39m=[32m"查看无知路人"[39m
+    [33maria-pressed[39m=[32m"false"[39m
+    [33mclass[39m=[32m"hg-card hg-card-neutral hg-card-compact"[39m
+    [33mdata-card-actionable[39m=[32m"false"[39m
+    [33mdata-card-exhausted[39m=[32m"false"[39m
+    [33mdata-card-instance[39m=[32m"instance-a"[39m
+    [33mdata-card-owner[39m=[32m"p0"[39m
+    [33mdata-card-targeted[39m=[32m"false"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "+角色费用 0无知路人无忠诚要求图标：调查0，战斗0，势力1真实印刷文字防御 1":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"false"[39m
+    [33mclass[39m=[32m"hg-choice-option "[39m
+    [33mdata-choice-option[39m=[32m"instance-a"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "放大阅读无知路人":
+  [36m<button[39m
+    [33maria-label[39m=[32m"放大阅读无知路人"[39m
+    [33mclass[39m=[32m"hg-choice-read hg-small-read"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "保留全部手牌":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-button hg-button-quiet"[39m
+  [36m/>[39m
+
+  Name "确认选择":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-button hg-button-primary"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<main[39m
+      [33mclass[39m=[32m"hg-table hg-desktop-table hg-desktop-duel"[39m
+      [33mdata-table-layout[39m=[32m"overhead"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"hg-table-status"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"hg-round"[39m
+        [36m>[39m
+          [36m<b>[39m
+            [0m第 [0m
+            [0m1[0m
+            [0m 回合[0m
+          [36m</b>[39m
+          [36m<span>[39m
+            [0m行动阶段[0m
+            [0m · [0m
+            [0m行动阶段[0m
+          [36m</span>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"hg-table-tallies"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"hg-team-tally hg-team-0"[39m
+          [36m>[39m
+            [0m我方[0m
+            [0m [0m
+            [36m<b>[39m
+              [0m0[0m
+            [36m</b>[39m
+            [0m / [0m
+            [0m8[0m
+          [36m</span>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"hg-team-tally hg-team-1"[39m
+          [36m>[39m
+            [0m对方[0m
+            [0m [0m
+            [36m<b>[39m
+              [0m0[0m
+            [36m</b>[39m
+            [0m / [0m
+            [0m8[0m
+          [36m</span>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"hg-phase-line"[39m
+        [36m>[39m
+          [36m<span>[39m
+            [0m先手 [0m
+            [36m<b>[39m
+              [0m甲[0m
+            [36m</b>[39m
+          [36m</span>[39m
+          [36m<span>[39m
+            [0m行动团队 [0m
+            [36m<b>[39m
+              [0m甲[0m
+            [36m</b>[39m
+          [36m</span>[39m
+          [36m<span>[39m
+            [0m优先权 [0m
+            [36m<b>[39m
+              [0m甲[0m
+            [36m</b>[39m
+          [36m</span>[39m
+          [36m<strong[39m
+            [33mclass[39m=[32m"hg-your-choice"[39m
+          [36m>[39m
+            [0m请你完成下方选择[0m
+          [36m</strong>[39m
+        [36m</div>[39m
+        [36m<details[39m
+          [33mclass[39m=[32m"hg-table-records"[39m
+        [36m>[39m
+          [36m<summary>[39m
+            [0m记录 · [0m
+            [0m0[0m
+          [36m</summary>[39m
+          [36m<ol[39m
+            [33maria-label[39m=[32m"牌桌行动记录"[39m
+          [36m/>[39m
+          [36m<small>[39m
+            [0m规则 [0m
+            [0m1[0m
+            [0m · 卡池 [0m
+            [0m1[0m
+            [0m · 引擎 [0m
+            [0m1[0m
+          [36m</small>[39m
+        [36m</details>[39m
+      [36m</div>[39m
+      [36m<section[39m
+        [33maria-label[39m=[32m"对方玩家区"[39m
+        [33mclass[39m=[32m"hg-team-edge hg-opponent-edge"[39m
+        [33mdata-side[39m=[32m"opponent"[39m
+      [36m/>[39m
+      [36m<section[39m
+        [33maria-label[39m=[32m"中央世界与争夺区，可上下滚动查看双方角色"[39m
+        [33mclass[39m=[32m"hg-battlefield"[39m
+        [33mtabindex[39m=[32m"0"[39m
+        [33mtitle[39m=[32m"中央地区可上下滚动；手牌与行动栏保持在下方。"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33maria-label[39m=[32m"世界牌库"[39m
+          [33mclass[39m=[32m"hg-world-deck"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"hg-card-back"[39m
+          [36m>[39m
+            [0m⌖[0m
+          [36m</span>[39m
+          [36m<small>[39m
+            [0m世界牌库[0m
+          [36m</small>[39m
+          [36m<small[39m
+            [33mclass[39m=[32m"hg-battlefield-scroll-hint"[39m
+          [36m>[39m
+            [0m↕ 滚动查看[0m
+          [36m</small>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"hg-board hg-board-duel"[39m
+        [36m/>[39m
+      [36m</section>[39m
+      [36m<section[39m
+        [33maria-label[39m=[32m"我方玩家区"[39m
+        [33mclass[39m=[32m"hg-team-edge hg-mine-edge"[39m
+        [33mdata-side[39m=[32m"mine"[39m
+      [36m>[39m
+        [36m<section[39m
+          [33maria-label[39m=[32m"甲的玩家区"[39m
+          [33mclass[39m=[32m"hg-player-mat hg-team-0 hg-player-you"[39m
+          [33mdata-player-zone[39m=[32m"p0"[39m
+          [33mdata-side[39m=[32m"mine"[39m
+          [33mdata-team[39m=[32m"0"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-player-strip"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"hg-piece-avatar"[39m
+            [36m>[39m
+              [0m甲[0m
+            [36m</span>[39m
+            [36m<strong>[39m
+              [0m甲[0m
+              [0m · 你[0m
+            [36m</strong>[39m
+            [36m<small>[39m
+              [0m席位 [0m
+              [0m1[0m
+              [0m · [0m
+              [0m调查者[0m
+            [36m</small>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"hg-mat-resource"[39m
+            [36m>[39m
+              [0m费用 [0m
+              [36m<b>[39m
+                [0m0[0m
+              [36m</b>[39m
+              [0m / [0m
+              [0m0[0m
+            [36m</span>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-seat-zones"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"hg-personal-piles"[39m
+            [36m>[39m
+              [36m<div[39m
+                [33maria-label[39m=[32m"甲的牌库，49张"[39m
+                [33mclass[39m=[32m"hg-table-pile hg-deck-pile"[39m
+              [36m>[39m
+                [36m<span[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"hg-pile-card hg-card-back"[39m
+                [36m>[39m
+                  [36m<span>[39m
+                    [0m◈[0m
+                  [36m</span>[39m
+                  [36m<b>[39m
+                    [0m49[0m
+                  [36m</b>[39m
+                [36m</span>[39m
+                [36m<span>[39m
+                  [0m牌库[0m
+                [36m</span>[39m
+              [36m</div>[39m
+              [36m<details[39m
+                [33mclass[39m=[32m"hg-public-zones hg-table-pile hg-graveyard-pile"[39m
+                [33mdata-pile-kind[39m=[32m"graveyard"[39m
+                [33mdata-pile-owner[39m=[32m"p0"[39m
+              [36m>[39m
+                [36m<summary[39m
+                  [33maria-label[39m=[32m"查看甲的墓地，0张"[39m
+                [36m>[39m
+                  [36m<span[39m
+                    [33maria-hidden[39m=[32m"true"[39m
+                    [33mclass[39m=[32m"hg-pile-card"[39m
+                  [36m>[39m
+                    [36m<b>[39m
+                      [0m0[0m
+                    [36m</b>[39m
+                    [36m<i>[39m
+                      [0m张[0m
+                    [36m</i>[39m
+                  [36m</span>[39m
+                  [36m<span>[39m
+                    [0m墓地[0m
+                  [36m</span>[39m
+                [36m</summary>[39m
+                [36m<div[39m
+                  [33mclass[39m=[32m"hg-pile-fan"[39m
+                [36m>[39m
+                  [36m<h3>[39m
+                    [0m甲[0m
+                    [0m · [0m
+                    [0m墓地[0m
+                  [36m</h3>[39m
+                  [36m<div[39m
+                    [33mclass[39m=[32m"hg-zone-cards"[39m
+                  [36m>[39m
+                    [36m<p[39m
+                      [33mclass[39m=[32m"hg-empty"[39m
+                    [36m>[39m
+                      [0m这里还没有牌[0m
+                    [36m</p>[39m
+                  [36m</div>[39m
+                [36m</div>[39m
+              [36m</details>[39m
+              [36m<details[39m
+                [33mclass[39m=[32m"hg-public-zones hg-table-pile hg-scoreCards-pile"[39m
+                [33mdata-pile-kind[39m=[32m"scoreCards"[39m
+                [33mdata-pile-owner[39m=[32m"p0"[39m
+              [36m>[39m
+                [36m<summary[39m
+                  [33maria-label[39m=[32m"查看甲的计分，0张"[39m
+                [36m>[39m
+                  [36m<span[39m
+                    [33maria-hidden[39m=[32m"true"[39m
+                    [33mclass[39m=[32m"hg-pile-card"[39m
+                  [36m>[39m
+                    [36m<b>[39m
+                      [0m0[0m
+                    [36m</b>[39m
+                    [36m<i>[39m
+                      [0m分[0m
+                    [36m</i>[39m
+                  [36m</span>[39m
+                  [36m<span>[39m
+                    [0m计分[0m
+                  [36m</span>[39m
+                [36m</summary>[39m
+                [36m<div[39m
+                  [33mclass[39m=[32m"hg-pile-fan"[39m
+                [36m>[39m
+                  [36m<h3>[39m
+                    [0m甲[0m
+                    [0m · [0m
+                    [0m计分[0m
+                  [36m</h3>[39m
+                  [36m<div[39m
+                    [33mclass[39m=[32m"hg-zone-cards"[39m
+                  [36m>[39m
+                    [36m<p[39m
+                      [33mclass[39m=[32m"hg-empty"[39m
+                    [36m>[39m
+                      [0m这里还没有牌[0m
+                    [36m</p>[39m
+                  [36m</div>[39m
+                [36m</div>[39m
+              [36m</details>[39m
+            [36m</div>[39m
+            [36m<div[39m
+              [33maria-label[39m=[32m"甲的资产"[39m
+              [33mclass[39m=[32m"hg-mat-assets"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"hg-mat-zone-label"[39m
+              [36m>[39m
+                [0m资产 · 费用与忠诚[0m
+              [36m</span>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"hg-assets"[39m
+                [33mstyle[39m=[32m"--hg-card-count: 1;"[39m
+              [36m>[39m
+                [36m<span[39m
+                  [33mclass[39m=[32m"hg-table-empty"[39m
+                [36m>[39m
+                  [0m尚无资产[0m
+                [36m</span>[39m
+              [36m</div>[39m
+            [36m</div>[39m
+            [36m<div[39m
+              [33maria-label[39m=[32m"甲的秘社区，尚未实现"[39m
+              [33mclass[39m=[32m"hg-society-placeholder"[39m
+            [36m>[39m
+              [36m<span>[39m
+                [0m◈[0m
+              [36m</span>[39m
+              [36m<strong>[39m
+                [0m秘社区[0m
+              [36m</strong>[39m
+              [36m<small>[39m
+                [0m尚未实现[0m
+              [36m</small>[39m
+            [36m</div>[39m
+          [36m</div>[39m
+        [36m</section>[39m
+      [36m</section>[39m
+      [36m<section[39m
+        [33maria-label[39m=[32m"固定手牌与下一步行动"[39m
+        [33mclass[39m=[32m"hg-hand-dock"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"hg-response-layer "[39m
+        [36m/>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"hg-dock-action"[39m
+          [33mdata-next-step[39m=[32m"choose"[39m
+        [36m>[39m
+          [36m<div>[39m
+            [36m<strong>[39m
+              [0m下一步：起手再调度[0m
+            [36m</strong>[39m
+            [36m<small>[39m
+              [0m悬停阅读 · 点选行动 · 横置角色旋转 90°[0m
+            [36m</small>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-auto-pass "[39m
+          [36m>[39m
+            [36m<label>[39m
+              [36m<input[39m
+                [33maria-label[39m=[32m"无可用行动时自动让过"[39m
+                [33mrole[39m=[32m"switch"[39m
+                [33mtype[39m=[32m"checkbox"[39m
+              [36m/>[39m
+              [36m<span>[39m
+                [0m无可用行动时自动让过[0m
+              [36m</span>[39m
+            [36m</label>[39m
+            [36m<span[39m
+              [33mrole[39m=[32m"status"[39m
+            [36m>[39m
+              [0m关闭 · 由你手动让过[0m
+            [36m</span>[39m
+            [36m<small>[39m
+              [0m仅当唯一可用动作是“让过”时生效，可随时关闭。[0m
+            [36m</small>[39m
+          [36m</div>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"hg-button hg-button-primary"[39m
+          [36m>[39m
+            [0m前往完成选择 ↑[0m
+          [36m</button>[39m
+        [36m</div>[39m
+        [36m<section[39m
+          [33maria-label[39m=[32m"你的手牌"[39m
+          [33mclass[39m=[32m"hg-hand-section"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"hg-hand-label"[39m
+          [36m>[39m
+            [0m你的手牌 [0m
+            [36m<b>[39m
+              [0m1[0m
+            [36m</b>[39m
+          [36m</span>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-hand"[39m
+            [33mstyle[39m=[32m"--hg-card-count: 1;"[39m
+          [36m>[39m
+            [36m<button[39m
+              [33maria-label[39m=[32m"查看无知路人"[39m
+              [33maria-pressed[39m=[32m"false"[39m
+              [33mclass[39m=[32m"hg-card hg-card-neutral hg-card-compact"[39m
+              [33mdata-card-actionable[39m=[32m"false"[39m
+              [33mdata-card-exhausted[39m=[32m"false"[39m
+              [33mdata-card-instance[39m=[32m"instance-a"[39m
+              [33mdata-card-owner[39m=[32m"p0"[39m
+              [33mdata-card-targeted[39m=[32m"false"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"hg-card-top"[39m
+              [36m>[39m
+                [36m<span[39m
+                  [33mclass[39m=[32m"hg-card-kind"[39m
+                [36m>[39m
+                  [0m角色[0m
+                [36m</span>[39m
+                [36m<span[39m
+                  [33maria-label[39m=[32m"费用 0"[39m
+                  [33mclass[39m=[32m"hg-cost"[39m
+                  [33mtitle[39m=[32m"费用"[39m
+                [36m>[39m
+                  [0m0[0m
+                [36m</span>[39m
+              [36m</span>[39m
+              [36m<strong[39m
+                [33mclass[39m=[32m"hg-card-name"[39m
+              [36m>[39m
+                [0m无知路人[0m
+              [36m</strong>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"hg-card-affiliation"[39m
+              [36m>[39m
+                [0m无忠诚要求[0m
+              [36m</span>[39m
+              [36m<span[39m
+                [33maria-label[39m=[32m"图标：调查0，战斗0，势力1"[39m
+                [33mclass[39m=[32m"hg-icons "[39m
+              [36m>[39m
+                [36m<span[39m
+                  [33mtitle[39m=[32m"调查"[39m
+                [36m>[39m
+                  [0m◈ [0m
+                  [36m<b>[39m
+                    [0m0[0m
+                  [36m</b>[39m
+                [36m</span>[39m
+                [36m<span[39m
+                  [33mtitle[39m=[32m"战斗"[39m
+                [36m>[39m
+                  [0m⚔ [0m
+                  [36m<b>[39m
+                    [0m0[0m
+                  [36m</b>[39m
+                [36m</span>[39m
+                [36m<span[39m
+                  [33mtitle[39m=[32m"势力"[39m
+                [36m>[39m
+                  [0m⚑ [0m
+                  [36m<b>[39m
+                    [0m1[0m
+                  [36m</b>[39m
+                [36m</span>[39m
+              [36m</span>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"hg-card-footer"[39m
+              [36m>[39m
+                [36m<span>[39m
+                  [0m防御 1[0m
+                [36m</span>[39m
+              [36m</span>[39m
+            [36m</button>[39m
+          [36m</div>[39m
+        [36m</section>[39m
+      [36m</section>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"hg-table-choice-layer"[39m
+      [36m>[39m
+        [36m<section[39m
+          [33maria-label[39m=[32m"待完成的选择"[39m
+          [33mclass[39m=[32m"hg-choice"[39m
+          [33mdata-choice-id[39m=[32m"modal-mulligan"[39m
+          [33mtabindex[39m=[32m"-1"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-choice-heading"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"hg-section-title"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"hg-eyebrow"[39m
+              [36m>[39m
+                [0m轮到你选择[0m
+              [36m</span>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"hg-choice-tag"[39m
+              [36m>[39m
+                [0m已选 0 / 1[0m
+              [36m</span>[39m
+            [36m</div>[39m
+            [36m<h2>[39m
+              [0m起手再调度[0m
+            [36m</h2>[39m
+            [36m<p>[39m
+              [0m选牌后明确确认[0m
+            [36m</p>[39m
+            [36m<p[39m
+              [33mclass[39m=[32m"hg-choice-scroll-hint"[39m
+              [33mid[39m=[32m"modal-mulligan-scroll-hint"[39m
+            [36m>[39m
+              [0m点选要替换的手牌，未选中的保留。[0m
+              [0m 选项区可上下滚动，确认按钮始终在下方。[0m
+            [36m</p>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33maria-describedby[39m=[32m"modal-mulligan-scroll-hint"[39m
+            [33maria-label[39m=[32m"选择选项，可滚动查看"[39m
+            [33mclass[39m=[32m"hg-choice-body"[39m
+            [33mrole[39m=[32m"region"[39m
+            [33mtabindex[39m=[32m"0"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"hg-choice-options"[39m
+            [36m>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"hg-choice-option-entry"[39m
+              [36m>[39m
+                [36m<button[39m
+                  [33maria-pressed[39m=[32m"false"[39m
+                  [33mclass[39m=[32m"hg-choice-option "[39m
+                  [33mdata-choice-option[39m=[32m"instance-a"[39m
+                  [33mtype[39m=[32m"button"[39m
+                [36m>[39m
+                  [36m<span[39m
+                    [33mclass[39m=[32m"hg-choice-check"[39m
+                  [36m>[39m
+                    [0m+[0m
+                  [36m</span>[39m
+                  [36m<span[39m
+                    [33mclass[39m=[32m"hg-card-top"[39m
+                  [36m>[39m
+                    [36m<span[39m
+                      [33mclass[39m=[32m"hg-card-kind"[39m
+                    [36m>[39m
+                      [0m角色[0m
+                    [36m</span>[39m
+                    [36m<span[39m
+                      [33maria-label[39m=[32m"费用 0"[39m
+                      [33mclass[39m=[32m"hg-cost"[39m
+                      [33mtitle[39m=[32m"费用"[39m
+                    [36m>[39m
+                      [0m0[0m
+                    [36m</span>[39m
+                  [36m</span>[39m
+                  [36m<strong[39m
+                    [33mclass[39m=[32m"hg-card-name"[39m
+                  [36m>[39m
+                    [0m无知路人[0m
+                  [36m</strong>[39m
+                  [36m<span[39m
+                    [33maria-hidden[39m=[32m"true"[39m
+                    [33mclass[39m=[32m"hg-card-art"[39m
+                  [36m>[39m
+                    [36m<span>[39m
+                      [0m◈[0m
+                    [36m</span>[39m
+                    [36m<i />[39m
+                  [36m</span>[39m
+                  [36m<span[39m
+                    [33mclass[39m=[32m"hg-card-affiliation"[39m
+                  [36m>[39m
+                    [0m无忠诚要求[0m
+                  [36m</span>[39m
+                  [36m<span[39m
+                    [33maria-label[39m=[32m"图标：调查0，战斗0，势力1"[39m
+                    [33mclass[39m=[32m"hg-icons "[39m
+                  [36m>[39m
+                    [36m<span[39m
+                      [33mtitle[39m=[32m"调查"[39m
+                    [36m>[39m
+                      [0m◈ [0m
+                      [36m<b>[39m
+                        [0m0[0m
+                      [36m</b>[39m
+                    [36m</span>[39m
+                    [36m<span[39m
+                      [33mtitle[39m=[32m"战斗"[39m
+                    [36m>[39m
+                      [0m⚔ [0m
+                      [36m<b>[39m
+                        [0m0[0m
+                      [36m</b>[39m
+                    [36m</span>[39m
+                    [36m<span[39m
+                      [33mtitle[39m=[32m"势力"[39m
+                    [36m>[39m
+                      [0m⚑ [0m
+                      [36m<b>[39m
+                        [0m1[0m
+                      [36m</b>[39m
+                    [36m</span>[39m
+                  [36m</span>[39m
+                  [36m<span[39m
+                    [33mclass[39m=[32m"hg-card-text"[39m
+                  [36m>[39m
+                    [0m真实印刷文字[0m
+                  [36m</span>[39m
+                  [36m<span[39m
+                    [33mclass[39m=[32m"hg-card-footer"[39m
+                  [36m>[39m
+                    [36m<span>[39m
+                      [0m防御 1[0m
+                    [36m</span>[39m
+                  [36m</span>[39m
+                [36m</button>[39m
+                [36m<button[39m
+                  [33maria-label[39m=[32m"放大阅读无知路人"[39m
+                  [33mclass[39m=[32m"hg-choice-read hg-small-read"[39m
+                  [33mtype[39m=[32m"button"[39m
+                [36m>[39m
+                  [0m放大文字与图标 ↗[0m
+                [36m</button>[39m
+              [36m</div>[39m
+            [36m</div>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-choice-footer"[39m
+          [36m>[39m
+            [36m<span>[39m
+              [0m请选择 0–1 项，或跳过。[0m
+            [36m</span>[39m
+            [36m<div>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"hg-button hg-button-quiet"[39m
+              [36m>[39m
+                [0m保留全部手牌[0m
+              [36m</button>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"hg-button hg-button-primary"[39m
+              [36m>[39m
+                [0m确认选择[0m
+              [36m</button>[39m
+            [36m</div>[39m
+          [36m</div>[39m
+        [36m</section>[39m
+      [36m</div>[39m
+    [36m</main>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ src/game/DialogIsolation.test.tsx:49:27
+     47|     const submit = vi.fn();
+     48|     render(<Table view={choosing} catalog={testCatalog} busy={false} o…
+     49|     const dialog = screen.getByRole('dialog', { name: '待完成的选择' });
+       |                           ^
+     50|     fireEvent.keyDown(document, { key: 'Escape' });
+     51|     expect(dialog).toBeInTheDocument(); expect(submit).not.toHaveBeenC…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  src/game/DialogIsolation.test.tsx > table choice modal isolation > makes the nested reader the sole active layer and returns to its choice opener without losing selection
+TestingLibraryElementError: Unable to find an accessible element with the role "dialog" and name "待完成的选择"
+
+Here are the accessible roles:
+
+  main:
+
+  Name "":
+  [36m<main[39m
+    [33mclass[39m=[32m"hg-table hg-desktop-table hg-desktop-duel"[39m
+    [33mdata-table-layout[39m=[32m"overhead"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  strong:
+
+  Name "":
+  [36m<strong[39m
+    [33mclass[39m=[32m"hg-your-choice"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<strong />[39m
+
+  Name "":
+  [36m<strong />[39m
+
+  Name "":
+  [36m<strong />[39m
+
+  Name "":
+  [36m<strong[39m
+    [33mclass[39m=[32m"hg-card-name"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<strong[39m
+    [33mclass[39m=[32m"hg-card-name"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  group:
+
+  Name "":
+  [36m<details[39m
+    [33mclass[39m=[32m"hg-table-records"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<details[39m
+    [33mclass[39m=[32m"hg-public-zones hg-table-pile hg-graveyard-pile"[39m
+    [33mdata-pile-kind[39m=[32m"graveyard"[39m
+    [33mdata-pile-owner[39m=[32m"p0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<details[39m
+    [33mclass[39m=[32m"hg-public-zones hg-table-pile hg-scoreCards-pile"[39m
+    [33mdata-pile-kind[39m=[32m"scoreCards"[39m
+    [33mdata-pile-owner[39m=[32m"p0"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  list:
+
+  Name "牌桌行动记录":
+  [36m<ol[39m
+    [33maria-label[39m=[32m"牌桌行动记录"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  region:
+
+  Name "对方玩家区":
+  [36m<section[39m
+    [33maria-label[39m=[32m"对方玩家区"[39m
+    [33mclass[39m=[32m"hg-team-edge hg-opponent-edge"[39m
+    [33mdata-side[39m=[32m"opponent"[39m
+  [36m/>[39m
+
+  Name "中央世界与争夺区，可上下滚动查看双方角色":
+  [36m<section[39m
+    [33maria-label[39m=[32m"中央世界与争夺区，可上下滚动查看双方角色"[39m
+    [33mclass[39m=[32m"hg-battlefield"[39m
+    [33mtabindex[39m=[32m"0"[39m
+    [33mtitle[39m=[32m"中央地区可上下滚动；手牌与行动栏保持在下方。"[39m
+  [36m/>[39m
+
+  Name "我方玩家区":
+  [36m<section[39m
+    [33maria-label[39m=[32m"我方玩家区"[39m
+    [33mclass[39m=[32m"hg-team-edge hg-mine-edge"[39m
+    [33mdata-side[39m=[32m"mine"[39m
+  [36m/>[39m
+
+  Name "甲的玩家区":
+  [36m<section[39m
+    [33maria-label[39m=[32m"甲的玩家区"[39m
+    [33mclass[39m=[32m"hg-player-mat hg-team-0 hg-player-you"[39m
+    [33mdata-player-zone[39m=[32m"p0"[39m
+    [33mdata-side[39m=[32m"mine"[39m
+    [33mdata-team[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "固定手牌与下一步行动":
+  [36m<section[39m
+    [33maria-label[39m=[32m"固定手牌与下一步行动"[39m
+    [33mclass[39m=[32m"hg-hand-dock"[39m
+  [36m/>[39m
+
+  Name "你的手牌":
+  [36m<section[39m
+    [33maria-label[39m=[32m"你的手牌"[39m
+    [33mclass[39m=[32m"hg-hand-section"[39m
+  [36m/>[39m
+
+  Name "待完成的选择":
+  [36m<section[39m
+    [33maria-label[39m=[32m"待完成的选择"[39m
+    [33mclass[39m=[32m"hg-choice"[39m
+    [33mdata-choice-id[39m=[32m"modal-mulligan"[39m
+    [33mtabindex[39m=[32m"-1"[39m
+  [36m/>[39m
+
+  Name "选择选项，可滚动查看":
+  [36m<div[39m
+    [33maria-describedby[39m=[32m"modal-mulligan-scroll-hint"[39m
+    [33maria-label[39m=[32m"选择选项，可滚动查看"[39m
+    [33mclass[39m=[32m"hg-choice-body"[39m
+    [33mrole[39m=[32m"region"[39m
+    [33mtabindex[39m=[32m"0"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  heading:
+
+  Name "甲 · 墓地":
+  [36m<h3 />[39m
+
+  Name "甲 · 计分":
+  [36m<h3 />[39m
+
+  Name "起手再调度":
+  [36m<h2 />[39m
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-empty"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-empty"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-choice-scroll-hint"[39m
+    [33mid[39m=[32m"modal-mulligan-scroll-hint"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  switch:
+
+  Name "无可用行动时自动让过":
+  [36m<input[39m
+    [33maria-label[39m=[32m"无可用行动时自动让过"[39m
+    [33mrole[39m=[32m"switch"[39m
+    [33mtype[39m=[32m"checkbox"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  status:
+
+  Name "":
+  [36m<span[39m
+    [33mrole[39m=[32m"status"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  button:
+
+  Name "前往完成选择 ↑":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-button hg-button-primary"[39m
+  [36m/>[39m
+
+  Name "查看无知路人":
+  [36m<button[39m
+    [33maria-label[39m=[32m"查看无知路人"[39m
+    [33maria-pressed[39m=[32m"false"[39m
+    [33mclass[39m=[32m"hg-card hg-card-neutral hg-card-compact"[39m
+    [33mdata-card-actionable[39m=[32m"false"[39m
+    [33mdata-card-exhausted[39m=[32m"false"[39m
+    [33mdata-card-instance[39m=[32m"instance-a"[39m
+    [33mdata-card-owner[39m=[32m"p0"[39m
+    [33mdata-card-targeted[39m=[32m"false"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "+角色费用 0无知路人无忠诚要求图标：调查0，战斗0，势力1真实印刷文字防御 1":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"false"[39m
+    [33mclass[39m=[32m"hg-choice-option "[39m
+    [33mdata-choice-option[39m=[32m"instance-a"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "放大阅读无知路人":
+  [36m<button[39m
+    [33maria-label[39m=[32m"放大阅读无知路人"[39m
+    [33mclass[39m=[32m"hg-choice-read hg-small-read"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "保留全部手牌":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-button hg-button-quiet"[39m
+  [36m/>[39m
+
+  Name "确认选择":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-button hg-button-primary"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<main[39m
+      [33mclass[39m=[32m"hg-table hg-desktop-table hg-desktop-duel"[39m
+      [33mdata-table-layout[39m=[32m"overhead"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"hg-table-status"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"hg-round"[39m
+        [36m>[39m
+          [36m<b>[39m
+            [0m第 [0m
+            [0m1[0m
+            [0m 回合[0m
+          [36m</b>[39m
+          [36m<span>[39m
+            [0m行动阶段[0m
+            [0m · [0m
+            [0m行动阶段[0m
+          [36m</span>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"hg-table-tallies"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"hg-team-tally hg-team-0"[39m
+          [36m>[39m
+            [0m我方[0m
+            [0m [0m
+            [36m<b>[39m
+              [0m0[0m
+            [36m</b>[39m
+            [0m / [0m
+            [0m8[0m
+          [36m</span>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"hg-team-tally hg-team-1"[39m
+          [36m>[39m
+            [0m对方[0m
+            [0m [0m
+            [36m<b>[39m
+              [0m0[0m
+            [36m</b>[39m
+            [0m / [0m
+            [0m8[0m
+          [36m</span>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"hg-phase-line"[39m
+        [36m>[39m
+          [36m<span>[39m
+            [0m先手 [0m
+            [36m<b>[39m
+              [0m甲[0m
+            [36m</b>[39m
+          [36m</span>[39m
+          [36m<span>[39m
+            [0m行动团队 [0m
+            [36m<b>[39m
+              [0m甲[0m
+            [36m</b>[39m
+          [36m</span>[39m
+          [36m<span>[39m
+            [0m优先权 [0m
+            [36m<b>[39m
+              [0m甲[0m
+            [36m</b>[39m
+          [36m</span>[39m
+          [36m<strong[39m
+            [33mclass[39m=[32m"hg-your-choice"[39m
+          [36m>[39m
+            [0m请你完成下方选择[0m
+          [36m</strong>[39m
+        [36m</div>[39m
+        [36m<details[39m
+          [33mclass[39m=[32m"hg-table-records"[39m
+        [36m>[39m
+          [36m<summary>[39m
+            [0m记录 · [0m
+            [0m0[0m
+          [36m</summary>[39m
+          [36m<ol[39m
+            [33maria-label[39m=[32m"牌桌行动记录"[39m
+          [36m/>[39m
+          [36m<small>[39m
+            [0m规则 [0m
+            [0m1[0m
+            [0m · 卡池 [0m
+            [0m1[0m
+            [0m · 引擎 [0m
+            [0m1[0m
+          [36m</small>[39m
+        [36m</details>[39m
+      [36m</div>[39m
+      [36m<section[39m
+        [33maria-label[39m=[32m"对方玩家区"[39m
+        [33mclass[39m=[32m"hg-team-edge hg-opponent-edge"[39m
+        [33mdata-side[39m=[32m"opponent"[39m
+      [36m/>[39m
+      [36m<section[39m
+        [33maria-label[39m=[32m"中央世界与争夺区，可上下滚动查看双方角色"[39m
+        [33mclass[39m=[32m"hg-battlefield"[39m
+        [33mtabindex[39m=[32m"0"[39m
+        [33mtitle[39m=[32m"中央地区可上下滚动；手牌与行动栏保持在下方。"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33maria-label[39m=[32m"世界牌库"[39m
+          [33mclass[39m=[32m"hg-world-deck"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"hg-card-back"[39m
+          [36m>[39m
+            [0m⌖[0m
+          [36m</span>[39m
+          [36m<small>[39m
+            [0m世界牌库[0m
+          [36m</small>[39m
+          [36m<small[39m
+            [33mclass[39m=[32m"hg-battlefield-scroll-hint"[39m
+          [36m>[39m
+            [0m↕ 滚动查看[0m
+          [36m</small>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"hg-board hg-board-duel"[39m
+        [36m/>[39m
+      [36m</section>[39m
+      [36m<section[39m
+        [33maria-label[39m=[32m"我方玩家区"[39m
+        [33mclass[39m=[32m"hg-team-edge hg-mine-edge"[39m
+        [33mdata-side[39m=[32m"mine"[39m
+      [36m>[39m
+        [36m<section[39m
+          [33maria-label[39m=[32m"甲的玩家区"[39m
+          [33mclass[39m=[32m"hg-player-mat hg-team-0 hg-player-you"[39m
+          [33mdata-player-zone[39m=[32m"p0"[39m
+          [33mdata-side[39m=[32m"mine"[39m
+          [33mdata-team[39m=[32m"0"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-player-strip"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"hg-piece-avatar"[39m
+            [36m>[39m
+              [0m甲[0m
+            [36m</span>[39m
+            [36m<strong>[39m
+              [0m甲[0m
+              [0m · 你[0m
+            [36m</strong>[39m
+            [36m<small>[39m
+              [0m席位 [0m
+              [0m1[0m
+              [0m · [0m
+              [0m调查者[0m
+            [36m</small>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"hg-mat-resource"[39m
+            [36m>[39m
+              [0m费用 [0m
+              [36m<b>[39m
+                [0m0[0m
+              [36m</b>[39m
+              [0m / [0m
+              [0m0[0m
+            [36m</span>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-seat-zones"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"hg-personal-piles"[39m
+            [36m>[39m
+              [36m<div[39m
+                [33maria-label[39m=[32m"甲的牌库，49张"[39m
+                [33mclass[39m=[32m"hg-table-pile hg-deck-pile"[39m
+              [36m>[39m
+                [36m<span[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"hg-pile-card hg-card-back"[39m
+                [36m>[39m
+                  [36m<span>[39m
+                    [0m◈[0m
+                  [36m</span>[39m
+                  [36m<b>[39m
+                    [0m49[0m
+                  [36m</b>[39m
+                [36m</span>[39m
+                [36m<span>[39m
+                  [0m牌库[0m
+                [36m</span>[39m
+              [36m</div>[39m
+              [36m<details[39m
+                [33mclass[39m=[32m"hg-public-zones hg-table-pile hg-graveyard-pile"[39m
+                [33mdata-pile-kind[39m=[32m"graveyard"[39m
+                [33mdata-pile-owner[39m=[32m"p0"[39m
+              [36m>[39m
+                [36m<summary[39m
+                  [33maria-label[39m=[32m"查看甲的墓地，0张"[39m
+                [36m>[39m
+                  [36m<span[39m
+                    [33maria-hidden[39m=[32m"true"[39m
+                    [33mclass[39m=[32m"hg-pile-card"[39m
+                  [36m>[39m
+                    [36m<b>[39m
+                      [0m0[0m
+                    [36m</b>[39m
+                    [36m<i>[39m
+                      [0m张[0m
+                    [36m</i>[39m
+                  [36m</span>[39m
+                  [36m<span>[39m
+                    [0m墓地[0m
+                  [36m</span>[39m
+                [36m</summary>[39m
+                [36m<div[39m
+                  [33mclass[39m=[32m"hg-pile-fan"[39m
+                [36m>[39m
+                  [36m<h3>[39m
+                    [0m甲[0m
+                    [0m · [0m
+                    [0m墓地[0m
+                  [36m</h3>[39m
+                  [36m<div[39m
+                    [33mclass[39m=[32m"hg-zone-cards"[39m
+                  [36m>[39m
+                    [36m<p[39m
+                      [33mclass[39m=[32m"hg-empty"[39m
+                    [36m>[39m
+                      [0m这里还没有牌[0m
+                    [36m</p>[39m
+                  [36m</div>[39m
+                [36m</div>[39m
+              [36m</details>[39m
+              [36m<details[39m
+                [33mclass[39m=[32m"hg-public-zones hg-table-pile hg-scoreCards-pile"[39m
+                [33mdata-pile-kind[39m=[32m"scoreCards"[39m
+                [33mdata-pile-owner[39m=[32m"p0"[39m
+              [36m>[39m
+                [36m<summary[39m
+                  [33maria-label[39m=[32m"查看甲的计分，0张"[39m
+                [36m>[39m
+                  [36m<span[39m
+                    [33maria-hidden[39m=[32m"true"[39m
+                    [33mclass[39m=[32m"hg-pile-card"[39m
+                  [36m>[39m
+                    [36m<b>[39m
+                      [0m0[0m
+                    [36m</b>[39m
+                    [36m<i>[39m
+                      [0m分[0m
+                    [36m</i>[39m
+                  [36m</span>[39m
+                  [36m<span>[39m
+                    [0m计分[0m
+                  [36m</span>[39m
+                [36m</summary>[39m
+                [36m<div[39m
+                  [33mclass[39m=[32m"hg-pile-fan"[39m
+                [36m>[39m
+                  [36m<h3>[39m
+                    [0m甲[0m
+                    [0m · [0m
+                    [0m计分[0m
+                  [36m</h3>[39m
+                  [36m<div[39m
+                    [33mclass[39m=[32m"hg-zone-cards"[39m
+                  [36m>[39m
+                    [36m<p[39m
+                      [33mclass[39m=[32m"hg-empty"[39m
+                    [36m>[39m
+                      [0m这里还没有牌[0m
+                    [36m</p>[39m
+                  [36m</div>[39m
+                [36m</div>[39m
+              [36m</details>[39m
+            [36m</div>[39m
+            [36m<div[39m
+              [33maria-label[39m=[32m"甲的资产"[39m
+              [33mclass[39m=[32m"hg-mat-assets"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"hg-mat-zone-label"[39m
+              [36m>[39m
+                [0m资产 · 费用与忠诚[0m
+              [36m</span>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"hg-assets"[39m
+                [33mstyle[39m=[32m"--hg-card-count: 1;"[39m
+              [36m>[39m
+                [36m<span[39m
+                  [33mclass[39m=[32m"hg-table-empty"[39m
+                [36m>[39m
+                  [0m尚无资产[0m
+                [36m</span>[39m
+              [36m</div>[39m
+            [36m</div>[39m
+            [36m<div[39m
+              [33maria-label[39m=[32m"甲的秘社区，尚未实现"[39m
+              [33mclass[39m=[32m"hg-society-placeholder"[39m
+            [36m>[39m
+              [36m<span>[39m
+                [0m◈[0m
+              [36m</span>[39m
+              [36m<strong>[39m
+                [0m秘社区[0m
+              [36m</strong>[39m
+              [36m<small>[39m
+                [0m尚未实现[0m
+              [36m</small>[39m
+            [36m</div>[39m
+          [36m</div>[39m
+        [36m</section>[39m
+      [36m</section>[39m
+      [36m<section[39m
+        [33maria-label[39m=[32m"固定手牌与下一步行动"[39m
+        [33mclass[39m=[32m"hg-hand-dock"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"hg-response-layer "[39m
+        [36m/>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"hg-dock-action"[39m
+          [33mdata-next-step[39m=[32m"choose"[39m
+        [36m>[39m
+          [36m<div>[39m
+            [36m<strong>[39m
+              [0m下一步：起手再调度[0m
+            [36m</strong>[39m
+            [36m<small>[39m
+              [0m悬停阅读 · 点选行动 · 横置角色旋转 90°[0m
+            [36m</small>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-auto-pass "[39m
+          [36m>[39m
+            [36m<label>[39m
+              [36m<input[39m
+                [33maria-label[39m=[32m"无可用行动时自动让过"[39m
+                [33mrole[39m=[32m"switch"[39m
+                [33mtype[39m=[32m"checkbox"[39m
+              [36m/>[39m
+              [36m<span>[39m
+                [0m无可用行动时自动让过[0m
+              [36m</span>[39m
+            [36m</label>[39m
+            [36m<span[39m
+              [33mrole[39m=[32m"status"[39m
+            [36m>[39m
+              [0m关闭 · 由你手动让过[0m
+            [36m</span>[39m
+            [36m<small>[39m
+              [0m仅当唯一可用动作是“让过”时生效，可随时关闭。[0m
+            [36m</small>[39m
+          [36m</div>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"hg-button hg-button-primary"[39m
+          [36m>[39m
+            [0m前往完成选择 ↑[0m
+          [36m</button>[39m
+        [36m</div>[39m
+        [36m<section[39m
+          [33maria-label[39m=[32m"你的手牌"[39m
+          [33mclass[39m=[32m"hg-hand-section"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"hg-hand-label"[39m
+          [36m>[39m
+            [0m你的手牌 [0m
+            [36m<b>[39m
+              [0m1[0m
+            [36m</b>[39m
+          [36m</span>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-hand"[39m
+            [33mstyle[39m=[32m"--hg-card-count: 1;"[39m
+          [36m>[39m
+            [36m<button[39m
+              [33maria-label[39m=[32m"查看无知路人"[39m
+              [33maria-pressed[39m=[32m"false"[39m
+              [33mclass[39m=[32m"hg-card hg-card-neutral hg-card-compact"[39m
+              [33mdata-card-actionable[39m=[32m"false"[39m
+              [33mdata-card-exhausted[39m=[32m"false"[39m
+              [33mdata-card-instance[39m=[32m"instance-a"[39m
+              [33mdata-card-owner[39m=[32m"p0"[39m
+              [33mdata-card-targeted[39m=[32m"false"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"hg-card-top"[39m
+              [36m>[39m
+                [36m<span[39m
+                  [33mclass[39m=[32m"hg-card-kind"[39m
+                [36m>[39m
+                  [0m角色[0m
+                [36m</span>[39m
+                [36m<span[39m
+                  [33maria-label[39m=[32m"费用 0"[39m
+                  [33mclass[39m=[32m"hg-cost"[39m
+                  [33mtitle[39m=[32m"费用"[39m
+                [36m>[39m
+                  [0m0[0m
+                [36m</span>[39m
+              [36m</span>[39m
+              [36m<strong[39m
+                [33mclass[39m=[32m"hg-card-name"[39m
+              [36m>[39m
+                [0m无知路人[0m
+              [36m</strong>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"hg-card-affiliation"[39m
+              [36m>[39m
+                [0m无忠诚要求[0m
+              [36m</span>[39m
+              [36m<span[39m
+                [33maria-label[39m=[32m"图标：调查0，战斗0，势力1"[39m
+                [33mclass[39m=[32m"hg-icons "[39m
+              [36m>[39m
+                [36m<span[39m
+                  [33mtitle[39m=[32m"调查"[39m
+                [36m>[39m
+                  [0m◈ [0m
+                  [36m<b>[39m
+                    [0m0[0m
+                  [36m</b>[39m
+                [36m</span>[39m
+                [36m<span[39m
+                  [33mtitle[39m=[32m"战斗"[39m
+                [36m>[39m
+                  [0m⚔ [0m
+                  [36m<b>[39m
+                    [0m0[0m
+                  [36m</b>[39m
+                [36m</span>[39m
+                [36m<span[39m
+                  [33mtitle[39m=[32m"势力"[39m
+                [36m>[39m
+                  [0m⚑ [0m
+                  [36m<b>[39m
+                    [0m1[0m
+                  [36m</b>[39m
+                [36m</span>[39m
+              [36m</span>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"hg-card-footer"[39m
+              [36m>[39m
+                [36m<span>[39m
+                  [0m防御 1[0m
+                [36m</span>[39m
+              [36m</span>[39m
+            [36m</button>[39m
+          [36m</div>[39m
+        [36m</section>[39m
+      [36m</section>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"hg-table-choice-layer"[39m
+      [36m>[39m
+        [36m<section[39m
+          [33maria-label[39m=[32m"待完成的选择"[39m
+          [33mclass[39m=[32m"hg-choice"[39m
+          [33mdata-choice-id[39m=[32m"modal-mulligan"[39m
+          [33mtabindex[39m=[32m"-1"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-choice-heading"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"hg-section-title"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"hg-eyebrow"[39m
+              [36m>[39m
+                [0m轮到你选择[0m
+              [36m</span>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"hg-choice-tag"[39m
+              [36m>[39m
+                [0m已选 0 / 1[0m
+              [36m</span>[39m
+            [36m</div>[39m
+            [36m<h2>[39m
+              [0m起手再调度[0m
+            [36m</h2>[39m
+            [36m<p>[39m
+              [0m选牌后明确确认[0m
+            [36m</p>[39m
+            [36m<p[39m
+              [33mclass[39m=[32m"hg-choice-scroll-hint"[39m
+              [33mid[39m=[32m"modal-mulligan-scroll-hint"[39m
+            [36m>[39m
+              [0m点选要替换的手牌，未选中的保留。[0m
+              [0m 选项区可上下滚动，确认按钮始终在下方。[0m
+            [36m</p>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33maria-describedby[39m=[32m"modal-mulligan-scroll-hint"[39m
+            [33maria-label[39m=[32m"选择选项，可滚动查看"[39m
+            [33mclass[39m=[32m"hg-choice-body"[39m
+            [33mrole[39m=[32m"region"[39m
+            [33mtabindex[39m=[32m"0"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"hg-choice-options"[39m
+            [36m>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"hg-choice-option-entry"[39m
+              [36m>[39m
+                [36m<button[39m
+                  [33maria-pressed[39m=[32m"false"[39m
+                  [33mclass[39m=[32m"hg-choice-option "[39m
+                  [33mdata-choice-option[39m=[32m"instance-a"[39m
+                  [33mtype[39m=[32m"button"[39m
+                [36m>[39m
+                  [36m<span[39m
+                    [33mclass[39m=[32m"hg-choice-check"[39m
+                  [36m>[39m
+                    [0m+[0m
+                  [36m</span>[39m
+                  [36m<span[39m
+                    [33mclass[39m=[32m"hg-card-top"[39m
+                  [36m>[39m
+                    [36m<span[39m
+                      [33mclass[39m=[32m"hg-card-kind"[39m
+                    [36m>[39m
+                      [0m角色[0m
+                    [36m</span>[39m
+                    [36m<span[39m
+                      [33maria-label[39m=[32m"费用 0"[39m
+                      [33mclass[39m=[32m"hg-cost"[39m
+                      [33mtitle[39m=[32m"费用"[39m
+                    [36m>[39m
+                      [0m0[0m
+                    [36m</span>[39m
+                  [36m</span>[39m
+                  [36m<strong[39m
+                    [33mclass[39m=[32m"hg-card-name"[39m
+                  [36m>[39m
+                    [0m无知路人[0m
+                  [36m</strong>[39m
+                  [36m<span[39m
+                    [33maria-hidden[39m=[32m"true"[39m
+                    [33mclass[39m=[32m"hg-card-art"[39m
+                  [36m>[39m
+                    [36m<span>[39m
+                      [0m◈[0m
+                    [36m</span>[39m
+                    [36m<i />[39m
+                  [36m</span>[39m
+                  [36m<span[39m
+                    [33mclass[39m=[32m"hg-card-affiliation"[39m
+                  [36m>[39m
+                    [0m无忠诚要求[0m
+                  [36m</span>[39m
+                  [36m<span[39m
+                    [33maria-label[39m=[32m"图标：调查0，战斗0，势力1"[39m
+                    [33mclass[39m=[32m"hg-icons "[39m
+                  [36m>[39m
+                    [36m<span[39m
+                      [33mtitle[39m=[32m"调查"[39m
+                    [36m>[39m
+                      [0m◈ [0m
+                      [36m<b>[39m
+                        [0m0[0m
+                      [36m</b>[39m
+                    [36m</span>[39m
+                    [36m<span[39m
+                      [33mtitle[39m=[32m"战斗"[39m
+                    [36m>[39m
+                      [0m⚔ [0m
+                      [36m<b>[39m
+                        [0m0[0m
+                      [36m</b>[39m
+                    [36m</span>[39m
+                    [36m<span[39m
+                      [33mtitle[39m=[32m"势力"[39m
+                    [36m>[39m
+                      [0m⚑ [0m
+                      [36m<b>[39m
+                        [0m1[0m
+                      [36m</b>[39m
+                    [36m</span>[39m
+                  [36m</span>[39m
+                  [36m<span[39m
+                    [33mclass[39m=[32m"hg-card-text"[39m
+                  [36m>[39m
+                    [0m真实印刷文字[0m
+                  [36m</span>[39m
+                  [36m<span[39m
+                    [33mclass[39m=[32m"hg-card-footer"[39m
+                  [36m>[39m
+                    [36m<span>[39m
+                      [0m防御 1[0m
+                    [36m</span>[39m
+                  [36m</span>[39m
+                [36m</button>[39m
+                [36m<button[39m
+                  [33maria-label[39m=[32m"放大阅读无知路人"[39m
+                  [33mclass[39m=[32m"hg-choice-read hg-small-read"[39m
+                  [33mtype[39m=[32m"button"[39m
+                [36m>[39m
+                  [0m放大文字与图标 ↗[0m
+                [36m</button>[39m
+              [36m</div>[39m
+            [36m</div>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-choice-footer"[39m
+          [36m>[39m
+            [36m<span>[39m
+              [0m请选择 0–1 项，或跳过。[0m
+            [36m</span>[39m
+            [36m<div>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"hg-button hg-button-quiet"[39m
+              [36m>[39m
+                [0m保留全部手牌[0m
+              [36m</button>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"hg-button hg-button-primary"[39m
+              [36m>[39m
+                [0m确认选择[0m
+              [36m</button>[39m
+            [36m</div>[39m
+          [36m</div>[39m
+        [36m</section>[39m
+      [36m</div>[39m
+    [36m</main>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ src/game/DialogIsolation.test.tsx:59:33
+     57|     const submit = vi.fn();
+     58|     render(<Table view={choosing} catalog={testCatalog} busy={false} o…
+     59|     const choiceDialog = screen.getByRole('dialog', { name: '待完成的选择' }…
+       |                                 ^
+     60|     const option = choiceDialog.querySelector<HTMLButtonElement>('[dat…
+     61|     fireEvent.click(option);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  src/game/DialogIsolation.test.tsx > table choice modal isolation > keeps a late-arriving choice beneath the open guide and restores the choice when the guide closes
+TestingLibraryElementError: Unable to find an accessible element with the role "dialog" and name "待完成的选择"
+
+Here are the accessible roles:
+
+  banner:
+
+  Name "":
+  [36m<header />[39m
+
+  --------------------------------------------------
+  button:
+
+  Name "打开指南":
+  [36m<button />[39m
+
+  Name "前往完成选择 ↑":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-button hg-button-primary"[39m
+  [36m/>[39m
+
+  Name "查看无知路人":
+  [36m<button[39m
+    [33maria-label[39m=[32m"查看无知路人"[39m
+    [33maria-pressed[39m=[32m"false"[39m
+    [33mclass[39m=[32m"hg-card hg-card-neutral hg-card-compact"[39m
+    [33mdata-card-actionable[39m=[32m"false"[39m
+    [33mdata-card-exhausted[39m=[32m"false"[39m
+    [33mdata-card-instance[39m=[32m"instance-a"[39m
+    [33mdata-card-owner[39m=[32m"p0"[39m
+    [33mdata-card-targeted[39m=[32m"false"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "+角色费用 0无知路人无忠诚要求图标：调查0，战斗0，势力1真实印刷文字防御 1":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"false"[39m
+    [33mclass[39m=[32m"hg-choice-option "[39m
+    [33mdata-choice-option[39m=[32m"instance-a"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "放大阅读无知路人":
+  [36m<button[39m
+    [33maria-label[39m=[32m"放大阅读无知路人"[39m
+    [33mclass[39m=[32m"hg-choice-read hg-small-read"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "保留全部手牌":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-button hg-button-quiet"[39m
+  [36m/>[39m
+
+  Name "确认选择":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-button hg-button-primary"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  main:
+
+  Name "":
+  [36m<main[39m
+    [33mclass[39m=[32m"hg-table hg-desktop-table hg-desktop-duel"[39m
+    [33mdata-table-layout[39m=[32m"overhead"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  strong:
+
+  Name "":
+  [36m<strong[39m
+    [33mclass[39m=[32m"hg-your-choice"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<strong />[39m
+
+  Name "":
+  [36m<strong />[39m
+
+  Name "":
+  [36m<strong />[39m
+
+  Name "":
+  [36m<strong[39m
+    [33mclass[39m=[32m"hg-card-name"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<strong[39m
+    [33mclass[39m=[32m"hg-card-name"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  group:
+
+  Name "":
+  [36m<details[39m
+    [33mclass[39m=[32m"hg-table-records"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<details[39m
+    [33mclass[39m=[32m"hg-public-zones hg-table-pile hg-graveyard-pile"[39m
+    [33mdata-pile-kind[39m=[32m"graveyard"[39m
+    [33mdata-pile-owner[39m=[32m"p0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<details[39m
+    [33mclass[39m=[32m"hg-public-zones hg-table-pile hg-scoreCards-pile"[39m
+    [33mdata-pile-kind[39m=[32m"scoreCards"[39m
+    [33mdata-pile-owner[39m=[32m"p0"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  list:
+
+  Name "牌桌行动记录":
+  [36m<ol[39m
+    [33maria-label[39m=[32m"牌桌行动记录"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  region:
+
+  Name "对方玩家区":
+  [36m<section[39m
+    [33maria-label[39m=[32m"对方玩家区"[39m
+    [33mclass[39m=[32m"hg-team-edge hg-opponent-edge"[39m
+    [33mdata-side[39m=[32m"opponent"[39m
+  [36m/>[39m
+
+  Name "中央世界与争夺区，可上下滚动查看双方角色":
+  [36m<section[39m
+    [33maria-label[39m=[32m"中央世界与争夺区，可上下滚动查看双方角色"[39m
+    [33mclass[39m=[32m"hg-battlefield"[39m
+    [33mtabindex[39m=[32m"0"[39m
+    [33mtitle[39m=[32m"中央地区可上下滚动；手牌与行动栏保持在下方。"[39m
+  [36m/>[39m
+
+  Name "我方玩家区":
+  [36m<section[39m
+    [33maria-label[39m=[32m"我方玩家区"[39m
+    [33mclass[39m=[32m"hg-team-edge hg-mine-edge"[39m
+    [33mdata-side[39m=[32m"mine"[39m
+  [36m/>[39m
+
+  Name "甲的玩家区":
+  [36m<section[39m
+    [33maria-label[39m=[32m"甲的玩家区"[39m
+    [33mclass[39m=[32m"hg-player-mat hg-team-0 hg-player-you"[39m
+    [33mdata-player-zone[39m=[32m"p0"[39m
+    [33mdata-side[39m=[32m"mine"[39m
+    [33mdata-team[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "固定手牌与下一步行动":
+  [36m<section[39m
+    [33maria-label[39m=[32m"固定手牌与下一步行动"[39m
+    [33mclass[39m=[32m"hg-hand-dock"[39m
+  [36m/>[39m
+
+  Name "你的手牌":
+  [36m<section[39m
+    [33maria-label[39m=[32m"你的手牌"[39m
+    [33mclass[39m=[32m"hg-hand-section"[39m
+  [36m/>[39m
+
+  Name "待完成的选择":
+  [36m<section[39m
+    [33maria-label[39m=[32m"待完成的选择"[39m
+    [33mclass[39m=[32m"hg-choice"[39m
+    [33mdata-choice-id[39m=[32m"modal-mulligan"[39m
+    [33mtabindex[39m=[32m"-1"[39m
+  [36m/>[39m
+
+  Name "选择选项，可滚动查看":
+  [36m<div[39m
+    [33maria-describedby[39m=[32m"modal-mulligan-scroll-hint"[39m
+    [33maria-label[39m=[32m"选择选项，可滚动查看"[39m
+    [33mclass[39m=[32m"hg-choice-body"[39m
+    [33mrole[39m=[32m"region"[39m
+    [33mtabindex[39m=[32m"0"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  heading:
+
+  Name "甲 · 墓地":
+  [36m<h3 />[39m
+
+  Name "甲 · 计分":
+  [36m<h3 />[39m
+
+  Name "起手再调度":
+  [36m<h2 />[39m
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-empty"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-empty"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-choice-scroll-hint"[39m
+    [33mid[39m=[32m"modal-mulligan-scroll-hint"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  switch:
+
+  Name "无可用行动时自动让过":
+  [36m<input[39m
+    [33maria-label[39m=[32m"无可用行动时自动让过"[39m
+    [33mrole[39m=[32m"switch"[39m
+    [33mtype[39m=[32m"checkbox"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  status:
+
+  Name "":
+  [36m<span[39m
+    [33mrole[39m=[32m"status"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div>[39m
+      [36m<header>[39m
+        [36m<button>[39m
+          [0m打开指南[0m
+        [36m</button>[39m
+      [36m</header>[39m
+      [36m<main[39m
+        [33mclass[39m=[32m"hg-table hg-desktop-table hg-desktop-duel"[39m
+        [33mdata-table-layout[39m=[32m"overhead"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"hg-table-status"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-round"[39m
+          [36m>[39m
+            [36m<b>[39m
+              [0m第 [0m
+              [0m1[0m
+              [0m 回合[0m
+            [36m</b>[39m
+            [36m<span>[39m
+              [0m行动阶段[0m
+              [0m · [0m
+              [0m行动阶段[0m
+            [36m</span>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-table-tallies"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"hg-team-tally hg-team-0"[39m
+            [36m>[39m
+              [0m我方[0m
+              [0m [0m
+              [36m<b>[39m
+                [0m0[0m
+              [36m</b>[39m
+              [0m / [0m
+              [0m8[0m
+            [36m</span>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"hg-team-tally hg-team-1"[39m
+            [36m>[39m
+              [0m对方[0m
+              [0m [0m
+              [36m<b>[39m
+                [0m0[0m
+              [36m</b>[39m
+              [0m / [0m
+              [0m8[0m
+            [36m</span>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-phase-line"[39m
+          [36m>[39m
+            [36m<span>[39m
+              [0m先手 [0m
+              [36m<b>[39m
+                [0m甲[0m
+              [36m</b>[39m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0m行动团队 [0m
+              [36m<b>[39m
+                [0m甲[0m
+              [36m</b>[39m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0m优先权 [0m
+              [36m<b>[39m
+                [0m甲[0m
+              [36m</b>[39m
+            [36m</span>[39m
+            [36m<strong[39m
+              [33mclass[39m=[32m"hg-your-choice"[39m
+            [36m>[39m
+              [0m请你完成下方选择[0m
+            [36m</strong>[39m
+          [36m</div>[39m
+          [36m<details[39m
+            [33mclass[39m=[32m"hg-table-records"[39m
+          [36m>[39m
+            [36m<summary>[39m
+              [0m记录 · [0m
+              [0m0[0m
+            [36m</summary>[39m
+            [36m<ol[39m
+              [33maria-label[39m=[32m"牌桌行动记录"[39m
+            [36m/>[39m
+            [36m<small>[39m
+              [0m规则 [0m
+              [0m1[0m
+              [0m · 卡池 [0m
+              [0m1[0m
+              [0m · 引擎 [0m
+              [0m1[0m
+            [36m</small>[39m
+          [36m</details>[39m
+        [36m</div>[39m
+        [36m<section[39m
+          [33maria-label[39m=[32m"对方玩家区"[39m
+          [33mclass[39m=[32m"hg-team-edge hg-opponent-edge"[39m
+          [33mdata-side[39m=[32m"opponent"[39m
+        [36m/>[39m
+        [36m<section[39m
+          [33maria-label[39m=[32m"中央世界与争夺区，可上下滚动查看双方角色"[39m
+          [33mclass[39m=[32m"hg-battlefield"[39m
+          [33mtabindex[39m=[32m"0"[39m
+          [33mtitle[39m=[32m"中央地区可上下滚动；手牌与行动栏保持在下方。"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33maria-label[39m=[32m"世界牌库"[39m
+            [33mclass[39m=[32m"hg-world-deck"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"hg-card-back"[39m
+            [36m>[39m
+              [0m⌖[0m
+            [36m</span>[39m
+            [36m<small>[39m
+              [0m世界牌库[0m
+            [36m</small>[39m
+            [36m<small[39m
+              [33mclass[39m=[32m"hg-battlefield-scroll-hint"[39m
+            [36m>[39m
+              [0m↕ 滚动查看[0m
+            [36m</small>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-board hg-board-duel"[39m
+          [36m/>[39m
+        [36m</section>[39m
+        [36m<section[39m
+          [33maria-label[39m=[32m"我方玩家区"[39m
+          [33mclass[39m=[32m"hg-team-edge hg-mine-edge"[39m
+          [33mdata-side[39m=[32m"mine"[39m
+        [36m>[39m
+          [36m<section[39m
+            [33maria-label[39m=[32m"甲的玩家区"[39m
+            [33mclass[39m=[32m"hg-player-mat hg-team-0 hg-player-you"[39m
+            [33mdata-player-zone[39m=[32m"p0"[39m
+            [33mdata-side[39m=[32m"mine"[39m
+            [33mdata-team[39m=[32m"0"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"hg-player-strip"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"hg-piece-avatar"[39m
+              [36m>[39m
+                [0m甲[0m
+              [36m</span>[39m
+              [36m<strong>[39m
+                [0m甲[0m
+                [0m · 你[0m
+              [36m</strong>[39m
+              [36m<small>[39m
+                [0m席位 [0m
+                [0m1[0m
+                [0m · [0m
+                [0m调查者[0m
+              [36m</small>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"hg-mat-resource"[39m
+              [36m>[39m
+                [0m费用 [0m
+                [36m<b>[39m
+                  [0m0[0m
+                [36m</b>[39m
+                [0m / [0m
+                [0m0[0m
+              [36m</span>[39m
+            [36m</div>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"hg-seat-zones"[39m
+            [36m>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"hg-personal-piles"[39m
+              [36m>[39m
+                [36m<div[39m
+                  [33maria-label[39m=[32m"甲的牌库，49张"[39m
+                  [33mclass[39m=[32m"hg-table-pile hg-deck-pile"[39m
+                [36m>[39m
+                  [36m<span[39m
+                    [33maria-hidden[39m=[32m"true"[39m
+                    [33mclass[39m=[32m"hg-pile-card hg-card-back"[39m
+                  [36m>[39m
+                    [36m<span>[39m
+                      [0m◈[0m
+                    [36m</span>[39m
+                    [36m<b>[39m
+                      [0m49[0m
+                    [36m</b>[39m
+                  [36m</span>[39m
+                  [36m<span>[39m
+                    [0m牌库[0m
+                  [36m</span>[39m
+                [36m</div>[39m
+                [36m<details[39m
+                  [33mclass[39m=[32m"hg-public-zones hg-table-pile hg-graveyard-pile"[39m
+                  [33mdata-pile-kind[39m=[32m"graveyard"[39m
+                  [33mdata-pile-owner[39m=[32m"p0"[39m
+                [36m>[39m
+                  [36m<summary[39m
+                    [33maria-label[39m=[32m"查看甲的墓地，0张"[39m
+                  [36m>[39m
+                    [36m<span[39m
+                      [33maria-hidden[39m=[32m"true"[39m
+                      [33mclass[39m=[32m"hg-pile-card"[39m
+                    [36m>[39m
+                      [36m<b>[39m
+                        [0m0[0m
+                      [36m</b>[39m
+                      [36m<i>[39m
+                        [0m张[0m
+                      [36m</i>[39m
+                    [36m</span>[39m
+                    [36m<span>[39m
+                      [0m墓地[0m
+                    [36m</span>[39m
+                  [36m</summary>[39m
+                  [36m<div[39m
+                    [33mclass[39m=[32m"hg-pile-fan"[39m
+                  [36m>[39m
+                    [36m<h3>[39m
+                      [0m甲[0m
+                      [0m · [0m
+                      [0m墓地[0m
+                    [36m</h3>[39m
+                    [36m<div[39m
+                      [33mclass[39m=[32m"hg-zone-cards"[39m
+                    [36m>[39m
+                      [36m<p[39m
+                        [33mclass[39m=[32m"hg-empty"[39m
+                      [36m>[39m
+                        [0m这里还没有牌[0m
+                      [36m</p>[39m
+                    [36m</div>[39m
+                  [36m</div>[39m
+                [36m</details>[39m
+                [36m<details[39m
+                  [33mclass[39m=[32m"hg-public-zones hg-table-pile hg-scoreCards-pile"[39m
+                  [33mdata-pile-kind[39m=[32m"scoreCards"[39m
+                  [33mdata-pile-owner[39m=[32m"p0"[39m
+                [36m>[39m
+                  [36m<summary[39m
+                    [33maria-label[39m=[32m"查看甲的计分，0张"[39m
+                  [36m>[39m
+                    [36m<span[39m
+                      [33maria-hidden[39m=[32m"true"[39m
+                      [33mclass[39m=[32m"hg-pile-card"[39m
+                    [36m>[39m
+                      [36m<b>[39m
+                        [0m0[0m
+                      [36m</b>[39m
+                      [36m<i>[39m
+                        [0m分[0m
+                      [36m</i>[39m
+                    [36m</span>[39m
+                    [36m<span>[39m
+                      [0m计分[0m
+                    [36m</span>[39m
+                  [36m</summary>[39m
+                  [36m<div[39m
+                    [33mclass[39m=[32m"hg-pile-fan"[39m
+                  [36m>[39m
+                    [36m<h3>[39m
+                      [0m甲[0m
+                      [0m · [0m
+                      [0m计分[0m
+                    [36m</h3>[39m
+                    [36m<div[39m
+                      [33mclass[39m=[32m"hg-zone-cards"[39m
+                    [36m>[39m
+                      [36m<p[39m
+                        [33mclass[39m=[32m"hg-empty"[39m
+                      [36m>[39m
+                        [0m这里还没有牌[0m
+                      [36m</p>[39m
+                    [36m</div>[39m
+                  [36m</div>[39m
+                [36m</details>[39m
+              [36m</div>[39m
+              [36m<div[39m
+                [33maria-label[39m=[32m"甲的资产"[39m
+                [33mclass[39m=[32m"hg-mat-assets"[39m
+              [36m>[39m
+                [36m<span[39m
+                  [33mclass[39m=[32m"hg-mat-zone-label"[39m
+                [36m>[39m
+                  [0m资产 · 费用与忠诚[0m
+                [36m</span>[39m
+                [36m<div[39m
+                  [33mclass[39m=[32m"hg-assets"[39m
+                  [33mstyle[39m=[32m"--hg-card-count: 1;"[39m
+                [36m>[39m
+                  [36m<span[39m
+                    [33mclass[39m=[32m"hg-table-empty"[39m
+                  [36m>[39m
+                    [0m尚无资产[0m
+                  [36m</span>[39m
+                [36m</div>[39m
+              [36m</div>[39m
+              [36m<div[39m
+                [33maria-label[39m=[32m"甲的秘社区，尚未实现"[39m
+                [33mclass[39m=[32m"hg-society-placeholder"[39m
+              [36m>[39m
+                [36m<span>[39m
+                  [0m◈[0m
+                [36m</span>[39m
+                [36m<strong>[39m
+                  [0m秘社区[0m
+                [36m</strong>[39m
+                [36m<small>[39m
+                  [0m尚未实现[0m
+                [36m</small>[39m
+              [36m</div>[39m
+            [36m</div>[39m
+          [36m</section>[39m
+        [36m</section>[39m
+        [36m<section[39m
+          [33maria-label[39m=[32m"固定手牌与下一步行动"[39m
+          [33mclass[39m=[32m"hg-hand-dock"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-response-layer "[39m
+          [36m/>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-dock-action"[39m
+            [33mdata-next-step[39m=[32m"choose"[39m
+          [36m>[39m
+            [36m<div>[39m
+              [36m<strong>[39m
+                [0m下一步：起手再调度[0m
+              [36m</strong>[39m
+              [36m<small>[39m
+                [0m悬停阅读 · 点选行动 · 横置角色旋转 90°[0m
+              [36m</small>[39m
+            [36m</div>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"hg-auto-pass "[39m
+            [36m>[39m
+              [36m<label>[39m
+                [36m<input[39m
+                  [33maria-label[39m=[32m"无可用行动时自动让过"[39m
+                  [33mrole[39m=[32m"switch"[39m
+                  [33mtype[39m=[32m"checkbox"[39m
+                [36m/>[39m
+                [36m<span>[39m
+                  [0m无可用行动时自动让过[0m
+                [36m</span>[39m
+              [36m</label>[39m
+              [36m<span[39m
+                [33mrole[39m=[32m"status"[39m
+              [36m>[39m
+                [0m关闭 · 由你手动让过[0m
+              [36m</span>[39m
+              [36m<small>[39m
+                [0m仅当唯一可用动作是“让过”时生效，可随时关闭。[0m
+              [36m</small>[39m
+            [36m</div>[39m
+            [36m<button[39m
+              [33mclass[39m=[32m"hg-button hg-button-primary"[39m
+            [36m>[39m
+              [0m前往完成选择 ↑[0m
+            [36m</button>[39m
+          [36m</div>[39m
+          [36m<section[39m
+            [33maria-label[39m=[32m"你的手牌"[39m
+            [33mclass[39m=[32m"hg-hand-section"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"hg-hand-label"[39m
+            [36m>[39m
+              [0m你的手牌 [0m
+              [36m<b>[39m
+                [0m1[0m
+              [36m</b>[39m
+            [36m</span>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"hg-hand"[39m
+              [33mstyle[39m=[32m"--hg-card-count: 1;"[39m
+            [36m>[39m
+              [36m<button[39m
+                [33maria-label[39m=[32m"查看无知路人"[39m
+                [33maria-pressed[39m=[32m"false"[39m
+                [33mclass[39m=[32m"hg-card hg-card-neutral hg-card-compact"[39m
+                [33mdata-card-actionable[39m=[32m"false"[39m
+                [33mdata-card-exhausted[39m=[32m"false"[39m
+                [33mdata-card-instance[39m=[32m"instance-a"[39m
+                [33mdata-card-owner[39m=[32m"p0"[39m
+                [33mdata-card-targeted[39m=[32m"false"[39m
+                [33mtype[39m=[32m"button"[39m
+              [36m>[39m
+                [36m<span[39m
+                  [33mclass[39m=[32m"hg-card-top"[39m
+                [36m>[39m
+                  [36m<span[39m
+                    [33mclass[39m=[32m"hg-card-kind"[39m
+                  [36m>[39m
+                    [0m角色[0m
+                  [36m</span>[39m
+                  [36m<span[39m
+                    [33maria-label[39m=[32m"费用 0"[39m
+                    [33mclass[39m=[32m"hg-cost"[39m
+                    [33mtitle[39m=[32m"费用"[39m
+                  [36m>[39m
+                    [0m0[0m
+                  [36m</span>[39m
+                [36m</span>[39m
+                [36m<strong[39m
+                  [33mclass[39m=[32m"hg-card-name"[39m
+                [36m>[39m
+                  [0m无知路人[0m
+                [36m</strong>[39m
+                [36m<span[39m
+                  [33mclass[39m=[32m"hg-card-affiliation"[39m
+                [36m>[39m
+                  [0m无忠诚要求[0m
+                [36m</span>[39m
+                [36m<span[39m
+                  [33maria-label[39m=[32m"图标：调查0，战斗0，势力1"[39m
+                  [33mclass[39m=[32m"hg-icons "[39m
+                [36m>[39m
+                  [36m<span[39m
+                    [33mtitle[39m=[32m"调查"[39m
+                  [36m>[39m
+                    [0m◈ [0m
+                    [36m<b>[39m
+                      [0m0[0m
+                    [36m</b>[39m
+                  [36m</span>[39m
+                  [36m<span[39m
+                    [33mtitle[39m=[32m"战斗"[39m
+                  [36m>[39m
+                    [0m⚔ [0m
+                    [36m<b>[39m
+                      [0m0[0m
+                    [36m</b>[39m
+                  [36m</span>[39m
+                  [36m<span[39m
+                    [33mtitle[39m=[32m"势力"[39m
+                  [36m>[39m
+                    [0m⚑ [0m
+                    [36m<b>[39m
+                      [0m1[0m
+                    [36m</b>[39m
+                  [36m</span>[39m
+                [36m</span>[39m
+                [36m<span[39m
+                  [33mclass[39m=[32m"hg-card-footer"[39m
+                [36m>[39m
+                  [36m<span>[39m
+                    [0m防御 1[0m
+                  [36m</span>[39m
+                [36m</span>[39m
+              [36m</button>[39m
+            [36m</div>[39m
+          [36m</section>[39m
+        [36m</section>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"hg-table-choice-layer"[39m
+        [36m>[39m
+          [36m<section[39m
+            [33maria-label[39m=[32m"待完成的选择"[39m
+            [33mclass[39m=[32m"hg-choice"[39m
+            [33mdata-choice-id[39m=[32m"modal-mulligan"[39m
+            [33mtabindex[39m=[32m"-1"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"hg-choice-heading"[39m
+            [36m>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"hg-section-title"[39m
+              [36m>[39m
+                [36m<span[39m
+                  [33mclass[39m=[32m"hg-eyebrow"[39m
+                [36m>[39m
+                  [0m轮到你选择[0m
+                [36m</span>[39m
+                [36m<span[39m
+                  [33mclass[39m=[32m"hg-choice-tag"[39m
+                [36m>[39m
+                  [0m已选 0 / 1[0m
+                [36m</span>[39m
+              [36m</div>[39m
+              [36m<h2>[39m
+                [0m起手再调度[0m
+              [36m</h2>[39m
+              [36m<p>[39m
+                [0m选牌后明确确认[0m
+              [36m</p>[39m
+              [36m<p[39m
+                [33mclass[39m=[32m"hg-choice-scroll-hint"[39m
+                [33mid[39m=[32m"modal-mulligan-scroll-hint"[39m
+              [36m>[39m
+                [0m点选要替换的手牌，未选中的保留。[0m
+                [0m 选项区可上下滚动，确认按钮始终在下方。[0m
+              [36m</p>[39m
+            [36m</div>[39m
+            [36m<div[39m
+              [33maria-describedby[39m=[32m"modal-mulligan-scroll-hint"[39m
+              [33maria-label[39m=[32m"选择选项，可滚动查看"[39m
+              [33mclass[39m=[32m"hg-choice-body"[39m
+              [33mrole[39m=[32m"region"[39m
+              [33mtabindex[39m=[32m"0"[39m
+            [36m>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"hg-choice-options"[39m
+              [36m>[39m
+                [36m<div[39m
+                  [33mclass[39m=[32m"hg-choice-option-entry"[39m
+                [36m>[39m
+                  [36m<button[39m
+                    [33maria-pressed[39m=[32m"false"[39m
+                    [33mclass[39m=[32m"hg-choice-option "[39m
+                    [33mdata-choice-option[39m=[32m"instance-a"[39m
+                    [33mtype[39m=[32m"button"[39m
+                  [36m>[39m
+                    [36m<span[39m
+                      [33mclass[39m=[32m"hg-choice-check"[39m
+                    [36m>[39m
+                      [0m+[0m
+                    [36m</span>[39m
+                    [36m<span[39m
+                      [33mclass[39m=[32m"hg-card-top"[39m
+                    [36m>[39m
+                      [36m<span[39m
+                        [33mclass[39m=[32m"hg-card-kind"[39m
+                      [36m>[39m
+                        [0m角色[0m
+                      [36m</span>[39m
+                      [36m<span[39m
+                        [33maria-label[39m=[32m"费用 0"[39m
+                        [33mclass[39m=[32m"hg-cost"[39m
+                        [33mtitle[39m=[32m"费用"[39m
+                      [36m>[39m
+                        [0m0[0m
+                      [36m</span>[39m
+                    [36m</span>[39m
+                    [36m<strong[39m
+                      [33mclass[39m=[32m"hg-card-name"[39m
+                    [36m>[39m
+                      [0m无知路人[0m
+                    [36m</strong>[39m
+                    [36m<span[39m
+                      [33maria-hidden[39m=[32m"true"[39m
+                      [33mclass[39m=[32m"hg-card-art"[39m
+                    [36m>[39m
+                      [36m<span>[39m
+                        [0m◈[0m
+                      [36m</span>[39m
+                      [36m<i />[39m
+                    [36m</span>[39m
+                    [36m<span[39m
+                      [33mclass[39m=[32m"hg-card-affiliation"[39m
+                    [36m>[39m
+                      [0m无忠诚要求[0m
+                    [36m</span>[39m
+                    [36m<span[39m
+                      [33maria-label[39m=[32m"图标：调查0，战斗0，势力1"[39m
+                      [33mclass[39m=[32m"hg-icons "[39m
+                    [36m>[39m
+                      [36m<span[39m
+                        [33mtitle[39m=[32m"调查"[39m
+                      [36m>[39m
+                        [0m◈ [0m
+                        [36m<b>[39m
+                          [0m0[0m
+                        [36m</b>[39m
+                      [36m</span>[39m
+                      [36m<span[39m
+                        [33mtitle[39m=[32m"战斗"[39m
+                      [36m>[39m
+                        [0m⚔ [0m
+                        [36m<b>[39m
+                          [0m0[0m
+                        [36m</b>[39m
+                      [36m</span>[39m
+                      [36m<span[39m
+                        [33mtitle[39m=[32m"势力"[39m
+                      [36m>[39m
+                        [0m⚑ [0m
+                        [36m<b>[39m
+                          [0m1[0m
+                        [36m</b>[39m
+                      [36m</span>[39m
+                    [36m</span>[39m
+                    [36m<span[39m
+                      [33mclass[39m=[32m"hg-card-text"[39m
+                    [36m>[39m
+                      [0m真实印刷文字[0m
+                    [36m</span>[39m
+                    [36m<span[39m
+                      [33mclass[39m=[32m"hg-card-footer"[39m
+                    [36m>[39m
+                      [36m<span>[39m
+                        [0m防御 1[0m
+                      [36m</span>[39m
+                    [36m</span>[39m
+                  [36m</button>[39m
+                  [36m<button[39m
+                    [33maria-label[39m=[32m"放大阅读无知路人"[39m
+                    [33mclass[39m=[32m"hg-choice-read hg-small-read"[39m
+                    [33mtype[39m=[32m"button"[39m
+                  [36m>[39m
+                    [0m放大文字与图标 ↗[0m
+                  [36m</button>[39m
+                [36m</div>[39m
+              [36m</div>[39m
+            [36m</div>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"hg-choice-footer"[39m
+            [36m>[39m
+              [36m<span>[39m
+                [0m请选择 0–1 项，或跳过。[0m
+              [36m</span>[39m
+              [36m<div>[39m
+                [36m<button[39m
+                  [33mclass[39m=[32m"hg-button hg-button-quiet"[39m
+                [36m>[39m
+                  [0m保留全部手牌[0m
+                [36m</button>[39m
+                [36m<button[39m
+                  [33mclass[39m=[32m"hg-button hg-button-primary"[39m
+                [36m>[39m
+                  [0m确认选择[0m
+                [36m</button>[39m
+              [36m</div>[39m
+            [36m</div>[39m
+          [36m</section>[39m
+        [36m</div>[39m
+      [36m</main>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ src/game/DialogIsolation.test.tsx:96:33
+     94|     for (let i = 0; i < 6; i++) { fireEvent.keyDown(document, { key: '…
+     95|     rerender(content(choosing, false));
+     96|     const choiceDialog = screen.getByRole('dialog', { name: '待完成的选择' }…
+       |                                 ^
+     97|     expect(choiceDialog.closest('[inert]')).toBeNull();
+     98|     expect(choiceDialog.contains(document.activeElement)).toBe(true);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  4 failed | 1 passed (5)
+   Start at  08:46:17
+   Duration  1.95s (transform 204ms, setup 126ms, import 217ms, tests 1.07s, environment 395ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

@@ -1,0 +1,645 @@
+{
+  "scope": "isolated local synthetic component fixture; no game room, state injection or remote API",
+  "results": [
+    {
+      "viewport": [
+        1536,
+        960
+      ],
+      "switchVisibleToRoleQuery": true,
+      "switchInAXTree": true,
+      "switchAXIgnored": [
+        false
+      ],
+      "switchBox": {
+        "x": 1096.921875,
+        "y": 780.5,
+        "width": 15,
+        "height": 15
+      },
+      "physicalHit": {
+        "tag": "DIV",
+        "text": null,
+        "choiceOption": null,
+        "insideChoice": true
+      },
+      "selectedBefore": 0,
+      "selectedAfter": [],
+      "autoPassCheckedAfter": false,
+      "submissions": "[]",
+      "choiceRole": null,
+      "choiceAriaModal": null,
+      "keyboardReachedBackgroundSwitch": true,
+      "focus": [
+        {
+          "tag": "DIV",
+          "role": "region",
+          "label": "选择选项，可滚动查看",
+          "insideChoice": true
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": null,
+          "insideChoice": true
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": "放大阅读公路骑士",
+          "insideChoice": true
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": null,
+          "insideChoice": true
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": "放大阅读本地卡牌1",
+          "insideChoice": true
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": null,
+          "insideChoice": true
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": "放大阅读本地卡牌2",
+          "insideChoice": true
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": null,
+          "insideChoice": true
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": "放大阅读本地卡牌3",
+          "insideChoice": true
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": null,
+          "insideChoice": true
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": "放大阅读本地卡牌4",
+          "insideChoice": true
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": null,
+          "insideChoice": true
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": "放大阅读本地卡牌5",
+          "insideChoice": true
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": null,
+          "insideChoice": true
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": null,
+          "insideChoice": true
+        },
+        {
+          "tag": "BODY",
+          "role": null,
+          "label": null,
+          "insideChoice": false
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": null,
+          "insideChoice": false
+        },
+        {
+          "tag": "SUMMARY",
+          "role": null,
+          "label": null,
+          "insideChoice": false
+        },
+        {
+          "tag": "SECTION",
+          "role": null,
+          "label": "中央世界与争夺区，可上下滚动查看双方角色",
+          "insideChoice": false
+        },
+        {
+          "tag": "SUMMARY",
+          "role": null,
+          "label": "查看甲的墓地，0张",
+          "insideChoice": false
+        },
+        {
+          "tag": "SUMMARY",
+          "role": null,
+          "label": "查看甲的计分，0张",
+          "insideChoice": false
+        },
+        {
+          "tag": "INPUT",
+          "role": "switch",
+          "label": "无可用行动时自动让过",
+          "insideChoice": false
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": null,
+          "insideChoice": false
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": "查看公路骑士",
+          "insideChoice": false
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": "查看本地卡牌1",
+          "insideChoice": false
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": "查看本地卡牌2",
+          "insideChoice": false
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": "查看本地卡牌3",
+          "insideChoice": false
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": "查看本地卡牌4",
+          "insideChoice": false
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": "查看本地卡牌5",
+          "insideChoice": false
+        },
+        {
+          "tag": "DIV",
+          "role": "region",
+          "label": "选择选项，可滚动查看",
+          "insideChoice": true
+        }
+      ]
+    },
+    {
+      "viewport": [
+        1366,
+        768
+      ],
+      "switchVisibleToRoleQuery": true,
+      "switchInAXTree": true,
+      "switchAXIgnored": [
+        false
+      ],
+      "switchBox": {
+        "x": 932.921875,
+        "y": 593.5,
+        "width": 15,
+        "height": 15
+      },
+      "physicalHit": {
+        "tag": "SPAN",
+        "text": "+\n角色\n0\n本地卡牌5\n无忠诚要求\n◈ 0\n⚔ 0\n⚑ 1\n真实印刷文字\n防御 1",
+        "choiceOption": "synthetic-hand-5",
+        "insideChoice": true
+      },
+      "selectedBefore": 0,
+      "selectedAfter": [
+        "synthetic-hand-5"
+      ],
+      "autoPassCheckedAfter": false,
+      "submissions": "[]",
+      "choiceRole": null,
+      "choiceAriaModal": null,
+      "keyboardReachedBackgroundSwitch": true,
+      "focus": [
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": "放大阅读本地卡牌5",
+          "insideChoice": true
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": null,
+          "insideChoice": true
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": null,
+          "insideChoice": true
+        },
+        {
+          "tag": "BODY",
+          "role": null,
+          "label": null,
+          "insideChoice": false
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": null,
+          "insideChoice": false
+        },
+        {
+          "tag": "SUMMARY",
+          "role": null,
+          "label": null,
+          "insideChoice": false
+        },
+        {
+          "tag": "SECTION",
+          "role": null,
+          "label": "中央世界与争夺区，可上下滚动查看双方角色",
+          "insideChoice": false
+        },
+        {
+          "tag": "SUMMARY",
+          "role": null,
+          "label": "查看甲的墓地，0张",
+          "insideChoice": false
+        },
+        {
+          "tag": "SUMMARY",
+          "role": null,
+          "label": "查看甲的计分，0张",
+          "insideChoice": false
+        },
+        {
+          "tag": "INPUT",
+          "role": "switch",
+          "label": "无可用行动时自动让过",
+          "insideChoice": false
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": null,
+          "insideChoice": false
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": "查看公路骑士",
+          "insideChoice": false
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": "查看本地卡牌1",
+          "insideChoice": false
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": "查看本地卡牌2",
+          "insideChoice": false
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": "查看本地卡牌3",
+          "insideChoice": false
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": "查看本地卡牌4",
+          "insideChoice": false
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": "查看本地卡牌5",
+          "insideChoice": false
+        },
+        {
+          "tag": "DIV",
+          "role": "region",
+          "label": "选择选项，可滚动查看",
+          "insideChoice": true
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": null,
+          "insideChoice": true
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": "放大阅读公路骑士",
+          "insideChoice": true
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": null,
+          "insideChoice": true
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": "放大阅读本地卡牌1",
+          "insideChoice": true
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": null,
+          "insideChoice": true
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": "放大阅读本地卡牌2",
+          "insideChoice": true
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": null,
+          "insideChoice": true
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": "放大阅读本地卡牌3",
+          "insideChoice": true
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": null,
+          "insideChoice": true
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": "放大阅读本地卡牌4",
+          "insideChoice": true
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": null,
+          "insideChoice": true
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": "放大阅读本地卡牌5",
+          "insideChoice": true
+        }
+      ]
+    },
+    {
+      "viewport": [
+        1280,
+        800
+      ],
+      "switchVisibleToRoleQuery": true,
+      "switchInAXTree": true,
+      "switchAXIgnored": [
+        false
+      ],
+      "switchBox": {
+        "x": 846.921875,
+        "y": 625.5,
+        "width": 15,
+        "height": 15
+      },
+      "physicalHit": {
+        "tag": "SPAN",
+        "text": "+\n角色\n0\n本地卡牌5\n无忠诚要求\n◈ 0\n⚔ 0\n⚑ 1\n真实印刷文字\n防御 1",
+        "choiceOption": "synthetic-hand-5",
+        "insideChoice": true
+      },
+      "selectedBefore": 0,
+      "selectedAfter": [
+        "synthetic-hand-5"
+      ],
+      "autoPassCheckedAfter": false,
+      "submissions": "[]",
+      "choiceRole": null,
+      "choiceAriaModal": null,
+      "keyboardReachedBackgroundSwitch": true,
+      "focus": [
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": "放大阅读本地卡牌5",
+          "insideChoice": true
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": null,
+          "insideChoice": true
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": null,
+          "insideChoice": true
+        },
+        {
+          "tag": "BODY",
+          "role": null,
+          "label": null,
+          "insideChoice": false
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": null,
+          "insideChoice": false
+        },
+        {
+          "tag": "SUMMARY",
+          "role": null,
+          "label": null,
+          "insideChoice": false
+        },
+        {
+          "tag": "SECTION",
+          "role": null,
+          "label": "中央世界与争夺区，可上下滚动查看双方角色",
+          "insideChoice": false
+        },
+        {
+          "tag": "SUMMARY",
+          "role": null,
+          "label": "查看甲的墓地，0张",
+          "insideChoice": false
+        },
+        {
+          "tag": "SUMMARY",
+          "role": null,
+          "label": "查看甲的计分，0张",
+          "insideChoice": false
+        },
+        {
+          "tag": "INPUT",
+          "role": "switch",
+          "label": "无可用行动时自动让过",
+          "insideChoice": false
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": null,
+          "insideChoice": false
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": "查看公路骑士",
+          "insideChoice": false
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": "查看本地卡牌1",
+          "insideChoice": false
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": "查看本地卡牌2",
+          "insideChoice": false
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": "查看本地卡牌3",
+          "insideChoice": false
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": "查看本地卡牌4",
+          "insideChoice": false
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": "查看本地卡牌5",
+          "insideChoice": false
+        },
+        {
+          "tag": "DIV",
+          "role": "region",
+          "label": "选择选项，可滚动查看",
+          "insideChoice": true
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": null,
+          "insideChoice": true
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": "放大阅读公路骑士",
+          "insideChoice": true
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": null,
+          "insideChoice": true
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": "放大阅读本地卡牌1",
+          "insideChoice": true
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": null,
+          "insideChoice": true
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": "放大阅读本地卡牌2",
+          "insideChoice": true
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": null,
+          "insideChoice": true
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": "放大阅读本地卡牌3",
+          "insideChoice": true
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": null,
+          "insideChoice": true
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": "放大阅读本地卡牌4",
+          "insideChoice": true
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": null,
+          "insideChoice": true
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "label": "放大阅读本地卡牌5",
+          "insideChoice": true
+        }
+      ]
+    }
+  ]
+}

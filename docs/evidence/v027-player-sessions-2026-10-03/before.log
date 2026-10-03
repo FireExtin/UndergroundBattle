@@ -1,0 +1,5061 @@
+
+> undergroundbattle-web@0.1.0 test
+> vitest --run --reporter=dot src/game/PlayerSessions.test.tsx
+
+
+ RUN  v4.1.2 /workspace/UndergroundBattle-v027-player-sessions/web
+
+xxxxxxx
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 7 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/game/PlayerSessions.test.tsx > explicit independent player sessions through normal UI > isolates same-invite seats, refreshes the current identity and returns to the ordinary saved seat
+TestingLibraryElementError: Unable to find an accessible element with the role "button" and name "开始新的独立玩家会话"
+
+Here are the accessible roles:
+
+  banner:
+
+  Name "":
+  [36m<header[39m
+    [33mclass[39m=[32m"hg-header"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  link:
+
+  Name "◈隐秘世界 霸权SECRET WORLD · HEGEMONY":
+  [36m<a[39m
+    [33mclass[39m=[32m"hg-brand"[39m
+    [33mhref[39m=[32m"/"[39m
+  [36m/>[39m
+
+  Name "更换牌组 ↓":
+  [36m<a[39m
+    [33mhref[39m=[32m"#hegemony-decks"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  navigation:
+
+  Name "":
+  [36m<nav />[39m
+
+  --------------------------------------------------
+  button:
+
+  Name "上手指南 ?":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-nav-button"[39m
+  [36m/>[39m
+
+  Name "回到牌桌 INVITE · 席位 1":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-button hg-button-quiet"[39m
+  [36m/>[39m
+
+  Name "创建牌桌":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-tab-active"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "邀请码加入":
+  [36m<button[39m
+    [33mclass[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "两人对决 1 VS 13 个地区 · 先获 8 分胜利":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-selected"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "四人协作 2 VS 25 个地区 · 团队先获 10 分胜利":
+  [36m<button[39m
+    [33mclass[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "创建牌桌 →":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-button hg-button-primary"[39m
+    [33mdisabled[39m=[32m""[39m
+    [33mtype[39m=[32m"submit"[39m
+  [36m/>[39m
+
+  Name "01调查 · 控制调查者控制与调查调查者的颜色组成50 张 · 自组预组 ✓ 已选择":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"true"[39m
+    [33mclass[39m=[32m"hg-deck hg-deck-faction-neutral hg-selected"[39m
+    [33mdata-deck-id[39m=[32m"watchers"[39m
+    [33mdata-deck-main-faction[39m=[32m"neutral"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "新建空白牌组":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-button hg-button-quiet"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "复制为草稿":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-button hg-button-quiet"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "保存牌组":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-button hg-button-quiet"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "保存并选择此牌组":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-button hg-button-primary"[39m
+    [33mdisabled[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-muted"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-muted"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-neutral-note"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-muted"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-muted"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-library-version"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-muted"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-library-match-count"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-muted"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  main:
+
+  Name "":
+  [36m<main[39m
+    [33mclass[39m=[32m"hg-lobby"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  heading:
+
+  Name "世界的背面，等你落子。":
+  [36m<h1 />[39m
+
+  Name "1 套自组预组":
+  [36m<h2 />[39m
+
+  Name "命名、编辑与选择牌组":
+  [36m<h2[39m
+    [33mid[39m=[32m"hg-library-title"[39m
+  [36m/>[39m
+
+  Name "牌组组成":
+  [36m<h3 />[39m
+
+  Name "当前开放卡牌":
+  [36m<h3 />[39m
+
+  --------------------------------------------------
+  emphasis:
+
+  Name "":
+  [36m<em />[39m
+
+  --------------------------------------------------
+  textbox:
+
+  Name "你的称呼":
+  [36m<input[39m
+    [33mautocomplete[39m=[32m"nickname"[39m
+    [33mmaxlength[39m=[32m"24"[39m
+    [33mplaceholder[39m=[32m"让牌桌上的伙伴认出你"[39m
+    [33mrequired[39m=[32m""[39m
+    [33mvalue[39m=[32m""[39m
+  [36m/>[39m
+
+  Name "牌组名称":
+  [36m<input[39m
+    [33mmaxlength[39m=[32m"80"[39m
+    [33mvalue[39m=[32m"我的牌组"[39m
+  [36m/>[39m
+
+  Name "牌组说明":
+  [36m<textarea[39m
+    [33mmaxlength[39m=[32m"500"[39m
+    [33mrows[39m=[32m"2"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  group:
+
+  Name "对战模式":
+  [36m<div[39m
+    [33maria-label[39m=[32m"对战模式"[39m
+    [33mclass[39m=[32m"hg-mode-select"[39m
+    [33mrole[39m=[32m"group"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<details[39m
+    [33mclass[39m=[32m"hg-deck-list"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<details[39m
+    [33mclass[39m=[32m"hg-faction-coverage"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  strong:
+
+  Name "":
+  [36m<strong />[39m
+
+  Name "":
+  [36m<strong />[39m
+
+  Name "":
+  [36m<strong />[39m
+
+  Name "":
+  [36m<strong />[39m
+
+  --------------------------------------------------
+  list:
+
+  Name "":
+  [36m<ul />[39m
+
+  Name "官方八色派系覆盖":
+  [36m<ul[39m
+    [33maria-label[39m=[32m"官方八色派系覆盖"[39m
+  [36m/>[39m
+
+  Name "牌组校验问题":
+  [36m<ul[39m
+    [33maria-label[39m=[32m"牌组校验问题"[39m
+    [33mclass[39m=[32m"hg-library-issues"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<ul[39m
+    [33mclass[39m=[32m"hg-library-card-options"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  listitem:
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"hg-faction-yellow"[39m
+    [33mdata-faction-id[39m=[32m"yellow"[39m
+    [33mdata-open-card-count[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"hg-faction-green"[39m
+    [33mdata-faction-id[39m=[32m"green"[39m
+    [33mdata-open-card-count[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"hg-faction-blue"[39m
+    [33mdata-faction-id[39m=[32m"blue"[39m
+    [33mdata-open-card-count[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"hg-faction-red"[39m
+    [33mdata-faction-id[39m=[32m"red"[39m
+    [33mdata-open-card-count[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"hg-faction-gray"[39m
+    [33mdata-faction-id[39m=[32m"gray"[39m
+    [33mdata-open-card-count[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"hg-faction-white"[39m
+    [33mdata-faction-id[39m=[32m"white"[39m
+    [33mdata-open-card-count[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"hg-faction-black"[39m
+    [33mdata-faction-id[39m=[32m"black"[39m
+    [33mdata-open-card-count[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"hg-faction-purple"[39m
+    [33mdata-faction-id[39m=[32m"purple"[39m
+    [33mdata-open-card-count[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li />[39m
+
+  --------------------------------------------------
+  region:
+
+  Name "命名、编辑与选择牌组":
+  [36m<section[39m
+    [33maria-labelledby[39m=[32m"hg-library-title"[39m
+    [33mclass[39m=[32m"hg-deck-library"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  combobox:
+
+  Name "预组模板":
+  [36m<select />[39m
+
+  Name "派系":
+  [36m<select />[39m
+
+  Name "卡牌类型":
+  [36m<select />[39m
+
+  Name "实现状态":
+  [36m<select />[39m
+
+  --------------------------------------------------
+  option:
+
+  Name "调查者":
+  [36m<option[39m
+    [33mvalue[39m=[32m"watchers"[39m
+  [36m/>[39m
+
+  Name "全部派系":
+  [36m<option[39m
+    [33mvalue[39m=[32m"all"[39m
+  [36m/>[39m
+
+  Name "帷幕守望":
+  [36m<option[39m
+    [33mvalue[39m=[32m"yellow"[39m
+  [36m/>[39m
+
+  Name "猎魔人":
+  [36m<option[39m
+    [33mvalue[39m=[32m"green"[39m
+  [36m/>[39m
+
+  Name "王座会":
+  [36m<option[39m
+    [33mvalue[39m=[32m"blue"[39m
+  [36m/>[39m
+
+  Name "鸣钟教派":
+  [36m<option[39m
+    [33mvalue[39m=[32m"red"[39m
+  [36m/>[39m
+
+  Name "国家机构":
+  [36m<option[39m
+    [33mvalue[39m=[32m"gray"[39m
+  [36m/>[39m
+
+  Name "圣贤":
+  [36m<option[39m
+    [33mvalue[39m=[32m"white"[39m
+  [36m/>[39m
+
+  Name "方碑序列":
+  [36m<option[39m
+    [33mvalue[39m=[32m"black"[39m
+  [36m/>[39m
+
+  Name "梦境行者":
+  [36m<option[39m
+    [33mvalue[39m=[32m"purple"[39m
+  [36m/>[39m
+
+  Name "中立（无派系）":
+  [36m<option[39m
+    [33mvalue[39m=[32m"neutral"[39m
+  [36m/>[39m
+
+  Name "颜色未标":
+  [36m<option[39m
+    [33mvalue[39m=[32m"unknown"[39m
+  [36m/>[39m
+
+  Name "全部类型":
+  [36m<option[39m
+    [33mvalue[39m=[32m"all"[39m
+  [36m/>[39m
+
+  Name "角色":
+  [36m<option[39m
+    [33mvalue[39m=[32m"character"[39m
+  [36m/>[39m
+
+  Name "已实现玩家卡":
+  [36m<option[39m
+    [33mvalue[39m=[32m"implemented"[39m
+  [36m/>[39m
+
+  Name "不可加入牌组":
+  [36m<option[39m
+    [33mvalue[39m=[32m"unavailable"[39m
+  [36m/>[39m
+
+  Name "当前目录全部":
+  [36m<option[39m
+    [33mvalue[39m=[32m"all"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  status:
+
+  Name "":
+  [36m<div[39m
+    [33mclass[39m=[32m"hg-library-total"[39m
+    [33mrole[39m=[32m"status"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  searchbox:
+
+  Name "检索卡牌":
+  [36m<input[39m
+    [33mplaceholder[39m=[32m"名称、编号或规则文字"[39m
+    [33mtype[39m=[32m"search"[39m
+    [33mvalue[39m=[32m""[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  contentinfo:
+
+  Name "":
+  [36m<footer[39m
+    [33mclass[39m=[32m"hg-footer"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"hg-app"[39m
+    [36m>[39m
+      [36m<header[39m
+        [33mclass[39m=[32m"hg-header"[39m
+      [36m>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"hg-brand"[39m
+          [33mhref[39m=[32m"/"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"hg-brand-mark"[39m
+          [36m>[39m
+            [0m◈[0m
+          [36m</span>[39m
+          [36m<span>[39m
+            [0m隐秘世界 [0m
+            [36m<b>[39m
+              [0m霸权[0m
+            [36m</b>[39m
+            [36m<small>[39m
+              [0mSECRET WORLD · HEGEMONY[0m
+            [36m</small>[39m
+          [36m</span>[39m
+        [36m</a>[39m
+        [36m<nav>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"hg-nav-button"[39m
+          [36m>[39m
+            [0m上手指南 [0m
+            [36m<span>[39m
+              [0m?[0m
+            [36m</span>[39m
+          [36m</button>[39m
+        [36m</nav>[39m
+      [36m</header>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"hg-return-seat"[39m
+      [36m>[39m
+        [36m<p>[39m
+          [0m旧牌桌座位已保留。可以新建另一桌，也可回到下方牌桌。[0m
+        [36m</p>[39m
+        [36m<div>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"hg-button hg-button-quiet"[39m
+          [36m>[39m
+            [0m回到牌桌 [0m
+            [0mINVITE[0m
+            [0m · 席位 [0m
+            [0m1[0m
+          [36m</button>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+      [36m<main[39m
+        [33mclass[39m=[32m"hg-lobby"[39m
+      [36m>[39m
+        [36m<section[39m
+          [33mclass[39m=[32m"hg-hero"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"hg-hero-orbit"[39m
+          [36m>[39m
+            [36m<span>[39m
+              [0m◈[0m
+            [36m</span>[39m
+            [36m<i />[39m
+            [36m<i />[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-eyebrow"[39m
+          [36m>[39m
+            [0mTHE SECRET WORLD · 霸权[0m
+          [36m</div>[39m
+          [36m<h1>[39m
+            [0m世界的背面，[0m
+            [36m<br />[39m
+            [36m<em>[39m
+              [0m等你落子。[0m
+            [36m</em>[39m
+          [36m</h1>[39m
+          [36m<p>[39m
+            [0m派遣角色，争夺城市的隐秘权柄。[0m
+            [36m<br />[39m
+            [0m与一位对手交锋，或和伙伴并肩加入四人牌桌。[0m
+          [36m</p>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-hero-features"[39m
+          [36m>[39m
+            [36m<span>[39m
+              [0m◈ 调查[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0m⚔ 战斗[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0m⚑ 势力[0m
+            [36m</span>[39m
+          [36m</div>[39m
+        [36m</section>[39m
+        [36m<section[39m
+          [33mclass[39m=[32m"hg-onboarding"[39m
+        [36m>[39m
+          [36m<form[39m
+            [33mclass[39m=[32m"hg-entry-form"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"hg-section-title"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"hg-eyebrow"[39m
+              [36m>[39m
+                [0m01 / 入席[0m
+              [36m</span>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"hg-tabs"[39m
+              [36m>[39m
+                [36m<button[39m
+                  [33mclass[39m=[32m"hg-tab-active"[39m
+                  [33mtype[39m=[32m"button"[39m
+                [36m>[39m
+                  [0m创建牌桌[0m
+                [36m</button>[39m
+                [36m<button[39m
+                  [33mclass[39m=[32m""[39m
+                  [33mtype[39m=[32m"button"[39m
+                [36m>[39m
+                  [0m邀请码加入[0m
+                [36m</button>[39m
+              [36m</div>[39m
+            [36m</div>[39m
+            [36m<p[39m
+              [33mclass[39m=[32m"hg-muted"[39m
+            [36m>[39m
+              [0m当前牌组：[0m
+              [0m调查者[0m
+              [0m · [0m
+              [36m<a[39m
+                [33mhref[39m=[32m"#hegemony-decks"[39m
+              [36m>[39m
+                [0m更换牌组 ↓[0m
+              [36m</a>[39m
+            [36m</p>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"hg-field"[39m
+            [36m>[39m
+              [0m你的称呼[0m
+              [36m<input[39m
+                [33mautocomplete[39m=[32m"nickname"[39m
+                [33mmaxlength[39m=[32m"24"[39m
+                [33mplaceholder[39m=[32m"让牌桌上的伙伴认出你"[39m
+                [33mrequired[39m=[32m""[39m
+                [33mvalue[39m=[32m""[39m
+              [36m/>[39m
+            [36m</label>[39m
+            [36m<div[39m
+              [33maria-label[39m=[32m"对战模式"[39m
+              [33mclass[39m=[32m"hg-mode-select"[39m
+              [33mrole[39m=[32m"group"[39m
+            [36m>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"hg-selected"[39m
+                [33mtype[39m=[32m"button"[39m
+              [36m>[39m
+                [36m<strong>[39m
+                  [0m两人对决 [0m
+                  [36m<span>[39m
+                    [0m1 VS 1[0m
+                  [36m</span>[39m
+                [36m</strong>[39m
+                [36m<small>[39m
+                  [0m3 个地区 · 先获 8 分胜利[0m
+                [36m</small>[39m
+              [36m</button>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m""[39m
+                [33mtype[39m=[32m"button"[39m
+              [36m>[39m
+                [36m<strong>[39m
+                  [0m四人协作 [0m
+                  [36m<span>[39m
+                    [0m2 VS 2[0m
+                  [36m</span>[39m
+                [36m</strong>[39m
+                [36m<small>[39m
+                  [0m5 个地区 · 团队先获 10 分胜利[0m
+                [36m</small>[39m
+              [36m</button>[39m
+            [36m</div>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"hg-entry-bottom"[39m
+            [36m>[39m
+              [36m<p>[39m
+                [0m创建后分享邀请，所有玩家准备后由房主开始。[0m
+                [36m<br />[39m
+                [0m座位保存在此浏览器，刷新即可继续。[0m
+              [36m</p>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"hg-button hg-button-primary"[39m
+                [33mdisabled[39m=[32m""[39m
+                [33mtype[39m=[32m"submit"[39m
+              [36m>[39m
+                [0m创建牌桌 →[0m
+              [36m</button>[39m
+            [36m</div>[39m
+          [36m</form>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-section-title"[39m
+            [33...
+ ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ independent src/game/PlayerSessions.test.tsx:44:55
+     42| }
+     43| async function lobby() { fireEvent.click(screen.getByRole('button', { …
+     44| async function independent() { fireEvent.click(screen.getByRole('butto…
+       |                                                       ^
+     45| async function join(code = 'INVITE') {
+     46|   fireEvent.click(screen.getByRole('button', { name: '邀请码加入' }));
+ ❯ src/game/PlayerSessions.test.tsx:58:26
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/7]⎯
+
+ FAIL  src/game/PlayerSessions.test.tsx > explicit independent player sessions through normal UI > allocates no identity on refresh or lobby return; only an explicit new session can join another seat
+TestingLibraryElementError: Unable to find an accessible element with the role "button" and name "开始新的独立玩家会话"
+
+Here are the accessible roles:
+
+  banner:
+
+  Name "":
+  [36m<header[39m
+    [33mclass[39m=[32m"hg-header"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  link:
+
+  Name "◈隐秘世界 霸权SECRET WORLD · HEGEMONY":
+  [36m<a[39m
+    [33mclass[39m=[32m"hg-brand"[39m
+    [33mhref[39m=[32m"/"[39m
+  [36m/>[39m
+
+  Name "更换牌组 ↓":
+  [36m<a[39m
+    [33mhref[39m=[32m"#hegemony-decks"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  navigation:
+
+  Name "":
+  [36m<nav />[39m
+
+  --------------------------------------------------
+  button:
+
+  Name "上手指南 ?":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-nav-button"[39m
+  [36m/>[39m
+
+  Name "创建牌桌":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-tab-active"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "邀请码加入":
+  [36m<button[39m
+    [33mclass[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "两人对决 1 VS 13 个地区 · 先获 8 分胜利":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-selected"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "四人协作 2 VS 25 个地区 · 团队先获 10 分胜利":
+  [36m<button[39m
+    [33mclass[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "创建牌桌 →":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-button hg-button-primary"[39m
+    [33mdisabled[39m=[32m""[39m
+    [33mtype[39m=[32m"submit"[39m
+  [36m/>[39m
+
+  Name "01调查 · 控制调查者控制与调查调查者的颜色组成50 张 · 自组预组 ✓ 已选择":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"true"[39m
+    [33mclass[39m=[32m"hg-deck hg-deck-faction-neutral hg-selected"[39m
+    [33mdata-deck-id[39m=[32m"watchers"[39m
+    [33mdata-deck-main-faction[39m=[32m"neutral"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "新建空白牌组":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-button hg-button-quiet"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "复制为草稿":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-button hg-button-quiet"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "保存牌组":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-button hg-button-quiet"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "保存并选择此牌组":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-button hg-button-primary"[39m
+    [33mdisabled[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  main:
+
+  Name "":
+  [36m<main[39m
+    [33mclass[39m=[32m"hg-lobby"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  heading:
+
+  Name "世界的背面，等你落子。":
+  [36m<h1 />[39m
+
+  Name "1 套自组预组":
+  [36m<h2 />[39m
+
+  Name "命名、编辑与选择牌组":
+  [36m<h2[39m
+    [33mid[39m=[32m"hg-library-title"[39m
+  [36m/>[39m
+
+  Name "牌组组成":
+  [36m<h3 />[39m
+
+  Name "当前开放卡牌":
+  [36m<h3 />[39m
+
+  --------------------------------------------------
+  emphasis:
+
+  Name "":
+  [36m<em />[39m
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-muted"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-muted"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-neutral-note"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-muted"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-muted"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-library-version"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-muted"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-library-match-count"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-muted"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  textbox:
+
+  Name "你的称呼":
+  [36m<input[39m
+    [33mautocomplete[39m=[32m"nickname"[39m
+    [33mmaxlength[39m=[32m"24"[39m
+    [33mplaceholder[39m=[32m"让牌桌上的伙伴认出你"[39m
+    [33mrequired[39m=[32m""[39m
+    [33mvalue[39m=[32m""[39m
+  [36m/>[39m
+
+  Name "牌组名称":
+  [36m<input[39m
+    [33mmaxlength[39m=[32m"80"[39m
+    [33mvalue[39m=[32m"我的牌组"[39m
+  [36m/>[39m
+
+  Name "牌组说明":
+  [36m<textarea[39m
+    [33mmaxlength[39m=[32m"500"[39m
+    [33mrows[39m=[32m"2"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  group:
+
+  Name "对战模式":
+  [36m<div[39m
+    [33maria-label[39m=[32m"对战模式"[39m
+    [33mclass[39m=[32m"hg-mode-select"[39m
+    [33mrole[39m=[32m"group"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<details[39m
+    [33mclass[39m=[32m"hg-deck-list"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<details[39m
+    [33mclass[39m=[32m"hg-faction-coverage"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  strong:
+
+  Name "":
+  [36m<strong />[39m
+
+  Name "":
+  [36m<strong />[39m
+
+  Name "":
+  [36m<strong />[39m
+
+  Name "":
+  [36m<strong />[39m
+
+  --------------------------------------------------
+  list:
+
+  Name "":
+  [36m<ul />[39m
+
+  Name "官方八色派系覆盖":
+  [36m<ul[39m
+    [33maria-label[39m=[32m"官方八色派系覆盖"[39m
+  [36m/>[39m
+
+  Name "牌组校验问题":
+  [36m<ul[39m
+    [33maria-label[39m=[32m"牌组校验问题"[39m
+    [33mclass[39m=[32m"hg-library-issues"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<ul[39m
+    [33mclass[39m=[32m"hg-library-card-options"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  listitem:
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"hg-faction-yellow"[39m
+    [33mdata-faction-id[39m=[32m"yellow"[39m
+    [33mdata-open-card-count[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"hg-faction-green"[39m
+    [33mdata-faction-id[39m=[32m"green"[39m
+    [33mdata-open-card-count[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"hg-faction-blue"[39m
+    [33mdata-faction-id[39m=[32m"blue"[39m
+    [33mdata-open-card-count[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"hg-faction-red"[39m
+    [33mdata-faction-id[39m=[32m"red"[39m
+    [33mdata-open-card-count[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"hg-faction-gray"[39m
+    [33mdata-faction-id[39m=[32m"gray"[39m
+    [33mdata-open-card-count[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"hg-faction-white"[39m
+    [33mdata-faction-id[39m=[32m"white"[39m
+    [33mdata-open-card-count[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"hg-faction-black"[39m
+    [33mdata-faction-id[39m=[32m"black"[39m
+    [33mdata-open-card-count[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"hg-faction-purple"[39m
+    [33mdata-faction-id[39m=[32m"purple"[39m
+    [33mdata-open-card-count[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li />[39m
+
+  --------------------------------------------------
+  region:
+
+  Name "命名、编辑与选择牌组":
+  [36m<section[39m
+    [33maria-labelledby[39m=[32m"hg-library-title"[39m
+    [33mclass[39m=[32m"hg-deck-library"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  combobox:
+
+  Name "预组模板":
+  [36m<select />[39m
+
+  Name "派系":
+  [36m<select />[39m
+
+  Name "卡牌类型":
+  [36m<select />[39m
+
+  Name "实现状态":
+  [36m<select />[39m
+
+  --------------------------------------------------
+  option:
+
+  Name "调查者":
+  [36m<option[39m
+    [33mvalue[39m=[32m"watchers"[39m
+  [36m/>[39m
+
+  Name "全部派系":
+  [36m<option[39m
+    [33mvalue[39m=[32m"all"[39m
+  [36m/>[39m
+
+  Name "帷幕守望":
+  [36m<option[39m
+    [33mvalue[39m=[32m"yellow"[39m
+  [36m/>[39m
+
+  Name "猎魔人":
+  [36m<option[39m
+    [33mvalue[39m=[32m"green"[39m
+  [36m/>[39m
+
+  Name "王座会":
+  [36m<option[39m
+    [33mvalue[39m=[32m"blue"[39m
+  [36m/>[39m
+
+  Name "鸣钟教派":
+  [36m<option[39m
+    [33mvalue[39m=[32m"red"[39m
+  [36m/>[39m
+
+  Name "国家机构":
+  [36m<option[39m
+    [33mvalue[39m=[32m"gray"[39m
+  [36m/>[39m
+
+  Name "圣贤":
+  [36m<option[39m
+    [33mvalue[39m=[32m"white"[39m
+  [36m/>[39m
+
+  Name "方碑序列":
+  [36m<option[39m
+    [33mvalue[39m=[32m"black"[39m
+  [36m/>[39m
+
+  Name "梦境行者":
+  [36m<option[39m
+    [33mvalue[39m=[32m"purple"[39m
+  [36m/>[39m
+
+  Name "中立（无派系）":
+  [36m<option[39m
+    [33mvalue[39m=[32m"neutral"[39m
+  [36m/>[39m
+
+  Name "颜色未标":
+  [36m<option[39m
+    [33mvalue[39m=[32m"unknown"[39m
+  [36m/>[39m
+
+  Name "全部类型":
+  [36m<option[39m
+    [33mvalue[39m=[32m"all"[39m
+  [36m/>[39m
+
+  Name "角色":
+  [36m<option[39m
+    [33mvalue[39m=[32m"character"[39m
+  [36m/>[39m
+
+  Name "已实现玩家卡":
+  [36m<option[39m
+    [33mvalue[39m=[32m"implemented"[39m
+  [36m/>[39m
+
+  Name "不可加入牌组":
+  [36m<option[39m
+    [33mvalue[39m=[32m"unavailable"[39m
+  [36m/>[39m
+
+  Name "当前目录全部":
+  [36m<option[39m
+    [33mvalue[39m=[32m"all"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  status:
+
+  Name "":
+  [36m<div[39m
+    [33mclass[39m=[32m"hg-library-total"[39m
+    [33mrole[39m=[32m"status"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  searchbox:
+
+  Name "检索卡牌":
+  [36m<input[39m
+    [33mplaceholder[39m=[32m"名称、编号或规则文字"[39m
+    [33mtype[39m=[32m"search"[39m
+    [33mvalue[39m=[32m""[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  contentinfo:
+
+  Name "":
+  [36m<footer[39m
+    [33mclass[39m=[32m"hg-footer"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"hg-app"[39m
+    [36m>[39m
+      [36m<header[39m
+        [33mclass[39m=[32m"hg-header"[39m
+      [36m>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"hg-brand"[39m
+          [33mhref[39m=[32m"/"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"hg-brand-mark"[39m
+          [36m>[39m
+            [0m◈[0m
+          [36m</span>[39m
+          [36m<span>[39m
+            [0m隐秘世界 [0m
+            [36m<b>[39m
+              [0m霸权[0m
+            [36m</b>[39m
+            [36m<small>[39m
+              [0mSECRET WORLD · HEGEMONY[0m
+            [36m</small>[39m
+          [36m</span>[39m
+        [36m</a>[39m
+        [36m<nav>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"hg-nav-button"[39m
+          [36m>[39m
+            [0m上手指南 [0m
+            [36m<span>[39m
+              [0m?[0m
+            [36m</span>[39m
+          [36m</button>[39m
+        [36m</nav>[39m
+      [36m</header>[39m
+      [36m<main[39m
+        [33mclass[39m=[32m"hg-lobby"[39m
+      [36m>[39m
+        [36m<section[39m
+          [33mclass[39m=[32m"hg-hero"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"hg-hero-orbit"[39m
+          [36m>[39m
+            [36m<span>[39m
+              [0m◈[0m
+            [36m</span>[39m
+            [36m<i />[39m
+            [36m<i />[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-eyebrow"[39m
+          [36m>[39m
+            [0mTHE SECRET WORLD · 霸权[0m
+          [36m</div>[39m
+          [36m<h1>[39m
+            [0m世界的背面，[0m
+            [36m<br />[39m
+            [36m<em>[39m
+              [0m等你落子。[0m
+            [36m</em>[39m
+          [36m</h1>[39m
+          [36m<p>[39m
+            [0m派遣角色，争夺城市的隐秘权柄。[0m
+            [36m<br />[39m
+            [0m与一位对手交锋，或和伙伴并肩加入四人牌桌。[0m
+          [36m</p>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-hero-features"[39m
+          [36m>[39m
+            [36m<span>[39m
+              [0m◈ 调查[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0m⚔ 战斗[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0m⚑ 势力[0m
+            [36m</span>[39m
+          [36m</div>[39m
+        [36m</section>[39m
+        [36m<section[39m
+          [33mclass[39m=[32m"hg-onboarding"[39m
+        [36m>[39m
+          [36m<form[39m
+            [33mclass[39m=[32m"hg-entry-form"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"hg-section-title"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"hg-eyebrow"[39m
+              [36m>[39m
+                [0m01 / 入席[0m
+              [36m</span>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"hg-tabs"[39m
+              [36m>[39m
+                [36m<button[39m
+                  [33mclass[39m=[32m"hg-tab-active"[39m
+                  [33mtype[39m=[32m"button"[39m
+                [36m>[39m
+                  [0m创建牌桌[0m
+                [36m</button>[39m
+                [36m<button[39m
+                  [33mclass[39m=[32m""[39m
+                  [33mtype[39m=[32m"button"[39m
+                [36m>[39m
+                  [0m邀请码加入[0m
+                [36m</button>[39m
+              [36m</div>[39m
+            [36m</div>[39m
+            [36m<p[39m
+              [33mclass[39m=[32m"hg-muted"[39m
+            [36m>[39m
+              [0m当前牌组：[0m
+              [0m调查者[0m
+              [0m · [0m
+              [36m<a[39m
+                [33mhref[39m=[32m"#hegemony-decks"[39m
+              [36m>[39m
+                [0m更换牌组 ↓[0m
+              [36m</a>[39m
+            [36m</p>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"hg-field"[39m
+            [36m>[39m
+              [0m你的称呼[0m
+              [36m<input[39m
+                [33mautocomplete[39m=[32m"nickname"[39m
+                [33mmaxlength[39m=[32m"24"[39m
+                [33mplaceholder[39m=[32m"让牌桌上的伙伴认出你"[39m
+                [33mrequired[39m=[32m""[39m
+                [33mvalue[39m=[32m""[39m
+              [36m/>[39m
+            [36m</label>[39m
+            [36m<div[39m
+              [33maria-label[39m=[32m"对战模式"[39m
+              [33mclass[39m=[32m"hg-mode-select"[39m
+              [33mrole[39m=[32m"group"[39m
+            [36m>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"hg-selected"[39m
+                [33mtype[39m=[32m"button"[39m
+              [36m>[39m
+                [36m<strong>[39m
+                  [0m两人对决 [0m
+                  [36m<span>[39m
+                    [0m1 VS 1[0m
+                  [36m</span>[39m
+                [36m</strong>[39m
+                [36m<small>[39m
+                  [0m3 个地区 · 先获 8 分胜利[0m
+                [36m</small>[39m
+              [36m</button>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m""[39m
+                [33mtype[39m=[32m"button"[39m
+              [36m>[39m
+                [36m<strong>[39m
+                  [0m四人协作 [0m
+                  [36m<span>[39m
+                    [0m2 VS 2[0m
+                  [36m</span>[39m
+                [36m</strong>[39m
+                [36m<small>[39m
+                  [0m5 个地区 · 团队先获 10 分胜利[0m
+                [36m</small>[39m
+              [36m</button>[39m
+            [36m</div>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"hg-entry-bottom"[39m
+            [36m>[39m
+              [36m<p>[39m
+                [0m创建后分享邀请，所有玩家准备后由房主开始。[0m
+                [36m<br />[39m
+                [0m座位保存在此浏览器，刷新即可继续。[0m
+              [36m</p>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"hg-button hg-button-primary"[39m
+                [33mdisabled[39m=[32m""[39m
+                [33mtype[39m=[32m"submit"[39m
+              [36m>[39m
+                [0m创建牌桌 →[0m
+              [36m</button>[39m
+            [36m</div>[39m
+          [36m</form>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-section-title"[39m
+            [33mid[39m=[32m"hegemony-decks"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"hg-eyebrow"[39m
+            [36m>[39m
+              [0m02 / 选择自组预组[0m
+            [36m</span>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"hg-pool-badge"[39m
+            [36m>[39m
+              [0m受限真实卡池预组[0m
+            [36m</span>[39m
+          [36m</div>[39m
+          [36m<h2>[39m
+            [0m1 套自组预组[0m
+          [36m</h2>[39...
+ ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ independent src/game/PlayerSessions.test.tsx:44:55
+     42| }
+     43| async function lobby() { fireEvent.click(screen.getByRole('button', { …
+     44| async function independent() { fireEvent.click(screen.getByRole('butto…
+       |                                                       ^
+     45| async function join(code = 'INVITE') {
+     46|   fireEvent.click(screen.getByRole('button', { name: '邀请码加入' }));
+ ❯ src/game/PlayerSessions.test.tsx:72:62
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/7]⎯
+
+ FAIL  src/game/PlayerSessions.test.tsx > explicit independent player sessions through normal UI > uses a fresh entry receipt in a new scope and keeps identical retries inside that scope
+TestingLibraryElementError: Unable to find an accessible element with the role "button" and name "开始新的独立玩家会话"
+
+Here are the accessible roles:
+
+  banner:
+
+  Name "":
+  [36m<header[39m
+    [33mclass[39m=[32m"hg-header"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  link:
+
+  Name "◈隐秘世界 霸权SECRET WORLD · HEGEMONY":
+  [36m<a[39m
+    [33mclass[39m=[32m"hg-brand"[39m
+    [33mhref[39m=[32m"/"[39m
+  [36m/>[39m
+
+  Name "更换牌组 ↓":
+  [36m<a[39m
+    [33mhref[39m=[32m"#hegemony-decks"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  navigation:
+
+  Name "":
+  [36m<nav />[39m
+
+  --------------------------------------------------
+  button:
+
+  Name "上手指南 ?":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-nav-button"[39m
+  [36m/>[39m
+
+  Name "关闭提示":
+  [36m<button[39m
+    [33maria-label[39m=[32m"关闭提示"[39m
+  [36m/>[39m
+
+  Name "创建牌桌":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-tab-active"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "邀请码加入":
+  [36m<button[39m
+    [33mclass[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "两人对决 1 VS 13 个地区 · 先获 8 分胜利":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-selected"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "四人协作 2 VS 25 个地区 · 团队先获 10 分胜利":
+  [36m<button[39m
+    [33mclass[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "创建牌桌 →":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-button hg-button-primary"[39m
+    [33mtype[39m=[32m"submit"[39m
+  [36m/>[39m
+
+  Name "01调查 · 控制调查者控制与调查调查者的颜色组成50 张 · 自组预组 ✓ 已选择":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"true"[39m
+    [33mclass[39m=[32m"hg-deck hg-deck-faction-neutral hg-selected"[39m
+    [33mdata-deck-id[39m=[32m"watchers"[39m
+    [33mdata-deck-main-faction[39m=[32m"neutral"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "新建空白牌组":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-button hg-button-quiet"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "复制为草稿":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-button hg-button-quiet"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "保存牌组":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-button hg-button-quiet"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "保存并选择此牌组":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-button hg-button-primary"[39m
+    [33mdisabled[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  alert:
+
+  Name "":
+  [36m<div[39m
+    [33mclass[39m=[32m"hg-error"[39m
+    [33mrole[39m=[32m"alert"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  main:
+
+  Name "":
+  [36m<main[39m
+    [33mclass[39m=[32m"hg-lobby"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  heading:
+
+  Name "世界的背面，等你落子。":
+  [36m<h1 />[39m
+
+  Name "1 套自组预组":
+  [36m<h2 />[39m
+
+  Name "命名、编辑与选择牌组":
+  [36m<h2[39m
+    [33mid[39m=[32m"hg-library-title"[39m
+  [36m/>[39m
+
+  Name "牌组组成":
+  [36m<h3 />[39m
+
+  Name "当前开放卡牌":
+  [36m<h3 />[39m
+
+  --------------------------------------------------
+  emphasis:
+
+  Name "":
+  [36m<em />[39m
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-muted"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-muted"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-neutral-note"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-muted"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-muted"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-library-version"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-muted"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-library-match-count"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-muted"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  textbox:
+
+  Name "你的称呼":
+  [36m<input[39m
+    [33mautocomplete[39m=[32m"nickname"[39m
+    [33mmaxlength[39m=[32m"24"[39m
+    [33mplaceholder[39m=[32m"让牌桌上的伙伴认出你"[39m
+    [33mrequired[39m=[32m""[39m
+    [33mvalue[39m=[32m"测试玩家"[39m
+  [36m/>[39m
+
+  Name "牌组名称":
+  [36m<input[39m
+    [33mmaxlength[39m=[32m"80"[39m
+    [33mvalue[39m=[32m"我的牌组"[39m
+  [36m/>[39m
+
+  Name "牌组说明":
+  [36m<textarea[39m
+    [33mmaxlength[39m=[32m"500"[39m
+    [33mrows[39m=[32m"2"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  group:
+
+  Name "对战模式":
+  [36m<div[39m
+    [33maria-label[39m=[32m"对战模式"[39m
+    [33mclass[39m=[32m"hg-mode-select"[39m
+    [33mrole[39m=[32m"group"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<details[39m
+    [33mclass[39m=[32m"hg-deck-list"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<details[39m
+    [33mclass[39m=[32m"hg-faction-coverage"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  strong:
+
+  Name "":
+  [36m<strong />[39m
+
+  Name "":
+  [36m<strong />[39m
+
+  Name "":
+  [36m<strong />[39m
+
+  Name "":
+  [36m<strong />[39m
+
+  --------------------------------------------------
+  list:
+
+  Name "":
+  [36m<ul />[39m
+
+  Name "官方八色派系覆盖":
+  [36m<ul[39m
+    [33maria-label[39m=[32m"官方八色派系覆盖"[39m
+  [36m/>[39m
+
+  Name "牌组校验问题":
+  [36m<ul[39m
+    [33maria-label[39m=[32m"牌组校验问题"[39m
+    [33mclass[39m=[32m"hg-library-issues"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<ul[39m
+    [33mclass[39m=[32m"hg-library-card-options"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  listitem:
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"hg-faction-yellow"[39m
+    [33mdata-faction-id[39m=[32m"yellow"[39m
+    [33mdata-open-card-count[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"hg-faction-green"[39m
+    [33mdata-faction-id[39m=[32m"green"[39m
+    [33mdata-open-card-count[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"hg-faction-blue"[39m
+    [33mdata-faction-id[39m=[32m"blue"[39m
+    [33mdata-open-card-count[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"hg-faction-red"[39m
+    [33mdata-faction-id[39m=[32m"red"[39m
+    [33mdata-open-card-count[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"hg-faction-gray"[39m
+    [33mdata-faction-id[39m=[32m"gray"[39m
+    [33mdata-open-card-count[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"hg-faction-white"[39m
+    [33mdata-faction-id[39m=[32m"white"[39m
+    [33mdata-open-card-count[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"hg-faction-black"[39m
+    [33mdata-faction-id[39m=[32m"black"[39m
+    [33mdata-open-card-count[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"hg-faction-purple"[39m
+    [33mdata-faction-id[39m=[32m"purple"[39m
+    [33mdata-open-card-count[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li />[39m
+
+  --------------------------------------------------
+  region:
+
+  Name "命名、编辑与选择牌组":
+  [36m<section[39m
+    [33maria-labelledby[39m=[32m"hg-library-title"[39m
+    [33mclass[39m=[32m"hg-deck-library"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  combobox:
+
+  Name "预组模板":
+  [36m<select />[39m
+
+  Name "派系":
+  [36m<select />[39m
+
+  Name "卡牌类型":
+  [36m<select />[39m
+
+  Name "实现状态":
+  [36m<select />[39m
+
+  --------------------------------------------------
+  option:
+
+  Name "调查者":
+  [36m<option[39m
+    [33mvalue[39m=[32m"watchers"[39m
+  [36m/>[39m
+
+  Name "全部派系":
+  [36m<option[39m
+    [33mvalue[39m=[32m"all"[39m
+  [36m/>[39m
+
+  Name "帷幕守望":
+  [36m<option[39m
+    [33mvalue[39m=[32m"yellow"[39m
+  [36m/>[39m
+
+  Name "猎魔人":
+  [36m<option[39m
+    [33mvalue[39m=[32m"green"[39m
+  [36m/>[39m
+
+  Name "王座会":
+  [36m<option[39m
+    [33mvalue[39m=[32m"blue"[39m
+  [36m/>[39m
+
+  Name "鸣钟教派":
+  [36m<option[39m
+    [33mvalue[39m=[32m"red"[39m
+  [36m/>[39m
+
+  Name "国家机构":
+  [36m<option[39m
+    [33mvalue[39m=[32m"gray"[39m
+  [36m/>[39m
+
+  Name "圣贤":
+  [36m<option[39m
+    [33mvalue[39m=[32m"white"[39m
+  [36m/>[39m
+
+  Name "方碑序列":
+  [36m<option[39m
+    [33mvalue[39m=[32m"black"[39m
+  [36m/>[39m
+
+  Name "梦境行者":
+  [36m<option[39m
+    [33mvalue[39m=[32m"purple"[39m
+  [36m/>[39m
+
+  Name "中立（无派系）":
+  [36m<option[39m
+    [33mvalue[39m=[32m"neutral"[39m
+  [36m/>[39m
+
+  Name "颜色未标":
+  [36m<option[39m
+    [33mvalue[39m=[32m"unknown"[39m
+  [36m/>[39m
+
+  Name "全部类型":
+  [36m<option[39m
+    [33mvalue[39m=[32m"all"[39m
+  [36m/>[39m
+
+  Name "角色":
+  [36m<option[39m
+    [33mvalue[39m=[32m"character"[39m
+  [36m/>[39m
+
+  Name "已实现玩家卡":
+  [36m<option[39m
+    [33mvalue[39m=[32m"implemented"[39m
+  [36m/>[39m
+
+  Name "不可加入牌组":
+  [36m<option[39m
+    [33mvalue[39m=[32m"unavailable"[39m
+  [36m/>[39m
+
+  Name "当前目录全部":
+  [36m<option[39m
+    [33mvalue[39m=[32m"all"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  status:
+
+  Name "":
+  [36m<div[39m
+    [33mclass[39m=[32m"hg-library-total"[39m
+    [33mrole[39m=[32m"status"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  searchbox:
+
+  Name "检索卡牌":
+  [36m<input[39m
+    [33mplaceholder[39m=[32m"名称、编号或规则文字"[39m
+    [33mtype[39m=[32m"search"[39m
+    [33mvalue[39m=[32m""[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  contentinfo:
+
+  Name "":
+  [36m<footer[39m
+    [33mclass[39m=[32m"hg-footer"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"hg-app"[39m
+    [36m>[39m
+      [36m<header[39m
+        [33mclass[39m=[32m"hg-header"[39m
+      [36m>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"hg-brand"[39m
+          [33mhref[39m=[32m"/"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"hg-brand-mark"[39m
+          [36m>[39m
+            [0m◈[0m
+          [36m</span>[39m
+          [36m<span>[39m
+            [0m隐秘世界 [0m
+            [36m<b>[39m
+              [0m霸权[0m
+            [36m</b>[39m
+            [36m<small>[39m
+              [0mSECRET WORLD · HEGEMONY[0m
+            [36m</small>[39m
+          [36m</span>[39m
+        [36m</a>[39m
+        [36m<nav>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"hg-nav-button"[39m
+          [36m>[39m
+            [0m上手指南 [0m
+            [36m<span>[39m
+              [0m?[0m
+            [36m</span>[39m
+          [36m</button>[39m
+        [36m</nav>[39m
+      [36m</header>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"hg-error"[39m
+        [33mrole[39m=[32m"alert"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [0mentry temporarily unavailable[0m
+        [36m</span>[39m
+        [36m<button[39m
+          [33maria-label[39m=[32m"关闭提示"[39m
+        [36m>[39m
+          [0m×[0m
+        [36m</button>[39m
+      [36m</div>[39m
+      [36m<main[39m
+        [33mclass[39m=[32m"hg-lobby"[39m
+      [36m>[39m
+        [36m<section[39m
+          [33mclass[39m=[32m"hg-hero"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"hg-hero-orbit"[39m
+          [36m>[39m
+            [36m<span>[39m
+              [0m◈[0m
+            [36m</span>[39m
+            [36m<i />[39m
+            [36m<i />[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-eyebrow"[39m
+          [36m>[39m
+            [0mTHE SECRET WORLD · 霸权[0m
+          [36m</div>[39m
+          [36m<h1>[39m
+            [0m世界的背面，[0m
+            [36m<br />[39m
+            [36m<em>[39m
+              [0m等你落子。[0m
+            [36m</em>[39m
+          [36m</h1>[39m
+          [36m<p>[39m
+            [0m派遣角色，争夺城市的隐秘权柄。[0m
+            [36m<br />[39m
+            [0m与一位对手交锋，或和伙伴并肩加入四人牌桌。[0m
+          [36m</p>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-hero-features"[39m
+          [36m>[39m
+            [36m<span>[39m
+              [0m◈ 调查[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0m⚔ 战斗[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0m⚑ 势力[0m
+            [36m</span>[39m
+          [36m</div>[39m
+        [36m</section>[39m
+        [36m<section[39m
+          [33mclass[39m=[32m"hg-onboarding"[39m
+        [36m>[39m
+          [36m<form[39m
+            [33mclass[39m=[32m"hg-entry-form"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"hg-section-title"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"hg-eyebrow"[39m
+              [36m>[39m
+                [0m01 / 入席[0m
+              [36m</span>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"hg-tabs"[39m
+              [36m>[39m
+                [36m<button[39m
+                  [33mclass[39m=[32m"hg-tab-active"[39m
+                  [33mtype[39m=[32m"button"[39m
+                [36m>[39m
+                  [0m创建牌桌[0m
+                [36m</button>[39m
+                [36m<button[39m
+                  [33mclass[39m=[32m""[39m
+                  [33mtype[39m=[32m"button"[39m
+                [36m>[39m
+                  [0m邀请码加入[0m
+                [36m</button>[39m
+              [36m</div>[39m
+            [36m</div>[39m
+            [36m<p[39m
+              [33mclass[39m=[32m"hg-muted"[39m
+            [36m>[39m
+              [0m当前牌组：[0m
+              [0m调查者[0m
+              [0m · [0m
+              [36m<a[39m
+                [33mhref[39m=[32m"#hegemony-decks"[39m
+              [36m>[39m
+                [0m更换牌组 ↓[0m
+              [36m</a>[39m
+            [36m</p>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"hg-field"[39m
+            [36m>[39m
+              [0m你的称呼[0m
+              [36m<input[39m
+                [33mautocomplete[39m=[32m"nickname"[39m
+                [33mmaxlength[39m=[32m"24"[39m
+                [33mplaceholder[39m=[32m"让牌桌上的伙伴认出你"[39m
+                [33mrequired[39m=[32m""[39m
+                [33mvalue[39m=[32m"测试玩家"[39m
+              [36m/>[39m
+            [36m</label>[39m
+            [36m<div[39m
+              [33maria-label[39m=[32m"对战模式"[39m
+              [33mclass[39m=[32m"hg-mode-select"[39m
+              [33mrole[39m=[32m"group"[39m
+            [36m>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"hg-selected"[39m
+                [33mtype[39m=[32m"button"[39m
+              [36m>[39m
+                [36m<strong>[39m
+                  [0m两人对决 [0m
+                  [36m<span>[39m
+                    [0m1 VS 1[0m
+                  [36m</span>[39m
+                [36m</strong>[39m
+                [36m<small>[39m
+                  [0m3 个地区 · 先获 8 分胜利[0m
+                [36m</small>[39m
+              [36m</button>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m""[39m
+                [33mtype[39m=[32m"button"[39m
+              [36m>[39m
+                [36m<strong>[39m
+                  [0m四人协作 [0m
+                  [36m<span>[39m
+                    [0m2 VS 2[0m
+                  [36m</span>[39m
+                [36m</strong>[39m
+                [36m<small>[39m
+                  [0m5 个地区 · 团队先获 10 分胜利[0m
+                [36m</small>[39m
+              [36m</button>[39m
+            [36m</div>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"hg-entry-bottom"[39m
+            [36m>[39m
+              [36m<p>[39m
+                [0m创建后分享邀请，所有玩家准备后由房主开始。[0m
+                [36m<br />[39m
+                [0m座位保存在此浏览器，刷新即可继续。[0m
+              [36m</p>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"hg-button hg-button-primary"[39m
+                [33mtype[39m=[32m"submit"[39m
+              [36m>[39m
+                [0m创建牌桌 →[0m
+              [36m</button>[39m
+            [36m</div>[39m
+          [36m</form>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-section-title"[39m
+            [33mid[39m=[32m"hegemony-decks"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"hg-eyebrow"[39m
+            [36...
+ ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ independent src/game/PlayerSessions.test.tsx:44:55
+     42| }
+     43| async function lobby() { fireEvent.click(screen.getByRole('button', { …
+     44| async function independent() { fireEvent.click(screen.getByRole('butto…
+       |                                                       ^
+     45| async function join(code = 'INVITE') {
+     46|   fireEvent.click(screen.getByRole('button', { name: '邀请码加入' }));
+ ❯ src/game/PlayerSessions.test.tsx:84:11
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/7]⎯
+
+ FAIL  src/game/PlayerSessions.test.tsx > explicit independent player sessions through normal UI > blocks switching scopes while an original paid/action command remains unconfirmed, including in the lobby
+TestingLibraryElementError: Unable to find an accessible element with the role "button" and name "开始新的独立玩家会话"
+
+Here are the accessible roles:
+
+  banner:
+
+  Name "":
+  [36m<header[39m
+    [33mclass[39m=[32m"hg-header"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  link:
+
+  Name "◈隐秘世界 霸权SECRET WORLD · HEGEMONY":
+  [36m<a[39m
+    [33mclass[39m=[32m"hg-brand"[39m
+    [33mhref[39m=[32m"/"[39m
+  [36m/>[39m
+
+  Name "更换牌组 ↓":
+  [36m<a[39m
+    [33mhref[39m=[32m"#hegemony-decks"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  navigation:
+
+  Name "":
+  [36m<nav />[39m
+
+  --------------------------------------------------
+  button:
+
+  Name "上手指南 ?":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-nav-button"[39m
+  [36m/>[39m
+
+  Name "回到牌桌 INVITE · 席位 1":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-button hg-button-quiet"[39m
+  [36m/>[39m
+
+  Name "创建牌桌":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-tab-active"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "邀请码加入":
+  [36m<button[39m
+    [33mclass[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "两人对决 1 VS 13 个地区 · 先获 8 分胜利":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-selected"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "四人协作 2 VS 25 个地区 · 团队先获 10 分胜利":
+  [36m<button[39m
+    [33mclass[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "创建牌桌 →":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-button hg-button-primary"[39m
+    [33mdisabled[39m=[32m""[39m
+    [33mtype[39m=[32m"submit"[39m
+  [36m/>[39m
+
+  Name "01调查 · 控制调查者控制与调查调查者的颜色组成50 张 · 自组预组 ✓ 已选择":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"true"[39m
+    [33mclass[39m=[32m"hg-deck hg-deck-faction-neutral hg-selected"[39m
+    [33mdata-deck-id[39m=[32m"watchers"[39m
+    [33mdata-deck-main-faction[39m=[32m"neutral"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "新建空白牌组":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-button hg-button-quiet"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "复制为草稿":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-button hg-button-quiet"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "保存牌组":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-button hg-button-quiet"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "保存并选择此牌组":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-button hg-button-primary"[39m
+    [33mdisabled[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-muted"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-muted"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-neutral-note"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-muted"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-muted"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-library-version"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-muted"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-library-match-count"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-muted"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  main:
+
+  Name "":
+  [36m<main[39m
+    [33mclass[39m=[32m"hg-lobby"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  heading:
+
+  Name "世界的背面，等你落子。":
+  [36m<h1 />[39m
+
+  Name "1 套自组预组":
+  [36m<h2 />[39m
+
+  Name "命名、编辑与选择牌组":
+  [36m<h2[39m
+    [33mid[39m=[32m"hg-library-title"[39m
+  [36m/>[39m
+
+  Name "牌组组成":
+  [36m<h3 />[39m
+
+  Name "当前开放卡牌":
+  [36m<h3 />[39m
+
+  --------------------------------------------------
+  emphasis:
+
+  Name "":
+  [36m<em />[39m
+
+  --------------------------------------------------
+  textbox:
+
+  Name "你的称呼":
+  [36m<input[39m
+    [33mautocomplete[39m=[32m"nickname"[39m
+    [33mmaxlength[39m=[32m"24"[39m
+    [33mplaceholder[39m=[32m"让牌桌上的伙伴认出你"[39m
+    [33mrequired[39m=[32m""[39m
+    [33mvalue[39m=[32m""[39m
+  [36m/>[39m
+
+  Name "牌组名称":
+  [36m<input[39m
+    [33mmaxlength[39m=[32m"80"[39m
+    [33mvalue[39m=[32m"我的牌组"[39m
+  [36m/>[39m
+
+  Name "牌组说明":
+  [36m<textarea[39m
+    [33mmaxlength[39m=[32m"500"[39m
+    [33mrows[39m=[32m"2"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  group:
+
+  Name "对战模式":
+  [36m<div[39m
+    [33maria-label[39m=[32m"对战模式"[39m
+    [33mclass[39m=[32m"hg-mode-select"[39m
+    [33mrole[39m=[32m"group"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<details[39m
+    [33mclass[39m=[32m"hg-deck-list"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<details[39m
+    [33mclass[39m=[32m"hg-faction-coverage"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  strong:
+
+  Name "":
+  [36m<strong />[39m
+
+  Name "":
+  [36m<strong />[39m
+
+  Name "":
+  [36m<strong />[39m
+
+  Name "":
+  [36m<strong />[39m
+
+  --------------------------------------------------
+  list:
+
+  Name "":
+  [36m<ul />[39m
+
+  Name "官方八色派系覆盖":
+  [36m<ul[39m
+    [33maria-label[39m=[32m"官方八色派系覆盖"[39m
+  [36m/>[39m
+
+  Name "牌组校验问题":
+  [36m<ul[39m
+    [33maria-label[39m=[32m"牌组校验问题"[39m
+    [33mclass[39m=[32m"hg-library-issues"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<ul[39m
+    [33mclass[39m=[32m"hg-library-card-options"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  listitem:
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"hg-faction-yellow"[39m
+    [33mdata-faction-id[39m=[32m"yellow"[39m
+    [33mdata-open-card-count[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"hg-faction-green"[39m
+    [33mdata-faction-id[39m=[32m"green"[39m
+    [33mdata-open-card-count[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"hg-faction-blue"[39m
+    [33mdata-faction-id[39m=[32m"blue"[39m
+    [33mdata-open-card-count[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"hg-faction-red"[39m
+    [33mdata-faction-id[39m=[32m"red"[39m
+    [33mdata-open-card-count[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"hg-faction-gray"[39m
+    [33mdata-faction-id[39m=[32m"gray"[39m
+    [33mdata-open-card-count[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"hg-faction-white"[39m
+    [33mdata-faction-id[39m=[32m"white"[39m
+    [33mdata-open-card-count[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"hg-faction-black"[39m
+    [33mdata-faction-id[39m=[32m"black"[39m
+    [33mdata-open-card-count[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"hg-faction-purple"[39m
+    [33mdata-faction-id[39m=[32m"purple"[39m
+    [33mdata-open-card-count[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li />[39m
+
+  --------------------------------------------------
+  region:
+
+  Name "命名、编辑与选择牌组":
+  [36m<section[39m
+    [33maria-labelledby[39m=[32m"hg-library-title"[39m
+    [33mclass[39m=[32m"hg-deck-library"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  combobox:
+
+  Name "预组模板":
+  [36m<select />[39m
+
+  Name "派系":
+  [36m<select />[39m
+
+  Name "卡牌类型":
+  [36m<select />[39m
+
+  Name "实现状态":
+  [36m<select />[39m
+
+  --------------------------------------------------
+  option:
+
+  Name "调查者":
+  [36m<option[39m
+    [33mvalue[39m=[32m"watchers"[39m
+  [36m/>[39m
+
+  Name "全部派系":
+  [36m<option[39m
+    [33mvalue[39m=[32m"all"[39m
+  [36m/>[39m
+
+  Name "帷幕守望":
+  [36m<option[39m
+    [33mvalue[39m=[32m"yellow"[39m
+  [36m/>[39m
+
+  Name "猎魔人":
+  [36m<option[39m
+    [33mvalue[39m=[32m"green"[39m
+  [36m/>[39m
+
+  Name "王座会":
+  [36m<option[39m
+    [33mvalue[39m=[32m"blue"[39m
+  [36m/>[39m
+
+  Name "鸣钟教派":
+  [36m<option[39m
+    [33mvalue[39m=[32m"red"[39m
+  [36m/>[39m
+
+  Name "国家机构":
+  [36m<option[39m
+    [33mvalue[39m=[32m"gray"[39m
+  [36m/>[39m
+
+  Name "圣贤":
+  [36m<option[39m
+    [33mvalue[39m=[32m"white"[39m
+  [36m/>[39m
+
+  Name "方碑序列":
+  [36m<option[39m
+    [33mvalue[39m=[32m"black"[39m
+  [36m/>[39m
+
+  Name "梦境行者":
+  [36m<option[39m
+    [33mvalue[39m=[32m"purple"[39m
+  [36m/>[39m
+
+  Name "中立（无派系）":
+  [36m<option[39m
+    [33mvalue[39m=[32m"neutral"[39m
+  [36m/>[39m
+
+  Name "颜色未标":
+  [36m<option[39m
+    [33mvalue[39m=[32m"unknown"[39m
+  [36m/>[39m
+
+  Name "全部类型":
+  [36m<option[39m
+    [33mvalue[39m=[32m"all"[39m
+  [36m/>[39m
+
+  Name "角色":
+  [36m<option[39m
+    [33mvalue[39m=[32m"character"[39m
+  [36m/>[39m
+
+  Name "已实现玩家卡":
+  [36m<option[39m
+    [33mvalue[39m=[32m"implemented"[39m
+  [36m/>[39m
+
+  Name "不可加入牌组":
+  [36m<option[39m
+    [33mvalue[39m=[32m"unavailable"[39m
+  [36m/>[39m
+
+  Name "当前目录全部":
+  [36m<option[39m
+    [33mvalue[39m=[32m"all"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  status:
+
+  Name "":
+  [36m<div[39m
+    [33mclass[39m=[32m"hg-library-total"[39m
+    [33mrole[39m=[32m"status"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  searchbox:
+
+  Name "检索卡牌":
+  [36m<input[39m
+    [33mplaceholder[39m=[32m"名称、编号或规则文字"[39m
+    [33mtype[39m=[32m"search"[39m
+    [33mvalue[39m=[32m""[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  contentinfo:
+
+  Name "":
+  [36m<footer[39m
+    [33mclass[39m=[32m"hg-footer"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"hg-app"[39m
+    [36m>[39m
+      [36m<header[39m
+        [33mclass[39m=[32m"hg-header"[39m
+      [36m>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"hg-brand"[39m
+          [33mhref[39m=[32m"/"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"hg-brand-mark"[39m
+          [36m>[39m
+            [0m◈[0m
+          [36m</span>[39m
+          [36m<span>[39m
+            [0m隐秘世界 [0m
+            [36m<b>[39m
+              [0m霸权[0m
+            [36m</b>[39m
+            [36m<small>[39m
+              [0mSECRET WORLD · HEGEMONY[0m
+            [36m</small>[39m
+          [36m</span>[39m
+        [36m</a>[39m
+        [36m<nav>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"hg-nav-button"[39m
+          [36m>[39m
+            [0m上手指南 [0m
+            [36m<span>[39m
+              [0m?[0m
+            [36m</span>[39m
+          [36m</button>[39m
+        [36m</nav>[39m
+      [36m</header>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"hg-return-seat"[39m
+      [36m>[39m
+        [36m<p>[39m
+          [0m旧牌桌座位已保留。可以新建另一桌，也可回到下方牌桌。[0m
+        [36m</p>[39m
+        [36m<div>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"hg-button hg-button-quiet"[39m
+          [36m>[39m
+            [0m回到牌桌 [0m
+            [0mINVITE[0m
+            [0m · 席位 [0m
+            [0m1[0m
+          [36m</button>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+      [36m<main[39m
+        [33mclass[39m=[32m"hg-lobby"[39m
+      [36m>[39m
+        [36m<section[39m
+          [33mclass[39m=[32m"hg-hero"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"hg-hero-orbit"[39m
+          [36m>[39m
+            [36m<span>[39m
+              [0m◈[0m
+            [36m</span>[39m
+            [36m<i />[39m
+            [36m<i />[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-eyebrow"[39m
+          [36m>[39m
+            [0mTHE SECRET WORLD · 霸权[0m
+          [36m</div>[39m
+          [36m<h1>[39m
+            [0m世界的背面，[0m
+            [36m<br />[39m
+            [36m<em>[39m
+              [0m等你落子。[0m
+            [36m</em>[39m
+          [36m</h1>[39m
+          [36m<p>[39m
+            [0m派遣角色，争夺城市的隐秘权柄。[0m
+            [36m<br />[39m
+            [0m与一位对手交锋，或和伙伴并肩加入四人牌桌。[0m
+          [36m</p>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-hero-features"[39m
+          [36m>[39m
+            [36m<span>[39m
+              [0m◈ 调查[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0m⚔ 战斗[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0m⚑ 势力[0m
+            [36m</span>[39m
+          [36m</div>[39m
+        [36m</section>[39m
+        [36m<section[39m
+          [33mclass[39m=[32m"hg-onboarding"[39m
+        [36m>[39m
+          [36m<form[39m
+            [33mclass[39m=[32m"hg-entry-form"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"hg-section-title"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"hg-eyebrow"[39m
+              [36m>[39m
+                [0m01 / 入席[0m
+              [36m</span>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"hg-tabs"[39m
+              [36m>[39m
+                [36m<button[39m
+                  [33mclass[39m=[32m"hg-tab-active"[39m
+                  [33mtype[39m=[32m"button"[39m
+                [36m>[39m
+                  [0m创建牌桌[0m
+                [36m</button>[39m
+                [36m<button[39m
+                  [33mclass[39m=[32m""[39m
+                  [33mtype[39m=[32m"button"[39m
+                [36m>[39m
+                  [0m邀请码加入[0m
+                [36m</button>[39m
+              [36m</div>[39m
+            [36m</div>[39m
+            [36m<p[39m
+              [33mclass[39m=[32m"hg-muted"[39m
+            [36m>[39m
+              [0m当前牌组：[0m
+              [0m调查者[0m
+              [0m · [0m
+              [36m<a[39m
+                [33mhref[39m=[32m"#hegemony-decks"[39m
+              [36m>[39m
+                [0m更换牌组 ↓[0m
+              [36m</a>[39m
+            [36m</p>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"hg-field"[39m
+            [36m>[39m
+              [0m你的称呼[0m
+              [36m<input[39m
+                [33mautocomplete[39m=[32m"nickname"[39m
+                [33mmaxlength[39m=[32m"24"[39m
+                [33mplaceholder[39m=[32m"让牌桌上的伙伴认出你"[39m
+                [33mrequired[39m=[32m""[39m
+                [33mvalue[39m=[32m""[39m
+              [36m/>[39m
+            [36m</label>[39m
+            [36m<div[39m
+              [33maria-label[39m=[32m"对战模式"[39m
+              [33mclass[39m=[32m"hg-mode-select"[39m
+              [33mrole[39m=[32m"group"[39m
+            [36m>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"hg-selected"[39m
+                [33mtype[39m=[32m"button"[39m
+              [36m>[39m
+                [36m<strong>[39m
+                  [0m两人对决 [0m
+                  [36m<span>[39m
+                    [0m1 VS 1[0m
+                  [36m</span>[39m
+                [36m</strong>[39m
+                [36m<small>[39m
+                  [0m3 个地区 · 先获 8 分胜利[0m
+                [36m</small>[39m
+              [36m</button>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m""[39m
+                [33mtype[39m=[32m"button"[39m
+              [36m>[39m
+                [36m<strong>[39m
+                  [0m四人协作 [0m
+                  [36m<span>[39m
+                    [0m2 VS 2[0m
+                  [36m</span>[39m
+                [36m</strong>[39m
+                [36m<small>[39m
+                  [0m5 个地区 · 团队先获 10 分胜利[0m
+                [36m</small>[39m
+              [36m</button>[39m
+            [36m</div>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"hg-entry-bottom"[39m
+            [36m>[39m
+              [36m<p>[39m
+                [0m创建后分享邀请，所有玩家准备后由房主开始。[0m
+                [36m<br />[39m
+                [0m座位保存在此浏览器，刷新即可继续。[0m
+              [36m</p>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"hg-button hg-button-primary"[39m
+                [33mdisabled[39m=[32m""[39m
+                [33mtype[39m=[32m"submit"[39m
+              [36m>[39m
+                [0m创建牌桌 →[0m
+              [36m</button>[39m
+            [36m</div>[39m
+          [36m</form>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-section-title"[39m
+            [33...
+ ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ src/game/PlayerSessions.test.tsx:98:43
+     96|     await waitFor(() => expect(screen.getByRole('button', { name: '返回大…
+     97|     const pending = localStorage.getItem('hegemony.pending.v1'); expec…
+     98|     await lobby(); fireEvent.click(screen.getByRole('button', { name: …
+       |                                           ^
+     99|     expect(screen.queryByText('独立玩家会话 · 当前标签')).not.toBeInTheDocument(…
+    100|     expect(localStorage.getItem('hegemony.pending.v1')).toBe(pending);…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/7]⎯
+
+ FAIL  src/game/PlayerSessions.test.tsx > explicit independent player sessions through normal UI > ignores other-tab storage events and joins a different invitation only with its own credentials
+TestingLibraryElementError: Unable to find an accessible element with the role "button" and name "开始新的独立玩家会话"
+
+Here are the accessible roles:
+
+  banner:
+
+  Name "":
+  [36m<header[39m
+    [33mclass[39m=[32m"hg-header"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  link:
+
+  Name "◈隐秘世界 霸权SECRET WORLD · HEGEMONY":
+  [36m<a[39m
+    [33mclass[39m=[32m"hg-brand"[39m
+    [33mhref[39m=[32m"/"[39m
+  [36m/>[39m
+
+  Name "更换牌组 ↓":
+  [36m<a[39m
+    [33mhref[39m=[32m"#hegemony-decks"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  navigation:
+
+  Name "":
+  [36m<nav />[39m
+
+  --------------------------------------------------
+  button:
+
+  Name "上手指南 ?":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-nav-button"[39m
+  [36m/>[39m
+
+  Name "回到牌桌 INVITE · 席位 1":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-button hg-button-quiet"[39m
+  [36m/>[39m
+
+  Name "创建牌桌":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-tab-active"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "邀请码加入":
+  [36m<button[39m
+    [33mclass[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "两人对决 1 VS 13 个地区 · 先获 8 分胜利":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-selected"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "四人协作 2 VS 25 个地区 · 团队先获 10 分胜利":
+  [36m<button[39m
+    [33mclass[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "创建牌桌 →":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-button hg-button-primary"[39m
+    [33mdisabled[39m=[32m""[39m
+    [33mtype[39m=[32m"submit"[39m
+  [36m/>[39m
+
+  Name "01调查 · 控制调查者控制与调查调查者的颜色组成50 张 · 自组预组 ✓ 已选择":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"true"[39m
+    [33mclass[39m=[32m"hg-deck hg-deck-faction-neutral hg-selected"[39m
+    [33mdata-deck-id[39m=[32m"watchers"[39m
+    [33mdata-deck-main-faction[39m=[32m"neutral"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "新建空白牌组":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-button hg-button-quiet"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "复制为草稿":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-button hg-button-quiet"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "保存牌组":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-button hg-button-quiet"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "保存并选择此牌组":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-button hg-button-primary"[39m
+    [33mdisabled[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-muted"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-muted"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-neutral-note"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-muted"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-muted"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-library-version"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-muted"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-library-match-count"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-muted"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  main:
+
+  Name "":
+  [36m<main[39m
+    [33mclass[39m=[32m"hg-lobby"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  heading:
+
+  Name "世界的背面，等你落子。":
+  [36m<h1 />[39m
+
+  Name "1 套自组预组":
+  [36m<h2 />[39m
+
+  Name "命名、编辑与选择牌组":
+  [36m<h2[39m
+    [33mid[39m=[32m"hg-library-title"[39m
+  [36m/>[39m
+
+  Name "牌组组成":
+  [36m<h3 />[39m
+
+  Name "当前开放卡牌":
+  [36m<h3 />[39m
+
+  --------------------------------------------------
+  emphasis:
+
+  Name "":
+  [36m<em />[39m
+
+  --------------------------------------------------
+  textbox:
+
+  Name "你的称呼":
+  [36m<input[39m
+    [33mautocomplete[39m=[32m"nickname"[39m
+    [33mmaxlength[39m=[32m"24"[39m
+    [33mplaceholder[39m=[32m"让牌桌上的伙伴认出你"[39m
+    [33mrequired[39m=[32m""[39m
+    [33mvalue[39m=[32m""[39m
+  [36m/>[39m
+
+  Name "牌组名称":
+  [36m<input[39m
+    [33mmaxlength[39m=[32m"80"[39m
+    [33mvalue[39m=[32m"我的牌组"[39m
+  [36m/>[39m
+
+  Name "牌组说明":
+  [36m<textarea[39m
+    [33mmaxlength[39m=[32m"500"[39m
+    [33mrows[39m=[32m"2"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  group:
+
+  Name "对战模式":
+  [36m<div[39m
+    [33maria-label[39m=[32m"对战模式"[39m
+    [33mclass[39m=[32m"hg-mode-select"[39m
+    [33mrole[39m=[32m"group"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<details[39m
+    [33mclass[39m=[32m"hg-deck-list"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<details[39m
+    [33mclass[39m=[32m"hg-faction-coverage"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  strong:
+
+  Name "":
+  [36m<strong />[39m
+
+  Name "":
+  [36m<strong />[39m
+
+  Name "":
+  [36m<strong />[39m
+
+  Name "":
+  [36m<strong />[39m
+
+  --------------------------------------------------
+  list:
+
+  Name "":
+  [36m<ul />[39m
+
+  Name "官方八色派系覆盖":
+  [36m<ul[39m
+    [33maria-label[39m=[32m"官方八色派系覆盖"[39m
+  [36m/>[39m
+
+  Name "牌组校验问题":
+  [36m<ul[39m
+    [33maria-label[39m=[32m"牌组校验问题"[39m
+    [33mclass[39m=[32m"hg-library-issues"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<ul[39m
+    [33mclass[39m=[32m"hg-library-card-options"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  listitem:
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"hg-faction-yellow"[39m
+    [33mdata-faction-id[39m=[32m"yellow"[39m
+    [33mdata-open-card-count[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"hg-faction-green"[39m
+    [33mdata-faction-id[39m=[32m"green"[39m
+    [33mdata-open-card-count[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"hg-faction-blue"[39m
+    [33mdata-faction-id[39m=[32m"blue"[39m
+    [33mdata-open-card-count[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"hg-faction-red"[39m
+    [33mdata-faction-id[39m=[32m"red"[39m
+    [33mdata-open-card-count[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"hg-faction-gray"[39m
+    [33mdata-faction-id[39m=[32m"gray"[39m
+    [33mdata-open-card-count[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"hg-faction-white"[39m
+    [33mdata-faction-id[39m=[32m"white"[39m
+    [33mdata-open-card-count[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"hg-faction-black"[39m
+    [33mdata-faction-id[39m=[32m"black"[39m
+    [33mdata-open-card-count[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"hg-faction-purple"[39m
+    [33mdata-faction-id[39m=[32m"purple"[39m
+    [33mdata-open-card-count[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li />[39m
+
+  --------------------------------------------------
+  region:
+
+  Name "命名、编辑与选择牌组":
+  [36m<section[39m
+    [33maria-labelledby[39m=[32m"hg-library-title"[39m
+    [33mclass[39m=[32m"hg-deck-library"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  combobox:
+
+  Name "预组模板":
+  [36m<select />[39m
+
+  Name "派系":
+  [36m<select />[39m
+
+  Name "卡牌类型":
+  [36m<select />[39m
+
+  Name "实现状态":
+  [36m<select />[39m
+
+  --------------------------------------------------
+  option:
+
+  Name "调查者":
+  [36m<option[39m
+    [33mvalue[39m=[32m"watchers"[39m
+  [36m/>[39m
+
+  Name "全部派系":
+  [36m<option[39m
+    [33mvalue[39m=[32m"all"[39m
+  [36m/>[39m
+
+  Name "帷幕守望":
+  [36m<option[39m
+    [33mvalue[39m=[32m"yellow"[39m
+  [36m/>[39m
+
+  Name "猎魔人":
+  [36m<option[39m
+    [33mvalue[39m=[32m"green"[39m
+  [36m/>[39m
+
+  Name "王座会":
+  [36m<option[39m
+    [33mvalue[39m=[32m"blue"[39m
+  [36m/>[39m
+
+  Name "鸣钟教派":
+  [36m<option[39m
+    [33mvalue[39m=[32m"red"[39m
+  [36m/>[39m
+
+  Name "国家机构":
+  [36m<option[39m
+    [33mvalue[39m=[32m"gray"[39m
+  [36m/>[39m
+
+  Name "圣贤":
+  [36m<option[39m
+    [33mvalue[39m=[32m"white"[39m
+  [36m/>[39m
+
+  Name "方碑序列":
+  [36m<option[39m
+    [33mvalue[39m=[32m"black"[39m
+  [36m/>[39m
+
+  Name "梦境行者":
+  [36m<option[39m
+    [33mvalue[39m=[32m"purple"[39m
+  [36m/>[39m
+
+  Name "中立（无派系）":
+  [36m<option[39m
+    [33mvalue[39m=[32m"neutral"[39m
+  [36m/>[39m
+
+  Name "颜色未标":
+  [36m<option[39m
+    [33mvalue[39m=[32m"unknown"[39m
+  [36m/>[39m
+
+  Name "全部类型":
+  [36m<option[39m
+    [33mvalue[39m=[32m"all"[39m
+  [36m/>[39m
+
+  Name "角色":
+  [36m<option[39m
+    [33mvalue[39m=[32m"character"[39m
+  [36m/>[39m
+
+  Name "已实现玩家卡":
+  [36m<option[39m
+    [33mvalue[39m=[32m"implemented"[39m
+  [36m/>[39m
+
+  Name "不可加入牌组":
+  [36m<option[39m
+    [33mvalue[39m=[32m"unavailable"[39m
+  [36m/>[39m
+
+  Name "当前目录全部":
+  [36m<option[39m
+    [33mvalue[39m=[32m"all"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  status:
+
+  Name "":
+  [36m<div[39m
+    [33mclass[39m=[32m"hg-library-total"[39m
+    [33mrole[39m=[32m"status"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  searchbox:
+
+  Name "检索卡牌":
+  [36m<input[39m
+    [33mplaceholder[39m=[32m"名称、编号或规则文字"[39m
+    [33mtype[39m=[32m"search"[39m
+    [33mvalue[39m=[32m""[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  contentinfo:
+
+  Name "":
+  [36m<footer[39m
+    [33mclass[39m=[32m"hg-footer"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"hg-app"[39m
+    [36m>[39m
+      [36m<header[39m
+        [33mclass[39m=[32m"hg-header"[39m
+      [36m>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"hg-brand"[39m
+          [33mhref[39m=[32m"/"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"hg-brand-mark"[39m
+          [36m>[39m
+            [0m◈[0m
+          [36m</span>[39m
+          [36m<span>[39m
+            [0m隐秘世界 [0m
+            [36m<b>[39m
+              [0m霸权[0m
+            [36m</b>[39m
+            [36m<small>[39m
+              [0mSECRET WORLD · HEGEMONY[0m
+            [36m</small>[39m
+          [36m</span>[39m
+        [36m</a>[39m
+        [36m<nav>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"hg-nav-button"[39m
+          [36m>[39m
+            [0m上手指南 [0m
+            [36m<span>[39m
+              [0m?[0m
+            [36m</span>[39m
+          [36m</button>[39m
+        [36m</nav>[39m
+      [36m</header>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"hg-return-seat"[39m
+      [36m>[39m
+        [36m<p>[39m
+          [0m旧牌桌座位已保留。可以新建另一桌，也可回到下方牌桌。[0m
+        [36m</p>[39m
+        [36m<div>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"hg-button hg-button-quiet"[39m
+          [36m>[39m
+            [0m回到牌桌 [0m
+            [0mINVITE[0m
+            [0m · 席位 [0m
+            [0m1[0m
+          [36m</button>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+      [36m<main[39m
+        [33mclass[39m=[32m"hg-lobby"[39m
+      [36m>[39m
+        [36m<section[39m
+          [33mclass[39m=[32m"hg-hero"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"hg-hero-orbit"[39m
+          [36m>[39m
+            [36m<span>[39m
+              [0m◈[0m
+            [36m</span>[39m
+            [36m<i />[39m
+            [36m<i />[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-eyebrow"[39m
+          [36m>[39m
+            [0mTHE SECRET WORLD · 霸权[0m
+          [36m</div>[39m
+          [36m<h1>[39m
+            [0m世界的背面，[0m
+            [36m<br />[39m
+            [36m<em>[39m
+              [0m等你落子。[0m
+            [36m</em>[39m
+          [36m</h1>[39m
+          [36m<p>[39m
+            [0m派遣角色，争夺城市的隐秘权柄。[0m
+            [36m<br />[39m
+            [0m与一位对手交锋，或和伙伴并肩加入四人牌桌。[0m
+          [36m</p>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-hero-features"[39m
+          [36m>[39m
+            [36m<span>[39m
+              [0m◈ 调查[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0m⚔ 战斗[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0m⚑ 势力[0m
+            [36m</span>[39m
+          [36m</div>[39m
+        [36m</section>[39m
+        [36m<section[39m
+          [33mclass[39m=[32m"hg-onboarding"[39m
+        [36m>[39m
+          [36m<form[39m
+            [33mclass[39m=[32m"hg-entry-form"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"hg-section-title"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"hg-eyebrow"[39m
+              [36m>[39m
+                [0m01 / 入席[0m
+              [36m</span>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"hg-tabs"[39m
+              [36m>[39m
+                [36m<button[39m
+                  [33mclass[39m=[32m"hg-tab-active"[39m
+                  [33mtype[39m=[32m"button"[39m
+                [36m>[39m
+                  [0m创建牌桌[0m
+                [36m</button>[39m
+                [36m<button[39m
+                  [33mclass[39m=[32m""[39m
+                  [33mtype[39m=[32m"button"[39m
+                [36m>[39m
+                  [0m邀请码加入[0m
+                [36m</button>[39m
+              [36m</div>[39m
+            [36m</div>[39m
+            [36m<p[39m
+              [33mclass[39m=[32m"hg-muted"[39m
+            [36m>[39m
+              [0m当前牌组：[0m
+              [0m调查者[0m
+              [0m · [0m
+              [36m<a[39m
+                [33mhref[39m=[32m"#hegemony-decks"[39m
+              [36m>[39m
+                [0m更换牌组 ↓[0m
+              [36m</a>[39m
+            [36m</p>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"hg-field"[39m
+            [36m>[39m
+              [0m你的称呼[0m
+              [36m<input[39m
+                [33mautocomplete[39m=[32m"nickname"[39m
+                [33mmaxlength[39m=[32m"24"[39m
+                [33mplaceholder[39m=[32m"让牌桌上的伙伴认出你"[39m
+                [33mrequired[39m=[32m""[39m
+                [33mvalue[39m=[32m""[39m
+              [36m/>[39m
+            [36m</label>[39m
+            [36m<div[39m
+              [33maria-label[39m=[32m"对战模式"[39m
+              [33mclass[39m=[32m"hg-mode-select"[39m
+              [33mrole[39m=[32m"group"[39m
+            [36m>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"hg-selected"[39m
+                [33mtype[39m=[32m"button"[39m
+              [36m>[39m
+                [36m<strong>[39m
+                  [0m两人对决 [0m
+                  [36m<span>[39m
+                    [0m1 VS 1[0m
+                  [36m</span>[39m
+                [36m</strong>[39m
+                [36m<small>[39m
+                  [0m3 个地区 · 先获 8 分胜利[0m
+                [36m</small>[39m
+              [36m</button>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m""[39m
+                [33mtype[39m=[32m"button"[39m
+              [36m>[39m
+                [36m<strong>[39m
+                  [0m四人协作 [0m
+                  [36m<span>[39m
+                    [0m2 VS 2[0m
+                  [36m</span>[39m
+                [36m</strong>[39m
+                [36m<small>[39m
+                  [0m5 个地区 · 团队先获 10 分胜利[0m
+                [36m</small>[39m
+              [36m</button>[39m
+            [36m</div>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"hg-entry-bottom"[39m
+            [36m>[39m
+              [36m<p>[39m
+                [0m创建后分享邀请，所有玩家准备后由房主开始。[0m
+                [36m<br />[39m
+                [0m座位保存在此浏览器，刷新即可继续。[0m
+              [36m</p>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"hg-button hg-button-primary"[39m
+                [33mdisabled[39m=[32m""[39m
+                [33mtype[39m=[32m"submit"[39m
+              [36m>[39m
+                [0m创建牌桌 →[0m
+              [36m</button>[39m
+            [36m</div>[39m
+          [36m</form>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-section-title"[39m
+            [33...
+ ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ independent src/game/PlayerSessions.test.tsx:44:55
+     42| }
+     43| async function lobby() { fireEvent.click(screen.getByRole('button', { …
+     44| async function independent() { fireEvent.click(screen.getByRole('butto…
+       |                                                       ^
+     45| async function join(code = 'INVITE') {
+     46|   fireEvent.click(screen.getByRole('button', { name: '邀请码加入' }));
+ ❯ src/game/PlayerSessions.test.tsx:103:63
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/7]⎯
+
+ FAIL  src/game/PlayerSessions.test.tsx > explicit independent player sessions through normal UI > reports unavailable tab storage without copying or clearing ordinary credentials
+TestingLibraryElementError: Unable to find an accessible element with the role "button" and name "开始新的独立玩家会话"
+
+Here are the accessible roles:
+
+  banner:
+
+  Name "":
+  [36m<header[39m
+    [33mclass[39m=[32m"hg-header"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  link:
+
+  Name "◈隐秘世界 霸权SECRET WORLD · HEGEMONY":
+  [36m<a[39m
+    [33mclass[39m=[32m"hg-brand"[39m
+    [33mhref[39m=[32m"/"[39m
+  [36m/>[39m
+
+  Name "更换牌组 ↓":
+  [36m<a[39m
+    [33mhref[39m=[32m"#hegemony-decks"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  navigation:
+
+  Name "":
+  [36m<nav />[39m
+
+  --------------------------------------------------
+  button:
+
+  Name "上手指南 ?":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-nav-button"[39m
+  [36m/>[39m
+
+  Name "回到牌桌 INVITE · 席位 1":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-button hg-button-quiet"[39m
+  [36m/>[39m
+
+  Name "创建牌桌":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-tab-active"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "邀请码加入":
+  [36m<button[39m
+    [33mclass[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "两人对决 1 VS 13 个地区 · 先获 8 分胜利":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-selected"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "四人协作 2 VS 25 个地区 · 团队先获 10 分胜利":
+  [36m<button[39m
+    [33mclass[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "创建牌桌 →":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-button hg-button-primary"[39m
+    [33mdisabled[39m=[32m""[39m
+    [33mtype[39m=[32m"submit"[39m
+  [36m/>[39m
+
+  Name "01调查 · 控制调查者控制与调查调查者的颜色组成50 张 · 自组预组 ✓ 已选择":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"true"[39m
+    [33mclass[39m=[32m"hg-deck hg-deck-faction-neutral hg-selected"[39m
+    [33mdata-deck-id[39m=[32m"watchers"[39m
+    [33mdata-deck-main-faction[39m=[32m"neutral"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "新建空白牌组":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-button hg-button-quiet"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "复制为草稿":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-button hg-button-quiet"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "保存牌组":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-button hg-button-quiet"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "保存并选择此牌组":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-button hg-button-primary"[39m
+    [33mdisabled[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-muted"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-muted"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-neutral-note"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-muted"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-muted"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-library-version"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-muted"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-library-match-count"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-muted"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  main:
+
+  Name "":
+  [36m<main[39m
+    [33mclass[39m=[32m"hg-lobby"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  heading:
+
+  Name "世界的背面，等你落子。":
+  [36m<h1 />[39m
+
+  Name "1 套自组预组":
+  [36m<h2 />[39m
+
+  Name "命名、编辑与选择牌组":
+  [36m<h2[39m
+    [33mid[39m=[32m"hg-library-title"[39m
+  [36m/>[39m
+
+  Name "牌组组成":
+  [36m<h3 />[39m
+
+  Name "当前开放卡牌":
+  [36m<h3 />[39m
+
+  --------------------------------------------------
+  emphasis:
+
+  Name "":
+  [36m<em />[39m
+
+  --------------------------------------------------
+  textbox:
+
+  Name "你的称呼":
+  [36m<input[39m
+    [33mautocomplete[39m=[32m"nickname"[39m
+    [33mmaxlength[39m=[32m"24"[39m
+    [33mplaceholder[39m=[32m"让牌桌上的伙伴认出你"[39m
+    [33mrequired[39m=[32m""[39m
+    [33mvalue[39m=[32m""[39m
+  [36m/>[39m
+
+  Name "牌组名称":
+  [36m<input[39m
+    [33mmaxlength[39m=[32m"80"[39m
+    [33mvalue[39m=[32m"我的牌组"[39m
+  [36m/>[39m
+
+  Name "牌组说明":
+  [36m<textarea[39m
+    [33mmaxlength[39m=[32m"500"[39m
+    [33mrows[39m=[32m"2"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  group:
+
+  Name "对战模式":
+  [36m<div[39m
+    [33maria-label[39m=[32m"对战模式"[39m
+    [33mclass[39m=[32m"hg-mode-select"[39m
+    [33mrole[39m=[32m"group"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<details[39m
+    [33mclass[39m=[32m"hg-deck-list"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<details[39m
+    [33mclass[39m=[32m"hg-faction-coverage"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  strong:
+
+  Name "":
+  [36m<strong />[39m
+
+  Name "":
+  [36m<strong />[39m
+
+  Name "":
+  [36m<strong />[39m
+
+  Name "":
+  [36m<strong />[39m
+
+  --------------------------------------------------
+  list:
+
+  Name "":
+  [36m<ul />[39m
+
+  Name "官方八色派系覆盖":
+  [36m<ul[39m
+    [33maria-label[39m=[32m"官方八色派系覆盖"[39m
+  [36m/>[39m
+
+  Name "牌组校验问题":
+  [36m<ul[39m
+    [33maria-label[39m=[32m"牌组校验问题"[39m
+    [33mclass[39m=[32m"hg-library-issues"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<ul[39m
+    [33mclass[39m=[32m"hg-library-card-options"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  listitem:
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"hg-faction-yellow"[39m
+    [33mdata-faction-id[39m=[32m"yellow"[39m
+    [33mdata-open-card-count[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"hg-faction-green"[39m
+    [33mdata-faction-id[39m=[32m"green"[39m
+    [33mdata-open-card-count[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"hg-faction-blue"[39m
+    [33mdata-faction-id[39m=[32m"blue"[39m
+    [33mdata-open-card-count[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"hg-faction-red"[39m
+    [33mdata-faction-id[39m=[32m"red"[39m
+    [33mdata-open-card-count[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"hg-faction-gray"[39m
+    [33mdata-faction-id[39m=[32m"gray"[39m
+    [33mdata-open-card-count[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"hg-faction-white"[39m
+    [33mdata-faction-id[39m=[32m"white"[39m
+    [33mdata-open-card-count[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"hg-faction-black"[39m
+    [33mdata-faction-id[39m=[32m"black"[39m
+    [33mdata-open-card-count[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"hg-faction-purple"[39m
+    [33mdata-faction-id[39m=[32m"purple"[39m
+    [33mdata-open-card-count[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li />[39m
+
+  --------------------------------------------------
+  region:
+
+  Name "命名、编辑与选择牌组":
+  [36m<section[39m
+    [33maria-labelledby[39m=[32m"hg-library-title"[39m
+    [33mclass[39m=[32m"hg-deck-library"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  combobox:
+
+  Name "预组模板":
+  [36m<select />[39m
+
+  Name "派系":
+  [36m<select />[39m
+
+  Name "卡牌类型":
+  [36m<select />[39m
+
+  Name "实现状态":
+  [36m<select />[39m
+
+  --------------------------------------------------
+  option:
+
+  Name "调查者":
+  [36m<option[39m
+    [33mvalue[39m=[32m"watchers"[39m
+  [36m/>[39m
+
+  Name "全部派系":
+  [36m<option[39m
+    [33mvalue[39m=[32m"all"[39m
+  [36m/>[39m
+
+  Name "帷幕守望":
+  [36m<option[39m
+    [33mvalue[39m=[32m"yellow"[39m
+  [36m/>[39m
+
+  Name "猎魔人":
+  [36m<option[39m
+    [33mvalue[39m=[32m"green"[39m
+  [36m/>[39m
+
+  Name "王座会":
+  [36m<option[39m
+    [33mvalue[39m=[32m"blue"[39m
+  [36m/>[39m
+
+  Name "鸣钟教派":
+  [36m<option[39m
+    [33mvalue[39m=[32m"red"[39m
+  [36m/>[39m
+
+  Name "国家机构":
+  [36m<option[39m
+    [33mvalue[39m=[32m"gray"[39m
+  [36m/>[39m
+
+  Name "圣贤":
+  [36m<option[39m
+    [33mvalue[39m=[32m"white"[39m
+  [36m/>[39m
+
+  Name "方碑序列":
+  [36m<option[39m
+    [33mvalue[39m=[32m"black"[39m
+  [36m/>[39m
+
+  Name "梦境行者":
+  [36m<option[39m
+    [33mvalue[39m=[32m"purple"[39m
+  [36m/>[39m
+
+  Name "中立（无派系）":
+  [36m<option[39m
+    [33mvalue[39m=[32m"neutral"[39m
+  [36m/>[39m
+
+  Name "颜色未标":
+  [36m<option[39m
+    [33mvalue[39m=[32m"unknown"[39m
+  [36m/>[39m
+
+  Name "全部类型":
+  [36m<option[39m
+    [33mvalue[39m=[32m"all"[39m
+  [36m/>[39m
+
+  Name "角色":
+  [36m<option[39m
+    [33mvalue[39m=[32m"character"[39m
+  [36m/>[39m
+
+  Name "已实现玩家卡":
+  [36m<option[39m
+    [33mvalue[39m=[32m"implemented"[39m
+  [36m/>[39m
+
+  Name "不可加入牌组":
+  [36m<option[39m
+    [33mvalue[39m=[32m"unavailable"[39m
+  [36m/>[39m
+
+  Name "当前目录全部":
+  [36m<option[39m
+    [33mvalue[39m=[32m"all"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  status:
+
+  Name "":
+  [36m<div[39m
+    [33mclass[39m=[32m"hg-library-total"[39m
+    [33mrole[39m=[32m"status"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  searchbox:
+
+  Name "检索卡牌":
+  [36m<input[39m
+    [33mplaceholder[39m=[32m"名称、编号或规则文字"[39m
+    [33mtype[39m=[32m"search"[39m
+    [33mvalue[39m=[32m""[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  contentinfo:
+
+  Name "":
+  [36m<footer[39m
+    [33mclass[39m=[32m"hg-footer"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"hg-app"[39m
+    [36m>[39m
+      [36m<header[39m
+        [33mclass[39m=[32m"hg-header"[39m
+      [36m>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"hg-brand"[39m
+          [33mhref[39m=[32m"/"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"hg-brand-mark"[39m
+          [36m>[39m
+            [0m◈[0m
+          [36m</span>[39m
+          [36m<span>[39m
+            [0m隐秘世界 [0m
+            [36m<b>[39m
+              [0m霸权[0m
+            [36m</b>[39m
+            [36m<small>[39m
+              [0mSECRET WORLD · HEGEMONY[0m
+            [36m</small>[39m
+          [36m</span>[39m
+        [36m</a>[39m
+        [36m<nav>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"hg-nav-button"[39m
+          [36m>[39m
+            [0m上手指南 [0m
+            [36m<span>[39m
+              [0m?[0m
+            [36m</span>[39m
+          [36m</button>[39m
+        [36m</nav>[39m
+      [36m</header>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"hg-return-seat"[39m
+      [36m>[39m
+        [36m<p>[39m
+          [0m旧牌桌座位已保留。可以新建另一桌，也可回到下方牌桌。[0m
+        [36m</p>[39m
+        [36m<div>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"hg-button hg-button-quiet"[39m
+          [36m>[39m
+            [0m回到牌桌 [0m
+            [0mINVITE[0m
+            [0m · 席位 [0m
+            [0m1[0m
+          [36m</button>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+      [36m<main[39m
+        [33mclass[39m=[32m"hg-lobby"[39m
+      [36m>[39m
+        [36m<section[39m
+          [33mclass[39m=[32m"hg-hero"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"hg-hero-orbit"[39m
+          [36m>[39m
+            [36m<span>[39m
+              [0m◈[0m
+            [36m</span>[39m
+            [36m<i />[39m
+            [36m<i />[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-eyebrow"[39m
+          [36m>[39m
+            [0mTHE SECRET WORLD · 霸权[0m
+          [36m</div>[39m
+          [36m<h1>[39m
+            [0m世界的背面，[0m
+            [36m<br />[39m
+            [36m<em>[39m
+              [0m等你落子。[0m
+            [36m</em>[39m
+          [36m</h1>[39m
+          [36m<p>[39m
+            [0m派遣角色，争夺城市的隐秘权柄。[0m
+            [36m<br />[39m
+            [0m与一位对手交锋，或和伙伴并肩加入四人牌桌。[0m
+          [36m</p>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-hero-features"[39m
+          [36m>[39m
+            [36m<span>[39m
+              [0m◈ 调查[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0m⚔ 战斗[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0m⚑ 势力[0m
+            [36m</span>[39m
+          [36m</div>[39m
+        [36m</section>[39m
+        [36m<section[39m
+          [33mclass[39m=[32m"hg-onboarding"[39m
+        [36m>[39m
+          [36m<form[39m
+            [33mclass[39m=[32m"hg-entry-form"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"hg-section-title"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"hg-eyebrow"[39m
+              [36m>[39m
+                [0m01 / 入席[0m
+              [36m</span>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"hg-tabs"[39m
+              [36m>[39m
+                [36m<button[39m
+                  [33mclass[39m=[32m"hg-tab-active"[39m
+                  [33mtype[39m=[32m"button"[39m
+                [36m>[39m
+                  [0m创建牌桌[0m
+                [36m</button>[39m
+                [36m<button[39m
+                  [33mclass[39m=[32m""[39m
+                  [33mtype[39m=[32m"button"[39m
+                [36m>[39m
+                  [0m邀请码加入[0m
+                [36m</button>[39m
+              [36m</div>[39m
+            [36m</div>[39m
+            [36m<p[39m
+              [33mclass[39m=[32m"hg-muted"[39m
+            [36m>[39m
+              [0m当前牌组：[0m
+              [0m调查者[0m
+              [0m · [0m
+              [36m<a[39m
+                [33mhref[39m=[32m"#hegemony-decks"[39m
+              [36m>[39m
+                [0m更换牌组 ↓[0m
+              [36m</a>[39m
+            [36m</p>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"hg-field"[39m
+            [36m>[39m
+              [0m你的称呼[0m
+              [36m<input[39m
+                [33mautocomplete[39m=[32m"nickname"[39m
+                [33mmaxlength[39m=[32m"24"[39m
+                [33mplaceholder[39m=[32m"让牌桌上的伙伴认出你"[39m
+                [33mrequired[39m=[32m""[39m
+                [33mvalue[39m=[32m""[39m
+              [36m/>[39m
+            [36m</label>[39m
+            [36m<div[39m
+              [33maria-label[39m=[32m"对战模式"[39m
+              [33mclass[39m=[32m"hg-mode-select"[39m
+              [33mrole[39m=[32m"group"[39m
+            [36m>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"hg-selected"[39m
+                [33mtype[39m=[32m"button"[39m
+              [36m>[39m
+                [36m<strong>[39m
+                  [0m两人对决 [0m
+                  [36m<span>[39m
+                    [0m1 VS 1[0m
+                  [36m</span>[39m
+                [36m</strong>[39m
+                [36m<small>[39m
+                  [0m3 个地区 · 先获 8 分胜利[0m
+                [36m</small>[39m
+              [36m</button>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m""[39m
+                [33mtype[39m=[32m"button"[39m
+              [36m>[39m
+                [36m<strong>[39m
+                  [0m四人协作 [0m
+                  [36m<span>[39m
+                    [0m2 VS 2[0m
+                  [36m</span>[39m
+                [36m</strong>[39m
+                [36m<small>[39m
+                  [0m5 个地区 · 团队先获 10 分胜利[0m
+                [36m</small>[39m
+              [36m</button>[39m
+            [36m</div>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"hg-entry-bottom"[39m
+            [36m>[39m
+              [36m<p>[39m
+                [0m创建后分享邀请，所有玩家准备后由房主开始。[0m
+                [36m<br />[39m
+                [0m座位保存在此浏览器，刷新即可继续。[0m
+              [36m</p>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"hg-button hg-button-primary"[39m
+                [33mdisabled[39m=[32m""[39m
+                [33mtype[39m=[32m"submit"[39m
+              [36m>[39m
+                [0m创建牌桌 →[0m
+              [36m</button>[39m
+            [36m</div>[39m
+          [36m</form>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-section-title"[39m
+            [33...
+ ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ src/game/PlayerSessions.test.tsx:116:28
+    114|       if (this === sessionStorage) throw new DOMException('blocked', '…
+    115|     });
+    116|     fireEvent.click(screen.getByRole('button', { name: '开始新的独立玩家会话' })…
+       |                            ^
+    117|     expect(await screen.findByRole('alert')).toHaveTextContent('独立玩家会话…
+    118|     expect(localStorage.getItem('hegemony.session.v1')).toBe(ordinary)…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/7]⎯
+
+ FAIL  src/game/PlayerSessions.test.tsx > explicit independent player sessions through normal UI > makes closing the independent page session lose its recovery while ordinary seats survive
+TestingLibraryElementError: Unable to find an accessible element with the role "button" and name "开始新的独立玩家会话"
+
+Here are the accessible roles:
+
+  banner:
+
+  Name "":
+  [36m<header[39m
+    [33mclass[39m=[32m"hg-header"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  link:
+
+  Name "◈隐秘世界 霸权SECRET WORLD · HEGEMONY":
+  [36m<a[39m
+    [33mclass[39m=[32m"hg-brand"[39m
+    [33mhref[39m=[32m"/"[39m
+  [36m/>[39m
+
+  Name "更换牌组 ↓":
+  [36m<a[39m
+    [33mhref[39m=[32m"#hegemony-decks"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  navigation:
+
+  Name "":
+  [36m<nav />[39m
+
+  --------------------------------------------------
+  button:
+
+  Name "上手指南 ?":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-nav-button"[39m
+  [36m/>[39m
+
+  Name "回到牌桌 INVITE · 席位 1":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-button hg-button-quiet"[39m
+  [36m/>[39m
+
+  Name "创建牌桌":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-tab-active"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "邀请码加入":
+  [36m<button[39m
+    [33mclass[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "两人对决 1 VS 13 个地区 · 先获 8 分胜利":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-selected"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "四人协作 2 VS 25 个地区 · 团队先获 10 分胜利":
+  [36m<button[39m
+    [33mclass[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "创建牌桌 →":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-button hg-button-primary"[39m
+    [33mdisabled[39m=[32m""[39m
+    [33mtype[39m=[32m"submit"[39m
+  [36m/>[39m
+
+  Name "01调查 · 控制调查者控制与调查调查者的颜色组成50 张 · 自组预组 ✓ 已选择":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"true"[39m
+    [33mclass[39m=[32m"hg-deck hg-deck-faction-neutral hg-selected"[39m
+    [33mdata-deck-id[39m=[32m"watchers"[39m
+    [33mdata-deck-main-faction[39m=[32m"neutral"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "新建空白牌组":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-button hg-button-quiet"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "复制为草稿":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-button hg-button-quiet"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "保存牌组":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-button hg-button-quiet"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "保存并选择此牌组":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-button hg-button-primary"[39m
+    [33mdisabled[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-muted"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-muted"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-neutral-note"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-muted"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-muted"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-library-version"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-muted"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-library-match-count"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-muted"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  main:
+
+  Name "":
+  [36m<main[39m
+    [33mclass[39m=[32m"hg-lobby"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  heading:
+
+  Name "世界的背面，等你落子。":
+  [36m<h1 />[39m
+
+  Name "1 套自组预组":
+  [36m<h2 />[39m
+
+  Name "命名、编辑与选择牌组":
+  [36m<h2[39m
+    [33mid[39m=[32m"hg-library-title"[39m
+  [36m/>[39m
+
+  Name "牌组组成":
+  [36m<h3 />[39m
+
+  Name "当前开放卡牌":
+  [36m<h3 />[39m
+
+  --------------------------------------------------
+  emphasis:
+
+  Name "":
+  [36m<em />[39m
+
+  --------------------------------------------------
+  textbox:
+
+  Name "你的称呼":
+  [36m<input[39m
+    [33mautocomplete[39m=[32m"nickname"[39m
+    [33mmaxlength[39m=[32m"24"[39m
+    [33mplaceholder[39m=[32m"让牌桌上的伙伴认出你"[39m
+    [33mrequired[39m=[32m""[39m
+    [33mvalue[39m=[32m""[39m
+  [36m/>[39m
+
+  Name "牌组名称":
+  [36m<input[39m
+    [33mmaxlength[39m=[32m"80"[39m
+    [33mvalue[39m=[32m"我的牌组"[39m
+  [36m/>[39m
+
+  Name "牌组说明":
+  [36m<textarea[39m
+    [33mmaxlength[39m=[32m"500"[39m
+    [33mrows[39m=[32m"2"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  group:
+
+  Name "对战模式":
+  [36m<div[39m
+    [33maria-label[39m=[32m"对战模式"[39m
+    [33mclass[39m=[32m"hg-mode-select"[39m
+    [33mrole[39m=[32m"group"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<details[39m
+    [33mclass[39m=[32m"hg-deck-list"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<details[39m
+    [33mclass[39m=[32m"hg-faction-coverage"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  strong:
+
+  Name "":
+  [36m<strong />[39m
+
+  Name "":
+  [36m<strong />[39m
+
+  Name "":
+  [36m<strong />[39m
+
+  Name "":
+  [36m<strong />[39m
+
+  --------------------------------------------------
+  list:
+
+  Name "":
+  [36m<ul />[39m
+
+  Name "官方八色派系覆盖":
+  [36m<ul[39m
+    [33maria-label[39m=[32m"官方八色派系覆盖"[39m
+  [36m/>[39m
+
+  Name "牌组校验问题":
+  [36m<ul[39m
+    [33maria-label[39m=[32m"牌组校验问题"[39m
+    [33mclass[39m=[32m"hg-library-issues"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<ul[39m
+    [33mclass[39m=[32m"hg-library-card-options"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  listitem:
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"hg-faction-yellow"[39m
+    [33mdata-faction-id[39m=[32m"yellow"[39m
+    [33mdata-open-card-count[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"hg-faction-green"[39m
+    [33mdata-faction-id[39m=[32m"green"[39m
+    [33mdata-open-card-count[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"hg-faction-blue"[39m
+    [33mdata-faction-id[39m=[32m"blue"[39m
+    [33mdata-open-card-count[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"hg-faction-red"[39m
+    [33mdata-faction-id[39m=[32m"red"[39m
+    [33mdata-open-card-count[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"hg-faction-gray"[39m
+    [33mdata-faction-id[39m=[32m"gray"[39m
+    [33mdata-open-card-count[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"hg-faction-white"[39m
+    [33mdata-faction-id[39m=[32m"white"[39m
+    [33mdata-open-card-count[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"hg-faction-black"[39m
+    [33mdata-faction-id[39m=[32m"black"[39m
+    [33mdata-open-card-count[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"hg-faction-purple"[39m
+    [33mdata-faction-id[39m=[32m"purple"[39m
+    [33mdata-open-card-count[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li />[39m
+
+  --------------------------------------------------
+  region:
+
+  Name "命名、编辑与选择牌组":
+  [36m<section[39m
+    [33maria-labelledby[39m=[32m"hg-library-title"[39m
+    [33mclass[39m=[32m"hg-deck-library"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  combobox:
+
+  Name "预组模板":
+  [36m<select />[39m
+
+  Name "派系":
+  [36m<select />[39m
+
+  Name "卡牌类型":
+  [36m<select />[39m
+
+  Name "实现状态":
+  [36m<select />[39m
+
+  --------------------------------------------------
+  option:
+
+  Name "调查者":
+  [36m<option[39m
+    [33mvalue[39m=[32m"watchers"[39m
+  [36m/>[39m
+
+  Name "全部派系":
+  [36m<option[39m
+    [33mvalue[39m=[32m"all"[39m
+  [36m/>[39m
+
+  Name "帷幕守望":
+  [36m<option[39m
+    [33mvalue[39m=[32m"yellow"[39m
+  [36m/>[39m
+
+  Name "猎魔人":
+  [36m<option[39m
+    [33mvalue[39m=[32m"green"[39m
+  [36m/>[39m
+
+  Name "王座会":
+  [36m<option[39m
+    [33mvalue[39m=[32m"blue"[39m
+  [36m/>[39m
+
+  Name "鸣钟教派":
+  [36m<option[39m
+    [33mvalue[39m=[32m"red"[39m
+  [36m/>[39m
+
+  Name "国家机构":
+  [36m<option[39m
+    [33mvalue[39m=[32m"gray"[39m
+  [36m/>[39m
+
+  Name "圣贤":
+  [36m<option[39m
+    [33mvalue[39m=[32m"white"[39m
+  [36m/>[39m
+
+  Name "方碑序列":
+  [36m<option[39m
+    [33mvalue[39m=[32m"black"[39m
+  [36m/>[39m
+
+  Name "梦境行者":
+  [36m<option[39m
+    [33mvalue[39m=[32m"purple"[39m
+  [36m/>[39m
+
+  Name "中立（无派系）":
+  [36m<option[39m
+    [33mvalue[39m=[32m"neutral"[39m
+  [36m/>[39m
+
+  Name "颜色未标":
+  [36m<option[39m
+    [33mvalue[39m=[32m"unknown"[39m
+  [36m/>[39m
+
+  Name "全部类型":
+  [36m<option[39m
+    [33mvalue[39m=[32m"all"[39m
+  [36m/>[39m
+
+  Name "角色":
+  [36m<option[39m
+    [33mvalue[39m=[32m"character"[39m
+  [36m/>[39m
+
+  Name "已实现玩家卡":
+  [36m<option[39m
+    [33mvalue[39m=[32m"implemented"[39m
+  [36m/>[39m
+
+  Name "不可加入牌组":
+  [36m<option[39m
+    [33mvalue[39m=[32m"unavailable"[39m
+  [36m/>[39m
+
+  Name "当前目录全部":
+  [36m<option[39m
+    [33mvalue[39m=[32m"all"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  status:
+
+  Name "":
+  [36m<div[39m
+    [33mclass[39m=[32m"hg-library-total"[39m
+    [33mrole[39m=[32m"status"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  searchbox:
+
+  Name "检索卡牌":
+  [36m<input[39m
+    [33mplaceholder[39m=[32m"名称、编号或规则文字"[39m
+    [33mtype[39m=[32m"search"[39m
+    [33mvalue[39m=[32m""[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  contentinfo:
+
+  Name "":
+  [36m<footer[39m
+    [33mclass[39m=[32m"hg-footer"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"hg-app"[39m
+    [36m>[39m
+      [36m<header[39m
+        [33mclass[39m=[32m"hg-header"[39m
+      [36m>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"hg-brand"[39m
+          [33mhref[39m=[32m"/"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"hg-brand-mark"[39m
+          [36m>[39m
+            [0m◈[0m
+          [36m</span>[39m
+          [36m<span>[39m
+            [0m隐秘世界 [0m
+            [36m<b>[39m
+              [0m霸权[0m
+            [36m</b>[39m
+            [36m<small>[39m
+              [0mSECRET WORLD · HEGEMONY[0m
+            [36m</small>[39m
+          [36m</span>[39m
+        [36m</a>[39m
+        [36m<nav>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"hg-nav-button"[39m
+          [36m>[39m
+            [0m上手指南 [0m
+            [36m<span>[39m
+              [0m?[0m
+            [36m</span>[39m
+          [36m</button>[39m
+        [36m</nav>[39m
+      [36m</header>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"hg-return-seat"[39m
+      [36m>[39m
+        [36m<p>[39m
+          [0m旧牌桌座位已保留。可以新建另一桌，也可回到下方牌桌。[0m
+        [36m</p>[39m
+        [36m<div>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"hg-button hg-button-quiet"[39m
+          [36m>[39m
+            [0m回到牌桌 [0m
+            [0mINVITE[0m
+            [0m · 席位 [0m
+            [0m1[0m
+          [36m</button>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+      [36m<main[39m
+        [33mclass[39m=[32m"hg-lobby"[39m
+      [36m>[39m
+        [36m<section[39m
+          [33mclass[39m=[32m"hg-hero"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"hg-hero-orbit"[39m
+          [36m>[39m
+            [36m<span>[39m
+              [0m◈[0m
+            [36m</span>[39m
+            [36m<i />[39m
+            [36m<i />[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-eyebrow"[39m
+          [36m>[39m
+            [0mTHE SECRET WORLD · 霸权[0m
+          [36m</div>[39m
+          [36m<h1>[39m
+            [0m世界的背面，[0m
+            [36m<br />[39m
+            [36m<em>[39m
+              [0m等你落子。[0m
+            [36m</em>[39m
+          [36m</h1>[39m
+          [36m<p>[39m
+            [0m派遣角色，争夺城市的隐秘权柄。[0m
+            [36m<br />[39m
+            [0m与一位对手交锋，或和伙伴并肩加入四人牌桌。[0m
+          [36m</p>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-hero-features"[39m
+          [36m>[39m
+            [36m<span>[39m
+              [0m◈ 调查[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0m⚔ 战斗[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0m⚑ 势力[0m
+            [36m</span>[39m
+          [36m</div>[39m
+        [36m</section>[39m
+        [36m<section[39m
+          [33mclass[39m=[32m"hg-onboarding"[39m
+        [36m>[39m
+          [36m<form[39m
+            [33mclass[39m=[32m"hg-entry-form"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"hg-section-title"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"hg-eyebrow"[39m
+              [36m>[39m
+                [0m01 / 入席[0m
+              [36m</span>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"hg-tabs"[39m
+              [36m>[39m
+                [36m<button[39m
+                  [33mclass[39m=[32m"hg-tab-active"[39m
+                  [33mtype[39m=[32m"button"[39m
+                [36m>[39m
+                  [0m创建牌桌[0m
+                [36m</button>[39m
+                [36m<button[39m
+                  [33mclass[39m=[32m""[39m
+                  [33mtype[39m=[32m"button"[39m
+                [36m>[39m
+                  [0m邀请码加入[0m
+                [36m</button>[39m
+              [36m</div>[39m
+            [36m</div>[39m
+            [36m<p[39m
+              [33mclass[39m=[32m"hg-muted"[39m
+            [36m>[39m
+              [0m当前牌组：[0m
+              [0m调查者[0m
+              [0m · [0m
+              [36m<a[39m
+                [33mhref[39m=[32m"#hegemony-decks"[39m
+              [36m>[39m
+                [0m更换牌组 ↓[0m
+              [36m</a>[39m
+            [36m</p>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"hg-field"[39m
+            [36m>[39m
+              [0m你的称呼[0m
+              [36m<input[39m
+                [33mautocomplete[39m=[32m"nickname"[39m
+                [33mmaxlength[39m=[32m"24"[39m
+                [33mplaceholder[39m=[32m"让牌桌上的伙伴认出你"[39m
+                [33mrequired[39m=[32m""[39m
+                [33mvalue[39m=[32m""[39m
+              [36m/>[39m
+            [36m</label>[39m
+            [36m<div[39m
+              [33maria-label[39m=[32m"对战模式"[39m
+              [33mclass[39m=[32m"hg-mode-select"[39m
+              [33mrole[39m=[32m"group"[39m
+            [36m>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"hg-selected"[39m
+                [33mtype[39m=[32m"button"[39m
+              [36m>[39m
+                [36m<strong>[39m
+                  [0m两人对决 [0m
+                  [36m<span>[39m
+                    [0m1 VS 1[0m
+                  [36m</span>[39m
+                [36m</strong>[39m
+                [36m<small>[39m
+                  [0m3 个地区 · 先获 8 分胜利[0m
+                [36m</small>[39m
+              [36m</button>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m""[39m
+                [33mtype[39m=[32m"button"[39m
+              [36m>[39m
+                [36m<strong>[39m
+                  [0m四人协作 [0m
+                  [36m<span>[39m
+                    [0m2 VS 2[0m
+                  [36m</span>[39m
+                [36m</strong>[39m
+                [36m<small>[39m
+                  [0m5 个地区 · 团队先获 10 分胜利[0m
+                [36m</small>[39m
+              [36m</button>[39m
+            [36m</div>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"hg-entry-bottom"[39m
+            [36m>[39m
+              [36m<p>[39m
+                [0m创建后分享邀请，所有玩家准备后由房主开始。[0m
+                [36m<br />[39m
+                [0m座位保存在此浏览器，刷新即可继续。[0m
+              [36m</p>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"hg-button hg-button-primary"[39m
+                [33mdisabled[39m=[32m""[39m
+                [33mtype[39m=[32m"submit"[39m
+              [36m>[39m
+                [0m创建牌桌 →[0m
+              [36m</button>[39m
+            [36m</div>[39m
+          [36m</form>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-section-title"[39m
+            [33...
+ ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ independent src/game/PlayerSessions.test.tsx:44:55
+     42| }
+     43| async function lobby() { fireEvent.click(screen.getByRole('button', { …
+     44| async function independent() { fireEvent.click(screen.getByRole('butto…
+       |                                                       ^
+     45| async function join(code = 'INVITE') {
+     46|   fireEvent.click(screen.getByRole('button', { name: '邀请码加入' }));
+ ❯ src/game/PlayerSessions.test.tsx:121:75
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/7]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  7 failed (7)
+   Start at  06:22:01
+   Duration  4.63s (transform 258ms, setup 116ms, import 287ms, tests 3.61s, environment 506ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

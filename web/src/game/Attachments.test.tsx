@@ -79,6 +79,8 @@ describe('public attachment presentation', () => {
     const dialog = screen.getByRole('dialog', { name: '放大阅读测试附属' });
     expect(within(dialog).getByLabelText('当前费用 0，印刷费用 1')).toBeInTheDocument();
     expect(within(dialog).queryByText(/附着于/)).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: '查看公开宿主' })).not.toBeInTheDocument();
+    fireEvent.click(within(dialog).getByRole('button', { name: '关闭放大阅读' }));
     expect(screen.getByRole('button', { name: '查看公开宿主' })).not.toHaveAttribute('data-attachment-count');
   });
 

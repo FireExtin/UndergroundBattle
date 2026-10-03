@@ -1,0 +1,299 @@
+
+> undergroundbattle-web@0.1.0 test
+> vitest --run
+
+
+ RUN  v4.1.2 /workspace/UndergroundBattle-v027-player-sessions/web
+
+ ❯ src/game/Attachments.test.tsx (8 tests | 1 failed) 1195ms
+     × uses the newest own-hand projection after recovery and drops the old host context 377ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/game/Attachments.test.tsx > public attachment presentation > uses the newest own-hand projection after recovery and drops the old host context
+TestingLibraryElementError: Unable to find an accessible element with the role "button" and name "查看公开宿主"
+
+Here are the accessible roles:
+
+  main:
+
+  Name "":
+  [36m<main[39m
+    [33mclass[39m=[32m"hg-table hg-desktop-table hg-desktop-duel"[39m
+    [33mdata-table-layout[39m=[32m"overhead"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  dialog:
+
+  Name "放大阅读测试附属":
+  [36m<section[39m
+    [33maria-label[39m=[32m"放大阅读测试附属"[39m
+    [33maria-modal[39m=[32m"true"[39m
+    [33mclass[39m=[32m"hg-modal hg-reading"[39m
+    [33mdata-reading-card[39m=[32m"attachment-1"[39m
+    [33mrole[39m=[32m"dialog"[39m
+    [33mtabindex[39m=[32m"-1"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  button:
+
+  Name "关闭放大阅读":
+  [36m<button[39m
+    [33maria-label[39m=[32m"关闭放大阅读"[39m
+    [33mclass[39m=[32m"hg-close"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  strong:
+
+  Name "":
+  [36m<strong[39m
+    [33mclass[39m=[32m"hg-card-name"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "":
+  [36m<p />[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<main[39m
+      [33mclass[39m=[32m"hg-table hg-desktop-table hg-desktop-duel"[39m
+      [33mdata-table-layout[39m=[32m"overhead"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33maria-hidden[39m=[32m"true"[39m
+        [33mclass[39m=[32m"hg-table-status"[39m
+        [33minert[39m=[32m""[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"hg-round"[39m
+        [36m>[39m
+          [36m<b>[39m
+            [0m第 [0m
+            [0m1[0m
+            [0m 回合[0m
+          [36m</b>[39m
+          [36m<span>[39m
+            [0m行动阶段[0m
+            [0m · [0m
+            [0m行动阶段[0m
+          [36m</span>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"hg-table-tallies"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"hg-team-tally hg-team-0"[39m
+          [36m>[39m
+            [0m我方[0m
+            [0m [0m
+            [36m<b>[39m
+              [0m0[0m
+            [36m</b>[39m
+            [0m / [0m
+            [0m8[0m
+          [36m</span>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"hg-team-tally hg-team-1"[39m
+          [36m>[39m
+            [0m对方[0m
+            [0m [0m
+            [36m<b>[39m
+              [0m0[0m
+            [36m</b>[39m
+            [0m / [0m
+            [0m8[0m
+          [36m</span>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"hg-phase-line"[39m
+        [36m>[39m
+          [36m<span>[39m
+            [0m先手 [0m
+            [36m<b>[39m
+              [0m甲[0m
+            [36m</b>[39m
+          [36m</span>[39m
+          [36m<span>[39m
+            [0m行动团队 [0m
+            [36m<b>[39m
+              [0m甲[0m
+            [36m</b>[39m
+          [36m</span>[39m
+          [36m<span>[39m
+            [0m优先权 [0m
+            [36m<b>[39m
+              [0m甲[0m
+            [36m</b>[39m
+          [36m</span>[39m
+          [36m<strong[39m
+            [33mclass[39m=[32m""[39m
+          [36m>[39m
+            [0m等待 甲 行动[0m
+          [36m</strong>[39m
+        [36m</div>[39m
+        [36m<details[39m
+          [33mclass[39m=[32m"hg-table-records"[39m
+        [36m>[39m
+          [36m<summary>[39m
+            [0m记录 · [0m
+            [0m0[0m
+          [36m</summary>[39m
+          [36m<ol[39m
+            [33maria-label[39m=[32m"牌桌行动记录"[39m
+          [36m/>[39m
+          [36m<small>[39m
+            [0m规则 [0m
+            [0m1[0m
+            [0m · 卡池 [0m
+            [0m1[0m
+            [0m · 引擎 [0m
+            [0m1[0m
+          [36m</small>[39m
+        [36m</details>[39m
+      [36m</div>[39m
+      [36m<section[39m
+        [33maria-hidden[39m=[32m"true"[39m
+        [33maria-label[39m=[32m"对方玩家区"[39m
+        [33mclass[39m=[32m"hg-team-edge hg-opponent-edge"[39m
+        [33mdata-side[39m=[32m"opponent"[39m
+        [33minert[39m=[32m""[39m
+      [36m>[39m
+        [36m<section[39m
+          [33maria-label[39m=[32m"乙的玩家区"[39m
+          [33mclass[39m=[32m"hg-player-mat hg-team-1"[39m
+          [33mdata-player-zone[39m=[32m"p1"[39m
+          [33mdata-side[39m=[32m"opponent"[39m
+          [33mdata-team[39m=[32m"1"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-player-strip"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"hg-piece-avatar"[39m
+            [36m>[39m
+              [0m乙[0m
+            [36m</span>[39m
+            [36m<strong>[39m
+              [0m乙[0m
+            [36m</strong>[39m
+            [36m<small>[39m
+              [0m席位 [0m
+              [0m2[0m
+              [0m · [0m
+              [0m调查者[0m
+            [36m</small>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"hg-mat-resource"[39m
+            [36m>[39m
+              [0m费用 [0m
+              [36m<b>[39m
+                [0m0[0m
+              [36m</b>[39m
+              [0m / [0m
+              [0m0[0m
+            [36m</span>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-seat-zones"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"hg-personal-piles"[39m
+            [36m>[39m
+              [36m<div[39m
+                [33maria-label[39m=[32m"乙的牌库，49张"[39m
+                [33mclass[39m=[32m"hg-table-pile hg-deck-pile"[39m
+              [36m>[39m
+                [36m<span[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"hg-pile-card hg-card-back"[39m
+                [36m>[39m
+                  [36m<span>[39m
+                    [0m◈[0m
+                  [36m</span>[39m
+                  [36m<b>[39m
+                    [0m49[0m
+                  [36m</b>[39m
+                [36m</span>[39m
+                [36m<span>[39m
+                  [0m牌库[0m
+                [36m</span>[39m
+              [36m</div>[39m
+              [36m<details[39m
+                [33mclass[39m=[32m"hg-public-zones hg-table-pile hg-graveyard-pile"[39m
+                [33mdata-pile-kind[39m=[32m"graveyard"[39m
+                [33mdata-pile-owner[39m=[32m"p1"[39m
+              [36m>[39m
+                [36m<summary[39m
+                  [33maria-label[39m=[32m"查看乙的墓地，0张"[39m
+                [36m>[39m
+                  [36m<span[39m
+                    [33maria-hidden[39m=[32m"true"[39m
+                    [33mclass[39m=[32m"hg-pile-card"[39m
+                  [36m>[39m
+                    [36m<b>[39m
+                      [0m0[0m
+                    [36m</b>[39m
+                    [36m<i>[39m
+                      [0m张[0m
+                    [36m</i>[39m
+                  [36m</span>[39m
+                  [36m<span>[39m
+                    [0m墓地[0m
+                  [36m</span>[39m
+                [36m</summary>[39m
+                [36m<div[39m
+                  [33mclass[39m=[32m"hg-pile-fan"[39m
+                [36m>[39m
+                  [36m<h3>[39m
+                    [0m乙[0m
+                    [0m · [0m
+                    [0m墓地[0m
+                  [36m</h3>[39m
+                  [36m<div[39m
+                    [33mclass[39m=[32m"hg-zone-cards"[39m
+                  [36m>[39m
+                    [36m<p[39m
+                      [33mclass[39m=[32m"hg-empty"[39m
+                    [36m>[39m
+                      [0m这里还没有牌[0m
+                    [36m</p>[39m
+                  [36m</div>[39m
+                [36m</div>[39m
+              [36m</details>[39m
+              [36m<details[39m
+                [33mclass[39m=[32m"hg-public-zones hg-table-pile hg-scoreCards-pile"[39m
+                [33mdata-pile-kind[39m=[32m"scoreCard...
+ ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ src/game/Attachments.test.tsx:82:19
+     80|     expect(within(dialog).getByLabelText('当前费用 0，印刷费用 1')).toBeInTheDo…
+     81|     expect(within(dialog).queryByText(/附着于/)).not.toBeInTheDocument();
+     82|     expect(screen.getByRole('button', { name: '查看公开宿主' })).not.toHaveA…
+       |                   ^
+     83|   });
+     84|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 19 passed (20)
+      Tests  1 failed | 176 passed (177)
+   Start at  08:51:39
+   Duration  11.02s (transform 785ms, setup 1.80s, import 1.25s, tests 17.82s, environment 8.76s)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

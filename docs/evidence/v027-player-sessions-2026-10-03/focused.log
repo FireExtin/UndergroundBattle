@@ -1,0 +1,19 @@
+
+> undergroundbattle-web@0.1.0 test
+> vitest --run --reporter=dot src/game/PlayerSessions.test.tsx
+
+
+ RUN  v4.1.2 /workspace/UndergroundBattle-v027-player-sessions/web
+
+·······
+
+ Test Files  1 passed (1)
+      Tests  7 passed (7)
+   Start at  06:24:53
+   Duration  3.71s (transform 211ms, setup 94ms, import 232ms, tests 2.90s, environment 368ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

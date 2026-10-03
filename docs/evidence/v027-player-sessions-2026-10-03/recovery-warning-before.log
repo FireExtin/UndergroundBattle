@@ -1,0 +1,253 @@
+
+> undergroundbattle-web@0.1.0 test
+> vitest --run --reporter=dot src/game/PlayerSessions.test.tsx -t warns before replacing
+
+
+ RUN  v4.1.2 /workspace/UndergroundBattle-v027-player-sessions/web
+
+x---------
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/game/PlayerSessions.test.tsx > explicit independent player sessions through normal UI > warns before replacing an independent session or switching back that this seat may become unrecoverable
+TestingLibraryElementError: Unable to find an element with the text: 开始新会话或切回普通后，此独立席位可能无法恢复；需要多席请另开标签。. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"hg-app"[39m
+    [36m>[39m
+      [36m<header[39m
+        [33mclass[39m=[32m"hg-header"[39m
+      [36m>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"hg-brand"[39m
+          [33mhref[39m=[32m"/"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"hg-brand-mark"[39m
+          [36m>[39m
+            [0m◈[0m
+          [36m</span>[39m
+          [36m<span>[39m
+            [0m隐秘世界 [0m
+            [36m<b>[39m
+              [0m霸权[0m
+            [36m</b>[39m
+            [36m<small>[39m
+              [0mSECRET WORLD · HEGEMONY[0m
+            [36m</small>[39m
+          [36m</span>[39m
+        [36m</a>[39m
+        [36m<nav>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"hg-nav-button"[39m
+          [36m>[39m
+            [0m上手指南 [0m
+            [36m<span>[39m
+              [0m?[0m
+            [36m</span>[39m
+          [36m</button>[39m
+        [36m</nav>[39m
+      [36m</header>[39m
+      [36m<section[39m
+        [33maria-label[39m=[32m"玩家会话"[39m
+        [33mclass[39m=[32m"hg-player-session"[39m
+      [36m>[39m
+        [36m<strong>[39m
+          [0m独立玩家会话 · 当前标签[0m
+        [36m</strong>[39m
+        [36m<p>[39m
+          [0m刷新保留此标签的席位。关闭标签可能失去此独立座位的恢复方式。复制标签可能沿用原席；需要另一位玩家时，请返回大厅后显式开始新的独立玩家会话。[0m
+        [36m</p>[39m
+        [36m<div>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"hg-button hg-button-quiet"[39m
+          [36m>[39m
+            [0m开始新的独立玩家会话[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"hg-button hg-button-quiet"[39m
+          [36m>[39m
+            [0m切回普通玩家会话[0m
+          [36m</button>[39m
+        [36m</div>[39m
+      [36m</section>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"hg-return-seat"[39m
+      [36m>[39m
+        [36m<p>[39m
+          [0m旧牌桌座位已保留。可以新建另一桌，也可回到下方牌桌。[0m
+        [36m</p>[39m
+        [36m<div>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"hg-button hg-button-quiet"[39m
+          [36m>[39m
+            [0m回到牌桌 [0m
+            [0mINVITE[0m
+            [0m · 席位 [0m
+            [0m1[0m
+          [36m</button>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+      [36m<main[39m
+        [33mclass[39m=[32m"hg-lobby"[39m
+      [36m>[39m
+        [36m<section[39m
+          [33mclass[39m=[32m"hg-hero"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"hg-hero-orbit"[39m
+          [36m>[39m
+            [36m<span>[39m
+              [0m◈[0m
+            [36m</span>[39m
+            [36m<i />[39m
+            [36m<i />[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-eyebrow"[39m
+          [36m>[39m
+            [0mTHE SECRET WORLD · 霸权[0m
+          [36m</div>[39m
+          [36m<h1>[39m
+            [0m世界的背面，[0m
+            [36m<br />[39m
+            [36m<em>[39m
+              [0m等你落子。[0m
+            [36m</em>[39m
+          [36m</h1>[39m
+          [36m<p>[39m
+            [0m派遣角色，争夺城市的隐秘权柄。[0m
+            [36m<br />[39m
+            [0m与一位对手交锋，或和伙伴并肩加入四人牌桌。[0m
+          [36m</p>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-hero-features"[39m
+          [36m>[39m
+            [36m<span>[39m
+              [0m◈ 调查[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0m⚔ 战斗[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0m⚑ 势力[0m
+            [36m</span>[39m
+          [36m</div>[39m
+        [36m</section>[39m
+        [36m<section[39m
+          [33mclass[39m=[32m"hg-onboarding"[39m
+        [36m>[39m
+          [36m<form[39m
+            [33mclass[39m=[32m"hg-entry-form"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"hg-section-title"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"hg-eyebrow"[39m
+              [36m>[39m
+                [0m01 / 入席[0m
+              [36m</span>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"hg-tabs"[39m
+              [36m>[39m
+                [36m<button[39m
+                  [33mclass[39m=[32m"hg-tab-active"[39m
+                  [33mtype[39m=[32m"button"[39m
+                [36m>[39m
+                  [0m创建牌桌[0m
+                [36m</button>[39m
+                [36m<button[39m
+                  [33mclass[39m=[32m""[39m
+                  [33mtype[39m=[32m"button"[39m
+                [36m>[39m
+                  [0m邀请码加入[0m
+                [36m</button>[39m
+              [36m</div>[39m
+            [36m</div>[39m
+            [36m<p[39m
+              [33mclass[39m=[32m"hg-muted"[39m
+            [36m>[39m
+              [0m当前牌组：[0m
+              [0m调查者[0m
+              [0m · [0m
+              [36m<a[39m
+                [33mhref[39m=[32m"#hegemony-decks"[39m
+              [36m>[39m
+                [0m更换牌组 ↓[0m
+              [36m</a>[39m
+            [36m</p>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"hg-field"[39m
+            [36m>[39m
+              [0m你的称呼[0m
+              [36m<input[39m
+                [33mautocomplete[39m=[32m"nickname"[39m
+                [33mmaxlength[39m=[32m"24"[39m
+                [33mplaceholder[39m=[32m"让牌桌上的伙伴认出你"[39m
+                [33mrequired[39m=[32m""[39m
+                [33mvalue[39m=[32m""[39m
+              [36m/>[39m
+            [36m</label>[39m
+            [36m<div[39m
+              [33maria-label[39m=[32m"对战模式"[39m
+              [33mclass[39m=[32m"hg-mode-select"[39m
+              [33mrole[39m=[32m"group"[39m
+            [36m>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"hg-selected"[39m
+                [33mtype[39m=[32m"button"[39m
+              [36m>[39m
+                [36m<strong>[39m
+                  [0m两人对决 [0m
+                  [36m<span>[39m
+                    [0m1 VS 1[0m
+                  [36m</span>[39m
+                [36m</strong>[39m
+                [36m<small>[39m
+                  [0m3 个地区 · 先获 8 分胜利[0m
+                [36m</small>[39m
+              [36m</button>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m""[39m
+                [33mtype[39m=[32m"button"[39m
+              [36m>[39m
+                [36m<strong>[39m
+                  [0m四人协作 [0m
+                  [36m<span>[39m
+                    [0m2 VS 2[0m
+                  [36m</span>[39m
+                [36m</strong>[39m
+                [36m<small>[39m
+                  [0m5 个地区 · 团队先获 10 分胜利[0m
+                [36m</small>[39m
+       ...
+ ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ src/game/PlayerSessions.test.tsx:60:19
+     58|   it('warns before replacing an independent session or switching back …
+     59|     render(<GameApp />); await lobbyReady(); await independent(); awai…
+     60|     expect(screen.getByText('开始新会话或切回普通后，此独立席位可能无法恢复；需要多席请另开标签。')).toB…
+       |                   ^
+     61|     expect(screen.getByRole('button', { name: '开始新的独立玩家会话' })).toBeEna…
+     62|     expect(screen.getByRole('button', { name: '切回普通玩家会话' })).toBeEnabl…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 9 skipped (10)
+   Start at  06:50:06
+   Duration  1.41s (transform 218ms, setup 97ms, import 238ms, tests 546ms, environment 412ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

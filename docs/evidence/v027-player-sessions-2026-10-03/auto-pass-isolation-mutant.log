@@ -1,0 +1,42 @@
+
+> undergroundbattle-web@0.1.0 test
+> vitest --run --reporter=dot src/game/PlayerSessions.test.tsx -t automatic pass opt-in
+
+
+ RUN  v4.1.2 /workspace/UndergroundBattle-v027-player-sessions/web
+
+x--------
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/game/PlayerSessions.test.tsx > explicit independent player sessions through normal UI > keeps automatic pass opt-in separate from the ordinary seat and restores the ordinary preference
+Error: expect(element).not.toBeChecked()
+
+Received element is checked:
+  <input
+  aria-label="无可用行动时自动让过"
+  checked=""
+  role="switch"
+  type="checkbox"
+/>
+ ❯ src/game/PlayerSessions.test.tsx:70:75
+     68|     await waitFor(() => expect(screen.getByRole('button', { name: '加入牌…
+     69|     fireEvent.click(screen.getByRole('button', { name: '加入牌桌 →' }));
+     70|     expect(await screen.findByRole('switch', { name: '无可用行动时自动让过' })).…
+       |                                                                           ^
+     71|     await lobby(); fireEvent.click(screen.getByRole('button', { name: …
+     72|     fireEvent.click(await screen.findByRole('button', { name: '回到牌桌 IN…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 8 skipped (9)
+   Start at  06:26:47
+   Duration  1.49s (transform 235ms, setup 102ms, import 257ms, tests 601ms, environment 396ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
