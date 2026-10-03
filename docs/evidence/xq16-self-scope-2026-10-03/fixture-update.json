@@ -1,0 +1,13 @@
+{
+  "oldSource": "eb58e63",
+  "oldTargetController": 1,
+  "newTargetController": 0,
+  "teammateId": "i266",
+  "intentionallyUpdatedFixture": "sites/test/fixtures/prepared-control-pair-v028.json",
+  "otherPreparedExportsMatch": {
+    "preparedFireScholar": true,
+    "preparedTwoCards": true,
+    "preparedAssassin": true,
+    "preparedResponse": true
+  }
+}

@@ -513,7 +513,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         let mut another_friend = target(
             Zone::Board,
             EntityKind::Character,
-            Relation::FriendlyTeam,
+            Relation::ControlledByActor,
             Range::Anywhere,
         );
         another_friend.exclude_source = true;

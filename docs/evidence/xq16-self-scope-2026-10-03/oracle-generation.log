@@ -1,0 +1,7 @@
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+   Compiling hegemony-server v0.1.0 (/workspace/UndergroundBattle/rust-game)
+   Compiling hegemony-wasm v0.1.0 (/workspace/UndergroundBattle/rust-game-wasm)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 1.81s
+     Running `/workspace/.rust/targets/two-cards-local/debug/examples/native_fixtures /workspace/.private-validation/rescue-forecast-local-20261003/xq16-corrected-native-fixtures.json`

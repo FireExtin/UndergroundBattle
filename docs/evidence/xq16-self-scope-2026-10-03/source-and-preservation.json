@@ -1,0 +1,298 @@
+{
+  "source": "eb58e63",
+  "protectedFiles": 68,
+  "checks": [
+    {
+      "file": "rust-game-wasm/legacy-v0.2.1/README.md",
+      "sha256": "b9433ca54fa80ad8460f9cffe5f88d82e348b1d2293ebdb4893dc9b46b786334"
+    },
+    {
+      "file": "rust-game-wasm/legacy-v0.2.1/hegemony_wasm.js",
+      "sha256": "69f5f988232d411b0d76dc6a6cae5c0fc749ab556774d30544da26a07e5c98ca"
+    },
+    {
+      "file": "rust-game-wasm/legacy-v0.2.1/hegemony_wasm_bg.wasm",
+      "sha256": "a6366ef6bc7df03ba666b33286d3a01c412ac6bf779d6396fcbf6affcdc43966"
+    },
+    {
+      "file": "rust-game-wasm/legacy-v0.2.1/package.json",
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "file": "rust-game-wasm/legacy-v0.2.2/README.md",
+      "sha256": "8ab2e94b7269ae12b6880dc36616ca43ae65d1892b4ed2bd1b9a3623455f72d3"
+    },
+    {
+      "file": "rust-game-wasm/legacy-v0.2.2/hegemony_wasm.js",
+      "sha256": "bb5709b94df02970729dbf80ea5ab3308343040f867d71a8142aa4b9cfafe229"
+    },
+    {
+      "file": "rust-game-wasm/legacy-v0.2.2/hegemony_wasm_bg.wasm",
+      "sha256": "b5e0070333a71ff5b01f31406118f523af473c0bb96fb732d3276d3855d7daae"
+    },
+    {
+      "file": "rust-game-wasm/legacy-v0.2.2/package.json",
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "file": "rust-game-wasm/legacy-v0.2.3/README.md",
+      "sha256": "6e484031279fbd587cb414d83498b32c29fa37b6087b1ff4999e58cf4e366cf7"
+    },
+    {
+      "file": "rust-game-wasm/legacy-v0.2.3/hegemony_wasm.js",
+      "sha256": "bb5709b94df02970729dbf80ea5ab3308343040f867d71a8142aa4b9cfafe229"
+    },
+    {
+      "file": "rust-game-wasm/legacy-v0.2.3/hegemony_wasm_bg.wasm",
+      "sha256": "2d5dcbaae76aa5706fa77af6747068e94da39654d25df3e764efa48e73905089"
+    },
+    {
+      "file": "rust-game-wasm/legacy-v0.2.3/package.json",
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "file": "rust-game-wasm/legacy-v0.2.4/README.md",
+      "sha256": "1fa8d67c2dff9fa4bb4cdcb9b60ea918fc863ad48fc3734abc666a90317a3df2"
+    },
+    {
+      "file": "rust-game-wasm/legacy-v0.2.4/hegemony_wasm.js",
+      "sha256": "282efbac8975c8cde3e728298ab3870b3aa11a8df0a60bff6debe87af6fcdc58"
+    },
+    {
+      "file": "rust-game-wasm/legacy-v0.2.4/hegemony_wasm_bg.wasm",
+      "sha256": "fcf7f714a9b09f566202c0a8b00571c0da55dfa255793f2cffd908003f6d660f"
+    },
+    {
+      "file": "rust-game-wasm/legacy-v0.2.4/package.json",
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "file": "rust-game-wasm/legacy-v0.2.5/README.md",
+      "sha256": "c28487a28ef96c8cc7b85647970b2d7416a394c5164ac2b86db712b16099b25c"
+    },
+    {
+      "file": "rust-game-wasm/legacy-v0.2.5/hegemony_wasm.js",
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "file": "rust-game-wasm/legacy-v0.2.5/hegemony_wasm_bg.wasm",
+      "sha256": "22299f6db9923a93ea7da7bd742afbf0a0b1e4de4ff3c41bd99f16860df3a971"
+    },
+    {
+      "file": "rust-game-wasm/legacy-v0.2.5/package.json",
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "file": "rust-game-wasm/legacy-v0.2.6/hegemony_wasm.js",
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "file": "rust-game-wasm/legacy-v0.2.6/hegemony_wasm_bg.wasm",
+      "sha256": "d4a9d88fe3c44d94da938c0351a4f1654d72514568c9f927fecd6d2f9f3ded3f"
+    },
+    {
+      "file": "rust-game-wasm/legacy-v0.2.6/package.json",
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "file": "rust-game-wasm/legacy-v0.2.7/README.md",
+      "sha256": "121cb52effa59fb1cb126f859c05d28898e5dcee5a4217336629015b114a42cd"
+    },
+    {
+      "file": "rust-game-wasm/legacy-v0.2.7/hegemony_wasm.d.ts",
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758"
+    },
+    {
+      "file": "rust-game-wasm/legacy-v0.2.7/hegemony_wasm.js",
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "file": "rust-game-wasm/legacy-v0.2.7/hegemony_wasm_bg.wasm",
+      "sha256": "21169e9d579886a55474b21aa506a4a9adca779428d7d11f2e966ae077656198"
+    },
+    {
+      "file": "rust-game-wasm/legacy-v0.2.7/hegemony_wasm_bg.wasm.d.ts",
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+    },
+    {
+      "file": "rust-game-wasm/legacy-v0.2.7/package.json",
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "file": "sites/drizzle/0000_numerous_lucky_pierre.sql",
+      "sha256": "e7e71337892cba7558c9bd5a3c3beb78c109fa93d1775f0b13e5377030a78b43"
+    },
+    {
+      "file": "sites/drizzle/meta/0000_snapshot.json",
+      "sha256": "a4e0d437f9b6d1c5f9cf2de0fbb7082f7a2dadf33f64e91cb0d7fc67780d254c"
+    },
+    {
+      "file": "sites/drizzle/meta/_journal.json",
+      "sha256": "568a9e1bf452c42d07a8f4067732cc82fe6fbb1e0951efb750e3028d02b8f561"
+    },
+    {
+      "file": "sites/src/index.mjs",
+      "sha256": "f6a1ae35a0361e2bad5422a9ab6d2e0a2c766c1e40c1c62bb0fe1446d5877551"
+    },
+    {
+      "file": "sites/src/kernel-router.mjs",
+      "sha256": "e163dd6e984b7ac2036547f14cc4a49d54ce4aed30676a50f4d082bfa134ad77"
+    },
+    {
+      "file": "sites/src/kernel.mjs",
+      "sha256": "556660e23e78ae68182a2636e1b53ef36ff9fc8043770a6c36c5a9e51894e26b"
+    },
+    {
+      "file": "sites/src/service.mjs",
+      "sha256": "757930aad47a30dad7cd880b504b2c1a7b7a8c5a47905b6fba6f2f2647f88c02"
+    },
+    {
+      "file": "sites/src/storage-errors.mjs",
+      "sha256": "6979b752d13a2143f1e250051e5e2df1c81a7afef93727023b84ee8043b5f1a0"
+    },
+    {
+      "file": "sites/src/store.mjs",
+      "sha256": "39d50fc38e515a959d51f13a5673f5b3603edbc420b120c2326f49607f66d4d9"
+    },
+    {
+      "file": "tools/cloud-playtest/.gitignore",
+      "sha256": "862263fa1f46c20f0d1e4dac5ffcc75abd55c08211b2c3864c5f8764b9d87793"
+    },
+    {
+      "file": "tools/cloud-playtest/README.md",
+      "sha256": "f7997c032530f35ea11c2b6941aa1e6474a061cd6fc544171e692405cc2659c8"
+    },
+    {
+      "file": "tools/cloud-playtest/api_acceptance.py",
+      "sha256": "74bcbb48263f3f0904e8a9adf7083cc5900409106008e4dbdf67358611263cac"
+    },
+    {
+      "file": "tools/cloud-playtest/attachment_v026.py",
+      "sha256": "6b9f4bd76181e8845eb1a53e4e3bd2cf824324c3fed4e82eaf2357db553f829d"
+    },
+    {
+      "file": "tools/cloud-playtest/autopass_probe.py",
+      "sha256": "c84d10b40317ceaea6b34f04b2d51da6700da7549ef03c86a3817a86da527f98"
+    },
+    {
+      "file": "tools/cloud-playtest/browser_playtest.py",
+      "sha256": "3dff240186c72274f7dfc29967787b5c26ac381d5d935149bbd4ba95a5952e15"
+    },
+    {
+      "file": "tools/cloud-playtest/browser_restart.py",
+      "sha256": "c05de074cf9cad190848a37733986c9ceca92e28c1490f96fa8adb1337f7ea35"
+    },
+    {
+      "file": "tools/cloud-playtest/common.py",
+      "sha256": "28c14a624d28fc2a02a56235384e8a69370d1e8215597dfcda27a859eda8b583"
+    },
+    {
+      "file": "tools/cloud-playtest/crowded_region.py",
+      "sha256": "d939017c7129471c21411dbab9999d4789948fd991514ead7679f48feba9cbe0"
+    },
+    {
+      "file": "tools/cloud-playtest/full_game_persistent.py",
+      "sha256": "dc746015bb3216ccb155f9c61be6dca220bdc1a76632a748e52a07e11145adb1"
+    },
+    {
+      "file": "tools/cloud-playtest/full_ui_v2.py",
+      "sha256": "e688801a3d5143ae7a44f6592d58d6e65b264dc2089b41a1dae45fee510f4055"
+    },
+    {
+      "file": "tools/cloud-playtest/initial_policy.py",
+      "sha256": "c40e16d4ee209568ee78d47fdf19642e68947b385382040ba35ca42978166626"
+    },
+    {
+      "file": "tools/cloud-playtest/layout_probe.py",
+      "sha256": "bcfc97064dc22ee1d6e8d36936d98fbfbd4077d4372b2c994db0ba4957b48fc5"
+    },
+    {
+      "file": "tools/cloud-playtest/newcomer_probe.py",
+      "sha256": "6c65fd2534225b623728d3b978e67467a97a99a4203f527cccb64ab4355753c9"
+    },
+    {
+      "file": "tools/cloud-playtest/preserve_trace.py",
+      "sha256": "dca8c01aa15bd1bf047b93c00f0a350f8917aeca3c52e1935537afaaee2c6cf0"
+    },
+    {
+      "file": "tools/cloud-playtest/response_fixed_seed.py",
+      "sha256": "88ecb30ae420e9e8ba2404be3012775191342617c622070471286d80ff4c944b"
+    },
+    {
+      "file": "tools/cloud-playtest/response_v2.py",
+      "sha256": "6778a0ccc34ddcc38e040a30a92c1e46d1e08837e22841e66ead906c7d61c030"
+    },
+    {
+      "file": "tools/cloud-playtest/seat_return.py",
+      "sha256": "b5c9f4289ce05ebbd3a701867bc1ba1186a90da6f98025c31656391df3cff85f"
+    },
+    {
+      "file": "tools/cloud-playtest/sites_browser.py",
+      "sha256": "853d0d7ef6ce0749f7a9f49ee05a24500408808d23438c2ec44aca468b1fce9c"
+    },
+    {
+      "file": "tools/cloud-playtest/sites_existing_compat.py",
+      "sha256": "a9632293eed5d9b9e0f80cdf9f943661b37019ac5354ee1cdbc77a6c2245fbb8"
+    },
+    {
+      "file": "tools/cloud-playtest/sites_jc042_empty_v022.py",
+      "sha256": "25c7695b245410051f79d619728eb4572bc1f6226cbdb2716560d64fa96c575b"
+    },
+    {
+      "file": "tools/cloud-playtest/sites_jc042_v022.py",
+      "sha256": "57887af895729ff9bca6a01b4adface1552fb21083371aacf716d81ba0588bc4"
+    },
+    {
+      "file": "tools/cloud-playtest/sites_protocol.py",
+      "sha256": "90e4d95ff0aae241f15462f7fa8669906d1ad7add8dc22c66b3fe4d91b45bdad"
+    },
+    {
+      "file": "tools/cloud-playtest/sites_public.py",
+      "sha256": "6d87607d149dfe890350e5d076cea32d37516716003c58959083a0e06731a28b"
+    },
+    {
+      "file": "tools/cloud-playtest/sites_response.py",
+      "sha256": "adfa5f5b0b63b2c11b6f1e8629bb3dcf95e767b0ffbbdc64fce2b2f868ca8627"
+    },
+    {
+      "file": "tools/cloud-playtest/sites_resume.py",
+      "sha256": "915cd6edf68e53b35f66dd7a206631fbbea7510ad2a9e216aea1801e9c7d201f"
+    },
+    {
+      "file": "tools/cloud-playtest/sites_transport.py",
+      "sha256": "8abd027fa45c9a001aa00feeb4414009b2afeab4a0314d10c1f6cef00bd73a7b"
+    },
+    {
+      "file": "tools/cloud-playtest/sites_version_compat.py",
+      "sha256": "876841d644aa4e5f64da1a0eb227b0812073a9c8d42c59b0b8f4c0a4bf071bd9"
+    },
+    {
+      "file": "tools/cloud-playtest/test_full_game_persistent.py",
+      "sha256": "fbe3c9086660d9b90e12dbcbd83b44c244ce6fbe5c4e8e834aa74a49dfec3bd8"
+    },
+    {
+      "file": "tools/cloud-playtest/wasm_new_lobby.mjs",
+      "sha256": "0a92da3ac10a683ce44826b9e112fb9264775495b3c7bb0df790bc53860362dd"
+    }
+  ],
+  "curatedRegistryUnchanged": true,
+  "wasmBytes": 1615204,
+  "wasmSha256": "f9b1fbcb1ccc10680572086e308d502dd26767ae0deb6fa6e841c91067f3c514",
+  "manualPagesActuallyViewed": [
+    {
+      "physical": 16,
+      "printed": 15,
+      "sha256": "e36738a73a14f55d07150ddedd7fdf30f1dbf094fed15783149c68d24da41014"
+    },
+    {
+      "physical": 17,
+      "printed": 16,
+      "sha256": "99b0181b117ba24b39719549d264120e7f50cf092b499c06159edd672937c979"
+    },
+    {
+      "physical": 22,
+      "printed": 21,
+      "sha256": "6b8acb688c12cb4ee732ad3c80b27d342b070c1ba627ddaa644d464ca02f7a89"
+    }
+  ]
+}

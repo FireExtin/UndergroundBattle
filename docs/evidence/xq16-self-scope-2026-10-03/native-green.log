@@ -1,0 +1,19 @@
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on build directory
+   Compiling hegemony-server v0.1.0 (/workspace/UndergroundBattle/rust-game)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 3.72s
+     Running unittests src/lib.rs (/workspace/.rust/targets/two-cards-local/debug/deps/hegemony_server-fa35e11fc7b74bf5)
+
+running 7 tests
+test engine::tests::control_pair_lawyer_can_decline_and_without_another_friend_has_no_trigger_choice ... ok
+test engine::tests::control_pair_gate_revalidates_after_response_hide_without_refunding_payment ... ok
+test engine::tests::control_pair_gate_pays_two_returns_to_owner_and_recycles_normal_attachment ... ok
+test engine::tests::control_pair_lawyer_revalidates_after_enemy_response_without_rehiding_new_instance ... ok
+test engine::tests::control_pair_gate_requires_a_visible_character_with_any_magic_domain ... ok
+test engine::tests::control_pair_lawyer_rejects_target_control_transferred_to_teammate_during_response ... ok
+test engine::tests::control_pair_lawyer_is_public_and_hides_only_another_actor_controlled_character ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 83 filtered out; finished in 0.03s
+

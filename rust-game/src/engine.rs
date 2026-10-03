@@ -3215,7 +3215,7 @@ mod tests {
         assert_eq!(g.players[0].graveyard.last().unwrap().definition, "JC006");
     }
     #[test]
-    fn control_pair_lawyer_is_public_and_hides_another_friendly_controller_anywhere() {
+    fn control_pair_lawyer_is_public_and_hides_only_another_actor_controlled_character() {
         assert_eq!(card("XQ16").cost, 2);
         assert_eq!(card("XQ16").loyalty, vec!["蓝色"]);
         assert_eq!(card("XQ16").subtypes, vec!["人类", "律师"]);
@@ -3225,10 +3225,12 @@ mod tests {
         let source = hand(&mut g, "XQ16", 0);
         let own = board(&mut g, "JC088", 0, 2);
         let ally = board(&mut g, "JC001", 2, 4);
-        g.board_mut(&ally).unwrap().controller = 1;
+        g.board_mut(&ally).unwrap().controller = 0;
         let enemy = board(&mut g, "JC085", 0, 1);
         g.board_mut(&enemy).unwrap().controller = 2;
         let public_ally = board(&mut g, "LC21", 1, 3);
+        g.board_mut(&public_ally).unwrap().controller = 0;
+        let teammate = board(&mut g, "JC085", 1, 4);
         let hidden = board(&mut g, "JC125", 1, 0);
         g.board_mut(&hidden).unwrap().face_down = true;
         resource(&mut g, 0, "XQ16", 2);
@@ -3276,7 +3278,7 @@ mod tests {
                 .into_iter()
                 .collect()
         );
-        for target in [new_source.clone(), enemy, hidden] {
+        for target in [new_source.clone(), enemy, hidden, teammate.clone()] {
             let before = serde_json::to_string(&g).unwrap();
             assert!(g
                 .apply(
@@ -3310,7 +3312,7 @@ mod tests {
             .find(|c| c.definition == "JC001")
             .unwrap();
         assert!(fresh.face_down && fresh.id != ally);
-        assert_eq!((fresh.owner, fresh.controller), (2, 1));
+        assert_eq!((fresh.owner, fresh.controller), (2, 0));
         for viewer in 0..4 {
             let view = g.view(viewer);
             let c = view.regions[4]
@@ -3320,10 +3322,11 @@ mod tests {
                 .unwrap();
             assert_eq!(
                 c.card_id.as_deref(),
-                if viewer == 1 { Some("JC001") } else { None }
+                if viewer == 0 { Some("JC001") } else { None }
             );
         }
         assert!(g.board(&new_source).is_some());
+        assert!(!g.board(&teammate).unwrap().1.face_down);
     }
     #[test]
     fn control_pair_lawyer_can_decline_and_without_another_friend_has_no_trigger_choice() {
@@ -3358,6 +3361,7 @@ mod tests {
     fn control_pair_lawyer_revalidates_after_enemy_response_without_rehiding_new_instance() {
         let mut g = game("teams");
         let target = board(&mut g, "JC001", 1, 4);
+        g.board_mut(&target).unwrap().controller = 0;
         let lawyer = hand(&mut g, "XQ16", 0);
         let chase = hand(&mut g, "JC063", 2);
         resource(&mut g, 0, "XQ16", 2);
@@ -3407,6 +3411,25 @@ mod tests {
         pass_stack(&mut g);
         assert_eq!(g.regions[4].cards[0].id, fresh);
         assert!(g.regions[4].cards[0].face_down);
+        assert_eq!(g.resources(0), 0);
+    }
+
+    #[test]
+    fn control_pair_lawyer_rejects_target_control_transferred_to_teammate_during_response() {
+        // Explicit primitive arrangement: the current pool has no control-transfer card.
+        let mut g = game("teams");
+        let target = board(&mut g, "JC001", 0, 4);
+        let lawyer = hand(&mut g, "XQ16", 0);
+        resource(&mut g, 0, "XQ16", 2);
+        g.apply(0, Action { card_id: Some(lawyer), region: Some(0), ..Action::new("deploy") }).unwrap();
+        pass_stack(&mut g);
+        select(&mut g, vec![target.clone()]);
+        g.board_mut(&target).unwrap().controller = 1;
+        let mut g: Game = serde_json::from_str(&serde_json::to_string(&g).unwrap()).unwrap();
+        pass_stack(&mut g);
+        let stayed = g.board(&target).unwrap().1;
+        assert!(!stayed.face_down);
+        assert_eq!((stayed.owner, stayed.controller), (0, 1));
         assert_eq!(g.resources(0), 0);
     }
 

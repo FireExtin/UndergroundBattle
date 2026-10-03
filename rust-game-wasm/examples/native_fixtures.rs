@@ -2129,14 +2129,17 @@ fn control_pair_fixture() -> Value {
         host_id: return_id.clone(),
     });
     let mut ally = game.make_card("JC001", 2);
-    ally.controller = 1;
+    ally.controller = 0;
     let ally_id = ally.id.clone();
     game.regions[4].cards.push(ally);
     let mut enemy = game.make_card("JC085", 0);
     enemy.controller = 2;
     game.regions[1].cards.push(enemy);
-    let public_friend = game.make_card("LC21", 1);
+    let mut public_friend = game.make_card("LC21", 1);
+    public_friend.controller = 0;
     game.regions[3].cards.push(public_friend);
+    let teammate = game.make_card("JC085", 1);
+    game.regions[4].cards.push(teammate);
     let mut room = RoomEnvelope::from_game(game);
     let mut steps = vec![step(
         &room,
@@ -2195,18 +2198,18 @@ fn control_pair_fixture() -> Value {
         },
     );
     attachment_pass_top(&mut room, &mut steps);
-    let hidden = &room.regions[4].cards[0];
+    let hidden = room.regions[4].cards.iter().find(|c| c.definition == "JC001").unwrap();
     assert!(hidden.face_down && hidden.id != ally_id);
-    assert_eq!((hidden.owner, hidden.controller), (2, 1));
+    assert_eq!((hidden.owner, hidden.controller), (2, 0));
     for seat in 0..4 {
         assert_eq!(
-            room.view(seat, room.pacing.last_server_now_ms).regions[4].characters[0]
+            room.view(seat, room.pacing.last_server_now_ms).regions[4].characters.iter().find(|c| c.instance_id == hidden.id).unwrap()
                 .card_id
                 .as_deref(),
-            if seat == 1 { Some("JC001") } else { None }
+            if seat == 0 { Some("JC001") } else { None }
         );
     }
-    json!({"name":"magic-return-owner-and-public-lawyer-friendly-hide","seed":"9007199254740993","steps":steps,"syntheticInitialLayout":true})
+    json!({"name":"magic-return-owner-and-public-lawyer-self-controller-hide","seed":"9007199254740993","steps":steps,"syntheticInitialLayout":true})
 }
 fn fire_scholar_fixture() -> Value {
     // Explicit synthetic initial layout; all later actions follow real room commands.
@@ -2430,6 +2433,7 @@ fn main() {
         "state":control_pair["steps"][0]["state"],"firstAction":control_pair["steps"][1]["args"][1]["action"],
         "gateId":control_initial.players[0].hand[0].id,"lawyerId":control_initial.players[0].hand[1].id,
         "returnId":control_initial.regions[2].cards[0].id,"allyId":control_initial.regions[4].cards[0].id,
+        "teammateId":control_initial.regions[4].cards[1].id,
         "enemyId":control_initial.regions[1].cards[0].id,"publicFriendId":control_initial.regions[3].cards[0].id,
     });
     let two_cards = two_card_fixture();

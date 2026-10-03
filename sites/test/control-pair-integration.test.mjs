@@ -7,7 +7,7 @@ import { Miniflare, convertV4MiniflareOptions } from 'miniflare';
 import { RoomStore } from '../src/store.mjs';
 import { digest } from '../src/service.mjs';
 
-test('real Worker/D1 restores paid magic return and another friendly controller hide', async t => {
+test('real Worker/D1 restores paid magic return and another actor-controlled hide, rejecting a teammate', async t => {
   const fixture = JSON.parse(readFileSync(new URL('./fixtures/prepared-control-pair-v028.json', import.meta.url)));
   assert.equal(fixture.syntheticInitialLayout, true);
   const persist = mkdtempSync(join(tmpdir(), 'hegemony-control-pair-d1-'));
@@ -80,7 +80,7 @@ test('real Worker/D1 restores paid magic return and another friendly controller 
   const lawyer = chooser.regions[0].characters.find(c => c.cardId === 'XQ16');
   assert(lawyer); assert.notEqual(lawyer.instanceId, fixture.lawyerId);
   for (const seat of [1,2,3]) assert.equal((await api(seat, 'state')).body.pendingChoice, null);
-  for (const target of [lawyer.instanceId, fixture.enemyId]) await rejectUnchanged(0, chooser.version, { kind: 'choose', choiceId: chooser.pendingChoice.id, selected: [target] });
+  for (const target of [lawyer.instanceId, fixture.enemyId, fixture.teammateId]) await rejectUnchanged(0, chooser.version, { kind: 'choose', choiceId: chooser.pendingChoice.id, selected: [target] });
   await reopen();
   const restored = (await api(0, 'state')).body;
   assert.deepEqual(restored.pendingChoice, chooser.pendingChoice);
@@ -94,10 +94,12 @@ test('real Worker/D1 restores paid magic return and another friendly controller 
     const v = (await api(seat, 'state')).body;
     const hidden = v.regions[4].characters.find(c => c.faceDown);
     assert(hidden); assert.notEqual(hidden.instanceId, fixture.allyId);
-    assert.equal(hidden.owner, 'p2'); assert.equal(hidden.controller, 'p1');
-    if (seat === 1) assert.equal(hidden.cardId, 'JC001');
+    assert.equal(hidden.owner, 'p2'); assert.equal(hidden.controller, 'p0');
+    if (seat === 0) assert.equal(hidden.cardId, 'JC001');
     else { assert.equal(hidden.name, '暗藏者'); for (const k of ['cardId','text','cost','icons','defense','color','magic']) assert(!Object.hasOwn(hidden, k)); }
     assert.equal(v.pendingChoice, null);
+    const teammate = v.regions[4].characters.find(c => c.instanceId === fixture.teammateId);
+    assert(teammate); assert.equal(teammate.faceDown, false); assert.equal(teammate.controller, 'p1');
   }
   assert.equal(exhausted(await state()), 4);
 });
