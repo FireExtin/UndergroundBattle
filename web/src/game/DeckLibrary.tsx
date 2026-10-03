@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import { factions, neutral } from './factions';
-import { createDeckDraft, isEditableDeckCard, localDeckStorage, publicDeckDraft, readDeckLibrary, revalidateDraftVersions, saveDeckLibrary, setDraftCardCount, validateDeckDraft } from './deckLibrary';
+import { createDeckDraft, isEditableDeckCard, localDeckStorage, publicDeckDraft, readDeckLibrary, revalidateDraftVersions, saveDeckLibrary, selectableSocieties, setDraftCardCount, societyColorCount, validateDeckDraft } from './deckLibrary';
 import type { DeckCardDefinition, DeckCatalog, DeckDraft, DeckStorage } from './deckLibrary';
 import './deck-library.css';
 
@@ -37,6 +37,8 @@ export function DeckLibrary({ catalog, disabled = false, onSelectDraft, selected
   const [kind, setKind] = useState('all');
   const [implementation, setImplementation] = useState('implemented');
   const validation = validateDeckDraft(draft, catalog);
+  const societies = selectableSocieties(catalog);
+  const society = societies.find(card => card.id === draft.societyId);
   const definitions = useMemo(() => new Map(catalog.cards.map(card => [card.id, card])), [catalog.cards]);
   const choices = catalog.cards.filter(card => {
     const query = search.trim().toLocaleLowerCase();
@@ -65,7 +67,7 @@ export function DeckLibrary({ catalog, disabled = false, onSelectDraft, selected
   return <section className="hg-deck-library" aria-labelledby="hg-library-title">
     <div className="hg-section-title"><span className="hg-eyebrow">03 / 我的牌组</span><span className="hg-pool-badge">本地浏览器保存</span></div>
     <h2 id="hg-library-title">命名、编辑与选择牌组</h2>
-    <p className="hg-muted">任意派系可以混合；通常至少 50 张，同名最多 3 张，印刷例外以目录标注为准。只可添加当前已实现的玩家卡；秘社暂未开放。</p>
+    <p className="hg-muted">任意派系可以混合；通常至少 50 张，同名最多 3 张，印刷例外以目录标注为准。只可添加当前已实现的玩家卡；可选秘社独立保存，不计入玩家卡张数。</p>
     <p className="hg-muted">当前可编辑 {catalog.cards.filter(isEditableDeckCard).length} 种玩家卡。这里只展示当前开放目录，并非完整八派系卡池。草稿保存在此浏览器，不会跨设备同步。</p>
     {storageWarning && <p className="hg-library-warning" role="alert">{storageWarning}</p>}
     <div className="hg-library-toolbar">
@@ -81,6 +83,21 @@ export function DeckLibrary({ catalog, disabled = false, onSelectDraft, selected
       <div className="hg-library-edit-panel">
         <label className="hg-field">牌组名称<input value={draft.name} onChange={event => edit({ ...draft, name: event.target.value })} maxLength={80} disabled={disabled} /></label>
         <label className="hg-field">牌组说明<textarea value={draft.description} onChange={event => edit({ ...draft, description: event.target.value })} maxLength={500} rows={2} disabled={disabled} /></label>
+        <section className="hg-library-society" aria-label="可选秘社">
+          <label className="hg-field">秘社（可选）<select value={draft.societyId || ''} disabled={disabled || !societies.length} onChange={event => edit({ ...draft, societyId: event.target.value || null })}>
+            <option value="">不选择秘社</option>
+            {draft.societyId && !society && <option value={draft.societyId}>已保存选择 · {draft.societyId}（当前未开放）</option>}
+            {societies.map(item => <option key={item.id} value={item.id}>{item.name}</option>)}
+          </select></label>
+          {draft.societyId !== null && <button type="button" className="hg-button hg-button-quiet" disabled={disabled} onClick={() => edit({ ...draft, societyId: null })}>清除秘社选择</button>}
+          <p>{!societies.length && '当前目录尚未开放秘社。'}{draft.societyId === null ? '不选择秘社时，起手 6 张。' : society ? `选定秘社起手 ${Number.isSafeInteger(society.startingHand) && society.startingHand >= 0 ? society.startingHand : '待确认'} 张。` : '已保存的秘社当前不可用于开局。'}</p>
+          {society && <>
+            <p className="hg-library-card-text">{society.text}</p>
+            <strong>构筑要求</strong>
+            {!Array.isArray(society.deckConstraints) ? <p>构筑要求待确认。</p> : society.deckConstraints.length ? <ul>{society.deckConstraints.map((constraint, index) => <li key={index}>{constraint.kind === 'minimumColor' && typeof constraint.color === 'string' ? `至少 ${constraint.count} 张${constraint.color.replace(/色$/, '')}色卡 · 当前 ${societyColorCount(draft, catalog, constraint.color)} 张` : '构筑要求待确认'}</li>)}</ul> : <p>无额外颜色数量要求。</p>}
+          </>}
+          <small>秘社不加入牌组组成；所有已选秘社在开局时同时公开。</small>
+        </section>
         <div className="hg-library-total" role="status"><strong>{validation.total} 张</strong><span>{validation.valid ? '构筑校验通过' : '暂不可开局'}{dirty ? ' · 有未保存修改' : ''}</span></div>
         <p className="hg-library-version">草稿来源：{draft.rulesVersion} / {draft.cardPoolVersion} / {draft.engineVersion}</p>
         {versionsChanged && <button type="button" className="hg-button hg-button-quiet" disabled={disabled} onClick={() => edit(revalidateDraftVersions(draft, catalog))}>按当前卡池重新校验</button>}
@@ -119,7 +136,7 @@ export function DeckLibrary({ catalog, disabled = false, onSelectDraft, selected
         <ul className="hg-library-card-options">{choices.map(card => <li key={card.id}>
           <div className="hg-library-card-heading"><strong>{card.name}</strong><button type="button" className="hg-button hg-button-quiet" aria-label={`添加 ${card.name}（${card.id}）`} disabled={disabled || !isEditableDeckCard(card)} onClick={() => edit(setDraftCardCount(draft, card.id, (draft.cards.find(entry => entry.cardId === card.id)?.count || 0) + 1))}>+ 添加</button></div>
           <small>{card.id} · {factionName(card)} · {kinds[card.kind] || card.kind} · 费用 {card.cost} · {copyLabel(card)}</small>
-          {!isEditableDeckCard(card) && <p className="hg-library-warning">{card.kind === 'region' ? '地区由世界牌库提供，不可加入玩家牌组。' : card.kind === 'society' ? '秘社暂未开放。' : '该卡尚未确认已实现，不可添加。'}</p>}
+          {!isEditableDeckCard(card) && <p className="hg-library-warning">{card.kind === 'region' ? '地区由世界牌库提供，不可加入玩家牌组。' : card.kind === 'society' ? '秘社须在独立选择中选取，不加入玩家卡张数。' : '该卡尚未确认已实现，不可添加。'}</p>}
           <details><summary>查看规则文字</summary><p className="hg-library-card-text">{card.text}</p>{card.loyaltyText && <p>{card.loyaltyText}</p>}</details>
         </li>)}</ul>
         {choices.length === 0 && <p className="hg-muted">当前开放目录没有符合筛选的卡牌。</p>}

@@ -64,7 +64,7 @@ describe('explicit construction rules', () => {
       const result = validateDeckDraft(draft([{ cardId: 'neutral', count: 49 }, { cardId, count: 1 }]), catalog);
       expect(result.valid).toBe(false); expect(result.issues.some(issue => issue.code === code)).toBe(true);
     }
-    expect(validateDeckDraft({ ...draft(), societyId: 'not-open' } as unknown as DeckDraft, catalog).issues.some(issue => issue.code === 'society')).toBe(true);
+    expect(validateDeckDraft({ ...draft(), societyId: 'not-open' }, catalog).issues.some(issue => issue.code === 'society')).toBe(true);
   });
   it('separates the formal minimum from the advertised service capacity', () => {
     expect(validateDeckDraft(draft([{ cardId: 'neutral', count: 49 }]), catalog).issues.find(issue => issue.code === 'minimum')?.message).toContain('还差 1 张');
@@ -94,10 +94,23 @@ describe('browser deck library storage', () => {
   });
   it('recovers good entries alongside malformed drafts and ignores unknown stored fields', () => {
     const good = { ...draft(), token: 'private-token' };
-    const storage = memoryStorage(JSON.stringify({ version: 1, drafts: [good, { ...draft(), id: 'bad', cards: [{ cardId: 'neutral', count: -1 }] }, { ...draft(), id: 'secret', societyId: 'not-supported' }] }));
+    const storage = memoryStorage(JSON.stringify({ version: 1, drafts: [good, { ...draft(), id: 'bad', cards: [{ cardId: 'neutral', count: -1 }] }, { ...draft(), id: 'secret', societyId: ' ' }] }));
     const read = readDeckLibrary(storage);
     expect(read.drafts).toHaveLength(1); expect(read.warning).toContain('格式损坏');
     expect(read.drafts[0]).not.toHaveProperty('token');
+  });
+  it('preserves an optional society through storage and explicit version revalidation', () => {
+    const storage = memoryStorage();
+    const chosen = { ...draft(), societyId: 'test-society', engineVersion: 'old-engine' };
+    expect(saveDeckLibrary([chosen], storage)).toBeNull();
+    const saved = readDeckLibrary(storage);
+    expect(saved.warning).toBeNull();
+    expect(saved.drafts[0].societyId).toBe('test-society');
+    expect(saved.drafts[0].cards).toEqual(chosen.cards);
+    const refreshed = revalidateDraftVersions(saved.drafts[0], catalog);
+    expect(refreshed.societyId).toBe('test-society');
+    expect(validateDeckDraft(refreshed, catalog).issues.some(issue => issue.code === 'society')).toBe(true);
+    expect(validateDeckDraft({ ...refreshed, societyId: null }, catalog).valid).toBe(true);
   });
   it('does not overwrite malformed or future-version data merely by reading it', () => {
     for (const raw of ['{broken', JSON.stringify({ version: 2, drafts: [draft()] })]) {

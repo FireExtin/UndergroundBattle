@@ -30,6 +30,7 @@ export function CardContent({ card: source, definition: sourceDefinition, compac
   const asset = card.kind === 'asset';
   const region = card.kind === 'region';
   const attachment = card.kind === 'attachment';
+  const society = card.kind === 'society';
   const concealedCompact = compact && card.kind === 'hidden';
   const printedCost = card.cost ?? definition?.cost ?? 0;
   const actualCost = card.effectiveCost ?? printedCost;
@@ -39,26 +40,26 @@ export function CardContent({ card: source, definition: sourceDefinition, compac
   const temporary = definition?.icons?.temporary || definition?.temporaryIcons;
   const hasTemporary = temporary && Object.values(temporary).some(n => n > 0);
   const effectiveStats = !compact && !card.faceDown && card.kind === 'character' && card.region !== undefined;
-  const type = hidden ? '身份未公开' : attachment ? `附属${definition?.subtypes?.length ? ` · ${definition.subtypes.join(' · ')}` : ''}` : definition?.type || definition?.subtypes?.join(' · ') || ({ character: '角色', event: '事件', spell: '咒术', region: '地区', asset: '资产', hidden: '暗藏角色' }[card.kind] || '卡牌');
+  const type = hidden ? '身份未公开' : attachment ? `附属${definition?.subtypes?.length ? ` · ${definition.subtypes.join(' · ')}` : ''}` : definition?.type || definition?.subtypes?.join(' · ') || ({ character: '角色', event: '事件', spell: '咒术', region: '地区', asset: '资产', society: '秘社', hidden: '暗藏角色' }[card.kind] || '卡牌');
   return <>
-    <span className="hg-card-top"><span className="hg-card-kind">{type}</span>{!hidden && !asset && !region && <span className={`hg-cost${adjustedCost ? ' hg-cost-adjusted' : ''}`} title={adjustedCost ? `当前费用 ${actualCost} · 印刷费用 ${printedCost}` : '费用'} aria-label={adjustedCost ? `当前费用 ${actualCost}，印刷费用 ${printedCost}` : `费用 ${actualCost}`}>{actualCost}</span>}</span>
+    <span className="hg-card-top"><span className="hg-card-kind">{type}</span>{!hidden && !asset && !region && !society && <span className={`hg-cost${adjustedCost ? ' hg-cost-adjusted' : ''}`} title={adjustedCost ? `当前费用 ${actualCost} · 印刷费用 ${printedCost}` : '费用'} aria-label={adjustedCost ? `当前费用 ${actualCost}，印刷费用 ${printedCost}` : `费用 ${actualCost}`}>{actualCost}</span>}</span>
     <strong className="hg-card-name">{hidden ? '暗藏者' : card.name}</strong>
-    {!compact && !hidden && !asset && !region && adjustedCost && <span className="hg-cost-explanation">当前费用 {actualCost} · 印刷费用 {printedCost}</span>}
+    {!compact && !hidden && !asset && !region && !society && adjustedCost && <span className="hg-cost-explanation">当前费用 {actualCost} · 印刷费用 {printedCost}</span>}
     {!compact && <span className="hg-card-art" aria-hidden="true"><span>{hidden ? '？' : card.kind === 'event' ? '✧' : card.kind === 'region' ? '⌖' : '◈'}</span><i /></span>}
     {hidden ? <><IconStrip icons={hiddenIcons} /><span className="hg-card-text">{hiddenRule}。{card.exhausted ? '已横置，不参与对抗。' : '在地区内且未横置时参与势力对抗。'}</span></> : <>
-      <span className="hg-card-affiliation">{region ? `赢得 ${definition?.points ?? '—'} 分 · 控制阈值 ${definition?.threshold ?? '—'}` : asset ? `${card.color || '无派系'}${card.magic ? ` · ${card.magic}` : ''}` : <>{definition?.loyaltyText || (definition?.loyalty?.length ? `忠诚 ${definition.loyalty.join(' / ')}` : '无忠诚要求')}{(card.magic || definition?.magic) && ` · ${card.magic || definition?.magic}`}</>}</span>
-      {!asset && !region && !attachment && (effectiveStats && card.icons ? <>
+      {!society && <span className="hg-card-affiliation">{region ? `赢得 ${definition?.points ?? '—'} 分 · 控制阈值 ${definition?.threshold ?? '—'}` : asset ? `${card.color || '无派系'}${card.magic ? ` · ${card.magic}` : ''}` : <>{definition?.loyaltyText || (definition?.loyalty?.length ? `忠诚 ${definition.loyalty.join(' / ')}` : '无忠诚要求')}{(card.magic || definition?.magic) && ` · ${card.magic || definition?.magic}`}</>}</span>}
+      {!asset && !region && !attachment && !society && (effectiveStats && card.icons ? <>
         <span className="hg-card-stat-row"><small>当前有效</small><IconStrip icons={card.icons} label="当前有效图标" /></span>
         {printedIcons && <span className="hg-card-stat-row"><small>印刷图标</small><IconStrip icons={printedIcons} label="印刷图标" /></span>}
       </> : <IconStrip icons={concealedCompact ? hiddenIcons : compact ? card.icons || permanent : permanent} />)}
-      {!compact && hasTemporary && <span className="hg-temporary-label">先手 <IconStrip icons={temporary} temporary /></span>}
+      {!compact && !society && hasTemporary && <span className="hg-temporary-label">先手 <IconStrip icons={temporary} temporary /></span>}
       {!compact && <span className="hg-card-text">{asset ? '未横置时可提供 1 费用，并提供所示派系与魔法忠诚。' : card.text || definition?.text || '此牌没有额外能力。'}</span>}
       <span className="hg-card-footer">
-        {!concealedCompact && (card.defense ?? definition?.defense) !== undefined && <span>{effectiveStats && card.defense !== undefined && definition?.defense !== undefined ? `当前防御 ${card.defense} · 印刷防御 ${definition.defense}` : `防御 ${card.defense ?? definition?.defense}`}</span>}
+        {!society && !concealedCompact && (card.defense ?? definition?.defense) !== undefined && <span>{effectiveStats && card.defense !== undefined && definition?.defense !== undefined ? `当前防御 ${card.defense} · 印刷防御 ${definition.defense}` : `防御 ${card.defense ?? definition?.defense}`}</span>}
         {attachmentCount > 0 && <span className="hg-card-attachment-count" title="点选宿主后可查看附属" aria-label={`附属 ${attachmentCount} 张`}>附属 {attachmentCount}</span>}
-        {!concealedCompact && !!card.damage && <span className="hg-hurt">伤害 {card.damage}</span>}
-        {!concealedCompact && !!card.wounds && <span className="hg-hurt">创伤 {card.wounds}</span>}
-        {!concealedCompact && !!card.shield && <span>护盾 {card.shield}</span>}
+        {!society && !concealedCompact && !!card.damage && <span className="hg-hurt">伤害 {card.damage}</span>}
+        {!society && !concealedCompact && !!card.wounds && <span className="hg-hurt">创伤 {card.wounds}</span>}
+        {!society && !concealedCompact && !!card.shield && <span>护盾 {card.shield}</span>}
         {card.exhausted && <span className="hg-exhausted-label">已横置</span>}
         {card.faceDown && <span>{hiddenRule}{card.exhausted ? ' · 横置不参与对抗' : ''}</span>}
       </span>

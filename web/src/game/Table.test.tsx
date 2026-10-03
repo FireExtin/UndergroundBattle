@@ -164,7 +164,7 @@ describe('playable table', () => {
     for (const player of players) {
       expect(screen.getByLabelText(`${player.name}的牌库，49张`)).toBeInTheDocument();
       expect(screen.getByText(`席位 ${player.seat + 1} · ${player.deckName}`)).toBeInTheDocument();
-      expect(screen.getByLabelText(`${player.name}的秘社区，尚未实现`)).toBeInTheDocument();
+      expect(screen.getByLabelText(`${player.name}的秘社区`)).toHaveTextContent('未开放');
     }
     expect(container.querySelector('[data-hand-owner="p1"]')).toHaveAttribute('data-hand-count', '1');
     expect(container.querySelectorAll('[data-pile-kind="graveyard"]')).toHaveLength(4);

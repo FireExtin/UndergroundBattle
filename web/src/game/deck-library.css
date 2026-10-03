@@ -12,6 +12,10 @@
 .hg-library-total strong { font-size: 1.5rem; }
 .hg-library-total span, .hg-library-match-count, .hg-library-version { color: #bfc4d1; font-size: .85rem; }
 .hg-library-version { overflow-wrap: anywhere; line-height: 1.5; }
+.hg-library-society { margin-top: 1rem; padding: .8rem; border: 1px solid #4b5060; border-radius: .5rem; overflow-wrap: anywhere; }
+.hg-library-society p, .hg-library-society ul { margin: .6rem 0; line-height: 1.6; }
+.hg-library-society small { display: block; color: #bfc4d1; line-height: 1.6; }
+.hg-library-society select, .hg-library-society button { min-height: 44px; }
 .hg-library-issues { margin: .8rem 0; padding-left: 1.25rem; color: #f2c89d; font-size: .9rem; line-height: 1.65; }
 .hg-library-warning { color: #f2c89d; line-height: 1.55; }
 .hg-library-notice { color: #a9d9bb; line-height: 1.55; }

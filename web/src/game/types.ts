@@ -8,6 +8,12 @@ export type CardDefinition = {
   deckCopyLimit?: number | null;
   abilities?: { key: string; label: string; timing: 'standard' | 'fast' | 'actionFast'; triggered: boolean }[];
 };
+export type SocietyDefinition = CardDefinition & {
+  kind: 'society';
+  startingHand: number;
+  deckConstraints: { kind: 'minimumColor'; color: string; count: number }[];
+  unresolvedAbilities: Record<string, string>;
+};
 export type Card = {
   instanceId: string; cardId?: string; name: string; owner: string; controller: string;
   kind: string; region?: number; exhausted: boolean; faceDown: boolean;
@@ -23,7 +29,7 @@ export type Action = {
   deckDraft?: import('./deckLibrary').DeckDraft;
   windowId?: string; intentId?: string; action?: Action;
 };
-export type LegalAction = Action & { id: string; label: string; description?: string };
+export type LegalAction = Action & { id: string; label: string; description?: string; sourceZoneId?: string };
 export type Choice = {
   id: string; kind: string; title: string; description: string; playerId: string;
   options: { id: string; label: string; card?: Card }[];
@@ -61,6 +67,7 @@ export type View = {
   phase: string; step: string; winScore: number; winnerTeam?: number;
   regions: Region[]; hand: Card[]; assets: Card[]; graveyard: Card[]; scoreCards: Card[];
   attachments?: Attachment[];
+  societyZones?: { id: string; playerId: string; card: Card | null }[];
   stack: StackEffect[];
   pendingChoice: Choice | null;
   waitingChoice?: { playerId: string; title: string; kind: string } | null;
@@ -73,6 +80,7 @@ export type View = {
 };
 export type Deck = { id: string; name: string; description: string; cardCount: number; cards: { cardId: string; count: number }[] };
 export type Catalog = { rulesVersion: string; cardPoolVersion: string; engineVersion: string; decks: Deck[]; cards: CardDefinition[];
+  societies?: SocietyDefinition[];
   deckBuildRules?: { minimumCards: number; serviceCardCapacity: number; societySupported: boolean } };
 export type Session = { roomId: string; inviteCode: string; token: string; seat: number; view: View };
 export type SavedSession = Omit<Session, 'view'>;
