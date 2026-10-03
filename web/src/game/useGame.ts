@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { actionForRoom, ApiError, createRoom, createRoomWithDeck, forgetSavedSeat, getCatalog, getState, joinRoom, joinRoomWithDeck, newCommandId, pollState, readActiveSession, readPending, readSavedSeats, readSession, returnToLobby, savePending, saveSession, sendCommand, type PendingCommand } from './api';
 import type { Action, Catalog, SavedSession, Session, View } from './types';
 import type { DeckDraft } from './deckLibrary';
+import { readPlayerMode, selectPlayerMode, type PlayerMode } from './playerStorage';
 
 export function newerView(current: View | null, next: View): View {
   return current && current.roomId === next.roomId && current.you === next.you && current.version > next.version ? current : next;
@@ -14,6 +15,7 @@ const needsSiteLogin = (error: unknown) => error instanceof ApiError && (error.s
 const loginMessage = '访问牌桌需要重新登录。座位和未确认行动已保留，请登录后刷新页面继续。';
 
 export function useGame() {
+  const [playerMode, setPlayerMode] = useState(readPlayerMode);
   const [catalog, setCatalog] = useState<Catalog | null>(null);
   const [session, setSession] = useState<SavedSession | null>(readActiveSession);
   const [savedSeats, setSavedSeats] = useState<SavedSession[]>(readSavedSeats);
@@ -172,8 +174,22 @@ export function useGame() {
     return enter(task);
   };
 
+  const switchPlayerMode = (mode: PlayerMode) => {
+    if (commandLock.current) return;
+    if (pending.current) { setError('当前会话还有待确认行动，请先恢复原席确认，再切换玩家会话。'); return; }
+    try { selectPlayerMode(mode, mode === 'independent' ? newCommandId() : undefined); }
+    catch (e) { setError(e instanceof Error ? e.message : '无法切换玩家会话。'); return; }
+    const next = readActiveSession();
+    pending.current = readPending(); activeSession.current = next; acceptedVersion.current = 0;
+    setPlayerMode(mode); setSavedSeats(readSavedSeats()); setSession(next); setView(null);
+    setUncertain(commandFor(pending.current, next)); setError(''); setConnection('connecting');
+    setCatalog(null); setCatalogRetry(n => n + 1);
+  };
+
   return {
-    catalog, session, view, error, busy, uncertain, connection, act,
+    catalog, session, view, error, busy, uncertain, connection, act, playerMode,
+    startIndependentSession: () => switchPlayerMode('independent'),
+    useOrdinarySession: () => switchPlayerMode('ordinary'),
     create: (name: string, mode: 'duel' | 'teams', deckId: string) => enter(() => createRoom(name, mode, deckId)),
     join: (inviteCode: string, name: string, deckId: string) => join(inviteCode, () => joinRoom(inviteCode, name, deckId)),
     createDraft: (name: string, mode: 'duel' | 'teams', draft: DeckDraft) => enter(() => createRoomWithDeck(name, mode, draft)),

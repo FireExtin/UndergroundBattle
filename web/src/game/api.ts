@@ -1,5 +1,6 @@
 import type { Action, Catalog, SavedSession, Session, View } from './types';
 import type { DeckDraft } from './deckLibrary';
+import { playerStorage } from './playerStorage';
 
 const STORAGE_KEY = 'hegemony.session.v1';
 const PENDING_KEY = 'hegemony.pending.v1';
@@ -14,7 +15,7 @@ export function newCommandId(): string {
 export type PendingCommand = { roomId: string; seat?: number; commandId: string; expectedVersion: number; action: Action };
 export function readPending(): PendingCommand | null {
   try {
-    const value = JSON.parse(localStorage.getItem(PENDING_KEY) || 'null');
+    const value = JSON.parse(playerStorage().getItem(PENDING_KEY) || 'null');
     if (value && typeof value.roomId === 'string' && typeof value.commandId === 'string' && typeof value.expectedVersion === 'number' && typeof value.action?.kind === 'string') {
       // Older clients recorded no seat; their last saved session is the original actor.
       const original = readSession();
@@ -25,8 +26,8 @@ export function readPending(): PendingCommand | null {
 }
 export function savePending(command: PendingCommand | null) {
   try {
-    if (command) localStorage.setItem(PENDING_KEY, JSON.stringify(command));
-    else localStorage.removeItem(PENDING_KEY);
+    if (command) playerStorage().setItem(PENDING_KEY, JSON.stringify(command));
+    else playerStorage().removeItem(PENDING_KEY);
   } catch { /* Preserve the in-memory command while this tab is open. */ }
 }
 
@@ -41,7 +42,7 @@ export class ApiError extends Error {
 
 export function readSession(): SavedSession | null {
   try {
-    const value = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
+    const value = JSON.parse(playerStorage().getItem(STORAGE_KEY) || 'null');
     if (value && typeof value.roomId === 'string' && typeof value.token === 'string'
       && typeof value.inviteCode === 'string' && Number.isInteger(value.seat)) return value;
   } catch { /* A corrupted or unavailable storage must not block the lobby. */ }
@@ -50,7 +51,7 @@ export function readSession(): SavedSession | null {
 export function readSavedSeats(): SavedSession[] {
   let seats: SavedSession[] = [];
   try {
-    const values = JSON.parse(localStorage.getItem(SEATS_KEY) || '[]');
+    const values = JSON.parse(playerStorage().getItem(SEATS_KEY) || '[]');
     if (Array.isArray(values)) seats = values.filter(value => value && typeof value.roomId === 'string'
       && typeof value.token === 'string' && typeof value.inviteCode === 'string' && Number.isInteger(value.seat));
   } catch { /* A damaged history must not hide the legacy saved seat. */ }
@@ -59,18 +60,18 @@ export function readSavedSeats(): SavedSession[] {
   return seats;
 }
 export function returnToLobby() {
-  try { localStorage.setItem(SCREEN_KEY, 'lobby'); } catch { /* This tab can still return. */ }
+  try { playerStorage().setItem(SCREEN_KEY, 'lobby'); } catch { /* This tab can still return. */ }
 }
 export function readActiveSession(): SavedSession | null {
-  try { if (localStorage.getItem(SCREEN_KEY) === 'lobby') return null; } catch { /* Restore a saved seat when possible. */ }
+  try { if (playerStorage().getItem(SCREEN_KEY) === 'lobby') return null; } catch { /* Restore a saved seat when possible. */ }
   return readSession();
 }
 export function forgetSavedSeat(session: SavedSession) {
   const keep = readSavedSeats().filter(seat => seat.roomId !== session.roomId || seat.seat !== session.seat);
   try {
-    localStorage.setItem(SEATS_KEY, JSON.stringify(keep));
+    playerStorage().setItem(SEATS_KEY, JSON.stringify(keep));
     const current = readSession();
-    if (current?.roomId === session.roomId && current.seat === session.seat) localStorage.removeItem(STORAGE_KEY);
+    if (current?.roomId === session.roomId && current.seat === session.seat) playerStorage().removeItem(STORAGE_KEY);
   } catch { /* The UI also removes the invalid seat from its own state. */ }
 }
 export function saveSession(session: SavedSession | null) {
@@ -78,11 +79,11 @@ export function saveSession(session: SavedSession | null) {
     if (session) {
       const saved = { roomId: session.roomId, inviteCode: session.inviteCode, token: session.token, seat: session.seat };
       const seats = readSavedSeats().filter(seat => seat.roomId !== saved.roomId || seat.seat !== saved.seat);
-      localStorage.setItem(SEATS_KEY, JSON.stringify([...seats, saved]));
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(saved));
-      localStorage.setItem(SCREEN_KEY, 'table');
+      playerStorage().setItem(SEATS_KEY, JSON.stringify([...seats, saved]));
+      playerStorage().setItem(STORAGE_KEY, JSON.stringify(saved));
+      playerStorage().setItem(SCREEN_KEY, 'table');
     }
-    else localStorage.removeItem(STORAGE_KEY);
+    else playerStorage().removeItem(STORAGE_KEY);
   } catch { /* The current session remains usable if browser storage is disabled. */ }
 }
 
@@ -113,13 +114,17 @@ export const getState = async (session: SavedSession, signal?: AbortSignal) => {
   if (view.roomId !== session.roomId || !Number.isSafeInteger(view.version)) throw new ApiError(0, '同步返回格式不正确，请登录后重新同步。');
   return view;
 };
-let entryMemory: { intent: string; requestId: string } | null = null;
+const entryMemory = new Map<string, { intent: string; requestId: string }>();
 async function enterRoom(path: string, values: Record<string, unknown>): Promise<Session> {
   const intent = JSON.stringify([path, values]);
-  try { entryMemory = JSON.parse(localStorage.getItem(ENTRY_KEY) || 'null') || entryMemory; } catch { /* Keep an in-memory recovery key. */ }
-  if (!entryMemory || entryMemory.intent !== intent || typeof entryMemory.requestId !== 'string') entryMemory = { intent, requestId: newCommandId() };
-  try { localStorage.setItem(ENTRY_KEY, JSON.stringify(entryMemory)); } catch { /* Storage may be disabled. */ }
-  const init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...values, requestId: entryMemory.requestId }) };
+  // Capture the namespace before awaiting; a late acknowledgement cannot clear another scope's receipt.
+  const storage = playerStorage();
+  let receipt = entryMemory.get(storage.scope);
+  try { receipt = JSON.parse(storage.getItem(ENTRY_KEY) || 'null') || receipt; } catch { /* Keep an in-memory recovery key. */ }
+  if (!receipt || receipt.intent !== intent || typeof receipt.requestId !== 'string') receipt = { intent, requestId: newCommandId() };
+  entryMemory.set(storage.scope, receipt);
+  try { storage.setItem(ENTRY_KEY, JSON.stringify(receipt)); } catch { /* Storage may be disabled. */ }
+  const init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...values, requestId: receipt.requestId }) };
   try {
     let session: Session;
     try { session = await request<Session>(path, init); }
@@ -127,8 +132,8 @@ async function enterRoom(path: string, values: Record<string, unknown>): Promise
       if (!supportsEntryReceipts || !(error instanceof ApiError) || (error.status !== 0 && error.status < 500)) throw error;
       session = await request<Session>(path, init);
     }
-    entryMemory = null;
-    try { localStorage.removeItem(ENTRY_KEY); } catch { /* No persistent storage. */ }
+    entryMemory.delete(storage.scope);
+    try { storage.removeItem(ENTRY_KEY); } catch { /* No persistent storage. */ }
     return session;
   } catch (error) { throw error; /* Keep exactly the original request key for an explicit retry. */ }
 }
