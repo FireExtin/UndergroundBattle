@@ -38,7 +38,8 @@ pub fn build_rules() -> DeckBuildRules {
         unique_name_copy_limit: 1,
         copy_limit_by_printed_name: true,
         faction_limit: None,
-        society_supported: cfg!(feature = "society-fixtures"),
+        // Do not call catalog() here: it constructs these rules itself.
+        society_supported: !crate::society::definitions().is_empty(),
         service_card_capacity: SERVICE_CARD_CAPACITY,
         capacity_is_service_limit: true,
     }

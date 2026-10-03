@@ -1,4 +1,4 @@
-//! Personal in-play headquarters, outside all regions. No real society is admitted yet.
+//! Personal in-play headquarters, outside all regions. Production admits only MSJC09.
 use crate::{catalog::CardDefinition, engine::RuleResult, model::*};
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
@@ -27,6 +27,11 @@ pub enum SocietyDeckConstraint {
 pub struct SocietyDefinition {
     #[serde(flatten)]
     pub card: CardDefinition,
+    #[serde(default, skip_serializing_if = "String::is_empty")]
+    pub subtitle: String,
+    // Society cards have no printed play cost. The legacy u32 is not a printed fee.
+    #[serde(default)]
+    pub printed_cost: Option<u32>,
     pub starting_hand: usize,
     pub deck_constraints: Vec<SocietyDeckConstraint>,
     // An unresolved condition is closed, never interpreted as free permission or a no-op payoff.
@@ -128,7 +133,31 @@ impl Game {
 pub(crate) fn definitions() -> Vec<SocietyDefinition> {
     #[cfg(not(feature = "society-fixtures"))]
     {
-        vec![]
+        let mut card: CardDefinition = serde_json::from_value(serde_json::json!({
+            "id":"MSJC09","name":"秘社","kind":"society","type":"秘社",
+            "color":"中立","society":"-","supported":true,
+            "text":"行动3，横置：若你具有【先手标志】，则抓一张牌。"
+        }))
+        .expect("verified MSJC09 printed fields");
+        card.abilities = crate::rules::definition("MSJC09")
+            .abilities
+            .iter()
+            .map(|a| crate::catalog::AbilitySummary {
+                key: a.key.clone(),
+                label: a.label.clone(),
+                timing: "standard".into(),
+                costs: a.costs.clone(),
+                triggered: false,
+            })
+            .collect();
+        vec![SocietyDefinition {
+            card,
+            subtitle: "未知的聚会".into(),
+            printed_cost: None,
+            starting_hand: 6,
+            deck_constraints: vec![],
+            unresolved_abilities: BTreeMap::new(),
+        }]
     }
     #[cfg(feature = "society-fixtures")]
     {
@@ -140,7 +169,7 @@ pub(crate) fn definitions() -> Vec<SocietyDefinition> {
                 card.abilities = crate::rules::definition(id).abilities.iter().map(|a| crate::catalog::AbilitySummary {
                     key:a.key.clone(),label:a.label.clone(),timing:"standard".into(),costs:a.costs.clone(),triggered:false,
                 }).collect();
-                SocietyDefinition { card, starting_hand,
+                SocietyDefinition { card, subtitle:String::new(), printed_cost:None, starting_hand,
                     deck_constraints: minimum.map(|(color,count)| SocietyDeckConstraint::MinimumColor { color:color.into(),count }).into_iter().collect(),
                     unresolved_abilities: if pending { BTreeMap::from([("fixture-draw".into(),"U13-test-unresolved".into())]) } else { BTreeMap::new() },
                 }
@@ -148,13 +177,17 @@ pub(crate) fn definitions() -> Vec<SocietyDefinition> {
     }
 }
 
+#[cfg(all(test, not(feature = "society-fixtures")))]
+#[path = "society_msjc09_tests.rs"]
+mod printed_tests;
+
 #[cfg(test)]
 mod tests {
     use super::*;
     use crate::{catalog, deck};
 
     #[test]
-    fn every_seat_has_an_empty_non_region_zone_and_real_societies_remain_closed() {
+    fn every_seat_has_an_empty_non_region_zone_and_registry_matches_support_flag() {
         let mut g = Game::new(
             "society-empty".into(),
             "invite".into(),
@@ -177,17 +210,31 @@ mod tests {
         }
         let mut d = deck::preset("watchers").unwrap();
         d.society_id = Some("MSJC09".into());
-        assert!(deck::validate(d).is_err());
+        assert_eq!(
+            deck::validate(d).is_ok(),
+            !cfg!(feature = "society-fixtures")
+        );
         assert!(!catalog::catalog().cards.iter().any(|d| d.kind == "society"));
+        #[cfg(feature = "society-fixtures")]
         assert!(catalog::catalog()
             .societies
             .iter()
             .all(|d| d.card.id.starts_with("FIXTURE_")));
         #[cfg(not(feature = "society-fixtures"))]
         {
-            assert!(catalog::catalog().societies.is_empty());
-            assert!(!deck::build_rules().society_supported);
+            assert_eq!(
+                catalog::catalog()
+                    .societies
+                    .iter()
+                    .map(|s| s.card.id.as_str())
+                    .collect::<Vec<_>>(),
+                vec!["MSJC09"]
+            );
         }
+        assert_eq!(
+            deck::build_rules().society_supported,
+            !catalog::catalog().societies.is_empty()
+        );
     }
 
     #[cfg(feature = "society-fixtures")]

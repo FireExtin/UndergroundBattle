@@ -15,6 +15,10 @@ use std::collections::BTreeMap;
 #[path = "support/society_fixture.rs"]
 mod society_fixture;
 
+#[cfg(not(feature = "society-fixtures"))]
+#[path = "support/msjc09.rs"]
+mod msjc09;
+
 fn step(room: &RoomEnvelope, operation: &str, args: Value, seat: usize) -> Value {
     json!({"operation":operation,"args":args,"state":serde_json::to_string(room).unwrap(),"version":room.revision,"seat":seat,"view":room.view(seat,room.pacing.last_server_now_ms),"views":(0..room.players.len()).map(|s|room.view(s,room.pacing.last_server_now_ms)).collect::<Vec<_>>()})
 }
@@ -2664,5 +2668,14 @@ fn main() {
         "expensiveTargetId":targets.iter().find(|c| c.definition == "JC086").unwrap().id
     });
     let value = json!({"preparedRescueForecast":prepared_rescue_forecast,"preparedFireScholar":prepared_fire_scholar,"preparedControlPair":prepared_control_pair,"preparedTwoCards":prepared_two_cards,"preparedAssassin":prepared_assassin,"preparedResponse":prepared,"catalog":catalog::catalog(),"cases":[rescue_forecast,fire_scholar,control_pair,two_cards,assassin,attachment_fixture(false),attachment_fixture(true),attachment_hk_fixture(),attachment_region_return_fixture(),grave_play_fixture(),fixture("duel","18446744073709551615"),fixture("teams","9007199254740993"),response_fixture(),detective_fixture(false),detective_fixture(true),custom_deck_fixture(),friendly_icons_fixture(),pacing_fixture(false),pacing_fixture(true),world_fixture("DQJC108",false),world_fixture("DQJC109",false),world_fixture("DQJC110",false),world_fixture("DQJC111",false),world_fixture("DQJC115",false),world_fixture("DQJC116",false),world_fixture("DQJC116",true)],"rejectedStates":rejected_states});
+    #[cfg(not(feature = "society-fixtures"))]
+    let value = {
+        let mut value = value;
+        value["cases"]
+            .as_array_mut()
+            .unwrap()
+            .push(msjc09::natural_case());
+        value
+    };
     std::fs::write(output, serde_json::to_vec(&value).unwrap()).unwrap();
 }

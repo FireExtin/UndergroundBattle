@@ -192,6 +192,11 @@ pub enum Op {
         count: usize,
         end: DeckEnd,
     },
+    // MSJC09's post-colon condition is evaluated by the paid frame at resolution.
+    // This is deliberately not a general conditional-activation permission.
+    DrawIfActorHasInitiative {
+        count: usize,
+    },
     Forecast {
         player: PlayerRef,
         count: usize,
@@ -1289,6 +1294,19 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
                 }),
                 ..Default::default()
             },
+        );
+        #[cfg(not(feature = "society-fixtures"))]
+        m.insert(
+            "MSJC09".into(),
+            with_abilities(vec![ability(
+                "drawWithInitiative",
+                "先手抓牌",
+                Timing::Standard,
+                vec![Cost::Assets(3), Cost::ExhaustSource],
+                vec![],
+                vec![Op::DrawIfActorHasInitiative { count: 1 }],
+                None,
+            )]),
         );
         #[cfg(feature = "society-fixtures")]
         for id in [

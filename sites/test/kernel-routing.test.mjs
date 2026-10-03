@@ -24,7 +24,7 @@ playable.initSync({ module: readFileSync(new URL('../generated/legacy-v0.2.8/heg
 test('real kernels preserve their full version tuple and reject unknown persisted identities', () => {
   const routed = routeKernels(current, [previous, intermediate, last, stable, paced, attached, grave, playable]);
   const candidateVersion = JSON.parse(current.catalog()).engineVersion;
-  assert.equal(candidateVersion, 'rust-v0.2.8-society-candidate');
+  assert.equal(candidateVersion, 'rust-v0.2.8-msjc09-candidate');
   assert.equal(JSON.parse(playable.catalog()).engineVersion, 'rust-v0.2.8');
   for (const kernel of [current, previous, intermediate, last, stable, paced, attached, grave, playable]) {
     const initial = JSON.parse(kernel.newGame('room', 'invite', 'duel', 'P0', 'watchers', '18446744073709551615'));

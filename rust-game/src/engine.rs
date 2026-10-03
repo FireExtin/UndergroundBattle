@@ -1827,7 +1827,11 @@ impl Game {
             region,
             exhausted: c.exhausted,
             face_down: c.face_down,
-            cost: if hidden || asset { None } else { Some(d.cost) },
+            cost: if hidden || asset || d.kind == "society" {
+                None
+            } else {
+                Some(d.cost)
+            },
             effective_cost: if hidden
                 || asset
                 || !self.players[viewer].hand.iter().any(|own| own.id == c.id)
@@ -2374,7 +2378,7 @@ mod tests {
             active,
             rules::definitions()
                 .keys()
-                .filter(|id| !id.starts_with("FIXTURE_SOCIETY_"))
+                .filter(|id| c.cards.iter().any(|card| card.id == **id))
                 .cloned()
                 .collect::<BTreeSet<_>>()
         );

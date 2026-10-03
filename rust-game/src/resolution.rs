@@ -1026,6 +1026,11 @@ impl Game {
                         self.remove_dead(id, RemovalCause::Destroy);
                     }
                 }
+                Op::DrawIfActorHasInitiative { count } => {
+                    if self.team(frame.actor) == self.first_team {
+                        self.draw(frame.actor, count)?;
+                    }
+                }
                 Op::Draw { player, count, end } => {
                     let seat = self.frame_player(&frame, step.context, player)?;
                     if end == DeckEnd::Top {
