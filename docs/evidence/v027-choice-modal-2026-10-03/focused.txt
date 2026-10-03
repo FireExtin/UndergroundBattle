@@ -1,0 +1,18 @@
+
+> undergroundbattle-web@0.1.0 test
+> vitest --run src/game/DialogIsolation.test.tsx src/game/ChoicePanel.test.tsx src/game/ReadModal.test.tsx src/game/Help.test.tsx src/game/Table.test.tsx
+
+
+ RUN  v4.1.2 /workspace/UndergroundBattle-v027-player-sessions/web
+
+
+ Test Files  5 passed (5)
+      Tests  38 passed (38)
+   Start at  08:55:09
+   Duration  2.34s (transform 521ms, setup 451ms, import 642ms, tests 3.03s, environment 2.00s)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

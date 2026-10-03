@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { CardContent, visibleCard } from './CardTile';
+import { useDialogFocus } from './useDialogFocus';
 import type { Action, Card, CardDefinition, Choice, LegalAction } from './types';
 import './choice-readability.css';
 
@@ -13,12 +14,16 @@ function move(ids: string[], id: string, delta: number) {
   if (index < 0 || target < 0 || target >= ids.length) return ids;
   const result = [...ids]; [result[index], result[target]] = [result[target], result[index]]; return result;
 }
-export function ChoicePanel({ choice, action, definitions, busy, onSubmit, onReadCard, viewerId, playerLabels }: {
+export function ChoicePanel({ choice, action, definitions, busy, onSubmit, onReadCard, viewerId, playerLabels, modal = false, modalActive = true }: {
   choice: Choice; action?: LegalAction; definitions: Map<string, CardDefinition>; busy: boolean; onSubmit: (action: Action) => void;
   onReadCard?: (card: Card) => void;
   viewerId?: string;
   playerLabels?: Record<string, string>;
+  modal?: boolean;
+  modalActive?: boolean;
 }) {
+  const dialog = useRef<HTMLElement>(null);
+  useDialogFocus(dialog, modal && modalActive);
   const [selected, setSelected] = useState<string[]>(choice.kind === 'region_return' ? choice.options.map(option => option.id) : []);
   const [top, setTop] = useState(choice.options.map(option => option.id));
   const [bottom, setBottom] = useState<string[]>([]);
@@ -61,7 +66,7 @@ export function ChoicePanel({ choice, action, definitions, busy, onSubmit, onRea
     {!ids.length && <li className="hg-empty">这里没有牌</li>}
   </ol>;
 
-  return <section className="hg-choice" data-choice-id={choice.id} aria-label="待完成的选择" tabIndex={-1}>
+  return <section ref={dialog} className="hg-choice" data-choice-id={choice.id} role={modal ? 'dialog' : undefined} aria-modal={modal ? true : undefined} aria-label="待完成的选择" tabIndex={-1}>
     <div className="hg-choice-heading">
     <div className="hg-section-title"><span className="hg-eyebrow">轮到你选择</span><span className="hg-choice-tag">{damage ? `尚余 ${amount - assigned} 点` : ordering ? '自上而下排列' : `已选 ${selected.length} / ${max}`}</span></div>
     <h2>{choice.title}</h2><p>{choice.description}</p>

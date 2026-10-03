@@ -1,25 +1,18 @@
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import type { Catalog } from './types';
 import { FactionCoverage } from './FactionCoverage';
+import { useDialogFocus } from './useDialogFocus';
 
 export function Help({ onClose, catalog }: { onClose: () => void; catalog: Catalog | null }) {
-  const close = useRef<HTMLButtonElement>(null);
-  const dismiss = useRef(onClose);
-  dismiss.current = onClose;
-  useEffect(() => {
-    const previous = document.activeElement as HTMLElement | null;
-    close.current?.focus();
-    const escape = (event: KeyboardEvent) => { if (event.key === 'Escape') dismiss.current(); };
-    document.addEventListener('keydown', escape);
-    return () => { document.removeEventListener('keydown', escape); previous?.focus(); };
-  }, []);
+  const modal = useRef<HTMLElement>(null);
+  useDialogFocus(modal, true, onClose);
   const worldCount = new Set(catalog?.cards.filter(card => card.kind === 'region').map(card => card.id)).size;
   const deckSizes = [...new Set(catalog?.decks.map(deck => deck.cardCount))];
   const poolDescription = catalog
     ? `使用 ${catalog.decks.length} 套${deckSizes.length === 1 ? ` ${deckSizes[0]} 张` : ''}自组预组与 ${worldCount} 种已开放世界牌。`
     : '牌组档案正在加载。';
-  return <div className="hg-modal-backdrop" onClick={onClose}><section className="hg-help hg-modal" role="dialog" aria-modal="true" aria-label="上手指南" onClick={event => event.stopPropagation()}>
-    <button ref={close} className="hg-close" onClick={onClose} aria-label="关闭指南">×</button><span className="hg-eyebrow">新手档案 / HOW TO PLAY</span><h2>将世界纳入你的版图</h2>
+  return <div className="hg-modal-backdrop" onClick={onClose}><section ref={modal} tabIndex={-1} className="hg-help hg-modal" role="dialog" aria-modal="true" aria-label="上手指南" onClick={event => event.stopPropagation()}>
+    <button className="hg-close" onClick={onClose} aria-label="关闭指南">×</button><span className="hg-eyebrow">新手档案 / HOW TO PLAY</span><h2>将世界纳入你的版图</h2>
     <p>争夺地区，把赢得的地区收入计分区。两人对决先得 <b>8 分</b>，四人协作团队先得 <b>10 分</b>。</p>
     <ol className="hg-help-steps"><li><b>建立你的资产</b><span>将手牌置为资产，提供费用与忠诚；派遣角色到地区，参与对抗。点选一张牌即可查看本时点可用的行动。</span></li>
       <li><b>轮流行动，让过推进</b><span>牌桌显示行动团队和当前优先权。四人协作中，全队让过才交出行动；任一队员行动会重置本队让过记录。</span></li>

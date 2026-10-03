@@ -1,0 +1,186 @@
+{
+  "scope": "localhost synthetic Table/Help components under React.StrictMode; natural UI click and keyboard only; evaluations read DOM/focus/AX only; no game room or external API",
+  "originalImageSha256": "6392c2cdc2d9ea43deca6b26594618a2093ae887bd03d5ad29d130c7e329993a",
+  "results": [
+    {
+      "viewport": [
+        1536,
+        960
+      ],
+      "choiceAX": [
+        {
+          "role": "dialog",
+          "name": "待完成的选择",
+          "ignored": false
+        }
+      ],
+      "readerAX": [
+        {
+          "role": "dialog",
+          "name": "放大阅读无知路人",
+          "ignored": false
+        }
+      ],
+      "guideAX": [
+        {
+          "role": "dialog",
+          "name": "上手指南",
+          "ignored": false
+        }
+      ],
+      "choiceTabSteps": 42,
+      "readerTabSteps": 24,
+      "guideTabSteps": 18,
+      "restoredAutoPassFocus": true,
+      "restoredReaderOpenerFocus": true,
+      "selectionRetainedAcrossBothReaderDismissals": true,
+      "escapeNeverSubmittedChoice": true,
+      "submissions": [
+        {
+          "id": "local-choose",
+          "kind": "choose",
+          "choiceId": "local-mulligan",
+          "label": "选择",
+          "selected": []
+        },
+        {
+          "id": "local-choose",
+          "kind": "choose",
+          "choiceId": "local-mulligan",
+          "label": "选择",
+          "selected": [
+            "synthetic-hand-0"
+          ]
+        },
+        {
+          "id": "local-choose",
+          "kind": "choose",
+          "choiceId": "local-mulligan",
+          "label": "选择",
+          "selected": []
+        }
+      ],
+      "consoleErrors": []
+    },
+    {
+      "viewport": [
+        1366,
+        768
+      ],
+      "choiceAX": [
+        {
+          "role": "dialog",
+          "name": "待完成的选择",
+          "ignored": false
+        }
+      ],
+      "readerAX": [
+        {
+          "role": "dialog",
+          "name": "放大阅读无知路人",
+          "ignored": false
+        }
+      ],
+      "guideAX": [
+        {
+          "role": "dialog",
+          "name": "上手指南",
+          "ignored": false
+        }
+      ],
+      "choiceTabSteps": 42,
+      "readerTabSteps": 24,
+      "guideTabSteps": 18,
+      "restoredAutoPassFocus": true,
+      "restoredReaderOpenerFocus": true,
+      "selectionRetainedAcrossBothReaderDismissals": true,
+      "escapeNeverSubmittedChoice": true,
+      "submissions": [
+        {
+          "id": "local-choose",
+          "kind": "choose",
+          "choiceId": "local-mulligan",
+          "label": "选择",
+          "selected": []
+        },
+        {
+          "id": "local-choose",
+          "kind": "choose",
+          "choiceId": "local-mulligan",
+          "label": "选择",
+          "selected": [
+            "synthetic-hand-0"
+          ]
+        },
+        {
+          "id": "local-choose",
+          "kind": "choose",
+          "choiceId": "local-mulligan",
+          "label": "选择",
+          "selected": []
+        }
+      ],
+      "consoleErrors": []
+    },
+    {
+      "viewport": [
+        1280,
+        800
+      ],
+      "choiceAX": [
+        {
+          "role": "dialog",
+          "name": "待完成的选择",
+          "ignored": false
+        }
+      ],
+      "readerAX": [
+        {
+          "role": "dialog",
+          "name": "放大阅读无知路人",
+          "ignored": false
+        }
+      ],
+      "guideAX": [
+        {
+          "role": "dialog",
+          "name": "上手指南",
+          "ignored": false
+        }
+      ],
+      "choiceTabSteps": 42,
+      "readerTabSteps": 24,
+      "guideTabSteps": 18,
+      "restoredAutoPassFocus": true,
+      "restoredReaderOpenerFocus": true,
+      "selectionRetainedAcrossBothReaderDismissals": true,
+      "escapeNeverSubmittedChoice": true,
+      "submissions": [
+        {
+          "id": "local-choose",
+          "kind": "choose",
+          "choiceId": "local-mulligan",
+          "label": "选择",
+          "selected": []
+        },
+        {
+          "id": "local-choose",
+          "kind": "choose",
+          "choiceId": "local-mulligan",
+          "label": "选择",
+          "selected": [
+            "synthetic-hand-0"
+          ]
+        },
+        {
+          "id": "local-choose",
+          "kind": "choose",
+          "choiceId": "local-mulligan",
+          "label": "选择",
+          "selected": []
+        }
+      ],
+      "consoleErrors": []
+    }
+  ]
+}
