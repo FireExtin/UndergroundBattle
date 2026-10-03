@@ -54,7 +54,7 @@ describe('room deck selection', () => {
 describe('playable table', () => {
   it('shows readable cards and only the selected card’s server-authored actions', () => {
     const submit = vi.fn(); const action = { id: 'deploy-a', kind: 'deploy', label: '派遣到地区一', cardId: 'instance-a', region: 0 };
-    render(<Table view={{ ...testView, status: 'playing', legalActions: [action, { id: 'unrelated', kind: 'asset', label: '不相关行动', cardId: 'another-card' }] }} catalog={testCatalog} busy={false} onAction={submit} />);
+    render(<Table view={{ ...testView, status: 'playing', hand: [testCard, { ...testCard, instanceId: 'another-card', name: '另一张牌' }], legalActions: [action, { id: 'unrelated', kind: 'asset', label: '不相关行动', cardId: 'another-card' }] }} catalog={testCatalog} busy={false} onAction={submit} />);
     expect(screen.queryByRole('button', { name: '派遣到地区一' })).not.toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', { name: '查看无知路人' }));
     expect(screen.getAllByText('真实印刷文字').length).toBeGreaterThan(0);
@@ -68,18 +68,18 @@ describe('playable table', () => {
     const actions = regions.map(region => ({ id: `${kind}-${region.index}`, kind, cardId: testCard.instanceId, region: region.index, label: `${kind === 'deploy' ? '派遣' : '移动'} 无知路人 → 纽约` }));
     render(<Table view={{ ...testView, status: 'playing', regions, legalActions: actions }} catalog={testCatalog} busy={false} onAction={submit} />);
     fireEvent.click(screen.getByRole('button', { name: '查看无知路人' }));
-    const second = screen.getByRole('button', { name: `${kind === 'deploy' ? '派遣' : '移动'} 无知路人 → 地区 2 · 纽约` });
-    const third = screen.getByRole('button', { name: `${kind === 'deploy' ? '派遣' : '移动'} 无知路人 → 地区 3 · 纽约` });
+    expect(screen.queryByRole('button', { name: `${kind === 'deploy' ? '派遣' : '移动'} 无知路人 → 地区 2 · 纽约` })).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: `${kind === 'deploy' ? '派遣' : '移动'} 无知路人` }));
     const region2 = screen.getByRole('article', { name: '地区 2 · 纽约' });
     const region3 = screen.getByRole('article', { name: '地区 3 · 纽约' });
-    fireEvent.mouseEnter(second);
     expect(region2).toHaveAttribute('data-region-targeted', 'true');
-    expect(region3).toHaveAttribute('data-region-targeted', 'false');
-    fireEvent.focus(third);
-    expect(region2).toHaveAttribute('data-region-targeted', 'false');
     expect(region3).toHaveAttribute('data-region-targeted', 'true');
-    expect(third).toHaveAttribute('aria-controls', region3.id);
-    fireEvent.click(third);
+    fireEvent.click(screen.getByRole('button', { name: '查看地区3 纽约' }));
+    const confirm = screen.getByRole('button', { name: `确认 · ${kind === 'deploy' ? '派遣' : '移动'} 无知路人 → 地区 3 · 纽约` });
+    expect(confirm).toHaveAttribute('aria-controls', region3.id);
+    expect(screen.queryByRole('button', { name: `${kind === 'deploy' ? '派遣' : '移动'} 无知路人 → 地区 2 · 纽约` })).not.toBeInTheDocument();
+    expect(submit).not.toHaveBeenCalled();
+    fireEvent.click(confirm);
     expect(submit).toHaveBeenCalledExactlyOnceWith(actions[1]);
   });
   it('keeps region-scoped actions identifiable when the board has repeated world names', () => {
@@ -177,7 +177,7 @@ describe('playable table', () => {
     expect(container.querySelector('[data-card-instance="other"]')).toHaveAttribute('data-card-targeted', 'false');
     fireEvent.click(screen.getByRole('button', { name: '查看合法目标' }));
     expect(container.querySelector('[data-card-instance="instance-a"]')).toHaveAttribute('aria-pressed', 'true');
-    expect(screen.getByRole('button', { name: '对合法目标发动' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: '确认 · 对合法目标发动' })).toBeInTheDocument();
   });
   it('reads authorized concealed print for its controller and sanitizes hover for its owner', () => {
     const secret = { ...testCard, instanceId: 'teammate-secret', owner: 'p1', controller: 'p0', faceDown: true, kind: 'hidden', name: '获授权身份', text: '获授权能力' };

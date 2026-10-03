@@ -1,0 +1,47 @@
+/* Object action variants use the existing table pieces as target controls. */
+.hg-object-actions { display: grid; gap: 5px; }
+.hg-object-targeting { margin-top: 10px; padding: 10px; border: 1px solid #b8efaa; border-radius: 5px; }
+.hg-object-targeting > p, .hg-target-notice { color: #dce6ce; font-size: 12px; line-height: 1.6; }
+.hg-inspector:has(.hg-object-targeting) .hg-inspected-card, .hg-inspector:has(.hg-object-targeting) .hg-attached-cards { display: none; }
+.hg-target-navigation { display: flex; flex-wrap: wrap; gap: 6px; }
+.hg-desktop-table.hg-table .hg-region-piece { display: flex; flex-direction: column; align-items: center; gap: 5px; min-width: 0; }
+.hg-mounted-object { max-width: 106px; min-height: 30px; padding: 4px 6px; border: 1px solid #c4ad7b; border-radius: 4px; color: #eee4c9; background: #203a2e; font-size: 10px; overflow-wrap: anywhere; }
+.hg-mounted-object[data-card-targeted="true"], .hg-player-target { outline: 2px dashed #b8efaa; outline-offset: 2px; }
+.hg-mounted-object[aria-pressed="true"] { border-color: #f3d183; background: #3c573c; }
+.hg-player-target { min-height: 30px; padding: 4px 7px; border: 1px solid #a9c997; border-radius: 4px; background: #203a2e; color: #eee4c9; }
+.hg-desktop-table.hg-table .hg-pile-targeted { outline: 2px dashed #b8efaa; outline-offset: 4px; }
+.hg-desktop-table.hg-table .hg-pile-targeted .hg-pile-fan { max-height: min(360px, 45dvh); overflow: auto; }
+@media (max-width: 1059px) {
+  /* The inherited desktop minimum must not push touch controls outside the viewport. */
+  .hg-app .hg-desktop-table.hg-table { min-width: 0; height: auto; min-height: 0; grid-template-columns: minmax(0, 1fr); grid-template-rows: auto auto 380px auto auto; padding-bottom: 180px; }
+  .hg-app .hg-desktop-table.hg-table .hg-table-status { flex-wrap: wrap; gap: 7px; }
+  .hg-app .hg-desktop-table.hg-table .hg-phase-line { flex-wrap: wrap; justify-content: flex-start; gap: 6px; }
+  .hg-app .hg-desktop-table.hg-table .hg-team-edge { grid-template-columns: minmax(0, 1fr); }
+  .hg-app .hg-desktop-table.hg-table .hg-battlefield { overflow: auto; min-height: 0; }
+  .hg-app .hg-desktop-table.hg-table .hg-board { flex: none; width: max-content; min-width: 0; height: 365px; }
+  .hg-app .hg-desktop-table.hg-table .hg-board-duel { grid-template-columns: repeat(3, 210px); }
+  .hg-app .hg-desktop-table.hg-table .hg-board-teams { grid-template-columns: repeat(5, 210px); }
+  .hg-app .hg-desktop-table.hg-table .hg-seat-zones { grid-template-columns: 155px minmax(0, 1fr); gap: 8px; height: auto; }
+  .hg-app .hg-desktop-table.hg-table .hg-society-placeholder { grid-column: 1 / -1; height: 38px; flex-direction: row; gap: 8px; }
+  .hg-app .hg-desktop-table.hg-table .hg-player-strip { flex-wrap: wrap; }
+  .hg-app .hg-desktop-table.hg-table .hg-mine-edge .hg-other-hand { position: static; }
+  .hg-app .hg-desktop-table.hg-table .hg-hand-dock { position: fixed; left: 0; right: 0; bottom: 0; width: auto; padding: 8px 12px; border-top: 1px solid #b0986b; background: #172f28; z-index: 70; }
+  .hg-app .hg-desktop-table.hg-table .hg-dock-action { height: auto; min-height: 40px; flex-wrap: wrap; gap: 6px; }
+  .hg-app .hg-desktop-table.hg-table .hg-hand-dock .hg-hand { justify-content: flex-start; overflow-x: auto; overflow-y: hidden; padding-inline: 4px; }
+  .hg-app .hg-desktop-table.hg-table .hg-hand-dock .hg-hand .hg-card { flex: 0 0 82px; }
+  .hg-app .hg-desktop-table.hg-table .hg-inspector { position: fixed; left: 12px; right: 12px; bottom: 188px; width: auto; max-height: calc(100dvh - 270px); }
+  .hg-app .hg-desktop-table.hg-table .hg-inspector:has(.hg-object-targeting) { z-index: 75; }
+  .hg-app .hg-desktop-table.hg-table .hg-player-mat:has(.hg-pile-targeted) .hg-seat-zones { grid-template-columns: minmax(0, 1fr); }
+  .hg-app .hg-desktop-table.hg-table .hg-player-mat:has(.hg-pile-targeted) .hg-personal-piles { flex-wrap: wrap; gap: 12px; }
+  .hg-app .hg-desktop-table.hg-table .hg-pile-targeted { width: 100%; order: 3; }
+  .hg-app .hg-desktop-table.hg-table .hg-pile-targeted .hg-pile-fan { position: static; width: auto; min-width: 0; max-width: none; margin-top: 8px; }
+  .hg-app .hg-desktop-table.hg-table .hg-response-layer-active { width: calc(100vw - 24px); }
+  .hg-app .hg-desktop-table.hg-table .hg-inspector .hg-button, .hg-app .hg-desktop-table.hg-table .hg-inspector-close { min-height: 44px; }
+}
+@media (hover: none) {
+  .hg-desktop-table.hg-table .hg-card-hover { display: none; }
+}
+@media (max-width: 760px) {
+  .hg-desktop-table.hg-table .hg-object-targeting .hg-button, .hg-mounted-object, .hg-player-target { min-height: 44px; }
+  .hg-desktop-table.hg-table .hg-pile-targeted .hg-pile-fan { max-width: min(310px, 80vw); }
+}
