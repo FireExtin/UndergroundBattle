@@ -43,7 +43,13 @@
     },
     "wasmReleaseBuild": true,
     "typescriptViteBuild": true,
-    "workerDryRunBuild": true
+    "workerDryRunBuild": true,
+    "stagedSiteWorkerD1": {
+      "passed": 22,
+      "failed": 0,
+      "localEmulationOnly": true
+    },
+    "stagedSiteBuild": true
   },
   "defaultScenarioNames": [
     "white-paid-rescue-and-purple-private-forecast-three",
@@ -148,5 +154,11 @@
   ],
   "testDevelopmentBoundary": "Fixed incorrect harness expectations (save timestamp, explicit start, null pending choice), and used JSX plus explicit test discovery for Node/WASM test; no production bug fix claimed.",
   "rulesPending": "JC016+BQ022 remains admitted and jointly legal/reachable; Win retreat/recycling priority unresolved.",
-  "parentNaturalQaBoundary": "Parent reports New York whole-region batch return selection/waiting/refreshed state/counts/scoring and exchanges passed; precise hidden order and instances use automatic regression. Hong Kong and whole game remain ongoing. Executor did not visit any public room."
+  "parentNaturalQaBoundary": "Parent reports New York whole-region batch return selection/waiting/refreshed state/counts/scoring and exchanges passed; precise hidden order and instances use automatic regression. Hong Kong and whole game remain ongoing. Executor did not visit any public room.",
+  "packagingCorrectnessFix": {
+    "commit": "316d523d27a3bb3ea0c838114513ac882419ed8e",
+    "change": "stage-source .gitignore public/ -> /public/ so all nine source images are tracked",
+    "gameRuntimeChange": false,
+    "allNineSourceGitIndexMatchesBuiltBytes": true
+  }
 }

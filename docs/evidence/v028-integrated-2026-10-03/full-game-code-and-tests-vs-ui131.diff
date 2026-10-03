@@ -4259,17 +4259,19 @@ index edcf0ff..f0d8cdc 100644
  const config = project + '.wrangler/config';
  mkdirSync(config, { recursive: true });
 diff --git a/sites/scripts/stage-source.mjs b/sites/scripts/stage-source.mjs
-index d7978e5..4a43535 100644
+index d7978e5..e31d12a 100644
 --- a/sites/scripts/stage-source.mjs
 +++ b/sites/scripts/stage-source.mjs
-@@ -44,6 +44,7 @@ copy(repository + 'rust-game-wasm/legacy-v0.2.3', 'rust-game-wasm/legacy-v0.2.3'
+@@ -44,7 +44,8 @@ copy(repository + 'rust-game-wasm/legacy-v0.2.3', 'rust-game-wasm/legacy-v0.2.3'
  copy(repository + 'rust-game-wasm/legacy-v0.2.4', 'rust-game-wasm/legacy-v0.2.4', true);
  copy(repository + 'rust-game-wasm/legacy-v0.2.5', 'rust-game-wasm/legacy-v0.2.5', true);
  copy(repository + 'rust-game-wasm/legacy-v0.2.6', 'rust-game-wasm/legacy-v0.2.6', true);
+-writeFileSync(path.join(destination, '.gitignore'), 'node_modules/\ndist/\n.wrangler/\ngenerated/\npublic/\nweb/dist/\nrust-game/target/\nrust-game-wasm/target/\n.env*\n.sites-runtime/\n');
 +copy(repository + 'rust-game-wasm/legacy-v0.2.7', 'rust-game-wasm/legacy-v0.2.7', true);
- writeFileSync(path.join(destination, '.gitignore'), 'node_modules/\ndist/\n.wrangler/\ngenerated/\npublic/\nweb/dist/\nrust-game/target/\nrust-game-wasm/target/\n.env*\n.sites-runtime/\n');
++writeFileSync(path.join(destination, '.gitignore'), 'node_modules/\ndist/\n.wrangler/\ngenerated/\n/public/\nweb/dist/\nrust-game/target/\nrust-game-wasm/target/\n.env*\n.sites-runtime/\n');
  const wasmSha256 = createHash('sha256').update(readFileSync(repository + 'rust-game-wasm/pkg/hegemony_wasm_bg.wasm')).digest('hex');
  const originalCommit = execFileSync('git', ['rev-parse', 'HEAD'], { cwd: repository, encoding: 'utf8' }).trim();
+ writeFileSync(path.join(destination, 'source-provenance.json'), JSON.stringify({ originalRepository: 'https://github.com/FireExtin/UndergroundBattle.git', originalCommit, wasmSha256 }, null, 2) + '\n');
 diff --git a/sites/src/kernel.mjs b/sites/src/kernel.mjs
 index f2d846b..dfbeceb 100644
 --- a/sites/src/kernel.mjs

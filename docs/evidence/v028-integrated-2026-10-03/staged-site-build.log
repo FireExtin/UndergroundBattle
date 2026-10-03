@@ -1,0 +1,47 @@
+
+> build
+> node scripts/build.mjs
+
+
+> undergroundbattle-web@0.1.0 build
+> tsc --noEmit -p tsconfig.app.json && tsc --noEmit -p tsconfig.node.json && vite build
+
+vite v8.0.3 building client environment for production...
+
+transforming...✓ 54 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.47 kB │ gzip:  0.34 kB
+dist/assets/index-CL4dY5uZ.css   91.63 kB │ gzip: 18.34 kB
+dist/assets/index-B22xroBY.js   305.61 kB │ gzip: 94.78 kB
+
+✓ built in 156ms
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+▲ [WARNING] Proxy environment variables detected. We'll use your proxy for fetch requests.
+
+
+
+ ⛅️ wrangler 4.146.0
+────────────────────
+✨ Read 54 files from the assets directory /workspace/site13-ui-publish/public
+Total Upload: 10434.61 KiB / gzip: 2929.87 KiB
+Your Worker has access to the following bindings:
+Binding                    Resource
+env.DB (hegemony)          D1 Database
+env.ASSETS                 Assets
+
+--dry-run: exiting now.
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

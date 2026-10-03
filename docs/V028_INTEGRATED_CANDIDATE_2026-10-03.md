@@ -29,4 +29,5 @@ JC016＋BQ022仍共同构筑合法、在游戏中可达。赢区撤回/回收的
 - [完整游戏代码和测试diff](evidence/v028-integrated-2026-10-03/full-game-code-and-tests-vs-ui131.diff)，保留原始git diff，含全部原生新卡测试、默认WASM oracle、Worker/D1及界面测试。
 - [发布UI与本地941链的差异](evidence/v028-integrated-2026-10-03/ui-from-local941.diff)；生产UI逐字等同已发布1312361，新增只有验证文件。
 - [实际目录、七冻结核、预组差异与构建模块](evidence/v028-integrated-2026-10-03/candidate-source-and-kernels.json)，同时核对12个UI与11个持久化服务/配置文件。
+- [九图正常纳入Site源码的修复证明](evidence/v028-integrated-2026-10-03/staged-image-source-proof.json)；实际Site副本再次构建及默认22项Worker/D1亦全绿，日志在同目录。
 - [48牌阵营与归属说明](CARD_AFFILIATION_OWNERSHIP_AUDIT_2026-10-03.md) 与 [53e47ca精确生产差异](evidence/semantic-scope-audit-2026-10-03/53e47ca-production.diff)。
