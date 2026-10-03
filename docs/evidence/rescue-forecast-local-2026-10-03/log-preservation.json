@@ -1,0 +1,90 @@
+{
+  "policy": "Committed logs trim trailing whitespace only; original byte logs retained in private raw-logs folder.",
+  "checks": [
+    {
+      "file": "site-build.log",
+      "rawSha256": "3dbbc22d688bcc2374c3c2fbb665fc3de4eb634d081a79d5b54556b76ec5fa60",
+      "committedSha256": "df57c4ec347b7d19db468a3b0d6823adbb02a8e6706f7c2018af2b48b5600a24"
+    },
+    {
+      "file": "initial-native-red.log",
+      "rawSha256": "b20359f981493cebbcef2fca2219a9dffc0bfb40fe1579e55189a367d6876177",
+      "committedSha256": "b20359f981493cebbcef2fca2219a9dffc0bfb40fe1579e55189a367d6876177"
+    },
+    {
+      "file": "image-green.log",
+      "rawSha256": "1aa45344d0471fd6faea2f2141b1e6ae3772778b0a130fe7076870a608b1a385",
+      "committedSha256": "1aa45344d0471fd6faea2f2141b1e6ae3772778b0a130fe7076870a608b1a385"
+    },
+    {
+      "file": "disk-after.log",
+      "rawSha256": "f1c83ee2facfe39a3c5f2eea01da11b767c7542b11f79043f61a380bcbbd0705",
+      "committedSha256": "f1c83ee2facfe39a3c5f2eea01da11b767c7542b11f79043f61a380bcbbd0705"
+    },
+    {
+      "file": "native-wasm-parity.log",
+      "rawSha256": "bcec87ceadf8db282bf98e7d8af3573c5c93a62e8c2f95ab74b61b101fdfaf2f",
+      "committedSha256": "bcec87ceadf8db282bf98e7d8af3573c5c93a62e8c2f95ab74b61b101fdfaf2f"
+    },
+    {
+      "file": "mutant-rescue-actor-hand.log",
+      "rawSha256": "be3df40f6bab34f17b6aa5809319d3a5bef36a9dc24c695d34bf8ec412be0af9",
+      "committedSha256": "be3df40f6bab34f17b6aa5809319d3a5bef36a9dc24c695d34bf8ec412be0af9"
+    },
+    {
+      "file": "intermediate-native-action-kind-setup.log",
+      "rawSha256": "201d563b2c35829bc1f6628b4a1a57bbde737559e651dab6b39f4185a86784fd",
+      "committedSha256": "201d563b2c35829bc1f6628b4a1a57bbde737559e651dab6b39f4185a86784fd"
+    },
+    {
+      "file": "initial-image-red.log",
+      "rawSha256": "7348f590bc60f1dd61e2e35cb535789103c27791246183529ddfafd93abb9add",
+      "committedSha256": "7348f590bc60f1dd61e2e35cb535789103c27791246183529ddfafd93abb9add"
+    },
+    {
+      "file": "worker-tests.log",
+      "rawSha256": "d1ea5dac575bf9da423ef1ccc1ef556b012e46fd52d964253627ec589c4b4fb7",
+      "committedSha256": "d1ea5dac575bf9da423ef1ccc1ef556b012e46fd52d964253627ec589c4b4fb7"
+    },
+    {
+      "file": "mutant-forecast-two.log",
+      "rawSha256": "bb1911a714700210dfbb95f98c2076843296fbcff10f4934915bd8656a78a7a4",
+      "committedSha256": "bb1911a714700210dfbb95f98c2076843296fbcff10f4934915bd8656a78a7a4"
+    },
+    {
+      "file": "mutant-rescue-friendly.log",
+      "rawSha256": "e289fd1a77886dce68ee7dcb812a218ebb369eb291a8975dcbc362093ef317ca",
+      "committedSha256": "e289fd1a77886dce68ee7dcb812a218ebb369eb291a8975dcbc362093ef317ca"
+    },
+    {
+      "file": "wasm-build.log",
+      "rawSha256": "ebfd4e4f0ebd9345f641031318f97bb20191e912182fc83140c816937b46c56c",
+      "committedSha256": "ebfd4e4f0ebd9345f641031318f97bb20191e912182fc83140c816937b46c56c"
+    },
+    {
+      "file": "intermediate-mutant-stale-cache.log",
+      "rawSha256": "d09fbc2d45b2ddea6b9eb7406c6920db9ee15cf81d54d0e906a0a8f7c80f9ea1",
+      "committedSha256": "de81e546d88ad91551727d0cf4b2a68ee51cc0304e4e5ab717b6c83d8974cad6"
+    },
+    {
+      "file": "workspace-tests.log",
+      "rawSha256": "ae1c3073e9f838c678f487e04b7b72989dca1cd3edbd04b2161bf1e69768cbc3",
+      "committedSha256": "c7148d1599c2f48d2dabf159218b01847cf127612cc71b51e3dff2080e03bcff"
+    },
+    {
+      "file": "intermediate-oracle-private-helper-setup.log",
+      "rawSha256": "d102e81960f06eca1726ae25dca561a37a29922410c82798510ce91e681df808",
+      "committedSha256": "d102e81960f06eca1726ae25dca561a37a29922410c82798510ce91e681df808"
+    },
+    {
+      "file": "frontend-tests.log",
+      "rawSha256": "c1094ed882f90f7ca5740cff76406233abc3fea230a8d53289a50ef0639a22e0",
+      "committedSha256": "c1094ed882f90f7ca5740cff76406233abc3fea230a8d53289a50ef0639a22e0"
+    },
+    {
+      "file": "oracle-generation.log",
+      "rawSha256": "57e5cdc974388ce818d27093430d2e4640953e8094ce59b44e7400867b171e70",
+      "committedSha256": "57e5cdc974388ce818d27093430d2e4640953e8094ce59b44e7400867b171e70"
+    }
+  ]
+}

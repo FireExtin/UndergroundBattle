@@ -456,6 +456,47 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
             Range::Anywhere,
         );
         let mut m = BTreeMap::new();
+        let mut another_own = target(
+            Zone::Board,
+            EntityKind::Character,
+            Relation::ControlledByActor,
+            Range::Anywhere,
+        );
+        another_own.exclude_source = true;
+        m.insert(
+            "JC075".into(),
+            Definition {
+                traits: Traits {
+                    public: true,
+                    ..Default::default()
+                },
+                abilities: vec![ability(
+                    "rescue",
+                    "快速行动",
+                    Timing::Fast,
+                    vec![Cost::Assets(2), Cost::ExhaustSource],
+                    vec![another_own],
+                    vec![Op::Move(Target(0), Destination::OwnerHand)],
+                    None,
+                )],
+                ..Default::default()
+            },
+        );
+        m.insert(
+            "JC104".into(),
+            with_abilities(vec![ability(
+                "forecast-entry",
+                "进场触发",
+                Timing::Fast,
+                vec![],
+                vec![],
+                vec![Op::Forecast {
+                    player: Actor,
+                    count: 3,
+                }],
+                Some(Event::Enter),
+            )]),
+        );
         m.insert(
             "JC047".into(),
             with_abilities(vec![ability(

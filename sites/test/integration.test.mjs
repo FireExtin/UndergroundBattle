@@ -49,7 +49,7 @@ test('real workerd/WASM with D1 SQLite: concurrency, receipts, rollback and reop
   const path = (session, action) => `/api/rooms/${session.roomId}/${action}`;
   try {
     const health = await api('/api/health'); assert.equal(health.body.transport, 'polling');
-    const catalog = await api('/api/catalog'); assert.equal(catalog.body.cards.length, 46); assert.equal(catalog.body.entryIdempotency, true);
+    const catalog = await api('/api/catalog'); assert.equal(catalog.body.cards.length, 48); for (const id of ['JC075','JC104']) assert(catalog.body.cards.some(c => c.id === id)); assert.equal(catalog.body.entryIdempotency, true);
     assert(catalog.body.cards.some(card => card.id === 'JC047'));
     assert(catalog.body.cards.some(card => card.id === 'JC007'));
     assert.equal(catalog.body.engineVersion, 'rust-v0.2.8');

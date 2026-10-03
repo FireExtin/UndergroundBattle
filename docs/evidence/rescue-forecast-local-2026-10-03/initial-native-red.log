@@ -1,0 +1,64 @@
+   Compiling hegemony-server v0.1.0 (/workspace/UndergroundBattle/rust-game)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.91s
+     Running unittests src/lib.rs (/workspace/.rust/targets/two-cards-local/debug/deps/hegemony_server-fa35e11fc7b74bf5)
+
+running 7 tests
+test engine::tests::rescue_forecast_forecast_three_is_private_orders_both_ends_and_does_not_draw ... FAILED
+test engine::tests::rescue_forecast_forecast_can_decline_and_handles_short_or_empty_decks_without_draw ... FAILED
+test engine::tests::rescue_forecast_forecast_waits_for_normal_reveal_after_secret_deployment ... FAILED
+test engine::tests::rescue_forecast_rescue_printed_fields_public_deploy_and_one_asset_cost ... FAILED
+test engine::tests::rescue_forecast_rescue_costs_are_atomic_and_response_hide_invalidates_the_old_target ... FAILED
+test engine::tests::rescue_forecast_two_cards_are_legal_custom_deck_cards_and_shuffle_into_normal_start ... FAILED
+test engine::tests::rescue_forecast_rescue_pays_and_exhausts_returns_to_owner_and_recycles_equipment ... FAILED
+
+failures:
+
+---- engine::tests::rescue_forecast_forecast_three_is_private_orders_both_ends_and_does_not_draw stdout ----
+
+thread 'engine::tests::rescue_forecast_forecast_three_is_private_orders_both_ends_and_does_not_draw' panicked at rust-game/src/catalog.rs:208:28:
+unsupported card JC104
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- engine::tests::rescue_forecast_forecast_can_decline_and_handles_short_or_empty_decks_without_draw stdout ----
+
+thread 'engine::tests::rescue_forecast_forecast_can_decline_and_handles_short_or_empty_decks_without_draw' panicked at rust-game/src/catalog.rs:208:28:
+unsupported card JC104
+
+---- engine::tests::rescue_forecast_forecast_waits_for_normal_reveal_after_secret_deployment stdout ----
+
+thread 'engine::tests::rescue_forecast_forecast_waits_for_normal_reveal_after_secret_deployment' panicked at rust-game/src/catalog.rs:208:28:
+unsupported card JC104
+
+---- engine::tests::rescue_forecast_rescue_printed_fields_public_deploy_and_one_asset_cost stdout ----
+
+thread 'engine::tests::rescue_forecast_rescue_printed_fields_public_deploy_and_one_asset_cost' panicked at rust-game/src/catalog.rs:208:28:
+unsupported card JC075
+
+---- engine::tests::rescue_forecast_rescue_costs_are_atomic_and_response_hide_invalidates_the_old_target stdout ----
+
+thread 'engine::tests::rescue_forecast_rescue_costs_are_atomic_and_response_hide_invalidates_the_old_target' panicked at rust-game/src/catalog.rs:208:28:
+unsupported card JC075
+
+---- engine::tests::rescue_forecast_two_cards_are_legal_custom_deck_cards_and_shuffle_into_normal_start stdout ----
+
+thread 'engine::tests::rescue_forecast_two_cards_are_legal_custom_deck_cards_and_shuffle_into_normal_start' panicked at rust-game/src/engine.rs:2924:9:
+assertion failed: crate::deck::validate(draft.clone()).is_ok()
+
+---- engine::tests::rescue_forecast_rescue_pays_and_exhausts_returns_to_owner_and_recycles_equipment stdout ----
+
+thread 'engine::tests::rescue_forecast_rescue_pays_and_exhausts_returns_to_owner_and_recycles_equipment' panicked at rust-game/src/catalog.rs:208:28:
+unsupported card JC075
+
+
+failures:
+    engine::tests::rescue_forecast_forecast_can_decline_and_handles_short_or_empty_decks_without_draw
+    engine::tests::rescue_forecast_forecast_three_is_private_orders_both_ends_and_does_not_draw
+    engine::tests::rescue_forecast_forecast_waits_for_normal_reveal_after_secret_deployment
+    engine::tests::rescue_forecast_rescue_costs_are_atomic_and_response_hide_invalidates_the_old_target
+    engine::tests::rescue_forecast_rescue_pays_and_exhausts_returns_to_owner_and_recycles_equipment
+    engine::tests::rescue_forecast_rescue_printed_fields_public_deploy_and_one_asset_cost
+    engine::tests::rescue_forecast_two_cards_are_legal_custom_deck_cards_and_shuffle_into_normal_start
+
+test result: FAILED. 0 passed; 7 failed; 0 ignored; 0 measured; 90 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `-p hegemony-server --lib`

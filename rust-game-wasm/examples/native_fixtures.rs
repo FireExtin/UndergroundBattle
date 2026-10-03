@@ -602,6 +602,18 @@ fn custom_deck_fixture() -> Value {
     let mut alpha = deck::preset("responders").unwrap();
     alpha.id = "private-alpha-spec".into();
     alpha.name = "响应自组".into();
+    alpha
+        .cards
+        .iter_mut()
+        .find(|c| c.card_id == "JC125")
+        .unwrap()
+        .count -= 6;
+    for card_id in ["JC075", "JC104"] {
+        alpha.cards.push(catalog::DeckEntry {
+            card_id: card_id.into(),
+            count: 3,
+        });
+    }
     let mut beta = deck::preset("keepers").unwrap();
     beta.id = "private-beta-spec".into();
     beta.name = "守护自组".into();
@@ -695,6 +707,17 @@ fn custom_deck_fixture() -> Value {
         apply_game(&mut game, &mut steps, pending.seat, action);
     }
     assert_eq!(game.players[2].deck_snapshot.as_ref(), Some(&gamma));
+    for card_id in ["JC075", "JC104"] {
+        assert_eq!(
+            game.players[0]
+                .hand
+                .iter()
+                .chain(&game.players[0].deck)
+                .filter(|c| c.definition == card_id)
+                .count(),
+            3
+        );
+    }
     for player in &game.players {
         assert_eq!(player.hand.len() + player.deck.len(), 50);
     }
@@ -2198,12 +2221,20 @@ fn control_pair_fixture() -> Value {
         },
     );
     attachment_pass_top(&mut room, &mut steps);
-    let hidden = room.regions[4].cards.iter().find(|c| c.definition == "JC001").unwrap();
+    let hidden = room.regions[4]
+        .cards
+        .iter()
+        .find(|c| c.definition == "JC001")
+        .unwrap();
     assert!(hidden.face_down && hidden.id != ally_id);
     assert_eq!((hidden.owner, hidden.controller), (2, 0));
     for seat in 0..4 {
         assert_eq!(
-            room.view(seat, room.pacing.last_server_now_ms).regions[4].characters.iter().find(|c| c.instance_id == hidden.id).unwrap()
+            room.view(seat, room.pacing.last_server_now_ms).regions[4]
+                .characters
+                .iter()
+                .find(|c| c.instance_id == hidden.id)
+                .unwrap()
                 .card_id
                 .as_deref(),
             if seat == 0 { Some("JC001") } else { None }
@@ -2342,6 +2373,161 @@ fn fire_scholar_fixture() -> Value {
     json!({"name":"red-region-damage-and-yellow-printed-spell-book-search","seed":"9007199254740993","steps":steps,"syntheticInitialLayout":true})
 }
 
+fn rescue_forecast_fixture() -> Value {
+    // Isolated synthetic starting layout; no production control-transfer card is added.
+    let mut game = attachment_initial("teams", "888888888888888888888885");
+    for definition in ["JC075", "JC104"] {
+        let c = game.make_card(definition, 0);
+        game.players[0].hand.push(c);
+    }
+    let rescue_id = game.players[0].hand[0].id.clone();
+    let forecast_id = game.players[0].hand[1].id.clone();
+    for definition in ["JC075", "JC104", "JC125", "JC125", "JC125"] {
+        let c = game.make_card(definition, 0);
+        game.players[0].assets.push(c);
+    }
+    let mut target = game.make_card("LC21", 2);
+    target.controller = 0;
+    let target_id = target.id.clone();
+    game.regions[4].cards.push(target);
+    let equipment = game.make_card("BQ022", 3);
+    game.attachments.push(Attachment {
+        card: equipment,
+        host_id: target_id.clone(),
+    });
+    let teammate = game.make_card("LC22", 1);
+    game.regions[3].cards.push(teammate);
+    let mut hidden = game.make_card("JC125", 0);
+    hidden.face_down = true;
+    game.regions[1].cards.push(hidden);
+    game.players[0].deck = ["JC006", "XQ03", "JC125", "JZ08", "LC21"]
+        .into_iter()
+        .map(|d| game.make_card(d, 0))
+        .collect();
+    let original = game.players[0]
+        .deck
+        .iter()
+        .map(|c| c.id.clone())
+        .collect::<Vec<_>>();
+    let mut room = RoomEnvelope::from_game(game);
+    let mut steps = vec![step(
+        &room,
+        "initialFixture",
+        json!([serde_json::to_string(&room).unwrap()]),
+        0,
+    )];
+    apply_game(
+        &mut room,
+        &mut steps,
+        0,
+        Action {
+            card_id: Some(rescue_id.clone()),
+            region: Some(0),
+            ..Action::new("deploy")
+        },
+    );
+    attachment_pass_top(&mut room, &mut steps);
+    let deployed = room.regions[0].cards[0].id.clone();
+    assert_ne!(deployed, rescue_id);
+    apply_game(
+        &mut room,
+        &mut steps,
+        0,
+        Action {
+            card_id: Some(deployed.clone()),
+            target_id: Some(target_id.clone()),
+            ability_id: Some("rescue".into()),
+            ..Action::new("activate")
+        },
+    );
+    attachment_pass_top(&mut room, &mut steps);
+    assert!(!room
+        .regions
+        .iter()
+        .flat_map(|r| &r.cards)
+        .any(|c| c.id == target_id));
+    assert!(
+        room.regions[0]
+            .cards
+            .iter()
+            .find(|c| c.id == deployed)
+            .unwrap()
+            .exhausted
+    );
+    assert_ne!(room.players[2].hand[0].id, target_id);
+    assert_eq!(room.players[2].hand[0].definition, "LC21");
+    assert_eq!(room.players[3].hand[0].definition, "BQ022");
+    assert!(room.attachments.is_empty());
+    apply_game(
+        &mut room,
+        &mut steps,
+        0,
+        Action {
+            card_id: Some(forecast_id),
+            region: Some(0),
+            ..Action::new("deploy")
+        },
+    );
+    attachment_pass_top(&mut room, &mut steps);
+    let trigger = room.pending.clone().unwrap();
+    apply_game(
+        &mut room,
+        &mut steps,
+        0,
+        Action {
+            choice_id: Some(trigger.choice.id),
+            selected: Some(vec!["accept".into()]),
+            ..Action::new("choose")
+        },
+    );
+    attachment_pass_top(&mut room, &mut steps);
+    let pending = room.pending.clone().unwrap();
+    assert_eq!(pending.choice.kind, "investigation");
+    assert_eq!(
+        pending
+            .choice
+            .options
+            .iter()
+            .map(|o| o.id.clone())
+            .collect::<Vec<_>>(),
+        original[..3]
+    );
+    for seat in 1..4 {
+        assert!(room
+            .view(seat, room.pacing.last_server_now_ms)
+            .pending_choice
+            .is_none());
+    }
+    apply_game(
+        &mut room,
+        &mut steps,
+        0,
+        Action {
+            choice_id: Some(pending.choice.id),
+            top: Some(vec![original[2].clone()]),
+            bottom: Some(vec![original[1].clone(), original[0].clone()]),
+            ..Action::new("choose")
+        },
+    );
+    assert_eq!(
+        room.players[0]
+            .deck
+            .iter()
+            .map(|c| c.id.clone())
+            .collect::<Vec<_>>(),
+        vec![
+            original[2].clone(),
+            original[3].clone(),
+            original[4].clone(),
+            original[1].clone(),
+            original[0].clone()
+        ]
+    );
+    assert!(room.players[0].hand.is_empty());
+    assert!(room.players[0].assets.iter().all(|c| c.exhausted));
+    json!({"name":"white-paid-rescue-and-purple-private-forecast-three","seed":"9007199254740993","steps":steps,"syntheticInitialLayout":true})
+}
+
 fn main() {
     let output = std::env::args()
         .nth(1)
@@ -2415,6 +2601,15 @@ fn main() {
         std::fs::write(output, serde_json::to_vec(&value).unwrap()).unwrap();
         return;
     }
+    let rescue_forecast = rescue_forecast_fixture();
+    let rescue_initial: RoomEnvelope =
+        serde_json::from_str(rescue_forecast["steps"][0]["state"].as_str().unwrap()).unwrap();
+    let prepared_rescue_forecast = json!({"syntheticInitialLayout":true,"roomId":rescue_initial.room_id,"version":rescue_initial.revision,
+        "state":rescue_forecast["steps"][0]["state"],"firstAction":rescue_forecast["steps"][1]["args"][1]["action"],
+        "rescueId":rescue_initial.players[0].hand[0].id,"forecastId":rescue_initial.players[0].hand[1].id,
+        "targetId":rescue_initial.regions[4].cards[0].id,"teammateId":rescue_initial.regions[3].cards[0].id,
+        "hiddenId":rescue_initial.regions[1].cards[0].id,
+        "originalDeckIds":rescue_initial.players[0].deck.iter().map(|c|c.id.clone()).collect::<Vec<_>>()});
     let fire_scholar = fire_scholar_fixture();
     let fire_initial: RoomEnvelope =
         serde_json::from_str(fire_scholar["steps"][0]["state"].as_str().unwrap()).unwrap();
@@ -2457,6 +2652,6 @@ fn main() {
         "targetId":targets.iter().find(|c| c.definition == "JC084").unwrap().id,
         "expensiveTargetId":targets.iter().find(|c| c.definition == "JC086").unwrap().id
     });
-    let value = json!({"preparedFireScholar":prepared_fire_scholar,"preparedControlPair":prepared_control_pair,"preparedTwoCards":prepared_two_cards,"preparedAssassin":prepared_assassin,"preparedResponse":prepared,"catalog":catalog::catalog(),"cases":[fire_scholar,control_pair,two_cards,assassin,attachment_fixture(false),attachment_fixture(true),attachment_hk_fixture(),attachment_region_return_fixture(),grave_play_fixture(),fixture("duel","18446744073709551615"),fixture("teams","9007199254740993"),response_fixture(),detective_fixture(false),detective_fixture(true),custom_deck_fixture(),friendly_icons_fixture(),pacing_fixture(false),pacing_fixture(true),world_fixture("DQJC108",false),world_fixture("DQJC109",false),world_fixture("DQJC110",false),world_fixture("DQJC111",false),world_fixture("DQJC115",false),world_fixture("DQJC116",false),world_fixture("DQJC116",true)],"rejectedStates":rejected_states});
+    let value = json!({"preparedRescueForecast":prepared_rescue_forecast,"preparedFireScholar":prepared_fire_scholar,"preparedControlPair":prepared_control_pair,"preparedTwoCards":prepared_two_cards,"preparedAssassin":prepared_assassin,"preparedResponse":prepared,"catalog":catalog::catalog(),"cases":[rescue_forecast,fire_scholar,control_pair,two_cards,assassin,attachment_fixture(false),attachment_fixture(true),attachment_hk_fixture(),attachment_region_return_fixture(),grave_play_fixture(),fixture("duel","18446744073709551615"),fixture("teams","9007199254740993"),response_fixture(),detective_fixture(false),detective_fixture(true),custom_deck_fixture(),friendly_icons_fixture(),pacing_fixture(false),pacing_fixture(true),world_fixture("DQJC108",false),world_fixture("DQJC109",false),world_fixture("DQJC110",false),world_fixture("DQJC111",false),world_fixture("DQJC115",false),world_fixture("DQJC116",false),world_fixture("DQJC116",true)],"rejectedStates":rejected_states});
     std::fs::write(output, serde_json::to_vec(&value).unwrap()).unwrap();
 }

@@ -228,5 +228,15 @@
     "url": "/cards/JC007.jpg",
     "source": "resource/ymsj-fun.github.io/cards/JC007 常春藤派学者.jpg",
     "sha256": "835b85f48270aa66f10f01fa4de7483b0ccf80dcf14e6dc5596639592e14f1ce"
+  },
+  "JC075": {
+    "url": "/cards/JC075.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC075 雪地救援队.jpg",
+    "sha256": "7db960c7050614dae10a8e752db2567670169e782986e39a789842259231e434"
+  },
+  "JC104": {
+    "url": "/cards/JC104.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC104 占卜师.jpg",
+    "sha256": "877aa980256730bb35350f1b99c2aa75b9110cd5905e61412664e2a89ef4e8da"
   }
 }

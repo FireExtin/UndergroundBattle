@@ -1771,6 +1771,88 @@
       },
       "unique": false,
       "society": "帷幕守望"
+    },
+    {
+      "id": "JC075",
+      "name": "雪地救援队",
+      "subtitle": null,
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "医疗员"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "白色"
+      ],
+      "loyaltyText": "白色",
+      "color": "白",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "公开（该角色不能被秘密派遣为暗藏者）\n【快速】行动2，【横置】：将另一个目标本方角色移回其拥有者手上。",
+      "keywords": [
+        "公开"
+      ],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JC075",
+        "image": "resource/ymsj-fun.github.io/cards/JC075 雪地救援队.jpg",
+        "sha256": "7db960c7050614dae10a8e752db2567670169e782986e39a789842259231e434"
+      },
+      "unique": false,
+      "society": "圣贤"
+    },
+    {
+      "id": "JC104",
+      "name": "占卜师",
+      "subtitle": "神秘的吉卜赛妇人",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "法师"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "紫色"
+      ],
+      "loyaltyText": "紫色",
+      "color": "紫",
+      "magic": "星辰",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "【进场触发】预测3。（检视你牌库顶的三张牌，将其中任意数量的牌以任意顺序置于你的牌库顶，将其余的牌以任意顺序置于你的牌库底。）",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JC104",
+        "image": "resource/ymsj-fun.github.io/cards/JC104 占卜师.jpg",
+        "sha256": "877aa980256730bb35350f1b99c2aa75b9110cd5905e61412664e2a89ef4e8da"
+      },
+      "unique": false,
+      "society": "梦境行者"
     }
   ],
   "decks": [

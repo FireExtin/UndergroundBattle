@@ -1,0 +1,27 @@
+   Compiling hegemony-server v0.1.0 (/workspace/UndergroundBattle/rust-game)
+   Compiling hegemony-wasm v0.1.0 (/workspace/UndergroundBattle/rust-game-wasm)
+error[E0624]: method `board` is private
+    --> rust-game-wasm/examples/native_fixtures.rs:2421:18
+     |
+2421 |     assert!(room.board(&target_id).is_none());
+     |                  ^^^^^ private method
+     |
+    ::: /workspace/UndergroundBattle/rust-game/src/engine.rs:246:5
+     |
+ 246 |     pub(crate) fn board(&self, id: &str) -> Option<(usize, &Card)> {
+     |     -------------------------------------------------------------- private method defined here
+
+error[E0624]: method `board` is private
+    --> rust-game-wasm/examples/native_fixtures.rs:2422:18
+     |
+2422 |     assert!(room.board(&deployed).unwrap().1.exhausted);
+     |                  ^^^^^ private method
+     |
+    ::: /workspace/UndergroundBattle/rust-game/src/engine.rs:246:5
+     |
+ 246 |     pub(crate) fn board(&self, id: &str) -> Option<(usize, &Card)> {
+     |     -------------------------------------------------------------- private method defined here
+
+For more information about this error, try `rustc --explain E0624`.
+error: could not compile `hegemony-wasm` (example "native_fixtures") due to 2 previous errors
+warning: build failed, waiting for other jobs to finish...

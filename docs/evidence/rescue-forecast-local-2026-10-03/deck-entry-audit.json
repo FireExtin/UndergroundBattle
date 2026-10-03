@@ -1,0 +1,28 @@
+{
+  "cards": [
+    {
+      "id": "JC075",
+      "name": "雪地救援队",
+      "color": "白",
+      "deckCopyLimit": 3,
+      "editable": true,
+      "threeAccepted": true,
+      "fourRejected": true
+    },
+    {
+      "id": "JC104",
+      "name": "占卜师",
+      "color": "紫",
+      "deckCopyLimit": 3,
+      "editable": true,
+      "threeAccepted": true,
+      "fourRejected": true
+    }
+  ],
+  "realFrontendValidator": true,
+  "realCompiledCatalog": true,
+  "legalDraftCount": 50,
+  "minimum49Rejected": true,
+  "defaultWasmNewGameWithDeckAndFourSeatStart": true,
+  "naturalUIPlayed": false
+}

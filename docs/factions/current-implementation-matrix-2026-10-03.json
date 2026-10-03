@@ -5,8 +5,8 @@
     "resource/ymsj-fun.github.io/cards/cards.json": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
     "docs/factions/card-specifications.json": "43a5598e37432fc6febc3332715356849379ca6d433d0a6e5d5399efad255cb6",
     "rust-game/data/card-research-index.json": "8ebc08d35c4891051cd47dc611eb80462abaeb6325a4f5fc3b06f8ce364384cf",
-    "rust-game/data/cards.json": "d8a456be6dc31197952a1d9f72e5228d3a49edadf27085fbf66eaaf899d707e5",
-    "rust-game/src/rules.rs": "1dc097421491ccdf5766445a9f35d1d18a7fd5aeffc8680529e6611699cbc824",
+    "rust-game/data/cards.json": "303d80b2672960086da75658746a29fef28ec9047ed7e9cf4728622dfa3b2c82",
+    "rust-game/src/rules.rs": "e1781b1cd04f8df3e96d950079acf99b84b349c44419f59dcf366c1d998638c3",
     "rust-game/src/catalog.rs": "8d097e72da27c084acbce20d5464024ed25c669c1e063c18aff1b6f3d63c5e47",
     "rust-game/src/attachment.rs": "aa6fa58bcaea26bfe45201dfe9100ff7feb8664e946efc7db127e7fa1e7049b7",
     "rust-game/src/play_sources.rs": "f1a80f2f4d34e2b4c61336b176e180dbca7551fbd82e752d3c80757418638dfd",
@@ -24,12 +24,12 @@
     "sourceComplete": 678,
     "sourceBlocked": 5,
     "sourceMissing": 1,
-    "runtimeDefinitions": 46,
-    "runtimeNonRegions": 36,
+    "runtimeDefinitions": 48,
+    "runtimeNonRegions": 38,
     "cardStatus": {
-      "implementedBounded": 44,
+      "implementedBounded": 46,
       "partial": 0,
-      "unimplemented": 528,
+      "unimplemented": 526,
       "needsRuling": 112
     },
     "mechanismStatus": {
@@ -91,7 +91,9 @@
     "JC006",
     "XQ16",
     "JC047",
-    "JC007"
+    "JC007",
+    "JC075",
+    "JC104"
   ],
   "cards": [
     {
@@ -8328,10 +8330,10 @@
       "sourceStatus": "completeGameplayFieldsForPinnedImage",
       "imagePath": "resource/ymsj-fun.github.io/cards/JC075 雪地救援队.jpg",
       "imageSha256": "7db960c7050614dae10a8e752db2567670169e782986e39a789842259231e434",
-      "status": "unimplemented",
-      "inCurrentCatalog": false,
-      "serverSelectionEnabled": false,
-      "finiteEngineBehavior": "absent",
+      "status": "implementedBounded",
+      "inCurrentCatalog": true,
+      "serverSelectionEnabled": true,
+      "finiteEngineBehavior": "completeForCurrentBoundedDefinition",
       "openQuestions": [],
       "closedVersionQuestion": null,
       "independentAcceptance": "notEstablishedByThisMatrix",
@@ -8346,7 +8348,8 @@
         "loyalty"
       ],
       "evidence": [
-        "docs/factions/card-specifications.json"
+        "rust-game/data/cards.json",
+        "rust-game/src/rules.rs"
       ]
     },
     {
@@ -9210,10 +9213,10 @@
       "sourceStatus": "completeGameplayFieldsForPinnedImage",
       "imagePath": "resource/ymsj-fun.github.io/cards/JC104 占卜师.jpg",
       "imageSha256": "877aa980256730bb35350f1b99c2aa75b9110cd5905e61412664e2a89ef4e8da",
-      "status": "unimplemented",
-      "inCurrentCatalog": false,
-      "serverSelectionEnabled": false,
-      "finiteEngineBehavior": "absent",
+      "status": "implementedBounded",
+      "inCurrentCatalog": true,
+      "serverSelectionEnabled": true,
+      "finiteEngineBehavior": "completeForCurrentBoundedDefinition",
       "openQuestions": [],
       "closedVersionQuestion": null,
       "independentAcceptance": "notEstablishedByThisMatrix",
@@ -9227,7 +9230,8 @@
         "loyalty"
       ],
       "evidence": [
-        "docs/factions/card-specifications.json"
+        "rust-game/data/cards.json",
+        "rust-game/src/rules.rs"
       ]
     },
     {

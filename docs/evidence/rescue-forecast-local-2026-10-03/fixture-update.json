@@ -1,0 +1,12 @@
+{
+  "defaultCases": 26,
+  "priorPreparedExactlyPreserved": [
+    "preparedAssassin",
+    "preparedControlPair",
+    "preparedFireScholar",
+    "preparedResponse",
+    "preparedTwoCards"
+  ],
+  "newPrepared": "preparedRescueForecast",
+  "syntheticInitialLayout": true
+}

@@ -1,0 +1,24 @@
+{
+  "checks": [
+    {
+      "name": "rescue-friendly",
+      "compiled": true,
+      "failedAssertions": true,
+      "exitCode": 101
+    },
+    {
+      "name": "rescue-actor-hand",
+      "compiled": true,
+      "failedAssertions": true,
+      "exitCode": 101
+    },
+    {
+      "name": "forecast-two",
+      "compiled": true,
+      "failedAssertions": true,
+      "exitCode": 101
+    }
+  ],
+  "staleCacheInitialAttemptExcluded": true,
+  "thirdMutationRulesMtimeRefreshedThenCompiled": true
+}

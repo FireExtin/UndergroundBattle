@@ -1,0 +1,7 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.05s
+     Running unittests src/lib.rs (/workspace/.rust/targets/control-pair-mutant-friend-controller/debug/deps/hegemony_server-fa35e11fc7b74bf5)
+
+running 1 test
+test engine::tests::rescue_forecast_forecast_three_is_private_orders_both_ends_and_does_not_draw ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 96 filtered out; finished in 0.02s

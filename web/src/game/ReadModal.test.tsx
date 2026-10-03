@@ -4,6 +4,11 @@ import { ReadModal } from './ReadModal';
 import { testCard } from './testFixtures';
 
 describe('original card scan reading', () => {
+  it.each([['JC075', '雪地救援队'], ['JC104', '占卜师']])('opens the original rescue/forecast card for %s', (cardId, name) => {
+    render(<ReadModal card={{ ...testCard, cardId, name }} viewerId="p0" onClose={vi.fn()} />);
+    fireEvent.click(screen.getByRole('button', { name: '原始牌面' }));
+    expect(screen.getByRole('img', { name: name + '原始牌面' })).toHaveAttribute('src', '/cards/' + cardId + '.jpg');
+  });
   it.each([['JC001', '通灵猫头鹰'], ['BQ083', '索命骷髅'], ['JC006', '逆转异界之门'], ['XQ16', '法务部律师团']])('opens the newly admitted original face for %s', (cardId, name) => {
     render(<ReadModal card={{ ...testCard, cardId, name }} viewerId="p0" onClose={vi.fn()} />);
     fireEvent.click(screen.getByRole('button', { name: '原始牌面' }));
