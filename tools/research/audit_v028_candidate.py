@@ -24,7 +24,12 @@ def main():
     parser.add_argument('output', type=Path)
     args = parser.parse_args()
     site = args.published_checkout.resolve()
-    assert subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=site, text=True).strip() == SITE_BASE
+    # Read the fixed published baseline even after this checkout advances.
+    subprocess.run(['git', 'cat-file', '-e', SITE_BASE + '^{commit}'], cwd=site, check=True)
+    def published_file(name):
+        return subprocess.check_output(['git', 'show', SITE_BASE + ':' + name], cwd=site)
+    for name in ('hegemony_wasm.js', 'hegemony_wasm_bg.wasm'):
+        assert (ROOT / 'rust-game-wasm/legacy-v0.2.7' / name).read_bytes() == published_file('rust-game-wasm/pkg/' + name)
     for base in (CARD_BASE, UI_BASE):
         subprocess.run(['git', 'merge-base', '--is-ancestor', base, 'HEAD'], cwd=ROOT, check=True)
 
@@ -36,7 +41,8 @@ import {resolve} from 'node:path';
 const root=process.cwd(), published=process.argv[2];
 const load=async dir=>{const k=await import(pathToFileURL(resolve(dir,'hegemony_wasm.js')));k.initSync({module:readFileSync(resolve(dir,'hegemony_wasm_bg.wasm'))});return JSON.parse(k.catalog());};
 const current=await load(resolve(root,'rust-game-wasm/pkg'));
-const old=await load(resolve(published,'rust-game-wasm/pkg'));
+// Its bytes were first proved equal to the fixed Site15 Git objects in Python.
+const old=await load(resolve(root,'rust-game-wasm/legacy-v0.2.7'));
 const frozen=[];
 for(let i=1;i<=7;i++) frozen.push(await load(resolve(root,`rust-game-wasm/legacy-v0.2.${i}`)));
 console.log(JSON.stringify({current,published:old,frozen}));
@@ -59,9 +65,9 @@ console.log(JSON.stringify({current,published:old,frozen}));
         deployed = site / 'rust-game-wasm' / path.relative_to(ROOT / 'rust-game-wasm')
         if path.parent.name == 'legacy-v0.2.7' and path.name in {'hegemony_wasm.js', 'hegemony_wasm_bg.wasm'}:
             deployed = site / 'rust-game-wasm/pkg' / path.name
-        compared = deployed.is_file()
+        compared = subprocess.run(['git', 'cat-file', '-e', SITE_BASE + ':' + deployed.relative_to(site).as_posix()], cwd=site, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode == 0
         if compared:
-            assert data == deployed.read_bytes(), relative
+            assert data == published_file(deployed.relative_to(site).as_posix()), relative
         frozen_files.append({'file': relative, 'bytes': len(data), 'sha256': digest(data), 'unchangedFromCardChain': True, 'comparedToPublishedSite15': compared})
     assert len([r for r in frozen_files if r['file'].endswith('.wasm')]) == 7
 
@@ -76,7 +82,7 @@ console.log(JSON.stringify({current,published:old,frozen}));
             continue
         data = (ROOT / name).read_bytes()
         assert data == git('show', f'{UI_BASE}:{name}'), name
-        assert data == (site / name).read_bytes(), name
+        assert data == published_file(name), name
         ui_files.append({'file': name, 'sha256': digest(data)})
     persistent_files = []
     for name in git('ls-tree', '-r', '--name-only', UI_BASE, '--', 'sites/src', 'sites/db', 'sites/drizzle', 'sites/.openai/hosting.json', 'sites/wrangler.jsonc').decode().splitlines():
@@ -85,7 +91,7 @@ console.log(JSON.stringify({current,published:old,frozen}));
         data = (ROOT / name).read_bytes()
         assert data == git('show', f'{UI_BASE}:{name}'), name
         deployed = site / name.removeprefix('sites/')
-        assert data == deployed.read_bytes(), name
+        assert data == published_file(deployed.relative_to(site).as_posix()), name
         persistent_files.append({'file': name, 'sha256': digest(data)})
 
     old_decks = {d['id']: d for d in published['decks']}
