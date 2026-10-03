@@ -1,0 +1,55 @@
+{
+  "baseLocal": "3fda3eb1aab506226c83e95ba0638ec30a82cf1a",
+  "auditedImplementation": "37a09a2cc0088845657eafd7088f54a2bbc19012",
+  "wipSource": "52ea9faee3f35101e3ac205196573c0baab9be93",
+  "branch": "codex/jc088-local-from-v027-20261003",
+  "cardImage": {
+    "path": "resource/ymsj-fun.github.io/cards/JC088 职业杀手.jpg",
+    "sha256": "9c270203639dae978acb65e9255ac34b5a5d5192e681f8aafd63018ede301a5f",
+    "actuallyViewed": true
+  },
+  "rulesPDF": {
+    "path": "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+    "sha256": "a1e5bca72b8dbb374357feace28b7fbfd31136349ee23455d60f5f62e0a6b886",
+    "actuallyViewedPrintedPages": [
+      7,
+      10,
+      11,
+      14,
+      15,
+      16
+    ]
+  },
+  "nativePassed": 103,
+  "frontendPassed": 160,
+  "workerDistinctPassed": 18,
+  "workerFourViewsAdditionalFocusedRunPassed": 1,
+  "qaCancelPassed": 2,
+  "defaultParity": {
+    "ok": true,
+    "wasmBytes": 1600293,
+    "transitions": 607,
+    "projections": 1953,
+    "quotes": 1,
+    "rejectedCommands": 6,
+    "choiceKinds": [
+      "investigation",
+      "mulligan",
+      "region_return",
+      "search",
+      "target",
+      "trigger"
+    ],
+    "slowestFixtureStepMs": 11.28,
+    "opaqueState": true,
+    "maximumU64SeedExact": true,
+    "nativeWasmStateAndViewsMatch": true
+  },
+  "publicPush": false,
+  "mainMerge": false,
+  "siteDeploy": false,
+  "browserGameplay": false,
+  "subAgents": 0,
+  "pendingRulingJC016BQ022": "legal reachable, pending, unaccepted, unchanged",
+  "parentMultiProfileGapResolved": false
+}

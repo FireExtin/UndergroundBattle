@@ -68,6 +68,8 @@ pub struct TargetSlotSpec {
     pub subtype: Option<String>,
     #[serde(default)]
     pub subtypes_any: Vec<String>,
+    #[serde(default)]
+    pub printed_cost_max: Option<u32>,
     pub min: usize,
     pub max: usize,
 }
@@ -344,6 +346,7 @@ fn target(zone: Zone, kind: EntityKind, relation: Relation, range: Range) -> Tar
         range,
         subtype: None,
         subtypes_any: vec![],
+        printed_cost_max: None,
         min: 1,
         max: 1,
     }
@@ -776,6 +779,36 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
             },
         ];
         m.insert("JC063".into(), with_abilities(vec![chase]));
+        let mut cheap_character = target(
+            Zone::Board,
+            EntityKind::Character,
+            Relation::Any,
+            Range::SourceRegion,
+        );
+        cheap_character.printed_cost_max = Some(2);
+        m.insert(
+            "JC088".into(),
+            with_abilities(vec![
+                ability(
+                    "destroy-cheap-reveal",
+                    "现身触发",
+                    Timing::Fast,
+                    vec![],
+                    vec![cheap_character],
+                    vec![Op::Destroy(Target(0))],
+                    Some(Event::Reveal),
+                ),
+                ability(
+                    "hide-self",
+                    "快速行动",
+                    Timing::Fast,
+                    vec![Cost::Assets(2)],
+                    vec![],
+                    vec![Op::Hide(Source)],
+                    None,
+                ),
+            ]),
+        );
         m.insert(
             "JC086".into(),
             with_abilities(vec![ability(
@@ -1075,7 +1108,7 @@ mod tests {
     #[test]
     fn invalid_multi_target_ability_is_rejected_before_registration() {
         let mut registry = definitions().clone();
-        assert_eq!(registry.len(), 39);
+        assert_eq!(registry.len(), 40);
         let ability = &mut registry.get_mut("LC20").unwrap().abilities[0];
         ability.targets.push(ability.targets[0].clone());
         let error = validate_definitions(&registry).unwrap_err();

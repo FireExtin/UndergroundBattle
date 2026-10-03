@@ -1,0 +1,22 @@
+[
+  {
+    "name": "cost-guard",
+    "changedFile": "rust-game/src/resolution.rs",
+    "sourceSha256": "e6e8db8788abfba689fd9866af1f6f7451442989aec3e065f91c7f9fb9d7c6f9",
+    "mutantSha256": "0bd3fd884c05e3dff81d89e5934dcbc9ab7531f287fde913d94d7e9e949f9493",
+    "isolatedCargoTarget": "/workspace/.rust/targets/jc088-mutant-cost-guard",
+    "exitCode": 101,
+    "expectedFailure": true,
+    "reviewPatchTrailingWhitespaceNormalized": true
+  },
+  {
+    "name": "hide-payment",
+    "changedFile": "rust-game/src/rules.rs",
+    "sourceSha256": "4a4f27190e014c4ffefdc9524dfa635838b1fa856905683261682c12e4cd3236",
+    "mutantSha256": "aa443bee4e4aab833cf417eb61758c1f7918d59b34d565136007688b7b777f1d",
+    "isolatedCargoTarget": "/workspace/.rust/targets/jc088-mutant-hide-payment",
+    "exitCode": 101,
+    "expectedFailure": true,
+    "reviewPatchTrailingWhitespaceNormalized": true
+  }
+]

@@ -193,5 +193,10 @@
     "url": "/cards/JC085.jpg",
     "source": "resource/ymsj-fun.github.io/cards/JC085 复生行尸.jpg",
     "sha256": "f568ed4c26fc244830d840f0133eb1a78111aceff53a4a345f8ca44c1552aee2"
+  },
+  "JC088": {
+    "url": "/cards/JC088.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC088 职业杀手.jpg",
+    "sha256": "9c270203639dae978acb65e9255ac34b5a5d5192e681f8aafd63018ede301a5f"
   }
 }

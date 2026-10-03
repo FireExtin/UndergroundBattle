@@ -1,0 +1,3 @@
+   Compiling hegemony-wasm v0.1.0 (/workspace/UndergroundBattle/rust-game-wasm)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.49s
+     Running `/workspace/.rust/targets/jc088-local/debug/examples/native_fixtures /tmp/jc088-local-oracle.json`

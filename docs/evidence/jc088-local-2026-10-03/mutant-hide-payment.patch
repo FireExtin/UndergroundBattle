@@ -1,0 +1,13 @@
+diff --git a/rust-game/src/rules.rs b/rust-game/src/rules.rs
+index bdcaebe..9bba476 100644
+--- a/rust-game/src/rules.rs
++++ b/rust-game/src/rules.rs
+@@ -802,7 +802,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
+                     "hide-self",
+                     "快速行动",
+                     Timing::Fast,
+-                    vec![Cost::Assets(2)],
++                    vec![Cost::Assets(0)],
+                     vec![],
+                     vec![Op::Hide(Source)],
+                     None,

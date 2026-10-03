@@ -1,0 +1,15 @@
+diff --git a/rust-game/src/resolution.rs b/rust-game/src/resolution.rs
+index 0757606..cfad3c7 100644
+--- a/rust-game/src/resolution.rs
++++ b/rust-game/src/resolution.rs
+@@ -476,9 +476,7 @@ impl Game {
+                         Relation::EnemyTeam => self.is_enemy(actor, c),
+                     };
+                     kind && relation
+-                        && spec
+-                            .printed_cost_max
+-                            .is_none_or(|max| !c.face_down && d.cost <= max)
++
+                         && (spec.range != Range::SourceRegion || region == source.region)
+                         && spec
+                             .subtype

@@ -1,0 +1,78 @@
+{
+  "base": "3fda3eb1aab506226c83e95ba0638ec30a82cf1a",
+  "oldKernels": [
+    {
+      "engine": "rust-v0.2.1",
+      "wasmSha256": "a6366ef6bc7df03ba666b33286d3a01c412ac6bf779d6396fcbf6affcdc43966",
+      "bytes": 1040341,
+      "unchanged": true
+    },
+    {
+      "engine": "rust-v0.2.2",
+      "wasmSha256": "b5e0070333a71ff5b01f31406118f523af473c0bb96fb732d3276d3855d7daae",
+      "bytes": 1052149,
+      "unchanged": true
+    },
+    {
+      "engine": "rust-v0.2.3",
+      "wasmSha256": "2d5dcbaae76aa5706fa77af6747068e94da39654d25df3e764efa48e73905089",
+      "bytes": 1053904,
+      "unchanged": true
+    },
+    {
+      "engine": "rust-v0.2.4",
+      "wasmSha256": "fcf7f714a9b09f566202c0a8b00571c0da55dfa255793f2cffd908003f6d660f",
+      "bytes": 1111835,
+      "unchanged": true
+    },
+    {
+      "engine": "rust-v0.2.5",
+      "wasmSha256": "22299f6db9923a93ea7da7bd742afbf0a0b1e4de4ff3c41bd99f16860df3a971",
+      "bytes": 1487505,
+      "unchanged": true
+    },
+    {
+      "engine": "rust-v0.2.6",
+      "wasmSha256": "d4a9d88fe3c44d94da938c0351a4f1654d72514568c9f927fecd6d2f9f3ded3f",
+      "bytes": 1579569,
+      "unchanged": true
+    },
+    {
+      "engine": "rust-v0.2.7",
+      "wasmSha256": "21169e9d579886a55474b21aa506a4a9adca779428d7d11f2e966ae077656198",
+      "bytes": 1593545,
+      "unchanged": true
+    }
+  ],
+  "frozenV027Site13Match": true,
+  "graveAndCancelSourceUnchanged": true,
+  "candidateWasmSha256": "9f1a76887968ee6c18d9cb1db8dfbe0f2e1438f1541bd65bd54ba0854bc2ebda",
+  "changedSourcePaths": [
+    ".gitignore",
+    "rust-game-wasm/examples/native_fixtures.rs",
+    "rust-game-wasm/legacy-v0.2.7/README.md",
+    "rust-game-wasm/legacy-v0.2.7/hegemony_wasm.d.ts",
+    "rust-game-wasm/legacy-v0.2.7/hegemony_wasm.js",
+    "rust-game-wasm/legacy-v0.2.7/hegemony_wasm_bg.wasm",
+    "rust-game-wasm/legacy-v0.2.7/hegemony_wasm_bg.wasm.d.ts",
+    "rust-game-wasm/legacy-v0.2.7/package.json",
+    "rust-game/data/cards.json",
+    "rust-game/src/catalog.rs",
+    "rust-game/src/engine.rs",
+    "rust-game/src/main.rs",
+    "rust-game/src/resolution.rs",
+    "rust-game/src/rules.rs",
+    "sites/scripts/build.mjs",
+    "sites/scripts/stage-source.mjs",
+    "sites/src/kernel.mjs",
+    "sites/test/assassin-integration.test.mjs",
+    "sites/test/fixtures/prepared-assassin-v028.json",
+    "sites/test/fixtures/prepared-response-v028.json",
+    "sites/test/integration.test.mjs",
+    "sites/test/kernel-routing.test.mjs",
+    "sites/test/session-integration.test.mjs",
+    "web/public/card-scans.json",
+    "web/public/cards/JC088.jpg",
+    "web/src/game/cardScans.ts"
+  ]
+}

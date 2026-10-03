@@ -1,0 +1,39 @@
+
+> test
+> node --test test/*.test.mjs
+
+✔ real Worker/D1 persists printed-cost guard and pays self-hide once through reopen (12391.243215ms)
+✔ real workerd/WASM with D1 SQLite: concurrency, receipts, rollback and reopen (11012.116997ms)
+ℹ Provider emulation only; remote Cloudflare D1 acceptance is still required. Persisted at /tmp/hegemony-worker-d1-UxlrxE
+✔ real kernels preserve their full version tuple and reject unknown persisted identities (135.13058ms)
+✔ recovering a paid response receipt precedes all later clock evaluation (13.427698ms)
+✔ a matching-version GET persists an expired window before deciding to return 204 (1.48161ms)
+✔ an expired response commits only the system tick and never an accepted user receipt (1.230769ms)
+✔ a CAS conflict retries Begin with its original expected version and complete intent (0.923655ms)
+✔ a formal response cannot be rebased by the host after another seat wins CAS (0.80517ms)
+✔ client clock injection and nested Session commands are rejected before the reducer (0.314545ms)
+✔ quoting an active composition refreshes its clock and does not commit a draft or receipt (0.792231ms)
+✔ real Worker/D1 rust-v0.2.5 preserves composing, untimed choices, expiry and receipts through reopen (20002.340761ms)
+ℹ Synthetic local fixture; actual Worker/D1 writes, timers and reopen. No remote natural-play claim.
+✔ real Worker/D1 rust-v0.2.6 preserves composing, untimed choices, expiry and receipts through reopen (16516.599811ms)
+ℹ Synthetic local fixture; actual Worker/D1 writes, timers and reopen. No remote natural-play claim.
+✔ real Worker/D1 rust-v0.2.7 preserves composing, untimed choices, expiry and receipts through reopen (13839.327271ms)
+ℹ Synthetic local fixture; actual Worker/D1 writes, timers and reopen. No remote natural-play claim.
+✔ real Worker/D1 rust-v0.2.8 preserves composing, untimed choices, expiry and receipts through reopen (14488.404446ms)
+ℹ Synthetic local fixture; actual Worker/D1 writes, timers and reopen. No remote natural-play claim.
+hegemony storage retry { code: 'network_lost', retryable: true, attempt: 1 }
+✔ an ambiguous D1 commit retries the identical command and returns its receipt without applying twice (256.279832ms)
+✔ storage diagnostics expose fixed labels and do not retry quota, constraint or unknown failures (0.35864ms)
+hegemony storage retry { code: 'network_lost', retryable: true, attempt: 1 }
+hegemony storage retry { code: 'network_lost', retryable: true, attempt: 1 }
+hegemony storage retry { code: 'network_lost', retryable: true, attempt: 2 }
+✔ a failure before commit retries the original identity, while an exhausted failure never returns success (708.654535ms)
+✔ transient failures have a finite budget; HTTP rejections and unclassified failures are returned immediately (0.745412ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 65518.616062
