@@ -145,6 +145,8 @@ describe('playable table', () => {
     expect(screen.getAllByText('私密文字4').length).toBeGreaterThan(0);
     expect(screen.queryByText('私密文字1')).not.toBeInTheDocument();
     expect(container.querySelector('.hg-dock-action')).toHaveAttribute('data-next-step', 'wait');
+    expect(screen.queryByRole('button', { name: '等待玩家 · 可浏览' })).not.toBeInTheDocument();
+    fireEvent.keyDown(document, { key: 'Escape' });
     expect(screen.getByRole('button', { name: '等待玩家 · 可浏览' })).toBeDisabled();
   });
   it('keeps teammate resources and hidden hands in separate mats on the same table side', () => {
@@ -195,7 +197,7 @@ describe('playable table', () => {
     const submit = vi.fn();
     const action = { id: 'choose', kind: 'choose', label: '确认', choiceId: testChoice.id };
     render(<Table view={{ ...testView, status: 'playing', pendingChoice: testChoice, legalActions: [action] }} catalog={testCatalog} busy={false} onAction={submit} />);
-    const panel = screen.getByRole('region', { name: '待完成的选择' });
+    const panel = screen.getByRole('dialog', { name: '待完成的选择' });
     fireEvent.click(within(panel).getByRole('button', { name: /角色甲/ }));
     fireEvent.click(within(panel).getByRole('button', { name: '确认选择' }));
     expect(submit).toHaveBeenCalledExactlyOnceWith({ ...action, choiceId: testChoice.id, selected: ['a'] });

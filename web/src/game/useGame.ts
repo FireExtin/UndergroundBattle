@@ -188,6 +188,7 @@ export function useGame() {
 
   return {
     catalog, session, view, error, busy, uncertain, connection, act, playerMode,
+    playerModeLocked: busy || !!pending.current,
     startIndependentSession: () => switchPlayerMode('independent'),
     useOrdinarySession: () => switchPlayerMode('ordinary'),
     create: (name: string, mode: 'duel' | 'teams', deckId: string) => enter(() => createRoom(name, mode, deckId)),
