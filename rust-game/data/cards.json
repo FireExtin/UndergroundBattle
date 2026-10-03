@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.5",
-  "engineVersion": "rust-v0.2.7",
+  "cardPoolVersion": "limited-v2.6",
+  "engineVersion": "rust-v0.2.8",
   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
   "cards": [
     {
@@ -1495,6 +1495,364 @@
         "record": "JC085",
         "sha256": "f568ed4c26fc244830d840f0133eb1a78111aceff53a4a345f8ca44c1552aee2"
       }
+    },
+    {
+      "id": "JC088",
+      "name": "职业杀手",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "罪犯"
+      ],
+      "cost": 3,
+      "loyalty": [
+        "黑色"
+      ],
+      "loyaltyText": "黑色",
+      "color": "黑",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "现身触发：消灭位于本地区，且印刷费用小于或等于2的目标角色。\n快速行动：2：潜伏。（将该角色翻面为暗藏者）",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JC088",
+        "image": "resource/ymsj-fun.github.io/cards/JC088 职业杀手.jpg",
+        "sha256": "9c270203639dae978acb65e9255ac34b5a5d5192e681f8aafd63018ede301a5f"
+      },
+      "unique": false,
+      "society": "方碑序列"
+    },
+    {
+      "id": "JC001",
+      "name": "通灵猫头鹰",
+      "kind": "character",
+      "subtypes": [
+        "鸟",
+        "魔宠"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "黄色"
+      ],
+      "loyaltyText": "黄色",
+      "color": "黄",
+      "magic": "心灵",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        }
+      },
+      "defense": 1,
+      "text": "不能被装备结附。\n【持续】若你的资产区具有心灵2，则通灵猫头鹰获得临时调查1。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JC001",
+        "image": "resource/ymsj-fun.github.io/cards/JC001 通灵猫头鹰.jpg"
+      },
+      "unique": false,
+      "society": "帷幕守望"
+    },
+    {
+      "id": "BQ083",
+      "name": "索命骷髅",
+      "kind": "character",
+      "subtypes": [
+        "不死生物",
+        "骷髅",
+        "诅咒"
+      ],
+      "cost": 4,
+      "loyalty": [
+        "黑色",
+        "黑色",
+        "黑色"
+      ],
+      "loyaltyText": "黑色黑色黑色",
+      "color": "黑",
+      "magic": "死亡",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "进场触发 消灭本地区的目标角色。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "BQ083",
+        "image": "resource/ymsj-fun.github.io/cards/BQ083 索命骷髅.jpg"
+      },
+      "unique": false,
+      "society": ""
+    },
+    {
+      "id": "JC006",
+      "name": "逆转异界之门",
+      "kind": "spell",
+      "subtypes": [
+        "法术",
+        "异界"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "黄色"
+      ],
+      "loyaltyText": "黄色",
+      "color": "黄",
+      "magic": "心灵",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "【快速行动】将目标具有魔法领域图标的角色移回其拥有者手上。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JC006",
+        "image": "resource/ymsj-fun.github.io/cards/JC006 逆转异界之门.jpg",
+        "sha256": "beec2b1d758e0186cdc4cb57e7c52d6e8df2a4623564e5f212b3d878abb91bf4"
+      },
+      "unique": false,
+      "society": "帷幕守望"
+    },
+    {
+      "id": "XQ16",
+      "name": "法务部律师团",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "律师"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "蓝色"
+      ],
+      "loyaltyText": "蓝色",
+      "color": "蓝",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "公开\n【进场触发】将另一个目标本方角色翻面为暗藏者。",
+      "keywords": [
+        "公开"
+      ],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "XQ16",
+        "image": "resource/ymsj-fun.github.io/cards/XQ16 法务部律师团.jpg",
+        "sha256": "2ae947c0c5dccd45ae495d3c828ce9b4e1453c34dfb6e24c5e61eea8338cff80"
+      },
+      "unique": false,
+      "society": "王座会"
+    },
+    {
+      "id": "JC047",
+      "name": "烈火重围",
+      "kind": "spell",
+      "subtypes": [
+        "灾难"
+      ],
+      "cost": 3,
+      "loyalty": [
+        "红色"
+      ],
+      "loyaltyText": "红色",
+      "color": "红",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "【标准行动】对目标地区上的所有角色造成1点伤害。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JC047",
+        "image": "resource/ymsj-fun.github.io/cards/JC047 烈火重围.jpg",
+        "sha256": "74d7e3c4bf75c52538fce551dda97f28e5b51d7d64ffbe89c9d427296a3ce9d6"
+      },
+      "unique": false,
+      "society": "鸣钟教派"
+    },
+    {
+      "id": "JC007",
+      "name": "常春藤派学者",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "学者"
+      ],
+      "cost": 4,
+      "loyalty": [
+        "黄色",
+        "黄色"
+      ],
+      "loyaltyText": "黄色 黄色",
+      "color": "黄",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 1
+        }
+      },
+      "defense": 1,
+      "text": "【进场触发】从你的牌库中寻找一张印刷费用小于或等于2的法术或书籍牌，展示该牌后置于你的手中，然后洗牌。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JC007",
+        "image": "resource/ymsj-fun.github.io/cards/JC007 常春藤派学者.jpg",
+        "sha256": "835b85f48270aa66f10f01fa4de7483b0ccf80dcf14e6dc5596639592e14f1ce"
+      },
+      "unique": false,
+      "society": "帷幕守望"
+    },
+    {
+      "id": "JC075",
+      "name": "雪地救援队",
+      "subtitle": null,
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "医疗员"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "白色"
+      ],
+      "loyaltyText": "白色",
+      "color": "白",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "公开（该角色不能被秘密派遣为暗藏者）\n【快速】行动2，【横置】：将另一个目标本方角色移回其拥有者手上。",
+      "keywords": [
+        "公开"
+      ],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JC075",
+        "image": "resource/ymsj-fun.github.io/cards/JC075 雪地救援队.jpg",
+        "sha256": "7db960c7050614dae10a8e752db2567670169e782986e39a789842259231e434"
+      },
+      "unique": false,
+      "society": "圣贤"
+    },
+    {
+      "id": "JC104",
+      "name": "占卜师",
+      "subtitle": "神秘的吉卜赛妇人",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "法师"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "紫色"
+      ],
+      "loyaltyText": "紫色",
+      "color": "紫",
+      "magic": "星辰",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "【进场触发】预测3。（检视你牌库顶的三张牌，将其中任意数量的牌以任意顺序置于你的牌库顶，将其余的牌以任意顺序置于你的牌库底。）",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JC104",
+        "image": "resource/ymsj-fun.github.io/cards/JC104 占卜师.jpg",
+        "sha256": "877aa980256730bb35350f1b99c2aa75b9110cd5905e61412664e2a89ef4e8da"
+      },
+      "unique": false,
+      "society": "梦境行者"
     }
   ],
   "decks": [
@@ -1682,7 +2040,7 @@
       "cards": [
         {
           "cardId": "JC125",
-          "count": 11
+          "count": 8
         },
         {
           "cardId": "LC19",
@@ -1734,6 +2092,10 @@
         },
         {
           "cardId": "JC085",
+          "count": 3
+        },
+        {
+          "cardId": "JC088",
           "count": 3
         }
       ]

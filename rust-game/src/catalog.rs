@@ -3,8 +3,8 @@ use serde::{Deserialize, Serialize};
 use std::sync::OnceLock;
 
 pub const RULES_VERSION: &str = "hegemony-pdf-v1";
-pub const POOL_VERSION: &str = "limited-v2.5";
-pub const ENGINE_VERSION: &str = "rust-v0.2.7";
+pub const POOL_VERSION: &str = "limited-v2.6";
+pub const ENGINE_VERSION: &str = "rust-v0.2.8";
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]

@@ -51,6 +51,7 @@ pub enum Relation {
     Any,
     ControlledByActor,
     OwnedByActor,
+    FriendlyTeam,
     EnemyTeam,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
@@ -68,6 +69,14 @@ pub struct TargetSlotSpec {
     pub subtype: Option<String>,
     #[serde(default)]
     pub subtypes_any: Vec<String>,
+    #[serde(default)]
+    pub printed_cost_max: Option<u32>,
+    #[serde(default)]
+    pub equipment_host: bool,
+    #[serde(default)]
+    pub requires_magic: bool,
+    #[serde(default)]
+    pub exclude_source: bool,
     pub min: usize,
     pub max: usize,
 }
@@ -119,7 +128,35 @@ pub enum MagicIcon {
 pub enum CardFilter {
     Any,
     Kind(String),
-    SocietyOrMagic { society: String, magic: MagicIcon },
+    SocietyOrMagic {
+        society: String,
+        magic: MagicIcon,
+    },
+    PrintedCostAndSubtypes {
+        max_cost: u32,
+        subtypes: Vec<String>,
+    },
+}
+impl CardFilter {
+    pub(crate) fn matches(&self, definition: &crate::catalog::CardDefinition) -> bool {
+        match self {
+            Self::Any => true,
+            Self::Kind(kind) => definition.kind == *kind,
+            Self::SocietyOrMagic { society, magic } => {
+                definition.society == *society || definition.magic_icon == *magic
+            }
+            Self::PrintedCostAndSubtypes { max_cost, subtypes } => {
+                definition.cost <= *max_cost
+                    && subtypes.iter().any(|subtype| {
+                        definition.subtypes.iter().any(|printed| {
+                            // Early admitted spells retain the exact legacy "事务-法术" label.
+                            printed == subtype
+                                || printed.strip_prefix("事务-") == Some(subtype.as_str())
+                        })
+                    })
+            }
+        }
+    }
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
@@ -217,6 +254,8 @@ pub struct Traits {
     pub kill: u32,
     pub retreat: bool,
     pub unlimited_copies: bool,
+    #[serde(default)]
+    pub cannot_be_equipped: bool,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum StaticModifier {
@@ -344,6 +383,10 @@ fn target(zone: Zone, kind: EntityKind, relation: Relation, range: Range) -> Tar
         range,
         subtype: None,
         subtypes_any: vec![],
+        printed_cost_max: None,
+        equipment_host: false,
+        requires_magic: false,
+        exclude_source: false,
         min: 1,
         max: 1,
     }
@@ -413,6 +456,127 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
             Range::Anywhere,
         );
         let mut m = BTreeMap::new();
+        let mut another_own = target(
+            Zone::Board,
+            EntityKind::Character,
+            Relation::ControlledByActor,
+            Range::Anywhere,
+        );
+        another_own.exclude_source = true;
+        m.insert(
+            "JC075".into(),
+            Definition {
+                traits: Traits {
+                    public: true,
+                    ..Default::default()
+                },
+                abilities: vec![ability(
+                    "rescue",
+                    "快速行动",
+                    Timing::Fast,
+                    vec![Cost::Assets(2), Cost::ExhaustSource],
+                    vec![another_own],
+                    vec![Op::Move(Target(0), Destination::OwnerHand)],
+                    None,
+                )],
+                ..Default::default()
+            },
+        );
+        m.insert(
+            "JC104".into(),
+            with_abilities(vec![ability(
+                "forecast-entry",
+                "进场触发",
+                Timing::Fast,
+                vec![],
+                vec![],
+                vec![Op::Forecast {
+                    player: Actor,
+                    count: 3,
+                }],
+                Some(Event::Enter),
+            )]),
+        );
+        m.insert(
+            "JC047".into(),
+            with_abilities(vec![ability(
+                "damage-region",
+                "标准行动",
+                Timing::Standard,
+                vec![],
+                vec![region.clone()],
+                vec![Op::DamageMatching {
+                    selector: BoardSelector {
+                        kind: EntityKind::Character,
+                        relation: Relation::Any,
+                        region: Some(RegionRef::Target(0)),
+                        subtype: None,
+                    },
+                    amount: 1,
+                }],
+                None,
+            )]),
+        );
+        m.insert(
+            "JC007".into(),
+            with_abilities(vec![ability(
+                "search-cheap-spell-book-entry",
+                "进场触发",
+                Timing::Fast,
+                vec![],
+                vec![],
+                vec![Op::Search {
+                    player: Actor,
+                    filter: CardFilter::PrintedCostAndSubtypes {
+                        max_cost: 2,
+                        subtypes: vec!["法术".into(), "书籍".into()],
+                    },
+                    to_top: false,
+                    optional: false,
+                }],
+                Some(Event::Enter),
+            )]),
+        );
+        let mut magic_character = character.clone();
+        magic_character.requires_magic = true;
+        m.insert(
+            "JC006".into(),
+            with_abilities(vec![ability(
+                "return-magic",
+                "快速行动",
+                Timing::Fast,
+                vec![],
+                vec![magic_character],
+                vec![Op::Move(Target(0), Destination::OwnerHand)],
+                None,
+            )]),
+        );
+        let mut another_friend = target(
+            Zone::Board,
+            EntityKind::Character,
+            Relation::ControlledByActor,
+            Range::Anywhere,
+        );
+        another_friend.exclude_source = true;
+        m.insert(
+            "XQ16".into(),
+            Definition {
+                traits: Traits {
+                    public: true,
+                    ..Default::default()
+                },
+                abilities: vec![ability(
+                    "hide-friend-entry",
+                    "进场触发",
+                    Timing::Fast,
+                    vec![],
+                    vec![another_friend],
+                    vec![Op::Hide(Target(0))],
+                    Some(Event::Enter),
+                )],
+                ..Default::default()
+            },
+        );
         m.insert(
             "JC084".into(),
             Definition {
@@ -442,6 +606,44 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
                 ],
                 ..Definition::default()
             },
+        );
+        m.insert(
+            "JC001".into(),
+            Definition {
+                traits: Traits {
+                    cannot_be_equipped: true,
+                    ..Default::default()
+                },
+                modifiers: vec![StaticModifier::ConditionalIcons {
+                    condition: IconCondition::AssetDomain {
+                        magic: MagicIcon::Mind,
+                        minimum: 2,
+                    },
+                    permanent: Icons::default(),
+                    temporary: Icons {
+                        investigation: 1,
+                        ..Icons::default()
+                    },
+                }],
+                ..Definition::default()
+            },
+        );
+        m.insert(
+            "BQ083".into(),
+            with_abilities(vec![ability(
+                "destroy-local-entry",
+                "进场触发",
+                Timing::Fast,
+                vec![],
+                vec![target(
+                    Zone::Board,
+                    EntityKind::Character,
+                    Relation::Any,
+                    Range::SourceRegion,
+                )],
+                vec![Op::Destroy(Target(0))],
+                Some(Event::Enter),
+            )]),
         );
         m.insert(
             "JC085".into(),
@@ -776,6 +978,36 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
             },
         ];
         m.insert("JC063".into(), with_abilities(vec![chase]));
+        let mut cheap_character = target(
+            Zone::Board,
+            EntityKind::Character,
+            Relation::Any,
+            Range::SourceRegion,
+        );
+        cheap_character.printed_cost_max = Some(2);
+        m.insert(
+            "JC088".into(),
+            with_abilities(vec![
+                ability(
+                    "destroy-cheap-reveal",
+                    "现身触发",
+                    Timing::Fast,
+                    vec![],
+                    vec![cheap_character],
+                    vec![Op::Destroy(Target(0))],
+                    Some(Event::Reveal),
+                ),
+                ability(
+                    "hide-self",
+                    "快速行动",
+                    Timing::Fast,
+                    vec![Cost::Assets(2)],
+                    vec![],
+                    vec![Op::Hide(Source)],
+                    None,
+                ),
+            ]),
+        );
         m.insert(
             "JC086".into(),
             with_abilities(vec![ability(
@@ -1034,6 +1266,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
             Range::Anywhere,
         );
         host.subtypes_any = vec!["人类".into(), "吸血鬼".into()];
+        host.equipment_host = true;
         m.insert(
             "BQ022".into(),
             Definition {
@@ -1075,7 +1308,8 @@ mod tests {
     #[test]
     fn invalid_multi_target_ability_is_rejected_before_registration() {
         let mut registry = definitions().clone();
-        assert_eq!(registry.len(), 39);
+        assert_eq!(registry.len(), crate::catalog::catalog().cards.len());
+        assert!(registry.contains_key("JC001") && registry.contains_key("BQ083"));
         let ability = &mut registry.get_mut("LC20").unwrap().abilities[0];
         ability.targets.push(ability.targets[0].clone());
         let error = validate_definitions(&registry).unwrap_err();

@@ -11,6 +11,7 @@ for (const [engineVersion, fixturePath] of [
   ['rust-v0.2.5', './fixtures/prepared-response-v025.json'],
   ['rust-v0.2.6', './fixtures/prepared-response-v026.json'],
   ['rust-v0.2.7', './fixtures/prepared-response-v027.json'],
+  ['rust-v0.2.8', './fixtures/prepared-response-v028.json'],
 ]) test(`real Worker/D1 ${engineVersion} preserves composing, untimed choices, expiry and receipts through reopen`, async t => {
   const fixture = JSON.parse(readFileSync(new URL(fixturePath, import.meta.url), 'utf8'));
   const persist = mkdtempSync(join(tmpdir(), 'hegemony-session-d1-'));

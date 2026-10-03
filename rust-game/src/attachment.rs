@@ -88,9 +88,17 @@ impl Game {
             Relation::Any => true,
             Relation::ControlledByActor => host.controller == attachment.card.controller,
             Relation::OwnedByActor => host.owner == attachment.card.controller,
+            Relation::FriendlyTeam => !self.is_enemy(attachment.card.controller, host),
             Relation::EnemyTeam => self.is_enemy(attachment.card.controller, host),
         };
         kind && relation
+            && (!card(&attachment.card.definition)
+                .subtypes
+                .iter()
+                .any(|s| s == "装备")
+                || !rules::definition(&host.definition)
+                    .traits
+                    .cannot_be_equipped)
             && spec
                 .host
                 .subtype
