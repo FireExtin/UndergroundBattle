@@ -1,0 +1,38 @@
+
+> undergroundbattle-web@0.1.0 test
+> vitest --run --reporter=dot
+
+
+ RUN  v4.1.2 /workspace/UndergroundBattle-v027-player-sessions/web
+
+···········································stderr | src/debugger/LiveDebuggerShell.test.tsx > LiveDebuggerShell > submits marker, face-down, and first-player privilege presets with expected action payloads
+Encountered two children with the same key, `msg-live-rejected-1`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.
+
+stderr | src/debugger/LiveDebuggerShell.test.tsx > LiveDebuggerShell > submits marker, face-down, and first-player privilege presets with expected action payloads
+Encountered two children with the same key, `msg-live-rejected-1`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.
+
+stderr | src/debugger/LiveDebuggerShell.test.tsx > LiveDebuggerShell > submits marker, face-down, and first-player privilege presets with expected action payloads
+Encountered two children with the same key, `msg-live-rejected-1`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.
+Encountered two children with the same key, `msg-live-rejected-1`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.
+
+stderr | src/debugger/LiveDebuggerShell.test.tsx > LiveDebuggerShell > submits marker, face-down, and first-player privilege presets with expected action payloads
+Encountered two children with the same key, `msg-live-rejected-1`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.
+Encountered two children with the same key, `msg-live-rejected-1`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.
+
+·stderr | src/debugger/LiveDebuggerShell.test.tsx > LiveDebuggerShell > submits marker, face-down, and first-player privilege presets with expected action payloads
+Encountered two children with the same key, `msg-live-rejected-1`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.
+Encountered two children with the same key, `msg-live-rejected-1`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.
+Encountered two children with the same key, `msg-live-rejected-1`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.
+
+······························································································································
+
+ Test Files  19 passed (19)
+      Tests  170 passed (170)
+   Start at  06:51:03
+   Duration  8.60s (transform 747ms, setup 1.62s, import 1.07s, tests 12.68s, environment 7.63s)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

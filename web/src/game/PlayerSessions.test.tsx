@@ -55,6 +55,15 @@ async function join(code = 'INVITE') {
 const entries = () => posts.filter(p => !p.url.endsWith('/commands'));
 
 describe('explicit independent player sessions through normal UI', () => {
+  it('warns before replacing an independent session or switching back that this seat may become unrecoverable', async () => {
+    render(<GameApp />); await lobbyReady(); await independent(); await join(); await lobby();
+    expect(screen.getByText('开始新会话或切回普通后，此独立席位可能无法恢复；需要多席请另开标签。')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: '开始新的独立玩家会话' })).toBeEnabled();
+    expect(screen.getByRole('button', { name: '切回普通玩家会话' })).toBeEnabled();
+    fireEvent.click(screen.getByRole('button', { name: '切回普通玩家会话' }));
+    expect(screen.queryByRole('button', { name: '回到牌桌 INVITE · 席位 1' })).not.toBeInTheDocument();
+    expect(entries()).toHaveLength(1);
+  });
   it('keeps automatic pass opt-in separate from the ordinary seat and restores the ordinary preference', async () => {
     playing = true; render(<GameApp />); await lobbyReady();
     fireEvent.change(screen.getByLabelText('你的称呼'), { target: { value: '测试玩家' } });
