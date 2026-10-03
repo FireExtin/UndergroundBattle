@@ -40,7 +40,8 @@ async function lobbyReady() { await waitFor(() => expect(screen.getByRole('butto
 async function create() {
   await lobbyReady(); fireEvent.change(screen.getByLabelText('你的称呼'), { target: { value: '测试玩家' } });
   fireEvent.click(screen.getByRole('button', { name: '创建牌桌 →' }));
-  await screen.findByText('等待秘社集结');
+  if (playing) await screen.findByRole('switch', { name: '无可用行动时自动让过' });
+  else await screen.findByText('等待秘社集结');
 }
 async function lobby() { fireEvent.click(screen.getByRole('button', { name: '返回大厅 / 新建牌桌' })); await lobbyReady(); }
 async function independent() { fireEvent.click(screen.getByRole('button', { name: '开始新的独立玩家会话' })); await screen.findByText('独立玩家会话 · 当前标签'); }
@@ -50,11 +51,54 @@ async function join(code = 'INVITE') {
   fireEvent.change(screen.getByLabelText('邀请码'), { target: { value: code } });
   await waitFor(() => expect(screen.getByRole('button', { name: '加入牌桌 →' })).toBeEnabled());
   fireEvent.click(screen.getByRole('button', { name: '加入牌桌 →' }));
-  await screen.findByText('等待秘社集结');
+  if (playing) await screen.findByRole('switch', { name: '无可用行动时自动让过' });
+  else await screen.findByText('等待秘社集结');
 }
 const entries = () => posts.filter(p => !p.url.endsWith('/commands'));
 
 describe('explicit independent player sessions through normal UI', () => {
+  it('starts a new tab’s independent seat directly from the ordinary table and preserves the ordinary reload screen', async () => {
+    playing = true;
+    let app = render(<GameApp />); await create();
+    const ordinary = localStorage.getItem('hegemony.session.v1');
+    const history = localStorage.getItem('hegemony.seats.v1');
+    expect(localStorage.getItem('hegemony.screen.v1')).toBe('table');
+    app.unmount();
+    // A fresh second tab sees the same ordinary localStorage and its own empty page session.
+    app = render(<GameApp />); await screen.findByRole('switch', { name: '无可用行动时自动让过' });
+    expect(screen.getByRole('button', { name: '开始新的独立玩家会话' })).toBeEnabled();
+    expect(screen.getByText('只切换当前标签；普通玩家的座位和牌桌恢复方式保留。')).toBeInTheDocument();
+    await independent(); await lobbyReady();
+    expect(localStorage.getItem('hegemony.screen.v1')).toBe('table');
+    await join();
+    expect(seats.map(s => s.seat)).toEqual([0, 1]);
+    expect(localStorage.getItem('hegemony.session.v1')).toBe(ordinary);
+    expect(localStorage.getItem('hegemony.seats.v1')).toBe(history);
+    expect(localStorage.getItem('hegemony.screen.v1')).toBe('table');
+    expect(posts.filter(p => p.url.endsWith('/commands'))).toHaveLength(0);
+    app.unmount(); sessionStorage.clear(); // Model returning to the ordinary tab’s page session.
+    app = render(<GameApp />); await screen.findByRole('switch', { name: '无可用行动时自动让过' });
+    await waitFor(() => expect(reads.at(-1)?.authorization).toBe(`Bearer ${seats[0].token}`));
+    expect(screen.queryByRole('button', { name: '创建牌桌 →' })).not.toBeInTheDocument();
+    expect(entries()).toHaveLength(2);
+  });
+  it('locks the direct ordinary-table switch while a command is pending and keeps that lock after lobby return', async () => {
+    render(<GameApp />); await create(); rejectCommand = true;
+    fireEvent.click(screen.getByRole('button', { name: '准备' }));
+    const tableSwitch = screen.getByRole('button', { name: '开始新的独立玩家会话' });
+    expect(tableSwitch).toBeDisabled();
+    await screen.findByRole('button', { name: '确认上一行动' });
+    await waitFor(() => expect(screen.getByRole('button', { name: '返回大厅 / 新建牌桌' })).toBeEnabled());
+    expect(tableSwitch).toBeDisabled();
+    const pending = localStorage.getItem('hegemony.pending.v1');
+    await lobby();
+    const lobbySwitch = screen.getByRole('button', { name: '开始新的独立玩家会话' });
+    expect(lobbySwitch).toBeDisabled(); fireEvent.click(lobbySwitch);
+    expect(localStorage.getItem('hegemony.pending.v1')).toBe(pending);
+    expect(localStorage.getItem('hegemony.screen.v1')).toBe('lobby');
+    expect(sessionStorage.getItem('hegemony.playerSession.v1')).toBeNull();
+    expect(entries()).toHaveLength(1);
+  });
   it('warns before replacing an independent session or switching back that this seat may become unrecoverable', async () => {
     render(<GameApp />); await lobbyReady(); await independent(); await join(); await lobby();
     expect(screen.getByText('开始新会话或切回普通后，此独立席位可能无法恢复；需要多席请另开标签。')).toBeInTheDocument();

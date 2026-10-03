@@ -17,9 +17,10 @@ export function GameApp() {
     <section className="hg-player-session" aria-label="玩家会话">
       <strong>{game.playerMode === 'independent' ? '独立玩家会话 · 当前标签' : '普通玩家会话'}</strong>
       <p>{game.playerMode === 'independent' ? '刷新保留此标签的席位。关闭标签可能失去此独立座位的恢复方式。复制标签可能沿用原席；需要另一位玩家时，请返回大厅后显式开始新的独立玩家会话。' : '在此浏览器恢复原席。需要在另一个标签作为另一位玩家入席时，请显式开始新的独立玩家会话。'}</p>
+      {game.session && game.playerMode === 'ordinary' && <p>只切换当前标签；普通玩家的座位和牌桌恢复方式保留。</p>}
       {!game.session && game.playerMode === 'independent' && <p>开始新会话或切回普通后，此独立席位可能无法恢复；需要多席请另开标签。</p>}
-      {!game.session && <div><button className="hg-button hg-button-quiet" disabled={game.busy} onClick={game.startIndependentSession}>开始新的独立玩家会话</button>
-        {game.playerMode === 'independent' && <button className="hg-button hg-button-quiet" disabled={game.busy} onClick={game.useOrdinarySession}>切回普通玩家会话</button>}</div>}
+      {(!game.session || game.playerMode === 'ordinary') && <div><button className="hg-button hg-button-quiet" disabled={game.playerModeLocked} onClick={game.startIndependentSession}>开始新的独立玩家会话</button>
+        {game.playerMode === 'independent' && <button className="hg-button hg-button-quiet" disabled={game.playerModeLocked} onClick={game.useOrdinarySession}>切回普通玩家会话</button>}</div>}
     </section>
     {game.error && <div className="hg-error" role="alert"><span>{game.error}</span><button onClick={game.dismissError} aria-label="关闭提示">×</button></div>}
     {game.uncertain && <div className="hg-unconfirmed" role="status"><span>上一行动等待确认；牌桌将在恢复连接后继续。</span><button className="hg-button hg-button-primary" disabled={game.busy} onClick={game.retryPending}>确认上一行动</button></div>}

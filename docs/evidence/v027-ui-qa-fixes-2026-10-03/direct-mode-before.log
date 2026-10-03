@@ -1,0 +1,1025 @@
+
+> undergroundbattle-web@0.1.0 test
+> vitest --run src/game/PlayerSessions.test.tsx
+
+
+ RUN  v4.1.2 /workspace/UndergroundBattle-v027-player-sessions/web
+
+ ❯ src/game/PlayerSessions.test.tsx (12 tests | 2 failed) 4209ms
+     × starts a new tab’s independent seat directly from the ordinary table and preserves the ordinary reload screen 471ms
+     × locks the direct ordinary-table switch while a command is pending and keeps that lock after lobby return 268ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/game/PlayerSessions.test.tsx > explicit independent player sessions through normal UI > starts a new tab’s independent seat directly from the ordinary table and preserves the ordinary reload screen
+TestingLibraryElementError: Unable to find an accessible element with the role "button" and name "开始新的独立玩家会话"
+
+Here are the accessible roles:
+
+  banner:
+
+  Name "":
+  [36m<header[39m
+    [33mclass[39m=[32m"hg-header"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  link:
+
+  Name "◈隐秘世界 霸权SECRET WORLD · HEGEMONY":
+  [36m<a[39m
+    [33mclass[39m=[32m"hg-brand"[39m
+    [33mhref[39m=[32m"/"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  navigation:
+
+  Name "":
+  [36m<nav />[39m
+
+  --------------------------------------------------
+  status:
+
+  Name "前台约每1.5秒轮询同步；操作提交后立即更新。":
+  [36m<span[39m
+    [33mclass[39m=[32m"hg-connection hg-connection-online"[39m
+    [33mrole[39m=[32m"status"[39m
+    [33mtitle[39m=[32m"前台约每1.5秒轮询同步；操作提交后立即更新。"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  button:
+
+  Name "返回大厅 / 新建牌桌":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-nav-button"[39m
+    [33mtitle[39m=[32m"保留当前座位，回到大厅选择两人或四人新牌桌"[39m
+  [36m/>[39m
+
+  Name "上手指南 ?":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-nav-button"[39m
+  [36m/>[39m
+
+  Name "准备":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-button hg-button-primary"[39m
+    [33mdata-action-id[39m=[32m"ready"[39m
+    [33mdata-action-kind[39m=[32m"ready"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "复制邀请链接 ↗":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-button hg-button-primary"[39m
+  [36m/>[39m
+
+  Name "01调查 · 控制调查者控制与调查调查者的颜色组成50 张 · 自组预组 ✓ 已选择":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"true"[39m
+    [33mclass[39m=[32m"hg-deck hg-deck-faction-neutral hg-selected"[39m
+    [33mdata-deck-id[39m=[32m"watchers"[39m
+    [33mdata-deck-main-faction[39m=[32m"neutral"[39m
+    [33mdisabled[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  region:
+
+  Name "玩家会话":
+  [36m<section[39m
+    [33maria-label[39m=[32m"玩家会话"[39m
+    [33mclass[39m=[32m"hg-player-session"[39m
+  [36m/>[39m
+
+  Name "准备与开始":
+  [36m<section[39m
+    [33maria-label[39m=[32m"准备与开始"[39m
+    [33mclass[39m=[32m"hg-room-controls"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  strong:
+
+  Name "":
+  [36m<strong />[39m
+
+  Name "":
+  [36m<strong />[39m
+
+  Name "":
+  [36m<strong />[39m
+
+  Name "":
+  [36m<strong />[39m
+
+  Name "":
+  [36m<strong />[39m
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-muted"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  main:
+
+  Name "":
+  [36m<main[39m
+    [33mclass[39m=[32m"hg-room-lobby"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  heading:
+
+  Name "等待秘社集结":
+  [36m<h1 />[39m
+
+  Name "调查者":
+  [36m<h2 />[39m
+
+  --------------------------------------------------
+  article:
+
+  Name "":
+  [36m<article[39m
+    [33mclass[39m=[32m"hg-seat hg-team-0 "[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<article[39m
+    [33mclass[39m=[32m"hg-seat hg-team-1 hg-seat-empty"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  group:
+
+  Name "":
+  [36m<details[39m
+    [33mclass[39m=[32m"hg-room-prepare"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  contentinfo:
+
+  Name "":
+  [36m<footer[39m
+    [33mclass[39m=[32m"hg-footer"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div />[39m
+  [36m<div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"hg-app"[39m
+    [36m>[39m
+      [36m<header[39m
+        [33mclass[39m=[32m"hg-header"[39m
+      [36m>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"hg-brand"[39m
+          [33mhref[39m=[32m"/"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"hg-brand-mark"[39m
+          [36m>[39m
+            [0m◈[0m
+          [36m</span>[39m
+          [36m<span>[39m
+            [0m隐秘世界 [0m
+            [36m<b>[39m
+              [0m霸权[0m
+            [36m</b>[39m
+            [36m<small>[39m
+              [0mSECRET WORLD · HEGEMONY[0m
+            [36m</small>[39m
+          [36m</span>[39m
+        [36m</a>[39m
+        [36m<nav>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"hg-connection hg-connection-online"[39m
+            [33mrole[39m=[32m"status"[39m
+            [33mtitle[39m=[32m"前台约每1.5秒轮询同步；操作提交后立即更新。"[39m
+          [36m>[39m
+            [36m<i />[39m
+            [0m牌桌已同步 · 轮询[0m
+          [36m</span>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"hg-nav-button"[39m
+            [33mtitle[39m=[32m"保留当前座位，回到大厅选择两人或四人新牌桌"[39m
+          [36m>[39m
+            [0m返回大厅 / 新建牌桌[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"hg-nav-button"[39m
+          [36m>[39m
+            [0m上手指南 [0m
+            [36m<span>[39m
+              [0m?[0m
+            [36m</span>[39m
+          [36m</button>[39m
+        [36m</nav>[39m
+      [36m</header>[39m
+      [36m<section[39m
+        [33maria-label[39m=[32m"玩家会话"[39m
+        [33mclass[39m=[32m"hg-player-session"[39m
+      [36m>[39m
+        [36m<strong>[39m
+          [0m普通玩家会话[0m
+        [36m</strong>[39m
+        [36m<p>[39m
+          [0m在此浏览器恢复原席。需要在另一个标签作为另一位玩家入席时，请显式开始新的独立玩家会话。[0m
+        [36m</p>[39m
+      [36m</section>[39m
+      [36m<main[39m
+        [33mclass[39m=[32m"hg-room-lobby"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"hg-room-welcome"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"hg-eyebrow"[39m
+          [36m>[39m
+            [0m牌桌已经就绪[0m
+          [36m</span>[39m
+          [36m<h1>[39m
+            [0m等待秘社集结[0m
+          [36m</h1>[39m
+          [36m<p>[39m
+            [0m两人对决 · 3 个地区 · 8 分胜利[0m
+          [36m</p>[39m
+        [36m</div>[39m
+        [36m<section[39m
+          [33maria-label[39m=[32m"准备与开始"[39m
+          [33mclass[39m=[32m"hg-room-controls"[39m
+        [36m>[39m
+          [36m<div>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"hg-eyebrow"[39m
+            [36m>[39m
+              [0m席位 [0m
+              [0m1[0m
+              [0m · 你的牌组[0m
+            [36m</span>[39m
+            [36m<h2>[39m
+              [0m调查者[0m
+            [36m</h2>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-room-ready"[39m
+          [36m>[39m
+            [36m<span>[39m
+              [0m0[0m
+              [0m / [0m
+              [0m2[0m
+              [0m 位玩家已准备[0m
+            [36m</span>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"hg-actions"[39m
+            [36m>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"hg-button hg-button-primary"[39m
+                [33mdata-action-id[39m=[32m"ready"[39m
+                [33mdata-action-kind[39m=[32m"ready"[39m
+                [33mtype[39m=[32m"button"[39m
+              [36m>[39m
+                [36m<span>[39m
+                  [0m准备[0m
+                [36m</span>[39m
+              [36m</button>[39m
+            [36m</div>[39m
+            [36m<p>[39m
+              [0m等所有座位入席并准备后，即可开始。[0m
+            [36m</p>[39m
+          [36m</div>[39m
+        [36m</section>[39m
+        [36m<section[39m
+          [33mclass[39m=[32m"hg-invite"[39m
+        [36m>[39m
+          [36m<div>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"hg-eyebrow"[39m
+            [36m>[39m
+              [0m邀请伙伴入席[0m
+            [36m</span>[39m
+            [36m<strong>[39m
+              [0mINVITE[0m
+            [36m</strong>[39m
+            [36m<p>[39m
+              [0m分享邀请码或邀请链接。伙伴使用自己的浏览器入席；本机再次加入会恢复原座位。[0m
+            [36m</p>[39m
+          [36m</div>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"hg-button hg-button-primary"[39m
+          [36m>[39m
+            [0m复制邀请链接 ↗[0m
+          [36m</button>[39m
+        [36m</section>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"hg-seats"[39m
+        [36m>[39m
+          [36m<article[39m
+            [33mclass[39m=[32m"hg-seat hg-team-0 "[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"hg-eyebrow"[39m
+            [36m>[39m
+              [0m席位 [0m
+              [0m1[0m
+              [0m · [0m
+              [0m我方[0m
+            [36m</span>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"hg-player-avatar"[39m
+            [36m>[39m
+              [0m甲[0m
+            [36m</span>[39m
+            [36m<strong>[39m
+              [0m甲[0m
+              [36m<small>[39m
+                [0m 你[0m
+              [36m</small>[39m
+              [36m<small>[39m
+                [0m 房主[0m
+              [36m</small>[39m
+            [36m</strong>[39m
+            [36m<span>[39m
+              [0m调查者[0m
+            [36m</span>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"hg-ready "[39m
+            [36m>[39m
+              [0m尚未准备[0m
+            [36m</span>[39m
+          [36m</article>[39m
+          [36m<article[39m
+            [33mclass[39m=[32m"hg-seat hg-team-1 hg-seat-empty"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"hg-eyebrow"[39m
+            [36m>[39m
+              [0m席位 [0m
+              [0m2[0m
+              [0m · [0m
+              [0m对方[0m
+            [36m</span>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"hg-player-avatar"[39m
+            [36m>[39m
+              [0m+[0m
+            [36m</span>[39m
+            [36m<strong>[39m
+              [0m等待伙伴[0m
+            [36m</strong>[39m
+            [36m<span>[39m
+              [0m用邀请码加入[0m
+            [36m</span>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"hg-ready "[39m
+            [36m>[39m
+              [0m空座[0m
+            [36m</span>[39m
+          [36m</article>[39m
+        [36m</div>[39m
+        [36m<details[39m
+          [33mclass[39m=[32m"hg-room-prepare"[39m
+        [36m>[39m
+          [36m<summary>[39m
+            [0m更换牌组 [0m
+            [36m<span>[39m
+              [0m当前：[0m
+              [0m调查者[0m
+            [36m</span>[39m
+          [36m</summary>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"hg-muted"[39m
+          [36m>[39m
+            [0m选择其他牌组后将取消准备，须重新准备。编辑或保存草稿不会改变当前入席牌组。[0m
+          [36m</p>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-decks"[39m
+          [36m>[39m
+            [36m<button[39m
+              [33maria-pressed[39m=[32m"true"[39m
+              [33mclass[39m=[32m"hg-deck hg-deck-faction-neutral hg-selected"[39m
+              [33mdata-deck-id[39m=[32m"watchers"[39m
+              [33mdata-deck-main-faction[39m=[32m"neutral"[39m
+              [33mdisabled[39m=[32m""[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"hg-deck-index"[39m
+              [36m>[39m
+                [0m0[0m
+                [0m1[0m
+              [36m</span>[39m
+              [36m<span[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mclass[39m=[32m"hg-deck-sigil"[39m
+              [36m>[39m
+                [0m◈[0m
+              [36m</span>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"hg-deck-role"[39m
+              [36m>[39m
+                [0m调查 · 控制[0m
+              [36m</span>[39m
+              [36m<strong>[39m
+                [0m调查者[0m
+              [36m</strong>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"hg-deck-description"[39m
+              [36m>[39m
+                [0m控制与调查[0m
+              [36m</span>[39m
+              [36m<span[39m
+                [33maria-label[39m=[32m"调查者的颜色组成"[39m
+                [33mclass[39m=[32m"hg-deck-colors"[39m
+              [36m>[39m
+                [36m<span[39m
+                  [33mclass[39m=[32m"hg-faction-unknown"[39m
+                  [33mdata-card-count[39m=[32m"50"[39m
+                  [33mdata-deck-faction[39m=[32m"unknown"[39m
+                [36m>[39m
+                  [36m<i[39m
+                    [33maria-hidden[39m=[32m"true"[39m
+                    [33mclass[39m=[32m"hg-faction-swatch"[39m
+                  [36m/>[39m
+                  [0m—[0m
+                  [0m · [0m
+                  [0m颜色未标[0m
+                  [0m [0m
+                  [0m50[0m
+                  [0m 张[0m
+                [36m</span>[39m
+              [36m</span>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"hg-deck-footer"[39m
+              [36m>[39m
+                [0m50[0m
+                [0m 张 · 自组预组 [0m
+                [36m<span>[39m
+                  [0m✓ 已选择[0m
+                [36m</span>[39m
+              [36m</span>[39m
+            [36m</button>[39m
+          [36m</div>[39m
+        [36m</details>[39m
+      [36m</main>[39m
+      [36m<footer[39m
+        [33mclass[39m=[32m"hg-footer"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [0m受限已实现卡池 · 自组与预组 · 邀请制云端牌桌[0m
+        [36m</span>[39m
+      [36m</footer>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ src/game/PlayerSessions.test.tsx:66:19
+     64|     // A fresh second tab sees the same ordinary localStorage and its …
+     65|     app = render(<GameApp />); await screen.findByText('等待秘社集结');
+     66|     expect(screen.getByRole('button', { name: '开始新的独立玩家会话' })).toBeEna…
+       |                   ^
+     67|     expect(screen.getByText('只切换当前标签；普通玩家的座位和牌桌恢复方式保留。')).toBeInTheDoc…
+     68|     await independent(); await lobbyReady();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  src/game/PlayerSessions.test.tsx > explicit independent player sessions through normal UI > locks the direct ordinary-table switch while a command is pending and keeps that lock after lobby return
+TestingLibraryElementError: Unable to find an accessible element with the role "button" and name "开始新的独立玩家会话"
+
+Here are the accessible roles:
+
+  banner:
+
+  Name "":
+  [36m<header[39m
+    [33mclass[39m=[32m"hg-header"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  link:
+
+  Name "◈隐秘世界 霸权SECRET WORLD · HEGEMONY":
+  [36m<a[39m
+    [33mclass[39m=[32m"hg-brand"[39m
+    [33mhref[39m=[32m"/"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  navigation:
+
+  Name "":
+  [36m<nav />[39m
+
+  --------------------------------------------------
+  status:
+
+  Name "前台约每1.5秒轮询同步；操作提交后立即更新。":
+  [36m<span[39m
+    [33mclass[39m=[32m"hg-connection hg-connection-online"[39m
+    [33mrole[39m=[32m"status"[39m
+    [33mtitle[39m=[32m"前台约每1.5秒轮询同步；操作提交后立即更新。"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  button:
+
+  Name "返回大厅 / 新建牌桌":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-nav-button"[39m
+    [33mdisabled[39m=[32m""[39m
+    [33mtitle[39m=[32m"保留当前座位，回到大厅选择两人或四人新牌桌"[39m
+  [36m/>[39m
+
+  Name "上手指南 ?":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-nav-button"[39m
+  [36m/>[39m
+
+  Name "准备":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-button hg-button-primary"[39m
+    [33mdata-action-id[39m=[32m"ready"[39m
+    [33mdata-action-kind[39m=[32m"ready"[39m
+    [33mdisabled[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "复制邀请链接 ↗":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-button hg-button-primary"[39m
+  [36m/>[39m
+
+  Name "01调查 · 控制调查者控制与调查调查者的颜色组成50 张 · 自组预组 ✓ 已选择":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"true"[39m
+    [33mclass[39m=[32m"hg-deck hg-deck-faction-neutral hg-selected"[39m
+    [33mdata-deck-id[39m=[32m"watchers"[39m
+    [33mdata-deck-main-faction[39m=[32m"neutral"[39m
+    [33mdisabled[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  region:
+
+  Name "玩家会话":
+  [36m<section[39m
+    [33maria-label[39m=[32m"玩家会话"[39m
+    [33mclass[39m=[32m"hg-player-session"[39m
+  [36m/>[39m
+
+  Name "准备与开始":
+  [36m<section[39m
+    [33maria-label[39m=[32m"准备与开始"[39m
+    [33mclass[39m=[32m"hg-room-controls"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  strong:
+
+  Name "":
+  [36m<strong />[39m
+
+  Name "":
+  [36m<strong />[39m
+
+  Name "":
+  [36m<strong />[39m
+
+  Name "":
+  [36m<strong />[39m
+
+  Name "":
+  [36m<strong />[39m
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-muted"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  main:
+
+  Name "":
+  [36m<main[39m
+    [33mclass[39m=[32m"hg-room-lobby"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  heading:
+
+  Name "等待秘社集结":
+  [36m<h1 />[39m
+
+  Name "调查者":
+  [36m<h2 />[39m
+
+  --------------------------------------------------
+  article:
+
+  Name "":
+  [36m<article[39m
+    [33mclass[39m=[32m"hg-seat hg-team-0 "[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<article[39m
+    [33mclass[39m=[32m"hg-seat hg-team-1 hg-seat-empty"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  group:
+
+  Name "":
+  [36m<details[39m
+    [33mclass[39m=[32m"hg-room-prepare"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  contentinfo:
+
+  Name "":
+  [36m<footer[39m
+    [33mclass[39m=[32m"hg-footer"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"hg-app"[39m
+    [36m>[39m
+      [36m<header[39m
+        [33mclass[39m=[32m"hg-header"[39m
+      [36m>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"hg-brand"[39m
+          [33mhref[39m=[32m"/"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"hg-brand-mark"[39m
+          [36m>[39m
+            [0m◈[0m
+          [36m</span>[39m
+          [36m<span>[39m
+            [0m隐秘世界 [0m
+            [36m<b>[39m
+              [0m霸权[0m
+            [36m</b>[39m
+            [36m<small>[39m
+              [0mSECRET WORLD · HEGEMONY[0m
+            [36m</small>[39m
+          [36m</span>[39m
+        [36m</a>[39m
+        [36m<nav>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"hg-connection hg-connection-online"[39m
+            [33mrole[39m=[32m"status"[39m
+            [33mtitle[39m=[32m"前台约每1.5秒轮询同步；操作提交后立即更新。"[39m
+          [36m>[39m
+            [36m<i />[39m
+            [0m牌桌已同步 · 轮询[0m
+          [36m</span>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"hg-nav-button"[39m
+            [33mdisabled[39m=[32m""[39m
+            [33mtitle[39m=[32m"保留当前座位，回到大厅选择两人或四人新牌桌"[39m
+          [36m>[39m
+            [0m返回大厅 / 新建牌桌[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"hg-nav-button"[39m
+          [36m>[39m
+            [0m上手指南 [0m
+            [36m<span>[39m
+              [0m?[0m
+            [36m</span>[39m
+          [36m</button>[39m
+        [36m</nav>[39m
+      [36m</header>[39m
+      [36m<section[39m
+        [33maria-label[39m=[32m"玩家会话"[39m
+        [33mclass[39m=[32m"hg-player-session"[39m
+      [36m>[39m
+        [36m<strong>[39m
+          [0m普通玩家会话[0m
+        [36m</strong>[39m
+        [36m<p>[39m
+          [0m在此浏览器恢复原席。需要在另一个标签作为另一位玩家入席时，请显式开始新的独立玩家会话。[0m
+        [36m</p>[39m
+      [36m</section>[39m
+      [36m<main[39m
+        [33mclass[39m=[32m"hg-room-lobby"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"hg-room-welcome"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"hg-eyebrow"[39m
+          [36m>[39m
+            [0m牌桌已经就绪[0m
+          [36m</span>[39m
+          [36m<h1>[39m
+            [0m等待秘社集结[0m
+          [36m</h1>[39m
+          [36m<p>[39m
+            [0m两人对决 · 3 个地区 · 8 分胜利[0m
+          [36m</p>[39m
+        [36m</div>[39m
+        [36m<section[39m
+          [33maria-label[39m=[32m"准备与开始"[39m
+          [33mclass[39m=[32m"hg-room-controls"[39m
+        [36m>[39m
+          [36m<div>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"hg-eyebrow"[39m
+            [36m>[39m
+              [0m席位 [0m
+              [0m1[0m
+              [0m · 你的牌组[0m
+            [36m</span>[39m
+            [36m<h2>[39m
+              [0m调查者[0m
+            [36m</h2>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-room-ready"[39m
+          [36m>[39m
+            [36m<span>[39m
+              [0m0[0m
+              [0m / [0m
+              [0m2[0m
+              [0m 位玩家已准备[0m
+            [36m</span>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"hg-actions"[39m
+            [36m>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"hg-button hg-button-primary"[39m
+                [33mdata-action-id[39m=[32m"ready"[39m
+                [33mdata-action-kind[39m=[32m"ready"[39m
+                [33mdisabled[39m=[32m""[39m
+                [33mtype[39m=[32m"button"[39m
+              [36m>[39m
+                [36m<span>[39m
+                  [0m准备[0m
+                [36m</span>[39m
+              [36m</button>[39m
+            [36m</div>[39m
+            [36m<p>[39m
+              [0m等所有座位入席并准备后，即可开始。[0m
+            [36m</p>[39m
+          [36m</div>[39m
+        [36m</section>[39m
+        [36m<section[39m
+          [33mclass[39m=[32m"hg-invite"[39m
+        [36m>[39m
+          [36m<div>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"hg-eyebrow"[39m
+            [36m>[39m
+              [0m邀请伙伴入席[0m
+            [36m</span>[39m
+            [36m<strong>[39m
+              [0mINVITE[0m
+            [36m</strong>[39m
+            [36m<p>[39m
+              [0m分享邀请码或邀请链接。伙伴使用自己的浏览器入席；本机再次加入会恢复原座位。[0m
+            [36m</p>[39m
+          [36m</div>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"hg-button hg-button-primary"[39m
+          [36m>[39m
+            [0m复制邀请链接 ↗[0m
+          [36m</button>[39m
+        [36m</section>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"hg-seats"[39m
+        [36m>[39m
+          [36m<article[39m
+            [33mclass[39m=[32m"hg-seat hg-team-0 "[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"hg-eyebrow"[39m
+            [36m>[39m
+              [0m席位 [0m
+              [0m1[0m
+              [0m · [0m
+              [0m我方[0m
+            [36m</span>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"hg-player-avatar"[39m
+            [36m>[39m
+              [0m甲[0m
+            [36m</span>[39m
+            [36m<strong>[39m
+              [0m甲[0m
+              [36m<small>[39m
+                [0m 你[0m
+              [36m</small>[39m
+              [36m<small>[39m
+                [0m 房主[0m
+              [36m</small>[39m
+            [36m</strong>[39m
+            [36m<span>[39m
+              [0m调查者[0m
+            [36m</span>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"hg-ready "[39m
+            [36m>[39m
+              [0m尚未准备[0m
+            [36m</span>[39m
+          [36m</article>[39m
+          [36m<article[39m
+            [33mclass[39m=[32m"hg-seat hg-team-1 hg-seat-empty"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"hg-eyebrow"[39m
+            [36m>[39m
+              [0m席位 [0m
+              [0m2[0m
+              [0m · [0m
+              [0m对方[0m
+            [36m</span>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"hg-player-avatar"[39m
+            [36m>[39m
+              [0m+[0m
+            [36m</span>[39m
+            [36m<strong>[39m
+              [0m等待伙伴[0m
+            [36m</strong>[39m
+            [36m<span>[39m
+              [0m用邀请码加入[0m
+            [36m</span>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"hg-ready "[39m
+            [36m>[39m
+              [0m空座[0m
+            [36m</span>[39m
+          [36m</article>[39m
+        [36m</div>[39m
+        [36m<details[39m
+          [33mclass[39m=[32m"hg-room-prepare"[39m
+        [36m>[39m
+          [36m<summary>[39m
+            [0m更换牌组 [0m
+            [36m<span>[39m
+              [0m当前：[0m
+              [0m调查者[0m
+            [36m</span>[39m
+          [36m</summary>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"hg-muted"[39m
+          [36m>[39m
+            [0m选择其他牌组后将取消准备，须重新准备。编辑或保存草稿不会改变当前入席牌组。[0m
+          [36m</p>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-decks"[39m
+          [36m>[39m
+            [36m<button[39m
+              [33maria-pressed[39m=[32m"true"[39m
+              [33mclass[39m=[32m"hg-deck hg-deck-faction-neutral hg-selected"[39m
+              [33mdata-deck-id[39m=[32m"watchers"[39m
+              [33mdata-deck-main-faction[39m=[32m"neutral"[39m
+              [33mdisabled[39m=[32m""[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"hg-deck-index"[39m
+              [36m>[39m
+                [0m0[0m
+                [0m1[0m
+              [36m</span>[39m
+              [36m<span[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mclass[39m=[32m"hg-deck-sigil"[39m
+              [36m>[39m
+                [0m◈[0m
+              [36m</span>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"hg-deck-role"[39m
+              [36m>[39m
+                [0m调查 · 控制[0m
+              [36m</span>[39m
+              [36m<strong>[39m
+                [0m调查者[0m
+              [36m</strong>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"hg-deck-description"[39m
+              [36m>[39m
+                [0m控制与调查[0m
+              [36m</span>[39m
+              [36m<span[39m
+                [33maria-label[39m=[32m"调查者的颜色组成"[39m
+                [33mclass[39m=[32m"hg-deck-colors"[39m
+              [36m>[39m
+                [36m<span[39m
+                  [33mclass[39m=[32m"hg-faction-unknown"[39m
+                  [33mdata-card-count[39m=[32m"50"[39m
+                  [33mdata-deck-faction[39m=[32m"unknown"[39m
+                [36m>[39m
+                  [36m<i[39m
+                    [33maria-hidden[39m=[32m"true"[39m
+                    [33mclass[39m=[32m"hg-faction-swatch"[39m
+                  [36m/>[39m
+                  [0m—[0m
+                  [0m · [0m
+                  [0m颜色未标[0m
+                  [0m [0m
+                  [0m50[0m
+                  [0m 张[0m
+                [36m</span>[39m
+              [36m</span>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"hg-deck-footer"[39m
+              [36m>[39m
+                [0m50[0m
+                [0m 张 · 自组预组 [0m
+                [36m<span>[39m
+                  [0m✓ 已选择[0m
+                [36m</span>[39m
+              [36m</span>[39m
+            [36m</button>[39m
+          [36m</div>[39m
+        [36m</details>[39m
+      [36m</main>[39m
+      [36m<footer[39m
+        [33mclass[39m=[32m"hg-footer"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [0m受限已实现卡池 · 自组与预组 · 邀请制云端牌桌[0m
+        [36m</span>[39m
+      [36m</footer>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ src/game/PlayerSessions.test.tsx:85:32
+     83|     render(<GameApp />); await create(); rejectCommand = true;
+     84|     fireEvent.click(screen.getByRole('button', { name: '准备' }));
+     85|     const tableSwitch = screen.getByRole('button', { name: '开始新的独立玩家会话…
+       |                                ^
+     86|     expect(tableSwitch).toBeDisabled();
+     87|     await screen.findByRole('button', { name: '确认上一行动' });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 10 passed (12)
+   Start at  08:20:06
+   Duration  5.07s (transform 227ms, setup 105ms, import 247ms, tests 4.21s, environment 391ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
