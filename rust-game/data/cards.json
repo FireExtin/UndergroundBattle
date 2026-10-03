@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.4",
-  "engineVersion": "rust-v0.2.6",
+  "cardPoolVersion": "limited-v2.5",
+  "engineVersion": "rust-v0.2.7",
   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
   "cards": [
     {
@@ -1417,6 +1417,84 @@
         "record": "BQ022",
         "image": "resource/ymsj-fun.github.io/cards/BQ022 合金指虎.jpg"
       }
+    },
+    {
+      "id": "JC084",
+      "name": "街头混混",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "罪犯"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "黑色"
+      ],
+      "loyaltyText": "黑色 1",
+      "color": "黑",
+      "magic": "",
+      "society": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "【持续】若位于有本方势力标志的地区，街头混混获得临时势力1。\n【持续】若位于有敌方势力标志的地区，街头混混获得临时调查1。",
+      "keywords": [],
+      "unique": false,
+      "supported": true,
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/JC084 街头混混.jpg",
+        "record": "JC084",
+        "sha256": "3d068fa87dc6f9f7aef426637f71de22aef05f0f278dc096fad0ca50dee99872"
+      }
+    },
+    {
+      "id": "JC085",
+      "name": "复生行尸",
+      "kind": "character",
+      "subtypes": [
+        "不死生物",
+        "行尸"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "黑色"
+      ],
+      "loyaltyText": "黑色 1",
+      "color": "黑",
+      "magic": "死亡",
+      "society": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "【持续】若你的资产区具有【死亡】，则复生行尸获得【临时势力】。\n【墓地行动】你可以从墓地中正面打出复生行尸，就如同其在你手中一样。（你仍需要支付其费用，且需满足其忠诚需求。）",
+      "keywords": [],
+      "unique": false,
+      "supported": true,
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/JC085 复生行尸.jpg",
+        "record": "JC085",
+        "sha256": "f568ed4c26fc244830d840f0133eb1a78111aceff53a4a345f8ca44c1552aee2"
+      }
     }
   ],
   "decks": [
@@ -1604,7 +1682,7 @@
       "cards": [
         {
           "cardId": "JC125",
-          "count": 17
+          "count": 11
         },
         {
           "cardId": "LC19",
@@ -1648,6 +1726,14 @@
         },
         {
           "cardId": "JC092",
+          "count": 3
+        },
+        {
+          "cardId": "JC084",
+          "count": 3
+        },
+        {
+          "cardId": "JC085",
           "count": 3
         }
       ]

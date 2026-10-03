@@ -112,6 +112,7 @@ pub enum MagicIcon {
     None,
     Blood,
     Mind,
+    Death,
     Other(String),
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
@@ -221,6 +222,16 @@ pub struct Traits {
 pub enum StaticModifier {
     NoEnemyCharacters(Icons, Icons),
     OtherFriendlyCharactersDefense(u32),
+    ConditionalIcons {
+        condition: IconCondition,
+        permanent: Icons,
+        temporary: Icons,
+    },
+}
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub enum IconCondition {
+    AssetDomain { magic: MagicIcon, minimum: usize },
+    RegionInfluence { friendly: bool, minimum: u32 },
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum HostLeaveDestination {
@@ -239,6 +250,7 @@ pub struct Definition {
     pub abilities: Vec<AbilitySpec>,
     pub modifiers: Vec<StaticModifier>,
     pub attachment: Option<AttachmentSpec>,
+    pub graveyard_face_up: bool,
 }
 
 // These are interpreter limits, not rules for resolving partially invalid targets.
@@ -401,6 +413,54 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
             Range::Anywhere,
         );
         let mut m = BTreeMap::new();
+        m.insert(
+            "JC084".into(),
+            Definition {
+                modifiers: vec![
+                    StaticModifier::ConditionalIcons {
+                        condition: IconCondition::RegionInfluence {
+                            friendly: true,
+                            minimum: 1,
+                        },
+                        permanent: Icons::default(),
+                        temporary: Icons {
+                            influence: 1,
+                            ..Icons::default()
+                        },
+                    },
+                    StaticModifier::ConditionalIcons {
+                        condition: IconCondition::RegionInfluence {
+                            friendly: false,
+                            minimum: 1,
+                        },
+                        permanent: Icons::default(),
+                        temporary: Icons {
+                            investigation: 1,
+                            ..Icons::default()
+                        },
+                    },
+                ],
+                ..Definition::default()
+            },
+        );
+        m.insert(
+            "JC085".into(),
+            Definition {
+                graveyard_face_up: true,
+                modifiers: vec![StaticModifier::ConditionalIcons {
+                    condition: IconCondition::AssetDomain {
+                        magic: MagicIcon::Death,
+                        minimum: 1,
+                    },
+                    permanent: Icons::default(),
+                    temporary: Icons {
+                        influence: 1,
+                        ..Icons::default()
+                    },
+                }],
+                ..Definition::default()
+            },
+        );
         m.insert(
             "JC125".into(),
             Definition {
@@ -1015,7 +1075,7 @@ mod tests {
     #[test]
     fn invalid_multi_target_ability_is_rejected_before_registration() {
         let mut registry = definitions().clone();
-        assert_eq!(registry.len(), 37);
+        assert_eq!(registry.len(), 39);
         let ability = &mut registry.get_mut("LC20").unwrap().abilities[0];
         ability.targets.push(ability.targets[0].clone());
         let error = validate_definitions(&registry).unwrap_err();

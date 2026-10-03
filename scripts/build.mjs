@@ -14,6 +14,7 @@ cpSync(root + 'rust-game-wasm/legacy-v0.2.2', project + 'generated/legacy-v0.2.2
 cpSync(root + 'rust-game-wasm/legacy-v0.2.3', project + 'generated/legacy-v0.2.3', { recursive: true });
 cpSync(root + 'rust-game-wasm/legacy-v0.2.4', project + 'generated/legacy-v0.2.4', { recursive: true });
 cpSync(root + 'rust-game-wasm/legacy-v0.2.5', project + 'generated/legacy-v0.2.5', { recursive: true });
+cpSync(root + 'rust-game-wasm/legacy-v0.2.6', project + 'generated/legacy-v0.2.6', { recursive: true });
 rmSync(project + 'dist', { recursive: true, force: true });
 const config = project + '.wrangler/config';
 mkdirSync(config, { recursive: true });

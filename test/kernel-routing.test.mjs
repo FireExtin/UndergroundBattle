@@ -7,6 +7,7 @@ import * as intermediate from '../generated/legacy-v0.2.2/hegemony_wasm.js';
 import * as last from '../generated/legacy-v0.2.3/hegemony_wasm.js';
 import * as stable from '../generated/legacy-v0.2.4/hegemony_wasm.js';
 import * as paced from '../generated/legacy-v0.2.5/hegemony_wasm.js';
+import * as attached from '../generated/legacy-v0.2.6/hegemony_wasm.js';
 import { routeKernels } from '../src/kernel-router.mjs';
 
 current.initSync({ module: readFileSync(new URL('../generated/hegemony_wasm_bg.wasm', import.meta.url)) });
@@ -15,10 +16,11 @@ intermediate.initSync({ module: readFileSync(new URL('../generated/legacy-v0.2.2
 last.initSync({ module: readFileSync(new URL('../generated/legacy-v0.2.3/hegemony_wasm_bg.wasm', import.meta.url)) });
 stable.initSync({ module: readFileSync(new URL('../generated/legacy-v0.2.4/hegemony_wasm_bg.wasm', import.meta.url)) });
 paced.initSync({ module: readFileSync(new URL('../generated/legacy-v0.2.5/hegemony_wasm_bg.wasm', import.meta.url)) });
+attached.initSync({ module: readFileSync(new URL('../generated/legacy-v0.2.6/hegemony_wasm_bg.wasm', import.meta.url)) });
 test('real kernels preserve their full version tuple and reject unknown persisted identities', () => {
-  const routed = routeKernels(current, [previous, intermediate, last, stable, paced]);
-  assert.equal(JSON.parse(routed.catalog()).engineVersion, 'rust-v0.2.6');
-  for (const kernel of [current, previous, intermediate, last, stable, paced]) {
+  const routed = routeKernels(current, [previous, intermediate, last, stable, paced, attached]);
+  assert.equal(JSON.parse(routed.catalog()).engineVersion, 'rust-v0.2.7');
+  for (const kernel of [current, previous, intermediate, last, stable, paced, attached]) {
     const initial = JSON.parse(kernel.newGame('room', 'invite', 'duel', 'P0', 'watchers', '18446744073709551615'));
     assert.deepEqual(JSON.parse(routed.view(initial.state, 0)), initial.view);
     assert.equal(routed.catalog(initial.state), kernel.catalog());
@@ -50,5 +52,5 @@ test('real kernels preserve their full version tuple and reject unknown persiste
       assert.equal(routed.joinGameWithDeck(initial.state, 'P1', JSON.stringify(draft)), kernel.joinGameWithDeck(initial.state, 'P1', JSON.stringify(draft)));
     }
   }
-  assert.equal(JSON.parse(routed.newGame('new', 'invite', 'duel', 'P0', 'watchers', '1')).view.versions.engine, 'rust-v0.2.6');
+  assert.equal(JSON.parse(routed.newGame('new', 'invite', 'duel', 'P0', 'watchers', '1')).view.versions.engine, 'rust-v0.2.7');
 });
