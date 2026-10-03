@@ -17,6 +17,8 @@ Sites 实际读取确认原 project `appgprj_6abf7bf54a7481918a50e1ef1509ca68` �
 
 当前保存的 WASM SHA-256 为 `21169e9d579886a55474b21aa506a4a9adca779428d7d11f2e966ae077656198`（1,593,545 字节），六旧核目录及路由都保留。原 public audience revision 2、DB 绑定不变。未构建或发布新 Site 版本，未开 v028、扩卡、修改规则或删除旧房。
 
+B 的交付状态明确为：**当前合法可达 + 待裁定 + 未验收**。JC016 的人类族别满足 BQ022 现行目标条件，代码不存在针对该组合的准入禁止。这里记录事实，不作裁定，也没有自行禁用该组合。
+
 新确认工具问题：`full_game_persistent.py` 取消在 `finally` 使用未初始化 `result`，同时最终页面不可读也会掩盖取消并跳过清理。本轮默认 unittest 用例在原 `c2704d3` 工具上分别因 UnboundLocalError / RuntimeError 红；修复初始化、显式 CancelledError 失败记录、容忍最终观察失败及完整 context 清理后 **2/2 绿**。自动入口见 `tools/cloud-playtest/README.md`，是该目录默认 unittest discovery；未声称接入不存在的全仓 CI。
 
 任务调整到达前已在四个独立正常 UI profile 创建另一张专用 QA 桌 `d7ade3fc2732dc003eb5b04f`。任务调整后立即向自己唯一 runner 发 SIGINT；最终失败摘要 cancelled=true，**16 次 UI POST 全 200、revision 15、第一轮 start/prepare、没有墓地动作或恢复证据**。自有四浏览器均已关闭，profile 与本地摘要留在 `/workspace/.private-validation/site13-v027-public-four-grave-20261003/`；该段属于执行者自测并已中止，**不构成独立体验验收**。原旧执行器 `/workspace/.private-validation/hegemony-v026-fast-evidence/` 在本容器不存在，不能交接原中断桌。父 dot 另行报告的旧桌恢复不冒充本容器实测。
@@ -26,3 +28,5 @@ Sites 实际读取确认原 project `appgprj_6abf7bf54a7481918a50e1ef1509ca68` �
 输出：本说明、`docs/evidence/site13-source-closure-2026-10-03/` 的源码哈希/默认覆盖/红绿日志/脱敏中止记录，以及 QA 工具修复与默认发现的取消测试。真实手牌、profile、数据库和原生完整 fixture opaque states 不进入证据目录。有效 native 红绿使用不同 target；一次共享 target 导致的陈旧 executable 结果已排除并以独立 target 重跑。
 
 仓库元数据实际为 public，GitHub 不支持给公共仓库创建秘密分支；按“可提交私有分支”限制只提交本容器本地分支 `codex/site13-grave-qa-20261003`，不将本轮改动推送公共 origin。
+
+公开证据来源（2026-10-03 实际复核）：[GitHub 仓库网页](https://github.com/FireExtin/UndergroundBattle) 在未登录页面明确显示 **Public**；[GitHub 官方仓库 REST API](https://api.github.com/repos/FireExtin/UndergroundBattle) 的无 Authorization 请求返回 HTTP 200，`full_name=FireExtin/UndergroundBattle`、`private=false`、`visibility=public`、`html_url=https://github.com/FireExtin/UndergroundBattle`。与已连接 GitHub 工具的 `get_repo` 元数据一致。此前“私有仓库”的父上下文不作为事实来源。本报告不包含任何身份/座位凭据或浏览器 profile 内容。
