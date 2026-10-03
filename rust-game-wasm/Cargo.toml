@@ -7,6 +7,9 @@ rust-version = "1.90"
 [lib]
 crate-type = ["cdylib", "rlib"]
 
+[features]
+society-fixtures = ["hegemony-server/society-fixtures"]
+
 [dependencies]
 hegemony-server = { path = "../rust-game", default-features = false }
 serde = { version = "1", features = ["derive"] }

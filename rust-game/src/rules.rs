@@ -1290,6 +1290,29 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
                 ..Default::default()
             },
         );
+        #[cfg(feature = "society-fixtures")]
+        for id in [
+            "FIXTURE_SOCIETY_SIX",
+            "FIXTURE_SOCIETY_FOUR",
+            "FIXTURE_SOCIETY_PENDING",
+        ] {
+            m.insert(
+                id.into(),
+                with_abilities(vec![ability(
+                    "fixture-draw",
+                    "内部基础验证：抓1",
+                    Timing::Standard,
+                    vec![Cost::Assets(1), Cost::ExhaustSource],
+                    vec![],
+                    vec![Op::Draw {
+                        player: Actor,
+                        count: 1,
+                        end: DeckEnd::Top,
+                    }],
+                    None,
+                )]),
+            );
+        }
         validate_definitions(&m)
             .unwrap_or_else(|error| panic!("Invalid released rule declaration: {error}"));
         m
@@ -1308,7 +1331,10 @@ mod tests {
     #[test]
     fn invalid_multi_target_ability_is_rejected_before_registration() {
         let mut registry = definitions().clone();
-        assert_eq!(registry.len(), crate::catalog::catalog().cards.len());
+        assert_eq!(
+            registry.len(),
+            crate::catalog::catalog().cards.len() + crate::catalog::catalog().societies.len()
+        );
         assert!(registry.contains_key("JC001") && registry.contains_key("BQ083"));
         let ability = &mut registry.get_mut("LC20").unwrap().abilities[0];
         ability.targets.push(ability.targets[0].clone());

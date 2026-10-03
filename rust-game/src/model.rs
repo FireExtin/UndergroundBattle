@@ -1,3 +1,4 @@
+use crate::society::{SocietyZone, SocietyZoneView};
 use serde::{Deserialize, Serialize};
 use std::collections::{BTreeMap, BTreeSet, VecDeque};
 
@@ -69,6 +70,8 @@ pub struct LegalAction {
     pub label: String,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub source_zone_id: Option<String>,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -243,6 +246,8 @@ pub struct View {
     pub winner_team: Option<usize>,
     pub regions: Vec<RegionView>,
     #[serde(default)]
+    pub society_zones: Vec<SocietyZoneView>,
+    #[serde(default)]
     pub attachments: Vec<AttachmentView>,
     pub hand: Vec<CardView>,
     pub assets: Vec<CardView>,
@@ -284,6 +289,8 @@ pub struct Player {
     pub deck_id: String,
     #[serde(default)]
     pub deck_snapshot: Option<crate::deck::DeckDraft>,
+    #[serde(default)]
+    pub society_zone: SocietyZone,
     pub ready: bool,
     pub eliminated: bool,
     pub hand: Vec<Card>,
@@ -301,6 +308,7 @@ impl Player {
             name,
             deck_id,
             deck_snapshot: None,
+            society_zone: SocietyZone::default(),
             ready: false,
             eliminated: false,
             hand: vec![],

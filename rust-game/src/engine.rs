@@ -633,11 +633,11 @@ impl Game {
             }
             "activate" => {
                 let id = a.card_id.as_deref().ok_or("请选择能力来源")?;
-                let (r, c) = self.board(id).ok_or("实体引用已失效")?;
+                let (region, c) = self.ability_source(id).ok_or("实体引用已失效")?;
                 if c.controller != seat || c.face_down {
                     return Err("只能发动自己操控的正面角色能力".into());
                 }
-                let source = self.source_snapshot(c, Some(r));
+                let source = self.source_snapshot(c, region);
                 let spec = self.ability_for_action(&c.definition, &a)?;
                 self.check_timing(seat, &spec)?;
                 let targets = self.bind_action(seat, &source, &spec, &a)?;
@@ -678,12 +678,18 @@ impl Game {
             self.players[seat].assets.clear();
             self.players[seat].graveyard.clear();
             self.players[seat].score_cards.clear();
+            self.players[seat].society_zone = Default::default();
             self.players[seat].eliminated = false;
             let snapshot = match self.players[seat].deck_snapshot.clone() {
                 Some(snapshot) => crate::deck::validate(snapshot)?,
                 None => crate::deck::preset(&self.players[seat].deck_id)?,
             };
             let entries = snapshot.cards.clone();
+            if let Some(id) = &snapshot.society_id {
+                let mut entity = self.make_card(id, seat);
+                entity.face_down = true;
+                self.players[seat].society_zone.card = Some(entity);
+            }
             self.players[seat].deck_snapshot = Some(snapshot);
             let mut pile = vec![];
             for entry in entries {
@@ -693,6 +699,12 @@ impl Game {
             }
             self.shuffle(&mut pile);
             self.players[seat].deck = pile;
+        }
+        // Start is one atomic command: no seat can observe a partially revealed set.
+        for player in &mut self.players {
+            if let Some(entity) = &mut player.society_zone.card {
+                entity.face_down = false;
+            }
         }
         let mut world = vec![];
         for entry in &catalog::catalog().world {
@@ -717,7 +729,14 @@ impl Game {
         for seat in 0..self.players.len() {
             self.players[seat].asset_used = false;
             self.players[seat].conceal_used = false;
-            self.draw(seat, 6)?;
+            let starting_hand = self.players[seat]
+                .deck_snapshot
+                .as_ref()
+                .and_then(|d| d.society_id.as_deref())
+                .map(crate::society::definition)
+                .transpose()?
+                .map_or(6, |s| s.starting_hand);
+            self.draw(seat, starting_hand)?;
             self.effects.push_back(Effect::Mulligan { seat });
         }
         self.begin_window(Window::Prepare);
@@ -1487,6 +1506,9 @@ impl Game {
                 for p in &mut self.players {
                     p.asset_used = false;
                     p.conceal_used = false;
+                    if let Some(c) = &mut p.society_zone.card {
+                        c.exhausted = false;
+                    }
                     for c in &mut p.assets {
                         c.exhausted = false;
                     }
@@ -1957,6 +1979,7 @@ impl Game {
             win_score: self.win_score(),
             winner_team: self.winner_team,
             regions,
+            society_zones: self.society_views(seat),
             attachments: self
                 .attachments
                 .iter()
@@ -2054,6 +2077,7 @@ impl Game {
                     id: format!("choose:{}", p.choice.id),
                     label: "确认选择".into(),
                     description: None,
+                    source_zone_id: None,
                 }]
             } else {
                 vec![]
@@ -2173,6 +2197,9 @@ impl Game {
                     candidates.extend(self.rule_action_candidates(seat, c, Some(*r), "activate"));
                 }
             }
+            if let Some(c) = &self.players[seat].society_zone.card {
+                candidates.extend(self.rule_action_candidates(seat, c, None, "activate"));
+            }
         }
         candidates
             .into_iter()
@@ -2181,6 +2208,7 @@ impl Game {
                 if trial.apply_inner(seat, action.clone()).is_ok() {
                     let id = serde_json::to_string(&action).expect("legal action JSON");
                     Some(LegalAction {
+                        source_zone_id: self.society_source_zone(action.card_id.as_deref()),
                         action,
                         id,
                         label,
@@ -2346,6 +2374,7 @@ mod tests {
             active,
             rules::definitions()
                 .keys()
+                .filter(|id| !id.starts_with("FIXTURE_SOCIETY_"))
                 .cloned()
                 .collect::<BTreeSet<_>>()
         );

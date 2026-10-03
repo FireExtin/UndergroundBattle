@@ -38,7 +38,7 @@ pub fn build_rules() -> DeckBuildRules {
         unique_name_copy_limit: 1,
         copy_limit_by_printed_name: true,
         faction_limit: None,
-        society_supported: false,
+        society_supported: cfg!(feature = "society-fixtures"),
         service_card_capacity: SERVICE_CARD_CAPACITY,
         capacity_is_service_limit: true,
     }
@@ -66,9 +66,11 @@ pub fn validate_with_cards(
     {
         return Err("卡组规则、卡池或引擎版本不匹配，请按当前目录重新保存".into());
     }
-    if draft.society_id.is_some() {
-        return Err("当前尚未支持秘社，societyId必须为null".into());
-    }
+    let society = draft
+        .society_id
+        .as_deref()
+        .map(crate::society::definition)
+        .transpose()?;
     draft.id = draft.id.trim().into();
     draft.name = draft.name.trim().into();
     if draft.id.is_empty()
@@ -139,6 +141,9 @@ pub fn validate_with_cards(
         .into_iter()
         .map(|(card_id, count)| DeckEntry { card_id, count })
         .collect();
+    if let Some(society) = society {
+        crate::society::validate_construction(society, &draft.cards, cards)?;
+    }
     Ok(draft)
 }
 pub fn preset(id: &str) -> Result<DeckDraft, String> {

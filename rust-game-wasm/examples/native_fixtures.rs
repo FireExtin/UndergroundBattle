@@ -11,6 +11,10 @@ use hegemony_server::{
 use serde_json::{json, Value};
 use std::collections::BTreeMap;
 
+#[cfg(feature = "society-fixtures")]
+#[path = "support/society_fixture.rs"]
+mod society_fixture;
+
 fn step(room: &RoomEnvelope, operation: &str, args: Value, seat: usize) -> Value {
     json!({"operation":operation,"args":args,"state":serde_json::to_string(room).unwrap(),"version":room.revision,"seat":seat,"view":room.view(seat,room.pacing.last_server_now_ms),"views":(0..room.players.len()).map(|s|room.view(s,room.pacing.last_server_now_ms)).collect::<Vec<_>>()})
 }
@@ -2529,6 +2533,13 @@ fn rescue_forecast_fixture() -> Value {
 }
 
 fn main() {
+    #[cfg(feature = "society-fixtures")]
+    if std::env::args().any(|a| a == "--society-foundation") {
+        let output = std::env::args().nth(1).expect("output path");
+        let value = json!({"catalog":catalog::catalog(),"cases":[society_fixture::natural_case()],"rejectedStates":[]});
+        std::fs::write(output, serde_json::to_vec(&value).unwrap()).unwrap();
+        return;
+    }
     let output = std::env::args()
         .nth(1)
         .expect("Usage: native_fixtures <output.json>");

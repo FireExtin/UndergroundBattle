@@ -2,9 +2,10 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { performance } from 'node:perf_hooks';
-import { initSync, catalog, newGame, newGameWithDeck, joinGame, joinGameWithDeck, apply, applyRoom, pollRoom, quoteRoom, view } from '../pkg/hegemony_wasm.js';
+const abi = new URL(process.env.HEGEMONY_WASM_TEST_ABI || '../pkg/hegemony_wasm.js', import.meta.url);
+const { initSync, catalog, newGame, newGameWithDeck, joinGame, joinGameWithDeck, apply, applyRoom, pollRoom, quoteRoom, view } = await import(abi.href);
 
-const moduleBytes = await readFile(new URL('../pkg/hegemony_wasm_bg.wasm', import.meta.url));
+const moduleBytes = await readFile(new URL('./hegemony_wasm_bg.wasm', abi));
 initSync({ module: moduleBytes });
 const fixture = JSON.parse(await readFile(process.argv[2], 'utf8'));
 assert.deepEqual(JSON.parse(catalog()), fixture.catalog);
