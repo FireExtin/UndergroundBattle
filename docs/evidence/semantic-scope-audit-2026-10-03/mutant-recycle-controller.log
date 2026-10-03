@@ -1,0 +1,22 @@
+   Compiling hegemony-server v0.1.0 (/workspace/.private-validation/semantic-scope-audit-20261003/mutants/recycle-controller/rust-game)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 7.06s
+     Running unittests src/lib.rs (/workspace/.rust/targets/control-pair-mutant-friend-controller/debug/deps/hegemony_server-fa35e11fc7b74bf5)
+
+running 1 test
+test engine::tests::semantic_scope_recycling_keyword_uses_equipment_owner_despite_another_controller ... FAILED
+
+failures:
+
+---- engine::tests::semantic_scope_recycling_keyword_uses_equipment_owner_despite_another_controller stdout ----
+
+thread 'engine::tests::semantic_scope_recycling_keyword_uses_equipment_owner_despite_another_controller' panicked at rust-game/src/engine.rs:2768:14:
+called `Option::unwrap()` on a `None` value
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    engine::tests::semantic_scope_recycling_keyword_uses_equipment_owner_despite_another_controller
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 99 filtered out; finished in 0.01s
+
+error: test failed, to rerun pass `-p hegemony-server --lib`

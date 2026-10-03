@@ -1,0 +1,2980 @@
+{
+  "sourceCommit": "8963fcd17b9dc9c6cf4e8347b936bc118cad4b11",
+  "publishedSiteSource": "074def9eb5bdf49fe6a5df5ef18ebd70bbce5453",
+  "scope": "Direct original-image review plus actual compiled finite definitions; no remote site/room access or natural UI claim.",
+  "totals": {
+    "current": 48,
+    "published": 39,
+    "localOnly": 9,
+    "affiliationOrOwnershipDefectsFound": 0,
+    "interactionRulingsPending": 2
+  },
+  "publishedAffiliationOwnershipBindingsUnchanged": [
+    "BQ022",
+    "DQJC107",
+    "DQJC108",
+    "DQJC109",
+    "DQJC110",
+    "DQJC111",
+    "DQJC112",
+    "DQJC113",
+    "DQJC114",
+    "DQJC115",
+    "DQJC116",
+    "JC002",
+    "JC003",
+    "JC014",
+    "JC016",
+    "JC042",
+    "JC049",
+    "JC056",
+    "JC058",
+    "JC059",
+    "JC063",
+    "JC084",
+    "JC085",
+    "JC086",
+    "JC091",
+    "JC092",
+    "JC118",
+    "JC125",
+    "JZ08",
+    "JZ54",
+    "LC19",
+    "LC20",
+    "LC21",
+    "LC22",
+    "LC23",
+    "LC24",
+    "XQ03",
+    "XQ12",
+    "XQ49"
+  ],
+  "comparisonExcludedSchemaExtensionKeys": [
+    "cannot_be_equipped",
+    "equipment_host",
+    "exclude_source",
+    "printed_cost_max",
+    "requires_magic"
+  ],
+  "nontrivialPublishedGuardExtensions": {
+    "BQ022": [
+      {
+        "path": ".abilities[0].targets[0].equipment_host",
+        "value": true
+      },
+      {
+        "path": ".attachment.host.equipment_host",
+        "value": true
+      }
+    ]
+  },
+  "guardExtensionBoundary": "BQ022 now recognizes JC001 cannot_be_equipped; every published39 host has that trait=false. This is the prior reviewed local owl restriction, not an affiliation/ownership correction.",
+  "localOnlyIds": [
+    "BQ083",
+    "JC001",
+    "JC006",
+    "JC007",
+    "JC047",
+    "JC075",
+    "JC088",
+    "JC104",
+    "XQ16"
+  ],
+  "privateZoneInvariant": "Normal admitted effects keep hand/deck/graveyard cards with their owner; no takeover or cross-private-zone ownership-transfer card is admitted. Explicit test control primitives are not natural-play acceptance.",
+  "manualBasis": [
+    "P15 ownership/control, sacrifice",
+    "P16 own/friendly/enemy and you",
+    "P17 Recycling=owner",
+    "P18 Retreat=owner, Forecast=you",
+    "P21 teammate privacy, shared influence markers, own/friendly/enemy"
+  ],
+  "rulingBoundary": "JC016+BQ022 Win return/retreat/recycling priority remains pending; no priority changed or combination disabled.",
+  "cards": [
+    {
+      "id": "JC125",
+      "name": "无知路人",
+      "scope": "published39",
+      "originalImage": "resource/ymsj-fun.github.io/cards/JC125 无知路人.jpg",
+      "imageSha256": "6392c2cdc2d9ea43deca6b26594618a2093ae887bd03d5ad29d130c7e329993a",
+      "actuallyViewedInThisAudit": true,
+      "printedRules": [
+        "【持续】名称为无知路人的牌，构筑时在牌组中的数量没有限制。"
+      ],
+      "semanticConclusion": "无阵营限制；同名构筑例外不涉及归属。",
+      "affiliationOrOwnershipDefectFound": false,
+      "historicalCorrection": null,
+      "interactionRulingPending": false,
+      "compiledDefinition": {
+        "abilities": [],
+        "attachment": null,
+        "graveyard_face_up": false,
+        "modifiers": [],
+        "traits": {
+          "barrier": false,
+          "cannot_be_equipped": false,
+          "guard": 0,
+          "kill": 0,
+          "public": false,
+          "retreat": false,
+          "unlimited_copies": true
+        }
+      }
+    },
+    {
+      "id": "LC19",
+      "name": "外科医生",
+      "scope": "published39",
+      "originalImage": "resource/ymsj-fun.github.io/cards/LC19 外科医生.jpg",
+      "imageSha256": "41c0fe55aff401721ec54fbb08174d52d36747f0821e32c6ddc5006bba9e9f71",
+      "actuallyViewedInThisAudit": true,
+      "printedRules": [
+        "公开",
+        "【行动】2，【横置】：选择本地区的目标角色，移除该角色上的所有创伤标志。"
+      ],
+      "semanticConclusion": "本地区任意正面角色，不限本方；费用及横置由发动者本人承担。",
+      "affiliationOrOwnershipDefectFound": false,
+      "historicalCorrection": null,
+      "interactionRulingPending": false,
+      "compiledDefinition": {
+        "abilities": [
+          {
+            "costs": [
+              {
+                "Assets": 2
+              },
+              "ExhaustSource"
+            ],
+            "event": null,
+            "key": "heal",
+            "label": "移除创伤",
+            "modes": [],
+            "ops": [
+              {
+                "HealWounds": {
+                  "Target": 0
+                }
+              }
+            ],
+            "requires_ready_source": false,
+            "response_policy": "Respondable",
+            "targets": [
+              {
+                "equipment_host": false,
+                "exclude_source": false,
+                "kind": "Character",
+                "max": 1,
+                "min": 1,
+                "printed_cost_max": null,
+                "range": "SourceRegion",
+                "relation": "Any",
+                "requires_magic": false,
+                "subtype": null,
+                "subtypes_any": [],
+                "zone": "Board"
+              }
+            ],
+            "timing": "Standard"
+          }
+        ],
+        "attachment": null,
+        "graveyard_face_up": false,
+        "modifiers": [],
+        "traits": {
+          "barrier": false,
+          "cannot_be_equipped": false,
+          "guard": 0,
+          "kill": 0,
+          "public": true,
+          "retreat": false,
+          "unlimited_copies": false
+        }
+      }
+    },
+    {
+      "id": "LC20",
+      "name": "心理咨询师",
+      "scope": "published39",
+      "originalImage": "resource/ymsj-fun.github.io/cards/LC20 心理咨询师.jpg",
+      "imageSha256": "961b508b54f78c561b98268da91d901a3536a330aef0ea8a49b81b9f6a278248",
+      "actuallyViewedInThisAudit": true,
+      "printedRules": [
+        "【进场触发】选择本地区的目标角色，移除该角色上的所有创伤标志。"
+      ],
+      "semanticConclusion": "进场源当前controller发动，本地区任意正面角色；无本方限制。",
+      "affiliationOrOwnershipDefectFound": false,
+      "historicalCorrection": null,
+      "interactionRulingPending": false,
+      "compiledDefinition": {
+        "abilities": [
+          {
+            "costs": [],
+            "event": "Enter",
+            "key": "heal-entry",
+            "label": "进场触发",
+            "modes": [],
+            "ops": [
+              {
+                "HealWounds": {
+                  "Target": 0
+                }
+              }
+            ],
+            "requires_ready_source": false,
+            "response_policy": "Respondable",
+            "targets": [
+              {
+                "equipment_host": false,
+                "exclude_source": false,
+                "kind": "Character",
+                "max": 1,
+                "min": 1,
+                "printed_cost_max": null,
+                "range": "SourceRegion",
+                "relation": "Any",
+                "requires_magic": false,
+                "subtype": null,
+                "subtypes_any": [],
+                "zone": "Board"
+              }
+            ],
+            "timing": "Fast"
+          }
+        ],
+        "attachment": null,
+        "graveyard_face_up": false,
+        "modifiers": [],
+        "traits": {
+          "barrier": false,
+          "cannot_be_equipped": false,
+          "guard": 0,
+          "kill": 0,
+          "public": false,
+          "retreat": false,
+          "unlimited_copies": false
+        }
+      }
+    },
+    {
+      "id": "LC21",
+      "name": "称职的保镖",
+      "scope": "published39",
+      "originalImage": "resource/ymsj-fun.github.io/cards/LC21 称职的保镖.jpg",
+      "imageSha256": "62b05d9f5349d53dd6d47dae7077566c1f5735529bc2bd813a45c1d7c3a183b9",
+      "actuallyViewedInThisAudit": true,
+      "printedRules": [
+        "公开　护卫1"
+      ],
+      "semanticConclusion": "护卫1按对抗中的敌方/队伍分配；拥有者不定义敌我。",
+      "affiliationOrOwnershipDefectFound": false,
+      "historicalCorrection": null,
+      "interactionRulingPending": false,
+      "compiledDefinition": {
+        "abilities": [],
+        "attachment": null,
+        "graveyard_face_up": false,
+        "modifiers": [],
+        "traits": {
+          "barrier": false,
+          "cannot_be_equipped": false,
+          "guard": 1,
+          "kill": 0,
+          "public": true,
+          "retreat": false,
+          "unlimited_copies": false
+        }
+      }
+    },
+    {
+      "id": "LC22",
+      "name": "退役军人",
+      "scope": "published39",
+      "originalImage": "resource/ymsj-fun.github.io/cards/LC22 退役军人.jpg",
+      "imageSha256": "26976ae01006603182b666cef0ea6960bc5d218dc904f2b1c760f3719f142b35",
+      "actuallyViewedInThisAudit": true,
+      "printedRules": [
+        "公开　护卫1"
+      ],
+      "semanticConclusion": "护卫1按敌我队伍；公开不限制其他效果翻暗。",
+      "affiliationOrOwnershipDefectFound": false,
+      "historicalCorrection": null,
+      "interactionRulingPending": false,
+      "compiledDefinition": {
+        "abilities": [],
+        "attachment": null,
+        "graveyard_face_up": false,
+        "modifiers": [],
+        "traits": {
+          "barrier": false,
+          "cannot_be_equipped": false,
+          "guard": 1,
+          "kill": 0,
+          "public": true,
+          "retreat": false,
+          "unlimited_copies": false
+        }
+      }
+    },
+    {
+      "id": "LC23",
+      "name": "安格鲁，“荆棘”",
+      "scope": "published39",
+      "originalImage": "resource/ymsj-fun.github.io/cards/LC23 安格鲁，“荆棘”.jpg",
+      "imageSha256": "977959c6deb74b125b18a8b40758deab354396fdffd49b0d9bcc57197144f1c8",
+      "actuallyViewedInThisAudit": true,
+      "printedRules": [
+        "【现身触发】横置安格鲁，“荆棘”和本地区的目标角色。"
+      ],
+      "semanticConclusion": "自称只指该instance，另一本地区目标不限阵营；发动者是controller。",
+      "affiliationOrOwnershipDefectFound": false,
+      "historicalCorrection": null,
+      "interactionRulingPending": false,
+      "compiledDefinition": {
+        "abilities": [
+          {
+            "costs": [],
+            "event": "Reveal",
+            "key": "exhaust-reveal",
+            "label": "现身触发",
+            "modes": [],
+            "ops": [
+              {
+                "Exhaust": "Source"
+              },
+              {
+                "Exhaust": {
+                  "Target": 0
+                }
+              }
+            ],
+            "requires_ready_source": false,
+            "response_policy": "Respondable",
+            "targets": [
+              {
+                "equipment_host": false,
+                "exclude_source": false,
+                "kind": "Character",
+                "max": 1,
+                "min": 1,
+                "printed_cost_max": null,
+                "range": "SourceRegion",
+                "relation": "Any",
+                "requires_magic": false,
+                "subtype": null,
+                "subtypes_any": [],
+                "zone": "Board"
+              }
+            ],
+            "timing": "Fast"
+          }
+        ],
+        "attachment": null,
+        "graveyard_face_up": false,
+        "modifiers": [],
+        "traits": {
+          "barrier": false,
+          "cannot_be_equipped": false,
+          "guard": 0,
+          "kill": 0,
+          "public": false,
+          "retreat": false,
+          "unlimited_copies": false
+        }
+      }
+    },
+    {
+      "id": "LC24",
+      "name": "林中女巫",
+      "scope": "published39",
+      "originalImage": "resource/ymsj-fun.github.io/cards/LC24 林中女巫.jpg",
+      "imageSha256": "05b4c30ee93bb8ea9b96636e9da3fbcaa560f206aaa5b6c73b5c5ac283fddccb",
+      "actuallyViewedInThisAudit": true,
+      "printedRules": [
+        "【进场触发】预测2，然后抓一张牌。"
+      ],
+      "semanticConclusion": "预测2及抓1均由进场源controller本人进行；不共享队友牌库。",
+      "affiliationOrOwnershipDefectFound": false,
+      "historicalCorrection": null,
+      "interactionRulingPending": false,
+      "compiledDefinition": {
+        "abilities": [
+          {
+            "costs": [],
+            "event": "Enter",
+            "key": "forecast-entry",
+            "label": "进场触发",
+            "modes": [],
+            "ops": [
+              {
+                "Forecast": {
+                  "count": 2,
+                  "player": "Actor"
+                }
+              },
+              {
+                "Draw": {
+                  "count": 1,
+                  "end": "Top",
+                  "player": "Actor"
+                }
+              }
+            ],
+            "requires_ready_source": false,
+            "response_policy": "Respondable",
+            "targets": [],
+            "timing": "Fast"
+          }
+        ],
+        "attachment": null,
+        "graveyard_face_up": false,
+        "modifiers": [],
+        "traits": {
+          "barrier": false,
+          "cannot_be_equipped": false,
+          "guard": 0,
+          "kill": 0,
+          "public": false,
+          "retreat": false,
+          "unlimited_copies": false
+        }
+      }
+    },
+    {
+      "id": "XQ49",
+      "name": "葬礼",
+      "scope": "published39",
+      "originalImage": "resource/ymsj-fun.github.io/cards/XQ49 葬礼.jpg",
+      "imageSha256": "8b160c52b18e49a7ef39085b63cc9a1b18531c02dc0ae3d92e2fedd874a29aca",
+      "actuallyViewedInThisAudit": true,
+      "printedRules": [
+        "【快速】行动：将任一玩家墓地中的目标牌置于其拥有者的牌库底，然后抓一张牌。"
+      ],
+      "semanticConclusion": "任意玩家墓地目标；OwnerDeckBottom按拥有者，后续Draw(Actor)按发动者，不能混用。",
+      "affiliationOrOwnershipDefectFound": false,
+      "historicalCorrection": null,
+      "interactionRulingPending": false,
+      "compiledDefinition": {
+        "abilities": [
+          {
+            "costs": [],
+            "event": null,
+            "key": "funeral",
+            "label": "快速行动",
+            "modes": [],
+            "ops": [
+              {
+                "Move": [
+                  {
+                    "Target": 0
+                  },
+                  "OwnerDeckBottom"
+                ]
+              },
+              {
+                "Draw": {
+                  "count": 1,
+                  "end": "Top",
+                  "player": "Actor"
+                }
+              }
+            ],
+            "requires_ready_source": false,
+            "response_policy": "Respondable",
+            "targets": [
+              {
+                "equipment_host": false,
+                "exclude_source": false,
+                "kind": "Any",
+                "max": 1,
+                "min": 1,
+                "printed_cost_max": null,
+                "range": "Anywhere",
+                "relation": "Any",
+                "requires_magic": false,
+                "subtype": null,
+                "subtypes_any": [],
+                "zone": "Graveyard"
+              }
+            ],
+            "timing": "Fast"
+          }
+        ],
+        "attachment": null,
+        "graveyard_face_up": false,
+        "modifiers": [],
+        "traits": {
+          "barrier": false,
+          "cannot_be_equipped": false,
+          "guard": 0,
+          "kill": 0,
+          "public": false,
+          "retreat": false,
+          "unlimited_copies": false
+        }
+      }
+    },
+    {
+      "id": "JC118",
+      "name": "停战协议",
+      "scope": "published39",
+      "originalImage": "resource/ymsj-fun.github.io/cards/JC118 停战协议.jpg",
+      "imageSha256": "0f112c86afcfd0e9b2b6dea66597e24e57a95155f1b624534b2f9a4b980df97a",
+      "actuallyViewedInThisAudit": true,
+      "printedRules": [
+        "只能在行动阶段打出。",
+        "【快速】行动：选择目标地区，本回合中该地区略过对抗阶段。"
+      ],
+      "semanticConclusion": "目标地区Any，无角色阵营限制；地区效果归原frame。",
+      "affiliationOrOwnershipDefectFound": false,
+      "historicalCorrection": null,
+      "interactionRulingPending": false,
+      "compiledDefinition": {
+        "abilities": [
+          {
+            "costs": [],
+            "event": null,
+            "key": "ceasefire",
+            "label": "快速行动",
+            "modes": [],
+            "ops": [
+              {
+                "SkipRegionThisRound": {
+                  "Target": 0
+                }
+              }
+            ],
+            "requires_ready_source": false,
+            "response_policy": "Respondable",
+            "targets": [
+              {
+                "equipment_host": false,
+                "exclude_source": false,
+                "kind": "Any",
+                "max": 1,
+                "min": 1,
+                "printed_cost_max": null,
+                "range": "Anywhere",
+                "relation": "Any",
+                "requires_magic": false,
+                "subtype": null,
+                "subtypes_any": [],
+                "zone": "Region"
+              }
+            ],
+            "timing": "ActionFast"
+          }
+        ],
+        "attachment": null,
+        "graveyard_face_up": false,
+        "modifiers": [],
+        "traits": {
+          "barrier": false,
+          "cannot_be_equipped": false,
+          "guard": 0,
+          "kill": 0,
+          "public": false,
+          "retreat": false,
+          "unlimited_copies": false
+        }
+      }
+    },
+    {
+      "id": "JC002",
+      "name": "巨石阵看护人",
+      "scope": "published39",
+      "originalImage": "resource/ymsj-fun.github.io/cards/JC002 巨石阵看护人.jpg",
+      "imageSha256": "21a698ae184e7f909d24ac5374c3eaf7af77f1043b91048cfc8c5a46f9b08680",
+      "actuallyViewedInThisAudit": true,
+      "printedRules": [
+        "【现身触发】横置本地区的目标角色。"
+      ],
+      "semanticConclusion": "本地区任意正面角色，目标复验含屏障的当前controller敌我。",
+      "affiliationOrOwnershipDefectFound": false,
+      "historicalCorrection": null,
+      "interactionRulingPending": false,
+      "compiledDefinition": {
+        "abilities": [
+          {
+            "costs": [],
+            "event": "Reveal",
+            "key": "exhaust-reveal",
+            "label": "现身触发",
+            "modes": [],
+            "ops": [
+              {
+                "Exhaust": {
+                  "Target": 0
+                }
+              }
+            ],
+            "requires_ready_source": false,
+            "response_policy": "Respondable",
+            "targets": [
+              {
+                "equipment_host": false,
+                "exclude_source": false,
+                "kind": "Character",
+                "max": 1,
+                "min": 1,
+                "printed_cost_max": null,
+                "range": "SourceRegion",
+                "relation": "Any",
+                "requires_magic": false,
+                "subtype": null,
+                "subtypes_any": [],
+                "zone": "Board"
+              }
+            ],
+            "timing": "Fast"
+          }
+        ],
+        "attachment": null,
+        "graveyard_face_up": false,
+        "modifiers": [],
+        "traits": {
+          "barrier": false,
+          "cannot_be_equipped": false,
+          "guard": 0,
+          "kill": 0,
+          "public": false,
+          "retreat": false,
+          "unlimited_copies": false
+        }
+      }
+    },
+    {
+      "id": "JC003",
+      "name": "帷幕护卫",
+      "scope": "published39",
+      "originalImage": "resource/ymsj-fun.github.io/cards/JC003 帷幕护卫.jpg",
+      "imageSha256": "027fc054dd7c7ef301108bf0b169e01f91228bf2e918b3ddb8d12e8d05603c3a",
+      "actuallyViewedInThisAudit": true,
+      "printedRules": [
+        "【快速】行动2，【横置】：横置目标角色或暗藏者。"
+      ],
+      "semanticConclusion": "目标角色或暗藏者Any；费用2及横置自身按发动者，不能由队友代付。",
+      "affiliationOrOwnershipDefectFound": false,
+      "historicalCorrection": null,
+      "interactionRulingPending": false,
+      "compiledDefinition": {
+        "abilities": [
+          {
+            "costs": [
+              {
+                "Assets": 2
+              },
+              "ExhaustSource"
+            ],
+            "event": null,
+            "key": "exhaust",
+            "label": "快速行动",
+            "modes": [],
+            "ops": [
+              {
+                "Exhaust": {
+                  "Target": 0
+                }
+              }
+            ],
+            "requires_ready_source": false,
+            "response_policy": "Respondable",
+            "targets": [
+              {
+                "equipment_host": false,
+                "exclude_source": false,
+                "kind": "CharacterOrHidden",
+                "max": 1,
+                "min": 1,
+                "printed_cost_max": null,
+                "range": "Anywhere",
+                "relation": "Any",
+                "requires_magic": false,
+                "subtype": null,
+                "subtypes_any": [],
+                "zone": "Board"
+              }
+            ],
+            "timing": "Fast"
+          }
+        ],
+        "attachment": null,
+        "graveyard_face_up": false,
+        "modifiers": [],
+        "traits": {
+          "barrier": false,
+          "cannot_be_equipped": false,
+          "guard": 0,
+          "kill": 0,
+          "public": false,
+          "retreat": false,
+          "unlimited_copies": false
+        }
+      }
+    },
+    {
+      "id": "XQ03",
+      "name": "力场束缚",
+      "scope": "published39",
+      "originalImage": "resource/ymsj-fun.github.io/cards/XQ03 力场束缚.jpg",
+      "imageSha256": "c6e85106105d23ef55df70ba06d6c8878b6ce279a727908fbdeab0a8495679b0",
+      "actuallyViewedInThisAudit": true,
+      "printedRules": [
+        "【快速】行动：横置目标角色。"
+      ],
+      "semanticConclusion": "目标正面角色Any，敌方屏障由通用目标守卫判定。",
+      "affiliationOrOwnershipDefectFound": false,
+      "historicalCorrection": null,
+      "interactionRulingPending": false,
+      "compiledDefinition": {
+        "abilities": [
+          {
+            "costs": [],
+            "event": null,
+            "key": "exhaust",
+            "label": "快速行动",
+            "modes": [],
+            "ops": [
+              {
+                "Exhaust": {
+                  "Target": 0
+                }
+              }
+            ],
+            "requires_ready_source": false,
+            "response_policy": "Respondable",
+            "targets": [
+              {
+                "equipment_host": false,
+                "exclude_source": false,
+                "kind": "Character",
+                "max": 1,
+                "min": 1,
+                "printed_cost_max": null,
+                "range": "Anywhere",
+                "relation": "Any",
+                "requires_magic": false,
+                "subtype": null,
+                "subtypes_any": [],
+                "zone": "Board"
+              }
+            ],
+            "timing": "Fast"
+          }
+        ],
+        "attachment": null,
+        "graveyard_face_up": false,
+        "modifiers": [],
+        "traits": {
+          "barrier": false,
+          "cannot_be_equipped": false,
+          "guard": 0,
+          "kill": 0,
+          "public": false,
+          "retreat": false,
+          "unlimited_copies": false
+        }
+      }
+    },
+    {
+      "id": "JC014",
+      "name": "公路骑士",
+      "scope": "published39",
+      "originalImage": "resource/ymsj-fun.github.io/cards/JC014 公路骑士.jpg",
+      "imageSha256": "cd1969552197b3111e72ee4bb0725dc4ff513ddb8c940b568b7221699c248bb6",
+      "actuallyViewedInThisAudit": true,
+      "printedRules": [
+        "公开（该角色不能被秘密派遣为暗藏者）",
+        "机动（在对抗阶段开始时，你可以将该角色移动至另一个地区。）"
+      ],
+      "semanticConclusion": "你=当前controller；移动该instance而非同名或队友对象，2V2机动仅邻区。",
+      "affiliationOrOwnershipDefectFound": false,
+      "historicalCorrection": null,
+      "interactionRulingPending": false,
+      "compiledDefinition": {
+        "abilities": [
+          {
+            "costs": [],
+            "event": "ConfrontationStart",
+            "key": "mobility",
+            "label": "机动",
+            "modes": [],
+            "ops": [
+              {
+                "MoveOnBoard": {
+                  "entity": "Source",
+                  "region": {
+                    "Target": 0
+                  }
+                }
+              }
+            ],
+            "requires_ready_source": true,
+            "response_policy": "Respondable",
+            "targets": [
+              {
+                "equipment_host": false,
+                "exclude_source": false,
+                "kind": "Any",
+                "max": 1,
+                "min": 1,
+                "printed_cost_max": null,
+                "range": "Mobility",
+                "relation": "Any",
+                "requires_magic": false,
+                "subtype": null,
+                "subtypes_any": [],
+                "zone": "Region"
+              }
+            ],
+            "timing": "Fast"
+          }
+        ],
+        "attachment": null,
+        "graveyard_face_up": false,
+        "modifiers": [],
+        "traits": {
+          "barrier": false,
+          "cannot_be_equipped": false,
+          "guard": 0,
+          "kill": 0,
+          "public": true,
+          "retreat": false,
+          "unlimited_copies": false
+        }
+      }
+    },
+    {
+      "id": "JC016",
+      "name": "执行部精锐",
+      "scope": "published39",
+      "originalImage": "resource/ymsj-fun.github.io/cards/JC016 执行部精锐.jpg",
+      "imageSha256": "0a3b20635a7fa8e04d6f17ab7a7112a596ed0e7f21293d3e4f4a985463416c35",
+      "actuallyViewedInThisAudit": true,
+      "printedRules": [
+        "撤回　杀伤1",
+        "【持续】若本地区没有敌方角色，执行部精锐就获得【临时调查】【永久势力】。"
+      ],
+      "semanticConclusion": "敌方按当前controller的对手队伍；队友及暗藏者不算敌方角色。撤回按P18回owner；与BQ022赢区优先仍待裁定。",
+      "affiliationOrOwnershipDefectFound": false,
+      "historicalCorrection": null,
+      "interactionRulingPending": true,
+      "compiledDefinition": {
+        "abilities": [],
+        "attachment": null,
+        "graveyard_face_up": false,
+        "modifiers": [
+          {
+            "NoEnemyCharacters": [
+              {
+                "combat": 0,
+                "influence": 1,
+                "investigation": 0
+              },
+              {
+                "combat": 0,
+                "influence": 0,
+                "investigation": 1
+              }
+            ]
+          }
+        ],
+        "traits": {
+          "barrier": false,
+          "cannot_be_equipped": false,
+          "guard": 0,
+          "kill": 1,
+          "public": false,
+          "retreat": true,
+          "unlimited_copies": false
+        }
+      }
+    },
+    {
+      "id": "JZ08",
+      "name": "幸运新人",
+      "scope": "published39",
+      "originalImage": "resource/ymsj-fun.github.io/cards/JZ08 幸运新人.jpg",
+      "imageSha256": "343561bd351e06811f9a1fc77b6a9fe08e6dfbace83d8c8abb8f6b43fb031d12",
+      "actuallyViewedInThisAudit": true,
+      "printedRules": [
+        "屏障（该角色不能成为敌方卡牌或能力的目标。）"
+      ],
+      "semanticConclusion": "屏障阻止敌方卡/能力指定目标，按目标当前controller团队；允许友方且不阻止非指定群伤。",
+      "affiliationOrOwnershipDefectFound": false,
+      "historicalCorrection": null,
+      "interactionRulingPending": false,
+      "compiledDefinition": {
+        "abilities": [],
+        "attachment": null,
+        "graveyard_face_up": false,
+        "modifiers": [],
+        "traits": {
+          "barrier": true,
+          "cannot_be_equipped": false,
+          "guard": 0,
+          "kill": 0,
+          "public": false,
+          "retreat": false,
+          "unlimited_copies": false
+        }
+      }
+    },
+    {
+      "id": "JC056",
+      "name": "地区警员",
+      "scope": "published39",
+      "originalImage": "resource/ymsj-fun.github.io/cards/JC056 地区警员.jpg",
+      "imageSha256": "75503118eee2b80d23f59ea950884c152f33d28d552d0d051ed872f441810e6d",
+      "actuallyViewedInThisAudit": true,
+      "printedRules": [
+        "公开（该角色不能被秘密派遣为暗藏者）",
+        "【进场触发】横置所有本地区的暗藏者。"
+      ],
+      "semanticConclusion": "本地区所有暗藏者，非指定集合Any，含双方，不错误限制本人。",
+      "affiliationOrOwnershipDefectFound": false,
+      "historicalCorrection": null,
+      "interactionRulingPending": false,
+      "compiledDefinition": {
+        "abilities": [
+          {
+            "costs": [],
+            "event": "Enter",
+            "key": "exhaust-hidden-entry",
+            "label": "进场触发",
+            "modes": [],
+            "ops": [
+              {
+                "ExhaustMatching": {
+                  "kind": "Hidden",
+                  "region": "SourceRegion",
+                  "relation": "Any",
+                  "subtype": null
+                }
+              }
+            ],
+            "requires_ready_source": false,
+            "response_policy": "Respondable",
+            "targets": [],
+            "timing": "Fast"
+          }
+        ],
+        "attachment": null,
+        "graveyard_face_up": false,
+        "modifiers": [],
+        "traits": {
+          "barrier": false,
+          "cannot_be_equipped": false,
+          "guard": 0,
+          "kill": 0,
+          "public": true,
+          "retreat": false,
+          "unlimited_copies": false
+        }
+      }
+    },
+    {
+      "id": "JC058",
+      "name": "坚毅的刑警",
+      "scope": "published39",
+      "originalImage": "resource/ymsj-fun.github.io/cards/JC058 坚毅的刑警.jpg",
+      "imageSha256": "6585e89991049cb05e75db43143320fd12bf6be781847648d551cb433e85119a",
+      "actuallyViewedInThisAudit": true,
+      "printedRules": [
+        "【现身触发】消灭本地区的目标暗藏者。"
+      ],
+      "semanticConclusion": "本地区暗藏者Any；现身中栈实体不可再作场上目标，死亡归owner。",
+      "affiliationOrOwnershipDefectFound": false,
+      "historicalCorrection": null,
+      "interactionRulingPending": false,
+      "compiledDefinition": {
+        "abilities": [
+          {
+            "costs": [],
+            "event": "Reveal",
+            "key": "destroy-hidden-reveal",
+            "label": "现身触发",
+            "modes": [],
+            "ops": [
+              {
+                "Destroy": {
+                  "Target": 0
+                }
+              }
+            ],
+            "requires_ready_source": false,
+            "response_policy": "Respondable",
+            "targets": [
+              {
+                "equipment_host": false,
+                "exclude_source": false,
+                "kind": "Hidden",
+                "max": 1,
+                "min": 1,
+                "printed_cost_max": null,
+                "range": "SourceRegion",
+                "relation": "Any",
+                "requires_magic": false,
+                "subtype": null,
+                "subtypes_any": [],
+                "zone": "Board"
+              }
+            ],
+            "timing": "Fast"
+          }
+        ],
+        "attachment": null,
+        "graveyard_face_up": false,
+        "modifiers": [],
+        "traits": {
+          "barrier": false,
+          "cannot_be_equipped": false,
+          "guard": 0,
+          "kill": 0,
+          "public": false,
+          "retreat": false,
+          "unlimited_copies": false
+        }
+      }
+    },
+    {
+      "id": "JC059",
+      "name": "安全保卫部门",
+      "scope": "published39",
+      "originalImage": "resource/ymsj-fun.github.io/cards/JC059 安全保卫部门.jpg",
+      "imageSha256": "7d9639d3115dcea8e42f21e1145397f3be4392a80fa0b6c040d7302139eff0ad",
+      "actuallyViewedInThisAudit": true,
+      "printedRules": [
+        "公开（该角色不能被秘密派遣为暗藏者）",
+        "【持续】位于本地区的所有其他友方角色获得+1【防御】。"
+      ],
+      "semanticConclusion": "原图友方，按controller同队，包括队友，排除来源自身/暗藏者；不能改成本人限定。",
+      "affiliationOrOwnershipDefectFound": false,
+      "historicalCorrection": null,
+      "interactionRulingPending": false,
+      "compiledDefinition": {
+        "abilities": [],
+        "attachment": null,
+        "graveyard_face_up": false,
+        "modifiers": [
+          {
+            "OtherFriendlyCharactersDefense": 1
+          }
+        ],
+        "traits": {
+          "barrier": false,
+          "cannot_be_equipped": false,
+          "guard": 0,
+          "kill": 0,
+          "public": true,
+          "retreat": false,
+          "unlimited_copies": false
+        }
+      }
+    },
+    {
+      "id": "JC063",
+      "name": "警车追捕",
+      "scope": "published39",
+      "originalImage": "resource/ymsj-fun.github.io/cards/JC063 警车追捕.jpg",
+      "imageSha256": "1b20b9c7392543bf975b6391d227e03e4f50f3fd3134e7c6aa494e7357f88165",
+      "actuallyViewedInThisAudit": true,
+      "printedRules": [
+        "【快速】行动　选择一项：",
+        "• 将目标角色潜伏。（将该角色翻面为暗藏者）",
+        "• 将目标暗藏者移回其拥有者手上。"
+      ],
+      "semanticConclusion": "两模式目标均Any；潜伏保留owner/controller并换instance；回手明确OwnerHand。",
+      "affiliationOrOwnershipDefectFound": false,
+      "historicalCorrection": null,
+      "interactionRulingPending": false,
+      "compiledDefinition": {
+        "abilities": [
+          {
+            "costs": [],
+            "event": null,
+            "key": "chase",
+            "label": "快速行动",
+            "modes": [
+              {
+                "key": "hide",
+                "label": "潜伏",
+                "ops": [
+                  {
+                    "Hide": {
+                      "Target": 0
+                    }
+                  }
+                ],
+                "targets": [
+                  {
+                    "equipment_host": false,
+                    "exclude_source": false,
+                    "kind": "Character",
+                    "max": 1,
+                    "min": 1,
+                    "printed_cost_max": null,
+                    "range": "Anywhere",
+                    "relation": "Any",
+                    "requires_magic": false,
+                    "subtype": null,
+                    "subtypes_any": [],
+                    "zone": "Board"
+                  }
+                ]
+              },
+              {
+                "key": "return",
+                "label": "回手",
+                "ops": [
+                  {
+                    "Move": [
+                      {
+                        "Target": 0
+                      },
+                      "OwnerHand"
+                    ]
+                  }
+                ],
+                "targets": [
+                  {
+                    "equipment_host": false,
+                    "exclude_source": false,
+                    "kind": "Hidden",
+                    "max": 1,
+                    "min": 1,
+                    "printed_cost_max": null,
+                    "range": "Anywhere",
+                    "relation": "Any",
+                    "requires_magic": false,
+                    "subtype": null,
+                    "subtypes_any": [],
+                    "zone": "Board"
+                  }
+                ]
+              }
+            ],
+            "ops": [],
+            "requires_ready_source": false,
+            "response_policy": "Respondable",
+            "targets": [],
+            "timing": "Fast"
+          }
+        ],
+        "attachment": null,
+        "graveyard_face_up": false,
+        "modifiers": [],
+        "traits": {
+          "barrier": false,
+          "cannot_be_equipped": false,
+          "guard": 0,
+          "kill": 0,
+          "public": false,
+          "retreat": false,
+          "unlimited_copies": false
+        }
+      }
+    },
+    {
+      "id": "JC086",
+      "name": "窃尸人",
+      "scope": "published39",
+      "originalImage": "resource/ymsj-fun.github.io/cards/JC086 窃尸人.jpg",
+      "imageSha256": "1bd405a60feeb41d60611050f4a37dd90dc971e1808ba712b66fe0cd37d2d743",
+      "actuallyViewedInThisAudit": true,
+      "printedRules": [
+        "【进场触发】将你墓地中的目标角色牌置于你的手中。"
+      ],
+      "semanticConclusion": "你的墓地为本人；OwnedByActor限定其拥有牌，ActorHand入本人手，当前私有区owner不变量使二者相符。",
+      "affiliationOrOwnershipDefectFound": false,
+      "historicalCorrection": null,
+      "interactionRulingPending": false,
+      "compiledDefinition": {
+        "abilities": [
+          {
+            "costs": [],
+            "event": "Enter",
+            "key": "recover-entry",
+            "label": "进场触发",
+            "modes": [],
+            "ops": [
+              {
+                "Move": [
+                  {
+                    "Target": 0
+                  },
+                  "ActorHand"
+                ]
+              }
+            ],
+            "requires_ready_source": false,
+            "response_policy": "Respondable",
+            "targets": [
+              {
+                "equipment_host": false,
+                "exclude_source": false,
+                "kind": "Character",
+                "max": 1,
+                "min": 1,
+                "printed_cost_max": null,
+                "range": "Anywhere",
+                "relation": "OwnedByActor",
+                "requires_magic": false,
+                "subtype": null,
+                "subtypes_any": [],
+                "zone": "Graveyard"
+              }
+            ],
+            "timing": "Fast"
+          }
+        ],
+        "attachment": null,
+        "graveyard_face_up": false,
+        "modifiers": [],
+        "traits": {
+          "barrier": false,
+          "cannot_be_equipped": false,
+          "guard": 0,
+          "kill": 0,
+          "public": false,
+          "retreat": false,
+          "unlimited_copies": false
+        }
+      }
+    },
+    {
+      "id": "XQ12",
+      "name": "暴躁血仆",
+      "scope": "published39",
+      "originalImage": "resource/ymsj-fun.github.io/cards/XQ12 暴躁血仆.jpg",
+      "imageSha256": "4e9f3afa5f7f22d99fc89284e91586fba78a8ff2ee8827fc6a6ceeb41889fdc8",
+      "actuallyViewedInThisAudit": true,
+      "printedRules": [
+        "【死亡触发】目标玩家弃一张手牌。"
+      ],
+      "semanticConclusion": "死亡触发属于离场前controller；目标玩家Any，私密弃牌在目标玩家本人手中。",
+      "affiliationOrOwnershipDefectFound": false,
+      "historicalCorrection": null,
+      "interactionRulingPending": false,
+      "compiledDefinition": {
+        "abilities": [
+          {
+            "costs": [],
+            "event": "Death",
+            "key": "discard-death",
+            "label": "死亡触发",
+            "modes": [],
+            "ops": [
+              {
+                "Discard": {
+                  "count": 1,
+                  "optional": false,
+                  "player": {
+                    "Target": 0
+                  },
+                  "redraw": false
+                }
+              }
+            ],
+            "requires_ready_source": false,
+            "response_policy": "Respondable",
+            "targets": [
+              {
+                "equipment_host": false,
+                "exclude_source": false,
+                "kind": "Any",
+                "max": 1,
+                "min": 1,
+                "printed_cost_max": null,
+                "range": "Anywhere",
+                "relation": "Any",
+                "requires_magic": false,
+                "subtype": null,
+                "subtypes_any": [],
+                "zone": "Player"
+              }
+            ],
+            "timing": "Fast"
+          }
+        ],
+        "attachment": null,
+        "graveyard_face_up": false,
+        "modifiers": [],
+        "traits": {
+          "barrier": false,
+          "cannot_be_equipped": false,
+          "guard": 0,
+          "kill": 0,
+          "public": false,
+          "retreat": false,
+          "unlimited_copies": false
+        }
+      }
+    },
+    {
+      "id": "JC092",
+      "name": "死灵召唤",
+      "scope": "published39",
+      "originalImage": "resource/ymsj-fun.github.io/cards/JC092 死灵召唤.jpg",
+      "imageSha256": "ea1ca5644c38831b659f29dcf4c7ec0cb5dc5a758b0b793ed120b24b74295947",
+      "actuallyViewedInThisAudit": true,
+      "printedRules": [
+        "【行动】选择一个地区，将你墓地中的目标角色牌以暗藏者状态置于该地区。"
+      ],
+      "semanticConclusion": "你的墓地角色为本人；OwnedByActor、HiddenInChosenRegion，换instance后owner/controller归本人。",
+      "affiliationOrOwnershipDefectFound": false,
+      "historicalCorrection": null,
+      "interactionRulingPending": false,
+      "compiledDefinition": {
+        "abilities": [
+          {
+            "costs": [],
+            "event": null,
+            "key": "summon",
+            "label": "行动",
+            "modes": [],
+            "ops": [
+              {
+                "Move": [
+                  {
+                    "Target": 0
+                  },
+                  "HiddenInChosenRegion"
+                ]
+              }
+            ],
+            "requires_ready_source": false,
+            "response_policy": "Respondable",
+            "targets": [
+              {
+                "equipment_host": false,
+                "exclude_source": false,
+                "kind": "Character",
+                "max": 1,
+                "min": 1,
+                "printed_cost_max": null,
+                "range": "Anywhere",
+                "relation": "OwnedByActor",
+                "requires_magic": false,
+                "subtype": null,
+                "subtypes_any": [],
+                "zone": "Graveyard"
+              }
+            ],
+            "timing": "Standard"
+          }
+        ],
+        "attachment": null,
+        "graveyard_face_up": false,
+        "modifiers": [],
+        "traits": {
+          "barrier": false,
+          "cannot_be_equipped": false,
+          "guard": 0,
+          "kill": 0,
+          "public": false,
+          "retreat": false,
+          "unlimited_copies": false
+        }
+      }
+    },
+    {
+      "id": "DQJC107",
+      "name": "沉没的废墟",
+      "scope": "published39",
+      "originalImage": "resource/ymsj-fun.github.io/cards/DQJC107 沉没的废墟.jpg",
+      "imageSha256": "339b9a130ea9c0a82bc5a20d34892a4de52b2ea777a1b0cfec340876d6a4b2b8",
+      "actuallyViewedInThisAudit": true,
+      "printedRules": [
+        "【赢取触发】每位玩家从他的牌库中寻找一张牌，将他的牌库洗牌，然后将该牌置于其牌库顶。"
+      ],
+      "semanticConclusion": "每位玩家分别Search(Context)，检索与洗牌仅操作各自牌库，不按赢区者或团队汇总。",
+      "affiliationOrOwnershipDefectFound": false,
+      "historicalCorrection": null,
+      "interactionRulingPending": false,
+      "compiledDefinition": {
+        "abilities": [
+          {
+            "costs": [],
+            "event": "RegionWon",
+            "key": "search-win",
+            "label": "赢取触发",
+            "modes": [],
+            "ops": [
+              {
+                "ForEachLivingPlayer": [
+                  {
+                    "Search": {
+                      "filter": "Any",
+                      "optional": false,
+                      "player": "Context",
+                      "to_top": true
+                    }
+                  }
+                ]
+              }
+            ],
+            "requires_ready_source": false,
+            "response_policy": "Respondable",
+            "targets": [],
+            "timing": "Fast"
+          }
+        ],
+        "attachment": null,
+        "graveyard_face_up": false,
+        "modifiers": [],
+        "traits": {
+          "barrier": false,
+          "cannot_be_equipped": false,
+          "guard": 0,
+          "kill": 0,
+          "public": false,
+          "retreat": false,
+          "unlimited_copies": false
+        }
+      }
+    },
+    {
+      "id": "DQJC112",
+      "name": "纽约",
+      "scope": "published39",
+      "originalImage": "resource/ymsj-fun.github.io/cards/DQJC112 纽约.jpg",
+      "imageSha256": "9efd49e63ad90c4849bcf123aec4c83cd63e8f135113c374412526be875832ad",
+      "actuallyViewedInThisAudit": true,
+      "printedRules": [
+        "【赢取触发】每位玩家弃掉任意数量的手牌，然后抓等量的牌。"
+      ],
+      "semanticConclusion": "各Context玩家独立私密弃牌并等量抓牌，不共享手牌。",
+      "affiliationOrOwnershipDefectFound": false,
+      "historicalCorrection": null,
+      "interactionRulingPending": false,
+      "compiledDefinition": {
+        "abilities": [
+          {
+            "costs": [],
+            "event": "RegionWon",
+            "key": "swap-win",
+            "label": "赢取触发",
+            "modes": [],
+            "ops": [
+              {
+                "ForEachLivingPlayer": [
+                  {
+                    "Discard": {
+                      "count": null,
+                      "optional": true,
+                      "player": "Context",
+                      "redraw": true
+                    }
+                  }
+                ]
+              }
+            ],
+            "requires_ready_source": false,
+            "response_policy": "Respondable",
+            "targets": [],
+            "timing": "Fast"
+          }
+        ],
+        "attachment": null,
+        "graveyard_face_up": false,
+        "modifiers": [],
+        "traits": {
+          "barrier": false,
+          "cannot_be_equipped": false,
+          "guard": 0,
+          "kill": 0,
+          "public": false,
+          "retreat": false,
+          "unlimited_copies": false
+        }
+      }
+    },
+    {
+      "id": "DQJC113",
+      "name": "切尔诺贝利",
+      "scope": "published39",
+      "originalImage": "resource/ymsj-fun.github.io/cards/DQJC113 切尔诺贝利.jpg",
+      "imageSha256": "3dcac24ae99667ac037001d85f54eb5b77bf83643222769726395571e7135c6e",
+      "actuallyViewedInThisAudit": true,
+      "printedRules": [
+        "【赢取触发】切尔诺贝利对场上的所有角色造成1点伤害。"
+      ],
+      "semanticConclusion": "场上所有正面角色Any，直接群伤，不以owner/controller筛掉队友或自己。",
+      "affiliationOrOwnershipDefectFound": false,
+      "historicalCorrection": null,
+      "interactionRulingPending": false,
+      "compiledDefinition": {
+        "abilities": [
+          {
+            "costs": [],
+            "event": "RegionWon",
+            "key": "damage-win",
+            "label": "赢取触发",
+            "modes": [],
+            "ops": [
+              {
+                "DamageMatching": {
+                  "amount": 1,
+                  "selector": {
+                    "kind": "Character",
+                    "region": null,
+                    "relation": "Any",
+                    "subtype": null
+                  }
+                }
+              }
+            ],
+            "requires_ready_source": false,
+            "response_policy": "Respondable",
+            "targets": [],
+            "timing": "Fast"
+          }
+        ],
+        "attachment": null,
+        "graveyard_face_up": false,
+        "modifiers": [],
+        "traits": {
+          "barrier": false,
+          "cannot_be_equipped": false,
+          "guard": 0,
+          "kill": 0,
+          "public": false,
+          "retreat": false,
+          "unlimited_copies": false
+        }
+      }
+    },
+    {
+      "id": "DQJC114",
+      "name": "上海",
+      "scope": "published39",
+      "originalImage": "resource/ymsj-fun.github.io/cards/DQJC114 上海.jpg",
+      "imageSha256": "7ded8662b423543bccedf93e67c098cf0effdd73791b30cc6aaa4acf7bf2a3f2",
+      "actuallyViewedInThisAudit": true,
+      "printedRules": [
+        "【赢取触发】选择一项：",
+        "• 每位玩家抓两张牌。",
+        "• 每位玩家弃两张牌。"
+      ],
+      "semanticConclusion": "模式决定后逐位Context抓/弃自己的牌，目标群体为每位玩家。",
+      "affiliationOrOwnershipDefectFound": false,
+      "historicalCorrection": null,
+      "interactionRulingPending": false,
+      "compiledDefinition": {
+        "abilities": [
+          {
+            "costs": [],
+            "event": "RegionWon",
+            "key": "mode-win",
+            "label": "赢取触发",
+            "modes": [
+              {
+                "key": "draw",
+                "label": "所有玩家抓两张牌",
+                "ops": [
+                  {
+                    "ForEachLivingPlayer": [
+                      {
+                        "Draw": {
+                          "count": 2,
+                          "end": "Top",
+                          "player": "Context"
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "targets": []
+              },
+              {
+                "key": "discard",
+                "label": "所有玩家各弃两张牌",
+                "ops": [
+                  {
+                    "ForEachLivingPlayer": [
+                      {
+                        "Discard": {
+                          "count": 2,
+                          "optional": false,
+                          "player": "Context",
+                          "redraw": false
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "targets": []
+              }
+            ],
+            "ops": [],
+            "requires_ready_source": false,
+            "response_policy": "Respondable",
+            "targets": [],
+            "timing": "Fast"
+          }
+        ],
+        "attachment": null,
+        "graveyard_face_up": false,
+        "modifiers": [],
+        "traits": {
+          "barrier": false,
+          "cannot_be_equipped": false,
+          "guard": 0,
+          "kill": 0,
+          "public": false,
+          "retreat": false,
+          "unlimited_copies": false
+        }
+      }
+    },
+    {
+      "id": "JC042",
+      "name": "末日信徒",
+      "scope": "published39",
+      "originalImage": "resource/ymsj-fun.github.io/cards/JC042 末日信徒.jpg",
+      "imageSha256": "242a17c708a96d27e95b23f9ab339e01d5b8c1eda282a2f7de8f51ba2c1bdbef",
+      "actuallyViewedInThisAudit": true,
+      "printedRules": [
+        "【快速】行动　牺牲末日信徒：本回合中你正面打出的下一张【鸣钟教派】牌或具有【血脉】图标的牌，其所需费用减少2。"
+      ],
+      "semanticConclusion": "自称牺牲来源instance；后续降费绑定发动者Actor，仅其下次正面出牌，owner/队友不代领。",
+      "affiliationOrOwnershipDefectFound": false,
+      "historicalCorrection": null,
+      "interactionRulingPending": false,
+      "compiledDefinition": {
+        "abilities": [
+          {
+            "costs": [
+              "SacrificeSource"
+            ],
+            "event": null,
+            "key": "reduce-next",
+            "label": "快速行动",
+            "modes": [],
+            "ops": [
+              {
+                "CostReduction": {
+                  "amount": 2,
+                  "filter": {
+                    "SocietyOrMagic": {
+                      "magic": "Blood",
+                      "society": "鸣钟教派"
+                    }
+                  }
+                }
+              }
+            ],
+            "requires_ready_source": false,
+            "response_policy": "Immediate",
+            "targets": [],
+            "timing": "Fast"
+          }
+        ],
+        "attachment": null,
+        "graveyard_face_up": false,
+        "modifiers": [],
+        "traits": {
+          "barrier": false,
+          "cannot_be_equipped": false,
+          "guard": 0,
+          "kill": 0,
+          "public": false,
+          "retreat": false,
+          "unlimited_copies": false
+        }
+      }
+    },
+    {
+      "id": "JC049",
+      "name": "深渊细语",
+      "scope": "published39",
+      "originalImage": "resource/ymsj-fun.github.io/cards/JC049 深渊细语.jpg",
+      "imageSha256": "340c3fbc650b755d72c31ca06a8c379bacb572df6df061a9c52d0fb386d02d58",
+      "actuallyViewedInThisAudit": true,
+      "printedRules": [
+        "【额外费用】牺牲一个角色。",
+        "【快速】行动：将你牌库底的两张牌置于手中。"
+      ],
+      "semanticConclusion": "额外牺牲只能本人controller角色（P15），不是队友；MoveBottomToHand(Actor)仅本人牌库。",
+      "affiliationOrOwnershipDefectFound": false,
+      "historicalCorrection": null,
+      "interactionRulingPending": false,
+      "compiledDefinition": {
+        "abilities": [
+          {
+            "costs": [
+              "SacrificeSelectedControlledCharacter"
+            ],
+            "event": null,
+            "key": "take-bottom",
+            "label": "快速行动",
+            "modes": [],
+            "ops": [
+              {
+                "MoveBottomToHand": {
+                  "count": 2,
+                  "player": "Actor"
+                }
+              }
+            ],
+            "requires_ready_source": false,
+            "response_policy": "Respondable",
+            "targets": [],
+            "timing": "Fast"
+          }
+        ],
+        "attachment": null,
+        "graveyard_face_up": false,
+        "modifiers": [],
+        "traits": {
+          "barrier": false,
+          "cannot_be_equipped": false,
+          "guard": 0,
+          "kill": 0,
+          "public": false,
+          "retreat": false,
+          "unlimited_copies": false
+        }
+      }
+    },
+    {
+      "id": "JC091",
+      "name": "谋杀",
+      "scope": "published39",
+      "originalImage": "resource/ymsj-fun.github.io/cards/JC091 谋杀.jpg",
+      "imageSha256": "2ea5d65c270a107371f7d69cb22de3e4e60f9e9db81d4e6959744bbfbf6d11cb",
+      "actuallyViewedInThisAudit": true,
+      "printedRules": [
+        "只能在行动阶段打出。",
+        "【快速】行动：消灭目标人类角色。"
+      ],
+      "semanticConclusion": "人类目标Any；行动阶段限定与屏障守卫独立于拥有者。",
+      "affiliationOrOwnershipDefectFound": false,
+      "historicalCorrection": null,
+      "interactionRulingPending": false,
+      "compiledDefinition": {
+        "abilities": [
+          {
+            "costs": [],
+            "event": null,
+            "key": "destroy-human",
+            "label": "快速行动",
+            "modes": [],
+            "ops": [
+              {
+                "Destroy": {
+                  "Target": 0
+                }
+              }
+            ],
+            "requires_ready_source": false,
+            "response_policy": "Respondable",
+            "targets": [
+              {
+                "equipment_host": false,
+                "exclude_source": false,
+                "kind": "Character",
+                "max": 1,
+                "min": 1,
+                "printed_cost_max": null,
+                "range": "Anywhere",
+                "relation": "Any",
+                "requires_magic": false,
+                "subtype": "人类",
+                "subtypes_any": [],
+                "zone": "Board"
+              }
+            ],
+            "timing": "ActionFast"
+          }
+        ],
+        "attachment": null,
+        "graveyard_face_up": false,
+        "modifiers": [],
+        "traits": {
+          "barrier": false,
+          "cannot_be_equipped": false,
+          "guard": 0,
+          "kill": 0,
+          "public": false,
+          "retreat": false,
+          "unlimited_copies": false
+        }
+      }
+    },
+    {
+      "id": "JZ54",
+      "name": "阿塔玛斯奉献仪式",
+      "scope": "published39",
+      "originalImage": "resource/ymsj-fun.github.io/cards/JZ54 阿塔玛斯奉献仪式.jpg",
+      "imageSha256": "c7902515865a26e1276d9e7a4bbd05c511704f76aee504c73539737012624af4",
+      "actuallyViewedInThisAudit": true,
+      "printedRules": [
+        "【快速】行动：目标玩家牺牲一个角色。"
+      ],
+      "semanticConclusion": "目标玩家Any，包括自己/队友/敌人；由该目标玩家选择其本人controller角色牺牲，墓地回owner。",
+      "affiliationOrOwnershipDefectFound": false,
+      "historicalCorrection": null,
+      "interactionRulingPending": false,
+      "compiledDefinition": {
+        "abilities": [
+          {
+            "costs": [],
+            "event": null,
+            "key": "sacrifice-player",
+            "label": "快速行动",
+            "modes": [],
+            "ops": [
+              {
+                "SacrificeChosen": {
+                  "Target": 0
+                }
+              }
+            ],
+            "requires_ready_source": false,
+            "response_policy": "Respondable",
+            "targets": [
+              {
+                "equipment_host": false,
+                "exclude_source": false,
+                "kind": "Any",
+                "max": 1,
+                "min": 1,
+                "printed_cost_max": null,
+                "range": "Anywhere",
+                "relation": "Any",
+                "requires_magic": false,
+                "subtype": null,
+                "subtypes_any": [],
+                "zone": "Player"
+              }
+            ],
+            "timing": "Fast"
+          }
+        ],
+        "attachment": null,
+        "graveyard_face_up": false,
+        "modifiers": [],
+        "traits": {
+          "barrier": false,
+          "cannot_be_equipped": false,
+          "guard": 0,
+          "kill": 0,
+          "public": false,
+          "retreat": false,
+          "unlimited_copies": false
+        }
+      }
+    },
+    {
+      "id": "DQJC108",
+      "name": "佛罗伦萨",
+      "scope": "published39",
+      "originalImage": "resource/ymsj-fun.github.io/cards/DQJC108 佛罗伦萨.jpg",
+      "imageSha256": "5dd2014f700e73b7f8dda56b6c281f29946b6d36a96bdd3838af4b2b393f7c6e",
+      "actuallyViewedInThisAudit": true,
+      "printedRules": [
+        "【赢取触发】由赢取佛罗伦萨的玩家开始，每位玩家可以各将一个由其操控的暗藏者翻面，且不需支付其费用。"
+      ],
+      "semanticConclusion": "自赢区者Actor起逐位Context，仅各自controller的暗藏者可选；免费/忠诚沿用已批准版本FAQ。",
+      "affiliationOrOwnershipDefectFound": false,
+      "historicalCorrection": null,
+      "interactionRulingPending": false,
+      "compiledDefinition": {
+        "abilities": [
+          {
+            "costs": [],
+            "event": "RegionWon",
+            "key": "free-reveal-win",
+            "label": "赢取触发",
+            "modes": [],
+            "ops": [
+              {
+                "ForEachLivingPlayerFromActor": [
+                  {
+                    "FreeReveal": {
+                      "player": "Context",
+                      "require_loyalty": false
+                    }
+                  }
+                ]
+              }
+            ],
+            "requires_ready_source": false,
+            "response_policy": "Respondable",
+            "targets": [],
+            "timing": "Fast"
+          }
+        ],
+        "attachment": null,
+        "graveyard_face_up": false,
+        "modifiers": [],
+        "traits": {
+          "barrier": false,
+          "cannot_be_equipped": false,
+          "guard": 0,
+          "kill": 0,
+          "public": false,
+          "retreat": false,
+          "unlimited_copies": false
+        }
+      }
+    },
+    {
+      "id": "DQJC109",
+      "name": "京都",
+      "scope": "published39",
+      "originalImage": "resource/ymsj-fun.github.io/cards/DQJC109 京都.jpg",
+      "imageSha256": "337e5a45432d1ad434f971e66938e7506fc2997649648b21b7a6b1246306c60a",
+      "actuallyViewedInThisAudit": true,
+      "printedRules": [
+        "【赢取触发】将所有非人类角色翻面为暗藏者。"
+      ],
+      "semanticConclusion": "所有非人类正面角色Any翻暗，保留owner/controller；普通结附清理仍回收owner。",
+      "affiliationOrOwnershipDefectFound": false,
+      "historicalCorrection": null,
+      "interactionRulingPending": false,
+      "compiledDefinition": {
+        "abilities": [
+          {
+            "costs": [],
+            "event": "RegionWon",
+            "key": "nonhuman-hide-win",
+            "label": "赢取触发",
+            "modes": [],
+            "ops": [
+              {
+                "HideMatching": {
+                  "except_subtype": "人类",
+                  "mix_hidden": false
+                }
+              }
+            ],
+            "requires_ready_source": false,
+            "response_policy": "Respondable",
+            "targets": [],
+            "timing": "Fast"
+          }
+        ],
+        "attachment": null,
+        "graveyard_face_up": false,
+        "modifiers": [],
+        "traits": {
+          "barrier": false,
+          "cannot_be_equipped": false,
+          "guard": 0,
+          "kill": 0,
+          "public": false,
+          "retreat": false,
+          "unlimited_copies": false
+        }
+      }
+    },
+    {
+      "id": "DQJC110",
+      "name": "伦敦",
+      "scope": "published39",
+      "originalImage": "resource/ymsj-fun.github.io/cards/DQJC110 伦敦.jpg",
+      "imageSha256": "ecafefa26f0d3fa1aca9f63ecb50dcb21c1a51c157890516e94676880d8a1026",
+      "actuallyViewedInThisAudit": true,
+      "printedRules": [
+        "【赢取触发】将所有角色翻面为暗藏者。然后若有玩家在同一地区操控多个暗藏者，则将这些暗藏者洗混。"
+      ],
+      "semanticConclusion": "所有角色翻暗；混牌按每位controller及地区分组，不能按队伍或owner合组。",
+      "affiliationOrOwnershipDefectFound": false,
+      "historicalCorrection": null,
+      "interactionRulingPending": false,
+      "compiledDefinition": {
+        "abilities": [
+          {
+            "costs": [],
+            "event": "RegionWon",
+            "key": "hide-and-mix-win",
+            "label": "赢取触发",
+            "modes": [],
+            "ops": [
+              {
+                "HideMatching": {
+                  "except_subtype": null,
+                  "mix_hidden": true
+                }
+              }
+            ],
+            "requires_ready_source": false,
+            "response_policy": "Respondable",
+            "targets": [],
+            "timing": "Fast"
+          }
+        ],
+        "attachment": null,
+        "graveyard_face_up": false,
+        "modifiers": [],
+        "traits": {
+          "barrier": false,
+          "cannot_be_equipped": false,
+          "guard": 0,
+          "kill": 0,
+          "public": false,
+          "retreat": false,
+          "unlimited_copies": false
+        }
+      }
+    },
+    {
+      "id": "DQJC111",
+      "name": "莫斯科",
+      "scope": "published39",
+      "originalImage": "resource/ymsj-fun.github.io/cards/DQJC111 莫斯科.jpg",
+      "imageSha256": "e2bc64426c121d41404d758a24b863f4c527a4f69e0582811599e2bc60471e41",
+      "actuallyViewedInThisAudit": true,
+      "printedRules": [
+        "【赢取触发】由赢取莫斯科的玩家开始，每位玩家各牺牲一个角色，然后抓等同于他所牺牲角色的防御力数值的牌。"
+      ],
+      "semanticConclusion": "自赢区者起逐位Context，各人牺牲本人controller角色、抓自己的牌；墓地归被牺牲牌owner，防御快照沿用版本裁定。",
+      "affiliationOrOwnershipDefectFound": false,
+      "historicalCorrection": null,
+      "interactionRulingPending": false,
+      "compiledDefinition": {
+        "abilities": [
+          {
+            "costs": [],
+            "event": "RegionWon",
+            "key": "sacrifice-draw-win",
+            "label": "赢取触发",
+            "modes": [],
+            "ops": [
+              {
+                "ForEachLivingPlayerFromActor": [
+                  {
+                    "SacrificeAndDraw": "Context"
+                  }
+                ]
+              }
+            ],
+            "requires_ready_source": false,
+            "response_policy": "Respondable",
+            "targets": [],
+            "timing": "Fast"
+          }
+        ],
+        "attachment": null,
+        "graveyard_face_up": false,
+        "modifiers": [],
+        "traits": {
+          "barrier": false,
+          "cannot_be_equipped": false,
+          "guard": 0,
+          "kill": 0,
+          "public": false,
+          "retreat": false,
+          "unlimited_copies": false
+        }
+      }
+    },
+    {
+      "id": "DQJC115",
+      "name": "死者之城",
+      "scope": "published39",
+      "originalImage": "resource/ymsj-fun.github.io/cards/DQJC115 死者之城.jpg",
+      "imageSha256": "66fa6d8ceb4ff3529c0d43386782aeac5553c564a761ec47d4e351beb91d0e94",
+      "actuallyViewedInThisAudit": true,
+      "printedRules": [
+        "【赢取触发】选择一个地区，由赢取死者之城的玩家开始，每位玩家各将自己墓地中的一张角色牌正面进场并放置于该地区。"
+      ],
+      "semanticConclusion": "逐位Context各取本人墓地角色，正面进入同一已选地区；不从队友墓地选牌。",
+      "affiliationOrOwnershipDefectFound": false,
+      "historicalCorrection": null,
+      "interactionRulingPending": false,
+      "compiledDefinition": {
+        "abilities": [
+          {
+            "costs": [],
+            "event": "RegionWon",
+            "key": "graveyard-entry-win",
+            "label": "赢取触发",
+            "modes": [],
+            "ops": [
+              "ChooseRegion",
+              {
+                "ForEachLivingPlayerFromActor": [
+                  {
+                    "GraveyardEntry": {
+                      "player": "Context",
+                      "region": "Chosen"
+                    }
+                  }
+                ]
+              }
+            ],
+            "requires_ready_source": false,
+            "response_policy": "Respondable",
+            "targets": [],
+            "timing": "Fast"
+          }
+        ],
+        "attachment": null,
+        "graveyard_face_up": false,
+        "modifiers": [],
+        "traits": {
+          "barrier": false,
+          "cannot_be_equipped": false,
+          "guard": 0,
+          "kill": 0,
+          "public": false,
+          "retreat": false,
+          "unlimited_copies": false
+        }
+      }
+    },
+    {
+      "id": "DQJC116",
+      "name": "香港",
+      "scope": "published39",
+      "originalImage": "resource/ymsj-fun.github.io/cards/DQJC116 香港.jpg",
+      "imageSha256": "e9dfbc396a733b3bbe7ffcb2a6d67ea371ffe4ca4bd6fc0f4e74b1ee73485d4d",
+      "actuallyViewedInThisAudit": true,
+      "printedRules": [
+        "【赢取触发】每位玩家可以从他的牌库中寻找一张附属牌，同时展示并置于各自手中，然后将牌库洗牌。"
+      ],
+      "semanticConclusion": "每人检索自己牌库的附属并入各自手，独立私密承诺，全部选完才共同展示/洗牌。",
+      "affiliationOrOwnershipDefectFound": false,
+      "historicalCorrection": null,
+      "interactionRulingPending": false,
+      "compiledDefinition": {
+        "abilities": [
+          {
+            "costs": [],
+            "event": "RegionWon",
+            "key": "simultaneous-search-win",
+            "label": "赢取触发",
+            "modes": [],
+            "ops": [
+              {
+                "SimultaneousSearch": {
+                  "filter": {
+                    "Kind": "attachment"
+                  }
+                }
+              }
+            ],
+            "requires_ready_source": false,
+            "response_policy": "Respondable",
+            "targets": [],
+            "timing": "Fast"
+          }
+        ],
+        "attachment": null,
+        "graveyard_face_up": false,
+        "modifiers": [],
+        "traits": {
+          "barrier": false,
+          "cannot_be_equipped": false,
+          "guard": 0,
+          "kill": 0,
+          "public": false,
+          "retreat": false,
+          "unlimited_copies": false
+        }
+      }
+    },
+    {
+      "id": "BQ022",
+      "name": "合金指虎",
+      "scope": "published39",
+      "originalImage": "resource/ymsj-fun.github.io/cards/BQ022 合金指虎.jpg",
+      "imageSha256": "f1b58f299c3d901494c388be2123b325ca20c1f341106fe860d9761ded8231eb",
+      "actuallyViewedInThisAudit": true,
+      "printedRules": [
+        "结附于目标人类或吸血鬼角色",
+        "回收（当受此结附的角色离场时，将该附属移回你的手中）",
+        "持续 受此结附的角色获得永久战斗1。"
+      ],
+      "semanticConclusion": "宿主Any，人类/吸血鬼，不继承宿主controller。卡括注你的手中须按P17回收专门定义回附属owner；赢区组合优先未裁定。",
+      "affiliationOrOwnershipDefectFound": false,
+      "historicalCorrection": null,
+      "interactionRulingPending": true,
+      "compiledDefinition": {
+        "abilities": [
+          {
+            "costs": [],
+            "event": null,
+            "key": "attach",
+            "label": "结附",
+            "modes": [],
+            "ops": [],
+            "requires_ready_source": false,
+            "response_policy": "Respondable",
+            "targets": [
+              {
+                "equipment_host": true,
+                "exclude_source": false,
+                "kind": "Character",
+                "max": 1,
+                "min": 1,
+                "printed_cost_max": null,
+                "range": "Anywhere",
+                "relation": "Any",
+                "requires_magic": false,
+                "subtype": null,
+                "subtypes_any": [
+                  "人类",
+                  "吸血鬼"
+                ],
+                "zone": "Board"
+              }
+            ],
+            "timing": "Standard"
+          }
+        ],
+        "attachment": {
+          "host": {
+            "equipment_host": true,
+            "exclude_source": false,
+            "kind": "Character",
+            "max": 1,
+            "min": 1,
+            "printed_cost_max": null,
+            "range": "Anywhere",
+            "relation": "Any",
+            "requires_magic": false,
+            "subtype": null,
+            "subtypes_any": [
+              "人类",
+              "吸血鬼"
+            ],
+            "zone": "Board"
+          },
+          "host_icons": {
+            "combat": 1,
+            "influence": 0,
+            "investigation": 0
+          },
+          "host_leaves": "OwnerHand"
+        },
+        "graveyard_face_up": false,
+        "modifiers": [],
+        "traits": {
+          "barrier": false,
+          "cannot_be_equipped": false,
+          "guard": 0,
+          "kill": 0,
+          "public": false,
+          "retreat": false,
+          "unlimited_copies": false
+        }
+      }
+    },
+    {
+      "id": "JC084",
+      "name": "街头混混",
+      "scope": "published39",
+      "originalImage": "resource/ymsj-fun.github.io/cards/JC084 街头混混.jpg",
+      "imageSha256": "3d068fa87dc6f9f7aef426637f71de22aef05f0f278dc096fad0ca50dee99872",
+      "actuallyViewedInThisAudit": true,
+      "printedRules": [
+        "【持续】若位于有本方势力标志的地区，街头混混获得临时势力1。",
+        "【持续】若位于有敌方势力标志的地区，街头混混获得临时调查1。"
+      ],
+      "semanticConclusion": "本方/敌方势力标志由controller选择队伍；P21明确同队共用标志，此处不能机械改为个人。",
+      "affiliationOrOwnershipDefectFound": false,
+      "historicalCorrection": null,
+      "interactionRulingPending": false,
+      "compiledDefinition": {
+        "abilities": [],
+        "attachment": null,
+        "graveyard_face_up": false,
+        "modifiers": [
+          {
+            "ConditionalIcons": {
+              "condition": {
+                "RegionInfluence": {
+                  "friendly": true,
+                  "minimum": 1
+                }
+              },
+              "permanent": {
+                "combat": 0,
+                "influence": 0,
+                "investigation": 0
+              },
+              "temporary": {
+                "combat": 0,
+                "influence": 1,
+                "investigation": 0
+              }
+            }
+          },
+          {
+            "ConditionalIcons": {
+              "condition": {
+                "RegionInfluence": {
+                  "friendly": false,
+                  "minimum": 1
+                }
+              },
+              "permanent": {
+                "combat": 0,
+                "influence": 0,
+                "investigation": 0
+              },
+              "temporary": {
+                "combat": 0,
+                "influence": 0,
+                "investigation": 1
+              }
+            }
+          }
+        ],
+        "traits": {
+          "barrier": false,
+          "cannot_be_equipped": false,
+          "guard": 0,
+          "kill": 0,
+          "public": false,
+          "retreat": false,
+          "unlimited_copies": false
+        }
+      }
+    },
+    {
+      "id": "JC085",
+      "name": "复生行尸",
+      "scope": "published39",
+      "originalImage": "resource/ymsj-fun.github.io/cards/JC085 复生行尸.jpg",
+      "imageSha256": "f568ed4c26fc244830d840f0133eb1a78111aceff53a4a345f8ca44c1552aee2",
+      "actuallyViewedInThisAudit": true,
+      "printedRules": [
+        "【持续】若你的资产区具有【死亡】，则复生行尸获得【临时势力】。",
+        "【墓地行动】你可以从墓地中正面打出复生行尸，就如同其在你手中一样。（你仍需要支付其费用，且需满足其忠诚需求。）"
+      ],
+      "semanticConclusion": "你的资产按controller本人，不共享队友领域；墓地正面出牌仅本人墓地，普通费用/忠诚与instance更新。",
+      "affiliationOrOwnershipDefectFound": false,
+      "historicalCorrection": null,
+      "interactionRulingPending": false,
+      "compiledDefinition": {
+        "abilities": [],
+        "attachment": null,
+        "graveyard_face_up": true,
+        "modifiers": [
+          {
+            "ConditionalIcons": {
+              "condition": {
+                "AssetDomain": {
+                  "magic": "Death",
+                  "minimum": 1
+                }
+              },
+              "permanent": {
+                "combat": 0,
+                "influence": 0,
+                "investigation": 0
+              },
+              "temporary": {
+                "combat": 0,
+                "influence": 1,
+                "investigation": 0
+              }
+            }
+          }
+        ],
+        "traits": {
+          "barrier": false,
+          "cannot_be_equipped": false,
+          "guard": 0,
+          "kill": 0,
+          "public": false,
+          "retreat": false,
+          "unlimited_copies": false
+        }
+      }
+    },
+    {
+      "id": "JC088",
+      "name": "职业杀手",
+      "scope": "local9",
+      "originalImage": "resource/ymsj-fun.github.io/cards/JC088 职业杀手.jpg",
+      "imageSha256": "9c270203639dae978acb65e9255ac34b5a5d5192e681f8aafd63018ede301a5f",
+      "actuallyViewedInThisAudit": true,
+      "printedRules": [
+        "【现身触发】消灭位于本地区，且印刷费用小于或等于2的目标角色。",
+        "【快速行动】2：潜伏。（将该角色翻面为暗藏者）"
+      ],
+      "semanticConclusion": "现身目标Any，同区/印刷费<=2；自潜伏只该instance且本人付费，保留owner/controller，死亡归owner。",
+      "affiliationOrOwnershipDefectFound": false,
+      "historicalCorrection": null,
+      "interactionRulingPending": false,
+      "compiledDefinition": {
+        "abilities": [
+          {
+            "costs": [],
+            "event": "Reveal",
+            "key": "destroy-cheap-reveal",
+            "label": "现身触发",
+            "modes": [],
+            "ops": [
+              {
+                "Destroy": {
+                  "Target": 0
+                }
+              }
+            ],
+            "requires_ready_source": false,
+            "response_policy": "Respondable",
+            "targets": [
+              {
+                "equipment_host": false,
+                "exclude_source": false,
+                "kind": "Character",
+                "max": 1,
+                "min": 1,
+                "printed_cost_max": 2,
+                "range": "SourceRegion",
+                "relation": "Any",
+                "requires_magic": false,
+                "subtype": null,
+                "subtypes_any": [],
+                "zone": "Board"
+              }
+            ],
+            "timing": "Fast"
+          },
+          {
+            "costs": [
+              {
+                "Assets": 2
+              }
+            ],
+            "event": null,
+            "key": "hide-self",
+            "label": "快速行动",
+            "modes": [],
+            "ops": [
+              {
+                "Hide": "Source"
+              }
+            ],
+            "requires_ready_source": false,
+            "response_policy": "Respondable",
+            "targets": [],
+            "timing": "Fast"
+          }
+        ],
+        "attachment": null,
+        "graveyard_face_up": false,
+        "modifiers": [],
+        "traits": {
+          "barrier": false,
+          "cannot_be_equipped": false,
+          "guard": 0,
+          "kill": 0,
+          "public": false,
+          "retreat": false,
+          "unlimited_copies": false
+        }
+      }
+    },
+    {
+      "id": "JC001",
+      "name": "通灵猫头鹰",
+      "scope": "local9",
+      "originalImage": "resource/ymsj-fun.github.io/cards/JC001 通灵猫头鹰.jpg",
+      "imageSha256": "33b9fd53b30630010a49a520d9e2b89d608822706e67e7c667682c3d1151e312",
+      "actuallyViewedInThisAudit": true,
+      "printedRules": [
+        "不能被装备结附。",
+        "【持续】若你的资产区具有心灵2，则通灵猫头鹰获得临时调查1。"
+      ],
+      "semanticConclusion": "你的资产区心灵2按controller本人，owner/队友资产不贡献；不能被装备结附无阵营限制。",
+      "affiliationOrOwnershipDefectFound": false,
+      "historicalCorrection": null,
+      "interactionRulingPending": false,
+      "compiledDefinition": {
+        "abilities": [],
+        "attachment": null,
+        "graveyard_face_up": false,
+        "modifiers": [
+          {
+            "ConditionalIcons": {
+              "condition": {
+                "AssetDomain": {
+                  "magic": "Mind",
+                  "minimum": 2
+                }
+              },
+              "permanent": {
+                "combat": 0,
+                "influence": 0,
+                "investigation": 0
+              },
+              "temporary": {
+                "combat": 0,
+                "influence": 0,
+                "investigation": 1
+              }
+            }
+          }
+        ],
+        "traits": {
+          "barrier": false,
+          "cannot_be_equipped": true,
+          "guard": 0,
+          "kill": 0,
+          "public": false,
+          "retreat": false,
+          "unlimited_copies": false
+        }
+      }
+    },
+    {
+      "id": "BQ083",
+      "name": "索命骷髅",
+      "scope": "local9",
+      "originalImage": "resource/ymsj-fun.github.io/cards/BQ083 索命骷髅.jpg",
+      "imageSha256": "619db97c8309d903e3781448c6ad35db91bb5f2e4b5660b6e0eef65fcbd6e675",
+      "actuallyViewedInThisAudit": true,
+      "printedRules": [
+        "进场触发 消灭本地区的目标角色。"
+      ],
+      "semanticConclusion": "本地区正面目标Any，包括自己/队友/敌方，屏障按目标controller复验；死亡归owner。",
+      "affiliationOrOwnershipDefectFound": false,
+      "historicalCorrection": null,
+      "interactionRulingPending": false,
+      "compiledDefinition": {
+        "abilities": [
+          {
+            "costs": [],
+            "event": "Enter",
+            "key": "destroy-local-entry",
+            "label": "进场触发",
+            "modes": [],
+            "ops": [
+              {
+                "Destroy": {
+                  "Target": 0
+                }
+              }
+            ],
+            "requires_ready_source": false,
+            "response_policy": "Respondable",
+            "targets": [
+              {
+                "equipment_host": false,
+                "exclude_source": false,
+                "kind": "Character",
+                "max": 1,
+                "min": 1,
+                "printed_cost_max": null,
+                "range": "SourceRegion",
+                "relation": "Any",
+                "requires_magic": false,
+                "subtype": null,
+                "subtypes_any": [],
+                "zone": "Board"
+              }
+            ],
+            "timing": "Fast"
+          }
+        ],
+        "attachment": null,
+        "graveyard_face_up": false,
+        "modifiers": [],
+        "traits": {
+          "barrier": false,
+          "cannot_be_equipped": false,
+          "guard": 0,
+          "kill": 0,
+          "public": false,
+          "retreat": false,
+          "unlimited_copies": false
+        }
+      }
+    },
+    {
+      "id": "JC006",
+      "name": "逆转异界之门",
+      "scope": "local9",
+      "originalImage": "resource/ymsj-fun.github.io/cards/JC006 逆转异界之门.jpg",
+      "imageSha256": "beec2b1d758e0186cdc4cb57e7c52d6e8df2a4623564e5f212b3d878abb91bf4",
+      "actuallyViewedInThisAudit": true,
+      "printedRules": [
+        "【快速行动】将目标具有魔法领域图标的角色移回其拥有者手上。"
+      ],
+      "semanticConclusion": "有领域正面目标Any，返回OwnerHand而非ActorHand，普通离场回收按各附属owner。",
+      "affiliationOrOwnershipDefectFound": false,
+      "historicalCorrection": null,
+      "interactionRulingPending": false,
+      "compiledDefinition": {
+        "abilities": [
+          {
+            "costs": [],
+            "event": null,
+            "key": "return-magic",
+            "label": "快速行动",
+            "modes": [],
+            "ops": [
+              {
+                "Move": [
+                  {
+                    "Target": 0
+                  },
+                  "OwnerHand"
+                ]
+              }
+            ],
+            "requires_ready_source": false,
+            "response_policy": "Respondable",
+            "targets": [
+              {
+                "equipment_host": false,
+                "exclude_source": false,
+                "kind": "Character",
+                "max": 1,
+                "min": 1,
+                "printed_cost_max": null,
+                "range": "Anywhere",
+                "relation": "Any",
+                "requires_magic": true,
+                "subtype": null,
+                "subtypes_any": [],
+                "zone": "Board"
+              }
+            ],
+            "timing": "Fast"
+          }
+        ],
+        "attachment": null,
+        "graveyard_face_up": false,
+        "modifiers": [],
+        "traits": {
+          "barrier": false,
+          "cannot_be_equipped": false,
+          "guard": 0,
+          "kill": 0,
+          "public": false,
+          "retreat": false,
+          "unlimited_copies": false
+        }
+      }
+    },
+    {
+      "id": "XQ16",
+      "name": "法务部律师团",
+      "scope": "local9",
+      "originalImage": "resource/ymsj-fun.github.io/cards/XQ16 法务部律师团.jpg",
+      "imageSha256": "2ae947c0c5dccd45ae495d3c828ce9b4e1453c34dfb6e24c5e61eea8338cff80",
+      "actuallyViewedInThisAudit": true,
+      "printedRules": [
+        "公开",
+        "【进场触发】将另一个目标本方角色翻面为暗藏者。"
+      ],
+      "semanticConclusion": "53e47ca已将旧FriendlyTeam修为ControlledByActor；另一张本人controller角色，排除源；响应后转为队友控制则原目标失效。",
+      "affiliationOrOwnershipDefectFound": false,
+      "historicalCorrection": "53e47ca",
+      "interactionRulingPending": false,
+      "compiledDefinition": {
+        "abilities": [
+          {
+            "costs": [],
+            "event": "Enter",
+            "key": "hide-friend-entry",
+            "label": "进场触发",
+            "modes": [],
+            "ops": [
+              {
+                "Hide": {
+                  "Target": 0
+                }
+              }
+            ],
+            "requires_ready_source": false,
+            "response_policy": "Respondable",
+            "targets": [
+              {
+                "equipment_host": false,
+                "exclude_source": true,
+                "kind": "Character",
+                "max": 1,
+                "min": 1,
+                "printed_cost_max": null,
+                "range": "Anywhere",
+                "relation": "ControlledByActor",
+                "requires_magic": false,
+                "subtype": null,
+                "subtypes_any": [],
+                "zone": "Board"
+              }
+            ],
+            "timing": "Fast"
+          }
+        ],
+        "attachment": null,
+        "graveyard_face_up": false,
+        "modifiers": [],
+        "traits": {
+          "barrier": false,
+          "cannot_be_equipped": false,
+          "guard": 0,
+          "kill": 0,
+          "public": true,
+          "retreat": false,
+          "unlimited_copies": false
+        }
+      }
+    },
+    {
+      "id": "JC047",
+      "name": "烈火重围",
+      "scope": "local9",
+      "originalImage": "resource/ymsj-fun.github.io/cards/JC047 烈火重围.jpg",
+      "imageSha256": "74d7e3c4bf75c52538fce551dda97f28e5b51d7d64ffbe89c9d427296a3ce9d6",
+      "actuallyViewedInThisAudit": true,
+      "printedRules": [
+        "【标准行动】对目标地区上的所有角色造成1点伤害。"
+      ],
+      "semanticConclusion": "地区Any、角色集合Any；群伤无阵营筛选，死亡各回owner。",
+      "affiliationOrOwnershipDefectFound": false,
+      "historicalCorrection": null,
+      "interactionRulingPending": false,
+      "compiledDefinition": {
+        "abilities": [
+          {
+            "costs": [],
+            "event": null,
+            "key": "damage-region",
+            "label": "标准行动",
+            "modes": [],
+            "ops": [
+              {
+                "DamageMatching": {
+                  "amount": 1,
+                  "selector": {
+                    "kind": "Character",
+                    "region": {
+                      "Target": 0
+                    },
+                    "relation": "Any",
+                    "subtype": null
+                  }
+                }
+              }
+            ],
+            "requires_ready_source": false,
+            "response_policy": "Respondable",
+            "targets": [
+              {
+                "equipment_host": false,
+                "exclude_source": false,
+                "kind": "Any",
+                "max": 1,
+                "min": 1,
+                "printed_cost_max": null,
+                "range": "Anywhere",
+                "relation": "Any",
+                "requires_magic": false,
+                "subtype": null,
+                "subtypes_any": [],
+                "zone": "Region"
+              }
+            ],
+            "timing": "Standard"
+          }
+        ],
+        "attachment": null,
+        "graveyard_face_up": false,
+        "modifiers": [],
+        "traits": {
+          "barrier": false,
+          "cannot_be_equipped": false,
+          "guard": 0,
+          "kill": 0,
+          "public": false,
+          "retreat": false,
+          "unlimited_copies": false
+        }
+      }
+    },
+    {
+      "id": "JC007",
+      "name": "常春藤派学者",
+      "scope": "local9",
+      "originalImage": "resource/ymsj-fun.github.io/cards/JC007 常春藤派学者.jpg",
+      "imageSha256": "835b85f48270aa66f10f01fa4de7483b0ccf80dcf14e6dc5596639592e14f1ce",
+      "actuallyViewedInThisAudit": true,
+      "printedRules": [
+        "【进场触发】从你的牌库中寻找一张印刷费用小于或等于2的法术或书籍牌，展示该牌后置于你的手中，然后洗牌。"
+      ],
+      "semanticConclusion": "你的牌库/手牌均Actor本人；按印刷费用与类别检索，展示后入本人手并洗牌。",
+      "affiliationOrOwnershipDefectFound": false,
+      "historicalCorrection": null,
+      "interactionRulingPending": false,
+      "compiledDefinition": {
+        "abilities": [
+          {
+            "costs": [],
+            "event": "Enter",
+            "key": "search-cheap-spell-book-entry",
+            "label": "进场触发",
+            "modes": [],
+            "ops": [
+              {
+                "Search": {
+                  "filter": {
+                    "PrintedCostAndSubtypes": {
+                      "max_cost": 2,
+                      "subtypes": [
+                        "法术",
+                        "书籍"
+                      ]
+                    }
+                  },
+                  "optional": false,
+                  "player": "Actor",
+                  "to_top": false
+                }
+              }
+            ],
+            "requires_ready_source": false,
+            "response_policy": "Respondable",
+            "targets": [],
+            "timing": "Fast"
+          }
+        ],
+        "attachment": null,
+        "graveyard_face_up": false,
+        "modifiers": [],
+        "traits": {
+          "barrier": false,
+          "cannot_be_equipped": false,
+          "guard": 0,
+          "kill": 0,
+          "public": false,
+          "retreat": false,
+          "unlimited_copies": false
+        }
+      }
+    },
+    {
+      "id": "JC075",
+      "name": "雪地救援队",
+      "scope": "local9",
+      "originalImage": "resource/ymsj-fun.github.io/cards/JC075 雪地救援队.jpg",
+      "imageSha256": "7db960c7050614dae10a8e752db2567670169e782986e39a789842259231e434",
+      "actuallyViewedInThisAudit": true,
+      "printedRules": [
+        "公开（该角色不能被秘密派遣为暗藏者）",
+        "【快速】行动2，【横置】：将另一个目标本方角色移回其拥有者手上。"
+      ],
+      "semanticConclusion": "本方=ControlledByActor而非OwnedByActor/FriendlyTeam；另一个正面角色返回其OwnerHand，费用2与横置由Actor承担。",
+      "affiliationOrOwnershipDefectFound": false,
+      "historicalCorrection": null,
+      "interactionRulingPending": false,
+      "compiledDefinition": {
+        "abilities": [
+          {
+            "costs": [
+              {
+                "Assets": 2
+              },
+              "ExhaustSource"
+            ],
+            "event": null,
+            "key": "rescue",
+            "label": "快速行动",
+            "modes": [],
+            "ops": [
+              {
+                "Move": [
+                  {
+                    "Target": 0
+                  },
+                  "OwnerHand"
+                ]
+              }
+            ],
+            "requires_ready_source": false,
+            "response_policy": "Respondable",
+            "targets": [
+              {
+                "equipment_host": false,
+                "exclude_source": true,
+                "kind": "Character",
+                "max": 1,
+                "min": 1,
+                "printed_cost_max": null,
+                "range": "Anywhere",
+                "relation": "ControlledByActor",
+                "requires_magic": false,
+                "subtype": null,
+                "subtypes_any": [],
+                "zone": "Board"
+              }
+            ],
+            "timing": "Fast"
+          }
+        ],
+        "attachment": null,
+        "graveyard_face_up": false,
+        "modifiers": [],
+        "traits": {
+          "barrier": false,
+          "cannot_be_equipped": false,
+          "guard": 0,
+          "kill": 0,
+          "public": true,
+          "retreat": false,
+          "unlimited_copies": false
+        }
+      }
+    },
+    {
+      "id": "JC104",
+      "name": "占卜师",
+      "scope": "local9",
+      "originalImage": "resource/ymsj-fun.github.io/cards/JC104 占卜师.jpg",
+      "imageSha256": "877aa980256730bb35350f1b99c2aa75b9110cd5905e61412664e2a89ef4e8da",
+      "actuallyViewedInThisAudit": true,
+      "printedRules": [
+        "【进场触发】预测3。（检视你牌库顶的三张牌，将其中任意数量的牌以任意顺序置于你的牌库顶，将其余的牌以任意顺序置于你的牌库底。）"
+      ],
+      "semanticConclusion": "你的牌库=Actor本人，私密Forecast3仅本人排序，既不共享队友牌库也不抓牌。",
+      "affiliationOrOwnershipDefectFound": false,
+      "historicalCorrection": null,
+      "interactionRulingPending": false,
+      "compiledDefinition": {
+        "abilities": [
+          {
+            "costs": [],
+            "event": "Enter",
+            "key": "forecast-entry",
+            "label": "进场触发",
+            "modes": [],
+            "ops": [
+              {
+                "Forecast": {
+                  "count": 3,
+                  "player": "Actor"
+                }
+              }
+            ],
+            "requires_ready_source": false,
+            "response_policy": "Respondable",
+            "targets": [],
+            "timing": "Fast"
+          }
+        ],
+        "attachment": null,
+        "graveyard_face_up": false,
+        "modifiers": [],
+        "traits": {
+          "barrier": false,
+          "cannot_be_equipped": false,
+          "guard": 0,
+          "kill": 0,
+          "public": false,
+          "retreat": false,
+          "unlimited_copies": false
+        }
+      }
+    }
+  ]
+}

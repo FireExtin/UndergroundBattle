@@ -1,0 +1,722 @@
+{
+  "baseCommit": "8963fcd17b9dc9c6cf4e8347b936bc118cad4b11",
+  "preservedFiles": 142,
+  "productionUnchanged": true,
+  "onlyNewNativeTests": 3,
+  "newProductionFixes": 0,
+  "currentWasmSha256": "6bbd2ce9ffdefdb3c24b7c0ca1786440ce087e4be34cff6af7f6c4af5e7bbc51",
+  "currentWasmBytes": 1619119,
+  "checks": [
+    {
+      "file": "rust-game-wasm/src/lib.rs",
+      "scope": "full file",
+      "sha256": "e813ff003dfad6063d117333412e3dd15e70dd19967aa2b6279a30fe86deb4f3"
+    },
+    {
+      "file": "rust-game/data/card-research-index.json",
+      "scope": "full file",
+      "sha256": "8ebc08d35c4891051cd47dc611eb80462abaeb6325a4f5fc3b06f8ce364384cf"
+    },
+    {
+      "file": "rust-game/data/cards.json",
+      "scope": "full file",
+      "sha256": "303d80b2672960086da75658746a29fef28ec9047ed7e9cf4728622dfa3b2c82"
+    },
+    {
+      "file": "rust-game/data/faction-coverage.json",
+      "scope": "full file",
+      "sha256": "4b1368ec32910b9802d20d451f141e16ea36209795c156ef454f77a0b07b55ff"
+    },
+    {
+      "file": "rust-game/data/source-verification.json",
+      "scope": "full file",
+      "sha256": "c83a9ee0cbfe741148d88e7c9bc49fc1cf96eaaa21bf0b192094ac361d224bd3"
+    },
+    {
+      "file": "rust-game/src/attachment.rs",
+      "scope": "full file",
+      "sha256": "aa6fa58bcaea26bfe45201dfe9100ff7feb8664e946efc7db127e7fa1e7049b7"
+    },
+    {
+      "file": "rust-game/src/attributes.rs",
+      "scope": "full file",
+      "sha256": "97bf74643711a1868ec3c39494386da28e3779ccc87e3428b2322a7fd719858e"
+    },
+    {
+      "file": "rust-game/src/bin/hegemony-audit.rs",
+      "scope": "full file",
+      "sha256": "6e1d4f5cb0b803f9aa4bc233dfb2445cbddb2801522846963aa2caf2b2090e2e"
+    },
+    {
+      "file": "rust-game/src/catalog.rs",
+      "scope": "full file",
+      "sha256": "8d097e72da27c084acbce20d5464024ed25c669c1e063c18aff1b6f3d63c5e47"
+    },
+    {
+      "file": "rust-game/src/deck.rs",
+      "scope": "full file",
+      "sha256": "dc4238c613be05d4ee62b54a4b8855cb1dad3c449ee867baa9f8a14427d91f47"
+    },
+    {
+      "file": "rust-game/src/engine.rs",
+      "scope": "production prefix before cfg(test)",
+      "sha256": "29dd479650e74cc2346d6784919d0d7bd1708dfc932d4c48af432e41d9db9f0e"
+    },
+    {
+      "file": "rust-game/src/lib.rs",
+      "scope": "full file",
+      "sha256": "e5f095897837f98dc13564a1f563585d3d991b4eacc352a86e23a9ca853ee163"
+    },
+    {
+      "file": "rust-game/src/main.rs",
+      "scope": "full file",
+      "sha256": "b19047fc01dd00d864860551b41b2b8be883c04d77b158691b3bdc44252acf2e"
+    },
+    {
+      "file": "rust-game/src/model.rs",
+      "scope": "full file",
+      "sha256": "0d2cb13698a302f24eef9212d23403cd4405092706f8617050d55e16bfe16355"
+    },
+    {
+      "file": "rust-game/src/play_sources.rs",
+      "scope": "full file",
+      "sha256": "f1a80f2f4d34e2b4c61336b176e180dbca7551fbd82e752d3c80757418638dfd"
+    },
+    {
+      "file": "rust-game/src/resolution.rs",
+      "scope": "full file",
+      "sha256": "2aa0d66bb0d562595f98e3d9faa2af149eb92c05a06035d4f99cc635508c2c42"
+    },
+    {
+      "file": "rust-game/src/room.rs",
+      "scope": "full file",
+      "sha256": "dc83ff7706936efc9212e3f7a8be79965912d92769092c20df8df11d2d08d56d"
+    },
+    {
+      "file": "rust-game/src/rules.rs",
+      "scope": "full file",
+      "sha256": "e1781b1cd04f8df3e96d950079acf99b84b349c44419f59dcf366c1d998638c3"
+    },
+    {
+      "file": "rust-game/src/service.rs",
+      "scope": "full file",
+      "sha256": "c086433fe3e9b408332c1426c5637b4c1f6c649b2c40b382f4e5f1a102a5b512"
+    },
+    {
+      "file": "rust-game/src/world.rs",
+      "scope": "full file",
+      "sha256": "84f3670bf2f24fdd9c9c8f3e18eccc8ca88bf809598baa0cbc0ebe808570eef1"
+    },
+    {
+      "file": "sites/drizzle/0000_numerous_lucky_pierre.sql",
+      "scope": "full file",
+      "sha256": "e7e71337892cba7558c9bd5a3c3beb78c109fa93d1775f0b13e5377030a78b43"
+    },
+    {
+      "file": "sites/drizzle/meta/0000_snapshot.json",
+      "scope": "full file",
+      "sha256": "a4e0d437f9b6d1c5f9cf2de0fbb7082f7a2dadf33f64e91cb0d7fc67780d254c"
+    },
+    {
+      "file": "sites/drizzle/meta/_journal.json",
+      "scope": "full file",
+      "sha256": "568a9e1bf452c42d07a8f4067732cc82fe6fbb1e0951efb750e3028d02b8f561"
+    },
+    {
+      "file": "sites/src/index.mjs",
+      "scope": "full file",
+      "sha256": "f6a1ae35a0361e2bad5422a9ab6d2e0a2c766c1e40c1c62bb0fe1446d5877551"
+    },
+    {
+      "file": "sites/src/kernel-router.mjs",
+      "scope": "full file",
+      "sha256": "e163dd6e984b7ac2036547f14cc4a49d54ce4aed30676a50f4d082bfa134ad77"
+    },
+    {
+      "file": "sites/src/kernel.mjs",
+      "scope": "full file",
+      "sha256": "556660e23e78ae68182a2636e1b53ef36ff9fc8043770a6c36c5a9e51894e26b"
+    },
+    {
+      "file": "sites/src/service.mjs",
+      "scope": "full file",
+      "sha256": "757930aad47a30dad7cd880b504b2c1a7b7a8c5a47905b6fba6f2f2647f88c02"
+    },
+    {
+      "file": "sites/src/storage-errors.mjs",
+      "scope": "full file",
+      "sha256": "6979b752d13a2143f1e250051e5e2df1c81a7afef93727023b84ee8043b5f1a0"
+    },
+    {
+      "file": "sites/src/store.mjs",
+      "scope": "full file",
+      "sha256": "39d50fc38e515a959d51f13a5673f5b3603edbc420b120c2326f49607f66d4d9"
+    },
+    {
+      "file": "web/public/cards/BQ022.jpg",
+      "scope": "full file",
+      "sha256": "f1b58f299c3d901494c388be2123b325ca20c1f341106fe860d9761ded8231eb"
+    },
+    {
+      "file": "web/public/cards/BQ083.jpg",
+      "scope": "full file",
+      "sha256": "619db97c8309d903e3781448c6ad35db91bb5f2e4b5660b6e0eef65fcbd6e675"
+    },
+    {
+      "file": "web/public/cards/DQJC107.jpg",
+      "scope": "full file",
+      "sha256": "339b9a130ea9c0a82bc5a20d34892a4de52b2ea777a1b0cfec340876d6a4b2b8"
+    },
+    {
+      "file": "web/public/cards/DQJC108.jpg",
+      "scope": "full file",
+      "sha256": "5dd2014f700e73b7f8dda56b6c281f29946b6d36a96bdd3838af4b2b393f7c6e"
+    },
+    {
+      "file": "web/public/cards/DQJC109.jpg",
+      "scope": "full file",
+      "sha256": "337e5a45432d1ad434f971e66938e7506fc2997649648b21b7a6b1246306c60a"
+    },
+    {
+      "file": "web/public/cards/DQJC110.jpg",
+      "scope": "full file",
+      "sha256": "ecafefa26f0d3fa1aca9f63ecb50dcb21c1a51c157890516e94676880d8a1026"
+    },
+    {
+      "file": "web/public/cards/DQJC111.jpg",
+      "scope": "full file",
+      "sha256": "e2bc64426c121d41404d758a24b863f4c527a4f69e0582811599e2bc60471e41"
+    },
+    {
+      "file": "web/public/cards/DQJC112.jpg",
+      "scope": "full file",
+      "sha256": "9efd49e63ad90c4849bcf123aec4c83cd63e8f135113c374412526be875832ad"
+    },
+    {
+      "file": "web/public/cards/DQJC113.jpg",
+      "scope": "full file",
+      "sha256": "3dcac24ae99667ac037001d85f54eb5b77bf83643222769726395571e7135c6e"
+    },
+    {
+      "file": "web/public/cards/DQJC114.jpg",
+      "scope": "full file",
+      "sha256": "7ded8662b423543bccedf93e67c098cf0effdd73791b30cc6aaa4acf7bf2a3f2"
+    },
+    {
+      "file": "web/public/cards/DQJC115.jpg",
+      "scope": "full file",
+      "sha256": "66fa6d8ceb4ff3529c0d43386782aeac5553c564a761ec47d4e351beb91d0e94"
+    },
+    {
+      "file": "web/public/cards/DQJC116.jpg",
+      "scope": "full file",
+      "sha256": "e9dfbc396a733b3bbe7ffcb2a6d67ea371ffe4ca4bd6fc0f4e74b1ee73485d4d"
+    },
+    {
+      "file": "web/public/cards/JC001.jpg",
+      "scope": "full file",
+      "sha256": "33b9fd53b30630010a49a520d9e2b89d608822706e67e7c667682c3d1151e312"
+    },
+    {
+      "file": "web/public/cards/JC002.jpg",
+      "scope": "full file",
+      "sha256": "21a698ae184e7f909d24ac5374c3eaf7af77f1043b91048cfc8c5a46f9b08680"
+    },
+    {
+      "file": "web/public/cards/JC003.jpg",
+      "scope": "full file",
+      "sha256": "027fc054dd7c7ef301108bf0b169e01f91228bf2e918b3ddb8d12e8d05603c3a"
+    },
+    {
+      "file": "web/public/cards/JC006.jpg",
+      "scope": "full file",
+      "sha256": "beec2b1d758e0186cdc4cb57e7c52d6e8df2a4623564e5f212b3d878abb91bf4"
+    },
+    {
+      "file": "web/public/cards/JC007.jpg",
+      "scope": "full file",
+      "sha256": "835b85f48270aa66f10f01fa4de7483b0ccf80dcf14e6dc5596639592e14f1ce"
+    },
+    {
+      "file": "web/public/cards/JC014.jpg",
+      "scope": "full file",
+      "sha256": "cd1969552197b3111e72ee4bb0725dc4ff513ddb8c940b568b7221699c248bb6"
+    },
+    {
+      "file": "web/public/cards/JC016.jpg",
+      "scope": "full file",
+      "sha256": "0a3b20635a7fa8e04d6f17ab7a7112a596ed0e7f21293d3e4f4a985463416c35"
+    },
+    {
+      "file": "web/public/cards/JC042.jpg",
+      "scope": "full file",
+      "sha256": "242a17c708a96d27e95b23f9ab339e01d5b8c1eda282a2f7de8f51ba2c1bdbef"
+    },
+    {
+      "file": "web/public/cards/JC047.jpg",
+      "scope": "full file",
+      "sha256": "74d7e3c4bf75c52538fce551dda97f28e5b51d7d64ffbe89c9d427296a3ce9d6"
+    },
+    {
+      "file": "web/public/cards/JC049.jpg",
+      "scope": "full file",
+      "sha256": "340c3fbc650b755d72c31ca06a8c379bacb572df6df061a9c52d0fb386d02d58"
+    },
+    {
+      "file": "web/public/cards/JC056.jpg",
+      "scope": "full file",
+      "sha256": "75503118eee2b80d23f59ea950884c152f33d28d552d0d051ed872f441810e6d"
+    },
+    {
+      "file": "web/public/cards/JC058.jpg",
+      "scope": "full file",
+      "sha256": "6585e89991049cb05e75db43143320fd12bf6be781847648d551cb433e85119a"
+    },
+    {
+      "file": "web/public/cards/JC059.jpg",
+      "scope": "full file",
+      "sha256": "7d9639d3115dcea8e42f21e1145397f3be4392a80fa0b6c040d7302139eff0ad"
+    },
+    {
+      "file": "web/public/cards/JC063.jpg",
+      "scope": "full file",
+      "sha256": "1b20b9c7392543bf975b6391d227e03e4f50f3fd3134e7c6aa494e7357f88165"
+    },
+    {
+      "file": "web/public/cards/JC075.jpg",
+      "scope": "full file",
+      "sha256": "7db960c7050614dae10a8e752db2567670169e782986e39a789842259231e434"
+    },
+    {
+      "file": "web/public/cards/JC084.jpg",
+      "scope": "full file",
+      "sha256": "3d068fa87dc6f9f7aef426637f71de22aef05f0f278dc096fad0ca50dee99872"
+    },
+    {
+      "file": "web/public/cards/JC085.jpg",
+      "scope": "full file",
+      "sha256": "f568ed4c26fc244830d840f0133eb1a78111aceff53a4a345f8ca44c1552aee2"
+    },
+    {
+      "file": "web/public/cards/JC086.jpg",
+      "scope": "full file",
+      "sha256": "1bd405a60feeb41d60611050f4a37dd90dc971e1808ba712b66fe0cd37d2d743"
+    },
+    {
+      "file": "web/public/cards/JC088.jpg",
+      "scope": "full file",
+      "sha256": "9c270203639dae978acb65e9255ac34b5a5d5192e681f8aafd63018ede301a5f"
+    },
+    {
+      "file": "web/public/cards/JC091.jpg",
+      "scope": "full file",
+      "sha256": "2ea5d65c270a107371f7d69cb22de3e4e60f9e9db81d4e6959744bbfbf6d11cb"
+    },
+    {
+      "file": "web/public/cards/JC092.jpg",
+      "scope": "full file",
+      "sha256": "ea1ca5644c38831b659f29dcf4c7ec0cb5dc5a758b0b793ed120b24b74295947"
+    },
+    {
+      "file": "web/public/cards/JC104.jpg",
+      "scope": "full file",
+      "sha256": "877aa980256730bb35350f1b99c2aa75b9110cd5905e61412664e2a89ef4e8da"
+    },
+    {
+      "file": "web/public/cards/JC118.jpg",
+      "scope": "full file",
+      "sha256": "0f112c86afcfd0e9b2b6dea66597e24e57a95155f1b624534b2f9a4b980df97a"
+    },
+    {
+      "file": "web/public/cards/JC125.jpg",
+      "scope": "full file",
+      "sha256": "6392c2cdc2d9ea43deca6b26594618a2093ae887bd03d5ad29d130c7e329993a"
+    },
+    {
+      "file": "web/public/cards/JZ08.jpg",
+      "scope": "full file",
+      "sha256": "343561bd351e06811f9a1fc77b6a9fe08e6dfbace83d8c8abb8f6b43fb031d12"
+    },
+    {
+      "file": "web/public/cards/JZ54.jpg",
+      "scope": "full file",
+      "sha256": "c7902515865a26e1276d9e7a4bbd05c511704f76aee504c73539737012624af4"
+    },
+    {
+      "file": "web/public/cards/LC19.jpg",
+      "scope": "full file",
+      "sha256": "41c0fe55aff401721ec54fbb08174d52d36747f0821e32c6ddc5006bba9e9f71"
+    },
+    {
+      "file": "web/public/cards/LC20.jpg",
+      "scope": "full file",
+      "sha256": "961b508b54f78c561b98268da91d901a3536a330aef0ea8a49b81b9f6a278248"
+    },
+    {
+      "file": "web/public/cards/LC21.jpg",
+      "scope": "full file",
+      "sha256": "62b05d9f5349d53dd6d47dae7077566c1f5735529bc2bd813a45c1d7c3a183b9"
+    },
+    {
+      "file": "web/public/cards/LC22.jpg",
+      "scope": "full file",
+      "sha256": "26976ae01006603182b666cef0ea6960bc5d218dc904f2b1c760f3719f142b35"
+    },
+    {
+      "file": "web/public/cards/LC23.jpg",
+      "scope": "full file",
+      "sha256": "977959c6deb74b125b18a8b40758deab354396fdffd49b0d9bcc57197144f1c8"
+    },
+    {
+      "file": "web/public/cards/LC24.jpg",
+      "scope": "full file",
+      "sha256": "05b4c30ee93bb8ea9b96636e9da3fbcaa560f206aaa5b6c73b5c5ac283fddccb"
+    },
+    {
+      "file": "web/public/cards/XQ03.jpg",
+      "scope": "full file",
+      "sha256": "c6e85106105d23ef55df70ba06d6c8878b6ce279a727908fbdeab0a8495679b0"
+    },
+    {
+      "file": "web/public/cards/XQ12.jpg",
+      "scope": "full file",
+      "sha256": "4e9f3afa5f7f22d99fc89284e91586fba78a8ff2ee8827fc6a6ceeb41889fdc8"
+    },
+    {
+      "file": "web/public/cards/XQ16.jpg",
+      "scope": "full file",
+      "sha256": "2ae947c0c5dccd45ae495d3c828ce9b4e1453c34dfb6e24c5e61eea8338cff80"
+    },
+    {
+      "file": "web/public/cards/XQ49.jpg",
+      "scope": "full file",
+      "sha256": "8b160c52b18e49a7ef39085b63cc9a1b18531c02dc0ae3d92e2fedd874a29aca"
+    },
+    {
+      "file": "web/src/App.tsx",
+      "scope": "full file",
+      "sha256": "01f2aa2800f655c3fcb58709aeae3f8f748da1be2417b5382196d11fc0d994be"
+    },
+    {
+      "file": "web/src/app/AppShell.tsx",
+      "scope": "full file",
+      "sha256": "312862186ab6a684c1c676afd75d7121df21b49ed2d6915cc8849d8eb2a6927c"
+    },
+    {
+      "file": "web/src/components/ProjectOverview.tsx",
+      "scope": "full file",
+      "sha256": "b4374a57f25cc017bf0b41a8629684b408aa3c5038a945c3d571c8b1d5c2d9b1"
+    },
+    {
+      "file": "web/src/debugger/DebuggerShell.test.tsx",
+      "scope": "full file",
+      "sha256": "d77d2878904bab58015d7c3dd80227994d2152fb07a6e9be180e684335f61be0"
+    },
+    {
+      "file": "web/src/debugger/DebuggerShell.tsx",
+      "scope": "full file",
+      "sha256": "2ae500e1763c6014df351c0e9f33892145c6b2112e1ce06ef34e13a84b8aa24a"
+    },
+    {
+      "file": "web/src/debugger/LiveDebuggerShell.test.tsx",
+      "scope": "full file",
+      "sha256": "fd12526ba8663bece88c330995ff1b7daddadea257b8ff3cf91beb3d3bd2ec0c"
+    },
+    {
+      "file": "web/src/debugger/LiveDebuggerShell.tsx",
+      "scope": "full file",
+      "sha256": "5b9a3344bf15d8cf071a99d345b0dc88d41a2562900bf154e780451a3f85ada9"
+    },
+    {
+      "file": "web/src/debugger/components/ActionControlsPanel.tsx",
+      "scope": "full file",
+      "sha256": "a5859140f79c5afdc8443388a034d1880cd98aaff2510be005d744973362a6e6"
+    },
+    {
+      "file": "web/src/debugger/components/ActionLogPanel.tsx",
+      "scope": "full file",
+      "sha256": "d0e19239e0264ba714555be652ce095d1c0cbd68d86ad6076f2cbfb445d9c08a"
+    },
+    {
+      "file": "web/src/debugger/components/LegalityFailurePanel.tsx",
+      "scope": "full file",
+      "sha256": "36c787c6c22be0bb075d6ed7c63d5a90a4c3400d5a766a65f27fa3f7f45bc99e"
+    },
+    {
+      "file": "web/src/debugger/components/MatchStatusPanel.tsx",
+      "scope": "full file",
+      "sha256": "bbc4734aded12af1aedbaf63f5f24fcf3116b27fb300e0f185418a1586942566"
+    },
+    {
+      "file": "web/src/debugger/components/PlayerViewPanel.tsx",
+      "scope": "full file",
+      "sha256": "0329e54e2b3d4a4116088fa6ee59f003e0e605a990a0f0bde5f4450a9515ee1b"
+    },
+    {
+      "file": "web/src/debugger/components/StackPanel.tsx",
+      "scope": "full file",
+      "sha256": "658fa770a1de5a4f1c93e43d0c6984103f3820ea1d1500671666664b4f6b7904"
+    },
+    {
+      "file": "web/src/debugger/components/ViewerSwitcher.tsx",
+      "scope": "full file",
+      "sha256": "4cafa675b869b8eddb3ae737d61b587263cb00940de336b4ef9db0ff351990f2"
+    },
+    {
+      "file": "web/src/debugger/live.test.ts",
+      "scope": "full file",
+      "sha256": "05ba07e38bc1c345b236bed46a53d5aed9eec96fd557405d07e5ce03de592234"
+    },
+    {
+      "file": "web/src/debugger/live.ts",
+      "scope": "full file",
+      "sha256": "2cf54adcd46cad42cbd43b1a9dc97f5ed7e0163d64f9ae3bd1f17bd8251812a0"
+    },
+    {
+      "file": "web/src/debugger/liveModel.ts",
+      "scope": "full file",
+      "sha256": "6d5e84c4d941edd0c020ff72bba85004fb435381673b449fc0922e9b08105e33"
+    },
+    {
+      "file": "web/src/debugger/mockProtocol.ts",
+      "scope": "full file",
+      "sha256": "5781dc64455ca8010cf59120e3cdfea97a86431bfe912059b29226b76fd87e6a"
+    },
+    {
+      "file": "web/src/debugger/model.ts",
+      "scope": "full file",
+      "sha256": "95d887b10c615c1a3dc1794364daac0a642f12da32e09178ae16f24b5c7bb782"
+    },
+    {
+      "file": "web/src/debugger/protocol.ts",
+      "scope": "full file",
+      "sha256": "27303e4e320f9c9332c2e606ac25962116eb7ec6bd9f609bef8fde0448f69ebd"
+    },
+    {
+      "file": "web/src/game/Attachments.test.tsx",
+      "scope": "full file",
+      "sha256": "b8aad77a23a28472f79bfbec85457cbbc47dd05b94670e676b7a2b88f02d14c1"
+    },
+    {
+      "file": "web/src/game/AutoPass.test.tsx",
+      "scope": "full file",
+      "sha256": "4de351d7b8d7f3b916b471de74e28666ab5e58841676ab9457836fa2a520a5f6"
+    },
+    {
+      "file": "web/src/game/AutoPass.tsx",
+      "scope": "full file",
+      "sha256": "08df6e57f94e8f0774ca254fe7e127254027a43262b23eeed5bf9ca635ca8699"
+    },
+    {
+      "file": "web/src/game/CardTile.test.tsx",
+      "scope": "full file",
+      "sha256": "e959e7fa72a1e2793b5b68426b1e22490fd0c954bb1b9aa3e7e94aec2bb62832"
+    },
+    {
+      "file": "web/src/game/CardTile.tsx",
+      "scope": "full file",
+      "sha256": "559d50d0a5a22f6d226aee53ee8d38276981f1d7da54e614a12ca5e413fa65eb"
+    },
+    {
+      "file": "web/src/game/ChoicePanel.test.tsx",
+      "scope": "full file",
+      "sha256": "2a5449b6fb6e39d1b3d55452daf9bc2a2987b0dec76e23e047402a3de6810b88"
+    },
+    {
+      "file": "web/src/game/ChoicePanel.tsx",
+      "scope": "full file",
+      "sha256": "65203df552f1c57776fe9e54d43a220022c6a08cc9889ef7a4f433222503da36"
+    },
+    {
+      "file": "web/src/game/DeckLibrary.test.tsx",
+      "scope": "full file",
+      "sha256": "58af5c7d188482c248d0428841ac8d6b39c8dad46085b3d9cbf0241ce5520746"
+    },
+    {
+      "file": "web/src/game/DeckLibrary.tsx",
+      "scope": "full file",
+      "sha256": "95d441ca73ecba42c1e243eefd71e8ab8d15f7ec85adfebc2aa905ff7e34b9ca"
+    },
+    {
+      "file": "web/src/game/FactionCoverage.tsx",
+      "scope": "full file",
+      "sha256": "39b936acadf9800e5b6e86c24f0cca7524a8b71c6cf3c24caff0cd99d1dd34c3"
+    },
+    {
+      "file": "web/src/game/GameApp.tsx",
+      "scope": "full file",
+      "sha256": "6462857f7f29247453714d5de7571b53cf123a2a128214102dd40840af56ffb8"
+    },
+    {
+      "file": "web/src/game/Help.test.tsx",
+      "scope": "full file",
+      "sha256": "fd26815d3e9fe2a7062ac3d2adb401098db3411056a339b4ecf579f9783398b3"
+    },
+    {
+      "file": "web/src/game/Help.tsx",
+      "scope": "full file",
+      "sha256": "46a93bc9994ff86aeae6e957328355fe921daaeec9cf46a9a1aef43989aa0645"
+    },
+    {
+      "file": "web/src/game/Lobby.test.tsx",
+      "scope": "full file",
+      "sha256": "a8bf3e60cad21ab4e06ae9e0191520a9c732f15aff2f91d303035d95f1364267"
+    },
+    {
+      "file": "web/src/game/Lobby.tsx",
+      "scope": "full file",
+      "sha256": "10ad1d4ef0ea449a2a3dfdc0780374c9281d8462d247615910760ee81772fbec"
+    },
+    {
+      "file": "web/src/game/README.md",
+      "scope": "full file",
+      "sha256": "06dc18c23c18e54296e5e70b3fb475140c44714f5900f59756619db49fb745d0"
+    },
+    {
+      "file": "web/src/game/ReadModal.test.tsx",
+      "scope": "full file",
+      "sha256": "c0990e425851b01dc20752a4cf9463b7383e62c75f2e61dc4b45e9dd5853c1be"
+    },
+    {
+      "file": "web/src/game/ReadModal.tsx",
+      "scope": "full file",
+      "sha256": "15e9baabfe5c1050d55fe0ae6fac26d4383c2a8a4b795cc43b8a5444fd195896"
+    },
+    {
+      "file": "web/src/game/ResponseWindow.test.tsx",
+      "scope": "full file",
+      "sha256": "9b73285ada78515f70a4df0d3f37abeaa44233ee3141a5b2f3a27af10a5006a1"
+    },
+    {
+      "file": "web/src/game/ResponseWindow.tsx",
+      "scope": "full file",
+      "sha256": "2f16a2e7314ec2ba925a7e496e0047fdbb38d87afd2ec64d39ef509e5efbdbc0"
+    },
+    {
+      "file": "web/src/game/Table.test.tsx",
+      "scope": "full file",
+      "sha256": "3f8fce8e47e5c9e54b041f1471ad0cd4d7ef8f21a2e97157041a31582feceffb"
+    },
+    {
+      "file": "web/src/game/Table.tsx",
+      "scope": "full file",
+      "sha256": "0dd22a4dab2ecc68c91c6f3dd8a08cf8712d9f8c04de2495c6419caa2af73a30"
+    },
+    {
+      "file": "web/src/game/api.test.ts",
+      "scope": "full file",
+      "sha256": "fa50b96e3890983e812be99f446facf0764db07c20d6656e4e724dbb80f7d95b"
+    },
+    {
+      "file": "web/src/game/api.ts",
+      "scope": "full file",
+      "sha256": "d454f8dc33fbde6da8053364a8474f0b40b846db34934e7234d89d70fd7023ed"
+    },
+    {
+      "file": "web/src/game/attachments.css",
+      "scope": "full file",
+      "sha256": "0f9c23613166385b8d232c70390f4fb60f964026db221946a7616a20fb67e7b4"
+    },
+    {
+      "file": "web/src/game/cardScans.ts",
+      "scope": "full file",
+      "sha256": "3c8d16e174355bc74b9ce13397d6a5c66c6dff893e58d38bb56b9a1c56bd178e"
+    },
+    {
+      "file": "web/src/game/choice-readability.css",
+      "scope": "full file",
+      "sha256": "0be57810a5757ed8e872a96b9db2d96aa3deb84bb67e7ced60e86eeb23e8ec44"
+    },
+    {
+      "file": "web/src/game/deck-library.css",
+      "scope": "full file",
+      "sha256": "db17397b57b48c5f0cc916beebe6f527c8b893f598290f6f874ae06a2c2a9721"
+    },
+    {
+      "file": "web/src/game/deckLibrary.test.ts",
+      "scope": "full file",
+      "sha256": "583c1499cbef54fe1b1a0891ba94873d9833bbd3cd8a36735ab8b4bcf18a4d67"
+    },
+    {
+      "file": "web/src/game/deckLibrary.ts",
+      "scope": "full file",
+      "sha256": "2a573e08644b6f42d0331ff9f64c5ceee656d7de5ec6388eb25bb7aa8e850338"
+    },
+    {
+      "file": "web/src/game/factions.test.tsx",
+      "scope": "full file",
+      "sha256": "9caed3d58c464c2b8e0b1d6f52b6e2651fff20d2420856910561e4e445af6c91"
+    },
+    {
+      "file": "web/src/game/factions.ts",
+      "scope": "full file",
+      "sha256": "99a3c6f43f07775ee6e42c97ae2ceaf6e452c9757c3ca0afbb678c981d2ce3f5"
+    },
+    {
+      "file": "web/src/game/game.css",
+      "scope": "full file",
+      "sha256": "e165c1d6ccf3f811b2ed861393fadd6279e45ae6c288f4ea88f3a22225506c54"
+    },
+    {
+      "file": "web/src/game/response-intent.css",
+      "scope": "full file",
+      "sha256": "337a3cfe984244bc080d5d485b2d8332870e32cb773d9e429239e8dc0f64b8fe"
+    },
+    {
+      "file": "web/src/game/table-desktop.css",
+      "scope": "full file",
+      "sha256": "549142461f0ac1ca70649d29dc732665de0e60aeb3cce82989e093d58e519c55"
+    },
+    {
+      "file": "web/src/game/testFixtures.ts",
+      "scope": "full file",
+      "sha256": "7b6f9758e218b12eb4207ee86f74d989b738aa13aa2b24f4e0f0453b472a6757"
+    },
+    {
+      "file": "web/src/game/types.ts",
+      "scope": "full file",
+      "sha256": "869803d0ceb82f27a74fe10297cb772f31e224c32bf5103cbf298e7a9e8977d8"
+    },
+    {
+      "file": "web/src/game/useGame.test.tsx",
+      "scope": "full file",
+      "sha256": "665b2560d7097fce931b81789c3a153f9e3c95206aad5d192665b4f598944719"
+    },
+    {
+      "file": "web/src/game/useGame.ts",
+      "scope": "full file",
+      "sha256": "6e3dd4d9739a3e8bc4a7c304b1770d3fbfb694f020b31a6169debe0b2389db37"
+    },
+    {
+      "file": "web/src/lib/project.test.ts",
+      "scope": "full file",
+      "sha256": "2924362695391e42ea792ba428f225392497c43b6939ba632aa4c31623ca45fa"
+    },
+    {
+      "file": "web/src/lib/project.ts",
+      "scope": "full file",
+      "sha256": "7b5fb2fefe52db2564e58a73683cb679a6b88a3c6c833e6a79eb7affc4f04f7d"
+    },
+    {
+      "file": "web/src/main.tsx",
+      "scope": "full file",
+      "sha256": "e0ac8e002a4c435bec84a25797cb52b9805869f450f926de101b5109d468fae1"
+    },
+    {
+      "file": "web/src/styles/global.css",
+      "scope": "full file",
+      "sha256": "16d24049b829c1fe61933bf5ea89e2ca7dd2886722123d588b457ff451351aaf"
+    },
+    {
+      "file": "web/src/test/setup.ts",
+      "scope": "full file",
+      "sha256": "c8a77125a54df951f6e0df8d427a7f2902d38b08afd24e9f5e4e49671b77d17f"
+    },
+    {
+      "file": "web/src/vite-env.d.ts",
+      "scope": "full file",
+      "sha256": "9612ffbb2aa8b3b71c1ad509fef1a8fad92399fdb7bef52f9600fb8cfc05201a"
+    }
+  ],
+  "artifactBoundary": "New exporter/example and audit utility are read-only tooling. Frontend/Worker/WASM evidence from 8963fcd remains valid for identical production bytes; native workspace rerun covers the three added tests."
+}

@@ -1,0 +1,13 @@
+diff --git a/rust-game/src/rules.rs b/rust-game/src/rules.rs
+index 34e98e5..3af25cf 100644
+--- a/rust-game/src/rules.rs
++++ b/rust-game/src/rules.rs
+@@ -513,7 +513,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
+         let mut another_friend = target(
+             Zone::Board,
+             EntityKind::Character,
+-            Relation::FriendlyTeam,
++            Relation::ControlledByActor,
+             Range::Anywhere,
+         );
+         another_friend.exclude_source = true;

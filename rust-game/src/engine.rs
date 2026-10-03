@@ -2703,6 +2703,189 @@ mod tests {
     }
 
     #[test]
+    fn semantic_scope_friend_enemy_and_barrier_use_controller_team_not_owner() {
+        // Explicit control primitives; the admitted pool has no takeover card.
+        let mut g = game("teams");
+        let aura = board(&mut g, "JC059", 2, 0);
+        g.board_mut(&aura).unwrap().controller = 0;
+        let friend = board(&mut g, "JC125", 2, 0);
+        g.board_mut(&friend).unwrap().controller = 1;
+        let enemy = board(&mut g, "JC125", 0, 0);
+        g.board_mut(&enemy).unwrap().controller = 2;
+        assert_eq!(g.defense(g.board(&friend).unwrap().1, 0), 2);
+        assert_eq!(g.defense(g.board(&enemy).unwrap().1, 0), 1);
+        assert_eq!(g.defense(g.board(&aura).unwrap().1, 0), 2);
+        let friendly_barrier = board(&mut g, "JZ08", 2, 1);
+        g.board_mut(&friendly_barrier).unwrap().controller = 1;
+        let enemy_barrier = board(&mut g, "JZ08", 0, 1);
+        g.board_mut(&enemy_barrier).unwrap().controller = 2;
+        assert!(g.targetable(0, g.board(&friendly_barrier).unwrap().1));
+        assert!(!g.targetable(0, g.board(&enemy_barrier).unwrap().1));
+        let elite = board(&mut g, "JC016", 2, 2);
+        g.board_mut(&elite).unwrap().controller = 0;
+        let teammate = board(&mut g, "JC125", 2, 2);
+        g.board_mut(&teammate).unwrap().controller = 1;
+        let hidden_enemy = board(&mut g, "JC125", 0, 2);
+        g.board_mut(&hidden_enemy).unwrap().controller = 2;
+        g.board_mut(&hidden_enemy).unwrap().face_down = true;
+        assert_eq!(g.icons(g.board(&elite).unwrap().1, 2).influence, 1);
+        g.board_mut(&hidden_enemy).unwrap().face_down = false;
+        assert_eq!(g.icons(g.board(&elite).unwrap().1, 2).influence, 0);
+    }
+
+    #[test]
+    fn semantic_scope_recycling_keyword_uses_equipment_owner_despite_another_controller() {
+        // P17's explicit Recycling definition returns to the owner, unlike a generic "you".
+        let mut g = game("teams");
+        let host = board(&mut g, "LC22", 2, 4);
+        g.board_mut(&host).unwrap().controller = 0;
+        let mut equipment = g.make_card("BQ022", 3);
+        equipment.controller = 1;
+        let old = equipment.id.clone();
+        g.attachments.push(Attachment {
+            card: equipment,
+            host_id: host.clone(),
+        });
+        let chase = hand(&mut g, "JC063", 0);
+        resource(&mut g, 0, "JC063", 2);
+        g.apply(
+            0,
+            Action {
+                card_id: Some(chase),
+                target_id: Some(host.clone()),
+                option: Some("hide".into()),
+                ..Action::new("play")
+            },
+        )
+        .unwrap();
+        let mut g: Game = serde_json::from_str(&serde_json::to_string(&g).unwrap()).unwrap();
+        pass_stack(&mut g);
+        assert!(g.attachments.is_empty());
+        let returned = g.players[3]
+            .hand
+            .iter()
+            .find(|c| c.definition == "BQ022")
+            .unwrap();
+        assert_ne!(returned.id, old);
+        assert_eq!((returned.owner, returned.controller), (3, 3));
+        for seat in 0..3 {
+            assert!(!g
+                .view(seat)
+                .hand
+                .iter()
+                .any(|c| c.card_id.as_deref() == Some("BQ022")));
+        }
+        let hidden = g.regions[4]
+            .cards
+            .iter()
+            .find(|c| c.definition == "LC22")
+            .unwrap();
+        assert!(hidden.face_down && hidden.id != host);
+        assert_eq!((hidden.owner, hidden.controller), (2, 0));
+        assert!(g.resources(0) == 0);
+    }
+
+    #[test]
+    fn semantic_scope_your_grave_is_personal_for_recovery_and_summon() {
+        for definition in ["JC086", "JC092"] {
+            let mut g = game("teams");
+            let mut ids = vec![];
+            for seat in 0..3 {
+                let c = g.make_card("LC20", seat);
+                ids.push(c.id.clone());
+                g.players[seat].graveyard.push(c);
+            }
+            let source = hand(&mut g, definition, 0);
+            resource(&mut g, 0, "JC085", 2);
+            resource(&mut g, 0, "JC014", 1);
+            if definition == "JC086" {
+                g.apply(
+                    0,
+                    Action {
+                        card_id: Some(source),
+                        region: Some(0),
+                        ..Action::new("deploy")
+                    },
+                )
+                .unwrap();
+                pass_stack(&mut g);
+                assert_eq!(
+                    g.pending
+                        .as_ref()
+                        .unwrap()
+                        .choice
+                        .options
+                        .iter()
+                        .map(|o| o.id.clone())
+                        .collect::<Vec<_>>(),
+                    vec![ids[0].clone()]
+                );
+                for id in &ids[1..] {
+                    let before = serde_json::to_string(&g).unwrap();
+                    let choice = g.pending.as_ref().unwrap().choice.id.clone();
+                    assert!(g
+                        .apply(
+                            0,
+                            Action {
+                                choice_id: Some(choice),
+                                selected: Some(vec![id.clone()]),
+                                ..Action::new("choose")
+                            }
+                        )
+                        .is_err());
+                    assert_eq!(serde_json::to_string(&g).unwrap(), before);
+                }
+                select(&mut g, vec![ids[0].clone()]);
+                pass_stack(&mut g);
+                let returned = g.players[0]
+                    .hand
+                    .iter()
+                    .find(|c| c.definition == "LC20")
+                    .unwrap();
+                assert_ne!(returned.id, ids[0]);
+                assert_eq!((returned.owner, returned.controller), (0, 0));
+            } else {
+                for id in &ids[1..] {
+                    let before = serde_json::to_string(&g).unwrap();
+                    assert!(g
+                        .apply(
+                            0,
+                            Action {
+                                card_id: Some(source.clone()),
+                                region: Some(4),
+                                target_id: Some(id.clone()),
+                                ..Action::new("play")
+                            }
+                        )
+                        .is_err());
+                    assert_eq!(serde_json::to_string(&g).unwrap(), before);
+                }
+                g.apply(
+                    0,
+                    Action {
+                        card_id: Some(source),
+                        region: Some(4),
+                        target_id: Some(ids[0].clone()),
+                        ..Action::new("play")
+                    },
+                )
+                .unwrap();
+                pass_stack(&mut g);
+                let entered = g.regions[4]
+                    .cards
+                    .iter()
+                    .find(|c| c.definition == "LC20")
+                    .unwrap();
+                assert!(entered.face_down && entered.id != ids[0]);
+                assert_eq!((entered.owner, entered.controller), (0, 0));
+            }
+            for seat in 1..3 {
+                assert_eq!(g.players[seat].graveyard[0].id, ids[seat]);
+            }
+        }
+    }
+
+    #[test]
     fn rescue_forecast_rescue_printed_fields_public_deploy_and_one_asset_cost() {
         let d = card("JC075");
         assert_eq!((d.cost, d.defense), (1, Some(1)));

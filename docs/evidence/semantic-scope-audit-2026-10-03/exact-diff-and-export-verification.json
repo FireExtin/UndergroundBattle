@@ -1,0 +1,42 @@
+{
+  "commit": "53e47ca375161c38684ac5abae416601f4c71597",
+  "parent": "eb58e63d9e56735bc7e4eb70674832686df4d9f3",
+  "scope": "Full production code diff, full changed scope-test/fixture diffs; historical logs/docs remain in original commit. No omitted production paths.",
+  "diffs": [
+    {
+      "file": "53e47ca-production.diff",
+      "completeDiffForPaths": [
+        "rust-game/src/rules.rs"
+      ],
+      "bytes": 505,
+      "sha256": "f382a062d91c35edaa897338c8be4776418e5256e515f712057826aff8fdcd2c",
+      "matchesExactGitDiff": true
+    },
+    {
+      "file": "53e47ca-scope-tests.diff",
+      "completeDiffForPaths": [
+        "rust-game-wasm/examples/native_fixtures.rs",
+        "rust-game/src/engine.rs",
+        "sites/test/control-pair-integration.test.mjs",
+        "sites/test/fixtures/prepared-control-pair-v028.json"
+      ],
+      "bytes": 81601,
+      "sha256": "1fb0faaf5630083332c5f4c28c8c32e75ef7fe6b8fa3ce00a0d5547732e552ee",
+      "matchesExactGitDiff": true
+    }
+  ],
+  "actualCompiledExports": [
+    {
+      "file": "current-compiled-bindings.json",
+      "definitions": 48,
+      "bytes": 67152,
+      "sha256": "dcbed8e4d37cf7451e5183e2875d2c34ab586c3cd6e9e65cd7593a5e59fdc9ed"
+    },
+    {
+      "file": "published-compiled-bindings.json",
+      "definitions": 39,
+      "bytes": 50292,
+      "sha256": "559dd1931b945f5888a9e1f87b961541ca05c7f89e6855925fcd8b8f246cefd4"
+    }
+  ]
+}

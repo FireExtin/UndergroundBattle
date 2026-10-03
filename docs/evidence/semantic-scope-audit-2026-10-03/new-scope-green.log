@@ -1,0 +1,10 @@
+   Compiling hegemony-server v0.1.0 (/workspace/UndergroundBattle/rust-game)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.83s
+     Running unittests src/lib.rs (/workspace/.rust/targets/two-cards-local/debug/deps/hegemony_server-fa35e11fc7b74bf5)
+
+running 3 tests
+test engine::tests::semantic_scope_friend_enemy_and_barrier_use_controller_team_not_owner ... ok
+test engine::tests::semantic_scope_recycling_keyword_uses_equipment_owner_despite_another_controller ... ok
+test engine::tests::semantic_scope_your_grave_is_personal_for_recovery_and_summon ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 97 filtered out; finished in 0.02s

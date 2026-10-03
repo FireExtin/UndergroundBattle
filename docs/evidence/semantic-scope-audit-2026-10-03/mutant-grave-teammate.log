@@ -1,0 +1,27 @@
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+   Compiling hegemony-server v0.1.0 (/workspace/.private-validation/semantic-scope-audit-20261003/mutants/grave-teammate/rust-game)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 10.51s
+     Running unittests src/lib.rs (/workspace/.rust/targets/control-pair-mutant-magic/debug/deps/hegemony_server-fa35e11fc7b74bf5)
+
+running 1 test
+test engine::tests::semantic_scope_your_grave_is_personal_for_recovery_and_summon ... FAILED
+
+failures:
+
+---- engine::tests::semantic_scope_your_grave_is_personal_for_recovery_and_summon stdout ----
+
+thread 'engine::tests::semantic_scope_your_grave_is_personal_for_recovery_and_summon' panicked at rust-game/src/engine.rs:2812:17:
+assertion `left == right` failed
+  left: ["i239", "i240"]
+ right: ["i239"]
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    engine::tests::semantic_scope_your_grave_is_personal_for_recovery_and_summon
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 99 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `-p hegemony-server --lib`
