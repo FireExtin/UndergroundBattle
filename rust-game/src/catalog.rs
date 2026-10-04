@@ -3,9 +3,9 @@ use serde::{Deserialize, Serialize};
 use std::sync::OnceLock;
 
 pub const RULES_VERSION: &str = "hegemony-pdf-v1";
-pub const POOL_VERSION: &str = "limited-v2.7-jc004-candidate";
+pub const POOL_VERSION: &str = "limited-v2.7";
 #[cfg(not(feature = "society-fixtures"))]
-pub const ENGINE_VERSION: &str = "rust-v0.2.10-jc004-candidate";
+pub const ENGINE_VERSION: &str = "rust-v0.2.10";
 #[cfg(feature = "society-fixtures")]
 pub const ENGINE_VERSION: &str = "rust-v0.2.10-jc004-society-fixture";
 
