@@ -1,7 +1,25 @@
 //! Finite pure conditional icon queries. Exhausted assets retain their domains.
-use crate::{catalog::card, model::Card, model::Game, rules::IconCondition};
+use crate::{
+    catalog::card,
+    model::Card,
+    model::Game,
+    rules::{IconCondition, MagicIcon},
+};
 
 impl Game {
+    pub(crate) fn actor_has_asset_domain(
+        &self,
+        actor: usize,
+        magic: &MagicIcon,
+        minimum: usize,
+    ) -> bool {
+        self.players[actor]
+            .assets
+            .iter()
+            .filter(|asset| card(&asset.definition).magic_icon == *magic)
+            .count()
+            >= minimum
+    }
     pub(crate) fn icon_condition(
         &self,
         c: &Card,
@@ -18,12 +36,7 @@ impl Game {
         }
         match condition {
             IconCondition::AssetDomain { magic, minimum } => {
-                self.players[c.controller]
-                    .assets
-                    .iter()
-                    .filter(|asset| card(&asset.definition).magic_icon == *magic)
-                    .count()
-                    >= *minimum
+                self.actor_has_asset_domain(c.controller, magic, *minimum)
             }
             IconCondition::RegionInfluence { friendly, minimum } => {
                 let team = self.team(c.controller);

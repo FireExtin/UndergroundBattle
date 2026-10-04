@@ -5,6 +5,8 @@ pub mod deck;
 pub mod engine;
 #[cfg(test)]
 mod jc004_tests;
+#[cfg(test)]
+mod jc005_tests;
 pub mod model;
 mod play_sources;
 mod resolution;

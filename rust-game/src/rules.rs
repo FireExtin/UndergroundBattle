@@ -61,6 +61,10 @@ pub enum Range {
     Mobility,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
+pub enum AttachmentHostCondition {
+    CharacterOrActorAssetDomain { magic: MagicIcon },
+}
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct TargetSlotSpec {
     pub zone: Zone,
     pub kind: EntityKind,
@@ -77,6 +81,8 @@ pub struct TargetSlotSpec {
     pub requires_magic: bool,
     #[serde(default)]
     pub exclude_source: bool,
+    #[serde(default)]
+    pub attachment_host_condition: Option<AttachmentHostCondition>,
     pub min: usize,
     pub max: usize,
 }
@@ -325,6 +331,18 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
                     slot.min, slot.max
                 ));
             }
+            if let Some(AttachmentHostCondition::CharacterOrActorAssetDomain { magic }) =
+                &slot.attachment_host_condition
+            {
+                if slot.zone != Zone::Board
+                    || slot.kind != EntityKind::Attachment
+                    || *magic == MagicIcon::None
+                {
+                    return Err(format!(
+                        "{location}: attachment host condition requires a board attachment and a real asset domain"
+                    ));
+                }
+            }
         }
         for op in ops {
             if let Op::IfTargetExhausted {
@@ -421,6 +439,7 @@ fn target(zone: Zone, kind: EntityKind, relation: Relation, range: Range) -> Tar
         equipment_host: false,
         requires_magic: false,
         exclude_source: false,
+        attachment_host_condition: None,
         min: 1,
         max: 1,
     }
@@ -573,6 +592,28 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         );
         let mut magic_character = character.clone();
         magic_character.requires_magic = true;
+        let mut disintegrate_target = target(
+            Zone::Board,
+            EntityKind::Attachment,
+            Relation::Any,
+            Range::Anywhere,
+        );
+        disintegrate_target.attachment_host_condition =
+            Some(AttachmentHostCondition::CharacterOrActorAssetDomain {
+                magic: MagicIcon::Mind,
+            });
+        m.insert(
+            "JC005".into(),
+            with_abilities(vec![ability(
+                "disintegrate",
+                "消灭附属",
+                Timing::Fast,
+                vec![],
+                vec![disintegrate_target],
+                vec![Op::Destroy(Target(0))],
+                None,
+            )]),
+        );
         m.insert(
             "JC006".into(),
             with_abilities(vec![ability(
