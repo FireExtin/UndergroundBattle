@@ -18,6 +18,8 @@ mod msjc01_tests;
 mod play_sources;
 #[cfg(test)]
 mod protection_tests;
+#[cfg(test)]
+mod defence_equipment_tests;
 mod renown;
 #[cfg(test)]
 mod renown_tests;

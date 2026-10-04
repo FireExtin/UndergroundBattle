@@ -77,6 +77,8 @@ pub struct LegalAction {
 #[serde(rename_all = "camelCase")]
 pub struct CardView {
     #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub current_damage_prevention: Option<bool>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub current_barrier: Option<bool>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub current_renown: Option<bool>,
@@ -554,6 +556,8 @@ pub struct TurnAttributeModifier {
     pub ordinary_icons: Icons,
     #[serde(default, skip_serializing_if = "is_false")]
     pub grants_renown: bool,
+    #[serde(default, skip_serializing_if = "is_false")]
+    pub prevents_damage: bool,
     pub expires_turn: u32,
 }
 pub(crate) fn is_false(value: &bool) -> bool {

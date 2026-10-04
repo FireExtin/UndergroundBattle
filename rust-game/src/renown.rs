@@ -68,6 +68,8 @@ impl Game {
         let actor = source.controller;
         let source = self.source_snapshot(source, Some(region));
         let ability = AbilitySpec {
+            play_only: false,
+            activation_only: false,
             key: "renown".into(),
             label: "声望：本地区额外放置一个势力标志".into(),
             timing: Timing::Fast,

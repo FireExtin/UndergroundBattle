@@ -84,6 +84,9 @@ impl Game {
             .abilities
             .iter()
             .filter(|a| a.event.is_none())
+            .filter(|a| {
+                !(kind == "play" && a.activation_only) && !(kind == "activate" && a.play_only)
+            })
         {
             let modes = if ability.modes.is_empty() {
                 vec![None]
@@ -405,7 +408,10 @@ impl Game {
         let mut candidates = rules::definition(definition)
             .abilities
             .iter()
-            .filter(|s| s.event.is_none());
+            .filter(|s| s.event.is_none())
+            .filter(|s| {
+                !(a.kind == "play" && s.activation_only) && !(a.kind == "activate" && s.play_only)
+            });
         let spec = if let Some(key) = &a.ability_id {
             candidates.find(|s| s.key == *key)
         } else {
@@ -500,6 +506,12 @@ impl Game {
                         && (!spec.requires_magic
                             || (!c.face_down && d.magic_icon != MagicIcon::None))
                         && (!spec.exclude_source || c.id != source.card.id)
+                        && (!spec.exclude_attachment_host
+                            || self
+                                .attachments
+                                .iter()
+                                .find(|a| a.card.id == source.card.id)
+                                .is_some_and(|a| a.host_id != c.id))
                         && (!spec.equipment_host
                             || !rules::definition(&c.definition).traits.cannot_be_equipped)
                         && spec
@@ -1027,6 +1039,7 @@ impl Game {
                         defense_bonus,
                         ordinary_icons,
                         grants_renown,
+                        prevents_damage: false,
                         expires_turn: self.turn,
                     });
                 }
@@ -1036,6 +1049,21 @@ impl Game {
                         target.id.clone(),
                         amount,
                     )]))?;
+                }
+                Op::PreventTargetDamageUntilTurnEnd { slot } => {
+                    let target = frame.targets.get(slot).ok_or("缺少伤害防护目标")?;
+                    self.turn_attribute_modifiers.push(TurnAttributeModifier {
+                        target_instance: target.id.clone(),
+                        defense_bonus: 0,
+                        ordinary_icons: Icons::default(),
+                        grants_renown: false,
+                        prevents_damage: true,
+                        expires_turn: self.turn,
+                    });
+                }
+                Op::ReattachSource { slot } => {
+                    let target = frame.targets.get(slot).ok_or("缺少转移结附目标")?;
+                    self.reattach_source(&frame.source.card.id, &target.id);
                 }
                 Op::PlaceInfluence {
                     region_instance,

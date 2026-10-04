@@ -259,7 +259,7 @@ fn case(kind: &str) -> Value {
         "naturallyAdmittedNonCharacterAttachment":false,"nonCharacterHostUsesNormalSettlement":non_character,
         "assetDomainTimingIsGeneralTargetRuleInference":true,"publicNaturalUiAcceptance":false})
 }
-pub(super) fn cases() -> Vec<Value> {
+pub(super) fn cases() -> impl Iterator<Item = Value> {
     [
         "normal-character",
         "mind-character",
@@ -278,5 +278,4 @@ pub(super) fn cases() -> Vec<Value> {
     ]
     .into_iter()
     .map(case)
-    .collect()
 }

@@ -3,6 +3,10 @@ use crate::model::{Icons, SubtypeChange};
 use serde::{Deserialize, Serialize};
 use std::{collections::BTreeMap, sync::OnceLock};
 
+fn is_zero(value: &u32) -> bool {
+    *value == 0
+}
+
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum Timing {
     Standard,
@@ -84,6 +88,8 @@ pub struct TargetSlotSpec {
     pub requires_magic: bool,
     #[serde(default)]
     pub exclude_source: bool,
+    #[serde(default, skip_serializing_if = "crate::model::is_false")]
+    pub exclude_attachment_host: bool,
     #[serde(default)]
     pub attachment_host_condition: Option<AttachmentHostCondition>,
     pub min: usize,
@@ -136,6 +142,7 @@ pub enum MagicIcon {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum CardFilter {
     Any,
+    HasPrintedMagic,
     Kind(String),
     PrintedColorAndUnique {
         color: String,
@@ -153,6 +160,7 @@ impl CardFilter {
     pub(crate) fn matches(&self, definition: &crate::catalog::CardDefinition) -> bool {
         match self {
             Self::Any => true,
+            Self::HasPrintedMagic => definition.magic_icon != MagicIcon::None,
             Self::Kind(kind) => definition.kind == *kind,
             Self::PrintedColorAndUnique { color } => {
                 definition.color == *color && definition.unique
@@ -190,6 +198,12 @@ pub enum Op {
     DamageTarget {
         slot: usize,
         amount: u32,
+    },
+    PreventTargetDamageUntilTurnEnd {
+        slot: usize,
+    },
+    ReattachSource {
+        slot: usize,
     },
     ModifyTargetUntilTurnEnd {
         slot: usize,
@@ -291,6 +305,10 @@ pub struct Mode {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct AbilitySpec {
+    #[serde(default, skip_serializing_if = "crate::model::is_false")]
+    pub play_only: bool,
+    #[serde(default, skip_serializing_if = "crate::model::is_false")]
+    pub activation_only: bool,
     pub key: String,
     pub label: String,
     pub timing: Timing,
@@ -351,6 +369,8 @@ pub struct AttachmentSpec {
     pub host_temporary_icons: Option<Icons>,
     #[serde(default, skip_serializing_if = "crate::model::is_false")]
     pub host_barrier: bool,
+    #[serde(default, skip_serializing_if = "is_zero")]
+    pub host_defense_bonus: u32,
     pub host_leaves: HostLeaveDestination,
 }
 #[derive(Clone, Debug, Default, Serialize, Deserialize)]
@@ -365,6 +385,9 @@ pub struct Definition {
 // These are interpreter limits, not rules for resolving partially invalid targets.
 // Reject unsupported declarations before publishing actions or offering trigger choices.
 pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(), String> {
+    if ability.play_only && ability.activation_only {
+        return Err(format!("{card_id}: conflicting action roles"));
+    }
     if ability.once_per_game && ability.event.is_some() {
         return Err(format!(
             "{card_id}: game-limited abilities must be declared actions"
@@ -402,6 +425,20 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
             }
         }
         for op in ops {
+            if let Op::PreventTargetDamageUntilTurnEnd { slot } | Op::ReattachSource { slot } = op {
+                if !targets.get(*slot).is_some_and(|target| {
+                    target.zone == Zone::Board && target.kind == EntityKind::Character
+                }) {
+                    return Err(format!(
+                        "{location}: protection or reattachment requires one bound board character"
+                    ));
+                }
+                if matches!(op, Op::ReattachSource { .. }) && !targets[*slot].equipment_host {
+                    return Err(format!(
+                        "{location}: reattachment requires an equipment host guard"
+                    ));
+                }
+            }
             if let Op::DamageTarget { slot, amount } = op {
                 if *amount != 1
                     || !targets.get(*slot).is_some_and(|target| {
@@ -483,6 +520,8 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
                             | Op::GainControl { .. }
                             | Op::PlaceInfluence { .. }
                             | Op::DamageTarget { .. }
+                            | Op::PreventTargetDamageUntilTurnEnd { .. }
+                            | Op::ReattachSource { .. }
                     )
                 }) {
                     return Err(format!(
@@ -551,6 +590,7 @@ fn target(zone: Zone, kind: EntityKind, relation: Relation, range: Range) -> Tar
         equipment_host: false,
         requires_magic: false,
         exclude_source: false,
+        exclude_attachment_host: false,
         attachment_host_condition: None,
         min: 1,
         max: 1,
@@ -566,6 +606,8 @@ fn ability(
     event: Option<Event>,
 ) -> AbilitySpec {
     AbilitySpec {
+        play_only: false,
+        activation_only: false,
         key: key.into(),
         label: label.into(),
         timing,
@@ -622,6 +664,116 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
             Range::Anywhere,
         );
         let mut m = BTreeMap::new();
+        m.insert(
+            "JC078".into(),
+            with_abilities(vec![ability(
+                "prevent-turn-damage",
+                "快速伤害防护",
+                Timing::Fast,
+                vec![],
+                vec![character.clone()],
+                vec![Op::PreventTargetDamageUntilTurnEnd { slot: 0 }],
+                None,
+            )]),
+        );
+        let mut blood_host = character.clone();
+        blood_host.subtype = Some("吸血鬼".into());
+        let mut blood_attach = ability(
+            "attach",
+            "结附吸血鬼",
+            Timing::Standard,
+            vec![],
+            vec![blood_host.clone()],
+            vec![],
+            None,
+        );
+        blood_attach.play_only = true;
+        m.insert(
+            "XQ14".into(),
+            Definition {
+                abilities: vec![blood_attach],
+                attachment: Some(AttachmentSpec {
+                    controls_host: false,
+                    host_subtype_change: SubtypeChange::None,
+                    host: blood_host,
+                    host_icons: Icons {
+                        combat: 1,
+                        ..Default::default()
+                    },
+                    host_temporary_icons: None,
+                    host_barrier: false,
+                    host_defense_bonus: 1,
+                    host_leaves: HostLeaveDestination::OwnerGraveyard,
+                }),
+                ..Default::default()
+            },
+        );
+        let mut vest_host = character.clone();
+        vest_host.equipment_host = true;
+        let mut another_host = vest_host.clone();
+        another_host.exclude_attachment_host = true;
+        let mut vest_attach = ability(
+            "attach",
+            "结附角色",
+            Timing::Standard,
+            vec![],
+            vec![vest_host.clone()],
+            vec![],
+            None,
+        );
+        vest_attach.play_only = true;
+        let mut vest_transfer = ability(
+            "reattach",
+            "转移结附",
+            Timing::Standard,
+            vec![Cost::Assets(2)],
+            vec![another_host],
+            vec![Op::ReattachSource { slot: 0 }],
+            None,
+        );
+        vest_transfer.activation_only = true;
+        m.insert(
+            "XQ47".into(),
+            Definition {
+                abilities: vec![vest_attach, vest_transfer],
+                attachment: Some(AttachmentSpec {
+                    controls_host: false,
+                    host_subtype_change: SubtypeChange::None,
+                    host: vest_host,
+                    host_icons: Icons::default(),
+                    host_temporary_icons: None,
+                    host_barrier: false,
+                    host_defense_bonus: 1,
+                    host_leaves: HostLeaveDestination::OwnerGraveyard,
+                }),
+                ..Default::default()
+            },
+        );
+        let mut cat_reduce = ability(
+            "reduce-next-magic",
+            "牺牲减费",
+            Timing::Fast,
+            vec![Cost::SacrificeSource],
+            vec![],
+            vec![Op::CostReduction {
+                filter: CardFilter::HasPrintedMagic,
+                amount: 1,
+            }],
+            None,
+        );
+        cat_reduce.response_policy = ResponsePolicy::Immediate;
+        m.insert(
+            "JC112".into(),
+            Definition {
+                traits: Traits {
+                    public: true,
+                    cannot_be_equipped: true,
+                    ..Default::default()
+                },
+                abilities: vec![cat_reduce],
+                ..Default::default()
+            },
+        );
         let mut hermit_target = local.clone();
         hermit_target.relation = Relation::ControlledByActor;
         hermit_target.exclude_source = true;
@@ -666,6 +818,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
                         ..Icons::default()
                     }),
                     host_barrier: true,
+                    host_defense_bonus: 0,
                     host_leaves: HostLeaveDestination::OwnerGraveyard,
                 }),
                 ..Default::default()
@@ -935,6 +1088,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
                     host_icons: Icons::default(),
                     host_temporary_icons: None,
                     host_barrier: false,
+                    host_defense_bonus: 0,
                     host_leaves: HostLeaveDestination::OwnerGraveyard,
                 }),
                 ..Default::default()
@@ -1718,6 +1872,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
                     },
                     host_temporary_icons: None,
                     host_barrier: false,
+                    host_defense_bonus: 0,
                     host_leaves: HostLeaveDestination::OwnerHand,
                 }),
                 ..Default::default()

@@ -22,6 +22,9 @@ mod msjc09;
 #[cfg(not(feature = "society-fixtures"))]
 #[path = "support/control.rs"]
 mod control;
+#[cfg(not(feature = "society-fixtures"))]
+#[path = "support/defence_equipment.rs"]
+mod defence_equipment;
 #[path = "support/jc004.rs"]
 mod jc004;
 #[path = "support/jc005.rs"]
@@ -2585,22 +2588,86 @@ fn rescue_forecast_fixture() -> Value {
     json!({"name":"white-paid-rescue-and-purple-private-forecast-three","seed":"9007199254740993","steps":steps,"syntheticInitialLayout":true})
 }
 
-fn write_default_fixture(output: &str, mut value: Value) {
-    // Keep complete cases individually below V8's per-string limit. The index
-    // preserves all top-level payloads, and compare.mjs still accepts old files.
-    let directory = std::path::PathBuf::from(format!("{output}.cases"));
-    std::fs::create_dir_all(&directory).unwrap();
-    let prefix = directory.file_name().unwrap().to_string_lossy();
-    let cases = value["cases"].as_array_mut().unwrap();
-    let mut index = Vec::with_capacity(cases.len());
-    for (n, case) in cases.drain(..).enumerate() {
-        let file = format!("{n:03}.json");
-        std::fs::write(directory.join(&file), serde_json::to_vec(&case).unwrap()).unwrap();
-        index.push(json!({"name":case["name"],"seed":case["seed"],"fixtureFile":format!("{prefix}/{file}")}));
+/// Retains one complete case at a time; only the small index survives push().
+struct FixtureWriter {
+    output: String,
+    directory: std::path::PathBuf,
+    prefix: String,
+    entries: Vec<Value>,
+    transitions: usize,
+    projections: usize,
+}
+impl FixtureWriter {
+    fn new(output: &str) -> Self {
+        let directory = std::path::PathBuf::from(format!("{output}.cases"));
+        std::fs::create_dir_all(&directory).unwrap();
+        let prefix = directory
+            .file_name()
+            .unwrap()
+            .to_string_lossy()
+            .into_owned();
+        Self {
+            output: output.into(),
+            directory,
+            prefix,
+            entries: vec![],
+            transitions: 0,
+            projections: 0,
+        }
     }
-    *cases = index;
-    value["caseFormat"] = json!("external-cases-v1");
-    std::fs::write(output, serde_json::to_vec(&value).unwrap()).unwrap();
+    fn push(&mut self, case: Value) {
+        use std::io::Write;
+        let n = self.entries.len();
+        let file = format!("{n:03}.json");
+        let path = self.directory.join(&file);
+        let steps = case["steps"].as_array().unwrap();
+        let transitions = steps.len();
+        let projections = steps
+            .iter()
+            .map(|s| s["views"].as_array().unwrap().len())
+            .sum::<usize>();
+        let mut writer = std::io::BufWriter::new(std::fs::File::create(&path).unwrap());
+        serde_json::to_writer(&mut writer, &case).unwrap();
+        writer.flush().unwrap();
+        drop(writer);
+        let bytes = std::fs::metadata(&path).unwrap().len();
+        let hash = std::process::Command::new("sha256sum")
+            .arg(&path)
+            .output()
+            .unwrap();
+        assert!(hash.status.success());
+        let sha256 = String::from_utf8(hash.stdout)
+            .unwrap()
+            .split_whitespace()
+            .next()
+            .unwrap()
+            .to_owned();
+        assert!(sha256.len() == 64 && sha256.bytes().all(|c| c.is_ascii_hexdigit()));
+        self.entries.push(json!({"name":case["name"],"seed":case["seed"],"fixtureFile":format!("{}/{file}",self.prefix),"bytes":bytes,"sha256":sha256,"transitions":transitions,"projections":projections}));
+        self.transitions += transitions;
+        self.projections += projections;
+        eprintln!("fixture {n:03} {}: {transitions} transitions, {projections} projections, {bytes} bytes written", case["name"]);
+        // case (including every complete state, journal and four-seat view) drops here.
+    }
+    fn finish(self, mut metadata: Value) {
+        metadata["cases"] = json!(self.entries);
+        metadata["caseFormat"] = json!("external-cases-v1");
+        metadata["caseCount"] = json!(metadata["cases"].as_array().unwrap().len());
+        metadata["transitions"] = json!(self.transitions);
+        metadata["projections"] = json!(self.projections);
+        serde_json::to_writer(
+            std::io::BufWriter::new(std::fs::File::create(self.output).unwrap()),
+            &metadata,
+        )
+        .unwrap();
+    }
+}
+fn write_fixture_cases(output: &str, metadata: Value, cases: impl IntoIterator<Item = Value>) {
+    let mut writer = FixtureWriter::new(output);
+    for case in cases {
+        writer.push(case);
+    }
+    writer.finish(metadata);
 }
 
 fn main() {
@@ -2615,39 +2682,57 @@ fn main() {
         .nth(1)
         .expect("Usage: native_fixtures <output.json>");
     #[cfg(not(feature = "society-fixtures"))]
-    if std::env::args().any(|a| a == "--slice-protection-batch") {
-        write_default_fixture(
+    if std::env::args().any(|a| a == "--slice-defence-equipment") {
+        write_fixture_cases(
             &output,
-            json!({"catalog":catalog::catalog(),"cases":protection::cases()}),
+            json!({"catalog":catalog::catalog()}),
+            defence_equipment::cases(),
+        );
+        return;
+    }
+    #[cfg(not(feature = "society-fixtures"))]
+    if std::env::args().any(|a| a == "--slice-protection-batch") {
+        write_fixture_cases(
+            &output,
+            json!({"catalog":catalog::catalog()}),
+            protection::cases(),
         );
         return;
     }
     #[cfg(not(feature = "society-fixtures"))]
     if std::env::args().any(|a| a == "--slice-renown-batch") {
-        write_default_fixture(
+        write_fixture_cases(
             &output,
-            json!({"catalog":catalog::catalog(),"cases":renown::cases()}),
+            json!({"catalog":catalog::catalog()}),
+            renown::cases(),
         );
         return;
     }
     #[cfg(not(feature = "society-fixtures"))]
     if std::env::args().any(|a| a == "--slice-control-batch") {
-        let value = json!({"catalog":catalog::catalog(),"cases":control::cases()});
-        std::fs::write(output, serde_json::to_vec(&value).unwrap()).unwrap();
+        write_fixture_cases(
+            &output,
+            json!({"catalog":catalog::catalog()}),
+            control::cases(),
+        );
         return;
     }
     #[cfg(not(feature = "society-fixtures"))]
     if std::env::args().any(|a| a == "--slice-msjc01") {
-        let value = json!({"catalog":catalog::catalog(),"cases":msjc01::cases()});
-        std::fs::write(output, serde_json::to_vec(&value).unwrap()).unwrap();
+        write_fixture_cases(
+            &output,
+            json!({"catalog":catalog::catalog()}),
+            msjc01::cases(),
+        );
         return;
     }
     #[cfg(not(feature = "society-fixtures"))]
     if std::env::args().any(|a| a == "--slice-yellow-search-batch") {
-        let mut cases = msjc01::cases();
-        cases.extend(yellow_search::cases());
-        let value = json!({"catalog":catalog::catalog(),"cases":cases});
-        std::fs::write(output, serde_json::to_vec(&value).unwrap()).unwrap();
+        write_fixture_cases(
+            &output,
+            json!({"catalog":catalog::catalog()}),
+            msjc01::cases().chain(yellow_search::cases()),
+        );
         return;
     }
     let mut previous = Game::new(
@@ -2735,6 +2820,7 @@ fn main() {
         std::fs::write(output, serde_json::to_vec(&value).unwrap()).unwrap();
         return;
     }
+    let mut writer = FixtureWriter::new(&output);
     let rescue_forecast = rescue_forecast_fixture();
     let rescue_initial: RoomEnvelope =
         serde_json::from_str(rescue_forecast["steps"][0]["state"].as_str().unwrap()).unwrap();
@@ -2744,6 +2830,7 @@ fn main() {
         "targetId":rescue_initial.regions[4].cards[0].id,"teammateId":rescue_initial.regions[3].cards[0].id,
         "hiddenId":rescue_initial.regions[1].cards[0].id,
         "originalDeckIds":rescue_initial.players[0].deck.iter().map(|c|c.id.clone()).collect::<Vec<_>>()});
+    writer.push(rescue_forecast);
     let fire_scholar = fire_scholar_fixture();
     let fire_initial: RoomEnvelope =
         serde_json::from_str(fire_scholar["steps"][0]["state"].as_str().unwrap()).unwrap();
@@ -2754,6 +2841,7 @@ fn main() {
         "deadIds":fire_initial.regions[2].cards[..4].iter().map(|c|c.id.clone()).collect::<Vec<_>>(),
         "eligibleIds":fire_initial.players[0].deck[..3].iter().map(|c|c.id.clone()).collect::<Vec<_>>(),
         "excludedIds":fire_initial.players[0].deck[3..].iter().map(|c|c.id.clone()).collect::<Vec<_>>()});
+    writer.push(fire_scholar);
     let control_pair = control_pair_fixture();
     let control_initial: RoomEnvelope =
         serde_json::from_str(control_pair["steps"][0]["state"].as_str().unwrap()).unwrap();
@@ -2765,6 +2853,7 @@ fn main() {
         "teammateId":control_initial.regions[4].cards[1].id,
         "enemyId":control_initial.regions[1].cards[0].id,"publicFriendId":control_initial.regions[3].cards[0].id,
     });
+    writer.push(control_pair);
     let two_cards = two_card_fixture();
     let two_initial: RoomEnvelope =
         serde_json::from_str(two_cards["steps"][0]["state"].as_str().unwrap()).unwrap();
@@ -2775,6 +2864,7 @@ fn main() {
         "skeletonId":two_initial.players[0].hand[0].id,
         "outsideId":two_initial.regions[3].cards[0].id,
     });
+    writer.push(two_cards);
     let assassin = assassin_fixture();
     let initial: RoomEnvelope =
         serde_json::from_str(assassin["steps"][0]["state"].as_str().unwrap()).unwrap();
@@ -2786,53 +2876,47 @@ fn main() {
         "targetId":targets.iter().find(|c| c.definition == "JC084").unwrap().id,
         "expensiveTargetId":targets.iter().find(|c| c.definition == "JC086").unwrap().id
     });
-    let value = json!({"preparedRescueForecast":prepared_rescue_forecast,"preparedFireScholar":prepared_fire_scholar,"preparedControlPair":prepared_control_pair,"preparedTwoCards":prepared_two_cards,"preparedAssassin":prepared_assassin,"preparedResponse":prepared,"catalog":catalog::catalog(),"cases":[rescue_forecast,fire_scholar,control_pair,two_cards,assassin,attachment_fixture(false),attachment_fixture(true),attachment_hk_fixture(),attachment_region_return_fixture(),grave_play_fixture(),fixture("duel","18446744073709551615"),fixture("teams","9007199254740993"),response_fixture(),detective_fixture(false),detective_fixture(true),custom_deck_fixture(),friendly_icons_fixture(),pacing_fixture(false),pacing_fixture(true),world_fixture("DQJC108",false),world_fixture("DQJC109",false),world_fixture("DQJC110",false),world_fixture("DQJC111",false),world_fixture("DQJC115",false),world_fixture("DQJC116",false),world_fixture("DQJC116",true)],"rejectedStates":rejected_states});
+    writer.push(assassin);
+    let factories: [fn() -> Value; 21] = [
+        || attachment_fixture(false),
+        || attachment_fixture(true),
+        attachment_hk_fixture,
+        attachment_region_return_fixture,
+        grave_play_fixture,
+        || fixture("duel", "18446744073709551615"),
+        || fixture("teams", "9007199254740993"),
+        response_fixture,
+        || detective_fixture(false),
+        || detective_fixture(true),
+        custom_deck_fixture,
+        friendly_icons_fixture,
+        || pacing_fixture(false),
+        || pacing_fixture(true),
+        || world_fixture("DQJC108", false),
+        || world_fixture("DQJC109", false),
+        || world_fixture("DQJC110", false),
+        || world_fixture("DQJC111", false),
+        || world_fixture("DQJC115", false),
+        || world_fixture("DQJC116", false),
+        || world_fixture("DQJC116", true),
+    ];
+    for factory in factories {
+        writer.push(factory());
+    }
     #[cfg(not(feature = "society-fixtures"))]
-    let value = {
-        let mut value = value;
-        value["cases"]
-            .as_array_mut()
-            .unwrap()
-            .push(msjc09::natural_case());
-        value
-    };
-    let mut value = value;
-    value["cases"]
-        .as_array_mut()
-        .unwrap()
-        .extend(jc004::cases());
-    value["cases"]
-        .as_array_mut()
-        .unwrap()
-        .extend(jc005::cases());
-    value["cases"]
-        .as_array_mut()
-        .unwrap()
-        .extend(jc008::cases());
+    writer.push(msjc09::natural_case());
+    for case in jc004::cases().chain(jc005::cases()).chain(jc008::cases()) {
+        writer.push(case);
+    }
     #[cfg(not(feature = "society-fixtures"))]
-    value["cases"]
-        .as_array_mut()
-        .unwrap()
-        .extend(msjc01::cases());
-    #[cfg(not(feature = "society-fixtures"))]
-    value["cases"]
-        .as_array_mut()
-        .unwrap()
-        .extend(yellow_search::cases());
-    #[cfg(not(feature = "society-fixtures"))]
-    value["cases"]
-        .as_array_mut()
-        .unwrap()
-        .extend(control::cases());
-    #[cfg(not(feature = "society-fixtures"))]
-    value["cases"]
-        .as_array_mut()
-        .unwrap()
-        .extend(renown::cases());
-    #[cfg(not(feature = "society-fixtures"))]
-    value["cases"]
-        .as_array_mut()
-        .unwrap()
-        .extend(protection::cases());
-    write_default_fixture(&output, value);
+    for case in msjc01::cases()
+        .chain(yellow_search::cases())
+        .chain(control::cases())
+        .chain(renown::cases())
+        .chain(protection::cases())
+        .chain(defence_equipment::cases())
+    {
+        writer.push(case);
+    }
+    writer.finish(json!({"preparedRescueForecast":prepared_rescue_forecast,"preparedFireScholar":prepared_fire_scholar,"preparedControlPair":prepared_control_pair,"preparedTwoCards":prepared_two_cards,"preparedAssassin":prepared_assassin,"preparedResponse":prepared,"catalog":catalog::catalog(),"rejectedStates":rejected_states}));
 }

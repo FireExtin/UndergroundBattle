@@ -314,6 +314,26 @@
     "source": "resource/ymsj-fun.github.io/cards/JC132 构筑静态障壁.jpg",
     "sha256": "219bb4062c3e9053b9fc9d309ad919ebe4b6a98c3af314c6987ca948b3eeb4f1"
   },
+  "JC078": {
+    "url": "/cards/JC078.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC078 光能盾.jpg",
+    "sha256": "d238d2c7412349579c00fa4a5a662e9214bdad13df25b8917ae1034251f7e2b9"
+  },
+  "XQ14": {
+    "url": "/cards/XQ14.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/XQ14 鲜血.jpg",
+    "sha256": "0baea888495adba62a7688be1b95c95b5ffa60d689c104b7ff3a26dd2340ffb2"
+  },
+  "XQ47": {
+    "url": "/cards/XQ47.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/XQ47 防弹战术背心.jpg",
+    "sha256": "9b370fb92ad2e1c3ac6f33d3402ab2c8cbdea1898aae4c4a386f17631d654a03"
+  },
+  "JC112": {
+    "url": "/cards/JC112.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC112 黑猫.jpg",
+    "sha256": "870b526451ed20441601cfed413a99e2e64a266d60daa698bb2066840383bd71"
+  },
   "MSJC09": {
     "url": "/cards/MSJC09.jpg",
     "source": "resource/ymsj-fun.github.io/cards/MSJC09 秘社.jpg",

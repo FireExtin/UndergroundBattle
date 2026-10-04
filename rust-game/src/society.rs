@@ -558,6 +558,7 @@ mod tests {
                 equipment_host: false,
                 requires_magic: false,
                 exclude_source: false,
+                exclude_attachment_host: false,
                 attachment_host_condition: None,
                 min: 1,
                 max: 1,

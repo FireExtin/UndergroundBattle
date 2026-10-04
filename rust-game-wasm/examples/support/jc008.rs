@@ -495,7 +495,7 @@ fn case(kind: &str) -> Value {
         "syntheticControllerChange":kind=="checkpoint-controller","syntheticMovementCheckpoint":kind=="checkpoint-movement",
         "syntheticDamageOrWounds":kind.starts_with("cleanup-"),"normalRoomCommandsAfterInitial":true,"publicNaturalUiAcceptance":false})
 }
-pub(super) fn cases() -> Vec<Value> {
+pub(super) fn cases() -> impl Iterator<Item = Value> {
     [
         "first-team",
         "rear-team",
@@ -523,5 +523,4 @@ pub(super) fn cases() -> Vec<Value> {
     ]
     .into_iter()
     .map(case)
-    .collect()
 }

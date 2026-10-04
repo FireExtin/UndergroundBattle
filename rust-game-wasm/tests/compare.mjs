@@ -3,6 +3,7 @@ import { readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { dirname, resolve } from 'node:path';
 import { performance } from 'node:perf_hooks';
+import { createHash } from 'node:crypto';
 const abi = new URL(process.env.HEGEMONY_WASM_TEST_ABI || '../pkg/hegemony_wasm.js', import.meta.url);
 const { initSync, catalog, newGame, newGameWithDeck, joinGame, joinGameWithDeck, apply, applyRoom, pollRoom, quoteRoom, view } = await import(abi.href);
 
@@ -12,10 +13,17 @@ const fixture = JSON.parse(await readFile(process.argv[2], 'utf8'));
 assert.deepEqual(JSON.parse(catalog()), fixture.catalog);
 let transitions = 0, projections = 0, quotes = 0, rejectedCommands = 0, rejectedDeckCreations = 0, slowestMs = 0;
 const choiceKinds = new Set();
-for (const entry of fixture.cases) {
-  const scenario = entry.fixtureFile
-    ? JSON.parse(await readFile(resolve(dirname(process.argv[2]), entry.fixtureFile), 'utf8'))
-    : entry;
+let cases = 0;
+async function readScenario(entry) {
+  if (!entry.fixtureFile) return entry;
+  const bytes = await readFile(resolve(dirname(process.argv[2]), entry.fixtureFile));
+  if (entry.bytes !== undefined) assert.equal(bytes.byteLength, entry.bytes);
+  if (entry.sha256 !== undefined) assert.equal(createHash('sha256').update(bytes).digest('hex'), entry.sha256);
+  return JSON.parse(bytes.toString('utf8'));
+}
+async function compareScenario(entry) {
+  const scenario = await readScenario(entry);
+  const initialTransitions = transitions, initialProjections = projections;
   if (entry.fixtureFile) {
     assert.equal(fixture.caseFormat, 'external-cases-v1');
     assert.equal(scenario.name, entry.name);
@@ -55,7 +63,7 @@ for (const entry of fixture.cases) {
       for (const region of projected.regions) for (const card of region.characters) {
         if (card.faceDown && card.controller !== projected.you) {
           assert.equal(card.name, '暗藏者');
-          for (const secret of ['cardId', 'text', 'cost', 'icons', 'defense', 'color', 'magic', 'currentSubtypes', 'currentRenown', 'currentBarrier']) assert.ok(!(secret in card));
+          for (const secret of ['cardId', 'text', 'cost', 'icons', 'defense', 'color', 'magic', 'currentSubtypes', 'currentRenown', 'currentBarrier', 'currentDamagePrevention']) assert.ok(!(secret in card));
         }
       }
       projections++;
@@ -77,11 +85,24 @@ for (const entry of fixture.cases) {
     assert.deepEqual(JSON.parse(quoteRoom(quoted.state, quoted.seat, JSON.stringify(quoted.request))), quoted.expected);
     quotes++;
   }
+  if (entry.transitions !== undefined) assert.equal(transitions - initialTransitions, entry.transitions);
+  if (entry.projections !== undefined) assert.equal(projections - initialProjections, entry.projections);
+  cases++;
+  console.log(JSON.stringify({ case: cases, name: scenario.name, transitions: transitions - initialTransitions,
+    projections: projections - initialProjections, sha256: entry.sha256, ok: true }));
+  // Only counters and names survive; no complete scenario is retained here.
 }
+for (const entry of fixture.cases) {
+  await compareScenario(entry);
+  globalThis.gc?.();
+}
+if (fixture.caseCount !== undefined) assert.equal(cases, fixture.caseCount);
+if (fixture.transitions !== undefined) assert.equal(transitions, fixture.transitions);
+if (fixture.projections !== undefined) assert.equal(projections, fixture.projections);
 for (const previousState of fixture.rejectedStates ?? []) {
   assert.throws(() => view(previousState, 0));
   assert.throws(() => apply(previousState, 0, '{"kind":"pass"}'));
 }
 assert.throws(() => newGame('bad', 'invite', 'duel', 'P0', 'watchers', '18446744073709551616'));
 assert.throws(() => newGame('bad', 'invite', 'duel', 'P0', 'watchers', '9007199254740993.0'));
-console.log(JSON.stringify({ ok: true, wasmBytes: moduleBytes.byteLength, transitions, projections, quotes, rejectedCommands, rejectedDeckCreations, choiceKinds: [...choiceKinds].sort(), slowestFixtureStepMs: Math.round(slowestMs * 100) / 100, opaqueState: true, maximumU64SeedExact: true, nativeWasmStateAndViewsMatch: true }));
+console.log(JSON.stringify({ ok: true, cases, wasmBytes: moduleBytes.byteLength, transitions, projections, quotes, rejectedCommands, rejectedDeckCreations, choiceKinds: [...choiceKinds].sort(), slowestFixtureStepMs: Math.round(slowestMs * 100) / 100, opaqueState: true, maximumU64SeedExact: true, nativeWasmStateAndViewsMatch: true }));

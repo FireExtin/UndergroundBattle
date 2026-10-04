@@ -795,7 +795,7 @@ fn natural_case() -> Value {
     );
     json!({"name":"control-natural-four-seat-real-50-card-decks","seed":seed.to_string(),"syntheticInitialLayout":false,"postConstructionStateOverrides":false,"publicNaturalUiAcceptance":false,"milestones":milestones,"steps":steps})
 }
-pub(super) fn cases() -> Vec<Value> {
+pub(super) fn cases() -> impl Iterator<Item = Value> {
     [
         "temporary-target-hide",
         "source-hide",
@@ -805,6 +805,5 @@ pub(super) fn cases() -> Vec<Value> {
     ]
     .into_iter()
     .map(boundary)
-    .chain(std::iter::once(natural_case()))
-    .collect()
+    .chain(std::iter::once_with(natural_case))
 }

@@ -487,7 +487,7 @@ fn top_checkpoint(to_top: bool) -> Value {
     }
     json!({"name":if to_top{"yellow-batch-top-return-checkpoint"}else{"yellow-batch-top-optional-shuffle-checkpoint"},"seed":"9007199254740993","steps":steps,"syntheticInitialLayout":true,"syntheticPaidFrameCheckpoint":true,"syntheticSearchTopDestination":to_top,"syntheticSearchOptional":!to_top,"publicNaturalUiAcceptance":false})
 }
-pub(super) fn cases() -> Vec<Value> {
+pub(super) fn cases() -> impl Iterator<Item = Value> {
     [
         "private-search",
         "private-empty",
@@ -504,7 +504,6 @@ pub(super) fn cases() -> Vec<Value> {
     ]
     .into_iter()
     .map(case)
-    .chain([top_checkpoint(true), top_checkpoint(false)])
-    .chain(std::iter::once(natural_case()))
-    .collect()
+    .chain([true, false].into_iter().map(top_checkpoint))
+    .chain(std::iter::once_with(natural_case))
 }

@@ -792,8 +792,8 @@ fn natural_case() -> Value {
         "syntheticInitialFunding":false,"postInitialStateInjection":false,"publicNaturalUiAcceptance":false,
         "legalFiftyCardDeck":true,"finalTurn":r.turn,"milestones":milestones,"steps":steps})
 }
-pub fn cases() -> Vec<Value> {
-    let mut out = [
+pub fn cases() -> impl Iterator<Item = Value> {
+    [
         "paid-four",
         "foreign-host",
         "response-return",
@@ -804,7 +804,5 @@ pub fn cases() -> Vec<Value> {
     ]
     .into_iter()
     .map(boundary)
-    .collect::<Vec<_>>();
-    out.push(natural_case());
-    out
+    .chain(std::iter::once_with(natural_case))
 }

@@ -7,6 +7,13 @@ use crate::{
 };
 
 impl Game {
+    pub fn damage_prevented(&self, c: &Card) -> bool {
+        !c.face_down
+            && card(&c.definition).kind == "character"
+            && self.turn_attribute_modifiers.iter().any(|m| {
+                m.target_instance == c.id && m.expires_turn == self.turn && m.prevents_damage
+            })
+    }
     pub(crate) fn turn_attribute_bonus(&self, c: &Card) -> (u32, Icons) {
         if c.face_down || card(&c.definition).kind != "character" {
             return (0, Icons::default());

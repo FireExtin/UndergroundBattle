@@ -395,7 +395,20 @@ impl Game {
                 _ => 0,
             })
             .sum::<u32>();
-        (card(&c.definition).defense.unwrap_or(0) + bonus + self.turn_attribute_bonus(c).0)
+        let attachment_bonus = if !c.face_down && card(&c.definition).kind == "character" {
+            self.attachments
+                .iter()
+                .filter(|a| a.host_id == c.id && self.attachment_host_valid(a))
+                .filter_map(|a| rules::definition(&a.card.definition).attachment.as_ref())
+                .map(|a| a.host_defense_bonus)
+                .sum()
+        } else {
+            0u32
+        };
+        (card(&c.definition).defense.unwrap_or(0)
+            + bonus
+            + self.turn_attribute_bonus(c).0
+            + attachment_bonus)
             .saturating_sub(c.wounds)
     }
     pub(crate) fn reset_passes(&mut self) {
@@ -1625,6 +1638,17 @@ impl Game {
     }
     pub(crate) fn damage(&mut self, allocations: BTreeMap<String, u32>) -> RuleResult<()> {
         for (target, amount) in allocations {
+            if amount > 0
+                && self
+                    .board(&target)
+                    .is_some_and(|(_, c)| self.damage_prevented(c))
+            {
+                self.note(format!(
+                    "本回合伤害防止：为 {} 防止 {amount} 点伤害",
+                    card(&self.board(&target).unwrap().1.definition).name
+                ));
+                continue;
+            }
             if let Some(c) = self.board_mut(&target) {
                 if !c.face_down {
                     c.damage += amount;
@@ -1873,6 +1897,11 @@ impl Game {
         let hidden = c.face_down && c.controller != viewer;
         let asset = kind == Some("asset");
         CardView {
+            current_damage_prevention: (!asset
+                && !c.face_down
+                && region.is_some()
+                && self.damage_prevented(c))
+            .then_some(true),
             current_barrier: (!asset
                 && !c.face_down
                 && region.is_some()
@@ -2306,6 +2335,25 @@ impl Game {
                     candidates.extend(self.rule_action_candidates(seat, c, Some(*r), "activate"));
                 }
             }
+            for attachment in &self.attachments {
+                let c = &attachment.card;
+                if c.controller != seat
+                    || !rules::definition(&c.definition)
+                        .abilities
+                        .iter()
+                        .any(|ability| ability.activation_only)
+                {
+                    continue;
+                }
+                if let Some((region, _)) = self.board(&c.id) {
+                    candidates.extend(self.rule_action_candidates(
+                        seat,
+                        c,
+                        Some(region),
+                        "activate",
+                    ));
+                }
+            }
             if let Some(c) = &self.players[seat].society_zone.card {
                 candidates.extend(self.rule_action_candidates(seat, c, None, "activate"));
             }
@@ -2421,6 +2469,7 @@ mod tests {
             equipment_host: false,
             requires_magic: false,
             exclude_source: false,
+            exclude_attachment_host: false,
             attachment_host_condition: None,
             min: 1,
             max: 1,
@@ -2475,7 +2524,7 @@ mod tests {
     #[test]
     fn catalog_is_restricted_real_complete_and_decks_are_legal() {
         let c = catalog::catalog();
-        assert_eq!(c.cards.len(), 63);
+        assert_eq!(c.cards.len(), 67);
         let active = c
             .cards
             .iter()
@@ -2490,7 +2539,7 @@ mod tests {
                 .collect::<BTreeSet<_>>()
         );
         assert!(active.contains("DQJC116"));
-        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 53);
+        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 57);
         assert_eq!(c.decks.len(), 5);
         for deck in &c.decks {
             assert_eq!(deck.card_count, 50);

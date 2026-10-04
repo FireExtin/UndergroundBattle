@@ -2458,6 +2458,159 @@
       },
       "unique": false,
       "society": ""
+    },
+    {
+      "id": "JC078",
+      "name": "光能盾",
+      "kind": "spell",
+      "subtypes": [
+        "法术",
+        "能量"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "白色"
+      ],
+      "loyaltyText": "白色",
+      "color": "白",
+      "magic": "神圣",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "【快速】行动：本回合中，为目标角色防止接下来将受到的所有伤害。",
+      "keywords": [],
+      "unique": false,
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JC078",
+        "image": "resource/ymsj-fun.github.io/cards/JC078 光能盾.jpg",
+        "sha256": "d238d2c7412349579c00fa4a5a662e9214bdad13df25b8917ae1034251f7e2b9"
+      },
+      "society": "圣贤"
+    },
+    {
+      "id": "XQ14",
+      "name": "鲜血",
+      "kind": "attachment",
+      "subtypes": [
+        "状态"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "蓝色"
+      ],
+      "loyaltyText": "蓝色",
+      "color": "蓝",
+      "magic": "鲜血",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "结附于目标吸血鬼角色\n【持续】受此结附的角色获得防御+1和永久战斗1。",
+      "keywords": [],
+      "unique": false,
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "XQ14",
+        "image": "resource/ymsj-fun.github.io/cards/XQ14 鲜血.jpg",
+        "sha256": "0baea888495adba62a7688be1b95c95b5ffa60d689c104b7ff3a26dd2340ffb2"
+      },
+      "society": "王座会"
+    },
+    {
+      "id": "XQ47",
+      "name": "防弹战术背心",
+      "kind": "attachment",
+      "subtypes": [
+        "装备",
+        "防具"
+      ],
+      "cost": 1,
+      "loyalty": [],
+      "loyaltyText": "",
+      "color": "中立",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "结附于目标角色\n行动②：将防弹战术背心结附在另一个目标角色上。\n持续 受此结附的角色获得防御+1。",
+      "keywords": [],
+      "unique": false,
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "XQ47",
+        "image": "resource/ymsj-fun.github.io/cards/XQ47 防弹战术背心.jpg",
+        "sha256": "9b370fb92ad2e1c3ac6f33d3402ab2c8cbdea1898aae4c4a386f17631d654a03"
+      },
+      "society": ""
+    },
+    {
+      "id": "JC112",
+      "name": "黑猫",
+      "kind": "character",
+      "subtypes": [
+        "猫",
+        "魔宠"
+      ],
+      "cost": 1,
+      "loyalty": [],
+      "loyaltyText": "",
+      "color": "中立",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "公开　不能被装备结附\n【快速行动】牺牲黑猫：本回合中，你下一张正面打出，且具有魔法领域图标的牌，其所需费用减少1。",
+      "keywords": [
+        "公开"
+      ],
+      "unique": false,
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JC112",
+        "image": "resource/ymsj-fun.github.io/cards/JC112 黑猫.jpg",
+        "sha256": "870b526451ed20441601cfed413a99e2e64a266d60daa698bb2066840383bd71"
+      },
+      "society": ""
     }
   ],
   "decks": [

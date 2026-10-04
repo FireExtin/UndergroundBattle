@@ -531,8 +531,8 @@ fn natural_case() -> Value {
     assert!(r.log.iter().any(|l| l.text.contains("声望")));
     json!({"name":"renown-natural-four-seat-paid-three-cards","seed":seed.to_string(),"syntheticInitialLayout":false,"syntheticInitialFunding":false,"postInitialStateInjection":false,"zeroNeutralFiftyCardDeck":true,"publicNaturalUiAcceptance":false,"finalTurn":r.turn,"milestones":milestones,"steps":steps})
 }
-pub fn cases() -> Vec<Value> {
-    let mut out = [
+pub fn cases() -> impl Iterator<Item = Value> {
+    [
         "merged-decline",
         "normal-win",
         "renown-win",
@@ -541,7 +541,5 @@ pub fn cases() -> Vec<Value> {
     ]
     .into_iter()
     .map(boundary)
-    .collect::<Vec<_>>();
-    out.push(natural_case());
-    out
+    .chain(std::iter::once_with(natural_case))
 }

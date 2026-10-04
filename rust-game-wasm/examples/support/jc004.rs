@@ -508,7 +508,7 @@ fn case(kind: &str) -> Value {
         "syntheticStateChangeBeforeResolution":kind.starts_with("declared-")})
 }
 
-pub(super) fn cases() -> Vec<Value> {
+pub(super) fn cases() -> impl Iterator<Item = Value> {
     [
         "ready",
         "exhausted",
@@ -529,5 +529,4 @@ pub(super) fn cases() -> Vec<Value> {
     ]
     .into_iter()
     .map(case)
-    .collect()
 }

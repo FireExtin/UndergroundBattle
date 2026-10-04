@@ -513,26 +513,28 @@ fn construction_case(yellow: usize) -> Value {
     let rejects=[draft(24,50),draft(25,49)].into_iter().map(|d|{let error=Game::new_with_deck("reject".into(),"LOCAL".into(),"duel".into(),"P0".into(),d.clone(),1).unwrap_err();json!({"args":["reject","LOCAL","duel","P0",serde_json::to_string(&d).unwrap(),"1"],"error":error})}).collect::<Vec<_>>();
     json!({"name":format!("MSJC01-construction-{yellow}-yellow"),"seed":seed,"steps":[step(&room,"newGameWithDeck",json!([room.room_id,room.invite_code,"duel","P0",serde_json::to_string(&d).unwrap(),seed]),0)],"rejectedNewGameWithDeck":rejects,"syntheticInitialLayout":false,"publicNaturalUiAcceptance":false})
 }
-pub(super) fn cases() -> Vec<Value> {
-    let mut out = vec![construction_case(25), construction_case(27), natural_case()];
-    out.extend(
-        [
-            "empty-search",
-            "empty-deck",
-            "reject-cost",
-            "reject-exhausted",
-            "draw-first",
-            "draw-rear",
-            "neutral-unique-one-hit",
-            "neutral-unique-three-hits",
-            "pending-search-restore",
-            "cancelled-paid-frame",
-            "new-instance-used",
-            "new-game-reset",
-            "turn-reset-used",
-        ]
+pub(super) fn cases() -> impl Iterator<Item = Value> {
+    [25, 27]
         .into_iter()
-        .map(case),
-    );
-    out
+        .map(construction_case)
+        .chain(std::iter::once_with(natural_case))
+        .chain(
+            [
+                "empty-search",
+                "empty-deck",
+                "reject-cost",
+                "reject-exhausted",
+                "draw-first",
+                "draw-rear",
+                "neutral-unique-one-hit",
+                "neutral-unique-three-hits",
+                "pending-search-restore",
+                "cancelled-paid-frame",
+                "new-instance-used",
+                "new-game-reset",
+                "turn-reset-used",
+            ]
+            .into_iter()
+            .map(case),
+        )
 }

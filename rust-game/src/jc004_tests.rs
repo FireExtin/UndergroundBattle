@@ -162,11 +162,11 @@ fn jc004_complete_printed_definition_and_candidate_identity_are_isolated() {
     assert_eq!(spec.targets[0].relation, Relation::Any);
     assert_eq!(
         catalog::ENGINE_VERSION,
-        "rust-v0.2.17-protection-batch-candidate"
+        "rust-v0.2.18-defence-equipment-candidate"
     );
     assert_eq!(
         catalog::POOL_VERSION,
-        "limited-v2.14-protection-batch-candidate"
+        "limited-v2.15-defence-equipment-candidate"
     );
     let mut draft = deck::preset("watchers").unwrap();
     draft.cards = vec![
