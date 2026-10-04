@@ -12,8 +12,8 @@ const definition = catalog.cards.find(c => c.id === 'JC005');
 const sha256 = '216c26cff74fe738dbc486e725828ddc8077705161b1fee566e9d806684364a1';
 
 it('admits only JC005 after Site23 and retains the exact printed spell metadata and original bytes', () => {
-  expect(catalog.engineVersion).toBe('rust-v0.2.11-jc005-candidate');
-  expect(catalog.cardPoolVersion).toBe('limited-v2.8-jc005-candidate');
+  expect(catalog.engineVersion).toBe('rust-v0.2.11');
+  expect(catalog.cardPoolVersion).toBe('limited-v2.8');
   expect(catalog.cards).toHaveLength(50);
   expect(catalog.cards.some(c => c.id === 'JC008')).toBe(false);
   expect(catalog.societies.map(c => c.id)).toEqual(['MSJC09']);
@@ -31,7 +31,7 @@ it('admits only JC005 after Site23 and retains the exact printed spell metadata 
 });
 
 it('reads the actual own-hand WASM spell projection with no invented defense and opens its original', () => {
-  const draft = { id: 'jc005-reader', name: 'JC005候选原图回归', description: '', societyId: null,
+  const draft = { id: 'jc005-reader', name: 'JC005正式原图回归', description: '', societyId: null,
     cards: [{ cardId: 'JC005', count: 3 }, { cardId: 'JC125', count: 47 }],
     rulesVersion: catalog.rulesVersion, cardPoolVersion: catalog.cardPoolVersion,
     engineVersion: catalog.engineVersion, updatedAt: '' };

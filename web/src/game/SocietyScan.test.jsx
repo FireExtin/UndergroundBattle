@@ -12,8 +12,8 @@ const catalog = rawCatalog;
 const society = catalog.societies[0];
 const sha256 = '41e478a3f38ead83477498fd88131831a5fd843be364c1c0daa3ba10153c2302';
 
-it('keeps the sole real society unchanged while the isolated JC005 candidate adds one ordinary card', () => {
-  expect(catalog.engineVersion).toBe('rust-v0.2.11-jc005-candidate');
+it('keeps the sole real society unchanged while the formal JC005 release adds one ordinary card', () => {
+  expect(catalog.engineVersion).toBe('rust-v0.2.11');
   expect(catalog.cards).toHaveLength(50);
   expect(catalog.societies.map(card => card.id)).toEqual(['MSJC09']);
   expect(rawCatalog.societies[0].unique).toBe(true);

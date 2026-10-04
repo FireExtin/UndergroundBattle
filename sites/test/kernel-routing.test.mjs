@@ -11,6 +11,7 @@ import * as attached from '../generated/legacy-v0.2.6/hegemony_wasm.js';
 import * as grave from '../generated/legacy-v0.2.7/hegemony_wasm.js';
 import * as playable from '../generated/legacy-v0.2.8/hegemony_wasm.js';
 import * as society from '../generated/legacy-v0.2.9/hegemony_wasm.js';
+import * as forceMage from '../generated/legacy-v0.2.10/hegemony_wasm.js';
 import { routeKernels } from '../src/kernel-router.mjs';
 
 current.initSync({ module: readFileSync(new URL('../generated/hegemony_wasm_bg.wasm', import.meta.url)) });
@@ -23,21 +24,23 @@ attached.initSync({ module: readFileSync(new URL('../generated/legacy-v0.2.6/heg
 grave.initSync({ module: readFileSync(new URL('../generated/legacy-v0.2.7/hegemony_wasm_bg.wasm', import.meta.url)) });
 playable.initSync({ module: readFileSync(new URL('../generated/legacy-v0.2.8/hegemony_wasm_bg.wasm', import.meta.url)) });
 society.initSync({ module: readFileSync(new URL('../generated/legacy-v0.2.9/hegemony_wasm_bg.wasm', import.meta.url)) });
-test('real kernels preserve their full version tuple and reject unknown persisted identities', () => {
-  const routed = routeKernels(current, [previous, intermediate, last, stable, paced, attached, grave, playable, society]);
+forceMage.initSync({ module: readFileSync(new URL('../generated/legacy-v0.2.10/hegemony_wasm_bg.wasm', import.meta.url)) });
+test('real kernels preserve their full version tuple and reject unknown persisted identities', t => {
+  const routed = routeKernels(current, [previous, intermediate, last, stable, paced, attached, grave, playable, society, forceMage]);
   const candidateVersion = JSON.parse(current.catalog()).engineVersion;
-  assert.equal(candidateVersion, 'rust-v0.2.10');
+  assert.equal(candidateVersion, 'rust-v0.2.11');
   assert.equal(JSON.parse(playable.catalog()).engineVersion, 'rust-v0.2.8');
   const latest = JSON.parse(current.catalog());
-  const frozen = JSON.parse(society.catalog());
-  assert.equal(latest.cardPoolVersion, 'limited-v2.7');
-  assert.equal(frozen.engineVersion, 'rust-v0.2.9');
-  assert.equal(frozen.cardPoolVersion, 'limited-v2.6');
-  assert.equal(latest.cards.length, 49);
-  assert.equal(frozen.cards.length, 48);
-  assert.deepEqual(latest.cards.filter(c => !frozen.cards.some(old => old.id === c.id)).map(c => c.id), ['JC004']);
-  assert(!latest.cards.some(c => ['JC005', 'JC008'].includes(c.id)));
-  for (const kernel of [current, previous, intermediate, last, stable, paced, attached, grave, playable, society]) {
+  const frozen = JSON.parse(forceMage.catalog());
+  assert.equal(latest.cardPoolVersion, 'limited-v2.8');
+  assert.equal(frozen.engineVersion, 'rust-v0.2.10');
+  assert.equal(frozen.cardPoolVersion, 'limited-v2.7');
+  assert.equal(latest.cards.length, 50);
+  assert.equal(frozen.cards.length, 49);
+  assert.deepEqual(latest.cards.filter(c => !frozen.cards.some(old => old.id === c.id)).map(c => c.id), ['JC005']);
+  assert(!latest.cards.some(c => c.id === 'JC008'));
+  assert.deepEqual(latest.cards.filter(c => c.id !== 'JC005'), frozen.cards);
+  for (const kernel of [current, previous, intermediate, last, stable, paced, attached, grave, playable, society, forceMage]) {
     const initial = JSON.parse(kernel.newGame('room', 'invite', 'duel', 'P0', 'watchers', '18446744073709551615'));
     assert.deepEqual(JSON.parse(routed.view(initial.state, 0)), initial.view);
     assert.equal(routed.catalog(initial.state), kernel.catalog());
@@ -67,13 +70,15 @@ test('real kernels preserve their full version tuple and reject unknown persiste
         cards: c.decks.find(d => d.id === 'watchers').cards, rulesVersion: c.rulesVersion,
         cardPoolVersion: c.cardPoolVersion, engineVersion: c.engineVersion, updatedAt: '2026-10-02T00:00:00Z' };
       assert.equal(routed.joinGameWithDeck(initial.state, 'P1', JSON.stringify(draft)), kernel.joinGameWithDeck(initial.state, 'P1', JSON.stringify(draft)));
-      if (kernel === society) {
+      if (kernel === society || kernel === forceMage) {
         const newer = { ...draft, rulesVersion: latest.rulesVersion, cardPoolVersion: latest.cardPoolVersion, engineVersion: latest.engineVersion };
         assert.throws(() => routed.joinGameWithDeck(initial.state, 'P1', JSON.stringify(newer)));
-        assert.throws(() => routed.joinGameWithDeck(initial.state, 'P1', JSON.stringify({ ...draft, cards: [{ cardId: 'JC004', count: 3 }, { cardId: 'JC125', count: 47 }] })));
+        assert.throws(() => routed.joinGameWithDeck(initial.state, 'P1', JSON.stringify({ ...draft, cards: [{ cardId: 'JC005', count: 3 }, { cardId: 'JC125', count: 47 }] })));
+        if (kernel === society) assert.throws(() => routed.joinGameWithDeck(initial.state, 'P1', JSON.stringify({ ...draft, cards: [{ cardId: 'JC004', count: 3 }, { cardId: 'JC125', count: 47 }] })));
         assert.throws(() => current.view(initial.state, 0));
       }
     }
   }
   assert.equal(JSON.parse(routed.newGame('new', 'invite', 'duel', 'P0', 'watchers', '1')).view.versions.engine, candidateVersion);
+  t.diagnostic(JSON.stringify({ routedKernelVersions: [current, previous, intermediate, last, stable, paced, attached, grave, playable, society, forceMage].map(k => JSON.parse(k.catalog()).engineVersion), onlyAddedOrdinaryCard: 'JC005', oldIdentitiesAndOwnVersionDraftsPreserved: true }));
 });
