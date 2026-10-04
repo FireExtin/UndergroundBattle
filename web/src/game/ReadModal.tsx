@@ -14,6 +14,6 @@ export function ReadModal({ card, definition, viewerId, onClose, context, active
     <button className="hg-close" onClick={onClose} aria-label="关闭放大阅读">×</button><span className="hg-eyebrow">卡牌档案 · 放大阅读</span>
     {context && <p className="hg-attachment-context">{context}</p>}
     {scan && <div className="hg-reading-tabs" role="group" aria-label="阅读内容"><button type="button" className="hg-button hg-button-quiet" aria-pressed={!showScan} onClick={() => setShowScan(false)}>当前状态与文字</button><button type="button" className="hg-button hg-button-quiet" aria-pressed={showScan} onClick={() => setShowScan(true)}>原始牌面</button></div>}
-    {showScan && scan ? <div className="hg-source-reading"><a href={scan} target="_blank" rel="noreferrer" aria-label={`打开${safe.name}原始牌面全图`}><img src={scan} alt={`${safe.name}原始牌面`} /></a><p>点击牌面打开原图。印刷值请结合当前状态中的修正查看。</p></div> : <><div className="hg-reading-card"><CardContent card={safe} definition={safe.cardId ? definition : undefined} /></div><p>◈ 调查 · ⚔ 战斗 · ⚑ 势力。白底图标仅在操控者团队持先手时生效。</p></>}
+    {showScan && scan ? <div className="hg-source-reading"><a href={scan} target="_blank" rel="noreferrer" aria-label={`打开${safe.name}原始牌面全图`}><img src={scan} alt={`${safe.name}原始牌面`} /></a><p>点击牌面打开原图。印刷值请结合当前状态中的修正查看。</p></div> : <><div className="hg-reading-card"><CardContent card={safe} definition={safe.cardId ? definition : undefined} /></div>{safe.kind !== 'society' && <p>◈ 调查 · ⚔ 战斗 · ⚑ 势力。白底图标仅在操控者团队持先手时生效。</p>}</>}
   </section></div>;
 }
