@@ -4,8 +4,9 @@ import type { Catalog, Card, SocietyDefinition, View } from './types';
 
 export const fixtureSociety: SocietyDefinition = {
   id: 'FIXTURE_SOCIETY_ALPHA', name: '合成秘社甲', kind: 'society', cost: 0, supported: true,
+  subtitle: '合成副标题', printedCost: null,
   text: '合成 UI 测试：支付费用并横置本秘社，选择一个已显示目标。',
-  startingHand: 4, deckConstraints: [{ kind: 'minimumColor', color: '红', count: 2 }],
+  startingHand: 6, deckConstraints: [{ kind: 'minimumColor', color: '红', count: 2 }],
   unresolvedAbilities: { FIXTURE_UNRESOLVED: 'fixture-pending-interpretation' },
   abilities: [
     { key: 'FIXTURE_TARGET', label: '合成目标能力', timing: 'standard', triggered: false },

@@ -12,6 +12,18 @@ const select = () => fireEvent.click(ownCard());
 const openTarget = () => { select(); fireEvent.click(screen.getByRole('button', { name: '合成秘社甲：合成目标能力' })); };
 
 describe('per-seat society UI on synthetic authorized projections', () => {
+  it('shows subtitle and starting hand without presenting the internal zero cost or character stats', () => {
+    render(<Table {...props} view={view} onAction={vi.fn()} />);
+    select(); fireEvent.click(screen.getByRole('button', { name: '放大文字与图标 ↗' }));
+    const modal = screen.getByRole('dialog');
+    expect(modal).toHaveTextContent('合成副标题');
+    expect(modal).toHaveTextContent('起手 6 张');
+    expect(modal).toHaveTextContent(fixtureSociety.text);
+    expect(modal.querySelector('.hg-cost, .hg-icons')).toBeNull();
+    expect(modal).not.toHaveTextContent('防御');
+    expect(modal).not.toHaveTextContent('白底图标');
+    expect(modal).not.toHaveTextContent('独有');
+  });
   it('renders every occupied seat including empty zones without treating societies as regions', () => {
     const { container } = render(<Table {...props} view={view} onAction={vi.fn()} />);
     expect(container.querySelectorAll('[data-society-zone]')).toHaveLength(4);

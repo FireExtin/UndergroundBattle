@@ -10,6 +10,8 @@ export type CardDefinition = {
 };
 export type SocietyDefinition = CardDefinition & {
   kind: 'society';
+  subtitle?: string;
+  printedCost?: null;
   startingHand: number;
   deckConstraints: { kind: 'minimumColor'; color: string; count: number }[];
   unresolvedAbilities: Record<string, string>;

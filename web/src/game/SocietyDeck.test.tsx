@@ -36,7 +36,8 @@ describe('optional society construction from a synthetic registry', () => {
     expect(screen.getByText('不选择秘社时，起手 6 张。')).toBeInTheDocument();
     fireEvent.change(screen.getByRole('combobox', { name: '秘社（可选）' }), { target: { value: fixtureSociety.id } });
     const area = screen.getByRole('region', { name: '可选秘社' });
-    expect(within(area).getByText('选定秘社起手 4 张。')).toBeInTheDocument();
+    expect(within(area).getByText('选定秘社起手 6 张。')).toBeInTheDocument();
+    expect(within(area).getByText('合成副标题')).toBeInTheDocument();
     expect(within(area).getByText(/至少 2 张红色卡 · 当前 2 张/)).toBeInTheDocument();
     expect(screen.getByRole('button', { name: '保存并选择此牌组' })).toBeEnabled();
     fireEvent.click(screen.getByRole('button', { name: '保存并选择此牌组' }));

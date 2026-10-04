@@ -92,6 +92,7 @@ export function DeckLibrary({ catalog, disabled = false, onSelectDraft, selected
           {draft.societyId !== null && <button type="button" className="hg-button hg-button-quiet" disabled={disabled} onClick={() => edit({ ...draft, societyId: null })}>清除秘社选择</button>}
           <p>{!societies.length && '当前目录尚未开放秘社。'}{draft.societyId === null ? '不选择秘社时，起手 6 张。' : society ? `选定秘社起手 ${Number.isSafeInteger(society.startingHand) && society.startingHand >= 0 ? society.startingHand : '待确认'} 张。` : '已保存的秘社当前不可用于开局。'}</p>
           {society && <>
+            {society.subtitle && <strong>{society.subtitle}</strong>}
             <p className="hg-library-card-text">{society.text}</p>
             <strong>构筑要求</strong>
             {!Array.isArray(society.deckConstraints) ? <p>构筑要求待确认。</p> : society.deckConstraints.length ? <ul>{society.deckConstraints.map((constraint, index) => <li key={index}>{constraint.kind === 'minimumColor' && typeof constraint.color === 'string' ? `至少 ${constraint.count} 张${constraint.color.replace(/色$/, '')}色卡 · 当前 ${societyColorCount(draft, catalog, constraint.color)} 张` : '构筑要求待确认'}</li>)}</ul> : <p>无额外颜色数量要求。</p>}
@@ -135,7 +136,7 @@ export function DeckLibrary({ catalog, disabled = false, onSelectDraft, selected
         <p className="hg-library-match-count">找到 {choices.length} 种卡牌</p>
         <ul className="hg-library-card-options">{choices.map(card => <li key={card.id}>
           <div className="hg-library-card-heading"><strong>{card.name}</strong><button type="button" className="hg-button hg-button-quiet" aria-label={`添加 ${card.name}（${card.id}）`} disabled={disabled || !isEditableDeckCard(card)} onClick={() => edit(setDraftCardCount(draft, card.id, (draft.cards.find(entry => entry.cardId === card.id)?.count || 0) + 1))}>+ 添加</button></div>
-          <small>{card.id} · {factionName(card)} · {kinds[card.kind] || card.kind} · 费用 {card.cost} · {copyLabel(card)}</small>
+          <small>{card.id} · {factionName(card)} · {kinds[card.kind] || card.kind}{card.kind !== 'society' && ` · 费用 ${card.cost}`} · {copyLabel(card)}</small>
           {!isEditableDeckCard(card) && <p className="hg-library-warning">{card.kind === 'region' ? '地区由世界牌库提供，不可加入玩家牌组。' : card.kind === 'society' ? '秘社须在独立选择中选取，不加入玩家卡张数。' : '该卡尚未确认已实现，不可添加。'}</p>}
           <details><summary>查看规则文字</summary><p className="hg-library-card-text">{card.text}</p>{card.loyaltyText && <p>{card.loyaltyText}</p>}</details>
         </li>)}</ul>

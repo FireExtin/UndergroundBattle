@@ -31,6 +31,8 @@ export function CardContent({ card: source, definition: sourceDefinition, compac
   const region = card.kind === 'region';
   const attachment = card.kind === 'attachment';
   const society = card.kind === 'society';
+  const subtitle = society && definition && 'subtitle' in definition && typeof definition.subtitle === 'string' ? definition.subtitle : undefined;
+  const startingHand = society && definition && 'startingHand' in definition && typeof definition.startingHand === 'number' && Number.isSafeInteger(definition.startingHand) && definition.startingHand >= 0 ? definition.startingHand : undefined;
   const concealedCompact = compact && card.kind === 'hidden';
   const printedCost = card.cost ?? definition?.cost ?? 0;
   const actualCost = card.effectiveCost ?? printedCost;
@@ -44,6 +46,8 @@ export function CardContent({ card: source, definition: sourceDefinition, compac
   return <>
     <span className="hg-card-top"><span className="hg-card-kind">{type}</span>{!hidden && !asset && !region && !society && <span className={`hg-cost${adjustedCost ? ' hg-cost-adjusted' : ''}`} title={adjustedCost ? `当前费用 ${actualCost} · 印刷费用 ${printedCost}` : '费用'} aria-label={adjustedCost ? `当前费用 ${actualCost}，印刷费用 ${printedCost}` : `费用 ${actualCost}`}>{actualCost}</span>}</span>
     <strong className="hg-card-name">{hidden ? '暗藏者' : card.name}</strong>
+    {!compact && subtitle && <span className="hg-card-subtitle">{subtitle}</span>}
+    {!compact && startingHand !== undefined && <span className="hg-society-hand">起手 {startingHand} 张</span>}
     {!compact && !hidden && !asset && !region && !society && adjustedCost && <span className="hg-cost-explanation">当前费用 {actualCost} · 印刷费用 {printedCost}</span>}
     {!compact && <span className="hg-card-art" aria-hidden="true"><span>{hidden ? '？' : card.kind === 'event' ? '✧' : card.kind === 'region' ? '⌖' : '◈'}</span><i /></span>}
     {hidden ? <><IconStrip icons={hiddenIcons} /><span className="hg-card-text">{hiddenRule}。{card.exhausted ? '已横置，不参与对抗。' : '在地区内且未横置时参与势力对抗。'}</span></> : <>

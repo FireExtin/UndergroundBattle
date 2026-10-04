@@ -1,4 +1,5 @@
 /* Per-seat zones use the existing mat and CardTile interactions. */
+.hg-card-subtitle, .hg-society-hand { display: block; font-size: 13px; line-height: 1.5; }
 .hg-lobby-society { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px; padding: 8px; border: 1px dashed #b4b59277; border-radius: 6px; }
 .hg-lobby-society > strong { font-size: 13px; }
 .hg-lobby-society > small { color: #c7c9b2; font-size: 12px; }
