@@ -10,6 +10,7 @@ import * as paced from '../generated/legacy-v0.2.5/hegemony_wasm.js';
 import * as attached from '../generated/legacy-v0.2.6/hegemony_wasm.js';
 import * as grave from '../generated/legacy-v0.2.7/hegemony_wasm.js';
 import * as playable from '../generated/legacy-v0.2.8/hegemony_wasm.js';
+import * as society from '../generated/legacy-v0.2.9/hegemony_wasm.js';
 import { routeKernels } from '../src/kernel-router.mjs';
 
 current.initSync({ module: readFileSync(new URL('../generated/hegemony_wasm_bg.wasm', import.meta.url)) });
@@ -21,12 +22,22 @@ paced.initSync({ module: readFileSync(new URL('../generated/legacy-v0.2.5/hegemo
 attached.initSync({ module: readFileSync(new URL('../generated/legacy-v0.2.6/hegemony_wasm_bg.wasm', import.meta.url)) });
 grave.initSync({ module: readFileSync(new URL('../generated/legacy-v0.2.7/hegemony_wasm_bg.wasm', import.meta.url)) });
 playable.initSync({ module: readFileSync(new URL('../generated/legacy-v0.2.8/hegemony_wasm_bg.wasm', import.meta.url)) });
+society.initSync({ module: readFileSync(new URL('../generated/legacy-v0.2.9/hegemony_wasm_bg.wasm', import.meta.url)) });
 test('real kernels preserve their full version tuple and reject unknown persisted identities', () => {
-  const routed = routeKernels(current, [previous, intermediate, last, stable, paced, attached, grave, playable]);
+  const routed = routeKernels(current, [previous, intermediate, last, stable, paced, attached, grave, playable, society]);
   const candidateVersion = JSON.parse(current.catalog()).engineVersion;
-  assert.equal(candidateVersion, 'rust-v0.2.9');
+  assert.equal(candidateVersion, 'rust-v0.2.10');
   assert.equal(JSON.parse(playable.catalog()).engineVersion, 'rust-v0.2.8');
-  for (const kernel of [current, previous, intermediate, last, stable, paced, attached, grave, playable]) {
+  const latest = JSON.parse(current.catalog());
+  const frozen = JSON.parse(society.catalog());
+  assert.equal(latest.cardPoolVersion, 'limited-v2.7');
+  assert.equal(frozen.engineVersion, 'rust-v0.2.9');
+  assert.equal(frozen.cardPoolVersion, 'limited-v2.6');
+  assert.equal(latest.cards.length, 49);
+  assert.equal(frozen.cards.length, 48);
+  assert.deepEqual(latest.cards.filter(c => !frozen.cards.some(old => old.id === c.id)).map(c => c.id), ['JC004']);
+  assert(!latest.cards.some(c => ['JC005', 'JC008'].includes(c.id)));
+  for (const kernel of [current, previous, intermediate, last, stable, paced, attached, grave, playable, society]) {
     const initial = JSON.parse(kernel.newGame('room', 'invite', 'duel', 'P0', 'watchers', '18446744073709551615'));
     assert.deepEqual(JSON.parse(routed.view(initial.state, 0)), initial.view);
     assert.equal(routed.catalog(initial.state), kernel.catalog());
@@ -56,6 +67,12 @@ test('real kernels preserve their full version tuple and reject unknown persiste
         cards: c.decks.find(d => d.id === 'watchers').cards, rulesVersion: c.rulesVersion,
         cardPoolVersion: c.cardPoolVersion, engineVersion: c.engineVersion, updatedAt: '2026-10-02T00:00:00Z' };
       assert.equal(routed.joinGameWithDeck(initial.state, 'P1', JSON.stringify(draft)), kernel.joinGameWithDeck(initial.state, 'P1', JSON.stringify(draft)));
+      if (kernel === society) {
+        const newer = { ...draft, rulesVersion: latest.rulesVersion, cardPoolVersion: latest.cardPoolVersion, engineVersion: latest.engineVersion };
+        assert.throws(() => routed.joinGameWithDeck(initial.state, 'P1', JSON.stringify(newer)));
+        assert.throws(() => routed.joinGameWithDeck(initial.state, 'P1', JSON.stringify({ ...draft, cards: [{ cardId: 'JC004', count: 3 }, { cardId: 'JC125', count: 47 }] })));
+        assert.throws(() => current.view(initial.state, 0));
+      }
     }
   }
   assert.equal(JSON.parse(routed.newGame('new', 'invite', 'duel', 'P0', 'watchers', '1')).view.versions.engine, candidateVersion);

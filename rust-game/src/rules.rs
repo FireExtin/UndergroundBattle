@@ -161,6 +161,13 @@ impl CardFilter {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
     Exhaust(EntityRef),
+    // A finite single-board-target query, evaluated only after the frame guard.
+    // Branches are restricted to existing atomic Exhaust / OwnerHand operations.
+    IfTargetExhausted {
+        slot: usize,
+        exhausted: Box<Op>,
+        ready: Box<Op>,
+    },
     HealWounds(EntityRef),
     Move(EntityRef, Destination),
     Hide(EntityRef),
@@ -320,11 +327,33 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
             }
         }
         for op in ops {
+            if let Op::IfTargetExhausted {
+                slot,
+                exhausted,
+                ready,
+            } = op
+            {
+                let valid_target = targets.get(*slot).is_some_and(|target| {
+                    target.zone == Zone::Board && target.kind == EntityKind::Character
+                });
+                let valid_branch = |branch: &Op| match branch {
+                    Op::Exhaust(EntityRef::Target(index))
+                    | Op::Move(EntityRef::Target(index), Destination::OwnerHand) => index == slot,
+                    _ => false,
+                };
+                if !valid_target || !valid_branch(exhausted) || !valid_branch(ready) {
+                    return Err(format!(
+                        "{location}: exhausted-state branch requires one bound board character and atomic operations on that same target"
+                    ));
+                }
+            }
             if let Op::ForEachLivingPlayer(body) | Op::ForEachLivingPlayerFromActor(body) = op {
                 if body.iter().any(|op| {
                     matches!(
                         op,
-                        Op::ForEachLivingPlayer(_) | Op::ForEachLivingPlayerFromActor(_)
+                        Op::ForEachLivingPlayer(_)
+                            | Op::ForEachLivingPlayerFromActor(_)
+                            | Op::IfTargetExhausted { .. }
                     )
                 }) {
                     return Err(format!(
@@ -808,9 +837,25 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
                 "现身触发",
                 Timing::Fast,
                 vec![],
-                vec![local],
+                vec![local.clone()],
                 vec![Op::Exhaust(Target(0))],
                 Some(Event::Reveal),
+            )]),
+        );
+        m.insert(
+            "JC004".into(),
+            with_abilities(vec![ability(
+                "exhaust-or-return-entry",
+                "进场触发",
+                Timing::Fast,
+                vec![],
+                vec![local],
+                vec![Op::IfTargetExhausted {
+                    slot: 0,
+                    exhausted: Box::new(Op::Move(Target(0), Destination::OwnerHand)),
+                    ready: Box::new(Op::Exhaust(Target(0))),
+                }],
+                Some(Event::Enter),
             )]),
         );
         m.insert(
