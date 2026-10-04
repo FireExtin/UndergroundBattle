@@ -77,6 +77,8 @@ pub struct LegalAction {
 #[serde(rename_all = "camelCase")]
 pub struct CardView {
     #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub current_printed_defense: Option<u32>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub current_damage_prevention: Option<bool>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub current_barrier: Option<bool>,
@@ -443,6 +445,9 @@ pub struct StackItem {
 pub struct SourceSnapshot {
     pub card: Card,
     pub region: Option<usize>,
+    // Non-targeted host effect keeps the declaration's exact host identity.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub attachment_host_instance: Option<String>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub play_source: Option<PlaySource>,
 }
@@ -553,6 +558,8 @@ pub struct CostModifier {
 pub struct TurnAttributeModifier {
     pub target_instance: String,
     pub defense_bonus: u32,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub printed_defense_override: Option<u32>,
     pub ordinary_icons: Icons,
     #[serde(default, skip_serializing_if = "is_false")]
     pub grants_renown: bool,
@@ -562,6 +569,13 @@ pub struct TurnAttributeModifier {
 }
 pub(crate) fn is_false(value: &bool) -> bool {
     !value
+}
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
+pub struct TurnAbilityUsage {
+    pub source_instance: String,
+    pub ability_key: String,
+    pub turn: u32,
+    pub uses: u32,
 }
 // Finite project interpretation: last still-valid resolved control wins.
 // This ordering is a project ruling, not a claim about the old FAQ.
@@ -667,6 +681,8 @@ pub struct Game {
     pub modifiers: Vec<CostModifier>,
     #[serde(default)]
     pub turn_attribute_modifiers: Vec<TurnAttributeModifier>,
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub turn_ability_usage: Vec<TurnAbilityUsage>,
     #[serde(default)]
     pub control_effects: Vec<ControlEffect>,
     #[serde(default)]

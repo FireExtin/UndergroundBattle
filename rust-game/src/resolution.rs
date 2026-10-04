@@ -342,6 +342,21 @@ impl Game {
         SourceSnapshot {
             card: c.clone(),
             region,
+            attachment_host_instance: rules::definition(&c.definition)
+                .abilities
+                .iter()
+                .any(|a| {
+                    a.ops
+                        .iter()
+                        .any(|op| matches!(op, Op::ModifyAttachmentHostUntilTurnEnd))
+                })
+                .then(|| {
+                    self.attachments
+                        .iter()
+                        .find(|a| a.card.id == c.id)
+                        .map(|a| a.host_id.clone())
+                })
+                .flatten(),
             play_source: None,
         }
     }
@@ -610,6 +625,16 @@ impl Game {
         spec: &AbilitySpec,
         a: &Action,
     ) -> RuleResult<Vec<PaidCost>> {
+        if spec.per_turn_limit.is_some_and(|limit| {
+            self.turn_ability_usage.iter().any(|u| {
+                u.source_instance == source.card.id
+                    && u.ability_key == spec.key
+                    && u.turn == self.turn
+                    && u.uses >= limit
+            })
+        }) {
+            return Err("此能力本回合已达发动上限".into());
+        }
         if spec.once_per_game {
             let used = self
                 .society_usage(&source.card.id)
@@ -655,7 +680,10 @@ impl Game {
                         .filter(|(_, c)| {
                             c.controller == actor
                                 && !c.face_down
-                                && card(&c.definition).kind == "character"
+                                && (card(&c.definition).kind == "character"
+                                    || (matches!(cost, Cost::SacrificeSource)
+                                        && card(&c.definition).kind == "attachment"
+                                        && self.attachments.iter().any(|a| a.card.id == c.id)))
                         })
                         .ok_or("牺牲费用须为自己操控的角色")?;
                     paid.push(PaidCost::Sacrificed {
@@ -669,6 +697,22 @@ impl Game {
         }
         if spec.once_per_game {
             self.consume_society_usage(&source.card.id, &spec.key)?;
+        }
+        if spec.per_turn_limit.is_some() {
+            if let Some(usage) = self.turn_ability_usage.iter_mut().find(|u| {
+                u.source_instance == source.card.id
+                    && u.ability_key == spec.key
+                    && u.turn == self.turn
+            }) {
+                usage.uses += 1;
+            } else {
+                self.turn_ability_usage.push(TurnAbilityUsage {
+                    source_instance: source.card.id.clone(),
+                    ability_key: spec.key.clone(),
+                    turn: self.turn,
+                    uses: 1,
+                });
+            }
         }
         Ok(paid)
     }
@@ -1037,6 +1081,7 @@ impl Game {
                     self.turn_attribute_modifiers.push(TurnAttributeModifier {
                         target_instance: target.id.clone(),
                         defense_bonus,
+                        printed_defense_override: None,
                         ordinary_icons,
                         grants_renown,
                         prevents_damage: false,
@@ -1055,6 +1100,7 @@ impl Game {
                     self.turn_attribute_modifiers.push(TurnAttributeModifier {
                         target_instance: target.id.clone(),
                         defense_bonus: 0,
+                        printed_defense_override: None,
                         ordinary_icons: Icons::default(),
                         grants_renown: false,
                         prevents_damage: true,
@@ -1064,6 +1110,57 @@ impl Game {
                 Op::ReattachSource { slot } => {
                     let target = frame.targets.get(slot).ok_or("缺少转移结附目标")?;
                     self.reattach_source(&frame.source.card.id, &target.id);
+                }
+                Op::ModifyAttachmentHostUntilTurnEnd => {
+                    if let Some(id) = frame.source.attachment_host_instance.as_ref().filter(|id| {
+                        self.board(id).is_some_and(|(_, c)| {
+                            !c.face_down && card(&c.definition).kind == "character"
+                        })
+                    }) {
+                        self.turn_attribute_modifiers.push(TurnAttributeModifier {
+                            target_instance: id.clone(),
+                            defense_bonus: 0,
+                            printed_defense_override: None,
+                            ordinary_icons: Icons {
+                                combat: 1,
+                                influence: 1,
+                                ..Default::default()
+                            },
+                            grants_renown: false,
+                            prevents_damage: false,
+                            expires_turn: self.turn,
+                        });
+                    }
+                }
+                Op::SetLocalMagicPrintedDefenseToOneUntilTurnEnd => {
+                    let ids = self
+                        .matching_board(
+                            &frame,
+                            &BoardSelector {
+                                kind: EntityKind::Character,
+                                relation: Relation::Any,
+                                region: Some(RegionRef::SourceRegion),
+                                subtype: None,
+                            },
+                        )
+                        .into_iter()
+                        .filter(|id| {
+                            self.board(id).is_some_and(|(_, c)| {
+                                card(&c.definition).magic_icon != MagicIcon::None
+                            })
+                        })
+                        .collect::<Vec<_>>();
+                    for id in ids {
+                        self.turn_attribute_modifiers.push(TurnAttributeModifier {
+                            target_instance: id,
+                            defense_bonus: 0,
+                            printed_defense_override: Some(1),
+                            ordinary_icons: Icons::default(),
+                            grants_renown: false,
+                            prevents_damage: false,
+                            expires_turn: self.turn,
+                        });
+                    }
                 }
                 Op::PlaceInfluence {
                     region_instance,

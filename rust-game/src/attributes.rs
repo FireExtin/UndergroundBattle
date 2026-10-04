@@ -7,6 +7,16 @@ use crate::{
 };
 
 impl Game {
+    pub(crate) fn printed_defense_override(&self, c: &Card) -> Option<u32> {
+        if c.face_down || card(&c.definition).kind != "character" {
+            return None;
+        }
+        self.turn_attribute_modifiers.iter().rev().find_map(|m| {
+            (m.target_instance == c.id && m.expires_turn == self.turn)
+                .then_some(m.printed_defense_override)
+                .flatten()
+        })
+    }
     pub fn damage_prevented(&self, c: &Card) -> bool {
         !c.face_down
             && card(&c.definition).kind == "character"

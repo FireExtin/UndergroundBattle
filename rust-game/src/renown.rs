@@ -84,6 +84,7 @@ impl Game {
             modes: vec![],
             requires_ready_source: false,
             once_per_game: false,
+            per_turn_limit: None,
         };
         self.effects.push_front(Effect::Declare {
             declaration: Declaration {

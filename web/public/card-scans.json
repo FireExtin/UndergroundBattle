@@ -334,6 +334,26 @@
     "source": "resource/ymsj-fun.github.io/cards/JC112 黑猫.jpg",
     "sha256": "870b526451ed20441601cfed413a99e2e64a266d60daa698bb2066840383bd71"
   },
+  "JC116": {
+    "url": "/cards/JC116.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC116 柯尔特巨蟒左轮.jpg",
+    "sha256": "5a314d56e3d6c660f381e45710dbf0964cf8560cfa170906b3d4e938abb90e16"
+  },
+  "JC020": {
+    "url": "/cards/JC020.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC020 隐蔽的飞刀.jpg",
+    "sha256": "2edb40dfa18d2df22b5b397957d0a03642ade3cee1a10f965bb5e55b0c4f7223"
+  },
+  "JC093": {
+    "url": "/cards/JC093.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC093 怨灵咒刃.jpg",
+    "sha256": "ac3398f82103f6d50eb97b6bb3467244834c8e3867fb92c295d3c420b522bdd2"
+  },
+  "XQ07": {
+    "url": "/cards/XQ07.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/XQ07 圣水.jpg",
+    "sha256": "944a254795fc17e946f7150de9a47649d8c6efa3006770850447503b06a22df9"
+  },
   "MSJC09": {
     "url": "/cards/MSJC09.jpg",
     "source": "resource/ymsj-fun.github.io/cards/MSJC09 秘社.jpg",

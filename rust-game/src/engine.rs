@@ -55,6 +55,7 @@ impl Game {
             state_schema: 2,
             modifiers: vec![],
             turn_attribute_modifiers: vec![],
+            turn_ability_usage: vec![],
             control_effects: vec![],
             control_baselines: vec![],
             room_id,
@@ -405,7 +406,9 @@ impl Game {
         } else {
             0u32
         };
-        (card(&c.definition).defense.unwrap_or(0)
+        (self
+            .printed_defense_override(c)
+            .unwrap_or_else(|| card(&c.definition).defense.unwrap_or(0))
             + bonus
             + self.turn_attribute_bonus(c).0
             + attachment_bonus)
@@ -701,6 +704,7 @@ impl Game {
         self.status = "playing".into();
         self.modifiers.clear();
         self.turn_attribute_modifiers.clear();
+        self.turn_ability_usage.clear();
         self.regions.clear();
         self.attachments.clear();
         self.region_return = None;
@@ -997,6 +1001,7 @@ impl Game {
                                     SourceSnapshot {
                                         card: c.clone(),
                                         region: Some(r),
+                                        attachment_host_instance: None,
                                         play_source: None,
                                     },
                                 )
@@ -1576,6 +1581,7 @@ impl Game {
             }
             Effect::NextTurn => {
                 self.turn += 1;
+                self.turn_ability_usage.clear();
                 self.modifiers.clear();
                 self.first_team = 1 - self.first_team;
                 self.privilege_used = false;
@@ -1593,6 +1599,9 @@ impl Game {
                     for c in &mut r.cards {
                         c.exhausted = false;
                     }
+                }
+                for attachment in &mut self.attachments {
+                    attachment.card.exhausted = false;
                 }
                 self.begin_window(Window::Prepare);
                 self.note(format!(
@@ -1897,6 +1906,9 @@ impl Game {
         let hidden = c.face_down && c.controller != viewer;
         let asset = kind == Some("asset");
         CardView {
+            current_printed_defense: (!asset && !c.face_down && region.is_some())
+                .then(|| self.printed_defense_override(c))
+                .flatten(),
             current_damage_prevention: (!asset
                 && !c.face_down
                 && region.is_some()
@@ -2524,7 +2536,7 @@ mod tests {
     #[test]
     fn catalog_is_restricted_real_complete_and_decks_are_legal() {
         let c = catalog::catalog();
-        assert_eq!(c.cards.len(), 67);
+        assert_eq!(c.cards.len(), 71);
         let active = c
             .cards
             .iter()
@@ -2539,7 +2551,7 @@ mod tests {
                 .collect::<BTreeSet<_>>()
         );
         assert!(active.contains("DQJC116"));
-        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 57);
+        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 61);
         assert_eq!(c.decks.len(), 5);
         for deck in &c.decks {
             assert_eq!(deck.card_count, 50);

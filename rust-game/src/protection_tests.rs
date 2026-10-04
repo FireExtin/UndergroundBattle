@@ -163,7 +163,7 @@ fn to_next_turn(g: &mut Game) {
 
 #[test]
 fn protection_original_fields_and_only_four_admitted_cards() {
-    assert_eq!(catalog::catalog().cards.len(), 67);
+    assert_eq!(catalog::catalog().cards.len(), 71);
     let hermit = catalog::card("JC071");
     assert_eq!(
         (hermit.cost, hermit.defense, hermit.magic.as_str()),

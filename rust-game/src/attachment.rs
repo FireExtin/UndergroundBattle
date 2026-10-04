@@ -308,6 +308,7 @@ mod tests {
             modes: vec![],
             requires_ready_source: false,
             once_per_game: false,
+            per_turn_limit: None,
         };
         let frame = g.make_frame(c.controller, snapshot, &spec, vec![], vec![], None);
         g.resolve_frame(frame).unwrap();

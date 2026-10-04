@@ -212,6 +212,11 @@ pub enum Op {
         #[serde(default, skip_serializing_if = "crate::model::is_false")]
         grants_renown: bool,
     },
+    // The admitted weapon grants exactly these two ordinary icons to its
+    // snapshotted host, without targeting or consulting its later attachment.
+    ModifyAttachmentHostUntilTurnEnd,
+    // Non-targeted resolution-time selection in the snapshotted source region.
+    SetLocalMagicPrintedDefenseToOneUntilTurnEnd,
     // Exact region identity prevents an already declared reward reaching a
     // replacement region. Only the finite merged renown trigger uses this op.
     PlaceInfluence {
@@ -322,6 +327,8 @@ pub struct AbilitySpec {
     pub requires_ready_source: bool,
     #[serde(default)]
     pub once_per_game: bool,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub per_turn_limit: Option<u32>,
 }
 #[derive(Clone, Debug, Default, Serialize, Deserialize)]
 pub struct Traits {
@@ -385,6 +392,25 @@ pub struct Definition {
 // These are interpreter limits, not rules for resolving partially invalid targets.
 // Reject unsupported declarations before publishing actions or offering trigger choices.
 pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(), String> {
+    if let Some(limit) = ability.per_turn_limit {
+        if limit != 2
+            || !ability.activation_only
+            || ability.event.is_some()
+            || !matches!(
+                ability.costs.as_slice(),
+                [Cost::SacrificeSelectedControlledCharacter]
+            )
+            || !matches!(
+                ability.ops.as_slice(),
+                [Op::ModifyAttachmentHostUntilTurnEnd]
+            )
+            || !ability.modes.is_empty()
+        {
+            return Err(format!(
+                "{card_id}: only the admitted twice-per-turn host grant is supported"
+            ));
+        }
+    }
     if ability.play_only && ability.activation_only {
         return Err(format!("{card_id}: conflicting action roles"));
     }
@@ -425,6 +451,16 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
             }
         }
         for op in ops {
+            if matches!(
+                op,
+                Op::ModifyAttachmentHostUntilTurnEnd
+                    | Op::SetLocalMagicPrintedDefenseToOneUntilTurnEnd
+            ) && !targets.is_empty()
+            {
+                return Err(format!(
+                    "{location}: host and local printed-defense effects are non-targeted"
+                ));
+            }
             if let Op::PreventTargetDamageUntilTurnEnd { slot } | Op::ReattachSource { slot } = op {
                 if !targets.get(*slot).is_some_and(|target| {
                     target.zone == Zone::Board && target.kind == EntityKind::Character
@@ -522,6 +558,8 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
                             | Op::DamageTarget { .. }
                             | Op::PreventTargetDamageUntilTurnEnd { .. }
                             | Op::ReattachSource { .. }
+                            | Op::ModifyAttachmentHostUntilTurnEnd
+                            | Op::SetLocalMagicPrintedDefenseToOneUntilTurnEnd
                     )
                 }) {
                     return Err(format!(
@@ -619,6 +657,7 @@ fn ability(
         modes: vec![],
         requires_ready_source: false,
         once_per_game: false,
+        per_turn_limit: None,
     }
 }
 fn with_abilities(abilities: Vec<AbilitySpec>) -> Definition {
@@ -664,6 +703,100 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
             Range::Anywhere,
         );
         let mut m = BTreeMap::new();
+        let mut knife_exhaust = ability(
+            "exhaust-local-hidden",
+            "横置暗藏者",
+            Timing::Fast,
+            vec![Cost::ExhaustSource],
+            vec![target(
+                Zone::Board,
+                EntityKind::Hidden,
+                Relation::Any,
+                Range::SourceRegion,
+            )],
+            vec![Op::Exhaust(Target(0))],
+            None,
+        );
+        knife_exhaust.activation_only = true;
+        let mut knife_damage = ability(
+            "sacrifice-local-damage",
+            "牺牲飞刀造成伤害",
+            Timing::Fast,
+            vec![Cost::SacrificeSource],
+            vec![local.clone()],
+            vec![Op::DamageTarget { slot: 0, amount: 1 }],
+            None,
+        );
+        knife_damage.activation_only = true;
+        let mut blade_grant = ability(
+            "sacrifice-character-host-icons",
+            "牺牲角色强化宿主",
+            Timing::Fast,
+            vec![Cost::SacrificeSelectedControlledCharacter],
+            vec![],
+            vec![Op::ModifyAttachmentHostUntilTurnEnd],
+            None,
+        );
+        blade_grant.activation_only = true;
+        blade_grant.per_turn_limit = Some(2);
+        let mut holy_water = ability(
+            "sacrifice-local-printed-defense",
+            "牺牲圣水改变印刷防御",
+            Timing::Fast,
+            vec![Cost::SacrificeSource],
+            vec![],
+            vec![Op::SetLocalMagicPrintedDefenseToOneUntilTurnEnd],
+            None,
+        );
+        holy_water.activation_only = true;
+        for (id, friendly, combat, retreat, activations) in [
+            ("JC116", false, 1, true, vec![]),
+            ("JC020", true, 0, false, vec![knife_exhaust, knife_damage]),
+            ("JC093", false, 0, false, vec![blade_grant]),
+            ("XQ07", true, 0, false, vec![holy_water]),
+        ] {
+            let mut host = character.clone();
+            host.equipment_host = true;
+            if friendly {
+                host.relation = Relation::FriendlyTeam;
+            }
+            let mut attach = ability(
+                "attach",
+                "结附角色",
+                Timing::Standard,
+                vec![],
+                vec![host.clone()],
+                vec![],
+                None,
+            );
+            attach.play_only = true;
+            let mut abilities = vec![attach];
+            abilities.extend(activations);
+            m.insert(
+                id.into(),
+                Definition {
+                    traits: Traits {
+                        retreat,
+                        ..Default::default()
+                    },
+                    abilities,
+                    attachment: Some(AttachmentSpec {
+                        controls_host: false,
+                        host_subtype_change: SubtypeChange::None,
+                        host,
+                        host_icons: Icons {
+                            combat,
+                            ..Default::default()
+                        },
+                        host_temporary_icons: None,
+                        host_barrier: false,
+                        host_defense_bonus: 0,
+                        host_leaves: HostLeaveDestination::OwnerGraveyard,
+                    }),
+                    ..Default::default()
+                },
+            );
+        }
         m.insert(
             "JC078".into(),
             with_abilities(vec![ability(

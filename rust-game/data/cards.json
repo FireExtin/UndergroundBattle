@@ -2611,6 +2611,155 @@
         "sha256": "870b526451ed20441601cfed413a99e2e64a266d60daa698bb2066840383bd71"
       },
       "society": ""
+    },
+    {
+      "id": "JC116",
+      "name": "柯尔特巨蟒左轮",
+      "kind": "attachment",
+      "subtypes": [
+        "装备",
+        "武器"
+      ],
+      "cost": 1,
+      "loyalty": [],
+      "color": "中立",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "text": "结附于目标角色\n撤回（当所在的地区被赢取时，将该牌移回其拥有者手上，而非置于牌库底。）\n持续：受此结附的角色获得普通永久战斗1。",
+      "keywords": [
+        "撤回"
+      ],
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/JC116 柯尔特巨蟒左轮.jpg",
+        "record": "JC116",
+        "image": "resource/ymsj-fun.github.io/cards/JC116 柯尔特巨蟒左轮.jpg",
+        "sha256": "5a314d56e3d6c660f381e45710dbf0964cf8560cfa170906b3d4e938abb90e16"
+      },
+      "unique": false,
+      "society": ""
+    },
+    {
+      "id": "JC020",
+      "name": "隐蔽的飞刀",
+      "kind": "attachment",
+      "subtypes": [
+        "装备",
+        "武器"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "绿色"
+      ],
+      "color": "绿",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "text": "结附于目标本方角色\n快速行动，横置隐蔽的飞刀：横置本地区的目标暗藏者。\n快速行动，牺牲隐蔽的飞刀：对本地区的目标角色造成1点伤害。",
+      "keywords": [],
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/JC020 隐蔽的飞刀.jpg",
+        "record": "JC020",
+        "image": "resource/ymsj-fun.github.io/cards/JC020 隐蔽的飞刀.jpg",
+        "sha256": "2edb40dfa18d2df22b5b397957d0a03642ade3cee1a10f965bb5e55b0c4f7223"
+      },
+      "unique": false,
+      "society": "猎魔人"
+    },
+    {
+      "id": "JC093",
+      "name": "怨灵咒刃",
+      "kind": "attachment",
+      "subtypes": [
+        "装备",
+        "武器"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "黑色",
+        "黑色"
+      ],
+      "color": "黑",
+      "magic": "死亡",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "text": "结附于目标角色\n快速行动，牺牲一个角色：受此结附的角色获得普通永久战斗1、势力1直到回合结束。该能力每回合至多只能发动两次。",
+      "keywords": [],
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/JC093 怨灵咒刃.jpg",
+        "record": "JC093",
+        "image": "resource/ymsj-fun.github.io/cards/JC093 怨灵咒刃.jpg",
+        "sha256": "ac3398f82103f6d50eb97b6bb3467244834c8e3867fb92c295d3c420b522bdd2"
+      },
+      "unique": false,
+      "society": "方碑序列"
+    },
+    {
+      "id": "XQ07",
+      "name": "圣水",
+      "kind": "attachment",
+      "subtypes": [
+        "装备",
+        "物品"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "绿色"
+      ],
+      "color": "绿",
+      "magic": "神圣",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "text": "结附于目标本方角色\n快速行动，牺牲圣水：所有位于本地区，且具有魔法领域图标的角色，其印刷防御力成为1直到回合结束。",
+      "keywords": [],
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/XQ07 圣水.jpg",
+        "record": "XQ07",
+        "image": "resource/ymsj-fun.github.io/cards/XQ07 圣水.jpg",
+        "sha256": "944a254795fc17e946f7150de9a47649d8c6efa3006770850447503b06a22df9"
+      },
+      "unique": false,
+      "society": "猎魔人"
     }
   ],
   "decks": [

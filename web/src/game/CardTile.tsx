@@ -7,7 +7,7 @@ export function visibleCard(card: Card, viewerId: string): Card {
   if (!card.faceDown || card.controller === viewerId) return card;
   return { ...card, cardId: undefined, name: '暗藏者', kind: 'hidden', cost: undefined, effectiveCost: undefined,
     text: undefined, icons: undefined, defense: undefined, damage: undefined, shield: undefined,
-    wounds: undefined, color: undefined, magic: undefined, currentSubtypes: undefined, currentRenown: undefined, currentBarrier: undefined, currentDamagePrevention: undefined };
+    wounds: undefined, color: undefined, magic: undefined, currentSubtypes: undefined, currentRenown: undefined, currentBarrier: undefined, currentDamagePrevention: undefined, currentPrintedDefense: undefined };
 }
 
 const emptyIcons: Icons = { investigation: 0, combat: 0, influence: 0 };
@@ -66,12 +66,13 @@ export function CardContent({ card: source, definition: sourceDefinition, compac
       {!compact && <span className="hg-card-text">{asset ? '未横置时可提供 1 费用，并提供所示派系与魔法忠诚。' : card.text || definition?.text || '此牌没有额外能力。'}</span>}
       <span className="hg-card-footer">
         {!card.faceDown && card.region !== undefined && card.currentDamagePrevention && <span>本回合防止伤害</span>}
+        {!card.faceDown && card.region !== undefined && typeof card.currentPrintedDefense === 'number' && <span>本回合印刷防御 {card.currentPrintedDefense}</span>}
         {!card.faceDown && card.region !== undefined && card.currentRenown && <span>声望</span>}
         {!card.faceDown && card.region !== undefined && card.currentBarrier && <span>屏障</span>}
         {society && card.usedOncePerGame?.map(key => <span key={key}>
           {definition?.abilities?.find(ability => ability.key === key)?.label || '每局一次能力'} · 本局已使用
         </span>)}
-        {!society && !concealedCompact && typeof defense === 'number' && <span>{effectiveStats && typeof card.defense === 'number' && typeof definition?.defense === 'number' ? `当前防御 ${card.defense} · 印刷防御 ${definition.defense}` : `防御 ${defense}`}</span>}
+        {!society && !concealedCompact && typeof defense === 'number' && <span>{effectiveStats && typeof card.defense === 'number' && typeof definition?.defense === 'number' ? `当前防御 ${card.defense} · ${typeof card.currentPrintedDefense === 'number' ? '原始印刷防御' : '印刷防御'} ${definition.defense}` : `防御 ${defense}`}</span>}
         {attachmentCount > 0 && <span className="hg-card-attachment-count" title="点选宿主后可查看附属" aria-label={`附属 ${attachmentCount} 张`}>附属 {attachmentCount}</span>}
         {!society && !concealedCompact && !!card.damage && <span className="hg-hurt hg-damage-marker">伤害 {card.damage}</span>}
         {!society && !concealedCompact && !!card.wounds && <span className="hg-hurt hg-wound-marker">创伤 {card.wounds}</span>}

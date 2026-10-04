@@ -25,6 +25,9 @@ mod control;
 #[cfg(not(feature = "society-fixtures"))]
 #[path = "support/defence_equipment.rs"]
 mod defence_equipment;
+#[cfg(not(feature = "society-fixtures"))]
+#[path = "support/equipment_abilities.rs"]
+mod equipment_abilities;
 #[path = "support/jc004.rs"]
 mod jc004;
 #[path = "support/jc005.rs"]
@@ -1232,6 +1235,7 @@ fn world_fixture(id: &str, generic_search: bool) -> Value {
                 source: SourceSnapshot {
                     card: scored,
                     region: Some(0),
+                    attachment_host_instance: None,
                     play_source: None,
                 },
                 ability,
@@ -2671,6 +2675,11 @@ fn write_fixture_cases(output: &str, metadata: Value, cases: impl IntoIterator<I
 }
 
 fn main() {
+    #[cfg(not(feature = "society-fixtures"))]
+    if std::env::args().any(|a| a == "--equipment-natural-search") {
+        equipment_abilities::find_natural_seed();
+        return;
+    }
     #[cfg(feature = "society-fixtures")]
     if std::env::args().any(|a| a == "--society-foundation") {
         let output = std::env::args().nth(1).expect("output path");
@@ -2681,6 +2690,33 @@ fn main() {
     let output = std::env::args()
         .nth(1)
         .expect("Usage: native_fixtures <output.json>");
+    #[cfg(not(feature = "society-fixtures"))]
+    if std::env::args().any(|a| a == "--equipment-natural-case") {
+        write_fixture_cases(
+            &output,
+            json!({"catalog":catalog::catalog()}),
+            std::iter::once_with(equipment_abilities::natural_case),
+        );
+        return;
+    }
+    #[cfg(not(feature = "society-fixtures"))]
+    if std::env::args().any(|a| a == "--equipment-checkpoint-cases") {
+        write_fixture_cases(
+            &output,
+            json!({"catalog":catalog::catalog()}),
+            equipment_abilities::checkpoint_cases(),
+        );
+        return;
+    }
+    #[cfg(not(feature = "society-fixtures"))]
+    if std::env::args().any(|a| a == "--slice-equipment-abilities") {
+        write_fixture_cases(
+            &output,
+            json!({"catalog":catalog::catalog()}),
+            equipment_abilities::cases(),
+        );
+        return;
+    }
     #[cfg(not(feature = "society-fixtures"))]
     if std::env::args().any(|a| a == "--slice-defence-equipment") {
         write_fixture_cases(
@@ -2915,6 +2951,7 @@ fn main() {
         .chain(renown::cases())
         .chain(protection::cases())
         .chain(defence_equipment::cases())
+        .chain(equipment_abilities::cases())
     {
         writer.push(case);
     }

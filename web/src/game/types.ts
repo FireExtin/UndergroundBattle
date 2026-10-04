@@ -19,6 +19,7 @@ export type SocietyDefinition = CardDefinition & {
 };
 export type Card = {
   currentDamagePrevention?: boolean;
+  currentPrintedDefense?: number;
   currentRenown?: boolean;
   currentBarrier?: boolean;
   currentSubtypes?: string[];
