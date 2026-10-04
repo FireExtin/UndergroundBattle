@@ -54,6 +54,11 @@
     "source": "resource/ymsj-fun.github.io/cards/JC003 帷幕护卫.jpg",
     "sha256": "027fc054dd7c7ef301108bf0b169e01f91228bf2e918b3ddb8d12e8d05603c3a"
   },
+  "JC004": {
+    "url": "/cards/JC004.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC004 力场法师.jpg",
+    "sha256": "d9209031b83d49c2eacdbedd2967384852acc51329093f362073c462dabf92c4"
+  },
   "XQ03": {
     "url": "/cards/XQ03.jpg",
     "source": "resource/ymsj-fun.github.io/cards/XQ03 力场束缚.jpg",

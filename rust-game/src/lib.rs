@@ -3,6 +3,8 @@ mod attributes;
 pub mod catalog;
 pub mod deck;
 pub mod engine;
+#[cfg(test)]
+mod jc004_tests;
 pub mod model;
 mod play_sources;
 mod resolution;

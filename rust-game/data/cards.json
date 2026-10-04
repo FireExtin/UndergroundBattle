@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.6",
-  "engineVersion": "rust-v0.2.8",
+  "cardPoolVersion": "limited-v2.7-jc004-candidate",
+  "engineVersion": "rust-v0.2.10-jc004-candidate",
   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
   "cards": [
     {
@@ -411,6 +411,46 @@
         "file": "resource/ymsj-fun.github.io/cards/cards.json",
         "record": "JC003",
         "image": "resource/ymsj-fun.github.io/cards/JC003 帷幕护卫.jpg"
+      },
+      "unique": false,
+      "society": "帷幕守望"
+    },
+    {
+      "id": "JC004",
+      "name": "力场法师",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "法师"
+      ],
+      "cost": 4,
+      "loyalty": [
+        "黄色",
+        "黄色"
+      ],
+      "loyaltyText": "黄色 黄色",
+      "color": "黄",
+      "magic": "心灵",
+      "icons": {
+        "permanent": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        }
+      },
+      "defense": 2,
+      "text": "【进场触发】选择本地区的目标角色。横置该角色。若该角色已横置，则改为将其移回其拥有者手上。",
+      "keywords": [],
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/JC004 力场法师.jpg",
+        "record": "JC004",
+        "image": "resource/ymsj-fun.github.io/cards/JC004 力场法师.jpg",
+        "sha256": "d9209031b83d49c2eacdbedd2967384852acc51329093f362073c462dabf92c4"
       },
       "unique": false,
       "society": "帷幕守望"

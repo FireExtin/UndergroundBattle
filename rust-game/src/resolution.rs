@@ -962,6 +962,31 @@ impl Game {
             let step = frame.steps[frame.cursor].clone();
             frame.cursor += 1;
             match step.op {
+                Op::IfTargetExhausted {
+                    slot,
+                    exhausted,
+                    ready,
+                } => {
+                    // Do not capture this state at declaration. The shared frame
+                    // guard has already checked identity, range and protection.
+                    if let Some((_, target)) = frame
+                        .targets
+                        .get(slot)
+                        .and_then(|target| self.board(&target.id))
+                    {
+                        let op = if target.exhausted { *exhausted } else { *ready };
+                        frame.steps.insert(
+                            frame.cursor,
+                            Step {
+                                context: step.context,
+                                op,
+                            },
+                        );
+                    }
+                    // Run the selected existing atomic operation without an
+                    // extra death-settlement boundary between query and effect.
+                    continue;
+                }
                 Op::Exhaust(entity) => {
                     if let Some(id) = Self::frame_entity(&frame, entity) {
                         if let Some(c) = self.board_mut(id) {

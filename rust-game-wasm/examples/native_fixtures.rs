@@ -19,6 +19,9 @@ mod society_fixture;
 #[path = "support/msjc09.rs"]
 mod msjc09;
 
+#[path = "support/jc004.rs"]
+mod jc004;
+
 fn step(room: &RoomEnvelope, operation: &str, args: Value, seat: usize) -> Value {
     json!({"operation":operation,"args":args,"state":serde_json::to_string(room).unwrap(),"version":room.revision,"seat":seat,"view":room.view(seat,room.pacing.last_server_now_ms),"views":(0..room.players.len()).map(|s|room.view(s,room.pacing.last_server_now_ms)).collect::<Vec<_>>()})
 }
@@ -2604,6 +2607,15 @@ fn main() {
     };
     assert!(RoomEnvelope::from_persisted(&previous_seven).is_err());
     rejected_states.push(previous_seven);
+    for engine in ["rust-v0.2.8", "rust-v0.2.9"] {
+        let mut old = RoomEnvelope::from_game(previous.clone());
+        old.versions.engine = engine.into();
+        old.versions.card_pool = "limited-v2.6".into();
+        old.game.versions = old.versions.clone();
+        let state = serde_json::to_string(&old).unwrap();
+        assert!(RoomEnvelope::from_persisted(&state).is_err());
+        rejected_states.push(state);
+    }
     let clock = pacing_fixture(false);
     let prepared = json!({"state":clock["steps"][0]["state"],"version":clock["steps"][0]["version"],"roomId":"ffffffffffffffffffffffff","firstAction":clock["steps"][1]["args"][1]["action"],"firstCommand":clock["steps"][1]["args"][1],"serverNowMs":clock["steps"][1]["args"][2],"seat":0});
     if std::env::args().any(|a| a == "--slice-v027") {
@@ -2677,5 +2689,10 @@ fn main() {
             .push(msjc09::natural_case());
         value
     };
+    let mut value = value;
+    value["cases"]
+        .as_array_mut()
+        .unwrap()
+        .extend(jc004::cases());
     std::fs::write(output, serde_json::to_vec(&value).unwrap()).unwrap();
 }
