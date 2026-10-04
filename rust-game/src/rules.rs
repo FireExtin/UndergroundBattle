@@ -749,17 +749,27 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
             None,
         );
         holy_water.activation_only = true;
-        for (id, friendly, combat, retreat, activations) in [
-            ("JC116", false, 1, true, vec![]),
-            ("JC020", true, 0, false, vec![knife_exhaust, knife_damage]),
-            ("JC093", false, 0, false, vec![blade_grant]),
-            ("XQ07", true, 0, false, vec![holy_water]),
+        for (id, relation, combat, retreat, activations) in [
+            ("JC116", Relation::Any, 1, true, vec![]),
+            (
+                "JC020",
+                Relation::ControlledByActor,
+                0,
+                false,
+                vec![knife_exhaust, knife_damage],
+            ),
+            ("JC093", Relation::Any, 0, false, vec![blade_grant]),
+            (
+                "XQ07",
+                Relation::ControlledByActor,
+                0,
+                false,
+                vec![holy_water],
+            ),
         ] {
             let mut host = character.clone();
             host.equipment_host = true;
-            if friendly {
-                host.relation = Relation::FriendlyTeam;
-            }
+            host.relation = relation;
             let mut attach = ability(
                 "attach",
                 "结附角色",

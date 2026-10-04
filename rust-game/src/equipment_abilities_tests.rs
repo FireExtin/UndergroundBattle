@@ -250,7 +250,7 @@ fn equipment_original_fields_and_bindings() {
             .unwrap()
             .host
             .relation,
-        Relation::FriendlyTeam
+        Relation::ControlledByActor
     );
     assert_eq!(
         definition("JC093")
@@ -266,12 +266,13 @@ fn equipment_original_fields_and_bindings() {
 fn equipment_four_paid_play_and_role_guards() {
     let mut g = funded();
     let friend = field(&mut g, "JC125", 1);
+    let own_host = field(&mut g, "JC125", 0);
     let enemy = field(&mut g, "JC125", 2);
     let initial = g.resources(0);
     let gun = attach(&mut g, "JC116", &enemy);
     assert_eq!(icons(&g, &enemy).combat, 1);
     for id in ["JC020", "JC093", "XQ07"] {
-        attach(&mut g, id, &friend);
+        attach(&mut g, id, if id == "JC093" { &friend } else { &own_host });
     }
     assert_eq!(g.resources(0), initial - 5);
     assert_eq!(g.attachments.len(), 4);
@@ -298,9 +299,91 @@ fn equipment_four_paid_play_and_role_guards() {
     );
 }
 #[test]
+fn equipment_controller_only_declarations_reject_teammate_enemy_atomically() {
+    for (id, cost) in [("JC020", 2), ("XQ07", 1)] {
+        let mut g = funded();
+        let own_host = field(&mut g, "JC125", 0);
+        let teammate = field(&mut g, "JC125", 1);
+        let enemy = field(&mut g, "JC125", 2);
+        let source = held(&mut g, id, 0);
+        let play_at = |target: &str| Action {
+            card_id: Some(source.clone()),
+            target_id: Some(target.into()),
+            ..Action::new("play")
+        };
+        assert!(g.legal_actions(0).iter().any(|a| a.action.kind == "play"
+            && a.action.card_id.as_deref() == Some(source.as_str())
+            && a.action.target_id.as_deref() == Some(own_host.as_str())));
+        let before = g.resources(0);
+        for forbidden in [&teammate, &enemy] {
+            assert!(!g.legal_actions(0).iter().any(|a| a.action.kind == "play"
+                && a.action.card_id.as_deref() == Some(source.as_str())
+                && a.action.target_id.as_deref() == Some(forbidden.as_str())));
+            reject(&mut g, 0, play_at(forbidden));
+            assert_eq!(g.resources(0), before);
+            assert!(g.players[0].hand.iter().any(|c| c.id == source));
+            assert!(g.attachments.is_empty() && g.players[0].graveyard.is_empty());
+        }
+        play(&mut g, &source, 0, &own_host);
+        assert_eq!(g.resources(0), before - cost);
+        assert_eq!(g.attachments[0].host_id, own_host);
+        assert_ne!(g.attachments[0].card.id, source);
+    }
+}
+#[test]
+fn equipment_controller_only_host_taken_by_teammate_uses_existing_cleanup() {
+    let mut g = funded();
+    let host = field(&mut g, "JC125", 0);
+    let gun = attach(&mut g, "JC116", &host);
+    let knife = attach(&mut g, "JC020", &host);
+    let blade = attach(&mut g, "JC093", &host);
+    let water = attach(&mut g, "XQ07", &host);
+    fund(&mut g, 1, "XQ16", 6);
+    let source = field(&mut g, "JZ27", 1);
+    g.board_mut(&source).unwrap().face_down = true;
+    act(
+        &mut g,
+        1,
+        Action {
+            card_id: Some(source),
+            ..Action::new("reveal")
+        },
+    );
+    for _ in 0..80 {
+        if g.pending.is_some() {
+            break;
+        }
+        pass(&mut g);
+    }
+    assert!(g
+        .pending
+        .as_ref()
+        .unwrap()
+        .choice
+        .options
+        .iter()
+        .any(|o| o.id == host));
+    choose(&mut g, vec![host.clone()]);
+    top(&mut g);
+    assert_eq!(g.board(&host).unwrap().1.controller, 1);
+    for (id, old) in [("JC020", knife), ("XQ07", water)] {
+        assert!(g.board(&old).is_none());
+        let grave = g.players[0]
+            .graveyard
+            .iter()
+            .filter(|c| c.definition == id)
+            .collect::<Vec<_>>();
+        assert_eq!(grave.len(), 1);
+        assert_ne!(grave[0].id, old);
+        assert_eq!((grave[0].owner, grave[0].controller), (0, 0));
+    }
+    assert!(g.board(&gun).is_some() && g.board(&blade).is_some());
+    restore(&mut g);
+}
+#[test]
 fn equipment_knife_exhausts_attachment_not_host_and_uses_frozen_region() {
     let mut g = funded();
-    let host = field(&mut g, "JC125", 1);
+    let host = field(&mut g, "JC125", 0);
     let hidden = field(&mut g, "JC125", 1);
     g.board_mut(&hidden).unwrap().face_down = true;
     let knife = attach(&mut g, "JC020", &host);

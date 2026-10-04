@@ -208,6 +208,14 @@ fn boundary(kind: &str) -> Value {
     let helper = field(&mut g, "JC071", 0);
     let outside = field(&mut g, "JC003", 2);
     move_initial(&mut g, &outside, 1);
+    let mut teammate_host = None;
+    let mut control_source = None;
+    if kind == "controller-only-hosts" {
+        teammate_host = Some(field(&mut g, "JC125", 1));
+        control_source = Some(field(&mut g, "JZ27", 1));
+        g.regions[0].cards.last_mut().unwrap().face_down = true;
+        fund(&mut g, "XQ16", 1, 6);
+    }
     let mut gun = held(&mut g, "JC116", 0);
     let mut knife = held(&mut g, "JC020", 0);
     let mut blade = held(&mut g, "JC093", 0);
@@ -364,6 +372,83 @@ fn boundary(kind: &str) -> Value {
     )];
     let mut milestones = vec![];
     match kind {
+        "controller-only-hosts" => {
+            let before = resources(&r.game, 0);
+            for source in [&knife, &water] {
+                for target in [teammate_host.as_ref().unwrap(), &enemy] {
+                    assert!(!r
+                        .game
+                        .legal_actions(0)
+                        .iter()
+                        .any(|a| a.action.kind == "play"
+                            && a.action.card_id.as_ref() == Some(source)
+                            && a.action.target_id.as_ref() == Some(target)));
+                    reject(
+                        &mut r,
+                        &mut steps,
+                        0,
+                        Action {
+                            card_id: Some(source.clone()),
+                            target_id: Some(target.clone()),
+                            ..Action::new("play")
+                        },
+                    );
+                    assert_eq!(resources(&r.game, 0), before);
+                    assert!(r.players[0].hand.iter().any(|c| &c.id == source));
+                    assert!(r.attachments.is_empty() && r.players[0].graveyard.is_empty());
+                }
+            }
+            knife = cast(&mut r, &mut steps, 0, &knife, &victim1);
+            water = cast(&mut r, &mut steps, 0, &water, &victim1);
+            assert_eq!(resources(&r.game, 0), before - 3);
+            gun = cast(&mut r, &mut steps, 0, &gun, &victim1);
+            blade = cast(&mut r, &mut steps, 0, &blade, &victim1);
+            let source = control_source.unwrap();
+            apply_game(
+                &mut r,
+                &mut steps,
+                1,
+                Action {
+                    card_id: Some(source),
+                    ..Action::new("reveal")
+                },
+            );
+            for _ in 0..80 {
+                if r.pending.is_some() {
+                    break;
+                }
+                let (seat, action) = pass_action(&r.game);
+                apply_game(&mut r, &mut steps, seat, action);
+            }
+            let pending = r.pending.clone().unwrap();
+            assert!(pending.choice.options.iter().any(|o| o.id == victim1));
+            apply_game(
+                &mut r,
+                &mut steps,
+                pending.seat,
+                Action {
+                    choice_id: Some(pending.choice.id),
+                    selected: Some(vec![victim1.clone()]),
+                    ..Action::new("choose")
+                },
+            );
+            pass_top(&mut r, &mut steps);
+            assert_eq!(board(&r.game, &victim1).unwrap().1.controller, 1);
+            for (definition, old) in [("JC020", knife), ("XQ07", water)] {
+                assert!(!r.attachments.iter().any(|a| a.card.id == old));
+                let cards = r.players[0]
+                    .graveyard
+                    .iter()
+                    .filter(|c| c.definition == definition)
+                    .collect::<Vec<_>>();
+                assert_eq!(cards.len(), 1);
+                assert_ne!(cards[0].id, old);
+                assert_eq!((cards[0].owner, cards[0].controller), (0, 0));
+            }
+            assert!(r.attachments.iter().any(|a| a.card.id == gun));
+            assert!(r.attachments.iter().any(|a| a.card.id == blade));
+            milestones.push(json!({"kind":"both-own-paid-teammate-enemy-atomic-rejection-actual-JZ27-control-change-cleanup","step":steps.len()-1}));
+        }
         "paid-four" => {
             let before = resources(&r.game, 0);
             gun = cast(&mut r, &mut steps, 0, &gun, &host);
@@ -1144,4 +1229,5 @@ pub fn cases() -> impl Iterator<Item = Value> {
     .into_iter()
     .map(boundary)
     .chain(std::iter::once_with(natural_case))
+    .chain(std::iter::once_with(|| boundary("controller-only-hosts")))
 }
