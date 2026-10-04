@@ -107,6 +107,8 @@ pub struct CardView {
     pub color: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub magic: Option<String>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub used_once_per_game: Option<Vec<String>>,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]

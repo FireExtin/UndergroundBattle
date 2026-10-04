@@ -65,6 +65,9 @@ export function CardContent({ card: source, definition: sourceDefinition, compac
       {!compact && !society && hasTemporary && <span className="hg-temporary-label">先手 <IconStrip icons={temporary} temporary /></span>}
       {!compact && <span className="hg-card-text">{asset ? '未横置时可提供 1 费用，并提供所示派系与魔法忠诚。' : card.text || definition?.text || '此牌没有额外能力。'}</span>}
       <span className="hg-card-footer">
+        {society && card.usedOncePerGame?.map(key => <span key={key}>
+          {definition?.abilities?.find(ability => ability.key === key)?.label || '每局一次能力'} · 本局已使用
+        </span>)}
         {!society && !concealedCompact && typeof defense === 'number' && <span>{effectiveStats && typeof card.defense === 'number' && typeof definition?.defense === 'number' ? `当前防御 ${card.defense} · 印刷防御 ${definition.defense}` : `防御 ${defense}`}</span>}
         {attachmentCount > 0 && <span className="hg-card-attachment-count" title="点选宿主后可查看附属" aria-label={`附属 ${attachmentCount} 张`}>附属 {attachmentCount}</span>}
         {!society && !concealedCompact && !!card.damage && <span className="hg-hurt hg-damage-marker">伤害 {card.damage}</span>}

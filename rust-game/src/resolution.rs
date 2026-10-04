@@ -596,6 +596,14 @@ impl Game {
         spec: &AbilitySpec,
         a: &Action,
     ) -> RuleResult<Vec<PaidCost>> {
+        if spec.once_per_game {
+            let used = self
+                .society_usage(&source.card.id)
+                .ok_or("每局限次能力须来自稳定秘社来源")?;
+            if used.contains(&spec.key) {
+                return Err("此能力本局已发动过".into());
+            }
+        }
         let mut paid = vec![];
         for cost in &spec.costs {
             match cost {
@@ -644,6 +652,9 @@ impl Game {
                     self.remove_dead(&id, RemovalCause::Sacrifice);
                 }
             }
+        }
+        if spec.once_per_game {
+            self.consume_society_usage(&source.card.id, &spec.key)?;
         }
         Ok(paid)
     }

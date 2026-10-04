@@ -25,6 +25,9 @@ mod jc004;
 mod jc005;
 #[path = "support/jc008.rs"]
 mod jc008;
+#[cfg(not(feature = "society-fixtures"))]
+#[path = "support/msjc01.rs"]
+mod msjc01;
 
 fn step(room: &RoomEnvelope, operation: &str, args: Value, seat: usize) -> Value {
     json!({"operation":operation,"args":args,"state":serde_json::to_string(room).unwrap(),"version":room.revision,"seat":seat,"view":room.view(seat,room.pacing.last_server_now_ms),"views":(0..room.players.len()).map(|s|room.view(s,room.pacing.last_server_now_ms)).collect::<Vec<_>>()})
@@ -2554,6 +2557,12 @@ fn main() {
     let output = std::env::args()
         .nth(1)
         .expect("Usage: native_fixtures <output.json>");
+    #[cfg(not(feature = "society-fixtures"))]
+    if std::env::args().any(|a| a == "--slice-msjc01") {
+        let value = json!({"catalog":catalog::catalog(),"cases":msjc01::cases()});
+        std::fs::write(output, serde_json::to_vec(&value).unwrap()).unwrap();
+        return;
+    }
     let mut previous = Game::new(
         "previous-patch".into(),
         "OLD".into(),
@@ -2713,5 +2722,10 @@ fn main() {
         .as_array_mut()
         .unwrap()
         .extend(jc008::cases());
+    #[cfg(not(feature = "society-fixtures"))]
+    value["cases"]
+        .as_array_mut()
+        .unwrap()
+        .extend(msjc01::cases());
     std::fs::write(output, serde_json::to_vec(&value).unwrap()).unwrap();
 }

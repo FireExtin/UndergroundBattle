@@ -6,11 +6,14 @@ import { fileURLToPath } from 'node:url';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const pool = JSON.parse(readFileSync(path.join(root, 'rust-game/data/cards.json'), 'utf8'));
-// Art only for the one reviewed real society, outside the ordinary-card registry.
+// Art only for the real societies admitted in this local candidate.
 // Synthetic fixture societies must never acquire public art or pool admission.
 const societyScans = [{ id: 'MSJC09', source: {
   image: 'resource/ymsj-fun.github.io/cards/MSJC09 秘社.jpg',
   sha256: '41e478a3f38ead83477498fd88131831a5fd843be364c1c0daa3ba10153c2302',
+} }, { id: 'MSJC01', source: {
+  image: 'resource/ymsj-fun.github.io/cards/MSJC01 帷幕守望.jpg',
+  sha256: 'c61c887558cb184a532758eac5db766234c32a3a3605162a38c0899993e7bdf2',
 } }];
 const scans = {};
 const out = path.join(root, 'web/public/cards');

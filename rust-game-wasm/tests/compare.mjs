@@ -9,9 +9,13 @@ const moduleBytes = await readFile(new URL('./hegemony_wasm_bg.wasm', abi));
 initSync({ module: moduleBytes });
 const fixture = JSON.parse(await readFile(process.argv[2], 'utf8'));
 assert.deepEqual(JSON.parse(catalog()), fixture.catalog);
-let transitions = 0, projections = 0, quotes = 0, rejectedCommands = 0, slowestMs = 0;
+let transitions = 0, projections = 0, quotes = 0, rejectedCommands = 0, rejectedDeckCreations = 0, slowestMs = 0;
 const choiceKinds = new Set();
 for (const scenario of fixture.cases) {
+  for (const rejected of scenario.rejectedNewGameWithDeck || []) {
+    assert.throws(() => newGameWithDeck(...rejected.args), error => String(error) === rejected.error);
+    rejectedDeckCreations++;
+  }
   let state;
   for (const step of scenario.steps) {
     const started = performance.now();
@@ -70,4 +74,4 @@ for (const previousState of fixture.rejectedStates ?? []) {
 }
 assert.throws(() => newGame('bad', 'invite', 'duel', 'P0', 'watchers', '18446744073709551616'));
 assert.throws(() => newGame('bad', 'invite', 'duel', 'P0', 'watchers', '9007199254740993.0'));
-console.log(JSON.stringify({ ok: true, wasmBytes: moduleBytes.byteLength, transitions, projections, quotes, rejectedCommands, choiceKinds: [...choiceKinds].sort(), slowestFixtureStepMs: Math.round(slowestMs * 100) / 100, opaqueState: true, maximumU64SeedExact: true, nativeWasmStateAndViewsMatch: true }));
+console.log(JSON.stringify({ ok: true, wasmBytes: moduleBytes.byteLength, transitions, projections, quotes, rejectedCommands, rejectedDeckCreations, choiceKinds: [...choiceKinds].sort(), slowestFixtureStepMs: Math.round(slowestMs * 100) / 100, opaqueState: true, maximumU64SeedExact: true, nativeWasmStateAndViewsMatch: true }));

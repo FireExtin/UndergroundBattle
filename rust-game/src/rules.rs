@@ -134,6 +134,9 @@ pub enum MagicIcon {
 pub enum CardFilter {
     Any,
     Kind(String),
+    PrintedColorAndUnique {
+        color: String,
+    },
     SocietyOrMagic {
         society: String,
         magic: MagicIcon,
@@ -148,6 +151,9 @@ impl CardFilter {
         match self {
             Self::Any => true,
             Self::Kind(kind) => definition.kind == *kind,
+            Self::PrintedColorAndUnique { color } => {
+                definition.color == *color && definition.unique
+            }
             Self::SocietyOrMagic { society, magic } => {
                 definition.society == *society || definition.magic_icon == *magic
             }
@@ -268,6 +274,8 @@ pub struct AbilitySpec {
     pub event: Option<Event>,
     pub modes: Vec<Mode>,
     pub requires_ready_source: bool,
+    #[serde(default)]
+    pub once_per_game: bool,
 }
 #[derive(Clone, Debug, Default, Serialize, Deserialize)]
 pub struct Traits {
@@ -318,6 +326,11 @@ pub struct Definition {
 // These are interpreter limits, not rules for resolving partially invalid targets.
 // Reject unsupported declarations before publishing actions or offering trigger choices.
 pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(), String> {
+    if ability.once_per_game && ability.event.is_some() {
+        return Err(format!(
+            "{card_id}: game-limited abilities must be declared actions"
+        ));
+    }
     fn validate_program(
         location: &str,
         targets: &[TargetSlotSpec],
@@ -485,6 +498,7 @@ fn ability(
         event,
         modes: vec![],
         requires_ready_source: false,
+        once_per_game: false,
     }
 }
 fn with_abilities(abilities: Vec<AbilitySpec>) -> Definition {
@@ -1434,6 +1448,41 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
                 None,
             )]),
         );
+        #[cfg(not(feature = "society-fixtures"))]
+        {
+            let mut search = ability(
+                "search-yellow-unique",
+                "黄色独有检索（每局一次）",
+                Timing::Standard,
+                vec![Cost::Assets(4), Cost::ExhaustSource],
+                vec![],
+                vec![Op::Search {
+                    player: Actor,
+                    filter: CardFilter::PrintedColorAndUnique {
+                        color: "黄".into()
+                    },
+                    to_top: false,
+                    optional: false,
+                }],
+                None,
+            );
+            search.once_per_game = true;
+            m.insert(
+                "MSJC01".into(),
+                with_abilities(vec![
+                    ability(
+                        "drawWithInitiative",
+                        "先手抓牌",
+                        Timing::Standard,
+                        vec![Cost::Assets(3), Cost::ExhaustSource],
+                        vec![],
+                        vec![Op::DrawIfActorHasInitiative { count: 1 }],
+                        None,
+                    ),
+                    search,
+                ]),
+            );
+        }
         #[cfg(feature = "society-fixtures")]
         for id in [
             "FIXTURE_SOCIETY_SIX",

@@ -10,6 +10,8 @@ mod jc005_tests;
 #[cfg(test)]
 mod jc008_tests;
 pub mod model;
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod msjc01_tests;
 mod play_sources;
 mod resolution;
 pub mod room;

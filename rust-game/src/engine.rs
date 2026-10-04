@@ -1911,6 +1911,13 @@ impl Game {
             },
             color: if hidden { None } else { Some(d.color.clone()) },
             magic: if hidden { None } else { Some(d.magic.clone()) },
+            used_once_per_game: if hidden || d.kind != "society" {
+                None
+            } else {
+                self.society_usage(&c.id)
+                    .filter(|used| !used.is_empty())
+                    .map(|used| used.iter().cloned().collect())
+            },
         }
     }
     pub fn view(&self, seat: usize) -> View {
