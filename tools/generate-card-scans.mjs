@@ -6,10 +6,16 @@ import { fileURLToPath } from 'node:url';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const pool = JSON.parse(readFileSync(path.join(root, 'rust-game/data/cards.json'), 'utf8'));
+// Art only for the one reviewed real society, outside the ordinary-card registry.
+// Synthetic fixture societies must never acquire public art or pool admission.
+const societyScans = [{ id: 'MSJC09', source: {
+  image: 'resource/ymsj-fun.github.io/cards/MSJC09 秘社.jpg',
+  sha256: '41e478a3f38ead83477498fd88131831a5fd843be364c1c0daa3ba10153c2302',
+} }];
 const scans = {};
 const out = path.join(root, 'web/public/cards');
 mkdirSync(out, { recursive: true });
-for (const card of pool.cards) {
+for (const card of [...pool.cards, ...societyScans]) {
   const relative = card.source?.image || card.source?.file;
   if (!/^[A-Z0-9]+$/.test(card.id) || !relative?.endsWith('.jpg')) throw new Error('Admitted card needs an original scan');
   const source = path.resolve(root, relative);

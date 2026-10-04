@@ -5,7 +5,7 @@ use std::sync::OnceLock;
 pub const RULES_VERSION: &str = "hegemony-pdf-v1";
 pub const POOL_VERSION: &str = "limited-v2.6";
 #[cfg(not(feature = "society-fixtures"))]
-pub const ENGINE_VERSION: &str = "rust-v0.2.8-msjc09-candidate";
+pub const ENGINE_VERSION: &str = "rust-v0.2.9";
 #[cfg(feature = "society-fixtures")]
 pub const ENGINE_VERSION: &str = "rust-v0.2.8-msjc09-fixture";
 

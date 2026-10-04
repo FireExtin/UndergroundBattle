@@ -238,5 +238,10 @@
     "url": "/cards/JC104.jpg",
     "source": "resource/ymsj-fun.github.io/cards/JC104 占卜师.jpg",
     "sha256": "877aa980256730bb35350f1b99c2aa75b9110cd5905e61412664e2a89ef4e8da"
+  },
+  "MSJC09": {
+    "url": "/cards/MSJC09.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/MSJC09 秘社.jpg",
+    "sha256": "41e478a3f38ead83477498fd88131831a5fd843be364c1c0daa3ba10153c2302"
   }
 }

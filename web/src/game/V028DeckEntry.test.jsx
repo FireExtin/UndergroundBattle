@@ -2,13 +2,13 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, expect, it, vi } from 'vitest';
-import * as current from '../../../rust-game-wasm/pkg/hegemony_wasm.js';
+import * as current from '../../../rust-game-wasm/legacy-v0.2.8/hegemony_wasm.js';
 import * as frozen from '../../../rust-game-wasm/legacy-v0.2.7/hegemony_wasm.js';
 import { DeckLibrary } from './DeckLibrary';
 import { DECK_LIBRARY_STORAGE_KEY, readDeckLibrary } from './deckLibrary';
 
 // Real compiled catalogs: no hand-written supported/copy-limit metadata.
-current.initSync({ module: readFileSync(resolve('../rust-game-wasm/pkg/hegemony_wasm_bg.wasm')) });
+current.initSync({ module: readFileSync(resolve('../rust-game-wasm/legacy-v0.2.8/hegemony_wasm_bg.wasm')) });
 frozen.initSync({ module: readFileSync(resolve('../rust-game-wasm/legacy-v0.2.7/hegemony_wasm_bg.wasm')) });
 const catalog = JSON.parse(current.catalog());
 const oldCatalog = JSON.parse(frozen.catalog());

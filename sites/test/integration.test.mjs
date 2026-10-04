@@ -28,7 +28,7 @@ test('real workerd/WASM with D1 SQLite: concurrency, receipts, rollback and reop
   const migration = readdirSync('drizzle').find(name => name.endsWith('.sql'));
   for (const sql of readFileSync('drizzle/' + migration, 'utf8').split('--> statement-breakpoint').filter(s => s.trim())) await db.prepare(sql).run();
   const pacedRooms = new Set();
-  const pacedVersions = new Set(['rust-v0.2.5', 'rust-v0.2.6', 'rust-v0.2.7', 'rust-v0.2.8', 'rust-v0.2.8-msjc09-candidate']);
+  const pacedVersions = new Set(['rust-v0.2.5', 'rust-v0.2.6', 'rust-v0.2.7', 'rust-v0.2.8', 'rust-v0.2.9']);
   const durableView = value => pacedVersions.has(value?.versions?.engine) ? { ...value, serverNowMs: undefined } : value;
   const api = async (path, body, session) => {
     if (body?.action && pacedRooms.has(session?.roomId) && !['game','beginResponse','passResponse','cancelAndPass','submitResponse'].includes(body.action.kind)) {
@@ -52,7 +52,7 @@ test('real workerd/WASM with D1 SQLite: concurrency, receipts, rollback and reop
     const catalog = await api('/api/catalog'); assert.equal(catalog.body.cards.length, 48); for (const id of ['JC075','JC104']) assert(catalog.body.cards.some(c => c.id === id)); assert.equal(catalog.body.entryIdempotency, true);
     assert(catalog.body.cards.some(card => card.id === 'JC047'));
     assert(catalog.body.cards.some(card => card.id === 'JC007'));
-    assert.equal(catalog.body.engineVersion, 'rust-v0.2.8-msjc09-candidate');
+    assert.equal(catalog.body.engineVersion, 'rust-v0.2.9');
     assert.equal(catalog.body.deckBuildRules.minimumCards, 50);
     assert.equal(catalog.body.cards.find(card => card.id === 'JC125').deckCopyLimit, null);
     const create = { name: '甲', mode: 'teams', deckId: 'responders', requestId: key() };
