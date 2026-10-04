@@ -20,3 +20,6 @@ pub mod rules;
 pub mod service;
 pub mod society;
 mod world;
+
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod yellow_search_batch_tests;

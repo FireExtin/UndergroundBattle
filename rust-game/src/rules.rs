@@ -170,6 +170,12 @@ impl CardFilter {
         }
     }
 }
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Serialize, Deserialize)]
+pub enum SearchVisibility {
+    #[default]
+    Reveal,
+    Private,
+}
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
     Exhaust(EntityRef),
@@ -236,6 +242,8 @@ pub enum Op {
         filter: CardFilter,
         to_top: bool,
         optional: bool,
+        #[serde(default)]
+        visibility: SearchVisibility,
     },
     ExhaustMatching(BoardSelector),
     DamageMatching {
@@ -290,6 +298,7 @@ pub struct Traits {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum StaticModifier {
+    PeekOwnDeckTop,
     NoEnemyCharacters(Icons, Icons),
     OtherFriendlyCharactersDefense(u32),
     ConditionalIcons {
@@ -621,6 +630,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
                     },
                     to_top: false,
                     optional: false,
+                    visibility: SearchVisibility::Reveal,
                 }],
                 Some(Event::Enter),
             )]),
@@ -1265,6 +1275,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
                     filter: CardFilter::Any,
                     to_top: true,
                     optional: false,
+                    visibility: SearchVisibility::Reveal,
                 }])],
                 Some(Event::RegionWon),
             )]),
@@ -1448,6 +1459,38 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
                 None,
             )]),
         );
+        m.insert(
+            "WM003".into(),
+            Definition {
+                traits: Traits {
+                    public: true,
+                    ..Traits::default()
+                },
+                abilities: vec![ability(
+                    "search-any-private",
+                    "私密检索",
+                    Timing::Fast,
+                    vec![Cost::Assets(5), Cost::ExhaustSource],
+                    vec![],
+                    vec![Op::Search {
+                        player: Actor,
+                        filter: CardFilter::Any,
+                        to_top: false,
+                        optional: false,
+                        visibility: SearchVisibility::Private,
+                    }],
+                    None,
+                )],
+                ..Definition::default()
+            },
+        );
+        m.insert(
+            "LC01".into(),
+            Definition {
+                modifiers: vec![StaticModifier::PeekOwnDeckTop],
+                ..Definition::default()
+            },
+        );
         #[cfg(not(feature = "society-fixtures"))]
         {
             let mut search = ability(
@@ -1463,6 +1506,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
                     },
                     to_top: false,
                     optional: false,
+                    visibility: SearchVisibility::Reveal,
                 }],
                 None,
             );

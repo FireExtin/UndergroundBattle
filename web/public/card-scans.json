@@ -254,6 +254,16 @@
     "source": "resource/ymsj-fun.github.io/cards/JC104 占卜师.jpg",
     "sha256": "877aa980256730bb35350f1b99c2aa75b9110cd5905e61412664e2a89ef4e8da"
   },
+  "WM003": {
+    "url": "/cards/WM003.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/WM003 千机庙离.jpg",
+    "sha256": "2409ef206e3af93d1eece3ec0bf4ba00a9e3d0c12a8e70443877cc8a28cc9bff"
+  },
+  "LC01": {
+    "url": "/cards/LC01.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/LC01 西比尔.jpg",
+    "sha256": "a0defb07b43463cc882e15b993c73eda22ea77ca39062da71e6518a365cc5bd6"
+  },
   "MSJC09": {
     "url": "/cards/MSJC09.jpg",
     "source": "resource/ymsj-fun.github.io/cards/MSJC09 秘社.jpg",

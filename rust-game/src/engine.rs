@@ -2032,6 +2032,23 @@ impl Game {
                     })
                 })
                 .collect(),
+            private_deck_top: if self.status == "playing"
+                && !self.players[seat].eliminated
+                && self.regions.iter().flat_map(|r| &r.cards).any(|c| {
+                    c.controller == seat
+                        && !c.face_down
+                        && rules::definition(&c.definition)
+                            .modifiers
+                            .iter()
+                            .any(|m| matches!(m, rules::StaticModifier::PeekOwnDeckTop))
+                }) {
+                self.players[seat]
+                    .deck
+                    .first()
+                    .map(|c| self.card_view(c, seat, None, None))
+            } else {
+                None
+            },
             hand: self.players[seat]
                 .hand
                 .iter()
@@ -2407,7 +2424,7 @@ mod tests {
     #[test]
     fn catalog_is_restricted_real_complete_and_decks_are_legal() {
         let c = catalog::catalog();
-        assert_eq!(c.cards.len(), 51);
+        assert_eq!(c.cards.len(), 53);
         let active = c
             .cards
             .iter()
@@ -2422,7 +2439,7 @@ mod tests {
                 .collect::<BTreeSet<_>>()
         );
         assert!(active.contains("DQJC116"));
-        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 41);
+        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 43);
         assert_eq!(c.decks.len(), 5);
         for deck in &c.decks {
             assert_eq!(deck.card_count, 50);

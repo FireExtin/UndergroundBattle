@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.9-jc008-candidate",
-  "engineVersion": "rust-v0.2.12-jc008-candidate",
+  "cardPoolVersion": "limited-v2.11-yellow-search-batch-candidate",
+  "engineVersion": "rust-v0.2.14-yellow-search-batch-candidate",
   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
   "cards": [
     {
@@ -1971,6 +1971,90 @@
       },
       "unique": false,
       "society": "梦境行者"
+    },
+    {
+      "id": "WM003",
+      "name": "千机庙离",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "法师",
+        "学生"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "黄色",
+        "星辰",
+        "星辰"
+      ],
+      "loyaltyText": "黄色 星辰 星辰",
+      "color": "黄",
+      "magic": "心灵",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 1
+        }
+      },
+      "defense": 1,
+      "text": "公开\n快速行动5，横置：从你的牌库中寻找一张牌，将该牌置于你的手中，然后洗牌。",
+      "keywords": [
+        "公开"
+      ],
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/WM003 千机庙离.jpg",
+        "record": "WM003",
+        "image": "resource/ymsj-fun.github.io/cards/WM003 千机庙离.jpg",
+        "sha256": "2409ef206e3af93d1eece3ec0bf4ba00a9e3d0c12a8e70443877cc8a28cc9bff"
+      },
+      "unique": true,
+      "society": "帷幕守望"
+    },
+    {
+      "id": "LC01",
+      "name": "西比尔",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "法师"
+      ],
+      "cost": 5,
+      "loyalty": [
+        "黄色",
+        "黄色"
+      ],
+      "loyaltyText": "黄色 黄色",
+      "color": "黄",
+      "magic": "神圣",
+      "icons": {
+        "permanent": {
+          "investigation": 2,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 4,
+      "text": "持续：你可以随时检视你的牌库顶牌。",
+      "keywords": [],
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/LC01 西比尔.jpg",
+        "record": "LC01",
+        "image": "resource/ymsj-fun.github.io/cards/LC01 西比尔.jpg",
+        "sha256": "a0defb07b43463cc882e15b993c73eda22ea77ca39062da71e6518a365cc5bd6"
+      },
+      "unique": true,
+      "society": "帷幕守望"
     }
   ],
   "decks": [

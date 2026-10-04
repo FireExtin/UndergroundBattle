@@ -1,10 +1,10 @@
 //! Default MSJC01 oracle: natural construction/payment/empty searches and explicitly
 //! marked paid-frame checkpoints. LC23 hit fixtures change the filter to neutral;
-//! no formal yellow unique card or natural yellow search gain is fabricated.
+//! these older hit cases do not claim a natural yellow search gain.
 use super::*;
 const SEARCH: &str = "search-yellow-unique";
 const DRAW: &str = "drawWithInitiative";
-fn draft(yellow: usize, total: usize) -> deck::DeckDraft {
+pub(super) fn draft(yellow: usize, total: usize) -> deck::DeckDraft {
     let mut d = deck::preset("watchers").unwrap();
     d.id = "msjc01-oracle".into();
     d.name = "MSJC01构筑与能力验证".into();
@@ -69,7 +69,7 @@ fn advance(room: &mut RoomEnvelope, steps: &mut Vec<Value>, done: impl Fn(&RoomE
     }
     panic!("bounded MSJC01 Room progress failed");
 }
-fn initial() -> Game {
+pub(super) fn initial() -> Game {
     let mut g = Game::new_with_deck(
         "888888888888888888880101".into(),
         "MSJC01".into(),

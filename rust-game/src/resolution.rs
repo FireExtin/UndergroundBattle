@@ -1202,6 +1202,7 @@ impl Game {
                     filter,
                     to_top,
                     optional,
+                    visibility,
                 } => {
                     let seat = self.frame_player(&frame, step.context, player)?;
                     if !self.players[seat].eliminated {
@@ -1228,7 +1229,11 @@ impl Game {
                                 None,
                                 ChoiceResolution::Frame {
                                     frame: Box::new(frame),
-                                    choice: FrameChoice::Search { seat, to_top },
+                                    choice: FrameChoice::Search {
+                                        seat,
+                                        to_top,
+                                        visibility,
+                                    },
                                 },
                             );
                             return Ok(());
@@ -1389,7 +1394,11 @@ impl Game {
                     self.draw(seat, count)?;
                 }
             }
-            FrameChoice::Search { seat, to_top } => {
+            FrameChoice::Search {
+                seat,
+                to_top,
+                visibility,
+            } => {
                 let c = selected
                     .first()
                     .and_then(|id| self.players[seat].deck.iter().position(|c| c.id == *id))
@@ -1402,11 +1411,15 @@ impl Game {
                     if to_top {
                         self.players[seat].deck.insert(0, c);
                     } else {
-                        self.note(format!(
-                            "{} 展示检索的 {}",
-                            self.players[seat].name,
-                            card(&c.definition).name
-                        ));
+                        if visibility == SearchVisibility::Reveal {
+                            self.note(format!(
+                                "{} 展示检索的 {}",
+                                self.players[seat].name,
+                                card(&c.definition).name
+                            ));
+                        } else {
+                            self.note(format!("{} 完成私密检索", self.players[seat].name));
+                        }
                         self.players[seat].hand.push(c);
                     }
                 }

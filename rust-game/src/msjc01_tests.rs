@@ -1,5 +1,5 @@
-//! Explicit layout and paid-frame checkpoints. Production has zero yellow unique
-//! cards. Hit fixtures search neutral+unique LC23, never fictional yellow targets.
+//! Explicit layout and paid-frame checkpoints. Legacy paid-frame hit fixtures search neutral+unique LC23,
+//! never fictional yellow targets; new batch tests cover real yellow targets.
 use crate::{
     catalog, deck,
     model::*,
@@ -42,7 +42,7 @@ fn draft(yellow: usize, total: usize) -> deck::DeckDraft {
         updated_at: String::new(),
     }
 }
-fn game() -> Game {
+pub(super) fn game() -> Game {
     let mut g = Game::new_with_deck(
         "msjc01-unit".into(),
         "LOCAL".into(),
@@ -88,20 +88,20 @@ fn game() -> Game {
 fn source(g: &Game, s: usize) -> String {
     g.players[s].society_zone.card.as_ref().unwrap().id.clone()
 }
-fn activate(g: &Game, s: usize, key: &str) -> Action {
+pub(super) fn activate(g: &Game, s: usize, key: &str) -> Action {
     Action {
         card_id: Some(source(g, s)),
         ability_id: Some(key.into()),
         ..Action::new("activate")
     }
 }
-fn fund(g: &mut Game, s: usize, n: usize) {
+pub(super) fn fund(g: &mut Game, s: usize, n: usize) {
     for _ in 0..n {
         let c = g.make_card("JC125", s);
         g.players[s].assets.push(c);
     }
 }
-fn pass_top(g: &mut Game) {
+pub(super) fn pass_top(g: &mut Game) {
     let n = g.stack.len();
     assert!(n > 0);
     for _ in 0..32 {
@@ -115,7 +115,7 @@ fn pass_top(g: &mut Game) {
     }
     panic!("bounded frame did not progress");
 }
-fn roundtrip(g: &mut Game) {
+pub(super) fn roundtrip(g: &mut Game) {
     let state = serde_json::to_string(g).unwrap();
     *g = Game::from_persisted(&state).unwrap();
     assert_eq!(serde_json::to_string(g).unwrap(), state);
@@ -134,7 +134,7 @@ fn next_turn(g: &mut Game) {
     }
     panic!("bounded turn did not progress");
 }
-fn rejected(g: &mut Game, s: usize, a: Action) {
+pub(super) fn rejected(g: &mut Game, s: usize, a: Action) {
     let before = serde_json::to_string(g).unwrap();
     assert!(g.apply(s, a).is_err());
     assert_eq!(serde_json::to_string(g).unwrap(), before);
@@ -172,7 +172,7 @@ fn msjc01_printed_program_and_registry_admission() {
             .iter()
             .filter(|c| c.color == "黄" && c.unique)
             .count(),
-        0
+        2
     );
 }
 #[test]
@@ -314,7 +314,15 @@ fn msjc01_printed_color_and_unique_filter_accepts_all_kinds_not_unique_keyword()
         d.color = "中立".into();
         assert!(!f.matches(&d));
     }
-    assert!(catalog::catalog().cards.iter().all(|d| !f.matches(d)));
+    assert_eq!(
+        catalog::catalog()
+            .cards
+            .iter()
+            .filter(|d| f.matches(d))
+            .map(|d| d.id.as_str())
+            .collect::<Vec<_>>(),
+        ["WM003", "LC01"]
+    );
 }
 #[test]
 fn msjc01_search_hit_fixtures_reuse_private_choice_reveal_fresh_hand_and_shuffle() {

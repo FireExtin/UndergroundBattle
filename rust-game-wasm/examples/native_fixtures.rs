@@ -28,6 +28,9 @@ mod jc008;
 #[cfg(not(feature = "society-fixtures"))]
 #[path = "support/msjc01.rs"]
 mod msjc01;
+#[cfg(not(feature = "society-fixtures"))]
+#[path = "support/yellow_search.rs"]
+mod yellow_search;
 
 fn step(room: &RoomEnvelope, operation: &str, args: Value, seat: usize) -> Value {
     json!({"operation":operation,"args":args,"state":serde_json::to_string(room).unwrap(),"version":room.revision,"seat":seat,"view":room.view(seat,room.pacing.last_server_now_ms),"views":(0..room.players.len()).map(|s|room.view(s,room.pacing.last_server_now_ms)).collect::<Vec<_>>()})
@@ -2563,6 +2566,14 @@ fn main() {
         std::fs::write(output, serde_json::to_vec(&value).unwrap()).unwrap();
         return;
     }
+    #[cfg(not(feature = "society-fixtures"))]
+    if std::env::args().any(|a| a == "--slice-yellow-search-batch") {
+        let mut cases = msjc01::cases();
+        cases.extend(yellow_search::cases());
+        let value = json!({"catalog":catalog::catalog(),"cases":cases});
+        std::fs::write(output, serde_json::to_vec(&value).unwrap()).unwrap();
+        return;
+    }
     let mut previous = Game::new(
         "previous-patch".into(),
         "OLD".into(),
@@ -2727,5 +2738,10 @@ fn main() {
         .as_array_mut()
         .unwrap()
         .extend(msjc01::cases());
+    #[cfg(not(feature = "society-fixtures"))]
+    value["cases"]
+        .as_array_mut()
+        .unwrap()
+        .extend(yellow_search::cases());
     std::fs::write(output, serde_json::to_vec(&value).unwrap()).unwrap();
 }

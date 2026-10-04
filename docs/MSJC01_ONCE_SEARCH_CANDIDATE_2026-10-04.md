@@ -1,5 +1,7 @@
 # MSJC01 每局一次与黄色独有检索：本地批内候选
 
+本篇是 `084af34` 的历史单卡检查点记录；后续完整整批候选与真实黄色目标见 [整批说明](YELLOW_SEARCH_ONCE_PRIVATE_TOP_BATCH_2026-10-04.md)。
+
 本次在 `codex/hegemony-jc008-turn-modifier-candidate-20261004`、来源研究提交 `f4e1a65efbc90c57e09661aa723ffb115a82110b` 上实现 MSJC01；功能基线是已审 JC008 的 `cd8265ca104b1089239a3e237b9dcf5f1b03511a`。本候选尚未独立审查，不推送 GitHub、不保存或发布 Sites、不访问公网 QA 房。整批回归、版本兼容检查与完整交付依最新指示留到批末。
 
 ## 来源与项目解释

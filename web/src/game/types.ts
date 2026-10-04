@@ -69,6 +69,7 @@ export type View = {
   firstTeam: number; activeTeam: number; priorityTeam: number; turn: number;
   phase: string; step: string; winScore: number; winnerTeam?: number;
   regions: Region[]; hand: Card[]; assets: Card[]; graveyard: Card[]; scoreCards: Card[];
+  privateDeckTop?: Card;
   attachments?: Attachment[];
   societyZones?: { id: string; playerId: string; card: Card | null }[];
   stack: StackEffect[];

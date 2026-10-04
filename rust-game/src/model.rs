@@ -252,6 +252,8 @@ pub struct View {
     #[serde(default)]
     pub attachments: Vec<AttachmentView>,
     pub hand: Vec<CardView>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub private_deck_top: Option<CardView>,
     pub assets: Vec<CardView>,
     pub graveyard: Vec<CardView>,
     pub score_cards: Vec<CardView>,
@@ -501,6 +503,8 @@ pub enum FrameChoice {
     Search {
         seat: usize,
         to_top: bool,
+        #[serde(default)]
+        visibility: crate::rules::SearchVisibility,
     },
     Sacrifice {
         seat: usize,
