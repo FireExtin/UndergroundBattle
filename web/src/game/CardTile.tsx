@@ -47,6 +47,7 @@ export function CardContent({ card: source, definition: sourceDefinition, compac
   const temporary = definition?.icons?.temporary || definition?.temporaryIcons;
   const hasTemporary = temporary && Object.values(temporary).some(n => n > 0);
   const effectiveStats = !compact && !card.faceDown && card.kind === 'character' && card.region !== undefined;
+  const defense = card.defense ?? definition?.defense;
   const type = hidden ? '身份未公开' : archive && asset ? '资产' : attachment ? `附属${definition?.subtypes?.length ? ` · ${definition.subtypes.join(' · ')}` : ''}` : definition?.type || definition?.subtypes?.join(' · ') || ({ character: '角色', event: '事件', spell: '咒术', region: '地区', asset: '资产', society: '秘社', hidden: '暗藏角色' }[card.kind] || '卡牌');
   return <>
     <span className="hg-card-top"><span className="hg-card-kind">{type}</span>{!hidden && !asset && !region && !society && <span className={`hg-cost${adjustedCost ? ' hg-cost-adjusted' : ''}`} title={adjustedCost ? `当前费用 ${actualCost} · 印刷费用 ${printedCost}` : '费用'} aria-label={adjustedCost ? `当前费用 ${actualCost}，印刷费用 ${printedCost}` : `费用 ${actualCost}`}>{actualCost}</span>}</span>
@@ -64,7 +65,7 @@ export function CardContent({ card: source, definition: sourceDefinition, compac
       {!compact && !society && hasTemporary && <span className="hg-temporary-label">先手 <IconStrip icons={temporary} temporary /></span>}
       {!compact && <span className="hg-card-text">{asset ? '未横置时可提供 1 费用，并提供所示派系与魔法忠诚。' : card.text || definition?.text || '此牌没有额外能力。'}</span>}
       <span className="hg-card-footer">
-        {!society && !concealedCompact && (card.defense ?? definition?.defense) !== undefined && <span>{effectiveStats && card.defense !== undefined && definition?.defense !== undefined ? `当前防御 ${card.defense} · 印刷防御 ${definition.defense}` : `防御 ${card.defense ?? definition?.defense}`}</span>}
+        {!society && !concealedCompact && typeof defense === 'number' && <span>{effectiveStats && typeof card.defense === 'number' && typeof definition?.defense === 'number' ? `当前防御 ${card.defense} · 印刷防御 ${definition.defense}` : `防御 ${defense}`}</span>}
         {attachmentCount > 0 && <span className="hg-card-attachment-count" title="点选宿主后可查看附属" aria-label={`附属 ${attachmentCount} 张`}>附属 {attachmentCount}</span>}
         {!society && !concealedCompact && !!card.damage && <span className="hg-hurt hg-damage-marker">伤害 {card.damage}</span>}
         {!society && !concealedCompact && !!card.wounds && <span className="hg-hurt hg-wound-marker">创伤 {card.wounds}</span>}
