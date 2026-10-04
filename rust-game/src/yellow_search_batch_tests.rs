@@ -58,6 +58,32 @@ fn top(g: &Game, seat: usize) {
     }
 }
 #[test]
+fn lc01_original_black_two_white_one_rear_two_first_three_exhaust_zero() {
+    let mut g = game();
+    // Owner differs from controller; temporary icons follow the controller's team.
+    let a = field(&mut g, "LC01", 2, 1);
+    let b = field(&mut g, "LC01", 0, 3);
+    for first_team in [0, 1] {
+        g.first_team = first_team;
+        for (id, team) in [(&a, 0), (&b, 1)] {
+            assert_eq!(
+                g.icons(g.board(id).unwrap().1, 0),
+                Icons {
+                    investigation: if first_team == team { 3 } else { 2 },
+                    combat: 0,
+                    influence: 0
+                }
+            );
+        }
+    }
+    for c in &mut g.regions[0].cards {
+        c.exhausted = true;
+    }
+    for id in [&a, &b] {
+        assert_eq!(g.icons(g.board(id).unwrap().1, 0), Icons::default());
+    }
+}
+#[test]
 fn yellow_batch_printed_fields_loyalty_ordinary_and_initiative_icons() {
     let w = catalog::card("WM003");
     assert_eq!(w.name, "千机庙离");
