@@ -1,6 +1,156 @@
 //! Explicit initial layouts; all control grants use real printed card declarations.
 //! Natural joined-game cases live separately in the default WASM oracle.
 use crate::{catalog, model::*, rules::*};
+
+// Reviewer counterexample: printed eligibility and primitive lifetime contract
+// are kept distinct. The current sole Death card, XQ12, is not Human.
+#[test]
+fn control_simultaneous_current_pool_has_no_human_death_target_for_jz27() {
+    let death_cards = catalog::catalog()
+        .cards
+        .iter()
+        .filter(|card| {
+            definition(&card.id)
+                .abilities
+                .iter()
+                .any(|a| a.event == Some(Event::Death))
+        })
+        .collect::<Vec<_>>();
+    assert_eq!(
+        death_cards
+            .iter()
+            .map(|c| c.id.as_str())
+            .collect::<Vec<_>>(),
+        vec!["XQ12"]
+    );
+    assert_eq!(death_cards[0].subtypes, vec!["吸血鬼", "奴仆"]);
+    let mut g = game();
+    let target = field(&mut g, "XQ12", 2);
+    fund(&mut g, 0, "XQ16", 6);
+    let source = field(&mut g, "JZ27", 0);
+    g.board_mut(&source).unwrap().face_down = true;
+    g.apply(
+        0,
+        Action {
+            card_id: Some(source),
+            ..Action::new("reveal")
+        },
+    )
+    .unwrap();
+    pass_top(&mut g);
+    assert!(g.pending.is_none());
+    assert!(g.control_effects.is_empty());
+    assert_eq!(controller(&g, &target), 2);
+}
+
+fn death_actor_and_snapshot(g: &Game, target: &str) -> (usize, usize) {
+    let declarations = g
+        .effects
+        .iter()
+        .filter_map(|effect| match effect {
+            Effect::Declare { declaration }
+                if declaration.ability.event == Some(Event::Death)
+                    && declaration.source.card.id == target =>
+            {
+                Some(declaration)
+            }
+            _ => None,
+        })
+        .collect::<Vec<_>>();
+    assert_eq!(declarations.len(), 1);
+    (
+        declarations[0].actor,
+        declarations[0].source.card.controller,
+    )
+}
+fn ordered_death_pair(g: &mut Game, source: &str, target: &str, source_first: bool) {
+    g.regions[0].cards.sort_by_key(|c| {
+        if c.id == source {
+            !source_first
+        } else {
+            source_first
+        }
+    });
+    let expected = if source_first {
+        vec![source, target]
+    } else {
+        vec![target, source]
+    };
+    assert_eq!(
+        g.regions[0]
+            .cards
+            .iter()
+            .map(|c| c.id.as_str())
+            .collect::<Vec<_>>(),
+        expected
+    );
+}
+
+#[test]
+fn control_simultaneous_legal_jc129_death_actor_stays_fixed_in_both_orders() {
+    for source_first in [true, false] {
+        let mut g = game();
+        let target = field(&mut g, "XQ12", 2);
+        let source = field(&mut g, "JZ27", 0);
+        fund(&mut g, 0, "JC104", 3);
+        play(&mut g, 0, "JC129", &target);
+        ordered_death_pair(&mut g, &source, &target, source_first);
+        mirror(&mut g);
+        g.damage(std::collections::BTreeMap::from([
+            (source.clone(), 3),
+            (target.clone(), 1),
+        ]))
+        .unwrap();
+        assert_eq!(death_actor_and_snapshot(&g, &target), (0, 0));
+        assert!(g.board(&source).is_none() && g.board(&target).is_none());
+    }
+}
+
+#[test]
+fn control_simultaneous_single_source_death_restores_live_legal_human_immediately() {
+    let mut g = game();
+    let target = field(&mut g, "JC125", 2);
+    let source = reveal(&mut g, 0, &target);
+    assert_eq!(controller(&g, &target), 0);
+    g.damage(std::collections::BTreeMap::from([(source.clone(), 3)]))
+        .unwrap();
+    assert!(g.board(&source).is_none());
+    assert_eq!(controller(&g, &target), 2);
+    assert!(g.control_effects.is_empty());
+    assert_eq!(
+        g.current_subtypes(g.board(&target).unwrap().1),
+        vec!["人类"]
+    );
+}
+
+#[test]
+fn control_simultaneous_real_jz27_human_pair_has_no_death_trigger_in_either_order() {
+    for source_first in [true, false] {
+        let mut g = game();
+        let target = field(&mut g, "JC125", 2);
+        let source = reveal(&mut g, 0, &target);
+        assert_eq!(controller(&g, &target), 0);
+        ordered_death_pair(&mut g, &source, &target, source_first);
+        mirror(&mut g);
+        g.damage(std::collections::BTreeMap::from([
+            (source.clone(), 3),
+            (target.clone(), 1),
+        ]))
+        .unwrap();
+        assert!(g.board(&source).is_none() && g.board(&target).is_none());
+        assert!(g.control_effects.is_empty() && g.control_baselines.is_empty());
+        assert!(g.effects.iter().all(|e| !matches!(e, Effect::Declare { declaration } if declaration.ability.event == Some(Event::Death))));
+        assert!(g.players[0]
+            .graveyard
+            .iter()
+            .any(|c| c.definition == "JZ27" && c.owner == 0 && c.controller == 0));
+        assert!(g.players[2]
+            .graveyard
+            .iter()
+            .any(|c| c.definition == "JC125" && c.owner == 2 && c.controller == 2));
+    }
+}
+
 fn game() -> Game {
     let mut g = Game::new(
         "control-unit".into(),
