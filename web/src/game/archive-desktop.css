@@ -111,8 +111,8 @@
   .hg-app .hg-archive-table .hg-inspector, .hg-app .hg-archive-table .hg-response-layer-active { background: #29221cfb; border-color: #aa8b59; }
   .hg-app .hg-archive-table .hg-inspector { bottom: 178px; width: 340px; }
   .hg-app .hg-archive-table .hg-inspected-card .hg-card-name { font-size: 22px; }
-  .hg-app .hg-archive-table .hg-inspected-card .hg-card-text { font-size: 16px; line-height: 1.8; color: #ede0c7; }
-  .hg-app .hg-archive-table .hg-inspected-card .hg-card-kind, .hg-app .hg-archive-table .hg-inspected-card .hg-card-affiliation { color: #d6c19d; font-size: 14px; }
+  .hg-app .hg-archive-table .hg-inspected-card .hg-card-text { font-size: 16px; line-height: 1.8; }
+  .hg-app .hg-archive-table .hg-inspected-card .hg-card-kind, .hg-app .hg-archive-table .hg-inspected-card .hg-card-affiliation { font-size: 14px; }
   .hg-app .hg-archive-table .hg-inspected-card .hg-archive-art { height: 110px; }
   .hg-app .hg-archive-table .hg-card-hover { background: #efe3c8; color: #30271e; bottom: 178px; }
   .hg-app .hg-archive-table .hg-card-hover .hg-archive-art { height: 100px; }
