@@ -6,7 +6,7 @@
   .hg-app:has(.hg-archive-table) .hg-brand { font-family: 'Noto Serif SC', 'Songti SC', serif; color: #f2e6cb; }
   .hg-app:has(.hg-archive-table) .hg-brand-mark { border-color: #a78a57; color: #dbba7d; }
   .hg-app:has(.hg-archive-table) .hg-nav-button, .hg-app:has(.hg-archive-table) .hg-connection { color: #dacbb0; }
-  .hg-app .hg-archive-table.hg-table { --hg-piece-width: 92px; --hg-piece-height: 140px; height: auto; min-height: calc(100dvh - 76px); padding: 10px 14px; grid-template-rows: 36px 134px minmax(416px, 1fr) 114px 168px; gap: 7px; border-color: #856d4b; border-radius: 8px; background: radial-gradient(ellipse at 40% 0%, #b080391c, transparent 60%), #282019; box-shadow: inset 0 0 0 5px #171311, inset 0 0 0 6px #6c573d, 0 16px 48px #0006; }
+  .hg-app .hg-archive-table.hg-table { --hg-piece-width: 92px; --hg-piece-height: 140px; height: auto; min-height: calc(100dvh - 76px); padding: 10px 14px; grid-template-rows: 36px 134px minmax(416px, 1fr) 114px 200px; gap: 7px; border-color: #856d4b; border-radius: 8px; background: radial-gradient(ellipse at 40% 0%, #b080391c, transparent 60%), #282019; box-shadow: inset 0 0 0 5px #171311, inset 0 0 0 6px #6c573d, 0 16px 48px #0006; }
   .hg-app .hg-archive-table.hg-table:before { opacity: .035; background: repeating-linear-gradient(2deg, transparent 0 24px, #cdb17f 25px 26px); }
   .hg-app .hg-archive-table .hg-table-status { gap: 14px; }
   .hg-app .hg-archive-table .hg-round b, .hg-app .hg-archive-table .hg-round span, .hg-app .hg-archive-table .hg-phase-line, .hg-app .hg-archive-table .hg-phase-line > strong, .hg-app .hg-archive-table .hg-phase-line span, .hg-app .hg-archive-table .hg-table-records, .hg-app .hg-archive-table .hg-team-tally { font-size: 13px; color: #e1cfaf; }
@@ -98,6 +98,15 @@
   .hg-app .hg-archive-table .hg-hand-dock .hg-hand { height: 140px; overflow-x: auto; overflow-y: hidden; justify-content: flex-start; gap: 10px; padding: 0 8px; }
   .hg-app .hg-archive-table .hg-hand-dock .hg-hand .hg-card { flex: 0 0 var(--hg-piece-width); min-width: var(--hg-piece-width); }
   .hg-app .hg-archive-table .hg-hand-dock .hg-hand .hg-card-name { font-size: 13px; }
+  /* Override the earlier desktop hand's stronger 126px card and spacing rules. */
+  .hg-app .hg-desktop-table.hg-archive-table.hg-table .hg-hand-dock .hg-hand-section { height: 152px; padding-top: 0; }
+  .hg-app .hg-desktop-table.hg-archive-table.hg-table .hg-hand-dock .hg-hand { height: 152px; padding: 0 8px; }
+  .hg-app .hg-desktop-table.hg-archive-table.hg-table .hg-hand-dock .hg-hand .hg-card { flex: 0 0 92px; width: 92px; min-width: 92px; height: 152px; padding: 5px; gap: 2px; }
+  .hg-app .hg-desktop-table.hg-archive-table.hg-table .hg-hand-dock .hg-hand .hg-card-name { font-size: 13px; line-height: 1.25; min-height: 16px; }
+  .hg-app .hg-desktop-table.hg-archive-table.hg-table .hg-hand-dock .hg-card-affiliation, .hg-app .hg-desktop-table.hg-archive-table.hg-table .hg-hand-dock .hg-card-footer { font-size: 10px; line-height: 1.2; }
+  .hg-app .hg-desktop-table.hg-archive-table.hg-table .hg-hand-dock .hg-icons { font-size: 11px; gap: 3px; }
+  .hg-app .hg-desktop-table.hg-archive-table.hg-table .hg-hand-dock .hg-icons b { font-size: 13px; }
+  .hg-app .hg-desktop-table.hg-archive-table.hg-table .hg-hand-dock .hg-cost { width: 20px; height: 20px; font-size: 15px; }
   .hg-app .hg-archive-table .hg-button { min-height: 32px; font-size: 13px; background: #3b3025; color: #f1dfbb; border-color: #a28656; }
   .hg-app .hg-archive-table .hg-inspector, .hg-app .hg-archive-table .hg-response-layer-active { background: #29221cfb; border-color: #aa8b59; }
   .hg-app .hg-archive-table .hg-inspector { bottom: 178px; width: 340px; }
