@@ -160,8 +160,8 @@ fn jc004_complete_printed_definition_and_candidate_identity_are_isolated() {
     assert_eq!(spec.targets[0].kind, EntityKind::Character);
     assert_eq!(spec.targets[0].range, Range::SourceRegion);
     assert_eq!(spec.targets[0].relation, Relation::Any);
-    assert_eq!(catalog::ENGINE_VERSION, "rust-v0.2.11");
-    assert_eq!(catalog::POOL_VERSION, "limited-v2.8");
+    assert_eq!(catalog::ENGINE_VERSION, "rust-v0.2.12-jc008-candidate");
+    assert_eq!(catalog::POOL_VERSION, "limited-v2.9-jc008-candidate");
     let mut draft = deck::preset("watchers").unwrap();
     draft.cards = vec![
         catalog::DeckEntry {
@@ -177,7 +177,7 @@ fn jc004_complete_printed_definition_and_candidate_identity_are_isolated() {
     draft.cards[0].count = 4;
     draft.cards[1].count = 46;
     assert!(deck::validate(draft).is_err());
-    assert!(!catalog::catalog().cards.iter().any(|c| c.id == "JC008"));
+    assert!(catalog::catalog().cards.iter().any(|c| c.id == "JC008"));
     let mut g = game();
     let id = board(&mut g, "JC004", 0, 0);
     assert_eq!(

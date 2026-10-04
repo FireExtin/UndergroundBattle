@@ -1,12 +1,35 @@
-//! Finite pure conditional icon queries. Exhausted assets retain their domains.
+//! Finite attribute queries. Resolved turn bonuses use exact entity identities;
+//! ordinary granted icons are independent of the printed initiative icons.
 use crate::{
     catalog::card,
-    model::Card,
-    model::Game,
+    model::{Card, Game, Icons},
     rules::{IconCondition, MagicIcon},
 };
 
 impl Game {
+    pub(crate) fn turn_attribute_bonus(&self, c: &Card) -> (u32, Icons) {
+        if c.face_down || card(&c.definition).kind != "character" {
+            return (0, Icons::default());
+        }
+        self.turn_attribute_modifiers
+            .iter()
+            .filter(|m| m.target_instance == c.id && m.expires_turn == self.turn)
+            .fold((0, Icons::default()), |(defense, icons), m| {
+                (defense + m.defense_bonus, icons.add(m.ordinary_icons))
+            })
+    }
+    pub(crate) fn prune_turn_attribute_modifiers(&mut self) {
+        let present = self
+            .regions
+            .iter()
+            .flat_map(|r| r.cards.iter())
+            .filter(|c| !c.face_down && card(&c.definition).kind == "character")
+            .map(|c| c.id.as_str())
+            .collect::<std::collections::BTreeSet<_>>();
+        self.turn_attribute_modifiers.retain(|m| {
+            m.expires_turn == self.turn && present.contains(m.target_instance.as_str())
+        });
+    }
     pub(crate) fn actor_has_asset_domain(
         &self,
         actor: usize,

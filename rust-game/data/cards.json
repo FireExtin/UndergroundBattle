@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.8",
-  "engineVersion": "rust-v0.2.11",
+  "cardPoolVersion": "limited-v2.9-jc008-candidate",
+  "engineVersion": "rust-v0.2.12-jc008-candidate",
   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
   "cards": [
     {
@@ -490,6 +490,45 @@
         "record": "JC005",
         "image": "resource/ymsj-fun.github.io/cards/JC005 裂解术.jpg",
         "sha256": "216c26cff74fe738dbc486e725828ddc8077705161b1fee566e9d806684364a1"
+      },
+      "unique": false,
+      "society": "帷幕守望"
+    },
+    {
+      "id": "JC008",
+      "name": "灵能激发",
+      "kind": "spell",
+      "subtypes": [
+        "法术",
+        "心灵"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "黄色"
+      ],
+      "loyaltyText": "黄色",
+      "color": "黄",
+      "magic": "心灵",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "【快速行动】本回合中，目标角色获得+1防御和1个普通战斗图标。",
+      "keywords": [],
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/JC008 灵能激发.jpg",
+        "record": "JC008",
+        "image": "resource/ymsj-fun.github.io/cards/JC008 灵能激发.jpg",
+        "sha256": "31340e2535e0909359860a090186b7a5032e84d6da94c8181baf32565b5d4f45"
       },
       "unique": false,
       "society": "帷幕守望"

@@ -403,6 +403,7 @@ pub enum Effect {
         region: usize,
     },
     Cleanup,
+    FinishCleanup,
     Bury {
         card: Card,
     },
@@ -528,6 +529,15 @@ pub struct CostModifier {
     pub expires_turn: u32,
     pub uses: u32,
 }
+/// A resolved bonus belongs to this exact in-play instance, not its owner,
+/// controller, printed definition, or the spell's later graveyard instance.
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
+pub struct TurnAttributeModifier {
+    pub target_instance: String,
+    pub defense_bonus: u32,
+    pub ordinary_icons: Icons,
+    pub expires_turn: u32,
+}
 #[derive(Clone, Copy, Debug, Serialize, Deserialize)]
 pub enum RemovalCause {
     Sacrifice,
@@ -603,6 +613,8 @@ pub struct Game {
     pub log: Vec<LogEntry>,
     pub versions: Versions,
     pub modifiers: Vec<CostModifier>,
+    #[serde(default)]
+    pub turn_attribute_modifiers: Vec<TurnAttributeModifier>,
 }
 pub fn player_id(seat: usize) -> String {
     format!("p{seat}")

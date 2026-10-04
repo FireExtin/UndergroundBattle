@@ -167,6 +167,11 @@ impl CardFilter {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
     Exhaust(EntityRef),
+    ModifyTargetUntilTurnEnd {
+        slot: usize,
+        defense_bonus: u32,
+        ordinary_icons: Icons,
+    },
     // A finite single-board-target query, evaluated only after the frame guard.
     // Branches are restricted to existing atomic Exhaust / OwnerHand operations.
     IfTargetExhausted {
@@ -345,6 +350,21 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
             }
         }
         for op in ops {
+            if let Op::ModifyTargetUntilTurnEnd {
+                slot,
+                defense_bonus,
+                ordinary_icons,
+            } = op
+            {
+                if !targets.get(*slot).is_some_and(|target| {
+                    target.zone == Zone::Board && target.kind == EntityKind::Character
+                }) || (*defense_bonus == 0 && *ordinary_icons == Icons::default())
+                {
+                    return Err(format!(
+                        "{location}: turn attribute bonus requires a bound board character and a nonempty bonus"
+                    ));
+                }
+            }
             if let Op::IfTargetExhausted {
                 slot,
                 exhausted,
@@ -372,6 +392,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
                         Op::ForEachLivingPlayer(_)
                             | Op::ForEachLivingPlayerFromActor(_)
                             | Op::IfTargetExhausted { .. }
+                            | Op::ModifyTargetUntilTurnEnd { .. }
                     )
                 }) {
                     return Err(format!(
@@ -623,6 +644,25 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
                 vec![],
                 vec![magic_character],
                 vec![Op::Move(Target(0), Destination::OwnerHand)],
+                None,
+            )]),
+        );
+        m.insert(
+            "JC008".into(),
+            with_abilities(vec![ability(
+                "empower-until-turn-end",
+                "本回合属性增强",
+                Timing::Fast,
+                vec![],
+                vec![character.clone()],
+                vec![Op::ModifyTargetUntilTurnEnd {
+                    slot: 0,
+                    defense_bonus: 1,
+                    ordinary_icons: Icons {
+                        combat: 1,
+                        ..Icons::default()
+                    },
+                }],
                 None,
             )]),
         );

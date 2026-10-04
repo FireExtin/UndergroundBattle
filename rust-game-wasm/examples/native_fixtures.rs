@@ -23,6 +23,8 @@ mod msjc09;
 mod jc004;
 #[path = "support/jc005.rs"]
 mod jc005;
+#[path = "support/jc008.rs"]
+mod jc008;
 
 fn step(room: &RoomEnvelope, operation: &str, args: Value, seat: usize) -> Value {
     json!({"operation":operation,"args":args,"state":serde_json::to_string(room).unwrap(),"version":room.revision,"seat":seat,"view":room.view(seat,room.pacing.last_server_now_ms),"views":(0..room.players.len()).map(|s|room.view(s,room.pacing.last_server_now_ms)).collect::<Vec<_>>()})
@@ -2707,5 +2709,9 @@ fn main() {
         .as_array_mut()
         .unwrap()
         .extend(jc005::cases());
+    value["cases"]
+        .as_array_mut()
+        .unwrap()
+        .extend(jc008::cases());
     std::fs::write(output, serde_json::to_vec(&value).unwrap()).unwrap();
 }

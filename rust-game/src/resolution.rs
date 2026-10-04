@@ -987,6 +987,19 @@ impl Game {
             let step = frame.steps[frame.cursor].clone();
             frame.cursor += 1;
             match step.op {
+                Op::ModifyTargetUntilTurnEnd {
+                    slot,
+                    defense_bonus,
+                    ordinary_icons,
+                } => {
+                    let target = frame.targets.get(slot).ok_or("缺少属性修正目标")?;
+                    self.turn_attribute_modifiers.push(TurnAttributeModifier {
+                        target_instance: target.id.clone(),
+                        defense_bonus,
+                        ordinary_icons,
+                        expires_turn: self.turn,
+                    });
+                }
                 Op::IfTargetExhausted {
                     slot,
                     exhausted,

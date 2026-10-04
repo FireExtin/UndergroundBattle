@@ -13,6 +13,7 @@ const scans: Record<string, string> = {
   "JC003": "/cards/JC003.jpg",
   "JC004": "/cards/JC004.jpg",
   "JC005": "/cards/JC005.jpg",
+  "JC008": "/cards/JC008.jpg",
   "XQ03": "/cards/XQ03.jpg",
   "JC014": "/cards/JC014.jpg",
   "JC016": "/cards/JC016.jpg",
@@ -50,7 +51,6 @@ const scans: Record<string, string> = {
   "JC007": "/cards/JC007.jpg",
   "JC075": "/cards/JC075.jpg",
   "JC104": "/cards/JC104.jpg",
-  // Registered society MSJC09: original bytes from the reviewed c25f20e source.
   "MSJC09": "/cards/MSJC09.jpg"
 };
 export const cardScanUrl = (cardId?: string) => cardId ? scans[cardId] : undefined;

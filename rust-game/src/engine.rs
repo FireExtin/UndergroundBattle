@@ -54,6 +54,7 @@ impl Game {
         Ok(Self {
             state_schema: 2,
             modifiers: vec![],
+            turn_attribute_modifiers: vec![],
             room_id,
             invite_code,
             mode,
@@ -303,6 +304,11 @@ impl Game {
         if c.exhausted {
             return Icons::default();
         }
+        self.current_icons(c, region)
+    }
+    /// Current attributes before exhaustion suppresses confrontation participation.
+    /// Catalog fields remain the immutable printed values.
+    pub fn current_icons(&self, c: &Card, region: usize) -> Icons {
         if c.face_down {
             return Icons {
                 influence: 1,
@@ -313,7 +319,7 @@ impl Game {
         if d.kind != "character" {
             return Icons::default();
         }
-        let mut result = d.permanent_icons;
+        let mut result = d.permanent_icons.add(self.turn_attribute_bonus(c).1);
         if self.team(c.controller) == self.first_team {
             result = result.add(d.temporary_icons);
         }
@@ -372,7 +378,8 @@ impl Game {
                 _ => 0,
             })
             .sum::<u32>();
-        (card(&c.definition).defense.unwrap_or(0) + bonus).saturating_sub(c.wounds)
+        (card(&c.definition).defense.unwrap_or(0) + bonus + self.turn_attribute_bonus(c).0)
+            .saturating_sub(c.wounds)
     }
     pub(crate) fn reset_passes(&mut self) {
         self.passed.clear();
@@ -663,6 +670,7 @@ impl Game {
     pub(crate) fn start(&mut self) -> RuleResult<()> {
         self.status = "playing".into();
         self.modifiers.clear();
+        self.turn_attribute_modifiers.clear();
         self.regions.clear();
         self.attachments.clear();
         self.region_return = None;
@@ -988,7 +996,6 @@ impl Game {
             }
             Window::End => {
                 self.effects.push_back(Effect::Cleanup);
-                self.effects.push_back(Effect::NextTurn);
             }
         }
         Ok(())
@@ -1470,14 +1477,15 @@ impl Game {
                 }
             }
             Effect::Cleanup => {
-                for region in &mut self.regions {
-                    region.skip = false;
-                    for c in &mut region.cards {
-                        c.damage = 0;
-                    }
-                }
+                // Printed rules 4.2.1/2: finish hand-limit choices first.
+                // The queued atomic cleanup survives a paused choice/reload.
+                self.effects.push_front(Effect::FinishCleanup);
                 let mut discards = vec![];
-                for seat in 0..self.players.len() {
+                for seat in self
+                    .living(self.first_team)
+                    .into_iter()
+                    .chain(self.living(1 - self.first_team))
+                {
                     if self.players[seat].hand.len() > 7 {
                         discards.push(Effect::Discard {
                             seat,
@@ -1489,6 +1497,27 @@ impl Game {
                 }
                 for e in discards.into_iter().rev() {
                     self.effects.push_front(e);
+                }
+            }
+            Effect::FinishCleanup => {
+                // Printed 4.2.3: damage removal and end-of-turn expiry are one
+                // batch. Never settle lethal damage between these mutations.
+                for region in &mut self.regions {
+                    region.skip = false;
+                    for c in &mut region.cards {
+                        c.damage = 0;
+                    }
+                }
+                self.turn_attribute_modifiers.clear();
+                self.modifiers.clear();
+                let queued = self.effects.len();
+                self.settle_deaths();
+                if self.effects.len() > queued || !self.stack.is_empty() || self.pending.is_some() {
+                    // 4.2.4: existing responsive death triggers finish under the
+                    // current initiative, then another cleanup after all pass.
+                    self.begin_window(Window::End);
+                } else {
+                    self.effects.push_back(Effect::NextTurn);
                 }
             }
             Effect::Bury { card: c } => {
@@ -1572,6 +1601,7 @@ impl Game {
         Ok(())
     }
     pub(crate) fn settle_deaths(&mut self) {
+        self.prune_turn_attribute_modifiers();
         self.settle_attachments();
         let previous_effects = self.effects.len();
         // Loss of a defense aura is checked again after the simultaneous lethal set.
@@ -1607,6 +1637,7 @@ impl Game {
             _ => (true, usize::MAX),
         });
         self.effects.extend(simultaneous);
+        self.prune_turn_attribute_modifiers();
     }
     pub(crate) fn choose(&mut self, seat: usize, a: Action) -> RuleResult<()> {
         let p = self.pending.clone().ok_or("没有待选")?;
@@ -2369,7 +2400,7 @@ mod tests {
     #[test]
     fn catalog_is_restricted_real_complete_and_decks_are_legal() {
         let c = catalog::catalog();
-        assert_eq!(c.cards.len(), 50);
+        assert_eq!(c.cards.len(), 51);
         let active = c
             .cards
             .iter()
@@ -2384,7 +2415,7 @@ mod tests {
                 .collect::<BTreeSet<_>>()
         );
         assert!(active.contains("DQJC116"));
-        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 40);
+        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 41);
         assert_eq!(c.decks.len(), 5);
         for deck in &c.decks {
             assert_eq!(deck.card_count, 50);
