@@ -14,6 +14,18 @@ const props = { catalog: testCatalog, busy: false, connection: 'online' as const
 const open = () => { fireEvent.click(screen.getByRole('button', { name: '查看葬礼' })); fireEvent.click(screen.getByRole('button', { name: '葬礼：发动' })); };
 
 describe('object actions on a synthetic table', () => {
+  it('keeps a chosen object after a mistaken region click and directs the player back to highlighted objects', () => {
+    const submit = vi.fn();
+    const region = { id: 'r0', index: 0, cardId: 'world', name: '纽约', threshold: 3, points: 3, influence: [0, 0], characters: [] };
+    render(<Table {...props} view={{ ...view, regions: [region] }} onAction={submit} />);
+    open(); fireEvent.click(screen.getByRole('button', { name: '查看墓地角色1' }));
+    fireEvent.click(screen.getByRole('button', { name: '查看地区1 纽约' }));
+    expect(screen.getByText('此地区不是当前动作的合法目标，请点选高亮对象或取消。')).toBeInTheDocument();
+    expect(screen.getByText('目标：甲的墓地角色1')).toBeInTheDocument();
+    expect(submit).not.toHaveBeenCalled();
+    fireEvent.click(screen.getByRole('button', { name: `确认 · ${actions[0].label}` }));
+    expect(submit).toHaveBeenCalledExactlyOnceWith(actions[0]);
+  });
   it('shows description-only distinctions as separately named object actions', () => {
     const variants = [{ ...actions[0], description: '方式甲' }, { ...actions[1], description: '方式乙' }];
     const { container } = render(<Table {...props} view={{ ...view, legalActions: variants }} onAction={vi.fn()} />);

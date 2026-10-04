@@ -1,10 +1,10 @@
-import type { CardDefinition, Catalog, Deck } from './types';
+import type { CardDefinition, Catalog, Deck, SocietyDefinition } from './types';
 
 export type DeckDraft = {
   id: string;
   name: string;
   description: string;
-  societyId: null;
+  societyId: string | null;
   cards: { cardId: string; count: number }[];
   rulesVersion: string;
   cardPoolVersion: string;
@@ -35,11 +35,21 @@ export function isEditableDeckCard(card: DeckCardDefinition): boolean {
   return card.supported === true && playerKinds.has(card.kind);
 }
 
+export function selectableSocieties(catalog: DeckCatalog): SocietyDefinition[] {
+  return catalog.deckBuildRules?.societySupported === true
+    ? (catalog.societies || []).filter(card => card.kind === 'society' && card.supported !== false) : [];
+}
+
+export function societyColorCount(draft: DeckDraft, catalog: DeckCatalog, color: string): number {
+  const normalized = (value: string) => value.trim().replace(/色$/, '');
+  const ids = new Set(catalog.cards.filter(card => isEditableDeckCard(card) && normalized(card.color || '') === normalized(color)).map(card => card.id));
+  return draft.cards.reduce((sum, entry) => sum + (ids.has(entry.cardId) && Number.isSafeInteger(entry.count) && entry.count > 0 ? entry.count : 0), 0);
+}
+
 export function validateDeckDraft(draft: DeckDraft, catalog: DeckCatalog): DeckValidation {
   const issues: DeckIssue[] = [];
   const issue = (code: string, message: string, cardId?: string) => issues.push({ code, message, ...(cardId ? { cardId } : {}) });
   if (!draft.name.trim()) issue('name', '请给牌组起一个名字。');
-  if (draft.societyId !== null) issue('society', '当前未开放秘社牌组，请移除秘社。');
   if (draft.rulesVersion !== catalog.rulesVersion || draft.cardPoolVersion !== catalog.cardPoolVersion || draft.engineVersion !== catalog.engineVersion) {
     issue('version', '来源版本已变化，请明确按当前卡池重新校验。');
   }
@@ -80,12 +90,28 @@ export function validateDeckDraft(draft: DeckDraft, catalog: DeckCatalog): DeckV
       if (limit !== null && group.count > limit) issue('copies', `「${name}」同名最多 ${limit} 张，当前合计 ${group.count} 张。`, group.ids[0]);
     }
   }
+  if (draft.societyId !== null) {
+    const society = selectableSocieties(catalog).find(card => card.id === draft.societyId);
+    if (!society) issue('society', '当前目录未开放此秘社，请清除选择或更换为已注册秘社。');
+    else {
+      if (!Number.isSafeInteger(society.startingHand) || society.startingHand < 0 || !Array.isArray(society.deckConstraints)) {
+        issue('society-metadata', `「${society.name}」的起手或构筑要求尚未确认，暂不能用于开局。`);
+      } else for (const constraint of society.deckConstraints) {
+        if (constraint.kind !== 'minimumColor' || typeof constraint.color !== 'string' || !constraint.color.trim() || !Number.isSafeInteger(constraint.count) || constraint.count < 0) {
+          issue('society-metadata', `「${society.name}」的构筑要求尚未确认，暂不能用于开局。`);
+          continue;
+        }
+        const count = societyColorCount(draft, catalog, constraint.color);
+        if (count < constraint.count) issue('society-color', `「${society.name}」要求至少 ${constraint.count} 张${constraint.color.trim().replace(/色$/, '')}色卡，当前 ${count} 张。`);
+      }
+    }
+  }
   return { valid: issues.length === 0, total, issues };
 }
 
 export function publicDeckDraft(draft: DeckDraft): DeckDraft {
   return {
-    id: draft.id, name: draft.name, description: draft.description, societyId: null,
+    id: draft.id, name: draft.name, description: draft.description, societyId: draft.societyId,
     cards: draft.cards.map(({ cardId, count }) => ({ cardId, count })),
     rulesVersion: draft.rulesVersion, cardPoolVersion: draft.cardPoolVersion, engineVersion: draft.engineVersion, updatedAt: draft.updatedAt,
   };
@@ -115,7 +141,8 @@ function record(value: unknown): value is Record<string, unknown> {
 }
 
 function decodeDraft(value: unknown): DeckDraft | null {
-  if (!record(value) || typeof value.id !== 'string' || !value.id.trim() || typeof value.name !== 'string' || typeof value.description !== 'string' || value.societyId !== null || !Array.isArray(value.cards)) return null;
+  if (!record(value) || typeof value.id !== 'string' || !value.id.trim() || typeof value.name !== 'string' || typeof value.description !== 'string' || !Array.isArray(value.cards)) return null;
+  if (value.societyId !== null && (typeof value.societyId !== 'string' || !value.societyId.trim())) return null;
   if (typeof value.rulesVersion !== 'string' || typeof value.cardPoolVersion !== 'string' || typeof value.engineVersion !== 'string' || typeof value.updatedAt !== 'string' || !Number.isFinite(Date.parse(value.updatedAt))) return null;
   const cards: DeckDraft['cards'] = [];
   const seen = new Set<string>();
@@ -124,7 +151,7 @@ function decodeDraft(value: unknown): DeckDraft | null {
     seen.add(entry.cardId);
     cards.push({ cardId: entry.cardId, count: entry.count });
   }
-  return { id: value.id, name: value.name, description: value.description, societyId: null, cards, rulesVersion: value.rulesVersion, cardPoolVersion: value.cardPoolVersion, engineVersion: value.engineVersion, updatedAt: value.updatedAt };
+  return { id: value.id, name: value.name, description: value.description, societyId: value.societyId, cards, rulesVersion: value.rulesVersion, cardPoolVersion: value.cardPoolVersion, engineVersion: value.engineVersion, updatedAt: value.updatedAt };
 }
 
 export function localDeckStorage(): DeckStorage | null {

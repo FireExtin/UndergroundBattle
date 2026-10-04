@@ -3,12 +3,12 @@ import type { LegalAction } from './types';
 export type ObjectActionGroup = { key: string; label: string; actions: LegalAction[] };
 
 // Only collapse destination variants. Payload fields preserve ability/mode/costs;
-// display differences also split groups so older room metadata cannot hide a choice.
+// Display differences also split groups; sourceZoneId is a read-only source label.
 export function groupObjectActions(actions: LegalAction[]): ObjectActionGroup[] {
   const groups = new Map<string, ObjectActionGroup>();
   for (const action of actions) {
     const payload = Object.fromEntries(Object.entries(action)
-      .filter(([key]) => !['id', 'label', 'description', 'targetId', 'region'].includes(key))
+      .filter(([key]) => !['id', 'label', 'description', 'sourceZoneId', 'targetId', 'region'].includes(key))
       .sort(([a], [b]) => a.localeCompare(b)));
     const arrow = action.label.indexOf('→');
     const cost = action.label.indexOf('（费用：');

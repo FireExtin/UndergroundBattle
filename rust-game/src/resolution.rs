@@ -398,6 +398,7 @@ impl Game {
         }
         .ok_or("该牌无可发动的行动能力")?;
         let mut spec = spec.clone();
+        crate::society::ensure_activation_condition(definition, &spec.key)?;
         if !spec.modes.is_empty() {
             let mode = spec
                 .modes
@@ -586,7 +587,7 @@ impl Game {
                 }
                 Cost::ExhaustSource => {
                     let c = self
-                        .board_mut(&source.card.id)
+                        .ability_source_mut(&source.card.id)
                         .filter(|c| c.controller == actor && !c.face_down && !c.exhausted)
                         .ok_or("来源不可横置支付")?;
                     c.exhausted = true;
@@ -1023,6 +1024,11 @@ impl Game {
                 Op::Destroy(entity) => {
                     if let Some(id) = Self::frame_entity(&frame, entity) {
                         self.remove_dead(id, RemovalCause::Destroy);
+                    }
+                }
+                Op::DrawIfActorHasInitiative { count } => {
+                    if self.team(frame.actor) == self.first_team {
+                        self.draw(frame.actor, count)?;
                     }
                 }
                 Op::Draw { player, count, end } => {

@@ -27,6 +27,8 @@
   .hg-app .hg-desktop-table.hg-table .hg-mine-edge .hg-other-hand { position: static; }
   .hg-app .hg-desktop-table.hg-table .hg-hand-dock { position: fixed; left: 0; right: 0; bottom: 0; width: auto; padding: 8px 12px; border-top: 1px solid #b0986b; background: #172f28; z-index: 70; }
   .hg-app .hg-desktop-table.hg-table .hg-dock-action { height: auto; min-height: 40px; flex-wrap: wrap; gap: 6px; }
+  .hg-app .hg-desktop-table.hg-table .hg-dock-action > div:first-child { flex: 1 1 100%; }
+  .hg-app .hg-desktop-table.hg-table .hg-dock-action strong { max-width: none; }
   .hg-app .hg-desktop-table.hg-table .hg-hand-dock .hg-hand { justify-content: flex-start; overflow-x: auto; overflow-y: hidden; padding-inline: 4px; }
   .hg-app .hg-desktop-table.hg-table .hg-hand-dock .hg-hand .hg-card { flex: 0 0 82px; }
   .hg-app .hg-desktop-table.hg-table .hg-inspector { position: fixed; left: 12px; right: 12px; bottom: 188px; width: auto; max-height: calc(100dvh - 270px); }
@@ -39,7 +41,7 @@
   .hg-app .hg-desktop-table.hg-table .hg-inspector .hg-button, .hg-app .hg-desktop-table.hg-table .hg-inspector-close { min-height: 44px; }
 }
 @media (hover: none) {
-  .hg-desktop-table.hg-table .hg-card-hover { display: none; }
+  .hg-app .hg-desktop-table.hg-table .hg-card-hover { display: none; }
 }
 @media (max-width: 760px) {
   .hg-desktop-table.hg-table .hg-object-targeting .hg-button, .hg-mounted-object, .hg-player-target { min-height: 44px; }
