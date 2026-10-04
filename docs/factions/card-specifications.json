@@ -36621,7 +36621,13 @@
         "printedCollectorCode": "102/135",
         "seriesSymbol": "wineGlass",
         "printedCost": 2,
-        "loyalty": [],
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "紫",
+            "count": 1
+          }
+        ],
         "domains": [
           {
             "id": "blood",
@@ -36705,7 +36711,7 @@
         {
           "id": "JC102-03",
           "scenario": "忠诚要求核对",
-          "expected": "费用2，无紫色忠诚；血脉1不是颜色忠诚1。",
+          "expected": "费用2、紫色忠诚1、血脉领域1；血脉不能代替紫忠诚，只有血脉而无紫资产时拒绝付款。",
           "status": "notRun"
         }
       ]
