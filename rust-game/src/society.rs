@@ -503,6 +503,7 @@ mod tests {
                 equipment_host: false,
                 requires_magic: false,
                 exclude_source: false,
+                attachment_host_condition: None,
                 min: 1,
                 max: 1,
             };

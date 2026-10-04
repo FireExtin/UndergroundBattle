@@ -21,6 +21,8 @@ mod msjc09;
 
 #[path = "support/jc004.rs"]
 mod jc004;
+#[path = "support/jc005.rs"]
+mod jc005;
 
 fn step(room: &RoomEnvelope, operation: &str, args: Value, seat: usize) -> Value {
     json!({"operation":operation,"args":args,"state":serde_json::to_string(room).unwrap(),"version":room.revision,"seat":seat,"view":room.view(seat,room.pacing.last_server_now_ms),"views":(0..room.players.len()).map(|s|room.view(s,room.pacing.last_server_now_ms)).collect::<Vec<_>>()})
@@ -2616,6 +2618,13 @@ fn main() {
         assert!(RoomEnvelope::from_persisted(&state).is_err());
         rejected_states.push(state);
     }
+    let mut old = RoomEnvelope::from_game(previous.clone());
+    old.versions.engine = "rust-v0.2.10".into();
+    old.versions.card_pool = "limited-v2.7".into();
+    old.game.versions = old.versions.clone();
+    let state = serde_json::to_string(&old).unwrap();
+    assert!(RoomEnvelope::from_persisted(&state).is_err());
+    rejected_states.push(state);
     let clock = pacing_fixture(false);
     let prepared = json!({"state":clock["steps"][0]["state"],"version":clock["steps"][0]["version"],"roomId":"ffffffffffffffffffffffff","firstAction":clock["steps"][1]["args"][1]["action"],"firstCommand":clock["steps"][1]["args"][1],"serverNowMs":clock["steps"][1]["args"][2],"seat":0});
     if std::env::args().any(|a| a == "--slice-v027") {
@@ -2694,5 +2703,9 @@ fn main() {
         .as_array_mut()
         .unwrap()
         .extend(jc004::cases());
+    value["cases"]
+        .as_array_mut()
+        .unwrap()
+        .extend(jc005::cases());
     std::fs::write(output, serde_json::to_vec(&value).unwrap()).unwrap();
 }

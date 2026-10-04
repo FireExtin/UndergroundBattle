@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.7",
-  "engineVersion": "rust-v0.2.10",
+  "cardPoolVersion": "limited-v2.8-jc005-candidate",
+  "engineVersion": "rust-v0.2.11-jc005-candidate",
   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
   "cards": [
     {
@@ -451,6 +451,45 @@
         "record": "JC004",
         "image": "resource/ymsj-fun.github.io/cards/JC004 力场法师.jpg",
         "sha256": "d9209031b83d49c2eacdbedd2967384852acc51329093f362073c462dabf92c4"
+      },
+      "unique": false,
+      "society": "帷幕守望"
+    },
+    {
+      "id": "JC005",
+      "name": "裂解术",
+      "kind": "spell",
+      "subtypes": [
+        "法术",
+        "空间"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "黄色"
+      ],
+      "loyaltyText": "黄色",
+      "color": "黄",
+      "magic": "心灵",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "【快速行动】消灭目标结附于角色的附属。若你的资产区具有心灵领域图标，则改为消灭目标附属。",
+      "keywords": [],
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/JC005 裂解术.jpg",
+        "record": "JC005",
+        "image": "resource/ymsj-fun.github.io/cards/JC005 裂解术.jpg",
+        "sha256": "216c26cff74fe738dbc486e725828ddc8077705161b1fee566e9d806684364a1"
       },
       "unique": false,
       "society": "帷幕守望"

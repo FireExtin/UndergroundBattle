@@ -8,6 +8,25 @@ use crate::{
 use std::collections::{BTreeMap, BTreeSet};
 
 impl Game {
+    fn attachment_host_matches(
+        &self,
+        actor: usize,
+        id: &str,
+        condition: &AttachmentHostCondition,
+    ) -> bool {
+        let Some(attachment) = self.attachments.iter().find(|a| a.card.id == id) else {
+            return false;
+        };
+        let Some((_, host)) = self.board(&attachment.host_id) else {
+            return false;
+        };
+        match condition {
+            AttachmentHostCondition::CharacterOrActorAssetDomain { magic } => {
+                (!host.face_down && card(&host.definition).kind == "character")
+                    || self.actor_has_asset_domain(actor, magic, 1)
+            }
+        }
+    }
     fn frame_region(&self, frame: &ResolutionFrame, region: RegionRef) -> Option<usize> {
         let region = match region {
             RegionRef::SourceRegion => frame.source.region,
@@ -472,6 +491,12 @@ impl Game {
                         Relation::EnemyTeam => self.is_enemy(actor, c),
                     };
                     kind && relation
+                        && spec
+                            .attachment_host_condition
+                            .as_ref()
+                            .is_none_or(|condition| {
+                                self.attachment_host_matches(actor, id, condition)
+                            })
                         && (!spec.requires_magic
                             || (!c.face_down && d.magic_icon != MagicIcon::None))
                         && (!spec.exclude_source || c.id != source.card.id)
