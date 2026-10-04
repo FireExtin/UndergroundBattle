@@ -177,7 +177,7 @@ fn protection_original_fields_and_only_four_admitted_cards() {
     assert_eq!(net.loyalty, ["白色"]);
     let fire = catalog::card("JC102");
     assert_eq!(fire.cost, 2);
-    assert!(fire.loyalty.is_empty());
+    assert_eq!(fire.loyalty, ["紫色"]);
     assert_eq!(fire.magic_icon, MagicIcon::Blood);
     assert_eq!(fire.subtypes, ["法术", "阴"]);
     let wall = catalog::card("JC132");
@@ -282,7 +282,7 @@ fn protection_temporary_defense_and_damage_cleanup_preserve_survivor() {
     let mut g = game();
     let source = field(&mut g, "JC071", 0);
     let target = field(&mut g, "JC125", 0);
-    fund(&mut g, 2, "JC125", 2);
+    fund(&mut g, 2, "JC104", 2);
     activate(&mut g, &source, &target);
     pass_top(&mut g);
     give_priority(&mut g, 2);
@@ -398,11 +398,11 @@ fn protection_hide_host_cleans_equipment_and_all_private_flags() {
     mirror(&mut g);
 }
 #[test]
-fn protection_faerie_fire_action_phase_restriction_and_no_color_loyalty() {
+fn protection_faerie_fire_action_phase_restriction_with_purple_loyalty() {
     let mut g = game();
     let target = field(&mut g, "JC125", 2);
     let spell = held(&mut g, "JC102", 0);
-    fund(&mut g, 0, "JC125", 2);
+    fund(&mut g, 0, "JC104", 2);
     let a = Action {
         card_id: Some(spell),
         target_id: Some(target.clone()),
@@ -420,11 +420,58 @@ fn protection_faerie_fire_action_phase_restriction_and_no_color_loyalty() {
         .any(|c| c.definition == "JC125"));
 }
 #[test]
+fn protection_faerie_fire_blood_without_purple_rejects_atomically_then_real_asset_enables_payment()
+{
+    let mut g = game();
+    let target = field(&mut g, "JC125", 2);
+    let spell = held(&mut g, "JC102", 0);
+    let purple_asset = held(&mut g, "JC104", 0);
+    fund(&mut g, 0, "JC002", 2);
+    assert_eq!(g.resources(0), 2);
+    assert!(g.players[0].assets.iter().all(|c| {
+        catalog::card(&c.definition).magic_icon == MagicIcon::Blood
+            && catalog::card(&c.definition).color != "紫"
+    }));
+    let action = Action {
+        card_id: Some(spell),
+        target_id: Some(target.clone()),
+        ..Action::new("play")
+    };
+    let before = serde_json::to_string(&g).unwrap();
+    let views = (0..4)
+        .map(|s| serde_json::to_value(g.view(s)).unwrap())
+        .collect::<Vec<_>>();
+    assert_eq!(g.apply(0, action.clone()).unwrap_err(), "忠诚不足");
+    assert_eq!(serde_json::to_string(&g).unwrap(), before);
+    for s in 0..4 {
+        assert_eq!(serde_json::to_value(g.view(s)).unwrap(), views[s]);
+    }
+    mirror(&mut g);
+    g.apply(
+        0,
+        Action {
+            card_id: Some(purple_asset),
+            ..Action::new("asset")
+        },
+    )
+    .unwrap();
+    assert_eq!(g.resources(0), 3);
+    g.apply(0, action).unwrap();
+    assert_eq!(g.resources(0), 1);
+    assert_eq!(
+        g.players[0].assets.iter().filter(|c| c.exhausted).count(),
+        2
+    );
+    pass_top(&mut g);
+    assert!(g.board(&target).is_none());
+    mirror(&mut g);
+}
+#[test]
 fn protection_faerie_fire_shield_cancels_damage_and_keeps_paid_costs() {
     let mut g = game();
     let target = field(&mut g, "JC125", 2);
     g.board_mut(&target).unwrap().shield = 1; // explicit shield starting checkpoint
-    fund(&mut g, 0, "JC125", 2);
+    fund(&mut g, 0, "JC104", 2);
     cast(&mut g, "JC102", 0, &target);
     let c = g.board(&target).unwrap().1;
     assert_eq!((c.damage, c.shield), (0, 0));
@@ -437,7 +484,7 @@ fn protection_faerie_fire_shield_cancels_damage_and_keeps_paid_costs() {
 fn protection_faerie_fire_cancels_when_response_return_changes_instance() {
     let mut g = game();
     let target = field(&mut g, "JC003", 2);
-    fund(&mut g, 0, "JC125", 2);
+    fund(&mut g, 0, "JC104", 2);
     fund(&mut g, 2, "JC002", 2);
     let spell = held(&mut g, "JC102", 0);
     g.apply(
@@ -538,7 +585,7 @@ fn protection_faerie_fire_is_a_real_paid_fast_response_during_action_phase() {
     let mut g = game();
     let target = field(&mut g, "JC125", 0);
     fund(&mut g, 0, "JC002", 2);
-    fund(&mut g, 2, "JC125", 2);
+    fund(&mut g, 2, "JC104", 2);
     let spell = held(&mut g, "JC008", 0);
     g.apply(
         0,

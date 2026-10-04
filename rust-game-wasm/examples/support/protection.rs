@@ -123,12 +123,21 @@ fn boundary(kind: &str) -> Value {
     );
     fund(&mut g, "JC075", 0, 6);
     fund(&mut g, "JC002", 0, 8);
+    fund(&mut g, "JC104", 0, 1); // JC102's printed purple loyalty, independent of Blood.
     fund(&mut g, "JC063", 2, 4);
     fund(&mut g, "JC002", 2, 4);
     if kind == "phase-loyalty" {
         g.players[0].assets.clear();
         fund(&mut g, "JC125", 0, 4);
+        fund(&mut g, "JC104", 0, 1);
     }
+    let purple_asset = if kind == "fire-purple-loyalty" {
+        g.players[0].assets.clear();
+        fund(&mut g, "JC002", 0, 2); // Enough money and Blood, but no purple loyalty.
+        Some(held(&mut g, "JC104", 0))
+    } else {
+        None
+    };
     let mut r = RoomEnvelope::from_game(g);
     let mut steps = vec![step(
         &r,
@@ -315,6 +324,58 @@ fn boundary(kind: &str) -> Value {
             .turn_attribute_modifiers
             .iter()
             .any(|m| m.target_instance == host));
+    } else if kind == "fire-purple-loyalty" {
+        assert_eq!(
+            r.players[0].assets.iter().filter(|c| !c.exhausted).count(),
+            2
+        );
+        assert!(r.players[0].assets.iter().all(|c| {
+            catalog::card(&c.definition).magic_icon == rules::MagicIcon::Blood
+                && catalog::card(&c.definition).color != "紫"
+        }));
+        let before = serde_json::to_string(&r).unwrap();
+        reject_step(
+            &mut r,
+            &mut steps,
+            0,
+            Action {
+                card_id: Some(fire.clone()),
+                target_id: Some(host.clone()),
+                ..Action::new("play")
+            },
+        );
+        assert_eq!(serde_json::to_string(&r).unwrap(), before);
+        assert_eq!(
+            steps.last().unwrap()["transition"]["errorCode"],
+            "invalid_action"
+        );
+        assert_eq!(
+            steps.last().unwrap()["transition"]["errorMessage"],
+            "忠诚不足"
+        );
+        apply_game(
+            &mut r,
+            &mut steps,
+            0,
+            Action {
+                card_id: purple_asset,
+                ..Action::new("asset")
+            },
+        );
+        assert_eq!(
+            r.players[0].assets.iter().filter(|c| !c.exhausted).count(),
+            3
+        );
+        cast(&mut r, &mut steps, 0, &fire, &host, None);
+        assert_eq!(
+            r.players[0].assets.iter().filter(|c| !c.exhausted).count(),
+            1
+        );
+        assert_eq!(
+            r.players[0].assets.iter().filter(|c| c.exhausted).count(),
+            2
+        );
+        assert!(!r.regions[0].cards.iter().any(|c| c.id == host));
     } else {
         assert_eq!(kind, "phase-loyalty");
         reject_step(
@@ -503,7 +564,12 @@ fn natural_actions(seed: u64) -> Vec<(usize, Action)> {
             let legal = (0..4).map(|s| g.legal_actions(s)).collect::<Vec<_>>();
             let mut chosen = None;
             for s in 0..4 {
-                if g.players[s].assets.len() < 6 {
+                let purple = g.players[s]
+                    .assets
+                    .iter()
+                    .filter(|c| catalog::card(&c.definition).color == "紫")
+                    .count();
+                if g.players[s].assets.len() < 6 || (s == 0 && purple == 0) {
                     let white = g.players[s]
                         .assets
                         .iter()
@@ -518,6 +584,10 @@ fn natural_actions(seed: u64) -> Vec<(usize, Action)> {
                         .iter()
                         .filter(|a| a.action.kind == "asset")
                         .filter_map(|a| own(&g, s, &a.action).map(|c| (a, c)))
+                        .filter(|(_, c)| {
+                            g.players[s].assets.len() < 6
+                                || catalog::card(&c.definition).color == "紫"
+                        })
                         .filter(|(_, c)| {
                             !matches!(
                                 c.definition.as_str(),
@@ -535,10 +605,12 @@ fn natural_actions(seed: u64) -> Vec<(usize, Action)> {
                                 0
                             } else if yellow < 1 && color == "黄" {
                                 1
-                            } else if color != "白" {
+                            } else if purple < 1 && color == "紫" {
                                 2
-                            } else {
+                            } else if color != "白" {
                                 3
+                            } else {
+                                4
                             }
                         });
                     if let Some((a, _)) = candidate {
@@ -565,6 +637,7 @@ fn natural_actions(seed: u64) -> Vec<(usize, Action)> {
                                 hermit.is_none()
                                     && host.is_some()
                                     && seen_net
+                                    && fire_ready
                                     && g.players[0].hand.iter().any(|c| c.definition == "JC102")
                                     && g.players[0].hand.iter().any(|c| c.definition == "JC132")
                             }
@@ -727,6 +800,7 @@ pub fn cases() -> Vec<Value> {
         "response-hide",
         "source-return",
         "phase-loyalty",
+        "fire-purple-loyalty",
     ]
     .into_iter()
     .map(boundary)

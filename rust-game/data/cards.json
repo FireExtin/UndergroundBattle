@@ -2390,8 +2390,10 @@
         "阴"
       ],
       "cost": 2,
-      "loyalty": [],
-      "loyaltyText": "",
+      "loyalty": [
+        "紫色"
+      ],
+      "loyaltyText": "紫色",
       "color": "紫",
       "magic": "鲜血",
       "icons": {
