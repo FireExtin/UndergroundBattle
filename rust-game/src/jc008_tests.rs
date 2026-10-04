@@ -133,6 +133,7 @@ fn jc008_printed_admission_and_finite_modifier_program() {
         Op::ModifyTargetUntilTurnEnd {
             slot: 0,
             defense_bonus: 1,
+            grants_renown: false,
             ordinary_icons: Icons {
                 combat: 1,
                 investigation: 0,

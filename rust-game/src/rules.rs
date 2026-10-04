@@ -23,6 +23,7 @@ pub enum Event {
     Death,
     ConfrontationStart,
     RegionWon,
+    RegionConfrontationsEnded,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Cost {
@@ -190,6 +191,14 @@ pub enum Op {
         slot: usize,
         defense_bonus: u32,
         ordinary_icons: Icons,
+        #[serde(default, skip_serializing_if = "crate::model::is_false")]
+        grants_renown: bool,
+    },
+    // Exact region identity prevents an already declared reward reaching a
+    // replacement region. Only the finite merged renown trigger uses this op.
+    PlaceInfluence {
+        region_instance: String,
+        amount: u32,
     },
     // A finite single-board-target query, evaluated only after the frame guard.
     // Branches are restricted to existing atomic Exhaust / OwnerHand operations.
@@ -294,6 +303,8 @@ pub struct AbilitySpec {
 }
 #[derive(Clone, Debug, Default, Serialize, Deserialize)]
 pub struct Traits {
+    #[serde(default, skip_serializing_if = "crate::model::is_false")]
+    pub renown: bool,
     pub public: bool,
     pub barrier: bool,
     pub guard: u32,
@@ -397,14 +408,28 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
                 slot,
                 defense_bonus,
                 ordinary_icons,
+                grants_renown,
             } = op
             {
                 if !targets.get(*slot).is_some_and(|target| {
                     target.zone == Zone::Board && target.kind == EntityKind::Character
-                }) || (*defense_bonus == 0 && *ordinary_icons == Icons::default())
+                }) || (*defense_bonus == 0
+                    && *ordinary_icons == Icons::default()
+                    && !grants_renown)
                 {
                     return Err(format!(
                         "{location}: turn attribute bonus requires a bound board character and a nonempty bonus"
+                    ));
+                }
+            }
+            if let Op::PlaceInfluence {
+                region_instance,
+                amount,
+            } = op
+            {
+                if region_instance.is_empty() || *amount != 1 || !targets.is_empty() {
+                    return Err(format!(
+                        "{location}: renown requires an exact region and one influence"
                     ));
                 }
             }
@@ -437,6 +462,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
                             | Op::IfTargetExhausted { .. }
                             | Op::ModifyTargetUntilTurnEnd { .. }
                             | Op::GainControl { .. }
+                            | Op::PlaceInfluence { .. }
                     )
                 }) {
                     return Err(format!(
@@ -705,10 +731,65 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
                 vec![Op::ModifyTargetUntilTurnEnd {
                     slot: 0,
                     defense_bonus: 1,
+                    grants_renown: false,
                     ordinary_icons: Icons {
                         combat: 1,
                         ..Icons::default()
                     },
+                }],
+                None,
+            )]),
+        );
+        m.insert(
+            "JC070".into(),
+            Definition {
+                traits: Traits {
+                    public: true,
+                    renown: true,
+                    ..Default::default()
+                },
+                ..Default::default()
+            },
+        );
+        m.insert(
+            "JC076".into(),
+            Definition {
+                traits: Traits {
+                    renown: true,
+                    ..Default::default()
+                },
+                abilities: vec![ability(
+                    "draw-on-reveal",
+                    "现身抓一张牌",
+                    Timing::Fast,
+                    vec![],
+                    vec![],
+                    vec![Op::Draw {
+                        player: PlayerRef::Actor,
+                        count: 1,
+                        end: DeckEnd::Top,
+                    }],
+                    Some(Event::Reveal),
+                )],
+                ..Default::default()
+            },
+        );
+        m.insert(
+            "JC074".into(),
+            with_abilities(vec![ability(
+                "investigation-renown-until-turn-end",
+                "本回合调查与声望",
+                Timing::Fast,
+                vec![],
+                vec![character.clone()],
+                vec![Op::ModifyTargetUntilTurnEnd {
+                    slot: 0,
+                    defense_bonus: 0,
+                    ordinary_icons: Icons {
+                        investigation: 2,
+                        ..Icons::default()
+                    },
+                    grants_renown: true,
                 }],
                 None,
             )]),

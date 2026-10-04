@@ -1019,14 +1019,28 @@ impl Game {
                     slot,
                     defense_bonus,
                     ordinary_icons,
+                    grants_renown,
                 } => {
                     let target = frame.targets.get(slot).ok_or("缺少属性修正目标")?;
                     self.turn_attribute_modifiers.push(TurnAttributeModifier {
                         target_instance: target.id.clone(),
                         defense_bonus,
                         ordinary_icons,
+                        grants_renown,
                         expires_turn: self.turn,
                     });
+                }
+                Op::PlaceInfluence {
+                    region_instance,
+                    amount,
+                } => {
+                    if let Some(region) = frame.source.region.filter(|&region| {
+                        self.regions
+                            .get(region)
+                            .is_some_and(|r| r.card.id == region_instance)
+                    }) {
+                        self.place_influence(frame.actor, region, amount);
+                    }
                 }
                 Op::IfTargetExhausted {
                     slot,

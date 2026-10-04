@@ -989,6 +989,12 @@ impl Game {
                         let winner = if counts[0] > counts[1] { 0 } else { 1 };
                         self.reward(winner, region, contest, counts[0].abs_diff(counts[1]))?;
                     }
+                    if contest == 2 {
+                        self.effects.push_back(Effect::RegionConfrontationsEnded {
+                            region,
+                            region_instance: self.regions[region].card.id.clone(),
+                        });
+                    }
                 }
             }
             Window::After(region, contest) => {
@@ -1104,20 +1110,7 @@ impl Game {
                 });
             }
         } else {
-            let enemy = 1 - team;
-            let removed = amount.min(self.regions[region].influence[enemy]);
-            self.regions[region].influence[enemy] -= removed;
-            self.regions[region].influence[team] += amount - removed;
-            if self.regions[region].influence[team]
-                >= card(&self.regions[region].card.definition)
-                    .threshold
-                    .unwrap_or(3)
-            {
-                self.effects.push_back(Effect::Award {
-                    seat: seats[0],
-                    region,
-                });
-            }
+            self.place_influence(seats[0], region, amount);
         }
         Ok(())
     }
@@ -1216,6 +1209,10 @@ impl Game {
     }
     pub(crate) fn effect(&mut self, e: Effect) -> RuleResult<()> {
         match e {
+            Effect::RegionConfrontationsEnded {
+                region,
+                region_instance,
+            } => self.declare_region_renown(region, &region_instance),
             Effect::Declare { declaration } => self.declare_trigger(declaration)?,
             Effect::Frame { frame } => self.resolve_frame(*frame)?,
             Effect::Draw { seat, count } => self.draw(seat, count)?,
@@ -1861,6 +1858,8 @@ impl Game {
         let hidden = c.face_down && c.controller != viewer;
         let asset = kind == Some("asset");
         CardView {
+            current_renown: (!asset && !c.face_down && region.is_some() && self.has_renown(c))
+                .then_some(true),
             current_subtypes: if hidden || asset || c.face_down || region.is_none() {
                 None
             } else {
@@ -2455,7 +2454,7 @@ mod tests {
     #[test]
     fn catalog_is_restricted_real_complete_and_decks_are_legal() {
         let c = catalog::catalog();
-        assert_eq!(c.cards.len(), 56);
+        assert_eq!(c.cards.len(), 59);
         let active = c
             .cards
             .iter()
@@ -2470,7 +2469,7 @@ mod tests {
                 .collect::<BTreeSet<_>>()
         );
         assert!(active.contains("DQJC116"));
-        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 46);
+        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 49);
         assert_eq!(c.decks.len(), 5);
         for deck in &c.decks {
             assert_eq!(deck.card_count, 50);

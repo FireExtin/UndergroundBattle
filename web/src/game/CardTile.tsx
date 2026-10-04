@@ -7,7 +7,7 @@ export function visibleCard(card: Card, viewerId: string): Card {
   if (!card.faceDown || card.controller === viewerId) return card;
   return { ...card, cardId: undefined, name: '暗藏者', kind: 'hidden', cost: undefined, effectiveCost: undefined,
     text: undefined, icons: undefined, defense: undefined, damage: undefined, shield: undefined,
-    wounds: undefined, color: undefined, magic: undefined, currentSubtypes: undefined };
+    wounds: undefined, color: undefined, magic: undefined, currentSubtypes: undefined, currentRenown: undefined };
 }
 
 const emptyIcons: Icons = { investigation: 0, combat: 0, influence: 0 };
@@ -65,6 +65,7 @@ export function CardContent({ card: source, definition: sourceDefinition, compac
       {!compact && !society && hasTemporary && <span className="hg-temporary-label">先手 <IconStrip icons={temporary} temporary /></span>}
       {!compact && <span className="hg-card-text">{asset ? '未横置时可提供 1 费用，并提供所示派系与魔法忠诚。' : card.text || definition?.text || '此牌没有额外能力。'}</span>}
       <span className="hg-card-footer">
+        {!card.faceDown && card.region !== undefined && card.currentRenown && <span>声望</span>}
         {society && card.usedOncePerGame?.map(key => <span key={key}>
           {definition?.abilities?.find(ability => ability.key === key)?.label || '每局一次能力'} · 本局已使用
         </span>)}

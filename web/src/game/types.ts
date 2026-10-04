@@ -18,6 +18,7 @@ export type SocietyDefinition = CardDefinition & {
   unresolvedAbilities: Record<string, string>;
 };
 export type Card = {
+  currentRenown?: boolean;
   currentSubtypes?: string[];
   instanceId: string; cardId?: string; name: string; owner: string; controller: string;
   kind: string; region?: number; exhausted: boolean; faceDown: boolean;

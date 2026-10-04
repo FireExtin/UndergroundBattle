@@ -279,6 +279,21 @@
     "source": "resource/ymsj-fun.github.io/cards/JZ27 哈达莎·爱弗罗德.jpg",
     "sha256": "33fbdd4a062962b546cdb0d4f368f35b6c4c019908db73a37cfa09aaa237630e"
   },
+  "JC070": {
+    "url": "/cards/JC070.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC070 虔心修士.jpg",
+    "sha256": "3dd1ef905e2cfb4d806b258fdde0b1ec1fe2adad7868bb5cd7dc0bcf9cfe9e1b"
+  },
+  "JC076": {
+    "url": "/cards/JC076.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC076 悟道僧人.jpg",
+    "sha256": "4390ebf4eabcf44c541303bfb764061c1622cb483ed0e034ee9651571cee27ac"
+  },
+  "JC074": {
+    "url": "/cards/JC074.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC074 天空的教诲.jpg",
+    "sha256": "e34e5bb081f3ee459d99038c68d60f4be4a44af05baa4289759b730045140914"
+  },
   "MSJC09": {
     "url": "/cards/MSJC09.jpg",
     "source": "resource/ymsj-fun.github.io/cards/MSJC09 秘社.jpg",

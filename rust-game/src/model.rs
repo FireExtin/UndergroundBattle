@@ -77,6 +77,8 @@ pub struct LegalAction {
 #[serde(rename_all = "camelCase")]
 pub struct CardView {
     #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub current_renown: Option<bool>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub current_subtypes: Option<Vec<String>>,
     pub instance_id: String,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -354,6 +356,10 @@ pub enum Window {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Effect {
+    RegionConfrontationsEnded {
+        region: usize,
+        region_instance: String,
+    },
     Declare {
         declaration: Declaration,
     },
@@ -544,7 +550,12 @@ pub struct TurnAttributeModifier {
     pub target_instance: String,
     pub defense_bonus: u32,
     pub ordinary_icons: Icons,
+    #[serde(default, skip_serializing_if = "is_false")]
+    pub grants_renown: bool,
     pub expires_turn: u32,
+}
+pub(crate) fn is_false(value: &bool) -> bool {
+    !value
 }
 // Finite project interpretation: last still-valid resolved control wins.
 // This ordering is a project ruling, not a claim about the old FAQ.
