@@ -552,6 +552,7 @@ mod tests {
                 relation: rules::Relation::Any,
                 range: rules::Range::Anywhere,
                 subtype: None,
+                printed_subtype: false,
                 subtypes_any: vec![],
                 printed_cost_max: None,
                 equipment_host: false,

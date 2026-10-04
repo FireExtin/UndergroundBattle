@@ -1,5 +1,5 @@
 //! Finite typed rule declarations. Card identifiers occur only in this binding table.
-use crate::model::Icons;
+use crate::model::{Icons, SubtypeChange};
 use serde::{Deserialize, Serialize};
 use std::{collections::BTreeMap, sync::OnceLock};
 
@@ -71,6 +71,8 @@ pub struct TargetSlotSpec {
     pub relation: Relation,
     pub range: Range,
     pub subtype: Option<String>,
+    #[serde(default)]
+    pub printed_subtype: bool,
     #[serde(default)]
     pub subtypes_any: Vec<String>,
     #[serde(default)]
@@ -178,6 +180,11 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    GainControl {
+        slot: usize,
+        until_source_leaves: bool,
+        subtype_change: SubtypeChange,
+    },
     Exhaust(EntityRef),
     ModifyTargetUntilTurnEnd {
         slot: usize,
@@ -319,6 +326,10 @@ pub enum HostLeaveDestination {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct AttachmentSpec {
+    #[serde(default)]
+    pub controls_host: bool,
+    #[serde(default)]
+    pub host_subtype_change: SubtypeChange,
     pub host: TargetSlotSpec,
     pub host_icons: Icons,
     pub host_leaves: HostLeaveDestination,
@@ -372,6 +383,16 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
             }
         }
         for op in ops {
+            if let Op::GainControl { slot, .. } = op {
+                if !targets
+                    .get(*slot)
+                    .is_some_and(|t| t.zone == Zone::Board && t.kind == EntityKind::Character)
+                {
+                    return Err(format!(
+                        "{location}: control requires a bound board character"
+                    ));
+                }
+            }
             if let Op::ModifyTargetUntilTurnEnd {
                 slot,
                 defense_bonus,
@@ -415,6 +436,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
                             | Op::ForEachLivingPlayerFromActor(_)
                             | Op::IfTargetExhausted { .. }
                             | Op::ModifyTargetUntilTurnEnd { .. }
+                            | Op::GainControl { .. }
                     )
                 }) {
                     return Err(format!(
@@ -477,6 +499,7 @@ fn target(zone: Zone, kind: EntityKind, relation: Relation, range: Range) -> Tar
         relation,
         range,
         subtype: None,
+        printed_subtype: false,
         subtypes_any: vec![],
         printed_cost_max: None,
         equipment_host: false,
@@ -688,6 +711,75 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
                     },
                 }],
                 None,
+            )]),
+        );
+        m.insert(
+            "JC129".into(),
+            with_abilities(vec![ability(
+                "control-until-turn-end",
+                "本回合取得控制",
+                Timing::Standard,
+                vec![],
+                vec![target(
+                    Zone::Board,
+                    EntityKind::Character,
+                    Relation::EnemyTeam,
+                    Range::Anywhere,
+                )],
+                vec![Op::GainControl {
+                    slot: 0,
+                    until_source_leaves: false,
+                    subtype_change: SubtypeChange::None,
+                }],
+                None,
+            )]),
+        );
+        let mut embrace_host = character.clone();
+        embrace_host.subtype = Some("人类".into());
+        embrace_host.printed_subtype = true;
+        m.insert(
+            "JC036".into(),
+            Definition {
+                abilities: vec![ability(
+                    "attach",
+                    "结附印刷人类",
+                    Timing::Standard,
+                    vec![],
+                    vec![embrace_host.clone()],
+                    vec![],
+                    None,
+                )],
+                attachment: Some(AttachmentSpec {
+                    host: embrace_host,
+                    controls_host: true,
+                    host_subtype_change: SubtypeChange::HumanToVampire,
+                    host_icons: Icons::default(),
+                    host_leaves: HostLeaveDestination::OwnerGraveyard,
+                }),
+                ..Default::default()
+            },
+        );
+        let mut local_human = target(
+            Zone::Board,
+            EntityKind::Character,
+            Relation::Any,
+            Range::SourceRegion,
+        );
+        local_human.subtype = Some("人类".into());
+        m.insert(
+            "JZ27".into(),
+            with_abilities(vec![ability(
+                "control-until-source-leaves",
+                "现身取得控制与奴仆",
+                Timing::Fast,
+                vec![],
+                vec![local_human],
+                vec![Op::GainControl {
+                    slot: 0,
+                    until_source_leaves: true,
+                    subtype_change: SubtypeChange::AddSlave,
+                }],
+                Some(Event::Reveal),
             )]),
         );
         let mut another_friend = target(
@@ -1436,6 +1528,8 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
                     None,
                 )],
                 attachment: Some(AttachmentSpec {
+                    controls_host: false,
+                    host_subtype_change: SubtypeChange::None,
                     host,
                     host_icons: Icons {
                         combat: 1,

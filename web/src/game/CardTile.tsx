@@ -7,7 +7,7 @@ export function visibleCard(card: Card, viewerId: string): Card {
   if (!card.faceDown || card.controller === viewerId) return card;
   return { ...card, cardId: undefined, name: '暗藏者', kind: 'hidden', cost: undefined, effectiveCost: undefined,
     text: undefined, icons: undefined, defense: undefined, damage: undefined, shield: undefined,
-    wounds: undefined, color: undefined, magic: undefined };
+    wounds: undefined, color: undefined, magic: undefined, currentSubtypes: undefined };
 }
 
 const emptyIcons: Icons = { investigation: 0, combat: 0, influence: 0 };
@@ -36,7 +36,7 @@ export function CardContent({ card: source, definition: sourceDefinition, compac
   const region = card.kind === 'region';
   const attachment = card.kind === 'attachment';
   const society = card.kind === 'society';
-  const subtitle = society && definition && 'subtitle' in definition && typeof definition.subtitle === 'string' ? definition.subtitle : undefined;
+  const subtitle = definition && typeof definition.subtitle === 'string' ? definition.subtitle : undefined;
   const startingHand = society && definition && 'startingHand' in definition && typeof definition.startingHand === 'number' && Number.isSafeInteger(definition.startingHand) && definition.startingHand >= 0 ? definition.startingHand : undefined;
   const concealedCompact = compact && card.kind === 'hidden';
   const printedCost = card.cost ?? definition?.cost ?? 0;
@@ -48,7 +48,7 @@ export function CardContent({ card: source, definition: sourceDefinition, compac
   const hasTemporary = temporary && Object.values(temporary).some(n => n > 0);
   const effectiveStats = !compact && !card.faceDown && card.kind === 'character' && card.region !== undefined;
   const defense = card.defense ?? definition?.defense;
-  const type = hidden ? '身份未公开' : archive && asset ? '资产' : attachment ? `附属${definition?.subtypes?.length ? ` · ${definition.subtypes.join(' · ')}` : ''}` : definition?.type || definition?.subtypes?.join(' · ') || ({ character: '角色', event: '事件', spell: '咒术', region: '地区', asset: '资产', society: '秘社', hidden: '暗藏角色' }[card.kind] || '卡牌');
+  const type = hidden ? '身份未公开' : archive && asset ? '资产' : card.currentSubtypes ? `角色 · ${card.currentSubtypes.join(' · ')}` : attachment ? `附属${definition?.subtypes?.length ? ` · ${definition.subtypes.join(' · ')}` : ''}` : definition?.type || definition?.subtypes?.join(' · ') || ({ character: '角色', event: '事件', spell: '咒术', region: '地区', asset: '资产', society: '秘社', hidden: '暗藏角色' }[card.kind] || '卡牌');
   return <>
     <span className="hg-card-top"><span className="hg-card-kind">{type}</span>{!hidden && !asset && !region && !society && <span className={`hg-cost${adjustedCost ? ' hg-cost-adjusted' : ''}`} title={adjustedCost ? `当前费用 ${actualCost} · 印刷费用 ${printedCost}` : '费用'} aria-label={adjustedCost ? `当前费用 ${actualCost}，印刷费用 ${printedCost}` : `费用 ${actualCost}`}>{actualCost}</span>}</span>
     <strong className="hg-card-name">{hidden ? '暗藏者' : card.name}</strong>

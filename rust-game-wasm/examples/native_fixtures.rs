@@ -19,6 +19,9 @@ mod society_fixture;
 #[path = "support/msjc09.rs"]
 mod msjc09;
 
+#[cfg(not(feature = "society-fixtures"))]
+#[path = "support/control.rs"]
+mod control;
 #[path = "support/jc004.rs"]
 mod jc004;
 #[path = "support/jc005.rs"]
@@ -33,6 +36,29 @@ mod msjc01;
 mod yellow_search;
 
 fn step(room: &RoomEnvelope, operation: &str, args: Value, seat: usize) -> Value {
+    // Independent LC01 privacy invariant, including empty decks and all four seats.
+    for viewer in 0..room.players.len() {
+        let eligible = room.status == "playing"
+            && !room.players[viewer].eliminated
+            && room
+                .regions
+                .iter()
+                .flat_map(|r| &r.cards)
+                .any(|c| c.definition == "LC01" && !c.face_down && c.controller == viewer);
+        let expected = if eligible {
+            room.players[viewer].deck.first().map(|c| &c.id)
+        } else {
+            None
+        };
+        assert_eq!(
+            room.view(viewer, room.pacing.last_server_now_ms)
+                .game
+                .private_deck_top
+                .as_ref()
+                .map(|c| &c.instance_id),
+            expected
+        );
+    }
     json!({"operation":operation,"args":args,"state":serde_json::to_string(room).unwrap(),"version":room.revision,"seat":seat,"view":room.view(seat,room.pacing.last_server_now_ms),"views":(0..room.players.len()).map(|s|room.view(s,room.pacing.last_server_now_ms)).collect::<Vec<_>>()})
 }
 fn record_transition(
@@ -55,6 +81,10 @@ fn record_transition(
     let mut entry = step(room, operation, args, transition.seat);
     entry["view"] = serde_json::to_value(&transition.view).unwrap();
     entry["transition"] = serde_json::to_value(transition).unwrap();
+    // Retain every expected byte once. Duplicating opaque state/view in both
+    // envelopes makes the expanded default oracle exceed V8's string limit.
+    entry.as_object_mut().unwrap().remove("state");
+    entry.as_object_mut().unwrap().remove("view");
     steps.push(entry);
 }
 fn apply_session(
@@ -2549,6 +2579,24 @@ fn rescue_forecast_fixture() -> Value {
     json!({"name":"white-paid-rescue-and-purple-private-forecast-three","seed":"9007199254740993","steps":steps,"syntheticInitialLayout":true})
 }
 
+fn write_default_fixture(output: &str, mut value: Value) {
+    // Keep complete cases individually below V8's per-string limit. The index
+    // preserves all top-level payloads, and compare.mjs still accepts old files.
+    let directory = std::path::PathBuf::from(format!("{output}.cases"));
+    std::fs::create_dir_all(&directory).unwrap();
+    let prefix = directory.file_name().unwrap().to_string_lossy();
+    let cases = value["cases"].as_array_mut().unwrap();
+    let mut index = Vec::with_capacity(cases.len());
+    for (n, case) in cases.drain(..).enumerate() {
+        let file = format!("{n:03}.json");
+        std::fs::write(directory.join(&file), serde_json::to_vec(&case).unwrap()).unwrap();
+        index.push(json!({"name":case["name"],"seed":case["seed"],"fixtureFile":format!("{prefix}/{file}")}));
+    }
+    *cases = index;
+    value["caseFormat"] = json!("external-cases-v1");
+    std::fs::write(output, serde_json::to_vec(&value).unwrap()).unwrap();
+}
+
 fn main() {
     #[cfg(feature = "society-fixtures")]
     if std::env::args().any(|a| a == "--society-foundation") {
@@ -2560,6 +2608,12 @@ fn main() {
     let output = std::env::args()
         .nth(1)
         .expect("Usage: native_fixtures <output.json>");
+    #[cfg(not(feature = "society-fixtures"))]
+    if std::env::args().any(|a| a == "--slice-control-batch") {
+        let value = json!({"catalog":catalog::catalog(),"cases":control::cases()});
+        std::fs::write(output, serde_json::to_vec(&value).unwrap()).unwrap();
+        return;
+    }
     #[cfg(not(feature = "society-fixtures"))]
     if std::env::args().any(|a| a == "--slice-msjc01") {
         let value = json!({"catalog":catalog::catalog(),"cases":msjc01::cases()});
@@ -2743,5 +2797,10 @@ fn main() {
         .as_array_mut()
         .unwrap()
         .extend(yellow_search::cases());
-    std::fs::write(output, serde_json::to_vec(&value).unwrap()).unwrap();
+    #[cfg(not(feature = "society-fixtures"))]
+    value["cases"]
+        .as_array_mut()
+        .unwrap()
+        .extend(control::cases());
+    write_default_fixture(&output, value);
 }

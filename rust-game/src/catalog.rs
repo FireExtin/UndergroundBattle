@@ -3,17 +3,19 @@ use serde::{Deserialize, Serialize};
 use std::sync::OnceLock;
 
 pub const RULES_VERSION: &str = "hegemony-pdf-v1";
-pub const POOL_VERSION: &str = "limited-v2.11-yellow-search-batch-candidate";
+pub const POOL_VERSION: &str = "limited-v2.12-control-type-batch-candidate";
 #[cfg(not(feature = "society-fixtures"))]
-pub const ENGINE_VERSION: &str = "rust-v0.2.14-yellow-search-batch-candidate";
+pub const ENGINE_VERSION: &str = "rust-v0.2.15-control-type-batch-candidate";
 #[cfg(feature = "society-fixtures")]
-pub const ENGINE_VERSION: &str = "rust-v0.2.14-yellow-search-batch-society-fixture";
+pub const ENGINE_VERSION: &str = "rust-v0.2.15-control-type-batch-society-fixture";
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CardDefinition {
     pub id: String,
     pub name: String,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub subtitle: Option<String>,
     pub kind: String,
     #[serde(default)]
     pub r#type: String,
@@ -131,6 +133,11 @@ pub fn catalog() -> &'static Catalog {
                             .join("/")
                     })
                     .unwrap_or_default();
+                // Preserve the prior ordinary-card ABI; only this batch's
+                // reviewed JZ27 subtitle is newly exposed.
+                if definition.id != "JZ27" {
+                    definition.subtitle = None;
+                }
                 definition.magic_icon = match definition.magic.as_str() {
                     "" => crate::rules::MagicIcon::None,
                     "鲜血" | "血" => crate::rules::MagicIcon::Blood,

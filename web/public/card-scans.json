@@ -264,6 +264,21 @@
     "source": "resource/ymsj-fun.github.io/cards/LC01 西比尔.jpg",
     "sha256": "a0defb07b43463cc882e15b993c73eda22ea77ca39062da71e6518a365cc5bd6"
   },
+  "JC129": {
+    "url": "/cards/JC129.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC129 操控心智.jpg",
+    "sha256": "0c99776d13e342b85c6d6f6cc476459ec6463e6bbdc146046460518c738a0b59"
+  },
+  "JC036": {
+    "url": "/cards/JC036.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC036 初拥.jpg",
+    "sha256": "017507e6a2a229f6541a4690b681ecd71fc09b35962b9673da70f5f035ddba83"
+  },
+  "JZ27": {
+    "url": "/cards/JZ27.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JZ27 哈达莎·爱弗罗德.jpg",
+    "sha256": "33fbdd4a062962b546cdb0d4f368f35b6c4c019908db73a37cfa09aaa237630e"
+  },
   "MSJC09": {
     "url": "/cards/MSJC09.jpg",
     "source": "resource/ymsj-fun.github.io/cards/MSJC09 秘社.jpg",

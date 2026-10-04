@@ -1,6 +1,9 @@
 mod attachment;
 mod attributes;
 pub mod catalog;
+mod control;
+#[cfg(test)]
+mod control_tests;
 pub mod deck;
 pub mod engine;
 #[cfg(test)]

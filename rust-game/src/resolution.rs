@@ -66,7 +66,7 @@ impl Game {
                     && selector
                         .subtype
                         .as_ref()
-                        .is_none_or(|s| !c.face_down && d.subtypes.contains(s))
+                        .is_none_or(|s| !c.face_down && self.current_subtypes(c).contains(s))
             })
             .map(|(_, c)| c.id.clone())
             .collect()
@@ -506,13 +506,15 @@ impl Game {
                             .printed_cost_max
                             .is_none_or(|max| !c.face_down && d.cost <= max)
                         && (spec.range != Range::SourceRegion || region == source.region)
-                        && spec
-                            .subtype
-                            .as_ref()
-                            .is_none_or(|s| !c.face_down && d.subtypes.contains(s))
+                        && spec.subtype.as_ref().is_none_or(|s| {
+                            !c.face_down && self.target_subtypes(c, spec).contains(s)
+                        })
                         && (spec.subtypes_any.is_empty()
                             || (!c.face_down
-                                && spec.subtypes_any.iter().any(|s| d.subtypes.contains(s))))
+                                && spec
+                                    .subtypes_any
+                                    .iter()
+                                    .any(|s| self.target_subtypes(c, spec).contains(s))))
                         && (spec.zone != Zone::Board || self.targetable(actor, c))
                 })
             }
@@ -998,6 +1000,21 @@ impl Game {
             let step = frame.steps[frame.cursor].clone();
             frame.cursor += 1;
             match step.op {
+                Op::GainControl {
+                    slot,
+                    until_source_leaves,
+                    subtype_change,
+                } => {
+                    let target = frame.targets.get(slot).ok_or("缺少控制目标")?.id.clone();
+                    let lifetime = if until_source_leaves {
+                        ControlLifetime::SourceLeaves {
+                            source_instance: frame.source.card.id.clone(),
+                        }
+                    } else {
+                        ControlLifetime::TurnEnd { turn: self.turn }
+                    };
+                    self.add_control(&target, frame.actor, lifetime, subtype_change);
+                }
                 Op::ModifyTargetUntilTurnEnd {
                     slot,
                     defense_bonus,
@@ -1070,8 +1087,12 @@ impl Game {
                 }
                 Op::Hide(entity) => {
                     if let Some(id) = Self::frame_entity(&frame, entity) {
+                        let controller = self.controller_after_reset(id);
                         if let Some((r, c)) = self.leave_board(id) {
                             let mut c = self.fresh(c);
+                            if let Some(controller) = controller {
+                                c.controller = controller;
+                            }
                             c.face_down = true;
                             c.damage = 0;
                             c.wounds = 0;

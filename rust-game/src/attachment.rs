@@ -103,13 +103,13 @@ impl Game {
                 .host
                 .subtype
                 .as_ref()
-                .is_none_or(|s| d.subtypes.contains(s))
+                .is_none_or(|s| self.target_subtypes(host, &spec.host).contains(s))
             && (spec.host.subtypes_any.is_empty()
                 || spec
                     .host
                     .subtypes_any
                     .iter()
-                    .any(|s| d.subtypes.contains(s)))
+                    .any(|s| self.target_subtypes(host, &spec.host).contains(s)))
     }
     pub(crate) fn host_leaves(&mut self, host_id: &str) {
         let all = std::mem::take(&mut self.attachments);
@@ -143,7 +143,11 @@ impl Game {
         if self.board(id).is_some() {
             self.host_leaves(id);
         }
-        self.remove_board(id)
+        let removed = self.remove_board(id);
+        // Removed snapshots retain their last controller for death triggers.
+        // The old target/source identity cannot carry its effects into a new one.
+        self.settle_controls();
+        removed
     }
     pub(crate) fn settle_attachments(&mut self) {
         let invalid = self

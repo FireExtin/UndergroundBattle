@@ -193,14 +193,18 @@ impl Game {
                 !c.face_down
                     && card(&c.definition).kind == "character"
                     && except_subtype.is_none_or(|subtype| {
-                        !card(&c.definition).subtypes.iter().any(|s| s == subtype)
+                        !self.current_subtypes(c).iter().any(|s| s == subtype)
                     })
             })
             .map(|c| c.id.clone())
             .collect::<Vec<_>>();
         for id in selected {
+            let controller = self.controller_after_reset(&id);
             if let Some((r, c)) = self.leave_board(&id) {
                 let mut c = self.fresh(c);
+                if let Some(controller) = controller {
+                    c.controller = controller;
+                }
                 c.face_down = true;
                 c.damage = 0;
                 c.wounds = 0;

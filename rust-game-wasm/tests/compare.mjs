@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
+import { dirname, resolve } from 'node:path';
 import { performance } from 'node:perf_hooks';
 const abi = new URL(process.env.HEGEMONY_WASM_TEST_ABI || '../pkg/hegemony_wasm.js', import.meta.url);
 const { initSync, catalog, newGame, newGameWithDeck, joinGame, joinGameWithDeck, apply, applyRoom, pollRoom, quoteRoom, view } = await import(abi.href);
@@ -11,7 +12,15 @@ const fixture = JSON.parse(await readFile(process.argv[2], 'utf8'));
 assert.deepEqual(JSON.parse(catalog()), fixture.catalog);
 let transitions = 0, projections = 0, quotes = 0, rejectedCommands = 0, rejectedDeckCreations = 0, slowestMs = 0;
 const choiceKinds = new Set();
-for (const scenario of fixture.cases) {
+for (const entry of fixture.cases) {
+  const scenario = entry.fixtureFile
+    ? JSON.parse(await readFile(resolve(dirname(process.argv[2]), entry.fixtureFile), 'utf8'))
+    : entry;
+  if (entry.fixtureFile) {
+    assert.equal(fixture.caseFormat, 'external-cases-v1');
+    assert.equal(scenario.name, entry.name);
+    assert.equal(scenario.seed, entry.seed);
+  }
   for (const rejected of scenario.rejectedNewGameWithDeck || []) {
     assert.throws(() => newGameWithDeck(...rejected.args), error => String(error) === rejected.error);
     rejectedDeckCreations++;
@@ -30,10 +39,10 @@ for (const scenario of fixture.cases) {
     else serialized = apply(state, step.args[0], JSON.stringify(step.args[1]));
     const result = JSON.parse(serialized); // Parse ONLY the outer envelope; .state stays an opaque string.
     assert.equal(typeof result.state, 'string');
-    assert.equal(result.state, step.state, `${scenario.name}: state differs at version ${step.version}`);
+    assert.equal(result.state, step.state ?? step.transition?.state, `${scenario.name}: state differs at version ${step.version}`);
     assert.equal(result.version, step.version);
     assert.equal(result.seat, step.seat);
-    assert.deepEqual(result.view, step.view);
+    assert.deepEqual(result.view, step.view ?? step.transition?.view);
     if (step.transition) assert.deepEqual(result, step.transition, `${scenario.name}: full journal/outcome differs at revision ${step.version}`);
     state = result.state;
     assert.ok(state.includes(`"seed":${scenario.seed}`), 'u64 decimal seed lost precision');
@@ -45,7 +54,7 @@ for (const scenario of fixture.cases) {
       for (const region of projected.regions) for (const card of region.characters) {
         if (card.faceDown && card.controller !== projected.you) {
           assert.equal(card.name, '暗藏者');
-          for (const secret of ['cardId', 'text', 'cost', 'icons', 'defense', 'color', 'magic']) assert.ok(!(secret in card));
+          for (const secret of ['cardId', 'text', 'cost', 'icons', 'defense', 'color', 'magic', 'currentSubtypes']) assert.ok(!(secret in card));
         }
       }
       projections++;

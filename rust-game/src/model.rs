@@ -76,6 +76,8 @@ pub struct LegalAction {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CardView {
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub current_subtypes: Option<Vec<String>>,
     pub instance_id: String,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub card_id: Option<String>,
@@ -544,6 +546,33 @@ pub struct TurnAttributeModifier {
     pub ordinary_icons: Icons,
     pub expires_turn: u32,
 }
+// Finite project interpretation: last still-valid resolved control wins.
+// This ordering is a project ruling, not a claim about the old FAQ.
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
+pub enum ControlLifetime {
+    TurnEnd { turn: u32 },
+    Attached { source_instance: String },
+    SourceLeaves { source_instance: String },
+}
+#[derive(Clone, Debug, Default, PartialEq, Eq, Serialize, Deserialize)]
+pub enum SubtypeChange {
+    #[default]
+    None,
+    HumanToVampire,
+    AddSlave,
+}
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct ControlEffect {
+    pub target_instance: String,
+    pub recipient: usize,
+    pub lifetime: ControlLifetime,
+    pub subtype_change: SubtypeChange,
+}
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct ControlBaseline {
+    pub target_instance: String,
+    pub controller: usize,
+}
 #[derive(Clone, Copy, Debug, Serialize, Deserialize)]
 pub enum RemovalCause {
     Sacrifice,
@@ -621,6 +650,10 @@ pub struct Game {
     pub modifiers: Vec<CostModifier>,
     #[serde(default)]
     pub turn_attribute_modifiers: Vec<TurnAttributeModifier>,
+    #[serde(default)]
+    pub control_effects: Vec<ControlEffect>,
+    #[serde(default)]
+    pub control_baselines: Vec<ControlBaseline>,
 }
 pub fn player_id(seat: usize) -> String {
     format!("p{seat}")

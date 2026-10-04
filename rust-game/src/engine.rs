@@ -55,6 +55,8 @@ impl Game {
             state_schema: 2,
             modifiers: vec![],
             turn_attribute_modifiers: vec![],
+            control_effects: vec![],
+            control_baselines: vec![],
             room_id,
             invite_code,
             mode,
@@ -809,6 +811,7 @@ impl Game {
             _ => true,
         });
         self.note(format!("{} 牌库耗尽，退出游戏", self.players[seat].name));
+        self.settle_controls();
         let team = self.team(seat);
         if self.living(team).is_empty() {
             self.finish(1 - team);
@@ -886,7 +889,24 @@ impl Game {
                     c.controller = item.controller;
                     let id = c.id.clone();
                     let definition = c.definition.clone();
-                    self.attachments.push(Attachment { card: c, host_id });
+                    self.attachments.push(Attachment {
+                        card: c,
+                        host_id: host_id.clone(),
+                    });
+                    if let Some(spec) = rules::definition(&definition)
+                        .attachment
+                        .as_ref()
+                        .filter(|s| s.controls_host)
+                    {
+                        self.add_control(
+                            &host_id,
+                            item.controller,
+                            ControlLifetime::Attached {
+                                source_instance: id.clone(),
+                            },
+                            spec.host_subtype_change.clone(),
+                        );
+                    }
                     self.enter_triggers(item.controller, &definition, &id, false);
                 } else {
                     self.effects.push_front(Effect::Bury { card: c });
@@ -1510,6 +1530,8 @@ impl Game {
                 }
                 self.turn_attribute_modifiers.clear();
                 self.modifiers.clear();
+                self.control_effects
+                    .retain(|effect| !matches!(effect.lifetime, ControlLifetime::TurnEnd { .. }));
                 let queued = self.effects.len();
                 self.settle_deaths();
                 if self.effects.len() > queued || !self.stack.is_empty() || self.pending.is_some() {
@@ -1601,8 +1623,10 @@ impl Game {
         Ok(())
     }
     pub(crate) fn settle_deaths(&mut self) {
+        self.settle_controls();
         self.prune_turn_attribute_modifiers();
         self.settle_attachments();
+        self.settle_controls();
         let previous_effects = self.effects.len();
         // Loss of a defense aura is checked again after the simultaneous lethal set.
         loop {
@@ -1837,6 +1861,12 @@ impl Game {
         let hidden = c.face_down && c.controller != viewer;
         let asset = kind == Some("asset");
         CardView {
+            current_subtypes: if hidden || asset || c.face_down || region.is_none() {
+                None
+            } else {
+                let current = self.current_subtypes(c);
+                (current != d.subtypes).then_some(current)
+            },
             instance_id: c.id.clone(),
             card_id: if hidden || asset {
                 None
@@ -2365,6 +2395,7 @@ mod tests {
             relation: rules::Relation::Any,
             range: rules::Range::Anywhere,
             subtype: None,
+            printed_subtype: false,
             subtypes_any: vec![],
             printed_cost_max: None,
             equipment_host: false,
@@ -2424,7 +2455,7 @@ mod tests {
     #[test]
     fn catalog_is_restricted_real_complete_and_decks_are_legal() {
         let c = catalog::catalog();
-        assert_eq!(c.cards.len(), 53);
+        assert_eq!(c.cards.len(), 56);
         let active = c
             .cards
             .iter()
@@ -2439,7 +2470,7 @@ mod tests {
                 .collect::<BTreeSet<_>>()
         );
         assert!(active.contains("DQJC116"));
-        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 43);
+        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 46);
         assert_eq!(c.decks.len(), 5);
         for deck in &c.decks {
             assert_eq!(deck.card_count, 50);
