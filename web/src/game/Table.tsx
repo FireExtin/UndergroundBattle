@@ -12,6 +12,8 @@ import type { ObjectActionGroup } from './objectActions';
 import './table-desktop.css';
 import './object-actions.css';
 import './society.css';
+import './archive-desktop.css';
+import { ArchiveArtwork, ArchivePresentation } from './ArchivePresentation';
 import type { Action, Attachment, Card, CardDefinition, Catalog, LegalAction, Player, Region, View } from './types';
 
 const phaseNames: Record<string, string> = { start: '开始阶段', beginning: '开始阶段', action: '行动阶段', confrontation: '对抗阶段', conflict: '对抗阶段', end: '结束阶段', finished: '对局结束', lobby: '准备入席', investigation: '调查', combat: '战斗', influence: '势力', claim: '赢区窗口', win: '赢区窗口', fast: '快速行动窗口', draw: '抓牌', prepare: '重置与准备', mobility: '机动窗口', mulligan: '再调度', ready: '准备' };
@@ -143,6 +145,7 @@ function RegionTile({ region, view, definitions, selected, targeted, available, 
   return <article id={`hg-region-${region.index}`} aria-label={regionLabel(region.index, view.regions)} data-region-targeted={targeted} data-region-available={available} className={`hg-region ${selected ? 'hg-selected-region' : ''} ${targeted ? 'hg-targeted' : ''} ${available ? 'hg-region-available' : ''}`}>
     {renderSide(1 - yourTeam)}
     <button type="button" className="hg-region-center" data-region-index={region.index} onClick={onRegion} aria-pressed={selected} aria-label={`查看地区${region.index + 1} ${region.name}`}>
+      <ArchiveArtwork key={region.cardId} card={{ instanceId: region.id, cardId: region.cardId, name: region.name, kind: 'region', owner: view.you, controller: view.you, exhausted: false, faceDown: false }} />
       <span className="hg-region-number">{region.index + 1}</span><span className="hg-region-title"><small className={region.skipConfrontation ? 'hg-region-skip' : undefined}>{region.skipConfrontation ? '本回合略过对抗比较' : '隐秘地区'}</small><strong>{region.name}</strong></span><span className="hg-region-value"><b>{region.points}</b><small>分</small></span>
       <span className="hg-region-threshold">控制阈值 <b>{region.threshold}</b>{available && <em>合法落点</em>}</span>
     </button>
@@ -154,7 +157,7 @@ type TableProps = { view: View; catalog: Catalog | null; busy: boolean; uncertai
 
 export function Table(props: TableProps) {
   // Even equal versions/instance IDs in another room or seat start a new local interaction.
-  return <TableSurface key={JSON.stringify([props.view.roomId, props.view.you])} {...props} />;
+  return <ArchivePresentation.Provider value><TableSurface key={JSON.stringify([props.view.roomId, props.view.you])} {...props} /></ArchivePresentation.Provider>;
 }
 
 function TableSurface({ view, catalog, busy, uncertain = false, connection = 'connecting', modalPaused = false, onAction, autoPassEnabled = false, onAutoPassEnabledChange = () => {} }: TableProps) {
@@ -297,7 +300,7 @@ function TableSurface({ view, catalog, busy, uncertain = false, connection = 'co
   const browsingOnly = view.status !== 'playing' || !view.legalActions.some(action => action.kind !== 'choose') || !!view.waitingChoice;
   const nextStep = view.status === 'finished' ? '本局已结束，可回顾牌桌' : view.pendingChoice ? `下一步：${view.pendingChoice.title}` : view.waitingChoice ? `等待 ${choiceName || '另一位玩家'} 完成选择，可浏览牌桌` : activeGroup ? matchingActions.length ? '下一步：确认所选目标，或取消' : `下一步：点选高亮${needsTarget && !selectedTarget ? '目标' : '地区'}，或取消` : !view.legalActions.length ? `等待 ${teamName(view.priorityTeam, view)} 行动，可浏览牌桌` : view.legalActions.length === 1 && globalActions[0]?.kind === 'pass' ? '下一步：让过，推进当前窗口' : societyCards.length ? '下一步：点选手牌、角色、附属、秘社或地区查看动作' : '下一步：点选手牌、角色、附属或地区查看动作';
   const renderMat = (player: Player) => <PlayerMat key={player.id} player={player} view={view} catalog={catalog} definitions={definitions} selectedCard={selectedCard} selectedTarget={selectedTarget} targetIds={targetIds} picking={!!activeGroup} onCard={selectCard} onPreview={setHoveredCard} />;
-  return <main ref={tableRoot} className={`hg-table hg-desktop-table hg-desktop-${view.mode}`} data-table-layout="overhead">
+  return <main ref={tableRoot} className={`hg-table hg-desktop-table hg-archive-table hg-desktop-${view.mode}`} data-table-layout="overhead">
     <div className="hg-table-status"><div className="hg-round"><b>第 {view.turn} 回合</b><span>{phaseLabel(view.phase)} · {phaseLabel(view.step)}</span></div><div className="hg-table-tallies">{[yourTeam, 1 - yourTeam].map(team => <span key={team} className={`hg-team-tally hg-team-${team}`}>{team === yourTeam ? '我方' : '对方'} <b>{view.players.filter(player => player.team === team).reduce((total, player) => total + player.score, 0)}</b> / {view.winScore}</span>)}</div><div className="hg-phase-line"><span>先手 <b>{teamName(view.firstTeam, view)}</b></span><span>行动团队 <b>{teamName(view.activeTeam, view)}</b></span><span>优先权 <b>{teamName(view.priorityTeam, view)}</b></span><strong className={view.pendingChoice ? 'hg-your-choice' : ''}>{status}</strong></div><details className="hg-table-records"><summary>记录 · {view.log.length}</summary><ol aria-label="牌桌行动记录">{[...view.log].reverse().slice(0, 50).map((entry, index) => <li key={`${entry.version}-${index}`}>{entry.text}</li>)}</ol><small>规则 {view.versions.rules} · 卡池 {view.versions.cardPool} · 引擎 {view.versions.engine}</small></details></div>
     <section className="hg-team-edge hg-opponent-edge" aria-label="对方玩家区" data-side="opponent">{opponents.map(renderMat)}</section>
     <section className="hg-battlefield" aria-label="中央世界与争夺区，可上下滚动查看双方角色" tabIndex={0} title="中央地区可上下滚动；手牌与行动栏保持在下方。"><div className="hg-world-deck" aria-label="世界牌库"><span className="hg-card-back">⌖{view.worldDeckCount !== undefined && <b>{view.worldDeckCount}</b>}</span><small>世界牌库</small><small className="hg-battlefield-scroll-hint">↕ 滚动查看</small></div><div className={`hg-board hg-board-${view.mode}`}>{view.regions.map(item => <RegionTile key={item.id} region={item} view={view} definitions={definitions} selected={selectedRegion === item.index} targeted={previewRegion === item.index || (!!activeGroup && regionIds.has(item.index))} selectedCard={selectedCard} targetIds={targetIds} selectedTarget={selectedTarget} available={activeGroup ? regionIds.has(item.index) : view.legalActions.some(action => action.region === item.index && (!selectedCard || action.cardId === selectedCard))} onRegion={() => selectRegion(item.index)} onCard={selectCard} onPreview={setHoveredCard} />)}</div></section>
