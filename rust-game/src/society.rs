@@ -135,7 +135,7 @@ pub(crate) fn definitions() -> Vec<SocietyDefinition> {
     {
         let mut card: CardDefinition = serde_json::from_value(serde_json::json!({
             "id":"MSJC09","name":"秘社","kind":"society","type":"秘社",
-            "color":"中立","society":"-","supported":true,
+            "color":"中立","society":"-","unique":true,"supported":true,
             "text":"行动3，横置：若你具有【先手标志】，则抓一张牌。"
         }))
         .expect("verified MSJC09 printed fields");

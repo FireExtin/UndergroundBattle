@@ -107,7 +107,7 @@ fn msjc09_printed_registry_deck_and_atomic_start_keep_four_seat_privacy() {
     );
     assert_eq!(s.starting_hand, 6);
     assert!(s.printed_cost.is_none());
-    assert!(!s.card.unique);
+    assert!(s.card.unique);
     assert!(s.deck_constraints.is_empty() && s.unresolved_abilities.is_empty());
     assert_eq!(
         s.card.text,

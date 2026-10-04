@@ -23,6 +23,7 @@ test('real MSJC09 permits first/rear paid activation and restores four-seat fram
   const cat = (await api('/api/catalog')).body;
   assert.equal(cat.engineVersion,'rust-v0.2.8-msjc09-candidate'); assert.equal(cat.cards.length,48);
   assert.deepEqual(cat.societies.map(s=>s.id),['MSJC09']); assert(cat.deckBuildRules.societySupported);
+  assert.equal(cat.societies[0].unique,true);
   assert.deepEqual([cat.societies[0].name,cat.societies[0].subtitle,cat.societies[0].color,cat.societies[0].startingHand,cat.societies[0].printedCost],['秘社','未知的聚会','中立',6,null]);
   const draft = societyId => ({id:'printed-msjc09-deck',name:'真实MSJC09验证',description:'',societyId,cards:[{cardId:'JC125',count:50}],rulesVersion:cat.rulesVersion,cardPoolVersion:cat.cardPoolVersion,engineVersion:cat.engineVersion,updatedAt:''});
   for (const d of [draft('MSJC01'),draft('MSJC16'),draft('FIXTURE_SOCIETY_SIX'),{...draft('MSJC09'),cards:[{cardId:'JC125',count:49}]}]) assert.equal((await api('/api/rooms',{name:'非法',mode:'teams',deckDraft:d,requestId:crypto.randomUUID()})).status,400);
