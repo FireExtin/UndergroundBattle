@@ -294,6 +294,26 @@
     "source": "resource/ymsj-fun.github.io/cards/JC074 天空的教诲.jpg",
     "sha256": "e34e5bb081f3ee459d99038c68d60f4be4a44af05baa4289759b730045140914"
   },
+  "JC071": {
+    "url": "/cards/JC071.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC071 阿瓦隆隐士.jpg",
+    "sha256": "85fde88b2a35d595f166d87c0ab27b244198c3919c1f6a381e54e07598f73b67"
+  },
+  "JC073": {
+    "url": "/cards/JC073.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC073 苏族捕梦网.jpg",
+    "sha256": "cebf528de52de72d7400d4c769c2642063342d75a01670e120b5bc71aba23d42"
+  },
+  "JC102": {
+    "url": "/cards/JC102.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC102 妖火.jpg",
+    "sha256": "842fb9f07e9b8afbc0cecd6c224972c5643bad9b710daa518faceb59fc9a3b5d"
+  },
+  "JC132": {
+    "url": "/cards/JC132.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC132 构筑静态障壁.jpg",
+    "sha256": "219bb4062c3e9053b9fc9d309ad919ebe4b6a98c3af314c6987ca948b3eeb4f1"
+  },
   "MSJC09": {
     "url": "/cards/MSJC09.jpg",
     "source": "resource/ymsj-fun.github.io/cards/MSJC09 秘社.jpg",

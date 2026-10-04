@@ -187,6 +187,10 @@ pub enum Op {
         subtype_change: SubtypeChange,
     },
     Exhaust(EntityRef),
+    DamageTarget {
+        slot: usize,
+        amount: u32,
+    },
     ModifyTargetUntilTurnEnd {
         slot: usize,
         defense_bonus: u32,
@@ -343,6 +347,10 @@ pub struct AttachmentSpec {
     pub host_subtype_change: SubtypeChange,
     pub host: TargetSlotSpec,
     pub host_icons: Icons,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub host_temporary_icons: Option<Icons>,
+    #[serde(default, skip_serializing_if = "crate::model::is_false")]
+    pub host_barrier: bool,
     pub host_leaves: HostLeaveDestination,
 }
 #[derive(Clone, Debug, Default, Serialize, Deserialize)]
@@ -394,6 +402,17 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
             }
         }
         for op in ops {
+            if let Op::DamageTarget { slot, amount } = op {
+                if *amount != 1
+                    || !targets.get(*slot).is_some_and(|target| {
+                        target.zone == Zone::Board && target.kind == EntityKind::Character
+                    })
+                {
+                    return Err(format!(
+                        "{location}: damage requires one bound board character and one damage"
+                    ));
+                }
+            }
             if let Op::GainControl { slot, .. } = op {
                 if !targets
                     .get(*slot)
@@ -463,6 +482,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
                             | Op::ModifyTargetUntilTurnEnd { .. }
                             | Op::GainControl { .. }
                             | Op::PlaceInfluence { .. }
+                            | Op::DamageTarget { .. }
                     )
                 }) {
                     return Err(format!(
@@ -602,6 +622,84 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
             Range::Anywhere,
         );
         let mut m = BTreeMap::new();
+        let mut hermit_target = local.clone();
+        hermit_target.relation = Relation::ControlledByActor;
+        hermit_target.exclude_source = true;
+        m.insert(
+            "JC071".into(),
+            with_abilities(vec![ability(
+                "protect-local-character",
+                "快速防护",
+                Timing::Fast,
+                vec![Cost::ExhaustSource],
+                vec![hermit_target],
+                vec![Op::ModifyTargetUntilTurnEnd {
+                    slot: 0,
+                    defense_bonus: 1,
+                    ordinary_icons: Icons::default(),
+                    grants_renown: false,
+                }],
+                None,
+            )]),
+        );
+        let mut dreamcatcher_host = character.clone();
+        dreamcatcher_host.equipment_host = true;
+        m.insert(
+            "JC073".into(),
+            Definition {
+                abilities: vec![ability(
+                    "attach",
+                    "结附角色",
+                    Timing::Standard,
+                    vec![],
+                    vec![dreamcatcher_host.clone()],
+                    vec![],
+                    None,
+                )],
+                attachment: Some(AttachmentSpec {
+                    controls_host: false,
+                    host_subtype_change: SubtypeChange::None,
+                    host: dreamcatcher_host,
+                    host_icons: Icons::default(),
+                    host_temporary_icons: Some(Icons {
+                        investigation: 1,
+                        ..Icons::default()
+                    }),
+                    host_barrier: true,
+                    host_leaves: HostLeaveDestination::OwnerGraveyard,
+                }),
+                ..Default::default()
+            },
+        );
+        m.insert(
+            "JC102".into(),
+            with_abilities(vec![ability(
+                "damage-character",
+                "行动阶段快速伤害",
+                Timing::ActionFast,
+                vec![],
+                vec![character.clone()],
+                vec![Op::DamageTarget { slot: 0, amount: 1 }],
+                None,
+            )]),
+        );
+        m.insert(
+            "JC132".into(),
+            with_abilities(vec![ability(
+                "exhaust-region-characters",
+                "横置地区角色",
+                Timing::Standard,
+                vec![],
+                vec![region.clone()],
+                vec![Op::ExhaustMatching(BoardSelector {
+                    kind: EntityKind::Character,
+                    relation: Relation::Any,
+                    region: Some(RegionRef::Target(0)),
+                    subtype: None,
+                })],
+                None,
+            )]),
+        );
         let mut another_own = target(
             Zone::Board,
             EntityKind::Character,
@@ -835,6 +933,8 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
                     controls_host: true,
                     host_subtype_change: SubtypeChange::HumanToVampire,
                     host_icons: Icons::default(),
+                    host_temporary_icons: None,
+                    host_barrier: false,
                     host_leaves: HostLeaveDestination::OwnerGraveyard,
                 }),
                 ..Default::default()
@@ -1616,6 +1716,8 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
                         combat: 1,
                         ..Default::default()
                     },
+                    host_temporary_icons: None,
+                    host_barrier: false,
                     host_leaves: HostLeaveDestination::OwnerHand,
                 }),
                 ..Default::default()

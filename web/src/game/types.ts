@@ -19,6 +19,7 @@ export type SocietyDefinition = CardDefinition & {
 };
 export type Card = {
   currentRenown?: boolean;
+  currentBarrier?: boolean;
   currentSubtypes?: string[];
   instanceId: string; cardId?: string; name: string; owner: string; controller: string;
   kind: string; region?: number; exhausted: boolean; faceDown: boolean;

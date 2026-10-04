@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.13-renown-batch-candidate",
-  "engineVersion": "rust-v0.2.16-renown-batch-candidate",
+  "cardPoolVersion": "limited-v2.14-protection-batch-candidate",
+  "engineVersion": "rust-v0.2.17-protection-batch-candidate",
   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
   "cards": [
     {
@@ -2302,6 +2302,160 @@
       },
       "unique": false,
       "society": "圣贤"
+    },
+    {
+      "id": "JC071",
+      "name": "阿瓦隆隐士",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "法师"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "白色"
+      ],
+      "loyaltyText": "白色",
+      "color": "白",
+      "magic": "星辰",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "【快速行动】【横置】本地区的另一个目标本方角色获得防御+1直到回合结束。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JC071",
+        "image": "resource/ymsj-fun.github.io/cards/JC071 阿瓦隆隐士.jpg",
+        "sha256": "85fde88b2a35d595f166d87c0ab27b244198c3919c1f6a381e54e07598f73b67"
+      },
+      "unique": false,
+      "society": "圣贤"
+    },
+    {
+      "id": "JC073",
+      "name": "苏族捕梦网",
+      "kind": "attachment",
+      "subtypes": [
+        "装备",
+        "护身符"
+      ],
+      "cost": 3,
+      "loyalty": [
+        "白色"
+      ],
+      "loyaltyText": "白色",
+      "color": "白",
+      "magic": "星辰",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "结附于目标角色\n【持续】受此结附的角色获得【临时调查】和屏障（不能被敌方的卡牌或能力指定为目标）。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JC073",
+        "image": "resource/ymsj-fun.github.io/cards/JC073 苏族捕梦网.jpg",
+        "sha256": "cebf528de52de72d7400d4c769c2642063342d75a01670e120b5bc71aba23d42"
+      },
+      "unique": false,
+      "society": "圣贤"
+    },
+    {
+      "id": "JC102",
+      "name": "妖火",
+      "kind": "spell",
+      "subtypes": [
+        "法术",
+        "阴"
+      ],
+      "cost": 2,
+      "loyalty": [],
+      "loyaltyText": "",
+      "color": "紫",
+      "magic": "鲜血",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "只能在行动阶段打出。\n【快速】行动：对目标角色造成1点伤害。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JC102",
+        "image": "resource/ymsj-fun.github.io/cards/JC102 妖火.jpg",
+        "sha256": "842fb9f07e9b8afbc0cecd6c224972c5643bad9b710daa518faceb59fc9a3b5d"
+      },
+      "unique": false,
+      "society": "梦境行者"
+    },
+    {
+      "id": "JC132",
+      "name": "构筑静态障壁",
+      "kind": "spell",
+      "subtypes": [
+        "法术",
+        "空间"
+      ],
+      "cost": 4,
+      "loyalty": [
+        "黄色"
+      ],
+      "loyaltyText": "黄色",
+      "color": "中立",
+      "magic": "心灵",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "【标准行动】选择目标地区，横置所有位于该地区的角色。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JC132",
+        "image": "resource/ymsj-fun.github.io/cards/JC132 构筑静态障壁.jpg",
+        "sha256": "219bb4062c3e9053b9fc9d309ad919ebe4b6a98c3af314c6987ca948b3eeb4f1"
+      },
+      "unique": false,
+      "society": ""
     }
   ],
   "decks": [

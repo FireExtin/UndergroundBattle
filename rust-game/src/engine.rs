@@ -290,7 +290,19 @@ impl Game {
         self.team(seat) != self.team(c.controller)
     }
     pub(crate) fn targetable(&self, seat: usize, c: &Card) -> bool {
-        !self.is_enemy(seat, c) || c.face_down || !rules::definition(&c.definition).traits.barrier
+        !self.is_enemy(seat, c) || c.face_down || !self.has_barrier(c)
+    }
+    pub(crate) fn has_barrier(&self, c: &Card) -> bool {
+        !c.face_down
+            && (rules::definition(&c.definition).traits.barrier
+                || self.attachments.iter().any(|a| {
+                    a.host_id == c.id
+                        && self.attachment_host_valid(a)
+                        && rules::definition(&a.card.definition)
+                            .attachment
+                            .as_ref()
+                            .is_some_and(|spec| spec.host_barrier)
+                }))
     }
     pub(crate) fn shield_stops(&mut self, actor: usize, target: &str) -> bool {
         if let Some((_, c)) = self.board(target) {
@@ -359,6 +371,9 @@ impl Game {
         {
             if let Some(spec) = &rules::definition(&attachment.card.definition).attachment {
                 result = result.add(spec.host_icons);
+                if self.team(c.controller) == self.first_team {
+                    result = result.add(spec.host_temporary_icons.unwrap_or_default());
+                }
             }
         }
         result
@@ -1858,6 +1873,12 @@ impl Game {
         let hidden = c.face_down && c.controller != viewer;
         let asset = kind == Some("asset");
         CardView {
+            current_barrier: (!asset
+                && !c.face_down
+                && region.is_some()
+                && d.kind == "character"
+                && self.has_barrier(c))
+            .then_some(true),
             current_renown: (!asset && !c.face_down && region.is_some() && self.has_renown(c))
                 .then_some(true),
             current_subtypes: if hidden || asset || c.face_down || region.is_none() {
@@ -2454,7 +2475,7 @@ mod tests {
     #[test]
     fn catalog_is_restricted_real_complete_and_decks_are_legal() {
         let c = catalog::catalog();
-        assert_eq!(c.cards.len(), 59);
+        assert_eq!(c.cards.len(), 63);
         let active = c
             .cards
             .iter()
@@ -2469,7 +2490,7 @@ mod tests {
                 .collect::<BTreeSet<_>>()
         );
         assert!(active.contains("DQJC116"));
-        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 49);
+        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 53);
         assert_eq!(c.decks.len(), 5);
         for deck in &c.decks {
             assert_eq!(deck.card_count, 50);

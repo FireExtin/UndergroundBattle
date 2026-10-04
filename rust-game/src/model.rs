@@ -77,6 +77,8 @@ pub struct LegalAction {
 #[serde(rename_all = "camelCase")]
 pub struct CardView {
     #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub current_barrier: Option<bool>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub current_renown: Option<bool>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub current_subtypes: Option<Vec<String>>,

@@ -44,6 +44,7 @@ for (const entry of fixture.cases) {
     assert.equal(result.seat, step.seat);
     assert.deepEqual(result.view, step.view ?? step.transition?.view);
     if (step.transition) assert.deepEqual(result, step.transition, `${scenario.name}: full journal/outcome differs at revision ${step.version}`);
+    if (step.transition?.outcome === 'rejected') rejectedCommands++;
     state = result.state;
     assert.ok(state.includes(`"seed":${scenario.seed}`), 'u64 decimal seed lost precision');
     for (let seat = 0; seat < step.views.length; seat++) {
@@ -54,7 +55,7 @@ for (const entry of fixture.cases) {
       for (const region of projected.regions) for (const card of region.characters) {
         if (card.faceDown && card.controller !== projected.you) {
           assert.equal(card.name, '暗藏者');
-          for (const secret of ['cardId', 'text', 'cost', 'icons', 'defense', 'color', 'magic', 'currentSubtypes', 'currentRenown']) assert.ok(!(secret in card));
+          for (const secret of ['cardId', 'text', 'cost', 'icons', 'defense', 'color', 'magic', 'currentSubtypes', 'currentRenown', 'currentBarrier']) assert.ok(!(secret in card));
         }
       }
       projections++;

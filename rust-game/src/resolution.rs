@@ -1030,6 +1030,13 @@ impl Game {
                         expires_turn: self.turn,
                     });
                 }
+                Op::DamageTarget { slot, amount } => {
+                    let target = frame.targets.get(slot).ok_or("缺少伤害目标")?;
+                    self.damage(std::collections::BTreeMap::from([(
+                        target.id.clone(),
+                        amount,
+                    )]))?;
+                }
                 Op::PlaceInfluence {
                     region_instance,
                     amount,

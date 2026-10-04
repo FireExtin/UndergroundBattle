@@ -32,6 +32,9 @@ mod jc008;
 #[path = "support/msjc01.rs"]
 mod msjc01;
 #[cfg(not(feature = "society-fixtures"))]
+#[path = "support/protection.rs"]
+mod protection;
+#[cfg(not(feature = "society-fixtures"))]
 #[path = "support/renown.rs"]
 mod renown;
 #[cfg(not(feature = "society-fixtures"))]
@@ -2612,6 +2615,14 @@ fn main() {
         .nth(1)
         .expect("Usage: native_fixtures <output.json>");
     #[cfg(not(feature = "society-fixtures"))]
+    if std::env::args().any(|a| a == "--slice-protection-batch") {
+        write_default_fixture(
+            &output,
+            json!({"catalog":catalog::catalog(),"cases":protection::cases()}),
+        );
+        return;
+    }
+    #[cfg(not(feature = "society-fixtures"))]
     if std::env::args().any(|a| a == "--slice-renown-batch") {
         write_default_fixture(
             &output,
@@ -2818,5 +2829,10 @@ fn main() {
         .as_array_mut()
         .unwrap()
         .extend(renown::cases());
+    #[cfg(not(feature = "society-fixtures"))]
+    value["cases"]
+        .as_array_mut()
+        .unwrap()
+        .extend(protection::cases());
     write_default_fixture(&output, value);
 }
