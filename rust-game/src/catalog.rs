@@ -4,7 +4,10 @@ use std::sync::OnceLock;
 
 pub const RULES_VERSION: &str = "hegemony-pdf-v1";
 pub const POOL_VERSION: &str = "limited-v2.6";
-pub const ENGINE_VERSION: &str = "rust-v0.2.8";
+#[cfg(not(feature = "society-fixtures"))]
+pub const ENGINE_VERSION: &str = "rust-v0.2.8-msjc09-candidate";
+#[cfg(feature = "society-fixtures")]
+pub const ENGINE_VERSION: &str = "rust-v0.2.8-msjc09-fixture";
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -93,6 +96,7 @@ pub struct Catalog {
     pub engine_version: String,
     pub decks: Vec<DeckDefinition>,
     pub cards: Vec<CardDefinition>,
+    pub societies: Vec<crate::society::SocietyDefinition>,
     pub deck_build_rules: crate::deck::DeckBuildRules,
     #[serde(skip_serializing)]
     pub world: Vec<DeckEntry>,
@@ -167,6 +171,7 @@ pub fn catalog() -> &'static Catalog {
             engine_version: ENGINE_VERSION.into(),
             decks,
             cards,
+            societies: crate::society::definitions(),
             deck_build_rules: crate::deck::build_rules(),
             world,
         }
@@ -205,6 +210,13 @@ pub fn card(id: &str) -> &'static CardDefinition {
         .cards
         .iter()
         .find(|d| d.id == id)
+        .or_else(|| {
+            catalog()
+                .societies
+                .iter()
+                .find(|d| d.card.id == id)
+                .map(|d| &d.card)
+        })
         .unwrap_or_else(|| panic!("unsupported card {id}"))
 }
 pub fn deck(id: &str) -> Option<&'static DeckDefinition> {

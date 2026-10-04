@@ -10,4 +10,5 @@ pub mod room;
 pub mod rules;
 #[cfg(feature = "native")]
 pub mod service;
+pub mod society;
 mod world;

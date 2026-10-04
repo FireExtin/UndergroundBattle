@@ -34,3 +34,4 @@ coverage/
 /sites/.wrangler/
 /sites/generated/
 /sites/public/
+rust-game-wasm/pkg-society-fixtures/
