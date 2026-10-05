@@ -54,6 +54,10 @@ impl Game {
         Ok(Self {
             state_schema: 2,
             modifiers: vec![],
+            turn_attribute_modifiers: vec![],
+            turn_ability_usage: vec![],
+            control_effects: vec![],
+            control_baselines: vec![],
             room_id,
             invite_code,
             mode,
@@ -287,7 +291,19 @@ impl Game {
         self.team(seat) != self.team(c.controller)
     }
     pub(crate) fn targetable(&self, seat: usize, c: &Card) -> bool {
-        !self.is_enemy(seat, c) || c.face_down || !rules::definition(&c.definition).traits.barrier
+        !self.is_enemy(seat, c) || c.face_down || !self.has_barrier(c)
+    }
+    pub(crate) fn has_barrier(&self, c: &Card) -> bool {
+        !c.face_down
+            && (rules::definition(&c.definition).traits.barrier
+                || self.attachments.iter().any(|a| {
+                    a.host_id == c.id
+                        && self.attachment_host_valid(a)
+                        && rules::definition(&a.card.definition)
+                            .attachment
+                            .as_ref()
+                            .is_some_and(|spec| spec.host_barrier)
+                }))
     }
     pub(crate) fn shield_stops(&mut self, actor: usize, target: &str) -> bool {
         if let Some((_, c)) = self.board(target) {
@@ -303,6 +319,11 @@ impl Game {
         if c.exhausted {
             return Icons::default();
         }
+        self.current_icons(c, region)
+    }
+    /// Current attributes before exhaustion suppresses confrontation participation.
+    /// Catalog fields remain the immutable printed values.
+    pub fn current_icons(&self, c: &Card, region: usize) -> Icons {
         if c.face_down {
             return Icons {
                 influence: 1,
@@ -313,7 +334,7 @@ impl Game {
         if d.kind != "character" {
             return Icons::default();
         }
-        let mut result = d.permanent_icons;
+        let mut result = d.permanent_icons.add(self.turn_attribute_bonus(c).1);
         if self.team(c.controller) == self.first_team {
             result = result.add(d.temporary_icons);
         }
@@ -351,6 +372,9 @@ impl Game {
         {
             if let Some(spec) = &rules::definition(&attachment.card.definition).attachment {
                 result = result.add(spec.host_icons);
+                if self.team(c.controller) == self.first_team {
+                    result = result.add(spec.host_temporary_icons.unwrap_or_default());
+                }
             }
         }
         result
@@ -372,7 +396,23 @@ impl Game {
                 _ => 0,
             })
             .sum::<u32>();
-        (card(&c.definition).defense.unwrap_or(0) + bonus).saturating_sub(c.wounds)
+        let attachment_bonus = if !c.face_down && card(&c.definition).kind == "character" {
+            self.attachments
+                .iter()
+                .filter(|a| a.host_id == c.id && self.attachment_host_valid(a))
+                .filter_map(|a| rules::definition(&a.card.definition).attachment.as_ref())
+                .map(|a| a.host_defense_bonus)
+                .sum()
+        } else {
+            0u32
+        };
+        (self
+            .printed_defense_override(c)
+            .unwrap_or_else(|| card(&c.definition).defense.unwrap_or(0))
+            + bonus
+            + self.turn_attribute_bonus(c).0
+            + attachment_bonus)
+            .saturating_sub(c.wounds)
     }
     pub(crate) fn reset_passes(&mut self) {
         self.passed.clear();
@@ -663,6 +703,8 @@ impl Game {
     pub(crate) fn start(&mut self) -> RuleResult<()> {
         self.status = "playing".into();
         self.modifiers.clear();
+        self.turn_attribute_modifiers.clear();
+        self.turn_ability_usage.clear();
         self.regions.clear();
         self.attachments.clear();
         self.region_return = None;
@@ -801,6 +843,7 @@ impl Game {
             _ => true,
         });
         self.note(format!("{} 牌库耗尽，退出游戏", self.players[seat].name));
+        self.settle_controls();
         let team = self.team(seat);
         if self.living(team).is_empty() {
             self.finish(1 - team);
@@ -878,7 +921,24 @@ impl Game {
                     c.controller = item.controller;
                     let id = c.id.clone();
                     let definition = c.definition.clone();
-                    self.attachments.push(Attachment { card: c, host_id });
+                    self.attachments.push(Attachment {
+                        card: c,
+                        host_id: host_id.clone(),
+                    });
+                    if let Some(spec) = rules::definition(&definition)
+                        .attachment
+                        .as_ref()
+                        .filter(|s| s.controls_host)
+                    {
+                        self.add_control(
+                            &host_id,
+                            item.controller,
+                            ControlLifetime::Attached {
+                                source_instance: id.clone(),
+                            },
+                            spec.host_subtype_change.clone(),
+                        );
+                    }
                     self.enter_triggers(item.controller, &definition, &id, false);
                 } else {
                     self.effects.push_front(Effect::Bury { card: c });
@@ -941,6 +1001,7 @@ impl Game {
                                     SourceSnapshot {
                                         card: c.clone(),
                                         region: Some(r),
+                                        attachment_host_instance: None,
                                         play_source: None,
                                     },
                                 )
@@ -960,6 +1021,12 @@ impl Game {
                     if counts[0] != counts[1] {
                         let winner = if counts[0] > counts[1] { 0 } else { 1 };
                         self.reward(winner, region, contest, counts[0].abs_diff(counts[1]))?;
+                    }
+                    if contest == 2 {
+                        self.effects.push_back(Effect::RegionConfrontationsEnded {
+                            region,
+                            region_instance: self.regions[region].card.id.clone(),
+                        });
                     }
                 }
             }
@@ -988,7 +1055,6 @@ impl Game {
             }
             Window::End => {
                 self.effects.push_back(Effect::Cleanup);
-                self.effects.push_back(Effect::NextTurn);
             }
         }
         Ok(())
@@ -1077,20 +1143,7 @@ impl Game {
                 });
             }
         } else {
-            let enemy = 1 - team;
-            let removed = amount.min(self.regions[region].influence[enemy]);
-            self.regions[region].influence[enemy] -= removed;
-            self.regions[region].influence[team] += amount - removed;
-            if self.regions[region].influence[team]
-                >= card(&self.regions[region].card.definition)
-                    .threshold
-                    .unwrap_or(3)
-            {
-                self.effects.push_back(Effect::Award {
-                    seat: seats[0],
-                    region,
-                });
-            }
+            self.place_influence(seats[0], region, amount);
         }
         Ok(())
     }
@@ -1189,6 +1242,10 @@ impl Game {
     }
     pub(crate) fn effect(&mut self, e: Effect) -> RuleResult<()> {
         match e {
+            Effect::RegionConfrontationsEnded {
+                region,
+                region_instance,
+            } => self.declare_region_renown(region, &region_instance),
             Effect::Declare { declaration } => self.declare_trigger(declaration)?,
             Effect::Frame { frame } => self.resolve_frame(*frame)?,
             Effect::Draw { seat, count } => self.draw(seat, count)?,
@@ -1470,14 +1527,15 @@ impl Game {
                 }
             }
             Effect::Cleanup => {
-                for region in &mut self.regions {
-                    region.skip = false;
-                    for c in &mut region.cards {
-                        c.damage = 0;
-                    }
-                }
+                // Printed rules 4.2.1/2: finish hand-limit choices first.
+                // The queued atomic cleanup survives a paused choice/reload.
+                self.effects.push_front(Effect::FinishCleanup);
                 let mut discards = vec![];
-                for seat in 0..self.players.len() {
+                for seat in self
+                    .living(self.first_team)
+                    .into_iter()
+                    .chain(self.living(1 - self.first_team))
+                {
                     if self.players[seat].hand.len() > 7 {
                         discards.push(Effect::Discard {
                             seat,
@@ -1491,6 +1549,29 @@ impl Game {
                     self.effects.push_front(e);
                 }
             }
+            Effect::FinishCleanup => {
+                // Printed 4.2.3: damage removal and end-of-turn expiry are one
+                // batch. Never settle lethal damage between these mutations.
+                for region in &mut self.regions {
+                    region.skip = false;
+                    for c in &mut region.cards {
+                        c.damage = 0;
+                    }
+                }
+                self.turn_attribute_modifiers.clear();
+                self.modifiers.clear();
+                self.control_effects
+                    .retain(|effect| !matches!(effect.lifetime, ControlLifetime::TurnEnd { .. }));
+                let queued = self.effects.len();
+                self.settle_deaths();
+                if self.effects.len() > queued || !self.stack.is_empty() || self.pending.is_some() {
+                    // 4.2.4: existing responsive death triggers finish under the
+                    // current initiative, then another cleanup after all pass.
+                    self.begin_window(Window::End);
+                } else {
+                    self.effects.push_back(Effect::NextTurn);
+                }
+            }
             Effect::Bury { card: c } => {
                 if !self.players[c.owner].eliminated {
                     let owner = c.owner;
@@ -1500,6 +1581,7 @@ impl Game {
             }
             Effect::NextTurn => {
                 self.turn += 1;
+                self.turn_ability_usage.clear();
                 self.modifiers.clear();
                 self.first_team = 1 - self.first_team;
                 self.privilege_used = false;
@@ -1517,6 +1599,9 @@ impl Game {
                     for c in &mut r.cards {
                         c.exhausted = false;
                     }
+                }
+                for attachment in &mut self.attachments {
+                    attachment.card.exhausted = false;
                 }
                 self.begin_window(Window::Prepare);
                 self.note(format!(
@@ -1557,11 +1642,30 @@ impl Game {
             self.players[owner].deck.push(c);
         }
     }
-    pub(crate) fn kill(&mut self, target: &str) {
-        self.remove_dead(target, RemovalCause::Lethal);
-    }
     pub(crate) fn damage(&mut self, allocations: BTreeMap<String, u32>) -> RuleResult<()> {
         for (target, amount) in allocations {
+            if amount > 0
+                && self
+                    .board(&target)
+                    .is_some_and(|(_, c)| self.spirit_protected(c))
+            {
+                self.note(format!(
+                    "灵体领域优势：为 {} 防止 {amount} 点伤害",
+                    card(&self.board(&target).unwrap().1.definition).name
+                ));
+                continue;
+            }
+            if amount > 0
+                && self
+                    .board(&target)
+                    .is_some_and(|(_, c)| self.damage_prevented(c))
+            {
+                self.note(format!(
+                    "本回合伤害防止：为 {} 防止 {amount} 点伤害",
+                    card(&self.board(&target).unwrap().1.definition).name
+                ));
+                continue;
+            }
             if let Some(c) = self.board_mut(&target) {
                 if !c.face_down {
                     c.damage += amount;
@@ -1572,7 +1676,10 @@ impl Game {
         Ok(())
     }
     pub(crate) fn settle_deaths(&mut self) {
+        self.settle_controls();
+        self.prune_turn_attribute_modifiers();
         self.settle_attachments();
+        self.settle_controls();
         let previous_effects = self.effects.len();
         // Loss of a defense aura is checked again after the simultaneous lethal set.
         loop {
@@ -1583,15 +1690,17 @@ impl Game {
                         && card(&c.definition).kind == "character"
                         && c.damage >= self.defense(c, r)
                     {
-                        dead.push(c.id.clone());
+                        // Capture the entire lethal set before any departure can
+                        // restore another member's controller or end its modifiers.
+                        dead.push((c.id.clone(), self.source_snapshot(c, Some(r))));
                     }
                 }
             }
             if dead.is_empty() {
                 break;
             }
-            for id in dead {
-                self.kill(&id);
+            for (id, source) in dead {
+                self.remove_dead_with_snapshot(&id, RemovalCause::Lethal, Some(source));
             }
         }
         let mut simultaneous = self
@@ -1607,6 +1716,7 @@ impl Game {
             _ => (true, usize::MAX),
         });
         self.effects.extend(simultaneous);
+        self.prune_turn_attribute_modifiers();
     }
     pub(crate) fn choose(&mut self, seat: usize, a: Action) -> RuleResult<()> {
         let p = self.pending.clone().ok_or("没有待选")?;
@@ -1666,9 +1776,7 @@ impl Game {
             ChoiceResolution::Discard { redraw } => {
                 let count = selected.len();
                 for id in selected {
-                    let c = self.remove_hand(seat, &id)?;
-                    let c = self.fresh(c);
-                    self.players[seat].graveyard.push(c);
+                    self.discard_hand_card(seat, &id)?;
                 }
                 if redraw {
                     self.draw(seat, count)?;
@@ -1806,6 +1914,34 @@ impl Game {
         let hidden = c.face_down && c.controller != viewer;
         let asset = kind == Some("asset");
         CardView {
+            current_spirit_protection: (!asset
+                && !c.face_down
+                && region.is_some()
+                && d.kind == "character"
+                && rules::definition(&c.definition).traits.spirit)
+                .then(|| self.spirit_protected(c)),
+            current_printed_defense: (!asset && !c.face_down && region.is_some())
+                .then(|| self.printed_defense_override(c))
+                .flatten(),
+            current_damage_prevention: (!asset
+                && !c.face_down
+                && region.is_some()
+                && self.damage_prevented(c))
+            .then_some(true),
+            current_barrier: (!asset
+                && !c.face_down
+                && region.is_some()
+                && d.kind == "character"
+                && self.has_barrier(c))
+            .then_some(true),
+            current_renown: (!asset && !c.face_down && region.is_some() && self.has_renown(c))
+                .then_some(true),
+            current_subtypes: if hidden || asset || c.face_down || region.is_none() {
+                None
+            } else {
+                let current = self.current_subtypes(c);
+                (current != d.subtypes).then_some(current)
+            },
             instance_id: c.id.clone(),
             card_id: if hidden || asset {
                 None
@@ -1880,6 +2016,13 @@ impl Game {
             },
             color: if hidden { None } else { Some(d.color.clone()) },
             magic: if hidden { None } else { Some(d.magic.clone()) },
+            used_once_per_game: if hidden || d.kind != "society" {
+                None
+            } else {
+                self.society_usage(&c.id)
+                    .filter(|used| !used.is_empty())
+                    .map(|used| used.iter().cloned().collect())
+            },
         }
     }
     pub fn view(&self, seat: usize) -> View {
@@ -1994,11 +2137,45 @@ impl Game {
                     })
                 })
                 .collect(),
+            private_deck_top: if self.status == "playing"
+                && !self.players[seat].eliminated
+                && self.regions.iter().flat_map(|r| &r.cards).any(|c| {
+                    c.controller == seat
+                        && !c.face_down
+                        && rules::definition(&c.definition)
+                            .modifiers
+                            .iter()
+                            .any(|m| matches!(m, rules::StaticModifier::PeekOwnDeckTop))
+                }) {
+                self.players[seat]
+                    .deck
+                    .first()
+                    .map(|c| self.card_view(c, seat, None, None))
+            } else {
+                None
+            },
             hand: self.players[seat]
                 .hand
                 .iter()
                 .map(|c| self.card_view(c, seat, None, None))
                 .collect(),
+            revealed_hands: match self.pending.as_ref().map(|p| &p.resolution) {
+                Some(ChoiceResolution::Frame {
+                    choice:
+                        FrameChoice::RevealedHandDiscard {
+                            seat: holder,
+                            revealed,
+                        },
+                    ..
+                }) => vec![RevealedHandView {
+                    player_id: player_id(*holder),
+                    cards: revealed
+                        .iter()
+                        .map(|c| self.card_view(c, seat, None, None))
+                        .collect(),
+                }],
+                _ => vec![],
+            },
             assets: self
                 .players
                 .iter()
@@ -2201,6 +2378,25 @@ impl Game {
                     candidates.extend(self.rule_action_candidates(seat, c, Some(*r), "activate"));
                 }
             }
+            for attachment in &self.attachments {
+                let c = &attachment.card;
+                if c.controller != seat
+                    || !rules::definition(&c.definition)
+                        .abilities
+                        .iter()
+                        .any(|ability| ability.activation_only)
+                {
+                    continue;
+                }
+                if let Some((region, _)) = self.board(&c.id) {
+                    candidates.extend(self.rule_action_candidates(
+                        seat,
+                        c,
+                        Some(region),
+                        "activate",
+                    ));
+                }
+            }
             if let Some(c) = &self.players[seat].society_zone.card {
                 candidates.extend(self.rule_action_candidates(seat, c, None, "activate"));
             }
@@ -2310,11 +2506,13 @@ mod tests {
             relation: rules::Relation::Any,
             range: rules::Range::Anywhere,
             subtype: None,
+            printed_subtype: false,
             subtypes_any: vec![],
             printed_cost_max: None,
             equipment_host: false,
             requires_magic: false,
             exclude_source: false,
+            exclude_attachment_host: false,
             attachment_host_condition: None,
             min: 1,
             max: 1,
@@ -2369,7 +2567,7 @@ mod tests {
     #[test]
     fn catalog_is_restricted_real_complete_and_decks_are_legal() {
         let c = catalog::catalog();
-        assert_eq!(c.cards.len(), 50);
+        assert_eq!(c.cards.len(), 87);
         let active = c
             .cards
             .iter()
@@ -2384,7 +2582,7 @@ mod tests {
                 .collect::<BTreeSet<_>>()
         );
         assert!(active.contains("DQJC116"));
-        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 40);
+        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 77);
         assert_eq!(c.decks.len(), 5);
         for deck in &c.decks {
             assert_eq!(deck.card_count, 50);
@@ -4145,6 +4343,7 @@ mod tests {
         let expensive = board(&mut g, "JC086", 2, 2);
         // A payment modifier cannot turn an expensive print into a legal target.
         g.modifiers.push(CostModifier {
+            paid_reveal: false,
             actor: 2,
             filter: rules::CardFilter::Any,
             amount: 20,

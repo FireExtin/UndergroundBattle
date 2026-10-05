@@ -3,17 +3,19 @@ use serde::{Deserialize, Serialize};
 use std::sync::OnceLock;
 
 pub const RULES_VERSION: &str = "hegemony-pdf-v1";
-pub const POOL_VERSION: &str = "limited-v2.8";
+pub const POOL_VERSION: &str = "limited-v2.22-repress-assets-candidate";
 #[cfg(not(feature = "society-fixtures"))]
-pub const ENGINE_VERSION: &str = "rust-v0.2.11";
+pub const ENGINE_VERSION: &str = "rust-v0.2.25-resource-policy-candidate";
 #[cfg(feature = "society-fixtures")]
-pub const ENGINE_VERSION: &str = "rust-v0.2.11-jc005-society-fixture";
+pub const ENGINE_VERSION: &str = "rust-v0.2.25-resource-policy-society-fixture";
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CardDefinition {
     pub id: String,
     pub name: String,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub subtitle: Option<String>,
     pub kind: String,
     #[serde(default)]
     pub r#type: String,
@@ -131,6 +133,10 @@ pub fn catalog() -> &'static Catalog {
                             .join("/")
                     })
                     .unwrap_or_default();
+                // Preserve old definitions; expose only individually reviewed subtitles.
+                if !["JZ27", "JC096", "JC114", "XQ38"].contains(&definition.id.as_str()) {
+                    definition.subtitle = None;
+                }
                 definition.magic_icon = match definition.magic.as_str() {
                     "" => crate::rules::MagicIcon::None,
                     "鲜血" | "血" => crate::rules::MagicIcon::Blood,

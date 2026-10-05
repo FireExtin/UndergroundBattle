@@ -1,0 +1,256 @@
+{
+  "rulesPdf": {
+    "path": "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+    "sha256": "a1e5bca72b8dbb374357feace28b7fbfd31136349ee23455d60f5f62e0a6b886",
+    "verifiedPrintedPages": [
+      1,
+      3,
+      6,
+      8,
+      9,
+      10,
+      11,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      21
+    ]
+  },
+  "cards": [
+    {
+      "id": "JC125",
+      "image": "resource/ymsj-fun.github.io/cards/JC125 无知路人.jpg",
+      "sha256": "6392c2cdc2d9ea43deca6b26594618a2093ae887bd03d5ad29d130c7e329993a",
+      "verified": true
+    },
+    {
+      "id": "LC19",
+      "image": "resource/ymsj-fun.github.io/cards/LC19 外科医生.jpg",
+      "sha256": "41c0fe55aff401721ec54fbb08174d52d36747f0821e32c6ddc5006bba9e9f71",
+      "verified": true
+    },
+    {
+      "id": "LC20",
+      "image": "resource/ymsj-fun.github.io/cards/LC20 心理咨询师.jpg",
+      "sha256": "961b508b54f78c561b98268da91d901a3536a330aef0ea8a49b81b9f6a278248",
+      "verified": true
+    },
+    {
+      "id": "LC21",
+      "image": "resource/ymsj-fun.github.io/cards/LC21 称职的保镖.jpg",
+      "sha256": "62b05d9f5349d53dd6d47dae7077566c1f5735529bc2bd813a45c1d7c3a183b9",
+      "verified": true
+    },
+    {
+      "id": "LC22",
+      "image": "resource/ymsj-fun.github.io/cards/LC22 退役军人.jpg",
+      "sha256": "26976ae01006603182b666cef0ea6960bc5d218dc904f2b1c760f3719f142b35",
+      "verified": true
+    },
+    {
+      "id": "LC23",
+      "image": "resource/ymsj-fun.github.io/cards/LC23 安格鲁，“荆棘”.jpg",
+      "sha256": "977959c6deb74b125b18a8b40758deab354396fdffd49b0d9bcc57197144f1c8",
+      "verified": true
+    },
+    {
+      "id": "LC24",
+      "image": "resource/ymsj-fun.github.io/cards/LC24 林中女巫.jpg",
+      "sha256": "05b4c30ee93bb8ea9b96636e9da3fbcaa560f206aaa5b6c73b5c5ac283fddccb",
+      "verified": true
+    },
+    {
+      "id": "XQ49",
+      "image": "resource/ymsj-fun.github.io/cards/XQ49 葬礼.jpg",
+      "sha256": "8b160c52b18e49a7ef39085b63cc9a1b18531c02dc0ae3d92e2fedd874a29aca",
+      "verified": true
+    },
+    {
+      "id": "JC118",
+      "image": "resource/ymsj-fun.github.io/cards/JC118 停战协议.jpg",
+      "sha256": "0f112c86afcfd0e9b2b6dea66597e24e57a95155f1b624534b2f9a4b980df97a",
+      "verified": true
+    },
+    {
+      "id": "JC002",
+      "image": "resource/ymsj-fun.github.io/cards/JC002 巨石阵看护人.jpg",
+      "sha256": "21a698ae184e7f909d24ac5374c3eaf7af77f1043b91048cfc8c5a46f9b08680",
+      "verified": true
+    },
+    {
+      "id": "JC003",
+      "image": "resource/ymsj-fun.github.io/cards/JC003 帷幕护卫.jpg",
+      "sha256": "027fc054dd7c7ef301108bf0b169e01f91228bf2e918b3ddb8d12e8d05603c3a",
+      "verified": true
+    },
+    {
+      "id": "XQ03",
+      "image": "resource/ymsj-fun.github.io/cards/XQ03 力场束缚.jpg",
+      "sha256": "c6e85106105d23ef55df70ba06d6c8878b6ce279a727908fbdeab0a8495679b0",
+      "verified": true
+    },
+    {
+      "id": "JC014",
+      "image": "resource/ymsj-fun.github.io/cards/JC014 公路骑士.jpg",
+      "sha256": "cd1969552197b3111e72ee4bb0725dc4ff513ddb8c940b568b7221699c248bb6",
+      "verified": true
+    },
+    {
+      "id": "JC016",
+      "image": "resource/ymsj-fun.github.io/cards/JC016 执行部精锐.jpg",
+      "sha256": "0a3b20635a7fa8e04d6f17ab7a7112a596ed0e7f21293d3e4f4a985463416c35",
+      "verified": true
+    },
+    {
+      "id": "JZ08",
+      "image": "resource/ymsj-fun.github.io/cards/JZ08 幸运新人.jpg",
+      "sha256": "343561bd351e06811f9a1fc77b6a9fe08e6dfbace83d8c8abb8f6b43fb031d12",
+      "verified": true
+    },
+    {
+      "id": "JC056",
+      "image": "resource/ymsj-fun.github.io/cards/JC056 地区警员.jpg",
+      "sha256": "75503118eee2b80d23f59ea950884c152f33d28d552d0d051ed872f441810e6d",
+      "verified": true
+    },
+    {
+      "id": "JC059",
+      "image": "resource/ymsj-fun.github.io/cards/JC059 安全保卫部门.jpg",
+      "sha256": "7d9639d3115dcea8e42f21e1145397f3be4392a80fa0b6c040d7302139eff0ad",
+      "verified": true
+    },
+    {
+      "id": "JC063",
+      "image": "resource/ymsj-fun.github.io/cards/JC063 警车追捕.jpg",
+      "sha256": "1b20b9c7392543bf975b6391d227e03e4f50f3fd3134e7c6aa494e7357f88165",
+      "verified": true
+    },
+    {
+      "id": "JC086",
+      "image": "resource/ymsj-fun.github.io/cards/JC086 窃尸人.jpg",
+      "sha256": "1bd405a60feeb41d60611050f4a37dd90dc971e1808ba712b66fe0cd37d2d743",
+      "verified": true
+    },
+    {
+      "id": "XQ12",
+      "image": "resource/ymsj-fun.github.io/cards/XQ12 暴躁血仆.jpg",
+      "sha256": "4e9f3afa5f7f22d99fc89284e91586fba78a8ff2ee8827fc6a6ceeb41889fdc8",
+      "verified": true
+    },
+    {
+      "id": "JC092",
+      "image": "resource/ymsj-fun.github.io/cards/JC092 死灵召唤.jpg",
+      "sha256": "ea1ca5644c38831b659f29dcf4c7ec0cb5dc5a758b0b793ed120b24b74295947",
+      "verified": true
+    },
+    {
+      "id": "DQJC107",
+      "image": "resource/ymsj-fun.github.io/cards/DQJC107 沉没的废墟.jpg",
+      "sha256": "339b9a130ea9c0a82bc5a20d34892a4de52b2ea777a1b0cfec340876d6a4b2b8",
+      "verified": true
+    },
+    {
+      "id": "DQJC112",
+      "image": "resource/ymsj-fun.github.io/cards/DQJC112 纽约.jpg",
+      "sha256": "9efd49e63ad90c4849bcf123aec4c83cd63e8f135113c374412526be875832ad",
+      "verified": true
+    },
+    {
+      "id": "DQJC113",
+      "image": "resource/ymsj-fun.github.io/cards/DQJC113 切尔诺贝利.jpg",
+      "sha256": "3dcac24ae99667ac037001d85f54eb5b77bf83643222769726395571e7135c6e",
+      "verified": true
+    },
+    {
+      "id": "DQJC114",
+      "image": "resource/ymsj-fun.github.io/cards/DQJC114 上海.jpg",
+      "sha256": "7ded8662b423543bccedf93e67c098cf0effdd73791b30cc6aaa4acf7bf2a3f2",
+      "verified": true
+    },
+    {
+      "id": "JC042",
+      "image": "resource/ymsj-fun.github.io/cards/JC042 末日信徒.jpg",
+      "sha256": "242a17c708a96d27e95b23f9ab339e01d5b8c1eda282a2f7de8f51ba2c1bdbef",
+      "verified": true
+    },
+    {
+      "id": "JC049",
+      "image": "resource/ymsj-fun.github.io/cards/JC049 深渊细语.jpg",
+      "sha256": "340c3fbc650b755d72c31ca06a8c379bacb572df6df061a9c52d0fb386d02d58",
+      "verified": true
+    },
+    {
+      "id": "JC091",
+      "image": "resource/ymsj-fun.github.io/cards/JC091 谋杀.jpg",
+      "sha256": "2ea5d65c270a107371f7d69cb22de3e4e60f9e9db81d4e6959744bbfbf6d11cb",
+      "verified": true
+    },
+    {
+      "id": "JZ54",
+      "image": "resource/ymsj-fun.github.io/cards/JZ54 阿塔玛斯奉献仪式.jpg",
+      "sha256": "c7902515865a26e1276d9e7a4bbd05c511704f76aee504c73539737012624af4",
+      "verified": true
+    },
+    {
+      "id": "JC058",
+      "image": "resource/ymsj-fun.github.io/cards/JC058 坚毅的刑警.jpg",
+      "sha256": "6585e89991049cb05e75db43143320fd12bf6be781847648d551cb433e85119a",
+      "verified": true
+    }
+  ],
+  "supplementalRules": [
+    {
+      "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界规则手册.pdf",
+      "sha256": "2a771874efbdb3ad8a339ea01ff62888766090d075fe2e013632c79de1aeba35",
+      "verifiedPhysicalPages": [
+        7,
+        8,
+        9,
+        12
+      ]
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界勘误及释疑.pdf",
+      "sha256": "916aa6a9f50ac7e737b517358e0c4270f715d0ed7391d55c8fcb629392a71d38",
+      "verifiedPhysicalPages": [
+        3,
+        4,
+        5
+      ]
+    }
+  ],
+  "reviewedExpansionGuides": [
+    {
+      "path": "resource/ymsj-fun.github.io/public/docs/帷幕之后说明书.jpg",
+      "sha256": "333388b60e719ee61a41a0009932b505315dff0042cf01edc0de4d8ac66f5761",
+      "verified": true
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/public/docs/间奏说明书.jpg",
+      "sha256": "efbe7e1e3711ca4b184b36f7801391afdec3b195d393cf17d2458215279f9b80",
+      "verified": true
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/public/docs/序曲说明书.jpg",
+      "sha256": "08491e7ec0a716ff6d626b73bf93c07fddecc46293b2ef3ed7cc9b673c2fb5d5",
+      "verified": true
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/public/docs/星光俱乐部说明书.jpg",
+      "sha256": "3bc9e70585a3bbc247deb9cb19639da7295589ae81dd543c6dbf0a51bde0357a",
+      "verified": true
+    }
+  ],
+  "quarantinedCards": [
+    {
+      "id": "DQJC116",
+      "image": "resource/ymsj-fun.github.io/cards/DQJC116 香港.jpg",
+      "sha256": "e9dfbc396a733b3bbe7ffcb2a6d67ea371ffe4ca4bd6fc0f4e74b1ee73485d4d",
+      "verified": true,
+      "reason": "Original requires simultaneous reveal and hand placement before shuffling; current interpreter does not implement grouped simultaneous search. No eligible attachments in the limited pool do not prove completeness."
+    }
+  ]
+}

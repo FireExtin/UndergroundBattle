@@ -7,7 +7,7 @@ export function visibleCard(card: Card, viewerId: string): Card {
   if (!card.faceDown || card.controller === viewerId) return card;
   return { ...card, cardId: undefined, name: '暗藏者', kind: 'hidden', cost: undefined, effectiveCost: undefined,
     text: undefined, icons: undefined, defense: undefined, damage: undefined, shield: undefined,
-    wounds: undefined, color: undefined, magic: undefined };
+    wounds: undefined, color: undefined, magic: undefined, currentSubtypes: undefined, currentRenown: undefined, currentBarrier: undefined, currentDamagePrevention: undefined, currentSpiritProtection: undefined, currentPrintedDefense: undefined };
 }
 
 const emptyIcons: Icons = { investigation: 0, combat: 0, influence: 0 };
@@ -36,7 +36,7 @@ export function CardContent({ card: source, definition: sourceDefinition, compac
   const region = card.kind === 'region';
   const attachment = card.kind === 'attachment';
   const society = card.kind === 'society';
-  const subtitle = society && definition && 'subtitle' in definition && typeof definition.subtitle === 'string' ? definition.subtitle : undefined;
+  const subtitle = definition && typeof definition.subtitle === 'string' ? definition.subtitle : undefined;
   const startingHand = society && definition && 'startingHand' in definition && typeof definition.startingHand === 'number' && Number.isSafeInteger(definition.startingHand) && definition.startingHand >= 0 ? definition.startingHand : undefined;
   const concealedCompact = compact && card.kind === 'hidden';
   const printedCost = card.cost ?? definition?.cost ?? 0;
@@ -48,7 +48,7 @@ export function CardContent({ card: source, definition: sourceDefinition, compac
   const hasTemporary = temporary && Object.values(temporary).some(n => n > 0);
   const effectiveStats = !compact && !card.faceDown && card.kind === 'character' && card.region !== undefined;
   const defense = card.defense ?? definition?.defense;
-  const type = hidden ? '身份未公开' : archive && asset ? '资产' : attachment ? `附属${definition?.subtypes?.length ? ` · ${definition.subtypes.join(' · ')}` : ''}` : definition?.type || definition?.subtypes?.join(' · ') || ({ character: '角色', event: '事件', spell: '咒术', region: '地区', asset: '资产', society: '秘社', hidden: '暗藏角色' }[card.kind] || '卡牌');
+  const type = hidden ? '身份未公开' : archive && asset ? '资产' : card.currentSubtypes ? `角色 · ${card.currentSubtypes.join(' · ')}` : attachment ? `附属${definition?.subtypes?.length ? ` · ${definition.subtypes.join(' · ')}` : ''}` : definition?.type || definition?.subtypes?.join(' · ') || ({ character: '角色', event: '事件', spell: '咒术', region: '地区', asset: '资产', society: '秘社', hidden: '暗藏角色' }[card.kind] || '卡牌');
   return <>
     <span className="hg-card-top"><span className="hg-card-kind">{type}</span>{!hidden && !asset && !region && !society && <span className={`hg-cost${adjustedCost ? ' hg-cost-adjusted' : ''}`} title={adjustedCost ? `当前费用 ${actualCost} · 印刷费用 ${printedCost}` : '费用'} aria-label={adjustedCost ? `当前费用 ${actualCost}，印刷费用 ${printedCost}` : `费用 ${actualCost}`}>{actualCost}</span>}</span>
     <strong className="hg-card-name">{hidden ? '暗藏者' : card.name}</strong>
@@ -65,7 +65,15 @@ export function CardContent({ card: source, definition: sourceDefinition, compac
       {!compact && !society && hasTemporary && <span className="hg-temporary-label">先手 <IconStrip icons={temporary} temporary /></span>}
       {!compact && <span className="hg-card-text">{asset ? '未横置时可提供 1 费用，并提供所示派系与魔法忠诚。' : card.text || definition?.text || '此牌没有额外能力。'}</span>}
       <span className="hg-card-footer">
-        {!society && !concealedCompact && typeof defense === 'number' && <span>{effectiveStats && typeof card.defense === 'number' && typeof definition?.defense === 'number' ? `当前防御 ${card.defense} · 印刷防御 ${definition.defense}` : `防御 ${defense}`}</span>}
+        {!card.faceDown && card.region !== undefined && typeof card.currentSpiritProtection === 'boolean' && <span title="灵体按本地区双方领域数量比较防止伤害">灵体：当前{card.currentSpiritProtection ? '防止伤害' : '不防止伤害'}</span>}
+        {!card.faceDown && card.region !== undefined && card.currentDamagePrevention && <span>本回合防止伤害</span>}
+        {!card.faceDown && card.region !== undefined && typeof card.currentPrintedDefense === 'number' && <span>本回合印刷防御 {card.currentPrintedDefense}</span>}
+        {!card.faceDown && card.region !== undefined && card.currentRenown && <span>声望</span>}
+        {!card.faceDown && card.region !== undefined && card.currentBarrier && <span>屏障</span>}
+        {society && card.usedOncePerGame?.map(key => <span key={key}>
+          {definition?.abilities?.find(ability => ability.key === key)?.label || '每局一次能力'} · 本局已使用
+        </span>)}
+        {!society && !concealedCompact && typeof defense === 'number' && <span>{effectiveStats && typeof card.defense === 'number' && typeof definition?.defense === 'number' ? `当前防御 ${card.defense} · ${typeof card.currentPrintedDefense === 'number' ? '原始印刷防御' : '印刷防御'} ${definition.defense}` : `防御 ${defense}`}</span>}
         {attachmentCount > 0 && <span className="hg-card-attachment-count" title="点选宿主后可查看附属" aria-label={`附属 ${attachmentCount} 张`}>附属 {attachmentCount}</span>}
         {!society && !concealedCompact && !!card.damage && <span className="hg-hurt hg-damage-marker">伤害 {card.damage}</span>}
         {!society && !concealedCompact && !!card.wounds && <span className="hg-hurt hg-wound-marker">创伤 {card.wounds}</span>}

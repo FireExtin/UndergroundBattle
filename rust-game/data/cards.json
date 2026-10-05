@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.8",
-  "engineVersion": "rust-v0.2.11",
+  "cardPoolVersion": "limited-v2.22-repress-assets-candidate",
+  "engineVersion": "rust-v0.2.25-repress-assets-candidate",
   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
   "cards": [
     {
@@ -490,6 +490,45 @@
         "record": "JC005",
         "image": "resource/ymsj-fun.github.io/cards/JC005 裂解术.jpg",
         "sha256": "216c26cff74fe738dbc486e725828ddc8077705161b1fee566e9d806684364a1"
+      },
+      "unique": false,
+      "society": "帷幕守望"
+    },
+    {
+      "id": "JC008",
+      "name": "灵能激发",
+      "kind": "spell",
+      "subtypes": [
+        "法术",
+        "心灵"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "黄色"
+      ],
+      "loyaltyText": "黄色",
+      "color": "黄",
+      "magic": "心灵",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "【快速行动】本回合中，目标角色获得+1防御和1个普通战斗图标。",
+      "keywords": [],
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/JC008 灵能激发.jpg",
+        "record": "JC008",
+        "image": "resource/ymsj-fun.github.io/cards/JC008 灵能激发.jpg",
+        "sha256": "31340e2535e0909359860a090186b7a5032e84d6da94c8181baf32565b5d4f45"
       },
       "unique": false,
       "society": "帷幕守望"
@@ -1932,6 +1971,1409 @@
       },
       "unique": false,
       "society": "梦境行者"
+    },
+    {
+      "id": "WM003",
+      "name": "千机庙离",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "法师",
+        "学生"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "黄色",
+        "星辰",
+        "星辰"
+      ],
+      "loyaltyText": "黄色 星辰 星辰",
+      "color": "黄",
+      "magic": "心灵",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 1
+        }
+      },
+      "defense": 1,
+      "text": "公开\n快速行动5，横置：从你的牌库中寻找一张牌，将该牌置于你的手中，然后洗牌。",
+      "keywords": [
+        "公开"
+      ],
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/WM003 千机庙离.jpg",
+        "record": "WM003",
+        "image": "resource/ymsj-fun.github.io/cards/WM003 千机庙离.jpg",
+        "sha256": "2409ef206e3af93d1eece3ec0bf4ba00a9e3d0c12a8e70443877cc8a28cc9bff"
+      },
+      "unique": true,
+      "society": "帷幕守望"
+    },
+    {
+      "id": "LC01",
+      "name": "西比尔",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "法师"
+      ],
+      "cost": 5,
+      "loyalty": [
+        "黄色",
+        "黄色"
+      ],
+      "loyaltyText": "黄色 黄色",
+      "color": "黄",
+      "magic": "神圣",
+      "icons": {
+        "permanent": {
+          "investigation": 2,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 4,
+      "text": "持续：你可以随时检视你的牌库顶牌。",
+      "keywords": [],
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/LC01 西比尔.jpg",
+        "record": "LC01",
+        "image": "resource/ymsj-fun.github.io/cards/LC01 西比尔.jpg",
+        "sha256": "a0defb07b43463cc882e15b993c73eda22ea77ca39062da71e6518a365cc5bd6"
+      },
+      "unique": true,
+      "society": "帷幕守望"
+    },
+    {
+      "id": "JC129",
+      "name": "操控心智",
+      "kind": "spell",
+      "subtypes": [
+        "法术",
+        "心灵"
+      ],
+      "cost": 3,
+      "loyalty": [
+        "紫色"
+      ],
+      "loyaltyText": "紫色",
+      "color": "中立",
+      "magic": "心灵",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "【标准行动】你获得目标敌方角色的操控权直到回合结束。",
+      "keywords": [],
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/cards.json",
+        "record": "JC129",
+        "image": "resource/ymsj-fun.github.io/cards/JC129 操控心智.jpg",
+        "sha256": "0c99776d13e342b85c6d6f6cc476459ec6463e6bbdc146046460518c738a0b59"
+      },
+      "unique": false,
+      "society": ""
+    },
+    {
+      "id": "JC036",
+      "name": "初拥",
+      "kind": "attachment",
+      "subtypes": [
+        "状态",
+        "吸血鬼"
+      ],
+      "cost": 5,
+      "loyalty": [
+        "蓝色",
+        "蓝色"
+      ],
+      "loyaltyText": "蓝色 / 蓝色",
+      "color": "蓝",
+      "magic": "鲜血",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "结附于目标印刷类别为人类的角色\n【持续】你获得受此结附角色的操控权，将该角色的人类类别改为吸血鬼类别。",
+      "keywords": [],
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/cards.json",
+        "record": "JC036",
+        "image": "resource/ymsj-fun.github.io/cards/JC036 初拥.jpg",
+        "sha256": "017507e6a2a229f6541a4690b681ecd71fc09b35962b9673da70f5f035ddba83"
+      },
+      "unique": false,
+      "society": "王座会"
+    },
+    {
+      "id": "JZ27",
+      "name": "哈达莎·爱弗罗德",
+      "kind": "character",
+      "subtypes": [
+        "吸血鬼",
+        "法师"
+      ],
+      "cost": 6,
+      "loyalty": [
+        "蓝色",
+        "蓝色",
+        "蓝色"
+      ],
+      "loyaltyText": "蓝色 / 蓝色 / 蓝色",
+      "color": "蓝",
+      "magic": "鲜血",
+      "icons": {
+        "permanent": {
+          "investigation": 1,
+          "combat": 2,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        }
+      },
+      "defense": 3,
+      "text": "现身触发 你获得本地区的目标人类角色的操控权，该角色额外获得奴仆类别。该能力持续至哈达莎·爱弗罗德离场为止。",
+      "keywords": [],
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/cards.json",
+        "record": "JZ27",
+        "image": "resource/ymsj-fun.github.io/cards/JZ27 哈达莎·爱弗罗德.jpg",
+        "sha256": "33fbdd4a062962b546cdb0d4f368f35b6c4c019908db73a37cfa09aaa237630e"
+      },
+      "unique": true,
+      "society": "王座会",
+      "subtitle": "猩红凝视"
+    },
+    {
+      "id": "JC070",
+      "name": "虔心修士",
+      "subtitle": null,
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "僧侣"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "白色",
+        "白色"
+      ],
+      "loyaltyText": "白色 / 白色",
+      "color": "白",
+      "magic": "神圣",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "公开（该角色不能被秘密派遣为暗藏者）\n声望（当一个地区的所有对抗结束后，在该地区上若你比对手操控更多未横置的声望角色，则你可以在该地区额外放置一个本方势力标志。）",
+      "keywords": [
+        "公开",
+        "声望"
+      ],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JC070",
+        "image": "resource/ymsj-fun.github.io/cards/JC070 虔心修士.jpg",
+        "sha256": "3dd1ef905e2cfb4d806b258fdde0b1ec1fe2adad7868bb5cd7dc0bcf9cfe9e1b"
+      },
+      "unique": false,
+      "society": "圣贤"
+    },
+    {
+      "id": "JC076",
+      "name": "悟道僧人",
+      "subtitle": null,
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "僧侣"
+      ],
+      "cost": 3,
+      "loyalty": [
+        "白色"
+      ],
+      "loyaltyText": "白色",
+      "color": "白",
+      "magic": "神圣",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 2,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "声望（当一个地区的所有对抗结束后，在该地区上若你比对手操控更多未横置的声望角色，则你可以在该地区额外放置一个本方势力标志。）\n【现身触发】抓一张牌。",
+      "keywords": [
+        "声望"
+      ],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JC076",
+        "image": "resource/ymsj-fun.github.io/cards/JC076 悟道僧人.jpg",
+        "sha256": "4390ebf4eabcf44c541303bfb764061c1622cb483ed0e034ee9651571cee27ac"
+      },
+      "unique": false,
+      "society": "圣贤"
+    },
+    {
+      "id": "JC074",
+      "name": "天空的教诲",
+      "subtitle": null,
+      "kind": "spell",
+      "subtypes": [
+        "法术",
+        "预言"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "白色"
+      ],
+      "loyaltyText": "白色",
+      "color": "白",
+      "magic": "星辰",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "【快速】行动：目标角色获得【永久调查】【永久调查】和声望直到回合结束。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JC074",
+        "image": "resource/ymsj-fun.github.io/cards/JC074 天空的教诲.jpg",
+        "sha256": "e34e5bb081f3ee459d99038c68d60f4be4a44af05baa4289759b730045140914"
+      },
+      "unique": false,
+      "society": "圣贤"
+    },
+    {
+      "id": "JC071",
+      "name": "阿瓦隆隐士",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "法师"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "白色"
+      ],
+      "loyaltyText": "白色",
+      "color": "白",
+      "magic": "星辰",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "【快速行动】【横置】本地区的另一个目标本方角色获得防御+1直到回合结束。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JC071",
+        "image": "resource/ymsj-fun.github.io/cards/JC071 阿瓦隆隐士.jpg",
+        "sha256": "85fde88b2a35d595f166d87c0ab27b244198c3919c1f6a381e54e07598f73b67"
+      },
+      "unique": false,
+      "society": "圣贤"
+    },
+    {
+      "id": "JC073",
+      "name": "苏族捕梦网",
+      "kind": "attachment",
+      "subtypes": [
+        "装备",
+        "护身符"
+      ],
+      "cost": 3,
+      "loyalty": [
+        "白色"
+      ],
+      "loyaltyText": "白色",
+      "color": "白",
+      "magic": "星辰",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "结附于目标角色\n【持续】受此结附的角色获得【临时调查】和屏障（不能被敌方的卡牌或能力指定为目标）。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JC073",
+        "image": "resource/ymsj-fun.github.io/cards/JC073 苏族捕梦网.jpg",
+        "sha256": "cebf528de52de72d7400d4c769c2642063342d75a01670e120b5bc71aba23d42"
+      },
+      "unique": false,
+      "society": "圣贤"
+    },
+    {
+      "id": "JC102",
+      "name": "妖火",
+      "kind": "spell",
+      "subtypes": [
+        "法术",
+        "阴"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "紫色"
+      ],
+      "loyaltyText": "紫色",
+      "color": "紫",
+      "magic": "鲜血",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "只能在行动阶段打出。\n【快速】行动：对目标角色造成1点伤害。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JC102",
+        "image": "resource/ymsj-fun.github.io/cards/JC102 妖火.jpg",
+        "sha256": "842fb9f07e9b8afbc0cecd6c224972c5643bad9b710daa518faceb59fc9a3b5d"
+      },
+      "unique": false,
+      "society": "梦境行者"
+    },
+    {
+      "id": "JC132",
+      "name": "构筑静态障壁",
+      "kind": "spell",
+      "subtypes": [
+        "法术",
+        "空间"
+      ],
+      "cost": 4,
+      "loyalty": [
+        "黄色"
+      ],
+      "loyaltyText": "黄色",
+      "color": "中立",
+      "magic": "心灵",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "【标准行动】选择目标地区，横置所有位于该地区的角色。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JC132",
+        "image": "resource/ymsj-fun.github.io/cards/JC132 构筑静态障壁.jpg",
+        "sha256": "219bb4062c3e9053b9fc9d309ad919ebe4b6a98c3af314c6987ca948b3eeb4f1"
+      },
+      "unique": false,
+      "society": ""
+    },
+    {
+      "id": "JC078",
+      "name": "光能盾",
+      "kind": "spell",
+      "subtypes": [
+        "法术",
+        "能量"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "白色"
+      ],
+      "loyaltyText": "白色",
+      "color": "白",
+      "magic": "神圣",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "【快速】行动：本回合中，为目标角色防止接下来将受到的所有伤害。",
+      "keywords": [],
+      "unique": false,
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JC078",
+        "image": "resource/ymsj-fun.github.io/cards/JC078 光能盾.jpg",
+        "sha256": "d238d2c7412349579c00fa4a5a662e9214bdad13df25b8917ae1034251f7e2b9"
+      },
+      "society": "圣贤"
+    },
+    {
+      "id": "XQ14",
+      "name": "鲜血",
+      "kind": "attachment",
+      "subtypes": [
+        "状态"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "蓝色"
+      ],
+      "loyaltyText": "蓝色",
+      "color": "蓝",
+      "magic": "鲜血",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "结附于目标吸血鬼角色\n【持续】受此结附的角色获得防御+1和永久战斗1。",
+      "keywords": [],
+      "unique": false,
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "XQ14",
+        "image": "resource/ymsj-fun.github.io/cards/XQ14 鲜血.jpg",
+        "sha256": "0baea888495adba62a7688be1b95c95b5ffa60d689c104b7ff3a26dd2340ffb2"
+      },
+      "society": "王座会"
+    },
+    {
+      "id": "XQ47",
+      "name": "防弹战术背心",
+      "kind": "attachment",
+      "subtypes": [
+        "装备",
+        "防具"
+      ],
+      "cost": 1,
+      "loyalty": [],
+      "loyaltyText": "",
+      "color": "中立",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "结附于目标角色\n行动②：将防弹战术背心结附在另一个目标角色上。\n持续 受此结附的角色获得防御+1。",
+      "keywords": [],
+      "unique": false,
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "XQ47",
+        "image": "resource/ymsj-fun.github.io/cards/XQ47 防弹战术背心.jpg",
+        "sha256": "9b370fb92ad2e1c3ac6f33d3402ab2c8cbdea1898aae4c4a386f17631d654a03"
+      },
+      "society": ""
+    },
+    {
+      "id": "JC112",
+      "name": "黑猫",
+      "kind": "character",
+      "subtypes": [
+        "猫",
+        "魔宠"
+      ],
+      "cost": 1,
+      "loyalty": [],
+      "loyaltyText": "",
+      "color": "中立",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "公开　不能被装备结附\n【快速行动】牺牲黑猫：本回合中，你下一张正面打出，且具有魔法领域图标的牌，其所需费用减少1。",
+      "keywords": [
+        "公开"
+      ],
+      "unique": false,
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JC112",
+        "image": "resource/ymsj-fun.github.io/cards/JC112 黑猫.jpg",
+        "sha256": "870b526451ed20441601cfed413a99e2e64a266d60daa698bb2066840383bd71"
+      },
+      "society": ""
+    },
+    {
+      "id": "JC116",
+      "name": "柯尔特巨蟒左轮",
+      "kind": "attachment",
+      "subtypes": [
+        "装备",
+        "武器"
+      ],
+      "cost": 1,
+      "loyalty": [],
+      "color": "中立",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "text": "结附于目标角色\n撤回（当所在的地区被赢取时，将该牌移回其拥有者手上，而非置于牌库底。）\n持续：受此结附的角色获得普通永久战斗1。",
+      "keywords": [
+        "撤回"
+      ],
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/JC116 柯尔特巨蟒左轮.jpg",
+        "record": "JC116",
+        "image": "resource/ymsj-fun.github.io/cards/JC116 柯尔特巨蟒左轮.jpg",
+        "sha256": "5a314d56e3d6c660f381e45710dbf0964cf8560cfa170906b3d4e938abb90e16"
+      },
+      "unique": false,
+      "society": ""
+    },
+    {
+      "id": "JC020",
+      "name": "隐蔽的飞刀",
+      "kind": "attachment",
+      "subtypes": [
+        "装备",
+        "武器"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "绿色"
+      ],
+      "color": "绿",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "text": "结附于目标本方角色\n快速行动，横置隐蔽的飞刀：横置本地区的目标暗藏者。\n快速行动，牺牲隐蔽的飞刀：对本地区的目标角色造成1点伤害。",
+      "keywords": [],
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/JC020 隐蔽的飞刀.jpg",
+        "record": "JC020",
+        "image": "resource/ymsj-fun.github.io/cards/JC020 隐蔽的飞刀.jpg",
+        "sha256": "2edb40dfa18d2df22b5b397957d0a03642ade3cee1a10f965bb5e55b0c4f7223"
+      },
+      "unique": false,
+      "society": "猎魔人"
+    },
+    {
+      "id": "JC093",
+      "name": "怨灵咒刃",
+      "kind": "attachment",
+      "subtypes": [
+        "装备",
+        "武器"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "黑色",
+        "黑色"
+      ],
+      "color": "黑",
+      "magic": "死亡",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "text": "结附于目标角色\n快速行动，牺牲一个角色：受此结附的角色获得普通永久战斗1、势力1直到回合结束。该能力每回合至多只能发动两次。",
+      "keywords": [],
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/JC093 怨灵咒刃.jpg",
+        "record": "JC093",
+        "image": "resource/ymsj-fun.github.io/cards/JC093 怨灵咒刃.jpg",
+        "sha256": "ac3398f82103f6d50eb97b6bb3467244834c8e3867fb92c295d3c420b522bdd2"
+      },
+      "unique": false,
+      "society": "方碑序列"
+    },
+    {
+      "id": "XQ07",
+      "name": "圣水",
+      "kind": "attachment",
+      "subtypes": [
+        "装备",
+        "物品"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "绿色"
+      ],
+      "color": "绿",
+      "magic": "神圣",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "text": "结附于目标本方角色\n快速行动，牺牲圣水：所有位于本地区，且具有魔法领域图标的角色，其印刷防御力成为1直到回合结束。",
+      "keywords": [],
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/XQ07 圣水.jpg",
+        "record": "XQ07",
+        "image": "resource/ymsj-fun.github.io/cards/XQ07 圣水.jpg",
+        "sha256": "944a254795fc17e946f7150de9a47649d8c6efa3006770850447503b06a22df9"
+      },
+      "unique": false,
+      "society": "猎魔人"
+    },
+    {
+      "id": "JC130",
+      "name": "深入研究",
+      "kind": "spell",
+      "subtypes": [
+        "事务",
+        "研究"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "白色"
+      ],
+      "loyaltyText": "",
+      "color": "中立",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 0,
+      "text": "【标准行动】抓两张牌，然后弃一张手牌。",
+      "keywords": [],
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/cards.json",
+        "record": "JC130",
+        "image": "resource/ymsj-fun.github.io/cards/JC130 深入研究.jpg",
+        "sha256": "be7d3ec07aea099829f0b01ea506999810091c7b7a202a6bfb0f8ec32eb3055f"
+      },
+      "unique": false,
+      "society": ""
+    },
+    {
+      "id": "JC131",
+      "name": "空投物资",
+      "kind": "spell",
+      "subtypes": [
+        "事务",
+        "策略"
+      ],
+      "cost": 3,
+      "loyalty": [
+        "绿色",
+        "绿色"
+      ],
+      "loyaltyText": "",
+      "color": "中立",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 0,
+      "text": "【标准行动】从你的牌库中寻找一张牌，将该牌置于你的手中，然后将你的牌库洗牌。",
+      "keywords": [],
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/cards.json",
+        "record": "JC131",
+        "image": "resource/ymsj-fun.github.io/cards/JC131 空投物资.jpg",
+        "sha256": "78b1cff75c50f96763ae2cfeb346524e9046f2e3a445a5e00268113365bc976f"
+      },
+      "unique": false,
+      "society": ""
+    },
+    {
+      "id": "JC096",
+      "name": "阿格里帕之犬",
+      "kind": "character",
+      "subtypes": [
+        "狗",
+        "恶魔"
+      ],
+      "cost": 4,
+      "loyalty": [
+        "黑色",
+        "黑色"
+      ],
+      "loyaltyText": "",
+      "color": "黑",
+      "magic": "鲜血",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 2,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 2,
+      "text": "【快速行动】1，【横置】，牺牲一个角色：抓一张牌。",
+      "keywords": [],
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/cards.json",
+        "record": "JC096",
+        "image": "resource/ymsj-fun.github.io/cards/JC096 阿格里帕之犬.jpg",
+        "sha256": "28c1eb001f27dc220b8905ba97d7d396680adda8f7c1b8c9e0f2ec97f4907c7c"
+      },
+      "unique": true,
+      "society": "",
+      "subtitle": "墨菲斯托的化身"
+    },
+    {
+      "id": "XQ17",
+      "name": "祭品",
+      "kind": "character",
+      "subtypes": [
+        "人类"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "红色"
+      ],
+      "loyaltyText": "",
+      "color": "红",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        }
+      },
+      "defense": 1,
+      "text": "【死亡触发】抓一张牌，然后弃一张牌。",
+      "keywords": [],
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/cards.json",
+        "record": "XQ17",
+        "image": "resource/ymsj-fun.github.io/cards/XQ17 祭品.jpg",
+        "sha256": "e5ad8fe27074632eab8d6207eb2e6f08efb69d20f343f2d50701d30f5a5bb5eb"
+      },
+      "unique": false,
+      "society": ""
+    },
+    {
+      "id": "JC114",
+      "name": "好奇的黑客",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "工程师"
+      ],
+      "cost": 2,
+      "loyalty": [],
+      "loyaltyText": "",
+      "color": "中立",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "text": "【标准行动】1，【横置】：目标玩家展示其手牌。你可以从中选择一张牌，并牺牲好奇的黑客，若你如此做，该玩家弃掉你所选择的牌。",
+      "keywords": [],
+      "unique": false,
+      "society": "",
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JC114",
+        "image": "resource/ymsj-fun.github.io/cards/JC114 好奇的黑客.jpg",
+        "sha256": "2cd5cc66ceb3c9a8f9d07d341558489adb170dcb680331c7620e5f1162be12c7"
+      },
+      "subtitle": "无知而无畏",
+      "defense": 1
+    },
+    {
+      "id": "XQ34",
+      "name": "灵感",
+      "kind": "spell",
+      "subtypes": [
+        "事务",
+        "研究"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "白色"
+      ],
+      "loyaltyText": "",
+      "color": "白",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "text": "【快速行动】抓一张牌。\n【手牌触发】当你从手中弃掉灵感时，你可以支付1，若你如此做，抓一张牌。",
+      "keywords": [],
+      "unique": false,
+      "society": "",
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "XQ34",
+        "image": "resource/ymsj-fun.github.io/cards/XQ34 灵感.jpg",
+        "sha256": "2ca1f5a4b25d308f8af13a7a80018010deaf93f9abe2275bef1fa7656be13e04"
+      }
+    },
+    {
+      "id": "XQ38",
+      "name": "金特·易卜拉欣",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "学者"
+      ],
+      "cost": 3,
+      "loyalty": [
+        "黑色",
+        "黑色"
+      ],
+      "loyaltyText": "",
+      "color": "黑",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 2,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "text": "【进场触发】将目标玩家牌库顶的三张牌置于其墓地。\n【标准行动】2，【横置】，弃一张手牌：将你墓地中的目标角色牌置于你的手中。",
+      "keywords": [],
+      "unique": true,
+      "society": "",
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "XQ38",
+        "image": "resource/ymsj-fun.github.io/cards/XQ38 金特·易卜拉欣.jpg",
+        "sha256": "26c8311674325491157577a3d295c148ce1c6f27ded59c4d27979faf58e9204e"
+      },
+      "subtitle": "死灵学专家",
+      "defense": 2
+    },
+    {
+      "id": "JZ67",
+      "name": "失忆",
+      "kind": "spell",
+      "subtypes": [
+        "事务",
+        "突发状况"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "紫色"
+      ],
+      "loyaltyText": "",
+      "color": "紫",
+      "magic": "心灵",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "text": "行动 目标玩家随机选择一张手牌，展示该牌并将其置于其拥有者的牌库顶。预测2。若你操控梦魔角色，你可以令该玩家洗牌。",
+      "keywords": [],
+      "unique": false,
+      "society": "",
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JZ67",
+        "image": "resource/ymsj-fun.github.io/cards/JZ67 失忆.jpg",
+        "sha256": "a6554b81e081c7292a32f2bf13ce269f276580f9a852e1df232c60c2c36ff477"
+      }
+    },
+    {
+      "id": "JC103",
+      "name": "丧失理智的画家",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "艺术家"
+      ],
+      "cost": 3,
+      "loyalty": [
+        "紫色"
+      ],
+      "loyaltyText": "",
+      "color": "紫",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        }
+      },
+      "text": "【快速】行动【横置】：本回合中你下一张正面打出或付费翻面的【紫】牌，所需费用减少1。",
+      "keywords": [],
+      "unique": false,
+      "society": "",
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JC103",
+        "image": "resource/ymsj-fun.github.io/cards/JC103 丧失理智的画家.jpg",
+        "sha256": "8eee910793908999e04487b65f0e9a398d11ef5b307b360ba6e9d2012adaed63"
+      },
+      "defense": 1
+    },
+    {
+      "id": "JC107",
+      "name": "崩塌的时空",
+      "kind": "spell",
+      "subtypes": [
+        "事务",
+        "灾难"
+      ],
+      "cost": 3,
+      "loyalty": [
+        "紫色",
+        "紫色"
+      ],
+      "loyaltyText": "",
+      "color": "紫",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "text": "【标准行动】消灭目标附属或资产。",
+      "keywords": [],
+      "unique": false,
+      "society": "",
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JC107",
+        "image": "resource/ymsj-fun.github.io/cards/JC107 崩塌的时空.jpg",
+        "sha256": "ce402d531c9c9bb28da130de0627b4860ced56fb0fa7db1d487082c36e0462e2"
+      }
+    },
+    {
+      "id": "JZ59",
+      "name": "骇人畸变体",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "宿主"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "紫色"
+      ],
+      "loyaltyText": "紫色",
+      "color": "紫",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "死亡触发 对本地区的目标角色造成1点创伤。",
+      "supported": true,
+      "unique": false,
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/JZ59 骇人畸变体.jpg",
+        "sha256": "b43bf4fc74654c089cf10429306980c2af12743d57d60b603efae03b28eae5f3",
+        "basis": "actual original fields checked against hegemony symbol legend"
+      }
+    },
+    {
+      "id": "LC12",
+      "name": "阿瓦隆隐士",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "法师"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "白色"
+      ],
+      "loyaltyText": "白色",
+      "color": "白",
+      "magic": "星辰",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "快速行动 横置：本地区的另一个目标本方角色获得防御+1直到回合结束。",
+      "supported": true,
+      "unique": false,
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/LC12 阿瓦隆隐士.jpg",
+        "sha256": "2a13b5e0bf5fa11f320bcf31141cf0e68915a949f9031cd112b5c650420285cf",
+        "basis": "actual original fields checked against hegemony symbol legend"
+      }
+    },
+    {
+      "id": "JZ58",
+      "name": "噩梦残像",
+      "kind": "character",
+      "subtypes": [
+        "梦魔"
+      ],
+      "cost": 0,
+      "loyalty": [
+        "紫色"
+      ],
+      "loyaltyText": "紫色",
+      "color": "紫",
+      "magic": "星辰",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        }
+      },
+      "defense": 1,
+      "text": "灵体\n现身触发 遏制1。",
+      "supported": true,
+      "unique": false,
+      "keywords": [
+        "灵体"
+      ],
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/JZ58 噩梦残像.jpg",
+        "sha256": "4cb1892b435cc14fd3f9d8310b428a16eaf5cc5afe1c870760a3dcc457d4dd95",
+        "basis": "actual original fields and Hegemony spirit/repression terms checked"
+      }
+    },
+    {
+      "id": "JZ61",
+      "name": "暗夜访客",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "宿主"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "紫色"
+      ],
+      "loyaltyText": "紫色",
+      "color": "紫",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "死亡触发 从你的牌库中寻找一张名为噩梦残像的角色牌，展示该牌后置于你的手中，然后洗牌。",
+      "supported": true,
+      "unique": false,
+      "keywords": [],
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/JZ61 暗夜访客.jpg",
+        "sha256": "5da40b475c306d3a295a6582576b9b720c8707050bdedfea3005b92578e4e37f",
+        "basis": "actual original fields and Hegemony spirit/repression terms checked"
+      }
+    },
+    {
+      "id": "JZ74",
+      "name": "意外事故",
+      "kind": "spell",
+      "subtypes": [
+        "突发状况"
+      ],
+      "cost": 1,
+      "loyalty": [],
+      "loyaltyText": "",
+      "color": "中立",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "快速行动 遏制1。抓一张牌。",
+      "supported": true,
+      "unique": false,
+      "keywords": [],
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/JZ74 意外事故.jpg",
+        "sha256": "3915ef2565eff330862507076c052942322e59f47039f31f7c0ebe658181f085",
+        "basis": "actual original card fields and basic asset rules checked"
+      }
+    },
+    {
+      "id": "JC126",
+      "name": "产业扩张",
+      "kind": "spell",
+      "subtypes": [
+        "策略"
+      ],
+      "cost": 3,
+      "loyalty": [
+        "蓝色"
+      ],
+      "loyaltyText": "蓝色",
+      "color": "中立",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "标准行动 将你牌库顶的一张牌正面置入你的资产区，令其成为一个资产。",
+      "supported": true,
+      "unique": false,
+      "keywords": [],
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/JC126 产业扩张.jpg",
+        "sha256": "33ed0032c1e6983f25be998c66891f137f2f0975031493883f6cc1a9bb5e40e0",
+        "basis": "actual original card fields and basic asset rules checked"
+      }
     }
   ],
   "decks": [

@@ -7,6 +7,18 @@ use crate::{
 };
 
 impl Game {
+    pub(crate) fn reattach_source(&mut self, source_id: &str, target_id: &str) {
+        let Some(index) = self.attachments.iter().position(|a| a.card.id == source_id) else {
+            self.note("转移结附的来源已离场，效果不再改变场上对象".into());
+            return;
+        };
+        self.attachments[index].host_id = target_id.into();
+        self.note(format!(
+            "{} 转移结附",
+            card(&self.attachments[index].card.definition).name
+        ));
+        self.settle_deaths();
+    }
     pub(crate) fn prepare_region_return(&mut self, region: usize) -> Result<(), String> {
         if self.region_return.is_some() || region >= self.regions.len() {
             return Err("赢区回底批次无效".into());
@@ -103,13 +115,13 @@ impl Game {
                 .host
                 .subtype
                 .as_ref()
-                .is_none_or(|s| d.subtypes.contains(s))
+                .is_none_or(|s| self.target_subtypes(host, &spec.host).contains(s))
             && (spec.host.subtypes_any.is_empty()
                 || spec
                     .host
                     .subtypes_any
                     .iter()
-                    .any(|s| d.subtypes.contains(s)))
+                    .any(|s| self.target_subtypes(host, &spec.host).contains(s)))
     }
     pub(crate) fn host_leaves(&mut self, host_id: &str) {
         let all = std::mem::take(&mut self.attachments);
@@ -143,7 +155,11 @@ impl Game {
         if self.board(id).is_some() {
             self.host_leaves(id);
         }
-        self.remove_board(id)
+        let removed = self.remove_board(id);
+        // Removed snapshots retain their last controller for death triggers.
+        // The old target/source identity cannot carry its effects into a new one.
+        self.settle_controls();
+        removed
     }
     pub(crate) fn settle_attachments(&mut self) {
         let invalid = self
@@ -279,6 +295,8 @@ mod tests {
         let (r, c) = g.board(source).unwrap();
         let snapshot = g.source_snapshot(c, Some(r));
         let spec = AbilitySpec {
+            play_only: false,
+            activation_only: false,
             key: "lifecycle-fixture".into(),
             label: "primitive fixture".into(),
             timing: Timing::Fast,
@@ -289,6 +307,8 @@ mod tests {
             event: None,
             modes: vec![],
             requires_ready_source: false,
+            once_per_game: false,
+            per_turn_limit: None,
         };
         let frame = g.make_frame(c.controller, snapshot, &spec, vec![], vec![], None);
         g.resolve_frame(frame).unwrap();

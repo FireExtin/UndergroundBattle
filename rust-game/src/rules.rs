@@ -1,7 +1,11 @@
 //! Finite typed rule declarations. Card identifiers occur only in this binding table.
-use crate::model::Icons;
+use crate::model::{Icons, SubtypeChange};
 use serde::{Deserialize, Serialize};
 use std::{collections::BTreeMap, sync::OnceLock};
+
+fn is_zero(value: &u32) -> bool {
+    *value == 0
+}
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum Timing {
@@ -17,12 +21,14 @@ pub enum ResponsePolicy {
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum Event {
+    HandDiscard,
     Enter,
     EnterRegion,
     Reveal,
     Death,
     ConfrontationStart,
     RegionWon,
+    RegionConfrontationsEnded,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Cost {
@@ -30,9 +36,11 @@ pub enum Cost {
     ExhaustSource,
     SacrificeSource,
     SacrificeSelectedControlledCharacter,
+    DiscardSelectedHandCard,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum Zone {
+    AttachmentOrAsset,
     Board,
     Graveyard,
     Player,
@@ -72,6 +80,8 @@ pub struct TargetSlotSpec {
     pub range: Range,
     pub subtype: Option<String>,
     #[serde(default)]
+    pub printed_subtype: bool,
+    #[serde(default)]
     pub subtypes_any: Vec<String>,
     #[serde(default)]
     pub printed_cost_max: Option<u32>,
@@ -81,6 +91,8 @@ pub struct TargetSlotSpec {
     pub requires_magic: bool,
     #[serde(default)]
     pub exclude_source: bool,
+    #[serde(default, skip_serializing_if = "crate::model::is_false")]
+    pub exclude_attachment_host: bool,
     #[serde(default)]
     pub attachment_host_condition: Option<AttachmentHostCondition>,
     pub min: usize,
@@ -132,8 +144,14 @@ pub enum MagicIcon {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum CardFilter {
+    NamedCharacter(String),
+    PrintedColor(String),
     Any,
+    HasPrintedMagic,
     Kind(String),
+    PrintedColorAndUnique {
+        color: String,
+    },
     SocietyOrMagic {
         society: String,
         magic: MagicIcon,
@@ -146,10 +164,18 @@ pub enum CardFilter {
 impl CardFilter {
     pub(crate) fn matches(&self, definition: &crate::catalog::CardDefinition) -> bool {
         match self {
+            Self::PrintedColor(color) => definition.color == *color,
             Self::Any => true,
+            Self::HasPrintedMagic => definition.magic_icon != MagicIcon::None,
             Self::Kind(kind) => definition.kind == *kind,
+            Self::PrintedColorAndUnique { color } => {
+                definition.color == *color && definition.unique
+            }
             Self::SocietyOrMagic { society, magic } => {
                 definition.society == *society || definition.magic_icon == *magic
+            }
+            Self::NamedCharacter(name) => {
+                definition.kind == "character" && definition.name == *name
             }
             Self::PrintedCostAndSubtypes { max_cost, subtypes } => {
                 definition.cost <= *max_cost
@@ -164,9 +190,77 @@ impl CardFilter {
         }
     }
 }
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Serialize, Deserialize)]
+pub enum SearchVisibility {
+    #[default]
+    Reveal,
+    Private,
+}
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    RepressOpponentOne {
+        slot: usize,
+    },
+    // JC126 only: resolve the actor's current top card into their asset area.
+    MoveActorDeckTopToAsset,
+    WoundTarget {
+        slot: usize,
+        amount: u32,
+    },
+    DestroyPublicAttachmentOrAsset {
+        slot: usize,
+    },
+    CostReductionOnFaceUpOrPaidReveal {
+        filter: CardFilter,
+        amount: u32,
+    },
+    RevealHandAndOfferSourceSacrifice {
+        player: PlayerRef,
+    },
+    RandomHandToOwnerDeckTop {
+        player: PlayerRef,
+    },
+    MoveDeckTopToGraveyard {
+        player: PlayerRef,
+        count: usize,
+    },
+    OfferShuffleIfActorControlsDreamDemon {
+        player: PlayerRef,
+    },
+    GainControl {
+        slot: usize,
+        until_source_leaves: bool,
+        subtype_change: SubtypeChange,
+    },
     Exhaust(EntityRef),
+    DamageTarget {
+        slot: usize,
+        amount: u32,
+    },
+    PreventTargetDamageUntilTurnEnd {
+        slot: usize,
+    },
+    ReattachSource {
+        slot: usize,
+    },
+    ModifyTargetUntilTurnEnd {
+        slot: usize,
+        defense_bonus: u32,
+        ordinary_icons: Icons,
+        #[serde(default, skip_serializing_if = "crate::model::is_false")]
+        grants_renown: bool,
+    },
+    // The admitted weapon grants exactly these two ordinary icons to its
+    // snapshotted host, without targeting or consulting its later attachment.
+    ModifyAttachmentHostUntilTurnEnd,
+    // Non-targeted resolution-time selection in the snapshotted source region.
+    SetLocalMagicPrintedDefenseToOneUntilTurnEnd,
+    // Exact region identity prevents an already declared reward reaching a
+    // replacement region. Only the finite merged renown trigger uses this op.
+    PlaceInfluence {
+        region_instance: String,
+        amount: u32,
+    },
     // A finite single-board-target query, evaluated only after the frame guard.
     // Branches are restricted to existing atomic Exhaust / OwnerHand operations.
     IfTargetExhausted {
@@ -225,6 +319,8 @@ pub enum Op {
         filter: CardFilter,
         to_top: bool,
         optional: bool,
+        #[serde(default)]
+        visibility: SearchVisibility,
     },
     ExhaustMatching(BoardSelector),
     DamageMatching {
@@ -252,6 +348,10 @@ pub struct Mode {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct AbilitySpec {
+    #[serde(default, skip_serializing_if = "crate::model::is_false")]
+    pub play_only: bool,
+    #[serde(default, skip_serializing_if = "crate::model::is_false")]
+    pub activation_only: bool,
     pub key: String,
     pub label: String,
     pub timing: Timing,
@@ -263,9 +363,17 @@ pub struct AbilitySpec {
     pub event: Option<Event>,
     pub modes: Vec<Mode>,
     pub requires_ready_source: bool,
+    #[serde(default)]
+    pub once_per_game: bool,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub per_turn_limit: Option<u32>,
 }
 #[derive(Clone, Debug, Default, Serialize, Deserialize)]
 pub struct Traits {
+    #[serde(default, skip_serializing_if = "crate::model::is_false")]
+    pub spirit: bool,
+    #[serde(default, skip_serializing_if = "crate::model::is_false")]
+    pub renown: bool,
     pub public: bool,
     pub barrier: bool,
     pub guard: u32,
@@ -277,6 +385,7 @@ pub struct Traits {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum StaticModifier {
+    PeekOwnDeckTop,
     NoEnemyCharacters(Icons, Icons),
     OtherFriendlyCharactersDefense(u32),
     ConditionalIcons {
@@ -297,8 +406,18 @@ pub enum HostLeaveDestination {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct AttachmentSpec {
+    #[serde(default)]
+    pub controls_host: bool,
+    #[serde(default)]
+    pub host_subtype_change: SubtypeChange,
     pub host: TargetSlotSpec,
     pub host_icons: Icons,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub host_temporary_icons: Option<Icons>,
+    #[serde(default, skip_serializing_if = "crate::model::is_false")]
+    pub host_barrier: bool,
+    #[serde(default, skip_serializing_if = "is_zero")]
+    pub host_defense_bonus: u32,
     pub host_leaves: HostLeaveDestination,
 }
 #[derive(Clone, Debug, Default, Serialize, Deserialize)]
@@ -313,6 +432,203 @@ pub struct Definition {
 // These are interpreter limits, not rules for resolving partially invalid targets.
 // Reject unsupported declarations before publishing actions or offering trigger choices.
 pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(), String> {
+    if ability.modes.iter().any(|m| {
+        m.ops.iter().any(|op| {
+            matches!(
+                op,
+                Op::RepressOpponentOne { .. } | Op::MoveActorDeckTopToAsset
+            )
+        })
+    }) {
+        return Err(format!(
+            "{card_id}: admitted repression and expansion cannot be mode operations"
+        ));
+    }
+    if ability
+        .targets
+        .iter()
+        .any(|t| t.zone == Zone::AttachmentOrAsset)
+        && (card_id != "JC107"
+            || ability.targets.len() != 1
+            || ability.targets[0].kind != EntityKind::Any
+            || ability.targets[0].relation != Relation::Any
+            || ability.targets[0].range != Range::Anywhere
+            || !matches!(
+                ability.ops.as_slice(),
+                [Op::DestroyPublicAttachmentOrAsset { slot: 0 }]
+            ))
+    {
+        return Err(format!(
+            "{card_id}: only the admitted one attachment-or-asset destruction is supported"
+        ));
+    }
+    for op in &ability.ops {
+        if let Op::Search {
+            filter: CardFilter::NamedCharacter(name),
+            player,
+            to_top,
+            visibility,
+            ..
+        } = op
+        {
+            if card_id != "JZ61"
+                || name != "噩梦残像"
+                || !matches!(player, PlayerRef::Actor)
+                || *to_top
+                || *visibility != SearchVisibility::Reveal
+                || ability.event != Some(Event::Death)
+                || !ability.targets.is_empty()
+                || !ability.costs.is_empty()
+                || ability.ops.len() != 1
+            {
+                return Err(format!(
+                    "{card_id}: only the admitted named-character death search is supported"
+                ));
+            }
+        }
+        match op {
+            Op::RepressOpponentOne { slot }
+                if *slot != 0
+                    || !(card_id == "JZ58"
+                        && ability.ops.len() == 1
+                        && ability.event == Some(Event::Reveal)
+                        || card_id == "JZ74"
+                            && ability.play_only
+                            && ability.modes.is_empty()
+                            && ability.timing == Timing::Fast
+                            && ability.event.is_none()
+                            && matches!(ability.ops.as_slice(), [Op::RepressOpponentOne { slot: 0 }, Op::Draw { player: PlayerRef::Actor, count: 1, end: DeckEnd::Top }]))
+                    || !ability.costs.is_empty()
+                    || ability.targets.len() != 1
+                    || ability.targets[0].zone != Zone::Player
+                    || ability.targets[0].relation != Relation::EnemyTeam
+                    || ability.targets[0].range != Range::Anywhere =>
+            {
+                return Err(format!(
+                    "{card_id}: only the admitted reveal repression or repression-then-draw is supported"
+                ))
+            }
+            Op::MoveActorDeckTopToAsset
+                if card_id != "JC126"
+                    || !ability.play_only
+                    || !ability.modes.is_empty()
+                    || ability.timing != Timing::Standard
+                    || ability.event.is_some()
+                    || !ability.costs.is_empty()
+                    || !ability.targets.is_empty()
+                    || ability.ops.len() != 1 =>
+            {
+                return Err(format!(
+                    "{card_id}: only the admitted actor deck-top asset expansion is supported"
+                ))
+            }
+
+            Op::WoundTarget { slot, amount }
+                if card_id != "JZ59"
+                    || *slot != 0
+                    || *amount != 1
+                    || ability.event != Some(Event::Death)
+                    || !ability.costs.is_empty()
+                    || ability.targets.len() != 1
+                    || ability.targets[0].zone != Zone::Board
+                    || ability.targets[0].kind != EntityKind::Character
+                    || ability.targets[0].relation != Relation::Any
+                    || ability.targets[0].range != Range::SourceRegion =>
+            {
+                return Err(format!(
+                    "{card_id}: only the admitted one local death wound is supported"
+                ))
+            }
+            Op::DestroyPublicAttachmentOrAsset { slot }
+                if card_id != "JC107"
+                    || *slot != 0
+                    || !ability
+                        .targets
+                        .first()
+                        .is_some_and(|t| t.zone == Zone::AttachmentOrAsset) =>
+            {
+                return Err(format!(
+                    "{card_id}: invalid admitted public destruction target"
+                ))
+            }
+            Op::CostReductionOnFaceUpOrPaidReveal { filter, amount }
+                if card_id != "JC103"
+                    || *amount != 1
+                    || !matches!(filter,CardFilter::PrintedColor(c)if c=="紫")
+                    || !ability.targets.is_empty()
+                    || !matches!(ability.costs.as_slice(), [Cost::ExhaustSource]) =>
+            {
+                return Err(format!(
+                    "{card_id}: invalid admitted purple paid-reveal discount"
+                ))
+            }
+            _ => {}
+        }
+    }
+    if ability.event == Some(Event::HandDiscard)
+        && (card_id != "XQ34"
+            || !matches!(ability.costs.as_slice(), [Cost::Assets(1)])
+            || !matches!(
+                ability.ops.as_slice(),
+                [Op::Draw {
+                    player: PlayerRef::Actor,
+                    count: 1,
+                    end: DeckEnd::Top
+                }]
+            )
+            || !ability.targets.is_empty())
+    {
+        return Err(format!(
+            "{card_id}: only the admitted paid self-discard draw trigger is supported"
+        ));
+    }
+    if ability
+        .costs
+        .iter()
+        .any(|c| matches!(c, Cost::DiscardSelectedHandCard))
+        && (card_id != "XQ38"
+            || !ability.activation_only
+            || ability.event.is_some()
+            || !matches!(
+                ability.costs.as_slice(),
+                [
+                    Cost::Assets(2),
+                    Cost::ExhaustSource,
+                    Cost::DiscardSelectedHandCard
+                ]
+            ))
+    {
+        return Err(format!(
+            "{card_id}: only the admitted grave recovery hand-discard cost is supported"
+        ));
+    }
+    if let Some(limit) = ability.per_turn_limit {
+        if limit != 2
+            || !ability.activation_only
+            || ability.event.is_some()
+            || !matches!(
+                ability.costs.as_slice(),
+                [Cost::SacrificeSelectedControlledCharacter]
+            )
+            || !matches!(
+                ability.ops.as_slice(),
+                [Op::ModifyAttachmentHostUntilTurnEnd]
+            )
+            || !ability.modes.is_empty()
+        {
+            return Err(format!(
+                "{card_id}: only the admitted twice-per-turn host grant is supported"
+            ));
+        }
+    }
+    if ability.play_only && ability.activation_only {
+        return Err(format!("{card_id}: conflicting action roles"));
+    }
+    if ability.once_per_game && ability.event.is_some() {
+        return Err(format!(
+            "{card_id}: game-limited abilities must be declared actions"
+        ));
+    }
     fn validate_program(
         location: &str,
         targets: &[TargetSlotSpec],
@@ -345,6 +661,95 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
             }
         }
         for op in ops {
+            if let Op::RevealHandAndOfferSourceSacrifice { player }
+            | Op::RandomHandToOwnerDeckTop { player }
+            | Op::MoveDeckTopToGraveyard { player, .. }
+            | Op::OfferShuffleIfActorControlsDreamDemon { player } = op
+            {
+                if !matches!(player, PlayerRef::Target(0))
+                    || !targets
+                        .first()
+                        .is_some_and(|slot| slot.zone == Zone::Player)
+                {
+                    return Err(format!(
+                        "{location}: admitted hand/deck effect requires its bound player"
+                    ));
+                }
+            }
+            if matches!(
+                op,
+                Op::ModifyAttachmentHostUntilTurnEnd
+                    | Op::SetLocalMagicPrintedDefenseToOneUntilTurnEnd
+            ) && !targets.is_empty()
+            {
+                return Err(format!(
+                    "{location}: host and local printed-defense effects are non-targeted"
+                ));
+            }
+            if let Op::PreventTargetDamageUntilTurnEnd { slot } | Op::ReattachSource { slot } = op {
+                if !targets.get(*slot).is_some_and(|target| {
+                    target.zone == Zone::Board && target.kind == EntityKind::Character
+                }) {
+                    return Err(format!(
+                        "{location}: protection or reattachment requires one bound board character"
+                    ));
+                }
+                if matches!(op, Op::ReattachSource { .. }) && !targets[*slot].equipment_host {
+                    return Err(format!(
+                        "{location}: reattachment requires an equipment host guard"
+                    ));
+                }
+            }
+            if let Op::DamageTarget { slot, amount } = op {
+                if *amount != 1
+                    || !targets.get(*slot).is_some_and(|target| {
+                        target.zone == Zone::Board && target.kind == EntityKind::Character
+                    })
+                {
+                    return Err(format!(
+                        "{location}: damage requires one bound board character and one damage"
+                    ));
+                }
+            }
+            if let Op::GainControl { slot, .. } = op {
+                if !targets
+                    .get(*slot)
+                    .is_some_and(|t| t.zone == Zone::Board && t.kind == EntityKind::Character)
+                {
+                    return Err(format!(
+                        "{location}: control requires a bound board character"
+                    ));
+                }
+            }
+            if let Op::ModifyTargetUntilTurnEnd {
+                slot,
+                defense_bonus,
+                ordinary_icons,
+                grants_renown,
+            } = op
+            {
+                if !targets.get(*slot).is_some_and(|target| {
+                    target.zone == Zone::Board && target.kind == EntityKind::Character
+                }) || (*defense_bonus == 0
+                    && *ordinary_icons == Icons::default()
+                    && !grants_renown)
+                {
+                    return Err(format!(
+                        "{location}: turn attribute bonus requires a bound board character and a nonempty bonus"
+                    ));
+                }
+            }
+            if let Op::PlaceInfluence {
+                region_instance,
+                amount,
+            } = op
+            {
+                if region_instance.is_empty() || *amount != 1 || !targets.is_empty() {
+                    return Err(format!(
+                        "{location}: renown requires an exact region and one influence"
+                    ));
+                }
+            }
             if let Op::IfTargetExhausted {
                 slot,
                 exhausted,
@@ -371,7 +776,17 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
                         op,
                         Op::ForEachLivingPlayer(_)
                             | Op::ForEachLivingPlayerFromActor(_)
+                            | Op::RepressOpponentOne { .. }
+                            | Op::MoveActorDeckTopToAsset
                             | Op::IfTargetExhausted { .. }
+                            | Op::ModifyTargetUntilTurnEnd { .. }
+                            | Op::GainControl { .. }
+                            | Op::PlaceInfluence { .. }
+                            | Op::DamageTarget { .. }
+                            | Op::PreventTargetDamageUntilTurnEnd { .. }
+                            | Op::ReattachSource { .. }
+                            | Op::ModifyAttachmentHostUntilTurnEnd
+                            | Op::SetLocalMagicPrintedDefenseToOneUntilTurnEnd
                     )
                 }) {
                     return Err(format!(
@@ -434,11 +849,13 @@ fn target(zone: Zone, kind: EntityKind, relation: Relation, range: Range) -> Tar
         relation,
         range,
         subtype: None,
+        printed_subtype: false,
         subtypes_any: vec![],
         printed_cost_max: None,
         equipment_host: false,
         requires_magic: false,
         exclude_source: false,
+        exclude_attachment_host: false,
         attachment_host_condition: None,
         min: 1,
         max: 1,
@@ -454,6 +871,8 @@ fn ability(
     event: Option<Event>,
 ) -> AbilitySpec {
     AbilitySpec {
+        play_only: false,
+        activation_only: false,
         key: key.into(),
         label: label.into(),
         timing,
@@ -464,6 +883,8 @@ fn ability(
         event,
         modes: vec![],
         requires_ready_source: false,
+        once_per_game: false,
+        per_turn_limit: None,
     }
 }
 fn with_abilities(abilities: Vec<AbilitySpec>) -> Definition {
@@ -478,6 +899,340 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
     DEFINITIONS.get_or_init(|| {
         use EntityRef::{Source, Target};
         use PlayerRef::{Actor, Context};
+        let mut m = BTreeMap::new();
+        let mut accident = ability(
+            "repress-draw",
+            "快速行动",
+            Timing::Fast,
+            vec![],
+            vec![target(
+                Zone::Player,
+                EntityKind::Any,
+                Relation::EnemyTeam,
+                Range::Anywhere,
+            )],
+            vec![
+                Op::RepressOpponentOne { slot: 0 },
+                Op::Draw {
+                    player: Actor,
+                    count: 1,
+                    end: DeckEnd::Top,
+                },
+            ],
+            None,
+        );
+        accident.play_only = true;
+        m.insert("JZ74".into(), with_abilities(vec![accident]));
+        let mut expansion = ability(
+            "expand-assets",
+            "标准行动",
+            Timing::Standard,
+            vec![],
+            vec![],
+            vec![Op::MoveActorDeckTopToAsset],
+            None,
+        );
+        expansion.play_only = true;
+        m.insert("JC126".into(), with_abilities(vec![expansion]));
+        m.insert(
+            "JZ58".into(),
+            Definition {
+                traits: Traits {
+                    spirit: true,
+                    ..Default::default()
+                },
+                abilities: vec![ability(
+                    "reveal-repress",
+                    "现身触发",
+                    Timing::Fast,
+                    vec![],
+                    vec![target(
+                        Zone::Player,
+                        EntityKind::Any,
+                        Relation::EnemyTeam,
+                        Range::Anywhere,
+                    )],
+                    vec![Op::RepressOpponentOne { slot: 0 }],
+                    Some(Event::Reveal),
+                )],
+                ..Default::default()
+            },
+        );
+        m.insert(
+            "JZ61".into(),
+            with_abilities(vec![ability(
+                "death-find-nightmare",
+                "死亡触发",
+                Timing::Fast,
+                vec![],
+                vec![],
+                vec![Op::Search {
+                    player: PlayerRef::Actor,
+                    filter: CardFilter::NamedCharacter("噩梦残像".into()),
+                    to_top: false,
+                    optional: true,
+                    visibility: SearchVisibility::Reveal,
+                }],
+                Some(Event::Death),
+            )]),
+        );
+        m.insert(
+            "JZ59".into(),
+            with_abilities(vec![ability(
+                "death-local-wound",
+                "死亡触发",
+                Timing::Fast,
+                vec![],
+                vec![target(
+                    Zone::Board,
+                    EntityKind::Character,
+                    Relation::Any,
+                    Range::SourceRegion,
+                )],
+                vec![Op::WoundTarget { slot: 0, amount: 1 }],
+                Some(Event::Death),
+            )]),
+        );
+        let mut hermit_target = target(
+            Zone::Board,
+            EntityKind::Character,
+            Relation::ControlledByActor,
+            Range::SourceRegion,
+        );
+        hermit_target.exclude_source = true;
+        let mut hermit = ability(
+            "protect-local-character",
+            "快速行动",
+            Timing::Fast,
+            vec![Cost::ExhaustSource],
+            vec![hermit_target],
+            vec![Op::ModifyTargetUntilTurnEnd {
+                slot: 0,
+                defense_bonus: 1,
+                ordinary_icons: Icons::default(),
+                grants_renown: false,
+            }],
+            None,
+        );
+        hermit.activation_only = true;
+        m.insert("LC12".into(), with_abilities(vec![hermit]));
+        let mut painter = ability(
+            "reduce-next-purple",
+            "快速行动",
+            Timing::Fast,
+            vec![Cost::ExhaustSource],
+            vec![],
+            vec![Op::CostReductionOnFaceUpOrPaidReveal {
+                filter: CardFilter::PrintedColor("紫".into()),
+                amount: 1,
+            }],
+            None,
+        );
+        painter.activation_only = true;
+        painter.response_policy = ResponsePolicy::Immediate;
+        m.insert("JC103".into(), with_abilities(vec![painter]));
+        let mut collapse = ability(
+            "destroy-attachment-or-asset",
+            "标准行动",
+            Timing::Standard,
+            vec![],
+            vec![target(
+                Zone::AttachmentOrAsset,
+                EntityKind::Any,
+                Relation::Any,
+                Range::Anywhere,
+            )],
+            vec![Op::DestroyPublicAttachmentOrAsset { slot: 0 }],
+            None,
+        );
+        collapse.play_only = true;
+        m.insert("JC107".into(), with_abilities(vec![collapse]));
+        let any_player = target(
+            Zone::Player,
+            EntityKind::Any,
+            Relation::Any,
+            Range::Anywhere,
+        );
+        m.insert(
+            "JC114".into(),
+            with_abilities(vec![ability(
+                "reveal-hand-discard",
+                "标准行动",
+                Timing::Standard,
+                vec![Cost::Assets(1), Cost::ExhaustSource],
+                vec![any_player.clone()],
+                vec![Op::RevealHandAndOfferSourceSacrifice {
+                    player: PlayerRef::Target(0),
+                }],
+                None,
+            )]),
+        );
+        let mut inspiration = ability(
+            "inspiration-draw",
+            "快速行动",
+            Timing::Fast,
+            vec![],
+            vec![],
+            vec![Op::Draw {
+                player: Actor,
+                count: 1,
+                end: DeckEnd::Top,
+            }],
+            None,
+        );
+        inspiration.play_only = true;
+        m.insert(
+            "XQ34".into(),
+            with_abilities(vec![
+                inspiration,
+                ability(
+                    "discard-draw",
+                    "手牌触发",
+                    Timing::Fast,
+                    vec![Cost::Assets(1)],
+                    vec![],
+                    vec![Op::Draw {
+                        player: Actor,
+                        count: 1,
+                        end: DeckEnd::Top,
+                    }],
+                    Some(Event::HandDiscard),
+                ),
+            ]),
+        );
+        let mut recover = ability(
+            "recover-grave-discard",
+            "标准行动",
+            Timing::Standard,
+            vec![
+                Cost::Assets(2),
+                Cost::ExhaustSource,
+                Cost::DiscardSelectedHandCard,
+            ],
+            vec![target(
+                Zone::Graveyard,
+                EntityKind::Character,
+                Relation::OwnedByActor,
+                Range::Anywhere,
+            )],
+            vec![Op::Move(Target(0), Destination::ActorHand)],
+            None,
+        );
+        recover.activation_only = true;
+        m.insert(
+            "XQ38".into(),
+            with_abilities(vec![
+                ability(
+                    "mill-entry",
+                    "进场触发",
+                    Timing::Fast,
+                    vec![],
+                    vec![any_player.clone()],
+                    vec![Op::MoveDeckTopToGraveyard {
+                        player: PlayerRef::Target(0),
+                        count: 3,
+                    }],
+                    Some(Event::Enter),
+                ),
+                recover,
+            ]),
+        );
+        let mut amnesia = ability(
+            "amnesia",
+            "标准行动",
+            Timing::Standard,
+            vec![],
+            vec![any_player],
+            vec![
+                Op::RandomHandToOwnerDeckTop {
+                    player: PlayerRef::Target(0),
+                },
+                Op::Forecast {
+                    player: Actor,
+                    count: 2,
+                },
+                Op::OfferShuffleIfActorControlsDreamDemon {
+                    player: PlayerRef::Target(0),
+                },
+            ],
+            None,
+        );
+        amnesia.play_only = true;
+        m.insert("JZ67".into(), with_abilities(vec![amnesia]));
+        // Original scans: finite draw/discard, private search and paid sacrifice.
+        // Reuse the admitted continuation interpreter; no new shared mechanism.
+        for (id, key, draw_count, event) in [
+            ("JC130", "research", 2, None),
+            ("XQ17", "offering-death", 1, Some(Event::Death)),
+        ] {
+            let mut spec = ability(
+                key,
+                if event.is_some() {
+                    "死亡触发"
+                } else {
+                    "标准行动"
+                },
+                if event.is_some() {
+                    Timing::Fast
+                } else {
+                    Timing::Standard
+                },
+                vec![],
+                vec![],
+                vec![
+                    Op::Draw {
+                        player: Actor,
+                        count: draw_count,
+                        end: DeckEnd::Top,
+                    },
+                    Op::Discard {
+                        player: Actor,
+                        count: Some(1),
+                        redraw: false,
+                        optional: false,
+                    },
+                ],
+                event,
+            );
+            spec.play_only = event.is_none();
+            m.insert(id.into(), with_abilities(vec![spec]));
+        }
+        let mut supplies = ability(
+            "airdrop",
+            "标准行动",
+            Timing::Standard,
+            vec![],
+            vec![],
+            vec![Op::Search {
+                player: Actor,
+                filter: CardFilter::Any,
+                to_top: false,
+                optional: false,
+                visibility: SearchVisibility::Private,
+            }],
+            None,
+        );
+        supplies.play_only = true;
+        m.insert("JC131".into(), with_abilities(vec![supplies]));
+        let mut dog = ability(
+            "sacrifice-draw",
+            "快速行动",
+            Timing::Fast,
+            vec![
+                Cost::Assets(1),
+                Cost::ExhaustSource,
+                Cost::SacrificeSelectedControlledCharacter,
+            ],
+            vec![],
+            vec![Op::Draw {
+                player: Actor,
+                count: 1,
+                end: DeckEnd::Top,
+            }],
+            None,
+        );
+        dog.activation_only = true;
+        m.insert("JC096".into(), with_abilities(vec![dog]));
         let local = target(
             Zone::Board,
             EntityKind::Character,
@@ -508,7 +1263,299 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
             Relation::Any,
             Range::Anywhere,
         );
-        let mut m = BTreeMap::new();
+        let mut knife_exhaust = ability(
+            "exhaust-local-hidden",
+            "横置暗藏者",
+            Timing::Fast,
+            vec![Cost::ExhaustSource],
+            vec![target(
+                Zone::Board,
+                EntityKind::Hidden,
+                Relation::Any,
+                Range::SourceRegion,
+            )],
+            vec![Op::Exhaust(Target(0))],
+            None,
+        );
+        knife_exhaust.activation_only = true;
+        let mut knife_damage = ability(
+            "sacrifice-local-damage",
+            "牺牲飞刀造成伤害",
+            Timing::Fast,
+            vec![Cost::SacrificeSource],
+            vec![local.clone()],
+            vec![Op::DamageTarget { slot: 0, amount: 1 }],
+            None,
+        );
+        knife_damage.activation_only = true;
+        let mut blade_grant = ability(
+            "sacrifice-character-host-icons",
+            "牺牲角色强化宿主",
+            Timing::Fast,
+            vec![Cost::SacrificeSelectedControlledCharacter],
+            vec![],
+            vec![Op::ModifyAttachmentHostUntilTurnEnd],
+            None,
+        );
+        blade_grant.activation_only = true;
+        blade_grant.per_turn_limit = Some(2);
+        let mut holy_water = ability(
+            "sacrifice-local-printed-defense",
+            "牺牲圣水改变印刷防御",
+            Timing::Fast,
+            vec![Cost::SacrificeSource],
+            vec![],
+            vec![Op::SetLocalMagicPrintedDefenseToOneUntilTurnEnd],
+            None,
+        );
+        holy_water.activation_only = true;
+        for (id, relation, combat, retreat, activations) in [
+            ("JC116", Relation::Any, 1, true, vec![]),
+            (
+                "JC020",
+                Relation::ControlledByActor,
+                0,
+                false,
+                vec![knife_exhaust, knife_damage],
+            ),
+            ("JC093", Relation::Any, 0, false, vec![blade_grant]),
+            (
+                "XQ07",
+                Relation::ControlledByActor,
+                0,
+                false,
+                vec![holy_water],
+            ),
+        ] {
+            let mut host = character.clone();
+            host.equipment_host = true;
+            host.relation = relation;
+            let mut attach = ability(
+                "attach",
+                "结附角色",
+                Timing::Standard,
+                vec![],
+                vec![host.clone()],
+                vec![],
+                None,
+            );
+            attach.play_only = true;
+            let mut abilities = vec![attach];
+            abilities.extend(activations);
+            m.insert(
+                id.into(),
+                Definition {
+                    traits: Traits {
+                        retreat,
+                        ..Default::default()
+                    },
+                    abilities,
+                    attachment: Some(AttachmentSpec {
+                        controls_host: false,
+                        host_subtype_change: SubtypeChange::None,
+                        host,
+                        host_icons: Icons {
+                            combat,
+                            ..Default::default()
+                        },
+                        host_temporary_icons: None,
+                        host_barrier: false,
+                        host_defense_bonus: 0,
+                        host_leaves: HostLeaveDestination::OwnerGraveyard,
+                    }),
+                    ..Default::default()
+                },
+            );
+        }
+        m.insert(
+            "JC078".into(),
+            with_abilities(vec![ability(
+                "prevent-turn-damage",
+                "快速伤害防护",
+                Timing::Fast,
+                vec![],
+                vec![character.clone()],
+                vec![Op::PreventTargetDamageUntilTurnEnd { slot: 0 }],
+                None,
+            )]),
+        );
+        let mut blood_host = character.clone();
+        blood_host.subtype = Some("吸血鬼".into());
+        let mut blood_attach = ability(
+            "attach",
+            "结附吸血鬼",
+            Timing::Standard,
+            vec![],
+            vec![blood_host.clone()],
+            vec![],
+            None,
+        );
+        blood_attach.play_only = true;
+        m.insert(
+            "XQ14".into(),
+            Definition {
+                abilities: vec![blood_attach],
+                attachment: Some(AttachmentSpec {
+                    controls_host: false,
+                    host_subtype_change: SubtypeChange::None,
+                    host: blood_host,
+                    host_icons: Icons {
+                        combat: 1,
+                        ..Default::default()
+                    },
+                    host_temporary_icons: None,
+                    host_barrier: false,
+                    host_defense_bonus: 1,
+                    host_leaves: HostLeaveDestination::OwnerGraveyard,
+                }),
+                ..Default::default()
+            },
+        );
+        let mut vest_host = character.clone();
+        vest_host.equipment_host = true;
+        let mut another_host = vest_host.clone();
+        another_host.exclude_attachment_host = true;
+        let mut vest_attach = ability(
+            "attach",
+            "结附角色",
+            Timing::Standard,
+            vec![],
+            vec![vest_host.clone()],
+            vec![],
+            None,
+        );
+        vest_attach.play_only = true;
+        let mut vest_transfer = ability(
+            "reattach",
+            "转移结附",
+            Timing::Standard,
+            vec![Cost::Assets(2)],
+            vec![another_host],
+            vec![Op::ReattachSource { slot: 0 }],
+            None,
+        );
+        vest_transfer.activation_only = true;
+        m.insert(
+            "XQ47".into(),
+            Definition {
+                abilities: vec![vest_attach, vest_transfer],
+                attachment: Some(AttachmentSpec {
+                    controls_host: false,
+                    host_subtype_change: SubtypeChange::None,
+                    host: vest_host,
+                    host_icons: Icons::default(),
+                    host_temporary_icons: None,
+                    host_barrier: false,
+                    host_defense_bonus: 1,
+                    host_leaves: HostLeaveDestination::OwnerGraveyard,
+                }),
+                ..Default::default()
+            },
+        );
+        let mut cat_reduce = ability(
+            "reduce-next-magic",
+            "牺牲减费",
+            Timing::Fast,
+            vec![Cost::SacrificeSource],
+            vec![],
+            vec![Op::CostReduction {
+                filter: CardFilter::HasPrintedMagic,
+                amount: 1,
+            }],
+            None,
+        );
+        cat_reduce.response_policy = ResponsePolicy::Immediate;
+        m.insert(
+            "JC112".into(),
+            Definition {
+                traits: Traits {
+                    public: true,
+                    cannot_be_equipped: true,
+                    ..Default::default()
+                },
+                abilities: vec![cat_reduce],
+                ..Default::default()
+            },
+        );
+        let mut hermit_target = local.clone();
+        hermit_target.relation = Relation::ControlledByActor;
+        hermit_target.exclude_source = true;
+        m.insert(
+            "JC071".into(),
+            with_abilities(vec![ability(
+                "protect-local-character",
+                "快速防护",
+                Timing::Fast,
+                vec![Cost::ExhaustSource],
+                vec![hermit_target],
+                vec![Op::ModifyTargetUntilTurnEnd {
+                    slot: 0,
+                    defense_bonus: 1,
+                    ordinary_icons: Icons::default(),
+                    grants_renown: false,
+                }],
+                None,
+            )]),
+        );
+        let mut dreamcatcher_host = character.clone();
+        dreamcatcher_host.equipment_host = true;
+        m.insert(
+            "JC073".into(),
+            Definition {
+                abilities: vec![ability(
+                    "attach",
+                    "结附角色",
+                    Timing::Standard,
+                    vec![],
+                    vec![dreamcatcher_host.clone()],
+                    vec![],
+                    None,
+                )],
+                attachment: Some(AttachmentSpec {
+                    controls_host: false,
+                    host_subtype_change: SubtypeChange::None,
+                    host: dreamcatcher_host,
+                    host_icons: Icons::default(),
+                    host_temporary_icons: Some(Icons {
+                        investigation: 1,
+                        ..Icons::default()
+                    }),
+                    host_barrier: true,
+                    host_defense_bonus: 0,
+                    host_leaves: HostLeaveDestination::OwnerGraveyard,
+                }),
+                ..Default::default()
+            },
+        );
+        m.insert(
+            "JC102".into(),
+            with_abilities(vec![ability(
+                "damage-character",
+                "行动阶段快速伤害",
+                Timing::ActionFast,
+                vec![],
+                vec![character.clone()],
+                vec![Op::DamageTarget { slot: 0, amount: 1 }],
+                None,
+            )]),
+        );
+        m.insert(
+            "JC132".into(),
+            with_abilities(vec![ability(
+                "exhaust-region-characters",
+                "横置地区角色",
+                Timing::Standard,
+                vec![],
+                vec![region.clone()],
+                vec![Op::ExhaustMatching(BoardSelector {
+                    kind: EntityKind::Character,
+                    relation: Relation::Any,
+                    region: Some(RegionRef::Target(0)),
+                    subtype: None,
+                })],
+                None,
+            )]),
+        );
         let mut another_own = target(
             Zone::Board,
             EntityKind::Character,
@@ -586,6 +1633,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
                     },
                     to_top: false,
                     optional: false,
+                    visibility: SearchVisibility::Reveal,
                 }],
                 Some(Event::Enter),
             )]),
@@ -624,6 +1672,152 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
                 vec![magic_character],
                 vec![Op::Move(Target(0), Destination::OwnerHand)],
                 None,
+            )]),
+        );
+        m.insert(
+            "JC008".into(),
+            with_abilities(vec![ability(
+                "empower-until-turn-end",
+                "本回合属性增强",
+                Timing::Fast,
+                vec![],
+                vec![character.clone()],
+                vec![Op::ModifyTargetUntilTurnEnd {
+                    slot: 0,
+                    defense_bonus: 1,
+                    grants_renown: false,
+                    ordinary_icons: Icons {
+                        combat: 1,
+                        ..Icons::default()
+                    },
+                }],
+                None,
+            )]),
+        );
+        m.insert(
+            "JC070".into(),
+            Definition {
+                traits: Traits {
+                    public: true,
+                    renown: true,
+                    ..Default::default()
+                },
+                ..Default::default()
+            },
+        );
+        m.insert(
+            "JC076".into(),
+            Definition {
+                traits: Traits {
+                    renown: true,
+                    ..Default::default()
+                },
+                abilities: vec![ability(
+                    "draw-on-reveal",
+                    "现身抓一张牌",
+                    Timing::Fast,
+                    vec![],
+                    vec![],
+                    vec![Op::Draw {
+                        player: PlayerRef::Actor,
+                        count: 1,
+                        end: DeckEnd::Top,
+                    }],
+                    Some(Event::Reveal),
+                )],
+                ..Default::default()
+            },
+        );
+        m.insert(
+            "JC074".into(),
+            with_abilities(vec![ability(
+                "investigation-renown-until-turn-end",
+                "本回合调查与声望",
+                Timing::Fast,
+                vec![],
+                vec![character.clone()],
+                vec![Op::ModifyTargetUntilTurnEnd {
+                    slot: 0,
+                    defense_bonus: 0,
+                    ordinary_icons: Icons {
+                        investigation: 2,
+                        ..Icons::default()
+                    },
+                    grants_renown: true,
+                }],
+                None,
+            )]),
+        );
+        m.insert(
+            "JC129".into(),
+            with_abilities(vec![ability(
+                "control-until-turn-end",
+                "本回合取得控制",
+                Timing::Standard,
+                vec![],
+                vec![target(
+                    Zone::Board,
+                    EntityKind::Character,
+                    Relation::EnemyTeam,
+                    Range::Anywhere,
+                )],
+                vec![Op::GainControl {
+                    slot: 0,
+                    until_source_leaves: false,
+                    subtype_change: SubtypeChange::None,
+                }],
+                None,
+            )]),
+        );
+        let mut embrace_host = character.clone();
+        embrace_host.subtype = Some("人类".into());
+        embrace_host.printed_subtype = true;
+        m.insert(
+            "JC036".into(),
+            Definition {
+                abilities: vec![ability(
+                    "attach",
+                    "结附印刷人类",
+                    Timing::Standard,
+                    vec![],
+                    vec![embrace_host.clone()],
+                    vec![],
+                    None,
+                )],
+                attachment: Some(AttachmentSpec {
+                    host: embrace_host,
+                    controls_host: true,
+                    host_subtype_change: SubtypeChange::HumanToVampire,
+                    host_icons: Icons::default(),
+                    host_temporary_icons: None,
+                    host_barrier: false,
+                    host_defense_bonus: 0,
+                    host_leaves: HostLeaveDestination::OwnerGraveyard,
+                }),
+                ..Default::default()
+            },
+        );
+        let mut local_human = target(
+            Zone::Board,
+            EntityKind::Character,
+            Relation::Any,
+            Range::SourceRegion,
+        );
+        local_human.subtype = Some("人类".into());
+        m.insert(
+            "JZ27".into(),
+            with_abilities(vec![ability(
+                "control-until-source-leaves",
+                "现身取得控制与奴仆",
+                Timing::Fast,
+                vec![],
+                vec![local_human],
+                vec![Op::GainControl {
+                    slot: 0,
+                    until_source_leaves: true,
+                    subtype_change: SubtypeChange::AddSlave,
+                }],
+                Some(Event::Reveal),
             )]),
         );
         let mut another_friend = target(
@@ -1211,6 +2405,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
                     filter: CardFilter::Any,
                     to_top: true,
                     optional: false,
+                    visibility: SearchVisibility::Reveal,
                 }])],
                 Some(Event::RegionWon),
             )]),
@@ -1371,11 +2566,16 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
                     None,
                 )],
                 attachment: Some(AttachmentSpec {
+                    controls_host: false,
+                    host_subtype_change: SubtypeChange::None,
                     host,
                     host_icons: Icons {
                         combat: 1,
                         ..Default::default()
                     },
+                    host_temporary_icons: None,
+                    host_barrier: false,
+                    host_defense_bonus: 0,
                     host_leaves: HostLeaveDestination::OwnerHand,
                 }),
                 ..Default::default()
@@ -1394,6 +2594,74 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
                 None,
             )]),
         );
+        m.insert(
+            "WM003".into(),
+            Definition {
+                traits: Traits {
+                    public: true,
+                    ..Traits::default()
+                },
+                abilities: vec![ability(
+                    "search-any-private",
+                    "私密检索",
+                    Timing::Fast,
+                    vec![Cost::Assets(5), Cost::ExhaustSource],
+                    vec![],
+                    vec![Op::Search {
+                        player: Actor,
+                        filter: CardFilter::Any,
+                        to_top: false,
+                        optional: false,
+                        visibility: SearchVisibility::Private,
+                    }],
+                    None,
+                )],
+                ..Definition::default()
+            },
+        );
+        m.insert(
+            "LC01".into(),
+            Definition {
+                modifiers: vec![StaticModifier::PeekOwnDeckTop],
+                ..Definition::default()
+            },
+        );
+        #[cfg(not(feature = "society-fixtures"))]
+        {
+            let mut search = ability(
+                "search-yellow-unique",
+                "黄色独有检索（每局一次）",
+                Timing::Standard,
+                vec![Cost::Assets(4), Cost::ExhaustSource],
+                vec![],
+                vec![Op::Search {
+                    player: Actor,
+                    filter: CardFilter::PrintedColorAndUnique {
+                        color: "黄".into()
+                    },
+                    to_top: false,
+                    optional: false,
+                    visibility: SearchVisibility::Reveal,
+                }],
+                None,
+            );
+            search.once_per_game = true;
+            m.insert(
+                "MSJC01".into(),
+                with_abilities(vec![
+                    ability(
+                        "drawWithInitiative",
+                        "先手抓牌",
+                        Timing::Standard,
+                        vec![Cost::Assets(3), Cost::ExhaustSource],
+                        vec![],
+                        vec![Op::DrawIfActorHasInitiative { count: 1 }],
+                        None,
+                    ),
+                    search,
+                ]),
+            );
+        }
         #[cfg(feature = "society-fixtures")]
         for id in [
             "FIXTURE_SOCIETY_SIX",

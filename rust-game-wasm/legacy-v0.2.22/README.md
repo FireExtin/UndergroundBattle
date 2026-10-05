@@ -1,0 +1,1 @@
+Frozen accepted v0.2.22 before JZ59/LC12. Source 20219d5ff0631a09e005f252a513b1cd46f0c61b. WASM1930193 bytes, SHA256 a3df987aabbc634d47ba7c0bdca5f76f055b886e92a85b2f55b078e1f7757845. No public deployment.

@@ -97,8 +97,8 @@ fn rejects_without_mutation(g: &mut Game, seat: usize, a: Action) {
 #[test]
 fn msjc09_printed_registry_deck_and_atomic_start_keep_four_seat_privacy() {
     let c = catalog::catalog();
-    assert_eq!(c.cards.len(), 50);
-    assert_eq!(c.societies.len(), 1);
+    assert_eq!(c.cards.len(), 87);
+    assert_eq!(c.societies.len(), 2);
     assert!(c.deck_build_rules.society_supported);
     let s = &c.societies[0];
     assert_eq!(
@@ -120,7 +120,7 @@ fn msjc09_printed_registry_deck_and_atomic_start_keep_four_seat_privacy() {
         serde_json::to_value(&spec.costs).unwrap(),
         serde_json::json!([{"Assets":3},"ExhaustSource"])
     );
-    for closed in ["MSJC01", "MSJC16", "FIXTURE_SOCIETY_SIX"] {
+    for closed in ["MSJC16", "FIXTURE_SOCIETY_SIX"] {
         assert!(deck::validate(draft(Some(closed))).is_err());
     }
     let mut small = draft(Some("MSJC09"));

@@ -328,3 +328,7 @@
 @media (min-width: 1060px) and (min-height: 821px) {
   .hg-app .hg-desktop-table.hg-table { grid-template-rows: 44px 142px minmax(190px, 1fr) 112px 182px; }
 }
+
+.hg-revealed-hand { position: absolute; inset: 48px 16px auto; z-index: 55; max-height: 300px; overflow: auto; padding: 14px; border: 1px solid #b19868; border-radius: 8px; background: #29221cf5; box-shadow: 0 10px 30px #0008; }
+.hg-revealed-hand .hg-hand { display: flex; gap: 12px; overflow-x: auto; padding: 12px 0; }
+.hg-revealed-hand .hg-small-read { flex: 0 0 180px; text-align: left; }

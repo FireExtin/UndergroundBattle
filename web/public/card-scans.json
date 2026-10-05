@@ -59,6 +59,16 @@
     "source": "resource/ymsj-fun.github.io/cards/JC004 力场法师.jpg",
     "sha256": "d9209031b83d49c2eacdbedd2967384852acc51329093f362073c462dabf92c4"
   },
+  "JC005": {
+    "url": "/cards/JC005.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC005 裂解术.jpg",
+    "sha256": "216c26cff74fe738dbc486e725828ddc8077705161b1fee566e9d806684364a1"
+  },
+  "JC008": {
+    "url": "/cards/JC008.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC008 灵能激发.jpg",
+    "sha256": "31340e2535e0909359860a090186b7a5032e84d6da94c8181baf32565b5d4f45"
+  },
   "XQ03": {
     "url": "/cards/XQ03.jpg",
     "source": "resource/ymsj-fun.github.io/cards/XQ03 力场束缚.jpg",
@@ -244,14 +254,194 @@
     "source": "resource/ymsj-fun.github.io/cards/JC104 占卜师.jpg",
     "sha256": "877aa980256730bb35350f1b99c2aa75b9110cd5905e61412664e2a89ef4e8da"
   },
+  "WM003": {
+    "url": "/cards/WM003.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/WM003 千机庙离.jpg",
+    "sha256": "2409ef206e3af93d1eece3ec0bf4ba00a9e3d0c12a8e70443877cc8a28cc9bff"
+  },
+  "LC01": {
+    "url": "/cards/LC01.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/LC01 西比尔.jpg",
+    "sha256": "a0defb07b43463cc882e15b993c73eda22ea77ca39062da71e6518a365cc5bd6"
+  },
+  "JC129": {
+    "url": "/cards/JC129.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC129 操控心智.jpg",
+    "sha256": "0c99776d13e342b85c6d6f6cc476459ec6463e6bbdc146046460518c738a0b59"
+  },
+  "JC036": {
+    "url": "/cards/JC036.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC036 初拥.jpg",
+    "sha256": "017507e6a2a229f6541a4690b681ecd71fc09b35962b9673da70f5f035ddba83"
+  },
+  "JZ27": {
+    "url": "/cards/JZ27.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JZ27 哈达莎·爱弗罗德.jpg",
+    "sha256": "33fbdd4a062962b546cdb0d4f368f35b6c4c019908db73a37cfa09aaa237630e"
+  },
+  "JC070": {
+    "url": "/cards/JC070.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC070 虔心修士.jpg",
+    "sha256": "3dd1ef905e2cfb4d806b258fdde0b1ec1fe2adad7868bb5cd7dc0bcf9cfe9e1b"
+  },
+  "JC076": {
+    "url": "/cards/JC076.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC076 悟道僧人.jpg",
+    "sha256": "4390ebf4eabcf44c541303bfb764061c1622cb483ed0e034ee9651571cee27ac"
+  },
+  "JC074": {
+    "url": "/cards/JC074.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC074 天空的教诲.jpg",
+    "sha256": "e34e5bb081f3ee459d99038c68d60f4be4a44af05baa4289759b730045140914"
+  },
+  "JC071": {
+    "url": "/cards/JC071.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC071 阿瓦隆隐士.jpg",
+    "sha256": "85fde88b2a35d595f166d87c0ab27b244198c3919c1f6a381e54e07598f73b67"
+  },
+  "JC073": {
+    "url": "/cards/JC073.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC073 苏族捕梦网.jpg",
+    "sha256": "cebf528de52de72d7400d4c769c2642063342d75a01670e120b5bc71aba23d42"
+  },
+  "JC102": {
+    "url": "/cards/JC102.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC102 妖火.jpg",
+    "sha256": "842fb9f07e9b8afbc0cecd6c224972c5643bad9b710daa518faceb59fc9a3b5d"
+  },
+  "JC132": {
+    "url": "/cards/JC132.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC132 构筑静态障壁.jpg",
+    "sha256": "219bb4062c3e9053b9fc9d309ad919ebe4b6a98c3af314c6987ca948b3eeb4f1"
+  },
+  "JC078": {
+    "url": "/cards/JC078.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC078 光能盾.jpg",
+    "sha256": "d238d2c7412349579c00fa4a5a662e9214bdad13df25b8917ae1034251f7e2b9"
+  },
+  "XQ14": {
+    "url": "/cards/XQ14.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/XQ14 鲜血.jpg",
+    "sha256": "0baea888495adba62a7688be1b95c95b5ffa60d689c104b7ff3a26dd2340ffb2"
+  },
+  "XQ47": {
+    "url": "/cards/XQ47.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/XQ47 防弹战术背心.jpg",
+    "sha256": "9b370fb92ad2e1c3ac6f33d3402ab2c8cbdea1898aae4c4a386f17631d654a03"
+  },
+  "JC112": {
+    "url": "/cards/JC112.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC112 黑猫.jpg",
+    "sha256": "870b526451ed20441601cfed413a99e2e64a266d60daa698bb2066840383bd71"
+  },
+  "JC116": {
+    "url": "/cards/JC116.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC116 柯尔特巨蟒左轮.jpg",
+    "sha256": "5a314d56e3d6c660f381e45710dbf0964cf8560cfa170906b3d4e938abb90e16"
+  },
+  "JC020": {
+    "url": "/cards/JC020.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC020 隐蔽的飞刀.jpg",
+    "sha256": "2edb40dfa18d2df22b5b397957d0a03642ade3cee1a10f965bb5e55b0c4f7223"
+  },
+  "JC093": {
+    "url": "/cards/JC093.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC093 怨灵咒刃.jpg",
+    "sha256": "ac3398f82103f6d50eb97b6bb3467244834c8e3867fb92c295d3c420b522bdd2"
+  },
+  "XQ07": {
+    "url": "/cards/XQ07.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/XQ07 圣水.jpg",
+    "sha256": "944a254795fc17e946f7150de9a47649d8c6efa3006770850447503b06a22df9"
+  },
+  "JC130": {
+    "url": "/cards/JC130.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC130 深入研究.jpg",
+    "sha256": "be7d3ec07aea099829f0b01ea506999810091c7b7a202a6bfb0f8ec32eb3055f"
+  },
+  "JC131": {
+    "url": "/cards/JC131.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC131 空投物资.jpg",
+    "sha256": "78b1cff75c50f96763ae2cfeb346524e9046f2e3a445a5e00268113365bc976f"
+  },
+  "JC096": {
+    "url": "/cards/JC096.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC096 阿格里帕之犬.jpg",
+    "sha256": "28c1eb001f27dc220b8905ba97d7d396680adda8f7c1b8c9e0f2ec97f4907c7c"
+  },
+  "XQ17": {
+    "url": "/cards/XQ17.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/XQ17 祭品.jpg",
+    "sha256": "e5ad8fe27074632eab8d6207eb2e6f08efb69d20f343f2d50701d30f5a5bb5eb"
+  },
+  "JC114": {
+    "url": "/cards/JC114.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC114 好奇的黑客.jpg",
+    "sha256": "2cd5cc66ceb3c9a8f9d07d341558489adb170dcb680331c7620e5f1162be12c7"
+  },
+  "XQ34": {
+    "url": "/cards/XQ34.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/XQ34 灵感.jpg",
+    "sha256": "2ca1f5a4b25d308f8af13a7a80018010deaf93f9abe2275bef1fa7656be13e04"
+  },
+  "XQ38": {
+    "url": "/cards/XQ38.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/XQ38 金特·易卜拉欣.jpg",
+    "sha256": "26c8311674325491157577a3d295c148ce1c6f27ded59c4d27979faf58e9204e"
+  },
+  "JZ67": {
+    "url": "/cards/JZ67.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JZ67 失忆.jpg",
+    "sha256": "a6554b81e081c7292a32f2bf13ce269f276580f9a852e1df232c60c2c36ff477"
+  },
+  "JC103": {
+    "url": "/cards/JC103.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC103 丧失理智的画家.jpg",
+    "sha256": "8eee910793908999e04487b65f0e9a398d11ef5b307b360ba6e9d2012adaed63"
+  },
+  "JC107": {
+    "url": "/cards/JC107.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC107 崩塌的时空.jpg",
+    "sha256": "ce402d531c9c9bb28da130de0627b4860ced56fb0fa7db1d487082c36e0462e2"
+  },
+  "JZ59": {
+    "url": "/cards/JZ59.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JZ59 骇人畸变体.jpg",
+    "sha256": "b43bf4fc74654c089cf10429306980c2af12743d57d60b603efae03b28eae5f3"
+  },
+  "LC12": {
+    "url": "/cards/LC12.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/LC12 阿瓦隆隐士.jpg",
+    "sha256": "2a13b5e0bf5fa11f320bcf31141cf0e68915a949f9031cd112b5c650420285cf"
+  },
+  "JZ58": {
+    "url": "/cards/JZ58.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JZ58 噩梦残像.jpg",
+    "sha256": "4cb1892b435cc14fd3f9d8310b428a16eaf5cc5afe1c870760a3dcc457d4dd95"
+  },
+  "JZ61": {
+    "url": "/cards/JZ61.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JZ61 暗夜访客.jpg",
+    "sha256": "5da40b475c306d3a295a6582576b9b720c8707050bdedfea3005b92578e4e37f"
+  },
+  "JZ74": {
+    "url": "/cards/JZ74.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JZ74 意外事故.jpg",
+    "sha256": "3915ef2565eff330862507076c052942322e59f47039f31f7c0ebe658181f085"
+  },
+  "JC126": {
+    "url": "/cards/JC126.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC126 产业扩张.jpg",
+    "sha256": "33ed0032c1e6983f25be998c66891f137f2f0975031493883f6cc1a9bb5e40e0"
+  },
   "MSJC09": {
     "url": "/cards/MSJC09.jpg",
     "source": "resource/ymsj-fun.github.io/cards/MSJC09 秘社.jpg",
     "sha256": "41e478a3f38ead83477498fd88131831a5fd843be364c1c0daa3ba10153c2302"
   },
-  "JC005": {
-    "url": "/cards/JC005.jpg",
-    "source": "resource/ymsj-fun.github.io/cards/JC005 裂解术.jpg",
-    "sha256": "216c26cff74fe738dbc486e725828ddc8077705161b1fee566e9d806684364a1"
+  "MSJC01": {
+    "url": "/cards/MSJC01.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/MSJC01 帷幕守望.jpg",
+    "sha256": "c61c887558cb184a532758eac5db766234c32a3a3605162a38c0899993e7bdf2"
   }
 }

@@ -76,6 +76,18 @@ pub struct LegalAction {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CardView {
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub current_spirit_protection: Option<bool>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub current_printed_defense: Option<u32>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub current_damage_prevention: Option<bool>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub current_barrier: Option<bool>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub current_renown: Option<bool>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub current_subtypes: Option<Vec<String>>,
     pub instance_id: String,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub card_id: Option<String>,
@@ -107,6 +119,8 @@ pub struct CardView {
     pub color: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub magic: Option<String>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub used_once_per_game: Option<Vec<String>>,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -250,6 +264,10 @@ pub struct View {
     #[serde(default)]
     pub attachments: Vec<AttachmentView>,
     pub hand: Vec<CardView>,
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub revealed_hands: Vec<RevealedHandView>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub private_deck_top: Option<CardView>,
     pub assets: Vec<CardView>,
     pub graveyard: Vec<CardView>,
     pub score_cards: Vec<CardView>,
@@ -263,6 +281,13 @@ pub struct View {
     pub your_deck: Option<crate::deck::DeckDraft>,
     #[serde(default)]
     pub world_deck_count: usize,
+}
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct RevealedHandView {
+    pub player_id: String,
+    pub cards: Vec<CardView>,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Card {
@@ -348,6 +373,10 @@ pub enum Window {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Effect {
+    RegionConfrontationsEnded {
+        region: usize,
+        region_instance: String,
+    },
     Declare {
         declaration: Declaration,
     },
@@ -403,6 +432,7 @@ pub enum Effect {
         region: usize,
     },
     Cleanup,
+    FinishCleanup,
     Bury {
         card: Card,
     },
@@ -426,6 +456,9 @@ pub struct StackItem {
 pub struct SourceSnapshot {
     pub card: Card,
     pub region: Option<usize>,
+    // Non-targeted host effect keeps the declaration's exact host identity.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub attachment_host_instance: Option<String>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub play_source: Option<PlaySource>,
 }
@@ -442,6 +475,11 @@ pub struct BoundTarget {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum PaidCost {
+    Discarded {
+        old_instance: String,
+        holder: usize,
+        owner: usize,
+    },
     Assets(Vec<String>),
     Exhausted(String),
     Sacrificed {
@@ -488,6 +526,17 @@ pub enum DeclareChoice {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum FrameChoice {
+    RepressOne {
+        seat: usize,
+        regions: Vec<(usize, String)>,
+    },
+    RevealedHandDiscard {
+        seat: usize,
+        revealed: Vec<Card>,
+    },
+    OptionalShuffle {
+        seat: usize,
+    },
     Forecast {
         seat: usize,
     },
@@ -498,6 +547,8 @@ pub enum FrameChoice {
     Search {
         seat: usize,
         to_top: bool,
+        #[serde(default)]
+        visibility: crate::rules::SearchVisibility,
     },
     Sacrifice {
         seat: usize,
@@ -527,6 +578,60 @@ pub struct CostModifier {
     pub amount: u32,
     pub expires_turn: u32,
     pub uses: u32,
+    #[serde(default, skip_serializing_if = "is_false")]
+    pub paid_reveal: bool,
+}
+/// A resolved bonus belongs to this exact in-play instance, not its owner,
+/// controller, printed definition, or the spell's later graveyard instance.
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
+pub struct TurnAttributeModifier {
+    pub target_instance: String,
+    pub defense_bonus: u32,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub printed_defense_override: Option<u32>,
+    pub ordinary_icons: Icons,
+    #[serde(default, skip_serializing_if = "is_false")]
+    pub grants_renown: bool,
+    #[serde(default, skip_serializing_if = "is_false")]
+    pub prevents_damage: bool,
+    pub expires_turn: u32,
+}
+pub(crate) fn is_false(value: &bool) -> bool {
+    !value
+}
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
+pub struct TurnAbilityUsage {
+    pub source_instance: String,
+    pub ability_key: String,
+    pub turn: u32,
+    pub uses: u32,
+}
+// Finite project interpretation: last still-valid resolved control wins.
+// This ordering is a project ruling, not a claim about the old FAQ.
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
+pub enum ControlLifetime {
+    TurnEnd { turn: u32 },
+    Attached { source_instance: String },
+    SourceLeaves { source_instance: String },
+}
+#[derive(Clone, Debug, Default, PartialEq, Eq, Serialize, Deserialize)]
+pub enum SubtypeChange {
+    #[default]
+    None,
+    HumanToVampire,
+    AddSlave,
+}
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct ControlEffect {
+    pub target_instance: String,
+    pub recipient: usize,
+    pub lifetime: ControlLifetime,
+    pub subtype_change: SubtypeChange,
+}
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct ControlBaseline {
+    pub target_instance: String,
+    pub controller: usize,
 }
 #[derive(Clone, Copy, Debug, Serialize, Deserialize)]
 pub enum RemovalCause {
@@ -603,6 +708,14 @@ pub struct Game {
     pub log: Vec<LogEntry>,
     pub versions: Versions,
     pub modifiers: Vec<CostModifier>,
+    #[serde(default)]
+    pub turn_attribute_modifiers: Vec<TurnAttributeModifier>,
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub turn_ability_usage: Vec<TurnAbilityUsage>,
+    #[serde(default)]
+    pub control_effects: Vec<ControlEffect>,
+    #[serde(default)]
+    pub control_baselines: Vec<ControlBaseline>,
 }
 pub fn player_id(seat: usize) -> String {
     format!("p{seat}")

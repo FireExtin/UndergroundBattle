@@ -1,11 +1,15 @@
-//! Personal in-play headquarters, outside all regions. Production admits only MSJC09.
+//! Personal in-play headquarters, outside all regions.
 use crate::{catalog::CardDefinition, engine::RuleResult, model::*};
 use serde::{Deserialize, Serialize};
-use std::collections::BTreeMap;
+use std::collections::{BTreeMap, BTreeSet};
 
 #[derive(Clone, Debug, Default, Serialize, Deserialize)]
 pub struct SocietyZone {
     pub card: Option<Card>,
+    // The stable per-seat source survives card instance changes and ready resets.
+    // Only starting a new game replaces this zone and clears these ability keys.
+    #[serde(default)]
+    pub used_once_per_game: BTreeSet<String>,
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
@@ -84,6 +88,26 @@ pub(crate) fn validate_construction(
 }
 
 impl Game {
+    pub(crate) fn society_usage(&self, source: &str) -> Option<&BTreeSet<String>> {
+        self.players
+            .iter()
+            .find(|p| p.society_zone.card.as_ref().is_some_and(|c| c.id == source))
+            .map(|p| &p.society_zone.used_once_per_game)
+    }
+
+    pub(crate) fn consume_society_usage(&mut self, source: &str, ability: &str) -> RuleResult<()> {
+        let zone = self
+            .players
+            .iter_mut()
+            .find(|p| p.society_zone.card.as_ref().is_some_and(|c| c.id == source))
+            .map(|p| &mut p.society_zone)
+            .ok_or("每局限次能力须来自稳定秘社来源")?;
+        if !zone.used_once_per_game.insert(ability.into()) {
+            return Err("此能力本局已发动过".into());
+        }
+        Ok(())
+    }
+
     pub(crate) fn society_card(&self, id: &str) -> Option<&Card> {
         self.players
             .iter()
@@ -150,14 +174,44 @@ pub(crate) fn definitions() -> Vec<SocietyDefinition> {
                 triggered: false,
             })
             .collect();
-        vec![SocietyDefinition {
+        let msjc09 = SocietyDefinition {
             card,
             subtitle: "未知的聚会".into(),
             printed_cost: None,
             starting_hand: 6,
             deck_constraints: vec![],
             unresolved_abilities: BTreeMap::new(),
-        }]
+        };
+        let mut card: CardDefinition = serde_json::from_value(serde_json::json!({
+            "id":"MSJC01","name":"帷幕守望","kind":"society","type":"秘社/法师结社",
+            "subtypes":["法师结社"],"color":"黄","society":"帷幕守望","unique":true,"supported":true,
+            "text":"构筑：你的牌组中需包含25张或更多黄色派系牌。行动3，横置：若你具有【先手标志】，则抓一张牌。行动4，横置：从你的牌库中寻找一张黄色独有牌，展示该牌后置于你的手中，然后将你的牌库洗牌。该能力每局游戏只能发动一次。"
+        })).expect("verified printed MSJC01 fields");
+        card.abilities = crate::rules::definition("MSJC01")
+            .abilities
+            .iter()
+            .map(|a| crate::catalog::AbilitySummary {
+                key: a.key.clone(),
+                label: a.label.clone(),
+                timing: "standard".into(),
+                costs: a.costs.clone(),
+                triggered: false,
+            })
+            .collect();
+        vec![
+            msjc09,
+            SocietyDefinition {
+                card,
+                subtitle: "世界守护者".into(),
+                printed_cost: None,
+                starting_hand: 6,
+                deck_constraints: vec![SocietyDeckConstraint::MinimumColor {
+                    color: "黄".into(),
+                    count: 25,
+                }],
+                unresolved_abilities: BTreeMap::new(),
+            },
+        ]
     }
     #[cfg(feature = "society-fixtures")]
     {
@@ -228,7 +282,7 @@ mod tests {
                     .iter()
                     .map(|s| s.card.id.as_str())
                     .collect::<Vec<_>>(),
-                vec!["MSJC09"]
+                vec!["MSJC09", "MSJC01"]
             );
         }
         assert_eq!(
@@ -498,11 +552,13 @@ mod tests {
                 relation: rules::Relation::Any,
                 range: rules::Range::Anywhere,
                 subtype: None,
+                printed_subtype: false,
                 subtypes_any: vec![],
                 printed_cost_max: None,
                 equipment_host: false,
                 requires_magic: false,
                 exclude_source: false,
+                exclude_attachment_host: false,
                 attachment_host_condition: None,
                 min: 1,
                 max: 1,

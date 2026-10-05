@@ -149,7 +149,7 @@ fn jc005_printed_metadata_is_fast_two_cost_one_yellow_mind_without_extra_cost_or
     d.cards[0].count = 4;
     d.cards[1].count = 46;
     assert!(deck::validate(d).is_err());
-    assert!(!catalog::catalog().cards.iter().any(|c| c.id == "JC008"));
+    assert!(catalog::catalog().cards.iter().any(|c| c.id == "JC008"));
     let mut old = RoomEnvelope::from_game(game());
     old.versions.engine = "rust-v0.2.10".into();
     old.versions.card_pool = "limited-v2.7".into();

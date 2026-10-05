@@ -1,5 +1,6 @@
 export type Icons = { investigation: number; combat: number; influence: number };
 export type CardDefinition = {
+  subtitle?: string;
   id: string; name: string; kind: string; type?: string; cost: number;
   loyalty?: string[]; loyaltyText?: string; subtypes?: string[]; color?: string; magic?: string; text: string;
   icons?: { permanent: Icons; temporary: Icons };
@@ -17,10 +18,17 @@ export type SocietyDefinition = CardDefinition & {
   unresolvedAbilities: Record<string, string>;
 };
 export type Card = {
+  currentSpiritProtection?: boolean;
+  currentDamagePrevention?: boolean;
+  currentPrintedDefense?: number;
+  currentRenown?: boolean;
+  currentBarrier?: boolean;
+  currentSubtypes?: string[];
   instanceId: string; cardId?: string; name: string; owner: string; controller: string;
   kind: string; region?: number; exhausted: boolean; faceDown: boolean;
   cost?: number; effectiveCost?: number; text?: string; icons?: Icons; defense?: number; damage?: number;
   shield?: number; wounds?: number; color?: string; magic?: string;
+  usedOncePerGame?: string[];
 };
 export type Attachment = Card & { hostId: string };
 export type Action = {
@@ -63,11 +71,13 @@ export type ResponseIntentWindow = {
   canBegin: boolean; myIntentId?: string;
 };
 export type View = {
+  revealedHands?: { playerId: string; cards: Card[] }[];
   roomId: string; inviteCode: string; version: number; mode: 'duel' | 'teams';
   status: 'lobby' | 'playing' | 'finished'; you: string; players: Player[];
   firstTeam: number; activeTeam: number; priorityTeam: number; turn: number;
   phase: string; step: string; winScore: number; winnerTeam?: number;
   regions: Region[]; hand: Card[]; assets: Card[]; graveyard: Card[]; scoreCards: Card[];
+  privateDeckTop?: Card;
   attachments?: Attachment[];
   societyZones?: { id: string; playerId: string; card: Card | null }[];
   stack: StackEffect[];
