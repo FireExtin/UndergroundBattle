@@ -479,6 +479,16 @@
     "source": "resource/ymsj-fun.github.io/cards/JZ24 卡迪纳追迹人.jpg",
     "sha256": "e01995d70e06a6b179dcbbf81c3df73ab548269fc0efe9fafc33e2e2f3c8722d"
   },
+  "XQ36": {
+    "url": "/cards/XQ36.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/XQ36 圣甲虫的清理员.jpg",
+    "sha256": "84b611615ecdbdf7940022160522187a28edb46322525e540fed1935de0526b9"
+  },
+  "XQ46": {
+    "url": "/cards/XQ46.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/XQ46 无名尸体.jpg",
+    "sha256": "d58e71df94753dde04595f5aa84de4039fcbbe594883acc018e2c06ddb103a89"
+  },
   "MSJC09": {
     "url": "/cards/MSJC09.jpg",
     "source": "resource/ymsj-fun.github.io/cards/MSJC09 秘社.jpg",

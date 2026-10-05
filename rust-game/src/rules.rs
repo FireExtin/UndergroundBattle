@@ -453,6 +453,31 @@ pub struct Definition {
 // These are interpreter limits, not rules for resolving partially invalid targets.
 // Reject unsupported declarations before publishing actions or offering trigger choices.
 pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(), String> {
+    // Only XQ36 may reuse a player-loop mill, with its complete fixed program.
+    // Do not relax the existing top-level target-player requirement.
+    fn has_loop_mill(ops: &[Op], in_loop: bool) -> bool {
+        ops.iter().any(|op| match op {
+            Op::MoveDeckTopToGraveyard { .. } => in_loop,
+            Op::ForEachLivingPlayer(body) | Op::ForEachLivingPlayerFromActor(body) => {
+                has_loop_mill(body, true)
+            }
+            _ => false,
+        })
+    }
+    if (card_id == "XQ36"
+        || has_loop_mill(&ability.ops, false)
+        || ability.modes.iter().any(|m| has_loop_mill(&m.ops, false)))
+        && serde_json::to_value(ability).unwrap()
+            != serde_json::to_value(&xq36_definition().abilities[0]).unwrap()
+    {
+        return Err(format!("{card_id}: only the complete XQ36 entry mill is admitted"));
+    }
+    if card_id != "XQ36"
+        && (has_loop_mill(&ability.ops, false)
+            || ability.modes.iter().any(|m| has_loop_mill(&m.ops, false)))
+    {
+        return Err(format!("{card_id}: XQ36 player-loop mill cannot be transplanted"));
+    }
     if ability.modes.iter().any(|mode| mode.ops.iter().any(|op| {
         matches!(op, Op::JC032TopSixVampireHidden | Op::JZ24LocalSacrificeSnapshot)
     })) {
@@ -980,6 +1005,12 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
 
 fn validate_definitions(definitions: &BTreeMap<String, Definition>) -> Result<(), String> {
     for (card_id, definition) in definitions {
+        if card_id == "XQ36"
+            && serde_json::to_value(definition).unwrap()
+                != serde_json::to_value(xq36_definition()).unwrap()
+        {
+            return Err("cardId=XQ36: only the complete admitted entry mill is supported".into());
+        }
         let expected = match card_id.as_str() {
             "JC032" => Some(jc032_definition()),
             "JZ24" => Some(jz24_definition()),
@@ -1162,6 +1193,21 @@ fn with_abilities(abilities: Vec<AbilitySpec>) -> Definition {
         abilities,
         ..Default::default()
     }
+}
+
+fn xq36_definition() -> Definition {
+    with_abilities(vec![ability(
+        "entry-mill-each-four",
+        "进场触发",
+        Timing::Fast,
+        vec![],
+        vec![],
+        vec![Op::ForEachLivingPlayer(vec![Op::MoveDeckTopToGraveyard {
+            player: PlayerRef::Context,
+            count: 4,
+        }])],
+        Some(Event::Enter),
+    )])
 }
 
 fn lc30_definition() -> Definition {
@@ -3235,6 +3281,11 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
                 )]),
             );
         }
+        m.insert("XQ36".into(), xq36_definition());
+        m.insert("XQ46".into(), Definition {
+            traits: Traits { public: true, ..Default::default() },
+            ..Default::default()
+        });
         validate_definitions(&m)
             .unwrap_or_else(|error| panic!("Invalid released rule declaration: {error}"));
         m
@@ -3249,6 +3300,45 @@ pub fn definition(id: &str) -> &'static Definition {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn mill_public_closed_entry_rejects_variants_modes_and_nested_transplants() {
+        for variant in 0..12 {
+            let mut r = definitions().clone();
+            let d = r.get_mut("XQ36").unwrap();
+            let a = &mut d.abilities[0];
+            match variant {
+                0 => a.ops = vec![Op::ForEachLivingPlayer(vec![Op::MoveDeckTopToGraveyard { player:PlayerRef::Context,count:5 }])],
+                1 => a.ops = vec![Op::ForEachLivingPlayer(vec![Op::MoveDeckTopToGraveyard { player:PlayerRef::Actor,count:4 }])],
+                2 => a.ops = vec![Op::ForEachLivingPlayerFromActor(vec![Op::MoveDeckTopToGraveyard { player:PlayerRef::Context,count:4 }])],
+                3 => a.event = Some(Event::Death),
+                4 => a.costs.push(Cost::Assets(1)),
+                5 => a.targets.push(target(Zone::Player,EntityKind::Any,Relation::Any,Range::Anywhere)),
+                6 => a.modes.push(Mode {key:"variant".into(),label:"variant".into(),targets:vec![],ops:a.ops.clone()}),
+                7 => a.ops = vec![Op::ForEachLivingPlayer(a.ops.clone())],
+                8 => a.ops.push(Op::Draw{player:PlayerRef::Actor,count:1,end:DeckEnd::Top}),
+                9 => a.response_policy = ResponsePolicy::Immediate,
+                10 => d.traits.public = true,
+                _ => a.play_only = true,
+            }
+            assert!(validate_definitions(&r).is_err(), "variant {variant}");
+        }
+        let original = definition("XQ36").abilities[0].clone();
+        for id in ["XQ46","XQ38","JC029"] {
+            assert!(validate_ability(id,&original).is_err(), "direct transplant {id}");
+            for depth in 0..=2 {
+                let mut ops=original.ops.clone();
+                for _ in 0..depth { ops=vec![Op::ForEachLivingPlayer(ops)]; }
+                let mut ability=definition("XQ38").abilities[0].clone();
+                ability.modes=vec![Mode{key:"transplant".into(),label:"invalid".into(),targets:vec![],ops}];
+                assert!(validate_ability(id,&ability).is_err(),"mode/depth {id}/{depth}");
+            }
+        }
+        let mut top_level=original;
+        top_level.ops=vec![Op::MoveDeckTopToGraveyard{player:PlayerRef::Context,count:4}];
+        assert!(validate_ability("XQ46",&top_level).is_err());
+        assert!(validate_ability("XQ38",&definition("XQ38").abilities[0]).is_ok());
+    }
 
     #[test]
     fn blue_closed_definitions_reject_variants_and_finite_operation_transplants() {

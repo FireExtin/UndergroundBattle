@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.30-blue-minimum-candidate",
-  "engineVersion": "rust-v0.2.33-blue-minimum-candidate",
+  "cardPoolVersion": "limited-v2.31-mill-public-candidate",
+  "engineVersion": "rust-v0.2.34-mill-public-candidate",
   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
   "cards": [
     {
@@ -3735,6 +3735,83 @@
         "record": "JZ24",
         "image": "resource/ymsj-fun.github.io/cards/JZ24 卡迪纳追迹人.jpg",
         "imageSha256": "e01995d70e06a6b179dcbbf81c3df73ab548269fc0efe9fafc33e2e2f3c8722d"
+      },
+      "unique": false,
+      "society": ""
+    },
+    {
+      "id": "XQ36",
+      "name": "圣甲虫的清理员",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "雇员"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "黑色"
+      ],
+      "loyaltyText": "黑1",
+      "color": "黑",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "【进场触发】将每位玩家牌库顶的四张牌置于该玩家的墓地。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "XQ36",
+        "image": "resource/ymsj-fun.github.io/cards/XQ36 圣甲虫的清理员.jpg",
+        "sha256": "84b611615ecdbdf7940022160522187a28edb46322525e540fed1935de0526b9"
+      },
+      "unique": false,
+      "society": ""
+    },
+    {
+      "id": "XQ46",
+      "name": "无名尸体",
+      "kind": "character",
+      "subtypes": [
+        "人类"
+      ],
+      "cost": 0,
+      "loyalty": [],
+      "loyaltyText": "",
+      "color": "中立",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 0,
+      "text": "公开",
+      "keywords": [
+        "公开"
+      ],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "XQ46",
+        "image": "resource/ymsj-fun.github.io/cards/XQ46 无名尸体.jpg",
+        "sha256": "d58e71df94753dde04595f5aa84de4039fcbbe594883acc018e2c06ddb103a89"
       },
       "unique": false,
       "society": ""
