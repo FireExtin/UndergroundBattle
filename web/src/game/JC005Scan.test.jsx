@@ -12,9 +12,9 @@ const definition = catalog.cards.find(c => c.id === 'JC005');
 const sha256 = '216c26cff74fe738dbc486e725828ddc8077705161b1fee566e9d806684364a1';
 
 it('retains Site24 JC005 while adding the isolated JC008 candidate and retains the exact printed spell metadata and original bytes', () => {
-  expect(catalog.engineVersion).toBe('rust-v0.2.29-msjc11-mixed-deck-candidate');
-  expect(catalog.cardPoolVersion).toBe('limited-v2.26-msjc11-mixed-deck-candidate');
-  expect(catalog.cards).toHaveLength(89);
+  expect(catalog.engineVersion).toBe('rust-v0.2.30-jc029-reuse-candidate');
+  expect(catalog.cardPoolVersion).toBe('limited-v2.27-jc029-reuse-candidate');
+  expect(catalog.cards).toHaveLength(90);
   expect(catalog.cards.some(c => c.id === 'JC008')).toBe(true);
   expect(catalog.societies.map(c => c.id)).toEqual(['MSJC09', 'MSJC01', 'MSJC07', 'MSJC06', 'MSJC08', 'MSJC11']);
   expect(definition).toMatchObject({ name: '裂解术', kind: 'spell', type: '法术/空间',
@@ -25,7 +25,7 @@ it('retains Site24 JC005 while adding the isolated JC008 candidate and retains t
   expect(definition.text).toContain('资产区具有心灵领域图标');
   expect(definition.text).not.toMatch(/装备|额外费用/);
   const scans = JSON.parse(readFileSync(resolve('public/card-scans.json'), 'utf8'));
-  expect(Object.keys(scans)).toHaveLength(95);
+  expect(Object.keys(scans)).toHaveLength(96);
   expect(scans.JC005).toEqual({ url: '/cards/JC005.jpg', source: 'resource/ymsj-fun.github.io/cards/JC005 裂解术.jpg', sha256 });
   expect(createHash('sha256').update(readFileSync(resolve('public/cards/JC005.jpg'))).digest('hex')).toBe(sha256);
 });

@@ -444,6 +444,11 @@
     "source": "resource/ymsj-fun.github.io/cards/XQ43 具现化.jpg",
     "sha256": "6e950624afff514a9ffed208fe51dc4137e5114b3f67a24bb0e694be0c935c93"
   },
+  "JC029": {
+    "url": "/cards/JC029.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC029 新生血族.jpg",
+    "sha256": "b3da8f1546e2f8bbbaae8d3c4d4c79dd712cfa7f8d133fe1723efaa1fa152785"
+  },
   "MSJC09": {
     "url": "/cards/MSJC09.jpg",
     "source": "resource/ymsj-fun.github.io/cards/MSJC09 秘社.jpg",

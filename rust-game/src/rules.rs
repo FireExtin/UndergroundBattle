@@ -1081,6 +1081,25 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         use PlayerRef::{Actor, Context};
         let mut m = BTreeMap::new();
         m.insert("XQ43".into(), xq43_definition());
+        // Whole printed JC029: optional reveal only, one damage, any face-up
+        // character in the source region. Reuses existing trigger/target/damage.
+        m.insert(
+            "JC029".into(),
+            with_abilities(vec![ability(
+                "raid-1",
+                "袭击1",
+                Timing::Fast,
+                vec![],
+                vec![target(
+                    Zone::Board,
+                    EntityKind::Character,
+                    Relation::Any,
+                    Range::SourceRegion,
+                )],
+                vec![Op::DamageTarget { slot: 0, amount: 1 }],
+                Some(Event::Reveal),
+            )]),
+        );
         let mut accident = ability(
             "repress-draw",
             "快速行动",
