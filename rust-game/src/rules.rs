@@ -73,6 +73,10 @@ pub enum Range {
 pub enum AttachmentHostCondition {
     CharacterOrActorAssetDomain { magic: MagicIcon },
 }
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
+pub enum TargetPredicate {
+    JC015NonHumanPrintedCostAtLeastThree,
+}
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct TargetSlotSpec {
     pub zone: Zone,
@@ -86,6 +90,8 @@ pub struct TargetSlotSpec {
     pub subtypes_any: Vec<String>,
     #[serde(default)]
     pub printed_cost_max: Option<u32>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub predicate: Option<TargetPredicate>,
     #[serde(default)]
     pub equipment_host: bool,
     #[serde(default)]
@@ -393,6 +399,8 @@ pub struct Traits {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum StaticModifier {
+    LC30WeaponsCombatAndDefense,
+    JC018MindAssetsCombat,
     AttachedRegionSpiritTemporaryIconsPermanent,
     PeekOwnDeckTop,
     NoEnemyCharacters(Icons, Icons),
@@ -441,6 +449,20 @@ pub struct Definition {
 // These are interpreter limits, not rules for resolving partially invalid targets.
 // Reject unsupported declarations before publishing actions or offering trigger choices.
 pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(), String> {
+    let finite_predicate = ability
+        .targets
+        .iter()
+        .chain(ability.modes.iter().flat_map(|m| &m.targets))
+        .any(|t| t.predicate.is_some());
+    if (finite_predicate || card_id == "JC015")
+        && (card_id != "JC015"
+            || serde_json::to_value(ability).unwrap()
+                != serde_json::to_value(&jc015_definition().abilities[0]).unwrap())
+    {
+        return Err(format!(
+            "{card_id}: only the complete JC015 exorcise target predicate is supported"
+        ));
+    }
     let execution_op = |op: &Op| {
         matches!(
             op,
@@ -499,6 +521,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
                     && t.subtypes_any.is_empty()
                     && !t.printed_subtype
                     && t.printed_cost_max.is_none()
+                    && t.predicate.is_none()
                     && !t.equipment_host
                     && !t.requires_magic
                     && !t.exclude_source
@@ -933,6 +956,28 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
 
 fn validate_definitions(definitions: &BTreeMap<String, Definition>) -> Result<(), String> {
     for (card_id, definition) in definitions {
+        for modifier in &definition.modifiers {
+            if matches!(modifier, StaticModifier::LC30WeaponsCombatAndDefense) && card_id != "LC30"
+                || matches!(modifier, StaticModifier::JC018MindAssetsCombat) && card_id != "JC018"
+            {
+                return Err(format!(
+                    "cardId={card_id}: green source modifier is not admitted here"
+                ));
+            }
+        }
+        for (id, whole) in [
+            ("LC30", lc30_definition()),
+            ("JC018", jc018_definition()),
+            ("JC015", jc015_definition()),
+        ] {
+            if card_id == id
+                && serde_json::to_value(definition).unwrap() != serde_json::to_value(whole).unwrap()
+            {
+                return Err(format!(
+                    "cardId={id}: only the complete admitted green definition is supported"
+                ));
+            }
+        }
         let conversions = definition
             .modifiers
             .iter()
@@ -961,6 +1006,11 @@ fn validate_definitions(definitions: &BTreeMap<String, Definition>) -> Result<()
         }
         if let Some(attachment) = &definition.attachment {
             let host = &attachment.host;
+            if host.predicate.is_some() {
+                return Err(format!(
+                    "cardId={card_id}: JC015 predicate cannot be an attachment host guard"
+                ));
+            }
             let admitted_region = card_id == "XQ43";
             if !admitted_region
                 && (host.zone != Zone::Board
@@ -999,6 +1049,7 @@ fn target(zone: Zone, kind: EntityKind, relation: Relation, range: Range) -> Tar
         printed_subtype: false,
         subtypes_any: vec![],
         printed_cost_max: None,
+        predicate: None,
         equipment_host: false,
         requires_magic: false,
         exclude_source: false,
@@ -1074,13 +1125,106 @@ fn with_abilities(abilities: Vec<AbilitySpec>) -> Definition {
     }
 }
 
+fn lc30_definition() -> Definition {
+    Definition {
+        traits: Traits {
+            guard: 2,
+            ..Default::default()
+        },
+        modifiers: vec![StaticModifier::LC30WeaponsCombatAndDefense],
+        ..Default::default()
+    }
+}
+fn jc018_definition() -> Definition {
+    Definition {
+        traits: Traits {
+            renown: true,
+            ..Default::default()
+        },
+        modifiers: vec![StaticModifier::JC018MindAssetsCombat],
+        ..Default::default()
+    }
+}
+fn jc015_definition() -> Definition {
+    let mut victim = target(
+        Zone::Board,
+        EntityKind::Character,
+        Relation::EnemyTeam,
+        Range::Anywhere,
+    );
+    victim.predicate = Some(TargetPredicate::JC015NonHumanPrintedCostAtLeastThree);
+    with_abilities(vec![ability(
+        "exorcise",
+        "牺牲驱魔人消灭非人类",
+        Timing::Standard,
+        vec![Cost::ExhaustSource, Cost::SacrificeSource],
+        vec![victim],
+        vec![Op::Destroy(EntityRef::Target(0))],
+        None,
+    )])
+}
+fn msjc02_definition() -> Definition {
+    let mut search = ability(
+        "search-green-unique",
+        "绿色独有检索（每局一次）",
+        Timing::Standard,
+        vec![Cost::Assets(4), Cost::ExhaustSource],
+        vec![],
+        vec![Op::Search {
+            player: PlayerRef::Actor,
+            filter: CardFilter::PrintedColorAndUnique {
+                color: "绿".into()
+            },
+            to_top: false,
+            optional: false,
+            visibility: SearchVisibility::Reveal,
+        }],
+        None,
+    );
+    search.once_per_game = true;
+    with_abilities(vec![
+        ability(
+            "drawWithInitiative",
+            "先手抓牌",
+            Timing::Standard,
+            vec![Cost::Assets(3), Cost::ExhaustSource],
+            vec![],
+            vec![Op::DrawIfActorHasInitiative { count: 1 }],
+            None,
+        ),
+        search,
+    ])
+}
+
 pub fn definitions() -> &'static BTreeMap<String, Definition> {
     static DEFINITIONS: OnceLock<BTreeMap<String, Definition>> = OnceLock::new();
     DEFINITIONS.get_or_init(|| {
         use EntityRef::{Source, Target};
         use PlayerRef::{Actor, Context};
         let mut m = BTreeMap::new();
+        m.insert("LC30".into(), lc30_definition());
+        m.insert("JC018".into(), jc018_definition());
+        m.insert("JC015".into(), jc015_definition());
         m.insert("XQ43".into(), xq43_definition());
+        // Whole printed JC029: optional reveal only, one damage, any face-up
+        // character in the source region. Reuses existing trigger/target/damage.
+        m.insert(
+            "JC029".into(),
+            with_abilities(vec![ability(
+                "raid-1",
+                "袭击1",
+                Timing::Fast,
+                vec![],
+                vec![target(
+                    Zone::Board,
+                    EntityKind::Character,
+                    Relation::Any,
+                    Range::SourceRegion,
+                )],
+                vec![Op::DamageTarget { slot: 0, amount: 1 }],
+                Some(Event::Reveal),
+            )]),
+        );
         let mut accident = ability(
             "repress-draw",
             "快速行动",
@@ -2825,6 +2969,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         );
         #[cfg(not(feature = "society-fixtures"))]
         {
+            m.insert("MSJC02".into(), msjc02_definition());
             let mut search = ability(
                 "search-purple-unique",
                 "紫色独有检索（每局一次）",
@@ -3028,6 +3173,50 @@ pub fn definition(id: &str) -> &'static Definition {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn green_shapes_reject_extra_modifiers_and_predicate_transplants() {
+        for variant in 0..4 {
+            let mut r = definitions().clone();
+            match variant {
+                0 => r
+                    .get_mut("LC30")
+                    .unwrap()
+                    .modifiers
+                    .push(StaticModifier::PeekOwnDeckTop),
+                1 => r
+                    .get_mut("JC125")
+                    .unwrap()
+                    .modifiers
+                    .push(StaticModifier::JC018MindAssetsCombat),
+                2 => r.get_mut("JC018").unwrap().traits.guard = 2,
+                _ => {
+                    r.get_mut("JC036")
+                        .unwrap()
+                        .attachment
+                        .as_mut()
+                        .unwrap()
+                        .host
+                        .predicate = Some(TargetPredicate::JC015NonHumanPrintedCostAtLeastThree)
+                }
+            }
+            assert!(validate_definitions(&r).is_err());
+        }
+        let whole = jc015_definition().abilities.remove(0);
+        for variant in 0..6 {
+            let mut a = whole.clone();
+            match variant {
+                0 => a.targets[0].predicate = None,
+                1 => a.targets[0].relation = Relation::Any,
+                2 => a.targets[0].range = Range::SourceRegion,
+                3 => a.costs = vec![Cost::SacrificeSource],
+                4 => a.ops.push(Op::Destroy(EntityRef::Target(0))),
+                _ => a.targets[0].printed_subtype = true,
+            }
+            assert!(validate_ability("JC015", &a).is_err());
+        }
+        assert!(validate_ability("JC129", &whole).is_err());
+    }
 
     #[test]
     fn region_attachment_and_conversion_admit_only_the_whole_xq43() {

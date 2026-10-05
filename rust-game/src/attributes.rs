@@ -3,10 +3,57 @@
 use crate::{
     catalog::card,
     model::{Card, Game, Icons},
-    rules::{IconCondition, MagicIcon},
+    rules::{IconCondition, MagicIcon, StaticModifier},
 };
 
 impl Game {
+    // Exactly two admitted source-bound continuous scalars. Printed metadata
+    // stays immutable; exhaustion does not erase asset domain icons.
+    pub(crate) fn green_source_attribute_bonus(&self, c: &Card, region: usize) -> (u32, u32) {
+        if c.face_down
+            || card(&c.definition).kind != "character"
+            || !self
+                .regions
+                .get(region)
+                .is_some_and(|r| r.cards.iter().any(|live| live.id == c.id))
+        {
+            return (0, 0);
+        }
+        let modifiers = &crate::rules::definition(&c.definition).modifiers;
+        if c.definition == "LC30"
+            && modifiers
+                .iter()
+                .any(|m| matches!(m, StaticModifier::LC30WeaponsCombatAndDefense))
+        {
+            let n = self
+                .attachments
+                .iter()
+                .filter(|a| {
+                    !a.card.face_down
+                        && a.host_id == c.id
+                        && card(&a.card.definition)
+                            .subtypes
+                            .iter()
+                            .any(|s| s == "武器")
+                        && self.attachment_host_valid(a)
+                })
+                .count() as u32;
+            return (n, n);
+        }
+        if c.definition == "JC018"
+            && modifiers
+                .iter()
+                .any(|m| matches!(m, StaticModifier::JC018MindAssetsCombat))
+        {
+            let n = self.players[c.controller]
+                .assets
+                .iter()
+                .filter(|a| card(&a.definition).magic_icon == MagicIcon::Mind)
+                .count() as u32;
+            return (n, 0);
+        }
+        (0, 0)
+    }
     pub(crate) fn execution_turn_grants(&self, c: &Card) -> (u32, bool) {
         if c.face_down || card(&c.definition).kind != "character" {
             return (0, false);

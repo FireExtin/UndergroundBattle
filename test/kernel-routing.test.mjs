@@ -28,17 +28,17 @@ forceMage.initSync({ module: readFileSync(new URL('../generated/legacy-v0.2.10/h
 test('real kernels preserve their full version tuple and reject unknown persisted identities', t => {
   const routed = routeKernels(current, [previous, intermediate, last, stable, paced, attached, grave, playable, society, forceMage]);
   const candidateVersion = JSON.parse(current.catalog()).engineVersion;
-  assert.equal(candidateVersion, 'rust-v0.2.29-msjc11-mixed-deck-candidate');
+  assert.equal(candidateVersion, 'rust-v0.2.31-green-minimum-candidate');
   assert.equal(JSON.parse(playable.catalog()).engineVersion, 'rust-v0.2.8');
   const latest = JSON.parse(current.catalog());
   const frozen = JSON.parse(forceMage.catalog());
-  assert.equal(latest.cardPoolVersion, 'limited-v2.26-msjc11-mixed-deck-candidate');
+  assert.equal(latest.cardPoolVersion, 'limited-v2.28-green-minimum-candidate');
   assert.equal(frozen.engineVersion, 'rust-v0.2.10');
   assert.equal(frozen.cardPoolVersion, 'limited-v2.7');
-  assert.equal(latest.cards.length, 89);
+  assert.equal(latest.cards.length, 93);
   assert.equal(frozen.cards.length, 49);
-  assert.equal(latest.cards.filter(c => !frozen.cards.some(old => old.id === c.id)).length, 40);
-  assert(latest.cards.some(c => c.id === 'JC008'));assert.deepEqual(latest.societies.map(c=>c.id),['MSJC09','MSJC01','MSJC07','MSJC06','MSJC08','MSJC11']);
+  assert.equal(latest.cards.filter(c => !frozen.cards.some(old => old.id === c.id)).length, 44);
+  assert(latest.cards.some(c => c.id === 'JC008'));assert.deepEqual(latest.societies.map(c=>c.id),['MSJC09','MSJC01','MSJC07','MSJC06','MSJC08','MSJC11','MSJC02']);
   assert.deepEqual(latest.cards.filter(c => frozen.cards.some(old=>old.id===c.id)).map(c=>c.id), frozen.cards.map(c=>c.id));
   for (const kernel of [current, previous, intermediate, last, stable, paced, attached, grave, playable, society, forceMage]) {
     const initial = JSON.parse(kernel.newGame('room', 'invite', 'duel', 'P0', 'watchers', '18446744073709551615'));
@@ -80,5 +80,5 @@ test('real kernels preserve their full version tuple and reject unknown persiste
     }
   }
   assert.equal(JSON.parse(routed.newGame('new', 'invite', 'duel', 'P0', 'watchers', '1')).view.versions.engine, candidateVersion);
-  t.diagnostic(JSON.stringify({ routedKernelVersions: [current, previous, intermediate, last, stable, paced, attached, grave, playable, society, forceMage].map(k => JSON.parse(k.catalog()).engineVersion), reviewedImplementation: '1691326b8c38c4f8b99d5795a7175f473bf3eb5a', oldIdentitiesAndOwnVersionDraftsPreserved: true }));
+  t.diagnostic(JSON.stringify({ routedKernelVersions: [current, previous, intermediate, last, stable, paced, attached, grave, playable, society, forceMage].map(k => JSON.parse(k.catalog()).engineVersion), reviewedImplementation: 'b897dec5df72559aed7fb03b11426d5037f3a30b', oldIdentitiesAndOwnVersionDraftsPreserved: true }));
 });

@@ -67,3 +67,9 @@ mod region_aura_tests;
 mod msjc08_tests;
 #[cfg(all(test, not(feature = "society-fixtures")))]
 mod msjc11_tests;
+
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod jc029_tests;
+
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod green_minimum_tests;

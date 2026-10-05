@@ -13,12 +13,12 @@ const society = catalog.societies[0];
 const sha256 = '41e478a3f38ead83477498fd88131831a5fd843be364c1c0daa3ba10153c2302';
 
 it('keeps the sole real society unchanged while the local JC008 candidate adds one ordinary card', () => {
-  expect(catalog.engineVersion).toBe('rust-v0.2.29-msjc11-mixed-deck-candidate');
-  expect(catalog.cards).toHaveLength(89);
-  expect(catalog.societies.map(card => card.id)).toEqual(['MSJC09', 'MSJC01', 'MSJC07', 'MSJC06', 'MSJC08', 'MSJC11']);
+  expect(catalog.engineVersion).toBe('rust-v0.2.31-green-minimum-candidate');
+  expect(catalog.cards).toHaveLength(93);
+  expect(catalog.societies.map(card => card.id)).toEqual(['MSJC09', 'MSJC01', 'MSJC07', 'MSJC06', 'MSJC08', 'MSJC11', 'MSJC02']);
   expect(rawCatalog.societies[0].unique).toBe(true);
   const scans = JSON.parse(readFileSync(resolve('public/card-scans.json'), 'utf8'));
-  expect(Object.keys(scans)).toHaveLength(95);
+  expect(Object.keys(scans)).toHaveLength(100);
   expect(scans.MSJC09).toEqual({ url: '/cards/MSJC09.jpg', source: 'resource/ymsj-fun.github.io/cards/MSJC09 秘社.jpg', sha256 });
   expect(createHash('sha256').update(readFileSync(resolve('public/cards/MSJC09.jpg'))).digest('hex')).toBe(sha256);
   expect(Object.keys(scans).some(id => id.startsWith('FIXTURE'))).toBe(false);

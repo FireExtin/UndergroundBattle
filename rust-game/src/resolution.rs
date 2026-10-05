@@ -612,6 +612,17 @@ impl Game {
                         && spec
                             .printed_cost_max
                             .is_none_or(|max| !c.face_down && d.cost <= max)
+                        && spec
+                            .predicate
+                            .as_ref()
+                            .is_none_or(|predicate| match predicate {
+                                rules::TargetPredicate::JC015NonHumanPrintedCostAtLeastThree => {
+                                    source.card.definition == "JC015"
+                                        && !c.face_down
+                                        && d.cost >= 3
+                                        && !self.current_subtypes(c).iter().any(|s| s == "人类")
+                                }
+                            })
                         && (spec.range != Range::SourceRegion || region == source.region)
                         && spec.subtype.as_ref().is_none_or(|s| {
                             !c.face_down && self.target_subtypes(c, spec).contains(s)
