@@ -26,6 +26,9 @@ mod control;
 #[path = "support/defence_equipment.rs"]
 mod defence_equipment;
 #[cfg(not(feature = "society-fixtures"))]
+#[path = "support/dream_reveal.rs"]
+mod dream_reveal;
+#[cfg(not(feature = "society-fixtures"))]
 #[path = "support/equipment_abilities.rs"]
 mod equipment_abilities;
 #[cfg(not(feature = "society-fixtures"))]
@@ -2703,6 +2706,15 @@ fn main() {
         .nth(1)
         .expect("Usage: native_fixtures <output.json>");
     #[cfg(not(feature = "society-fixtures"))]
+    if std::env::args().any(|a| a == "--slice-dream-reveal") {
+        write_fixture_cases(
+            &output,
+            json!({"catalog":catalog::catalog()}),
+            dream_reveal::cases(),
+        );
+        return;
+    }
+    #[cfg(not(feature = "society-fixtures"))]
     if std::env::args().any(|a| a == "--slice-wound-defence") {
         write_fixture_cases(
             &output,
@@ -3004,6 +3016,7 @@ fn main() {
         .chain(hand_interactions::cases())
         .chain(purple_tools::cases())
         .chain(wound_defence::cases())
+        .chain(dream_reveal::cases())
     {
         writer.push(case);
     }

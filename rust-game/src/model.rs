@@ -77,6 +77,8 @@ pub struct LegalAction {
 #[serde(rename_all = "camelCase")]
 pub struct CardView {
     #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub current_spirit_protection: Option<bool>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub current_printed_defense: Option<u32>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub current_damage_prevention: Option<bool>,
@@ -524,6 +526,10 @@ pub enum DeclareChoice {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum FrameChoice {
+    RepressOne {
+        seat: usize,
+        regions: Vec<(usize, String)>,
+    },
     RevealedHandDiscard {
         seat: usize,
         revealed: Vec<Card>,

@@ -144,6 +144,7 @@ pub enum MagicIcon {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum CardFilter {
+    NamedCharacter(String),
     PrintedColor(String),
     Any,
     HasPrintedMagic,
@@ -173,6 +174,9 @@ impl CardFilter {
             Self::SocietyOrMagic { society, magic } => {
                 definition.society == *society || definition.magic_icon == *magic
             }
+            Self::NamedCharacter(name) => {
+                definition.kind == "character" && definition.name == *name
+            }
             Self::PrintedCostAndSubtypes { max_cost, subtypes } => {
                 definition.cost <= *max_cost
                     && subtypes.iter().any(|subtype| {
@@ -194,6 +198,9 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    RepressOpponentOne {
+        slot: usize,
+    },
     WoundTarget {
         slot: usize,
         amount: u32,
@@ -362,6 +369,8 @@ pub struct AbilitySpec {
 #[derive(Clone, Debug, Default, Serialize, Deserialize)]
 pub struct Traits {
     #[serde(default, skip_serializing_if = "crate::model::is_false")]
+    pub spirit: bool,
+    #[serde(default, skip_serializing_if = "crate::model::is_false")]
     pub renown: bool,
     pub public: bool,
     pub barrier: bool,
@@ -440,7 +449,46 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
         ));
     }
     for op in &ability.ops {
+        if let Op::Search {
+            filter: CardFilter::NamedCharacter(name),
+            player,
+            to_top,
+            visibility,
+            ..
+        } = op
+        {
+            if card_id != "JZ61"
+                || name != "噩梦残像"
+                || !matches!(player, PlayerRef::Actor)
+                || *to_top
+                || *visibility != SearchVisibility::Reveal
+                || ability.event != Some(Event::Death)
+                || !ability.targets.is_empty()
+                || !ability.costs.is_empty()
+                || ability.ops.len() != 1
+            {
+                return Err(format!(
+                    "{card_id}: only the admitted named-character death search is supported"
+                ));
+            }
+        }
         match op {
+            Op::RepressOpponentOne { slot }
+                if card_id != "JZ58"
+                    || *slot != 0
+                    || ability.ops.len() != 1
+                    || ability.event != Some(Event::Reveal)
+                    || !ability.costs.is_empty()
+                    || ability.targets.len() != 1
+                    || ability.targets[0].zone != Zone::Player
+                    || ability.targets[0].relation != Relation::EnemyTeam
+                    || ability.targets[0].range != Range::Anywhere =>
+            {
+                return Err(format!(
+                    "{card_id}: only the admitted one-opponent reveal repression is supported"
+                ))
+            }
+
             Op::WoundTarget { slot, amount }
                 if card_id != "JZ59"
                     || *slot != 0
@@ -816,6 +864,48 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         use EntityRef::{Source, Target};
         use PlayerRef::{Actor, Context};
         let mut m = BTreeMap::new();
+        m.insert(
+            "JZ58".into(),
+            Definition {
+                traits: Traits {
+                    spirit: true,
+                    ..Default::default()
+                },
+                abilities: vec![ability(
+                    "reveal-repress",
+                    "现身触发",
+                    Timing::Fast,
+                    vec![],
+                    vec![target(
+                        Zone::Player,
+                        EntityKind::Any,
+                        Relation::EnemyTeam,
+                        Range::Anywhere,
+                    )],
+                    vec![Op::RepressOpponentOne { slot: 0 }],
+                    Some(Event::Reveal),
+                )],
+                ..Default::default()
+            },
+        );
+        m.insert(
+            "JZ61".into(),
+            with_abilities(vec![ability(
+                "death-find-nightmare",
+                "死亡触发",
+                Timing::Fast,
+                vec![],
+                vec![],
+                vec![Op::Search {
+                    player: PlayerRef::Actor,
+                    filter: CardFilter::NamedCharacter("噩梦残像".into()),
+                    to_top: false,
+                    optional: true,
+                    visibility: SearchVisibility::Reveal,
+                }],
+                Some(Event::Death),
+            )]),
+        );
         m.insert(
             "JZ59".into(),
             with_abilities(vec![ability(

@@ -3225,6 +3225,83 @@
         "sha256": "2a13b5e0bf5fa11f320bcf31141cf0e68915a949f9031cd112b5c650420285cf",
         "basis": "actual original fields checked against hegemony symbol legend"
       }
+    },
+    {
+      "id": "JZ58",
+      "name": "噩梦残像",
+      "kind": "character",
+      "subtypes": [
+        "梦魔"
+      ],
+      "cost": 0,
+      "loyalty": [
+        "紫色"
+      ],
+      "loyaltyText": "紫色",
+      "color": "紫",
+      "magic": "星辰",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        }
+      },
+      "defense": 1,
+      "text": "灵体\n现身触发 遏制1。",
+      "supported": true,
+      "unique": false,
+      "keywords": [
+        "灵体"
+      ],
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/JZ58 噩梦残像.jpg",
+        "sha256": "4cb1892b435cc14fd3f9d8310b428a16eaf5cc5afe1c870760a3dcc457d4dd95",
+        "basis": "actual original fields and Hegemony spirit/repression terms checked"
+      }
+    },
+    {
+      "id": "JZ61",
+      "name": "暗夜访客",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "宿主"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "紫色"
+      ],
+      "loyaltyText": "紫色",
+      "color": "紫",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "死亡触发 从你的牌库中寻找一张名为噩梦残像的角色牌，展示该牌后置于你的手中，然后洗牌。",
+      "supported": true,
+      "unique": false,
+      "keywords": [],
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/JZ61 暗夜访客.jpg",
+        "sha256": "5da40b475c306d3a295a6582576b9b720c8707050bdedfea3005b92578e4e37f",
+        "basis": "actual original fields and Hegemony spirit/repression terms checked"
+      }
     }
   ],
   "decks": [

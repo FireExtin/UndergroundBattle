@@ -7,7 +7,7 @@ export function visibleCard(card: Card, viewerId: string): Card {
   if (!card.faceDown || card.controller === viewerId) return card;
   return { ...card, cardId: undefined, name: '暗藏者', kind: 'hidden', cost: undefined, effectiveCost: undefined,
     text: undefined, icons: undefined, defense: undefined, damage: undefined, shield: undefined,
-    wounds: undefined, color: undefined, magic: undefined, currentSubtypes: undefined, currentRenown: undefined, currentBarrier: undefined, currentDamagePrevention: undefined, currentPrintedDefense: undefined };
+    wounds: undefined, color: undefined, magic: undefined, currentSubtypes: undefined, currentRenown: undefined, currentBarrier: undefined, currentDamagePrevention: undefined, currentSpiritProtection: undefined, currentPrintedDefense: undefined };
 }
 
 const emptyIcons: Icons = { investigation: 0, combat: 0, influence: 0 };
@@ -65,6 +65,7 @@ export function CardContent({ card: source, definition: sourceDefinition, compac
       {!compact && !society && hasTemporary && <span className="hg-temporary-label">先手 <IconStrip icons={temporary} temporary /></span>}
       {!compact && <span className="hg-card-text">{asset ? '未横置时可提供 1 费用，并提供所示派系与魔法忠诚。' : card.text || definition?.text || '此牌没有额外能力。'}</span>}
       <span className="hg-card-footer">
+        {!card.faceDown && card.region !== undefined && typeof card.currentSpiritProtection === 'boolean' && <span title="灵体按本地区双方领域数量比较防止伤害">灵体：当前{card.currentSpiritProtection ? '防止伤害' : '不防止伤害'}</span>}
         {!card.faceDown && card.region !== undefined && card.currentDamagePrevention && <span>本回合防止伤害</span>}
         {!card.faceDown && card.region !== undefined && typeof card.currentPrintedDefense === 'number' && <span>本回合印刷防御 {card.currentPrintedDefense}</span>}
         {!card.faceDown && card.region !== undefined && card.currentRenown && <span>声望</span>}

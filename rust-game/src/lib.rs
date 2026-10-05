@@ -47,3 +47,6 @@ mod hand_interactions_tests;
 mod purple_tools_tests;
 #[cfg(test)]
 mod wound_defence_tests;
+
+#[cfg(test)]
+mod dream_reveal_tests;

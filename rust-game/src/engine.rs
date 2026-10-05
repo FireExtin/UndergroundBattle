@@ -1647,6 +1647,17 @@ impl Game {
             if amount > 0
                 && self
                     .board(&target)
+                    .is_some_and(|(_, c)| self.spirit_protected(c))
+            {
+                self.note(format!(
+                    "灵体领域优势：为 {} 防止 {amount} 点伤害",
+                    card(&self.board(&target).unwrap().1.definition).name
+                ));
+                continue;
+            }
+            if amount > 0
+                && self
+                    .board(&target)
                     .is_some_and(|(_, c)| self.damage_prevented(c))
             {
                 self.note(format!(
@@ -1903,6 +1914,12 @@ impl Game {
         let hidden = c.face_down && c.controller != viewer;
         let asset = kind == Some("asset");
         CardView {
+            current_spirit_protection: (!asset
+                && !c.face_down
+                && region.is_some()
+                && d.kind == "character"
+                && rules::definition(&c.definition).traits.spirit)
+                .then(|| self.spirit_protected(c)),
             current_printed_defense: (!asset && !c.face_down && region.is_some())
                 .then(|| self.printed_defense_override(c))
                 .flatten(),
@@ -2550,7 +2567,7 @@ mod tests {
     #[test]
     fn catalog_is_restricted_real_complete_and_decks_are_legal() {
         let c = catalog::catalog();
-        assert_eq!(c.cards.len(), 83);
+        assert_eq!(c.cards.len(), 85);
         let active = c
             .cards
             .iter()
@@ -2565,7 +2582,7 @@ mod tests {
                 .collect::<BTreeSet<_>>()
         );
         assert!(active.contains("DQJC116"));
-        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 73);
+        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 75);
         assert_eq!(c.decks.len(), 5);
         for deck in &c.decks {
             assert_eq!(deck.card_count, 50);

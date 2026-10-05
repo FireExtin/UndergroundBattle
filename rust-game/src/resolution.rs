@@ -540,7 +540,16 @@ impl Game {
             Zone::Player => id
                 .strip_prefix('p')
                 .and_then(|s| s.parse::<usize>().ok())
-                .is_some_and(|s| s < self.players.len() && !self.players[s].eliminated),
+                .is_some_and(|s| {
+                    s < self.players.len()
+                        && !self.players[s].eliminated
+                        && match spec.relation {
+                            Relation::Any => true,
+                            Relation::EnemyTeam => self.team(s) != self.team(actor),
+                            Relation::FriendlyTeam => self.team(s) == self.team(actor),
+                            Relation::ControlledByActor | Relation::OwnedByActor => s == actor,
+                        }
+                }),
             Zone::Region => id
                 .strip_prefix("region:")
                 .and_then(|s| s.parse::<usize>().ok())
@@ -1222,6 +1231,46 @@ impl Game {
                         prevents_damage: false,
                         expires_turn: self.turn,
                     });
+                }
+                Op::RepressOpponentOne { slot } => {
+                    let seat = self.frame_player(&frame, step.context, PlayerRef::Target(slot))?;
+                    let team = self.team(seat);
+                    let regions: Vec<_> = self
+                        .regions
+                        .iter()
+                        .enumerate()
+                        .filter(|(_, r)| r.influence[team] > 0)
+                        .map(|(r, region)| (r, region.card.id.clone()))
+                        .collect();
+                    if !regions.is_empty() {
+                        let options = regions
+                            .iter()
+                            .map(|(r, _)| ChoiceOption {
+                                id: format!("region:{r}"),
+                                label: format!(
+                                    "地区{}：{}（本方势力{}）",
+                                    r + 1,
+                                    card(&self.regions[*r].card.definition).name,
+                                    self.regions[*r].influence[team]
+                                ),
+                                card: None,
+                            })
+                            .collect();
+                        self.choice(
+                            seat,
+                            "target",
+                            "遏制1：选择移除本方势力的地区".into(),
+                            options,
+                            1,
+                            1,
+                            None,
+                            ChoiceResolution::Frame {
+                                frame: Box::new(frame),
+                                choice: FrameChoice::RepressOne { seat, regions },
+                            },
+                        );
+                        return Ok(());
+                    }
                 }
                 Op::WoundTarget { slot, amount } => {
                     let id = frame.targets.get(slot).ok_or("缺少创伤目标")?.id.clone();
@@ -1905,6 +1954,29 @@ impl Game {
                 let amount = self.defense(c, region) as usize;
                 self.remove_dead(id, RemovalCause::Sacrifice);
                 self.draw(seat, amount)?;
+            }
+            FrameChoice::RepressOne { seat, regions } => {
+                let region = selected
+                    .first()
+                    .and_then(|id| id.strip_prefix("region:"))
+                    .and_then(|s| s.parse::<usize>().ok())
+                    .ok_or("缺少遏制地区")?;
+                let original = regions
+                    .iter()
+                    .find(|(r, _)| *r == region)
+                    .ok_or("遏制地区不属于原选项")?;
+                let team = self.team(seat);
+                let r = self
+                    .regions
+                    .get_mut(region)
+                    .filter(|r| r.card.id == original.1 && r.influence[team] > 0)
+                    .ok_or("遏制地区或势力已失效")?;
+                r.influence[team] -= 1;
+                self.note(format!(
+                    "{} 从地区{}移除1个本方势力标志",
+                    self.players[seat].name,
+                    region + 1
+                ));
             }
             FrameChoice::Region => {
                 let region = selected

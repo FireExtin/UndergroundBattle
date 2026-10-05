@@ -7,6 +7,29 @@ use crate::{
 };
 
 impl Game {
+    pub fn spirit_protected(&self, c: &Card) -> bool {
+        if c.face_down
+            || !crate::rules::definition(&c.definition).traits.spirit
+            || card(&c.definition).kind != "character"
+        {
+            return false;
+        }
+        let Some((region, _)) = self.board(&c.id) else {
+            return false;
+        };
+        let mut domains = [0usize; 2];
+        for (r, other) in self.in_play_cards() {
+            if r == region
+                && !other.face_down
+                && card(&other.definition).magic_icon != MagicIcon::None
+            {
+                domains[self.team(other.controller)] += 1;
+            }
+        }
+        let team = self.team(c.controller);
+        domains[1 - team] < domains[team]
+    }
+
     pub(crate) fn printed_defense_override(&self, c: &Card) -> Option<u32> {
         if c.face_down || card(&c.definition).kind != "character" {
             return None;

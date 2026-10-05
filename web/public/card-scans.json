@@ -414,6 +414,16 @@
     "source": "resource/ymsj-fun.github.io/cards/LC12 阿瓦隆隐士.jpg",
     "sha256": "2a13b5e0bf5fa11f320bcf31141cf0e68915a949f9031cd112b5c650420285cf"
   },
+  "JZ58": {
+    "url": "/cards/JZ58.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JZ58 噩梦残像.jpg",
+    "sha256": "4cb1892b435cc14fd3f9d8310b428a16eaf5cc5afe1c870760a3dcc457d4dd95"
+  },
+  "JZ61": {
+    "url": "/cards/JZ61.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JZ61 暗夜访客.jpg",
+    "sha256": "5da40b475c306d3a295a6582576b9b720c8707050bdedfea3005b92578e4e37f"
+  },
   "MSJC09": {
     "url": "/cards/MSJC09.jpg",
     "source": "resource/ymsj-fun.github.io/cards/MSJC09 秘社.jpg",
