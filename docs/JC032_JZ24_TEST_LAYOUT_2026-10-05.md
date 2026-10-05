@@ -1,6 +1,6 @@
-# 两牌定向测试布局（准备完成，尚未执行）
+# 两牌定向测试布局（历史设计与执行对照）
 
-基线 `713be787f47d4188640922a5d373662bd04ffe38`。这是测试设计，不是测试通过记录；两牌生产续体未修改。JC030 已通过的定向检查不重复。实施仍等待父线程对有限方案的审定。
+基线 `713be787f47d4188640922a5d373662bd04ffe38`。下文保留测试设计；实际执行采用合并的 `blue_minimum_tests.rs`，并按后续授权加入 MSJC03。真实通过和失败记录见 [Air 候选说明](BLUE_MINIMUM_AIR_CANDIDATE_2026-10-06.md)，不能将本设计表本身当作执行证据。候选尚待父会话独立审查。
 
 ## 锁定依据与输出
 
@@ -8,11 +8,11 @@ JC032 整图 SHA256 `ebeb0a13c62cdf10569f4aa9f300998aff53a65788d756f055e9696f354
 
 JZ24 整图 SHA256 `e01995d70e06a6b179dcbbf81c3df73ab548269fc0efe9fafc33e2e2f3c8722d`；原文：『现身触发 若有敌方玩家的手牌数量少于或等于三张，则该玩家牺牲一个本地区的角色。』费用4、蓝1、死亡1，无强制标记。用户于主房2026-10-05 16:23认可**效果首次开始结算冻结全部合格敌席**，这是项目口径，并非官方FAQ。
 
-拟用独立 `jc032_tests.rs` / `jz24_tests.rs`，复用现有 jc029 的显式离线 `game/board/fund/apply/pass_top/choose/reject/checkpoint/envelope`。布局与异常状态改动只在 cfg(test)，不伪称自然游戏；命令、响应、选择走真实 RoomEnvelope 协议，完整保存 before/command/transition/fourViews。恢复点以 RoomEnvelope::from_persisted 读取，再用同一后续命令比完整状态与四视图；拒绝比较完整序列化状态不变。重放同一 command_id 专门用保留的真实 RoomEnvelope，不能每次重新构造回执。
+实际合并在 `blue_minimum_tests.rs`，复用现有 jc029 的显式离线 `game/board/fund/apply/pass_top/choose/reject/checkpoint/envelope`。布局与异常状态改动只在 cfg(test)，不伪称自然游戏；命令、响应、选择走真实 RoomEnvelope 协议，完整保存 before/command/transition/fourViews。恢复点以 RoomEnvelope::from_persisted 读取，再用同一后续命令比完整状态与四视图；拒绝比较完整序列化状态不变。RoomEnvelope 本身不持有命令回执；重复命令与重启回执使用实际 Store/SQLite，而不是重建 envelope 冒充回执测试。
 
 ## JC032 明确布局
 
-actor=0、source owner=2/controller=0（对照owner=controller=0），source在region2，足够动作2费用，库顺序固定为：`[JC030, JC029, XQ16, JC125, JC003, JC030, JC029, JC059]`。所有牌是不同实例；位置2/4的 JC029/JC125 为符合牌，位置7的 JC029 必须排除。actor有2个血领域资产时，库中 JC030 仍按印刷Bat排除。队友席1及source owner席2拥有不同库，防误用。
+actor=0、source owner=2/controller=0（对照owner=controller=0），source在region2，足够动作2费用，库顺序固定为：`[JC030, JC029, XQ16, JZ24, JC003, JC030, JC029, JC059]`。所有牌是不同实例；位置2/4的 JC029/JZ24 为符合牌，位置7的 JC029 必须排除。历史设计误将 JC125 人类列为吸血鬼，执行前据实际印刷类型纠正夹具，未改旧牌定义。actor有2个血领域资产时，库中 JC030 仍按印刷Bat排除。队友席1及source owner席2拥有不同库，防误用。
 
 | 测试组 | 操作与观察 | 必须满足 |
 | --- | --- | --- |
@@ -55,4 +55,4 @@ actor=2（队友3，敌A=0/B=1），JZ24位于region2并通过真实conceal→re
 - JZ24：事件改Enter/Death、加mandatory/动作费/每回合限额、替换为SacrificeChosen全场或只Actor、移植固定操作到JC029/JC032、增加目标与过滤谓词、多加操作或modifier。现有generic ForEach不可代替首次结算取样。
 - 捕获字段仅两牌非None；其他已准入来源的序列化字段保持原状。当前32作为冻结旧核字节不变，由32读取其旧状态；新候选拒绝旧身份，不迁移旧房。未通过的新实例/原地区guard不能用同地区索引或同definition补配。
 
-新增整状态前端夹具只覆盖这两牌：JC032四席私有顶6和原图读取、1项必须选择/0项确认、提交后隐匿controller权限；JZ24当前敌席选择及BQ022→B pending刷新。定向默认WASM逐个重放全部正文与四视图；不重跑旧绿色union，不扩卡池到MSJC03，不发布Site30变更。
+新增整状态前端夹具覆盖 JC032 四席私有顶6和原图读取、1项必须选择/0项确认、提交后隐匿controller权限；JZ24 当前敌席选择及BQ022→B pending刷新；后续已授权范围另含 MSJC03 蓝牌最低25、独有卡搜索和费用/次数。实际默认 WASM33 已逐个重放全部正文与四视图。旧绿色 union 未整套重跑；早期宽泛 `blue_` 过滤曾额外命中两项旧 JC030 和一项旧 repression 测试，该事实留在日志。未发布 Site30 变更。

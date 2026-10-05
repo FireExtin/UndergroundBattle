@@ -453,6 +453,11 @@ pub struct Definition {
 // These are interpreter limits, not rules for resolving partially invalid targets.
 // Reject unsupported declarations before publishing actions or offering trigger choices.
 pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(), String> {
+    if ability.modes.iter().any(|mode| mode.ops.iter().any(|op| {
+        matches!(op, Op::JC032TopSixVampireHidden | Op::JZ24LocalSacrificeSnapshot)
+    })) {
+        return Err(format!("{card_id}: blue finite operations cannot be mode operations"));
+    }
     let finite_predicate = ability
         .targets
         .iter()
@@ -744,7 +749,10 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
         ));
     }
     if let Some(limit) = ability.per_turn_limit {
-        if limit != 2
+        let elder = card_id == "JC032"
+            && serde_json::to_value(ability).unwrap()
+                == serde_json::to_value(&jc032_definition().abilities[0]).unwrap();
+        if !elder && (limit != 2
             || !ability.activation_only
             || ability.event.is_some()
             || !matches!(
@@ -756,9 +764,9 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
                 [Op::ModifyAttachmentHostUntilTurnEnd]
             )
             || !ability.modes.is_empty()
-        {
+        ) {
             return Err(format!(
-                "{card_id}: only the admitted twice-per-turn host grant is supported"
+                "{card_id}: only the admitted host grant or JC032 once-per-turn action is supported"
             ));
         }
     }
@@ -3241,6 +3249,46 @@ pub fn definition(id: &str) -> &'static Definition {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn blue_closed_definitions_reject_variants_and_finite_operation_transplants() {
+        for id in ["JC032", "JZ24", "MSJC03"] {
+            for variant in 0..10 {
+                let mut r = definitions().clone();
+                let d = r.get_mut(id).unwrap();
+                let i = if id == "MSJC03" { 1 } else { 0 };
+                match variant {
+                    0 => d.abilities[i].costs.push(Cost::ExhaustSource),
+                    1 => d.abilities[i].per_turn_limit = Some(2),
+                    2 => d.abilities[i].event = Some(Event::Enter),
+                    3 => d.abilities[i].targets.push(target(Zone::Board, EntityKind::Character, Relation::Any, Range::Anywhere)),
+                    4 => d.abilities[i].ops.push(Op::Draw { player: PlayerRef::Actor, count: 1, end: DeckEnd::Top }),
+                    5 => d.abilities[i].ops = vec![Op::SacrificeChosen(PlayerRef::Actor)],
+                    6 => d.modifiers.push(StaticModifier::PeekOwnDeckTop),
+                    7 => d.abilities[i].per_turn_limit = None,
+                    8 => d.abilities[i].costs = vec![Cost::Assets(1)],
+                    _ => d.abilities[i].requires_ready_source = true,
+                }
+                // Removing an already absent limit is unchanged for these two.
+                if variant == 7 && id != "JC032" { d.abilities[i].once_per_game = !d.abilities[i].once_per_game; }
+                assert!(validate_definitions(&r).is_err(), "{id} variant {variant}");
+            }
+        }
+        for (original, other) in [("JC032", "JC029"), ("JC032", "JC030"), ("JZ24", "JC029"), ("JZ24", "JC032")] {
+            let mut r = definitions().clone();
+            let transplanted = r[original].abilities[0].clone();
+            r.get_mut(other).unwrap().abilities = vec![transplanted];
+            assert!(validate_definitions(&r).is_err());
+        }
+        for op in [Op::JC032TopSixVampireHidden, Op::JZ24LocalSacrificeSnapshot] {
+            let mut r = definitions().clone();
+            r.get_mut("JC029").unwrap().abilities[0].modes.push(Mode {
+                key: "unadmitted-blue-mode".into(), label: "invalid variant".into(),
+                targets: vec![], ops: vec![op],
+            });
+            assert!(validate_definitions(&r).is_err(), "finite operations cannot be transplanted into modes");
+        }
+    }
 
     #[test]
     fn jc030_closed_definition_rejects_shape_changes_and_modifier_transplants() {

@@ -37,8 +37,9 @@ export function ChoicePanel({ choice, action, definitions, busy, onSubmit, onRea
   const assigned = Object.values(allocations).reduce((total, n) => total + n, 0);
   const min = choice.min ?? 1;
   const max = choice.max ?? choice.options.length;
+  const zeroConfirmation = choice.kind === 'jc032_top_six' && min === 0 && max === 0 && choice.options.length === 0;
   const valid = damage ? assigned === amount : ordering ? top.length + bottom.length === choice.options.length
-    : selected.length >= min && selected.length <= max && (selected.length > 0 || canDecline);
+    : selected.length >= min && selected.length <= max && (selected.length > 0 || canDecline || zeroConfirmation);
   const choose = (id: string) => setSelected(ids => ids.includes(id) ? ids.filter(value => value !== id) : ids.length < max ? [...ids, id] : ids);
   const allocate = (id: string, requested: number) => setAllocations(current => {
     const other = Object.entries(current).reduce((total, [key, value]) => total + (key === id ? 0 : value), 0);

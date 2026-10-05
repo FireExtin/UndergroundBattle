@@ -11,6 +11,7 @@ case "${1:-}" in
   --society-fixtures) build_args=(--features society-fixtures); output_dir="rust-game-wasm/pkg-society-fixtures" ;;
   *) printf '%s\n' 'Usage: build.sh [--society-fixtures]' >&2; exit 2 ;;
 esac
-cargo build --locked --release -p hegemony-wasm --target wasm32-unknown-unknown "${build_args[@]}"
+# Bash 3.2 on macOS treats an empty array as unset under nounset.
+cargo build --locked --release -p hegemony-wasm --target wasm32-unknown-unknown ${build_args[@]+"${build_args[@]}"}
 "$wasm_bindgen_bin" "$build_target_dir/wasm32-unknown-unknown/release/hegemony_wasm.wasm" --target web --out-dir "$output_dir" --out-name hegemony_wasm
 printf '%s\n' '{"type":"module","private":true}' > "$output_dir/package.json"

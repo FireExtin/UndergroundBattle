@@ -1,6 +1,6 @@
 import { fireEvent, render, screen, within } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { DeckLibrary } from './DeckLibrary';
+import { DeckLibrary } from './DeckLibraryPanel';
 import { createDeckDraft, DECK_LIBRARY_STORAGE_KEY, readDeckLibrary, saveDeckLibrary, validateDeckDraft } from './deckLibrary';
 import { fixtureSociety, fixtureSocietyCatalog as catalog } from './societyTest.fixture';
 

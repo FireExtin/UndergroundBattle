@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { FactionCoverage } from './FactionCoverage';
-import { DeckLibrary } from './DeckLibrary';
+import { DeckLibrary } from './DeckLibraryPanel';
 import { publicDeckDraft, validateDeckDraft } from './deckLibrary';
 import type { DeckDraft } from './deckLibrary';
 import { deckColors } from './factions';
