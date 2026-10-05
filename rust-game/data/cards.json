@@ -2918,6 +2918,161 @@
       },
       "unique": false,
       "society": ""
+    },
+    {
+      "id": "JC114",
+      "name": "好奇的黑客",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "工程师"
+      ],
+      "cost": 2,
+      "loyalty": [],
+      "loyaltyText": "",
+      "color": "中立",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "text": "【标准行动】1，【横置】：目标玩家展示其手牌。你可以从中选择一张牌，并牺牲好奇的黑客，若你如此做，该玩家弃掉你所选择的牌。",
+      "keywords": [],
+      "unique": false,
+      "society": "",
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JC114",
+        "image": "resource/ymsj-fun.github.io/cards/JC114 好奇的黑客.jpg",
+        "sha256": "2cd5cc66ceb3c9a8f9d07d341558489adb170dcb680331c7620e5f1162be12c7"
+      },
+      "subtitle": "无知而无畏",
+      "defense": 1
+    },
+    {
+      "id": "XQ34",
+      "name": "灵感",
+      "kind": "spell",
+      "subtypes": [
+        "事务",
+        "研究"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "白色"
+      ],
+      "loyaltyText": "",
+      "color": "白",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "text": "【快速行动】抓一张牌。\n【手牌触发】当你从手中弃掉灵感时，你可以支付1，若你如此做，抓一张牌。",
+      "keywords": [],
+      "unique": false,
+      "society": "",
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "XQ34",
+        "image": "resource/ymsj-fun.github.io/cards/XQ34 灵感.jpg",
+        "sha256": "2ca1f5a4b25d308f8af13a7a80018010deaf93f9abe2275bef1fa7656be13e04"
+      }
+    },
+    {
+      "id": "XQ38",
+      "name": "金特·易卜拉欣",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "学者"
+      ],
+      "cost": 3,
+      "loyalty": [
+        "黑色",
+        "黑色"
+      ],
+      "loyaltyText": "",
+      "color": "黑",
+      "magic": "死亡",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 2,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "text": "【进场触发】将目标玩家牌库顶的三张牌置于其墓地。\n【标准行动】2，【横置】，弃一张手牌：将你墓地中的目标角色牌置于你的手中。",
+      "keywords": [],
+      "unique": true,
+      "society": "",
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "XQ38",
+        "image": "resource/ymsj-fun.github.io/cards/XQ38 金特·易卜拉欣.jpg",
+        "sha256": "26c8311674325491157577a3d295c148ce1c6f27ded59c4d27979faf58e9204e"
+      },
+      "subtitle": "死灵学专家",
+      "defense": 2
+    },
+    {
+      "id": "JZ67",
+      "name": "失忆",
+      "kind": "spell",
+      "subtypes": [
+        "事务",
+        "突发状况"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "紫色"
+      ],
+      "loyaltyText": "",
+      "color": "紫",
+      "magic": "心灵",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "text": "行动 目标玩家随机选择一张手牌，展示该牌并将其置于其拥有者的牌库顶。预测2。若你操控梦魔角色，你可以令该玩家洗牌。",
+      "keywords": [],
+      "unique": false,
+      "society": "",
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JZ67",
+        "image": "resource/ymsj-fun.github.io/cards/JZ67 失忆.jpg",
+        "sha256": "a6554b81e081c7292a32f2bf13ce269f276580f9a852e1df232c60c2c36ff477"
+      }
     }
   ],
   "decks": [

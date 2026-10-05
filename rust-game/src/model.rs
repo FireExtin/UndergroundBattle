@@ -262,6 +262,8 @@ pub struct View {
     #[serde(default)]
     pub attachments: Vec<AttachmentView>,
     pub hand: Vec<CardView>,
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub revealed_hands: Vec<RevealedHandView>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub private_deck_top: Option<CardView>,
     pub assets: Vec<CardView>,
@@ -277,6 +279,13 @@ pub struct View {
     pub your_deck: Option<crate::deck::DeckDraft>,
     #[serde(default)]
     pub world_deck_count: usize,
+}
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct RevealedHandView {
+    pub player_id: String,
+    pub cards: Vec<CardView>,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Card {
@@ -464,6 +473,11 @@ pub struct BoundTarget {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum PaidCost {
+    Discarded {
+        old_instance: String,
+        holder: usize,
+        owner: usize,
+    },
     Assets(Vec<String>),
     Exhausted(String),
     Sacrificed {
@@ -510,6 +524,13 @@ pub enum DeclareChoice {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum FrameChoice {
+    RevealedHandDiscard {
+        seat: usize,
+        revealed: Vec<Card>,
+    },
+    OptionalShuffle {
+        seat: usize,
+    },
     Forecast {
         seat: usize,
     },

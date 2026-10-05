@@ -39,3 +39,6 @@ mod equipment_abilities_tests;
 
 #[cfg(test)]
 mod hand_deck_tests;
+
+#[cfg(test)]
+mod hand_interactions_tests;

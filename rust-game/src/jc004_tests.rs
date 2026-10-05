@@ -160,8 +160,14 @@ fn jc004_complete_printed_definition_and_candidate_identity_are_isolated() {
     assert_eq!(spec.targets[0].kind, EntityKind::Character);
     assert_eq!(spec.targets[0].range, Range::SourceRegion);
     assert_eq!(spec.targets[0].relation, Relation::Any);
-    assert_eq!(catalog::ENGINE_VERSION, "rust-v0.2.20-hand-deck-candidate");
-    assert_eq!(catalog::POOL_VERSION, "limited-v2.17-hand-deck-candidate");
+    assert_eq!(
+        catalog::ENGINE_VERSION,
+        "rust-v0.2.21-hand-interactions-candidate"
+    );
+    assert_eq!(
+        catalog::POOL_VERSION,
+        "limited-v2.18-hand-interactions-candidate"
+    );
     let mut draft = deck::preset("watchers").unwrap();
     draft.cards = vec![
         catalog::DeckEntry {

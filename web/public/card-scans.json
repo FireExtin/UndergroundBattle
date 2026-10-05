@@ -374,6 +374,26 @@
     "source": "resource/ymsj-fun.github.io/cards/XQ17 祭品.jpg",
     "sha256": "e5ad8fe27074632eab8d6207eb2e6f08efb69d20f343f2d50701d30f5a5bb5eb"
   },
+  "JC114": {
+    "url": "/cards/JC114.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC114 好奇的黑客.jpg",
+    "sha256": "2cd5cc66ceb3c9a8f9d07d341558489adb170dcb680331c7620e5f1162be12c7"
+  },
+  "XQ34": {
+    "url": "/cards/XQ34.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/XQ34 灵感.jpg",
+    "sha256": "2ca1f5a4b25d308f8af13a7a80018010deaf93f9abe2275bef1fa7656be13e04"
+  },
+  "XQ38": {
+    "url": "/cards/XQ38.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/XQ38 金特·易卜拉欣.jpg",
+    "sha256": "26c8311674325491157577a3d295c148ce1c6f27ded59c4d27979faf58e9204e"
+  },
+  "JZ67": {
+    "url": "/cards/JZ67.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JZ67 失忆.jpg",
+    "sha256": "a6554b81e081c7292a32f2bf13ce269f276580f9a852e1df232c60c2c36ff477"
+  },
   "MSJC09": {
     "url": "/cards/MSJC09.jpg",
     "source": "resource/ymsj-fun.github.io/cards/MSJC09 秘社.jpg",

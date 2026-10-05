@@ -21,6 +21,7 @@ pub enum ResponsePolicy {
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum Event {
+    HandDiscard,
     Enter,
     EnterRegion,
     Reveal,
@@ -35,6 +36,7 @@ pub enum Cost {
     ExhaustSource,
     SacrificeSource,
     SacrificeSelectedControlledCharacter,
+    DiscardSelectedHandCard,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum Zone {
@@ -189,6 +191,19 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    RevealHandAndOfferSourceSacrifice {
+        player: PlayerRef,
+    },
+    RandomHandToOwnerDeckTop {
+        player: PlayerRef,
+    },
+    MoveDeckTopToGraveyard {
+        player: PlayerRef,
+        count: usize,
+    },
+    OfferShuffleIfActorControlsDreamDemon {
+        player: PlayerRef,
+    },
     GainControl {
         slot: usize,
         until_source_leaves: bool,
@@ -392,6 +407,43 @@ pub struct Definition {
 // These are interpreter limits, not rules for resolving partially invalid targets.
 // Reject unsupported declarations before publishing actions or offering trigger choices.
 pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(), String> {
+    if ability.event == Some(Event::HandDiscard)
+        && (card_id != "XQ34"
+            || !matches!(ability.costs.as_slice(), [Cost::Assets(1)])
+            || !matches!(
+                ability.ops.as_slice(),
+                [Op::Draw {
+                    player: PlayerRef::Actor,
+                    count: 1,
+                    end: DeckEnd::Top
+                }]
+            )
+            || !ability.targets.is_empty())
+    {
+        return Err(format!(
+            "{card_id}: only the admitted paid self-discard draw trigger is supported"
+        ));
+    }
+    if ability
+        .costs
+        .iter()
+        .any(|c| matches!(c, Cost::DiscardSelectedHandCard))
+        && (card_id != "XQ38"
+            || !ability.activation_only
+            || ability.event.is_some()
+            || !matches!(
+                ability.costs.as_slice(),
+                [
+                    Cost::Assets(2),
+                    Cost::ExhaustSource,
+                    Cost::DiscardSelectedHandCard
+                ]
+            ))
+    {
+        return Err(format!(
+            "{card_id}: only the admitted grave recovery hand-discard cost is supported"
+        ));
+    }
     if let Some(limit) = ability.per_turn_limit {
         if limit != 2
             || !ability.activation_only
@@ -451,6 +503,21 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
             }
         }
         for op in ops {
+            if let Op::RevealHandAndOfferSourceSacrifice { player }
+            | Op::RandomHandToOwnerDeckTop { player }
+            | Op::MoveDeckTopToGraveyard { player, .. }
+            | Op::OfferShuffleIfActorControlsDreamDemon { player } = op
+            {
+                if !matches!(player, PlayerRef::Target(0))
+                    || !targets
+                        .first()
+                        .is_some_and(|slot| slot.zone == Zone::Player)
+                {
+                    return Err(format!(
+                        "{location}: admitted hand/deck effect requires its bound player"
+                    ));
+                }
+            }
             if matches!(
                 op,
                 Op::ModifyAttachmentHostUntilTurnEnd
@@ -673,6 +740,118 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         use EntityRef::{Source, Target};
         use PlayerRef::{Actor, Context};
         let mut m = BTreeMap::new();
+        let any_player = target(
+            Zone::Player,
+            EntityKind::Any,
+            Relation::Any,
+            Range::Anywhere,
+        );
+        m.insert(
+            "JC114".into(),
+            with_abilities(vec![ability(
+                "reveal-hand-discard",
+                "标准行动",
+                Timing::Standard,
+                vec![Cost::Assets(1), Cost::ExhaustSource],
+                vec![any_player.clone()],
+                vec![Op::RevealHandAndOfferSourceSacrifice {
+                    player: PlayerRef::Target(0),
+                }],
+                None,
+            )]),
+        );
+        let mut inspiration = ability(
+            "inspiration-draw",
+            "快速行动",
+            Timing::Fast,
+            vec![],
+            vec![],
+            vec![Op::Draw {
+                player: Actor,
+                count: 1,
+                end: DeckEnd::Top,
+            }],
+            None,
+        );
+        inspiration.play_only = true;
+        m.insert(
+            "XQ34".into(),
+            with_abilities(vec![
+                inspiration,
+                ability(
+                    "discard-draw",
+                    "手牌触发",
+                    Timing::Fast,
+                    vec![Cost::Assets(1)],
+                    vec![],
+                    vec![Op::Draw {
+                        player: Actor,
+                        count: 1,
+                        end: DeckEnd::Top,
+                    }],
+                    Some(Event::HandDiscard),
+                ),
+            ]),
+        );
+        let mut recover = ability(
+            "recover-grave-discard",
+            "标准行动",
+            Timing::Standard,
+            vec![
+                Cost::Assets(2),
+                Cost::ExhaustSource,
+                Cost::DiscardSelectedHandCard,
+            ],
+            vec![target(
+                Zone::Graveyard,
+                EntityKind::Character,
+                Relation::OwnedByActor,
+                Range::Anywhere,
+            )],
+            vec![Op::Move(Target(0), Destination::ActorHand)],
+            None,
+        );
+        recover.activation_only = true;
+        m.insert(
+            "XQ38".into(),
+            with_abilities(vec![
+                ability(
+                    "mill-entry",
+                    "进场触发",
+                    Timing::Fast,
+                    vec![],
+                    vec![any_player.clone()],
+                    vec![Op::MoveDeckTopToGraveyard {
+                        player: PlayerRef::Target(0),
+                        count: 3,
+                    }],
+                    Some(Event::Enter),
+                ),
+                recover,
+            ]),
+        );
+        let mut amnesia = ability(
+            "amnesia",
+            "标准行动",
+            Timing::Standard,
+            vec![],
+            vec![any_player],
+            vec![
+                Op::RandomHandToOwnerDeckTop {
+                    player: PlayerRef::Target(0),
+                },
+                Op::Forecast {
+                    player: Actor,
+                    count: 2,
+                },
+                Op::OfferShuffleIfActorControlsDreamDemon {
+                    player: PlayerRef::Target(0),
+                },
+            ],
+            None,
+        );
+        amnesia.play_only = true;
+        m.insert("JZ67".into(), with_abilities(vec![amnesia]));
         // Original scans: finite draw/discard, private search and paid sacrifice.
         // Reuse the admitted continuation interpreter; no new shared mechanism.
         for (id, key, draw_count, event) in [

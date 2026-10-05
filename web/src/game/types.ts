@@ -70,6 +70,7 @@ export type ResponseIntentWindow = {
   canBegin: boolean; myIntentId?: string;
 };
 export type View = {
+  revealedHands?: { playerId: string; cards: Card[] }[];
   roomId: string; inviteCode: string; version: number; mode: 'duel' | 'teams';
   status: 'lobby' | 'playing' | 'finished'; you: string; players: Player[];
   firstTeam: number; activeTeam: number; priorityTeam: number; turn: number;

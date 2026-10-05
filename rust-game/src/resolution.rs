@@ -128,6 +128,16 @@ impl Game {
                         })
                         .map(|c| Some(vec![c.id.clone()]))
                         .collect()
+                } else if ability
+                    .costs
+                    .iter()
+                    .any(|c| matches!(c, Cost::DiscardSelectedHandCard))
+                {
+                    self.players[actor]
+                        .hand
+                        .iter()
+                        .map(|c| Some(vec![c.id.clone()]))
+                        .collect()
                 } else {
                     vec![None]
                 };
@@ -181,12 +191,25 @@ impl Game {
                                     .unwrap_or_default(),
                                 cost.as_ref()
                                     .and_then(|ids| ids.first())
-                                    .and_then(|id| self.board(id).map(|(r, c)| format!(
-                                        "（费用：牺牲{}·地区{} [{}]）",
-                                        card(&c.definition).name,
-                                        r + 1,
-                                        c.id
-                                    )))
+                                    .and_then(|id| self.players[actor]
+                                        .hand
+                                        .iter()
+                                        .find(|c| c.id == *id)
+                                        .filter(|_| ability
+                                            .costs
+                                            .iter()
+                                            .any(|c| matches!(c, Cost::DiscardSelectedHandCard)))
+                                        .map(|c| format!(
+                                            "（费用：弃掉{} [{}]）",
+                                            card(&c.definition).name,
+                                            c.id
+                                        ))
+                                        .or_else(|| self.board(id).map(|(r, c)| format!(
+                                            "（费用：牺牲{}·地区{} [{}]）",
+                                            card(&c.definition).name,
+                                            r + 1,
+                                            c.id
+                                        ))))
                                     .unwrap_or_default()
                             );
                             result.push((a, label));
@@ -665,6 +688,13 @@ impl Game {
                     c.exhausted = true;
                     paid.push(PaidCost::Exhausted(c.id.clone()));
                 }
+                Cost::DiscardSelectedHandCard => {
+                    let ids = a.cost_selected.as_ref().ok_or("请选择弃手牌费用")?;
+                    if ids.len() != 1 {
+                        return Err("须弃一张自己的手牌".into());
+                    }
+                    paid.push(self.discard_hand_card(actor, &ids[0])?);
+                }
                 Cost::SacrificeSource | Cost::SacrificeSelectedControlledCharacter => {
                     let id = if matches!(cost, Cost::SacrificeSource) {
                         source.card.id.clone()
@@ -825,6 +855,9 @@ impl Game {
         if self.players[actor].eliminated {
             return Ok(());
         }
+        if spec.event == Some(Event::HandDiscard) && self.resources(actor) < 1 {
+            return Ok(());
+        }
         if spec.requires_ready_source
             && !self
                 .board(&declaration.source.card.id)
@@ -937,12 +970,22 @@ impl Game {
             card(&declaration.source.card.definition).name,
             declaration.ability.label
         );
+        let paid = if declaration.ability.event == Some(Event::HandDiscard) {
+            self.pay_ability_costs(
+                declaration.actor,
+                &declaration.source,
+                &declaration.ability,
+                &Action::new("trigger"),
+            )?
+        } else {
+            vec![]
+        };
         let frame = self.make_frame(
             declaration.actor,
             declaration.source,
             &declaration.ability,
             targets,
-            vec![],
+            paid,
             None,
         );
         self.dispatch_frame(frame, label, None, declaration.ability.response_policy);
@@ -953,6 +996,23 @@ impl Game {
             EntityRef::Source => Some(&frame.source.card.id),
             EntityRef::Target(slot) => frame.targets.get(slot).map(|t| t.id.as_str()),
         }
+    }
+    // A discard is neither a play nor a death. Ownership of the graveyard is
+    // independent of the player whose hand was used, including paid discards.
+    pub(crate) fn discard_hand_card(&mut self, holder: usize, id: &str) -> RuleResult<PaidCost> {
+        let c = self.remove_hand(holder, id)?;
+        let owner = c.owner;
+        let old_instance = c.id.clone();
+        let mut source = self.source_snapshot(&c, None);
+        source.card.controller = holder;
+        let c = self.reset_zone_card(c);
+        self.players[owner].graveyard.push(c);
+        self.emit_event(holder, source, Event::HandDiscard);
+        Ok(PaidCost::Discarded {
+            old_instance,
+            holder,
+            owner,
+        })
     }
     fn frame_player(
         &self,
@@ -1282,6 +1342,99 @@ impl Game {
                         self.draw(frame.actor, count)?;
                     }
                 }
+                Op::RevealHandAndOfferSourceSacrifice { player } => {
+                    let seat = self.frame_player(&frame, step.context, player)?;
+                    let revealed = self.players[seat].hand.clone();
+                    self.note(format!(
+                        "{} 展示手牌：{}",
+                        self.players[seat].name,
+                        revealed
+                            .iter()
+                            .map(|c| card(&c.definition).name.as_str())
+                            .collect::<Vec<_>>()
+                            .join("、")
+                    ));
+                    if !revealed.is_empty() {
+                        let options = revealed
+                            .iter()
+                            .map(|c| self.option(c, frame.actor, None, None))
+                            .collect();
+                        let available = self.board(&frame.source.card.id).is_some_and(|(_, c)| {
+                            c.controller == frame.actor
+                                && !c.face_down
+                                && card(&c.definition).kind == "character"
+                        });
+                        self.choice(
+                            frame.actor,
+                            "revealed-hand-discard",
+                            "可选择一张并牺牲好奇的黑客，令该玩家弃牌".into(),
+                            options,
+                            0,
+                            usize::from(available),
+                            None,
+                            ChoiceResolution::Frame {
+                                frame: Box::new(frame),
+                                choice: FrameChoice::RevealedHandDiscard { seat, revealed },
+                            },
+                        );
+                        return Ok(());
+                    }
+                }
+                Op::RandomHandToOwnerDeckTop { player } => {
+                    let seat = self.frame_player(&frame, step.context, player)?;
+                    if !self.players[seat].hand.is_empty() {
+                        let i = self.random_below(self.players[seat].hand.len());
+                        let c = self.players[seat].hand.remove(i);
+                        let owner = c.owner;
+                        self.note(format!(
+                            "{} 随机展示 {}，置于其拥有者牌库顶",
+                            self.players[seat].name,
+                            card(&c.definition).name
+                        ));
+                        let c = self.reset_zone_card(c);
+                        self.players[owner].deck.insert(0, c);
+                    }
+                }
+                Op::MoveDeckTopToGraveyard { player, count } => {
+                    let seat = self.frame_player(&frame, step.context, player)?;
+                    for _ in 0..count {
+                        if self.players[seat].deck.is_empty() {
+                            break;
+                        }
+                        let c = self.players[seat].deck.remove(0);
+                        let owner = c.owner;
+                        let c = self.reset_zone_card(c);
+                        self.players[owner].graveyard.push(c);
+                    }
+                }
+                Op::OfferShuffleIfActorControlsDreamDemon { player } => {
+                    if self.regions.iter().flat_map(|r| &r.cards).any(|c| {
+                        c.controller == frame.actor
+                            && !c.face_down
+                            && card(&c.definition).kind == "character"
+                            && self.current_subtypes(c).iter().any(|t| t == "梦魔")
+                    }) {
+                        let seat = self.frame_player(&frame, step.context, player)?;
+                        self.choice(
+                            frame.actor,
+                            "optional-shuffle",
+                            "是否令目标玩家洗牌？".into(),
+                            vec![ChoiceOption {
+                                id: "shuffle".into(),
+                                label: "洗牌".into(),
+                                card: None,
+                            }],
+                            0,
+                            1,
+                            None,
+                            ChoiceResolution::Frame {
+                                frame: Box::new(frame),
+                                choice: FrameChoice::OptionalShuffle { seat },
+                            },
+                        );
+                        return Ok(());
+                    }
+                }
                 Op::Draw { player, count, end } => {
                     let seat = self.frame_player(&frame, step.context, player)?;
                     if end == DeckEnd::Top {
@@ -1563,12 +1716,31 @@ impl Game {
             FrameChoice::Discard { seat, redraw } => {
                 let count = selected.len();
                 for id in selected {
-                    let c = self.remove_hand(seat, &id)?;
-                    let c = self.reset_zone_card(c);
-                    self.players[seat].graveyard.push(c);
+                    self.discard_hand_card(seat, &id)?;
                 }
                 if redraw {
                     self.draw(seat, count)?;
+                }
+            }
+            FrameChoice::RevealedHandDiscard { seat, .. } => {
+                if let Some(id) = selected.first() {
+                    if !self.board(&frame.source.card.id).is_some_and(|(_, c)| {
+                        c.controller == frame.actor
+                            && !c.face_down
+                            && card(&c.definition).kind == "character"
+                    }) {
+                        return Err("原来源实例不可作为牺牲支付".into());
+                    }
+                    if !self.players[seat].hand.iter().any(|c| c.id == *id) {
+                        return Err("展示手牌实例已失效".into());
+                    }
+                    self.remove_dead(&frame.source.card.id, RemovalCause::Sacrifice);
+                    self.discard_hand_card(seat, id)?;
+                }
+            }
+            FrameChoice::OptionalShuffle { seat } => {
+                if !selected.is_empty() {
+                    self.shuffle_player(seat);
                 }
             }
             FrameChoice::Search {
