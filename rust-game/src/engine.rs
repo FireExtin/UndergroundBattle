@@ -1088,6 +1088,7 @@ impl Game {
                                     SourceSnapshot {
                                         card: c.clone(),
                                         region: Some(r),
+                                        source_region_instance: None,
                                         attachment_host_instance: None,
                                         play_source: None,
                                     },
@@ -1286,6 +1287,7 @@ impl Game {
                 },
                 player_id: player_id(seat),
                 options,
+                preview_cards: vec![],
                 min: Some(min),
                 max: Some(max),
                 amount,
@@ -1843,7 +1845,7 @@ impl Game {
                 self.choose_declaration(declaration, stage, selected)?
             }
             ChoiceResolution::Frame { frame, choice } => {
-                self.choose_frame(frame, choice, a, selected, option_ids)?
+                self.choose_frame(frame, choice, seat, a, selected, option_ids)?
             }
             ChoiceResolution::Mulligan => {
                 let mut held = vec![];
@@ -2334,7 +2336,7 @@ impl Game {
                 .pending
                 .as_ref()
                 .filter(|p| p.seat == seat)
-                .map(|p| p.choice.clone()),
+                .map(|p| self.blue_private_choice(p, seat)),
             waiting_choice: self.pending.as_ref().map(|p| WaitingChoice {
                 player_id: player_id(p.seat),
                 kind: p.choice.kind.clone(),

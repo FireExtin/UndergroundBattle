@@ -386,6 +386,9 @@ impl Game {
         SourceSnapshot {
             card: c.clone(),
             region,
+            source_region_instance: if matches!(c.definition.as_str(), "JC032" | "JZ24") {
+                region.and_then(|r| self.regions.get(r)).map(|r| r.card.id.clone())
+            } else { None },
             attachment_host_instance: rules::definition(&c.definition)
                 .abilities
                 .iter()
@@ -1245,6 +1248,8 @@ impl Game {
             let step = frame.steps[frame.cursor].clone();
             frame.cursor += 1;
             match step.op {
+                Op::JC032TopSixVampireHidden => return self.jc032_start(frame),
+                Op::JZ24LocalSacrificeSnapshot => return self.jz24_start(frame),
                 Op::GainControl {
                     slot,
                     until_source_leaves,
@@ -1932,11 +1937,18 @@ impl Game {
         &mut self,
         mut frame: Box<ResolutionFrame>,
         choice: FrameChoice,
+        chooser: usize,
         a: Action,
         selected: Vec<String>,
         option_ids: BTreeSet<String>,
     ) -> RuleResult<()> {
         match choice {
+            FrameChoice::JC032TopSix { inspected_ids } => {
+                self.jc032_complete(&frame, inspected_ids, &selected)?;
+            }
+            FrameChoice::JZ24Sacrifice { remaining_players } => {
+                return self.jz24_complete(*frame, chooser, remaining_players, &selected);
+            }
             FrameChoice::Forecast { seat } => {
                 let top = a.top.unwrap_or_default();
                 let bottom = a.bottom.unwrap_or_default();

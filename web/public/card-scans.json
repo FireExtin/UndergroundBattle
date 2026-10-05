@@ -503,5 +503,20 @@
     "url": "/cards/JC030.jpg",
     "source": "resource/ymsj-fun.github.io/cards/JC030 巨型蝙蝠.jpg",
     "sha256": "e0627c1eec97eab04d8cbafb54c0d25ce496ab89e10e19a81485d84ad2915542"
+  },
+  "JC032": {
+    "url": "/cards/JC032.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC032 血族长老.jpg",
+    "sha256": "ebeb0a13c62cdf10569f4aa9f300998aff53a65788d756f055e9696f35489b4b"
+  },
+  "JZ24": {
+    "url": "/cards/JZ24.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JZ24 卡迪纳追迹人.jpg",
+    "sha256": "e01995d70e06a6b179dcbbf81c3df73ab548269fc0efe9fafc33e2e2f3c8722d"
+  },
+  "MSJC03": {
+    "url": "/cards/MSJC03.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/MSJC03 王座会.jpg",
+    "sha256": "07463a18a5cc6726f098bedc10304ef6c4032929cff72535d5f9227338e45f29"
   }
 }

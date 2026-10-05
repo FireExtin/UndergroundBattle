@@ -152,6 +152,9 @@ pub struct Choice {
     pub description: String,
     pub player_id: String,
     pub options: Vec<ChoiceOption>,
+    // View-derived JC032 inspected cards; never a second persisted card list.
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub preview_cards: Vec<CardView>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub min: Option<usize>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -462,6 +465,9 @@ pub struct StackItem {
 pub struct SourceSnapshot {
     pub card: Card,
     pub region: Option<usize>,
+    // Only JC032/JZ24 bind their original local region, independently of source.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub source_region_instance: Option<String>,
     // Non-targeted host effect keeps the declaration's exact host identity.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub attachment_host_instance: Option<String>,
@@ -536,6 +542,8 @@ pub enum DeclareChoice {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum FrameChoice {
+    JC032TopSix { inspected_ids: Vec<String> },
+    JZ24Sacrifice { remaining_players: Vec<usize> },
     RepressOne {
         seat: usize,
         regions: Vec<(usize, String)>,

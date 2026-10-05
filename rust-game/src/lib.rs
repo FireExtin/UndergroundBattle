@@ -76,3 +76,4 @@ mod green_minimum_tests;
 
 #[cfg(all(test, not(feature = "society-fixtures")))]
 mod jc030_tests;
+mod blue_minimum;

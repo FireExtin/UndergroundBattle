@@ -205,6 +205,9 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    // Two closed blue programs, with no configurable search/loop interpreter.
+    JC032TopSixVampireHidden,
+    JZ24LocalSacrificeSnapshot,
     // Finite MSJC11 programs; no generic keyword or quantity interpreter.
     GrantTargetKillUntilTurnEnd {
         slot: usize,
@@ -591,6 +594,16 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
         ));
     }
     for op in &ability.ops {
+        if matches!(op, Op::JC032TopSixVampireHidden | Op::JZ24LocalSacrificeSnapshot) {
+            let expected = match (card_id, op) {
+                ("JC032", Op::JC032TopSixVampireHidden) => jc032_definition(),
+                ("JZ24", Op::JZ24LocalSacrificeSnapshot) => jz24_definition(),
+                _ => return Err(format!("{card_id}: blue finite operation is not admitted here")),
+            };
+            if serde_json::to_value(ability).unwrap() != serde_json::to_value(&expected.abilities[0]).unwrap() {
+                return Err(format!("{card_id}: only the complete admitted finite ability is supported"));
+            }
+        }
         if let Op::Search {
             filter: CardFilter::NamedCharacter(name),
             player,
@@ -919,6 +932,8 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
                     matches!(
                         op,
                         Op::ForEachLivingPlayer(_)
+                            | Op::JC032TopSixVampireHidden
+                            | Op::JZ24LocalSacrificeSnapshot
                             | Op::GrantTargetKillUntilTurnEnd { .. }
                             | Op::GrantRegionRetreatUntilTurnEnd { .. }
                             | Op::ForEachLivingPlayerFromActor(_)
@@ -957,6 +972,15 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
 
 fn validate_definitions(definitions: &BTreeMap<String, Definition>) -> Result<(), String> {
     for (card_id, definition) in definitions {
+        let expected = match card_id.as_str() {
+            "JC032" => Some(jc032_definition()),
+            "JZ24" => Some(jz24_definition()),
+            "MSJC03" => Some(msjc03_definition()),
+            _ => None,
+        };
+        if expected.is_some_and(|d| serde_json::to_value(definition).unwrap() != serde_json::to_value(d).unwrap()) {
+            return Err(format!("{card_id}: only the complete admitted blue definition is supported"));
+        }
         if definition.modifiers.iter().any(|m| matches!(m, StaticModifier::JC030BloodAssetsVampireAndInvestigation)) && card_id != "JC030" {
             return Err(format!("cardId={card_id}: JC030 modifier is not admitted here"));
         }
@@ -1184,6 +1208,25 @@ fn jc030_definition() -> Definition {
     definition.modifiers = vec![StaticModifier::JC030BloodAssetsVampireAndInvestigation];
     definition
 }
+fn jc032_definition() -> Definition {
+    let mut action = ability("top-six-vampire-hidden", "顶六张吸血鬼暗藏（每回合一次）", Timing::Standard,
+        vec![Cost::Assets(2)], vec![], vec![Op::JC032TopSixVampireHidden], None);
+    action.per_turn_limit = Some(1);
+    with_abilities(vec![action])
+}
+fn jz24_definition() -> Definition {
+    with_abilities(vec![ability("local-enemy-sacrifice", "敌方本地牺牲", Timing::Fast,
+        vec![], vec![], vec![Op::JZ24LocalSacrificeSnapshot], Some(Event::Reveal))])
+}
+fn msjc03_definition() -> Definition {
+    let mut d = msjc02_definition();
+    d.abilities[1].key = "search-blue-unique".into();
+    d.abilities[1].label = "蓝色独有检索（每局一次）".into();
+    if let Op::Search { filter, .. } = &mut d.abilities[1].ops[0] {
+        *filter = CardFilter::PrintedColorAndUnique { color: "蓝".into() };
+    }
+    d
+}
 fn msjc02_definition() -> Definition {
     let mut search = ability(
         "search-green-unique",
@@ -1223,6 +1266,8 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         use EntityRef::{Source, Target};
         use PlayerRef::{Actor, Context};
         let mut m = BTreeMap::new();
+        m.insert("JC032".into(), jc032_definition());
+        m.insert("JZ24".into(), jz24_definition());
         m.insert("JC030".into(), jc030_definition());
         m.insert("LC30".into(), lc30_definition());
         m.insert("JC018".into(), jc018_definition());
@@ -2992,6 +3037,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         #[cfg(not(feature = "society-fixtures"))]
         {
             m.insert("MSJC02".into(), msjc02_definition());
+            m.insert("MSJC03".into(), msjc03_definition());
             let mut search = ability(
                 "search-purple-unique",
                 "紫色独有检索（每局一次）",
