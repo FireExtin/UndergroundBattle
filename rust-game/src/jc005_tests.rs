@@ -402,6 +402,7 @@ fn jc005_asset_gain_loss_and_host_change_are_live_guard_predicate_fixtures_not_f
         snap.clone(),
         &a,
         vec![BoundTarget {
+            region_instance: None,
             id: id.clone(),
             spec: target.clone(),
             public: g.public_target(0, &snap, &target, &id),

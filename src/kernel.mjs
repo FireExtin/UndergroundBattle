@@ -57,8 +57,10 @@ import legacyModule26 from '../generated/legacy-v0.2.26/hegemony_wasm_bg.wasm';
 import * as legacy26ResourcePolicy from '../generated/legacy-v0.2.26-resource-policy/hegemony_wasm.js';
 import legacyModule26ResourcePolicy from '../generated/legacy-v0.2.26-resource-policy/hegemony_wasm_bg.wasm';
 import { routeKernels } from './kernel-router.mjs';
+import * as legacy27 from '../generated/legacy-v0.2.27/hegemony_wasm.js';
+import legacyModule27 from '../generated/legacy-v0.2.27/hegemony_wasm_bg.wasm';
 import { lazyKernel } from './lazy-kernel.mjs';
-const kernel0 = lazyKernel(current, currentModule, {"rulesVersion":"hegemony-pdf-v1","cardPoolVersion":"limited-v2.24-white-wound-society-candidate","engineVersion":"rust-v0.2.27-white-wound-society-candidate"});
+const kernel0 = lazyKernel(current, currentModule, {"rulesVersion":"hegemony-pdf-v1","cardPoolVersion":"limited-v2.25-purple-region-society-candidate","engineVersion":"rust-v0.2.28-purple-region-society-candidate"});
 const kernel1 = lazyKernel(legacy1, legacyModule1, {"rulesVersion":"hegemony-pdf-v1","cardPoolVersion":"limited-v2.1","engineVersion":"rust-v0.2.1"});
 const kernel2 = lazyKernel(legacy2, legacyModule2, {"rulesVersion":"hegemony-pdf-v1","cardPoolVersion":"limited-v2.1","engineVersion":"rust-v0.2.2"});
 const kernel3 = lazyKernel(legacy3, legacyModule3, {"rulesVersion":"hegemony-pdf-v1","cardPoolVersion":"limited-v2.2","engineVersion":"rust-v0.2.3"});
@@ -87,4 +89,5 @@ const kernel25 = lazyKernel(legacy25, legacyModule25, {"rulesVersion":"hegemony-
 const kernel25ResourcePolicy = lazyKernel(legacy25ResourcePolicy, legacyModule25ResourcePolicy, {"rulesVersion":"hegemony-pdf-v1","cardPoolVersion":"limited-v2.22-repress-assets-candidate","engineVersion":"rust-v0.2.25-resource-policy-candidate"});
 const kernel26 = lazyKernel(legacy26, legacyModule26, {"rulesVersion":"hegemony-pdf-v1","cardPoolVersion":"limited-v2.23-msjc07-candidate","engineVersion":"rust-v0.2.26-msjc07-candidate"});
 const kernel26ResourcePolicy = lazyKernel(legacy26ResourcePolicy, legacyModule26ResourcePolicy, {"rulesVersion":"hegemony-pdf-v1","cardPoolVersion":"limited-v2.23-msjc07-candidate","engineVersion":"rust-v0.2.26-msjc07-resource-policy-candidate"});
-export const kernel = routeKernels(kernel0, [kernel1, kernel2, kernel3, kernel4, kernel5, kernel6, kernel7, kernel8, kernel9, kernel10, kernel11, kernel12, kernel13, kernel14, kernel15, kernel16, kernel17, kernel18, kernel19, kernel20, kernel21, kernel22, kernel23, kernel24, kernel25, kernel25ResourcePolicy, kernel26, kernel26ResourcePolicy]);
+const kernel27 = lazyKernel(legacy27, legacyModule27, {"rulesVersion":"hegemony-pdf-v1","cardPoolVersion":"limited-v2.24-white-wound-society-candidate","engineVersion":"rust-v0.2.27-white-wound-society-candidate"});
+export const kernel = routeKernels(kernel0, [kernel1, kernel2, kernel3, kernel4, kernel5, kernel6, kernel7, kernel8, kernel9, kernel10, kernel11, kernel12, kernel13, kernel14, kernel15, kernel16, kernel17, kernel18, kernel19, kernel20, kernel21, kernel22, kernel23, kernel24, kernel25, kernel25ResourcePolicy, kernel26, kernel26ResourcePolicy, kernel27]);

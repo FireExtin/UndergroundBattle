@@ -3,10 +3,20 @@
 use crate::{
     catalog::card,
     model::*,
-    rules::{self, EntityKind, HostLeaveDestination, Relation},
+    rules::{self, EntityKind, HostLeaveDestination, Relation, Zone},
 };
 
 impl Game {
+    pub(crate) fn attachment_region(&self, attachment: &Attachment) -> Option<usize> {
+        let spec = rules::definition(&attachment.card.definition)
+            .attachment
+            .as_ref()?;
+        self.regions.iter().position(|r| match spec.host.zone {
+            Zone::Region => r.card.id == attachment.host_id,
+            Zone::Board => r.cards.iter().any(|c| c.id == attachment.host_id),
+            _ => false,
+        })
+    }
     pub(crate) fn reattach_source(&mut self, source_id: &str, target_id: &str) {
         let Some(index) = self.attachments.iter().position(|a| a.card.id == source_id) else {
             self.note("转移结附的来源已离场，效果不再改变场上对象".into());
@@ -86,6 +96,9 @@ impl Game {
         let Some(spec) = &rules::definition(&attachment.card.definition).attachment else {
             return false;
         };
+        if spec.host.zone == Zone::Region {
+            return self.attachment_region(attachment).is_some();
+        }
         let Some((_, host)) = self.board(&attachment.host_id) else {
             return false;
         };
@@ -193,7 +206,7 @@ impl Game {
             .flat_map(|(r, region)| region.cards.iter().map(move |c| (r, c)))
             .collect::<Vec<_>>();
         for attachment in &self.attachments {
-            if let Some((r, _)) = self.board(&attachment.host_id) {
+            if let Some(r) = self.attachment_region(attachment) {
                 result.push((r, &attachment.card));
             }
         }

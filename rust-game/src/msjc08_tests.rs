@@ -1,17 +1,17 @@
-//! Real MSJC06 program and real white/gold targets; disclosed layouts only.
+//! Real MSJC08 program and real purple/gold targets; disclosed layouts only.
 use crate::msjc01_tests::{fund, pass_top, rejected};
 use crate::{catalog, deck, model::*, rules::*};
-const SEARCH: &str = "search-white-unique";
+const SEARCH: &str = "search-purple-unique";
 const DRAW: &str = "drawWithInitiative";
-const WHITE: [&str; 9] = [
-    "JC075", "JC070", "JC076", "JC074", "JC073", "JC078", "XQ34", "LC12", "LC06",
+const PURPLE: [&str; 9] = [
+    "JC104", "JC102", "JZ67", "JC103", "JC107", "JZ59", "JZ58", "JZ61", "XQ43",
 ];
-fn draft(white: usize, total: usize) -> deck::DeckDraft {
+fn draft(purple: usize, total: usize) -> deck::DeckDraft {
     let mut d = deck::preset("watchers").unwrap();
-    d.society_id = Some("MSJC06".into());
+    d.society_id = Some("MSJC08".into());
     d.cards.clear();
-    let mut left = white;
-    for id in WHITE {
+    let mut left = purple;
+    for id in PURPLE {
         let count = left.min(3);
         if count > 0 {
             d.cards.push(catalog::DeckEntry {
@@ -22,17 +22,17 @@ fn draft(white: usize, total: usize) -> deck::DeckDraft {
         left -= count;
     }
     assert_eq!(left, 0);
-    if total > white {
+    if total > purple {
         d.cards.push(catalog::DeckEntry {
             card_id: "JC125".into(),
-            count: total - white,
+            count: total - purple,
         });
     }
     d
 }
 fn initial() -> Game {
     let mut g = Game::new_with_deck(
-        "msjc06-unit".into(),
+        "msjc08-unit".into(),
         "LOCAL".into(),
         "teams".into(),
         "P0".into(),
@@ -109,21 +109,21 @@ fn next_turn(g: &mut Game) {
     panic!("turn bound");
 }
 #[test]
-fn msjc06_original_whole_card_and_finite_existing_search_program() {
-    let d = crate::society::definition("MSJC06").unwrap();
+fn msjc08_original_whole_card_and_finite_existing_search_program() {
+    let d = crate::society::definition("MSJC08").unwrap();
     assert_eq!(
         (&*d.card.name, &*d.subtitle, &*d.card.color),
-        ("圣贤", "热爱之道", "白")
+        ("梦境行者", "幻梦呓语", "紫")
     );
-    assert_eq!(d.card.subtypes, ["群体"]);
+    assert_eq!(d.card.subtypes, ["群体", "梦境"]);
     assert_eq!(d.starting_hand, 6);
     assert!(d.printed_cost.is_none() && d.card.unique);
     assert!(d.card.loyalty.is_empty() && d.card.defense.is_none() && d.card.keywords.is_empty());
     assert_eq!(
         serde_json::to_value(&d.deck_constraints).unwrap(),
-        serde_json::json!([{"kind":"minimumColor","color":"白","count":25}])
+        serde_json::json!([{"kind":"minimumColor","color":"紫","count":25}])
     );
-    let a = &crate::rules::definition("MSJC06").abilities;
+    let a = &crate::rules::definition("MSJC08").abilities;
     assert_eq!(a.len(), 2);
     assert_eq!(
         serde_json::to_value(&a[0]).unwrap(),
@@ -135,26 +135,26 @@ fn msjc06_original_whole_card_and_finite_existing_search_program() {
         serde_json::json!([{"Assets":4},"ExhaustSource"])
     );
     assert!(
-        matches!(&a[1].ops[0],Op::Search{player:PlayerRef::Actor,filter:CardFilter::PrintedColorAndUnique{color},to_top:false,optional:false,visibility:SearchVisibility::Reveal} if color=="白")
+        matches!(&a[1].ops[0],Op::Search{player:PlayerRef::Actor,filter:CardFilter::PrintedColorAndUnique{color},to_top:false,optional:false,visibility:SearchVisibility::Reveal} if color=="紫")
     );
     assert_eq!(catalog::catalog().cards.len(), 89);
     assert_eq!(catalog::catalog().societies.len(), 5);
-    assert!(!catalog::catalog().cards.iter().any(|c| c.id == "MSJC06"));
+    assert!(!catalog::catalog().cards.iter().any(|c| c.id == "MSJC08"));
     assert_eq!(
         catalog::catalog()
             .cards
             .iter()
-            .filter(|c| c.color == "白" && c.kind != "region")
+            .filter(|c| c.color == "紫" && c.kind != "region")
             .count(),
-        10
+        9
     );
-    for id in ["LC06"] {
+    for id in ["XQ43"] {
         let c = catalog::card(id);
-        assert!(c.unique && c.color == "白" && c.society.is_empty());
+        assert!(c.unique && c.color == "紫" && c.society.is_empty());
     }
 }
 #[test]
-fn msjc06_construction_actual_white_24_25_27_and_society_outside_50() {
+fn msjc08_construction_actual_purple_24_25_27_and_society_outside_50() {
     assert!(deck::validate(draft(24, 50))
         .unwrap_err()
         .contains("当前24张"));
@@ -170,7 +170,7 @@ fn msjc06_construction_actual_white_24_25_27_and_society_outside_50() {
     assert!(deck::validate(d).unwrap_err().contains("最多3"));
     let mut d = draft(25, 50);
     d.cards.push(catalog::DeckEntry {
-        card_id: "MSJC06".into(),
+        card_id: "MSJC08".into(),
         count: 1,
     });
     assert!(deck::validate(d).is_err());
@@ -182,7 +182,7 @@ fn msjc06_construction_actual_white_24_25_27_and_society_outside_50() {
     assert!(deck::validate(d).is_err());
 }
 #[test]
-fn msjc06_four_same_societies_real_white_hits_own_deck_private_choice_public_reveal_fresh_hand() {
+fn msjc08_four_same_societies_real_purple_hits_own_deck_private_choice_public_reveal_fresh_hand() {
     let mut g = initial();
     let ids = (0..4)
         .map(|s| source(&g, s))
@@ -191,7 +191,7 @@ fn msjc06_four_same_societies_real_white_hits_own_deck_private_choice_public_rev
     for s in 0..4 {
         g.begin_window(Window::Action(g.team(s)));
         fund(&mut g, s, 4);
-        for id in ["LC06", "LC06", "JC075", "LC23"] {
+        for id in ["XQ43", "XQ43", "JC104", "LC23"] {
             let c = g.make_card(id, s);
             g.players[s].deck.push(c);
         }
@@ -269,7 +269,7 @@ fn msjc06_four_same_societies_real_white_hits_own_deck_private_choice_public_rev
     }
 }
 #[test]
-fn msjc06_rejections_are_atomic_and_cannot_pay_or_activate_with_teammate() {
+fn msjc08_rejections_are_atomic_and_cannot_pay_or_activate_with_teammate() {
     for bad in [
         "cost",
         "exhausted",
@@ -298,7 +298,7 @@ fn msjc06_rejections_are_atomic_and_cannot_pay_or_activate_with_teammate() {
     }
 }
 #[test]
-fn msjc06_initiative_draw_and_rear_paid_no_draw_are_personal_and_separate() {
+fn msjc08_initiative_draw_and_rear_paid_no_draw_are_personal_and_separate() {
     for first in [0, 1] {
         let mut g = initial();
         g.first_team = first;
@@ -322,7 +322,7 @@ fn msjc06_initiative_draw_and_rear_paid_no_draw_are_personal_and_separate() {
     }
 }
 #[test]
-fn msjc06_empty_search_shuffles_and_empty_deck_is_not_draw_elimination() {
+fn msjc08_empty_search_shuffles_and_empty_deck_is_not_draw_elimination() {
     for empty in [false, true] {
         let mut g = initial();
         if empty {
@@ -347,10 +347,10 @@ fn msjc06_empty_search_shuffles_and_empty_deck_is_not_draw_elimination() {
     }
 }
 #[test]
-fn msjc06_cancelled_paid_frame_retains_payment_exhaustion_and_quota() {
+fn msjc08_cancelled_paid_frame_retains_payment_exhaustion_and_quota() {
     let mut g = initial();
     fund(&mut g, 0, 4);
-    let c = g.make_card("LC06", 0);
+    let c = g.make_card("XQ43", 0);
     g.players[0].deck.push(c);
     let a = activate(&g, 0, SEARCH);
     g.apply(0, a).unwrap();
@@ -371,7 +371,7 @@ fn msjc06_cancelled_paid_frame_retains_payment_exhaustion_and_quota() {
     );
 }
 #[test]
-fn msjc06_ready_turn_and_new_instance_keep_quota_restart_clears() {
+fn msjc08_ready_turn_and_new_instance_keep_quota_restart_clears() {
     let mut g = initial();
     fund(&mut g, 0, 8);
     let a = activate(&g, 0, SEARCH);

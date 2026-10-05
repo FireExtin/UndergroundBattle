@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.24-white-wound-society-candidate",
-  "engineVersion": "rust-v0.2.27-white-wound-society-candidate",
+  "cardPoolVersion": "limited-v2.25-purple-region-society-candidate",
+  "engineVersion": "rust-v0.2.28-purple-region-society-candidate",
   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
   "cards": [
     {
@@ -3414,6 +3414,44 @@
         "file": "resource/ymsj-fun.github.io/cards/LC06 瓦尔德修士.jpg",
         "sha256": "46bcfd890d040fc0b9e558ba601867f402bcc1443851e0ccf7f7a9e1579154b6",
         "basis": "actual whole original and printed trigger/unique/wound rules viewed"
+      }
+    },
+    {
+      "id": "XQ43",
+      "name": "具现化",
+      "kind": "attachment",
+      "subtypes": [
+        "结界"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "紫色"
+      ],
+      "loyaltyText": "紫色",
+      "color": "紫",
+      "magic": "星辰",
+      "society": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "结附于目标地区\n持续 所有位于具现化所结附地区内的灵体角色，其上的所有临时调查、临时战斗、临时势力能力图标分别替换为永久调查、永久战斗、永久势力。",
+      "keywords": [],
+      "unique": true,
+      "supported": true,
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/XQ43 具现化.jpg",
+        "sha256": "6e950624afff514a9ffed208fe51dc4137e5114b3f67a24bb0e694be0c935c93",
+        "basis": "actual whole original and exact region attachment/temporary icon rules viewed"
       }
     }
   ],
