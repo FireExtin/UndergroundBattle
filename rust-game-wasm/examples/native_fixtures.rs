@@ -28,6 +28,9 @@ mod defence_equipment;
 #[cfg(not(feature = "society-fixtures"))]
 #[path = "support/equipment_abilities.rs"]
 mod equipment_abilities;
+#[cfg(not(feature = "society-fixtures"))]
+#[path = "support/hand_deck.rs"]
+mod hand_deck;
 #[path = "support/jc004.rs"]
 mod jc004;
 #[path = "support/jc005.rs"]
@@ -2691,6 +2694,15 @@ fn main() {
         .nth(1)
         .expect("Usage: native_fixtures <output.json>");
     #[cfg(not(feature = "society-fixtures"))]
+    if std::env::args().any(|a| a == "--slice-hand-deck") {
+        write_fixture_cases(
+            &output,
+            json!({"catalog":catalog::catalog()}),
+            hand_deck::cases(),
+        );
+        return;
+    }
+    #[cfg(not(feature = "society-fixtures"))]
     if std::env::args().any(|a| a == "--equipment-natural-case") {
         write_fixture_cases(
             &output,
@@ -2952,6 +2964,7 @@ fn main() {
         .chain(protection::cases())
         .chain(defence_equipment::cases())
         .chain(equipment_abilities::cases())
+        .chain(hand_deck::cases())
     {
         writer.push(case);
     }

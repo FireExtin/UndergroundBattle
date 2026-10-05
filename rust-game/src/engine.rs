@@ -1642,9 +1642,6 @@ impl Game {
             self.players[owner].deck.push(c);
         }
     }
-    pub(crate) fn kill(&mut self, target: &str) {
-        self.remove_dead(target, RemovalCause::Lethal);
-    }
     pub(crate) fn damage(&mut self, allocations: BTreeMap<String, u32>) -> RuleResult<()> {
         for (target, amount) in allocations {
             if amount > 0
@@ -1682,15 +1679,17 @@ impl Game {
                         && card(&c.definition).kind == "character"
                         && c.damage >= self.defense(c, r)
                     {
-                        dead.push(c.id.clone());
+                        // Capture the entire lethal set before any departure can
+                        // restore another member's controller or end its modifiers.
+                        dead.push((c.id.clone(), self.source_snapshot(c, Some(r))));
                     }
                 }
             }
             if dead.is_empty() {
                 break;
             }
-            for id in dead {
-                self.kill(&id);
+            for (id, source) in dead {
+                self.remove_dead_with_snapshot(&id, RemovalCause::Lethal, Some(source));
             }
         }
         let mut simultaneous = self
@@ -2536,7 +2535,7 @@ mod tests {
     #[test]
     fn catalog_is_restricted_real_complete_and_decks_are_legal() {
         let c = catalog::catalog();
-        assert_eq!(c.cards.len(), 71);
+        assert_eq!(c.cards.len(), 75);
         let active = c
             .cards
             .iter()
@@ -2551,7 +2550,7 @@ mod tests {
                 .collect::<BTreeSet<_>>()
         );
         assert!(active.contains("DQJC116"));
-        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 61);
+        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 65);
         assert_eq!(c.decks.len(), 5);
         for deck in &c.decks {
             assert_eq!(deck.card_count, 50);

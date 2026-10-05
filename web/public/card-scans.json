@@ -354,6 +354,26 @@
     "source": "resource/ymsj-fun.github.io/cards/XQ07 圣水.jpg",
     "sha256": "944a254795fc17e946f7150de9a47649d8c6efa3006770850447503b06a22df9"
   },
+  "JC130": {
+    "url": "/cards/JC130.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC130 深入研究.jpg",
+    "sha256": "be7d3ec07aea099829f0b01ea506999810091c7b7a202a6bfb0f8ec32eb3055f"
+  },
+  "JC131": {
+    "url": "/cards/JC131.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC131 空投物资.jpg",
+    "sha256": "78b1cff75c50f96763ae2cfeb346524e9046f2e3a445a5e00268113365bc976f"
+  },
+  "JC096": {
+    "url": "/cards/JC096.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC096 阿格里帕之犬.jpg",
+    "sha256": "28c1eb001f27dc220b8905ba97d7d396680adda8f7c1b8c9e0f2ec97f4907c7c"
+  },
+  "XQ17": {
+    "url": "/cards/XQ17.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/XQ17 祭品.jpg",
+    "sha256": "e5ad8fe27074632eab8d6207eb2e6f08efb69d20f343f2d50701d30f5a5bb5eb"
+  },
   "MSJC09": {
     "url": "/cards/MSJC09.jpg",
     "source": "resource/ymsj-fun.github.io/cards/MSJC09 秘社.jpg",

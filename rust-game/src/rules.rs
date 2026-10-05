@@ -672,6 +672,81 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
     DEFINITIONS.get_or_init(|| {
         use EntityRef::{Source, Target};
         use PlayerRef::{Actor, Context};
+        let mut m = BTreeMap::new();
+        // Original scans: finite draw/discard, private search and paid sacrifice.
+        // Reuse the admitted continuation interpreter; no new shared mechanism.
+        for (id, key, draw_count, event) in [
+            ("JC130", "research", 2, None),
+            ("XQ17", "offering-death", 1, Some(Event::Death)),
+        ] {
+            let mut spec = ability(
+                key,
+                if event.is_some() {
+                    "死亡触发"
+                } else {
+                    "标准行动"
+                },
+                if event.is_some() {
+                    Timing::Fast
+                } else {
+                    Timing::Standard
+                },
+                vec![],
+                vec![],
+                vec![
+                    Op::Draw {
+                        player: Actor,
+                        count: draw_count,
+                        end: DeckEnd::Top,
+                    },
+                    Op::Discard {
+                        player: Actor,
+                        count: Some(1),
+                        redraw: false,
+                        optional: false,
+                    },
+                ],
+                event,
+            );
+            spec.play_only = event.is_none();
+            m.insert(id.into(), with_abilities(vec![spec]));
+        }
+        let mut supplies = ability(
+            "airdrop",
+            "标准行动",
+            Timing::Standard,
+            vec![],
+            vec![],
+            vec![Op::Search {
+                player: Actor,
+                filter: CardFilter::Any,
+                to_top: false,
+                optional: false,
+                visibility: SearchVisibility::Private,
+            }],
+            None,
+        );
+        supplies.play_only = true;
+        m.insert("JC131".into(), with_abilities(vec![supplies]));
+        let mut dog = ability(
+            "sacrifice-draw",
+            "快速行动",
+            Timing::Fast,
+            vec![
+                Cost::Assets(1),
+                Cost::ExhaustSource,
+                Cost::SacrificeSelectedControlledCharacter,
+            ],
+            vec![],
+            vec![Op::Draw {
+                player: Actor,
+                count: 1,
+                end: DeckEnd::Top,
+            }],
+            None,
+        );
+        dog.activation_only = true;
+        m.insert("JC096".into(), with_abilities(vec![dog]));
         let local = target(
             Zone::Board,
             EntityKind::Character,
@@ -702,7 +777,6 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
             Relation::Any,
             Range::Anywhere,
         );
-        let mut m = BTreeMap::new();
         let mut knife_exhaust = ability(
             "exhaust-local-hidden",
             "横置暗藏者",

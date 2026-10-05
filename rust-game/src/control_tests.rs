@@ -5,7 +5,7 @@ use crate::{catalog, model::*, rules::*};
 // Reviewer counterexample: printed eligibility and primitive lifetime contract
 // are kept distinct. The current sole Death card, XQ12, is not Human.
 #[test]
-fn control_simultaneous_current_pool_has_no_human_death_target_for_jz27() {
+fn control_simultaneous_nonhuman_death_card_still_invalid_for_jz27() {
     let death_cards = catalog::catalog()
         .cards
         .iter()
@@ -21,9 +21,10 @@ fn control_simultaneous_current_pool_has_no_human_death_target_for_jz27() {
             .iter()
             .map(|c| c.id.as_str())
             .collect::<Vec<_>>(),
-        vec!["XQ12"]
+        vec!["XQ12", "XQ17"]
     );
     assert_eq!(death_cards[0].subtypes, vec!["吸血鬼", "奴仆"]);
+    assert_eq!(death_cards[1].subtypes, vec!["人类"]);
     let mut g = game();
     let target = field(&mut g, "XQ12", 2);
     fund(&mut g, 0, "XQ16", 6);
@@ -842,4 +843,29 @@ fn control_real_mobility_keeps_instance_and_attribute_modifier() {
         .iter()
         .any(|e| e.target_instance == target));
     mirror(&mut g);
+}
+
+#[test]
+fn hand_deck_real_jz27_offering_simultaneous_death_keeps_last_controller_both_orders() {
+    for source_first in [true, false] {
+        let mut g = game();
+        let target = field(&mut g, "XQ17", 2);
+        let source = reveal(&mut g, 0, &target);
+        assert_eq!(controller(&g, &target), 0);
+        ordered_death_pair(&mut g, &source, &target, source_first);
+        mirror(&mut g);
+        g.damage(std::collections::BTreeMap::from([
+            (source.clone(), 3),
+            (target.clone(), 1),
+        ]))
+        .unwrap();
+        assert_eq!(death_actor_and_snapshot(&g, &target), (0, 0));
+        assert!(g.board(&source).is_none() && g.board(&target).is_none());
+        assert!(g.control_effects.is_empty() && g.control_baselines.is_empty());
+        assert!(g.players[2]
+            .graveyard
+            .iter()
+            .any(|c| c.definition == "XQ17" && c.id != target && c.controller == 2));
+        mirror(&mut g);
+    }
 }

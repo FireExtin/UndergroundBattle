@@ -3,11 +3,11 @@ use serde::{Deserialize, Serialize};
 use std::sync::OnceLock;
 
 pub const RULES_VERSION: &str = "hegemony-pdf-v1";
-pub const POOL_VERSION: &str = "limited-v2.16-equipment-abilities-candidate";
+pub const POOL_VERSION: &str = "limited-v2.17-hand-deck-candidate";
 #[cfg(not(feature = "society-fixtures"))]
-pub const ENGINE_VERSION: &str = "rust-v0.2.19-equipment-abilities-candidate";
+pub const ENGINE_VERSION: &str = "rust-v0.2.20-hand-deck-candidate";
 #[cfg(feature = "society-fixtures")]
-pub const ENGINE_VERSION: &str = "rust-v0.2.19-equipment-abilities-society-fixture";
+pub const ENGINE_VERSION: &str = "rust-v0.2.20-hand-deck-society-fixture";
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -133,9 +133,8 @@ pub fn catalog() -> &'static Catalog {
                             .join("/")
                     })
                     .unwrap_or_default();
-                // Preserve the prior ordinary-card ABI; only this batch's
-                // reviewed JZ27 subtitle is newly exposed.
-                if definition.id != "JZ27" {
+                // Preserve old definitions; expose only individually reviewed subtitles.
+                if !["JZ27", "JC096"].contains(&definition.id.as_str()) {
                     definition.subtitle = None;
                 }
                 definition.magic_icon = match definition.magic.as_str() {

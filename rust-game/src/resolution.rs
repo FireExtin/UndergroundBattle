@@ -983,10 +983,20 @@ impl Game {
         c
     }
     pub(crate) fn remove_dead(&mut self, target: &str, cause: RemovalCause) {
+        self.remove_dead_with_snapshot(target, cause, None);
+    }
+    pub(crate) fn remove_dead_with_snapshot(
+        &mut self,
+        target: &str,
+        cause: RemovalCause,
+        simultaneous_source: Option<SourceSnapshot>,
+    ) {
         if let Some((region, c)) = self.leave_board(target) {
-            let snapshot = self.source_snapshot(&c, Some(region));
-            let controller = c.controller;
-            let character = !c.face_down && card(&c.definition).kind == "character";
+            let snapshot =
+                simultaneous_source.unwrap_or_else(|| self.source_snapshot(&c, Some(region)));
+            let controller = snapshot.card.controller;
+            let character =
+                !snapshot.card.face_down && card(&snapshot.card.definition).kind == "character";
             let owner = c.owner;
             let c = self.reset_zone_card(c);
             self.players[owner].graveyard.push(c);

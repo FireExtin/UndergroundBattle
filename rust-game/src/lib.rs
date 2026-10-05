@@ -36,3 +36,6 @@ mod yellow_search_batch_tests;
 
 #[cfg(test)]
 mod equipment_abilities_tests;
+
+#[cfg(test)]
+mod hand_deck_tests;

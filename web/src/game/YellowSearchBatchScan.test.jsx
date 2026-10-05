@@ -9,7 +9,7 @@ kernel.initSync({module:readFileSync(resolve('../rust-game-wasm/pkg/hegemony_was
 const catalog=JSON.parse(kernel.catalog());
 const scans=JSON.parse(readFileSync(resolve('public/card-scans.json'),'utf8'));
 it('admits only the two approved original yellow unique cards with their printed numbers and loyalty',()=>{
- expect(catalog.cards).toHaveLength(71);expect(Object.keys(scans)).toHaveLength(73);
+ expect(catalog.cards).toHaveLength(75);expect(Object.keys(scans)).toHaveLength(77);
  expect(catalog.cards.filter(c=>c.color==='黄'&&c.unique).map(c=>c.id)).toEqual(['WM003','LC01']);
  expect(catalog.cards.find(c=>c.id==='WM003')).toMatchObject({name:'千机庙离',color:'黄',unique:true,cost:1,defense:1,magic:'心灵',loyalty:['黄色','星辰','星辰'],subtypes:['人类','法师','学生'],permanentIcons:{investigation:0,combat:0,influence:0},temporaryIcons:{investigation:1,combat:0,influence:1},abilities:[{key:'search-any-private',timing:'fast'}]});
  expect(catalog.cards.find(c=>c.id==='LC01')).toMatchObject({name:'西比尔',color:'黄',unique:true,cost:5,defense:4,magic:'神圣',loyalty:['黄色','黄色'],subtypes:['人类','法师'],permanentIcons:{investigation:2,combat:0,influence:0},temporaryIcons:{investigation:1,combat:0,influence:0},abilities:[]});
