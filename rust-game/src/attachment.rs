@@ -45,7 +45,7 @@ impl Game {
             if r != region {
                 continue;
             }
-            if !c.face_down && rules::definition(&c.definition).traits.retreat {
+            if self.has_retreat(c) {
                 batch.hand.push(c.id.clone());
             } else {
                 batch.bottom[c.owner].push(c.id.clone());

@@ -64,6 +64,9 @@ mod msjc07;
 #[path = "support/msjc08.rs"]
 mod msjc08;
 #[cfg(not(feature = "society-fixtures"))]
+#[path = "support/msjc11.rs"]
+mod msjc11;
+#[cfg(not(feature = "society-fixtures"))]
 #[path = "support/protection.rs"]
 mod protection;
 #[cfg(not(feature = "society-fixtures"))]
@@ -2778,6 +2781,21 @@ fn main() {
         return;
     }
     #[cfg(not(feature = "society-fixtures"))]
+    if std::env::args().any(|a| {
+        a == "--slice-msjc11" || a == "--msjc11-natural-cases" || a == "--msjc11-boundary-cases"
+    }) {
+        let cases: Box<dyn Iterator<Item = Value>> =
+            if std::env::args().any(|a| a == "--msjc11-natural-cases") {
+                Box::new(msjc11::natural_cases())
+            } else if std::env::args().any(|a| a == "--msjc11-boundary-cases") {
+                Box::new(msjc11::boundary_cases())
+            } else {
+                Box::new(msjc11::cases())
+            };
+        write_fixture_cases(&output, json!({"catalog":catalog::catalog()}), cases);
+        return;
+    }
+    #[cfg(not(feature = "society-fixtures"))]
     if std::env::args().any(|a| a == "--slice-identity-overlap") {
         write_fixture_cases(
             &output,
@@ -3133,6 +3151,7 @@ fn main() {
         .chain(white_wound::cases())
         .chain(msjc08::cases())
         .chain(region_aura::cases())
+        .chain(msjc11::cases())
     {
         writer.push(case);
     }

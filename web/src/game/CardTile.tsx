@@ -5,10 +5,10 @@ import { ArchiveArtwork, useArchivePresentation } from './ArchivePresentation';
 /** Match the server's concealed projection: only its current controller sees print. */
 export function visibleCard(card: Card, viewerId: string): Card {
   if (!card.faceDown || card.controller === viewerId) {
-    return card.faceDown && card.convertedTemporaryIcons ? { ...card, convertedTemporaryIcons: undefined } : card;
+    return card.faceDown && (card.convertedTemporaryIcons || card.currentKill !== undefined || card.currentRetreat !== undefined) ? { ...card, convertedTemporaryIcons: undefined, currentKill: undefined, currentRetreat: undefined } : card;
   }
   return { ...card, cardId: undefined, name: '暗藏者', kind: 'hidden', cost: undefined, effectiveCost: undefined,
-    text: undefined, icons: undefined, convertedTemporaryIcons: undefined, defense: undefined, damage: undefined, shield: undefined,
+    text: undefined, icons: undefined, convertedTemporaryIcons: undefined, currentKill: undefined, currentRetreat: undefined, defense: undefined, damage: undefined, shield: undefined,
     wounds: undefined, color: undefined, magic: undefined, currentSubtypes: undefined, currentRenown: undefined, currentBarrier: undefined, currentDamagePrevention: undefined, currentSpiritProtection: undefined, currentPrintedDefense: undefined };
 }
 
@@ -68,6 +68,8 @@ export function CardContent({ card: source, definition: sourceDefinition, compac
       {!compact && !card.faceDown && card.convertedTemporaryIcons && <span className="hg-card-stat-row"><small>具现化：临时转永久</small><IconStrip icons={card.convertedTemporaryIcons} label="本地区临时转永久图标" /></span>}
       {!compact && <span className="hg-card-text">{asset ? '未横置时可提供 1 费用，并提供所示派系与魔法忠诚。' : card.text || definition?.text || '此牌没有额外能力。'}</span>}
       <span className="hg-card-footer">
+        {!card.faceDown && card.region !== undefined && typeof card.currentKill === 'number' && <span>本回合杀伤 {card.currentKill}</span>}
+        {!card.faceDown && card.region !== undefined && card.currentRetreat && <span>本回合撤回</span>}
         {!card.faceDown && card.region !== undefined && typeof card.currentSpiritProtection === 'boolean' && <span title="灵体按本地区双方领域数量比较防止伤害">灵体：当前{card.currentSpiritProtection ? '防止伤害' : '不防止伤害'}</span>}
         {!card.faceDown && card.region !== undefined && card.currentDamagePrevention && <span>本回合防止伤害</span>}
         {!card.faceDown && card.region !== undefined && typeof card.currentPrintedDefense === 'number' && <span>本回合印刷防御 {card.currentPrintedDefense}</span>}

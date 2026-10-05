@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.25-purple-region-society-candidate",
-  "engineVersion": "rust-v0.2.28-purple-region-society-candidate",
+  "cardPoolVersion": "limited-v2.26-msjc11-mixed-deck-candidate",
+  "engineVersion": "rust-v0.2.29-msjc11-mixed-deck-candidate",
   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
   "cards": [
     {

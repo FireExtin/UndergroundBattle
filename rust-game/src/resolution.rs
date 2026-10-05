@@ -690,13 +690,9 @@ impl Game {
         source: &SourceSnapshot,
         target: &BoundTarget,
     ) -> bool {
-        let region_attachment = target.spec.zone == Zone::Region
-            && rules::definition(&source.card.definition)
-                .attachment
-                .as_ref()
-                .is_some_and(|a| a.host.zone == Zone::Region);
+        let exact_region = Self::requires_region_instance(source, &target.spec);
         self.valid_binding(actor, source, &target.spec, &target.id)
-            && (!region_attachment
+            && (!exact_region
                 || target.region_instance.as_ref().is_some_and(|instance| {
                     target
                         .id
@@ -705,6 +701,14 @@ impl Game {
                         .and_then(|r| self.regions.get(r))
                         .is_some_and(|r| r.card.id == *instance)
                 }))
+    }
+    fn requires_region_instance(source: &SourceSnapshot, slot: &TargetSlotSpec) -> bool {
+        slot.zone == Zone::Region
+            && (source.card.definition == "MSJC11"
+                || rules::definition(&source.card.definition)
+                    .attachment
+                    .as_ref()
+                    .is_some_and(|a| a.host.zone == Zone::Region))
     }
     pub(crate) fn bind_action(
         &self,
@@ -727,12 +731,8 @@ impl Game {
                 }
                 let public = self.public_target(actor, source, slot, &id);
                 Ok(BoundTarget {
-                    region_instance: (slot.zone == Zone::Region
-                        && rules::definition(&source.card.definition)
-                            .attachment
-                            .as_ref()
-                            .is_some_and(|s| s.host.zone == Zone::Region))
-                    .then(|| self.regions[a.region.unwrap()].card.id.clone()),
+                    region_instance: Self::requires_region_instance(source, slot)
+                        .then(|| self.regions[a.region.unwrap()].card.id.clone()),
                     id,
                     spec: slot.clone(),
                     public,
@@ -1257,6 +1257,8 @@ impl Game {
                 } => {
                     let target = frame.targets.get(slot).ok_or("缺少属性修正目标")?;
                     self.turn_attribute_modifiers.push(TurnAttributeModifier {
+                        kill_bonus: 0,
+                        grants_retreat: false,
                         target_instance: target.id.clone(),
                         defense_bonus,
                         printed_defense_override: None,
@@ -1265,6 +1267,33 @@ impl Game {
                         prevents_damage: false,
                         expires_turn: self.turn,
                     });
+                }
+                Op::GrantTargetKillUntilTurnEnd { slot } => {
+                    self.grant_execution_traits(
+                        frame.targets.get(slot).ok_or("缺少杀伤目标")?.id.clone(),
+                        1,
+                        false,
+                    );
+                }
+                Op::GrantRegionRetreatUntilTurnEnd { slot } => {
+                    let target = frame.targets.get(slot).ok_or("缺少撤回地区目标")?;
+                    let region = target
+                        .id
+                        .strip_prefix("region:")
+                        .and_then(|s| s.parse::<usize>().ok())
+                        .ok_or("撤回地区无效")?;
+                    let recipients: Vec<_> = self.regions[region]
+                        .cards
+                        .iter()
+                        .filter(|c| {
+                            c.controller == frame.actor
+                                && self.current_permanent_combat(c, region) > 0
+                        })
+                        .map(|c| c.id.clone())
+                        .collect();
+                    for id in recipients {
+                        self.grant_execution_traits(id, 0, true);
+                    }
                 }
                 Op::RepressOpponentOne { slot } => {
                     let seat = self.frame_player(&frame, step.context, PlayerRef::Target(slot))?;
@@ -1345,6 +1374,8 @@ impl Game {
                     self.turn_attribute_modifiers.push(TurnAttributeModifier {
                         target_instance: target.id.clone(),
                         defense_bonus: 0,
+                        kill_bonus: 0,
+                        grants_retreat: false,
                         printed_defense_override: None,
                         ordinary_icons: Icons::default(),
                         grants_renown: false,
@@ -1365,6 +1396,8 @@ impl Game {
                         self.turn_attribute_modifiers.push(TurnAttributeModifier {
                             target_instance: id.clone(),
                             defense_bonus: 0,
+                            kill_bonus: 0,
+                            grants_retreat: false,
                             printed_defense_override: None,
                             ordinary_icons: Icons {
                                 combat: 1,
@@ -1399,6 +1432,8 @@ impl Game {
                         self.turn_attribute_modifiers.push(TurnAttributeModifier {
                             target_instance: id,
                             defense_bonus: 0,
+                            kill_bonus: 0,
+                            grants_retreat: false,
                             printed_defense_override: Some(1),
                             ordinary_icons: Icons::default(),
                             grants_renown: false,

@@ -24,6 +24,7 @@ pub struct SocietyZoneView {
 #[serde(tag = "kind", rename_all = "camelCase")]
 pub enum SocietyDeckConstraint {
     MinimumColor { color: String, count: usize },
+    GreenNeutralOrPrintedHumanCombat,
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
@@ -70,6 +71,26 @@ pub(crate) fn validate_construction(
 ) -> RuleResult<()> {
     for constraint in &society.deck_constraints {
         match constraint {
+            SocietyDeckConstraint::GreenNeutralOrPrintedHumanCombat => {
+                if society.card.id != "MSJC11" {
+                    return Err("此有限混搭构筑条件仅开放给S.P.T.执行部".into());
+                }
+                if let Some(c) = entries
+                    .iter()
+                    .filter_map(|e| cards.iter().find(|c| c.id == e.card_id))
+                    .find(|c| {
+                        !["绿", "中立"].contains(&c.color.as_str())
+                            && !(c.kind == "character"
+                                && c.subtypes.iter().any(|s| s == "人类")
+                                && c.permanent_icons.combat > 0)
+                    })
+                {
+                    return Err(format!(
+                        "S.P.T.执行部构筑不允许{}：异色牌须为印刷人类角色且具有永久战斗图标",
+                        c.name
+                    ));
+                }
+            }
             SocietyDeckConstraint::MinimumColor { color, count } => {
                 let actual: usize = entries
                     .iter()
@@ -257,6 +278,22 @@ pub(crate) fn definitions() -> Vec<SocietyDefinition> {
                 triggered: false,
             })
             .collect();
+        let mut execution_card: CardDefinition = serde_json::from_value(serde_json::json!({
+            "id":"MSJC11","name":"S.P.T.执行部","kind":"society","type":"秘社/企业/部门",
+            "subtypes":["企业","部门"],"color":"绿","society":"猎魔人","unique":true,"supported":true,
+            "text":"持续：构筑时你的牌组中只能包含绿色和中立派系的牌，以及其他派系带有永久战斗能力图标的人类角色牌。行动3，横置：目标角色获得杀伤1直到回合结束。行动3，横置：选择目标地区，所有位于该地区，且带有永久战斗能力图标的本方角色获得撤回直到回合结束。"
+        })).expect("verified whole original MSJC11 fields");
+        execution_card.abilities = crate::rules::definition("MSJC11")
+            .abilities
+            .iter()
+            .map(|a| crate::catalog::AbilitySummary {
+                key: a.key.clone(),
+                label: a.label.clone(),
+                timing: "standard".into(),
+                costs: a.costs.clone(),
+                triggered: false,
+            })
+            .collect();
         vec![
             msjc09,
             msjc01,
@@ -291,6 +328,14 @@ pub(crate) fn definitions() -> Vec<SocietyDefinition> {
                     color: "紫".into(),
                     count: 25,
                 }],
+                unresolved_abilities: BTreeMap::new(),
+            },
+            SocietyDefinition {
+                card: execution_card,
+                subtitle: "直属特遣队".into(),
+                printed_cost: None,
+                starting_hand: 6,
+                deck_constraints: vec![SocietyDeckConstraint::GreenNeutralOrPrintedHumanCombat],
                 unresolved_abilities: BTreeMap::new(),
             },
         ]
@@ -364,7 +409,7 @@ mod tests {
                     .iter()
                     .map(|s| s.card.id.as_str())
                     .collect::<Vec<_>>(),
-                vec!["MSJC09", "MSJC01", "MSJC07", "MSJC06", "MSJC08"]
+                vec!["MSJC09", "MSJC01", "MSJC07", "MSJC06", "MSJC08", "MSJC11"]
             );
         }
         assert_eq!(

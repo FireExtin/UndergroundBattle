@@ -199,6 +199,13 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    // Finite MSJC11 programs; no generic keyword or quantity interpreter.
+    GrantTargetKillUntilTurnEnd {
+        slot: usize,
+    },
+    GrantRegionRetreatUntilTurnEnd {
+        slot: usize,
+    },
     RepressOpponentOne {
         slot: usize,
     },
@@ -434,6 +441,76 @@ pub struct Definition {
 // These are interpreter limits, not rules for resolving partially invalid targets.
 // Reject unsupported declarations before publishing actions or offering trigger choices.
 pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(), String> {
+    let execution_op = |op: &Op| {
+        matches!(
+            op,
+            Op::GrantTargetKillUntilTurnEnd { .. } | Op::GrantRegionRetreatUntilTurnEnd { .. }
+        )
+    };
+    if ability.modes.iter().any(|m| m.ops.iter().any(execution_op)) {
+        return Err(format!(
+            "{card_id}: MSJC11 grants cannot be mode operations"
+        ));
+    }
+    if ability.ops.iter().any(execution_op) {
+        let kill = matches!(
+            ability.ops.as_slice(),
+            [Op::GrantTargetKillUntilTurnEnd { slot: 0 }]
+        );
+        let retreat = matches!(
+            ability.ops.as_slice(),
+            [Op::GrantRegionRetreatUntilTurnEnd { slot: 0 }]
+        );
+        if card_id != "MSJC11"
+            || (!kill && !retreat)
+            || ability.key
+                != if kill {
+                    "grant-kill"
+                } else {
+                    "grant-region-retreat"
+                }
+            || ability.timing != Timing::Standard
+            || ability.event.is_some()
+            || ability.play_only
+            || ability.activation_only
+            || ability.requires_ready_source
+            || ability.once_per_game
+            || ability.per_turn_limit.is_some()
+            || ability.response_policy != ResponsePolicy::Respondable
+            || !ability.modes.is_empty()
+            || !matches!(
+                ability.costs.as_slice(),
+                [Cost::Assets(3), Cost::ExhaustSource]
+            )
+            || ability.targets.len() != 1
+            || !ability.targets.first().is_some_and(|t| {
+                t.zone == if kill { Zone::Board } else { Zone::Region }
+                    && t.kind
+                        == if kill {
+                            EntityKind::Character
+                        } else {
+                            EntityKind::Any
+                        }
+                    && t.relation == Relation::Any
+                    && t.range == Range::Anywhere
+                    && t.min == 1
+                    && t.max == 1
+                    && t.subtype.is_none()
+                    && t.subtypes_any.is_empty()
+                    && !t.printed_subtype
+                    && t.printed_cost_max.is_none()
+                    && !t.equipment_host
+                    && !t.requires_magic
+                    && !t.exclude_source
+                    && !t.exclude_attachment_host
+                    && t.attachment_host_condition.is_none()
+            })
+        {
+            return Err(format!(
+                "{card_id}: only the two admitted MSJC11 paid standard grants are supported"
+            ));
+        }
+    }
     if ability.event == Some(Event::ReceiveWound)
         && (card_id != "LC06"
             || ability.timing != Timing::Fast
@@ -688,6 +765,22 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
             }
         }
         for op in ops {
+            if let Op::GrantTargetKillUntilTurnEnd { slot }
+            | Op::GrantRegionRetreatUntilTurnEnd { slot } = op
+            {
+                if !targets.get(*slot).is_some_and(|t| {
+                    t.zone
+                        == if matches!(op, Op::GrantTargetKillUntilTurnEnd { .. }) {
+                            Zone::Board
+                        } else {
+                            Zone::Region
+                        }
+                }) {
+                    return Err(format!(
+                        "{location}: MSJC11 grant requires its exact bound target"
+                    ));
+                }
+            }
             if let Op::RevealHandAndOfferSourceSacrifice { player }
             | Op::RandomHandToOwnerDeckTop { player }
             | Op::MoveDeckTopToGraveyard { player, .. }
@@ -802,6 +895,8 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
                     matches!(
                         op,
                         Op::ForEachLivingPlayer(_)
+                            | Op::GrantTargetKillUntilTurnEnd { .. }
+                            | Op::GrantRegionRetreatUntilTurnEnd { .. }
                             | Op::ForEachLivingPlayerFromActor(_)
                             | Op::RepressOpponentOne { .. }
                             | Op::MoveActorDeckTopToAsset
@@ -2761,6 +2856,39 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
                         None,
                     ),
                     search,
+                ]),
+            );
+            m.insert(
+                "MSJC11".into(),
+                with_abilities(vec![
+                    ability(
+                        "grant-kill",
+                        "授予杀伤1",
+                        Timing::Standard,
+                        vec![Cost::Assets(3), Cost::ExhaustSource],
+                        vec![target(
+                            Zone::Board,
+                            EntityKind::Character,
+                            Relation::Any,
+                            Range::Anywhere,
+                        )],
+                        vec![Op::GrantTargetKillUntilTurnEnd { slot: 0 }],
+                        None,
+                    ),
+                    ability(
+                        "grant-region-retreat",
+                        "本地区本方永久战斗角色获得撤回",
+                        Timing::Standard,
+                        vec![Cost::Assets(3), Cost::ExhaustSource],
+                        vec![target(
+                            Zone::Region,
+                            EntityKind::Any,
+                            Relation::Any,
+                            Range::Anywhere,
+                        )],
+                        vec![Op::GrantRegionRetreatUntilTurnEnd { slot: 0 }],
+                        None,
+                    ),
                 ]),
             );
             let mut search = ability(
