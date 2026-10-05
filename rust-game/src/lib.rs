@@ -45,3 +45,5 @@ mod hand_interactions_tests;
 
 #[cfg(test)]
 mod purple_tools_tests;
+#[cfg(test)]
+mod wound_defence_tests;

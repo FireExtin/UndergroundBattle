@@ -1223,6 +1223,12 @@ impl Game {
                         expires_turn: self.turn,
                     });
                 }
+                Op::WoundTarget { slot, amount } => {
+                    let id = frame.targets.get(slot).ok_or("缺少创伤目标")?.id.clone();
+                    if let Some(c) = self.board_mut(&id) {
+                        c.wounds += amount;
+                    }
+                }
                 Op::DamageTarget { slot, amount } => {
                     let target = frame.targets.get(slot).ok_or("缺少伤害目标")?;
                     self.damage(std::collections::BTreeMap::from([(

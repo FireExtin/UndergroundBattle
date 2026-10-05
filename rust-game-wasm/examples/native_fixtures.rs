@@ -53,6 +53,9 @@ mod purple_tools;
 #[path = "support/renown.rs"]
 mod renown;
 #[cfg(not(feature = "society-fixtures"))]
+#[path = "support/wound_defence.rs"]
+mod wound_defence;
+#[cfg(not(feature = "society-fixtures"))]
 #[path = "support/yellow_search.rs"]
 mod yellow_search;
 
@@ -2700,6 +2703,15 @@ fn main() {
         .nth(1)
         .expect("Usage: native_fixtures <output.json>");
     #[cfg(not(feature = "society-fixtures"))]
+    if std::env::args().any(|a| a == "--slice-wound-defence") {
+        write_fixture_cases(
+            &output,
+            json!({"catalog":catalog::catalog()}),
+            wound_defence::cases(),
+        );
+        return;
+    }
+    #[cfg(not(feature = "society-fixtures"))]
     if std::env::args().any(|a| a == "--slice-purple-tools") {
         write_fixture_cases(
             &output,
@@ -2991,6 +3003,7 @@ fn main() {
         .chain(hand_deck::cases())
         .chain(hand_interactions::cases())
         .chain(purple_tools::cases())
+        .chain(wound_defence::cases())
     {
         writer.push(case);
     }

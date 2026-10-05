@@ -404,6 +404,16 @@
     "source": "resource/ymsj-fun.github.io/cards/JC107 崩塌的时空.jpg",
     "sha256": "ce402d531c9c9bb28da130de0627b4860ced56fb0fa7db1d487082c36e0462e2"
   },
+  "JZ59": {
+    "url": "/cards/JZ59.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JZ59 骇人畸变体.jpg",
+    "sha256": "b43bf4fc74654c089cf10429306980c2af12743d57d60b603efae03b28eae5f3"
+  },
+  "LC12": {
+    "url": "/cards/LC12.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/LC12 阿瓦隆隐士.jpg",
+    "sha256": "2a13b5e0bf5fa11f320bcf31141cf0e68915a949f9031cd112b5c650420285cf"
+  },
   "MSJC09": {
     "url": "/cards/MSJC09.jpg",
     "source": "resource/ymsj-fun.github.io/cards/MSJC09 秘社.jpg",

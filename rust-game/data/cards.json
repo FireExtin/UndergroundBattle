@@ -3151,6 +3151,80 @@
         "image": "resource/ymsj-fun.github.io/cards/JC107 崩塌的时空.jpg",
         "sha256": "ce402d531c9c9bb28da130de0627b4860ced56fb0fa7db1d487082c36e0462e2"
       }
+    },
+    {
+      "id": "JZ59",
+      "name": "骇人畸变体",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "宿主"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "紫色"
+      ],
+      "loyaltyText": "紫色",
+      "color": "紫",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "死亡触发 对本地区的目标角色造成1点创伤。",
+      "supported": true,
+      "unique": false,
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/JZ59 骇人畸变体.jpg",
+        "sha256": "b43bf4fc74654c089cf10429306980c2af12743d57d60b603efae03b28eae5f3",
+        "basis": "actual original fields checked against hegemony symbol legend"
+      }
+    },
+    {
+      "id": "LC12",
+      "name": "阿瓦隆隐士",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "法师"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "白色"
+      ],
+      "loyaltyText": "白色",
+      "color": "白",
+      "magic": "星辰",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "快速行动 横置：本地区的另一个目标本方角色获得防御+1直到回合结束。",
+      "supported": true,
+      "unique": false,
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/LC12 阿瓦隆隐士.jpg",
+        "sha256": "2a13b5e0bf5fa11f320bcf31141cf0e68915a949f9031cd112b5c650420285cf",
+        "basis": "actual original fields checked against hegemony symbol legend"
+      }
     }
   ],
   "decks": [

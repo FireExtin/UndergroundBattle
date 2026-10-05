@@ -194,6 +194,10 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    WoundTarget {
+        slot: usize,
+        amount: u32,
+    },
     DestroyPublicAttachmentOrAsset {
         slot: usize,
     },
@@ -437,6 +441,22 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
     }
     for op in &ability.ops {
         match op {
+            Op::WoundTarget { slot, amount }
+                if card_id != "JZ59"
+                    || *slot != 0
+                    || *amount != 1
+                    || ability.event != Some(Event::Death)
+                    || !ability.costs.is_empty()
+                    || ability.targets.len() != 1
+                    || ability.targets[0].zone != Zone::Board
+                    || ability.targets[0].kind != EntityKind::Character
+                    || ability.targets[0].relation != Relation::Any
+                    || ability.targets[0].range != Range::SourceRegion =>
+            {
+                return Err(format!(
+                    "{card_id}: only the admitted one local death wound is supported"
+                ))
+            }
             Op::DestroyPublicAttachmentOrAsset { slot }
                 if card_id != "JC107"
                     || *slot != 0
@@ -796,6 +816,46 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         use EntityRef::{Source, Target};
         use PlayerRef::{Actor, Context};
         let mut m = BTreeMap::new();
+        m.insert(
+            "JZ59".into(),
+            with_abilities(vec![ability(
+                "death-local-wound",
+                "死亡触发",
+                Timing::Fast,
+                vec![],
+                vec![target(
+                    Zone::Board,
+                    EntityKind::Character,
+                    Relation::Any,
+                    Range::SourceRegion,
+                )],
+                vec![Op::WoundTarget { slot: 0, amount: 1 }],
+                Some(Event::Death),
+            )]),
+        );
+        let mut hermit_target = target(
+            Zone::Board,
+            EntityKind::Character,
+            Relation::ControlledByActor,
+            Range::SourceRegion,
+        );
+        hermit_target.exclude_source = true;
+        let mut hermit = ability(
+            "protect-local-character",
+            "快速行动",
+            Timing::Fast,
+            vec![Cost::ExhaustSource],
+            vec![hermit_target],
+            vec![Op::ModifyTargetUntilTurnEnd {
+                slot: 0,
+                defense_bonus: 1,
+                ordinary_icons: Icons::default(),
+                grants_renown: false,
+            }],
+            None,
+        );
+        hermit.activation_only = true;
+        m.insert("LC12".into(), with_abilities(vec![hermit]));
         let mut painter = ability(
             "reduce-next-purple",
             "快速行动",
