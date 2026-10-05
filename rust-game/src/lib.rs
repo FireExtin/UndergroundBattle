@@ -17,6 +17,12 @@ mod jc008_tests;
 pub mod model;
 #[cfg(all(test, not(feature = "society-fixtures")))]
 mod msjc01_tests;
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod msjc07_tests;
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod msjc06_tests;
+#[cfg(test)]
+mod white_wound_tests;
 mod play_sources;
 #[cfg(test)]
 mod protection_tests;

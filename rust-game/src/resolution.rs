@@ -1287,8 +1287,16 @@ impl Game {
                 }
                 Op::WoundTarget { slot, amount } => {
                     let id = frame.targets.get(slot).ok_or("缺少创伤目标")?.id.clone();
-                    if let Some(c) = self.board_mut(&id) {
-                        c.wounds += amount;
+                    if amount > 0 {
+                        if let Some(c) = self.board_mut(&id) {
+                            c.wounds += amount;
+                            let (region, c) = self.board(&id).unwrap();
+                            // Capture the recipient's controller and source at the
+                            // actual event, before lethal departure resets its instance.
+                            let controller = c.controller;
+                            let source = self.source_snapshot(c, Some(region));
+                            self.emit_event(controller, source, Event::ReceiveWound);
+                        }
                     }
                 }
                 Op::DamageTarget { slot, amount } => {

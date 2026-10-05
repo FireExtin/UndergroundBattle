@@ -9,7 +9,7 @@ rmSync(project + 'public', { recursive: true, force: true });
 cpSync(root + 'web/dist', project + 'public', { recursive: true });
 mkdirSync(project + 'generated', { recursive: true });
 for (const name of ['hegemony_wasm.js', 'hegemony_wasm_bg.wasm']) cpSync(root + 'rust-game-wasm/pkg/' + name, project + 'generated/' + name);
-for (const name of readdirSync(root + 'rust-game-wasm').filter(name => /^legacy-v0\.2\.\d+$/.test(name))) cpSync(root + 'rust-game-wasm/' + name, project + 'generated/' + name, { recursive: true });
+for (const name of readdirSync(root + 'rust-game-wasm').filter(name => /^legacy-v0\.2\.\d+(?:-resource-policy)?$/.test(name))) cpSync(root + 'rust-game-wasm/' + name, project + 'generated/' + name, { recursive: true });
 rmSync(project + 'dist', { recursive: true, force: true });
 const config = project + '.wrangler/config';
 mkdirSync(config, { recursive: true });
