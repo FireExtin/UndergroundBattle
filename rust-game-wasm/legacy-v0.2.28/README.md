@@ -1,0 +1,1 @@
+Frozen accepted 3b70a6fc96ffeba39ed6fa8acfcd257f6569c730, published Site28. Five generated ABI files are copied byte-for-byte before MSJC11 implementation. Runtime rust-v0.2.28-purple-region-society-candidate; pool limited-v2.25-purple-region-society-candidate. No rebuild or migration.

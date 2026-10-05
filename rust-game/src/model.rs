@@ -77,6 +77,10 @@ pub struct LegalAction {
 #[serde(rename_all = "camelCase")]
 pub struct CardView {
     #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub current_kill: Option<u32>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub current_retreat: Option<bool>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub converted_temporary_icons: Option<Icons>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub current_spirit_protection: Option<bool>,
@@ -471,7 +475,7 @@ pub enum PlaySource {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct BoundTarget {
-    /// Only region attachments capture the actual region card instance.
+    /// Region attachments and the admitted MSJC11 region grant capture the instance.
     /// The index remains the UI target; replacement must not reuse that target.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub region_instance: Option<String>,
@@ -593,6 +597,10 @@ pub struct CostModifier {
 pub struct TurnAttributeModifier {
     pub target_instance: String,
     pub defense_bonus: u32,
+    #[serde(default, skip_serializing_if = "is_zero")]
+    pub kill_bonus: u32,
+    #[serde(default, skip_serializing_if = "is_false")]
+    pub grants_retreat: bool,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub printed_defense_override: Option<u32>,
     pub ordinary_icons: Icons,
@@ -604,6 +612,9 @@ pub struct TurnAttributeModifier {
 }
 pub(crate) fn is_false(value: &bool) -> bool {
     !value
+}
+pub(crate) fn is_zero(value: &u32) -> bool {
+    *value == 0
 }
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct TurnAbilityUsage {

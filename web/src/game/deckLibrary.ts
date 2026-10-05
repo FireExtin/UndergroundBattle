@@ -97,6 +97,15 @@ export function validateDeckDraft(draft: DeckDraft, catalog: DeckCatalog): DeckV
       if (!Number.isSafeInteger(society.startingHand) || society.startingHand < 0 || !Array.isArray(society.deckConstraints)) {
         issue('society-metadata', `「${society.name}」的起手或构筑要求尚未确认，暂不能用于开局。`);
       } else for (const constraint of society.deckConstraints) {
+        if (constraint.kind === 'greenNeutralOrPrintedHumanCombat' && society.id === 'MSJC11') {
+          for (const entry of draft.cards) {
+            const card = catalog.cards.find(card => card.id === entry.cardId);
+            if (card && !(['绿', '中立'].includes(card.color || '') || (card.kind === 'character' && card.subtypes?.includes('人类') && (card.permanentIcons?.combat ?? card.icons?.permanent.combat ?? 0) > 0))) {
+              issue('society-combat-human', `「${society.name}」不允许「${card.name}」：异色牌须为印刷人类角色且具有永久战斗图标。`, card.id);
+            }
+          }
+          continue;
+        }
         if (constraint.kind !== 'minimumColor' || typeof constraint.color !== 'string' || !constraint.color.trim() || !Number.isSafeInteger(constraint.count) || constraint.count < 0) {
           issue('society-metadata', `「${society.name}」的构筑要求尚未确认，暂不能用于开局。`);
           continue;

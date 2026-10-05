@@ -95,7 +95,7 @@ export function DeckLibrary({ catalog, disabled = false, onSelectDraft, selected
             {society.subtitle && <strong>{society.subtitle}</strong>}
             <p className="hg-library-card-text">{society.text}</p>
             <strong>构筑要求</strong>
-            {!Array.isArray(society.deckConstraints) ? <p>构筑要求待确认。</p> : society.deckConstraints.length ? <ul>{society.deckConstraints.map((constraint, index) => <li key={index}>{constraint.kind === 'minimumColor' && typeof constraint.color === 'string' ? `至少 ${constraint.count} 张${constraint.color.replace(/色$/, '')}色卡 · 当前 ${societyColorCount(draft, catalog, constraint.color)} 张` : '构筑要求待确认'}</li>)}</ul> : <p>无额外颜色数量要求。</p>}
+            {!Array.isArray(society.deckConstraints) ? <p>构筑要求待确认。</p> : society.deckConstraints.length ? <ul>{society.deckConstraints.map((constraint, index) => <li key={index}>{constraint.kind === 'minimumColor' && typeof constraint.color === 'string' ? `至少 ${constraint.count} 张${constraint.color.replace(/色$/, '')}色卡 · 当前 ${societyColorCount(draft, catalog, constraint.color)} 张` : constraint.kind === 'greenNeutralOrPrintedHumanCombat' && society.id === 'MSJC11' ? '绿、中立牌；其它派系仅限印刷人类角色且具有永久战斗图标。' : '构筑要求待确认'}</li>)}</ul> : <p>无额外颜色数量要求。</p>}
           </>}
           <small>秘社不加入牌组组成；所有已选秘社在开局时同时公开。</small>
         </section>

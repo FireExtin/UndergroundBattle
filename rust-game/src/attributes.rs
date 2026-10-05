@@ -7,6 +7,47 @@ use crate::{
 };
 
 impl Game {
+    pub(crate) fn execution_turn_grants(&self, c: &Card) -> (u32, bool) {
+        if c.face_down || card(&c.definition).kind != "character" {
+            return (0, false);
+        }
+        self.turn_attribute_modifiers
+            .iter()
+            .filter(|m| m.target_instance == c.id && m.expires_turn == self.turn)
+            .fold((0, false), |(kill, retreat), m| {
+                (kill + m.kill_bonus, retreat || m.grants_retreat)
+            })
+    }
+    pub(crate) fn effective_kill(&self, c: &Card) -> u32 {
+        if c.face_down || card(&c.definition).kind != "character" {
+            return 0;
+        }
+        crate::rules::definition(&c.definition).traits.kill + self.execution_turn_grants(c).0
+    }
+    pub(crate) fn has_retreat(&self, c: &Card) -> bool {
+        !c.face_down
+            && (crate::rules::definition(&c.definition).traits.retreat
+                || self.execution_turn_grants(c).1)
+    }
+    pub(crate) fn grant_execution_traits(
+        &mut self,
+        id: String,
+        kill_bonus: u32,
+        grants_retreat: bool,
+    ) {
+        self.turn_attribute_modifiers
+            .push(crate::model::TurnAttributeModifier {
+                target_instance: id,
+                defense_bonus: 0,
+                kill_bonus,
+                grants_retreat,
+                printed_defense_override: None,
+                ordinary_icons: Icons::default(),
+                grants_renown: false,
+                prevents_damage: false,
+                expires_turn: self.turn,
+            });
+    }
     pub fn spirit_protected(&self, c: &Card) -> bool {
         if c.face_down
             || !crate::rules::definition(&c.definition).traits.spirit

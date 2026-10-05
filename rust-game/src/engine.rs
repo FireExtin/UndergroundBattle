@@ -129,6 +129,10 @@ impl Game {
         }
     }
     pub(crate) fn fresh(&mut self, mut c: Card) -> Card {
+        // Only the new finite grants are removed here; old attribute cleanup
+        // retains its published timing. A replacement cannot inherit a grant.
+        self.turn_attribute_modifiers
+            .retain(|m| m.target_instance != c.id || (m.kill_bonus == 0 && !m.grants_retreat));
         c.id = self.id();
         c
     }
@@ -426,6 +430,33 @@ impl Game {
             }
         }
         (permanent_result, temporary_result, ordinary)
+    }
+    // MSJC11 black-bottom eligibility: duration does not change icon category.
+    pub(crate) fn current_permanent_combat(&self, c: &Card, region: usize) -> u32 {
+        if c.face_down
+            || card(&c.definition).kind != "character"
+            || !self
+                .regions
+                .get(region)
+                .is_some_and(|r| r.cards.iter().any(|live| live.id == c.id))
+        {
+            return 0;
+        }
+        let (permanent, temporary, ordinary) = self.character_icon_parts(c, region);
+        Self::permanent_combat_from_parts(
+            permanent,
+            temporary,
+            ordinary,
+            self.region_converts_temporary(c, region),
+        )
+    }
+    pub(crate) fn permanent_combat_from_parts(
+        permanent: Icons,
+        temporary: Icons,
+        ordinary: Icons,
+        convert: bool,
+    ) -> u32 {
+        permanent.combat + ordinary.combat + if convert { temporary.combat } else { 0 }
     }
     pub fn defense(&self, c: &Card, region: usize) -> u32 {
         let bonus = self.regions[region]
@@ -1159,9 +1190,10 @@ impl Game {
                     self.team(c.controller) == team
                         && !c.face_down
                         && !c.exhausted
-                        && rules::definition(&c.definition).traits.kill > 0
+                        && self.icons(c, region).combat > 0
+                        && self.effective_kill(c) > 0
                 })
-                .map(|c| rules::definition(&c.definition).traits.kill)
+                .map(|c| self.effective_kill(c))
                 .sum::<u32>();
             let total = amount + kills;
             if seats.len() > 1 {
@@ -1477,11 +1509,7 @@ impl Game {
                 let retreat: Vec<_> = self.regions[region]
                     .cards
                     .iter()
-                    .filter(|c| {
-                        c.owner == seat
-                            && !c.face_down
-                            && rules::definition(&c.definition).traits.retreat
-                    })
+                    .filter(|c| c.owner == seat && !c.face_down && self.has_retreat(c))
                     .map(|c| c.id.clone())
                     .collect();
                 for id in retreat {
@@ -1972,6 +2000,16 @@ impl Game {
         let hidden = c.face_down && c.controller != viewer;
         let asset = kind == Some("asset");
         CardView {
+            current_kill: (!asset
+                && !c.face_down
+                && region.is_some()
+                && self.execution_turn_grants(c).0 > 0)
+                .then(|| self.effective_kill(c)),
+            current_retreat: (!asset
+                && !c.face_down
+                && region.is_some()
+                && self.execution_turn_grants(c).1)
+                .then_some(true),
             converted_temporary_icons: if hidden || asset || c.face_down {
                 None
             } else {
