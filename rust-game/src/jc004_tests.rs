@@ -162,7 +162,7 @@ fn jc004_complete_printed_definition_and_candidate_identity_are_isolated() {
     assert_eq!(spec.targets[0].relation, Relation::Any);
     assert_eq!(
         catalog::ENGINE_VERSION,
-        "rust-v0.2.26-msjc07-candidate"
+        "rust-v0.2.26-msjc07-resource-policy-candidate"
     );
     assert_eq!(
         catalog::POOL_VERSION,

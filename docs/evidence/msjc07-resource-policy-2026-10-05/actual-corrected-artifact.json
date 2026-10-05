@@ -1,0 +1,80 @@
+{
+  "baseCommit": "468e75858034c8d76bf3bba6213e4f48953c0a90",
+  "sameSemanticCorrectionAs": "134f1286891ada7722719cc4f002ddcea006b40d",
+  "engine": "rust-v0.2.26-msjc07-resource-policy-candidate",
+  "pool": "limited-v2.23-msjc07-candidate",
+  "ordinaryDefinitions": 87,
+  "societies": [
+    "MSJC09",
+    "MSJC01",
+    "MSJC07"
+  ],
+  "files": [
+    {
+      "file": "hegemony_wasm.d.ts",
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758"
+    },
+    {
+      "file": "hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "file": "hegemony_wasm_bg.wasm",
+      "bytes": 1974208,
+      "sha256": "79b0a9fa5e9f2acc015230ec3cd42e7f0fae41d8e8f720be7e6c81db52cd824e"
+    },
+    {
+      "file": "hegemony_wasm_bg.wasm.d.ts",
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+    },
+    {
+      "file": "package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    }
+  ],
+  "frozenReviewedOld26Files": [
+    {
+      "file": "hegemony_wasm.d.ts",
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758"
+    },
+    {
+      "file": "hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "file": "hegemony_wasm_bg.wasm",
+      "bytes": 1974053,
+      "sha256": "c187a493d3e32f82c8609cb203e12ffb1661fbe348260f6e010254bb9af395af"
+    },
+    {
+      "file": "hegemony_wasm_bg.wasm.d.ts",
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+    },
+    {
+      "file": "package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    }
+  ],
+  "interpreterUnchanged": true,
+  "societyProgramsUnchanged": true,
+  "originalArchiveRewritten": false,
+  "defaultFullRerun": false,
+  "targetedNativePassed": 22,
+  "targetedFrontendFiles": 6,
+  "targetedFrontendTests": 25,
+  "actualWasmFullCases": 43,
+  "transitions": 1186,
+  "views": 4732,
+  "all17MSJC07BodiesEqualAfterOnlyEngineNormalization": true,
+  "deathTriggerIndependentRegressionPassed": true,
+  "published": false,
+  "publicRoomsAccessed": false
+}

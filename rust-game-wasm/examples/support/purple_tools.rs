@@ -142,7 +142,14 @@ fn painter_play() -> Value {
     );
     assert_eq!(resources(&r, 0), 4);
     assert!(board(&r, &p).unwrap().exhausted);
-    assert!(r.modifiers.is_empty());
+    assert_eq!(r.modifiers.len(), 1);
+    assert!(r.stack.is_empty());
+    for seat in 0..4 {
+        assert!(r
+            .view(seat, r.pacing.last_server_now_ms)
+            .response_window
+            .is_none());
+    }
     reject(
         &mut r,
         &mut steps,

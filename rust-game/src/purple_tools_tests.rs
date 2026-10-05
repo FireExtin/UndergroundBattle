@@ -295,6 +295,64 @@ fn purple_tools_printed_fields_and_finite_target_programs() {
     assert!(validate_ability("JC103", &definition("JC107").abilities[0]).is_err());
 }
 #[test]
+fn resource_actions_real_room_declarations_resolve_without_response_windows() {
+    use crate::room::{RoomCommand, RoomEnvelope, SessionAction};
+    for (definition, ability) in [
+        ("JC103", "reduce-next-purple"),
+        ("JC112", "reduce-next-magic"),
+    ] {
+        let mut g = game();
+        purple_funds(&mut g, 4);
+        let source = field(&mut g, definition, 0);
+        let priority = g.priority_team;
+        let window = g.window.clone();
+        let room = RoomEnvelope::from_game(g);
+        let command = RoomCommand {
+            command_id: format!("resource-policy-{definition}"),
+            expected_version: room.revision,
+            action: SessionAction::Game {
+                action: Action {
+                    card_id: Some(source.clone()),
+                    ability_id: Some(ability.into()),
+                    ..Action::new("activate")
+                },
+            },
+        };
+        let transition = room.transition(0, Some(command), 1_000).unwrap();
+        assert_eq!(transition.outcome, "accepted");
+        let restored = RoomEnvelope::from_persisted(&transition.state).unwrap();
+        assert!(
+            restored.stack.is_empty(),
+            "{definition} must resolve immediately"
+        );
+        assert!(restored.pending.is_none());
+        assert!(restored.effects.is_empty());
+        assert_eq!(restored.priority_team, priority);
+        assert_eq!(restored.game.window, window);
+        assert_eq!(restored.modifiers.len(), 1);
+        assert_eq!(restored.modifiers[0].uses, 1);
+        assert_eq!(resources(&restored, 0), 4);
+        if definition == "JC103" {
+            assert!(restored.board(&source).unwrap().1.exhausted);
+        } else {
+            assert!(restored.board(&source).is_none());
+            assert_eq!(restored.players[0].graveyard.len(), 1);
+            assert_ne!(restored.players[0].graveyard[0].id, source);
+        }
+        assert_eq!(serde_json::to_string(&restored).unwrap(), transition.state);
+        for seat in 0..4 {
+            let view = restored.view(seat, 1_000);
+            assert!(view.response_window.is_none());
+            assert!(view.stack.is_empty());
+            let again = RoomEnvelope::from_persisted(&transition.state).unwrap();
+            assert_eq!(
+                serde_json::to_value(again.view(seat, 1_000)).unwrap(),
+                serde_json::to_value(view).unwrap()
+            );
+        }
+    }
+}
+#[test]
 fn purple_tools_painter_exhaust_only_then_discount_collapse_asset_without_character_death() {
     let mut g = game();
     purple_funds(&mut g, 4);
@@ -310,7 +368,8 @@ fn purple_tools_painter_exhaust_only_then_discount_collapse_asset_without_charac
     );
     assert_eq!(resources(&g, 0), 4);
     assert!(g.board(&p).unwrap().1.exhausted);
-    assert!(g.modifiers.is_empty());
+    assert_eq!(g.modifiers.len(), 1);
+    assert!(g.stack.is_empty());
     reject(
         &mut g,
         0,

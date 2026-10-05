@@ -1,0 +1,2343 @@
+{
+  "case": "purple-tools-painter-exhaust-only-discount-play-asset-character-no-death",
+  "realApplyRoomCommand": [
+    0,
+    {
+      "action": {
+        "action": {
+          "abilityId": "reduce-next-purple",
+          "cardId": "i259",
+          "kind": "activate"
+        },
+        "kind": "game"
+      },
+      "commandId": "oracle:1",
+      "expectedVersion": 8
+    },
+    "1010"
+  ],
+  "transition": {
+    "changed": true,
+    "journal": [
+      {
+        "Command": {
+          "command": {
+            "action": {
+              "action": {
+                "abilityId": "reduce-next-purple",
+                "cardId": "i259",
+                "kind": "activate"
+              },
+              "kind": "game"
+            },
+            "commandId": "oracle:1",
+            "expectedVersion": 8
+          },
+          "seat": 0,
+          "server_now_ms": 1010
+        }
+      }
+    ],
+    "outcome": "accepted",
+    "seat": 0,
+    "state": "{\"state_schema\":3,\"revision\":9,\"versions\":{\"rules\":\"hegemony-pdf-v1\",\"cardPool\":\"limited-v2.23-msjc07-candidate\",\"engine\":\"rust-v0.2.26-msjc07-resource-policy-candidate\"},\"game\":{\"state_schema\":2,\"room_id\":\"purple-tools-painter-play\",\"invite_code\":\"ATTACH\",\"mode\":\"teams\",\"version\":9,\"status\":\"playing\",\"players\":[{\"seat\":0,\"name\":\"\u73a9\u5bb60\",\"deck_id\":\"hunters\",\"deck_snapshot\":{\"id\":\"hunters\",\"name\":\"\u516c\u8def\u730e\u624b\",\"description\":\"\u673a\u52a8\u4e0e\u6218\u6597\u538b\u5236\uff0c\u5bfb\u627e\u7a7a\u6863\u8d62\u53d6\u5730\u533a\u300250\u5f20\u53d7\u9650\u5361\u6c60\u81ea\u7ec4\u9884\u7ec4\uff0c\u975e\u5b98\u65b9\u9884\u7ec4\u3002\",\"societyId\":null,\"cards\":[{\"cardId\":\"BQ022\",\"count\":3},{\"cardId\":\"JC014\",\"count\":3},{\"cardId\":\"JC016\",\"count\":3},{\"cardId\":\"JC118\",\"count\":3},{\"cardId\":\"JC125\",\"count\":14},{\"cardId\":\"JZ08\",\"count\":3},{\"cardId\":\"LC19\",\"count\":3},{\"cardId\":\"LC20\",\"count\":3},{\"cardId\":\"LC21\",\"count\":3},{\"cardId\":\"LC22\",\"count\":3},{\"cardId\":\"LC23\",\"count\":3},{\"cardId\":\"LC24\",\"count\":3},{\"cardId\":\"XQ49\",\"count\":3}],\"rulesVersion\":\"hegemony-pdf-v1\",\"cardPoolVersion\":\"limited-v2.23-msjc07-candidate\",\"engineVersion\":\"rust-v0.2.26-msjc07-resource-policy-candidate\",\"updatedAt\":\"\"},\"society_zone\":{\"card\":null,\"used_once_per_game\":[]},\"ready\":true,\"eliminated\":false,\"hand\":[{\"id\":\"i261\",\"definition\":\"JC107\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0}],\"deck\":[{\"id\":\"i39\",\"definition\":\"LC22\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i11\",\"definition\":\"JC118\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i27\",\"definition\":\"JZ08\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i24\",\"definition\":\"JC125\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i23\",\"definition\":\"JC125\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i28\",\"definition\":\"JZ08\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i25\",\"definition\":\"JC125\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i42\",\"definition\":\"LC23\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i29\",\"definition\":\"JZ08\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i47\",\"definition\":\"LC24\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i238\",\"definition\":\"LC20\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i14\",\"definition\":\"JC125\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i22\",\"definition\":\"JC125\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i38\",\"definition\":\"LC21\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i9\",\"definition\":\"JC016\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i21\",\"definition\":\"JC125\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i30\",\"definition\":\"LC19\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i2\",\"definition\":\"BQ022\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i46\",\"definition\":\"LC24\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i37\",\"definition\":\"LC21\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i20\",\"definition\":\"JC125\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i26\",\"definition\":\"JC125\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i17\",\"definition\":\"JC125\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i45\",\"definition\":\"LC24\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i31\",\"definition\":\"LC19\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i16\",\"definition\":\"JC125\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i43\",\"definition\":\"LC23\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i10\",\"definition\":\"JC118\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i34\",\"definition\":\"LC20\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i50\",\"definition\":\"XQ49\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i15\",\"definition\":\"JC125\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i8\",\"definition\":\"JC016\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i40\",\"definition\":\"LC22\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i44\",\"definition\":\"LC23\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i239\",\"definition\":\"JC014\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i18\",\"definition\":\"JC125\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i5\",\"definition\":\"JC014\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i41\",\"definition\":\"LC22\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i36\",\"definition\":\"LC21\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i49\",\"definition\":\"XQ49\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i6\",\"definition\":\"JC014\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i3\",\"definition\":\"BQ022\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i35\",\"definition\":\"LC20\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i19\",\"definition\":\"JC125\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0}],\"assets\":[{\"id\":\"i255\",\"definition\":\"JC104\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i256\",\"definition\":\"JC104\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i257\",\"definition\":\"JC104\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i258\",\"definition\":\"JC104\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0}],\"graveyard\":[],\"score_cards\":[],\"asset_used\":false,\"conceal_used\":false},{\"seat\":1,\"name\":\"\u73a9\u5bb61\",\"deck_id\":\"hunters\",\"deck_snapshot\":{\"id\":\"hunters\",\"name\":\"\u516c\u8def\u730e\u624b\",\"description\":\"\u673a\u52a8\u4e0e\u6218\u6597\u538b\u5236\uff0c\u5bfb\u627e\u7a7a\u6863\u8d62\u53d6\u5730\u533a\u300250\u5f20\u53d7\u9650\u5361\u6c60\u81ea\u7ec4\u9884\u7ec4\uff0c\u975e\u5b98\u65b9\u9884\u7ec4\u3002\",\"societyId\":null,\"cards\":[{\"cardId\":\"BQ022\",\"count\":3},{\"cardId\":\"JC014\",\"count\":3},{\"cardId\":\"JC016\",\"count\":3},{\"cardId\":\"JC118\",\"count\":3},{\"cardId\":\"JC125\",\"count\":14},{\"cardId\":\"JZ08\",\"count\":3},{\"cardId\":\"LC19\",\"count\":3},{\"cardId\":\"LC20\",\"count\":3},{\"cardId\":\"LC21\",\"count\":3},{\"cardId\":\"LC22\",\"count\":3},{\"cardId\":\"LC23\",\"count\":3},{\"cardId\":\"LC24\",\"count\":3},{\"cardId\":\"XQ49\",\"count\":3}],\"rulesVersion\":\"hegemony-pdf-v1\",\"cardPoolVersion\":\"limited-v2.23-msjc07-candidate\",\"engineVersion\":\"rust-v0.2.26-msjc07-resource-policy-candidate\",\"updatedAt\":\"\"},\"society_zone\":{\"card\":null,\"used_once_per_game\":[]},\"ready\":true,\"eliminated\":false,\"hand\":[],\"deck\":[{\"id\":\"i73\",\"definition\":\"JC125\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i95\",\"definition\":\"LC24\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i92\",\"definition\":\"LC23\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i57\",\"definition\":\"JC016\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i51\",\"definition\":\"BQ022\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i99\",\"definition\":\"XQ49\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i82\",\"definition\":\"LC19\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i243\",\"definition\":\"JC125\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i75\",\"definition\":\"JC125\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i89\",\"definition\":\"LC22\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i91\",\"definition\":\"LC22\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i66\",\"definition\":\"JC125\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i77\",\"definition\":\"JZ08\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i54\",\"definition\":\"JC014\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i100\",\"definition\":\"XQ49\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i86\",\"definition\":\"LC21\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i63\",\"definition\":\"JC125\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i61\",\"definition\":\"JC118\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i85\",\"definition\":\"LC20\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i83\",\"definition\":\"LC20\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i59\",\"definition\":\"JC016\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i68\",\"definition\":\"JC125\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i67\",\"definition\":\"JC125\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i244\",\"definition\":\"LC24\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i60\",\"definition\":\"JC118\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i93\",\"definition\":\"LC23\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i71\",\"definition\":\"JC125\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i52\",\"definition\":\"BQ022\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i84\",\"definition\":\"LC20\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i78\",\"definition\":\"JZ08\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i94\",\"definition\":\"LC23\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i53\",\"definition\":\"BQ022\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i62\",\"definition\":\"JC118\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i74\",\"definition\":\"JC125\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i88\",\"definition\":\"LC21\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i98\",\"definition\":\"XQ49\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i58\",\"definition\":\"JC016\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i72\",\"definition\":\"JC125\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i90\",\"definition\":\"LC22\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i55\",\"definition\":\"JC014\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i65\",\"definition\":\"JC125\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i64\",\"definition\":\"JC125\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i79\",\"definition\":\"JZ08\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i81\",\"definition\":\"LC19\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0}],\"assets\":[],\"graveyard\":[],\"score_cards\":[],\"asset_used\":false,\"conceal_used\":false},{\"seat\":2,\"name\":\"\u73a9\u5bb62\",\"deck_id\":\"hunters\",\"deck_snapshot\":{\"id\":\"hunters\",\"name\":\"\u516c\u8def\u730e\u624b\",\"description\":\"\u673a\u52a8\u4e0e\u6218\u6597\u538b\u5236\uff0c\u5bfb\u627e\u7a7a\u6863\u8d62\u53d6\u5730\u533a\u300250\u5f20\u53d7\u9650\u5361\u6c60\u81ea\u7ec4\u9884\u7ec4\uff0c\u975e\u5b98\u65b9\u9884\u7ec4\u3002\",\"societyId\":null,\"cards\":[{\"cardId\":\"BQ022\",\"count\":3},{\"cardId\":\"JC014\",\"count\":3},{\"cardId\":\"JC016\",\"count\":3},{\"cardId\":\"JC118\",\"count\":3},{\"cardId\":\"JC125\",\"count\":14},{\"cardId\":\"JZ08\",\"count\":3},{\"cardId\":\"LC19\",\"count\":3},{\"cardId\":\"LC20\",\"count\":3},{\"cardId\":\"LC21\",\"count\":3},{\"cardId\":\"LC22\",\"count\":3},{\"cardId\":\"LC23\",\"count\":3},{\"cardId\":\"LC24\",\"count\":3},{\"cardId\":\"XQ49\",\"count\":3}],\"rulesVersion\":\"hegemony-pdf-v1\",\"cardPoolVersion\":\"limited-v2.23-msjc07-candidate\",\"engineVersion\":\"rust-v0.2.26-msjc07-resource-policy-candidate\",\"updatedAt\":\"\"},\"society_zone\":{\"card\":null,\"used_once_per_game\":[]},\"ready\":true,\"eliminated\":false,\"hand\":[],\"deck\":[{\"id\":\"i105\",\"definition\":\"JC014\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i134\",\"definition\":\"LC20\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i119\",\"definition\":\"JC125\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i141\",\"definition\":\"LC22\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i150\",\"definition\":\"XQ49\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i124\",\"definition\":\"JC125\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i130\",\"definition\":\"LC19\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i110\",\"definition\":\"JC118\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i127\",\"definition\":\"JZ08\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i113\",\"definition\":\"JC125\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i140\",\"definition\":\"LC22\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i122\",\"definition\":\"JC125\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i148\",\"definition\":\"XQ49\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i117\",\"definition\":\"JC125\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i131\",\"definition\":\"LC19\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i106\",\"definition\":\"JC014\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i143\",\"definition\":\"LC23\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i116\",\"definition\":\"JC125\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i149\",\"definition\":\"XQ49\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i103\",\"definition\":\"BQ022\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i114\",\"definition\":\"JC125\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i133\",\"definition\":\"LC20\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i115\",\"definition\":\"JC125\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i123\",\"definition\":\"JC125\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i249\",\"definition\":\"BQ022\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i104\",\"definition\":\"JC014\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i111\",\"definition\":\"JC118\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i147\",\"definition\":\"LC24\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i118\",\"definition\":\"JC125\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i248\",\"definition\":\"JZ08\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i102\",\"definition\":\"BQ022\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i121\",\"definition\":\"JC125\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i108\",\"definition\":\"JC016\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i138\",\"definition\":\"LC21\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i135\",\"definition\":\"LC20\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i139\",\"definition\":\"LC22\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i145\",\"definition\":\"LC24\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i112\",\"definition\":\"JC118\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i136\",\"definition\":\"LC21\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i132\",\"definition\":\"LC19\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i137\",\"definition\":\"LC21\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i126\",\"definition\":\"JC125\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i144\",\"definition\":\"LC23\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i120\",\"definition\":\"JC125\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0}],\"assets\":[{\"id\":\"i260\",\"definition\":\"XQ17\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0}],\"graveyard\":[],\"score_cards\":[],\"asset_used\":false,\"conceal_used\":false},{\"seat\":3,\"name\":\"\u73a9\u5bb63\",\"deck_id\":\"hunters\",\"deck_snapshot\":{\"id\":\"hunters\",\"name\":\"\u516c\u8def\u730e\u624b\",\"description\":\"\u673a\u52a8\u4e0e\u6218\u6597\u538b\u5236\uff0c\u5bfb\u627e\u7a7a\u6863\u8d62\u53d6\u5730\u533a\u300250\u5f20\u53d7\u9650\u5361\u6c60\u81ea\u7ec4\u9884\u7ec4\uff0c\u975e\u5b98\u65b9\u9884\u7ec4\u3002\",\"societyId\":null,\"cards\":[{\"cardId\":\"BQ022\",\"count\":3},{\"cardId\":\"JC014\",\"count\":3},{\"cardId\":\"JC016\",\"count\":3},{\"cardId\":\"JC118\",\"count\":3},{\"cardId\":\"JC125\",\"count\":14},{\"cardId\":\"JZ08\",\"count\":3},{\"cardId\":\"LC19\",\"count\":3},{\"cardId\":\"LC20\",\"count\":3},{\"cardId\":\"LC21\",\"count\":3},{\"cardId\":\"LC22\",\"count\":3},{\"cardId\":\"LC23\",\"count\":3},{\"cardId\":\"LC24\",\"count\":3},{\"cardId\":\"XQ49\",\"count\":3}],\"rulesVersion\":\"hegemony-pdf-v1\",\"cardPoolVersion\":\"limited-v2.23-msjc07-candidate\",\"engineVersion\":\"rust-v0.2.26-msjc07-resource-policy-candidate\",\"updatedAt\":\"\"},\"society_zone\":{\"card\":null,\"used_once_per_game\":[]},\"ready\":true,\"eliminated\":false,\"hand\":[],\"deck\":[{\"id\":\"i254\",\"definition\":\"LC21\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i164\",\"definition\":\"JC125\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i183\",\"definition\":\"LC20\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i168\",\"definition\":\"JC125\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i199\",\"definition\":\"XQ49\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i176\",\"definition\":\"JC125\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i174\",\"definition\":\"JC125\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i166\",\"definition\":\"JC125\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i173\",\"definition\":\"JC125\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i157\",\"definition\":\"JC016\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i160\",\"definition\":\"JC118\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i175\",\"definition\":\"JC125\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i155\",\"definition\":\"JC014\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i194\",\"definition\":\"LC23\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i167\",\"definition\":\"JC125\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i190\",\"definition\":\"LC22\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i197\",\"definition\":\"LC24\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i158\",\"definition\":\"JC016\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i195\",\"definition\":\"LC24\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i154\",\"definition\":\"JC014\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i184\",\"definition\":\"LC20\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i151\",\"definition\":\"BQ022\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i181\",\"definition\":\"LC19\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i162\",\"definition\":\"JC118\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i198\",\"definition\":\"XQ49\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i189\",\"definition\":\"LC22\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i153\",\"definition\":\"BQ022\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i185\",\"definition\":\"LC20\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i182\",\"definition\":\"LC19\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i253\",\"definition\":\"JC125\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i196\",\"definition\":\"LC24\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i191\",\"definition\":\"LC22\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i171\",\"definition\":\"JC125\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i188\",\"definition\":\"LC21\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i193\",\"definition\":\"LC23\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i172\",\"definition\":\"JC125\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i187\",\"definition\":\"LC21\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i169\",\"definition\":\"JC125\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i179\",\"definition\":\"JZ08\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i152\",\"definition\":\"BQ022\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i156\",\"definition\":\"JC014\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i165\",\"definition\":\"JC125\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i180\",\"definition\":\"LC19\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i178\",\"definition\":\"JZ08\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0}],\"assets\":[],\"graveyard\":[],\"score_cards\":[],\"asset_used\":false,\"conceal_used\":false}],\"seed\":9007199254740993,\"random\":15725683459019473444,\"sequence\":262,\"first_team\":0,\"active_team\":0,\"priority_team\":0,\"turn\":1,\"winner_team\":null,\"regions\":[{\"card\":{\"id\":\"i208\",\"definition\":\"DQJC114\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},\"influence\":[0,0],\"cards\":[{\"id\":\"i259\",\"definition\":\"JC103\",\"owner\":0,\"controller\":0,\"exhausted\":true,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0}],\"skip\":false},{\"card\":{\"id\":\"i207\",\"definition\":\"DQJC113\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},\"influence\":[0,0],\"cards\":[],\"skip\":false},{\"card\":{\"id\":\"i201\",\"definition\":\"DQJC107\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},\"influence\":[0,0],\"cards\":[],\"skip\":false},{\"card\":{\"id\":\"i205\",\"definition\":\"DQJC111\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},\"influence\":[0,0],\"cards\":[],\"skip\":false},{\"card\":{\"id\":\"i206\",\"definition\":\"DQJC112\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},\"influence\":[0,0],\"cards\":[],\"skip\":false}],\"attachments\":[],\"region_return\":null,\"world\":[{\"id\":\"i203\",\"definition\":\"DQJC109\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i202\",\"definition\":\"DQJC108\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i210\",\"definition\":\"DQJC116\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i204\",\"definition\":\"DQJC110\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i209\",\"definition\":\"DQJC115\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0}],\"stack\":[],\"pending\":null,\"effects\":[],\"window\":{\"Action\":0},\"passed\":[],\"team_passed\":[false,false],\"privilege_used\":false,\"log\":[{\"version\":1,\"text\":\"\u73a9\u5bb61 \u52a0\u5165\u5ea7\u4f4d 2\"},{\"version\":2,\"text\":\"\u73a9\u5bb62 \u52a0\u5165\u5ea7\u4f4d 3\"},{\"version\":3,\"text\":\"\u73a9\u5bb63 \u52a0\u5165\u5ea7\u4f4d 4\"},{\"version\":4,\"text\":\"\u5f00\u59cb \u56db\u4eba\u534f\u4f5c\uff1b\u56e2\u961f 1 \u6301\u5148\u624b\"},{\"version\":5,\"text\":\"\u73a9\u5bb60 \u5b8c\u6210\u4e00\u6b21\u518d\u8c03\u5ea6\uff082\u5f20\uff09\"},{\"version\":6,\"text\":\"\u73a9\u5bb61 \u5b8c\u6210\u4e00\u6b21\u518d\u8c03\u5ea6\uff082\u5f20\uff09\"},{\"version\":7,\"text\":\"\u73a9\u5bb62 \u5b8c\u6210\u4e00\u6b21\u518d\u8c03\u5ea6\uff082\u5f20\uff09\"},{\"version\":8,\"text\":\"\u73a9\u5bb63 \u5b8c\u6210\u4e00\u6b21\u518d\u8c03\u5ea6\uff082\u5f20\uff09\"},{\"version\":9,\"text\":\"\u73a9\u5bb60 \u53d1\u52a8 \u4e27\u5931\u7406\u667a\u7684\u753b\u5bb6\uff1a\u5feb\u901f\u884c\u52a8\"},{\"version\":9,\"text\":\"\u7acb\u5373\u7ed3\u7b97\uff08\u4e0d\u53ef\u54cd\u5e94\uff09\uff1a\u4e27\u5931\u7406\u667a\u7684\u753b\u5bb6\uff1a\u5feb\u901f\u884c\u52a8\"}],\"versions\":{\"rules\":\"hegemony-pdf-v1\",\"cardPool\":\"limited-v2.23-msjc07-candidate\",\"engine\":\"rust-v0.2.26-msjc07-resource-policy-candidate\"},\"modifiers\":[{\"actor\":0,\"filter\":{\"PrintedColor\":\"\u7d2b\"},\"amount\":1,\"expires_turn\":1,\"uses\":1,\"paid_reveal\":true}],\"turn_attribute_modifiers\":[],\"control_effects\":[],\"control_baselines\":[]},\"pacing\":{\"windowSeq\":0,\"lastServerNowMs\":1010,\"window\":null}}",
+    "version": 9,
+    "view": {
+      "activeTeam": 0,
+      "assets": [
+        {
+          "color": "\u7d2b",
+          "controller": "p0",
+          "exhausted": false,
+          "faceDown": false,
+          "instanceId": "i255",
+          "kind": "asset",
+          "magic": "\u661f\u8fb0",
+          "name": "\u8d44\u4ea7",
+          "owner": "p0"
+        },
+        {
+          "color": "\u7d2b",
+          "controller": "p0",
+          "exhausted": false,
+          "faceDown": false,
+          "instanceId": "i256",
+          "kind": "asset",
+          "magic": "\u661f\u8fb0",
+          "name": "\u8d44\u4ea7",
+          "owner": "p0"
+        },
+        {
+          "color": "\u7d2b",
+          "controller": "p0",
+          "exhausted": false,
+          "faceDown": false,
+          "instanceId": "i257",
+          "kind": "asset",
+          "magic": "\u661f\u8fb0",
+          "name": "\u8d44\u4ea7",
+          "owner": "p0"
+        },
+        {
+          "color": "\u7d2b",
+          "controller": "p0",
+          "exhausted": false,
+          "faceDown": false,
+          "instanceId": "i258",
+          "kind": "asset",
+          "magic": "\u661f\u8fb0",
+          "name": "\u8d44\u4ea7",
+          "owner": "p0"
+        },
+        {
+          "color": "\u7ea2",
+          "controller": "p2",
+          "exhausted": false,
+          "faceDown": false,
+          "instanceId": "i260",
+          "kind": "asset",
+          "magic": "",
+          "name": "\u8d44\u4ea7",
+          "owner": "p2"
+        }
+      ],
+      "attachments": [],
+      "firstTeam": 0,
+      "graveyard": [],
+      "hand": [
+        {
+          "cardId": "JC107",
+          "color": "\u7d2b",
+          "controller": "p0",
+          "cost": 3,
+          "damage": 0,
+          "effectiveCost": 2,
+          "exhausted": false,
+          "faceDown": false,
+          "icons": {
+            "combat": 0,
+            "influence": 0,
+            "investigation": 0
+          },
+          "instanceId": "i261",
+          "kind": "spell",
+          "magic": "",
+          "name": "\u5d29\u584c\u7684\u65f6\u7a7a",
+          "owner": "p0",
+          "shield": 0,
+          "text": "\u3010\u6807\u51c6\u884c\u52a8\u3011\u6d88\u706d\u76ee\u6807\u9644\u5c5e\u6216\u8d44\u4ea7\u3002",
+          "wounds": 0
+        }
+      ],
+      "inviteCode": "ATTACH",
+      "legalActions": [
+        {
+          "id": "{\"kind\":\"pass\"}",
+          "kind": "pass",
+          "label": "\u8ba9\u8fc7"
+        },
+        {
+          "cardId": "i261",
+          "id": "{\"kind\":\"asset\",\"cardId\":\"i261\"}",
+          "kind": "asset",
+          "label": "\u5d29\u584c\u7684\u65f6\u7a7a \u5efa\u7acb\u8d44\u4ea7"
+        },
+        {
+          "abilityId": "destroy-attachment-or-asset",
+          "cardId": "i261",
+          "id": "{\"kind\":\"play\",\"cardId\":\"i261\",\"targetId\":\"i255\",\"abilityId\":\"destroy-attachment-or-asset\"}",
+          "kind": "play",
+          "label": "\u5d29\u584c\u7684\u65f6\u7a7a\uff1a\u6807\u51c6\u884c\u52a8 \u2192 \u8d44\u4ea7\u00b7\u62e5\u6709\u8005\u73a9\u5bb60 [i255]",
+          "targetId": "i255"
+        },
+        {
+          "abilityId": "destroy-attachment-or-asset",
+          "cardId": "i261",
+          "id": "{\"kind\":\"play\",\"cardId\":\"i261\",\"targetId\":\"i256\",\"abilityId\":\"destroy-attachment-or-asset\"}",
+          "kind": "play",
+          "label": "\u5d29\u584c\u7684\u65f6\u7a7a\uff1a\u6807\u51c6\u884c\u52a8 \u2192 \u8d44\u4ea7\u00b7\u62e5\u6709\u8005\u73a9\u5bb60 [i256]",
+          "targetId": "i256"
+        },
+        {
+          "abilityId": "destroy-attachment-or-asset",
+          "cardId": "i261",
+          "id": "{\"kind\":\"play\",\"cardId\":\"i261\",\"targetId\":\"i257\",\"abilityId\":\"destroy-attachment-or-asset\"}",
+          "kind": "play",
+          "label": "\u5d29\u584c\u7684\u65f6\u7a7a\uff1a\u6807\u51c6\u884c\u52a8 \u2192 \u8d44\u4ea7\u00b7\u62e5\u6709\u8005\u73a9\u5bb60 [i257]",
+          "targetId": "i257"
+        },
+        {
+          "abilityId": "destroy-attachment-or-asset",
+          "cardId": "i261",
+          "id": "{\"kind\":\"play\",\"cardId\":\"i261\",\"targetId\":\"i258\",\"abilityId\":\"destroy-attachment-or-asset\"}",
+          "kind": "play",
+          "label": "\u5d29\u584c\u7684\u65f6\u7a7a\uff1a\u6807\u51c6\u884c\u52a8 \u2192 \u8d44\u4ea7\u00b7\u62e5\u6709\u8005\u73a9\u5bb60 [i258]",
+          "targetId": "i258"
+        },
+        {
+          "abilityId": "destroy-attachment-or-asset",
+          "cardId": "i261",
+          "id": "{\"kind\":\"play\",\"cardId\":\"i261\",\"targetId\":\"i260\",\"abilityId\":\"destroy-attachment-or-asset\"}",
+          "kind": "play",
+          "label": "\u5d29\u584c\u7684\u65f6\u7a7a\uff1a\u6807\u51c6\u884c\u52a8 \u2192 \u8d44\u4ea7\u00b7\u62e5\u6709\u8005\u73a9\u5bb62 [i260]",
+          "targetId": "i260"
+        }
+      ],
+      "log": [
+        {
+          "text": "\u73a9\u5bb61 \u52a0\u5165\u5ea7\u4f4d 2",
+          "version": 1
+        },
+        {
+          "text": "\u73a9\u5bb62 \u52a0\u5165\u5ea7\u4f4d 3",
+          "version": 2
+        },
+        {
+          "text": "\u73a9\u5bb63 \u52a0\u5165\u5ea7\u4f4d 4",
+          "version": 3
+        },
+        {
+          "text": "\u5f00\u59cb \u56db\u4eba\u534f\u4f5c\uff1b\u56e2\u961f 1 \u6301\u5148\u624b",
+          "version": 4
+        },
+        {
+          "text": "\u73a9\u5bb60 \u5b8c\u6210\u4e00\u6b21\u518d\u8c03\u5ea6\uff082\u5f20\uff09",
+          "version": 5
+        },
+        {
+          "text": "\u73a9\u5bb61 \u5b8c\u6210\u4e00\u6b21\u518d\u8c03\u5ea6\uff082\u5f20\uff09",
+          "version": 6
+        },
+        {
+          "text": "\u73a9\u5bb62 \u5b8c\u6210\u4e00\u6b21\u518d\u8c03\u5ea6\uff082\u5f20\uff09",
+          "version": 7
+        },
+        {
+          "text": "\u73a9\u5bb63 \u5b8c\u6210\u4e00\u6b21\u518d\u8c03\u5ea6\uff082\u5f20\uff09",
+          "version": 8
+        },
+        {
+          "text": "\u73a9\u5bb60 \u53d1\u52a8 \u4e27\u5931\u7406\u667a\u7684\u753b\u5bb6\uff1a\u5feb\u901f\u884c\u52a8",
+          "version": 9
+        },
+        {
+          "text": "\u7acb\u5373\u7ed3\u7b97\uff08\u4e0d\u53ef\u54cd\u5e94\uff09\uff1a\u4e27\u5931\u7406\u667a\u7684\u753b\u5bb6\uff1a\u5feb\u901f\u884c\u52a8",
+          "version": 9
+        }
+      ],
+      "mode": "teams",
+      "pendingChoice": null,
+      "phase": "action",
+      "players": [
+        {
+          "deckCount": 44,
+          "deckId": "hunters",
+          "deckName": "\u516c\u8def\u730e\u624b",
+          "eliminated": false,
+          "handCount": 1,
+          "id": "p0",
+          "name": "\u73a9\u5bb60",
+          "ready": true,
+          "score": 0,
+          "seat": 0,
+          "team": 0
+        },
+        {
+          "deckCount": 44,
+          "deckId": "hunters",
+          "deckName": "\u516c\u8def\u730e\u624b",
+          "eliminated": false,
+          "handCount": 0,
+          "id": "p1",
+          "name": "\u73a9\u5bb61",
+          "ready": true,
+          "score": 0,
+          "seat": 1,
+          "team": 0
+        },
+        {
+          "deckCount": 44,
+          "deckId": "hunters",
+          "deckName": "\u516c\u8def\u730e\u624b",
+          "eliminated": false,
+          "handCount": 0,
+          "id": "p2",
+          "name": "\u73a9\u5bb62",
+          "ready": true,
+          "score": 0,
+          "seat": 2,
+          "team": 1
+        },
+        {
+          "deckCount": 44,
+          "deckId": "hunters",
+          "deckName": "\u516c\u8def\u730e\u624b",
+          "eliminated": false,
+          "handCount": 0,
+          "id": "p3",
+          "name": "\u73a9\u5bb63",
+          "ready": true,
+          "score": 0,
+          "seat": 3,
+          "team": 1
+        }
+      ],
+      "priorityTeam": 0,
+      "regions": [
+        {
+          "cardId": "DQJC114",
+          "characters": [
+            {
+              "cardId": "JC103",
+              "color": "\u7d2b",
+              "controller": "p0",
+              "cost": 3,
+              "damage": 0,
+              "defense": 1,
+              "exhausted": true,
+              "faceDown": false,
+              "icons": {
+                "combat": 0,
+                "influence": 0,
+                "investigation": 0
+              },
+              "instanceId": "i259",
+              "kind": "character",
+              "magic": "",
+              "name": "\u4e27\u5931\u7406\u667a\u7684\u753b\u5bb6",
+              "owner": "p0",
+              "region": 0,
+              "shield": 0,
+              "text": "\u3010\u5feb\u901f\u3011\u884c\u52a8\u3010\u6a2a\u7f6e\u3011\uff1a\u672c\u56de\u5408\u4e2d\u4f60\u4e0b\u4e00\u5f20\u6b63\u9762\u6253\u51fa\u6216\u4ed8\u8d39\u7ffb\u9762\u7684\u3010\u7d2b\u3011\u724c\uff0c\u6240\u9700\u8d39\u7528\u51cf\u5c111\u3002",
+              "wounds": 0
+            }
+          ],
+          "iconsByTeam": [
+            {
+              "combat": 0,
+              "influence": 0,
+              "investigation": 0
+            },
+            {
+              "combat": 0,
+              "influence": 0,
+              "investigation": 0
+            }
+          ],
+          "id": "i208",
+          "index": 0,
+          "influence": [
+            0,
+            0
+          ],
+          "name": "\u4e0a\u6d77",
+          "points": 3,
+          "skipConfrontation": false,
+          "threshold": 4
+        },
+        {
+          "cardId": "DQJC113",
+          "characters": [],
+          "iconsByTeam": [
+            {
+              "combat": 0,
+              "influence": 0,
+              "investigation": 0
+            },
+            {
+              "combat": 0,
+              "influence": 0,
+              "investigation": 0
+            }
+          ],
+          "id": "i207",
+          "index": 1,
+          "influence": [
+            0,
+            0
+          ],
+          "name": "\u5207\u5c14\u8bfa\u8d1d\u5229",
+          "points": 2,
+          "skipConfrontation": false,
+          "threshold": 3
+        },
+        {
+          "cardId": "DQJC107",
+          "characters": [],
+          "iconsByTeam": [
+            {
+              "combat": 0,
+              "influence": 0,
+              "investigation": 0
+            },
+            {
+              "combat": 0,
+              "influence": 0,
+              "investigation": 0
+            }
+          ],
+          "id": "i201",
+          "index": 2,
+          "influence": [
+            0,
+            0
+          ],
+          "name": "\u6c89\u6ca1\u7684\u5e9f\u589f",
+          "points": 4,
+          "skipConfrontation": false,
+          "threshold": 4
+        },
+        {
+          "cardId": "DQJC111",
+          "characters": [],
+          "iconsByTeam": [
+            {
+              "combat": 0,
+              "influence": 0,
+              "investigation": 0
+            },
+            {
+              "combat": 0,
+              "influence": 0,
+              "investigation": 0
+            }
+          ],
+          "id": "i205",
+          "index": 3,
+          "influence": [
+            0,
+            0
+          ],
+          "name": "\u83ab\u65af\u79d1",
+          "points": 3,
+          "skipConfrontation": false,
+          "threshold": 4
+        },
+        {
+          "cardId": "DQJC112",
+          "characters": [],
+          "iconsByTeam": [
+            {
+              "combat": 0,
+              "influence": 0,
+              "investigation": 0
+            },
+            {
+              "combat": 0,
+              "influence": 0,
+              "investigation": 0
+            }
+          ],
+          "id": "i206",
+          "index": 4,
+          "influence": [
+            0,
+            0
+          ],
+          "name": "\u7ebd\u7ea6",
+          "points": 4,
+          "skipConfrontation": false,
+          "threshold": 4
+        }
+      ],
+      "responseWindow": null,
+      "roomId": "purple-tools-painter-play",
+      "scoreCards": [],
+      "serverNowMs": 1010,
+      "societyZones": [
+        {
+          "card": null,
+          "id": "society:p0",
+          "playerId": "p0"
+        },
+        {
+          "card": null,
+          "id": "society:p1",
+          "playerId": "p1"
+        },
+        {
+          "card": null,
+          "id": "society:p2",
+          "playerId": "p2"
+        },
+        {
+          "card": null,
+          "id": "society:p3",
+          "playerId": "p3"
+        }
+      ],
+      "stack": [],
+      "status": "playing",
+      "step": "team:0",
+      "turn": 1,
+      "version": 9,
+      "versions": {
+        "cardPool": "limited-v2.23-msjc07-candidate",
+        "engine": "rust-v0.2.26-msjc07-resource-policy-candidate",
+        "rules": "hegemony-pdf-v1"
+      },
+      "waitingChoice": null,
+      "winScore": 10,
+      "worldDeckCount": 5,
+      "you": "p0",
+      "yourDeck": {
+        "cardPoolVersion": "limited-v2.23-msjc07-candidate",
+        "cards": [
+          {
+            "cardId": "BQ022",
+            "count": 3
+          },
+          {
+            "cardId": "JC014",
+            "count": 3
+          },
+          {
+            "cardId": "JC016",
+            "count": 3
+          },
+          {
+            "cardId": "JC118",
+            "count": 3
+          },
+          {
+            "cardId": "JC125",
+            "count": 14
+          },
+          {
+            "cardId": "JZ08",
+            "count": 3
+          },
+          {
+            "cardId": "LC19",
+            "count": 3
+          },
+          {
+            "cardId": "LC20",
+            "count": 3
+          },
+          {
+            "cardId": "LC21",
+            "count": 3
+          },
+          {
+            "cardId": "LC22",
+            "count": 3
+          },
+          {
+            "cardId": "LC23",
+            "count": 3
+          },
+          {
+            "cardId": "LC24",
+            "count": 3
+          },
+          {
+            "cardId": "XQ49",
+            "count": 3
+          }
+        ],
+        "description": "\u673a\u52a8\u4e0e\u6218\u6597\u538b\u5236\uff0c\u5bfb\u627e\u7a7a\u6863\u8d62\u53d6\u5730\u533a\u300250\u5f20\u53d7\u9650\u5361\u6c60\u81ea\u7ec4\u9884\u7ec4\uff0c\u975e\u5b98\u65b9\u9884\u7ec4\u3002",
+        "engineVersion": "rust-v0.2.26-msjc07-resource-policy-candidate",
+        "id": "hunters",
+        "name": "\u516c\u8def\u730e\u624b",
+        "rulesVersion": "hegemony-pdf-v1",
+        "societyId": null,
+        "updatedAt": ""
+      }
+    }
+  },
+  "views": [
+    {
+      "activeTeam": 0,
+      "assets": [
+        {
+          "color": "\u7d2b",
+          "controller": "p0",
+          "exhausted": false,
+          "faceDown": false,
+          "instanceId": "i255",
+          "kind": "asset",
+          "magic": "\u661f\u8fb0",
+          "name": "\u8d44\u4ea7",
+          "owner": "p0"
+        },
+        {
+          "color": "\u7d2b",
+          "controller": "p0",
+          "exhausted": false,
+          "faceDown": false,
+          "instanceId": "i256",
+          "kind": "asset",
+          "magic": "\u661f\u8fb0",
+          "name": "\u8d44\u4ea7",
+          "owner": "p0"
+        },
+        {
+          "color": "\u7d2b",
+          "controller": "p0",
+          "exhausted": false,
+          "faceDown": false,
+          "instanceId": "i257",
+          "kind": "asset",
+          "magic": "\u661f\u8fb0",
+          "name": "\u8d44\u4ea7",
+          "owner": "p0"
+        },
+        {
+          "color": "\u7d2b",
+          "controller": "p0",
+          "exhausted": false,
+          "faceDown": false,
+          "instanceId": "i258",
+          "kind": "asset",
+          "magic": "\u661f\u8fb0",
+          "name": "\u8d44\u4ea7",
+          "owner": "p0"
+        },
+        {
+          "color": "\u7ea2",
+          "controller": "p2",
+          "exhausted": false,
+          "faceDown": false,
+          "instanceId": "i260",
+          "kind": "asset",
+          "magic": "",
+          "name": "\u8d44\u4ea7",
+          "owner": "p2"
+        }
+      ],
+      "attachments": [],
+      "firstTeam": 0,
+      "graveyard": [],
+      "hand": [
+        {
+          "cardId": "JC107",
+          "color": "\u7d2b",
+          "controller": "p0",
+          "cost": 3,
+          "damage": 0,
+          "effectiveCost": 2,
+          "exhausted": false,
+          "faceDown": false,
+          "icons": {
+            "combat": 0,
+            "influence": 0,
+            "investigation": 0
+          },
+          "instanceId": "i261",
+          "kind": "spell",
+          "magic": "",
+          "name": "\u5d29\u584c\u7684\u65f6\u7a7a",
+          "owner": "p0",
+          "shield": 0,
+          "text": "\u3010\u6807\u51c6\u884c\u52a8\u3011\u6d88\u706d\u76ee\u6807\u9644\u5c5e\u6216\u8d44\u4ea7\u3002",
+          "wounds": 0
+        }
+      ],
+      "inviteCode": "ATTACH",
+      "legalActions": [
+        {
+          "id": "{\"kind\":\"pass\"}",
+          "kind": "pass",
+          "label": "\u8ba9\u8fc7"
+        },
+        {
+          "cardId": "i261",
+          "id": "{\"kind\":\"asset\",\"cardId\":\"i261\"}",
+          "kind": "asset",
+          "label": "\u5d29\u584c\u7684\u65f6\u7a7a \u5efa\u7acb\u8d44\u4ea7"
+        },
+        {
+          "abilityId": "destroy-attachment-or-asset",
+          "cardId": "i261",
+          "id": "{\"kind\":\"play\",\"cardId\":\"i261\",\"targetId\":\"i255\",\"abilityId\":\"destroy-attachment-or-asset\"}",
+          "kind": "play",
+          "label": "\u5d29\u584c\u7684\u65f6\u7a7a\uff1a\u6807\u51c6\u884c\u52a8 \u2192 \u8d44\u4ea7\u00b7\u62e5\u6709\u8005\u73a9\u5bb60 [i255]",
+          "targetId": "i255"
+        },
+        {
+          "abilityId": "destroy-attachment-or-asset",
+          "cardId": "i261",
+          "id": "{\"kind\":\"play\",\"cardId\":\"i261\",\"targetId\":\"i256\",\"abilityId\":\"destroy-attachment-or-asset\"}",
+          "kind": "play",
+          "label": "\u5d29\u584c\u7684\u65f6\u7a7a\uff1a\u6807\u51c6\u884c\u52a8 \u2192 \u8d44\u4ea7\u00b7\u62e5\u6709\u8005\u73a9\u5bb60 [i256]",
+          "targetId": "i256"
+        },
+        {
+          "abilityId": "destroy-attachment-or-asset",
+          "cardId": "i261",
+          "id": "{\"kind\":\"play\",\"cardId\":\"i261\",\"targetId\":\"i257\",\"abilityId\":\"destroy-attachment-or-asset\"}",
+          "kind": "play",
+          "label": "\u5d29\u584c\u7684\u65f6\u7a7a\uff1a\u6807\u51c6\u884c\u52a8 \u2192 \u8d44\u4ea7\u00b7\u62e5\u6709\u8005\u73a9\u5bb60 [i257]",
+          "targetId": "i257"
+        },
+        {
+          "abilityId": "destroy-attachment-or-asset",
+          "cardId": "i261",
+          "id": "{\"kind\":\"play\",\"cardId\":\"i261\",\"targetId\":\"i258\",\"abilityId\":\"destroy-attachment-or-asset\"}",
+          "kind": "play",
+          "label": "\u5d29\u584c\u7684\u65f6\u7a7a\uff1a\u6807\u51c6\u884c\u52a8 \u2192 \u8d44\u4ea7\u00b7\u62e5\u6709\u8005\u73a9\u5bb60 [i258]",
+          "targetId": "i258"
+        },
+        {
+          "abilityId": "destroy-attachment-or-asset",
+          "cardId": "i261",
+          "id": "{\"kind\":\"play\",\"cardId\":\"i261\",\"targetId\":\"i260\",\"abilityId\":\"destroy-attachment-or-asset\"}",
+          "kind": "play",
+          "label": "\u5d29\u584c\u7684\u65f6\u7a7a\uff1a\u6807\u51c6\u884c\u52a8 \u2192 \u8d44\u4ea7\u00b7\u62e5\u6709\u8005\u73a9\u5bb62 [i260]",
+          "targetId": "i260"
+        }
+      ],
+      "log": [
+        {
+          "text": "\u73a9\u5bb61 \u52a0\u5165\u5ea7\u4f4d 2",
+          "version": 1
+        },
+        {
+          "text": "\u73a9\u5bb62 \u52a0\u5165\u5ea7\u4f4d 3",
+          "version": 2
+        },
+        {
+          "text": "\u73a9\u5bb63 \u52a0\u5165\u5ea7\u4f4d 4",
+          "version": 3
+        },
+        {
+          "text": "\u5f00\u59cb \u56db\u4eba\u534f\u4f5c\uff1b\u56e2\u961f 1 \u6301\u5148\u624b",
+          "version": 4
+        },
+        {
+          "text": "\u73a9\u5bb60 \u5b8c\u6210\u4e00\u6b21\u518d\u8c03\u5ea6\uff082\u5f20\uff09",
+          "version": 5
+        },
+        {
+          "text": "\u73a9\u5bb61 \u5b8c\u6210\u4e00\u6b21\u518d\u8c03\u5ea6\uff082\u5f20\uff09",
+          "version": 6
+        },
+        {
+          "text": "\u73a9\u5bb62 \u5b8c\u6210\u4e00\u6b21\u518d\u8c03\u5ea6\uff082\u5f20\uff09",
+          "version": 7
+        },
+        {
+          "text": "\u73a9\u5bb63 \u5b8c\u6210\u4e00\u6b21\u518d\u8c03\u5ea6\uff082\u5f20\uff09",
+          "version": 8
+        },
+        {
+          "text": "\u73a9\u5bb60 \u53d1\u52a8 \u4e27\u5931\u7406\u667a\u7684\u753b\u5bb6\uff1a\u5feb\u901f\u884c\u52a8",
+          "version": 9
+        },
+        {
+          "text": "\u7acb\u5373\u7ed3\u7b97\uff08\u4e0d\u53ef\u54cd\u5e94\uff09\uff1a\u4e27\u5931\u7406\u667a\u7684\u753b\u5bb6\uff1a\u5feb\u901f\u884c\u52a8",
+          "version": 9
+        }
+      ],
+      "mode": "teams",
+      "pendingChoice": null,
+      "phase": "action",
+      "players": [
+        {
+          "deckCount": 44,
+          "deckId": "hunters",
+          "deckName": "\u516c\u8def\u730e\u624b",
+          "eliminated": false,
+          "handCount": 1,
+          "id": "p0",
+          "name": "\u73a9\u5bb60",
+          "ready": true,
+          "score": 0,
+          "seat": 0,
+          "team": 0
+        },
+        {
+          "deckCount": 44,
+          "deckId": "hunters",
+          "deckName": "\u516c\u8def\u730e\u624b",
+          "eliminated": false,
+          "handCount": 0,
+          "id": "p1",
+          "name": "\u73a9\u5bb61",
+          "ready": true,
+          "score": 0,
+          "seat": 1,
+          "team": 0
+        },
+        {
+          "deckCount": 44,
+          "deckId": "hunters",
+          "deckName": "\u516c\u8def\u730e\u624b",
+          "eliminated": false,
+          "handCount": 0,
+          "id": "p2",
+          "name": "\u73a9\u5bb62",
+          "ready": true,
+          "score": 0,
+          "seat": 2,
+          "team": 1
+        },
+        {
+          "deckCount": 44,
+          "deckId": "hunters",
+          "deckName": "\u516c\u8def\u730e\u624b",
+          "eliminated": false,
+          "handCount": 0,
+          "id": "p3",
+          "name": "\u73a9\u5bb63",
+          "ready": true,
+          "score": 0,
+          "seat": 3,
+          "team": 1
+        }
+      ],
+      "priorityTeam": 0,
+      "regions": [
+        {
+          "cardId": "DQJC114",
+          "characters": [
+            {
+              "cardId": "JC103",
+              "color": "\u7d2b",
+              "controller": "p0",
+              "cost": 3,
+              "damage": 0,
+              "defense": 1,
+              "exhausted": true,
+              "faceDown": false,
+              "icons": {
+                "combat": 0,
+                "influence": 0,
+                "investigation": 0
+              },
+              "instanceId": "i259",
+              "kind": "character",
+              "magic": "",
+              "name": "\u4e27\u5931\u7406\u667a\u7684\u753b\u5bb6",
+              "owner": "p0",
+              "region": 0,
+              "shield": 0,
+              "text": "\u3010\u5feb\u901f\u3011\u884c\u52a8\u3010\u6a2a\u7f6e\u3011\uff1a\u672c\u56de\u5408\u4e2d\u4f60\u4e0b\u4e00\u5f20\u6b63\u9762\u6253\u51fa\u6216\u4ed8\u8d39\u7ffb\u9762\u7684\u3010\u7d2b\u3011\u724c\uff0c\u6240\u9700\u8d39\u7528\u51cf\u5c111\u3002",
+              "wounds": 0
+            }
+          ],
+          "iconsByTeam": [
+            {
+              "combat": 0,
+              "influence": 0,
+              "investigation": 0
+            },
+            {
+              "combat": 0,
+              "influence": 0,
+              "investigation": 0
+            }
+          ],
+          "id": "i208",
+          "index": 0,
+          "influence": [
+            0,
+            0
+          ],
+          "name": "\u4e0a\u6d77",
+          "points": 3,
+          "skipConfrontation": false,
+          "threshold": 4
+        },
+        {
+          "cardId": "DQJC113",
+          "characters": [],
+          "iconsByTeam": [
+            {
+              "combat": 0,
+              "influence": 0,
+              "investigation": 0
+            },
+            {
+              "combat": 0,
+              "influence": 0,
+              "investigation": 0
+            }
+          ],
+          "id": "i207",
+          "index": 1,
+          "influence": [
+            0,
+            0
+          ],
+          "name": "\u5207\u5c14\u8bfa\u8d1d\u5229",
+          "points": 2,
+          "skipConfrontation": false,
+          "threshold": 3
+        },
+        {
+          "cardId": "DQJC107",
+          "characters": [],
+          "iconsByTeam": [
+            {
+              "combat": 0,
+              "influence": 0,
+              "investigation": 0
+            },
+            {
+              "combat": 0,
+              "influence": 0,
+              "investigation": 0
+            }
+          ],
+          "id": "i201",
+          "index": 2,
+          "influence": [
+            0,
+            0
+          ],
+          "name": "\u6c89\u6ca1\u7684\u5e9f\u589f",
+          "points": 4,
+          "skipConfrontation": false,
+          "threshold": 4
+        },
+        {
+          "cardId": "DQJC111",
+          "characters": [],
+          "iconsByTeam": [
+            {
+              "combat": 0,
+              "influence": 0,
+              "investigation": 0
+            },
+            {
+              "combat": 0,
+              "influence": 0,
+              "investigation": 0
+            }
+          ],
+          "id": "i205",
+          "index": 3,
+          "influence": [
+            0,
+            0
+          ],
+          "name": "\u83ab\u65af\u79d1",
+          "points": 3,
+          "skipConfrontation": false,
+          "threshold": 4
+        },
+        {
+          "cardId": "DQJC112",
+          "characters": [],
+          "iconsByTeam": [
+            {
+              "combat": 0,
+              "influence": 0,
+              "investigation": 0
+            },
+            {
+              "combat": 0,
+              "influence": 0,
+              "investigation": 0
+            }
+          ],
+          "id": "i206",
+          "index": 4,
+          "influence": [
+            0,
+            0
+          ],
+          "name": "\u7ebd\u7ea6",
+          "points": 4,
+          "skipConfrontation": false,
+          "threshold": 4
+        }
+      ],
+      "responseWindow": null,
+      "roomId": "purple-tools-painter-play",
+      "scoreCards": [],
+      "serverNowMs": 1010,
+      "societyZones": [
+        {
+          "card": null,
+          "id": "society:p0",
+          "playerId": "p0"
+        },
+        {
+          "card": null,
+          "id": "society:p1",
+          "playerId": "p1"
+        },
+        {
+          "card": null,
+          "id": "society:p2",
+          "playerId": "p2"
+        },
+        {
+          "card": null,
+          "id": "society:p3",
+          "playerId": "p3"
+        }
+      ],
+      "stack": [],
+      "status": "playing",
+      "step": "team:0",
+      "turn": 1,
+      "version": 9,
+      "versions": {
+        "cardPool": "limited-v2.23-msjc07-candidate",
+        "engine": "rust-v0.2.26-msjc07-resource-policy-candidate",
+        "rules": "hegemony-pdf-v1"
+      },
+      "waitingChoice": null,
+      "winScore": 10,
+      "worldDeckCount": 5,
+      "you": "p0",
+      "yourDeck": {
+        "cardPoolVersion": "limited-v2.23-msjc07-candidate",
+        "cards": [
+          {
+            "cardId": "BQ022",
+            "count": 3
+          },
+          {
+            "cardId": "JC014",
+            "count": 3
+          },
+          {
+            "cardId": "JC016",
+            "count": 3
+          },
+          {
+            "cardId": "JC118",
+            "count": 3
+          },
+          {
+            "cardId": "JC125",
+            "count": 14
+          },
+          {
+            "cardId": "JZ08",
+            "count": 3
+          },
+          {
+            "cardId": "LC19",
+            "count": 3
+          },
+          {
+            "cardId": "LC20",
+            "count": 3
+          },
+          {
+            "cardId": "LC21",
+            "count": 3
+          },
+          {
+            "cardId": "LC22",
+            "count": 3
+          },
+          {
+            "cardId": "LC23",
+            "count": 3
+          },
+          {
+            "cardId": "LC24",
+            "count": 3
+          },
+          {
+            "cardId": "XQ49",
+            "count": 3
+          }
+        ],
+        "description": "\u673a\u52a8\u4e0e\u6218\u6597\u538b\u5236\uff0c\u5bfb\u627e\u7a7a\u6863\u8d62\u53d6\u5730\u533a\u300250\u5f20\u53d7\u9650\u5361\u6c60\u81ea\u7ec4\u9884\u7ec4\uff0c\u975e\u5b98\u65b9\u9884\u7ec4\u3002",
+        "engineVersion": "rust-v0.2.26-msjc07-resource-policy-candidate",
+        "id": "hunters",
+        "name": "\u516c\u8def\u730e\u624b",
+        "rulesVersion": "hegemony-pdf-v1",
+        "societyId": null,
+        "updatedAt": ""
+      }
+    },
+    {
+      "activeTeam": 0,
+      "assets": [
+        {
+          "color": "\u7d2b",
+          "controller": "p0",
+          "exhausted": false,
+          "faceDown": false,
+          "instanceId": "i255",
+          "kind": "asset",
+          "magic": "\u661f\u8fb0",
+          "name": "\u8d44\u4ea7",
+          "owner": "p0"
+        },
+        {
+          "color": "\u7d2b",
+          "controller": "p0",
+          "exhausted": false,
+          "faceDown": false,
+          "instanceId": "i256",
+          "kind": "asset",
+          "magic": "\u661f\u8fb0",
+          "name": "\u8d44\u4ea7",
+          "owner": "p0"
+        },
+        {
+          "color": "\u7d2b",
+          "controller": "p0",
+          "exhausted": false,
+          "faceDown": false,
+          "instanceId": "i257",
+          "kind": "asset",
+          "magic": "\u661f\u8fb0",
+          "name": "\u8d44\u4ea7",
+          "owner": "p0"
+        },
+        {
+          "color": "\u7d2b",
+          "controller": "p0",
+          "exhausted": false,
+          "faceDown": false,
+          "instanceId": "i258",
+          "kind": "asset",
+          "magic": "\u661f\u8fb0",
+          "name": "\u8d44\u4ea7",
+          "owner": "p0"
+        },
+        {
+          "color": "\u7ea2",
+          "controller": "p2",
+          "exhausted": false,
+          "faceDown": false,
+          "instanceId": "i260",
+          "kind": "asset",
+          "magic": "",
+          "name": "\u8d44\u4ea7",
+          "owner": "p2"
+        }
+      ],
+      "attachments": [],
+      "firstTeam": 0,
+      "graveyard": [],
+      "hand": [],
+      "inviteCode": "ATTACH",
+      "legalActions": [
+        {
+          "id": "{\"kind\":\"pass\"}",
+          "kind": "pass",
+          "label": "\u8ba9\u8fc7"
+        }
+      ],
+      "log": [
+        {
+          "text": "\u73a9\u5bb61 \u52a0\u5165\u5ea7\u4f4d 2",
+          "version": 1
+        },
+        {
+          "text": "\u73a9\u5bb62 \u52a0\u5165\u5ea7\u4f4d 3",
+          "version": 2
+        },
+        {
+          "text": "\u73a9\u5bb63 \u52a0\u5165\u5ea7\u4f4d 4",
+          "version": 3
+        },
+        {
+          "text": "\u5f00\u59cb \u56db\u4eba\u534f\u4f5c\uff1b\u56e2\u961f 1 \u6301\u5148\u624b",
+          "version": 4
+        },
+        {
+          "text": "\u73a9\u5bb60 \u5b8c\u6210\u4e00\u6b21\u518d\u8c03\u5ea6\uff082\u5f20\uff09",
+          "version": 5
+        },
+        {
+          "text": "\u73a9\u5bb61 \u5b8c\u6210\u4e00\u6b21\u518d\u8c03\u5ea6\uff082\u5f20\uff09",
+          "version": 6
+        },
+        {
+          "text": "\u73a9\u5bb62 \u5b8c\u6210\u4e00\u6b21\u518d\u8c03\u5ea6\uff082\u5f20\uff09",
+          "version": 7
+        },
+        {
+          "text": "\u73a9\u5bb63 \u5b8c\u6210\u4e00\u6b21\u518d\u8c03\u5ea6\uff082\u5f20\uff09",
+          "version": 8
+        },
+        {
+          "text": "\u73a9\u5bb60 \u53d1\u52a8 \u4e27\u5931\u7406\u667a\u7684\u753b\u5bb6\uff1a\u5feb\u901f\u884c\u52a8",
+          "version": 9
+        },
+        {
+          "text": "\u7acb\u5373\u7ed3\u7b97\uff08\u4e0d\u53ef\u54cd\u5e94\uff09\uff1a\u4e27\u5931\u7406\u667a\u7684\u753b\u5bb6\uff1a\u5feb\u901f\u884c\u52a8",
+          "version": 9
+        }
+      ],
+      "mode": "teams",
+      "pendingChoice": null,
+      "phase": "action",
+      "players": [
+        {
+          "deckCount": 44,
+          "deckId": "hunters",
+          "deckName": "\u516c\u8def\u730e\u624b",
+          "eliminated": false,
+          "handCount": 1,
+          "id": "p0",
+          "name": "\u73a9\u5bb60",
+          "ready": true,
+          "score": 0,
+          "seat": 0,
+          "team": 0
+        },
+        {
+          "deckCount": 44,
+          "deckId": "hunters",
+          "deckName": "\u516c\u8def\u730e\u624b",
+          "eliminated": false,
+          "handCount": 0,
+          "id": "p1",
+          "name": "\u73a9\u5bb61",
+          "ready": true,
+          "score": 0,
+          "seat": 1,
+          "team": 0
+        },
+        {
+          "deckCount": 44,
+          "deckId": "hunters",
+          "deckName": "\u516c\u8def\u730e\u624b",
+          "eliminated": false,
+          "handCount": 0,
+          "id": "p2",
+          "name": "\u73a9\u5bb62",
+          "ready": true,
+          "score": 0,
+          "seat": 2,
+          "team": 1
+        },
+        {
+          "deckCount": 44,
+          "deckId": "hunters",
+          "deckName": "\u516c\u8def\u730e\u624b",
+          "eliminated": false,
+          "handCount": 0,
+          "id": "p3",
+          "name": "\u73a9\u5bb63",
+          "ready": true,
+          "score": 0,
+          "seat": 3,
+          "team": 1
+        }
+      ],
+      "priorityTeam": 0,
+      "regions": [
+        {
+          "cardId": "DQJC114",
+          "characters": [
+            {
+              "cardId": "JC103",
+              "color": "\u7d2b",
+              "controller": "p0",
+              "cost": 3,
+              "damage": 0,
+              "defense": 1,
+              "exhausted": true,
+              "faceDown": false,
+              "icons": {
+                "combat": 0,
+                "influence": 0,
+                "investigation": 0
+              },
+              "instanceId": "i259",
+              "kind": "character",
+              "magic": "",
+              "name": "\u4e27\u5931\u7406\u667a\u7684\u753b\u5bb6",
+              "owner": "p0",
+              "region": 0,
+              "shield": 0,
+              "text": "\u3010\u5feb\u901f\u3011\u884c\u52a8\u3010\u6a2a\u7f6e\u3011\uff1a\u672c\u56de\u5408\u4e2d\u4f60\u4e0b\u4e00\u5f20\u6b63\u9762\u6253\u51fa\u6216\u4ed8\u8d39\u7ffb\u9762\u7684\u3010\u7d2b\u3011\u724c\uff0c\u6240\u9700\u8d39\u7528\u51cf\u5c111\u3002",
+              "wounds": 0
+            }
+          ],
+          "iconsByTeam": [
+            {
+              "combat": 0,
+              "influence": 0,
+              "investigation": 0
+            },
+            {
+              "combat": 0,
+              "influence": 0,
+              "investigation": 0
+            }
+          ],
+          "id": "i208",
+          "index": 0,
+          "influence": [
+            0,
+            0
+          ],
+          "name": "\u4e0a\u6d77",
+          "points": 3,
+          "skipConfrontation": false,
+          "threshold": 4
+        },
+        {
+          "cardId": "DQJC113",
+          "characters": [],
+          "iconsByTeam": [
+            {
+              "combat": 0,
+              "influence": 0,
+              "investigation": 0
+            },
+            {
+              "combat": 0,
+              "influence": 0,
+              "investigation": 0
+            }
+          ],
+          "id": "i207",
+          "index": 1,
+          "influence": [
+            0,
+            0
+          ],
+          "name": "\u5207\u5c14\u8bfa\u8d1d\u5229",
+          "points": 2,
+          "skipConfrontation": false,
+          "threshold": 3
+        },
+        {
+          "cardId": "DQJC107",
+          "characters": [],
+          "iconsByTeam": [
+            {
+              "combat": 0,
+              "influence": 0,
+              "investigation": 0
+            },
+            {
+              "combat": 0,
+              "influence": 0,
+              "investigation": 0
+            }
+          ],
+          "id": "i201",
+          "index": 2,
+          "influence": [
+            0,
+            0
+          ],
+          "name": "\u6c89\u6ca1\u7684\u5e9f\u589f",
+          "points": 4,
+          "skipConfrontation": false,
+          "threshold": 4
+        },
+        {
+          "cardId": "DQJC111",
+          "characters": [],
+          "iconsByTeam": [
+            {
+              "combat": 0,
+              "influence": 0,
+              "investigation": 0
+            },
+            {
+              "combat": 0,
+              "influence": 0,
+              "investigation": 0
+            }
+          ],
+          "id": "i205",
+          "index": 3,
+          "influence": [
+            0,
+            0
+          ],
+          "name": "\u83ab\u65af\u79d1",
+          "points": 3,
+          "skipConfrontation": false,
+          "threshold": 4
+        },
+        {
+          "cardId": "DQJC112",
+          "characters": [],
+          "iconsByTeam": [
+            {
+              "combat": 0,
+              "influence": 0,
+              "investigation": 0
+            },
+            {
+              "combat": 0,
+              "influence": 0,
+              "investigation": 0
+            }
+          ],
+          "id": "i206",
+          "index": 4,
+          "influence": [
+            0,
+            0
+          ],
+          "name": "\u7ebd\u7ea6",
+          "points": 4,
+          "skipConfrontation": false,
+          "threshold": 4
+        }
+      ],
+      "responseWindow": null,
+      "roomId": "purple-tools-painter-play",
+      "scoreCards": [],
+      "serverNowMs": 1010,
+      "societyZones": [
+        {
+          "card": null,
+          "id": "society:p0",
+          "playerId": "p0"
+        },
+        {
+          "card": null,
+          "id": "society:p1",
+          "playerId": "p1"
+        },
+        {
+          "card": null,
+          "id": "society:p2",
+          "playerId": "p2"
+        },
+        {
+          "card": null,
+          "id": "society:p3",
+          "playerId": "p3"
+        }
+      ],
+      "stack": [],
+      "status": "playing",
+      "step": "team:0",
+      "turn": 1,
+      "version": 9,
+      "versions": {
+        "cardPool": "limited-v2.23-msjc07-candidate",
+        "engine": "rust-v0.2.26-msjc07-resource-policy-candidate",
+        "rules": "hegemony-pdf-v1"
+      },
+      "waitingChoice": null,
+      "winScore": 10,
+      "worldDeckCount": 5,
+      "you": "p1",
+      "yourDeck": {
+        "cardPoolVersion": "limited-v2.23-msjc07-candidate",
+        "cards": [
+          {
+            "cardId": "BQ022",
+            "count": 3
+          },
+          {
+            "cardId": "JC014",
+            "count": 3
+          },
+          {
+            "cardId": "JC016",
+            "count": 3
+          },
+          {
+            "cardId": "JC118",
+            "count": 3
+          },
+          {
+            "cardId": "JC125",
+            "count": 14
+          },
+          {
+            "cardId": "JZ08",
+            "count": 3
+          },
+          {
+            "cardId": "LC19",
+            "count": 3
+          },
+          {
+            "cardId": "LC20",
+            "count": 3
+          },
+          {
+            "cardId": "LC21",
+            "count": 3
+          },
+          {
+            "cardId": "LC22",
+            "count": 3
+          },
+          {
+            "cardId": "LC23",
+            "count": 3
+          },
+          {
+            "cardId": "LC24",
+            "count": 3
+          },
+          {
+            "cardId": "XQ49",
+            "count": 3
+          }
+        ],
+        "description": "\u673a\u52a8\u4e0e\u6218\u6597\u538b\u5236\uff0c\u5bfb\u627e\u7a7a\u6863\u8d62\u53d6\u5730\u533a\u300250\u5f20\u53d7\u9650\u5361\u6c60\u81ea\u7ec4\u9884\u7ec4\uff0c\u975e\u5b98\u65b9\u9884\u7ec4\u3002",
+        "engineVersion": "rust-v0.2.26-msjc07-resource-policy-candidate",
+        "id": "hunters",
+        "name": "\u516c\u8def\u730e\u624b",
+        "rulesVersion": "hegemony-pdf-v1",
+        "societyId": null,
+        "updatedAt": ""
+      }
+    },
+    {
+      "activeTeam": 0,
+      "assets": [
+        {
+          "color": "\u7d2b",
+          "controller": "p0",
+          "exhausted": false,
+          "faceDown": false,
+          "instanceId": "i255",
+          "kind": "asset",
+          "magic": "\u661f\u8fb0",
+          "name": "\u8d44\u4ea7",
+          "owner": "p0"
+        },
+        {
+          "color": "\u7d2b",
+          "controller": "p0",
+          "exhausted": false,
+          "faceDown": false,
+          "instanceId": "i256",
+          "kind": "asset",
+          "magic": "\u661f\u8fb0",
+          "name": "\u8d44\u4ea7",
+          "owner": "p0"
+        },
+        {
+          "color": "\u7d2b",
+          "controller": "p0",
+          "exhausted": false,
+          "faceDown": false,
+          "instanceId": "i257",
+          "kind": "asset",
+          "magic": "\u661f\u8fb0",
+          "name": "\u8d44\u4ea7",
+          "owner": "p0"
+        },
+        {
+          "color": "\u7d2b",
+          "controller": "p0",
+          "exhausted": false,
+          "faceDown": false,
+          "instanceId": "i258",
+          "kind": "asset",
+          "magic": "\u661f\u8fb0",
+          "name": "\u8d44\u4ea7",
+          "owner": "p0"
+        },
+        {
+          "color": "\u7ea2",
+          "controller": "p2",
+          "exhausted": false,
+          "faceDown": false,
+          "instanceId": "i260",
+          "kind": "asset",
+          "magic": "",
+          "name": "\u8d44\u4ea7",
+          "owner": "p2"
+        }
+      ],
+      "attachments": [],
+      "firstTeam": 0,
+      "graveyard": [],
+      "hand": [],
+      "inviteCode": "ATTACH",
+      "legalActions": [],
+      "log": [
+        {
+          "text": "\u73a9\u5bb61 \u52a0\u5165\u5ea7\u4f4d 2",
+          "version": 1
+        },
+        {
+          "text": "\u73a9\u5bb62 \u52a0\u5165\u5ea7\u4f4d 3",
+          "version": 2
+        },
+        {
+          "text": "\u73a9\u5bb63 \u52a0\u5165\u5ea7\u4f4d 4",
+          "version": 3
+        },
+        {
+          "text": "\u5f00\u59cb \u56db\u4eba\u534f\u4f5c\uff1b\u56e2\u961f 1 \u6301\u5148\u624b",
+          "version": 4
+        },
+        {
+          "text": "\u73a9\u5bb60 \u5b8c\u6210\u4e00\u6b21\u518d\u8c03\u5ea6\uff082\u5f20\uff09",
+          "version": 5
+        },
+        {
+          "text": "\u73a9\u5bb61 \u5b8c\u6210\u4e00\u6b21\u518d\u8c03\u5ea6\uff082\u5f20\uff09",
+          "version": 6
+        },
+        {
+          "text": "\u73a9\u5bb62 \u5b8c\u6210\u4e00\u6b21\u518d\u8c03\u5ea6\uff082\u5f20\uff09",
+          "version": 7
+        },
+        {
+          "text": "\u73a9\u5bb63 \u5b8c\u6210\u4e00\u6b21\u518d\u8c03\u5ea6\uff082\u5f20\uff09",
+          "version": 8
+        },
+        {
+          "text": "\u73a9\u5bb60 \u53d1\u52a8 \u4e27\u5931\u7406\u667a\u7684\u753b\u5bb6\uff1a\u5feb\u901f\u884c\u52a8",
+          "version": 9
+        },
+        {
+          "text": "\u7acb\u5373\u7ed3\u7b97\uff08\u4e0d\u53ef\u54cd\u5e94\uff09\uff1a\u4e27\u5931\u7406\u667a\u7684\u753b\u5bb6\uff1a\u5feb\u901f\u884c\u52a8",
+          "version": 9
+        }
+      ],
+      "mode": "teams",
+      "pendingChoice": null,
+      "phase": "action",
+      "players": [
+        {
+          "deckCount": 44,
+          "deckId": "hunters",
+          "deckName": "\u516c\u8def\u730e\u624b",
+          "eliminated": false,
+          "handCount": 1,
+          "id": "p0",
+          "name": "\u73a9\u5bb60",
+          "ready": true,
+          "score": 0,
+          "seat": 0,
+          "team": 0
+        },
+        {
+          "deckCount": 44,
+          "deckId": "hunters",
+          "deckName": "\u516c\u8def\u730e\u624b",
+          "eliminated": false,
+          "handCount": 0,
+          "id": "p1",
+          "name": "\u73a9\u5bb61",
+          "ready": true,
+          "score": 0,
+          "seat": 1,
+          "team": 0
+        },
+        {
+          "deckCount": 44,
+          "deckId": "hunters",
+          "deckName": "\u516c\u8def\u730e\u624b",
+          "eliminated": false,
+          "handCount": 0,
+          "id": "p2",
+          "name": "\u73a9\u5bb62",
+          "ready": true,
+          "score": 0,
+          "seat": 2,
+          "team": 1
+        },
+        {
+          "deckCount": 44,
+          "deckId": "hunters",
+          "deckName": "\u516c\u8def\u730e\u624b",
+          "eliminated": false,
+          "handCount": 0,
+          "id": "p3",
+          "name": "\u73a9\u5bb63",
+          "ready": true,
+          "score": 0,
+          "seat": 3,
+          "team": 1
+        }
+      ],
+      "priorityTeam": 0,
+      "regions": [
+        {
+          "cardId": "DQJC114",
+          "characters": [
+            {
+              "cardId": "JC103",
+              "color": "\u7d2b",
+              "controller": "p0",
+              "cost": 3,
+              "damage": 0,
+              "defense": 1,
+              "exhausted": true,
+              "faceDown": false,
+              "icons": {
+                "combat": 0,
+                "influence": 0,
+                "investigation": 0
+              },
+              "instanceId": "i259",
+              "kind": "character",
+              "magic": "",
+              "name": "\u4e27\u5931\u7406\u667a\u7684\u753b\u5bb6",
+              "owner": "p0",
+              "region": 0,
+              "shield": 0,
+              "text": "\u3010\u5feb\u901f\u3011\u884c\u52a8\u3010\u6a2a\u7f6e\u3011\uff1a\u672c\u56de\u5408\u4e2d\u4f60\u4e0b\u4e00\u5f20\u6b63\u9762\u6253\u51fa\u6216\u4ed8\u8d39\u7ffb\u9762\u7684\u3010\u7d2b\u3011\u724c\uff0c\u6240\u9700\u8d39\u7528\u51cf\u5c111\u3002",
+              "wounds": 0
+            }
+          ],
+          "iconsByTeam": [
+            {
+              "combat": 0,
+              "influence": 0,
+              "investigation": 0
+            },
+            {
+              "combat": 0,
+              "influence": 0,
+              "investigation": 0
+            }
+          ],
+          "id": "i208",
+          "index": 0,
+          "influence": [
+            0,
+            0
+          ],
+          "name": "\u4e0a\u6d77",
+          "points": 3,
+          "skipConfrontation": false,
+          "threshold": 4
+        },
+        {
+          "cardId": "DQJC113",
+          "characters": [],
+          "iconsByTeam": [
+            {
+              "combat": 0,
+              "influence": 0,
+              "investigation": 0
+            },
+            {
+              "combat": 0,
+              "influence": 0,
+              "investigation": 0
+            }
+          ],
+          "id": "i207",
+          "index": 1,
+          "influence": [
+            0,
+            0
+          ],
+          "name": "\u5207\u5c14\u8bfa\u8d1d\u5229",
+          "points": 2,
+          "skipConfrontation": false,
+          "threshold": 3
+        },
+        {
+          "cardId": "DQJC107",
+          "characters": [],
+          "iconsByTeam": [
+            {
+              "combat": 0,
+              "influence": 0,
+              "investigation": 0
+            },
+            {
+              "combat": 0,
+              "influence": 0,
+              "investigation": 0
+            }
+          ],
+          "id": "i201",
+          "index": 2,
+          "influence": [
+            0,
+            0
+          ],
+          "name": "\u6c89\u6ca1\u7684\u5e9f\u589f",
+          "points": 4,
+          "skipConfrontation": false,
+          "threshold": 4
+        },
+        {
+          "cardId": "DQJC111",
+          "characters": [],
+          "iconsByTeam": [
+            {
+              "combat": 0,
+              "influence": 0,
+              "investigation": 0
+            },
+            {
+              "combat": 0,
+              "influence": 0,
+              "investigation": 0
+            }
+          ],
+          "id": "i205",
+          "index": 3,
+          "influence": [
+            0,
+            0
+          ],
+          "name": "\u83ab\u65af\u79d1",
+          "points": 3,
+          "skipConfrontation": false,
+          "threshold": 4
+        },
+        {
+          "cardId": "DQJC112",
+          "characters": [],
+          "iconsByTeam": [
+            {
+              "combat": 0,
+              "influence": 0,
+              "investigation": 0
+            },
+            {
+              "combat": 0,
+              "influence": 0,
+              "investigation": 0
+            }
+          ],
+          "id": "i206",
+          "index": 4,
+          "influence": [
+            0,
+            0
+          ],
+          "name": "\u7ebd\u7ea6",
+          "points": 4,
+          "skipConfrontation": false,
+          "threshold": 4
+        }
+      ],
+      "responseWindow": null,
+      "roomId": "purple-tools-painter-play",
+      "scoreCards": [],
+      "serverNowMs": 1010,
+      "societyZones": [
+        {
+          "card": null,
+          "id": "society:p0",
+          "playerId": "p0"
+        },
+        {
+          "card": null,
+          "id": "society:p1",
+          "playerId": "p1"
+        },
+        {
+          "card": null,
+          "id": "society:p2",
+          "playerId": "p2"
+        },
+        {
+          "card": null,
+          "id": "society:p3",
+          "playerId": "p3"
+        }
+      ],
+      "stack": [],
+      "status": "playing",
+      "step": "team:0",
+      "turn": 1,
+      "version": 9,
+      "versions": {
+        "cardPool": "limited-v2.23-msjc07-candidate",
+        "engine": "rust-v0.2.26-msjc07-resource-policy-candidate",
+        "rules": "hegemony-pdf-v1"
+      },
+      "waitingChoice": null,
+      "winScore": 10,
+      "worldDeckCount": 5,
+      "you": "p2",
+      "yourDeck": {
+        "cardPoolVersion": "limited-v2.23-msjc07-candidate",
+        "cards": [
+          {
+            "cardId": "BQ022",
+            "count": 3
+          },
+          {
+            "cardId": "JC014",
+            "count": 3
+          },
+          {
+            "cardId": "JC016",
+            "count": 3
+          },
+          {
+            "cardId": "JC118",
+            "count": 3
+          },
+          {
+            "cardId": "JC125",
+            "count": 14
+          },
+          {
+            "cardId": "JZ08",
+            "count": 3
+          },
+          {
+            "cardId": "LC19",
+            "count": 3
+          },
+          {
+            "cardId": "LC20",
+            "count": 3
+          },
+          {
+            "cardId": "LC21",
+            "count": 3
+          },
+          {
+            "cardId": "LC22",
+            "count": 3
+          },
+          {
+            "cardId": "LC23",
+            "count": 3
+          },
+          {
+            "cardId": "LC24",
+            "count": 3
+          },
+          {
+            "cardId": "XQ49",
+            "count": 3
+          }
+        ],
+        "description": "\u673a\u52a8\u4e0e\u6218\u6597\u538b\u5236\uff0c\u5bfb\u627e\u7a7a\u6863\u8d62\u53d6\u5730\u533a\u300250\u5f20\u53d7\u9650\u5361\u6c60\u81ea\u7ec4\u9884\u7ec4\uff0c\u975e\u5b98\u65b9\u9884\u7ec4\u3002",
+        "engineVersion": "rust-v0.2.26-msjc07-resource-policy-candidate",
+        "id": "hunters",
+        "name": "\u516c\u8def\u730e\u624b",
+        "rulesVersion": "hegemony-pdf-v1",
+        "societyId": null,
+        "updatedAt": ""
+      }
+    },
+    {
+      "activeTeam": 0,
+      "assets": [
+        {
+          "color": "\u7d2b",
+          "controller": "p0",
+          "exhausted": false,
+          "faceDown": false,
+          "instanceId": "i255",
+          "kind": "asset",
+          "magic": "\u661f\u8fb0",
+          "name": "\u8d44\u4ea7",
+          "owner": "p0"
+        },
+        {
+          "color": "\u7d2b",
+          "controller": "p0",
+          "exhausted": false,
+          "faceDown": false,
+          "instanceId": "i256",
+          "kind": "asset",
+          "magic": "\u661f\u8fb0",
+          "name": "\u8d44\u4ea7",
+          "owner": "p0"
+        },
+        {
+          "color": "\u7d2b",
+          "controller": "p0",
+          "exhausted": false,
+          "faceDown": false,
+          "instanceId": "i257",
+          "kind": "asset",
+          "magic": "\u661f\u8fb0",
+          "name": "\u8d44\u4ea7",
+          "owner": "p0"
+        },
+        {
+          "color": "\u7d2b",
+          "controller": "p0",
+          "exhausted": false,
+          "faceDown": false,
+          "instanceId": "i258",
+          "kind": "asset",
+          "magic": "\u661f\u8fb0",
+          "name": "\u8d44\u4ea7",
+          "owner": "p0"
+        },
+        {
+          "color": "\u7ea2",
+          "controller": "p2",
+          "exhausted": false,
+          "faceDown": false,
+          "instanceId": "i260",
+          "kind": "asset",
+          "magic": "",
+          "name": "\u8d44\u4ea7",
+          "owner": "p2"
+        }
+      ],
+      "attachments": [],
+      "firstTeam": 0,
+      "graveyard": [],
+      "hand": [],
+      "inviteCode": "ATTACH",
+      "legalActions": [],
+      "log": [
+        {
+          "text": "\u73a9\u5bb61 \u52a0\u5165\u5ea7\u4f4d 2",
+          "version": 1
+        },
+        {
+          "text": "\u73a9\u5bb62 \u52a0\u5165\u5ea7\u4f4d 3",
+          "version": 2
+        },
+        {
+          "text": "\u73a9\u5bb63 \u52a0\u5165\u5ea7\u4f4d 4",
+          "version": 3
+        },
+        {
+          "text": "\u5f00\u59cb \u56db\u4eba\u534f\u4f5c\uff1b\u56e2\u961f 1 \u6301\u5148\u624b",
+          "version": 4
+        },
+        {
+          "text": "\u73a9\u5bb60 \u5b8c\u6210\u4e00\u6b21\u518d\u8c03\u5ea6\uff082\u5f20\uff09",
+          "version": 5
+        },
+        {
+          "text": "\u73a9\u5bb61 \u5b8c\u6210\u4e00\u6b21\u518d\u8c03\u5ea6\uff082\u5f20\uff09",
+          "version": 6
+        },
+        {
+          "text": "\u73a9\u5bb62 \u5b8c\u6210\u4e00\u6b21\u518d\u8c03\u5ea6\uff082\u5f20\uff09",
+          "version": 7
+        },
+        {
+          "text": "\u73a9\u5bb63 \u5b8c\u6210\u4e00\u6b21\u518d\u8c03\u5ea6\uff082\u5f20\uff09",
+          "version": 8
+        },
+        {
+          "text": "\u73a9\u5bb60 \u53d1\u52a8 \u4e27\u5931\u7406\u667a\u7684\u753b\u5bb6\uff1a\u5feb\u901f\u884c\u52a8",
+          "version": 9
+        },
+        {
+          "text": "\u7acb\u5373\u7ed3\u7b97\uff08\u4e0d\u53ef\u54cd\u5e94\uff09\uff1a\u4e27\u5931\u7406\u667a\u7684\u753b\u5bb6\uff1a\u5feb\u901f\u884c\u52a8",
+          "version": 9
+        }
+      ],
+      "mode": "teams",
+      "pendingChoice": null,
+      "phase": "action",
+      "players": [
+        {
+          "deckCount": 44,
+          "deckId": "hunters",
+          "deckName": "\u516c\u8def\u730e\u624b",
+          "eliminated": false,
+          "handCount": 1,
+          "id": "p0",
+          "name": "\u73a9\u5bb60",
+          "ready": true,
+          "score": 0,
+          "seat": 0,
+          "team": 0
+        },
+        {
+          "deckCount": 44,
+          "deckId": "hunters",
+          "deckName": "\u516c\u8def\u730e\u624b",
+          "eliminated": false,
+          "handCount": 0,
+          "id": "p1",
+          "name": "\u73a9\u5bb61",
+          "ready": true,
+          "score": 0,
+          "seat": 1,
+          "team": 0
+        },
+        {
+          "deckCount": 44,
+          "deckId": "hunters",
+          "deckName": "\u516c\u8def\u730e\u624b",
+          "eliminated": false,
+          "handCount": 0,
+          "id": "p2",
+          "name": "\u73a9\u5bb62",
+          "ready": true,
+          "score": 0,
+          "seat": 2,
+          "team": 1
+        },
+        {
+          "deckCount": 44,
+          "deckId": "hunters",
+          "deckName": "\u516c\u8def\u730e\u624b",
+          "eliminated": false,
+          "handCount": 0,
+          "id": "p3",
+          "name": "\u73a9\u5bb63",
+          "ready": true,
+          "score": 0,
+          "seat": 3,
+          "team": 1
+        }
+      ],
+      "priorityTeam": 0,
+      "regions": [
+        {
+          "cardId": "DQJC114",
+          "characters": [
+            {
+              "cardId": "JC103",
+              "color": "\u7d2b",
+              "controller": "p0",
+              "cost": 3,
+              "damage": 0,
+              "defense": 1,
+              "exhausted": true,
+              "faceDown": false,
+              "icons": {
+                "combat": 0,
+                "influence": 0,
+                "investigation": 0
+              },
+              "instanceId": "i259",
+              "kind": "character",
+              "magic": "",
+              "name": "\u4e27\u5931\u7406\u667a\u7684\u753b\u5bb6",
+              "owner": "p0",
+              "region": 0,
+              "shield": 0,
+              "text": "\u3010\u5feb\u901f\u3011\u884c\u52a8\u3010\u6a2a\u7f6e\u3011\uff1a\u672c\u56de\u5408\u4e2d\u4f60\u4e0b\u4e00\u5f20\u6b63\u9762\u6253\u51fa\u6216\u4ed8\u8d39\u7ffb\u9762\u7684\u3010\u7d2b\u3011\u724c\uff0c\u6240\u9700\u8d39\u7528\u51cf\u5c111\u3002",
+              "wounds": 0
+            }
+          ],
+          "iconsByTeam": [
+            {
+              "combat": 0,
+              "influence": 0,
+              "investigation": 0
+            },
+            {
+              "combat": 0,
+              "influence": 0,
+              "investigation": 0
+            }
+          ],
+          "id": "i208",
+          "index": 0,
+          "influence": [
+            0,
+            0
+          ],
+          "name": "\u4e0a\u6d77",
+          "points": 3,
+          "skipConfrontation": false,
+          "threshold": 4
+        },
+        {
+          "cardId": "DQJC113",
+          "characters": [],
+          "iconsByTeam": [
+            {
+              "combat": 0,
+              "influence": 0,
+              "investigation": 0
+            },
+            {
+              "combat": 0,
+              "influence": 0,
+              "investigation": 0
+            }
+          ],
+          "id": "i207",
+          "index": 1,
+          "influence": [
+            0,
+            0
+          ],
+          "name": "\u5207\u5c14\u8bfa\u8d1d\u5229",
+          "points": 2,
+          "skipConfrontation": false,
+          "threshold": 3
+        },
+        {
+          "cardId": "DQJC107",
+          "characters": [],
+          "iconsByTeam": [
+            {
+              "combat": 0,
+              "influence": 0,
+              "investigation": 0
+            },
+            {
+              "combat": 0,
+              "influence": 0,
+              "investigation": 0
+            }
+          ],
+          "id": "i201",
+          "index": 2,
+          "influence": [
+            0,
+            0
+          ],
+          "name": "\u6c89\u6ca1\u7684\u5e9f\u589f",
+          "points": 4,
+          "skipConfrontation": false,
+          "threshold": 4
+        },
+        {
+          "cardId": "DQJC111",
+          "characters": [],
+          "iconsByTeam": [
+            {
+              "combat": 0,
+              "influence": 0,
+              "investigation": 0
+            },
+            {
+              "combat": 0,
+              "influence": 0,
+              "investigation": 0
+            }
+          ],
+          "id": "i205",
+          "index": 3,
+          "influence": [
+            0,
+            0
+          ],
+          "name": "\u83ab\u65af\u79d1",
+          "points": 3,
+          "skipConfrontation": false,
+          "threshold": 4
+        },
+        {
+          "cardId": "DQJC112",
+          "characters": [],
+          "iconsByTeam": [
+            {
+              "combat": 0,
+              "influence": 0,
+              "investigation": 0
+            },
+            {
+              "combat": 0,
+              "influence": 0,
+              "investigation": 0
+            }
+          ],
+          "id": "i206",
+          "index": 4,
+          "influence": [
+            0,
+            0
+          ],
+          "name": "\u7ebd\u7ea6",
+          "points": 4,
+          "skipConfrontation": false,
+          "threshold": 4
+        }
+      ],
+      "responseWindow": null,
+      "roomId": "purple-tools-painter-play",
+      "scoreCards": [],
+      "serverNowMs": 1010,
+      "societyZones": [
+        {
+          "card": null,
+          "id": "society:p0",
+          "playerId": "p0"
+        },
+        {
+          "card": null,
+          "id": "society:p1",
+          "playerId": "p1"
+        },
+        {
+          "card": null,
+          "id": "society:p2",
+          "playerId": "p2"
+        },
+        {
+          "card": null,
+          "id": "society:p3",
+          "playerId": "p3"
+        }
+      ],
+      "stack": [],
+      "status": "playing",
+      "step": "team:0",
+      "turn": 1,
+      "version": 9,
+      "versions": {
+        "cardPool": "limited-v2.23-msjc07-candidate",
+        "engine": "rust-v0.2.26-msjc07-resource-policy-candidate",
+        "rules": "hegemony-pdf-v1"
+      },
+      "waitingChoice": null,
+      "winScore": 10,
+      "worldDeckCount": 5,
+      "you": "p3",
+      "yourDeck": {
+        "cardPoolVersion": "limited-v2.23-msjc07-candidate",
+        "cards": [
+          {
+            "cardId": "BQ022",
+            "count": 3
+          },
+          {
+            "cardId": "JC014",
+            "count": 3
+          },
+          {
+            "cardId": "JC016",
+            "count": 3
+          },
+          {
+            "cardId": "JC118",
+            "count": 3
+          },
+          {
+            "cardId": "JC125",
+            "count": 14
+          },
+          {
+            "cardId": "JZ08",
+            "count": 3
+          },
+          {
+            "cardId": "LC19",
+            "count": 3
+          },
+          {
+            "cardId": "LC20",
+            "count": 3
+          },
+          {
+            "cardId": "LC21",
+            "count": 3
+          },
+          {
+            "cardId": "LC22",
+            "count": 3
+          },
+          {
+            "cardId": "LC23",
+            "count": 3
+          },
+          {
+            "cardId": "LC24",
+            "count": 3
+          },
+          {
+            "cardId": "XQ49",
+            "count": 3
+          }
+        ],
+        "description": "\u673a\u52a8\u4e0e\u6218\u6597\u538b\u5236\uff0c\u5bfb\u627e\u7a7a\u6863\u8d62\u53d6\u5730\u533a\u300250\u5f20\u53d7\u9650\u5361\u6c60\u81ea\u7ec4\u9884\u7ec4\uff0c\u975e\u5b98\u65b9\u9884\u7ec4\u3002",
+        "engineVersion": "rust-v0.2.26-msjc07-resource-policy-candidate",
+        "id": "hunters",
+        "name": "\u516c\u8def\u730e\u624b",
+        "rulesVersion": "hegemony-pdf-v1",
+        "societyId": null,
+        "updatedAt": ""
+      }
+    }
+  ],
+  "newPostInitialStateInjection": false,
+  "publicNaturalUiAcceptance": false
+}

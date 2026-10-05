@@ -13,7 +13,7 @@ const society = catalog.societies[0];
 const sha256 = '41e478a3f38ead83477498fd88131831a5fd843be364c1c0daa3ba10153c2302';
 
 it('keeps the sole real society unchanged while the local JC008 candidate adds one ordinary card', () => {
-  expect(catalog.engineVersion).toBe('rust-v0.2.26-msjc07-candidate');
+  expect(catalog.engineVersion).toBe('rust-v0.2.26-msjc07-resource-policy-candidate');
   expect(catalog.cards).toHaveLength(87);
   expect(catalog.societies.map(card => card.id)).toEqual(['MSJC09', 'MSJC01', 'MSJC07']);
   expect(rawCatalog.societies[0].unique).toBe(true);

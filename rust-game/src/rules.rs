@@ -1029,6 +1029,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
             None,
         );
         painter.activation_only = true;
+        painter.response_policy = ResponsePolicy::Immediate;
         m.insert("JC103".into(), with_abilities(vec![painter]));
         let mut collapse = ability(
             "destroy-attachment-or-asset",

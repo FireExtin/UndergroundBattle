@@ -63,7 +63,7 @@ function localRoom() {
 }
 
 it('admits only JC008 and retains its actual printed metadata and original JPG bytes', () => {
-  expect(catalog.engineVersion).toBe('rust-v0.2.26-msjc07-candidate');
+  expect(catalog.engineVersion).toBe('rust-v0.2.26-msjc07-resource-policy-candidate');
   expect(catalog.cardPoolVersion).toBe('limited-v2.23-msjc07-candidate');
   expect(catalog.cards).toHaveLength(87);
   expect(catalog.cards.some(c => c.id === 'MSJC01')).toBe(false);

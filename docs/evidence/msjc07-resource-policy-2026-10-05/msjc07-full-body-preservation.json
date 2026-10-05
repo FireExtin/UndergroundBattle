@@ -1,0 +1,124 @@
+{
+  "cases": [
+    {
+      "name": "MSJC07-construction-25-black",
+      "onlyEngineVersionNormalized": true,
+      "bodyExact": true,
+      "oldSha256": "c2202d67f2128a69637db5e7a1684de92784416bb25785ad8f8e4812d978e2e2",
+      "newSha256": "55be416964e62e1d7dea355bf6b38e93e9f0ccb73778319b4a5264f25a5bd452"
+    },
+    {
+      "name": "MSJC07-construction-33-black",
+      "onlyEngineVersionNormalized": true,
+      "bodyExact": true,
+      "oldSha256": "6619ce16c45de4c84947e320a9c02f8b99799967837649a54222a0a9b87cc09a",
+      "newSha256": "0f40abf08d92c7503a787ee62e46b3df0c733c2df03ae90b04325c93c13ca664"
+    },
+    {
+      "name": "printed-MSJC07-natural-four-seat-build-pay-draw-black-search-turn-restore",
+      "onlyEngineVersionNormalized": true,
+      "bodyExact": true,
+      "oldSha256": "ec7f8d3da29c248b5d70e6c1f208220d591a7be00129bf9082a27e3de0eef835",
+      "newSha256": "ab28cecdde4fc3c080b1f629d8bb8df7982c16520c71319be0032c9b7a6c0951"
+    },
+    {
+      "name": "MSJC07-reject-cost",
+      "onlyEngineVersionNormalized": true,
+      "bodyExact": true,
+      "oldSha256": "deeb51ae0941597a85de8de6417769c840c3c65aa9fd075d20c4c21a03868a86",
+      "newSha256": "5fa32a5298f8d47aa57688818db6d4343139262be5b771ae444984eeebf6c420"
+    },
+    {
+      "name": "MSJC07-reject-exhausted",
+      "onlyEngineVersionNormalized": true,
+      "bodyExact": true,
+      "oldSha256": "391fe63f90f69be054d7918555861005e1e569dda9012a38d31a337e695da3a4",
+      "newSha256": "05fff4146687cfd71d4e190c667fb3c1da5a95907cbf0b41eb0aa2ac0fe94a32"
+    },
+    {
+      "name": "MSJC07-reject-foreign-source",
+      "onlyEngineVersionNormalized": true,
+      "bodyExact": true,
+      "oldSha256": "e52381da89fb23875dcafc16e8c43c6acd845d7c921392909e85e32b243f859b",
+      "newSha256": "34016f8acfbf944d5c2c3a5adf707fbcc1830eb73ed56af25b18f10edb1c19c1"
+    },
+    {
+      "name": "MSJC07-reject-yellow-key",
+      "onlyEngineVersionNormalized": true,
+      "bodyExact": true,
+      "oldSha256": "89983ede4d7bf0a121c1122b2e7c79efa3b098d0b19f6a23e175a50d08ccad74",
+      "newSha256": "6674bf765100463111e7a635c6b6d25e1ceb730c1bed2de8d1b895cfc2af1213"
+    },
+    {
+      "name": "MSJC07-draw-first",
+      "onlyEngineVersionNormalized": true,
+      "bodyExact": true,
+      "oldSha256": "b670d7f61d14a3b3f02d7b6053bbd97c0011785cc57ffb7683477483998b0b0b",
+      "newSha256": "e339363daba1e0e4bf8cf1c94db4bd5dc1b26a9340711ad77941840e23630f80"
+    },
+    {
+      "name": "MSJC07-draw-rear",
+      "onlyEngineVersionNormalized": true,
+      "bodyExact": true,
+      "oldSha256": "6d6350e5948e60eebe51d052cba746766e0ac46f7ef24bfb11a69c2050220a63",
+      "newSha256": "956ffe73bcf5eb8a059a0148f4f7c12ac8d0c14108701fcbd320235e64e953ef"
+    },
+    {
+      "name": "MSJC07-empty-search",
+      "onlyEngineVersionNormalized": true,
+      "bodyExact": true,
+      "oldSha256": "78489d94126ff990d434614ad33f0beb944fc7dc78a5fee11d5d538614099439",
+      "newSha256": "9ee409ef19569cccdc843578d83f47cf779ecf4e0bdbb5247a039644dfa6eebe"
+    },
+    {
+      "name": "MSJC07-empty-deck",
+      "onlyEngineVersionNormalized": true,
+      "bodyExact": true,
+      "oldSha256": "a75e745ea8962ffec221ad56bde4d1148826d6b5571a89affd0ac970e487db53",
+      "newSha256": "32cc9ee81a0374a990dd1f1ec4b2f1ca3c133a86a514b59c8c984e7b55595d71"
+    },
+    {
+      "name": "MSJC07-one-hit",
+      "onlyEngineVersionNormalized": true,
+      "bodyExact": true,
+      "oldSha256": "d178deaa1c114d61e8bed95c1addc4132b672146e07dbb6c630cfe5390ac01d2",
+      "newSha256": "4dd47fb4f8b7804e5a8e0ac80c0642bf8486d7522dbba6dcbb08042afeda4dc9"
+    },
+    {
+      "name": "MSJC07-two-hits-seat3",
+      "onlyEngineVersionNormalized": true,
+      "bodyExact": true,
+      "oldSha256": "3a9855f9c5ada40da08d929e12e22c474f5918cc0fb727a32209dc80842a292b",
+      "newSha256": "28ae23a995e71ebb5d453e9d25b1de83cfb289abd272f157b7c4086271471f4f"
+    },
+    {
+      "name": "MSJC07-cancelled-paid-frame",
+      "onlyEngineVersionNormalized": true,
+      "bodyExact": true,
+      "oldSha256": "d039d19dd166d9606bf2df7f5980d7ca8dd8ac876c7ef8db8b297890b43eb508",
+      "newSha256": "a6ad110bae55e95ae18462c1d25cb8c12fd12ae47e68f7ffb650b934ad3c1d43"
+    },
+    {
+      "name": "MSJC07-new-instance-used",
+      "onlyEngineVersionNormalized": true,
+      "bodyExact": true,
+      "oldSha256": "33ed4fc3cfd9393e6987240a8e2680782656edd20f58cba254d86d53d765075b",
+      "newSha256": "cd1ab4b1e8022d16569be52ea3ddde0a6c3400299f841c35598afc5d1e97c482"
+    },
+    {
+      "name": "MSJC07-finished-restart",
+      "onlyEngineVersionNormalized": true,
+      "bodyExact": true,
+      "oldSha256": "7cef36fd23e99a16adaefc5f2117ebc0d1f73dfd779e80d1e75f1f9b1d104821",
+      "newSha256": "4d3bd8004b9944c3ecd01c76b933a24ff441a429e071ca931d0de84b5a23abd0"
+    },
+    {
+      "name": "MSJC07-turn-reset-used",
+      "onlyEngineVersionNormalized": true,
+      "bodyExact": true,
+      "oldSha256": "e15811da30e7ff56c651aca70866855bfcc297108d50fb28b218f77b4b7e07cc",
+      "newSha256": "5f24343ddd9782c62713a9807501ffc9d176057341f3e0ecddf0e6132ed5dae7"
+    }
+  ],
+  "all17FullBodiesExactAfterOnlyEngineVersionNormalization": true
+}

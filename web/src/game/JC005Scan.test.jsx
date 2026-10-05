@@ -12,7 +12,7 @@ const definition = catalog.cards.find(c => c.id === 'JC005');
 const sha256 = '216c26cff74fe738dbc486e725828ddc8077705161b1fee566e9d806684364a1';
 
 it('retains Site24 JC005 while adding the isolated JC008 candidate and retains the exact printed spell metadata and original bytes', () => {
-  expect(catalog.engineVersion).toBe('rust-v0.2.26-msjc07-candidate');
+  expect(catalog.engineVersion).toBe('rust-v0.2.26-msjc07-resource-policy-candidate');
   expect(catalog.cardPoolVersion).toBe('limited-v2.23-msjc07-candidate');
   expect(catalog.cards).toHaveLength(87);
   expect(catalog.cards.some(c => c.id === 'JC008')).toBe(true);
