@@ -749,22 +749,22 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
         ));
     }
     if let Some(limit) = ability.per_turn_limit {
-        let elder = card_id == "JC032"
+        let is_admitted_jc032_action = card_id == "JC032"
             && serde_json::to_value(ability).unwrap()
                 == serde_json::to_value(&jc032_definition().abilities[0]).unwrap();
-        if !elder && (limit != 2
-            || !ability.activation_only
-            || ability.event.is_some()
-            || !matches!(
+        let is_admitted_host_grant = limit == 2
+            && ability.activation_only
+            && ability.event.is_none()
+            && matches!(
                 ability.costs.as_slice(),
                 [Cost::SacrificeSelectedControlledCharacter]
             )
-            || !matches!(
+            && matches!(
                 ability.ops.as_slice(),
                 [Op::ModifyAttachmentHostUntilTurnEnd]
             )
-            || !ability.modes.is_empty()
-        ) {
+            && ability.modes.is_empty();
+        if !is_admitted_jc032_action && !is_admitted_host_grant {
             return Err(format!(
                 "{card_id}: only the admitted host grant or JC032 once-per-turn action is supported"
             ));

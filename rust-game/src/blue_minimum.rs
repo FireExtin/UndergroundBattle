@@ -109,19 +109,21 @@ impl Game {
     }
     pub(crate) fn blue_private_choice(&self, p: &Pending, viewer: usize) -> Choice {
         let mut choice = p.choice.clone();
-        if let ChoiceResolution::Frame {
+        let ChoiceResolution::Frame {
             frame,
             choice: FrameChoice::JC032TopSix { inspected_ids },
         } = &p.resolution
-        {
-            if frame.actor == viewer {
-                choice.preview_cards = inspected_ids
-                    .iter()
-                    .filter_map(|id| self.players[viewer].deck.iter().find(|c| &c.id == id))
-                    .map(|c| self.card_view(c, viewer, None, None))
-                    .collect();
-            }
+        else {
+            return choice;
+        };
+        if frame.actor != viewer {
+            return choice;
         }
+        choice.preview_cards = inspected_ids
+            .iter()
+            .filter_map(|id| self.players[viewer].deck.iter().find(|c| &c.id == id))
+            .map(|c| self.card_view(c, viewer, None, None))
+            .collect();
         choice
     }
     pub(crate) fn jz24_start(&mut self, frame: ResolutionFrame) -> RuleResult<()> {

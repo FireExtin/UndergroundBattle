@@ -1,0 +1,8 @@
+    Finished `test` profile [unoptimized] target(s) in 0.14s
+     Running unittests src/lib.rs (/Users/ddd/Documents/Codex/2026-10-06/task-2/.build-tools/targets/game/debug/deps/hegemony_server-6b4530942d3008e7)
+
+running 1 test
+test equipment_abilities_tests::equipment_blade_twice_limit_illegal_cost_atomicity_and_cleanup ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 441 filtered out; finished in 0.18s
+

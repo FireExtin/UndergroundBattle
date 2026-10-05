@@ -1,0 +1,27 @@
+   Compiling hegemony-server v0.1.0 (/Users/ddd/Documents/Codex/2026-10-06/task-2/game-stable-readability/rust-game)
+    Finished `test` profile [unoptimized] target(s) in 6.40s
+     Running unittests src/lib.rs (/Users/ddd/Documents/Codex/2026-10-06/task-2/.build-tools/targets/game/debug/deps/hegemony_server-6b4530942d3008e7)
+
+running 19 tests
+test blue_minimum_tests::blue_jc032_region_incarnation_and_prefix_guard_preserve_paid_once_rng_and_ids ... ok
+test blue_minimum_tests::blue_jc032_top_six_printed_filter_private_restore_fresh_hidden_and_whole_deck_shuffle ... ok
+test blue_minimum_tests::blue_ms03_minimum_pool_and_printed_unique_card_filter_not_character_only ... ok
+test blue_minimum_tests::blue_ms03_draw_checks_initiative_at_execution_and_empty_search_consumes_once ... ok
+test blue_minimum_tests::blue_jc032_borrowed_source_and_selection_keep_owner_actor_and_original_region ... ok
+test blue_minimum_tests::blue_whole_original_fields_and_closed_source_marker ... ok
+test blue_minimum_tests::blue_jz24_snapshot_after_responses_never_adds_newly_eligible_enemy ... ok
+test jc030_tests::jc030_counts_blood_icons_not_blue_color_teammate_or_owner_assets ... ok
+test jc030_tests::jc030_same_blue_identity_does_not_share_bonus_and_exhausting_bat_keeps_subtype ... ok
+test rules::tests::blue_closed_definitions_reject_variants_and_finite_operation_transplants ... ok
+test blue_minimum_tests::blue_jz24_two_enemies_bq022_return_four_cards_still_sacrifices_and_restores ... ok
+test blue_minimum_tests::blue_ms03_paid_search_restore_private_public_reveal_and_once_across_all_actors ... ok
+test blue_minimum_tests::blue_jc032_zero_hit_private_confirmation_and_empty_deck_no_rng ... ok
+test repress_assets_tests::repress_assets_expansion_blue_loyalty_personal_currency_and_standard_timing ... ok
+test blue_minimum_tests::blue_real_host_receipts_keep_original_transition_after_restart_for_both_choices ... ok
+test blue_minimum_tests::blue_jc032_positive_lengths_and_stale_choice_are_atomic ... ok
+test blue_minimum_tests::blue_jz24_optional_skip_faceup_no_trigger_local_controller_and_actor_order ... ok
+test blue_minimum_tests::blue_jz24_source_change_region_guard_and_death_continuation_priority ... ok
+test blue_minimum_tests::blue_jc032_next_turn_refreshes_limit_without_repaying_saved_action ... ok
+
+test result: ok. 19 passed; 0 failed; 0 ignored; 0 measured; 423 filtered out; finished in 1.21s
+
