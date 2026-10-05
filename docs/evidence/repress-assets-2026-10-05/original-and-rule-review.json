@@ -1,0 +1,151 @@
+{
+  "admittedWholeCards": [
+    {
+      "id": "JZ74",
+      "actualOriginalViewed": true,
+      "source": "resource/ymsj-fun.github.io/cards/JZ74 意外事故.jpg",
+      "bytes": 500480,
+      "sha256": "3915ef2565eff330862507076c052942322e59f47039f31f7c0ebe658181f085",
+      "originalFieldsIndependentlyRechecked": {
+        "name": "意外事故",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "中立",
+        "basicType": "事务",
+        "subtypes": [
+          "突发状况"
+        ],
+        "printedCollectorCode": "74/76",
+        "seriesSymbol": "间奏裂环形符号",
+        "printedCost": 1,
+        "loyalty": [],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "快速行动 遏制1。抓一张牌。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "admittedInThisPrivateBatch": true
+    },
+    {
+      "id": "JC126",
+      "actualOriginalViewed": true,
+      "source": "resource/ymsj-fun.github.io/cards/JC126 产业扩张.jpg",
+      "bytes": 302436,
+      "sha256": "33ed0032c1e6983f25be998c66891f137f2f0975031493883f6cc1a9bb5e40e0",
+      "originalFieldsIndependentlyRechecked": {
+        "name": "产业扩张",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "中立",
+        "basicType": "事务",
+        "subtypes": [
+          "策略"
+        ],
+        "printedCollectorCode": "126/135",
+        "seriesSymbol": "wineGlass",
+        "printedCost": 3,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "蓝",
+            "count": 1
+          }
+        ],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": null,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [],
+        "printedRuleTextLines": [
+          "【标准行动】将你牌库顶的一张牌正面置入你的资产区，令其成为一个资产。"
+        ],
+        "additionalPrintedSymbols": []
+      },
+      "admittedInThisPrivateBatch": true
+    }
+  ],
+  "rules": [
+    {
+      "source": "resource/ymsj-fun.github.io/public/docs/隐秘世界规则手册.pdf",
+      "sourceBytes": 4538093,
+      "sourceSha256": "2a771874efbdb3ad8a339ea01ff62888766090d075fe2e013632c79de1aeba35",
+      "printedPage": 5,
+      "actuallyViewedRenderedPage": "basic-physical-7.png",
+      "termsUsed": [
+        "card effects adding assets do not consume normal build frequency"
+      ]
+    },
+    {
+      "source": "resource/ymsj-fun.github.io/public/docs/隐秘世界规则手册.pdf",
+      "sourceBytes": 4538093,
+      "sourceSha256": "2a771874efbdb3ad8a339ea01ff62888766090d075fe2e013632c79de1aeba35",
+      "printedPage": 11,
+      "actuallyViewedRenderedPage": "basic-physical-13.png",
+      "termsUsed": [
+        "assets retain only faction and domain",
+        "loyalty counts exhausted assets",
+        "only text saying draw is draw"
+      ]
+    },
+    {
+      "source": "resource/ymsj-fun.github.io/public/docs/隐秘世界规则手册.pdf",
+      "sourceBytes": 4538093,
+      "sourceSha256": "2a771874efbdb3ad8a339ea01ff62888766090d075fe2e013632c79de1aeba35",
+      "printedPage": 7,
+      "actuallyViewedRenderedPage": "basic-physical-9-printed7.png",
+      "termsUsed": [
+        "you means controller",
+        "societies outside deck",
+        "starting hand on society",
+        "immutable ownership/grave destination"
+      ]
+    },
+    {
+      "source": "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+      "sourceBytes": 15174985,
+      "sourceSha256": "a1e5bca72b8dbb374357feace28b7fbfd31136349ee23455d60f5f62e0a6b886",
+      "printedPage": 17,
+      "actuallyViewedRenderedPage": "hegemony-printed17.png",
+      "termsUsed": [
+        "selected opponent chooses their team region for repress1"
+      ]
+    },
+    {
+      "source": "resource/ymsj-fun.github.io/public/docs/隐秘世界规则手册.pdf",
+      "sourceSha256": "2a771874efbdb3ad8a339ea01ff62888766090d075fe2e013632c79de1aeba35",
+      "sourceBytes": 4538093,
+      "printedPage": 6,
+      "actuallyViewedRenderedPage": "basic-physical-8-printed6.png",
+      "termsUsed": [
+        "quick deck construction explicitly mixes any two base factions; our current limited pool uses legal neutral filler and does not claim complete base fast-deck contents"
+      ]
+    }
+  ]
+}

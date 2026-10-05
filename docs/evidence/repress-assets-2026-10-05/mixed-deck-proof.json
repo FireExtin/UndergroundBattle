@@ -1,0 +1,364 @@
+{
+  "actualCompleteBodyPath": "mixed-cases.json.cases/000.json",
+  "actualCompleteBodySha256": "898930ef6a25c585471c43906e5a82ed0aab5081091eb9b382996c48f4857b82",
+  "actual25WasmReplayPassed": true,
+  "seed": "1841",
+  "transitions": 199,
+  "projections": 790,
+  "newNaturalUiCoverage": false,
+  "noInitialFixtureOperations": true,
+  "noMidGameStateEdits": true,
+  "decksAndPersonalAssetPayment": [
+    {
+      "seat": 0,
+      "draft": {
+        "id": "mixed-red-黑",
+        "name": "红黑混搭（合法中立补足）",
+        "description": "以检视、横置与调查奖励掌控节奏。50张受限卡池自组预组，非官方预组。",
+        "societyId": null,
+        "cards": [
+          {
+            "cardId": "JC042",
+            "count": 3
+          },
+          {
+            "cardId": "JC047",
+            "count": 3
+          },
+          {
+            "cardId": "JC049",
+            "count": 3
+          },
+          {
+            "cardId": "JC084",
+            "count": 3
+          },
+          {
+            "cardId": "JC086",
+            "count": 3
+          },
+          {
+            "cardId": "JC091",
+            "count": 3
+          },
+          {
+            "cardId": "JC092",
+            "count": 3
+          },
+          {
+            "cardId": "JC125",
+            "count": 26
+          },
+          {
+            "cardId": "XQ17",
+            "count": 3
+          }
+        ],
+        "rulesVersion": "hegemony-pdf-v1",
+        "cardPoolVersion": "limited-v2.22-repress-assets-candidate",
+        "engineVersion": "rust-v0.2.25-repress-assets-candidate",
+        "updatedAt": ""
+      },
+      "colorCounts": {
+        "红": 12,
+        "黑": 12,
+        "蓝": 0,
+        "中立": 26
+      },
+      "assets": [
+        {
+          "instance": "i259",
+          "definition": "JC084",
+          "owner": 0,
+          "controller": 0,
+          "color": "黑",
+          "exhausted": true
+        },
+        {
+          "instance": "i275",
+          "definition": "JC049",
+          "owner": 0,
+          "controller": 0,
+          "color": "红",
+          "exhausted": false
+        }
+      ]
+    },
+    {
+      "seat": 1,
+      "draft": {
+        "id": "mixed-red-黑",
+        "name": "红黑混搭（合法中立补足）",
+        "description": "以检视、横置与调查奖励掌控节奏。50张受限卡池自组预组，非官方预组。",
+        "societyId": null,
+        "cards": [
+          {
+            "cardId": "JC042",
+            "count": 3
+          },
+          {
+            "cardId": "JC047",
+            "count": 3
+          },
+          {
+            "cardId": "JC049",
+            "count": 3
+          },
+          {
+            "cardId": "JC084",
+            "count": 3
+          },
+          {
+            "cardId": "JC086",
+            "count": 3
+          },
+          {
+            "cardId": "JC091",
+            "count": 3
+          },
+          {
+            "cardId": "JC092",
+            "count": 3
+          },
+          {
+            "cardId": "JC125",
+            "count": 26
+          },
+          {
+            "cardId": "XQ17",
+            "count": 3
+          }
+        ],
+        "rulesVersion": "hegemony-pdf-v1",
+        "cardPoolVersion": "limited-v2.22-repress-assets-candidate",
+        "engineVersion": "rust-v0.2.25-repress-assets-candidate",
+        "updatedAt": ""
+      },
+      "colorCounts": {
+        "红": 12,
+        "黑": 12,
+        "蓝": 0,
+        "中立": 26
+      },
+      "assets": [
+        {
+          "instance": "i260",
+          "definition": "JC084",
+          "owner": 1,
+          "controller": 1,
+          "color": "黑",
+          "exhausted": true
+        },
+        {
+          "instance": "i279",
+          "definition": "JC047",
+          "owner": 1,
+          "controller": 1,
+          "color": "红",
+          "exhausted": false
+        }
+      ]
+    },
+    {
+      "seat": 2,
+      "draft": {
+        "id": "mixed-red-蓝",
+        "name": "红蓝混搭（合法中立补足）",
+        "description": "以检视、横置与调查奖励掌控节奏。50张受限卡池自组预组，非官方预组。",
+        "societyId": null,
+        "cards": [
+          {
+            "cardId": "JC036",
+            "count": 3
+          },
+          {
+            "cardId": "JC042",
+            "count": 3
+          },
+          {
+            "cardId": "JC047",
+            "count": 3
+          },
+          {
+            "cardId": "JC049",
+            "count": 3
+          },
+          {
+            "cardId": "JC125",
+            "count": 23
+          },
+          {
+            "cardId": "JZ27",
+            "count": 3
+          },
+          {
+            "cardId": "XQ12",
+            "count": 3
+          },
+          {
+            "cardId": "XQ14",
+            "count": 3
+          },
+          {
+            "cardId": "XQ16",
+            "count": 3
+          },
+          {
+            "cardId": "XQ17",
+            "count": 3
+          }
+        ],
+        "rulesVersion": "hegemony-pdf-v1",
+        "cardPoolVersion": "limited-v2.22-repress-assets-candidate",
+        "engineVersion": "rust-v0.2.25-repress-assets-candidate",
+        "updatedAt": ""
+      },
+      "colorCounts": {
+        "红": 12,
+        "黑": 0,
+        "蓝": 15,
+        "中立": 23
+      },
+      "assets": [
+        {
+          "instance": "i261",
+          "definition": "XQ16",
+          "owner": 2,
+          "controller": 2,
+          "color": "蓝",
+          "exhausted": true
+        },
+        {
+          "instance": "i267",
+          "definition": "JC047",
+          "owner": 2,
+          "controller": 2,
+          "color": "红",
+          "exhausted": false
+        }
+      ]
+    },
+    {
+      "seat": 3,
+      "draft": {
+        "id": "mixed-red-蓝",
+        "name": "红蓝混搭（合法中立补足）",
+        "description": "以检视、横置与调查奖励掌控节奏。50张受限卡池自组预组，非官方预组。",
+        "societyId": null,
+        "cards": [
+          {
+            "cardId": "JC036",
+            "count": 3
+          },
+          {
+            "cardId": "JC042",
+            "count": 3
+          },
+          {
+            "cardId": "JC047",
+            "count": 3
+          },
+          {
+            "cardId": "JC049",
+            "count": 3
+          },
+          {
+            "cardId": "JC125",
+            "count": 23
+          },
+          {
+            "cardId": "JZ27",
+            "count": 3
+          },
+          {
+            "cardId": "XQ12",
+            "count": 3
+          },
+          {
+            "cardId": "XQ14",
+            "count": 3
+          },
+          {
+            "cardId": "XQ16",
+            "count": 3
+          },
+          {
+            "cardId": "XQ17",
+            "count": 3
+          }
+        ],
+        "rulesVersion": "hegemony-pdf-v1",
+        "cardPoolVersion": "limited-v2.22-repress-assets-candidate",
+        "engineVersion": "rust-v0.2.25-repress-assets-candidate",
+        "updatedAt": ""
+      },
+      "colorCounts": {
+        "红": 12,
+        "黑": 0,
+        "蓝": 15,
+        "中立": 23
+      },
+      "assets": [
+        {
+          "instance": "i262",
+          "definition": "XQ12",
+          "owner": 3,
+          "controller": 3,
+          "color": "蓝",
+          "exhausted": true
+        },
+        {
+          "instance": "i271",
+          "definition": "JC049",
+          "owner": 3,
+          "controller": 3,
+          "color": "红",
+          "exhausted": false
+        }
+      ]
+    }
+  ],
+  "fourActualRedSameDefinitionInstances": [
+    {
+      "id": "i270",
+      "definition": "XQ17",
+      "owner": 2,
+      "controller": 2
+    },
+    {
+      "id": "i274",
+      "definition": "XQ17",
+      "owner": 3,
+      "controller": 3
+    },
+    {
+      "id": "i278",
+      "definition": "XQ17",
+      "owner": 0,
+      "controller": 0
+    },
+    {
+      "id": "i282",
+      "definition": "XQ17",
+      "owner": 1,
+      "controller": 1
+    }
+  ],
+  "teammateRedLoyaltyRejected": [
+    {
+      "seat": 3,
+      "errorCode": "invalid_action",
+      "errorMessage": "忠诚不足",
+      "changed": false
+    },
+    {
+      "seat": 1,
+      "errorCode": "invalid_action",
+      "errorMessage": "忠诚不足",
+      "changed": false
+    }
+  ],
+  "neutralFillerIsActualUnlimitedJC125": true,
+  "allOrdinaryPerNameCopyLimitPreserved": true,
+  "sharedColorDoesNotAuthorizeAnotherPlayersInstances": true
+}

@@ -1272,6 +1272,19 @@ impl Game {
                         return Ok(());
                     }
                 }
+                Op::MoveActorDeckTopToAsset => {
+                    let seat = frame.actor;
+                    if !self.players[seat].deck.is_empty() {
+                        let c = self.players[seat].deck.remove(0);
+                        let c = self.reset_zone_card(c);
+                        self.note(format!(
+                            "{} 将牌库顶的 {} 正面置入资产区",
+                            self.players[seat].name,
+                            card(&c.definition).name
+                        ));
+                        self.players[seat].assets.push(c);
+                    }
+                }
                 Op::WoundTarget { slot, amount } => {
                     let id = frame.targets.get(slot).ok_or("缺少创伤目标")?.id.clone();
                     if let Some(c) = self.board_mut(&id) {

@@ -201,6 +201,8 @@ pub enum Op {
     RepressOpponentOne {
         slot: usize,
     },
+    // JC126 only: resolve the actor's current top card into their asset area.
+    MoveActorDeckTopToAsset,
     WoundTarget {
         slot: usize,
         amount: u32,
@@ -430,6 +432,18 @@ pub struct Definition {
 // These are interpreter limits, not rules for resolving partially invalid targets.
 // Reject unsupported declarations before publishing actions or offering trigger choices.
 pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(), String> {
+    if ability.modes.iter().any(|m| {
+        m.ops.iter().any(|op| {
+            matches!(
+                op,
+                Op::RepressOpponentOne { .. } | Op::MoveActorDeckTopToAsset
+            )
+        })
+    }) {
+        return Err(format!(
+            "{card_id}: admitted repression and expansion cannot be mode operations"
+        ));
+    }
     if ability
         .targets
         .iter()
@@ -474,10 +488,16 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
         }
         match op {
             Op::RepressOpponentOne { slot }
-                if card_id != "JZ58"
-                    || *slot != 0
-                    || ability.ops.len() != 1
-                    || ability.event != Some(Event::Reveal)
+                if *slot != 0
+                    || !(card_id == "JZ58"
+                        && ability.ops.len() == 1
+                        && ability.event == Some(Event::Reveal)
+                        || card_id == "JZ74"
+                            && ability.play_only
+                            && ability.modes.is_empty()
+                            && ability.timing == Timing::Fast
+                            && ability.event.is_none()
+                            && matches!(ability.ops.as_slice(), [Op::RepressOpponentOne { slot: 0 }, Op::Draw { player: PlayerRef::Actor, count: 1, end: DeckEnd::Top }]))
                     || !ability.costs.is_empty()
                     || ability.targets.len() != 1
                     || ability.targets[0].zone != Zone::Player
@@ -485,7 +505,21 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
                     || ability.targets[0].range != Range::Anywhere =>
             {
                 return Err(format!(
-                    "{card_id}: only the admitted one-opponent reveal repression is supported"
+                    "{card_id}: only the admitted reveal repression or repression-then-draw is supported"
+                ))
+            }
+            Op::MoveActorDeckTopToAsset
+                if card_id != "JC126"
+                    || !ability.play_only
+                    || !ability.modes.is_empty()
+                    || ability.timing != Timing::Standard
+                    || ability.event.is_some()
+                    || !ability.costs.is_empty()
+                    || !ability.targets.is_empty()
+                    || ability.ops.len() != 1 =>
+            {
+                return Err(format!(
+                    "{card_id}: only the admitted actor deck-top asset expansion is supported"
                 ))
             }
 
@@ -742,6 +776,8 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
                         op,
                         Op::ForEachLivingPlayer(_)
                             | Op::ForEachLivingPlayerFromActor(_)
+                            | Op::RepressOpponentOne { .. }
+                            | Op::MoveActorDeckTopToAsset
                             | Op::IfTargetExhausted { .. }
                             | Op::ModifyTargetUntilTurnEnd { .. }
                             | Op::GainControl { .. }
@@ -864,6 +900,40 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         use EntityRef::{Source, Target};
         use PlayerRef::{Actor, Context};
         let mut m = BTreeMap::new();
+        let mut accident = ability(
+            "repress-draw",
+            "快速行动",
+            Timing::Fast,
+            vec![],
+            vec![target(
+                Zone::Player,
+                EntityKind::Any,
+                Relation::EnemyTeam,
+                Range::Anywhere,
+            )],
+            vec![
+                Op::RepressOpponentOne { slot: 0 },
+                Op::Draw {
+                    player: Actor,
+                    count: 1,
+                    end: DeckEnd::Top,
+                },
+            ],
+            None,
+        );
+        accident.play_only = true;
+        m.insert("JZ74".into(), with_abilities(vec![accident]));
+        let mut expansion = ability(
+            "expand-assets",
+            "标准行动",
+            Timing::Standard,
+            vec![],
+            vec![],
+            vec![Op::MoveActorDeckTopToAsset],
+            None,
+        );
+        expansion.play_only = true;
+        m.insert("JC126".into(), with_abilities(vec![expansion]));
         m.insert(
             "JZ58".into(),
             Definition {

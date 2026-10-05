@@ -1,0 +1,3221 @@
+{
+  "baselineQaCommit": "991e24a2326d5c5f029f0065e0bd373468f7ce3f",
+  "baselineProductionCommit": "3f058eac361f2db31bd2118f0c264fbc4e67b611",
+  "oldCasesPreserved": 288,
+  "oldCompleteCaseBodies": [
+    {
+      "name": "white-paid-rescue-and-purple-private-forecast-three",
+      "bytes": 1481582,
+      "actualSha256": "c2b7d95c3bbd568c6d704dde939c59bd2a153c92432b934d53cebd125f11f7af",
+      "baselineBytes": 1480150,
+      "normalizedSha256": "00ec91bb797fdc0e2006b40683cd930775829ce64ca9451037ae9642e0b9c4e6",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/000.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "red-region-damage-and-yellow-printed-spell-book-search",
+      "bytes": 1310392,
+      "actualSha256": "5588b53d560f6b520fbfed5400fc3efe3237a85eada918e5081e66e11ae76ff4",
+      "baselineBytes": 1309280,
+      "normalizedSha256": "f8292e613a4a6a3ea8c12ce0b150fb53996dfccc813df739720d1650bc6ccf46",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/001.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "magic-return-owner-and-public-lawyer-self-controller-hide",
+      "bytes": 1266683,
+      "actualSha256": "0196cef71dec4ff7690f77855a81f726bfeac02eee173087ed235719a052b960",
+      "baselineBytes": 1265635,
+      "normalizedSha256": "fa64549bfb7fb5a589d625ac3febfa11c97ffc9ab90ca04c497f8a1244fc026b",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/002.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "owl-controller-mind-two-and-skeleton-paid-entry",
+      "bytes": 1122613,
+      "actualSha256": "f2b0bd61b4fbf173a96cb80efa544300a509965191f3b47ae12ce03ec506004e",
+      "baselineBytes": 1121565,
+      "normalizedSha256": "5b20e12933030744d16d8b3ee88bd97f4a739384ae27504d3ff7aae4b9778176",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/003.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "printed-cost-reveal-guard-and-paid-self-hide",
+      "bytes": 1148541,
+      "actualSha256": "f51d98230819b5d27744a86a54d67770cc1871e16f8947701901471503027a3f",
+      "baselineBytes": 1147493,
+      "normalizedSha256": "09a15b2029bc7fc5297fb8ad929735c75c2ec9eadee5619aa16d5eaabaea45b5",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/004.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "attachment-enemy-host-and-hide-owner-recycle",
+      "bytes": 789412,
+      "actualSha256": "a828fcf013206a1154405894fc958bc899f7c8de757b55b995b7232ffda7e100",
+      "baselineBytes": 788684,
+      "normalizedSha256": "65b4076d8400db9ad8af530fa4667f0290997a47d21495f41994dd0c6a81ebd2",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/005.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "attachment-target-murder-response-cancelled",
+      "bytes": 1006094,
+      "actualSha256": "bc00904ee55498103c167c400d4454512811b916fa1eeaa9716e8491e84e15a9",
+      "baselineBytes": 1005174,
+      "normalizedSha256": "cecc8efa12c9fc832c28d1f8631a46122c54dee420ad516570d420774408cc91",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/006.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "actual-hong-kong-nonempty-attachment-search",
+      "bytes": 513592,
+      "actualSha256": "03f64154727f7d3851a4322ac5401abb0cde92e6c12527ba1ab49787599b651f",
+      "baselineBytes": 512672,
+      "normalizedSha256": "2c54437cc9a8eedbd4c4f7d4f774c1cc3967ff5552fe9c84f66a80a645e42903",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/007.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "won-region-batch-cross-owner-equipment-and-aura",
+      "bytes": 701257,
+      "actualSha256": "df64635c789f1056a715a4316e5296bd483db4812923b0224611cc88f86f5ae8",
+      "baselineBytes": 700657,
+      "normalizedSha256": "b77ecda5382dd16846cbf01ea38555fb14a68ac019405ef9266a8d539fbed41b",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/008.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "direct-grave-face-up-play-normal-cost-and-conditional-icons",
+      "bytes": 405752,
+      "actualSha256": "6d31b79a3237beeaae425ccf924614b36639112702dcff56ba39b06f42658ab0",
+      "baselineBytes": 405344,
+      "normalizedSha256": "17abc9ad6a0116da28159d3396dbbcc0004a00d0b09fdc6be120b90f2c2babc5",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/009.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "duel",
+      "bytes": 7925901,
+      "actualSha256": "14fc68300fd7fc41ceb4cbe704a286c3f4733e908f1ede6801d62c91cc9495d8",
+      "baselineBytes": 7918541,
+      "normalizedSha256": "9e9c62821c505d7e02aa967aa41cb3a761c4a18f2ebfaec0ae26e88b46848bce",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/010.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "teams",
+      "bytes": 15547166,
+      "actualSha256": "8169f60a4586fdec806c2e17dfa0dea3138c051f9cdd4cb0f6b648bb905cbf8a",
+      "baselineBytes": 15535246,
+      "normalizedSha256": "a3d0bed32fc515cab9080394c3c386bf2f0db0adbc07deda1328deeb2d163788",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/011.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "real-response-frame-continuation-and-heal-cost",
+      "bytes": 1048110,
+      "actualSha256": "56ae1323e3f15caedc73966b7e72e3cd75810f2450888cb4810f7c2ba51833e8",
+      "baselineBytes": 1047190,
+      "normalizedSha256": "13d532ad24da482d38db5583e0675530009e7b65c39242319d14b095994a25b4",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/012.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "detective-target-reveal-invalidates-original-instance",
+      "bytes": 481141,
+      "actualSha256": "768ea1d1a6e010271cec95c3b82b66b65846a5e1f6ae5bd2c9436e49ac7f4825",
+      "baselineBytes": 480597,
+      "normalizedSha256": "0848442a091f03f166355b7e342857a63dcf017f3b08e207fd7694b76596f56e",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/013.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "detective-source-death-independent-hidden-destroy",
+      "bytes": 508022,
+      "actualSha256": "4129319aeb537021e2f9b422d5bfede0e4feab84c0c18aa81ab38fd6e22cf694",
+      "baselineBytes": 507478,
+      "normalizedSha256": "4d7afd1c848ee47dbc32c4992cf4aaa697cf4de4a221e60ec8fc44646a1bdc67",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/014.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "custom-deck-create-join-lobby-freeze-and-start",
+      "bytes": 575348,
+      "actualSha256": "6189ef704075cd6bf4acee5a7fd59de96426b6ef47eb873b56d4031df8ec1989",
+      "baselineBytes": 574504,
+      "normalizedSha256": "64e1e4f43bcb27ea249676e42913c76cf0dd68cb466bad26051421e6631a27c2",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/015.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "friendly-teammate-defense-and-public-team-icons",
+      "bytes": 116909,
+      "actualSha256": "8e62be7462ad17a9d21cdfe68be2909ce57898dbb36ac743ed6bdaa40b2252d6",
+      "baselineBytes": 116821,
+      "normalizedSha256": "9670f6f38ae218c675fd3c0f509b3f9f87380deef17c76346ab3500f001e68f3",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/016.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "4999-parallel-intents-quote-repeat-cancel-and-untimed-composition",
+      "bytes": 924181,
+      "actualSha256": "48629da5fdee5bc6042d8674eb68bf902da9f0f485b79a3784b05e3e297898fa",
+      "baselineBytes": 923365,
+      "normalizedSha256": "55a784aee483d196a2fb7eac6b7b33b224667ae45234143df254f9e3e1e91650",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/017.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "5000-expiry-rejected-command-commits-only-system-tick",
+      "bytes": 457466,
+      "actualSha256": "1f1a586c8788890f38a7ffb03d219e0cd9fc612de9ccd48b8333929fd8a1a2d8",
+      "baselineBytes": 457058,
+      "normalizedSha256": "763c1be692d687db5c43823c5bac5135e0a392406c4e122e12d7af047b63055c",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/018.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "real-world-win-trigger-DQJC108",
+      "bytes": 926313,
+      "actualSha256": "038bd34002d54a0c4ba1c997dbfb96cfc71d6eb8772395614204142eb47c4950",
+      "baselineBytes": 925393,
+      "normalizedSha256": "6825ee9071f125899649f48b95f42abb073ce35e9cf2941474905d04eaf178cf",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/019.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "real-world-win-trigger-DQJC109",
+      "bytes": 699874,
+      "actualSha256": "673b18ec16b5555fef81845c7bc6917cf789d10d76f5d1f7d8e45561b8b3cf04",
+      "baselineBytes": 699210,
+      "normalizedSha256": "089ba8e373548dab69a2b8c3d8de3c1a58065bfbef9cede50d747c4587dc39aa",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/020.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "real-world-win-trigger-DQJC110",
+      "bytes": 697204,
+      "actualSha256": "ae9ba96c2a456b39ffffb0f1066fe71f122f4b0e11d41fd0cb8a1f6960dbe8b1",
+      "baselineBytes": 696540,
+      "normalizedSha256": "919fb1e1ccf0d2888c8783c3a2a4c684465010c438a7870d457075711fee21d7",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/021.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "real-world-win-trigger-DQJC111",
+      "bytes": 1011635,
+      "actualSha256": "371a9b75f39d7495eb31bbfe98ebbde1d275b8103b733e2d0aa63ad7e69af378",
+      "baselineBytes": 1010715,
+      "normalizedSha256": "86f8a2e441942f678db559b2f70f5f0810aa5566ddc02f91d3ba517d6a8e0ad9",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/022.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "real-world-win-trigger-DQJC115",
+      "bytes": 1040939,
+      "actualSha256": "1bba812b3c7dfeb14a0770f8905e4524e978faf684f3b46a6309da6cb94bdfde",
+      "baselineBytes": 1039955,
+      "normalizedSha256": "b2c396a39879228b3977401ffb3547e3901540f07dae29664055799a45dcc26c",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/023.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "real-world-win-trigger-DQJC116",
+      "bytes": 605629,
+      "actualSha256": "24490323307baf8f7741d6b880ac6570978440f1bcc2c33e1007e6edf853972f",
+      "baselineBytes": 604965,
+      "normalizedSha256": "5d73e772c7ba29ac55a7ea38d52a0211b86d3fba64f294c2ad45238174b89861",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/024.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "generic-simultaneous-character-search-not-hong-kong-binding",
+      "bytes": 389058,
+      "actualSha256": "7f436593444815ac3357e05a70b6bfa84a3f616be1f7632b4b09f9c8ed33b504",
+      "baselineBytes": 388330,
+      "normalizedSha256": "4c0ea9ea49618d20cbb483997a758763273bb69037c60e6ed06b194711c6be49",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/025.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "printed-MSJC09-normal-four-seat-first-and-rear-paid-resolution-reset",
+      "bytes": 36135185,
+      "actualSha256": "4144556d8b4915c39cd363592f5cdfe082e6c6ac2f3efba90f76b77e65c430ac",
+      "baselineBytes": 36105449,
+      "normalizedSha256": "beba9485b4fccb47ce320a716b0e11d84f5f045dd01b9e5a129c98349ff15822",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/026.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC004-ready",
+      "bytes": 1213887,
+      "actualSha256": "47f9150f2abbac8025ef2df44146e17deaed2c99e7d817319f3c9703577f40d6",
+      "baselineBytes": 1212871,
+      "normalizedSha256": "e70ad29b3690c13fc57bdf2cdedc089ccd926e5e0561e2efcf4fdba9632cf19a",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/027.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC004-exhausted",
+      "bytes": 1209865,
+      "actualSha256": "d86bee51b7e346523eff21f3a7f3376119b04b1c17444d4e7bd412245147c4f2",
+      "baselineBytes": 1208849,
+      "normalizedSha256": "4ef293b468509384dac13673b8192f8c118f6dfc5e2df7a845a01d582ec3eb77",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/028.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC004-response-exhaust",
+      "bytes": 1839680,
+      "actualSha256": "387f1e661a9d0df778676d3894eb1e8a630b76f9e9b70d0287f6eef03e5f4a2a",
+      "baselineBytes": 1838152,
+      "normalizedSha256": "7384b957800858ab0dee6377c808b1dd0ac6f96b38f8884db28bcdd09a36a9e7",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/029.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC004-response-hide",
+      "bytes": 1903122,
+      "actualSha256": "d3178deb0d09371bd8be95c598f75bbd3870dffa1a0bcbc9606d69c90692d551",
+      "baselineBytes": 1901594,
+      "normalizedSha256": "4143a17eb5e70ec2417d01f22e136f91c4fb5e1531ddddacd0c670e1618e22f4",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/030.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC004-old-instance-reentered",
+      "bytes": 533947,
+      "actualSha256": "7d422a072ad1cdc511a2cd5d5b6ca6b1bca661f3f281b7d9eab18ac2b27cca61",
+      "baselineBytes": 533507,
+      "normalizedSha256": "bfc745fdb51a85893005ac7c9dd34c83939b394d433d82f43e0235cba31a54b9",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/031.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC004-moved-away",
+      "bytes": 534535,
+      "actualSha256": "011010fb9fad3db60594025d438e31f1954f50257ad995488693d0c6d78725e6",
+      "baselineBytes": 534095,
+      "normalizedSha256": "5527298785143b97c2155f4fc133144c06715ad1ab89efc21997c970f086cb94",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/032.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC004-moved-back",
+      "bytes": 531031,
+      "actualSha256": "e10662fbe0847fc252445a4526a189a10c1599772fa316a52b630e566ecd8376",
+      "baselineBytes": 530591,
+      "normalizedSha256": "2c757cfc58047b1c5ede769c69ba3b0ebecfa4501fbf6a099753002278ad360d",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/033.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC004-hidden-before-guard",
+      "bytes": 527200,
+      "actualSha256": "3661201da626e047e3a264b47df32efee163a9bb597ec5ee711dfff477d9390d",
+      "baselineBytes": 526760,
+      "normalizedSha256": "3ed8c09ac43b3bbe203f331c9bd5b8a1ec330bbcf7eb7bd0f4456783e846c421",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/034.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC004-shield-before-guard",
+      "bytes": 532010,
+      "actualSha256": "3b4c7d62bc1ab971eb37a2bf050c0681e731712ee97278007a379f4a025f42ac",
+      "baselineBytes": 531570,
+      "normalizedSha256": "34dbfb0382073d5c63d33490603a2384ede3d243dcd4a28e274f8173c2e63f51",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/035.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC004-borrowed-return",
+      "bytes": 1245738,
+      "actualSha256": "49435f6faca786418bc88a3360b4d70a87a5e0af22cb5b4d5966f2699fdb63d0",
+      "baselineBytes": 1244722,
+      "normalizedSha256": "3a98b8e1cba9bdd7422ad62711b6b0bd9084076d66f383c0bb444fc40c806bb9",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/036.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC004-self-target",
+      "bytes": 1213893,
+      "actualSha256": "cd0ad8b2094c5b24fab057afcb2db3f38e9643f4bc0a72cb69284440955908dc",
+      "baselineBytes": 1212877,
+      "normalizedSha256": "13720e19158dd5df255f23f01d9a7f940f57fdcc13b7815314c324f466ed362f",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/037.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC004-continuation-return",
+      "bytes": 603415,
+      "actualSha256": "87df44a2a5694e917084a44d38a226a3cbc31471878c0edec2d5c147261ff130",
+      "baselineBytes": 602911,
+      "normalizedSha256": "b408c983282a8ea6748dbb0711f275258c412cc2e34f20633058d046fec1b116",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/038.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC004-continuation-exhaust",
+      "bytes": 609114,
+      "actualSha256": "96edc1ccfb613164ea0c8c7fbdd77cab9b1a5690b0a53d67f16bbcd3bbb7e80e",
+      "baselineBytes": 608610,
+      "normalizedSha256": "aca7fbb7d9f71157bc09c102da56a231db7479b605283a49e53b8e655c7a5856",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/039.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC004-optional-decline",
+      "bytes": 792408,
+      "actualSha256": "bf99d34b1f2da00fcc8508a1aba7a7207707f839f06f5ad11d7a9d9bb62e7f6f",
+      "baselineBytes": 791744,
+      "normalizedSha256": "40fb2fbdabeccaba699a4ab66301812437b45ec732890b452ba0e0ea994fb4d6",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/040.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC004-declared-ready-resolved-exhausted",
+      "bytes": 527091,
+      "actualSha256": "97d809c97e5e185aa9dfe92ab74783f8763ed5f758f04c5e0c768c8fe566033f",
+      "baselineBytes": 526651,
+      "normalizedSha256": "1e0d6a3d3fa6e3b0364f721d87a2117d7eae4b21a5462cb583cc46df760d4ab9",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/041.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC004-declared-exhausted-resolved-ready",
+      "bytes": 531053,
+      "actualSha256": "4176a40d4b4f3ebb21a2788f1e1f8848549da0a513699eefaa653728d0aacff4",
+      "baselineBytes": 530613,
+      "normalizedSha256": "cae653ae4bb7cea22aa84ed1593c8ddc27a21afcd5a75b2f3e6063b2ec0725c8",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/042.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC005-normal-character",
+      "bytes": 532707,
+      "actualSha256": "a6f608708b5cf2cbe43b991a00ddd2aeebd4836761e8c9b96afda5d896663df8",
+      "baselineBytes": 532203,
+      "normalizedSha256": "71b438c5eca92130c730a94811dd2c4921edefb5c23d11e3334e4d7e7ad68042",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/043.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC005-mind-character",
+      "bytes": 539464,
+      "actualSha256": "3a253c408878045e37bd5aa09f4b5d9e47a0e2f32bb024a2c63cc77bfd0f2db3",
+      "baselineBytes": 538960,
+      "normalizedSha256": "39a7b76b2a69d369c392215dd7d1f093823ead980437b0838a24ab4ed8e1dd22",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/044.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC005-exhausted-mind",
+      "bytes": 539419,
+      "actualSha256": "6fe114c8c0d23276ca73ba8075afa345587d0ddee4a85cc2bf1d9f999a7a65c2",
+      "baselineBytes": 538915,
+      "normalizedSha256": "80776e82331730d6948dead0f94d57d390b3a4f7c325ab41b22fd8c52714acb5",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/045.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC005-bound-host-moved-region",
+      "bytes": 474643,
+      "actualSha256": "9109ecf04e75ef85db9ab946929fd088991f7721e1df10dc137c83f961d39cef",
+      "baselineBytes": 474203,
+      "normalizedSha256": "04fb09cd2d38b24b93916dc1a5b0eb3986689e7fb0f6a0ed406db212403eb891",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/046.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC005-response-host-return",
+      "bytes": 1142425,
+      "actualSha256": "303968dfaa281539944366fc1c1407ef592d727dac4727141c37ebc3ad737093",
+      "baselineBytes": 1141409,
+      "normalizedSha256": "baf7f97f7817b50fae1600c013d9982375c952ded9b0422231db7eaf469b2b4a",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/047.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC005-response-host-hide",
+      "bytes": 1146781,
+      "actualSha256": "9a321f8085a308190ca3160312a07ce4e414b78db473a8bcf755ec24a35fecb6",
+      "baselineBytes": 1145765,
+      "normalizedSha256": "c976363c2df6894b932fa07247cdef192bc60f4f6502ab4067837071fb0c5b18",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/048.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC005-bound-host-change-character",
+      "bytes": 481628,
+      "actualSha256": "2a41daaa5a41b99e9072d42429d1bb30801078bc59ae5a36e95874c8f1f0b566",
+      "baselineBytes": 481188,
+      "normalizedSha256": "16de1b2a5534b9d127aca22fb91aa5e020d67dc7979871ed6b73619ab58bfe7b",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/049.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC005-bound-host-change-type",
+      "bytes": 475858,
+      "actualSha256": "06339db62c8c603bfe9a501c5327d02417642f325e9bee3330a2ea8acf3fbb7c",
+      "baselineBytes": 475418,
+      "normalizedSha256": "b0f1318a110107d9132aab0b493d472987b26bd3b48b80c9e9d72a06f0bceb01",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/050.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC005-bound-target-reentered",
+      "bytes": 473262,
+      "actualSha256": "96381130a2d59c65681f448b3df64739c39642723e3bc594da0a5001e06aaae0",
+      "baselineBytes": 472822,
+      "normalizedSha256": "8a64de807a2fb739d1dec7a64c73897219635781f8b16e19591e1239e4e98353",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/051.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC005-bound-target-hidden",
+      "bytes": 466362,
+      "actualSha256": "9fbdb0d9e9c0999b1bb75c34a565719f59cfae8bdc058d43cbca36f88159d090",
+      "baselineBytes": 465922,
+      "normalizedSha256": "3b2c7c1231412f7e32c9921ac79c80432e6fc26c1719f301c0f2cec0a4490738",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/052.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC005-bound-target-shield",
+      "bytes": 471367,
+      "actualSha256": "dbf1c762a0caee849d29dfd19e7f777af6194a6b21f9ba943a72b4f3f2e9a933",
+      "baselineBytes": 470927,
+      "normalizedSha256": "423ef5491c37b702103ac02e92f32ea5b4653580cfeda856ba354efa6c075e9c",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/053.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC005-bound-mind-removed-character",
+      "bytes": 470703,
+      "actualSha256": "ac72220119ca076210fe17af0c141a74176493b1b60cfcfecd3a5a9a1730fcbf",
+      "baselineBytes": 470263,
+      "normalizedSha256": "489863998b6ede99a9bf13c872005d7244e2958ba9cdb85c909455a4480a0f0e",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/054.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC005-synthetic-noncharacter-no-mind",
+      "bytes": 180398,
+      "actualSha256": "8e3bb76f8c6a3c3537a7a08b587db3882e9b5b5c13e3dc30b087f84596ee506d",
+      "baselineBytes": 180246,
+      "normalizedSha256": "0ac5cb31209bcf1c1c53976fb203b8f90e32141544fe12d9644a538e969fb7d7",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/055.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC005-synthetic-noncharacter-mind-settlement",
+      "bytes": 544863,
+      "actualSha256": "e560ede2cfb60e4df91c4b774922d2fb7469c8ee7ab0330d348e9f80f1cb95fe",
+      "baselineBytes": 544359,
+      "normalizedSha256": "6d5faa0f964eb3d38c1fb71ab336ba43c3dc309dbf521631da078d74105f1688",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/056.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC008-first-team",
+      "bytes": 509661,
+      "actualSha256": "87fedd16435c0382eded7cb8cb5293cff4a8d3617cb443f5b74fd072e15d95d5",
+      "baselineBytes": 509157,
+      "normalizedSha256": "f576971be754cdc1ce1ee0a793caa6c660f999e8fe9e3f458223cc1c11260b6b",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/057.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC008-rear-team",
+      "bytes": 509660,
+      "actualSha256": "f7dc74c88ee7720b7524609fa0e362d8d35722981a92f509e35c809de41edff0",
+      "baselineBytes": 509156,
+      "normalizedSha256": "7daf5c099846da1c8a9f7affe14a970ed60129a693e4c001349b6b1a2d88aaf4",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/058.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC008-exhausted-character",
+      "bytes": 509625,
+      "actualSha256": "6d3768b67a615ca4598bf55f0b2d7eb944568d7b371d1aab02a171f95257a712",
+      "baselineBytes": 509121,
+      "normalizedSha256": "8029b4fe8bd3b7103604e59010e223ed5ee8d03c162d8f31333aaacd273d43b7",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/059.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC008-stack-two",
+      "bytes": 943105,
+      "actualSha256": "fe6f3ed13f74f33465c0185cedd5dedefbd2e242c09079082f7072150be93000",
+      "baselineBytes": 942217,
+      "normalizedSha256": "d94d86fbce25474c2a3e975165cb2c22af67ab55d6b64fb46dd42d12bd9ccff0",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/060.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC008-reject-hidden",
+      "bytes": 172913,
+      "actualSha256": "87bc45d29a384300990eb104348e556bf09fda261e5daa52033659b36d286295",
+      "baselineBytes": 172761,
+      "normalizedSha256": "4f98d5ce09534bc5ae32a15902456fecf2f36466c662f4596c31c208f5fb1f9e",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/061.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC008-reject-barrier",
+      "bytes": 174436,
+      "actualSha256": "05e89810e9e211d667bcc7eb8058c948063b7bd4c1082f4470492857aaf5d319",
+      "baselineBytes": 174284,
+      "normalizedSha256": "cf246a23f71d5d8ffc1b8759826067dae8eb3de32e9774e49571a36fb4f44d0f",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/062.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC008-reject-cost",
+      "bytes": 172762,
+      "actualSha256": "2045f8b2b21bbd60496359c9234614ccda2c846822f0d22d24b9fe5cdaa59932",
+      "baselineBytes": 172610,
+      "normalizedSha256": "e297e2089bcc64a49b7d2f69fd023922577c51eaf65cedfad73129c66935f8a0",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/063.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC008-reject-loyalty",
+      "bytes": 174329,
+      "actualSha256": "6a4aa1349fe10dd91475a889be7e02fff372c42a010dfde6a1092a567387a869",
+      "baselineBytes": 174177,
+      "normalizedSha256": "c36946ea898e806a412050413bff5e28d05efa9a4653514ce354e8848b60413c",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/064.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC008-shield-enemy",
+      "bytes": 508258,
+      "actualSha256": "271435cca57f75b644eda73016fee55fcdd271482110b1fc96f2f8754dc059c2",
+      "baselineBytes": 507754,
+      "normalizedSha256": "7b5390b7f40a6bda20076a61f119bb491fdc25d01de2d3fd82b74580ce608e02",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/065.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC008-shield-friend",
+      "bytes": 507720,
+      "actualSha256": "d131263029965b502108b5c2c57f915517babebcc62e656b08109a85714379cf",
+      "baselineBytes": 507216,
+      "normalizedSha256": "808ff10e6204329aefbfc8005b681817ceea2217739ca386b1a72b9c4f16d45e",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/066.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC008-response-hide",
+      "bytes": 1164525,
+      "actualSha256": "de67fd7a595aa5149b35f81edab6b34a6a7c78bcb7687c2c0591ef45f403335a",
+      "baselineBytes": 1163509,
+      "normalizedSha256": "91cd8e00ea2dba65ae199ef92d6aab54815fbfabafe06379be0e89a14dde8652",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/067.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC008-response-return",
+      "bytes": 1160736,
+      "actualSha256": "17236e6fab0af6f3a80d6ab053a25b30342f3a7cca9013412941630f8380d293",
+      "baselineBytes": 1159720,
+      "normalizedSha256": "412f6c1066189da02c0e7e399a56c460f06fd32258250cc57cf92191e110c247",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/068.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC008-hide-reveal",
+      "bytes": 1581941,
+      "actualSha256": "d39ec8394890055ab023c99393126546eb3469c7d651f459c35c223abbff15b8",
+      "baselineBytes": 1580541,
+      "normalizedSha256": "07454c39d790d09ef50f93c82240149028641f83c6793910e90c9174c44c867b",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/069.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC008-return-reenter",
+      "bytes": 1720578,
+      "actualSha256": "088e9dc7ee1dd6f61460ab75d819e593881c414ea8d6e02aab5f33105a90213b",
+      "baselineBytes": 1719050,
+      "normalizedSha256": "77bbfd954ef8f69239facb31b89512350b2c7de1c4477f076e85e00687c339bc",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/070.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC008-bound-target-reentered",
+      "bytes": 450904,
+      "actualSha256": "ed09bf4a1435a8d72c2c95ba370b4fb54fe027b3988c2d8e3f98484bdad2a6be",
+      "baselineBytes": 450464,
+      "normalizedSha256": "82bcedb7c158d05519d9b309d3123b8ee7ad6897c9651300f95f126295052155",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/071.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC008-checkpoint-controller",
+      "bytes": 442904,
+      "actualSha256": "c73d623acd7d3e68901d580c85c3e9104754dab6d4df50edee49ce83d86213d4",
+      "baselineBytes": 442464,
+      "normalizedSha256": "31662ffd73df0c8c1a4fb38f98d0f9ebb1155eab50813ae88d64d96bbcb373bc",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/072.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC008-checkpoint-movement",
+      "bytes": 441228,
+      "actualSha256": "0f6f9be4a3be95bd2533693c9fac6283adb1f2a557843b1cf4ef5581bea6513b",
+      "baselineBytes": 440788,
+      "normalizedSha256": "71fe75dc8092805fc134298fb95d7ecad3d072a723c20db55b382cbd364925e4",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/073.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC008-cleanup-simultaneous-survival",
+      "bytes": 441238,
+      "actualSha256": "f4b75b49fc62935eaf40341b0c7443dbd140346d84f0175a30f6ed8cb86cf153",
+      "baselineBytes": 440798,
+      "normalizedSha256": "6424f753c222134c5fa94e5bfd9349a5652dfd14fa3b4d9598f926f3757b1c31",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/074.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC008-cleanup-wounds",
+      "bytes": 442897,
+      "actualSha256": "59d30123baa92ad5b1284892ffdf0078e4c9cc4da6bd24029cb102dc65671c83",
+      "baselineBytes": 442457,
+      "normalizedSha256": "abd13a2e017a0c12aeb00bc0d8a34c6c97afb3d70e7fef36d62ccce776533f62",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/075.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC008-cleanup-zero-defense",
+      "bytes": 441781,
+      "actualSha256": "5748c4bec60bacde4ccd711dbf099634b77be92c0fb63cd6597d6658562a97c7",
+      "baselineBytes": 441341,
+      "normalizedSha256": "480dfa2e396d569e6dbf8e995266b5574e63ca152092b343035a61b01e1ee501",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/076.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC008-cleanup-discard-pause",
+      "bytes": 681806,
+      "actualSha256": "1691c924aa3d93a0737bf4bdba579a33dbd8161e7bc7b02cf5ca117f32149c1a",
+      "baselineBytes": 681238,
+      "normalizedSha256": "6dd58cddf7f9f7b2b2044bec22c14002e1b233138698a070a793360bb999ac0d",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/077.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC008-cleanup-discard-pause-rear-initiative",
+      "bytes": 681821,
+      "actualSha256": "2f3aec7b0adb37db5d0f5b400fda9eb7e16896353e0d0b76d6bd1f7ed5907c20",
+      "baselineBytes": 681253,
+      "normalizedSha256": "57d69cb25bc4787a29a7399b4e4e9811b18a5b71a64b9addce17f9801f514887",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/078.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC008-cleanup-death-trigger-reentry",
+      "bytes": 1536101,
+      "actualSha256": "ff119bb3f92154dd34828a7364ea520a08c73a026da795d35371a8f3752017cd",
+      "baselineBytes": 1534701,
+      "normalizedSha256": "2e83be36bc09a9b6601cf3c88c717ab95fe4a56be517d993c2d02fffb9ccae3b",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/079.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "MSJC01-construction-25-yellow",
+      "bytes": 9203,
+      "actualSha256": "e05397a1c18f58d9639e98a448cb0233c5b27d3468dd4924f154480e18b30116",
+      "baselineBytes": 9163,
+      "normalizedSha256": "ad15b8be00fdd467be15ec0f23bfb0e30132b1fc267440b41e1df12efa4e1caf",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/080.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "MSJC01-construction-27-yellow",
+      "bytes": 9203,
+      "actualSha256": "fb12a0ce55b3a2189396702f52ea727ae63c3336dc7b5880386e6a51dc5d846b",
+      "baselineBytes": 9163,
+      "normalizedSha256": "9b5e8e0fcb0291f2419636fb79e7e6af6267fed4281cb6be8f7653a03fc6eca0",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/081.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "printed-MSJC01-natural-four-seat-build-pay-draw-empty-search-turn-restore",
+      "bytes": 61204796,
+      "actualSha256": "c42b342c794ed26817a4565e9baab9fa456aa93783a611d324c6ee599e2f2836",
+      "baselineBytes": 61163572,
+      "normalizedSha256": "3972eb1b027889db09da1bfb6f09f1f077682dfd58ac9440d6c04f6ec40f0987",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/082.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "MSJC01-empty-search",
+      "bytes": 411008,
+      "actualSha256": "ab11ef0dbdba615d563fa9d4d80f390ef4ee1f58da4b1f7e74e07fab5ebb73db",
+      "baselineBytes": 410536,
+      "normalizedSha256": "96062662db29029a7344548526a8796a0296f6134b8e29b8140673776e687ae6",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/083.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "MSJC01-empty-deck",
+      "bytes": 396483,
+      "actualSha256": "320ee5eb62a6ac8d25f3c285ded3bdb96d75f1f185612c189d225b707c74a45b",
+      "baselineBytes": 396011,
+      "normalizedSha256": "9b656bb7b0c0d37313e6d1274ad7c5781437345727d025e8877ea75992966d8a",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/084.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "MSJC01-reject-cost",
+      "bytes": 88462,
+      "actualSha256": "b402e0fb43772ed60842842e5f523dcc5aa4f4b2684b79b34435205f27e8fa68",
+      "baselineBytes": 88342,
+      "normalizedSha256": "b5bf5a87b8e55738db26de3a190da645e97ba4cdfb38d5a360cb60819dd0bc3e",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/085.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "MSJC01-reject-exhausted",
+      "bytes": 94482,
+      "actualSha256": "53eba32f27488c6c2e442a6edd22fe8f5a0e90a61b571bf8ee42a5d35d84e263",
+      "baselineBytes": 94362,
+      "normalizedSha256": "8f1715e8764c6ecf4eb3bcf3c75ad916e20cc0bddf1fb3acd59efcad20a58d94",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/086.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "MSJC01-draw-first",
+      "bytes": 409512,
+      "actualSha256": "1ba260151dc5c3e513d4df86715bddbe0c35a637194665539570b3fe70f4b168",
+      "baselineBytes": 409040,
+      "normalizedSha256": "8a4a4d09955c7fc2ba202da906402aaf63b4f658968e28708f30de1be6f54e8a",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/087.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "MSJC01-draw-rear",
+      "bytes": 406599,
+      "actualSha256": "201a91046803039c05a0d3ee68ff5d237c5f808d198ceed97d689db7c61edbff",
+      "baselineBytes": 406127,
+      "normalizedSha256": "dc8ada0969fa4994860b9008f0efffea81e45035cf18f6616b2598196f022e0b",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/088.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "MSJC01-neutral-unique-one-hit",
+      "bytes": 482225,
+      "actualSha256": "4e7909e80ab004387ef4183a8b0e16b856f5eed3e1cee0e3003887054d3cd45d",
+      "baselineBytes": 481689,
+      "normalizedSha256": "686892e0d190e830933969b1e84d1fb76e97337eb381784a582c3abc78bbb892",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/089.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "MSJC01-neutral-unique-three-hits",
+      "bytes": 489590,
+      "actualSha256": "7df099029df3a5673edcd904866abcc8a60a8ce66d0fcf0b584e6c20eab5b1ec",
+      "baselineBytes": 489054,
+      "normalizedSha256": "a14027c31e2288739461999385a23a4b7da7bb7746ede60217bfa1e0caa95d48",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/090.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "MSJC01-pending-search-restore",
+      "bytes": 261635,
+      "actualSha256": "4ceed5d0cd0c9d79c73ece75c3f9f394eb7aec65441402a5ef3257ad3123e92f",
+      "baselineBytes": 261355,
+      "normalizedSha256": "81b75fd689ffdf149d0bedcf52e716e67fddb2088f3d6cb2d211be155fc872af",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/091.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "MSJC01-cancelled-paid-frame",
+      "bytes": 356667,
+      "actualSha256": "214306b36dc2c0795ba25f21c62244edd5c5963b8481cdb3dc2617f1f505f449",
+      "baselineBytes": 356259,
+      "normalizedSha256": "12587a230b4ca047d083beb7ce262e560952afabda591a667d01b7b2521cb311",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/092.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "MSJC01-new-instance-used",
+      "bytes": 97648,
+      "actualSha256": "c7031251b39bdcf3279b458a7a7b772c400409eb78481dfb039eec178fc11d78",
+      "baselineBytes": 97528,
+      "normalizedSha256": "014e6e22a3e63efcd08c3d0144d51d4d127cd1dbf0f46c6e18f15cd60b7a3c59",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/093.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "MSJC01-new-game-reset",
+      "bytes": 258056,
+      "actualSha256": "9de1259ff5eb6154f1a34d8330b6be178de2d3c05776816b67b9d52f210b5472",
+      "baselineBytes": 257840,
+      "normalizedSha256": "5a7e0eafebeff1096bea4007bc3d2bfc20b00e13f6bf4aea01b10ae2f6a38ea8",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/094.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "MSJC01-turn-reset-used",
+      "bytes": 8659392,
+      "actualSha256": "2208b92ea182ab1c91555557cae1370bbf89e63f9aad887829bb69f1976fc46c",
+      "baselineBytes": 8649416,
+      "normalizedSha256": "67825150ca16ef76ad2ca35c9e41a09eed2122c927b00c37e042921c3f0d2734",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/095.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "yellow-batch-private-search",
+      "bytes": 520831,
+      "actualSha256": "f03c33a4663786184570f4be949a9aac77e4027dfbc76c06ff6e8c52b9d39da0",
+      "baselineBytes": 520295,
+      "normalizedSha256": "9d63fb5963ce3e29305577dbb629bd1778366e32722660f8e9cac174c12118f8",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/096.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "yellow-batch-private-empty",
+      "bytes": 377492,
+      "actualSha256": "a46af705d7a1bf85526acf920b03b933f87d0538a304f4e516099f30a6cd4409",
+      "baselineBytes": 377084,
+      "normalizedSha256": "a91f8965914c8623aabf69eecb80c57b899a6cf0054cf771c19816ed04a5c790",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/097.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "yellow-batch-private-cost-rejection",
+      "bytes": 90226,
+      "actualSha256": "9ad744af473c0e3e99645813718c54fcd8f34245c1bd83a591112f64430e0798",
+      "baselineBytes": 90106,
+      "normalizedSha256": "01c529b2e22198ed9abbdf855c527394679754652d819a88831a68bb1809ce93",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/098.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "yellow-batch-private-exhaustion-rejection",
+      "bytes": 101053,
+      "actualSha256": "7726403b0208409e3c8b5fe891046129ee2a93fb007d62acf115789d76ae89e2",
+      "baselineBytes": 100933,
+      "normalizedSha256": "2e83226e66af0d194d9ba55267086823405fd2622e610b278ba63c8fc4295976",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/099.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "yellow-batch-real-yellow-reveal",
+      "bytes": 517257,
+      "actualSha256": "92bdd79dd460c1124fa327a38b7ac2e3d489e17f832081e9121598d5af421373",
+      "baselineBytes": 516721,
+      "normalizedSha256": "082175ff4de6b041aa6dc62610e65d49d9988b75fd386e2ee9cacc15c18ea6dc",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/100.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "yellow-batch-top-search",
+      "bytes": 541441,
+      "actualSha256": "fcc7a5377ae7b3e182cad5169177cc9aec7a2d9634c694a22e053f8a3f49baa2",
+      "baselineBytes": 540905,
+      "normalizedSha256": "577ed1c997bacd44937e8968a69fae8d90961b375bd7c23fa41b3b5ac4b83bfd",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/101.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "yellow-batch-top-draw",
+      "bytes": 398534,
+      "actualSha256": "298a5e2fe03d64c675f524454f9f2ba0a7fb474f63c4dabfbdc3688b39470409",
+      "baselineBytes": 398126,
+      "normalizedSha256": "5a1b2ff83d30ef9b187f6cb00b6da6d371d1ebe7443c6df197ca6e9864915fb6",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/102.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "yellow-batch-top-controller",
+      "bytes": 75405,
+      "actualSha256": "6d58f56ded39201a3267aa764cd664741440b2004d621f8e5651b44b8d0a94a6",
+      "baselineBytes": 75317,
+      "normalizedSha256": "6673f38a0eb7983ef9ce8ebbe274de3c6e97a2a2886aefb4369109e621fbc7d6",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/103.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "yellow-batch-top-exhausted",
+      "bytes": 78824,
+      "actualSha256": "ec448c4d9a7671da4c64319832df1a791b430250251e46e90db6fd6bd86e2a56",
+      "baselineBytes": 78736,
+      "normalizedSha256": "bb18d19d90379b5f1280ab00894f5b4e9971afec174699a65b236c09e02bf272",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/104.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "yellow-batch-top-hidden",
+      "bytes": 77581,
+      "actualSha256": "77fb0e654d06e698f3d2b89c7abd0770489d1bf756d9f9b4e824539fb882f151",
+      "baselineBytes": 77493,
+      "normalizedSha256": "dc19d692da3818a9e832d33afdeeb4b8e6a5dfdad5553e9d487f14c0d8227de3",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/105.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "yellow-batch-top-empty",
+      "bytes": 76523,
+      "actualSha256": "f6e88e7e3af2280b7f41f58a2eed0bcd1bd2030458f77aeeb9cca0690ebca26c",
+      "baselineBytes": 76435,
+      "normalizedSha256": "5d3391bf6be04e6990385ba090daeaab609b184eccd0be7159876e80cfa85be4",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/106.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "yellow-batch-top-multiple-leave",
+      "bytes": 766867,
+      "actualSha256": "5192f56ed64eb6983806dc8e0b5be252149859da78c473e5c20b44d2f4c7b26e",
+      "baselineBytes": 766139,
+      "normalizedSha256": "73f248fbdf2708dfcc0c56bcf284537163b3e2b55e8421ae508c8cffaa1e6049",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/107.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "yellow-batch-top-return-checkpoint",
+      "bytes": 363407,
+      "actualSha256": "4bff0f7e7f662671479d66f439ecced27475c6f8b0674ff19f2b4a51fcbe4fca",
+      "baselineBytes": 362999,
+      "normalizedSha256": "fee75ebfcec8d633596bbc135ca0eb124ef8d6905c159c4a10acb043ad91e686",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/108.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "yellow-batch-top-optional-shuffle-checkpoint",
+      "bytes": 363263,
+      "actualSha256": "54f909092dff98379d4648000415fc0dd962d5b8635dd709db9962a3d0611056",
+      "baselineBytes": 362855,
+      "normalizedSha256": "c40338a734ea0e85a449f3d5967adbf40e93384b853abb8e50c7c85f9809ed2e",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/109.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "printed-yellow-batch-natural-four-seat-real-search-LC01-deploy-private-top-restore",
+      "bytes": 61236483,
+      "actualSha256": "eedb2bff410817c18e8a40bb5c63d27449356a27bdecfa19ae995ed3b160a9c9",
+      "baselineBytes": 61195131,
+      "normalizedSha256": "921b1224cc2081ec432f57b1e353d978e7b3328ccc60e2823337a58804a48dc4",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/110.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "control-temporary-target-hide",
+      "bytes": 3304269,
+      "actualSha256": "7baf8783fb7b68da1624ccf896c7fe0d72702016a2a5184469f672d6544306ce",
+      "baselineBytes": 3302325,
+      "normalizedSha256": "5b0655a34f3a83c190c86469b1b95402078576b8ebe32d66e668dda63576666d",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/111.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "control-source-hide",
+      "bytes": 2312023,
+      "actualSha256": "7d1b1cec7dd71001306f3a9c1c0e6d6367221db2499b7d79bb046b80ddf9b200",
+      "baselineBytes": 2310655,
+      "normalizedSha256": "012476bc9694ddfc400031d378155c6c5d6f4b2ebd0490c700c458160b1c879a",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/112.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "control-source-controller-fixed-recipient",
+      "bytes": 17316276,
+      "actualSha256": "515dc9965ba25cd422a9c5ddf7160298256e6e6bfe07ad62bd514cac15fb3c40",
+      "baselineBytes": 17306140,
+      "normalizedSha256": "de4288fb52c3aed7fd626c36ad70b289df135c5252b0597726a3bf10409f5ee3",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/113.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "control-three-layers-expiry",
+      "bytes": 37566194,
+      "actualSha256": "e0fb1f82d767d68b6899d4619f48f76c718149c93795a728183519145f0949d2",
+      "baselineBytes": 37545050,
+      "normalizedSha256": "393f41fb739ef674a0bcb58df5132841fec0ce0df50b50c2c76690f2682ac6a4",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/114.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "control-lower-removed-under-upper",
+      "bytes": 37335299,
+      "actualSha256": "0f9a822f6d8d0ef17adf7ae7e23e2e2f158079cf4ad1d68a34b0be711dde993d",
+      "baselineBytes": 37314411,
+      "normalizedSha256": "0b9d38519a2e056dba867487b7a01735989bbdb251a106155aa82664859209ab",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/115.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "control-natural-four-seat-real-50-card-decks",
+      "bytes": 261421499,
+      "actualSha256": "eccc28b483d7d9f8c595d0ef241b7581b045a176abb6e57ace56f820eda0fd7d",
+      "baselineBytes": 261298867,
+      "normalizedSha256": "8e9b55ce411d34dc3e745441ddc373c1df194782b85995db818a78ab7ff55787",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/116.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "renown-merged-decline",
+      "bytes": 883430,
+      "actualSha256": "f1d74ea5eee77d085d6d9720ddda35e9a310568a07518a73e73d61e9336a6592",
+      "baselineBytes": 882766,
+      "normalizedSha256": "70d2f09419aa856c19b1698f4c0d6c6225e5ef07265b0d6c515cfc0b2050a7d1",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/117.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "renown-normal-win",
+      "bytes": 1298654,
+      "actualSha256": "821941a6e5d12043eca00c0c073b470afd33dce38baec99912a456fa0ecef603",
+      "baselineBytes": 1297670,
+      "normalizedSha256": "cb6bc02af192537b945b805abebc89b7b10f9fde8638ef8ccdd5b314711ba435",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/118.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "renown-renown-win",
+      "bytes": 1224304,
+      "actualSha256": "26b29780987ca68bfb5f15985a58d0d1b4f31900ccaff17c910d4acb661c8c15",
+      "baselineBytes": 1223384,
+      "normalizedSha256": "936cc3df06f78d287f44f757f0703dec71336b2c6c443c79bb6c6b9fb8f810c7",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/119.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "renown-response-identity",
+      "bytes": 1906718,
+      "actualSha256": "ff42181eab9e26e20ab80e67229f11cd3897e21590eabaced2f6d05e6bbdc81b",
+      "baselineBytes": 1905222,
+      "normalizedSha256": "cfa87255122d15df8958132f6ce1af80f295776e4af6832082a0a1d04a5fb4d3",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/120.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "renown-control-cleanup",
+      "bytes": 12957726,
+      "actualSha256": "5ad711fccd8e3fb55bcc82f972ff96a31f81abb040d95745e89c0fbf57b1ab65",
+      "baselineBytes": 12947654,
+      "normalizedSha256": "4a2067d22bc2f2e95daf23defa75487b2f701f79d5505edec941f7b35b4d439f",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/121.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "renown-natural-four-seat-paid-three-cards",
+      "bytes": 56201857,
+      "actualSha256": "759a71d85b05db707f05cbfe9f4ecbf6b784a937676a0d454603614eb8d79556",
+      "baselineBytes": 56160697,
+      "normalizedSha256": "1471e091bda6f7eb440472cabea603b881f9cc3889367868b5b82673676f9198",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/122.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "protection-paid-four",
+      "bytes": 16329541,
+      "actualSha256": "0433d1fc93ca952b2900c31be18dd68a67d5fd25fd186a1a43aaf0f58429ebe0",
+      "baselineBytes": 16318829,
+      "normalizedSha256": "8dcd62e78be7b6ee841409602b25b35489bc7779a51d39311a5bcf3a35cc62c7",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/123.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "protection-foreign-host",
+      "bytes": 1157980,
+      "actualSha256": "aa3d481a3d92923dd33303a11597cb633a8214a9722aa9d5764b5f17e0f18614",
+      "baselineBytes": 1157188,
+      "normalizedSha256": "c672b942642eb2ea05cdbf433b03d535df504771ac1314ef97a56e6bf7da7144",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/124.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "protection-response-return",
+      "bytes": 1340189,
+      "actualSha256": "fb843891d9c331743352aba78088034c0bff48bb7bdcb90ac107c1329c74c450",
+      "baselineBytes": 1339269,
+      "normalizedSha256": "6d7cc6216a189c8d4c6f937754b33d2e63b591d6c5fb8f33ad6b4d7d9ef28cc1",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/125.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "protection-response-hide",
+      "bytes": 1344914,
+      "actualSha256": "e8694ca3f31af7a5d1c40779b081d05fdb765c19121cc5304a677110920d7715",
+      "baselineBytes": 1343994,
+      "normalizedSha256": "e6d8471e015d62b873c2621a3c7c24946609bf5bad4651d75a484af2abfd2786",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/126.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "protection-source-return",
+      "bytes": 1348843,
+      "actualSha256": "4b4072794d8e9cd013fc2f13f194fe35b93187b61018d39788da8baa65cb3b45",
+      "baselineBytes": 1347923,
+      "normalizedSha256": "ef6160bfbe418ae8b941a5473e663144974b6ba4124caa286a91d63354d17362",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/127.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "protection-phase-loyalty",
+      "bytes": 697728,
+      "actualSha256": "9c1ee1d39485d4dd53b0909a4657c2dcc8444f13fdde0d7b35dac38eeb8b0b7e",
+      "baselineBytes": 697192,
+      "normalizedSha256": "30f3523bc6d7ccb60fab66f207d676a0019a4349c58fe6b27208d1fce886f9e6",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/128.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "protection-fire-purple-loyalty",
+      "bytes": 683441,
+      "actualSha256": "dfd195ea350ae56b6092c01c79318a405f89eeef09a54b20425c96972f022348",
+      "baselineBytes": 682905,
+      "normalizedSha256": "7be16e17506d9096f7b0e348a03870464ee94131386208fcda2d16b87d8c8f0f",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/129.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "protection-natural-four-seat-paid-four-cards",
+      "bytes": 286715125,
+      "actualSha256": "0cd0d651c8c45e2708db392a2a3be093ee354194314cee7cb294a794f965dc8f",
+      "baselineBytes": 286569261,
+      "normalizedSha256": "60214ca376dc1ed6a8676818ecc5f476e32da90069f48bfa62bcce90fa6e1120",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/130.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "defence-equipment-paid-four",
+      "bytes": 20113699,
+      "actualSha256": "ff12b4d8878e5141fb0f35287acc759239889ea5fc41c3302601f1f0966c3a18",
+      "baselineBytes": 20102475,
+      "normalizedSha256": "7d3326bb1b18cc0c170b490e3990d23e3c04d14cb1a202dc767a045704909672",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/131.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "defence-equipment-shield-return",
+      "bytes": 1475308,
+      "actualSha256": "6613a93134382c8b28ebb8d09f585bb9873f10e5fa4f9baf4718d14b044ca2e5",
+      "baselineBytes": 1474388,
+      "normalizedSha256": "80cb06a5d77b4695757cdc4832aab51d65695a026bb363666b9129ddba50e76b",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/132.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "defence-equipment-shield-hide",
+      "bytes": 1382272,
+      "actualSha256": "377ed7acc7dabf839d660fa8b409a917b77918e089b15e3db374460a10580175",
+      "baselineBytes": 1381416,
+      "normalizedSha256": "9e0172c795485d9e05070dd94707be23f37766ffe05e4432ad8cc9df857fe581",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/133.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "defence-equipment-vest-target",
+      "bytes": 2018240,
+      "actualSha256": "07fc4f6bcc2104076d379c7be93de87d878b6de53f01fe09e5e5936a99f34759",
+      "baselineBytes": 2017000,
+      "normalizedSha256": "3a8b5971a3b58efc475b9a02a1ce0fda40db5dd9db59fd5e097b6a0192572b53",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/134.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "defence-equipment-vest-source",
+      "bytes": 2027725,
+      "actualSha256": "cd364c90ba1cce09a3ff38faa11476149949f2c042e5af754e85f258bfd95064",
+      "baselineBytes": 2026485,
+      "normalizedSha256": "c5be8bafd5859a43d4ae21e15c4b1d2f0546bc205fe9a5aeffbe5a032941cf27",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/135.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "defence-equipment-vest-lost-defense",
+      "bytes": 1701405,
+      "actualSha256": "b1617e47a1420b4750c19f5143809149125deebe7b14f21dc64d56ec29858ccf",
+      "baselineBytes": 1700357,
+      "normalizedSha256": "ab1ae602779b11154bee71a900e06c143dce5235890f7600791c528b6f5dbc8d",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/136.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "defence-equipment-roles-targets",
+      "bytes": 2098351,
+      "actualSha256": "e0083a1589aa15d9860e5aa21ba2e58167e2e284aee9394838075125e5d9ccdd",
+      "baselineBytes": 2097111,
+      "normalizedSha256": "62394628e049ea1d16f35d8222cf0608de7db3bf31769b9c3c6a1dae82c2ceec",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/137.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "defence-equipment-blood-type",
+      "bytes": 1702910,
+      "actualSha256": "e84a2855344027b74353b87fad5da48249a282df104d958d33515a5f6a16e357",
+      "baselineBytes": 1701862,
+      "normalizedSha256": "61e9965c28a222e7c4eaab758177162cd791ac1c1819941231b3b13484a430f9",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/138.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "defence-equipment-cat-loyalty",
+      "bytes": 1302048,
+      "actualSha256": "708251708eccec1229158086240f36b147f93c6c0034838455fa9862c6f4e9be",
+      "baselineBytes": 1301128,
+      "normalizedSha256": "3df3fbc457d87ca17666873694684c0932572a8e215793f70d6617a853ca6b3b",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/139.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "defence-equipment-natural-four-seat-paid-four-cards",
+      "bytes": 285151961,
+      "actualSha256": "b334034a0212afd6d7ec1f601462dc076cc42b82f3ae582c9e53f3b605c25805",
+      "baselineBytes": 284997009,
+      "normalizedSha256": "b6ad62bbc89fcc917179f97cc280bf95f5f02e55f3d1ae354ff7ae599a82c9d4",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/140.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "equipment-abilities-paid-four",
+      "bytes": 5165641,
+      "actualSha256": "6fe63870224863513f022d73920f19ebe7acc033d49a4bb3237e21e746641a08",
+      "baselineBytes": 5162545,
+      "normalizedSha256": "b4693d8d6911d82650909cd8b63f1c89a610faccdd7446af38cad37596b848a2",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/141.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "equipment-abilities-knife-source-moved",
+      "bytes": 546449,
+      "actualSha256": "7e7636edcfdbd6e155a020508b548dafd3dce0e17060a34f29733d8bfc9fd102",
+      "baselineBytes": 546105,
+      "normalizedSha256": "0a710cd036d48b343092d4b7f73bd5fea2a37f3c0091b0fdab064a4623fd079a",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/142.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "equipment-abilities-knife-target-moved",
+      "bytes": 550338,
+      "actualSha256": "a0b0740e26b05f9408f46b6ce67f4f52671a6bda40e65d87dcd1b26440c436ef",
+      "baselineBytes": 549994,
+      "normalizedSha256": "7b5af1e49563119da17009a6d432f3e940a556c481dcd4d0935fb40391df6c0c",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/143.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "equipment-abilities-knife-paid-shield",
+      "bytes": 548141,
+      "actualSha256": "7f98311f8fbfb95729771f6b8c13c8ace67a4d1dd00fb3032e4fae7d2faa1279",
+      "baselineBytes": 547797,
+      "normalizedSha256": "d77ae5d0c3cf43261687ed38b62bb12836dd1453cd7f50aabb20cf54038c832c",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/144.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "equipment-abilities-blade-twice",
+      "bytes": 16252617,
+      "actualSha256": "2083f69e7b0ddc68d3a8cd94c97b19a20b27e723261107ef6f2a05bb57c49fd3",
+      "baselineBytes": 16242545,
+      "normalizedSha256": "a98b188f40cd23c3577121a407575c00dfbc4cea34cbc3fcb132723a585a8366",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/145.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "equipment-abilities-blade-source-left",
+      "bytes": 1969525,
+      "actualSha256": "8203dedd5bebfbac68715a52875eefdf240ee6527c90aac922bff2b0e06ad571",
+      "baselineBytes": 1968285,
+      "normalizedSha256": "64929c73608af188bfe9a206ed0eeb69d7abcdcdd33a14f3652892ef6f367c60",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/146.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "equipment-abilities-blade-host-left",
+      "bytes": 1961894,
+      "actualSha256": "bc7a5ee0632fe47bac1121d6cb28b52b797613b1495de4995047bb8c003d8381",
+      "baselineBytes": 1960654,
+      "normalizedSha256": "bc90123ba0950aa154c6c230750b67866c8d1dbca9edb0e1d32f73c156d60d09",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/147.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "equipment-abilities-blade-host-moved",
+      "bytes": 542445,
+      "actualSha256": "da060dd34fcf25b7282274a10441847c4e2b187157b2e37da2165111308ee219",
+      "baselineBytes": 542101,
+      "normalizedSha256": "1d55ffeed2008ed1b70ba7adf9e04914e11bff3728c4f87d5e5e7be5d7d801b0",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/148.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "equipment-abilities-blade-host-rebound",
+      "bytes": 542743,
+      "actualSha256": "c5f8ec30c32dd1819a868b0e1d7ed613a0b2d35ef29d6cbbbb05e1ca9e209115",
+      "baselineBytes": 542399,
+      "normalizedSha256": "011a69a265d10ae0f5056c29f1ff8c116fd4be0deedb0afc97b4dd9f93fadf5f",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/149.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "equipment-abilities-blade-control",
+      "bytes": 755878,
+      "actualSha256": "8358911021afcc30447c1a428a4048e96abc411c7417b474bf29f2190c435ec9",
+      "baselineBytes": 755406,
+      "normalizedSha256": "d84d3e761bcbf84e56ae6fb0332921d6e5afc90e300ca2bb077262e8ff9c763a",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/150.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "equipment-abilities-water-group",
+      "bytes": 18428456,
+      "actualSha256": "b4b2c2f46b135c7e5f0a89eaa022e76a83fb39c438da9e2c68a59f4448322c22",
+      "baselineBytes": 18417872,
+      "normalizedSha256": "833f36e4897ac0de016215c6b54334a65c7a70b23dd4de2cf8db5dd00aa3f146",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/151.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "equipment-abilities-water-source-moved",
+      "bytes": 541075,
+      "actualSha256": "df40da30f894ae15db628c7619c242223d575713805d54d01c4811aff5833079",
+      "baselineBytes": 540731,
+      "normalizedSha256": "fd3791ea9abae2947354569745e2c2ac6f58bf7253be09211f24fd32e768359d",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/152.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "equipment-abilities-gun-win",
+      "bytes": 631693,
+      "actualSha256": "aa52776c0dda8382021f3c8601b7ed2debe91bb73170873dbdfd1fe8ccd81399",
+      "baselineBytes": 631285,
+      "normalizedSha256": "730fc0ca9ed9a1c40e83678a3974f1969563c8603dee80c7c81a476502c0d44c",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/153.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "equipment-abilities-natural-four-seat-paid-four",
+      "bytes": 139083870,
+      "actualSha256": "10ff6d80953c0309f636d02498277ddd5869bed91c5a6016a7f6bc341dab7982",
+      "baselineBytes": 139000790,
+      "normalizedSha256": "8bd975d95c4ab7facc31eeec01a6e222f27742a8872233be11c8f160ba831ced",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/154.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "equipment-abilities-controller-only-hosts",
+      "bytes": 4044846,
+      "actualSha256": "f14a064e56cbe4341e38cc79f6bff7b8651081cde9814c8ee5850574f47d2193",
+      "baselineBytes": 4042582,
+      "normalizedSha256": "88ed598d8526682574304c271a3210636505b1614613ec020e714de8405f08bf",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/155.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-deck-paid-four",
+      "bytes": 2053324,
+      "actualSha256": "1e4b374154c2833fc474d8d6ff94edbb6563681859b3775cda1162023077fe91",
+      "baselineBytes": 2051764,
+      "normalizedSha256": "429d0da974818dc6c99e7d53dc8d626b77eb675b9a5ddbe61bbb8b801b85d696",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/156.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-deck-research-private",
+      "bytes": 920427,
+      "actualSha256": "ede9f52bd8370c2af5668d44c8ed6cf97c89dc487aa141ea64b01e3ae9c966e8",
+      "baselineBytes": 919699,
+      "normalizedSha256": "2bb70f27fbfcb0d508d92dc9f7996ee9311a3e89f66aac1d5d0a59faa4f401ca",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/157.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-deck-airdrop-private",
+      "bytes": 756558,
+      "actualSha256": "6014864ef85bcc77d01b87514288d21019f9b9c8a6f284de294793cb8e35aae9",
+      "baselineBytes": 755958,
+      "normalizedSha256": "d6e186a192f4be124ed4b9b1eb4059990853dc7c1c7c6cf1b5b98530dbff67cd",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/158.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-deck-empty-search",
+      "bytes": 494961,
+      "actualSha256": "4183fb6927b7955e65bece0232f6f86cb97877380d0f14bd45076ff18f954789",
+      "baselineBytes": 494553,
+      "normalizedSha256": "331f2a1443a42cbdd6a209b22b7baa3f0d58252aa6be25581a5557b247f4421e",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/159.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-deck-research-depletion",
+      "bytes": 473212,
+      "actualSha256": "4763fc33a67f119d4392a39a1870bf43838c4fcc97ebe313f02d35c31bc5e4ce",
+      "baselineBytes": 472804,
+      "normalizedSha256": "49cc8e2321fc713b30f7670bf13829738147abe4f062b5afbfda2ee961ed08ad",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/160.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-deck-dog-invalid",
+      "bytes": 1139831,
+      "actualSha256": "93a5257aa17c57109bd2750dc72cf25b8da6a42a9c16aefcb71d58c61814bd65",
+      "baselineBytes": 1138911,
+      "normalizedSha256": "2509714268f8d8ea7544c2644398184a13f1111e9a5b579b72eba26fb85c9071",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/161.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-deck-dog-self",
+      "bytes": 505181,
+      "actualSha256": "da13822c3714175751e6767e82e020f99b0e232bc28c568fda569d5ed8c42d95",
+      "baselineBytes": 504773,
+      "normalizedSha256": "da99f07279d3731b2c30092f326c5d808a06e4cbf91ec4624480c7c4a15fb972",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/162.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-deck-controlled-not-owned",
+      "bytes": 505571,
+      "actualSha256": "b1caa0d6e2ddfabf9e32b22ee48d975c5500aa4d859b5681d364672e13382cd9",
+      "baselineBytes": 505163,
+      "normalizedSha256": "f30c9437669a0b179d85d88929ad065ceadf3899c2ff9d2198c3aa280309108e",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/163.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-deck-offering-accept",
+      "bytes": 1000379,
+      "actualSha256": "11176fc99b53daddca373394334c40e4a2331988efab73cd635a027618bb2fd9",
+      "baselineBytes": 999587,
+      "normalizedSha256": "8956f4120c342847689dbfab2c4587e91473cbd490c432e971ab1ed854aa6639",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/164.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-deck-offering-skip",
+      "bytes": 584993,
+      "actualSha256": "ec1b6110c47555cfbc99b99111383a6f462290b676c0cd6f69939ab8fec82997",
+      "baselineBytes": 584521,
+      "normalizedSha256": "3211002fc84df728bc825419b1521bfcd67b33b87ecb017e8260f507239d771b",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/165.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-deck-loyalty",
+      "bytes": 409812,
+      "actualSha256": "7072334dd7b6eda1f55b0adbbece2d1cfb344c645f48e37a6a2b10c3d09540b7",
+      "baselineBytes": 409468,
+      "normalizedSha256": "01203cf3942d17e11a4c618e39a14de43f8452476ffd18218867db723b6266e6",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/166.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-deck-source-return",
+      "bytes": 1021799,
+      "actualSha256": "021af679a9c70165e369efd87517bc6e0a87eb12eff2a5d6028fb6d48d842664",
+      "baselineBytes": 1021007,
+      "normalizedSha256": "ee1f97aff520f9f0944b10afacedd6d6d7c55ea17d56403fab1d674de41781f5",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/167.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-deck-real-JZ27-simultaneous-source-first",
+      "bytes": 866284,
+      "actualSha256": "b7f4021a2a8b478dd28c5c201878a3189382288dbaa4cda02a3754890fa4455b",
+      "baselineBytes": 865492,
+      "normalizedSha256": "b0e762874f7b603809b9d79ab524d0fb44aa7d261feb1db2f1c47951d91f15c6",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/168.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-deck-real-JZ27-simultaneous-offering-first",
+      "bytes": 866286,
+      "actualSha256": "eb0a790b1c7e2ae16309e01593923496ac394909503c8fc26034221450eed774",
+      "baselineBytes": 865494,
+      "normalizedSha256": "c025f5be46ae2ab0a03620c7a36755f9feab0aef3299dd06b78b959e4bc3f707",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/169.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-interactions-hacker-accept-target-0",
+      "bytes": 544998,
+      "actualSha256": "a952e764149f3fed5f589addd7e6ecbab1238edf51e4529dc30c3a80de4233dd",
+      "baselineBytes": 544462,
+      "normalizedSha256": "6a6eb20b8c47fdd0a29ef14a427e621b6c0a9d5adeef480dd32ee83d631c1d60",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/170.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-interactions-hacker-accept-target-1",
+      "bytes": 543469,
+      "actualSha256": "9a1ece8ff94115ce2ba22207d2315b346c79e95ad01e0282278e2a87eee2742a",
+      "baselineBytes": 542933,
+      "normalizedSha256": "107b1c936587a27d4579cfcdeca046aaf89676c372bbf2bb467285f2a029b327",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/171.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-interactions-hacker-accept-target-2",
+      "bytes": 542965,
+      "actualSha256": "05d4c76ebc4a4f0f5a284dcb073e80ddef1e2025056ec96f14b0d73071b9982d",
+      "baselineBytes": 542429,
+      "normalizedSha256": "1843fc6151714eb2d3868cc47c3aba7ac9a019d426beb57ea3b49e5cfeb954b6",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/172.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-interactions-hacker-accept-target-3",
+      "bytes": 542983,
+      "actualSha256": "1d0763cbc436999b87c05ac7c39f720691fc9d94c1a6255524c43782838a54cc",
+      "baselineBytes": 542447,
+      "normalizedSha256": "e69ad230fbe6d08f038cc952f9d7dd6a65572eb39c307c94b225e751bfa7d4b7",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/173.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-interactions-hacker-decline-target-2",
+      "bytes": 541361,
+      "actualSha256": "d443c3bd015fdd203fe0224f8b144dc25ce3f15e7c2c1cf4ab18816bd1ea3099",
+      "baselineBytes": 540825,
+      "normalizedSha256": "d94571cdc1b6bcb757826186cef1f113119a695bd5765161b09b4663ed315596",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/174.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-interactions-hacker-source-return-target-2",
+      "bytes": 1037505,
+      "actualSha256": "64cc0bea2f0e3c283adaad19b51fdb79971c97f13a8d81a4b120e02c317a17f6",
+      "baselineBytes": 1036521,
+      "normalizedSha256": "e33e85c3ade07d5fd2cf8027b0cba2cba1a09fe4728c1729911d4d9fa2612f0e",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/175.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-interactions-hacker-foreign-discard-target-2",
+      "bytes": 543415,
+      "actualSha256": "34835ca457706e19a222531e719e3dff7eeb90aee8bb3e53b5be064e1051cb1c",
+      "baselineBytes": 542879,
+      "normalizedSha256": "11c62efe790c90d1c1f3a617cbcde40c2d87d9f8d1fc5d814c8786894405e1fb",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/176.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-interactions-hacker-inspiration-accept-target-2",
+      "bytes": 792617,
+      "actualSha256": "57422250d225de241ad64b9dd21a1e8037c0f1820f642cfef778c1d29e9bf3f4",
+      "baselineBytes": 791761,
+      "normalizedSha256": "9fe4fc93a40679563ef3cebe5afdac29b172306541793bd1a8fc587bed95b60d",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/177.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-interactions-hacker-inspiration-skip-target-2",
+      "bytes": 553313,
+      "actualSha256": "164791d60107889a699ed923934a324b44c8d75abcfad459174a6b64d8d8e875",
+      "baselineBytes": 552713,
+      "normalizedSha256": "dca0911ec6a0e91e78ddb95700eaddcbadf177b037e137ddf8156dba89b68e8a",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/178.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-interactions-hacker-inspiration-unfunded-target-2",
+      "bytes": 487968,
+      "actualSha256": "8a1dcc478dffb2e34107973d604f2eafa1a7cf1b5a71f95c8d907a190ebfa940",
+      "baselineBytes": 487432,
+      "normalizedSha256": "0d61dd982d3da8d4a290deb973a26ecdfdf8e0e0af604e14bd34f330cc3ab9d8",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/179.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-interactions-recover-ordinary",
+      "bytes": 826953,
+      "actualSha256": "d740385d98dd42fe58cf25a5a6472c513bee2eaad6e7103ddc4355e785bd4503",
+      "baselineBytes": 826161,
+      "normalizedSha256": "3e7d7f002c77c75be59f360039214d9e35fe8b0ff3ff125d6f3cba3b15b35f71",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/180.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-interactions-recover-inspiration-accept",
+      "bytes": 1169587,
+      "actualSha256": "8b945dfc664b8be54be395b621f358fc44d37556603ce91d440fe21501e4dc5c",
+      "baselineBytes": 1168475,
+      "normalizedSha256": "48ede7c9fcc7fb8eae1babd90651a3327fbbfd784c82f052b2f955860168c76c",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/181.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-interactions-recover-inspiration-skip",
+      "bytes": 886256,
+      "actualSha256": "904aeabb46a22c369d5ef3db20059cbd90adddc9adcee7dbb1b7737ede862328",
+      "baselineBytes": 885400,
+      "normalizedSha256": "11a1a60ff6827dc518eb281a306eaee41fcfccd02eea80479743b62fe9e5499c",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/182.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-interactions-recover-inspiration-unfunded",
+      "bytes": 741997,
+      "actualSha256": "537dede831471d6911403de3d8c30dd77bf624d67897a627ad292745d0c1b593",
+      "baselineBytes": 741205,
+      "normalizedSha256": "a6b69017be9e151cebd64a0777bd6096697340df4f03cc0da61f9f4474b46d37",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/183.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-interactions-entry-mill-0",
+      "bytes": 631716,
+      "actualSha256": "ebc4e3440582f4f94662090491a2d2ba3b2c4e0c01015859864bfba25227e9cb",
+      "baselineBytes": 630988,
+      "normalizedSha256": "337592b665255b03363720a43cf0670d2cb93519cb8daebf16a8e5c631aff6d4",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/184.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-interactions-entry-mill-1",
+      "bytes": 635514,
+      "actualSha256": "a30a9363de37b7f981824f29c870d31699611b7b2702dffc9da2ecc2cfc27a7f",
+      "baselineBytes": 634786,
+      "normalizedSha256": "0b776ed6b272b239c90b228f5d063339e6c88510c20b455ad32b012a3753fbb5",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/185.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-interactions-entry-mill-3",
+      "bytes": 642773,
+      "actualSha256": "8c997002bc62f442f6133ca96d408782f585407911863f4abe18bf3867a5ddb2",
+      "baselineBytes": 642045,
+      "normalizedSha256": "08c39fc75231997e5b05a96b6986d57e8e3838d4db2fb3dc8d98841faba1facf",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/186.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-interactions-amnesia-one-target-2",
+      "bytes": 413452,
+      "actualSha256": "4221513248bb6770746912b2fb839805e20f774f4ff6bc6414425d9191f0e28e",
+      "baselineBytes": 412980,
+      "normalizedSha256": "7c0cd5c5e1f08a3e55aa293c234f69db80f97e4a15f7fe2202af97c63ce51014",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/187.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-interactions-amnesia-random-three-target-2",
+      "bytes": 422538,
+      "actualSha256": "d6543016cb412285c9498167571b135e63e5b179eab7f56740bfd96375841ba3",
+      "baselineBytes": 422066,
+      "normalizedSha256": "ad215d72cbf472375dfd257c0e662c58751b0b9f836e8194162d9ea052a6dda1",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/188.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-interactions-amnesia-foreign-owner-target-2",
+      "bytes": 413892,
+      "actualSha256": "f2160555c1bbd98245288b6adf4827e1d09a693930276bec9b3d816e746f1768",
+      "baselineBytes": 413420,
+      "normalizedSha256": "12f12d67dafde472992a0002900bf571165c486a442913bc51cb06b30c2de34a",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/189.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-interactions-amnesia-empty-target-2",
+      "bytes": 408831,
+      "actualSha256": "bb0caecea6539f38c65b520cb82f35e66f73fddf26ab8524b229c496860af6bd",
+      "baselineBytes": 408359,
+      "normalizedSha256": "85154dc7be79b2236d8e23a2ccda45b95a407033eb1b83354131d0af0c874540",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/190.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-interactions-amnesia-self-target-0",
+      "bytes": 463199,
+      "actualSha256": "52fd2fa3f11318aad6a1be9479cfd1a042768d6d694749cd3b9cc57ad9b59e5c",
+      "baselineBytes": 462727,
+      "normalizedSha256": "9caa09d1aa360d0354095cb8a3f4cf4fbf6e41fc3c8187ed8356f2a7c52b5cd4",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/191.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-interactions-prepared-optional-shuffle-accept",
+      "bytes": 127110,
+      "actualSha256": "6a5d209a8fc319eafbd4089f8bf7e6c2108ac7f4cbfaae8f5378bd05bdb37937",
+      "baselineBytes": 126958,
+      "normalizedSha256": "3f64bdb2f3669287e19285067675e4bcb442c72c65fc604788e3a01e5d70439c",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/192.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-interactions-prepared-optional-shuffle-decline",
+      "bytes": 127093,
+      "actualSha256": "d7735830b8b99cf41a68ee9c29cfcc8aa79f87afd31564b8a3772355674b3c31",
+      "baselineBytes": 126941,
+      "normalizedSha256": "2734a37a0f39a6ced09b569b2deb4ab890fc8a3a37f7d3ed3b758e90c0780785",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/193.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-interactions-normal-inspiration-play-empty-hacker",
+      "bytes": 798913,
+      "actualSha256": "5175f175f1d0d52f56b30b7ab6394ce69d6d36271fffb96926704e09de0fb680",
+      "baselineBytes": 798121,
+      "normalizedSha256": "0ab58d89a1888606109066aaefba360619757f4294f252c5f97693fa2594dd80",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/194.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-interactions-prepared-stale-recovery-trigger-still-draws",
+      "bytes": 706189,
+      "actualSha256": "8cb0ff58630d5e354d5059f98a7ba9096d0a1b0292591a5425980c35332d5f58",
+      "baselineBytes": 705525,
+      "normalizedSha256": "7645785b1eb576ce204b8da9c5ae8e4dc1858ddfc2057b2cdbde58d190174105",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/195.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-interactions-natural-real-50-card-dealt-hacker-deploy-only-printed-two",
+      "bytes": 11902725,
+      "actualSha256": "a2c9fe16ceec707c0f36196fb1b18ed84d28fb68059e77deec8c16ea9bcd06fe",
+      "baselineBytes": 11891517,
+      "normalizedSha256": "d9c5764cfcd1b1b5ab4d56c3f8c4be66bca637b0e62bdec71e0f5066cb0f6de2",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/196.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "purple-tools-painter-exhaust-only-discount-play-asset-character-no-death",
+      "bytes": 821371,
+      "actualSha256": "e9821800e02b99aca1d6100bc7671d05b39cb0c23826d8a67a2b204bbd8f9901",
+      "baselineBytes": 820579,
+      "normalizedSha256": "04eb2d107d35fa7b46b3e5c563d6bfde7d35f83026afeb59348320cab6efd263",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/197.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "purple-tools-conceal-asset-do-not-consume-paid-reveal-does",
+      "bytes": 1298699,
+      "actualSha256": "5969bce0a13b6321c27e92d23b83d9b4cb1b5226a323049bad6ddb2ea20470b7",
+      "baselineBytes": 1297459,
+      "normalizedSha256": "6f566d604e26a968763172fc36fceb289e9894629c071513152c73e1348d8373",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/198.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "purple-tools-legacy-reduction-excludes-paid-reveal",
+      "bytes": 1045417,
+      "actualSha256": "11f36ef0d843672ea5b22ec2f9284e445f9305fe32977a020da65c7480de62ec",
+      "baselineBytes": 1044433,
+      "normalizedSha256": "ddf042fa9bf4eeafd07f249b174a880b9da797c17a28f9934cda32ac37178c13",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/199.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "purple-tools-real-DQJC108-win-free-reveal-keeps-discount",
+      "bytes": 1070330,
+      "actualSha256": "321ce32fbb71981b6740b7d163c52c550917b3b9d520e55cc4fb79301e63c6c7",
+      "baselineBytes": 1069282,
+      "normalizedSha256": "12d2e16fc3b8429de9c322a4fccd29f32c47194b1c1c1f67f40f642cc37963bf",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/200.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "purple-tools-discount-not-consumed-bad-target",
+      "bytes": 522519,
+      "actualSha256": "d253b890cd761dab5efb7e679460e87723133f5cd75ed10a319559c39bc4b315",
+      "baselineBytes": 522047,
+      "normalizedSha256": "aed1f38406b14efa15b826c40d3995fe713dad82120c2b9f06b1e0f2ff70714d",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/201.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "purple-tools-discount-not-consumed-loyalty",
+      "bytes": 511577,
+      "actualSha256": "802cfd82a76869dcb94ab4ae51b69004385eb5a2593f0d1bf46383db04a8a8ae",
+      "baselineBytes": 511105,
+      "normalizedSha256": "2ce41e194c0fda2c209a5f1dcd94a0a26b15220218580e85f51eb82d6a997694",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/202.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "purple-tools-discount-not-consumed-no-money",
+      "bytes": 509865,
+      "actualSha256": "3deff47e7e40d84a99589d410681499d883ed341078c73b5f3dac96901242339",
+      "baselineBytes": 509393,
+      "normalizedSha256": "7d4b8bcb37991f85e9be5e3c515172ebc140b65254a29d2bed2228569912bfe7",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/203.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "purple-tools-discount-not-consumed-nonpurple",
+      "bytes": 792759,
+      "actualSha256": "419df46082df79df1191c648f7b4a097153f4ca6f3d085a297a894ced948c292",
+      "baselineBytes": 792031,
+      "normalizedSha256": "78c33b948a25e4f6625d0d8f171aaac7f210c3b7a5deb69e9b61de2215a25e6b",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/204.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "purple-tools-discount-not-consumed-other-actor",
+      "bytes": 1488284,
+      "actualSha256": "17006e898b66a3c2c1d4301083a781857cec4db7f4ee05997173b1cb10d2b926",
+      "baselineBytes": 1486916,
+      "normalizedSha256": "211645f7732c1aa5a349a5de9b67f3f32ff6549e00bd6c71c16def020d21f6af",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/205.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "purple-tools-stacked-discounts-clamp-zero-consume-next",
+      "bytes": 1181846,
+      "actualSha256": "49a7c7c25467f01cd691aad9fe0ba2b49f69a9caaed81172fcf68bbc36e09992",
+      "baselineBytes": 1180734,
+      "normalizedSha256": "ab0b550b61ac40b83614f2844ee728ba216ee15bd782e03c0a9f8c3cb30eca82",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/206.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "purple-tools-returned-source-keeps-declared-controller-discount",
+      "bytes": 831111,
+      "actualSha256": "da3dce94e7f4755d7cdc1bddf3521478a4db1f5e3e1ed06969cab7fa932e3182",
+      "baselineBytes": 830319,
+      "normalizedSha256": "5d0e23954c9f22f72280914ff368538d1197e3764376fba3270980289f5896cd",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/207.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "purple-tools-turn-end-expires-discount",
+      "bytes": 9390543,
+      "actualSha256": "b39676760bcfd8aae3b86033a46455e839f7e0ec616a25689416abefa4bbd52b",
+      "baselineBytes": 9381047,
+      "normalizedSha256": "869dc80b67b60cdad3b62bcdff3767c4428c17ebffb868b11098dfab8eb260c6",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/208.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "purple-tools-collapse-seat-0-asset-owner-fresh-instance-privacy",
+      "bytes": 412620,
+      "actualSha256": "aed459fe1d68fb626747ba0aa3d7b99703061c73bdbc958c5ef09dc48ddfad58",
+      "baselineBytes": 412212,
+      "normalizedSha256": "bc8d59b130a1bb33176becbc8a33eee3c7f2d304e0a2c0bf485a8bd801fab9c6",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/209.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "purple-tools-collapse-seat-1-asset-owner-fresh-instance-privacy",
+      "bytes": 412613,
+      "actualSha256": "9cc3b2cf023443e1e127e9cd83d78c987beb825d552dbc8bda5f6efc698a1b94",
+      "baselineBytes": 412205,
+      "normalizedSha256": "9f61766e8964f98f9cb30804ccb55bd9051417b44757f31f5b649b4bedf6c79c",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/210.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "purple-tools-collapse-seat-2-asset-owner-fresh-instance-privacy",
+      "bytes": 412613,
+      "actualSha256": "85911dfe9caef19edb55b8cd5fd027d3a7afa96598fda307b7ce491e1bea4d8c",
+      "baselineBytes": 412205,
+      "normalizedSha256": "e73655446905cb5ec763d0ce7e6126fece9d54d3b6a287737540497e65015af6",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/211.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "purple-tools-collapse-seat-3-asset-owner-fresh-instance-privacy",
+      "bytes": 412613,
+      "actualSha256": "c448dfb9b7733799bb2537ed6452a2dd8477911bb6ef58efb01b638f076118e4",
+      "baselineBytes": 412205,
+      "normalizedSha256": "35c5b3ab48d0a9969f71ad2c272ac4341ea5aed99de91e5efded00089aa187f2",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/212.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "purple-tools-collapse-reject-character-atomically",
+      "bytes": 161670,
+      "actualSha256": "b7fa026bfc23e765b9c64ccedcf759aece869507481fc2c8903ff6988f48dc73",
+      "baselineBytes": 161518,
+      "normalizedSha256": "ab16d747ccfff459d85819ca2245b9411f821ec8f8ef81a86fac215e0f6dcb7a",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/213.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "purple-tools-collapse-reject-hidden-atomically",
+      "bytes": 159593,
+      "actualSha256": "f2ddf803de3f67b496d9fdf52ebfcff9d166f854c435c538bcaf46547663253b",
+      "baselineBytes": 159441,
+      "normalizedSha256": "46641b84c92055e633719e8f79f417b7082014e75dbe4eb04e81ff9f7892c9bc",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/214.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "purple-tools-collapse-reject-hand-atomically",
+      "bytes": 158534,
+      "actualSha256": "b97197defce1e6512e27bc3ad0b0d026c565d32ce7577c40d6aff07183fe89a3",
+      "baselineBytes": 158382,
+      "normalizedSha256": "f7c500ceac50510930ea294b6869bd1408649fad093acdaaac1716438ecbce43",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/215.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "purple-tools-collapse-reject-grave-atomically",
+      "bytes": 161504,
+      "actualSha256": "dd8982cc4e56fb295a77d4aa794471c4659f39942b8c3d12da58ab8a01027697",
+      "baselineBytes": 161352,
+      "normalizedSha256": "a7507010a979e59fc8548b715d26e6e087e203d70785c93c293a304f0e42b9f1",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/216.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "purple-tools-collapse-reject-region-atomically",
+      "bytes": 157332,
+      "actualSha256": "ae1a6dd76834d0d1677bcd914524118de892b12dd11bbe92f7ba9d202273d2f8",
+      "baselineBytes": 157180,
+      "normalizedSha256": "c692aca2395ee4c10c527fcedb67028dcb6d75f559d469a3543a1d4abc7d38b6",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/217.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "purple-tools-collapse-reject-player-atomically",
+      "bytes": 157326,
+      "actualSha256": "a33f7a8829aa806788be2e10adfab6d3e004c88a5d90f443fa1d4fb1766c7350",
+      "baselineBytes": 157174,
+      "normalizedSha256": "a5c7db8c71593dda1ea8810b003fc1e0e012594a64915fda763dc121b9b48c45",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/218.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "purple-tools-collapse-reject-missing-atomically",
+      "bytes": 157345,
+      "actualSha256": "ae69d61ba58ffd12430f7ae934506d4a152d4389dab8946b82068bc8c7c7375c",
+      "baselineBytes": 157193,
+      "normalizedSha256": "f0f5876549bd31f72e0b8d75487e51b0f7fba638ab9860409517ade79b0b2488",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/219.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "purple-tools-collapse-real-control-attachment-cleans-control",
+      "bytes": 816175,
+      "actualSha256": "d457bb3998b23dc8a0a8652a06b6430b104b7f41af334e89fac41788958ebd1f",
+      "baselineBytes": 815447,
+      "normalizedSha256": "3385096ee4e6fc53e1d6569833932f2ae111b27181798823771f96580d2b636b",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/220.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "purple-tools-destroy-armor-settles-wounded-host-real-death-trigger",
+      "bytes": 841666,
+      "actualSha256": "2145b4a46de70cd5bc57113cb84381a0c392a36e53a81fb276107911273e10bb",
+      "baselineBytes": 840874,
+      "normalizedSha256": "f6339dcbe9b02ccf45cafba207e0e3e82d7ecbce8ef7f5e8476a5fdc192d2632",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/221.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "purple-tools-real-host-rescue-stales-attachment-no-refund",
+      "bytes": 1043301,
+      "actualSha256": "7384abf677c8a34214e2532b0ed8f04eeeb3d6e0fac7b212d8c6c504a093e133",
+      "baselineBytes": 1042381,
+      "normalizedSha256": "42448640bee54a7f19f50f2b41f7f63d787424d4a7a563f5a7d2a9df919c7734",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/222.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "wound-defence-hermit-no-assets",
+      "bytes": 405514,
+      "actualSha256": "81fa78fdc512b8db0dfa1e91662407993167dcf4c8c0b62fb4c6afea4fb35114",
+      "baselineBytes": 405106,
+      "normalizedSha256": "e594b5fc6b2b8c0299f0690571c5eae0a0401d0c4ea4452006d3a0086de98673",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/223.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "wound-defence-hermit-controller",
+      "bytes": 437777,
+      "actualSha256": "cafaa73cb4058233e35b5c71f10420021406b43dcc4f90301dcb67de3b7c35dc",
+      "baselineBytes": 437369,
+      "normalizedSha256": "705c4138f841f6fa49b171f41402a86119a14d7ea3f10ddd4e60cd06f2061638",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/224.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "wound-defence-hermit-stack",
+      "bytes": 806673,
+      "actualSha256": "07c5563baefd62f3ba8f57d39c3c7a6e9c537a8b413c03527170154887e285cc",
+      "baselineBytes": 805945,
+      "normalizedSha256": "322d44e29c9fb2a8cb9112a8b4f90961997077e253b784fc864a6373833d6185",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/225.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "wound-defence-hermit-source-return",
+      "bytes": 890311,
+      "actualSha256": "0f069034e397d7b54e25fca41325a7fbef305d700f7679f6f50d6f1187a2657c",
+      "baselineBytes": 889519,
+      "normalizedSha256": "ca68286440fe958e023ee8ba09fb920f360cbf0cfeac50192b7a2f52847706c3",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/226.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "wound-defence-hermit-target-return",
+      "bytes": 1240351,
+      "actualSha256": "556605634d569ef10cedace1a0654d57e544cf8c3ac8a729521692001afb9bce",
+      "baselineBytes": 1239239,
+      "normalizedSha256": "ca0c2fb8d1f3448def0cf47185a1e91b11e5f9f201cfa7a2755de5d84a6008dc",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/227.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "wound-defence-hermit-reject-self",
+      "bytes": 158522,
+      "actualSha256": "ad1be556c9cfadcf0760f36489ad93b1cffac9db36c82bf5498fa279b6b8be02",
+      "baselineBytes": 158370,
+      "normalizedSha256": "3c7fa73bc245cb910b20806b58412533b8b16d90f74437468e35c396473458c2",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/228.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "wound-defence-hermit-reject-teammate",
+      "bytes": 162891,
+      "actualSha256": "11f7721ed2e6d33e629042a1eb95fb460a19f32655368ecae914a8d8e3cecb51",
+      "baselineBytes": 162739,
+      "normalizedSha256": "822e156368667db35ff30bc0aa5b07b8edd4f397f82b9fc0e9e90919af611456",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/229.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "wound-defence-hermit-reject-enemy",
+      "bytes": 162849,
+      "actualSha256": "1e9f6149a310b290d808e8af8aca59a8eb5de7e0815800a30f857bdb28252b55",
+      "baselineBytes": 162697,
+      "normalizedSha256": "b6d5bddf49f4772a76b390db093b47963f8cbf8a1e99bffeb448a601f0b52f19",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/230.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "wound-defence-hermit-reject-other-region",
+      "bytes": 162934,
+      "actualSha256": "3e599affe0a047132b4cc7c8d1611e6548d84e98e8cb9593dded08574ad05f9a",
+      "baselineBytes": 162782,
+      "normalizedSha256": "13f679b0ccef36051ef4add71cac30591b83a164819b327c0b8a5ee7a8363c3b",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/231.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "wound-defence-hermit-reject-hidden",
+      "bytes": 161778,
+      "actualSha256": "f5f0dbd54e25909777ce0286399b029a0c086d3d77c685e9f309a6eec0451350",
+      "baselineBytes": 161626,
+      "normalizedSha256": "337f2ec6794165affe557a4ac786fa97832e9ae10c45498c2c7fb93bd99b6367",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/232.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "wound-defence-hermit-reject-asset",
+      "bytes": 160459,
+      "actualSha256": "de9bec68d9ba9cd3ba00c6ceea6b803a8a911e3c657ff213a8f7131319f457b4",
+      "baselineBytes": 160307,
+      "normalizedSha256": "767b3e5a75bb2a14b3d1c218f2da038867295480c32b844397dfcf04d2ce3110",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/233.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "wound-defence-hermit-reject-hand",
+      "bytes": 164800,
+      "actualSha256": "78f880b1cbadd4caf160667adcd019303c8eb6605b104bf35ec09ca0ed9c06f6",
+      "baselineBytes": 164648,
+      "normalizedSha256": "4a777743034cd49d351f84615c6304f559bb131ad9d24c0f355be74ddf684f70",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/234.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "wound-defence-hermit-reject-missing",
+      "bytes": 158567,
+      "actualSha256": "b1f9746b701c49c097ee7ddb0a8039753cf0a0a3f3063cb49e0a820568b9bf81",
+      "baselineBytes": 158415,
+      "normalizedSha256": "bbf6ce97e6bde22aac644bfdaf34ad6118d9b96c78b8df583c88e4909a04bda6",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/235.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "wound-defence-prepared-hermit-target-moved-cancels",
+      "bytes": 376761,
+      "actualSha256": "745ee73d3ec4590f5befcf0cc654d59721b879f4aadf5b0dccfa891842f73393",
+      "baselineBytes": 376417,
+      "normalizedSha256": "403706584fac545e32b7d2652fc81c142262587fc7354c9007a1aca646287677",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/236.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "wound-defence-prepared-hermit-target-controlled-cancels",
+      "bytes": 376952,
+      "actualSha256": "fe5fbc9e6dc0f48f5e52561e475095a2c4efb61032bf45a9e21a51e2e14c7594",
+      "baselineBytes": 376608,
+      "normalizedSha256": "d75c42e97d53674462d75db7bc5f4d3ee34986d9acd5749b4dc3621c1d816930",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/237.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "wound-defence-prepared-hermit-target-hidden-cancels",
+      "bytes": 372407,
+      "actualSha256": "075160b0756003967dade50b5804c9d0b87c8bcb8b1891996acdb858d10456b7",
+      "baselineBytes": 372063,
+      "normalizedSha256": "d9c09114281d7ccf5690fb37cb58656328da2c5c49174b189a40cc84fa22b8f5",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/238.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "wound-defence-real-murder-death-wound-normal",
+      "bytes": 813399,
+      "actualSha256": "25455d37964a449c259899588061697016f5f0cb6edc2414f1da8b0c04806ca7",
+      "baselineBytes": 812671,
+      "normalizedSha256": "fc6c9263cb1cc49176bd5f5028fcfb4ac0eb4fc3a308ca5995ee928648a7c525",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/239.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "wound-defence-real-murder-death-wound-controller",
+      "bytes": 813665,
+      "actualSha256": "3fc6129865ddbfc98409bcf56a4447ab70ebb649dd7dfbe6b14f46d8e9145396",
+      "baselineBytes": 812937,
+      "normalizedSha256": "60845684ddd8d0e5596dc064a4179a637a95bafd88e7c3dbabb8d09d1fcea33a",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/240.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "wound-defence-death-no-local-character-no-choice",
+      "bytes": 440654,
+      "actualSha256": "c4c75b5eee5797507d81155d14fd6ebcf319c726d9d21649cbc2bc88e1166e69",
+      "baselineBytes": 440246,
+      "normalizedSha256": "1867d8f3575b15e8e058fa4e40009f2e03e9afcf600b8d48858dc1658ce0a1a2",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/241.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "wound-defence-death-decline-free",
+      "bytes": 523637,
+      "actualSha256": "54fb36385b70822525613f1c0f0b3f1846217a6061d58068f611fd6930ef7a86",
+      "baselineBytes": 523165,
+      "normalizedSha256": "785423e3a5f03885b6de41e7fe595a51d8af8b01e526d1f6bdd18d456c345a85",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/242.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "wound-defence-real-murder-death-wound-lethal",
+      "bytes": 815665,
+      "actualSha256": "c8da622767f803329a5b8804fcf3777078601f82734a2c2da1b16bc81e346c56",
+      "baselineBytes": 814937,
+      "normalizedSha256": "6762789d17070a74bcb5621aad1168f582288cf35656ba277b60120472f937d9",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/243.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "wound-defence-real-murder-death-wound-prevented",
+      "bytes": 1216154,
+      "actualSha256": "f3a3023378939ce1aadd0ff0c8105b405021daf12ed6025349da589e14209fa5",
+      "baselineBytes": 1215106,
+      "normalizedSha256": "0382d637069f5691b5afcb8ed10fd5741d3c4dd6c139b82f38fd233af9f561af",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/244.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "wound-defence-real-murder-death-wound-shield",
+      "bytes": 813807,
+      "actualSha256": "ab29c4f91bf4f26f066d91ce425af366c9ac6dd570c3b15ac998b666931dc347",
+      "baselineBytes": 813079,
+      "normalizedSha256": "4e64edb4fcc089f5703e654d6baf13e0730346f5dfafd4f476cb3309ef46ba66",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/245.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "wound-defence-real-murder-death-wound-target-return",
+      "bytes": 1488098,
+      "actualSha256": "afadf7b430745a13a0e7b1334a510ad255a1ff3ea073dcce62af7e777ec16702",
+      "baselineBytes": 1486858,
+      "normalizedSha256": "1d70b181663bbb3cb5be4cec06034c4812ad2efc8e839cba67edf9ffadaf2603",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/246.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "wound-defence-real-murder-death-wound-persist",
+      "bytes": 10589579,
+      "actualSha256": "29da26dae6be5bbd09304d40a965b28671c6d814843ab5061b4108851fcc9df0",
+      "baselineBytes": 10580019,
+      "normalizedSha256": "51f6ffa3f7dde2e81d0379946ba4be0946a935b88336f5bdea24ac970e128ad3",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/247.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "wound-defence-real-murder-death-wound-saved",
+      "bytes": 11319098,
+      "actualSha256": "14bc1c452d2dc7ad07d2c01139b0bbb0383cf3d86aac8c4190cb2912e7b2eb71",
+      "baselineBytes": 11309218,
+      "normalizedSha256": "f6498f3c8c0138111b3572fc7f6a2ed44d3e7ad240aa8dbb1fbdfa4f9bf13369",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/248.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "wound-defence-real-sacrifice-cost-independent-death-wound",
+      "bytes": 811858,
+      "actualSha256": "9ba9a3845bb0fe3bbe2de6e2a3fa8c982edcb06fce94c0e06a9abe0ca0729edb",
+      "baselineBytes": 811130,
+      "normalizedSha256": "b278a3d7ca42fdc1d6d2e3519fc4b00cc793ec64b3b3300ae59dcd8a3fe87952",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/249.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "wound-defence-prepared-cleanup-damage-cleared-with-defense-expiry",
+      "bytes": 371173,
+      "actualSha256": "89160212f3b2c7563f0baebb87b32884e63080bb6bca3162693c65793a05f2cc",
+      "baselineBytes": 370829,
+      "normalizedSha256": "42b20288f16bc1cb60c2f88c1a6a0759e6ff78661718624513249766381d1153",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/250.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "wound-defence-prepared-cleanup-wounds-stay-expiry-real-death",
+      "bytes": 994675,
+      "actualSha256": "de418d05113bd64a1f5ee4a6941f044acc7c64e1b35e4964768179ca718a4183",
+      "baselineBytes": 993755,
+      "normalizedSha256": "1ba1eb3f89722df06a7bfc8ef08c659256eee4a3fe6e88ff662287888e5b2af3",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/251.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "dream-reveal-real-spirit-damage-advantage",
+      "bytes": 448229,
+      "actualSha256": "002ce97aee300b5f56cb65bbb675b30a7baae364950d55f314ff17d3c0a0d2df",
+      "baselineBytes": 447821,
+      "normalizedSha256": "21bc20d017260125dbd749350dd0a9ee3019f751bcab22edecd202482617c57e",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/252.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "dream-reveal-real-spirit-damage-tie",
+      "bytes": 461311,
+      "actualSha256": "1fe8f47d95b3ac1052210745086cbbccc68327d9e9c36b5be7c1d76510c7f7be",
+      "baselineBytes": 460903,
+      "normalizedSha256": "f605aba5511df0c9492485545d2d569796c9142c3cce8dc8fc1044f554f5082b",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/253.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "dream-reveal-real-spirit-damage-deficit",
+      "bytes": 476979,
+      "actualSha256": "c345f0c481404a0475ba10f758f3612f36db69bb0d09bec21bb87e0e7373f1dc",
+      "baselineBytes": 476571,
+      "normalizedSha256": "a9909017137d94e208bf2905d7e214589f90b5db23ff1a243c20e6090ddc747c",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/254.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "dream-reveal-real-spirit-damage-attachment",
+      "bytes": 537246,
+      "actualSha256": "0d82714aef273ce6b4f7d0d126e94dd683a89e4790098da1f93dcfd9243465e1",
+      "baselineBytes": 536838,
+      "normalizedSha256": "5ddcfa41974a91948233cda78732a2ee317d48759da7ab3b918b2afa3a477cc8",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/255.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "dream-reveal-real-spirit-damage-simultaneous",
+      "bytes": 491798,
+      "actualSha256": "845cadb6f1733382feeb21116e01922f7f9eaeb2a78047dce6f20bae4124eb67",
+      "baselineBytes": 491390,
+      "normalizedSha256": "a77e9fecc7fa5d2c0e7c76b23096f210bc0224870df439f0acfa5afcd9305204",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/256.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "dream-reveal-real-spirit-wound-still-kills",
+      "bytes": 786802,
+      "actualSha256": "b8562aec5e9fae810b77571cd5d0a8b2d2b0e3b9015703f3e03c850fa343ce76",
+      "baselineBytes": 786074,
+      "normalizedSha256": "92a34f1e179416d0d64fa1bf8428474ff8d5bd9bc66d9762d1ef9f18b550c6e3",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/257.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "dream-reveal-real-spirit-assassin-destruction-still-kills",
+      "bytes": 817151,
+      "actualSha256": "a2cd08705fee7ff9c58b241ddb195de022d619d15c1991b100705edd3347773f",
+      "baselineBytes": 816423,
+      "normalizedSha256": "7c4430a7368dbbc448af4aa59ef5486de91369c986a27e07936430e386e0745f",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/258.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "dream-reveal-real-spirit-granted-combat-participates",
+      "bytes": 437606,
+      "actualSha256": "6464e5d7053b95932e8c55aa75b3ccd43689d12046f06fb3ab062ad6581739c0",
+      "baselineBytes": 437198,
+      "normalizedSha256": "b26be541c26eec8e97eae1d847bd21f8dea6a37651e4ddd2c9a537f57225700c",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/259.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "dream-reveal-paid-zero-reveal-repress-normal",
+      "bytes": 813090,
+      "actualSha256": "21f2b73edf6d09185cc2268ff6d033c4f33dba80378a21580872ed1bfa72e37f",
+      "baselineBytes": 812298,
+      "normalizedSha256": "b09d87c99b5446c323751b93fcd101a16be8d591dca51a78ebc34d106e011625",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/260.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "dream-reveal-paid-zero-reveal-repress-target3",
+      "bytes": 813590,
+      "actualSha256": "dfb527446ee252553b19298398070c83b859821a3aa73b68530164a75b7843e1",
+      "baselineBytes": 812798,
+      "normalizedSha256": "932be462d496638c54217c4609223a1b6d730915bc243da6ab49fb40f5a85790",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/261.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "dream-reveal-paid-zero-reveal-repress-reject",
+      "bytes": 1144843,
+      "actualSha256": "30542f90deb89f6ae1426aec3399c96200c342e7e772426c4f2dbef283d6e79d",
+      "baselineBytes": 1143731,
+      "normalizedSha256": "144114f1c891f8ad66586376615fda2756bd3e0142d3a05f72239e477c7b3b2a",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/262.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "dream-reveal-paid-zero-reveal-no-enemy-influence",
+      "bytes": 745429,
+      "actualSha256": "8233a4fc3441c992f8fa1b5db2a61b65b2a84b8871e6016e663bfc9496115108",
+      "baselineBytes": 744701,
+      "normalizedSha256": "0896f12436d959bb00025923455bd190deb8a8ea79925d8e5035202bfa55bc5b",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/263.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "dream-reveal-paid-zero-reveal-decline-free",
+      "bytes": 478410,
+      "actualSha256": "0c0086f5c033dd1ae853b5f8b38281aa69e6ed9f1291aa7ece57bbccfaf6b7e3",
+      "baselineBytes": 477938,
+      "normalizedSha256": "263c8bf51a90df3ce7d3d26541a3561387cd5462245b6794fe86ada3240b8b01",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/264.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "dream-reveal-paid-zero-reveal-repress-source-return",
+      "bytes": 1268935,
+      "actualSha256": "bf8f4abffae36426ec92d85c64d3999d84d0116514a3e801649023db98fa9353",
+      "baselineBytes": 1267759,
+      "normalizedSha256": "17d27bceb7f8a4a70389f2280756d692878567770590299411f0dd6b41548330",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/265.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "dream-reveal-real-death-named-search-found",
+      "bytes": 835864,
+      "actualSha256": "a9895ef2a33ac6e4fd0c31bf64f5e2e845b8ff1705484191d0655014cea04fee",
+      "baselineBytes": 835072,
+      "normalizedSha256": "458ade5c404f99cc8606a510a72cebae1c17fb3a762dffcf55913e283f6a0d02",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/266.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "dream-reveal-real-death-named-search-controller",
+      "bytes": 836227,
+      "actualSha256": "4454205616ae84eb3539f80acd867752f9128751f1a428954fcb997d417ed958",
+      "baselineBytes": 835435,
+      "normalizedSha256": "4f29b12d360ab2b6fd432fd34b29b69ec6e94dc62bb90a61e48f75dc5c59cef4",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/267.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "dream-reveal-death-named-search-empty-shuffles",
+      "bytes": 764018,
+      "actualSha256": "12419bd905bba56cd145f507f4237bef14a3e2560a4416cc18f8c4645d2dc9a5",
+      "baselineBytes": 763290,
+      "normalizedSha256": "76c475dcb593c30294427e9e62a57bc6fed62f6d748e723fdc0ef61011da6bef",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/268.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "dream-reveal-death-named-search-trigger-decline",
+      "bytes": 495925,
+      "actualSha256": "a6d5e06ac5cd13b302237baf82824a8051ca617d00ee24006c7110231d7b867d",
+      "baselineBytes": 495453,
+      "normalizedSha256": "3f71b4a764ee2f9d1990f47959b5e936830e723040af7942b62910e539aa55fe",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/269.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "dream-reveal-real-death-named-search-search-decline",
+      "bytes": 834259,
+      "actualSha256": "32349b1239fabcca4bb17718197845460473ba188ad06f161aa01e53c375d332",
+      "baselineBytes": 833467,
+      "normalizedSha256": "9f13083b097483d6d215a7ea1a1e135cea086e10c8025441e9415bff7cd85153",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/270.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "dream-reveal-real-amnesia-genuine-dream-accept",
+      "bytes": 580060,
+      "actualSha256": "8c849b74ab4b906614ff49ee5d5e0e926465ab0df3f531fea8ff36ede5b3c2c3",
+      "baselineBytes": 579524,
+      "normalizedSha256": "ffb5178890b969dac226882154149dcd6829ede3d777f14e1666c9cec3fb5ccc",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/271.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "dream-reveal-real-amnesia-genuine-dream-decline",
+      "bytes": 580093,
+      "actualSha256": "5f0265220e615da7f25692398fa3bedc7f78f72680af672d72bd3532f2ca2b13",
+      "baselineBytes": 579557,
+      "normalizedSha256": "21679b3302cdc640f0de6456467e3a7750b46de7d0480c82ab77ca44c0cda6d0",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/272.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "dream-reveal-real-amnesia-genuine-dream-hidden",
+      "bytes": 505923,
+      "actualSha256": "977f78b07e7efb40ddc1a45fc625cc6847a5469113bb301a5a185b9244d47e69",
+      "baselineBytes": 505451,
+      "normalizedSha256": "32046fa7e7a0171b4171d9f4ca0696245221e714244c5b0f5eba18d32a2183f8",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/273.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "dream-reveal-real-amnesia-genuine-dream-teammate",
+      "bytes": 511546,
+      "actualSha256": "62da7dcff7e6e7dd1f4305491484850f887f7ff4edc57efa174e55fcbd4c438b",
+      "baselineBytes": 511074,
+      "normalizedSha256": "4e42bc4af3ada7af7b71d670c06e3a5545044f96cb7fe67f1ce91dbe4009afcf",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/274.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "dream-reveal-real-amnesia-genuine-dream-enemy",
+      "bytes": 511414,
+      "actualSha256": "de7b82b214a8024c244f8bb8d1b42717c11b5f08ff4634576c431c67fd648b94",
+      "baselineBytes": 510942,
+      "normalizedSha256": "dd8bfabc6d860a26b0d231448f43c5c716ef99cb0b0fafeb712d746a9fd2d1ad",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/275.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "dream-reveal-real-amnesia-genuine-dream-source-return",
+      "bytes": 964914,
+      "actualSha256": "e5be1cf9056e5dcd66064d80c941174d98354d296d1e7a1f901f0e545b5b4c4b",
+      "baselineBytes": 964058,
+      "normalizedSha256": "5d0567ece55ac2bf7367e3de22d008aecc6f028715dcb1e574389a77b07fd73d",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/276.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "dream-reveal-natural-real-50-card-joined-actual-jz58-deploy-amnesia-accept",
+      "bytes": 2015850,
+      "actualSha256": "111d3de93b1931c0e281da5286a2d1bafb40505ea04eb32de5d7db9f514e854e",
+      "baselineBytes": 2013730,
+      "normalizedSha256": "70a03e337997ae20fcf64de83e52055f085262b004c2f47783b5f1371672e84a",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/277.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "dream-reveal-natural-real-50-card-joined-actual-jz58-deploy-amnesia-decline",
+      "bytes": 2015833,
+      "actualSha256": "1191328012ad65994f1582958d73cfd8be0410d28b911a7b7dc4f2f0141b7599",
+      "baselineBytes": 2013713,
+      "normalizedSha256": "43c5ecbeefa8a858672cc5a59e78b69cdbbdfec1e4ca8e9b9edbd2d56b6f0c73",
+      "baselineCompleteBody": "/workspace/.private-validation/dream-reveal-batch-20261005/default-native.json.cases/278.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "identity-overlap-four-same-red-exact-controller-source-defense-and-damage",
+      "bytes": 1665501,
+      "actualSha256": "028791bf29851395b15417b6a27478e44cdcd1ba9fcf991fb2f433f9065a8939",
+      "baselineBytes": 1664517,
+      "normalizedSha256": "8883ba495454eb3898e983709e5bff4cf98efdac2ee97ca13589eeee87f49406",
+      "baselineCompleteBody": "/workspace/.private-validation/identity-overlap-audit-20261005/new-cases.json.cases/000.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "identity-overlap-four-same-red-reveal-exhaust-exact-enemy-instance",
+      "bytes": 1179487,
+      "actualSha256": "67783d4d06f9f56f4740be172caa256b75c36ed38da616a6486c5282a1eb7c10",
+      "baselineBytes": 1178759,
+      "normalizedSha256": "43a465ca68ff19725f38eedef841a0f844099ec9fc1aa8e1ee7750814b7243ce",
+      "baselineCompleteBody": "/workspace/.private-validation/identity-overlap-audit-20261005/new-cases.json.cases/001.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "identity-overlap-four-same-red-death-wound-only-selected-instance",
+      "bytes": 1207044,
+      "actualSha256": "1961b6a3a74a6a0d1ced32572a83fabfa393b7adfd47d6cc63d0d132e865157e",
+      "baselineBytes": 1206316,
+      "normalizedSha256": "4a78954a97b2205b87306cd5e5fc6de40e9c46bd0565cfc52f9205db9bf3406c",
+      "baselineCompleteBody": "/workspace/.private-validation/identity-overlap-audit-20261005/new-cases.json.cases/002.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "identity-overlap-real-control-same-red-owner-return-response-stale-target-fresh-redeploy",
+      "bytes": 3479756,
+      "actualSha256": "6df4ca70e2104acb88c0fb6211698801c11d2795501df773140f1b0889c8fab1",
+      "baselineBytes": 3477748,
+      "normalizedSha256": "455ac59d11348f673862958f7c847f46e3e11b4862a18a76af2d6f214f471340",
+      "baselineCompleteBody": "/workspace/.private-validation/identity-overlap-audit-20261005/new-cases.json.cases/003.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "identity-overlap-same-red-simultaneous-four-deaths-last-controller-and-owner-graves",
+      "bytes": 3236950,
+      "actualSha256": "0de50fae1ae565ff100c72614ca84f609be7de1b9cc507ac6ec64a56a9ed8b36",
+      "baselineBytes": 3235006,
+      "normalizedSha256": "771451f4b330cd560b0c50f1085be9a9ba8785270496b5529125629cc59e1f0c",
+      "baselineCompleteBody": "/workspace/.private-validation/identity-overlap-audit-20261005/new-cases.json.cases/004.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "identity-overlap-actual-unique-lc23-per-controller-not-color-team-or-opponent",
+      "bytes": 802011,
+      "actualSha256": "a4aef7f98c76077a10da84b3d2412db21a3816c73d5df17fb364e6fa49123bb0",
+      "baselineBytes": 801539,
+      "normalizedSha256": "725d963258d3459ad423a760aedb2403ad1fa1a7e1c5f517e02e438447b24e4b",
+      "baselineCompleteBody": "/workspace/.private-validation/identity-overlap-audit-20261005/new-cases.json.cases/005.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "identity-overlap-four-same-real-society-exact-instances-source-authority-and-payment",
+      "bytes": 896374,
+      "actualSha256": "8c74362a61d1b1d40d3e1ac2692f914877ff6445d9b8b2323a3332b420321046",
+      "baselineBytes": 895774,
+      "normalizedSha256": "eab8d6d702f938ebb9a990479986e1689bc1834ba62cf10253bb737302ecfac4",
+      "baselineCompleteBody": "/workspace/.private-validation/identity-overlap-audit-20261005/new-cases.json.cases/006.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "identity-overlap-different-real-societies-common-red-assets-personal-payment",
+      "bytes": 931326,
+      "actualSha256": "1a328e895cf0677ab34db0ff8f832049e9e3d2059c959128466d91b04729b423",
+      "baselineBytes": 930726,
+      "normalizedSha256": "2bcaaf7f23b4c4f819c393608ab8aa2045467918a781f3b3e0b7eebac403d165",
+      "baselineCompleteBody": "/workspace/.private-validation/identity-overlap-audit-20261005/new-cases.json.cases/007.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "identity-overlap-natural-four-seat-same-red-real-deal-assets-deploy",
+      "bytes": 3201980,
+      "actualSha256": "f41714920463b49d45016f03242849cfa7542e817098fb72846ae8e55a0cae91",
+      "baselineBytes": 3198900,
+      "normalizedSha256": "13964cbc6a8080fcf5afc57b221d8b591d901defd9898e38d5876d604ce57b97",
+      "baselineCompleteBody": "/workspace/.private-validation/identity-overlap-audit-20261005/new-cases.json.cases/008.json",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    }
+  ],
+  "all22NewFullBodiesFocusedAndDefaultByteEqual": [
+    {
+      "name": "repress-assets-accident-seat0-choose",
+      "fullBodyFocusedAndDefaultByteEqual": true,
+      "bytes": 453345,
+      "sha256": "c6710ac6a6914d0236dafc5e973304eb0419d036ced22c34a414bd417a92f09e"
+    },
+    {
+      "name": "repress-assets-accident-seat1-choose",
+      "fullBodyFocusedAndDefaultByteEqual": true,
+      "bytes": 453450,
+      "sha256": "928960204d659acb45957132a88d756b2c0a3643e7dc5897ecac4d5934fe5c80"
+    },
+    {
+      "name": "repress-assets-accident-seat2-choose",
+      "fullBodyFocusedAndDefaultByteEqual": true,
+      "bytes": 452510,
+      "sha256": "8846a168035ccf166a7357b48b7a863964c64fc30cfa502413849a05bde29597"
+    },
+    {
+      "name": "repress-assets-accident-seat3-choose",
+      "fullBodyFocusedAndDefaultByteEqual": true,
+      "bytes": 452854,
+      "sha256": "c67b821b25ceab4fc99aa64b23b3d82372cdabcd693c98c92aa7bcedc13e957e"
+    },
+    {
+      "name": "repress-assets-accident-seat0-empty-influence",
+      "fullBodyFocusedAndDefaultByteEqual": true,
+      "bytes": 392564,
+      "sha256": "3b7d4db160ffb4473accc2fefbbb53580d6b53727a34a2c0675a40c43d871810"
+    },
+    {
+      "name": "repress-assets-accident-seat0-empty-deck",
+      "fullBodyFocusedAndDefaultByteEqual": true,
+      "bytes": 342732,
+      "sha256": "317cc9fe786333368bcd746113ab50dfdcd4cd6fa5e41171aba6a63f238f4793"
+    },
+    {
+      "name": "repress-assets-accident-seat0-reject",
+      "fullBodyFocusedAndDefaultByteEqual": true,
+      "bytes": 989618,
+      "sha256": "c15198c9879afe7de03b2ae00d313a30aea6333627deaab6071b60ef697b0b66"
+    },
+    {
+      "name": "repress-assets-expansion-seat0-JC104-normal",
+      "fullBodyFocusedAndDefaultByteEqual": true,
+      "bytes": 419490,
+      "sha256": "85679be57b9ed45115b6787be50f6cb404f9eb0bb2d32519f99dcb13807e5d5c"
+    },
+    {
+      "name": "repress-assets-expansion-seat1-JZ58-normal",
+      "fullBodyFocusedAndDefaultByteEqual": true,
+      "bytes": 417335,
+      "sha256": "2e2350636e004965c7dccaa01390c321cbee0cc6d5e8e459ba3c6730838699ed"
+    },
+    {
+      "name": "repress-assets-expansion-seat2-LC23-normal",
+      "fullBodyFocusedAndDefaultByteEqual": true,
+      "bytes": 417387,
+      "sha256": "d4958ff593e1d193445fe7ac9a93cab62f20da1eb9c2fa274569a0826f1d1c92"
+    },
+    {
+      "name": "repress-assets-expansion-seat3-JC126-normal",
+      "fullBodyFocusedAndDefaultByteEqual": true,
+      "bytes": 417269,
+      "sha256": "40d52e37af338823768aa2ed8e3391414e11b2ae11214b1586ca66adc0e63b35"
+    },
+    {
+      "name": "repress-assets-expansion-seat0-JC104-prior-build",
+      "fullBodyFocusedAndDefaultByteEqual": true,
+      "bytes": 548222,
+      "sha256": "f24b6dc2dae341104dc1d02b969ad6a16b36a80ea3384227a19af3c0de517d4d"
+    },
+    {
+      "name": "repress-assets-expansion-seat0-JC104-later-build",
+      "fullBodyFocusedAndDefaultByteEqual": true,
+      "bytes": 484641,
+      "sha256": "cfb586011dbcba4b52821f17d1f68eee2db282d22e38794bd53865e4ffc98370"
+    },
+    {
+      "name": "repress-assets-expansion-seat0-JC104-empty",
+      "fullBodyFocusedAndDefaultByteEqual": true,
+      "bytes": 371118,
+      "sha256": "19d232883697d6ab6613d8ad7c5d55cda9a9b5902a7a6f648b78b4883f86785e"
+    },
+    {
+      "name": "repress-assets-expansion-seat0-JC104-dirty-boundary",
+      "fullBodyFocusedAndDefaultByteEqual": true,
+      "bytes": 419782,
+      "sha256": "bf245079800956b36255155e2def2ee0d4b6070e276d968ea674a8f74dc2de9b"
+    },
+    {
+      "name": "repress-assets-two-paid-expansions-one-turn-two-fresh-assets",
+      "fullBodyFocusedAndDefaultByteEqual": true,
+      "bytes": 739497,
+      "sha256": "a90c7e9841ba760c884d0f3c85eabd8214895e5bf1a24107c102614831a09730"
+    },
+    {
+      "name": "repress-assets-paid-jc104-response-private-forecast-changes-actual-top",
+      "fullBodyFocusedAndDefaultByteEqual": true,
+      "bytes": 1223682,
+      "sha256": "5aafa7e3ff58d2647be30ab034cecae2e005d446ad0d60980612989d257e51ee"
+    },
+    {
+      "name": "repress-assets-neutral-expansion-blue-loyalty-not-supplied-by-teammate",
+      "fullBodyFocusedAndDefaultByteEqual": true,
+      "bytes": 158817,
+      "sha256": "0120cf288abd74ee000b29609a80c2259051bed4ed55fe307348dc69d229bdd8"
+    },
+    {
+      "name": "repress-assets-real-target-empty-deck-draw-elimination-cancels-whole-program",
+      "fullBodyFocusedAndDefaultByteEqual": true,
+      "bytes": 750375,
+      "sha256": "4485f01d439ca9d0fe25c1200a793a6b84875378e05e6f20b3adf7b4f672bba4"
+    },
+    {
+      "name": "repress-assets-new-asset-pays-real-two-cost-spell-and-supplies-yellow-loyalty-public-mind",
+      "fullBodyFocusedAndDefaultByteEqual": true,
+      "bytes": 11433963,
+      "sha256": "61bbacbc5bd62ce95e0b09a1566f146a5624eb29bbb3995a838a3aa82aefae1a"
+    },
+    {
+      "name": "repress-assets-natural-real-50-card-three-normal-build-turns-both-new-spells",
+      "fullBodyFocusedAndDefaultByteEqual": true,
+      "bytes": 23457779,
+      "sha256": "b2611f9d1bc8d8bfc8d23365cd6d730de8a8ddd9367dc0d1f4d0a2cb73203096"
+    },
+    {
+      "name": "mixed-decks-natural-red-black-versus-red-blue-four-shared-red-personal-loyalty",
+      "fullBodyFocusedAndDefaultByteEqual": true,
+      "bytes": 14479781,
+      "sha256": "898930ef6a25c585471c43906e5a82ed0aab5081091eb9b382996c48f4857b82"
+    }
+  ],
+  "oldRawAndCompiledOrdinaryDefinitionsUnchanged": 85,
+  "oldSocietiesAndFiveDecksUnchanged": true,
+  "worldUnchanged": true,
+  "old87ScanMappingsUnchanged": true,
+  "all89OriginalAndWebScansByteEqual": [
+    {
+      "id": "JC125",
+      "bytes": 285153,
+      "sourceAndWebSha256": "6392c2cdc2d9ea43deca6b26594618a2093ae887bd03d5ad29d130c7e329993a"
+    },
+    {
+      "id": "LC19",
+      "bytes": 469421,
+      "sourceAndWebSha256": "41c0fe55aff401721ec54fbb08174d52d36747f0821e32c6ddc5006bba9e9f71"
+    },
+    {
+      "id": "LC20",
+      "bytes": 471968,
+      "sourceAndWebSha256": "961b508b54f78c561b98268da91d901a3536a330aef0ea8a49b81b9f6a278248"
+    },
+    {
+      "id": "LC21",
+      "bytes": 437349,
+      "sourceAndWebSha256": "62b05d9f5349d53dd6d47dae7077566c1f5735529bc2bd813a45c1d7c3a183b9"
+    },
+    {
+      "id": "LC22",
+      "bytes": 441940,
+      "sourceAndWebSha256": "26976ae01006603182b666cef0ea6960bc5d218dc904f2b1c760f3719f142b35"
+    },
+    {
+      "id": "LC23",
+      "bytes": 487166,
+      "sourceAndWebSha256": "977959c6deb74b125b18a8b40758deab354396fdffd49b0d9bcc57197144f1c8"
+    },
+    {
+      "id": "LC24",
+      "bytes": 464715,
+      "sourceAndWebSha256": "05b4c30ee93bb8ea9b96636e9da3fbcaa560f206aaa5b6c73b5c5ac283fddccb"
+    },
+    {
+      "id": "XQ49",
+      "bytes": 1336679,
+      "sourceAndWebSha256": "8b160c52b18e49a7ef39085b63cc9a1b18531c02dc0ae3d92e2fedd874a29aca"
+    },
+    {
+      "id": "JC118",
+      "bytes": 283116,
+      "sourceAndWebSha256": "0f112c86afcfd0e9b2b6dea66597e24e57a95155f1b624534b2f9a4b980df97a"
+    },
+    {
+      "id": "JC002",
+      "bytes": 293615,
+      "sourceAndWebSha256": "21a698ae184e7f909d24ac5374c3eaf7af77f1043b91048cfc8c5a46f9b08680"
+    },
+    {
+      "id": "JC003",
+      "bytes": 324904,
+      "sourceAndWebSha256": "027fc054dd7c7ef301108bf0b169e01f91228bf2e918b3ddb8d12e8d05603c3a"
+    },
+    {
+      "id": "JC004",
+      "bytes": 322602,
+      "sourceAndWebSha256": "d9209031b83d49c2eacdbedd2967384852acc51329093f362073c462dabf92c4"
+    },
+    {
+      "id": "JC005",
+      "bytes": 327083,
+      "sourceAndWebSha256": "216c26cff74fe738dbc486e725828ddc8077705161b1fee566e9d806684364a1"
+    },
+    {
+      "id": "JC008",
+      "bytes": 294187,
+      "sourceAndWebSha256": "31340e2535e0909359860a090186b7a5032e84d6da94c8181baf32565b5d4f45"
+    },
+    {
+      "id": "XQ03",
+      "bytes": 1430068,
+      "sourceAndWebSha256": "c6e85106105d23ef55df70ba06d6c8878b6ce279a727908fbdeab0a8495679b0"
+    },
+    {
+      "id": "JC014",
+      "bytes": 304089,
+      "sourceAndWebSha256": "cd1969552197b3111e72ee4bb0725dc4ff513ddb8c940b568b7221699c248bb6"
+    },
+    {
+      "id": "JC016",
+      "bytes": 305023,
+      "sourceAndWebSha256": "0a3b20635a7fa8e04d6f17ab7a7112a596ed0e7f21293d3e4f4a985463416c35"
+    },
+    {
+      "id": "JZ08",
+      "bytes": 497242,
+      "sourceAndWebSha256": "343561bd351e06811f9a1fc77b6a9fe08e6dfbace83d8c8abb8f6b43fb031d12"
+    },
+    {
+      "id": "JC056",
+      "bytes": 285784,
+      "sourceAndWebSha256": "75503118eee2b80d23f59ea950884c152f33d28d552d0d051ed872f441810e6d"
+    },
+    {
+      "id": "JC058",
+      "bytes": 289748,
+      "sourceAndWebSha256": "6585e89991049cb05e75db43143320fd12bf6be781847648d551cb433e85119a"
+    },
+    {
+      "id": "JC059",
+      "bytes": 299356,
+      "sourceAndWebSha256": "7d9639d3115dcea8e42f21e1145397f3be4392a80fa0b6c040d7302139eff0ad"
+    },
+    {
+      "id": "JC063",
+      "bytes": 292803,
+      "sourceAndWebSha256": "1b20b9c7392543bf975b6391d227e03e4f50f3fd3134e7c6aa494e7357f88165"
+    },
+    {
+      "id": "JC086",
+      "bytes": 321608,
+      "sourceAndWebSha256": "1bd405a60feeb41d60611050f4a37dd90dc971e1808ba712b66fe0cd37d2d743"
+    },
+    {
+      "id": "XQ12",
+      "bytes": 1381983,
+      "sourceAndWebSha256": "4e9f3afa5f7f22d99fc89284e91586fba78a8ff2ee8827fc6a6ceeb41889fdc8"
+    },
+    {
+      "id": "JC092",
+      "bytes": 327819,
+      "sourceAndWebSha256": "ea1ca5644c38831b659f29dcf4c7ec0cb5dc5a758b0b793ed120b24b74295947"
+    },
+    {
+      "id": "DQJC107",
+      "bytes": 44451,
+      "sourceAndWebSha256": "339b9a130ea9c0a82bc5a20d34892a4de52b2ea777a1b0cfec340876d6a4b2b8"
+    },
+    {
+      "id": "DQJC112",
+      "bytes": 45356,
+      "sourceAndWebSha256": "9efd49e63ad90c4849bcf123aec4c83cd63e8f135113c374412526be875832ad"
+    },
+    {
+      "id": "DQJC113",
+      "bytes": 46632,
+      "sourceAndWebSha256": "3dcac24ae99667ac037001d85f54eb5b77bf83643222769726395571e7135c6e"
+    },
+    {
+      "id": "DQJC114",
+      "bytes": 53746,
+      "sourceAndWebSha256": "7ded8662b423543bccedf93e67c098cf0effdd73791b30cc6aaa4acf7bf2a3f2"
+    },
+    {
+      "id": "JC042",
+      "bytes": 342837,
+      "sourceAndWebSha256": "242a17c708a96d27e95b23f9ab339e01d5b8c1eda282a2f7de8f51ba2c1bdbef"
+    },
+    {
+      "id": "JC049",
+      "bytes": 331035,
+      "sourceAndWebSha256": "340c3fbc650b755d72c31ca06a8c379bacb572df6df061a9c52d0fb386d02d58"
+    },
+    {
+      "id": "JC091",
+      "bytes": 314574,
+      "sourceAndWebSha256": "2ea5d65c270a107371f7d69cb22de3e4e60f9e9db81d4e6959744bbfbf6d11cb"
+    },
+    {
+      "id": "JZ54",
+      "bytes": 543412,
+      "sourceAndWebSha256": "c7902515865a26e1276d9e7a4bbd05c511704f76aee504c73539737012624af4"
+    },
+    {
+      "id": "DQJC108",
+      "bytes": 48006,
+      "sourceAndWebSha256": "5dd2014f700e73b7f8dda56b6c281f29946b6d36a96bdd3838af4b2b393f7c6e"
+    },
+    {
+      "id": "DQJC109",
+      "bytes": 46185,
+      "sourceAndWebSha256": "337e5a45432d1ad434f971e66938e7506fc2997649648b21b7a6b1246306c60a"
+    },
+    {
+      "id": "DQJC110",
+      "bytes": 41958,
+      "sourceAndWebSha256": "ecafefa26f0d3fa1aca9f63ecb50dcb21c1a51c157890516e94676880d8a1026"
+    },
+    {
+      "id": "DQJC111",
+      "bytes": 54744,
+      "sourceAndWebSha256": "e2bc64426c121d41404d758a24b863f4c527a4f69e0582811599e2bc60471e41"
+    },
+    {
+      "id": "DQJC115",
+      "bytes": 53304,
+      "sourceAndWebSha256": "66fa6d8ceb4ff3529c0d43386782aeac5553c564a761ec47d4e351beb91d0e94"
+    },
+    {
+      "id": "DQJC116",
+      "bytes": 57210,
+      "sourceAndWebSha256": "e9dfbc396a733b3bbe7ffcb2a6d67ea371ffe4ca4bd6fc0f4e74b1ee73485d4d"
+    },
+    {
+      "id": "BQ022",
+      "bytes": 938512,
+      "sourceAndWebSha256": "f1b58f299c3d901494c388be2123b325ca20c1f341106fe860d9761ded8231eb"
+    },
+    {
+      "id": "JC084",
+      "bytes": 316581,
+      "sourceAndWebSha256": "3d068fa87dc6f9f7aef426637f71de22aef05f0f278dc096fad0ca50dee99872"
+    },
+    {
+      "id": "JC085",
+      "bytes": 337881,
+      "sourceAndWebSha256": "f568ed4c26fc244830d840f0133eb1a78111aceff53a4a345f8ca44c1552aee2"
+    },
+    {
+      "id": "JC088",
+      "bytes": 314244,
+      "sourceAndWebSha256": "9c270203639dae978acb65e9255ac34b5a5d5192e681f8aafd63018ede301a5f"
+    },
+    {
+      "id": "JC001",
+      "bytes": 304832,
+      "sourceAndWebSha256": "33b9fd53b30630010a49a520d9e2b89d608822706e67e7c667682c3d1151e312"
+    },
+    {
+      "id": "BQ083",
+      "bytes": 1318007,
+      "sourceAndWebSha256": "619db97c8309d903e3781448c6ad35db91bb5f2e4b5660b6e0eef65fcbd6e675"
+    },
+    {
+      "id": "JC006",
+      "bytes": 303268,
+      "sourceAndWebSha256": "beec2b1d758e0186cdc4cb57e7c52d6e8df2a4623564e5f212b3d878abb91bf4"
+    },
+    {
+      "id": "XQ16",
+      "bytes": 1503073,
+      "sourceAndWebSha256": "2ae947c0c5dccd45ae495d3c828ce9b4e1453c34dfb6e24c5e61eea8338cff80"
+    },
+    {
+      "id": "JC047",
+      "bytes": 315262,
+      "sourceAndWebSha256": "74d7e3c4bf75c52538fce551dda97f28e5b51d7d64ffbe89c9d427296a3ce9d6"
+    },
+    {
+      "id": "JC007",
+      "bytes": 310229,
+      "sourceAndWebSha256": "835b85f48270aa66f10f01fa4de7483b0ccf80dcf14e6dc5596639592e14f1ce"
+    },
+    {
+      "id": "JC075",
+      "bytes": 331174,
+      "sourceAndWebSha256": "7db960c7050614dae10a8e752db2567670169e782986e39a789842259231e434"
+    },
+    {
+      "id": "JC104",
+      "bytes": 375404,
+      "sourceAndWebSha256": "877aa980256730bb35350f1b99c2aa75b9110cd5905e61412664e2a89ef4e8da"
+    },
+    {
+      "id": "WM003",
+      "bytes": 1306943,
+      "sourceAndWebSha256": "2409ef206e3af93d1eece3ec0bf4ba00a9e3d0c12a8e70443877cc8a28cc9bff"
+    },
+    {
+      "id": "LC01",
+      "bytes": 467391,
+      "sourceAndWebSha256": "a0defb07b43463cc882e15b993c73eda22ea77ca39062da71e6518a365cc5bd6"
+    },
+    {
+      "id": "JC129",
+      "bytes": 294504,
+      "sourceAndWebSha256": "0c99776d13e342b85c6d6f6cc476459ec6463e6bbdc146046460518c738a0b59"
+    },
+    {
+      "id": "JC036",
+      "bytes": 340194,
+      "sourceAndWebSha256": "017507e6a2a229f6541a4690b681ecd71fc09b35962b9673da70f5f035ddba83"
+    },
+    {
+      "id": "JZ27",
+      "bytes": 528092,
+      "sourceAndWebSha256": "33fbdd4a062962b546cdb0d4f368f35b6c4c019908db73a37cfa09aaa237630e"
+    },
+    {
+      "id": "JC070",
+      "bytes": 328410,
+      "sourceAndWebSha256": "3dd1ef905e2cfb4d806b258fdde0b1ec1fe2adad7868bb5cd7dc0bcf9cfe9e1b"
+    },
+    {
+      "id": "JC076",
+      "bytes": 326205,
+      "sourceAndWebSha256": "4390ebf4eabcf44c541303bfb764061c1622cb483ed0e034ee9651571cee27ac"
+    },
+    {
+      "id": "JC074",
+      "bytes": 4706143,
+      "sourceAndWebSha256": "e34e5bb081f3ee459d99038c68d60f4be4a44af05baa4289759b730045140914"
+    },
+    {
+      "id": "JC071",
+      "bytes": 325476,
+      "sourceAndWebSha256": "85fde88b2a35d595f166d87c0ab27b244198c3919c1f6a381e54e07598f73b67"
+    },
+    {
+      "id": "JC073",
+      "bytes": 328192,
+      "sourceAndWebSha256": "cebf528de52de72d7400d4c769c2642063342d75a01670e120b5bc71aba23d42"
+    },
+    {
+      "id": "JC102",
+      "bytes": 346254,
+      "sourceAndWebSha256": "842fb9f07e9b8afbc0cecd6c224972c5643bad9b710daa518faceb59fc9a3b5d"
+    },
+    {
+      "id": "JC132",
+      "bytes": 295955,
+      "sourceAndWebSha256": "219bb4062c3e9053b9fc9d309ad919ebe4b6a98c3af314c6987ca948b3eeb4f1"
+    },
+    {
+      "id": "JC078",
+      "bytes": 335412,
+      "sourceAndWebSha256": "d238d2c7412349579c00fa4a5a662e9214bdad13df25b8917ae1034251f7e2b9"
+    },
+    {
+      "id": "XQ14",
+      "bytes": 1373623,
+      "sourceAndWebSha256": "0baea888495adba62a7688be1b95c95b5ffa60d689c104b7ff3a26dd2340ffb2"
+    },
+    {
+      "id": "XQ47",
+      "bytes": 1347172,
+      "sourceAndWebSha256": "9b370fb92ad2e1c3ac6f33d3402ab2c8cbdea1898aae4c4a386f17631d654a03"
+    },
+    {
+      "id": "JC112",
+      "bytes": 295767,
+      "sourceAndWebSha256": "870b526451ed20441601cfed413a99e2e64a266d60daa698bb2066840383bd71"
+    },
+    {
+      "id": "JC116",
+      "bytes": 319810,
+      "sourceAndWebSha256": "5a314d56e3d6c660f381e45710dbf0964cf8560cfa170906b3d4e938abb90e16"
+    },
+    {
+      "id": "JC020",
+      "bytes": 283808,
+      "sourceAndWebSha256": "2edb40dfa18d2df22b5b397957d0a03642ade3cee1a10f965bb5e55b0c4f7223"
+    },
+    {
+      "id": "JC093",
+      "bytes": 327300,
+      "sourceAndWebSha256": "ac3398f82103f6d50eb97b6bb3467244834c8e3867fb92c295d3c420b522bdd2"
+    },
+    {
+      "id": "XQ07",
+      "bytes": 1401415,
+      "sourceAndWebSha256": "944a254795fc17e946f7150de9a47649d8c6efa3006770850447503b06a22df9"
+    },
+    {
+      "id": "JC130",
+      "bytes": 289306,
+      "sourceAndWebSha256": "be7d3ec07aea099829f0b01ea506999810091c7b7a202a6bfb0f8ec32eb3055f"
+    },
+    {
+      "id": "JC131",
+      "bytes": 270928,
+      "sourceAndWebSha256": "78b1cff75c50f96763ae2cfeb346524e9046f2e3a445a5e00268113365bc976f"
+    },
+    {
+      "id": "JC096",
+      "bytes": 311787,
+      "sourceAndWebSha256": "28c1eb001f27dc220b8905ba97d7d396680adda8f7c1b8c9e0f2ec97f4907c7c"
+    },
+    {
+      "id": "XQ17",
+      "bytes": 1375211,
+      "sourceAndWebSha256": "e5ad8fe27074632eab8d6207eb2e6f08efb69d20f343f2d50701d30f5a5bb5eb"
+    },
+    {
+      "id": "JC114",
+      "bytes": 325963,
+      "sourceAndWebSha256": "2cd5cc66ceb3c9a8f9d07d341558489adb170dcb680331c7620e5f1162be12c7"
+    },
+    {
+      "id": "XQ34",
+      "bytes": 1292584,
+      "sourceAndWebSha256": "2ca1f5a4b25d308f8af13a7a80018010deaf93f9abe2275bef1fa7656be13e04"
+    },
+    {
+      "id": "XQ38",
+      "bytes": 1487343,
+      "sourceAndWebSha256": "26c8311674325491157577a3d295c148ce1c6f27ded59c4d27979faf58e9204e"
+    },
+    {
+      "id": "JZ67",
+      "bytes": 526684,
+      "sourceAndWebSha256": "a6554b81e081c7292a32f2bf13ce269f276580f9a852e1df232c60c2c36ff477"
+    },
+    {
+      "id": "JC103",
+      "bytes": 336324,
+      "sourceAndWebSha256": "8eee910793908999e04487b65f0e9a398d11ef5b307b360ba6e9d2012adaed63"
+    },
+    {
+      "id": "JC107",
+      "bytes": 343826,
+      "sourceAndWebSha256": "ce402d531c9c9bb28da130de0627b4860ced56fb0fa7db1d487082c36e0462e2"
+    },
+    {
+      "id": "JZ59",
+      "bytes": 518313,
+      "sourceAndWebSha256": "b43bf4fc74654c089cf10429306980c2af12743d57d60b603efae03b28eae5f3"
+    },
+    {
+      "id": "LC12",
+      "bytes": 484188,
+      "sourceAndWebSha256": "2a13b5e0bf5fa11f320bcf31141cf0e68915a949f9031cd112b5c650420285cf"
+    },
+    {
+      "id": "JZ58",
+      "bytes": 548446,
+      "sourceAndWebSha256": "4cb1892b435cc14fd3f9d8310b428a16eaf5cc5afe1c870760a3dcc457d4dd95"
+    },
+    {
+      "id": "JZ61",
+      "bytes": 493374,
+      "sourceAndWebSha256": "5da40b475c306d3a295a6582576b9b720c8707050bdedfea3005b92578e4e37f"
+    },
+    {
+      "id": "JZ74",
+      "bytes": 500480,
+      "sourceAndWebSha256": "3915ef2565eff330862507076c052942322e59f47039f31f7c0ebe658181f085"
+    },
+    {
+      "id": "JC126",
+      "bytes": 302436,
+      "sourceAndWebSha256": "33ed0032c1e6983f25be998c66891f137f2f0975031493883f6cc1a9bb5e40e0"
+    },
+    {
+      "id": "MSJC09",
+      "bytes": 210792,
+      "sourceAndWebSha256": "41e478a3f38ead83477498fd88131831a5fd843be364c1c0daa3ba10153c2302"
+    },
+    {
+      "id": "MSJC01",
+      "bytes": 263474,
+      "sourceAndWebSha256": "c61c887558cb184a532758eac5db766234c32a3a3605162a38c0899993e7bdf2"
+    }
+  ],
+  "simultaneousDeathControllerSnapshotFunctionUnchanged": true,
+  "unchangedDeathFunctionSha256": "d08ff3989a1cb3ef66f4e8a653e6ae3707ef6febda65b85eed202b40cb1a3f59",
+  "parentOwnedSpecificationsUnchanged": true,
+  "parentOwnedSpecificationsSha256": "797b502b7d5261ce467f24308f15e7b78f25def6067701f9d4fadff9958a2d68",
+  "allFiveFrozenAccepted24GeneratedFilesEqualAcceptedArchive": [
+    {
+      "name": "hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+      "byteEqualAccepted24Archive": true
+    },
+    {
+      "name": "hegemony_wasm.d.ts",
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758",
+      "byteEqualAccepted24Archive": true
+    },
+    {
+      "name": "hegemony_wasm_bg.wasm",
+      "bytes": 1960357,
+      "sha256": "2c8aa2b13385abe085aff655a37dd5476f3ce9ae2563cc1301660bbf4e7e740c",
+      "byteEqualAccepted24Archive": true
+    },
+    {
+      "name": "hegemony_wasm_bg.wasm.d.ts",
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3",
+      "byteEqualAccepted24Archive": true
+    },
+    {
+      "name": "package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035",
+      "byteEqualAccepted24Archive": true
+    }
+  ],
+  "rawTopLevelVersionMetadataCorrectedFromStale17Pool14ToActual25Pool22": true
+}

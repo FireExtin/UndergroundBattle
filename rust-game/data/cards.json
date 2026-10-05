@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.14-protection-batch-candidate",
-  "engineVersion": "rust-v0.2.17-protection-batch-candidate",
+  "cardPoolVersion": "limited-v2.22-repress-assets-candidate",
+  "engineVersion": "rust-v0.2.25-repress-assets-candidate",
   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
   "cards": [
     {
@@ -3301,6 +3301,78 @@
         "file": "resource/ymsj-fun.github.io/cards/JZ61 暗夜访客.jpg",
         "sha256": "5da40b475c306d3a295a6582576b9b720c8707050bdedfea3005b92578e4e37f",
         "basis": "actual original fields and Hegemony spirit/repression terms checked"
+      }
+    },
+    {
+      "id": "JZ74",
+      "name": "意外事故",
+      "kind": "spell",
+      "subtypes": [
+        "突发状况"
+      ],
+      "cost": 1,
+      "loyalty": [],
+      "loyaltyText": "",
+      "color": "中立",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "快速行动 遏制1。抓一张牌。",
+      "supported": true,
+      "unique": false,
+      "keywords": [],
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/JZ74 意外事故.jpg",
+        "sha256": "3915ef2565eff330862507076c052942322e59f47039f31f7c0ebe658181f085",
+        "basis": "actual original card fields and basic asset rules checked"
+      }
+    },
+    {
+      "id": "JC126",
+      "name": "产业扩张",
+      "kind": "spell",
+      "subtypes": [
+        "策略"
+      ],
+      "cost": 3,
+      "loyalty": [
+        "蓝色"
+      ],
+      "loyaltyText": "蓝色",
+      "color": "中立",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "标准行动 将你牌库顶的一张牌正面置入你的资产区，令其成为一个资产。",
+      "supported": true,
+      "unique": false,
+      "keywords": [],
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/JC126 产业扩张.jpg",
+        "sha256": "33ed0032c1e6983f25be998c66891f137f2f0975031493883f6cc1a9bb5e40e0",
+        "basis": "actual original card fields and basic asset rules checked"
       }
     }
   ],

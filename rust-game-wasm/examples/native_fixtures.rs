@@ -31,6 +31,11 @@ mod dream_reveal;
 #[cfg(not(feature = "society-fixtures"))]
 #[path = "support/identity_overlap.rs"]
 mod identity_overlap;
+
+#[cfg(not(feature = "society-fixtures"))]
+#[path = "support/mixed_decks.rs"]
+mod mixed_decks;
+
 #[cfg(not(feature = "society-fixtures"))]
 #[path = "support/equipment_abilities.rs"]
 mod equipment_abilities;
@@ -58,6 +63,9 @@ mod purple_tools;
 #[cfg(not(feature = "society-fixtures"))]
 #[path = "support/renown.rs"]
 mod renown;
+#[cfg(not(feature = "society-fixtures"))]
+#[path = "support/repress_assets.rs"]
+mod repress_assets;
 #[cfg(not(feature = "society-fixtures"))]
 #[path = "support/wound_defence.rs"]
 mod wound_defence;
@@ -2710,7 +2718,11 @@ fn main() {
         .expect("Usage: native_fixtures <output.json>");
     #[cfg(not(feature = "society-fixtures"))]
     if std::env::args().any(|a| a == "--slice-identity-overlap") {
-        write_fixture_cases(&output, json!({"catalog":catalog::catalog()}), identity_overlap::cases());
+        write_fixture_cases(
+            &output,
+            json!({"catalog":catalog::catalog()}),
+            identity_overlap::cases(),
+        );
         return;
     }
     #[cfg(not(feature = "society-fixtures"))]
@@ -2720,6 +2732,20 @@ fn main() {
             json!({"catalog":catalog::catalog()}),
             dream_reveal::cases(),
         );
+        return;
+    }
+    #[cfg(not(feature = "society-fixtures"))]
+    if std::env::args().any(|a| a == "--slice-repress-assets") {
+        write_fixture_cases(
+            &output,
+            json!({"catalog":catalog::catalog()}),
+            repress_assets::cases(),
+        );
+        return;
+    }
+    #[cfg(not(feature = "society-fixtures"))]
+    if std::env::args().any(|a| a == "--slice-mixed-decks") {
+        write_fixture_cases(&output, json!({"catalog":catalog::catalog()}), mixed_decks::cases());
         return;
     }
     #[cfg(not(feature = "society-fixtures"))]
@@ -3026,6 +3052,8 @@ fn main() {
         .chain(wound_defence::cases())
         .chain(dream_reveal::cases())
         .chain(identity_overlap::cases())
+        .chain(repress_assets::cases())
+        .chain(mixed_decks::cases())
     {
         writer.push(case);
     }

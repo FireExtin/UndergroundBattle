@@ -1,0 +1,1 @@
+Frozen accepted v0.2.24 before JZ74/JC126. Production3f058eac361f2db31bd2118f0c264fbc4e67b611; QA991e24a2326d5c5f029f0065e0bd373468f7ce3f does not change kernel. WASM1960357 bytes SHA256 2c8aa2b13385abe085aff655a37dd5476f3ce9ae2563cc1301660bbf4e7e740c. No public deployment.

@@ -50,3 +50,6 @@ mod wound_defence_tests;
 
 #[cfg(test)]
 mod dream_reveal_tests;
+
+#[cfg(test)]
+mod repress_assets_tests;

@@ -424,6 +424,16 @@
     "source": "resource/ymsj-fun.github.io/cards/JZ61 暗夜访客.jpg",
     "sha256": "5da40b475c306d3a295a6582576b9b720c8707050bdedfea3005b92578e4e37f"
   },
+  "JZ74": {
+    "url": "/cards/JZ74.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JZ74 意外事故.jpg",
+    "sha256": "3915ef2565eff330862507076c052942322e59f47039f31f7c0ebe658181f085"
+  },
+  "JC126": {
+    "url": "/cards/JC126.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC126 产业扩张.jpg",
+    "sha256": "33ed0032c1e6983f25be998c66891f137f2f0975031493883f6cc1a9bb5e40e0"
+  },
   "MSJC09": {
     "url": "/cards/MSJC09.jpg",
     "source": "resource/ymsj-fun.github.io/cards/MSJC09 秘社.jpg",
