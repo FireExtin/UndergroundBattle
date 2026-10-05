@@ -1,0 +1,80 @@
+{
+  "id": "msjc11-green-black-50-private29",
+  "name": "MSJC11绿黑50私有候选",
+  "description": "MSJC11 finite private candidate, 50 ordinary cards; source draft admitted by current29 only.",
+  "societyId": "MSJC11",
+  "cards": [
+    {
+      "cardId": "JC014",
+      "count": 3
+    },
+    {
+      "cardId": "JC016",
+      "count": 3
+    },
+    {
+      "cardId": "JZ08",
+      "count": 3
+    },
+    {
+      "cardId": "BQ022",
+      "count": 3
+    },
+    {
+      "cardId": "JC020",
+      "count": 3
+    },
+    {
+      "cardId": "XQ07",
+      "count": 3
+    },
+    {
+      "cardId": "JC084",
+      "count": 3
+    },
+    {
+      "cardId": "JC086",
+      "count": 3
+    },
+    {
+      "cardId": "JC088",
+      "count": 3
+    },
+    {
+      "cardId": "LC22",
+      "count": 3
+    },
+    {
+      "cardId": "LC23",
+      "count": 3
+    },
+    {
+      "cardId": "JC116",
+      "count": 3
+    },
+    {
+      "cardId": "JC129",
+      "count": 3
+    },
+    {
+      "cardId": "JC130",
+      "count": 3
+    },
+    {
+      "cardId": "JC131",
+      "count": 3
+    },
+    {
+      "cardId": "JC126",
+      "count": 3
+    },
+    {
+      "cardId": "JC125",
+      "count": 2
+    }
+  ],
+  "rulesVersion": "hegemony-pdf-v1",
+  "cardPoolVersion": "limited-v2.26-msjc11-mixed-deck-candidate",
+  "engineVersion": "rust-v0.2.29-msjc11-mixed-deck-candidate",
+  "updatedAt": "2026-10-05T00:00:00Z"
+}

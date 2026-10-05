@@ -1,0 +1,58 @@
+{
+  "base": "3b70a6fc96ffeba39ed6fa8acfcd257f6569c730",
+  "engineVersion": "rust-v0.2.29-msjc11-mixed-deck-candidate",
+  "poolVersion": "limited-v2.26-msjc11-mixed-deck-candidate",
+  "fiveGeneratedAbiFiles": [
+    {
+      "file": "hegemony_wasm.d.ts",
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758"
+    },
+    {
+      "file": "hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "file": "hegemony_wasm_bg.wasm",
+      "bytes": 2063840,
+      "sha256": "78b6f630ecef5a35b50cd07852374566cd1063d55af15a3802e54df7cc27b19a"
+    },
+    {
+      "file": "hegemony_wasm_bg.wasm.d.ts",
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+    },
+    {
+      "file": "package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    }
+  ],
+  "productionSourceHashes": {
+    "rust-game/src/play_sources.rs": "f1a80f2f4d34e2b4c61336b176e180dbca7551fbd82e752d3c80757418638dfd",
+    "rust-game/src/engine.rs": "f105be44e7c878452a6aa8f48b6097760312006f172d464054251fc804696411",
+    "rust-game/src/room.rs": "dc83ff7706936efc9212e3f7a8be79965912d92769092c20df8df11d2d08d56d",
+    "rust-game/src/model.rs": "9c7e96385c0b2846445592c98b999cf2a46a1cef855205526b1d6aa053b156a7",
+    "rust-game/src/main.rs": "b19047fc01dd00d864860551b41b2b8be883c04d77b158691b3bdc44252acf2e",
+    "rust-game/src/catalog.rs": "dfcc65230662b383d780255beb8fc6d759a433cb8b27df79d4a0d0606e783a4e",
+    "rust-game/src/resolution.rs": "7a70894ffc647d468062b7e7a7b0915e72895e1fce3d7f132bf99efa37f56580",
+    "rust-game/src/lib.rs": "6cf527b5f19111c1db25bf44c09b44e6bcce37222b9894054457417731180fe1",
+    "rust-game/src/rules.rs": "0890403c4aeea8d3a543d9a878e2204dc7660cab7a01700ec7e62ed251bbc711",
+    "rust-game/src/control.rs": "889b1ceceadb219367a3fb15fd8eed542a83e5b575fae7c971b98ad95cada566",
+    "rust-game/src/renown.rs": "b59fcac09105915926d035dbf9691722e561b6ea274d04092b4adf55aa7073c2",
+    "rust-game/src/society.rs": "2497c762cdb4310be6796b64ffcc2cd0afee0c3cbf68ec84d6a7f14868631aec",
+    "rust-game/src/attributes.rs": "7cceabe5b9001a83f42e074ca45944aeed1719540ecced5e180ec9043419850c",
+    "rust-game/src/service.rs": "c086433fe3e9b408332c1426c5637b4c1f6c649b2c40b382f4e5f1a102a5b512",
+    "rust-game/src/world.rs": "1474103db23b20ccafb4cd7242a06e70f24931d82d7a51d7528291fe930418b2",
+    "rust-game/src/attachment.rs": "4c5e1b001315deee2a833d7d77441194f05d76a077c6f2e66da65dbb0c1a7cbc",
+    "rust-game/src/deck.rs": "20b2a14c0de1ff8ca921fba06aa322daf625f87716963c4ed434c3e8f18494bd",
+    "rust-game/src/bin/hegemony-audit.rs": "6e1d4f5cb0b803f9aa4bc233dfb2445cbddb2801522846963aa2caf2b2090e2e",
+    "rust-game/data/faction-coverage.json": "4b1368ec32910b9802d20d451f141e16ea36209795c156ef454f77a0b07b55ff",
+    "rust-game/data/cards.json": "e86662f9528f101f1c699b3260bae862239317902c3d292f6aab7fb2d8ea60bf",
+    "rust-game/data/card-research-index.json": "8ebc08d35c4891051cd47dc611eb80462abaeb6325a4f5fc3b06f8ce364384cf",
+    "rust-game/data/source-verification.json": "c83a9ee0cbfe741148d88e7c9bc49fc1cf96eaaa21bf0b192094ac361d224bd3",
+    "rust-game-wasm/src/lib.rs": "e813ff003dfad6063d117333412e3dd15e70dd19967aa2b6279a30fe86deb4f3"
+  },
+  "privateOnly": true
+}

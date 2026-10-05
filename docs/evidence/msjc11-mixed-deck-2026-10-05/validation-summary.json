@@ -1,0 +1,609 @@
+{
+  "implementationCommit": "025460a0c8de398422ef12c432f64c113a558212",
+  "branch": "codex/hegemony-msjc11-mixed-deck-20261005",
+  "base": "3b70a6fc96ffeba39ed6fa8acfcd257f6569c730",
+  "sourcePlan": "bed5bce688b25fd4c921b48f0daf74d74a7f7ff3",
+  "privateOnly": true,
+  "newOrdinaryCards": 0,
+  "ordinaryDefinitions": 89,
+  "societies": 6,
+  "scans": 95,
+  "wasmSha256": "78b6f630ecef5a35b50cd07852374566cd1063d55af15a3802e54df7cc27b19a",
+  "wasmBytes": 2063840,
+  "nativeFocusedTestsPassed": 12,
+  "sixNativeMutantsAssertedAndRestored": [
+    {
+      "name": "missing-region-capture",
+      "file": "rust-game/src/resolution.rs",
+      "exactTest": "msjc11_tests::msjc11_region_instance_captured_required_and_replacement_cancelled_only_for_this_grant",
+      "exitCode": 101,
+      "assertionFailure": true,
+      "sourceBefore": "7a70894ffc647d468062b7e7a7b0915e72895e1fce3d7f132bf99efa37f56580",
+      "mutatedSource": "49e63ed532705d08a9da914f2749c25524d5d23c0905e491379a3db66ce83704",
+      "exactBytesRestored": true
+    },
+    {
+      "name": "teammates-instead-of-controller",
+      "file": "rust-game/src/resolution.rs",
+      "exactTest": "msjc11_tests::msjc11_retreat_captures_controller_instances_once_not_team_owner_name_or_later_entrants",
+      "exitCode": 101,
+      "assertionFailure": true,
+      "sourceBefore": "7a70894ffc647d468062b7e7a7b0915e72895e1fce3d7f132bf99efa37f56580",
+      "mutatedSource": "281a035a358a763e7abef9ca582a86af088cd684e6b4d331406332faa2e536fb",
+      "exactBytesRestored": true
+    },
+    {
+      "name": "ordinary-black-omitted",
+      "file": "rust-game/src/engine.rs",
+      "exactTest": "msjc11_tests::msjc11_black_bottom_query_equipment_ordinary_initiative_and_converted_vector",
+      "exitCode": 101,
+      "assertionFailure": true,
+      "sourceBefore": "f105be44e7c878452a6aa8f48b6097760312006f172d464054251fc804696411",
+      "mutatedSource": "104a79110981c53b55d4279fa6ff8976e6529656c321807ff18c4074fca98795",
+      "exactBytesRestored": true
+    },
+    {
+      "name": "zero-combat-counts-kill",
+      "file": "rust-game/src/engine.rs",
+      "exactTest": "msjc11_tests::msjc11_kill_stacks_and_only_actual_ready_combat_participants_contribute",
+      "exitCode": 101,
+      "assertionFailure": true,
+      "sourceBefore": "f105be44e7c878452a6aa8f48b6097760312006f172d464054251fc804696411",
+      "mutatedSource": "4b4d801723e40ceef91b011e3d311c1a0895d67111a03ee6a18e0b52531e9748",
+      "exactBytesRestored": true
+    },
+    {
+      "name": "printed-kill-only",
+      "file": "rust-game/src/attributes.rs",
+      "exactTest": "msjc11_tests::msjc11_kill_stacks_and_only_actual_ready_combat_participants_contribute",
+      "exitCode": 101,
+      "assertionFailure": true,
+      "sourceBefore": "7cceabe5b9001a83f42e074ca45944aeed1719540ecced5e180ec9043419850c",
+      "mutatedSource": "9ae7abbd53454aba303a601ffa3b16a218d341b4d3d598b2ecf92f265715f7c7",
+      "exactBytesRestored": true
+    },
+    {
+      "name": "ghost-grants-after-fresh",
+      "file": "rust-game/src/engine.rs",
+      "exactTest": "msjc11_tests::msjc11_real_win_window_returns_borrowed_instance_to_owner_and_preserves_attachment_batch",
+      "exitCode": 101,
+      "assertionFailure": true,
+      "sourceBefore": "f105be44e7c878452a6aa8f48b6097760312006f172d464054251fc804696411",
+      "mutatedSource": "facc54dca544c64519aaace65f41f353e39efedb555fb0e65969c32ad5d5d009",
+      "exactBytesRestored": true
+    }
+  ],
+  "nativeFullFirstPass": {
+    "passed": 385,
+    "failed": 5,
+    "total": 390,
+    "failuresAreStaleRegistryAssertions": [
+      {
+        "file": "rust-game/src/jc008_tests.rs",
+        "test": "jc008_tests::jc008_printed_admission_and_finite_modifier_program",
+        "before": "five-item society ID list",
+        "after": "same five plus MSJC11",
+        "correctedRun": "corrected-native-jc008-metadata"
+      },
+      {
+        "file": "rust-game/src/msjc06_tests.rs",
+        "test": "msjc06_tests::msjc06_original_whole_card_and_finite_existing_search_program",
+        "before": "societies.len() == 5",
+        "after": "societies.len() == 6",
+        "correctedRun": "corrected-native-society-metadata"
+      },
+      {
+        "file": "rust-game/src/msjc07_tests.rs",
+        "test": "msjc07_tests::msjc07_original_whole_card_and_finite_existing_search_program",
+        "before": "societies.len() == 5",
+        "after": "societies.len() == 6",
+        "correctedRun": "corrected-native-society-metadata"
+      },
+      {
+        "file": "rust-game/src/msjc08_tests.rs",
+        "test": "msjc08_tests::msjc08_original_whole_card_and_finite_existing_search_program",
+        "before": "societies.len() == 5",
+        "after": "societies.len() == 6",
+        "correctedRun": "corrected-native-society-metadata"
+      },
+      {
+        "file": "rust-game/src/society_msjc09_tests.rs",
+        "test": "society::printed_tests::msjc09_printed_registry_deck_and_atomic_start_keep_four_seat_privacy",
+        "before": "societies.len() == 5",
+        "after": "societies.len() == 6",
+        "correctedRun": "corrected-native-msjc09-metadata"
+      }
+    ],
+    "correctedAllFivePassedOnlyTargetedReruns": true,
+    "singleFullRunAllGreen": false
+  },
+  "frontendFullFirstPass": {
+    "passed": 430,
+    "failed": 8,
+    "total": 438,
+    "files": 53,
+    "failuresAreStaleScanCounts": [
+      {
+        "file": "web/src/game/JC005Scan.test.jsx",
+        "test": "retains Site24 JC005 while adding the isolated JC008 candidate and retains the exact printed spell metadata and original bytes",
+        "before": "Object.keys(scans).length == 94",
+        "after": "Object.keys(scans).length == 95",
+        "correctedRun": "corrected-frontend-scan-metadata"
+      },
+      {
+        "file": "web/src/game/JC008Scan.test.jsx",
+        "test": "admits only JC008 and retains its actual printed metadata and original JPG bytes",
+        "before": "Object.keys(scans).length == 94",
+        "after": "Object.keys(scans).length == 95",
+        "correctedRun": "corrected-frontend-scan-metadata"
+      },
+      {
+        "file": "web/src/game/MSJC01Scan.test.jsx",
+        "test": "retains actual MSJC01 original, metadata, two abilities and two real admitted yellow unique cards",
+        "before": "Object.keys(scans).length == 94",
+        "after": "Object.keys(scans).length == 95",
+        "correctedRun": "corrected-frontend-scan-metadata"
+      },
+      {
+        "file": "web/src/game/MSJC06Scan.test.jsx",
+        "test": "retains actual MSJC06 original, metadata, two abilities and the real admitted white unique card",
+        "before": "Object.keys(scans).length == 94",
+        "after": "Object.keys(scans).length == 95",
+        "correctedRun": "corrected-frontend-scan-metadata"
+      },
+      {
+        "file": "web/src/game/MSJC07Scan.test.jsx",
+        "test": "retains actual MSJC07 original, metadata, two abilities and two real admitted black unique cards",
+        "before": "Object.keys(scans).length == 94",
+        "after": "Object.keys(scans).length == 95",
+        "correctedRun": "corrected-frontend-scan-metadata"
+      },
+      {
+        "file": "web/src/game/MSJC08Scan.test.jsx",
+        "test": "retains actual MSJC08 original, metadata, two abilities and the real admitted purple unique card",
+        "before": "Object.keys(scans).length == 94",
+        "after": "Object.keys(scans).length == 95",
+        "correctedRun": "corrected-frontend-scan-metadata"
+      },
+      {
+        "file": "web/src/game/SocietyScan.test.jsx",
+        "test": "keeps the sole real society unchanged while the local JC008 candidate adds one ordinary card",
+        "before": "Object.keys(scans).length == 94",
+        "after": "Object.keys(scans).length == 95",
+        "correctedRun": "corrected-frontend-scan-metadata"
+      },
+      {
+        "file": "web/src/game/YellowSearchBatchScan.test.jsx",
+        "test": "admits only the two approved original yellow unique cards with their printed numbers and loyalty",
+        "before": "Object.keys(scans).length == 94",
+        "after": "Object.keys(scans).length == 95",
+        "correctedRun": "corrected-frontend-scan-metadata"
+      }
+    ],
+    "correctedEightFilesPassedTests": 27,
+    "onlyTargetedReruns": true,
+    "singleFullRunAllGreen": false
+  },
+  "nativeIntegrationsPassed": 32,
+  "frontendBuildPassed": true,
+  "defaultFullActualWasm": {
+    "ok": true,
+    "cases": 433,
+    "wasmBytes": 2063840,
+    "wasmSha256": "78b6f630ecef5a35b50cd07852374566cd1063d55af15a3802e54df7cc27b19a",
+    "transitions": 24403,
+    "projections": 96975,
+    "quotes": 1,
+    "rejectedCommands": 319,
+    "rejectedDeckCreations": 42,
+    "choiceKinds": [
+      "damage",
+      "discard",
+      "investigation",
+      "mulligan",
+      "optional-shuffle",
+      "recipient",
+      "region_return",
+      "revealed-hand-discard",
+      "search",
+      "target",
+      "trigger"
+    ],
+    "slowestFixtureStepMs": 39.45,
+    "opaqueState": true,
+    "maximumU64SeedExact": true,
+    "nativeWasmStateAndViewsMatch": true
+  },
+  "newComplete32ActualWasm": {
+    "ok": true,
+    "cases": 32,
+    "wasmBytes": 2063840,
+    "wasmSha256": "78b6f630ecef5a35b50cd07852374566cd1063d55af15a3802e54df7cc27b19a",
+    "transitions": 3109,
+    "projections": 12412,
+    "quotes": 0,
+    "rejectedCommands": 5,
+    "rejectedDeckCreations": 14,
+    "choiceKinds": [
+      "damage",
+      "discard",
+      "investigation",
+      "mulligan",
+      "recipient",
+      "search",
+      "trigger"
+    ],
+    "slowestFixtureStepMs": 35.44,
+    "opaqueState": true,
+    "maximumU64SeedExact": true,
+    "nativeWasmStateAndViewsMatch": true
+  },
+  "newCaseWholeBytes": 348919621,
+  "old401WholeBodiesVersionOnlyEqual": true,
+  "normalizationOnly": {
+    "engineVersion": {
+      "old": "rust-v0.2.28-purple-region-society-candidate",
+      "new": "rust-v0.2.29-msjc11-mixed-deck-candidate"
+    },
+    "cardPoolVersion": {
+      "old": "limited-v2.25-purple-region-society-candidate",
+      "new": "limited-v2.26-msjc11-mixed-deck-candidate"
+    }
+  },
+  "oldOrdinaryDefinitionsUnchanged": 89,
+  "oldSocietiesUnchanged": 5,
+  "oldPresetsUnchanged": 5,
+  "oldScansUnchanged": 94,
+  "oldFrozenFilesUnchanged": 131,
+  "protectedFilesUnchanged": 48,
+  "frozenAccepted28Unchanged": true,
+  "twoOfflineNaturalFourSeatFiftyCardPaths": {
+    "transitions": 2551,
+    "projections": 10192,
+    "eachSeatPaidBothAbilities": true
+  },
+  "twoOldNewFreshWasmFourSeatRooms": true,
+  "activeGrantedStateFreshWasmCheckpoints": 5,
+  "positiveConvertedTemporaryCombatOnlyPureNativeVector": true,
+  "regionSnapshotProjectRulingApprovedByParent": true,
+  "msjc11SpecificOfficialFaqLocated": false,
+  "publicBrowserUiOrRefreshAccepted": false,
+  "site28Changed": false,
+  "noProductionRoomsOrCredentialsUsed": true,
+  "oomAndKillDeltaAllListedPhases": 0,
+  "phases": {
+    "actual-wasm-build": {
+      "command": [
+        "bash",
+        "rust-game-wasm/build.sh"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 19.55,
+      "maxRssKiB": 574232,
+      "userSeconds": 32.37922,
+      "systemSeconds": 1.420137,
+      "memoryEventsBefore": "low 0\nhigh 0\nmax 505925\noom 6\noom_kill 2\noom_group_kill 0\n",
+      "memoryEventsAfter": "low 0\nhigh 0\nmax 505925\noom 6\noom_kill 2\noom_group_kill 0\n"
+    },
+    "targeted-native-3": {
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "hegemony-server",
+        "--lib",
+        "msjc11_tests",
+        "--",
+        "--nocapture"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 10.366,
+      "maxRssKiB": 758320,
+      "userSeconds": 12.876789,
+      "systemSeconds": 0.860028,
+      "memoryEventsBefore": "low 0\nhigh 0\nmax 505925\noom 6\noom_kill 2\noom_group_kill 0\n",
+      "memoryEventsAfter": "low 0\nhigh 0\nmax 505925\noom 6\noom_kill 2\noom_group_kill 0\n"
+    },
+    "targeted-natural-wasm": {
+      "command": [
+        "node",
+        "rust-game-wasm/tests/compare.mjs",
+        "/workspace/.private-validation/msjc11-mixed-deck-candidate-20261005/natural-native.json"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 15.463,
+      "maxRssKiB": 943532,
+      "userSeconds": 15.941423,
+      "systemSeconds": 0.944797,
+      "memoryEventsBefore": "low 0\nhigh 0\nmax 505925\noom 6\noom_kill 2\noom_group_kill 0\n",
+      "memoryEventsAfter": "low 0\nhigh 0\nmax 505925\noom 6\noom_kill 2\noom_group_kill 0\n"
+    },
+    "targeted-boundary-final2-wasm": {
+      "command": [
+        "node",
+        "rust-game-wasm/tests/compare.mjs",
+        "/workspace/.private-validation/msjc11-mixed-deck-candidate-20261005/boundary-native.json"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 1.767,
+      "maxRssKiB": 227384,
+      "userSeconds": 2.047286,
+      "systemSeconds": 0.154471,
+      "memoryEventsBefore": "low 0\nhigh 0\nmax 505925\noom 6\noom_kill 2\noom_group_kill 0\n",
+      "memoryEventsAfter": "low 0\nhigh 0\nmax 505925\noom 6\noom_kill 2\noom_group_kill 0\n"
+    },
+    "targeted-frontend": {
+      "command": [
+        "npm",
+        "--prefix",
+        "web",
+        "test",
+        "--",
+        "MSJC11Scan",
+        "--maxWorkers=1"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 1.7,
+      "maxRssKiB": 159468,
+      "userSeconds": 1.786605,
+      "systemSeconds": 0.368651,
+      "memoryEventsBefore": "low 0\nhigh 0\nmax 505925\noom 6\noom_kill 2\noom_group_kill 0\n",
+      "memoryEventsAfter": "low 0\nhigh 0\nmax 505925\noom 6\noom_kill 2\noom_group_kill 0\n"
+    },
+    "independent-restore": {
+      "command": [
+        "node",
+        "/workspace/.private-validation/msjc11-mixed-deck-candidate-20261005/independent-kernel-restore.mjs"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 0.251,
+      "maxRssKiB": 943532,
+      "userSeconds": 20.275797,
+      "systemSeconds": 1.598655,
+      "memoryEventsBefore": "low 0\nhigh 0\nmax 505925\noom 6\noom_kill 2\noom_group_kill 0\n",
+      "memoryEventsAfter": "low 0\nhigh 0\nmax 505925\noom 6\noom_kill 2\noom_group_kill 0\n"
+    },
+    "active-grant-restore-final": {
+      "command": [
+        "node",
+        "/workspace/.private-validation/msjc11-mixed-deck-candidate-20261005/active-grant-restore.mjs"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 0.31,
+      "maxRssKiB": 126128,
+      "userSeconds": 0.378519,
+      "systemSeconds": 0.09128599999999999,
+      "memoryEventsBefore": "low 0\nhigh 0\nmax 505925\noom 6\noom_kill 2\noom_group_kill 0\n",
+      "memoryEventsAfter": "low 0\nhigh 0\nmax 505925\noom 6\noom_kill 2\noom_group_kill 0\n"
+    },
+    "final-native-lib": {
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "hegemony-server",
+        "--no-default-features",
+        "--lib"
+      ],
+      "exitCode": 101,
+      "elapsedSeconds": 32.569,
+      "maxRssKiB": 683684,
+      "userSeconds": 95.18275,
+      "systemSeconds": 0.9319949999999999,
+      "memoryEventsBefore": "low 0\nhigh 0\nmax 505925\noom 6\noom_kill 2\noom_group_kill 0\n",
+      "memoryEventsAfter": "low 0\nhigh 0\nmax 505925\noom 6\noom_kill 2\noom_group_kill 0\n"
+    },
+    "corrected-native-society-metadata": {
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "hegemony-server",
+        "--no-default-features",
+        "--lib",
+        "original_whole_card_and_finite_existing_search_program"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 9.862,
+      "maxRssKiB": 683760,
+      "userSeconds": 11.530698,
+      "systemSeconds": 0.657234,
+      "memoryEventsBefore": "low 0\nhigh 0\nmax 505925\noom 6\noom_kill 2\noom_group_kill 0\n",
+      "memoryEventsAfter": "low 0\nhigh 0\nmax 505925\noom 6\noom_kill 2\noom_group_kill 0\n"
+    },
+    "corrected-native-jc008-metadata": {
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "hegemony-server",
+        "--no-default-features",
+        "--lib",
+        "jc008_tests::jc008_printed_admission_and_finite_modifier_program",
+        "--",
+        "--exact"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 0.089,
+      "maxRssKiB": 39260,
+      "userSeconds": 0.044836,
+      "systemSeconds": 0.041694999999999996,
+      "memoryEventsBefore": "low 0\nhigh 0\nmax 505925\noom 6\noom_kill 2\noom_group_kill 0\n",
+      "memoryEventsAfter": "low 0\nhigh 0\nmax 505925\noom 6\noom_kill 2\noom_group_kill 0\n"
+    },
+    "corrected-native-msjc09-metadata": {
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "hegemony-server",
+        "--no-default-features",
+        "--lib",
+        "society::printed_tests::msjc09_printed_registry_deck_and_atomic_start_keep_four_seat_privacy",
+        "--",
+        "--exact"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 0.077,
+      "maxRssKiB": 39196,
+      "userSeconds": 0.06071,
+      "systemSeconds": 0.016618,
+      "memoryEventsBefore": "low 0\nhigh 0\nmax 505925\noom 6\noom_kill 2\noom_group_kill 0\n",
+      "memoryEventsAfter": "low 0\nhigh 0\nmax 505925\noom 6\noom_kill 2\noom_group_kill 0\n"
+    },
+    "final-native-integrations": {
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "hegemony-server",
+        "--test",
+        "attachment_service",
+        "--test",
+        "service",
+        "--test",
+        "jc059_friendly",
+        "--test",
+        "deck_construction",
+        "--test",
+        "room_pacing",
+        "--test",
+        "session_service"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 9.968,
+      "maxRssKiB": 678688,
+      "userSeconds": 13.054424,
+      "systemSeconds": 1.455641,
+      "memoryEventsBefore": "low 0\nhigh 0\nmax 505925\noom 6\noom_kill 2\noom_group_kill 0\n",
+      "memoryEventsAfter": "low 0\nhigh 0\nmax 505925\noom 6\noom_kill 2\noom_group_kill 0\n"
+    },
+    "final-frontend": {
+      "command": [
+        "npm",
+        "--prefix",
+        "web",
+        "test",
+        "--",
+        "--maxWorkers=1"
+      ],
+      "exitCode": 1,
+      "elapsedSeconds": 70.232,
+      "maxRssKiB": 343232,
+      "userSeconds": 83.20105,
+      "systemSeconds": 9.08256,
+      "memoryEventsBefore": "low 0\nhigh 0\nmax 505925\noom 6\noom_kill 2\noom_group_kill 0\n",
+      "memoryEventsAfter": "low 0\nhigh 0\nmax 505925\noom 6\noom_kill 2\noom_group_kill 0\n"
+    },
+    "corrected-frontend-scan-metadata": {
+      "command": [
+        "npm",
+        "--prefix",
+        "web",
+        "test",
+        "--",
+        "JC005Scan",
+        "JC008Scan",
+        "SocietyScan",
+        "MSJC01Scan",
+        "MSJC06Scan",
+        "MSJC07Scan",
+        "MSJC08Scan",
+        "YellowSearchBatchScan",
+        "--maxWorkers=1"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 11.101,
+      "maxRssKiB": 189764,
+      "userSeconds": 13.479621999999999,
+      "systemSeconds": 1.6667830000000001,
+      "memoryEventsBefore": "low 0\nhigh 0\nmax 505925\noom 6\noom_kill 2\noom_group_kill 0\n",
+      "memoryEventsAfter": "low 0\nhigh 0\nmax 505925\noom 6\noom_kill 2\noom_group_kill 0\n"
+    },
+    "final-frontend-build": {
+      "command": [
+        "npm",
+        "--prefix",
+        "web",
+        "run",
+        "build"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 4.179,
+      "maxRssKiB": 373428,
+      "userSeconds": 6.791361,
+      "systemSeconds": 0.6194729999999999,
+      "memoryEventsBefore": "low 0\nhigh 0\nmax 505925\noom 6\noom_kill 2\noom_group_kill 0\n",
+      "memoryEventsAfter": "low 0\nhigh 0\nmax 505925\noom 6\noom_kill 2\noom_group_kill 0\n"
+    },
+    "final-default-native": {
+      "command": [
+        "cargo",
+        "run",
+        "--locked",
+        "-p",
+        "hegemony-wasm",
+        "--example",
+        "native_fixtures",
+        "--",
+        "/workspace/.private-validation/msjc11-mixed-deck-candidate-20261005/default-native.json"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 590.629,
+      "maxRssKiB": 4531668,
+      "userSeconds": 582.885042,
+      "systemSeconds": 7.517548,
+      "memoryEventsBefore": "low 0\nhigh 0\nmax 505925\noom 6\noom_kill 2\noom_group_kill 0\n",
+      "memoryEventsAfter": "low 0\nhigh 0\nmax 520476\noom 6\noom_kill 2\noom_group_kill 0\n"
+    },
+    "final-default-wasm": {
+      "command": [
+        "node",
+        "--expose-gc",
+        "rust-game-wasm/tests/compare.mjs",
+        "/workspace/.private-validation/msjc11-mixed-deck-candidate-20261005/default-native.json"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 116.296,
+      "maxRssKiB": 1496716,
+      "userSeconds": 119.62,
+      "systemSeconds": 3.867747,
+      "memoryEventsBefore": "low 0\nhigh 0\nmax 520476\noom 6\noom_kill 2\noom_group_kill 0\n",
+      "memoryEventsAfter": "low 0\nhigh 0\nmax 520476\noom 6\noom_kill 2\noom_group_kill 0\n"
+    },
+    "final-new32-wasm": {
+      "command": [
+        "node",
+        "--expose-gc",
+        "rust-game-wasm/tests/compare.mjs",
+        "/workspace/.private-validation/msjc11-mixed-deck-candidate-20261005/new32-native.json"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 16.111,
+      "maxRssKiB": 947200,
+      "userSeconds": 16.94577,
+      "systemSeconds": 0.778713,
+      "memoryEventsBefore": "low 0\nhigh 0\nmax 520476\noom 6\noom_kill 2\noom_group_kill 0\n",
+      "memoryEventsAfter": "low 0\nhigh 0\nmax 520476\noom 6\noom_kill 2\noom_group_kill 0\n"
+    },
+    "final-preservation": {
+      "command": [
+        "python3",
+        "/workspace/.private-validation/msjc11-mixed-deck-candidate-20261005/verify-preservation.py"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 12.381,
+      "maxRssKiB": 862968,
+      "userSeconds": 8.221817,
+      "systemSeconds": 4.11452,
+      "memoryEventsBefore": "low 0\nhigh 0\nmax 520476\noom 6\noom_kill 2\noom_group_kill 0\n",
+      "memoryEventsAfter": "low 0\nhigh 0\nmax 520476\noom 6\noom_kill 2\noom_group_kill 0\n"
+    }
+  }
+}

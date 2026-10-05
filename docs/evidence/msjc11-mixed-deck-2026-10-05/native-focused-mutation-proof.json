@@ -1,0 +1,62 @@
+[
+  {
+    "name": "missing-region-capture",
+    "file": "rust-game/src/resolution.rs",
+    "exactTest": "msjc11_tests::msjc11_region_instance_captured_required_and_replacement_cancelled_only_for_this_grant",
+    "exitCode": 101,
+    "assertionFailure": true,
+    "sourceBefore": "7a70894ffc647d468062b7e7a7b0915e72895e1fce3d7f132bf99efa37f56580",
+    "mutatedSource": "49e63ed532705d08a9da914f2749c25524d5d23c0905e491379a3db66ce83704",
+    "exactBytesRestored": true
+  },
+  {
+    "name": "teammates-instead-of-controller",
+    "file": "rust-game/src/resolution.rs",
+    "exactTest": "msjc11_tests::msjc11_retreat_captures_controller_instances_once_not_team_owner_name_or_later_entrants",
+    "exitCode": 101,
+    "assertionFailure": true,
+    "sourceBefore": "7a70894ffc647d468062b7e7a7b0915e72895e1fce3d7f132bf99efa37f56580",
+    "mutatedSource": "281a035a358a763e7abef9ca582a86af088cd684e6b4d331406332faa2e536fb",
+    "exactBytesRestored": true
+  },
+  {
+    "name": "ordinary-black-omitted",
+    "file": "rust-game/src/engine.rs",
+    "exactTest": "msjc11_tests::msjc11_black_bottom_query_equipment_ordinary_initiative_and_converted_vector",
+    "exitCode": 101,
+    "assertionFailure": true,
+    "sourceBefore": "f105be44e7c878452a6aa8f48b6097760312006f172d464054251fc804696411",
+    "mutatedSource": "104a79110981c53b55d4279fa6ff8976e6529656c321807ff18c4074fca98795",
+    "exactBytesRestored": true
+  },
+  {
+    "name": "zero-combat-counts-kill",
+    "file": "rust-game/src/engine.rs",
+    "exactTest": "msjc11_tests::msjc11_kill_stacks_and_only_actual_ready_combat_participants_contribute",
+    "exitCode": 101,
+    "assertionFailure": true,
+    "sourceBefore": "f105be44e7c878452a6aa8f48b6097760312006f172d464054251fc804696411",
+    "mutatedSource": "4b4d801723e40ceef91b011e3d311c1a0895d67111a03ee6a18e0b52531e9748",
+    "exactBytesRestored": true
+  },
+  {
+    "name": "printed-kill-only",
+    "file": "rust-game/src/attributes.rs",
+    "exactTest": "msjc11_tests::msjc11_kill_stacks_and_only_actual_ready_combat_participants_contribute",
+    "exitCode": 101,
+    "assertionFailure": true,
+    "sourceBefore": "7cceabe5b9001a83f42e074ca45944aeed1719540ecced5e180ec9043419850c",
+    "mutatedSource": "9ae7abbd53454aba303a601ffa3b16a218d341b4d3d598b2ecf92f265715f7c7",
+    "exactBytesRestored": true
+  },
+  {
+    "name": "ghost-grants-after-fresh",
+    "file": "rust-game/src/engine.rs",
+    "exactTest": "msjc11_tests::msjc11_real_win_window_returns_borrowed_instance_to_owner_and_preserves_attachment_batch",
+    "exitCode": 101,
+    "assertionFailure": true,
+    "sourceBefore": "f105be44e7c878452a6aa8f48b6097760312006f172d464054251fc804696411",
+    "mutatedSource": "facc54dca544c64519aaace65f41f353e39efedb555fb0e65969c32ad5d5d009",
+    "exactBytesRestored": true
+  }
+]

@@ -1,0 +1,3631 @@
+{
+  "base": "3b70a6fc96ffeba39ed6fa8acfcd257f6569c730",
+  "oldArchiveSha256": "ad8e3f5f8b236f816878a19479a051d66f333b5235787937c1b3a197e51b4b01",
+  "oldArchiveBytes": 191229199,
+  "wholeCaseBodiesCompared": 401,
+  "newSuffixCases": 32,
+  "normalizationOnly": {
+    "engineVersion": {
+      "old": "rust-v0.2.28-purple-region-society-candidate",
+      "new": "rust-v0.2.29-msjc11-mixed-deck-candidate"
+    },
+    "cardPoolVersion": {
+      "old": "limited-v2.25-purple-region-society-candidate",
+      "new": "limited-v2.26-msjc11-mixed-deck-candidate"
+    }
+  },
+  "oldNamesOrderSeedsCountsUnchanged": true,
+  "oldCardsSocietiesDecksRulesUnchanged": true,
+  "elapsedSeconds": 10.676,
+  "cases": [
+    {
+      "index": 0,
+      "name": "white-paid-rescue-and-purple-private-forecast-three",
+      "oldBytes": 1486594,
+      "oldSha256": "7ac94947743092f269c113fc4e856735c59a2ede67723765c2de82884a2c5cd3",
+      "newBytes": 1483730,
+      "newSha256": "99136ef171d0f54df289eed92843f23713e4e88eaba30161f74dce7e644c9547",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 1,
+      "name": "red-region-damage-and-yellow-printed-spell-book-search",
+      "oldBytes": 1314284,
+      "oldSha256": "91a10eb883183b24d4b0cdd87a769c87389fccb4f863216ecc9b53a3ff6f6815",
+      "newBytes": 1312060,
+      "newSha256": "3e7fe18deb98d66fcba353d50483162744729c25f533d3aaeea0e976957667c5",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 2,
+      "name": "magic-return-owner-and-public-lawyer-self-controller-hide",
+      "oldBytes": 1270351,
+      "oldSha256": "7c153ec28c48be7518bf34ca69a64face9c261b91b92769ada231f7065f34d9e",
+      "newBytes": 1268255,
+      "newSha256": "0599ef9e87e4cac0cd9ac4988a6452fd2660529053af32e154b5f3b6c3742bd8",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 3,
+      "name": "owl-controller-mind-two-and-skeleton-paid-entry",
+      "oldBytes": 1126281,
+      "oldSha256": "9ecc22f16aa032da1a4758551ec04bc94968fdd44d397439042f7647d2d726f7",
+      "newBytes": 1124185,
+      "newSha256": "d610e197d8201005ed5243ac764677d0a16a32d75e0f5648f29221259db14823",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 4,
+      "name": "printed-cost-reveal-guard-and-paid-self-hide",
+      "oldBytes": 1152209,
+      "oldSha256": "f2b8b6b2e763ea84b20b415c28feb817b1285cce5365d64fa2dc2807e28f30c6",
+      "newBytes": 1150113,
+      "newSha256": "301c85d4aa90de7a69e2eb0cd8c11e4185562de66755233092a3917670ea5d95",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 5,
+      "name": "attachment-enemy-host-and-hide-owner-recycle",
+      "oldBytes": 791960,
+      "oldSha256": "6de832871800336c7f81600a3dff6556dfb070b1f819e0553c50658ab798d264",
+      "newBytes": 790504,
+      "newSha256": "b06c10f8911a07a90f6613d34215446636d3c7dee62c885d1e4d2b158705bc11",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 6,
+      "name": "attachment-target-murder-response-cancelled",
+      "oldBytes": 1009314,
+      "oldSha256": "7a8d9b8a214965d39a2739f5900604b50d89b504223f46429f571e9f25615c66",
+      "newBytes": 1007474,
+      "newSha256": "5a67255b2ce9a8f23d4a10fa9dcbe5ef7b71c89c90e77a473118dee02c116925",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 7,
+      "name": "actual-hong-kong-nonempty-attachment-search",
+      "oldBytes": 516812,
+      "oldSha256": "5c46111802d89e00acb40749b3271b622493d4298c96a8f43ed7e9244c303cef",
+      "newBytes": 514972,
+      "newSha256": "9a7f717d605901acfeb3ce502cfcee210c942402c14360b83d65df623d6a9b8d",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 8,
+      "name": "won-region-batch-cross-owner-equipment-and-aura",
+      "oldBytes": 703357,
+      "oldSha256": "e0b0191c592f076fa186f56163e194a77dded3ec7b6a293b8fa0fce69ca3a154",
+      "newBytes": 702157,
+      "newSha256": "c16c1482f12ab36d287abb21216e3f863d7e3591c4d0b2898ae35de839231301",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 9,
+      "name": "direct-grave-face-up-play-normal-cost-and-conditional-icons",
+      "oldBytes": 407180,
+      "oldSha256": "7599b9ab673cab48d251f21d45d61b7667c4ec6bad7153a73d39aa959bc2875f",
+      "newBytes": 406364,
+      "newSha256": "b90a17567fe689313d908060067330647cfebc39c2cafbe7bdc83acce3766731",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 10,
+      "name": "duel",
+      "oldBytes": 7951661,
+      "oldSha256": "db3c415aa4f8a371877fc49426dddd8ec5b2e282d8f1d75c19d433738fdd9c5c",
+      "newBytes": 7936941,
+      "newSha256": "18120365afba98c1e3d2eab543fbf80168bf90c4e95d142126be7c5f839fd76d",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 11,
+      "name": "teams",
+      "oldBytes": 15588886,
+      "oldSha256": "48ab336291f5ce82beff4be5ab05fb09f3e1f234cae89c87920f7e9e4dba986f",
+      "newBytes": 15565046,
+      "newSha256": "09df57cea4ed21be0ac1b90987a1fcd6d55f6f712d1be961a9545ab8ae13b753",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 12,
+      "name": "real-response-frame-continuation-and-heal-cost",
+      "oldBytes": 1051330,
+      "oldSha256": "435ad7855a88acab60b8e6d17e0bb4b48011b0f816ddadef36bfeebdf7f95071",
+      "newBytes": 1049490,
+      "newSha256": "b27d2e6f4584fd258e11c247c269eefd626d12ada46dc6af5890c51550ecf3ed",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 13,
+      "name": "detective-target-reveal-invalidates-original-instance",
+      "oldBytes": 483045,
+      "oldSha256": "528c646fef75883d338ed4966615089e9d3ae6be4a896288e7d266096557d49f",
+      "newBytes": 481957,
+      "newSha256": "016cc0e82f27d7b55ec14773c0404f3544992b192b5e84ed386e5825896c166c",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 14,
+      "name": "detective-source-death-independent-hidden-destroy",
+      "oldBytes": 509926,
+      "oldSha256": "d5a3500cb87c27dac35ee1160957b3755fbaf9a5209f12542b490b2ffe494778",
+      "newBytes": 508838,
+      "newSha256": "4e9169b9f15dc7ecc7f3d677a09dd605dad5949d07c4ec5c4c89ce05717f8ca5",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 15,
+      "name": "custom-deck-create-join-lobby-freeze-and-start",
+      "oldBytes": 578302,
+      "oldSha256": "20ad5c26411dddcf78be9fa80caf2f128f9e7c6cc0f06b510a43c48632056df9",
+      "newBytes": 576614,
+      "newSha256": "e95897262737aae2bd7bc690d030337b03863106dcc8108732cbd2e82335d5a1",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 16,
+      "name": "friendly-teammate-defense-and-public-team-icons",
+      "oldBytes": 117217,
+      "oldSha256": "8cbc5444e57b93355bc7ce93fd12a0e2634ac411c7d160a764671880fb917ce9",
+      "newBytes": 117041,
+      "newSha256": "4b275cdbaab27dafa8f67c043fa1d309d38d8dbaeb1e17a704e78e43d0f5c5d7",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 17,
+      "name": "4999-parallel-intents-quote-repeat-cancel-and-untimed-composition",
+      "oldBytes": 927037,
+      "oldSha256": "8fabd8c821bf73857b6b1210e25e139bac42d969603b31af47a03b4d51ee9af9",
+      "newBytes": 925405,
+      "newSha256": "863e1aa597e48a19bf843e7444e89e1a60b06795cd8133c5ee1484dc0fc0cf35",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 18,
+      "name": "5000-expiry-rejected-command-commits-only-system-tick",
+      "oldBytes": 458894,
+      "oldSha256": "1ada247803289441cb422eece23d308191450388e45da78d4032cb10552039dd",
+      "newBytes": 458078,
+      "newSha256": "385758ccd873575f7cde3d325cf57c2d492a109cc5da53fedb3a68a05cb936ec",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 19,
+      "name": "real-world-win-trigger-DQJC108",
+      "oldBytes": 929533,
+      "oldSha256": "1b9a286f56cdcc6362cb6ef759eaf7914e0bbcb1537b2abc502663e892e18ce3",
+      "newBytes": 927693,
+      "newSha256": "1a2ac79558084f936700936be1de6c23e685388ef2775bd01aada1d76573e9a2",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 20,
+      "name": "real-world-win-trigger-DQJC109",
+      "oldBytes": 702198,
+      "oldSha256": "7f1a7b13125af3113bfe308bd76432296dc5fc408ca94d3f17e629b9190e3053",
+      "newBytes": 700870,
+      "newSha256": "4c54daa39a51ada1f13a594428b15e756284e13a43088737f8e8bb8e944086a5",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 21,
+      "name": "real-world-win-trigger-DQJC110",
+      "oldBytes": 699528,
+      "oldSha256": "8e1c2206b5293ee1590d486ba04b096aa2c3eccf70308b9db9db7dd1af3aa02a",
+      "newBytes": 698200,
+      "newSha256": "4b84a7d1178b40d9a3140ebed6b61b7c8d465876e2163cbd07bbecb18bcd53f7",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 22,
+      "name": "real-world-win-trigger-DQJC111",
+      "oldBytes": 1014855,
+      "oldSha256": "ca116aa444c9eeae7789077fd430d22e4105b33ac1386e7b3d09cfaf8a90e61d",
+      "newBytes": 1013015,
+      "newSha256": "901ad2f33c538214fb33f7b99ba6e8b4c7b249814018eaa543f469199d537b0b",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 23,
+      "name": "real-world-win-trigger-DQJC115",
+      "oldBytes": 1044383,
+      "oldSha256": "e81f2c35e0d3511e1061e5aa40d257e65dff0ec93f2ada9aaa413b42727898d9",
+      "newBytes": 1042415,
+      "newSha256": "5fff32a919528699f35f96143085af0c7f14bd104f38dddd565de9a3f83dd476",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 24,
+      "name": "real-world-win-trigger-DQJC116",
+      "oldBytes": 607953,
+      "oldSha256": "2f3096653fc56d9ff5a4353858d661e6ed0686a279759116118ff8a3231ead96",
+      "newBytes": 606625,
+      "newSha256": "1ab21f2575a6418c0fe2e97f0647bc2a8f3c3efab1c4546efabf6967d2ed7e00",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 25,
+      "name": "generic-simultaneous-character-search-not-hong-kong-binding",
+      "oldBytes": 391606,
+      "oldSha256": "e2227b61f165f4fb2cd2882d98e9d21f29c7c85dbde388cc41af69f8cd4dbd93",
+      "newBytes": 390150,
+      "newSha256": "a75984af397f759f915ce72772dd91f8222b7d8cc74bbf95d5c6ea6f61619119",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 26,
+      "name": "printed-MSJC09-normal-four-seat-first-and-rear-paid-resolution-reset",
+      "oldBytes": 36239261,
+      "oldSha256": "53eae37ca40bd01756b53c01e3bb2a82749963b529dd697b3dc44db218574735",
+      "newBytes": 36179789,
+      "newSha256": "02179b5c72d04b6e81395cee5e6dd6813a67f25a1fd758806ba69ca40f87041f",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 27,
+      "name": "JC004-ready",
+      "oldBytes": 1217443,
+      "oldSha256": "a0bf89540572cad94c39a650ac417ecf2865de7291d81cab6639208f7b7b542e",
+      "newBytes": 1215411,
+      "newSha256": "7af1b5e5792d2cfb6cbffaab9187e48d52169de4877d99f563a4c99b558ae714",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 28,
+      "name": "JC004-exhausted",
+      "oldBytes": 1213421,
+      "oldSha256": "f23982dc12c16185084f7e7c6ae2fd13b08c9726afd5583d40d3adb4ecaeaa8e",
+      "newBytes": 1211389,
+      "newSha256": "246f6b95b9f50d1d4279219261fb805c7fc9379a548ba29bc1fc1654e6ffce77",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 29,
+      "name": "JC004-response-exhaust",
+      "oldBytes": 1845028,
+      "oldSha256": "c725e87012605829031c6cbb4532eea5c4841216a31896d427fe979f7a722d12",
+      "newBytes": 1841972,
+      "newSha256": "81612bbc8daf73b836e7e6bb978a477b3d24153d0f228c353b841a3562a1d780",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 30,
+      "name": "JC004-response-hide",
+      "oldBytes": 1908470,
+      "oldSha256": "e155c468e937d053ba765ac2079789b37ddd9029588676a00ac58eacb3191aa0",
+      "newBytes": 1905414,
+      "newSha256": "de148b03f2757456ed79d4e8d981c5c12c784c64f5bc55ffb182c597a538c375",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 31,
+      "name": "JC004-old-instance-reentered",
+      "oldBytes": 535487,
+      "oldSha256": "70ec1da52e369cc7e6c63adce43e9f4312dbcf35efe825a043dd3ec1c52d5771",
+      "newBytes": 534607,
+      "newSha256": "38588f81bb6a8b78a6e2de3f10bf92f1960a7c7e93537f9bb51cada85a850cee",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 32,
+      "name": "JC004-moved-away",
+      "oldBytes": 536075,
+      "oldSha256": "284644ae29fe3e5c0b43bdf6abe5591d9ff3885bd7a113a8edb13785cd92a5eb",
+      "newBytes": 535195,
+      "newSha256": "33d85b69e64ceb04a790deddee9b0ec2ab904eac9b2a62e772e51ac4c7451d8e",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 33,
+      "name": "JC004-moved-back",
+      "oldBytes": 532571,
+      "oldSha256": "f760f0712ce1a6dfdde18f29a73d0913bb3de82c724f31f305d8bee836c47099",
+      "newBytes": 531691,
+      "newSha256": "708a16bb13ef9cfac895b581691af2fe5ebc8074742694a5996abb74e445fa13",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 34,
+      "name": "JC004-hidden-before-guard",
+      "oldBytes": 528740,
+      "oldSha256": "e7efe89fa498ad1abf9bf9031c48c327336630390baf2372bff7ec764c9be9ac",
+      "newBytes": 527860,
+      "newSha256": "62c859336d3dd3f5e01f147ae3a34d949cf95bfb09b21ccca43892cf3d946756",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 35,
+      "name": "JC004-shield-before-guard",
+      "oldBytes": 533550,
+      "oldSha256": "60363ababd926a493eecc02a91e10407d1a7fc87b5c54c9118ad22164380e998",
+      "newBytes": 532670,
+      "newSha256": "a2a9f6494d22d3b37bdc2f2269f36418f0ec8e1f886455582a83537c1dc02e35",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 36,
+      "name": "JC004-borrowed-return",
+      "oldBytes": 1249294,
+      "oldSha256": "8d18a02ae273ba00c60b2cbd13bf8c8a9331f08e7c9474ec0497877204207464",
+      "newBytes": 1247262,
+      "newSha256": "fea7feb4b017f2b1678ba8fc699d2f5c0c7f64ed2e55c4e4efc210ffab0ab145",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 37,
+      "name": "JC004-self-target",
+      "oldBytes": 1217449,
+      "oldSha256": "7a76ace8d4ae4d1a1dfb46b5806ca273c6f623433b287a0312f80162d5f36545",
+      "newBytes": 1215417,
+      "newSha256": "80878ee59c1f12d071323cffe0edf0498d39c2962006872c5237829e0942b874",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 38,
+      "name": "JC004-continuation-return",
+      "oldBytes": 605179,
+      "oldSha256": "6dd9b1be54f7bd2894dfc1dd5d8e7566d36440a8cffe0566a3e190b46853876c",
+      "newBytes": 604171,
+      "newSha256": "76cfcf904f307a43c123a0211a69eb20cf4a4006ad2574daa7c3b757f7e20e99",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 39,
+      "name": "JC004-continuation-exhaust",
+      "oldBytes": 610878,
+      "oldSha256": "58b235b45d212dec79246fe44ba9c5ca8cf6c131a567e762e3905ae725c8f688",
+      "newBytes": 609870,
+      "newSha256": "b5b5b3678be7a9e13d9aae69029b4cac67d85dcdec8980351360392f26e48f9e",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 40,
+      "name": "JC004-optional-decline",
+      "oldBytes": 794732,
+      "oldSha256": "7d2993e469f344698ef5d1a58939b192b78730c471de7389324b7e76a495dd79",
+      "newBytes": 793404,
+      "newSha256": "68c2fc4cbc9984854ee38b0dae931ce8e8720e6dd817654ef24a81e7d9e81042",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 41,
+      "name": "JC004-declared-ready-resolved-exhausted",
+      "oldBytes": 528631,
+      "oldSha256": "d6d63222e1d92f9d52db211145376fb5ecca37aec7fc767f0cce49d44f05c84e",
+      "newBytes": 527751,
+      "newSha256": "3f49abafdcbac4d6e0c8077bcc46924cee5e976027a5dc7c7b9c35f0d95646bf",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 42,
+      "name": "JC004-declared-exhausted-resolved-ready",
+      "oldBytes": 532593,
+      "oldSha256": "2c8d74022bae67313f0c27fc0bbddbac2eba642384bb200bc7e3d526e8ae3a3f",
+      "newBytes": 531713,
+      "newSha256": "932cee34e8586b07c099fb2b8cf335f5febe16d19ebff76bee755ca4da4b44fe",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 43,
+      "name": "JC005-normal-character",
+      "oldBytes": 534471,
+      "oldSha256": "37fdd079da6dc7a51f58a9fff6aad27f47175eea32b215b4b802f9564424bfc3",
+      "newBytes": 533463,
+      "newSha256": "6df3ae88b5a74f92bff9138ab2f45abcff7fb7f4466a7be8e0652c7057fb26a6",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 44,
+      "name": "JC005-mind-character",
+      "oldBytes": 541228,
+      "oldSha256": "0d5bfdf8445cf424fee9d64a50e49834870c6731997488dbcad1b98652b7e314",
+      "newBytes": 540220,
+      "newSha256": "7d667efac45a2bba930efe4823f41cb36d4edc314779186326274c0b41155a55",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 45,
+      "name": "JC005-exhausted-mind",
+      "oldBytes": 541183,
+      "oldSha256": "f9d114217dff8c4281b7ff26605b15f6fcf57499d6226e24231f01f8ef854060",
+      "newBytes": 540175,
+      "newSha256": "ab6295003cc5c1695565c76181110497b0bf7648b36a0561c826f563e29e2ae8",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 46,
+      "name": "JC005-bound-host-moved-region",
+      "oldBytes": 476183,
+      "oldSha256": "5ac0393487c365f3efc4350fb7dc4fcaa933b6a760ef1a213abd53852bafdd9a",
+      "newBytes": 475303,
+      "newSha256": "5c4ad206ab63e73d3b435cba4a2ac11c02298eac4899b169fcfc92e5d6afc6b8",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 47,
+      "name": "JC005-response-host-return",
+      "oldBytes": 1145981,
+      "oldSha256": "a5d4f39d0bff65fb7dc8b81950f118b68c809e024836df4fdedfa7d1d0a00ade",
+      "newBytes": 1143949,
+      "newSha256": "6f7b47fa8dbccfa8e422476172254ae13905feaa574a32fe46b13a3d06813db3",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 48,
+      "name": "JC005-response-host-hide",
+      "oldBytes": 1150337,
+      "oldSha256": "8af12cf5d3855e932d0050f9867c04d5dfc8eaf93fedb7d4816c6be38224e682",
+      "newBytes": 1148305,
+      "newSha256": "961476fef1fdbb7804534ed7d69e936bec0ccac1599f8321e900e80b2fb0ebe7",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 49,
+      "name": "JC005-bound-host-change-character",
+      "oldBytes": 483168,
+      "oldSha256": "f15bb9a39ebb4649ef39fd6c85aa8fe150858e70d4e18d1f8dfdb0ec6d466471",
+      "newBytes": 482288,
+      "newSha256": "4721a87ab00818853b34ca6fe829d14408f84c1f16f73b4469820ebfc1aa2749",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 50,
+      "name": "JC005-bound-host-change-type",
+      "oldBytes": 477398,
+      "oldSha256": "9f0f75c21afe1af3363a1a584f9950968fa0dcb092b0d4bd92f5404806d57be1",
+      "newBytes": 476518,
+      "newSha256": "b9a2e8302d9256eb854bbef7c25ababe9eeb429d9a536318c46d44a44bc68a51",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 51,
+      "name": "JC005-bound-target-reentered",
+      "oldBytes": 474802,
+      "oldSha256": "be4dd0aa3c26c2a72a747e13352bd3392e7c01b2a8a10b4180ed5df5c1ea8567",
+      "newBytes": 473922,
+      "newSha256": "247fd707b65b597d97ea689ab1bd3d16333fde1c5f90cf5ddbef8972d6cc2f4a",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 52,
+      "name": "JC005-bound-target-hidden",
+      "oldBytes": 467902,
+      "oldSha256": "2601c556a005395341b4bc9c0b63b0e41152a2feecd522d32d24cbd09453b1b2",
+      "newBytes": 467022,
+      "newSha256": "3f6c6ef8018f1b9cb65abd747c43b24b77a0cca059808006574c7df3b1128947",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 53,
+      "name": "JC005-bound-target-shield",
+      "oldBytes": 472907,
+      "oldSha256": "6527fe81a654c9c3dfd880690cbff03b3dbd910cbd798ba1ab38346740a836f8",
+      "newBytes": 472027,
+      "newSha256": "dc85bd0dd2c32715c6d0f1c91b6867ec66f95ed57d7222cba5b07a99e37d5631",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 54,
+      "name": "JC005-bound-mind-removed-character",
+      "oldBytes": 472243,
+      "oldSha256": "c1ed742b4afb0e2aa399a6882b27216802fd540c1fbc13161ad1cc432d41bed6",
+      "newBytes": 471363,
+      "newSha256": "9312fb7bdbd10e9b8f2217df3fa572aa96ba52bdd0791aa2a7d7a4b838dbab63",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 55,
+      "name": "JC005-synthetic-noncharacter-no-mind",
+      "oldBytes": 180930,
+      "oldSha256": "9e5ca86b59147060e6a76ef897f9bcade860899e04a7e310e58657c0de4548ea",
+      "newBytes": 180626,
+      "newSha256": "2260596d65c1adb1533704bae0ffc011c96105b0207396cff5e82c54f3402213",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 56,
+      "name": "JC005-synthetic-noncharacter-mind-settlement",
+      "oldBytes": 546627,
+      "oldSha256": "73c5fa90068150a3849b8370606b29c7b1fa8f83f3afbaeb49b4ae8be1cdc064",
+      "newBytes": 545619,
+      "newSha256": "8564be8dee9a03cdca2fd9da27cf3535b5e7d0f7ed43aa9a9354c4b8668d5fba",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 57,
+      "name": "JC008-first-team",
+      "oldBytes": 511425,
+      "oldSha256": "e0613fc70fe2c9db77197b3530839a47fa5113532e2ffa1044a04d873d7b1db9",
+      "newBytes": 510417,
+      "newSha256": "fdbaf2332d2da6d4e0d49390edf710d67c3fef0b858dcfc00d6e3942b8f9ae12",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 58,
+      "name": "JC008-rear-team",
+      "oldBytes": 511424,
+      "oldSha256": "a28de5392a4202364fb8f570e5305e5cac946c2ae3580c0c304a2659126ff2af",
+      "newBytes": 510416,
+      "newSha256": "3f8ab6bacf37d53016ae8abf08e9b9c193e38d80806089c76e61c93bf92e3144",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 59,
+      "name": "JC008-exhausted-character",
+      "oldBytes": 511389,
+      "oldSha256": "bc41e4039ab8bfc37458877533ae78cf596f3991bae17a51bf3e247be83293c5",
+      "newBytes": 510381,
+      "newSha256": "d8cf5474d1963bfaec4bc2c0e187f95c49551c42987ecb165e88ec4fb57d15ef",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 60,
+      "name": "JC008-stack-two",
+      "oldBytes": 946213,
+      "oldSha256": "c30a4cb4be1fc8e395508c49a6de931e0fdafbd07fe7e91bdfd192b3a150476e",
+      "newBytes": 944437,
+      "newSha256": "44cfa2c8fd29c64951f35e761064acd6c7542ff04d9d61f458dcf4c17914d0fc",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 61,
+      "name": "JC008-reject-hidden",
+      "oldBytes": 173445,
+      "oldSha256": "d6c6b770452d4380478538c3ac9cab84284dba7cecedb386344465681583e79b",
+      "newBytes": 173141,
+      "newSha256": "b472d1d806189aaffac0a8ff67a56c22b4205f173b467078bafe40bda0402e15",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 62,
+      "name": "JC008-reject-barrier",
+      "oldBytes": 174968,
+      "oldSha256": "ef8e87e5c9746c3b4cca90102bd9fa3097ca93a7bbf4b2f9bb3e05af7a856986",
+      "newBytes": 174664,
+      "newSha256": "e62eb3a3c02b0910671d37303a4ddffc8857df86a1f07ac3abe8193a0f02a1b5",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 63,
+      "name": "JC008-reject-cost",
+      "oldBytes": 173294,
+      "oldSha256": "47542f51444bd03c540bb1a2d9ffdb18ce0ca32dfe9224bdd90019abf9d851bc",
+      "newBytes": 172990,
+      "newSha256": "d8c450b85c33431f4a0103b7a0059b9c98a5f2c9b46927986d9a0daf4a665dac",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 64,
+      "name": "JC008-reject-loyalty",
+      "oldBytes": 174861,
+      "oldSha256": "c131dfa33d3db8068af1bf6e2c444f297c13d34cadf9b5951c90f632f9671812",
+      "newBytes": 174557,
+      "newSha256": "0b5983c9d8b31b1100da609538e7ce2526988c81cc197fdeb74ea1e2bcde488c",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 65,
+      "name": "JC008-shield-enemy",
+      "oldBytes": 510022,
+      "oldSha256": "9a2f805e62a2a1ca107c9fd4149aa9e47d148b29526c89600c6b0adb653c997e",
+      "newBytes": 509014,
+      "newSha256": "c0c21a43cb5a9b5f27e12355da4f8547231e45ebd911791cb45aa2848ac1f6a3",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 66,
+      "name": "JC008-shield-friend",
+      "oldBytes": 509484,
+      "oldSha256": "33cda6872f6b4e7c5c3fe54f6ccdb1866e4b88a9f7f8a65f8797ec21cf520199",
+      "newBytes": 508476,
+      "newSha256": "e6ef81576e4db397b271ef446f0f12ffbba2fc0109fb3ca0ee21c8d7115164fe",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 67,
+      "name": "JC008-response-hide",
+      "oldBytes": 1168081,
+      "oldSha256": "c592b8e7c7184468bcd0a8ea3909e47504c5a407d411f98e7ac94ad94d3355ea",
+      "newBytes": 1166049,
+      "newSha256": "647269145dc540471b947b7830e648de496ce2b88bc7568126b5f31abc394fdd",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 68,
+      "name": "JC008-response-return",
+      "oldBytes": 1164292,
+      "oldSha256": "411d9292d45d8b57d65657d5ea6d3c411a3cb1b42c20349e7fcd627b079d1192",
+      "newBytes": 1162260,
+      "newSha256": "4e2dbf27bde2517cd55f0f3a5359901101f085f3d650754c498aad47c10df07b",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 69,
+      "name": "JC008-hide-reveal",
+      "oldBytes": 1586841,
+      "oldSha256": "9b934fc12ea2a036a0467f2eadfde2865293de313da2bcfce92d3b8de38a9b69",
+      "newBytes": 1584041,
+      "newSha256": "2b3db8e587c1def04bf610eb252d0f7ba23292e1d28dc7289d46b7beccf7d2f5",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 70,
+      "name": "JC008-return-reenter",
+      "oldBytes": 1725926,
+      "oldSha256": "b3be56f72144bc93755c8ca6d3f5a3e06c087a99344f8e3cea9edbb45a0b99a0",
+      "newBytes": 1722870,
+      "newSha256": "752f749146600686850d06e3136730ecfba9a19d0d2a2d99c1959df12ac27c33",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 71,
+      "name": "JC008-bound-target-reentered",
+      "oldBytes": 452444,
+      "oldSha256": "d97d3f8f94a753bb4a44551e518122a00cbba6c86ab3d45ffda3d680087f63ca",
+      "newBytes": 451564,
+      "newSha256": "b98fa05e76ee73eab56cfd11d81c194082bfdbdbfeb2e43cac991940e62b59ed",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 72,
+      "name": "JC008-checkpoint-controller",
+      "oldBytes": 444444,
+      "oldSha256": "1bf12eb96d4aa1f37f0944da12c20ab22811224d37a4dc325d26f28ed1396d97",
+      "newBytes": 443564,
+      "newSha256": "63e8888175e28bce099e1f16abeb862e26036460dc0934f977706a2da31a091a",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 73,
+      "name": "JC008-checkpoint-movement",
+      "oldBytes": 442768,
+      "oldSha256": "a0fa881b1b5770cc0e6ffdc654d627745fc2b69b92db62176ca9eacb1d888277",
+      "newBytes": 441888,
+      "newSha256": "c27e38ac10de3132c0e520d86e271baeb9328d4cdd171dc60b95918d95f53b4f",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 74,
+      "name": "JC008-cleanup-simultaneous-survival",
+      "oldBytes": 442778,
+      "oldSha256": "0edf3300625a3d910e02bc6f4d7cd8c07ecef892a4de0638c844200965ad31cf",
+      "newBytes": 441898,
+      "newSha256": "e848fe9efab6db12c09c8b081e3a85b7d131da7b163886670a95a7e825213dad",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 75,
+      "name": "JC008-cleanup-wounds",
+      "oldBytes": 444437,
+      "oldSha256": "49e9a5abb3577e44c3b976753292ad23d5c3205e0751c4cc3c29217b3a737e04",
+      "newBytes": 443557,
+      "newSha256": "7dac077a2303dbd959a18b5791e137f6e32f7993ad4b7005c094b8a04ee63c32",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 76,
+      "name": "JC008-cleanup-zero-defense",
+      "oldBytes": 443321,
+      "oldSha256": "61e029978c22eec3e38111008c733f76330f224effe8e843fed02e20f196b5bd",
+      "newBytes": 442441,
+      "newSha256": "424557b21f1a34fb02d775e954ac35765ae2f38c292f726f6f8f3acd0d4a68a8",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 77,
+      "name": "JC008-cleanup-discard-pause",
+      "oldBytes": 683794,
+      "oldSha256": "58415379705e833bba2310d9c8f6bdd8ddc75208c5b609a10a9a8f2443633c26",
+      "newBytes": 682658,
+      "newSha256": "cab89fd8e5011782e584af6d28bdfadfd15b9fee16fe318185c988fb7a7f8380",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 78,
+      "name": "JC008-cleanup-discard-pause-rear-initiative",
+      "oldBytes": 683809,
+      "oldSha256": "99686e83c253f944e33cebe27f1be188738c1ac72d7a0dd61102a5d03ed63676",
+      "newBytes": 682673,
+      "newSha256": "db5856a4140854ec0a89e6e78085379a769af1622ae5d544aca2707927ea2041",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 79,
+      "name": "JC008-cleanup-death-trigger-reentry",
+      "oldBytes": 1541001,
+      "oldSha256": "658b965bdb5d549b70e644c119686f9660498d9127d6afc613da3bb0bf00078b",
+      "newBytes": 1538201,
+      "newSha256": "71f6646035c1d978e38dc15505098108de3e6534bc6cd90ef5cb9a0a108e7dea",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 80,
+      "name": "MSJC01-construction-25-yellow",
+      "oldBytes": 9343,
+      "oldSha256": "9ebb02957dd299163af58a82ef34058467dee6f3495e54ba39becf4d95277b17",
+      "newBytes": 9263,
+      "newSha256": "8921a8b29fdf89950536ec05387a44b03b3996b6848f392e8997c2dfdccc20a5",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 81,
+      "name": "MSJC01-construction-27-yellow",
+      "oldBytes": 9343,
+      "oldSha256": "5da0dc72fe2ba252268bf68a58c4b2784908e7ab8ff3c92b3c9ea8ec808fdcd9",
+      "newBytes": 9263,
+      "newSha256": "26d7b0bd9ecced9b4a2e57575882a568b6917301071c98dc4b0be6b8fc4a7410",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 82,
+      "name": "printed-MSJC01-natural-four-seat-build-pay-draw-empty-search-turn-restore",
+      "oldBytes": 61349080,
+      "oldSha256": "34a649b40819f8cea3f1128f4037bf188a9e8c31189ab1a2a0c6f5da58f5789e",
+      "newBytes": 61266632,
+      "newSha256": "952eb9b3da018a7b3ec12957ea1b86f4b4f57f152ae5b9c03e827a0646af5d0b",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 83,
+      "name": "MSJC01-empty-search",
+      "oldBytes": 412660,
+      "oldSha256": "150d1c4c51912135b392f2ff4d071cdb4b02fe1b105496544a131dbb207914b4",
+      "newBytes": 411716,
+      "newSha256": "3988e84c2b07727f595607ab0e3119fe06e26d6554839e65a25cc2224501d3b5",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 84,
+      "name": "MSJC01-empty-deck",
+      "oldBytes": 398135,
+      "oldSha256": "5b5a489b34c690d11816c844f4b5a8f5ca10b934801cad1759d61a0ec2780ded",
+      "newBytes": 397191,
+      "newSha256": "d0927ca23b58a10ac6a8a44d85355f0f55ade0810aaf593ca85ad3f34096817c",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 85,
+      "name": "MSJC01-reject-cost",
+      "oldBytes": 88882,
+      "oldSha256": "6ec1bb676fe6c549e79c763f5854f148cbffeb8409a33c8eb28323639b75782b",
+      "newBytes": 88642,
+      "newSha256": "6e413ddbd970ab8dbd828f69d5749959011f60e3db0fa6401d1110df5cf0494f",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 86,
+      "name": "MSJC01-reject-exhausted",
+      "oldBytes": 94902,
+      "oldSha256": "cfdbd1408a86937e83d164ec17ca55db7d0bbfdf33c4c7ee4234ace0c56dff4a",
+      "newBytes": 94662,
+      "newSha256": "d1d312859e54d75f90c051be124b7ccaf73db40dad55d9355ddfa4e27984ca65",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 87,
+      "name": "MSJC01-draw-first",
+      "oldBytes": 411164,
+      "oldSha256": "551e5be5992bab45699ef5fb4a37a5b6dd39b3baf067fd704fc768ce835c455a",
+      "newBytes": 410220,
+      "newSha256": "1547d20432ac2963e978829fdf157a6ee9daf21e652b2f6724f2fe378c40b503",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 88,
+      "name": "MSJC01-draw-rear",
+      "oldBytes": 408251,
+      "oldSha256": "6455ab8ee0e2d4b46a730e5db8f669e8cbd30ce76d882fad162b7d3098804600",
+      "newBytes": 407307,
+      "newSha256": "e0c713e11a5300e9f68ca60d79eb81b8d4ead025430c7eed6f412bf522e94cee",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 89,
+      "name": "MSJC01-neutral-unique-one-hit",
+      "oldBytes": 484101,
+      "oldSha256": "d382712c9acaa01af136e8e78a2b6d7c430defcb4b483fc1845c6da6a189b59a",
+      "newBytes": 483029,
+      "newSha256": "daf932be7397dc3e09bcc3cb7350e38582ce5b5c642f54d4f114004551d07902",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 90,
+      "name": "MSJC01-neutral-unique-three-hits",
+      "oldBytes": 491466,
+      "oldSha256": "de348b34f18ae3023a908b3663c30279f9627aeb1d191597041299420ebfcbb2",
+      "newBytes": 490394,
+      "newSha256": "5d8ae60adbdd668c0eba3491fcb85719a210fe7e1c79fd3cfd50aadce03848be",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 91,
+      "name": "MSJC01-pending-search-restore",
+      "oldBytes": 262615,
+      "oldSha256": "dd147025a7b711c4dd1e01160beb3cfbff118e92ddc2d08e3719a068bec83e89",
+      "newBytes": 262055,
+      "newSha256": "58ebb52326e07f46216ce2b9103b85e97e065e633d1e86cbc7432f99c66bd399",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 92,
+      "name": "MSJC01-cancelled-paid-frame",
+      "oldBytes": 358095,
+      "oldSha256": "67ad710206d1d4b835f9a15511913f86c52c627caeff2c6203a430c939728e01",
+      "newBytes": 357279,
+      "newSha256": "8954ed5f2d0260bbe12e9e1e359df38b144182dc1597f0e68001c14dad214a67",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 93,
+      "name": "MSJC01-new-instance-used",
+      "oldBytes": 98068,
+      "oldSha256": "4342295cf7cdd4ae9de540a8b7523c8ab5d6b7a76164a09243b5c5bc5c59081c",
+      "newBytes": 97828,
+      "newSha256": "aa37253b7edd5e942cab813e7a19f5c4777b0b4e852cccf572499c46e4c64be9",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 94,
+      "name": "MSJC01-new-game-reset",
+      "oldBytes": 258812,
+      "oldSha256": "76d55c34aee45cfe912e4b1882626ef6efaffdbede9a50083783b319a4d041c2",
+      "newBytes": 258380,
+      "newSha256": "1ad6aaea6b76e9a88d1a4004dcc744e66517ddc8358fb976defd117483d63258",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 95,
+      "name": "MSJC01-turn-reset-used",
+      "oldBytes": 8694308,
+      "oldSha256": "fe1de904c4498b717446568055f868a7b40abc132c954032e391bc9b9ef4f630",
+      "newBytes": 8674356,
+      "newSha256": "86ec70094991c963095832f88f73facd314cb297a824fd652ac6f4d099d4a314",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 96,
+      "name": "yellow-batch-private-search",
+      "oldBytes": 522707,
+      "oldSha256": "d65f5bd966f3570deb969c8abc7169c4766553bad815df6b805b1e0606eca49a",
+      "newBytes": 521635,
+      "newSha256": "36a8a4001be2b14fb26c97d6a109a37447546059da42c1f95520941aa85b3549",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 97,
+      "name": "yellow-batch-private-empty",
+      "oldBytes": 378920,
+      "oldSha256": "b2b9b5ccc3a5e9572960aaa762496e0a34d5de117526ccae765682bbdbc66f0e",
+      "newBytes": 378104,
+      "newSha256": "2dd70e5fed496a57ee18b1ccf399b6ef845d2e74db5570d3f1267861c2077ecf",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 98,
+      "name": "yellow-batch-private-cost-rejection",
+      "oldBytes": 90646,
+      "oldSha256": "d7cea055db5a537a61a8077b6900ff8ba4d0553d6d9575c29ac7982a07e017c7",
+      "newBytes": 90406,
+      "newSha256": "1016f6b2fe40563405ef91cb32d80f09a7784abb1eb40327ce4ae43161a790c6",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 99,
+      "name": "yellow-batch-private-exhaustion-rejection",
+      "oldBytes": 101473,
+      "oldSha256": "2b14ca60bf92bd8ca2865c639e1ed01430c55633b6d134e939c85d3411dff408",
+      "newBytes": 101233,
+      "newSha256": "e5d64d4f4ee85fe9b209dee482893b1faaf11dc21a8084a1188d4ef723966a32",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 100,
+      "name": "yellow-batch-real-yellow-reveal",
+      "oldBytes": 519133,
+      "oldSha256": "7c49fa890c52afc4adf235ef8c18bc59b88b73405cbf8e5311558812c07bf301",
+      "newBytes": 518061,
+      "newSha256": "2479393a263443a557af5b813229762e592a6a0c5fdb7f29db9e597181e02999",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 101,
+      "name": "yellow-batch-top-search",
+      "oldBytes": 543317,
+      "oldSha256": "9a7b5bc694b3477ecfe82d534eb7f517280af72cac2365b3f547b81b6be93125",
+      "newBytes": 542245,
+      "newSha256": "fd360112752f6676f2ee179ac1ae4c7104622d3f387efc9391e4dcf7a00d2db0",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 102,
+      "name": "yellow-batch-top-draw",
+      "oldBytes": 399962,
+      "oldSha256": "408b4c4fe46b98754fd6e9e484488263d54a8c5a121fd4dd18702c1851844766",
+      "newBytes": 399146,
+      "newSha256": "2520cdefdc8e47592c317f8131516111c7ef40998846b4b24c3ee3171a1ab752",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 103,
+      "name": "yellow-batch-top-controller",
+      "oldBytes": 75713,
+      "oldSha256": "a4c11a9e0601f7bf79d070d1185d6139eb2005a1347f9b5f90042bfbebdc4c0f",
+      "newBytes": 75537,
+      "newSha256": "b419101f67bf47c5b6ed3f8c4b0500fba91833642f80e69b1011ef37f4463ffa",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 104,
+      "name": "yellow-batch-top-exhausted",
+      "oldBytes": 79132,
+      "oldSha256": "88e886845296259daca38ebee9fd8c232d2509528cea42d479392f90a6662459",
+      "newBytes": 78956,
+      "newSha256": "c1565eea89a83df43d724be7456ec40ace155057baa50a7a0d558629eb0cca1e",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 105,
+      "name": "yellow-batch-top-hidden",
+      "oldBytes": 77889,
+      "oldSha256": "55fb81f221284f20b5f4bd9b1664b775a5d7d284ed3678951b9d25de5ef10499",
+      "newBytes": 77713,
+      "newSha256": "7591ef90ed9ce2cb14072f934dca100fdd601762fd3184ad056205a524d090cd",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 106,
+      "name": "yellow-batch-top-empty",
+      "oldBytes": 76831,
+      "oldSha256": "15c1fa977c8f6cda7616e492da0188c595d0a295acf85703213cfda977d34328",
+      "newBytes": 76655,
+      "newSha256": "d6789666c8d3a901e76f4e7230859fd8022d402d77c95c6cc4098837320b43e2",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 107,
+      "name": "yellow-batch-top-multiple-leave",
+      "oldBytes": 769415,
+      "oldSha256": "9fefe439b5c9294e482ba1a61565f9fe7429ae3f72822978a41a6e8bd88722db",
+      "newBytes": 767959,
+      "newSha256": "fa6def1e64e0197603d4aeda46384651edd3009b6e09f01380e37c8f32a0afd0",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 108,
+      "name": "yellow-batch-top-return-checkpoint",
+      "oldBytes": 364835,
+      "oldSha256": "4bf66c7265b81374ed5c2b1ab7185e31426320ece7d3cabcad2e95f15cf27c64",
+      "newBytes": 364019,
+      "newSha256": "aec5001af7a7bf3c39760f17a58e1e2218a4a40d2b4a26cb35d6ff8b4f26a57e",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 109,
+      "name": "yellow-batch-top-optional-shuffle-checkpoint",
+      "oldBytes": 364691,
+      "oldSha256": "5530fe38fcaf8146de74673880dfc8f0d65997aee734b8c59ef942e9f8d07faf",
+      "newBytes": 363875,
+      "newSha256": "9e447d7c5554b7fe4644a15b400d6d8507ac70dd16f0c69eb7613bb26b157376",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 110,
+      "name": "printed-yellow-batch-natural-four-seat-real-search-LC01-deploy-private-top-restore",
+      "oldBytes": 61381215,
+      "oldSha256": "57c8626fb751200033a6b3192a9311651fb2461bf92dc78caa07fe3afd00161c",
+      "newBytes": 61298511,
+      "newSha256": "98b821a44c99d4800c531cf46c05afde0801e6a6943b0dc59e2b91a47ad66cbd",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 111,
+      "name": "control-temporary-target-hide",
+      "oldBytes": 3311073,
+      "oldSha256": "6440caab3f4deb247d4e91f737792b0638ae1df3822b488b776fb4bf448e1d00",
+      "newBytes": 3307185,
+      "newSha256": "3c152d622afbf0273f1e586b4b27ffa27ee62a077bc23bdbf5c578f597e20d8a",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 112,
+      "name": "control-source-hide",
+      "oldBytes": 2316811,
+      "oldSha256": "ff628b68dc462e89fd7cc5580e9f187543b2842a1c2b218f2444cab19dfff60c",
+      "newBytes": 2314075,
+      "newSha256": "b5c0a28dc2bd39396cece8a0215bdf84d9ba5cde1c0a3640a72a7be302b90b64",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 113,
+      "name": "control-source-controller-fixed-recipient",
+      "oldBytes": 17351752,
+      "oldSha256": "eaba99450549e8802212397923fcfb652bb9d4ff7e0f0c9dae7fe555667c8481",
+      "newBytes": 17331480,
+      "newSha256": "3b8fce26f37c1fc32ef444937c9da5aea4d9e352b4590abd1bacf1f951fa9b26",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 114,
+      "name": "control-three-layers-expiry",
+      "oldBytes": 37640198,
+      "oldSha256": "7dd13eb4328c5fbce60849085f982452ad15a56469d41f0840379d35f662ed55",
+      "newBytes": 37597910,
+      "newSha256": "4f9eec94fbdeb4bb9554e03a254b2b3742ad5d61b678cee1cec7ed7790f8fd65",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 115,
+      "name": "control-lower-removed-under-upper",
+      "oldBytes": 37408407,
+      "oldSha256": "6d83d5219b90338885c3c34b52f9f3aeea4349424a9abf2e1185f40cf91fa947",
+      "newBytes": 37366631,
+      "newSha256": "be30a81d42d1dcbefb453db3d5f6aa4dcdee19f642ccec471322cb8c4d9baa68",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 116,
+      "name": "control-natural-four-seat-real-50-card-decks",
+      "oldBytes": 261850711,
+      "oldSha256": "4bace313b933522c0df21dc2ab833f937900898624d3819f7250c089b4c6577e",
+      "newBytes": 261605447,
+      "newSha256": "346149b1ada7cf8735ee536a412fb8c87e2e18ae9bfd293334a00298abdffa96",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 117,
+      "name": "renown-merged-decline",
+      "oldBytes": 885754,
+      "oldSha256": "53735fb93d9d398bca1d511465b1b1c32de543dda9554bd724087789375cdbc2",
+      "newBytes": 884426,
+      "newSha256": "6155996fd1f7afc34814edd3721c0c03c7b87715bdb9d8ab606232912b6013da",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 118,
+      "name": "renown-normal-win",
+      "oldBytes": 1302098,
+      "oldSha256": "e06c120d4e8f86cd3f7b6bbe8e944438d13914a03cbec92894dade8480db0365",
+      "newBytes": 1300130,
+      "newSha256": "d19351bf8da0ffe0262fdb196084bc12b2dcca6989540348d8d675f2f60be9ae",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 119,
+      "name": "renown-renown-win",
+      "oldBytes": 1227524,
+      "oldSha256": "4a6f3ab0faf0ec055ce67e4a96a945ec048f778ee00dd95ab4960dfe319f6074",
+      "newBytes": 1225684,
+      "newSha256": "8fb988a44c7ccaf2951a293f1fd252509297b8d0fd4cb25c52ba9fe2113863bd",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 120,
+      "name": "renown-response-identity",
+      "oldBytes": 1911954,
+      "oldSha256": "fd0b4320d91ee88cf904b23fd7b1ce63e687ed2afe5f265939689d6c313d2cf5",
+      "newBytes": 1908962,
+      "newSha256": "0d7013661dc0aa8d80d5710082ea5d3f6652fcfcc2a7626f51d6e2baafc18af9",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 121,
+      "name": "renown-control-cleanup",
+      "oldBytes": 12992978,
+      "oldSha256": "4d6e9b5690d8e544efb675b648193a9b7248fb98342a2855324d78f58b0f52df",
+      "newBytes": 12972834,
+      "newSha256": "d345711e2d07caa8184dbb4d4c09c10382e7d458276871b42b13f7484e608676",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 122,
+      "name": "renown-natural-four-seat-paid-three-cards",
+      "oldBytes": 56345917,
+      "oldSha256": "683b1b458c21c0367121c73fa457f56a0a22379441d59f364b9beed6f3850f11",
+      "newBytes": 56263597,
+      "newSha256": "5c39f0b5a96021f3da7c4f08ae69faed697a48ef0fe2e5dcf5a8152efe35d1fe",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 123,
+      "name": "protection-paid-four",
+      "oldBytes": 16367033,
+      "oldSha256": "1a45b20266f26b8e3c45a01db5d0da9023e4101adbbe6ccb76d467efaed11875",
+      "newBytes": 16345609,
+      "newSha256": "89d477387c57b9296f4fcf71bdc413922303eaf72fd7a9c4d11e5f17885acd9f",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 124,
+      "name": "protection-foreign-host",
+      "oldBytes": 1160752,
+      "oldSha256": "a43c343d6667e8eb43744778353523981b367ad86839cbd119a482714979b961",
+      "newBytes": 1159168,
+      "newSha256": "ae38c8e00acedb55c22b229d797851108d59e1171c549b246a867ee664759970",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 125,
+      "name": "protection-response-return",
+      "oldBytes": 1343409,
+      "oldSha256": "0f304f1d5b1d7631754fe6814de738ea56cd2faf210c051a0a400edec7f633e4",
+      "newBytes": 1341569,
+      "newSha256": "50bce9794a86fb538aff32e09bbb47486f1ff4bc0bdba3362f9bc5b9b5a39cd5",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 126,
+      "name": "protection-response-hide",
+      "oldBytes": 1348134,
+      "oldSha256": "21f9d5961d1875fc50b5f104c8f97fb81700b02029a3a7bca3f10086cafe455c",
+      "newBytes": 1346294,
+      "newSha256": "57f1e3d715513628f754a615a8aeeb8edc19493e78ad4613289dbf8dc794deac",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 127,
+      "name": "protection-source-return",
+      "oldBytes": 1352063,
+      "oldSha256": "777fb1b838f0ae89aae9d3a63a3fb5ca073bb2eb805a902794c6777bb2e99ec9",
+      "newBytes": 1350223,
+      "newSha256": "f1cccf8e6852a8c5366ee2b1e6e40767c458cb7d4eebe698dcd35310875d47ea",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 128,
+      "name": "protection-phase-loyalty",
+      "oldBytes": 699604,
+      "oldSha256": "6a235ebb308112562341d96ad6a79e91a9f996f2815ad4954f2dbf19f50aad01",
+      "newBytes": 698532,
+      "newSha256": "2f83a67fde26654096339e0722283dcaf05ce4dbb81c255da421dc0d64ef2b09",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 129,
+      "name": "protection-fire-purple-loyalty",
+      "oldBytes": 685317,
+      "oldSha256": "2d542f05b4c6a2e6f512065caad8eea7c1b103925b79c1b769492ff8eb8f647e",
+      "newBytes": 684245,
+      "newSha256": "9e5ea883772264ec9571a2911d9dc31f8804f0d232d1f67af55710acaacb5d0f",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 130,
+      "name": "protection-natural-four-seat-paid-four-cards",
+      "oldBytes": 287225649,
+      "oldSha256": "05a8353b73a86fb596cb534c925e2a65d045947873e8dea3c21ccffeeecd67be",
+      "newBytes": 286933921,
+      "newSha256": "3f4c022791bf4c8fa9e59a477bca7a58a922b36f37477b61421a8082b04e5394",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 131,
+      "name": "defence-equipment-paid-four",
+      "oldBytes": 20152983,
+      "oldSha256": "0d5a4916f9e48e24981ddda732af5d3a3fd5f8b45b2acccf9dc79935686fad71",
+      "newBytes": 20130535,
+      "newSha256": "f1a7f45f39d784ff59dd73ac73f4fceeff7341d6628b60849ec82aa7b474d8e1",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 132,
+      "name": "defence-equipment-shield-return",
+      "oldBytes": 1478528,
+      "oldSha256": "19bf4091c4747a2a3287ca132f16295c0ae232be45641d6abac56d43fd0cf9c9",
+      "newBytes": 1476688,
+      "newSha256": "23a63992138d09275cb8cd0c1945a47b02f1ebc22dcf023388f5a52067be5d9c",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 133,
+      "name": "defence-equipment-shield-hide",
+      "oldBytes": 1385268,
+      "oldSha256": "45d6403496dc4f8f228231dd7ba6b4460eec28ba3cdce16a6a4e249300510072",
+      "newBytes": 1383556,
+      "newSha256": "dc8a85dbc84e06e25bb9a9468dc0899c14897829172a028c226fc921c1fc2c60",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 134,
+      "name": "defence-equipment-vest-target",
+      "oldBytes": 2022580,
+      "oldSha256": "0815135c4c5653b57058800fca098546f454c079df3bbbb064d10692589507e9",
+      "newBytes": 2020100,
+      "newSha256": "6ecb4c3e3cd231310d1934c7cdd4bb558b3af104637d5e9aaffd85961731c943",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 135,
+      "name": "defence-equipment-vest-source",
+      "oldBytes": 2032065,
+      "oldSha256": "81baebcd222ffa801f531fe33a18ffe482503cad8c6a580caeb24becae47df5d",
+      "newBytes": 2029585,
+      "newSha256": "8ab12bcb4bb474431ba331264d04f386578099fbae0c9cd7696b091cb105b490",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 136,
+      "name": "defence-equipment-vest-lost-defense",
+      "oldBytes": 1705073,
+      "oldSha256": "16d88d4494c3546e406d593aa3eccc902001db5a568181ada1df5934a83cdcc3",
+      "newBytes": 1702977,
+      "newSha256": "3bae18e289660aeece0b1dced8ddea5ba01f9d9df562aabb0f55c3659b19cae1",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 137,
+      "name": "defence-equipment-roles-targets",
+      "oldBytes": 2102691,
+      "oldSha256": "415bae40fe1d5fcbac3742501ae737600c5df86f0cd83894e199204efcd562b7",
+      "newBytes": 2100211,
+      "newSha256": "3206bb4eba94c6582725cae9337e39382fb8a4c502c586d59710928a67890a82",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 138,
+      "name": "defence-equipment-blood-type",
+      "oldBytes": 1706578,
+      "oldSha256": "6994284bfdc862dd7493aa8acc3f6d0e8db32904428a1b064660fb5a7b014cd3",
+      "newBytes": 1704482,
+      "newSha256": "cbcca945e73b253e237f9e867d2a4a556a22a92b16f7c009aeafe5f642068e05",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 139,
+      "name": "defence-equipment-cat-loyalty",
+      "oldBytes": 1305268,
+      "oldSha256": "80e44a089fe127048673b177351759114ee17c39d5ef48270303c9220d6e5e47",
+      "newBytes": 1303428,
+      "newSha256": "9594f2d4d7c92cc53a8a2560d8f087f7095a3ee9b8b0e3b30c3ceef99afa4bc9",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 140,
+      "name": "defence-equipment-natural-four-seat-paid-four-cards",
+      "oldBytes": 285694293,
+      "oldSha256": "ca6b9ae7ed49ebbdbc8a854af39949c05b22da4466d3205b88a8a07433576f4c",
+      "newBytes": 285384389,
+      "newSha256": "d5686df45d046b639d4b76022b5290a06d4b9c0bb1a8ea5927958295f5aa2713",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 141,
+      "name": "equipment-abilities-paid-four",
+      "oldBytes": 5176477,
+      "oldSha256": "a7c4b134a22ad5c31bfcc61e5cfff47ba451782ac7aa8bf036bce02d23f93dea",
+      "newBytes": 5170285,
+      "newSha256": "56f190865d0d11bf72f87e1e91d9d6cad8c8e517dbbb0a7c2d8366e892a666fd",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 142,
+      "name": "equipment-abilities-knife-source-moved",
+      "oldBytes": 547653,
+      "oldSha256": "644fb216b4e9639aea91cb9058496003c6c5a0cfcad278d7960c5ffd6d4eeb7b",
+      "newBytes": 546965,
+      "newSha256": "3e63911066c5a90e2feeac3f3e9792f7559f0703b1151b7cb2e0b0aca9f1e88b",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 143,
+      "name": "equipment-abilities-knife-target-moved",
+      "oldBytes": 551542,
+      "oldSha256": "a62efe08b027e265f922fcaa54989dba5d0f33b68e9002de617913a9eb099e99",
+      "newBytes": 550854,
+      "newSha256": "1d5194ec28ec9efc281a71164a5fc042705addbae247fdceef3b0bf1273ad7f5",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 144,
+      "name": "equipment-abilities-knife-paid-shield",
+      "oldBytes": 549345,
+      "oldSha256": "9daf20a0f3522a5b72dc993f4630dc7a6f5db74926bfaf2817f504f6d0587b11",
+      "newBytes": 548657,
+      "newSha256": "15d780b574108fe0abfbe7618e569c6a051e9f404fd6ea86222bc6540f3dbc79",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 145,
+      "name": "equipment-abilities-blade-twice",
+      "oldBytes": 16287869,
+      "oldSha256": "696a68ba1af9ce28ba3ddb582a2108a937ec29733049702c15abc1bad833c31a",
+      "newBytes": 16267725,
+      "newSha256": "0f7061d8d1b8fbb42e27d5ef8c4aa9d5facb054b7606823625a242ae85faea70",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 146,
+      "name": "equipment-abilities-blade-source-left",
+      "oldBytes": 1973865,
+      "oldSha256": "b685b3c7910b3eb9adaf951bf03972cc9fe0226b00594f821359924cea4e04ba",
+      "newBytes": 1971385,
+      "newSha256": "6fc29780facdf78c51a5495451dccffd6e1a21d8574b7a0fc023c180c8b9b18a",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 147,
+      "name": "equipment-abilities-blade-host-left",
+      "oldBytes": 1966234,
+      "oldSha256": "60a1053495ef30ac43df13cdd199269ac745c86a4e9772a7fa1cf01b13313adb",
+      "newBytes": 1963754,
+      "newSha256": "aa6f0b06f09bb640abbb787d53ab9b6e68beb4e2bcc96c06e3c008f88a30f4f7",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 148,
+      "name": "equipment-abilities-blade-host-moved",
+      "oldBytes": 543649,
+      "oldSha256": "d79749f87f5f35ac5855e149838c0a21a07cf274a5b8f5aeba941bd16fd5cc10",
+      "newBytes": 542961,
+      "newSha256": "a80262acff9392e61fb05c0dfd288fc0bd19bb11b873d866b995dac943e7b2f4",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 149,
+      "name": "equipment-abilities-blade-host-rebound",
+      "oldBytes": 543947,
+      "oldSha256": "4f62717242adda3989b9cee855720702d7d4eb7e7047372a7dd59078b7ca7c71",
+      "newBytes": 543259,
+      "newSha256": "546e06bea3ecc4c81a53990f72d020f16592aca1ebd71b99644687898c4cb7f0",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 150,
+      "name": "equipment-abilities-blade-control",
+      "oldBytes": 757530,
+      "oldSha256": "4901dfebb96ac94c23c832b7d2685eb35cb7d8bf38bfcd8d99971523d5d7178f",
+      "newBytes": 756586,
+      "newSha256": "8b8964709eb22472082ce82d4869e0919fa00c10abede2946fe99b527a3d58ba",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 151,
+      "name": "equipment-abilities-water-group",
+      "oldBytes": 18465500,
+      "oldSha256": "c6edb4646c78dee5665ae976943d475f26968e80392a8c3eec856ba3161e55a8",
+      "newBytes": 18444332,
+      "newSha256": "bfd924c087ff89c154bdda44c9ce5432c02242dd82976c748d983ab03eb9b6c7",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 152,
+      "name": "equipment-abilities-water-source-moved",
+      "oldBytes": 542279,
+      "oldSha256": "3795af7e3659a76ea30471fdc82f517024fba33e65f42168d183c1b7e662975d",
+      "newBytes": 541591,
+      "newSha256": "e5c6fcfca8f631a13d2ceffcb869f60235a565076628d5791e815c86e7acab34",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 153,
+      "name": "equipment-abilities-gun-win",
+      "oldBytes": 633121,
+      "oldSha256": "180a61f5bdb085e98131ddab7444bd9fa83660be8c97e454c4b4e5486c4277d0",
+      "newBytes": 632305,
+      "newSha256": "02e7822548fc9e588f9a3d8be764dc45cc288a3d587c95af7c59d4c6f8886b65",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 154,
+      "name": "equipment-abilities-natural-four-seat-paid-four",
+      "oldBytes": 139374650,
+      "oldSha256": "2fd0fc7ee5e3ff2dba07ec3f05feecda6d8eaacc6bfceade4fccc6a2de18c0dc",
+      "newBytes": 139208490,
+      "newSha256": "ee2a2e716ecee6a67e02dc8c2e831977707e5d73e31535bf1f049923aa9b00ee",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 155,
+      "name": "equipment-abilities-controller-only-hosts",
+      "oldBytes": 4052770,
+      "oldSha256": "7cc68d925af495d7ebb89e3390637eabbe57cb78ed2310ec36b87d81d14bfe12",
+      "newBytes": 4048242,
+      "newSha256": "54d184577dbc304b39ba269fb187b350b341dd99648f42fa004a80d7f2740a28",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 156,
+      "name": "hand-deck-paid-four",
+      "oldBytes": 2058784,
+      "oldSha256": "faf567fd7f21abe135b1f0f748402eac3bd45c91aed0cfe10e6ebc7d382265a4",
+      "newBytes": 2055664,
+      "newSha256": "cf819b8ee5d7b75e19789726a66465bb24c1db513e341a8657626b1df432354b",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 157,
+      "name": "hand-deck-research-private",
+      "oldBytes": 922975,
+      "oldSha256": "0cc6767fe9f6b8c3ea2b6d10085e86f2a00b41cf994e186fa66df7d5d7159e45",
+      "newBytes": 921519,
+      "newSha256": "21176e5bb2fcb4609f659d483b42c196b2d54a3f4335e3769b4085966821f56b",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 158,
+      "name": "hand-deck-airdrop-private",
+      "oldBytes": 758658,
+      "oldSha256": "3e85cca976a7e43f333573f154205fcccc636b170c2986786bc5b3f00cd6ac4c",
+      "newBytes": 757458,
+      "newSha256": "6a06c11a9ec0f5a6cb264cb76f6b2832a7deae3a2be18609806009444f00d01b",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 159,
+      "name": "hand-deck-empty-search",
+      "oldBytes": 496389,
+      "oldSha256": "f76fc8e160bb54cefeb43aa3260883834304b47c0643e7d90cb99d2704801250",
+      "newBytes": 495573,
+      "newSha256": "0235d8aae0bfaf255b868512fe895130e8829fd5130c822825ea4524dde11277",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 160,
+      "name": "hand-deck-research-depletion",
+      "oldBytes": 474640,
+      "oldSha256": "a027f04690a378ecb5ecc37b4464fa6f9668e047fbb2e7aaa858f874b468361a",
+      "newBytes": 473824,
+      "newSha256": "523adf6b621568c04133735471554757b1f290547a2f886a56614235fa3ceb4f",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 161,
+      "name": "hand-deck-dog-invalid",
+      "oldBytes": 1143051,
+      "oldSha256": "f6effc5169f25166ad4ae0ce4a6ee08d61f778fb201a77fd3ea8c2589752889d",
+      "newBytes": 1141211,
+      "newSha256": "043e028afa1f38e676b99131e7729353e1da141a9dd4178b272c3d492f13ba19",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 162,
+      "name": "hand-deck-dog-self",
+      "oldBytes": 506609,
+      "oldSha256": "d57a4ffbb126e899671e83c1d3f908edffbf23c5e5910b59d280a2063ba1d29d",
+      "newBytes": 505793,
+      "newSha256": "a8aaabed7e6cc36d6181c5e1e1ace8d305e237be7986fb0e9a9772ea18ec00f5",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 163,
+      "name": "hand-deck-controlled-not-owned",
+      "oldBytes": 506999,
+      "oldSha256": "4ae3f2a16bd4b8a0a3ee37cfde8481348a0f6cda9ad32bb36bf74d58fd7456b5",
+      "newBytes": 506183,
+      "newSha256": "c4351df605b0f956a964d7ea619179abc7402c1a2a799d7a7884e583fd7244bc",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 164,
+      "name": "hand-deck-offering-accept",
+      "oldBytes": 1003151,
+      "oldSha256": "6a02284d178a73f13c408632d482749d93bdbcde62be6e59e844754acc20b62e",
+      "newBytes": 1001567,
+      "newSha256": "54b5d51ee4c8f4933ae51c0871a047125fe495d6e11f347f43aefe7747d6abaa",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 165,
+      "name": "hand-deck-offering-skip",
+      "oldBytes": 586645,
+      "oldSha256": "7ac2147d2eb92208b371cdac2ca2615d79f57e6de88797c1a50fd03b67ce31cf",
+      "newBytes": 585701,
+      "newSha256": "f114f81ac340807c4c5fef8b2125b8fe560bdb4e2328ecbb3936739cb147e39d",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 166,
+      "name": "hand-deck-loyalty",
+      "oldBytes": 411016,
+      "oldSha256": "dcdbc2ae72c5709d4db54d1be155981e51dae663c0ad25e94c5228115638d39c",
+      "newBytes": 410328,
+      "newSha256": "fa400fb8dff13455ab87a4f426051c6e166a3cd1781d9acfc3f0061d09307170",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 167,
+      "name": "hand-deck-source-return",
+      "oldBytes": 1024571,
+      "oldSha256": "bd0b4333cb51e7b353d6b84bd7163a62f73595720ee71874d4d3e70da95dff24",
+      "newBytes": 1022987,
+      "newSha256": "c74375c6889ceec7edd28987e024350c6fea696c1d3e4717d16e392714bbf2a8",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 168,
+      "name": "hand-deck-real-JZ27-simultaneous-source-first",
+      "oldBytes": 869056,
+      "oldSha256": "b237eb6de9dadf137318c55f9174a0342316301123978ff505f40ba8669d7194",
+      "newBytes": 867472,
+      "newSha256": "e6b56a11b628e12a717e6f0874c505e3f0bea60be48620b905da998ef2087071",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 169,
+      "name": "hand-deck-real-JZ27-simultaneous-offering-first",
+      "oldBytes": 869058,
+      "oldSha256": "54503825e2312bb4960eb156b406826729c63ee3751aa887ed5396be663dfa2f",
+      "newBytes": 867474,
+      "newSha256": "e270c4faddb425e032174870876c66c1ac1bd1d0401b8b419e4e31b5b417dedf",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 170,
+      "name": "hand-interactions-hacker-accept-target-0",
+      "oldBytes": 546874,
+      "oldSha256": "b76c36f0857a10d32aad08620cf9e7e8f93991610c7310038532dadae3b03b02",
+      "newBytes": 545802,
+      "newSha256": "eca8df3af1766a9ca82973c6f46a45664af4eee846fb9b8549e9d03005567fbd",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 171,
+      "name": "hand-interactions-hacker-accept-target-1",
+      "oldBytes": 545345,
+      "oldSha256": "867c5cd5fa37920822b95f637b3d3c7cd558371175b8e8d8cc0b21727ec10102",
+      "newBytes": 544273,
+      "newSha256": "3fbab19a44fe4be86c1d1e5654d9667bb6c2b8ed73458967591d3405e1ab02ad",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 172,
+      "name": "hand-interactions-hacker-accept-target-2",
+      "oldBytes": 544841,
+      "oldSha256": "72ef656043072967b95c78cd9db9f03a20c7da6f604f3944bb55ddf339b0a70c",
+      "newBytes": 543769,
+      "newSha256": "0a66a309a7092b6a38eefafebfb240a86726efc84c9fae6036bed8577d8021d6",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 173,
+      "name": "hand-interactions-hacker-accept-target-3",
+      "oldBytes": 544859,
+      "oldSha256": "b8172c9ddc903e846ac8525c14bbc25aed41bfdd501485584dcc831a1fe919cd",
+      "newBytes": 543787,
+      "newSha256": "87e0c33d20f02ee44eccb03a685bce822af40cd3633f10754ac4183e5057e391",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 174,
+      "name": "hand-interactions-hacker-decline-target-2",
+      "oldBytes": 543237,
+      "oldSha256": "5f8268fdff28f5ade9c31847e042bf2e7ee95c81dc1aa72c3573009be515e54a",
+      "newBytes": 542165,
+      "newSha256": "72f4f17bf3308f740e7b423914edf35ac912f199edd2f5bc7a2d3c2c34011a01",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 175,
+      "name": "hand-interactions-hacker-source-return-target-2",
+      "oldBytes": 1040949,
+      "oldSha256": "be0034ccada3b23bc8085eae99641fb85d9b742abbeb35dd3463cadc1a4b4b04",
+      "newBytes": 1038981,
+      "newSha256": "e94ddf31e3d92e4d1e34d7cbad674e72840cebe5ae9f9d315a4a4d7a1d65bff6",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 176,
+      "name": "hand-interactions-hacker-foreign-discard-target-2",
+      "oldBytes": 545291,
+      "oldSha256": "1a86709c59da76f853f95b0d8d377141b7254033a5de76ef59208550e4f3b442",
+      "newBytes": 544219,
+      "newSha256": "4bb3d00027cd5187c4e8dc74200f71316bf230691b2065222fd9a52dd9439a46",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 177,
+      "name": "hand-interactions-hacker-inspiration-accept-target-2",
+      "oldBytes": 795613,
+      "oldSha256": "9ac17b2c75b7846db21fc7cdb60a684fc32b01881cf77f870a59e3b93054668b",
+      "newBytes": 793901,
+      "newSha256": "532a826c531f0d03a95402cfd3f321ccbef43f4a65d75b83bce0b0041fa02074",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 178,
+      "name": "hand-interactions-hacker-inspiration-skip-target-2",
+      "oldBytes": 555413,
+      "oldSha256": "a952959e185101095dfc07a750f3cbffcabe99ba86f14e1f29dfa5ddb354b88c",
+      "newBytes": 554213,
+      "newSha256": "bdb328c56653d44ce211c4be1a0030d442f6d91107ef8c7891a2afd7122c65cf",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 179,
+      "name": "hand-interactions-hacker-inspiration-unfunded-target-2",
+      "oldBytes": 489844,
+      "oldSha256": "af92903458190127f47f02c081f3d6e8affb5cac15067d0b17558eff0688ab53",
+      "newBytes": 488772,
+      "newSha256": "5221735e560fecd73cd716dd7b74b1a5105b4ef2f4416cc0a4f6bf868d47852f",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 180,
+      "name": "hand-interactions-recover-ordinary",
+      "oldBytes": 829725,
+      "oldSha256": "19629fa4a4414978289af987b50aaa72a1c8b578c7709e7cf4d8710a7eab3bcc",
+      "newBytes": 828141,
+      "newSha256": "f34a886ab5b98c67a882c7e9a93cd7ddc5140510cc13bc780ed408569d72cef3",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 181,
+      "name": "hand-interactions-recover-inspiration-accept",
+      "oldBytes": 1173479,
+      "oldSha256": "18a1265625636eb4422b4c62a673fc47be9e47b002ba6eaba76c631b65fab27f",
+      "newBytes": 1171255,
+      "newSha256": "64742d27486f28211732460c6b3e3c62719bbbeaf133c8a6eecb6b4422d36c86",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 182,
+      "name": "hand-interactions-recover-inspiration-skip",
+      "oldBytes": 889252,
+      "oldSha256": "36a5f4523225e24108bf056ed47859b172bfe8dad7da5c04bce69e43cd777500",
+      "newBytes": 887540,
+      "newSha256": "119b87f0ccaa1a04de1e3a7ebcb7569d517eb8ed5be7838eaf4c95e6d6abce59",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 183,
+      "name": "hand-interactions-recover-inspiration-unfunded",
+      "oldBytes": 744769,
+      "oldSha256": "68d3ce575a0b5f529b58c3f0d45d77dd057bea00acb0f36b1b9c0b757af0a77e",
+      "newBytes": 743185,
+      "newSha256": "3bc87784e17833f50ba03a382049f31d3b193c2257ffd2dbc2b9bffeef0df896",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 184,
+      "name": "hand-interactions-entry-mill-0",
+      "oldBytes": 634264,
+      "oldSha256": "180cf189e1195c73965d0091cb827e4cc6e33bbf50ff277101ba007c71bc7c0b",
+      "newBytes": 632808,
+      "newSha256": "3ed9ac4a4087505eddb20b7b01c21d3854cb2a0c89c71f94ba670e61f0229ad7",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 185,
+      "name": "hand-interactions-entry-mill-1",
+      "oldBytes": 638062,
+      "oldSha256": "37b93af70dd68e3088a6727f213d5fddf1089179995c7739f8c34023075b9f5a",
+      "newBytes": 636606,
+      "newSha256": "6913600fc2dab18812a556f35209a2ae6897c2453ce9c28e6537656822020e40",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 186,
+      "name": "hand-interactions-entry-mill-3",
+      "oldBytes": 645321,
+      "oldSha256": "7ff389e4497420f5b4863826a8140ed2293a48972b091d05e5d42d2446244e24",
+      "newBytes": 643865,
+      "newSha256": "3e67e6ceb70879ca97e09b8c58a78c58a183f68709784348022d61be1a420944",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 187,
+      "name": "hand-interactions-amnesia-one-target-2",
+      "oldBytes": 415104,
+      "oldSha256": "c65e7aad47af47c76bac3cb904442a83866885f11b58103344ef68137fa89b4f",
+      "newBytes": 414160,
+      "newSha256": "398b2c8ef285b6e59e4e4be1300fecfa486000ca4fcc5557eb90d1de8e13dc66",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 188,
+      "name": "hand-interactions-amnesia-random-three-target-2",
+      "oldBytes": 424190,
+      "oldSha256": "45a4d8430c3212f9dda9e4e58de05fe03f62ad42a6fb4a827b5ba745393a2326",
+      "newBytes": 423246,
+      "newSha256": "b5bab5e6f5bb27297c29fdd38a9e86f9a59e1db0e4e636d8627625936ab87478",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 189,
+      "name": "hand-interactions-amnesia-foreign-owner-target-2",
+      "oldBytes": 415544,
+      "oldSha256": "b9eaa5a626e7e82322859b51a7946efff05569475a066c31a2cd7fdd7e6b76d5",
+      "newBytes": 414600,
+      "newSha256": "8a8e5b2cc406dcb8fffe11c73a941d40653797248086ed720e4b49f6a87175f4",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 190,
+      "name": "hand-interactions-amnesia-empty-target-2",
+      "oldBytes": 410483,
+      "oldSha256": "8a77310896fff0bb9ca0d47d938d8113700628a6c8504edfd838aa5ccd7d4548",
+      "newBytes": 409539,
+      "newSha256": "4aa315b6dade525a12a2b97c93afe553287191b743d58509fbefe348e3677921",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 191,
+      "name": "hand-interactions-amnesia-self-target-0",
+      "oldBytes": 464851,
+      "oldSha256": "8f5fbc9948bb7f7a593dbd90c8b57147aab5c86c910e3ba7b7be3775da9569c1",
+      "newBytes": 463907,
+      "newSha256": "85d7c2ce09fd5977ded187dd85821488ffb08faa264096bbee5c169b20cd0f26",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 192,
+      "name": "hand-interactions-prepared-optional-shuffle-accept",
+      "oldBytes": 127642,
+      "oldSha256": "ac0136d9713d4e79bf613698d5d1fd0858076dd9af088493f1c89c9382aadbe9",
+      "newBytes": 127338,
+      "newSha256": "8894c986deab1e9867733ea4bb2adc167d2b997a64d879e82bad95144aa01b8b",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 193,
+      "name": "hand-interactions-prepared-optional-shuffle-decline",
+      "oldBytes": 127625,
+      "oldSha256": "f6e2641007a18858134aef254b963dc2c6bc2d7325832165175b7d0a694bbcaa",
+      "newBytes": 127321,
+      "newSha256": "83442a857729933152c5ab8c8b149d0dbbe47a3ca4bea2a29aae7747355ca39b",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 194,
+      "name": "hand-interactions-normal-inspiration-play-empty-hacker",
+      "oldBytes": 801685,
+      "oldSha256": "5ca32a148913fbc5146c791b6d0f753bcf50efec114e4b5178a3ff50b315fd86",
+      "newBytes": 800101,
+      "newSha256": "cb143260b30e3d6927037d98e5f39f7a72a6e327f9d873ddb3c95fb4c1afc88e",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 195,
+      "name": "hand-interactions-prepared-stale-recovery-trigger-still-draws",
+      "oldBytes": 708513,
+      "oldSha256": "f97a36ca6b6a5baa639690a0019b426b4e75cc3e66d726f9433ce9151cbe22e1",
+      "newBytes": 707185,
+      "newSha256": "ca7d64c44bbb9c39c235416f82885806b2c5dadfe537483ab2bf082bb62c96a7",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 196,
+      "name": "hand-interactions-natural-real-50-card-dealt-hacker-deploy-only-printed-two",
+      "oldBytes": 11941953,
+      "oldSha256": "fb7141e6feff8b4293457287fd87005112c60a9798941ea5acba1b3d94276b63",
+      "newBytes": 11919537,
+      "newSha256": "93a607ede88dd7f42ae70fe63d2d9c0c289b964b01ee1e6ece44037557c3e6fb",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 197,
+      "name": "purple-tools-painter-exhaust-only-discount-play-asset-character-no-death",
+      "oldBytes": 567032,
+      "oldSha256": "e5edbd1f7cb8cd060389a9ef3e30bd5034d358ca452347dd63d19839e149e19d",
+      "newBytes": 565960,
+      "newSha256": "b81c5e795fe299ae2751591eb735a748da3fccef56175c25b91a33c0d9a7f038",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 198,
+      "name": "purple-tools-conceal-asset-do-not-consume-paid-reveal-does",
+      "oldBytes": 1046827,
+      "oldSha256": "57ce18d74e30bdbd2b903eb94e5baac2e904f8f2fcdf548ba5bc7ab6895dfb1a",
+      "newBytes": 1044859,
+      "newSha256": "0dd7da46ec00be6c13414937fa4f5fbe818d782a2512ede53f3f827448dfc9a6",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 199,
+      "name": "purple-tools-legacy-reduction-excludes-paid-reveal",
+      "oldBytes": 1048861,
+      "oldSha256": "733bc40f7a01569be819285dd8a153b05ac659615c0b78b0de826ce50227cfef",
+      "newBytes": 1046893,
+      "newSha256": "4f0bacce300110df9d7bcf842af3914d0599474fe6430663e963f3f219504e59",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 200,
+      "name": "purple-tools-real-DQJC108-win-free-reveal-keeps-discount",
+      "oldBytes": 815447,
+      "oldSha256": "a5b492181209e62087af78a953942117714093532bd73b704a8a8ad037ef9fd5",
+      "newBytes": 813863,
+      "newSha256": "3135d796a21888332477fe3bcdb8adc06d6929062a6a280c7dede80e6ba1c8df",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 201,
+      "name": "purple-tools-discount-not-consumed-bad-target",
+      "oldBytes": 254367,
+      "oldSha256": "b344e50b54cbcfb534d95ada16466eb8e440fa8ed53429e2cc176f52e8b85cac",
+      "newBytes": 253935,
+      "newSha256": "9d9d53e24042820effa591ada25af7c34d2f2e0930da5284ce626e55e8fa6b62",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 202,
+      "name": "purple-tools-discount-not-consumed-loyalty",
+      "oldBytes": 241989,
+      "oldSha256": "c63a0914fb6df7c3b88e9ad1e921374f244f5cee73fee51e9a786573d19dabdb",
+      "newBytes": 241557,
+      "newSha256": "6b39e72e5c112d61d9421bc6e107479149fc0bce5752be9d64a9a292677e05cb",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 203,
+      "name": "purple-tools-discount-not-consumed-no-money",
+      "oldBytes": 239383,
+      "oldSha256": "5cadeac76511480ae5dbe228880bb5ee6b845b6a7c02ea37f1c144d0a08fdb1f",
+      "newBytes": 238951,
+      "newSha256": "ae872f4908463cfe5d89c9463da03fc667f6b16148c841a8d878ab442405de94",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 204,
+      "name": "purple-tools-discount-not-consumed-nonpurple",
+      "oldBytes": 526085,
+      "oldSha256": "987e0815b5b65bd4551ead2f8b5cd2fbbe78d7c5efff0b264b6055c42b4988a5",
+      "newBytes": 525141,
+      "newSha256": "2b53e096aabf89a0105fad3d6d96251e304c6479de8ba0626f1ee5bee8261b2b",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 205,
+      "name": "purple-tools-discount-not-consumed-other-actor",
+      "oldBytes": 1225176,
+      "oldSha256": "ee54f0ff1e44c0508a6aac516f3a9fe0e409c38733c33c07f7c986c41a9fd302",
+      "newBytes": 1222952,
+      "newSha256": "a66b8cb7aa8cfd3c89ec257a5a01628b27d25be8dc25e2b0033644027bd796fe",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 206,
+      "name": "purple-tools-stacked-discounts-clamp-zero-consume-next",
+      "oldBytes": 652732,
+      "oldSha256": "ec283edf2b03a1ca43975d1eec6a460cbc25f1674811ed2b34008d0305d894bc",
+      "newBytes": 651532,
+      "newSha256": "183aa498be7b63cae15be23c4aac83c86e4075ce576c5b992a1bcd0ca31f98e3",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 207,
+      "name": "purple-tools-returned-source-keeps-declared-controller-discount",
+      "oldBytes": 500516,
+      "oldSha256": "c64bcf43d8552a860b7bd2db85ea14ea0c0b238116d1c98d71aeb47836891029",
+      "newBytes": 499572,
+      "newSha256": "650c5dc848b44968a9897ba71c10888dc507e665d0c2d163af89ab71d12c82bd",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 208,
+      "name": "purple-tools-turn-end-expires-discount",
+      "oldBytes": 9109109,
+      "oldSha256": "075d456beb78af313818f546e984cf1cbffdfb41cbda46e129beb73d0821df2e",
+      "newBytes": 9090757,
+      "newSha256": "8e0deaeadd95f5f1c7b06c3fbccfd23768af5c98d7fe84b231b2d1e933d848df",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 209,
+      "name": "purple-tools-collapse-seat-0-asset-owner-fresh-instance-privacy",
+      "oldBytes": 414048,
+      "oldSha256": "db83cbef115993f65241a2742465db61a57f030c3291ced9e744ddbaedbce591",
+      "newBytes": 413232,
+      "newSha256": "a6d763d6b2892d3680c44bca1b53ee2c9b897b8774060f8be3dc38ffd0e23e7f",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 210,
+      "name": "purple-tools-collapse-seat-1-asset-owner-fresh-instance-privacy",
+      "oldBytes": 414041,
+      "oldSha256": "740f507c7a0b4eb9a0b5fc954063717f4aa50695256acf6e7117339592df9647",
+      "newBytes": 413225,
+      "newSha256": "c5cae4d5222216980c0a5ea7d83ef6b8d8d440d1c3774730663957de21aca627",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 211,
+      "name": "purple-tools-collapse-seat-2-asset-owner-fresh-instance-privacy",
+      "oldBytes": 414041,
+      "oldSha256": "eb22772f48a83e38743363ed2f0780e5d69dc20b89c1ada3f638da5f51dd9a44",
+      "newBytes": 413225,
+      "newSha256": "034f827ed6aa73ce5fcb2c1c58b5d953be491a522ee294168acd96866780759c",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 212,
+      "name": "purple-tools-collapse-seat-3-asset-owner-fresh-instance-privacy",
+      "oldBytes": 414041,
+      "oldSha256": "8fcd9fb4aa27a0a8e24a7a7830db7d5838b10af7a936829b2d7c72bd6f4d799c",
+      "newBytes": 413225,
+      "newSha256": "a02a7fcec79b916e112e6d552fce311853e4f796330b7f991b12a0c30854a83d",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 213,
+      "name": "purple-tools-collapse-reject-character-atomically",
+      "oldBytes": 162202,
+      "oldSha256": "0ab739d29e0f86fd11a2b36be90b7a23c0e3739d4ea8fc13a99440bd050d6148",
+      "newBytes": 161898,
+      "newSha256": "9c4d9f454c26d72fce2e67641f3f853f2c3d5bd7eca50ae5c01c9def4451c178",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 214,
+      "name": "purple-tools-collapse-reject-hidden-atomically",
+      "oldBytes": 160125,
+      "oldSha256": "4ec02b942c11c0f2a633efa328c1694aa8715c4ff6e12ac6ccf5919c6392b1a9",
+      "newBytes": 159821,
+      "newSha256": "c580b8e72c11500aa682488fbb610a5a5df376e7dd384f5eee4ced107993bd96",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 215,
+      "name": "purple-tools-collapse-reject-hand-atomically",
+      "oldBytes": 159066,
+      "oldSha256": "2b1930f297023f94d2fc7106a277e31472f73a2fb947f85ed059816a735e083d",
+      "newBytes": 158762,
+      "newSha256": "ecc39bdddad78f83ecd3ebb69e3a1a5ce8ae948e3eff0f99f322d45cea3d35e7",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 216,
+      "name": "purple-tools-collapse-reject-grave-atomically",
+      "oldBytes": 162036,
+      "oldSha256": "f9be0c5615aaa9c645e4b5e77d036ced465bb5d79f6a4c16d751f8f3182d2de8",
+      "newBytes": 161732,
+      "newSha256": "f9099fc6b2481aa4ea05022cf8a74acde7d1a8ce6b6089d4216a6dfa37618b1a",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 217,
+      "name": "purple-tools-collapse-reject-region-atomically",
+      "oldBytes": 157864,
+      "oldSha256": "6f0110e693924177cb0c53d2e5acfb61b0012e7985c61067573d73d1071d4aed",
+      "newBytes": 157560,
+      "newSha256": "740c2bc6ded740a23ddee0b8bd28d76e6c2c678b58962b5bd422051f0205087e",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 218,
+      "name": "purple-tools-collapse-reject-player-atomically",
+      "oldBytes": 157858,
+      "oldSha256": "4e003add6f23e11250394154baa6f14f332384d64d6c16d3878baa0fe38a7995",
+      "newBytes": 157554,
+      "newSha256": "12afa3616a81d4c88f109de2f09cae0870a0e39c1eab9b05dbb7a5f1c4806e2c",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 219,
+      "name": "purple-tools-collapse-reject-missing-atomically",
+      "oldBytes": 157877,
+      "oldSha256": "131869e3968a00659d8e7479d806dede13e0be269678bf456bb19d8f396a6513",
+      "newBytes": 157573,
+      "newSha256": "537c91d94344740c0757b0c823ba58ff0a0cc94c56d1a521591aad033a25acd2",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 220,
+      "name": "purple-tools-collapse-real-control-attachment-cleans-control",
+      "oldBytes": 818723,
+      "oldSha256": "c4f85271af4a36db8849e1b921823bdb364f231d497c898433588a066330bfbc",
+      "newBytes": 817267,
+      "newSha256": "36f81484707ac1a56fa74058b42668e86fbf0e6ebaef64ee4222f765cfc59955",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 221,
+      "name": "purple-tools-destroy-armor-settles-wounded-host-real-death-trigger",
+      "oldBytes": 844438,
+      "oldSha256": "b6364e04466bc7a59b1b458080db9b64774dbe4b51d778156e28ec51204cc794",
+      "newBytes": 842854,
+      "newSha256": "c953bddab5f881d51197584f4a5dcebffe327cafb087598993eb48dbf65cf81b",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 222,
+      "name": "purple-tools-real-host-rescue-stales-attachment-no-refund",
+      "oldBytes": 1046521,
+      "oldSha256": "06ca6b73019222b7188fc6a2b165abbcb0510e6355edfabf1854f5338d01e386",
+      "newBytes": 1044681,
+      "newSha256": "dead88f4990f5d36649c634af00c0f673bee77de3a6b9dba903c017036eeb4d8",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 223,
+      "name": "wound-defence-hermit-no-assets",
+      "oldBytes": 406942,
+      "oldSha256": "a8ac53fb64a48a7b7c36b86235adb109ce04980bcb9e988fe966d0157d04fd6a",
+      "newBytes": 406126,
+      "newSha256": "22870f2226df99626bb6fd34bc656ea0b9ae80ddbd44633f72f0b78f0a55e58e",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 224,
+      "name": "wound-defence-hermit-controller",
+      "oldBytes": 439205,
+      "oldSha256": "7234fe3588061df8a6c2bb411f04f58b3f6133d925830a7f0f9a1eaae18868a0",
+      "newBytes": 438389,
+      "newSha256": "c84dd5180fcab52ad061ad05718ae27db11ce75bb1d11841515605e23bb1c78d",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 225,
+      "name": "wound-defence-hermit-stack",
+      "oldBytes": 809221,
+      "oldSha256": "43c97bf482404c882a66ff9c0e04e6820dee8dc171b6a03da631696f8333254d",
+      "newBytes": 807765,
+      "newSha256": "a2fd9158761ec1d2a492102735cfbf8b7a8792133004037c4993e7b726798a43",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 226,
+      "name": "wound-defence-hermit-source-return",
+      "oldBytes": 893083,
+      "oldSha256": "cc0384c889177738d9060cd5929754d070ce82871fe33e822ac956332613031a",
+      "newBytes": 891499,
+      "newSha256": "e2faefe878749ba129b689498e3dcba9b444a5f0ea0e41e300f68f1718368b72",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 227,
+      "name": "wound-defence-hermit-target-return",
+      "oldBytes": 1244243,
+      "oldSha256": "dc1dfb52a5190b83179401c09471ab656c4f3deb064bc9d42b32c5181abd63a4",
+      "newBytes": 1242019,
+      "newSha256": "1e43d66d7a4319c4c3645e6fba3a86e674654a666f7e1960b51c0e866e0da8bf",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 228,
+      "name": "wound-defence-hermit-reject-self",
+      "oldBytes": 159054,
+      "oldSha256": "88d6b0deb625271246921e460bcb9e12fb976c7d5659c56571266df325ccfcc0",
+      "newBytes": 158750,
+      "newSha256": "78fe808da402b237e5b395131020339850b422b6e5dca0b7ad25f8e1b854a7a2",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 229,
+      "name": "wound-defence-hermit-reject-teammate",
+      "oldBytes": 163423,
+      "oldSha256": "fff03902761158ae469b42de18fe119d3da84eb267ff46240cfe520ad269d473",
+      "newBytes": 163119,
+      "newSha256": "02898a7b953a836d646a4476b0c09b5d66a8f007687a4c2431e99f6bd240a2d6",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 230,
+      "name": "wound-defence-hermit-reject-enemy",
+      "oldBytes": 163381,
+      "oldSha256": "7daa5e44f6e53248246c0937400993ae6051e3fcfb5987db7f45c3a5fde3b21f",
+      "newBytes": 163077,
+      "newSha256": "952f195ded49d52d7eba928615e6ee2c8c02d2cc772363e0e2a6f89bfadb59d2",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 231,
+      "name": "wound-defence-hermit-reject-other-region",
+      "oldBytes": 163466,
+      "oldSha256": "ce1a539c2aa64665453c7fea909ddeb5657880ff9d451ea07967f3957b9defd3",
+      "newBytes": 163162,
+      "newSha256": "687153930a3785e8b4cffb0beed904fa5a432772d5439ad140f9e292310ab6a2",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 232,
+      "name": "wound-defence-hermit-reject-hidden",
+      "oldBytes": 162310,
+      "oldSha256": "f79b82548aa856b84764e0e4a7225ff8dbc5150e525ea91a4f2e8afa4d56a3ae",
+      "newBytes": 162006,
+      "newSha256": "a27c79fd45c78e440369689bfabe1a42f8d5895c13f32039d0604e2e047ab9a6",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 233,
+      "name": "wound-defence-hermit-reject-asset",
+      "oldBytes": 160991,
+      "oldSha256": "8ad287a8cc538242a3f0ce9822d17d0bcad55e3b4074f263ff9224dc5efa8089",
+      "newBytes": 160687,
+      "newSha256": "4da8e8c1f8c77168c7a4482c2c88bd1f8dffd772e0d4a4bc17bf36f06f1523f8",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 234,
+      "name": "wound-defence-hermit-reject-hand",
+      "oldBytes": 165332,
+      "oldSha256": "fc88dee6f3da0ab6606256382e7b6facfee63c7fb8a0cd635f6ff9d0bfe41166",
+      "newBytes": 165028,
+      "newSha256": "87c0fd2de69995f7aa3568f26cdb6e612fcc08798ca4183273b19880d98c204c",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 235,
+      "name": "wound-defence-hermit-reject-missing",
+      "oldBytes": 159099,
+      "oldSha256": "eaa560c43e45b40268747be80bcdf932d576e9558d7658639da5ae0f558d61fc",
+      "newBytes": 158795,
+      "newSha256": "1e3fa24db994e77782646a9ad527581079d5e98a95e6ff4079198fac7cc6b91e",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 236,
+      "name": "wound-defence-prepared-hermit-target-moved-cancels",
+      "oldBytes": 377965,
+      "oldSha256": "938cd1cca1012d86a1446ab7f03f9d99538a73aac15fe150ec0d65936f15cce7",
+      "newBytes": 377277,
+      "newSha256": "cb62b3d200a844ad572b1078beedf4db07ec6c2b64999d6d7926ce7cedfea3c3",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 237,
+      "name": "wound-defence-prepared-hermit-target-controlled-cancels",
+      "oldBytes": 378156,
+      "oldSha256": "8a2217f11e93d15b46495f13718086d973576e00de90120fc2c374f98f8925b0",
+      "newBytes": 377468,
+      "newSha256": "c140d2c0d2fbfacb71a9338e4d0c731e2d35e13a50be4b3ed947b104f6e7fa58",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 238,
+      "name": "wound-defence-prepared-hermit-target-hidden-cancels",
+      "oldBytes": 373611,
+      "oldSha256": "015fb58d0a4e8fb2c9d6791350857b23fd24c4b93bb52e84becff436a99a4b5d",
+      "newBytes": 372923,
+      "newSha256": "19635b0252dafdec1e0087a6b8cff2952d569303599dd09a788b7edb3237547c",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 239,
+      "name": "wound-defence-real-murder-death-wound-normal",
+      "oldBytes": 815947,
+      "oldSha256": "2ce57eca799dd013273f98e5bc24fa8e2f018d55ebeaee6eb502de8c9058df4b",
+      "newBytes": 814491,
+      "newSha256": "062bc7868adc0c2b626f3d31c3e7b491df21b227b24df95aca257b946c9b97af",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 240,
+      "name": "wound-defence-real-murder-death-wound-controller",
+      "oldBytes": 816213,
+      "oldSha256": "fe4a80016c43d9f0535804167acdc492d8593a202deb829bde145c710f1b8aa5",
+      "newBytes": 814757,
+      "newSha256": "669d3b230b85ef17fe6f06a1348928f3ab84da462e6e75322a85cb48bc349a57",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 241,
+      "name": "wound-defence-death-no-local-character-no-choice",
+      "oldBytes": 442082,
+      "oldSha256": "b4251c4f2d386f2f1a5150b37a0864d87d9af7f8ae7e012e85e80328daf1b223",
+      "newBytes": 441266,
+      "newSha256": "c887bec278c6912a353f490d255aec2b0413305a6d1a8ff3f20e3c8d384df0f4",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 242,
+      "name": "wound-defence-death-decline-free",
+      "oldBytes": 525289,
+      "oldSha256": "44af75eed788999209aa782a4d57c9cb14465cebb139c76e2a0f50f3e71d09de",
+      "newBytes": 524345,
+      "newSha256": "1ce524b1cc967de2dd353377189a3291d4d4e504bc941ac24d423bc6ed998fe8",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 243,
+      "name": "wound-defence-real-murder-death-wound-lethal",
+      "oldBytes": 818213,
+      "oldSha256": "d396a19fbce9ade957e40c2b02217723aacfcb70ee76dd059961bffef23deecc",
+      "newBytes": 816757,
+      "newSha256": "3e35299f2f25d641b4715b3ed17f1075acffc58e2ac47a168ffca2deb6dbd9a3",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 244,
+      "name": "wound-defence-real-murder-death-wound-prevented",
+      "oldBytes": 1219822,
+      "oldSha256": "0ede8fcb9b2177ffd042d1eeef469193fd6f29f7eb61d0d3d00af885dead078f",
+      "newBytes": 1217726,
+      "newSha256": "abf14bf2d68d956c380527d948d82560c540e4b0a778c242b6ee19d25efd6819",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 245,
+      "name": "wound-defence-real-murder-death-wound-shield",
+      "oldBytes": 816355,
+      "oldSha256": "b9147e1363a1216fedc03a8e6ecb5541d2d669c5f3a824ca4352b858e4100a9c",
+      "newBytes": 814899,
+      "newSha256": "514df4f4b05c615bc184befef50fc4bb8bde76954c34e0a40e15dc5ceae2f921",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 246,
+      "name": "wound-defence-real-murder-death-wound-target-return",
+      "oldBytes": 1492438,
+      "oldSha256": "d0c6a598dc723bbafa2cf45460845f17fd870b07269a1c3f43ba5a178e9a6aa4",
+      "newBytes": 1489958,
+      "newSha256": "ea8180c9fad8b7e8c881be07267ed31a1425c65d2f2069a74a6cb6fc73396bb9",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 247,
+      "name": "wound-defence-real-murder-death-wound-persist",
+      "oldBytes": 10623039,
+      "oldSha256": "c4bceff446e9238a02cb675c577058457023eb33d2eaf8f075bb4e0f380b4555",
+      "newBytes": 10603919,
+      "newSha256": "de65004a096d2e0ed93054341f0fe454a199ef0642c00d43068c6af1d9b5b27d",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 248,
+      "name": "wound-defence-real-murder-death-wound-saved",
+      "oldBytes": 11353678,
+      "oldSha256": "a4c14d571d50f2beeef144b13a6b36c2ddf9bbd9015da1db5bddc7ceb537653d",
+      "newBytes": 11333918,
+      "newSha256": "8c0c150501ba7e5bb80c4bbc9f6fb7e4cafb5e9cdb83e37f328d19d14d7b8796",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 249,
+      "name": "wound-defence-real-sacrifice-cost-independent-death-wound",
+      "oldBytes": 814406,
+      "oldSha256": "e1e837903b2bf0ddb3fc4f337441bd8fbc2a314442b4997561575ef8c3b1081f",
+      "newBytes": 812950,
+      "newSha256": "26098db12418e21e179e62a5e222d5d75f6d8ea6c5b1dd4ebcf6d0fa23630318",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 250,
+      "name": "wound-defence-prepared-cleanup-damage-cleared-with-defense-expiry",
+      "oldBytes": 372377,
+      "oldSha256": "e4067f7ba4655880334be0cbbf7e162280f7ebc6b06e9b05520a24c95e1d6e30",
+      "newBytes": 371689,
+      "newSha256": "904ecfb58154a5bd6d341ba56161b42a511548ff7dc11b6e9a3ce323bcaa031f",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 251,
+      "name": "wound-defence-prepared-cleanup-wounds-stay-expiry-real-death",
+      "oldBytes": 997895,
+      "oldSha256": "e92defea2f4729e6cf783e46b4c02015a3489ccb4361250b8c2fbd1f3171dfcb",
+      "newBytes": 996055,
+      "newSha256": "1da0bbaebbefbef3b4562d62f6c59928435a37dd4b716496d0662809c39972f4",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 252,
+      "name": "dream-reveal-real-spirit-damage-advantage",
+      "oldBytes": 449657,
+      "oldSha256": "50a66aeb106b4ffa20850eb63d66b36aa6f35655f0a6d3b603ce41ba13f4f274",
+      "newBytes": 448841,
+      "newSha256": "e8a9a3fab2111de1cf9257650135eca20880ef7ace5bcd8c9ff1dce753ffb9d5",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 253,
+      "name": "dream-reveal-real-spirit-damage-tie",
+      "oldBytes": 462739,
+      "oldSha256": "470e30ef3e32ff8f087e4111488f79e5b7ae07e68ec1fb986bb89c0bdf708750",
+      "newBytes": 461923,
+      "newSha256": "ff552a4f56bf511d04fe5a9db02855a7d703ff031fc53f184b3e4c2b9b9d583f",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 254,
+      "name": "dream-reveal-real-spirit-damage-deficit",
+      "oldBytes": 478407,
+      "oldSha256": "f8bec8a2a04519e03ed841026eb1aff8863ea869c1994e6bd5c33eab86058583",
+      "newBytes": 477591,
+      "newSha256": "087d96d333c69823913a0ebac6d58cda7f7f4f688c68076ab19e8a93c3987893",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 255,
+      "name": "dream-reveal-real-spirit-damage-attachment",
+      "oldBytes": 538674,
+      "oldSha256": "ed608273229902ff3f9b441dd8ec004a7e93f9aba2f7609c8ba2a055329c3e3b",
+      "newBytes": 537858,
+      "newSha256": "a259a4b9ee8d09ae755d1ff38f423048c80ccd37663cb33dbc1bdcf47188898d",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 256,
+      "name": "dream-reveal-real-spirit-damage-simultaneous",
+      "oldBytes": 493226,
+      "oldSha256": "e6a599273fa44297bfa351f234ee3be4a2555b025a22262980e1eff4c5e25909",
+      "newBytes": 492410,
+      "newSha256": "44bbab9c466cf6d20acd3bafbc1b71415960eccf012118b287f598f6b73668af",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 257,
+      "name": "dream-reveal-real-spirit-wound-still-kills",
+      "oldBytes": 789350,
+      "oldSha256": "541b272870f1cbc358da30cf6c715f34f6e90bf2c9a0a1efd282cfe5c35e30dc",
+      "newBytes": 787894,
+      "newSha256": "690fee441f5a701345a338160d5c0fa9cdba9a604aae731e4afb8e0a4e8dc4b0",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 258,
+      "name": "dream-reveal-real-spirit-assassin-destruction-still-kills",
+      "oldBytes": 819699,
+      "oldSha256": "d49dfa6bb30ba93afa147d8ef014645244dfa55219a1e543abd7fb8031b0e08e",
+      "newBytes": 818243,
+      "newSha256": "9c2fa7d3e7a72c64319f3bd05ab21832b67c6863150f5b8afa929ca30c8e3926",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 259,
+      "name": "dream-reveal-real-spirit-granted-combat-participates",
+      "oldBytes": 439034,
+      "oldSha256": "28320857500458a34ca2e104f21304ecaa2adcfd3b8d5793a4db0c46b90f3999",
+      "newBytes": 438218,
+      "newSha256": "1fb9e458012bdfa00711b6a658ee9e15b57ce0058a9ac2bd999058a637e160b9",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 260,
+      "name": "dream-reveal-paid-zero-reveal-repress-normal",
+      "oldBytes": 815862,
+      "oldSha256": "08181bd981cc39a3f6a524cc6b78f8a620263d19499829d2ce6bae58d7b4416e",
+      "newBytes": 814278,
+      "newSha256": "397bb8395f6e315e93c6257d99b5c40c2cc3d5ebb24c61e222a3a2168e35ef9a",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 261,
+      "name": "dream-reveal-paid-zero-reveal-repress-target3",
+      "oldBytes": 816362,
+      "oldSha256": "7eb78a0a70d5dac1d7990df04515584a93901b877b31dd2642c367dc071d9ed6",
+      "newBytes": 814778,
+      "newSha256": "7af2c2ec8052a587e56e3713f6d7ce9908e13a6cf03e6fc9c3c3de0fda841beb",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 262,
+      "name": "dream-reveal-paid-zero-reveal-repress-reject",
+      "oldBytes": 1148735,
+      "oldSha256": "2f07fb99d965d0aa2ac136eaed5519082936d7aacc3bec65d59c14d2affc3533",
+      "newBytes": 1146511,
+      "newSha256": "2ad877933dc37f1437b77303a253d29ed86b76a47520671e2781f223a63cb9b9",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 263,
+      "name": "dream-reveal-paid-zero-reveal-no-enemy-influence",
+      "oldBytes": 747977,
+      "oldSha256": "715e975d538543762eb1beb23bd04388467aafa716415f4d695755e8ffce362d",
+      "newBytes": 746521,
+      "newSha256": "666bccd5f3a8f9e0820302b68182c19db90c1c35b875813c1c828e2a4c045f24",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 264,
+      "name": "dream-reveal-paid-zero-reveal-decline-free",
+      "oldBytes": 480062,
+      "oldSha256": "7a0e5bcb4320a860aa6227393a5743a5b546fdcfaf2148499e923d70b58c300f",
+      "newBytes": 479118,
+      "newSha256": "f4908c49cc633c6cea7045a9dfaa16d29411e775b17f9f61b42cfa6cef15d294",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 265,
+      "name": "dream-reveal-paid-zero-reveal-repress-source-return",
+      "oldBytes": 1273051,
+      "oldSha256": "404c948670f3fc31b8b2dfe5cc4fb4d84f88eff5ba134018874a9c116ac2181c",
+      "newBytes": 1270699,
+      "newSha256": "6d345a70cab11a89e96915dfba0b2ae638e21cc79b46285d0ad87ae8a50c77ca",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 266,
+      "name": "dream-reveal-real-death-named-search-found",
+      "oldBytes": 838636,
+      "oldSha256": "01ca933becae95b982f4801d22bf76375349dee4cfd83fc6fdd0857466738b71",
+      "newBytes": 837052,
+      "newSha256": "e81d0c1b0a31d00fd4d38b3bd154bf13e757792b7e1e6b95033857c1f4df4e30",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 267,
+      "name": "dream-reveal-real-death-named-search-controller",
+      "oldBytes": 838999,
+      "oldSha256": "11bca55438ce0eb7fd61d51f1e85cb79746d92864bc36ce36defc5981134e852",
+      "newBytes": 837415,
+      "newSha256": "01ff54132a7116fdb1d45fa598029c230cfa47cdd4c7d9e03eb23314b4394da2",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 268,
+      "name": "dream-reveal-death-named-search-empty-shuffles",
+      "oldBytes": 766566,
+      "oldSha256": "86c4532d9419f1547ec593cce2f653dd0955d02057fa438a7fd9c10a957853c3",
+      "newBytes": 765110,
+      "newSha256": "57799e955dcbd8607d5bf528d57dfa2934facca33c5ba8c5dbf66249cc36d71b",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 269,
+      "name": "dream-reveal-death-named-search-trigger-decline",
+      "oldBytes": 497577,
+      "oldSha256": "49bbebba87a242346818291a1ce0ebe1e407aba0b7c773f931a1071716f53ceb",
+      "newBytes": 496633,
+      "newSha256": "04a9073846419fa6d5709e3b9b7c049d7986377936862e19a6b49225e1e41dcf",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 270,
+      "name": "dream-reveal-real-death-named-search-search-decline",
+      "oldBytes": 837031,
+      "oldSha256": "8d9957c8110f96b3be34bdc12d4f6c0e4c6cdb67390254cfd6127593d26d3000",
+      "newBytes": 835447,
+      "newSha256": "2fde5a00a3d0e4bf50c86f6df65155daa7fdce12ba123ed191ff00dd03548b93",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 271,
+      "name": "dream-reveal-real-amnesia-genuine-dream-accept",
+      "oldBytes": 581936,
+      "oldSha256": "11ada18ee194c78af76f9c4b1f4fe46592a2513dfa892b8ff9421bffd2daacf2",
+      "newBytes": 580864,
+      "newSha256": "f7ff31e72989565f9ae9714b015a80c96ff72b3815afe6c7698085c04a471d63",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 272,
+      "name": "dream-reveal-real-amnesia-genuine-dream-decline",
+      "oldBytes": 581969,
+      "oldSha256": "88173f507c554381d57bd2cbfa1c68ad929f3641a0d3b51deb3fe2424fcf44f6",
+      "newBytes": 580897,
+      "newSha256": "5fd78972fe1d67f0975bc2914d4cb811e25e44072c6f32ee4f2694423c8630d5",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 273,
+      "name": "dream-reveal-real-amnesia-genuine-dream-hidden",
+      "oldBytes": 507575,
+      "oldSha256": "bf8ca87166274b62b197f5c3b96a2bf4a0b7b88e7ca9626f538875ecb5dda868",
+      "newBytes": 506631,
+      "newSha256": "5c44ea7b8b50068c576bdbcad42050a42677ad87142f02997fe2e77b41a53e9d",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 274,
+      "name": "dream-reveal-real-amnesia-genuine-dream-teammate",
+      "oldBytes": 513198,
+      "oldSha256": "38fcdad4ad1fb66fa9d1510f61b7836e3a47c3c198632e5e905f91d8ce257792",
+      "newBytes": 512254,
+      "newSha256": "09de5dd7cf69c11b3e332a61beece6c7d5aac4f1c78c336106e1c41d37546a67",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 275,
+      "name": "dream-reveal-real-amnesia-genuine-dream-enemy",
+      "oldBytes": 513066,
+      "oldSha256": "1b78ddf8e384c5b65f2c7ca3d230ec4343281026f9061a38f69709d108076ebe",
+      "newBytes": 512122,
+      "newSha256": "aea7b8816211b1b29823fe33a59510b468eed06c4791baf450777e6c38919e67",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 276,
+      "name": "dream-reveal-real-amnesia-genuine-dream-source-return",
+      "oldBytes": 967910,
+      "oldSha256": "e813601bb9f3828ff4889bd02ce7e998e8987a3061c67d388000eeea7ba4ee81",
+      "newBytes": 966198,
+      "newSha256": "3f448e856d68411a3901163c6ad68102a4f20a529b5273d2869d1a2cfae4dcb2",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 277,
+      "name": "dream-reveal-natural-real-50-card-joined-actual-jz58-deploy-amnesia-accept",
+      "oldBytes": 2023270,
+      "oldSha256": "374ec42c90c4a0974454b9b71187fd7e71272f919be9eb7e93e2368f6c42ddf8",
+      "newBytes": 2019030,
+      "newSha256": "d0f0e8ee4c65856d9d6e079ad6a7e08d096253af2a2040d33f9ff65e96121aa8",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 278,
+      "name": "dream-reveal-natural-real-50-card-joined-actual-jz58-deploy-amnesia-decline",
+      "oldBytes": 2023253,
+      "oldSha256": "6b5e1a58e28e7ed5311cf1306003128d0654b868534b89e720e46df93c472608",
+      "newBytes": 2019013,
+      "newSha256": "01825c790538425ebe73eadd464e7c81fa93a4edcbb19e94d4d43fc76a00aaca",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 279,
+      "name": "identity-overlap-four-same-red-exact-controller-source-defense-and-damage",
+      "oldBytes": 1668945,
+      "oldSha256": "d99721a8d2875b0b72c273ea7298cd7454ae9b6e0e237b0ab087cf06e393edd7",
+      "newBytes": 1666977,
+      "newSha256": "2799b56d61d7a97a5586100427d83955017189aef14bd8854f9f241f6d07b7ec",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 280,
+      "name": "identity-overlap-four-same-red-reveal-exhaust-exact-enemy-instance",
+      "oldBytes": 1182035,
+      "oldSha256": "516f92220eb1ea15a32dc1afdcedaccde7a270da24a1277bd5d053b633d3d31d",
+      "newBytes": 1180579,
+      "newSha256": "80c14d1422592e00131c69150fafe60ada08b2d9e70a12fe5ac10742dd70b89f",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 281,
+      "name": "identity-overlap-four-same-red-death-wound-only-selected-instance",
+      "oldBytes": 1209592,
+      "oldSha256": "47296b3955dbf42b5eb09c8edd241140fa6d4f73057c0fe5f81ec7fcd223595e",
+      "newBytes": 1208136,
+      "newSha256": "ae1de12efae90db23d6d1499502547729dd2e63ad93d790d48687ea167b720e2",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 282,
+      "name": "identity-overlap-real-control-same-red-owner-return-response-stale-target-fresh-redeploy",
+      "oldBytes": 3486784,
+      "oldSha256": "c9e9089a90684e0d9a2a1c849898aa9716664979d1b6d9fa6808aaa80b9a6e43",
+      "newBytes": 3482768,
+      "newSha256": "968bfc4fc8f03b06c95c92b97be109bdcfa403b95550b558f0b7d76993bae1ce",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 283,
+      "name": "identity-overlap-same-red-simultaneous-four-deaths-last-controller-and-owner-graves",
+      "oldBytes": 3243754,
+      "oldSha256": "4cf230b435348c3e830b434816b7bddca919b1486321623d4a9ae27a2dcfc822",
+      "newBytes": 3239866,
+      "newSha256": "e625103313b52fa18f6d41296243e5b49e6a8b980fafac0a9fe8da2cc0e5c88b",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 284,
+      "name": "identity-overlap-actual-unique-lc23-per-controller-not-color-team-or-opponent",
+      "oldBytes": 803663,
+      "oldSha256": "90ab58dc33a8864c879fcfa6d5504fad3f72e43429efa11269e30b3ee139a417",
+      "newBytes": 802719,
+      "newSha256": "a69b701865a44c7f398ec1710634fdd1bcb29d09c09daf2b88e8870dd1c09ef5",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 285,
+      "name": "identity-overlap-four-same-real-society-exact-instances-source-authority-and-payment",
+      "oldBytes": 898474,
+      "oldSha256": "4a0f56e904709bcf014293d3860b62d80606b4de85ab50eaad56562175d772f2",
+      "newBytes": 897274,
+      "newSha256": "b01c12842e9bdf0f7913cd2e3cc59e47328b3e21b06baf8c62ae744c4178a4bf",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 286,
+      "name": "identity-overlap-different-real-societies-common-red-assets-personal-payment",
+      "oldBytes": 933426,
+      "oldSha256": "91956e7ac43ba338c7770735f177e7d7814ef75f41587737578c9cf5539bf56a",
+      "newBytes": 932226,
+      "newSha256": "19c8a62ccc1e8d20328e1efe95f339cd1039321031e110b42790e622bda84aac",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 287,
+      "name": "identity-overlap-natural-four-seat-same-red-real-deal-assets-deploy",
+      "oldBytes": 3212760,
+      "oldSha256": "8cdce0f1f2ee30d225307120b822f76bb228efa68b540ca1790a4dea11b64a46",
+      "newBytes": 3206600,
+      "newSha256": "511031077002b961b53ce44c1f284dbf55f5f57ad9ae8e8de8d375db5c073c23",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 288,
+      "name": "repress-assets-accident-seat0-choose",
+      "oldBytes": 454997,
+      "oldSha256": "b11a14c8bcd620fbc8ef4bc750e5c34624e6fbf2e3a051ab854c964506559849",
+      "newBytes": 454053,
+      "newSha256": "00dd6fcbd1c655104a17a22a0934cf832265b55b15b70d3aad008aa2bf7d3096",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 289,
+      "name": "repress-assets-accident-seat1-choose",
+      "oldBytes": 455102,
+      "oldSha256": "392a8df68fe7b9fc7df6161c5b1675b115ccaf7ff914c9291bd6482b57dd44e3",
+      "newBytes": 454158,
+      "newSha256": "237c53ef46a0f04e946fbdc4150eb080e6e431ce3b28a08cec19c91e62f914a8",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 290,
+      "name": "repress-assets-accident-seat2-choose",
+      "oldBytes": 454162,
+      "oldSha256": "71dd1263f7d51d371f27bdd2fed6bca8f3377ed936bc05286a4531acacef86f9",
+      "newBytes": 453218,
+      "newSha256": "12b57db4cbca654dc98f07032a45b80dcfdd648f6c6f3bee985951564069bf72",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 291,
+      "name": "repress-assets-accident-seat3-choose",
+      "oldBytes": 454506,
+      "oldSha256": "50284593590679d46b1f2866442f5ed6bb5b7ce87274b6d2465406ad6a427856",
+      "newBytes": 453562,
+      "newSha256": "cf23e4f5852b0676111eca5a2da12eb99a22f76aff4d93816650aafd4a669989",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 292,
+      "name": "repress-assets-accident-seat0-empty-influence",
+      "oldBytes": 393992,
+      "oldSha256": "d33c4bf5fe395a069da413f63198fe171f7716f10701f885b26edf5f8d39f202",
+      "newBytes": 393176,
+      "newSha256": "ec64f12f0d174899037661b25f46670549dc0135e6dcf1d713b449fd2d4636aa",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 293,
+      "name": "repress-assets-accident-seat0-empty-deck",
+      "oldBytes": 344160,
+      "oldSha256": "b2dceb23575693d2cde7e3e08e9ea855b03150779ff2b272ed0114741d770170",
+      "newBytes": 343344,
+      "newSha256": "8152b67180fe90e8439692b9d6d7ed6f488b6ab81863998ce443c73a1fba2b00",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 294,
+      "name": "repress-assets-accident-seat0-reject",
+      "oldBytes": 993286,
+      "oldSha256": "9c350cd59f9eeac4fe5182d67ecb8540274f3b6de93cfc8f9a2088bf4c1c0421",
+      "newBytes": 991190,
+      "newSha256": "05bf25f4067affdf6dd76ae04f948747e9e88c497db0953beda4aeba88a44eaf",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 295,
+      "name": "repress-assets-expansion-seat0-JC104-normal",
+      "oldBytes": 420918,
+      "oldSha256": "ea624ac432220d0c29517551aa6847068e0654c3c03f5bf41f255302ef7aaf81",
+      "newBytes": 420102,
+      "newSha256": "c9a654ed4072810293d575bf1c11c8789ff3fb10528b417706672fae03e70b1f",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 296,
+      "name": "repress-assets-expansion-seat1-JZ58-normal",
+      "oldBytes": 418763,
+      "oldSha256": "0f9dfad2ae7530431e929248167438179e0072897866a097ad12272160205115",
+      "newBytes": 417947,
+      "newSha256": "4f19822f305ed51f3d033560a6ee873636333a32047358f74a397589f80892c8",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 297,
+      "name": "repress-assets-expansion-seat2-LC23-normal",
+      "oldBytes": 418815,
+      "oldSha256": "d4a68f7730b18264c0d6366c8db6e54d055bc2034a5bc20b4937b99d640b52f4",
+      "newBytes": 417999,
+      "newSha256": "befbcf24cd9c742a1ad4765b8b635f135f17dee5a2be60d6ffcdf215089f9cde",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 298,
+      "name": "repress-assets-expansion-seat3-JC126-normal",
+      "oldBytes": 418697,
+      "oldSha256": "1c9aaf4d0be783acec7469b8107e53c4213a8702b7d26692a681ae63f6cf9908",
+      "newBytes": 417881,
+      "newSha256": "e9f66bf2cb1752862dcf72ec304479690124fbf06dd591afb51c1beec1ee478d",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 299,
+      "name": "repress-assets-expansion-seat0-JC104-prior-build",
+      "oldBytes": 550098,
+      "oldSha256": "7caf683949ef7700022432439fae10f1a70c32d24eb875d666cf2d0062748b95",
+      "newBytes": 549026,
+      "newSha256": "7268342cd6822bc4cf4d7d60c7b6473d6be0c150a8fef3622d1c605471baeb94",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 300,
+      "name": "repress-assets-expansion-seat0-JC104-later-build",
+      "oldBytes": 486293,
+      "oldSha256": "04d17d6d5eb8a3328125afd8a583b947878daa6a8aed163bdfa1b17b7440e6bc",
+      "newBytes": 485349,
+      "newSha256": "5b5a6cdd821319a6fd3585ad5212b74c63d58b10181258429b9d81fb190ff62b",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 301,
+      "name": "repress-assets-expansion-seat0-JC104-empty",
+      "oldBytes": 372546,
+      "oldSha256": "13c3a6dd4f3acdb875234fdca5387554ed6456cdb17e8f769c568de82ef6e3f4",
+      "newBytes": 371730,
+      "newSha256": "062f4c698707a6ade17e9a70dcf23ff1c387adde132d8e20bf296d0ee0e83d79",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 302,
+      "name": "repress-assets-expansion-seat0-JC104-dirty-boundary",
+      "oldBytes": 421210,
+      "oldSha256": "e06cb5b48a693cde9798fca4a0e83854b143786d08b93f729ab4f37dc2d6c055",
+      "newBytes": 420394,
+      "newSha256": "df2e471961dd3e5f919948fa357cf5ea5599f577851e5b5de4fe4f30f84d1d11",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 303,
+      "name": "repress-assets-two-paid-expansions-one-turn-two-fresh-assets",
+      "oldBytes": 742045,
+      "oldSha256": "b833fb2990f32a48ef75d3372a04cd4b64b3f3eb9f88be7b22a65aa62c0a9223",
+      "newBytes": 740589,
+      "newSha256": "b7a7c20452cf4852dc135a0ecfa61ea6221ab49ad970caa1109708e9d9fede12",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 304,
+      "name": "repress-assets-paid-jc104-response-private-forecast-changes-actual-top",
+      "oldBytes": 1227798,
+      "oldSha256": "bef2b2a732f9d72093a9e3fc1c8aefa1ece11e1e73199f13ab57efeeeccf4cf9",
+      "newBytes": 1225446,
+      "newSha256": "e4d06e0ee99f7b2cd68957c727b1cf269b07f2e9a4f505cefa1cb5f0cce3bf8a",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 305,
+      "name": "repress-assets-neutral-expansion-blue-loyalty-not-supplied-by-teammate",
+      "oldBytes": 159349,
+      "oldSha256": "d19037cc43933f3084631d3f24a25f123b59e7297d8fe54abf7f88a3219c1436",
+      "newBytes": 159045,
+      "newSha256": "69cebcfa297ca608159c7161cc1f9483666b71b2f479d43d37fc1c2dbd342a58",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 306,
+      "name": "repress-assets-real-target-empty-deck-draw-elimination-cancels-whole-program",
+      "oldBytes": 753371,
+      "oldSha256": "35262aec08ccc5ac329d2620485fce54d9e125283046f3005935ff123da35357",
+      "newBytes": 751659,
+      "newSha256": "96efce66cc9f739fa8f020d4ce1631af3b8b3e38399292bca95d1a58ff259c0d",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 307,
+      "name": "repress-assets-new-asset-pays-real-two-cost-spell-and-supplies-yellow-loyalty-public-mind",
+      "oldBytes": 11468543,
+      "oldSha256": "e2ad9533a14384a5cfd13d39f153a00c600ff6e6ef172dbf22bcd82fdac8c6b3",
+      "newBytes": 11448783,
+      "newSha256": "df353ff11aab1fd39df6e998a31f02b276877b5469bbd004146e37f966e87c74",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 308,
+      "name": "repress-assets-natural-real-50-card-three-normal-build-turns-both-new-spells",
+      "oldBytes": 23530383,
+      "oldSha256": "b7a2038cf1381e0ac9b508ea4a79252710f497706b74f84966fbe49d4140b7cf",
+      "newBytes": 23488895,
+      "newSha256": "34b48489c4cebcf3a07ff10d4979c78ce95928305d20348454177f3525dd3822",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 309,
+      "name": "mixed-decks-natural-red-black-versus-red-blue-four-shared-red-personal-loyalty",
+      "oldBytes": 14524161,
+      "oldSha256": "7982dc04940967f27c8e0abd64bf77c08bec5afe418f9212e5ef35787d36d0bf",
+      "newBytes": 14498801,
+      "newSha256": "b599c3c61a9ed8d823762af1705eaabc1af508b4c32563e2d3433c5c03c9a17c",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 310,
+      "name": "MSJC07-construction-25-black",
+      "oldBytes": 11118,
+      "oldSha256": "45f3c7b679714ad4be98189fc47bae56a3b2020d6143bfde2c8b1dd16730a986",
+      "newBytes": 11022,
+      "newSha256": "7e18d7f9ef735a30c3a8a1d516835f710123261a5832d53cd9c38f62e1341e2f",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 311,
+      "name": "MSJC07-construction-33-black",
+      "oldBytes": 11370,
+      "oldSha256": "f04dcad3830d15a5db5a4d3905627caf6f3310e3bd697f79b67e480c48bd4cd1",
+      "newBytes": 11274,
+      "newSha256": "2270d01eb38c15692e447998b7dbf4dd797f233741f7c958b1b6aef88df6ac95",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 312,
+      "name": "printed-MSJC07-natural-four-seat-build-pay-draw-black-search-turn-restore",
+      "oldBytes": 63157542,
+      "oldSha256": "dd03132eae7736f1e723a4e21440999db6aed8fb867286de65b542965780ea01",
+      "newBytes": 63074326,
+      "newSha256": "5db5fd86946b98dc3114b05505fb02854f40119be9f2919dc263906e2258c0df",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 313,
+      "name": "MSJC07-reject-cost",
+      "oldBytes": 132988,
+      "oldSha256": "063ff987240167881bc02a65d8d2b89e9a9e7db81d9340f2140b8fa62cb64416",
+      "newBytes": 132684,
+      "newSha256": "17ce1be22f3a72d355457926b4f27eef8475cf86d3c9b8a628f3d908004e7fae",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 314,
+      "name": "MSJC07-reject-exhausted",
+      "oldBytes": 141725,
+      "oldSha256": "1f862538e1ee9b07205e0912f4db6dc42c292fbd38c404b7056c02888d9a2866",
+      "newBytes": 141421,
+      "newSha256": "104885573f43ebc232370e702e261e008eb3efaf7bce78bc90d7c4181fac7c3c",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 315,
+      "name": "MSJC07-reject-foreign-source",
+      "oldBytes": 143621,
+      "oldSha256": "a356cd69300654e40f354c73971bf31c484134880549aacb4055dd34b5fce3b6",
+      "newBytes": 143317,
+      "newSha256": "69adeab429a345317e68090beff71e5f3d0cdf85e42a9d4cde815535da784e49",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 316,
+      "name": "MSJC07-reject-yellow-key",
+      "oldBytes": 143605,
+      "oldSha256": "3d7f2df753814c60e8bb900a28132efc8965aa47617ed56e997252bec25c3443",
+      "newBytes": 143301,
+      "newSha256": "9ba88bb4e8dd37abd0a84b681bb731b5a5d8b6bdd37baf464c4dc750f11972f4",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 317,
+      "name": "MSJC07-draw-first",
+      "oldBytes": 402409,
+      "oldSha256": "50e8310dc72bc64a32ad3638fc1d8e560a1b9976db6202d8371eb460c0895843",
+      "newBytes": 401593,
+      "newSha256": "ec9328426ad6b87d6decb16612b6e8a1cdf16b49a216e14d58a2020300892ab6",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 318,
+      "name": "MSJC07-draw-rear",
+      "oldBytes": 400952,
+      "oldSha256": "e3485f7e786f97a9953b9e0efdf0323606c6c9d893e406d065499dbe6bfd88ca",
+      "newBytes": 400136,
+      "newSha256": "240b6fe59e2ef2c1048c87c74709c0252a4cb06996f4f087a3408bea198a7986",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 319,
+      "name": "MSJC07-empty-search",
+      "oldBytes": 404412,
+      "oldSha256": "c7279d8201573145d97cadd2e9bed40978f2a0b574d3248596cba21bd2bf69b4",
+      "newBytes": 403596,
+      "newSha256": "6b3c773a34690127f27284393f50deb4ec404348058bda23867121617fef3074",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 320,
+      "name": "MSJC07-empty-deck",
+      "oldBytes": 391703,
+      "oldSha256": "6b57a4bd9cc849fecc3da8ba19a603148be8cd47fb5258b57fa2519fc9a74a1a",
+      "newBytes": 390887,
+      "newSha256": "d64da5842ece93d8d664545ba4a55e35d948dcd2bbecb2384af02f68dcd35518",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 321,
+      "name": "MSJC07-one-hit",
+      "oldBytes": 677627,
+      "oldSha256": "b7315e19a0580cce0df233098cf896f523a476113bf02b958848220e511404bf",
+      "newBytes": 676299,
+      "newSha256": "6ac93c378c6be62bee42d1c88dfcbcb095dd48f5ae28ec7102e32f63a721d20f",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 322,
+      "name": "MSJC07-two-hits-seat3",
+      "oldBytes": 684614,
+      "oldSha256": "e2b2f005b716a8da87220bac366b9befe812e572e2a6f52eedf43c555a09124a",
+      "newBytes": 683286,
+      "newSha256": "845927abf9f0f9a30d71119c8c9516cb5c0e25a81640f2aa2f312145b9080f6c",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 323,
+      "name": "MSJC07-cancelled-paid-frame",
+      "oldBytes": 342283,
+      "oldSha256": "fea6aaaf3e2a348f5585c768581fe090fd4affe12f8f9a66ee6eb994d4a9eab1",
+      "newBytes": 341595,
+      "newSha256": "cb4ad77fa00807715569f8e1dcecbf6ff63508b203ea06adbada533c055734a0",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 324,
+      "name": "MSJC07-new-instance-used",
+      "oldBytes": 146209,
+      "oldSha256": "e7b886b11dc8b85cdcbbda40075da95bea4e2c50a73a7b876e73de6a73dfd6ae",
+      "newBytes": 145905,
+      "newSha256": "287385fecbea6102b89f3f42d08b614cc2979f9e73eb7dc7684303385640f321",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 325,
+      "name": "MSJC07-finished-restart",
+      "oldBytes": 176466,
+      "oldSha256": "1a14a202e63210393a5a1429855418f47aa4d5b6183a58829922412d1529a9d7",
+      "newBytes": 176162,
+      "newSha256": "72c58d13aa7e055365c3330ecbe38a55297d816f7e2ca154c5cb2af5a6aa17d6",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 326,
+      "name": "MSJC07-turn-reset-used",
+      "oldBytes": 9831227,
+      "oldSha256": "b616a6d1b889fadefa6cbf14adad89795a36cd09c024884911709a8ce6fdfc72",
+      "newBytes": 9811339,
+      "newSha256": "e9020eae27218ebbc368b5c0bc6b6d37678f880b1288cd722dcf77dee5d63df9",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 327,
+      "name": "MSJC06-construction-25-white",
+      "oldBytes": 10980,
+      "oldSha256": "c73c238e89ed389aa7f2959174edd6f92fcb3a1b1f3d98cdb87b311f7392206c",
+      "newBytes": 10884,
+      "newSha256": "9454f1c8d8f07eac5f41e70a437d3a6c12b93b589c701239bee76748adb3bbdb",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 328,
+      "name": "MSJC06-construction-27-white",
+      "oldBytes": 10980,
+      "oldSha256": "c33153215e4539282e41aa5cc5acc20aeffc7bab68b43082fe7be392a42d25b2",
+      "newBytes": 10884,
+      "newSha256": "57b98f3027b1f6029e802a6cdf265bfcf993c2c83633bc84df0d2356baf210ba",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 329,
+      "name": "printed-MSJC06-natural-four-seat-build-pay-draw-white-search-turn-restore",
+      "oldBytes": 62401625,
+      "oldSha256": "da9d5e099377a7815fda5a4cf4a7996eb1e5c6bf7d12dc4b629a2835db2e1bb1",
+      "newBytes": 62318409,
+      "newSha256": "9dc3d1ba75a6b3bdb15859b110a3949427ff3c88204e2f7a757674945d9ffad3",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 330,
+      "name": "MSJC06-reject-cost",
+      "oldBytes": 130886,
+      "oldSha256": "73ad479df652bc09856ea111a40a28aae19e28674b2ef904a454845b61f4b412",
+      "newBytes": 130582,
+      "newSha256": "4dc2f1a49ec687820636e85fcccd387b059e0251cd3ee02be820502af44ee768",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 331,
+      "name": "MSJC06-reject-exhausted",
+      "oldBytes": 139647,
+      "oldSha256": "679433f636ddf6ebb36e1626222d7c36a5d1b5a16c6976a6fd28a4f2c8dcc3c5",
+      "newBytes": 139343,
+      "newSha256": "8ac8b7b158139cbb45d06a3aaa45ec193e29ff35e8c8131962a2357808574fc6",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 332,
+      "name": "MSJC06-reject-foreign-source",
+      "oldBytes": 141495,
+      "oldSha256": "ce25a436f5d105e1078f68a90907663201a01b4c217a9183cb10f1d9007ee2cb",
+      "newBytes": 141191,
+      "newSha256": "9a3f94b89226bd7a4d4beb40c0abd5f4dde8f97a4397d27b84ef933df6c6bf14",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 333,
+      "name": "MSJC06-reject-yellow-key",
+      "oldBytes": 141479,
+      "oldSha256": "fe27c6842eaace4f4a24ba0e9d02fedd0790895f3bcecc56598b4eef6c6ef018",
+      "newBytes": 141175,
+      "newSha256": "f1e8266714dcce52470e48b6909970465d4667f686c55cf9c57d548e8e3677a6",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 334,
+      "name": "MSJC06-draw-first",
+      "oldBytes": 396455,
+      "oldSha256": "cacda15cb806eec3dc5d11ab81b9bd6dfd50efdf3f6e3aa0b3b9edecb66769a0",
+      "newBytes": 395639,
+      "newSha256": "1590fe1ba8b39cb44ac3dd838d8c63d7ec015c6a4369971a5246c61f32fcd673",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 335,
+      "name": "MSJC06-draw-rear",
+      "oldBytes": 394998,
+      "oldSha256": "9c0e0c41c387f509b13cfa17266a6df60a5a5713e5b62d3b991503ad52622cc0",
+      "newBytes": 394182,
+      "newSha256": "08ea93a7f09254041bab725196a214e4fe2898effcc3271dfe36bcea87537578",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 336,
+      "name": "MSJC06-empty-search",
+      "oldBytes": 398458,
+      "oldSha256": "e6932339b794e6073e2cfc9f9ad1237a20a41bc503602ae6be45385d5ec428b7",
+      "newBytes": 397642,
+      "newSha256": "0c91b15ac4454fd7e871bb4c5cbb060b37dfd7453def128e9fe5bbc0c89687ec",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 337,
+      "name": "MSJC06-empty-deck",
+      "oldBytes": 385749,
+      "oldSha256": "ed3ad420146bb379e4f0ae5d79b153556a7d25209a2fbd222b94dfe673bca62b",
+      "newBytes": 384933,
+      "newSha256": "aa37f0b51cf051c4a2e01611f29c038ee0f110213e88cd83622c18836231e3cf",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 338,
+      "name": "MSJC06-one-hit",
+      "oldBytes": 667451,
+      "oldSha256": "ff5d33a93d88a9f8c134d836c3b907d4414d9be771a3f5ffb10af0728186c8f4",
+      "newBytes": 666123,
+      "newSha256": "28b35a6dab78c32a4b3d509df35f8156d7946eb935c0db9f9b5312d11280ec67",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 339,
+      "name": "MSJC06-two-hits-seat3",
+      "oldBytes": 672918,
+      "oldSha256": "5507a5e8c4c8ad74f4ef05395b4ae404df756d15d507fdea7c96171803b7ce1a",
+      "newBytes": 671590,
+      "newSha256": "ba97560d4c8e35467d76ebf1446140ee79cfc11da0ff381113ced75ba1458605",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 340,
+      "name": "MSJC06-cancelled-paid-frame",
+      "oldBytes": 337226,
+      "oldSha256": "053bf3a6306b032e5345f203d3b993852069cca97cc48f86f6346ca98a03b389",
+      "newBytes": 336538,
+      "newSha256": "bb851684a8a24ebfb90965b23f608e863bfeae0ea708f3651a59567c7afc8d97",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 341,
+      "name": "MSJC06-new-instance-used",
+      "oldBytes": 143951,
+      "oldSha256": "a5fa35b46bf23839f7fe3e6ddac57f3cc75a10fc2772716d1426fab7a6ad1235",
+      "newBytes": 143647,
+      "newSha256": "1e2fa31c2232caba6fe5fb2e3637ec7b4317318b25ede5cfd42d360cd3e90037",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 342,
+      "name": "MSJC06-finished-restart",
+      "oldBytes": 173268,
+      "oldSha256": "1d5d603c8f085be30703079e86d304c97eb7b167a50c74e3179056459e8faf8d",
+      "newBytes": 172964,
+      "newSha256": "b309a62cbb4884b6034aef4d21ce2b5d86268bf2547bc50cb447c1ff3d024d79",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 343,
+      "name": "MSJC06-turn-reset-used",
+      "oldBytes": 9684402,
+      "oldSha256": "bebf5b123314ecd55e7cdea5536b90cff28ae767c2776ad53412e6f5bb1784c0",
+      "newBytes": 9664514,
+      "newSha256": "b2358b95cf3951d47a6c77eb2b46c2439292b76b71cc5ddf3bad133e61762bb2",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 344,
+      "name": "LC06-normal",
+      "oldBytes": 811878,
+      "oldSha256": "ad973e25545ddc39a6c1a4a0cf23d9ca26df72fff6aa1b541860400b99bab7c1",
+      "newBytes": 809782,
+      "newSha256": "a76c61210e1371343b67d639b388b5082994428de21405e5ac557565ebcc710f",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 345,
+      "name": "LC06-controller",
+      "oldBytes": 810081,
+      "oldSha256": "02db10e469c3e4bd718c05b7ef3db4693a30cc0fec276a95cb8d668ca189ff52",
+      "newBytes": 807985,
+      "newSha256": "d79a9fc7bf0e6de71b98b57d39d2cf2cd1b5cd29dbe3955d307acb87d80948a6",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 346,
+      "name": "LC06-fatal-controller",
+      "oldBytes": 812168,
+      "oldSha256": "09e9d79dc9890d15fd87cae8fd46eb2446dca35d8ade1e0c3b045bb495b767a1",
+      "newBytes": 810072,
+      "newSha256": "53090986d5d27b158377d9607570a4d3950847d863e0d81492f2d89b8f1c2f82",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 347,
+      "name": "LC06-decline",
+      "oldBytes": 608199,
+      "oldSha256": "901e42ca3cd8e0b7e0d4578b243ffcf0c36e0f19a736fcd7aed0d48ed5de56ea",
+      "newBytes": 606615,
+      "newSha256": "3c1bb90d20d9a433fbb2af38f94e726ded34114d45077b20ab69dc9e9b30fa34",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 348,
+      "name": "LC06-source-return",
+      "oldBytes": 1220329,
+      "oldSha256": "917c3f9293503094e67db846108df4e1cc7e3ee6c56e8f5b7954ac7807f02933",
+      "newBytes": 1217465,
+      "newSha256": "63b3bcc02489fdfe78937cf4d8358cf66d912d94ae627cf52c2613deaf0f6128",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 349,
+      "name": "LC06-target-return",
+      "oldBytes": 953674,
+      "oldSha256": "72c0355dbfadd1aff4687ee1b47a195261dfa6c0b266e6aa33d0dbab1a01a019",
+      "newBytes": 951450,
+      "newSha256": "eabd0ca8c89a101064f9afea28e0d0ab61b7aab0a24d99e6fa055405e21bbbf2",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 350,
+      "name": "LC06-damage-prevention",
+      "oldBytes": 1162392,
+      "oldSha256": "890b2c3121cb5e732d6921750562a00171144493c209b6f67536ab113db14841",
+      "newBytes": 1159656,
+      "newSha256": "fc566e70244462f9a511c05c58c0ce2b3000f59ebf0a932fdf1fa4507754bdb5",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 351,
+      "name": "LC06-exhausted-two-wounds",
+      "oldBytes": 1707946,
+      "oldSha256": "d1218e13d705271d23bac16fb00dd6d2fbc47b784a3d42fa6877a7688fac3ac9",
+      "newBytes": 1703930,
+      "newSha256": "ea6585d1113e1b0d1ff68351abcc3b25261874255b57b483bac04c525dd3472a",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 352,
+      "name": "LC06-empty-deck",
+      "oldBytes": 770279,
+      "oldSha256": "1c7989ebeec6b14887a2febfe49e058da1748a57d31f68f32244017766c1a8eb",
+      "newBytes": 768183,
+      "newSha256": "454640005633ef05f5c46ad789ac18bd106f11756898f27117d1a05f9ce693d2",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 353,
+      "name": "LC06-damage",
+      "oldBytes": 327866,
+      "oldSha256": "f46a6bd8dbbfd24b065cce6f76828190a16450977a3b24aa3e0910d9e916419b",
+      "newBytes": 327050,
+      "newSha256": "842e5b891935c50601ede7c70338154a8ac844db047aaa8af8b3b653b5395327",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 354,
+      "name": "LC06-destroy",
+      "oldBytes": 310902,
+      "oldSha256": "78e15bcac0466e2a630b924cf3bfa70e970164bcc173c97d22452c83c3a07638",
+      "newBytes": 310086,
+      "newSha256": "9dbc5c162bb87999d19500fff22710f9072a5fa5afd1e95141ac361456759896",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 355,
+      "name": "LC06-manual",
+      "oldBytes": 109676,
+      "oldSha256": "72bb393c37be1fe96cbe9c9cedb6f66ab8ce5acd0b466cb770bad3412668b25a",
+      "newBytes": 109372,
+      "newSha256": "c8a2c5bcf1addd6eea43aeb74aff7e36f42ddb13f6a88675a2b6edaee842d70f",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 356,
+      "name": "LC06-shield",
+      "oldBytes": 559464,
+      "oldSha256": "04a8c6c1c1bf165c636b1638959efc36cffb348f9c54d07ef26022a9ef44f4b7",
+      "newBytes": 558008,
+      "newSha256": "af1bfc3b10cd764cb03ac1b8aa6cc88f34944c3d9f3067d5fca10b7bceacd1ab",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 357,
+      "name": "LC06-healing",
+      "oldBytes": 322980,
+      "oldSha256": "12fbb4f2ee5f3b08bb6617ed24b7c22957a879fcd43c29d92aea49b884f144bf",
+      "newBytes": 322164,
+      "newSha256": "f014529d786d0743fc309d5196c718e9417d4ef2085e4ca32d2284cd957081c9",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 358,
+      "name": "LC06-gold-unique-same-controller",
+      "oldBytes": 318779,
+      "oldSha256": "f09b88259421e3f541d84f84a680dabe851ebabc3a98b793d6708183a2d7e2cb",
+      "newBytes": 317835,
+      "newSha256": "d0dea0d2b374d42239df3f6093b0c6a4eb030c1ae1f5b4f2a8f2adf2fc2a40e1",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 359,
+      "name": "LC06-gold-unique-friend",
+      "oldBytes": 272761,
+      "oldSha256": "4de543586ebcc2fef02fa9fec35d26ae0afc3ae58f2713ff228f6e4f3de593fa",
+      "newBytes": 271945,
+      "newSha256": "d8ba9b4b76ba35936468fea99467d5fd1628737f1c0fa56a6ab45b37502aadcc",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 360,
+      "name": "LC06-gold-unique-paid-reveal",
+      "oldBytes": 317128,
+      "oldSha256": "343682a2d73e9e425849f07b93ce155080cb45299b98e22aacead30b0c6d1f18",
+      "newBytes": 316184,
+      "newSha256": "f80ec2bdd924bcc9b5f74289c05ce03e08f35bceb521894cfa5934ab175ac361",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 361,
+      "name": "LC06-natural-four-seat-white-search-paid-entry-real-JZ59-death-wound-responsive-draw",
+      "oldBytes": 78774637,
+      "oldSha256": "b91e39b50094034962b8df39ce7c0181b8d9290b6c58ec90a802ffeacec4d80e",
+      "newBytes": 78673629,
+      "newSha256": "95622efdd36080c7e014f7352279adc221351dbc612553a276f73a3236ce136d",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 362,
+      "name": "MSJC08-construction-25-purple",
+      "oldBytes": 11019,
+      "oldSha256": "b657990a0cafb3d9995181828be797f4857733ec6c79d2651e9ef0a60c575cfd",
+      "newBytes": 10923,
+      "newSha256": "61ab2079e6000a3f45cf11282dfc424f4536c926b7d72daba22eae4ec9b866ba",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 363,
+      "name": "MSJC08-construction-27-purple",
+      "oldBytes": 11019,
+      "oldSha256": "da0a7050607a4af24743a3c38f053cc184c7bf3683188f592bb0468755a77362",
+      "newBytes": 10923,
+      "newSha256": "eda95c2a54aa881341ae3611f27aa30f695e3656e4c4c81adab11dc8edd096fa",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 364,
+      "name": "printed-MSJC08-natural-four-seat-build-pay-draw-purple-search-turn-restore",
+      "oldBytes": 62470906,
+      "oldSha256": "ee052729e17807c6f71ef7d3a095e5fa156d2aceff34ec08bd3adb4ca5a8f79d",
+      "newBytes": 62387690,
+      "newSha256": "80bbe59bbfe5a4a2f15f65cc797126f6241f452194bb78fb371df012471bd453",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 365,
+      "name": "MSJC08-reject-cost",
+      "oldBytes": 131508,
+      "oldSha256": "784f185336c87858327b622e386034f1e2827c6f1ab72a88574f591b8ff35a61",
+      "newBytes": 131204,
+      "newSha256": "e17673ecd0aee10684ec9c7d73c0204d709aaeb5949c5b504c8b422096e7c641",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 366,
+      "name": "MSJC08-reject-exhausted",
+      "oldBytes": 140245,
+      "oldSha256": "850733790f6e542df90a569ccf186463ae7d18a62db1968435e4bf1bb0a21dac",
+      "newBytes": 139941,
+      "newSha256": "9d3b8c0377763141a869801f1fbc89a48f509b8a7ab851df642921399ee92746",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 367,
+      "name": "MSJC08-reject-foreign-source",
+      "oldBytes": 142149,
+      "oldSha256": "bdbf5d4c54b436784f321d4d00ed0c6bfe9e091f6ed44b326f851e06b2f21298",
+      "newBytes": 141845,
+      "newSha256": "2a1ca9e11d1ee39585be2818677f7f99cc9021fd9655b2233081c9c9db5f5970",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 368,
+      "name": "MSJC08-reject-yellow-key",
+      "oldBytes": 142132,
+      "oldSha256": "ec1492db0a1ec22a03982b5d84c77cb689a657697fbef2b814f52f1d6240ae6c",
+      "newBytes": 141828,
+      "newSha256": "a6fd03266bac2213943b8c5aba215fff68786e902178e8ec2940f62d19dc4fab",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 369,
+      "name": "MSJC08-draw-first",
+      "oldBytes": 398544,
+      "oldSha256": "ba9e3455d6ae62788431c1af798b59a845340a7ef372ca0084ce28cb56d7f4a2",
+      "newBytes": 397728,
+      "newSha256": "8fbec916977591c0b1f336a696442ae94c8c993dcb797cd8423ef6c80751472f",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 370,
+      "name": "MSJC08-draw-rear",
+      "oldBytes": 397087,
+      "oldSha256": "4930d5da079ca52b15a6906ca1f9552303d1017a49e1cd19ed3bed5e20ab734d",
+      "newBytes": 396271,
+      "newSha256": "77c9ab8631166a7a5cbe675edabbb19d34746de5e4e8ccb30ffabc8eafb59453",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 371,
+      "name": "MSJC08-empty-search",
+      "oldBytes": 400603,
+      "oldSha256": "032b1b84fd42d59d5ce3f37766a6f5a827902a29cb6e6cc671c7575253707c3f",
+      "newBytes": 399787,
+      "newSha256": "b7ffdc2c85e698346f247af50d5ef1f1a8e9b92874f089951f30d39e8f8192f9",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 372,
+      "name": "MSJC08-empty-deck",
+      "oldBytes": 387894,
+      "oldSha256": "15aafa997d8e57b41e9329102379adeb3a5af768bc91a77a6267bb8039ae0c0a",
+      "newBytes": 387078,
+      "newSha256": "4b9787b11ce59256be83af2d677ab4179c60bb4e88299d3822e1252ece69166e",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 373,
+      "name": "MSJC08-one-hit",
+      "oldBytes": 671746,
+      "oldSha256": "ff819fce0adb490adc926ba86602ffad72a4c07ab480569fd7f873853a157edb",
+      "newBytes": 670418,
+      "newSha256": "c5d4a63bf11318ecdb0696aeabc56a9bf0ad5a268468e4ab06558dc17c944be5",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 374,
+      "name": "MSJC08-two-hits-seat3",
+      "oldBytes": 678557,
+      "oldSha256": "32a5cc5e06736f3410359d0929ef859de14d8a643fe8b02a62368669d3bce071",
+      "newBytes": 677229,
+      "newSha256": "ef794d13a6b0b54f81281f8cc8f4d39f7990477566c613b70c86d495a08d381a",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 375,
+      "name": "MSJC08-cancelled-paid-frame",
+      "oldBytes": 339065,
+      "oldSha256": "4ef6956bd0614ac9f68ecad626399c859720e1857ffcb76539b92423ac0407f6",
+      "newBytes": 338377,
+      "newSha256": "02e01b5740703c488bc45bf0ff2e41cb5a75cd3ac7b5c88de19b21303b8eb2ac",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 376,
+      "name": "MSJC08-new-instance-used",
+      "oldBytes": 144742,
+      "oldSha256": "65bbd38877a0ddb83c33b94582567108d517edcccda5bcb1187858a940b70a39",
+      "newBytes": 144438,
+      "newSha256": "5022184d17897d9741e18edb736ec69fd728f1c1f38372640a42b238819f77dc",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 377,
+      "name": "MSJC08-finished-restart",
+      "oldBytes": 174491,
+      "oldSha256": "bdbb68d793d53608b2e3446cb803d98188a6ca7156ea5705e6f3caee6aa884f1",
+      "newBytes": 174187,
+      "newSha256": "bc327f97706c74a6f9b5c59beb588317dc2080ee75c7449386c9ddc0fd90620f",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 378,
+      "name": "MSJC08-turn-reset-used",
+      "oldBytes": 9739368,
+      "oldSha256": "66b077a0507e04bf1ea485401bc3deb1cfbec757868770cabdb02db569c9bbf2",
+      "newBytes": 9719480,
+      "newSha256": "ce12b5fd021e916269662076df9a695424c01475f67bcee2ed4dd23ca1b636e0",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 379,
+      "name": "XQ43-first",
+      "oldBytes": 403784,
+      "oldSha256": "3567dd1163bd29aee69f3f216a78cc957c3bb0006909a0dc356bfba39d9aeeb5",
+      "newBytes": 402968,
+      "newSha256": "314c3b584bf805375900d71907977a7922cb251592f3b55a2f00fe27eadffacc",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 380,
+      "name": "XQ43-rear",
+      "oldBytes": 403746,
+      "oldSha256": "098d85bd96ce6d350b00dcda00d2918f38e9ccdaa1a3b663d4ee71472f8fbf43",
+      "newBytes": 402930,
+      "newSha256": "82b17f24faec5a3b8622221b3bf3fbb87043646bfa2ce5c1b50edce05301e255",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 381,
+      "name": "XQ43-hidden-initial",
+      "oldBytes": 398151,
+      "oldSha256": "6bb97d09ed236754c0abb0e07c3843ee56e64dc1366307f58a76096668075253",
+      "newBytes": 397335,
+      "newSha256": "e1ef4b893168cae52f5807adc8aaa572b296e839e65b373c634d1afc9e8d75c1",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 382,
+      "name": "XQ43-exhausted",
+      "oldBytes": 403899,
+      "oldSha256": "beae8296299715bb9c7cebd8bd3841bc728554a36ef0bac3def0887b2d14c7ec",
+      "newBytes": 403083,
+      "newSha256": "22a72d2e6d8ec54ed0c2c538eea4ea5fb8776702d3ccd6d36e7b4b5f5dd95ce8",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 383,
+      "name": "XQ43-granted-temporary",
+      "oldBytes": 752639,
+      "oldSha256": "4d50c1565653d3c78dd0779e1cce95044939bf522a9aeb82cea7313d5ad02b1f",
+      "newBytes": 751183,
+      "newSha256": "f6dceda8b963d0332cc3af0718843c36d2c9de15d52f0796adcc25dc4304874d",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 384,
+      "name": "XQ43-ordinary-turn-bonus",
+      "oldBytes": 1982105,
+      "oldSha256": "ccebdba0b72b17c2e55bd802f0001377ead766707342c1496f87745eba30def2",
+      "newBytes": 1978729,
+      "newSha256": "14453a9b76e13eaa8da1977cc5063764b2340a76cc32daad052bd3d898f42a5c",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 385,
+      "name": "XQ43-reject-cost",
+      "oldBytes": 103364,
+      "oldSha256": "b9833fdad9430112335c36ce02f71b1f0744fc01c2eb1de4cff25644d0bc7c5c",
+      "newBytes": 103060,
+      "newSha256": "564fd32f8b3d879778ac7e4871af37687d8be810009e82544566baa026731cfb",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 386,
+      "name": "XQ43-reject-loyalty",
+      "oldBytes": 107216,
+      "oldSha256": "3b33d0770aead5f7c8f4a6596c8a5b1a3a5c8126e6217e87854273099508f758",
+      "newBytes": 106912,
+      "newSha256": "a8e58747a4e3c755f37dd4721d9e7f6175ed09688833229149839cec3328c23c",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 387,
+      "name": "XQ43-reject-region",
+      "oldBytes": 146634,
+      "oldSha256": "873d863cfaf43e07eca9f8acd6050a0fa6f9faac80fd0745e9a4469403573ef9",
+      "newBytes": 146330,
+      "newSha256": "49859ee83875d11c702b2c9a08654fa0db54be1ef7fb0cacfb6e2dd3a66ca274",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 388,
+      "name": "XQ43-reject-host-zone",
+      "oldBytes": 146658,
+      "oldSha256": "7d97ac41368f1afb74f1ecc08aea99c7b03120ce908d9f085122b126c6cef53a",
+      "newBytes": 146354,
+      "newSha256": "2dda0db5de9bc4aac49437efdec892aae058125cedb82a8cb771605132e83710",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 389,
+      "name": "XQ43-paid-region-replaced",
+      "oldBytes": 342480,
+      "oldSha256": "04182f06c9d81316deb797b2165b233adf7c86c775748aaa57d4fd506876a703",
+      "newBytes": 341792,
+      "newSha256": "fa9a7c6cad812d2eabea22557fc34ecb220f085f218d173c88f6f7e258d8d025",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 390,
+      "name": "XQ43-dangling-exact-host",
+      "oldBytes": 143943,
+      "oldSha256": "2590d2ae6cf880d66227498f6e2c42452077b9dd5e6bf9f1e812902a45454f36",
+      "newBytes": 143639,
+      "newSha256": "854b839755bf76fc97820629fb5af597dd282a93c7f5b0ac421bd3d25ed65509",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 391,
+      "name": "XQ43-movement-primitive",
+      "oldBytes": 154903,
+      "oldSha256": "3afdf981d847e8046ca209e5f8603388e659654e8d169373335f8927947bc183",
+      "newBytes": 154599,
+      "newSha256": "b9714d971500019a0a9457d4666d9e09291f78f274292f4e31984a7badfe6488",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 392,
+      "name": "XQ43-destroy-source",
+      "oldBytes": 767439,
+      "oldSha256": "8f7c9f3439c758f5628f53e08348f2e901305b95dfd261c6ff0d33748948929e",
+      "newBytes": 765983,
+      "newSha256": "a89ab35a33dc6063d4eac7099c8f719c31005c969a291262f9aaae4dc7400df8",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 393,
+      "name": "XQ43-jc005-no-mind",
+      "oldBytes": 474752,
+      "oldSha256": "82e620e624c6fd16e0ca9e68b612cefeb3d59b51eb3fdb63bf9a6651914c4ce2",
+      "newBytes": 473808,
+      "newSha256": "a2ecfb3138ba63e09cfa330f24122c5b571e778d7b9acfd7e0287754dec74a9c",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 394,
+      "name": "XQ43-jc005-mind-qualified",
+      "oldBytes": 760509,
+      "oldSha256": "6d9ae7e438030f544f15d87ce00e04a678723ff6dc54f8c73ea93212000d064e",
+      "newBytes": 759053,
+      "newSha256": "7cd66879c31a4e3b619562ddfde7e579b0b46406e64a85dfc54f6927340fabbe",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 395,
+      "name": "XQ43-multiple-controllers",
+      "oldBytes": 1067484,
+      "oldSha256": "5f0a9a49d8004609370ae31810d559a6dc2b8afb1c844aefa717e5a4f9c121fa",
+      "newBytes": 1065516,
+      "newSha256": "6921dbda85cbf5b491953d228609f05444df7885e392facbaca80e344ee777c2",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 396,
+      "name": "XQ43-same-controller-unique",
+      "oldBytes": 826017,
+      "oldSha256": "3ccd038f698a1c56e798245436d24d136b305980d417f46a907f608f282c1c1d",
+      "newBytes": 824433,
+      "newSha256": "2064d7d78c84f4b9aba9036131ed960793f79ae771497c8d33da2d5bed4a4fae",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 397,
+      "name": "XQ43-hidden-real-trigger",
+      "oldBytes": 1155922,
+      "oldSha256": "8f69da29484d59809b983ba7965471fa46acfaae62261ea275adf46a89f16d9d",
+      "newBytes": 1153826,
+      "newSha256": "3d274647f06039dc8d39735624ed1753aac7c05770b2e975870396aa92771cb2",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 398,
+      "name": "XQ43-win-four-owner-return",
+      "oldBytes": 752941,
+      "oldSha256": "42d1231821aec419cba2335097a0ca4457118de09577199320ba4619f89a6554",
+      "newBytes": 751741,
+      "newSha256": "e522024f2ba4f5909a3545cf4cc595ae2ced31b1473d26967a5aeba26fc42948",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 399,
+      "name": "XQ43-outside-region",
+      "oldBytes": 403724,
+      "oldSha256": "e5d99025a172ca0f9221cfe02b30506a522ba6e8a5d1aed751dedf0293a45842",
+      "newBytes": 402908,
+      "newSha256": "f6e6296b88733c3d535579e4920a9a6503795103aa7356dd26196bd38542451c",
+      "wholeBodyVersionOnlyEqual": true
+    },
+    {
+      "index": 400,
+      "name": "printed-MSJC08-XQ43-natural-four-seat-paid-region-conceal-reveal-granted-icons-restore",
+      "oldBytes": 102186420,
+      "oldSha256": "ec32bbf1d9f52a82573fc1cea4c4cbc6ce97226665e2306288f75a75abd83839",
+      "newBytes": 102062884,
+      "newSha256": "54bbe0ced9719737982b3f6c3fea775fa4f8a6973f9dd260a3196ee91d1f9b2d",
+      "wholeBodyVersionOnlyEqual": true
+    }
+  ]
+}
