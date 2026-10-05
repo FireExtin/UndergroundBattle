@@ -34,5 +34,7 @@
   "msjc07Included": false,
   "acceptedBaseCommit": "1aed92dc4300b564edae92561e0e815b827484bd",
   "engineVersion": "rust-v0.2.25-resource-policy-candidate",
-  "poolVersion": "limited-v2.22-repress-assets-candidate"
+  "poolVersion": "limited-v2.22-repress-assets-candidate",
+  "initialization": "Lazy per selected frozen ABI; identity checked against actual catalog on first use",
+  "failedPreviousSiteSourceCommit": "0311e55c648752a9f7ddcf3c2128146a1ab7436d"
 }
