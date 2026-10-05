@@ -449,6 +449,21 @@
     "source": "resource/ymsj-fun.github.io/cards/JC029 新生血族.jpg",
     "sha256": "b3da8f1546e2f8bbbaae8d3c4d4c79dd712cfa7f8d133fe1723efaa1fa152785"
   },
+  "LC30": {
+    "url": "/cards/LC30.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/LC30 J·罗伯茨，“海雕”.jpg",
+    "sha256": "31ce6bd49725e5db643adb13daaef3529b8fb8440691214a00dd9fe666c5041d"
+  },
+  "JC018": {
+    "url": "/cards/JC018.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC018 魔刃传人.jpg",
+    "sha256": "a764f6ad543c1aa25e287e42a508ecce2368277e64377c2969b2aff079b63af8"
+  },
+  "JC015": {
+    "url": "/cards/JC015.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC015 驱魔人.jpg",
+    "sha256": "84ab4fb4fdf5e44f35b8cb8d9a40531d57bb0edb64d29a9c15f80d6e1cd37e1e"
+  },
   "MSJC09": {
     "url": "/cards/MSJC09.jpg",
     "source": "resource/ymsj-fun.github.io/cards/MSJC09 秘社.jpg",
@@ -478,5 +493,10 @@
     "url": "/cards/MSJC11.jpg",
     "source": "resource/ymsj-fun.github.io/cards/MSJC11 S．P．T执行部.jpg",
     "sha256": "df9964832e48bfef57bcaa0d5f4db67ce2ab9fe0e371ffecc2736c1728b1b853"
+  },
+  "MSJC02": {
+    "url": "/cards/MSJC02.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/MSJC02 猎魔人.jpg",
+    "sha256": "915a723573028050980cb665d0de85f5e5fd5a6de1b54e3d7664e69882edc807"
   }
 }

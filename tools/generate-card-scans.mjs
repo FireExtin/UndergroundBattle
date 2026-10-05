@@ -26,6 +26,9 @@ const societyScans = [{ id: 'MSJC09', source: {
 } }, { id: 'MSJC11', source: {
   image: 'resource/ymsj-fun.github.io/cards/MSJC11 S．P．T执行部.jpg',
   sha256: 'df9964832e48bfef57bcaa0d5f4db67ce2ab9fe0e371ffecc2736c1728b1b853',
+} }, { id: 'MSJC02', source: {
+  image: 'resource/ymsj-fun.github.io/cards/MSJC02 猎魔人.jpg',
+  sha256: '915a723573028050980cb665d0de85f5e5fd5a6de1b54e3d7664e69882edc807',
 } }];
 const scans = {};
 const out = path.join(root, 'web/public/cards');

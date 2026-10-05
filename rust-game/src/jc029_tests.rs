@@ -4,7 +4,7 @@ use crate::{catalog, model::*, room::RoomEnvelope, rules::*};
 use std::sync::atomic::{AtomicUsize, Ordering};
 static SEQ: AtomicUsize = AtomicUsize::new(0);
 
-fn envelope(g: &Game) -> RoomEnvelope {
+pub(super) fn envelope(g: &Game) -> RoomEnvelope {
     // Explicit valid session layout for a native rule fixture; this is not a
     // natural room continuation. The production persisted-state guard remains.
     let mut r = RoomEnvelope::from_game(g.clone());
@@ -39,7 +39,7 @@ fn envelope(g: &Game) -> RoomEnvelope {
     }
     RoomEnvelope::from_persisted(&serde_json::to_string(&r).unwrap()).unwrap()
 }
-fn checkpoint(g: &Game) {
+pub(super) fn checkpoint(g: &Game) {
     let room = envelope(g);
     let state = serde_json::to_string(&room).unwrap();
     let restored = RoomEnvelope::from_persisted(&state).unwrap();
@@ -49,7 +49,9 @@ fn checkpoint(g: &Game) {
     for s in 0..4 {
         assert_eq!(views[s], serde_json::to_value(restored.view(s, 0)).unwrap());
     }
-    if let Ok(dir) = std::env::var("JC029_EVIDENCE_DIR") {
+    if let Ok(dir) =
+        std::env::var("GREEN_EVIDENCE_DIR").or_else(|_| std::env::var("JC029_EVIDENCE_DIR"))
+    {
         std::fs::create_dir_all(&dir).unwrap();
         let n = SEQ.fetch_add(1, Ordering::Relaxed);
         std::fs::write(
@@ -59,13 +61,46 @@ fn checkpoint(g: &Game) {
         .unwrap();
     }
 }
-fn apply(g: &mut Game, seat: usize, a: Action) {
+pub(super) fn apply(g: &mut Game, seat: usize, a: Action) {
     checkpoint(g);
-    if let Ok(dir) = std::env::var("JC029_EVIDENCE_DIR") {
-        let room = envelope(g);
+    if let Ok(dir) =
+        std::env::var("GREEN_EVIDENCE_DIR").or_else(|_| std::env::var("JC029_EVIDENCE_DIR"))
+    {
+        let mut room = envelope(g);
         let session = if a.kind == "pass" && room.pacing.window.is_some() {
             crate::room::SessionAction::PassResponse {
                 window_id: room.pacing.window.as_ref().unwrap().id.clone(),
+            }
+        } else if let Some(window) = room.pacing.window.clone() {
+            // A real responsive action must use the production intent protocol.
+            // Record BeginResponse and SubmitResponse as separate whole native
+            // transitions; never synthesize the composing decision in state.
+            let intent_id = format!("native-intent-{}", SEQ.load(Ordering::Relaxed));
+            let begin = crate::room::RoomCommand {
+                command_id: format!("native-begin-{}", SEQ.load(Ordering::Relaxed)),
+                expected_version: room.revision,
+                action: crate::room::SessionAction::BeginResponse {
+                    window_id: window.id.clone(),
+                    intent_id: intent_id.clone(),
+                },
+            };
+            let state = serde_json::to_string(&room).unwrap();
+            let expected = room.transition(seat, Some(begin.clone()), 0).unwrap();
+            assert!(
+                expected.error_code.is_none(),
+                "{:?}",
+                expected.error_message
+            );
+            room = RoomEnvelope::from_persisted(&expected.state).unwrap();
+            let views = (0..4)
+                .map(|s| serde_json::to_value(room.view(s, 0)).unwrap())
+                .collect::<Vec<_>>();
+            let n = SEQ.fetch_add(1, Ordering::Relaxed);
+            std::fs::write(format!("{dir}/step-{n:04}.json"),serde_json::to_vec(&serde_json::json!({"state":state,"seat":seat,"command":begin,"expected":expected,"views":views})).unwrap()).unwrap();
+            crate::room::SessionAction::SubmitResponse {
+                window_id: window.id,
+                intent_id,
+                action: a.clone(),
             }
         } else {
             crate::room::SessionAction::Game { action: a.clone() }
@@ -92,7 +127,7 @@ fn apply(g: &mut Game, seat: usize, a: Action) {
     g.apply(seat, a).unwrap();
     checkpoint(g);
 }
-fn game(actor: usize) -> Game {
+pub(super) fn game(actor: usize) -> Game {
     let mut g = Game::new(
         "jc029-native".into(),
         "LOCAL".into(),
@@ -132,13 +167,13 @@ fn game(actor: usize) -> Game {
     g.begin_window(Window::Action(g.team(actor)));
     g
 }
-fn board(g: &mut Game, def: &str, owner: usize, region: usize) -> String {
+pub(super) fn board(g: &mut Game, def: &str, owner: usize, region: usize) -> String {
     let c = g.make_card(def, owner);
     let id = c.id.clone();
     g.regions[region].cards.push(c);
     id
 }
-fn fund(g: &mut Game, actor: usize, def: &str, count: usize) {
+pub(super) fn fund(g: &mut Game, actor: usize, def: &str, count: usize) {
     for _ in 0..count {
         let c = g.make_card(def, actor);
         g.players[actor].assets.push(c);
@@ -153,7 +188,7 @@ fn remove_board(g: &mut Game, id: &str) -> Card {
         .unwrap();
     g.regions[r].cards.remove(i)
 }
-fn pass_top(g: &mut Game) {
+pub(super) fn pass_top(g: &mut Game) {
     let count = g.stack.len();
     assert!(count > 0);
     for _ in 0..32 {
@@ -167,7 +202,7 @@ fn pass_top(g: &mut Game) {
     }
     panic!("top did not resolve");
 }
-fn choose(g: &mut Game, selected: Vec<String>) {
+pub(super) fn choose(g: &mut Game, selected: Vec<String>) {
     let p = g.pending.clone().unwrap();
     apply(
         g,
@@ -206,10 +241,30 @@ fn reveal(g: &mut Game, actor: usize, exhausted: bool) -> String {
     assert_eq!(c.exhausted, exhausted);
     c.id.clone()
 }
-fn reject(g: &mut Game, seat: usize, a: Action) {
+pub(super) fn reject(g: &mut Game, seat: usize, a: Action) {
     let before = serde_json::to_string(g).unwrap();
-    assert!(g.apply(seat, a).is_err());
+    let error = g.apply(seat, a.clone()).unwrap_err();
     assert_eq!(serde_json::to_string(g).unwrap(), before);
+    if let Ok(dir) =
+        std::env::var("GREEN_EVIDENCE_DIR").or_else(|_| std::env::var("JC029_EVIDENCE_DIR"))
+    {
+        std::fs::create_dir_all(&dir).unwrap();
+        let room = envelope(g);
+        let command = crate::room::RoomCommand {
+            command_id: format!("focused-reject-{}", SEQ.load(Ordering::Relaxed)),
+            expected_version: room.revision,
+            action: crate::room::SessionAction::Game { action: a },
+        };
+        let state = serde_json::to_string(&room).unwrap();
+        let expected = room.transition(seat, Some(command.clone()), 0).unwrap();
+        assert!(expected.error_code.is_some());
+        assert_eq!(state, expected.state);
+        let views = (0..4)
+            .map(|s| serde_json::to_value(room.view(s, 0)).unwrap())
+            .collect::<Vec<_>>();
+        let n = SEQ.fetch_add(1, Ordering::Relaxed);
+        std::fs::write(format!("{dir}/reject-{n:04}.json"),serde_json::to_vec(&serde_json::json!({"state":state,"seat":seat,"command":command,"expected":expected,"views":views,"nativeRuleError":error})).unwrap()).unwrap();
+    }
 }
 
 #[test]
@@ -253,7 +308,7 @@ fn jc029_whole_original_and_exact_reused_ability() {
         a.ops.as_slice(),
         [Op::DamageTarget { slot: 0, amount: 1 }]
     ));
-    assert_eq!(catalog::catalog().cards.len(), 90);
+    assert_eq!(catalog::catalog().cards.len(), 93);
     assert!(crate::society::definition("MSJC03").is_err());
 }
 

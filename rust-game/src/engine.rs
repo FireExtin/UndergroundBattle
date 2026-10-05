@@ -393,6 +393,7 @@ impl Game {
     fn character_icon_parts(&self, c: &Card, region: usize) -> (Icons, Icons, Icons) {
         let d = card(&c.definition);
         let mut permanent_result = d.permanent_icons;
+        permanent_result.combat += self.green_source_attribute_bonus(c, region).0;
         let mut temporary_result = d.temporary_icons;
         let ordinary = self.turn_attribute_bonus(c).1;
         for modifier in &rules::definition(&c.definition).modifiers {
@@ -490,6 +491,7 @@ impl Game {
             .unwrap_or_else(|| card(&c.definition).defense.unwrap_or(0))
             + bonus
             + self.turn_attribute_bonus(c).0
+            + self.green_source_attribute_bonus(c, region).1
             + attachment_bonus)
             .saturating_sub(c.wounds)
     }
@@ -2610,6 +2612,7 @@ mod tests {
             printed_subtype: false,
             subtypes_any: vec![],
             printed_cost_max: None,
+            predicate: None,
             equipment_host: false,
             requires_magic: false,
             exclude_source: false,
@@ -2669,7 +2672,7 @@ mod tests {
     #[test]
     fn catalog_is_restricted_real_complete_and_decks_are_legal() {
         let c = catalog::catalog();
-        assert_eq!(c.cards.len(), 90);
+        assert_eq!(c.cards.len(), 93);
         let active = c
             .cards
             .iter()
@@ -2684,7 +2687,7 @@ mod tests {
                 .collect::<BTreeSet<_>>()
         );
         assert!(active.contains("DQJC116"));
-        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 79);
+        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 83);
         assert_eq!(c.decks.len(), 5);
         for deck in &c.decks {
             assert_eq!(deck.card_count, 50);
