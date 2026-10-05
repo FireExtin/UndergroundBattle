@@ -227,22 +227,32 @@ impl Game {
         spec: &TargetSlotSpec,
         id: &str,
     ) -> TargetSummary {
-        let located = self.board(id).map(|(r, c)| (Some(r), c)).or_else(|| {
-            self.players
-                .iter()
-                .flat_map(|p| p.graveyard.iter())
-                .find(|c| c.id == id)
-                .map(|c| (None, c))
-        });
+        let asset = (spec.zone == Zone::AttachmentOrAsset)
+            .then(|| self.asset_location(id))
+            .flatten();
+        let located = asset
+            .map(|(s, i)| (None, &self.players[s].assets[i]))
+            .or_else(|| self.board(id).map(|(r, c)| (Some(r), c)))
+            .or_else(|| {
+                self.players
+                    .iter()
+                    .flat_map(|p| p.graveyard.iter())
+                    .find(|c| c.id == id)
+                    .map(|c| (None, c))
+            });
         let (label, kind, owner, controller, region) = if let Some((region, c)) = located {
-            let label = if c.face_down {
+            let label = if asset.is_some() {
+                "资产".into()
+            } else if c.face_down {
                 format!("暗藏者·{}", self.players[c.controller].name)
             } else {
                 card(&c.definition).name.clone()
             };
             (
                 label,
-                if c.face_down {
+                if asset.is_some() {
+                    "asset"
+                } else if c.face_down {
                     "hidden"
                 } else {
                     card(&c.definition).kind.as_str()
@@ -297,7 +307,9 @@ impl Game {
         target: &BoundTarget,
     ) -> TargetSummary {
         let mut summary = target.public.clone();
-        if self.board(&target.id).is_some()
+        if (target.spec.zone == Zone::AttachmentOrAsset
+            && self.asset_location(&target.id).is_some())
+            || self.board(&target.id).is_some()
             || self
                 .players
                 .iter()
@@ -320,6 +332,10 @@ impl Game {
         summary.valid = self.valid_binding(frame.actor, &frame.source, &target.spec, &target.id);
         if !summary.valid {
             let present = match target.spec.zone {
+                Zone::AttachmentOrAsset => {
+                    self.asset_location(&target.id).is_some()
+                        || self.attachments.iter().any(|a| a.card.id == target.id)
+                }
                 Zone::Board => self.board(&target.id).is_some(),
                 Zone::Graveyard => self
                     .players
@@ -400,6 +416,21 @@ impl Game {
                 .sum(),
         )
     }
+    pub(crate) fn paid_reveal_cost(&self, actor: usize, c: &Card) -> u32 {
+        card(&c.definition).cost.saturating_sub(
+            self.modifiers
+                .iter()
+                .filter(|m| {
+                    m.paid_reveal
+                        && m.actor == actor
+                        && m.uses > 0
+                        && m.expires_turn == self.turn
+                        && self.filter_card(&m.filter, c)
+                })
+                .map(|m| m.amount)
+                .sum(),
+        )
+    }
     pub(crate) fn pay_printed(
         &mut self,
         actor: usize,
@@ -409,7 +440,7 @@ impl Game {
         let amount = if face_up_play {
             self.effective_cost(actor, c)
         } else {
-            card(&c.definition).cost
+            self.paid_reveal_cost(actor, c)
         };
         let ids = self.players[actor]
             .assets
@@ -428,13 +459,12 @@ impl Game {
                     && m.uses > 0
                     && m.expires_turn == self.turn
                     && self.filter_card(&m.filter, c)
+                    && (face_up_play || m.paid_reveal)
             })
             .map(|(i, _)| i)
             .collect::<Vec<_>>();
-        if face_up_play {
-            for i in used {
-                self.modifiers[i].uses -= 1;
-            }
+        for i in used {
+            self.modifiers[i].uses -= 1;
         }
         Ok(vec![PaidCost::Assets(ids)])
     }
@@ -494,6 +524,19 @@ impl Game {
         id: &str,
     ) -> bool {
         match spec.zone {
+            Zone::AttachmentOrAsset => {
+                self.asset_location(id)
+                    .is_some_and(|(s, i)| !self.players[s].assets[i].face_down)
+                    || self
+                        .attachments
+                        .iter()
+                        .find(|a| a.card.id == id)
+                        .is_some_and(|a| {
+                            !a.card.face_down
+                                && self.board(id).is_some()
+                                && self.targetable(actor, &a.card)
+                        })
+            }
             Zone::Player => id
                 .strip_prefix('p')
                 .and_then(|s| s.parse::<usize>().ok())
@@ -577,6 +620,20 @@ impl Game {
         spec: &TargetSlotSpec,
     ) -> Vec<ChoiceOption> {
         let options: Vec<ChoiceOption> = match spec.zone {
+            Zone::AttachmentOrAsset => self
+                .attachments
+                .iter()
+                .filter_map(|a| {
+                    self.board(&a.card.id)
+                        .map(|(r, c)| self.option(c, actor, Some(r), None))
+                })
+                .chain(
+                    self.players
+                        .iter()
+                        .flat_map(|p| p.assets.iter())
+                        .map(|c| self.option(c, actor, None, Some("asset"))),
+                )
+                .collect(),
             Zone::Board => self
                 .in_play_cards()
                 .into_iter()
@@ -1045,6 +1102,12 @@ impl Game {
     pub(crate) fn remove_dead(&mut self, target: &str, cause: RemovalCause) {
         self.remove_dead_with_snapshot(target, cause, None);
     }
+    fn asset_location(&self, id: &str) -> Option<(usize, usize)> {
+        self.players
+            .iter()
+            .enumerate()
+            .find_map(|(s, p)| p.assets.iter().position(|c| c.id == id).map(|i| (s, i)))
+    }
     pub(crate) fn remove_dead_with_snapshot(
         &mut self,
         target: &str,
@@ -1106,7 +1169,9 @@ impl Game {
                 return false;
             }
             for target in &frame.targets {
-                if target.spec.zone == Zone::Board && self.shield_stops(frame.actor, &target.id) {
+                if matches!(target.spec.zone, Zone::Board | Zone::AttachmentOrAsset)
+                    && self.shield_stops(frame.actor, &target.id)
+                {
                     frame.guard = GuardState::Cancelled;
                     return false;
                 }
@@ -1330,6 +1395,23 @@ impl Game {
                                 self.emit_event(actor, source, Event::EnterRegion);
                             }
                         }
+                    }
+                }
+                Op::DestroyPublicAttachmentOrAsset { slot } => {
+                    let id = frame
+                        .targets
+                        .get(slot)
+                        .ok_or("缺少附属或资产目标")?
+                        .id
+                        .clone();
+                    if let Some((s, i)) = self.asset_location(&id) {
+                        let c = self.players[s].assets.remove(i);
+                        let owner = c.owner;
+                        self.note(format!("资产{}：消灭", card(&c.definition).name));
+                        let c = self.reset_zone_card(c);
+                        self.players[owner].graveyard.push(c);
+                    } else {
+                        self.remove_dead(&id, RemovalCause::Destroy);
                     }
                 }
                 Op::Destroy(entity) => {
@@ -1628,7 +1710,18 @@ impl Game {
                     amount,
                     expires_turn: self.turn,
                     uses: 1,
+                    paid_reveal: false,
                 }),
+                Op::CostReductionOnFaceUpOrPaidReveal { filter, amount } => {
+                    self.modifiers.push(CostModifier {
+                        actor: frame.actor,
+                        filter,
+                        amount,
+                        expires_turn: self.turn,
+                        uses: 1,
+                        paid_reveal: true,
+                    })
+                }
                 Op::FreeReveal {
                     player,
                     require_loyalty,

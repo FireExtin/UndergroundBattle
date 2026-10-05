@@ -40,6 +40,7 @@ pub enum Cost {
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum Zone {
+    AttachmentOrAsset,
     Board,
     Graveyard,
     Player,
@@ -143,6 +144,7 @@ pub enum MagicIcon {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum CardFilter {
+    PrintedColor(String),
     Any,
     HasPrintedMagic,
     Kind(String),
@@ -161,6 +163,7 @@ pub enum CardFilter {
 impl CardFilter {
     pub(crate) fn matches(&self, definition: &crate::catalog::CardDefinition) -> bool {
         match self {
+            Self::PrintedColor(color) => definition.color == *color,
             Self::Any => true,
             Self::HasPrintedMagic => definition.magic_icon != MagicIcon::None,
             Self::Kind(kind) => definition.kind == *kind,
@@ -191,6 +194,13 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    DestroyPublicAttachmentOrAsset {
+        slot: usize,
+    },
+    CostReductionOnFaceUpOrPaidReveal {
+        filter: CardFilter,
+        amount: u32,
+    },
     RevealHandAndOfferSourceSacrifice {
         player: PlayerRef,
     },
@@ -407,6 +417,52 @@ pub struct Definition {
 // These are interpreter limits, not rules for resolving partially invalid targets.
 // Reject unsupported declarations before publishing actions or offering trigger choices.
 pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(), String> {
+    if ability
+        .targets
+        .iter()
+        .any(|t| t.zone == Zone::AttachmentOrAsset)
+        && (card_id != "JC107"
+            || ability.targets.len() != 1
+            || ability.targets[0].kind != EntityKind::Any
+            || ability.targets[0].relation != Relation::Any
+            || ability.targets[0].range != Range::Anywhere
+            || !matches!(
+                ability.ops.as_slice(),
+                [Op::DestroyPublicAttachmentOrAsset { slot: 0 }]
+            ))
+    {
+        return Err(format!(
+            "{card_id}: only the admitted one attachment-or-asset destruction is supported"
+        ));
+    }
+    for op in &ability.ops {
+        match op {
+            Op::DestroyPublicAttachmentOrAsset { slot }
+                if card_id != "JC107"
+                    || *slot != 0
+                    || !ability
+                        .targets
+                        .first()
+                        .is_some_and(|t| t.zone == Zone::AttachmentOrAsset) =>
+            {
+                return Err(format!(
+                    "{card_id}: invalid admitted public destruction target"
+                ))
+            }
+            Op::CostReductionOnFaceUpOrPaidReveal { filter, amount }
+                if card_id != "JC103"
+                    || *amount != 1
+                    || !matches!(filter,CardFilter::PrintedColor(c)if c=="紫")
+                    || !ability.targets.is_empty()
+                    || !matches!(ability.costs.as_slice(), [Cost::ExhaustSource]) =>
+            {
+                return Err(format!(
+                    "{card_id}: invalid admitted purple paid-reveal discount"
+                ))
+            }
+            _ => {}
+        }
+    }
     if ability.event == Some(Event::HandDiscard)
         && (card_id != "XQ34"
             || !matches!(ability.costs.as_slice(), [Cost::Assets(1)])
@@ -740,6 +796,36 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         use EntityRef::{Source, Target};
         use PlayerRef::{Actor, Context};
         let mut m = BTreeMap::new();
+        let mut painter = ability(
+            "reduce-next-purple",
+            "快速行动",
+            Timing::Fast,
+            vec![Cost::ExhaustSource],
+            vec![],
+            vec![Op::CostReductionOnFaceUpOrPaidReveal {
+                filter: CardFilter::PrintedColor("紫".into()),
+                amount: 1,
+            }],
+            None,
+        );
+        painter.activation_only = true;
+        m.insert("JC103".into(), with_abilities(vec![painter]));
+        let mut collapse = ability(
+            "destroy-attachment-or-asset",
+            "标准行动",
+            Timing::Standard,
+            vec![],
+            vec![target(
+                Zone::AttachmentOrAsset,
+                EntityKind::Any,
+                Relation::Any,
+                Range::Anywhere,
+            )],
+            vec![Op::DestroyPublicAttachmentOrAsset { slot: 0 }],
+            None,
+        );
+        collapse.play_only = true;
+        m.insert("JC107".into(), with_abilities(vec![collapse]));
         let any_player = target(
             Zone::Player,
             EntityKind::Any,

@@ -63,9 +63,9 @@ function localRoom() {
 }
 
 it('admits only JC008 and retains its actual printed metadata and original JPG bytes', () => {
-  expect(catalog.engineVersion).toBe('rust-v0.2.21-hand-interactions-candidate');
-  expect(catalog.cardPoolVersion).toBe('limited-v2.18-hand-interactions-candidate');
-  expect(catalog.cards).toHaveLength(79);
+  expect(catalog.engineVersion).toBe('rust-v0.2.22-purple-tools-candidate');
+  expect(catalog.cardPoolVersion).toBe('limited-v2.19-purple-tools-candidate');
+  expect(catalog.cards).toHaveLength(81);
   expect(catalog.cards.some(c => c.id === 'MSJC01')).toBe(false);
   expect(catalog.societies.map(c => c.id)).toEqual(['MSJC09', 'MSJC01']);
   expect(definition).toMatchObject({ name: '灵能激发', kind: 'spell', type: '法术/心灵',
@@ -74,7 +74,7 @@ it('admits only JC008 and retains its actual printed metadata and original JPG b
     temporaryIcons: { investigation: 0, combat: 0, influence: 0 }, keywords: [] });
   expect(definition.text).toBe('【快速行动】本回合中，目标角色获得+1防御和1个普通战斗图标。');
   const scans = JSON.parse(readFileSync(resolve('public/card-scans.json'), 'utf8'));
-  expect(Object.keys(scans)).toHaveLength(81);
+  expect(Object.keys(scans)).toHaveLength(83);
   expect(scans.JC008).toEqual({ url: '/cards/JC008.jpg', source: 'resource/ymsj-fun.github.io/cards/JC008 灵能激发.jpg', sha256 });
   expect(createHash('sha256').update(readFileSync(resolve('public/cards/JC008.jpg'))).digest('hex')).toBe(sha256);
 });

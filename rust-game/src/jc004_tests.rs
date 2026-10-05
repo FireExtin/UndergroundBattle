@@ -162,11 +162,11 @@ fn jc004_complete_printed_definition_and_candidate_identity_are_isolated() {
     assert_eq!(spec.targets[0].relation, Relation::Any);
     assert_eq!(
         catalog::ENGINE_VERSION,
-        "rust-v0.2.21-hand-interactions-candidate"
+        "rust-v0.2.22-purple-tools-candidate"
     );
     assert_eq!(
         catalog::POOL_VERSION,
-        "limited-v2.18-hand-interactions-candidate"
+        "limited-v2.19-purple-tools-candidate"
     );
     let mut draft = deck::preset("watchers").unwrap();
     draft.cards = vec![

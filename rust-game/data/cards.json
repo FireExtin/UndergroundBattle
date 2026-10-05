@@ -3073,6 +3073,84 @@
         "image": "resource/ymsj-fun.github.io/cards/JZ67 失忆.jpg",
         "sha256": "a6554b81e081c7292a32f2bf13ce269f276580f9a852e1df232c60c2c36ff477"
       }
+    },
+    {
+      "id": "JC103",
+      "name": "丧失理智的画家",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "艺术家"
+      ],
+      "cost": 3,
+      "loyalty": [
+        "紫色"
+      ],
+      "loyaltyText": "",
+      "color": "紫",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        }
+      },
+      "text": "【快速】行动【横置】：本回合中你下一张正面打出或付费翻面的【紫】牌，所需费用减少1。",
+      "keywords": [],
+      "unique": false,
+      "society": "",
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JC103",
+        "image": "resource/ymsj-fun.github.io/cards/JC103 丧失理智的画家.jpg",
+        "sha256": "8eee910793908999e04487b65f0e9a398d11ef5b307b360ba6e9d2012adaed63"
+      },
+      "defense": 1
+    },
+    {
+      "id": "JC107",
+      "name": "崩塌的时空",
+      "kind": "spell",
+      "subtypes": [
+        "事务",
+        "灾难"
+      ],
+      "cost": 3,
+      "loyalty": [
+        "紫色",
+        "紫色"
+      ],
+      "loyaltyText": "",
+      "color": "紫",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "text": "【标准行动】消灭目标附属或资产。",
+      "keywords": [],
+      "unique": false,
+      "society": "",
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JC107",
+        "image": "resource/ymsj-fun.github.io/cards/JC107 崩塌的时空.jpg",
+        "sha256": "ce402d531c9c9bb28da130de0627b4860ced56fb0fa7db1d487082c36e0462e2"
+      }
     }
   ],
   "decks": [

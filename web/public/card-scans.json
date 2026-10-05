@@ -394,6 +394,16 @@
     "source": "resource/ymsj-fun.github.io/cards/JZ67 失忆.jpg",
     "sha256": "a6554b81e081c7292a32f2bf13ce269f276580f9a852e1df232c60c2c36ff477"
   },
+  "JC103": {
+    "url": "/cards/JC103.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC103 丧失理智的画家.jpg",
+    "sha256": "8eee910793908999e04487b65f0e9a398d11ef5b307b360ba6e9d2012adaed63"
+  },
+  "JC107": {
+    "url": "/cards/JC107.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC107 崩塌的时空.jpg",
+    "sha256": "ce402d531c9c9bb28da130de0627b4860ced56fb0fa7db1d487082c36e0462e2"
+  },
   "MSJC09": {
     "url": "/cards/MSJC09.jpg",
     "source": "resource/ymsj-fun.github.io/cards/MSJC09 秘社.jpg",

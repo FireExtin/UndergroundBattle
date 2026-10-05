@@ -572,6 +572,8 @@ pub struct CostModifier {
     pub amount: u32,
     pub expires_turn: u32,
     pub uses: u32,
+    #[serde(default, skip_serializing_if = "is_false")]
+    pub paid_reveal: bool,
 }
 /// A resolved bonus belongs to this exact in-play instance, not its owner,
 /// controller, printed definition, or the spell's later graveyard instance.

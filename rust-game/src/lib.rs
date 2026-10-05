@@ -42,3 +42,6 @@ mod hand_deck_tests;
 
 #[cfg(test)]
 mod hand_interactions_tests;
+
+#[cfg(test)]
+mod purple_tools_tests;

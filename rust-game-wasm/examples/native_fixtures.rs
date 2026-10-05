@@ -47,6 +47,9 @@ mod msjc01;
 #[path = "support/protection.rs"]
 mod protection;
 #[cfg(not(feature = "society-fixtures"))]
+#[path = "support/purple_tools.rs"]
+mod purple_tools;
+#[cfg(not(feature = "society-fixtures"))]
 #[path = "support/renown.rs"]
 mod renown;
 #[cfg(not(feature = "society-fixtures"))]
@@ -2697,6 +2700,15 @@ fn main() {
         .nth(1)
         .expect("Usage: native_fixtures <output.json>");
     #[cfg(not(feature = "society-fixtures"))]
+    if std::env::args().any(|a| a == "--slice-purple-tools") {
+        write_fixture_cases(
+            &output,
+            json!({"catalog":catalog::catalog()}),
+            purple_tools::cases(),
+        );
+        return;
+    }
+    #[cfg(not(feature = "society-fixtures"))]
     if std::env::args().any(|a| a == "--slice-hand-interactions") {
         write_fixture_cases(
             &output,
@@ -2978,6 +2990,7 @@ fn main() {
         .chain(equipment_abilities::cases())
         .chain(hand_deck::cases())
         .chain(hand_interactions::cases())
+        .chain(purple_tools::cases())
     {
         writer.push(case);
     }
