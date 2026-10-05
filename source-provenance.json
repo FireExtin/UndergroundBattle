@@ -1,8 +1,8 @@
 {
   "originalRepository": "https://github.com/FireExtin/UndergroundBattle.git",
-  "originalCommit": "aa1617a1ede90e5ea9de1eadf680b0bb74bda418",
+  "originalCommit": "3ee9f70a707714d776cf5a19e106963a56bfef05",
   "previousSiteSourceCommit": "979b519a98e6266a3bed72f7d775690ef7731673",
-  "wasmSha256": "2bdf206c232747045c481c47d3493be18bec9fea263293866ca4d95bf824c2bb",
+  "wasmSha256": "b17c350a65ba68291a9ff8c44f28382298932abb17a502a35cb9b6a73620482e",
   "engineVersion": "rust-v0.2.33-blue-minimum-candidate",
   "poolVersion": "limited-v2.30-blue-minimum-candidate",
   "ordinaryCards": 96,

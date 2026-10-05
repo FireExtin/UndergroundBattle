@@ -10,7 +10,7 @@ k.initSync({module:readFileSync(resolve('../rust-game-wasm/pkg/hegemony_wasm_bg.
 const catalog=JSON.parse(k.catalog()),d=catalog.cards.find(c=>c.id==='JC029');
 const draft=(count=3,societyId=null)=>({id:'jc029-unit',name:'新生血族50',description:'',societyId,cards:[{cardId:'JC029',count},{cardId:'JC125',count:50-count}],rulesVersion:catalog.rulesVersion,cardPoolVersion:catalog.cardPoolVersion,engineVersion:catalog.engineVersion,updatedAt:''});
 it('keeps the whole original and exactly one existing reveal ability alongside the finite green admission',()=>{
- expect(catalog.engineVersion).toBe('rust-v0.2.33-blue-minimum-candidate');expect(catalog.cards).toHaveLength(96);
+ expect(catalog.engineVersion).toBe('rust-v0.2.34-mill-public-candidate');expect(catalog.cards).toHaveLength(98);
  expect(d).toMatchObject({name:'新生血族',kind:'character',subtypes:['吸血鬼'],cost:2,loyalty:['蓝色','蓝色'],color:'蓝',magic:'鲜血',defense:1,unique:false,deckCopyLimit:3,keywords:['袭击1'],permanentIcons:{investigation:0,combat:0,influence:1},temporaryIcons:{investigation:0,combat:1,influence:0}});
  expect(d.abilities).toEqual([{key:'raid-1',label:'袭击1',timing:'fast',costs:[],triggered:true}]);
  expect(catalog.societies.map(c=>c.id)).toEqual(['MSJC09','MSJC01','MSJC07','MSJC06','MSJC08','MSJC11','MSJC02','MSJC03']);

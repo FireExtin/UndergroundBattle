@@ -79,3 +79,5 @@ mod jc030_tests;
 mod blue_minimum;
 #[cfg(all(test, not(feature = "society-fixtures")))]
 mod blue_minimum_tests;
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod mill_public_tests;

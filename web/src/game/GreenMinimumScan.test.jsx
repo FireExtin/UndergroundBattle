@@ -18,7 +18,7 @@ const green=['JC014','JC016','JZ08','BQ022','JC020','XQ07','LC30','JC018','JC015
 function draft(n=27,total=50){let left=n;const cards=green.flatMap(cardId=>{const count=Math.min(3,left);left-=count;return count?[{cardId,count}]:[];});cards.push({cardId:'JC125',count:total-n});return{id:'green-reader',name:'绿色最小50',description:'',societyId:'MSJC02',cards,rulesVersion:catalog.rulesVersion,cardPoolVersion:catalog.cardPoolVersion,engineVersion:catalog.engineVersion,updatedAt:''};}
 
 it('admits only the three reviewed green roles and exact MSJC02 fields and whole original scans',()=>{
- expect(catalog.engineVersion).toBe('rust-v0.2.33-blue-minimum-candidate');expect(catalog.cardPoolVersion).toBe('limited-v2.30-blue-minimum-candidate');expect(catalog.cards).toHaveLength(96);expect(catalog.societies).toHaveLength(8);
+ expect(catalog.engineVersion).toBe('rust-v0.2.34-mill-public-candidate');expect(catalog.cardPoolVersion).toBe('limited-v2.31-mill-public-candidate');expect(catalog.cards).toHaveLength(98);expect(catalog.societies).toHaveLength(8);
  const lc=catalog.cards.find(c=>c.id==='LC30'),mind=catalog.cards.find(c=>c.id==='JC018'),exorcist=catalog.cards.find(c=>c.id==='JC015'),society=catalog.societies.find(c=>c.id==='MSJC02');
  expect(lc).toMatchObject({name:'J·罗伯茨，“海雕”',subtitle:'“猛禽”战术小组',kind:'character',color:'绿',unique:true,cost:4,loyalty:['绿色'],magic:'',subtypes:['人类','猎手'],defense:2,keywords:['护卫2'],permanentIcons:{investigation:0,combat:1,influence:1},temporaryIcons:{investigation:0,combat:0,influence:0}});
  expect(mind).toMatchObject({name:'魔刃传人',kind:'character',color:'绿',unique:false,cost:4,loyalty:['绿色','绿色'],magic:'心灵',subtypes:['人类','猎手','超能力者'],defense:2,keywords:['威名'],permanentIcons:{investigation:0,combat:1,influence:0},temporaryIcons:{investigation:0,combat:1,influence:1}});
@@ -27,7 +27,7 @@ it('admits only the three reviewed green roles and exact MSJC02 fields and whole
  expect(society).toMatchObject({name:'猎魔人',subtitle:'猎杀异种战团',kind:'society',color:'绿',subtypes:['群体'],unique:true,startingHand:6,printedCost:null,deckConstraints:[{kind:'minimumColor',color:'绿',count:25}]});expect(society.abilities.map(a=>a.key)).toEqual(['drawWithInitiative','search-green-unique']);
  expect(catalog.societies.some(c=>c.id==='MSJC03')).toBe(true);expect(catalog.cards.some(c=>c.id==='XQ11')).toBe(false);
  const scans=JSON.parse(readFileSync(resolve('public/card-scans.json'),'utf8'));
- expect(Object.keys(scans)).toHaveLength(104);
+ expect(Object.keys(scans)).toHaveLength(106);
  for(const [id,hash]of Object.entries({LC30:'31ce6bd49725e5db643adb13daaef3529b8fb8440691214a00dd9fe666c5041d',JC018:'a764f6ad543c1aa25e287e42a508ecce2368277e64377c2969b2aff079b63af8',JC015:'84ab4fb4fdf5e44f35b8cb8d9a40531d57bb0edb64d29a9c15f80d6e1cd37e1e',MSJC02:'915a723573028050980cb665d0de85f5e5fd5a6de1b54e3d7664e69882edc807'})){
   expect(scans[id].sha256).toBe(hash);expect(createHash('sha256').update(readFileSync(resolve(`public/cards/${id}.jpg`))).digest('hex')).toBe(hash);
  }

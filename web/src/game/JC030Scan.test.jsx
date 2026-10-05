@@ -14,14 +14,14 @@ const catalog=JSON.parse(k.catalog()),old=JSON.parse(accepted31.catalog());
 const fixture=JSON.parse(readFileSync(resolve('src/game/jc030Test.fixture.json'),'utf8'));
 
 it('JC030 prints its whole blue bat fields and original and leaves accepted31 definitions unchanged',()=>{
- expect(catalog.engineVersion).toBe('rust-v0.2.33-blue-minimum-candidate');expect(catalog.cardPoolVersion).toBe('limited-v2.30-blue-minimum-candidate');
- expect(catalog.cards).toHaveLength(96);expect(catalog.societies).toHaveLength(8);
- expect(catalog.cards.filter(c=>!['JC030','JC032','JZ24'].includes(c.id))).toEqual(old.cards);expect(catalog.societies.filter(c=>c.id!=='MSJC03')).toEqual(old.societies);expect(catalog.decks).toEqual(old.decks);
+ expect(catalog.engineVersion).toBe('rust-v0.2.34-mill-public-candidate');expect(catalog.cardPoolVersion).toBe('limited-v2.31-mill-public-candidate');
+ expect(catalog.cards).toHaveLength(98);expect(catalog.societies).toHaveLength(8);
+ expect(catalog.cards.filter(c=>!['JC030','JC032','JZ24','XQ36','XQ46'].includes(c.id))).toEqual(old.cards);expect(catalog.societies.filter(c=>c.id!=='MSJC03')).toEqual(old.societies);expect(catalog.decks).toEqual(old.decks);
  const card=catalog.cards.find(c=>c.id==='JC030');
  expect(card).toMatchObject({name:'巨型蝙蝠',kind:'character',color:'蓝',unique:false,cost:3,loyalty:['蓝色','蓝色'],magic:'',subtypes:['蝙蝠'],defense:1,permanentIcons:{investigation:0,combat:2,influence:0},temporaryIcons:{investigation:0,combat:0,influence:0},ruleTraits:{cannot_be_equipped:true}});
  expect(card.abilities).toEqual(catalog.cards.find(c=>c.id==='JC029').abilities);
  const hash='e0627c1eec97eab04d8cbafb54c0d25ce496ab89e10e19a81485d84ad2915542';
- const scans=JSON.parse(readFileSync(resolve('public/card-scans.json'),'utf8'));expect(Object.keys(scans)).toHaveLength(104);expect(scans.JC030).toEqual({url:'/cards/JC030.jpg',source:'resource/ymsj-fun.github.io/cards/JC030 巨型蝙蝠.jpg',sha256:hash});
+ const scans=JSON.parse(readFileSync(resolve('public/card-scans.json'),'utf8'));expect(Object.keys(scans)).toHaveLength(106);expect(scans.JC030).toEqual({url:'/cards/JC030.jpg',source:'resource/ymsj-fun.github.io/cards/JC030 巨型蝙蝠.jpg',sha256:hash});
  expect(createHash('sha256').update(readFileSync(resolve('public/cards/JC030.jpg'))).digest('hex')).toBe(hash);
  for(const id of ['XQ11'])expect(catalog.cards.some(c=>c.id===id)).toBe(false);expect(catalog.societies.some(c=>c.id==='MSJC03')).toBe(true);
 });
