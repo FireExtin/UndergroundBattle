@@ -29,6 +29,9 @@ mod defence_equipment;
 #[path = "support/dream_reveal.rs"]
 mod dream_reveal;
 #[cfg(not(feature = "society-fixtures"))]
+#[path = "support/identity_overlap.rs"]
+mod identity_overlap;
+#[cfg(not(feature = "society-fixtures"))]
 #[path = "support/equipment_abilities.rs"]
 mod equipment_abilities;
 #[cfg(not(feature = "society-fixtures"))]
@@ -2706,6 +2709,11 @@ fn main() {
         .nth(1)
         .expect("Usage: native_fixtures <output.json>");
     #[cfg(not(feature = "society-fixtures"))]
+    if std::env::args().any(|a| a == "--slice-identity-overlap") {
+        write_fixture_cases(&output, json!({"catalog":catalog::catalog()}), identity_overlap::cases());
+        return;
+    }
+    #[cfg(not(feature = "society-fixtures"))]
     if std::env::args().any(|a| a == "--slice-dream-reveal") {
         write_fixture_cases(
             &output,
@@ -3017,6 +3025,7 @@ fn main() {
         .chain(purple_tools::cases())
         .chain(wound_defence::cases())
         .chain(dream_reveal::cases())
+        .chain(identity_overlap::cases())
     {
         writer.push(case);
     }

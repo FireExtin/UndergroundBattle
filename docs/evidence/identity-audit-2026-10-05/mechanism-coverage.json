@@ -1,0 +1,819 @@
+{
+  "schemaVersion": 1,
+  "productionHead": "3f058eac361f2db31bd2118f0c264fbc4e67b611",
+  "runtimeDefinitions": {
+    "ordinary": 85,
+    "players": 75,
+    "regions": 10,
+    "societies": 2,
+    "total": 87
+  },
+  "archive": {
+    "records": 685,
+    "componentIdsExcludingTK007": 684,
+    "specificationRecords": 683,
+    "completeGameplayFields": 678,
+    "sourceBlocked": 5,
+    "missingPinnedSpecification": 1,
+    "missingId": "TK011"
+  },
+  "mechanismCountPolicy": "52 stable directory ids, manual current-code audit. implementedBounded means complete for the explicitly admitted behavior listed here, not every original card/rule/UI. A general mechanism with incomplete active branches/infrastructure remains partial. No natural-browser acceptance implied.",
+  "researchTags": {
+    "distinct": 53,
+    "extraTag": "repress",
+    "mappedToDirectoryId": "combatKeywords",
+    "extraDirectoryRowCount": 0
+  },
+  "totals": {
+    "implementedBounded": 24,
+    "partial": 6,
+    "unimplemented": 20,
+    "needsRuling": 2
+  },
+  "rows": [
+    {
+      "id": "loyalty",
+      "name": "派系/领域忠诚与资产支付",
+      "definitionOfCount": "one stable directory id; never card count/test count/opcode count",
+      "status": "implementedBounded",
+      "scope": "本人资产颜色/单领域忠诚与未横置币支付；横置不损忠诚",
+      "cardIds": [
+        "JC042",
+        "XQ17",
+        "JC004"
+      ],
+      "code": {
+        "file": "rust-game/src/engine.rs",
+        "line": 219,
+        "anchor": "fn loyalty",
+        "fileSha256": "53dc49e225e58c7892484c77fed750b533d86259b89293211d6c6056bc52e97d"
+      },
+      "validation": "accepted actual24 default279 and native318+32; detailed original logs retained"
+    },
+    {
+      "id": "hidden",
+      "name": "秘密派遣、暗藏者、付费现身和潜伏",
+      "definitionOfCount": "one stable directory id; never card count/test count/opcode count",
+      "status": "implementedBounded",
+      "scope": "秘密派遣/付费现身/潜伏新实例、清理及controller隐私",
+      "cardIds": [
+        "JC002",
+        "JC063",
+        "LC23",
+        "XQ16"
+      ],
+      "code": {
+        "file": "rust-game/src/engine.rs",
+        "line": 600,
+        "anchor": "\"reveal\" =>",
+        "fileSha256": "53dc49e225e58c7892484c77fed750b533d86259b89293211d6c6056bc52e97d"
+      },
+      "validation": "accepted actual24 default279 and native318+32; detailed original logs retained"
+    },
+    {
+      "id": "priority",
+      "name": "响应堆叠、付费与可恢复选择",
+      "definitionOfCount": "one stable directory id; never card count/test count/opcode count",
+      "status": "implementedBounded",
+      "scope": "有限零/单目标LIFO、原子费用、持久帧与五秒响应意图；非通用强制/多目标",
+      "cardIds": [
+        "JC075",
+        "JC102",
+        "JC129"
+      ],
+      "code": {
+        "file": "rust-game/src/room.rs",
+        "line": 564,
+        "anchor": "pub fn transition",
+        "fileSha256": "dc83ff7706936efc9212e3f7a8be79965912d92769092c20df8df11d2d08d56d"
+      },
+      "validation": "accepted actual24 default279 and native318+32; detailed original logs retained"
+    },
+    {
+      "id": "confrontation",
+      "name": "调查、战斗、势力与赢区",
+      "definitionOfCount": "one stable directory id; never card count/test count/opcode count",
+      "status": "implementedBounded",
+      "scope": "霸权调查/同时战斗伤害/势力/赢区及有限世界触发；不含遭遇任务",
+      "cardIds": [
+        "DQJC107",
+        "DQJC116",
+        "LC21",
+        "LC22"
+      ],
+      "code": {
+        "file": "rust-game/src/engine.rs",
+        "line": 1042,
+        "anchor": "Window::Win",
+        "fileSha256": "53dc49e225e58c7892484c77fed750b533d86259b89293211d6c6056bc52e97d"
+      },
+      "validation": "accepted actual24 default279 and native318+32; detailed original logs retained"
+    },
+    {
+      "id": "public",
+      "name": "公开",
+      "definitionOfCount": "one stable directory id; never card count/test count/opcode count",
+      "status": "implementedBounded",
+      "scope": "当前准入公开trait禁止普通秘密派遣，效果潜伏另算",
+      "cardIds": [
+        "JC014",
+        "JC056",
+        "JC070",
+        "JC075"
+      ],
+      "code": {
+        "file": "rust-game/src/engine.rs",
+        "line": 552,
+        "anchor": "traits.public",
+        "fileSha256": "53dc49e225e58c7892484c77fed750b533d86259b89293211d6c6056bc52e97d"
+      },
+      "validation": "accepted actual24 default279 and native318+32; detailed original logs retained"
+    },
+    {
+      "id": "exhaust",
+      "name": "横置与重置",
+      "definitionOfCount": "one stable directory id; never card count/test count/opcode count",
+      "status": "implementedBounded",
+      "scope": "费用/效果横置、回合重置，精确实例；包括准入秘社与附属",
+      "cardIds": [
+        "JC003",
+        "JC020",
+        "LC12",
+        "MSJC01"
+      ],
+      "code": {
+        "file": "rust-game/src/resolution.rs",
+        "line": 1392,
+        "anchor": "Op::Exhaust",
+        "fileSha256": "66973e75c926af9b5ec9275c9c1995bb390d214187ed6a906202d154f1b79e3d"
+      },
+      "validation": "accepted actual24 default279 and native318+32; detailed original logs retained"
+    },
+    {
+      "id": "mobility",
+      "name": "机动与场上移动",
+      "definitionOfCount": "one stable directory id; never card count/test count/opcode count",
+      "status": "implementedBounded",
+      "scope": "JC014自身移动保留实例，2V2相邻目标和先手次序",
+      "cardIds": [
+        "JC014"
+      ],
+      "code": {
+        "file": "rust-game/src/rules.rs",
+        "line": 2055,
+        "anchor": "\"mobility\"",
+        "fileSha256": "0d3971c1a13158902ff9e4e6e756cca17babd87312ca1fe605982ca2fc92e8f1"
+      },
+      "validation": "accepted actual24 default279 and native318+32; detailed original logs retained"
+    },
+    {
+      "id": "combatTraits",
+      "name": "杀伤、护卫、撤回",
+      "definitionOfCount": "one stable directory id; never card count/test count/opcode count",
+      "status": "implementedBounded",
+      "scope": "已准入杀伤1、护卫1、撤回及地区批次；不含任意动态赋予",
+      "cardIds": [
+        "JC016",
+        "JC116",
+        "LC21",
+        "LC22"
+      ],
+      "code": {
+        "file": "rust-game/src/rules.rs",
+        "line": 370,
+        "anchor": "pub struct Traits",
+        "fileSha256": "0d3971c1a13158902ff9e4e6e756cca17babd87312ca1fe605982ca2fc92e8f1"
+      },
+      "validation": "accepted actual24 default279 and native318+32; detailed original logs retained"
+    },
+    {
+      "id": "barrier",
+      "name": "屏障",
+      "definitionOfCount": "one stable directory id; never card count/test count/opcode count",
+      "status": "implementedBounded",
+      "scope": "公开有效屏障/结附授予，对敌方目标守卫；非目标群体效果照常",
+      "cardIds": [
+        "JC073",
+        "JZ08"
+      ],
+      "code": {
+        "file": "rust-game/src/engine.rs",
+        "line": 293,
+        "anchor": "fn targetable",
+        "fileSha256": "53dc49e225e58c7892484c77fed750b533d86259b89293211d6c6056bc52e97d"
+      },
+      "validation": "accepted actual24 default279 and native318+32; detailed original logs retained"
+    },
+    {
+      "id": "shield",
+      "name": "护盾",
+      "definitionOfCount": "one stable directory id; never card count/test count/opcode count",
+      "status": "partial",
+      "scope": "shield字段及敌方单目标扣盾/挡效果，夹具可核",
+      "remaining": "尚无准入获盾来源或将成为目标的独立强制触发",
+      "cardIds": [
+        "JC078"
+      ],
+      "code": {
+        "file": "rust-game/src/engine.rs",
+        "line": 310,
+        "anchor": "c.shield > 0",
+        "fileSha256": "53dc49e225e58c7892484c77fed750b533d86259b89293211d6c6056bc52e97d"
+      },
+      "validation": "existing accepted positives / infrastructure tests; remaining behavior not claimed"
+    },
+    {
+      "id": "graveRecovery",
+      "name": "墓地回手/牌库底/暗藏者进场",
+      "definitionOfCount": "one stable directory id; never card count/test count/opcode count",
+      "status": "implementedBounded",
+      "scope": "已准入墓地回手/回拥有者库底/暗藏者进场，归属与新实例",
+      "cardIds": [
+        "JC086",
+        "JC092",
+        "XQ38",
+        "XQ49",
+        "DQJC115"
+      ],
+      "code": {
+        "file": "rust-game/src/resolution.rs",
+        "line": 1414,
+        "anchor": "Destination::OwnerDeckBottom",
+        "fileSha256": "66973e75c926af9b5ec9275c9c1995bb390d214187ed6a906202d154f1b79e3d"
+      },
+      "validation": "accepted actual24 default279 and native318+32; detailed original logs retained"
+    },
+    {
+      "id": "gravePlay",
+      "name": "墓地/其他区域直接打出",
+      "definitionOfCount": "one stable directory id; never card count/test count/opcode count",
+      "status": "implementedBounded",
+      "scope": "仅JC085墓地正面出牌许可，正常币/忠诚/时机/栈，禁止暗藏资产",
+      "cardIds": [
+        "JC085"
+      ],
+      "code": {
+        "file": "rust-game/src/play_sources.rs",
+        "line": 10,
+        "anchor": "fn character_play_source",
+        "fileSha256": "f1a80f2f4d34e2b4c61336b176e180dbca7551fbd82e752d3c80757418638dfd"
+      },
+      "validation": "accepted actual24 default279 and native318+32; detailed original logs retained"
+    },
+    {
+      "id": "sacrifice",
+      "name": "牺牲费用与牺牲效果",
+      "definitionOfCount": "one stable directory id; never card count/test count/opcode count",
+      "status": "implementedBounded",
+      "scope": "已准入费用牺牲与效果牺牲、控制筛选、实际死亡触发及原子回滚",
+      "cardIds": [
+        "JC042",
+        "JC049",
+        "JC020",
+        "JC093"
+      ],
+      "code": {
+        "file": "rust-game/src/resolution.rs",
+        "line": 1710,
+        "anchor": "Op::SacrificeChosen",
+        "fileSha256": "66973e75c926af9b5ec9275c9c1995bb390d214187ed6a906202d154f1b79e3d"
+      },
+      "validation": "accepted actual24 default279 and native318+32; detailed original logs retained"
+    },
+    {
+      "id": "costReduction",
+      "name": "降费",
+      "definitionOfCount": "one stable directory id; never card count/test count/opcode count",
+      "status": "implementedBounded",
+      "scope": "当前牌的下一张指定类别/颜色降费、紫正面/付费现身降费及器械折扣；忠诚仍需满足",
+      "cardIds": [
+        "JC042",
+        "JC103",
+        "JC112"
+      ],
+      "code": {
+        "file": "rust-game/src/rules.rs",
+        "line": 520,
+        "anchor": "Op::CostReductionOnFaceUpOrPaidReveal",
+        "fileSha256": "0d3971c1a13158902ff9e4e6e756cca17babd87312ca1fe605982ca2fc92e8f1"
+      },
+      "validation": "accepted actual24 default279 and native318+32; detailed original logs retained"
+    },
+    {
+      "id": "deckChoice",
+      "name": "抓牌、弃牌、预测、检索及排序",
+      "definitionOfCount": "one stable directory id; never card count/test count/opcode count",
+      "status": "implementedBounded",
+      "scope": "准入抓/弃/预测/私密搜索/展示搜索/排序、香港同时搜索、随机手牌置顶与可选洗牌；非通用X",
+      "cardIds": [
+        "JC007",
+        "JC104",
+        "JZ61",
+        "JZ67",
+        "DQJC114"
+      ],
+      "code": {
+        "file": "rust-game/src/resolution.rs",
+        "line": 1667,
+        "anchor": "Op::Search",
+        "fileSha256": "66973e75c926af9b5ec9275c9c1995bb390d214187ed6a906202d154f1b79e3d"
+      },
+      "validation": "accepted actual24 default279 and native318+32; detailed original logs retained"
+    },
+    {
+      "id": "continuous",
+      "name": "持续数值修正与类型/能力赋予",
+      "definitionOfCount": "one stable directory id; never card count/test count/opcode count",
+      "status": "implementedBounded",
+      "scope": "当前队伍/个人/领域条件数值、宿主数值、限时属性与实例寿命；无通用依赖环",
+      "cardIds": [
+        "JC059",
+        "JC073",
+        "JC084",
+        "JC085",
+        "LC12"
+      ],
+      "code": {
+        "file": "rust-game/src/attributes.rs",
+        "line": 50,
+        "anchor": "fn turn_attribute_bonus",
+        "fileSha256": "a9fef24be1cbf1e1f94ae5d554141cee0def887f3e202da64120df3ef3ddbd7c"
+      },
+      "validation": "accepted actual24 default279 and native318+32; detailed original logs retained"
+    },
+    {
+      "id": "healWounds",
+      "name": "移除创伤",
+      "definitionOfCount": "one stable directory id; never card count/test count/opcode count",
+      "status": "implementedBounded",
+      "scope": "LC19/LC20移除创伤，现有创伤扣防御和防御0死亡稳定点",
+      "cardIds": [
+        "LC19",
+        "LC20"
+      ],
+      "code": {
+        "file": "rust-game/src/rules.rs",
+        "line": 1887,
+        "anchor": "Op::HealWounds",
+        "fileSha256": "0d3971c1a13158902ff9e4e6e756cca17babd87312ca1fe605982ca2fc92e8f1"
+      },
+      "validation": "accepted actual24 default279 and native318+32; detailed original logs retained"
+    },
+    {
+      "id": "society",
+      "name": "秘社牌与秘社区",
+      "definitionOfCount": "one stable directory id; never card count/test count/opcode count",
+      "status": "implementedBounded",
+      "scope": "MSJC09/MSJC01个人可空秘社区、合法构筑/起手/费用/重置/每局次数/检索；无双色或秘社附属",
+      "cardIds": [
+        "MSJC09",
+        "MSJC01"
+      ],
+      "code": {
+        "file": "rust-game/src/society.rs",
+        "line": 7,
+        "anchor": "pub struct SocietyZone",
+        "fileSha256": "9f1026d1af3f42d4e63beffd0dd24d69ab717ac6bbee19489c308432b6347d2c"
+      },
+      "validation": "accepted actual24 default279 and native318+32; detailed original logs retained"
+    },
+    {
+      "id": "attachment",
+      "name": "附属/结附、回收与双类型牌",
+      "definitionOfCount": "one stable directory id; never card count/test count/opcode count",
+      "status": "partial",
+      "scope": "准入角色宿主、独立实例/controller、静态宿主修正/控制/清理及正常回收",
+      "remaining": "JC016+BQ022赢区撤回/回收优先仍待裁定；秘社/地区/双类型宿主未齐",
+      "cardIds": [
+        "BQ022",
+        "JC036",
+        "JC073",
+        "JC093"
+      ],
+      "code": {
+        "file": "rust-game/src/attachment.rs",
+        "line": 26,
+        "anchor": "RegionReturnBatch",
+        "fileSha256": "ed8e2d07d47d67068c37275c5239b79da1d1a9e58262cac777b02a3375ed5ef1"
+      },
+      "validation": "existing accepted positives / infrastructure tests; remaining behavior not claimed"
+    },
+    {
+      "id": "seal",
+      "name": "封印与载体生命周期",
+      "definitionOfCount": "one stable directory id; never card count/test count/opcode count",
+      "status": "unimplemented",
+      "remaining": "无封印区域/载体协议及Seal/Release可执行操作",
+      "cardIds": [],
+      "validation": "reviewed active Rule Op/Trait, model zones and finite registry; no production entry"
+    },
+    {
+      "id": "renown",
+      "name": "声望",
+      "definitionOfCount": "one stable directory id; never card count/test count/opcode count",
+      "status": "implementedBounded",
+      "scope": "JC070/JC076与JC074准入授予，已审2V2团队比较/一次可选奖励及地区实例锚定",
+      "cardIds": [
+        "JC070",
+        "JC074",
+        "JC076"
+      ],
+      "code": {
+        "file": "rust-game/src/renown.rs",
+        "line": 34,
+        "anchor": "fn declare_region_renown",
+        "fileSha256": "b59fcac09105915926d035dbf9691722e561b6ea274d04092b4adf55aa7073c2"
+      },
+      "validation": "accepted actual24 default279 and native318+32; detailed original logs retained"
+    },
+    {
+      "id": "spirit",
+      "name": "灵体",
+      "definitionOfCount": "one stable directory id; never card count/test count/opcode count",
+      "status": "implementedBounded",
+      "scope": "仅实际JZ58，伤害时同区当前团队正面领域严格优势防伤；平局不防；非战斗禁令",
+      "cardIds": [
+        "JZ58"
+      ],
+      "code": {
+        "file": "rust-game/src/attributes.rs",
+        "line": 10,
+        "anchor": "pub fn spirit_protected",
+        "fileSha256": "a9fef24be1cbf1e1f94ae5d554141cee0def887f3e202da64120df3ef3ddbd7c"
+      },
+      "validation": "accepted actual24 default279 and native318+32; detailed original logs retained"
+    },
+    {
+      "id": "lock",
+      "name": "锁定与检视暗藏者",
+      "definitionOfCount": "one stable directory id; never card count/test count/opcode count",
+      "status": "unimplemented",
+      "remaining": "无卡牌锁定标志或完整锁定/检视来源",
+      "cardIds": [],
+      "validation": "reviewed active Rule Op/Trait, model zones and finite registry; no production entry"
+    },
+    {
+      "id": "timeDestroy",
+      "name": "时间标志与毁灭地区",
+      "definitionOfCount": "one stable directory id; never card count/test count/opcode count",
+      "status": "unimplemented",
+      "remaining": "无卡牌时间标志与完整毁灭地区操作",
+      "cardIds": [],
+      "validation": "reviewed active Rule Op/Trait, model zones and finite registry; no production entry"
+    },
+    {
+      "id": "damagePrevention",
+      "name": "通用防止/伤害替代",
+      "definitionOfCount": "one stable directory id; never card count/test count/opcode count",
+      "status": "partial",
+      "scope": "JC078本回合防伤及JZ58灵体连续防伤",
+      "remaining": "通用将发生伤害、JC077重定向/替代事件协议未实现",
+      "cardIds": [
+        "JC078",
+        "JZ58"
+      ],
+      "code": {
+        "file": "rust-game/src/engine.rs",
+        "line": 1645,
+        "anchor": "pub(crate) fn damage",
+        "fileSha256": "53dc49e225e58c7892484c77fed750b533d86259b89293211d6c6056bc52e97d"
+      },
+      "validation": "existing accepted positives / infrastructure tests; remaining behavior not claimed"
+    },
+    {
+      "id": "control",
+      "name": "操控权变化",
+      "definitionOfCount": "one stable directory id; never card count/test count/opcode count",
+      "status": "implementedBounded",
+      "scope": "JC129限时、JC036附属在场及JZ27控制/类型层，失效重算并保留owner",
+      "cardIds": [
+        "JC129",
+        "JC036",
+        "JZ27"
+      ],
+      "code": {
+        "file": "rust-game/src/control.rs",
+        "line": 132,
+        "anchor": "fn settle_controls",
+        "fileSha256": "889b1ceceadb219367a3fb15fd8eed542a83e5b575fae7c971b98ad95cada566"
+      },
+      "validation": "accepted actual24 default279 and native318+32; detailed original logs retained"
+    },
+    {
+      "id": "transform",
+      "name": "转变与多形态",
+      "definitionOfCount": "one stable directory id; never card count/test count/opcode count",
+      "status": "unimplemented",
+      "remaining": "无FormId及转变操作；控制/翻暗不等于转变",
+      "cardIds": [],
+      "validation": "reviewed active Rule Op/Trait, model zones and finite registry; no production entry"
+    },
+    {
+      "id": "blink",
+      "name": "闪烁",
+      "definitionOfCount": "one stable directory id; never card count/test count/opcode count",
+      "status": "unimplemented",
+      "remaining": "现有潜伏/现身分别可用，没有一个效果内闪烁的完整事件协议",
+      "cardIds": [],
+      "validation": "reviewed active Rule Op/Trait, model zones and finite registry; no production entry"
+    },
+    {
+      "id": "nonAsset",
+      "name": "非资产",
+      "definitionOfCount": "one stable directory id; never card count/test count/opcode count",
+      "status": "unimplemented",
+      "remaining": "无非资产trait及建立/转入资产区排除规则",
+      "cardIds": [],
+      "validation": "reviewed active Rule Op/Trait, model zones and finite registry; no production entry"
+    },
+    {
+      "id": "slow",
+      "name": "迟缓",
+      "definitionOfCount": "one stable directory id; never card count/test count/opcode count",
+      "status": "unimplemented",
+      "remaining": "无迟缓EnterPosture及准入来源",
+      "cardIds": [],
+      "validation": "reviewed active Rule Op/Trait, model zones and finite registry; no production entry"
+    },
+    {
+      "id": "leader",
+      "name": "领袖与唯一构筑",
+      "definitionOfCount": "one stable directory id; never card count/test count/opcode count",
+      "status": "partial",
+      "scope": "独立构筑层按印刷关键词唯一同名1张，已有typed-registry回归",
+      "remaining": "领袖属性/在场限制及领袖来源牌未实现；构筑唯一不同于金名独有",
+      "cardIds": [],
+      "code": {
+        "file": "rust-game/src/deck.rs",
+        "line": 48,
+        "anchor": "card.keywords.iter().any(|keyword| keyword == \"唯一\")",
+        "fileSha256": "20b2a14c0de1ff8ca921fba06aa322daf625f87716963c4ed434c3e8f18494bd"
+      },
+      "validation": "existing accepted positives / infrastructure tests; remaining behavior not claimed"
+    },
+    {
+      "id": "token",
+      "name": "生成指示物角色/附属",
+      "definitionOfCount": "one stable directory id; never card count/test count/opcode count",
+      "status": "unimplemented",
+      "remaining": "无生成模板/衍生物实例和离场策略",
+      "cardIds": [],
+      "validation": "reviewed active Rule Op/Trait, model zones and finite registry; no production entry"
+    },
+    {
+      "id": "mysticContest",
+      "name": "隐秘对抗、隐秘/暴露与隐秘等级",
+      "definitionOfCount": "one stable directory id; never card count/test count/opcode count",
+      "status": "unimplemented",
+      "remaining": "无隐秘对抗/隐秘暴露标志/双方同时选手牌完整流程",
+      "cardIds": [],
+      "validation": "reviewed active Rule Op/Trait, model zones and finite registry; no production entry"
+    },
+    {
+      "id": "plan",
+      "name": "秘密计划与推进",
+      "definitionOfCount": "one stable directory id; never card count/test count/opcode count",
+      "status": "unimplemented",
+      "remaining": "无计划类型/进度/秘社区秘密投影",
+      "cardIds": [],
+      "validation": "reviewed active Rule Op/Trait, model zones and finite registry; no production entry"
+    },
+    {
+      "id": "rumor",
+      "name": "传闻",
+      "definitionOfCount": "one stable directory id; never card count/test count/opcode count",
+      "status": "unimplemented",
+      "remaining": "无传闻的弃牌/入墓观察与替代事件",
+      "cardIds": [],
+      "validation": "reviewed active Rule Op/Trait, model zones and finite registry; no production entry"
+    },
+    {
+      "id": "blood",
+      "name": "鲜血附属与饮血",
+      "definitionOfCount": "one stable directory id; never card count/test count/opcode count",
+      "status": "partial",
+      "scope": "实际XQ14鲜血附属的吸血鬼宿主和防御/永久战斗加值",
+      "remaining": "JC028生成/自身转移、饮血、封印来源许可未实现",
+      "cardIds": [
+        "XQ14"
+      ],
+      "code": {
+        "file": "rust-game/src/rules.rs",
+        "line": 1324,
+        "anchor": "\"XQ14\"",
+        "fileSha256": "0d3971c1a13158902ff9e4e6e756cca17babd87312ca1fe605982ca2fc92e8f1"
+      },
+      "validation": "existing accepted positives / infrastructure tests; remaining behavior not claimed"
+    },
+    {
+      "id": "task",
+      "name": "任务地区",
+      "definitionOfCount": "one stable directory id; never card count/test count/opcode count",
+      "status": "unimplemented",
+      "remaining": "世界槽不是玩家任务地区；无任务追加与胜利协议",
+      "cardIds": [],
+      "validation": "reviewed active Rule Op/Trait, model zones and finite registry; no production entry"
+    },
+    {
+      "id": "core",
+      "name": "核心角色、核心区与命令",
+      "definitionOfCount": "one stable directory id; never card count/test count/opcode count",
+      "status": "unimplemented",
+      "remaining": "无核心区/命令/休整/名誉付款及失控协议",
+      "cardIds": [],
+      "validation": "reviewed active Rule Op/Trait, model zones and finite registry; no production entry"
+    },
+    {
+      "id": "encounter",
+      "name": "遭遇角色、利用与恐怖",
+      "definitionOfCount": "one stable directory id; never card count/test count/opcode count",
+      "status": "unimplemented",
+      "remaining": "无中立遭遇实体/利用/恐怖/回世界协议",
+      "cardIds": [],
+      "validation": "reviewed active Rule Op/Trait, model zones and finite registry; no production entry"
+    },
+    {
+      "id": "starlightInfluence",
+      "name": "附属上的地区势力",
+      "definitionOfCount": "one stable directory id; never card count/test count/opcode count",
+      "status": "unimplemented",
+      "remaining": "只有地区势力数组，没有附属承载的地区势力",
+      "cardIds": [],
+      "validation": "reviewed active Rule Op/Trait, model zones and finite registry; no production entry"
+    },
+    {
+      "id": "combatKeywords",
+      "name": "袭击、创伤、遏制、威名等战斗关键词",
+      "definitionOfCount": "one stable directory id; never card count/test count/opcode count",
+      "status": "partial",
+      "scope": "JZ59创伤1与JZ58遏制1已准入；repress研究子标签归并到本目录行",
+      "remaining": "袭击、威名、任意X和其他关键词仍未齐；不重复计算combatTraits",
+      "cardIds": [
+        "JZ59",
+        "JZ58"
+      ],
+      "code": {
+        "file": "rust-game/src/rules.rs",
+        "line": 476,
+        "anchor": "Op::RepressOpponentOne",
+        "fileSha256": "0d3971c1a13158902ff9e4e6e756cca17babd87312ca1fe605982ca2fc92e8f1"
+      },
+      "validation": "existing accepted positives / infrastructure tests; remaining behavior not claimed"
+    },
+    {
+      "id": "hiddenOnly",
+      "name": "隐匿",
+      "definitionOfCount": "one stable directory id; never card count/test count/opcode count",
+      "status": "unimplemented",
+      "remaining": "隐藏目标筛选不是隐匿；无禁止普通正面打出的隐匿trait",
+      "cardIds": [],
+      "validation": "reviewed active Rule Op/Trait, model zones and finite registry; no production entry"
+    },
+    {
+      "id": "cancel",
+      "name": "终止/取消与替代效果",
+      "definitionOfCount": "one stable directory id; never card count/test count/opcode count",
+      "status": "unimplemented",
+      "remaining": "响应意图取消不是规则终止；无栈项目目标或Terminate操作",
+      "cardIds": [],
+      "validation": "reviewed active Rule Op/Trait, model zones and finite registry; no production entry"
+    },
+    {
+      "id": "handAbility",
+      "name": "手牌能力、神秘学博弈等",
+      "definitionOfCount": "one stable directory id; never card count/test count/opcode count",
+      "status": "implementedBounded",
+      "scope": "仅XQ34弃手事件来源与可选付1检索；非普通play，source holder和owner分离",
+      "cardIds": [
+        "XQ34"
+      ],
+      "code": {
+        "file": "rust-game/src/resolution.rs",
+        "line": 1068,
+        "anchor": "fn discard_hand_card",
+        "fileSha256": "66973e75c926af9b5ec9275c9c1995bb390d214187ed6a906202d154f1b79e3d"
+      },
+      "validation": "accepted actual24 default279 and native318+32; detailed original logs retained"
+    },
+    {
+      "id": "crisis",
+      "name": "洛城危机/支线剧情/威胁与支援",
+      "definitionOfCount": "one stable directory id; never card count/test count/opcode count",
+      "status": "needsRuling",
+      "remaining": "洛城模式/威胁/支援完整规则边界尚未核准，未执行",
+      "cardIds": [],
+      "validation": "no execution claim"
+    },
+    {
+      "id": "chaos",
+      "name": "混乱",
+      "definitionOfCount": "one stable directory id; never card count/test count/opcode count",
+      "status": "unimplemented",
+      "remaining": "有确定性RNG不等于混乱；无随机合法地区入场流程",
+      "cardIds": [],
+      "validation": "reviewed active Rule Op/Trait, model zones and finite registry; no production entry"
+    },
+    {
+      "id": "herald",
+      "name": "先兆手牌行动",
+      "definitionOfCount": "one stable directory id; never card count/test count/opcode count",
+      "status": "unimplemented",
+      "remaining": "无准备阶段先兆手牌行动及每回合额度",
+      "cardIds": [],
+      "validation": "reviewed active Rule Op/Trait, model zones and finite registry; no production entry"
+    },
+    {
+      "id": "reincarnation",
+      "name": "转生",
+      "definitionOfCount": "one stable directory id; never card count/test count/opcode count",
+      "status": "unimplemented",
+      "remaining": "无进入墓地/封印触发的转生洗回协议",
+      "cardIds": [],
+      "validation": "reviewed active Rule Op/Trait, model zones and finite registry; no production entry"
+    },
+    {
+      "id": "eternal",
+      "name": "永恒",
+      "definitionOfCount": "one stable directory id; never card count/test count/opcode count",
+      "status": "needsRuling",
+      "remaining": "完整关键词语义未核准；不推导为不死或不可离场",
+      "cardIds": [],
+      "validation": "no execution claim"
+    },
+    {
+      "id": "temporaryIcons",
+      "name": "临时能力图标",
+      "definitionOfCount": "one stable directory id; never card count/test count/opcode count",
+      "status": "implementedBounded",
+      "scope": "当前印刷临时图标按先手查询，已准入临时/限时授予按各自寿命和实例；无通用图标标志系统",
+      "cardIds": [
+        "JC001",
+        "JC005",
+        "JC016",
+        "JC073",
+        "JZ58",
+        "LC12"
+      ],
+      "code": {
+        "file": "rust-game/src/engine.rs",
+        "line": 318,
+        "anchor": "pub fn icons",
+        "fileSha256": "53dc49e225e58c7892484c77fed750b533d86259b89293211d6c6056bc52e97d"
+      },
+      "validation": "accepted actual24 default279 and native318+32; detailed original logs retained"
+    },
+    {
+      "id": "uniqueInPlay",
+      "name": "独有（金色名称）",
+      "definitionOfCount": "one stable directory id; never card count/test count/opcode count",
+      "status": "implementedBounded",
+      "scope": "准入独有正面角色按同controller同印刷名选择牺牲，敌方/队友不混；秘社个人槽独立",
+      "cardIds": [
+        "LC23",
+        "LC01",
+        "WM003"
+      ],
+      "code": {
+        "file": "rust-game/src/engine.rs",
+        "line": 966,
+        "anchor": "Effect::Unique { seat }",
+        "fileSha256": "53dc49e225e58c7892484c77fed750b533d86259b89293211d6c6056bc52e97d"
+      },
+      "validation": "accepted actual24 default279 and native318+32; detailed original logs retained"
+    },
+    {
+      "id": "privatePeek",
+      "name": "私密检视与持续检视权限",
+      "definitionOfCount": "one stable directory id; never card count/test count/opcode count",
+      "status": "implementedBounded",
+      "scope": "仅LC01自己的牌库顶持续私密投影，controller与在场条件失效立即撤销",
+      "cardIds": [
+        "LC01"
+      ],
+      "code": {
+        "file": "rust-game/src/engine.rs",
+        "line": 2140,
+        "anchor": "private_deck_top",
+        "fileSha256": "53dc49e225e58c7892484c77fed750b533d86259b89293211d6c6056bc52e97d"
+      },
+      "validation": "accepted actual24 default279 and native318+32; detailed original logs retained"
+    }
+  ],
+  "acceptedValidation": {
+    "native": {
+      "unit": 318,
+      "integration": 32
+    },
+    "frontend": {
+      "files": 44,
+      "tests": 394
+    },
+    "defaultNativeActual24": {
+      "cases": 279,
+      "transitions": 15597,
+      "projections": 61841
+    },
+    "evidenceDirectory": "/workspace/.private-validation/dream-reveal-batch-20261005",
+    "noPreviousFullRegressionRepeatedForThisCount": true
+  }
+}
