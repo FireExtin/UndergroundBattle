@@ -63,7 +63,7 @@ async function compareScenario(entry) {
       for (const region of projected.regions) for (const card of region.characters) {
         if (card.faceDown && card.controller !== projected.you) {
           assert.equal(card.name, '暗藏者');
-          for (const secret of ['cardId', 'text', 'cost', 'icons', 'defense', 'color', 'magic', 'currentSubtypes', 'currentRenown', 'currentBarrier', 'currentDamagePrevention', 'currentPrintedDefense', 'currentSpiritProtection']) assert.ok(!(secret in card));
+          for (const secret of ['cardId', 'text', 'cost', 'icons', 'defense', 'color', 'magic', 'currentSubtypes', 'currentRenown', 'currentBarrier', 'currentDamagePrevention', 'currentPrintedDefense', 'currentSpiritProtection', 'convertedTemporaryIcons']) assert.ok(!(secret in card));
         }
       }
       projections++;

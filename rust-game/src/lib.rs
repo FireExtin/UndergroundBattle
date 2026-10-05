@@ -18,11 +18,9 @@ pub mod model;
 #[cfg(all(test, not(feature = "society-fixtures")))]
 mod msjc01_tests;
 #[cfg(all(test, not(feature = "society-fixtures")))]
-mod msjc07_tests;
-#[cfg(all(test, not(feature = "society-fixtures")))]
 mod msjc06_tests;
-#[cfg(test)]
-mod white_wound_tests;
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod msjc07_tests;
 mod play_sources;
 #[cfg(test)]
 mod protection_tests;
@@ -35,6 +33,8 @@ pub mod rules;
 #[cfg(feature = "native")]
 pub mod service;
 pub mod society;
+#[cfg(test)]
+mod white_wound_tests;
 mod world;
 
 #[cfg(all(test, not(feature = "society-fixtures")))]
@@ -59,3 +59,9 @@ mod dream_reveal_tests;
 
 #[cfg(test)]
 mod repress_assets_tests;
+
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod region_aura_tests;
+
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod msjc08_tests;

@@ -256,12 +256,7 @@ impl Game {
                 self.attachments
                     .iter()
                     .find(|a| a.card.id == id)
-                    .and_then(|a| {
-                        self.regions
-                            .iter()
-                            .position(|r| r.cards.iter().any(|c| c.id == a.host_id))
-                            .map(|r| (r, &a.card))
-                    })
+                    .and_then(|a| self.attachment_region(a).map(|r| (r, &a.card)))
             })
     }
     pub(crate) fn board_mut(&mut self, id: &str) -> Option<&mut Card> {
@@ -282,7 +277,7 @@ impl Game {
             }
         }
         if let Some(index) = self.attachments.iter().position(|a| a.card.id == id) {
-            let region = self.board(&self.attachments[index].host_id)?.0;
+            let region = self.attachment_region(&self.attachments[index])?;
             return Some((region, self.attachments.remove(index).card));
         }
         None
@@ -334,10 +329,68 @@ impl Game {
         if d.kind != "character" {
             return Icons::default();
         }
-        let mut result = d.permanent_icons.add(self.turn_attribute_bonus(c).1);
-        if self.team(c.controller) == self.first_team {
-            result = result.add(d.temporary_icons);
+        let (permanent, temporary, ordinary) = self.character_icon_parts(c, region);
+        Self::combine_character_icons(
+            permanent,
+            temporary,
+            ordinary,
+            self.team(c.controller) == self.first_team,
+            self.region_converts_temporary(c, region),
+        )
+    }
+    /// Turn duration is independent of the printed temporary icon category.
+    pub(crate) fn combine_character_icons(
+        mut permanent: Icons,
+        mut temporary: Icons,
+        ordinary: Icons,
+        initiative: bool,
+        convert: bool,
+    ) -> Icons {
+        if convert {
+            permanent = permanent.add(temporary);
+            temporary = Icons::default();
         }
+        permanent.add(ordinary).add(if initiative {
+            temporary
+        } else {
+            Icons::default()
+        })
+    }
+    fn region_converts_temporary(&self, c: &Card, region: usize) -> bool {
+        !c.face_down
+            && card(&c.definition).kind == "character"
+            && rules::definition(&c.definition).traits.spirit
+            && self
+                .regions
+                .get(region)
+                .is_some_and(|r| r.cards.iter().any(|live| live.id == c.id))
+            && self.attachments.iter().any(|a| {
+                !a.card.face_down
+                    && self.attachment_region(a) == Some(region)
+                    && self.attachment_host_valid(a)
+                    && rules::definition(&a.card.definition)
+                        .modifiers
+                        .iter()
+                        .any(|m| {
+                            matches!(
+                                m,
+                                StaticModifier::AttachedRegionSpiritTemporaryIconsPermanent
+                            )
+                        })
+            })
+    }
+    pub(crate) fn converted_temporary_icons(&self, c: &Card, region: usize) -> Option<Icons> {
+        if !self.region_converts_temporary(c, region) {
+            return None;
+        }
+        let temporary = self.character_icon_parts(c, region).1;
+        (temporary != Icons::default()).then_some(temporary)
+    }
+    fn character_icon_parts(&self, c: &Card, region: usize) -> (Icons, Icons, Icons) {
+        let d = card(&c.definition);
+        let mut permanent_result = d.permanent_icons;
+        let mut temporary_result = d.temporary_icons;
+        let ordinary = self.turn_attribute_bonus(c).1;
         for modifier in &rules::definition(&c.definition).modifiers {
             if let StaticModifier::NoEnemyCharacters(permanent, temporary) = modifier {
                 if !self.regions[region].cards.iter().any(|other| {
@@ -345,10 +398,8 @@ impl Game {
                         && card(&other.definition).kind == "character"
                         && self.is_enemy(c.controller, other)
                 }) {
-                    result = result.add(*permanent);
-                    if self.team(c.controller) == self.first_team {
-                        result = result.add(*temporary);
-                    }
+                    permanent_result = permanent_result.add(*permanent);
+                    temporary_result = temporary_result.add(*temporary);
                 }
             }
             if let StaticModifier::ConditionalIcons {
@@ -358,10 +409,8 @@ impl Game {
             } = modifier
             {
                 if self.icon_condition(c, region, condition) {
-                    result = result.add(*permanent);
-                    if self.team(c.controller) == self.first_team {
-                        result = result.add(*temporary);
-                    }
+                    permanent_result = permanent_result.add(*permanent);
+                    temporary_result = temporary_result.add(*temporary);
                 }
             }
         }
@@ -371,13 +420,12 @@ impl Game {
             .filter(|a| a.host_id == c.id && self.attachment_host_valid(a))
         {
             if let Some(spec) = &rules::definition(&attachment.card.definition).attachment {
-                result = result.add(spec.host_icons);
-                if self.team(c.controller) == self.first_team {
-                    result = result.add(spec.host_temporary_icons.unwrap_or_default());
-                }
+                permanent_result = permanent_result.add(spec.host_icons);
+                temporary_result =
+                    temporary_result.add(spec.host_temporary_icons.unwrap_or_default());
             }
         }
-        result
+        (permanent_result, temporary_result, ordinary)
     }
     pub fn defense(&self, c: &Card, region: usize) -> u32 {
         let bonus = self.regions[region]
@@ -915,7 +963,12 @@ impl Game {
                 self.enter_triggers(item.controller, &definition, &id, item.reveal);
             } else if card(&c.definition).kind == "attachment" {
                 if self.accept_frame_guard(&mut frame) {
-                    let host_id = frame.targets.first().ok_or("附属缺少宿主目标")?.id.clone();
+                    let target = frame.targets.first().ok_or("附属缺少宿主目标")?;
+                    let host_id = target
+                        .region_instance
+                        .as_ref()
+                        .unwrap_or(&target.id)
+                        .clone();
                     let mut c = self.fresh(c);
                     c.face_down = false;
                     c.controller = item.controller;
@@ -1492,32 +1545,37 @@ impl Game {
             Effect::Unique { seat } => {
                 let mut options = vec![];
                 let mut group = None;
-                for (r, region) in self.regions.iter().enumerate() {
-                    for c in &region.cards {
-                        if c.controller == seat && !c.face_down && card(&c.definition).unique {
-                            let name = &card(&c.definition).name;
-                            let count = self
-                                .regions
-                                .iter()
-                                .flat_map(|r| r.cards.iter())
-                                .filter(|other| {
-                                    other.controller == seat
-                                        && !other.face_down
-                                        && card(&other.definition).name == *name
-                                })
-                                .count();
-                            if count > 1 && group.as_ref().is_none_or(|n| n == name) {
-                                group = Some(name.clone());
-                                options.push(self.option(c, seat, Some(r), None));
-                            }
+                let in_play = self.in_play_cards();
+                for (r, c) in &in_play {
+                    if c.controller == seat && !c.face_down && card(&c.definition).unique {
+                        let name = &card(&c.definition).name;
+                        let count = in_play
+                            .iter()
+                            .filter(|(_, other)| {
+                                other.controller == seat
+                                    && !other.face_down
+                                    && card(&other.definition).name == *name
+                            })
+                            .count();
+                        if count > 1 && group.as_ref().is_none_or(|n| n == name) {
+                            group = Some(name.clone());
+                            options.push(self.option(c, seat, Some(*r), None));
                         }
                     }
                 }
                 if options.len() > 1 {
+                    let title = if options
+                        .iter()
+                        .any(|o| o.card.as_ref().is_some_and(|c| c.kind == "attachment"))
+                    {
+                        "独有：选择同名独有牌中的一张牺牲"
+                    } else {
+                        "独有：选择同名独有角色中的一张牺牲"
+                    };
                     self.choice(
                         seat,
                         "target",
-                        "独有：选择同名独有角色中的一张牺牲".into(),
+                        title.into(),
                         options,
                         1,
                         1,
@@ -1914,6 +1972,11 @@ impl Game {
         let hidden = c.face_down && c.controller != viewer;
         let asset = kind == Some("asset");
         CardView {
+            converted_temporary_icons: if hidden || asset || c.face_down {
+                None
+            } else {
+                region.and_then(|r| self.converted_temporary_icons(c, r))
+            },
             current_spirit_protection: (!asset
                 && !c.face_down
                 && region.is_some()
@@ -2131,7 +2194,7 @@ impl Game {
                 .attachments
                 .iter()
                 .filter_map(|a| {
-                    self.board(&a.host_id).map(|(r, _)| AttachmentView {
+                    self.attachment_region(a).map(|r| AttachmentView {
                         card: self.card_view(&a.card, seat, Some(r), Some("attachment")),
                         host_id: a.host_id.clone(),
                     })
@@ -2526,6 +2589,7 @@ mod tests {
             source,
             &spec,
             vec![BoundTarget {
+                region_instance: None,
                 id,
                 spec: slot,
                 public,
@@ -2567,7 +2631,7 @@ mod tests {
     #[test]
     fn catalog_is_restricted_real_complete_and_decks_are_legal() {
         let c = catalog::catalog();
-        assert_eq!(c.cards.len(), 88);
+        assert_eq!(c.cards.len(), 89);
         let active = c
             .cards
             .iter()
@@ -2582,7 +2646,7 @@ mod tests {
                 .collect::<BTreeSet<_>>()
         );
         assert!(active.contains("DQJC116"));
-        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 78);
+        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 79);
         assert_eq!(c.decks.len(), 5);
         for deck in &c.decks {
             assert_eq!(deck.card_count, 50);

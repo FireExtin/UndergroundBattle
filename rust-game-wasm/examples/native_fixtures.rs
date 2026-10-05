@@ -61,11 +61,17 @@ mod msjc06;
 #[path = "support/msjc07.rs"]
 mod msjc07;
 #[cfg(not(feature = "society-fixtures"))]
+#[path = "support/msjc08.rs"]
+mod msjc08;
+#[cfg(not(feature = "society-fixtures"))]
 #[path = "support/protection.rs"]
 mod protection;
 #[cfg(not(feature = "society-fixtures"))]
 #[path = "support/purple_tools.rs"]
 mod purple_tools;
+#[cfg(not(feature = "society-fixtures"))]
+#[path = "support/region_aura.rs"]
+mod region_aura;
 #[cfg(not(feature = "society-fixtures"))]
 #[path = "support/renown.rs"]
 mod renown;
@@ -2731,6 +2737,29 @@ fn main() {
         .nth(1)
         .expect("Usage: native_fixtures <output.json>");
     #[cfg(not(feature = "society-fixtures"))]
+    if std::env::args().any(|a| a == "--find-purple-region-natural-seed") {
+        region_aura::find_natural_seed();
+        return;
+    }
+    #[cfg(not(feature = "society-fixtures"))]
+    if std::env::args().any(|a| a == "--slice-purple-region-natural") {
+        write_fixture_cases(
+            &output,
+            json!({"catalog":catalog::catalog()}),
+            std::iter::once_with(region_aura::natural),
+        );
+        return;
+    }
+    #[cfg(not(feature = "society-fixtures"))]
+    if std::env::args().any(|a| a == "--slice-purple-region-society") {
+        write_fixture_cases(
+            &output,
+            json!({"catalog":catalog::catalog()}),
+            msjc08::cases().chain(region_aura::cases()),
+        );
+        return;
+    }
+    #[cfg(not(feature = "society-fixtures"))]
     if std::env::args().any(|a| a == "--slice-white-wound-natural") {
         write_fixture_cases(
             &output,
@@ -3102,6 +3131,8 @@ fn main() {
         .chain(msjc07::cases())
         .chain(msjc06::cases())
         .chain(white_wound::cases())
+        .chain(msjc08::cases())
+        .chain(region_aura::cases())
     {
         writer.push(case);
     }

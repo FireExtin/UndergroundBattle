@@ -241,6 +241,22 @@ pub(crate) fn definitions() -> Vec<SocietyDefinition> {
                 triggered: false,
             })
             .collect();
+        let mut dream_card: CardDefinition = serde_json::from_value(serde_json::json!({
+            "id":"MSJC08","name":"梦境行者","kind":"society","type":"秘社/群体/梦境",
+            "subtypes":["群体","梦境"],"color":"紫","society":"梦境行者","unique":true,"supported":true,
+            "text":"构筑：你的牌组中需包含25张或更多紫色派系牌。行动3，横置：若你具有【先手标志】，则抓一张牌。行动4，横置：从你的牌库中寻找一张紫色独有牌，展示该牌后置于你的手中，然后将你的牌库洗牌。该能力每局游戏只能发动一次。"
+        })).expect("verified whole original MSJC08 fields and confirmed subtitle");
+        dream_card.abilities = crate::rules::definition("MSJC08")
+            .abilities
+            .iter()
+            .map(|a| crate::catalog::AbilitySummary {
+                key: a.key.clone(),
+                label: a.label.clone(),
+                timing: "standard".into(),
+                costs: a.costs.clone(),
+                triggered: false,
+            })
+            .collect();
         vec![
             msjc09,
             msjc01,
@@ -262,6 +278,17 @@ pub(crate) fn definitions() -> Vec<SocietyDefinition> {
                 starting_hand: 6,
                 deck_constraints: vec![SocietyDeckConstraint::MinimumColor {
                     color: "白".into(),
+                    count: 25,
+                }],
+                unresolved_abilities: BTreeMap::new(),
+            },
+            SocietyDefinition {
+                card: dream_card,
+                subtitle: "幻梦呓语".into(),
+                printed_cost: None,
+                starting_hand: 6,
+                deck_constraints: vec![SocietyDeckConstraint::MinimumColor {
+                    color: "紫".into(),
                     count: 25,
                 }],
                 unresolved_abilities: BTreeMap::new(),
@@ -337,7 +364,7 @@ mod tests {
                     .iter()
                     .map(|s| s.card.id.as_str())
                     .collect::<Vec<_>>(),
-                vec!["MSJC09", "MSJC01", "MSJC07", "MSJC06"]
+                vec!["MSJC09", "MSJC01", "MSJC07", "MSJC06", "MSJC08"]
             );
         }
         assert_eq!(

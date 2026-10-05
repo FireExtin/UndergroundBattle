@@ -386,6 +386,7 @@ pub struct Traits {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum StaticModifier {
+    AttachedRegionSpiritTemporaryIconsPermanent,
     PeekOwnDeckTop,
     NoEnemyCharacters(Icons, Icons),
     OtherFriendlyCharactersDefense(u32),
@@ -837,16 +838,41 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
 
 fn validate_definitions(definitions: &BTreeMap<String, Definition>) -> Result<(), String> {
     for (card_id, definition) in definitions {
+        let conversions = definition
+            .modifiers
+            .iter()
+            .filter(|m| {
+                matches!(
+                    m,
+                    StaticModifier::AttachedRegionSpiritTemporaryIconsPermanent
+                )
+            })
+            .count();
+        if conversions > 0 && (card_id != "XQ43" || conversions != 1) {
+            return Err(format!(
+                "cardId={card_id}: only the admitted XQ43 region conversion is supported"
+            ));
+        }
+        if card_id == "XQ43"
+            && serde_json::to_value(definition).unwrap()
+                != serde_json::to_value(xq43_definition()).unwrap()
+        {
+            return Err(
+                "cardId=XQ43: only the complete admitted region attachment is supported".into(),
+            );
+        }
         for ability in &definition.abilities {
             validate_ability(card_id, ability)?;
         }
         if let Some(attachment) = &definition.attachment {
             let host = &attachment.host;
-            if host.zone != Zone::Board
-                || host.kind != EntityKind::Character
-                || host.min != 1
-                || host.max != 1
-                || host.range != Range::Anywhere
+            let admitted_region = card_id == "XQ43";
+            if !admitted_region
+                && (host.zone != Zone::Board
+                    || host.kind != EntityKind::Character
+                    || host.min != 1
+                    || host.max != 1
+                    || host.range != Range::Anywhere)
             {
                 return Err(format!(
                     "cardId={card_id}: unsupported attachment host specification"
@@ -885,6 +911,39 @@ fn target(zone: Zone, kind: EntityKind, relation: Relation, range: Range) -> Tar
         attachment_host_condition: None,
         min: 1,
         max: 1,
+    }
+}
+fn xq43_definition() -> Definition {
+    let host = target(
+        Zone::Region,
+        EntityKind::Any,
+        Relation::Any,
+        Range::Anywhere,
+    );
+    let mut attach = ability(
+        "attach-region",
+        "结附地区",
+        Timing::Standard,
+        vec![],
+        vec![host.clone()],
+        vec![],
+        None,
+    );
+    attach.play_only = true;
+    Definition {
+        abilities: vec![attach],
+        modifiers: vec![StaticModifier::AttachedRegionSpiritTemporaryIconsPermanent],
+        attachment: Some(AttachmentSpec {
+            controls_host: false,
+            host_subtype_change: SubtypeChange::None,
+            host,
+            host_icons: Icons::default(),
+            host_temporary_icons: None,
+            host_barrier: false,
+            host_defense_bonus: 0,
+            host_leaves: HostLeaveDestination::OwnerGraveyard,
+        }),
+        ..Definition::default()
     }
 }
 fn ability(
@@ -926,6 +985,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         use EntityRef::{Source, Target};
         use PlayerRef::{Actor, Context};
         let mut m = BTreeMap::new();
+        m.insert("XQ43".into(), xq43_definition());
         let mut accident = ability(
             "repress-draw",
             "快速行动",
@@ -2671,6 +2731,39 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         #[cfg(not(feature = "society-fixtures"))]
         {
             let mut search = ability(
+                "search-purple-unique",
+                "紫色独有检索（每局一次）",
+                Timing::Standard,
+                vec![Cost::Assets(4), Cost::ExhaustSource],
+                vec![],
+                vec![Op::Search {
+                    player: Actor,
+                    filter: CardFilter::PrintedColorAndUnique {
+                        color: "紫".into()
+                    },
+                    to_top: false,
+                    optional: false,
+                    visibility: SearchVisibility::Reveal,
+                }],
+                None,
+            );
+            search.once_per_game = true;
+            m.insert(
+                "MSJC08".into(),
+                with_abilities(vec![
+                    ability(
+                        "drawWithInitiative",
+                        "先手抓牌",
+                        Timing::Standard,
+                        vec![Cost::Assets(3), Cost::ExhaustSource],
+                        vec![],
+                        vec![Op::DrawIfActorHasInitiative { count: 1 }],
+                        None,
+                    ),
+                    search,
+                ]),
+            );
+            let mut search = ability(
                 "search-white-unique",
                 "白色独有检索（每局一次）",
                 Timing::Standard,
@@ -2807,6 +2900,32 @@ pub fn definition(id: &str) -> &'static Definition {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn region_attachment_and_conversion_admit_only_the_whole_xq43() {
+        for variant in 0..6 {
+            let mut registry = definitions().clone();
+            let d = registry.get_mut("XQ43").unwrap();
+            match variant {
+                0 => d.attachment = None,
+                1 => d.attachment.as_mut().unwrap().host.kind = EntityKind::Character,
+                2 => d.attachment.as_mut().unwrap().host.relation = Relation::ControlledByActor,
+                3 => d.abilities[0].activation_only = true,
+                4 => d
+                    .modifiers
+                    .push(StaticModifier::AttachedRegionSpiritTemporaryIconsPermanent),
+                _ => d.attachment.as_mut().unwrap().host_leaves = HostLeaveDestination::OwnerHand,
+            }
+            assert!(validate_definitions(&registry)
+                .unwrap_err()
+                .contains("XQ43"));
+        }
+        let mut registry = definitions().clone();
+        registry.insert("JC073".into(), xq43_definition());
+        assert!(validate_definitions(&registry)
+            .unwrap_err()
+            .contains("JC073"));
+    }
 
     #[test]
     fn invalid_multi_target_ability_is_rejected_before_registration() {

@@ -1,0 +1,1457 @@
+{
+  "baseline": "3805a6166d380eea4947b8c04b1b859cf6b3ec35",
+  "oldOrdinaryCardsUnchanged": 88,
+  "onlyNewOrdinaryCard": "XQ43",
+  "oldOtherRawCatalogFieldsUnchanged": true,
+  "oldScanFiles": [
+    {
+      "id": "JC125",
+      "path": "web/public/cards/JC125.jpg",
+      "bytes": 285153,
+      "sha256": "6392c2cdc2d9ea43deca6b26594618a2093ae887bd03d5ad29d130c7e329993a"
+    },
+    {
+      "id": "LC19",
+      "path": "web/public/cards/LC19.jpg",
+      "bytes": 469421,
+      "sha256": "41c0fe55aff401721ec54fbb08174d52d36747f0821e32c6ddc5006bba9e9f71"
+    },
+    {
+      "id": "LC20",
+      "path": "web/public/cards/LC20.jpg",
+      "bytes": 471968,
+      "sha256": "961b508b54f78c561b98268da91d901a3536a330aef0ea8a49b81b9f6a278248"
+    },
+    {
+      "id": "LC21",
+      "path": "web/public/cards/LC21.jpg",
+      "bytes": 437349,
+      "sha256": "62b05d9f5349d53dd6d47dae7077566c1f5735529bc2bd813a45c1d7c3a183b9"
+    },
+    {
+      "id": "LC22",
+      "path": "web/public/cards/LC22.jpg",
+      "bytes": 441940,
+      "sha256": "26976ae01006603182b666cef0ea6960bc5d218dc904f2b1c760f3719f142b35"
+    },
+    {
+      "id": "LC23",
+      "path": "web/public/cards/LC23.jpg",
+      "bytes": 487166,
+      "sha256": "977959c6deb74b125b18a8b40758deab354396fdffd49b0d9bcc57197144f1c8"
+    },
+    {
+      "id": "LC24",
+      "path": "web/public/cards/LC24.jpg",
+      "bytes": 464715,
+      "sha256": "05b4c30ee93bb8ea9b96636e9da3fbcaa560f206aaa5b6c73b5c5ac283fddccb"
+    },
+    {
+      "id": "XQ49",
+      "path": "web/public/cards/XQ49.jpg",
+      "bytes": 1336679,
+      "sha256": "8b160c52b18e49a7ef39085b63cc9a1b18531c02dc0ae3d92e2fedd874a29aca"
+    },
+    {
+      "id": "JC118",
+      "path": "web/public/cards/JC118.jpg",
+      "bytes": 283116,
+      "sha256": "0f112c86afcfd0e9b2b6dea66597e24e57a95155f1b624534b2f9a4b980df97a"
+    },
+    {
+      "id": "JC002",
+      "path": "web/public/cards/JC002.jpg",
+      "bytes": 293615,
+      "sha256": "21a698ae184e7f909d24ac5374c3eaf7af77f1043b91048cfc8c5a46f9b08680"
+    },
+    {
+      "id": "JC003",
+      "path": "web/public/cards/JC003.jpg",
+      "bytes": 324904,
+      "sha256": "027fc054dd7c7ef301108bf0b169e01f91228bf2e918b3ddb8d12e8d05603c3a"
+    },
+    {
+      "id": "JC004",
+      "path": "web/public/cards/JC004.jpg",
+      "bytes": 322602,
+      "sha256": "d9209031b83d49c2eacdbedd2967384852acc51329093f362073c462dabf92c4"
+    },
+    {
+      "id": "JC005",
+      "path": "web/public/cards/JC005.jpg",
+      "bytes": 327083,
+      "sha256": "216c26cff74fe738dbc486e725828ddc8077705161b1fee566e9d806684364a1"
+    },
+    {
+      "id": "JC008",
+      "path": "web/public/cards/JC008.jpg",
+      "bytes": 294187,
+      "sha256": "31340e2535e0909359860a090186b7a5032e84d6da94c8181baf32565b5d4f45"
+    },
+    {
+      "id": "XQ03",
+      "path": "web/public/cards/XQ03.jpg",
+      "bytes": 1430068,
+      "sha256": "c6e85106105d23ef55df70ba06d6c8878b6ce279a727908fbdeab0a8495679b0"
+    },
+    {
+      "id": "JC014",
+      "path": "web/public/cards/JC014.jpg",
+      "bytes": 304089,
+      "sha256": "cd1969552197b3111e72ee4bb0725dc4ff513ddb8c940b568b7221699c248bb6"
+    },
+    {
+      "id": "JC016",
+      "path": "web/public/cards/JC016.jpg",
+      "bytes": 305023,
+      "sha256": "0a3b20635a7fa8e04d6f17ab7a7112a596ed0e7f21293d3e4f4a985463416c35"
+    },
+    {
+      "id": "JZ08",
+      "path": "web/public/cards/JZ08.jpg",
+      "bytes": 497242,
+      "sha256": "343561bd351e06811f9a1fc77b6a9fe08e6dfbace83d8c8abb8f6b43fb031d12"
+    },
+    {
+      "id": "JC056",
+      "path": "web/public/cards/JC056.jpg",
+      "bytes": 285784,
+      "sha256": "75503118eee2b80d23f59ea950884c152f33d28d552d0d051ed872f441810e6d"
+    },
+    {
+      "id": "JC058",
+      "path": "web/public/cards/JC058.jpg",
+      "bytes": 289748,
+      "sha256": "6585e89991049cb05e75db43143320fd12bf6be781847648d551cb433e85119a"
+    },
+    {
+      "id": "JC059",
+      "path": "web/public/cards/JC059.jpg",
+      "bytes": 299356,
+      "sha256": "7d9639d3115dcea8e42f21e1145397f3be4392a80fa0b6c040d7302139eff0ad"
+    },
+    {
+      "id": "JC063",
+      "path": "web/public/cards/JC063.jpg",
+      "bytes": 292803,
+      "sha256": "1b20b9c7392543bf975b6391d227e03e4f50f3fd3134e7c6aa494e7357f88165"
+    },
+    {
+      "id": "JC086",
+      "path": "web/public/cards/JC086.jpg",
+      "bytes": 321608,
+      "sha256": "1bd405a60feeb41d60611050f4a37dd90dc971e1808ba712b66fe0cd37d2d743"
+    },
+    {
+      "id": "XQ12",
+      "path": "web/public/cards/XQ12.jpg",
+      "bytes": 1381983,
+      "sha256": "4e9f3afa5f7f22d99fc89284e91586fba78a8ff2ee8827fc6a6ceeb41889fdc8"
+    },
+    {
+      "id": "JC092",
+      "path": "web/public/cards/JC092.jpg",
+      "bytes": 327819,
+      "sha256": "ea1ca5644c38831b659f29dcf4c7ec0cb5dc5a758b0b793ed120b24b74295947"
+    },
+    {
+      "id": "DQJC107",
+      "path": "web/public/cards/DQJC107.jpg",
+      "bytes": 44451,
+      "sha256": "339b9a130ea9c0a82bc5a20d34892a4de52b2ea777a1b0cfec340876d6a4b2b8"
+    },
+    {
+      "id": "DQJC112",
+      "path": "web/public/cards/DQJC112.jpg",
+      "bytes": 45356,
+      "sha256": "9efd49e63ad90c4849bcf123aec4c83cd63e8f135113c374412526be875832ad"
+    },
+    {
+      "id": "DQJC113",
+      "path": "web/public/cards/DQJC113.jpg",
+      "bytes": 46632,
+      "sha256": "3dcac24ae99667ac037001d85f54eb5b77bf83643222769726395571e7135c6e"
+    },
+    {
+      "id": "DQJC114",
+      "path": "web/public/cards/DQJC114.jpg",
+      "bytes": 53746,
+      "sha256": "7ded8662b423543bccedf93e67c098cf0effdd73791b30cc6aaa4acf7bf2a3f2"
+    },
+    {
+      "id": "JC042",
+      "path": "web/public/cards/JC042.jpg",
+      "bytes": 342837,
+      "sha256": "242a17c708a96d27e95b23f9ab339e01d5b8c1eda282a2f7de8f51ba2c1bdbef"
+    },
+    {
+      "id": "JC049",
+      "path": "web/public/cards/JC049.jpg",
+      "bytes": 331035,
+      "sha256": "340c3fbc650b755d72c31ca06a8c379bacb572df6df061a9c52d0fb386d02d58"
+    },
+    {
+      "id": "JC091",
+      "path": "web/public/cards/JC091.jpg",
+      "bytes": 314574,
+      "sha256": "2ea5d65c270a107371f7d69cb22de3e4e60f9e9db81d4e6959744bbfbf6d11cb"
+    },
+    {
+      "id": "JZ54",
+      "path": "web/public/cards/JZ54.jpg",
+      "bytes": 543412,
+      "sha256": "c7902515865a26e1276d9e7a4bbd05c511704f76aee504c73539737012624af4"
+    },
+    {
+      "id": "DQJC108",
+      "path": "web/public/cards/DQJC108.jpg",
+      "bytes": 48006,
+      "sha256": "5dd2014f700e73b7f8dda56b6c281f29946b6d36a96bdd3838af4b2b393f7c6e"
+    },
+    {
+      "id": "DQJC109",
+      "path": "web/public/cards/DQJC109.jpg",
+      "bytes": 46185,
+      "sha256": "337e5a45432d1ad434f971e66938e7506fc2997649648b21b7a6b1246306c60a"
+    },
+    {
+      "id": "DQJC110",
+      "path": "web/public/cards/DQJC110.jpg",
+      "bytes": 41958,
+      "sha256": "ecafefa26f0d3fa1aca9f63ecb50dcb21c1a51c157890516e94676880d8a1026"
+    },
+    {
+      "id": "DQJC111",
+      "path": "web/public/cards/DQJC111.jpg",
+      "bytes": 54744,
+      "sha256": "e2bc64426c121d41404d758a24b863f4c527a4f69e0582811599e2bc60471e41"
+    },
+    {
+      "id": "DQJC115",
+      "path": "web/public/cards/DQJC115.jpg",
+      "bytes": 53304,
+      "sha256": "66fa6d8ceb4ff3529c0d43386782aeac5553c564a761ec47d4e351beb91d0e94"
+    },
+    {
+      "id": "DQJC116",
+      "path": "web/public/cards/DQJC116.jpg",
+      "bytes": 57210,
+      "sha256": "e9dfbc396a733b3bbe7ffcb2a6d67ea371ffe4ca4bd6fc0f4e74b1ee73485d4d"
+    },
+    {
+      "id": "BQ022",
+      "path": "web/public/cards/BQ022.jpg",
+      "bytes": 938512,
+      "sha256": "f1b58f299c3d901494c388be2123b325ca20c1f341106fe860d9761ded8231eb"
+    },
+    {
+      "id": "JC084",
+      "path": "web/public/cards/JC084.jpg",
+      "bytes": 316581,
+      "sha256": "3d068fa87dc6f9f7aef426637f71de22aef05f0f278dc096fad0ca50dee99872"
+    },
+    {
+      "id": "JC085",
+      "path": "web/public/cards/JC085.jpg",
+      "bytes": 337881,
+      "sha256": "f568ed4c26fc244830d840f0133eb1a78111aceff53a4a345f8ca44c1552aee2"
+    },
+    {
+      "id": "JC088",
+      "path": "web/public/cards/JC088.jpg",
+      "bytes": 314244,
+      "sha256": "9c270203639dae978acb65e9255ac34b5a5d5192e681f8aafd63018ede301a5f"
+    },
+    {
+      "id": "JC001",
+      "path": "web/public/cards/JC001.jpg",
+      "bytes": 304832,
+      "sha256": "33b9fd53b30630010a49a520d9e2b89d608822706e67e7c667682c3d1151e312"
+    },
+    {
+      "id": "BQ083",
+      "path": "web/public/cards/BQ083.jpg",
+      "bytes": 1318007,
+      "sha256": "619db97c8309d903e3781448c6ad35db91bb5f2e4b5660b6e0eef65fcbd6e675"
+    },
+    {
+      "id": "JC006",
+      "path": "web/public/cards/JC006.jpg",
+      "bytes": 303268,
+      "sha256": "beec2b1d758e0186cdc4cb57e7c52d6e8df2a4623564e5f212b3d878abb91bf4"
+    },
+    {
+      "id": "XQ16",
+      "path": "web/public/cards/XQ16.jpg",
+      "bytes": 1503073,
+      "sha256": "2ae947c0c5dccd45ae495d3c828ce9b4e1453c34dfb6e24c5e61eea8338cff80"
+    },
+    {
+      "id": "JC047",
+      "path": "web/public/cards/JC047.jpg",
+      "bytes": 315262,
+      "sha256": "74d7e3c4bf75c52538fce551dda97f28e5b51d7d64ffbe89c9d427296a3ce9d6"
+    },
+    {
+      "id": "JC007",
+      "path": "web/public/cards/JC007.jpg",
+      "bytes": 310229,
+      "sha256": "835b85f48270aa66f10f01fa4de7483b0ccf80dcf14e6dc5596639592e14f1ce"
+    },
+    {
+      "id": "JC075",
+      "path": "web/public/cards/JC075.jpg",
+      "bytes": 331174,
+      "sha256": "7db960c7050614dae10a8e752db2567670169e782986e39a789842259231e434"
+    },
+    {
+      "id": "JC104",
+      "path": "web/public/cards/JC104.jpg",
+      "bytes": 375404,
+      "sha256": "877aa980256730bb35350f1b99c2aa75b9110cd5905e61412664e2a89ef4e8da"
+    },
+    {
+      "id": "WM003",
+      "path": "web/public/cards/WM003.jpg",
+      "bytes": 1306943,
+      "sha256": "2409ef206e3af93d1eece3ec0bf4ba00a9e3d0c12a8e70443877cc8a28cc9bff"
+    },
+    {
+      "id": "LC01",
+      "path": "web/public/cards/LC01.jpg",
+      "bytes": 467391,
+      "sha256": "a0defb07b43463cc882e15b993c73eda22ea77ca39062da71e6518a365cc5bd6"
+    },
+    {
+      "id": "JC129",
+      "path": "web/public/cards/JC129.jpg",
+      "bytes": 294504,
+      "sha256": "0c99776d13e342b85c6d6f6cc476459ec6463e6bbdc146046460518c738a0b59"
+    },
+    {
+      "id": "JC036",
+      "path": "web/public/cards/JC036.jpg",
+      "bytes": 340194,
+      "sha256": "017507e6a2a229f6541a4690b681ecd71fc09b35962b9673da70f5f035ddba83"
+    },
+    {
+      "id": "JZ27",
+      "path": "web/public/cards/JZ27.jpg",
+      "bytes": 528092,
+      "sha256": "33fbdd4a062962b546cdb0d4f368f35b6c4c019908db73a37cfa09aaa237630e"
+    },
+    {
+      "id": "JC070",
+      "path": "web/public/cards/JC070.jpg",
+      "bytes": 328410,
+      "sha256": "3dd1ef905e2cfb4d806b258fdde0b1ec1fe2adad7868bb5cd7dc0bcf9cfe9e1b"
+    },
+    {
+      "id": "JC076",
+      "path": "web/public/cards/JC076.jpg",
+      "bytes": 326205,
+      "sha256": "4390ebf4eabcf44c541303bfb764061c1622cb483ed0e034ee9651571cee27ac"
+    },
+    {
+      "id": "JC074",
+      "path": "web/public/cards/JC074.jpg",
+      "bytes": 4706143,
+      "sha256": "e34e5bb081f3ee459d99038c68d60f4be4a44af05baa4289759b730045140914"
+    },
+    {
+      "id": "JC071",
+      "path": "web/public/cards/JC071.jpg",
+      "bytes": 325476,
+      "sha256": "85fde88b2a35d595f166d87c0ab27b244198c3919c1f6a381e54e07598f73b67"
+    },
+    {
+      "id": "JC073",
+      "path": "web/public/cards/JC073.jpg",
+      "bytes": 328192,
+      "sha256": "cebf528de52de72d7400d4c769c2642063342d75a01670e120b5bc71aba23d42"
+    },
+    {
+      "id": "JC102",
+      "path": "web/public/cards/JC102.jpg",
+      "bytes": 346254,
+      "sha256": "842fb9f07e9b8afbc0cecd6c224972c5643bad9b710daa518faceb59fc9a3b5d"
+    },
+    {
+      "id": "JC132",
+      "path": "web/public/cards/JC132.jpg",
+      "bytes": 295955,
+      "sha256": "219bb4062c3e9053b9fc9d309ad919ebe4b6a98c3af314c6987ca948b3eeb4f1"
+    },
+    {
+      "id": "JC078",
+      "path": "web/public/cards/JC078.jpg",
+      "bytes": 335412,
+      "sha256": "d238d2c7412349579c00fa4a5a662e9214bdad13df25b8917ae1034251f7e2b9"
+    },
+    {
+      "id": "XQ14",
+      "path": "web/public/cards/XQ14.jpg",
+      "bytes": 1373623,
+      "sha256": "0baea888495adba62a7688be1b95c95b5ffa60d689c104b7ff3a26dd2340ffb2"
+    },
+    {
+      "id": "XQ47",
+      "path": "web/public/cards/XQ47.jpg",
+      "bytes": 1347172,
+      "sha256": "9b370fb92ad2e1c3ac6f33d3402ab2c8cbdea1898aae4c4a386f17631d654a03"
+    },
+    {
+      "id": "JC112",
+      "path": "web/public/cards/JC112.jpg",
+      "bytes": 295767,
+      "sha256": "870b526451ed20441601cfed413a99e2e64a266d60daa698bb2066840383bd71"
+    },
+    {
+      "id": "JC116",
+      "path": "web/public/cards/JC116.jpg",
+      "bytes": 319810,
+      "sha256": "5a314d56e3d6c660f381e45710dbf0964cf8560cfa170906b3d4e938abb90e16"
+    },
+    {
+      "id": "JC020",
+      "path": "web/public/cards/JC020.jpg",
+      "bytes": 283808,
+      "sha256": "2edb40dfa18d2df22b5b397957d0a03642ade3cee1a10f965bb5e55b0c4f7223"
+    },
+    {
+      "id": "JC093",
+      "path": "web/public/cards/JC093.jpg",
+      "bytes": 327300,
+      "sha256": "ac3398f82103f6d50eb97b6bb3467244834c8e3867fb92c295d3c420b522bdd2"
+    },
+    {
+      "id": "XQ07",
+      "path": "web/public/cards/XQ07.jpg",
+      "bytes": 1401415,
+      "sha256": "944a254795fc17e946f7150de9a47649d8c6efa3006770850447503b06a22df9"
+    },
+    {
+      "id": "JC130",
+      "path": "web/public/cards/JC130.jpg",
+      "bytes": 289306,
+      "sha256": "be7d3ec07aea099829f0b01ea506999810091c7b7a202a6bfb0f8ec32eb3055f"
+    },
+    {
+      "id": "JC131",
+      "path": "web/public/cards/JC131.jpg",
+      "bytes": 270928,
+      "sha256": "78b1cff75c50f96763ae2cfeb346524e9046f2e3a445a5e00268113365bc976f"
+    },
+    {
+      "id": "JC096",
+      "path": "web/public/cards/JC096.jpg",
+      "bytes": 311787,
+      "sha256": "28c1eb001f27dc220b8905ba97d7d396680adda8f7c1b8c9e0f2ec97f4907c7c"
+    },
+    {
+      "id": "XQ17",
+      "path": "web/public/cards/XQ17.jpg",
+      "bytes": 1375211,
+      "sha256": "e5ad8fe27074632eab8d6207eb2e6f08efb69d20f343f2d50701d30f5a5bb5eb"
+    },
+    {
+      "id": "JC114",
+      "path": "web/public/cards/JC114.jpg",
+      "bytes": 325963,
+      "sha256": "2cd5cc66ceb3c9a8f9d07d341558489adb170dcb680331c7620e5f1162be12c7"
+    },
+    {
+      "id": "XQ34",
+      "path": "web/public/cards/XQ34.jpg",
+      "bytes": 1292584,
+      "sha256": "2ca1f5a4b25d308f8af13a7a80018010deaf93f9abe2275bef1fa7656be13e04"
+    },
+    {
+      "id": "XQ38",
+      "path": "web/public/cards/XQ38.jpg",
+      "bytes": 1487343,
+      "sha256": "26c8311674325491157577a3d295c148ce1c6f27ded59c4d27979faf58e9204e"
+    },
+    {
+      "id": "JZ67",
+      "path": "web/public/cards/JZ67.jpg",
+      "bytes": 526684,
+      "sha256": "a6554b81e081c7292a32f2bf13ce269f276580f9a852e1df232c60c2c36ff477"
+    },
+    {
+      "id": "JC103",
+      "path": "web/public/cards/JC103.jpg",
+      "bytes": 336324,
+      "sha256": "8eee910793908999e04487b65f0e9a398d11ef5b307b360ba6e9d2012adaed63"
+    },
+    {
+      "id": "JC107",
+      "path": "web/public/cards/JC107.jpg",
+      "bytes": 343826,
+      "sha256": "ce402d531c9c9bb28da130de0627b4860ced56fb0fa7db1d487082c36e0462e2"
+    },
+    {
+      "id": "JZ59",
+      "path": "web/public/cards/JZ59.jpg",
+      "bytes": 518313,
+      "sha256": "b43bf4fc74654c089cf10429306980c2af12743d57d60b603efae03b28eae5f3"
+    },
+    {
+      "id": "LC12",
+      "path": "web/public/cards/LC12.jpg",
+      "bytes": 484188,
+      "sha256": "2a13b5e0bf5fa11f320bcf31141cf0e68915a949f9031cd112b5c650420285cf"
+    },
+    {
+      "id": "JZ58",
+      "path": "web/public/cards/JZ58.jpg",
+      "bytes": 548446,
+      "sha256": "4cb1892b435cc14fd3f9d8310b428a16eaf5cc5afe1c870760a3dcc457d4dd95"
+    },
+    {
+      "id": "JZ61",
+      "path": "web/public/cards/JZ61.jpg",
+      "bytes": 493374,
+      "sha256": "5da40b475c306d3a295a6582576b9b720c8707050bdedfea3005b92578e4e37f"
+    },
+    {
+      "id": "JZ74",
+      "path": "web/public/cards/JZ74.jpg",
+      "bytes": 500480,
+      "sha256": "3915ef2565eff330862507076c052942322e59f47039f31f7c0ebe658181f085"
+    },
+    {
+      "id": "JC126",
+      "path": "web/public/cards/JC126.jpg",
+      "bytes": 302436,
+      "sha256": "33ed0032c1e6983f25be998c66891f137f2f0975031493883f6cc1a9bb5e40e0"
+    },
+    {
+      "id": "LC06",
+      "path": "web/public/cards/LC06.jpg",
+      "bytes": 463742,
+      "sha256": "46bcfd890d040fc0b9e558ba601867f402bcc1443851e0ccf7f7a9e1579154b6"
+    },
+    {
+      "id": "MSJC09",
+      "path": "web/public/cards/MSJC09.jpg",
+      "bytes": 210792,
+      "sha256": "41e478a3f38ead83477498fd88131831a5fd843be364c1c0daa3ba10153c2302"
+    },
+    {
+      "id": "MSJC01",
+      "path": "web/public/cards/MSJC01.jpg",
+      "bytes": 263474,
+      "sha256": "c61c887558cb184a532758eac5db766234c32a3a3605162a38c0899993e7bdf2"
+    },
+    {
+      "id": "MSJC07",
+      "path": "web/public/cards/MSJC07.jpg",
+      "bytes": 229888,
+      "sha256": "e9cd1af04560733f28e3bcfee4c687f6a2e5218b93862b5a74d4f35f6a8f3ed7"
+    },
+    {
+      "id": "MSJC06",
+      "path": "web/public/cards/MSJC06.jpg",
+      "bytes": 229736,
+      "sha256": "38b76c70bda5759a9963a05c398b845f5c7e22c7f12fe2507b9a1ac123cda2a7"
+    }
+  ],
+  "newByteExactOriginals": [
+    {
+      "id": "MSJC08",
+      "url": "/cards/MSJC08.jpg",
+      "source": "resource/ymsj-fun.github.io/cards/MSJC08 梦境行者.jpg",
+      "sha256": "28c3f965daa40a83d081b03b6f0b72a0ac4006ebf465575ede3b221f633e72a1",
+      "bytes": 266822
+    },
+    {
+      "id": "XQ43",
+      "url": "/cards/XQ43.jpg",
+      "source": "resource/ymsj-fun.github.io/cards/XQ43 具现化.jpg",
+      "sha256": "6e950624afff514a9ffed208fe51dc4137e5114b3f67a24bb0e694be0c935c93",
+      "bytes": 1456234
+    }
+  ],
+  "oldFrozenFiles": [
+    {
+      "path": "rust-game-wasm/legacy-v0.2.1/README.md",
+      "bytes": 443,
+      "sha256": "b9433ca54fa80ad8460f9cffe5f88d82e348b1d2293ebdb4893dc9b46b786334"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.1/hegemony_wasm.js",
+      "bytes": 11122,
+      "sha256": "69f5f988232d411b0d76dc6a6cae5c0fc749ab556774d30544da26a07e5c98ca"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.1/hegemony_wasm_bg.wasm",
+      "bytes": 1040341,
+      "sha256": "a6366ef6bc7df03ba666b33286d3a01c412ac6bf779d6396fcbf6affcdc43966"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.1/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.10/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.10/hegemony_wasm_bg.wasm",
+      "bytes": 1641748,
+      "sha256": "ceb6ed540c491ed306e4e340ffda1333af5b3778302c8728b4c970d464ef2fb5"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.10/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.14/README.md",
+      "bytes": 584,
+      "sha256": "fbfa11c8cbcff5efeb4b7b737a6cbf0cc4ac8ff86772de43fe532d3326f9fca3"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.14/hegemony_wasm.d.ts",
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.14/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.14/hegemony_wasm_bg.wasm",
+      "bytes": 1743010,
+      "sha256": "36d28923bf077edb23a339ad1c906b4171e09710aa4389309baf75b1c08fd631"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.14/hegemony_wasm_bg.wasm.d.ts",
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.14/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.15/README.md",
+      "bytes": 551,
+      "sha256": "5e0df792aa6c555ddc07fe000c1500d5fe55d875e31745b0b209e0328e96c26b"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.15/hegemony_wasm.d.ts",
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.15/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.15/hegemony_wasm_bg.wasm",
+      "bytes": 1805346,
+      "sha256": "a32fce15c7acac49793e6e3bab6a3c10caefbcdba00ffa5c51e7906a9d26d460"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.15/hegemony_wasm_bg.wasm.d.ts",
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.15/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.16/hegemony_wasm.d.ts",
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.16/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.16/hegemony_wasm_bg.wasm",
+      "bytes": 1811731,
+      "sha256": "9a3296af377c86a7f1e80076e4258e7dff9e787d920ccde499678e692749e5f6"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.16/hegemony_wasm_bg.wasm.d.ts",
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.16/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.17/README.md",
+      "bytes": 541,
+      "sha256": "4f3cd90515163d33694fa5fed191b935008ff987a365b49b79006a53b8ca0bc4"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.17/hegemony_wasm.d.ts",
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.17/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.17/hegemony_wasm_bg.wasm",
+      "bytes": 1825172,
+      "sha256": "e73b7aab29712fad7d79896559bc957b9c632d9b2afc9f6f85de7c4a0775e5df"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.17/hegemony_wasm_bg.wasm.d.ts",
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.17/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.18/README.md",
+      "bytes": 389,
+      "sha256": "51c65fb830910b342665b4a97e29dbb2518f4077ffff36ce9bab3224541557a8"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.18/hegemony_wasm.d.ts",
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.18/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.18/hegemony_wasm_bg.wasm",
+      "bytes": 1849234,
+      "sha256": "e49f37ee50e338f58a4ba5e45a71cadfd26d5f4498e80c75e6bb23c6b57fb9bd"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.18/hegemony_wasm_bg.wasm.d.ts",
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.18/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.19/README.md",
+      "bytes": 197,
+      "sha256": "1a6af08fc459e491130c4b41460a285c54e18580038198bdee3f0ba3d1975a0d"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.19/hegemony_wasm.d.ts",
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.19/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.19/hegemony_wasm_bg.wasm",
+      "bytes": 1860850,
+      "sha256": "918cad19fdfdf3acd920c9a0e00cf55365e8db8202dc47ac796ce6c8875dec33"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.19/hegemony_wasm_bg.wasm.d.ts",
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.19/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.2/README.md",
+      "bytes": 419,
+      "sha256": "8ab2e94b7269ae12b6880dc36616ca43ae65d1892b4ed2bd1b9a3623455f72d3"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.2/hegemony_wasm.js",
+      "bytes": 11810,
+      "sha256": "bb5709b94df02970729dbf80ea5ab3308343040f867d71a8142aa4b9cfafe229"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.2/hegemony_wasm_bg.wasm",
+      "bytes": 1052149,
+      "sha256": "b5e0070333a71ff5b01f31406118f523af473c0bb96fb732d3276d3855d7daae"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.2/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.20/README.md",
+      "bytes": 196,
+      "sha256": "8fc7f6dd71b3d28cf811ddc0eb102491b6129882037640688e3bd13be1bd4f32"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.20/hegemony_wasm.d.ts",
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.20/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.20/hegemony_wasm_bg.wasm",
+      "bytes": 1868865,
+      "sha256": "45988a5acdd949a39f154557d8923fb9eaa359ed2f25c385b769b8248360c313"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.20/hegemony_wasm_bg.wasm.d.ts",
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.20/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.21/README.md",
+      "bytes": 271,
+      "sha256": "611a53a200a3478f744a3dccfe2ab9e9be07fb30c8c01489a4fd8e19ae3909b6"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.21/hegemony_wasm.d.ts",
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.21/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.21/hegemony_wasm_bg.wasm",
+      "bytes": 1912863,
+      "sha256": "c227fa7279d733c3d18c981aa286314ec8c45740040763dc6c3ed35f0273ef3e"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.21/hegemony_wasm_bg.wasm.d.ts",
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.21/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.22/README.md",
+      "bytes": 205,
+      "sha256": "351521096f3dc024088d2b60ae182f56b0e598667d8fdbfc3cddeb116d51cb54"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.22/hegemony_wasm.d.ts",
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.22/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.22/hegemony_wasm_bg.wasm",
+      "bytes": 1930193,
+      "sha256": "a3df987aabbc634d47ba7c0bdca5f76f055b886e92a85b2f55b078e1f7757845"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.22/hegemony_wasm_bg.wasm.d.ts",
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.22/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.23/README.md",
+      "bytes": 205,
+      "sha256": "10516743dc574b69cd4d05edf1c47e70ddbbd79a5f6b864dc519be80ee29eb21"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.23/hegemony_wasm.d.ts",
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.23/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.23/hegemony_wasm_bg.wasm",
+      "bytes": 1936351,
+      "sha256": "1ad17daca87c593b999f8cdb32c27daddd8669eced881dcfcd8f45df29b4f9c0"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.23/hegemony_wasm_bg.wasm.d.ts",
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.23/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.24/README.md",
+      "bytes": 275,
+      "sha256": "c5e2fecdebf4a15f1ae348084fded469665b7d688d489d8625c675805fde8afc"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.24/hegemony_wasm.d.ts",
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.24/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.24/hegemony_wasm_bg.wasm",
+      "bytes": 1960357,
+      "sha256": "2c8aa2b13385abe085aff655a37dd5476f3ce9ae2563cc1301660bbf4e7e740c"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.24/hegemony_wasm_bg.wasm.d.ts",
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.24/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.25/README.md",
+      "bytes": 202,
+      "sha256": "ff08395d80bd854742ee99d3c525b98b95f7cc3001ebc527e0edb6e25175aba7"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.25/hegemony_wasm.d.ts",
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.25/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.25/hegemony_wasm_bg.wasm",
+      "bytes": 1965154,
+      "sha256": "8ca1e40edf0e1f969103eae3ff58f335459d364553e1e7136aba909f0c85cbfd"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.25/hegemony_wasm_bg.wasm.d.ts",
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.25/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.26-resource-policy/README.md",
+      "bytes": 230,
+      "sha256": "f846e521e6749163bfd1391d73c2946eec79bbddfd73340a7589d3d6a02faa04"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.26-resource-policy/hegemony_wasm.d.ts",
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.26-resource-policy/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.26-resource-policy/hegemony_wasm_bg.wasm",
+      "bytes": 1974208,
+      "sha256": "79b0a9fa5e9f2acc015230ec3cd42e7f0fae41d8e8f720be7e6c81db52cd824e"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.26-resource-policy/hegemony_wasm_bg.wasm.d.ts",
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.26-resource-policy/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.26/README.md",
+      "bytes": 397,
+      "sha256": "59f6ce89678bdea6bc62ba418a4d27dfcbbb63c27a29081d1ef4cca8ce406982"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.26/hegemony_wasm.d.ts",
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.26/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.26/hegemony_wasm_bg.wasm",
+      "bytes": 1974053,
+      "sha256": "c187a493d3e32f82c8609cb203e12ffb1661fbe348260f6e010254bb9af395af"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.26/hegemony_wasm_bg.wasm.d.ts",
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.26/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.3/README.md",
+      "bytes": 408,
+      "sha256": "6e484031279fbd587cb414d83498b32c29fa37b6087b1ff4999e58cf4e366cf7"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.3/hegemony_wasm.js",
+      "bytes": 11810,
+      "sha256": "bb5709b94df02970729dbf80ea5ab3308343040f867d71a8142aa4b9cfafe229"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.3/hegemony_wasm_bg.wasm",
+      "bytes": 1053904,
+      "sha256": "2d5dcbaae76aa5706fa77af6747068e94da39654d25df3e764efa48e73905089"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.3/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.4/README.md",
+      "bytes": 514,
+      "sha256": "1fa8d67c2dff9fa4bb4cdcb9b60ea918fc863ad48fc3734abc666a90317a3df2"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.4/hegemony_wasm.js",
+      "bytes": 15219,
+      "sha256": "282efbac8975c8cde3e728298ab3870b3aa11a8df0a60bff6debe87af6fcdc58"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.4/hegemony_wasm_bg.wasm",
+      "bytes": 1111835,
+      "sha256": "fcf7f714a9b09f566202c0a8b00571c0da55dfa255793f2cffd908003f6d660f"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.4/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.5/README.md",
+      "bytes": 1272,
+      "sha256": "c28487a28ef96c8cc7b85647970b2d7416a394c5164ac2b86db712b16099b25c"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.5/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.5/hegemony_wasm_bg.wasm",
+      "bytes": 1487505,
+      "sha256": "22299f6db9923a93ea7da7bd742afbf0a0b1e4de4ff3c41bd99f16860df3a971"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.5/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.6/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.6/hegemony_wasm_bg.wasm",
+      "bytes": 1579569,
+      "sha256": "d4a9d88fe3c44d94da938c0351a4f1654d72514568c9f927fecd6d2f9f3ded3f"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.6/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.7/README.md",
+      "bytes": 700,
+      "sha256": "121cb52effa59fb1cb126f859c05d28898e5dcee5a4217336629015b114a42cd"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.7/hegemony_wasm.d.ts",
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.7/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.7/hegemony_wasm_bg.wasm",
+      "bytes": 1593545,
+      "sha256": "21169e9d579886a55474b21aa506a4a9adca779428d7d11f2e966ae077656198"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.7/hegemony_wasm_bg.wasm.d.ts",
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.7/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.8/README.md",
+      "bytes": 442,
+      "sha256": "e0e8b5eeedb046f30deb927ba234bf1356cba8f87a157f9024d37f9573a76631"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.8/hegemony_wasm.d.ts",
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.8/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.8/hegemony_wasm_bg.wasm",
+      "bytes": 1619119,
+      "sha256": "6bbd2ce9ffdefdb3c24b7c0ca1786440ce087e4be34cff6af7f6c4af5e7bbc51"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.8/hegemony_wasm_bg.wasm.d.ts",
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.8/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.9/README.md",
+      "bytes": 469,
+      "sha256": "38e5d02781e35f5528e977bd3db2bd03e18d37698961d5050a7375129466227b"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.9/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.9/hegemony_wasm_bg.wasm",
+      "bytes": 1632788,
+      "sha256": "7321d85d112d56b2ff1ac7b7e61e4d1e3415a3aa823c75cbf1913193edec6313"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.9/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    }
+  ],
+  "newFrozen27": {
+    "package.json": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035",
+    "hegemony_wasm.d.ts": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758",
+    "hegemony_wasm_bg.wasm": "04b5ed811e39922ef4d0af5d8cb9539f16573f37c88d595cdc50a61856eddcc4",
+    "hegemony_wasm.js": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+    "hegemony_wasm_bg.wasm.d.ts": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+  },
+  "protectedFiles": [
+    {
+      "path": "docs/factions/card-specifications.json",
+      "bytes": 2805227,
+      "sha256": "797b502b7d5261ce467f24308f15e7b78f25def6067701f9d4fadff9958a2d68"
+    },
+    {
+      "path": "rust-game/src/service.rs",
+      "bytes": 29014,
+      "sha256": "c086433fe3e9b408332c1426c5637b4c1f6c649b2c40b382f4e5f1a102a5b512"
+    },
+    {
+      "path": "server/cmd/api/main.go",
+      "bytes": 1040,
+      "sha256": "27ad531ec2900a6f8473313f5ce3cce8e6f6ff0fc5506e106aaddfd2241db3d2"
+    },
+    {
+      "path": "server/internal/api/http.go",
+      "bytes": 3000,
+      "sha256": "0e55d05f0296ee007b268b0a5ac8bab635d87f2bfa67a9575dbf1f923b0e1bd4"
+    },
+    {
+      "path": "server/internal/api/http_test.go",
+      "bytes": 1343,
+      "sha256": "9161088cdccd81d00bb77b5bb017c421cd507d13cc2ba7a5040a9dd765aa752a"
+    },
+    {
+      "path": "server/internal/api/session.go",
+      "bytes": 6275,
+      "sha256": "1761dab5e87015f2ffe3e54f60719ee7b027df1675767c1099a0d98e98e9b4a0"
+    },
+    {
+      "path": "server/internal/api/session_test.go",
+      "bytes": 2513,
+      "sha256": "3b55572db27835c4ea1496e65f0a298dd21b1d131504a79b2f32dd2ca32e0f0f"
+    },
+    {
+      "path": "sites/.openai/hosting.json",
+      "bytes": 91,
+      "sha256": "ed3a4753f9e2960e88424decbf7efb0b2d8583852f8b9200154674cda5ce25d2"
+    },
+    {
+      "path": "sites/README.md",
+      "bytes": 2157,
+      "sha256": "12d6a49e2a25f6cb775d01326101e2597e4312964749e9b83448155304b85727"
+    },
+    {
+      "path": "sites/db/schema.ts",
+      "bytes": 1782,
+      "sha256": "73e99c1f820fc1fbb86216028b5adcca874b5eac3062070c9fabe691fe832e6a"
+    },
+    {
+      "path": "sites/drizzle.config.ts",
+      "bytes": 140,
+      "sha256": "1b971da8f8eb163e47ae808af9207df95367dbf15c6c8a54d39ac3a095101be6"
+    },
+    {
+      "path": "sites/drizzle/0000_numerous_lucky_pierre.sql",
+      "bytes": 1523,
+      "sha256": "e7e71337892cba7558c9bd5a3c3beb78c109fa93d1775f0b13e5377030a78b43"
+    },
+    {
+      "path": "sites/drizzle/meta/0000_snapshot.json",
+      "bytes": 7714,
+      "sha256": "a4e0d437f9b6d1c5f9cf2de0fbb7082f7a2dadf33f64e91cb0d7fc67780d254c"
+    },
+    {
+      "path": "sites/drizzle/meta/_journal.json",
+      "bytes": 211,
+      "sha256": "568a9e1bf452c42d07a8f4067732cc82fe6fbb1e0951efb750e3028d02b8f561"
+    },
+    {
+      "path": "sites/package-lock.json",
+      "bytes": 99867,
+      "sha256": "aa5349f37a028150bc3a6496cec9c9a95fa21becace91f698e911940323d270a"
+    },
+    {
+      "path": "sites/package.json",
+      "bytes": 464,
+      "sha256": "0d8c6a457e318dd148e4864201b4ae4b518371ad6184f0a006c6312dcdc110cb"
+    },
+    {
+      "path": "sites/scripts/build-backend-test.mjs",
+      "bytes": 2268,
+      "sha256": "ad67683385451f46c6a377d308c8b1c18abcba8077d5b52efa433a8d58c25866"
+    },
+    {
+      "path": "sites/scripts/build.mjs",
+      "bytes": 2445,
+      "sha256": "e642cf99ced4ef09a067cf54b810f225d0159167703dc503933f153ef81deecf"
+    },
+    {
+      "path": "sites/scripts/stage-source.mjs",
+      "bytes": 4524,
+      "sha256": "64f330294705076ca613aa8252d6896f7fe791c7d03d81fb9231e4020a3eb466"
+    },
+    {
+      "path": "sites/src/index.mjs",
+      "bytes": 3552,
+      "sha256": "f6a1ae35a0361e2bad5422a9ab6d2e0a2c766c1e40c1c62bb0fe1446d5877551"
+    },
+    {
+      "path": "sites/src/kernel-router.mjs",
+      "bytes": 2576,
+      "sha256": "e163dd6e984b7ac2036547f14cc4a49d54ce4aed30676a50f4d082bfa134ad77"
+    },
+    {
+      "path": "sites/src/kernel.mjs",
+      "bytes": 2318,
+      "sha256": "f175835bc35de347efe3f26f285943bc7d816e13b471dd10a37b84ba8991010f"
+    },
+    {
+      "path": "sites/src/service.mjs",
+      "bytes": 15118,
+      "sha256": "757930aad47a30dad7cd880b504b2c1a7b7a8c5a47905b6fba6f2f2647f88c02"
+    },
+    {
+      "path": "sites/src/storage-errors.mjs",
+      "bytes": 2556,
+      "sha256": "6979b752d13a2143f1e250051e5e2df1c81a7afef93727023b84ee8043b5f1a0"
+    },
+    {
+      "path": "sites/src/store.mjs",
+      "bytes": 3748,
+      "sha256": "39d50fc38e515a959d51f13a5673f5b3603edbc420b120c2326f49607f66d4d9"
+    },
+    {
+      "path": "sites/test/assassin-integration.test.mjs",
+      "bytes": 7722,
+      "sha256": "b5c16a6ebabe31277f75519950dbc15e1614130ecc80a953b95a0a8c85ff4bd7"
+    },
+    {
+      "path": "sites/test/control-pair-integration.test.mjs",
+      "bytes": 7697,
+      "sha256": "0e6be74e8368819ca15a885f18ef516e91cb1df43a0ee56bf4d319d2e306ed2d"
+    },
+    {
+      "path": "sites/test/fire-scholar-integration.test.mjs",
+      "bytes": 7882,
+      "sha256": "2c611dcef8a8489881172a47a34dd317be950a1ff714d229c5ffe8d8fbd31987"
+    },
+    {
+      "path": "sites/test/fixtures/prepared-assassin-v028.json",
+      "bytes": 35201,
+      "sha256": "f59af6b3d309b989a1b32bb90daf2b6da9c57b43defcfba2db2dda750f394b4a"
+    },
+    {
+      "path": "sites/test/fixtures/prepared-control-pair-v028.json",
+      "bytes": 35850,
+      "sha256": "8d7c5a77d89f5a707a7ee96f493f1d02fbd188166e5662be694061f66ebc4069"
+    },
+    {
+      "path": "sites/test/fixtures/prepared-fire-scholar-v028.json",
+      "bytes": 30898,
+      "sha256": "aaaf3878b7ce1098474b4aa5390daa329cee2b7a4d8873f7bdbbf5a5f77f3149"
+    },
+    {
+      "path": "sites/test/fixtures/prepared-rescue-forecast-v028.json",
+      "bytes": 29918,
+      "sha256": "f28650b5d9cd6e095cc137c90748ea09fe4e96e33c4f709af275c572f9667f64"
+    },
+    {
+      "path": "sites/test/fixtures/prepared-response-v025.json",
+      "bytes": 35167,
+      "sha256": "41252046030a23ee55582bfe26815cd7984b9a895dc14c10edf82a4200a5faa7"
+    },
+    {
+      "path": "sites/test/fixtures/prepared-response-v026.json",
+      "bytes": 35538,
+      "sha256": "ea51975720b3d36c32a695620a5093d994ab1fbbc0bd256f377eccb5275a9be7"
+    },
+    {
+      "path": "sites/test/fixtures/prepared-response-v027.json",
+      "bytes": 35134,
+      "sha256": "6bd803f9aa4d71168e83271c226408922bb1b774da65947e1e4334b5e7c5ba8b"
+    },
+    {
+      "path": "sites/test/fixtures/prepared-response-v028.json",
+      "bytes": 35135,
+      "sha256": "cbdad025e0695d2a97f613c7e6c759b3b4b6915a4210ec4716e6ee72f5725f2c"
+    },
+    {
+      "path": "sites/test/fixtures/prepared-two-cards-v028.json",
+      "bytes": 35189,
+      "sha256": "00c0ebfffd78d29ef1311d6711d160de441618246ae71b0fde6b55a789ef6c16"
+    },
+    {
+      "path": "sites/test/integration.test.mjs",
+      "bytes": 20726,
+      "sha256": "e621919aeec1e45f412e10cedbc9ccbf890a67c1b215716a4ee137348ef30b75"
+    },
+    {
+      "path": "sites/test/kernel-routing.test.mjs",
+      "bytes": 7095,
+      "sha256": "0ebc29b2932cf46387379ee707afb1310d4df05f2cab66cb57bb18887e8f1562"
+    },
+    {
+      "path": "sites/test/msjc09-society-integration.test.mjs",
+      "bytes": 9868,
+      "sha256": "7ad81b6a5297ca61854b70bb7a5486f10859c33ab58a51d0c266b2a0acb13dfe"
+    },
+    {
+      "path": "sites/test/rescue-forecast-integration.test.mjs",
+      "bytes": 8854,
+      "sha256": "fa46c251cc12b1fd0172003222a96d1db078828db84e109c11e36ed3632c54df"
+    },
+    {
+      "path": "sites/test/session-host.test.mjs",
+      "bytes": 8154,
+      "sha256": "ccd56a4ea866abd4ceb7e30e17d265cff53638d9bbbfe8b13f73c976a7370f5b"
+    },
+    {
+      "path": "sites/test/session-integration.test.mjs",
+      "bytes": 7918,
+      "sha256": "fb0f12f1fd70511589c8855aeb17b9bfd6d0ba8db622adbe6644538644eccaad"
+    },
+    {
+      "path": "sites/test/society-foundation.fixture.mjs",
+      "bytes": 9649,
+      "sha256": "d1b3f71a70a818bae74c52fa552a3c431d7855be4a6c667ef350cde8dcbe7e51"
+    },
+    {
+      "path": "sites/test/storage-retry.test.mjs",
+      "bytes": 4698,
+      "sha256": "fcf318007cb116300ca83ba2d821b5eec5ddfe16b287c151a8aa5f8e1121d881"
+    },
+    {
+      "path": "sites/test/two-card-integration.test.mjs",
+      "bytes": 7454,
+      "sha256": "f6ad411a40a209c223326961c91244618cf0a763075f0027a0f7877cf30663b4"
+    },
+    {
+      "path": "sites/wrangler.jsonc",
+      "bytes": 345,
+      "sha256": "7cd60bc5e5e9f377f6816c7eab154df58224d851548db8234c2b2d08e051f4f6"
+    },
+    {
+      "path": "tools/cloud-playtest/full_game_persistent.py",
+      "bytes": 19760,
+      "sha256": "dc746015bb3216ccb155f9c61be6dca220bdc1a76632a748e52a07e11145adb1"
+    }
+  ],
+  "parentSpecSha256": "797b502b7d5261ce467f24308f15e7b78f25def6067701f9d4fadff9958a2d68",
+  "publishedSiteCheckout": "/workspace/site-latest25-publish",
+  "publishedSiteCheckoutHead": "c4fff66e8b8c80938ac7470d723b16a27725fddc",
+  "publishedSiteCheckoutClean": true,
+  "privateCandidatePublished": false
+}

@@ -1,0 +1,57 @@
+[
+  {
+    "mutation": "region-index-reused",
+    "file": "rust-game/src/resolution.rs",
+    "testFilter": "xq43_bound_region_replacement",
+    "nativeOnly": true,
+    "exitCode": 101,
+    "targetedAssertionFailed": true,
+    "originalSourceSha256": "7ce6897b5dbe998ed86a2409e7a426ddb921bc0d8e9b7c58cd44dbd74f612f17",
+    "mutatedSourceSha256": "c2b2080b6314adefd6cfd06cd02c104b6082dcd7fb6a3070c2a07f3b72efd460",
+    "originalBytesRestored": true
+  },
+  {
+    "mutation": "temporary-still-initiative-gated",
+    "file": "rust-game/src/engine.rs",
+    "testFilter": "xq43_paid_region_play_is_exact",
+    "nativeOnly": true,
+    "exitCode": 101,
+    "targetedAssertionFailed": true,
+    "originalSourceSha256": "c2ed5bdad12d3064a7477fda267c48f70a3b2e9c8645ddf2ab83ecba54f0de64",
+    "mutatedSourceSha256": "a65a90cd1493dded8eccacd651864c050d402772324c15c07881bbab906af028",
+    "originalBytesRestored": true
+  },
+  {
+    "mutation": "multi-aura-double-count",
+    "file": "rust-game/src/engine.rs",
+    "testFilter": "xq43_multiple_controller_auras",
+    "nativeOnly": true,
+    "exitCode": 101,
+    "targetedAssertionFailed": true,
+    "originalSourceSha256": "c2ed5bdad12d3064a7477fda267c48f70a3b2e9c8645ddf2ab83ecba54f0de64",
+    "mutatedSourceSha256": "0613832ab1543aa30afab3070319252c99d860f6101b1dcc02af84340e322f9b",
+    "originalBytesRestored": true
+  },
+  {
+    "mutation": "region-attachment-missing-from-win",
+    "file": "rust-game/src/attachment.rs",
+    "testFilter": "xq43_actual_win_batch",
+    "nativeOnly": true,
+    "exitCode": 101,
+    "targetedAssertionFailed": true,
+    "originalSourceSha256": "6ebdd4f39de595cb4ea06e41872fdd4a1239bc7ef8d1c6fa05e235276a847480",
+    "mutatedSourceSha256": "8c49403e7933a3116eb50903fc9643ee3a671b4982607710661892c041e113d9",
+    "originalBytesRestored": true
+  },
+  {
+    "mutation": "ordinary-turn-bonus-reclassified",
+    "file": "rust-game/src/engine.rs",
+    "testFilter": "xq43_real_attachment_temporary_grants",
+    "nativeOnly": true,
+    "exitCode": 101,
+    "targetedAssertionFailed": true,
+    "originalSourceSha256": "c2ed5bdad12d3064a7477fda267c48f70a3b2e9c8645ddf2ab83ecba54f0de64",
+    "mutatedSourceSha256": "c8e1e6c97dd0352bfd519af13485aa587901483860e236269cbd8ed06eebd301",
+    "originalBytesRestored": true
+  }
+]

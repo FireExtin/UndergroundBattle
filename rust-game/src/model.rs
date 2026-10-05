@@ -77,6 +77,8 @@ pub struct LegalAction {
 #[serde(rename_all = "camelCase")]
 pub struct CardView {
     #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub converted_temporary_icons: Option<Icons>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub current_spirit_protection: Option<bool>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub current_printed_defense: Option<u32>,
@@ -469,6 +471,10 @@ pub enum PlaySource {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct BoundTarget {
+    /// Only region attachments capture the actual region card instance.
+    /// The index remains the UI target; replacement must not reuse that target.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub region_instance: Option<String>,
     pub id: String,
     pub spec: crate::rules::TargetSlotSpec,
     pub public: TargetSummary,

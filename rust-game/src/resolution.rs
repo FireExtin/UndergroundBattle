@@ -17,13 +17,14 @@ impl Game {
         let Some(attachment) = self.attachments.iter().find(|a| a.card.id == id) else {
             return false;
         };
-        let Some((_, host)) = self.board(&attachment.host_id) else {
+        if self.attachment_region(attachment).is_none() {
             return false;
-        };
+        }
         match condition {
             AttachmentHostCondition::CharacterOrActorAssetDomain { magic } => {
-                (!host.face_down && card(&host.definition).kind == "character")
-                    || self.actor_has_asset_domain(actor, magic, 1)
+                self.board(&attachment.host_id).is_some_and(|(_, host)| {
+                    !host.face_down && card(&host.definition).kind == "character"
+                }) || self.actor_has_asset_domain(actor, magic, 1)
             }
         }
     }
@@ -329,7 +330,7 @@ impl Game {
             summary.status = "guardAccepted".into();
             return summary;
         }
-        summary.valid = self.valid_binding(frame.actor, &frame.source, &target.spec, &target.id);
+        summary.valid = self.valid_bound_target(frame.actor, &frame.source, target);
         if !summary.valid {
             let present = match target.spec.zone {
                 Zone::AttachmentOrAsset => {
@@ -341,7 +342,11 @@ impl Game {
                     .players
                     .iter()
                     .any(|p| p.graveyard.iter().any(|c| c.id == target.id)),
-                Zone::Player | Zone::Region => true,
+                Zone::Region => target
+                    .region_instance
+                    .as_ref()
+                    .is_none_or(|id| self.regions.iter().any(|r| r.card.id == *id)),
+                Zone::Player => true,
             };
             summary.status = if present { "changed" } else { "missing" }.into();
             summary.invalid_reason = Some(
@@ -679,6 +684,28 @@ impl Game {
             .filter(|o| self.valid_binding(actor, source, spec, &o.id))
             .collect()
     }
+    pub(crate) fn valid_bound_target(
+        &self,
+        actor: usize,
+        source: &SourceSnapshot,
+        target: &BoundTarget,
+    ) -> bool {
+        let region_attachment = target.spec.zone == Zone::Region
+            && rules::definition(&source.card.definition)
+                .attachment
+                .as_ref()
+                .is_some_and(|a| a.host.zone == Zone::Region);
+        self.valid_binding(actor, source, &target.spec, &target.id)
+            && (!region_attachment
+                || target.region_instance.as_ref().is_some_and(|instance| {
+                    target
+                        .id
+                        .strip_prefix("region:")
+                        .and_then(|s| s.parse::<usize>().ok())
+                        .and_then(|r| self.regions.get(r))
+                        .is_some_and(|r| r.card.id == *instance)
+                }))
+    }
     pub(crate) fn bind_action(
         &self,
         actor: usize,
@@ -700,6 +727,12 @@ impl Game {
                 }
                 let public = self.public_target(actor, source, slot, &id);
                 Ok(BoundTarget {
+                    region_instance: (slot.zone == Zone::Region
+                        && rules::definition(&source.card.definition)
+                            .attachment
+                            .as_ref()
+                            .is_some_and(|s| s.host.zone == Zone::Region))
+                    .then(|| self.regions[a.region.unwrap()].card.id.clone()),
                     id,
                     spec: slot.clone(),
                     public,
@@ -1007,6 +1040,7 @@ impl Game {
                 let public =
                     self.public_target(declaration.actor, &declaration.source, &slot, selected);
                 vec![BoundTarget {
+                    region_instance: None,
                     id: selected.clone(),
                     spec: slot,
                     public,
@@ -1162,7 +1196,7 @@ impl Game {
             if frame
                 .targets
                 .iter()
-                .any(|t| !self.valid_binding(frame.actor, &frame.source, &t.spec, &t.id))
+                .any(|t| !self.valid_bound_target(frame.actor, &frame.source, t))
             {
                 frame.guard = GuardState::Cancelled;
                 self.note(format!(

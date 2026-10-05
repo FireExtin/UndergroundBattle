@@ -1,0 +1,3914 @@
+{
+  "localOfflineOnly": true,
+  "productionRoomCompatibilityAcceptance": false,
+  "publicBrowserRefreshAcceptance": false,
+  "syntheticInitialLayout": false,
+  "checkpoints": [
+    {
+      "name": "accepted27",
+      "folder": "legacy-v0.2.27",
+      "wasmSha256": "04b5ed811e39922ef4d0af5d8cb9539f16573f37c88d595cdc50a61856eddcc4",
+      "state": "{\"state_schema\":3,\"revision\":12,\"versions\":{\"rules\":\"hegemony-pdf-v1\",\"cardPool\":\"limited-v2.24-white-wound-society-candidate\",\"engine\":\"rust-v0.2.27-white-wound-society-candidate\"},\"game\":{\"state_schema\":2,\"room_id\":\"isolated-accepted27\",\"invite_code\":\"LOCAL-OFFLINE-ONLY\",\"mode\":\"teams\",\"version\":12,\"status\":\"playing\",\"players\":[{\"seat\":0,\"name\":\"P0\",\"deck_id\":\"responders\",\"deck_snapshot\":{\"id\":\"responders\",\"name\":\"牺牲与响应\",\"description\":\"自组受限卡池预组：牺牲费用、快速响应与墓地回收；非官方预组。\",\"societyId\":null,\"cards\":[{\"cardId\":\"JC042\",\"count\":3},{\"cardId\":\"JC049\",\"count\":2},{\"cardId\":\"JC091\",\"count\":2},{\"cardId\":\"JC118\",\"count\":3},{\"cardId\":\"JC125\",\"count\":17},{\"cardId\":\"JZ54\",\"count\":2},{\"cardId\":\"LC19\",\"count\":3},{\"cardId\":\"LC20\",\"count\":3},{\"cardId\":\"LC21\",\"count\":3},{\"cardId\":\"LC22\",\"count\":3},{\"cardId\":\"LC23\",\"count\":3},{\"cardId\":\"LC24\",\"count\":3},{\"cardId\":\"XQ49\",\"count\":3}],\"rulesVersion\":\"hegemony-pdf-v1\",\"cardPoolVersion\":\"limited-v2.24-white-wound-society-candidate\",\"engineVersion\":\"rust-v0.2.27-white-wound-society-candidate\",\"updatedAt\":\"\"},\"society_zone\":{\"card\":null,\"used_once_per_game\":[]},\"ready\":true,\"eliminated\":false,\"hand\":[{\"id\":\"i211\",\"definition\":\"JC049\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i212\",\"definition\":\"JC125\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i213\",\"definition\":\"LC22\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i214\",\"definition\":\"XQ49\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i215\",\"definition\":\"XQ49\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i216\",\"definition\":\"JC125\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0}],\"deck\":[{\"id\":\"i2\",\"definition\":\"JC042\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i22\",\"definition\":\"JC125\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i36\",\"definition\":\"LC21\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i32\",\"definition\":\"LC19\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i29\",\"definition\":\"JZ54\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i41\",\"definition\":\"LC22\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i12\",\"definition\":\"JC125\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i17\",\"definition\":\"JC125\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i4\",\"definition\":\"JC049\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i13\",\"definition\":\"JC125\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i38\",\"definition\":\"LC21\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i11\",\"definition\":\"JC125\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i33\",\"definition\":\"LC20\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i30\",\"definition\":\"LC19\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i9\",\"definition\":\"JC118\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i35\",\"definition\":\"LC20\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i47\",\"definition\":\"LC24\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i28\",\"definition\":\"JZ54\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i25\",\"definition\":\"JC125\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i1\",\"definition\":\"JC042\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i19\",\"definition\":\"JC125\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i23\",\"definition\":\"JC125\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i49\",\"definition\":\"XQ49\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i43\",\"definition\":\"LC23\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i3\",\"definition\":\"JC042\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i15\",\"definition\":\"JC125\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i27\",\"definition\":\"JC125\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i8\",\"definition\":\"JC118\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i10\",\"definition\":\"JC118\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i20\",\"definition\":\"JC125\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i45\",\"definition\":\"LC24\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i40\",\"definition\":\"LC22\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i18\",\"definition\":\"JC125\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i42\",\"definition\":\"LC23\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i31\",\"definition\":\"LC19\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i26\",\"definition\":\"JC125\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i44\",\"definition\":\"LC23\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i46\",\"definition\":\"LC24\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i34\",\"definition\":\"LC20\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i7\",\"definition\":\"JC091\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i14\",\"definition\":\"JC125\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i6\",\"definition\":\"JC091\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i37\",\"definition\":\"LC21\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i21\",\"definition\":\"JC125\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0}],\"assets\":[],\"graveyard\":[],\"score_cards\":[],\"asset_used\":false,\"conceal_used\":false},{\"seat\":1,\"name\":\"P1\",\"deck_id\":\"responders\",\"deck_snapshot\":{\"id\":\"responders\",\"name\":\"牺牲与响应\",\"description\":\"自组受限卡池预组：牺牲费用、快速响应与墓地回收；非官方预组。\",\"societyId\":null,\"cards\":[{\"cardId\":\"JC042\",\"count\":3},{\"cardId\":\"JC049\",\"count\":2},{\"cardId\":\"JC091\",\"count\":2},{\"cardId\":\"JC118\",\"count\":3},{\"cardId\":\"JC125\",\"count\":17},{\"cardId\":\"JZ54\",\"count\":2},{\"cardId\":\"LC19\",\"count\":3},{\"cardId\":\"LC20\",\"count\":3},{\"cardId\":\"LC21\",\"count\":3},{\"cardId\":\"LC22\",\"count\":3},{\"cardId\":\"LC23\",\"count\":3},{\"cardId\":\"LC24\",\"count\":3},{\"cardId\":\"XQ49\",\"count\":3}],\"rulesVersion\":\"hegemony-pdf-v1\",\"cardPoolVersion\":\"limited-v2.24-white-wound-society-candidate\",\"engineVersion\":\"rust-v0.2.27-white-wound-society-candidate\",\"updatedAt\":\"\"},\"society_zone\":{\"card\":null,\"used_once_per_game\":[]},\"ready\":true,\"eliminated\":false,\"hand\":[{\"id\":\"i217\",\"definition\":\"LC24\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i218\",\"definition\":\"LC22\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i219\",\"definition\":\"JC091\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i220\",\"definition\":\"JC125\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i221\",\"definition\":\"LC24\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i222\",\"definition\":\"JC091\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0}],\"deck\":[{\"id\":\"i65\",\"definition\":\"JC125\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i54\",\"definition\":\"JC049\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i69\",\"definition\":\"JC125\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i71\",\"definition\":\"JC125\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i92\",\"definition\":\"LC23\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i67\",\"definition\":\"JC125\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i86\",\"definition\":\"LC21\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i93\",\"definition\":\"LC23\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i90\",\"definition\":\"LC22\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i94\",\"definition\":\"LC23\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i100\",\"definition\":\"XQ49\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i68\",\"definition\":\"JC125\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i72\",\"definition\":\"JC125\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i64\",\"definition\":\"JC125\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i79\",\"definition\":\"JZ54\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i85\",\"definition\":\"LC20\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i96\",\"definition\":\"LC24\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i76\",\"definition\":\"JC125\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i82\",\"definition\":\"LC19\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i51\",\"definition\":\"JC042\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i81\",\"definition\":\"LC19\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i84\",\"definition\":\"LC20\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i61\",\"definition\":\"JC125\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i53\",\"definition\":\"JC042\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i52\",\"definition\":\"JC042\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i63\",\"definition\":\"JC125\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i62\",\"definition\":\"JC125\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i99\",\"definition\":\"XQ49\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i78\",\"definition\":\"JZ54\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i55\",\"definition\":\"JC049\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i80\",\"definition\":\"LC19\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i87\",\"definition\":\"LC21\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i98\",\"definition\":\"XQ49\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i58\",\"definition\":\"JC118\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i89\",\"definition\":\"LC22\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i75\",\"definition\":\"JC125\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i83\",\"definition\":\"LC20\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i88\",\"definition\":\"LC21\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i70\",\"definition\":\"JC125\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i74\",\"definition\":\"JC125\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i77\",\"definition\":\"JC125\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i66\",\"definition\":\"JC125\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i59\",\"definition\":\"JC118\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i60\",\"definition\":\"JC118\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0}],\"assets\":[],\"graveyard\":[],\"score_cards\":[],\"asset_used\":false,\"conceal_used\":false},{\"seat\":2,\"name\":\"P2\",\"deck_id\":\"responders\",\"deck_snapshot\":{\"id\":\"responders\",\"name\":\"牺牲与响应\",\"description\":\"自组受限卡池预组：牺牲费用、快速响应与墓地回收；非官方预组。\",\"societyId\":null,\"cards\":[{\"cardId\":\"JC042\",\"count\":3},{\"cardId\":\"JC049\",\"count\":2},{\"cardId\":\"JC091\",\"count\":2},{\"cardId\":\"JC118\",\"count\":3},{\"cardId\":\"JC125\",\"count\":17},{\"cardId\":\"JZ54\",\"count\":2},{\"cardId\":\"LC19\",\"count\":3},{\"cardId\":\"LC20\",\"count\":3},{\"cardId\":\"LC21\",\"count\":3},{\"cardId\":\"LC22\",\"count\":3},{\"cardId\":\"LC23\",\"count\":3},{\"cardId\":\"LC24\",\"count\":3},{\"cardId\":\"XQ49\",\"count\":3}],\"rulesVersion\":\"hegemony-pdf-v1\",\"cardPoolVersion\":\"limited-v2.24-white-wound-society-candidate\",\"engineVersion\":\"rust-v0.2.27-white-wound-society-candidate\",\"updatedAt\":\"\"},\"society_zone\":{\"card\":null,\"used_once_per_game\":[]},\"ready\":true,\"eliminated\":false,\"hand\":[{\"id\":\"i223\",\"definition\":\"LC20\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i224\",\"definition\":\"JC125\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i225\",\"definition\":\"JC125\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i226\",\"definition\":\"JC125\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i227\",\"definition\":\"LC19\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i228\",\"definition\":\"JC125\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0}],\"deck\":[{\"id\":\"i104\",\"definition\":\"JC049\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i121\",\"definition\":\"JC125\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i120\",\"definition\":\"JC125\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i110\",\"definition\":\"JC118\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i115\",\"definition\":\"JC125\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i145\",\"definition\":\"LC24\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i137\",\"definition\":\"LC21\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i142\",\"definition\":\"LC23\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i116\",\"definition\":\"JC125\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i140\",\"definition\":\"LC22\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i136\",\"definition\":\"LC21\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i141\",\"definition\":\"LC22\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i128\",\"definition\":\"JZ54\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i132\",\"definition\":\"LC19\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i129\",\"definition\":\"JZ54\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i109\",\"definition\":\"JC118\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i118\",\"definition\":\"JC125\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i107\",\"definition\":\"JC091\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i143\",\"definition\":\"LC23\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i124\",\"definition\":\"JC125\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i144\",\"definition\":\"LC23\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i147\",\"definition\":\"LC24\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i125\",\"definition\":\"JC125\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i138\",\"definition\":\"LC21\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i102\",\"definition\":\"JC042\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i148\",\"definition\":\"XQ49\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i119\",\"definition\":\"JC125\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i101\",\"definition\":\"JC042\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i139\",\"definition\":\"LC22\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i113\",\"definition\":\"JC125\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i149\",\"definition\":\"XQ49\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i134\",\"definition\":\"LC20\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i105\",\"definition\":\"JC049\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i108\",\"definition\":\"JC118\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i130\",\"definition\":\"LC19\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i150\",\"definition\":\"XQ49\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i135\",\"definition\":\"LC20\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i103\",\"definition\":\"JC042\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i114\",\"definition\":\"JC125\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i126\",\"definition\":\"JC125\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i117\",\"definition\":\"JC125\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i112\",\"definition\":\"JC125\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i106\",\"definition\":\"JC091\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i146\",\"definition\":\"LC24\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0}],\"assets\":[],\"graveyard\":[],\"score_cards\":[],\"asset_used\":false,\"conceal_used\":false},{\"seat\":3,\"name\":\"P3\",\"deck_id\":\"responders\",\"deck_snapshot\":{\"id\":\"responders\",\"name\":\"牺牲与响应\",\"description\":\"自组受限卡池预组：牺牲费用、快速响应与墓地回收；非官方预组。\",\"societyId\":null,\"cards\":[{\"cardId\":\"JC042\",\"count\":3},{\"cardId\":\"JC049\",\"count\":2},{\"cardId\":\"JC091\",\"count\":2},{\"cardId\":\"JC118\",\"count\":3},{\"cardId\":\"JC125\",\"count\":17},{\"cardId\":\"JZ54\",\"count\":2},{\"cardId\":\"LC19\",\"count\":3},{\"cardId\":\"LC20\",\"count\":3},{\"cardId\":\"LC21\",\"count\":3},{\"cardId\":\"LC22\",\"count\":3},{\"cardId\":\"LC23\",\"count\":3},{\"cardId\":\"LC24\",\"count\":3},{\"cardId\":\"XQ49\",\"count\":3}],\"rulesVersion\":\"hegemony-pdf-v1\",\"cardPoolVersion\":\"limited-v2.24-white-wound-society-candidate\",\"engineVersion\":\"rust-v0.2.27-white-wound-society-candidate\",\"updatedAt\":\"\"},\"society_zone\":{\"card\":null,\"used_once_per_game\":[]},\"ready\":true,\"eliminated\":false,\"hand\":[{\"id\":\"i229\",\"definition\":\"JC049\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i230\",\"definition\":\"LC21\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i231\",\"definition\":\"JC091\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i232\",\"definition\":\"LC23\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i233\",\"definition\":\"JC049\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i234\",\"definition\":\"JC125\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0}],\"deck\":[{\"id\":\"i170\",\"definition\":\"JC125\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i177\",\"definition\":\"JC125\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i185\",\"definition\":\"LC20\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i168\",\"definition\":\"JC125\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i169\",\"definition\":\"JC125\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i179\",\"definition\":\"JZ54\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i182\",\"definition\":\"LC19\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i196\",\"definition\":\"LC24\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i156\",\"definition\":\"JC091\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i183\",\"definition\":\"LC20\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i186\",\"definition\":\"LC21\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i173\",\"definition\":\"JC125\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i187\",\"definition\":\"LC21\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i172\",\"definition\":\"JC125\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i151\",\"definition\":\"JC042\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i190\",\"definition\":\"LC22\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i189\",\"definition\":\"LC22\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i164\",\"definition\":\"JC125\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i159\",\"definition\":\"JC118\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i166\",\"definition\":\"JC125\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i181\",\"definition\":\"LC19\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i198\",\"definition\":\"XQ49\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i200\",\"definition\":\"XQ49\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i152\",\"definition\":\"JC042\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i160\",\"definition\":\"JC118\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i178\",\"definition\":\"JZ54\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i153\",\"definition\":\"JC042\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i192\",\"definition\":\"LC23\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i176\",\"definition\":\"JC125\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i180\",\"definition\":\"LC19\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i199\",\"definition\":\"XQ49\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i167\",\"definition\":\"JC125\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i158\",\"definition\":\"JC118\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i193\",\"definition\":\"LC23\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i195\",\"definition\":\"LC24\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i171\",\"definition\":\"JC125\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i165\",\"definition\":\"JC125\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i161\",\"definition\":\"JC125\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i162\",\"definition\":\"JC125\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i175\",\"definition\":\"JC125\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i197\",\"definition\":\"LC24\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i184\",\"definition\":\"LC20\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i191\",\"definition\":\"LC22\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i174\",\"definition\":\"JC125\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0}],\"assets\":[],\"graveyard\":[],\"score_cards\":[],\"asset_used\":false,\"conceal_used\":false}],\"seed\":18446744073709551615,\"random\":4571338412935241907,\"sequence\":238,\"first_team\":1,\"active_team\":0,\"priority_team\":1,\"turn\":1,\"winner_team\":null,\"regions\":[{\"card\":{\"id\":\"i210\",\"definition\":\"DQJC116\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},\"influence\":[0,0],\"cards\":[],\"skip\":false},{\"card\":{\"id\":\"i209\",\"definition\":\"DQJC115\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},\"influence\":[0,0],\"cards\":[],\"skip\":false},{\"card\":{\"id\":\"i208\",\"definition\":\"DQJC114\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},\"influence\":[0,0],\"cards\":[],\"skip\":false},{\"card\":{\"id\":\"i206\",\"definition\":\"DQJC112\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},\"influence\":[0,0],\"cards\":[],\"skip\":false},{\"card\":{\"id\":\"i201\",\"definition\":\"DQJC107\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},\"influence\":[0,0],\"cards\":[],\"skip\":false}],\"attachments\":[],\"region_return\":null,\"world\":[{\"id\":\"i205\",\"definition\":\"DQJC111\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i202\",\"definition\":\"DQJC108\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i203\",\"definition\":\"DQJC109\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i204\",\"definition\":\"DQJC110\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i207\",\"definition\":\"DQJC113\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0}],\"stack\":[],\"pending\":null,\"effects\":[],\"window\":\"Prepare\",\"passed\":[],\"team_passed\":[false,false],\"privilege_used\":false,\"log\":[{\"version\":1,\"text\":\"P1 加入座位 2\"},{\"version\":2,\"text\":\"P2 加入座位 3\"},{\"version\":3,\"text\":\"P3 加入座位 4\"},{\"version\":8,\"text\":\"开始 四人协作；团队 2 持先手\"},{\"version\":9,\"text\":\"P0 完成一次再调度（0张）\"},{\"version\":10,\"text\":\"P1 完成一次再调度（0张）\"},{\"version\":11,\"text\":\"P2 完成一次再调度（0张）\"},{\"version\":12,\"text\":\"P3 完成一次再调度（0张）\"}],\"versions\":{\"rules\":\"hegemony-pdf-v1\",\"cardPool\":\"limited-v2.24-white-wound-society-candidate\",\"engine\":\"rust-v0.2.27-white-wound-society-candidate\"},\"modifiers\":[],\"turn_attribute_modifiers\":[],\"control_effects\":[],\"control_baselines\":[]},\"pacing\":{\"windowSeq\":0,\"lastServerNowMs\":1000,\"window\":null}}",
+      "stateBytes": 32457,
+      "stateSha256": "6b98bc9b699bce9799db53cdaede718d4327d6556ccf71eba627c5ad1dcec548",
+      "views": [
+        {
+          "roomId": "isolated-accepted27",
+          "inviteCode": "LOCAL-OFFLINE-ONLY",
+          "version": 12,
+          "mode": "teams",
+          "status": "playing",
+          "you": "p0",
+          "players": [
+            {
+              "id": "p0",
+              "seat": 0,
+              "name": "P0",
+              "team": 0,
+              "deckId": "responders",
+              "deckName": "牺牲与响应",
+              "ready": true,
+              "eliminated": false,
+              "handCount": 6,
+              "deckCount": 44,
+              "score": 0
+            },
+            {
+              "id": "p1",
+              "seat": 1,
+              "name": "P1",
+              "team": 0,
+              "deckId": "responders",
+              "deckName": "牺牲与响应",
+              "ready": true,
+              "eliminated": false,
+              "handCount": 6,
+              "deckCount": 44,
+              "score": 0
+            },
+            {
+              "id": "p2",
+              "seat": 2,
+              "name": "P2",
+              "team": 1,
+              "deckId": "responders",
+              "deckName": "牺牲与响应",
+              "ready": true,
+              "eliminated": false,
+              "handCount": 6,
+              "deckCount": 44,
+              "score": 0
+            },
+            {
+              "id": "p3",
+              "seat": 3,
+              "name": "P3",
+              "team": 1,
+              "deckId": "responders",
+              "deckName": "牺牲与响应",
+              "ready": true,
+              "eliminated": false,
+              "handCount": 6,
+              "deckCount": 44,
+              "score": 0
+            }
+          ],
+          "firstTeam": 1,
+          "activeTeam": 0,
+          "priorityTeam": 1,
+          "turn": 1,
+          "phase": "start",
+          "step": "prepare",
+          "winScore": 10,
+          "regions": [
+            {
+              "id": "i210",
+              "index": 0,
+              "cardId": "DQJC116",
+              "name": "香港",
+              "threshold": 3,
+              "points": 3,
+              "influence": [
+                0,
+                0
+              ],
+              "iconsByTeam": [
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                },
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                }
+              ],
+              "skipConfrontation": false,
+              "characters": []
+            },
+            {
+              "id": "i209",
+              "index": 1,
+              "cardId": "DQJC115",
+              "name": "死者之城",
+              "threshold": 3,
+              "points": 2,
+              "influence": [
+                0,
+                0
+              ],
+              "iconsByTeam": [
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                },
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                }
+              ],
+              "skipConfrontation": false,
+              "characters": []
+            },
+            {
+              "id": "i208",
+              "index": 2,
+              "cardId": "DQJC114",
+              "name": "上海",
+              "threshold": 4,
+              "points": 3,
+              "influence": [
+                0,
+                0
+              ],
+              "iconsByTeam": [
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                },
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                }
+              ],
+              "skipConfrontation": false,
+              "characters": []
+            },
+            {
+              "id": "i206",
+              "index": 3,
+              "cardId": "DQJC112",
+              "name": "纽约",
+              "threshold": 4,
+              "points": 4,
+              "influence": [
+                0,
+                0
+              ],
+              "iconsByTeam": [
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                },
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                }
+              ],
+              "skipConfrontation": false,
+              "characters": []
+            },
+            {
+              "id": "i201",
+              "index": 4,
+              "cardId": "DQJC107",
+              "name": "沉没的废墟",
+              "threshold": 4,
+              "points": 4,
+              "influence": [
+                0,
+                0
+              ],
+              "iconsByTeam": [
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                },
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                }
+              ],
+              "skipConfrontation": false,
+              "characters": []
+            }
+          ],
+          "societyZones": [
+            {
+              "id": "society:p0",
+              "playerId": "p0",
+              "card": null
+            },
+            {
+              "id": "society:p1",
+              "playerId": "p1",
+              "card": null
+            },
+            {
+              "id": "society:p2",
+              "playerId": "p2",
+              "card": null
+            },
+            {
+              "id": "society:p3",
+              "playerId": "p3",
+              "card": null
+            }
+          ],
+          "attachments": [],
+          "hand": [
+            {
+              "instanceId": "i211",
+              "cardId": "JC049",
+              "name": "深渊细语",
+              "owner": "p0",
+              "controller": "p0",
+              "kind": "spell",
+              "exhausted": false,
+              "faceDown": false,
+              "cost": 2,
+              "effectiveCost": 2,
+              "text": "额外费用：牺牲一个角色。\n快速行动：将你牌库底的两张牌置于手中。",
+              "icons": {
+                "investigation": 0,
+                "combat": 0,
+                "influence": 0
+              },
+              "damage": 0,
+              "shield": 0,
+              "wounds": 0,
+              "color": "红",
+              "magic": "心灵"
+            },
+            {
+              "instanceId": "i212",
+              "cardId": "JC125",
+              "name": "无知路人",
+              "owner": "p0",
+              "controller": "p0",
+              "kind": "character",
+              "exhausted": false,
+              "faceDown": false,
+              "cost": 0,
+              "effectiveCost": 0,
+              "text": "持续：名称为无知路人的牌，构筑时在牌组中的数量没有限制。",
+              "icons": {
+                "investigation": 0,
+                "combat": 0,
+                "influence": 0
+              },
+              "defense": 1,
+              "damage": 0,
+              "shield": 0,
+              "wounds": 0,
+              "color": "中立",
+              "magic": ""
+            },
+            {
+              "instanceId": "i213",
+              "cardId": "LC22",
+              "name": "退役军人",
+              "owner": "p0",
+              "controller": "p0",
+              "kind": "character",
+              "exhausted": false,
+              "faceDown": false,
+              "cost": 3,
+              "effectiveCost": 3,
+              "text": "公开 护卫1",
+              "icons": {
+                "investigation": 0,
+                "combat": 1,
+                "influence": 0
+              },
+              "defense": 1,
+              "damage": 0,
+              "shield": 0,
+              "wounds": 0,
+              "color": "中立",
+              "magic": ""
+            },
+            {
+              "instanceId": "i214",
+              "cardId": "XQ49",
+              "name": "葬礼",
+              "owner": "p0",
+              "controller": "p0",
+              "kind": "spell",
+              "exhausted": false,
+              "faceDown": false,
+              "cost": 1,
+              "effectiveCost": 1,
+              "text": "快速行动：将任一玩家墓地中的目标牌置于其拥有者的牌库底，然后抓一张牌。",
+              "icons": {
+                "investigation": 0,
+                "combat": 0,
+                "influence": 0
+              },
+              "damage": 0,
+              "shield": 0,
+              "wounds": 0,
+              "color": "中立",
+              "magic": ""
+            },
+            {
+              "instanceId": "i215",
+              "cardId": "XQ49",
+              "name": "葬礼",
+              "owner": "p0",
+              "controller": "p0",
+              "kind": "spell",
+              "exhausted": false,
+              "faceDown": false,
+              "cost": 1,
+              "effectiveCost": 1,
+              "text": "快速行动：将任一玩家墓地中的目标牌置于其拥有者的牌库底，然后抓一张牌。",
+              "icons": {
+                "investigation": 0,
+                "combat": 0,
+                "influence": 0
+              },
+              "damage": 0,
+              "shield": 0,
+              "wounds": 0,
+              "color": "中立",
+              "magic": ""
+            },
+            {
+              "instanceId": "i216",
+              "cardId": "JC125",
+              "name": "无知路人",
+              "owner": "p0",
+              "controller": "p0",
+              "kind": "character",
+              "exhausted": false,
+              "faceDown": false,
+              "cost": 0,
+              "effectiveCost": 0,
+              "text": "持续：名称为无知路人的牌，构筑时在牌组中的数量没有限制。",
+              "icons": {
+                "investigation": 0,
+                "combat": 0,
+                "influence": 0
+              },
+              "defense": 1,
+              "damage": 0,
+              "shield": 0,
+              "wounds": 0,
+              "color": "中立",
+              "magic": ""
+            }
+          ],
+          "assets": [],
+          "graveyard": [],
+          "scoreCards": [],
+          "stack": [],
+          "pendingChoice": null,
+          "legalActions": [],
+          "log": [
+            {
+              "version": 1,
+              "text": "P1 加入座位 2"
+            },
+            {
+              "version": 2,
+              "text": "P2 加入座位 3"
+            },
+            {
+              "version": 3,
+              "text": "P3 加入座位 4"
+            },
+            {
+              "version": 8,
+              "text": "开始 四人协作；团队 2 持先手"
+            },
+            {
+              "version": 9,
+              "text": "P0 完成一次再调度（0张）"
+            },
+            {
+              "version": 10,
+              "text": "P1 完成一次再调度（0张）"
+            },
+            {
+              "version": 11,
+              "text": "P2 完成一次再调度（0张）"
+            },
+            {
+              "version": 12,
+              "text": "P3 完成一次再调度（0张）"
+            }
+          ],
+          "versions": {
+            "rules": "hegemony-pdf-v1",
+            "cardPool": "limited-v2.24-white-wound-society-candidate",
+            "engine": "rust-v0.2.27-white-wound-society-candidate"
+          },
+          "waitingChoice": null,
+          "yourDeck": {
+            "id": "responders",
+            "name": "牺牲与响应",
+            "description": "自组受限卡池预组：牺牲费用、快速响应与墓地回收；非官方预组。",
+            "societyId": null,
+            "cards": [
+              {
+                "cardId": "JC042",
+                "count": 3
+              },
+              {
+                "cardId": "JC049",
+                "count": 2
+              },
+              {
+                "cardId": "JC091",
+                "count": 2
+              },
+              {
+                "cardId": "JC118",
+                "count": 3
+              },
+              {
+                "cardId": "JC125",
+                "count": 17
+              },
+              {
+                "cardId": "JZ54",
+                "count": 2
+              },
+              {
+                "cardId": "LC19",
+                "count": 3
+              },
+              {
+                "cardId": "LC20",
+                "count": 3
+              },
+              {
+                "cardId": "LC21",
+                "count": 3
+              },
+              {
+                "cardId": "LC22",
+                "count": 3
+              },
+              {
+                "cardId": "LC23",
+                "count": 3
+              },
+              {
+                "cardId": "LC24",
+                "count": 3
+              },
+              {
+                "cardId": "XQ49",
+                "count": 3
+              }
+            ],
+            "rulesVersion": "hegemony-pdf-v1",
+            "cardPoolVersion": "limited-v2.24-white-wound-society-candidate",
+            "engineVersion": "rust-v0.2.27-white-wound-society-candidate",
+            "updatedAt": ""
+          },
+          "worldDeckCount": 5,
+          "serverNowMs": 1000,
+          "responseWindow": null
+        },
+        {
+          "roomId": "isolated-accepted27",
+          "inviteCode": "LOCAL-OFFLINE-ONLY",
+          "version": 12,
+          "mode": "teams",
+          "status": "playing",
+          "you": "p1",
+          "players": [
+            {
+              "id": "p0",
+              "seat": 0,
+              "name": "P0",
+              "team": 0,
+              "deckId": "responders",
+              "deckName": "牺牲与响应",
+              "ready": true,
+              "eliminated": false,
+              "handCount": 6,
+              "deckCount": 44,
+              "score": 0
+            },
+            {
+              "id": "p1",
+              "seat": 1,
+              "name": "P1",
+              "team": 0,
+              "deckId": "responders",
+              "deckName": "牺牲与响应",
+              "ready": true,
+              "eliminated": false,
+              "handCount": 6,
+              "deckCount": 44,
+              "score": 0
+            },
+            {
+              "id": "p2",
+              "seat": 2,
+              "name": "P2",
+              "team": 1,
+              "deckId": "responders",
+              "deckName": "牺牲与响应",
+              "ready": true,
+              "eliminated": false,
+              "handCount": 6,
+              "deckCount": 44,
+              "score": 0
+            },
+            {
+              "id": "p3",
+              "seat": 3,
+              "name": "P3",
+              "team": 1,
+              "deckId": "responders",
+              "deckName": "牺牲与响应",
+              "ready": true,
+              "eliminated": false,
+              "handCount": 6,
+              "deckCount": 44,
+              "score": 0
+            }
+          ],
+          "firstTeam": 1,
+          "activeTeam": 0,
+          "priorityTeam": 1,
+          "turn": 1,
+          "phase": "start",
+          "step": "prepare",
+          "winScore": 10,
+          "regions": [
+            {
+              "id": "i210",
+              "index": 0,
+              "cardId": "DQJC116",
+              "name": "香港",
+              "threshold": 3,
+              "points": 3,
+              "influence": [
+                0,
+                0
+              ],
+              "iconsByTeam": [
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                },
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                }
+              ],
+              "skipConfrontation": false,
+              "characters": []
+            },
+            {
+              "id": "i209",
+              "index": 1,
+              "cardId": "DQJC115",
+              "name": "死者之城",
+              "threshold": 3,
+              "points": 2,
+              "influence": [
+                0,
+                0
+              ],
+              "iconsByTeam": [
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                },
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                }
+              ],
+              "skipConfrontation": false,
+              "characters": []
+            },
+            {
+              "id": "i208",
+              "index": 2,
+              "cardId": "DQJC114",
+              "name": "上海",
+              "threshold": 4,
+              "points": 3,
+              "influence": [
+                0,
+                0
+              ],
+              "iconsByTeam": [
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                },
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                }
+              ],
+              "skipConfrontation": false,
+              "characters": []
+            },
+            {
+              "id": "i206",
+              "index": 3,
+              "cardId": "DQJC112",
+              "name": "纽约",
+              "threshold": 4,
+              "points": 4,
+              "influence": [
+                0,
+                0
+              ],
+              "iconsByTeam": [
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                },
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                }
+              ],
+              "skipConfrontation": false,
+              "characters": []
+            },
+            {
+              "id": "i201",
+              "index": 4,
+              "cardId": "DQJC107",
+              "name": "沉没的废墟",
+              "threshold": 4,
+              "points": 4,
+              "influence": [
+                0,
+                0
+              ],
+              "iconsByTeam": [
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                },
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                }
+              ],
+              "skipConfrontation": false,
+              "characters": []
+            }
+          ],
+          "societyZones": [
+            {
+              "id": "society:p0",
+              "playerId": "p0",
+              "card": null
+            },
+            {
+              "id": "society:p1",
+              "playerId": "p1",
+              "card": null
+            },
+            {
+              "id": "society:p2",
+              "playerId": "p2",
+              "card": null
+            },
+            {
+              "id": "society:p3",
+              "playerId": "p3",
+              "card": null
+            }
+          ],
+          "attachments": [],
+          "hand": [
+            {
+              "instanceId": "i217",
+              "cardId": "LC24",
+              "name": "林中女巫",
+              "owner": "p1",
+              "controller": "p1",
+              "kind": "character",
+              "exhausted": false,
+              "faceDown": false,
+              "cost": 4,
+              "effectiveCost": 4,
+              "text": "进场触发：预测2，然后抓一张牌。",
+              "icons": {
+                "investigation": 0,
+                "combat": 0,
+                "influence": 0
+              },
+              "defense": 1,
+              "damage": 0,
+              "shield": 0,
+              "wounds": 0,
+              "color": "中立",
+              "magic": "心灵"
+            },
+            {
+              "instanceId": "i218",
+              "cardId": "LC22",
+              "name": "退役军人",
+              "owner": "p1",
+              "controller": "p1",
+              "kind": "character",
+              "exhausted": false,
+              "faceDown": false,
+              "cost": 3,
+              "effectiveCost": 3,
+              "text": "公开 护卫1",
+              "icons": {
+                "investigation": 0,
+                "combat": 1,
+                "influence": 0
+              },
+              "defense": 1,
+              "damage": 0,
+              "shield": 0,
+              "wounds": 0,
+              "color": "中立",
+              "magic": ""
+            },
+            {
+              "instanceId": "i219",
+              "cardId": "JC091",
+              "name": "谋杀",
+              "owner": "p1",
+              "controller": "p1",
+              "kind": "spell",
+              "exhausted": false,
+              "faceDown": false,
+              "cost": 3,
+              "effectiveCost": 3,
+              "text": "只能在行动阶段打出。\n快速行动：消灭目标人类角色。",
+              "icons": {
+                "investigation": 0,
+                "combat": 0,
+                "influence": 0
+              },
+              "damage": 0,
+              "shield": 0,
+              "wounds": 0,
+              "color": "黑",
+              "magic": ""
+            },
+            {
+              "instanceId": "i220",
+              "cardId": "JC125",
+              "name": "无知路人",
+              "owner": "p1",
+              "controller": "p1",
+              "kind": "character",
+              "exhausted": false,
+              "faceDown": false,
+              "cost": 0,
+              "effectiveCost": 0,
+              "text": "持续：名称为无知路人的牌，构筑时在牌组中的数量没有限制。",
+              "icons": {
+                "investigation": 0,
+                "combat": 0,
+                "influence": 0
+              },
+              "defense": 1,
+              "damage": 0,
+              "shield": 0,
+              "wounds": 0,
+              "color": "中立",
+              "magic": ""
+            },
+            {
+              "instanceId": "i221",
+              "cardId": "LC24",
+              "name": "林中女巫",
+              "owner": "p1",
+              "controller": "p1",
+              "kind": "character",
+              "exhausted": false,
+              "faceDown": false,
+              "cost": 4,
+              "effectiveCost": 4,
+              "text": "进场触发：预测2，然后抓一张牌。",
+              "icons": {
+                "investigation": 0,
+                "combat": 0,
+                "influence": 0
+              },
+              "defense": 1,
+              "damage": 0,
+              "shield": 0,
+              "wounds": 0,
+              "color": "中立",
+              "magic": "心灵"
+            },
+            {
+              "instanceId": "i222",
+              "cardId": "JC091",
+              "name": "谋杀",
+              "owner": "p1",
+              "controller": "p1",
+              "kind": "spell",
+              "exhausted": false,
+              "faceDown": false,
+              "cost": 3,
+              "effectiveCost": 3,
+              "text": "只能在行动阶段打出。\n快速行动：消灭目标人类角色。",
+              "icons": {
+                "investigation": 0,
+                "combat": 0,
+                "influence": 0
+              },
+              "damage": 0,
+              "shield": 0,
+              "wounds": 0,
+              "color": "黑",
+              "magic": ""
+            }
+          ],
+          "assets": [],
+          "graveyard": [],
+          "scoreCards": [],
+          "stack": [],
+          "pendingChoice": null,
+          "legalActions": [],
+          "log": [
+            {
+              "version": 1,
+              "text": "P1 加入座位 2"
+            },
+            {
+              "version": 2,
+              "text": "P2 加入座位 3"
+            },
+            {
+              "version": 3,
+              "text": "P3 加入座位 4"
+            },
+            {
+              "version": 8,
+              "text": "开始 四人协作；团队 2 持先手"
+            },
+            {
+              "version": 9,
+              "text": "P0 完成一次再调度（0张）"
+            },
+            {
+              "version": 10,
+              "text": "P1 完成一次再调度（0张）"
+            },
+            {
+              "version": 11,
+              "text": "P2 完成一次再调度（0张）"
+            },
+            {
+              "version": 12,
+              "text": "P3 完成一次再调度（0张）"
+            }
+          ],
+          "versions": {
+            "rules": "hegemony-pdf-v1",
+            "cardPool": "limited-v2.24-white-wound-society-candidate",
+            "engine": "rust-v0.2.27-white-wound-society-candidate"
+          },
+          "waitingChoice": null,
+          "yourDeck": {
+            "id": "responders",
+            "name": "牺牲与响应",
+            "description": "自组受限卡池预组：牺牲费用、快速响应与墓地回收；非官方预组。",
+            "societyId": null,
+            "cards": [
+              {
+                "cardId": "JC042",
+                "count": 3
+              },
+              {
+                "cardId": "JC049",
+                "count": 2
+              },
+              {
+                "cardId": "JC091",
+                "count": 2
+              },
+              {
+                "cardId": "JC118",
+                "count": 3
+              },
+              {
+                "cardId": "JC125",
+                "count": 17
+              },
+              {
+                "cardId": "JZ54",
+                "count": 2
+              },
+              {
+                "cardId": "LC19",
+                "count": 3
+              },
+              {
+                "cardId": "LC20",
+                "count": 3
+              },
+              {
+                "cardId": "LC21",
+                "count": 3
+              },
+              {
+                "cardId": "LC22",
+                "count": 3
+              },
+              {
+                "cardId": "LC23",
+                "count": 3
+              },
+              {
+                "cardId": "LC24",
+                "count": 3
+              },
+              {
+                "cardId": "XQ49",
+                "count": 3
+              }
+            ],
+            "rulesVersion": "hegemony-pdf-v1",
+            "cardPoolVersion": "limited-v2.24-white-wound-society-candidate",
+            "engineVersion": "rust-v0.2.27-white-wound-society-candidate",
+            "updatedAt": ""
+          },
+          "worldDeckCount": 5,
+          "serverNowMs": 1000,
+          "responseWindow": null
+        },
+        {
+          "roomId": "isolated-accepted27",
+          "inviteCode": "LOCAL-OFFLINE-ONLY",
+          "version": 12,
+          "mode": "teams",
+          "status": "playing",
+          "you": "p2",
+          "players": [
+            {
+              "id": "p0",
+              "seat": 0,
+              "name": "P0",
+              "team": 0,
+              "deckId": "responders",
+              "deckName": "牺牲与响应",
+              "ready": true,
+              "eliminated": false,
+              "handCount": 6,
+              "deckCount": 44,
+              "score": 0
+            },
+            {
+              "id": "p1",
+              "seat": 1,
+              "name": "P1",
+              "team": 0,
+              "deckId": "responders",
+              "deckName": "牺牲与响应",
+              "ready": true,
+              "eliminated": false,
+              "handCount": 6,
+              "deckCount": 44,
+              "score": 0
+            },
+            {
+              "id": "p2",
+              "seat": 2,
+              "name": "P2",
+              "team": 1,
+              "deckId": "responders",
+              "deckName": "牺牲与响应",
+              "ready": true,
+              "eliminated": false,
+              "handCount": 6,
+              "deckCount": 44,
+              "score": 0
+            },
+            {
+              "id": "p3",
+              "seat": 3,
+              "name": "P3",
+              "team": 1,
+              "deckId": "responders",
+              "deckName": "牺牲与响应",
+              "ready": true,
+              "eliminated": false,
+              "handCount": 6,
+              "deckCount": 44,
+              "score": 0
+            }
+          ],
+          "firstTeam": 1,
+          "activeTeam": 0,
+          "priorityTeam": 1,
+          "turn": 1,
+          "phase": "start",
+          "step": "prepare",
+          "winScore": 10,
+          "regions": [
+            {
+              "id": "i210",
+              "index": 0,
+              "cardId": "DQJC116",
+              "name": "香港",
+              "threshold": 3,
+              "points": 3,
+              "influence": [
+                0,
+                0
+              ],
+              "iconsByTeam": [
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                },
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                }
+              ],
+              "skipConfrontation": false,
+              "characters": []
+            },
+            {
+              "id": "i209",
+              "index": 1,
+              "cardId": "DQJC115",
+              "name": "死者之城",
+              "threshold": 3,
+              "points": 2,
+              "influence": [
+                0,
+                0
+              ],
+              "iconsByTeam": [
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                },
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                }
+              ],
+              "skipConfrontation": false,
+              "characters": []
+            },
+            {
+              "id": "i208",
+              "index": 2,
+              "cardId": "DQJC114",
+              "name": "上海",
+              "threshold": 4,
+              "points": 3,
+              "influence": [
+                0,
+                0
+              ],
+              "iconsByTeam": [
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                },
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                }
+              ],
+              "skipConfrontation": false,
+              "characters": []
+            },
+            {
+              "id": "i206",
+              "index": 3,
+              "cardId": "DQJC112",
+              "name": "纽约",
+              "threshold": 4,
+              "points": 4,
+              "influence": [
+                0,
+                0
+              ],
+              "iconsByTeam": [
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                },
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                }
+              ],
+              "skipConfrontation": false,
+              "characters": []
+            },
+            {
+              "id": "i201",
+              "index": 4,
+              "cardId": "DQJC107",
+              "name": "沉没的废墟",
+              "threshold": 4,
+              "points": 4,
+              "influence": [
+                0,
+                0
+              ],
+              "iconsByTeam": [
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                },
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                }
+              ],
+              "skipConfrontation": false,
+              "characters": []
+            }
+          ],
+          "societyZones": [
+            {
+              "id": "society:p0",
+              "playerId": "p0",
+              "card": null
+            },
+            {
+              "id": "society:p1",
+              "playerId": "p1",
+              "card": null
+            },
+            {
+              "id": "society:p2",
+              "playerId": "p2",
+              "card": null
+            },
+            {
+              "id": "society:p3",
+              "playerId": "p3",
+              "card": null
+            }
+          ],
+          "attachments": [],
+          "hand": [
+            {
+              "instanceId": "i223",
+              "cardId": "LC20",
+              "name": "心理咨询师",
+              "owner": "p2",
+              "controller": "p2",
+              "kind": "character",
+              "exhausted": false,
+              "faceDown": false,
+              "cost": 2,
+              "effectiveCost": 2,
+              "text": "进场触发：选择本地区的目标角色，移除该角色上的所有创伤标志。",
+              "icons": {
+                "investigation": 0,
+                "combat": 0,
+                "influence": 0
+              },
+              "defense": 1,
+              "damage": 0,
+              "shield": 0,
+              "wounds": 0,
+              "color": "中立",
+              "magic": ""
+            },
+            {
+              "instanceId": "i224",
+              "cardId": "JC125",
+              "name": "无知路人",
+              "owner": "p2",
+              "controller": "p2",
+              "kind": "character",
+              "exhausted": false,
+              "faceDown": false,
+              "cost": 0,
+              "effectiveCost": 0,
+              "text": "持续：名称为无知路人的牌，构筑时在牌组中的数量没有限制。",
+              "icons": {
+                "investigation": 0,
+                "combat": 0,
+                "influence": 0
+              },
+              "defense": 1,
+              "damage": 0,
+              "shield": 0,
+              "wounds": 0,
+              "color": "中立",
+              "magic": ""
+            },
+            {
+              "instanceId": "i225",
+              "cardId": "JC125",
+              "name": "无知路人",
+              "owner": "p2",
+              "controller": "p2",
+              "kind": "character",
+              "exhausted": false,
+              "faceDown": false,
+              "cost": 0,
+              "effectiveCost": 0,
+              "text": "持续：名称为无知路人的牌，构筑时在牌组中的数量没有限制。",
+              "icons": {
+                "investigation": 0,
+                "combat": 0,
+                "influence": 0
+              },
+              "defense": 1,
+              "damage": 0,
+              "shield": 0,
+              "wounds": 0,
+              "color": "中立",
+              "magic": ""
+            },
+            {
+              "instanceId": "i226",
+              "cardId": "JC125",
+              "name": "无知路人",
+              "owner": "p2",
+              "controller": "p2",
+              "kind": "character",
+              "exhausted": false,
+              "faceDown": false,
+              "cost": 0,
+              "effectiveCost": 0,
+              "text": "持续：名称为无知路人的牌，构筑时在牌组中的数量没有限制。",
+              "icons": {
+                "investigation": 0,
+                "combat": 0,
+                "influence": 0
+              },
+              "defense": 1,
+              "damage": 0,
+              "shield": 0,
+              "wounds": 0,
+              "color": "中立",
+              "magic": ""
+            },
+            {
+              "instanceId": "i227",
+              "cardId": "LC19",
+              "name": "外科医生",
+              "owner": "p2",
+              "controller": "p2",
+              "kind": "character",
+              "exhausted": false,
+              "faceDown": false,
+              "cost": 1,
+              "effectiveCost": 1,
+              "text": "公开\n行动2，横置本卡：选择本地区的目标角色，移除该角色上的所有创伤标志。",
+              "icons": {
+                "investigation": 0,
+                "combat": 0,
+                "influence": 1
+              },
+              "defense": 1,
+              "damage": 0,
+              "shield": 0,
+              "wounds": 0,
+              "color": "中立",
+              "magic": ""
+            },
+            {
+              "instanceId": "i228",
+              "cardId": "JC125",
+              "name": "无知路人",
+              "owner": "p2",
+              "controller": "p2",
+              "kind": "character",
+              "exhausted": false,
+              "faceDown": false,
+              "cost": 0,
+              "effectiveCost": 0,
+              "text": "持续：名称为无知路人的牌，构筑时在牌组中的数量没有限制。",
+              "icons": {
+                "investigation": 0,
+                "combat": 0,
+                "influence": 0
+              },
+              "defense": 1,
+              "damage": 0,
+              "shield": 0,
+              "wounds": 0,
+              "color": "中立",
+              "magic": ""
+            }
+          ],
+          "assets": [],
+          "graveyard": [],
+          "scoreCards": [],
+          "stack": [],
+          "pendingChoice": null,
+          "legalActions": [
+            {
+              "kind": "pass",
+              "id": "{\"kind\":\"pass\"}",
+              "label": "让过"
+            }
+          ],
+          "log": [
+            {
+              "version": 1,
+              "text": "P1 加入座位 2"
+            },
+            {
+              "version": 2,
+              "text": "P2 加入座位 3"
+            },
+            {
+              "version": 3,
+              "text": "P3 加入座位 4"
+            },
+            {
+              "version": 8,
+              "text": "开始 四人协作；团队 2 持先手"
+            },
+            {
+              "version": 9,
+              "text": "P0 完成一次再调度（0张）"
+            },
+            {
+              "version": 10,
+              "text": "P1 完成一次再调度（0张）"
+            },
+            {
+              "version": 11,
+              "text": "P2 完成一次再调度（0张）"
+            },
+            {
+              "version": 12,
+              "text": "P3 完成一次再调度（0张）"
+            }
+          ],
+          "versions": {
+            "rules": "hegemony-pdf-v1",
+            "cardPool": "limited-v2.24-white-wound-society-candidate",
+            "engine": "rust-v0.2.27-white-wound-society-candidate"
+          },
+          "waitingChoice": null,
+          "yourDeck": {
+            "id": "responders",
+            "name": "牺牲与响应",
+            "description": "自组受限卡池预组：牺牲费用、快速响应与墓地回收；非官方预组。",
+            "societyId": null,
+            "cards": [
+              {
+                "cardId": "JC042",
+                "count": 3
+              },
+              {
+                "cardId": "JC049",
+                "count": 2
+              },
+              {
+                "cardId": "JC091",
+                "count": 2
+              },
+              {
+                "cardId": "JC118",
+                "count": 3
+              },
+              {
+                "cardId": "JC125",
+                "count": 17
+              },
+              {
+                "cardId": "JZ54",
+                "count": 2
+              },
+              {
+                "cardId": "LC19",
+                "count": 3
+              },
+              {
+                "cardId": "LC20",
+                "count": 3
+              },
+              {
+                "cardId": "LC21",
+                "count": 3
+              },
+              {
+                "cardId": "LC22",
+                "count": 3
+              },
+              {
+                "cardId": "LC23",
+                "count": 3
+              },
+              {
+                "cardId": "LC24",
+                "count": 3
+              },
+              {
+                "cardId": "XQ49",
+                "count": 3
+              }
+            ],
+            "rulesVersion": "hegemony-pdf-v1",
+            "cardPoolVersion": "limited-v2.24-white-wound-society-candidate",
+            "engineVersion": "rust-v0.2.27-white-wound-society-candidate",
+            "updatedAt": ""
+          },
+          "worldDeckCount": 5,
+          "serverNowMs": 1000,
+          "responseWindow": null
+        },
+        {
+          "roomId": "isolated-accepted27",
+          "inviteCode": "LOCAL-OFFLINE-ONLY",
+          "version": 12,
+          "mode": "teams",
+          "status": "playing",
+          "you": "p3",
+          "players": [
+            {
+              "id": "p0",
+              "seat": 0,
+              "name": "P0",
+              "team": 0,
+              "deckId": "responders",
+              "deckName": "牺牲与响应",
+              "ready": true,
+              "eliminated": false,
+              "handCount": 6,
+              "deckCount": 44,
+              "score": 0
+            },
+            {
+              "id": "p1",
+              "seat": 1,
+              "name": "P1",
+              "team": 0,
+              "deckId": "responders",
+              "deckName": "牺牲与响应",
+              "ready": true,
+              "eliminated": false,
+              "handCount": 6,
+              "deckCount": 44,
+              "score": 0
+            },
+            {
+              "id": "p2",
+              "seat": 2,
+              "name": "P2",
+              "team": 1,
+              "deckId": "responders",
+              "deckName": "牺牲与响应",
+              "ready": true,
+              "eliminated": false,
+              "handCount": 6,
+              "deckCount": 44,
+              "score": 0
+            },
+            {
+              "id": "p3",
+              "seat": 3,
+              "name": "P3",
+              "team": 1,
+              "deckId": "responders",
+              "deckName": "牺牲与响应",
+              "ready": true,
+              "eliminated": false,
+              "handCount": 6,
+              "deckCount": 44,
+              "score": 0
+            }
+          ],
+          "firstTeam": 1,
+          "activeTeam": 0,
+          "priorityTeam": 1,
+          "turn": 1,
+          "phase": "start",
+          "step": "prepare",
+          "winScore": 10,
+          "regions": [
+            {
+              "id": "i210",
+              "index": 0,
+              "cardId": "DQJC116",
+              "name": "香港",
+              "threshold": 3,
+              "points": 3,
+              "influence": [
+                0,
+                0
+              ],
+              "iconsByTeam": [
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                },
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                }
+              ],
+              "skipConfrontation": false,
+              "characters": []
+            },
+            {
+              "id": "i209",
+              "index": 1,
+              "cardId": "DQJC115",
+              "name": "死者之城",
+              "threshold": 3,
+              "points": 2,
+              "influence": [
+                0,
+                0
+              ],
+              "iconsByTeam": [
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                },
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                }
+              ],
+              "skipConfrontation": false,
+              "characters": []
+            },
+            {
+              "id": "i208",
+              "index": 2,
+              "cardId": "DQJC114",
+              "name": "上海",
+              "threshold": 4,
+              "points": 3,
+              "influence": [
+                0,
+                0
+              ],
+              "iconsByTeam": [
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                },
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                }
+              ],
+              "skipConfrontation": false,
+              "characters": []
+            },
+            {
+              "id": "i206",
+              "index": 3,
+              "cardId": "DQJC112",
+              "name": "纽约",
+              "threshold": 4,
+              "points": 4,
+              "influence": [
+                0,
+                0
+              ],
+              "iconsByTeam": [
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                },
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                }
+              ],
+              "skipConfrontation": false,
+              "characters": []
+            },
+            {
+              "id": "i201",
+              "index": 4,
+              "cardId": "DQJC107",
+              "name": "沉没的废墟",
+              "threshold": 4,
+              "points": 4,
+              "influence": [
+                0,
+                0
+              ],
+              "iconsByTeam": [
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                },
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                }
+              ],
+              "skipConfrontation": false,
+              "characters": []
+            }
+          ],
+          "societyZones": [
+            {
+              "id": "society:p0",
+              "playerId": "p0",
+              "card": null
+            },
+            {
+              "id": "society:p1",
+              "playerId": "p1",
+              "card": null
+            },
+            {
+              "id": "society:p2",
+              "playerId": "p2",
+              "card": null
+            },
+            {
+              "id": "society:p3",
+              "playerId": "p3",
+              "card": null
+            }
+          ],
+          "attachments": [],
+          "hand": [
+            {
+              "instanceId": "i229",
+              "cardId": "JC049",
+              "name": "深渊细语",
+              "owner": "p3",
+              "controller": "p3",
+              "kind": "spell",
+              "exhausted": false,
+              "faceDown": false,
+              "cost": 2,
+              "effectiveCost": 2,
+              "text": "额外费用：牺牲一个角色。\n快速行动：将你牌库底的两张牌置于手中。",
+              "icons": {
+                "investigation": 0,
+                "combat": 0,
+                "influence": 0
+              },
+              "damage": 0,
+              "shield": 0,
+              "wounds": 0,
+              "color": "红",
+              "magic": "心灵"
+            },
+            {
+              "instanceId": "i230",
+              "cardId": "LC21",
+              "name": "称职的保镖",
+              "owner": "p3",
+              "controller": "p3",
+              "kind": "character",
+              "exhausted": false,
+              "faceDown": false,
+              "cost": 1,
+              "effectiveCost": 1,
+              "text": "公开 护卫1",
+              "icons": {
+                "investigation": 0,
+                "combat": 0,
+                "influence": 0
+              },
+              "defense": 1,
+              "damage": 0,
+              "shield": 0,
+              "wounds": 0,
+              "color": "中立",
+              "magic": ""
+            },
+            {
+              "instanceId": "i231",
+              "cardId": "JC091",
+              "name": "谋杀",
+              "owner": "p3",
+              "controller": "p3",
+              "kind": "spell",
+              "exhausted": false,
+              "faceDown": false,
+              "cost": 3,
+              "effectiveCost": 3,
+              "text": "只能在行动阶段打出。\n快速行动：消灭目标人类角色。",
+              "icons": {
+                "investigation": 0,
+                "combat": 0,
+                "influence": 0
+              },
+              "damage": 0,
+              "shield": 0,
+              "wounds": 0,
+              "color": "黑",
+              "magic": ""
+            },
+            {
+              "instanceId": "i232",
+              "cardId": "LC23",
+              "name": "安格鲁，“荆棘”",
+              "owner": "p3",
+              "controller": "p3",
+              "kind": "character",
+              "exhausted": false,
+              "faceDown": false,
+              "cost": 3,
+              "effectiveCost": 3,
+              "text": "现身触发：横置安格鲁，“荆棘”和本地区的目标角色。",
+              "icons": {
+                "investigation": 0,
+                "combat": 1,
+                "influence": 1
+              },
+              "defense": 1,
+              "damage": 0,
+              "shield": 0,
+              "wounds": 0,
+              "color": "中立",
+              "magic": "鲜血"
+            },
+            {
+              "instanceId": "i233",
+              "cardId": "JC049",
+              "name": "深渊细语",
+              "owner": "p3",
+              "controller": "p3",
+              "kind": "spell",
+              "exhausted": false,
+              "faceDown": false,
+              "cost": 2,
+              "effectiveCost": 2,
+              "text": "额外费用：牺牲一个角色。\n快速行动：将你牌库底的两张牌置于手中。",
+              "icons": {
+                "investigation": 0,
+                "combat": 0,
+                "influence": 0
+              },
+              "damage": 0,
+              "shield": 0,
+              "wounds": 0,
+              "color": "红",
+              "magic": "心灵"
+            },
+            {
+              "instanceId": "i234",
+              "cardId": "JC125",
+              "name": "无知路人",
+              "owner": "p3",
+              "controller": "p3",
+              "kind": "character",
+              "exhausted": false,
+              "faceDown": false,
+              "cost": 0,
+              "effectiveCost": 0,
+              "text": "持续：名称为无知路人的牌，构筑时在牌组中的数量没有限制。",
+              "icons": {
+                "investigation": 0,
+                "combat": 0,
+                "influence": 0
+              },
+              "defense": 1,
+              "damage": 0,
+              "shield": 0,
+              "wounds": 0,
+              "color": "中立",
+              "magic": ""
+            }
+          ],
+          "assets": [],
+          "graveyard": [],
+          "scoreCards": [],
+          "stack": [],
+          "pendingChoice": null,
+          "legalActions": [
+            {
+              "kind": "pass",
+              "id": "{\"kind\":\"pass\"}",
+              "label": "让过"
+            }
+          ],
+          "log": [
+            {
+              "version": 1,
+              "text": "P1 加入座位 2"
+            },
+            {
+              "version": 2,
+              "text": "P2 加入座位 3"
+            },
+            {
+              "version": 3,
+              "text": "P3 加入座位 4"
+            },
+            {
+              "version": 8,
+              "text": "开始 四人协作；团队 2 持先手"
+            },
+            {
+              "version": 9,
+              "text": "P0 完成一次再调度（0张）"
+            },
+            {
+              "version": 10,
+              "text": "P1 完成一次再调度（0张）"
+            },
+            {
+              "version": 11,
+              "text": "P2 完成一次再调度（0张）"
+            },
+            {
+              "version": 12,
+              "text": "P3 完成一次再调度（0张）"
+            }
+          ],
+          "versions": {
+            "rules": "hegemony-pdf-v1",
+            "cardPool": "limited-v2.24-white-wound-society-candidate",
+            "engine": "rust-v0.2.27-white-wound-society-candidate"
+          },
+          "waitingChoice": null,
+          "yourDeck": {
+            "id": "responders",
+            "name": "牺牲与响应",
+            "description": "自组受限卡池预组：牺牲费用、快速响应与墓地回收；非官方预组。",
+            "societyId": null,
+            "cards": [
+              {
+                "cardId": "JC042",
+                "count": 3
+              },
+              {
+                "cardId": "JC049",
+                "count": 2
+              },
+              {
+                "cardId": "JC091",
+                "count": 2
+              },
+              {
+                "cardId": "JC118",
+                "count": 3
+              },
+              {
+                "cardId": "JC125",
+                "count": 17
+              },
+              {
+                "cardId": "JZ54",
+                "count": 2
+              },
+              {
+                "cardId": "LC19",
+                "count": 3
+              },
+              {
+                "cardId": "LC20",
+                "count": 3
+              },
+              {
+                "cardId": "LC21",
+                "count": 3
+              },
+              {
+                "cardId": "LC22",
+                "count": 3
+              },
+              {
+                "cardId": "LC23",
+                "count": 3
+              },
+              {
+                "cardId": "LC24",
+                "count": 3
+              },
+              {
+                "cardId": "XQ49",
+                "count": 3
+              }
+            ],
+            "rulesVersion": "hegemony-pdf-v1",
+            "cardPoolVersion": "limited-v2.24-white-wound-society-candidate",
+            "engineVersion": "rust-v0.2.27-white-wound-society-candidate",
+            "updatedAt": ""
+          },
+          "worldDeckCount": 5,
+          "serverNowMs": 1000,
+          "responseWindow": null
+        }
+      ],
+      "fourSeats": true,
+      "freshWasmMemoryViewsEqual": true,
+      "sameOpaqueStateNextActionEqual": true,
+      "crossVersionErrors": {
+        "view": "旧局schema/固定版本与当前rust-v0.2.28-purple-region-society-candidate不兼容；请使用对应旧核，不能静默迁移",
+        "applyRoom": "旧局schema/固定版本与当前rust-v0.2.28-purple-region-society-candidate不兼容；请使用对应旧核，不能静默迁移"
+      }
+    },
+    {
+      "name": "private28",
+      "folder": "pkg",
+      "wasmSha256": "a8a928e12e239161c082671a6008b64775c7b8e9e0181e7d765db23af8bb32e8",
+      "state": "{\"state_schema\":3,\"revision\":12,\"versions\":{\"rules\":\"hegemony-pdf-v1\",\"cardPool\":\"limited-v2.25-purple-region-society-candidate\",\"engine\":\"rust-v0.2.28-purple-region-society-candidate\"},\"game\":{\"state_schema\":2,\"room_id\":\"isolated-private28\",\"invite_code\":\"LOCAL-OFFLINE-ONLY\",\"mode\":\"teams\",\"version\":12,\"status\":\"playing\",\"players\":[{\"seat\":0,\"name\":\"P0\",\"deck_id\":\"responders\",\"deck_snapshot\":{\"id\":\"responders\",\"name\":\"牺牲与响应\",\"description\":\"自组受限卡池预组：牺牲费用、快速响应与墓地回收；非官方预组。\",\"societyId\":null,\"cards\":[{\"cardId\":\"JC042\",\"count\":3},{\"cardId\":\"JC049\",\"count\":2},{\"cardId\":\"JC091\",\"count\":2},{\"cardId\":\"JC118\",\"count\":3},{\"cardId\":\"JC125\",\"count\":17},{\"cardId\":\"JZ54\",\"count\":2},{\"cardId\":\"LC19\",\"count\":3},{\"cardId\":\"LC20\",\"count\":3},{\"cardId\":\"LC21\",\"count\":3},{\"cardId\":\"LC22\",\"count\":3},{\"cardId\":\"LC23\",\"count\":3},{\"cardId\":\"LC24\",\"count\":3},{\"cardId\":\"XQ49\",\"count\":3}],\"rulesVersion\":\"hegemony-pdf-v1\",\"cardPoolVersion\":\"limited-v2.25-purple-region-society-candidate\",\"engineVersion\":\"rust-v0.2.28-purple-region-society-candidate\",\"updatedAt\":\"\"},\"society_zone\":{\"card\":null,\"used_once_per_game\":[]},\"ready\":true,\"eliminated\":false,\"hand\":[{\"id\":\"i211\",\"definition\":\"JC049\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i212\",\"definition\":\"JC125\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i213\",\"definition\":\"LC22\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i214\",\"definition\":\"XQ49\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i215\",\"definition\":\"XQ49\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i216\",\"definition\":\"JC125\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0}],\"deck\":[{\"id\":\"i2\",\"definition\":\"JC042\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i22\",\"definition\":\"JC125\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i36\",\"definition\":\"LC21\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i32\",\"definition\":\"LC19\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i29\",\"definition\":\"JZ54\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i41\",\"definition\":\"LC22\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i12\",\"definition\":\"JC125\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i17\",\"definition\":\"JC125\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i4\",\"definition\":\"JC049\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i13\",\"definition\":\"JC125\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i38\",\"definition\":\"LC21\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i11\",\"definition\":\"JC125\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i33\",\"definition\":\"LC20\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i30\",\"definition\":\"LC19\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i9\",\"definition\":\"JC118\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i35\",\"definition\":\"LC20\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i47\",\"definition\":\"LC24\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i28\",\"definition\":\"JZ54\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i25\",\"definition\":\"JC125\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i1\",\"definition\":\"JC042\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i19\",\"definition\":\"JC125\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i23\",\"definition\":\"JC125\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i49\",\"definition\":\"XQ49\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i43\",\"definition\":\"LC23\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i3\",\"definition\":\"JC042\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i15\",\"definition\":\"JC125\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i27\",\"definition\":\"JC125\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i8\",\"definition\":\"JC118\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i10\",\"definition\":\"JC118\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i20\",\"definition\":\"JC125\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i45\",\"definition\":\"LC24\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i40\",\"definition\":\"LC22\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i18\",\"definition\":\"JC125\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i42\",\"definition\":\"LC23\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i31\",\"definition\":\"LC19\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i26\",\"definition\":\"JC125\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i44\",\"definition\":\"LC23\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i46\",\"definition\":\"LC24\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i34\",\"definition\":\"LC20\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i7\",\"definition\":\"JC091\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i14\",\"definition\":\"JC125\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i6\",\"definition\":\"JC091\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i37\",\"definition\":\"LC21\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i21\",\"definition\":\"JC125\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0}],\"assets\":[],\"graveyard\":[],\"score_cards\":[],\"asset_used\":false,\"conceal_used\":false},{\"seat\":1,\"name\":\"P1\",\"deck_id\":\"responders\",\"deck_snapshot\":{\"id\":\"responders\",\"name\":\"牺牲与响应\",\"description\":\"自组受限卡池预组：牺牲费用、快速响应与墓地回收；非官方预组。\",\"societyId\":null,\"cards\":[{\"cardId\":\"JC042\",\"count\":3},{\"cardId\":\"JC049\",\"count\":2},{\"cardId\":\"JC091\",\"count\":2},{\"cardId\":\"JC118\",\"count\":3},{\"cardId\":\"JC125\",\"count\":17},{\"cardId\":\"JZ54\",\"count\":2},{\"cardId\":\"LC19\",\"count\":3},{\"cardId\":\"LC20\",\"count\":3},{\"cardId\":\"LC21\",\"count\":3},{\"cardId\":\"LC22\",\"count\":3},{\"cardId\":\"LC23\",\"count\":3},{\"cardId\":\"LC24\",\"count\":3},{\"cardId\":\"XQ49\",\"count\":3}],\"rulesVersion\":\"hegemony-pdf-v1\",\"cardPoolVersion\":\"limited-v2.25-purple-region-society-candidate\",\"engineVersion\":\"rust-v0.2.28-purple-region-society-candidate\",\"updatedAt\":\"\"},\"society_zone\":{\"card\":null,\"used_once_per_game\":[]},\"ready\":true,\"eliminated\":false,\"hand\":[{\"id\":\"i217\",\"definition\":\"LC24\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i218\",\"definition\":\"LC22\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i219\",\"definition\":\"JC091\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i220\",\"definition\":\"JC125\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i221\",\"definition\":\"LC24\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i222\",\"definition\":\"JC091\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0}],\"deck\":[{\"id\":\"i65\",\"definition\":\"JC125\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i54\",\"definition\":\"JC049\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i69\",\"definition\":\"JC125\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i71\",\"definition\":\"JC125\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i92\",\"definition\":\"LC23\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i67\",\"definition\":\"JC125\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i86\",\"definition\":\"LC21\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i93\",\"definition\":\"LC23\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i90\",\"definition\":\"LC22\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i94\",\"definition\":\"LC23\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i100\",\"definition\":\"XQ49\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i68\",\"definition\":\"JC125\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i72\",\"definition\":\"JC125\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i64\",\"definition\":\"JC125\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i79\",\"definition\":\"JZ54\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i85\",\"definition\":\"LC20\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i96\",\"definition\":\"LC24\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i76\",\"definition\":\"JC125\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i82\",\"definition\":\"LC19\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i51\",\"definition\":\"JC042\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i81\",\"definition\":\"LC19\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i84\",\"definition\":\"LC20\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i61\",\"definition\":\"JC125\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i53\",\"definition\":\"JC042\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i52\",\"definition\":\"JC042\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i63\",\"definition\":\"JC125\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i62\",\"definition\":\"JC125\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i99\",\"definition\":\"XQ49\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i78\",\"definition\":\"JZ54\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i55\",\"definition\":\"JC049\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i80\",\"definition\":\"LC19\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i87\",\"definition\":\"LC21\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i98\",\"definition\":\"XQ49\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i58\",\"definition\":\"JC118\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i89\",\"definition\":\"LC22\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i75\",\"definition\":\"JC125\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i83\",\"definition\":\"LC20\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i88\",\"definition\":\"LC21\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i70\",\"definition\":\"JC125\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i74\",\"definition\":\"JC125\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i77\",\"definition\":\"JC125\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i66\",\"definition\":\"JC125\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i59\",\"definition\":\"JC118\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i60\",\"definition\":\"JC118\",\"owner\":1,\"controller\":1,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0}],\"assets\":[],\"graveyard\":[],\"score_cards\":[],\"asset_used\":false,\"conceal_used\":false},{\"seat\":2,\"name\":\"P2\",\"deck_id\":\"responders\",\"deck_snapshot\":{\"id\":\"responders\",\"name\":\"牺牲与响应\",\"description\":\"自组受限卡池预组：牺牲费用、快速响应与墓地回收；非官方预组。\",\"societyId\":null,\"cards\":[{\"cardId\":\"JC042\",\"count\":3},{\"cardId\":\"JC049\",\"count\":2},{\"cardId\":\"JC091\",\"count\":2},{\"cardId\":\"JC118\",\"count\":3},{\"cardId\":\"JC125\",\"count\":17},{\"cardId\":\"JZ54\",\"count\":2},{\"cardId\":\"LC19\",\"count\":3},{\"cardId\":\"LC20\",\"count\":3},{\"cardId\":\"LC21\",\"count\":3},{\"cardId\":\"LC22\",\"count\":3},{\"cardId\":\"LC23\",\"count\":3},{\"cardId\":\"LC24\",\"count\":3},{\"cardId\":\"XQ49\",\"count\":3}],\"rulesVersion\":\"hegemony-pdf-v1\",\"cardPoolVersion\":\"limited-v2.25-purple-region-society-candidate\",\"engineVersion\":\"rust-v0.2.28-purple-region-society-candidate\",\"updatedAt\":\"\"},\"society_zone\":{\"card\":null,\"used_once_per_game\":[]},\"ready\":true,\"eliminated\":false,\"hand\":[{\"id\":\"i223\",\"definition\":\"LC20\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i224\",\"definition\":\"JC125\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i225\",\"definition\":\"JC125\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i226\",\"definition\":\"JC125\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i227\",\"definition\":\"LC19\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i228\",\"definition\":\"JC125\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0}],\"deck\":[{\"id\":\"i104\",\"definition\":\"JC049\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i121\",\"definition\":\"JC125\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i120\",\"definition\":\"JC125\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i110\",\"definition\":\"JC118\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i115\",\"definition\":\"JC125\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i145\",\"definition\":\"LC24\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i137\",\"definition\":\"LC21\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i142\",\"definition\":\"LC23\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i116\",\"definition\":\"JC125\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i140\",\"definition\":\"LC22\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i136\",\"definition\":\"LC21\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i141\",\"definition\":\"LC22\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i128\",\"definition\":\"JZ54\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i132\",\"definition\":\"LC19\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i129\",\"definition\":\"JZ54\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i109\",\"definition\":\"JC118\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i118\",\"definition\":\"JC125\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i107\",\"definition\":\"JC091\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i143\",\"definition\":\"LC23\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i124\",\"definition\":\"JC125\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i144\",\"definition\":\"LC23\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i147\",\"definition\":\"LC24\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i125\",\"definition\":\"JC125\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i138\",\"definition\":\"LC21\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i102\",\"definition\":\"JC042\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i148\",\"definition\":\"XQ49\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i119\",\"definition\":\"JC125\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i101\",\"definition\":\"JC042\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i139\",\"definition\":\"LC22\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i113\",\"definition\":\"JC125\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i149\",\"definition\":\"XQ49\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i134\",\"definition\":\"LC20\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i105\",\"definition\":\"JC049\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i108\",\"definition\":\"JC118\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i130\",\"definition\":\"LC19\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i150\",\"definition\":\"XQ49\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i135\",\"definition\":\"LC20\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i103\",\"definition\":\"JC042\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i114\",\"definition\":\"JC125\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i126\",\"definition\":\"JC125\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i117\",\"definition\":\"JC125\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i112\",\"definition\":\"JC125\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i106\",\"definition\":\"JC091\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i146\",\"definition\":\"LC24\",\"owner\":2,\"controller\":2,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0}],\"assets\":[],\"graveyard\":[],\"score_cards\":[],\"asset_used\":false,\"conceal_used\":false},{\"seat\":3,\"name\":\"P3\",\"deck_id\":\"responders\",\"deck_snapshot\":{\"id\":\"responders\",\"name\":\"牺牲与响应\",\"description\":\"自组受限卡池预组：牺牲费用、快速响应与墓地回收；非官方预组。\",\"societyId\":null,\"cards\":[{\"cardId\":\"JC042\",\"count\":3},{\"cardId\":\"JC049\",\"count\":2},{\"cardId\":\"JC091\",\"count\":2},{\"cardId\":\"JC118\",\"count\":3},{\"cardId\":\"JC125\",\"count\":17},{\"cardId\":\"JZ54\",\"count\":2},{\"cardId\":\"LC19\",\"count\":3},{\"cardId\":\"LC20\",\"count\":3},{\"cardId\":\"LC21\",\"count\":3},{\"cardId\":\"LC22\",\"count\":3},{\"cardId\":\"LC23\",\"count\":3},{\"cardId\":\"LC24\",\"count\":3},{\"cardId\":\"XQ49\",\"count\":3}],\"rulesVersion\":\"hegemony-pdf-v1\",\"cardPoolVersion\":\"limited-v2.25-purple-region-society-candidate\",\"engineVersion\":\"rust-v0.2.28-purple-region-society-candidate\",\"updatedAt\":\"\"},\"society_zone\":{\"card\":null,\"used_once_per_game\":[]},\"ready\":true,\"eliminated\":false,\"hand\":[{\"id\":\"i229\",\"definition\":\"JC049\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i230\",\"definition\":\"LC21\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i231\",\"definition\":\"JC091\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i232\",\"definition\":\"LC23\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i233\",\"definition\":\"JC049\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i234\",\"definition\":\"JC125\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0}],\"deck\":[{\"id\":\"i170\",\"definition\":\"JC125\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i177\",\"definition\":\"JC125\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i185\",\"definition\":\"LC20\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i168\",\"definition\":\"JC125\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i169\",\"definition\":\"JC125\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i179\",\"definition\":\"JZ54\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i182\",\"definition\":\"LC19\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i196\",\"definition\":\"LC24\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i156\",\"definition\":\"JC091\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i183\",\"definition\":\"LC20\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i186\",\"definition\":\"LC21\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i173\",\"definition\":\"JC125\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i187\",\"definition\":\"LC21\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i172\",\"definition\":\"JC125\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i151\",\"definition\":\"JC042\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i190\",\"definition\":\"LC22\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i189\",\"definition\":\"LC22\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i164\",\"definition\":\"JC125\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i159\",\"definition\":\"JC118\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i166\",\"definition\":\"JC125\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i181\",\"definition\":\"LC19\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i198\",\"definition\":\"XQ49\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i200\",\"definition\":\"XQ49\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i152\",\"definition\":\"JC042\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i160\",\"definition\":\"JC118\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i178\",\"definition\":\"JZ54\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i153\",\"definition\":\"JC042\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i192\",\"definition\":\"LC23\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i176\",\"definition\":\"JC125\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i180\",\"definition\":\"LC19\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i199\",\"definition\":\"XQ49\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i167\",\"definition\":\"JC125\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i158\",\"definition\":\"JC118\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i193\",\"definition\":\"LC23\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i195\",\"definition\":\"LC24\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i171\",\"definition\":\"JC125\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i165\",\"definition\":\"JC125\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i161\",\"definition\":\"JC125\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i162\",\"definition\":\"JC125\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i175\",\"definition\":\"JC125\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i197\",\"definition\":\"LC24\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i184\",\"definition\":\"LC20\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i191\",\"definition\":\"LC22\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i174\",\"definition\":\"JC125\",\"owner\":3,\"controller\":3,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0}],\"assets\":[],\"graveyard\":[],\"score_cards\":[],\"asset_used\":false,\"conceal_used\":false}],\"seed\":18446744073709551615,\"random\":4571338412935241907,\"sequence\":238,\"first_team\":1,\"active_team\":0,\"priority_team\":1,\"turn\":1,\"winner_team\":null,\"regions\":[{\"card\":{\"id\":\"i210\",\"definition\":\"DQJC116\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},\"influence\":[0,0],\"cards\":[],\"skip\":false},{\"card\":{\"id\":\"i209\",\"definition\":\"DQJC115\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},\"influence\":[0,0],\"cards\":[],\"skip\":false},{\"card\":{\"id\":\"i208\",\"definition\":\"DQJC114\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},\"influence\":[0,0],\"cards\":[],\"skip\":false},{\"card\":{\"id\":\"i206\",\"definition\":\"DQJC112\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},\"influence\":[0,0],\"cards\":[],\"skip\":false},{\"card\":{\"id\":\"i201\",\"definition\":\"DQJC107\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},\"influence\":[0,0],\"cards\":[],\"skip\":false}],\"attachments\":[],\"region_return\":null,\"world\":[{\"id\":\"i205\",\"definition\":\"DQJC111\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i202\",\"definition\":\"DQJC108\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i203\",\"definition\":\"DQJC109\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i204\",\"definition\":\"DQJC110\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0},{\"id\":\"i207\",\"definition\":\"DQJC113\",\"owner\":0,\"controller\":0,\"exhausted\":false,\"face_down\":false,\"damage\":0,\"wounds\":0,\"shield\":0}],\"stack\":[],\"pending\":null,\"effects\":[],\"window\":\"Prepare\",\"passed\":[],\"team_passed\":[false,false],\"privilege_used\":false,\"log\":[{\"version\":1,\"text\":\"P1 加入座位 2\"},{\"version\":2,\"text\":\"P2 加入座位 3\"},{\"version\":3,\"text\":\"P3 加入座位 4\"},{\"version\":8,\"text\":\"开始 四人协作；团队 2 持先手\"},{\"version\":9,\"text\":\"P0 完成一次再调度（0张）\"},{\"version\":10,\"text\":\"P1 完成一次再调度（0张）\"},{\"version\":11,\"text\":\"P2 完成一次再调度（0张）\"},{\"version\":12,\"text\":\"P3 完成一次再调度（0张）\"}],\"versions\":{\"rules\":\"hegemony-pdf-v1\",\"cardPool\":\"limited-v2.25-purple-region-society-candidate\",\"engine\":\"rust-v0.2.28-purple-region-society-candidate\"},\"modifiers\":[],\"turn_attribute_modifiers\":[],\"control_effects\":[],\"control_baselines\":[]},\"pacing\":{\"windowSeq\":0,\"lastServerNowMs\":1000,\"window\":null}}",
+      "stateBytes": 32480,
+      "stateSha256": "6475300afca8d3f6700f9318d656fa705e181a17e0baf28f4dcbe20d0117175c",
+      "views": [
+        {
+          "roomId": "isolated-private28",
+          "inviteCode": "LOCAL-OFFLINE-ONLY",
+          "version": 12,
+          "mode": "teams",
+          "status": "playing",
+          "you": "p0",
+          "players": [
+            {
+              "id": "p0",
+              "seat": 0,
+              "name": "P0",
+              "team": 0,
+              "deckId": "responders",
+              "deckName": "牺牲与响应",
+              "ready": true,
+              "eliminated": false,
+              "handCount": 6,
+              "deckCount": 44,
+              "score": 0
+            },
+            {
+              "id": "p1",
+              "seat": 1,
+              "name": "P1",
+              "team": 0,
+              "deckId": "responders",
+              "deckName": "牺牲与响应",
+              "ready": true,
+              "eliminated": false,
+              "handCount": 6,
+              "deckCount": 44,
+              "score": 0
+            },
+            {
+              "id": "p2",
+              "seat": 2,
+              "name": "P2",
+              "team": 1,
+              "deckId": "responders",
+              "deckName": "牺牲与响应",
+              "ready": true,
+              "eliminated": false,
+              "handCount": 6,
+              "deckCount": 44,
+              "score": 0
+            },
+            {
+              "id": "p3",
+              "seat": 3,
+              "name": "P3",
+              "team": 1,
+              "deckId": "responders",
+              "deckName": "牺牲与响应",
+              "ready": true,
+              "eliminated": false,
+              "handCount": 6,
+              "deckCount": 44,
+              "score": 0
+            }
+          ],
+          "firstTeam": 1,
+          "activeTeam": 0,
+          "priorityTeam": 1,
+          "turn": 1,
+          "phase": "start",
+          "step": "prepare",
+          "winScore": 10,
+          "regions": [
+            {
+              "id": "i210",
+              "index": 0,
+              "cardId": "DQJC116",
+              "name": "香港",
+              "threshold": 3,
+              "points": 3,
+              "influence": [
+                0,
+                0
+              ],
+              "iconsByTeam": [
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                },
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                }
+              ],
+              "skipConfrontation": false,
+              "characters": []
+            },
+            {
+              "id": "i209",
+              "index": 1,
+              "cardId": "DQJC115",
+              "name": "死者之城",
+              "threshold": 3,
+              "points": 2,
+              "influence": [
+                0,
+                0
+              ],
+              "iconsByTeam": [
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                },
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                }
+              ],
+              "skipConfrontation": false,
+              "characters": []
+            },
+            {
+              "id": "i208",
+              "index": 2,
+              "cardId": "DQJC114",
+              "name": "上海",
+              "threshold": 4,
+              "points": 3,
+              "influence": [
+                0,
+                0
+              ],
+              "iconsByTeam": [
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                },
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                }
+              ],
+              "skipConfrontation": false,
+              "characters": []
+            },
+            {
+              "id": "i206",
+              "index": 3,
+              "cardId": "DQJC112",
+              "name": "纽约",
+              "threshold": 4,
+              "points": 4,
+              "influence": [
+                0,
+                0
+              ],
+              "iconsByTeam": [
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                },
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                }
+              ],
+              "skipConfrontation": false,
+              "characters": []
+            },
+            {
+              "id": "i201",
+              "index": 4,
+              "cardId": "DQJC107",
+              "name": "沉没的废墟",
+              "threshold": 4,
+              "points": 4,
+              "influence": [
+                0,
+                0
+              ],
+              "iconsByTeam": [
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                },
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                }
+              ],
+              "skipConfrontation": false,
+              "characters": []
+            }
+          ],
+          "societyZones": [
+            {
+              "id": "society:p0",
+              "playerId": "p0",
+              "card": null
+            },
+            {
+              "id": "society:p1",
+              "playerId": "p1",
+              "card": null
+            },
+            {
+              "id": "society:p2",
+              "playerId": "p2",
+              "card": null
+            },
+            {
+              "id": "society:p3",
+              "playerId": "p3",
+              "card": null
+            }
+          ],
+          "attachments": [],
+          "hand": [
+            {
+              "instanceId": "i211",
+              "cardId": "JC049",
+              "name": "深渊细语",
+              "owner": "p0",
+              "controller": "p0",
+              "kind": "spell",
+              "exhausted": false,
+              "faceDown": false,
+              "cost": 2,
+              "effectiveCost": 2,
+              "text": "额外费用：牺牲一个角色。\n快速行动：将你牌库底的两张牌置于手中。",
+              "icons": {
+                "investigation": 0,
+                "combat": 0,
+                "influence": 0
+              },
+              "damage": 0,
+              "shield": 0,
+              "wounds": 0,
+              "color": "红",
+              "magic": "心灵"
+            },
+            {
+              "instanceId": "i212",
+              "cardId": "JC125",
+              "name": "无知路人",
+              "owner": "p0",
+              "controller": "p0",
+              "kind": "character",
+              "exhausted": false,
+              "faceDown": false,
+              "cost": 0,
+              "effectiveCost": 0,
+              "text": "持续：名称为无知路人的牌，构筑时在牌组中的数量没有限制。",
+              "icons": {
+                "investigation": 0,
+                "combat": 0,
+                "influence": 0
+              },
+              "defense": 1,
+              "damage": 0,
+              "shield": 0,
+              "wounds": 0,
+              "color": "中立",
+              "magic": ""
+            },
+            {
+              "instanceId": "i213",
+              "cardId": "LC22",
+              "name": "退役军人",
+              "owner": "p0",
+              "controller": "p0",
+              "kind": "character",
+              "exhausted": false,
+              "faceDown": false,
+              "cost": 3,
+              "effectiveCost": 3,
+              "text": "公开 护卫1",
+              "icons": {
+                "investigation": 0,
+                "combat": 1,
+                "influence": 0
+              },
+              "defense": 1,
+              "damage": 0,
+              "shield": 0,
+              "wounds": 0,
+              "color": "中立",
+              "magic": ""
+            },
+            {
+              "instanceId": "i214",
+              "cardId": "XQ49",
+              "name": "葬礼",
+              "owner": "p0",
+              "controller": "p0",
+              "kind": "spell",
+              "exhausted": false,
+              "faceDown": false,
+              "cost": 1,
+              "effectiveCost": 1,
+              "text": "快速行动：将任一玩家墓地中的目标牌置于其拥有者的牌库底，然后抓一张牌。",
+              "icons": {
+                "investigation": 0,
+                "combat": 0,
+                "influence": 0
+              },
+              "damage": 0,
+              "shield": 0,
+              "wounds": 0,
+              "color": "中立",
+              "magic": ""
+            },
+            {
+              "instanceId": "i215",
+              "cardId": "XQ49",
+              "name": "葬礼",
+              "owner": "p0",
+              "controller": "p0",
+              "kind": "spell",
+              "exhausted": false,
+              "faceDown": false,
+              "cost": 1,
+              "effectiveCost": 1,
+              "text": "快速行动：将任一玩家墓地中的目标牌置于其拥有者的牌库底，然后抓一张牌。",
+              "icons": {
+                "investigation": 0,
+                "combat": 0,
+                "influence": 0
+              },
+              "damage": 0,
+              "shield": 0,
+              "wounds": 0,
+              "color": "中立",
+              "magic": ""
+            },
+            {
+              "instanceId": "i216",
+              "cardId": "JC125",
+              "name": "无知路人",
+              "owner": "p0",
+              "controller": "p0",
+              "kind": "character",
+              "exhausted": false,
+              "faceDown": false,
+              "cost": 0,
+              "effectiveCost": 0,
+              "text": "持续：名称为无知路人的牌，构筑时在牌组中的数量没有限制。",
+              "icons": {
+                "investigation": 0,
+                "combat": 0,
+                "influence": 0
+              },
+              "defense": 1,
+              "damage": 0,
+              "shield": 0,
+              "wounds": 0,
+              "color": "中立",
+              "magic": ""
+            }
+          ],
+          "assets": [],
+          "graveyard": [],
+          "scoreCards": [],
+          "stack": [],
+          "pendingChoice": null,
+          "legalActions": [],
+          "log": [
+            {
+              "version": 1,
+              "text": "P1 加入座位 2"
+            },
+            {
+              "version": 2,
+              "text": "P2 加入座位 3"
+            },
+            {
+              "version": 3,
+              "text": "P3 加入座位 4"
+            },
+            {
+              "version": 8,
+              "text": "开始 四人协作；团队 2 持先手"
+            },
+            {
+              "version": 9,
+              "text": "P0 完成一次再调度（0张）"
+            },
+            {
+              "version": 10,
+              "text": "P1 完成一次再调度（0张）"
+            },
+            {
+              "version": 11,
+              "text": "P2 完成一次再调度（0张）"
+            },
+            {
+              "version": 12,
+              "text": "P3 完成一次再调度（0张）"
+            }
+          ],
+          "versions": {
+            "rules": "hegemony-pdf-v1",
+            "cardPool": "limited-v2.25-purple-region-society-candidate",
+            "engine": "rust-v0.2.28-purple-region-society-candidate"
+          },
+          "waitingChoice": null,
+          "yourDeck": {
+            "id": "responders",
+            "name": "牺牲与响应",
+            "description": "自组受限卡池预组：牺牲费用、快速响应与墓地回收；非官方预组。",
+            "societyId": null,
+            "cards": [
+              {
+                "cardId": "JC042",
+                "count": 3
+              },
+              {
+                "cardId": "JC049",
+                "count": 2
+              },
+              {
+                "cardId": "JC091",
+                "count": 2
+              },
+              {
+                "cardId": "JC118",
+                "count": 3
+              },
+              {
+                "cardId": "JC125",
+                "count": 17
+              },
+              {
+                "cardId": "JZ54",
+                "count": 2
+              },
+              {
+                "cardId": "LC19",
+                "count": 3
+              },
+              {
+                "cardId": "LC20",
+                "count": 3
+              },
+              {
+                "cardId": "LC21",
+                "count": 3
+              },
+              {
+                "cardId": "LC22",
+                "count": 3
+              },
+              {
+                "cardId": "LC23",
+                "count": 3
+              },
+              {
+                "cardId": "LC24",
+                "count": 3
+              },
+              {
+                "cardId": "XQ49",
+                "count": 3
+              }
+            ],
+            "rulesVersion": "hegemony-pdf-v1",
+            "cardPoolVersion": "limited-v2.25-purple-region-society-candidate",
+            "engineVersion": "rust-v0.2.28-purple-region-society-candidate",
+            "updatedAt": ""
+          },
+          "worldDeckCount": 5,
+          "serverNowMs": 1000,
+          "responseWindow": null
+        },
+        {
+          "roomId": "isolated-private28",
+          "inviteCode": "LOCAL-OFFLINE-ONLY",
+          "version": 12,
+          "mode": "teams",
+          "status": "playing",
+          "you": "p1",
+          "players": [
+            {
+              "id": "p0",
+              "seat": 0,
+              "name": "P0",
+              "team": 0,
+              "deckId": "responders",
+              "deckName": "牺牲与响应",
+              "ready": true,
+              "eliminated": false,
+              "handCount": 6,
+              "deckCount": 44,
+              "score": 0
+            },
+            {
+              "id": "p1",
+              "seat": 1,
+              "name": "P1",
+              "team": 0,
+              "deckId": "responders",
+              "deckName": "牺牲与响应",
+              "ready": true,
+              "eliminated": false,
+              "handCount": 6,
+              "deckCount": 44,
+              "score": 0
+            },
+            {
+              "id": "p2",
+              "seat": 2,
+              "name": "P2",
+              "team": 1,
+              "deckId": "responders",
+              "deckName": "牺牲与响应",
+              "ready": true,
+              "eliminated": false,
+              "handCount": 6,
+              "deckCount": 44,
+              "score": 0
+            },
+            {
+              "id": "p3",
+              "seat": 3,
+              "name": "P3",
+              "team": 1,
+              "deckId": "responders",
+              "deckName": "牺牲与响应",
+              "ready": true,
+              "eliminated": false,
+              "handCount": 6,
+              "deckCount": 44,
+              "score": 0
+            }
+          ],
+          "firstTeam": 1,
+          "activeTeam": 0,
+          "priorityTeam": 1,
+          "turn": 1,
+          "phase": "start",
+          "step": "prepare",
+          "winScore": 10,
+          "regions": [
+            {
+              "id": "i210",
+              "index": 0,
+              "cardId": "DQJC116",
+              "name": "香港",
+              "threshold": 3,
+              "points": 3,
+              "influence": [
+                0,
+                0
+              ],
+              "iconsByTeam": [
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                },
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                }
+              ],
+              "skipConfrontation": false,
+              "characters": []
+            },
+            {
+              "id": "i209",
+              "index": 1,
+              "cardId": "DQJC115",
+              "name": "死者之城",
+              "threshold": 3,
+              "points": 2,
+              "influence": [
+                0,
+                0
+              ],
+              "iconsByTeam": [
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                },
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                }
+              ],
+              "skipConfrontation": false,
+              "characters": []
+            },
+            {
+              "id": "i208",
+              "index": 2,
+              "cardId": "DQJC114",
+              "name": "上海",
+              "threshold": 4,
+              "points": 3,
+              "influence": [
+                0,
+                0
+              ],
+              "iconsByTeam": [
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                },
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                }
+              ],
+              "skipConfrontation": false,
+              "characters": []
+            },
+            {
+              "id": "i206",
+              "index": 3,
+              "cardId": "DQJC112",
+              "name": "纽约",
+              "threshold": 4,
+              "points": 4,
+              "influence": [
+                0,
+                0
+              ],
+              "iconsByTeam": [
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                },
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                }
+              ],
+              "skipConfrontation": false,
+              "characters": []
+            },
+            {
+              "id": "i201",
+              "index": 4,
+              "cardId": "DQJC107",
+              "name": "沉没的废墟",
+              "threshold": 4,
+              "points": 4,
+              "influence": [
+                0,
+                0
+              ],
+              "iconsByTeam": [
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                },
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                }
+              ],
+              "skipConfrontation": false,
+              "characters": []
+            }
+          ],
+          "societyZones": [
+            {
+              "id": "society:p0",
+              "playerId": "p0",
+              "card": null
+            },
+            {
+              "id": "society:p1",
+              "playerId": "p1",
+              "card": null
+            },
+            {
+              "id": "society:p2",
+              "playerId": "p2",
+              "card": null
+            },
+            {
+              "id": "society:p3",
+              "playerId": "p3",
+              "card": null
+            }
+          ],
+          "attachments": [],
+          "hand": [
+            {
+              "instanceId": "i217",
+              "cardId": "LC24",
+              "name": "林中女巫",
+              "owner": "p1",
+              "controller": "p1",
+              "kind": "character",
+              "exhausted": false,
+              "faceDown": false,
+              "cost": 4,
+              "effectiveCost": 4,
+              "text": "进场触发：预测2，然后抓一张牌。",
+              "icons": {
+                "investigation": 0,
+                "combat": 0,
+                "influence": 0
+              },
+              "defense": 1,
+              "damage": 0,
+              "shield": 0,
+              "wounds": 0,
+              "color": "中立",
+              "magic": "心灵"
+            },
+            {
+              "instanceId": "i218",
+              "cardId": "LC22",
+              "name": "退役军人",
+              "owner": "p1",
+              "controller": "p1",
+              "kind": "character",
+              "exhausted": false,
+              "faceDown": false,
+              "cost": 3,
+              "effectiveCost": 3,
+              "text": "公开 护卫1",
+              "icons": {
+                "investigation": 0,
+                "combat": 1,
+                "influence": 0
+              },
+              "defense": 1,
+              "damage": 0,
+              "shield": 0,
+              "wounds": 0,
+              "color": "中立",
+              "magic": ""
+            },
+            {
+              "instanceId": "i219",
+              "cardId": "JC091",
+              "name": "谋杀",
+              "owner": "p1",
+              "controller": "p1",
+              "kind": "spell",
+              "exhausted": false,
+              "faceDown": false,
+              "cost": 3,
+              "effectiveCost": 3,
+              "text": "只能在行动阶段打出。\n快速行动：消灭目标人类角色。",
+              "icons": {
+                "investigation": 0,
+                "combat": 0,
+                "influence": 0
+              },
+              "damage": 0,
+              "shield": 0,
+              "wounds": 0,
+              "color": "黑",
+              "magic": ""
+            },
+            {
+              "instanceId": "i220",
+              "cardId": "JC125",
+              "name": "无知路人",
+              "owner": "p1",
+              "controller": "p1",
+              "kind": "character",
+              "exhausted": false,
+              "faceDown": false,
+              "cost": 0,
+              "effectiveCost": 0,
+              "text": "持续：名称为无知路人的牌，构筑时在牌组中的数量没有限制。",
+              "icons": {
+                "investigation": 0,
+                "combat": 0,
+                "influence": 0
+              },
+              "defense": 1,
+              "damage": 0,
+              "shield": 0,
+              "wounds": 0,
+              "color": "中立",
+              "magic": ""
+            },
+            {
+              "instanceId": "i221",
+              "cardId": "LC24",
+              "name": "林中女巫",
+              "owner": "p1",
+              "controller": "p1",
+              "kind": "character",
+              "exhausted": false,
+              "faceDown": false,
+              "cost": 4,
+              "effectiveCost": 4,
+              "text": "进场触发：预测2，然后抓一张牌。",
+              "icons": {
+                "investigation": 0,
+                "combat": 0,
+                "influence": 0
+              },
+              "defense": 1,
+              "damage": 0,
+              "shield": 0,
+              "wounds": 0,
+              "color": "中立",
+              "magic": "心灵"
+            },
+            {
+              "instanceId": "i222",
+              "cardId": "JC091",
+              "name": "谋杀",
+              "owner": "p1",
+              "controller": "p1",
+              "kind": "spell",
+              "exhausted": false,
+              "faceDown": false,
+              "cost": 3,
+              "effectiveCost": 3,
+              "text": "只能在行动阶段打出。\n快速行动：消灭目标人类角色。",
+              "icons": {
+                "investigation": 0,
+                "combat": 0,
+                "influence": 0
+              },
+              "damage": 0,
+              "shield": 0,
+              "wounds": 0,
+              "color": "黑",
+              "magic": ""
+            }
+          ],
+          "assets": [],
+          "graveyard": [],
+          "scoreCards": [],
+          "stack": [],
+          "pendingChoice": null,
+          "legalActions": [],
+          "log": [
+            {
+              "version": 1,
+              "text": "P1 加入座位 2"
+            },
+            {
+              "version": 2,
+              "text": "P2 加入座位 3"
+            },
+            {
+              "version": 3,
+              "text": "P3 加入座位 4"
+            },
+            {
+              "version": 8,
+              "text": "开始 四人协作；团队 2 持先手"
+            },
+            {
+              "version": 9,
+              "text": "P0 完成一次再调度（0张）"
+            },
+            {
+              "version": 10,
+              "text": "P1 完成一次再调度（0张）"
+            },
+            {
+              "version": 11,
+              "text": "P2 完成一次再调度（0张）"
+            },
+            {
+              "version": 12,
+              "text": "P3 完成一次再调度（0张）"
+            }
+          ],
+          "versions": {
+            "rules": "hegemony-pdf-v1",
+            "cardPool": "limited-v2.25-purple-region-society-candidate",
+            "engine": "rust-v0.2.28-purple-region-society-candidate"
+          },
+          "waitingChoice": null,
+          "yourDeck": {
+            "id": "responders",
+            "name": "牺牲与响应",
+            "description": "自组受限卡池预组：牺牲费用、快速响应与墓地回收；非官方预组。",
+            "societyId": null,
+            "cards": [
+              {
+                "cardId": "JC042",
+                "count": 3
+              },
+              {
+                "cardId": "JC049",
+                "count": 2
+              },
+              {
+                "cardId": "JC091",
+                "count": 2
+              },
+              {
+                "cardId": "JC118",
+                "count": 3
+              },
+              {
+                "cardId": "JC125",
+                "count": 17
+              },
+              {
+                "cardId": "JZ54",
+                "count": 2
+              },
+              {
+                "cardId": "LC19",
+                "count": 3
+              },
+              {
+                "cardId": "LC20",
+                "count": 3
+              },
+              {
+                "cardId": "LC21",
+                "count": 3
+              },
+              {
+                "cardId": "LC22",
+                "count": 3
+              },
+              {
+                "cardId": "LC23",
+                "count": 3
+              },
+              {
+                "cardId": "LC24",
+                "count": 3
+              },
+              {
+                "cardId": "XQ49",
+                "count": 3
+              }
+            ],
+            "rulesVersion": "hegemony-pdf-v1",
+            "cardPoolVersion": "limited-v2.25-purple-region-society-candidate",
+            "engineVersion": "rust-v0.2.28-purple-region-society-candidate",
+            "updatedAt": ""
+          },
+          "worldDeckCount": 5,
+          "serverNowMs": 1000,
+          "responseWindow": null
+        },
+        {
+          "roomId": "isolated-private28",
+          "inviteCode": "LOCAL-OFFLINE-ONLY",
+          "version": 12,
+          "mode": "teams",
+          "status": "playing",
+          "you": "p2",
+          "players": [
+            {
+              "id": "p0",
+              "seat": 0,
+              "name": "P0",
+              "team": 0,
+              "deckId": "responders",
+              "deckName": "牺牲与响应",
+              "ready": true,
+              "eliminated": false,
+              "handCount": 6,
+              "deckCount": 44,
+              "score": 0
+            },
+            {
+              "id": "p1",
+              "seat": 1,
+              "name": "P1",
+              "team": 0,
+              "deckId": "responders",
+              "deckName": "牺牲与响应",
+              "ready": true,
+              "eliminated": false,
+              "handCount": 6,
+              "deckCount": 44,
+              "score": 0
+            },
+            {
+              "id": "p2",
+              "seat": 2,
+              "name": "P2",
+              "team": 1,
+              "deckId": "responders",
+              "deckName": "牺牲与响应",
+              "ready": true,
+              "eliminated": false,
+              "handCount": 6,
+              "deckCount": 44,
+              "score": 0
+            },
+            {
+              "id": "p3",
+              "seat": 3,
+              "name": "P3",
+              "team": 1,
+              "deckId": "responders",
+              "deckName": "牺牲与响应",
+              "ready": true,
+              "eliminated": false,
+              "handCount": 6,
+              "deckCount": 44,
+              "score": 0
+            }
+          ],
+          "firstTeam": 1,
+          "activeTeam": 0,
+          "priorityTeam": 1,
+          "turn": 1,
+          "phase": "start",
+          "step": "prepare",
+          "winScore": 10,
+          "regions": [
+            {
+              "id": "i210",
+              "index": 0,
+              "cardId": "DQJC116",
+              "name": "香港",
+              "threshold": 3,
+              "points": 3,
+              "influence": [
+                0,
+                0
+              ],
+              "iconsByTeam": [
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                },
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                }
+              ],
+              "skipConfrontation": false,
+              "characters": []
+            },
+            {
+              "id": "i209",
+              "index": 1,
+              "cardId": "DQJC115",
+              "name": "死者之城",
+              "threshold": 3,
+              "points": 2,
+              "influence": [
+                0,
+                0
+              ],
+              "iconsByTeam": [
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                },
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                }
+              ],
+              "skipConfrontation": false,
+              "characters": []
+            },
+            {
+              "id": "i208",
+              "index": 2,
+              "cardId": "DQJC114",
+              "name": "上海",
+              "threshold": 4,
+              "points": 3,
+              "influence": [
+                0,
+                0
+              ],
+              "iconsByTeam": [
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                },
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                }
+              ],
+              "skipConfrontation": false,
+              "characters": []
+            },
+            {
+              "id": "i206",
+              "index": 3,
+              "cardId": "DQJC112",
+              "name": "纽约",
+              "threshold": 4,
+              "points": 4,
+              "influence": [
+                0,
+                0
+              ],
+              "iconsByTeam": [
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                },
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                }
+              ],
+              "skipConfrontation": false,
+              "characters": []
+            },
+            {
+              "id": "i201",
+              "index": 4,
+              "cardId": "DQJC107",
+              "name": "沉没的废墟",
+              "threshold": 4,
+              "points": 4,
+              "influence": [
+                0,
+                0
+              ],
+              "iconsByTeam": [
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                },
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                }
+              ],
+              "skipConfrontation": false,
+              "characters": []
+            }
+          ],
+          "societyZones": [
+            {
+              "id": "society:p0",
+              "playerId": "p0",
+              "card": null
+            },
+            {
+              "id": "society:p1",
+              "playerId": "p1",
+              "card": null
+            },
+            {
+              "id": "society:p2",
+              "playerId": "p2",
+              "card": null
+            },
+            {
+              "id": "society:p3",
+              "playerId": "p3",
+              "card": null
+            }
+          ],
+          "attachments": [],
+          "hand": [
+            {
+              "instanceId": "i223",
+              "cardId": "LC20",
+              "name": "心理咨询师",
+              "owner": "p2",
+              "controller": "p2",
+              "kind": "character",
+              "exhausted": false,
+              "faceDown": false,
+              "cost": 2,
+              "effectiveCost": 2,
+              "text": "进场触发：选择本地区的目标角色，移除该角色上的所有创伤标志。",
+              "icons": {
+                "investigation": 0,
+                "combat": 0,
+                "influence": 0
+              },
+              "defense": 1,
+              "damage": 0,
+              "shield": 0,
+              "wounds": 0,
+              "color": "中立",
+              "magic": ""
+            },
+            {
+              "instanceId": "i224",
+              "cardId": "JC125",
+              "name": "无知路人",
+              "owner": "p2",
+              "controller": "p2",
+              "kind": "character",
+              "exhausted": false,
+              "faceDown": false,
+              "cost": 0,
+              "effectiveCost": 0,
+              "text": "持续：名称为无知路人的牌，构筑时在牌组中的数量没有限制。",
+              "icons": {
+                "investigation": 0,
+                "combat": 0,
+                "influence": 0
+              },
+              "defense": 1,
+              "damage": 0,
+              "shield": 0,
+              "wounds": 0,
+              "color": "中立",
+              "magic": ""
+            },
+            {
+              "instanceId": "i225",
+              "cardId": "JC125",
+              "name": "无知路人",
+              "owner": "p2",
+              "controller": "p2",
+              "kind": "character",
+              "exhausted": false,
+              "faceDown": false,
+              "cost": 0,
+              "effectiveCost": 0,
+              "text": "持续：名称为无知路人的牌，构筑时在牌组中的数量没有限制。",
+              "icons": {
+                "investigation": 0,
+                "combat": 0,
+                "influence": 0
+              },
+              "defense": 1,
+              "damage": 0,
+              "shield": 0,
+              "wounds": 0,
+              "color": "中立",
+              "magic": ""
+            },
+            {
+              "instanceId": "i226",
+              "cardId": "JC125",
+              "name": "无知路人",
+              "owner": "p2",
+              "controller": "p2",
+              "kind": "character",
+              "exhausted": false,
+              "faceDown": false,
+              "cost": 0,
+              "effectiveCost": 0,
+              "text": "持续：名称为无知路人的牌，构筑时在牌组中的数量没有限制。",
+              "icons": {
+                "investigation": 0,
+                "combat": 0,
+                "influence": 0
+              },
+              "defense": 1,
+              "damage": 0,
+              "shield": 0,
+              "wounds": 0,
+              "color": "中立",
+              "magic": ""
+            },
+            {
+              "instanceId": "i227",
+              "cardId": "LC19",
+              "name": "外科医生",
+              "owner": "p2",
+              "controller": "p2",
+              "kind": "character",
+              "exhausted": false,
+              "faceDown": false,
+              "cost": 1,
+              "effectiveCost": 1,
+              "text": "公开\n行动2，横置本卡：选择本地区的目标角色，移除该角色上的所有创伤标志。",
+              "icons": {
+                "investigation": 0,
+                "combat": 0,
+                "influence": 1
+              },
+              "defense": 1,
+              "damage": 0,
+              "shield": 0,
+              "wounds": 0,
+              "color": "中立",
+              "magic": ""
+            },
+            {
+              "instanceId": "i228",
+              "cardId": "JC125",
+              "name": "无知路人",
+              "owner": "p2",
+              "controller": "p2",
+              "kind": "character",
+              "exhausted": false,
+              "faceDown": false,
+              "cost": 0,
+              "effectiveCost": 0,
+              "text": "持续：名称为无知路人的牌，构筑时在牌组中的数量没有限制。",
+              "icons": {
+                "investigation": 0,
+                "combat": 0,
+                "influence": 0
+              },
+              "defense": 1,
+              "damage": 0,
+              "shield": 0,
+              "wounds": 0,
+              "color": "中立",
+              "magic": ""
+            }
+          ],
+          "assets": [],
+          "graveyard": [],
+          "scoreCards": [],
+          "stack": [],
+          "pendingChoice": null,
+          "legalActions": [
+            {
+              "kind": "pass",
+              "id": "{\"kind\":\"pass\"}",
+              "label": "让过"
+            }
+          ],
+          "log": [
+            {
+              "version": 1,
+              "text": "P1 加入座位 2"
+            },
+            {
+              "version": 2,
+              "text": "P2 加入座位 3"
+            },
+            {
+              "version": 3,
+              "text": "P3 加入座位 4"
+            },
+            {
+              "version": 8,
+              "text": "开始 四人协作；团队 2 持先手"
+            },
+            {
+              "version": 9,
+              "text": "P0 完成一次再调度（0张）"
+            },
+            {
+              "version": 10,
+              "text": "P1 完成一次再调度（0张）"
+            },
+            {
+              "version": 11,
+              "text": "P2 完成一次再调度（0张）"
+            },
+            {
+              "version": 12,
+              "text": "P3 完成一次再调度（0张）"
+            }
+          ],
+          "versions": {
+            "rules": "hegemony-pdf-v1",
+            "cardPool": "limited-v2.25-purple-region-society-candidate",
+            "engine": "rust-v0.2.28-purple-region-society-candidate"
+          },
+          "waitingChoice": null,
+          "yourDeck": {
+            "id": "responders",
+            "name": "牺牲与响应",
+            "description": "自组受限卡池预组：牺牲费用、快速响应与墓地回收；非官方预组。",
+            "societyId": null,
+            "cards": [
+              {
+                "cardId": "JC042",
+                "count": 3
+              },
+              {
+                "cardId": "JC049",
+                "count": 2
+              },
+              {
+                "cardId": "JC091",
+                "count": 2
+              },
+              {
+                "cardId": "JC118",
+                "count": 3
+              },
+              {
+                "cardId": "JC125",
+                "count": 17
+              },
+              {
+                "cardId": "JZ54",
+                "count": 2
+              },
+              {
+                "cardId": "LC19",
+                "count": 3
+              },
+              {
+                "cardId": "LC20",
+                "count": 3
+              },
+              {
+                "cardId": "LC21",
+                "count": 3
+              },
+              {
+                "cardId": "LC22",
+                "count": 3
+              },
+              {
+                "cardId": "LC23",
+                "count": 3
+              },
+              {
+                "cardId": "LC24",
+                "count": 3
+              },
+              {
+                "cardId": "XQ49",
+                "count": 3
+              }
+            ],
+            "rulesVersion": "hegemony-pdf-v1",
+            "cardPoolVersion": "limited-v2.25-purple-region-society-candidate",
+            "engineVersion": "rust-v0.2.28-purple-region-society-candidate",
+            "updatedAt": ""
+          },
+          "worldDeckCount": 5,
+          "serverNowMs": 1000,
+          "responseWindow": null
+        },
+        {
+          "roomId": "isolated-private28",
+          "inviteCode": "LOCAL-OFFLINE-ONLY",
+          "version": 12,
+          "mode": "teams",
+          "status": "playing",
+          "you": "p3",
+          "players": [
+            {
+              "id": "p0",
+              "seat": 0,
+              "name": "P0",
+              "team": 0,
+              "deckId": "responders",
+              "deckName": "牺牲与响应",
+              "ready": true,
+              "eliminated": false,
+              "handCount": 6,
+              "deckCount": 44,
+              "score": 0
+            },
+            {
+              "id": "p1",
+              "seat": 1,
+              "name": "P1",
+              "team": 0,
+              "deckId": "responders",
+              "deckName": "牺牲与响应",
+              "ready": true,
+              "eliminated": false,
+              "handCount": 6,
+              "deckCount": 44,
+              "score": 0
+            },
+            {
+              "id": "p2",
+              "seat": 2,
+              "name": "P2",
+              "team": 1,
+              "deckId": "responders",
+              "deckName": "牺牲与响应",
+              "ready": true,
+              "eliminated": false,
+              "handCount": 6,
+              "deckCount": 44,
+              "score": 0
+            },
+            {
+              "id": "p3",
+              "seat": 3,
+              "name": "P3",
+              "team": 1,
+              "deckId": "responders",
+              "deckName": "牺牲与响应",
+              "ready": true,
+              "eliminated": false,
+              "handCount": 6,
+              "deckCount": 44,
+              "score": 0
+            }
+          ],
+          "firstTeam": 1,
+          "activeTeam": 0,
+          "priorityTeam": 1,
+          "turn": 1,
+          "phase": "start",
+          "step": "prepare",
+          "winScore": 10,
+          "regions": [
+            {
+              "id": "i210",
+              "index": 0,
+              "cardId": "DQJC116",
+              "name": "香港",
+              "threshold": 3,
+              "points": 3,
+              "influence": [
+                0,
+                0
+              ],
+              "iconsByTeam": [
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                },
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                }
+              ],
+              "skipConfrontation": false,
+              "characters": []
+            },
+            {
+              "id": "i209",
+              "index": 1,
+              "cardId": "DQJC115",
+              "name": "死者之城",
+              "threshold": 3,
+              "points": 2,
+              "influence": [
+                0,
+                0
+              ],
+              "iconsByTeam": [
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                },
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                }
+              ],
+              "skipConfrontation": false,
+              "characters": []
+            },
+            {
+              "id": "i208",
+              "index": 2,
+              "cardId": "DQJC114",
+              "name": "上海",
+              "threshold": 4,
+              "points": 3,
+              "influence": [
+                0,
+                0
+              ],
+              "iconsByTeam": [
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                },
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                }
+              ],
+              "skipConfrontation": false,
+              "characters": []
+            },
+            {
+              "id": "i206",
+              "index": 3,
+              "cardId": "DQJC112",
+              "name": "纽约",
+              "threshold": 4,
+              "points": 4,
+              "influence": [
+                0,
+                0
+              ],
+              "iconsByTeam": [
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                },
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                }
+              ],
+              "skipConfrontation": false,
+              "characters": []
+            },
+            {
+              "id": "i201",
+              "index": 4,
+              "cardId": "DQJC107",
+              "name": "沉没的废墟",
+              "threshold": 4,
+              "points": 4,
+              "influence": [
+                0,
+                0
+              ],
+              "iconsByTeam": [
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                },
+                {
+                  "investigation": 0,
+                  "combat": 0,
+                  "influence": 0
+                }
+              ],
+              "skipConfrontation": false,
+              "characters": []
+            }
+          ],
+          "societyZones": [
+            {
+              "id": "society:p0",
+              "playerId": "p0",
+              "card": null
+            },
+            {
+              "id": "society:p1",
+              "playerId": "p1",
+              "card": null
+            },
+            {
+              "id": "society:p2",
+              "playerId": "p2",
+              "card": null
+            },
+            {
+              "id": "society:p3",
+              "playerId": "p3",
+              "card": null
+            }
+          ],
+          "attachments": [],
+          "hand": [
+            {
+              "instanceId": "i229",
+              "cardId": "JC049",
+              "name": "深渊细语",
+              "owner": "p3",
+              "controller": "p3",
+              "kind": "spell",
+              "exhausted": false,
+              "faceDown": false,
+              "cost": 2,
+              "effectiveCost": 2,
+              "text": "额外费用：牺牲一个角色。\n快速行动：将你牌库底的两张牌置于手中。",
+              "icons": {
+                "investigation": 0,
+                "combat": 0,
+                "influence": 0
+              },
+              "damage": 0,
+              "shield": 0,
+              "wounds": 0,
+              "color": "红",
+              "magic": "心灵"
+            },
+            {
+              "instanceId": "i230",
+              "cardId": "LC21",
+              "name": "称职的保镖",
+              "owner": "p3",
+              "controller": "p3",
+              "kind": "character",
+              "exhausted": false,
+              "faceDown": false,
+              "cost": 1,
+              "effectiveCost": 1,
+              "text": "公开 护卫1",
+              "icons": {
+                "investigation": 0,
+                "combat": 0,
+                "influence": 0
+              },
+              "defense": 1,
+              "damage": 0,
+              "shield": 0,
+              "wounds": 0,
+              "color": "中立",
+              "magic": ""
+            },
+            {
+              "instanceId": "i231",
+              "cardId": "JC091",
+              "name": "谋杀",
+              "owner": "p3",
+              "controller": "p3",
+              "kind": "spell",
+              "exhausted": false,
+              "faceDown": false,
+              "cost": 3,
+              "effectiveCost": 3,
+              "text": "只能在行动阶段打出。\n快速行动：消灭目标人类角色。",
+              "icons": {
+                "investigation": 0,
+                "combat": 0,
+                "influence": 0
+              },
+              "damage": 0,
+              "shield": 0,
+              "wounds": 0,
+              "color": "黑",
+              "magic": ""
+            },
+            {
+              "instanceId": "i232",
+              "cardId": "LC23",
+              "name": "安格鲁，“荆棘”",
+              "owner": "p3",
+              "controller": "p3",
+              "kind": "character",
+              "exhausted": false,
+              "faceDown": false,
+              "cost": 3,
+              "effectiveCost": 3,
+              "text": "现身触发：横置安格鲁，“荆棘”和本地区的目标角色。",
+              "icons": {
+                "investigation": 0,
+                "combat": 1,
+                "influence": 1
+              },
+              "defense": 1,
+              "damage": 0,
+              "shield": 0,
+              "wounds": 0,
+              "color": "中立",
+              "magic": "鲜血"
+            },
+            {
+              "instanceId": "i233",
+              "cardId": "JC049",
+              "name": "深渊细语",
+              "owner": "p3",
+              "controller": "p3",
+              "kind": "spell",
+              "exhausted": false,
+              "faceDown": false,
+              "cost": 2,
+              "effectiveCost": 2,
+              "text": "额外费用：牺牲一个角色。\n快速行动：将你牌库底的两张牌置于手中。",
+              "icons": {
+                "investigation": 0,
+                "combat": 0,
+                "influence": 0
+              },
+              "damage": 0,
+              "shield": 0,
+              "wounds": 0,
+              "color": "红",
+              "magic": "心灵"
+            },
+            {
+              "instanceId": "i234",
+              "cardId": "JC125",
+              "name": "无知路人",
+              "owner": "p3",
+              "controller": "p3",
+              "kind": "character",
+              "exhausted": false,
+              "faceDown": false,
+              "cost": 0,
+              "effectiveCost": 0,
+              "text": "持续：名称为无知路人的牌，构筑时在牌组中的数量没有限制。",
+              "icons": {
+                "investigation": 0,
+                "combat": 0,
+                "influence": 0
+              },
+              "defense": 1,
+              "damage": 0,
+              "shield": 0,
+              "wounds": 0,
+              "color": "中立",
+              "magic": ""
+            }
+          ],
+          "assets": [],
+          "graveyard": [],
+          "scoreCards": [],
+          "stack": [],
+          "pendingChoice": null,
+          "legalActions": [
+            {
+              "kind": "pass",
+              "id": "{\"kind\":\"pass\"}",
+              "label": "让过"
+            }
+          ],
+          "log": [
+            {
+              "version": 1,
+              "text": "P1 加入座位 2"
+            },
+            {
+              "version": 2,
+              "text": "P2 加入座位 3"
+            },
+            {
+              "version": 3,
+              "text": "P3 加入座位 4"
+            },
+            {
+              "version": 8,
+              "text": "开始 四人协作；团队 2 持先手"
+            },
+            {
+              "version": 9,
+              "text": "P0 完成一次再调度（0张）"
+            },
+            {
+              "version": 10,
+              "text": "P1 完成一次再调度（0张）"
+            },
+            {
+              "version": 11,
+              "text": "P2 完成一次再调度（0张）"
+            },
+            {
+              "version": 12,
+              "text": "P3 完成一次再调度（0张）"
+            }
+          ],
+          "versions": {
+            "rules": "hegemony-pdf-v1",
+            "cardPool": "limited-v2.25-purple-region-society-candidate",
+            "engine": "rust-v0.2.28-purple-region-society-candidate"
+          },
+          "waitingChoice": null,
+          "yourDeck": {
+            "id": "responders",
+            "name": "牺牲与响应",
+            "description": "自组受限卡池预组：牺牲费用、快速响应与墓地回收；非官方预组。",
+            "societyId": null,
+            "cards": [
+              {
+                "cardId": "JC042",
+                "count": 3
+              },
+              {
+                "cardId": "JC049",
+                "count": 2
+              },
+              {
+                "cardId": "JC091",
+                "count": 2
+              },
+              {
+                "cardId": "JC118",
+                "count": 3
+              },
+              {
+                "cardId": "JC125",
+                "count": 17
+              },
+              {
+                "cardId": "JZ54",
+                "count": 2
+              },
+              {
+                "cardId": "LC19",
+                "count": 3
+              },
+              {
+                "cardId": "LC20",
+                "count": 3
+              },
+              {
+                "cardId": "LC21",
+                "count": 3
+              },
+              {
+                "cardId": "LC22",
+                "count": 3
+              },
+              {
+                "cardId": "LC23",
+                "count": 3
+              },
+              {
+                "cardId": "LC24",
+                "count": 3
+              },
+              {
+                "cardId": "XQ49",
+                "count": 3
+              }
+            ],
+            "rulesVersion": "hegemony-pdf-v1",
+            "cardPoolVersion": "limited-v2.25-purple-region-society-candidate",
+            "engineVersion": "rust-v0.2.28-purple-region-society-candidate",
+            "updatedAt": ""
+          },
+          "worldDeckCount": 5,
+          "serverNowMs": 1000,
+          "responseWindow": null
+        }
+      ],
+      "fourSeats": true,
+      "freshWasmMemoryViewsEqual": true,
+      "sameOpaqueStateNextActionEqual": true,
+      "crossVersionErrors": {
+        "view": "旧局schema/固定版本与当前rust-v0.2.27-white-wound-society-candidate不兼容；请使用对应旧核，不能静默迁移",
+        "applyRoom": "旧局schema/固定版本与当前rust-v0.2.27-white-wound-society-candidate不兼容；请使用对应旧核，不能静默迁移"
+      }
+    }
+  ]
+}

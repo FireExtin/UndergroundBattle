@@ -1,0 +1,74 @@
+{
+  "rebuiltAfterFinalTestOnlyChanges": true,
+  "allFiveGeneratedFilesByteIdenticalTo401ComparedPackage": true,
+  "fiveFiles": {
+    "package.json": {
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    "hegemony_wasm.d.ts": {
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758"
+    },
+    "hegemony_wasm_bg.wasm": {
+      "bytes": 2055484,
+      "sha256": "a8a928e12e239161c082671a6008b64775c7b8e9e0181e7d765db23af8bb32e8"
+    },
+    "hegemony_wasm.js": {
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    "hegemony_wasm_bg.wasm.d.ts": {
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+    }
+  },
+  "finalRuntimeSourcesSha256": {
+    "rust-game/src/play_sources.rs": "f1a80f2f4d34e2b4c61336b176e180dbca7551fbd82e752d3c80757418638dfd",
+    "rust-game/src/engine.rs": "a345b99d6a3f15f303c424be9e33df9c1b20b333bb44793f42b17e3be5f45c79",
+    "rust-game/src/room.rs": "dc83ff7706936efc9212e3f7a8be79965912d92769092c20df8df11d2d08d56d",
+    "rust-game/src/model.rs": "971215a169d958aec9ae2e9488e2402b6dc73ed622f408c0e580c4ebb8379811",
+    "rust-game/src/dream_reveal_tests.rs": "69242bf2b9cd8a1395598ea9fabfdc8b311e4009a60f11a84618163e40e7e80d",
+    "rust-game/src/main.rs": "b19047fc01dd00d864860551b41b2b8be883c04d77b158691b3bdc44252acf2e",
+    "rust-game/src/jc008_tests.rs": "899cd686322f6d69a126f6a6c76e08510497e34f9011126538684de2f02fabf9",
+    "rust-game/src/catalog.rs": "6a605a40ac4b2bdfa47e045519993b1ec7f2dcc50bf91dd43d16791c268b9dc0",
+    "rust-game/src/hand_interactions_tests.rs": "05097770f8652e7f5f26af0e5f868da78104a69bb3795c6796a3912f510b08d6",
+    "rust-game/src/control_tests.rs": "a6eba3e4629b594811346d7fb87da9411dd9c0254cce15ac3edf49ca72961e74",
+    "rust-game/src/msjc01_tests.rs": "b5a1816cbd7886a14deb704e85334f06223ee274178ddc4a4ec2bba067496fa7",
+    "rust-game/src/region_aura_tests.rs": "66009d42c940e5df255ada1b70e873045706387f7a06b03e14ca0a0538e60e92",
+    "rust-game/src/resolution.rs": "0960227951f70d7dd0928b8bdf85cfaaa3a8445580518440e71e256b1a222181",
+    "rust-game/src/lib.rs": "0c438269dba3e659eb003147a48962f8cad49a38a9a1a807552b39c86ca8ea5b",
+    "rust-game/src/msjc08_tests.rs": "7b6d9a43c5225c7d06a04485807a63b2b0e2b11c9c5ac947d2f459a2739a2e4a",
+    "rust-game/src/rules.rs": "97dd2d0261eb48506bdeee5ba4357d3a3d4c9d2f5b6e02d5662ea5072775ae2a",
+    "rust-game/src/white_wound_tests.rs": "98f03ba4726a252c55be4c144c892a0cbcc9e36e88533666f2b3bd85f05073fb",
+    "rust-game/src/purple_tools_tests.rs": "ed3842f8fb80d4e3f17f15534b4f727aa6bef3c949c34c8f654ba5e25b2e8293",
+    "rust-game/src/equipment_abilities_tests.rs": "39b3e8c94c13a4e948b1abc54222f59f30052e29a3fb3f5062b89e17e38d0a61",
+    "rust-game/src/hand_deck_tests.rs": "3e01b132c35b07869ad259b63776bc91414eabfa38a30450dec2d48ebffa8058",
+    "rust-game/src/control.rs": "889b1ceceadb219367a3fb15fd8eed542a83e5b575fae7c971b98ad95cada566",
+    "rust-game/src/protection_tests.rs": "b547339a7a090ae127c228fc656b8bf5c972e0c48d7c8cb85d6caf9c178e39a5",
+    "rust-game/src/wound_defence_tests.rs": "db8ed724bf2e76b821f1268e399dd8008ec611825fee7d5ffe39aa0040107fd6",
+    "rust-game/src/jc004_tests.rs": "17bf8c8c8757fd2c0dea1e3d1ddcf5d87038c2b76fe8637e2fc51a117c386564",
+    "rust-game/src/repress_assets_tests.rs": "e668b3f058516e4d9eecb87109485fa3392c5f33c2060ebd0970df985386baf5",
+    "rust-game/src/renown_tests.rs": "7c9426c41cde2ff56e620274c07c54207bf03422e2e13ade289347a31330e0a9",
+    "rust-game/src/renown.rs": "b59fcac09105915926d035dbf9691722e561b6ea274d04092b4adf55aa7073c2",
+    "rust-game/src/msjc06_tests.rs": "593ec7c17f1141167f936a1d0dd49f99c1617bd763553b9f57ee029274881c23",
+    "rust-game/src/society.rs": "f8f03de0ee9edf2c8716dcc42bdc7c5b423d46afae5fe5b847f7141fd3aef8db",
+    "rust-game/src/defence_equipment_tests.rs": "369326bddc2b55c419767f96015623d8bbd228131cb388073a7f1eca19bb1abc",
+    "rust-game/src/jc005_tests.rs": "1a5029df327b47b143fb35e133e08b648d05aa76fe4c2fc99d1bdf6b802a7db5",
+    "rust-game/src/attributes.rs": "a9fef24be1cbf1e1f94ae5d554141cee0def887f3e202da64120df3ef3ddbd7c",
+    "rust-game/src/service.rs": "c086433fe3e9b408332c1426c5637b4c1f6c649b2c40b382f4e5f1a102a5b512",
+    "rust-game/src/world.rs": "1474103db23b20ccafb4cd7242a06e70f24931d82d7a51d7528291fe930418b2",
+    "rust-game/src/attachment.rs": "af74a311e5ad07df5c46565b11bec740b694d89ab43cadd0c3f84b75d7c471e4",
+    "rust-game/src/society_msjc09_tests.rs": "b771d7db0347cffdf214af1f468b76ddc6a34904dfac80b94bc2e836c774ae8a",
+    "rust-game/src/yellow_search_batch_tests.rs": "eacb1cb6b1dfe13826ff63a48e9a923543acff3f26f64ce2668315ab205ff7f6",
+    "rust-game/src/msjc07_tests.rs": "09c6cfb4f5bfe85ebdacd2e1dd085cc35230663dedc1a2b04b1791f577dedde9",
+    "rust-game/src/deck.rs": "20b2a14c0de1ff8ca921fba06aa322daf625f87716963c4ed434c3e8f18494bd",
+    "rust-game/src/bin/hegemony-audit.rs": "6e1d4f5cb0b803f9aa4bc233dfb2445cbddb2801522846963aa2caf2b2090e2e",
+    "rust-game/data/faction-coverage.json": "4b1368ec32910b9802d20d451f141e16ea36209795c156ef454f77a0b07b55ff",
+    "rust-game/data/cards.json": "b88e58390dd62fca3bb28c1363a68f566c5ad6aa040d06c45f0cf49289d5454d",
+    "rust-game/data/card-research-index.json": "8ebc08d35c4891051cd47dc611eb80462abaeb6325a4f5fc3b06f8ce364384cf",
+    "rust-game/data/source-verification.json": "c83a9ee0cbfe741148d88e7c9bc49fc1cf96eaaa21bf0b192094ac361d224bd3",
+    "rust-game-wasm/src/lib.rs": "e813ff003dfad6063d117333412e3dd15e70dd19967aa2b6279a30fe86deb4f3"
+  },
+  "default401ComparisonMustNotRepeatForIdenticalPackage": true
+}

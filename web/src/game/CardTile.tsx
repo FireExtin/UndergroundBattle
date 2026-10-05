@@ -4,9 +4,11 @@ import { ArchiveArtwork, useArchivePresentation } from './ArchivePresentation';
 
 /** Match the server's concealed projection: only its current controller sees print. */
 export function visibleCard(card: Card, viewerId: string): Card {
-  if (!card.faceDown || card.controller === viewerId) return card;
+  if (!card.faceDown || card.controller === viewerId) {
+    return card.faceDown && card.convertedTemporaryIcons ? { ...card, convertedTemporaryIcons: undefined } : card;
+  }
   return { ...card, cardId: undefined, name: '暗藏者', kind: 'hidden', cost: undefined, effectiveCost: undefined,
-    text: undefined, icons: undefined, defense: undefined, damage: undefined, shield: undefined,
+    text: undefined, icons: undefined, convertedTemporaryIcons: undefined, defense: undefined, damage: undefined, shield: undefined,
     wounds: undefined, color: undefined, magic: undefined, currentSubtypes: undefined, currentRenown: undefined, currentBarrier: undefined, currentDamagePrevention: undefined, currentSpiritProtection: undefined, currentPrintedDefense: undefined };
 }
 
@@ -62,7 +64,8 @@ export function CardContent({ card: source, definition: sourceDefinition, compac
         <span className="hg-card-stat-row"><small>当前有效</small><IconStrip icons={card.icons} label="当前有效图标" /></span>
         {printedIcons && <span className="hg-card-stat-row"><small>印刷图标</small><IconStrip icons={printedIcons} label="印刷图标" /></span>}
       </> : <IconStrip icons={concealedCompact ? hiddenIcons : compact ? card.icons || permanent : permanent} />)}
-      {!compact && !society && hasTemporary && <span className="hg-temporary-label">先手 <IconStrip icons={temporary} temporary /></span>}
+      {!compact && !society && hasTemporary && <span className="hg-temporary-label">{card.convertedTemporaryIcons ? '印刷临时' : '先手'} <IconStrip icons={temporary} temporary label={card.convertedTemporaryIcons ? '印刷临时图标' : undefined} /></span>}
+      {!compact && !card.faceDown && card.convertedTemporaryIcons && <span className="hg-card-stat-row"><small>具现化：临时转永久</small><IconStrip icons={card.convertedTemporaryIcons} label="本地区临时转永久图标" /></span>}
       {!compact && <span className="hg-card-text">{asset ? '未横置时可提供 1 费用，并提供所示派系与魔法忠诚。' : card.text || definition?.text || '此牌没有额外能力。'}</span>}
       <span className="hg-card-footer">
         {!card.faceDown && card.region !== undefined && typeof card.currentSpiritProtection === 'boolean' && <span title="灵体按本地区双方领域数量比较防止伤害">灵体：当前{card.currentSpiritProtection ? '防止伤害' : '不防止伤害'}</span>}

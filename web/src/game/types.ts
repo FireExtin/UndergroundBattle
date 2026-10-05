@@ -18,6 +18,7 @@ export type SocietyDefinition = CardDefinition & {
   unresolvedAbilities: Record<string, string>;
 };
 export type Card = {
+  convertedTemporaryIcons?: Icons;
   currentSpiritProtection?: boolean;
   currentDamagePrevention?: boolean;
   currentPrintedDefense?: number;

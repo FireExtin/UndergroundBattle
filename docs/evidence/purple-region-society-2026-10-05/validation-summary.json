@@ -1,0 +1,802 @@
+{
+  "baseline": "3805a6166d380eea4947b8c04b1b859cf6b3ec35",
+  "branch": "codex/hegemony-purple-region-society-20261005",
+  "engineVersion": "rust-v0.2.28-purple-region-society-candidate",
+  "cardPoolVersion": "limited-v2.25-purple-region-society-candidate",
+  "ordinaryCards": 89,
+  "playerCards": 79,
+  "regionCards": 10,
+  "societies": 5,
+  "presets": 5,
+  "scans": 94,
+  "onlyNewOrdinaryCard": "XQ43",
+  "onlyNewSociety": "MSJC08",
+  "confirmedSubtitle": "幻梦呓语",
+  "nativeLibrary": {
+    "total": 378,
+    "firstFullPass": 376,
+    "firstFullMetadataFailures": 2,
+    "metadataOnlyCorrectedRerunsPassed": 2,
+    "fullPrefixNotRepeated": true,
+    "failureNames": [
+      "engine::tests::catalog_is_restricted_real_complete_and_decks_are_legal",
+      "jc008_tests::jc008_printed_admission_and_finite_modifier_program"
+    ]
+  },
+  "nativeIntegration": {
+    "actualNativeFeatureTestsPassed": 32,
+    "targets": {
+      "attachment_service": 3,
+      "deck_construction": 5,
+      "jc059_friendly": 2,
+      "room_pacing": 6,
+      "service": 10,
+      "session_service": 6
+    },
+    "earlierNoDefaultFeaturesCommandPassedOnly": 12,
+    "earlierNativeTargetsWereSkipped": true
+  },
+  "frontend": {
+    "singleWorkerFullFiles": 52,
+    "singleWorkerFullTestsPassed": 435,
+    "testOnlyTsToJsxAffectedRerunPassed": 5,
+    "productionBuildPassed": true,
+    "newFiles": [
+      "MSJC08Scan.test.jsx",
+      "RegionAura.test.jsx"
+    ],
+    "newTargetedTests": 9,
+    "failedBuildLogsRetained": true,
+    "noNewDependency": true
+  },
+  "actualWasm": {
+    "ok": true,
+    "cases": 401,
+    "wasmBytes": 2055484,
+    "wasmSha256": "a8a928e12e239161c082671a6008b64775c7b8e9e0181e7d765db23af8bb32e8",
+    "transitions": 21294,
+    "projections": 84563,
+    "quotes": 1,
+    "rejectedCommands": 314,
+    "rejectedDeckCreations": 28,
+    "choiceKinds": [
+      "damage",
+      "discard",
+      "investigation",
+      "mulligan",
+      "optional-shuffle",
+      "region_return",
+      "revealed-hand-discard",
+      "search",
+      "target",
+      "trigger"
+    ],
+    "slowestFixtureStepMs": 68.08,
+    "opaqueState": true,
+    "maximumU64SeedExact": true,
+    "nativeWasmStateAndViewsMatch": true
+  },
+  "finalRebuildAllFiveFilesByteIdentical": true,
+  "newCompleteCases": {
+    "count": 39,
+    "societyCases": 17,
+    "regionAttachmentCases": 22,
+    "transitions": 2000,
+    "projections": 7982,
+    "bytes": 190265805,
+    "caseIndex": [
+      {
+        "bytes": 11019,
+        "fixtureFile": "default-native.json.cases/362.json",
+        "name": "MSJC08-construction-25-purple",
+        "projections": 1,
+        "seed": "18446744073709551615",
+        "sha256": "b657990a0cafb3d9995181828be797f4857733ec6c79d2651e9ef0a60c575cfd",
+        "transitions": 1
+      },
+      {
+        "bytes": 11019,
+        "fixtureFile": "default-native.json.cases/363.json",
+        "name": "MSJC08-construction-27-purple",
+        "projections": 1,
+        "seed": "18446744073709551615",
+        "sha256": "da0a7050607a4af24743a3c38f053cc184c7bf3683188f592bb0468755a77362",
+        "transitions": 1
+      },
+      {
+        "bytes": 62470906,
+        "fixtureFile": "default-native.json.cases/364.json",
+        "name": "printed-MSJC08-natural-four-seat-build-pay-draw-purple-search-turn-restore",
+        "projections": 2598,
+        "seed": "18446744073709551615",
+        "sha256": "ee052729e17807c6f71ef7d3a095e5fa156d2aceff34ec08bd3adb4ca5a8f79d",
+        "transitions": 651
+      },
+      {
+        "bytes": 131508,
+        "fixtureFile": "default-native.json.cases/365.json",
+        "name": "MSJC08-reject-cost",
+        "projections": 8,
+        "seed": "9007199254740993",
+        "sha256": "784f185336c87858327b622e386034f1e2827c6f1ab72a88574f591b8ff35a61",
+        "transitions": 2
+      },
+      {
+        "bytes": 140245,
+        "fixtureFile": "default-native.json.cases/366.json",
+        "name": "MSJC08-reject-exhausted",
+        "projections": 8,
+        "seed": "9007199254740993",
+        "sha256": "850733790f6e542df90a569ccf186463ae7d18a62db1968435e4bf1bb0a21dac",
+        "transitions": 2
+      },
+      {
+        "bytes": 142149,
+        "fixtureFile": "default-native.json.cases/367.json",
+        "name": "MSJC08-reject-foreign-source",
+        "projections": 8,
+        "seed": "9007199254740993",
+        "sha256": "bdbf5d4c54b436784f321d4d00ed0c6bfe9e091f6ed44b326f851e06b2f21298",
+        "transitions": 2
+      },
+      {
+        "bytes": 142132,
+        "fixtureFile": "default-native.json.cases/368.json",
+        "name": "MSJC08-reject-yellow-key",
+        "projections": 8,
+        "seed": "9007199254740993",
+        "sha256": "ec1492db0a1ec22a03982b5d84c77cb689a657697fbef2b814f52f1d6240ae6c",
+        "transitions": 2
+      },
+      {
+        "bytes": 398544,
+        "fixtureFile": "default-native.json.cases/369.json",
+        "name": "MSJC08-draw-first",
+        "projections": 24,
+        "seed": "9007199254740993",
+        "sha256": "ba9e3455d6ae62788431c1af798b59a845340a7ef372ca0084ce28cb56d7f4a2",
+        "transitions": 6
+      },
+      {
+        "bytes": 397087,
+        "fixtureFile": "default-native.json.cases/370.json",
+        "name": "MSJC08-draw-rear",
+        "projections": 24,
+        "seed": "9007199254740993",
+        "sha256": "4930d5da079ca52b15a6906ca1f9552303d1017a49e1cd19ed3bed5e20ab734d",
+        "transitions": 6
+      },
+      {
+        "bytes": 400603,
+        "fixtureFile": "default-native.json.cases/371.json",
+        "name": "MSJC08-empty-search",
+        "projections": 24,
+        "seed": "9007199254740993",
+        "sha256": "032b1b84fd42d59d5ce3f37766a6f5a827902a29cb6e6cc671c7575253707c3f",
+        "transitions": 6
+      },
+      {
+        "bytes": 387894,
+        "fixtureFile": "default-native.json.cases/372.json",
+        "name": "MSJC08-empty-deck",
+        "projections": 24,
+        "seed": "9007199254740993",
+        "sha256": "15aafa997d8e57b41e9329102379adeb3a5af768bc91a77a6267bb8039ae0c0a",
+        "transitions": 6
+      },
+      {
+        "bytes": 671746,
+        "fixtureFile": "default-native.json.cases/373.json",
+        "name": "MSJC08-one-hit",
+        "projections": 40,
+        "seed": "9007199254740993",
+        "sha256": "ff819fce0adb490adc926ba86602ffad72a4c07ab480569fd7f873853a157edb",
+        "transitions": 10
+      },
+      {
+        "bytes": 678557,
+        "fixtureFile": "default-native.json.cases/374.json",
+        "name": "MSJC08-two-hits-seat3",
+        "projections": 40,
+        "seed": "9007199254740993",
+        "sha256": "32a5cc5e06736f3410359d0929ef859de14d8a643fe8b02a62368669d3bce071",
+        "transitions": 10
+      },
+      {
+        "bytes": 339065,
+        "fixtureFile": "default-native.json.cases/375.json",
+        "name": "MSJC08-cancelled-paid-frame",
+        "projections": 20,
+        "seed": "9007199254740993",
+        "sha256": "4ef6956bd0614ac9f68ecad626399c859720e1857ffcb76539b92423ac0407f6",
+        "transitions": 5
+      },
+      {
+        "bytes": 144742,
+        "fixtureFile": "default-native.json.cases/376.json",
+        "name": "MSJC08-new-instance-used",
+        "projections": 8,
+        "seed": "9007199254740993",
+        "sha256": "65bbd38877a0ddb83c33b94582567108d517edcccda5bcb1187858a940b70a39",
+        "transitions": 2
+      },
+      {
+        "bytes": 174491,
+        "fixtureFile": "default-native.json.cases/377.json",
+        "name": "MSJC08-finished-restart",
+        "projections": 8,
+        "seed": "9007199254740993",
+        "sha256": "bdbb68d793d53608b2e3446cb803d98188a6ca7156ea5705e6f3caee6aa884f1",
+        "transitions": 2
+      },
+      {
+        "bytes": 9739368,
+        "fixtureFile": "default-native.json.cases/378.json",
+        "name": "MSJC08-turn-reset-used",
+        "projections": 620,
+        "seed": "9007199254740993",
+        "sha256": "66b077a0507e04bf1ea485401bc3deb1cfbec757868770cabdb02db569c9bbf2",
+        "transitions": 155
+      },
+      {
+        "bytes": 403784,
+        "fixtureFile": "default-native.json.cases/379.json",
+        "name": "XQ43-first",
+        "projections": 24,
+        "seed": "9007199254740993",
+        "sha256": "3567dd1163bd29aee69f3f216a78cc957c3bb0006909a0dc356bfba39d9aeeb5",
+        "transitions": 6
+      },
+      {
+        "bytes": 403746,
+        "fixtureFile": "default-native.json.cases/380.json",
+        "name": "XQ43-rear",
+        "projections": 24,
+        "seed": "9007199254740993",
+        "sha256": "098d85bd96ce6d350b00dcda00d2918f38e9ccdaa1a3b663d4ee71472f8fbf43",
+        "transitions": 6
+      },
+      {
+        "bytes": 398151,
+        "fixtureFile": "default-native.json.cases/381.json",
+        "name": "XQ43-hidden-initial",
+        "projections": 24,
+        "seed": "9007199254740993",
+        "sha256": "6bb97d09ed236754c0abb0e07c3843ee56e64dc1366307f58a76096668075253",
+        "transitions": 6
+      },
+      {
+        "bytes": 403899,
+        "fixtureFile": "default-native.json.cases/382.json",
+        "name": "XQ43-exhausted",
+        "projections": 24,
+        "seed": "9007199254740993",
+        "sha256": "beae8296299715bb9c7cebd8bd3841bc728554a36ef0bac3def0887b2d14c7ec",
+        "transitions": 6
+      },
+      {
+        "bytes": 752639,
+        "fixtureFile": "default-native.json.cases/383.json",
+        "name": "XQ43-granted-temporary",
+        "projections": 44,
+        "seed": "9007199254740993",
+        "sha256": "4d50c1565653d3c78dd0779e1cce95044939bf522a9aeb82cea7313d5ad02b1f",
+        "transitions": 11
+      },
+      {
+        "bytes": 1982105,
+        "fixtureFile": "default-native.json.cases/384.json",
+        "name": "XQ43-ordinary-turn-bonus",
+        "projections": 104,
+        "seed": "9007199254740993",
+        "sha256": "ccebdba0b72b17c2e55bd802f0001377ead766707342c1496f87745eba30def2",
+        "transitions": 26
+      },
+      {
+        "bytes": 103364,
+        "fixtureFile": "default-native.json.cases/385.json",
+        "name": "XQ43-reject-cost",
+        "projections": 8,
+        "seed": "9007199254740993",
+        "sha256": "b9833fdad9430112335c36ce02f71b1f0744fc01c2eb1de4cff25644d0bc7c5c",
+        "transitions": 2
+      },
+      {
+        "bytes": 107216,
+        "fixtureFile": "default-native.json.cases/386.json",
+        "name": "XQ43-reject-loyalty",
+        "projections": 8,
+        "seed": "9007199254740993",
+        "sha256": "3b33d0770aead5f7c8f4a6596c8a5b1a3a5c8126e6217e87854273099508f758",
+        "transitions": 2
+      },
+      {
+        "bytes": 146634,
+        "fixtureFile": "default-native.json.cases/387.json",
+        "name": "XQ43-reject-region",
+        "projections": 8,
+        "seed": "9007199254740993",
+        "sha256": "873d863cfaf43e07eca9f8acd6050a0fa6f9faac80fd0745e9a4469403573ef9",
+        "transitions": 2
+      },
+      {
+        "bytes": 146658,
+        "fixtureFile": "default-native.json.cases/388.json",
+        "name": "XQ43-reject-host-zone",
+        "projections": 8,
+        "seed": "9007199254740993",
+        "sha256": "7d97ac41368f1afb74f1ecc08aea99c7b03120ce908d9f085122b126c6cef53a",
+        "transitions": 2
+      },
+      {
+        "bytes": 342480,
+        "fixtureFile": "default-native.json.cases/389.json",
+        "name": "XQ43-paid-region-replaced",
+        "projections": 20,
+        "seed": "9007199254740993",
+        "sha256": "04182f06c9d81316deb797b2165b233adf7c86c775748aaa57d4fd506876a703",
+        "transitions": 5
+      },
+      {
+        "bytes": 143943,
+        "fixtureFile": "default-native.json.cases/390.json",
+        "name": "XQ43-dangling-exact-host",
+        "projections": 8,
+        "seed": "9007199254740993",
+        "sha256": "2590d2ae6cf880d66227498f6e2c42452077b9dd5e6bf9f1e812902a45454f36",
+        "transitions": 2
+      },
+      {
+        "bytes": 154903,
+        "fixtureFile": "default-native.json.cases/391.json",
+        "name": "XQ43-movement-primitive",
+        "projections": 8,
+        "seed": "9007199254740993",
+        "sha256": "3afdf981d847e8046ca209e5f8603388e659654e8d169373335f8927947bc183",
+        "transitions": 2
+      },
+      {
+        "bytes": 767439,
+        "fixtureFile": "default-native.json.cases/392.json",
+        "name": "XQ43-destroy-source",
+        "projections": 44,
+        "seed": "9007199254740993",
+        "sha256": "8f7c9f3439c758f5628f53e08348f2e901305b95dfd261c6ff0d33748948929e",
+        "transitions": 11
+      },
+      {
+        "bytes": 474752,
+        "fixtureFile": "default-native.json.cases/393.json",
+        "name": "XQ43-jc005-no-mind",
+        "projections": 28,
+        "seed": "9007199254740993",
+        "sha256": "82e620e624c6fd16e0ca9e68b612cefeb3d59b51eb3fdb63bf9a6651914c4ce2",
+        "transitions": 7
+      },
+      {
+        "bytes": 760509,
+        "fixtureFile": "default-native.json.cases/394.json",
+        "name": "XQ43-jc005-mind-qualified",
+        "projections": 44,
+        "seed": "9007199254740993",
+        "sha256": "6d9ae7e438030f544f15d87ce00e04a678723ff6dc54f8c73ea93212000d064e",
+        "transitions": 11
+      },
+      {
+        "bytes": 1067484,
+        "fixtureFile": "default-native.json.cases/395.json",
+        "name": "XQ43-multiple-controllers",
+        "projections": 60,
+        "seed": "9007199254740993",
+        "sha256": "5f0a9a49d8004609370ae31810d559a6dc2b8afb1c844aefa717e5a4f9c121fa",
+        "transitions": 15
+      },
+      {
+        "bytes": 826017,
+        "fixtureFile": "default-native.json.cases/396.json",
+        "name": "XQ43-same-controller-unique",
+        "projections": 48,
+        "seed": "9007199254740993",
+        "sha256": "3ccd038f698a1c56e798245436d24d136b305980d417f46a907f608f282c1c1d",
+        "transitions": 12
+      },
+      {
+        "bytes": 1155922,
+        "fixtureFile": "default-native.json.cases/397.json",
+        "name": "XQ43-hidden-real-trigger",
+        "projections": 64,
+        "seed": "9007199254740993",
+        "sha256": "8f69da29484d59809b983ba7965471fa46acfaae62261ea275adf46a89f16d9d",
+        "transitions": 16
+      },
+      {
+        "bytes": 752941,
+        "fixtureFile": "default-native.json.cases/398.json",
+        "name": "XQ43-win-four-owner-return",
+        "projections": 36,
+        "seed": "9007199254740993",
+        "sha256": "42d1231821aec419cba2335097a0ca4457118de09577199320ba4619f89a6554",
+        "transitions": 9
+      },
+      {
+        "bytes": 403724,
+        "fixtureFile": "default-native.json.cases/399.json",
+        "name": "XQ43-outside-region",
+        "projections": 24,
+        "seed": "9007199254740993",
+        "sha256": "e5d99025a172ca0f9221cfe02b30506a522ba6e8a5d1aed751dedf0293a45842",
+        "transitions": 6
+      },
+      {
+        "bytes": 102186420,
+        "fixtureFile": "default-native.json.cases/400.json",
+        "name": "printed-MSJC08-XQ43-natural-four-seat-paid-region-conceal-reveal-granted-icons-restore",
+        "projections": 3858,
+        "seed": "9007199254744004",
+        "sha256": "ec32bbf1d9f52a82573fc1cea4c4cbc6ce97226665e2306288f75a75abd83839",
+        "transitions": 966
+      }
+    ],
+    "naturalRoomCommandChains": [
+      {
+        "bytes": 62470906,
+        "fixtureFile": "default-native.json.cases/364.json",
+        "name": "printed-MSJC08-natural-four-seat-build-pay-draw-purple-search-turn-restore",
+        "projections": 2598,
+        "seed": "18446744073709551615",
+        "sha256": "ee052729e17807c6f71ef7d3a095e5fa156d2aceff34ec08bd3adb4ca5a8f79d",
+        "transitions": 651
+      },
+      {
+        "bytes": 102186420,
+        "fixtureFile": "default-native.json.cases/400.json",
+        "name": "printed-MSJC08-XQ43-natural-four-seat-paid-region-conceal-reveal-granted-icons-restore",
+        "projections": 3858,
+        "seed": "9007199254744004",
+        "sha256": "ec32bbf1d9f52a82573fc1cea4c4cbc6ce97226665e2306288f75a75abd83839",
+        "transitions": 966
+      }
+    ],
+    "publicNaturalUiAcceptance": false,
+    "newCompleteBodyFilesIncludedInReviewZip": 39
+  },
+  "scopeBoundaries": {
+    "temporaryCombatPureVectorNativeOnly": true,
+    "noAdmittedNaturalSpiritTemporaryCombatGrant": true,
+    "movementPrimitiveSyntheticFrame": true,
+    "noAdmittedSpiritMobility": true,
+    "winAndRegionReplacementCheckpointsSynthetic": true,
+    "otherBoundaryInitialLayoutsDisclosed": true,
+    "normalChainsNoPostStartStateInjection": true,
+    "normalChainsFourSeatRestoreReplay": true,
+    "nativeOnlyMutationReds": 5,
+    "mutantWasmBuilt": false,
+    "publicBrowserQAThisCandidate": false,
+    "productionOldRoomCompatibilityTested": false,
+    "friendRoomsAccessed": false,
+    "d1ApiMigrationChanges": false
+  },
+  "preservation": {
+    "oldOrdinaryCards": 88,
+    "oldSocieties": 4,
+    "oldScanFiles": 92,
+    "oldFrozenFiles": 125,
+    "oldWholeCaseBodiesVersionOnlyEqual": 362,
+    "oldBodiesCompleteLocalArchive": "/workspace/.private-validation/white-wound-society-batch-20261005/default-native.json.cases.tar.gz",
+    "oldArchiveBytes": 119726568,
+    "oldArchiveSha256": "c2b956d138964ad25cb8c179b11df2ebf85328890a8059f930ba3a5722dc4a47",
+    "oldArchiveRestore": "tar -xzf '/workspace/.private-validation/white-wound-society-batch-20261005/default-native.json.cases.tar.gz' -C '/workspace/.private-validation/white-wound-society-batch-20261005'",
+    "oldBodiesUncompressedPresent": false,
+    "publishedSiteCheckoutClean": true,
+    "newFrozen27FiveExactFiles": true,
+    "parentSpecSha256": "797b502b7d5261ce467f24308f15e7b78f25def6067701f9d4fadff9958a2d68"
+  },
+  "offlineActualKernelRestore": {
+    "independentFourSeatRooms": 2,
+    "freshWasmMemoryViewsAndNextCompleteCommandEqual": true,
+    "crossVersionViewAndApplyRoomRejectBothDirections": true,
+    "notPublicOrProductionRoomAcceptance": true
+  },
+  "publication": {
+    "acceptedSite27NativeStatus": "succeeded",
+    "deployment": "appgdep_6ac37a4f980081918156c72f2dadcbcc",
+    "siteSha": "c4fff66e8b8c80938ac7470d723b16a27725fddc",
+    "gameSource": "3805a6166d380eea4947b8c04b1b859cf6b3ec35",
+    "version": "appgver_9e0fb3e567948191b5f3461455a6ff13",
+    "url": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site",
+    "privatePurpleCandidatePublished": false,
+    "freshPublicGetCatalogOrBrowserQaPerformed": false,
+    "historical403NotBypassed": true
+  },
+  "resources": {
+    "final-native-metadata-catalog": {
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "hegemony-server",
+        "--no-default-features",
+        "--lib",
+        "catalog_is_restricted_real_complete_and_decks_are_legal"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 9.823,
+      "maxRssKiB": 678300,
+      "userSeconds": 11.342155,
+      "systemSeconds": 0.68962,
+      "memoryEventsBefore": "low 0\nhigh 0\nmax 488265\noom 6\noom_kill 2\noom_group_kill 0\n",
+      "memoryEventsAfter": "low 0\nhigh 0\nmax 488265\noom 6\noom_kill 2\noom_group_kill 0\n"
+    },
+    "final-native-metadata-societies": {
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "hegemony-server",
+        "--no-default-features",
+        "--lib",
+        "jc008_printed_admission_and_finite_modifier_program"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 0.072,
+      "maxRssKiB": 38920,
+      "userSeconds": 0.045353,
+      "systemSeconds": 0.024274,
+      "memoryEventsBefore": "low 0\nhigh 0\nmax 488265\noom 6\noom_kill 2\noom_group_kill 0\n",
+      "memoryEventsAfter": "low 0\nhigh 0\nmax 488265\noom 6\noom_kill 2\noom_group_kill 0\n"
+    },
+    "final-native-integrations-with-native": {
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "hegemony-server",
+        "--test",
+        "attachment_service",
+        "--test",
+        "service",
+        "--test",
+        "jc059_friendly",
+        "--test",
+        "deck_construction",
+        "--test",
+        "room_pacing",
+        "--test",
+        "session_service"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 9.988,
+      "maxRssKiB": 677512,
+      "userSeconds": 12.925835,
+      "systemSeconds": 1.553404,
+      "memoryEventsBefore": "low 0\nhigh 0\nmax 488265\noom 6\noom_kill 2\noom_group_kill 0\n",
+      "memoryEventsAfter": "low 0\nhigh 0\nmax 488265\noom 6\noom_kill 2\noom_group_kill 0\n"
+    },
+    "final-frontend": {
+      "command": [
+        "npm",
+        "--prefix",
+        "web",
+        "test",
+        "--",
+        "--maxWorkers=1"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 68.358,
+      "maxRssKiB": 337412,
+      "userSeconds": 80.872095,
+      "systemSeconds": 8.548089,
+      "memoryEventsBefore": "low 0\nhigh 0\nmax 488265\noom 6\noom_kill 2\noom_group_kill 0\n",
+      "memoryEventsAfter": "low 0\nhigh 0\nmax 488265\noom 6\noom_kill 2\noom_group_kill 0\n"
+    },
+    "final-affected-frontend": {
+      "command": [
+        "npm",
+        "--prefix",
+        "web",
+        "test",
+        "--",
+        "--maxWorkers=1",
+        "src/game/RegionAura.test.jsx"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 2.143,
+      "maxRssKiB": 259012,
+      "userSeconds": 2.550021,
+      "systemSeconds": 0.373108,
+      "memoryEventsBefore": "low 0\nhigh 0\nmax 488265\noom 6\noom_kill 2\noom_group_kill 0\n",
+      "memoryEventsAfter": "low 0\nhigh 0\nmax 488265\noom 6\noom_kill 2\noom_group_kill 0\n"
+    },
+    "final-frontend-build-resolved": {
+      "command": [
+        "npm",
+        "--prefix",
+        "web",
+        "run",
+        "build"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 4.268,
+      "maxRssKiB": 371764,
+      "userSeconds": 9.538852,
+      "systemSeconds": 1.010735,
+      "memoryEventsBefore": "low 0\nhigh 0\nmax 488265\noom 6\noom_kill 2\noom_group_kill 0\n",
+      "memoryEventsAfter": "low 0\nhigh 0\nmax 488265\noom 6\noom_kill 2\noom_group_kill 0\n"
+    },
+    "final-default-native": {
+      "command": [
+        "cargo",
+        "run",
+        "--locked",
+        "-p",
+        "hegemony-wasm",
+        "--example",
+        "native_fixtures",
+        "--",
+        "/workspace/.private-validation/purple-unique-society-batch-20261005/default-native.json"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 492.152,
+      "maxRssKiB": 4532452,
+      "userSeconds": 487.191658,
+      "systemSeconds": 7.46997,
+      "memoryEventsBefore": "low 0\nhigh 0\nmax 488265\noom 6\noom_kill 2\noom_group_kill 0\n",
+      "memoryEventsAfter": "low 0\nhigh 0\nmax 505925\noom 6\noom_kill 2\noom_group_kill 0\n"
+    },
+    "final-default-wasm": {
+      "command": [
+        "node",
+        "--expose-gc",
+        "rust-game-wasm/tests/compare.mjs",
+        "/workspace/.private-validation/purple-unique-society-batch-20261005/default-native.json"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 98.981,
+      "maxRssKiB": 1496788,
+      "userSeconds": 101.744694,
+      "systemSeconds": 3.3529619999999998,
+      "memoryEventsBefore": "low 0\nhigh 0\nmax 505925\noom 6\noom_kill 2\noom_group_kill 0\n",
+      "memoryEventsAfter": "low 0\nhigh 0\nmax 505925\noom 6\noom_kill 2\noom_group_kill 0\n"
+    },
+    "final-source-wasm-build": {
+      "command": [
+        "bash",
+        "rust-game-wasm/build.sh"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 18.103,
+      "maxRssKiB": 561692,
+      "userSeconds": 29.001129,
+      "systemSeconds": 1.348508,
+      "memoryEventsBefore": "low 0\nhigh 0\nmax 505925\noom 6\noom_kill 2\noom_group_kill 0\n",
+      "memoryEventsAfter": "low 0\nhigh 0\nmax 505925\noom 6\noom_kill 2\noom_group_kill 0\n"
+    },
+    "final-preservation": {
+      "command": [
+        "python3",
+        "/workspace/.private-validation/purple-unique-society-batch-20261005/verify-preservation.py"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 10.176,
+      "maxRssKiB": 857924,
+      "userSeconds": 6.860901,
+      "systemSeconds": 3.233545,
+      "memoryEventsBefore": "low 0\nhigh 0\nmax 505925\noom 6\noom_kill 2\noom_group_kill 0\n",
+      "memoryEventsAfter": "low 0\nhigh 0\nmax 505925\noom 6\noom_kill 2\noom_group_kill 0\n"
+    },
+    "independent-kernel-restore-resolved": {
+      "command": [
+        "node",
+        "/workspace/.private-validation/purple-unique-society-batch-20261005/independent-kernel-restore.mjs"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 0.194,
+      "maxRssKiB": 75132,
+      "userSeconds": 0.345665,
+      "systemSeconds": 0.051151999999999996,
+      "memoryEventsBefore": "low 0\nhigh 0\nmax 505925\noom 6\noom_kill 2\noom_group_kill 0\n",
+      "memoryEventsAfter": "low 0\nhigh 0\nmax 505925\noom 6\noom_kill 2\noom_group_kill 0\n"
+    },
+    "final-native-lib": {
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "hegemony-server",
+        "--no-default-features",
+        "--lib"
+      ],
+      "exitCode": 101,
+      "elapsedSeconds": 29.107,
+      "maxRssKiB": 674732,
+      "userSeconds": 84.321325,
+      "systemSeconds": 0.835471,
+      "memoryEventsBefore": "low 0\nhigh 0\nmax 488265\noom 6\noom_kill 2\noom_group_kill 0\n",
+      "memoryEventsAfter": "low 0\nhigh 0\nmax 488265\noom 6\noom_kill 2\noom_group_kill 0\n"
+    },
+    "final-native-integrations": {
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "hegemony-server",
+        "--no-default-features",
+        "--test",
+        "attachment_service",
+        "--test",
+        "service",
+        "--test",
+        "jc059_friendly",
+        "--test",
+        "deck_construction",
+        "--test",
+        "room_pacing",
+        "--test",
+        "session_service"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 6.26,
+      "maxRssKiB": 503064,
+      "userSeconds": 7.203182,
+      "systemSeconds": 0.629755,
+      "memoryEventsBefore": "low 0\nhigh 0\nmax 488265\noom 6\noom_kill 2\noom_group_kill 0\n",
+      "memoryEventsAfter": "low 0\nhigh 0\nmax 488265\noom 6\noom_kill 2\noom_group_kill 0\n"
+    },
+    "final-frontend-build": {
+      "command": [
+        "npm",
+        "--prefix",
+        "web",
+        "run",
+        "build"
+      ],
+      "exitCode": 2,
+      "elapsedSeconds": 3.211,
+      "maxRssKiB": 376500,
+      "userSeconds": 5.505168,
+      "systemSeconds": 0.37464,
+      "memoryEventsBefore": "low 0\nhigh 0\nmax 488265\noom 6\noom_kill 2\noom_group_kill 0\n",
+      "memoryEventsAfter": "low 0\nhigh 0\nmax 488265\noom 6\noom_kill 2\noom_group_kill 0\n"
+    },
+    "final-frontend-build-with-test-node-types": {
+      "command": [
+        "npm",
+        "--prefix",
+        "web",
+        "run",
+        "build"
+      ],
+      "exitCode": 2,
+      "elapsedSeconds": 3.128,
+      "maxRssKiB": 374444,
+      "userSeconds": 5.420022,
+      "systemSeconds": 0.371093,
+      "memoryEventsBefore": "low 0\nhigh 0\nmax 488265\noom 6\noom_kill 2\noom_group_kill 0\n",
+      "memoryEventsAfter": "low 0\nhigh 0\nmax 488265\noom 6\noom_kill 2\noom_group_kill 0\n"
+    },
+    "independent-kernel-restore": {
+      "command": [
+        "node",
+        "/workspace/.private-validation/purple-unique-society-batch-20261005/independent-kernel-restore.mjs"
+      ],
+      "exitCode": 1,
+      "elapsedSeconds": 0.081,
+      "maxRssKiB": 49980,
+      "userSeconds": 0.087821,
+      "systemSeconds": 0.023375,
+      "memoryEventsBefore": "low 0\nhigh 0\nmax 505925\noom 6\noom_kill 2\noom_group_kill 0\n",
+      "memoryEventsAfter": "low 0\nhigh 0\nmax 505925\noom 6\noom_kill 2\noom_group_kill 0\n"
+    }
+  },
+  "allListedCommandsOomAndKillDelta": 0,
+  "historicalOom": 6,
+  "historicalOomKill": 2,
+  "nativeDefaultMemoryPressureMaxDelta": 17660,
+  "unchangedFullRulePdfsLibraryReference": "libfile_9ac00dda3d608191911196ab2c1e3d06",
+  "historicalProposalAndFailureEvidenceRetained": true
+}
