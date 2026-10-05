@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.23-msjc07-candidate",
-  "engineVersion": "rust-v0.2.26-msjc07-candidate",
+  "cardPoolVersion": "limited-v2.24-white-wound-society-candidate",
+  "engineVersion": "rust-v0.2.27-white-wound-society-candidate",
   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
   "cards": [
     {
@@ -3373,6 +3373,47 @@
         "file": "resource/ymsj-fun.github.io/cards/JC126 产业扩张.jpg",
         "sha256": "33ed0032c1e6983f25be998c66891f137f2f0975031493883f6cc1a9bb5e40e0",
         "basis": "actual original card fields and basic asset rules checked"
+      }
+    },
+    {
+      "id": "LC06",
+      "name": "瓦尔德修士",
+      "subtitle": "苦行先知",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "僧侣"
+      ],
+      "cost": 3,
+      "loyalty": [
+        "白色",
+        "白色"
+      ],
+      "loyaltyText": "白色 / 白色",
+      "color": "白",
+      "magic": "神圣",
+      "society": "",
+      "icons": {
+        "permanent": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 2,
+      "text": "触发 当瓦尔德修士受到创伤时，抓两张牌。",
+      "keywords": [],
+      "supported": true,
+      "unique": true,
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/LC06 瓦尔德修士.jpg",
+        "sha256": "46bcfd890d040fc0b9e558ba601867f402bcc1443851e0ccf7f7a9e1579154b6",
+        "basis": "actual whole original and printed trigger/unique/wound rules viewed"
       }
     }
   ],

@@ -63,18 +63,18 @@ function localRoom() {
 }
 
 it('admits only JC008 and retains its actual printed metadata and original JPG bytes', () => {
-  expect(catalog.engineVersion).toBe('rust-v0.2.26-msjc07-resource-policy-candidate');
-  expect(catalog.cardPoolVersion).toBe('limited-v2.23-msjc07-candidate');
-  expect(catalog.cards).toHaveLength(87);
+  expect(catalog.engineVersion).toBe('rust-v0.2.27-white-wound-society-candidate');
+  expect(catalog.cardPoolVersion).toBe('limited-v2.24-white-wound-society-candidate');
+  expect(catalog.cards).toHaveLength(88);
   expect(catalog.cards.some(c => c.id === 'MSJC01')).toBe(false);
-  expect(catalog.societies.map(c => c.id)).toEqual(['MSJC09', 'MSJC01', 'MSJC07']);
+  expect(catalog.societies.map(c => c.id)).toEqual(['MSJC09', 'MSJC01', 'MSJC07', 'MSJC06']);
   expect(definition).toMatchObject({ name: '灵能激发', kind: 'spell', type: '法术/心灵',
     cost: 2, loyalty: ['黄色'], magic: '心灵', defense: null, unique: false,
     permanentIcons: { investigation: 0, combat: 0, influence: 0 },
     temporaryIcons: { investigation: 0, combat: 0, influence: 0 }, keywords: [] });
   expect(definition.text).toBe('【快速行动】本回合中，目标角色获得+1防御和1个普通战斗图标。');
   const scans = JSON.parse(readFileSync(resolve('public/card-scans.json'), 'utf8'));
-  expect(Object.keys(scans)).toHaveLength(90);
+  expect(Object.keys(scans)).toHaveLength(92);
   expect(scans.JC008).toEqual({ url: '/cards/JC008.jpg', source: 'resource/ymsj-fun.github.io/cards/JC008 灵能激发.jpg', sha256 });
   expect(createHash('sha256').update(readFileSync(resolve('public/cards/JC008.jpg'))).digest('hex')).toBe(sha256);
 });

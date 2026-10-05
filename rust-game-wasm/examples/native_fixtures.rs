@@ -55,6 +55,9 @@ mod jc008;
 #[path = "support/msjc01.rs"]
 mod msjc01;
 #[cfg(not(feature = "society-fixtures"))]
+#[path = "support/msjc06.rs"]
+mod msjc06;
+#[cfg(not(feature = "society-fixtures"))]
 #[path = "support/msjc07.rs"]
 mod msjc07;
 #[cfg(not(feature = "society-fixtures"))]
@@ -69,6 +72,9 @@ mod renown;
 #[cfg(not(feature = "society-fixtures"))]
 #[path = "support/repress_assets.rs"]
 mod repress_assets;
+#[cfg(not(feature = "society-fixtures"))]
+#[path = "support/white_wound.rs"]
+mod white_wound;
 #[cfg(not(feature = "society-fixtures"))]
 #[path = "support/wound_defence.rs"]
 mod wound_defence;
@@ -2705,6 +2711,11 @@ fn write_fixture_cases(output: &str, metadata: Value, cases: impl IntoIterator<I
 
 fn main() {
     #[cfg(not(feature = "society-fixtures"))]
+    if std::env::args().any(|a| a == "--white-wound-natural-search") {
+        white_wound::find_natural_seed();
+        return;
+    }
+    #[cfg(not(feature = "society-fixtures"))]
     if std::env::args().any(|a| a == "--equipment-natural-search") {
         equipment_abilities::find_natural_seed();
         return;
@@ -2719,6 +2730,24 @@ fn main() {
     let output = std::env::args()
         .nth(1)
         .expect("Usage: native_fixtures <output.json>");
+    #[cfg(not(feature = "society-fixtures"))]
+    if std::env::args().any(|a| a == "--slice-white-wound-natural") {
+        write_fixture_cases(
+            &output,
+            json!({"catalog":catalog::catalog()}),
+            std::iter::once_with(white_wound::natural),
+        );
+        return;
+    }
+    #[cfg(not(feature = "society-fixtures"))]
+    if std::env::args().any(|a| a == "--slice-white-wound-society") {
+        write_fixture_cases(
+            &output,
+            json!({"catalog":catalog::catalog()}),
+            msjc06::cases().chain(white_wound::cases()),
+        );
+        return;
+    }
     #[cfg(not(feature = "society-fixtures"))]
     if std::env::args().any(|a| a == "--slice-identity-overlap") {
         write_fixture_cases(
@@ -2748,7 +2777,11 @@ fn main() {
     }
     #[cfg(not(feature = "society-fixtures"))]
     if std::env::args().any(|a| a == "--slice-mixed-decks") {
-        write_fixture_cases(&output, json!({"catalog":catalog::catalog()}), mixed_decks::cases());
+        write_fixture_cases(
+            &output,
+            json!({"catalog":catalog::catalog()}),
+            mixed_decks::cases(),
+        );
         return;
     }
     #[cfg(not(feature = "society-fixtures"))]
@@ -2852,7 +2885,11 @@ fn main() {
     }
     #[cfg(not(feature = "society-fixtures"))]
     if std::env::args().any(|a| a == "--slice-msjc07") {
-        write_fixture_cases(&output, json!({"catalog":catalog::catalog()}), msjc07::cases());
+        write_fixture_cases(
+            &output,
+            json!({"catalog":catalog::catalog()}),
+            msjc07::cases(),
+        );
         return;
     }
     #[cfg(not(feature = "society-fixtures"))]
@@ -3063,6 +3100,8 @@ fn main() {
         .chain(repress_assets::cases())
         .chain(mixed_decks::cases())
         .chain(msjc07::cases())
+        .chain(msjc06::cases())
+        .chain(white_wound::cases())
     {
         writer.push(case);
     }

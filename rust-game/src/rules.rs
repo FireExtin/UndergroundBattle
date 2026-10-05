@@ -26,6 +26,7 @@ pub enum Event {
     EnterRegion,
     Reveal,
     Death,
+    ReceiveWound,
     ConfrontationStart,
     RegionWon,
     RegionConfrontationsEnded,
@@ -432,6 +433,31 @@ pub struct Definition {
 // These are interpreter limits, not rules for resolving partially invalid targets.
 // Reject unsupported declarations before publishing actions or offering trigger choices.
 pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(), String> {
+    if ability.event == Some(Event::ReceiveWound)
+        && (card_id != "LC06"
+            || ability.timing != Timing::Fast
+            || ability.response_policy != ResponsePolicy::Respondable
+            || ability.play_only
+            || ability.activation_only
+            || ability.requires_ready_source
+            || ability.once_per_game
+            || ability.per_turn_limit.is_some()
+            || !ability.costs.is_empty()
+            || !ability.targets.is_empty()
+            || !ability.modes.is_empty()
+            || !matches!(
+                ability.ops.as_slice(),
+                [Op::Draw {
+                    player: PlayerRef::Actor,
+                    count: 2,
+                    end: DeckEnd::Top
+                }]
+            ))
+    {
+        return Err(format!(
+            "{card_id}: only the admitted self-wound draw trigger is supported"
+        ));
+    }
     if ability.modes.iter().any(|m| {
         m.ops.iter().any(|op| {
             matches!(
@@ -991,6 +1017,22 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
                 )],
                 vec![Op::WoundTarget { slot: 0, amount: 1 }],
                 Some(Event::Death),
+            )]),
+        );
+        m.insert(
+            "LC06".into(),
+            with_abilities(vec![ability(
+                "wound-draw-two",
+                "受到创伤触发",
+                Timing::Fast,
+                vec![],
+                vec![],
+                vec![Op::Draw {
+                    player: Actor,
+                    count: 2,
+                    end: DeckEnd::Top,
+                }],
+                Some(Event::ReceiveWound),
             )]),
         );
         let mut hermit_target = target(
@@ -2629,6 +2671,39 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         #[cfg(not(feature = "society-fixtures"))]
         {
             let mut search = ability(
+                "search-white-unique",
+                "白色独有检索（每局一次）",
+                Timing::Standard,
+                vec![Cost::Assets(4), Cost::ExhaustSource],
+                vec![],
+                vec![Op::Search {
+                    player: Actor,
+                    filter: CardFilter::PrintedColorAndUnique {
+                        color: "白".into()
+                    },
+                    to_top: false,
+                    optional: false,
+                    visibility: SearchVisibility::Reveal,
+                }],
+                None,
+            );
+            search.once_per_game = true;
+            m.insert(
+                "MSJC06".into(),
+                with_abilities(vec![
+                    ability(
+                        "drawWithInitiative",
+                        "先手抓牌",
+                        Timing::Standard,
+                        vec![Cost::Assets(3), Cost::ExhaustSource],
+                        vec![],
+                        vec![Op::DrawIfActorHasInitiative { count: 1 }],
+                        None,
+                    ),
+                    search,
+                ]),
+            );
+            let mut search = ability(
                 "search-yellow-unique",
                 "黄色独有检索（每局一次）",
                 Timing::Standard,
@@ -2670,7 +2745,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
                 vec![Op::Search {
                     player: Actor,
                     filter: CardFilter::PrintedColorAndUnique {
-                        color: "黑".into(),
+                        color: "黑".into()
                     },
                     to_top: false,
                     optional: false,
