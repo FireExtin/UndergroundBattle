@@ -105,4 +105,4 @@ for (const previousState of fixture.rejectedStates ?? []) {
 }
 assert.throws(() => newGame('bad', 'invite', 'duel', 'P0', 'watchers', '18446744073709551616'));
 assert.throws(() => newGame('bad', 'invite', 'duel', 'P0', 'watchers', '9007199254740993.0'));
-console.log(JSON.stringify({ ok: true, cases, wasmBytes: moduleBytes.byteLength, transitions, projections, quotes, rejectedCommands, rejectedDeckCreations, choiceKinds: [...choiceKinds].sort(), slowestFixtureStepMs: Math.round(slowestMs * 100) / 100, opaqueState: true, maximumU64SeedExact: true, nativeWasmStateAndViewsMatch: true }));
+console.log(JSON.stringify({ ok: true, cases, wasmBytes: moduleBytes.byteLength, wasmSha256: createHash('sha256').update(moduleBytes).digest('hex'), transitions, projections, quotes, rejectedCommands, rejectedDeckCreations, choiceKinds: [...choiceKinds].sort(), slowestFixtureStepMs: Math.round(slowestMs * 100) / 100, opaqueState: true, maximumU64SeedExact: true, nativeWasmStateAndViewsMatch: true }));

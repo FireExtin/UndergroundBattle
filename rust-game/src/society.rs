@@ -198,15 +198,43 @@ pub(crate) fn definitions() -> Vec<SocietyDefinition> {
                 triggered: false,
             })
             .collect();
+        let msjc01 = SocietyDefinition {
+            card,
+            subtitle: "世界守护者".into(),
+            printed_cost: None,
+            starting_hand: 6,
+            deck_constraints: vec![SocietyDeckConstraint::MinimumColor {
+                color: "黄".into(),
+                count: 25,
+            }],
+            unresolved_abilities: BTreeMap::new(),
+        };
+        let mut card: CardDefinition = serde_json::from_value(serde_json::json!({
+            "id":"MSJC07","name":"方碑序列","kind":"society","type":"秘社/法师结社",
+            "subtypes":["法师结社"],"color":"黑","society":"方碑序列","unique":true,"supported":true,
+            "text":"构筑：你的牌组中需包含25张或更多黑色派系牌。行动3，横置：若你具有【先手标志】，则抓一张牌。行动4，横置：从你的牌库中寻找一张黑色独有牌，展示该牌后置于你的手中，然后将你的牌库洗牌。该能力每局游戏只能发动一次。"
+        })).expect("verified printed MSJC07 fields");
+        card.abilities = crate::rules::definition("MSJC07")
+            .abilities
+            .iter()
+            .map(|a| crate::catalog::AbilitySummary {
+                key: a.key.clone(),
+                label: a.label.clone(),
+                timing: "standard".into(),
+                costs: a.costs.clone(),
+                triggered: false,
+            })
+            .collect();
         vec![
             msjc09,
+            msjc01,
             SocietyDefinition {
                 card,
-                subtitle: "世界守护者".into(),
+                subtitle: "恐怖同盟".into(),
                 printed_cost: None,
                 starting_hand: 6,
                 deck_constraints: vec![SocietyDeckConstraint::MinimumColor {
-                    color: "黄".into(),
+                    color: "黑".into(),
                     count: 25,
                 }],
                 unresolved_abilities: BTreeMap::new(),
@@ -282,7 +310,7 @@ mod tests {
                     .iter()
                     .map(|s| s.card.id.as_str())
                     .collect::<Vec<_>>(),
-                vec!["MSJC09", "MSJC01"]
+                vec!["MSJC09", "MSJC01", "MSJC07"]
             );
         }
         assert_eq!(

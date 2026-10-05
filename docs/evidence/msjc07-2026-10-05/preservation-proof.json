@@ -1,0 +1,3125 @@
+{
+  "baselineCommit": "1aed92dc4300b564edae92561e0e815b827484bd",
+  "ordinaryRawAndCompiledDefinitionsUnchanged": 87,
+  "oldSocietiesUnchanged": [
+    "MSJC09",
+    "MSJC01"
+  ],
+  "fivePresetsAndWorldUnchanged": true,
+  "old89ScanMappingsUnchanged": true,
+  "all90SourceAndWebScanBytesIdentical": [
+    {
+      "id": "JC125",
+      "bytes": 285153,
+      "sha256": "6392c2cdc2d9ea43deca6b26594618a2093ae887bd03d5ad29d130c7e329993a"
+    },
+    {
+      "id": "LC19",
+      "bytes": 469421,
+      "sha256": "41c0fe55aff401721ec54fbb08174d52d36747f0821e32c6ddc5006bba9e9f71"
+    },
+    {
+      "id": "LC20",
+      "bytes": 471968,
+      "sha256": "961b508b54f78c561b98268da91d901a3536a330aef0ea8a49b81b9f6a278248"
+    },
+    {
+      "id": "LC21",
+      "bytes": 437349,
+      "sha256": "62b05d9f5349d53dd6d47dae7077566c1f5735529bc2bd813a45c1d7c3a183b9"
+    },
+    {
+      "id": "LC22",
+      "bytes": 441940,
+      "sha256": "26976ae01006603182b666cef0ea6960bc5d218dc904f2b1c760f3719f142b35"
+    },
+    {
+      "id": "LC23",
+      "bytes": 487166,
+      "sha256": "977959c6deb74b125b18a8b40758deab354396fdffd49b0d9bcc57197144f1c8"
+    },
+    {
+      "id": "LC24",
+      "bytes": 464715,
+      "sha256": "05b4c30ee93bb8ea9b96636e9da3fbcaa560f206aaa5b6c73b5c5ac283fddccb"
+    },
+    {
+      "id": "XQ49",
+      "bytes": 1336679,
+      "sha256": "8b160c52b18e49a7ef39085b63cc9a1b18531c02dc0ae3d92e2fedd874a29aca"
+    },
+    {
+      "id": "JC118",
+      "bytes": 283116,
+      "sha256": "0f112c86afcfd0e9b2b6dea66597e24e57a95155f1b624534b2f9a4b980df97a"
+    },
+    {
+      "id": "JC002",
+      "bytes": 293615,
+      "sha256": "21a698ae184e7f909d24ac5374c3eaf7af77f1043b91048cfc8c5a46f9b08680"
+    },
+    {
+      "id": "JC003",
+      "bytes": 324904,
+      "sha256": "027fc054dd7c7ef301108bf0b169e01f91228bf2e918b3ddb8d12e8d05603c3a"
+    },
+    {
+      "id": "JC004",
+      "bytes": 322602,
+      "sha256": "d9209031b83d49c2eacdbedd2967384852acc51329093f362073c462dabf92c4"
+    },
+    {
+      "id": "JC005",
+      "bytes": 327083,
+      "sha256": "216c26cff74fe738dbc486e725828ddc8077705161b1fee566e9d806684364a1"
+    },
+    {
+      "id": "JC008",
+      "bytes": 294187,
+      "sha256": "31340e2535e0909359860a090186b7a5032e84d6da94c8181baf32565b5d4f45"
+    },
+    {
+      "id": "XQ03",
+      "bytes": 1430068,
+      "sha256": "c6e85106105d23ef55df70ba06d6c8878b6ce279a727908fbdeab0a8495679b0"
+    },
+    {
+      "id": "JC014",
+      "bytes": 304089,
+      "sha256": "cd1969552197b3111e72ee4bb0725dc4ff513ddb8c940b568b7221699c248bb6"
+    },
+    {
+      "id": "JC016",
+      "bytes": 305023,
+      "sha256": "0a3b20635a7fa8e04d6f17ab7a7112a596ed0e7f21293d3e4f4a985463416c35"
+    },
+    {
+      "id": "JZ08",
+      "bytes": 497242,
+      "sha256": "343561bd351e06811f9a1fc77b6a9fe08e6dfbace83d8c8abb8f6b43fb031d12"
+    },
+    {
+      "id": "JC056",
+      "bytes": 285784,
+      "sha256": "75503118eee2b80d23f59ea950884c152f33d28d552d0d051ed872f441810e6d"
+    },
+    {
+      "id": "JC058",
+      "bytes": 289748,
+      "sha256": "6585e89991049cb05e75db43143320fd12bf6be781847648d551cb433e85119a"
+    },
+    {
+      "id": "JC059",
+      "bytes": 299356,
+      "sha256": "7d9639d3115dcea8e42f21e1145397f3be4392a80fa0b6c040d7302139eff0ad"
+    },
+    {
+      "id": "JC063",
+      "bytes": 292803,
+      "sha256": "1b20b9c7392543bf975b6391d227e03e4f50f3fd3134e7c6aa494e7357f88165"
+    },
+    {
+      "id": "JC086",
+      "bytes": 321608,
+      "sha256": "1bd405a60feeb41d60611050f4a37dd90dc971e1808ba712b66fe0cd37d2d743"
+    },
+    {
+      "id": "XQ12",
+      "bytes": 1381983,
+      "sha256": "4e9f3afa5f7f22d99fc89284e91586fba78a8ff2ee8827fc6a6ceeb41889fdc8"
+    },
+    {
+      "id": "JC092",
+      "bytes": 327819,
+      "sha256": "ea1ca5644c38831b659f29dcf4c7ec0cb5dc5a758b0b793ed120b24b74295947"
+    },
+    {
+      "id": "DQJC107",
+      "bytes": 44451,
+      "sha256": "339b9a130ea9c0a82bc5a20d34892a4de52b2ea777a1b0cfec340876d6a4b2b8"
+    },
+    {
+      "id": "DQJC112",
+      "bytes": 45356,
+      "sha256": "9efd49e63ad90c4849bcf123aec4c83cd63e8f135113c374412526be875832ad"
+    },
+    {
+      "id": "DQJC113",
+      "bytes": 46632,
+      "sha256": "3dcac24ae99667ac037001d85f54eb5b77bf83643222769726395571e7135c6e"
+    },
+    {
+      "id": "DQJC114",
+      "bytes": 53746,
+      "sha256": "7ded8662b423543bccedf93e67c098cf0effdd73791b30cc6aaa4acf7bf2a3f2"
+    },
+    {
+      "id": "JC042",
+      "bytes": 342837,
+      "sha256": "242a17c708a96d27e95b23f9ab339e01d5b8c1eda282a2f7de8f51ba2c1bdbef"
+    },
+    {
+      "id": "JC049",
+      "bytes": 331035,
+      "sha256": "340c3fbc650b755d72c31ca06a8c379bacb572df6df061a9c52d0fb386d02d58"
+    },
+    {
+      "id": "JC091",
+      "bytes": 314574,
+      "sha256": "2ea5d65c270a107371f7d69cb22de3e4e60f9e9db81d4e6959744bbfbf6d11cb"
+    },
+    {
+      "id": "JZ54",
+      "bytes": 543412,
+      "sha256": "c7902515865a26e1276d9e7a4bbd05c511704f76aee504c73539737012624af4"
+    },
+    {
+      "id": "DQJC108",
+      "bytes": 48006,
+      "sha256": "5dd2014f700e73b7f8dda56b6c281f29946b6d36a96bdd3838af4b2b393f7c6e"
+    },
+    {
+      "id": "DQJC109",
+      "bytes": 46185,
+      "sha256": "337e5a45432d1ad434f971e66938e7506fc2997649648b21b7a6b1246306c60a"
+    },
+    {
+      "id": "DQJC110",
+      "bytes": 41958,
+      "sha256": "ecafefa26f0d3fa1aca9f63ecb50dcb21c1a51c157890516e94676880d8a1026"
+    },
+    {
+      "id": "DQJC111",
+      "bytes": 54744,
+      "sha256": "e2bc64426c121d41404d758a24b863f4c527a4f69e0582811599e2bc60471e41"
+    },
+    {
+      "id": "DQJC115",
+      "bytes": 53304,
+      "sha256": "66fa6d8ceb4ff3529c0d43386782aeac5553c564a761ec47d4e351beb91d0e94"
+    },
+    {
+      "id": "DQJC116",
+      "bytes": 57210,
+      "sha256": "e9dfbc396a733b3bbe7ffcb2a6d67ea371ffe4ca4bd6fc0f4e74b1ee73485d4d"
+    },
+    {
+      "id": "BQ022",
+      "bytes": 938512,
+      "sha256": "f1b58f299c3d901494c388be2123b325ca20c1f341106fe860d9761ded8231eb"
+    },
+    {
+      "id": "JC084",
+      "bytes": 316581,
+      "sha256": "3d068fa87dc6f9f7aef426637f71de22aef05f0f278dc096fad0ca50dee99872"
+    },
+    {
+      "id": "JC085",
+      "bytes": 337881,
+      "sha256": "f568ed4c26fc244830d840f0133eb1a78111aceff53a4a345f8ca44c1552aee2"
+    },
+    {
+      "id": "JC088",
+      "bytes": 314244,
+      "sha256": "9c270203639dae978acb65e9255ac34b5a5d5192e681f8aafd63018ede301a5f"
+    },
+    {
+      "id": "JC001",
+      "bytes": 304832,
+      "sha256": "33b9fd53b30630010a49a520d9e2b89d608822706e67e7c667682c3d1151e312"
+    },
+    {
+      "id": "BQ083",
+      "bytes": 1318007,
+      "sha256": "619db97c8309d903e3781448c6ad35db91bb5f2e4b5660b6e0eef65fcbd6e675"
+    },
+    {
+      "id": "JC006",
+      "bytes": 303268,
+      "sha256": "beec2b1d758e0186cdc4cb57e7c52d6e8df2a4623564e5f212b3d878abb91bf4"
+    },
+    {
+      "id": "XQ16",
+      "bytes": 1503073,
+      "sha256": "2ae947c0c5dccd45ae495d3c828ce9b4e1453c34dfb6e24c5e61eea8338cff80"
+    },
+    {
+      "id": "JC047",
+      "bytes": 315262,
+      "sha256": "74d7e3c4bf75c52538fce551dda97f28e5b51d7d64ffbe89c9d427296a3ce9d6"
+    },
+    {
+      "id": "JC007",
+      "bytes": 310229,
+      "sha256": "835b85f48270aa66f10f01fa4de7483b0ccf80dcf14e6dc5596639592e14f1ce"
+    },
+    {
+      "id": "JC075",
+      "bytes": 331174,
+      "sha256": "7db960c7050614dae10a8e752db2567670169e782986e39a789842259231e434"
+    },
+    {
+      "id": "JC104",
+      "bytes": 375404,
+      "sha256": "877aa980256730bb35350f1b99c2aa75b9110cd5905e61412664e2a89ef4e8da"
+    },
+    {
+      "id": "WM003",
+      "bytes": 1306943,
+      "sha256": "2409ef206e3af93d1eece3ec0bf4ba00a9e3d0c12a8e70443877cc8a28cc9bff"
+    },
+    {
+      "id": "LC01",
+      "bytes": 467391,
+      "sha256": "a0defb07b43463cc882e15b993c73eda22ea77ca39062da71e6518a365cc5bd6"
+    },
+    {
+      "id": "JC129",
+      "bytes": 294504,
+      "sha256": "0c99776d13e342b85c6d6f6cc476459ec6463e6bbdc146046460518c738a0b59"
+    },
+    {
+      "id": "JC036",
+      "bytes": 340194,
+      "sha256": "017507e6a2a229f6541a4690b681ecd71fc09b35962b9673da70f5f035ddba83"
+    },
+    {
+      "id": "JZ27",
+      "bytes": 528092,
+      "sha256": "33fbdd4a062962b546cdb0d4f368f35b6c4c019908db73a37cfa09aaa237630e"
+    },
+    {
+      "id": "JC070",
+      "bytes": 328410,
+      "sha256": "3dd1ef905e2cfb4d806b258fdde0b1ec1fe2adad7868bb5cd7dc0bcf9cfe9e1b"
+    },
+    {
+      "id": "JC076",
+      "bytes": 326205,
+      "sha256": "4390ebf4eabcf44c541303bfb764061c1622cb483ed0e034ee9651571cee27ac"
+    },
+    {
+      "id": "JC074",
+      "bytes": 4706143,
+      "sha256": "e34e5bb081f3ee459d99038c68d60f4be4a44af05baa4289759b730045140914"
+    },
+    {
+      "id": "JC071",
+      "bytes": 325476,
+      "sha256": "85fde88b2a35d595f166d87c0ab27b244198c3919c1f6a381e54e07598f73b67"
+    },
+    {
+      "id": "JC073",
+      "bytes": 328192,
+      "sha256": "cebf528de52de72d7400d4c769c2642063342d75a01670e120b5bc71aba23d42"
+    },
+    {
+      "id": "JC102",
+      "bytes": 346254,
+      "sha256": "842fb9f07e9b8afbc0cecd6c224972c5643bad9b710daa518faceb59fc9a3b5d"
+    },
+    {
+      "id": "JC132",
+      "bytes": 295955,
+      "sha256": "219bb4062c3e9053b9fc9d309ad919ebe4b6a98c3af314c6987ca948b3eeb4f1"
+    },
+    {
+      "id": "JC078",
+      "bytes": 335412,
+      "sha256": "d238d2c7412349579c00fa4a5a662e9214bdad13df25b8917ae1034251f7e2b9"
+    },
+    {
+      "id": "XQ14",
+      "bytes": 1373623,
+      "sha256": "0baea888495adba62a7688be1b95c95b5ffa60d689c104b7ff3a26dd2340ffb2"
+    },
+    {
+      "id": "XQ47",
+      "bytes": 1347172,
+      "sha256": "9b370fb92ad2e1c3ac6f33d3402ab2c8cbdea1898aae4c4a386f17631d654a03"
+    },
+    {
+      "id": "JC112",
+      "bytes": 295767,
+      "sha256": "870b526451ed20441601cfed413a99e2e64a266d60daa698bb2066840383bd71"
+    },
+    {
+      "id": "JC116",
+      "bytes": 319810,
+      "sha256": "5a314d56e3d6c660f381e45710dbf0964cf8560cfa170906b3d4e938abb90e16"
+    },
+    {
+      "id": "JC020",
+      "bytes": 283808,
+      "sha256": "2edb40dfa18d2df22b5b397957d0a03642ade3cee1a10f965bb5e55b0c4f7223"
+    },
+    {
+      "id": "JC093",
+      "bytes": 327300,
+      "sha256": "ac3398f82103f6d50eb97b6bb3467244834c8e3867fb92c295d3c420b522bdd2"
+    },
+    {
+      "id": "XQ07",
+      "bytes": 1401415,
+      "sha256": "944a254795fc17e946f7150de9a47649d8c6efa3006770850447503b06a22df9"
+    },
+    {
+      "id": "JC130",
+      "bytes": 289306,
+      "sha256": "be7d3ec07aea099829f0b01ea506999810091c7b7a202a6bfb0f8ec32eb3055f"
+    },
+    {
+      "id": "JC131",
+      "bytes": 270928,
+      "sha256": "78b1cff75c50f96763ae2cfeb346524e9046f2e3a445a5e00268113365bc976f"
+    },
+    {
+      "id": "JC096",
+      "bytes": 311787,
+      "sha256": "28c1eb001f27dc220b8905ba97d7d396680adda8f7c1b8c9e0f2ec97f4907c7c"
+    },
+    {
+      "id": "XQ17",
+      "bytes": 1375211,
+      "sha256": "e5ad8fe27074632eab8d6207eb2e6f08efb69d20f343f2d50701d30f5a5bb5eb"
+    },
+    {
+      "id": "JC114",
+      "bytes": 325963,
+      "sha256": "2cd5cc66ceb3c9a8f9d07d341558489adb170dcb680331c7620e5f1162be12c7"
+    },
+    {
+      "id": "XQ34",
+      "bytes": 1292584,
+      "sha256": "2ca1f5a4b25d308f8af13a7a80018010deaf93f9abe2275bef1fa7656be13e04"
+    },
+    {
+      "id": "XQ38",
+      "bytes": 1487343,
+      "sha256": "26c8311674325491157577a3d295c148ce1c6f27ded59c4d27979faf58e9204e"
+    },
+    {
+      "id": "JZ67",
+      "bytes": 526684,
+      "sha256": "a6554b81e081c7292a32f2bf13ce269f276580f9a852e1df232c60c2c36ff477"
+    },
+    {
+      "id": "JC103",
+      "bytes": 336324,
+      "sha256": "8eee910793908999e04487b65f0e9a398d11ef5b307b360ba6e9d2012adaed63"
+    },
+    {
+      "id": "JC107",
+      "bytes": 343826,
+      "sha256": "ce402d531c9c9bb28da130de0627b4860ced56fb0fa7db1d487082c36e0462e2"
+    },
+    {
+      "id": "JZ59",
+      "bytes": 518313,
+      "sha256": "b43bf4fc74654c089cf10429306980c2af12743d57d60b603efae03b28eae5f3"
+    },
+    {
+      "id": "LC12",
+      "bytes": 484188,
+      "sha256": "2a13b5e0bf5fa11f320bcf31141cf0e68915a949f9031cd112b5c650420285cf"
+    },
+    {
+      "id": "JZ58",
+      "bytes": 548446,
+      "sha256": "4cb1892b435cc14fd3f9d8310b428a16eaf5cc5afe1c870760a3dcc457d4dd95"
+    },
+    {
+      "id": "JZ61",
+      "bytes": 493374,
+      "sha256": "5da40b475c306d3a295a6582576b9b720c8707050bdedfea3005b92578e4e37f"
+    },
+    {
+      "id": "JZ74",
+      "bytes": 500480,
+      "sha256": "3915ef2565eff330862507076c052942322e59f47039f31f7c0ebe658181f085"
+    },
+    {
+      "id": "JC126",
+      "bytes": 302436,
+      "sha256": "33ed0032c1e6983f25be998c66891f137f2f0975031493883f6cc1a9bb5e40e0"
+    },
+    {
+      "id": "MSJC09",
+      "bytes": 210792,
+      "sha256": "41e478a3f38ead83477498fd88131831a5fd843be364c1c0daa3ba10153c2302"
+    },
+    {
+      "id": "MSJC01",
+      "bytes": 263474,
+      "sha256": "c61c887558cb184a532758eac5db766234c32a3a3605162a38c0899993e7bdf2"
+    },
+    {
+      "id": "MSJC07",
+      "bytes": 229888,
+      "sha256": "e9cd1af04560733f28e3bcfee4c687f6a2e5218b93862b5a74d4f35f6a8f3ed7"
+    }
+  ],
+  "unchangedCoreFiles": [
+    {
+      "path": "rust-game/src/engine.rs",
+      "wholeFileUnchanged": true,
+      "sha256": "cb0e2947988d22ba87401ae18a35ae6ea2ab85763df18fdd8135f283eacf395d"
+    },
+    {
+      "path": "rust-game/src/resolution.rs",
+      "wholeFileUnchanged": true,
+      "sha256": "29331bf1e1ab6b3a0f3a167a500839f7e1354a92ce73b1d29257cf81e3513ed7"
+    },
+    {
+      "path": "rust-game/src/attachment.rs",
+      "wholeFileUnchanged": true,
+      "sha256": "ed8e2d07d47d67068c37275c5239b79da1d1a9e58262cac777b02a3375ed5ef1"
+    },
+    {
+      "path": "rust-game/src/deck.rs",
+      "wholeFileUnchanged": true,
+      "sha256": "20b2a14c0de1ff8ca921fba06aa322daf625f87716963c4ed434c3e8f18494bd"
+    },
+    {
+      "path": "rust-game/src/room.rs",
+      "wholeFileUnchanged": true,
+      "sha256": "dc83ff7706936efc9212e3f7a8be79965912d92769092c20df8df11d2d08d56d"
+    }
+  ],
+  "parentOwnedSpecificationsUnchanged": true,
+  "parentOwnedSpecificationsSha256": "797b502b7d5261ce467f24308f15e7b78f25def6067701f9d4fadff9958a2d68",
+  "rawAndCompiledVersionMetadataAgree": true,
+  "allFiveAccepted25GeneratedFilesFrozenExactly": [
+    {
+      "path": "hegemony_wasm.js",
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+      "bytes": 18203,
+      "byteEqualAcceptedArchive": true
+    },
+    {
+      "path": "hegemony_wasm_bg.wasm",
+      "sha256": "8ca1e40edf0e1f969103eae3ff58f335459d364553e1e7136aba909f0c85cbfd",
+      "bytes": 1965154,
+      "byteEqualAcceptedArchive": true
+    },
+    {
+      "path": "hegemony_wasm.d.ts",
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758",
+      "bytes": 3921,
+      "byteEqualAcceptedArchive": true
+    },
+    {
+      "path": "hegemony_wasm_bg.wasm.d.ts",
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3",
+      "bytes": 1944,
+      "byteEqualAcceptedArchive": true
+    },
+    {
+      "path": "package.json",
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035",
+      "bytes": 33,
+      "byteEqualAcceptedArchive": true
+    }
+  ],
+  "oldCasesPreserved": 310,
+  "oldCompleteCaseBodies": [
+    {
+      "name": "white-paid-rescue-and-purple-private-forecast-three",
+      "bytes": 1475854,
+      "actualSha256": "73d38516d1f3310e41d5da32d68f21bce0e63fb08643ae355a7869db45f6c52a",
+      "baselineBytes": 1481582,
+      "normalizedSha256": "c2b7d95c3bbd568c6d704dde939c59bd2a153c92432b934d53cebd125f11f7af",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "red-region-damage-and-yellow-printed-spell-book-search",
+      "bytes": 1305944,
+      "actualSha256": "ee386460ac46abb480837cd2c1b6c03ce698cc5f52692f5e36a0f549a37c7075",
+      "baselineBytes": 1310392,
+      "normalizedSha256": "5588b53d560f6b520fbfed5400fc3efe3237a85eada918e5081e66e11ae76ff4",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "magic-return-owner-and-public-lawyer-self-controller-hide",
+      "bytes": 1262491,
+      "actualSha256": "38a41f4845d46d6cff5f56f90e10aad0227d6f4085aa7d45bdd58432f2a922ef",
+      "baselineBytes": 1266683,
+      "normalizedSha256": "0196cef71dec4ff7690f77855a81f726bfeac02eee173087ed235719a052b960",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "owl-controller-mind-two-and-skeleton-paid-entry",
+      "bytes": 1118421,
+      "actualSha256": "a426ca891f8a918f09c40b438a94cacfe363b88935b6913d7958b9de0bc7720a",
+      "baselineBytes": 1122613,
+      "normalizedSha256": "f2b0bd61b4fbf173a96cb80efa544300a509965191f3b47ae12ce03ec506004e",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "printed-cost-reveal-guard-and-paid-self-hide",
+      "bytes": 1144349,
+      "actualSha256": "15819890e8447253e9e35775208f6ce13a723f1925d119748092543fb404a1d5",
+      "baselineBytes": 1148541,
+      "normalizedSha256": "f51d98230819b5d27744a86a54d67770cc1871e16f8947701901471503027a3f",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "attachment-enemy-host-and-hide-owner-recycle",
+      "bytes": 786500,
+      "actualSha256": "98837070d1441aedfebd266faca9c7af9998410bbdce085fe3e047f01052cefb",
+      "baselineBytes": 789412,
+      "normalizedSha256": "a828fcf013206a1154405894fc958bc899f7c8de757b55b995b7232ffda7e100",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "attachment-target-murder-response-cancelled",
+      "bytes": 1002414,
+      "actualSha256": "0ccd0d520c664a37e5c0276ef9987f44e833daeb4b9a4a79c06c6757e9b1215a",
+      "baselineBytes": 1006094,
+      "normalizedSha256": "bc00904ee55498103c167c400d4454512811b916fa1eeaa9716e8491e84e15a9",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "actual-hong-kong-nonempty-attachment-search",
+      "bytes": 509912,
+      "actualSha256": "6aab73df156937ee2ad07b0ae8890e536a99b7d11c9a9c3fb5add6fa64b974b8",
+      "baselineBytes": 513592,
+      "normalizedSha256": "03f64154727f7d3851a4322ac5401abb0cde92e6c12527ba1ab49787599b651f",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "won-region-batch-cross-owner-equipment-and-aura",
+      "bytes": 698857,
+      "actualSha256": "1ac0ed55d345d8548e841d66147a8ddeff0b2edcd7f932398a612c93210ae437",
+      "baselineBytes": 701257,
+      "normalizedSha256": "df64635c789f1056a715a4316e5296bd483db4812923b0224611cc88f86f5ae8",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "direct-grave-face-up-play-normal-cost-and-conditional-icons",
+      "bytes": 404120,
+      "actualSha256": "6b29d19369135a4f8805dd0d123904527db915af79d0bd55ce6cb718315fe6b5",
+      "baselineBytes": 405752,
+      "normalizedSha256": "6d31b79a3237beeaae425ccf924614b36639112702dcff56ba39b06f42658ab0",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "duel",
+      "bytes": 7896461,
+      "actualSha256": "670e55b00bc5dbc7ed39f5a2ab8283026b7d43c9b5ff6be8a406cb00fa301e88",
+      "baselineBytes": 7925901,
+      "normalizedSha256": "14fc68300fd7fc41ceb4cbe704a286c3f4733e908f1ede6801d62c91cc9495d8",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "teams",
+      "bytes": 15499486,
+      "actualSha256": "dd0aec195ea3afcd050f99ed86063cfe3a5cf1733073a8a5a06b529bdb123fad",
+      "baselineBytes": 15547166,
+      "normalizedSha256": "8169f60a4586fdec806c2e17dfa0dea3138c051f9cdd4cb0f6b648bb905cbf8a",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "real-response-frame-continuation-and-heal-cost",
+      "bytes": 1044430,
+      "actualSha256": "557197db3fa12feeb7f5cd15b1537e66648466e8e866f72dd0e735c3aa15d578",
+      "baselineBytes": 1048110,
+      "normalizedSha256": "56ae1323e3f15caedc73966b7e72e3cd75810f2450888cb4810f7c2ba51833e8",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "detective-target-reveal-invalidates-original-instance",
+      "bytes": 478965,
+      "actualSha256": "8bc3a7a7d9e4e5f14fb2f89f51544acaba4c78dd831d148aebdb2080b8f709f1",
+      "baselineBytes": 481141,
+      "normalizedSha256": "768ea1d1a6e010271cec95c3b82b66b65846a5e1f6ae5bd2c9436e49ac7f4825",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "detective-source-death-independent-hidden-destroy",
+      "bytes": 505846,
+      "actualSha256": "5359acae30f0892ef255e8ec2e64d9c43b6cb8837cf388d0d670c05b18c84415",
+      "baselineBytes": 508022,
+      "normalizedSha256": "4129319aeb537021e2f9b422d5bfede0e4feab84c0c18aa81ab38fd6e22cf694",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "custom-deck-create-join-lobby-freeze-and-start",
+      "bytes": 571972,
+      "actualSha256": "3851446fdccde93101e6ed2433c41efd63d3eab1d99792ad68bca2398bb9dd92",
+      "baselineBytes": 575348,
+      "normalizedSha256": "6189ef704075cd6bf4acee5a7fd59de96426b6ef47eb873b56d4031df8ec1989",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "friendly-teammate-defense-and-public-team-icons",
+      "bytes": 116557,
+      "actualSha256": "3ac71aa1fadc20824be7de14c2fc88fc061e9027697aad2346fa630e5b6c2e51",
+      "baselineBytes": 116909,
+      "normalizedSha256": "8e62be7462ad17a9d21cdfe68be2909ce57898dbb36ac743ed6bdaa40b2252d6",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "4999-parallel-intents-quote-repeat-cancel-and-untimed-composition",
+      "bytes": 920917,
+      "actualSha256": "990a90c4d770ba6187e98c4378be7dcf446000833618b764cf94af15eb2ef1c8",
+      "baselineBytes": 924181,
+      "normalizedSha256": "48629da5fdee5bc6042d8674eb68bf902da9f0f485b79a3784b05e3e297898fa",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "5000-expiry-rejected-command-commits-only-system-tick",
+      "bytes": 455834,
+      "actualSha256": "4344b6e8aa9c0101aa655bd081c95fb7d8402c13a7376ec44b750a42a605b75e",
+      "baselineBytes": 457466,
+      "normalizedSha256": "1f1a586c8788890f38a7ffb03d219e0cd9fc612de9ccd48b8333929fd8a1a2d8",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "real-world-win-trigger-DQJC108",
+      "bytes": 922633,
+      "actualSha256": "6141065eb48e6acdf70add925e6749c616d8a8597ab1aec62ee4863f2f27e4ca",
+      "baselineBytes": 926313,
+      "normalizedSha256": "038bd34002d54a0c4ba1c997dbfb96cfc71d6eb8772395614204142eb47c4950",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "real-world-win-trigger-DQJC109",
+      "bytes": 697218,
+      "actualSha256": "15d0b40d9a621b443878a1b23ebd3efcc84517b78ef39ab0d339877b8d373a8a",
+      "baselineBytes": 699874,
+      "normalizedSha256": "673b18ec16b5555fef81845c7bc6917cf789d10d76f5d1f7d8e45561b8b3cf04",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "real-world-win-trigger-DQJC110",
+      "bytes": 694548,
+      "actualSha256": "503a7bab3114f9c9ad1fe1551ff493e2cf765f2c35f79ef139cdb8657dbc6d4e",
+      "baselineBytes": 697204,
+      "normalizedSha256": "ae9ba96c2a456b39ffffb0f1066fe71f122f4b0e11d41fd0cb8a1f6960dbe8b1",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "real-world-win-trigger-DQJC111",
+      "bytes": 1007955,
+      "actualSha256": "9267891dda309c10f85219119b326a3952e7f23c0d58ab5ac0cccf9862b67a5c",
+      "baselineBytes": 1011635,
+      "normalizedSha256": "371a9b75f39d7495eb31bbfe98ebbde1d275b8103b733e2d0aa63ad7e69af378",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "real-world-win-trigger-DQJC115",
+      "bytes": 1037003,
+      "actualSha256": "bd5f7e5d9cb5c716fffc4f559176d859beb0da04bd7873104af83f18dda3df61",
+      "baselineBytes": 1040939,
+      "normalizedSha256": "1bba812b3c7dfeb14a0770f8905e4524e978faf684f3b46a6309da6cb94bdfde",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "real-world-win-trigger-DQJC116",
+      "bytes": 602973,
+      "actualSha256": "29feb567d5552d64e972fce5611084589e389334b38216ec76660c46844ae433",
+      "baselineBytes": 605629,
+      "normalizedSha256": "24490323307baf8f7741d6b880ac6570978440f1bcc2c33e1007e6edf853972f",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "generic-simultaneous-character-search-not-hong-kong-binding",
+      "bytes": 386146,
+      "actualSha256": "9cec2681ae62ef16c85af6a5e90715bd408098d2f0cea227e4c356d304e43cb9",
+      "baselineBytes": 389058,
+      "normalizedSha256": "7f436593444815ac3357e05a70b6bfa84a3f616be1f7632b4b09f9c8ed33b504",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "printed-MSJC09-normal-four-seat-first-and-rear-paid-resolution-reset",
+      "bytes": 36016241,
+      "actualSha256": "8f6fa88ddf78ab0651ec6af400e600a7ae715a154a94d33cfd993f7e6db85622",
+      "baselineBytes": 36135185,
+      "normalizedSha256": "4144556d8b4915c39cd363592f5cdfe082e6c6ac2f3efba90f76b77e65c430ac",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC004-ready",
+      "bytes": 1209823,
+      "actualSha256": "68a4f39ff8bacf777fdc562f63aa927fdfb67427b3e6904eaa96103fd9112716",
+      "baselineBytes": 1213887,
+      "normalizedSha256": "47f9150f2abbac8025ef2df44146e17deaed2c99e7d817319f3c9703577f40d6",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC004-exhausted",
+      "bytes": 1205801,
+      "actualSha256": "4716be51ff024deba5433653c73906c95a2c9e5650380321cc487ac4dff83e17",
+      "baselineBytes": 1209865,
+      "normalizedSha256": "d86bee51b7e346523eff21f3a7f3376119b04b1c17444d4e7bd412245147c4f2",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC004-response-exhaust",
+      "bytes": 1833568,
+      "actualSha256": "d4646e8d9f409b87ce61ff376a3e37ba54fd39a60343c106003f03cd34f63dd2",
+      "baselineBytes": 1839680,
+      "normalizedSha256": "387f1e661a9d0df778676d3894eb1e8a630b76f9e9b70d0287f6eef03e5f4a2a",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC004-response-hide",
+      "bytes": 1897010,
+      "actualSha256": "ef3ebfb682cf49c3534ef5fdb5ef47fe54fcf0ef473c8b0a82e48ab54a32ec6c",
+      "baselineBytes": 1903122,
+      "normalizedSha256": "d3178deb0d09371bd8be95c598f75bbd3870dffa1a0bcbc9606d69c90692d551",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC004-old-instance-reentered",
+      "bytes": 532187,
+      "actualSha256": "93d55e23883890f02b26881b6791cb395fde6b11cc85387897fd4c752318ca44",
+      "baselineBytes": 533947,
+      "normalizedSha256": "7d422a072ad1cdc511a2cd5d5b6ca6b1bca661f3f281b7d9eab18ac2b27cca61",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC004-moved-away",
+      "bytes": 532775,
+      "actualSha256": "c3c0f5d00dd7f0f4dc2f8ca8e1c69e93c0e39dda0a2174b2e8ab88c520c3fa8a",
+      "baselineBytes": 534535,
+      "normalizedSha256": "011010fb9fad3db60594025d438e31f1954f50257ad995488693d0c6d78725e6",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC004-moved-back",
+      "bytes": 529271,
+      "actualSha256": "94a38886d916e5fa7be27ccf4a240893374126b66ae0d2e900836fbf73ffcb3c",
+      "baselineBytes": 531031,
+      "normalizedSha256": "e10662fbe0847fc252445a4526a189a10c1599772fa316a52b630e566ecd8376",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC004-hidden-before-guard",
+      "bytes": 525440,
+      "actualSha256": "6d5c2781161d3e532c1d5eb3525c255440901686fd624bcb52db32b3b0a395f4",
+      "baselineBytes": 527200,
+      "normalizedSha256": "3661201da626e047e3a264b47df32efee163a9bb597ec5ee711dfff477d9390d",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC004-shield-before-guard",
+      "bytes": 530250,
+      "actualSha256": "84d7b0a57270c8d02e4a49eaefd6c0176de95e360e0340ff3f72189ce3dd7d98",
+      "baselineBytes": 532010,
+      "normalizedSha256": "3b4c7d62bc1ab971eb37a2bf050c0681e731712ee97278007a379f4a025f42ac",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC004-borrowed-return",
+      "bytes": 1241674,
+      "actualSha256": "ed50efea95d860d69a64f18a3a24032f79b8bb3812689053045566f0bce7ecad",
+      "baselineBytes": 1245738,
+      "normalizedSha256": "49435f6faca786418bc88a3360b4d70a87a5e0af22cb5b4d5966f2699fdb63d0",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC004-self-target",
+      "bytes": 1209829,
+      "actualSha256": "7522b9311480e68e40e0422ba673bd50ac009b21de97557edf909b36f5c4b7c6",
+      "baselineBytes": 1213893,
+      "normalizedSha256": "cd0ad8b2094c5b24fab057afcb2db3f38e9643f4bc0a72cb69284440955908dc",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC004-continuation-return",
+      "bytes": 601399,
+      "actualSha256": "16ecb386fa9f6d3e130362adb815e445b93280fe6d902cd4cfa1ba90be253a70",
+      "baselineBytes": 603415,
+      "normalizedSha256": "87df44a2a5694e917084a44d38a226a3cbc31471878c0edec2d5c147261ff130",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC004-continuation-exhaust",
+      "bytes": 607098,
+      "actualSha256": "6a97a684139877aaf37900397797d1c1c333d3e69973cde09ebf61079da98eb4",
+      "baselineBytes": 609114,
+      "normalizedSha256": "96edc1ccfb613164ea0c8c7fbdd77cab9b1a5690b0a53d67f16bbcd3bbb7e80e",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC004-optional-decline",
+      "bytes": 789752,
+      "actualSha256": "6a860fc0d3d00e65a0c14fe1e4699cdad0d1ad2bb344f71875e80514a1666dcb",
+      "baselineBytes": 792408,
+      "normalizedSha256": "bf99d34b1f2da00fcc8508a1aba7a7207707f839f06f5ad11d7a9d9bb62e7f6f",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC004-declared-ready-resolved-exhausted",
+      "bytes": 525331,
+      "actualSha256": "ecac80c70b7ae4a524450a81d4e7ef6bff1de5d72ec2207040957f803b1cb152",
+      "baselineBytes": 527091,
+      "normalizedSha256": "97d809c97e5e185aa9dfe92ab74783f8763ed5f758f04c5e0c768c8fe566033f",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC004-declared-exhausted-resolved-ready",
+      "bytes": 529293,
+      "actualSha256": "dab1df6c1ccb026a9ec328f27e4cdda3b2aa97c3638076a654155d5ebe3302c8",
+      "baselineBytes": 531053,
+      "normalizedSha256": "4176a40d4b4f3ebb21a2788f1e1f8848549da0a513699eefaa653728d0aacff4",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC005-normal-character",
+      "bytes": 530691,
+      "actualSha256": "d10aaa7d839eaf6631db32d58a87842390996f57488e8f870fdfafe3175616c1",
+      "baselineBytes": 532707,
+      "normalizedSha256": "a6f608708b5cf2cbe43b991a00ddd2aeebd4836761e8c9b96afda5d896663df8",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC005-mind-character",
+      "bytes": 537448,
+      "actualSha256": "72c2ea2a43f937a0cad65a3912d2c89cb19fab904d784be5b4eda640a71427a4",
+      "baselineBytes": 539464,
+      "normalizedSha256": "3a253c408878045e37bd5aa09f4b5d9e47a0e2f32bb024a2c63cc77bfd0f2db3",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC005-exhausted-mind",
+      "bytes": 537403,
+      "actualSha256": "69f68a561aa4e69be325710fcff2d275e23b32be62ff9ffb076af2d7f132de7f",
+      "baselineBytes": 539419,
+      "normalizedSha256": "6fe114c8c0d23276ca73ba8075afa345587d0ddee4a85cc2bf1d9f999a7a65c2",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC005-bound-host-moved-region",
+      "bytes": 472883,
+      "actualSha256": "e5039073d597aa10ef23885ceb9cf0888774ffb74e77d1a07c2333906778b761",
+      "baselineBytes": 474643,
+      "normalizedSha256": "9109ecf04e75ef85db9ab946929fd088991f7721e1df10dc137c83f961d39cef",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC005-response-host-return",
+      "bytes": 1138361,
+      "actualSha256": "47b2482f25177a1bce40489da5841189e8e297675fd34b5f787e756075f4187c",
+      "baselineBytes": 1142425,
+      "normalizedSha256": "303968dfaa281539944366fc1c1407ef592d727dac4727141c37ebc3ad737093",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC005-response-host-hide",
+      "bytes": 1142717,
+      "actualSha256": "d3add50e5f5e9503d4c23ebd86cc7bad9d37ea4d8fc7f06cb1f47e6d10dd18b4",
+      "baselineBytes": 1146781,
+      "normalizedSha256": "9a321f8085a308190ca3160312a07ce4e414b78db473a8bcf755ec24a35fecb6",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC005-bound-host-change-character",
+      "bytes": 479868,
+      "actualSha256": "51a2c90196146f82a619ea215b74100de524de0b609a15a1daab20507fc933d2",
+      "baselineBytes": 481628,
+      "normalizedSha256": "2a41daaa5a41b99e9072d42429d1bb30801078bc59ae5a36e95874c8f1f0b566",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC005-bound-host-change-type",
+      "bytes": 474098,
+      "actualSha256": "a7e0b3b44ce5a629fc2f4ddefc8a03d859ca84f9a7f72cb3e50382449c1f4af3",
+      "baselineBytes": 475858,
+      "normalizedSha256": "06339db62c8c603bfe9a501c5327d02417642f325e9bee3330a2ea8acf3fbb7c",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC005-bound-target-reentered",
+      "bytes": 471502,
+      "actualSha256": "cb53b01d5a874914a6fc5489d3deb9855ab4692dc5d537410c83c254ed9adbd9",
+      "baselineBytes": 473262,
+      "normalizedSha256": "96381130a2d59c65681f448b3df64739c39642723e3bc594da0a5001e06aaae0",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC005-bound-target-hidden",
+      "bytes": 464602,
+      "actualSha256": "4d6b8231659fb499d2f4cdbb35bb2791d048ad7cd6ff1d43c5179383ce132e18",
+      "baselineBytes": 466362,
+      "normalizedSha256": "9fbdb0d9e9c0999b1bb75c34a565719f59cfae8bdc058d43cbca36f88159d090",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC005-bound-target-shield",
+      "bytes": 469607,
+      "actualSha256": "bab7f517a3189df0c562463d45dfde290699c2f0299b537a68750400e4046e5d",
+      "baselineBytes": 471367,
+      "normalizedSha256": "dbf1c762a0caee849d29dfd19e7f777af6194a6b21f9ba943a72b4f3f2e9a933",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC005-bound-mind-removed-character",
+      "bytes": 468943,
+      "actualSha256": "1789cb43619211b90e1e2eb7f7af4fb8ea20cd10d490e3bee22b94d75785ffee",
+      "baselineBytes": 470703,
+      "normalizedSha256": "ac72220119ca076210fe17af0c141a74176493b1b60cfcfecd3a5a9a1730fcbf",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC005-synthetic-noncharacter-no-mind",
+      "bytes": 179790,
+      "actualSha256": "9cbd3f16a5b71b7f9edd467626fc4b98e841f519fe5f7ec1efc56ecb7956fe94",
+      "baselineBytes": 180398,
+      "normalizedSha256": "8e3bb76f8c6a3c3537a7a08b587db3882e9b5b5c13e3dc30b087f84596ee506d",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC005-synthetic-noncharacter-mind-settlement",
+      "bytes": 542847,
+      "actualSha256": "a4d769a439ad09e0b23a0fc1c174b61c00609921697eecaf8b7593be5625c69d",
+      "baselineBytes": 544863,
+      "normalizedSha256": "e560ede2cfb60e4df91c4b774922d2fb7469c8ee7ab0330d348e9f80f1cb95fe",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC008-first-team",
+      "bytes": 507645,
+      "actualSha256": "2e3926467936c204b8b94435ed1be8a9bfc52c381dad3490d1b28fe2d883c46a",
+      "baselineBytes": 509661,
+      "normalizedSha256": "87fedd16435c0382eded7cb8cb5293cff4a8d3617cb443f5b74fd072e15d95d5",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC008-rear-team",
+      "bytes": 507644,
+      "actualSha256": "fb41c3d1c99df4c22c14fa6ce248c245023dd0372779ecb6a5e715439b1bd645",
+      "baselineBytes": 509660,
+      "normalizedSha256": "f7dc74c88ee7720b7524609fa0e362d8d35722981a92f509e35c809de41edff0",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC008-exhausted-character",
+      "bytes": 507609,
+      "actualSha256": "67703599a075f0433064d2e1c18ac81067c38be25d75ec04a50140a55771fcfa",
+      "baselineBytes": 509625,
+      "normalizedSha256": "6d3768b67a615ca4598bf55f0b2d7eb944568d7b371d1aab02a171f95257a712",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC008-stack-two",
+      "bytes": 939553,
+      "actualSha256": "33b4682871d0e39909831072d581e184a545c957a6dfab97aff55ad0e35cf3a6",
+      "baselineBytes": 943105,
+      "normalizedSha256": "fe6f3ed13f74f33465c0185cedd5dedefbd2e242c09079082f7072150be93000",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC008-reject-hidden",
+      "bytes": 172305,
+      "actualSha256": "446d2aae98cc3dd6647a3c910263fec1a2bb5d6e67f1eb6eafcf61ed7baa8aa4",
+      "baselineBytes": 172913,
+      "normalizedSha256": "87bc45d29a384300990eb104348e556bf09fda261e5daa52033659b36d286295",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC008-reject-barrier",
+      "bytes": 173828,
+      "actualSha256": "c95fc8f03f93923ef882cd9946635e646ed3e4cabd9978c2335ff5fda4212733",
+      "baselineBytes": 174436,
+      "normalizedSha256": "05e89810e9e211d667bcc7eb8058c948063b7bd4c1082f4470492857aaf5d319",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC008-reject-cost",
+      "bytes": 172154,
+      "actualSha256": "90322269d7e7b3decb3d199d61d33e94b5415368023fe625b40900b4882b84e8",
+      "baselineBytes": 172762,
+      "normalizedSha256": "2045f8b2b21bbd60496359c9234614ccda2c846822f0d22d24b9fe5cdaa59932",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC008-reject-loyalty",
+      "bytes": 173721,
+      "actualSha256": "5607a54d62a8a6ee2e25dc4017b246f018c5d1a6a5dfe963d39d37638514d315",
+      "baselineBytes": 174329,
+      "normalizedSha256": "6a4aa1349fe10dd91475a889be7e02fff372c42a010dfde6a1092a567387a869",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC008-shield-enemy",
+      "bytes": 506242,
+      "actualSha256": "769d0ea618507ee828136ed95b3a65c2dcbfa9ccfdae4bccf778ce4314cc3781",
+      "baselineBytes": 508258,
+      "normalizedSha256": "271435cca57f75b644eda73016fee55fcdd271482110b1fc96f2f8754dc059c2",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC008-shield-friend",
+      "bytes": 505704,
+      "actualSha256": "ccbef33b9d7c9e0e06a67ac640dca218af3dc48b64234a83801dfa6ada5945aa",
+      "baselineBytes": 507720,
+      "normalizedSha256": "d131263029965b502108b5c2c57f915517babebcc62e656b08109a85714379cf",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC008-response-hide",
+      "bytes": 1160461,
+      "actualSha256": "c9f3122d4e6815e1fdfbc5d0b2661b33313565983166de7ca7a04a345ef5c484",
+      "baselineBytes": 1164525,
+      "normalizedSha256": "de67fd7a595aa5149b35f81edab6b34a6a7c78bcb7687c2c0591ef45f403335a",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC008-response-return",
+      "bytes": 1156672,
+      "actualSha256": "a517b303c4a917c28e18057aeda714df52b389ca1e3218bf1825ca17fdd04ad5",
+      "baselineBytes": 1160736,
+      "normalizedSha256": "17236e6fab0af6f3a80d6ab053a25b30342f3a7cca9013412941630f8380d293",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC008-hide-reveal",
+      "bytes": 1576341,
+      "actualSha256": "bf897c7107e75f78322e34719f0f939dbc11e5b0eee61912ba45dbe38dc247a7",
+      "baselineBytes": 1581941,
+      "normalizedSha256": "d39ec8394890055ab023c99393126546eb3469c7d651f459c35c223abbff15b8",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC008-return-reenter",
+      "bytes": 1714466,
+      "actualSha256": "683c012ca8f0026dd340437ba0273c0ac0f8a3274368e7d2d26f0f07dfaf8c7e",
+      "baselineBytes": 1720578,
+      "normalizedSha256": "088e9dc7ee1dd6f61460ab75d819e593881c414ea8d6e02aab5f33105a90213b",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC008-bound-target-reentered",
+      "bytes": 449144,
+      "actualSha256": "28a3944b66609e388da9532e7940c36e61707c5d78980afcf61e13927cadeae7",
+      "baselineBytes": 450904,
+      "normalizedSha256": "ed09bf4a1435a8d72c2c95ba370b4fb54fe027b3988c2d8e3f98484bdad2a6be",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC008-checkpoint-controller",
+      "bytes": 441144,
+      "actualSha256": "ce2be1036c77cf6a08cf4e7613adfd6fa2f819af5ffaf96bae7abe23aad98147",
+      "baselineBytes": 442904,
+      "normalizedSha256": "c73d623acd7d3e68901d580c85c3e9104754dab6d4df50edee49ce83d86213d4",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC008-checkpoint-movement",
+      "bytes": 439468,
+      "actualSha256": "ea9953996447856f9b617c16d49c30dc60c139493a0e3567bbfbe3705104d30d",
+      "baselineBytes": 441228,
+      "normalizedSha256": "0f6f9be4a3be95bd2533693c9fac6283adb1f2a557843b1cf4ef5581bea6513b",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC008-cleanup-simultaneous-survival",
+      "bytes": 439478,
+      "actualSha256": "6de3b65f342fa5bc9061b3bff5da5ba6ea19a02fb4f9f9b1202e2dbb67acb0b3",
+      "baselineBytes": 441238,
+      "normalizedSha256": "f4b75b49fc62935eaf40341b0c7443dbd140346d84f0175a30f6ed8cb86cf153",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC008-cleanup-wounds",
+      "bytes": 441137,
+      "actualSha256": "257087abed6b462cc48664503b1243364c4291e5209bc62a93f315fd9c65024c",
+      "baselineBytes": 442897,
+      "normalizedSha256": "59d30123baa92ad5b1284892ffdf0078e4c9cc4da6bd24029cb102dc65671c83",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC008-cleanup-zero-defense",
+      "bytes": 440021,
+      "actualSha256": "97e9012e3d51f508b3c88795392a6b55afa78a50c0f7758afb106a27961412e4",
+      "baselineBytes": 441781,
+      "normalizedSha256": "5748c4bec60bacde4ccd711dbf099634b77be92c0fb63cd6597d6658562a97c7",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC008-cleanup-discard-pause",
+      "bytes": 679534,
+      "actualSha256": "b2ea9ccc6bb87f1184adb6334c7d0060749200dcd7cf54802001fe32a2d64d24",
+      "baselineBytes": 681806,
+      "normalizedSha256": "1691c924aa3d93a0737bf4bdba579a33dbd8161e7bc7b02cf5ca117f32149c1a",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC008-cleanup-discard-pause-rear-initiative",
+      "bytes": 679549,
+      "actualSha256": "35a20301fea4a777ed62c966bb4bb24995a25db3ec1a9af8a1b38c4d8cf919fb",
+      "baselineBytes": 681821,
+      "normalizedSha256": "2f3aec7b0adb37db5d0f5b400fda9eb7e16896353e0d0b76d6bd1f7ed5907c20",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "JC008-cleanup-death-trigger-reentry",
+      "bytes": 1530501,
+      "actualSha256": "f12e04dff87c8e57685000504c2871c50b350684aa4cc43208fe3ed8e1984555",
+      "baselineBytes": 1536101,
+      "normalizedSha256": "ff119bb3f92154dd34828a7364ea520a08c73a026da795d35371a8f3752017cd",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "MSJC01-construction-25-yellow",
+      "bytes": 9043,
+      "actualSha256": "421524177f5e0ca3641bd1985eb19e888a916a0bdcf9ab0ce00aa8bfbff7c831",
+      "baselineBytes": 9203,
+      "normalizedSha256": "e05397a1c18f58d9639e98a448cb0233c5b27d3468dd4924f154480e18b30116",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "MSJC01-construction-27-yellow",
+      "bytes": 9043,
+      "actualSha256": "5285ec4643496209de042986b230d785fdf65cbe3180e55655adb8e29cc8643a",
+      "baselineBytes": 9203,
+      "normalizedSha256": "fb12a0ce55b3a2189396702f52ea727ae63c3336dc7b5880386e6a51dc5d846b",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "printed-MSJC01-natural-four-seat-build-pay-draw-empty-search-turn-restore",
+      "bytes": 61039900,
+      "actualSha256": "1c75e21bf71e4cdb42adb79d916d61ba11dded62fb1e2ad93e63d842b892c057",
+      "baselineBytes": 61204796,
+      "normalizedSha256": "c42b342c794ed26817a4565e9baab9fa456aa93783a611d324c6ee599e2f2836",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "MSJC01-empty-search",
+      "bytes": 409120,
+      "actualSha256": "4294ce0daec292db7e4bf424e995786c17f919d89b5db777359d407c01f432ae",
+      "baselineBytes": 411008,
+      "normalizedSha256": "ab11ef0dbdba615d563fa9d4d80f390ef4ee1f58da4b1f7e74e07fab5ebb73db",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "MSJC01-empty-deck",
+      "bytes": 394595,
+      "actualSha256": "e4264b7858ff6e348b6fac60c688cee85fe19b5f6a79ef522a2be2f3622060df",
+      "baselineBytes": 396483,
+      "normalizedSha256": "320ee5eb62a6ac8d25f3c285ded3bdb96d75f1f185612c189d225b707c74a45b",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "MSJC01-reject-cost",
+      "bytes": 87982,
+      "actualSha256": "ee447f58a62bc9aac74b23106987b486b63211018382fabdfb7bb503db0d92b6",
+      "baselineBytes": 88462,
+      "normalizedSha256": "b402e0fb43772ed60842842e5f523dcc5aa4f4b2684b79b34435205f27e8fa68",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "MSJC01-reject-exhausted",
+      "bytes": 94002,
+      "actualSha256": "84cf8a6315b5f3c7e193b7d161a26a6bd23d150f7b30a3653d6d936c428cf74c",
+      "baselineBytes": 94482,
+      "normalizedSha256": "53eba32f27488c6c2e442a6edd22fe8f5a0e90a61b571bf8ee42a5d35d84e263",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "MSJC01-draw-first",
+      "bytes": 407624,
+      "actualSha256": "f4d45041cc36747c8963802b9dbdd9c999450125acc6dd83396add1138565351",
+      "baselineBytes": 409512,
+      "normalizedSha256": "1ba260151dc5c3e513d4df86715bddbe0c35a637194665539570b3fe70f4b168",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "MSJC01-draw-rear",
+      "bytes": 404711,
+      "actualSha256": "a1652b4fadb636639dcf6a815271a782e5278375d67b08a509ba520e8a1f6bc2",
+      "baselineBytes": 406599,
+      "normalizedSha256": "201a91046803039c05a0d3ee68ff5d237c5f808d198ceed97d689db7c61edbff",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "MSJC01-neutral-unique-one-hit",
+      "bytes": 480081,
+      "actualSha256": "8d31faaac53a843ee1f43b23d3e964b8e120237c564189bb9fd29e75f7803cc0",
+      "baselineBytes": 482225,
+      "normalizedSha256": "4e7909e80ab004387ef4183a8b0e16b856f5eed3e1cee0e3003887054d3cd45d",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "MSJC01-neutral-unique-three-hits",
+      "bytes": 487446,
+      "actualSha256": "f1162a23c601233cd8d22afeab231e5ad115f00a9ba9669d8d57f79e969ca449",
+      "baselineBytes": 489590,
+      "normalizedSha256": "7df099029df3a5673edcd904866abcc8a60a8ce66d0fcf0b584e6c20eab5b1ec",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "MSJC01-pending-search-restore",
+      "bytes": 260515,
+      "actualSha256": "77b742b63a9290426c27279915f5cc911debf2bf77c961e7f2c9eb41dbbf6141",
+      "baselineBytes": 261635,
+      "normalizedSha256": "4ceed5d0cd0c9d79c73ece75c3f9f394eb7aec65441402a5ef3257ad3123e92f",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "MSJC01-cancelled-paid-frame",
+      "bytes": 355035,
+      "actualSha256": "330e1cc6defea38d5f46be876841335749500bf7ba3b54e7bd3d77c79f0a76d5",
+      "baselineBytes": 356667,
+      "normalizedSha256": "214306b36dc2c0795ba25f21c62244edd5c5963b8481cdb3dc2617f1f505f449",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "MSJC01-new-instance-used",
+      "bytes": 97168,
+      "actualSha256": "5282f7f9eab6bf2f34faf54cf062c79532f9f716572a31f50e545deafd0b4c93",
+      "baselineBytes": 97648,
+      "normalizedSha256": "c7031251b39bdcf3279b458a7a7b772c400409eb78481dfb039eec178fc11d78",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "MSJC01-new-game-reset",
+      "bytes": 257192,
+      "actualSha256": "9ee59aa6bd01fa76ac08033c79c30906987f662f4f23e1ba0399f072c6ff794a",
+      "baselineBytes": 258056,
+      "normalizedSha256": "9de1259ff5eb6154f1a34d8330b6be178de2d3c05776816b67b9d52f210b5472",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "MSJC01-turn-reset-used",
+      "bytes": 8619488,
+      "actualSha256": "de01fdc91b94c95f58336b4de8f9bf8f3e2b207fe802c4c750ba40c36036a535",
+      "baselineBytes": 8659392,
+      "normalizedSha256": "2208b92ea182ab1c91555557cae1370bbf89e63f9aad887829bb69f1976fc46c",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "yellow-batch-private-search",
+      "bytes": 518687,
+      "actualSha256": "f00490120bd9fa0d9e14ba4e985f30603c4b49abfe2126c163b0e27d816cc7a6",
+      "baselineBytes": 520831,
+      "normalizedSha256": "f03c33a4663786184570f4be949a9aac77e4027dfbc76c06ff6e8c52b9d39da0",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "yellow-batch-private-empty",
+      "bytes": 375860,
+      "actualSha256": "7ca50a8c0b8b0550dd2b57c0820f83f4b25af11c66891ce59530fe73ec918418",
+      "baselineBytes": 377492,
+      "normalizedSha256": "a46af705d7a1bf85526acf920b03b933f87d0538a304f4e516099f30a6cd4409",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "yellow-batch-private-cost-rejection",
+      "bytes": 89746,
+      "actualSha256": "e6babbc4fe485d6211ea39975e39008986c266609554a673a989d8bc10daad68",
+      "baselineBytes": 90226,
+      "normalizedSha256": "9ad744af473c0e3e99645813718c54fcd8f34245c1bd83a591112f64430e0798",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "yellow-batch-private-exhaustion-rejection",
+      "bytes": 100573,
+      "actualSha256": "ce38edceb465debdc1e5de4cebb95fb0cf15529e31b5a5925df5643b05b2ef3c",
+      "baselineBytes": 101053,
+      "normalizedSha256": "7726403b0208409e3c8b5fe891046129ee2a93fb007d62acf115789d76ae89e2",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "yellow-batch-real-yellow-reveal",
+      "bytes": 515113,
+      "actualSha256": "f0a0f1ebcecc4083d97b2562a4f9d3d69703a4750f2d8825751d4cc0a0c084af",
+      "baselineBytes": 517257,
+      "normalizedSha256": "92bdd79dd460c1124fa327a38b7ac2e3d489e17f832081e9121598d5af421373",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "yellow-batch-top-search",
+      "bytes": 539297,
+      "actualSha256": "9ee3a53214ad82d4ecd922508d228961956093e97584eac85ac82f4199ba0342",
+      "baselineBytes": 541441,
+      "normalizedSha256": "fcc7a5377ae7b3e182cad5169177cc9aec7a2d9634c694a22e053f8a3f49baa2",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "yellow-batch-top-draw",
+      "bytes": 396902,
+      "actualSha256": "d7b0673c9619d0fb468ea3228985021095485860a794d472daf6dd0f4afa683d",
+      "baselineBytes": 398534,
+      "normalizedSha256": "298a5e2fe03d64c675f524454f9f2ba0a7fb474f63c4dabfbdc3688b39470409",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "yellow-batch-top-controller",
+      "bytes": 75053,
+      "actualSha256": "39dc6b1ad4f1f113f2710700e948155f0f62522e07db4550712934f46aa1414b",
+      "baselineBytes": 75405,
+      "normalizedSha256": "6d58f56ded39201a3267aa764cd664741440b2004d621f8e5651b44b8d0a94a6",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "yellow-batch-top-exhausted",
+      "bytes": 78472,
+      "actualSha256": "33fb37ecbe9ca2521034e412317389d2d4af54a743245977d5269fbb6e45272c",
+      "baselineBytes": 78824,
+      "normalizedSha256": "ec448c4d9a7671da4c64319832df1a791b430250251e46e90db6fd6bd86e2a56",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "yellow-batch-top-hidden",
+      "bytes": 77229,
+      "actualSha256": "d41a5fa2684eb907110b403b4f9609917ede512c5abdfe8e82b6630a41392d17",
+      "baselineBytes": 77581,
+      "normalizedSha256": "77fb0e654d06e698f3d2b89c7abd0770489d1bf756d9f9b4e824539fb882f151",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "yellow-batch-top-empty",
+      "bytes": 76171,
+      "actualSha256": "62e15f1bbbfe862f575392926534fbb0d104da7b2bb84f7bffccf64ee3975355",
+      "baselineBytes": 76523,
+      "normalizedSha256": "f6e88e7e3af2280b7f41f58a2eed0bcd1bd2030458f77aeeb9cca0690ebca26c",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "yellow-batch-top-multiple-leave",
+      "bytes": 763955,
+      "actualSha256": "73a1bec5def6b731c4c8b66642a6693096634197c8f0149d959006903a0bf7c9",
+      "baselineBytes": 766867,
+      "normalizedSha256": "5192f56ed64eb6983806dc8e0b5be252149859da78c473e5c20b44d2f4c7b26e",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "yellow-batch-top-return-checkpoint",
+      "bytes": 361775,
+      "actualSha256": "8107c53cf6bf954b30643ed6605089f730033bc052eddbbcbf714b2bf3090929",
+      "baselineBytes": 363407,
+      "normalizedSha256": "4bff0f7e7f662671479d66f439ecced27475c6f8b0674ff19f2b4a51fcbe4fca",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "yellow-batch-top-optional-shuffle-checkpoint",
+      "bytes": 361631,
+      "actualSha256": "5bb0655680bf095fb6c0d3d45ad87c246445de612fe3717e00ada604f4e8fc3d",
+      "baselineBytes": 363263,
+      "normalizedSha256": "54f909092dff98379d4648000415fc0dd962d5b8635dd709db9962a3d0611056",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "printed-yellow-batch-natural-four-seat-real-search-LC01-deploy-private-top-restore",
+      "bytes": 61071075,
+      "actualSha256": "42a7e662c6c90ccdfcb4a1f217bfd62198758a55779f41b908c459a8bcc8c25d",
+      "baselineBytes": 61236483,
+      "normalizedSha256": "eedb2bff410817c18e8a40bb5c63d27449356a27bdecfa19ae995ed3b160a9c9",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "control-temporary-target-hide",
+      "bytes": 3296493,
+      "actualSha256": "c034887092063cdeb07d81317a600537885e0fa6d87329dbb96080ece979ac77",
+      "baselineBytes": 3304269,
+      "normalizedSha256": "7baf8783fb7b68da1624ccf896c7fe0d72702016a2a5184469f672d6544306ce",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "control-source-hide",
+      "bytes": 2306551,
+      "actualSha256": "cb54656ab555f3895d4683a0e08f3a6d36f64872099b0846434b0ae8f3eb98bb",
+      "baselineBytes": 2312023,
+      "normalizedSha256": "7d1b1cec7dd71001306f3a9c1c0e6d6367221db2499b7d79bb046b80ddf9b200",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "control-source-controller-fixed-recipient",
+      "bytes": 17275732,
+      "actualSha256": "c50d5e3706984afc15eefa170224dfa113fc06849b26f0b9b3a94d51e227ce9c",
+      "baselineBytes": 17316276,
+      "normalizedSha256": "515dc9965ba25cd422a9c5ddf7160298256e6e6bfe07ad62bd514cac15fb3c40",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "control-three-layers-expiry",
+      "bytes": 37481618,
+      "actualSha256": "7a1484f3d614a78952ef6d9ac943212f8f88734072a0e60831960ca1c0c1f08e",
+      "baselineBytes": 37566194,
+      "normalizedSha256": "e0fb1f82d767d68b6899d4619f48f76c718149c93795a728183519145f0949d2",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "control-lower-removed-under-upper",
+      "bytes": 37251747,
+      "actualSha256": "2385a38ce0ce6be08159ea2566d77567ac715bf131e347253d4fddc4d57f8eaa",
+      "baselineBytes": 37335299,
+      "normalizedSha256": "0f9a822f6d8d0ef17adf7ae7e23e2e2f158079cf4ad1d68a34b0be711dde993d",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "control-natural-four-seat-real-50-card-decks",
+      "bytes": 260930971,
+      "actualSha256": "0b318556216c20c48ef1e6d4e547528708d382ab0f63d0c327cd413d5b94eac1",
+      "baselineBytes": 261421499,
+      "normalizedSha256": "eccc28b483d7d9f8c595d0ef241b7581b045a176abb6e57ace56f820eda0fd7d",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "renown-merged-decline",
+      "bytes": 880774,
+      "actualSha256": "83f553ef4b5da6ff4cf442abed5efc5e11edaa610da6c22f5b7ab7674fca7e62",
+      "baselineBytes": 883430,
+      "normalizedSha256": "f1d74ea5eee77d085d6d9720ddda35e9a310568a07518a73e73d61e9336a6592",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "renown-normal-win",
+      "bytes": 1294718,
+      "actualSha256": "01bb1190d414ab097cde953327f92e792bc6ee13e1dce5aa466410b30f025fd3",
+      "baselineBytes": 1298654,
+      "normalizedSha256": "821941a6e5d12043eca00c0c073b470afd33dce38baec99912a456fa0ecef603",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "renown-renown-win",
+      "bytes": 1220624,
+      "actualSha256": "47a90afdfc0add76cff41091a5d35c13949a976b6298204d8699f15b1cfecb64",
+      "baselineBytes": 1224304,
+      "normalizedSha256": "26b29780987ca68bfb5f15985a58d0d1b4f31900ccaff17c910d4acb661c8c15",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "renown-response-identity",
+      "bytes": 1900734,
+      "actualSha256": "839eff01ed705064cd1fae89a4643e889ec192e8a26ae03a0df0f758efe8287a",
+      "baselineBytes": 1906718,
+      "normalizedSha256": "ff42181eab9e26e20ab80e67229f11cd3897e21590eabaced2f6d05e6bbdc81b",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "renown-control-cleanup",
+      "bytes": 12917438,
+      "actualSha256": "9cdb953b9c27bb018eb5cd68275f8abed026c866cbcc4a6ae0e394b99502f465",
+      "baselineBytes": 12957726,
+      "normalizedSha256": "5ad711fccd8e3fb55bcc82f972ff96a31f81abb040d95745e89c0fbf57b1ab65",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "renown-natural-four-seat-paid-three-cards",
+      "bytes": 56037217,
+      "actualSha256": "de4cbeafc1da75bd8102df9b7e0ac72b62010f7b14d5d2ad3d695c952ddd5095",
+      "baselineBytes": 56201857,
+      "normalizedSha256": "759a71d85b05db707f05cbfe9f4ecbf6b784a937676a0d454603614eb8d79556",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "protection-paid-four",
+      "bytes": 16286693,
+      "actualSha256": "4527db4f67c3c05aa2e0b4363aa3ce4f527edfeddd751c3b3c78708081a12e04",
+      "baselineBytes": 16329541,
+      "normalizedSha256": "0433d1fc93ca952b2900c31be18dd68a67d5fd25fd186a1a43aaf0f58429ebe0",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "protection-foreign-host",
+      "bytes": 1154812,
+      "actualSha256": "69f78171deef6a450d75a06268c00cb9b6d84adcf7e962801e2787946c82d2ea",
+      "baselineBytes": 1157980,
+      "normalizedSha256": "aa3d481a3d92923dd33303a11597cb633a8214a9722aa9d5764b5f17e0f18614",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "protection-response-return",
+      "bytes": 1336509,
+      "actualSha256": "c3fff62353516f8439dcf70334614277b543d98c24da58cdb61bee4ff64e09a7",
+      "baselineBytes": 1340189,
+      "normalizedSha256": "fb843891d9c331743352aba78088034c0bff48bb7bdcb90ac107c1329c74c450",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "protection-response-hide",
+      "bytes": 1341234,
+      "actualSha256": "73e84991f0a6df05e01e18d4d7efdba32d93fa0409eb9b8cbfb9613c33e57fab",
+      "baselineBytes": 1344914,
+      "normalizedSha256": "e8694ca3f31af7a5d1c40779b081d05fdb765c19121cc5304a677110920d7715",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "protection-source-return",
+      "bytes": 1345163,
+      "actualSha256": "0d15b0bb6d18c01e1b9362e45151f7d0a5c433daa424f81c8224db2da02bbe50",
+      "baselineBytes": 1348843,
+      "normalizedSha256": "4b4072794d8e9cd013fc2f13f194fe35b93187b61018d39788da8baa65cb3b45",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "protection-phase-loyalty",
+      "bytes": 695584,
+      "actualSha256": "71304fe64e20442621a0630f37a5f35376ea41f0d32c2c77e7b7f6f081bbf0e3",
+      "baselineBytes": 697728,
+      "normalizedSha256": "9c1ee1d39485d4dd53b0909a4657c2dcc8444f13fdde0d7b35dac38eeb8b0b7e",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "protection-fire-purple-loyalty",
+      "bytes": 681297,
+      "actualSha256": "131d5d788b2203eba793f2607f97e2e70bdd6fa6cdff7c7a07cbb7f6d4d04a5b",
+      "baselineBytes": 683441,
+      "normalizedSha256": "dfd195ea350ae56b6092c01c79318a405f89eeef09a54b20425c96972f022348",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "protection-natural-four-seat-paid-four-cards",
+      "bytes": 286131669,
+      "actualSha256": "3562e77a528a6786363858104e5b44ff35059efd77fe7ee7e3251e3705cf2b6a",
+      "baselineBytes": 286715125,
+      "normalizedSha256": "0cd0d651c8c45e2708db392a2a3be093ee354194314cee7cb294a794f965dc8f",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "defence-equipment-paid-four",
+      "bytes": 20068803,
+      "actualSha256": "9609dbce44297ef175a35c545f591c03527a632c71501a9e30c726ab7fcbf6f6",
+      "baselineBytes": 20113699,
+      "normalizedSha256": "ff12b4d8878e5141fb0f35287acc759239889ea5fc41c3302601f1f0966c3a18",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "defence-equipment-shield-return",
+      "bytes": 1471628,
+      "actualSha256": "b4a86d3eedb599fa3f80fa14058d7717e09d8ea9d0a59711542961b8d2b1036b",
+      "baselineBytes": 1475308,
+      "normalizedSha256": "6613a93134382c8b28ebb8d09f585bb9873f10e5fa4f9baf4718d14b044ca2e5",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "defence-equipment-shield-hide",
+      "bytes": 1378848,
+      "actualSha256": "19951b95234b6f091637d7381095571ee894caf2b8dfb1cafd128427b3dfd945",
+      "baselineBytes": 1382272,
+      "normalizedSha256": "377ed7acc7dabf839d660fa8b409a917b77918e089b15e3db374460a10580175",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "defence-equipment-vest-target",
+      "bytes": 2013280,
+      "actualSha256": "adaf5d7a5fcf93f7e79345959fe0a10f6ab458044a39b342c4be065720395c9e",
+      "baselineBytes": 2018240,
+      "normalizedSha256": "07fc4f6bcc2104076d379c7be93de87d878b6de53f01fe09e5e5936a99f34759",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "defence-equipment-vest-source",
+      "bytes": 2022765,
+      "actualSha256": "0f6162edf1dbe7936cdcfc5591ab59fc94c7d4fac523dcc053fa79e3b0f320f3",
+      "baselineBytes": 2027725,
+      "normalizedSha256": "cd364c90ba1cce09a3ff38faa11476149949f2c042e5af754e85f258bfd95064",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "defence-equipment-vest-lost-defense",
+      "bytes": 1697213,
+      "actualSha256": "da1e264d2184d1325f9f3f6a310462f277f29378cc931e74e23186851124ca07",
+      "baselineBytes": 1701405,
+      "normalizedSha256": "b1617e47a1420b4750c19f5143809149125deebe7b14f21dc64d56ec29858ccf",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "defence-equipment-roles-targets",
+      "bytes": 2093391,
+      "actualSha256": "d95beeb196b94f56277123a3976cce1a3a8c0305b68016dc4ab7adccd884766e",
+      "baselineBytes": 2098351,
+      "normalizedSha256": "e0083a1589aa15d9860e5aa21ba2e58167e2e284aee9394838075125e5d9ccdd",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "defence-equipment-blood-type",
+      "bytes": 1698718,
+      "actualSha256": "2d178359a44d8c7d7f7742606f43464355337a3c4a4531955ac430ea8911b64a",
+      "baselineBytes": 1702910,
+      "normalizedSha256": "e84a2855344027b74353b87fad5da48249a282df104d958d33515a5f6a16e357",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "defence-equipment-cat-loyalty",
+      "bytes": 1298368,
+      "actualSha256": "6db713a05bb2d2a824614b03be6ebf2e6cb390cc88ff1df08b75866c9dec49cb",
+      "baselineBytes": 1302048,
+      "normalizedSha256": "708251708eccec1229158086240f36b147f93c6c0034838455fa9862c6f4e9be",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "defence-equipment-natural-four-seat-paid-four-cards",
+      "bytes": 284532153,
+      "actualSha256": "aa5a38685d6b6e6ae0f1be41e78064c1c5ef7eff9290c08d2d3f2da8ba919d97",
+      "baselineBytes": 285151961,
+      "normalizedSha256": "b334034a0212afd6d7ec1f601462dc076cc42b82f3ae582c9e53f3b605c25805",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "equipment-abilities-paid-four",
+      "bytes": 5153257,
+      "actualSha256": "4b9ad0ad19ea32bbea1928368d4da52b28b7e83e08a1e2fae3ef2217d5be66b5",
+      "baselineBytes": 5165641,
+      "normalizedSha256": "6fe63870224863513f022d73920f19ebe7acc033d49a4bb3237e21e746641a08",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "equipment-abilities-knife-source-moved",
+      "bytes": 545073,
+      "actualSha256": "1032994ee308942bf0ba6b6101cb32c0801ab7266fbb90579830ed954d5e4e48",
+      "baselineBytes": 546449,
+      "normalizedSha256": "7e7636edcfdbd6e155a020508b548dafd3dce0e17060a34f29733d8bfc9fd102",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "equipment-abilities-knife-target-moved",
+      "bytes": 548962,
+      "actualSha256": "1d00a273fd70f079bd7be0077e9fbc0f10acc9f00ddb2251d8f650f78938ac32",
+      "baselineBytes": 550338,
+      "normalizedSha256": "a0b0740e26b05f9408f46b6ce67f4f52671a6bda40e65d87dcd1b26440c436ef",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "equipment-abilities-knife-paid-shield",
+      "bytes": 546765,
+      "actualSha256": "412096f5a92d81d912534521c16e7a308d8a5f06ec94406bd2730164aab2a1f1",
+      "baselineBytes": 548141,
+      "normalizedSha256": "7f98311f8fbfb95729771f6b8c13c8ace67a4d1dd00fb3032e4fae7d2faa1279",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "equipment-abilities-blade-twice",
+      "bytes": 16212329,
+      "actualSha256": "3d0f3cce1a2e11d711f20ae8e9a100dd528899db9116e873ff260b111419c5bf",
+      "baselineBytes": 16252617,
+      "normalizedSha256": "2083f69e7b0ddc68d3a8cd94c97b19a20b27e723261107ef6f2a05bb57c49fd3",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "equipment-abilities-blade-source-left",
+      "bytes": 1964565,
+      "actualSha256": "3f4b0bcb5986b28dcbdc59dc1763548b6b1a7eb2fbed394aa8d52ba0e9a4bb1a",
+      "baselineBytes": 1969525,
+      "normalizedSha256": "8203dedd5bebfbac68715a52875eefdf240ee6527c90aac922bff2b0e06ad571",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "equipment-abilities-blade-host-left",
+      "bytes": 1956934,
+      "actualSha256": "0f31c1392df5d8c1c9b92d9260aebac1ea4ef03fed2f020171427aa95a66c902",
+      "baselineBytes": 1961894,
+      "normalizedSha256": "bc7a5ee0632fe47bac1121d6cb28b52b797613b1495de4995047bb8c003d8381",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "equipment-abilities-blade-host-moved",
+      "bytes": 541069,
+      "actualSha256": "2f21b339ca013e27df9cda05f5f9d350b5dc1f725e1e787d5f7eb7a93bfc5649",
+      "baselineBytes": 542445,
+      "normalizedSha256": "da060dd34fcf25b7282274a10441847c4e2b187157b2e37da2165111308ee219",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "equipment-abilities-blade-host-rebound",
+      "bytes": 541367,
+      "actualSha256": "a1d44d2bfc8aad1d3cef4b04f1a7e23d2f4747bd2b980451e83045170629385d",
+      "baselineBytes": 542743,
+      "normalizedSha256": "c5f8ec30c32dd1819a868b0e1d7ed613a0b2d35ef29d6cbbbb05e1ca9e209115",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "equipment-abilities-blade-control",
+      "bytes": 753990,
+      "actualSha256": "4caa845a63f8d9e00c5ff6e9dd7157db1ac39c6df73599cd18636820f816e643",
+      "baselineBytes": 755878,
+      "normalizedSha256": "8358911021afcc30447c1a428a4048e96abc411c7417b474bf29f2190c435ec9",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "equipment-abilities-water-group",
+      "bytes": 18386120,
+      "actualSha256": "2f1970ee0545b4ef5c97c6948667b0a857db4506e646e62c813753d704f22ea0",
+      "baselineBytes": 18428456,
+      "normalizedSha256": "b4b2c2f46b135c7e5f0a89eaa022e76a83fb39c438da9e2c68a59f4448322c22",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "equipment-abilities-water-source-moved",
+      "bytes": 539699,
+      "actualSha256": "1e20cd6a0e644896edd5414098223bffc6179972709bc3366417d0ea394658ac",
+      "baselineBytes": 541075,
+      "normalizedSha256": "df40da30f894ae15db628c7619c242223d575713805d54d01c4811aff5833079",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "equipment-abilities-gun-win",
+      "bytes": 630061,
+      "actualSha256": "4994a7ef6eb6ff66e6798b959198ab7bdd0e3a999fb2d946ba14ef3925a6718f",
+      "baselineBytes": 631693,
+      "normalizedSha256": "aa52776c0dda8382021f3c8601b7ed2debe91bb73170873dbdfd1fe8ccd81399",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "equipment-abilities-natural-four-seat-paid-four",
+      "bytes": 138751550,
+      "actualSha256": "6f8f55b71f58e00307a88fb47060b6eccd0f5df78d670885e285a1d67e232784",
+      "baselineBytes": 139083870,
+      "normalizedSha256": "10ff6d80953c0309f636d02498277ddd5869bed91c5a6016a7f6bc341dab7982",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "equipment-abilities-controller-only-hosts",
+      "bytes": 4035790,
+      "actualSha256": "d10d61318936b45aca33e167f913a270adc1f43c7017ce9777b1b8ae66f2501e",
+      "baselineBytes": 4044846,
+      "normalizedSha256": "f14a064e56cbe4341e38cc79f6bff7b8651081cde9814c8ee5850574f47d2193",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-deck-paid-four",
+      "bytes": 2047084,
+      "actualSha256": "4ef65455dce92e7679abe7ee172c2bb6e49bd9d79f9cc0016eb6e35e7925bcf6",
+      "baselineBytes": 2053324,
+      "normalizedSha256": "1e4b374154c2833fc474d8d6ff94edbb6563681859b3775cda1162023077fe91",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-deck-research-private",
+      "bytes": 917515,
+      "actualSha256": "7782aba9841035e4a4c4122418bfb2b4b521c19c4c841c0f4132595db2ae7b30",
+      "baselineBytes": 920427,
+      "normalizedSha256": "ede9f52bd8370c2af5668d44c8ed6cf97c89dc487aa141ea64b01e3ae9c966e8",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-deck-airdrop-private",
+      "bytes": 754158,
+      "actualSha256": "b0eb89558fd33d32a51c400ade1536f4e8762a6e234c704cedfb8b80be25caa0",
+      "baselineBytes": 756558,
+      "normalizedSha256": "6014864ef85bcc77d01b87514288d21019f9b9c8a6f284de294793cb8e35aae9",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-deck-empty-search",
+      "bytes": 493329,
+      "actualSha256": "d7d7aa459a70a27e1a7f3123fd34f128f32919ad27eddd6b20581bfbc3706ea9",
+      "baselineBytes": 494961,
+      "normalizedSha256": "4183fb6927b7955e65bece0232f6f86cb97877380d0f14bd45076ff18f954789",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-deck-research-depletion",
+      "bytes": 471580,
+      "actualSha256": "e463b99e7463ce9ba032531e07ffc1481901c42a8e3f23ec68d112ebd82db6c1",
+      "baselineBytes": 473212,
+      "normalizedSha256": "4763fc33a67f119d4392a39a1870bf43838c4fcc97ebe313f02d35c31bc5e4ce",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-deck-dog-invalid",
+      "bytes": 1136151,
+      "actualSha256": "64c904b777279420d278eba449539d17eb38d9306a95200ebfeed264e1e3712b",
+      "baselineBytes": 1139831,
+      "normalizedSha256": "93a5257aa17c57109bd2750dc72cf25b8da6a42a9c16aefcb71d58c61814bd65",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-deck-dog-self",
+      "bytes": 503549,
+      "actualSha256": "3fb6e0fd9c7738ebe3643aa5f9c8345686ab555304df0328ff8485284d4002bb",
+      "baselineBytes": 505181,
+      "normalizedSha256": "da13822c3714175751e6767e82e020f99b0e232bc28c568fda569d5ed8c42d95",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-deck-controlled-not-owned",
+      "bytes": 503939,
+      "actualSha256": "c66d33f91366e8d4deb304152c4f55cedd658374988ae4cad433f72718ece4ec",
+      "baselineBytes": 505571,
+      "normalizedSha256": "b1caa0d6e2ddfabf9e32b22ee48d975c5500aa4d859b5681d364672e13382cd9",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-deck-offering-accept",
+      "bytes": 997211,
+      "actualSha256": "3771b1438958d15aec4a7ee282adf455961c16c9dd38e59c5f2c0435a0101b50",
+      "baselineBytes": 1000379,
+      "normalizedSha256": "11176fc99b53daddca373394334c40e4a2331988efab73cd635a027618bb2fd9",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-deck-offering-skip",
+      "bytes": 583105,
+      "actualSha256": "3ba5a6de1ffce176ed388820e53b95aa09e3fa2b31c7fdda78641bfa7bb32f87",
+      "baselineBytes": 584993,
+      "normalizedSha256": "ec1b6110c47555cfbc99b99111383a6f462290b676c0cd6f69939ab8fec82997",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-deck-loyalty",
+      "bytes": 408436,
+      "actualSha256": "162670f2b80cb0138cec17bc894371bcdca150f35b1399e94ae0690323434f79",
+      "baselineBytes": 409812,
+      "normalizedSha256": "7072334dd7b6eda1f55b0adbbece2d1cfb344c645f48e37a6a2b10c3d09540b7",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-deck-source-return",
+      "bytes": 1018631,
+      "actualSha256": "c26cbdbe399e5a0825eadf4a4e68dce924309fb16e32e363e3298f591912c4fd",
+      "baselineBytes": 1021799,
+      "normalizedSha256": "021af679a9c70165e369efd87517bc6e0a87eb12eff2a5d6028fb6d48d842664",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-deck-real-JZ27-simultaneous-source-first",
+      "bytes": 863116,
+      "actualSha256": "5740306f3722468618e14fea8828b2420323191a7d12fbf9d8f42452e32fe564",
+      "baselineBytes": 866284,
+      "normalizedSha256": "b7f4021a2a8b478dd28c5c201878a3189382288dbaa4cda02a3754890fa4455b",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-deck-real-JZ27-simultaneous-offering-first",
+      "bytes": 863118,
+      "actualSha256": "c987a8583f15f4d61d64a40f80cb9f8e15b331973acbd63a38c5d4a01d5b9487",
+      "baselineBytes": 866286,
+      "normalizedSha256": "eb0a790b1c7e2ae16309e01593923496ac394909503c8fc26034221450eed774",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-interactions-hacker-accept-target-0",
+      "bytes": 542854,
+      "actualSha256": "58b6a2e8b475c20aac4cdd17e60e7d81b7f47c67590e1d57db79b5c94ba0004f",
+      "baselineBytes": 544998,
+      "normalizedSha256": "a952e764149f3fed5f589addd7e6ecbab1238edf51e4529dc30c3a80de4233dd",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-interactions-hacker-accept-target-1",
+      "bytes": 541325,
+      "actualSha256": "27df563b79c16378878b8d5c10e7c9baadce7c72fdfacd90c976bab5fdf6b619",
+      "baselineBytes": 543469,
+      "normalizedSha256": "9a1ece8ff94115ce2ba22207d2315b346c79e95ad01e0282278e2a87eee2742a",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-interactions-hacker-accept-target-2",
+      "bytes": 540821,
+      "actualSha256": "ea403b9646b1ef480ac5f37f5d4b443b45573d9b3dc2982c442bf095de783ef6",
+      "baselineBytes": 542965,
+      "normalizedSha256": "05d4c76ebc4a4f0f5a284dcb073e80ddef1e2025056ec96f14b0d73071b9982d",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-interactions-hacker-accept-target-3",
+      "bytes": 540839,
+      "actualSha256": "4c72d3f1ccea9b74bd0569929cc47764385fedd62310cd36c9fe9462be90261e",
+      "baselineBytes": 542983,
+      "normalizedSha256": "1d0763cbc436999b87c05ac7c39f720691fc9d94c1a6255524c43782838a54cc",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-interactions-hacker-decline-target-2",
+      "bytes": 539217,
+      "actualSha256": "e43f6b296ca35c33c623b93a1fec44b078b65c1b3701aba4e8b45a4e15ed9b12",
+      "baselineBytes": 541361,
+      "normalizedSha256": "d443c3bd015fdd203fe0224f8b144dc25ce3f15e7c2c1cf4ab18816bd1ea3099",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-interactions-hacker-source-return-target-2",
+      "bytes": 1033569,
+      "actualSha256": "9f6d2956d8f109ccf13db64b250431e8ce86530f8d256ac2cbbef6590d238c89",
+      "baselineBytes": 1037505,
+      "normalizedSha256": "64cc0bea2f0e3c283adaad19b51fdb79971c97f13a8d81a4b120e02c317a17f6",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-interactions-hacker-foreign-discard-target-2",
+      "bytes": 541271,
+      "actualSha256": "9ba4d087d2ac6cd9058adf79e9fa47e5a8f9e326b63830a6c71afca17e187a06",
+      "baselineBytes": 543415,
+      "normalizedSha256": "34835ca457706e19a222531e719e3dff7eeb90aee8bb3e53b5be064e1051cb1c",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-interactions-hacker-inspiration-accept-target-2",
+      "bytes": 789193,
+      "actualSha256": "c4d5ee2df068267a0027adb08a4e4adb0aa7fdb9ea665480cf0d87cb53cce9bb",
+      "baselineBytes": 792617,
+      "normalizedSha256": "57422250d225de241ad64b9dd21a1e8037c0f1820f642cfef778c1d29e9bf3f4",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-interactions-hacker-inspiration-skip-target-2",
+      "bytes": 550913,
+      "actualSha256": "5c9fd8e2306608e3156a3a320841bf79ec8c811c958ed8559b216ece63b13651",
+      "baselineBytes": 553313,
+      "normalizedSha256": "164791d60107889a699ed923934a324b44c8d75abcfad459174a6b64d8d8e875",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-interactions-hacker-inspiration-unfunded-target-2",
+      "bytes": 485824,
+      "actualSha256": "cd57f05b0c27a4b0dda5dc672c466c4bdb48986db61900e88a2c2003f7b69eef",
+      "baselineBytes": 487968,
+      "normalizedSha256": "8a1dcc478dffb2e34107973d604f2eafa1a7cf1b5a71f95c8d907a190ebfa940",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-interactions-recover-ordinary",
+      "bytes": 823785,
+      "actualSha256": "2f30b6e98a2748b37bcc9067cd884f0999946275448b2949a6513e2f0c48fbb6",
+      "baselineBytes": 826953,
+      "normalizedSha256": "d740385d98dd42fe58cf25a5a6472c513bee2eaad6e7103ddc4355e785bd4503",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-interactions-recover-inspiration-accept",
+      "bytes": 1165139,
+      "actualSha256": "8dafc935ff3f2bde5d7e9b6712f98ca6a2ce4045efa88ec18595ac639611d54b",
+      "baselineBytes": 1169587,
+      "normalizedSha256": "8b945dfc664b8be54be395b621f358fc44d37556603ce91d440fe21501e4dc5c",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-interactions-recover-inspiration-skip",
+      "bytes": 882832,
+      "actualSha256": "2cd82f7f6d6bb155ca13019647540a8c1995ad8a9de42270e4663828ba370f5e",
+      "baselineBytes": 886256,
+      "normalizedSha256": "904aeabb46a22c369d5ef3db20059cbd90adddc9adcee7dbb1b7737ede862328",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-interactions-recover-inspiration-unfunded",
+      "bytes": 738829,
+      "actualSha256": "819e88e5080934d392d5e21048502178c32fca1f0ad01290c84b6940c09b7e31",
+      "baselineBytes": 741997,
+      "normalizedSha256": "537dede831471d6911403de3d8c30dd77bf624d67897a627ad292745d0c1b593",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-interactions-entry-mill-0",
+      "bytes": 628804,
+      "actualSha256": "86e0c0d1556ee649c2b318070f8e543e0becc292381c064d0e6b78f7fc467f97",
+      "baselineBytes": 631716,
+      "normalizedSha256": "ebc4e3440582f4f94662090491a2d2ba3b2c4e0c01015859864bfba25227e9cb",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-interactions-entry-mill-1",
+      "bytes": 632602,
+      "actualSha256": "8f0aee3a150b98007eb2f8a38fc2446cb33da4394ec4390c9343a17388a894bc",
+      "baselineBytes": 635514,
+      "normalizedSha256": "a30a9363de37b7f981824f29c870d31699611b7b2702dffc9da2ecc2cfc27a7f",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-interactions-entry-mill-3",
+      "bytes": 639861,
+      "actualSha256": "d7d3020b030af5ad98afe420fe89c3964a936157eeb39b70d9d825c5603f23a8",
+      "baselineBytes": 642773,
+      "normalizedSha256": "8c997002bc62f442f6133ca96d408782f585407911863f4abe18bf3867a5ddb2",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-interactions-amnesia-one-target-2",
+      "bytes": 411564,
+      "actualSha256": "4a1e6b8d07ab9abb97b0f425c9696488949842312126c5edd03ea4d018abb781",
+      "baselineBytes": 413452,
+      "normalizedSha256": "4221513248bb6770746912b2fb839805e20f774f4ff6bc6414425d9191f0e28e",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-interactions-amnesia-random-three-target-2",
+      "bytes": 420650,
+      "actualSha256": "9d76191be932366407b23f7dfba5f946d4ad1b2bf6ad5e8108b81ac690395de7",
+      "baselineBytes": 422538,
+      "normalizedSha256": "d6543016cb412285c9498167571b135e63e5b179eab7f56740bfd96375841ba3",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-interactions-amnesia-foreign-owner-target-2",
+      "bytes": 412004,
+      "actualSha256": "d4d4bf2b159a0d4d4e9ad7602c714679ea15835b6745ab48803b254a4bf8da59",
+      "baselineBytes": 413892,
+      "normalizedSha256": "f2160555c1bbd98245288b6adf4827e1d09a693930276bec9b3d816e746f1768",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-interactions-amnesia-empty-target-2",
+      "bytes": 406943,
+      "actualSha256": "713931421d91f3a1849d5e672a121a0b08cf44bf177b42222e58a2060bfa811e",
+      "baselineBytes": 408831,
+      "normalizedSha256": "bb0caecea6539f38c65b520cb82f35e66f73fddf26ab8524b229c496860af6bd",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-interactions-amnesia-self-target-0",
+      "bytes": 461311,
+      "actualSha256": "7151d04c51229abaaed9597006bcae99955a858ab60931da43156aa49e9dc8d3",
+      "baselineBytes": 463199,
+      "normalizedSha256": "52fd2fa3f11318aad6a1be9479cfd1a042768d6d694749cd3b9cc57ad9b59e5c",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-interactions-prepared-optional-shuffle-accept",
+      "bytes": 126502,
+      "actualSha256": "c2ccde7667aac910dc70a8ac0b993a0f2992b450a5ac48a73d4ae931f1376747",
+      "baselineBytes": 127110,
+      "normalizedSha256": "6a5d209a8fc319eafbd4089f8bf7e6c2108ac7f4cbfaae8f5378bd05bdb37937",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-interactions-prepared-optional-shuffle-decline",
+      "bytes": 126485,
+      "actualSha256": "8a766900856fc458079cbed9a67dbcd76411cf6301465fa13d19322871ddadc1",
+      "baselineBytes": 127093,
+      "normalizedSha256": "d7735830b8b99cf41a68ee9c29cfcc8aa79f87afd31564b8a3772355674b3c31",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-interactions-normal-inspiration-play-empty-hacker",
+      "bytes": 795745,
+      "actualSha256": "2ddd984838d677bbaf7479e00bce33eb53fdad47ad8d4f7262f0e95371afd194",
+      "baselineBytes": 798913,
+      "normalizedSha256": "5175f175f1d0d52f56b30b7ab6394ce69d6d36271fffb96926704e09de0fb680",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-interactions-prepared-stale-recovery-trigger-still-draws",
+      "bytes": 703533,
+      "actualSha256": "2a234914dcf614a342e3be31ca1cbf7e05a7ae77e5d9c5388e30d6b358fdfdb9",
+      "baselineBytes": 706189,
+      "normalizedSha256": "8cb0ff58630d5e354d5059f98a7ba9096d0a1b0292591a5425980c35332d5f58",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "hand-interactions-natural-real-50-card-dealt-hacker-deploy-only-printed-two",
+      "bytes": 11857893,
+      "actualSha256": "65dfae3b5284918ecaf70cb8891183b82f792849cd0552100d6f055858a71f4c",
+      "baselineBytes": 11902725,
+      "normalizedSha256": "a2c9fe16ceec707c0f36196fb1b18ed84d28fb68059e77deec8c16ea9bcd06fe",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "purple-tools-painter-exhaust-only-discount-play-asset-character-no-death",
+      "bytes": 818203,
+      "actualSha256": "734abaaf4b596866027978ce1f9c5ec393904280e1f8e0503cdcf7291e8b115e",
+      "baselineBytes": 821371,
+      "normalizedSha256": "e9821800e02b99aca1d6100bc7671d05b39cb0c23826d8a67a2b204bbd8f9901",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "purple-tools-conceal-asset-do-not-consume-paid-reveal-does",
+      "bytes": 1293739,
+      "actualSha256": "74c45ca0aae508292c347b3aebdceca8572b49e5c0da50de4a8154d3a591d891",
+      "baselineBytes": 1298699,
+      "normalizedSha256": "5969bce0a13b6321c27e92d23b83d9b4cb1b5226a323049bad6ddb2ea20470b7",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "purple-tools-legacy-reduction-excludes-paid-reveal",
+      "bytes": 1041481,
+      "actualSha256": "c7639efb4e0647e9147bd8aa8b9aef6fa5f45fbfd876fdd3cf69a0b70f764ad6",
+      "baselineBytes": 1045417,
+      "normalizedSha256": "11f36ef0d843672ea5b22ec2f9284e445f9305fe32977a020da65c7480de62ec",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "purple-tools-real-DQJC108-win-free-reveal-keeps-discount",
+      "bytes": 1066138,
+      "actualSha256": "e80963b1da13c801899acbb231ad8d9b6a0eec4652b001e5c2364181b431dd2c",
+      "baselineBytes": 1070330,
+      "normalizedSha256": "321ce32fbb71981b6740b7d163c52c550917b3b9d520e55cc4fb79301e63c6c7",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "purple-tools-discount-not-consumed-bad-target",
+      "bytes": 520631,
+      "actualSha256": "0d0a435e5edab698c04b85ec14a27217443d8c50db2c9c6ec054c1258f6547f5",
+      "baselineBytes": 522519,
+      "normalizedSha256": "d253b890cd761dab5efb7e679460e87723133f5cd75ed10a319559c39bc4b315",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "purple-tools-discount-not-consumed-loyalty",
+      "bytes": 509689,
+      "actualSha256": "f6ada312ba046af3f1b554a0d9a7de2b585562ffe5cd15154204cffea046620f",
+      "baselineBytes": 511577,
+      "normalizedSha256": "802cfd82a76869dcb94ab4ae51b69004385eb5a2593f0d1bf46383db04a8a8ae",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "purple-tools-discount-not-consumed-no-money",
+      "bytes": 507977,
+      "actualSha256": "57529e053dbf9249e17bb4fe4cc8d742406277e8868b5f344e371ddd445dbf5e",
+      "baselineBytes": 509865,
+      "normalizedSha256": "3deff47e7e40d84a99589d410681499d883ed341078c73b5f3dac96901242339",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "purple-tools-discount-not-consumed-nonpurple",
+      "bytes": 789847,
+      "actualSha256": "109159d824950a4bdabb8df0fc658104c5c14786016a9cd74edad462b48c117c",
+      "baselineBytes": 792759,
+      "normalizedSha256": "419df46082df79df1191c648f7b4a097153f4ca6f3d085a297a894ced948c292",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "purple-tools-discount-not-consumed-other-actor",
+      "bytes": 1482812,
+      "actualSha256": "6c360352108785592474933f81b626ce11179e5bb5d6aa517181d67d48e40914",
+      "baselineBytes": 1488284,
+      "normalizedSha256": "17006e898b66a3c2c1d4301083a781857cec4db7f4ee05997173b1cb10d2b926",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "purple-tools-stacked-discounts-clamp-zero-consume-next",
+      "bytes": 1177398,
+      "actualSha256": "d376dd958a9dfdf28d1ee4254d6f54c8d098ddd674563205c4444ac04638ccad",
+      "baselineBytes": 1181846,
+      "normalizedSha256": "49a7c7c25467f01cd691aad9fe0ba2b49f69a9caaed81172fcf68bbc36e09992",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "purple-tools-returned-source-keeps-declared-controller-discount",
+      "bytes": 827943,
+      "actualSha256": "af6545323388ffb1309deda6bfd52c72c4aa74f2da2ab3d9de8a3e8caab2e8aa",
+      "baselineBytes": 831111,
+      "normalizedSha256": "da3dce94e7f4755d7cdc1bddf3521478a4db1f5e3e1ed06969cab7fa932e3182",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "purple-tools-turn-end-expires-discount",
+      "bytes": 9352559,
+      "actualSha256": "8655e988d925f9042a57d4bda32d5cf3c72465faf3ad615b83215a453851a96e",
+      "baselineBytes": 9390543,
+      "normalizedSha256": "b39676760bcfd8aae3b86033a46455e839f7e0ec616a25689416abefa4bbd52b",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "purple-tools-collapse-seat-0-asset-owner-fresh-instance-privacy",
+      "bytes": 410988,
+      "actualSha256": "806ab49c61c00d61bb3de472474f35e78e3a2af9066b8b3117e9ee6024123288",
+      "baselineBytes": 412620,
+      "normalizedSha256": "aed459fe1d68fb626747ba0aa3d7b99703061c73bdbc958c5ef09dc48ddfad58",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "purple-tools-collapse-seat-1-asset-owner-fresh-instance-privacy",
+      "bytes": 410981,
+      "actualSha256": "b68930422dc952d380a7cd1abfc20bfabd1ce9c1ae012f7f65597128ffda7c3b",
+      "baselineBytes": 412613,
+      "normalizedSha256": "9cc3b2cf023443e1e127e9cd83d78c987beb825d552dbc8bda5f6efc698a1b94",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "purple-tools-collapse-seat-2-asset-owner-fresh-instance-privacy",
+      "bytes": 410981,
+      "actualSha256": "8851f51646b2a095960c674b6c6093d44fcf7e43a03ae9c8faa962c053631ec0",
+      "baselineBytes": 412613,
+      "normalizedSha256": "85911dfe9caef19edb55b8cd5fd027d3a7afa96598fda307b7ce491e1bea4d8c",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "purple-tools-collapse-seat-3-asset-owner-fresh-instance-privacy",
+      "bytes": 410981,
+      "actualSha256": "57efcc5d8805185c611440690539045fe55b0e6e4037b97a32279fc0284a7d7d",
+      "baselineBytes": 412613,
+      "normalizedSha256": "c448dfb9b7733799bb2537ed6452a2dd8477911bb6ef58efb01b638f076118e4",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "purple-tools-collapse-reject-character-atomically",
+      "bytes": 161062,
+      "actualSha256": "ef676c124d8a16bd6fcdf90d6ca983b31c6bde00f98e50775fbef584066b9390",
+      "baselineBytes": 161670,
+      "normalizedSha256": "b7fa026bfc23e765b9c64ccedcf759aece869507481fc2c8903ff6988f48dc73",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "purple-tools-collapse-reject-hidden-atomically",
+      "bytes": 158985,
+      "actualSha256": "fde06f02531e3997e3ac86c798f7ee0c12d69d5e4c9774f19d91eb050d0e814f",
+      "baselineBytes": 159593,
+      "normalizedSha256": "f2ddf803de3f67b496d9fdf52ebfcff9d166f854c435c538bcaf46547663253b",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "purple-tools-collapse-reject-hand-atomically",
+      "bytes": 157926,
+      "actualSha256": "f42cdc3d171bcd6267cea205abdb84529339237176b49b533a33217252bf367d",
+      "baselineBytes": 158534,
+      "normalizedSha256": "b97197defce1e6512e27bc3ad0b0d026c565d32ce7577c40d6aff07183fe89a3",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "purple-tools-collapse-reject-grave-atomically",
+      "bytes": 160896,
+      "actualSha256": "53a709fe5b600729b26a4169dd305f5ebae04305361c5e602332b8d980c0e5c3",
+      "baselineBytes": 161504,
+      "normalizedSha256": "dd8982cc4e56fb295a77d4aa794471c4659f39942b8c3d12da58ab8a01027697",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "purple-tools-collapse-reject-region-atomically",
+      "bytes": 156724,
+      "actualSha256": "5605b0ae860b86e3ad24c9744fd0c7b052a42c96c71cc2f1128dd0d71d3f3f85",
+      "baselineBytes": 157332,
+      "normalizedSha256": "ae1a6dd76834d0d1677bcd914524118de892b12dd11bbe92f7ba9d202273d2f8",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "purple-tools-collapse-reject-player-atomically",
+      "bytes": 156718,
+      "actualSha256": "8ee9b146eaf6e7e8b861e529cf7fae704e902e6e51e1752ea91e91ba3c721f67",
+      "baselineBytes": 157326,
+      "normalizedSha256": "a33f7a8829aa806788be2e10adfab6d3e004c88a5d90f443fa1d4fb1766c7350",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "purple-tools-collapse-reject-missing-atomically",
+      "bytes": 156737,
+      "actualSha256": "68f18e4be064b034fd5482aebb3f1af07aa2bd15c078bdbe4a9ea05cc1e9d2eb",
+      "baselineBytes": 157345,
+      "normalizedSha256": "ae69d61ba58ffd12430f7ae934506d4a152d4389dab8946b82068bc8c7c7375c",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "purple-tools-collapse-real-control-attachment-cleans-control",
+      "bytes": 813263,
+      "actualSha256": "b562b443916e10a202c8a404043c0e6a54cd6c343b8171e519369fbc93b3b6b0",
+      "baselineBytes": 816175,
+      "normalizedSha256": "d457bb3998b23dc8a0a8652a06b6430b104b7f41af334e89fac41788958ebd1f",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "purple-tools-destroy-armor-settles-wounded-host-real-death-trigger",
+      "bytes": 838498,
+      "actualSha256": "c8d8907112742a82fc64ff27a0587351ba369d6d592ec74469b1056265002020",
+      "baselineBytes": 841666,
+      "normalizedSha256": "2145b4a46de70cd5bc57113cb84381a0c392a36e53a81fb276107911273e10bb",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "purple-tools-real-host-rescue-stales-attachment-no-refund",
+      "bytes": 1039621,
+      "actualSha256": "03598474a4fbf4b8dbcfac8bfbfb302a852dfca29fdf061151860d6f03c2f32e",
+      "baselineBytes": 1043301,
+      "normalizedSha256": "7384abf677c8a34214e2532b0ed8f04eeeb3d6e0fac7b212d8c6c504a093e133",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "wound-defence-hermit-no-assets",
+      "bytes": 403882,
+      "actualSha256": "484da70a259139d82954d40596f1a97f705b4fdc54e342fc3b4069a2023fe354",
+      "baselineBytes": 405514,
+      "normalizedSha256": "81fa78fdc512b8db0dfa1e91662407993167dcf4c8c0b62fb4c6afea4fb35114",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "wound-defence-hermit-controller",
+      "bytes": 436145,
+      "actualSha256": "b1895cf1a85bf34ec4cfec722f74616d5889fa53e7cbbcf967577045f3a0cd79",
+      "baselineBytes": 437777,
+      "normalizedSha256": "cafaa73cb4058233e35b5c71f10420021406b43dcc4f90301dcb67de3b7c35dc",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "wound-defence-hermit-stack",
+      "bytes": 803761,
+      "actualSha256": "f18f134a58911cf86e9953f959d81e43316ec4740b533b2daf14f3411c1fc43d",
+      "baselineBytes": 806673,
+      "normalizedSha256": "07c5563baefd62f3ba8f57d39c3c7a6e9c537a8b413c03527170154887e285cc",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "wound-defence-hermit-source-return",
+      "bytes": 887143,
+      "actualSha256": "1f7fe62b65ddca3d4e1c9f748a2d5eeff62b835f535d13b49e20fd9010ce47db",
+      "baselineBytes": 890311,
+      "normalizedSha256": "0f069034e397d7b54e25fca41325a7fbef305d700f7679f6f50d6f1187a2657c",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "wound-defence-hermit-target-return",
+      "bytes": 1235903,
+      "actualSha256": "47780dec5ff0cc1c7ca2000dbaa0d4e9784e2de4418ee45430b9b346c1c58bc8",
+      "baselineBytes": 1240351,
+      "normalizedSha256": "556605634d569ef10cedace1a0654d57e544cf8c3ac8a729521692001afb9bce",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "wound-defence-hermit-reject-self",
+      "bytes": 157914,
+      "actualSha256": "11557116b6c85f01c440bbffdf659e522697b56e7b7fb968e62167f89e2fac01",
+      "baselineBytes": 158522,
+      "normalizedSha256": "ad1be556c9cfadcf0760f36489ad93b1cffac9db36c82bf5498fa279b6b8be02",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "wound-defence-hermit-reject-teammate",
+      "bytes": 162283,
+      "actualSha256": "9c1dc0fc9d3101264effd78f636bda2cd115c1115596c4eb74eb582528454dd7",
+      "baselineBytes": 162891,
+      "normalizedSha256": "11f7721ed2e6d33e629042a1eb95fb460a19f32655368ecae914a8d8e3cecb51",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "wound-defence-hermit-reject-enemy",
+      "bytes": 162241,
+      "actualSha256": "7bf19df9a8deb131123c2f4596a3a58cfe124f94ec66a17659c89db3c6d81bf5",
+      "baselineBytes": 162849,
+      "normalizedSha256": "1e9f6149a310b290d808e8af8aca59a8eb5de7e0815800a30f857bdb28252b55",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "wound-defence-hermit-reject-other-region",
+      "bytes": 162326,
+      "actualSha256": "4fe67f4d140d1b05063e98b66f483ef3426ad98caff09d52e9a79b674b6cb89e",
+      "baselineBytes": 162934,
+      "normalizedSha256": "3e599affe0a047132b4cc7c8d1611e6548d84e98e8cb9593dded08574ad05f9a",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "wound-defence-hermit-reject-hidden",
+      "bytes": 161170,
+      "actualSha256": "e17a4056beabd8886e1276b1cc9b08d6f31affec81297f84491dd5bf3736ce69",
+      "baselineBytes": 161778,
+      "normalizedSha256": "f5f0dbd54e25909777ce0286399b029a0c086d3d77c685e9f309a6eec0451350",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "wound-defence-hermit-reject-asset",
+      "bytes": 159851,
+      "actualSha256": "ce2e68a1cde9b90baa142f30d4eff229c1727381ef940594a8db25b749622351",
+      "baselineBytes": 160459,
+      "normalizedSha256": "de9bec68d9ba9cd3ba00c6ceea6b803a8a911e3c657ff213a8f7131319f457b4",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "wound-defence-hermit-reject-hand",
+      "bytes": 164192,
+      "actualSha256": "bdca70a382ae5e960d716c8eeb56ab34907f5d0ee3412c2c56e05412de2a4ca5",
+      "baselineBytes": 164800,
+      "normalizedSha256": "78f880b1cbadd4caf160667adcd019303c8eb6605b104bf35ec09ca0ed9c06f6",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "wound-defence-hermit-reject-missing",
+      "bytes": 157959,
+      "actualSha256": "f9846da527e9a71b00674421458de62a1c69098a82b87b73d9fedd1d6ceaa560",
+      "baselineBytes": 158567,
+      "normalizedSha256": "b1f9746b701c49c097ee7ddb0a8039753cf0a0a3f3063cb49e0a820568b9bf81",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "wound-defence-prepared-hermit-target-moved-cancels",
+      "bytes": 375385,
+      "actualSha256": "a625e74a49e9500d46bfbc43ba77a9417f08edbef30e7b90de201d5ff72005ae",
+      "baselineBytes": 376761,
+      "normalizedSha256": "745ee73d3ec4590f5befcf0cc654d59721b879f4aadf5b0dccfa891842f73393",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "wound-defence-prepared-hermit-target-controlled-cancels",
+      "bytes": 375576,
+      "actualSha256": "6b2fcad10b7f6cb03b10f4bd9d8fc25882de1f66b590389687ee084007bc04a3",
+      "baselineBytes": 376952,
+      "normalizedSha256": "fe5fbc9e6dc0f48f5e52561e475095a2c4efb61032bf45a9e21a51e2e14c7594",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "wound-defence-prepared-hermit-target-hidden-cancels",
+      "bytes": 371031,
+      "actualSha256": "527df97b7aa028dc492721560c5832d78803c3f58451df2a3bc2ab66f68036e2",
+      "baselineBytes": 372407,
+      "normalizedSha256": "075160b0756003967dade50b5804c9d0b87c8bcb8b1891996acdb858d10456b7",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "wound-defence-real-murder-death-wound-normal",
+      "bytes": 810487,
+      "actualSha256": "3277cc76daedd42039f0b2ebb04004a55fcad9e319967902bc0e30dca9ca1ee5",
+      "baselineBytes": 813399,
+      "normalizedSha256": "25455d37964a449c259899588061697016f5f0cb6edc2414f1da8b0c04806ca7",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "wound-defence-real-murder-death-wound-controller",
+      "bytes": 810753,
+      "actualSha256": "b3f35ecf2eceaa7807a2aa9a821d109b83dd5c8f4a6114e2dc9654bc39093ac3",
+      "baselineBytes": 813665,
+      "normalizedSha256": "3fc6129865ddbfc98409bcf56a4447ab70ebb649dd7dfbe6b14f46d8e9145396",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "wound-defence-death-no-local-character-no-choice",
+      "bytes": 439022,
+      "actualSha256": "5a7167fe171d4179b641df10de2346405936b6ece0adbc85ca06e6eb7c849ce2",
+      "baselineBytes": 440654,
+      "normalizedSha256": "c4c75b5eee5797507d81155d14fd6ebcf319c726d9d21649cbc2bc88e1166e69",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "wound-defence-death-decline-free",
+      "bytes": 521749,
+      "actualSha256": "965c6db31a9b76f0e9c9c2b0e8b4cd25a196cdedd1248ff37c90b8763896aeda",
+      "baselineBytes": 523637,
+      "normalizedSha256": "54fb36385b70822525613f1c0f0b3f1846217a6061d58068f611fd6930ef7a86",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "wound-defence-real-murder-death-wound-lethal",
+      "bytes": 812753,
+      "actualSha256": "280e903daeb533f9c821c85d3273988808336c6462c77defacb712df427d9caf",
+      "baselineBytes": 815665,
+      "normalizedSha256": "c8da622767f803329a5b8804fcf3777078601f82734a2c2da1b16bc81e346c56",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "wound-defence-real-murder-death-wound-prevented",
+      "bytes": 1211962,
+      "actualSha256": "79ec4e53333d2a8959b8084894733843facb580010a59efd7f3b5bac55e47b63",
+      "baselineBytes": 1216154,
+      "normalizedSha256": "f3a3023378939ce1aadd0ff0c8105b405021daf12ed6025349da589e14209fa5",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "wound-defence-real-murder-death-wound-shield",
+      "bytes": 810895,
+      "actualSha256": "5f39540a72ab9e9bfb6fa2ab59ea46a13fcb9426f2ee3cff7dcdba251e47be4d",
+      "baselineBytes": 813807,
+      "normalizedSha256": "ab29c4f91bf4f26f066d91ce425af366c9ac6dd570c3b15ac998b666931dc347",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "wound-defence-real-murder-death-wound-target-return",
+      "bytes": 1483138,
+      "actualSha256": "da68d3617a85591a61a1120c33fc1dc017e7868201c8b11df2e18f50608b48c3",
+      "baselineBytes": 1488098,
+      "normalizedSha256": "afadf7b430745a13a0e7b1334a510ad255a1ff3ea073dcce62af7e777ec16702",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "wound-defence-real-murder-death-wound-persist",
+      "bytes": 10551339,
+      "actualSha256": "0fd848d85496f1e2c1cb6a3674ca6e7408670a4f03ab182f8697746964dc66be",
+      "baselineBytes": 10589579,
+      "normalizedSha256": "29da26dae6be5bbd09304d40a965b28671c6d814843ab5061b4108851fcc9df0",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "wound-defence-real-murder-death-wound-saved",
+      "bytes": 11279578,
+      "actualSha256": "713ca84418137a29164e7a0f9a6bb8e11e71aa9aa374eb7a20d01c9a377b640b",
+      "baselineBytes": 11319098,
+      "normalizedSha256": "14bc1c452d2dc7ad07d2c01139b0bbb0383cf3d86aac8c4190cb2912e7b2eb71",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "wound-defence-real-sacrifice-cost-independent-death-wound",
+      "bytes": 808946,
+      "actualSha256": "27feea45f296d5fe961a75be61b1fec4814a579e6f114f4ee4acf099d4635c10",
+      "baselineBytes": 811858,
+      "normalizedSha256": "9ba9a3845bb0fe3bbe2de6e2a3fa8c982edcb06fce94c0e06a9abe0ca0729edb",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "wound-defence-prepared-cleanup-damage-cleared-with-defense-expiry",
+      "bytes": 369797,
+      "actualSha256": "a83c120ad07ca660223fb552261354e191a44ff69b31715960553f3d14efcfd2",
+      "baselineBytes": 371173,
+      "normalizedSha256": "89160212f3b2c7563f0baebb87b32884e63080bb6bca3162693c65793a05f2cc",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "wound-defence-prepared-cleanup-wounds-stay-expiry-real-death",
+      "bytes": 990995,
+      "actualSha256": "cee2f7814707ed8ef6f5dcdc5785b3a497db16aea9d8901611a6924bbeedf7d9",
+      "baselineBytes": 994675,
+      "normalizedSha256": "de418d05113bd64a1f5ee4a6941f044acc7c64e1b35e4964768179ca718a4183",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "dream-reveal-real-spirit-damage-advantage",
+      "bytes": 446597,
+      "actualSha256": "1a184efb90dd6510e5910afcd91dd8f8c04c6d151b19bec6b2dd78cc91122f43",
+      "baselineBytes": 448229,
+      "normalizedSha256": "002ce97aee300b5f56cb65bbb675b30a7baae364950d55f314ff17d3c0a0d2df",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "dream-reveal-real-spirit-damage-tie",
+      "bytes": 459679,
+      "actualSha256": "05ad6358632d24f31be331229e75b59f3ab133ee5389ba532a253c66ca2c2bf6",
+      "baselineBytes": 461311,
+      "normalizedSha256": "1fe8f47d95b3ac1052210745086cbbccc68327d9e9c36b5be7c1d76510c7f7be",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "dream-reveal-real-spirit-damage-deficit",
+      "bytes": 475347,
+      "actualSha256": "fde59f5d340e4f104f477377a54c16a40682e0deb9eebfc75c41a3f9e13b0d1a",
+      "baselineBytes": 476979,
+      "normalizedSha256": "c345f0c481404a0475ba10f758f3612f36db69bb0d09bec21bb87e0e7373f1dc",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "dream-reveal-real-spirit-damage-attachment",
+      "bytes": 535614,
+      "actualSha256": "4f213a6d0d3d8c52811baf6da79811b9ad562354498098465d771a226b63bfa1",
+      "baselineBytes": 537246,
+      "normalizedSha256": "0d82714aef273ce6b4f7d0d126e94dd683a89e4790098da1f93dcfd9243465e1",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "dream-reveal-real-spirit-damage-simultaneous",
+      "bytes": 490166,
+      "actualSha256": "4ce10be6913e1051ac8580fab957b781f9ae347d755f24484e9612ac25723865",
+      "baselineBytes": 491798,
+      "normalizedSha256": "845cadb6f1733382feeb21116e01922f7f9eaeb2a78047dce6f20bae4124eb67",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "dream-reveal-real-spirit-wound-still-kills",
+      "bytes": 783890,
+      "actualSha256": "537266baff7414b4b14671e417e17b05d6413a220044b155461d41268c6f8849",
+      "baselineBytes": 786802,
+      "normalizedSha256": "b8562aec5e9fae810b77571cd5d0a8b2d2b0e3b9015703f3e03c850fa343ce76",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "dream-reveal-real-spirit-assassin-destruction-still-kills",
+      "bytes": 814239,
+      "actualSha256": "90c4ad7dda797258644c23e5981a724410d202b966fe0ce1ec851f5c0fbedbb9",
+      "baselineBytes": 817151,
+      "normalizedSha256": "a2cd08705fee7ff9c58b241ddb195de022d619d15c1991b100705edd3347773f",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "dream-reveal-real-spirit-granted-combat-participates",
+      "bytes": 435974,
+      "actualSha256": "43b2fcfe8d229a880d3e2838522315251be9377e7fafb4d84e5dc5ea7f8b37da",
+      "baselineBytes": 437606,
+      "normalizedSha256": "6464e5d7053b95932e8c55aa75b3ccd43689d12046f06fb3ab062ad6581739c0",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "dream-reveal-paid-zero-reveal-repress-normal",
+      "bytes": 809922,
+      "actualSha256": "53a1a9fd1df4fd32e2bc17d06a79b666310b7c07c768862e59d915a53a3fbee4",
+      "baselineBytes": 813090,
+      "normalizedSha256": "21f2b73edf6d09185cc2268ff6d033c4f33dba80378a21580872ed1bfa72e37f",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "dream-reveal-paid-zero-reveal-repress-target3",
+      "bytes": 810422,
+      "actualSha256": "9113ba14dbc0be2bfb8e6b36d0018789a5b25cd1c0d6baf2de42ae3f321e1ff5",
+      "baselineBytes": 813590,
+      "normalizedSha256": "dfb527446ee252553b19298398070c83b859821a3aa73b68530164a75b7843e1",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "dream-reveal-paid-zero-reveal-repress-reject",
+      "bytes": 1140395,
+      "actualSha256": "fd46582e480dce782dd714ac6ae9a5bd2ff1771f300cd5d0bf076aad2afacf65",
+      "baselineBytes": 1144843,
+      "normalizedSha256": "30542f90deb89f6ae1426aec3399c96200c342e7e772426c4f2dbef283d6e79d",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "dream-reveal-paid-zero-reveal-no-enemy-influence",
+      "bytes": 742517,
+      "actualSha256": "98903fe5be8d5a805f1a8c7845cbcbd1a068d044d7b1d0331a301482737dffae",
+      "baselineBytes": 745429,
+      "normalizedSha256": "8233a4fc3441c992f8fa1b5db2a61b65b2a84b8871e6016e663bfc9496115108",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "dream-reveal-paid-zero-reveal-decline-free",
+      "bytes": 476522,
+      "actualSha256": "11f7824f1101b30ed38dd11d01dc70b164d712c82a18e16d931adbedf7a1e034",
+      "baselineBytes": 478410,
+      "normalizedSha256": "0c0086f5c033dd1ae853b5f8b38281aa69e6ed9f1291aa7ece57bbccfaf6b7e3",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "dream-reveal-paid-zero-reveal-repress-source-return",
+      "bytes": 1264231,
+      "actualSha256": "b0f470eca2675b2a863e5357e9c90983cd300e574fe45d1f3953eb16fdab855f",
+      "baselineBytes": 1268935,
+      "normalizedSha256": "bf8f4abffae36426ec92d85c64d3999d84d0116514a3e801649023db98fa9353",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "dream-reveal-real-death-named-search-found",
+      "bytes": 832696,
+      "actualSha256": "421a678f96a1e84ba630b5ee1ce8d2472283fa4b15c9932a2ab419bdd3da0a0a",
+      "baselineBytes": 835864,
+      "normalizedSha256": "a9895ef2a33ac6e4fd0c31bf64f5e2e845b8ff1705484191d0655014cea04fee",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "dream-reveal-real-death-named-search-controller",
+      "bytes": 833059,
+      "actualSha256": "71ed883e2f9ab757c2508997f4b35a086d05eef28491678f3426fcdff22f872c",
+      "baselineBytes": 836227,
+      "normalizedSha256": "4454205616ae84eb3539f80acd867752f9128751f1a428954fcb997d417ed958",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "dream-reveal-death-named-search-empty-shuffles",
+      "bytes": 761106,
+      "actualSha256": "27214fc8d9afe0b98badf552be4d4662cceb5cd1998d79f02cd154589ad929c0",
+      "baselineBytes": 764018,
+      "normalizedSha256": "12419bd905bba56cd145f507f4237bef14a3e2560a4416cc18f8c4645d2dc9a5",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "dream-reveal-death-named-search-trigger-decline",
+      "bytes": 494037,
+      "actualSha256": "7e6933eb75d449be84e69e9558659555b311fae3e74048e62209ed05a4236db9",
+      "baselineBytes": 495925,
+      "normalizedSha256": "a6d5e06ac5cd13b302237baf82824a8051ca617d00ee24006c7110231d7b867d",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "dream-reveal-real-death-named-search-search-decline",
+      "bytes": 831091,
+      "actualSha256": "505baeb46efe93acd86ad4d4fe20bd686fb346b65d416738624443134456e7ba",
+      "baselineBytes": 834259,
+      "normalizedSha256": "32349b1239fabcca4bb17718197845460473ba188ad06f161aa01e53c375d332",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "dream-reveal-real-amnesia-genuine-dream-accept",
+      "bytes": 577916,
+      "actualSha256": "0b46ce4caafe14c8995823a2284234b490a80ccdfd4e1dad19935fa274b133fc",
+      "baselineBytes": 580060,
+      "normalizedSha256": "8c849b74ab4b906614ff49ee5d5e0e926465ab0df3f531fea8ff36ede5b3c2c3",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "dream-reveal-real-amnesia-genuine-dream-decline",
+      "bytes": 577949,
+      "actualSha256": "5379144946027edcae0a9895ea7cc5f4563fff7505320b4e565a973bf11ccdab",
+      "baselineBytes": 580093,
+      "normalizedSha256": "5f0265220e615da7f25692398fa3bedc7f78f72680af672d72bd3532f2ca2b13",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "dream-reveal-real-amnesia-genuine-dream-hidden",
+      "bytes": 504035,
+      "actualSha256": "0eb6f0b038c8e7151f1174f4b3fc63e3596635b6081c2046709309edaafc36d7",
+      "baselineBytes": 505923,
+      "normalizedSha256": "977f78b07e7efb40ddc1a45fc625cc6847a5469113bb301a5a185b9244d47e69",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "dream-reveal-real-amnesia-genuine-dream-teammate",
+      "bytes": 509658,
+      "actualSha256": "90e41cdfa8f942f452a0bee9bbdcbbe55eae0a4abc829144e7f08a333d0d1ee3",
+      "baselineBytes": 511546,
+      "normalizedSha256": "62da7dcff7e6e7dd1f4305491484850f887f7ff4edc57efa174e55fcbd4c438b",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "dream-reveal-real-amnesia-genuine-dream-enemy",
+      "bytes": 509526,
+      "actualSha256": "e4454374a809a91a48ff19550ade8472cead217075efac79979a10a4ddb0e1cd",
+      "baselineBytes": 511414,
+      "normalizedSha256": "de7b82b214a8024c244f8bb8d1b42717c11b5f08ff4634576c431c67fd648b94",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "dream-reveal-real-amnesia-genuine-dream-source-return",
+      "bytes": 961490,
+      "actualSha256": "cf963618da58dc55b127e7e249d3c7b409a395e67d3786177ee79bd79c4673c5",
+      "baselineBytes": 964914,
+      "normalizedSha256": "e5be1cf9056e5dcd66064d80c941174d98354d296d1e7a1f901f0e545b5b4c4b",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "dream-reveal-natural-real-50-card-joined-actual-jz58-deploy-amnesia-accept",
+      "bytes": 2007370,
+      "actualSha256": "fe8046fde147017967503e9460b09381d4ea81eaa10cb4b8bc1993bf527d6c40",
+      "baselineBytes": 2015850,
+      "normalizedSha256": "111d3de93b1931c0e281da5286a2d1bafb40505ea04eb32de5d7db9f514e854e",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "dream-reveal-natural-real-50-card-joined-actual-jz58-deploy-amnesia-decline",
+      "bytes": 2007353,
+      "actualSha256": "6dbf3b7c1c128aae34c23e6f6bece8ee08c8dcf5de5299438af3a9900b8b447b",
+      "baselineBytes": 2015833,
+      "normalizedSha256": "1191328012ad65994f1582958d73cfd8be0410d28b911a7b7dc4f2f0141b7599",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "identity-overlap-four-same-red-exact-controller-source-defense-and-damage",
+      "bytes": 1661565,
+      "actualSha256": "f9c9caffae34d880a0aca4cc90401f09d0bd8f9b2557c9c69e82622d78865158",
+      "baselineBytes": 1665501,
+      "normalizedSha256": "028791bf29851395b15417b6a27478e44cdcd1ba9fcf991fb2f433f9065a8939",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "identity-overlap-four-same-red-reveal-exhaust-exact-enemy-instance",
+      "bytes": 1176575,
+      "actualSha256": "8a813c95f5f6e8fa5726874b1b9d90ebb1528ac1221253c9c26a5ed742bc0208",
+      "baselineBytes": 1179487,
+      "normalizedSha256": "67783d4d06f9f56f4740be172caa256b75c36ed38da616a6486c5282a1eb7c10",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "identity-overlap-four-same-red-death-wound-only-selected-instance",
+      "bytes": 1204132,
+      "actualSha256": "67fcc78157190e1d2e4034c45c1438013ea888f6856963995a0084282cc6e8f8",
+      "baselineBytes": 1207044,
+      "normalizedSha256": "1961b6a3a74a6a0d1ced32572a83fabfa393b7adfd47d6cc63d0d132e865157e",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "identity-overlap-real-control-same-red-owner-return-response-stale-target-fresh-redeploy",
+      "bytes": 3471724,
+      "actualSha256": "3736b8e59ace22f26c310a18fc0ab79c38bf5b12de98ab1df28c2874f1b75f7d",
+      "baselineBytes": 3479756,
+      "normalizedSha256": "6df4ca70e2104acb88c0fb6211698801c11d2795501df773140f1b0889c8fab1",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "identity-overlap-same-red-simultaneous-four-deaths-last-controller-and-owner-graves",
+      "bytes": 3229174,
+      "actualSha256": "bc7d7e76767244cd4d0b27d2e9416cbe85586fe977e2b7dbd9f0bb85c2010053",
+      "baselineBytes": 3236950,
+      "normalizedSha256": "0de50fae1ae565ff100c72614ca84f609be7de1b9cc507ac6ec64a56a9ed8b36",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "identity-overlap-actual-unique-lc23-per-controller-not-color-team-or-opponent",
+      "bytes": 800123,
+      "actualSha256": "b95385e9efbf08264ed4049e2f1ae981cf254d7e6b3436cae23e101644997009",
+      "baselineBytes": 802011,
+      "normalizedSha256": "a4aef7f98c76077a10da84b3d2412db21a3816c73d5df17fb364e6fa49123bb0",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "identity-overlap-four-same-real-society-exact-instances-source-authority-and-payment",
+      "bytes": 893974,
+      "actualSha256": "bcaf021ed6ab86a26f6b3c512eea14886b6e0501b6fccb6701721c0a93e36620",
+      "baselineBytes": 896374,
+      "normalizedSha256": "8c74362a61d1b1d40d3e1ac2692f914877ff6445d9b8b2323a3332b420321046",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "identity-overlap-different-real-societies-common-red-assets-personal-payment",
+      "bytes": 928926,
+      "actualSha256": "96c86b5e404fd0889610f216a751f65510f1439d21fbc9c465c0b22ea909e136",
+      "baselineBytes": 931326,
+      "normalizedSha256": "1a328e895cf0677ab34db0ff8f832049e9e3d2059c959128466d91b04729b423",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "identity-overlap-natural-four-seat-same-red-real-deal-assets-deploy",
+      "bytes": 3189660,
+      "actualSha256": "d26b57acde9aad4b425bfd2cdc82be9f9539c54b49230998e7513ad224f8dd1d",
+      "baselineBytes": 3201980,
+      "normalizedSha256": "f41714920463b49d45016f03242849cfa7542e817098fb72846ae8e55a0cae91",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "repress-assets-accident-seat0-choose",
+      "bytes": 451457,
+      "actualSha256": "c432ff0edac6d1d0febdf77f40fb2f7e6854f6efcda8d46b88752e0db09fcbf0",
+      "baselineBytes": 453345,
+      "normalizedSha256": "c6710ac6a6914d0236dafc5e973304eb0419d036ced22c34a414bd417a92f09e",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "repress-assets-accident-seat1-choose",
+      "bytes": 451562,
+      "actualSha256": "9dc21c94eab5d8298383e165dc5133638a0dd5c1c908dc7bd25952e1d08379a2",
+      "baselineBytes": 453450,
+      "normalizedSha256": "928960204d659acb45957132a88d756b2c0a3643e7dc5897ecac4d5934fe5c80",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "repress-assets-accident-seat2-choose",
+      "bytes": 450622,
+      "actualSha256": "a1728cf5ce99f98d72733a010d388ccc6433c944bfa92a56ff4c7fb6ed960f46",
+      "baselineBytes": 452510,
+      "normalizedSha256": "8846a168035ccf166a7357b48b7a863964c64fc30cfa502413849a05bde29597",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "repress-assets-accident-seat3-choose",
+      "bytes": 450966,
+      "actualSha256": "7b2b1cc13bc799e6f48a67011d56070f1d65798888eaa8c882556c361e8c1853",
+      "baselineBytes": 452854,
+      "normalizedSha256": "c67b821b25ceab4fc99aa64b23b3d82372cdabcd693c98c92aa7bcedc13e957e",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "repress-assets-accident-seat0-empty-influence",
+      "bytes": 390932,
+      "actualSha256": "3584492f42912c41d9d6564bed68237e04bbc7a9e6486a1f5db24c0f0587dff7",
+      "baselineBytes": 392564,
+      "normalizedSha256": "3b7d4db160ffb4473accc2fefbbb53580d6b53727a34a2c0675a40c43d871810",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "repress-assets-accident-seat0-empty-deck",
+      "bytes": 341100,
+      "actualSha256": "cc4286ca34a4b9b6e7211015c4769d53bc862fc7a6ed2ea29934ee9056fdc3b6",
+      "baselineBytes": 342732,
+      "normalizedSha256": "317cc9fe786333368bcd746113ab50dfdcd4cd6fa5e41171aba6a63f238f4793",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "repress-assets-accident-seat0-reject",
+      "bytes": 985426,
+      "actualSha256": "0d994cf7eda7dd12beb495d481c908c83351b63124f5c128e68a38f0a03821ff",
+      "baselineBytes": 989618,
+      "normalizedSha256": "c15198c9879afe7de03b2ae00d313a30aea6333627deaab6071b60ef697b0b66",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "repress-assets-expansion-seat0-JC104-normal",
+      "bytes": 417858,
+      "actualSha256": "22d5261dd660a2bf4eacd05730ed299d854eb5cfa3ce884c6acadf55c44a07ea",
+      "baselineBytes": 419490,
+      "normalizedSha256": "85679be57b9ed45115b6787be50f6cb404f9eb0bb2d32519f99dcb13807e5d5c",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "repress-assets-expansion-seat1-JZ58-normal",
+      "bytes": 415703,
+      "actualSha256": "ea57ad14fb39e30c096dda3ca48ca850f27a8366cb77723351b4d82356011545",
+      "baselineBytes": 417335,
+      "normalizedSha256": "2e2350636e004965c7dccaa01390c321cbee0cc6d5e8e459ba3c6730838699ed",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "repress-assets-expansion-seat2-LC23-normal",
+      "bytes": 415755,
+      "actualSha256": "db98d39305cd0ec226303f272be34360a3092b92f47f9661d0cc077c25eef52e",
+      "baselineBytes": 417387,
+      "normalizedSha256": "d4958ff593e1d193445fe7ac9a93cab62f20da1eb9c2fa274569a0826f1d1c92",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "repress-assets-expansion-seat3-JC126-normal",
+      "bytes": 415637,
+      "actualSha256": "30e5fe039787201a65d079fa8846664ab93da2616801b0fc869103892225f050",
+      "baselineBytes": 417269,
+      "normalizedSha256": "40d52e37af338823768aa2ed8e3391414e11b2ae11214b1586ca66adc0e63b35",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "repress-assets-expansion-seat0-JC104-prior-build",
+      "bytes": 546078,
+      "actualSha256": "1c919c318b17e7db97f448228fcbc85f91d4362fc87ee3b907e0da26a6348edd",
+      "baselineBytes": 548222,
+      "normalizedSha256": "f24b6dc2dae341104dc1d02b969ad6a16b36a80ea3384227a19af3c0de517d4d",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "repress-assets-expansion-seat0-JC104-later-build",
+      "bytes": 482753,
+      "actualSha256": "1c6649c96b14671b0c961bbeb73ed91685d6e0359b864f5652ad74d24ba42ea7",
+      "baselineBytes": 484641,
+      "normalizedSha256": "cfb586011dbcba4b52821f17d1f68eee2db282d22e38794bd53865e4ffc98370",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "repress-assets-expansion-seat0-JC104-empty",
+      "bytes": 369486,
+      "actualSha256": "585dc63e592cfe823c6fe64de8e077f77cfbaf5af27a557913aeda90a20e1b1f",
+      "baselineBytes": 371118,
+      "normalizedSha256": "19d232883697d6ab6613d8ad7c5d55cda9a9b5902a7a6f648b78b4883f86785e",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "repress-assets-expansion-seat0-JC104-dirty-boundary",
+      "bytes": 418150,
+      "actualSha256": "f49290a4222e40d8db72687fa16352406a2cc976317c37b4bc431fbbb45cec63",
+      "baselineBytes": 419782,
+      "normalizedSha256": "bf245079800956b36255155e2def2ee0d4b6070e276d968ea674a8f74dc2de9b",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "repress-assets-two-paid-expansions-one-turn-two-fresh-assets",
+      "bytes": 736585,
+      "actualSha256": "3d16ae3e5bb0a7a7547c598ca1ad6091860d876c5de4c602ce7400b8f21873e1",
+      "baselineBytes": 739497,
+      "normalizedSha256": "a90c7e9841ba760c884d0f3c85eabd8214895e5bf1a24107c102614831a09730",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "repress-assets-paid-jc104-response-private-forecast-changes-actual-top",
+      "bytes": 1218978,
+      "actualSha256": "9536e213acdb93f5cfa993ac1a6a0f7a9fc1704250acc9ed2fd1d4e99f1daf8a",
+      "baselineBytes": 1223682,
+      "normalizedSha256": "5aafa7e3ff58d2647be30ab034cecae2e005d446ad0d60980612989d257e51ee",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "repress-assets-neutral-expansion-blue-loyalty-not-supplied-by-teammate",
+      "bytes": 158209,
+      "actualSha256": "35b97ba7d64644bc1af493b936accbf185880b423ba2bbcaee16647ebaee8581",
+      "baselineBytes": 158817,
+      "normalizedSha256": "0120cf288abd74ee000b29609a80c2259051bed4ed55fe307348dc69d229bdd8",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "repress-assets-real-target-empty-deck-draw-elimination-cancels-whole-program",
+      "bytes": 746951,
+      "actualSha256": "b35253fba40e8386f6bab54dc9fd6d2c866f90f672e81cefd3508c82180d5dbb",
+      "baselineBytes": 750375,
+      "normalizedSha256": "4485f01d439ca9d0fe25c1200a793a6b84875378e05e6f20b3adf7b4f672bba4",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "repress-assets-new-asset-pays-real-two-cost-spell-and-supplies-yellow-loyalty-public-mind",
+      "bytes": 11394443,
+      "actualSha256": "46215bec49fc6accbd60aef816997366ad20a6f234f254e16a27433f1c1e0876",
+      "baselineBytes": 11433963,
+      "normalizedSha256": "61bbacbc5bd62ce95e0b09a1566f146a5624eb29bbb3995a838a3aa82aefae1a",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "repress-assets-natural-real-50-card-three-normal-build-turns-both-new-spells",
+      "bytes": 23374803,
+      "actualSha256": "1337ebbfd0a03a422a2a5ea86573c002c567d85948818a37a9668b9d7386067a",
+      "baselineBytes": 23457779,
+      "normalizedSha256": "b2611f9d1bc8d8bfc8d23365cd6d730de8a8ddd9367dc0d1f4d0a2cb73203096",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    },
+    {
+      "name": "mixed-decks-natural-red-black-versus-red-blue-four-shared-red-personal-loyalty",
+      "bytes": 14429061,
+      "actualSha256": "1d4514b4880796f61f6e84737a6ec294dcff304edf59dafddbbf24f85aaff5c6",
+      "baselineBytes": 14479781,
+      "normalizedSha256": "898930ef6a25c585471c43906e5a82ed0aab5081091eb9b382996c48f4857b82",
+      "completeBodyByteEqualAfterVersionNormalization": true
+    }
+  ],
+  "all17NewFullBodiesFocusedAndDefaultByteEqual": [
+    {
+      "name": "MSJC07-construction-25-black",
+      "bytes": 10758,
+      "sha256": "c2202d67f2128a69637db5e7a1684de92784416bb25785ad8f8e4812d978e2e2",
+      "completeBodyFocusedAndDefaultByteEqual": true
+    },
+    {
+      "name": "MSJC07-construction-33-black",
+      "bytes": 11010,
+      "sha256": "6619ce16c45de4c84947e320a9c02f8b99799967837649a54222a0a9b87cc09a",
+      "completeBodyFocusedAndDefaultByteEqual": true
+    },
+    {
+      "name": "printed-MSJC07-natural-four-seat-build-pay-draw-black-search-turn-restore",
+      "bytes": 62845482,
+      "sha256": "ec7f8d3da29c248b5d70e6c1f208220d591a7be00129bf9082a27e3de0eef835",
+      "completeBodyFocusedAndDefaultByteEqual": true
+    },
+    {
+      "name": "MSJC07-reject-cost",
+      "bytes": 131848,
+      "sha256": "deeb51ae0941597a85de8de6417769c840c3c65aa9fd075d20c4c21a03868a86",
+      "completeBodyFocusedAndDefaultByteEqual": true
+    },
+    {
+      "name": "MSJC07-reject-exhausted",
+      "bytes": 140585,
+      "sha256": "391fe63f90f69be054d7918555861005e1e569dda9012a38d31a337e695da3a4",
+      "completeBodyFocusedAndDefaultByteEqual": true
+    },
+    {
+      "name": "MSJC07-reject-foreign-source",
+      "bytes": 142481,
+      "sha256": "e52381da89fb23875dcafc16e8c43c6acd845d7c921392909e85e32b243f859b",
+      "completeBodyFocusedAndDefaultByteEqual": true
+    },
+    {
+      "name": "MSJC07-reject-yellow-key",
+      "bytes": 142465,
+      "sha256": "89983ede4d7bf0a121c1122b2e7c79efa3b098d0b19f6a23e175a50d08ccad74",
+      "completeBodyFocusedAndDefaultByteEqual": true
+    },
+    {
+      "name": "MSJC07-draw-first",
+      "bytes": 399349,
+      "sha256": "b670d7f61d14a3b3f02d7b6053bbd97c0011785cc57ffb7683477483998b0b0b",
+      "completeBodyFocusedAndDefaultByteEqual": true
+    },
+    {
+      "name": "MSJC07-draw-rear",
+      "bytes": 397892,
+      "sha256": "6d6350e5948e60eebe51d052cba746766e0ac46f7ef24bfb11a69c2050220a63",
+      "completeBodyFocusedAndDefaultByteEqual": true
+    },
+    {
+      "name": "MSJC07-empty-search",
+      "bytes": 401352,
+      "sha256": "78489d94126ff990d434614ad33f0beb944fc7dc78a5fee11d5d538614099439",
+      "completeBodyFocusedAndDefaultByteEqual": true
+    },
+    {
+      "name": "MSJC07-empty-deck",
+      "bytes": 388643,
+      "sha256": "a75e745ea8962ffec221ad56bde4d1148826d6b5571a89affd0ac970e487db53",
+      "completeBodyFocusedAndDefaultByteEqual": true
+    },
+    {
+      "name": "MSJC07-one-hit",
+      "bytes": 672647,
+      "sha256": "d178deaa1c114d61e8bed95c1addc4132b672146e07dbb6c630cfe5390ac01d2",
+      "completeBodyFocusedAndDefaultByteEqual": true
+    },
+    {
+      "name": "MSJC07-two-hits-seat3",
+      "bytes": 679634,
+      "sha256": "3a9855f9c5ada40da08d929e12e22c474f5918cc0fb727a32209dc80842a292b",
+      "completeBodyFocusedAndDefaultByteEqual": true
+    },
+    {
+      "name": "MSJC07-cancelled-paid-frame",
+      "bytes": 339703,
+      "sha256": "d039d19dd166d9606bf2df7f5980d7ca8dd8ac876c7ef8db8b297890b43eb508",
+      "completeBodyFocusedAndDefaultByteEqual": true
+    },
+    {
+      "name": "MSJC07-new-instance-used",
+      "bytes": 145069,
+      "sha256": "33ed4fc3cfd9393e6987240a8e2680782656edd20f58cba254d86d53d765075b",
+      "completeBodyFocusedAndDefaultByteEqual": true
+    },
+    {
+      "name": "MSJC07-finished-restart",
+      "bytes": 175326,
+      "sha256": "7cef36fd23e99a16adaefc5f2117ebc0d1f73dfd779e80d1e75f1f9b1d104821",
+      "completeBodyFocusedAndDefaultByteEqual": true
+    },
+    {
+      "name": "MSJC07-turn-reset-used",
+      "bytes": 9756647,
+      "sha256": "e15811da30e7ff56c651aca70866855bfcc297108d50fb28b218f77b4b7e07cc",
+      "completeBodyFocusedAndDefaultByteEqual": true
+    }
+  ],
+  "retainedIdentityCases": 9,
+  "retainedNaturalRedBlackVsRedBlueCase": true,
+  "productionChangeBoundary": {
+    "ordinaryCardsAdded": 0,
+    "societiesAdded": [
+      "MSJC07"
+    ],
+    "genericOpsAdded": 0,
+    "interpreterChanged": false,
+    "oncePerGamePathChanged": false,
+    "searchFilterChanged": false,
+    "societyLifecycleChanged": false,
+    "oldSocietiesSummaryByteEqual": true
+  }
+}

@@ -2660,6 +2660,39 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
                     search,
                 ]),
             );
+            let mut search = ability(
+                "search-black-unique",
+                "黑色独有检索（每局一次）",
+                Timing::Standard,
+                vec![Cost::Assets(4), Cost::ExhaustSource],
+                vec![],
+                vec![Op::Search {
+                    player: Actor,
+                    filter: CardFilter::PrintedColorAndUnique {
+                        color: "黑".into(),
+                    },
+                    to_top: false,
+                    optional: false,
+                    visibility: SearchVisibility::Reveal,
+                }],
+                None,
+            );
+            search.once_per_game = true;
+            m.insert(
+                "MSJC07".into(),
+                with_abilities(vec![
+                    ability(
+                        "drawWithInitiative",
+                        "先手抓牌",
+                        Timing::Standard,
+                        vec![Cost::Assets(3), Cost::ExhaustSource],
+                        vec![],
+                        vec![Op::DrawIfActorHasInitiative { count: 1 }],
+                        None,
+                    ),
+                    search,
+                ]),
+            );
         }
         #[cfg(feature = "society-fixtures")]
         for id in [

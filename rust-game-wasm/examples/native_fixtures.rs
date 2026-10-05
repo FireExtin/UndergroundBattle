@@ -55,6 +55,9 @@ mod jc008;
 #[path = "support/msjc01.rs"]
 mod msjc01;
 #[cfg(not(feature = "society-fixtures"))]
+#[path = "support/msjc07.rs"]
+mod msjc07;
+#[cfg(not(feature = "society-fixtures"))]
 #[path = "support/protection.rs"]
 mod protection;
 #[cfg(not(feature = "society-fixtures"))]
@@ -2848,6 +2851,11 @@ fn main() {
         return;
     }
     #[cfg(not(feature = "society-fixtures"))]
+    if std::env::args().any(|a| a == "--slice-msjc07") {
+        write_fixture_cases(&output, json!({"catalog":catalog::catalog()}), msjc07::cases());
+        return;
+    }
+    #[cfg(not(feature = "society-fixtures"))]
     if std::env::args().any(|a| a == "--slice-msjc01") {
         write_fixture_cases(
             &output,
@@ -3054,6 +3062,7 @@ fn main() {
         .chain(identity_overlap::cases())
         .chain(repress_assets::cases())
         .chain(mixed_decks::cases())
+        .chain(msjc07::cases())
     {
         writer.push(case);
     }

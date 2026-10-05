@@ -1,0 +1,102 @@
+{
+  "baselineCommit": "1aed92dc4300b564edae92561e0e815b827484bd",
+  "engineVersion": "rust-v0.2.26-msjc07-candidate",
+  "cardPoolVersion": "limited-v2.23-msjc07-candidate",
+  "defaultWasm": {
+    "ok": true,
+    "cases": 327,
+    "wasmBytes": 1974053,
+    "wasmSha256": "c187a493d3e32f82c8609cb203e12ffb1661fbe348260f6e010254bb9af395af",
+    "transitions": 17467,
+    "projections": 69291,
+    "quotes": 1,
+    "rejectedCommands": 284,
+    "rejectedDeckCreations": 12,
+    "choiceKinds": [
+      "damage",
+      "discard",
+      "investigation",
+      "mulligan",
+      "optional-shuffle",
+      "region_return",
+      "revealed-hand-discard",
+      "search",
+      "target",
+      "trigger"
+    ],
+    "slowestFixtureStepMs": 130.95,
+    "opaqueState": true,
+    "maximumU64SeedExact": true,
+    "nativeWasmStateAndViewsMatch": true
+  },
+  "nativeUnitTests": 337,
+  "nativeIntegrationTests": 32,
+  "frontendTestFiles": 48,
+  "frontendTests": 413,
+  "frontendBuildPassed": true,
+  "newFullCases": 17,
+  "newTransitions": 869,
+  "newViews": 3464,
+  "normalFourSeatCaseTransitions": 651,
+  "normalFourSeatCaseViews": 2598,
+  "oldCasesPreserved": 310,
+  "nativeDefaultResources": {
+    "command": [
+      "cargo",
+      "run",
+      "--manifest-path",
+      "rust-game-wasm/Cargo.toml",
+      "--example",
+      "native_fixtures",
+      "--",
+      "/workspace/.private-validation/msjc07-batch-20261005/default-native.json"
+    ],
+    "exitCode": 0,
+    "elapsedSeconds": 429.359,
+    "maxRssKiB": 4528932,
+    "userSeconds": 403.515062,
+    "systemSeconds": 8.54103,
+    "memoryEventsBefore": "low 0\nhigh 0\nmax 400688\noom 6\noom_kill 2\noom_group_kill 0\n",
+    "memoryEventsAfter": "low 0\nhigh 0\nmax 431755\noom 6\noom_kill 2\noom_group_kill 0\n"
+  },
+  "wasmDefaultResources": {
+    "command": [
+      "node",
+      "--expose-gc",
+      "rust-game-wasm/tests/compare.mjs",
+      "/workspace/.private-validation/msjc07-batch-20261005/default-native.json"
+    ],
+    "exitCode": 0,
+    "elapsedSeconds": 85.553,
+    "maxRssKiB": 1489668,
+    "userSeconds": 87.51248,
+    "systemSeconds": 2.838103,
+    "memoryEventsBefore": "low 0\nhigh 0\nmax 431755\noom 6\noom_kill 2\noom_group_kill 0\n",
+    "memoryEventsAfter": "low 0\nhigh 0\nmax 433902\noom 6\noom_kill 2\noom_group_kill 0\n"
+  },
+  "frontendResources": {
+    "command": [
+      "npm",
+      "--prefix",
+      "web",
+      "test",
+      "--",
+      "--maxWorkers=2"
+    ],
+    "exitCode": 0,
+    "elapsedSeconds": 35.85,
+    "maxRssKiB": 339700,
+    "userSeconds": 78.630852,
+    "systemSeconds": 8.371062,
+    "memoryEventsBefore": "low 0\nhigh 0\nmax 431755\noom 6\noom_kill 2\noom_group_kill 0\n",
+    "memoryEventsAfter": "low 0\nhigh 0\nmax 433902\noom 6\noom_kill 2\noom_group_kill 0\n"
+  },
+  "historicalOomUnchanged": true,
+  "publicNaturalUiAcceptance": false,
+  "msjc07Published": false,
+  "qaCorrections": [
+    "old two-society list assertion updated to three",
+    "other seats pendingChoice is null, not undefined"
+  ],
+  "formattingChangedArtifactHashAndFinalHashWasFullyRetested": true
+}

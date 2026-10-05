@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.22-repress-assets-candidate",
-  "engineVersion": "rust-v0.2.25-repress-assets-candidate",
+  "cardPoolVersion": "limited-v2.23-msjc07-candidate",
+  "engineVersion": "rust-v0.2.26-msjc07-candidate",
   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
   "cards": [
     {

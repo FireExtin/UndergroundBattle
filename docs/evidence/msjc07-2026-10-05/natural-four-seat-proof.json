@@ -1,0 +1,51 @@
+{
+  "blackDeckCount": 33,
+  "formalBlackUniqueHits": 4,
+  "name": "printed-MSJC07-natural-four-seat-build-pay-draw-black-search-turn-restore",
+  "normalRoomCommandsOnly": true,
+  "ordinaryDeckSize": 50,
+  "publicNaturalUiAcceptance": false,
+  "seed": "18446744073709551615",
+  "selections": [
+    {
+      "allFourViewsPrivateWhileChoosing": true,
+      "cardId": "JC096",
+      "newInstanceId": "i296",
+      "oldInstanceId": "i28",
+      "ownDeckSearched": true,
+      "seat": 0
+    },
+    {
+      "allFourViewsPrivateWhileChoosing": true,
+      "cardId": "XQ38",
+      "newInstanceId": "i300",
+      "oldInstanceId": "i100",
+      "ownDeckSearched": true,
+      "seat": 1
+    },
+    {
+      "allFourViewsPrivateWhileChoosing": true,
+      "cardId": "XQ38",
+      "newInstanceId": "i304",
+      "oldInstanceId": "i151",
+      "ownDeckSearched": true,
+      "seat": 2
+    },
+    {
+      "allFourViewsPrivateWhileChoosing": true,
+      "cardId": "JC096",
+      "newInstanceId": "i308",
+      "oldInstanceId": "i181",
+      "ownDeckSearched": true,
+      "seat": 3
+    }
+  ],
+  "startingHand": 6,
+  "syntheticCardRegistry": false,
+  "syntheticFilterChanged": false,
+  "syntheticInitialLayout": false,
+  "transitions": 651,
+  "projections": 2598,
+  "completeBodySha256": "ec7f8d3da29c248b5d70e6c1f208220d591a7be00129bf9082a27e3de0eef835",
+  "completeBodyBytes": 62845482
+}

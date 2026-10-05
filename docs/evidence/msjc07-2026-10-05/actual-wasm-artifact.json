@@ -1,0 +1,38 @@
+{
+  "versions": {
+    "rulesVersion": "hegemony-pdf-v1",
+    "engineVersion": "rust-v0.2.26-msjc07-candidate",
+    "cardPoolVersion": "limited-v2.23-msjc07-candidate"
+  },
+  "bytes": 1974053,
+  "sha256": "c187a493d3e32f82c8609cb203e12ffb1661fbe348260f6e010254bb9af395af",
+  "unreviewedMsjc07Published": false,
+  "publicDeploymentUnrelatedReviewedSite24": true,
+  "publication": {
+    "samePreviouslyRejectedActionRetriedOnce": true,
+    "nativeDeploymentStatus": "succeeded",
+    "deploymentId": "appgdep_6ac33fd142a88191ba622f7d49091dc6",
+    "versionId": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_d1740af4f8f08191bf6cadc9e41b0854",
+    "sourceCommit": "68dab921bfcfa9d3216d135b84cd845796720023",
+    "publicCatalog": {
+      "requestedAtUtc": "2026-10-05T06:14:25.290296+00:00",
+      "url": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site/api/catalog",
+      "httpStatus": 200,
+      "authorizationHeaderUsed": false,
+      "siteBypassUsed": false,
+      "rulesVersion": "hegemony-pdf-v1",
+      "engineVersion": "rust-v0.2.11",
+      "cardPoolVersion": "limited-v2.8",
+      "ordinaryCards": 50,
+      "societies": [
+        "MSJC09"
+      ],
+      "JC005Present": true,
+      "MSJC07Absent": true,
+      "sha256": "47522dc81259dc5271f8901b6407a11c47724f9136ddd5849dbbbf31bac50d8a",
+      "bytes": 42908,
+      "roomAccessed": false
+    },
+    "msjc07Published": false
+  }
+}

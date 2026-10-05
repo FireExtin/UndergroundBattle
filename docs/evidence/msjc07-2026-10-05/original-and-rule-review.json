@@ -1,0 +1,90 @@
+{
+  "selectedNextSingleColorSociety": "MSJC07",
+  "notAdmittedInThisBatch": false,
+  "actuallyViewedOriginal": "resource/ymsj-fun.github.io/cards/MSJC07 方碑序列.jpg",
+  "bytes": 229888,
+  "sha256": "e9cd1af04560733f28e3bcfee4c687f6a2e5218b93862b5a74d4f35f6a8f3ed7",
+  "originalFields": {
+    "name": "方碑序列",
+    "subtitle": "恐怖同盟",
+    "color": "黑",
+    "colorEvidence": "black requirement circle and same faction emblem as actually viewed JC091; MSJC05 grey institution original separately viewed for comparison",
+    "printedCost": null,
+    "loyalty": [],
+    "domains": [],
+    "basicType": "秘社",
+    "subtypes": [
+      "法师结社"
+    ],
+    "startingHand": 6,
+    "ordinaryIcons": null,
+    "defense": null,
+    "construction": {
+      "kind": "minimumColor",
+      "color": "黑",
+      "count": 25
+    },
+    "abilities": [
+      {
+        "timing": "standard",
+        "cost": 3,
+        "exhaust": true,
+        "effect": "if actor has initiative, draw one"
+      },
+      {
+        "timing": "standard",
+        "cost": 4,
+        "exhaust": true,
+        "effect": "search own deck for one black unique, reveal to hand then shuffle",
+        "limit": "once per game"
+      }
+    ],
+    "goldName": true,
+    "collector": "Society 07/17",
+    "setSymbol": "wineglass",
+    "keywords": []
+  },
+  "existingBlackOrdinaryNames": 11,
+  "legalBlackCapacityAtThreeCopiesEach": 33,
+  "legalCandidateOrdinary50CardsWithoutSociety": {
+    "black": 33,
+    "neutralJC125": 17
+  },
+  "mechanismPlan": "reuse admitted personal society-zone source, personal payment/initiative, per-instance once-per-game flag, private own-deck selection and public reveal/shuffle; extend only MSJC07 finite black-unique selector",
+  "scope": "current private whole-card MSJC07 candidate; full original independently inspected and magnified",
+  "previousPlanningSubtitleCorrection": {
+    "previous": "亡物再显",
+    "actualOriginal": "恐怖同盟",
+    "scope": "planning-only at accepted 1aed92dc; not admitted in that batch"
+  },
+  "sourceCardsJsonTextDiscrepancy": {
+    "source": "resource/ymsj-fun.github.io/cards/cards.json",
+    "locator": "MSJC07",
+    "sourceTextSearch": "方碑序列独有",
+    "actualPrintedSearch": "黑色独有",
+    "decision": "actual original governs; no society-membership filter"
+  },
+  "rulePdfSha256": "2a771874efbdb3ad8a339ea01ff62888766090d075fe2e013632c79de1aeba35",
+  "ruleEvidence": [
+    {
+      "physicalPage": 9,
+      "printedPage": 7,
+      "applies": "society outside deck, no departure, starting hand, you=controller"
+    },
+    {
+      "physicalPage": 8,
+      "printedPage": 6,
+      "applies": "ordinary two-faction construction and printed card types"
+    },
+    {
+      "physicalPage": 7,
+      "printedPage": 5,
+      "applies": "normal asset build once per turn"
+    },
+    {
+      "physicalPage": 13,
+      "printedPage": 11,
+      "applies": "personal assets payment, faction/domain, search is not draw"
+    }
+  ]
+}
