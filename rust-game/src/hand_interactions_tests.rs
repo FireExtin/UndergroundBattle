@@ -247,7 +247,7 @@ fn hand_interactions_original_fields() {
     for (id, cost, loyalty, magic, unique) in [
         ("JC114", 2, vec![], "", false),
         ("XQ34", 1, vec!["白色"], "", false),
-        ("XQ38", 3, vec!["黑色", "黑色"], "死亡", true),
+        ("XQ38", 3, vec!["黑色", "黑色"], "", true),
         ("JZ67", 1, vec!["紫色"], "心灵", false),
     ] {
         let d = catalog::card(id);
@@ -691,4 +691,113 @@ fn hand_interactions_optional_shuffle_prepared_choice_decline_and_accept() {
         assert!(g.pending.is_none());
         assert_eq!(g.players[2].deck.len(), 3);
     }
+}
+#[test]
+fn hand_interactions_hacker_naturally_dealt_deploy_pays_only_printed_two_without_ability_target() {
+    let mut chosen = None;
+    for seed in 1..100 {
+        let mut draft = crate::deck::preset("watchers").unwrap();
+        draft.cards = vec![
+            catalog::DeckEntry {
+                card_id: "JC114".into(),
+                count: 3,
+            },
+            catalog::DeckEntry {
+                card_id: "JC125".into(),
+                count: 47,
+            },
+        ];
+        let mut g = Game::new_with_deck(
+            "natural-hacker".into(),
+            "LOCAL".into(),
+            "teams".into(),
+            "P0".into(),
+            draft.clone(),
+            seed,
+        )
+        .unwrap();
+        for s in 1..4 {
+            g.join_with_deck(format!("P{s}"), draft.clone()).unwrap();
+        }
+        for seat in 0..4 {
+            act(&mut g, seat, Action::new("ready"));
+        }
+        act(&mut g, 0, Action::new("start"));
+        while g.pending.is_some() {
+            choose(&mut g, vec![]);
+        }
+        if let Some(id) = g.players[0]
+            .hand
+            .iter()
+            .find(|c| c.definition == "JC114")
+            .map(|c| c.id.clone())
+        {
+            chosen = Some((g, id));
+            break;
+        }
+    }
+    let (mut g, id) = chosen.expect("bounded naturally dealt hacker");
+    for _ in 0..500 {
+        if let Some(a) = g
+            .legal_actions(0)
+            .into_iter()
+            .find(|a| a.action.kind == "deploy" && a.action.card_id.as_deref() == Some(&id))
+        {
+            assert!(a.action.target_id.is_none() && a.action.ability_id.is_none());
+            let before = resources(&g, 0);
+            assert_eq!(before, 2);
+            act(&mut g, 0, a.action);
+            assert_eq!(resources(&g, 0), 0);
+            assert!(g.pending.is_none());
+            let frame = g.stack.last().unwrap().frame.as_ref().unwrap();
+            assert_eq!(frame.ability_key, "deploy");
+            assert!(frame.steps.is_empty());
+            assert!(matches!(&frame.already_paid[..],[PaidCost::Assets(ids)]if ids.len()==2));
+            top(&mut g);
+            let c = g
+                .regions
+                .iter()
+                .flat_map(|r| &r.cards)
+                .find(|c| c.definition == "JC114" && c.controller == 0)
+                .unwrap();
+            assert_ne!(c.id, id);
+            assert!(!c.exhausted);
+            for s in 0..4 {
+                assert!(g.view(s).revealed_hands.is_empty());
+            }
+            eprintln!(
+                "natural JC114 seed={} turn={} paid=2 no target/ability/source exhaustion",
+                g.seed, g.turn
+            );
+            return;
+        }
+        if let Some(p) = g.pending.clone() {
+            if p.choice.kind == "discard" {
+                let ids = p
+                    .choice
+                    .options
+                    .iter()
+                    .filter(|o| o.id != id)
+                    .take(p.choice.min.unwrap_or(0))
+                    .map(|o| o.id.clone())
+                    .collect();
+                choose(&mut g, ids);
+            } else {
+                resolve_choice(&mut g);
+            }
+            continue;
+        }
+        if resources(&g, 0) < 2 {
+            if let Some(a) = g
+                .legal_actions(0)
+                .into_iter()
+                .find(|a| a.action.kind == "asset" && a.action.card_id.as_deref() != Some(&id))
+            {
+                act(&mut g, 0, a.action);
+                continue;
+            }
+        }
+        pass(&mut g);
+    }
+    panic!("natural hacker declaration not reached");
 }

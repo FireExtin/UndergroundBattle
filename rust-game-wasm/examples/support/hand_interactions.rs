@@ -543,6 +543,7 @@ pub fn cases() -> impl Iterator<Item = Value> {
         .chain([true, false].into_iter().map(prepared_shuffle))
         .chain(std::iter::once_with(normal_play_and_empty_hacker))
         .chain(std::iter::once_with(prepared_stale_recovery))
+        .chain(std::iter::once_with(natural_hacker_deploy))
 }
 fn normal_play_and_empty_hacker() -> Value {
     let mut g = initial("normal-play-empty-hacker");
@@ -615,4 +616,176 @@ fn prepared_stale_recovery() -> Value {
     );
     assert!(!r.players[0].graveyard.iter().any(|c| c.id == target));
     json!({"seed":"9007199254740993","name":"hand-interactions-prepared-stale-recovery-trigger-still-draws","syntheticInitialLayout":true,"preparedChangedTargetCheckpoint":true,"steps":steps})
+}
+fn natural_hacker_actions(seed: u64) -> Option<(deck::DeckDraft, Vec<(usize, Action)>)> {
+    let mut d = deck::preset("watchers").unwrap();
+    d.cards = vec![
+        catalog::DeckEntry {
+            card_id: "JC114".into(),
+            count: 3,
+        },
+        catalog::DeckEntry {
+            card_id: "JC125".into(),
+            count: 47,
+        },
+    ];
+    let mut g = Game::new_with_deck(
+        "natural-hacker-deploy".into(),
+        "NATURAL".into(),
+        "teams".into(),
+        "P0".into(),
+        d.clone(),
+        seed,
+    )
+    .unwrap();
+    for s in 1..4 {
+        g.join_with_deck(format!("P{s}"), d.clone()).unwrap();
+    }
+    let mut actions = vec![];
+    for s in 0..4 {
+        let a = Action::new("ready");
+        g.apply(s, a.clone()).unwrap();
+        actions.push((s, a));
+    }
+    let a = Action::new("start");
+    g.apply(0, a.clone()).unwrap();
+    actions.push((0, a));
+    while g.pending.is_some() {
+        let (s, a) = pick_choice(&g);
+        g.apply(s, a.clone()).unwrap();
+        actions.push((s, a));
+    }
+    let id = g.players[0]
+        .hand
+        .iter()
+        .find(|c| c.definition == "JC114")?
+        .id
+        .clone();
+    let mut declared = false;
+    for _ in 0..500 {
+        if declared && g.stack.is_empty() && g.pending.is_none() {
+            assert!(g
+                .regions
+                .iter()
+                .flat_map(|r| &r.cards)
+                .any(|c| c.definition == "JC114" && c.controller == 0 && !c.exhausted));
+            return Some((d, actions));
+        }
+        let (s, a) = if g.pending.is_some() {
+            let p = g.pending.as_ref().unwrap();
+            if p.choice.kind == "discard" {
+                (
+                    p.seat,
+                    Action {
+                        choice_id: Some(p.choice.id.clone()),
+                        selected: Some(
+                            p.choice
+                                .options
+                                .iter()
+                                .filter(|o| o.id != id)
+                                .take(p.choice.min.unwrap_or(0))
+                                .map(|o| o.id.clone())
+                                .collect(),
+                        ),
+                        ..Action::new("choose")
+                    },
+                )
+            } else {
+                pick_choice(&g)
+            }
+        } else if !declared
+            && g.legal_actions(0)
+                .iter()
+                .any(|a| a.action.kind == "deploy" && a.action.card_id.as_deref() == Some(&id))
+        {
+            let a = g
+                .legal_actions(0)
+                .into_iter()
+                .find(|a| a.action.kind == "deploy" && a.action.card_id.as_deref() == Some(&id))
+                .unwrap()
+                .action;
+            assert!(a.target_id.is_none() && a.ability_id.is_none());
+            assert_eq!(resources(&g, 0), 2);
+            declared = true;
+            (0, a)
+        } else if !declared
+            && resources(&g, 0) < 2
+            && g.legal_actions(0)
+                .iter()
+                .any(|a| a.action.kind == "asset" && a.action.card_id.as_deref() != Some(&id))
+        {
+            (
+                0,
+                g.legal_actions(0)
+                    .into_iter()
+                    .find(|a| a.action.kind == "asset" && a.action.card_id.as_deref() != Some(&id))
+                    .unwrap()
+                    .action,
+            )
+        } else {
+            pass_action(&g)
+        };
+        g.apply(s, a.clone()).unwrap();
+        actions.push((s, a));
+    }
+    None
+}
+pub fn natural_hacker_deploy() -> Value {
+    let (seed, d, actions) = (1..100)
+        .find_map(|s| natural_hacker_actions(s).map(|(d, a)| (s, d, a)))
+        .expect("naturally dealt hacker");
+    let mut r = RoomEnvelope::from_game(
+        Game::new_with_deck(
+            "natural-hacker-deploy".into(),
+            "NATURAL".into(),
+            "teams".into(),
+            "P0".into(),
+            d.clone(),
+            seed,
+        )
+        .unwrap(),
+    );
+    let mut steps = vec![step(
+        &r,
+        "newGameWithDeck",
+        json!([
+            r.room_id,
+            r.invite_code,
+            "teams",
+            "P0",
+            serde_json::to_string(&d).unwrap(),
+            seed.to_string()
+        ]),
+        0,
+    )];
+    for s in 1..4 {
+        r.game.join_with_deck(format!("P{s}"), d.clone()).unwrap();
+        r.revision = r.game.version;
+        steps.push(step(
+            &r,
+            "joinGameWithDeck",
+            json!([format!("P{s}"), serde_json::to_string(&d).unwrap()]),
+            s,
+        ));
+    }
+    for (s, a) in actions {
+        let deploy = a.kind == "deploy";
+        apply_game(&mut r, &mut steps, s, a);
+        if deploy {
+            assert_eq!(resources(&r, 0), 0);
+            assert!(r.pending.is_none());
+            let f = r.stack.last().unwrap().frame.as_ref().unwrap();
+            assert_eq!(f.ability_key, "deploy");
+            assert!(f.steps.is_empty());
+            assert!(
+                matches!(&f.already_paid[..],[hegemony_server::model::PaidCost::Assets(ids)]if ids.len()==2)
+            );
+        }
+    }
+    assert!(r
+        .regions
+        .iter()
+        .flat_map(|r| &r.cards)
+        .any(|c| c.definition == "JC114" && c.controller == 0 && !c.exhausted));
+    json!({"name":"hand-interactions-natural-real-50-card-dealt-hacker-deploy-only-printed-two","seed":seed.to_string(),"syntheticInitialLayout":false,"newNaturalUiCoverage":false,"steps":steps})
 }

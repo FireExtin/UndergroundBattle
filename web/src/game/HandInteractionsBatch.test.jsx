@@ -14,7 +14,7 @@ const catalog = JSON.parse(kernel.catalog());
 for (const [id, sha, fields] of [
   ['JC114', '2cd5cc66ceb3c9a8f9d07d341558489adb170dcb680331c7620e5f1162be12c7', { name: '好奇的黑客', subtitle: '无知而无畏', cost: 2, loyalty: [], color: '中立', kind: 'character', magic: '', unique: false, subtypes: ['人类', '工程师'], defense: 1, temporaryIcons: { investigation: 1, combat: 0, influence: 0 } }],
   ['XQ34', '2ca1f5a4b25d308f8af13a7a80018010deaf93f9abe2275bef1fa7656be13e04', { name: '灵感', cost: 1, loyalty: ['白色'], color: '白', kind: 'spell', magic: '', subtypes: ['事务', '研究'] }],
-  ['XQ38', '26c8311674325491157577a3d295c148ce1c6f27ded59c4d27979faf58e9204e', { name: '金特·易卜拉欣', subtitle: '死灵学专家', cost: 3, loyalty: ['黑色', '黑色'], magic: '死亡', kind: 'character', unique: true, defense: 2, permanentIcons: { investigation: 0, combat: 0, influence: 1 }, temporaryIcons: { investigation: 2, combat: 0, influence: 0 } }],
+  ['XQ38', '26c8311674325491157577a3d295c148ce1c6f27ded59c4d27979faf58e9204e', { name: '金特·易卜拉欣', subtitle: '死灵学专家', cost: 3, loyalty: ['黑色', '黑色'], magic: '', kind: 'character', unique: true, defense: 2, permanentIcons: { investigation: 0, combat: 0, influence: 1 }, temporaryIcons: { investigation: 2, combat: 0, influence: 0 } }],
   ['JZ67', 'a6554b81e081c7292a32f2bf13ce269f276580f9a852e1df232c60c2c36ff477', { name: '失忆', cost: 1, loyalty: ['紫色'], color: '紫', magic: '心灵', kind: 'spell', subtypes: ['事务', '突发状况'] }],
 ]) it(`reads the unchanged original ${id} and printed fields`, () => {
   const d = catalog.cards.find(c => c.id === id); expect(d).toMatchObject(fields);

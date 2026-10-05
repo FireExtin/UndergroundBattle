@@ -3010,7 +3010,7 @@
       ],
       "loyaltyText": "",
       "color": "黑",
-      "magic": "死亡",
+      "magic": "",
       "icons": {
         "permanent": {
           "investigation": 0,
