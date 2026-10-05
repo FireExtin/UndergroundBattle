@@ -4,7 +4,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, expect, it, vi } from 'vitest';
 import * as current from '../../../rust-game-wasm/legacy-v0.2.8/hegemony_wasm.js';
 import * as frozen from '../../../rust-game-wasm/legacy-v0.2.7/hegemony_wasm.js';
-import { DeckLibrary } from './DeckLibrary';
+import { DeckLibrary } from './DeckLibraryPanel';
 import { DECK_LIBRARY_STORAGE_KEY, readDeckLibrary } from './deckLibrary';
 
 // Real compiled catalogs: no hand-written supported/copy-limit metadata.

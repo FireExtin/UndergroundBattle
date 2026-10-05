@@ -37,8 +37,9 @@ export function ChoicePanel({ choice, action, definitions, busy, onSubmit, onRea
   const assigned = Object.values(allocations).reduce((total, n) => total + n, 0);
   const min = choice.min ?? 1;
   const max = choice.max ?? choice.options.length;
+  const zeroConfirmation = choice.kind === 'jc032_top_six' && min === 0 && max === 0 && choice.options.length === 0;
   const valid = damage ? assigned === amount : ordering ? top.length + bottom.length === choice.options.length
-    : selected.length >= min && selected.length <= max && (selected.length > 0 || canDecline);
+    : selected.length >= min && selected.length <= max && (selected.length > 0 || canDecline || zeroConfirmation);
   const choose = (id: string) => setSelected(ids => ids.includes(id) ? ids.filter(value => value !== id) : ids.length < max ? [...ids, id] : ids);
   const allocate = (id: string, requested: number) => setAllocations(current => {
     const other = Object.entries(current).reduce((total, [key, value]) => total + (key === id ? 0 : value), 0);
@@ -73,6 +74,10 @@ export function ChoicePanel({ choice, action, definitions, busy, onSubmit, onRea
     <p className="hg-choice-scroll-hint" id={scrollHintId}>{choice.kind === 'mulligan' ? '点选要替换的手牌，未选中的保留。' : '先查看选项，再确认你的选择。'} 选项区可上下滚动，确认按钮始终在下方。</p>
     </div>
     <div className="hg-choice-body" tabIndex={0} role="region" aria-label="选择选项，可滚动查看" aria-describedby={scrollHintId}>
+    {!!choice.previewCards?.length && <div className="hg-choice-preview"><h3>你查看的牌库顶牌</h3><div className="hg-choice-options">{choice.previewCards.map(card => <div className="hg-choice-option-entry" key={card.instanceId}>
+      <CardContent card={card} definition={definitions.get(card.cardId || '')} viewerId={viewerId} />
+      {onReadCard && <button type="button" className="hg-choice-read hg-small-read" onClick={() => readCard(card)} aria-label={`放大阅读${card.name}`}>放大文字与图标 ↗</button>}
+    </div>)}</div></div>}
     {ordering ? <div className="hg-order-columns"><div><h3>牌库顶 · 最上面先抓</h3>{reorderList(top, 'top')}</div><div><h3>牌库底 · 自上而下</h3>{reorderList(bottom, 'bottom')}</div></div>
       : damage ? <><div className="hg-damage-meter"><span>总计 <b>{amount}</b></span><span>已分配 <b>{assigned}</b></span><span>剩余 <b>{amount - assigned}</b></span><small>{amount === 1 ? '点选角色分配这一点伤害，可切换目标。' : '点选角色或使用加减按钮分配，每次一点。'}</small></div><div className="hg-damage-options">{choice.options.map((option, index) => <div key={option.id} className={`hg-damage-row ${(allocations[option.id] || 0) > 0 ? 'hg-damage-assigned' : ''}`}>
         <button type="button" className="hg-damage-target" data-choice-option={option.id} data-choice-target-number={index + 1} aria-label={`给${option.label}分配1点伤害`} aria-describedby={`${choice.id}-damage-${index}`} aria-pressed={(allocations[option.id] || 0) > 0} disabled={busy || (amount !== 1 && assigned >= amount)} onClick={() => tapDamage(option.id)}><span><strong>{option.label} <em className="hg-target-number">目标 {index + 1}</em></strong>{option.card && <small id={`${choice.id}-damage-${index}`}>{playerLabels?.[option.card.owner] || playerLabels?.[option.card.controller] || '公开角色'} 拥有 · 防御 {option.card.defense ?? '—'} · 已受伤 {option.card.damage ?? 0}{option.card.exhausted ? ' · 已横置' : ''}</small>}</span><b>+1</b></button>

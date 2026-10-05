@@ -13,7 +13,7 @@ const definition=catalog.societies.find(c=>c.id==='MSJC11');
 const fifty=cards=>({id:'msjc11-reader',name:'执行部双色50',description:'',societyId:'MSJC11',cards,rulesVersion:catalog.rulesVersion,cardPoolVersion:catalog.cardPoolVersion,engineVersion:catalog.engineVersion,updatedAt:''});
 it('reads the exact whole original society and finite two standard abilities',()=>{
  expect(definition).toMatchObject({name:'S.P.T.执行部',subtitle:'直属特遣队',kind:'society',subtypes:['企业','部门'],color:'绿',unique:true,startingHand:6,printedCost:null,deckConstraints:[{kind:'greenNeutralOrPrintedHumanCombat'}]});
- expect(definition.abilities.map(a=>a.key)).toEqual(['grant-kill','grant-region-retreat']);expect(catalog.cards).toHaveLength(93);expect(catalog.societies).toHaveLength(7);
+ expect(definition.abilities.map(a=>a.key)).toEqual(['grant-kill','grant-region-retreat']);expect(catalog.cards).toHaveLength(94);expect(catalog.societies).toHaveLength(7);
  const scans=JSON.parse(readFileSync(resolve('public/card-scans.json'),'utf8'));expect(scans.MSJC11.sha256).toBe('df9964832e48bfef57bcaa0d5f4db67ce2ab9fe0e371ffecc2736c1728b1b853');expect(createHash('sha256').update(readFileSync(resolve('public/cards/MSJC11.jpg'))).digest('hex')).toBe(scans.MSJC11.sha256);
  render(<ReadModal card={{...definition,cardId:definition.id,instanceId:"msjc11-reader",owner:"p0",controller:"p0",faceDown:false,exhausted:false}} definition={definition} viewerId="p0" onClose={vi.fn()}/>);expect(screen.getByRole('dialog')).toHaveTextContent('直属特遣队');expect(screen.getByRole('dialog')).toHaveTextContent('起手 6 张');fireEvent.click(screen.getByRole('button',{name:'原始牌面'}));expect(screen.getByRole('img',{name:'S.P.T.执行部原始牌面'})).toHaveAttribute('src','/cards/MSJC11.jpg');
 });

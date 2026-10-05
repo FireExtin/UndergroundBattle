@@ -7,6 +7,19 @@ use crate::{
 };
 
 impl Game {
+    // One printed JC030 condition, shared by its permanent icon and added
+    // subtype. Only a live face-up bat's current controller's assets count.
+    pub(crate) fn jc030_blood_assets_active(&self, c: &Card) -> bool {
+        if c.definition != "JC030" || c.face_down
+            || !crate::rules::definition("JC030").modifiers.iter().any(|m| matches!(m, StaticModifier::JC030BloodAssetsVampireAndInvestigation)) {
+            return false;
+        }
+        let Some((_, live)) = self.board(&c.id) else { return false; };
+        !live.face_down && live.definition == "JC030"
+            && self.players[live.controller].assets.iter()
+                .filter(|a| card(&a.definition).magic_icon == MagicIcon::Blood)
+                .take(2).count() == 2
+    }
     // Exactly two admitted source-bound continuous scalars. Printed metadata
     // stays immutable; exhaustion does not erase asset domain icons.
     pub(crate) fn green_source_attribute_bonus(&self, c: &Card, region: usize) -> (u32, u32) {

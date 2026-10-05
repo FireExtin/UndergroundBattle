@@ -2,7 +2,7 @@
 
 沿已验证的 Rust WASM 规则核，为现有 React 客户端提供 Worker/D1 房间服务及版本轮询。已部署至用户授权的公开 Site；当前版本、远端 D1 与浏览器验收见 [云端验收记录](../docs/SITES_CLOUD_ACCEPTANCE_2026-10-02.md)。原生服务及数据库保留。
 
-当前正式身份为 `limited-v2.8 / rust-v0.2.11`，含新JC005和十旧核，共十一核。JC005当前合法卡池的角色附属路径已完成；其他宿主强化目标尚待后续宿主机制。XQ03谓词fixture不证明真正地区实体或秘社区宿主。完整范围见 [正式有限切片说明](../docs/JC005_FORMAL_V011_RELEASE_2026-10-04.md)。
+当前新牌桌身份为 `limited-v2.30-blue-minimum-candidate / rust-v0.2.33-blue-minimum-candidate`，含96张普通卡、8张秘社，保留35种实际ABI路由。JC030、JC032、JZ24、MSJC03来自已审游戏提交；构筑、隐私选择、旧房恢复和本地浏览器证据见 [蓝卡Site整合说明](docs/SITE_BLUE_INTEGRATION_2026-10-06.md)。版本名称保留原游戏身份，实际发布状态另见部署receipt。
 
 Site 身份保存在 `.openai/hosting.json`，仅注册一次；访问范围遵从用户授权，当前公开入口供没有 ChatGPT 账号的朋友入席。
 

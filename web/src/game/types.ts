@@ -46,6 +46,7 @@ export type LegalAction = Action & { id: string; label: string; description?: st
 export type Choice = {
   id: string; kind: string; title: string; description: string; playerId: string;
   options: { id: string; label: string; card?: Card }[];
+  previewCards?: Card[];
   min?: number; max?: number; amount?: number; allowDecline?: boolean;
 };
 export type Player = {

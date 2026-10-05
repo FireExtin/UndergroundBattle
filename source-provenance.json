@@ -1,12 +1,12 @@
 {
   "originalRepository": "https://github.com/FireExtin/UndergroundBattle.git",
-  "originalCommit": "b897dec5df72559aed7fb03b11426d5037f3a30b",
-  "previousSiteSourceCommit": "1cc2ca3d1c58daf0379c099021839f3ca1afadb1",
-  "wasmSha256": "d5c544fde889abf066cf794b24b62106d439aa453e9e6a210e88217e3e872bbe",
-  "engineVersion": "rust-v0.2.31-green-minimum-candidate",
-  "poolVersion": "limited-v2.28-green-minimum-candidate",
-  "ordinaryCards": 93,
-  "societies": 7,
+  "originalCommit": "aa1617a1ede90e5ea9de1eadf680b0bb74bda418",
+  "previousSiteSourceCommit": "979b519a98e6266a3bed72f7d775690ef7731673",
+  "wasmSha256": "2bdf206c232747045c481c47d3493be18bec9fea263293866ca4d95bf824c2bb",
+  "engineVersion": "rust-v0.2.33-blue-minimum-candidate",
+  "poolVersion": "limited-v2.30-blue-minimum-candidate",
+  "ordinaryCards": 96,
+  "societies": 8,
   "legacyKernelDirectories": [
     "legacy-v0.2.1",
     "legacy-v0.2.10",
@@ -34,6 +34,8 @@
     "legacy-v0.2.29",
     "legacy-v0.2.3",
     "legacy-v0.2.30",
+    "legacy-v0.2.31",
+    "legacy-v0.2.32",
     "legacy-v0.2.4",
     "legacy-v0.2.5",
     "legacy-v0.2.6",
@@ -41,7 +43,8 @@
     "legacy-v0.2.8",
     "legacy-v0.2.9"
   ],
-  "kernelCount": 33,
+  "kernelCount": 35,
   "initialization": "Unchanged reviewed lazy per selected ABI; actual catalog identity verified on first use",
-  "nextUnreviewedBlueResearchIncluded": false
+  "nextUnreviewedBlueResearchIncluded": false,
+  "approvedIntegrationCommit": "713be787f47d4188640922a5d373662bd04ffe38"
 }

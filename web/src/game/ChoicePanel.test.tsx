@@ -12,6 +12,15 @@ const boardChoice = { ...testChoice, options: [
 const playerLabels = { p0: '我方玩家', p1: '甲方玩家', p2: '乙方玩家', p3: '丁方玩家' };
 const secretDefinitions = new Map(boardChoice.options.map(option => [option.card.cardId, { id: option.card.cardId, name: option.card.name, kind: 'character', cost: 7, text: option.card.text, permanentIcons: { investigation: 7, combat: 7, influence: 7 } }]));
 describe('server-owned decisions', () => {
+  it('confirms a JC032 zero-hit private view with no skip button', () => {
+    const submit = vi.fn();
+    const choice = { ...testChoice, kind: 'jc032_top_six', min: 0, max: 0, allowDecline: false, options: [], previewCards: [testCard] };
+    render(<ChoicePanel choice={choice} action={base} definitions={new Map()} busy={false} onSubmit={submit} viewerId="p0" />);
+    expect(screen.queryByRole('button', { name: '跳过此选择' })).not.toBeInTheDocument();
+    expect(screen.getByRole('button', { name: '确认选择' })).toBeEnabled();
+    fireEvent.click(screen.getByRole('button', { name: '确认选择' }));
+    expect(submit).toHaveBeenCalledExactlyOnceWith({ ...base, choiceId: choice.id, selected: [] });
+  });
   it('reads a mulligan card independently without selecting it or submitting the decision', () => {
     const submit = vi.fn();
     const read = vi.fn();

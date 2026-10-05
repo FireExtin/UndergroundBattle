@@ -3,7 +3,7 @@ import type { CSSProperties } from 'react';
 import { CardContent, CardTile, visibleCard } from './CardTile';
 import { ChoicePanel } from './ChoicePanel';
 import { DeckPicker } from './Lobby';
-import { DeckLibrary } from './DeckLibrary';
+import { DeckLibrary } from './DeckLibraryPanel';
 import { AutoPass } from './AutoPass';
 import { ReadModal } from './ReadModal';
 import { ResponseWindow, StackTargets } from './ResponseWindow';

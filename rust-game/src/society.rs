@@ -309,6 +309,13 @@ pub(crate) fn definitions() -> Vec<SocietyDefinition> {
                 triggered: false,
             })
             .collect();
+        let mut throne_card: CardDefinition = serde_json::from_value(serde_json::json!({
+            "id":"MSJC03","name":"王座会","kind":"society","type":"秘社/法师结社/吸血鬼","subtypes":["法师结社","吸血鬼"],"color":"蓝","society":"王座会","unique":true,"supported":true,
+            "text":"持续：构筑时你的牌组中需包含25张或更多蓝色派系的牌。行动3，横置：若你具有先手标志，则抓一张牌。行动4，横置：自你的牌库中寻找一张蓝色独有牌，将该牌展示后加入你的手牌，然后将你的牌库洗牌。该能力每局游戏只能发动一次。"
+        })).expect("verified whole original MSJC03");
+        throne_card.abilities = crate::rules::definition("MSJC03").abilities.iter().map(|a| crate::catalog::AbilitySummary {
+            key:a.key.clone(),label:a.label.clone(),timing:"standard".into(),costs:a.costs.clone(),triggered:false,
+        }).collect();
         vec![
             msjc09,
             msjc01,
@@ -362,6 +369,14 @@ pub(crate) fn definitions() -> Vec<SocietyDefinition> {
                     color: "绿".into(),
                     count: 25,
                 }],
+                unresolved_abilities: BTreeMap::new(),
+            },
+            SocietyDefinition {
+                card: throne_card,
+                subtitle: "通往至高王座".into(),
+                printed_cost: None,
+                starting_hand: 6,
+                deck_constraints: vec![SocietyDeckConstraint::MinimumColor { color: "蓝".into(), count: 25 }],
                 unresolved_abilities: BTreeMap::new(),
             },
         ]

@@ -441,6 +441,7 @@ fn msjc11_region_instance_captured_required_and_replacement_cancelled_only_for_t
     let old_source = SourceSnapshot {
         card: g.make_card("JC118", 0),
         region: None,
+        source_region_instance: None,
         attachment_host_instance: None,
         play_source: Some(PlaySource::Hand),
     };

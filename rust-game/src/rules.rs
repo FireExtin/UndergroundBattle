@@ -205,6 +205,9 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    // Two closed blue programs, with no configurable search/loop interpreter.
+    JC032TopSixVampireHidden,
+    JZ24LocalSacrificeSnapshot,
     // Finite MSJC11 programs; no generic keyword or quantity interpreter.
     GrantTargetKillUntilTurnEnd {
         slot: usize,
@@ -399,6 +402,7 @@ pub struct Traits {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum StaticModifier {
+    JC030BloodAssetsVampireAndInvestigation,
     LC30WeaponsCombatAndDefense,
     JC018MindAssetsCombat,
     AttachedRegionSpiritTemporaryIconsPermanent,
@@ -449,6 +453,11 @@ pub struct Definition {
 // These are interpreter limits, not rules for resolving partially invalid targets.
 // Reject unsupported declarations before publishing actions or offering trigger choices.
 pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(), String> {
+    if ability.modes.iter().any(|mode| mode.ops.iter().any(|op| {
+        matches!(op, Op::JC032TopSixVampireHidden | Op::JZ24LocalSacrificeSnapshot)
+    })) {
+        return Err(format!("{card_id}: blue finite operations cannot be mode operations"));
+    }
     let finite_predicate = ability
         .targets
         .iter()
@@ -590,6 +599,16 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
         ));
     }
     for op in &ability.ops {
+        if matches!(op, Op::JC032TopSixVampireHidden | Op::JZ24LocalSacrificeSnapshot) {
+            let expected = match (card_id, op) {
+                ("JC032", Op::JC032TopSixVampireHidden) => jc032_definition(),
+                ("JZ24", Op::JZ24LocalSacrificeSnapshot) => jz24_definition(),
+                _ => return Err(format!("{card_id}: blue finite operation is not admitted here")),
+            };
+            if serde_json::to_value(ability).unwrap() != serde_json::to_value(&expected.abilities[0]).unwrap() {
+                return Err(format!("{card_id}: only the complete admitted finite ability is supported"));
+            }
+        }
         if let Op::Search {
             filter: CardFilter::NamedCharacter(name),
             player,
@@ -730,7 +749,10 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
         ));
     }
     if let Some(limit) = ability.per_turn_limit {
-        if limit != 2
+        let elder = card_id == "JC032"
+            && serde_json::to_value(ability).unwrap()
+                == serde_json::to_value(&jc032_definition().abilities[0]).unwrap();
+        if !elder && (limit != 2
             || !ability.activation_only
             || ability.event.is_some()
             || !matches!(
@@ -742,9 +764,9 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
                 [Op::ModifyAttachmentHostUntilTurnEnd]
             )
             || !ability.modes.is_empty()
-        {
+        ) {
             return Err(format!(
-                "{card_id}: only the admitted twice-per-turn host grant is supported"
+                "{card_id}: only the admitted host grant or JC032 once-per-turn action is supported"
             ));
         }
     }
@@ -918,6 +940,8 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
                     matches!(
                         op,
                         Op::ForEachLivingPlayer(_)
+                            | Op::JC032TopSixVampireHidden
+                            | Op::JZ24LocalSacrificeSnapshot
                             | Op::GrantTargetKillUntilTurnEnd { .. }
                             | Op::GrantRegionRetreatUntilTurnEnd { .. }
                             | Op::ForEachLivingPlayerFromActor(_)
@@ -956,6 +980,21 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
 
 fn validate_definitions(definitions: &BTreeMap<String, Definition>) -> Result<(), String> {
     for (card_id, definition) in definitions {
+        let expected = match card_id.as_str() {
+            "JC032" => Some(jc032_definition()),
+            "JZ24" => Some(jz24_definition()),
+            "MSJC03" => Some(msjc03_definition()),
+            _ => None,
+        };
+        if expected.is_some_and(|d| serde_json::to_value(definition).unwrap() != serde_json::to_value(d).unwrap()) {
+            return Err(format!("{card_id}: only the complete admitted blue definition is supported"));
+        }
+        if definition.modifiers.iter().any(|m| matches!(m, StaticModifier::JC030BloodAssetsVampireAndInvestigation)) && card_id != "JC030" {
+            return Err(format!("cardId={card_id}: JC030 modifier is not admitted here"));
+        }
+        if card_id == "JC030" && serde_json::to_value(definition).unwrap() != serde_json::to_value(jc030_definition()).unwrap() {
+            return Err("cardId=JC030: only the complete admitted blue bat definition is supported".into());
+        }
         for modifier in &definition.modifiers {
             if matches!(modifier, StaticModifier::LC30WeaponsCombatAndDefense) && card_id != "LC30"
                 || matches!(modifier, StaticModifier::JC018MindAssetsCombat) && card_id != "JC018"
@@ -1163,6 +1202,39 @@ fn jc015_definition() -> Definition {
         None,
     )])
 }
+fn jc030_definition() -> Definition {
+    let mut definition = with_abilities(vec![ability(
+        "raid-1",
+        "袭击1",
+        Timing::Fast,
+        vec![],
+        vec![target(Zone::Board, EntityKind::Character, Relation::Any, Range::SourceRegion)],
+        vec![Op::DamageTarget { slot: 0, amount: 1 }],
+        Some(Event::Reveal),
+    )]);
+    definition.traits.cannot_be_equipped = true;
+    definition.modifiers = vec![StaticModifier::JC030BloodAssetsVampireAndInvestigation];
+    definition
+}
+fn jc032_definition() -> Definition {
+    let mut action = ability("top-six-vampire-hidden", "顶六张吸血鬼暗藏（每回合一次）", Timing::Standard,
+        vec![Cost::Assets(2)], vec![], vec![Op::JC032TopSixVampireHidden], None);
+    action.per_turn_limit = Some(1);
+    with_abilities(vec![action])
+}
+fn jz24_definition() -> Definition {
+    with_abilities(vec![ability("local-enemy-sacrifice", "敌方本地牺牲", Timing::Fast,
+        vec![], vec![], vec![Op::JZ24LocalSacrificeSnapshot], Some(Event::Reveal))])
+}
+fn msjc03_definition() -> Definition {
+    let mut d = msjc02_definition();
+    d.abilities[1].key = "search-blue-unique".into();
+    d.abilities[1].label = "蓝色独有检索（每局一次）".into();
+    if let Op::Search { filter, .. } = &mut d.abilities[1].ops[0] {
+        *filter = CardFilter::PrintedColorAndUnique { color: "蓝".into() };
+    }
+    d
+}
 fn msjc02_definition() -> Definition {
     let mut search = ability(
         "search-green-unique",
@@ -1202,6 +1274,9 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         use EntityRef::{Source, Target};
         use PlayerRef::{Actor, Context};
         let mut m = BTreeMap::new();
+        m.insert("JC032".into(), jc032_definition());
+        m.insert("JZ24".into(), jz24_definition());
+        m.insert("JC030".into(), jc030_definition());
         m.insert("LC30".into(), lc30_definition());
         m.insert("JC018".into(), jc018_definition());
         m.insert("JC015".into(), jc015_definition());
@@ -2970,6 +3045,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         #[cfg(not(feature = "society-fixtures"))]
         {
             m.insert("MSJC02".into(), msjc02_definition());
+            m.insert("MSJC03".into(), msjc03_definition());
             let mut search = ability(
                 "search-purple-unique",
                 "紫色独有检索（每局一次）",
@@ -3173,6 +3249,68 @@ pub fn definition(id: &str) -> &'static Definition {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn blue_closed_definitions_reject_variants_and_finite_operation_transplants() {
+        for id in ["JC032", "JZ24", "MSJC03"] {
+            for variant in 0..10 {
+                let mut r = definitions().clone();
+                let d = r.get_mut(id).unwrap();
+                let i = if id == "MSJC03" { 1 } else { 0 };
+                match variant {
+                    0 => d.abilities[i].costs.push(Cost::ExhaustSource),
+                    1 => d.abilities[i].per_turn_limit = Some(2),
+                    2 => d.abilities[i].event = Some(Event::Enter),
+                    3 => d.abilities[i].targets.push(target(Zone::Board, EntityKind::Character, Relation::Any, Range::Anywhere)),
+                    4 => d.abilities[i].ops.push(Op::Draw { player: PlayerRef::Actor, count: 1, end: DeckEnd::Top }),
+                    5 => d.abilities[i].ops = vec![Op::SacrificeChosen(PlayerRef::Actor)],
+                    6 => d.modifiers.push(StaticModifier::PeekOwnDeckTop),
+                    7 => d.abilities[i].per_turn_limit = None,
+                    8 => d.abilities[i].costs = vec![Cost::Assets(1)],
+                    _ => d.abilities[i].requires_ready_source = true,
+                }
+                // Removing an already absent limit is unchanged for these two.
+                if variant == 7 && id != "JC032" { d.abilities[i].once_per_game = !d.abilities[i].once_per_game; }
+                assert!(validate_definitions(&r).is_err(), "{id} variant {variant}");
+            }
+        }
+        for (original, other) in [("JC032", "JC029"), ("JC032", "JC030"), ("JZ24", "JC029"), ("JZ24", "JC032")] {
+            let mut r = definitions().clone();
+            let transplanted = r[original].abilities[0].clone();
+            r.get_mut(other).unwrap().abilities = vec![transplanted];
+            assert!(validate_definitions(&r).is_err());
+        }
+        for op in [Op::JC032TopSixVampireHidden, Op::JZ24LocalSacrificeSnapshot] {
+            let mut r = definitions().clone();
+            r.get_mut("JC029").unwrap().abilities[0].modes.push(Mode {
+                key: "unadmitted-blue-mode".into(), label: "invalid variant".into(),
+                targets: vec![], ops: vec![op],
+            });
+            assert!(validate_definitions(&r).is_err(), "finite operations cannot be transplanted into modes");
+        }
+    }
+
+    #[test]
+    fn jc030_closed_definition_rejects_shape_changes_and_modifier_transplants() {
+        for variant in 0..6 {
+            let mut registry = definitions().clone();
+            let d = registry.get_mut("JC030").unwrap();
+            match variant {
+                0 => d.modifiers.clear(),
+                1 => d.modifiers.push(StaticModifier::PeekOwnDeckTop),
+                2 => d.traits.cannot_be_equipped = false,
+                3 => d.abilities[0].event = Some(Event::Enter),
+                4 => d.abilities[0].targets[0].relation = Relation::EnemyTeam,
+                _ => d.abilities[0].ops = vec![Op::DamageTarget { slot: 0, amount: 2 }],
+            }
+            assert!(validate_definitions(&registry).is_err());
+        }
+        for other in ["JC029", "JC125"] {
+            let mut registry = definitions().clone();
+            registry.get_mut(other).unwrap().modifiers.push(StaticModifier::JC030BloodAssetsVampireAndInvestigation);
+            assert!(validate_definitions(&registry).is_err());
+        }
+    }
 
     #[test]
     fn green_shapes_reject_extra_modifiers_and_predicate_transplants() {
