@@ -498,5 +498,10 @@
     "url": "/cards/MSJC02.jpg",
     "source": "resource/ymsj-fun.github.io/cards/MSJC02 猎魔人.jpg",
     "sha256": "915a723573028050980cb665d0de85f5e5fd5a6de1b54e3d7664e69882edc807"
+  },
+  "JC030": {
+    "url": "/cards/JC030.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC030 巨型蝙蝠.jpg",
+    "sha256": "e0627c1eec97eab04d8cbafb54c0d25ce496ab89e10e19a81485d84ad2915542"
   }
 }

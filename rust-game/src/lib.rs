@@ -73,3 +73,6 @@ mod jc029_tests;
 
 #[cfg(all(test, not(feature = "society-fixtures")))]
 mod green_minimum_tests;
+
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod jc030_tests;

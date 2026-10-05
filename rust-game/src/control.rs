@@ -55,6 +55,9 @@ impl Game {
             return vec![];
         }
         let mut result = card(&c.definition).subtypes.clone();
+        if self.jc030_blood_assets_active(c) {
+            result.push("吸血鬼".into());
+        }
         for effect in self
             .control_effects
             .iter()

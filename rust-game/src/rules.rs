@@ -399,6 +399,7 @@ pub struct Traits {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum StaticModifier {
+    JC030BloodAssetsVampireAndInvestigation,
     LC30WeaponsCombatAndDefense,
     JC018MindAssetsCombat,
     AttachedRegionSpiritTemporaryIconsPermanent,
@@ -956,6 +957,12 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
 
 fn validate_definitions(definitions: &BTreeMap<String, Definition>) -> Result<(), String> {
     for (card_id, definition) in definitions {
+        if definition.modifiers.iter().any(|m| matches!(m, StaticModifier::JC030BloodAssetsVampireAndInvestigation)) && card_id != "JC030" {
+            return Err(format!("cardId={card_id}: JC030 modifier is not admitted here"));
+        }
+        if card_id == "JC030" && serde_json::to_value(definition).unwrap() != serde_json::to_value(jc030_definition()).unwrap() {
+            return Err("cardId=JC030: only the complete admitted blue bat definition is supported".into());
+        }
         for modifier in &definition.modifiers {
             if matches!(modifier, StaticModifier::LC30WeaponsCombatAndDefense) && card_id != "LC30"
                 || matches!(modifier, StaticModifier::JC018MindAssetsCombat) && card_id != "JC018"
@@ -1163,6 +1170,20 @@ fn jc015_definition() -> Definition {
         None,
     )])
 }
+fn jc030_definition() -> Definition {
+    let mut definition = with_abilities(vec![ability(
+        "raid-1",
+        "袭击1",
+        Timing::Fast,
+        vec![],
+        vec![target(Zone::Board, EntityKind::Character, Relation::Any, Range::SourceRegion)],
+        vec![Op::DamageTarget { slot: 0, amount: 1 }],
+        Some(Event::Reveal),
+    )]);
+    definition.traits.cannot_be_equipped = true;
+    definition.modifiers = vec![StaticModifier::JC030BloodAssetsVampireAndInvestigation];
+    definition
+}
 fn msjc02_definition() -> Definition {
     let mut search = ability(
         "search-green-unique",
@@ -1202,6 +1223,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         use EntityRef::{Source, Target};
         use PlayerRef::{Actor, Context};
         let mut m = BTreeMap::new();
+        m.insert("JC030".into(), jc030_definition());
         m.insert("LC30".into(), lc30_definition());
         m.insert("JC018".into(), jc018_definition());
         m.insert("JC015".into(), jc015_definition());
@@ -3173,6 +3195,28 @@ pub fn definition(id: &str) -> &'static Definition {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn jc030_closed_definition_rejects_shape_changes_and_modifier_transplants() {
+        for variant in 0..6 {
+            let mut registry = definitions().clone();
+            let d = registry.get_mut("JC030").unwrap();
+            match variant {
+                0 => d.modifiers.clear(),
+                1 => d.modifiers.push(StaticModifier::PeekOwnDeckTop),
+                2 => d.traits.cannot_be_equipped = false,
+                3 => d.abilities[0].event = Some(Event::Enter),
+                4 => d.abilities[0].targets[0].relation = Relation::EnemyTeam,
+                _ => d.abilities[0].ops = vec![Op::DamageTarget { slot: 0, amount: 2 }],
+            }
+            assert!(validate_definitions(&registry).is_err());
+        }
+        for other in ["JC029", "JC125"] {
+            let mut registry = definitions().clone();
+            registry.get_mut(other).unwrap().modifiers.push(StaticModifier::JC030BloodAssetsVampireAndInvestigation);
+            assert!(validate_definitions(&registry).is_err());
+        }
+    }
 
     #[test]
     fn green_shapes_reject_extra_modifiers_and_predicate_transplants() {
