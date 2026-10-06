@@ -1,0 +1,125 @@
+{
+  "base": "baed2594400dc38834943ab70ee2c42afcda7b72",
+  "native": {
+    "passed": 509,
+    "failed": 0,
+    "ignored": 0,
+    "exitCode": 0
+  },
+  "sites": {
+    "passed": 24,
+    "failed": 0,
+    "skipped": 0,
+    "exitCode": 0
+  },
+  "web": {
+    "files": 61,
+    "tests": 476,
+    "passed": 456,
+    "failed": 20,
+    "skipped": 0,
+    "exitCode": 1
+  },
+  "baseWeb": {
+    "files": 60,
+    "tests": 473,
+    "passed": 453,
+    "failed": 20,
+    "skipped": 0,
+    "exitCode": 1
+  },
+  "adjacentUi": {
+    "files": 10,
+    "passed": 116,
+    "failed": 0,
+    "suites": [
+      {
+        "file": "Attachments.test.tsx",
+        "status": "passed",
+        "tests": 8
+      },
+      {
+        "file": "CardTile.test.tsx",
+        "status": "passed",
+        "tests": 8
+      },
+      {
+        "file": "DialogIsolation.test.tsx",
+        "status": "passed",
+        "tests": 5
+      },
+      {
+        "file": "ObjectActions.test.tsx",
+        "status": "passed",
+        "tests": 19
+      },
+      {
+        "file": "PlayerSessions.test.tsx",
+        "status": "passed",
+        "tests": 12
+      },
+      {
+        "file": "ResponseWindow.test.tsx",
+        "status": "passed",
+        "tests": 14
+      },
+      {
+        "file": "SameNameInstances.test.tsx",
+        "status": "passed",
+        "tests": 3
+      },
+      {
+        "file": "SocietyTable.test.tsx",
+        "status": "passed",
+        "tests": 11
+      },
+      {
+        "file": "Table.test.tsx",
+        "status": "passed",
+        "tests": 19
+      },
+      {
+        "file": "useGame.test.tsx",
+        "status": "passed",
+        "tests": 17
+      }
+    ]
+  },
+  "build": {
+    "lockedWasm": true,
+    "toolchain": "rustc 1.90.0",
+    "bindgen": "0.2.104",
+    "sitesTscViteWorkerDryRun": true,
+    "deployed": false
+  },
+  "evidenceOnly": true,
+  "testedSourceHead": "5862ad6740dc095194655201745173d48a5989f1",
+  "independentReview": "pending",
+  "fourSeatRun": {
+    "fixedSeed": 9,
+    "finalTurn": 2,
+    "version": 194,
+    "journalEntries": 194,
+    "acceptedUniqueCommands": 191,
+    "acceptedCommandHttpResponses": 196,
+    "duplicateCommandHttpResponses": 5,
+    "allSuccessfulPostReceiptsMatchStoredResponses": true,
+    "journalVersionsContiguous": true,
+    "fourSeats": true,
+    "fourEntryReceipts": true,
+    "nativeReplayMatches": true,
+    "persistedDigest": "c2cd2a3a21164e8dfed76bb64827c570361b9ee2d7a562019603d0f031decab4",
+    "funeralAssetsPaidExactlyOne": true,
+    "staleStatus": 409,
+    "sqliteReopenByteExact": true,
+    "fourSeatsRefreshedAndRestored": true,
+    "lobbyOriginalSeatRestored": true,
+    "targetCancellationCount": 2,
+    "lostAcknowledgements": 4
+  },
+  "historicalScriptSha256": {
+    "local-room-harness.mjs": "1de78e8c9b5e0d2055e4ca9d6a452193bc86cf658994f0d209a6dd0f70216005",
+    "four-seat-e2e.mjs": "887bc5e906d80972850d6300f5079e915d41bd038219ed7d9ccda8db36e40b9a",
+    "audit-final-evidence.py": "847b0e635fd0f1bd8db0b5ce8301888cd8085b737e0f7882e1d22c25e482dcbf"
+  }
+}

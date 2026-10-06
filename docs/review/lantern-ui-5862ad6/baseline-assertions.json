@@ -1,0 +1,190 @@
+{
+  "pathNormalizationOnly": [
+    "/workspace/lantern-ui-integration-game",
+    "/tmp/lantern-ui-base-audit"
+  ],
+  "candidate": "5862ad6740dc095194655201745173d48a5989f1",
+  "base": "baed2594400dc38834943ab70ee2c42afcda7b72",
+  "failures": [
+    {
+      "file": "BlueMinimumScan.test.jsx",
+      "fullName": "blue33 preserves all old94 definitions, seven societies, five presets and opens only the three original scans",
+      "assertionLocation": "BlueMinimumScan.test.jsx:23:32",
+      "normalizedFailureMessagesEqual": true,
+      "sameTestSourceBytes": true,
+      "testSourceSha256": "662d7efad8423be7f4c96eef572bdfa9f93434f84ca3bdfef47597671bc9b047",
+      "errorHeadline": "AssertionError: expected 'rust-v0.2.36-jz55-unique-destroy-cand\u2026' to be 'rust-v0.2.35-jz31-death-influence-can\u2026' // Object.is equality"
+    },
+    {
+      "file": "GreenMinimumScan.test.jsx",
+      "fullName": "admits only the three reviewed green roles and exact MSJC02 fields and whole original scans",
+      "assertionLocation": "GreenMinimumScan.test.jsx:21:32",
+      "normalizedFailureMessagesEqual": true,
+      "sameTestSourceBytes": true,
+      "testSourceSha256": "8c45bcf05cdc6acf6036f63f409cfe1a0db5bd7a9cd906fd152304bdb5681a00",
+      "errorHeadline": "AssertionError: expected 'rust-v0.2.36-jz55-unique-destroy-cand\u2026' to be 'rust-v0.2.34-mill-public-candidate' // Object.is equality"
+    },
+    {
+      "file": "JC005Scan.test.jsx",
+      "fullName": "retains Site24 JC005 while adding the isolated JC008 candidate and retains the exact printed spell metadata and original bytes",
+      "assertionLocation": "JC005Scan.test.jsx:15:33",
+      "normalizedFailureMessagesEqual": true,
+      "sameTestSourceBytes": true,
+      "testSourceSha256": "53b444f62d523cc7ba2dac50b223204e3128e9635f07a5de59572d5127658c15",
+      "errorHeadline": "AssertionError: expected 'rust-v0.2.36-jz55-unique-destroy-cand\u2026' to be 'rust-v0.2.32-jc030-blue-bat-candidate' // Object.is equality"
+    },
+    {
+      "file": "JC008Scan.test.jsx",
+      "fullName": "admits only JC008 and retains its actual printed metadata and original JPG bytes",
+      "assertionLocation": "JC008Scan.test.jsx:66:33",
+      "normalizedFailureMessagesEqual": true,
+      "sameTestSourceBytes": true,
+      "testSourceSha256": "bd0248062ddb5e47f17e661158ff41145311d4342b6132e834a09d273d248774",
+      "errorHeadline": "AssertionError: expected 'rust-v0.2.36-jz55-unique-destroy-cand\u2026' to be 'rust-v0.2.32-jc030-blue-bat-candidate' // Object.is equality"
+    },
+    {
+      "file": "JC029Scan.test.jsx",
+      "fullName": "keeps the whole original and exactly one existing reveal ability alongside the finite green admission",
+      "assertionLocation": "JC029Scan.test.jsx:13:32",
+      "normalizedFailureMessagesEqual": true,
+      "sameTestSourceBytes": true,
+      "testSourceSha256": "0d790ea82786c0d608a33581eb44a4d0ec7f4606d840f0d606619b26ac7004af",
+      "errorHeadline": "AssertionError: expected 'rust-v0.2.36-jz55-unique-destroy-cand\u2026' to be 'rust-v0.2.34-mill-public-candidate' // Object.is equality"
+    },
+    {
+      "file": "JC030Scan.test.jsx",
+      "fullName": "JC030 prints its whole blue bat fields and original and leaves accepted31 definitions unchanged",
+      "assertionLocation": "JC030Scan.test.jsx:17:32",
+      "normalizedFailureMessagesEqual": true,
+      "sameTestSourceBytes": true,
+      "testSourceSha256": "050a055c06e09037b69aa67159794c5fcaf668e4a0df0f0b5a37c0de1ca8b64a",
+      "errorHeadline": "AssertionError: expected 'rust-v0.2.36-jz55-unique-destroy-cand\u2026' to be 'rust-v0.2.35-jz31-death-influence-can\u2026' // Object.is equality"
+    },
+    {
+      "file": "JZ31DeathInfluence.test.jsx",
+      "fullName": "admits the complete no-magic original while preserving all 98 previous cards, societies and presets",
+      "assertionLocation": "JZ31DeathInfluence.test.jsx:21:32",
+      "normalizedFailureMessagesEqual": true,
+      "sameTestSourceBytes": true,
+      "testSourceSha256": "d97f3fb302ed435af2c97cc1e57b102292bb0f635be7f96410e4b7a26bdd09e8",
+      "errorHeadline": "AssertionError: expected 'rust-v0.2.36-jz55-unique-destroy-cand\u2026' to be 'rust-v0.2.35-jz31-death-influence-can\u2026' // Object.is equality"
+    },
+    {
+      "file": "JZ31DeathInfluence.test.jsx",
+      "fullName": "offers both skip and one acceptance to the death controller using the existing choice UI",
+      "assertionLocation": null,
+      "normalizedFailureMessagesEqual": true,
+      "sameTestSourceBytes": true,
+      "testSourceSha256": "d97f3fb302ed435af2c97cc1e57b102292bb0f635be7f96410e4b7a26bdd09e8",
+      "errorHeadline": "\u65e7\u5c40schema/\u56fa\u5b9a\u7248\u672c\u4e0e\u5f53\u524drust-v0.2.36-jz55-unique-destroy-candidate\u4e0d\u517c\u5bb9\uff1b\u8bf7\u4f7f\u7528\u5bf9\u5e94\u65e7\u6838\uff0c\u4e0d\u80fd\u9759\u9ed8\u8fc1\u79fb"
+    },
+    {
+      "file": "JZ31DeathInfluence.test.jsx",
+      "fullName": "opens the pinned original and does not confuse death trigger text with a magic requirement",
+      "assertionLocation": "JZ31DeathInfluence.test.jsx:56:29",
+      "normalizedFailureMessagesEqual": true,
+      "sameTestSourceBytes": true,
+      "testSourceSha256": "d97f3fb302ed435af2c97cc1e57b102292bb0f635be7f96410e4b7a26bdd09e8",
+      "errorHeadline": "AssertionError: expected [ 'JC125', 'LC19', 'LC20', \u2026(105) ] to have a length of 107 but got 108"
+    },
+    {
+      "file": "JZ31DeathInfluence.test.jsx",
+      "fullName": "restores all 40 actual native layouts, death declarations, stacks and results for every seat",
+      "assertionLocation": null,
+      "normalizedFailureMessagesEqual": true,
+      "sameTestSourceBytes": true,
+      "testSourceSha256": "d97f3fb302ed435af2c97cc1e57b102292bb0f635be7f96410e4b7a26bdd09e8",
+      "errorHeadline": "\u65e7\u5c40schema/\u56fa\u5b9a\u7248\u672c\u4e0e\u5f53\u524drust-v0.2.36-jz55-unique-destroy-candidate\u4e0d\u517c\u5bb9\uff1b\u8bf7\u4f7f\u7528\u5bf9\u5e94\u65e7\u6838\uff0c\u4e0d\u80fd\u9759\u9ed8\u8fc1\u79fb"
+    },
+    {
+      "file": "MSJC01Scan.test.jsx",
+      "fullName": "retains actual MSJC01 original, metadata, two abilities and two real admitted yellow unique cards",
+      "assertionLocation": "MSJC01Scan.test.jsx:26:32",
+      "normalizedFailureMessagesEqual": true,
+      "sameTestSourceBytes": true,
+      "testSourceSha256": "2a8228ab2cb12c9d7c2fa4ef2b8c4d8590c9e85cadf78b6e9ca813732c8b819c",
+      "errorHeadline": "AssertionError: expected 'rust-v0.2.36-jz55-unique-destroy-cand\u2026' to be 'rust-v0.2.32-jc030-blue-bat-candidate' // Object.is equality"
+    },
+    {
+      "file": "MSJC06Scan.test.jsx",
+      "fullName": "retains actual MSJC06 original, metadata, two abilities and the real admitted white unique card",
+      "assertionLocation": "MSJC06Scan.test.jsx:26:32",
+      "normalizedFailureMessagesEqual": true,
+      "sameTestSourceBytes": true,
+      "testSourceSha256": "b3e5ca27a1251a7de4a2f834b93860502d9838ab0e05912945045f6b7db009c6",
+      "errorHeadline": "AssertionError: expected 'rust-v0.2.36-jz55-unique-destroy-cand\u2026' to be 'rust-v0.2.32-jc030-blue-bat-candidate' // Object.is equality"
+    },
+    {
+      "file": "MSJC07Scan.test.jsx",
+      "fullName": "retains actual MSJC07 original, metadata, two abilities and two real admitted black unique cards",
+      "assertionLocation": "MSJC07Scan.test.jsx:26:32",
+      "normalizedFailureMessagesEqual": true,
+      "sameTestSourceBytes": true,
+      "testSourceSha256": "4f58e5a6bb66aa290e56b8c2071ac50183b9d92708b84e8ec745ecad1f43493d",
+      "errorHeadline": "AssertionError: expected 'rust-v0.2.36-jz55-unique-destroy-cand\u2026' to be 'rust-v0.2.32-jc030-blue-bat-candidate' // Object.is equality"
+    },
+    {
+      "file": "MSJC08Scan.test.jsx",
+      "fullName": "retains actual MSJC08 original, metadata, two abilities and the real admitted purple unique card",
+      "assertionLocation": "MSJC08Scan.test.jsx:26:32",
+      "normalizedFailureMessagesEqual": true,
+      "sameTestSourceBytes": true,
+      "testSourceSha256": "62fcbd1e06984699e9b317948c3f089bf83306bd813e3adb8fe50eb44cd0c242",
+      "errorHeadline": "AssertionError: expected 'rust-v0.2.36-jz55-unique-destroy-cand\u2026' to be 'rust-v0.2.32-jc030-blue-bat-candidate' // Object.is equality"
+    },
+    {
+      "file": "MSJC11Scan.test.jsx",
+      "fullName": "reads the exact whole original society and finite two standard abilities",
+      "assertionLocation": "MSJC11Scan.test.jsx:16:114",
+      "normalizedFailureMessagesEqual": true,
+      "sameTestSourceBytes": true,
+      "testSourceSha256": "3b3c74b95ccf5425d0135bea7d24b4440def7fc24b404285444d9db4bcec0293",
+      "errorHeadline": "AssertionError: expected [ { id: 'JC125', \u2026(22) }, \u2026(99) ] to have a length of 94 but got 100"
+    },
+    {
+      "file": "MillPublicBatch.test.jsx",
+      "fullName": "admits two complete pinned originals while preserving every prior definition, society and preset",
+      "assertionLocation": "MillPublicBatch.test.jsx:21:32",
+      "normalizedFailureMessagesEqual": true,
+      "sameTestSourceBytes": true,
+      "testSourceSha256": "7f02e3153269f72ac1bf91cb3bd990d01e5027cce486df9ec0ee321af40223fe",
+      "errorHeadline": "AssertionError: expected 'rust-v0.2.36-jz55-unique-destroy-cand\u2026' to be 'rust-v0.2.35-jz31-death-influence-can\u2026' // Object.is equality"
+    },
+    {
+      "file": "MillPublicBatch.test.jsx",
+      "fullName": "opens both original faces and renders the current corpse defense separately from its printed zero",
+      "assertionLocation": null,
+      "normalizedFailureMessagesEqual": true,
+      "sameTestSourceBytes": true,
+      "testSourceSha256": "7f02e3153269f72ac1bf91cb3bd990d01e5027cce486df9ec0ee321af40223fe",
+      "errorHeadline": "\u65e7\u5c40schema/\u56fa\u5b9a\u7248\u672c\u4e0e\u5f53\u524drust-v0.2.36-jz55-unique-destroy-candidate\u4e0d\u517c\u5bb9\uff1b\u8bf7\u4f7f\u7528\u5bf9\u5e94\u65e7\u6838\uff0c\u4e0d\u80fd\u9759\u9ed8\u8fc1\u79fb"
+    },
+    {
+      "file": "MillPublicBatch.test.jsx",
+      "fullName": "restores all 46 whole native fixtures through actual WASM and compares every seat projection",
+      "assertionLocation": null,
+      "normalizedFailureMessagesEqual": true,
+      "sameTestSourceBytes": true,
+      "testSourceSha256": "7f02e3153269f72ac1bf91cb3bd990d01e5027cce486df9ec0ee321af40223fe",
+      "errorHeadline": "\u65e7\u5c40schema/\u56fa\u5b9a\u7248\u672c\u4e0e\u5f53\u524drust-v0.2.36-jz55-unique-destroy-candidate\u4e0d\u517c\u5bb9\uff1b\u8bf7\u4f7f\u7528\u5bf9\u5e94\u65e7\u6838\uff0c\u4e0d\u80fd\u9759\u9ed8\u8fc1\u79fb"
+    },
+    {
+      "file": "SocietyScan.test.jsx",
+      "fullName": "keeps the sole real society unchanged while the local JC008 candidate adds one ordinary card",
+      "assertionLocation": "SocietyScan.test.jsx:16:33",
+      "normalizedFailureMessagesEqual": true,
+      "sameTestSourceBytes": true,
+      "testSourceSha256": "90c9513bfbee51a23ec180ea7bf67f4566f93667f1ccc7f990cf4edb870ccd1e",
+      "errorHeadline": "AssertionError: expected 'rust-v0.2.36-jz55-unique-destroy-cand\u2026' to be 'rust-v0.2.32-jc030-blue-bat-candidate' // Object.is equality"
+    },
+    {
+      "file": "YellowSearchBatchScan.test.jsx",
+      "fullName": "admits only the two approved original yellow unique cards with their printed numbers and loyalty",
+      "assertionLocation": "YellowSearchBatchScan.test.jsx:12:24",
+      "normalizedFailureMessagesEqual": true,
+      "sameTestSourceBytes": true,
+      "testSourceSha256": "55d127dadea4868a945c3219dba4f47a9a0509cd8ab47399a63aa2bac54d3b1b",
+      "errorHeadline": "AssertionError: expected [ { id: 'JC125', \u2026(22) }, \u2026(99) ] to have a length of 94 but got 100"
+    }
+  ]
+}

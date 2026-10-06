@@ -1,0 +1,230 @@
+{
+  "root": "/workspace/lantern-ui-e2e-evidence",
+  "files": [
+    {
+      "path": "four-seat-run-1/failure-seat-0.png",
+      "bytes": 1302550,
+      "sha256": "f0da0d2ddae8e4e4a4afecb46e0f5f76a19109d67ba7b906a80d307f686244cb"
+    },
+    {
+      "path": "four-seat-run-1/failure-seat-1.png",
+      "bytes": 1307871,
+      "sha256": "81be817781f637a5b42c87f2999771dc489b62fb50877b4564b734850b230997"
+    },
+    {
+      "path": "four-seat-run-1/failure-seat-2.png",
+      "bytes": 1318307,
+      "sha256": "fede485a85c70c729a3ea4989084bb1ff3e0c93a62cd3dc113eed97ab93e2cd9"
+    },
+    {
+      "path": "four-seat-run-1/failure-seat-3.png",
+      "bytes": 1320329,
+      "sha256": "e237ef7f4fc79a58512f2257a8420d02fb1dd35ab604b1d31f21e2cb0918d850"
+    },
+    {
+      "path": "four-seat-run-1/four-seats-action-seed9.png",
+      "bytes": 1302549,
+      "sha256": "3f82e64011c34e4f0512335fb6eca0eb95aa630a25b4556bd93bf425c4310b2a"
+    },
+    {
+      "path": "four-seat-run-2/failure-seat-0.png",
+      "bytes": 1302607,
+      "sha256": "2107b9639c8984f2816d5e55eeabad60a34018c757e2f85546ac2692d901d255"
+    },
+    {
+      "path": "four-seat-run-2/failure-seat-1.png",
+      "bytes": 1307871,
+      "sha256": "81be817781f637a5b42c87f2999771dc489b62fb50877b4564b734850b230997"
+    },
+    {
+      "path": "four-seat-run-2/failure-seat-2.png",
+      "bytes": 1313207,
+      "sha256": "f83902465b5ef19362764d48da4b2ab13243c81a7b7f6522404930c3d71ec05f"
+    },
+    {
+      "path": "four-seat-run-2/failure-seat-3.png",
+      "bytes": 1320329,
+      "sha256": "e237ef7f4fc79a58512f2257a8420d02fb1dd35ab604b1d31f21e2cb0918d850"
+    },
+    {
+      "path": "four-seat-run-2/four-seats-action-seed9.png",
+      "bytes": 1302585,
+      "sha256": "e5d732b94ccbf9010761e926b30a18a5aa473bd5f3e0b438b4541bf6b1f8928e"
+    },
+    {
+      "path": "four-seat-run-3/four-seats-action-seed9.png",
+      "bytes": 1302585,
+      "sha256": "e5d732b94ccbf9010761e926b30a18a5aa473bd5f3e0b438b4541bf6b1f8928e"
+    },
+    {
+      "path": "four-seat-run-3/lost-ack-recovered-seed9.png",
+      "bytes": 1312916,
+      "sha256": "2d8c50ac40f8541e92ec48aae2ad3991adea6bab20453d7cb7b13275856910cf"
+    },
+    {
+      "path": "four-seat-run-4/failure-seat-0.png",
+      "bytes": 1325259,
+      "sha256": "f1c13375a45622a1b009723366d670a4e70d83a453f956887a9005306fde7723"
+    },
+    {
+      "path": "four-seat-run-4/failure-seat-1.png",
+      "bytes": 1324946,
+      "sha256": "6703698235c38d03aa081d8a935c27a3c2bc6edc6cac15b9f46ad8e00deaba4e"
+    },
+    {
+      "path": "four-seat-run-4/failure-seat-2.png",
+      "bytes": 1334230,
+      "sha256": "5bdb03d751d92d23184625fcc484c4b8966684d7decce0080b29f163403b16c6"
+    },
+    {
+      "path": "four-seat-run-4/failure-seat-3.png",
+      "bytes": 1334201,
+      "sha256": "a7d20a94890b4c7376a84cba283c024ede89de327feee74c1ee89053023eadaa"
+    },
+    {
+      "path": "four-seat-run-4/four-seats-action-seed9.png",
+      "bytes": 1302549,
+      "sha256": "3f82e64011c34e4f0512335fb6eca0eb95aa630a25b4556bd93bf425c4310b2a"
+    },
+    {
+      "path": "four-seat-run-4/lost-ack-recovered-seed9.png",
+      "bytes": 1312916,
+      "sha256": "2d8c50ac40f8541e92ec48aae2ad3991adea6bab20453d7cb7b13275856910cf"
+    },
+    {
+      "path": "four-seat-run-4/target-confirm-1-seed9.png",
+      "bytes": 1201173,
+      "sha256": "43c9f9b76c720cef3a3013b47204afaba1d16ebc862b44c1c6e98c30a93b2480"
+    },
+    {
+      "path": "four-seat-run-5/failure-seat-0.png",
+      "bytes": 1340411,
+      "sha256": "d0878ffb35d17dc723040980d8221632d05d81f1d16911ab6a0b0967a511d635"
+    },
+    {
+      "path": "four-seat-run-5/failure-seat-1.png",
+      "bytes": 1335613,
+      "sha256": "1213ea5b6cba0f533a2ec847cacfe8f1a663de9a12951646c9c1c0f34bda4b90"
+    },
+    {
+      "path": "four-seat-run-5/failure-seat-2.png",
+      "bytes": 1336462,
+      "sha256": "e62f823f43400add19962ef6556f9e9d63bda81b055ba2bb346c2541ab09b424"
+    },
+    {
+      "path": "four-seat-run-5/failure-seat-3.png",
+      "bytes": 1341677,
+      "sha256": "03f6722fbd3ad10abd22d222d119eb8b0eabb9cbaeb71221839dea0e9b71155c"
+    },
+    {
+      "path": "four-seat-run-5/four-seats-action-seed9.png",
+      "bytes": 1302585,
+      "sha256": "e5d732b94ccbf9010761e926b30a18a5aa473bd5f3e0b438b4541bf6b1f8928e"
+    },
+    {
+      "path": "four-seat-run-5/lost-ack-recovered-seed9.png",
+      "bytes": 1312916,
+      "sha256": "2d8c50ac40f8541e92ec48aae2ad3991adea6bab20453d7cb7b13275856910cf"
+    },
+    {
+      "path": "four-seat-run-5/target-confirm-1-seed9.png",
+      "bytes": 1201177,
+      "sha256": "95e4d51f656dd9114f10702d68e3099f691087eab19c55ab689d982fa7274540"
+    },
+    {
+      "path": "four-seat-run-5/target-confirm-2-seed9.png",
+      "bytes": 1176953,
+      "sha256": "f3f53e451b3b65e8a64604777adf385466abaa982369b161459ce1f32e3293f4"
+    },
+    {
+      "path": "four-seat-run-5/two-effect-response-seed9.png",
+      "bytes": 1255131,
+      "sha256": "7114bf39b79ce3ec1415b15029aa861fee4dc7993d1263fcee86dcc82c0d31be"
+    },
+    {
+      "path": "four-seat-run-6/failure-seat-0.png",
+      "bytes": 1325212,
+      "sha256": "8aedb2c961710d653781ebf7e90915f21dfddbbe85fe1ad0c1be2c3c56c56269"
+    },
+    {
+      "path": "four-seat-run-6/failure-seat-1.png",
+      "bytes": 1318045,
+      "sha256": "a63ec738b1216307618a946aabc07c94f06459301a441e6e6ddb7e4ba713dc32"
+    },
+    {
+      "path": "four-seat-run-6/failure-seat-2.png",
+      "bytes": 1330343,
+      "sha256": "f230f3809ac043813f978cfcca21d3915bbad27665833634fb6e3f37c04cd916"
+    },
+    {
+      "path": "four-seat-run-6/failure-seat-3.png",
+      "bytes": 1335260,
+      "sha256": "d41ebca17f2b57f5d95b2817217bba2e6e0e5de97857fb9e97aaad8c8cbd7545"
+    },
+    {
+      "path": "four-seat-run-6/four-seats-action-seed9.png",
+      "bytes": 1302585,
+      "sha256": "e5d732b94ccbf9010761e926b30a18a5aa473bd5f3e0b438b4541bf6b1f8928e"
+    },
+    {
+      "path": "four-seat-run-6/lost-ack-recovered-seed9.png",
+      "bytes": 1312916,
+      "sha256": "2d8c50ac40f8541e92ec48aae2ad3991adea6bab20453d7cb7b13275856910cf"
+    },
+    {
+      "path": "four-seat-run-6/round-complete-seed9.png",
+      "bytes": 1323529,
+      "sha256": "e5c97536d317e48ddc5a883f33fb6d697bf704c73f543c79aed44310ab12ebc4"
+    },
+    {
+      "path": "four-seat-run-6/target-confirm-1-seed9.png",
+      "bytes": 1201309,
+      "sha256": "97933844f84e6960590aeb2111bb456178e5c43523805a80a20603b5e46aac60"
+    },
+    {
+      "path": "four-seat-run-6/target-confirm-2-seed9.png",
+      "bytes": 1176978,
+      "sha256": "66d85d0e10bc78441e98c5975067a5a90a7808537c8b89cb584fad60b7d33d7a"
+    },
+    {
+      "path": "four-seat-run-6/two-effect-response-seed9.png",
+      "bytes": 1255131,
+      "sha256": "43d4fc898c8f567c4b885756ce9decc1e708b2d7c60922de09085ee4e5c93584"
+    },
+    {
+      "path": "four-seat-run-7/four-seats-action-seed9.png",
+      "bytes": 1302549,
+      "sha256": "3f82e64011c34e4f0512335fb6eca0eb95aa630a25b4556bd93bf425c4310b2a"
+    },
+    {
+      "path": "four-seat-run-7/lost-ack-recovered-seed9.png",
+      "bytes": 1312916,
+      "sha256": "2d8c50ac40f8541e92ec48aae2ad3991adea6bab20453d7cb7b13275856910cf"
+    },
+    {
+      "path": "four-seat-run-7/mobile-restored-room-seed9.png",
+      "bytes": 271414,
+      "sha256": "bef0c2025d5111bc8b77a4426905223430505c172e62faed22f92f7325664d07"
+    },
+    {
+      "path": "four-seat-run-7/round-complete-seed9.png",
+      "bytes": 1323529,
+      "sha256": "e5c97536d317e48ddc5a883f33fb6d697bf704c73f543c79aed44310ab12ebc4"
+    },
+    {
+      "path": "four-seat-run-7/target-confirm-1-seed9.png",
+      "bytes": 1201309,
+      "sha256": "97933844f84e6960590aeb2111bb456178e5c43523805a80a20603b5e46aac60"
+    },
+    {
+      "path": "four-seat-run-7/target-confirm-2-seed9.png",
+      "bytes": 1176610,
+      "sha256": "864a6aa35ae057d835d341a77ba9b01e65eec20e9bdf4c8ded5d2a96398aeb99"
+    },
+    {
+      "path": "four-seat-run-7/two-effect-response-seed9.png",
+      "bytes": 1255131,
+      "sha256": "7114bf39b79ce3ec1415b15029aa861fee4dc7993d1263fcee86dcc82c0d31be"
+    }
+  ]
+}
