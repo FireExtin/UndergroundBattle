@@ -1,0 +1,133 @@
+
+> undergroundbattle-web@0.1.0 test
+> vitest --run --reporter=default --reporter=json --outputFile=/workspace/lantern-historical-bindings-evidence/full-web-results.json
+
+
+ RUN  v4.1.2 /tmp/lantern-historical-binding-game/web
+
+ ✓ src/game/MSJC08Scan.test.jsx (4 tests) 768ms
+   ✓ uses normal paid real purple unique search and displays stable server usage from restored views and next-turn reset  743ms
+ ✓ src/game/BlueMinimumScan.test.jsx (8 tests) 731ms
+   ✓ JC032 privately previews all six including Bat and human, reads without choosing, and requires one printed Vampire  326ms
+ ✓ src/game/MSJC07Scan.test.jsx (4 tests) 842ms
+   ✓ uses normal paid real black unique search and displays stable server usage from restored views and next-turn reset  809ms
+ ✓ src/game/MSJC06Scan.test.jsx (4 tests) 656ms
+   ✓ uses normal paid real white unique search and displays stable server usage from restored views and next-turn reset  635ms
+ ✓ src/game/GreenMinimumScan.test.jsx (4 tests) 494ms
+   ✓ uses actual WASM full four-seat restored views and controller privacy for all three borrowed backs  464ms
+ ✓ src/game/MSJC01Scan.test.jsx (4 tests) 796ms
+   ✓ uses normal paid empty search and shows the server usage fact after a normal next-turn reset  773ms
+ ✓ src/game/JC008Scan.test.jsx (3 tests) 499ms
+ ✓ src/game/JC030Scan.test.jsx (3 tests) 544ms
+ ✓ src/game/SocietyScan.test.jsx (3 tests) 494ms
+   ✓ reads the actual four-seat public society projection and opens its original without character costs or stats  444ms
+ ✓ src/game/YellowSearchBatchScan.test.jsx (3 tests) 281ms
+ ✓ src/game/JC005Scan.test.jsx (2 tests) 237ms
+ ✓ src/game/JC029Scan.test.jsx (2 tests) 267ms
+ ✓ src/game/MSJC11Scan.test.jsx (3 tests) 272ms
+ ✓ src/game/JZ31DeathInfluence.test.jsx (5 tests) 521ms
+ ✓ src/game/MillPublicBatch.test.jsx (4 tests) 434ms
+ ✓ src/game/ObjectActions.test.tsx (19 tests) 3412ms
+     ✓ keeps a chosen object after a mistaken region click and directs the player back to highlighted objects  518ms
+     ✓ cancels locally by button or Escape, while Escape in the reader closes only the reader  361ms
+     ✓ rejects non-target clicks, switches legal targets, and blocks busy or uncertain confirmation  337ms
+ ✓ src/game/V028DeckEntry.test.jsx (2 tests) 3132ms
+   ✓ edits all nine v028 cards through normal controls, saves/reloads, and enters four seats with the selected draft  2872ms
+ ✓ src/game/PlayerSessions.test.tsx (12 tests) 5335ms
+     ✓ starts a new tab’s independent seat directly from the ordinary table and preserves the ordinary reload screen  769ms
+     ✓ locks the direct ordinary-table switch while a command is pending and keeps that lock after lobby return  474ms
+     ✓ warns before replacing an independent session or switching back that this seat may become unrecoverable  414ms
+     ✓ keeps automatic pass opt-in separate from the ordinary seat and restores the ordinary preference  567ms
+     ✓ isolates same-invite seats, refreshes the current identity and returns to the ordinary saved seat  686ms
+     ✓ allocates no identity on refresh or lobby return; only an explicit new session can join another seat  557ms
+     ✓ ignores other-tab storage events and joins a different invitation only with its own credentials  555ms
+     ✓ makes closing the independent page session lose its recovery while ordinary seats survive  370ms
+ ✓ src/game/MixedDeckConstruction.test.jsx (5 tests) 1316ms
+   ✓ validates, saves, reloads and joins the real red/黑 50-card deck  567ms
+   ✓ validates, saves, reloads and joins the real red/蓝 50-card deck  317ms
+ ✓ src/game/Table.test.tsx (19 tests) 1719ms
+     ✓ saves edits locally and sends a full draft only after explicit selection, retaining the frozen public name  364ms
+ ✓ src/game/PurpleToolsBatch.test.jsx (9 tests) 1587ms
+   ✓ selects public assets in each holder mat and forwards the exact server action while keeping identities hidden  357ms
+ ✓ src/game/JZ55UniqueDestroy.test.jsx (8 tests) 1546ms
+   ✓ selects only native face-up unique instances, including an owned hidden unique counterexample, for seat0  440ms
+   ✓ selects only native face-up unique instances, including an owned hidden unique counterexample, for seat2  372ms
+   ✓ keeps actual composing selection readable and immediately shows only the old underlying stack after submission  313ms
+ ✓ src/game/SocietyTable.test.tsx (11 tests) 1308ms
+     ✓ shows subtitle and starting hand without presenting the internal zero cost or character stats  309ms
+ ✓ src/game/DeckLibrary.test.tsx (8 tests) 1100ms
+     ✓ copies a preset, names and saves it, reloads it, and selects a full public draft  340ms
+ ✓ src/game/Lobby.test.tsx (5 tests) 1223ms
+     ✓ lets a player choose a 50-card deck and create a four-seat team room  417ms
+ ✓ src/game/useGame.test.tsx (17 tests) 1043ms
+stderr | src/debugger/LiveDebuggerShell.test.tsx > LiveDebuggerShell > submits marker, face-down, and first-player privilege presets with expected action payloads
+Encountered two children with the same key, `msg-live-rejected-1`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.
+
+stderr | src/debugger/LiveDebuggerShell.test.tsx > LiveDebuggerShell > submits marker, face-down, and first-player privilege presets with expected action payloads
+Encountered two children with the same key, `msg-live-rejected-1`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.
+
+stderr | src/debugger/LiveDebuggerShell.test.tsx > LiveDebuggerShell > submits marker, face-down, and first-player privilege presets with expected action payloads
+Encountered two children with the same key, `msg-live-rejected-1`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.
+Encountered two children with the same key, `msg-live-rejected-1`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.
+
+stderr | src/debugger/LiveDebuggerShell.test.tsx > LiveDebuggerShell > submits marker, face-down, and first-player privilege presets with expected action payloads
+Encountered two children with the same key, `msg-live-rejected-1`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.
+Encountered two children with the same key, `msg-live-rejected-1`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.
+
+stderr | src/debugger/LiveDebuggerShell.test.tsx > LiveDebuggerShell > submits marker, face-down, and first-player privilege presets with expected action payloads
+Encountered two children with the same key, `msg-live-rejected-1`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.
+Encountered two children with the same key, `msg-live-rejected-1`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.
+Encountered two children with the same key, `msg-live-rejected-1`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.
+
+ ✓ src/game/Attachments.test.tsx (8 tests) 1136ms
+     ✓ uses only server-authored hosts, including an opponent in another region, and forwards the original play action  341ms
+ ✓ src/debugger/LiveDebuggerShell.test.tsx (11 tests) 1121ms
+ ✓ src/game/WoundDefenceBatch.test.jsx (12 tests) 1139ms
+   ✓ reads unchanged JZ59 original bytes and actual compiled printed fields  326ms
+ ✓ src/game/ChoicePanel.test.tsx (11 tests) 753ms
+ ✓ src/game/RegionAura.test.jsx (5 tests) 786ms
+   ✓ forwards the exact server-authored region play and attachment destruction target  315ms
+ ✓ src/game/HandInteractionsBatch.test.jsx (11 tests) 809ms
+ ✓ src/game/DialogIsolation.test.tsx (5 tests) 649ms
+ ✓ src/game/SocietyDeck.test.tsx (6 tests) 548ms
+     ✓ selects, saves, reloads and clears a society without changing ordinary entries  399ms
+ ✓ src/game/IdentityOverlap.test.jsx (4 tests) 691ms
+   ✓ keeps four same-definition red tiles separate and submits only the exact controller-eligible target  393ms
+ ✓ src/game/DreamRevealBatch.test.jsx (15 tests) 489ms
+ ✓ src/game/factions.test.tsx (4 tests) 581ms
+     ✓ keeps eight faction descriptions separate from five selectable curated decks and does not unlock societies or construction  496ms
+ ✓ src/game/ReadModal.test.tsx (11 tests) 434ms
+ ✓ src/game/PrivateDeckTop.test.tsx (3 tests) 440ms
+ ✓ src/game/AutoPassPolling.test.jsx (38 tests) 524ms
+ ✓ src/debugger/DebuggerShell.test.tsx (8 tests) 428ms
+ ✓ src/game/ResponseWindow.test.tsx (14 tests) 384ms
+ ✓ src/game/DefenceEquipmentBatch.test.jsx (6 tests) 355ms
+ ✓ src/game/WhiteWoundBatch.test.jsx (9 tests) 428ms
+ ✓ src/game/RepressAssetsBatch.test.jsx (6 tests) 283ms
+ ✓ src/game/EquipmentAbilitiesBatch.test.jsx (6 tests) 311ms
+ ✓ src/game/ControlTypeBatch.test.jsx (6 tests) 362ms
+ ✓ src/game/HandDeckBatch.test.jsx (5 tests) 268ms
+ ✓ src/game/RenownBatch.test.jsx (5 tests) 308ms
+ ✓ src/game/ProtectionBatch.test.jsx (6 tests) 375ms
+ ✓ src/game/ArchivePresentation.test.tsx (10 tests) 302ms
+ ✓ src/game/AutoPass.test.tsx (6 tests) 193ms
+ ✓ src/game/OptionalNumeric.test.tsx (13 tests) 255ms
+ ✓ src/game/Help.test.tsx (1 test) 175ms
+ ✓ src/game/api.test.ts (15 tests) 26ms
+ ✓ src/game/CardTile.test.tsx (8 tests) 247ms
+ ✓ src/game/deckLibrary.test.ts (13 tests) 13ms
+ ✓ src/game/objectActions.test.ts (10 tests) 12ms
+ ✓ src/debugger/live.test.ts (10 tests) 7ms
+ ✓ src/lib/project.test.ts (1 test) 3ms
+
+ Test Files  60 passed (60)
+      Tests  473 passed (473)
+   Start at  19:26:50
+   Duration  30.61s (transform 1.89s, setup 5.66s, import 4.52s, tests 45.40s, environment 27.08s)
+
+JSON report written to /workspace/lantern-historical-bindings-evidence/full-web-results.json
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

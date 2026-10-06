@@ -1,0 +1,213 @@
+{
+  "schemaVersion": 1,
+  "recomputation": "For each record: SHA256(excerptUtf8.encode(\"utf-8\")) must equal excerptSha256. The original whole-file SHA is provenance; only the two green Web scopes include byte-exact whole log and runner JSON copies in logs/. No original whole-file hash recomputation is claimed for omitted native/Sites/baseline full logs.",
+  "records": [
+    {
+      "scope": "native",
+      "testedSource": "5862ad6740dc095194655201745173d48a5989f1",
+      "original": {
+        "file": "native-tests.log",
+        "bytes": 53690,
+        "sha256": "7dc8f73f0fc8b1a7e0ca8b5268e9f288424cf521e846ddf90fbaf2364c4d907d"
+      },
+      "extraction": "Concatenate the listed 1-based original log lines in order, retaining original line endings. No line text edited.",
+      "lineNumbers": [
+        11,
+        492,
+        494,
+        498,
+        500,
+        504,
+        506,
+        513,
+        515,
+        524,
+        526,
+        532,
+        534,
+        544,
+        546,
+        560,
+        562,
+        572,
+        578
+      ],
+      "excerptUtf8": "     Running unittests src/lib.rs (/tmp/lantern-ui-native-target/debug/deps/hegemony_server-e2ddef3771dd4b38)\ntest result: ok. 477 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 32.01s\n     Running unittests src/bin/hegemony-audit.rs (/tmp/lantern-ui-native-target/debug/deps/hegemony_audit-825dc250d585e10a)\ntest result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n     Running unittests src/main.rs (/tmp/lantern-ui-native-target/debug/deps/hegemony_server-508275d88ac51881)\ntest result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n     Running tests/attachment_service.rs (/tmp/lantern-ui-native-target/debug/deps/attachment_service-a1f23fe36078c626)\ntest result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.11s\n     Running tests/deck_construction.rs (/tmp/lantern-ui-native-target/debug/deps/deck_construction-18601b40d4fb0fe9)\ntest result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s\n     Running tests/jc059_friendly.rs (/tmp/lantern-ui-native-target/debug/deps/jc059_friendly-cd6d5107b9cb2d84)\ntest result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s\n     Running tests/room_pacing.rs (/tmp/lantern-ui-native-target/debug/deps/room_pacing-688ee2cd99672c6e)\ntest result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s\n     Running tests/service.rs (/tmp/lantern-ui-native-target/debug/deps/service-0eda0c8b816d5e6b)\ntest result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.08s\n     Running tests/session_service.rs (/tmp/lantern-ui-native-target/debug/deps/session_service-774bc1d15f630f8f)\ntest result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.08s\ntest result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n",
+      "excerptBytes": 1957,
+      "excerptSha256": "e816bfc5ed20d2b22c94974fdaf9e284eaabd6d860a87f9851d27fdcfc05254b",
+      "reportedResult": {
+        "passed": 509,
+        "failed": 0,
+        "ignored": 0
+      }
+    },
+    {
+      "scope": "sites",
+      "testedSource": "5862ad6740dc095194655201745173d48a5989f1",
+      "original": {
+        "file": "sites-tests.log",
+        "bytes": 5363,
+        "sha256": "b672605cb348771fdb681a08c035760d0629bd770c7d272dbbf228465563ac54"
+      },
+      "extraction": "Concatenate the listed 1-based original log lines in order, retaining original line endings. No line text edited.",
+      "lineNumbers": [
+        9,
+        10,
+        13,
+        28,
+        38,
+        40,
+        42,
+        44,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "excerptUtf8": "ℹ {\"currentVersion\":\"rust-v0.2.36-jz55-unique-destroy-candidate\",\"reopenedFrozenVersions\":[\"rust-v0.2.1\",\"rust-v0.2.2\",\"rust-v0.2.3\",\"rust-v0.2.4\",\"rust-v0.2.5\",\"rust-v0.2.6\",\"rust-v0.2.7\",\"rust-v0.2.8\",\"rust-v0.2.9\",\"rust-v0.2.10\"],\"v010PendingChoiceAndReceiptsPreserved\":true,\"newJC005DraftRejectedByV009AndV010WithoutWrites\":true,\"localWorkerdD1Only\":true}\nℹ Provider emulation only; remote Cloudflare D1 acceptance is still required. Persisted at /tmp/hegemony-worker-d1-UJuEvh\nℹ {\"routedKernelVersions\":[\"rust-v0.2.11\",\"rust-v0.2.1\",\"rust-v0.2.2\",\"rust-v0.2.3\",\"rust-v0.2.4\",\"rust-v0.2.5\",\"rust-v0.2.6\",\"rust-v0.2.7\",\"rust-v0.2.8\",\"rust-v0.2.9\",\"rust-v0.2.10\"],\"onlyAddedOrdinaryCard\":\"JC005\",\"oldIdentitiesAndOwnVersionDraftsPreserved\":true}\nℹ {\"printedSociety\":\"MSJC09\",\"syntheticInitialLayout\":false,\"publicNaturalUiAcceptance\":false,\"httpCalls\":2346,\"acceptedCommands\":461,\"firstAndRearBothPaid\":true,\"fourSeats\":true,\"paidFrameReopens\":2,\"restoredBeforeExpiry\":2,\"sameInstanceNaturalNextTurnReset\":true}\nℹ Synthetic local fixture; actual Worker/D1 writes, timers and reopen. No remote natural-play claim.\nℹ Synthetic local fixture; actual Worker/D1 writes, timers and reopen. No remote natural-play claim.\nℹ Synthetic local fixture; actual Worker/D1 writes, timers and reopen. No remote natural-play claim.\nℹ Synthetic local fixture; actual Worker/D1 writes, timers and reopen. No remote natural-play claim.\nℹ tests 24\nℹ suites 0\nℹ pass 24\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 117611.339816\n",
+      "excerptBytes": 1554,
+      "excerptSha256": "ed56c1507ca36bc6258e51ba81aa149951e9f0b132b3bea3f162d96cab2bceb3",
+      "reportedResult": {
+        "passed": 24,
+        "failed": 0,
+        "skipped": 0
+      }
+    },
+    {
+      "scope": "original-ui-web",
+      "testedSource": "5862ad6740dc095194655201745173d48a5989f1",
+      "original": {
+        "file": "web-full.log",
+        "bytes": 29508,
+        "sha256": "7bc35b71fc595fe90c6360565a779aaf71ea99db28bd613ff308932a2b69e5ce"
+      },
+      "extraction": "Concatenate the listed 1-based original log lines in order, retaining original line endings. No line text edited.",
+      "lineNumbers": [
+        423,
+        424,
+        426
+      ],
+      "excerptUtf8": " Test Files  15 failed | 46 passed (61)\n      Tests  20 failed | 456 passed (476)\n   Duration  33.46s (transform 1.95s, setup 6.05s, import 4.87s, tests 49.87s, environment 29.14s)\n",
+      "excerptBytes": 181,
+      "excerptSha256": "27684eb3ce36f4bf1d015d246ee3f68c539c7d50da22603721a5813cf6ed0f2a",
+      "reportedResult": {
+        "files": 61,
+        "tests": 476,
+        "passed": 456,
+        "failed": 20,
+        "skipped": 0
+      }
+    },
+    {
+      "scope": "original-base-web",
+      "testedSource": "baed2594400dc38834943ab70ee2c42afcda7b72",
+      "original": {
+        "file": "base-web-full.log",
+        "bytes": 28415,
+        "sha256": "5109c9a281ec4fb2da0512bc32a509d89072a1cc7fd9d1bb070875164a940a9e"
+      },
+      "extraction": "Concatenate the listed 1-based original log lines in order, retaining original line endings. No line text edited.",
+      "lineNumbers": [
+        412,
+        413,
+        415
+      ],
+      "excerptUtf8": " Test Files  15 failed | 45 passed (60)\n      Tests  20 failed | 453 passed (473)\n   Duration  30.42s (transform 1.89s, setup 5.66s, import 4.66s, tests 44.87s, environment 26.29s)\n",
+      "excerptBytes": 181,
+      "excerptSha256": "7b3384ed911b5960f94f8112b7488498503945c78e799c1062d76b6163559b2f",
+      "reportedResult": {
+        "files": 60,
+        "tests": 473,
+        "passed": 453,
+        "failed": 20,
+        "skipped": 0
+      }
+    },
+    {
+      "scope": "historical-bindings-web",
+      "testedSource": "5cbea3dd15162587e0abdbfa0bf591b6c97bc173",
+      "original": {
+        "file": "full-web.log",
+        "bytes": 11247,
+        "sha256": "42174c49891a0432f81cf0f1015dfa97bb6ee670111f9297d8f86b5cd6fc05f1"
+      },
+      "extraction": "Concatenate the listed 1-based original log lines in order, retaining original line endings. No line text edited.",
+      "lineNumbers": [
+        123,
+        124,
+        126
+      ],
+      "excerptUtf8": " Test Files  60 passed (60)\n      Tests  473 passed (473)\n   Duration  30.61s (transform 1.89s, setup 5.66s, import 4.52s, tests 45.40s, environment 27.08s)\n",
+      "excerptBytes": 157,
+      "excerptSha256": "69568a1008bc0d331339b037cd252ef5b1a9637773d60630952054c95480c9e0",
+      "reportedResult": {
+        "files": 60,
+        "tests": 473,
+        "passed": 473,
+        "failed": 0,
+        "skipped": 0
+      }
+    },
+    {
+      "scope": "ui-plus-historical-bindings-web",
+      "testedSource": "664c643aa199e6bb67f1063180f827e5857641bf",
+      "original": {
+        "file": "ui-combined-web.log",
+        "bytes": 11140,
+        "sha256": "b42c32c5df865e259a795832ea9b76f762465ce7209a5b9e255255010248f8bd"
+      },
+      "extraction": "Concatenate the listed 1-based original log lines in order, retaining original line endings. No line text edited.",
+      "lineNumbers": [
+        122,
+        123,
+        125
+      ],
+      "excerptUtf8": " Test Files  61 passed (61)\n      Tests  476 passed (476)\n   Duration  30.37s (transform 1.95s, setup 5.51s, import 4.54s, tests 45.54s, environment 26.37s)\n",
+      "excerptBytes": 157,
+      "excerptSha256": "fa91233905d8a2631995609683a3e94ee68b26867268bcf1fb404512c635955c",
+      "reportedResult": {
+        "files": 61,
+        "tests": 476,
+        "passed": 476,
+        "failed": 0,
+        "skipped": 0
+      }
+    }
+  ],
+  "rawGreenWebFiles": [
+    {
+      "file": "logs/full-web.log",
+      "bytes": 11247,
+      "sha256": "42174c49891a0432f81cf0f1015dfa97bb6ee670111f9297d8f86b5cd6fc05f1",
+      "byteExactCopyOfOriginal": true,
+      "testedSource": "5cbea3dd15162587e0abdbfa0bf591b6c97bc173"
+    },
+    {
+      "file": "logs/full-web-results.json",
+      "bytes": 171023,
+      "sha256": "c1f0cfb1b53738ab0ec6b72b720b9f5262485b0e27e01d4f605ef3c376d98a51",
+      "byteExactCopyOfOriginal": true,
+      "testedSource": "5cbea3dd15162587e0abdbfa0bf591b6c97bc173"
+    },
+    {
+      "file": "logs/ui-combined-web.log",
+      "bytes": 11140,
+      "sha256": "b42c32c5df865e259a795832ea9b76f762465ce7209a5b9e255255010248f8bd",
+      "byteExactCopyOfOriginal": true,
+      "testedSource": "664c643aa199e6bb67f1063180f827e5857641bf"
+    },
+    {
+      "file": "logs/ui-combined-web-results.json",
+      "bytes": 172551,
+      "sha256": "d632a58603b01bb93ed5facaabe2aa225507e587dd524ae41e49d73cec81f9b3",
+      "byteExactCopyOfOriginal": true,
+      "testedSource": "664c643aa199e6bb67f1063180f827e5857641bf"
+    }
+  ],
+  "runnerCounting": "Count len(testResults) for files and all assertionResults for tests; numTotalTestSuites includes nested describe suites and is not the file count. All 473/476 assertion statuses are passed.",
+  "scopeNote": "The original UI/base runs had the same 20 historical binding failures. The two green runs use the separately reviewed test-binding-only source commit; no production source was changed to obtain green results. No tests or E2E rerun for this addendum."
+}

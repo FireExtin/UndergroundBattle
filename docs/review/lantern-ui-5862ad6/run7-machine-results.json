@@ -1,0 +1,152 @@
+{
+  "schemaVersion": 1,
+  "run": "four-seat-run-7",
+  "testedProductionSource": "5862ad6740dc095194655201745173d48a5989f1",
+  "fixedSeed": 9,
+  "finalTurn": 2,
+  "version": 194,
+  "originalSourceRecords": [
+    {
+      "file": "progress.json",
+      "bytes": 3539929,
+      "sha256": "68ed05551d6b91658e36f9b17f4ffaa851c844927baf9ea4f74095d3b9884157"
+    },
+    {
+      "file": "evidence-integrity.json",
+      "bytes": 1377,
+      "sha256": "f74c9772dc571b1ffbe987268d72230e4d8b0ad606d083009b97c56bffe5ac74"
+    },
+    {
+      "file": "native-replay-audit.json",
+      "bytes": 479,
+      "sha256": "a6b4ed6a3366f955537010cfeeddbd4fe3ae67cf2881354660ff49fdd93b672b"
+    },
+    {
+      "file": "native-replay-read-only-proof.json",
+      "bytes": 1361,
+      "sha256": "913dcb2d79cbda1c9e8e2d9308379164a2620597c98feb4f0799b16031dd38c8"
+    }
+  ],
+  "recordedRunChecks": {
+    "fourIndependentBrowserSeats": true,
+    "fixedSeedVerifiedFromInitialState": true,
+    "lostAcknowledgements": 4,
+    "lostAckReloadAndUIReceiptReplay": true,
+    "targetCancellation": 2,
+    "actualTargetedStackResponse": true,
+    "funeralReturnedTargetAndDrewOne": true,
+    "completeFirstRound": true,
+    "finalTurn": 2,
+    "duplicateAfterRound": true,
+    "staleRejectedWithoutWrites": true,
+    "SQLiteReopenByteExact": true,
+    "fourSeatsRestoredAfterReopen": true,
+    "lobbyReturnRestoresOriginalSeat": true,
+    "journalEntries": 194,
+    "commandReceipts": 191,
+    "seats": 4,
+    "success": true
+  },
+  "sqliteReopen": {
+    "recordedPass": true,
+    "mechanism": "Dispose/recreate Miniflare with the same persistent D1 directory; snapshot before and after; assert.deepEqual(reopened.after,reopened.before).",
+    "comparedRowGroups": [
+      "room",
+      "commands",
+      "journal",
+      "seats",
+      "entry_receipts"
+    ],
+    "assertionSource": "scripts/four-seat-e2e.mjs:178",
+    "harnessSource": "scripts/local-room-harness.mjs",
+    "evidenceLimit": "The successful original run retained the check result, not separate before/after snapshots. No reopen snapshot hashes are claimed. The database/WAL hashes below concern the later read-only replay audit."
+  },
+  "nativeReplay": {
+    "version": 194,
+    "journalEntries": 194,
+    "status": "playing",
+    "matches": true,
+    "persistedDigest": "c2cd2a3a21164e8dfed76bb64827c570361b9ee2d7a562019603d0f031decab4",
+    "replayedDigest": "c2cd2a3a21164e8dfed76bb64827c570361b9ee2d7a562019603d0f031decab4",
+    "versions": {
+      "rules": "hegemony-pdf-v1",
+      "cardPool": "limited-v2.33-jz55-unique-destroy-candidate",
+      "engine": "rust-v0.2.36-jz55-unique-destroy-candidate"
+    }
+  },
+  "readOnlyReplayFileProof": {
+    "auditMode": "Native Store::open_read_only, consistent SELECT read transaction; no migrations or room writes",
+    "persistentDatabaseFilesUnchanged": true,
+    "files": [
+      {
+        "fileRole": "SQLite database",
+        "beforeReadOnlyAuditSha256": "11f7583ce37f716fa47b63ed3d8d21d91a7f4112adee9c11f0a19df80873799b",
+        "afterReadOnlyAuditSha256": "11f7583ce37f716fa47b63ed3d8d21d91a7f4112adee9c11f0a19df80873799b"
+      },
+      {
+        "fileRole": "SQLite WAL",
+        "beforeReadOnlyAuditSha256": "c1e79eb6f55b5ab6be7ebc76d14f04baba88a39cf75e8ff86b66f12a5bb7ca3d",
+        "afterReadOnlyAuditSha256": "c1e79eb6f55b5ab6be7ebc76d14f04baba88a39cf75e8ff86b66f12a5bb7ca3d"
+      }
+    ],
+    "sharedMemoryLockBytesExcluded": true
+  },
+  "receiptIntegrity": {
+    "acceptedUniqueCommands": 191,
+    "acceptedCommandHttpResponses": 196,
+    "duplicateCommandHttpResponses": 5,
+    "journalEntries": 194,
+    "allSuccessfulPostReceiptsMatchStoredResponses": true,
+    "journalVersionsContiguous": true,
+    "fourSeats": true,
+    "fourEntryReceipts": true,
+    "funeralAssetsPaidExactlyOne": true,
+    "rejectedCommandHttpStatuses": [
+      409
+    ]
+  },
+  "stateStringSha256": "c2cd2a3a21164e8dfed76bb64827c570361b9ee2d7a562019603d0f031decab4",
+  "initialStateStringSha256": "cf42a4b3eecddbd0df94525028e4b867e67e4a90f53d3bf42ecf72f9d7e84fa1",
+  "screenshots": [
+    {
+      "file": "screenshots/four-seats-action-seed9.png",
+      "bytes": 1302549,
+      "sha256": "3f82e64011c34e4f0512335fb6eca0eb95aa630a25b4556bd93bf425c4310b2a",
+      "seat": 0,
+      "version": 20,
+      "turn": 1,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "inspection": "Original page-only PNG visually inspected. Synthetic room and seat labels; no seat tokens, authentication headers, browser chrome or signed URLs visible. No crop or image edit."
+    },
+    {
+      "file": "screenshots/two-effect-response-seed9.png",
+      "bytes": 1255131,
+      "sha256": "7114bf39b79ce3ec1415b15029aa861fee4dc7993d1263fcee86dcc82c0d31be",
+      "seat": 2,
+      "version": 54,
+      "turn": 1,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "inspection": "Original page-only PNG visually inspected. Synthetic room and seat labels; no seat tokens, authentication headers, browser chrome or signed URLs visible. No crop or image edit."
+    },
+    {
+      "file": "screenshots/round-complete-seed9.png",
+      "bytes": 1323529,
+      "sha256": "e5c97536d317e48ddc5a883f33fb6d697bf704c73f543c79aed44310ab12ebc4",
+      "seat": 0,
+      "version": 194,
+      "turn": 2,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "inspection": "Original page-only PNG visually inspected. Synthetic room and seat labels; no seat tokens, authentication headers, browser chrome or signed URLs visible. No crop or image edit."
+    }
+  ],
+  "privacy": "Whitelisted aggregate results only; no room locator, seat credentials, HTTP auth, full sessions, commands or database dump."
+}

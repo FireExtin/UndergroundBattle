@@ -55,6 +55,25 @@ python /workspace/lantern-ui-e2e-evidence/audit-final-evidence.py four-seat-run-
 
 The scripts here are the historical verification sources. The E2E copy changes only its relocation-sensitive import to the equivalent absolute cloud path; original script hashes are in `test-summary.json`. They contain synthetic seat labels and runtime token variables, no literal credentials or signed URLs. They create raw local test artifacts outside the repository; those artifacts are not committed here. For a rerun, restore the locked dependencies and current36 package, use a new run name, and preserve the original run7 evidence. To review source behavior, check out the fixed tested source HEAD; do not equate an evidence child HEAD with a newly tested runtime change.
 
-`screenshots-local-manifest.json` lists all 45 local PNGs with sizes and SHA256. The seven run7 PNGs are the completed acceptance sequence; earlier files are debugging evidence. No PNG, database, browser storage, raw private session or complete HTTP log is included in this commit. Screenshots still require a supported transfer/review route.
+`screenshots-local-manifest.json` lists all 45 local PNGs with sizes and SHA256. The seven run7 PNGs are the completed acceptance sequence; earlier files are debugging evidence. The initial evidence commit omitted the images. The addendum below includes only three approved run7 PNGs; database, browser storage, raw private sessions and complete HTTP logs remain outside the repository.
 
 No main push, Site publication, Library upload retry or alteration of engine42/WM059 occurred. Original local review ZIP remains separate and unchanged. This directory supports parent independent review; it does not replace that review.
+
+## Limited independent-review addendum
+
+The three original run7 page screenshots were visually checked for credentials and private user material. They show a fully synthetic local room; no crop or image edit was needed. The screenshots are evidence of the original source run, not a new runtime test.
+
+- [Four-seat desktop table, turn1/version20](screenshots/four-seats-action-seed9.png)
+- [Two-effect response stack, seat3/version54](screenshots/two-effect-response-seed9.png)
+- [First round completed, turn2/version194](screenshots/round-complete-seed9.png)
+
+[run7-machine-results.json](run7-machine-results.json) gives the whitelisted SQLite reopen check, exact native replay output, read-only database/WAL hashes, receipt counts and image byte hashes. The original reopen used a deep comparison of all five row groups; separate before/after snapshots were not retained, so no such snapshot hashes are asserted. SQLite/WAL before/after hashes refer specifically to the subsequent read-only native audit. Room locators, seat secrets, full sessions and database contents are omitted.
+
+[log-summaries.json](log-summaries.json) preserves original native, Sites and Web summary lines, exact extraction line numbers and UTF-8 excerpt hashes. It also records the full hashes of the four byte-exact green Web files below. The whole original native/Sites/baseline logs are not included; their full-file hashes are provenance only. A reviewer can independently recompute all excerpt hashes and the included green files' full hashes.
+
+| Green test scope | Exact tested source | Raw log and runner results | Independently countable result |
+|---|---|---|---|
+| Test-binding-only source, parent baed | `5cbea3dd15162587e0abdbfa0bf591b6c97bc173` | [full-web.log](logs/full-web.log), [full-web-results.json](logs/full-web-results.json) | 60 file records, 473 passed assertion records |
+| Local UI + binding validation | `664c643aa199e6bb67f1063180f827e5857641bf` | [ui-combined-web.log](logs/ui-combined-web.log), [ui-combined-web-results.json](logs/ui-combined-web-results.json) | 61 file records, 476 passed assertion records |
+
+These four originals contain only synthetic test names, results and local source paths; credential-pattern and actual synthetic-seat-token scans found no matches. They were copied without alteration. Vitest's `numTotalTestSuites` includes nested describe suites; use `len(testResults)` for file count and each file's `assertionResults` for test count. The green scopes have the historical test bindings applied and remain distinct from the original UI run with 20 baseline failures. This evidence addendum changes no production code, does not rerun E2E, and does not alter main or publish a Site.
