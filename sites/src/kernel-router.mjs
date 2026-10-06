@@ -1,7 +1,7 @@
 // Routing reads only Rust's small identity envelope; private state stays opaque.
 export function routeKernels(current, previous) {
   const kernels = [current, ...(Array.isArray(previous) ? previous : [previous])]
-    .map(kernel => ({ kernel, catalog: JSON.parse(kernel.catalog()) }));
+    .map(kernel => ({ kernel, catalog: kernel.catalogIdentity ?? JSON.parse(kernel.catalog()) }));
   const matches = (version, catalog) => version.rules === catalog.rulesVersion
     && version.cardPool === catalog.cardPoolVersion && version.engine === catalog.engineVersion;
   const select = state => {

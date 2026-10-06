@@ -38,16 +38,7 @@ for (const crate of ['rust-game', 'rust-game-wasm']) {
 rmSync(path.join(destination, 'rust-game/data'), { recursive: true, force: true });
 copy(repository + 'rust-game/data/cards.json', 'rust-game/data/cards.json');
 for (const file of ['hegemony_wasm.js', 'hegemony_wasm_bg.wasm']) copy(repository + 'rust-game-wasm/pkg/' + file, 'rust-game-wasm/pkg/' + file);
-copy(repository + 'rust-game-wasm/legacy-v0.2.1', 'rust-game-wasm/legacy-v0.2.1', true);
-copy(repository + 'rust-game-wasm/legacy-v0.2.2', 'rust-game-wasm/legacy-v0.2.2', true);
-copy(repository + 'rust-game-wasm/legacy-v0.2.3', 'rust-game-wasm/legacy-v0.2.3', true);
-copy(repository + 'rust-game-wasm/legacy-v0.2.4', 'rust-game-wasm/legacy-v0.2.4', true);
-copy(repository + 'rust-game-wasm/legacy-v0.2.5', 'rust-game-wasm/legacy-v0.2.5', true);
-copy(repository + 'rust-game-wasm/legacy-v0.2.6', 'rust-game-wasm/legacy-v0.2.6', true);
-copy(repository + 'rust-game-wasm/legacy-v0.2.7', 'rust-game-wasm/legacy-v0.2.7', true);
-copy(repository + 'rust-game-wasm/legacy-v0.2.8', 'rust-game-wasm/legacy-v0.2.8', true);
-copy(repository + 'rust-game-wasm/legacy-v0.2.9', 'rust-game-wasm/legacy-v0.2.9', true);
-copy(repository + 'rust-game-wasm/legacy-v0.2.10', 'rust-game-wasm/legacy-v0.2.10', true);
+for (const name of readdirSync(repository + 'rust-game-wasm').filter(name => /^legacy-v0\.2\.\d+(?:-resource-policy)?$/.test(name))) copy(repository + 'rust-game-wasm/' + name, 'rust-game-wasm/' + name, true);
 writeFileSync(path.join(destination, '.gitignore'), 'node_modules/\ndist/\n.wrangler/\ngenerated/\n/public/\nweb/dist/\nrust-game/target/\nrust-game-wasm/target/\n.env*\n.sites-runtime/\n');
 const wasmSha256 = createHash('sha256').update(readFileSync(repository + 'rust-game-wasm/pkg/hegemony_wasm_bg.wasm')).digest('hex');
 const originalCommit = execFileSync('git', ['rev-parse', 'HEAD'], { cwd: repository, encoding: 'utf8' }).trim();
