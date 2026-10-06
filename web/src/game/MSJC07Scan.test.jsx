@@ -1,14 +1,15 @@
+// Historical catalog/scan assertions use frozen32; current36 is covered independently by JZ55UniqueDestroy.
 import {createHash} from 'node:crypto';
 import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {render,screen,fireEvent} from '@testing-library/react';
 import {expect,it,vi} from 'vitest';
-import * as kernel from '../../../rust-game-wasm/pkg/hegemony_wasm.js';
+import * as kernel from '../../../rust-game-wasm/legacy-v0.2.32/hegemony_wasm.js';
 import {actionForRoom,actionPayload} from './api';
 import {CardContent} from './CardTile';
 import {ReadModal} from './ReadModal';
 import {validateDeckDraft} from './deckLibrary';
-kernel.initSync({module:readFileSync(resolve('../rust-game-wasm/pkg/hegemony_wasm_bg.wasm'))});
+kernel.initSync({module:readFileSync(resolve('../rust-game-wasm/legacy-v0.2.32/hegemony_wasm_bg.wasm'))});
 const catalog=JSON.parse(kernel.catalog());
 const definition=catalog.societies.find(c=>c.id==='MSJC07');
 const black=['JC086','JC092','JC091','JZ54','JC084','JC085','JC088','BQ083','JC093','JC096','XQ38'];
@@ -25,7 +26,7 @@ function localRoom(){
 it('retains actual MSJC07 original, metadata, two abilities and two real admitted black unique cards',()=>{
  expect(catalog.engineVersion).toBe('rust-v0.2.32-jc030-blue-bat-candidate');expect(catalog.cardPoolVersion).toBe('limited-v2.29-jc030-blue-bat-candidate');expect(catalog.cards).toHaveLength(94);expect(catalog.societies.map(c=>c.id)).toEqual(['MSJC09','MSJC01','MSJC07','MSJC06','MSJC08','MSJC11','MSJC02']);
  expect(definition).toMatchObject({name:'方碑序列',subtitle:'恐怖同盟',kind:'society',type:'秘社/法师结社',subtypes:['法师结社'],color:'黑',unique:true,startingHand:6,printedCost:null,deckConstraints:[{kind:'minimumColor',color:'黑',count:25}]});expect(definition.abilities.map(a=>a.key)).toEqual(['drawWithInitiative','search-black-unique']);expect(catalog.cards.filter(c=>c.color==='黑'&&c.unique)).toHaveLength(2);
- const scans=JSON.parse(readFileSync(resolve('public/card-scans.json'),'utf8'));const hash='e9cd1af04560733f28e3bcfee4c687f6a2e5218b93862b5a74d4f35f6a8f3ed7';expect(Object.keys(scans)).toHaveLength(101);expect(scans.MSJC07).toEqual({url:'/cards/MSJC07.jpg',source:'resource/ymsj-fun.github.io/cards/MSJC07 方碑序列.jpg',sha256:hash});expect(createHash('sha256').update(readFileSync(resolve('public/cards/MSJC07.jpg'))).digest('hex')).toBe(hash);
+ const scans=JSON.parse(readFileSync(resolve('src/game/cardScansV032.fixture.json'),'utf8'));const hash='e9cd1af04560733f28e3bcfee4c687f6a2e5218b93862b5a74d4f35f6a8f3ed7';expect(Object.keys(scans)).toHaveLength(101);expect(scans.MSJC07).toEqual({url:'/cards/MSJC07.jpg',source:'resource/ymsj-fun.github.io/cards/MSJC07 方碑序列.jpg',sha256:hash});expect(createHash('sha256').update(readFileSync(resolve('public/cards/MSJC07.jpg'))).digest('hex')).toBe(hash);
 });
 it('agrees with actual WASM on 24/25/33 black and excludes the society from 50 cards',()=>{
  for(const n of[24,25,33]){const d=draft(n);expect(validateDeckDraft(d,catalog).valid).toBe(n>=25);const create=()=>kernel.newGameWithDeck('local','LOCAL','duel','P0',JSON.stringify(d),'1');if(n>=25)expect(create).not.toThrow();else expect(create).toThrow();}const small=draft(25,49);expect(validateDeckDraft(small,catalog).valid).toBe(false);expect(()=>kernel.newGameWithDeck('local','LOCAL','duel','P0',JSON.stringify(small),'1')).toThrow();const over=draft();over.cards[0].count=4;const inside=draft();inside.cards.push({cardId:'MSJC07',count:1});for(const bad of[over,inside]){expect(validateDeckDraft(bad,catalog).valid).toBe(false);expect(()=>kernel.newGameWithDeck('local','LOCAL','duel','P0',JSON.stringify(bad),'1')).toThrow();}

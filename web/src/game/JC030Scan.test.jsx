@@ -1,13 +1,14 @@
+// Historical catalog/scan assertions use frozen35; current36 is covered independently by JZ55UniqueDestroy.
 import {createHash} from 'node:crypto';
 import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {render,screen,fireEvent,cleanup} from '@testing-library/react';
 import {expect,it,vi} from 'vitest';
-import * as k from '../../../rust-game-wasm/pkg/hegemony_wasm.js';
+import * as k from '../../../rust-game-wasm/legacy-v0.2.35/hegemony_wasm.js';
 import * as accepted31 from '../../../rust-game-wasm/legacy-v0.2.31/hegemony_wasm.js';
 import * as accepted32 from '../../../rust-game-wasm/legacy-v0.2.32/hegemony_wasm.js';
 import {ReadModal} from './ReadModal';
-k.initSync({module:readFileSync(resolve('../rust-game-wasm/pkg/hegemony_wasm_bg.wasm'))});
+k.initSync({module:readFileSync(resolve('../rust-game-wasm/legacy-v0.2.35/hegemony_wasm_bg.wasm'))});
 accepted31.initSync({module:readFileSync(resolve('../rust-game-wasm/legacy-v0.2.31/hegemony_wasm_bg.wasm'))});
 accepted32.initSync({module:readFileSync(resolve('../rust-game-wasm/legacy-v0.2.32/hegemony_wasm_bg.wasm'))});
 const catalog=JSON.parse(k.catalog()),old=JSON.parse(accepted31.catalog());
@@ -21,7 +22,7 @@ it('JC030 prints its whole blue bat fields and original and leaves accepted31 de
  expect(card).toMatchObject({name:'巨型蝙蝠',kind:'character',color:'蓝',unique:false,cost:3,loyalty:['蓝色','蓝色'],magic:'',subtypes:['蝙蝠'],defense:1,permanentIcons:{investigation:0,combat:2,influence:0},temporaryIcons:{investigation:0,combat:0,influence:0},ruleTraits:{cannot_be_equipped:true}});
  expect(card.abilities).toEqual(catalog.cards.find(c=>c.id==='JC029').abilities);
  const hash='e0627c1eec97eab04d8cbafb54c0d25ce496ab89e10e19a81485d84ad2915542';
- const scans=JSON.parse(readFileSync(resolve('public/card-scans.json'),'utf8'));expect(Object.keys(scans)).toHaveLength(107);expect(scans.JC030).toEqual({url:'/cards/JC030.jpg',source:'resource/ymsj-fun.github.io/cards/JC030 巨型蝙蝠.jpg',sha256:hash});
+ const scans=JSON.parse(readFileSync(resolve('src/game/cardScansV035.fixture.json'),'utf8'));expect(Object.keys(scans)).toHaveLength(107);expect(scans.JC030).toEqual({url:'/cards/JC030.jpg',source:'resource/ymsj-fun.github.io/cards/JC030 巨型蝙蝠.jpg',sha256:hash});
  expect(createHash('sha256').update(readFileSync(resolve('public/cards/JC030.jpg'))).digest('hex')).toBe(hash);
  for(const id of ['XQ11'])expect(catalog.cards.some(c=>c.id===id)).toBe(false);expect(catalog.societies.some(c=>c.id==='MSJC03')).toBe(true);
 });

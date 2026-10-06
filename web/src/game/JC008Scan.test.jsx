@@ -1,14 +1,15 @@
+// Historical catalog/scan assertions use frozen32; current36 is covered independently by JZ55UniqueDestroy.
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { expect, it, vi } from 'vitest';
-import * as kernel from '../../../rust-game-wasm/pkg/hegemony_wasm.js';
+import * as kernel from '../../../rust-game-wasm/legacy-v0.2.32/hegemony_wasm.js';
 import { actionForRoom, actionPayload } from './api';
 import { CardContent } from './CardTile';
 import { ReadModal } from './ReadModal';
 
-kernel.initSync({ module: readFileSync(resolve('../rust-game-wasm/pkg/hegemony_wasm_bg.wasm')) });
+kernel.initSync({ module: readFileSync(resolve('../rust-game-wasm/legacy-v0.2.32/hegemony_wasm_bg.wasm')) });
 const catalog = JSON.parse(kernel.catalog());
 const definition = catalog.cards.find(c => c.id === 'JC008');
 const sha256 = '31340e2535e0909359860a090186b7a5032e84d6da94c8181baf32565b5d4f45';
@@ -73,7 +74,7 @@ it('admits only JC008 and retains its actual printed metadata and original JPG b
     permanentIcons: { investigation: 0, combat: 0, influence: 0 },
     temporaryIcons: { investigation: 0, combat: 0, influence: 0 }, keywords: [] });
   expect(definition.text).toBe('【快速行动】本回合中，目标角色获得+1防御和1个普通战斗图标。');
-  const scans = JSON.parse(readFileSync(resolve('public/card-scans.json'), 'utf8'));
+  const scans = JSON.parse(readFileSync(resolve('src/game/cardScansV032.fixture.json'), 'utf8'));
   expect(Object.keys(scans)).toHaveLength(101);
   expect(scans.JC008).toEqual({ url: '/cards/JC008.jpg', source: 'resource/ymsj-fun.github.io/cards/JC008 灵能激发.jpg', sha256 });
   expect(createHash('sha256').update(readFileSync(resolve('public/cards/JC008.jpg'))).digest('hex')).toBe(sha256);

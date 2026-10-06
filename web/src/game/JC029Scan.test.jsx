@@ -1,12 +1,13 @@
+// Historical catalog/scan assertions use frozen34; current36 is covered independently by JZ55UniqueDestroy.
 import {createHash} from 'node:crypto';
 import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {render,screen,fireEvent} from '@testing-library/react';
 import {expect,it,vi} from 'vitest';
-import * as k from '../../../rust-game-wasm/pkg/hegemony_wasm.js';
+import * as k from '../../../rust-game-wasm/legacy-v0.2.34/hegemony_wasm.js';
 import {ReadModal} from './ReadModal';
 import {validateDeckDraft} from './deckLibrary';
-k.initSync({module:readFileSync(resolve('../rust-game-wasm/pkg/hegemony_wasm_bg.wasm'))});
+k.initSync({module:readFileSync(resolve('../rust-game-wasm/legacy-v0.2.34/hegemony_wasm_bg.wasm'))});
 const catalog=JSON.parse(k.catalog()),d=catalog.cards.find(c=>c.id==='JC029');
 const draft=(count=3,societyId=null)=>({id:'jc029-unit',name:'新生血族50',description:'',societyId,cards:[{cardId:'JC029',count},{cardId:'JC125',count:50-count}],rulesVersion:catalog.rulesVersion,cardPoolVersion:catalog.cardPoolVersion,engineVersion:catalog.engineVersion,updatedAt:''});
 it('keeps the whole original and exactly one existing reveal ability alongside the finite green admission',()=>{
@@ -15,7 +16,7 @@ it('keeps the whole original and exactly one existing reveal ability alongside t
  expect(d.abilities).toEqual([{key:'raid-1',label:'袭击1',timing:'fast',costs:[],triggered:true}]);
  expect(catalog.societies.map(c=>c.id)).toEqual(['MSJC09','MSJC01','MSJC07','MSJC06','MSJC08','MSJC11','MSJC02','MSJC03']);
  for(const id of ['LC30','JC018','JC015'])expect(catalog.cards.some(c=>c.id===id)).toBe(true);expect(catalog.cards.some(c=>c.id==='XQ11')).toBe(false);
- const scan=JSON.parse(readFileSync(resolve('public/card-scans.json'),'utf8')).JC029;
+ const scan=JSON.parse(readFileSync(resolve('src/game/cardScansV034.fixture.json'),'utf8')).JC029;
  expect(scan.sha256).toBe('b3da8f1546e2f8bbbaae8d3c4d4c79dd712cfa7f8d133fe1723efaa1fa152785');
  expect(createHash('sha256').update(readFileSync(resolve('public/cards/JC029.jpg'))).digest('hex')).toBe(scan.sha256);
  expect(validateDeckDraft(draft(),catalog).valid).toBe(true);expect(validateDeckDraft(draft(4),catalog).valid).toBe(false);
