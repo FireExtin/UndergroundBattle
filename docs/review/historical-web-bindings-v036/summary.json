@@ -1,0 +1,104 @@
+{
+  "base": "baed2594400dc38834943ab70ee2c42afcda7b72",
+  "scope": "15 historical test bindings plus 3 exact historical registry snapshots",
+  "fullWeb": {
+    "files": 60,
+    "tests": 473,
+    "passed": 473,
+    "failed": 0,
+    "skipped": 0,
+    "exitCode": 0
+  },
+  "sameAll473TestIdentities": true,
+  "former20FailuresAllPassed": true,
+  "current36JZ55Suite": {
+    "sourceUnchanged": true,
+    "tests": 8,
+    "passed": true,
+    "fullNativeFixtures": 21,
+    "seatViews": 84
+  },
+  "bindingPlan": {
+    "base": "baed2594400dc38834943ab70ee2c42afcda7b72",
+    "groups": {
+      "32": [
+        "JC005Scan.test.jsx",
+        "JC008Scan.test.jsx",
+        "MSJC01Scan.test.jsx",
+        "MSJC06Scan.test.jsx",
+        "MSJC07Scan.test.jsx",
+        "MSJC08Scan.test.jsx",
+        "MSJC11Scan.test.jsx",
+        "SocietyScan.test.jsx",
+        "YellowSearchBatchScan.test.jsx"
+      ],
+      "34": [
+        "GreenMinimumScan.test.jsx",
+        "JC029Scan.test.jsx"
+      ],
+      "35": [
+        "BlueMinimumScan.test.jsx",
+        "JC030Scan.test.jsx",
+        "JZ31DeathInfluence.test.jsx",
+        "MillPublicBatch.test.jsx"
+      ]
+    },
+    "newRegistrySnapshots": [
+      {
+        "file": "web/src/game/cardScansV032.fixture.json",
+        "sourceCommit": "713be787f47d4188640922a5d373662bd04ffe38",
+        "sourcePath": "web/public/card-scans.json",
+        "entries": 101,
+        "bytes": 20653,
+        "sha256": "9a46bf09c8cf4d6b6b1c13d928739e171b036c2762fd0b0f0788975faa5f20a6",
+        "copiedByteExact": true
+      },
+      {
+        "file": "web/src/game/cardScansV034.fixture.json",
+        "sourceCommit": "3ee9f70a707714d776cf5a19e106963a56bfef05",
+        "sourcePath": "web/public/card-scans.json",
+        "entries": 106,
+        "bytes": 21679,
+        "sha256": "2a38e937782e7ca0c80f4b0fdc79bd3c382e8eb57952b535644721084d99a9ce",
+        "copiedByteExact": true
+      },
+      {
+        "file": "web/src/game/cardScansV035.fixture.json",
+        "sourceCommit": "b533ef25318585bd5d2b1c2a9225ea891108b339",
+        "sourcePath": "web/public/card-scans.json",
+        "entries": 107,
+        "bytes": 21889,
+        "sha256": "8c06e08c8d0abbb81026e92c3af4a65305498d529129731bb6b37c97568f5f8f",
+        "copiedByteExact": true
+      }
+    ],
+    "existingAssertionsUnmodified": true,
+    "current36SuiteUnmodified": true
+  },
+  "uiProductionChanged": false,
+  "testedCodeHead": "5cbea3dd15162587e0abdbfa0bf591b6c97bc173",
+  "independentReview": "pending",
+  "uiCombination": {
+    "localValidationHead": "664c643aa199e6bb67f1063180f827e5857641bf",
+    "parentUiEvidenceHead": "237a6bea02cdd926bc1342d4988391e01f0f77d7",
+    "productionUiSourceHead": "5862ad6740dc095194655201745173d48a5989f1",
+    "files": 61,
+    "tests": 476,
+    "passed": 476,
+    "failed": 0,
+    "skipped": 0,
+    "exitCode": 0,
+    "uiProductionFilesByteExact": true,
+    "published": false
+  },
+  "sourcePreservation": {
+    "all15SourceBytesExactAfterInverseBindingChanges": true,
+    "unchangedExistingFileCount": 204,
+    "current36JZ55SuiteAndGoldenUnchanged": true,
+    "current36WasmSha256": "0f3a637d854074fe0689927c51e7969e8a32551ddcb48e1e1f3f1b6d022ea036"
+  },
+  "logSha256": {
+    "full-web.log": "42174c49891a0432f81cf0f1015dfa97bb6ee670111f9297d8f86b5cd6fc05f1",
+    "ui-combined-web.log": "b42c32c5df865e259a795832ea9b76f762465ce7209a5b9e255255010248f8bd"
+  }
+}
