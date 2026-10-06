@@ -205,6 +205,8 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    // JZ31 only: one influence in the frozen source region, without parameters.
+    PlaceOneInfluenceInSourceRegion,
     // Two closed blue programs, with no configurable search/loop interpreter.
     JC032TopSixVampireHidden,
     JZ24LocalSacrificeSnapshot,
@@ -453,6 +455,14 @@ pub struct Definition {
 // These are interpreter limits, not rules for resolving partially invalid targets.
 // Reject unsupported declarations before publishing actions or offering trigger choices.
 pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(), String> {
+    let death_influence = ability.ops.iter().chain(ability.modes.iter().flat_map(|m| &m.ops))
+        .any(|op| matches!(op, Op::PlaceOneInfluenceInSourceRegion));
+    if (card_id == "JZ31" || death_influence)
+        && (card_id != "JZ31" || serde_json::to_value(ability).unwrap()
+            != serde_json::to_value(&jz31_definition().abilities[0]).unwrap())
+    {
+        return Err(format!("{card_id}: only the complete JZ31 death influence ability is admitted"));
+    }
     // Only XQ36 may reuse a player-loop mill, with its complete fixed program.
     // Do not relax the existing top-level target-player requirement.
     fn has_loop_mill(ops: &[Op], in_loop: bool) -> bool {
@@ -976,6 +986,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
                             | Op::ModifyTargetUntilTurnEnd { .. }
                             | Op::GainControl { .. }
                             | Op::PlaceInfluence { .. }
+                            | Op::PlaceOneInfluenceInSourceRegion
                             | Op::DamageTarget { .. }
                             | Op::PreventTargetDamageUntilTurnEnd { .. }
                             | Op::ReattachSource { .. }
@@ -1005,6 +1016,11 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
 
 fn validate_definitions(definitions: &BTreeMap<String, Definition>) -> Result<(), String> {
     for (card_id, definition) in definitions {
+        if card_id == "JZ31" && serde_json::to_value(definition).unwrap()
+            != serde_json::to_value(jz31_definition()).unwrap()
+        {
+            return Err("cardId=JZ31: only the complete admitted death influence definition is supported".into());
+        }
         if card_id == "XQ36"
             && serde_json::to_value(definition).unwrap()
                 != serde_json::to_value(xq36_definition()).unwrap()
@@ -1272,6 +1288,10 @@ fn jz24_definition() -> Definition {
     with_abilities(vec![ability("local-enemy-sacrifice", "敌方本地牺牲", Timing::Fast,
         vec![], vec![], vec![Op::JZ24LocalSacrificeSnapshot], Some(Event::Reveal))])
 }
+fn jz31_definition() -> Definition {
+    with_abilities(vec![ability("death-source-influence", "死亡触发：本地区放置一个本方势力标志", Timing::Fast,
+        vec![], vec![], vec![Op::PlaceOneInfluenceInSourceRegion], Some(Event::Death))])
+}
 fn msjc03_definition() -> Definition {
     let mut d = msjc02_definition();
     d.abilities[1].key = "search-blue-unique".into();
@@ -1322,6 +1342,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         let mut m = BTreeMap::new();
         m.insert("JC032".into(), jc032_definition());
         m.insert("JZ24".into(), jz24_definition());
+        m.insert("JZ31".into(), jz31_definition());
         m.insert("JC030".into(), jc030_definition());
         m.insert("LC30".into(), lc30_definition());
         m.insert("JC018".into(), jc018_definition());
@@ -3300,6 +3321,48 @@ pub fn definition(id: &str) -> &'static Definition {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn jz31_closed_definition_and_operation_reject_mutations_modes_loops_and_transplants() {
+        for variant in 0..15 {
+            let mut r = definitions().clone();
+            let d = r.get_mut("JZ31").unwrap();
+            let a = &mut d.abilities[0];
+            match variant {
+                0 => a.event = Some(Event::Enter),
+                1 => a.costs.push(Cost::ExhaustSource),
+                2 => a.targets.push(target(Zone::Region, EntityKind::Any, Relation::Any, Range::Anywhere)),
+                3 => a.ops.push(Op::PlaceOneInfluenceInSourceRegion),
+                4 => a.ops = vec![Op::PlaceInfluence { region_instance:"i1".into(), amount:1 }],
+                5 => a.response_policy = ResponsePolicy::Immediate,
+                6 => a.modes.push(Mode { key:"extra".into(), label:"extra".into(), targets:vec![], ops:vec![Op::PlaceOneInfluenceInSourceRegion] }),
+                7 => a.requires_ready_source = true,
+                8 => a.once_per_game = true,
+                9 => a.per_turn_limit = Some(1),
+                10 => a.timing = Timing::Standard,
+                11 => a.key = "other".into(),
+                12 => d.traits.renown = true,
+                13 => d.modifiers.push(StaticModifier::PeekOwnDeckTop),
+                _ => d.graveyard_face_up = true,
+            }
+            assert!(validate_definitions(&r).is_err(), "variant {variant}");
+        }
+        for other in ["JZ59", "JZ24", "JC125", "XQ36"] {
+            let mut r = definitions().clone();
+            r.get_mut(other).unwrap().abilities = jz31_definition().abilities;
+            assert!(validate_definitions(&r).is_err());
+        }
+        for ops in [
+            vec![Op::PlaceOneInfluenceInSourceRegion],
+            vec![Op::ForEachLivingPlayer(vec![Op::PlaceOneInfluenceInSourceRegion])],
+            vec![Op::ForEachLivingPlayerFromActor(vec![Op::PlaceOneInfluenceInSourceRegion])],
+        ] {
+            let mut a = definition("XQ17").abilities[0].clone(); a.ops = ops.clone();
+            assert!(validate_ability("XQ17", &a).is_err());
+            a.ops.clear(); a.modes.push(Mode { key:"invalid".into(), label:"invalid".into(), targets:vec![], ops });
+            assert!(validate_ability("XQ17", &a).is_err());
+        }
+    }
 
     #[test]
     fn mill_public_closed_entry_rejects_variants_modes_and_nested_transplants() {

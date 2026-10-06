@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.31-mill-public-candidate",
-  "engineVersion": "rust-v0.2.34-mill-public-candidate",
+  "cardPoolVersion": "limited-v2.32-jz31-death-influence-candidate",
+  "engineVersion": "rust-v0.2.35-jz31-death-influence-candidate",
   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
   "cards": [
     {
@@ -3812,6 +3812,44 @@
         "record": "XQ46",
         "image": "resource/ymsj-fun.github.io/cards/XQ46 无名尸体.jpg",
         "sha256": "d58e71df94753dde04595f5aa84de4039fcbbe594883acc018e2c06ddb103a89"
+      },
+      "unique": false,
+      "society": ""
+    },
+    {
+      "id": "JZ31",
+      "name": "破茧者秘教线人",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "宿主"
+      ],
+      "cost": 3,
+      "loyalty": [
+        "红色"
+      ],
+      "loyaltyText": "红色",
+      "color": "红",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "死亡触发 在本地区上放置一个本方势力标志。",
+      "keywords": [],
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/JZ31 破茧者秘教线人.jpg",
+        "sha256": "57a1fd51243ab4616af46f4fb8a6a1ef46a09ab3c9a11ed2fe2fc90d8b83babf",
+        "basis": "actual original face checked with basic rulebook printed P7/P8"
       },
       "unique": false,
       "society": ""

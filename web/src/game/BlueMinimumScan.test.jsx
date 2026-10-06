@@ -20,14 +20,14 @@ const view=(kind,seat)=>JSON.parse(accepted33.view(fixtures.find(f=>f.kind===kin
 const choiceAction=v=>v.legalActions.find(a=>a.kind==='choose');
 
 it('blue33 preserves all old94 definitions, seven societies, five presets and opens only the three original scans',()=>{
- expect(catalog.engineVersion).toBe('rust-v0.2.34-mill-public-candidate');expect(catalog.cardPoolVersion).toBe('limited-v2.31-mill-public-candidate');
- expect(catalog.cards).toHaveLength(98);expect(catalog.societies).toHaveLength(8);
- expect(catalog.cards.filter(c=>!['JC032','JZ24','XQ36','XQ46'].includes(c.id))).toEqual(old.cards);
+ expect(catalog.engineVersion).toBe('rust-v0.2.35-jz31-death-influence-candidate');expect(catalog.cardPoolVersion).toBe('limited-v2.32-jz31-death-influence-candidate');
+ expect(catalog.cards).toHaveLength(99);expect(catalog.societies).toHaveLength(8);
+ expect(catalog.cards.filter(c=>!['JC032','JZ24','XQ36','XQ46','JZ31'].includes(c.id))).toEqual(old.cards);
  expect(catalog.societies.filter(c=>c.id!=='MSJC03')).toEqual(old.societies);expect(catalog.decks).toEqual(old.decks);
  expect(definitions.get('JC032')).toMatchObject({cost:5,loyalty:['蓝色','蓝色'],magic:'死亡',subtypes:['吸血鬼'],defense:3,permanentIcons:{investigation:1,combat:1,influence:2},unique:false});
  expect(definitions.get('JZ24')).toMatchObject({cost:4,loyalty:['蓝色'],magic:'死亡',subtypes:['吸血鬼','罪犯'],defense:1,permanentIcons:{investigation:1,combat:2,influence:0},unique:false});
  expect(definitions.get('MSJC03')).toMatchObject({startingHand:6,deckConstraints:[{kind:'minimumColor',color:'蓝',count:25}],subtypes:['法师结社','吸血鬼']});
- const scans=JSON.parse(readFileSync(resolve('public/card-scans.json'),'utf8'));expect(Object.keys(scans)).toHaveLength(106);
+ const scans=JSON.parse(readFileSync(resolve('public/card-scans.json'),'utf8'));expect(Object.keys(scans)).toHaveLength(107);
  for(const [id,hash]of Object.entries({JC032:'ebeb0a13c62cdf10569f4aa9f300998aff53a65788d756f055e9696f35489b4b',JZ24:'e01995d70e06a6b179dcbbf81c3df73ab548269fc0efe9fafc33e2e2f3c8722d',MSJC03:'07463a18a5cc6726f098bedc10304ef6c4032929cff72535d5f9227338e45f29'})){
   expect(scans[id].sha256).toBe(hash);expect(cardScanUrl(id)).toBe('/cards/'+id+'.jpg');
   expect(createHash('sha256').update(readFileSync(resolve('public/cards/'+id+'.jpg'))).digest('hex')).toBe(hash);

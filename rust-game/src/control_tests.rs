@@ -21,7 +21,7 @@ fn control_simultaneous_nonhuman_death_card_still_invalid_for_jz27() {
             .iter()
             .map(|c| c.id.as_str())
             .collect::<Vec<_>>(),
-        vec!["XQ12", "XQ17", "JZ59", "JZ61"]
+        vec!["XQ12", "XQ17", "JZ59", "JZ61", "JZ31"]
     );
     assert_eq!(death_cards[0].subtypes, vec!["吸血鬼", "奴仆"]);
     assert_eq!(death_cards[1].subtypes, vec!["人类"]);

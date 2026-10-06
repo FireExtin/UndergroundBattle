@@ -446,6 +446,7 @@ fn prepared_shuffle(accept: bool) -> Value {
     let mut g = initial("prepared-shuffle");
     let c = g.make_card("JZ67", 0);
     let source = SourceSnapshot {
+        source_region_instance: None,
         card: c,
         region: None,
         attachment_host_instance: None,
@@ -466,6 +467,7 @@ fn prepared_shuffle(accept: bool) -> Value {
     let p = hegemony_server::model::Pending {
         seat: 0,
         choice: hegemony_server::model::Choice {
+            preview_cards: vec![],
             id: "prepared-shuffle-choice".into(),
             kind: "optional-shuffle".into(),
             title: "是否洗牌".into(),

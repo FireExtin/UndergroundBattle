@@ -528,5 +528,10 @@
     "url": "/cards/MSJC03.jpg",
     "source": "resource/ymsj-fun.github.io/cards/MSJC03 王座会.jpg",
     "sha256": "07463a18a5cc6726f098bedc10304ef6c4032929cff72535d5f9227338e45f29"
+  },
+  "JZ31": {
+    "url": "/cards/JZ31.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JZ31 破茧者秘教线人.jpg",
+    "sha256": "57a1fd51243ab4616af46f4fb8a6a1ef46a09ab3c9a11ed2fe2fc90d8b83babf"
   }
 }

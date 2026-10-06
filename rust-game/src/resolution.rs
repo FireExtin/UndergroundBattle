@@ -386,7 +386,7 @@ impl Game {
         SourceSnapshot {
             card: c.clone(),
             region,
-            source_region_instance: if matches!(c.definition.as_str(), "JC032" | "JZ24") {
+            source_region_instance: if matches!(c.definition.as_str(), "JC032" | "JZ24" | "JZ31") {
                 region.and_then(|r| self.regions.get(r)).map(|r| r.card.id.clone())
             } else { None },
             attachment_host_instance: rules::definition(&c.definition)
@@ -1171,9 +1171,12 @@ impl Game {
         cause: RemovalCause,
         simultaneous_source: Option<SourceSnapshot>,
     ) {
-        if let Some((region, c)) = self.leave_board(target) {
-            let snapshot =
-                simultaneous_source.unwrap_or_else(|| self.source_snapshot(&c, Some(region)));
+        // Host departure can remove an attached control grant. Freeze before it;
+        // an already captured simultaneous lethal-set snapshot remains authoritative.
+        let snapshot = simultaneous_source.or_else(|| self.board(target)
+            .map(|(region, c)| self.source_snapshot(c, Some(region))));
+        if let Some((_, c)) = self.leave_board(target) {
+            let snapshot = snapshot.expect("board departure has a pre-departure snapshot");
             let controller = snapshot.card.controller;
             let character =
                 !snapshot.card.face_down && card(&snapshot.card.definition).kind == "character";
@@ -1456,6 +1459,14 @@ impl Game {
                             prevents_damage: false,
                             expires_turn: self.turn,
                         });
+                    }
+                }
+                Op::PlaceOneInfluenceInSourceRegion => {
+                    if let Some(region) = frame.source.region.filter(|&region| {
+                        self.regions.get(region).is_some_and(|r|
+                            frame.source.source_region_instance.as_ref() == Some(&r.card.id))
+                    }) {
+                        self.place_influence(frame.actor, region, 1);
                     }
                 }
                 Op::PlaceInfluence {

@@ -24,7 +24,7 @@ it('reports actual existing red/black and black/blue presets', () => {
 });
 it.each(['黑', '蓝'])('validates, saves, reloads and joins the real red/%s 50-card deck', other => {
   const d = draft(other);
-  expect(counts(d)).toEqual(other === '黑' ? { 红: 12, 黑: 12, 蓝: 0, 中立: 26 } : { 红: 12, 黑: 0, 蓝: 27, 中立: 11 });
+  expect(counts(d)).toEqual(other === '黑' ? { 红: 15, 黑: 12, 蓝: 0, 中立: 23 } : { 红: 15, 黑: 0, 蓝: 27, 中立: 8 });
   expect(validateDeckDraft(d, catalog)).toEqual({ valid: true, total: 50, issues: [] });
   const created = JSON.parse(kernel.newGameWithDeck('local-mixed-deck-ui', 'QA', 'teams', 'P0', JSON.stringify(d), '40'));
   expect(created.view.yourDeck.cards).toEqual([...d.cards].sort((a, b) => a.cardId.localeCompare(b.cardId)));
