@@ -533,5 +533,10 @@
     "url": "/cards/JZ31.jpg",
     "source": "resource/ymsj-fun.github.io/cards/JZ31 破茧者秘教线人.jpg",
     "sha256": "57a1fd51243ab4616af46f4fb8a6a1ef46a09ab3c9a11ed2fe2fc90d8b83babf"
+  },
+  "JZ55": {
+    "url": "/cards/JZ55.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JZ55 传奇落幕.jpg",
+    "sha256": "9155faa90be22aa66e56148dfacd0d517eb7b6f7b56fd1b45b71a6804719784a"
   }
 }

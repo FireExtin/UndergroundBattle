@@ -162,11 +162,11 @@ fn jc004_complete_printed_definition_and_candidate_identity_are_isolated() {
     assert_eq!(spec.targets[0].relation, Relation::Any);
     assert_eq!(
         catalog::ENGINE_VERSION,
-        "rust-v0.2.35-jz31-death-influence-candidate"
+        "rust-v0.2.36-jz55-unique-destroy-candidate"
     );
     assert_eq!(
         catalog::POOL_VERSION,
-        "limited-v2.32-jz31-death-influence-candidate"
+        "limited-v2.33-jz55-unique-destroy-candidate"
     );
     let mut draft = deck::preset("watchers").unwrap();
     draft.cards = vec![

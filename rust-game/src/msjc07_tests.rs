@@ -137,7 +137,7 @@ fn msjc07_original_whole_card_and_finite_existing_search_program() {
     assert!(
         matches!(&a[1].ops[0],Op::Search{player:PlayerRef::Actor,filter:CardFilter::PrintedColorAndUnique{color},to_top:false,optional:false,visibility:SearchVisibility::Reveal} if color=="黑")
     );
-    assert_eq!(catalog::catalog().cards.len(), 99);
+    assert_eq!(catalog::catalog().cards.len(), 100);
     assert_eq!(catalog::catalog().societies.len(), 8);
     assert!(!catalog::catalog().cards.iter().any(|c| c.id == "MSJC07"));
     assert_eq!(
@@ -146,7 +146,7 @@ fn msjc07_original_whole_card_and_finite_existing_search_program() {
             .iter()
             .filter(|c| c.color == "黑" && c.kind != "region")
             .count(),
-        12
+        13
     );
     for id in ["JC096", "XQ38"] {
         let c = catalog::card(id);

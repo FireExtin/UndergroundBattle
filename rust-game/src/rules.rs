@@ -76,6 +76,7 @@ pub enum AttachmentHostCondition {
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum TargetPredicate {
     JC015NonHumanPrintedCostAtLeastThree,
+    JZ55UniqueCharacter,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct TargetSlotSpec {
@@ -498,14 +499,16 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
         .iter()
         .chain(ability.modes.iter().flat_map(|m| &m.targets))
         .any(|t| t.predicate.is_some());
-    if (finite_predicate || card_id == "JC015")
-        && (card_id != "JC015"
-            || serde_json::to_value(ability).unwrap()
-                != serde_json::to_value(&jc015_definition().abilities[0]).unwrap())
-    {
-        return Err(format!(
-            "{card_id}: only the complete JC015 exorcise target predicate is supported"
-        ));
+    if finite_predicate || matches!(card_id, "JC015" | "JZ55") {
+        let admitted = match card_id {
+            "JC015" => Some(jc015_definition()),
+            "JZ55" => Some(jz55_definition()),
+            _ => None,
+        };
+        if admitted.is_none_or(|d| serde_json::to_value(ability).unwrap()
+            != serde_json::to_value(&d.abilities[0]).unwrap()) {
+            return Err(format!("{card_id}: only the complete JC015 or JZ55 target predicate ability is supported"));
+        }
     }
     let execution_op = |op: &Op| {
         matches!(
@@ -1016,6 +1019,10 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
 
 fn validate_definitions(definitions: &BTreeMap<String, Definition>) -> Result<(), String> {
     for (card_id, definition) in definitions {
+        if card_id == "JZ55" && serde_json::to_value(definition).unwrap()
+            != serde_json::to_value(jz55_definition()).unwrap() {
+            return Err("cardId=JZ55: only the complete admitted immediate unique destroy definition is supported".into());
+        }
         if card_id == "JZ31" && serde_json::to_value(definition).unwrap()
             != serde_json::to_value(jz31_definition()).unwrap()
         {
@@ -1094,7 +1101,7 @@ fn validate_definitions(definitions: &BTreeMap<String, Definition>) -> Result<()
             let host = &attachment.host;
             if host.predicate.is_some() {
                 return Err(format!(
-                    "cardId={card_id}: JC015 predicate cannot be an attachment host guard"
+                    "cardId={card_id}: finite target predicates cannot be an attachment host guard"
                 ));
             }
             let admitted_region = card_id == "XQ43";
@@ -1264,6 +1271,14 @@ fn jc015_definition() -> Definition {
         None,
     )])
 }
+fn jz55_definition() -> Definition {
+    let mut victim = target(Zone::Board, EntityKind::Character, Relation::Any, Range::Anywhere);
+    victim.predicate = Some(TargetPredicate::JZ55UniqueCharacter);
+    let mut destroy = ability("destroy-unique", "快速行动（不可响应）", Timing::Fast,
+        vec![], vec![victim], vec![Op::Destroy(EntityRef::Target(0))], None);
+    destroy.response_policy = ResponsePolicy::Immediate;
+    with_abilities(vec![destroy])
+}
 fn jc030_definition() -> Definition {
     let mut definition = with_abilities(vec![ability(
         "raid-1",
@@ -1343,6 +1358,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         m.insert("JC032".into(), jc032_definition());
         m.insert("JZ24".into(), jz24_definition());
         m.insert("JZ31".into(), jz31_definition());
+        m.insert("JZ55".into(), jz55_definition());
         m.insert("JC030".into(), jc030_definition());
         m.insert("LC30".into(), lc30_definition());
         m.insert("JC018".into(), jc018_definition());
@@ -3321,6 +3337,42 @@ pub fn definition(id: &str) -> &'static Definition {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn jz55_closed_definition_rejects_target_policy_shape_changes_and_transplants() {
+        let whole=definition("JZ55").clone();
+        for variant in 0..16 {
+            let mut r=definitions().clone();let d=r.get_mut("JZ55").unwrap();let a=&mut d.abilities[0];
+            match variant {
+                0=>a.targets[0].predicate=None,
+                1=>a.targets[0].kind=EntityKind::CharacterOrHidden,
+                2=>a.targets[0].relation=Relation::EnemyTeam,
+                3=>a.targets[0].range=Range::SourceRegion,
+                4=>a.response_policy=ResponsePolicy::Respondable,
+                5=>a.timing=Timing::ActionFast,
+                6=>a.event=Some(Event::Death),
+                7=>a.costs.push(Cost::Assets(1)),
+                8=>a.targets[0].max=2,
+                9=>a.ops.push(Op::Destroy(EntityRef::Target(0))),
+                10=>a.modes.push(Mode{key:"extra".into(),label:"extra".into(),targets:whole.abilities[0].targets.clone(),ops:whole.abilities[0].ops.clone()}),
+                11=>a.targets[0].requires_magic=true,
+                12=>a.per_turn_limit=Some(1),
+                13=>d.traits.public=true,
+                14=>d.modifiers.push(StaticModifier::PeekOwnDeckTop),
+                _=>d.abilities.clear(),
+            }
+            assert!(validate_definitions(&r).is_err(),"shape {variant}");
+        }
+        for id in ["JC091","JC015","JC125"] {
+            let mut r=definitions().clone();r.get_mut(id).unwrap().abilities=whole.abilities.clone();
+            assert!(validate_definitions(&r).is_err(),"whole transplant {id}");
+        }
+        let mut r=definitions().clone();r.get_mut("JC091").unwrap().abilities[0].modes.push(Mode{
+            key:"unique-mode".into(),label:"invalid".into(),targets:whole.abilities[0].targets.clone(),ops:whole.abilities[0].ops.clone()});
+        assert!(validate_definitions(&r).is_err());
+        let mut r=definitions().clone();r.get_mut("JC036").unwrap().attachment.as_mut().unwrap().host.predicate=whole.abilities[0].targets[0].predicate.clone();
+        assert!(validate_definitions(&r).is_err());
+    }
 
     #[test]
     fn jz31_closed_definition_and_operation_reject_mutations_modes_loops_and_transplants() {

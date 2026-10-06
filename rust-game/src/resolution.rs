@@ -625,6 +625,10 @@ impl Game {
                                         && d.cost >= 3
                                         && !self.current_subtypes(c).iter().any(|s| s == "人类")
                                 }
+                                rules::TargetPredicate::JZ55UniqueCharacter => {
+                                    source.card.definition == "JZ55"
+                                        && !c.face_down && d.kind == "character" && d.unique
+                                }
                             })
                         && (spec.range != Range::SourceRegion || region == source.region)
                         && spec.subtype.as_ref().is_none_or(|s| {
