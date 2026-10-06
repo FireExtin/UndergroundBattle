@@ -12,6 +12,8 @@ import * as grave from '../generated/legacy-v0.2.7/hegemony_wasm.js';
 import * as playable from '../generated/legacy-v0.2.8/hegemony_wasm.js';
 import * as society from '../generated/legacy-v0.2.9/hegemony_wasm.js';
 import * as forceMage from '../generated/legacy-v0.2.10/hegemony_wasm.js';
+import * as original11 from '../generated/legacy-v0.2.11/hegemony_wasm.js';
+import * as prior35 from '../generated/legacy-v0.2.35/hegemony_wasm.js';
 import { routeKernels } from '../src/kernel-router.mjs';
 
 current.initSync({ module: readFileSync(new URL('../generated/hegemony_wasm_bg.wasm', import.meta.url)) });
@@ -25,7 +27,24 @@ grave.initSync({ module: readFileSync(new URL('../generated/legacy-v0.2.7/hegemo
 playable.initSync({ module: readFileSync(new URL('../generated/legacy-v0.2.8/hegemony_wasm_bg.wasm', import.meta.url)) });
 society.initSync({ module: readFileSync(new URL('../generated/legacy-v0.2.9/hegemony_wasm_bg.wasm', import.meta.url)) });
 forceMage.initSync({ module: readFileSync(new URL('../generated/legacy-v0.2.10/hegemony_wasm_bg.wasm', import.meta.url)) });
-test('real kernels preserve their full version tuple and reject unknown persisted identities', t => {
+original11.initSync({ module: readFileSync(new URL('../generated/legacy-v0.2.11/hegemony_wasm_bg.wasm', import.meta.url)) });
+prior35.initSync({ module: readFileSync(new URL('../generated/legacy-v0.2.35/hegemony_wasm_bg.wasm', import.meta.url)) });
+test('current36 preserves approved35 definitions and creates only its own versioned rooms', () => {
+  const latest = JSON.parse(current.catalog()), prior = JSON.parse(prior35.catalog());
+  assert.equal(latest.engineVersion, 'rust-v0.2.36-jz55-unique-destroy-candidate');
+  assert.equal(latest.cardPoolVersion, 'limited-v2.33-jz55-unique-destroy-candidate');
+  assert.equal(latest.cards.length, 100); assert.equal(latest.societies.length, 8);
+  assert.deepEqual(latest.cards.filter(card => card.id !== 'JZ55'), prior.cards);
+  for (const field of ['societies', 'decks', 'world', 'deckBuildRules']) assert.deepEqual(latest[field], prior[field]);
+  const routed = routeKernels(current, [prior35, original11]);
+  const room = JSON.parse(routed.newGame('new36', 'invite', 'duel', 'P0', 'watchers', '1'));
+  assert.equal(room.view.versions.engine, latest.engineVersion);
+  assert.equal(room.view.versions.cardPool, latest.cardPoolVersion);
+  assert.deepEqual(JSON.parse(routed.view(room.state, 0)), room.view);
+  assert.throws(() => original11.view(room.state, 0));
+});
+test('frozen11 kernels preserve their original full version tuple and reject unknown persisted identities', t => {
+  const current = original11;
   const routed = routeKernels(current, [previous, intermediate, last, stable, paced, attached, grave, playable, society, forceMage]);
   const candidateVersion = JSON.parse(current.catalog()).engineVersion;
   assert.equal(candidateVersion, 'rust-v0.2.11');

@@ -7,9 +7,12 @@ import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { Miniflare, convertV4MiniflareOptions } from 'miniflare';
 import { RoomStore } from '../src/store.mjs';
+import { execFileSync } from 'node:child_process';
 
-test('real MSJC09 permits first/rear paid activation and restores four-seat frames, receipts, privacy and reset', async t => {
-  const dist = resolve('dist/server'), persist = mkdtempSync(join(tmpdir(), 'hegemony-msjc09-'));
+test('frozen11 real MSJC09 permits first/rear paid activation and restores four-seat frames, receipts, privacy and reset', async t => {
+  const build = mkdtempSync(join(tmpdir(), 'hegemony-msjc09-v011-worker-'));
+  execFileSync(process.execPath, ['scripts/build-backend-test.mjs', '--legacy-v0.2.11'], { stdio: 'inherit', env: { ...process.env, HEGEMONY_BACKEND_TEST_ROOT: build } });
+  const dist = join(build, 'legacy-v0.2.11-worker/dist'), persist = mkdtempSync(join(tmpdir(), 'hegemony-msjc09-'));
   const options = convertV4MiniflareOptions({ name:'printed-msjc09-local', modulesRoot:dist, resourcePersistencePath:persist,
     modules:[{type:'ESModule',path:join(dist,'index.js')},...readdirSync(dist).filter(n=>n.endsWith('.wasm')).map(n=>({type:'CompiledWasm',path:join(dist,n)}))],
     compatibilityDate:'2026-10-02',d1Databases:{DB:'printed-msjc09-db'} });
