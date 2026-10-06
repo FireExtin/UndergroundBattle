@@ -1,12 +1,13 @@
+// Historical catalog/scan assertions use frozen32; current36 is covered independently by JZ55UniqueDestroy.
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { expect, it, vi } from 'vitest';
-import * as kernel from '../../../rust-game-wasm/pkg/hegemony_wasm.js';
+import * as kernel from '../../../rust-game-wasm/legacy-v0.2.32/hegemony_wasm.js';
 import { ReadModal } from './ReadModal';
 
-kernel.initSync({ module: readFileSync(resolve('../rust-game-wasm/pkg/hegemony_wasm_bg.wasm')) });
+kernel.initSync({ module: readFileSync(resolve('../rust-game-wasm/legacy-v0.2.32/hegemony_wasm_bg.wasm')) });
 const catalog = JSON.parse(kernel.catalog());
 const definition = catalog.cards.find(c => c.id === 'JC005');
 const sha256 = '216c26cff74fe738dbc486e725828ddc8077705161b1fee566e9d806684364a1';
@@ -24,7 +25,7 @@ it('retains Site24 JC005 while adding the isolated JC008 candidate and retains t
   expect(definition.text).toContain('结附于角色的附属');
   expect(definition.text).toContain('资产区具有心灵领域图标');
   expect(definition.text).not.toMatch(/装备|额外费用/);
-  const scans = JSON.parse(readFileSync(resolve('public/card-scans.json'), 'utf8'));
+  const scans = JSON.parse(readFileSync(resolve('src/game/cardScansV032.fixture.json'), 'utf8'));
   expect(Object.keys(scans)).toHaveLength(101);
   expect(scans.JC005).toEqual({ url: '/cards/JC005.jpg', source: 'resource/ymsj-fun.github.io/cards/JC005 裂解术.jpg', sha256 });
   expect(createHash('sha256').update(readFileSync(resolve('public/cards/JC005.jpg'))).digest('hex')).toBe(sha256);

@@ -1,15 +1,16 @@
+// Historical catalog/scan assertions use frozen35; current36 is covered independently by JZ55UniqueDestroy.
 import {createHash} from 'node:crypto';
 import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {render, screen, fireEvent, cleanup} from '@testing-library/react';
 import {expect, it, vi} from 'vitest';
-import * as k from '../../../rust-game-wasm/pkg/hegemony_wasm.js';
+import * as k from '../../../rust-game-wasm/legacy-v0.2.35/hegemony_wasm.js';
 import {ReadModal} from './ReadModal';
 import {ChoicePanel} from './ChoicePanel';
 import {cardScanUrl} from './cardScans';
 import {validateDeckDraft} from './deckLibrary';
 
-k.initSync({module:readFileSync(resolve('../rust-game-wasm/pkg/hegemony_wasm_bg.wasm'))});
+k.initSync({module:readFileSync(resolve('../rust-game-wasm/legacy-v0.2.35/hegemony_wasm_bg.wasm'))});
 const catalog=JSON.parse(k.catalog());
 // Public catalog from approved source34, cloud rebuilt; not a frozen historical binary.
 const prior=JSON.parse(readFileSync(resolve('src/game/jz31PriorCatalog.fixture.json'),'utf8'));
@@ -52,7 +53,7 @@ it('offers both skip and one acceptance to the death controller using the existi
 
 it('opens the pinned original and does not confuse death trigger text with a magic requirement',()=>{
  const hash='57a1fd51243ab4616af46f4fb8a6a1ef46a09ab3c9a11ed2fe2fc90d8b83babf';
- const scans=JSON.parse(readFileSync(resolve('public/card-scans.json'),'utf8'));
+ const scans=JSON.parse(readFileSync(resolve('src/game/cardScansV035.fixture.json'),'utf8'));
  expect(Object.keys(scans)).toHaveLength(107); expect(scans.JZ31.sha256).toBe(hash);
  expect(cardScanUrl('JZ31')).toBe('/cards/JZ31.jpg');
  expect(createHash('sha256').update(readFileSync(resolve('public/cards/JZ31.jpg'))).digest('hex')).toBe(hash);

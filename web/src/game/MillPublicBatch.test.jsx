@@ -1,16 +1,17 @@
+// Historical catalog/scan assertions use frozen35; current36 is covered independently by JZ55UniqueDestroy.
 import {createHash} from 'node:crypto';
 import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {render,screen,fireEvent,cleanup} from '@testing-library/react';
 import {expect,it,vi} from 'vitest';
-import * as k from '../../../rust-game-wasm/pkg/hegemony_wasm.js';
+import * as k from '../../../rust-game-wasm/legacy-v0.2.35/hegemony_wasm.js';
 import * as old from '../../../rust-game-wasm/legacy-v0.2.33/hegemony_wasm.js';
 import {ReadModal} from './ReadModal';
 import {ChoicePanel} from './ChoicePanel';
 import {CardContent} from './CardTile';
 import {cardScanUrl} from './cardScans';
 import {validateDeckDraft} from './deckLibrary';
-k.initSync({module:readFileSync(resolve('../rust-game-wasm/pkg/hegemony_wasm_bg.wasm'))});
+k.initSync({module:readFileSync(resolve('../rust-game-wasm/legacy-v0.2.35/hegemony_wasm_bg.wasm'))});
 old.initSync({module:readFileSync(resolve('../rust-game-wasm/legacy-v0.2.33/hegemony_wasm_bg.wasm'))});
 const catalog=JSON.parse(k.catalog()),prior=JSON.parse(old.catalog());
 const definitions=new Map(catalog.cards.map(c=>[c.id,c]));
@@ -25,7 +26,7 @@ it('admits two complete pinned originals while preserving every prior definition
  expect(catalog.societies).toEqual(prior.societies);expect(catalog.decks).toEqual(prior.decks);
  expect(definitions.get('XQ36')).toMatchObject({name:'圣甲虫的清理员',kind:'character',cost:1,color:'黑',loyalty:['黑色'],subtypes:['人类','雇员'],defense:1,magic:'',unique:false,deckCopyLimit:3,permanentIcons:{investigation:0,combat:0,influence:1},temporaryIcons:{investigation:0,combat:0,influence:0},abilities:[{key:'entry-mill-each-four',timing:'fast',costs:[],triggered:true}]});
  expect(definitions.get('XQ46')).toMatchObject({name:'无名尸体',kind:'character',cost:0,color:'中立',loyalty:[],subtypes:['人类'],defense:0,magic:'',unique:false,deckCopyLimit:3,keywords:['公开'],ruleTraits:{public:true},abilities:[]});
- const scans=JSON.parse(readFileSync(resolve('public/card-scans.json'),'utf8'));expect(Object.keys(scans)).toHaveLength(107);
+ const scans=JSON.parse(readFileSync(resolve('src/game/cardScansV035.fixture.json'),'utf8'));expect(Object.keys(scans)).toHaveLength(107);
  for(const [id,hash]of Object.entries({XQ36:'84b611615ecdbdf7940022160522187a28edb46322525e540fed1935de0526b9',XQ46:'d58e71df94753dde04595f5aa84de4039fcbbe594883acc018e2c06ddb103a89'})){
   expect(scans[id].sha256).toBe(hash);expect(cardScanUrl(id)).toBe('/cards/'+id+'.jpg');
   expect(createHash('sha256').update(readFileSync(resolve('public/cards/'+id+'.jpg'))).digest('hex')).toBe(hash);

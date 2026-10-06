@@ -1,16 +1,17 @@
+// Historical catalog/scan assertions use frozen35; current36 is covered independently by JZ55UniqueDestroy.
 import {createHash} from 'node:crypto';
 import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {render,screen,fireEvent,cleanup} from '@testing-library/react';
 import {expect,it,vi} from 'vitest';
-import * as k from '../../../rust-game-wasm/pkg/hegemony_wasm.js';
+import * as k from '../../../rust-game-wasm/legacy-v0.2.35/hegemony_wasm.js';
 import * as accepted33 from '../../../rust-game-wasm/legacy-v0.2.33/hegemony_wasm.js';
 import * as accepted32 from '../../../rust-game-wasm/legacy-v0.2.32/hegemony_wasm.js';
 import {ChoicePanel} from './ChoicePanel';
 import {ReadModal} from './ReadModal';
 import {cardScanUrl} from './cardScans';
 import {validateDeckDraft} from './deckLibrary';
-k.initSync({module:readFileSync(resolve('../rust-game-wasm/pkg/hegemony_wasm_bg.wasm'))});
+k.initSync({module:readFileSync(resolve('../rust-game-wasm/legacy-v0.2.35/hegemony_wasm_bg.wasm'))});
 accepted33.initSync({module:readFileSync(resolve('../rust-game-wasm/legacy-v0.2.33/hegemony_wasm_bg.wasm'))});
 accepted32.initSync({module:readFileSync(resolve('../rust-game-wasm/legacy-v0.2.32/hegemony_wasm_bg.wasm'))});
 const catalog=JSON.parse(k.catalog()),old=JSON.parse(accepted32.catalog());
@@ -27,7 +28,7 @@ it('blue33 preserves all old94 definitions, seven societies, five presets and op
  expect(definitions.get('JC032')).toMatchObject({cost:5,loyalty:['蓝色','蓝色'],magic:'死亡',subtypes:['吸血鬼'],defense:3,permanentIcons:{investigation:1,combat:1,influence:2},unique:false});
  expect(definitions.get('JZ24')).toMatchObject({cost:4,loyalty:['蓝色'],magic:'死亡',subtypes:['吸血鬼','罪犯'],defense:1,permanentIcons:{investigation:1,combat:2,influence:0},unique:false});
  expect(definitions.get('MSJC03')).toMatchObject({startingHand:6,deckConstraints:[{kind:'minimumColor',color:'蓝',count:25}],subtypes:['法师结社','吸血鬼']});
- const scans=JSON.parse(readFileSync(resolve('public/card-scans.json'),'utf8'));expect(Object.keys(scans)).toHaveLength(107);
+ const scans=JSON.parse(readFileSync(resolve('src/game/cardScansV035.fixture.json'),'utf8'));expect(Object.keys(scans)).toHaveLength(107);
  for(const [id,hash]of Object.entries({JC032:'ebeb0a13c62cdf10569f4aa9f300998aff53a65788d756f055e9696f35489b4b',JZ24:'e01995d70e06a6b179dcbbf81c3df73ab548269fc0efe9fafc33e2e2f3c8722d',MSJC03:'07463a18a5cc6726f098bedc10304ef6c4032929cff72535d5f9227338e45f29'})){
   expect(scans[id].sha256).toBe(hash);expect(cardScanUrl(id)).toBe('/cards/'+id+'.jpg');
   expect(createHash('sha256').update(readFileSync(resolve('public/cards/'+id+'.jpg'))).digest('hex')).toBe(hash);

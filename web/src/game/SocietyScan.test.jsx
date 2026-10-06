@@ -1,12 +1,13 @@
+// Historical catalog/scan assertions use frozen32; current36 is covered independently by JZ55UniqueDestroy.
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { expect, it, vi } from 'vitest';
-import * as kernel from '../../../rust-game-wasm/pkg/hegemony_wasm.js';
+import * as kernel from '../../../rust-game-wasm/legacy-v0.2.32/hegemony_wasm.js';
 import { ReadModal } from './ReadModal';
 
-kernel.initSync({ module: readFileSync(resolve('../rust-game-wasm/pkg/hegemony_wasm_bg.wasm')) });
+kernel.initSync({ module: readFileSync(resolve('../rust-game-wasm/legacy-v0.2.32/hegemony_wasm_bg.wasm')) });
 const rawCatalog = JSON.parse(kernel.catalog());
 const catalog = rawCatalog;
 const society = catalog.societies[0];
@@ -17,7 +18,7 @@ it('keeps the sole real society unchanged while the local JC008 candidate adds o
   expect(catalog.cards).toHaveLength(94);
   expect(catalog.societies.map(card => card.id)).toEqual(['MSJC09', 'MSJC01', 'MSJC07', 'MSJC06', 'MSJC08', 'MSJC11', 'MSJC02']);
   expect(rawCatalog.societies[0].unique).toBe(true);
-  const scans = JSON.parse(readFileSync(resolve('public/card-scans.json'), 'utf8'));
+  const scans = JSON.parse(readFileSync(resolve('src/game/cardScansV032.fixture.json'), 'utf8'));
   expect(Object.keys(scans)).toHaveLength(101);
   expect(scans.MSJC09).toEqual({ url: '/cards/MSJC09.jpg', source: 'resource/ymsj-fun.github.io/cards/MSJC09 秘社.jpg', sha256 });
   expect(createHash('sha256').update(readFileSync(resolve('public/cards/MSJC09.jpg'))).digest('hex')).toBe(sha256);
@@ -62,7 +63,7 @@ it('reads the actual four-seat public society projection and opens its original 
 
 it('maps the complete JC004 definition to the exact reviewed original and reader metadata', () => {
   const definition = catalog.cards.find(card => card.id === 'JC004');
-  const scans = JSON.parse(readFileSync(resolve('public/card-scans.json'), 'utf8'));
+  const scans = JSON.parse(readFileSync(resolve('src/game/cardScansV032.fixture.json'), 'utf8'));
   expect(definition).toMatchObject({ name: '力场法师', cost: 4, loyalty: ['黄色', '黄色'], magic: '心灵',
     permanentIcons: { investigation: 1, combat: 0, influence: 1 }, temporaryIcons: { investigation: 0, combat: 1, influence: 0 }, defense: 2 });
   expect(scans.JC004.sha256).toBe('d9209031b83d49c2eacdbedd2967384852acc51329093f362073c462dabf92c4');

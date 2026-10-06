@@ -1,13 +1,14 @@
+// Historical catalog/scan assertions use frozen32; current36 is covered independently by JZ55UniqueDestroy.
 import {createHash} from 'node:crypto';
 import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {render,screen,fireEvent} from '@testing-library/react';
 import {expect,it,vi} from 'vitest';
-import * as kernel from '../../../rust-game-wasm/pkg/hegemony_wasm.js';
+import * as kernel from '../../../rust-game-wasm/legacy-v0.2.32/hegemony_wasm.js';
 import {ReadModal} from './ReadModal';
-kernel.initSync({module:readFileSync(resolve('../rust-game-wasm/pkg/hegemony_wasm_bg.wasm'))});
+kernel.initSync({module:readFileSync(resolve('../rust-game-wasm/legacy-v0.2.32/hegemony_wasm_bg.wasm'))});
 const catalog=JSON.parse(kernel.catalog());
-const scans=JSON.parse(readFileSync(resolve('public/card-scans.json'),'utf8'));
+const scans=JSON.parse(readFileSync(resolve('src/game/cardScansV032.fixture.json'),'utf8'));
 it('admits only the two approved original yellow unique cards with their printed numbers and loyalty',()=>{
  expect(catalog.cards).toHaveLength(94);expect(Object.keys(scans)).toHaveLength(101);
  expect(catalog.cards.filter(c=>c.color==='黄'&&c.unique).map(c=>c.id)).toEqual(['WM003','LC01']);
