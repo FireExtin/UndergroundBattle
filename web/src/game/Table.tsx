@@ -185,7 +185,7 @@ function TableSurface({ view, catalog, busy, uncertain = false, connection = 'co
   const [previewRegion, setPreviewRegion] = useState<number | null>(null);
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
   const [reading, setReading] = useState<{ instanceId: string; roomId: string; viewerId: string; privateDeckTop?: boolean } | null>(null);
-  const [draft, setDraft] = useState<{ key: string; version: number } | null>(null);
+  const [draft, setDraft] = useState<{ key: string; version: number; responseFrame: string | null; regionId?: string } | null>(null);
   const [targetNotice, setTargetNotice] = useState('');
   const submittedDraft = useRef(false);
   const tableRoot = useRef<HTMLElement>(null);
@@ -251,23 +251,38 @@ function TableSurface({ view, catalog, busy, uncertain = false, connection = 'co
   useEffect(() => { setPreviewRegion(null); }, [view.version, selectedCard]);
   const sourceActions = view.legalActions.filter(action => action.kind !== 'choose' && selectedCard && actionSource(action) === selectedCard);
   const groups = groupObjectActions(sourceActions);
-  const activeGroup = draft?.version === view.version && !view.pendingChoice && !view.waitingChoice
+  const responseWindow = view.responseWindow;
+  const stackTop = view.stack.at(-1);
+  // Peer decisions advance the revision without ending this player's composing intent.
+  const responseFrame = view.status === 'playing' && responseWindow?.myIntentId
+    && responseWindow.stackTopId === stackTop?.id && stackTop?.resolutionState !== 'resolving'
+    && responseWindow.members.some(member => member.playerId === view.you && member.status === 'composing')
+    ? JSON.stringify([responseWindow.id, responseWindow.stackTopId, responseWindow.holderTeam, responseWindow.myIntentId]) : null;
+  const sameDraftFrame = draft && (draft.responseFrame ? draft.responseFrame === responseFrame
+    : draft.version === view.version && !responseWindow);
+  const activeGroup = draft && sameDraftFrame && card && !view.pendingChoice && !view.waitingChoice
     ? groups.find(group => group.key === draft.key) : undefined;
   const destinations = activeGroup?.actions || sourceActions;
   const targetIds = new Set(destinations.filter(action => action.cardId === selectedCard && action.targetId && (selectedRegion === null || action.region === selectedRegion)).map(action => action.targetId!));
   const regionIds = new Set(destinations.filter(action => action.cardId === selectedCard && action.region !== undefined && (!selectedTarget || action.targetId === selectedTarget)).map(action => action.region!));
   const actionBusy = busy || uncertain || !!view.pendingChoice || !!view.waitingChoice;
+  const validSelection = (!selectedTarget && selectedRegion === null) || !!activeGroup?.actions.some(action => !unavailable(action)
+    && (!selectedTarget || action.targetId === selectedTarget)
+    && (selectedRegion === null || action.region === selectedRegion && draft?.regionId === region?.id));
   useEffect(() => {
     if (draft && !activeGroup) {
       setDraft(null); setSelectedTarget(null); setSelectedRegion(null);
       setTargetNotice('牌桌已更新，请重新选择动作与目标。');
+    } else if (activeGroup && !validSelection) {
+      setSelectedTarget(null); setSelectedRegion(null);
+      setTargetNotice('所选目标已失效，请重新选择目标。');
     }
-  }, [draft, activeGroup]);
+  }, [draft, activeGroup, validSelection]);
   const beginTargeting = (group: ObjectActionGroup) => {
     if (actionBusy) return;
     submittedDraft.current = false;
     nextFocus.current = 'targets';
-    setDraft({ key: group.key, version: view.version });
+    setDraft({ key: group.key, version: view.version, responseFrame });
     setSelectedTarget(null); setSelectedRegion(null); setTargetNotice(''); setHoveredCard(null);
   };
   const cancelTargeting = () => { nextFocus.current = 'actions'; setDraft(null); setSelectedTarget(null); setSelectedRegion(null); setTargetNotice('已取消选目标，可选择其他动作。'); };
@@ -285,7 +300,11 @@ function TableSurface({ view, catalog, busy, uncertain = false, connection = 'co
   };
   const selectRegion = (index: number) => {
     if (activeGroup) {
-      if (!actionBusy && regionIds.has(index)) { nextFocus.current = 'confirm'; setSelectedRegion(index); setTargetNotice(''); }
+      if (!actionBusy && regionIds.has(index)) {
+        nextFocus.current = 'confirm';
+        setDraft(current => current && { ...current, regionId: view.regions.find(item => item.index === index)?.id });
+        setSelectedRegion(index); setTargetNotice('');
+      }
       else setTargetNotice('此地区不是当前动作的合法目标，请点选高亮对象或取消。');
       return;
     }
@@ -302,7 +321,7 @@ function TableSurface({ view, catalog, busy, uncertain = false, connection = 'co
   const needsTarget = !!activeGroup?.actions.some(action => action.targetId);
   const needsRegion = !!activeGroup?.actions.some(action => action.region !== undefined);
   const missingDestinations = !!activeGroup?.actions.some(unavailable);
-  const matchingActions = activeGroup?.actions.filter(action => !unavailable(action) && (!needsTarget || action.targetId === selectedTarget) && (!needsRegion || action.region === selectedRegion)) || [];
+  const matchingActions = validSelection ? activeGroup?.actions.filter(action => !unavailable(action) && (!needsTarget || action.targetId === selectedTarget) && (!needsRegion || action.region === selectedRegion)) || [] : [];
   const chosenTarget = allCards.find(item => item.instanceId === selectedTarget);
   const chosenTag = chosenTarget && tagFor(chosenTarget);
   const chosenZone = chosenTarget && chosenTag ? zoneOf(chosenTarget) : undefined;
