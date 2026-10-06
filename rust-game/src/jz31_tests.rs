@@ -600,3 +600,231 @@ async fn jz31_sqlite_receipt_restart_duplicate_and_conflict_do_not_redeclare_or_
     pass_top(&mut resumed);
     assert_eq!(resumed.regions[2].influence, [1, 0]);
 }
+
+#[test]
+fn jz31_actual_composed_response_hides_another_instance_before_frozen_death_effect() {
+    use crate::room::{Decision, RoomCommand, RoomEnvelope, SessionAction};
+    // One initial fixture, then one continuous persisted RoomEnvelope. No
+    // reconstructed priority windows or board mutations between commands.
+    fn command(
+        room: &mut RoomEnvelope,
+        steps: &mut Vec<serde_json::Value>,
+        seat: usize,
+        action: SessionAction,
+    ) {
+        let state = serde_json::to_string(room).unwrap();
+        let cmd = RoomCommand {
+            command_id: format!("jz31-composed-{}", steps.len()),
+            expected_version: room.revision,
+            action,
+        };
+        let expected = room.transition(seat, Some(cmd.clone()), 0).unwrap();
+        assert!(
+            expected.error_code.is_none(),
+            "{:?}",
+            expected.error_message
+        );
+        *room = RoomEnvelope::from_persisted(&expected.state).unwrap();
+        assert_eq!(serde_json::to_string(room).unwrap(), expected.state);
+        let views: Vec<_> = (0..4)
+            .map(|s| serde_json::to_value(room.view(s, 0)).unwrap())
+            .collect();
+        steps.push(serde_json::json!({"state": state, "seat": seat, "command": cmd, "serverNowMs": "0", "expected": expected, "views": views}));
+    }
+    fn resolve_top(room: &mut RoomEnvelope, steps: &mut Vec<serde_json::Value>) {
+        let depth = room.stack.len();
+        assert!(depth > 0);
+        for _ in 0..32 {
+            if room.stack.len() < depth || room.pending.is_some() {
+                return;
+            }
+            let window = room.pacing.window.clone().unwrap();
+            let seat = *window
+                .members
+                .iter()
+                .find(|(_, d)| matches!(d, Decision::Undecided { .. }))
+                .unwrap()
+                .0;
+            command(
+                room,
+                steps,
+                seat,
+                SessionAction::PassResponse {
+                    window_id: window.id,
+                },
+            );
+        }
+        panic!("bounded composed response did not resolve");
+    }
+    fn play(
+        room: &RoomEnvelope,
+        seat: usize,
+        source: &str,
+        target: &str,
+        mode: Option<&str>,
+    ) -> Action {
+        room.game
+            .legal_actions(seat)
+            .into_iter()
+            .find(|a| {
+                a.action.kind == "play"
+                    && a.action.card_id.as_deref() == Some(source)
+                    && a.action.target_id.as_deref() == Some(target)
+                    && a.action.option.as_deref() == mode
+            })
+            .unwrap()
+            .action
+    }
+    let mut g = initial(0);
+    let dead = board(&mut g, "JZ31", 2, 2);
+    let other = board(&mut g, "JZ31", 2, 2);
+    let region_instance = g.regions[2].card.id.clone();
+    fund(&mut g, 0, "JC104", 3);
+    fund(&mut g, 0, "JC084", 3);
+    fund(&mut g, 2, "JC056", 2);
+    let control = held(&mut g, "JC129", 0);
+    let destroy = held(&mut g, "JC091", 0);
+    let hide = held(&mut g, "JC063", 2);
+    let mut room = envelope(&g);
+    let initial_state = serde_json::to_string(&room).unwrap();
+    let mut steps = vec![];
+    let a = play(&room, 0, &control, &dead, None);
+    command(&mut room, &mut steps, 0, SessionAction::Game { action: a });
+    resolve_top(&mut room, &mut steps);
+    assert_eq!(room.board(&dead).unwrap().1.controller, 0); // real JC129 control.
+    assert_eq!(room.board(&other).unwrap().1.controller, 2);
+    let a = play(&room, 0, &destroy, &dead, None);
+    command(&mut room, &mut steps, 0, SessionAction::Game { action: a });
+    resolve_top(&mut room, &mut steps);
+    let pending = room.pending.clone().unwrap();
+    let declaration = pending_source(&room.game);
+    assert_eq!(
+        (
+            declaration.actor,
+            declaration.source.card.owner,
+            declaration.source.card.controller
+        ),
+        (0, 2, 0)
+    );
+    assert_eq!(declaration.source.card.id, dead);
+    assert_eq!(declaration.source.region, Some(2));
+    assert_eq!(
+        declaration.source.source_region_instance.as_deref(),
+        Some(region_instance.as_str())
+    );
+    command(
+        &mut room,
+        &mut steps,
+        0,
+        SessionAction::Game {
+            action: Action {
+                choice_id: Some(pending.choice.id),
+                selected: Some(vec!["accept".into()]),
+                ..Action::new("choose")
+            },
+        },
+    );
+    assert_eq!(room.stack.len(), 1);
+    let frozen = serde_json::to_value(room.stack[0].frame.as_ref().unwrap()).unwrap();
+    assert_eq!(room.regions[2].influence, [0, 0]);
+    assert_eq!(room.pacing.window.as_ref().unwrap().holder_team, 0);
+    for seat in [0, 1] {
+        let window_id = room.pacing.window.as_ref().unwrap().id.clone();
+        command(
+            &mut room,
+            &mut steps,
+            seat,
+            SessionAction::PassResponse { window_id },
+        );
+        assert_eq!(room.stack.len(), 1);
+        assert_eq!(
+            serde_json::to_value(room.stack[0].frame.as_ref().unwrap()).unwrap(),
+            frozen
+        );
+    }
+    let window = room.pacing.window.clone().unwrap();
+    assert_eq!(window.holder_team, 1);
+    assert!(room.view(2, 0).response_window.unwrap().can_begin);
+    let intent = "jz31-real-hide-response".to_string();
+    command(
+        &mut room,
+        &mut steps,
+        2,
+        SessionAction::BeginResponse {
+            window_id: window.id.clone(),
+            intent_id: intent.clone(),
+        },
+    );
+    assert!(matches!(
+        room.pacing.window.as_ref().unwrap().members[&2],
+        Decision::Composing { .. }
+    ));
+    assert_eq!(
+        room.view(2, 0)
+            .response_window
+            .unwrap()
+            .my_intent_id
+            .as_deref(),
+        Some(intent.as_str())
+    );
+    assert_eq!(
+        serde_json::to_value(room.stack[0].frame.as_ref().unwrap()).unwrap(),
+        frozen
+    );
+    let a = play(&room, 2, &hide, &other, Some("hide"));
+    command(
+        &mut room,
+        &mut steps,
+        2,
+        SessionAction::SubmitResponse {
+            window_id: window.id,
+            intent_id: intent,
+            action: a,
+        },
+    );
+    assert_eq!(room.stack.len(), 2);
+    assert_eq!(
+        room.stack[1].frame.as_ref().unwrap().source.card.definition,
+        "JC063"
+    );
+    assert_eq!(
+        serde_json::to_value(room.stack[0].frame.as_ref().unwrap()).unwrap(),
+        frozen
+    );
+    assert_eq!(room.regions[2].influence, [0, 0]);
+    resolve_top(&mut room, &mut steps);
+    assert_eq!(room.stack.len(), 1);
+    assert!(room.board(&other).is_none());
+    let hidden = room.regions[2]
+        .cards
+        .iter()
+        .find(|c| c.definition == "JZ31")
+        .unwrap();
+    assert!(hidden.face_down && hidden.id != other && hidden.id != dead);
+    assert_eq!((hidden.owner, hidden.controller), (2, 2));
+    assert_eq!(
+        serde_json::to_value(room.stack[0].frame.as_ref().unwrap()).unwrap(),
+        frozen
+    );
+    assert_eq!(room.regions[2].influence, [0, 0]); // response resolves first.
+    resolve_top(&mut room, &mut steps);
+    assert!(room.stack.is_empty() && room.pending.is_none());
+    assert_eq!(room.regions[2].influence, [1, 0]); // frozen death actor, exactly one.
+    assert!(room.players[2]
+        .graveyard
+        .iter()
+        .any(|c| c.definition == "JZ31" && c.id != dead && c.controller == 2));
+    assert!(room.players[0]
+        .graveyard
+        .iter()
+        .all(|c| c.definition != "JZ31"));
+    if let Ok(dir) = std::env::var("JZ31_RESPONSE_EVIDENCE_DIR") {
+        std::fs::create_dir_all(&dir).unwrap();
+        std::fs::write(format!("{dir}/response-chain.json"), serde_json::to_vec(&serde_json::json!({
+            "initialState": initial_state, "steps": steps, "finalState": serde_json::to_string(&room).unwrap(),
+            "deathInstance": dead, "sourceRegionInstance": region_instance, "deathActor": 0, "deathOwner": 2,
+            "responseCard": "JC063", "responseActor": 2, "responseTargetOldInstance": other,
+            "frozenDeathFrame": frozen, "finalInfluence": [1, 0]
+        })).unwrap()).unwrap();
+    }
+}
