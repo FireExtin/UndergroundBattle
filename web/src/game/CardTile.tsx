@@ -12,6 +12,33 @@ export function visibleCard(card: Card, viewerId: string): Card {
     wounds: undefined, color: undefined, magic: undefined, currentSubtypes: undefined, currentRenown: undefined, currentBarrier: undefined, currentDamagePrevention: undefined, currentSpiritProtection: undefined, currentPrintedDefense: undefined };
 }
 
+/** Display-only short form of a server instance ID; never used to match, merge or infer objects. */
+export function instanceTag(instanceId: string, digits = 6) {
+  return instanceId.length <= digits + 2 ? instanceId : `…${instanceId.slice(-digits)}`;
+}
+
+/**
+ * Display-only tags for presented objects sharing a public name. Face-down objects always group as
+ * 暗藏者, so concealed print never affects a tag. Suffixes widen until every distinct instance differs.
+ */
+export function sameNameTags(cards: Card[]) {
+  const groups = new Map<string, Set<string>>();
+  for (const card of cards) {
+    const label = card.faceDown ? '暗藏者' : card.name;
+    groups.set(label, (groups.get(label) || new Set<string>()).add(card.instanceId));
+  }
+  const tags = new Map<string, string>();
+  for (const group of groups.values()) {
+    if (group.size < 2) continue;
+    const ids = [...group];
+    const longest = Math.max(...ids.map(id => id.length));
+    let digits = 6;
+    while (digits < longest && new Set(ids.map(id => instanceTag(id, digits))).size < ids.length) digits += 1;
+    for (const id of ids) tags.set(id, instanceTag(id, digits));
+  }
+  return tags;
+}
+
 const emptyIcons: Icons = { investigation: 0, combat: 0, influence: 0 };
 // Hegemony printed P11: these are the generic hidden entity's icons,
 // not the concealed card's printed identity or a client-side modifier result.
@@ -90,9 +117,9 @@ export function CardContent({ card: source, definition: sourceDefinition, compac
   </>;
 }
 
-export function CardTile({ card: source, definition: sourceDefinition, selected, onSelect, compact = false, viewerId, owner, actionable = false, targeted = false, onPreview, onPreviewEnd, attachmentCount = 0 }: {
+export function CardTile({ card: source, definition: sourceDefinition, selected, onSelect, compact = false, viewerId, owner, controller, sameNameTag, actionable = false, targeted = false, onPreview, onPreviewEnd, attachmentCount = 0 }: {
   card: Card; definition?: CardDefinition; selected?: boolean; onSelect?: () => void; compact?: boolean;
-  viewerId?: string; owner?: Player; actionable?: boolean; targeted?: boolean; onPreview?: () => void; onPreviewEnd?: () => void;
+  viewerId?: string; owner?: Player; controller?: Player; sameNameTag?: string; actionable?: boolean; targeted?: boolean; onPreview?: () => void; onPreviewEnd?: () => void;
   attachmentCount?: number;
 }) {
   const archive = useArchivePresentation();
@@ -100,8 +127,18 @@ export function CardTile({ card: source, definition: sourceDefinition, selected,
   const definition = card.cardId ? sourceDefinition : undefined;
   const color = archive && compact && card.faceDown ? '' : card.color || definition?.color || '';
   const palette = color.includes('黄') ? 'gold' : color.includes('红') ? 'red' : color.includes('蓝') ? 'blue' : color.includes('绿') ? 'green' : color.includes('紫') ? 'violet' : 'neutral';
-  return <button type="button" data-card-instance={card.instanceId} data-card-owner={card.owner} data-card-actionable={actionable} data-card-targeted={targeted} data-card-exhausted={card.exhausted} data-card-color={archive && !card.faceDown ? color.replace(/色$/, '') : undefined} data-card-face-down={archive ? card.faceDown : undefined} data-attachment-count={attachmentCount || undefined} className={`hg-card hg-card-${palette}${compact ? ' hg-card-compact' : ''}${selected ? ' hg-selected' : ''}${card.exhausted ? ' hg-exhausted' : ''}${actionable ? ' hg-card-actionable' : ''}${targeted ? ' hg-card-targeted' : ''}`} onClick={onSelect} onMouseEnter={onPreview} onMouseLeave={onPreviewEnd} onFocus={onPreview} onBlur={onPreviewEnd} aria-pressed={selected} aria-description={targeted ? '合法目标，可点击选择，然后确认行动。' : undefined} aria-label={`查看${card.name}${card.exhausted ? '，已横置' : ''}${attachmentCount ? `，附属 ${attachmentCount} 张` : ''}`}>
-    {owner && <span className="hg-card-owner"><span className="hg-piece-avatar">{owner.name.slice(0, 1)}</span><span>{owner.name}{owner.id === viewerId ? ' · 你' : ''}</span><em>{actionable ? '可行动' : card.faceDown && card.controller === viewerId ? '查看自牌' : '浏览'}</em></span>}
+  // Owner and controller are public projection fields; the chip names both whenever they differ.
+  const otherController = owner && controller && controller.id !== owner.id ? controller : undefined;
+  const you = (player: Player) => player.id === viewerId ? '（你）' : '';
+  const description = [
+    owner && `${owner.name}${you(owner)} 拥有${otherController ? `，${otherController.name}${you(otherController)} 操控` : ''}`,
+    sameNameTag && `同名对象 #${sameNameTag}`,
+    targeted && '合法目标，可点击选择，然后确认行动。',
+  ].filter(Boolean).join('；');
+  return <button type="button" data-card-instance={card.instanceId} data-card-owner={card.owner} data-card-controller={card.controller} data-control-differs={otherController ? true : undefined} data-card-actionable={actionable} data-card-targeted={targeted} data-card-exhausted={card.exhausted} data-card-color={archive && !card.faceDown ? color.replace(/色$/, '') : undefined} data-card-face-down={archive ? card.faceDown : undefined} data-attachment-count={attachmentCount || undefined} className={`hg-card hg-card-${palette}${compact ? ' hg-card-compact' : ''}${selected ? ' hg-selected' : ''}${card.exhausted ? ' hg-exhausted' : ''}${actionable ? ' hg-card-actionable' : ''}${targeted ? ' hg-card-targeted' : ''}`} onClick={onSelect} onMouseEnter={onPreview} onMouseLeave={onPreviewEnd} onFocus={onPreview} onBlur={onPreviewEnd} aria-pressed={selected} aria-description={description || undefined} aria-label={`查看${card.name}${card.exhausted ? '，已横置' : ''}${attachmentCount ? `，附属 ${attachmentCount} 张` : ''}`}>
+    {owner && <span className={`hg-card-owner hg-team-${owner.team}`}><span className="hg-piece-avatar" aria-hidden="true">{owner.seat + 1}</span><span>{owner.name}{owner.id === viewerId ? ' · 你' : ''}</span>{sameNameTag && <span className="hg-instance-tag">#{sameNameTag}</span>}<em>{actionable ? '可行动' : card.faceDown && card.controller === viewerId ? '查看自牌' : '浏览'}</em>
+      {otherController && <span className={`hg-card-controller hg-team-${otherController.team}`}>操控 · {otherController.name}{otherController.id === viewerId ? ' · 你' : ''}</span>}</span>}
+    {!owner && sameNameTag && <span className="hg-instance-tag">#{sameNameTag}</span>}
     <CardContent card={card} definition={definition} compact={compact} attachmentCount={attachmentCount} />
   </button>;
 }
