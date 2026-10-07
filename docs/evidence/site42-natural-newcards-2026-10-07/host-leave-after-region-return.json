@@ -1,0 +1,298 @@
+{
+  "commands": 1,
+  "checks": [
+    {
+      "check": "actual-UI-choice-submit",
+      "seat": 1,
+      "choiceKind": "region_return",
+      "choiceId": "i187",
+      "selected": [],
+      "versions": [
+        367,
+        368
+      ],
+      "actualUiPayload": {
+        "kind": "choose",
+        "choiceId": "i187",
+        "selected": [
+          "i141",
+          "i160"
+        ]
+      }
+    }
+  ],
+  "views": [
+    {
+      "seat": 0,
+      "version": 368,
+      "turn": 7,
+      "phase": "confrontation",
+      "step": "region:0:influence:after",
+      "hand": [
+        [
+          "i136",
+          "JC125"
+        ],
+        [
+          "i152",
+          "JC125"
+        ],
+        [
+          "i174",
+          "JC125"
+        ],
+        [
+          "i180",
+          "JC125"
+        ],
+        [
+          "i188",
+          "XQ41"
+        ],
+        [
+          "i189",
+          "JC125"
+        ]
+      ],
+      "assets": [
+        [
+          "i127",
+          null,
+          true
+        ],
+        [
+          "i132",
+          null,
+          true
+        ],
+        [
+          "i138",
+          null,
+          false
+        ],
+        [
+          "i153",
+          null,
+          false
+        ],
+        [
+          "i156",
+          null,
+          false
+        ],
+        [
+          "i177",
+          null,
+          false
+        ],
+        [
+          "i185",
+          null,
+          false
+        ],
+        [
+          "i128",
+          null,
+          false
+        ],
+        [
+          "i131",
+          null,
+          false
+        ],
+        [
+          "i142",
+          null,
+          false
+        ],
+        [
+          "i145",
+          null,
+          false
+        ],
+        [
+          "i164",
+          null,
+          false
+        ],
+        [
+          "i169",
+          null,
+          false
+        ],
+        [
+          "i186",
+          null,
+          false
+        ]
+      ],
+      "board": [],
+      "sealed": [],
+      "graveyard": [
+        [
+          "i166",
+          "XQ40"
+        ],
+        [
+          "i179",
+          "XQ40"
+        ]
+      ],
+      "pending": {
+        "id": "i195",
+        "kind": "trigger",
+        "title": "京都：赢取触发",
+        "description": "选择符合数量限制的选项，然后确认。",
+        "playerId": "p0",
+        "options": [
+          {
+            "id": "accept",
+            "label": "发动触发能力"
+          }
+        ],
+        "min": 0,
+        "max": 1,
+        "allowDecline": true
+      },
+      "waiting": {
+        "playerId": "p0",
+        "kind": "trigger",
+        "title": "京都：赢取触发"
+      },
+      "responseWindow": null,
+      "stack": [],
+      "legalSample": [
+        {
+          "kind": "choose",
+          "choiceId": "i195",
+          "id": "choose:i195",
+          "label": "确认选择"
+        }
+      ],
+      "legalKinds": [
+        "choose"
+      ]
+    },
+    {
+      "seat": 1,
+      "version": 368,
+      "turn": 7,
+      "phase": "confrontation",
+      "step": "region:0:influence:after",
+      "hand": [
+        [
+          "i122",
+          "XQ12"
+        ],
+        [
+          "i130",
+          "JZ49"
+        ],
+        [
+          "i144",
+          "JC085"
+        ],
+        [
+          "i181",
+          "JC125"
+        ]
+      ],
+      "assets": [
+        [
+          "i127",
+          null,
+          true
+        ],
+        [
+          "i132",
+          null,
+          true
+        ],
+        [
+          "i138",
+          null,
+          false
+        ],
+        [
+          "i153",
+          null,
+          false
+        ],
+        [
+          "i156",
+          null,
+          false
+        ],
+        [
+          "i177",
+          null,
+          false
+        ],
+        [
+          "i185",
+          null,
+          false
+        ],
+        [
+          "i128",
+          null,
+          false
+        ],
+        [
+          "i131",
+          null,
+          false
+        ],
+        [
+          "i142",
+          null,
+          false
+        ],
+        [
+          "i145",
+          null,
+          false
+        ],
+        [
+          "i164",
+          null,
+          false
+        ],
+        [
+          "i169",
+          null,
+          false
+        ],
+        [
+          "i186",
+          null,
+          false
+        ]
+      ],
+      "board": [],
+      "sealed": [],
+      "graveyard": [
+        [
+          "i166",
+          "XQ40"
+        ],
+        [
+          "i179",
+          "XQ40"
+        ]
+      ],
+      "pending": null,
+      "waiting": {
+        "playerId": "p0",
+        "kind": "trigger",
+        "title": "京都：赢取触发"
+      },
+      "responseWindow": null,
+      "stack": [],
+      "legalSample": [],
+      "legalKinds": []
+    }
+  ],
+  "restoredOriginalSeatAuthenticationOnly": true,
+  "uncaughtJsErrors": []
+}

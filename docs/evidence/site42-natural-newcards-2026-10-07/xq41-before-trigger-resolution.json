@@ -1,0 +1,347 @@
+{
+  "commands": 69,
+  "checks": [
+    {
+      "check": "real-UI-custom-decks-create-independent-peer-join-ready-start",
+      "seed": 16,
+      "roomId": "d61b44bbe38eada719bcc4d8",
+      "no_board_or_hand_injection": true
+    },
+    {
+      "check": "actual-UI-choice-submit",
+      "seat": 0,
+      "choiceKind": "mulligan",
+      "choiceId": "i123",
+      "selected": [],
+      "versions": [
+        4,
+        5
+      ]
+    },
+    {
+      "check": "actual-UI-choice-submit",
+      "seat": 1,
+      "choiceKind": "mulligan",
+      "choiceId": "i124",
+      "selected": [],
+      "versions": [
+        5,
+        6
+      ]
+    },
+    {
+      "check": "actual-UI-pause-reload-resume-preserves-choice",
+      "seat": 0,
+      "choiceKind": "handSeal",
+      "choiceId": "i148",
+      "optionIds": [
+        "i115",
+        "i116",
+        "i125",
+        "i129",
+        "i136",
+        "i143",
+        "i147"
+      ],
+      "versions": [
+        172,
+        173,
+        174
+      ]
+    },
+    {
+      "check": "actual-UI-choice-submit",
+      "seat": 0,
+      "choiceKind": "handSeal",
+      "choiceId": "i148",
+      "selected": [
+        "i115"
+      ],
+      "versions": [
+        172,
+        175
+      ]
+    },
+    {
+      "check": "actual-UI-choice-submit",
+      "seat": 0,
+      "choiceKind": "trigger",
+      "choiceId": "i150",
+      "selected": [
+        "accept"
+      ],
+      "versions": [
+        175,
+        176
+      ]
+    }
+  ],
+  "views": [
+    {
+      "seat": 0,
+      "version": 176,
+      "turn": 4,
+      "phase": "action",
+      "step": "team:0",
+      "hand": [
+        [
+          "i116",
+          "JC125"
+        ],
+        [
+          "i125",
+          "JC125"
+        ],
+        [
+          "i129",
+          "JC125"
+        ],
+        [
+          "i136",
+          "JC125"
+        ],
+        [
+          "i143",
+          "JZ58"
+        ],
+        [
+          "i147",
+          "XQ40"
+        ]
+      ],
+      "assets": [
+        [
+          "i127",
+          null,
+          true
+        ],
+        [
+          "i132",
+          null,
+          true
+        ],
+        [
+          "i138",
+          null,
+          false
+        ],
+        [
+          "i128",
+          null,
+          false
+        ],
+        [
+          "i131",
+          null,
+          false
+        ],
+        [
+          "i142",
+          null,
+          false
+        ],
+        [
+          "i145",
+          null,
+          false
+        ]
+      ],
+      "board": [
+        [
+          0,
+          "i135",
+          "XQ40",
+          "p0",
+          false
+        ],
+        [
+          0,
+          "i141",
+          "JC125",
+          "p1",
+          false
+        ]
+      ],
+      "sealed": [
+        {
+          "instanceId": "i149",
+          "cardId": "XQ41",
+          "name": "启迪之梦",
+          "owner": "p0",
+          "controller": "p0",
+          "kind": "sealed",
+          "exhausted": false,
+          "faceDown": false,
+          "text": "封印牌：公开、场外、空白；载体离场或翻暗时回到拥有者手牌",
+          "color": "紫",
+          "hostId": "i141"
+        }
+      ],
+      "graveyard": [],
+      "pending": null,
+      "waiting": null,
+      "responseWindow": {
+        "id": "response:7",
+        "stackTopId": "i151",
+        "holderTeam": 0,
+        "members": [
+          {
+            "playerId": "p0",
+            "status": "undecided",
+            "deadlineMs": 1791408804756
+          }
+        ],
+        "canBegin": false
+      },
+      "stack": [
+        {
+          "id": "i151",
+          "label": "启迪之梦：被封印触发：抓一张牌",
+          "controller": "p0",
+          "cardId": "XQ41",
+          "abilityId": "sealed-draw-one",
+          "targets": [],
+          "targetSummaries": [],
+          "resolutionState": "awaitingResponses"
+        }
+      ],
+      "legalSample": [
+        {
+          "kind": "pass",
+          "id": "{\"kind\":\"pass\"}",
+          "label": "让过"
+        }
+      ],
+      "legalKinds": [
+        "pass"
+      ]
+    },
+    {
+      "seat": 1,
+      "version": 176,
+      "turn": 4,
+      "phase": "action",
+      "step": "team:0",
+      "hand": [
+        [
+          "i118",
+          "JZ50"
+        ],
+        [
+          "i122",
+          "XQ12"
+        ],
+        [
+          "i130",
+          "JZ49"
+        ],
+        [
+          "i137",
+          "JC125"
+        ],
+        [
+          "i144",
+          "JC085"
+        ]
+      ],
+      "assets": [
+        [
+          "i127",
+          null,
+          true
+        ],
+        [
+          "i132",
+          null,
+          true
+        ],
+        [
+          "i138",
+          null,
+          false
+        ],
+        [
+          "i128",
+          null,
+          false
+        ],
+        [
+          "i131",
+          null,
+          false
+        ],
+        [
+          "i142",
+          null,
+          false
+        ],
+        [
+          "i145",
+          null,
+          false
+        ]
+      ],
+      "board": [
+        [
+          0,
+          "i135",
+          "XQ40",
+          "p0",
+          false
+        ],
+        [
+          0,
+          "i141",
+          "JC125",
+          "p1",
+          false
+        ]
+      ],
+      "sealed": [
+        {
+          "instanceId": "i149",
+          "cardId": "XQ41",
+          "name": "启迪之梦",
+          "owner": "p0",
+          "controller": "p0",
+          "kind": "sealed",
+          "exhausted": false,
+          "faceDown": false,
+          "text": "封印牌：公开、场外、空白；载体离场或翻暗时回到拥有者手牌",
+          "color": "紫",
+          "hostId": "i141"
+        }
+      ],
+      "graveyard": [],
+      "pending": null,
+      "waiting": null,
+      "responseWindow": {
+        "id": "response:7",
+        "stackTopId": "i151",
+        "holderTeam": 0,
+        "members": [
+          {
+            "playerId": "p0",
+            "status": "undecided",
+            "deadlineMs": 1791408804756
+          }
+        ],
+        "canBegin": false
+      },
+      "stack": [
+        {
+          "id": "i151",
+          "label": "启迪之梦：被封印触发：抓一张牌",
+          "controller": "p0",
+          "cardId": "XQ41",
+          "abilityId": "sealed-draw-one",
+          "targets": [],
+          "targetSummaries": [],
+          "resolutionState": "awaitingResponses"
+        }
+      ],
+      "legalSample": [],
+      "legalKinds": []
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "dbMode": "read-only",
+  "newTables": 3,
+  "maxNewTables": 3,
+  "maxCommandsPerTable": 400,
+  "allThreeUnderCap": true,
+  "rooms": [
+    {
+      "roomId": "43af73d2bd4274c81b8274a2",
+      "version": 4,
+      "committedCommands": 3,
+      "turn": 1,
+      "seed": 16,
+      "seats": 2,
+      "paused": false,
+      "privateStateSha256": "b505017ff1a517c8c2a17c05cf34ad681c8595a4a7096936a061efb9fa08fb74"
+    },
+    {
+      "roomId": "c261b9df1e868e5d5dbf16fd",
+      "version": 2,
+      "committedCommands": 1,
+      "turn": 0,
+      "seed": 16,
+      "seats": 2,
+      "paused": false,
+      "privateStateSha256": "bc1ae2fd8363e02826b40159e8a95dd61bf50662dc39ecc7ce352307ed1d9b7b"
+    },
+    {
+      "roomId": "d61b44bbe38eada719bcc4d8",
+      "version": 397,
+      "committedCommands": 391,
+      "turn": 7,
+      "seed": 16,
+      "seats": 2,
+      "paused": true,
+      "privateStateSha256": "176b9e9c14308012aae7b105db992a7f35ad0003e6f195f679cc887b6ebcfac5"
+    }
+  ]
+}

@@ -1,0 +1,1039 @@
+[
+  {
+    "via": "actual-browser-UI",
+    "seat": 1,
+    "command": {
+      "commandId": "830b217b-ec94-454e-a3a9-e24dd71d06b8",
+      "expectedVersion": 1,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "ready"
+        }
+      }
+    }
+  },
+  {
+    "via": "actual-browser-UI",
+    "seat": 0,
+    "command": {
+      "commandId": "70d26b36-b0e5-4a92-a13a-93dea12aae96",
+      "expectedVersion": 2,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "ready"
+        }
+      }
+    }
+  },
+  {
+    "via": "actual-browser-UI",
+    "seat": 0,
+    "command": {
+      "commandId": "fb8a01cf-c24a-4409-8ae2-abc95f038108",
+      "expectedVersion": 3,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "start"
+        }
+      }
+    }
+  },
+  {
+    "via": "actual-browser-UI",
+    "seat": 0,
+    "command": {
+      "commandId": "852dbe90-bb16-4e60-a820-bb69161d7bb8",
+      "expectedVersion": 4,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "choose",
+          "choiceId": "i123",
+          "selected": []
+        }
+      }
+    }
+  },
+  {
+    "via": "actual-browser-UI",
+    "seat": 1,
+    "command": {
+      "commandId": "830b217b-ec94-454e-a3a9-e24dd71d06b8",
+      "expectedVersion": 1,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "ready"
+        }
+      }
+    }
+  },
+  {
+    "via": "actual-browser-UI",
+    "seat": 1,
+    "command": {
+      "commandId": "6779a436-f177-414b-b8ca-9b373881eb05",
+      "expectedVersion": 5,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "choose",
+          "choiceId": "i124",
+          "selected": []
+        }
+      }
+    }
+  },
+  {
+    "via": "normal-local-HTTP",
+    "seat": 0,
+    "command": {
+      "commandId": "6459189d-6b47-4281-98b7-a04d468bef3d",
+      "expectedVersion": 6,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "resultVersion": 7
+  },
+  {
+    "via": "normal-local-HTTP",
+    "seat": 1,
+    "command": {
+      "commandId": "0e7c0dbe-c94b-4276-b167-32f9bb7dfde6",
+      "expectedVersion": 7,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "resultVersion": 8
+  },
+  {
+    "via": "normal-local-HTTP",
+    "seat": 0,
+    "command": {
+      "commandId": "7ac9c70b-03cd-4f03-b7d2-3c11dc0cac54",
+      "expectedVersion": 8,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "resultVersion": 9
+  },
+  {
+    "via": "normal-local-HTTP",
+    "seat": 1,
+    "command": {
+      "commandId": "c397fe8e-4fba-49b9-acfa-01b56b30143f",
+      "expectedVersion": 9,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "resultVersion": 10
+  },
+  {
+    "via": "normal-local-HTTP",
+    "seat": 0,
+    "command": {
+      "commandId": "7b4ae9f4-af84-4d9e-b8d0-01428bb11a1b",
+      "expectedVersion": 10,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "asset",
+          "cardId": "i113"
+        }
+      }
+    },
+    "resultVersion": 11
+  },
+  {
+    "via": "normal-local-HTTP",
+    "seat": 0,
+    "command": {
+      "commandId": "fe993813-0c97-42a5-850d-d0fa0bbce850",
+      "expectedVersion": 11,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "resultVersion": 12
+  },
+  {
+    "via": "normal-local-HTTP",
+    "seat": 1,
+    "command": {
+      "commandId": "461de94a-1ad5-4de6-b97b-c9cbf409a0ff",
+      "expectedVersion": 12,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "resultVersion": 13
+  },
+  {
+    "via": "normal-local-HTTP",
+    "seat": 1,
+    "command": {
+      "commandId": "03bccae8-a91a-4ad6-a9d9-ce3ab5bd89ec",
+      "expectedVersion": 13,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "asset",
+          "cardId": "i120"
+        }
+      }
+    },
+    "resultVersion": 14
+  },
+  {
+    "via": "normal-local-HTTP",
+    "seat": 1,
+    "command": {
+      "commandId": "60ef0f41-11ba-4993-a779-15df518b7510",
+      "expectedVersion": 14,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "resultVersion": 15
+  },
+  {
+    "via": "normal-local-HTTP",
+    "seat": 0,
+    "command": {
+      "commandId": "21c05af0-fcae-4877-8997-e963ba35a3ef",
+      "expectedVersion": 15,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "resultVersion": 16
+  },
+  {
+    "via": "normal-local-HTTP",
+    "seat": 0,
+    "command": {
+      "commandId": "883dca2b-e43a-42ca-bf0c-c979d1b8eb6e",
+      "expectedVersion": 16,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "resultVersion": 17
+  },
+  {
+    "via": "normal-local-HTTP",
+    "seat": 1,
+    "command": {
+      "commandId": "02cc7cb5-32f8-4abc-b9a2-ff8c1c84d109",
+      "expectedVersion": 17,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "resultVersion": 18
+  },
+  {
+    "via": "normal-local-HTTP",
+    "seat": 0,
+    "command": {
+      "commandId": "ccfce7f4-08cb-4814-a7d5-1eeaedfc1e44",
+      "expectedVersion": 18,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "resultVersion": 19
+  },
+  {
+    "via": "normal-local-HTTP",
+    "seat": 1,
+    "command": {
+      "commandId": "370f2e06-50d0-4069-86a3-5b1889def296",
+      "expectedVersion": 19,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "resultVersion": 20
+  },
+  {
+    "via": "normal-local-HTTP",
+    "seat": 0,
+    "command": {
+      "commandId": "e0edb699-4a1d-4f95-84f4-d3f1879560b6",
+      "expectedVersion": 20,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "resultVersion": 21
+  },
+  {
+    "via": "normal-local-HTTP",
+    "seat": 1,
+    "command": {
+      "commandId": "3d5ca086-331a-4547-8eb9-b7f0f8fee087",
+      "expectedVersion": 21,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "resultVersion": 22
+  },
+  {
+    "via": "normal-local-HTTP",
+    "seat": 0,
+    "command": {
+      "commandId": "fdd48d68-7415-44ce-9544-d4e4000be58a",
+      "expectedVersion": 22,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "resultVersion": 23
+  },
+  {
+    "via": "normal-local-HTTP",
+    "seat": 1,
+    "command": {
+      "commandId": "dd5da3df-3671-4f9a-9bc2-410caa157f10",
+      "expectedVersion": 23,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "resultVersion": 24
+  },
+  {
+    "via": "normal-local-HTTP",
+    "seat": 0,
+    "command": {
+      "commandId": "3f73a9ce-12b1-460d-8599-eb70c01654ee",
+      "expectedVersion": 24,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "resultVersion": 25
+  },
+  {
+    "via": "normal-local-HTTP",
+    "seat": 1,
+    "command": {
+      "commandId": "75c17f4f-7dcb-4a68-b161-95b9281fab6a",
+      "expectedVersion": 25,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "resultVersion": 26
+  },
+  {
+    "via": "normal-local-HTTP",
+    "seat": 0,
+    "command": {
+      "commandId": "7ae97a11-b98e-420c-aa14-95767335f9ce",
+      "expectedVersion": 26,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "resultVersion": 27
+  },
+  {
+    "via": "normal-local-HTTP",
+    "seat": 1,
+    "command": {
+      "commandId": "c9a1815e-adc6-4c5a-89f3-768dc438a7b3",
+      "expectedVersion": 27,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "resultVersion": 28
+  },
+  {
+    "via": "normal-local-HTTP",
+    "seat": 0,
+    "command": {
+      "commandId": "d90635d1-b418-4457-9e10-e5878ab1d4cd",
+      "expectedVersion": 28,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "resultVersion": 29
+  },
+  {
+    "via": "normal-local-HTTP",
+    "seat": 1,
+    "command": {
+      "commandId": "ab22b34c-9152-47ab-b780-5a913bb9299e",
+      "expectedVersion": 29,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "resultVersion": 30
+  },
+  {
+    "via": "normal-local-HTTP",
+    "seat": 0,
+    "command": {
+      "commandId": "3b3cfb8e-99e1-41a0-ad54-e5004b59a8d1",
+      "expectedVersion": 30,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "resultVersion": 31
+  },
+  {
+    "via": "normal-local-HTTP",
+    "seat": 1,
+    "command": {
+      "commandId": "8132b94a-4d52-4ad7-a0a7-ac23267afeb2",
+      "expectedVersion": 31,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "resultVersion": 32
+  },
+  {
+    "via": "normal-local-HTTP",
+    "seat": 0,
+    "command": {
+      "commandId": "9bcd315f-1318-4ae6-824d-b57ebb1cc151",
+      "expectedVersion": 32,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "resultVersion": 33
+  },
+  {
+    "via": "normal-local-HTTP",
+    "seat": 1,
+    "command": {
+      "commandId": "ba1b07d1-7231-406a-b139-22d60011f2a3",
+      "expectedVersion": 33,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "resultVersion": 34
+  },
+  {
+    "via": "normal-local-HTTP",
+    "seat": 0,
+    "command": {
+      "commandId": "590ab94f-3091-41c6-807b-30997be57af3",
+      "expectedVersion": 34,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "resultVersion": 35
+  },
+  {
+    "via": "normal-local-HTTP",
+    "seat": 1,
+    "command": {
+      "commandId": "bb34a826-16fe-4c7e-b362-42b617d7485f",
+      "expectedVersion": 35,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "resultVersion": 36
+  },
+  {
+    "via": "normal-local-HTTP",
+    "seat": 0,
+    "command": {
+      "commandId": "71d63a68-47b0-4bdf-b051-96b5c552960e",
+      "expectedVersion": 36,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "resultVersion": 37
+  },
+  {
+    "via": "normal-local-HTTP",
+    "seat": 1,
+    "command": {
+      "commandId": "93602eec-aca4-4d0c-9f86-0b1911e073f2",
+      "expectedVersion": 37,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "resultVersion": 38
+  },
+  {
+    "via": "normal-local-HTTP",
+    "seat": 0,
+    "command": {
+      "commandId": "6330d2b7-96a0-4deb-b8a8-1dc944192517",
+      "expectedVersion": 38,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "resultVersion": 39
+  },
+  {
+    "via": "normal-local-HTTP",
+    "seat": 1,
+    "command": {
+      "commandId": "c783adbb-113f-4c29-a09f-bb53b4dc7dc5",
+      "expectedVersion": 39,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "resultVersion": 40
+  },
+  {
+    "via": "normal-local-HTTP",
+    "seat": 0,
+    "command": {
+      "commandId": "17786d1d-6578-45b8-8f01-a190c9555725",
+      "expectedVersion": 40,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "resultVersion": 41
+  },
+  {
+    "via": "normal-local-HTTP",
+    "seat": 1,
+    "command": {
+      "commandId": "6a770344-c943-4709-aae7-7af298ddfb45",
+      "expectedVersion": 41,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "resultVersion": 42
+  },
+  {
+    "via": "normal-local-HTTP",
+    "seat": 0,
+    "command": {
+      "commandId": "519c8012-6cfe-4f51-9226-b9260a178d54",
+      "expectedVersion": 42,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "resultVersion": 43
+  },
+  {
+    "via": "normal-local-HTTP",
+    "seat": 1,
+    "command": {
+      "commandId": "ed4eedcd-7a49-4616-821f-919ef5e3e6da",
+      "expectedVersion": 43,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "resultVersion": 44
+  },
+  {
+    "via": "normal-local-HTTP",
+    "seat": 0,
+    "command": {
+      "commandId": "234fea3d-cbaf-49d9-a47f-883cd87ad3b7",
+      "expectedVersion": 44,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "resultVersion": 45
+  },
+  {
+    "via": "normal-local-HTTP",
+    "seat": 1,
+    "command": {
+      "commandId": "77b51a9e-fcfc-4185-a26c-3603506280b9",
+      "expectedVersion": 45,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "resultVersion": 46
+  },
+  {
+    "via": "normal-local-HTTP",
+    "seat": 0,
+    "command": {
+      "commandId": "b9537bf8-42a0-48e2-8d47-dd5740abe351",
+      "expectedVersion": 46,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "resultVersion": 47
+  },
+  {
+    "via": "normal-local-HTTP",
+    "seat": 1,
+    "command": {
+      "commandId": "7a142f81-ac74-42fc-9c21-c78f17dab352",
+      "expectedVersion": 47,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "resultVersion": 48
+  },
+  {
+    "via": "normal-local-HTTP",
+    "seat": 0,
+    "command": {
+      "commandId": "b1c5ef8d-99f7-44af-979f-be1ead0b00c5",
+      "expectedVersion": 48,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "resultVersion": 49
+  },
+  {
+    "via": "normal-local-HTTP",
+    "seat": 1,
+    "command": {
+      "commandId": "4cf39a20-3494-4ecb-8412-d6f9ef65601e",
+      "expectedVersion": 49,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "resultVersion": 50
+  },
+  {
+    "via": "normal-local-HTTP",
+    "seat": 0,
+    "command": {
+      "commandId": "f6692a2a-97fd-44d0-b83f-fb5119c4a536",
+      "expectedVersion": 50,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "resultVersion": 51
+  },
+  {
+    "via": "normal-local-HTTP",
+    "seat": 1,
+    "command": {
+      "commandId": "627b5a21-13fb-4aa5-8d3b-89350a4d6af7",
+      "expectedVersion": 51,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "resultVersion": 52
+  },
+  {
+    "via": "normal-local-HTTP",
+    "seat": 0,
+    "command": {
+      "commandId": "99122295-f3c5-4197-82c5-13caf5530a7b",
+      "expectedVersion": 52,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "resultVersion": 53
+  },
+  {
+    "via": "normal-local-HTTP",
+    "seat": 1,
+    "command": {
+      "commandId": "509482c7-f0b8-4e86-8b85-7ff2097c45bf",
+      "expectedVersion": 53,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "resultVersion": 54
+  },
+  {
+    "via": "normal-local-HTTP",
+    "seat": 0,
+    "command": {
+      "commandId": "17f417ee-0af7-4e31-88da-2f214b166a2a",
+      "expectedVersion": 54,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "resultVersion": 55
+  },
+  {
+    "via": "normal-local-HTTP",
+    "seat": 1,
+    "command": {
+      "commandId": "2562380b-7250-42d7-b0f6-9f09eacec2c8",
+      "expectedVersion": 55,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "resultVersion": 56
+  },
+  {
+    "via": "normal-local-HTTP",
+    "seat": 1,
+    "command": {
+      "commandId": "e58c4120-2ef6-4d17-b871-954a8ce5f115",
+      "expectedVersion": 56,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "resultVersion": 57
+  },
+  {
+    "via": "normal-local-HTTP",
+    "seat": 0,
+    "command": {
+      "commandId": "c7767667-c319-4081-b105-7a8d7bb9e8a5",
+      "expectedVersion": 57,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "resultVersion": 58
+  },
+  {
+    "via": "normal-local-HTTP",
+    "seat": 1,
+    "command": {
+      "commandId": "9505834c-1c39-441a-ab44-5f9103a1a26c",
+      "expectedVersion": 58,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "resultVersion": 59
+  },
+  {
+    "via": "normal-local-HTTP",
+    "seat": 0,
+    "command": {
+      "commandId": "c06566be-492c-4cc6-bf52-2f66669d223d",
+      "expectedVersion": 59,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "resultVersion": 60
+  },
+  {
+    "via": "normal-local-HTTP",
+    "seat": 1,
+    "command": {
+      "commandId": "97ef5131-fd18-4f72-a9c8-cebe95e1c983",
+      "expectedVersion": 60,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "asset",
+          "cardId": "i121"
+        }
+      }
+    },
+    "resultVersion": 61
+  },
+  {
+    "via": "normal-local-HTTP",
+    "seat": 1,
+    "command": {
+      "commandId": "ac59ff6b-b94e-4721-8f73-f0b7a0128733",
+      "expectedVersion": 61,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "resultVersion": 62
+  },
+  {
+    "via": "normal-local-HTTP",
+    "seat": 0,
+    "command": {
+      "commandId": "ff75eb46-0259-41cd-af9e-d6cf5f038fa1",
+      "expectedVersion": 62,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "resultVersion": 63
+  },
+  {
+    "via": "normal-local-HTTP",
+    "seat": 0,
+    "command": {
+      "commandId": "60c0ffa6-29df-4553-978b-a729773ade3e",
+      "expectedVersion": 63,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "asset",
+          "cardId": "i111"
+        }
+      }
+    },
+    "resultVersion": 64
+  },
+  {
+    "via": "normal-local-HTTP",
+    "seat": 0,
+    "command": {
+      "commandId": "05ba15d8-8d4a-46aa-ab1d-54ed8958556a",
+      "expectedVersion": 64,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "deploy",
+          "cardId": "i114",
+          "region": 0
+        }
+      }
+    },
+    "resultVersion": 65
+  },
+  {
+    "via": "actual-browser-UI",
+    "seat": 0,
+    "command": {
+      "commandId": "ce1721d8-9f88-4804-8f0b-d6b34ee0ae50",
+      "expectedVersion": 172,
+      "action": {
+        "kind": "pauseRoom"
+      }
+    }
+  },
+  {
+    "via": "actual-browser-UI",
+    "seat": 0,
+    "command": {
+      "commandId": "002c1e3c-2f66-49c5-8d81-bc19fefb3c5f",
+      "expectedVersion": 173,
+      "action": {
+        "kind": "resumeRoom"
+      }
+    }
+  },
+  {
+    "via": "actual-browser-UI",
+    "seat": 0,
+    "command": {
+      "commandId": "c55113af-3889-4692-8eff-eb3c6addf416",
+      "expectedVersion": 174,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "choose",
+          "choiceId": "i148",
+          "selected": [
+            "i115"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "via": "actual-browser-UI",
+    "seat": 0,
+    "command": {
+      "commandId": "91d5ef5e-4d4e-47f6-8f0a-5045b90d984c",
+      "expectedVersion": 175,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "choose",
+          "choiceId": "i150",
+          "selected": [
+            "accept"
+          ]
+        }
+      }
+    }
+  }
+]

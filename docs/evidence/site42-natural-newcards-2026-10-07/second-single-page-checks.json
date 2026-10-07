@@ -1,0 +1,9 @@
+{
+  "scope": "local actual published Worker/WASM/D1/browser; factory-seed-only shim and legal deck metadata; normal UI/HTTP commands, no board injection",
+  "seed": 16,
+  "commandCap": 400,
+  "commands": 1,
+  "checks": [],
+  "uncaughtJsErrors": [],
+  "publicWrites": false
+}

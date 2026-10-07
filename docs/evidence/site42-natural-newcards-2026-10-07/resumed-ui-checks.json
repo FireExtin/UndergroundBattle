@@ -1,0 +1,320 @@
+{
+  "checks": [
+    {
+      "check": "actual-UI-choice-submit",
+      "seat": 1,
+      "choiceKind": "trigger",
+      "choiceId": "i161",
+      "selected": [
+        "accept"
+      ],
+      "versions": [
+        232,
+        233
+      ]
+    },
+    {
+      "check": "actual-UI-pause-reload-resume-preserves-choice",
+      "seat": 1,
+      "choiceKind": "jz50_death_search",
+      "choiceId": "i163",
+      "optionIds": [
+        "i91",
+        "i56",
+        "i55",
+        "i94",
+        "i93"
+      ],
+      "versions": [
+        235,
+        236,
+        237
+      ]
+    },
+    {
+      "check": "actual-UI-choice-submit",
+      "seat": 1,
+      "choiceKind": "jz50_death_search",
+      "choiceId": "i163",
+      "selected": [],
+      "versions": [
+        235,
+        238
+      ]
+    },
+    {
+      "check": "actual-UI-choice-submit",
+      "seat": 1,
+      "choiceKind": "damage",
+      "choiceId": "i165",
+      "selected": [
+        "i135"
+      ],
+      "versions": [
+        249,
+        250
+      ]
+    },
+    {
+      "check": "actual-UI-public-sealed-reader-has-host-owner-and-blank-state",
+      "seat": 0,
+      "version": 250,
+      "sealedId": "i149",
+      "cardId": "XQ41",
+      "hostId": "i141",
+      "hostLabel": "启迪之梦 #i149\nLocal UI A 拥有 · 已封印\n载体：无知路人 #i141 · Local UI B 操控 · 地区 1",
+      "costIconsDefenseAbsent": true,
+      "artworkQa": false
+    },
+    {
+      "check": "actual-UI-public-sealed-reader-has-host-owner-and-blank-state",
+      "seat": 1,
+      "version": 250,
+      "sealedId": "i149",
+      "cardId": "XQ41",
+      "hostId": "i141",
+      "hostLabel": "启迪之梦 #i149\nLocal UI A 拥有 · 已封印\n载体：无知路人 #i141 · Local UI B 操控 · 地区 1",
+      "costIconsDefenseAbsent": true,
+      "artworkQa": false
+    },
+    {
+      "check": "actual-UI-choice-submit",
+      "seat": 0,
+      "choiceKind": "handSeal",
+      "choiceId": "i175",
+      "selected": [
+        "i116"
+      ],
+      "versions": [
+        295,
+        296
+      ]
+    },
+    {
+      "check": "actual-UI-choice-submit",
+      "seat": 1,
+      "choiceKind": "damage",
+      "choiceId": "i178",
+      "selected": [
+        "i172"
+      ],
+      "versions": [
+        307,
+        308
+      ]
+    },
+    {
+      "check": "actual-UI-choice-submit",
+      "seat": 1,
+      "choiceKind": "region_return",
+      "choiceId": "i187",
+      "selected": [],
+      "versions": [
+        367,
+        368
+      ],
+      "actualUiPayload": {
+        "kind": "choose",
+        "choiceId": "i187",
+        "selected": [
+          "i141",
+          "i160"
+        ]
+      }
+    },
+    {
+      "check": "actual-UI-choice-submit",
+      "seat": 0,
+      "choiceKind": "trigger",
+      "choiceId": "i195",
+      "selected": [],
+      "versions": [
+        368,
+        369
+      ],
+      "actualUiPayload": {
+        "kind": "choose",
+        "choiceId": "i195",
+        "selected": []
+      }
+    },
+    {
+      "check": "actual-UI-returned-XQ41-regains-character-print-in-owner-hand",
+      "seat": 0,
+      "version": 396,
+      "returnedId": "i188",
+      "cost": 3,
+      "owner": "p0",
+      "iconsVisible": true,
+      "sealedMarkerAbsent": true,
+      "artworkQa": false
+    },
+    {
+      "check": "finite-local-QA-table-left-paused-through-real-UI",
+      "versions": [
+        396,
+        397
+      ],
+      "handPreserved": true,
+      "commandsAtStop": 391
+    }
+  ],
+  "commands": [
+    {
+      "via": "actual-browser-UI",
+      "seat": 1,
+      "command": {
+        "commandId": "a341f3aa-30dd-4c40-a3f3-f2da62f867de",
+        "expectedVersion": 232,
+        "action": {
+          "kind": "game",
+          "action": {
+            "kind": "choose",
+            "choiceId": "i161",
+            "selected": [
+              "accept"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "via": "actual-browser-UI",
+      "seat": 1,
+      "command": {
+        "commandId": "b187945d-1a55-47a1-bef2-79bd68ea90ed",
+        "expectedVersion": 235,
+        "action": {
+          "kind": "pauseRoom"
+        }
+      }
+    },
+    {
+      "via": "actual-browser-UI",
+      "seat": 1,
+      "command": {
+        "commandId": "5bef8728-4817-4f6c-bd97-524ff468c5e8",
+        "expectedVersion": 236,
+        "action": {
+          "kind": "resumeRoom"
+        }
+      }
+    },
+    {
+      "via": "actual-browser-UI",
+      "seat": 1,
+      "command": {
+        "commandId": "b9f8a4a0-8930-492d-9d1e-631109959469",
+        "expectedVersion": 237,
+        "action": {
+          "kind": "game",
+          "action": {
+            "kind": "choose",
+            "choiceId": "i163",
+            "selected": []
+          }
+        }
+      }
+    },
+    {
+      "via": "actual-browser-UI",
+      "seat": 1,
+      "command": {
+        "commandId": "c410a51e-4a67-4e72-a8a3-f5e9fe9eb2a0",
+        "expectedVersion": 249,
+        "action": {
+          "kind": "game",
+          "action": {
+            "kind": "choose",
+            "choiceId": "i165",
+            "allocations": {
+              "i135": 1
+            }
+          }
+        }
+      }
+    },
+    {
+      "via": "actual-browser-UI",
+      "seat": 0,
+      "command": {
+        "commandId": "9f274abd-b845-48ff-ab79-168e368fa3af",
+        "expectedVersion": 295,
+        "action": {
+          "kind": "game",
+          "action": {
+            "kind": "choose",
+            "choiceId": "i175",
+            "selected": [
+              "i116"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "via": "actual-browser-UI",
+      "seat": 1,
+      "command": {
+        "commandId": "7872e1b4-c91c-4f7e-aa99-182acbe6c893",
+        "expectedVersion": 307,
+        "action": {
+          "kind": "game",
+          "action": {
+            "kind": "choose",
+            "choiceId": "i178",
+            "allocations": {
+              "i172": 1
+            }
+          }
+        }
+      }
+    },
+    {
+      "via": "actual-browser-UI",
+      "seat": 1,
+      "command": {
+        "commandId": "a9648ae1-6b7c-481b-917b-256064edaf55",
+        "expectedVersion": 367,
+        "action": {
+          "kind": "game",
+          "action": {
+            "kind": "choose",
+            "choiceId": "i187",
+            "selected": [
+              "i141",
+              "i160"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "via": "actual-browser-UI",
+      "seat": 0,
+      "command": {
+        "commandId": "dfa60ecf-17c6-495d-9f73-9af82639ddf9",
+        "expectedVersion": 368,
+        "action": {
+          "kind": "game",
+          "action": {
+            "kind": "choose",
+            "choiceId": "i195",
+            "selected": []
+          }
+        }
+      }
+    },
+    {
+      "via": "actual-browser-UI",
+      "seat": 0,
+      "command": {
+        "commandId": "5c9a8a61-f1b3-41bc-ae70-aa72ec129d9a",
+        "expectedVersion": 396,
+        "action": {
+          "kind": "pauseRoom"
+        }
+      }
+    }
+  ]
+}

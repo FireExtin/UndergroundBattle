@@ -1,0 +1,16 @@
+[
+  {
+    "via": "actual-browser-UI",
+    "seat": 1,
+    "command": {
+      "commandId": "e4c57614-542d-44b7-b7ac-6fb869cfd6ac",
+      "expectedVersion": 1,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "ready"
+        }
+      }
+    }
+  }
+]

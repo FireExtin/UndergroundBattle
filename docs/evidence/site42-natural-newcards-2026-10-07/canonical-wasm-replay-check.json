@@ -1,0 +1,41 @@
+{
+  "scope": "offline audit replay of the actually UI-created local table and its canonical server journal; no writes to live room; factory seed16 only, no fake setup",
+  "wasmSha256": "9b8a7a69cd3c09781387cb4e66ad710d803783447fb6b0382fb2697eac50e885",
+  "wasmBytes": 2248074,
+  "compiledWorkerSha256": "cf0cd2aab04d532f7916b745b4e1335de9c1427f217022326e9cf050982ffb30",
+  "engine": "rust-v0.2.49-sealed-restart-candidate",
+  "cardPool": "limited-v2.44-jz50-death-search-candidate",
+  "cards": 107,
+  "societies": 8,
+  "factorySeed": 16,
+  "initialFactoryByteEqual": true,
+  "canonicalJournalRevisions": 397,
+  "normalCommittedCommands": 391,
+  "normalJoinWithLegalDeck": 1,
+  "timingPollEvents": 5,
+  "exactJournalEventParity": true,
+  "terminalOpaqueStateByteEqual": true,
+  "initialStateSha256": "1de6c0da657863c3f03cb60e55e35dd40f6b58790adf5e2b64d9b03902252bee",
+  "terminalStateSha256": "176b9e9c14308012aae7b105db992a7f35ad0003e6f195f679cc887b6ebcfac5",
+  "commandKinds": {
+    "game": 373,
+    "passResponse": 13,
+    "pauseRoom": 3,
+    "resumeRoom": 2
+  },
+  "gameKinds": {
+    "ready": 2,
+    "start": 1,
+    "choose": 11,
+    "pass": 337,
+    "asset": 14,
+    "deploy": 4,
+    "activate": 2,
+    "conceal": 1,
+    "reveal": 1
+  },
+  "terminalTurn": 7,
+  "terminalPaused": true,
+  "bq104Xq48Absent": true,
+  "noLiveStateWritesDuringReplay": true
+}

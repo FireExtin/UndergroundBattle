@@ -1,0 +1,276 @@
+{
+  "commands": 0,
+  "checks": [
+    {
+      "check": "actual-UI-public-sealed-reader-has-host-owner-and-blank-state",
+      "seat": 0,
+      "version": 250,
+      "sealedId": "i149",
+      "cardId": "XQ41",
+      "hostId": "i141",
+      "hostLabel": "启迪之梦 #i149\nLocal UI A 拥有 · 已封印\n载体：无知路人 #i141 · Local UI B 操控 · 地区 1",
+      "costIconsDefenseAbsent": true,
+      "artworkQa": false
+    }
+  ],
+  "views": [
+    {
+      "seat": 0,
+      "version": 250,
+      "turn": 5,
+      "phase": "confrontation",
+      "step": "region:0:combat:after",
+      "hand": [
+        [
+          "i116",
+          "JC125"
+        ],
+        [
+          "i125",
+          "JC125"
+        ],
+        [
+          "i129",
+          "JC125"
+        ],
+        [
+          "i136",
+          "JC125"
+        ],
+        [
+          "i147",
+          "XQ40"
+        ],
+        [
+          "i152",
+          "JC125"
+        ]
+      ],
+      "assets": [
+        [
+          "i127",
+          null,
+          false
+        ],
+        [
+          "i132",
+          null,
+          false
+        ],
+        [
+          "i138",
+          null,
+          false
+        ],
+        [
+          "i153",
+          null,
+          false
+        ],
+        [
+          "i156",
+          null,
+          false
+        ],
+        [
+          "i128",
+          null,
+          true
+        ],
+        [
+          "i131",
+          null,
+          true
+        ],
+        [
+          "i142",
+          null,
+          true
+        ],
+        [
+          "i145",
+          null,
+          false
+        ],
+        [
+          "i164",
+          null,
+          false
+        ]
+      ],
+      "board": [
+        [
+          0,
+          "i141",
+          "JC125",
+          "p1",
+          false
+        ],
+        [
+          0,
+          "i160",
+          "JZ50",
+          "p1",
+          false
+        ]
+      ],
+      "sealed": [
+        {
+          "instanceId": "i149",
+          "cardId": "XQ41",
+          "name": "启迪之梦",
+          "owner": "p0",
+          "controller": "p0",
+          "kind": "sealed",
+          "exhausted": false,
+          "faceDown": false,
+          "text": "封印牌：公开、场外、空白；载体离场或翻暗时回到拥有者手牌",
+          "color": "紫",
+          "hostId": "i141"
+        }
+      ],
+      "graveyard": [
+        [
+          "i166",
+          "XQ40"
+        ]
+      ],
+      "pending": null,
+      "waiting": null,
+      "responseWindow": null,
+      "stack": [],
+      "legalSample": [
+        {
+          "kind": "pass",
+          "id": "{\"kind\":\"pass\"}",
+          "label": "让过"
+        }
+      ],
+      "legalKinds": [
+        "pass"
+      ]
+    },
+    {
+      "seat": 1,
+      "version": 250,
+      "turn": 5,
+      "phase": "confrontation",
+      "step": "region:0:combat:after",
+      "hand": [
+        [
+          "i122",
+          "XQ12"
+        ],
+        [
+          "i130",
+          "JZ49"
+        ],
+        [
+          "i144",
+          "JC085"
+        ],
+        [
+          "i155",
+          "JC125"
+        ]
+      ],
+      "assets": [
+        [
+          "i127",
+          null,
+          false
+        ],
+        [
+          "i132",
+          null,
+          false
+        ],
+        [
+          "i138",
+          null,
+          false
+        ],
+        [
+          "i153",
+          null,
+          false
+        ],
+        [
+          "i156",
+          null,
+          false
+        ],
+        [
+          "i128",
+          null,
+          true
+        ],
+        [
+          "i131",
+          null,
+          true
+        ],
+        [
+          "i142",
+          null,
+          true
+        ],
+        [
+          "i145",
+          null,
+          false
+        ],
+        [
+          "i164",
+          null,
+          false
+        ]
+      ],
+      "board": [
+        [
+          0,
+          "i141",
+          "JC125",
+          "p1",
+          false
+        ],
+        [
+          0,
+          "i160",
+          "JZ50",
+          "p1",
+          false
+        ]
+      ],
+      "sealed": [
+        {
+          "instanceId": "i149",
+          "cardId": "XQ41",
+          "name": "启迪之梦",
+          "owner": "p0",
+          "controller": "p0",
+          "kind": "sealed",
+          "exhausted": false,
+          "faceDown": false,
+          "text": "封印牌：公开、场外、空白；载体离场或翻暗时回到拥有者手牌",
+          "color": "紫",
+          "hostId": "i141"
+        }
+      ],
+      "graveyard": [
+        [
+          "i166",
+          "XQ40"
+        ]
+      ],
+      "pending": null,
+      "waiting": null,
+      "responseWindow": null,
+      "stack": [],
+      "legalSample": [],
+      "legalKinds": []
+    }
+  ],
+  "restoredOriginalSeatAuthenticationOnly": true,
+  "uncaughtJsErrors": []
+}

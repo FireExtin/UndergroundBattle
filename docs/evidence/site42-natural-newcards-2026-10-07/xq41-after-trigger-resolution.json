@@ -1,0 +1,510 @@
+{
+  "commands": 173,
+  "checks": [],
+  "views": [
+    {
+      "seat": 0,
+      "version": 178,
+      "turn": 4,
+      "phase": "action",
+      "step": "team:0",
+      "hand": [
+        [
+          "i116",
+          "JC125"
+        ],
+        [
+          "i125",
+          "JC125"
+        ],
+        [
+          "i129",
+          "JC125"
+        ],
+        [
+          "i136",
+          "JC125"
+        ],
+        [
+          "i143",
+          "JZ58"
+        ],
+        [
+          "i147",
+          "XQ40"
+        ],
+        [
+          "i152",
+          "JC125"
+        ]
+      ],
+      "assets": [
+        [
+          "i127",
+          null,
+          true
+        ],
+        [
+          "i132",
+          null,
+          true
+        ],
+        [
+          "i138",
+          null,
+          false
+        ],
+        [
+          "i128",
+          null,
+          false
+        ],
+        [
+          "i131",
+          null,
+          false
+        ],
+        [
+          "i142",
+          null,
+          false
+        ],
+        [
+          "i145",
+          null,
+          false
+        ]
+      ],
+      "board": [
+        [
+          0,
+          "i135",
+          "XQ40",
+          "p0",
+          false
+        ],
+        [
+          0,
+          "i141",
+          "JC125",
+          "p1",
+          false
+        ]
+      ],
+      "sealed": [
+        {
+          "instanceId": "i149",
+          "cardId": "XQ41",
+          "name": "启迪之梦",
+          "owner": "p0",
+          "controller": "p0",
+          "kind": "sealed",
+          "exhausted": false,
+          "faceDown": false,
+          "text": "封印牌：公开、场外、空白；载体离场或翻暗时回到拥有者手牌",
+          "color": "紫",
+          "hostId": "i141"
+        }
+      ],
+      "graveyard": [],
+      "pending": null,
+      "waiting": null,
+      "responseWindow": null,
+      "stack": [],
+      "legalSample": [
+        {
+          "kind": "pass",
+          "id": "{\"kind\":\"pass\"}",
+          "label": "让过"
+        },
+        {
+          "kind": "asset",
+          "cardId": "i116",
+          "id": "{\"kind\":\"asset\",\"cardId\":\"i116\"}",
+          "label": "无知路人 建立资产"
+        },
+        {
+          "kind": "deploy",
+          "cardId": "i116",
+          "region": 0,
+          "id": "{\"kind\":\"deploy\",\"cardId\":\"i116\",\"region\":0}",
+          "label": "派遣 无知路人 → 京都"
+        },
+        {
+          "kind": "conceal",
+          "cardId": "i116",
+          "region": 0,
+          "id": "{\"kind\":\"conceal\",\"cardId\":\"i116\",\"region\":0}",
+          "label": "秘密派遣 无知路人 → 京都"
+        },
+        {
+          "kind": "deploy",
+          "cardId": "i116",
+          "region": 1,
+          "id": "{\"kind\":\"deploy\",\"cardId\":\"i116\",\"region\":1}",
+          "label": "派遣 无知路人 → 莫斯科"
+        },
+        {
+          "kind": "conceal",
+          "cardId": "i116",
+          "region": 1,
+          "id": "{\"kind\":\"conceal\",\"cardId\":\"i116\",\"region\":1}",
+          "label": "秘密派遣 无知路人 → 莫斯科"
+        },
+        {
+          "kind": "deploy",
+          "cardId": "i116",
+          "region": 2,
+          "id": "{\"kind\":\"deploy\",\"cardId\":\"i116\",\"region\":2}",
+          "label": "派遣 无知路人 → 切尔诺贝利"
+        },
+        {
+          "kind": "conceal",
+          "cardId": "i116",
+          "region": 2,
+          "id": "{\"kind\":\"conceal\",\"cardId\":\"i116\",\"region\":2}",
+          "label": "秘密派遣 无知路人 → 切尔诺贝利"
+        },
+        {
+          "kind": "asset",
+          "cardId": "i125",
+          "id": "{\"kind\":\"asset\",\"cardId\":\"i125\"}",
+          "label": "无知路人 建立资产"
+        },
+        {
+          "kind": "deploy",
+          "cardId": "i125",
+          "region": 0,
+          "id": "{\"kind\":\"deploy\",\"cardId\":\"i125\",\"region\":0}",
+          "label": "派遣 无知路人 → 京都"
+        },
+        {
+          "kind": "conceal",
+          "cardId": "i125",
+          "region": 0,
+          "id": "{\"kind\":\"conceal\",\"cardId\":\"i125\",\"region\":0}",
+          "label": "秘密派遣 无知路人 → 京都"
+        },
+        {
+          "kind": "deploy",
+          "cardId": "i125",
+          "region": 1,
+          "id": "{\"kind\":\"deploy\",\"cardId\":\"i125\",\"region\":1}",
+          "label": "派遣 无知路人 → 莫斯科"
+        },
+        {
+          "kind": "conceal",
+          "cardId": "i125",
+          "region": 1,
+          "id": "{\"kind\":\"conceal\",\"cardId\":\"i125\",\"region\":1}",
+          "label": "秘密派遣 无知路人 → 莫斯科"
+        },
+        {
+          "kind": "deploy",
+          "cardId": "i125",
+          "region": 2,
+          "id": "{\"kind\":\"deploy\",\"cardId\":\"i125\",\"region\":2}",
+          "label": "派遣 无知路人 → 切尔诺贝利"
+        },
+        {
+          "kind": "conceal",
+          "cardId": "i125",
+          "region": 2,
+          "id": "{\"kind\":\"conceal\",\"cardId\":\"i125\",\"region\":2}",
+          "label": "秘密派遣 无知路人 → 切尔诺贝利"
+        },
+        {
+          "kind": "asset",
+          "cardId": "i129",
+          "id": "{\"kind\":\"asset\",\"cardId\":\"i129\"}",
+          "label": "无知路人 建立资产"
+        },
+        {
+          "kind": "deploy",
+          "cardId": "i129",
+          "region": 0,
+          "id": "{\"kind\":\"deploy\",\"cardId\":\"i129\",\"region\":0}",
+          "label": "派遣 无知路人 → 京都"
+        },
+        {
+          "kind": "conceal",
+          "cardId": "i129",
+          "region": 0,
+          "id": "{\"kind\":\"conceal\",\"cardId\":\"i129\",\"region\":0}",
+          "label": "秘密派遣 无知路人 → 京都"
+        }
+      ],
+      "legalKinds": [
+        "asset",
+        "conceal",
+        "deploy",
+        "pass"
+      ],
+      "relevantActions": [],
+      "actualAssets": [
+        {
+          "instanceId": "i127",
+          "name": "资产",
+          "owner": "p0",
+          "controller": "p0",
+          "kind": "asset",
+          "exhausted": true,
+          "faceDown": false,
+          "color": "紫",
+          "magic": ""
+        },
+        {
+          "instanceId": "i132",
+          "name": "资产",
+          "owner": "p0",
+          "controller": "p0",
+          "kind": "asset",
+          "exhausted": true,
+          "faceDown": false,
+          "color": "中立",
+          "magic": ""
+        },
+        {
+          "instanceId": "i138",
+          "name": "资产",
+          "owner": "p0",
+          "controller": "p0",
+          "kind": "asset",
+          "exhausted": false,
+          "faceDown": false,
+          "color": "中立",
+          "magic": ""
+        },
+        {
+          "instanceId": "i128",
+          "name": "资产",
+          "owner": "p1",
+          "controller": "p1",
+          "kind": "asset",
+          "exhausted": false,
+          "faceDown": false,
+          "color": "黑",
+          "magic": "死亡"
+        },
+        {
+          "instanceId": "i131",
+          "name": "资产",
+          "owner": "p1",
+          "controller": "p1",
+          "kind": "asset",
+          "exhausted": false,
+          "faceDown": false,
+          "color": "蓝",
+          "magic": "鲜血"
+        },
+        {
+          "instanceId": "i142",
+          "name": "资产",
+          "owner": "p1",
+          "controller": "p1",
+          "kind": "asset",
+          "exhausted": false,
+          "faceDown": false,
+          "color": "中立",
+          "magic": ""
+        },
+        {
+          "instanceId": "i145",
+          "name": "资产",
+          "owner": "p1",
+          "controller": "p1",
+          "kind": "asset",
+          "exhausted": false,
+          "faceDown": false,
+          "color": "中立",
+          "magic": ""
+        }
+      ]
+    },
+    {
+      "seat": 1,
+      "version": 178,
+      "turn": 4,
+      "phase": "action",
+      "step": "team:0",
+      "hand": [
+        [
+          "i118",
+          "JZ50"
+        ],
+        [
+          "i122",
+          "XQ12"
+        ],
+        [
+          "i130",
+          "JZ49"
+        ],
+        [
+          "i137",
+          "JC125"
+        ],
+        [
+          "i144",
+          "JC085"
+        ]
+      ],
+      "assets": [
+        [
+          "i127",
+          null,
+          true
+        ],
+        [
+          "i132",
+          null,
+          true
+        ],
+        [
+          "i138",
+          null,
+          false
+        ],
+        [
+          "i128",
+          null,
+          false
+        ],
+        [
+          "i131",
+          null,
+          false
+        ],
+        [
+          "i142",
+          null,
+          false
+        ],
+        [
+          "i145",
+          null,
+          false
+        ]
+      ],
+      "board": [
+        [
+          0,
+          "i135",
+          "XQ40",
+          "p0",
+          false
+        ],
+        [
+          0,
+          "i141",
+          "JC125",
+          "p1",
+          false
+        ]
+      ],
+      "sealed": [
+        {
+          "instanceId": "i149",
+          "cardId": "XQ41",
+          "name": "启迪之梦",
+          "owner": "p0",
+          "controller": "p0",
+          "kind": "sealed",
+          "exhausted": false,
+          "faceDown": false,
+          "text": "封印牌：公开、场外、空白；载体离场或翻暗时回到拥有者手牌",
+          "color": "紫",
+          "hostId": "i141"
+        }
+      ],
+      "graveyard": [],
+      "pending": null,
+      "waiting": null,
+      "responseWindow": null,
+      "stack": [],
+      "legalSample": [],
+      "legalKinds": [],
+      "relevantActions": [],
+      "actualAssets": [
+        {
+          "instanceId": "i127",
+          "name": "资产",
+          "owner": "p0",
+          "controller": "p0",
+          "kind": "asset",
+          "exhausted": true,
+          "faceDown": false,
+          "color": "紫",
+          "magic": ""
+        },
+        {
+          "instanceId": "i132",
+          "name": "资产",
+          "owner": "p0",
+          "controller": "p0",
+          "kind": "asset",
+          "exhausted": true,
+          "faceDown": false,
+          "color": "中立",
+          "magic": ""
+        },
+        {
+          "instanceId": "i138",
+          "name": "资产",
+          "owner": "p0",
+          "controller": "p0",
+          "kind": "asset",
+          "exhausted": false,
+          "faceDown": false,
+          "color": "中立",
+          "magic": ""
+        },
+        {
+          "instanceId": "i128",
+          "name": "资产",
+          "owner": "p1",
+          "controller": "p1",
+          "kind": "asset",
+          "exhausted": false,
+          "faceDown": false,
+          "color": "黑",
+          "magic": "死亡"
+        },
+        {
+          "instanceId": "i131",
+          "name": "资产",
+          "owner": "p1",
+          "controller": "p1",
+          "kind": "asset",
+          "exhausted": false,
+          "faceDown": false,
+          "color": "蓝",
+          "magic": "鲜血"
+        },
+        {
+          "instanceId": "i142",
+          "name": "资产",
+          "owner": "p1",
+          "controller": "p1",
+          "kind": "asset",
+          "exhausted": false,
+          "faceDown": false,
+          "color": "中立",
+          "magic": ""
+        },
+        {
+          "instanceId": "i145",
+          "name": "资产",
+          "owner": "p1",
+          "controller": "p1",
+          "kind": "asset",
+          "exhausted": false,
+          "faceDown": false,
+          "color": "中立",
+          "magic": ""
+        }
+      ]
+    }
+  ],
+  "stopped": "action-phase-inspection"
+}
