@@ -5,18 +5,9 @@ import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { Miniflare, convertV4MiniflareOptions } from 'miniflare';
 import { RoomStore } from '../src/store.mjs';
-import { digest } from '../src/service.mjs';
+import { digest, RoomService } from '../src/service.mjs';
 import { initSync, newGame } from '../generated/hegemony_wasm.js';
-import * as legacy from '../generated/legacy-v0.2.1/hegemony_wasm.js';
-import * as intermediate from '../generated/legacy-v0.2.2/hegemony_wasm.js';
-import * as last from '../generated/legacy-v0.2.3/hegemony_wasm.js';
-import * as stable from '../generated/legacy-v0.2.4/hegemony_wasm.js';
-import * as paced from '../generated/legacy-v0.2.5/hegemony_wasm.js';
-import * as attached from '../generated/legacy-v0.2.6/hegemony_wasm.js';
-import * as grave from '../generated/legacy-v0.2.7/hegemony_wasm.js';
-import * as playable from '../generated/legacy-v0.2.8/hegemony_wasm.js';
-import * as society from '../generated/legacy-v0.2.9/hegemony_wasm.js';
-import * as forceMage from '../generated/legacy-v0.2.10/hegemony_wasm.js';
+import { frozenKernel } from './fixtures/frozen-kernel.mjs';
 
 test('real workerd/WASM with D1 SQLite: concurrency, receipts, rollback and reopen', async t => {
   const persist = mkdtempSync(join(tmpdir(), 'hegemony-worker-d1-'));
@@ -111,61 +102,46 @@ test('real workerd/WASM with D1 SQLite: concurrency, receipts, rollback and reop
     assert.equal(preciseReady.status, 200);
     const opaqueAfter = (await store.room(preciseId)).state;
     assert(opaqueAfter.includes('"seed":18446744073709551615')); assert(opaqueAfter.includes('"random":18446744073709551615'));
-    // A genuinely old WASM fresh lobby is persisted locally, then advanced only by normal API actions.
-    // Its pending choice and receipts must survive a Worker reopen without upgrading its rules.
+    // Local-only historical fixtures are retained byte-for-byte and fail closed.
     const oldRooms = [];
-    for (const [oldKernel, engineVersion, idChar, tokenChar, invite] of [
-      [legacy, 'rust-v0.2.1', 'e', 'b', 'LEGACYTEST21'],
-      [intermediate, 'rust-v0.2.2', 'd', 'c', 'LEGACYTEST22'],
-      [last, 'rust-v0.2.3', 'c', 'd', 'LEGACYTEST23'],
-      [stable, 'rust-v0.2.4', 'b', 'e', 'LEGACYTEST24'],
-      [paced, 'rust-v0.2.5', 'a', 'f', 'LEGACYTEST25'],
-      [attached, 'rust-v0.2.6', '9', '9', 'LEGACYTEST26'],
-      [grave, 'rust-v0.2.7', '8', '8', 'LEGACYTEST27'],
-      [playable, 'rust-v0.2.8', '7', '7', 'LEGACYTEST28'],
-      [society, 'rust-v0.2.9', '6', '6', 'LEGACYTEST29'],
-      [forceMage, 'rust-v0.2.10', '5', '5', 'LEGACYTEST210'],
-    ]) {
-      oldKernel.initSync({ module: readFileSync((existsSync('rust-game-wasm') ? '' : '../') + `rust-game-wasm/legacy-v0.2.${engineVersion.slice("rust-v0.2.".length)}/hegemony_wasm_bg.wasm`) });
-      const id = idChar.repeat(24), token = tokenChar.repeat(64);
+    for (let minor = 1; minor <= 10; minor++) {
+      const oldKernel = await frozenKernel('legacy-v0.2.' + minor);
+      const id = String(minor).padStart(2, '0').repeat(12), token = String(minor).padStart(2, '0').repeat(32), invite = 'OLDTEST' + minor;
       const old = JSON.parse(oldKernel.newGame(id, invite, 'duel', '旧核', 'watchers', '18446744073709551615'));
-      assert.equal(old.view.versions.engine, engineVersion);
+      const createBody = { name: '旧核', mode: 'duel', deckId: 'watchers', requestId: key() };
+      const receiptKeys = new RoomService(db, {});
+      const entryKey = await receiptKeys.entryKey(createBody, { kind: 'create', name: '旧核', mode: 'duel', deckId: 'watchers' });
+      const oldResponse = JSON.stringify({ roomId: id, inviteCode: invite, token, seat: 0, view: old.view });
       await store.create({ id, invite, state: old.state, nonce: key(), tokenHash: await digest(token),
-        requestHash: await digest(key()), intentHash: 'legacy-fixture', response: '{}' });
-      const oldHost = { roomId: id, token };
-      const roomCatalog = await api(path(oldHost, 'catalog'), null, oldHost);
-      assert.equal(roomCatalog.status, 200);
-      assert.equal(roomCatalog.body.engineVersion, engineVersion);
-      assert.equal(roomCatalog.body.cards.some(c => c.id === 'JC004'), engineVersion === 'rust-v0.2.10');
-      assert(!roomCatalog.body.cards.some(c => c.id === 'JC005'));
-      if (['rust-v0.2.9', 'rust-v0.2.10'].includes(engineVersion)) {
-        const before = (await store.room(id)).state;
-        const unsupportedCards = engineVersion === 'rust-v0.2.9' ? ['JC004', 'JC005'] : ['JC005'];
-        for (const cardId of unsupportedCards) for (const versions of [catalog.body, roomCatalog.body]) {
-          const rejected = await api('/api/rooms/join', { inviteCode: invite, name: '新版构筑拒绝', requestId: key(), deckDraft: { id: 'new-deck', name: '新卡', societyId: null, cards: [{ cardId, count: 3 }, { cardId: 'JC125', count: 47 }], rulesVersion: versions.rulesVersion, cardPoolVersion: versions.cardPoolVersion, engineVersion: versions.engineVersion, description: '', updatedAt: '' } });
-          assert.equal(rejected.status, 400); assert.equal((await store.room(id)).state, before);
-          assert.deepEqual(await counts(id), [1, 0, 0]);
-        }
-      }
-      const hasExtraGrayCharacter = ['rust-v0.2.3', 'rust-v0.2.4', 'rust-v0.2.5', 'rust-v0.2.6', 'rust-v0.2.7', 'rust-v0.2.8', 'rust-v0.2.9', 'rust-v0.2.10'].includes(engineVersion);
-      const frozenCounts = { 'rust-v0.2.1': 29, 'rust-v0.2.2': 29, 'rust-v0.2.3': 30, 'rust-v0.2.4': 30, 'rust-v0.2.5': 36, 'rust-v0.2.6': 37, 'rust-v0.2.7': 39, 'rust-v0.2.8': 48, 'rust-v0.2.9': 48, 'rust-v0.2.10': 49 };
-      assert.equal(roomCatalog.body.cards.length, frozenCounts[engineVersion]);
-      const oldKeepers = roomCatalog.body.decks.find(deck => deck.id === 'keepers');
-      assert.equal(oldKeepers.cards.find(entry => entry.cardId === 'JC125').count, hasExtraGrayCharacter ? 14 : 17);
-      assert.equal(oldKeepers.cards.some(entry => entry.cardId === 'JC058'), hasExtraGrayCharacter);
-      const oldJoin = await api('/api/rooms/join', { inviteCode: invite, name: '旧核对手', deckId: 'hunters', requestId: key() });
-      assert.equal(oldJoin.status, 200); assert.equal(oldJoin.body.view.versions.engine, engineVersion);
-      const oldGuest = oldJoin.body;
-      for (const [actor, version, action] of [[oldHost, 1, 'ready'], [oldGuest, 2, 'ready'], [oldHost, 3, 'start']]) {
-        const result = await api(path(actor, 'commands'), { commandId: key(), expectedVersion: version, action: { kind: action } }, actor);
-        assert.equal(result.status, 200); assert.equal(result.body.versions.engine, engineVersion);
-      }
-      const views = await Promise.all([oldHost, oldGuest].map(async actor => (await api(path(actor, 'state'), null, actor)).body));
-      const choiceSeat = views.findIndex(v => v.pendingChoice?.kind === 'mulligan');
-      assert(choiceSeat >= 0); assert(views.every(v => v.versions.engine === engineVersion));
-      const opaque = (await store.room(id)).state;
-      assert(opaque.includes('"seed":18446744073709551615'));
-      oldRooms.push({ id, engineVersion, actors: [oldHost, oldGuest], views, choiceSeat, opaque, catalog: roomCatalog.body });
+        ...entryKey, response: oldResponse });
+      const actor = { roomId: id, token };
+      const duplicate = { commandId: key(), expectedVersion: 0, action: { kind: 'game', action: { kind: 'ready' } } };
+      const commandHash = await digest(JSON.stringify({ action: { action: { kind: 'ready' }, kind: 'game' }, expectedVersion: 0, seat: 0 }));
+      await db.prepare('INSERT INTO commands(room_id,seat,command_id,intent_hash,response,version) VALUES(?,0,?,?,?,0)').bind(id, duplicate.commandId, commandHash, JSON.stringify(old.view)).run();
+      const joinBody = { inviteCode: invite, name: '旧核对手', deckId: 'hunters', requestId: key() };
+      const joinKey = await receiptKeys.entryKey(joinBody, { kind: 'join', inviteCode: invite, name: '旧核对手', deckId: 'hunters' });
+      await db.prepare('INSERT INTO entry_receipts(request_hash,intent_hash,response,room_id) VALUES(?,?,?,?)').bind(joinKey.requestHash, joinKey.intentHash, oldResponse, id).run();
+      const snapshot = async () => {
+        const tables = {};
+        for (const table of ['rooms', 'seats', 'commands', 'entry_receipts', 'journal']) tables[table] = (await db.prepare(`SELECT * FROM ${table} WHERE ${table === 'rooms' ? 'id' : 'room_id'}=?`).bind(id).all()).results;
+        return tables;
+      };
+      const before = await snapshot();
+      const assertRejected = result => {
+        assert.equal(result.status, 410); assert.equal(result.body.error, 'unsupported_room_version');
+        assert.match(result.body.message, /新建牌桌/); assert(!result.body.view);
+      };
+      for (const operation of ['state', 'catalog']) assertRejected(await api(path(actor, operation), null, actor));
+      assertRejected(await api(path(actor, 'state') + '?afterVersion=0', null, actor));
+      assertRejected(await api(path(actor, 'commands'), { commandId: key(), expectedVersion: 0, action: { kind: 'game', action: { kind: 'ready' } } }, actor));
+      assertRejected(await api(path(actor, 'quote'), { windowId: 'old', intentId: 'old' }, actor));
+      assertRejected(await api('/api/rooms/join', { inviteCode: invite, name: '旧核对手', deckId: 'hunters', requestId: key() }));
+      assertRejected(await api(path(actor, 'commands'), duplicate, actor));
+      assertRejected(await api('/api/rooms', createBody));
+      assertRejected(await api('/api/rooms/join', joinBody));
+      assert.deepEqual(await snapshot(), before);
+      assert.equal((await store.room(id)).state, old.state); assert.deepEqual(await counts(id), [1, 1, 0]);
+      oldRooms.push({ id, actor, opaque: old.state, engine: old.view.versions.engine, assertRejected, before, snapshot });
     }
     const draft = { id: 'cloud-draft-a', name: '云端自组', description: '复制预组后编辑', societyId: null,
       cards: [{ cardId: 'JC005', count: 3 }, { cardId: 'JC125', count: 47 }],
@@ -197,12 +173,6 @@ test('real workerd/WASM with D1 SQLite: concurrency, receipts, rollback and reop
     const frozenHostView = (await api(path(customHost, 'state'), null, customHost)).body;
     draft.cards[0].count += 1; // Editing the original browser draft cannot mutate the persisted copy.
     assert.deepEqual(durableView((await api(path(customHost, 'state'), null, customHost)).body), durableView(frozenHostView));
-    for (const old of oldRooms) {
-      if (['rust-v0.2.4', 'rust-v0.2.5', 'rust-v0.2.6', 'rust-v0.2.7', 'rust-v0.2.8', 'rust-v0.2.9', 'rust-v0.2.10'].includes(old.engineVersion)) continue; // Frozen saved-deck kernels accept only their own-version drafts.
-      const rejected = await api('/api/rooms/join', { ...customJoinBody, inviteCode: old.actors[0].inviteCode || (await store.room(old.id)).invite, requestId: key() });
-      assert.equal(rejected.status, 400); assert.match(rejected.body.message, /旧牌桌/);
-      assert.equal((await store.room(old.id)).state, old.opaque);
-    }
     const stale = await api(path(host, 'commands'), { commandId: key(), expectedVersion: 4, action: { kind: 'ready' } }, host);
     assert.equal(stale.status, 409); assert.equal(stale.body.view.version, 5);
     assert.deepEqual(await counts(host.roomId), [4, 2, 5]);
@@ -224,24 +194,16 @@ test('real workerd/WASM with D1 SQLite: concurrency, receipts, rollback and reop
     assert.deepEqual(durableView((await api(path(customHost, 'state'), null, customHost)).body), durableView(frozenHostView));
     assert.deepEqual((await api('/api/rooms/join', customJoinBody)).body, customGuest);
     for (const old of oldRooms) {
-      for (const [i, actor] of old.actors.entries()) {
-        assert.deepEqual(durableView((await api(path(actor, 'state'), null, actor)).body), durableView(old.views[i]));
-        assert.deepEqual((await api(path(actor, 'catalog'), null, actor)).body, old.catalog);
-      }
+      old.assertRejected(await api(path(old.actor, 'state'), null, old.actor));
+      old.assertRejected(await api('/api/rooms/join', { ...customJoinBody, inviteCode: (await new RoomStore(db).room(old.id)).invite, requestId: key() }));
       assert.equal((await new RoomStore(db).room(old.id)).state, old.opaque);
-      const actor = old.actors[old.choiceSeat];
-      const command = { commandId: key(), expectedVersion: 4, action: { kind: 'choose', choiceId: old.views[old.choiceSeat].pendingChoice.id, selected: [] } };
-      const result = await api(path(actor, 'commands'), command, actor);
-      assert.equal(result.status, 200); assert.equal(result.body.versions.engine, old.engineVersion);
-      const after = (await new RoomStore(db).room(old.id)).state;
-      assert.deepEqual(await api(path(actor, 'commands'), command, actor), result);
-      assert.equal((await new RoomStore(db).room(old.id)).state, after);
-      assert.deepEqual(await counts(old.id), [2, 4, 5]);
+      assert.deepEqual(await counts(old.id), [1, 1, 0]);
+      assert.deepEqual(await old.snapshot(), old.before);
     }
     assert.deepEqual(durableView((await api(path(host, 'state'), null, host)).body), durableView(snapshot));
     assert.deepEqual((await api(path(host, 'commands'), original, host)).body, identical[0].body);
     assert.deepEqual(await counts(host.roomId), [4, 2, 5]);
-    t.diagnostic(JSON.stringify({ currentVersion: catalog.body.engineVersion, reopenedFrozenVersions: oldRooms.map(r => r.engineVersion), v010PendingChoiceAndReceiptsPreserved: oldRooms.some(r => r.engineVersion === 'rust-v0.2.10'), newJC005DraftRejectedByV009AndV010WithoutWrites: true, localWorkerdD1Only: true }));
+    t.diagnostic(JSON.stringify({ currentVersion: catalog.body.engineVersion, unsupportedFrozenVersions: oldRooms.map(r => r.engine), oldDataUntouchedBeforeAndAfterReopen: true, localWorkerdD1Only: true }));
     t.diagnostic('Provider emulation only; remote Cloudflare D1 acceptance is still required. Persisted at ' + persist);
   } finally { await mf.dispose(); }
 });

@@ -90,10 +90,19 @@ export class RoomService {
     if (typeof key !== 'string' || !/^[a-zA-Z0-9-]{32,128}$/.test(key)) bad('请求标识格式不正确');
     return { requestHash: await digest(key), intentHash: await intent(values) };
   }
+  async recoverEntry(key) {
+    const previous = recovered(await this.store.entryReceipt(key.requestHash), key.intentHash);
+    if (previous && this.kernel.assertSupported) {
+      const room = await this.store.room(previous.roomId);
+      if (!room) throw new HttpError(404, '房间不存在');
+      this.kernel.assertSupported(room.state);
+    }
+    return previous;
+  }
   async create(body) {
     const values = { kind: 'create', name: name(body.name), mode: body.mode, ...deckSelection(body) };
     const key = await this.entryKey(body, values);
-    const previous = recovered(await this.store.entryReceipt(key.requestHash), key.intentHash);
+    const previous = await this.recoverEntry(key);
     if (previous) return previous;
     const id = secure(12), invite = secure(6).toUpperCase(), token = secure(32), nonce = secure(16);
     const seed = BigInt('0x' + secure(8)).toString();
@@ -104,7 +113,7 @@ export class RoomService {
     try {
       await this.store.create({ id, invite, state: next.state, nonce, tokenHash: await digest(token), ...key, response: JSON.stringify(response) });
     } catch (error) {
-      const concurrent = recovered(await this.store.entryReceipt(key.requestHash), key.intentHash);
+      const concurrent = await this.recoverEntry(key);
       if (concurrent) return concurrent;
       throw error;
     }
@@ -115,7 +124,7 @@ export class RoomService {
     const values = { kind: 'join', inviteCode: body.inviteCode.trim().toUpperCase(), name: name(body.name), ...deckSelection(body) };
     const key = await this.entryKey(body, values);
     for (let attempt = 0; attempt < 5; attempt++) {
-      const previous = recovered(await this.store.entryReceipt(key.requestHash), key.intentHash);
+      const previous = await this.recoverEntry(key);
       if (previous) return previous;
       const room = await this.store.byInvite(values.inviteCode);
       if (!room) throw new HttpError(404, '房间不存在');
@@ -124,7 +133,7 @@ export class RoomService {
         ? this.kernel.joinGameWithDeck(room.state, values.name, JSON.stringify(values.deckDraft))
         : this.kernel.joinGame(room.state, values.name, values.deckId))); }
       catch (error) {
-        const concurrent = recovered(await this.store.entryReceipt(key.requestHash), key.intentHash);
+        const concurrent = await this.recoverEntry(key);
         if (concurrent) return concurrent;
         throw error;
       }
@@ -138,7 +147,7 @@ export class RoomService {
           : { Join: { name: values.name, deck_id: values.deckId } }) });
       if (committed) return response;
     }
-    const previous = recovered(await this.store.entryReceipt(key.requestHash), key.intentHash);
+    const previous = await this.recoverEntry(key);
     if (previous) return previous;
     throw new HttpError(409, '房间正在变化，请使用原请求重试加入。');
   }
@@ -173,10 +182,11 @@ export class RoomService {
     if (!Number.isSafeInteger(body.expectedVersion) || body.expectedVersion < 0) bad('版本格式不正确');
     const action = normalizedAction(body.action);
     const hash = await intent({ seat, expectedVersion: body.expectedVersion, action });
-    const previous = recovered(await this.store.receipt(id, body.commandId), hash);
-    if (previous) return previous;
     const room = await this.store.room(id);
     if (!room) throw new HttpError(404, '房间不存在');
+    this.kernel.assertSupported?.(room.state);
+    const previous = recovered(await this.store.receipt(id, body.commandId), hash);
+    if (previous) return previous;
     if (this.kernel.supportsPacing?.(room.state)) {
       return this.pacedCommand(id, seat, room, body, action, hash);
     }

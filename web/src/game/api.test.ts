@@ -11,6 +11,19 @@ const pacedView = (status: 'undecided' | 'composing' | 'passed'): View => ({ ...
     ...(status === 'composing' ? { myIntentId: 'restored-intent' } : {}) }, pendingChoice: null });
 afterEach(() => { vi.unstubAllGlobals(); localStorage.clear(); });
 describe('cloud table API', () => {
+  it('an obsolete entry receipt rejects once and a later explicit create uses a fresh key', async () => {
+    const fetchMock = vi.fn().mockResolvedValueOnce(new Response(JSON.stringify({ entryIdempotency: true }), { status: 200 }))
+      .mockResolvedValueOnce(new Response(JSON.stringify({ error: 'unsupported_room_version', message: '请新建牌桌' }), { status: 410 }))
+      .mockResolvedValueOnce(new Response(JSON.stringify(session), { status: 200 }));
+    vi.stubGlobal('fetch', fetchMock); await getCatalog();
+    await expect(createRoom('最新玩家', 'duel', 'watchers')).rejects.toMatchObject({ status: 410, code: 'unsupported_room_version' });
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+    expect(localStorage.getItem('hegemony.entry.v1')).toBeNull();
+    await createRoom('最新玩家', 'duel', 'watchers');
+    const first = JSON.parse(fetchMock.mock.calls[1][1].body), next = JSON.parse(fetchMock.mock.calls[2][1].body);
+    expect(next.requestId).not.toBe(first.requestId);
+    expect({ ...next, requestId: first.requestId }).toEqual(first);
+  });
   it('keeps old room commands unchanged while wrapping new empty-stack and choice actions', () => {
     expect(JSON.parse(JSON.stringify(actionForRoom(testView, { kind: 'pass' })))).toEqual({ kind: 'pass' });
     expect(JSON.parse(JSON.stringify(actionForRoom({ ...testView, serverNowMs: 1000, responseWindow: null }, { kind: 'ready' })))).toEqual({ kind: 'game', action: { kind: 'ready' } });
