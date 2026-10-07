@@ -2,6 +2,7 @@ import { act, renderHook, waitFor } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { readSavedSeats, returnToLobby, savePending, saveSession } from './api';
 import { testCatalog, testView } from './testFixtures';
+import type { View } from './types';
 import { newerView, useGame } from './useGame';
 
 const session = { roomId: testView.roomId, inviteCode: 'INVITE', token: 'opaque-token', seat: 0 };
@@ -68,6 +69,30 @@ describe('experimental current-only rooms', () => {
   });
 });
 describe('room lifecycle and reconciliation', () => {
+  it('keeps paused tables idle, denies game actions, manually discovers a peer resume and rearms only that table', async () => {
+    saveSession({ ...session, roomId: 'other-table', inviteCode: 'OTHER' }); saveSession(session);
+    let state: View = { ...testView, status: 'playing' as const, canPause: true, pause: { pausedAtMs: 2000, pausedBy: 1 }, serverNowMs: 2000 };
+    const fetchMock = vi.fn(async (url: string) => url.endsWith('/catalog') ? json(testCatalog) : json(state));
+    vi.stubGlobal('fetch', fetchMock);
+    const { result } = renderHook(useGame);
+    await waitFor(() => expect(result.current.view?.pause).toBeDefined());
+    vi.useFakeTimers();
+    await act(async () => { await vi.advanceTimersByTimeAsync(86_400_000); document.dispatchEvent(new Event('visibilitychange')); await vi.advanceTimersByTimeAsync(10); });
+    expect(fetchMock.mock.calls.filter(([url]) => url.includes('/state'))).toHaveLength(1);
+    expect(fetchMock.mock.calls.every(([url]) => !url.includes('other-table'))).toBe(true);
+    await act(async () => { await result.current.act({ kind: 'pass' }); });
+    expect(fetchMock.mock.calls.some(([url]) => url.endsWith('/commands'))).toBe(false);
+    const resumed = { ...state, pause: undefined, version: state.version + 1, serverNowMs: 86_400_000 };
+    state = resumed;
+    await act(async () => { result.current.refresh(); await vi.advanceTimersByTimeAsync(1); });
+    expect(result.current.view?.pause).toBeUndefined();
+    await act(async () => { await vi.advanceTimersByTimeAsync(1500); });
+    expect(fetchMock.mock.calls.filter(([url]) => url.includes('/state'))).toHaveLength(3);
+    act(() => result.current.leave());
+    await act(async () => { await vi.advanceTimersByTimeAsync(60_000); });
+    expect(fetchMock.mock.calls.filter(([url]) => url.includes('/state'))).toHaveLength(3);
+    expect(readSavedSeats()).toHaveLength(2);
+  });
   it('rejoins its saved room through the invite without allocating another seat or changing the ready deck', async () => {
     saveSession(session); returnToLobby();
     const restored = { ...testView, players: testView.players.map(p => p.id === 'p0' ? { ...p, ready: true, deckId: 'watchers' } : p) };

@@ -105,6 +105,172 @@ fn command(id: &str, version: u64, action: SessionAction) -> RoomCommand {
         action,
     }
 }
+
+#[tokio::test]
+async fn paused_table_survives_store_restart_receipt_retries_and_other_table_progress() {
+    let dir = tempfile::tempdir().unwrap();
+    let path = dir.path().join("saved-tables.sqlite3");
+    let (store, a, murder, target) = setup(&path, "duel").await;
+    let started = start_murder(&store, &a, murder, target).await;
+    let pause = command(
+        "same-room-operation",
+        started.version,
+        SessionAction::PauseRoom,
+    );
+    let saved = store
+        .command_at_now(&a[0].room_id, &a[1].token, pause.clone(), 2_000)
+        .await
+        .unwrap();
+    assert!(saved.pause.is_some());
+    drop(store);
+    let (store, b, murder, target) = setup(&path, "duel").await;
+    let b_started = start_murder(&store, &b, murder, target).await;
+    let b_before = serde_json::to_string(&store.replay(&b[0].room_id).unwrap()).unwrap();
+    let a_before = serde_json::to_string(&store.replay(&a[0].room_id).unwrap()).unwrap();
+    let reopened = store
+        .state_at_now(&a[0].room_id, &a[0].token, 86_400_000)
+        .await
+        .unwrap();
+    assert_eq!(reopened.server_now_ms, 2_000);
+    assert_eq!(reopened.version, saved.version);
+    let duplicate = store
+        .command_at_now(&a[0].room_id, &a[1].token, pause.clone(), 86_400_000)
+        .await
+        .unwrap();
+    assert_eq!(
+        serde_json::to_value(duplicate).unwrap(),
+        serde_json::to_value(&saved).unwrap()
+    );
+    assert_eq!(
+        store
+            .command_at_now(
+                &a[0].room_id,
+                &a[1].token,
+                command(&pause.command_id, saved.version, SessionAction::ResumeRoom),
+                86_400_000
+            )
+            .await
+            .unwrap_err()
+            .error,
+        "command_id_conflict"
+    );
+    assert!(store
+        .command_at_now(
+            &a[0].room_id,
+            &b[0].token,
+            command("foreign-room", saved.version, SessionAction::ResumeRoom),
+            86_400_000
+        )
+        .await
+        .is_err());
+    assert!(store
+        .command_at_now(
+            &a[0].room_id,
+            "spectator",
+            command("spectator", saved.version, SessionAction::ResumeRoom),
+            86_400_000
+        )
+        .await
+        .is_err());
+    assert_eq!(
+        serde_json::to_string(&store.replay(&a[0].room_id).unwrap()).unwrap(),
+        a_before
+    );
+    assert_eq!(
+        serde_json::to_string(&store.replay(&b[0].room_id).unwrap()).unwrap(),
+        b_before
+    );
+    // The same commandId is legal in B, independently of A's saved receipt.
+    store
+        .command_at_now(
+            &b[0].room_id,
+            &b[0].token,
+            command(
+                "same-room-operation",
+                b_started.version,
+                SessionAction::PassResponse {
+                    window_id: b_started.response_window.unwrap().id,
+                },
+            ),
+            2_000,
+        )
+        .await
+        .unwrap();
+    assert_eq!(
+        serde_json::to_string(&store.replay(&a[0].room_id).unwrap()).unwrap(),
+        a_before
+    );
+    let b_after = serde_json::to_string(&store.replay(&b[0].room_id).unwrap()).unwrap();
+    let resume = command("resume-next-day", saved.version, SessionAction::ResumeRoom);
+    let resumed = store
+        .command_at_now(&a[0].room_id, &a[0].token, resume.clone(), 86_400_000)
+        .await
+        .unwrap();
+    assert!(resumed.pause.is_none());
+    assert_eq!(resumed.version, saved.version + 1);
+    assert_eq!(
+        resumed.response_window.as_ref().unwrap().members[0].deadline_ms,
+        Some(86_404_000)
+    );
+    drop(store);
+    let store = Store::open(&path).unwrap();
+    let retry = store
+        .command_at_now(&a[0].room_id, &a[0].token, resume, 172_800_000)
+        .await
+        .unwrap();
+    assert_eq!(
+        serde_json::to_value(retry).unwrap(),
+        serde_json::to_value(resumed).unwrap()
+    );
+    assert_eq!(
+        serde_json::to_string(&store.replay(&b[0].room_id).unwrap()).unwrap(),
+        b_after
+    );
+    for seats in [&a, &b] {
+        assert!(store.audit_replay(&seats[0].room_id).unwrap().matches);
+    }
+}
+
+#[tokio::test]
+async fn failed_pause_transaction_cannot_report_saved_or_leave_partial_pause_receipt() {
+    let dir = tempfile::tempdir().unwrap();
+    let path = dir.path().join("pause-failure.sqlite3");
+    let (store, seats, murder, target) = setup(&path, "teams").await;
+    let view = start_murder(&store, &seats, murder, target).await;
+    let before = serde_json::to_string(&store.replay(&seats[0].room_id).unwrap()).unwrap();
+    let pause = command("failed-pause", view.version, SessionAction::PauseRoom);
+    let db = rusqlite::Connection::open(&path).unwrap();
+    db.execute_batch("CREATE TRIGGER fail_pause BEFORE INSERT ON journal BEGIN SELECT RAISE(ABORT,'fixture'); END;").unwrap();
+    assert_eq!(
+        store
+            .command_at_now(&seats[0].room_id, &seats[3].token, pause.clone(), 2_000)
+            .await
+            .unwrap_err()
+            .error,
+        "storage_error"
+    );
+    assert_eq!(
+        serde_json::to_string(&store.replay(&seats[0].room_id).unwrap()).unwrap(),
+        before
+    );
+    let count: u64 = db
+        .query_row(
+            "SELECT COUNT(*) FROM commands WHERE room_id=?1 AND command_id='failed-pause'",
+            [&seats[0].room_id],
+            |r| r.get(0),
+        )
+        .unwrap();
+    assert_eq!(count, 0);
+    db.execute_batch("DROP TRIGGER fail_pause").unwrap();
+    drop(db);
+    assert!(store
+        .command_at_now(&seats[0].room_id, &seats[3].token, pause, 2_000)
+        .await
+        .unwrap()
+        .pause
+        .is_some());
+    assert!(store.audit_replay(&seats[0].room_id).unwrap().matches);
+}
 async fn start_murder(
     store: &Store,
     seats: &[Session],

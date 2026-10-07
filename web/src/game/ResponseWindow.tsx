@@ -27,9 +27,9 @@ export function ResponseWindow({ view, busy, uncertain, connection, onSelectCard
     ? { remainingMs: member.deadlineMs - view.serverNowMs, sampledAt: performance.now() } : null,
   [window?.id, member?.deadlineMs, view.serverNowMs]);
   const [, setClockTick] = useState(0);
-  const remainingNow = () => clockSample ? Math.max(0, clockSample.remainingMs - Math.max(0, performance.now() - clockSample.sampledAt)) : null;
+  const remainingNow = () => clockSample ? Math.max(0, clockSample.remainingMs - (view.pause ? 0 : Math.max(0, performance.now() - clockSample.sampledAt))) : null;
   const remainingMs = remainingNow();
-  const counting = !!window && member?.status === 'undecided' && !selection && remainingMs !== null && remainingMs > 0;
+  const counting = !view.pause && !!window && member?.status === 'undecided' && !selection && remainingMs !== null && remainingMs > 0;
   useEffect(() => {
     if (!counting) return;
     const timer = setInterval(() => setClockTick(tick => tick + 1), 100);
@@ -50,7 +50,8 @@ export function ResponseWindow({ view, busy, uncertain, connection, onSelectCard
     : window ? member?.status || 'wait'
     : responses.length ? 'respond' : view.legalActions.some(action => action.kind === 'pass') ? 'pass'
     : top.resolutionState === 'resolving' ? 'resolving' : 'wait';
-  const status = view.pendingChoice ? `请你完成选择：${view.pendingChoice.title}`
+  const status = view.pause ? '牌桌已暂停；恢复后接续剩余响应时间'
+    : view.pendingChoice ? `请你完成选择：${view.pendingChoice.title}`
     : view.waitingChoice ? `等待 ${chooser} 完成选择：${view.waitingChoice.title}`
     : uncertain ? '正在确认上一行动，暂时不能响应'
     : busy ? '正在确认你的响应'
@@ -60,7 +61,7 @@ export function ResponseWindow({ view, busy, uncertain, connection, onSelectCard
     : view.legalActions.some(action => action.kind === 'pass') ? '你当前只能让过，交出优先权'
     : top.resolutionState === 'resolving' ? '正在结算堆顶效果'
     : '等待持有优先权的玩家响应';
-  const commandsEnabled = !!onAction && !busy && !uncertain && connection === 'online' && !selection;
+  const commandsEnabled = !view.pause && !!onAction && !busy && !uncertain && connection === 'online' && !selection;
   const decisionEnabled = commandsEnabled && member?.status === 'undecided' && remainingMs !== null && remainingMs > 0;
   const decide = (begin: boolean) => {
     if (!window || !decisionEnabled || !remainingNow() || (begin && !window.canBegin)) return;

@@ -1,0 +1,11 @@
+{
+  "actualWasm": true,
+  "transitions": 9,
+  "views": 36,
+  "opaqueStateByteEqual": true,
+  "fullTransitionEqual": true,
+  "engine": "rust-v0.2.46-pause-resume-candidate",
+  "pool": "limited-v2.42-jc089-poison-blood-candidate",
+  "wasmBytes": 2209157,
+  "wasmSha256": "9e6362c967046ff245b94ab650bc9ed0f3af32e45cc4ca979305b3921543a2a9"
+}

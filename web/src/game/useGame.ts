@@ -33,6 +33,7 @@ export function useGame() {
   const autoPassPreference = useRef(autoPassEnabled);
   const acceptedView = useRef<View | null>(null);
   const rearmPolling = useRef<(() => void) | null>(null);
+  const refreshPolling = useRef<(() => void) | null>(null);
   const commandLock = useRef(false);
   const pending = useRef<PendingCommand | null>(readPending());
   const [uncertain, setUncertain] = useState(commandFor(pending.current, session));
@@ -92,11 +93,23 @@ export function useGame() {
     };
     const rearm = () => {
       // Preference/status changes only rearm an idle healthy timer, never an in-flight read or backoff.
-      if (controller.signal.aborted || !isActive(session) || polling || timer === undefined || scheduledDelay === null) return;
+      if (controller.signal.aborted || !isActive(session) || polling) return;
+      if (acceptedView.current?.pause) {
+        if (timer !== undefined) clearTimeout(timer);
+        timer = undefined; scheduledDelay = null;
+        return;
+      }
+      if (timer === undefined) {
+        if (initialized && attempts === 0) schedule(delay(), true);
+        return;
+      }
+      if (scheduledDelay === null) return;
       const nextDelay = delay();
       if (nextDelay !== scheduledDelay) schedule(nextDelay, true);
     };
     rearmPolling.current = rearm;
+    const refresh = () => { if (!controller.signal.aborted && isActive(session)) schedule(0, false); };
+    refreshPolling.current = refresh;
     const reconnect = async () => {
       if (controller.signal.aborted || polling) return;
       polling = true;
@@ -109,7 +122,7 @@ export function useGame() {
         if (commandFor(pending.current, session) && !commandLock.current) {
           await resolvePending(session);
         }
-        if (!controller.signal.aborted && isActive(session)) schedule(delay(), true);
+        if (!controller.signal.aborted && isActive(session) && !acceptedView.current?.pause) schedule(delay(), true);
         return;
       } catch (e) {
         if (controller.signal.aborted || !isActive(session)) return;
@@ -129,7 +142,7 @@ export function useGame() {
       }
     };
     const visible = () => {
-      if (document.visibilityState === 'visible' && !controller.signal.aborted) {
+      if (document.visibilityState === 'visible' && !controller.signal.aborted && !acceptedView.current?.pause) {
         schedule(0, false);
       }
     };
@@ -138,6 +151,7 @@ export function useGame() {
     return () => {
       controller.abort(); if (timer !== undefined) clearTimeout(timer);
       if (rearmPolling.current === rearm) rearmPolling.current = null;
+      if (refreshPolling.current === refresh) refreshPolling.current = null;
       document.removeEventListener('visibilitychange', visible);
     };
   }, [session, accept]);
@@ -197,6 +211,7 @@ export function useGame() {
   const act = async (action: Action) => {
     if (!session || !view || commandLock.current) return;
     if (pending.current) { await resolvePending(session); return; }
+    if (view.pause && action.kind !== 'resumeRoom') { setError('此桌已暂停，请先恢复对局。'); return; }
     let payload: Action;
     try { payload = actionForRoom(view, action); }
     catch (error) { setError(error instanceof Error ? error.message : '当前响应窗口已变化，请重新选择。'); return; }
@@ -248,6 +263,7 @@ export function useGame() {
     dismissError: () => setError(''),
     retryCatalog: () => { setError(''); setCatalogRetry(n => n + 1); },
     retryPending: () => { if (session) void resolvePending(session); },
+    refresh: () => refreshPolling.current?.(),
     savedSeats,
     resumeAvailable: !session && savedSeats.length > 0,
     resume,

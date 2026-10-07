@@ -94,6 +94,8 @@ export type View = {
   yourDeck?: import('./deckLibrary').DeckDraft | null;
   serverNowMs?: number;
   responseWindow?: ResponseIntentWindow | null;
+  pause?: { pausedAtMs: number; pausedBy: number };
+  canPause?: boolean;
 };
 export type Deck = { id: string; name: string; description: string; cardCount: number; cards: { cardId: string; count: number }[] };
 export type Catalog = { rulesVersion: string; cardPoolVersion: string; engineVersion: string; decks: Deck[]; cards: CardDefinition[];

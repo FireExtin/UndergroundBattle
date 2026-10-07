@@ -1,0 +1,59 @@
+{
+  "previousFixedWasmSha256": "afc1b42523111dc242fd21850da9af243112a619c9f759bc60cbabac045883f7",
+  "existingFixtureFiles": [
+    {
+      "path": "sites/test/fixtures/historical-rooms.json",
+      "sha256": "daa452f4b7fa5bd695f29c02a2291cbddd61b0eaa87d04fde28c2afd6976a124"
+    },
+    {
+      "path": "sites/test/fixtures/historical-rooms.mjs",
+      "sha256": "a5137597ba31541e4b878c5e3ad3bc8bedba97918eede545009f4f0dc7bf2791"
+    },
+    {
+      "path": "sites/test/fixtures/prepared-assassin-v028.json",
+      "sha256": "f59af6b3d309b989a1b32bb90daf2b6da9c57b43defcfba2db2dda750f394b4a"
+    },
+    {
+      "path": "sites/test/fixtures/prepared-control-pair-v028.json",
+      "sha256": "8d7c5a77d89f5a707a7ee96f493f1d02fbd188166e5662be694061f66ebc4069"
+    },
+    {
+      "path": "sites/test/fixtures/prepared-fire-scholar-v028.json",
+      "sha256": "aaaf3878b7ce1098474b4aa5390daa329cee2b7a4d8873f7bdbbf5a5f77f3149"
+    },
+    {
+      "path": "sites/test/fixtures/prepared-rescue-forecast-v028.json",
+      "sha256": "f28650b5d9cd6e095cc137c90748ea09fe4e96e33c4f709af275c572f9667f64"
+    },
+    {
+      "path": "sites/test/fixtures/prepared-response-v025.json",
+      "sha256": "41252046030a23ee55582bfe26815cd7984b9a895dc14c10edf82a4200a5faa7"
+    },
+    {
+      "path": "sites/test/fixtures/prepared-response-v026.json",
+      "sha256": "ea51975720b3d36c32a695620a5093d994ab1fbbc0bd256f377eccb5275a9be7"
+    },
+    {
+      "path": "sites/test/fixtures/prepared-response-v027.json",
+      "sha256": "6bd803f9aa4d71168e83271c226408922bb1b774da65947e1e4334b5e7c5ba8b"
+    },
+    {
+      "path": "sites/test/fixtures/prepared-response-v028.json",
+      "sha256": "cbdad025e0695d2a97f613c7e6c759b3b4b6915a4210ec4716e6ee72f5725f2c"
+    },
+    {
+      "path": "sites/test/fixtures/prepared-two-cards-v028.json",
+      "sha256": "00c0ebfffd78d29ef1311d6711d160de441618246ae71b0fde6b55a789ef6c16"
+    },
+    {
+      "path": "sites/test/fixtures/reject-historical-room.mjs",
+      "sha256": "7cdd854606f04dfc3c5bbcd120fdf325afbbb5a89c0916ffe1684011ddfa8274"
+    },
+    {
+      "path": "sites/test/fixtures/reviewed-catalog-v044.json",
+      "sha256": "49386a177863cf15ba82a38811ba938e17e9c7c8600e5d568524ca2670b72901"
+    }
+  ],
+  "unchanged": true,
+  "onlineRuntimeReadOrCleared": false
+}

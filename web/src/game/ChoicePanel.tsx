@@ -14,13 +14,14 @@ function move(ids: string[], id: string, delta: number) {
   if (index < 0 || target < 0 || target >= ids.length) return ids;
   const result = [...ids]; [result[index], result[target]] = [result[target], result[index]]; return result;
 }
-export function ChoicePanel({ choice, action, definitions, busy, onSubmit, onReadCard, viewerId, playerLabels, modal = false, modalActive = true }: {
+export function ChoicePanel({ choice, action, definitions, busy, onSubmit, onReadCard, viewerId, playerLabels, modal = false, modalActive = true, onPauseRoom }: {
   choice: Choice; action?: LegalAction; definitions: Map<string, CardDefinition>; busy: boolean; onSubmit: (action: Action) => void;
   onReadCard?: (card: Card) => void;
   viewerId?: string;
   playerLabels?: Record<string, string>;
   modal?: boolean;
   modalActive?: boolean;
+  onPauseRoom?: () => void;
 }) {
   const dialog = useRef<HTMLElement>(null);
   useDialogFocus(dialog, modal && modalActive);
@@ -68,6 +69,7 @@ export function ChoicePanel({ choice, action, definitions, busy, onSubmit, onRea
   </ol>;
 
   return <section ref={dialog} className="hg-choice" data-choice-id={choice.id} role={modal ? 'dialog' : undefined} aria-modal={modal ? true : undefined} aria-label="待完成的选择" tabIndex={-1}>
+    {onPauseRoom && <button type="button" className="hg-button hg-button-quiet" disabled={busy} onClick={onPauseRoom}>暂停并保存此桌</button>}
     <div className="hg-choice-heading">
     <div className="hg-section-title"><span className="hg-eyebrow">轮到你选择</span><span className="hg-choice-tag">{damage ? `尚余 ${amount - assigned} 点` : ordering ? '自上而下排列' : `已选 ${selected.length} / ${max}`}</span></div>
     <h2>{choice.title}</h2><p>{choice.description}</p>

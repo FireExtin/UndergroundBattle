@@ -13,7 +13,7 @@ export function AutoPass({ view, busy, uncertain, connection, onAction, enabled,
   submit.current = onAction;
   const pass = view.legalActions.length === 1 && view.legalActions[0].kind === 'pass' ? view.legalActions[0] : null;
   const key = pass ? `${view.roomId}:${view.version}:${pass.id}` : '';
-  const canPass = enabled && view.status === 'playing' && !view.pendingChoice && !view.waitingChoice
+  const canPass = enabled && !view.pause && view.status === 'playing' && !view.pendingChoice && !view.waitingChoice
     && !view.responseWindow && !!pass && !busy && !uncertain && connection === 'online';
 
   useEffect(() => {
@@ -28,6 +28,7 @@ export function AutoPass({ view, busy, uncertain, connection, onAction, enabled,
   }, [canPass, key]);
 
   const status = !enabled ? '关闭 · 由你手动让过'
+    : view.pause ? '牌桌已暂停，自动让过已暂停'
     : view.status !== 'playing' ? '对局已结束，自动让过已暂停'
     : view.pendingChoice || view.waitingChoice ? '正在等待选择，自动让过已暂停'
     : view.responseWindow ? '连锁决定期间，自动让过已暂停'

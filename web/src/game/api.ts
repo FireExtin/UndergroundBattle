@@ -167,7 +167,7 @@ export function actionPayload(action: Action | (Action & { id: string; label: st
   return { kind, cardId, targetId, region, option, abilityId, costSelected, choiceId, selected, top, bottom, allocations, deckDraft, windowId, intentId,
     ...(action.action ? { action: actionPayload(action.action) } : {}) };
 }
-const sessionKinds = new Set(['game', 'beginResponse', 'passResponse', 'cancelAndPass', 'submitResponse']);
+const sessionKinds = new Set(['game', 'beginResponse', 'passResponse', 'cancelAndPass', 'submitResponse', 'pauseRoom', 'resumeRoom']);
 /** Only the new room envelope wraps actions; pinned older rooms keep their exact request contract. */
 export function actionForRoom(view: View, action: Action): Action {
   const payload = actionPayload(action);

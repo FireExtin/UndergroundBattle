@@ -11,6 +11,18 @@ afterEach(() => { cleanup(); vi.useRealTimers(); localStorage.clear(); });
 const advance = (ms = 550) => act(() => vi.advanceTimersByTime(ms));
 
 describe('opt-in automatic pass', () => {
+  it('cancels an armed pass while the saved table is paused and waits a full delay after resume', () => {
+    const submit = vi.fn();
+    const props = { enabled: true, onEnabledChange: vi.fn(), busy: false, uncertain: false, connection: 'online' as const, onAction: submit };
+    const { rerender } = render(<AutoPass {...props} view={emptyWindow} />);
+    advance(300);
+    rerender(<AutoPass {...props} view={{ ...emptyWindow, pause: { pausedAtMs: 2000, pausedBy: 1 } }} />);
+    expect(screen.getByText('牌桌已暂停，自动让过已暂停')).toBeInTheDocument();
+    advance(86_400_000); expect(submit).not.toHaveBeenCalled();
+    rerender(<AutoPass {...props} view={{ ...emptyWindow, version: 2 }} />);
+    advance(549); expect(submit).not.toHaveBeenCalled();
+    advance(1); expect(submit).toHaveBeenCalledExactlyOnceWith(pass);
+  });
   it('cancels the product timer for every projected intent status and resumes only after the server removes the window', () => {
     const submit = vi.fn();
     const { rerender } = render(<AutoPass enabled={true} onEnabledChange={vi.fn()} view={emptyWindow} busy={false} uncertain={false} connection="online" onAction={submit} />);
