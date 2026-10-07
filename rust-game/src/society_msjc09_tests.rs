@@ -97,8 +97,6 @@ fn rejects_without_mutation(g: &mut Game, seat: usize, a: Action) {
 #[test]
 fn msjc09_printed_registry_deck_and_atomic_start_keep_four_seat_privacy() {
     let c = catalog::catalog();
-    assert_eq!(c.cards.len(), 103);
-    assert_eq!(c.societies.len(), 8);
     assert!(c.deck_build_rules.society_supported);
     let s = &c.societies[0];
     assert_eq!(

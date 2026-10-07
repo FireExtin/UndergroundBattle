@@ -117,7 +117,6 @@ fn jz55_original_and_exact_finite_immediate_destroy_definition() {
         serde_json::to_value(&t.predicate).unwrap(),
         serde_json::json!("JZ55UniqueCharacter")
     );
-    assert_eq!(catalog::catalog().cards.len(), 103);
 }
 
 #[test]

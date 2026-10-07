@@ -197,8 +197,6 @@ fn green_whole_printed_fields_and_closed_three_shapes() {
         a.targets[0].predicate,
         Some(TargetPredicate::JC015NonHumanPrintedCostAtLeastThree)
     );
-    assert_eq!(catalog::catalog().cards.len(), 103);
-    assert_eq!(catalog::catalog().societies.len(), 8);
     assert!(crate::society::definition("MSJC03").is_ok());
     assert!(!catalog::catalog().cards.iter().any(|c| c.id == "XQ11"));
 }

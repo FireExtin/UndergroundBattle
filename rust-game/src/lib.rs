@@ -6,6 +6,8 @@ mod control;
 mod control_tests;
 pub mod deck;
 #[cfg(test)]
+mod unit_support;
+#[cfg(test)]
 mod defence_equipment_tests;
 pub mod engine;
 #[cfg(test)]
@@ -85,9 +87,9 @@ mod mill_public_tests;
 mod jz31_tests;
 #[cfg(all(test, not(feature = "society-fixtures")))]
 mod jz55_tests;
-#[cfg(test)]
+#[cfg(all(test, not(feature = "society-fixtures")))]
 mod jz49_tests;
-#[cfg(test)]
+#[cfg(all(test, not(feature = "society-fixtures")))]
 mod jz48_tests;
 #[cfg(all(test, not(feature = "society-fixtures")))]
 mod jc089_tests;

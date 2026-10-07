@@ -3559,6 +3559,7 @@ mod tests {
     }
 
     #[test]
+    #[cfg(not(feature = "society-fixtures"))]
     fn blue_closed_definitions_reject_variants_and_finite_operation_transplants() {
         for id in ["JC032", "JZ24", "MSJC03"] {
             for variant in 0..10 {

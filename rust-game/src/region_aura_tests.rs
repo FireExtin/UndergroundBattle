@@ -1,4 +1,5 @@
 //! Actual XQ43/MSJC08. Boundary fixtures will be explicit; no new fake cards.
+use crate::unit_support::*;
 use crate::{catalog, model::*, rules::*};
 
 #[test]
@@ -102,64 +103,12 @@ fn initial() -> Game {
     fund(&mut g, 0, "JC073", 6);
     g
 }
-fn fund(g: &mut Game, s: usize, definition: &str, count: usize) {
-    for _ in 0..count {
-        let c = g.make_card(definition, s);
-        g.players[s].assets.push(c);
-    }
-}
 fn field(g: &mut Game, definition: &str, owner: usize, controller: usize) -> String {
     let mut c = g.make_card(definition, owner);
     c.controller = controller;
     let id = c.id.clone();
     g.regions[0].cards.push(c);
     id
-}
-fn held(g: &mut Game, definition: &str, s: usize) -> String {
-    let c = g.make_card(definition, s);
-    let id = c.id.clone();
-    g.players[s].hand.push(c);
-    id
-}
-fn restore(g: &mut Game) {
-    let raw = serde_json::to_string(g).unwrap();
-    let views = (0..4)
-        .map(|s| serde_json::to_value(g.view(s)).unwrap())
-        .collect::<Vec<_>>();
-    *g = Game::from_persisted(&raw).unwrap();
-    assert_eq!(serde_json::to_string(g).unwrap(), raw);
-    for s in 0..4 {
-        assert_eq!(serde_json::to_value(g.view(s)).unwrap(), views[s]);
-    }
-}
-fn act(g: &mut Game, s: usize, a: Action) {
-    restore(g);
-    g.apply(s, a).unwrap();
-    restore(g);
-}
-fn reject(g: &mut Game, s: usize, a: Action) {
-    let raw = serde_json::to_string(g).unwrap();
-    assert!(g.apply(s, a).is_err());
-    assert_eq!(serde_json::to_string(g).unwrap(), raw);
-    restore(g);
-}
-fn choose(g: &mut Game, selected: Vec<String>) {
-    let p = g.pending.clone().unwrap();
-    act(
-        g,
-        p.seat,
-        Action {
-            choice_id: Some(p.choice.id),
-            selected: Some(selected),
-            ..Action::new("choose")
-        },
-    );
-}
-fn pass(g: &mut Game) {
-    let s = (0..4)
-        .find(|s| g.legal_actions(*s).iter().any(|a| a.action.kind == "pass"))
-        .unwrap();
-    act(g, s, Action::new("pass"));
 }
 
 fn drain(g: &mut Game) {

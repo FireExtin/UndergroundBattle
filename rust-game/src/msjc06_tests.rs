@@ -1,47 +1,71 @@
-//! Real MSJC06 program and real white/gold targets; disclosed layouts only.
+//! Real color-society search programs (MSJC06/07/08) and real gold targets; disclosed layouts only.
+//! One body per behaviour; each society keeps its own named tests via `Spec`.
 use crate::msjc01_tests::{fund, pass_top, rejected};
 use crate::{catalog, deck, model::*, rules::*};
-const SEARCH: &str = "search-white-unique";
 const DRAW: &str = "drawWithInitiative";
-const WHITE: [&str; 9] = [
-    "JC075", "JC070", "JC076", "JC074", "JC073", "JC078", "XQ34", "LC12", "LC06",
-];
-fn draft(white: usize, total: usize) -> deck::DeckDraft {
+pub(super) struct Spec {
+    pub id: &'static str,
+    pub search: &'static str,
+    pub color: &'static str,
+    pub name: (&'static str, &'static str),
+    pub subtypes: &'static [&'static str],
+    pub cards: &'static [&'static str],
+    pub full: usize,
+    pub color_count: usize,
+    pub uniques: &'static [&'static str],
+    pub hits: [&'static str; 4],
+}
+const MSJC06: Spec = Spec {
+    id: "MSJC06",
+    search: "search-white-unique",
+    color: "白",
+    name: ("圣贤", "热爱之道"),
+    subtypes: &["群体"],
+    cards: &[
+        "JC075", "JC070", "JC076", "JC074", "JC073", "JC078", "XQ34", "LC12", "LC06",
+    ],
+    full: 27,
+    color_count: 10,
+    uniques: &["LC06"],
+    hits: ["LC06", "LC06", "JC075", "LC23"],
+};
+fn draft(spec: &Spec, colored: usize, total: usize) -> deck::DeckDraft {
     let mut d = deck::preset("watchers").unwrap();
-    d.society_id = Some("MSJC06".into());
+    d.society_id = Some(spec.id.into());
     d.cards.clear();
-    let mut left = white;
-    for id in WHITE {
+    let mut left = colored;
+    for id in spec.cards {
         let count = left.min(3);
         if count > 0 {
             d.cards.push(catalog::DeckEntry {
-                card_id: id.into(),
+                card_id: (*id).into(),
                 count,
             });
         }
         left -= count;
     }
     assert_eq!(left, 0);
-    if total > white {
+    if total > colored {
         d.cards.push(catalog::DeckEntry {
             card_id: "JC125".into(),
-            count: total - white,
+            count: total - colored,
         });
     }
     d
 }
-fn initial() -> Game {
+fn initial(spec: &Spec) -> Game {
     let mut g = Game::new_with_deck(
-        "msjc06-unit".into(),
+        format!("{}-unit", spec.id.to_lowercase()),
         "LOCAL".into(),
         "teams".into(),
         "P0".into(),
-        draft(27, 50),
+        draft(spec, spec.full, 50),
         9,
     )
     .unwrap();
     for s in 1..4 {
-        g.join_with_deck(format!("P{s}"), draft(27, 50)).unwrap();
+        g.join_with_deck(format!("P{s}"), draft(spec, spec.full, 50))
+            .unwrap();
     }
     for s in 0..4 {
         g.apply(s, Action::new("ready")).unwrap();
@@ -108,22 +132,21 @@ fn next_turn(g: &mut Game) {
     }
     panic!("turn bound");
 }
-#[test]
-fn msjc06_original_whole_card_and_finite_existing_search_program() {
-    let d = crate::society::definition("MSJC06").unwrap();
+pub(super) fn original(spec: &Spec) {
+    let d = crate::society::definition(spec.id).unwrap();
     assert_eq!(
         (&*d.card.name, &*d.subtitle, &*d.card.color),
-        ("圣贤", "热爱之道", "白")
+        (spec.name.0, spec.name.1, spec.color)
     );
-    assert_eq!(d.card.subtypes, ["群体"]);
+    assert_eq!(d.card.subtypes, spec.subtypes);
     assert_eq!(d.starting_hand, 6);
     assert!(d.printed_cost.is_none() && d.card.unique);
     assert!(d.card.loyalty.is_empty() && d.card.defense.is_none() && d.card.keywords.is_empty());
     assert_eq!(
         serde_json::to_value(&d.deck_constraints).unwrap(),
-        serde_json::json!([{"kind":"minimumColor","color":"白","count":25}])
+        serde_json::json!([{"kind":"minimumColor","color":spec.color,"count":25}])
     );
-    let a = &crate::rules::definition("MSJC06").abilities;
+    let a = &crate::rules::definition(spec.id).abilities;
     assert_eq!(a.len(), 2);
     assert_eq!(
         serde_json::to_value(&a[0]).unwrap(),
@@ -135,55 +158,51 @@ fn msjc06_original_whole_card_and_finite_existing_search_program() {
         serde_json::json!([{"Assets":4},"ExhaustSource"])
     );
     assert!(
-        matches!(&a[1].ops[0],Op::Search{player:PlayerRef::Actor,filter:CardFilter::PrintedColorAndUnique{color},to_top:false,optional:false,visibility:SearchVisibility::Reveal} if color=="白")
+        matches!(&a[1].ops[0],Op::Search{player:PlayerRef::Actor,filter:CardFilter::PrintedColorAndUnique{color},to_top:false,optional:false,visibility:SearchVisibility::Reveal} if color==spec.color)
     );
-    assert_eq!(catalog::catalog().cards.len(), 103);
-    assert_eq!(catalog::catalog().societies.len(), 8);
-    assert!(!catalog::catalog().cards.iter().any(|c| c.id == "MSJC06"));
+    assert!(!catalog::catalog().cards.iter().any(|c| c.id == spec.id));
     assert_eq!(
         catalog::catalog()
             .cards
             .iter()
-            .filter(|c| c.color == "白" && c.kind != "region")
+            .filter(|c| c.color == spec.color && c.kind != "region")
             .count(),
-        10
+        spec.color_count
     );
-    for id in ["LC06"] {
+    for id in spec.uniques {
         let c = catalog::card(id);
-        assert!(c.unique && c.color == "白" && c.society.is_empty());
+        assert!(c.unique && c.color == spec.color && c.society.is_empty());
     }
 }
-#[test]
-fn msjc06_construction_actual_white_24_25_27_and_society_outside_50() {
-    assert!(deck::validate(draft(24, 50))
+pub(super) fn construction(spec: &Spec) {
+    assert!(deck::validate(draft(spec, 24, 50))
         .unwrap_err()
         .contains("当前24张"));
-    for n in [25, 27] {
-        let d = deck::validate(draft(n, 50)).unwrap();
+    for n in [25, spec.full] {
+        let d = deck::validate(draft(spec, n, 50)).unwrap();
         assert_eq!(d.cards.iter().map(|e| e.count).sum::<usize>(), 50);
     }
-    assert!(deck::validate(draft(25, 49))
+    assert!(deck::validate(draft(spec, 25, 49))
         .unwrap_err()
         .contains("至少需要50"));
-    let mut d = draft(27, 50);
+    let mut d = draft(spec, spec.full, 50);
     d.cards[0].count = 4;
     assert!(deck::validate(d).unwrap_err().contains("最多3"));
-    let mut d = draft(25, 50);
+    let mut d = draft(spec, 25, 50);
     d.cards.push(catalog::DeckEntry {
-        card_id: "MSJC06".into(),
+        card_id: spec.id.into(),
         count: 1,
     });
     assert!(deck::validate(d).is_err());
-    let mut d = draft(24, 50);
+    let mut d = draft(spec, 24, 50);
     d.cards.push(catalog::DeckEntry {
         card_id: "JC006".into(),
         count: 1,
     });
     assert!(deck::validate(d).is_err());
 }
-#[test]
-fn msjc06_four_same_societies_real_white_hits_own_deck_private_choice_public_reveal_fresh_hand() {
-    let mut g = initial();
+pub(super) fn four_searches(spec: &Spec) {
+    let mut g = initial(spec);
     let ids = (0..4)
         .map(|s| source(&g, s))
         .collect::<std::collections::BTreeSet<_>>();
@@ -191,14 +210,14 @@ fn msjc06_four_same_societies_real_white_hits_own_deck_private_choice_public_rev
     for s in 0..4 {
         g.begin_window(Window::Action(g.team(s)));
         fund(&mut g, s, 4);
-        for id in ["LC06", "LC06", "JC075", "LC23"] {
+        for id in spec.hits {
             let c = g.make_card(id, s);
             g.players[s].deck.push(c);
         }
         let n = g.players[s].deck.len();
         let other = s ^ 1;
         let other_n = g.players[other].deck.len();
-        let a = activate(&g, s, SEARCH);
+        let a = activate(&g, s, spec.search);
         g.apply(s, a).unwrap();
         assert_eq!(
             g.players[s].assets.iter().filter(|c| c.exhausted).count(),
@@ -261,15 +280,14 @@ fn msjc06_four_same_societies_real_white_hits_own_deck_private_choice_public_rev
                     .as_ref()
                     .unwrap()
                     .used_once_per_game,
-                Some(vec![SEARCH.into()])
+                Some(vec![spec.search.into()])
             );
             assert!(view.log.iter().any(|e| e.text.contains("展示检索的")));
         }
         restore(&mut g);
     }
 }
-#[test]
-fn msjc06_rejections_are_atomic_and_cannot_pay_or_activate_with_teammate() {
+pub(super) fn rejections(spec: &Spec) {
     for bad in [
         "cost",
         "exhausted",
@@ -277,10 +295,10 @@ fn msjc06_rejections_are_atomic_and_cannot_pay_or_activate_with_teammate() {
         "yellow-key",
         "missing-key",
     ] {
-        let mut g = initial();
+        let mut g = initial(spec);
         fund(&mut g, 0, if bad == "cost" { 3 } else { 4 });
         fund(&mut g, 1, 8);
-        let mut a = activate(&g, 0, SEARCH);
+        let mut a = activate(&g, 0, spec.search);
         match bad {
             "exhausted" => g.players[0].society_zone.card.as_mut().unwrap().exhausted = true,
             "foreign-source" => a.card_id = Some(source(&g, 1)),
@@ -297,10 +315,9 @@ fn msjc06_rejections_are_atomic_and_cannot_pay_or_activate_with_teammate() {
         restore(&mut g);
     }
 }
-#[test]
-fn msjc06_initiative_draw_and_rear_paid_no_draw_are_personal_and_separate() {
+pub(super) fn initiative_draw(spec: &Spec) {
     for first in [0, 1] {
-        let mut g = initial();
+        let mut g = initial(spec);
         g.first_team = first;
         fund(&mut g, 0, 3);
         fund(&mut g, 1, 3);
@@ -321,17 +338,16 @@ fn msjc06_initiative_draw_and_rear_paid_no_draw_are_personal_and_separate() {
         restore(&mut g);
     }
 }
-#[test]
-fn msjc06_empty_search_shuffles_and_empty_deck_is_not_draw_elimination() {
+pub(super) fn empty_search(spec: &Spec) {
     for empty in [false, true] {
-        let mut g = initial();
+        let mut g = initial(spec);
         if empty {
             g.players[0].deck.clear();
         }
         fund(&mut g, 0, 4);
         let n = g.players[0].deck.len();
         let rng = g.random;
-        let a = activate(&g, 0, SEARCH);
+        let a = activate(&g, 0, spec.search);
         g.apply(0, a).unwrap();
         pass_top(&mut g);
         assert!(g.players[0].hand.is_empty() && !g.players[0].eliminated && g.pending.is_none());
@@ -339,20 +355,19 @@ fn msjc06_empty_search_shuffles_and_empty_deck_is_not_draw_elimination() {
         assert!(g.players[0]
             .society_zone
             .used_once_per_game
-            .contains(SEARCH));
+            .contains(spec.search));
         if !empty {
             assert_ne!(rng, g.random);
         }
         restore(&mut g);
     }
 }
-#[test]
-fn msjc06_cancelled_paid_frame_retains_payment_exhaustion_and_quota() {
-    let mut g = initial();
+pub(super) fn cancelled_frame(spec: &Spec) {
+    let mut g = initial(spec);
     fund(&mut g, 0, 4);
-    let c = g.make_card("LC06", 0);
+    let c = g.make_card(spec.uniques[0], 0);
     g.players[0].deck.push(c);
-    let a = activate(&g, 0, SEARCH);
+    let a = activate(&g, 0, spec.search);
     g.apply(0, a).unwrap();
     // Explicit cancellation boundary, not a claim about a natural counter-card.
     g.stack.last_mut().unwrap().frame.as_mut().unwrap().guard = GuardState::Cancelled;
@@ -363,24 +378,23 @@ fn msjc06_cancelled_paid_frame_retains_payment_exhaustion_and_quota() {
             && g.players[0]
                 .society_zone
                 .used_once_per_game
-                .contains(SEARCH)
+                .contains(spec.search)
     );
     assert_eq!(
         g.players[0].assets.iter().filter(|c| c.exhausted).count(),
         4
     );
 }
-#[test]
-fn msjc06_ready_turn_and_new_instance_keep_quota_restart_clears() {
-    let mut g = initial();
+pub(super) fn quota_lifecycle(spec: &Spec) {
+    let mut g = initial(spec);
     fund(&mut g, 0, 8);
-    let a = activate(&g, 0, SEARCH);
+    let a = activate(&g, 0, spec.search);
     g.apply(0, a).unwrap();
     pass_top(&mut g);
     next_turn(&mut g);
     g.begin_window(Window::Action(0));
     assert!(!g.players[0].society_zone.card.as_ref().unwrap().exhausted);
-    let a = activate(&g, 0, SEARCH);
+    let a = activate(&g, 0, spec.search);
     rejected(&mut g, 0, a);
     assert!(g
         .legal_actions(0)
@@ -393,7 +407,7 @@ fn msjc06_ready_turn_and_new_instance_keep_quota_restart_clears() {
     g.players[0].society_zone.card = Some(c);
     assert_ne!(old, source(&g, 0));
     restore(&mut g);
-    let a = activate(&g, 0, SEARCH);
+    let a = activate(&g, 0, spec.search);
     rejected(&mut g, 0, a);
     let a = activate(&g, 0, DRAW);
     g.apply(0, a).unwrap();
@@ -406,4 +420,36 @@ fn msjc06_ready_turn_and_new_instance_keep_quota_restart_clears() {
         .iter()
         .all(|p| p.society_zone.used_once_per_game.is_empty() && p.hand.len() == 6));
     restore(&mut g);
+}
+#[test]
+fn msjc06_original_whole_card_and_finite_existing_search_program() {
+    original(&MSJC06);
+}
+#[test]
+fn msjc06_construction_actual_white_24_25_27_and_society_outside_50() {
+    construction(&MSJC06);
+}
+#[test]
+fn msjc06_four_same_societies_real_white_hits_own_deck_private_choice_public_reveal_fresh_hand() {
+    four_searches(&MSJC06);
+}
+#[test]
+fn msjc06_rejections_are_atomic_and_cannot_pay_or_activate_with_teammate() {
+    rejections(&MSJC06);
+}
+#[test]
+fn msjc06_initiative_draw_and_rear_paid_no_draw_are_personal_and_separate() {
+    initiative_draw(&MSJC06);
+}
+#[test]
+fn msjc06_empty_search_shuffles_and_empty_deck_is_not_draw_elimination() {
+    empty_search(&MSJC06);
+}
+#[test]
+fn msjc06_cancelled_paid_frame_retains_payment_exhaustion_and_quota() {
+    cancelled_frame(&MSJC06);
+}
+#[test]
+fn msjc06_ready_turn_and_new_instance_keep_quota_restart_clears() {
+    quota_lifecycle(&MSJC06);
 }
