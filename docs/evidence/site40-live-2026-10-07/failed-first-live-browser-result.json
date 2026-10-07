@@ -1,0 +1,17 @@
+{
+  "scope": "public-Site40-real-UI-and-Worker-WASM-D1-natural-duel",
+  "productionWrites": true,
+  "checks": [],
+  "errors": [],
+  "passed": false,
+  "catalog": {
+    "engineVersion": "rust-v0.2.46-pause-resume-candidate",
+    "cardPoolVersion": "limited-v2.42-jc089-poison-blood-candidate",
+    "rulesVersion": "hegemony-pdf-v1"
+  },
+  "stage": "create",
+  "error": "Page.goto: Target page, context or browser has been closed\nCall log:\n  - navigating to \"https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site/?invite=015CEABA0239\", waiting until \"networkidle\"\n",
+  "screenshots": {
+    "failure-a.png": "ba12ba23f2b6c851c9a36f694a1c80c3564928f189e477a5c40aa8ebabc78b6c"
+  }
+}
