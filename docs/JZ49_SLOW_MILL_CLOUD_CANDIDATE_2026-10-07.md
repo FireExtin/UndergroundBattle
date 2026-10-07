@@ -30,4 +30,4 @@ Worker/D1全套25项通过、0跳过。旧193个历史文件逐个git blob及SHA
 
 复现工具为环境已有Rust1.90、wasm-bindgen0.2.104及本地npm依赖，无新包安装。运行 `cargo test --workspace --locked --offline`；设置 `GREEN_EVIDENCE_DIR` 与 `JZ49_CHAIN_DIR` 后运行 `cargo test -p hegemony-server --lib jz49 -- --test-threads=1` 导出离线夹具；构建 `bash rust-game-wasm/build.sh` 后执行 `node rust-game-wasm/tests/jz49_compare.mjs <证据根目录>`；Web运行 `npm test`/`npm run build`；Sites运行 `npm run build` 后 `node --test --test-concurrency=1 test/*.test.mjs`（仅dry-run）。
 
-卡面另由独立候选 `ab25c7393155f9aeba931919de08f5056f33b842` 提供，尚未混入本分支。父集成两批后须核查扫描资源和实际浏览器操作；本批UI夹具/ABI测试不能替代自然组牌、对抗和完整终局策略试玩。研究目录原有`notAccepted`状态未升级。本批未推main、未发布；当前Site34保持原已发布版本。
+本文记录机制固定提交 `3cfeb0e8ba4216f79da32570e9013672845f0c2e` 的独立实现范围；卡面固定提交为 `ab25c7393155f9aeba931919de08f5056f33b842`。两批集成后的独立审查、实际浏览器操作和验收边界见 [组合审查记录](JZ49_COMBINED_REVIEW_2026-10-07.md)。本批UI夹具/ABI测试不能替代自然组牌、对抗和完整终局策略试玩。研究目录原有`notAccepted`状态未升级，当前Site34保持原已发布版本。

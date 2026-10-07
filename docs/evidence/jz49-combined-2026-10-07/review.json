@@ -1,0 +1,58 @@
+{
+  "baseCommit": "b3791b2f7f7ac09224db60a6d87ab5458b4c7273",
+  "mechanismCommit": "3cfeb0e8ba4216f79da32570e9013672845f0c2e",
+  "independentCardFaceCommit": "ab25c7393155f9aeba931919de08f5056f33b842",
+  "combinedReviewedProductCommit": "6941a4096c962dae27e20ff2cff9ee9a0ddab533",
+  "engine": "rust-v0.2.43-jz49-slow-mill-candidate",
+  "pool": "limited-v2.40-jz49-slow-mill-candidate",
+  "independentReviews": {
+    "mechanism": {
+      "reviewer": "review_jz49_mechanism",
+      "implementedByDifferentWorker": true,
+      "findings": [],
+      "extraExecutedChecks": {
+        "nativeFocusedPassed": 17,
+        "wasmFourSeatProjections": 3616,
+        "kernelRoutingPassed": 3,
+        "isolatedCancelProbe": {
+          "accepted": 6,
+          "atomicRejects": 2
+        }
+      }
+    },
+    "cardFace": {
+      "reviewer": "review_jz49_card_face",
+      "implementedByDifferentWorker": true,
+      "blockingFindings": [],
+      "focusedUiPassed": 39,
+      "p3ContextDescription": "Closed in reviewed product commit; one browser, two independent contexts run sequentially."
+    },
+    "combinedReadOnlyFollowup": "Both reviewers confirmed fixed product commit preserves their exact reviewed mechanism/card-face inputs."
+  },
+  "combinedChecks": {
+    "webPassed": 529,
+    "workerPassed": 25,
+    "typescriptAndVite": "passed",
+    "workerBuild": "passed",
+    "nativePassedReusedForIdenticalRustTree": 526,
+    "wasmProjectionsReusedForIdenticalRustAndWasmTrees": 3616,
+    "workerColdSnapshotMissingBuild": "Corrected by ordinary build; final25 passed."
+  },
+  "preservation": {
+    "oldHistoricalFilesByteExact": 193,
+    "frozenV36AbiFilesByteExact": 5,
+    "oldCardScansByteExact": 108,
+    "totalCardScans": 109
+  },
+  "worker": {
+    "wasmModules": 1,
+    "wasmBytes": 2186939,
+    "wasmSha256": "3b0bee7b1c6788bc0a299338322f1c07d6108161a75e4999ac066971659520bb",
+    "jsBytes": 47255,
+    "jsSha256": "1d36ffd4911c1aa9de3dfece89462e699221f20348b2183af2e15f52dc0e5b8f",
+    "totalBytes": 2234194
+  },
+  "delivery": "Relevant source/tests and sanitized review records only; raw QA DB, seat authentication and full runtime snapshots retained locally.",
+  "publication": "Parent decision pending; Site34 remains live.",
+  "libraryAttachmentDelivery": "Optional delivery blocker: official helper tools/list HTTP401. Native list success does not prove upload authentication recovery."
+}

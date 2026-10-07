@@ -1,0 +1,54 @@
+{
+  "candidate": "6941a4096c962dae27e20ff2cff9ee9a0ddab533",
+  "scope": "Actual cloud Chromium UI; legal 47 JC125 + 3 JZ49 custom deck, two real API seats; test-only seed3644 selected by normal WASM new/join/ready/start. No engine-state or D1 injection. QA driver resumed same original room after correcting a field-name typo. Not a full engine43 terminal-game qualification.",
+  "version": 68,
+  "journalEvents": 68,
+  "allReceiptsMatch": true,
+  "journalVersionsContiguous": true,
+  "exactDeckTopCardOrderAndOwner": true,
+  "existingFreshZoneInstanceResetPreserved": true,
+  "normalWasmReplayByteExact": true,
+  "nativeReplayMatches": true,
+  "nativeAuditDatabaseBytesUnchanged": true,
+  "checks": {
+    "visibleLegalCustomDeckCreateJoin": true,
+    "originalImageOpenedFromActualHand": true,
+    "targetCancellation": 1,
+    "visiblePaidDeployment": true,
+    "success": true,
+    "resumedSameFocusedRoom": true,
+    "slowBeforeOptionalDeclaration": true,
+    "exactTopTwoMovedByUi": true,
+    "sqliteReopenExact": true,
+    "twoSeatsRestoreAfterMill": true
+  },
+  "screenshots": [
+    {
+      "name": "jz49-natural-original",
+      "version": 62,
+      "turn": 2
+    },
+    {
+      "name": "target-confirm-1",
+      "version": 62,
+      "turn": 2
+    },
+    {
+      "name": "jz49-optional-player-target",
+      "version": 65,
+      "turn": 2
+    },
+    {
+      "name": "jz49-mill-resolved-desktop",
+      "version": 68,
+      "turn": 2
+    },
+    {
+      "name": "jz49-mill-resolved-mobile",
+      "version": 68,
+      "turn": 2
+    }
+  ],
+  "seed": 3644,
+  "acceptedUiCommandCount": 67
+}
