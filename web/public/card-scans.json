@@ -543,5 +543,15 @@
     "url": "/cards/JZ55.jpg",
     "source": "resource/ymsj-fun.github.io/cards/JZ55 传奇落幕.jpg",
     "sha256": "9155faa90be22aa66e56148dfacd0d517eb7b6f7b56fd1b45b71a6804719784a"
+  },
+  "JZ48": {
+    "url": "/cards/JZ48.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JZ48 街头劫匪.jpg",
+    "sha256": "a9a5da75938c22872cca524776356b10f2a0250370d3ba3ed3b31deb332e5b4f"
+  },
+  "JZ50": {
+    "url": "/cards/JZ50.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JZ50 墓穴食尸鬼.jpg",
+    "sha256": "403e44bb5f7f0ff8715acb267a8369c3715b2dc752d7fe612de085da29b523e7"
   }
 }
