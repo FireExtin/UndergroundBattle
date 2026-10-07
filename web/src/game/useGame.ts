@@ -41,6 +41,15 @@ export function useGame() {
   activeSession.current = session;
   const isActive = (captured: SavedSession) => activeSession.current?.roomId === captured.roomId
     && activeSession.current.seat === captured.seat && activeSession.current.token === captured.token;
+  const retireUnsupportedRoom = (captured: SavedSession, failure: unknown) => {
+    if (!(failure instanceof ApiError) || failure.code !== 'unsupported_room_version' || !isActive(captured)) return false;
+    // The server definitively rejects this tuple. Keep its saved seat for a future
+    // rollback, but stop polling/retrying an obsolete room and allow a new game.
+    if (commandFor(pending.current, captured)) { pending.current = null; savePending(null); }
+    returnToLobby(); activeSession.current = null; acceptedView.current = null; acceptedVersion.current = 0;
+    setSession(null); setView(null); setUncertain(false); setConnection('connecting');
+    setError(failure.message); return true;
+  };
   const accept = useCallback((next: View) => {
     if (next.roomId === activeSession.current?.roomId && next.you === `p${activeSession.current.seat}`) {
       acceptedVersion.current = Math.max(acceptedVersion.current, next.version);
@@ -104,6 +113,7 @@ export function useGame() {
         return;
       } catch (e) {
         if (controller.signal.aborted || !isActive(session)) return;
+        if (retireUnsupportedRoom(session, e)) return;
         if (invalidSeatToken(e) || (e instanceof ApiError && e.code === 'room_not_found')) {
           forgetSavedSeat(session); setSavedSeats(readSavedSeats()); returnToLobby();
           if (commandFor(pending.current, session)) { savePending(null); pending.current = null; }
@@ -167,6 +177,7 @@ export function useGame() {
     }
     catch (e) {
       if (!isActive(currentSession)) return;
+      if (retireUnsupportedRoom(currentSession, e)) return;
       confirmed = e instanceof ApiError && e.status >= 400 && e.status < 500 && !needsSiteLogin(e);
       if (e instanceof ApiError && e.view) accept(e.view);
       else { try { accept(await getState(currentSession)); } catch { /* Keep the last confirmed table visible. */ } }

@@ -135,7 +135,15 @@ async function enterRoom(path: string, values: Record<string, unknown>): Promise
     entryMemory.delete(storage.scope);
     try { storage.removeItem(ENTRY_KEY); } catch { /* No persistent storage. */ }
     return session;
-  } catch (error) { throw error; /* Keep exactly the original request key for an explicit retry. */ }
+  } catch (error) {
+    if (error instanceof ApiError && error.code === 'unsupported_room_version') {
+      // This key identifies an obsolete room. A later explicit new-game request
+      // needs a fresh key; never silently resend the rejected request.
+      entryMemory.delete(storage.scope);
+      try { storage.removeItem(ENTRY_KEY); } catch { /* Storage may be disabled. */ }
+    }
+    throw error; // Other failures retain the exact original key for recovery.
+  }
 }
 export const createRoom = (name: string, mode: 'duel' | 'teams', deckId: string) => enterRoom('/api/rooms', { name, mode, deckId });
 export const joinRoom = (inviteCode: string, name: string, deckId: string) => enterRoom('/api/rooms/join', { inviteCode, name, deckId });

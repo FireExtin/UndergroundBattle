@@ -7,6 +7,45 @@ import { newerView, useGame } from './useGame';
 const session = { roomId: testView.roomId, inviteCode: 'INVITE', token: 'opaque-token', seat: 0 };
 const json = (body: unknown, status = 200) => new Response(JSON.stringify(body), { status });
 afterEach(() => { vi.useRealTimers(); vi.restoreAllMocks(); vi.unstubAllGlobals(); localStorage.clear(); });
+describe('experimental current-only rooms', () => {
+  const message = '旧牌桌使用的规则已停止支持。请返回大厅新建牌桌；旧牌桌数据仍保留。';
+  const unsupported = () => json({ error: 'unsupported_room_version', message }, 410);
+  it('stops restoring an obsolete room, keeps its saved seat and permits a new room without retrying the old command', async () => {
+    saveSession(session);
+    savePending({ roomId: session.roomId, seat: 0, commandId: 'old-pending', expectedVersion: 4, action: { kind: 'pass' } });
+    const next = { ...session, roomId: 'current-room', token: 'current-token', view: { ...testView, roomId: 'current-room' } };
+    const fetchMock = vi.fn(async (url: string) => url === '/api/catalog' ? json(testCatalog)
+      : url === '/api/rooms' ? json(next)
+      : url.includes(session.roomId) ? unsupported()
+      : url.endsWith('/catalog') ? json(testCatalog) : json(next.view));
+    vi.stubGlobal('fetch', fetchMock);
+    const { result } = renderHook(useGame);
+    await waitFor(() => expect(result.current.session).toBeNull());
+    await waitFor(() => expect(result.current.catalog).toEqual(testCatalog));
+    expect(result.current.error).toBe(message);
+    expect(result.current.uncertain).toBe(false);
+    expect(readSavedSeats()).toEqual([session]);
+    expect(localStorage.getItem('hegemony.pending.v1')).toBeNull();
+    expect(fetchMock.mock.calls.some(([url]) => url.endsWith('/commands'))).toBe(false);
+    await act(async () => { await result.current.create('新桌', 'duel', 'watchers'); });
+    expect(result.current.session?.roomId).toBe('current-room');
+    expect(readSavedSeats()).toHaveLength(2);
+  });
+  it('a definitive unsupported command returns to the lobby once without generic conflict or automatic retry', async () => {
+    saveSession(session);
+    const fetchMock = vi.fn(async (url: string) => url.endsWith('/commands') ? unsupported()
+      : url.endsWith('/catalog') ? json(testCatalog) : json(testView));
+    vi.stubGlobal('fetch', fetchMock);
+    const { result } = renderHook(useGame);
+    await waitFor(() => expect(result.current.view).toEqual(testView));
+    await act(async () => { await result.current.act({ kind: 'pass' }); });
+    expect(result.current.session).toBeNull(); expect(result.current.view).toBeNull();
+    expect(result.current.error).toBe(message); expect(result.current.busy).toBe(false);
+    expect(result.current.uncertain).toBe(false); expect(readSavedSeats()).toEqual([session]);
+    expect(localStorage.getItem('hegemony.pending.v1')).toBeNull();
+    expect(fetchMock.mock.calls.filter(([url]) => url.endsWith('/commands'))).toHaveLength(1);
+  });
+});
 describe('room lifecycle and reconciliation', () => {
   it('rejoins its saved room through the invite without allocating another seat or changing the ready deck', async () => {
     saveSession(session); returnToLobby();
