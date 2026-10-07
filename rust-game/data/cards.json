@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.40-jz49-slow-mill-candidate",
-  "engineVersion": "rust-v0.2.43-jz49-slow-mill-candidate",
+  "cardPoolVersion": "limited-v2.41-jz48-criminal-condition-candidate",
+  "engineVersion": "rust-v0.2.44-jz48-criminal-condition-candidate",
   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
   "cards": [
     {
@@ -3933,6 +3933,45 @@
         "record": "JZ49",
         "image": "resource/ymsj-fun.github.io/cards/JZ49 蹒跚行尸.jpg",
         "sha256": "208b2370433fb420ba91e1557ad6633589e43b1391d2008d63ebee2ed90fdf62"
+      }
+    },
+    {
+      "id": "JZ48",
+      "name": "街头劫匪",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "罪犯"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "黑色"
+      ],
+      "loyaltyText": "黑色",
+      "color": "黑",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "持续 若本地区有其他本方罪犯角色，则街头劫匪获得永久势力1和防御力+1。",
+      "keywords": [],
+      "unique": false,
+      "society": "",
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JZ48",
+        "image": "resource/ymsj-fun.github.io/cards/JZ48 街头劫匪.jpg",
+        "sha256": "a9a5da75938c22872cca524776356b10f2a0250370d3ba3ed3b31deb332e5b4f"
       }
     }
   ],

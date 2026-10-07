@@ -407,6 +407,7 @@ pub struct Traits {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum StaticModifier {
+    JZ48OtherControlledCriminalInfluenceAndDefense,
     JC030BloodAssetsVampireAndInvestigation,
     LC30WeaponsCombatAndDefense,
     JC018MindAssetsCombat,
@@ -1029,6 +1030,13 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
 
 pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -> Result<(), String> {
     for (card_id, definition) in definitions {
+        if (card_id == "JZ48" || definition.modifiers.iter().any(|m|
+            matches!(m, StaticModifier::JZ48OtherControlledCriminalInfluenceAndDefense)))
+            && (card_id != "JZ48" || serde_json::to_value(definition).unwrap()
+                != serde_json::to_value(jz48_definition()).unwrap())
+        {
+            return Err(format!("cardId={card_id}: only the complete JZ48 criminal condition is admitted"));
+        }
         if (card_id == "JZ49" || definition.traits.slow)
             && (card_id != "JZ49" || serde_json::to_value(definition).unwrap()
                 != serde_json::to_value(jz49_definition()).unwrap())
@@ -1333,6 +1341,12 @@ fn jz49_definition() -> Definition {
     definition.traits.slow = true;
     definition
 }
+fn jz48_definition() -> Definition {
+    Definition {
+        modifiers: vec![StaticModifier::JZ48OtherControlledCriminalInfluenceAndDefense],
+        ..Definition::default()
+    }
+}
 fn msjc03_definition() -> Definition {
     let mut d = msjc02_definition();
     d.abilities[1].key = "search-blue-unique".into();
@@ -1385,6 +1399,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         m.insert("JZ24".into(), jz24_definition());
         m.insert("JZ31".into(), jz31_definition());
         m.insert("JZ49".into(), jz49_definition());
+        m.insert("JZ48".into(), jz48_definition());
         m.insert("JZ55".into(), jz55_definition());
         m.insert("JC030".into(), jc030_definition());
         m.insert("LC30".into(), lc30_definition());

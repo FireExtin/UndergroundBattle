@@ -7,6 +7,21 @@ use crate::{
 };
 
 impl Game {
+    // One closed printed condition. "本方" means the current controller alone,
+    // and exhaustion leaves a face-up criminal's subtype in effect.
+    pub(crate) fn jz48_other_controlled_criminal_active(&self, c: &Card, region: usize) -> bool {
+        if c.definition != "JZ48" || c.face_down
+            || !crate::rules::definition("JZ48").modifiers.iter().any(|m|
+                matches!(m, StaticModifier::JZ48OtherControlledCriminalInfluenceAndDefense)) {
+            return false;
+        }
+        let Some(r) = self.regions.get(region) else { return false; };
+        let Some(live) = r.cards.iter().find(|live| live.id == c.id) else { return false; };
+        !live.face_down && live.definition == "JZ48" && r.cards.iter().any(|other|
+            other.id != live.id && !other.face_down && other.controller == live.controller
+                && card(&other.definition).kind == "character"
+                && self.current_subtypes(other).iter().any(|s| s == "罪犯"))
+    }
     // One printed JC030 condition, shared by its permanent icon and added
     // subtype. Only a live face-up bat's current controller's assets count.
     pub(crate) fn jc030_blood_assets_active(&self, c: &Card) -> bool {

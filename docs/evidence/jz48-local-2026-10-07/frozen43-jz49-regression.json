@@ -1,0 +1,19 @@
+{
+  "engineVersion": "rust-v0.2.43-jz49-slow-mill-candidate",
+  "poolVersion": "limited-v2.40-jz49-slow-mill-candidate",
+  "commands": 290,
+  "rejected": 3,
+  "checkpoints": 601,
+  "chainCommands": 13,
+  "views": 3616,
+  "kinds": {
+    "game": 1,
+    "passResponse": 10,
+    "beginResponse": 1,
+    "submitResponse": 1
+  },
+  "wasmBytes": 2186939,
+  "wasmSha256": "3b0bee7b1c6788bc0a299338322f1c07d6108161a75e4999ac066971659520bb",
+  "frozen36Bytes": 2181427,
+  "frozen36Sha256": "0f3a637d854074fe0689927c51e7969e8a32551ddcb48e1e1f3f1b6d022ea036"
+}

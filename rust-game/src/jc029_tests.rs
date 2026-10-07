@@ -308,7 +308,7 @@ fn jc029_whole_original_and_exact_reused_ability() {
         a.ops.as_slice(),
         [Op::DamageTarget { slot: 0, amount: 1 }]
     ));
-    assert_eq!(catalog::catalog().cards.len(), 101);
+    assert_eq!(catalog::catalog().cards.len(), 102);
     assert!(crate::society::definition("MSJC03").is_ok());
 }
 

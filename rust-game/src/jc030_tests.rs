@@ -31,7 +31,7 @@ fn jc030_whole_original_fields_and_exact_reused_raid_equipment_rule() {
     assert_eq!(serde_json::to_value(&spec.abilities).unwrap(), serde_json::to_value(&definition("JC029").abilities).unwrap());
     assert_eq!(spec.modifiers.len(),1);
     assert!(matches!(spec.modifiers[0],StaticModifier::JC030BloodAssetsVampireAndInvestigation));
-    assert_eq!(catalog::catalog().cards.len(),101); assert_eq!(catalog::catalog().societies.len(),8);
+    assert_eq!(catalog::catalog().cards.len(),102); assert_eq!(catalog::catalog().societies.len(),8);
     for absent in ["XQ11"] { assert!(!catalog::catalog().cards.iter().any(|c| c.id == absent)); }
     assert!(catalog::catalog().societies.iter().any(|c|c.card.id=="MSJC03"));
 }

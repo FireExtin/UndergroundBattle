@@ -87,3 +87,5 @@ mod jz31_tests;
 mod jz55_tests;
 #[cfg(test)]
 mod jz49_tests;
+#[cfg(test)]
+mod jz48_tests;

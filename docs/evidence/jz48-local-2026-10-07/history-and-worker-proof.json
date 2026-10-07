@@ -1,0 +1,31 @@
+{
+  "base": "2305aa17c53e73dd3683ae9fe1e654531777f16e",
+  "unchangedHistoricalFiles": 199,
+  "frozen43": {
+    "package.json": {
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    "hegemony_wasm_bg.wasm.d.ts": {
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+    },
+    "hegemony_wasm.d.ts": {
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758"
+    },
+    "hegemony_wasm.js": {
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    "hegemony_wasm_bg.wasm": {
+      "bytes": 2186939,
+      "sha256": "3b0bee7b1c6788bc0a299338322f1c07d6108161a75e4999ac066971659520bb"
+    }
+  },
+  "workerWasmModules": 1,
+  "workerBytes": 2238448,
+  "workerJsBytes": 47273,
+  "workerWasmBytes": 2191175,
+  "wasmSha256": "6cf6dca6a06844c84e38fbed2a084145bc0e63ae3897de18b864814c314d11f9"
+}

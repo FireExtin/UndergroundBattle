@@ -162,11 +162,11 @@ fn jc004_complete_printed_definition_and_candidate_identity_are_isolated() {
     assert_eq!(spec.targets[0].relation, Relation::Any);
     assert_eq!(
         catalog::ENGINE_VERSION,
-        "rust-v0.2.43-jz49-slow-mill-candidate"
+        "rust-v0.2.44-jz48-criminal-condition-candidate"
     );
     assert_eq!(
         catalog::POOL_VERSION,
-        "limited-v2.40-jz49-slow-mill-candidate"
+        "limited-v2.41-jz48-criminal-condition-candidate"
     );
     let mut draft = deck::preset("watchers").unwrap();
     draft.cards = vec![
