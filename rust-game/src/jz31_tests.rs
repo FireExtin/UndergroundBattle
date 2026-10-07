@@ -105,7 +105,7 @@ fn jz31_whole_original_has_no_magic_and_exact_unparameterized_death_program() {
         serde_json::to_string(&a.ops).unwrap(),
         "[\"PlaceOneInfluenceInSourceRegion\"]"
     );
-    assert_eq!(catalog::catalog().cards.len(), 102);
+    assert_eq!(catalog::catalog().cards.len(), 103);
 }
 
 #[test]

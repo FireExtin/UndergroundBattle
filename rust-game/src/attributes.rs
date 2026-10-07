@@ -7,6 +7,22 @@ use crate::{
 };
 
 impl Game {
+    // One closed attachment effect. Exhaustion does not blank a curse; each
+    // real, still-attached JC089 contributes one negative defense scalar.
+    pub(crate) fn jc089_host_curses(&self, c: &Card) -> usize {
+        if c.face_down || card(&c.definition).kind != "character" {
+            return 0;
+        }
+        self.attachments.iter().filter(|a|
+            a.card.definition == "JC089" && !a.card.face_down && a.host_id == c.id
+                && self.attachment_host_valid(a)
+                && crate::rules::definition("JC089").modifiers.iter().any(|m|
+                    matches!(m, StaticModifier::JC089HostDefenseMinusOneAndGlory)))
+            .count()
+    }
+    pub(crate) fn has_jc089_glory(&self, c: &Card) -> bool {
+        self.jc089_host_curses(c) > 0
+    }
     // One closed printed condition. "本方" means the current controller alone,
     // and exhaustion leaves a face-up criminal's subtype in effect.
     pub(crate) fn jz48_other_controlled_criminal_active(&self, c: &Card, region: usize) -> bool {

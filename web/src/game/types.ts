@@ -25,6 +25,7 @@ export type Card = {
   currentDamagePrevention?: boolean;
   currentPrintedDefense?: number;
   currentRenown?: boolean;
+  currentCombatGlory?: boolean;
   currentBarrier?: boolean;
   currentSubtypes?: string[];
   instanceId: string; cardId?: string; name: string; owner: string; controller: string;

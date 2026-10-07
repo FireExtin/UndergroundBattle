@@ -30,6 +30,8 @@ pub enum Event {
     ConfrontationStart,
     RegionWon,
     RegionConfrontationsEnded,
+    // JC089's granted 威名 occurs after a won combat, independently of 声望.
+    CombatWon,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Cost {
@@ -407,6 +409,7 @@ pub struct Traits {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum StaticModifier {
+    JC089HostDefenseMinusOneAndGlory,
     JZ48OtherControlledCriminalInfluenceAndDefense,
     JC030BloodAssetsVampireAndInvestigation,
     LC30WeaponsCombatAndDefense,
@@ -459,6 +462,17 @@ pub struct Definition {
 // These are interpreter limits, not rules for resolving partially invalid targets.
 // Reject unsupported declarations before publishing actions or offering trigger choices.
 pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(), String> {
+    if ability.event == Some(Event::CombatWon) || ability.key == "jc089-combat-glory" {
+        let region = match ability.ops.as_slice() {
+            [Op::PlaceInfluence { region_instance, amount: 1 }] if !region_instance.is_empty() => region_instance,
+            _ => return Err(format!("{card_id}: malformed finite JC089 combat reward")),
+        };
+        if serde_json::to_value(ability).unwrap()
+            != serde_json::to_value(jc089_combat_glory_ability(region)).unwrap()
+        {
+            return Err(format!("{card_id}: only the complete runtime JC089 combat reward is admitted"));
+        }
+    }
     let two_card_mill = ability.ops.iter().chain(ability.modes.iter().flat_map(|m| &m.ops))
         .any(|op| matches!(op, Op::MoveDeckTopToGraveyard { count: 2, .. }));
     if (card_id == "JZ49" || ability.key == "mill-two-entry" || two_card_mill)
@@ -1030,6 +1044,16 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
 
 pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -> Result<(), String> {
     for (card_id, definition) in definitions {
+        if (card_id == "JC089" || definition.modifiers.iter().any(|m|
+            matches!(m, StaticModifier::JC089HostDefenseMinusOneAndGlory)))
+            && (card_id != "JC089" || serde_json::to_value(definition).unwrap()
+                != serde_json::to_value(jc089_definition()).unwrap())
+        {
+            return Err(format!("cardId={card_id}: only the complete JC089 curse is admitted"));
+        }
+        if definition.abilities.iter().any(|a| a.event == Some(Event::CombatWon)) {
+            return Err(format!("cardId={card_id}: CombatWon is only the finite runtime JC089 host reward"));
+        }
         if (card_id == "JZ48" || definition.modifiers.iter().any(|m|
             matches!(m, StaticModifier::JZ48OtherControlledCriminalInfluenceAndDefense)))
             && (card_id != "JZ48" || serde_json::to_value(definition).unwrap()
@@ -1347,6 +1371,45 @@ fn jz48_definition() -> Definition {
         ..Definition::default()
     }
 }
+fn jc089_definition() -> Definition {
+    let host = target(Zone::Board, EntityKind::Character, Relation::Any, Range::Anywhere);
+    let mut attach = ability("attach", "结附目标角色", Timing::Standard,
+        vec![], vec![host.clone()], vec![], None);
+    attach.play_only = true;
+    Definition {
+        abilities: vec![attach],
+        modifiers: vec![StaticModifier::JC089HostDefenseMinusOneAndGlory],
+        attachment: Some(AttachmentSpec {
+            controls_host: false,
+            host_subtype_change: SubtypeChange::None,
+            host,
+            host_icons: Icons { combat: 1, ..Icons::default() },
+            host_temporary_icons: Some(Icons { combat: 1, ..Icons::default() }),
+            host_barrier: false,
+            host_defense_bonus: 0,
+            host_leaves: HostLeaveDestination::OwnerGraveyard,
+        }),
+        ..Definition::default()
+    }
+}
+pub(crate) fn jc089_combat_glory_ability(region_instance: &str) -> AbilitySpec {
+    AbilitySpec {
+        play_only: false,
+        activation_only: false,
+        key: "jc089-combat-glory".into(),
+        label: "威名：战斗获胜，在本地区放置一个本方势力标志".into(),
+        timing: Timing::Fast,
+        response_policy: ResponsePolicy::Respondable,
+        costs: vec![],
+        targets: vec![],
+        ops: vec![Op::PlaceInfluence { region_instance: region_instance.into(), amount: 1 }],
+        event: Some(Event::CombatWon),
+        modes: vec![],
+        requires_ready_source: false,
+        once_per_game: false,
+        per_turn_limit: None,
+    }
+}
 fn msjc03_definition() -> Definition {
     let mut d = msjc02_definition();
     d.abilities[1].key = "search-blue-unique".into();
@@ -1400,6 +1463,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         m.insert("JZ31".into(), jz31_definition());
         m.insert("JZ49".into(), jz49_definition());
         m.insert("JZ48".into(), jz48_definition());
+        m.insert("JC089".into(), jc089_definition());
         m.insert("JZ55".into(), jz55_definition());
         m.insert("JC030".into(), jc030_definition());
         m.insert("LC30".into(), lc30_definition());

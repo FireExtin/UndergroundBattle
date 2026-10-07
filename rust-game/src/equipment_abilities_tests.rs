@@ -217,7 +217,7 @@ fn override_count(g: &Game) -> usize {
 
 #[test]
 fn equipment_original_fields_and_bindings() {
-    assert_eq!(catalog::catalog().cards.len(), 102);
+    assert_eq!(catalog::catalog().cards.len(), 103);
     for (id, cost, color, loyalty, magic) in [
         ("JC116", 1, "中立", 0, ""),
         ("JC020", 2, "绿", 1, ""),

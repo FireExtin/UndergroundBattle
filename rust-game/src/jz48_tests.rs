@@ -55,7 +55,7 @@ fn jz48_original_is_exact_black_one_no_domain_and_one_closed_modifier() {
     let d = definition("JZ48");
     assert!(d.abilities.is_empty() && d.attachment.is_none());
     assert!(matches!(d.modifiers.as_slice(), [StaticModifier::JZ48OtherControlledCriminalInfluenceAndDefense]));
-    assert_eq!(catalog::catalog().cards.len(), 102);
+    assert_eq!(catalog::catalog().cards.len(), 103);
     assert!(definition("JZ49").traits.slow);
 }
 

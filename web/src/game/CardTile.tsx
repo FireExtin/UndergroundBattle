@@ -9,7 +9,7 @@ export function visibleCard(card: Card, viewerId: string): Card {
   }
   return { ...card, cardId: undefined, name: '暗藏者', kind: 'hidden', cost: undefined, effectiveCost: undefined,
     text: undefined, icons: undefined, convertedTemporaryIcons: undefined, currentKill: undefined, currentRetreat: undefined, defense: undefined, damage: undefined, shield: undefined,
-    wounds: undefined, color: undefined, magic: undefined, currentSubtypes: undefined, currentRenown: undefined, currentBarrier: undefined, currentDamagePrevention: undefined, currentSpiritProtection: undefined, currentPrintedDefense: undefined };
+    wounds: undefined, color: undefined, magic: undefined, currentSubtypes: undefined, currentRenown: undefined, currentCombatGlory: undefined, currentBarrier: undefined, currentDamagePrevention: undefined, currentSpiritProtection: undefined, currentPrintedDefense: undefined };
 }
 
 /** Display-only short form of a server instance ID; never used to match, merge or infer objects. */
@@ -101,6 +101,7 @@ export function CardContent({ card: source, definition: sourceDefinition, compac
         {!card.faceDown && card.region !== undefined && card.currentDamagePrevention && <span>本回合防止伤害</span>}
         {!card.faceDown && card.region !== undefined && typeof card.currentPrintedDefense === 'number' && <span>本回合印刷防御 {card.currentPrintedDefense}</span>}
         {!card.faceDown && card.region !== undefined && card.currentRenown && <span>声望</span>}
+        {!card.faceDown && card.region !== undefined && card.currentCombatGlory && <span>威名</span>}
         {!card.faceDown && card.region !== undefined && card.currentBarrier && <span>屏障</span>}
         {society && card.usedOncePerGame?.map(key => <span key={key}>
           {definition?.abilities?.find(ability => ability.key === key)?.label || '每局一次能力'} · 本局已使用

@@ -1,0 +1,107 @@
+{
+  "baseline": "99a208c0e6dc73669292396268840a0d9034547a",
+  "sources": [
+    {
+      "path": "resource/ymsj-fun.github.io/cards/JC089 毒血诅咒.jpg",
+      "bytes": 312412,
+      "sha256": "83853a1a4c3e6ecd9644f7bb5c843e70585d421f1792a0e4a141ebbe867d12f7"
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/cards/JC018 魔刃传人.jpg",
+      "bytes": 341242,
+      "sha256": "a764f6ad543c1aa25e287e42a508ecce2368277e64377c2969b2aff079b63af8"
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/cards/JZ50 墓穴食尸鬼.jpg",
+      "bytes": 533019,
+      "sha256": "403e44bb5f7f0ff8715acb267a8369c3715b2dc752d7fe612de085da29b523e7"
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+      "bytes": 15174985,
+      "sha256": "a1e5bca72b8dbb374357feace28b7fbfd31136349ee23455d60f5f62e0a6b886"
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界规则手册.pdf",
+      "bytes": 4538093,
+      "sha256": "2a771874efbdb3ad8a339ea01ff62888766090d075fe2e013632c79de1aeba35"
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界勘误及释疑.pdf",
+      "bytes": 516140,
+      "sha256": "916aa6a9f50ac7e737b517358e0c4270f715d0ed7391d55c8fcb629392a71d38"
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/public/docs/间奏说明书.jpg",
+      "bytes": 3657997,
+      "sha256": "efbe7e1e3711ca4b184b36f7801391afdec3b195d393cf17d2458215279f9b80"
+    }
+  ],
+  "actuallyViewed": {
+    "cardOriginals": [
+      "JC089",
+      "JC018",
+      "JZ50"
+    ],
+    "hegemonyPrintedPages": [
+      7,
+      9,
+      10,
+      15,
+      16,
+      18,
+      19,
+      21,
+      22
+    ],
+    "basePrintedPages": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "faqPages": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "intermezzoWholeSheet": true
+  },
+  "primaryRules": [
+    {
+      "source": "JC089 original",
+      "basis": "cost2 / black1 / attachment curse / Blood1; any target character; continuous defense−1, permanent combat1, temporary combat1 and 威名"
+    },
+    {
+      "source": "FAQ p4",
+      "basis": "毒血诅咒 reduces defense1 by1 to0, destroying the host"
+    },
+    {
+      "source": "hegemony printed18 / physical19; base printed9 / physical11; FAQp2",
+      "basis": "威名 triggers after winning combat, is optional, requires participation, does not require kills, and does not stack among eligible characters in the same region"
+    },
+    {
+      "source": "base printed2,4,5,6; hegemony15,16",
+      "basis": "continuous while in play; exhaustion suppresses confrontation participation, not continuous attributes; host departure removes attachments; attachment controller does not follow host; graveyards follow owner; source may leave after stacking"
+    },
+    {
+      "source": "hegemony21",
+      "basis": "teams share influence; own controlled cards exclude teammate; selected reward actor follows existing finite project ordering rather than a claimed official minimum-controller election"
+    }
+  ],
+  "jz50": {
+    "printedText": "现身触发 从你的牌库中寻找一张［死亡图标］领域的角色牌，将该牌置于你的墓地，然后洗牌。",
+    "unresolvedQuestion": "After accepting the optional reveal trigger and with a Death-domain character present in the actor own hidden deck, may the actor intentionally choose zero cards and still shuffle? Distinct from declining the trigger (no search and no shuffle).",
+    "decision": "No min0/min1 rule selected. JZ50 not admitted in this batch."
+  },
+  "jc018Scope": "Printed 威名 has an old traits.renown binding. While JC089 grants 威名, suppress only the duplicate printed 威名 mapping; independent grants_renown and printed 声望 remain. No-curse and post-removal JC018 return to explicitly retained old baseline."
+}

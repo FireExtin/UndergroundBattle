@@ -496,6 +496,7 @@ impl Game {
             + self.green_source_attribute_bonus(c, region).1
             + u32::from(self.jz48_other_controlled_criminal_active(c, region))
             + attachment_bonus)
+            .saturating_sub(self.jc089_host_curses(c) as u32)
             .saturating_sub(c.wounds)
     }
     pub(crate) fn reset_passes(&mut self) {
@@ -1196,6 +1197,10 @@ impl Game {
             return Ok(());
         }
         if contest == 1 {
+            // Freeze the participating host/controller and real region before
+            // damage or departure. Exactly one optional JC089-granted 威名,
+            // even when several curses or eligible hosts contributed.
+            let glory = self.jc089_combat_glory(team, region);
             let kills = self.regions[region]
                 .cards
                 .iter()
@@ -1223,6 +1228,9 @@ impl Game {
                     region,
                     amount: total,
                 });
+            }
+            if let Some(declaration) = glory {
+                self.effects.push_back(Effect::Declare { declaration });
             }
         } else if contest == 0 {
             if seats.len() > 1 {
@@ -2014,6 +2022,8 @@ impl Game {
         let hidden = c.face_down && c.controller != viewer;
         let asset = kind == Some("asset");
         CardView {
+            current_combat_glory: (!asset && !c.face_down && region.is_some()
+                && self.has_jc089_glory(c)).then_some(true),
             current_kill: (!asset
                 && !c.face_down
                 && region.is_some()
@@ -2684,7 +2694,7 @@ mod tests {
     #[test]
     fn catalog_is_restricted_real_complete_and_decks_are_legal() {
         let c = catalog::catalog();
-        assert_eq!(c.cards.len(), 102);
+        assert_eq!(c.cards.len(), 103);
         let active = c
             .cards
             .iter()
@@ -2699,7 +2709,7 @@ mod tests {
                 .collect::<BTreeSet<_>>()
         );
         assert!(active.contains("DQJC116"));
-        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 92);
+        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 93);
         assert_eq!(c.decks.len(), 5);
         for deck in &c.decks {
             assert_eq!(deck.card_count, 50);

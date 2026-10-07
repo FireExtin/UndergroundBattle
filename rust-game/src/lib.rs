@@ -89,3 +89,5 @@ mod jz55_tests;
 mod jz49_tests;
 #[cfg(test)]
 mod jz48_tests;
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod jc089_tests;

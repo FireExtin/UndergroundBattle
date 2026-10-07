@@ -3973,6 +3973,41 @@
         "image": "resource/ymsj-fun.github.io/cards/JZ48 街头劫匪.jpg",
         "sha256": "a9a5da75938c22872cca524776356b10f2a0250370d3ba3ed3b31deb332e5b4f"
       }
+    },
+    {
+      "id": "JC089",
+      "name": "毒血诅咒",
+      "kind": "attachment",
+      "subtypes": [
+        "诅咒"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "黑色"
+      ],
+      "color": "黑",
+      "magic": "鲜血",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "text": "结附于目标角色\n持续：受此结附的角色获得防御-1、永久战斗1和临时战斗1，并获得威名。",
+      "keywords": [],
+      "unique": false,
+      "society": "方碑序列",
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/JC089 毒血诅咒.jpg",
+        "image": "resource/ymsj-fun.github.io/cards/JC089 毒血诅咒.jpg",
+        "sha256": "83853a1a4c3e6ecd9644f7bb5c843e70585d421f1792a0e4a141ebbe867d12f7"
+      }
     }
   ],
   "decks": [

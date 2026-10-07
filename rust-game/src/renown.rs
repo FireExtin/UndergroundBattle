@@ -7,10 +7,28 @@ use crate::{
 };
 
 impl Game {
+    pub(crate) fn jc089_combat_glory(&self, team: usize, region: usize) -> Option<Declaration> {
+        // One finite grant; printed definitions stay unchanged. has_renown
+        // suppresses JC018's duplicate old binding only while this grant exists.
+        let source = self.regions[region].cards.iter().filter(|c|
+            self.team(c.controller) == team && !self.players[c.controller].eliminated
+                && self.icons(c, region).combat > 0 && self.has_jc089_glory(c))
+            .min_by_key(|c| c.controller)?;
+        Some(Declaration {
+            actor: source.controller,
+            source: self.source_snapshot(source, Some(region)),
+            ability: rules::jc089_combat_glory_ability(&self.regions[region].card.id),
+        })
+    }
     pub(crate) fn has_renown(&self, c: &Card) -> bool {
         !c.face_down
             && card(&c.definition).kind == "character"
-            && (rules::definition(&c.definition).traits.renown
+            && ((rules::definition(&c.definition).traits.renown
+                // JC018's old printed 威名→声望 mapping is retained outside
+                // this grant. A JC089 host must not receive it a second time;
+                // a separately granted true 声望 still works below.
+                && !(self.has_jc089_glory(c)
+                    && card(&c.definition).keywords.iter().any(|k| k == "威名")))
                 || self.turn_attribute_modifiers.iter().any(|m| {
                     m.target_instance == c.id && m.expires_turn == self.turn && m.grants_renown
                 }))

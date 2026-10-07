@@ -3,14 +3,14 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, expect, it, vi } from 'vitest';
-import * as kernel from '../../../rust-game-wasm/pkg/hegemony_wasm.js';
+import * as kernel from '../../../rust-game-wasm/legacy-v0.2.44/hegemony_wasm.js';
 import * as prior from '../../../rust-game-wasm/legacy-v0.2.43/hegemony_wasm.js';
 import { ReadModal } from './ReadModal';
 import { Table } from './Table';
 import { DeckLibrary } from './DeckLibraryPanel';
 import { createDeckDraft, validateDeckDraft } from './deckLibrary';
 
-kernel.initSync({ module: readFileSync(resolve('../rust-game-wasm/pkg/hegemony_wasm_bg.wasm')) });
+kernel.initSync({ module: readFileSync(resolve('../rust-game-wasm/legacy-v0.2.44/hegemony_wasm_bg.wasm')) });
 prior.initSync({ module: readFileSync(resolve('../rust-game-wasm/legacy-v0.2.43/hegemony_wasm_bg.wasm')) });
 const catalog = JSON.parse(kernel.catalog());
 const definitions = new Map(catalog.cards.map(c => [c.id, c]));
