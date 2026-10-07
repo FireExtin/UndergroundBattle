@@ -12,16 +12,16 @@ const latest = JSON.parse(current.catalog());
 const historicalRoot = existsSync('rust-game-wasm') ? 'rust-game-wasm' : '../rust-game-wasm';
 const isUnsupported = error => error.status === 410 && error.code === 'unsupported_room_version' && /新建牌桌/.test(error.message);
 
-test('current-only Site keeps the reviewed engine36 bytes and its exact new-room flow', async () => {
-  assert.equal(createHash('sha256').update(currentBytes).digest('hex'), '0f3a637d854074fe0689927c51e7969e8a32551ddcb48e1e1f3f1b6d022ea036');
-  const prior = JSON.parse((await frozenKernel('legacy-v0.2.35')).catalog());
-  assert.equal(latest.engineVersion, 'rust-v0.2.36-jz55-unique-destroy-candidate');
-  assert.equal(latest.cardPoolVersion, 'limited-v2.33-jz55-unique-destroy-candidate');
-  assert.equal(latest.cards.length, 100); assert.equal(latest.societies.length, 8);
-  assert.deepEqual(latest.cards.filter(card => card.id !== 'JZ55'), prior.cards);
+test('current-only Site keeps the candidate engine43 bytes and its exact new-room flow', async () => {
+  assert.equal(createHash('sha256').update(currentBytes).digest('hex'), '3b0bee7b1c6788bc0a299338322f1c07d6108161a75e4999ac066971659520bb');
+  const prior = JSON.parse((await frozenKernel('legacy-v0.2.36')).catalog());
+  assert.equal(latest.engineVersion, 'rust-v0.2.43-jz49-slow-mill-candidate');
+  assert.equal(latest.cardPoolVersion, 'limited-v2.40-jz49-slow-mill-candidate');
+  assert.equal(latest.cards.length, 101); assert.equal(latest.societies.length, 8);
+  assert.deepEqual(latest.cards.filter(card => card.id !== 'JZ49'), prior.cards);
   for (const field of ['societies', 'decks', 'world', 'deckBuildRules']) assert.deepEqual(latest[field], prior[field]);
   const routed = routeKernels(current);
-  const room = JSON.parse(routed.newGame('new36', 'invite', 'duel', 'P0', 'watchers', '18446744073709551615'));
+  const room = JSON.parse(routed.newGame('new43', 'invite', 'duel', 'P0', 'watchers', '18446744073709551615'));
   assert.equal(room.view.versions.engine, latest.engineVersion);
   assert.equal(room.view.versions.cardPool, latest.cardPoolVersion);
   assert.equal(routed.catalog(room.state), current.catalog());
@@ -40,7 +40,7 @@ test('every historical tuple and altered identity rejects before any current sta
   for (const name of stateOperations) guarded[name] = () => { interpreted++; throw Error('A historical state must never reach the current reducer/projector'); };
   const routed = routeKernels(guarded);
   const folders = readdirSync(historicalRoot).filter(name => /^legacy-v0\.2\.\d+(?:-resource-policy)?$/.test(name));
-  assert.equal(folders.length, 37);
+  assert.equal(folders.length, 38);
   const reject = state => {
     for (const name of ['assertSupported', 'catalog', 'supportsPacing', ...stateOperations]) assert.throws(() => routed[name](state, 0, '{}', '1000'), isUnsupported);
   };

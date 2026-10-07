@@ -1041,6 +1041,13 @@ impl Game {
         Ok(())
     }
     pub(crate) fn enter_triggers(&mut self, seat: usize, definition: &str, id: &str, reveal: bool) {
+        // Intermezzo slow is an entry requirement, not an optional trigger or
+        // an exhaust cost. Apply it before freezing the entry declaration.
+        if rules::definition(definition).traits.slow {
+            if let Some(c) = self.board_mut(id).filter(|c| !c.face_down) {
+                c.exhausted = true;
+            }
+        }
         if let Some((r, c)) = self.board(id) {
             let source = self.source_snapshot(c, Some(r));
             self.emit_event(seat, source.clone(), Event::Enter);
@@ -2675,7 +2682,7 @@ mod tests {
     #[test]
     fn catalog_is_restricted_real_complete_and_decks_are_legal() {
         let c = catalog::catalog();
-        assert_eq!(c.cards.len(), 100);
+        assert_eq!(c.cards.len(), 101);
         let active = c
             .cards
             .iter()
@@ -2690,7 +2697,7 @@ mod tests {
                 .collect::<BTreeSet<_>>()
         );
         assert!(active.contains("DQJC116"));
-        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 90);
+        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 91);
         assert_eq!(c.decks.len(), 5);
         for deck in &c.decks {
             assert_eq!(deck.card_count, 50);

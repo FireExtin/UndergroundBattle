@@ -243,7 +243,7 @@ fn reduce(g: &mut Game, source: &str) {
 
 #[test]
 fn defence_original_fields_and_finite_bindings() {
-    assert_eq!(catalog::catalog().cards.len(), 100);
+    assert_eq!(catalog::catalog().cards.len(), 101);
     let shield = catalog::card("JC078");
     assert_eq!(shield.cost, 1);
     assert_eq!(shield.loyalty, ["白色"]);

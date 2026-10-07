@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.33-jz55-unique-destroy-candidate",
-  "engineVersion": "rust-v0.2.36-jz55-unique-destroy-candidate",
+  "cardPoolVersion": "limited-v2.40-jz49-slow-mill-candidate",
+  "engineVersion": "rust-v0.2.43-jz49-slow-mill-candidate",
   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
   "cards": [
     {
@@ -3891,6 +3891,48 @@
         "file": "resource/ymsj-fun.github.io/cards/JZ55 传奇落幕.jpg",
         "sha256": "9155faa90be22aa66e56148dfacd0d517eb7b6f7b56fd1b45b71a6804719784a",
         "basis": "actual whole original checked; existing Immediate and Destroy with JZ55-only unique target predicate"
+      }
+    },
+    {
+      "id": "JZ49",
+      "name": "蹒跚行尸",
+      "kind": "character",
+      "subtypes": [
+        "不死生物",
+        "行尸"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "黑色",
+        "黑色"
+      ],
+      "loyaltyText": "黑色，黑色",
+      "color": "黑",
+      "magic": "死亡",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "迟缓（该角色横置进场）\n进场触发：将目标玩家牌库顶的两张牌置于其墓地。",
+      "keywords": [
+        "迟缓"
+      ],
+      "unique": false,
+      "society": "",
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JZ49",
+        "image": "resource/ymsj-fun.github.io/cards/JZ49 蹒跚行尸.jpg",
+        "sha256": "208b2370433fb420ba91e1557ad6633589e43b1391d2008d63ebee2ed90fdf62"
       }
     }
   ],

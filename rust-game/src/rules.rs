@@ -391,6 +391,8 @@ pub struct AbilitySpec {
 #[derive(Clone, Debug, Default, Serialize, Deserialize)]
 pub struct Traits {
     #[serde(default, skip_serializing_if = "crate::model::is_false")]
+    pub slow: bool,
+    #[serde(default, skip_serializing_if = "crate::model::is_false")]
     pub spirit: bool,
     #[serde(default, skip_serializing_if = "crate::model::is_false")]
     pub renown: bool,
@@ -456,6 +458,14 @@ pub struct Definition {
 // These are interpreter limits, not rules for resolving partially invalid targets.
 // Reject unsupported declarations before publishing actions or offering trigger choices.
 pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(), String> {
+    let two_card_mill = ability.ops.iter().chain(ability.modes.iter().flat_map(|m| &m.ops))
+        .any(|op| matches!(op, Op::MoveDeckTopToGraveyard { count: 2, .. }));
+    if (card_id == "JZ49" || ability.key == "mill-two-entry" || two_card_mill)
+        && (card_id != "JZ49" || serde_json::to_value(ability).unwrap()
+            != serde_json::to_value(&jz49_definition().abilities[0]).unwrap())
+    {
+        return Err(format!("{card_id}: only the complete JZ49 entry mill is admitted"));
+    }
     let death_influence = ability.ops.iter().chain(ability.modes.iter().flat_map(|m| &m.ops))
         .any(|op| matches!(op, Op::PlaceOneInfluenceInSourceRegion));
     if (card_id == "JZ31" || death_influence)
@@ -1017,8 +1027,14 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
     Ok(())
 }
 
-fn validate_definitions(definitions: &BTreeMap<String, Definition>) -> Result<(), String> {
+pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -> Result<(), String> {
     for (card_id, definition) in definitions {
+        if (card_id == "JZ49" || definition.traits.slow)
+            && (card_id != "JZ49" || serde_json::to_value(definition).unwrap()
+                != serde_json::to_value(jz49_definition()).unwrap())
+        {
+            return Err(format!("cardId={card_id}: only the complete JZ49 slow definition is admitted"));
+        }
         if card_id == "JZ55" && serde_json::to_value(definition).unwrap()
             != serde_json::to_value(jz55_definition()).unwrap() {
             return Err("cardId=JZ55: only the complete admitted immediate unique destroy definition is supported".into());
@@ -1307,6 +1323,16 @@ fn jz31_definition() -> Definition {
     with_abilities(vec![ability("death-source-influence", "死亡触发：本地区放置一个本方势力标志", Timing::Fast,
         vec![], vec![], vec![Op::PlaceOneInfluenceInSourceRegion], Some(Event::Death))])
 }
+fn jz49_definition() -> Definition {
+    let mut definition = with_abilities(vec![ability(
+        "mill-two-entry", "进场触发：目标玩家牌库顶两张置墓", Timing::Fast,
+        vec![], vec![target(Zone::Player, EntityKind::Any, Relation::Any, Range::Anywhere)],
+        vec![Op::MoveDeckTopToGraveyard { player: PlayerRef::Target(0), count: 2 }],
+        Some(Event::Enter),
+    )]);
+    definition.traits.slow = true;
+    definition
+}
 fn msjc03_definition() -> Definition {
     let mut d = msjc02_definition();
     d.abilities[1].key = "search-blue-unique".into();
@@ -1358,6 +1384,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         m.insert("JC032".into(), jc032_definition());
         m.insert("JZ24".into(), jz24_definition());
         m.insert("JZ31".into(), jz31_definition());
+        m.insert("JZ49".into(), jz49_definition());
         m.insert("JZ55".into(), jz55_definition());
         m.insert("JC030".into(), jc030_definition());
         m.insert("LC30".into(), lc30_definition());

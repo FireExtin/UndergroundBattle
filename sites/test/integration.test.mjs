@@ -22,7 +22,7 @@ test('real workerd/WASM with D1 SQLite: concurrency, receipts, rollback and reop
   const migration = readdirSync('drizzle').find(name => name.endsWith('.sql'));
   for (const sql of readFileSync('drizzle/' + migration, 'utf8').split('--> statement-breakpoint').filter(s => s.trim())) await db.prepare(sql).run();
   const pacedRooms = new Set();
-  const pacedVersions = new Set(['rust-v0.2.5', 'rust-v0.2.6', 'rust-v0.2.7', 'rust-v0.2.8', 'rust-v0.2.9', 'rust-v0.2.10', 'rust-v0.2.11', 'rust-v0.2.36-jz55-unique-destroy-candidate']);
+  const pacedVersions = new Set(['rust-v0.2.5', 'rust-v0.2.6', 'rust-v0.2.7', 'rust-v0.2.8', 'rust-v0.2.9', 'rust-v0.2.10', 'rust-v0.2.11', 'rust-v0.2.43-jz49-slow-mill-candidate']);
   const durableView = value => pacedVersions.has(value?.versions?.engine) ? { ...value, serverNowMs: undefined } : value;
   const api = async (path, body, session) => {
     if (body?.action && pacedRooms.has(session?.roomId) && !['game','beginResponse','passResponse','cancelAndPass','submitResponse'].includes(body.action.kind)) {
@@ -43,11 +43,11 @@ test('real workerd/WASM with D1 SQLite: concurrency, receipts, rollback and reop
   const path = (session, action) => `/api/rooms/${session.roomId}/${action}`;
   try {
     const health = await api('/api/health'); assert.equal(health.body.transport, 'polling');
-    const catalog = await api('/api/catalog'); assert.equal(catalog.body.cards.length, 100); for (const id of ['JC075','JC104','JZ31','JZ55']) assert(catalog.body.cards.some(c => c.id === id)); assert.equal(catalog.body.entryIdempotency, true);
+    const catalog = await api('/api/catalog'); assert.equal(catalog.body.cards.length, 101); for (const id of ['JC075','JC104','JZ31','JZ55','JZ49']) assert(catalog.body.cards.some(c => c.id === id)); assert.equal(catalog.body.entryIdempotency, true);
     assert(catalog.body.cards.some(card => card.id === 'JC047'));
     assert(catalog.body.cards.some(card => card.id === 'JC007'));
-    assert.equal(catalog.body.engineVersion, 'rust-v0.2.36-jz55-unique-destroy-candidate');
-    assert.equal(catalog.body.cardPoolVersion, 'limited-v2.33-jz55-unique-destroy-candidate');
+    assert.equal(catalog.body.engineVersion, 'rust-v0.2.43-jz49-slow-mill-candidate');
+    assert.equal(catalog.body.cardPoolVersion, 'limited-v2.40-jz49-slow-mill-candidate');
     assert.equal(catalog.body.deckBuildRules.minimumCards, 50);
     assert.equal(catalog.body.cards.find(card => card.id === 'JC125').deckCopyLimit, null);
     const create = { name: '甲', mode: 'teams', deckId: 'responders', requestId: key() };
