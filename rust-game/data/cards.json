@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.44-jz50-death-search-candidate",
-  "engineVersion": "rust-v0.2.49-sealed-restart-candidate",
+  "cardPoolVersion": "limited-v2.45-bounded-entry-search-candidate",
+  "engineVersion": "rust-v0.2.50-bounded-entry-search-candidate",
   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
   "cards": [
     {
@@ -4156,6 +4156,85 @@
         "record": "JZ50",
         "image": "resource/ymsj-fun.github.io/cards/JZ50 墓穴食尸鬼.jpg",
         "imageSha256": "403e44bb5f7f0ff8715acb267a8369c3715b2dc752d7fe612de085da29b523e7"
+      }
+    },
+    {
+      "id": "BQ104",
+      "name": "猎头顾问",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "雇员"
+      ],
+      "cost": 3,
+      "loyalty": [],
+      "loyaltyText": "",
+      "color": "中立",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "公开\n进场触发 从你的牌库中寻找一张印刷费用小于或等于③的雇员角色牌，展示后以暗藏者状态置于本地区，然后洗牌。",
+      "keywords": [
+        "公开"
+      ],
+      "unique": false,
+      "society": "",
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/cards.json",
+        "record": "BQ104",
+        "image": "resource/ymsj-fun.github.io/cards/BQ104 猎头顾问.jpg",
+        "imageSha256": "dbee5b3829cf0c46b2820beccefda28708c3c8e87c589dbefce1e975faa916eb"
+      }
+    },
+    {
+      "id": "XQ48",
+      "name": "街头演说家",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "政治家"
+      ],
+      "cost": 4,
+      "loyalty": [],
+      "loyaltyText": "",
+      "color": "中立",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "公开 声望\n进场触发 自你的牌库中寻找至多三张名为无知路人的牌，将他们放置进场且置于街头演说家所在的地区，然后洗牌。",
+      "keywords": [
+        "公开",
+        "声望"
+      ],
+      "unique": false,
+      "society": "",
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/cards.json",
+        "record": "XQ48",
+        "image": "resource/ymsj-fun.github.io/cards/XQ48 街头演说家.jpg",
+        "imageSha256": "0cd31207bda681093839e86e5bb87cee624a3c0a657c70b60fa765f439089746"
       }
     }
   ],

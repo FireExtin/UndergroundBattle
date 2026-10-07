@@ -386,7 +386,7 @@ impl Game {
         SourceSnapshot {
             card: c.clone(),
             region,
-            source_region_instance: if matches!(c.definition.as_str(), "JC032" | "JZ24" | "JZ31") {
+            source_region_instance: if matches!(c.definition.as_str(), "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48") {
                 region.and_then(|r| self.regions.get(r)).map(|r| r.card.id.clone())
             } else { None },
             attachment_host_instance: rules::definition(&c.definition)
@@ -1256,6 +1256,8 @@ impl Game {
             frame.cursor += 1;
             match step.op {
                 Op::JZ50SearchDeathToGraveyard => return self.jz50_search_start(frame),
+                Op::BQ104SearchEmployeeHiddenInSourceRegion => return self.entry_search_start(frame, true),
+                Op::XQ48SearchPassersIntoSourceRegion => return self.entry_search_start(frame, false),
                 Op::SealOneActorHandCardOnTarget => return self.choose_hand_seal(frame),
                 Op::DestroyTargetIfSealed => {
                     let host = &frame.targets.first().ok_or("缺少封印载体目标")?.id;
@@ -1971,6 +1973,10 @@ impl Game {
                     return Err("墓穴食尸鬼检索的选择者无效".into());
                 }
                 self.jz50_search_complete(&frame, &selected)?;
+            }
+            FrameChoice::BQ104EmployeeSearch | FrameChoice::XQ48PasserSearch => {
+                if chooser != frame.actor { return Err("进场检索的选择者无效".into()); }
+                self.entry_search_complete(&frame, &selected, matches!(choice, FrameChoice::BQ104EmployeeSearch))?;
             }
             FrameChoice::HandSeal { seat, host_id } => {
                 if chooser != seat || frame.actor != seat

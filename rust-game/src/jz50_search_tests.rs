@@ -65,7 +65,7 @@ fn fixture(kind: &str, g: &Game) {
 }
 
 #[test]
-fn jz50_original_and_two_unadmitted_search_gates_are_explicit() {
+fn jz50_original_remains_unchanged_after_entry_search_admission() {
     let j = catalog::card("JZ50");
     assert_eq!(
         (&*j.name, j.cost, &*j.color, j.defense),
@@ -85,7 +85,7 @@ fn jz50_original_and_two_unadmitted_search_gates_are_explicit() {
     assert_eq!(j.temporary_icons, Icons::default());
     assert_eq!(catalog::card("JC125").name, "无知路人");
     for id in ["BQ104", "XQ48"] {
-        assert!(!catalog::catalog().cards.iter().any(|c| c.id == id));
+        assert!(catalog::catalog().cards.iter().any(|c| c.id == id));
     }
     let d = definition("JZ50");
     let a = &d.abilities[0];

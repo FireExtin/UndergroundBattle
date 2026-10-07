@@ -588,5 +588,15 @@
     "url": "/cards/XQ45.jpg",
     "source": "resource/ymsj-fun.github.io/cards/XQ45 破颅而出.jpg",
     "sha256": "6475556f30b08853ed5bb2e1c82b3314c73947fb59bc7d044060a5555f5ef8cf"
+  },
+  "BQ104": {
+    "url": "/cards/BQ104.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/BQ104 猎头顾问.jpg",
+    "sha256": "dbee5b3829cf0c46b2820beccefda28708c3c8e87c589dbefce1e975faa916eb"
+  },
+  "XQ48": {
+    "url": "/cards/XQ48.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/XQ48 街头演说家.jpg",
+    "sha256": "0cd31207bda681093839e86e5bb87cee624a3c0a657c70b60fa765f439089746"
   }
 }

@@ -1830,6 +1830,7 @@ impl Game {
         self.prune_turn_attribute_modifiers();
     }
     pub(crate) fn choose(&mut self, seat: usize, a: Action) -> RuleResult<()> {
+        self.validate_entry_search_choice()?;
         let p = self.pending.clone().ok_or("没有待选")?;
         if p.seat != seat || a.choice_id.as_deref() != Some(&p.choice.id) {
             return Err("选择者或选择ID不符".into());
@@ -2701,7 +2702,7 @@ mod tests {
     #[test]
     fn catalog_is_restricted_real_complete_and_decks_are_legal() {
         let c = catalog::catalog();
-        assert_eq!(c.cards.len(), 107);
+        assert_eq!(c.cards.len(), 109);
         let active = c
             .cards
             .iter()
@@ -2716,7 +2717,7 @@ mod tests {
                 .collect::<BTreeSet<_>>()
         );
         assert!(active.contains("DQJC116"));
-        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 97);
+        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 99);
         assert_eq!(c.decks.len(), 5);
         for deck in &c.decks {
             assert_eq!(deck.card_count, 50);

@@ -34,6 +34,11 @@ mod sealing;
 #[cfg(all(test, not(feature = "society-fixtures")))]
 mod sealing_tests;
 mod jz50_search;
+mod bounded_search;
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod bounded_search_tests;
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod bounded_entry_fresh_tests;
 #[cfg(all(test, not(feature = "society-fixtures")))]
 mod jz50_search_tests;
 pub mod room;

@@ -69,13 +69,14 @@ it('offers JC089 through the actual deck library controls',()=>{
  expect(screen.getByRole('button',{name:'添加 毒血诅咒（JC089）'})).toBeEnabled();
 });
 
-it('validates three curse copies and rejects four without admitting JZ50',()=>{
+it('validates three curse copies and rejects four while unreviewed JZ51 stays unavailable',()=>{
  const draft={...createDeckDraft(catalog),name:'毒血诅咒有限测试',cards:[{cardId:'JC089',count:3},{cardId:'JC125',count:47}]};
  expect(validateDeckDraft(draft,catalog).valid).toBe(true);
  expect(JSON.parse(kernel.newGameWithDeck('jc089-ui','LOCAL','teams','P0',JSON.stringify(draft),'9')).view.status).toBe('lobby');
  const invalid={...draft,cards:[{cardId:'JC089',count:4},{cardId:'JC125',count:46}]};expect(validateDeckDraft(invalid,catalog).valid).toBe(false);
  expect(()=>kernel.newGameWithDeck('jc089-invalid','LOCAL','teams','P0',JSON.stringify(invalid),'9')).toThrow();
- expect(definitions.has('JZ50')).toBe(false);
+ expect(definitions.has('JZ50')).toBe(true);
+ expect(definitions.has('JZ51')).toBe(false);
 });
 
 it('merges a cursed printed glory while preserving separately granted true renown',()=>{

@@ -212,6 +212,8 @@ pub enum SearchVisibility {
 pub enum Op {
     // Fixed JZ50 only: actor-private 0..1 Death character to owner graveyard, then shuffle.
     JZ50SearchDeathToGraveyard,
+    BQ104SearchEmployeeHiddenInSourceRegion,
+    XQ48SearchPassersIntoSourceRegion,
     // Closed XQ40 / XQ45 programs; both use their single declared character.
     SealOneActorHandCardOnTarget,
     DestroyTargetIfSealed,
@@ -469,6 +471,21 @@ pub struct Definition {
 // These are interpreter limits, not rules for resolving partially invalid targets.
 // Reject unsupported declarations before publishing actions or offering trigger choices.
 pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(), String> {
+    fn uses_entry_search(ops: &[Op]) -> bool {
+        ops.iter().any(|op| match op {
+            Op::BQ104SearchEmployeeHiddenInSourceRegion | Op::XQ48SearchPassersIntoSourceRegion => true,
+            Op::ForEachLivingPlayer(body) | Op::ForEachLivingPlayerFromActor(body) => uses_entry_search(body),
+            Op::IfTargetExhausted { exhausted, ready, .. } => uses_entry_search(std::slice::from_ref(exhausted)) || uses_entry_search(std::slice::from_ref(ready)),
+            _ => false,
+        })
+    }
+    if (matches!(card_id, "BQ104" | "XQ48") && ability.key != "renown") || uses_entry_search(&ability.ops)
+        || ability.modes.iter().any(|m| uses_entry_search(&m.ops)) {
+        let canonical = entry_search_definition(card_id).ok_or_else(|| format!("{card_id}: entry search cannot be transplanted"))?;
+        if serde_json::to_value(ability).unwrap() != serde_json::to_value(&canonical.abilities[0]).unwrap() {
+            return Err(format!("{card_id}: only the complete printed entry search is admitted"));
+        }
+    }
     fn uses_jz50_search(ops: &[Op]) -> bool {
         ops.iter().any(|op| match op {
             Op::JZ50SearchDeathToGraveyard => true,
@@ -1082,6 +1099,11 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
 
 pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -> Result<(), String> {
     for (card_id, definition) in definitions {
+        if let Some(canonical) = entry_search_definition(card_id) {
+            if serde_json::to_value(definition).unwrap() != serde_json::to_value(canonical).unwrap() {
+                return Err(format!("cardId={card_id}: only the complete printed entry search definition is admitted"));
+            }
+        }
         if card_id == "JZ50" && serde_json::to_value(definition).unwrap()
             != serde_json::to_value(jz50_definition()).unwrap() {
             return Err(format!("cardId={card_id}: only the complete JZ50 definition is admitted"));
@@ -1414,6 +1436,17 @@ fn jz50_definition() -> Definition {
         vec![Op::JZ50SearchDeathToGraveyard], Some(Event::Reveal),
     )])
 }
+fn entry_search_definition(id: &str) -> Option<Definition> {
+    let (key, op, renown) = match id {
+        "BQ104" => ("bq104-entry-employee-search", Op::BQ104SearchEmployeeHiddenInSourceRegion, false),
+        "XQ48" => ("xq48-entry-passer-search", Op::XQ48SearchPassersIntoSourceRegion, true),
+        _ => return None,
+    };
+    let mut d = with_abilities(vec![ability(key, "进场触发", Timing::Fast, vec![], vec![], vec![op], Some(Event::Enter))]);
+    d.traits.public = true;
+    d.traits.renown = renown;
+    Some(d)
+}
 fn jz48_definition() -> Definition {
     Definition {
         modifiers: vec![StaticModifier::JZ48OtherControlledCriminalInfluenceAndDefense],
@@ -1542,6 +1575,8 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         m.insert("JZ31".into(), jz31_definition());
         m.insert("JZ49".into(), jz49_definition());
         m.insert("JZ50".into(), jz50_definition());
+        m.insert("BQ104".into(), entry_search_definition("BQ104").unwrap());
+        m.insert("XQ48".into(), entry_search_definition("XQ48").unwrap());
         m.insert("JZ48".into(), jz48_definition());
         m.insert("JC089".into(), jc089_definition());
         m.insert("JZ55".into(), jz55_definition());

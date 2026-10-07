@@ -553,6 +553,8 @@ pub enum DeclareChoice {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum FrameChoice {
+    BQ104EmployeeSearch,
+    XQ48PasserSearch,
     JZ50DeathSearch,
     HandSeal { seat: usize, host_id: String },
     JC032TopSix { inspected_ids: Vec<String> },
@@ -779,6 +781,7 @@ impl Game {
         let game: Self = serde_json::from_str(state).map_err(|_| "v2持久状态字段无效")?;
         game.validate_sealed_cards()?;
         game.validate_jz50_search_choice()?;
+        game.validate_entry_search_choice()?;
         Ok(game)
     }
 }
