@@ -1,0 +1,11 @@
+{
+  "action": "Removed rebuildable local web/dist after candidate route QA",
+  "target": "/tmp/undergroundbattle-shared-cloud/web/dist",
+  "logical_bytes_removed": 64651102,
+  "files_verified_before_delete": 123,
+  "unchanged_files_restorable_from_baseline": 120,
+  "changed_files_restorable_from_verified_delta": 3,
+  "delta_sha256": "59c9d8f1edc21a0648b8163f6a791048cb1e662f48a1f4f73682af17fd522dc3",
+  "scope": "Execution environment cache only; no Library or deployed data deleted",
+  "source_and_exact_review_build_preserved": true
+}

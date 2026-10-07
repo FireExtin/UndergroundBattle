@@ -2,7 +2,8 @@
 
 > 基于《隐秘世界》桌游的数字化实现项目。
 > 当前云端可玩版本使用 **Rust + TypeScript/React**，默认规则包为《霸权》原始 PDF。
-> 下文 Go 设计是历史背景；旧 Go 实现保留用于对照，不再要求新游戏服务双实现。
+> 下文第4—7节的 Go 架构设计是历史背景；当前游戏权威为 Rust。Go 仍支撑显式入口 `/legacy-debugger` 的可选调试器，不再要求新游戏服务双实现。
+> 当前公开部署为 [Site41](https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site)，发布范围与验收限制见 [Site41发布记录](docs/SITE41_SEALING_SEARCH_PUBLICATION_2026-10-07.md)。
 > 最新切片范围、原稿页码、卡池与接口见 [霸权云端切片说明](docs/HEGEMONY_CLOUD_SLICE_2026-10-02.md)。
 > JC005 正式有限切片及当前宿主机制范围见 [v0.2.11 发布说明](docs/JC005_FORMAL_V011_RELEASE_2026-10-04.md)：当前合法卡池的角色附属路径已完成；其他宿主强化目标尚待后续宿主机制。
 > 2026-10-06 本地蓝色最低切片（JC032、JZ24、MSJC03）已完成定向核验，仍待独立审查；版本、原图、失败与修复记录见 [Air 候选说明](docs/BLUE_MINIMUM_AIR_CANDIDATE_2026-10-06.md)。本状态不代表线上发布。
@@ -273,61 +274,13 @@ TypeScript 负责：
 [ PostgreSQL / Redis / Files ]
 ```
 
-## 7.1 当前最小可运行形态
+## 7.1 当前游戏与可选历史调试器
 
-当前仓库已经具备一个**最小可运行 sandbox**：
+默认入口 `/` 使用 Rust 游戏服务。仓库根目录执行 `cargo run -p hegemony-server` 启动服务（默认8090）；另一个终端在 `web/` 执行 `npm install`、`npm run dev`，打开 `http://localhost:5173/`。Vite 将普通 `/api` 代理到8090；服务、数据库与状态版本约束见 [Rust服务说明](rust-game/README.md)。`web/` 执行 `npm run build` 后，Rust 服务可同源托管 `web/dist`。
 
-* Go 服务端提供内存内单局 session
-* Web 前端可以通过 HTTP 拉取协议 envelope，并提交预置动作
-* 如果 Go sandbox 不可用，Web 会自动退回 mock protocol 调试模式
+历史 Go sandbox 仍有实际使用入口：根目录执行 `go run ./server/cmd/api`（默认8080），打开 `http://localhost:5173/legacy-debugger`。Vite 将更具体的 `/api/debugger` 代理到8080；Go 提供读取协议、提交动作与重开单局三种端点。Go 服务也可托管构建后的 `web/dist`，此时入口为 `http://localhost:8080/legacy-debugger`。连接失败时，调试器明确显示内置 mock fallback 数据。
 
-### 本地开发运行
-
-1. 启动 Go sandbox：
-
-   ```bash
-   go run ./server/cmd/api
-   ```
-
-2. 启动 Web 开发服务器：
-
-   ```bash
-   cd web
-   npm install
-   npm run dev
-   ```
-
-3. 打开浏览器：
-
-   ```text
-   http://localhost:5173
-   ```
-
-Vite 会把 `/api` 代理到本地 Go 服务，默认目标是 `http://127.0.0.1:8080`。
-
-### 最小部署运行
-
-1. 构建前端：
-
-   ```bash
-   cd web
-   npm install
-   npm run build
-   ```
-
-2. 启动 Go 服务：
-
-   ```bash
-   go run ./server/cmd/api
-   ```
-
-3. 打开浏览器：
-
-   ```text
-   http://localhost:8080
-   ```
-
-当 `web/dist` 存在时，Go 服务会直接托管构建后的前端静态资源。
+调试器界面与 fallback 数据仅在访问该入口时按需加载。当前 Sites 构建不部署 Go 后端。Go 的保留理由是这个可选功能的实际引用；其源码已在 Git 历史中保存。后续若明确退役或替代该入口，应一并清理 `server/`、`shared/`、`go.mod` 及相关代理和文档，而非无限期作为“唯一历史资料”保留。
 
 ---
 

@@ -1,0 +1,29 @@
+{
+  "baseline_reviewed_product_source": "2ad04f7b91ca3d6030ff27a5d45598703592fbde",
+  "baseline_actual_site41_entry": "dist/client/assets/index-D4LmbjdR.js",
+  "baseline_entry": {
+    "bytes": 342675,
+    "gzip_bytes": 103513,
+    "sha256": "4e3a45c8729974387baf06bc2656c916fb8567cf9ad9ff38fdeec2ca7ac9d9ab"
+  },
+  "candidate_entry": {
+    "path": "assets/index-ClWuv-PL.js",
+    "bytes": 324773,
+    "gzip_bytes": 99217,
+    "sha256": "734706797a33c1a168490e2880ac7821be31a1fd36e2dbe1e7ad285b9cd27fbe"
+  },
+  "candidate_optional_debugger_chunk": {
+    "path": "assets/LegacyDebuggerEntry-CzejxkOr.js",
+    "bytes": 19273,
+    "gzip_bytes": 5463,
+    "sha256": "f897ee1e8e938d32d084eba107aaf7fa32fa3b6428bffacac83309c74952d33e"
+  },
+  "initial_js_reduction_bytes": 17902,
+  "initial_js_reduction_percent": 5.224,
+  "initial_js_gzip_reduction_bytes": 4296,
+  "legacy_go_tracked_files": 123,
+  "legacy_go_tracked_bytes": 712801,
+  "go_source_files": 88,
+  "go_retention_reason": "Explicit optional debugger route and actual three API endpoint references; Git history preserves originals. Not deployed by current Sites Worker.",
+  "gzip_measurement": "Python gzip.compress, compression level9, mtime0, same method for baseline and candidate; differs from Vite default gzip summary."
+}
