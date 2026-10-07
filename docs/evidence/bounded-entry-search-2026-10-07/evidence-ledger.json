@@ -360,9 +360,14 @@
     "sha256": "f22875b1de89f23c34dc694590abe99ccc5ccd28b1a6f1466b3c18a7840f267f"
   },
   {
+    "path": "qa-process-cleanup.json",
+    "bytes": 738,
+    "sha256": "1c0da6b09890edaa5926f649fbd489d8d283f961f098414021ccf7b2c4fa176f"
+  },
+  {
     "path": "qa-teardown.json",
-    "bytes": 1273,
-    "sha256": "4c5308c3e8c51d900ded70ccfe05adc05cc0edfafd64f581d609e4f91be9ba17"
+    "bytes": 1392,
+    "sha256": "ce9162898f2237f37e371fea5633f8c54ff391ca981de8c8e1ce40e264e7c93f"
   },
   {
     "path": "raw-logs-receipt.json",
@@ -376,8 +381,8 @@
   },
   {
     "path": "review-manifest.json",
-    "bytes": 10081,
-    "sha256": "baf822fdcfb11f1e14092cc8c68124ab81f3bf6e812b57f5942a685b8095b2c7"
+    "bytes": 10921,
+    "sha256": "21f6400019747a21ab232f4fc400e5701ae056728df3bf1d484bc8a98c5f54c7"
   },
   {
     "path": "sites-plugin-access-check.json",

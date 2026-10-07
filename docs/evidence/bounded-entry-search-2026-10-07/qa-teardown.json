@@ -31,9 +31,11 @@
   "rawDatabaseNotExported": true,
   "seatTokensNotExported": true,
   "browserClosed": true,
-  "wranglerStopped": true,
   "originalNaturalAttemptFailuresPreserved": true,
   "shortVisualChecksCompleted": 5,
   "shortScriptPassed": false,
-  "shortScriptFailure": "Locator.click: Timeout 15000ms exceeded."
+  "shortScriptFailure": "Locator.click: Timeout 15000ms exceeded.",
+  "wranglerStoppedReportedInitially": true,
+  "initialStoppedAssertionIncorrect": true,
+  "laterActualProcessCleanup": "qa-process-cleanup.json"
 }
