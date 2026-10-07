@@ -42,7 +42,7 @@ JC018 原图印刷威名，既有代码却把它绑定为 `traits.renown`（声�
 - `npm run build` 完成两项TypeScript检查、Vite产品构建与Wrangler本地dry-run。Workerd／D1完整25项通过，包括并发、收据、回滚、重开、历史拒绝和生产包检查。40份历史元组及5种身份篡改均在进入当前reducer前拒绝。
 - 全部204个基线历史引擎文件逐文件对比Git blob字节一致；新增5个44冻结文件逐字节等于已发布Site36的44包，共40个历史目录、209个历史文件。生产generated只含2个当前文件，Worker只含1个当前WASM。详细历史字节审计在 `/tmp/jc089-mechanism-evidence/historical-byte-audit.json`。
 
-所有专项布局均明确为离线fixture／primitive边界测试，再通过真实付费命令和存读验证。Web组件fixture与原生/WASM证明不等于自然浏览器操作。父后续自然四席UI、独立审查与组合原图属于独立验收，本任务没有冒充已完成或已上线。
+所有专项布局均明确为离线fixture／primitive边界测试，再通过真实付费命令和存读验证。Web组件fixture与原生/WASM证明不等于自然浏览器操作。父后续自然UI、独立审查与组合原图属于独立验收，本任务没有冒充已完成或已上线。
 
 原生构建使用既有 `/tmp/jz49-native-target`，Rust1.90，locked/offline、jobs1、禁用incremental、移除debug，避免全量资源和新target占盘。当前审计二进制在全套原生结束后串行构建并单独冻结，供父只读审计，不包含或修改真实数据库。
 
