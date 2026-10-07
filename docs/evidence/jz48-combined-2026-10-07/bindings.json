@@ -1,0 +1,265 @@
+{
+  "reviewedProductCommit": "c98bf422795c48d5842011dd5b65a97e647d3f14",
+  "baseCommit": "2305aa17c53e73dd3683ae9fe1e654531777f16e",
+  "engine": "rust-v0.2.44-jz48-criminal-condition-candidate",
+  "pool": "limited-v2.41-jz48-criminal-condition-candidate",
+  "rules": "hegemony-pdf-v1",
+  "authoritySources": [
+    {
+      "path": "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+      "gitBlob": "135a38370d6e154aa3ef626d748857c4af667dd7",
+      "bytes": 15174985,
+      "sha256": "a1e5bca72b8dbb374357feace28b7fbfd31136349ee23455d60f5f62e0a6b886",
+      "authority": "Primary rule source; printedP16/P21 correspond physicalPDF17/22, actually viewed"
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/cards/JZ48 街头劫匪.jpg",
+      "gitBlob": "c796a1455c61879426e0ac7d6ac2dbb30d61fd2f",
+      "bytes": 499021,
+      "sha256": "a9a5da75938c22872cca524776356b10f2a0250370d3ba3ed3b31deb332e5b4f",
+      "authority": "Primary full original JZ48, actually viewed; same bytes served as web/public/cards/JZ48.jpg"
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/cards/JZ50 墓穴食尸鬼.jpg",
+      "gitBlob": "65e6b33f2779b1b754df729e58fcad60d5af3b33",
+      "bytes": 533019,
+      "sha256": "403e44bb5f7f0ff8715acb267a8369c3715b2dc752d7fe612de085da29b523e7",
+      "authority": "Primary full original JZ50, actually viewed; art only, same bytes served as web/public/cards/JZ50.jpg"
+    },
+    {
+      "path": "docs/factions/card-specifications.json",
+      "gitBlob": "e070e34177e0337d6a053d3c1159c789025721ec",
+      "bytes": 2805227,
+      "sha256": "797b502b7d5261ce467f24308f15e7b78f25def6067701f9d4fadff9958a2d68",
+      "authority": "Secondary complete source specification; records JZ48 and JZ50 compared with primary originals; not a new ruling"
+    }
+  ],
+  "codeBindings": [
+    {
+      "path": "rust-game/src/attributes.rs",
+      "gitBlob": "6266708cad886c9c50a8e6f81cc7def1eff82efb",
+      "bytes": 8910,
+      "sha256": "a4c9ecb30000a0d43e5278e53d2b4f2cda47850ad88481ac775b99e151a753ab"
+    },
+    {
+      "path": "rust-game/src/engine.rs",
+      "gitBlob": "888cc3e9362df46f300b38f555caadd3df39df74",
+      "bytes": 253630,
+      "sha256": "d262d66340e7ac4967458d529c9bc48a7747ed045ff2f494e63bea3301e07599"
+    },
+    {
+      "path": "rust-game/src/rules.rs",
+      "gitBlob": "59e79d901d162c3ff53476291c0cfa4d34557763",
+      "bytes": 130580,
+      "sha256": "6a32947d58c4a3f21cbd1767a16c47b43cfb8752b2191880d47a8f35853e3882"
+    },
+    {
+      "path": "rust-game/src/catalog.rs",
+      "gitBlob": "c3e09f877d5750719994993de0a14a4faf25e75e",
+      "bytes": 8262,
+      "sha256": "1d2e4949c1f50cc08429e442fb1da764fd508ce635ca3c7bf057596bd65fd70b"
+    },
+    {
+      "path": "rust-game/data/cards.json",
+      "gitBlob": "050a11b99fabb29c0f9f519352b5ff336fd4111a",
+      "bytes": 110127,
+      "sha256": "ebd142493957a5cd7249026ffea16fae216a5a65714c2d235c6fd9095ac5ffcd"
+    },
+    {
+      "path": "sites/src/kernel.mjs",
+      "gitBlob": "95aacda95892a966b33e1c2404b86e94ffe6a0e5",
+      "bytes": 556,
+      "sha256": "3b6b73a42367a698a504cb9c6639bf8b4efd89a27d497d70d1f2eca44048eaba"
+    },
+    {
+      "path": "web/src/game/cardScans.ts",
+      "gitBlob": "ec7f1153a6d4c7b3c4f0bc5b3ae631dc9866c1b6",
+      "bytes": 3715,
+      "sha256": "0ae1620ad715581bb229a9e3e26d40b26be693f8efa15276e0b497897376caa5"
+    },
+    {
+      "path": "web/public/card-scans.json",
+      "gitBlob": "522f7beb2994e954ed4b79c72df1ed7cab7fbce2",
+      "bytes": 22696,
+      "sha256": "43f1182b6e611e91945f142084d72329dec139bd118526c3532c095e108a64b5"
+    }
+  ],
+  "testBindings": [
+    {
+      "path": "rust-game/src/jz48_tests.rs",
+      "gitBlob": "1cf030fd4776be4ffbded709e5e5b7197d6c85e5",
+      "bytes": 23967,
+      "sha256": "4416898a5a5f3cb21910ee8ab1fd786a09b4e0a18009bdf9b5e7b41030a246b1"
+    },
+    {
+      "path": "rust-game-wasm/tests/jz48_compare.mjs",
+      "gitBlob": "4d5d07285c020f987a1cc40a7726e1024578ea4a",
+      "bytes": 3522,
+      "sha256": "ba18dd3fa77325cc03f4a582b697582cb5c28d2790fde2cdec57e275d883a4c0"
+    },
+    {
+      "path": "rust-game-wasm/tests/jz49_compare.mjs",
+      "gitBlob": "0ec41f96cba8fb11675d66e8a86432fe6690bc64",
+      "bytes": 3706,
+      "sha256": "fa98cc81d8a3971e08f4f463cf7a1b9b281c4e75273f81725349ce1a07819d91"
+    },
+    {
+      "path": "sites/test/kernel-routing.test.mjs",
+      "gitBlob": "7ffd2eed4a59e7503147c5f3796fca28af3f092e",
+      "bytes": 4625,
+      "sha256": "36861a53b44b78afe567c4b999394c9b95c15eeb257e22369312d0ac00985ca8"
+    },
+    {
+      "path": "sites/test/integration.test.mjs",
+      "gitBlob": "55b1cf0e374fab31563de9f26a9c9a1204c5355f",
+      "bytes": 17821,
+      "sha256": "06a4e3d6cc6214e1f50c27fdee8571fd99564a6a9aac48807f5bde47710a394e"
+    },
+    {
+      "path": "web/src/game/JZ48Criminal.test.jsx",
+      "gitBlob": "7a78830d33649df6e53a1556f40aadfde6cfc0cd",
+      "bytes": 6050,
+      "sha256": "b7d30f193658c73fe9b12eab69593d3b104bddb1c6829ec6136d37b4c459bd9c"
+    },
+    {
+      "path": "web/src/game/JZ48JZ50CardFaces.test.jsx",
+      "gitBlob": "bf7c52b45bd21c28abc2ec8692c7fcd356163882",
+      "bytes": 6380,
+      "sha256": "0b92fc66daa3a0a3b2fe478141a00220f85e68fe456f284bf4620f3fbd34a8e1"
+    },
+    {
+      "path": "web/src/game/JZ49Slow.test.jsx",
+      "gitBlob": "c8cd7b587f914fd4f7074388f801c429cddf3bb1",
+      "bytes": 6014,
+      "sha256": "4006b009ac6898ce96a967c66ff40a144475ca42ac7f881e2849461fce629976"
+    },
+    {
+      "path": "web/src/game/JZ55UniqueDestroy.test.jsx",
+      "gitBlob": "852a2417b6ea7adfe707b6d58856b169c71e3152",
+      "bytes": 8504,
+      "sha256": "ec7232f326b02c87525d67df35425dd504df08cbce774028f93c7a51ba2aa24e"
+    }
+  ],
+  "artifactIdentities": [
+    {
+      "name": "index.js",
+      "kind": "current-only Worker JS",
+      "bytes": 47273,
+      "sha256": "0601398bfef9651e7cf815aee1978684b58f68be177f6275c848ff763a5006c4"
+    },
+    {
+      "name": "f4018556ddb6a6c047cd00119ef1510c0302840d-hegemony_wasm_bg.wasm",
+      "kind": "sole current-only Worker WASM",
+      "bytes": 2191175,
+      "sha256": "6cf6dca6a06844c84e38fbed2a084145bc0e63ae3897de18b864814c314d11f9"
+    },
+    {
+      "name": "c98bf42-jz48-combined-product.bundle",
+      "kind": "verified combined product Git bundle",
+      "bytes": 1230119,
+      "sha256": "bbd1b5ade84957b0ad5241addf025a890d32a639d07d1afc60b2edf8bff74a07"
+    },
+    {
+      "name": "02a69dc47142.bundle",
+      "kind": "verified isolated mechanism Git bundle",
+      "bytes": 656868,
+      "sha256": "d6d1ebf930eb2efc833a0be0f92f2a50152696aafc8da5a9d392424e58e612a2"
+    },
+    {
+      "name": "jz48-jz50-card-faces.bundle",
+      "kind": "verified isolated art Git bundle",
+      "bytes": 573462,
+      "sha256": "715e22ca2c62727982479bcab017c20b741b8b4e80dbc8da77a7b32009b749ba"
+    }
+  ],
+  "currentOnlyBuild": {
+    "wasmModules": 1,
+    "wasmBytes": 2191175,
+    "workerJsBytes": 47273,
+    "totalBytes": 2238448,
+    "wranglerDryRunReportedUpload": "2185.98 KiB / gzip570.04 KiB"
+  },
+  "productBundle": {
+    "ref": "HEAD",
+    "head": "c98bf422795c48d5842011dd5b65a97e647d3f14",
+    "prerequisite": "2305aa17c53e73dd3683ae9fe1e654531777f16e",
+    "verify": "passed; local only"
+  },
+  "externalExecutedLogBindings": [
+    {
+      "name": "web-tests.json",
+      "bytes": 200362,
+      "sha256": "d8784009ef2732ce54fc8c2fd37423c789a867a1ca37a29836ba0fb0be5c2fa2"
+    },
+    {
+      "name": "worker-tests.log",
+      "bytes": 4654,
+      "sha256": "ed00282d7f0040d7cc0be5490b62043b9f767e0da8570bafa571c268b01b1570"
+    },
+    {
+      "name": "worker-build.log",
+      "bytes": 1707,
+      "sha256": "bfb299aa2b3ff3587579818b3cdbdf901b792a5f887fa18067e1eb675b84ef4e"
+    },
+    {
+      "name": "native-workspace-final-corrected.log",
+      "bytes": 57347,
+      "sha256": "a8217061c4b13f3d064423d9d49d6241616f16250a0511ba00ac17aaba609ccf"
+    },
+    {
+      "name": "native-focused.log",
+      "bytes": 2263,
+      "sha256": "8cfa2f9ae13a7bc49335200d7c0af6acc99047d29b6f1e089f72efeda1ca5b20"
+    },
+    {
+      "name": "wasm-compare.json",
+      "bytes": 566,
+      "sha256": "453dbb4455d78fbd14511a072eb76a41be6d86e1d84d2ae58fe538368254f2ad"
+    }
+  ],
+  "logScope": "Hashes bind actual successful logs; full private HTTP responses/room states/seat auth/DBs are excluded from repository delivery",
+  "externalHarnessBindings": [
+    {
+      "name": "natural-ui-e2e.mjs",
+      "bytes": 15400,
+      "sha256": "45bd2b48d389131b4397927e82df52d9576ccee0a74f2fef0bdd473413943afe",
+      "scope": "Actual local QA driver; source hash only, no runtime output or session auth exported"
+    },
+    {
+      "name": "natural-ui-harness.mjs",
+      "bytes": 5308,
+      "sha256": "08b672d45c2398cb80b2d44f9fa9fbad03d799fc6b5b7f3548ce657ee17a2411",
+      "scope": "Actual local QA driver; source hash only, no runtime output or session auth exported"
+    },
+    {
+      "name": "mobile-readonly-check.mjs",
+      "bytes": 3352,
+      "sha256": "8aeacf5fbc6890cadd03030d6f44bb73980645a5ca87f90b9d9d5c339d56008e",
+      "scope": "Actual local QA driver; source hash only, no runtime output or session auth exported"
+    },
+    {
+      "name": "replay-natural-ui.mjs",
+      "bytes": 1239,
+      "sha256": "50fe419b1f1c9b37d04a513411069dcb3081c8fe020abc26ce6e47ed514c311a",
+      "scope": "Actual local QA driver; source hash only, no runtime output or session auth exported"
+    },
+    {
+      "name": "engine43-four-seat-resume-after-crash-e2e.mjs",
+      "bytes": 16226,
+      "sha256": "4bfd77b9fecdf3b39dba6cf264f9ec00a6e3bd42003836fdf80ce0bd0250ba33",
+      "scope": "Actual local QA driver; source hash only, no runtime output or session auth exported"
+    },
+    {
+      "name": "local-room-harness.mjs",
+      "bytes": 5309,
+      "sha256": "1f5e29bf8a1696693ad380bc9ae08318f9703d2a6e1cb6b29b34d45b4ede315a",
+      "scope": "Actual local QA driver; source hash only, no runtime output or session auth exported"
+    },
+    {
+      "name": "audit-engine43-full-game.py",
+      "bytes": 5012,
+      "sha256": "2accdb87829bc2e64ed8986d31fa4e0e0348a4bdf09218ff405053d737e96af0",
+      "scope": "Actual local QA driver; source hash only, no runtime output or session auth exported"
+    }
+  ]
+}

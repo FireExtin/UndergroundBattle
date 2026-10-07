@@ -1,0 +1,80 @@
+{
+  "productCommit": "c98bf422795c48d5842011dd5b65a97e647d3f14",
+  "scope": "Actual visible custom deck/create/join/ready/start/paid deployment/targeting/destruction through cloud Chromium. Only normal creation seed input fixed; no DB or engine-state injection. This is focused JZ48 behavior, not an engine44 strategy terminal game.",
+  "seed": 4586,
+  "deck": {
+    "JC125": 44,
+    "JC091": 3,
+    "JZ48": 3
+  },
+  "commands": 120,
+  "version": 121,
+  "journalEvents": 121,
+  "terminalStatus": "playing",
+  "turn": 3,
+  "focusedBehaviorAccepted": true,
+  "allBrowserAndHttpReceiptsMatch": true,
+  "journalVersionsContiguous": true,
+  "normalWasmReplayByteExact": true,
+  "nativeReplayMatches": true,
+  "nativeAuditDatabaseBytesUnchanged": true,
+  "nativeAuditBinarySha256": "4092c3da5054f4c08956826564327ef5f73d077fd8365ecc1437d077ed908673",
+  "initialStateSha256": "37b13382adf69ab756054a8ff39d905c4880cec0ba29d5497bfd52a894f1125a",
+  "stateSha256": "0b1ee65f705f53db3e9150fac0819bd630e017d5a142ec24048edb9746a610a0",
+  "checks": {
+    "visibleLegalCustomDeckCreateJoin": true,
+    "sourceCommit": "c98bf422795c48d5842011dd5b65a97e647d3f14",
+    "engine": "rust-v0.2.44-jz48-criminal-condition-candidate",
+    "pool": "limited-v2.41-jz48-criminal-condition-candidate",
+    "originalImageOpenedFromActualHand": true,
+    "targetCancellation": 2,
+    "visiblePaidDeployment": true,
+    "loneHasZeroInfluenceAndDefenseOne": true,
+    "twoDistinctOwnInstancesSupportEachOtherExactlyOne": true,
+    "paidMurderDeclaredViaActualTargetUi": true,
+    "realPaidDestroyRemovesSupportImmediately": true,
+    "sqliteReopenExact": true,
+    "scope": "Actual visible custom deck/create/join/ready/start/paid deployment/targeting/destruction through cloud Chromium. Only normal creation seed input fixed; no DB or engine-state injection. This is focused JZ48 behavior, not an engine44 strategy terminal game.",
+    "twoSeatsRestoreAfterJz48SupportLoss": true,
+    "success": true
+  },
+  "screenshots": [
+    {
+      "name": "jz48-natural-original",
+      "version": 13,
+      "turn": 1
+    },
+    {
+      "name": "target-confirm-1",
+      "version": 13,
+      "turn": 1
+    },
+    {
+      "name": "jz48-lone-desktop",
+      "version": 16,
+      "turn": 1
+    },
+    {
+      "name": "jz48-mutual-support-desktop",
+      "version": 65,
+      "turn": 2
+    },
+    {
+      "name": "target-confirm-2",
+      "version": 118,
+      "turn": 3
+    },
+    {
+      "name": "jz48-after-destroy-desktop",
+      "version": 121,
+      "turn": 3
+    },
+    {
+      "name": "jz48-after-destroy-mobile",
+      "version": 121,
+      "turn": 3
+    }
+  ],
+  "strategyTerminalQualification": "not claimed",
+  "privateRuntimeEvidence": "Local only; no DB, entry receipts, seat token or full snapshot included in repo deliverables"
+}

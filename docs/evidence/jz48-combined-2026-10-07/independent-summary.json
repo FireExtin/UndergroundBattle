@@ -1,0 +1,123 @@
+{
+  "reviewer": "/root/review_jz48_mechanism",
+  "reviewedHead": "02a69dc47142c4b48800f25af38ba3dae2b8e532",
+  "base": "2305aa17c53e73dd3683ae9fe1e654531777f16e",
+  "findings": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0,
+    "P3": 0
+  },
+  "independentNative": {
+    "passed": 19,
+    "failed": 0,
+    "ignored": 0
+  },
+  "independentWasm": {
+    "engineVersion": "rust-v0.2.44-jz48-criminal-condition-candidate",
+    "poolVersion": "limited-v2.41-jz48-criminal-condition-candidate",
+    "commands": 59,
+    "rejected": 8,
+    "checkpoints": 282,
+    "chainCommands": 13,
+    "views": 1416,
+    "kinds": {
+      "game": 1,
+      "passResponse": 10,
+      "beginResponse": 1,
+      "submitResponse": 1
+    },
+    "wasmBytes": 2191175,
+    "wasmSha256": "6cf6dca6a06844c84e38fbed2a084145bc0e63ae3897de18b864814c314d11f9",
+    "frozen43Bytes": 2186939,
+    "frozen43Sha256": "3b0bee7b1c6788bc0a299338322f1c07d6108161a75e4999ac066971659520bb"
+  },
+  "independentRouting": {
+    "passed": 3,
+    "failed": 0,
+    "historicalTuplesRejected": 39,
+    "alteredIdentitiesRejected": 5,
+    "rejectedStateCurrentOperations": 0
+  },
+  "combinedHeadReviewed": "c98bf422795c48d5842011dd5b65a97e647d3f14",
+  "naturalUiEvidenceReviewed": true,
+  "naturalUiIndependentWasmReplay": {
+    "normalWasmReplayByteExact": true,
+    "commandEvents": 120,
+    "journalEvents": 121
+  },
+  "parentCombinedLogEvidence": {
+    "webPassed": 557,
+    "webFiles": 66,
+    "webFailed": 0,
+    "workerPassed": 25,
+    "workerFailed": 0,
+    "workerSkipped": 0,
+    "build": "passed"
+  },
+  "scope": "Fixed mechanism and exact combined product review; independent native/WASM/routing/byte checks plus actual natural UI evidence cross-check and independent native/WASM journal replay. Focused engine44 behavior only, no full strategy terminal claim, no publication/main merge/Library upload.",
+  "cardFaceReviewer": {
+    "reviewer": "/root/review_jz48_jz50_card_faces",
+    "reviewedHead": "65ad3b97ec3bc7d3e6f567ad40dfda05d02cb190",
+    "combinedHead": "c98bf422795c48d5842011dd5b65a97e647d3f14",
+    "findings": {
+      "P0": 0,
+      "P1": 0,
+      "P2": 0,
+      "P3": 0
+    },
+    "independentlyRerunFocusedWebTests": 68,
+    "independentlyRerunTypeScript": "passed",
+    "artworkCount": 111,
+    "admissionCount": 110,
+    "JZ50ArtworkOnly": true,
+    "browser": "Actually inspected worker12fixture screenshots and root actual natural desktop/mobile screenshots; reviewer did not launch a new browser."
+  },
+  "independentActualUi": {
+    "independentReceiptAndJournalCrossCheck": true,
+    "acceptedUiCommands": 120,
+    "httpPosts": 122,
+    "allHttpStatus200": true,
+    "allUiHttpDbAndJournalReceiptsEqual": true,
+    "journalVersionsContiguous": true,
+    "initialSeed": 4586,
+    "legalUiDraftCounts": {
+      "JC125": 44,
+      "JC091": 3,
+      "JZ48": 3
+    },
+    "lone": {
+      "version": 16,
+      "instances": 1,
+      "influence": 0,
+      "defense": 1
+    },
+    "mutualSupport": {
+      "version": 65,
+      "instances": 2,
+      "differentInstanceIds": true,
+      "eachInfluence": 1,
+      "eachDefense": 2
+    },
+    "paidMurder": {
+      "actualHandCard": "JC091",
+      "threePreviouslyReadyAssetsExhausted": true,
+      "targetWasSecondSupportingInstance": true
+    },
+    "afterDestroy": {
+      "version": 121,
+      "survivorIsFirstInstance": true,
+      "influence": 0,
+      "defense": 1,
+      "ownerGraveJZ48Count": 1
+    },
+    "independentAuditDbAndWalByteUnchanged": true,
+    "turn": 3,
+    "status": "playing",
+    "scope": "Focused real natural browser JZ48 sequence. Not engine44 full strategy terminal qualification. Raw entries/seat credentials/states remain local; no values exported."
+  },
+  "verbatimReportSha256": {
+    "independent-mechanism-review.md": "7443a97ed6547aa159aa05bb09e23efc5480080c96612e14f8af5026f4bc27b4",
+    "independent-art-review.md": "0655a8b6682d756bd67963444f1867b526ba087efdadb089d6870982efed49e2"
+  }
+}
