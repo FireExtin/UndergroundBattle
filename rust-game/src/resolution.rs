@@ -1255,6 +1255,13 @@ impl Game {
             let step = frame.steps[frame.cursor].clone();
             frame.cursor += 1;
             match step.op {
+                Op::SealOneActorHandCardOnTarget => return self.choose_hand_seal(frame),
+                Op::DestroyTargetIfSealed => {
+                    let host = &frame.targets.first().ok_or("缺少封印载体目标")?.id;
+                    if self.sealed_cards.iter().any(|s| s.host_id == *host) {
+                        self.remove_dead(host, RemovalCause::Destroy);
+                    }
+                }
                 Op::JC032TopSixVampireHidden => return self.jc032_start(frame),
                 Op::JZ24LocalSacrificeSnapshot => return self.jz24_start(frame),
                 Op::GainControl {
@@ -1958,6 +1965,14 @@ impl Game {
         option_ids: BTreeSet<String>,
     ) -> RuleResult<()> {
         match choice {
+            FrameChoice::HandSeal { seat, host_id } => {
+                if chooser != seat || frame.actor != seat
+                    || frame.targets.first().is_none_or(|t| t.id != host_id) {
+                    return Err("封印手牌的选择者无效".into());
+                }
+                let id = selected.first().ok_or("必须选择一张手牌封印")?;
+                self.seal_hand_card(seat, id, &host_id)?;
+            }
             FrameChoice::JC032TopSix { inspected_ids } => {
                 self.jc032_complete(&frame, inspected_ids, &selected)?;
             }

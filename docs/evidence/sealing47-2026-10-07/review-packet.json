@@ -1,0 +1,269 @@
+{
+  "base": "22fe9cfc8588506113233b54dfd0cc7fe7ca246e",
+  "status": "fixed-source-candidate-for-parent-independent-review-not-published",
+  "sourceFiles": [
+    {
+      "path": "rust-game/data/cards.json",
+      "bytes": 113791,
+      "sha256": "621353eae2ff51563c05cd45d7b5fad930627c93e296be972abc9b0d304c4b50"
+    },
+    {
+      "path": "rust-game/src/attachment.rs",
+      "bytes": 28105,
+      "sha256": "600a19237dff7f7051b645523bc37ee331f73794419ab80507041d4de8a9dc4b"
+    },
+    {
+      "path": "rust-game/src/catalog.rs",
+      "bytes": 8229,
+      "sha256": "7b9587ad28cee7db88fddffbddc1d9efdad32ea218a119963fc7c48bbd0111c8"
+    },
+    {
+      "path": "rust-game/src/engine.rs",
+      "bytes": 254561,
+      "sha256": "a9b39795c5a832a52fbde3b47129931c1382d424989fa22be31b5f9ae03d136b"
+    },
+    {
+      "path": "rust-game/src/jc089_tests.rs",
+      "bytes": 35130,
+      "sha256": "d6007fb056ebbb1ff9a0f0b3ed99e06e5f94623bf86c7046cf064a6fd11095fe"
+    },
+    {
+      "path": "rust-game/src/lib.rs",
+      "bytes": 2169,
+      "sha256": "545668ee6b309402a30f227fcb9d461c7374a1473a6974913c849d6db5b7ed85"
+    },
+    {
+      "path": "rust-game/src/model.rs",
+      "bytes": 23396,
+      "sha256": "c5fee2e8ed052e5d126804f6a3105888d3e3d89fce11c0cecfefcd83082e7af9"
+    },
+    {
+      "path": "rust-game/src/msjc08_tests.rs",
+      "bytes": 1396,
+      "sha256": "04cab2d5471f0c191241bc5747da9861553b1807384fcc996cd12abaa88ab1a2"
+    },
+    {
+      "path": "rust-game/src/renown_tests.rs",
+      "bytes": 21509,
+      "sha256": "fea2e0e234682fe3da49a34d5e195092eaac72eae6ddff8b2bf2b6db9f226ea4"
+    },
+    {
+      "path": "rust-game/src/resolution.rs",
+      "bytes": 91464,
+      "sha256": "51dad656f32abbd1116b6989c16c56f1eca03be7a760bd78e6b409452c51b111"
+    },
+    {
+      "path": "rust-game/src/room.rs",
+      "bytes": 29499,
+      "sha256": "dc66b40a215f58e1576da32ca2529ce177125de689d0eb6dd21c47d7e4136252"
+    },
+    {
+      "path": "rust-game/src/rules.rs",
+      "bytes": 136462,
+      "sha256": "408b737d9ad55139b199b8e91cced811fe3949d71e86a84b09499cc66332fd06"
+    },
+    {
+      "path": "sites/src/kernel.mjs",
+      "bytes": 534,
+      "sha256": "dd16259c8fcbdd938c8e57ce953e5772217211ec439380259be381d8a546a800"
+    },
+    {
+      "path": "sites/test/integration.test.mjs",
+      "bytes": 17656,
+      "sha256": "dc6bf2d5a67b91156c9844624599e13046235bb5fa4b25b2d4aa5668922e37a9"
+    },
+    {
+      "path": "sites/test/pause-resume-integration.test.mjs",
+      "bytes": 6515,
+      "sha256": "7380d1a06814f9f0b3951611447dd1d927c722cf93c62dae0fab1ec852b8425d"
+    },
+    {
+      "path": "sites/test/society-foundation.fixture.mjs",
+      "bytes": 9732,
+      "sha256": "b4aaf3d5a01b9cbd1ea0acb64ad9e37f7e26e745c2bc18ac716af03810089d16"
+    },
+    {
+      "path": "web/public/card-scans.json",
+      "bytes": 24127,
+      "sha256": "30aa94288777f50856ee69a2f77c451e8549f878e7e45d184c6964fd193d47ec"
+    },
+    {
+      "path": "web/src/game/CardTile.tsx",
+      "bytes": 15286,
+      "sha256": "382e4f04b3f182618ddbf8af71aab1cf1c284df2e87f33281d96db96a8bc0721"
+    },
+    {
+      "path": "web/src/game/JZ55UniqueDestroy.test.jsx",
+      "bytes": 7419,
+      "sha256": "892d37f4254f7f4ec57853cfab12d1338a85d274ba1613a454207971d14bac00"
+    },
+    {
+      "path": "web/src/game/ReadModal.tsx",
+      "bytes": 2594,
+      "sha256": "a91d08484768a2683f192277aac0c8be809af9fef3018b43ed8544f89258b7ef"
+    },
+    {
+      "path": "web/src/game/Table.tsx",
+      "bytes": 53132,
+      "sha256": "baee2ac3b50ecf359b49cf66cddc0df71357422f0778db5c536429852c3356c3"
+    },
+    {
+      "path": "web/src/game/cardScans.ts",
+      "bytes": 3920,
+      "sha256": "ddbed6b21042362846fef9334b62f5cce585ab3c3f8ce92386ead82f4ce68440"
+    },
+    {
+      "path": "web/src/game/types.ts",
+      "bytes": 5347,
+      "sha256": "3a4a6bb2e2f747b1c988b611ca50ebb8c64ae70c65a5adf97e89c40dff6a2115"
+    },
+    {
+      "path": "rust-game/src/sealing.rs",
+      "bytes": 8565,
+      "sha256": "fdbe776b99d1f387bec9521bb9c5df2ac5aa2988b9260c204a336f1e54281480"
+    },
+    {
+      "path": "rust-game/src/sealing_tests.rs",
+      "bytes": 32755,
+      "sha256": "8cbe38ebbd84eb18f7e3a6600a0eb87f29c923f744f6701537b713af6cb6e6a3"
+    },
+    {
+      "path": "sites/test/fixtures/pause-resume-native-v047.json",
+      "bytes": 767086,
+      "sha256": "39f6fc03a6033315adba8bbfabcd08bf63e2814337b64d1bb3e21657ad2fce53"
+    },
+    {
+      "path": "sites/test/fixtures/sealing-room-native-v047.json",
+      "bytes": 916906,
+      "sha256": "3e7a3bcf612fdcf23d3580470a7e8042263b3c37a4587447825addb042c254db"
+    },
+    {
+      "path": "web/public/cards/XQ40.jpg",
+      "bytes": 1505785,
+      "sha256": "b4f4e3f294d9ee1893d5b6d11124f0c12e472076e52f6365bdde7ffe49d6162c"
+    },
+    {
+      "path": "web/public/cards/XQ41.jpg",
+      "bytes": 1463646,
+      "sha256": "02a56f5d1fe9d57121591f19d96f3756a8cf4ab60725ba292474758e5d0af179"
+    },
+    {
+      "path": "web/public/cards/XQ45.jpg",
+      "bytes": 1476070,
+      "sha256": "6475556f30b08853ed5bb2e1c82b3314c73947fb59bc7d044060a5555f5ef8cf"
+    },
+    {
+      "path": "web/src/game/SealedCards.test.tsx",
+      "bytes": 8064,
+      "sha256": "23fbf10519184167bbd79401b662181de2991ab503fcf3c7838657a2d1c9551d"
+    },
+    {
+      "path": "web/src/game/SealedCards.tsx",
+      "bytes": 1521,
+      "sha256": "97a66702abef7082091dd0c73558faa5960c9a4546fbb60ffa9fcf12eac1cb8e"
+    },
+    {
+      "path": "web/src/game/sealed-cards.css",
+      "bytes": 1037,
+      "sha256": "ad510f869a729d58c83c3c44d2da616dd689b7f85e2a50b4e29f05e630cbfd72"
+    },
+    {
+      "path": "web/src/game/sealedNative47Test.fixture.json",
+      "bytes": 216995,
+      "sha256": "5db46eda15e4d866179ab93a20da03996cfe262cbe9141264f2dd103be9b608d"
+    }
+  ],
+  "sourceFileCount": 34,
+  "actualChecks": {
+    "Native": 603,
+    "Web": 625,
+    "WorkerWasmLocalD1": 29,
+    "desktopReadOnlyNativeProjectionChecks": 4
+  },
+  "WasmParity": {
+    "engine": "rust-v0.2.47-sealed-cards-candidate",
+    "pool": "limited-v2.43-sealed-cards-candidate",
+    "cards": 106,
+    "societies": 8,
+    "actualWasm": true,
+    "commands": 115,
+    "rejected": 5,
+    "checkpoints": 242,
+    "chainCommands": 22,
+    "views": 1516,
+    "completeTransitionEqual": true,
+    "opaqueStateByteEqual": true,
+    "wasmBytes": 2229913,
+    "wasmSha256": "42ae5289b3998520bd8f9d1c35a32ffd2a1693960dc54579a9f47e184a01c4a9",
+    "preservedEngine46Bytes": 2209157
+  },
+  "browserScope": "local-real-React-readonly-actual-Native47-desktop-projections",
+  "browserImagesActuallyViewed": 4,
+  "logs": [
+    {
+      "path": "sealing47-native-exact-final.log.gz",
+      "uncompressedBytes": 62716,
+      "uncompressedSha256": "0ed7c5bea6c7f4bde24680966a5f27bb8d404b709700cd6f8def7a9f63219e5d",
+      "compressedSha256": "6e285451788fe4fa3f0a73180ac6f30e1cb9febbbcdb884b4ab13066d8b43af7"
+    },
+    {
+      "path": "sealing47-web-exact-final.log.gz",
+      "uncompressedBytes": 511,
+      "uncompressedSha256": "de266316004ab8c95c10a80a2bbc1658a17b8804cd6121143b0e201e37f4a2d7",
+      "compressedSha256": "efc150ca705b6d70a24fd5137f81be1faa62ebdf0086d120e905bbd9e0f6846e"
+    },
+    {
+      "path": "sealing47-wasm-exact-build.log.gz",
+      "uncompressedBytes": 234,
+      "uncompressedSha256": "6e64f8fb5128cb1b94048939116cb0e7d2ff4db89c9531b64e64b5a53b25e48c",
+      "compressedSha256": "8b439755f3631646d5c3090e47369dbee51607b7fbfc12955d4e7a7fcffa4bb4"
+    },
+    {
+      "path": "sealing47-wasm-exact-parity.log.gz",
+      "uncompressedBytes": 409,
+      "uncompressedSha256": "b9d0e078a412a4f40ee4bd21f13f1d925b965eef335778fee76c5fe3683942e4",
+      "compressedSha256": "8fcabe62c70ef65e1cb82b79948fe53b6952ac55ee503aefb9e1148c1f9ed1da"
+    },
+    {
+      "path": "sealing47-worker-exact-build.log.gz",
+      "uncompressedBytes": 569,
+      "uncompressedSha256": "d6de134237e07fcdd5ca14e827e0856bbbbb015a02b59bfa0976075abe55edcd",
+      "compressedSha256": "e87540eaa9b12a604fcc2e20225679a60fd317608cbbbfde6d401840914a836b"
+    },
+    {
+      "path": "sealing47-worker-exact-full.log.gz",
+      "uncompressedBytes": 4275,
+      "uncompressedSha256": "595370973ff0ba111364136e686bde70f796fdd5e7092b34142201fa3e23bfc0",
+      "compressedSha256": "5324b1cac315dda321e39e8a806905c9c09ef48a30c9fcd712959373ae112241"
+    },
+    {
+      "path": "sealing47-browser-desktop-final.log.gz",
+      "uncompressedBytes": 850,
+      "uncompressedSha256": "75a8555be12551ea80fc4bffbafa5b753c7e525afaf4669713a891f03326b6c0",
+      "compressedSha256": "9d36add86eac977d865dcbb680eab8b5cfa045d318a0f3faa786454df532fc92"
+    },
+    {
+      "path": "sealing47-web-production.log.gz",
+      "uncompressedBytes": 689,
+      "uncompressedSha256": "34c4ff32dc42c1229a0bd01c0b0e2a1fe64e8a91f3a42c1702308273f70f399d",
+      "compressedSha256": "09e54d3c829037ddd1f38121ad43692679c5ee2a86bc57b25d8e8daef2a2e103"
+    }
+  ],
+  "searchDraftsExcluded": [
+    {
+      "path": "rust-game/src/bounded_search.rs",
+      "sha256": "3b331a87b936532d76568802cb7cdf0b0f2e629a25a1e72a8e6b46b12dbf5f37",
+      "state": "excluded-unwired-uncompiled-unexecuted"
+    },
+    {
+      "path": "rust-game/src/bounded_search_tests.rs",
+      "sha256": "7249ccbfabe58c553034e80222193cbecc5e50ae34c3896938b5d72718c6d963",
+      "state": "excluded-unwired-uncompiled-unexecuted"
+    }
+  ],
+  "latestChangesVerified": "raw metadata corrected to47; nested illegal mode/IfTarget tests added; exact Native/ABI/parity/Worker/Web rerun after those changes",
+  "isolatedSociety364": "earlier pre-metadata-correction check, not included in exact-source final pass totals",
+  "mobile": "latest mobile refresh not claimed passed; desktop priority",
+  "publication": "none; Site40/engine46 remains live; no online API writes",
+  "delivery": "source commit itself binds this packet; post-commit full SHA, complete diff/bundle and exact ABI/trace archive recorded in cloud delivery JSON"
+}

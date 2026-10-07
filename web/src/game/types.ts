@@ -35,6 +35,7 @@ export type Card = {
   usedOncePerGame?: string[];
 };
 export type Attachment = Card & { hostId: string };
+export type SealedCard = Card & { hostId: string };
 export type Action = {
   kind: string; cardId?: string; targetId?: string; region?: number; option?: string;
   abilityId?: string; costSelected?: string[];
@@ -84,6 +85,7 @@ export type View = {
   regions: Region[]; hand: Card[]; assets: Card[]; graveyard: Card[]; scoreCards: Card[];
   privateDeckTop?: Card;
   attachments?: Attachment[];
+  sealedCards?: SealedCard[];
   societyZones?: { id: string; playerId: string; card: Card | null }[];
   stack: StackEffect[];
   pendingChoice: Choice | null;

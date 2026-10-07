@@ -32,6 +32,8 @@ pub enum Event {
     RegionConfrontationsEnded,
     // Finite JC018 print / JC089-granted 威名 after won combat, separate from 声望.
     CombatWon,
+    // XQ41's explicit self trigger is captured before sealing blanks its face.
+    Sealed,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Cost {
@@ -208,6 +210,9 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    // Closed XQ40 / XQ45 programs; both use their single declared character.
+    SealOneActorHandCardOnTarget,
+    DestroyTargetIfSealed,
     // JZ31 only: one influence in the frozen source region, without parameters.
     PlaceOneInfluenceInSourceRegion,
     // Two closed blue programs, with no configurable search/loop interpreter.
@@ -462,6 +467,22 @@ pub struct Definition {
 // These are interpreter limits, not rules for resolving partially invalid targets.
 // Reject unsupported declarations before publishing actions or offering trigger choices.
 pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(), String> {
+    fn uses_sealing(ops: &[Op]) -> bool {
+        ops.iter().any(|op| match op {
+            Op::SealOneActorHandCardOnTarget | Op::DestroyTargetIfSealed => true,
+            Op::ForEachLivingPlayer(body) | Op::ForEachLivingPlayerFromActor(body) => uses_sealing(body),
+            Op::IfTargetExhausted { exhausted, ready, .. } =>
+                uses_sealing(std::slice::from_ref(exhausted)) || uses_sealing(std::slice::from_ref(ready)),
+            _ => false,
+        })
+    }
+    if sealing_definition(card_id).is_some() || ability.event == Some(Event::Sealed)
+        || uses_sealing(&ability.ops) || ability.modes.iter().any(|m| uses_sealing(&m.ops)) {
+        if sealing_definition(card_id).is_none_or(|d|
+            serde_json::to_value(ability).unwrap() != serde_json::to_value(&d.abilities[0]).unwrap()) {
+            return Err(format!("{card_id}: only the complete admitted sealing ability is supported"));
+        }
+    }
     if ability.event == Some(Event::CombatWon) || ability.key == "jc089-combat-glory" {
         let region = match ability.ops.as_slice() {
             [Op::PlaceInfluence { region_instance, amount: 1 }] if !region_instance.is_empty() => region_instance,
@@ -1044,6 +1065,10 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
 
 pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -> Result<(), String> {
     for (card_id, definition) in definitions {
+        if sealing_definition(card_id).is_some_and(|expected|
+            serde_json::to_value(definition).unwrap() != serde_json::to_value(expected).unwrap()) {
+            return Err(format!("cardId={card_id}: only the complete admitted sealing definition is supported"));
+        }
         if (card_id == "JC089" || definition.modifiers.iter().any(|m|
             matches!(m, StaticModifier::JC089HostDefenseMinusOneAndGlory)))
             && (card_id != "JC089" || serde_json::to_value(definition).unwrap()
@@ -1368,6 +1393,33 @@ fn jz48_definition() -> Definition {
         ..Definition::default()
     }
 }
+fn sealing_definition(id: &str) -> Option<Definition> {
+    let host = || target(Zone::Board, EntityKind::Character, Relation::Any, Range::Anywhere);
+    match id {
+        "XQ40" => Some(with_abilities(vec![ability(
+            "draw-hand-seal", "抓一张牌，然后封印一张手牌", Timing::Standard,
+            vec![Cost::Assets(2), Cost::ExhaustSource], vec![host()],
+            vec![Op::Draw { player: PlayerRef::Actor, count: 1, end: DeckEnd::Top },
+                Op::SealOneActorHandCardOnTarget], None,
+        )])),
+        "XQ41" => {
+            let mut definition = with_abilities(vec![ability(
+                "sealed-draw-one", "被封印触发：抓一张牌", Timing::Fast, vec![], vec![],
+                vec![Op::Draw { player: PlayerRef::Actor, count: 1, end: DeckEnd::Top }],
+                Some(Event::Sealed),
+            )]);
+            definition.traits.spirit = true;
+            Some(definition)
+        }
+        "XQ45" => {
+            let mut destroy = ability("destroy-sealed-host", "消灭带有封印牌的目标角色",
+                Timing::Fast, vec![], vec![host()], vec![Op::DestroyTargetIfSealed], None);
+            destroy.play_only = true;
+            Some(with_abilities(vec![destroy]))
+        }
+        _ => None,
+    }
+}
 fn jc089_definition() -> Definition {
     let host = target(Zone::Board, EntityKind::Character, Relation::Any, Range::Anywhere);
     let mut attach = ability("attach", "结附目标角色", Timing::Standard,
@@ -1455,6 +1507,9 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         use EntityRef::{Source, Target};
         use PlayerRef::{Actor, Context};
         let mut m = BTreeMap::new();
+        for id in ["XQ40", "XQ41", "XQ45"] {
+            m.insert(id.into(), sealing_definition(id).unwrap());
+        }
         m.insert("JC032".into(), jc032_definition());
         m.insert("JZ24".into(), jz24_definition());
         m.insert("JZ31".into(), jz31_definition());

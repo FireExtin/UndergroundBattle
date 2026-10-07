@@ -77,6 +77,7 @@ impl Game {
         removing.sort_by_key(|id| !self.attachments.iter().any(|a| a.card.id == *id));
         let mut cards = std::collections::BTreeMap::new();
         for id in removing {
+            self.return_sealed_cards(&id);
             let (_, c) = self.remove_board(&id).ok_or("赢区回底对象已失效")?;
             cards.insert(id, c);
         }
@@ -137,6 +138,7 @@ impl Game {
                     .any(|s| self.target_subtypes(host, &spec.host).contains(s)))
     }
     pub(crate) fn host_leaves(&mut self, host_id: &str) {
+        self.return_sealed_cards(host_id);
         let all = std::mem::take(&mut self.attachments);
         let (departing, staying): (Vec<_>, Vec<_>) = all
             .into_iter()

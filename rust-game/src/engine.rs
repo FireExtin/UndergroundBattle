@@ -74,6 +74,7 @@ impl Game {
             winner_team: None,
             regions: vec![],
             attachments: vec![],
+            sealed_cards: vec![],
             region_return: None,
             world: vec![],
             stack: vec![],
@@ -910,6 +911,7 @@ impl Game {
             self.host_leaves(&id);
         }
         self.attachments.retain(|a| a.card.owner != seat);
+        self.sealed_cards.retain(|s| s.card.owner != seat);
         for r in &mut self.regions {
             r.cards.retain(|c| c.owner != seat);
         }
@@ -2252,6 +2254,10 @@ impl Game {
             winner_team: self.winner_team,
             regions,
             society_zones: self.society_views(seat),
+            sealed_cards: self.sealed_cards.iter().map(|s| SealedCardView {
+                card: self.sealed_card_view(&s.card, seat),
+                host_id: s.host_id.clone(),
+            }).collect(),
             attachments: self
                 .attachments
                 .iter()
@@ -2694,7 +2700,7 @@ mod tests {
     #[test]
     fn catalog_is_restricted_real_complete_and_decks_are_legal() {
         let c = catalog::catalog();
-        assert_eq!(c.cards.len(), 103);
+        assert_eq!(c.cards.len(), 106);
         let active = c
             .cards
             .iter()
@@ -2709,7 +2715,7 @@ mod tests {
                 .collect::<BTreeSet<_>>()
         );
         assert!(active.contains("DQJC116"));
-        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 93);
+        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 96);
         assert_eq!(c.decks.len(), 5);
         for deck in &c.decks {
             assert_eq!(deck.card_count, 50);

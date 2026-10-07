@@ -11,10 +11,13 @@ import { RoomService, digest } from '../src/service.mjs';
 import { routeKernels } from '../src/kernel-router.mjs';
 import * as abi from '../generated/hegemony_wasm.js';
 
-test('saved paused table: exact native transitions, D1 reopen, receipts and isolated second table', async t => {
+for (const [label,file] of [['saved paused table','pause-resume-native-v047.json'],['sealed choice/trigger/paid stack pause','sealing-room-native-v047.json']]) test(label+': exact native transitions, D1 reopen, receipts and isolated second table', async t => {
   abi.initSync({ module: readFileSync('../rust-game-wasm/pkg/hegemony_wasm_bg.wasm') });
-  const trace = JSON.parse(readFileSync(new URL('./fixtures/pause-resume-native-v046.json', import.meta.url), 'utf8'));
+  const trace = JSON.parse(readFileSync(new URL('./fixtures/'+file, import.meta.url), 'utf8'));
   const kernel = routeKernels(abi);
+  const savedIndex=trace.steps.findIndex(step=>step.command?.action.kind==='pauseRoom' && step.transition.outcome!=='rejected');
+  const resumeIndex=trace.steps.findIndex(step=>step.command?.action.kind==='resumeRoom' && step.transition.outcome!=='rejected');
+  assert(savedIndex>=0 && resumeIndex>savedIndex);
   const persist = mkdtempSync(join(tmpdir(), 'saved-table-d1-'));
   const options = convertV4MiniflareOptions({ name: 'saved-table-test', resourcePersistencePath: persist, modules: [
     { type: 'ESModule', path: resolve('dist/server/index.js') },
@@ -52,7 +55,7 @@ test('saved paused table: exact native transitions, D1 reopen, receipts and isol
     assert.deepEqual(view, step.transition.view);
     assert.equal((await store.room(id)).state, step.transition.state, `opaque native state at ${index}`);
     for (let seat = 0; seat < 4; seat++) assert.deepEqual(JSON.parse(abi.view(step.transition.state, seat)), step.views[seat]);
-    if (index === 2) {
+    if (index === savedIndex) {
       const saved = await snapshot(id);
       now = 86_400_000;
       assert.deepEqual(await service.command(id, authorization, step.command), view);
@@ -66,11 +69,19 @@ test('saved paused table: exact native transitions, D1 reopen, receipts and isol
       store = new RoomStore(db); service = new RoomService(db, kernel, () => now);
       assert.deepEqual(await snapshot(id), saved);
     }
-    if (index >= 3) assert.deepEqual(await snapshot(b.roomId), bFrozen);
-    if (index === 5) {
+    if (index > savedIndex) assert.deepEqual(await snapshot(b.roomId), bFrozen);
+    if (index === resumeIndex) {
       now = 172_800_000;
       assert.deepEqual(await service.command(id, authorization, step.command), view);
       await assert.rejects(service.command(id, authorization, { ...step.command, expectedVersion: step.command.expectedVersion + 1 }), error => error.status === 409);
     }
   }
+});
+
+test('engine47 rejects preserved actual engine46 paused room without relabelling its state',()=>{
+  abi.initSync({module:readFileSync('../rust-game-wasm/pkg/hegemony_wasm_bg.wasm')});
+  const old=JSON.parse(readFileSync(new URL('./fixtures/pause-resume-native-v046.json',import.meta.url),'utf8'));
+  const identity=JSON.parse(abi.stateIdentity(old.initialState));
+  assert.equal(identity.versions.engine,'rust-v0.2.46-pause-resume-candidate');
+  assert.throws(()=>routeKernels(abi).view(old.initialState,0),error=>error.code==='unsupported_room_version' && error.status===410);
 });

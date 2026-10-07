@@ -573,5 +573,20 @@
     "url": "/cards/JC089.jpg",
     "source": "resource/ymsj-fun.github.io/cards/JC089 毒血诅咒.jpg",
     "sha256": "83853a1a4c3e6ecd9644f7bb5c843e70585d421f1792a0e4a141ebbe867d12f7"
+  },
+  "XQ40": {
+    "url": "/cards/XQ40.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/XQ40 催眠术表演者.jpg",
+    "sha256": "b4f4e3f294d9ee1893d5b6d11124f0c12e472076e52f6365bdde7ffe49d6162c"
+  },
+  "XQ41": {
+    "url": "/cards/XQ41.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/XQ41 启迪之梦.jpg",
+    "sha256": "02a56f5d1fe9d57121591f19d96f3756a8cf4ab60725ba292474758e5d0af179"
+  },
+  "XQ45": {
+    "url": "/cards/XQ45.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/XQ45 破颅而出.jpg",
+    "sha256": "6475556f30b08853ed5bb2e1c82b3314c73947fb59bc7d044060a5555f5ef8cf"
   }
 }

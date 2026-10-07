@@ -30,6 +30,9 @@ mod renown;
 #[cfg(test)]
 mod renown_tests;
 mod resolution;
+mod sealing;
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod sealing_tests;
 pub mod room;
 pub mod rules;
 #[cfg(feature = "native")]

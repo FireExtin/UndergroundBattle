@@ -25,7 +25,7 @@ test('fixture-only society foundation follows four-seat APIs, opaque D1 reopen, 
     return { status: r.status, body: r.status === 204 ? null : await r.json() };
   };
   const cat = (await api('/api/catalog')).body;
-  assert.equal(cat.engineVersion, 'rust-v0.2.46-pause-resume-fixture'); assert.equal(cat.cardPoolVersion, 'limited-v2.42-jc089-poison-blood-candidate'); assert.equal(cat.cards.length, 103); assert.equal(cat.societies.length, 3);
+  assert.equal(cat.engineVersion, 'rust-v0.2.47-sealed-cards-fixture'); assert.equal(cat.cardPoolVersion, 'limited-v2.43-sealed-cards-candidate'); assert.equal(cat.cards.length, 106); assert.equal(cat.societies.length, 3);
   assert(cat.societies.every(s => s.id.startsWith('FIXTURE_'))); assert(!cat.societies.some(s => s.id === 'MSJC09'));
   const draft = societyId => ({ id: 'society-internal-deck', name: '内部fixture牌组', description: '', societyId, cards: [{ cardId: 'JC125', count: 50 }], rulesVersion: cat.rulesVersion, cardPoolVersion: cat.cardPoolVersion, engineVersion: cat.engineVersion, updatedAt: '' });
   for (const d of [{ ...draft('MSJC09') }, { ...draft('FIXTURE_SOCIETY_SIX'), cards: [{ cardId: 'JC125', count: 49 }] }]) assert.equal((await api('/api/rooms', { name: '非法', mode: 'teams', deckDraft: d, requestId: crypto.randomUUID() })).status, 400);

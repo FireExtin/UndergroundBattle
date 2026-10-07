@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.41-jz48-criminal-condition-candidate",
-  "engineVersion": "rust-v0.2.44-jz48-criminal-condition-candidate",
+  "cardPoolVersion": "limited-v2.43-sealed-cards-candidate",
+  "engineVersion": "rust-v0.2.47-sealed-cards-candidate",
   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
   "cards": [
     {
@@ -4008,6 +4008,116 @@
         "image": "resource/ymsj-fun.github.io/cards/JC089 毒血诅咒.jpg",
         "sha256": "83853a1a4c3e6ecd9644f7bb5c843e70585d421f1792a0e4a141ebbe867d12f7"
       }
+    },
+    {
+      "id": "XQ40",
+      "name": "催眠术表演者",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "艺术家"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "紫色"
+      ],
+      "loyaltyText": "紫色",
+      "color": "紫",
+      "magic": "",
+      "society": "梦境行者",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "行动②，横置：抓一张牌，然后将一张你的手牌封印在目标角色上。",
+      "keywords": [],
+      "unique": false,
+      "supported": true,
+      "sourceImageSha256": "b4f4e3f294d9ee1893d5b6d11124f0c12e472076e52f6365bdde7ffe49d6162c"
+    },
+    {
+      "id": "XQ41",
+      "name": "启迪之梦",
+      "kind": "character",
+      "subtypes": [
+        "梦境"
+      ],
+      "cost": 3,
+      "loyalty": [
+        "紫色",
+        "紫色"
+      ],
+      "loyaltyText": "紫色 / 紫色",
+      "color": "紫",
+      "magic": "星辰",
+      "society": "梦境行者",
+      "icons": {
+        "permanent": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        }
+      },
+      "defense": 1,
+      "text": "灵体\n触发 当启迪之梦被封印在一个角色上时，抓一张牌。",
+      "keywords": [
+        "灵体"
+      ],
+      "unique": false,
+      "supported": true,
+      "sourceImageSha256": "02a56f5d1fe9d57121591f19d96f3756a8cf4ab60725ba292474758e5d0af179"
+    },
+    {
+      "id": "XQ45",
+      "name": "破颅而出",
+      "kind": "spell",
+      "subtypes": [
+        "阴谋",
+        "梦境"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "紫色",
+        "紫色",
+        "紫色"
+      ],
+      "loyaltyText": "紫色 / 紫色 / 紫色",
+      "color": "紫",
+      "magic": "",
+      "society": "梦境行者",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "快速行动 选择目标角色，若有其他卡牌被封印在其上，则消灭该角色。",
+      "keywords": [],
+      "unique": false,
+      "supported": true,
+      "sourceImageSha256": "6475556f30b08853ed5bb2e1c82b3314c73947fb59bc7d044060a5555f5ef8cf",
+      "type": "事务-阴谋"
     }
   ],
   "decks": [

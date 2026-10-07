@@ -6,6 +6,7 @@ import { DeckPicker } from './Lobby';
 import { DeckLibrary } from './DeckLibraryPanel';
 import { AutoPass } from './AutoPass';
 import { ReadModal } from './ReadModal';
+import { SealedCards } from './SealedCards';
 import { ResponseWindow, StackTargets } from './ResponseWindow';
 import { actionSource, groupObjectActions } from './objectActions';
 import type { ObjectActionGroup } from './objectActions';
@@ -15,7 +16,7 @@ import './society.css';
 import './archive-desktop.css';
 import './lantern-table.css';
 import { ArchiveArtwork, ArchivePresentation } from './ArchivePresentation';
-import type { Action, Attachment, Card, CardDefinition, Catalog, LegalAction, Player, Region, View } from './types';
+import type { Action, Attachment, SealedCard, Card, CardDefinition, Catalog, LegalAction, Player, Region, View } from './types';
 
 const phaseNames: Record<string, string> = { start: '开始阶段', beginning: '开始阶段', action: '行动阶段', confrontation: '对抗阶段', conflict: '对抗阶段', end: '结束阶段', finished: '对局结束', lobby: '准备入席', investigation: '调查', combat: '战斗', influence: '势力', claim: '赢区窗口', win: '赢区窗口', fast: '快速行动窗口', draw: '抓牌', prepare: '重置与准备', mobility: '机动窗口', mulligan: '再调度', ready: '准备' };
 export function phaseLabel(phase: string) {
@@ -192,11 +193,12 @@ function TableSurface({ view, catalog, busy, uncertain = false, connection = 'co
   const nextFocus = useRef<'targets' | 'actions' | 'confirm' | null>(null);
   const definitions = useMemo(() => new Map<string, CardDefinition>([...(catalog?.cards || []), ...(catalog?.societies || [])].map(card => [card.id, card])), [catalog]);
   const attachments = view.attachments || [];
+  const sealedCards = view.sealedCards || [];
   const societyCards = view.players.flatMap(player => {
     const card = view.societyZones?.find(zone => zone.playerId === player.id)?.card;
     return card ? [card] : [];
   });
-  const allCards = [...view.hand, ...view.assets, ...view.graveyard, ...view.scoreCards, ...(view.revealedHands || []).flatMap(hand => hand.cards), ...view.regions.flatMap(region => region.characters), ...attachments, ...societyCards].map(item => visibleCard(item, view.you));
+  const allCards = [...view.hand, ...view.assets, ...view.graveyard, ...view.scoreCards, ...(view.revealedHands || []).flatMap(hand => hand.cards), ...view.regions.flatMap(region => region.characters), ...attachments, ...sealedCards, ...societyCards].map(item => visibleCard(item, view.you));
   const presentedIds = new Set([...allCards.map(card => card.instanceId), ...view.players.map(player => player.id), ...view.regions.map(region => region.id)]);
   // Same-name tags cover table pieces only; revealed hands remain text readers.
   const sameNames = sameNameTags([...view.hand, ...view.assets, ...view.graveyard, ...view.scoreCards, ...view.regions.flatMap(region => region.characters), ...attachments, ...societyCards]);
@@ -237,6 +239,11 @@ function TableSurface({ view, catalog, busy, uncertain = false, connection = 'co
   };
   const selectedAttachment = attachments.find(item => item.instanceId === selectedCard);
   const readingAttachment = attachments.find(item => item.instanceId === readingCard?.instanceId);
+  const readingSealed = sealedCards.find(item => item.instanceId === readingCard?.instanceId);
+  const sealedContext = (item: SealedCard) => {
+    const host = view.regions.flatMap(region => region.characters).find(candidate => candidate.instanceId === item.hostId);
+    return `${playerName(item.owner)} 拥有 · 场外封印牌 · ${host ? `载体 ${host.name} · ${playerName(host.controller)} 操控` : '原载体当前未显示'}`;
+  };
   const societyContext = (item: Card) => {
     const zone = view.societyZones?.find(zone => zone.card?.instanceId === item.instanceId);
     return zone ? `${view.players.find(player => player.id === zone.playerId)?.name || '玩家'}的秘社区 · 不属于地区` : undefined;
@@ -359,7 +366,7 @@ function TableSurface({ view, catalog, busy, uncertain = false, connection = 'co
   const nextStep = view.status === 'finished' ? '本局已结束，可回顾牌桌' : view.pendingChoice ? `下一步：${view.pendingChoice.title}` : view.waitingChoice ? `等待 ${choiceName || '另一位玩家'} 完成选择，可浏览牌桌` : activeGroup ? matchingActions.length ? '下一步：确认所选目标，或取消' : `下一步：点选高亮${needsTarget && !selectedTarget ? '目标' : '地区'}，或取消` : !view.legalActions.length ? `等待 ${teamName(view.priorityTeam, view)} 行动，可浏览牌桌` : view.legalActions.length === 1 && globalActions[0]?.kind === 'pass' ? '下一步：让过，推进当前窗口' : societyCards.length ? '下一步：点选手牌、角色、附属、秘社或地区查看动作' : '下一步：点选手牌、角色、附属或地区查看动作';
   const renderMat = (player: Player) => <PlayerMat key={player.id} player={player} view={view} catalog={catalog} definitions={definitions} selectedCard={selectedCard} selectedTarget={selectedTarget} targetIds={targetIds} picking={!!activeGroup} tagFor={tagFor} onCard={selectCard} onPreview={setHoveredCard} onReadDeckTop={() => { if (view.privateDeckTop) setReading({ instanceId: view.privateDeckTop.instanceId, roomId: view.roomId, viewerId: view.you, privateDeckTop: true }); }} />;
   return <main ref={tableRoot} className={`hg-table hg-desktop-table hg-archive-table hg-lantern-table hg-desktop-${view.mode}`} data-table-layout="overhead" data-table-presentation="lamplit">
-    <div className="hg-table-status"><div className="hg-round"><b>第 {view.turn} 回合</b><span>{phaseLabel(view.phase)} · {phaseLabel(view.step)}</span></div><div className="hg-table-tallies">{[yourTeam, 1 - yourTeam].map(team => <span key={team} className={`hg-team-tally hg-team-${team}`}>{team === yourTeam ? '我方' : '对方'} <b>{view.players.filter(player => player.team === team).reduce((total, player) => total + player.score, 0)}</b> / {view.winScore}</span>)}</div><div className="hg-phase-line"><span>先手 <b>{teamName(view.firstTeam, view)}</b></span><span>行动团队 <b>{teamName(view.activeTeam, view)}</b></span><span>优先权 <b>{teamName(view.priorityTeam, view)}</b></span><strong className={view.pendingChoice ? 'hg-your-choice' : ''}>{status}</strong></div><details className="hg-table-records"><summary>记录 · {view.log.length}</summary><ol aria-label="牌桌行动记录">{[...view.log].reverse().slice(0, 50).map((entry, index) => <li key={`${entry.version}-${index}`}>{entry.text}</li>)}</ol><small>规则 {view.versions.rules} · 卡池 {view.versions.cardPool} · 引擎 {view.versions.engine}</small></details></div>
+    <div className="hg-table-status"><div className="hg-round"><b>第 {view.turn} 回合</b><span>{phaseLabel(view.phase)} · {phaseLabel(view.step)}</span></div><div className="hg-table-tallies">{[yourTeam, 1 - yourTeam].map(team => <span key={team} className={`hg-team-tally hg-team-${team}`}>{team === yourTeam ? '我方' : '对方'} <b>{view.players.filter(player => player.team === team).reduce((total, player) => total + player.score, 0)}</b> / {view.winScore}</span>)}</div><div className="hg-phase-line"><span>先手 <b>{teamName(view.firstTeam, view)}</b></span><span>行动团队 <b>{teamName(view.activeTeam, view)}</b></span><span>优先权 <b>{teamName(view.priorityTeam, view)}</b></span><strong className={view.pendingChoice ? 'hg-your-choice' : ''}>{status}</strong></div>{!!sealedCards.length && <details className="hg-sealed-cards-menu"><summary>封印牌 · {sealedCards.length}</summary><SealedCards view={view} onRead={readCard} /></details>}<details className="hg-table-records"><summary>记录 · {view.log.length}</summary><ol aria-label="牌桌行动记录">{[...view.log].reverse().slice(0, 50).map((entry, index) => <li key={`${entry.version}-${index}`}>{entry.text}</li>)}</ol><small>规则 {view.versions.rules} · 卡池 {view.versions.cardPool} · 引擎 {view.versions.engine}</small></details></div>
     {(view.revealedHands || []).map(hand => <section key={hand.playerId} className="hg-revealed-hand" aria-label="公开展示的手牌"><strong>公开展示的手牌 · {view.players.find(player => player.id === hand.playerId)?.name || '玩家'}</strong><div className="hg-hand">{hand.cards.map(item => <button key={item.instanceId} type="button" className="hg-small-read" onClick={() => readCard(item)} aria-label={`放大阅读展示的${item.name}`}><CardContent card={item} definition={definitions.get(item.cardId || '')} viewerId={view.you} /></button>)}</div></section>)}
     <section className="hg-team-edge hg-opponent-edge" aria-label="对方玩家区" data-side="opponent">{opponents.map(renderMat)}</section>
     <section className="hg-battlefield" aria-label="中央世界与争夺区，可上下滚动查看双方角色" tabIndex={0} title="中央地区可上下滚动；手牌与行动栏保持在下方。"><div className="hg-world-deck" aria-label="世界牌库"><span className="hg-card-back">⌖{view.worldDeckCount !== undefined && <b>{view.worldDeckCount}</b>}</span><small>世界牌库</small><small className="hg-battlefield-scroll-hint">↕ 滚动查看</small></div><div className={`hg-board hg-board-${view.mode}`}>{view.regions.map(item => <RegionTile key={item.id} region={item} view={view} definitions={definitions} selected={selectedRegion === item.index} targeted={previewRegion === item.index || (!!activeGroup && regionIds.has(item.index))} selectedCard={selectedCard} targetIds={targetIds} selectedTarget={selectedTarget} available={activeGroup ? regionIds.has(item.index) : view.legalActions.some(action => action.region === item.index && (!selectedCard || action.cardId === selectedCard))} onRegion={() => selectRegion(item.index)} onCard={selectCard} onPreview={setHoveredCard} tagFor={tagFor} />)}</div></section>
@@ -386,6 +393,6 @@ function TableSurface({ view, catalog, busy, uncertain = false, connection = 'co
     {hover && !reading && !activeGroup && <aside className="hg-card-hover" aria-label={`悬停阅读${hover.name}`} data-hover-card={hover.instanceId}><CardContent card={hover} definition={definitions.get(hover.cardId || '')} viewerId={view.you} /></aside>}
     {view.pendingChoice && !view.pause && <div className="hg-table-choice-layer"><ChoicePanel modal modalActive={!readingCard && !modalPaused} key={JSON.stringify([view.pendingChoice.id, view.pendingChoice.options.map(option => [option.id, option.card?.instanceId])])} choice={view.pendingChoice} action={choiceAction} definitions={definitions} busy={busy} onSubmit={onAction} onPauseRoom={view.canPause ? () => onAction({ kind: 'pauseRoom' }) : undefined} onReadCard={readCard} viewerId={view.you} playerLabels={Object.fromEntries(view.players.map(player => [player.id, player.name]))} /></div>}
     {view.status === 'finished' && <section className="hg-victory" role="status"><span aria-hidden="true">✧</span><div><small>对局结束</small><h1>{view.winnerTeam === you?.team ? '你的秘社取得了霸权' : `${view.winnerTeam === undefined ? '本局' : teamName(view.winnerTeam, view)}赢得了霸权`}</h1><p>胜利目标 {view.winScore} 分 · 可以回顾牌桌，或由房主发起新一局。</p></div><ActionButtons actions={view.legalActions.filter(action => action.kind === 'restart')} busy={busy} onAction={onAction} /></section>}
-    {readingCard && <ReadModal card={readingCard} definition={definitions.get(readingCard.cardId || '')} viewerId={view.you} context={reading?.privateDeckTop ? "你的牌库顶牌 · 仅你可见" : readingAttachment ? attachmentContext(readingAttachment) : societyContext(readingCard) ?? objectContext(readingCard)} onClose={() => setReading(null)} />}
+    {readingCard && <ReadModal card={readingCard} definition={definitions.get(readingCard.cardId || '')} viewerId={view.you} context={reading?.privateDeckTop ? "你的牌库顶牌 · 仅你可见" : readingSealed ? sealedContext(readingSealed) : readingAttachment ? attachmentContext(readingAttachment) : societyContext(readingCard) ?? objectContext(readingCard)} onClose={() => setReading(null)} />}
   </main>;
 }

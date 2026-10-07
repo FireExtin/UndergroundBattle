@@ -60,6 +60,12 @@ export function CardContent({ card: source, definition: sourceDefinition, compac
   const card = archive && compact && projected.faceDown
     ? { ...projected, cardId: undefined, name: '暗藏者', kind: 'hidden' } : projected;
   const definition = card.cardId ? sourceDefinition : undefined;
+  if (card.kind === 'sealed') return <>
+    <span className="hg-card-top"><span className="hg-card-kind">已封印 · 场外空白牌</span></span>
+    <strong className="hg-card-name">{card.name}</strong>
+    {!compact && archive && <ArchiveArtwork key={card.instanceId} card={card} />}
+    <span className="hg-card-text">公开放置在载体上，不在场内；当前没有卡牌能力、图标或防御，不能成为效果目标。载体离场或翻暗时回到拥有者手牌。</span>
+  </>;
   const hidden = !card.cardId && card.faceDown;
   const asset = card.kind === 'asset';
   const region = card.kind === 'region';

@@ -10,7 +10,7 @@ const MSJC08: Spec = Spec {
         "JC104", "JC102", "JZ67", "JC103", "JC107", "JZ59", "JZ58", "JZ61", "XQ43",
     ],
     full: 27,
-    color_count: 9,
+    color_count: 12,
     uniques: &["XQ43"],
     hits: ["XQ43", "XQ43", "JC104", "LC23"],
 };

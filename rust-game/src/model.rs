@@ -139,6 +139,13 @@ pub struct AttachmentView {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
+pub struct SealedCardView {
+    #[serde(flatten)]
+    pub card: CardView,
+    pub host_id: String,
+}
+#[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
 pub struct ChoiceOption {
     pub id: String,
     pub label: String,
@@ -274,6 +281,8 @@ pub struct View {
     pub society_zones: Vec<SocietyZoneView>,
     #[serde(default)]
     pub attachments: Vec<AttachmentView>,
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub sealed_cards: Vec<SealedCardView>,
     pub hand: Vec<CardView>,
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub revealed_hands: Vec<RevealedHandView>,
@@ -544,6 +553,7 @@ pub enum DeclareChoice {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum FrameChoice {
+    HandSeal { seat: usize, host_id: String },
     JC032TopSix { inspected_ids: Vec<String> },
     JZ24Sacrifice { remaining_players: Vec<usize> },
     RepressOne {
@@ -722,6 +732,9 @@ pub struct Game {
     pub regions: Vec<Region>,
     #[serde(default)]
     pub attachments: Vec<Attachment>,
+    // Public, blank, out-of-play cards. They are deliberately absent from board().
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub sealed_cards: Vec<SealedCard>,
     #[serde(default)]
     pub region_return: Option<RegionReturnBatch>,
     pub world: Vec<Card>,
@@ -762,6 +775,14 @@ impl Game {
                 crate::catalog::POOL_VERSION
             ));
         }
-        serde_json::from_str(state).map_err(|_| "v2持久状态字段无效".into())
+        let game: Self = serde_json::from_str(state).map_err(|_| "v2持久状态字段无效")?;
+        game.validate_sealed_cards()?;
+        Ok(game)
     }
+}
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct SealedCard {
+    pub card: Card,
+    pub host_id: String,
 }
