@@ -8,7 +8,7 @@ import {ReadModal} from './ReadModal';
 const catalog=JSON.parse(k.catalog());
 const fixture=JSON.parse(readFileSync(resolve('src/game/jc030Test.fixture.json'),'utf8'));
 
-it('JC030 prints its whole blue bat fields and original and leaves accepted31 definitions unchanged',()=>{
+it('checks JC030 printed blue bat fields and pinned original',()=>{
 
  
  const card=catalog.cards.find(c=>c.id==='JC030');
@@ -20,7 +20,7 @@ it('JC030 prints its whole blue bat fields and original and leaves accepted31 de
  for(const id of ['XQ11'])expect(catalog.cards.some(c=>c.id===id)).toBe(false);expect(catalog.societies.some(c=>c.id==='MSJC03')).toBe(true);
 });
 
-it('JC030 restores all actual32 whole views and exposes the current subtype with an immutable original face',()=>{
+it('renders the recorded JC030 effective subtype alongside its immutable original face',()=>{
  const row=fixture.fixtures.find(f=>f.kind==='positive'),view=row.views[0],card=view.regions[2].characters.find(c=>c.cardId==='JC030');
  expect(card.currentSubtypes).toEqual(['蝙蝠','吸血鬼']);expect(card.icons.investigation).toBe(1);
  const {container}=render(<ReadModal card={card} viewerId="p0" onClose={vi.fn()}/>);expect(container.textContent).toContain('吸血鬼');

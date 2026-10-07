@@ -38,7 +38,9 @@ for (const crate of ['rust-game', 'rust-game-wasm']) {
 rmSync(path.join(destination, 'rust-game/data'), { recursive: true, force: true });
 copy(repository + 'rust-game/data/cards.json', 'rust-game/data/cards.json');
 for (const file of ['hegemony_wasm.js', 'hegemony_wasm_bg.wasm']) copy(repository + 'rust-game-wasm/pkg/' + file, 'rust-game-wasm/pkg/' + file);
-for (const name of readdirSync(repository + 'rust-game-wasm').filter(name => /^legacy-v0\.2\.\d+(?:-resource-policy)?$/.test(name))) copy(repository + 'rust-game-wasm/' + name, 'rust-game-wasm/' + name, true);
+// A reused private checkout may still contain old executable kernels. They are
+// recoverable in the game repository's Git history, not part of current builds.
+for (const name of readdirSync(path.join(destination, 'rust-game-wasm')).filter(name => /^legacy-v0\.2\.\d+(?:-resource-policy)?$/.test(name))) rmSync(path.join(destination, 'rust-game-wasm', name), { recursive: true, force: true });
 writeFileSync(path.join(destination, '.gitignore'), 'node_modules/\ndist/\n.wrangler/\ngenerated/\n/public/\nweb/dist/\nrust-game/target/\nrust-game-wasm/target/\n.env*\n.sites-runtime/\n');
 const wasmSha256 = createHash('sha256').update(readFileSync(repository + 'rust-game-wasm/pkg/hegemony_wasm_bg.wasm')).digest('hex');
 const originalCommit = execFileSync('git', ['rev-parse', 'HEAD'], { cwd: repository, encoding: 'utf8' }).trim();

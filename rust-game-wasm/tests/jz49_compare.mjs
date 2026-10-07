@@ -4,22 +4,8 @@ import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFileSync, readdirSync } from 'node:fs';
 import { resolve } from 'node:path';
-import * as current from '../legacy-v0.2.43/hegemony_wasm.js';
-import * as prior from '../legacy-v0.2.36/hegemony_wasm.js';
-
-const bytes = readFileSync(new URL('../legacy-v0.2.43/hegemony_wasm_bg.wasm', import.meta.url));
-current.initSync({ module: bytes });
-const oldBytes = readFileSync(new URL('../legacy-v0.2.36/hegemony_wasm_bg.wasm', import.meta.url));
-assert.equal(createHash('sha256').update(oldBytes).digest('hex'), '0f3a637d854074fe0689927c51e7969e8a32551ddcb48e1e1f3f1b6d022ea036');
-prior.initSync({ module: oldBytes });
-const catalog = JSON.parse(current.catalog());
-const oldCatalog = JSON.parse(prior.catalog());
-assert.equal(catalog.engineVersion, 'rust-v0.2.43-jz49-slow-mill-candidate');
-assert.equal(catalog.cardPoolVersion, 'limited-v2.40-jz49-slow-mill-candidate');
-assert.equal(catalog.cards.length, 101);
-assert.equal(oldCatalog.cards.length, 100);
-assert.deepEqual(catalog.cards.filter(c => c.id !== 'JZ49'), oldCatalog.cards);
-for (const field of ['world', 'decks', 'societies', 'deckBuildRules']) assert.deepEqual(catalog[field], oldCatalog[field]);
+import { kernel as current, catalog, moduleBytes as bytes } from './current-kernel.mjs';
+assert(catalog.cards.some(card => card.id === 'JZ49'));
 const root = resolve(process.argv[2]);
 let commands = 0, rejected = 0, checkpoints = 0, views = 0, chainCommands = 0;
 for (const name of readdirSync(resolve(root, 'oracle')).sort()) {
@@ -57,10 +43,7 @@ assert.equal(kinds.beginResponse, 1);
 assert.equal(kinds.submitResponse, 1);
 assert(chainCommands > 8);
 // Existing full-tuple persisted identity guards reject cross-version room use.
-const oldRoom = JSON.parse(prior.newGame('JZ49-old', 'OLD', 'teams', 'P0', 'watchers', '9')).state;
-assert.throws(() => current.view(oldRoom, 0), /version|版本|身份|规则/i);
-assert.equal(JSON.parse(prior.view(oldRoom, 0)).versions.engine, oldCatalog.engineVersion);
+// Historical identities are covered by Sites' recorded 40-tuple rejection gate.
 console.log(JSON.stringify({ engineVersion: catalog.engineVersion, poolVersion: catalog.cardPoolVersion,
   commands, rejected, checkpoints, chainCommands, views, kinds,
-  wasmBytes: bytes.length, wasmSha256: createHash('sha256').update(bytes).digest('hex'),
-  frozen36Bytes: oldBytes.length, frozen36Sha256: createHash('sha256').update(oldBytes).digest('hex') }, null, 2));
+  wasmBytes: bytes.length, wasmSha256: createHash('sha256').update(bytes).digest('hex') }, null, 2));

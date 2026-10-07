@@ -17,12 +17,12 @@ const view=(kind,seat=0)=>fixtures.find(f=>f.kind===kind).views[seat];
 const host=kind=>view(kind).regions.flatMap(r=>r.characters).find(c=>c.cardId==='LC01');
 afterEach(cleanup);
 
-it('admits only JC089 and preserves every previously published card and deck field',()=>{
+it('checks the complete JC089 printed definition',()=>{
  expect(definitions.get('JC089')).toMatchObject({name:'毒血诅咒',kind:'attachment',cost:2,loyalty:['黑色'],magicIcon:'Blood',subtypes:['诅咒'],unique:false,deckCopyLimit:3});
  expect(definitions.get('JC089').text).toContain('永久战斗1和临时战斗1');
 });
 
-it('restores all four native views through stack, sacrifice response, replacement and cascade',()=>{
+it('checks recorded stack, sacrifice, replacement and cascade results',()=>{
  expect(view('glory-sacrifice-response').stack).toHaveLength(2);
  expect(view('glory-response-final').attachments).toHaveLength(0);
  expect(view('glory-response-final').regions[2].influence).toEqual([1,0]);

@@ -18,7 +18,7 @@ it('keeps the whole original and exactly one existing reveal ability alongside t
  expect(validateDeckDraft(draft(),catalog).valid).toBe(true);expect(validateDeckDraft(draft(4),catalog).valid).toBe(false);
  expect(validateDeckDraft(draft(3,'MSJC03'),catalog).valid).toBe(false);
 });
-it('uses an actual WASM own-hand projection and opens the original card without replacing the damage rule',()=>{
+it('renders the current WASM own-hand view and opens the original card without replacing the damage rule',()=>{
  let room=JSON.parse(k.newGameWithDeck('jc029-reader','LOCAL','duel','P0',JSON.stringify(draft()),'1'));
  room=JSON.parse(k.joinGameWithDeck(room.state,'P1',JSON.stringify(draft())));
  for(const [seat,kind] of [[0,'ready'],[1,'ready'],[0,'start']])room=JSON.parse(k.applyRoom(room.state,seat,JSON.stringify({commandId:'reader-'+seat+'-'+kind,expectedVersion:room.version,action:{kind:'game',action:{kind}}}),'1000'));

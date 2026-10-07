@@ -1,1 +1,0 @@
-Frozen accepted d8eea21 corrected MSJC07 ABI. Engine rust-v0.2.26-msjc07-resource-policy-candidate; pool limited-v2.23-msjc07-candidate. Distinct from the original MSJC07 legacy-v0.2.26. Never overwrite or mix the two identities.

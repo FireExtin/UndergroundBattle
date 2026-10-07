@@ -1,24 +1,25 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
-import { createHash } from 'node:crypto';
 import * as current from '../generated/hegemony_wasm.js';
 import { routeKernels } from '../src/kernel-router.mjs';
-import { frozenKernel } from './fixtures/frozen-kernel.mjs';
+import { historicalIdentities } from './fixtures/historical-rooms.mjs';
 
 const currentBytes = readFileSync(new URL('../generated/hegemony_wasm_bg.wasm', import.meta.url));
 current.initSync({ module: currentBytes });
 const latest = JSON.parse(current.catalog());
-const historicalRoot = existsSync('rust-game-wasm') ? 'rust-game-wasm' : '../rust-game-wasm';
 const isUnsupported = error => error.status === 410 && error.code === 'unsupported_room_version' && /新建牌桌/.test(error.message);
 
-test('current-only Site keeps the candidate engine45 bytes and its exact new-room flow', async () => {
-  assert.equal(createHash('sha256').update(currentBytes).digest('hex'), 'afc1b42523111dc242fd21850da9af243112a619c9f759bc60cbabac045883f7');
-  const prior = JSON.parse((await frozenKernel('legacy-v0.2.44')).catalog());
-  assert.equal(latest.engineVersion, 'rust-v0.2.45-jc089-poison-blood-candidate');
-  assert.equal(latest.cardPoolVersion, 'limited-v2.42-jc089-poison-blood-candidate');
-  assert.equal(latest.cards.length, 103); assert.equal(latest.societies.length, 8);
-  assert.deepEqual(latest.cards.filter(card => card.id !== 'JC089'), prior.cards.map(c=>{if(c.id!=='JC018')return c;const ruleTraits={...c.ruleTraits};delete ruleTraits.renown;return {...c,ruleTraits};}));
+test('current-only Site keeps the source ABI bytes, reviewed prior definitions and exact new-room flow', () => {
+  const abiRoot = existsSync(new URL('../../rust-game-wasm/Cargo.toml', import.meta.url))
+    ? new URL('../../rust-game-wasm/', import.meta.url)
+    : new URL('../rust-game-wasm/', import.meta.url);
+  const sourceBytes = readFileSync(new URL('pkg/hegemony_wasm_bg.wasm', abiRoot));
+  assert.deepEqual(currentBytes, sourceBytes);
+  // Recorded catalog is a definition regression oracle, not a runnable old core.
+  const prior = JSON.parse(readFileSync(new URL('./fixtures/reviewed-catalog-v044.json', import.meta.url), 'utf8'));
+  const priorIds = new Set(prior.cards.map(card => card.id));
+  assert.deepEqual(latest.cards.filter(card => priorIds.has(card.id)), prior.cards.map(c=>{if(c.id!=='JC018')return c;const ruleTraits={...c.ruleTraits};delete ruleTraits.renown;return {...c,ruleTraits};}));
   for (const field of ['societies', 'decks', 'world', 'deckBuildRules']) assert.deepEqual(latest[field], prior[field]);
   const routed = routeKernels(current);
   const room = JSON.parse(routed.newGame('new45', 'invite', 'duel', 'P0', 'watchers', '18446744073709551615'));
@@ -39,20 +40,18 @@ test('every historical tuple and altered identity rejects before any current sta
   const guarded = { ...current };
   for (const name of stateOperations) guarded[name] = () => { interpreted++; throw Error('A historical state must never reach the current reducer/projector'); };
   const routed = routeKernels(guarded);
-  const folders = readdirSync(historicalRoot).filter(name => /^legacy-v0\.2\.\d+(?:-resource-policy)?$/.test(name));
-  assert.equal(folders.length, 40);
+  assert.equal(historicalIdentities.length, 40);
   const reject = state => {
     for (const name of ['assertSupported', 'catalog', 'supportsPacing', ...stateOperations]) assert.throws(() => routed[name](state, 0, '{}', '1000'), isUnsupported);
   };
-  for (const folder of folders) {
-    const old = await frozenKernel(folder);
-    const room = JSON.parse(old.newGame('old', 'invite', 'duel', 'P0', 'watchers', '18446744073709551615'));
-    reject(room.state);
+  for (const { identity } of historicalIdentities) {
+    // The router reads only this envelope. No legacy game is reduced/projected.
+    reject(JSON.stringify(identity));
   }
   const room = JSON.parse(current.newGame('current', 'invite', 'duel', 'P0', 'watchers', '1'));
   for (const [before, after] of [[latest.rulesVersion, 'unknown-rules'], [latest.cardPoolVersion, 'unknown-pool'], [latest.engineVersion, 'unknown-engine'], ['"state_schema":3', '"state_schema":2'], ['"state_schema":3', '"state_schema":4']]) reject(room.state.replace(before, after));
   assert.equal(interpreted, 0);
-  t.diagnostic(JSON.stringify({ historicalTuplesRejected: folders.length, alteredIdentityCases: 5, currentStateOperationsOnRejectedStates: interpreted }));
+  t.diagnostic(JSON.stringify({ historicalTuplesRejected: historicalIdentities.length, alteredIdentityCases: 5, currentStateOperationsOnRejectedStates: interpreted }));
 });
 
 test('production generated modules and Worker contain only the reviewed current WASM', () => {

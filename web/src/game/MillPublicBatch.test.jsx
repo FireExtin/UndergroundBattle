@@ -14,7 +14,7 @@ const definitions=new Map(catalog.cards.map(c=>[c.id,c]));
 const fixtures=JSON.parse(readFileSync(resolve('src/game/millPublicV035Test.fixture.json'),'utf8')).fixtures;
 const view=(kind,seat=0)=>fixtures.find(f=>f.kind===kind).views[seat];
 
-it('admits two complete pinned originals while preserving every prior definition, society and preset',()=>{
+it('checks the two mill/public printed definitions and pinned originals',()=>{
 
  expect(definitions.get('XQ36')).toMatchObject({name:'圣甲虫的清理员',kind:'character',cost:1,color:'黑',loyalty:['黑色'],subtypes:['人类','雇员'],defense:1,magic:'',unique:false,deckCopyLimit:3,permanentIcons:{investigation:0,combat:0,influence:1},temporaryIcons:{investigation:0,combat:0,influence:0},abilities:[{key:'entry-mill-each-four',timing:'fast',costs:[],triggered:true}]});
  expect(definitions.get('XQ46')).toMatchObject({name:'无名尸体',kind:'character',cost:0,color:'中立',loyalty:[],subtypes:['人类'],defense:0,magic:'',unique:false,deckCopyLimit:3,keywords:['公开'],ruleTraits:{public:true},abilities:[]});
@@ -25,7 +25,7 @@ it('admits two complete pinned originals while preserving every prior definition
  }
 });
 
-it('restores all 46 whole native fixtures through actual WASM and compares every seat projection',()=>{
+it('renders the recorded optional mill choice and sends an explicit decline',()=>{
  expect(fixtures).toHaveLength(46);
  const v=view('entry-choice-0-5');const submit=vi.fn();const action=v.legalActions.find(a=>a.kind==='choose');
  render(<ChoicePanel choice={v.pendingChoice} action={action} definitions={definitions} busy={false} onSubmit={submit} viewerId="p0"/>);

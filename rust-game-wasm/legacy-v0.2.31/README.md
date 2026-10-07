@@ -1,1 +1,0 @@
-Frozen accepted green kernel from b897dec5df72559aed7fb03b11426d5037f3a30b, published in Site30. Complete five-file ABI; SHA256 WASM d5c544fde889abf066cf794b24b62106d439aa453e9e6a210e88217e3e872bbe. Do not rebuild or migrate old rooms.

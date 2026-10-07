@@ -26,7 +26,7 @@ it('retains Site24 JC005 while adding the isolated JC008 candidate and retains t
   expect(createHash('sha256').update(readFileSync(resolve('public/cards/JC005.jpg'))).digest('hex')).toBe(sha256);
 });
 
-it('reads the actual own-hand WASM spell projection with no invented defense and opens its original', () => {
+it('reads the current WASM own-hand spell view with no invented defense and opens its original', () => {
   const draft = { id: 'jc005-reader', name: 'JC005正式原图回归', description: '', societyId: null,
     cards: [{ cardId: 'JC005', count: 3 }, { cardId: 'JC125', count: 47 }],
     rulesVersion: catalog.rulesVersion, cardPoolVersion: catalog.cardPoolVersion,

@@ -1,1 +1,0 @@
-Frozen accepted v0.2.20 before hand-interactions batch. Source d7c08f2df8e0185626880084284f3edab0bd054e. WASM1868865 bytes, SHA25645988a5acdd949a39f154557d8923fb9eaa359ed2f25c385b769b8248360c313.

@@ -15,16 +15,14 @@ const fixtures = JSON.parse(readFileSync(resolve('src/game/jz48Test.fixture.json
 const view = (kind, seat = 0) => fixtures.find(f => f.kind === kind).views[seat];
 afterEach(cleanup);
 
-it('admits JZ48 alone and preserves the exact published JZ49 catalog', () => {
+it('checks the complete JZ48 printed definition', () => {
   expect(definitions.get('JZ48')).toMatchObject({ name: '街头劫匪', cost: 1, loyalty: ['黑色'],
     magic: '', magicIcon: 'None', subtypes: ['人类', '罪犯'], defense: 1, unique: false,
     permanentIcons: { investigation: 0, combat: 1, influence: 0 },
     temporaryIcons: { investigation: 0, combat: 0, influence: 0 }, abilities: [], deckCopyLimit: 3 });
 });
 
-it('restores every native seat projection including paid stack, hide declaration and cascade', () => {
-  for (const row of fixtures) for (let seat = 0; seat < 4; seat++) {
-  }
+it('checks recorded paid stack, cascade and victory results', () => {
   expect(view('response-stack').stack).toHaveLength(2);
   expect(view('response-cascade-final').stack).toHaveLength(0);
   expect(view('response-cascade-final').graveyard.filter(c => c.cardId === 'JZ48')).toHaveLength(2);

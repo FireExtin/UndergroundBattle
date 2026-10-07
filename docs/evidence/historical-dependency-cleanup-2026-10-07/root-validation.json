@@ -1,0 +1,29 @@
+{
+  "sourceCommit": "27b2d573073ff7211facc9ebe8feb2826cecbe40",
+  "rootFullWeb": {
+    "passed": 605,
+    "files": 68,
+    "failed": 0,
+    "logSha256": "2868426e56258cb141234a64d3ede10c256782b377a753218cdc672dcd61a7ef"
+  },
+  "native5eb": {
+    "default": 571,
+    "societyFixtures": 356,
+    "note": "Actual fixed5eb compilation and runs before sealing WIP was restored"
+  },
+  "fresh5ebJc089Parity": {
+    "commands": 938,
+    "atomicRejects": 5,
+    "checkpoints": 2033,
+    "chainCommands": 13,
+    "views": 11936,
+    "archiveBytes": 15481632,
+    "archiveSha256": "4874f92f55625f20bea625ab9ae6b64660c1a5b042f6698448e2a28cf1ba549a",
+    "localArchive": "/tmp/sealing-family-evidence/claude-5eb-fresh-jc089-parity.tar.gz"
+  },
+  "sourceImageCount": 115,
+  "independentPreReview": "/tmp/b-current-only-independent-pre-review.md",
+  "noProductIdentityChange": true,
+  "rootAAndCWorktreeChangesExcluded": true,
+  "publicSiteVersion": 37
+}

@@ -16,12 +16,12 @@ const fixtures=JSON.parse(readFileSync(resolve('src/game/jz55Test.fixture.json')
 const view=(kind,seat=0)=>fixtures.find(f=>f.kind===kind).views[seat];
 afterEach(()=>{cleanup();localStorage.removeItem(DECK_LIBRARY_STORAGE_KEY);});
 
-it('admits only the printed new card and preserves the exact old99, eight societies and five presets',()=>{
+it('checks the complete JZ55 printed definition',()=>{
 
  expect(definitions.get('JZ55')).toMatchObject({name:'传奇落幕',kind:'spell',cost:2,color:'黑',loyalty:['黑色'],subtypes:['命运'],magic:'',magicIcon:'None',unique:false,deckCopyLimit:3,abilities:[{key:'destroy-unique',timing:'fast',costs:[],triggered:false}]});
 });
 
-it('restores all21 native projections for every seat, including real composition and the subsequent death trigger',()=>{
+it('checks recorded immediate composition and subsequent death-trigger views',()=>{
  expect(fixtures).toHaveLength(21);
  const composed=view('real-composing',2);expect(composed.responseWindow.myIntentId).toBe('jz55-real-response');expect(composed.stack).toHaveLength(1);
  const after=view('immediate-response-complete',2);expect(after.stack).toHaveLength(1);expect(after.stack[0].cardId).toBe('JC063');

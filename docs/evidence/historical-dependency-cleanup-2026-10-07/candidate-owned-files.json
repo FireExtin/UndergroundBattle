@@ -1,0 +1,986 @@
+{
+  "baseCommit": "27b2d573073ff7211facc9ebe8feb2826cecbe40",
+  "currentEngine": "rust-v0.2.45-jc089-poison-blood-candidate",
+  "currentPool": "limited-v2.42-jc089-poison-blood-candidate",
+  "legacyDirectoriesPendingIndependentClosure": 0,
+  "files": [
+    {
+      "path": "rust-game-wasm/tests/jc089_compare.mjs",
+      "bytes": 2354,
+      "sha256": "434904ee922ee2bd84ea05376823ef634b547e6c7dfaf101b476f6f24809e8e8"
+    },
+    {
+      "path": "rust-game-wasm/tests/jz31_compare.mjs",
+      "bytes": 1386,
+      "sha256": "3573c0ce4e7a17a3b12a2f146557684b028d0f079bd2c7fa58856d58cf2d7fbd"
+    },
+    {
+      "path": "rust-game-wasm/tests/jz31_response_compare.mjs",
+      "bytes": 1238,
+      "sha256": "fc9487b47a19ae4615440102b7aa56dc766ebc59fc98571db369f17731b2d178"
+    },
+    {
+      "path": "rust-game-wasm/tests/jz48_compare.mjs",
+      "bytes": 2353,
+      "sha256": "261786c2a9c2496bc50fae3d49afba89435f1757c1fee072d1cbf57c0f68a502"
+    },
+    {
+      "path": "rust-game-wasm/tests/jz49_compare.mjs",
+      "bytes": 2482,
+      "sha256": "5073e4203e92152e665e8c92f4ad1e7103e0e547901f0859971aae00e51dad1b"
+    },
+    {
+      "path": "rust-game-wasm/tests/jz55_compare.mjs",
+      "bytes": 3615,
+      "sha256": "4e32c8a9ceb7ce4b860b4d349859a8b961af0d60157d01c4f58b0a3624db09fb"
+    },
+    {
+      "path": "sites/scripts/build-backend-test.mjs",
+      "bytes": 3525,
+      "sha256": "a1571155968c501e19056a067c550900b67854f75c5870a4bda71acf60db0a77"
+    },
+    {
+      "path": "sites/scripts/stage-source.mjs",
+      "bytes": 4027,
+      "sha256": "4cedef88b19662b1cfaa24505cadb9b57258fff963d779a16816bb60561ff51b"
+    },
+    {
+      "path": "sites/test/fixtures/frozen-kernel.mjs",
+      "deleted": true
+    },
+    {
+      "path": "sites/test/integration.test.mjs",
+      "bytes": 17653,
+      "sha256": "08d04391c913b5f3c153f9973f3288318187b3179dc1c1f65c4b4b4c48a6aa3d"
+    },
+    {
+      "path": "sites/test/kernel-routing.test.mjs",
+      "bytes": 4615,
+      "sha256": "8838934a27df6383b138c3b9372324db1c9991fa6df66081aaa028a407855fb2"
+    },
+    {
+      "path": "sites/test/msjc09-society-integration.test.mjs",
+      "bytes": 9841,
+      "sha256": "8d417969948e9f72e7ff102e82209239f2c4b43b5fd1f911b5287b688919636b"
+    },
+    {
+      "path": "web/src/game/BlueMinimumScan.test.jsx",
+      "bytes": 8505,
+      "sha256": "a2fcb65727cb908fe8112ac084125d00f5c4a3269010099585385fe1a46a80e5"
+    },
+    {
+      "path": "web/src/game/GreenMinimumScan.test.jsx",
+      "bytes": 6832,
+      "sha256": "b32931f3cf7112cf6410e3d96c34dfdc349c4a913d5a8770a918e1f30a1b72f8"
+    },
+    {
+      "path": "web/src/game/JC005Scan.test.jsx",
+      "bytes": 3516,
+      "sha256": "ad098dee09f5896bb4ea72617b24ab67174d898458f58178aaee498609da6eef"
+    },
+    {
+      "path": "web/src/game/JC008Scan.test.jsx",
+      "bytes": 7796,
+      "sha256": "2e98f377ac7319c3699fc3bdbd56881ca7a9b92f4232364baf86fe8a4d079ba9"
+    },
+    {
+      "path": "web/src/game/JC029Scan.test.jsx",
+      "bytes": 2985,
+      "sha256": "8a2bd0e18d8a4ec6e8568141d2ef588569c542d04eabd6d10f6b10bb773f91f3"
+    },
+    {
+      "path": "web/src/game/JC030Scan.test.jsx",
+      "bytes": 3296,
+      "sha256": "ca4082cf55aeb10a350f4e7ccabe62ba816233d6e706506b8e0c10aa31c8254d"
+    },
+    {
+      "path": "web/src/game/JC089Curse.test.jsx",
+      "bytes": 7621,
+      "sha256": "a97a1825b3d2d1ed91a32f13512d419f62ac5a267ede3939b92fa98cca3b08fa"
+    },
+    {
+      "path": "web/src/game/JZ31DeathInfluence.test.jsx",
+      "bytes": 4453,
+      "sha256": "1bd6d9c07c05d6ae9dc12f063aea92b654332df4ec35eb17bf7f25104f8dac88"
+    },
+    {
+      "path": "web/src/game/JZ48Criminal.test.jsx",
+      "bytes": 5050,
+      "sha256": "af33e6edfe67e4765f71a8926159f07aab28f25dd312d40d40a80e5d473de021"
+    },
+    {
+      "path": "web/src/game/JZ49Slow.test.jsx",
+      "bytes": 4411,
+      "sha256": "463156633d33b1d6071cb1483eb6bc28af36a0c43c548e58608da3c95532bb9d"
+    },
+    {
+      "path": "web/src/game/JZ55UniqueDestroy.test.jsx",
+      "bytes": 7419,
+      "sha256": "3fa80630e9ef0db7d692942d3725cddb4fdf1d89d61df3d83f1b61f70b8295bf"
+    },
+    {
+      "path": "web/src/game/MillPublicBatch.test.jsx",
+      "bytes": 4975,
+      "sha256": "f4328464a253163225635d15cbe5abef0b46858f5f3b26a7e50b7ae018b9df8f"
+    },
+    {
+      "path": "rust-game-wasm/tests/current-kernel.mjs",
+      "bytes": 549,
+      "sha256": "d4272f5b94a97774261aa51b41b5ee04cb610c268412d54bdefb3666b0ae0ecb"
+    },
+    {
+      "path": "sites/test/fixtures/historical-rooms.json",
+      "bytes": 41820,
+      "sha256": "daa452f4b7fa5bd695f29c02a2291cbddd61b0eaa87d04fde28c2afd6976a124"
+    },
+    {
+      "path": "sites/test/fixtures/historical-rooms.mjs",
+      "bytes": 759,
+      "sha256": "a5137597ba31541e4b878c5e3ad3bc8bedba97918eede545009f4f0dc7bf2791"
+    },
+    {
+      "path": "sites/test/fixtures/reviewed-catalog-v044.json",
+      "bytes": 95650,
+      "sha256": "49386a177863cf15ba82a38811ba938e17e9c7c8600e5d568524ca2670b72901"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.1/README.md",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.1/hegemony_wasm.js",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.1/hegemony_wasm_bg.wasm",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.1/package.json",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.10/hegemony_wasm.js",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.10/hegemony_wasm_bg.wasm",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.10/package.json",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.11/hegemony_wasm.js",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.11/hegemony_wasm_bg.wasm",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.12/hegemony_wasm.js",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.12/hegemony_wasm_bg.wasm",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.12/package.json",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.13/hegemony_wasm.js",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.13/hegemony_wasm_bg.wasm",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.13/package.json",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.14/README.md",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.14/hegemony_wasm.d.ts",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.14/hegemony_wasm.js",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.14/hegemony_wasm_bg.wasm",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.14/hegemony_wasm_bg.wasm.d.ts",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.14/package.json",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.15/README.md",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.15/hegemony_wasm.d.ts",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.15/hegemony_wasm.js",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.15/hegemony_wasm_bg.wasm",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.15/hegemony_wasm_bg.wasm.d.ts",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.15/package.json",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.16/hegemony_wasm.d.ts",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.16/hegemony_wasm.js",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.16/hegemony_wasm_bg.wasm",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.16/hegemony_wasm_bg.wasm.d.ts",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.16/package.json",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.17/README.md",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.17/hegemony_wasm.d.ts",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.17/hegemony_wasm.js",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.17/hegemony_wasm_bg.wasm",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.17/hegemony_wasm_bg.wasm.d.ts",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.17/package.json",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.18/README.md",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.18/hegemony_wasm.d.ts",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.18/hegemony_wasm.js",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.18/hegemony_wasm_bg.wasm",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.18/hegemony_wasm_bg.wasm.d.ts",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.18/package.json",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.19/README.md",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.19/hegemony_wasm.d.ts",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.19/hegemony_wasm.js",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.19/hegemony_wasm_bg.wasm",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.19/hegemony_wasm_bg.wasm.d.ts",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.19/package.json",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.2/README.md",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.2/hegemony_wasm.js",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.2/hegemony_wasm_bg.wasm",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.2/package.json",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.20/README.md",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.20/hegemony_wasm.d.ts",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.20/hegemony_wasm.js",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.20/hegemony_wasm_bg.wasm",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.20/hegemony_wasm_bg.wasm.d.ts",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.20/package.json",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.21/README.md",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.21/hegemony_wasm.d.ts",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.21/hegemony_wasm.js",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.21/hegemony_wasm_bg.wasm",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.21/hegemony_wasm_bg.wasm.d.ts",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.21/package.json",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.22/README.md",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.22/hegemony_wasm.d.ts",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.22/hegemony_wasm.js",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.22/hegemony_wasm_bg.wasm",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.22/hegemony_wasm_bg.wasm.d.ts",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.22/package.json",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.23/README.md",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.23/hegemony_wasm.d.ts",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.23/hegemony_wasm.js",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.23/hegemony_wasm_bg.wasm",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.23/hegemony_wasm_bg.wasm.d.ts",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.23/package.json",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.24/README.md",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.24/hegemony_wasm.d.ts",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.24/hegemony_wasm.js",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.24/hegemony_wasm_bg.wasm",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.24/hegemony_wasm_bg.wasm.d.ts",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.24/package.json",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.25/README.md",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.25/hegemony_wasm.d.ts",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.25/hegemony_wasm.js",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.25/hegemony_wasm_bg.wasm",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.25/hegemony_wasm_bg.wasm.d.ts",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.25/package.json",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.25-resource-policy/README.md",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.25-resource-policy/hegemony_wasm.d.ts",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.25-resource-policy/hegemony_wasm.js",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.25-resource-policy/hegemony_wasm_bg.wasm",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.25-resource-policy/hegemony_wasm_bg.wasm.d.ts",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.25-resource-policy/package.json",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.26/README.md",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.26/hegemony_wasm.d.ts",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.26/hegemony_wasm.js",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.26/hegemony_wasm_bg.wasm",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.26/hegemony_wasm_bg.wasm.d.ts",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.26/package.json",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.26-resource-policy/README.md",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.26-resource-policy/hegemony_wasm.d.ts",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.26-resource-policy/hegemony_wasm.js",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.26-resource-policy/hegemony_wasm_bg.wasm",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.26-resource-policy/hegemony_wasm_bg.wasm.d.ts",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.26-resource-policy/package.json",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.27/README.md",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.27/hegemony_wasm.d.ts",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.27/hegemony_wasm.js",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.27/hegemony_wasm_bg.wasm",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.27/hegemony_wasm_bg.wasm.d.ts",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.27/package.json",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.28/README.md",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.28/hegemony_wasm.d.ts",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.28/hegemony_wasm.js",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.28/hegemony_wasm_bg.wasm",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.28/hegemony_wasm_bg.wasm.d.ts",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.28/package.json",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.29/README.md",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.29/hegemony_wasm.d.ts",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.29/hegemony_wasm.js",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.29/hegemony_wasm_bg.wasm",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.29/hegemony_wasm_bg.wasm.d.ts",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.29/package.json",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.3/README.md",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.3/hegemony_wasm.js",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.3/hegemony_wasm_bg.wasm",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.3/package.json",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.30/README.md",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.30/hegemony_wasm.d.ts",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.30/hegemony_wasm.js",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.30/hegemony_wasm_bg.wasm",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.30/hegemony_wasm_bg.wasm.d.ts",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.30/package.json",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.31/README.md",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.31/hegemony_wasm.d.ts",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.31/hegemony_wasm.js",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.31/hegemony_wasm_bg.wasm",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.31/hegemony_wasm_bg.wasm.d.ts",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.31/package.json",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.32/README.md",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.32/hegemony_wasm.d.ts",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.32/hegemony_wasm.js",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.32/hegemony_wasm_bg.wasm",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.32/hegemony_wasm_bg.wasm.d.ts",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.32/package.json",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.33/README.md",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.33/hegemony_wasm.d.ts",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.33/hegemony_wasm.js",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.33/hegemony_wasm_bg.wasm",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.33/hegemony_wasm_bg.wasm.d.ts",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.33/package.json",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.34/README.md",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.34/hegemony_wasm.d.ts",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.34/hegemony_wasm.js",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.34/hegemony_wasm_bg.wasm",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.34/hegemony_wasm_bg.wasm.d.ts",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.34/package.json",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.35/README.md",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.35/hegemony_wasm.d.ts",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.35/hegemony_wasm.js",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.35/hegemony_wasm_bg.wasm",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.35/hegemony_wasm_bg.wasm.d.ts",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.35/package.json",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.36/README.md",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.36/hegemony_wasm.d.ts",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.36/hegemony_wasm.js",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.36/hegemony_wasm_bg.wasm",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.36/hegemony_wasm_bg.wasm.d.ts",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.36/package.json",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.4/README.md",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.4/hegemony_wasm.js",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.4/hegemony_wasm_bg.wasm",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.4/package.json",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.43/hegemony_wasm.d.ts",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.43/hegemony_wasm.js",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.43/hegemony_wasm_bg.wasm",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.43/hegemony_wasm_bg.wasm.d.ts",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.43/package.json",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.44/hegemony_wasm.d.ts",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.44/hegemony_wasm.js",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.44/hegemony_wasm_bg.wasm",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.44/hegemony_wasm_bg.wasm.d.ts",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.44/package.json",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.5/README.md",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.5/hegemony_wasm.js",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.5/hegemony_wasm_bg.wasm",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.5/package.json",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.6/hegemony_wasm.js",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.6/hegemony_wasm_bg.wasm",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.6/package.json",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.7/README.md",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.7/hegemony_wasm.d.ts",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.7/hegemony_wasm.js",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.7/hegemony_wasm_bg.wasm",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.7/hegemony_wasm_bg.wasm.d.ts",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.7/package.json",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.8/README.md",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.8/hegemony_wasm.d.ts",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.8/hegemony_wasm.js",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.8/hegemony_wasm_bg.wasm",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.8/hegemony_wasm_bg.wasm.d.ts",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.8/package.json",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.9/README.md",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.9/hegemony_wasm.js",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.9/hegemony_wasm_bg.wasm",
+      "deleted": true
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.9/package.json",
+      "deleted": true
+    }
+  ],
+  "legacyDirectoriesDeleted": 40,
+  "independentSourceReviewPassed": true,
+  "noCommitPushOrPublicationByWorker": true
+}

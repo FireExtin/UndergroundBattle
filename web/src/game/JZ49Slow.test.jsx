@@ -14,16 +14,14 @@ const fixtures = JSON.parse(readFileSync(resolve('src/game/jz49Test.fixture.json
 const view = (kind, seat = 0) => fixtures.find(f => f.kind === kind).views[seat];
 afterEach(cleanup);
 
-it('admits only JZ49 and preserves the exact reviewed hundred cards, societies and presets', () => {
+it('checks the complete JZ49 printed definition', () => {
   expect(definitions.get('JZ49')).toMatchObject({ name: '蹒跚行尸', cost: 1,
     color: '黑', loyalty: ['黑色', '黑色'], magicIcon: 'Death', keywords: ['迟缓'],
     ruleTraits: { slow: true }, deckCopyLimit: 3,
     abilities: [{ key: 'mill-two-entry', triggered: true, timing: 'fast' }] });
 });
 
-it('restores every native projection including hidden, declaration, stack, composition and completion', () => {
-  for (const row of fixtures) for (let seat = 0; seat < 4; seat++) {
-  }
+it('checks recorded declaration, stack, composition and completion results', () => {
   expect(view('response-composing', 2).responseWindow.myIntentId).toBe('jz49-destroy-response');
   expect(view('final').stack).toHaveLength(0);
   expect(view('final').graveyard.some(c => c.cardId === 'JZ49')).toBe(true);

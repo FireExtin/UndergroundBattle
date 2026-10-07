@@ -14,12 +14,12 @@ const definitions=new Map(catalog.cards.map(c=>[c.id,c]));
 const fixtures=JSON.parse(readFileSync(resolve('src/game/jz31Test.fixture.json'),'utf8')).fixtures;
 const view=(kind,seat=0)=>fixtures.find(f=>f.kind===kind).views[seat];
 
-it('admits the complete no-magic original while preserving all 98 previous cards, societies and presets',()=>{
+it('checks the complete JZ31 printed definition without a magic requirement',()=>{
 
  expect(definitions.get('JZ31')).toMatchObject({name:'破茧者秘教线人',kind:'character',cost:3,color:'红',loyalty:['红色'],subtypes:['人类','宿主'],defense:1,magic:'',magicIcon:'None',unique:false,deckCopyLimit:3,permanentIcons:{investigation:1,combat:0,influence:1},temporaryIcons:{investigation:0,combat:0,influence:0},abilities:[{key:'death-source-influence',timing:'fast',costs:[],triggered:true}]});
 });
 
-it('restores all 40 actual native layouts, death declarations, stacks and results for every seat',()=>{
+it('checks recorded death-controller choice privacy and influence for every seat',()=>{
  expect(fixtures).toHaveLength(40);
  for(let actor=0;actor<4;actor++) {
   const v=view(`borrowed-death-${actor}`,actor);

@@ -75,7 +75,7 @@ it('admits only JC008 and retains its actual printed metadata and original JPG b
   expect(createHash('sha256').update(readFileSync(resolve('public/cards/JC008.jpg'))).digest('hex')).toBe(sha256);
 });
 
-it('reads the actual own-hand WASM spell projection and opens its original without inventing defense', () => {
+it('reads the current WASM own-hand spell view and opens its original without inventing defense', () => {
   const local = localRoom();
   const card = local.view(0).hand.find(c => c.cardId === 'JC008');
   expect(card).toMatchObject({ owner: 'p0', controller: 'p0', kind: 'spell', cost: 2 });

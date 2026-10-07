@@ -7,7 +7,7 @@ import { Miniflare, convertV4MiniflareOptions } from 'miniflare';
 import { RoomStore } from '../src/store.mjs';
 import { digest, RoomService } from '../src/service.mjs';
 import { initSync, newGame } from '../generated/hegemony_wasm.js';
-import { frozenKernel } from './fixtures/frozen-kernel.mjs';
+import { historicalLobbies } from './fixtures/historical-rooms.mjs';
 
 test('real workerd/WASM with D1 SQLite: concurrency, receipts, rollback and reopen', async t => {
   const persist = mkdtempSync(join(tmpdir(), 'hegemony-worker-d1-'));
@@ -104,10 +104,8 @@ test('real workerd/WASM with D1 SQLite: concurrency, receipts, rollback and reop
     assert(opaqueAfter.includes('"seed":18446744073709551615')); assert(opaqueAfter.includes('"random":18446744073709551615'));
     // Local-only historical fixtures are retained byte-for-byte and fail closed.
     const oldRooms = [];
-    for (let minor = 1; minor <= 10; minor++) {
-      const oldKernel = await frozenKernel('legacy-v0.2.' + minor);
+    for (const { minor, room: old } of historicalLobbies()) {
       const id = String(minor).padStart(2, '0').repeat(12), token = String(minor).padStart(2, '0').repeat(32), invite = 'OLDTEST' + minor;
-      const old = JSON.parse(oldKernel.newGame(id, invite, 'duel', '旧核', 'watchers', '18446744073709551615'));
       const createBody = { name: '旧核', mode: 'duel', deckId: 'watchers', requestId: key() };
       const receiptKeys = new RoomService(db, {});
       const entryKey = await receiptKeys.entryKey(createBody, { kind: 'create', name: '旧核', mode: 'duel', deckId: 'watchers' });

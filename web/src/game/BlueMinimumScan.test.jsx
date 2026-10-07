@@ -14,7 +14,7 @@ const fixtures=JSON.parse(readFileSync(resolve('src/game/blueMinimumTest.fixture
 const view=(kind,seat)=>fixtures.find(f=>f.kind===kind).views[seat];
 const choiceAction=v=>v.legalActions.find(a=>a.kind==='choose');
 
-it('blue33 preserves all old94 definitions, seven societies, five presets and opens only the three original scans',()=>{
+it('checks the three blue printed definitions and their pinned original scans',()=>{
 
  expect(definitions.get('JC032')).toMatchObject({cost:5,loyalty:['蓝色','蓝色'],magic:'死亡',subtypes:['吸血鬼'],defense:3,permanentIcons:{investigation:1,combat:1,influence:2},unique:false});
  expect(definitions.get('JZ24')).toMatchObject({cost:4,loyalty:['蓝色'],magic:'死亡',subtypes:['吸血鬼','罪犯'],defense:1,permanentIcons:{investigation:1,combat:2,influence:0},unique:false});
@@ -25,10 +25,6 @@ it('blue33 preserves all old94 definitions, seven societies, five presets and op
   expect(createHash('sha256').update(readFileSync(resolve('public/cards/'+id+'.jpg'))).digest('hex')).toBe(hash);
  }
  expect(cardScanUrl('XQ11')).toBeUndefined();
-});
-
-it('blue33 restores every complete native fixture through actual WASM for four seats',()=>{
- expect(fixtures).toHaveLength(11);
 });
 
 it('JC032 privately previews all six including Bat and human, reads without choosing, and requires one printed Vampire',()=>{

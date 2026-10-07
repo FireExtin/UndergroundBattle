@@ -1,1 +1,0 @@
-Frozen independently accepted JC029 private candidate, game commit 3684ae1f36e229ea7f8483e452cd6d9e7367c5dc. Not a published Site version. Five ABI files copied byte-exact before green implementation.
