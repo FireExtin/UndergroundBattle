@@ -1,0 +1,53 @@
+{
+  "baseCommit": "454e46f67f4a55814321b66817b704d74fbad2bc",
+  "scope": "deck-building-UI-only",
+  "productAndTestSha256": {
+    "web/src/game/DeckLibraryPanel.tsx": "a216af9342053f538db18460cd70da7946b9a5bd5806001ab3695d65ff9397c5",
+    "web/src/game/DeckCardFace.tsx": "7a08d9a60e1749095330c77ec7440bd5b6289e32c166111368b8912054166971",
+    "web/src/game/DeckCardPreview.tsx": "64cac2dd8e70bfe4e64979451b11f1b381ee927c5c3767b17c99f0bc99b77a92",
+    "web/src/game/deck-library.css": "5be17041183d15a4dbb2bc05dacd558205f38a1b9b62d3e4949177147f041f47",
+    "web/src/game/Lobby.tsx": "2e39cc8be37f51b2c5f7483e3234b1e531942c1e4004aa322ff61d8609314c6d",
+    "web/src/game/DeckBuilderGrid.test.tsx": "f8c2047b07e2a67297e1d9c2db81640a6f12a0ecfbc78013642669257ba67030",
+    "tools/cloud-playtest/deck_builder.py": "3b0281f09d0bdfd6c5ec669b88cb6f2cb3dbda996033481db8de6094032f3a33"
+  },
+  "evidenceSha256": {
+    "browser-results.json": "8b56c6f58db76f7b1e152358402dff47b93c8dd932cb3c6629cc15aef885f3ac",
+    "browser-run-final.log": "5eb06190f8c4a57f59d408fa9ab4dcd6ef3ea200414de9720abd5fedce64a282",
+    "catalog-verification.json": "c32af7b0bc5501507745fcfdd63eac8567f836634169e24ca78260872d57acc8",
+    "desktop-copy-limit-feedback.png": "05d03315ccaeddc280bf462e3b65c1ef46a11c5429929734fdb8e87f5044c486",
+    "desktop-grid.png": "e4669c9adc76e398343a49e29fd62fbd46816238f74ff914e12a2f47c3013db5",
+    "desktop-image-failure-placeholder.png": "0fb0a71a57a2c548d0d63c89948c83d84d82a14186a6aa91dd37a75a4a58de7b",
+    "desktop-original-preview.png": "f68f42322dbe23971a6f1b4979349de005be72950ea75b6c35a314994be337e9",
+    "focused-final.log": "4f6e17f8083ed1e0022a57b16a1c605072ba7824a2679a95cbd48b902b7530b8",
+    "mobile-grid.png": "553f60ddfb3c012f342c7dba15c4491ebfc8895ed668fb08eb91e05de301613c",
+    "mobile-original-preview.png": "b53be22fdf61289a4124fad6e1482f4eb7a5c85ff807d46be6428ba37dd28fe5",
+    "site37-baseline-results.json": "230de5c44a50f9317958e338e662dd02e128500c78abf8d0047c2fbd26d75c10",
+    "site37-catalog.json": "57e7688e0046ab4c780fc9e01b2d1c10a5f82d445a92d3844dc57e6baf7a28d2",
+    "site37-library-before.png": "8542aaf5451999c91f148a631c906b55504eede11cd5ff59514b050d5adcd84d",
+    "typecheck-final.log": "59b887d884d1fbd4456a43e76a9bf4bcb96168ed75959ab8703975561f591aa5",
+    "web-build-final.log": "85a3acf94b842631a59414e983a2566c58997868103cee3aaf50e62fb532a491",
+    "web-full-final.log": "fa95f466c80820cc08af93e8e8f94199ec6f64473a63aa5e6bc0cea6d3b97ec7"
+  },
+  "validation": {
+    "typecheck": "passed",
+    "lint": "No lint script configured; git diff --check and Python compilation passed",
+    "focusedTests": 40,
+    "fullWebTests": 613,
+    "fullWebFiles": 69,
+    "productionBuild": "passed",
+    "browserCheckpoints": 9,
+    "browserScreenshots": 6,
+    "baselineLiveSite37": "passed; 0 deck-library images; repeated add and local save/reload",
+    "candidateBrowser": "local real UI with recorded public Site37 catalog; no room/API writes",
+    "currentSourceCatalogMatchesLivePublicCatalog": true
+  },
+  "preserved": [
+    "Rust core",
+    "cards/catalog/deck legality",
+    "cardScans mapping and original images",
+    "WASM tracked artifacts",
+    "player sessions and room storage"
+  ],
+  "published": false,
+  "independentReviewPending": true
+}

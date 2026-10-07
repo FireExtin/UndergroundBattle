@@ -82,7 +82,7 @@ export function Lobby({ independent = false, catalog, busy, onCreate, onJoin, re
         {!selectedDraft && deck && <details className="hg-deck-list"><summary>查看「{deck.name}」的 {deck.cardCount} 张组成</summary><ul>{deck.cards.map(item => <li key={item.cardId}><span>{catalog.cards.find(card => card.id === item.cardId)?.name || item.cardId}</span><b>× {item.count}</b></li>)}</ul></details>}
       </> : <div className="hg-loading"><span>正在连接牌组档案…</span><button className="hg-button hg-button-quiet" onClick={retry}>重新连接</button></div>}
       <FactionCoverage catalog={catalog} />
-      {catalog && <DeckLibrary catalog={catalog} disabled={busy} selectedDraftId={selectedDraft?.id} onSelectDraft={draft => { setSelectedDraft(publicDeckDraft(draft)); onSelectDraft?.(publicDeckDraft(draft)); }} />}
     </section>
+    {catalog && <DeckLibrary catalog={catalog} disabled={busy} selectedDraftId={selectedDraft?.id} onSelectDraft={draft => { setSelectedDraft(publicDeckDraft(draft)); onSelectDraft?.(publicDeckDraft(draft)); }} />}
   </main>;
 }
