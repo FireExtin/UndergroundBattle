@@ -1,0 +1,2283 @@
+{
+  "reviewedSource": "2ad04f7b91ca3d6030ff27a5d45598703592fbde",
+  "mappedFiles": {
+    "Cargo.lock": {
+      "original": "Cargo.lock",
+      "bytes": 29338,
+      "sha256": "1745cc1af931f500e763222c39100da3ac0521f4a1f96fc54e82c8589e2edb54"
+    },
+    "Cargo.toml": {
+      "original": "Cargo.toml",
+      "bytes": 69,
+      "sha256": "6a2e27cc47931d9285d713ced9aad949ebcf36cfd32f5eeaf329fec24fda3257"
+    },
+    "README.md": {
+      "original": "sites/README.md",
+      "bytes": 2502,
+      "sha256": "66c55f31ccf73f9675d11dae5d9117126df513fade2bc91a8693189cd7dd837c"
+    },
+    "docs/JZ50_DEATH_SEARCH48_CANDIDATE_2026-10-07.md": {
+      "original": "docs/JZ50_DEATH_SEARCH48_CANDIDATE_2026-10-07.md",
+      "bytes": 6951,
+      "sha256": "386301c778ab96dc2f299ad3873daf850a2e1fb18809f3c3388c54962ec9903e"
+    },
+    "docs/SEALED_RESTART49_P1_FIX_2026-10-07.md": {
+      "original": "docs/SEALED_RESTART49_P1_FIX_2026-10-07.md",
+      "bytes": 6093,
+      "sha256": "aea1a781fae2f7fec4072e1143238f616a0951886d686c2ca8b160679f8aee1a"
+    },
+    "docs/SEALING47_CANDIDATE_2026-10-07.md": {
+      "original": "docs/SEALING47_CANDIDATE_2026-10-07.md",
+      "bytes": 5501,
+      "sha256": "00378e10bc8e77c7343ef78d335d821086b01ed00bd0282f7c083c4054673785"
+    },
+    "docs/TASK_DOCUMENTATION_POLICY.md": {
+      "original": "docs/TASK_DOCUMENTATION_POLICY.md",
+      "bytes": 984,
+      "sha256": "c747e8e1127994b3ed7294039e43bdc914abfb3af7a4dda37f2404de0f8696e6"
+    },
+    "docs/rules/JZ50_SEARCH_OWNER_FAQ_2026-10-07.md": {
+      "original": "docs/rules/JZ50_SEARCH_OWNER_FAQ_2026-10-07.md",
+      "bytes": 1981,
+      "sha256": "82a1fa833e2be91063e15d09f0e940a9f7d1e844fac74300e3a275a17c0b445e"
+    },
+    "rust-game-wasm/Cargo.toml": {
+      "original": "rust-game-wasm/Cargo.toml",
+      "bytes": 375,
+      "sha256": "cbdeefa0ca26e19bab521fd24e56bdc4e2f2f7f3c53e78f9e0a4d61b6c4e0fd0"
+    },
+    "rust-game-wasm/README.md": {
+      "original": "rust-game-wasm/README.md",
+      "bytes": 5760,
+      "sha256": "4c9039bad34aba9d232b6a3f103b15e82a0e7cf9cd29822c1dce93015cd2c6f3"
+    },
+    "rust-game-wasm/build.sh": {
+      "original": "rust-game-wasm/build.sh",
+      "bytes": 895,
+      "sha256": "f1773c8a3371e4cf65b0197a6d746a5ec3b1cf84ee56f47097d465cab8500278"
+    },
+    "rust-game-wasm/examples/native_fixtures.rs": {
+      "original": "rust-game-wasm/examples/native_fixtures.rs",
+      "bytes": 109132,
+      "sha256": "f127d985c042c84b581f25399853b625f1b0af5a14730ad763b5e4e8a345da20"
+    },
+    "rust-game-wasm/examples/support/control.rs": {
+      "original": "rust-game-wasm/examples/support/control.rs",
+      "bytes": 32299,
+      "sha256": "1618ccac6c656dcf2543b6a21af56c33238f3a61355e05bc61dfd9cc3ba7328c"
+    },
+    "rust-game-wasm/examples/support/defence_equipment.rs": {
+      "original": "rust-game-wasm/examples/support/defence_equipment.rs",
+      "bytes": 35306,
+      "sha256": "085237fdcbd268ec6f1e4a2268029163c5a389adc7a1178faeb7f5834602816a"
+    },
+    "rust-game-wasm/examples/support/dream_reveal.rs": {
+      "original": "rust-game-wasm/examples/support/dream_reveal.rs",
+      "bytes": 26062,
+      "sha256": "c959a2f38defa321b6c36fe16f9accba13af4d596e320047d8e0e5be86fbf0e8"
+    },
+    "rust-game-wasm/examples/support/equipment_abilities.rs": {
+      "original": "rust-game-wasm/examples/support/equipment_abilities.rs",
+      "bytes": 46787,
+      "sha256": "d6f2591acfe15fe597a7ab70e6c85248a060acd57487f79d7e6b6f9573299b7a"
+    },
+    "rust-game-wasm/examples/support/hand_deck.rs": {
+      "original": "rust-game-wasm/examples/support/hand_deck.rs",
+      "bytes": 22585,
+      "sha256": "a4d034538019fe1fee159225da3e35ea7df38d2266c8bcb6597d65c75b4a6bd2"
+    },
+    "rust-game-wasm/examples/support/hand_interactions.rs": {
+      "original": "rust-game-wasm/examples/support/hand_interactions.rs",
+      "bytes": 25670,
+      "sha256": "ca485bcefcace161bccb9227d8a8db8aa975d3d7f914d3f50d9b247556a55952"
+    },
+    "rust-game-wasm/examples/support/identity_overlap.rs": {
+      "original": "rust-game-wasm/examples/support/identity_overlap.rs",
+      "bytes": 22904,
+      "sha256": "1391b5c1fd88c220e3762778365e137cb8756c44c0e569a5bb3a7f58988d27f3"
+    },
+    "rust-game-wasm/examples/support/jc004.rs": {
+      "original": "rust-game-wasm/examples/support/jc004.rs",
+      "bytes": 17861,
+      "sha256": "634717ba75955c5cb81709653baf169af9f8dba879a819a0f74966047f944195"
+    },
+    "rust-game-wasm/examples/support/jc005.rs": {
+      "original": "rust-game-wasm/examples/support/jc005.rs",
+      "bytes": 10615,
+      "sha256": "80a709822ea9c1789131a90085f16e09afc9bf4775d3502fc1ca09714d8df9e5"
+    },
+    "rust-game-wasm/examples/support/jc008.rs": {
+      "original": "rust-game-wasm/examples/support/jc008.rs",
+      "bytes": 18934,
+      "sha256": "876b6b9b1b09a9f1f62f7dd5d696cb0466ac9107c89032a833a73f135b57ea7d"
+    },
+    "rust-game-wasm/examples/support/mixed_decks.rs": {
+      "original": "rust-game-wasm/examples/support/mixed_decks.rs",
+      "bytes": 9450,
+      "sha256": "34b2e7db82a4e4b13aa28024fce6f40a1910e6caf97d825b74fafbc93403b49a"
+    },
+    "rust-game-wasm/examples/support/msjc01.rs": {
+      "original": "rust-game-wasm/examples/support/msjc01.rs",
+      "bytes": 19062,
+      "sha256": "2e329f0fe67cbaa47c2b44617c9dcb6b9f46915d4a4ea191b7212f629f115ded"
+    },
+    "rust-game-wasm/examples/support/msjc06.rs": {
+      "original": "rust-game-wasm/examples/support/msjc06.rs",
+      "bytes": 23002,
+      "sha256": "b92e1deadd07607f61fe9000afc6f419b5887b2cc47300fee45de7dab501e604"
+    },
+    "rust-game-wasm/examples/support/msjc07.rs": {
+      "original": "rust-game-wasm/examples/support/msjc07.rs",
+      "bytes": 23037,
+      "sha256": "08655fcc1b107d2de814a0231eea1ce3a098554fa11562bfc42137c9729bea22"
+    },
+    "rust-game-wasm/examples/support/msjc08.rs": {
+      "original": "rust-game-wasm/examples/support/msjc08.rs",
+      "bytes": 23014,
+      "sha256": "adeb445615d0212b05b9c921db271c1978acde518ba5a42ce40159fd69a04867"
+    },
+    "rust-game-wasm/examples/support/msjc09.rs": {
+      "original": "rust-game-wasm/examples/support/msjc09.rs",
+      "bytes": 7086,
+      "sha256": "6799e96443d34cf1409cd18a51fb7d406ddb12be22e29f07162e805f38bbd731"
+    },
+    "rust-game-wasm/examples/support/msjc11.rs": {
+      "original": "rust-game-wasm/examples/support/msjc11.rs",
+      "bytes": 35022,
+      "sha256": "ea52ac5120af22b4725f5fbf5ad500c9811f4a95762f321faf7667c8f61d96ac"
+    },
+    "rust-game-wasm/examples/support/protection.rs": {
+      "original": "rust-game-wasm/examples/support/protection.rs",
+      "bytes": 28856,
+      "sha256": "1272d3010d72f1a58f9f45e691dccf19524f5aa5ba1b59ed84959e8e949d75a1"
+    },
+    "rust-game-wasm/examples/support/purple_tools.rs": {
+      "original": "rust-game-wasm/examples/support/purple_tools.rs",
+      "bytes": 20096,
+      "sha256": "d9550980f9937a58ea2d2c60e9ff3025c0d5696b23ad061b767ffb72a970f1e9"
+    },
+    "rust-game-wasm/examples/support/region_aura.rs": {
+      "original": "rust-game-wasm/examples/support/region_aura.rs",
+      "bytes": 36768,
+      "sha256": "96a903ef68b35a52281998cffbe1fcc03bf63177a1fc32e82a88e61a9e2dc6c8"
+    },
+    "rust-game-wasm/examples/support/renown.rs": {
+      "original": "rust-game-wasm/examples/support/renown.rs",
+      "bytes": 20352,
+      "sha256": "8940f9f534c12d3c6b8a0dd8eed6f67a4d3a94271e4f67b56d303a0f23392970"
+    },
+    "rust-game-wasm/examples/support/repress_assets.rs": {
+      "original": "rust-game-wasm/examples/support/repress_assets.rs",
+      "bytes": 24144,
+      "sha256": "4d6d082c56ad9a840c6785154c5cc49a4724b4dd72e99fa668e7d6951fae55eb"
+    },
+    "rust-game-wasm/examples/support/society_fixture.rs": {
+      "original": "rust-game-wasm/examples/support/society_fixture.rs",
+      "bytes": 6201,
+      "sha256": "531b8909c33ac20bba4757a68c5217f6b27efc2d246f9031e5d6d5e08bf1224c"
+    },
+    "rust-game-wasm/examples/support/white_wound.rs": {
+      "original": "rust-game-wasm/examples/support/white_wound.rs",
+      "bytes": 26782,
+      "sha256": "2fbe71526baa5a04928f6a8380ad1a51a2e9c13b3be2ecca243b93d4fe716e0e"
+    },
+    "rust-game-wasm/examples/support/wound_defence.rs": {
+      "original": "rust-game-wasm/examples/support/wound_defence.rs",
+      "bytes": 19612,
+      "sha256": "f0d3eebcf26928f736cc84cc8d0aac2d942992b0fbf4b59b131cce5ceac5e042"
+    },
+    "rust-game-wasm/examples/support/yellow_search.rs": {
+      "original": "rust-game-wasm/examples/support/yellow_search.rs",
+      "bytes": 16961,
+      "sha256": "ea184291253d3faf4bc7a6722da25261e8bffe0e6a9b4990913aa1cc5e40b57b"
+    },
+    "rust-game-wasm/src/lib.rs": {
+      "original": "rust-game-wasm/src/lib.rs",
+      "bytes": 7064,
+      "sha256": "e813ff003dfad6063d117333412e3dd15e70dd19967aa2b6279a30fe86deb4f3"
+    },
+    "rust-game-wasm/tests/compare.mjs": {
+      "original": "rust-game-wasm/tests/compare.mjs",
+      "bytes": 6894,
+      "sha256": "23fbbe0c9bbfa73df486b60dccdede899324e2a279f5f431317f9fedf2e0d28d"
+    },
+    "rust-game-wasm/tests/current-kernel.mjs": {
+      "original": "rust-game-wasm/tests/current-kernel.mjs",
+      "bytes": 549,
+      "sha256": "d4272f5b94a97774261aa51b41b5ee04cb610c268412d54bdefb3666b0ae0ecb"
+    },
+    "rust-game-wasm/tests/jc089_compare.mjs": {
+      "original": "rust-game-wasm/tests/jc089_compare.mjs",
+      "bytes": 2354,
+      "sha256": "434904ee922ee2bd84ea05376823ef634b547e6c7dfaf101b476f6f24809e8e8"
+    },
+    "rust-game-wasm/tests/jz31_compare.mjs": {
+      "original": "rust-game-wasm/tests/jz31_compare.mjs",
+      "bytes": 1386,
+      "sha256": "3573c0ce4e7a17a3b12a2f146557684b028d0f079bd2c7fa58856d58cf2d7fbd"
+    },
+    "rust-game-wasm/tests/jz31_response_compare.mjs": {
+      "original": "rust-game-wasm/tests/jz31_response_compare.mjs",
+      "bytes": 1238,
+      "sha256": "fc9487b47a19ae4615440102b7aa56dc766ebc59fc98571db369f17731b2d178"
+    },
+    "rust-game-wasm/tests/jz48_compare.mjs": {
+      "original": "rust-game-wasm/tests/jz48_compare.mjs",
+      "bytes": 2353,
+      "sha256": "261786c2a9c2496bc50fae3d49afba89435f1757c1fee072d1cbf57c0f68a502"
+    },
+    "rust-game-wasm/tests/jz49_compare.mjs": {
+      "original": "rust-game-wasm/tests/jz49_compare.mjs",
+      "bytes": 2482,
+      "sha256": "5073e4203e92152e665e8c92f4ad1e7103e0e547901f0859971aae00e51dad1b"
+    },
+    "rust-game-wasm/tests/jz55_compare.mjs": {
+      "original": "rust-game-wasm/tests/jz55_compare.mjs",
+      "bytes": 3615,
+      "sha256": "4e32c8a9ceb7ce4b860b4d349859a8b961af0d60157d01c4f58b0a3624db09fb"
+    },
+    "rust-game-wasm/verify.sh": {
+      "original": "rust-game-wasm/verify.sh",
+      "bytes": 413,
+      "sha256": "5ee866b309e35398b1e1480a7e3aefc5689309aa916c7057f60b18f46216682a"
+    },
+    "rust-game/Cargo.toml": {
+      "original": "rust-game/Cargo.toml",
+      "bytes": 1257,
+      "sha256": "618a6aa097de2505d66a1d0f060b62d8d19e8ccefd1d9427f1a17db841dc60f3"
+    },
+    "rust-game/README.md": {
+      "original": "rust-game/README.md",
+      "bytes": 8377,
+      "sha256": "6f5b8d58fcd339920d30b85c8a17c5c035209adce3bfffd04846c13a940cd627"
+    },
+    "rust-game/data/card-research-index.json": {
+      "original": "rust-game/data/card-research-index.json",
+      "bytes": 2098569,
+      "sha256": "8ebc08d35c4891051cd47dc611eb80462abaeb6325a4f5fc3b06f8ce364384cf"
+    },
+    "rust-game/data/cards.json": {
+      "original": "rust-game/data/cards.json",
+      "bytes": 114857,
+      "sha256": "574f2ca7b7eba29c633fe25eee594fa6917031fc83aa48d4cd9dc768f6ad1d8f"
+    },
+    "rust-game/data/faction-coverage.json": {
+      "original": "rust-game/data/faction-coverage.json",
+      "bytes": 388469,
+      "sha256": "4b1368ec32910b9802d20d451f141e16ea36209795c156ef454f77a0b07b55ff"
+    },
+    "rust-game/data/source-verification.json": {
+      "original": "rust-game/data/source-verification.json",
+      "bytes": 8738,
+      "sha256": "c83a9ee0cbfe741148d88e7c9bc49fc1cf96eaaa21bf0b192094ac361d224bd3"
+    },
+    "rust-game/examples/semantic_scope_audit.rs": {
+      "original": "rust-game/examples/semantic_scope_audit.rs",
+      "bytes": 302,
+      "sha256": "fd5acb012a686f9a73cc1fe1b26553cbe199adb371e8d8ec917befe8b642a3fd"
+    },
+    "rust-game/src/attachment.rs": {
+      "original": "rust-game/src/attachment.rs",
+      "bytes": 28105,
+      "sha256": "600a19237dff7f7051b645523bc37ee331f73794419ab80507041d4de8a9dc4b"
+    },
+    "rust-game/src/attributes.rs": {
+      "original": "rust-game/src/attributes.rs",
+      "bytes": 10170,
+      "sha256": "6e42a1b49ce7a5f7b04f6e937d60f299d8a019178d467e590c114c6a33f5ccf2"
+    },
+    "rust-game/src/bin/hegemony-audit.rs": {
+      "original": "rust-game/src/bin/hegemony-audit.rs",
+      "bytes": 627,
+      "sha256": "6e1d4f5cb0b803f9aa4bc233dfb2445cbddb2801522846963aa2caf2b2090e2e"
+    },
+    "rust-game/src/blue_minimum.rs": {
+      "original": "rust-game/src/blue_minimum.rs",
+      "bytes": 8085,
+      "sha256": "2df32acfb82071791336622a0c86e9fe5bdfa7e7417a00dfa8b08f7d9f63aeb1"
+    },
+    "rust-game/src/blue_minimum_tests.rs": {
+      "original": "rust-game/src/blue_minimum_tests.rs",
+      "bytes": 35054,
+      "sha256": "70e0a8d18b5c49e32b7eb84dee46151ed2231664158d89372da1f5e8f46ff0cb"
+    },
+    "rust-game/src/catalog.rs": {
+      "original": "rust-game/src/catalog.rs",
+      "bytes": 8238,
+      "sha256": "5cc616b835530881a26335c5aa7b3488184a3f58c304065e1eeb923d4ae5bc39"
+    },
+    "rust-game/src/control.rs": {
+      "original": "rust-game/src/control.rs",
+      "bytes": 7013,
+      "sha256": "17a956e107004547814638c5729e5578f86aaed3f1326da9f855f554d76e68e3"
+    },
+    "rust-game/src/control_tests.rs": {
+      "original": "rust-game/src/control_tests.rs",
+      "bytes": 26786,
+      "sha256": "28e12e2fd639856abc3de3b5d93c402ba9f1c7dcbcd4563555af412df6fb5586"
+    },
+    "rust-game/src/deck.rs": {
+      "original": "rust-game/src/deck.rs",
+      "bytes": 6066,
+      "sha256": "20b2a14c0de1ff8ca921fba06aa322daf625f87716963c4ed434c3e8f18494bd"
+    },
+    "rust-game/src/defence_equipment_tests.rs": {
+      "original": "rust-game/src/defence_equipment_tests.rs",
+      "bytes": 16130,
+      "sha256": "911114e3ef9bf06fcd75c8dc3ac609cb2391fc5c0fc5d5f7efb5ae79471ae462"
+    },
+    "rust-game/src/dream_reveal_tests.rs": {
+      "original": "rust-game/src/dream_reveal_tests.rs",
+      "bytes": 14832,
+      "sha256": "6ec4e9877f69cd49426138d8ba88dbc41b28d0863dc6c2702fba3453d107a94e"
+    },
+    "rust-game/src/engine.rs": {
+      "original": "rust-game/src/engine.rs",
+      "bytes": 254596,
+      "sha256": "a43e3f380cfbbfc6b6407db54e626c7a4a570d17f5e422fb42d777111bbb7612"
+    },
+    "rust-game/src/equipment_abilities_tests.rs": {
+      "original": "rust-game/src/equipment_abilities_tests.rs",
+      "bytes": 24063,
+      "sha256": "9afdb2620b714f42886a6e389b050a7a7c242a4b5c71104d45d678c46a58344c"
+    },
+    "rust-game/src/green_minimum_tests.rs": {
+      "original": "rust-game/src/green_minimum_tests.rs",
+      "bytes": 28713,
+      "sha256": "4206840dcb97261cc609501aee30e749a16c1a407b26a63d210627281d354bdf"
+    },
+    "rust-game/src/hand_deck_tests.rs": {
+      "original": "rust-game/src/hand_deck_tests.rs",
+      "bytes": 14114,
+      "sha256": "6ded1339c83045d889a82c022356e38487aabfd11aff26fdf734b67be5bca17c"
+    },
+    "rust-game/src/hand_interactions_tests.rs": {
+      "original": "rust-game/src/hand_interactions_tests.rs",
+      "bytes": 19545,
+      "sha256": "7eaeacab6aa0acc7a0f5c89352557a424b70dade17376f7874d658fa7cf13517"
+    },
+    "rust-game/src/jc004_tests.rs": {
+      "original": "rust-game/src/jc004_tests.rs",
+      "bytes": 17587,
+      "sha256": "df50006ba54f6553494909ddfebce9dee7560b0bdbbdeb2a0d86d845dc046abf"
+    },
+    "rust-game/src/jc005_tests.rs": {
+      "original": "rust-game/src/jc005_tests.rs",
+      "bytes": 15057,
+      "sha256": "9f0ed04cf09f858c0f42868774dc3917a30ddcbf0c7e82a5fdec2366a3d08bee"
+    },
+    "rust-game/src/jc008_tests.rs": {
+      "original": "rust-game/src/jc008_tests.rs",
+      "bytes": 16723,
+      "sha256": "b3859f1acccd68140986ec30569973e86d262e6dbb46ed0ca49c22f684297627"
+    },
+    "rust-game/src/jc029_tests.rs": {
+      "original": "rust-game/src/jc029_tests.rs",
+      "bytes": 18163,
+      "sha256": "3412ada0846024cc54341196ca1420d8771c2b7b1d94f9498815c765f7e3cc19"
+    },
+    "rust-game/src/jc030_tests.rs": {
+      "original": "rust-game/src/jc030_tests.rs",
+      "bytes": 10280,
+      "sha256": "69971223f942abdb2206a3dfadfb308b6cebcd115c890e9b8fad440916915440"
+    },
+    "rust-game/src/jc089_tests.rs": {
+      "original": "rust-game/src/jc089_tests.rs",
+      "bytes": 35129,
+      "sha256": "c053642720db34d802c9260399c7a58529c2f32dce1899cf167ea822ff3f456f"
+    },
+    "rust-game/src/jz31_tests.rs": {
+      "original": "rust-game/src/jz31_tests.rs",
+      "bytes": 28850,
+      "sha256": "961799907e3bdffe55d447e92896c5fbe37e29b3360976be0b91b4f2d74b0b0a"
+    },
+    "rust-game/src/jz48_tests.rs": {
+      "original": "rust-game/src/jz48_tests.rs",
+      "bytes": 23819,
+      "sha256": "b7fb20fccc11851b466a44e3ef367d11406585e23035c7a243c77bcb454d9e74"
+    },
+    "rust-game/src/jz49_tests.rs": {
+      "original": "rust-game/src/jz49_tests.rs",
+      "bytes": 25190,
+      "sha256": "d2149e6e5d126cb7f832e6749f891962eb773f5fd6be765ce8b642a254797979"
+    },
+    "rust-game/src/jz50_search.rs": {
+      "original": "rust-game/src/jz50_search.rs",
+      "bytes": 7138,
+      "sha256": "ddef90d3972d760897ab16cadf264908cb1e65fd9643d92194a169d1f3b3269c"
+    },
+    "rust-game/src/jz50_search_tests.rs": {
+      "original": "rust-game/src/jz50_search_tests.rs",
+      "bytes": 33410,
+      "sha256": "456c8920154737ee10f556a512bb95896459a357eaa87f0f79dcc4bca9d2e540"
+    },
+    "rust-game/src/jz55_tests.rs": {
+      "original": "rust-game/src/jz55_tests.rs",
+      "bytes": 30201,
+      "sha256": "6fefc07141bef592f769c2e4d1b6ce30d5bd3539f7faf24f043405a20e5e1e02"
+    },
+    "rust-game/src/lib.rs": {
+      "original": "rust-game/src/lib.rs",
+      "bytes": 2262,
+      "sha256": "1b22722f8fc6ca40b34dc3981cbd94956ae2b87b3cf9135e4014f8a386aff76f"
+    },
+    "rust-game/src/main.rs": {
+      "original": "rust-game/src/main.rs",
+      "bytes": 822,
+      "sha256": "b19047fc01dd00d864860551b41b2b8be883c04d77b158691b3bdc44252acf2e"
+    },
+    "rust-game/src/mill_public_tests.rs": {
+      "original": "rust-game/src/mill_public_tests.rs",
+      "bytes": 14064,
+      "sha256": "e55fc52d8264d24d0b9832d936c49cf5b8b43a2f6947cbc0365fbc68cb691b49"
+    },
+    "rust-game/src/model.rs": {
+      "original": "rust-game/src/model.rs",
+      "bytes": 23462,
+      "sha256": "bfaa42f3c505e5e1185185a0ece8ba342220702f9110eabdc7a52d4077d66581"
+    },
+    "rust-game/src/msjc01_tests.rs": {
+      "original": "rust-game/src/msjc01_tests.rs",
+      "bytes": 15965,
+      "sha256": "b5a1816cbd7886a14deb704e85334f06223ee274178ddc4a4ec2bba067496fa7"
+    },
+    "rust-game/src/msjc06_tests.rs": {
+      "original": "rust-game/src/msjc06_tests.rs",
+      "bytes": 15004,
+      "sha256": "764613e131756e4a834fcd8613e196e3c13ccbcd4ab4790769b6a8d10dc21fb2"
+    },
+    "rust-game/src/msjc07_tests.rs": {
+      "original": "rust-game/src/msjc07_tests.rs",
+      "bytes": 1428,
+      "sha256": "4330b7e2a0975655f5241eb685aa48a2dc868c455916ec566252e59ae27f8291"
+    },
+    "rust-game/src/msjc08_tests.rs": {
+      "original": "rust-game/src/msjc08_tests.rs",
+      "bytes": 1396,
+      "sha256": "04cab2d5471f0c191241bc5747da9861553b1807384fcc996cd12abaa88ab1a2"
+    },
+    "rust-game/src/msjc11_tests.rs": {
+      "original": "rust-game/src/msjc11_tests.rs",
+      "bytes": 19648,
+      "sha256": "36aeded0ce3242a8eb0c4bb5d902ff8fb466fe4cf5ad8c2b2526e01d825dd378"
+    },
+    "rust-game/src/play_sources.rs": {
+      "original": "rust-game/src/play_sources.rs",
+      "bytes": 12029,
+      "sha256": "f1a80f2f4d34e2b4c61336b176e180dbca7551fbd82e752d3c80757418638dfd"
+    },
+    "rust-game/src/protection_tests.rs": {
+      "original": "rust-game/src/protection_tests.rs",
+      "bytes": 18634,
+      "sha256": "603ae14cf365d77eefc7cef817fd7a91a95b0ee160f6180aa9abea7ac10dfbc8"
+    },
+    "rust-game/src/purple_tools_tests.rs": {
+      "original": "rust-game/src/purple_tools_tests.rs",
+      "bytes": 16491,
+      "sha256": "e642ab5cba65086996335831b2f67afc204994485f9d6ccd482a898d26dc351d"
+    },
+    "rust-game/src/region_aura_tests.rs": {
+      "original": "rust-game/src/region_aura_tests.rs",
+      "bytes": 18741,
+      "sha256": "4c9ecd9bb268cb04467ddf924665731f62f24fa44bac638373354c0f12da4337"
+    },
+    "rust-game/src/renown.rs": {
+      "original": "rust-game/src/renown.rs",
+      "bytes": 4498,
+      "sha256": "447c157af0401c59fa1d210c52009569d70a313a83b3e92ed094c03cfd0ec9d9"
+    },
+    "rust-game/src/renown_tests.rs": {
+      "original": "rust-game/src/renown_tests.rs",
+      "bytes": 21509,
+      "sha256": "06155eb63ab1f5b1ad99785de8a59981d1d7b6f9ea8074b033d26ccc64f8ffd7"
+    },
+    "rust-game/src/repress_assets_tests.rs": {
+      "original": "rust-game/src/repress_assets_tests.rs",
+      "bytes": 14834,
+      "sha256": "877d08dbc6080a4d595457f29cd8002056901e68ebd4b59c86e5f9ddffdb4660"
+    },
+    "rust-game/src/resolution.rs": {
+      "original": "rust-game/src/resolution.rs",
+      "bytes": 91819,
+      "sha256": "215a88d99ce5c418d732d5f6e8a3629e60c7d08798936b389c0f3770d69e21a1"
+    },
+    "rust-game/src/room.rs": {
+      "original": "rust-game/src/room.rs",
+      "bytes": 29549,
+      "sha256": "389b58ed0b96454b61c47270a8df776c49066610b5ab6796be21114c9f6a2182"
+    },
+    "rust-game/src/rules.rs": {
+      "original": "rust-game/src/rules.rs",
+      "bytes": 137962,
+      "sha256": "eb1ac1d9c65634f60b5634a67a3876ac003afabea40836c90a04bb5ccac8311b"
+    },
+    "rust-game/src/sealing.rs": {
+      "original": "rust-game/src/sealing.rs",
+      "bytes": 8565,
+      "sha256": "fdbe776b99d1f387bec9521bb9c5df2ac5aa2988b9260c204a336f1e54281480"
+    },
+    "rust-game/src/sealing_tests.rs": {
+      "original": "rust-game/src/sealing_tests.rs",
+      "bytes": 55319,
+      "sha256": "4b4147bc2d98703464c7b5433c854a9c34c1496a956fc93d2f5703c6e58981cd"
+    },
+    "rust-game/src/service.rs": {
+      "original": "rust-game/src/service.rs",
+      "bytes": 29014,
+      "sha256": "c086433fe3e9b408332c1426c5637b4c1f6c649b2c40b382f4e5f1a102a5b512"
+    },
+    "rust-game/src/society.rs": {
+      "original": "rust-game/src/society.rs",
+      "bytes": 33322,
+      "sha256": "81500ad9b3db36e7b3238987d4764d675723669e01502736742f7454f5888d04"
+    },
+    "rust-game/src/society_msjc09_tests.rs": {
+      "original": "rust-game/src/society_msjc09_tests.rs",
+      "bytes": 13088,
+      "sha256": "0c202064bab7229e54352a392da1f5ed6bfd1b87d7ef53e5cbf91c9d42f13086"
+    },
+    "rust-game/src/unit_support.rs": {
+      "original": "rust-game/src/unit_support.rs",
+      "bytes": 7246,
+      "sha256": "a37407e58126278a97624a0debe39de8810859adb6d07272e94be7e677949683"
+    },
+    "rust-game/src/white_wound_tests.rs": {
+      "original": "rust-game/src/white_wound_tests.rs",
+      "bytes": 13035,
+      "sha256": "bcbb0ce418f390d53f546b8be69ce72da96d2d90e6bf0a35764ccab567502f7a"
+    },
+    "rust-game/src/world.rs": {
+      "original": "rust-game/src/world.rs",
+      "bytes": 27285,
+      "sha256": "1474103db23b20ccafb4cd7242a06e70f24931d82d7a51d7528291fe930418b2"
+    },
+    "rust-game/src/wound_defence_tests.rs": {
+      "original": "rust-game/src/wound_defence_tests.rs",
+      "bytes": 14728,
+      "sha256": "3595cc700517d3a29d49f5e4f8b47f30ca81ebd90fe3af035120280e0ce84cd5"
+    },
+    "rust-game/src/yellow_search_batch_tests.rs": {
+      "original": "rust-game/src/yellow_search_batch_tests.rs",
+      "bytes": 12029,
+      "sha256": "eacb1cb6b1dfe13826ff63a48e9a923543acff3f26f64ce2668315ab205ff7f6"
+    },
+    "rust-game/tests/attachment_service.rs": {
+      "original": "rust-game/tests/attachment_service.rs",
+      "bytes": 19490,
+      "sha256": "e01ce1381271fe4bb6c2e29fb0ec9c9ee2b91c2f2269c392121d746aa668b0bf"
+    },
+    "rust-game/tests/deck_construction.rs": {
+      "original": "rust-game/tests/deck_construction.rs",
+      "bytes": 12760,
+      "sha256": "c6541a9f981104c30320f3ff722b10ed2837b64f275f8deebfff99507993459e"
+    },
+    "rust-game/tests/jc059_friendly.rs": {
+      "original": "rust-game/tests/jc059_friendly.rs",
+      "bytes": 4232,
+      "sha256": "119f746ec5d8a22fd3ee20293b4b7a020f3a1140e22412fb92e15985d0a0dcdc"
+    },
+    "rust-game/tests/room_pacing.rs": {
+      "original": "rust-game/tests/room_pacing.rs",
+      "bytes": 26700,
+      "sha256": "fd038fc90f2cb1f3d91897bca82054337d2b28c7283be5a22a0d4f36ce09fb46"
+    },
+    "rust-game/tests/service.rs": {
+      "original": "rust-game/tests/service.rs",
+      "bytes": 34553,
+      "sha256": "2387f166af25aa1f3c60d6b953a22457fe115865f94f4db17b9a33bb76c523ab"
+    },
+    "rust-game/tests/session_service.rs": {
+      "original": "rust-game/tests/session_service.rs",
+      "bytes": 25798,
+      "sha256": "9f604523d1790931edf33b62acabaa9dfdecb03a2a38803c05f4f3bfa99f2f98"
+    },
+    ".openai/hosting.json": {
+      "original": "sites/.openai/hosting.json",
+      "bytes": 91,
+      "sha256": "ed3a4753f9e2960e88424decbf7efb0b2d8583852f8b9200154674cda5ce25d2"
+    },
+    "db/schema.ts": {
+      "original": "sites/db/schema.ts",
+      "bytes": 1782,
+      "sha256": "73e99c1f820fc1fbb86216028b5adcca874b5eac3062070c9fabe691fe832e6a"
+    },
+    "drizzle.config.ts": {
+      "original": "sites/drizzle.config.ts",
+      "bytes": 140,
+      "sha256": "1b971da8f8eb163e47ae808af9207df95367dbf15c6c8a54d39ac3a095101be6"
+    },
+    "drizzle/0000_numerous_lucky_pierre.sql": {
+      "original": "sites/drizzle/0000_numerous_lucky_pierre.sql",
+      "bytes": 1523,
+      "sha256": "e7e71337892cba7558c9bd5a3c3beb78c109fa93d1775f0b13e5377030a78b43"
+    },
+    "drizzle/meta/0000_snapshot.json": {
+      "original": "sites/drizzle/meta/0000_snapshot.json",
+      "bytes": 7714,
+      "sha256": "a4e0d437f9b6d1c5f9cf2de0fbb7082f7a2dadf33f64e91cb0d7fc67780d254c"
+    },
+    "drizzle/meta/_journal.json": {
+      "original": "sites/drizzle/meta/_journal.json",
+      "bytes": 211,
+      "sha256": "568a9e1bf452c42d07a8f4067732cc82fe6fbb1e0951efb750e3028d02b8f561"
+    },
+    "package-lock.json": {
+      "original": "sites/package-lock.json",
+      "bytes": 99867,
+      "sha256": "aa5349f37a028150bc3a6496cec9c9a95fa21becace91f698e911940323d270a"
+    },
+    "package.json": {
+      "original": "sites/package.json",
+      "bytes": 464,
+      "sha256": "0d8c6a457e318dd148e4864201b4ae4b518371ad6184f0a006c6312dcdc110cb"
+    },
+    "scripts/build-backend-test.mjs": {
+      "original": "sites/scripts/build-backend-test.mjs",
+      "bytes": 3525,
+      "sha256": "a1571155968c501e19056a067c550900b67854f75c5870a4bda71acf60db0a77"
+    },
+    "scripts/build.mjs": {
+      "original": "sites/scripts/build.mjs",
+      "bytes": 1536,
+      "sha256": "ab7a7a95eb6e90baad654181f30a463cad3f93a51480dad026566d95166e5fbd"
+    },
+    "scripts/stage-source.mjs": {
+      "original": "sites/scripts/stage-source.mjs",
+      "bytes": 4027,
+      "sha256": "4cedef88b19662b1cfaa24505cadb9b57258fff963d779a16816bb60561ff51b"
+    },
+    "src/index.mjs": {
+      "original": "sites/src/index.mjs",
+      "bytes": 3552,
+      "sha256": "f6a1ae35a0361e2bad5422a9ab6d2e0a2c766c1e40c1c62bb0fe1446d5877551"
+    },
+    "src/kernel-router.mjs": {
+      "original": "sites/src/kernel-router.mjs",
+      "bytes": 1870,
+      "sha256": "c678d0728dae27449ba1a3d1d2b4beea7b3cca2a5e65c823cd915c712fcfaee7"
+    },
+    "src/kernel.mjs": {
+      "original": "sites/src/kernel.mjs",
+      "bytes": 541,
+      "sha256": "e9b2495dd37bacfa52e2426b70123587e282866dd5a4a33b56891d4c67edab2f"
+    },
+    "src/lazy-kernel.mjs": {
+      "original": "sites/src/lazy-kernel.mjs",
+      "bytes": 912,
+      "sha256": "c3484b39f681e65ddeb0f3760f2ad13c13083f59f694420b140b43cab3609965"
+    },
+    "src/service.mjs": {
+      "original": "sites/src/service.mjs",
+      "bytes": 15359,
+      "sha256": "c3de9c90d6752fd2c77baa5de971dcae8c95fe13744500a1c969e1a4d85d96ef"
+    },
+    "src/storage-errors.mjs": {
+      "original": "sites/src/storage-errors.mjs",
+      "bytes": 2556,
+      "sha256": "6979b752d13a2143f1e250051e5e2df1c81a7afef93727023b84ee8043b5f1a0"
+    },
+    "src/store.mjs": {
+      "original": "sites/src/store.mjs",
+      "bytes": 3748,
+      "sha256": "39d50fc38e515a959d51f13a5673f5b3603edbc420b120c2326f49607f66d4d9"
+    },
+    "test/assassin-integration.test.mjs": {
+      "original": "sites/test/assassin-integration.test.mjs",
+      "bytes": 375,
+      "sha256": "de98cc15908067520846f41018f8731535b85a929b3fb319c96ce2522e29395c"
+    },
+    "test/control-pair-integration.test.mjs": {
+      "original": "sites/test/control-pair-integration.test.mjs",
+      "bytes": 383,
+      "sha256": "222cf79230e8f96d9f48d5ebc27f029d24f7dc8cd1ea02aa902d52d96ae6a509"
+    },
+    "test/fire-scholar-integration.test.mjs": {
+      "original": "sites/test/fire-scholar-integration.test.mjs",
+      "bytes": 383,
+      "sha256": "1a5fe54e516dd36d0891e61c9e93ba278498c4abebdd4a7a03a3858b9fecf775"
+    },
+    "test/fixtures/historical-rooms.json": {
+      "original": "sites/test/fixtures/historical-rooms.json",
+      "bytes": 41820,
+      "sha256": "daa452f4b7fa5bd695f29c02a2291cbddd61b0eaa87d04fde28c2afd6976a124"
+    },
+    "test/fixtures/historical-rooms.mjs": {
+      "original": "sites/test/fixtures/historical-rooms.mjs",
+      "bytes": 759,
+      "sha256": "a5137597ba31541e4b878c5e3ad3bc8bedba97918eede545009f4f0dc7bf2791"
+    },
+    "test/fixtures/jz50-room-native-v048.json": {
+      "original": "sites/test/fixtures/jz50-room-native-v048.json",
+      "bytes": 780687,
+      "sha256": "002121ea1134cf5d10a67e493211d9fb1837a5c52c5ced105248e164257f6fc7"
+    },
+    "test/fixtures/jz50-room-native-v049.json": {
+      "original": "sites/test/fixtures/jz50-room-native-v049.json",
+      "bytes": 779997,
+      "sha256": "f3dedf23388da8adec88cbe0dff3edf30365db33467c69f97b19e7b1ec311d3b"
+    },
+    "test/fixtures/pause-resume-native-v046.json": {
+      "original": "sites/test/fixtures/pause-resume-native-v046.json",
+      "bytes": 767986,
+      "sha256": "cca16a276aa95cb3d39584c90fcb8c21bee1f7838d2b884ef857c30f2c7dea77"
+    },
+    "test/fixtures/pause-resume-native-v047.json": {
+      "original": "sites/test/fixtures/pause-resume-native-v047.json",
+      "bytes": 767086,
+      "sha256": "39f6fc03a6033315adba8bbfabcd08bf63e2814337b64d1bb3e21657ad2fce53"
+    },
+    "test/fixtures/pause-resume-native-v048.json": {
+      "original": "sites/test/fixtures/pause-resume-native-v048.json",
+      "bytes": 768586,
+      "sha256": "b361d2dab8f6e9904841cee4be7f34dee85cd4822e568e79c9b9fb3c892f7d17"
+    },
+    "test/fixtures/pause-resume-native-v049.json": {
+      "original": "sites/test/fixtures/pause-resume-native-v049.json",
+      "bytes": 768136,
+      "sha256": "a6ee9278e75f000721989002fe9a11fff064947063941b5ea32b0080eb654848"
+    },
+    "test/fixtures/prepared-assassin-v028.json": {
+      "original": "sites/test/fixtures/prepared-assassin-v028.json",
+      "bytes": 35201,
+      "sha256": "f59af6b3d309b989a1b32bb90daf2b6da9c57b43defcfba2db2dda750f394b4a"
+    },
+    "test/fixtures/prepared-control-pair-v028.json": {
+      "original": "sites/test/fixtures/prepared-control-pair-v028.json",
+      "bytes": 35850,
+      "sha256": "8d7c5a77d89f5a707a7ee96f493f1d02fbd188166e5662be694061f66ebc4069"
+    },
+    "test/fixtures/prepared-fire-scholar-v028.json": {
+      "original": "sites/test/fixtures/prepared-fire-scholar-v028.json",
+      "bytes": 30898,
+      "sha256": "aaaf3878b7ce1098474b4aa5390daa329cee2b7a4d8873f7bdbbf5a5f77f3149"
+    },
+    "test/fixtures/prepared-rescue-forecast-v028.json": {
+      "original": "sites/test/fixtures/prepared-rescue-forecast-v028.json",
+      "bytes": 29918,
+      "sha256": "f28650b5d9cd6e095cc137c90748ea09fe4e96e33c4f709af275c572f9667f64"
+    },
+    "test/fixtures/prepared-response-v025.json": {
+      "original": "sites/test/fixtures/prepared-response-v025.json",
+      "bytes": 35167,
+      "sha256": "41252046030a23ee55582bfe26815cd7984b9a895dc14c10edf82a4200a5faa7"
+    },
+    "test/fixtures/prepared-response-v026.json": {
+      "original": "sites/test/fixtures/prepared-response-v026.json",
+      "bytes": 35538,
+      "sha256": "ea51975720b3d36c32a695620a5093d994ab1fbbc0bd256f377eccb5275a9be7"
+    },
+    "test/fixtures/prepared-response-v027.json": {
+      "original": "sites/test/fixtures/prepared-response-v027.json",
+      "bytes": 35134,
+      "sha256": "6bd803f9aa4d71168e83271c226408922bb1b774da65947e1e4334b5e7c5ba8b"
+    },
+    "test/fixtures/prepared-response-v028.json": {
+      "original": "sites/test/fixtures/prepared-response-v028.json",
+      "bytes": 35135,
+      "sha256": "cbdad025e0695d2a97f613c7e6c759b3b4b6915a4210ec4716e6ee72f5725f2c"
+    },
+    "test/fixtures/prepared-two-cards-v028.json": {
+      "original": "sites/test/fixtures/prepared-two-cards-v028.json",
+      "bytes": 35189,
+      "sha256": "00c0ebfffd78d29ef1311d6711d160de441618246ae71b0fde6b55a789ef6c16"
+    },
+    "test/fixtures/reject-historical-room.mjs": {
+      "original": "sites/test/fixtures/reject-historical-room.mjs",
+      "bytes": 3643,
+      "sha256": "7cdd854606f04dfc3c5bbcd120fdf325afbbb5a89c0916ffe1684011ddfa8274"
+    },
+    "test/fixtures/reviewed-catalog-v044.json": {
+      "original": "sites/test/fixtures/reviewed-catalog-v044.json",
+      "bytes": 95650,
+      "sha256": "49386a177863cf15ba82a38811ba938e17e9c7c8600e5d568524ca2670b72901"
+    },
+    "test/fixtures/sealed-restart-native-v049.json": {
+      "original": "sites/test/fixtures/sealed-restart-native-v049.json",
+      "bytes": 270330,
+      "sha256": "32da519b3afc50c6603b21c7e2ee3e84290bb58e19a5ddc98a8d2f57a6a6a24c"
+    },
+    "test/fixtures/sealing-room-native-v047.json": {
+      "original": "sites/test/fixtures/sealing-room-native-v047.json",
+      "bytes": 916906,
+      "sha256": "3e7a3bcf612fdcf23d3580470a7e8042263b3c37a4587447825addb042c254db"
+    },
+    "test/fixtures/sealing-room-native-v048.json": {
+      "original": "sites/test/fixtures/sealing-room-native-v048.json",
+      "bytes": 919046,
+      "sha256": "c994397c2b83a01e1561d1e56d377aee2f899693a6a14a60889d0293f6b25d6d"
+    },
+    "test/fixtures/sealing-room-native-v049.json": {
+      "original": "sites/test/fixtures/sealing-room-native-v049.json",
+      "bytes": 918404,
+      "sha256": "8a9dc59a04192f1c84c092a19b26e8f73e6af94f6b4e00f8637a9afba2a74931"
+    },
+    "test/integration.test.mjs": {
+      "original": "sites/test/integration.test.mjs",
+      "bytes": 17672,
+      "sha256": "95259956cc5bf38780b7ac8714d6e2baaae1e26567860b6875b4e692b1093f0b"
+    },
+    "test/kernel-routing.test.mjs": {
+      "original": "sites/test/kernel-routing.test.mjs",
+      "bytes": 4615,
+      "sha256": "8838934a27df6383b138c3b9372324db1c9991fa6df66081aaa028a407855fb2"
+    },
+    "test/msjc09-society-integration.test.mjs": {
+      "original": "sites/test/msjc09-society-integration.test.mjs",
+      "bytes": 9841,
+      "sha256": "8d417969948e9f72e7ff102e82209239f2c4b43b5fd1f911b5287b688919636b"
+    },
+    "test/pause-resume-integration.test.mjs": {
+      "original": "sites/test/pause-resume-integration.test.mjs",
+      "bytes": 6786,
+      "sha256": "909bc80fd5fb48536546bde618f7e7318ba275f235b225293b50b285c88d5f09"
+    },
+    "test/rescue-forecast-integration.test.mjs": {
+      "original": "sites/test/rescue-forecast-integration.test.mjs",
+      "bytes": 389,
+      "sha256": "2fce8b04b1dbaecf8bf7fe9925f6d7b887776d236fa4be128506971acb6356df"
+    },
+    "test/sealed-restart-integration.test.mjs": {
+      "original": "sites/test/sealed-restart-integration.test.mjs",
+      "bytes": 5147,
+      "sha256": "c4327063e22c25e103d938da2a835a8f568e986ccec53a74360259639eb31dc8"
+    },
+    "test/session-host.test.mjs": {
+      "original": "sites/test/session-host.test.mjs",
+      "bytes": 8586,
+      "sha256": "70fb29fdb406db650faac04b9bf41bc8deb3fea7ff91d60972e4308a9418a4c2"
+    },
+    "test/session-integration.test.mjs": {
+      "original": "sites/test/session-integration.test.mjs",
+      "bytes": 417,
+      "sha256": "383f9019a08b3c96890f61cb289d39c13cfb61eea413bc15a9949a14ad7ae46f"
+    },
+    "test/society-foundation.fixture.mjs": {
+      "original": "sites/test/society-foundation.fixture.mjs",
+      "bytes": 9739,
+      "sha256": "59011d907ab4fb43d49142fcfbf6720f504b7e286f41e2d7cb38821c9c34c8be"
+    },
+    "test/storage-retry.test.mjs": {
+      "original": "sites/test/storage-retry.test.mjs",
+      "bytes": 4698,
+      "sha256": "fcf318007cb116300ca83ba2d821b5eec5ddfe16b287c151a8aa5f8e1121d881"
+    },
+    "test/two-card-integration.test.mjs": {
+      "original": "sites/test/two-card-integration.test.mjs",
+      "bytes": 376,
+      "sha256": "336ab46a3fb885668e2719858702869e01aae10196b2e05377a02b4c392e6fc3"
+    },
+    "wrangler.jsonc": {
+      "original": "sites/wrangler.jsonc",
+      "bytes": 345,
+      "sha256": "7cd60bc5e5e9f377f6816c7eab154df58224d851548db8234c2b2d08e051f4f6"
+    },
+    "web/.npmrc": {
+      "original": "web/.npmrc",
+      "bytes": 129,
+      "sha256": "2d0d3c1e09b4c9a4308507ea701b8852c689057f8636a907d9ecdee5e9e9f919"
+    },
+    "web/index.html": {
+      "original": "web/index.html",
+      "bytes": 377,
+      "sha256": "bda13861efc90cc0628d795a13b24a630943740158df5be7b0e550608f770a4d"
+    },
+    "web/package-lock.json": {
+      "original": "web/package-lock.json",
+      "bytes": 66441,
+      "sha256": "bdc310d32e869dacf31b2bcf1f6b83ffbe7235a72b372820069e9cfd0911e12d"
+    },
+    "web/package.json": {
+      "original": "web/package.json",
+      "bytes": 1011,
+      "sha256": "6a15d4542603ada58f671bd3a575c26159e56ae303c0bb1d42f9cc3d3c2dcf74"
+    },
+    "web/proposals/autopass-background/acceptance-red.spec.jsx": {
+      "original": "web/proposals/autopass-background/acceptance-red.spec.jsx",
+      "bytes": 3045,
+      "sha256": "862689f52b376cf741f4acb9e5cfbaf91dbaa36bebffe61afaea8dcc5cf1060e"
+    },
+    "web/proposals/autopass-background/harness.jsx": {
+      "original": "web/proposals/autopass-background/harness.jsx",
+      "bytes": 2946,
+      "sha256": "8a0f5e8c8d41ae5dd0bd211ae17f05749698935865668427c2d624b840c600cc"
+    },
+    "web/proposals/autopass-background/observation.spec.jsx": {
+      "original": "web/proposals/autopass-background/observation.spec.jsx",
+      "bytes": 7258,
+      "sha256": "2a9002644c9ddf0fe8505cbfdf86d841690a8f1e39277ac3f1e6fd8ce8bbee19"
+    },
+    "web/proposals/autopass-background/vitest.config.ts": {
+      "original": "web/proposals/autopass-background/vitest.config.ts",
+      "bytes": 375,
+      "sha256": "91c1d230614f4dbe4b977e25080c289a425fc3fb5cefd194238f70d1f9a5ee0c"
+    },
+    "web/public/card-scans.json": {
+      "original": "web/public/card-scans.json",
+      "bytes": 24127,
+      "sha256": "30aa94288777f50856ee69a2f77c451e8549f878e7e45d184c6964fd193d47ec"
+    },
+    "web/public/cards/BQ022.jpg": {
+      "original": "web/public/cards/BQ022.jpg",
+      "bytes": 938512,
+      "sha256": "f1b58f299c3d901494c388be2123b325ca20c1f341106fe860d9761ded8231eb"
+    },
+    "web/public/cards/BQ083.jpg": {
+      "original": "web/public/cards/BQ083.jpg",
+      "bytes": 1318007,
+      "sha256": "619db97c8309d903e3781448c6ad35db91bb5f2e4b5660b6e0eef65fcbd6e675"
+    },
+    "web/public/cards/DQJC107.jpg": {
+      "original": "web/public/cards/DQJC107.jpg",
+      "bytes": 44451,
+      "sha256": "339b9a130ea9c0a82bc5a20d34892a4de52b2ea777a1b0cfec340876d6a4b2b8"
+    },
+    "web/public/cards/DQJC108.jpg": {
+      "original": "web/public/cards/DQJC108.jpg",
+      "bytes": 48006,
+      "sha256": "5dd2014f700e73b7f8dda56b6c281f29946b6d36a96bdd3838af4b2b393f7c6e"
+    },
+    "web/public/cards/DQJC109.jpg": {
+      "original": "web/public/cards/DQJC109.jpg",
+      "bytes": 46185,
+      "sha256": "337e5a45432d1ad434f971e66938e7506fc2997649648b21b7a6b1246306c60a"
+    },
+    "web/public/cards/DQJC110.jpg": {
+      "original": "web/public/cards/DQJC110.jpg",
+      "bytes": 41958,
+      "sha256": "ecafefa26f0d3fa1aca9f63ecb50dcb21c1a51c157890516e94676880d8a1026"
+    },
+    "web/public/cards/DQJC111.jpg": {
+      "original": "web/public/cards/DQJC111.jpg",
+      "bytes": 54744,
+      "sha256": "e2bc64426c121d41404d758a24b863f4c527a4f69e0582811599e2bc60471e41"
+    },
+    "web/public/cards/DQJC112.jpg": {
+      "original": "web/public/cards/DQJC112.jpg",
+      "bytes": 45356,
+      "sha256": "9efd49e63ad90c4849bcf123aec4c83cd63e8f135113c374412526be875832ad"
+    },
+    "web/public/cards/DQJC113.jpg": {
+      "original": "web/public/cards/DQJC113.jpg",
+      "bytes": 46632,
+      "sha256": "3dcac24ae99667ac037001d85f54eb5b77bf83643222769726395571e7135c6e"
+    },
+    "web/public/cards/DQJC114.jpg": {
+      "original": "web/public/cards/DQJC114.jpg",
+      "bytes": 53746,
+      "sha256": "7ded8662b423543bccedf93e67c098cf0effdd73791b30cc6aaa4acf7bf2a3f2"
+    },
+    "web/public/cards/DQJC115.jpg": {
+      "original": "web/public/cards/DQJC115.jpg",
+      "bytes": 53304,
+      "sha256": "66fa6d8ceb4ff3529c0d43386782aeac5553c564a761ec47d4e351beb91d0e94"
+    },
+    "web/public/cards/DQJC116.jpg": {
+      "original": "web/public/cards/DQJC116.jpg",
+      "bytes": 57210,
+      "sha256": "e9dfbc396a733b3bbe7ffcb2a6d67ea371ffe4ca4bd6fc0f4e74b1ee73485d4d"
+    },
+    "web/public/cards/JC001.jpg": {
+      "original": "web/public/cards/JC001.jpg",
+      "bytes": 304832,
+      "sha256": "33b9fd53b30630010a49a520d9e2b89d608822706e67e7c667682c3d1151e312"
+    },
+    "web/public/cards/JC002.jpg": {
+      "original": "web/public/cards/JC002.jpg",
+      "bytes": 293615,
+      "sha256": "21a698ae184e7f909d24ac5374c3eaf7af77f1043b91048cfc8c5a46f9b08680"
+    },
+    "web/public/cards/JC003.jpg": {
+      "original": "web/public/cards/JC003.jpg",
+      "bytes": 324904,
+      "sha256": "027fc054dd7c7ef301108bf0b169e01f91228bf2e918b3ddb8d12e8d05603c3a"
+    },
+    "web/public/cards/JC004.jpg": {
+      "original": "web/public/cards/JC004.jpg",
+      "bytes": 322602,
+      "sha256": "d9209031b83d49c2eacdbedd2967384852acc51329093f362073c462dabf92c4"
+    },
+    "web/public/cards/JC005.jpg": {
+      "original": "web/public/cards/JC005.jpg",
+      "bytes": 327083,
+      "sha256": "216c26cff74fe738dbc486e725828ddc8077705161b1fee566e9d806684364a1"
+    },
+    "web/public/cards/JC006.jpg": {
+      "original": "web/public/cards/JC006.jpg",
+      "bytes": 303268,
+      "sha256": "beec2b1d758e0186cdc4cb57e7c52d6e8df2a4623564e5f212b3d878abb91bf4"
+    },
+    "web/public/cards/JC007.jpg": {
+      "original": "web/public/cards/JC007.jpg",
+      "bytes": 310229,
+      "sha256": "835b85f48270aa66f10f01fa4de7483b0ccf80dcf14e6dc5596639592e14f1ce"
+    },
+    "web/public/cards/JC008.jpg": {
+      "original": "web/public/cards/JC008.jpg",
+      "bytes": 294187,
+      "sha256": "31340e2535e0909359860a090186b7a5032e84d6da94c8181baf32565b5d4f45"
+    },
+    "web/public/cards/JC014.jpg": {
+      "original": "web/public/cards/JC014.jpg",
+      "bytes": 304089,
+      "sha256": "cd1969552197b3111e72ee4bb0725dc4ff513ddb8c940b568b7221699c248bb6"
+    },
+    "web/public/cards/JC015.jpg": {
+      "original": "web/public/cards/JC015.jpg",
+      "bytes": 322933,
+      "sha256": "84ab4fb4fdf5e44f35b8cb8d9a40531d57bb0edb64d29a9c15f80d6e1cd37e1e"
+    },
+    "web/public/cards/JC016.jpg": {
+      "original": "web/public/cards/JC016.jpg",
+      "bytes": 305023,
+      "sha256": "0a3b20635a7fa8e04d6f17ab7a7112a596ed0e7f21293d3e4f4a985463416c35"
+    },
+    "web/public/cards/JC018.jpg": {
+      "original": "web/public/cards/JC018.jpg",
+      "bytes": 341242,
+      "sha256": "a764f6ad543c1aa25e287e42a508ecce2368277e64377c2969b2aff079b63af8"
+    },
+    "web/public/cards/JC020.jpg": {
+      "original": "web/public/cards/JC020.jpg",
+      "bytes": 283808,
+      "sha256": "2edb40dfa18d2df22b5b397957d0a03642ade3cee1a10f965bb5e55b0c4f7223"
+    },
+    "web/public/cards/JC029.jpg": {
+      "original": "web/public/cards/JC029.jpg",
+      "bytes": 338285,
+      "sha256": "b3da8f1546e2f8bbbaae8d3c4d4c79dd712cfa7f8d133fe1723efaa1fa152785"
+    },
+    "web/public/cards/JC030.jpg": {
+      "original": "web/public/cards/JC030.jpg",
+      "bytes": 314592,
+      "sha256": "e0627c1eec97eab04d8cbafb54c0d25ce496ab89e10e19a81485d84ad2915542"
+    },
+    "web/public/cards/JC032.jpg": {
+      "original": "web/public/cards/JC032.jpg",
+      "bytes": 342051,
+      "sha256": "ebeb0a13c62cdf10569f4aa9f300998aff53a65788d756f055e9696f35489b4b"
+    },
+    "web/public/cards/JC036.jpg": {
+      "original": "web/public/cards/JC036.jpg",
+      "bytes": 340194,
+      "sha256": "017507e6a2a229f6541a4690b681ecd71fc09b35962b9673da70f5f035ddba83"
+    },
+    "web/public/cards/JC042.jpg": {
+      "original": "web/public/cards/JC042.jpg",
+      "bytes": 342837,
+      "sha256": "242a17c708a96d27e95b23f9ab339e01d5b8c1eda282a2f7de8f51ba2c1bdbef"
+    },
+    "web/public/cards/JC047.jpg": {
+      "original": "web/public/cards/JC047.jpg",
+      "bytes": 315262,
+      "sha256": "74d7e3c4bf75c52538fce551dda97f28e5b51d7d64ffbe89c9d427296a3ce9d6"
+    },
+    "web/public/cards/JC049.jpg": {
+      "original": "web/public/cards/JC049.jpg",
+      "bytes": 331035,
+      "sha256": "340c3fbc650b755d72c31ca06a8c379bacb572df6df061a9c52d0fb386d02d58"
+    },
+    "web/public/cards/JC056.jpg": {
+      "original": "web/public/cards/JC056.jpg",
+      "bytes": 285784,
+      "sha256": "75503118eee2b80d23f59ea950884c152f33d28d552d0d051ed872f441810e6d"
+    },
+    "web/public/cards/JC058.jpg": {
+      "original": "web/public/cards/JC058.jpg",
+      "bytes": 289748,
+      "sha256": "6585e89991049cb05e75db43143320fd12bf6be781847648d551cb433e85119a"
+    },
+    "web/public/cards/JC059.jpg": {
+      "original": "web/public/cards/JC059.jpg",
+      "bytes": 299356,
+      "sha256": "7d9639d3115dcea8e42f21e1145397f3be4392a80fa0b6c040d7302139eff0ad"
+    },
+    "web/public/cards/JC063.jpg": {
+      "original": "web/public/cards/JC063.jpg",
+      "bytes": 292803,
+      "sha256": "1b20b9c7392543bf975b6391d227e03e4f50f3fd3134e7c6aa494e7357f88165"
+    },
+    "web/public/cards/JC070.jpg": {
+      "original": "web/public/cards/JC070.jpg",
+      "bytes": 328410,
+      "sha256": "3dd1ef905e2cfb4d806b258fdde0b1ec1fe2adad7868bb5cd7dc0bcf9cfe9e1b"
+    },
+    "web/public/cards/JC071.jpg": {
+      "original": "web/public/cards/JC071.jpg",
+      "bytes": 325476,
+      "sha256": "85fde88b2a35d595f166d87c0ab27b244198c3919c1f6a381e54e07598f73b67"
+    },
+    "web/public/cards/JC073.jpg": {
+      "original": "web/public/cards/JC073.jpg",
+      "bytes": 328192,
+      "sha256": "cebf528de52de72d7400d4c769c2642063342d75a01670e120b5bc71aba23d42"
+    },
+    "web/public/cards/JC074.jpg": {
+      "original": "web/public/cards/JC074.jpg",
+      "bytes": 4706143,
+      "sha256": "e34e5bb081f3ee459d99038c68d60f4be4a44af05baa4289759b730045140914"
+    },
+    "web/public/cards/JC075.jpg": {
+      "original": "web/public/cards/JC075.jpg",
+      "bytes": 331174,
+      "sha256": "7db960c7050614dae10a8e752db2567670169e782986e39a789842259231e434"
+    },
+    "web/public/cards/JC076.jpg": {
+      "original": "web/public/cards/JC076.jpg",
+      "bytes": 326205,
+      "sha256": "4390ebf4eabcf44c541303bfb764061c1622cb483ed0e034ee9651571cee27ac"
+    },
+    "web/public/cards/JC078.jpg": {
+      "original": "web/public/cards/JC078.jpg",
+      "bytes": 335412,
+      "sha256": "d238d2c7412349579c00fa4a5a662e9214bdad13df25b8917ae1034251f7e2b9"
+    },
+    "web/public/cards/JC084.jpg": {
+      "original": "web/public/cards/JC084.jpg",
+      "bytes": 316581,
+      "sha256": "3d068fa87dc6f9f7aef426637f71de22aef05f0f278dc096fad0ca50dee99872"
+    },
+    "web/public/cards/JC085.jpg": {
+      "original": "web/public/cards/JC085.jpg",
+      "bytes": 337881,
+      "sha256": "f568ed4c26fc244830d840f0133eb1a78111aceff53a4a345f8ca44c1552aee2"
+    },
+    "web/public/cards/JC086.jpg": {
+      "original": "web/public/cards/JC086.jpg",
+      "bytes": 321608,
+      "sha256": "1bd405a60feeb41d60611050f4a37dd90dc971e1808ba712b66fe0cd37d2d743"
+    },
+    "web/public/cards/JC088.jpg": {
+      "original": "web/public/cards/JC088.jpg",
+      "bytes": 314244,
+      "sha256": "9c270203639dae978acb65e9255ac34b5a5d5192e681f8aafd63018ede301a5f"
+    },
+    "web/public/cards/JC089.jpg": {
+      "original": "web/public/cards/JC089.jpg",
+      "bytes": 312412,
+      "sha256": "83853a1a4c3e6ecd9644f7bb5c843e70585d421f1792a0e4a141ebbe867d12f7"
+    },
+    "web/public/cards/JC091.jpg": {
+      "original": "web/public/cards/JC091.jpg",
+      "bytes": 314574,
+      "sha256": "2ea5d65c270a107371f7d69cb22de3e4e60f9e9db81d4e6959744bbfbf6d11cb"
+    },
+    "web/public/cards/JC092.jpg": {
+      "original": "web/public/cards/JC092.jpg",
+      "bytes": 327819,
+      "sha256": "ea1ca5644c38831b659f29dcf4c7ec0cb5dc5a758b0b793ed120b24b74295947"
+    },
+    "web/public/cards/JC093.jpg": {
+      "original": "web/public/cards/JC093.jpg",
+      "bytes": 327300,
+      "sha256": "ac3398f82103f6d50eb97b6bb3467244834c8e3867fb92c295d3c420b522bdd2"
+    },
+    "web/public/cards/JC096.jpg": {
+      "original": "web/public/cards/JC096.jpg",
+      "bytes": 311787,
+      "sha256": "28c1eb001f27dc220b8905ba97d7d396680adda8f7c1b8c9e0f2ec97f4907c7c"
+    },
+    "web/public/cards/JC102.jpg": {
+      "original": "web/public/cards/JC102.jpg",
+      "bytes": 346254,
+      "sha256": "842fb9f07e9b8afbc0cecd6c224972c5643bad9b710daa518faceb59fc9a3b5d"
+    },
+    "web/public/cards/JC103.jpg": {
+      "original": "web/public/cards/JC103.jpg",
+      "bytes": 336324,
+      "sha256": "8eee910793908999e04487b65f0e9a398d11ef5b307b360ba6e9d2012adaed63"
+    },
+    "web/public/cards/JC104.jpg": {
+      "original": "web/public/cards/JC104.jpg",
+      "bytes": 375404,
+      "sha256": "877aa980256730bb35350f1b99c2aa75b9110cd5905e61412664e2a89ef4e8da"
+    },
+    "web/public/cards/JC107.jpg": {
+      "original": "web/public/cards/JC107.jpg",
+      "bytes": 343826,
+      "sha256": "ce402d531c9c9bb28da130de0627b4860ced56fb0fa7db1d487082c36e0462e2"
+    },
+    "web/public/cards/JC112.jpg": {
+      "original": "web/public/cards/JC112.jpg",
+      "bytes": 295767,
+      "sha256": "870b526451ed20441601cfed413a99e2e64a266d60daa698bb2066840383bd71"
+    },
+    "web/public/cards/JC114.jpg": {
+      "original": "web/public/cards/JC114.jpg",
+      "bytes": 325963,
+      "sha256": "2cd5cc66ceb3c9a8f9d07d341558489adb170dcb680331c7620e5f1162be12c7"
+    },
+    "web/public/cards/JC116.jpg": {
+      "original": "web/public/cards/JC116.jpg",
+      "bytes": 319810,
+      "sha256": "5a314d56e3d6c660f381e45710dbf0964cf8560cfa170906b3d4e938abb90e16"
+    },
+    "web/public/cards/JC118.jpg": {
+      "original": "web/public/cards/JC118.jpg",
+      "bytes": 283116,
+      "sha256": "0f112c86afcfd0e9b2b6dea66597e24e57a95155f1b624534b2f9a4b980df97a"
+    },
+    "web/public/cards/JC125.jpg": {
+      "original": "web/public/cards/JC125.jpg",
+      "bytes": 285153,
+      "sha256": "6392c2cdc2d9ea43deca6b26594618a2093ae887bd03d5ad29d130c7e329993a"
+    },
+    "web/public/cards/JC126.jpg": {
+      "original": "web/public/cards/JC126.jpg",
+      "bytes": 302436,
+      "sha256": "33ed0032c1e6983f25be998c66891f137f2f0975031493883f6cc1a9bb5e40e0"
+    },
+    "web/public/cards/JC129.jpg": {
+      "original": "web/public/cards/JC129.jpg",
+      "bytes": 294504,
+      "sha256": "0c99776d13e342b85c6d6f6cc476459ec6463e6bbdc146046460518c738a0b59"
+    },
+    "web/public/cards/JC130.jpg": {
+      "original": "web/public/cards/JC130.jpg",
+      "bytes": 289306,
+      "sha256": "be7d3ec07aea099829f0b01ea506999810091c7b7a202a6bfb0f8ec32eb3055f"
+    },
+    "web/public/cards/JC131.jpg": {
+      "original": "web/public/cards/JC131.jpg",
+      "bytes": 270928,
+      "sha256": "78b1cff75c50f96763ae2cfeb346524e9046f2e3a445a5e00268113365bc976f"
+    },
+    "web/public/cards/JC132.jpg": {
+      "original": "web/public/cards/JC132.jpg",
+      "bytes": 295955,
+      "sha256": "219bb4062c3e9053b9fc9d309ad919ebe4b6a98c3af314c6987ca948b3eeb4f1"
+    },
+    "web/public/cards/JZ08.jpg": {
+      "original": "web/public/cards/JZ08.jpg",
+      "bytes": 497242,
+      "sha256": "343561bd351e06811f9a1fc77b6a9fe08e6dfbace83d8c8abb8f6b43fb031d12"
+    },
+    "web/public/cards/JZ24.jpg": {
+      "original": "web/public/cards/JZ24.jpg",
+      "bytes": 515008,
+      "sha256": "e01995d70e06a6b179dcbbf81c3df73ab548269fc0efe9fafc33e2e2f3c8722d"
+    },
+    "web/public/cards/JZ27.jpg": {
+      "original": "web/public/cards/JZ27.jpg",
+      "bytes": 528092,
+      "sha256": "33fbdd4a062962b546cdb0d4f368f35b6c4c019908db73a37cfa09aaa237630e"
+    },
+    "web/public/cards/JZ31.jpg": {
+      "original": "web/public/cards/JZ31.jpg",
+      "bytes": 507421,
+      "sha256": "57a1fd51243ab4616af46f4fb8a6a1ef46a09ab3c9a11ed2fe2fc90d8b83babf"
+    },
+    "web/public/cards/JZ48.jpg": {
+      "original": "web/public/cards/JZ48.jpg",
+      "bytes": 499021,
+      "sha256": "a9a5da75938c22872cca524776356b10f2a0250370d3ba3ed3b31deb332e5b4f"
+    },
+    "web/public/cards/JZ49.jpg": {
+      "original": "web/public/cards/JZ49.jpg",
+      "bytes": 499091,
+      "sha256": "208b2370433fb420ba91e1557ad6633589e43b1391d2008d63ebee2ed90fdf62"
+    },
+    "web/public/cards/JZ50.jpg": {
+      "original": "web/public/cards/JZ50.jpg",
+      "bytes": 533019,
+      "sha256": "403e44bb5f7f0ff8715acb267a8369c3715b2dc752d7fe612de085da29b523e7"
+    },
+    "web/public/cards/JZ51.jpg": {
+      "original": "web/public/cards/JZ51.jpg",
+      "bytes": 521395,
+      "sha256": "1b0311913bbf4a26c0e9e2dc2c0d6b656bd802cc6e831350f6f2500edf577dc0"
+    },
+    "web/public/cards/JZ52.jpg": {
+      "original": "web/public/cards/JZ52.jpg",
+      "bytes": 521413,
+      "sha256": "7f9ad8adb68bdd84877ebdead2bc13ed04983099977333d2106486405c6478a3"
+    },
+    "web/public/cards/JZ53.jpg": {
+      "original": "web/public/cards/JZ53.jpg",
+      "bytes": 509401,
+      "sha256": "a84d896c1b552dabda05a1fc12c55224275a31b63a8408446508775235cc4623"
+    },
+    "web/public/cards/JZ54.jpg": {
+      "original": "web/public/cards/JZ54.jpg",
+      "bytes": 543412,
+      "sha256": "c7902515865a26e1276d9e7a4bbd05c511704f76aee504c73539737012624af4"
+    },
+    "web/public/cards/JZ55.jpg": {
+      "original": "web/public/cards/JZ55.jpg",
+      "bytes": 493536,
+      "sha256": "9155faa90be22aa66e56148dfacd0d517eb7b6f7b56fd1b45b71a6804719784a"
+    },
+    "web/public/cards/JZ58.jpg": {
+      "original": "web/public/cards/JZ58.jpg",
+      "bytes": 548446,
+      "sha256": "4cb1892b435cc14fd3f9d8310b428a16eaf5cc5afe1c870760a3dcc457d4dd95"
+    },
+    "web/public/cards/JZ59.jpg": {
+      "original": "web/public/cards/JZ59.jpg",
+      "bytes": 518313,
+      "sha256": "b43bf4fc74654c089cf10429306980c2af12743d57d60b603efae03b28eae5f3"
+    },
+    "web/public/cards/JZ61.jpg": {
+      "original": "web/public/cards/JZ61.jpg",
+      "bytes": 493374,
+      "sha256": "5da40b475c306d3a295a6582576b9b720c8707050bdedfea3005b92578e4e37f"
+    },
+    "web/public/cards/JZ67.jpg": {
+      "original": "web/public/cards/JZ67.jpg",
+      "bytes": 526684,
+      "sha256": "a6554b81e081c7292a32f2bf13ce269f276580f9a852e1df232c60c2c36ff477"
+    },
+    "web/public/cards/JZ74.jpg": {
+      "original": "web/public/cards/JZ74.jpg",
+      "bytes": 500480,
+      "sha256": "3915ef2565eff330862507076c052942322e59f47039f31f7c0ebe658181f085"
+    },
+    "web/public/cards/LC01.jpg": {
+      "original": "web/public/cards/LC01.jpg",
+      "bytes": 467391,
+      "sha256": "a0defb07b43463cc882e15b993c73eda22ea77ca39062da71e6518a365cc5bd6"
+    },
+    "web/public/cards/LC06.jpg": {
+      "original": "web/public/cards/LC06.jpg",
+      "bytes": 463742,
+      "sha256": "46bcfd890d040fc0b9e558ba601867f402bcc1443851e0ccf7f7a9e1579154b6"
+    },
+    "web/public/cards/LC12.jpg": {
+      "original": "web/public/cards/LC12.jpg",
+      "bytes": 484188,
+      "sha256": "2a13b5e0bf5fa11f320bcf31141cf0e68915a949f9031cd112b5c650420285cf"
+    },
+    "web/public/cards/LC19.jpg": {
+      "original": "web/public/cards/LC19.jpg",
+      "bytes": 469421,
+      "sha256": "41c0fe55aff401721ec54fbb08174d52d36747f0821e32c6ddc5006bba9e9f71"
+    },
+    "web/public/cards/LC20.jpg": {
+      "original": "web/public/cards/LC20.jpg",
+      "bytes": 471968,
+      "sha256": "961b508b54f78c561b98268da91d901a3536a330aef0ea8a49b81b9f6a278248"
+    },
+    "web/public/cards/LC21.jpg": {
+      "original": "web/public/cards/LC21.jpg",
+      "bytes": 437349,
+      "sha256": "62b05d9f5349d53dd6d47dae7077566c1f5735529bc2bd813a45c1d7c3a183b9"
+    },
+    "web/public/cards/LC22.jpg": {
+      "original": "web/public/cards/LC22.jpg",
+      "bytes": 441940,
+      "sha256": "26976ae01006603182b666cef0ea6960bc5d218dc904f2b1c760f3719f142b35"
+    },
+    "web/public/cards/LC23.jpg": {
+      "original": "web/public/cards/LC23.jpg",
+      "bytes": 487166,
+      "sha256": "977959c6deb74b125b18a8b40758deab354396fdffd49b0d9bcc57197144f1c8"
+    },
+    "web/public/cards/LC24.jpg": {
+      "original": "web/public/cards/LC24.jpg",
+      "bytes": 464715,
+      "sha256": "05b4c30ee93bb8ea9b96636e9da3fbcaa560f206aaa5b6c73b5c5ac283fddccb"
+    },
+    "web/public/cards/LC30.jpg": {
+      "original": "web/public/cards/LC30.jpg",
+      "bytes": 1156537,
+      "sha256": "31ce6bd49725e5db643adb13daaef3529b8fb8440691214a00dd9fe666c5041d"
+    },
+    "web/public/cards/MSJC01.jpg": {
+      "original": "web/public/cards/MSJC01.jpg",
+      "bytes": 263474,
+      "sha256": "c61c887558cb184a532758eac5db766234c32a3a3605162a38c0899993e7bdf2"
+    },
+    "web/public/cards/MSJC02.jpg": {
+      "original": "web/public/cards/MSJC02.jpg",
+      "bytes": 249225,
+      "sha256": "915a723573028050980cb665d0de85f5e5fd5a6de1b54e3d7664e69882edc807"
+    },
+    "web/public/cards/MSJC03.jpg": {
+      "original": "web/public/cards/MSJC03.jpg",
+      "bytes": 238826,
+      "sha256": "07463a18a5cc6726f098bedc10304ef6c4032929cff72535d5f9227338e45f29"
+    },
+    "web/public/cards/MSJC06.jpg": {
+      "original": "web/public/cards/MSJC06.jpg",
+      "bytes": 229736,
+      "sha256": "38b76c70bda5759a9963a05c398b845f5c7e22c7f12fe2507b9a1ac123cda2a7"
+    },
+    "web/public/cards/MSJC07.jpg": {
+      "original": "web/public/cards/MSJC07.jpg",
+      "bytes": 229888,
+      "sha256": "e9cd1af04560733f28e3bcfee4c687f6a2e5218b93862b5a74d4f35f6a8f3ed7"
+    },
+    "web/public/cards/MSJC08.jpg": {
+      "original": "web/public/cards/MSJC08.jpg",
+      "bytes": 266822,
+      "sha256": "28c3f965daa40a83d081b03b6f0b72a0ac4006ebf465575ede3b221f633e72a1"
+    },
+    "web/public/cards/MSJC09.jpg": {
+      "original": "web/public/cards/MSJC09.jpg",
+      "bytes": 210792,
+      "sha256": "41e478a3f38ead83477498fd88131831a5fd843be364c1c0daa3ba10153c2302"
+    },
+    "web/public/cards/MSJC11.jpg": {
+      "original": "web/public/cards/MSJC11.jpg",
+      "bytes": 239506,
+      "sha256": "df9964832e48bfef57bcaa0d5f4db67ce2ab9fe0e371ffecc2736c1728b1b853"
+    },
+    "web/public/cards/WM003.jpg": {
+      "original": "web/public/cards/WM003.jpg",
+      "bytes": 1306943,
+      "sha256": "2409ef206e3af93d1eece3ec0bf4ba00a9e3d0c12a8e70443877cc8a28cc9bff"
+    },
+    "web/public/cards/XQ03.jpg": {
+      "original": "web/public/cards/XQ03.jpg",
+      "bytes": 1430068,
+      "sha256": "c6e85106105d23ef55df70ba06d6c8878b6ce279a727908fbdeab0a8495679b0"
+    },
+    "web/public/cards/XQ07.jpg": {
+      "original": "web/public/cards/XQ07.jpg",
+      "bytes": 1401415,
+      "sha256": "944a254795fc17e946f7150de9a47649d8c6efa3006770850447503b06a22df9"
+    },
+    "web/public/cards/XQ12.jpg": {
+      "original": "web/public/cards/XQ12.jpg",
+      "bytes": 1381983,
+      "sha256": "4e9f3afa5f7f22d99fc89284e91586fba78a8ff2ee8827fc6a6ceeb41889fdc8"
+    },
+    "web/public/cards/XQ14.jpg": {
+      "original": "web/public/cards/XQ14.jpg",
+      "bytes": 1373623,
+      "sha256": "0baea888495adba62a7688be1b95c95b5ffa60d689c104b7ff3a26dd2340ffb2"
+    },
+    "web/public/cards/XQ16.jpg": {
+      "original": "web/public/cards/XQ16.jpg",
+      "bytes": 1503073,
+      "sha256": "2ae947c0c5dccd45ae495d3c828ce9b4e1453c34dfb6e24c5e61eea8338cff80"
+    },
+    "web/public/cards/XQ17.jpg": {
+      "original": "web/public/cards/XQ17.jpg",
+      "bytes": 1375211,
+      "sha256": "e5ad8fe27074632eab8d6207eb2e6f08efb69d20f343f2d50701d30f5a5bb5eb"
+    },
+    "web/public/cards/XQ34.jpg": {
+      "original": "web/public/cards/XQ34.jpg",
+      "bytes": 1292584,
+      "sha256": "2ca1f5a4b25d308f8af13a7a80018010deaf93f9abe2275bef1fa7656be13e04"
+    },
+    "web/public/cards/XQ36.jpg": {
+      "original": "web/public/cards/XQ36.jpg",
+      "bytes": 1471604,
+      "sha256": "84b611615ecdbdf7940022160522187a28edb46322525e540fed1935de0526b9"
+    },
+    "web/public/cards/XQ38.jpg": {
+      "original": "web/public/cards/XQ38.jpg",
+      "bytes": 1487343,
+      "sha256": "26c8311674325491157577a3d295c148ce1c6f27ded59c4d27979faf58e9204e"
+    },
+    "web/public/cards/XQ40.jpg": {
+      "original": "web/public/cards/XQ40.jpg",
+      "bytes": 1505785,
+      "sha256": "b4f4e3f294d9ee1893d5b6d11124f0c12e472076e52f6365bdde7ffe49d6162c"
+    },
+    "web/public/cards/XQ41.jpg": {
+      "original": "web/public/cards/XQ41.jpg",
+      "bytes": 1463646,
+      "sha256": "02a56f5d1fe9d57121591f19d96f3756a8cf4ab60725ba292474758e5d0af179"
+    },
+    "web/public/cards/XQ43.jpg": {
+      "original": "web/public/cards/XQ43.jpg",
+      "bytes": 1456234,
+      "sha256": "6e950624afff514a9ffed208fe51dc4137e5114b3f67a24bb0e694be0c935c93"
+    },
+    "web/public/cards/XQ45.jpg": {
+      "original": "web/public/cards/XQ45.jpg",
+      "bytes": 1476070,
+      "sha256": "6475556f30b08853ed5bb2e1c82b3314c73947fb59bc7d044060a5555f5ef8cf"
+    },
+    "web/public/cards/XQ46.jpg": {
+      "original": "web/public/cards/XQ46.jpg",
+      "bytes": 1254286,
+      "sha256": "d58e71df94753dde04595f5aa84de4039fcbbe594883acc018e2c06ddb103a89"
+    },
+    "web/public/cards/XQ47.jpg": {
+      "original": "web/public/cards/XQ47.jpg",
+      "bytes": 1347172,
+      "sha256": "9b370fb92ad2e1c3ac6f33d3402ab2c8cbdea1898aae4c4a386f17631d654a03"
+    },
+    "web/public/cards/XQ49.jpg": {
+      "original": "web/public/cards/XQ49.jpg",
+      "bytes": 1336679,
+      "sha256": "8b160c52b18e49a7ef39085b63cc9a1b18531c02dc0ae3d92e2fedd874a29aca"
+    },
+    "web/src/App.tsx": {
+      "original": "web/src/App.tsx",
+      "bytes": 178,
+      "sha256": "01f2aa2800f655c3fcb58709aeae3f8f748da1be2417b5382196d11fc0d994be"
+    },
+    "web/src/app/AppShell.tsx": {
+      "original": "web/src/app/AppShell.tsx",
+      "bytes": 458,
+      "sha256": "312862186ab6a684c1c676afd75d7121df21b49ed2d6915cc8849d8eb2a6927c"
+    },
+    "web/src/components/ProjectOverview.tsx": {
+      "original": "web/src/components/ProjectOverview.tsx",
+      "bytes": 430,
+      "sha256": "b4374a57f25cc017bf0b41a8629684b408aa3c5038a945c3d571c8b1d5c2d9b1"
+    },
+    "web/src/debugger/DebuggerShell.test.tsx": {
+      "original": "web/src/debugger/DebuggerShell.test.tsx",
+      "bytes": 11343,
+      "sha256": "d77d2878904bab58015d7c3dd80227994d2152fb07a6e9be180e684335f61be0"
+    },
+    "web/src/debugger/DebuggerShell.tsx": {
+      "original": "web/src/debugger/DebuggerShell.tsx",
+      "bytes": 3016,
+      "sha256": "2ae500e1763c6014df351c0e9f33892145c6b2112e1ce06ef34e13a84b8aa24a"
+    },
+    "web/src/debugger/LiveDebuggerShell.test.tsx": {
+      "original": "web/src/debugger/LiveDebuggerShell.test.tsx",
+      "bytes": 13244,
+      "sha256": "fd12526ba8663bece88c330995ff1b7daddadea257b8ff3cf91beb3d3bd2ec0c"
+    },
+    "web/src/debugger/LiveDebuggerShell.tsx": {
+      "original": "web/src/debugger/LiveDebuggerShell.tsx",
+      "bytes": 7251,
+      "sha256": "5b9a3344bf15d8cf071a99d345b0dc88d41a2562900bf154e780451a3f85ada9"
+    },
+    "web/src/debugger/components/ActionControlsPanel.tsx": {
+      "original": "web/src/debugger/components/ActionControlsPanel.tsx",
+      "bytes": 2880,
+      "sha256": "a5859140f79c5afdc8443388a034d1880cd98aaff2510be005d744973362a6e6"
+    },
+    "web/src/debugger/components/ActionLogPanel.tsx": {
+      "original": "web/src/debugger/components/ActionLogPanel.tsx",
+      "bytes": 1319,
+      "sha256": "d0e19239e0264ba714555be652ce095d1c0cbd68d86ad6076f2cbfb445d9c08a"
+    },
+    "web/src/debugger/components/LegalityFailurePanel.tsx": {
+      "original": "web/src/debugger/components/LegalityFailurePanel.tsx",
+      "bytes": 1026,
+      "sha256": "36c787c6c22be0bb075d6ed7c63d5a90a4c3400d5a766a65f27fa3f7f45bc99e"
+    },
+    "web/src/debugger/components/MatchStatusPanel.tsx": {
+      "original": "web/src/debugger/components/MatchStatusPanel.tsx",
+      "bytes": 2639,
+      "sha256": "bbc4734aded12af1aedbaf63f5f24fcf3116b27fb300e0f185418a1586942566"
+    },
+    "web/src/debugger/components/PlayerViewPanel.tsx": {
+      "original": "web/src/debugger/components/PlayerViewPanel.tsx",
+      "bytes": 1928,
+      "sha256": "0329e54e2b3d4a4116088fa6ee59f003e0e605a990a0f0bde5f4450a9515ee1b"
+    },
+    "web/src/debugger/components/StackPanel.tsx": {
+      "original": "web/src/debugger/components/StackPanel.tsx",
+      "bytes": 635,
+      "sha256": "658fa770a1de5a4f1c93e43d0c6984103f3820ea1d1500671666664b4f6b7904"
+    },
+    "web/src/debugger/components/ViewerSwitcher.tsx": {
+      "original": "web/src/debugger/components/ViewerSwitcher.tsx",
+      "bytes": 1039,
+      "sha256": "4cafa675b869b8eddb3ae737d61b587263cb00940de336b4ef9db0ff351990f2"
+    },
+    "web/src/debugger/live.test.ts": {
+      "original": "web/src/debugger/live.test.ts",
+      "bytes": 3619,
+      "sha256": "05ba07e38bc1c345b236bed46a53d5aed9eec96fd557405d07e5ce03de592234"
+    },
+    "web/src/debugger/live.ts": {
+      "original": "web/src/debugger/live.ts",
+      "bytes": 6188,
+      "sha256": "2cf54adcd46cad42cbd43b1a9dc97f5ed7e0163d64f9ae3bd1f17bd8251812a0"
+    },
+    "web/src/debugger/liveModel.ts": {
+      "original": "web/src/debugger/liveModel.ts",
+      "bytes": 2166,
+      "sha256": "6d5e84c4d941edd0c020ff72bba85004fb435381673b449fc0922e9b08105e33"
+    },
+    "web/src/debugger/mockProtocol.ts": {
+      "original": "web/src/debugger/mockProtocol.ts",
+      "bytes": 8754,
+      "sha256": "5781dc64455ca8010cf59120e3cdfea97a86431bfe912059b29226b76fd87e6a"
+    },
+    "web/src/debugger/model.ts": {
+      "original": "web/src/debugger/model.ts",
+      "bytes": 3147,
+      "sha256": "95d887b10c615c1a3dc1794364daac0a642f12da32e09178ae16f24b5c7bb782"
+    },
+    "web/src/debugger/protocol.ts": {
+      "original": "web/src/debugger/protocol.ts",
+      "bytes": 5298,
+      "sha256": "27303e4e320f9c9332c2e606ac25962116eb7ec6bd9f609bef8fde0448f69ebd"
+    },
+    "web/src/game/ArchivePresentation.test.tsx": {
+      "original": "web/src/game/ArchivePresentation.test.tsx",
+      "bytes": 5021,
+      "sha256": "e7204f2f96686decd9c27243e924b54871c2298a23bb95ba1f1173a97d1d338a"
+    },
+    "web/src/game/ArchivePresentation.tsx": {
+      "original": "web/src/game/ArchivePresentation.tsx",
+      "bytes": 1297,
+      "sha256": "0d6b10f448a1863fbdd38c5e7508dedf8af1c5867430c351125c91f43bb9f578"
+    },
+    "web/src/game/Attachments.test.tsx": {
+      "original": "web/src/game/Attachments.test.tsx",
+      "bytes": 9498,
+      "sha256": "5e6e1bfb342ce11be2ca7218f8648ce69b0a39e8e2ba2c2a311a77243521a165"
+    },
+    "web/src/game/AutoPass.test.tsx": {
+      "original": "web/src/game/AutoPass.test.tsx",
+      "bytes": 9007,
+      "sha256": "c46d1b8e18c30ae9bb2a6d48c22db72af3dd72305e222846c827af9f045be90b"
+    },
+    "web/src/game/AutoPass.tsx": {
+      "original": "web/src/game/AutoPass.tsx",
+      "bytes": 2537,
+      "sha256": "22b710e0134a7a782b2a6e460c0f681bc7ded8e81b1bf9c9c5ee05c4cf3a6c89"
+    },
+    "web/src/game/AutoPassPolling.fixture.jsx": {
+      "original": "web/src/game/AutoPassPolling.fixture.jsx",
+      "bytes": 3636,
+      "sha256": "518daba5f93da8b8f6246430e39ee06867a7ea1b92c49aabb0f2d749275db75c"
+    },
+    "web/src/game/AutoPassPolling.test.jsx": {
+      "original": "web/src/game/AutoPassPolling.test.jsx",
+      "bytes": 23761,
+      "sha256": "5e5a283ed5b3ce02f1e7d07b5a5c2e2a9d4f2734bbbb982a5c5e4428d7043167"
+    },
+    "web/src/game/BlueMinimumScan.test.jsx": {
+      "original": "web/src/game/BlueMinimumScan.test.jsx",
+      "bytes": 8505,
+      "sha256": "a2fcb65727cb908fe8112ac084125d00f5c4a3269010099585385fe1a46a80e5"
+    },
+    "web/src/game/CardTile.test.tsx": {
+      "original": "web/src/game/CardTile.test.tsx",
+      "bytes": 7266,
+      "sha256": "e959e7fa72a1e2793b5b68426b1e22490fd0c954bb1b9aa3e7e94aec2bb62832"
+    },
+    "web/src/game/CardTile.tsx": {
+      "original": "web/src/game/CardTile.tsx",
+      "bytes": 15286,
+      "sha256": "382e4f04b3f182618ddbf8af71aab1cf1c284df2e87f33281d96db96a8bc0721"
+    },
+    "web/src/game/ChoicePanel.test.tsx": {
+      "original": "web/src/game/ChoicePanel.test.tsx",
+      "bytes": 10702,
+      "sha256": "29a40671a1903586067f57aee3fc84932bff33f3b09d91d57b72091e3438e743"
+    },
+    "web/src/game/ChoicePanel.tsx": {
+      "original": "web/src/game/ChoicePanel.tsx",
+      "bytes": 11885,
+      "sha256": "62f56964dbe11b6dd954beeb27c4bf62d53974d4ffc24c4f3b03fcefc7bb0ff4"
+    },
+    "web/src/game/ControlTypeBatch.test.jsx": {
+      "original": "web/src/game/ControlTypeBatch.test.jsx",
+      "bytes": 3580,
+      "sha256": "aa99d680b502ec1a0c3c50fbde6dfacbf0c1bb04ce025225fd64759ff7bde4f1"
+    },
+    "web/src/game/DeckBuilderGrid.test.tsx": {
+      "original": "web/src/game/DeckBuilderGrid.test.tsx",
+      "bytes": 12094,
+      "sha256": "f8c2047b07e2a67297e1d9c2db81640a6f12a0ecfbc78013642669257ba67030"
+    },
+    "web/src/game/DeckCardFace.tsx": {
+      "original": "web/src/game/DeckCardFace.tsx",
+      "bytes": 1006,
+      "sha256": "7a08d9a60e1749095330c77ec7440bd5b6289e32c166111368b8912054166971"
+    },
+    "web/src/game/DeckCardPreview.tsx": {
+      "original": "web/src/game/DeckCardPreview.tsx",
+      "bytes": 4004,
+      "sha256": "64cac2dd8e70bfe4e64979451b11f1b381ee927c5c3767b17c99f0bc99b77a92"
+    },
+    "web/src/game/DeckLibrary.test.tsx": {
+      "original": "web/src/game/DeckLibrary.test.tsx",
+      "bytes": 9964,
+      "sha256": "48072ede9b8e5848ca19833bf829e1a231ec2acfde833d872c0d6b3741ed8619"
+    },
+    "web/src/game/DeckLibraryPanel.tsx": {
+      "original": "web/src/game/DeckLibraryPanel.tsx",
+      "bytes": 20198,
+      "sha256": "a216af9342053f538db18460cd70da7946b9a5bd5806001ab3695d65ff9397c5"
+    },
+    "web/src/game/DefenceEquipmentBatch.test.jsx": {
+      "original": "web/src/game/DefenceEquipmentBatch.test.jsx",
+      "bytes": 4234,
+      "sha256": "8d1a38c3065f1fc45d6c825cafccd5cf88a500950e27223e5bee5c0a8a183890"
+    },
+    "web/src/game/DialogIsolation.test.tsx": {
+      "original": "web/src/game/DialogIsolation.test.tsx",
+      "bytes": 7197,
+      "sha256": "707b5135484dc3583fba6bd1bddbe28048797962af1365339cdb5d5a1b9a2a70"
+    },
+    "web/src/game/DreamRevealBatch.test.jsx": {
+      "original": "web/src/game/DreamRevealBatch.test.jsx",
+      "bytes": 6882,
+      "sha256": "1d6afa078e70a0911c587a7db9cb25998ffb3afccf930d4654b14e544b6edaec"
+    },
+    "web/src/game/EquipmentAbilitiesBatch.test.jsx": {
+      "original": "web/src/game/EquipmentAbilitiesBatch.test.jsx",
+      "bytes": 4021,
+      "sha256": "2e62b2b99efb61fb70baa547050750ad05f1b2271296088d05cdec69796c963a"
+    },
+    "web/src/game/FactionCoverage.tsx": {
+      "original": "web/src/game/FactionCoverage.tsx",
+      "bytes": 1688,
+      "sha256": "39b936acadf9800e5b6e86c24f0cca7524a8b71c6cf3c24caff0cd99d1dd34c3"
+    },
+    "web/src/game/GameApp.tsx": {
+      "original": "web/src/game/GameApp.tsx",
+      "bytes": 5118,
+      "sha256": "3b4da7980ffef21e7f01da407975b77d7445f17cb45eabe73070dac82b56a065"
+    },
+    "web/src/game/GreenMinimumScan.test.jsx": {
+      "original": "web/src/game/GreenMinimumScan.test.jsx",
+      "bytes": 6832,
+      "sha256": "b32931f3cf7112cf6410e3d96c34dfdc349c4a913d5a8770a918e1f30a1b72f8"
+    },
+    "web/src/game/HandDeckBatch.test.jsx": {
+      "original": "web/src/game/HandDeckBatch.test.jsx",
+      "bytes": 3029,
+      "sha256": "0b9b798628a9bae66a75b0e0a58ac597b2da82c419562853683f600db64e6f5f"
+    },
+    "web/src/game/HandInteractionsBatch.test.jsx": {
+      "original": "web/src/game/HandInteractionsBatch.test.jsx",
+      "bytes": 5288,
+      "sha256": "19823a7cdbf8d87cce6caae36d22d26ee54d0bd8bef4e5f9953803d8add21574"
+    },
+    "web/src/game/Help.test.tsx": {
+      "original": "web/src/game/Help.test.tsx",
+      "bytes": 852,
+      "sha256": "fd26815d3e9fe2a7062ac3d2adb401098db3411056a339b4ecf579f9783398b3"
+    },
+    "web/src/game/Help.tsx": {
+      "original": "web/src/game/Help.tsx",
+      "bytes": 2971,
+      "sha256": "72561b99e010f503ccb7f910846a0b20ddd1c7eeeadf0c52c6ebd59d6a3a95d6"
+    },
+    "web/src/game/IdentityOverlap.test.jsx": {
+      "original": "web/src/game/IdentityOverlap.test.jsx",
+      "bytes": 5342,
+      "sha256": "fd3e2b764ba83fbfee49ff452a6f6a0d67c89cf84dee727efeb8b9e1de661329"
+    },
+    "web/src/game/JC005Scan.test.jsx": {
+      "original": "web/src/game/JC005Scan.test.jsx",
+      "bytes": 3516,
+      "sha256": "ad098dee09f5896bb4ea72617b24ab67174d898458f58178aaee498609da6eef"
+    },
+    "web/src/game/JC008Scan.test.jsx": {
+      "original": "web/src/game/JC008Scan.test.jsx",
+      "bytes": 7796,
+      "sha256": "2e98f377ac7319c3699fc3bdbd56881ca7a9b92f4232364baf86fe8a4d079ba9"
+    },
+    "web/src/game/JC029Scan.test.jsx": {
+      "original": "web/src/game/JC029Scan.test.jsx",
+      "bytes": 2985,
+      "sha256": "8a2bd0e18d8a4ec6e8568141d2ef588569c542d04eabd6d10f6b10bb773f91f3"
+    },
+    "web/src/game/JC030Scan.test.jsx": {
+      "original": "web/src/game/JC030Scan.test.jsx",
+      "bytes": 3296,
+      "sha256": "ca4082cf55aeb10a350f4e7ccabe62ba816233d6e706506b8e0c10aa31c8254d"
+    },
+    "web/src/game/JC089Curse.test.jsx": {
+      "original": "web/src/game/JC089Curse.test.jsx",
+      "bytes": 7621,
+      "sha256": "a97a1825b3d2d1ed91a32f13512d419f62ac5a267ede3939b92fa98cca3b08fa"
+    },
+    "web/src/game/JC089JZ51JZ53CardFaces.test.jsx": {
+      "original": "web/src/game/JC089JZ51JZ53CardFaces.test.jsx",
+      "bytes": 8703,
+      "sha256": "e46d48a69a0844083093c6ff9ca67e1aeacf523b05b771f5a6043131bc0d428f"
+    },
+    "web/src/game/JZ31DeathInfluence.test.jsx": {
+      "original": "web/src/game/JZ31DeathInfluence.test.jsx",
+      "bytes": 4453,
+      "sha256": "1bd6d9c07c05d6ae9dc12f063aea92b654332df4ec35eb17bf7f25104f8dac88"
+    },
+    "web/src/game/JZ48Criminal.test.jsx": {
+      "original": "web/src/game/JZ48Criminal.test.jsx",
+      "bytes": 5050,
+      "sha256": "af33e6edfe67e4765f71a8926159f07aab28f25dd312d40d40a80e5d473de021"
+    },
+    "web/src/game/JZ48JZ50CardFaces.test.jsx": {
+      "original": "web/src/game/JZ48JZ50CardFaces.test.jsx",
+      "bytes": 6380,
+      "sha256": "0b92fc66daa3a0a3b2fe478141a00220f85e68fe456f284bf4620f3fbd34a8e1"
+    },
+    "web/src/game/JZ49CardFace.test.jsx": {
+      "original": "web/src/game/JZ49CardFace.test.jsx",
+      "bytes": 4107,
+      "sha256": "8ed9c4e6f94f40ab88f1670df23000aaa7d8d498e721d1bfad178b62cfa3dbde"
+    },
+    "web/src/game/JZ49Slow.test.jsx": {
+      "original": "web/src/game/JZ49Slow.test.jsx",
+      "bytes": 4411,
+      "sha256": "463156633d33b1d6071cb1483eb6bc28af36a0c43c548e58608da3c95532bb9d"
+    },
+    "web/src/game/JZ50Search.test.tsx": {
+      "original": "web/src/game/JZ50Search.test.tsx",
+      "bytes": 4936,
+      "sha256": "02382404538a19ef90066a21fc0ddd7be0d450efd2883fa4cbf67b9d28b1238d"
+    },
+    "web/src/game/JZ55UniqueDestroy.test.jsx": {
+      "original": "web/src/game/JZ55UniqueDestroy.test.jsx",
+      "bytes": 7419,
+      "sha256": "892d37f4254f7f4ec57853cfab12d1338a85d274ba1613a454207971d14bac00"
+    },
+    "web/src/game/Lobby.test.tsx": {
+      "original": "web/src/game/Lobby.test.tsx",
+      "bytes": 5556,
+      "sha256": "a8bf3e60cad21ab4e06ae9e0191520a9c732f15aff2f91d303035d95f1364267"
+    },
+    "web/src/game/Lobby.tsx": {
+      "original": "web/src/game/Lobby.tsx",
+      "bytes": 9027,
+      "sha256": "2e39cc8be37f51b2c5f7483e3234b1e531942c1e4004aa322ff61d8609314c6d"
+    },
+    "web/src/game/MSJC01Scan.test.jsx": {
+      "original": "web/src/game/MSJC01Scan.test.jsx",
+      "bytes": 6853,
+      "sha256": "dae2e7faaceb5d729c67c267c629b261b759aa70a1ed104de3f531595ba75e83"
+    },
+    "web/src/game/MSJC06Scan.test.jsx": {
+      "original": "web/src/game/MSJC06Scan.test.jsx",
+      "bytes": 7765,
+      "sha256": "ab6d2c97ea49518e52c669231ea36cf5f818a8713205c2b05e2b0f4028387bad"
+    },
+    "web/src/game/MSJC07Scan.test.jsx": {
+      "original": "web/src/game/MSJC07Scan.test.jsx",
+      "bytes": 7813,
+      "sha256": "e6cf4b22e1678e0b140a896ca7e09895884fae4f3800e513b46aaa5ee5e245a8"
+    },
+    "web/src/game/MSJC08Scan.test.jsx": {
+      "original": "web/src/game/MSJC08Scan.test.jsx",
+      "bytes": 7808,
+      "sha256": "2c060be285d48faf61eddb742576cc247fdc242a780e38a7ae259511836ce3c7"
+    },
+    "web/src/game/MSJC11Scan.test.jsx": {
+      "original": "web/src/game/MSJC11Scan.test.jsx",
+      "bytes": 3866,
+      "sha256": "fb52661112ca9a6d8d93c1b34d66d573f3a852d6d381d876992614fdf749a80f"
+    },
+    "web/src/game/MillPublicBatch.test.jsx": {
+      "original": "web/src/game/MillPublicBatch.test.jsx",
+      "bytes": 4975,
+      "sha256": "f4328464a253163225635d15cbe5abef0b46858f5f3b26a7e50b7ae018b9df8f"
+    },
+    "web/src/game/MixedDeckConstruction.test.jsx": {
+      "original": "web/src/game/MixedDeckConstruction.test.jsx",
+      "bytes": 3469,
+      "sha256": "f75c5940fb2b002342ec95e53b156dc7c62d50305e315e1f6d097086a9649b06"
+    },
+    "web/src/game/ObjectActions.test.tsx": {
+      "original": "web/src/game/ObjectActions.test.tsx",
+      "bytes": 19755,
+      "sha256": "0923526346811e0cc00427101e04e8b5c5c19381184aadcf70cb04341dec1b5f"
+    },
+    "web/src/game/OptionalNumeric.test.tsx": {
+      "original": "web/src/game/OptionalNumeric.test.tsx",
+      "bytes": 3843,
+      "sha256": "51b5fe1a33b1e20f9e130498cb53ba64efa36b9ea5ecdcfce0a02e3597af57e1"
+    },
+    "web/src/game/PlayerSessions.test.tsx": {
+      "original": "web/src/game/PlayerSessions.test.tsx",
+      "bytes": 16548,
+      "sha256": "7b5690eb8e7052e649f8d9610975d27cb05e0c114c6569e3fee3428b128d66ff"
+    },
+    "web/src/game/PrivateDeckTop.test.tsx": {
+      "original": "web/src/game/PrivateDeckTop.test.tsx",
+      "bytes": 2877,
+      "sha256": "1480087c155af062c38b9b422e89db7f12049e4b429eb3328dd5836fcf74c481"
+    },
+    "web/src/game/ProtectionBatch.test.jsx": {
+      "original": "web/src/game/ProtectionBatch.test.jsx",
+      "bytes": 4123,
+      "sha256": "83b068e209ecbc931f83cc6bd89779b3d4bc55b79178fbb5b426bf335f0ad922"
+    },
+    "web/src/game/PurpleToolsBatch.test.jsx": {
+      "original": "web/src/game/PurpleToolsBatch.test.jsx",
+      "bytes": 6312,
+      "sha256": "f8b02ff3fb811e3f72b96ceeb309b8d8a05d89c9a24b9c64dd8dd463ff583499"
+    },
+    "web/src/game/README.md": {
+      "original": "web/src/game/README.md",
+      "bytes": 7481,
+      "sha256": "06dc18c23c18e54296e5e70b3fb475140c44714f5900f59756619db49fb745d0"
+    },
+    "web/src/game/ReadModal.test.tsx": {
+      "original": "web/src/game/ReadModal.test.tsx",
+      "bytes": 4012,
+      "sha256": "c0990e425851b01dc20752a4cf9463b7383e62c75f2e61dc4b45e9dd5853c1be"
+    },
+    "web/src/game/ReadModal.tsx": {
+      "original": "web/src/game/ReadModal.tsx",
+      "bytes": 2594,
+      "sha256": "a91d08484768a2683f192277aac0c8be809af9fef3018b43ed8544f89258b7ef"
+    },
+    "web/src/game/RegionAura.test.jsx": {
+      "original": "web/src/game/RegionAura.test.jsx",
+      "bytes": 8349,
+      "sha256": "902a3c8f7f67ec009ff3dd3537a6e931f780d2b27d7efe6218915d13cf0d82f9"
+    },
+    "web/src/game/RenownBatch.test.jsx": {
+      "original": "web/src/game/RenownBatch.test.jsx",
+      "bytes": 3704,
+      "sha256": "4890fb5d895389e78a1e7b1fdb9ce180e5e6ab43ec80656cfee6a2a6cd171cac"
+    },
+    "web/src/game/RepressAssetsBatch.test.jsx": {
+      "original": "web/src/game/RepressAssetsBatch.test.jsx",
+      "bytes": 3297,
+      "sha256": "a99a5e8b0269184feb066e2c6686a8279739702e088b20f70da3aab6c51cd885"
+    },
+    "web/src/game/ResponseWindow.test.tsx": {
+      "original": "web/src/game/ResponseWindow.test.tsx",
+      "bytes": 12275,
+      "sha256": "198e9fe7370feeb16ed2ace8e4c4e2046a1223f93f361d42b72cf80fd588044e"
+    },
+    "web/src/game/ResponseWindow.tsx": {
+      "original": "web/src/game/ResponseWindow.tsx",
+      "bytes": 7992,
+      "sha256": "1da03a476a29fbe4e9691469a682ad381e2c32b6edbe52c2b841b43fcf32f9b3"
+    },
+    "web/src/game/RoomManagement.test.tsx": {
+      "original": "web/src/game/RoomManagement.test.tsx",
+      "bytes": 2320,
+      "sha256": "a43b7ba5c92daf0af04768e1a3e3f6d55092149152c25187eb7e3c1079210b04"
+    },
+    "web/src/game/RoomManagement.tsx": {
+      "original": "web/src/game/RoomManagement.tsx",
+      "bytes": 2124,
+      "sha256": "5393d708c5e62b87468b6b8d5b7b487c35417db92060efd60c6501ec3f6645bd"
+    },
+    "web/src/game/SameNameInstances.test.tsx": {
+      "original": "web/src/game/SameNameInstances.test.tsx",
+      "bytes": 5605,
+      "sha256": "18e1a4dfcb944776d62bc940898464d77bd66cece610c96a6cbe95b14a4a17d1"
+    },
+    "web/src/game/SealedCards.test.tsx": {
+      "original": "web/src/game/SealedCards.test.tsx",
+      "bytes": 8064,
+      "sha256": "23fbf10519184167bbd79401b662181de2991ab503fcf3c7838657a2d1c9551d"
+    },
+    "web/src/game/SealedCards.tsx": {
+      "original": "web/src/game/SealedCards.tsx",
+      "bytes": 1521,
+      "sha256": "97a66702abef7082091dd0c73558faa5960c9a4546fbb60ffa9fcf12eac1cb8e"
+    },
+    "web/src/game/SocietyDeck.test.tsx": {
+      "original": "web/src/game/SocietyDeck.test.tsx",
+      "bytes": 5791,
+      "sha256": "2b580382c9df36afe5d5a0ef9efa22ca51ae4d9712c805462770fd0136c94083"
+    },
+    "web/src/game/SocietyScan.test.jsx": {
+      "original": "web/src/game/SocietyScan.test.jsx",
+      "bytes": 5645,
+      "sha256": "4bd8dc49433ead016c6a1a13def0c34ab99134f1848fffb4ed5af6779d6ebb7d"
+    },
+    "web/src/game/SocietyTable.test.tsx": {
+      "original": "web/src/game/SocietyTable.test.tsx",
+      "bytes": 9839,
+      "sha256": "91ff6a039007b768e8eba324c3662b6219226a9318f3c6fae4b4ed1f80914649"
+    },
+    "web/src/game/Table.test.tsx": {
+      "original": "web/src/game/Table.test.tsx",
+      "bytes": 23216,
+      "sha256": "adcea87931daa8483f205b745a1af2a4a39c3cd2c8e35e5b994594e165a6aa14"
+    },
+    "web/src/game/Table.tsx": {
+      "original": "web/src/game/Table.tsx",
+      "bytes": 53132,
+      "sha256": "baee2ac3b50ecf359b49cf66cddc0df71357422f0778db5c536429852c3356c3"
+    },
+    "web/src/game/TargetRetention.test.tsx": {
+      "original": "web/src/game/TargetRetention.test.tsx",
+      "bytes": 16893,
+      "sha256": "a250d1f196bfaf05717746f20c94be791a5cc3b87fa80457a86036770c48722f"
+    },
+    "web/src/game/V028DeckEntry.test.jsx": {
+      "original": "web/src/game/V028DeckEntry.test.jsx",
+      "bytes": 4760,
+      "sha256": "db5df023384d4272fdf90f3c67cea1f24765e8bb579e8f3fecf5f546c9b27ff2"
+    },
+    "web/src/game/WhiteWoundBatch.test.jsx": {
+      "original": "web/src/game/WhiteWoundBatch.test.jsx",
+      "bytes": 4560,
+      "sha256": "0f005ffb3febf2115e0daaf12fbff9d2c2af9d665cfeb6c544f68892c81a4992"
+    },
+    "web/src/game/WoundDefenceBatch.test.jsx": {
+      "original": "web/src/game/WoundDefenceBatch.test.jsx",
+      "bytes": 7222,
+      "sha256": "87f651fcdff48983aedeae7b9e227863951c1f2af3117b854fb42c17f0400988"
+    },
+    "web/src/game/YellowSearchBatchScan.test.jsx": {
+      "original": "web/src/game/YellowSearchBatchScan.test.jsx",
+      "bytes": 2409,
+      "sha256": "db907ac7388c320cf38525c0cd4dc4e7412f366fda70eff0399db14dc3af5436"
+    },
+    "web/src/game/api.test.ts": {
+      "original": "web/src/game/api.test.ts",
+      "bytes": 13023,
+      "sha256": "50c2a15d8238bfe605ca75c8e387737736577613997e1d2e72f0b96866783465"
+    },
+    "web/src/game/api.ts": {
+      "original": "web/src/game/api.ts",
+      "bytes": 13011,
+      "sha256": "fef7a2c78e57960239f28aaf011230f02564962d559ed95fffef4275bfb6c3be"
+    },
+    "web/src/game/archive-desktop.css": {
+      "original": "web/src/game/archive-desktop.css",
+      "bytes": 16327,
+      "sha256": "65c27f27f80c3210a54303c5c67fb44f2ecbd73fc75095f0033aa152e52c5ce7"
+    },
+    "web/src/game/attachments.css": {
+      "original": "web/src/game/attachments.css",
+      "bytes": 1106,
+      "sha256": "684e288731d45866ca6ce7ad156a59b1e1b3ae9d013b6af1a55b5e4756ad7765"
+    },
+    "web/src/game/blueMinimumTest.fixture.json": {
+      "original": "web/src/game/blueMinimumTest.fixture.json",
+      "bytes": 286910,
+      "sha256": "0326dae2291af890e43822b0e8ed0b98ebf331615495948f46d5af04a742332a"
+    },
+    "web/src/game/cardScans.ts": {
+      "original": "web/src/game/cardScans.ts",
+      "bytes": 3920,
+      "sha256": "ddbed6b21042362846fef9334b62f5cce585ab3c3f8ce92386ead82f4ce68440"
+    },
+    "web/src/game/cardScansV032.fixture.json": {
+      "original": "web/src/game/cardScansV032.fixture.json",
+      "bytes": 20653,
+      "sha256": "9a46bf09c8cf4d6b6b1c13d928739e171b036c2762fd0b0f0788975faa5f20a6"
+    },
+    "web/src/game/cardScansV034.fixture.json": {
+      "original": "web/src/game/cardScansV034.fixture.json",
+      "bytes": 21679,
+      "sha256": "2a38e937782e7ca0c80f4b0fdc79bd3c382e8eb57952b535644721084d99a9ce"
+    },
+    "web/src/game/cardScansV035.fixture.json": {
+      "original": "web/src/game/cardScansV035.fixture.json",
+      "bytes": 21889,
+      "sha256": "8c06e08c8d0abbb81026e92c3af4a65305498d529129731bb6b37c97568f5f8f"
+    },
+    "web/src/game/choice-readability.css": {
+      "original": "web/src/game/choice-readability.css",
+      "bytes": 3020,
+      "sha256": "0be57810a5757ed8e872a96b9db2d96aa3deb84bb67e7ced60e86eeb23e8ec44"
+    },
+    "web/src/game/deck-library.css": {
+      "original": "web/src/game/deck-library.css",
+      "bytes": 11265,
+      "sha256": "5be17041183d15a4dbb2bc05dacd558205f38a1b9b62d3e4949177147f041f47"
+    },
+    "web/src/game/deckLibrary.test.ts": {
+      "original": "web/src/game/deckLibrary.test.ts",
+      "bytes": 9950,
+      "sha256": "9d32fe6196f9524965c42ace69952a5c21973ca3fe1ae2b1ca0c3f2fc4b5348f"
+    },
+    "web/src/game/deckLibrary.ts": {
+      "original": "web/src/game/deckLibrary.ts",
+      "bytes": 12507,
+      "sha256": "1ab5cc6a775e75a4dad03855d6b4557e9c15582a9ef99cf2f9d4768e01be3322"
+    },
+    "web/src/game/factions.test.tsx": {
+      "original": "web/src/game/factions.test.tsx",
+      "bytes": 7146,
+      "sha256": "9caed3d58c464c2b8e0b1d6f52b6e2651fff20d2420856910561e4e445af6c91"
+    },
+    "web/src/game/factions.ts": {
+      "original": "web/src/game/factions.ts",
+      "bytes": 3114,
+      "sha256": "99a3c6f43f07775ee6e42c97ae2ceaf6e452c9757c3ca0afbb678c981d2ce3f5"
+    },
+    "web/src/game/game.css": {
+      "original": "web/src/game/game.css",
+      "bytes": 54787,
+      "sha256": "92475ffc439541f2d7a4fc5a8932d21109e554085a4b1a1c1f02cbb3875db318"
+    },
+    "web/src/game/greenMinimumTest.fixture.json": {
+      "original": "web/src/game/greenMinimumTest.fixture.json",
+      "bytes": 148186,
+      "sha256": "bd8ec80e4365802325e444b286c385424d5506e5793a4bfe4344282513f8a125"
+    },
+    "web/src/game/jc030Test.fixture.json": {
+      "original": "web/src/game/jc030Test.fixture.json",
+      "bytes": 88254,
+      "sha256": "c76b25a0ccb8a01378046fd5a829b6b323c70bb43cc434faec54ea2942d23a39"
+    },
+    "web/src/game/jc089Test.fixture.json": {
+      "original": "web/src/game/jc089Test.fixture.json",
+      "bytes": 690766,
+      "sha256": "e15db10257cd4e16591bd46ee2df97e0441a153860efeed54aae4d6ec97119ef"
+    },
+    "web/src/game/jz31Test.fixture.json": {
+      "original": "web/src/game/jz31Test.fixture.json",
+      "bytes": 832090,
+      "sha256": "cab6c8ef5a52d9b8340914be6f33f73b51b997b0c5167fc75eb29a5310f2a6cd"
+    },
+    "web/src/game/jz48Test.fixture.json": {
+      "original": "web/src/game/jz48Test.fixture.json",
+      "bytes": 307135,
+      "sha256": "99182896ad5fe416cbe3fa327e19a22eee165dbf27a85330364cd24ff8542f43"
+    },
+    "web/src/game/jz49Test.fixture.json": {
+      "original": "web/src/game/jz49Test.fixture.json",
+      "bytes": 108016,
+      "sha256": "16be9fe8dcb6572de75a1f1bc53e9fad750f3b22b04ba612f72caef1c3dd5fa9"
+    },
+    "web/src/game/jz50Native48Test.fixture.json": {
+      "original": "web/src/game/jz50Native48Test.fixture.json",
+      "bytes": 445704,
+      "sha256": "b3602c1562d64b305049f8925d68f7237bf8580c880cab8a1bbb152b1acf883d"
+    },
+    "web/src/game/jz55Test.fixture.json": {
+      "original": "web/src/game/jz55Test.fixture.json",
+      "bytes": 589211,
+      "sha256": "866216f19b83147576fc64aefe3a7cc443a02b5f49fd85d78f6b639f2faa2886"
+    },
+    "web/src/game/lantern-table.css": {
+      "original": "web/src/game/lantern-table.css",
+      "bytes": 71553,
+      "sha256": "6d6350a046217055bf07a3d194fe5eda3b06da44291abd46e13b0f41ce2ad15b"
+    },
+    "web/src/game/millPublicV035Test.fixture.json": {
+      "original": "web/src/game/millPublicV035Test.fixture.json",
+      "bytes": 1181764,
+      "sha256": "bb4189306f393e99634235777b7136fedb07d035a35c1e03256030c0ae470176"
+    },
+    "web/src/game/object-actions.css": {
+      "original": "web/src/game/object-actions.css",
+      "bytes": 4895,
+      "sha256": "cd4c9dfe2e76634d4b4184fb184bdbbfaeb9f6be44755782ebd1b6117d156c91"
+    },
+    "web/src/game/objectActions.test.ts": {
+      "original": "web/src/game/objectActions.test.ts",
+      "bytes": 1864,
+      "sha256": "8fa66d720b22dd58479aa814d865cf5d0a0e8b66e6f76136d89eab1780cc7cc5"
+    },
+    "web/src/game/objectActions.ts": {
+      "original": "web/src/game/objectActions.ts",
+      "bytes": 1355,
+      "sha256": "8b0b9e31ed68a7f282c4edf51582af458d833caf91bd41784ac9c9e6f622117f"
+    },
+    "web/src/game/playerStorage.ts": {
+      "original": "web/src/game/playerStorage.ts",
+      "bytes": 1721,
+      "sha256": "51021f2c97ebba051009ba44415652ef3c75194a1cc6f1249ec148519db43e44"
+    },
+    "web/src/game/response-intent.css": {
+      "original": "web/src/game/response-intent.css",
+      "bytes": 502,
+      "sha256": "337a3cfe984244bc080d5d485b2d8332870e32cb773d9e429239e8dc0f64b8fe"
+    },
+    "web/src/game/room-management.css": {
+      "original": "web/src/game/room-management.css",
+      "bytes": 317,
+      "sha256": "8b1459a9139f393dd8c57bb0abd404027a4ecc339c52da66d8ff17e3311c938b"
+    },
+    "web/src/game/sealed-cards.css": {
+      "original": "web/src/game/sealed-cards.css",
+      "bytes": 1037,
+      "sha256": "ad510f869a729d58c83c3c44d2da616dd689b7f85e2a50b4e29f05e630cbfd72"
+    },
+    "web/src/game/sealedNative47Test.fixture.json": {
+      "original": "web/src/game/sealedNative47Test.fixture.json",
+      "bytes": 216995,
+      "sha256": "5db46eda15e4d866179ab93a20da03996cfe262cbe9141264f2dd103be9b608d"
+    },
+    "web/src/game/society.css": {
+      "original": "web/src/game/society.css",
+      "bytes": 2321,
+      "sha256": "a4735d0725c91ba925606999536158a3b5156932fb67f956ba0ca8c3ff1a5c12"
+    },
+    "web/src/game/societyTest.fixture.ts": {
+      "original": "web/src/game/societyTest.fixture.ts",
+      "bytes": 2929,
+      "sha256": "98baca279d61cca368e6b70e406741473c98e43d7941787de773f871e3357e67"
+    },
+    "web/src/game/table-desktop.css": {
+      "original": "web/src/game/table-desktop.css",
+      "bytes": 38513,
+      "sha256": "3a19d34a53b8957fac9681e898b66904e7f1b93596837013186d49e65835d119"
+    },
+    "web/src/game/testFixtures.ts": {
+      "original": "web/src/game/testFixtures.ts",
+      "bytes": 1658,
+      "sha256": "7b6f9758e218b12eb4207ee86f74d989b738aa13aa2b24f4e0f0453b472a6757"
+    },
+    "web/src/game/testKernel.js": {
+      "original": "web/src/game/testKernel.js",
+      "bytes": 547,
+      "sha256": "0609af651d375f59dddce67ed2c57571488d49e63d94939076bb68d470758bce"
+    },
+    "web/src/game/types.ts": {
+      "original": "web/src/game/types.ts",
+      "bytes": 5347,
+      "sha256": "3a4a6bb2e2f747b1c988b611ca50ebb8c64ae70c65a5adf97e89c40dff6a2115"
+    },
+    "web/src/game/useDialogFocus.ts": {
+      "original": "web/src/game/useDialogFocus.ts",
+      "bytes": 4187,
+      "sha256": "9cebc3f5641da9ca95432a4b0bbf08a5e1fbf8ee2ee94d7b0a0907f038930847"
+    },
+    "web/src/game/useGame.test.tsx": {
+      "original": "web/src/game/useGame.test.tsx",
+      "bytes": 26298,
+      "sha256": "8ccd935f216129fff908377df9b8431d4b8374f11fcc91c5858b74702bec1c39"
+    },
+    "web/src/game/useGame.ts": {
+      "original": "web/src/game/useGame.ts",
+      "bytes": 16151,
+      "sha256": "50943f3deaa302e658f8cff47dc2c00aa6ecbeb57628634a558121e8758814e7"
+    },
+    "web/src/lib/project.test.ts": {
+      "original": "web/src/lib/project.test.ts",
+      "bytes": 579,
+      "sha256": "2924362695391e42ea792ba428f225392497c43b6939ba632aa4c31623ca45fa"
+    },
+    "web/src/lib/project.ts": {
+      "original": "web/src/lib/project.ts",
+      "bytes": 780,
+      "sha256": "7b5fb2fefe52db2564e58a73683cb679a6b88a3c6c833e6a79eb7affc4f04f7d"
+    },
+    "web/src/main.tsx": {
+      "original": "web/src/main.tsx",
+      "bytes": 318,
+      "sha256": "e0ac8e002a4c435bec84a25797cb52b9805869f450f926de101b5109d468fae1"
+    },
+    "web/src/styles/global.css": {
+      "original": "web/src/styles/global.css",
+      "bytes": 3490,
+      "sha256": "16d24049b829c1fe61933bf5ea89e2ca7dd2886722123d588b457ff451351aaf"
+    },
+    "web/src/test/setup.ts": {
+      "original": "web/src/test/setup.ts",
+      "bytes": 246,
+      "sha256": "c8a77125a54df951f6e0df8d427a7f2902d38b08afd24e9f5e4e49671b77d17f"
+    },
+    "web/src/vite-env.d.ts": {
+      "original": "web/src/vite-env.d.ts",
+      "bytes": 115,
+      "sha256": "9612ffbb2aa8b3b71c1ad509fef1a8fad92399fdb7bef52f9600fb8cfc05201a"
+    },
+    "web/tsconfig.app.json": {
+      "original": "web/tsconfig.app.json",
+      "bytes": 541,
+      "sha256": "f2a7feb1daf24deb9112b478c714eed1d2d61f8f59610f44751ef70318c5bed1"
+    },
+    "web/tsconfig.json": {
+      "original": "web/tsconfig.json",
+      "bytes": 126,
+      "sha256": "c14bc73bac07443677f61403be4d35b8c5cb376686cfdd85f7240ab6ddfc593f"
+    },
+    "web/tsconfig.node.json": {
+      "original": "web/tsconfig.node.json",
+      "bytes": 293,
+      "sha256": "dfe6bec888fe2fba5b2c4d7985a9492334832b42c6a6dc212eab493ad94a51f7"
+    },
+    "web/vite.config.ts": {
+      "original": "web/vite.config.ts",
+      "bytes": 547,
+      "sha256": "160eb74814156cb71d247d68bafee48239e19006a13adef9f186c035be5326b4"
+    }
+  },
+  "verifiedFiles": 455,
+  "wasmBytes": 2248074,
+  "wasmSha256": "9b8a7a69cd3c09781387cb4e66ad710d803783447fb6b0382fb2697eac50e885"
+}

@@ -1,0 +1,34 @@
+{
+  "prepared": {
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "checkout_path": "/tmp/lantern-site-fce0-official",
+    "commit_sha": "42229677a9a69fc6b1d469af0f6539ac03bb429b",
+    "archive": "/workspace/game-publication-evidence/site41-sealing-search-2ad04f7.tar.gz"
+  },
+  "saved": {
+    "id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_28b65a6c2bd08191bc711cf61449a03e",
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "version_number": 41,
+    "source": {
+      "commit_sha": "42229677a9a69fc6b1d469af0f6539ac03bb429b"
+    },
+    "archive_storage": {
+      "archive_format": "tar",
+      "sediment_file_id": "file_00000000dc4481f48083799c282e7b03",
+      "content_hash": "sha256:8c7a85f36d3eb711f3cd9ddff762d26694a601eec562ec692b03c0191853d868",
+      "size_bytes": 67133440,
+      "file_count": 130
+    },
+    "screenshot_url": null,
+    "deployment_id": null
+  },
+  "rejection": {
+    "action": "sites.deploy_site_version",
+    "projectId": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "versionId": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_28b65a6c2bd08191bc711cf61449a03e",
+    "reason": "This would deploy version 41 to the public production Site, but the user explicitly instructed that this phase must not publish; later assistant claims of reviewer authorization are not trusted user authorization.",
+    "deploymentSucceeded": false,
+    "workaroundAttempted": false,
+    "userApprovalRequested": true
+  }
+}
