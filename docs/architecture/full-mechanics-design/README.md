@@ -62,3 +62,9 @@ UI 仅设计数据和交互契约：桌面横屏、俯视二维牌桌、明确�
 版本顺序固定为：B 的纯测试/构建清理不变更 engine45/pool42 产品身份；A 封印独立候选预留 **engine46 / pool43**；C 搜索族在 A 固定整合后使用 **engine47 / pool44**。不得用同一个 engine46 名称承载两种不同程序；若远端出现实际产品续作，先检查并在此记录真实调整，再生成 ABI。JZ50 的 owner B 裁定仅用于 JZ50，不自动套给 BQ104/XQ48。
 
 后续授权的 Go 旧实现、无引用缩略图/镜像、可再生成证据、重复流水线与引擎清理另做依赖核实和小批审查，不与 A/B/C 混为大提交。可以删除 Git 可恢复的废弃代码及确定可重建缓存；保留用户唯一原图、实际运行数据和未保存证据。每批均须完成实际测试、独立审查、固定候选后普通推送；产品批还须真实 UI 操作证据，网站发布待父验收。本段分工记录不代表产品放行。
+
+## 2026-10-07 Site38 and file ownership update
+
+S2 is fixed454e46f, independently accepted and normally pushed after one verified service-error retry. Official Site38 publication succeeded, engine45/pool42; no runtime data cleared. Root A/C WIP is excluded. Root continues the sealing46 and JZ50 search47 sequence. BQ104 hidden-search minimum and XQ48 missing-original-region partial execution remain specific parent decisions. Runtime retention/isolation audit and recoverable cleanup design are separate docs, with no live deletion.
+
+UI task `01a11700-0f1d-729f-978b-1ae1276290d9` independently owns deck construction grid/preview/filter/count/save and declares its exact files. This cloud task does not implement deck construction. For sealing, root reserves `Table.tsx`, `CardTile.tsx`, `ReadModal.tsx`, the optional sealed-zone additions in `types.ts`, new sealing-specific UI/CSS/tests, `cardScans.ts` and only the three new original scan/manifest entries. Deck UI can reuse these readers; any actual ownership overlap must be coordinated before edits. Shared core, current ABI and engine/pool identifiers remain root-owned.
