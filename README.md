@@ -2,7 +2,7 @@
 
 > 基于《隐秘世界》桌游的数字化实现项目。
 > 当前云端可玩版本使用 **Rust + TypeScript/React**，默认规则包为《霸权》原始 PDF。
-> 下文第4—7节的 Go 架构设计是历史背景；当前游戏权威为 Rust。Go 仍支撑显式入口 `/legacy-debugger` 的可选调试器，不再要求新游戏服务双实现。
+> 下文第4—7节的 Go 架构设计是历史背景；当前游戏权威为 Rust。Go 服务、`/legacy-debugger` 调试器及相关旧工具已退役，历史设计与验收记录保留在 Git 历史中。
 > 当前公开部署为 [Site41](https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site)，发布范围与验收限制见 [Site41发布记录](docs/SITE41_SEALING_SEARCH_PUBLICATION_2026-10-07.md)。
 > 最新切片范围、原稿页码、卡池与接口见 [霸权云端切片说明](docs/HEGEMONY_CLOUD_SLICE_2026-10-02.md)。
 > JC005 正式有限切片及当前宿主机制范围见 [v0.2.11 发布说明](docs/JC005_FORMAL_V011_RELEASE_2026-10-04.md)：当前合法卡池的角色附属路径已完成；其他宿主强化目标尚待后续宿主机制。

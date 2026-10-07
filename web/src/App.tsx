@@ -1,7 +1,6 @@
-import { AppShell } from "./app/AppShell";
+import { GameApp } from "./game/GameApp";
 
-// Purpose: Keeps the top-level app component thin while the project grows.
+// Purpose: The cloud game is the whole web client; the Go-era debugger was retired.
 export default function App() {
-  return <AppShell />;
+  return <GameApp />;
 }
-
