@@ -1,0 +1,15 @@
+{
+  "action": "Removed own inactive rebuildable WASM compiler target to permit exact Sites build peak",
+  "path": "/tmp/jz49-wasm-target",
+  "logical_bytes_removed": 95526938,
+  "files": 314,
+  "no_active_cargo_rustc_bindgen": true,
+  "final_engine49_wasm_sha256": "9b8a7a69cd3c09781387cb4e66ad710d803783447fb6b0382fb2697eac50e885",
+  "verified_retained_exact_wasm_paths": [
+    "/tmp/undergroundbattle-shared-cloud/rust-game-wasm/pkg/hegemony_wasm_bg.wasm",
+    "/tmp/lantern-site-fce0-official/rust-game-wasm/pkg/hegemony_wasm_bg.wasm",
+    "/tmp/lantern-site-fce0-official/generated/hegemony_wasm_bg.wasm"
+  ],
+  "retained": "Native tests, source, generated bindings, exact WASM, frozen history and existing review/deployment archives",
+  "scope": "Temporary execution disk only; no Library or online deletion"
+}
