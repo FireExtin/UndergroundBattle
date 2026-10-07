@@ -169,6 +169,7 @@ export function useGame() {
       let result: View;
       try { result = await sendCommand(currentSession, command.expectedVersion, command.action, command.commandId); }
       catch (firstError) {
+        if (!isActive(currentSession)) throw firstError;
         if (!(firstError instanceof ApiError) || (firstError.status !== 0 && firstError.status < 500)) throw firstError;
         // A lost acknowledgement can hide a committed action. Retry only its original identity.
         result = await sendCommand(currentSession, command.expectedVersion, command.action, command.commandId);

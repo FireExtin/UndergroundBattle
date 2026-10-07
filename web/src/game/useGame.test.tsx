@@ -45,6 +45,27 @@ describe('experimental current-only rooms', () => {
     expect(localStorage.getItem('hegemony.pending.v1')).toBeNull();
     expect(fetchMock.mock.calls.filter(([url]) => url.endsWith('/commands'))).toHaveLength(1);
   });
+  it('a concurrent unsupported poll stops an in-flight lost-ACK retry', async () => {
+    saveSession(session);
+    vi.spyOn(document, 'visibilityState', 'get').mockReturnValue('visible');
+    let obsolete = false, rejectCommand: ((error: Error) => void) | undefined;
+    const fetchMock = vi.fn((url: string) => url.endsWith('/commands')
+      ? new Promise<Response>((_, reject) => { rejectCommand = reject; })
+      : Promise.resolve(url.endsWith('/catalog') ? json(testCatalog) : obsolete ? unsupported() : json(testView)));
+    vi.stubGlobal('fetch', fetchMock);
+    const { result } = renderHook(useGame);
+    await waitFor(() => expect(result.current.view).toEqual(testView));
+    let action: Promise<void>;
+    act(() => { action = result.current.act({ kind: 'pass' }); });
+    await waitFor(() => expect(rejectCommand).toBeDefined());
+    obsolete = true;
+    act(() => { document.dispatchEvent(new Event('visibilitychange')); });
+    await waitFor(() => expect(result.current.session).toBeNull());
+    await act(async () => { rejectCommand!(new Error('lost ACK')); await action!; });
+    expect(fetchMock.mock.calls.filter(([url]) => url.endsWith('/commands'))).toHaveLength(1);
+    expect(result.current.error).toBe(message); expect(result.current.busy).toBe(false);
+    expect(localStorage.getItem('hegemony.pending.v1')).toBeNull(); expect(readSavedSeats()).toEqual([session]);
+  });
 });
 describe('room lifecycle and reconciliation', () => {
   it('rejoins its saved room through the invite without allocating another seat or changing the ready deck', async () => {
