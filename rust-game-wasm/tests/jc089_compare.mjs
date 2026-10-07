@@ -15,7 +15,12 @@ const catalog = JSON.parse(current.catalog()), oldCatalog = JSON.parse(prior.cat
 assert.equal(catalog.engineVersion, 'rust-v0.2.45-jc089-poison-blood-candidate');
 assert.equal(catalog.cardPoolVersion, 'limited-v2.42-jc089-poison-blood-candidate');
 assert.equal(catalog.cards.length, 103);
-assert.deepEqual(catalog.cards.filter(c => c.id !== 'JC089'), oldCatalog.cards);
+const correctedPriorCards = oldCatalog.cards.map(c => {
+  if(c.id !== 'JC018') return c;
+  const ruleTraits={...c.ruleTraits};delete ruleTraits.renown;
+  return {...c,ruleTraits};
+});
+assert.deepEqual(catalog.cards.filter(c => c.id !== 'JC089'), correctedPriorCards);
 for (const field of ['world', 'decks', 'societies', 'deckBuildRules']) assert.deepEqual(catalog[field], oldCatalog[field]);
 const root = resolve(process.argv[2]);
 let commands = 0, rejected = 0, checkpoints = 0, views = 0, chainCommands = 0;

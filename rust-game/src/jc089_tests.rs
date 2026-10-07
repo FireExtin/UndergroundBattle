@@ -277,19 +277,23 @@ fn jc089_glory_does_not_trigger_on_other_contests_loss_tie_or_no_participation()
 
 #[test]
 fn jc089_glory_snapshot_survives_host_and_curse_departure_and_controller_change() {
-    let (mut g,host,a)=field(0);win(&mut g,2);choose(&mut g,vec!["accept".into()]);
-    g.remove_dead(&a,RemovalCause::Destroy);
-    g.add_control(&host,2,ControlLifetime::TurnEnd { turn:g.turn },SubtypeChange::None);g.settle_controls();
-    g.remove_dead(&host,RemovalCause::Destroy);checkpoint(&g);
-    pass_top(&mut g);assert_eq!(g.regions[2].influence,[1,0]);
-    assert_eq!(g.players[0].graveyard.iter().filter(|c|c.definition=="LC01").count(),1);
-    fixture("glory-source-departed",&g);
+    for printed in [false,true] {
+        let (mut g,host,a)=if printed {let mut g=game(0);let host=board(&mut g,"JC018",0,2);(g,host,String::new())} else {field(0)};
+        win(&mut g,2);choose(&mut g,vec!["accept".into()]);
+        if !a.is_empty(){g.remove_dead(&a,RemovalCause::Destroy);}
+        g.add_control(&host,2,ControlLifetime::TurnEnd { turn:g.turn },SubtypeChange::None);g.settle_controls();
+        g.remove_dead(&host,RemovalCause::Destroy);checkpoint(&g);
+        pass_top(&mut g);assert_eq!(g.regions[2].influence,[1,0]);
+        assert_eq!(g.players[0].graveyard.iter().filter(|c|c.definition==if printed {"JC018"}else{"LC01"}).count(),1);
+        fixture("glory-source-departed",&g);
+    }
 }
 
 #[test]
 fn jc089_glory_exact_region_instance_rejects_replacement_before_or_after_acceptance() {
-    for before in [false,true] {
-        let (mut g,host,_)=field(0);win(&mut g,2);
+    for printed in [false,true] {for before in [false,true] {
+        let (mut g,host,_)=if printed {let mut g=game(0);let host=board(&mut g,"JC018",0,2);(g,host,String::new())} else {field(0)};
+        win(&mut g,2);
         if !before {choose(&mut g,vec!["accept".into()]);}
         let old=g.regions[2].card.id.clone();g.regions[2].card=g.make_card("DQJC115",0);
         assert_ne!(old,g.regions[2].card.id);g.regions[2].influence=[0,0];
@@ -297,21 +301,70 @@ fn jc089_glory_exact_region_instance_rejects_replacement_before_or_after_accepta
         pass_top(&mut g);assert_eq!(g.regions[2].influence,[0,0]);
         assert!(g.board(&host).is_some());fixture("replacement-region",&g);
     }
+    }
+}
+#[test]
+fn jc018_printed_glory_never_becomes_renown_when_the_last_curse_leaves() {
+    let mut g=game(0);let host=board(&mut g,"JC018",0,2);
+    assert!(!g.has_renown(g.board(&host).unwrap().1));
+    assert!(g.has_combat_glory(g.board(&host).unwrap().1));
+    assert!(!g.has_jc089_glory(g.board(&host).unwrap().1));
+    win(&mut g,2);choose(&mut g,vec!["accept".into()]);pass_top(&mut g);
+    assert_eq!(g.regions[2].influence,[1,0]);fixture("uncursed-printed-glory",&g);
+    g.begin_window(Window::Before(2,2));passes(&mut g,4);
+    assert!(g.pending.is_none());assert_eq!(g.regions[2].influence,[2,0]); // One ordinary influence, no false renown.
+    g.begin_window(Window::Action(0));fund(&mut g,0,"JC084",2);let curse_id=curse(&mut g,0,&host);
+    assert!(g.has_combat_glory(g.board(&host).unwrap().1));
+    assert!(!g.has_renown(g.board(&host).unwrap().1));
+    g.remove_dead(&curse_id,RemovalCause::Destroy);g.settle_deaths();
+    assert!(!g.has_renown(g.board(&host).unwrap().1));
+    assert!(g.has_combat_glory(g.board(&host).unwrap().1));checkpoint(&g);
 }
 
 #[test]
-fn jc089_baseline_jc018_binding_is_preserved_not_claimed_as_correct_glory() {
+fn jc018_printed_glory_decline_and_next_round_win_use_normal_window_progression() {
     let mut g=game(0);let host=board(&mut g,"JC018",0,2);
-    assert!(g.has_renown(g.board(&host).unwrap().1));
-    assert!(!g.has_jc089_glory(g.board(&host).unwrap().1));
-    assert!(g.jc089_combat_glory(0,2).is_none());
-    fund(&mut g,0,"JC084",2);curse(&mut g,0,&host);
-    assert!(g.has_jc089_glory(g.board(&host).unwrap().1));
+    g.regions[2].card=g.make_card("DQJC107",0); // Threshold four keeps the host in this region.
+    fund(&mut g,0,"JC084",2);fund(&mut g,0,"LC01",2);
+    let removal=held(&mut g,"JC005",0);
+    let turn=g.turn;
+    // Only the starting battle is an explicit layout boundary. Every subsequent
+    // phase, cleanup, initiative change and battle uses actual legal passes.
+    win(&mut g,2);choose(&mut g,vec![]);
+    assert_eq!(g.regions[2].influence,[0,0]);
+    for _ in 0..200 {
+        if g.turn==turn+1 && g.window==Some(Window::Action(0)) {break;}
+        assert!(g.pending.is_none(),"unexpected choice while advancing the round");
+        passes(&mut g,1);
+    }
+    assert_eq!(g.turn,turn+1);assert_eq!(g.first_team,1);
+    assert_eq!(g.window,Some(Window::Action(0)));
+    assert_eq!(g.regions[2].influence,[1,0]); // Ordinary first-round influence only.
+    assert!(g.has_combat_glory(g.board(&host).unwrap().1));
     assert!(!g.has_renown(g.board(&host).unwrap().1));
-    assert_eq!(g.jc089_combat_glory(0,2).unwrap().ability.ops.len(),1);
-    let curse_id=g.attachments[0].card.id.clone();g.remove_dead(&curse_id,RemovalCause::Destroy);g.settle_deaths();
-    assert!(g.has_renown(g.board(&host).unwrap().1)); // Explicit retained baseline after removal.
-    assert!(!g.has_jc089_glory(g.board(&host).unwrap().1));checkpoint(&g);
+    let curse_id=curse(&mut g,0,&host);
+    assert!(g.pending.is_none());assert_eq!(g.regions[2].influence,[1,0]);
+    apply(&mut g,0,Action{card_id:Some(removal),target_id:Some(curse_id),..Action::new("play")});
+    pass_top(&mut g);
+    assert!(g.attachments.is_empty());assert!(g.pending.is_none());
+    assert_eq!(g.regions[2].influence,[1,0]); // Adding/removing the curse cannot replay the declined reward.
+    for _ in 0..200 {
+        if g.pending.as_ref().is_some_and(|p|matches!(&p.resolution,
+            ChoiceResolution::Declare{declaration,..} if declaration.ability.event==Some(Event::CombatWon))) {break;}
+        if g.pending.as_ref().is_some_and(|p|p.choice.kind=="recipient") {
+            let id=g.pending.as_ref().unwrap().choice.options[0].id.clone();choose(&mut g,vec![id]);
+        } else {assert!(g.pending.is_none());passes(&mut g,1);}
+    }
+    assert_eq!(g.turn,turn+1);assert_eq!(g.window,Some(Window::After(2,1)));
+    assert_eq!(g.pending.as_ref().unwrap().choice.kind,"trigger");
+    choose(&mut g,vec!["accept".into()]);pass_top(&mut g);
+    assert_eq!(g.regions[2].influence,[2,0]); // Exactly one reward for this new winning combat.
+    for _ in 0..200 {
+        if g.turn==turn+2 {break;}
+        assert!(g.pending.is_none());passes(&mut g,1);
+    }
+    assert_eq!(g.turn,turn+2);assert_eq!(g.regions[2].influence,[2,0]);
+    assert!(g.board(&host).is_some());fixture("printed-glory-normal-next-round",&g);
 }
 
 #[test]
@@ -342,8 +395,51 @@ fn jc089_cursed_printed_glory_is_one_reward_while_separately_paid_true_renown_st
         } else {assert!(g.pending.is_none());}
         assert_eq!(g.regions[2].influence,[if independent {2}else{1},0]);
         g.remove_dead(&curse_id,RemovalCause::Destroy);g.settle_deaths();
-        assert!(g.has_renown(g.board(&host).unwrap().1));assert!(!g.has_jc089_glory(g.board(&host).unwrap().1));
-        fixture("printed-glory-curse-removed-baseline",&g);
+        assert_eq!(g.has_renown(g.board(&host).unwrap().1),independent);
+        assert!(g.has_combat_glory(g.board(&host).unwrap().1));
+        fixture("printed-glory-curse-removed",&g);
+    }
+}
+
+#[test]
+fn jc089_paid_jc005_last_curse_removal_before_or_after_glory_cannot_restore_false_renown() {
+    for response in [true,false] {
+        let mut g=game(0);fund(&mut g,0,"JC056",3);fund(&mut g,0,"JC084",2);
+        let guard=held(&mut g,"JC059",0);
+        apply(&mut g,0,Action{card_id:Some(guard),region:Some(2),..Action::new("deploy")});pass_top(&mut g);
+        let host=board(&mut g,"JC018",0,2);g.board_mut(&host).unwrap().damage=1;
+        let curse_id=curse(&mut g,0,&host);fund(&mut g,0,"JC003",2);let spell=held(&mut g,"JC005",0);
+        board(&mut g,"LC01",2,2);let hidden=board(&mut g,"JC125",2,2);g.board_mut(&hidden).unwrap().face_down=true;
+        g.first_team=1;win(&mut g,2);choose(&mut g,vec!["accept".into()]);
+        if !response {pass_top(&mut g);assert_eq!(g.regions[2].influence,[1,0]);}
+        passes(&mut g,2);
+        apply(&mut g,0,Action{card_id:Some(spell),target_id:Some(curse_id),..Action::new("play")});
+        assert_eq!(g.stack.len(),if response {2}else{1});pass_top(&mut g);
+        if response {assert_eq!(g.regions[2].influence,[0,0]);pass_top(&mut g);}
+        assert!(g.attachments.is_empty());assert!(g.board(&host).is_some());
+        assert!(g.has_combat_glory(g.board(&host).unwrap().1));assert!(!g.has_renown(g.board(&host).unwrap().1));
+        assert_eq!(g.regions[2].influence,[1,0]);
+        g.begin_window(Window::Before(2,2));passes(&mut g,4);
+        assert!(g.pending.is_none());assert_eq!(g.regions[2].influence,[1,0]);
+        fixture(if response {"last-curse-removed-during-glory"} else {"last-curse-removed-after-glory"},&g);
+    }
+}
+
+#[test]
+fn jc018_printed_glory_does_not_trigger_without_winning_combat_participation() {
+    for kind in ["investigation","influence","loss","tie","exhausted","hidden","elsewhere"] {
+        let mut g=game(0);let host=board(&mut g,"JC018",0,2);
+        let contest=match kind {"investigation"=>0,"influence"=>2,_=>1};
+        match kind {
+            "loss"=>{board(&mut g,"JC030",2,2);board(&mut g,"JC030",2,2);},
+            "tie"=>{board(&mut g,"JC030",2,2);},
+            "exhausted"=>g.board_mut(&host).unwrap().exhausted=true,
+            "hidden"=>g.board_mut(&host).unwrap().face_down=true,
+            "elsewhere"=>{let c=g.remove_board(&host).unwrap().1;g.regions[1].cards.push(c);},_=>{},
+        }
+        g.begin_window(Window::Before(2,contest));passes(&mut g,4);
+        assert!(!matches!(&g.pending,Some(p) if matches!(&p.resolution,ChoiceResolution::Declare{declaration,..} if declaration.ability.event==Some(Event::CombatWon))));
+        assert!(!g.effects.iter().any(|e|matches!(e,Effect::Declare{declaration} if declaration.ability.event==Some(Event::CombatWon))));checkpoint(&g);
     }
 }
 

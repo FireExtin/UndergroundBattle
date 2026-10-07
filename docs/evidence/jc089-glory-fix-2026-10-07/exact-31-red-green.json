@@ -1,0 +1,345 @@
+{
+  "scope": "unchanged 31 original commands; old false-renown follow-ups reject on the fixed kernel",
+  "commandsSha256": "df861682a177b6d7db036127c329c7eca58a122ade492c0fcb41156abaf2fbb8",
+  "originalDriverSha256": "4d19e7b14d27d35186b98b45ed5952804cfdc099596c450d0c71772c47d5322f",
+  "redWasmSha256": "ffbabae8bdb36352ae11acab613365ea3bdcdb0681d246a8d11b354864f01099",
+  "greenWasmSha256": "afc1b42523111dc242fd21850da9af243112a619c9f759bc60cbabac045883f7",
+  "runs": {
+    "red": {
+      "submitted": 31,
+      "accepted": 31,
+      "rejected": 0,
+      "influence": [
+        2,
+        0
+      ],
+      "currentRenown": true,
+      "currentCombatGlory": false,
+      "receipts": [
+        {
+          "commandId": "review-boundary-1",
+          "errorCode": null,
+          "version": 19
+        },
+        {
+          "commandId": "review-boundary-2",
+          "errorCode": null,
+          "version": 20
+        },
+        {
+          "commandId": "review-boundary-3",
+          "errorCode": null,
+          "version": 21
+        },
+        {
+          "commandId": "review-boundary-4",
+          "errorCode": null,
+          "version": 22
+        },
+        {
+          "commandId": "review-boundary-5",
+          "errorCode": null,
+          "version": 23
+        },
+        {
+          "commandId": "review-boundary-6",
+          "errorCode": null,
+          "version": 24
+        },
+        {
+          "commandId": "review-boundary-7",
+          "errorCode": null,
+          "version": 25
+        },
+        {
+          "commandId": "review-boundary-8",
+          "errorCode": null,
+          "version": 26
+        },
+        {
+          "commandId": "review-boundary-9",
+          "errorCode": null,
+          "version": 27
+        },
+        {
+          "commandId": "review-boundary-10",
+          "errorCode": null,
+          "version": 28
+        },
+        {
+          "commandId": "review-boundary-11",
+          "errorCode": null,
+          "version": 29
+        },
+        {
+          "commandId": "review-boundary-12",
+          "errorCode": null,
+          "version": 30
+        },
+        {
+          "commandId": "review-boundary-13",
+          "errorCode": null,
+          "version": 31
+        },
+        {
+          "commandId": "review-boundary-14",
+          "errorCode": null,
+          "version": 32
+        },
+        {
+          "commandId": "review-boundary-15",
+          "errorCode": null,
+          "version": 33
+        },
+        {
+          "commandId": "review-boundary-16",
+          "errorCode": null,
+          "version": 34
+        },
+        {
+          "commandId": "review-boundary-17",
+          "errorCode": null,
+          "version": 35
+        },
+        {
+          "commandId": "review-boundary-18",
+          "errorCode": null,
+          "version": 36
+        },
+        {
+          "commandId": "review-boundary-19",
+          "errorCode": null,
+          "version": 37
+        },
+        {
+          "commandId": "review-boundary-20",
+          "errorCode": null,
+          "version": 38
+        },
+        {
+          "commandId": "review-boundary-21",
+          "errorCode": null,
+          "version": 39
+        },
+        {
+          "commandId": "review-boundary-22",
+          "errorCode": null,
+          "version": 40
+        },
+        {
+          "commandId": "review-boundary-23",
+          "errorCode": null,
+          "version": 41
+        },
+        {
+          "commandId": "review-boundary-24",
+          "errorCode": null,
+          "version": 42
+        },
+        {
+          "commandId": "review-boundary-25",
+          "errorCode": null,
+          "version": 43
+        },
+        {
+          "commandId": "review-boundary-26",
+          "errorCode": null,
+          "version": 44
+        },
+        {
+          "commandId": "review-boundary-27",
+          "errorCode": null,
+          "version": 45
+        },
+        {
+          "commandId": "review-boundary-28",
+          "errorCode": null,
+          "version": 46
+        },
+        {
+          "commandId": "review-boundary-29",
+          "errorCode": null,
+          "version": 47
+        },
+        {
+          "commandId": "review-boundary-30",
+          "errorCode": null,
+          "version": 48
+        },
+        {
+          "commandId": "review-boundary-31",
+          "errorCode": null,
+          "version": 49
+        }
+      ]
+    },
+    "green": {
+      "submitted": 31,
+      "accepted": 26,
+      "rejected": 5,
+      "influence": [
+        1,
+        0
+      ],
+      "currentRenown": false,
+      "currentCombatGlory": true,
+      "receipts": [
+        {
+          "commandId": "review-boundary-1",
+          "errorCode": null,
+          "version": 19
+        },
+        {
+          "commandId": "review-boundary-2",
+          "errorCode": null,
+          "version": 20
+        },
+        {
+          "commandId": "review-boundary-3",
+          "errorCode": null,
+          "version": 21
+        },
+        {
+          "commandId": "review-boundary-4",
+          "errorCode": null,
+          "version": 22
+        },
+        {
+          "commandId": "review-boundary-5",
+          "errorCode": null,
+          "version": 23
+        },
+        {
+          "commandId": "review-boundary-6",
+          "errorCode": null,
+          "version": 24
+        },
+        {
+          "commandId": "review-boundary-7",
+          "errorCode": null,
+          "version": 25
+        },
+        {
+          "commandId": "review-boundary-8",
+          "errorCode": null,
+          "version": 26
+        },
+        {
+          "commandId": "review-boundary-9",
+          "errorCode": null,
+          "version": 27
+        },
+        {
+          "commandId": "review-boundary-10",
+          "errorCode": null,
+          "version": 28
+        },
+        {
+          "commandId": "review-boundary-11",
+          "errorCode": null,
+          "version": 29
+        },
+        {
+          "commandId": "review-boundary-12",
+          "errorCode": null,
+          "version": 30
+        },
+        {
+          "commandId": "review-boundary-13",
+          "errorCode": null,
+          "version": 31
+        },
+        {
+          "commandId": "review-boundary-14",
+          "errorCode": null,
+          "version": 32
+        },
+        {
+          "commandId": "review-boundary-15",
+          "errorCode": null,
+          "version": 33
+        },
+        {
+          "commandId": "review-boundary-16",
+          "errorCode": null,
+          "version": 34
+        },
+        {
+          "commandId": "review-boundary-17",
+          "errorCode": null,
+          "version": 35
+        },
+        {
+          "commandId": "review-boundary-18",
+          "errorCode": null,
+          "version": 36
+        },
+        {
+          "commandId": "review-boundary-19",
+          "errorCode": null,
+          "version": 37
+        },
+        {
+          "commandId": "review-boundary-20",
+          "errorCode": null,
+          "version": 38
+        },
+        {
+          "commandId": "review-boundary-21",
+          "errorCode": null,
+          "version": 39
+        },
+        {
+          "commandId": "review-boundary-22",
+          "errorCode": null,
+          "version": 40
+        },
+        {
+          "commandId": "review-boundary-23",
+          "errorCode": null,
+          "version": 41
+        },
+        {
+          "commandId": "review-boundary-24",
+          "errorCode": null,
+          "version": 42
+        },
+        {
+          "commandId": "review-boundary-25",
+          "errorCode": null,
+          "version": 43
+        },
+        {
+          "commandId": "review-boundary-26",
+          "errorCode": null,
+          "version": 44
+        },
+        {
+          "commandId": "review-boundary-27",
+          "errorCode": "invalid_action",
+          "version": 44
+        },
+        {
+          "commandId": "review-boundary-28",
+          "errorCode": "version_conflict",
+          "version": 44
+        },
+        {
+          "commandId": "review-boundary-29",
+          "errorCode": "version_conflict",
+          "version": 44
+        },
+        {
+          "commandId": "review-boundary-30",
+          "errorCode": "version_conflict",
+          "version": 44
+        },
+        {
+          "commandId": "review-boundary-31",
+          "errorCode": "version_conflict",
+          "version": 44
+        }
+      ]
+    }
+  }
+}

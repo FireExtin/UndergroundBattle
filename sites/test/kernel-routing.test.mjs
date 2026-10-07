@@ -13,12 +13,12 @@ const historicalRoot = existsSync('rust-game-wasm') ? 'rust-game-wasm' : '../rus
 const isUnsupported = error => error.status === 410 && error.code === 'unsupported_room_version' && /新建牌桌/.test(error.message);
 
 test('current-only Site keeps the candidate engine45 bytes and its exact new-room flow', async () => {
-  assert.equal(createHash('sha256').update(currentBytes).digest('hex'), 'ffbabae8bdb36352ae11acab613365ea3bdcdb0681d246a8d11b354864f01099');
+  assert.equal(createHash('sha256').update(currentBytes).digest('hex'), 'afc1b42523111dc242fd21850da9af243112a619c9f759bc60cbabac045883f7');
   const prior = JSON.parse((await frozenKernel('legacy-v0.2.44')).catalog());
   assert.equal(latest.engineVersion, 'rust-v0.2.45-jc089-poison-blood-candidate');
   assert.equal(latest.cardPoolVersion, 'limited-v2.42-jc089-poison-blood-candidate');
   assert.equal(latest.cards.length, 103); assert.equal(latest.societies.length, 8);
-  assert.deepEqual(latest.cards.filter(card => card.id !== 'JC089'), prior.cards);
+  assert.deepEqual(latest.cards.filter(card => card.id !== 'JC089'), prior.cards.map(c=>{if(c.id!=='JC018')return c;const ruleTraits={...c.ruleTraits};delete ruleTraits.renown;return {...c,ruleTraits};}));
   for (const field of ['societies', 'decks', 'world', 'deckBuildRules']) assert.deepEqual(latest[field], prior[field]);
   const routed = routeKernels(current);
   const room = JSON.parse(routed.newGame('new45', 'invite', 'duel', 'P0', 'watchers', '18446744073709551615'));

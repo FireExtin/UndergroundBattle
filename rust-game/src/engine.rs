@@ -1198,8 +1198,8 @@ impl Game {
         }
         if contest == 1 {
             // Freeze the participating host/controller and real region before
-            // damage or departure. Exactly one optional JC089-granted 威名,
-            // even when several curses or eligible hosts contributed.
+            // damage or departure. Exactly one optional 威名 declaration,
+            // even when printed JC018 or several curses/hosts contributed.
             let glory = self.jc089_combat_glory(team, region);
             let kills = self.regions[region]
                 .cards
@@ -2023,7 +2023,7 @@ impl Game {
         let asset = kind == Some("asset");
         CardView {
             current_combat_glory: (!asset && !c.face_down && region.is_some()
-                && self.has_jc089_glory(c)).then_some(true),
+                && self.has_combat_glory(c)).then_some(true),
             current_kill: (!asset
                 && !c.face_down
                 && region.is_some()

@@ -30,7 +30,7 @@ pub enum Event {
     ConfrontationStart,
     RegionWon,
     RegionConfrontationsEnded,
-    // JC089's granted 威名 occurs after a won combat, independently of 声望.
+    // Finite JC018 print / JC089-granted 威名 after won combat, separate from 声望.
     CombatWon,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
@@ -1052,7 +1052,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
             return Err(format!("cardId={card_id}: only the complete JC089 curse is admitted"));
         }
         if definition.abilities.iter().any(|a| a.event == Some(Event::CombatWon)) {
-            return Err(format!("cardId={card_id}: CombatWon is only the finite runtime JC089 host reward"));
+            return Err(format!("cardId={card_id}: CombatWon is only the finite runtime combat reward"));
         }
         if (card_id == "JZ48" || definition.modifiers.iter().any(|m|
             matches!(m, StaticModifier::JZ48OtherControlledCriminalInfluenceAndDefense)))
@@ -1293,10 +1293,7 @@ fn lc30_definition() -> Definition {
 }
 fn jc018_definition() -> Definition {
     Definition {
-        traits: Traits {
-            renown: true,
-            ..Default::default()
-        },
+        // Printed 威名 is handled by the finite combat reward, never 声望.
         modifiers: vec![StaticModifier::JC018MindAssetsCombat],
         ..Default::default()
     }

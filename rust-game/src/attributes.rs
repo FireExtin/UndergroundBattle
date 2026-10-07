@@ -23,6 +23,14 @@ impl Game {
     pub(crate) fn has_jc089_glory(&self, c: &Card) -> bool {
         self.jc089_host_curses(c) > 0
     }
+    pub(crate) fn has_combat_glory(&self, c: &Card) -> bool {
+        !c.face_down && card(&c.definition).kind == "character"
+            && ((c.definition == "JC018"
+                && self.board(&c.id).is_some_and(|(_,live)| !live.face_down && live.definition == "JC018")
+                && crate::rules::definition("JC018").modifiers.iter().any(|m|
+                    matches!(m, StaticModifier::JC018MindAssetsCombat)))
+                || self.has_jc089_glory(c))
+    }
     // One closed printed condition. "本方" means the current controller alone,
     // and exhaustion leaves a face-up criminal's subtype in effect.
     pub(crate) fn jz48_other_controlled_criminal_active(&self, c: &Card, region: usize) -> bool {

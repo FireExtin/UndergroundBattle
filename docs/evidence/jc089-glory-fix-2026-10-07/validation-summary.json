@@ -1,0 +1,497 @@
+{
+  "baseline": "99a208c0e6dc73669292396268840a0d9034547a",
+  "repairBase": "19e594f00004c16c95cc1846c4ad3d252c5b0021",
+  "engine": "rust-v0.2.45-jc089-poison-blood-candidate",
+  "pool": "limited-v2.42-jc089-poison-blood-candidate",
+  "scope": "JC089 P2 closure and finite JC018 printed glory binding correction; candidate unpublished",
+  "native": {
+    "library": 539,
+    "integration": 32,
+    "total": 571,
+    "jc089Focused": 26
+  },
+  "wasm": {
+    "engineVersion": "rust-v0.2.45-jc089-poison-blood-candidate",
+    "poolVersion": "limited-v2.42-jc089-poison-blood-candidate",
+    "commands": 938,
+    "rejected": 5,
+    "checkpoints": 2033,
+    "chainCommands": 13,
+    "views": 11936,
+    "kinds": {
+      "game": 1,
+      "passResponse": 10,
+      "beginResponse": 1,
+      "submitResponse": 1
+    },
+    "wasmBytes": 2198305,
+    "wasmSha256": "afc1b42523111dc242fd21850da9af243112a619c9f759bc60cbabac045883f7",
+    "frozen44Bytes": 2191175,
+    "frozen44Sha256": "6cf6dca6a06844c84e38fbed2a084145bc0e63ae3897de18b864814c314d11f9"
+  },
+  "web": {
+    "files": 67,
+    "tests": 567,
+    "jc089Focused": 10,
+    "timeoutMs": 30000,
+    "fixtureLayouts": 27
+  },
+  "worker": {
+    "tests": 25,
+    "historicalTuplesRejected": 40,
+    "alteredIdentitiesRejected": 5,
+    "currentWasmCount": 1
+  },
+  "historicalBytes": {
+    "comparedCommit": "19e594f00004c16c95cc1846c4ad3d252c5b0021",
+    "filesUnchanged": 209,
+    "directories": 40
+  },
+  "typecheckAndViteBuild": true,
+  "workerDryRun": true,
+  "naturalBrowserUi": "not performed by this child task; parent verifies fresh combined source independently",
+  "original31Counterexample": {
+    "scope": "unchanged 31 original commands; old false-renown follow-ups reject on the fixed kernel",
+    "commandsSha256": "df861682a177b6d7db036127c329c7eca58a122ade492c0fcb41156abaf2fbb8",
+    "originalDriverSha256": "4d19e7b14d27d35186b98b45ed5952804cfdc099596c450d0c71772c47d5322f",
+    "redWasmSha256": "ffbabae8bdb36352ae11acab613365ea3bdcdb0681d246a8d11b354864f01099",
+    "greenWasmSha256": "afc1b42523111dc242fd21850da9af243112a619c9f759bc60cbabac045883f7",
+    "runs": {
+      "red": {
+        "submitted": 31,
+        "accepted": 31,
+        "rejected": 0,
+        "influence": [
+          2,
+          0
+        ],
+        "currentRenown": true,
+        "currentCombatGlory": false,
+        "receipts": [
+          {
+            "commandId": "review-boundary-1",
+            "errorCode": null,
+            "version": 19
+          },
+          {
+            "commandId": "review-boundary-2",
+            "errorCode": null,
+            "version": 20
+          },
+          {
+            "commandId": "review-boundary-3",
+            "errorCode": null,
+            "version": 21
+          },
+          {
+            "commandId": "review-boundary-4",
+            "errorCode": null,
+            "version": 22
+          },
+          {
+            "commandId": "review-boundary-5",
+            "errorCode": null,
+            "version": 23
+          },
+          {
+            "commandId": "review-boundary-6",
+            "errorCode": null,
+            "version": 24
+          },
+          {
+            "commandId": "review-boundary-7",
+            "errorCode": null,
+            "version": 25
+          },
+          {
+            "commandId": "review-boundary-8",
+            "errorCode": null,
+            "version": 26
+          },
+          {
+            "commandId": "review-boundary-9",
+            "errorCode": null,
+            "version": 27
+          },
+          {
+            "commandId": "review-boundary-10",
+            "errorCode": null,
+            "version": 28
+          },
+          {
+            "commandId": "review-boundary-11",
+            "errorCode": null,
+            "version": 29
+          },
+          {
+            "commandId": "review-boundary-12",
+            "errorCode": null,
+            "version": 30
+          },
+          {
+            "commandId": "review-boundary-13",
+            "errorCode": null,
+            "version": 31
+          },
+          {
+            "commandId": "review-boundary-14",
+            "errorCode": null,
+            "version": 32
+          },
+          {
+            "commandId": "review-boundary-15",
+            "errorCode": null,
+            "version": 33
+          },
+          {
+            "commandId": "review-boundary-16",
+            "errorCode": null,
+            "version": 34
+          },
+          {
+            "commandId": "review-boundary-17",
+            "errorCode": null,
+            "version": 35
+          },
+          {
+            "commandId": "review-boundary-18",
+            "errorCode": null,
+            "version": 36
+          },
+          {
+            "commandId": "review-boundary-19",
+            "errorCode": null,
+            "version": 37
+          },
+          {
+            "commandId": "review-boundary-20",
+            "errorCode": null,
+            "version": 38
+          },
+          {
+            "commandId": "review-boundary-21",
+            "errorCode": null,
+            "version": 39
+          },
+          {
+            "commandId": "review-boundary-22",
+            "errorCode": null,
+            "version": 40
+          },
+          {
+            "commandId": "review-boundary-23",
+            "errorCode": null,
+            "version": 41
+          },
+          {
+            "commandId": "review-boundary-24",
+            "errorCode": null,
+            "version": 42
+          },
+          {
+            "commandId": "review-boundary-25",
+            "errorCode": null,
+            "version": 43
+          },
+          {
+            "commandId": "review-boundary-26",
+            "errorCode": null,
+            "version": 44
+          },
+          {
+            "commandId": "review-boundary-27",
+            "errorCode": null,
+            "version": 45
+          },
+          {
+            "commandId": "review-boundary-28",
+            "errorCode": null,
+            "version": 46
+          },
+          {
+            "commandId": "review-boundary-29",
+            "errorCode": null,
+            "version": 47
+          },
+          {
+            "commandId": "review-boundary-30",
+            "errorCode": null,
+            "version": 48
+          },
+          {
+            "commandId": "review-boundary-31",
+            "errorCode": null,
+            "version": 49
+          }
+        ]
+      },
+      "green": {
+        "submitted": 31,
+        "accepted": 26,
+        "rejected": 5,
+        "influence": [
+          1,
+          0
+        ],
+        "currentRenown": false,
+        "currentCombatGlory": true,
+        "receipts": [
+          {
+            "commandId": "review-boundary-1",
+            "errorCode": null,
+            "version": 19
+          },
+          {
+            "commandId": "review-boundary-2",
+            "errorCode": null,
+            "version": 20
+          },
+          {
+            "commandId": "review-boundary-3",
+            "errorCode": null,
+            "version": 21
+          },
+          {
+            "commandId": "review-boundary-4",
+            "errorCode": null,
+            "version": 22
+          },
+          {
+            "commandId": "review-boundary-5",
+            "errorCode": null,
+            "version": 23
+          },
+          {
+            "commandId": "review-boundary-6",
+            "errorCode": null,
+            "version": 24
+          },
+          {
+            "commandId": "review-boundary-7",
+            "errorCode": null,
+            "version": 25
+          },
+          {
+            "commandId": "review-boundary-8",
+            "errorCode": null,
+            "version": 26
+          },
+          {
+            "commandId": "review-boundary-9",
+            "errorCode": null,
+            "version": 27
+          },
+          {
+            "commandId": "review-boundary-10",
+            "errorCode": null,
+            "version": 28
+          },
+          {
+            "commandId": "review-boundary-11",
+            "errorCode": null,
+            "version": 29
+          },
+          {
+            "commandId": "review-boundary-12",
+            "errorCode": null,
+            "version": 30
+          },
+          {
+            "commandId": "review-boundary-13",
+            "errorCode": null,
+            "version": 31
+          },
+          {
+            "commandId": "review-boundary-14",
+            "errorCode": null,
+            "version": 32
+          },
+          {
+            "commandId": "review-boundary-15",
+            "errorCode": null,
+            "version": 33
+          },
+          {
+            "commandId": "review-boundary-16",
+            "errorCode": null,
+            "version": 34
+          },
+          {
+            "commandId": "review-boundary-17",
+            "errorCode": null,
+            "version": 35
+          },
+          {
+            "commandId": "review-boundary-18",
+            "errorCode": null,
+            "version": 36
+          },
+          {
+            "commandId": "review-boundary-19",
+            "errorCode": null,
+            "version": 37
+          },
+          {
+            "commandId": "review-boundary-20",
+            "errorCode": null,
+            "version": 38
+          },
+          {
+            "commandId": "review-boundary-21",
+            "errorCode": null,
+            "version": 39
+          },
+          {
+            "commandId": "review-boundary-22",
+            "errorCode": null,
+            "version": 40
+          },
+          {
+            "commandId": "review-boundary-23",
+            "errorCode": null,
+            "version": 41
+          },
+          {
+            "commandId": "review-boundary-24",
+            "errorCode": null,
+            "version": 42
+          },
+          {
+            "commandId": "review-boundary-25",
+            "errorCode": null,
+            "version": 43
+          },
+          {
+            "commandId": "review-boundary-26",
+            "errorCode": null,
+            "version": 44
+          },
+          {
+            "commandId": "review-boundary-27",
+            "errorCode": "invalid_action",
+            "version": 44
+          },
+          {
+            "commandId": "review-boundary-28",
+            "errorCode": "version_conflict",
+            "version": 44
+          },
+          {
+            "commandId": "review-boundary-29",
+            "errorCode": "version_conflict",
+            "version": 44
+          },
+          {
+            "commandId": "review-boundary-30",
+            "errorCode": "version_conflict",
+            "version": 44
+          },
+          {
+            "commandId": "review-boundary-31",
+            "errorCode": "version_conflict",
+            "version": 44
+          }
+        ]
+      }
+    }
+  },
+  "auditBinary": {
+    "path": "/tmp/jc089-glory-fix-evidence/hegemony-audit-engine45-frozen",
+    "bytes": 11325432,
+    "sha256": "f77a6eb184af636a410c0a0fbdfdf85af8422914e57d672e42708f69d79f470a",
+    "cargoBinary": "hegemony-audit",
+    "rustc": "rustc 1.90.0 (1159e78c4 2025-09-14)",
+    "profile": "dev; CARGO_INCREMENTAL=0; CARGO_PROFILE_DEV_DEBUG=0; CARGO_PROFILE_DEV_STRIP=debuginfo; --locked --offline --jobs 1 --bin hegemony-audit",
+    "target": "/tmp/jz49-native-target",
+    "sourceFilesManifestSha256": "3435016ef523cf8873a99390e73613072f77a83a309de13920937a5469c1bd4c"
+  },
+  "driverAndTestFiles": [
+    {
+      "path": "rust-game/src/jc089_tests.rs",
+      "bytes": 35130,
+      "sha256": "1c35dcf7436141ab5ec12f7825d65e6c4827ed84217c4eedef9ef572d61d2cf4"
+    },
+    {
+      "path": "rust-game/src/green_minimum_tests.rs",
+      "bytes": 28821,
+      "sha256": "a68128e9c29cc4240ccbdb8a93abe066ebc0c102b89a932c31e46a563274dcf6"
+    },
+    {
+      "path": "rust-game-wasm/tests/jc089_compare.mjs",
+      "bytes": 3701,
+      "sha256": "3c31db8a0f41a8c140e80f418e258a21d24b04e6cc4dec822e8e0119f0383c2a"
+    },
+    {
+      "path": "web/src/game/JC089Curse.test.jsx",
+      "bytes": 8706,
+      "sha256": "67e1e78e1fc53f2b06187e0fb47c9b76f39743126a5134f9ca5e0df353006769"
+    },
+    {
+      "path": "web/src/game/jc089Test.fixture.json",
+      "bytes": 1664291,
+      "sha256": "2a24ed2a2ca7858ee1315a02c54b2e66ba11c66ee8dbce9fd9131179f9b4f273"
+    },
+    {
+      "path": "sites/test/kernel-routing.test.mjs",
+      "bytes": 4739,
+      "sha256": "5690853d4715c20748c8e365b62b367c7bd5a151fc70f5f3b079effb00def49b"
+    },
+    {
+      "path": "sites/test/integration.test.mjs",
+      "bytes": 17814,
+      "sha256": "35e74abbd1c970e4215c60a4211c2bb48075b05fd1337731fe23ddbb3343b4fe"
+    },
+    {
+      "path": "/tmp/jc089-glory-fix-evidence/closure/replay-exact-31.mjs",
+      "bytes": 2739,
+      "sha256": "c25fd4f3db5ff6675bdc8cdeaf10567a8232137a227224f84ca57a312a0c729e"
+    }
+  ],
+  "logs": [
+    {
+      "path": "/tmp/jc089-glory-fix-evidence/native-focused-final.log",
+      "bytes": 4656,
+      "sha256": "ce28884098e027092bb967aefcf77377e504832b6f773a2ff3b888eb4cba7bf0"
+    },
+    {
+      "path": "/tmp/jc089-glory-fix-evidence/next-round-focused.log",
+      "bytes": 2216,
+      "sha256": "53b4454b92b3ce9be4f0e9ac5c94e985829d9e64cdef2baa650c5b355886284e"
+    },
+    {
+      "path": "/tmp/jc089-glory-fix-evidence/native-full-final.log",
+      "bytes": 59530,
+      "sha256": "c906a63f802d1caf7ac6abf9b16610c87b23041ca315cb70cd0b676e9f9f908a"
+    },
+    {
+      "path": "/tmp/jc089-glory-fix-evidence/web-full-final.log",
+      "bytes": 507,
+      "sha256": "199cf7ce2e4c5d586ad7cc1464c7da428760dfeb90622299476946d9a8fbb54e"
+    },
+    {
+      "path": "/tmp/jc089-glory-fix-evidence/sites-full.log",
+      "bytes": 4628,
+      "sha256": "18c21b3cdbad913eb7575f018280e6beecdd2a2656456028196f2ca63017719a"
+    },
+    {
+      "path": "/tmp/jc089-glory-fix-evidence/sites-build.log",
+      "bytes": 1702,
+      "sha256": "1c6ddd46aa5c3b0755ba942c277e5d929fc3bc92050dbddee2154c5ced64916e"
+    },
+    {
+      "path": "/tmp/jc089-glory-fix-evidence/wasm-build-final.log",
+      "bytes": 214,
+      "sha256": "9bc37826f25d3395962c2c919653e1e387f7c1082d224412ef4261b7ea5913c9"
+    },
+    {
+      "path": "/tmp/jc089-glory-fix-evidence/audit-build-final.log",
+      "bytes": 134,
+      "sha256": "f64e499baa46d21b19b00b261058450c793e42e207983c227ac97adf863c0610"
+    },
+    {
+      "path": "/tmp/jc089-glory-fix-evidence/wasm-build-source-final.log",
+      "bytes": 214,
+      "sha256": "93cf7bdc49ec42032f744389c4125e977cce6d4ff30fa40d184a79f064b62bbe"
+    }
+  ]
+}

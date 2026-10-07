@@ -24,7 +24,7 @@ it('admits only JC089 and preserves every previously published card and deck fie
  const old=JSON.parse(prior.catalog());
  expect(catalog.engineVersion).toBe('rust-v0.2.45-jc089-poison-blood-candidate');
  expect(catalog.cardPoolVersion).toBe('limited-v2.42-jc089-poison-blood-candidate');
- expect(catalog.cards).toHaveLength(103);expect(catalog.cards.filter(c=>c.id!=='JC089')).toEqual(old.cards);
+ expect(catalog.cards).toHaveLength(103);expect(catalog.cards.filter(c=>c.id!=='JC089')).toEqual(old.cards.map(c=>{if(c.id!=='JC018')return c;const ruleTraits={...c.ruleTraits};delete ruleTraits.renown;return {...c,ruleTraits};}));
  for(const field of ['world','decks','societies','deckBuildRules'])expect(catalog[field]).toEqual(old[field]);
  expect(definitions.get('JC089')).toMatchObject({name:'毒血诅咒',kind:'attachment',cost:2,loyalty:['黑色'],magicIcon:'Blood',subtypes:['诅咒'],unique:false,deckCopyLimit:3});
  expect(definitions.get('JC089').text).toContain('永久战斗1和临时战斗1');
@@ -96,6 +96,18 @@ it('merges a cursed printed glory while preserving separately granted true renow
  expect(both.currentCombatGlory).toBe(true);expect(both.currentRenown).toBe(true);
  const m=render(<ReadModal card={both} definition={definitions.get('JC018')} viewerId="p0" onClose={vi.fn()}/>);
  expect(screen.getByText('威名')).toBeInTheDocument();expect(screen.getByText('声望')).toBeInTheDocument();m.unmount();
- const removed=view('printed-glory-curse-removed-baseline').regions.flatMap(r=>r.characters).find(c=>c.cardId==='JC018');
- expect(removed.currentCombatGlory).toBeUndefined();expect(removed.currentRenown).toBe(true); // Retained old baseline, not asserted canonically correct.
+ const removed=view('printed-glory-curse-removed').regions.flatMap(r=>r.characters).find(c=>c.cardId==='JC018');
+ expect(removed.currentCombatGlory).toBe(true);expect(removed.currentRenown).toBe(true); // Last loop has independently paid JC074.
+});
+
+it('keeps printed glory after paid last-curse removal without a false renown reward',()=>{
+ for(const kind of ['last-curse-removed-during-glory','last-curse-removed-after-glory']){
+  const v=view(kind),c=v.regions[2].characters.find(c=>c.cardId==='JC018');
+  expect(v.attachments).toHaveLength(0);expect(v.regions[2].influence).toEqual([1,0]);
+  expect(c.currentCombatGlory).toBe(true);expect(c.currentRenown).toBeUndefined();
+ }
+ const c=view('uncursed-printed-glory').regions[2].characters.find(c=>c.cardId==='JC018');
+ const m=render(<ReadModal card={c} definition={definitions.get('JC018')} viewerId="p0" onClose={vi.fn()}/>);
+ expect(screen.getByText('威名')).toBeInTheDocument();expect(screen.queryByText('声望')).not.toBeInTheDocument();m.unmount();
+ expect(definitions.get('JC018').ruleTraits.renown).toBeUndefined();
 });
