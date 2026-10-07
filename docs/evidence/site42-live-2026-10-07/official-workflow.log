@@ -29,9 +29,9 @@ npm notice
 ✨ Read 125 files from the assets directory /tmp/lantern-site-fce0-official/public
 Total Upload: 2241.58 KiB / gzip: 591.10 KiB
 Your Worker has access to the following bindings:
-Binding                    Resource         
-env.DB (hegemony)          D1 Database      
-env.ASSETS                 Assets           
+Binding                    Resource
+env.DB (hegemony)          D1 Database
+env.ASSETS                 Assets
 
 --dry-run: exiting now.
 npm notice
@@ -47,4 +47,3 @@ npm notice
 {"verifiedClientFiles": 123, "removedRebuildableMirrorBytes": 129303206}
 /workspace/game-publication-evidence/site42-lazy-debugger-97de78d.tar.gz
 {"project_id":"appgprj_6abf7bf54a7481918a50e1ef1509ca68","checkout_path":"/tmp/lantern-site-fce0-official","commit_sha":"4595431ba223736fee200844c200ccda48cd078b","archive":"/workspace/game-publication-evidence/site42-lazy-debugger-97de78d.tar.gz"}
-
