@@ -1,0 +1,89 @@
+{
+  "scope": "Actual built client; local static server fails first debugger chunk with503 then serves build. Backend absent; no browser response interception or gameplay fixtures",
+  "public_deployment_checked": false,
+  "live_backend_checked": false,
+  "checks": [
+    {
+      "route": "/",
+      "result": "pass",
+      "game_shell": true,
+      "debugger_chunk_requests": [],
+      "requests": [
+        "/",
+        "/assets/index-BGrjBTgw.js",
+        "/assets/index-Cxy2pYea.css",
+        "/api/catalog"
+      ]
+    },
+    {
+      "route": "/legacy-debugger",
+      "result": "pass",
+      "chunk503_contained_by_boundary": true,
+      "requests": [
+        "/legacy-debugger",
+        "/assets/index-BGrjBTgw.js",
+        "/assets/index-Cxy2pYea.css",
+        "/assets/LegacyDebuggerEntry-DGGDZhfh.js"
+      ],
+      "responses": [
+        {
+          "path": "/legacy-debugger",
+          "status": 200
+        },
+        {
+          "path": "/assets/index-Cxy2pYea.css",
+          "status": 200
+        },
+        {
+          "path": "/assets/index-BGrjBTgw.js",
+          "status": 200
+        },
+        {
+          "path": "/assets/LegacyDebuggerEntry-DGGDZhfh.js",
+          "status": 503
+        }
+      ]
+    },
+    {
+      "route": "/legacy-debugger",
+      "result": "pass",
+      "full_document_reload_recovers_failed_import": true,
+      "document_time_origin_changed": true,
+      "designed_mock_fallback": true,
+      "debugger_chunk_requests": [
+        "/assets/LegacyDebuggerEntry-DGGDZhfh.js"
+      ],
+      "requests": [
+        "/legacy-debugger",
+        "/assets/index-BGrjBTgw.js",
+        "/assets/index-Cxy2pYea.css",
+        "/assets/LegacyDebuggerEntry-DGGDZhfh.js",
+        "/api/debugger/messages"
+      ],
+      "responses": [
+        {
+          "path": "/legacy-debugger",
+          "status": 200
+        },
+        {
+          "path": "/assets/index-Cxy2pYea.css",
+          "status": 200
+        },
+        {
+          "path": "/assets/index-BGrjBTgw.js",
+          "status": 200
+        },
+        {
+          "path": "/assets/LegacyDebuggerEntry-DGGDZhfh.js",
+          "status": 200
+        },
+        {
+          "path": "/api/debugger/messages",
+          "status": 501
+        }
+      ],
+      "submit_disabled_without_live_server": true
+    }
+  ],
+  "uncaught_javascript_errors": []
+}

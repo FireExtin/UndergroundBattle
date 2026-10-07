@@ -1,0 +1,9 @@
+{
+  "target": "/tmp/undergroundbattle-shared-cloud/web/dist",
+  "logical_bytes_removed": 64651603,
+  "files_verified_before_delete": 123,
+  "restorable_baseline_files": 120,
+  "restorable_delta_files": 3,
+  "delta_archive_sha256": "b6bfd8051e460ceef9c5bc37e8757ec1408cabce7b436ad60f599c97b1d39f2e",
+  "scope": "Only this task rebuildable local client cache; source and exact review artifacts preserved. No Library or deployed data deleted."
+}
