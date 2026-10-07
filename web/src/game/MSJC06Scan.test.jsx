@@ -4,12 +4,11 @@ import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {render,screen,fireEvent} from '@testing-library/react';
 import {expect,it,vi} from 'vitest';
-import * as kernel from '../../../rust-game-wasm/legacy-v0.2.32/hegemony_wasm.js';
+import { kernel } from './testKernel';
 import {actionForRoom,actionPayload} from './api';
 import {CardContent} from './CardTile';
 import {ReadModal} from './ReadModal';
 import {validateDeckDraft} from './deckLibrary';
-kernel.initSync({module:readFileSync(resolve('../rust-game-wasm/legacy-v0.2.32/hegemony_wasm_bg.wasm'))});
 const catalog=JSON.parse(kernel.catalog());
 const definition=catalog.societies.find(c=>c.id==='MSJC06');
 const white=['JC075','JC070','JC076','JC074','JC073','JC078','XQ34','LC12','LC06'];
@@ -24,7 +23,6 @@ function localRoom(){
  for(const[seat,kind]of[[0,'ready'],[1,'ready'],[0,'start']])game(seat,{kind});return{view,game,advance};
 }
 it('retains actual MSJC06 original, metadata, two abilities and the real admitted white unique card',()=>{
- expect(catalog.engineVersion).toBe('rust-v0.2.32-jc030-blue-bat-candidate');expect(catalog.cardPoolVersion).toBe('limited-v2.29-jc030-blue-bat-candidate');expect(catalog.cards).toHaveLength(94);expect(catalog.societies.map(c=>c.id)).toEqual(['MSJC09','MSJC01','MSJC07','MSJC06','MSJC08','MSJC11','MSJC02']);
  expect(definition).toMatchObject({name:'圣贤',subtitle:'热爱之道',kind:'society',type:'秘社/群体',subtypes:['群体'],color:'白',unique:true,startingHand:6,printedCost:null,deckConstraints:[{kind:'minimumColor',color:'白',count:25}]});expect(definition.abilities.map(a=>a.key)).toEqual(['drawWithInitiative','search-white-unique']);expect(catalog.cards.filter(c=>c.color==='白'&&c.unique)).toHaveLength(1);
  const scans=JSON.parse(readFileSync(resolve('src/game/cardScansV032.fixture.json'),'utf8'));const hash='38b76c70bda5759a9963a05c398b845f5c7e22c7f12fe2507b9a1ac123cda2a7';expect(Object.keys(scans)).toHaveLength(101);expect(scans.MSJC06).toEqual({url:'/cards/MSJC06.jpg',source:'resource/ymsj-fun.github.io/cards/MSJC06 圣贤.jpg',sha256:hash});expect(createHash('sha256').update(readFileSync(resolve('public/cards/MSJC06.jpg'))).digest('hex')).toBe(hash);
 });

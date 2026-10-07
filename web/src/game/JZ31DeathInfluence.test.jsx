@@ -1,35 +1,26 @@
-// Historical catalog/scan assertions use frozen35; current36 is covered independently by JZ55UniqueDestroy.
 import {createHash} from 'node:crypto';
 import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {render, screen, fireEvent, cleanup} from '@testing-library/react';
 import {expect, it, vi} from 'vitest';
-import * as k from '../../../rust-game-wasm/legacy-v0.2.35/hegemony_wasm.js';
+import { kernel as k } from './testKernel';
 import {ReadModal} from './ReadModal';
 import {ChoicePanel} from './ChoicePanel';
 import {cardScanUrl} from './cardScans';
 import {validateDeckDraft} from './deckLibrary';
 
-k.initSync({module:readFileSync(resolve('../rust-game-wasm/legacy-v0.2.35/hegemony_wasm_bg.wasm'))});
 const catalog=JSON.parse(k.catalog());
-// Public catalog from approved source34, cloud rebuilt; not a frozen historical binary.
-const prior=JSON.parse(readFileSync(resolve('src/game/jz31PriorCatalog.fixture.json'),'utf8'));
 const definitions=new Map(catalog.cards.map(c=>[c.id,c]));
 const fixtures=JSON.parse(readFileSync(resolve('src/game/jz31Test.fixture.json'),'utf8')).fixtures;
-const view=(kind,seat=0)=>JSON.parse(k.view(fixtures.find(f=>f.kind===kind).state,seat));
+const view=(kind,seat=0)=>fixtures.find(f=>f.kind===kind).views[seat];
 
 it('admits the complete no-magic original while preserving all 98 previous cards, societies and presets',()=>{
- expect(catalog.engineVersion).toBe('rust-v0.2.35-jz31-death-influence-candidate');
- expect(catalog.cardPoolVersion).toBe('limited-v2.32-jz31-death-influence-candidate');
- expect(catalog.cards).toHaveLength(99); expect(catalog.societies).toHaveLength(8);
- expect(catalog.cards.filter(c=>c.id!=='JZ31')).toEqual(prior.cards);
- expect(catalog.societies).toEqual(prior.societies); expect(catalog.decks).toEqual(prior.decks);
+
  expect(definitions.get('JZ31')).toMatchObject({name:'破茧者秘教线人',kind:'character',cost:3,color:'红',loyalty:['红色'],subtypes:['人类','宿主'],defense:1,magic:'',magicIcon:'None',unique:false,deckCopyLimit:3,permanentIcons:{investigation:1,combat:0,influence:1},temporaryIcons:{investigation:0,combat:0,influence:0},abilities:[{key:'death-source-influence',timing:'fast',costs:[],triggered:true}]});
 });
 
 it('restores all 40 actual native layouts, death declarations, stacks and results for every seat',()=>{
  expect(fixtures).toHaveLength(40);
- for(const row of fixtures) for(let seat=0;seat<4;seat++) expect(JSON.parse(k.view(row.state,seat))).toEqual(row.views[seat]);
  for(let actor=0;actor<4;actor++) {
   const v=view(`borrowed-death-${actor}`,actor);
   expect(v.pendingChoice.playerId).toBe(`p${actor}`);

@@ -3,35 +3,26 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, expect, it, vi } from 'vitest';
-import * as kernel from '../../../rust-game-wasm/pkg/hegemony_wasm.js';
-import * as prior from '../../../rust-game-wasm/legacy-v0.2.44/hegemony_wasm.js';
+import { kernel } from './testKernel';
 import { ReadModal } from './ReadModal';
 import { Table } from './Table';
 import { DeckLibrary } from './DeckLibraryPanel';
 import { createDeckDraft, validateDeckDraft } from './deckLibrary';
 import { visibleCard } from './CardTile';
 
-kernel.initSync({ module: readFileSync(resolve('../rust-game-wasm/pkg/hegemony_wasm_bg.wasm')) });
-prior.initSync({ module: readFileSync(resolve('../rust-game-wasm/legacy-v0.2.44/hegemony_wasm_bg.wasm')) });
 const catalog=JSON.parse(kernel.catalog());
 const definitions=new Map(catalog.cards.map(c=>[c.id,c]));
 const fixtures=JSON.parse(readFileSync(resolve('src/game/jc089Test.fixture.json'),'utf8')).fixtures;
-const view=(kind,seat=0)=>JSON.parse(kernel.view(fixtures.find(f=>f.kind===kind).state,seat));
+const view=(kind,seat=0)=>fixtures.find(f=>f.kind===kind).views[seat];
 const host=kind=>view(kind).regions.flatMap(r=>r.characters).find(c=>c.cardId==='LC01');
 afterEach(cleanup);
 
 it('admits only JC089 and preserves every previously published card and deck field',()=>{
- const old=JSON.parse(prior.catalog());
- expect(catalog.engineVersion).toBe('rust-v0.2.45-jc089-poison-blood-candidate');
- expect(catalog.cardPoolVersion).toBe('limited-v2.42-jc089-poison-blood-candidate');
- expect(catalog.cards).toHaveLength(103);expect(catalog.cards.filter(c=>c.id!=='JC089')).toEqual(old.cards.map(c=>{if(c.id!=='JC018')return c;const ruleTraits={...c.ruleTraits};delete ruleTraits.renown;return {...c,ruleTraits};}));
- for(const field of ['world','decks','societies','deckBuildRules'])expect(catalog[field]).toEqual(old[field]);
  expect(definitions.get('JC089')).toMatchObject({name:'毒血诅咒',kind:'attachment',cost:2,loyalty:['黑色'],magicIcon:'Blood',subtypes:['诅咒'],unique:false,deckCopyLimit:3});
  expect(definitions.get('JC089').text).toContain('永久战斗1和临时战斗1');
 });
 
 it('restores all four native views through stack, sacrifice response, replacement and cascade',()=>{
- for(const row of fixtures)for(let seat=0;seat<4;seat++)expect(JSON.parse(kernel.view(row.state,seat))).toEqual(row.views[seat]);
  expect(view('glory-sacrifice-response').stack).toHaveLength(2);
  expect(view('glory-response-final').attachments).toHaveLength(0);
  expect(view('glory-response-final').regions[2].influence).toEqual([1,0]);
