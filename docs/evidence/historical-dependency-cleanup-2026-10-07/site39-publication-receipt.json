@@ -1,0 +1,46 @@
+{
+  "project": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+  "originalCommit": "7e5cc3c243aa6d52d2de9c3275ed6a0af28d9092",
+  "package": {
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "checkout_path": "/tmp/lantern-site-fce0-official",
+    "commit_sha": "362c537141b36b5a410260234fad5534dde39939",
+    "archive": "/workspace/game-publication-evidence/site39-merged-7e5cc3c.tar.gz"
+  },
+  "saved": {
+    "id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_e4522d3c51b48191b4faebefdc30ec8d",
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "version_number": 39,
+    "source": {
+      "commit_sha": "362c537141b36b5a410260234fad5534dde39939"
+    },
+    "archive_storage": {
+      "archive_format": "tar",
+      "sediment_file_id": "file_00000000d70c81f48a75bf5fb44bf1cc",
+      "content_hash": "sha256:fe0e127fe9c4df0e60384151800d4056b43f3fc261ca54d58b4bfc98c72e6770",
+      "size_bytes": 62627840,
+      "file_count": 127
+    },
+    "screenshot_url": null,
+    "deployment_id": null
+  },
+  "deployment": {
+    "id": "appgdep_6ac6703bd7b48191aa1b193b687c37b6",
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "title": "\u9690\u79d8\u4e16\u754c \u00b7 \u9738\u6743",
+    "version_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_e4522d3c51b48191b4faebefdc30ec8d",
+    "type": "publish",
+    "status": "succeeded",
+    "url": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site",
+    "has_mcp": false,
+    "screenshot_asset_pointer": null,
+    "provider_deployment_id": "site---6abf7bf54a7481918a50e1ef1509ca68",
+    "failure_message": null,
+    "env_set_revision": 0,
+    "updated_at": "2026-10-07T16:16:14.392391+00:00"
+  },
+  "runtimeReset": false,
+  "publicAudiencePreserved": true,
+  "engine": "rust-v0.2.45-jc089-poison-blood-candidate",
+  "pool": "limited-v2.42-jc089-poison-blood-candidate"
+}

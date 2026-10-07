@@ -1,0 +1,9 @@
+{
+  "archive": "/workspace/game-publication-evidence/site39-merged-7e5cc3c.tar.gz",
+  "bytes": 46020094,
+  "sha256": "3314f0425259f226cffe9845f8dd730702a5e360b186fcc4658c2c288f7d7776",
+  "files": 127,
+  "wasmSha256": "afc1b42523111dc242fd21850da9af243112a619c9f759bc60cbabac045883f7",
+  "originalCommit": "7e5cc3c243aa6d52d2de9c3275ed6a0af28d9092",
+  "providerCommit": "362c537141b36b5a410260234fad5534dde39939"
+}
