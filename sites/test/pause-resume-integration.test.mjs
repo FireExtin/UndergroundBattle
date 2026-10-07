@@ -11,7 +11,7 @@ import { RoomService, digest } from '../src/service.mjs';
 import { routeKernels } from '../src/kernel-router.mjs';
 import * as abi from '../generated/hegemony_wasm.js';
 
-for (const [label,file] of [['saved paused table','pause-resume-native-v048.json'],['sealed choice/trigger/paid stack pause','sealing-room-native-v048.json'],['JZ50 trigger/stack/private search pause','jz50-room-native-v048.json']]) test(label+': exact native transitions, D1 reopen, receipts and isolated second table', async t => {
+for (const [label,file] of [['saved paused table','pause-resume-native-v049.json'],['sealed choice/trigger/paid stack pause','sealing-room-native-v049.json'],['JZ50 trigger/stack/private search pause','jz50-room-native-v049.json']]) test(label+': exact native transitions, D1 reopen, receipts and isolated second table', async t => {
   abi.initSync({ module: readFileSync('../rust-game-wasm/pkg/hegemony_wasm_bg.wasm') });
   const trace = JSON.parse(readFileSync(new URL('./fixtures/'+file, import.meta.url), 'utf8'));
   const kernel = routeKernels(abi);
@@ -78,7 +78,7 @@ for (const [label,file] of [['saved paused table','pause-resume-native-v048.json
   }
 });
 
-for(const [file,engine] of [['pause-resume-native-v046.json','rust-v0.2.46-pause-resume-candidate'],['pause-resume-native-v047.json','rust-v0.2.47-sealed-cards-candidate']]) test('engine48 rejects preserved actual '+engine+' paused room without relabelling its state',()=>{
+for(const [file,engine] of [['pause-resume-native-v046.json','rust-v0.2.46-pause-resume-candidate'],['pause-resume-native-v047.json','rust-v0.2.47-sealed-cards-candidate'],['pause-resume-native-v048.json','rust-v0.2.48-jz50-death-search-candidate']]) test('engine49 rejects preserved actual '+engine+' paused room without relabelling its state',()=>{
   abi.initSync({module:readFileSync('../rust-game-wasm/pkg/hegemony_wasm_bg.wasm')});
   const old=JSON.parse(readFileSync(new URL('./fixtures/'+file,import.meta.url),'utf8'));
   const identity=JSON.parse(abi.stateIdentity(old.initialState));

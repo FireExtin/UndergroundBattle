@@ -1,4 +1,5 @@
-//! Explicit offline layouts, then normal paid/response commands; not UI evidence.
+//! Offline mechanism layouts and a separate fresh-lobby lifecycle match.
+//! Both use native commands; neither is browser or online-room evidence.
 use crate::jc029_tests::{apply, board, checkpoint, choose, fund, game, pass_top, reject};
 use crate::{catalog, model::*, rules::*};
 
@@ -895,5 +896,573 @@ fn sealing_private_selection_trigger_and_paid_stack_pause_resume_actual_room_tra
     if let Ok(dir) = std::env::var("SEALING_ROOM_TRACE_DIR") {
         std::fs::create_dir_all(&dir).unwrap();
         std::fs::write(format!("{dir}/native-trace.json"),serde_json::to_vec(&serde_json::json!({"scope":"explicit-offline-native-sealing-private-choice-trigger-paid-stack-pause","initialState":initial,"steps":steps})).unwrap()).unwrap();
+    }
+}
+
+fn sealed_game_finished_by_actual_pass_commands() -> (Game, String, String) {
+    let mut g = game(0);
+    fund(&mut g, 0, "XQ12", 3);
+    let source = board(&mut g, "XQ40", 0, 0);
+    let host = board(&mut g, "JC125", 0, 2);
+    let payload = held(&mut g, "JZ31", 1, 0);
+    begin_seal(&mut g, 0, &source, &host);
+    choose(&mut g, vec![payload]);
+    let sealed = g.sealed_cards[0].card.id.clone();
+    // Explicit endgame layout: opposing decks are exhausted. Normal pass
+    // commands advance to the next preparation draw, which really eliminates
+    // the opposing team and calls finish. Neither status nor winner is assigned.
+    g.players[2].deck.clear();
+    g.players[3].deck.clear();
+    g.add_control(
+        &host,
+        1,
+        ControlLifetime::SourceLeaves {
+            source_instance: source,
+        },
+        SubtypeChange::None,
+    );
+    for _ in 0..200 {
+        if g.status == "finished" {
+            break;
+        }
+        assert!(
+            g.pending.is_none(),
+            "unexpected endgame choice {:?}",
+            g.pending.as_ref().map(|p| &p.choice.kind)
+        );
+        let seat = g
+            .living(g.priority_team)
+            .into_iter()
+            .find(|s| !g.passed.contains(s))
+            .unwrap();
+        apply(&mut g, seat, Action::new("pass"));
+    }
+    assert_eq!(g.status, "finished");
+    assert_eq!(g.winner_team, Some(0));
+    assert!(g.players[2].eliminated && g.players[3].eliminated);
+    assert_eq!(g.sealed_cards.len(), 1);
+    assert_eq!(g.sealed_cards[0].host_id, host);
+    assert_eq!(g.sealed_cards[0].card.id, sealed);
+    assert_eq!(g.sealed_cards[0].card.owner, 1);
+    Game::from_persisted(&serde_json::to_string(&g).unwrap()).unwrap();
+    checkpoint(&g);
+    (g, host, sealed)
+}
+
+#[test]
+fn sealing_finished_restart_clears_old_seals_roundtrips_and_accepts_next_command() {
+    let (mut g, host, sealed) = sealed_game_finished_by_actual_pass_commands();
+    assert!(!g.control_effects.is_empty() && !g.control_baselines.is_empty());
+    apply(&mut g, 0, Action::new("restart"));
+    assert!(
+        g.sealed_cards.is_empty(),
+        "restart retained a payload bound to old host {host}"
+    );
+    assert!(g.board(&host).is_none());
+    assert!(g.view(0).sealed_cards.is_empty());
+    assert!(g.control_effects.is_empty() && g.control_baselines.is_empty());
+    assert!(g.attachments.is_empty() && g.region_return.is_none());
+    assert!(
+        g.modifiers.is_empty()
+            && g.turn_attribute_modifiers.is_empty()
+            && g.turn_ability_usage.is_empty()
+    );
+    assert!(g.stack.is_empty() && g.winner_team.is_none());
+    assert!(g
+        .players
+        .iter()
+        .all(|p| !p.eliminated && p.score_cards.is_empty() && p.hand.len() + p.deck.len() == 50));
+    assert!(!serde_json::to_string(&g)
+        .unwrap()
+        .contains(&format!("\"id\":\"{sealed}\"")));
+    let saved = serde_json::to_string(&g).unwrap();
+    let mut restored = Game::from_persisted(&saved).unwrap();
+    let pending = restored.pending.clone().unwrap();
+    assert_eq!(pending.choice.kind, "mulligan");
+    apply(
+        &mut restored,
+        pending.seat,
+        Action {
+            choice_id: Some(pending.choice.id),
+            selected: Some(vec![]),
+            ..Action::new("choose")
+        },
+    );
+    assert_eq!(restored.status, "playing");
+    assert!(restored.sealed_cards.is_empty());
+    checkpoint(&restored);
+}
+
+#[cfg(feature = "native")]
+#[tokio::test]
+async fn sealing_finished_restart_native_store_reopen_next_choice_and_original_receipt() {
+    use crate::room::{RoomCommand, RoomEnvelope, SessionAction};
+    use crate::service::{CreateRoom, JoinRoom, Store};
+    let dir = tempfile::tempdir().unwrap();
+    let path = dir.path().join("sealed-restart-local-fixture.sqlite3");
+    let store = Store::open(&path).unwrap();
+    let host = store
+        .create(CreateRoom {
+            name: "P0".into(),
+            mode: "teams".into(),
+            deck_id: "watchers".into(),
+            deck_draft: None,
+        })
+        .await
+        .unwrap();
+    let mut sessions = vec![host];
+    for seat in 1..4 {
+        sessions.push(
+            store
+                .join(JoinRoom {
+                    invite_code: sessions[0].invite_code.clone(),
+                    name: format!("P{seat}"),
+                    deck_id: "watchers".into(),
+                    deck_draft: None,
+                })
+                .await
+                .unwrap(),
+        );
+    }
+    drop(store);
+    let (mut g, host_id, _) = sealed_game_finished_by_actual_pass_commands();
+    g.room_id = sessions[0].room_id.clone();
+    g.invite_code = sessions[0].invite_code.clone();
+    let mut room = crate::jc029_tests::envelope(&g);
+    let initial = serde_json::to_string(&room).unwrap();
+    let db = rusqlite::Connection::open(&path).unwrap();
+    // Disposable authenticated Store fixture, with an actual terminal Game;
+    // no user DB mutation and no manually assigned finished status.
+    db.execute(
+        "UPDATE rooms SET state=?1,revision=?2 WHERE id=?3",
+        rusqlite::params![initial, room.revision, g.room_id],
+    )
+    .unwrap();
+    drop(db);
+    let restart = RoomCommand {
+        command_id: "sealed-new-game".into(),
+        expected_version: room.revision,
+        action: SessionAction::Game {
+            action: Action::new("restart"),
+        },
+    };
+    let first = room.transition(0, Some(restart.clone()), 0).unwrap();
+    assert!(first.error_code.is_none());
+    room = RoomEnvelope::from_persisted(&first.state).unwrap();
+    assert!(room.game.sealed_cards.is_empty() && room.game.board(&host_id).is_none());
+    let store = Store::open(&path).unwrap();
+    let reply = store
+        .command_at_now(&g.room_id, &sessions[0].token, restart.clone(), 0)
+        .await
+        .unwrap();
+    assert_eq!(
+        serde_json::to_value(&reply).unwrap(),
+        serde_json::to_value(&first.view).unwrap()
+    );
+    drop(store);
+    let store = Store::open(&path).unwrap();
+    assert_eq!(
+        serde_json::to_value(
+            store
+                .state_at_now(&g.room_id, &sessions[0].token, 90000)
+                .await
+                .unwrap()
+        )
+        .unwrap(),
+        serde_json::to_value(room.view(0, 90000)).unwrap()
+    );
+    let p = room.game.pending.clone().unwrap();
+    let next = RoomCommand {
+        command_id: "sealed-next-mulligan".into(),
+        expected_version: room.revision,
+        action: SessionAction::Game {
+            action: Action {
+                choice_id: Some(p.choice.id),
+                selected: Some(vec![]),
+                ..Action::new("choose")
+            },
+        },
+    };
+    let second = room.transition(p.seat, Some(next.clone()), 90000).unwrap();
+    assert!(second.error_code.is_none());
+    let reply = store
+        .command_at_now(&g.room_id, &sessions[p.seat].token, next.clone(), 90000)
+        .await
+        .unwrap();
+    assert_eq!(
+        serde_json::to_value(&reply).unwrap(),
+        serde_json::to_value(&second.view).unwrap()
+    );
+    let saved = Store::open(&path).unwrap();
+    let repeat = saved
+        .command_at_now(&g.room_id, &sessions[0].token, restart.clone(), 86400000)
+        .await
+        .unwrap();
+    assert_eq!(
+        serde_json::to_value(&repeat).unwrap(),
+        serde_json::to_value(&first.view).unwrap()
+    );
+    drop(saved);
+    drop(store);
+    let db = rusqlite::Connection::open(&path).unwrap();
+    let actual: String = db
+        .query_row("SELECT state FROM rooms WHERE id=?1", [&g.room_id], |row| {
+            row.get(0)
+        })
+        .unwrap();
+    assert_eq!(actual, second.state);
+    RoomEnvelope::from_persisted(&actual).unwrap();
+    let count: u64 = db
+        .query_row(
+            "SELECT COUNT(*) FROM commands WHERE room_id=?1",
+            [&g.room_id],
+            |row| row.get(0),
+        )
+        .unwrap();
+    assert_eq!(count, 2);
+    if let Ok(dir) = std::env::var("SEALING_RESTART_TRACE_DIR") {
+        std::fs::create_dir_all(&dir).unwrap();
+        let steps = vec![
+            serde_json::json!({"seat":0,"command":restart,"serverNowMs":"0","transition":first,
+            "views":(0..4).map(|seat|RoomEnvelope::from_persisted(&first.state).unwrap().view(seat,0)).collect::<Vec<_>>()}),
+            serde_json::json!({"seat":p.seat,"command":next,"serverNowMs":"90000","transition":second,
+            "views":(0..4).map(|seat|RoomEnvelope::from_persisted(&second.state).unwrap().view(seat,90000)).collect::<Vec<_>>()}),
+        ];
+        std::fs::write(format!("{dir}/native-trace.json"),serde_json::to_vec(&serde_json::json!({"scope":"actual-pass-terminal-then-authenticated-local-Store-restart-reopen-next-command-original-receipt","initialState":initial,"steps":steps})).unwrap()).unwrap();
+    }
+}
+
+#[cfg(feature = "native")]
+#[test]
+fn sealing_fresh_lobby_legal_match_terminal_restart_and_persisted_next_choice() {
+    use crate::deck::DeckDraft;
+    use crate::room::{Decision, RoomCommand, RoomEnvelope, SessionAction};
+    use sha2::{Digest, Sha256};
+    fn hash(bytes: &[u8]) -> String {
+        format!("{:x}", Sha256::digest(bytes))
+    }
+    fn draft(seat: usize) -> DeckDraft {
+        let entries: Vec<(&str, usize)> = match seat {
+            0 => vec![("XQ40", 3), ("XQ45", 3), ("JC125", 44)],
+            1 => vec![
+                ("JZ49", 3),
+                ("JC084", 3),
+                ("JC032", 3),
+                ("JZ24", 3),
+                ("JC125", 38),
+            ],
+            _ => vec![("JC125", 50)],
+        };
+        DeckDraft {
+            id: format!("fresh-sealed-{seat}"),
+            name: format!("Restart lifecycle P{seat}"),
+            description: "Legal custom deck, deterministic fresh-lobby test only".into(),
+            society_id: None,
+            cards: entries
+                .into_iter()
+                .map(|(id, count)| catalog::DeckEntry {
+                    card_id: id.into(),
+                    count,
+                })
+                .collect(),
+            rules_version: catalog::RULES_VERSION.into(),
+            card_pool_version: catalog::POOL_VERSION.into(),
+            engine_version: catalog::ENGINE_VERSION.into(),
+            updated_at: "2026-10-07".into(),
+        }
+    }
+    // Production factory and validated custom decks. After joining, every
+    // state change below is a real Room command: no hand/deck/board/status edit.
+    let mut g = Game::new_with_deck(
+        "fresh-sealed-restart".into(),
+        "FRESH49".into(),
+        "teams".into(),
+        "P0".into(),
+        draft(0),
+        9,
+    )
+    .unwrap();
+    for seat in 1..4 {
+        g.join_with_deck(format!("P{seat}"), draft(seat)).unwrap();
+    }
+    let mut room = RoomEnvelope::from_game(g);
+    let initial = serde_json::to_string(&room).unwrap();
+    let mut steps = Vec::new();
+    let mut now = 0;
+    let mut record = |room: &mut RoomEnvelope, seat: usize, action: SessionAction| {
+        now += 1;
+        let command = RoomCommand {
+            command_id: format!("fresh-sealed-{}", steps.len()),
+            expected_version: room.revision,
+            action,
+        };
+        let transition = room.transition(seat, Some(command.clone()), now).unwrap();
+        assert!(
+            transition.error_code.is_none(),
+            "step {} seat {seat}: {:?}",
+            steps.len(),
+            transition.error_message
+        );
+        assert_eq!(
+            serde_json::to_string(&room.replay_events(&transition.journal).unwrap()).unwrap(),
+            transition.state
+        );
+        *room = RoomEnvelope::from_persisted(&transition.state).unwrap();
+        let views = (0..4)
+            .map(|s| {
+                hash(
+                    &serde_json::to_vec(&serde_json::to_value(room.view(s, now)).unwrap()).unwrap(),
+                )
+            })
+            .collect::<Vec<_>>();
+        // Compact hashes are of canonical full transition JSON and exact opaque
+        // state bytes, not just selected fields. This avoids huge trace copies.
+        steps.push(serde_json::json!({"seat":seat,"command":command,"serverNowMs":now.to_string(),
+            "transitionSha256":hash(&serde_json::to_vec(&serde_json::to_value(&transition).unwrap()).unwrap()),
+            "stateSha256":hash(transition.state.as_bytes()),"viewSha256":views}));
+        transition
+    };
+    for seat in 0..4 {
+        record(
+            &mut room,
+            seat,
+            SessionAction::Game {
+                action: Action::new("ready"),
+            },
+        );
+    }
+    record(
+        &mut room,
+        0,
+        SessionAction::Game {
+            action: Action::new("start"),
+        },
+    );
+    let mut sealed_host = None;
+    let mut milled = [0usize; 4];
+    for move_no in 0..10000 {
+        if room.game.status == "finished" {
+            break;
+        }
+        let g = &room.game;
+        let (seat, session) = if let Some(p) = &g.pending {
+            let selected = match &p.resolution {
+                ChoiceResolution::Declare { declaration, .. }
+                    if declaration.ability.key == "mill-two-entry" =>
+                {
+                    let target = if milled[2] <= milled[3] { 2 } else { 3 };
+                    milled[target] += 2;
+                    vec![player_id(target)]
+                }
+                _ if p.choice.kind == "handSeal" => vec![p
+                    .choice
+                    .options
+                    .iter()
+                    .find(|o| {
+                        g.players[p.seat]
+                            .hand
+                            .iter()
+                            .any(|c| c.id == o.id && c.definition == "JC125")
+                    })
+                    .unwrap()
+                    .id
+                    .clone()],
+                _ => p
+                    .choice
+                    .options
+                    .iter()
+                    .take(p.choice.min.unwrap_or(0))
+                    .map(|o| o.id.clone())
+                    .collect(),
+            };
+            (
+                p.seat,
+                SessionAction::Game {
+                    action: Action {
+                        choice_id: Some(p.choice.id.clone()),
+                        selected: Some(selected),
+                        ..Action::new("choose")
+                    },
+                },
+            )
+        } else if let Some(window) = &room.pacing.window {
+            let seat = *window
+                .members
+                .iter()
+                .find(|(_, d)| matches!(d, Decision::Undecided { .. }))
+                .unwrap()
+                .0;
+            (
+                seat,
+                SessionAction::PassResponse {
+                    window_id: window.id.clone(),
+                },
+            )
+        } else {
+            let seat = g
+                .living(g.priority_team)
+                .into_iter()
+                .find(|s| !g.passed.contains(s))
+                .unwrap();
+            let legal = g.legal_actions(seat);
+            let card_def = |a: &LegalAction| {
+                a.action
+                    .card_id
+                    .as_ref()
+                    .and_then(|id| g.players[seat].hand.iter().find(|c| &c.id == id))
+                    .map(|c| c.definition.as_str())
+            };
+            let source = g
+                .regions
+                .iter()
+                .flat_map(|r| &r.cards)
+                .find(|c| c.controller == 0 && c.definition == "XQ40");
+            let host = g.regions.get(2).and_then(|r| {
+                r.cards
+                    .iter()
+                    .find(|c| c.controller == 0 && c.definition == "JC125")
+            });
+            let preferred = if seat == 0 && g.sealed_cards.is_empty() && sealed_host.is_none() {
+                legal
+                    .iter()
+                    .find(|a| {
+                        a.action.kind == "activate"
+                            && a.action.ability_id.as_deref() == Some("draw-hand-seal")
+                            && a.action.target_id.as_deref() == host.map(|c| c.id.as_str())
+                    })
+                    .or_else(|| {
+                        legal.iter().find(|a| {
+                            a.action.kind == "deploy"
+                                && card_def(a) == Some("XQ40")
+                                && source.is_none()
+                                && a.action.region == Some(0)
+                        })
+                    })
+                    .or_else(|| {
+                        legal.iter().find(|a| {
+                            a.action.kind == "deploy"
+                                && card_def(a) == Some("JC125")
+                                && host.is_none()
+                                && a.action.region == Some(2)
+                        })
+                    })
+                    .or_else(|| {
+                        legal.iter().find(|a| {
+                            a.action.kind == "asset"
+                                && (card_def(a) == Some("XQ45")
+                                    || (card_def(a) == Some("XQ40")
+                                        && g.players[0]
+                                            .hand
+                                            .iter()
+                                            .filter(|c| c.definition == "XQ40")
+                                            .count()
+                                            > 1))
+                        })
+                    })
+                    .or_else(|| {
+                        legal.iter().find(|a| {
+                            a.action.kind == "asset"
+                                && card_def(a) == Some("JC125")
+                                && (host.is_some()
+                                    || g.players[0]
+                                        .hand
+                                        .iter()
+                                        .filter(|c| c.definition == "JC125")
+                                        .count()
+                                        > 1)
+                        })
+                    })
+            } else if seat == 1 {
+                legal
+                    .iter()
+                    .find(|a| {
+                        a.action.kind == "deploy"
+                            && card_def(a) == Some("JZ49")
+                            && sealed_host.is_some()
+                            && (milled[2] < 2 || milled[3] < 2)
+                            && a.action.region == Some(4)
+                    })
+                    .or_else(|| {
+                        legal.iter().find(|a| {
+                            a.action.kind == "asset"
+                                && matches!(card_def(a), Some("JC084" | "JC032" | "JZ24"))
+                        })
+                    })
+                    .or_else(|| {
+                        legal
+                            .iter()
+                            .find(|a| a.action.kind == "asset" && card_def(a) == Some("JC125"))
+                    })
+            } else {
+                None
+            };
+            let action = preferred
+                .or_else(|| legal.iter().find(|a| a.action.kind == "pass"))
+                .unwrap_or_else(|| panic!("no action at move {move_no}, seat {seat}"))
+                .action
+                .clone();
+            (seat, SessionAction::Game { action })
+        };
+        record(&mut room, seat, session);
+        if let Some(seal) = room.game.sealed_cards.first() {
+            sealed_host = Some(seal.host_id.clone());
+        }
+    }
+    assert_eq!(
+        room.game.status,
+        "finished",
+        "turn {}, decks {:?}, mills {milled:?}, seals {}",
+        room.game.turn,
+        room.game
+            .players
+            .iter()
+            .map(|p| p.deck.len())
+            .collect::<Vec<_>>(),
+        room.game.sealed_cards.len()
+    );
+    assert_eq!(room.game.winner_team, Some(0));
+    assert!(room.game.players[2].eliminated && room.game.players[3].eliminated);
+    assert_eq!(
+        room.game.sealed_cards.len(),
+        1,
+        "natural terminal must retain the reviewable seal"
+    );
+    let host = sealed_host.unwrap();
+    assert_eq!(room.game.sealed_cards[0].host_id, host);
+    let terminal = serde_json::to_string(&room).unwrap();
+    room = RoomEnvelope::from_persisted(&terminal).unwrap();
+    let first = record(
+        &mut room,
+        0,
+        SessionAction::Game {
+            action: Action::new("restart"),
+        },
+    );
+    assert!(room.game.sealed_cards.is_empty() && room.game.board(&host).is_none());
+    // Reopen the real restart result before sending the next mandatory choice.
+    room = RoomEnvelope::from_persisted(&first.state).unwrap();
+    let p = room.game.pending.clone().unwrap();
+    let second = record(
+        &mut room,
+        p.seat,
+        SessionAction::Game {
+            action: Action {
+                choice_id: Some(p.choice.id),
+                selected: Some(vec![]),
+                ..Action::new("choose")
+            },
+        },
+    );
+    assert_eq!(room.game.status, "playing");
+    assert!(room.game.sealed_cards.is_empty());
+    drop(record);
+    if let Ok(dir) = std::env::var("SEALING_FRESH_RESTART_TRACE_DIR") {
+        std::fs::create_dir_all(&dir).unwrap();
+        std::fs::write(format!("{dir}/fresh-match.json"), serde_json::to_vec(&serde_json::json!({"scope":"actual-fresh-lobby-validated-decks-seed9-legal-Room-commands-no-board-or-terminal-injection","initialState":initial,"steps":steps,"terminalState":terminal,"restartState":first.state,"nextChoiceState":second.state})).unwrap()).unwrap();
+        let restart_steps = vec![
+            serde_json::json!({"seat":0,"command":steps[steps.len()-2]["command"],"serverNowMs":steps[steps.len()-2]["serverNowMs"],"transition":first,"views":(0..4).map(|s|RoomEnvelope::from_persisted(&first.state).unwrap().view(s,now-1)).collect::<Vec<_>>()}),
+            serde_json::json!({"seat":p.seat,"command":steps[steps.len()-1]["command"],"serverNowMs":steps[steps.len()-1]["serverNowMs"],"transition":second,"views":(0..4).map(|s|RoomEnvelope::from_persisted(&second.state).unwrap().view(s,now)).collect::<Vec<_>>()}),
+        ];
+        std::fs::write(format!("{dir}/native-trace.json"),serde_json::to_vec(&serde_json::json!({"scope":"natural-fresh-match-terminal-state-then-real-restart-persist-next-choice","initialState":terminal,"steps":restart_steps})).unwrap()).unwrap();
     }
 }

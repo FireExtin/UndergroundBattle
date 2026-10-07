@@ -1,0 +1,8 @@
+{
+  "all107PriorCardRecordsByteStructureEqual": true,
+  "preservedTrackedFixtureFiles": 19,
+  "unchangedDraftSha256": {
+    "rust-game/src/bounded_search.rs": "3b331a87b936532d76568802cb7cdf0b0f2e629a25a1e72a8e6b46b12dbf5f37",
+    "rust-game/src/bounded_search_tests.rs": "7249ccbfabe58c553034e80222193cbecc5e50ae34c3896938b5d72718c6d963"
+  }
+}

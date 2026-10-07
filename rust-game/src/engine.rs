@@ -793,6 +793,7 @@ impl Game {
         self.turn_ability_usage.clear();
         self.regions.clear();
         self.attachments.clear();
+        self.sealed_cards.clear();
         self.region_return = None;
         self.world.clear();
         self.stack.clear();
