@@ -1,0 +1,14 @@
+{
+  "engine": "rust-v0.2.50-bounded-entry-search-candidate",
+  "pool": "limited-v2.45-bounded-entry-search-candidate",
+  "ordinaryCards": 109,
+  "explicitNativeSteps": 776,
+  "accepted": 743,
+  "rejected": 33,
+  "fourSeatViewParity": true,
+  "freshLegalFactoryByteEqual": true,
+  "freshNormalCommands": 497,
+  "freshWholeTransitionsAndOpaqueStatesExact": true,
+  "freshTerminalStateByteEqual": true,
+  "wasmSha256": "e3d26f7041a114a96c9933374a33e63b0c8e45b9a4506b7937fb70cbf99a9d81"
+}

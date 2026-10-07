@@ -1,0 +1,6 @@
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+   Compiling hegemony-server v0.1.0 (/tmp/undergroundbattle-shared-cloud/rust-game)
+   Compiling hegemony-wasm v0.1.0 (/tmp/undergroundbattle-shared-cloud/rust-game-wasm)
+    Finished `release` profile [optimized] target(s) in 28.97s

@@ -1,0 +1,20 @@
+   Compiling hegemony-server v0.1.0 (/tmp/undergroundbattle-shared-cloud/rust-game)
+error[E0308]: mismatched types
+   --> rust-game/src/bounded_search_tests.rs:821:31
+    |
+821 |                 g.leave_board(&c);
+    |                   ----------- ^^ expected `&str`, found `&Card`
+    |                   |
+    |                   arguments to this method are incorrect
+    |
+    = note: expected reference `&str`
+               found reference `&model::Card`
+note: method defined here
+   --> rust-game/src/attachment.rs:169:19
+    |
+169 |     pub(crate) fn leave_board(&mut self, id: &str) -> Option<(usize, Card)> {
+    |                   ^^^^^^^^^^^            --------
+
+For more information about this error, try `rustc --explain E0308`.
+error: could not compile `hegemony-server` (lib test) due to 1 previous error
+warning: build failed, waiting for other jobs to finish...

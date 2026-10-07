@@ -1,0 +1,63 @@
+
+> undergroundbattle-web@0.1.0 test
+> vitest --run --maxWorkers=2
+
+
+ RUN  v4.1.2 /tmp/undergroundbattle-shared-cloud/web
+
+ ❯ src/game/JZ55UniqueDestroy.test.jsx (8 tests | 1 failed) 975ms
+   × opens the exact original and displays cannot respond without inventing a magic requirement 6ms
+ ❯ src/game/JC089Curse.test.jsx (10 tests | 1 failed) 778ms
+   × validates three curse copies and rejects four without admitting JZ50 10ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/game/JC089Curse.test.jsx > validates three curse copies and rejects four without admitting JZ50
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ src/game/JC089Curse.test.jsx:78:34
+     76|  const invalid={...draft,cards:[{cardId:'JC089',count:4},{cardId:'JC12…
+     77|  expect(()=>kernel.newGameWithDeck('jc089-invalid','LOCAL','teams','P0…
+     78|  expect(definitions.has('JZ50')).toBe(false);
+       |                                  ^
+     79| });
+     80|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  src/game/JZ55UniqueDestroy.test.jsx > opens the exact original and displays cannot respond without inventing a magic requirement
+AssertionError: expected [ 'JC125', 'LC19', 'LC20', …(117) ] to have a length of 118 but got 120
+
+- Expected
++ Received
+
+- 118
++ 120
+
+ ❯ src/game/JZ55UniqueDestroy.test.jsx:36:29
+     34|  const hash='9155faa90be22aa66e56148dfacd0d517eb7b6f7b56fd1b45b71a6804…
+     35|  const scans=JSON.parse(readFileSync(resolve('public/card-scans.json')…
+     36|  expect(Object.keys(scans)).toHaveLength(118);expect(scans.JZ55.sha256…
+       |                             ^
+     37|  expect(createHash('sha256').update(readFileSync(resolve('public/cards…
+     38|  const card=view('targets-seat0').hand.find(c=>c.cardId==='JZ55');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  2 failed | 72 passed (74)
+      Tests  2 failed | 645 passed (647)
+   Start at  23:18:52
+   Duration  53.24s (transform 1.61s, setup 6.02s, import 4.26s, tests 58.38s, environment 28.64s)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

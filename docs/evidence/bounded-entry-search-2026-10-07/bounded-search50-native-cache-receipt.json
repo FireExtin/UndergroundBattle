@@ -1,0 +1,676 @@
+{
+  "at": "2026-10-07T23:09:27.003640+00:00",
+  "deletedTaskCompilerOutputs": [
+    {
+      "name": "hegemony_server-fa35e11fc7b74bf5.aihqyh24ss2u645y4xg85l7ol.0u12w2c.rcgu.o",
+      "bytes": 156544
+    },
+    {
+      "name": "hegemony_server-fa35e11fc7b74bf5.e3qmxsrh8rf1vg1s0d5nlptvd.0u12w2c.rcgu.o",
+      "bytes": 0
+    },
+    {
+      "name": "hegemony_server-fa35e11fc7b74bf5.3tzc6gp4ka2462r3cmp4c9qhg.0u12w2c.rcgu.o",
+      "bytes": 5742592
+    },
+    {
+      "name": "hegemony_server-fa35e11fc7b74bf5.eqtp9kau1ewyp295frzqdr57x.0u12w2c.rcgu.o",
+      "bytes": 121328
+    },
+    {
+      "name": "hegemony_server-fa35e11fc7b74bf5.bprszpaj1h18woae6woacyg2y.0u12w2c.rcgu.o",
+      "bytes": 3200
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.c5ijlzk2kk4oru21gvt3kbn27.1rrwlwq.rcgu.o",
+      "bytes": 0
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.c1klmev6ban77bgmk9r1yd2ml.1rrwlwq.rcgu.o",
+      "bytes": 3407872
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.5edc9yba7s0vpqbb46ja52clo.1rrwlwq.rcgu.o",
+      "bytes": 0
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.d9koq669g9b9obc5k2ta07ed0.1rrwlwq.rcgu.o",
+      "bytes": 38984
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.6caqa02mgqxkqq2jaah6tispr.1rrwlwq.rcgu.o",
+      "bytes": 5203912
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.eslq8cllqcl31y320lql3o4kp.1rrwlwq.rcgu.o",
+      "bytes": 56808
+    },
+    {
+      "name": "libhegemony_server-d7924ecba59d7cb1.rmeta",
+      "bytes": 7437297
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.73n5u4a1r8yon3kkpvp3yw3fj.1on61li.rcgu.o",
+      "bytes": 17368
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.659izhiwqoi2qwf0ien20ho9c.1on61li.rcgu.o",
+      "bytes": 28672
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.7aegntnod97vtmgwnoygciqud.1on61li.rcgu.o",
+      "bytes": 16784
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.6gwbzoqmjc7p8e9q3vh90pgv5.1on61li.rcgu.o",
+      "bytes": 188424
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.9quiw3j57xfo7qoyfw2sv0y51.1on61li.rcgu.o",
+      "bytes": 57960
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.1kb656vifll3yi4ax3ha4nszb.1on61li.rcgu.o",
+      "bytes": 0
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.a9ib2uko9gnwpkewh84hw1g84.1on61li.rcgu.o",
+      "bytes": 151104
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.artnnkdmu8gptuq160vbcybgz.1on61li.rcgu.o",
+      "bytes": 314576
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.afwe0m3n8mb7axphqnb7buesm.1on61li.rcgu.o",
+      "bytes": 26832
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.5vh3oo8n1fwhjcsvgt1c89mop.1on61li.rcgu.o",
+      "bytes": 317144
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.bhjq2qz7at8vkn78e9dfqy080.1on61li.rcgu.o",
+      "bytes": 163352
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.d7e44bf5jdli2qomthr27j1vr.1on61li.rcgu.o",
+      "bytes": 437104
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.cejjx1sc87za1kpucuouxjw15.1on61li.rcgu.o",
+      "bytes": 88112
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.dy0js7r7g1s1imgrwflnqrz07.1on61li.rcgu.o",
+      "bytes": 416960
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.5vrbtkrlq4feomlu2aokpetcn.1on61li.rcgu.o",
+      "bytes": 324720
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.cewadfmi5ed21n9rdtwyxnewk.1on61li.rcgu.o",
+      "bytes": 25056
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.czmk1xeuu78e89n5z9cre0zho.1on61li.rcgu.o",
+      "bytes": 18016
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.aslc799hyo36jw3se6qu15db6.1on61li.rcgu.o",
+      "bytes": 258584
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.05l47i73m7u46nhuqxo8495nw.1on61li.rcgu.o",
+      "bytes": 24120
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.11auk4txma7p26lzis9uutlu4.1on61li.rcgu.o",
+      "bytes": 252208
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.104mre356i5ad20yv6jq33bug.1on61li.rcgu.o",
+      "bytes": 112328
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.0ecdson8rculhokfpaqul3mqa.1on61li.rcgu.o",
+      "bytes": 337088
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.19iv1q4d1zw6q91b0fcvzo6mz.1on61li.rcgu.o",
+      "bytes": 21712
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.bfr4s6c8rm81s9dc2xg7qq8be.1on61li.rcgu.o",
+      "bytes": 256952
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.19tk9ozlrh0q9xd8gruaa94k5.1on61li.rcgu.o",
+      "bytes": 19176
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.4k64naj0i8ha0ie721cag2zez.1on61li.rcgu.o",
+      "bytes": 485688
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.1qyv59chlj5id5y98bykugfbh.1on61li.rcgu.o",
+      "bytes": 15232
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.4rizoc3cloopvw1x1brlxoucf.1on61li.rcgu.o",
+      "bytes": 648416
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.1tt7wmnct6473tt3gd9t9ugmr.1on61li.rcgu.o",
+      "bytes": 107104
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.3ww7eczl2xgabytslh9ozh948.1on61li.rcgu.o",
+      "bytes": 399832
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.37w7njm6z9v0c2znazsiwwmab.1on61li.rcgu.o",
+      "bytes": 93256
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.ealezjdcorvxq5ttq5w2a35mj.1on61li.rcgu.o",
+      "bytes": 399424
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.4uhhumslm6nxmprrpwnjiyerk.1on61li.rcgu.o",
+      "bytes": 41296
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.dtbyfbxxc1nas3hm6vmihe9bz.1on61li.rcgu.o",
+      "bytes": 228208
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.5i9fz6cyeka2g7is96id726ap.1on61li.rcgu.o",
+      "bytes": 51072
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.5ef02yi0v4fc1d5jzkaff4jb1.1on61li.rcgu.o",
+      "bytes": 197048
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.5v4xk9s0elmzd4wuypxquxobu.1on61li.rcgu.o",
+      "bytes": 44824
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.bzyb2o7k9hq681bz2wnof1mjd.1on61li.rcgu.o",
+      "bytes": 307752
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.68m5fefqxvq2rtygtjl6m08qp.1on61li.rcgu.o",
+      "bytes": 50104
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.480z8k5une3laa4n1309k6qb6.1on61li.rcgu.o",
+      "bytes": 302648
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.6h4y22ofs3xjqlg9osxcfom0w.1on61li.rcgu.o",
+      "bytes": 26296
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.5ybvnczmdtb2ish8mnxzl2535.1on61li.rcgu.o",
+      "bytes": 192608
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.6m8j77253mf92gudc5ujo0qon.1on61li.rcgu.o",
+      "bytes": 45104
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.bpq4mw6ohb89rxmmc4pc98h10.1on61li.rcgu.o",
+      "bytes": 411960
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.77kh0gp50z1q0ebeezniifgxb.1on61li.rcgu.o",
+      "bytes": 43296
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.ej343fkdryrhtg322vzfmkos8.1on61li.rcgu.o",
+      "bytes": 569296
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.7l4e11g5am3wwdz8qdr8pg4q9.1on61li.rcgu.o",
+      "bytes": 164168
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.6v1grkcvmci5gepykj08zctje.1on61li.rcgu.o",
+      "bytes": 648704
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.8aqsye40hrlbvi5f9itj867be.1on61li.rcgu.o",
+      "bytes": 163720
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.0of5n2t0i86lz5vyuhjxu78ed.1on61li.rcgu.o",
+      "bytes": 721856
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.8eknu7mad8howq29z514pk5vt.1on61li.rcgu.o",
+      "bytes": 64528
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.3zy3xq07dnz2s9p041sdgi2na.1on61li.rcgu.o",
+      "bytes": 729648
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.8idvsy9njr1i8bkxtm2wgo6i2.1on61li.rcgu.o",
+      "bytes": 219104
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.46m2sa3vf17k12oqqqngj51zi.1on61li.rcgu.o",
+      "bytes": 444912
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.924xstiemgqsju74osgksz427.1on61li.rcgu.o",
+      "bytes": 12744
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.3you5p8ffy9fpig0u6kexlxvi.1on61li.rcgu.o",
+      "bytes": 288464
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.97agjhh09my5x3jpezewgqq6a.1on61li.rcgu.o",
+      "bytes": 142928
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.26zd5uyu0hfga9eq6wcqt5bko.1on61li.rcgu.o",
+      "bytes": 284880
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.9pfgg78jyaytylwooe2244zup.1on61li.rcgu.o",
+      "bytes": 53456
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.8osjy3c0ibyblmcse1a1kgoc6.1on61li.rcgu.o",
+      "bytes": 665632
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.9rh2s4kohro0y1rk1wl4qa0gt.1on61li.rcgu.o",
+      "bytes": 51016
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.c9ezak7etun41wcb57wrz6qa7.1on61li.rcgu.o",
+      "bytes": 609648
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.9ts0z8nb8mqtfq23z7dver2ni.1on61li.rcgu.o",
+      "bytes": 69232
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.1c8h0arrnomdd9i6bnhx8x4cn.1on61li.rcgu.o",
+      "bytes": 673416
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.a80rjunmtj6opmpvpnbhz637t.1on61li.rcgu.o",
+      "bytes": 21736
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.4qg5xbxkkarb6e0wvulzr0edh.1on61li.rcgu.o",
+      "bytes": 290544
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.adc2xx8lplpvfo6vjjsdt6a8e.1on61li.rcgu.o",
+      "bytes": 31688
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.dwl9mw8ihck9lnqpaz381137d.1on61li.rcgu.o",
+      "bytes": 662160
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.b8gy566bgepv5pfqb66hwld3i.1on61li.rcgu.o",
+      "bytes": 67120
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.alzrdgqb3jq8f05a5ubs6okn0.1on61li.rcgu.o",
+      "bytes": 936336
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.bfsmf793dz6vi90orgbkj575l.1on61li.rcgu.o",
+      "bytes": 127560
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.3h6nhj37wwezj1tzley32bj3b.1on61li.rcgu.o",
+      "bytes": 639744
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.bg4qt7ixkoaj2ronwoarfd1bv.1on61li.rcgu.o",
+      "bytes": 102880
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.9hjewn8wbei1y0q9t1vw75zq2.1on61li.rcgu.o",
+      "bytes": 616664
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.cnv5xn4rgrv5izlmdlvmsb7kj.1on61li.rcgu.o",
+      "bytes": 31008
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.2jtsujmhx8q08e0ia41677vp9.1on61li.rcgu.o",
+      "bytes": 697016
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.8yaeen41refpr5wnkzy5vujkf.1on61li.rcgu.o",
+      "bytes": 417720
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.cv1ghir7gepjvraunvkcn947v.1on61li.rcgu.o",
+      "bytes": 63144
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.dlsnys6xyo824uwpx8ldljttu.1on61li.rcgu.o",
+      "bytes": 31352
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.eq4y9wp5sbykysq1giyoa1ud8.1on61li.rcgu.o",
+      "bytes": 1942312
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.dusjc1f114v5ozudrj3sw0tjq.1on61li.rcgu.o",
+      "bytes": 26184
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.e6vz9freg4iyp0g80k7kxg2s0.1on61li.rcgu.o",
+      "bytes": 603416
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.eystkfr45htb62k9aafgucukv.1on61li.rcgu.o",
+      "bytes": 125800
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.9mqwhcfcwqoduvb0qmn1av8br.1on61li.rcgu.o",
+      "bytes": 1260568
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.055ddblyqha1f6zg0xfelh42z.1on61li.rcgu.o",
+      "bytes": 26304
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.dpwzjw5n2xrh2x8vzuo0hcqgb.1on61li.rcgu.o",
+      "bytes": 1781784
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.0ok5mz000lfhlz7s6ouui4p1c.1on61li.rcgu.o",
+      "bytes": 41840
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.2xa8k6p8kchcnqusma3wu2u8w.1on61li.rcgu.o",
+      "bytes": 932808
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.1pt4xuy3r3pk213vppnkt4zco.1on61li.rcgu.o",
+      "bytes": 60248
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.02evun74s55yf29qthi285uqb.1on61li.rcgu.o",
+      "bytes": 567288
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.6juryqni3hx8iizotwnrdahtz.1on61li.rcgu.o",
+      "bytes": 1195888
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.23uyp853y47ge1do7vujy8fh5.1on61li.rcgu.o",
+      "bytes": 18880
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.2t1pk9mjwhmxyukg2n2ys02x0.1on61li.rcgu.o",
+      "bytes": 71232
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.8ex188m94rp6xtgwgh0t5sl0y.1on61li.rcgu.o",
+      "bytes": 735112
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.3urg9lbqsv9ykraku0yxpaaid.1on61li.rcgu.o",
+      "bytes": 34992
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.0urfglgu77r76pw6x58kwgwp9.1on61li.rcgu.o",
+      "bytes": 1392872
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.6fu2qltng6sn6vx9g5bxj48hl.1on61li.rcgu.o",
+      "bytes": 37928
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.cbqi5cxxapbmbfhnbj6w74uti.1on61li.rcgu.o",
+      "bytes": 2591344
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.6svp1xnpi28u60ht67fniwrep.1on61li.rcgu.o",
+      "bytes": 116144
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.7y3bpwanvq9xpkzyelm57gjj8.1on61li.rcgu.o",
+      "bytes": 1913680
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.70348pb2wnn91t61438sun25s.1on61li.rcgu.o",
+      "bytes": 115608
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.d9x2wymoslg41nao9wqh1mfhd.1on61li.rcgu.o",
+      "bytes": 2202704
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.a61jpbr4k3w1a5rvrtprdt7w8.1on61li.rcgu.o",
+      "bytes": 5105264
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.72ce1cyv7wv0t537axdzr8sh7.1on61li.rcgu.o",
+      "bytes": 15312
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.806t1jpq7jpsw16uzh7roj36z.1on61li.rcgu.o",
+      "bytes": 52208
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.f29z6ezkp20dz4b4ydqdo1q1s.1on61li.rcgu.o",
+      "bytes": 2566304
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.b8jyyy1b4yvn5cg1duord64yk.1on61li.rcgu.o",
+      "bytes": 13360
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.5pef3x5ncg4tj6uteh1qtyi2y.1on61li.rcgu.o",
+      "bytes": 2951656
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.72cwz5q51wgw6f8jusip8tp1n.1on61li.rcgu.o",
+      "bytes": 4574616
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.c35av6htff71zyph7p2vd0l33.1on61li.rcgu.o",
+      "bytes": 38008
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.c5ijlzk2kk4oru21gvt3kbn27.1on61li.rcgu.o",
+      "bytes": 43280
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.c1klmev6ban77bgmk9r1yd2ml.1on61li.rcgu.o",
+      "bytes": 4911744
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.5edc9yba7s0vpqbb46ja52clo.1on61li.rcgu.o",
+      "bytes": 5103816
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.d9koq669g9b9obc5k2ta07ed0.1on61li.rcgu.o",
+      "bytes": 38984
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.6caqa02mgqxkqq2jaah6tispr.1on61li.rcgu.o",
+      "bytes": 5203912
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.eslq8cllqcl31y320lql3o4kp.1on61li.rcgu.o",
+      "bytes": 56808
+    },
+    {
+      "name": "hegemony_server-d7924ecba59d7cb1.d",
+      "bytes": 2430
+    },
+    {
+      "name": "hegemony_server-e2ddef3771dd4b38",
+      "bytes": 21710984
+    },
+    {
+      "name": "hegemony_server-c30c2f824021076f",
+      "bytes": 22663024
+    },
+    {
+      "name": "hegemony_server-508275d88ac51881",
+      "bytes": 1092304
+    },
+    {
+      "name": "libhegemony_server-cfc2b3b84588257e.rlib",
+      "bytes": 33817298
+    },
+    {
+      "name": "libhegemony_server-cfc2b3b84588257e.rmeta",
+      "bytes": 7463332
+    },
+    {
+      "name": "hegemony_server-f44735054d360642",
+      "bytes": 22492840
+    },
+    {
+      "name": "hegemony_server-5d606452f1cf855f",
+      "bytes": 13165672
+    },
+    {
+      "name": "hegemony_server-2cae1c1472439887",
+      "bytes": 1092304
+    },
+    {
+      "name": "libhegemony_server-ced755d07720f4f8.rlib",
+      "bytes": 33397074
+    },
+    {
+      "name": "libhegemony_server-ced755d07720f4f8.rmeta",
+      "bytes": 7442128
+    },
+    {
+      "name": "hegemony_server-d4e007240b6858a3",
+      "bytes": 22312448
+    },
+    {
+      "name": "hegemony_server-d4e007240b6858a3.d",
+      "bytes": 209
+    },
+    {
+      "name": "libhegemony_server-f3ead76b869082ff.rlib",
+      "bytes": 32827652
+    },
+    {
+      "name": "libhegemony_server-f3ead76b869082ff.rmeta",
+      "bytes": 7326118
+    },
+    {
+      "name": "hegemony_server-f44735054d360642.d",
+      "bytes": 209
+    },
+    {
+      "name": "hegemony_server-5d606452f1cf855f.d",
+      "bytes": 3285
+    },
+    {
+      "name": "hegemony_server-2cae1c1472439887.d",
+      "bytes": 209
+    },
+    {
+      "name": "hegemony_server-ced755d07720f4f8.d",
+      "bytes": 2184
+    },
+    {
+      "name": "hegemony_server-f3ead76b869082ff.d",
+      "bytes": 2083
+    },
+    {
+      "name": "hegemony_server-c30c2f824021076f.d",
+      "bytes": 209
+    },
+    {
+      "name": "hegemony_server-508275d88ac51881.d",
+      "bytes": 209
+    },
+    {
+      "name": "hegemony_server-cfc2b3b84588257e.d",
+      "bytes": 2301
+    },
+    {
+      "name": "hegemony_server-e00fb743d3b6d8a3",
+      "bytes": 22228480
+    },
+    {
+      "name": "hegemony_server-a5eca4e09fa0334f",
+      "bytes": 20854464
+    },
+    {
+      "name": "hegemony_server-9c35bf37f8375925",
+      "bytes": 1092304
+    },
+    {
+      "name": "libhegemony_server-7077a037016deff2.rlib",
+      "bytes": 32555706
+    },
+    {
+      "name": "libhegemony_server-7077a037016deff2.rmeta",
+      "bytes": 7257685
+    },
+    {
+      "name": "libhegemony_server-d52ddde878149af8.rlib",
+      "bytes": 76275150
+    },
+    {
+      "name": "libhegemony_server-d52ddde878149af8.rmeta",
+      "bytes": 7257685
+    },
+    {
+      "name": "hegemony_server-96397eae26bc093c.d",
+      "bytes": 4767
+    },
+    {
+      "name": "hegemony_server-d52ddde878149af8.d",
+      "bytes": 2083
+    },
+    {
+      "name": "hegemony_server-66286ff409846a9e.d",
+      "bytes": 4767
+    },
+    {
+      "name": "hegemony_server-fa35e11fc7b74bf5.d",
+      "bytes": 5522
+    },
+    {
+      "name": "hegemony_server-e00fb743d3b6d8a3.d",
+      "bytes": 209
+    },
+    {
+      "name": "hegemony_server-a5eca4e09fa0334f.d",
+      "bytes": 4767
+    },
+    {
+      "name": "hegemony_server-9c35bf37f8375925.d",
+      "bytes": 209
+    },
+    {
+      "name": "hegemony_server-7077a037016deff2.d",
+      "bytes": 2083
+    },
+    {
+      "name": "hegemony_server-e2ddef3771dd4b38.d",
+      "bytes": 5310
+    }
+  ],
+  "freedApparentBytes": 484285986,
+  "freeBytes": 461967360,
+  "reason": "Inactive reproducible hegemony compile variants and failed rustc output; original source/frozen WASM preserved."
+}

@@ -1,0 +1,451 @@
+
+> undergroundbattle-web@0.1.0 test
+> vitest --run --maxWorkers=2 src/game/BoundedEntrySearch.test.jsx
+
+
+ RUN  v4.1.2 /tmp/undergroundbattle-shared-cloud/web
+
+ ❯ src/game/BoundedEntrySearch.test.jsx (13 tests | 6 failed) 1160ms
+     × BQ104 accepts exactly one employee and keeps zero and a second employee unavailable 20ms
+     × employeeEmpty has an enabled explicit zero completion and no decline 157ms
+     × passersEmpty has an enabled explicit zero completion and no decline 17ms
+     × hidden borrowed employee is visible to frozen controller and remains opaque to its owner 2ms
+     × reader opens BQ104 original face and printed abilities 49ms
+     × reader opens XQ48 original face and printed abilities 25ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/game/BoundedEntrySearch.test.jsx > fixed printed entry searches; actual Native layouts and current WASM > BQ104 accepts exactly one employee and keeps zero and a second employee unavailable
+TypeError: Cannot read properties of undefined (reading 'get')
+ ❯ src/game/ChoicePanel.tsx:98:80
+
+ ❯ ChoicePanel src/game/ChoicePanel.tsx:95:62
+ ❯ Object.react_stack_bottom_frame ../../../workspace/jc094-game/web/node_modules/react-dom/cjs/react-dom-client.development.js:25904:20
+ ❯ renderWithHooks ../../../workspace/jc094-game/web/node_modules/react-dom/cjs/react-dom-client.development.js:7662:22
+ ❯ updateFunctionComponent ../../../workspace/jc094-game/web/node_modules/react-dom/cjs/react-dom-client.development.js:10166:19
+ ❯ beginWork ../../../workspace/jc094-game/web/node_modules/react-dom/cjs/react-dom-client.development.js:11778:18
+ ❯ runWithFiberInDEV ../../../workspace/jc094-game/web/node_modules/react-dom/cjs/react-dom-client.development.js:874:13
+ ❯ performUnitOfWork ../../../workspace/jc094-game/web/node_modules/react-dom/cjs/react-dom-client.development.js:17641:22
+ ❯ workLoopSync ../../../workspace/jc094-game/web/node_modules/react-dom/cjs/react-dom-client.development.js:17469:41
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯
+
+ FAIL  src/game/BoundedEntrySearch.test.jsx > fixed printed entry searches; actual Native layouts and current WASM > employeeEmpty has an enabled explicit zero completion and no decline
+AssertionError: expected "vi.fn()" to be called with arguments: [ { choiceId: 'i242', …(4) } ]
+
+Number of calls: 0
+
+ ❯ src/game/BoundedEntrySearch.test.jsx:36:42
+     34|   const {v,submit}=choice(name);const button=screen.getByRole('button'…
+     35|   expect(button).toBeEnabled();expect(screen.queryByRole('button',{nam…
+     36|   fireEvent.click(button);expect(submit).toHaveBeenCalledWith({...acti…
+       |                                          ^
+     37|  });
+     38|  it.each([0,1,3])('XQ48 actual UI submits %i real selected instances i…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/6]⎯
+
+ FAIL  src/game/BoundedEntrySearch.test.jsx > fixed printed entry searches; actual Native layouts and current WASM > passersEmpty has an enabled explicit zero completion and no decline
+AssertionError: expected "vi.fn()" to be called with arguments: [ { choiceId: 'i245', …(4) } ]
+
+Number of calls: 0
+
+ ❯ src/game/BoundedEntrySearch.test.jsx:36:42
+     34|   const {v,submit}=choice(name);const button=screen.getByRole('button'…
+     35|   expect(button).toBeEnabled();expect(screen.queryByRole('button',{nam…
+     36|   fireEvent.click(button);expect(submit).toHaveBeenCalledWith({...acti…
+       |                                          ^
+     37|  });
+     38|  it.each([0,1,3])('XQ48 actual UI submits %i real selected instances i…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/6]⎯
+
+ FAIL  src/game/BoundedEntrySearch.test.jsx > fixed printed entry searches; actual Native layouts and current WASM > hidden borrowed employee is visible to frozen controller and remains opaque to its owner
+AssertionError: expected undefined to be 'p2' // Object.is equality
+
+- Expected:
+"p2"
+
++ Received:
+undefined
+
+ ❯ src/game/BoundedEntrySearch.test.jsx:68:146
+     66|  });
+     67|  it('hidden borrowed employee is visible to frozen controller and rema…
+     68|   const mine=fixture('borrowed').views[0].regions[2].characters.find(c…
+       |                                                                                                                                                  ^
+     69|   for(const seat of [1,2,3]) {const c=fixture('borrowed').views[seat].…
+     70|  });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/6]⎯
+
+ FAIL  src/game/BoundedEntrySearch.test.jsx > fixed printed entry searches; actual Native layouts and current WASM > reader opens BQ104 original face and printed abilities
+TestingLibraryElementError: Unable to find an element with the text: 公开 进场触发 从你的牌库中寻找一张印刷费用小于或等于③的雇员角色牌，展示后以暗藏者状态置于本地区，然后洗牌。 (normalized from '公开
+进场触发 从你的牌库中寻找一张印刷费用小于或等于③的雇员角色牌，展示后以暗藏者状态置于本地区，然后洗牌。'). This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <div
+      class="hg-modal-backdrop"
+    >
+      <section
+        aria-label="放大阅读猎头顾问"
+        aria-modal="true"
+        class="hg-modal hg-reading"
+        data-reading-card="reader-BQ104"
+        role="dialog"
+        tabindex="-1"
+      >
+        <button
+          aria-label="关闭放大阅读"
+          class="hg-close"
+        >
+          ×
+        </button>
+        <span
+          class="hg-eyebrow"
+        >
+          卡牌档案 · 放大阅读
+        </span>
+        <div
+          aria-label="阅读内容"
+          class="hg-reading-tabs"
+          role="group"
+        >
+          <button
+            aria-pressed="true"
+            class="hg-button hg-button-quiet"
+            type="button"
+          >
+            当前状态与文字
+          </button>
+          <button
+            aria-pressed="false"
+            class="hg-button hg-button-quiet"
+            type="button"
+          >
+            原始牌面
+          </button>
+        </div>
+        <div
+          class="hg-reading-card"
+        >
+          <span
+            class="hg-card-top"
+          >
+            <span
+              class="hg-card-kind"
+            >
+              人类/雇员
+            </span>
+            <span
+              aria-label="费用 3"
+              class="hg-cost"
+              title="费用"
+            >
+              3
+            </span>
+          </span>
+          <strong
+            class="hg-card-name"
+          >
+            猎头顾问
+          </strong>
+          <span
+            aria-hidden="true"
+            class="hg-card-art"
+          >
+            <span>
+              ◈
+            </span>
+            <i />
+          </span>
+          <span
+            class="hg-card-affiliation"
+          >
+            无忠诚要求
+          </span>
+          <span
+            aria-label="图标：调查0，战斗0，势力1"
+            class="hg-icons "
+          >
+            <span
+              title="调查"
+            >
+              ◈
+              <b>
+                0
+              </b>
+            </span>
+            <span
+              title="战斗"
+            >
+              ⚔
+              <b>
+                0
+              </b>
+            </span>
+            <span
+              title="势力"
+            >
+              ⚑
+              <b>
+                1
+              </b>
+            </span>
+          </span>
+          <span
+            class="hg-card-text"
+          >
+            公开
+进场触发 从你的牌库中寻找一张印刷费用小于或等于③的雇员角色牌，展示后以暗藏者状态置于本地区，然后洗牌。
+          </span>
+          <span
+            class="hg-card-footer"
+          >
+            <span>
+              防御 1
+            </span>
+          </span>
+        </div>
+        <p>
+          ◈ 调查 · ⚔ 战斗 · ⚑ 势力。
+          白底图标仅在操控者团队持先手时生效。
+        </p>
+      </section>
+    </div>
+  </div>
+</body>
+ ❯ Object.getElementError ../../../workspace/jc094-game/web/node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ ../../../workspace/jc094-game/web/node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ ../../../workspace/jc094-game/web/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ ../../../workspace/jc094-game/web/node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ src/game/BoundedEntrySearch.test.jsx:76:79
+     74|   fireEvent.click(screen.getByRole('button',{name:'原始牌面'}));
+     75|   expect(screen.getByRole('img',{name:`${c.name}原始牌面`})).toHaveAttribu…
+     76|   fireEvent.click(screen.getByRole('button',{name:'当前状态与文字'})); expect…
+       |                                                                               ^
+     77|  });
+     78| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/6]⎯
+
+ FAIL  src/game/BoundedEntrySearch.test.jsx > fixed printed entry searches; actual Native layouts and current WASM > reader opens XQ48 original face and printed abilities
+TestingLibraryElementError: Unable to find an element with the text: 公开 声望 进场触发 自你的牌库中寻找至多三张名为无知路人的牌，将他们放置进场且置于街头演说家所在的地区，然后洗牌。 (normalized from '公开 声望
+进场触发 自你的牌库中寻找至多三张名为无知路人的牌，将他们放置进场且置于街头演说家所在的地区，然后洗牌。'). This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <div
+      class="hg-modal-backdrop"
+    >
+      <section
+        aria-label="放大阅读街头演说家"
+        aria-modal="true"
+        class="hg-modal hg-reading"
+        data-reading-card="reader-XQ48"
+        role="dialog"
+        tabindex="-1"
+      >
+        <button
+          aria-label="关闭放大阅读"
+          class="hg-close"
+        >
+          ×
+        </button>
+        <span
+          class="hg-eyebrow"
+        >
+          卡牌档案 · 放大阅读
+        </span>
+        <div
+          aria-label="阅读内容"
+          class="hg-reading-tabs"
+          role="group"
+        >
+          <button
+            aria-pressed="true"
+            class="hg-button hg-button-quiet"
+            type="button"
+          >
+            当前状态与文字
+          </button>
+          <button
+            aria-pressed="false"
+            class="hg-button hg-button-quiet"
+            type="button"
+          >
+            原始牌面
+          </button>
+        </div>
+        <div
+          class="hg-reading-card"
+        >
+          <span
+            class="hg-card-top"
+          >
+            <span
+              class="hg-card-kind"
+            >
+              人类/政治家
+            </span>
+            <span
+              aria-label="费用 4"
+              class="hg-cost"
+              title="费用"
+            >
+              4
+            </span>
+          </span>
+          <strong
+            class="hg-card-name"
+          >
+            街头演说家
+          </strong>
+          <span
+            aria-hidden="true"
+            class="hg-card-art"
+          >
+            <span>
+              ◈
+            </span>
+            <i />
+          </span>
+          <span
+            class="hg-card-affiliation"
+          >
+            无忠诚要求
+          </span>
+          <span
+            aria-label="图标：调查0，战斗0，势力1"
+            class="hg-icons "
+          >
+            <span
+              title="调查"
+            >
+              ◈
+              <b>
+                0
+              </b>
+            </span>
+            <span
+              title="战斗"
+            >
+              ⚔
+              <b>
+                0
+              </b>
+            </span>
+            <span
+              title="势力"
+            >
+              ⚑
+              <b>
+                1
+              </b>
+            </span>
+          </span>
+          <span
+            class="hg-card-text"
+          >
+            公开 声望
+进场触发 自你的牌库中寻找至多三张名为无知路人的牌，将他们放置进场且置于街头演说家所在的地区，然后洗牌。
+          </span>
+          <span
+            class="hg-card-footer"
+          >
+            <span>
+              防御 1
+            </span>
+          </span>
+        </div>
+        <p>
+          ◈ 调查 · ⚔ 战斗 · ⚑ 势力。
+          白底图标仅在操控者团队持先手时生效。
+        </p>
+      </section>
+    </div>
+  </div>
+</body>
+ ❯ Object.getElementError ../../../workspace/jc094-game/web/node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ ../../../workspace/jc094-game/web/node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ ../../../workspace/jc094-game/web/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ ../../../workspace/jc094-game/web/node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ src/game/BoundedEntrySearch.test.jsx:76:79
+     74|   fireEvent.click(screen.getByRole('button',{name:'原始牌面'}));
+     75|   expect(screen.getByRole('img',{name:`${c.name}原始牌面`})).toHaveAttribu…
+     76|   fireEvent.click(screen.getByRole('button',{name:'当前状态与文字'})); expect…
+       |                                                                               ^
+     77|  });
+     78| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/6]⎯
+
+⎯⎯⎯⎯⎯⎯ Unhandled Errors ⎯⎯⎯⎯⎯⎯
+
+Vitest caught 2 unhandled errors during the test run.
+This might cause false positive tests. Resolve unhandled errors to make sure your tests are not affected.
+
+⎯⎯⎯⎯⎯ Uncaught Exception ⎯⎯⎯⎯⎯
+TypeError: onSubmit is not a function
+ ❯ submit src/game/ChoicePanel.tsx:59:5
+     57|   const submit = (decline = false) => {
+     58|     if (!action || (decline && !canDecline)) return;
+     59|     onSubmit(decline ? { ...action, choiceId: choice.id, selected: [] }
+       |     ^
+     60|       : buildChoiceAction(action, choice, selected, top, bottom, alloc…
+     61|   };
+ ❯ onClick src/game/ChoicePanel.tsx:105:107
+ ❯ executeDispatch ../../../workspace/jc094-game/web/node_modules/react-dom/cjs/react-dom-client.development.js:19116:9
+ ❯ runWithFiberInDEV ../../../workspace/jc094-game/web/node_modules/react-dom/cjs/react-dom-client.development.js:874:13
+ ❯ processDispatchQueue ../../../workspace/jc094-game/web/node_modules/react-dom/cjs/react-dom-client.development.js:19166:19
+ ❯ ../../../workspace/jc094-game/web/node_modules/react-dom/cjs/react-dom-client.development.js:19767:9
+ ❯ batchedUpdates$1 ../../../workspace/jc094-game/web/node_modules/react-dom/cjs/react-dom-client.development.js:3255:40
+ ❯ dispatchEventForPluginEventSystem ../../../workspace/jc094-game/web/node_modules/react-dom/cjs/react-dom-client.development.js:19320:7
+ ❯ dispatchEvent ../../../workspace/jc094-game/web/node_modules/react-dom/cjs/react-dom-client.development.js:23585:11
+ ❯ dispatchDiscreteEvent ../../../workspace/jc094-game/web/node_modules/react-dom/cjs/react-dom-client.development.js:23553:11
+
+This error originated in "src/game/BoundedEntrySearch.test.jsx" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The latest test that might've caused the error is "employeeEmpty has an enabled explicit zero completion and no decline". It might mean one of the following:
+- The error was thrown, while Vitest was running this test.
+- If the error occurred after the test had been completed, this was the last documented test before it was thrown.
+
+⎯⎯⎯⎯⎯ Uncaught Exception ⎯⎯⎯⎯⎯
+TypeError: onSubmit is not a function
+ ❯ submit src/game/ChoicePanel.tsx:59:5
+     57|   const submit = (decline = false) => {
+     58|     if (!action || (decline && !canDecline)) return;
+     59|     onSubmit(decline ? { ...action, choiceId: choice.id, selected: [] }
+       |     ^
+     60|       : buildChoiceAction(action, choice, selected, top, bottom, alloc…
+     61|   };
+ ❯ onClick src/game/ChoicePanel.tsx:105:107
+ ❯ executeDispatch ../../../workspace/jc094-game/web/node_modules/react-dom/cjs/react-dom-client.development.js:19116:9
+ ❯ runWithFiberInDEV ../../../workspace/jc094-game/web/node_modules/react-dom/cjs/react-dom-client.development.js:874:13
+ ❯ processDispatchQueue ../../../workspace/jc094-game/web/node_modules/react-dom/cjs/react-dom-client.development.js:19166:19
+ ❯ ../../../workspace/jc094-game/web/node_modules/react-dom/cjs/react-dom-client.development.js:19767:9
+ ❯ batchedUpdates$1 ../../../workspace/jc094-game/web/node_modules/react-dom/cjs/react-dom-client.development.js:3255:40
+ ❯ dispatchEventForPluginEventSystem ../../../workspace/jc094-game/web/node_modules/react-dom/cjs/react-dom-client.development.js:19320:7
+ ❯ dispatchEvent ../../../workspace/jc094-game/web/node_modules/react-dom/cjs/react-dom-client.development.js:23585:11
+ ❯ dispatchDiscreteEvent ../../../workspace/jc094-game/web/node_modules/react-dom/cjs/react-dom-client.development.js:23553:11
+
+This error originated in "src/game/BoundedEntrySearch.test.jsx" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The latest test that might've caused the error is "passersEmpty has an enabled explicit zero completion and no decline". It might mean one of the following:
+- The error was thrown, while Vitest was running this test.
+- If the error occurred after the test had been completed, this was the last documented test before it was thrown.
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+
+
+ Test Files  1 failed (1)
+      Tests  6 failed | 7 passed (13)
+     Errors  2 errors
+   Start at  23:16:36
+   Duration  2.27s (transform 397ms, setup 99ms, import 484ms, tests 1.16s, environment 395ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

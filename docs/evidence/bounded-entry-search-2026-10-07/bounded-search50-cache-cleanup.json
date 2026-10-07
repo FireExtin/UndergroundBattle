@@ -1,0 +1,22 @@
+{
+  "time": "2026-10-07T23:03:36.009976+00:00",
+  "scope": "inactive reproducible compiler caches only; no source, originals, history kernels, Library files or database deletion",
+  "before": {
+    "/tmp": 172761088,
+    "/workspace": 109006848
+  },
+  "removed": [
+    {
+      "path": "/workspace/jz31-tools/baseline-native-target",
+      "apparentBytes": 785924938
+    },
+    {
+      "path": "/workspace/jz31-tools/bindgen-target",
+      "apparentBytes": 393577501
+    }
+  ],
+  "after": {
+    "/tmp": 172761088,
+    "/workspace": 1192984576
+  }
+}

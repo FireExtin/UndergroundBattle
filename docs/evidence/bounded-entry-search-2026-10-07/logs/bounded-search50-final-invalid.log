@@ -1,0 +1,1 @@
+{"engine":"rust-v0.2.50-bounded-entry-search-candidate","invalidNativeSnapshots":192,"viewAndCommandBothReject":true,"scope":"Two fixed programs, four actors,24 malformed program/choice/library/source variants each; explicit Native test states"}

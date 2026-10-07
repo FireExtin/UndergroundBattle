@@ -1,0 +1,13 @@
+   Compiling hegemony-server v0.1.0 (/tmp/undergroundbattle-shared-cloud/rust-game)
+error: failed to write to `/tmp/jz49-native-target/debug/deps/rmetaacok0S/full.rmeta`: No space left on device (os error 28)
+
+error: could not compile `hegemony-server` (lib) due to 1 previous error
+warning: build failed, waiting for other jobs to finish...
+rustc-LLVM ERROR: IO failure on output stream: No space left on device
+error: could not compile `hegemony-server` (lib test)
+
+Caused by:
+  No space left on device (os error 28)
+
+Caused by:
+  failed to parse process output: `/workspace/jz31-tools/rustup/toolchains/1.90.0-x86_64-unknown-linux-gnu/bin/rustc --crate-name hegemony_server --edition=2021 rust-game/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --emit=dep-info,link -C embed-bitcode=no -C debuginfo=2 --test --cfg 'feature="default"' --cfg 'feature="native"' --check-cfg 'cfg(docsrs,test)' --check-cfg 'cfg(feature, values("default", "native", "society-fixtures"))' -C metadata=ce6cf88fef4b7338 -C extra-filename=-fa35e11fc7b74bf5 --out-dir /tmp/jz49-native-target/debug/deps -C incremental=/tmp/jz49-native-target/debug/incremental -L dependency=/tmp/jz49-native-target/debug/deps --extern async_stream=/tmp/jz49-native-target/debug/deps/libasync_stream-2af31e12f226b52b.rlib --extern axum=/tmp/jz49-native-target/debug/deps/libaxum-b7c4729126aef84d.rlib --extern getrandom=/tmp/jz49-native-target/debug/deps/libgetrandom-4406c4f01ae9af41.rlib --extern http_body_util=/tmp/jz49-native-target/debug/deps/libhttp_body_util-0e10221e53b45853.rlib --extern rusqlite=/tmp/jz49-native-target/debug/deps/librusqlite-ce0171505eedf843.rlib --extern serde=/tmp/jz49-native-target/debug/deps/libserde-80a64a696d07eb54.rlib --extern serde_json=/tmp/jz49-native-target/debug/deps/libserde_json-7419ff84deaa23d3.rlib --extern sha2=/tmp/jz49-native-target/debug/deps/libsha2-39acc3f2571841df.rlib --extern tempfile=/tmp/jz49-native-target/debug/deps/libtempfile-a4dc704368c062ca.rlib --extern tokio=/tmp/jz49-native-target/debug/deps/libtokio-f572c9f773c655d9.rlib --extern tower=/tmp/jz49-native-target/debug/deps/libtower-b649ef13a1d5c528.rlib --extern tower_http=/tmp/jz49-native-target/debug/deps/libtower_http-7cbd42810a988f4c.rlib --extern tracing=/tmp/jz49-native-target/debug/deps/libtracing-c7e6bb466ab95b6c.rlib --extern tracing_subscriber=/tmp/jz49-native-target/debug/deps/libtracing_subscriber-1e12dfb34b51c9d9.rlib -L native=/tmp/jz49-native-target/debug/build/libsqlite3-sys-c3f9478665ec439b/out` (exit status: 101)

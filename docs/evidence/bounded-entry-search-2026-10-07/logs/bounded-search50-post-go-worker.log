@@ -1,0 +1,69 @@
+
+> test
+> node --test test/*.test.mjs --test-concurrency=1
+
+✔ historical assassin fixture rejects without altering persisted data (2309.606543ms)
+✔ bounded employee/1: private candidates, pause/reopen, exact result and one receipt (2844.700605ms)
+ℹ {"engine":"rust-v0.2.50-bounded-entry-search-candidate","preparedNativeLayout":true,"privateOtherSeats":3,"acceptedCount":1,"pauseReopen":true,"duplicateReceipt":true,"exactNativeWasmD1State":true}
+✔ bounded employeeEmpty/0: private candidates, pause/reopen, exact result and one receipt (1580.928875ms)
+ℹ {"engine":"rust-v0.2.50-bounded-entry-search-candidate","preparedNativeLayout":true,"privateOtherSeats":3,"acceptedCount":0,"pauseReopen":true,"duplicateReceipt":true,"exactNativeWasmD1State":true}
+✔ bounded passers/0: private candidates, pause/reopen, exact result and one receipt (1314.469656ms)
+ℹ {"engine":"rust-v0.2.50-bounded-entry-search-candidate","preparedNativeLayout":true,"privateOtherSeats":3,"acceptedCount":0,"pauseReopen":true,"duplicateReceipt":true,"exactNativeWasmD1State":true}
+✔ bounded passers/3: private candidates, pause/reopen, exact result and one receipt (1246.62316ms)
+ℹ {"engine":"rust-v0.2.50-bounded-entry-search-candidate","preparedNativeLayout":true,"privateOtherSeats":3,"acceptedCount":3,"pauseReopen":true,"duplicateReceipt":true,"exactNativeWasmD1State":true}
+✔ bounded passersEmpty/0: private candidates, pause/reopen, exact result and one receipt (1271.454349ms)
+ℹ {"engine":"rust-v0.2.50-bounded-entry-search-candidate","preparedNativeLayout":true,"privateOtherSeats":3,"acceptedCount":0,"pauseReopen":true,"duplicateReceipt":true,"exactNativeWasmD1State":true}
+✔ historical control-pair fixture rejects without altering persisted data (2149.712881ms)
+✔ historical fire-scholar fixture rejects without altering persisted data (1642.575115ms)
+✔ real workerd/WASM with D1 SQLite: concurrency, receipts, rollback and reopen (5180.649768ms)
+ℹ {"currentVersion":"rust-v0.2.50-bounded-entry-search-candidate","unsupportedFrozenVersions":["rust-v0.2.1","rust-v0.2.10","rust-v0.2.2","rust-v0.2.3","rust-v0.2.4","rust-v0.2.5","rust-v0.2.6","rust-v0.2.7","rust-v0.2.8","rust-v0.2.9"],"oldDataUntouchedBeforeAndAfterReopen":true,"localWorkerdD1Only":true}
+ℹ Provider emulation only; remote Cloudflare D1 acceptance is still required. Persisted at /tmp/hegemony-worker-d1-idaSTo
+✔ current-only Site keeps the source ABI bytes, reviewed prior definitions and exact new-room flow (26.273035ms)
+✔ every historical tuple and altered identity rejects before any current state operation (7.285472ms)
+ℹ {"historicalTuplesRejected":40,"alteredIdentityCases":5,"currentStateOperationsOnRejectedStates":0}
+✔ production generated modules and Worker contain only the reviewed current WASM (1.951188ms)
+✔ current real MSJC09 permits first/rear paid activation and restores four-seat frames, receipts, privacy and reset (15967.730834ms)
+ℹ {"engineVersion":"rust-v0.2.50-bounded-entry-search-candidate","printedSociety":"MSJC09","syntheticInitialLayout":false,"publicNaturalUiAcceptance":false,"httpCalls":2346,"acceptedCommands":461,"firstAndRearBothPaid":true,"fourSeats":true,"paidFrameReopens":2,"restoredBeforeExpiry":2,"sameInstanceNaturalNextTurnReset":true}
+✔ saved paused table: exact native transitions, D1 reopen, receipts and isolated second table (2620.507851ms)
+✔ sealed choice/trigger/paid stack pause: exact native transitions, D1 reopen, receipts and isolated second table (2886.47061ms)
+✔ JZ50 trigger/stack/private search pause: exact native transitions, D1 reopen, receipts and isolated second table (3037.572488ms)
+✔ engine50 rejects preserved actual rust-v0.2.46-pause-resume-candidate paused room without relabelling its state (11.691487ms)
+✔ engine50 rejects preserved actual rust-v0.2.47-sealed-cards-candidate paused room without relabelling its state (7.989471ms)
+✔ engine50 rejects preserved actual rust-v0.2.48-jz50-death-search-candidate paused room without relabelling its state (6.81942ms)
+✔ engine50 rejects preserved actual rust-v0.2.49-sealed-restart-candidate paused room without relabelling its state (6.726589ms)
+✔ historical rescue-forecast fixture rejects without altering persisted data (1227.808838ms)
+✔ fresh Native match terminal seal: D1 restart, reopen, next choice and original restart receipt (1820.065647ms)
+✔ pause/resume are parameterless session commands and reject injected clocks or nested use (2.635949ms)
+✔ recovering a paid response receipt precedes all later clock evaluation (11.277673ms)
+✔ a matching-version GET persists an expired window before deciding to return 204 (1.553719ms)
+✔ an expired response commits only the system tick and never an accepted user receipt (1.205365ms)
+✔ a CAS conflict retries Begin with its original expected version and complete intent (0.8368ms)
+✔ a formal response cannot be rebased by the host after another seat wins CAS (1.023271ms)
+✔ client clock injection and nested Session commands are rejected before the reducer (0.276907ms)
+✔ quoting an active composition refreshes its clock and does not commit a draft or receipt (1.207909ms)
+✔ historical response5 rejects before pacing and survives reopen byte-for-byte (1211.6038ms)
+✔ historical response6 rejects before pacing and survives reopen byte-for-byte (1083.48507ms)
+✔ historical response7 rejects before pacing and survives reopen byte-for-byte (1076.386195ms)
+✔ historical response8 rejects before pacing and survives reopen byte-for-byte (1158.313048ms)
+hegemony storage retry { code: 'network_lost', retryable: true, attempt: 1 }
+✔ an ambiguous D1 commit retries the identical command and returns its receipt without applying twice (266.890831ms)
+✔ storage diagnostics expose fixed labels and do not retry quota, constraint or unknown failures (0.381154ms)
+hegemony storage retry { code: 'network_lost', retryable: true, attempt: 1 }
+hegemony storage retry { code: 'network_lost', retryable: true, attempt: 1 }
+hegemony storage retry { code: 'network_lost', retryable: true, attempt: 2 }
+✔ a failure before commit retries the original identity, while an exhausted failure never returns success (794.547678ms)
+✔ transient failures have a finite budget; HTTP rejections and unclassified failures are returned immediately (0.683659ms)
+✔ historical two-card fixture rejects without altering persisted data (1028.632598ms)
+ℹ tests 39
+ℹ suites 0
+ℹ pass 39
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 21459.696209
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

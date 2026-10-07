@@ -1,0 +1,41 @@
+   Compiling hegemony-server v0.1.0 (/tmp/undergroundbattle-shared-cloud/rust-game)
+    Finished `test` profile [unoptimized] target(s) in 13.33s
+     Running unittests src/lib.rs (/tmp/jz49-native-target/debug/deps/hegemony_server-e2ddef3771dd4b38)
+
+running 19 tests
+test bounded_search_tests::bq104_lost_original_region_preserves_search_reveal_shuffle_without_placing_in_replacement ... ok
+test bounded_search_tests::entry_search_definitions_reject_direct_nested_modes_and_partial_transplants ... ok
+test bounded_search_tests::bq104_hidden_public_employee_has_no_entry_trigger_until_real_paid_reveal ... ok
+test bounded_search_tests::entry_search_invalid_duplicate_foreign_stale_and_excess_selection_is_atomic ... ok
+test bounded_search_tests::entry_search_originals_and_closed_definitions_are_complete ... ok
+test bounded_search_tests::bq104_accept_with_matches_forces_one_and_empty_search_completes_zero_shuffle ... ok
+test bounded_search_tests::bq104_borrowed_employee_reveals_then_enters_hidden_for_frozen_controller ... ok
+
+thread 'bounded_search_tests::entry_search_real_damage_response_returns_sealed_payload_to_owner_and_source_trigger_survives' panicked at rust-game/src/jc029_tests.rs:89:13:
+Some("此座位不持有该响应窗口的优先权")
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test bounded_search_tests::entry_search_real_damage_response_returns_sealed_payload_to_owner_and_source_trigger_survives ... FAILED
+test bounded_search_tests::entry_search_original_carrier_return_to_hand_and_library_bottom_still_preserves_accepted_frame ... ok
+test bounded_search_tests::entry_search_paid_public_deploy_optional_decline_and_accepted_search ... ok
+test bounded_search_tests::entry_search_sqlite_receipt_reopen_duplicate_and_conflict_never_repeat_shuffle ... ok
+test bounded_search_tests::entry_search_two_same_sources_and_same_name_instances_resolve_independently ... ok
+test bounded_search_tests::xq48_empty_search_still_has_explicit_zero_completion ... ok
+test bounded_search_tests::entry_search_source_leaves_moves_hides_or_changes_control_without_retargeting ... ok
+
+thread 'bounded_search_tests::xq48_renown_uses_existing_team_comparison_one_influence_and_excludes_hidden_exhausted' panicked at rust-game/src/bounded_search_tests.rs:794:19:
+called `Result::unwrap()` on an `Err` value: "XQ48: only the complete printed entry search is admitted"
+test bounded_search_tests::xq48_renown_uses_existing_team_comparison_one_influence_and_excludes_hidden_exhausted ... FAILED
+test bounded_search_tests::xq48_region_replaced_before_declaration_or_during_response_skips_search_and_shuffles ... ok
+test bounded_search_tests::entry_search_private_choices_hide_candidates_from_opponents_and_teammates ... ok
+test bounded_search_tests::entry_search_saved_choice_rejects_changed_program_bounds_payloads_and_deck ... ok
+test bounded_search_tests::xq48_zero_one_three_real_instances_shuffle_once_and_have_original_owners ... ok
+
+failures:
+
+failures:
+    bounded_search_tests::entry_search_real_damage_response_returns_sealed_payload_to_owner_and_source_trigger_survives
+    bounded_search_tests::xq48_renown_uses_existing_team_comparison_one_influence_and_excludes_hidden_exhausted
+
+test result: FAILED. 17 passed; 2 failed; 0 ignored; 0 measured; 586 filtered out; finished in 4.69s
+
+error: test failed, to rerun pass `-p hegemony-server --lib`

@@ -1,0 +1,10 @@
+{
+  "target": "/tmp/jz49-native-target",
+  "kind": "inactive reproducible native compiler outputs only",
+  "reason": "all native validations completed; free tmpfs memory/disk before bounded browser visual smoke",
+  "fileCount": 2927,
+  "apparentBytes": 1658776005,
+  "noActiveCompilerOrNativeCli": true,
+  "preserved": "Rust source, Cargo cache, toolchain, original cards/rules, all test logs/traces, frozen historical WASM, current WASM50, provider checkout and QA SQLite",
+  "timeUtc": "2026-10-07T23:35:16Z"
+}

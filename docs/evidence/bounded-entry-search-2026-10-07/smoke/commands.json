@@ -1,0 +1,71 @@
+[
+  {
+    "seat": 1,
+    "command": {
+      "commandId": "ba1879a2-7da7-44b2-8977-4ecbf96af75a",
+      "expectedVersion": 1,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "ready"
+        }
+      }
+    }
+  },
+  {
+    "seat": 0,
+    "command": {
+      "commandId": "8048d90a-114e-4caf-893b-51ba953e7b1b",
+      "expectedVersion": 2,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "ready"
+        }
+      }
+    }
+  },
+  {
+    "seat": 0,
+    "command": {
+      "commandId": "18298622-6338-40d3-b350-3b96566e2c3e",
+      "expectedVersion": 3,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "start"
+        }
+      }
+    }
+  },
+  {
+    "seat": 0,
+    "command": {
+      "commandId": "b6bec9dd-5e4c-4265-a5cf-2895b28f4b5a",
+      "expectedVersion": 4,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "choose",
+          "choiceId": "i123",
+          "selected": []
+        }
+      }
+    }
+  },
+  {
+    "seat": 1,
+    "command": {
+      "commandId": "05919cd5-157b-4dec-91e8-5ab3ff6ff41f",
+      "expectedVersion": 5,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "choose",
+          "choiceId": "i124",
+          "selected": []
+        }
+      }
+    }
+  }
+]
