@@ -1255,6 +1255,7 @@ impl Game {
             let step = frame.steps[frame.cursor].clone();
             frame.cursor += 1;
             match step.op {
+                Op::JZ50SearchDeathToGraveyard => return self.jz50_search_start(frame),
                 Op::SealOneActorHandCardOnTarget => return self.choose_hand_seal(frame),
                 Op::DestroyTargetIfSealed => {
                     let host = &frame.targets.first().ok_or("缺少封印载体目标")?.id;
@@ -1965,6 +1966,12 @@ impl Game {
         option_ids: BTreeSet<String>,
     ) -> RuleResult<()> {
         match choice {
+            FrameChoice::JZ50DeathSearch => {
+                if chooser != frame.actor {
+                    return Err("墓穴食尸鬼检索的选择者无效".into());
+                }
+                self.jz50_search_complete(&frame, &selected)?;
+            }
             FrameChoice::HandSeal { seat, host_id } => {
                 if chooser != seat || frame.actor != seat
                     || frame.targets.first().is_none_or(|t| t.id != host_id) {

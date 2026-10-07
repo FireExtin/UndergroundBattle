@@ -1,0 +1,102 @@
+{
+  "historicalFixtureFiles": [
+    {
+      "path": "sites/test/fixtures/historical-rooms.json",
+      "sha256": "daa452f4b7fa5bd695f29c02a2291cbddd61b0eaa87d04fde28c2afd6976a124",
+      "bytes": 41820
+    },
+    {
+      "path": "sites/test/fixtures/historical-rooms.mjs",
+      "sha256": "a5137597ba31541e4b878c5e3ad3bc8bedba97918eede545009f4f0dc7bf2791",
+      "bytes": 759
+    },
+    {
+      "path": "sites/test/fixtures/pause-resume-native-v046.json",
+      "sha256": "cca16a276aa95cb3d39584c90fcb8c21bee1f7838d2b884ef857c30f2c7dea77",
+      "bytes": 767986
+    },
+    {
+      "path": "sites/test/fixtures/pause-resume-native-v047.json",
+      "sha256": "39f6fc03a6033315adba8bbfabcd08bf63e2814337b64d1bb3e21657ad2fce53",
+      "bytes": 767086
+    },
+    {
+      "path": "sites/test/fixtures/prepared-assassin-v028.json",
+      "sha256": "f59af6b3d309b989a1b32bb90daf2b6da9c57b43defcfba2db2dda750f394b4a",
+      "bytes": 35201
+    },
+    {
+      "path": "sites/test/fixtures/prepared-control-pair-v028.json",
+      "sha256": "8d7c5a77d89f5a707a7ee96f493f1d02fbd188166e5662be694061f66ebc4069",
+      "bytes": 35850
+    },
+    {
+      "path": "sites/test/fixtures/prepared-fire-scholar-v028.json",
+      "sha256": "aaaf3878b7ce1098474b4aa5390daa329cee2b7a4d8873f7bdbbf5a5f77f3149",
+      "bytes": 30898
+    },
+    {
+      "path": "sites/test/fixtures/prepared-rescue-forecast-v028.json",
+      "sha256": "f28650b5d9cd6e095cc137c90748ea09fe4e96e33c4f709af275c572f9667f64",
+      "bytes": 29918
+    },
+    {
+      "path": "sites/test/fixtures/prepared-response-v025.json",
+      "sha256": "41252046030a23ee55582bfe26815cd7984b9a895dc14c10edf82a4200a5faa7",
+      "bytes": 35167
+    },
+    {
+      "path": "sites/test/fixtures/prepared-response-v026.json",
+      "sha256": "ea51975720b3d36c32a695620a5093d994ab1fbbc0bd256f377eccb5275a9be7",
+      "bytes": 35538
+    },
+    {
+      "path": "sites/test/fixtures/prepared-response-v027.json",
+      "sha256": "6bd803f9aa4d71168e83271c226408922bb1b774da65947e1e4334b5e7c5ba8b",
+      "bytes": 35134
+    },
+    {
+      "path": "sites/test/fixtures/prepared-response-v028.json",
+      "sha256": "cbdad025e0695d2a97f613c7e6c759b3b4b6915a4210ec4716e6ee72f5725f2c",
+      "bytes": 35135
+    },
+    {
+      "path": "sites/test/fixtures/prepared-two-cards-v028.json",
+      "sha256": "00c0ebfffd78d29ef1311d6711d160de441618246ae71b0fde6b55a789ef6c16",
+      "bytes": 35189
+    },
+    {
+      "path": "sites/test/fixtures/reject-historical-room.mjs",
+      "sha256": "7cdd854606f04dfc3c5bbcd120fdf325afbbb5a89c0916ffe1684011ddfa8274",
+      "bytes": 3643
+    },
+    {
+      "path": "sites/test/fixtures/reviewed-catalog-v044.json",
+      "sha256": "49386a177863cf15ba82a38811ba938e17e9c7c8600e5d568524ca2670b72901",
+      "bytes": 95650
+    },
+    {
+      "path": "sites/test/fixtures/sealing-room-native-v047.json",
+      "sha256": "3e7a3bcf612fdcf23d3580470a7e8042263b3c37a4587447825addb042c254db",
+      "bytes": 916906
+    }
+  ],
+  "prior118ManifestAndImagesByteEqual": true,
+  "prior106CardRecordsEqual": true,
+  "frozen45_46_47BytePreserved": true,
+  "searchPrototypeDraftsRetainedExcluded": [
+    {
+      "path": "rust-game/src/bounded_search.rs",
+      "sha256": "3b331a87b936532d76568802cb7cdf0b0f2e629a25a1e72a8e6b46b12dbf5f37",
+      "compiled": false,
+      "staged": false
+    },
+    {
+      "path": "rust-game/src/bounded_search_tests.rs",
+      "sha256": "7249ccbfabe58c553034e80222193cbecc5e50ae34c3896938b5d72718c6d963",
+      "compiled": false,
+      "staged": false
+    }
+  ],
+  "onlineDataTouched": false
+}

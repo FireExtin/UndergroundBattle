@@ -1,0 +1,381 @@
+{
+  "task": "C bounded search family",
+  "scope": "JZ50 core-integration ready draft; BQ104/XQ48 selected-path primitives only, no admission",
+  "authoritativeSources": "actual original card JPGs and complete rendered official pages; no card-specifications JSON as authority",
+  "cards": [
+    {
+      "card": "JZ50",
+      "image": {
+        "path": "/workspace/jc094-game/resource/ymsj-fun.github.io/cards/JZ50 墓穴食尸鬼.jpg",
+        "bytes": 533019,
+        "sha256": "403e44bb5f7f0ff8715acb267a8369c3715b2dc752d7fe612de085da29b523e7"
+      },
+      "actuallyViewedFullImage": true,
+      "originalTextWithExplicitSymbolTranscription": "现身触发 从你的牌库中寻找一张【死亡领域符号】领域的角色牌，将该牌置于你的墓地，然后洗牌。",
+      "printedFields": {
+        "cost": 2,
+        "loyalty": [
+          "黑色"
+        ],
+        "kind": "character",
+        "subtypes": [
+          "不死生物",
+          "食尸鬼"
+        ],
+        "magic": "死亡",
+        "permanentIcons": {
+          "combat": 1
+        },
+        "defense": 1,
+        "keywords": []
+      },
+      "unique": false
+    },
+    {
+      "card": "BQ104",
+      "image": {
+        "path": "/workspace/jc094-game/resource/ymsj-fun.github.io/cards/BQ104 猎头顾问.jpg",
+        "bytes": 1343044,
+        "sha256": "dbee5b3829cf0c46b2820beccefda28708c3c8e87c589dbefce1e975faa916eb"
+      },
+      "actuallyViewedFullImage": true,
+      "originalTextWithExplicitSymbolTranscription": "进场触发 从你的牌库中寻找一张印刷费用小于或等于【3费用符号】的雇员角色牌，展示后以暗藏者状态置于本地区，然后洗牌。",
+      "printedFields": {
+        "cost": 3,
+        "loyalty": [],
+        "color": "中立",
+        "kind": "character",
+        "subtypes": [
+          "人类",
+          "雇员"
+        ],
+        "magic": "",
+        "permanentIcons": {
+          "influence": 1
+        },
+        "defense": 1,
+        "keywords": [
+          "公开"
+        ]
+      },
+      "unique": false
+    },
+    {
+      "card": "XQ48",
+      "image": {
+        "path": "/workspace/jc094-game/resource/ymsj-fun.github.io/cards/XQ48 街头演说家.jpg",
+        "bytes": 1363262,
+        "sha256": "0cd31207bda681093839e86e5bb87cee624a3c0a657c70b60fa765f439089746"
+      },
+      "actuallyViewedFullImage": true,
+      "originalTextWithExplicitSymbolTranscription": "进场触发 自你的牌库中寻找至多三张名为无知路人的牌，将他们放置进场且置于街头演说家所在的地区，然后洗牌。",
+      "printedFields": {
+        "cost": 4,
+        "loyalty": [],
+        "color": "中立",
+        "kind": "character",
+        "subtypes": [
+          "人类",
+          "政治家"
+        ],
+        "magic": "",
+        "permanentIcons": {
+          "influence": 1
+        },
+        "defense": 1,
+        "keywords": [
+          "公开",
+          "声望"
+        ]
+      },
+      "unique": false
+    }
+  ],
+  "officialPdfs": [
+    {
+      "path": "/workspace/jc094-game/resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+      "bytes": 15174985,
+      "sha256": "a1e5bca72b8dbb374357feace28b7fbfd31136349ee23455d60f5f62e0a6b886"
+    },
+    {
+      "path": "/workspace/jc094-game/resource/ymsj-fun.github.io/public/docs/隐秘世界规则手册.pdf",
+      "bytes": 4538093,
+      "sha256": "2a771874efbdb3ad8a339ea01ff62888766090d075fe2e013632c79de1aeba35"
+    },
+    {
+      "path": "/workspace/jc094-game/resource/ymsj-fun.github.io/public/docs/隐秘世界勘误及释疑.pdf",
+      "bytes": 516140,
+      "sha256": "916aa6a9f50ac7e737b517358e0c4270f715d0ed7391d55c8fcb629392a71d38"
+    }
+  ],
+  "actuallyViewedPages": [
+    {
+      "book": "hegemony",
+      "printedPage": 7,
+      "physicalPage1Based": 8,
+      "actuallyViewedCompletePage": true,
+      "image": {
+        "path": "/tmp/search-family-evidence/manual-08.png",
+        "bytes": 2303623,
+        "sha256": "5a7c50a410191fdaa43dddeaa97ba39f5d16fa4736f64819e31db5d2ca550eb7"
+      },
+      "relevantEvidenceAndScope": "墓地公开、牌库私有等区域规则"
+    },
+    {
+      "book": "hegemony",
+      "printedPage": 9,
+      "physicalPage1Based": 10,
+      "actuallyViewedCompletePage": true,
+      "image": {
+        "path": "/tmp/search-family-evidence/manual-10.png",
+        "bytes": 2081142,
+        "sha256": "ced199d3f232cab51a631b5c962af28faa449b49718bbb924b6216177d7372c9"
+      },
+      "relevantEvidenceAndScope": "对抗与战斗流程，非搜索通则"
+    },
+    {
+      "book": "base",
+      "printedPage": 4,
+      "physicalPage1Based": 6,
+      "actuallyViewedCompletePage": true,
+      "image": {
+        "path": "/tmp/search-family-evidence/base-06.png",
+        "bytes": 792505,
+        "sha256": "58b021d190eeaff2b082944f7da5dfe13dc26a97e7986036e6e00e2d49089075"
+      },
+      "relevantEvidenceAndScope": "公开等关键词与发动"
+    },
+    {
+      "book": "base",
+      "printedPage": 7,
+      "physicalPage1Based": 9,
+      "actuallyViewedCompletePage": true,
+      "image": {
+        "path": "/tmp/search-family-evidence/base-09.png",
+        "bytes": 722717,
+        "sha256": "6a1b0311727680cfdb68dafc197edcaffa23ea2c6f8bb0fb74e7925c158573db"
+      },
+      "relevantEvidenceAndScope": "领域、牌库私有、墓地owner、你是controller"
+    },
+    {
+      "book": "base",
+      "printedPage": 8,
+      "physicalPage1Based": 10,
+      "actuallyViewedCompletePage": true,
+      "image": {
+        "path": "/tmp/search-family-evidence/base-10.png",
+        "bytes": 712962,
+        "sha256": "b47e43ede217b8ad17c3dc05f661e50c57e0105fb2b68403f3d9ac06b68ccde9"
+      },
+      "relevantEvidenceAndScope": "死亡是场上角色离场至墓地、声望"
+    },
+    {
+      "book": "hegemony",
+      "printedPage": 15,
+      "physicalPage1Based": 16,
+      "actuallyViewedCompletePage": true,
+      "image": {
+        "path": "/tmp/jz50-mechanism-evidence/rules/hegemony-physical16.png",
+        "bytes": 2611323,
+        "sha256": "fe7432164cb7b7595e04b2832423689b8032ebe7aa000cfe28e9ba5548bbaff4"
+      },
+      "relevantEvidenceAndScope": "印刷领域、owner/controller、直接从库入地区、暗藏／角色离场"
+    },
+    {
+      "book": "hegemony",
+      "printedPage": 16,
+      "physicalPage1Based": 17,
+      "actuallyViewedCompletePage": true,
+      "image": {
+        "path": "/tmp/jz50-root-evidence/manual-physical-17.png",
+        "bytes": 2987240,
+        "sha256": "99b0181b117ba24b39719549d264120e7f50cf092b499c06159edd672937c979"
+      },
+      "relevantEvidenceAndScope": "source离场仍结算、你指controller、堆栈响应"
+    },
+    {
+      "book": "hegemony",
+      "printedPage": 21,
+      "physicalPage1Based": 22,
+      "actuallyViewedCompletePage": true,
+      "image": {
+        "path": "/tmp/jz50-root-evidence/manual-physical-22.png",
+        "bytes": 3192500,
+        "sha256": "b32d2c0e7c22b970b8b89b1e395ce5cc0c6e954756adfcd98c555ae020f31b48"
+      },
+      "relevantEvidenceAndScope": "2v2手牌／牌库不能互看、直接置入地区不受默认距离限制"
+    },
+    {
+      "book": "hegemony",
+      "printedPage": 22,
+      "physicalPage1Based": 23,
+      "actuallyViewedCompletePage": true,
+      "image": {
+        "path": "/tmp/jz50-mechanism-evidence/rules/hegemony-physical23.png",
+        "bytes": 1831225,
+        "sha256": "4d0a116b01dd58d7ecbbd93aa0ce730524dab4a6e0cd42115a656123896c5cbf"
+      },
+      "relevantEvidenceAndScope": "领域／图标／忠诚区分"
+    },
+    {
+      "book": "base",
+      "printedPage": 1,
+      "physicalPage1Based": 3,
+      "actuallyViewedCompletePage": true,
+      "image": {
+        "path": "/tmp/jz50-mechanism-evidence/rules/base-physical3.png",
+        "bytes": 757090,
+        "sha256": "5be9b76610bbe0ee79c1c219f641e771ef3ba035edceaa8afc626769b4fbbfeb"
+      },
+      "relevantEvidenceAndScope": "暗藏者无印刷角色能力；翻开进入角色会现身，横置不自动恢复"
+    },
+    {
+      "book": "base",
+      "printedPage": 2,
+      "physicalPage1Based": 4,
+      "actuallyViewedCompletePage": true,
+      "image": {
+        "path": "/tmp/jz50-mechanism-evidence/rules/base-physical4.png",
+        "bytes": 835132,
+        "sha256": "39624abb550f73301cb77fe8daeeef450f017dabd2e4a40f78c65550ace62c2e"
+      },
+      "relevantEvidenceAndScope": "Enter／Reveal，触发可选与响应、牌拥有者"
+    },
+    {
+      "book": "base",
+      "printedPage": 3,
+      "physicalPage1Based": 5,
+      "actuallyViewedCompletePage": true,
+      "image": {
+        "path": "/tmp/jz50-mechanism-evidence/rules/base-physical5.png",
+        "bytes": 821126,
+        "sha256": "f517a7f2d249ce86a2b1a3584cfac9851208d9e63126328b8dddaba87d34ce81"
+      },
+      "relevantEvidenceAndScope": "堆栈与行动规则"
+    },
+    {
+      "book": "faq",
+      "printedPage": 1,
+      "physicalPage1Based": 1,
+      "actuallyViewedCompletePage": true,
+      "image": {
+        "path": "/tmp/jz50-root-evidence/faq-page-1.png",
+        "bytes": 859612,
+        "sha256": "12c0a29a12c22715d33299d233cd902ec0d0e911c670a23f0e806238a00c2bf1"
+      },
+      "relevantEvidenceAndScope": "实际查看全页；未发现两项待裁定问题的直接答案"
+    },
+    {
+      "book": "faq",
+      "printedPage": 2,
+      "physicalPage1Based": 2,
+      "actuallyViewedCompletePage": true,
+      "image": {
+        "path": "/tmp/jz50-root-evidence/faq-page-2.png",
+        "bytes": 974815,
+        "sha256": "ca9c39b16e1b3040bd25b781edfdedc3c6def22fff504d591bd70b5b1d43777b"
+      },
+      "relevantEvidenceAndScope": "实际查看全页；未发现两项待裁定问题的直接答案"
+    },
+    {
+      "book": "faq",
+      "printedPage": 3,
+      "physicalPage1Based": 3,
+      "actuallyViewedCompletePage": true,
+      "image": {
+        "path": "/tmp/jz50-root-evidence/faq-page-3.png",
+        "bytes": 951983,
+        "sha256": "30f7cbee0fe8e37d295471292234b1ad572a58f55fa73fe823d5f7daab8c61f7"
+      },
+      "relevantEvidenceAndScope": "基础047：source消灭或移动后仍影响进场时原地区；基础055：无暗藏者仍可打调查档案抓牌（该卡特例）"
+    },
+    {
+      "book": "faq",
+      "printedPage": 4,
+      "physicalPage1Based": 4,
+      "actuallyViewedCompletePage": true,
+      "image": {
+        "path": "/tmp/jz50-root-evidence/faq-page-4.png",
+        "bytes": 922912,
+        "sha256": "a4b19fe784c387b0393f5f060b38f2a626b89d9788bfb776be04f7e6ff9e8339"
+      },
+      "relevantEvidenceAndScope": "实际查看全页；未发现两项待裁定问题的直接答案"
+    },
+    {
+      "book": "faq",
+      "printedPage": 5,
+      "physicalPage1Based": 5,
+      "actuallyViewedCompletePage": true,
+      "image": {
+        "path": "/tmp/jz50-root-evidence/faq-page-5.png",
+        "bytes": 899228,
+        "sha256": "3e10ccea064325a8e9b89fb2b90b87abcf42d6399e1bc41f94fcec596770f962"
+      },
+      "relevantEvidenceAndScope": "隐士可因效果盖伏公开角色；不能推定BQ104检索最小值"
+    },
+    {
+      "book": "faq",
+      "printedPage": 6,
+      "physicalPage1Based": 6,
+      "actuallyViewedCompletePage": true,
+      "image": {
+        "path": "/tmp/jz50-root-evidence/faq-page-6.png",
+        "bytes": 740888,
+        "sha256": "163261c85cac0afe9bba22837f587f67746eeb108ae00e0d951ba7947764588e"
+      },
+      "relevantEvidenceAndScope": "响应消灭source不取消已创建进场trigger；没有直接裁定BQ104可故意搜索0或XQ48地区替换后的私有检索"
+    }
+  ],
+  "ownerRulingJZ50Only": {
+    "decision": "B",
+    "via": "root relay owner 2026-10-07 12:23 UTC Sentinel_65b5101c85748191aa2e9dfc88abf790",
+    "accepted": "0 or 1 even eligible exists; zero still shuffle",
+    "declined": "no search and no shuffle",
+    "sourceType": "project supplementary FAQ; not official scanned FAQ"
+  },
+  "privacyDecisionJZ50Only": {
+    "approvedByRoot": true,
+    "rule": "accepted search always creates actor-private 0..1 choice, even empty options; zero confirms once before shuffle; all other viewers have identical waitingChoice"
+  },
+  "gates": [
+    {
+      "card": "BQ104",
+      "question": "接受trigger且隐藏库存在合格雇员时，必须1还是可故意0仍洗？",
+      "unruled": true,
+      "forbiddenInference": "JZ50 B不能迁移",
+      "currentAction": "no catalog/Definition/Op/FrameChoice/start"
+    },
+    {
+      "card": "XQ48",
+      "question": "原地区实体已替换时，仍允许私下检视/选择并留所选牌在库再洗，还是跳过search/entry而继续独立尾洗？choice后地区失效同类边界亦待闭合。",
+      "unruled": true,
+      "candidateNotChosen": "skip search/entry and continue tail shuffle",
+      "rootExplicitlyChoseNoNewPolicy": true,
+      "cardSaysThenShuffleWithoutIfYouDo": true,
+      "currentAction": "no catalog/Definition/Op/FrameChoice/start; normal selected-path and independent shuffle primitives only"
+    }
+  ],
+  "scanLimits": "PDF text extraction largely empty because scanned; only enumerated complete pages inspected; lack of direct answer is not a claim that all formal materials lack a rule.",
+  "renderFailure": {
+    "action": "pdftoppm physical16..19 at scale1500 PNG",
+    "exit": 139,
+    "reason": "libpng Write Error",
+    "incompleteFile": "/tmp/search-family-evidence/manual-rules-16.png",
+    "excludedFromViewedEvidence": true,
+    "subsequentAction": "root forbade further large render; reused existing complete pages"
+  },
+  "implementationStatus": {
+    "libWired": false,
+    "catalogAdmittedByC": false,
+    "cargoExecutedByC": false,
+    "wasmGeneratedByC": false,
+    "commitsByC": false,
+    "sitesCallsByC": false,
+    "rootOwnsCoreAndIndex": true
+  },
+  "formatValidation": {
+    "command": "CARGO_HOME=/workspace/jz31-tools/cargo RUSTUP_HOME=/workspace/jz31-tools/rustup /workspace/jz31-tools/cargo/bin/rustfmt --check --edition 2021 rust-game/src/bounded_search.rs rust-game/src/bounded_search_tests.rs",
+    "exit": 0,
+    "scope": "syntax parse and formatting only; no typecheck/test claim"
+  }
+}

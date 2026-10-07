@@ -210,6 +210,8 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    // Fixed JZ50 only: actor-private 0..1 Death character to owner graveyard, then shuffle.
+    JZ50SearchDeathToGraveyard,
     // Closed XQ40 / XQ45 programs; both use their single declared character.
     SealOneActorHandCardOnTarget,
     DestroyTargetIfSealed,
@@ -467,6 +469,21 @@ pub struct Definition {
 // These are interpreter limits, not rules for resolving partially invalid targets.
 // Reject unsupported declarations before publishing actions or offering trigger choices.
 pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(), String> {
+    fn uses_jz50_search(ops: &[Op]) -> bool {
+        ops.iter().any(|op| match op {
+            Op::JZ50SearchDeathToGraveyard => true,
+            Op::ForEachLivingPlayer(body) | Op::ForEachLivingPlayerFromActor(body) => uses_jz50_search(body),
+            Op::IfTargetExhausted { exhausted, ready, .. } =>
+                uses_jz50_search(std::slice::from_ref(exhausted)) || uses_jz50_search(std::slice::from_ref(ready)),
+            _ => false,
+        })
+    }
+    if (card_id == "JZ50" || uses_jz50_search(&ability.ops)
+        || ability.modes.iter().any(|m| uses_jz50_search(&m.ops)))
+        && (card_id != "JZ50" || serde_json::to_value(ability).unwrap()
+            != serde_json::to_value(&jz50_definition().abilities[0]).unwrap()) {
+        return Err(format!("{card_id}: only the complete JZ50 reveal search is admitted"));
+    }
     fn uses_sealing(ops: &[Op]) -> bool {
         ops.iter().any(|op| match op {
             Op::SealOneActorHandCardOnTarget | Op::DestroyTargetIfSealed => true,
@@ -1065,6 +1082,10 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
 
 pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -> Result<(), String> {
     for (card_id, definition) in definitions {
+        if card_id == "JZ50" && serde_json::to_value(definition).unwrap()
+            != serde_json::to_value(jz50_definition()).unwrap() {
+            return Err(format!("cardId={card_id}: only the complete JZ50 definition is admitted"));
+        }
         if sealing_definition(card_id).is_some_and(|expected|
             serde_json::to_value(definition).unwrap() != serde_json::to_value(expected).unwrap()) {
             return Err(format!("cardId={card_id}: only the complete admitted sealing definition is supported"));
@@ -1387,6 +1408,12 @@ fn jz49_definition() -> Definition {
     definition.traits.slow = true;
     definition
 }
+fn jz50_definition() -> Definition {
+    with_abilities(vec![ability(
+        "jz50-reveal-death-search", "现身触发", Timing::Fast, vec![], vec![],
+        vec![Op::JZ50SearchDeathToGraveyard], Some(Event::Reveal),
+    )])
+}
 fn jz48_definition() -> Definition {
     Definition {
         modifiers: vec![StaticModifier::JZ48OtherControlledCriminalInfluenceAndDefense],
@@ -1514,6 +1541,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         m.insert("JZ24".into(), jz24_definition());
         m.insert("JZ31".into(), jz31_definition());
         m.insert("JZ49".into(), jz49_definition());
+        m.insert("JZ50".into(), jz50_definition());
         m.insert("JZ48".into(), jz48_definition());
         m.insert("JC089".into(), jc089_definition());
         m.insert("JZ55".into(), jz55_definition());

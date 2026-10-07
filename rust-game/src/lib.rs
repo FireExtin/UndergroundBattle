@@ -33,6 +33,9 @@ mod resolution;
 mod sealing;
 #[cfg(all(test, not(feature = "society-fixtures")))]
 mod sealing_tests;
+mod jz50_search;
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod jz50_search_tests;
 pub mod room;
 pub mod rules;
 #[cfg(feature = "native")]

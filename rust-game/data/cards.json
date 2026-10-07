@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.43-sealed-cards-candidate",
-  "engineVersion": "rust-v0.2.47-sealed-cards-candidate",
+  "cardPoolVersion": "limited-v2.44-jz50-death-search-candidate",
+  "engineVersion": "rust-v0.2.48-jz50-death-search-candidate",
   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
   "cards": [
     {
@@ -4118,6 +4118,45 @@
       "supported": true,
       "sourceImageSha256": "6475556f30b08853ed5bb2e1c82b3314c73947fb59bc7d044060a5555f5ef8cf",
       "type": "事务-阴谋"
+    },
+    {
+      "id": "JZ50",
+      "name": "墓穴食尸鬼",
+      "kind": "character",
+      "subtypes": [
+        "不死生物",
+        "食尸鬼"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "黑色"
+      ],
+      "loyaltyText": "黑色",
+      "color": "黑",
+      "magic": "死亡",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "现身触发 从你的牌库中寻找一张死亡领域的角色牌，将该牌置于你的墓地，然后洗牌。",
+      "keywords": [],
+      "unique": false,
+      "society": "",
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/cards.json",
+        "record": "JZ50",
+        "image": "resource/ymsj-fun.github.io/cards/JZ50 墓穴食尸鬼.jpg",
+        "imageSha256": "403e44bb5f7f0ff8715acb267a8369c3715b2dc752d7fe612de085da29b523e7"
+      }
     }
   ],
   "decks": [
