@@ -1,0 +1,19 @@
+{
+  "fixedReviewedCommit": "454e46f67f4a55814321b66817b704d74fbad2bc",
+  "independentReview": "no open P0-P3 findings",
+  "reviewSha256": "8e23586504f4b8c1069e296b1c412f1b8a4f8d93133aaf67e8ba6b9b9797ef3e",
+  "normalPushAttemptUtc": "2026-10-07T15:07:58Z",
+  "action": "git push origin 454e46f67f4a55814321b66817b704d74fbad2bc:refs/heads/codex/jz48-combined-review-20261007",
+  "target": "https://github.com/FireExtin/UndergroundBattle.git / refs/heads/codex/jz48-combined-review-20261007",
+  "rawRemoteReason": "Internal Server Error",
+  "requestId": "DE74:28B74:1DC092:27C111:6AC6604D",
+  "remoteHeadConfirmedAfterFailure": "27b2d573073ff7211facc9ebe8feb2826cecbe40",
+  "mainConfirmedUnchanged": "4c8260ca814e3af0e848b2522cf0564745ebb653",
+  "forcedOrAlternatePushAttempted": false,
+  "sameRejectedPushRetried": false,
+  "localBundle": "/tmp/historical-dependency-cleanup-evidence/historical-kernel-dependency-cleanup-454e46f.bundle",
+  "bundleBytes": 43137,
+  "bundleSha256": "4e74ade5d6fda7dbe834c085ef97e7259e86911bd0f8d95cb940c42c8105fa92",
+  "bundlePrerequisite": "27b2d573073ff7211facc9ebe8feb2826cecbe40",
+  "bundleVerified": true
+}
