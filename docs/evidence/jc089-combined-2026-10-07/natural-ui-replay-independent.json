@@ -1,0 +1,21 @@
+{
+  "productCommit": "84a36d624528ab61f752e4ad9f05fdeb1839d7e4",
+  "engine": "rust-v0.2.45-jc089-poison-blood-candidate",
+  "pool": "limited-v2.42-jc089-poison-blood-candidate",
+  "scope": "Independent read-only pure WASM replay of actual natural room; no state/DB modification. Focused dual-seat sequence remains playing, not strategy-terminal or natural JC018-specific case.",
+  "normalCreationFromSeed4952ByteExact": true,
+  "joinWithDeckEvents": 1,
+  "commandEvents": 273,
+  "journalEvents": 274,
+  "replayedReceiptViewsMatched": 273,
+  "finalOpaqueStateByteExact": true,
+  "initialStateSha256": "2d89b0e305f8e86cf36e83fe33b4edcb16579a46684fee0cfe7640039cc2e426",
+  "finalStateSha256": "3c0f8d0783037b11b1c10a01973581299978258fc24c7eaa8c1b4054ffc4509c",
+  "wasmBytes": 2198305,
+  "wasmSha256": "afc1b42523111dc242fd21850da9af243112a619c9f759bc60cbabac045883f7",
+  "finalVersion": 274,
+  "finalTurn": 6,
+  "finalStatus": "playing",
+  "twoSeatOwnHandPrivacy": true,
+  "survivorSupportLossVerified": true
+}

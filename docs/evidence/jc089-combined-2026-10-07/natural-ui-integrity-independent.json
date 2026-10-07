@@ -1,0 +1,81 @@
+{
+  "productCommit": "84a36d624528ab61f752e4ad9f05fdeb1839d7e4",
+  "mechanismFixCommit": "a96a5595d42b58ecf2d47abd4d4a87b3d6c7d1ae",
+  "scope": "Independent full raw HTTP/SQLite/journal/progress comparison, SELECT-only read and actual eight screenshot inspection. Focused two-seat playing sequence; no strategy-terminal or natural JC018-specific claim. Raw credentials, IDs, snapshots and DB remain local.",
+  "requestRows": 279,
+  "commandHttpResponses": 277,
+  "uniqueCommands": 273,
+  "duplicates": 4,
+  "oneCommandObservedFiveTimes": true,
+  "allHttpReceiptsByteEquivalent": true,
+  "allJournalCommandsMatchActualHttpInputs": true,
+  "allBrowserProgressMatchesReceipts": true,
+  "journalVersionsContiguous": 274,
+  "rawSqliteTablesMatchFinalSnapshot": true,
+  "readonlySqliteDbWalUnchanged": true,
+  "nativeReplayEvidenceBoundToFinalStateAndFrozenBinary": true,
+  "nativeAuditRerunByReviewer": false,
+  "normalUiTargetCancellation": 1,
+  "lostAcknowledgements": 4,
+  "actualGloryAddsExactlyOne": true,
+  "twoPaidCursesAndOwnerGraveyards": true,
+  "survivorSupportLoss": true,
+  "twoSeatRestoreAndExactReopenAssertedInActualDriver": true,
+  "combinedWebTests": 607,
+  "combinedWorkerTests": 25,
+  "combinedLogsHashesVerified": true,
+  "combinedBuildArtifactRowsVerified": 9,
+  "finalStatus": "playing",
+  "finalTurn": 6,
+  "finalVersion": 274,
+  "screenshotsActuallyViewed": [
+    {
+      "name": "jc089-before-curse-pair-desktop",
+      "bytes": 1232488,
+      "sha256": "7148d5fe326e2a34730ede1f98853f1b6c2371eb8436e946623933d04641d74c",
+      "actuallyViewedByReviewer": true
+    },
+    {
+      "name": "jc089-natural-original",
+      "bytes": 707230,
+      "sha256": "faa6ae0663057c5ab1119de6800e79421dbf176b2d564d79020b4db5cdc06d13",
+      "actuallyViewedByReviewer": true
+    },
+    {
+      "name": "target-confirm-1",
+      "bytes": 1136887,
+      "sha256": "94f81aecd3b816ff0bee1d4dc3835f00b0accaeabdc81b29d33589cb2b0732bb",
+      "actuallyViewedByReviewer": true
+    },
+    {
+      "name": "jc089-first-curse-attributes-desktop",
+      "bytes": 1240437,
+      "sha256": "12a7d7f3533aab4308323389c33e8dc76f355e402b5c7d4675317a302916c3c1",
+      "actuallyViewedByReviewer": true
+    },
+    {
+      "name": "jc089-glory-one-marker-desktop",
+      "bytes": 1240574,
+      "sha256": "2155026a56eef73a33866f8e05bf2e62c59b5cd4440b68126c106725ef472bbb",
+      "actuallyViewedByReviewer": true
+    },
+    {
+      "name": "lost-ack-recovered",
+      "bytes": 1181411,
+      "sha256": "aaf9c5af4dbba6398fe3d27b7b6a7e753ea5f8aa0d59eda6b8f4eef758f79155",
+      "actuallyViewedByReviewer": true
+    },
+    {
+      "name": "jc089-second-curse-death-desktop",
+      "bytes": 1237262,
+      "sha256": "a19e33d45ba529b8b3686599f7f9fd72a1a188f96f5e5aa443ddd02232c8a6bf",
+      "actuallyViewedByReviewer": true
+    },
+    {
+      "name": "jc089-survivor-mobile-reader",
+      "bytes": 334224,
+      "sha256": "edc6bf880ac070160eae5beb3b7fc5b668beb71844fdecbc850a89bc91b5e943",
+      "actuallyViewedByReviewer": true
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+
+> undergroundbattle-web@0.1.0 test
+> vitest --run --testTimeout=30000
+
+
+ RUN  v4.1.2 /tmp/jc089-combined-review-game/web
+
+
+ Test Files  68 passed (68)
+      Tests  607 passed (607)
+   Start at  12:56:22
+   Duration  46.43s (transform 2.25s, setup 8.57s, import 6.26s, tests 70.26s, environment 40.53s)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

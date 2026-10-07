@@ -1,0 +1,11 @@
+{
+  "productCommit": "84a36d624528ab61f752e4ad9f05fdeb1839d7e4",
+  "artifactFilesChecked": 9,
+  "byteExactToFixedMechanismArtifacts": true,
+  "currentWasmCount": 1,
+  "wasmFilename": "5f45fc73a42dc6e2e8820fa6f5882db590b63a61-hegemony_wasm_bg.wasm",
+  "wasmBytes": 2198305,
+  "wasmSha256": "afc1b42523111dc242fd21850da9af243112a619c9f759bc60cbabac045883f7",
+  "workerJsBytes": 47263,
+  "workerJsSha256": "384050c24c4e79af52ed002036aa9400aa1e9aff077dd4b154a0f1b4bdbb71ea"
+}

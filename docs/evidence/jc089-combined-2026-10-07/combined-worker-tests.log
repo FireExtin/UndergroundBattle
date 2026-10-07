@@ -1,0 +1,63 @@
+
+> test
+> node --test test/*.test.mjs
+
+✔ historical assassin fixture rejects without altering persisted data (1312.766337ms)
+✔ historical control-pair fixture rejects without altering persisted data (1366.750381ms)
+✔ historical fire-scholar fixture rejects without altering persisted data (1319.233396ms)
+✔ real workerd/WASM with D1 SQLite: concurrency, receipts, rollback and reopen (10999.349926ms)
+ℹ {"currentVersion":"rust-v0.2.45-jc089-poison-blood-candidate","unsupportedFrozenVersions":["rust-v0.2.1","rust-v0.2.2","rust-v0.2.3","rust-v0.2.4","rust-v0.2.5","rust-v0.2.6","rust-v0.2.7","rust-v0.2.8","rust-v0.2.9","rust-v0.2.10"],"oldDataUntouchedBeforeAndAfterReopen":true,"localWorkerdD1Only":true}
+ℹ Provider emulation only; remote Cloudflare D1 acceptance is still required. Persisted at /tmp/hegemony-worker-d1-7d5gDT
+✔ current-only Site keeps the candidate engine45 bytes and its exact new-room flow (43.303386ms)
+✔ every historical tuple and altered identity rejects before any current state operation (876.978723ms)
+ℹ {"historicalTuplesRejected":40,"alteredIdentityCases":5,"currentStateOperationsOnRejectedStates":0}
+✔ production generated modules and Worker contain only the reviewed current WASM (2.210128ms)
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mProxy environment variables detected. We'll use your proxy for fetch requests.[0m
+
+
+
+ ⛅️ wrangler 4.146.0
+────────────────────
+Total Upload: 1685.05 KiB / gzip: 457.84 KiB
+Your Worker has access to the following bindings:
+Binding                     Resource
+env.DB (hegemony-test)      D1 Database
+
+--dry-run: exiting now.
+{"fixtureRegistry":false,"historicalEngine":"rust-v0.2.11","dist":"/tmp/hegemony-msjc09-v011-worker-cEOWaa/legacy-v0.2.11-worker/dist","frontendBuilt":false,"deployed":false}
+✔ frozen11 real MSJC09 permits first/rear paid activation and restores four-seat frames, receipts, privacy and reset (24882.460458ms)
+ℹ {"printedSociety":"MSJC09","syntheticInitialLayout":false,"publicNaturalUiAcceptance":false,"httpCalls":2346,"acceptedCommands":461,"firstAndRearBothPaid":true,"fourSeats":true,"paidFrameReopens":2,"restoredBeforeExpiry":2,"sameInstanceNaturalNextTurnReset":true}
+✔ historical rescue-forecast fixture rejects without altering persisted data (1031.680095ms)
+✔ recovering a paid response receipt precedes all later clock evaluation (11.280195ms)
+✔ a matching-version GET persists an expired window before deciding to return 204 (1.95954ms)
+✔ an expired response commits only the system tick and never an accepted user receipt (1.275511ms)
+✔ a CAS conflict retries Begin with its original expected version and complete intent (1.063922ms)
+✔ a formal response cannot be rebased by the host after another seat wins CAS (1.041769ms)
+✔ client clock injection and nested Session commands are rejected before the reducer (0.380553ms)
+✔ quoting an active composition refreshes its clock and does not commit a draft or receipt (4.386505ms)
+✔ historical response5 rejects before pacing and survives reopen byte-for-byte (909.932696ms)
+✔ historical response6 rejects before pacing and survives reopen byte-for-byte (978.453324ms)
+✔ historical response7 rejects before pacing and survives reopen byte-for-byte (990.734165ms)
+✔ historical response8 rejects before pacing and survives reopen byte-for-byte (1130.451085ms)
+hegemony storage retry { code: 'network_lost', retryable: true, attempt: 1 }
+✔ an ambiguous D1 commit retries the identical command and returns its receipt without applying twice (193.981825ms)
+✔ storage diagnostics expose fixed labels and do not retry quota, constraint or unknown failures (0.505451ms)
+hegemony storage retry { code: 'network_lost', retryable: true, attempt: 1 }
+hegemony storage retry { code: 'network_lost', retryable: true, attempt: 1 }
+hegemony storage retry { code: 'network_lost', retryable: true, attempt: 2 }
+✔ a failure before commit retries the original identity, while an exhausted failure never returns success (758.100381ms)
+✔ transient failures have a finite budget; HTTP rejections and unclassified failures are returned immediately (1.712749ms)
+✔ historical two-card fixture rejects without altering persisted data (1014.876273ms)
+ℹ tests 25
+ℹ suites 0
+ℹ pass 25
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 27068.499626
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

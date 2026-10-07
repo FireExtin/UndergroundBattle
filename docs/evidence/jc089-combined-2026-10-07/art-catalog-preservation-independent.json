@@ -1,0 +1,8 @@
+{
+  "productCommit": "84a36d624528ab61f752e4ad9f05fdeb1839d7e4",
+  "jz48AndJz49ActualDefinitionsByteEquivalent": true,
+  "worldSocietiesDecksBuildRulesEquivalent": true,
+  "frozen44WasmSha256": "6cf6dca6a06844c84e38fbed2a084145bc0e63ae3897de18b864814c314d11f9",
+  "frozen44WasmBytes": 2191175,
+  "scope": "Actual ABI catalog-only comparison; no room state or mechanism qualification"
+}

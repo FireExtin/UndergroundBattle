@@ -1,0 +1,8 @@
+{
+  "productCommit": "84a36d624528ab61f752e4ad9f05fdeb1839d7e4",
+  "engine": "rust-v0.2.45-jc089-poison-blood-candidate",
+  "pool": "limited-v2.42-jc089-poison-blood-candidate",
+  "normalWasmReplayByteExact": true,
+  "commandEvents": 273,
+  "journalEvents": 274
+}

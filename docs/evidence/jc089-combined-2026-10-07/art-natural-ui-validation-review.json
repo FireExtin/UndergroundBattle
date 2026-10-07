@@ -1,0 +1,101 @@
+{
+  "fixedProduct": "84a36d624528ab61f752e4ad9f05fdeb1839d7e4",
+  "findings": [],
+  "actuallyViewedNaturalUiScreenshots": 8,
+  "actualSyntheticScreenshotsPreviouslyViewed": 24,
+  "naturalUiIntegrity": {
+    "path": "/tmp/jc089-combined-evidence/natural-ui-integrity.json",
+    "bytes": 4063,
+    "sha256": "517f191d436dbfbe77a649e03d48db4a8b2c4a15ebc25811fd00a420100424d8"
+  },
+  "combinedValidationSummary": {
+    "path": "/tmp/jc089-combined-evidence/combined-validation-summary.json",
+    "bytes": 3207,
+    "sha256": "1641595e1d0173c49671aa5eb106ca7a11fe6a53b807df4e5ae880bfc0b4585e"
+  },
+  "rootLogHashesIndependentlyVerified": [
+    {
+      "path": "/tmp/jc089-combined-evidence/combined-web-tests.log",
+      "bytes": 512,
+      "sha256": "04b43bb3f70e20ce0b0960047b32cf0a6b4af9405003592770b2ed19db3723db"
+    },
+    {
+      "path": "/tmp/jc089-combined-evidence/combined-worker-tests.log",
+      "bytes": 4628,
+      "sha256": "49bb7ab037b929d688d3d7805af9243417a6051a5e599706a27f99ed623773b0"
+    },
+    {
+      "path": "/tmp/jc089-combined-evidence/combined-build.log",
+      "bytes": 1708,
+      "sha256": "e775256c8512dd0c28751da97047bf5c8a510719d33e1d3796b628563eb29497"
+    }
+  ],
+  "observedRootCombinedWebResult": {
+    "files": 68,
+    "passedTests": 607
+  },
+  "observedRootCombinedWorkerResult": {
+    "passedTests": 25,
+    "failedTests": 0
+  },
+  "observedRootTypeScriptViteWorkerBuildPassed": true,
+  "actualBuildArtifacts": {
+    "wasm": {
+      "path": "/tmp/jc089-combined-review-game/sites/dist/server/5f45fc73a42dc6e2e8820fa6f5882db590b63a61-hegemony_wasm_bg.wasm",
+      "bytes": 2198305,
+      "sha256": "afc1b42523111dc242fd21850da9af243112a619c9f759bc60cbabac045883f7"
+    },
+    "workerJs": {
+      "path": "/tmp/jc089-combined-review-game/sites/dist/server/index.js",
+      "bytes": 47263,
+      "sha256": "384050c24c4e79af52ed002036aa9400aa1e9aff077dd4b154a0f1b4bdbb71ea"
+    },
+    "currentWasmCount": 1
+  },
+  "naturalUiDriver": {
+    "path": "/tmp/jc089-combined-evidence/natural-ui-e2e.mjs",
+    "bytes": 18946,
+    "sha256": "97df405419f8a457b749f21e039c118733088c83bb4967f443571c208e2db537"
+  },
+  "screenshotCheck": {
+    "path": "/tmp/review-jc089-jz51-jz53-card-faces-evidence/natural-ui-screenshots-actually-viewed.json",
+    "bytes": 3747,
+    "sha256": "ea4121d7e40659ae126d5b7cc526b0ba484e1537354903adfefa34c99e1e70e7"
+  },
+  "rootAuditedFocusedNaturalSequence": {
+    "uniqueCommands": 273,
+    "version": 274,
+    "journalEvents": 274,
+    "turn": 6,
+    "status": "playing",
+    "acceptedHttpResponses": 277,
+    "duplicateHttpResponses": 4,
+    "targetCancellations": 1,
+    "paidAttachments": 2,
+    "lostAcknowledgements": 4,
+    "allReceiptsMatch": true,
+    "nativeReplayMatches": true,
+    "databaseBytesUnchanged": true
+  },
+  "visualObservations": {
+    "actualHandCanonicalOriginalFullPrintVisible": true,
+    "sourceDriverAsserts400x560AndContain": true,
+    "targetConfirmAndCancelControlsVisible": true,
+    "firstCurseGrantedGloryAndDefense1Visible": true,
+    "combatMarkerExactly1Visible": true,
+    "restoredResponseWindowVisible": true,
+    "deadHostAndTwoAttachmentsAbsentInFinalBoard": true,
+    "survivingJz48CurrentInfluence0Defense1Visible": true,
+    "mobileReaderFullTextAndStatsVisible": true,
+    "mobileViewportFromDriver": {
+      "width": 390,
+      "height": 844
+    },
+    "mobilePngFullPageDimensions": {
+      "width": 390,
+      "height": 1426
+    },
+    "fullPageScreenshotIsNotIndependentViewportGeometryProof": true
+  },
+  "scope": "Independent actual 8-image inspection and exact SHA/bytes comparison, driver assertion inspection, root combined logs hash/result and actual build byte verification. No new browser, independent natural-room journal/native replay, credentials/full snapshots/DB reads, gameplay mechanism review or full strategy terminal qualification."
+}

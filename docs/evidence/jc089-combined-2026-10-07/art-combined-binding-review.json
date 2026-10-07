@@ -1,0 +1,116 @@
+{
+  "fixedCombinedProduct": "84a36d624528ab61f752e4ad9f05fdeb1839d7e4",
+  "reviewedArtCommit": "cf2b9657c9f4e0ba8dcb808aaa1e0c2afc80a0e4",
+  "baseline": "99a208c0e6dc73669292396268840a0d9034547a",
+  "artPathsByteExact": [
+    {
+      "path": "docs/JC089_JZ51_JZ53_CARD_FACES_CANDIDATE_2026-10-07.md",
+      "artCommitBlob": "995c946d0ca9c248cc9d8ddb90848f6dbc862b5d",
+      "combinedCommitBlob": "995c946d0ca9c248cc9d8ddb90848f6dbc862b5d",
+      "bytes": 8598,
+      "sha256": "3398ef832f4d50f47294a8c128ba2f1e90b7fe78268870563038b288b2ea59c3"
+    },
+    {
+      "path": "web/public/card-scans.json",
+      "artCommitBlob": "88286a23cd986a02be67535872452a9f416e5417",
+      "combinedCommitBlob": "88286a23cd986a02be67535872452a9f416e5417",
+      "bytes": 23518,
+      "sha256": "eddb1c72414a73e806becbae3528187087d142cf0e165a99953b0316ee434e1d"
+    },
+    {
+      "path": "web/public/cards/JC089.jpg",
+      "artCommitBlob": "0b67f36e7753bd011f496b4bcf14543c6e4a6334",
+      "combinedCommitBlob": "0b67f36e7753bd011f496b4bcf14543c6e4a6334",
+      "bytes": 312412,
+      "sha256": "83853a1a4c3e6ecd9644f7bb5c843e70585d421f1792a0e4a141ebbe867d12f7"
+    },
+    {
+      "path": "web/public/cards/JZ51.jpg",
+      "artCommitBlob": "d325dede09ff58906b77700ca2a586f438568898",
+      "combinedCommitBlob": "d325dede09ff58906b77700ca2a586f438568898",
+      "bytes": 521395,
+      "sha256": "1b0311913bbf4a26c0e9e2dc2c0d6b656bd802cc6e831350f6f2500edf577dc0"
+    },
+    {
+      "path": "web/public/cards/JZ52.jpg",
+      "artCommitBlob": "80b4e53c245d52dd63317684017de89f8772328d",
+      "combinedCommitBlob": "80b4e53c245d52dd63317684017de89f8772328d",
+      "bytes": 521413,
+      "sha256": "7f9ad8adb68bdd84877ebdead2bc13ed04983099977333d2106486405c6478a3"
+    },
+    {
+      "path": "web/public/cards/JZ53.jpg",
+      "artCommitBlob": "563bf76910160f7e4c72f657b67b235a1ef0649a",
+      "combinedCommitBlob": "563bf76910160f7e4c72f657b67b235a1ef0649a",
+      "bytes": 509401,
+      "sha256": "a84d896c1b552dabda05a1fc12c55224275a31b63a8408446508775235cc4623"
+    },
+    {
+      "path": "web/src/game/JC089JZ51JZ53CardFaces.test.jsx",
+      "artCommitBlob": "a9ba4db5986c00bd96e7636fdeef0ce07bfa08de",
+      "combinedCommitBlob": "a9ba4db5986c00bd96e7636fdeef0ce07bfa08de",
+      "bytes": 8703,
+      "sha256": "e46d48a69a0844083093c6ff9ca67e1aeacf523b05b771f5a6043131bc0d428f"
+    },
+    {
+      "path": "web/src/game/JZ55UniqueDestroy.test.jsx",
+      "artCommitBlob": "6253ad00a1f965c5285925f0cd18d5e8e2124fde",
+      "combinedCommitBlob": "6253ad00a1f965c5285925f0cd18d5e8e2124fde",
+      "bytes": 8504,
+      "sha256": "556c84f26c1920b720a47aa355ed3cc9536881aa9b34ea2d3bf17c3c5df086e8"
+    },
+    {
+      "path": "web/src/game/cardScans.ts",
+      "artCommitBlob": "5dd02a95ba67307e354f1d7e6eb0d8a9db379ace",
+      "combinedCommitBlob": "5dd02a95ba67307e354f1d7e6eb0d8a9db379ace",
+      "bytes": 3833,
+      "sha256": "b2d90356cabf5f65e18c92cce4d3f4e0fda5e21640d871495543452910692482"
+    }
+  ],
+  "preservedOldManifestAndImages": 111,
+  "registeredOriginals": 115,
+  "faceComponents": 684,
+  "ordinaryDefinitions": 103,
+  "ordinaryNonRegion": 93,
+  "regions": 10,
+  "societies": 8,
+  "admittedComponents": 111,
+  "pendingGameplayAdmission": 573,
+  "unregisteredOriginals": 569,
+  "missingCanonicalOriginals": [
+    "TK011"
+  ],
+  "artOnly": [
+    "JZ50",
+    "JZ51",
+    "JZ52",
+    "JZ53"
+  ],
+  "jc089NowExecutable": true,
+  "archiveAndReadModalBytePreserved": true,
+  "newCurrentCombatGloryHiddenByVisibleCard": true,
+  "rootEvidenceBindings": [
+    {
+      "path": "/tmp/jc089-combined-evidence/candidate-fixed-identities.json",
+      "bytes": 1022,
+      "sha256": "0b86b524128bc5adc8c95bd597e65775d5f0d18fdc9037f74185dc4c19e26765"
+    },
+    {
+      "path": "/tmp/jc089-combined-evidence/combined-catalog-and-originals.json",
+      "bytes": 597,
+      "sha256": "a3097a53b7ba611c62130a3ebf903aa58353b71b282c5d987aabbd0c19b71188"
+    }
+  ],
+  "independentCatalogBinding": {
+    "path": "/tmp/review-jc089-jz51-jz53-card-faces-evidence/combined-actual-catalog-summary.json",
+    "bytes": 2452,
+    "sha256": "4228a92f458ff0d828d226b4ff50bc9b3c20b8628a20c58d201a3693880b418e"
+  },
+  "observedRootOwnedUntrackedLinks": [
+    "?? sites/node_modules",
+    "?? web/node_modules"
+  ],
+  "reviewerModifiedRootFiles": false,
+  "scope": "Independent combined original/art/reader-projection/admission binding. Mechanics review and combined full test/build/natural UI are delegated to their separate reviewers/root.",
+  "findings": []
+}

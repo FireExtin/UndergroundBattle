@@ -1,0 +1,21 @@
+{
+  "baseCommit": "99a208c0e6dc73669292396268840a0d9034547a",
+  "productCommit": "84a36d624528ab61f752e4ad9f05fdeb1839d7e4",
+  "mechanismCommit": "19e594f00004c16c95cc1846c4ad3d252c5b0021",
+  "artCommit": "cf2b9657c9f4e0ba8dcb808aaa1e0c2afc80a0e4",
+  "engine": "rust-v0.2.45-jc089-poison-blood-candidate",
+  "pool": "limited-v2.42-jc089-poison-blood-candidate",
+  "rust-gameTree": "6a7a2afe39e719925a2879d01a1c8df91bd17e35",
+  "rust-game-wasmTree": "acd84940795276c1d9b9226eb27230c8976bbba0",
+  "sitesTree": "67de5b05acf41ad066c6e5b6487d6d09e2bd8214",
+  "webTree": "8accde6581ce75188e4bb98107cf3f1e95e6dedf",
+  "wasmBytes": 2198305,
+  "wasmSha256": "afc1b42523111dc242fd21850da9af243112a619c9f759bc60cbabac045883f7",
+  "mechanismFixCommit": "a96a5595d42b58ecf2d47abd4d4a87b3d6c7d1ae",
+  "nativeAuditBinary": {
+    "path": "/tmp/jc089-glory-fix-evidence/hegemony-audit-engine45-frozen",
+    "bytes": 11325432,
+    "sha256": "f77a6eb184af636a410c0a0fbdfdf85af8422914e57d672e42708f69d79f470a"
+  },
+  "artPathsByteExact": 9
+}
