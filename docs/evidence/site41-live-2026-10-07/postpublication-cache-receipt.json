@@ -1,0 +1,9 @@
+{
+  "scope": "after successful Site41 deployment; verified redundant local build output only",
+  "archive": "/workspace/game-publication-evidence/site41-sealing-search-2ad04f7.tar.gz",
+  "archiveSha256": "5d3747db730821554d3438726d5631127e28c861de823d68bb1be29f75db9e5a",
+  "verifiedFiles": 122,
+  "removedPath": "/tmp/lantern-site-fce0-official/dist/client",
+  "removedBytes": 64649731,
+  "retained": "all tracked source/card originals, source Git history, exact WASM, compiled Worker and complete fixed deployment archive; no Library or online data deletion"
+}

@@ -1,5 +1,7 @@
 # Site41 已保存；公开部署被自动审批阻止
 
+后续状态：父端补充用户AGENTS.md持续发布授权的原文证据后，同一deploy_site_version工具仅重试一次，版本41于2026-10-07T19:53:08.809280UTC成功发布。以下保留首次阻断和保存阶段的历史记录；当前状态见[Site41发布说明](SITE41_SEALING_SEARCH_PUBLICATION_2026-10-07.md)。公网catalog403仍未重试。
+
 父原审查者通过2ad04f7b91ca3d6030ff27a5d45598703592fbde的P1修复复核，并在后续调度消息中要求发布组合候选。本任务按官方Sites0.1.75流程重新get_site和取得临时源码凭证，复用原checkout，没有新clone/worktree。原项目appgprj_6abf7bf54a7481918a50e1ef1509ca68、owner和public范围均确认，开源助手前线上版本为40。Github/main未推送，线上牌桌数据未清理。
 
 官方source helper打开57039066c304db8ccd51155ecf2941b91df3abbd，逐字节同步**455**个已审产品/测试/原图文件，恢复Git文件模式，真实TypeScript/Vite/Wrangler构建通过，正常推送官方源**42229677a9a69fc6b1d469af0f6539ac03bb429b**。真实WASM2,248,074字节/SHA2569b8a7a69cd3c09781387cb4e66ad710d803783447fb6b0382fb2697eac50e885，与原审结果一致，engine49/pool44，107普通卡/8会社。
