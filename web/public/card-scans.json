@@ -553,5 +553,25 @@
     "url": "/cards/JZ50.jpg",
     "source": "resource/ymsj-fun.github.io/cards/JZ50 墓穴食尸鬼.jpg",
     "sha256": "403e44bb5f7f0ff8715acb267a8369c3715b2dc752d7fe612de085da29b523e7"
+  },
+  "JZ51": {
+    "url": "/cards/JZ51.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JZ51 温迪戈.jpg",
+    "sha256": "1b0311913bbf4a26c0e9e2dc2c0d6b656bd802cc6e831350f6f2500edf577dc0"
+  },
+  "JZ52": {
+    "url": "/cards/JZ52.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JZ52 大维齐尔迈哈穆德.jpg",
+    "sha256": "7f9ad8adb68bdd84877ebdead2bc13ed04983099977333d2106486405c6478a3"
+  },
+  "JZ53": {
+    "url": "/cards/JZ53.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JZ53 尸舞舒拉密兹.jpg",
+    "sha256": "a84d896c1b552dabda05a1fc12c55224275a31b63a8408446508775235cc4623"
+  },
+  "JC089": {
+    "url": "/cards/JC089.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC089 毒血诅咒.jpg",
+    "sha256": "83853a1a4c3e6ecd9644f7bb5c843e70585d421f1792a0e4a141ebbe867d12f7"
   }
 }
