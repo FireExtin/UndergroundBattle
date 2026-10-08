@@ -1,0 +1,14 @@
+{
+  "recordedAtUtc": "2026-10-08T01:27:25.382025+00:00",
+  "parentThreadId": "01a0fe65-0a4f-76cb-9bf7-44e1e01b70d6",
+  "questionTimeUtc": "2026-10-08T00:08:00Z",
+  "answerTimeUtc": "2026-10-08T01:23:00Z",
+  "timestampPrecision": "parent supplied minute precision",
+  "question": "两张卡的短烟测已通过，还剩 BQ104 一个边界要定：检索结算时，原地区已经消失。候选实现是“仍选出并展示一张合格雇员；无法放置就留在牌库，然后洗牌”。我倾向保留这个按牌面顺序尽量执行的处理，但原规则没有核实到明确裁定。你同意这样处理，还是与 XQ48 一样直接跳过检索、只洗牌？",
+  "userAnswer": "同意",
+  "acceptedBehavior": "BQ104 original source region lost: search/reveal one eligible employee; placement fails and card stays in original library; shuffle",
+  "scope": "specific BQ104 edge only, not a generic partial-resolution rule",
+  "productCandidateUnchanged": "d55a740b97fc75aab25eea3dacbf870385cd1615",
+  "qaCommit": "28a72af4b77fceb27b8452af48d48828dd53ba09",
+  "parentDirectedOfficialPublish": true
+}

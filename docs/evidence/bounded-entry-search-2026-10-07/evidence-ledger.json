@@ -25,6 +25,11 @@
     "sha256": "5f5620698a603e095f56b0ff8c2d8202166a5901423649801e3127a8cc552fd0"
   },
   {
+    "path": "bq104-user-ruling-20261008.json",
+    "bytes": 1113,
+    "sha256": "8783092319d92d4b7ca08ab520d5d5c043cd6b91f54837ed097d4e314b64878e"
+  },
+  {
     "path": "invalid-result.json",
     "bytes": 263,
     "sha256": "d0abdf2f05c40d6eeb8e14fc4d11ba83ec9c3e74ec46e1bd436558bf6e84e742"
@@ -396,13 +401,13 @@
   },
   {
     "path": "review-manifest.json",
-    "bytes": 15190,
-    "sha256": "12e7fa0550117f6ef7048d7368edbae17a489bf8b39b044216541b84598652f4"
+    "bytes": 16250,
+    "sha256": "47aa1410d47fb871a5bf3a8c3428f9fa1a58b2af13c55930320c734afa5adc9c"
   },
   {
     "path": "rule-source-recheck-20261008/README.md",
-    "bytes": 4649,
-    "sha256": "52fd8b7da512283230a17020fbd57088c98a05c64c01496a99354a3c8e3aba34"
+    "bytes": 4811,
+    "sha256": "bd8748de933f539cf2b2c36fcbd95cf5662eb72b4b32f4dcbcaa3debb56f65d4"
   },
   {
     "path": "rule-source-recheck-20261008/base-printed7-physical9.png",
