@@ -247,13 +247,63 @@
     "shortVisualChecks": 5,
     "shortUiCommands": 5,
     "shortBrowserScriptOverallPassed": false,
-    "shortBrowserScriptFailure": "extra pause step uses wrong button name; actual lobby/table/assets verified"
+    "shortBrowserScriptFailure": "extra pause step uses wrong button name; actual lobby/table/assets verified",
+    "initialShortBrowserScriptHistoricalScope": "Existing shortVisualChecks/shortUiCommands/shortBrowserScriptOverallPassed fields describe the first failed short script, preserved unchanged; completed follow-up below is separate.",
+    "completedShortSmoke": {
+      "result": "smoke-complete-20261007/result.json",
+      "passed": true,
+      "checks": 8,
+      "actualNewTables": 1,
+      "uiCommands": 8,
+      "maxUiCommands": 10,
+      "terminalVersion": 9,
+      "noStateInjection": true,
+      "naturalNewCardMechanismsVerified": false,
+      "mobileScope": "390x844 actual current CSS rendering only, not full usability",
+      "sqliteReadOnlyAudit": "smoke-complete-20261007/read-only-d1-audit.json",
+      "matchingD1Receipts": 8,
+      "exactCommandIdSeatAndVersionMatch": true,
+      "browserStopped": true,
+      "own8120PortConfirmedClosed": true,
+      "log": "logs/bounded-search50-smoke-complete.log"
+    },
+    "regionReplacementCoverageCorrection": {
+      "oldPendingAfterCoverageClaimWithdrawn": true,
+      "nativeCases": [
+        {
+          "path": "rust-game/src/bounded_search_tests.rs",
+          "line": 421,
+          "test": "xq48_region_replaced_before_declaration_or_during_response_skips_search_and_shuffles",
+          "coverage": "explicit layout: before optional declaration acceptance and after acceptance during response"
+        },
+        {
+          "path": "rust-game/src/bounded_search_tests.rs",
+          "line": 446,
+          "test": "bq104_lost_original_region_preserves_search_reveal_shuffle_without_placing_in_replacement",
+          "coverage": "explicit layout: after optional acceptance, before search pending opens"
+        }
+      ],
+      "pendingSearchOpenReplacementTestExists": false,
+      "ordinaryPendingCommandsGuard": "rust-game/src/engine.rs:566",
+      "noNaturalImpossibleCaseClaim": true
+    },
+    "ruleSourceRecheck": {
+      "note": "rule-source-recheck-20261008/README.md",
+      "ledger": "rule-source-recheck-20261008/source-ledger.json",
+      "fullOriginalPagesActuallyViewed": true,
+      "bq104OriginalActuallyViewed": true,
+      "bq104PrintSequenceConfirmed": true,
+      "sourceLostAbilityStillResolvesConfirmed": true,
+      "claimedPartialInvalidTargetClauseConfirmed": false,
+      "bq104OriginalRegionLostRulingStillPendingParent": true
+    }
   },
   "openReviewItems": [
     "BQ104 original region lost: search/reveal, leave card in deck, shuffle is a rule inference, not an explicit owner ruling",
     "Current-only Worker returns410 for old engine49 rooms",
     "New bounded search browser natural mechanism chain remains unverified",
-    "Short visual script failed extra pause step; full mobile usability not claimed"
+    "Claimed Hegemony partial-invalid-target clause has not been confirmed in available full original pages; exact original quotes supplied for parent ruling",
+    "Mobile rendering verified; full mobile usability remains unverified"
   ],
   "workerBytes": 47314,
   "workerSha256": "005c4b99e2fa91b15bb77aa67f0fd6a9a568849f6371412f8602dd6a7d2982e4",
@@ -277,5 +327,58 @@
     "exactWorkerBytesSame": true,
     "scope": "own local 8120 only; all original and smoke D1 files preserved"
   },
-  "own8120PortConfirmedClosed": true
+  "own8120PortConfirmedClosed": true,
+  "frozenProductCandidateCommit": "d55a740b97fc75aab25eea3dacbf870385cd1615",
+  "qaOnlyFollowup": {
+    "purpose": "Parent-requested single bounded short smoke, exact source quotes, and P3 coverage correction",
+    "productFilesUnchanged": true,
+    "originalFailureEvidencePreserved": true,
+    "newProductTestsAdded": false
+  },
+  "completedShortSmokeRuntime": {
+    "server": "successfully started local post-Go compiled Sites Worker50 + current assets; own8120 only",
+    "actualWorkerSha256": "005c4b99e2fa91b15bb77aa67f0fd6a9a568849f6371412f8602dd6a7d2982e4",
+    "actualWasmSha256": "e3d26f7041a114a96c9933374a33e63b0c8e45b9a4506b7937fb70cbf99a9d81",
+    "noFactorySeedHeader": true,
+    "cleanup": {
+      "timeUtc": "2026-10-07T23:53:03Z",
+      "stoppedOwnWranglerAndDescendants": [
+        264947,
+        264954,
+        264963,
+        264972,
+        264980,
+        264985
+      ],
+      "browserClosed": true,
+      "localD1Preserved": true,
+      "databaseAndCredentialsNotExported": true
+    },
+    "readOnlyD1Audit": {
+      "timeUtc": "2026-10-08T00:04:42.764042+00:00",
+      "sqliteReadOnly": true,
+      "roomId": "673ba1befc08b0113d8e7374",
+      "terminalVersion": 9,
+      "stateBytes": 17433,
+      "stateSha256": "0531c5ec95542d92468154d405333262d5df7fc0453ce123aed1a0ee219443ac",
+      "actualUiCommands": 8,
+      "matchingD1Receipts": 8,
+      "commandIdsAndSeatsAndVersionsMatchExactly": true,
+      "receiptVersions": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "ownQaNamespaceTotalRooms": 4,
+      "ownQaNamespaceTotalCommandReceipts": 14,
+      "fullDatabaseOrSeatCredentialsExported": false,
+      "own8120PortConfirmedClosed": true
+    },
+    "noDatabaseOrSeatCredentialsExported": true
+  }
 }

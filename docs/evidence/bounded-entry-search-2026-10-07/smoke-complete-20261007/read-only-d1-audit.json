@@ -1,0 +1,25 @@
+{
+  "timeUtc": "2026-10-08T00:04:42.764042+00:00",
+  "sqliteReadOnly": true,
+  "roomId": "673ba1befc08b0113d8e7374",
+  "terminalVersion": 9,
+  "stateBytes": 17433,
+  "stateSha256": "0531c5ec95542d92468154d405333262d5df7fc0453ce123aed1a0ee219443ac",
+  "actualUiCommands": 8,
+  "matchingD1Receipts": 8,
+  "commandIdsAndSeatsAndVersionsMatchExactly": true,
+  "receiptVersions": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "ownQaNamespaceTotalRooms": 4,
+  "ownQaNamespaceTotalCommandReceipts": 14,
+  "fullDatabaseOrSeatCredentialsExported": false,
+  "own8120PortConfirmedClosed": true
+}

@@ -1,10 +1,11 @@
 """Finite post-Go visual smoke: one fresh duel, actual UI, no state edits."""
-import hashlib, json, re
+import hashlib, json, os, re
 from pathlib import Path
 from playwright.sync_api import sync_playwright, expect
 
-ROOT = Path(__file__).parent
-BASE = 'http://127.0.0.1:8120'
+ROOT = Path(os.environ.get('SMOKE_OUTPUT_DIR', str(Path(__file__).parent)))
+ROOT.mkdir(parents=True, exist_ok=True)
+BASE = os.environ.get('SMOKE_BASE_URL', 'http://127.0.0.1:8120')
 commands, errors, checks, creds = [], [], [], []
 result = {'scope':'post-Go current production client + compiled Worker50 + local D1; short lobby/table visual smoke', 'maxNewTables':1, 'actualNewTables':0, 'maxUiCommands':10, 'noStateInjection':True, 'naturalNewCardMechanismsVerified':False}
 
@@ -67,11 +68,27 @@ with sync_playwright() as p:
         expect(host.locator('[data-table-layout="overhead"]')).to_be_visible()
         checks.append({'check':'mobile table renders in current CSS', 'viewport':[390,844]})
         host.set_viewport_size({'width':1440,'height':1000})
-        host.get_by_role('button',name='暂停并保存此桌',exact=True).click()
+        stable_keys=['hand','players','regions','attachments','sealedCards','pendingChoice','stack','versions','turn','phase','step']
+        stable=lambda v:{key:v.get(key) for key in stable_keys}
+        room_management=host.get_by_role('region',name='保存与继续牌桌')
+        room_management.get_by_role('button',name='暂停并保存',exact=True).click()
         expect(host.get_by_role('button',name='恢复对局',exact=True)).to_be_enabled()
         host.reload(wait_until='networkidle');expect(host.get_by_role('button',name='恢复对局',exact=True)).to_be_enabled()
         after=state(0);assert after.get('pause')
+        assert stable(after)==stable(before)
         checks.append({'check':'pause/reload retains real current room', 'version':after['version']})
+        room_management.get_by_role('button',name='恢复对局',exact=True).click()
+        expect(room_management.get_by_role('button',name='暂停并保存',exact=True)).to_be_enabled()
+        resumed=state(0);assert not resumed.get('pause')
+        assert stable(resumed)==stable(after)
+        checks.append({'check':'actual UI resumes exact saved gameplay projection', 'version':resumed['version']})
+        room_management.get_by_role('button',name='暂停并保存',exact=True).click()
+        expect(room_management.get_by_role('button',name='恢复对局',exact=True)).to_be_enabled()
+        host.reload(wait_until='networkidle')
+        after=state(0);assert after.get('pause')
+        assert stable(after)==stable(resumed)
+        checks.append({'check':'final UI pause/reload saves unchanged hand, board, stack and choices', 'version':after['version']})
+        host.screenshot(path=str(ROOT/'final-paused-table.png'))
         assert len(commands)<=10 and not errors
         result.update({'passed':True,'roomId':creds[0]['roomId'],'terminalVersion':after['version']})
     except Exception as error:

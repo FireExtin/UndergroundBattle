@@ -1,0 +1,14 @@
+{
+  "timeUtc": "2026-10-07T23:53:03Z",
+  "stoppedOwnWranglerAndDescendants": [
+    264947,
+    264954,
+    264963,
+    264972,
+    264980,
+    264985
+  ],
+  "browserClosed": true,
+  "localD1Preserved": true,
+  "databaseAndCredentialsNotExported": true
+}
