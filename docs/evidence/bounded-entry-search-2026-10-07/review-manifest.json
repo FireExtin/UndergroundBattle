@@ -7,8 +7,7 @@
   "rules": "hegemony-pdf-v1",
   "cards": 109,
   "societies": 8,
-  "publishedSiteStill": 42,
-  "notPublished": true,
+  "notPublished": false,
   "providerTrackedClean": true,
   "coreFiles": [
     {
@@ -395,5 +394,21 @@
     "parentDirectedOfficialPublish": true
   },
   "publicationAuthorizedByParentAfterSpecificUserRuling": true,
-  "sourceClauseStillUnconfirmedButSpecificRulingReceived": true
+  "sourceClauseStillUnconfirmedButSpecificRulingReceived": true,
+  "publishedSiteAtInitialReview": 42,
+  "publishedSiteNow": 43,
+  "publicationReceipt": "publication-site43/site43-publication-receipt.json",
+  "publishedProviderSource": "5fb79b63e4a041df712dc3e2cc09205d3dd06ba8",
+  "deploymentId": "appgdep_6ac6f4d0c71c819184be22fddb742d8d",
+  "publicationStatus": "succeeded",
+  "nativeStoredArchiveHash": "sha256:593f58affbeeb2ab2988d8f7f925f0519b152ad0e00dff72fbde03ce8f1b4243",
+  "localFinalGzipArchiveHash": "c55aa6779e02666de7ba7830568c9657d5a2400cfd2891cb3dba3d5054738944",
+  "rawNativeArchiveByteEqualityVerified": false,
+  "archiveContentReadbackFailure": {
+    "verified": false,
+    "action": "library.prepare_materialize",
+    "target": "file_000000005a4081f5a3a0586a08c648e6",
+    "error": "HTTP error prior to action invocation. HTTPException: 404: Library file ownership could not be verified.",
+    "noAlternativeRouteOrRetry": true
+  }
 }

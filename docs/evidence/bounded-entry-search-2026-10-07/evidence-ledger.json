@@ -380,6 +380,51 @@
     "sha256": "f22875b1de89f23c34dc694590abe99ccc5ccd28b1a6f1466b3c18a7840f267f"
   },
   {
+    "path": "publication-site43/approved-source-projection.json",
+    "bytes": 160482,
+    "sha256": "70d4070985cee10de8fe85318414f049960ebdd04dea3e555a6657195624a8da"
+  },
+  {
+    "path": "publication-site43/current50-wasm-abi.json",
+    "bytes": 2079,
+    "sha256": "599b60effe1f36043f395ea005e0d005713bc94bc75c4afbfb35c7f8f9422a4e"
+  },
+  {
+    "path": "publication-site43/final-pre-save-audit.json",
+    "bytes": 25589,
+    "sha256": "77f25fd0fe519ff55739f829c78c5b3f2421884fb879f7bb27ae302fb81b9384"
+  },
+  {
+    "path": "publication-site43/native-container-hash-analysis.json",
+    "bytes": 330,
+    "sha256": "e9a495ec1c86d815d904bbc5dbb0750d4b04419d09e41a588f0cee30bee1021c"
+  },
+  {
+    "path": "publication-site43/native-version-readback-audit.json",
+    "bytes": 1800,
+    "sha256": "c01c03447fa5f20fd7c4fc9a97ccf0abf74a3e878d71e00a1296fd76de15fb00"
+  },
+  {
+    "path": "publication-site43/official-build-and-first-workflow.log",
+    "bytes": 2009,
+    "sha256": "38b0ffb3f348be974dff71ac1fca2711056cf10f8f1228f27c6eac2dec7b7ead"
+  },
+  {
+    "path": "publication-site43/official-final-workflow.log",
+    "bytes": 388,
+    "sha256": "abc4872dca4dcea4159b70e4857fe16f4d8133250245ee5ca342102137e3c513"
+  },
+  {
+    "path": "publication-site43/official-workflow-result.json",
+    "bytes": 299,
+    "sha256": "9582a971adc2e39ad1df9985f1394b63f872c405703c5822fe5c1d16884f2502"
+  },
+  {
+    "path": "publication-site43/site43-publication-receipt.json",
+    "bytes": 4851,
+    "sha256": "d7c55e86923cc8ab7143e98b0a3ae3dd81522d2a44e06ddb968b3c71c0dee861"
+  },
+  {
     "path": "qa-process-cleanup.json",
     "bytes": 738,
     "sha256": "1c0da6b09890edaa5926f649fbd489d8d283f961f098414021ccf7b2c4fa176f"
@@ -401,8 +446,8 @@
   },
   {
     "path": "review-manifest.json",
-    "bytes": 16250,
-    "sha256": "47aa1410d47fb871a5bf3a8c3428f9fa1a58b2af13c55930320c734afa5adc9c"
+    "bytes": 17112,
+    "sha256": "8b43d180133281296be49c8a5ca9572668620e5a2fda7b8d33d4bc1c9f721e1b"
   },
   {
     "path": "rule-source-recheck-20261008/README.md",

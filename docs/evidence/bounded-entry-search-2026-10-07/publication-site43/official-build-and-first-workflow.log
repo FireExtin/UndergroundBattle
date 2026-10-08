@@ -1,0 +1,46 @@
+> build
+> node scripts/build.mjs
+
+
+> undergroundbattle-web@0.1.0 build
+> tsc --noEmit -p tsconfig.app.json && tsc --noEmit -p tsconfig.node.json && vite build
+
+vite v8.0.3 building client environment for production...
+✓ 52 modules transformed.
+rendering chunks (1)...computing gzip size...
+dist/index.html                   0.47 kB │ gzip:   0.33 kB
+dist/assets/index-CRqqsaW3.css  180.42 kB │ gzip:  31.38 kB
+dist/assets/index-CyduTvl2.js   323.47 kB │ gzip: 100.23 kB
+
+✓ built in 193ms
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+▲ [WARNING] Proxy environment variables detected. We'll use your proxy for fetch requests.
+
+
+
+ ⛅️ wrangler 4.146.0
+────────────────────
+✨ Read 126 files from the assets directory /tmp/lantern-site-fce0-official/public
+Total Upload: 2270.15 KiB / gzip: 598.90 KiB
+Your Worker has access to the following bindings:
+Binding                    Resource
+env.DB (hegemony)          D1 Database
+env.ASSETS                 Assets
+
+--dry-run: exiting now.
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+/workspace/game-publication-evidence/bounded-search50-publication-preparation/final-workflow-build.tar.gz
+{"project_id":"appgprj_6abf7bf54a7481918a50e1ef1509ca68","checkout_path":"/tmp/lantern-site-fce0-official","commit_sha":"6822c2f553efd6c0ac963c23e1df54545f1c096d","archive":"/workspace/game-publication-evidence/bounded-search50-publication-preparation/final-workflow-build.tar.gz"}

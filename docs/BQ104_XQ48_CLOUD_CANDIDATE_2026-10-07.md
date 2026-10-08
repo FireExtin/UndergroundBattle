@@ -1,6 +1,6 @@
 # BQ104 / XQ48 云端有限进场检索候选
 
-BQ104 猎头顾问与 XQ48 街头演说家的完整印刷能力、原始卡面及有限检索程序已接入候选。候选源提交为 `637a159`，在父端独审有限通过后合并 Go 退役提交 `7dab3a138a7ac85cd93f57a7565958a022b3be1f`，合并提交为 `54e0c68959cceeca26e938c8973980cbfdad7a51`。父端已审固定产品 `d55a740` 与 QA追加 `28a72af`；用户于2026-10-08 01:23 UTC明确同意最后的BQ原地区消失行为。**本次按既有授权执行官方Sites发布，最终发布结果以原生版本/部署回读receipt为准。**
+BQ104 猎头顾问与 XQ48 街头演说家的完整印刷能力、原始卡面及有限检索程序已接入候选。候选源提交为 `637a159`，在父端独审有限通过后合并 Go 退役提交 `7dab3a138a7ac85cd93f57a7565958a022b3be1f`，合并提交为 `54e0c68959cceeca26e938c8973980cbfdad7a51`。父端已审固定产品 `d55a740` 与 QA追加 `28a72af`；用户于2026-10-08 01:23 UTC明确同意最后的BQ原地区消失行为。**本批已按官方Sites流程发布为Site43；原生部署状态succeeded，并已回读版本/source/deployment/hash。** [发布记录与验收边界](SITE43_BOUNDED_ENTRY_SEARCH_PUBLICATION_2026-10-08.md)。
 
 ## 版本和恢复边界
 
@@ -103,7 +103,7 @@ Plugin Management 对名称 `Sites` 的全局目录依赖查询返回 `plugin_no
 
 Library配额没有可用证明；本地磁盘不足不能等同Library满。按用户既有清理授权，仅清理已停止且可重建的本机Native/bindgen编译缓存，保留源码、原图、rules、toolchain、Cargo缓存、冻结WASM、测试证据、provider和数据库。没有删除Library条目；此前Library403未通过其他route绕过。本轮最终另外清理1,658,776,005字节的自有已完成Native target，使tmpfs有空间完成开启图片的短视觉检查，具体receipt已保留。
 
-现有发布项目为 `appgprj_6abf7bf54a7481918a50e1ef1509ca68`，公开Site42部署 `appgdep_6ac6b12bb48c8191bfae2fd680647d50`，provider源 `4595431ba223736fee200844c200ccda48cd078b`、engine49/pool44。provider tracked保持干净，没有新Sites版本或部署。
+候选审查时的发布项目为 `appgprj_6abf7bf54a7481918a50e1ef1509ca68`，公开Site42部署 `appgdep_6ac6b12bb48c8191bfae2fd680647d50`，provider源 `4595431ba223736fee200844c200ccda48cd078b`、engine49/pool44。当时provider tracked保持干净，没有新Sites版本或部署；后续获得最后BQ裁定后发布Site43，见独立发布记录。
 
 ## 独立审查资料和复核
 
