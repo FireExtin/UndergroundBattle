@@ -91,6 +91,7 @@ export function CardContent({ card: source, definition: sourceDefinition, compac
     {!compact && startingHand !== undefined && <span className="hg-society-hand">起手 {startingHand} 张</span>}
     {!compact && !hidden && !asset && !region && !society && adjustedCost && <span className="hg-cost-explanation">当前费用 {actualCost} · 印刷费用 {printedCost}</span>}
     {archive ? <ArchiveArtwork key={`${card.instanceId}:${card.cardId}:${card.faceDown}`} card={card} /> : !compact && <span className="hg-card-art" aria-hidden="true"><span>{hidden ? '？' : card.kind === 'event' ? '✧' : card.kind === 'region' ? '⌖' : '◈'}</span><i /></span>}
+    {card.region !== undefined && !!card.lockMarkers && <span className="hg-lock-marker" aria-label={`锁定标志 ${card.lockMarkers}`}>锁定 {card.lockMarkers}</span>}
     {hidden ? <><IconStrip icons={hiddenIcons} /><span className="hg-card-text">{hiddenRule}。{card.exhausted ? '已横置，不参与对抗。' : '在地区内且未横置时参与势力对抗。'}</span></> : <>
       {!society && <span className="hg-card-affiliation">{region ? `赢得 ${definition?.points ?? '—'} 分 · 控制阈值 ${definition?.threshold ?? '—'}` : asset ? `${card.color || '无派系'}${card.magic ? ` · ${card.magic}` : ''}` : <>{definition?.loyaltyText || (definition?.loyalty?.length ? `忠诚 ${definition.loyalty.join(' / ')}` : '无忠诚要求')}{(card.magic || definition?.magic) && ` · ${card.magic || definition?.magic}`}</>}</span>}
       {!asset && !region && !attachment && !society && (effectiveStats && card.icons ? <>

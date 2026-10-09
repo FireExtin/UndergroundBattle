@@ -613,5 +613,15 @@
     "url": "/cards/JC090.jpg",
     "source": "resource/ymsj-fun.github.io/cards/JC090 灵魂契约.jpg",
     "sha256": "7734b37f8e222307c2958461e6d20a66400011707bc77413a4101e096f40ef0c"
+  },
+  "JC069": {
+    "url": "/cards/JC069.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC069 警犬.jpg",
+    "sha256": "4336d72dc69c89ce8ffe9cdfe7ff8c76423ef4fb73b21a5a70df9b523b1963d4"
+  },
+  "JZ43": {
+    "url": "/cards/JZ43.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JZ43 武装市民.jpg",
+    "sha256": "bbc107878f8041757b38f7674f57b1d5d34028edc79a10551e9f629ae97f6826"
   }
 }

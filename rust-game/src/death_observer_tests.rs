@@ -342,3 +342,22 @@ fn death_observer_duplicate_command_is_exact_and_illegal_markers_rejected() {
     let mut v=serde_json::to_value(&g).unwrap();v["world"][0]["time_markers"]=1.into();bad_state(&g,v);
     let mut v=serde_json::to_value(&g).unwrap();v["regions"][0]["card"]["time_markers"]=1.into();bad_state(&g,v);
 }
+
+// Combined-batch regression: a paid citizen lock hit kills a character and
+// enters the existing death-observer declarations through the same boundary.
+#[test]
+fn death_observer_gray_locked_lethal_hit_restores_both_program_families() {
+    let mut g=initial(0);g.regions[2].card=g.make_card("DQJC113",0);
+    let (priest,_,_)=observers(&mut g,0);
+    let dead=board(&mut g,"JC125",0,2);g.board_mut(&dead).unwrap().lock_markers=1;
+    held(&mut g,"LC19",1);let citizen=held(&mut g,"JZ43",0);fund(&mut g,0,"JC125",2);
+    apply(&mut g,0,Action{card_id:Some(citizen),region:Some(2),..Action::new("deploy")});
+    pass_top(&mut g);choose(&mut g,vec![dead.clone()]);checkpoint(&g);
+    pass_top(&mut g);assert!(g.board(&dead).is_none());checkpoint(&g);
+    finish(&mut g,1);assert_eq!(g.board(&priest).unwrap().1.time_markers,1);
+    assert_eq!(g.regions[1].influence[g.team(0)],1);assert!(g.players[1].hand.is_empty());
+    let corpses=g.players[0].graveyard.iter().filter(|c|c.definition=="JC125").collect::<Vec<_>>();
+    assert_eq!(corpses.len(),1);assert_ne!(corpses[0].id,dead);
+    assert_eq!((corpses[0].owner,corpses[0].controller,corpses[0].lock_markers),(0,0,0));
+    checkpoint(&g);
+}

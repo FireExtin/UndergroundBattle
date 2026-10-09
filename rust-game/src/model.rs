@@ -125,6 +125,8 @@ pub struct CardView {
     pub shield: Option<u32>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub wounds: Option<u32>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub lock_markers: Option<u32>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub color: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -324,6 +326,8 @@ pub struct Card {
     pub damage: u32,
     pub wounds: u32,
     pub shield: u32,
+    #[serde(default, skip_serializing_if = "is_zero")]
+    pub lock_markers: u32,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -798,6 +802,7 @@ impl Game {
         game.validate_entry_search_choice()?;
         game.validate_deck_seal_choice()?;
         game.validate_death_observers()?;
+        game.validate_gray_lock_state()?;
         Ok(game)
     }
 }
