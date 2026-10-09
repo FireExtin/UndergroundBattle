@@ -35,6 +35,12 @@ mod sealing;
 mod sealing_tests;
 mod jz50_search;
 mod bounded_search;
+mod deck_seal_search;
+// Retain the historical test-only positive seal preparation alongside actual-card tests.
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod deck_seal_search_draft;
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod deck_seal_search_tests;
 #[cfg(all(test, not(feature = "society-fixtures")))]
 mod bounded_search_tests;
 #[cfg(all(test, not(feature = "society-fixtures")))]

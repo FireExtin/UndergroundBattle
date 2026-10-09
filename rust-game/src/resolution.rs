@@ -1255,6 +1255,8 @@ impl Game {
             let step = frame.steps[frame.cursor].clone();
             frame.cursor += 1;
             match step.op {
+                Op::XQ44SearchDreamSealOnTarget => return self.deck_seal_search_start(frame, true),
+                Op::JZ02SearchSpaceSpellSealOnSource => return self.deck_seal_search_start(frame, false),
                 Op::JZ50SearchDeathToGraveyard => return self.jz50_search_start(frame),
                 Op::BQ104SearchEmployeeHiddenInSourceRegion => return self.entry_search_start(frame, true),
                 Op::XQ48SearchPassersIntoSourceRegion => return self.entry_search_start(frame, false),
@@ -1968,6 +1970,10 @@ impl Game {
         option_ids: BTreeSet<String>,
     ) -> RuleResult<()> {
         match choice {
+            FrameChoice::XQ44DreamSealSearch | FrameChoice::JZ02SpaceSealSearch => {
+                if chooser != frame.actor { return Err("牌库封印检索选择者无效".into()); }
+                self.deck_seal_search_complete(&frame, &selected, matches!(choice, FrameChoice::XQ44DreamSealSearch))?;
+            }
             FrameChoice::JZ50DeathSearch => {
                 if chooser != frame.actor {
                     return Err("墓穴食尸鬼检索的选择者无效".into());

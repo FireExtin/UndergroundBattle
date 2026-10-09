@@ -210,6 +210,8 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    XQ44SearchDreamSealOnTarget,
+    JZ02SearchSpaceSpellSealOnSource,
     // Fixed JZ50 only: actor-private 0..1 Death character to owner graveyard, then shuffle.
     JZ50SearchDeathToGraveyard,
     BQ104SearchEmployeeHiddenInSourceRegion,
@@ -471,6 +473,21 @@ pub struct Definition {
 // These are interpreter limits, not rules for resolving partially invalid targets.
 // Reject unsupported declarations before publishing actions or offering trigger choices.
 pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(), String> {
+    fn uses_deck_seal(ops: &[Op]) -> bool {
+        ops.iter().any(|op| match op {
+            Op::XQ44SearchDreamSealOnTarget | Op::JZ02SearchSpaceSpellSealOnSource => true,
+            Op::ForEachLivingPlayer(body) | Op::ForEachLivingPlayerFromActor(body) => uses_deck_seal(body),
+            Op::IfTargetExhausted { exhausted, ready, .. } => uses_deck_seal(std::slice::from_ref(exhausted)) || uses_deck_seal(std::slice::from_ref(ready)),
+            _ => false,
+        })
+    }
+    if deck_seal_search_definition(card_id).is_some() || uses_deck_seal(&ability.ops)
+        || ability.modes.iter().any(|m| uses_deck_seal(&m.ops)) {
+        if deck_seal_search_definition(card_id).is_none_or(|d|
+            serde_json::to_value(ability).unwrap() != serde_json::to_value(&d.abilities[0]).unwrap()) {
+            return Err(format!("{card_id}: only the complete XQ44/JZ02 deck sealing search is admitted"));
+        }
+    }
     fn uses_entry_search(ops: &[Op]) -> bool {
         ops.iter().any(|op| match op {
             Op::BQ104SearchEmployeeHiddenInSourceRegion | Op::XQ48SearchPassersIntoSourceRegion => true,
@@ -1099,6 +1116,10 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
 
 pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -> Result<(), String> {
     for (card_id, definition) in definitions {
+        if deck_seal_search_definition(card_id).is_some_and(|expected|
+            serde_json::to_value(definition).unwrap() != serde_json::to_value(expected).unwrap()) {
+            return Err(format!("cardId={card_id}: only the complete XQ44/JZ02 definition is admitted"));
+        }
         if let Some(canonical) = entry_search_definition(card_id) {
             if serde_json::to_value(definition).unwrap() != serde_json::to_value(canonical).unwrap() {
                 return Err(format!("cardId={card_id}: only the complete printed entry search definition is admitted"));
@@ -1447,6 +1468,20 @@ fn entry_search_definition(id: &str) -> Option<Definition> {
     d.traits.renown = renown;
     Some(d)
 }
+fn deck_seal_search_definition(id: &str) -> Option<Definition> {
+    match id {
+        "XQ44" => {
+            let mut search = ability("xq44-dream-seal-search", "检索梦境牌封印并洗牌", Timing::Standard,
+                vec![], vec![target(Zone::Board, EntityKind::Character, Relation::Any, Range::Anywhere)],
+                vec![Op::XQ44SearchDreamSealOnTarget], None);
+            search.play_only = true;
+            Some(with_abilities(vec![search]))
+        }
+        "JZ02" => Some(with_abilities(vec![ability("jz02-space-seal-search", "进场触发", Timing::Fast,
+            vec![], vec![], vec![Op::JZ02SearchSpaceSpellSealOnSource], Some(Event::Enter))])),
+        _ => None,
+    }
+}
 fn jz48_definition() -> Definition {
     Definition {
         modifiers: vec![StaticModifier::JZ48OtherControlledCriminalInfluenceAndDefense],
@@ -1577,6 +1612,9 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         m.insert("JZ50".into(), jz50_definition());
         m.insert("BQ104".into(), entry_search_definition("BQ104").unwrap());
         m.insert("XQ48".into(), entry_search_definition("XQ48").unwrap());
+        for id in ["XQ44", "JZ02"] {
+            m.insert(id.into(), deck_seal_search_definition(id).unwrap());
+        }
         m.insert("JZ48".into(), jz48_definition());
         m.insert("JC089".into(), jc089_definition());
         m.insert("JZ55".into(), jz55_definition());

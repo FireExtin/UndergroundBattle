@@ -553,6 +553,8 @@ pub enum DeclareChoice {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum FrameChoice {
+    XQ44DreamSealSearch,
+    JZ02SpaceSealSearch,
     BQ104EmployeeSearch,
     XQ48PasserSearch,
     JZ50DeathSearch,
@@ -782,6 +784,7 @@ impl Game {
         game.validate_sealed_cards()?;
         game.validate_jz50_search_choice()?;
         game.validate_entry_search_choice()?;
+        game.validate_deck_seal_choice()?;
         Ok(game)
     }
 }

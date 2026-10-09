@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.45-bounded-entry-search-candidate",
-  "engineVersion": "rust-v0.2.50-bounded-entry-search-candidate",
+  "cardPoolVersion": "limited-v2.46-deck-seal-search-candidate",
+  "engineVersion": "rust-v0.2.51-deck-seal-search-candidate",
   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
   "cards": [
     {
@@ -4236,6 +4236,80 @@
         "image": "resource/ymsj-fun.github.io/cards/XQ48 街头演说家.jpg",
         "imageSha256": "0cd31207bda681093839e86e5bb87cee624a3c0a657c70b60fa765f439089746"
       }
+    },
+    {
+      "id": "XQ44",
+      "name": "随风入梦",
+      "subtitle": null,
+      "kind": "spell",
+      "subtypes": [
+        "法术",
+        "心灵"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "紫色",
+        "紫色"
+      ],
+      "loyaltyText": "紫色 / 紫色",
+      "color": "紫",
+      "magic": "心灵",
+      "society": "梦境行者",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "行动 从你的牌库中寻找一张梦境牌，将该牌封印在目标角色上，然后洗牌。",
+      "keywords": [],
+      "unique": false,
+      "supported": true,
+      "sourceImageSha256": "d4f41bf42958d15358bc7fcb1119967ab94bd187c758273952fd6b70475de047"
+    },
+    {
+      "id": "JZ02",
+      "name": "西姆斯教授",
+      "subtitle": "相位专家",
+      "kind": "character",
+      "subtypes": [
+        "猫",
+        "法师"
+      ],
+      "cost": 3,
+      "loyalty": [
+        "黄色",
+        "黄色"
+      ],
+      "loyaltyText": "黄色 / 黄色",
+      "color": "黄",
+      "magic": "心灵",
+      "society": "帷幕守望",
+      "icons": {
+        "permanent": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "进场触发 从你的牌库中寻找一张空间法术牌，将该牌封印在西姆斯教授上，然后洗牌。",
+      "keywords": [],
+      "unique": true,
+      "supported": true,
+      "sourceImageSha256": "59546782075c26039bdc7d4da34a621bb86de1d8d34c25710a0d59d6761a19e8"
     }
   ],
   "decks": [

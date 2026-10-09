@@ -42,7 +42,9 @@ export function ChoicePanel({ choice, action, definitions, busy, onSubmit, onRea
   const entrySearchZero = !choice.allowDecline && min === 0 && (
     (choice.kind === 'bq104_employee_search' && max === 0 && choice.options.length === 0)
     || (choice.kind === 'xq48_passer_search' && max <= 3));
-  const zeroConfirmation = (choice.kind === 'jc032_top_six' && min === 0 && max === 0 && choice.options.length === 0) || jz50Search || entrySearchZero;
+  const deckSealZero = ['xq44_dream_seal_search', 'jz02_space_seal_search'].includes(choice.kind)
+    && !choice.allowDecline && min === 0 && max === 0 && choice.options.length === 0;
+  const zeroConfirmation = (choice.kind === 'jc032_top_six' && min === 0 && max === 0 && choice.options.length === 0) || jz50Search || entrySearchZero || deckSealZero;
   const valid = damage ? assigned === amount : ordering ? top.length + bottom.length === choice.options.length
     : selected.length >= min && selected.length <= max && (selected.length > 0 || canDecline || zeroConfirmation);
   const choose = (id: string) => setSelected(ids => ids.includes(id) ? ids.filter(value => value !== id) : ids.length < max ? [...ids, id] : ids);
@@ -102,7 +104,7 @@ export function ChoicePanel({ choice, action, definitions, busy, onSubmit, onRea
     </div>
     <div className="hg-choice-footer"><span>{damage ? `共需分配 ${amount} 点，已分配 ${assigned} 点` : ordering ? '确认后按此顺序放回牌库。' : `请选择 ${min === max ? min : `${min}–${max}`} 项${choice.allowDecline ? '，或跳过' : ''}。`}</span>
       <div>{canDecline && <button className="hg-button hg-button-quiet" disabled={busy || !action} onClick={() => submit(true)}>{choice.kind === 'mulligan' ? '保留全部手牌' : '跳过此选择'}</button>}
-      <button className="hg-button hg-button-primary" disabled={busy || !valid || !action} onClick={() => submit()}>{busy ? '正在提交…' : (jz50Search || entrySearchZero) && selected.length === 0 ? '不取牌并洗牌' : '确认选择'}</button></div>
+      <button className="hg-button hg-button-primary" disabled={busy || !valid || !action} onClick={() => submit()}>{busy ? '正在提交…' : (jz50Search || entrySearchZero || deckSealZero) && selected.length === 0 ? '不取牌并洗牌' : '确认选择'}</button></div>
     </div>
   </section>;
 }

@@ -4,7 +4,7 @@ use crate::{catalog, engine::RuleResult, model::*, rules::Event};
 use std::collections::BTreeSet;
 
 impl Game {
-    fn seal_host_valid(&self, host_id: &str) -> bool {
+    pub(crate) fn seal_host_valid(&self, host_id: &str) -> bool {
         self.board(host_id).is_some_and(|(_, c)| {
             !c.face_down
                 && catalog::catalog()
@@ -58,10 +58,19 @@ impl Game {
             .position(|c| c.id == id)
             .ok_or("原手牌实例已失效")?;
         let c = self.players[holder].hand.remove(index);
-        // Capture the source and hand holder before the zone transition. The
+        self.seal_card_on_valid_host(c, holder, host_id);
+        Ok(())
+    }
+
+    // The selection and source-zone checks stay with each closed producer.
+    // This primitive only performs a successful, already validated sealing.
+    pub(crate) fn seal_card_on_valid_host(&mut self, c: Card, actor: usize, host_id: &str) {
+        debug_assert!(actor < self.players.len() && !self.players[actor].eliminated);
+        debug_assert!(self.seal_host_valid(host_id));
+        // Capture the source and its holder before the zone transition. The
         // sealed card is blank; an already produced explicit trigger survives it.
         let mut source = self.source_snapshot(&c, None);
-        source.card.controller = holder;
+        source.card.controller = actor;
         let name = catalog::card(&c.definition).name.clone();
         let card = self.reset_zone_card(c);
         self.sealed_cards.push(SealedCard {
@@ -69,8 +78,7 @@ impl Game {
             host_id: host_id.into(),
         });
         self.note(format!("{name} 被封印在目标角色上"));
-        self.emit_event(holder, source, Event::Sealed);
-        Ok(())
+        self.emit_event(actor, source, Event::Sealed);
     }
 
     pub(crate) fn return_sealed_cards(&mut self, host_id: &str) {
