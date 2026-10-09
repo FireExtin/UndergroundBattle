@@ -296,45 +296,90 @@ fn jc050_rejects_definition_transplants_nested_rekeys_and_changed_selection_orde
         }
     }
 }
+fn invalid_room(name: &str, r: RoomEnvelope) {
+    let state = serde_json::to_string(&r).unwrap();
+    assert!(
+        Game::from_persisted(&serde_json::to_string(&r.game).unwrap())
+            .unwrap_err()
+            .contains("JC050")
+    );
+    assert!(RoomEnvelope::from_persisted(&state)
+        .unwrap_err()
+        .contains("JC050"));
+    if let Ok(dir) = std::env::var("JC050_INVALID_DIR") {
+        std::fs::create_dir_all(&dir).unwrap();
+        std::fs::write(
+            format!("{dir}/{name}.json"),
+            serde_json::to_vec(&serde_json::json!({"state":state,"expectedErrorContains":"JC050"}))
+                .unwrap(),
+        )
+        .unwrap();
+    }
+}
 #[test]
 fn jc050_persisted_stack_and_choice_reject_op_injection_and_repeat_execution() {
     let mut g = game(0);
     cast(&mut g, 0);
-    for kind in 0..5 {
-        let mut bad = g.clone();
-        let f = bad.stack.last_mut().unwrap().frame.as_mut().unwrap();
+    let original = envelope(&g);
+    for kind in 0..9 {
+        let mut r = original.clone();
+        let item = r.game.stack.last_mut().unwrap();
         match kind {
-            0 => f.steps.reverse(),
-            1 => f.ability_key = "Draw".into(),
-            2 => f.cursor = 1,
-            3 => {
-                f.steps[1].op = Op::Draw {
-                    player: PlayerRef::Actor,
-                    count: 1,
-                    end: DeckEnd::Top,
+            5 => item.deploy_region = Some(2),
+            6 => item.reveal = true,
+            7 => item.target = Some("region:2".into()),
+            _ => {
+                let f = item.frame.as_mut().unwrap();
+                match kind {
+                    0 => f.steps.reverse(),
+                    1 => f.ability_key = "Draw".into(),
+                    2 => f.cursor = 1,
+                    3 => {
+                        f.steps[1].op = Op::Draw {
+                            player: PlayerRef::Actor,
+                            count: 1,
+                            end: DeckEnd::Top,
+                        }
+                    }
+                    4 => f.chosen_region = Some(2),
+                    _ => {
+                        f.ability_key = "deploy".into();
+                        f.steps.clear();
+                    }
                 }
             }
-            _ => f.chosen_region = Some(2),
         }
-        assert!(Game::from_persisted(&serde_json::to_string(&bad).unwrap()).is_err());
-        assert!(RoomEnvelope::from_persisted(
-            &serde_json::to_string(&RoomEnvelope::from_game(bad.clone())).unwrap()
-        )
-        .is_err());
-        if let Ok(dir) = std::env::var("JC050_INVALID_DIR") {
-            std::fs::create_dir_all(&dir).unwrap();
-            std::fs::write(format!("{dir}/stack-{kind}.json"),serde_json::to_vec(&serde_json::json!({"state":serde_json::to_string(&RoomEnvelope::from_game(bad)).unwrap()})).unwrap()).unwrap();
-        }
+        invalid_room(&format!("stack-{kind}"), r);
     }
     pass_top(&mut g);
-    let mut bad = g.clone();
-    if let ChoiceResolution::Frame { frame, .. } = &mut bad.pending.as_mut().unwrap().resolution {
-        frame.cursor = 0;
+    let original = envelope(&g);
+    for kind in 0..10 {
+        let mut r = original.clone();
+        let p = r.game.pending.as_mut().unwrap();
+        match kind {
+            0 => {
+                if let ChoiceResolution::Frame { frame, .. } = &mut p.resolution {
+                    frame.cursor = 0
+                }
+            }
+            1 => p.choice.kind = "damage".into(),
+            2 => p.seat = 1,
+            3 => p.choice.player_id = "p1".into(),
+            4 => p.choice.allow_decline = Some(true),
+            5 => p.choice.max = Some(2),
+            6 => p.choice.amount = Some(1),
+            7 => p.choice.options[0].id = "region:999".into(),
+            8 => p.choice.kind = "order".into(),
+            _ => {
+                if let ChoiceResolution::Frame { frame, .. } = &mut p.resolution {
+                    frame.cursor = 2
+                }
+            }
+        }
+        invalid_room(&format!("choice-{kind}"), r);
     }
-    assert!(Game::from_persisted(&serde_json::to_string(&bad).unwrap()).is_err());
     checkpoint(&g);
 }
-
 #[test]
 fn jc050_real_paid_response_return_escapes_and_standard_play_cannot_respond() {
     let mut g = game(0);
@@ -390,5 +435,157 @@ fn jc050_resolution_choice_uses_current_replacement_region_and_other_seats_canno
     assert_eq!(g.regions[2].card.id, new);
     assert!(g.board(&victim).is_none());
     assert!(g.players[1].hand.iter().any(|c| c.definition == "JC002"));
+    checkpoint(&g);
+}
+#[test]
+fn jc050_predeclared_region_and_target_reject_before_payment_and_quote() {
+    let mut g = game(0);
+    let id = held(&mut g, "JC050", 0);
+    fund(&mut g, 0, "JC047", 5);
+    for target in [false, true] {
+        reject(
+            &mut g,
+            0,
+            Action {
+                card_id: Some(id.clone()),
+                region: if target { None } else { Some(2) },
+                target_id: if target {
+                    Some("region:2".into())
+                } else {
+                    None
+                },
+                ..Action::new("play")
+            },
+        );
+    }
+    board(&mut g, "JC002", 0, 2);
+    cast(&mut g, 0);
+    let bad = held(&mut g, "JC050", 1);
+    fund(&mut g, 1, "JC047", 5);
+    // BeginResponse requires a genuinely offered fast action; the bad standard
+    // transaction is only the subsequent draft, not a fabricated window offer.
+    held(&mut g, "JC006", 1);
+    fund(&mut g, 1, "JC006", 2);
+    let room = envelope(&g);
+    let window = room.pacing.window.as_ref().unwrap().id.clone();
+    let begin = RoomCommand {
+        command_id: "jc050-quote-begin".into(),
+        expected_version: room.revision,
+        action: SessionAction::BeginResponse {
+            window_id: window.clone(),
+            intent_id: "jc050-bad-draft".into(),
+        },
+    };
+    let ready = room.transition(1, Some(begin), 0).unwrap();
+    assert!(ready.error_code.is_none(), "{:?}", ready.error_message);
+    let composing = RoomEnvelope::from_persisted(&ready.state).unwrap();
+    let bad_action = Action {
+        card_id: Some(bad),
+        region: Some(2),
+        ..Action::new("play")
+    };
+    let request = QuoteRequest {
+        window_id: window.clone(),
+        intent_id: "jc050-bad-draft".into(),
+        draft: Some(bad_action.clone()),
+    };
+    let q = composing.quote(1, request.clone()).unwrap();
+    assert!(!q.ready && q.error.as_ref().unwrap().contains("JC050"));
+    assert_eq!(serde_json::to_string(&composing).unwrap(), ready.state);
+    if let Ok(dir) = std::env::var("JC050_FRONTEND_DIR") {
+        std::fs::write(
+            format!("{dir}/quote.json"),
+            serde_json::to_vec(
+                &serde_json::json!({"state":ready.state,"seat":1,"request":request,"expected":q}),
+            )
+            .unwrap(),
+        )
+        .unwrap();
+    }
+    let cmd = RoomCommand {
+        command_id: "jc050-bad-submit".into(),
+        expected_version: composing.revision,
+        action: SessionAction::SubmitResponse {
+            window_id: window,
+            intent_id: "jc050-bad-draft".into(),
+            action: bad_action,
+        },
+    };
+    let e = composing.transition(1, Some(cmd), 0).unwrap();
+    assert!(e.error_code.is_some());
+    assert_eq!(e.state, ready.state);
+    checkpoint(&g);
+}
+#[test]
+fn jc050_true_hidden_reveal_is_admitted_and_empty_program_aliases_reject() {
+    let mut g = game(0);
+    let id = board(&mut g, "JC050", 0, 2);
+    g.board_mut(&id).unwrap().face_down = true;
+    fund(&mut g, 0, "JC047", 5);
+    let a = g
+        .legal_actions(0)
+        .into_iter()
+        .find(|a| a.action.kind == "reveal" && a.action.card_id.as_deref() == Some(&id))
+        .unwrap()
+        .action;
+    apply(&mut g, 0, a);
+    let original = envelope(&g);
+    for kind in 0..5 {
+        let mut r = original.clone();
+        let item = r.game.stack.last_mut().unwrap();
+        match kind {
+            0 => item.reveal = false,
+            1 => item.deploy_region = Some(1),
+            _ => {
+                let f = item.frame.as_mut().unwrap();
+                match kind {
+                    2 => f.source.card.face_down = false,
+                    3 => f.source.region = None,
+                    _ => f.ability_key = "deploy".into(),
+                }
+            }
+        };
+        invalid_room(&format!("reveal-{kind}"), r);
+    }
+    pass_top(&mut g);
+    checkpoint(&g);
+}
+#[test]
+fn jc050_host_attachments_follow_owner_and_source_departure_causes_second_death_wave() {
+    let mut g = game(0);
+    let source = board(&mut g, "JC002", 0, 2);
+    let mut curse = g.make_card("JC036", 1);
+    curse.controller = 0;
+    g.attachments.push(Attachment {
+        card: curse,
+        host_id: source.clone(),
+    });
+    let criminal = board(&mut g, "JC084", 1, 3);
+    g.add_control(
+        &criminal,
+        0,
+        ControlLifetime::SourceLeaves {
+            source_instance: source.clone(),
+        },
+        SubtypeChange::None,
+    );
+    let dependent = board(&mut g, "JZ48", 0, 3);
+    g.board_mut(&dependent).unwrap().damage = 1;
+    assert_eq!(g.defense(g.board(&dependent).unwrap().1, 3), 2);
+    checkpoint(&g);
+    cast(&mut g, 0);
+    pass_top(&mut g);
+    region(&mut g, 2);
+    assert!(g.board(&source).is_none() && g.board(&dependent).is_none());
+    assert_eq!(g.board(&criminal).unwrap().1.controller, 1);
+    assert!(g.attachments.is_empty());
+    assert!(g.players[1]
+        .graveyard
+        .iter()
+        .any(|c| c.definition == "JC036"));
+    assert!(g.players[0]
+        .graveyard
+        .iter()
+        .any(|c| c.definition == "JZ48"));
     checkpoint(&g);
 }

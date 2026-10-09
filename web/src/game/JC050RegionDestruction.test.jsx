@@ -6,6 +6,7 @@ import {resolve} from 'node:path';
 import {createHash} from 'node:crypto';
 import * as wasm from '../../../rust-game-wasm/pkg/hegemony_wasm.js';
 import native from './jc050Native55Test.fixture.json';
+import quote from './jc050Native55QuoteTest.fixture.json';
 import previous from './jz22Native54Test.fixture.json';
 import {Table} from './Table';
 import {ReadModal} from './ReadModal';
@@ -43,3 +44,8 @@ it('keeps deck copy limits and admits the new card in a fifty-card deck',()=>{
  expect(()=>wasm.newGameWithDeck('jc050-ui-bad','LOCAL','teams','P0',JSON.stringify(bad),'9')).toThrow();
 });
 it('rejects preserved engine54 rooms without silently migrating them',()=>{expect(()=>wasm.view(previous.accept.state,0)).toThrow();});
+
+it('rejects a predeclared region in the actual quote ABI without changing state',()=>{
+ const d=quote;expect(JSON.parse(wasm.quoteRoom(d.state,d.seat,JSON.stringify(d.request)))).toEqual(d.expected);
+ expect(d.expected.ready).toBe(false);expect(d.expected.error).toContain('JC050');
+});

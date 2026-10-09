@@ -38,12 +38,19 @@ impl Game {
         {
             return Err("JC050必须是原事务的无目标帧".into());
         }
-        // Ordinary hidden dispatch is the existing empty deploy program. It may
-        // never carry the destruction program or another operation.
-        if matches!(f.ability_key.as_str(), "deploy" | "reveal")
+        // A transaction cannot use character deployment. Its genuine paid
+        // hidden reveal is the existing empty program in its original region.
+        if f.ability_key == "reveal"
             && f.steps.is_empty()
             && f.cursor == 0
             && matches!(f.guard, GuardState::Unchecked)
+            && c.face_down
+            && f.source.region.is_some_and(|r| r < self.regions.len())
+            && f.chosen_region == f.source.region
+            && f.source.source_region_instance.is_none()
+            && f.source.play_source.is_none()
+            && f.source.observed_death.is_none()
+            && f.source.attachment_host_instance.is_none()
         {
             return Ok(());
         }
@@ -76,6 +83,15 @@ impl Game {
                         }))
                 {
                     return Err("JC050堆栈必须保留尚未执行的原事务".into());
+                }
+                if relevant(f)
+                    && (s.target.is_some()
+                        || (f.ability_key == "region-destruction"
+                            && (s.deploy_region.is_some() || s.reveal))
+                        || (f.ability_key == "reveal"
+                            && (!s.reveal || s.deploy_region != f.source.region)))
+                {
+                    return Err("JC050原事务/现身堆栈的地区、现身或目标标记不符".into());
                 }
             } else if s.card.as_ref().is_some_and(|c| c.definition == "JC050") {
                 return Err("JC050堆栈缺少原事务帧".into());
@@ -112,6 +128,13 @@ impl Game {
                             || frame.chosen_region.is_some()
                             || !matches!(choice, FrameChoice::Region)
                             || p.seat != frame.actor
+                            || p.choice.player_id != format!("p{}", frame.actor)
+                            || p.choice.kind != "target"
+                            || p.choice.amount.is_some()
+                            || !p.choice.preview_cards.is_empty()
+                            || p.choice.allow_decline != Some(false)
+                            || p.choice.title != "选择要消灭其中角色与暗藏者的地区"
+                            || p.choice.description != "选择符合数量限制的选项，然后确认。"
                             || p.choice.min != Some(1)
                             || p.choice.max != Some(1)
                             || p.choice.options.len() != self.regions.len()
