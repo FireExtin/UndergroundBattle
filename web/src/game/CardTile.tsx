@@ -9,7 +9,7 @@ export function visibleCard(card: Card, viewerId: string): Card {
   }
   return { ...card, cardId: undefined, name: '暗藏者', kind: 'hidden', cost: undefined, effectiveCost: undefined,
     text: undefined, icons: undefined, convertedTemporaryIcons: undefined, currentKill: undefined, currentRetreat: undefined, defense: undefined, damage: undefined, shield: undefined,
-    wounds: undefined, color: undefined, magic: undefined, currentSubtypes: undefined, currentRenown: undefined, currentCombatGlory: undefined, currentBarrier: undefined, currentDamagePrevention: undefined, currentSpiritProtection: undefined, currentPrintedDefense: undefined };
+    wounds: undefined, timeMarkers: undefined, color: undefined, magic: undefined, currentSubtypes: undefined, currentRenown: undefined, currentCombatGlory: undefined, currentBarrier: undefined, currentDamagePrevention: undefined, currentSpiritProtection: undefined, currentPrintedDefense: undefined };
 }
 
 /** Display-only short form of a server instance ID; never used to match, merge or infer objects. */
@@ -117,6 +117,7 @@ export function CardContent({ card: source, definition: sourceDefinition, compac
         {!society && !concealedCompact && !!card.damage && <span className="hg-hurt hg-damage-marker">伤害 {card.damage}</span>}
         {!society && !concealedCompact && !!card.wounds && <span className="hg-hurt hg-wound-marker">创伤 {card.wounds}</span>}
         {!society && !concealedCompact && !!card.shield && <span className="hg-shield-marker">护盾 {card.shield}</span>}
+        {!society && !asset && !card.faceDown && !!card.timeMarkers && <span className="hg-time-marker">时间 {card.timeMarkers}</span>}
         {card.exhausted && <span className="hg-exhausted-label">已横置</span>}
         {card.faceDown && <span>{hiddenRule}{card.exhausted ? ' · 横置不参与对抗' : ''}</span>}
       </span>

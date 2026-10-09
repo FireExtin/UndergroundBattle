@@ -77,6 +77,8 @@ pub struct LegalAction {
 #[serde(rename_all = "camelCase")]
 pub struct CardView {
     #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub time_markers: Option<u32>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub current_combat_glory: Option<bool>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub current_kill: Option<u32>,
@@ -311,6 +313,8 @@ pub struct RevealedHandView {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Card {
+    #[serde(default, skip_serializing_if = "is_zero")]
+    pub time_markers: u32,
     pub id: String,
     pub definition: String,
     pub owner: usize,
@@ -474,6 +478,8 @@ pub struct StackItem {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct SourceSnapshot {
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub observed_death: Option<ObservedCharacterDeath>,
     pub card: Card,
     pub region: Option<usize>,
     // Only JC032/JZ24 bind their original local region, independently of source.
@@ -484,6 +490,12 @@ pub struct SourceSnapshot {
     pub attachment_host_instance: Option<String>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub play_source: Option<PlaySource>,
+}
+/// Captured before any member of a death batch leaves, including subtype grants.
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct ObservedCharacterDeath {
+    pub card: Card,
+    pub vampire: bool,
 }
 #[derive(Clone, Copy, Debug, Serialize, Deserialize, PartialEq, Eq)]
 pub enum PlaySource {
@@ -785,6 +797,7 @@ impl Game {
         game.validate_jz50_search_choice()?;
         game.validate_entry_search_choice()?;
         game.validate_deck_seal_choice()?;
+        game.validate_death_observers()?;
         Ok(game)
     }
 }

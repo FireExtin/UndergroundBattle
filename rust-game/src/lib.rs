@@ -2,6 +2,9 @@ mod attachment;
 mod attributes;
 pub mod catalog;
 mod control;
+mod death_observers;
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod death_observer_tests;
 #[cfg(test)]
 mod control_tests;
 pub mod deck;

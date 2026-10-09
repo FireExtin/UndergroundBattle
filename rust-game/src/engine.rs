@@ -130,6 +130,7 @@ impl Game {
         }
     }
     pub(crate) fn fresh(&mut self, mut c: Card) -> Card {
+        c.time_markers = 0;
         // Only the new finite grants are removed here; old attribute cleanup
         // retains its published timing. A replacement cannot inherit a grant.
         self.turn_attribute_modifiers
@@ -141,6 +142,7 @@ impl Game {
         // Only active definitions may be instantiated, before allocating an identity.
         card(definition);
         Card {
+            time_markers: 0,
             id: self.id(),
             definition: definition.into(),
             owner,
@@ -394,6 +396,11 @@ impl Game {
     fn character_icon_parts(&self, c: &Card, region: usize) -> (Icons, Icons, Icons) {
         let d = card(&c.definition);
         let mut permanent_result = d.permanent_icons;
+        if c.definition == "JC045" && !c.face_down
+            && self.board(&c.id).is_some_and(|(_, live)| live.definition == "JC045" && !live.face_down)
+        {
+            permanent_result.influence = permanent_result.influence.saturating_add(c.time_markers);
+        }
         permanent_result.influence += u32::from(self.jz48_other_controlled_criminal_active(c, region));
         permanent_result.investigation += u32::from(self.jc030_blood_assets_active(c));
         permanent_result.combat += self.green_source_attribute_bonus(c, region).0;
@@ -1099,6 +1106,7 @@ impl Game {
                                 (
                                     c.controller,
                                     SourceSnapshot {
+                                        observed_death: None,
                                         card: c.clone(),
                                         region: Some(r),
                                         source_region_instance: None,
@@ -1810,9 +1818,8 @@ impl Game {
             if dead.is_empty() {
                 break;
             }
-            for (id, source) in dead {
-                self.remove_dead_with_snapshot(&id, RemovalCause::Lethal, Some(source));
-            }
+            self.remove_death_batch(dead.into_iter()
+                .map(|(id, source)| (id, RemovalCause::Lethal, source)).collect());
         }
         let mut simultaneous = self
             .effects
@@ -1820,7 +1827,8 @@ impl Game {
             .into_iter()
             .collect::<Vec<_>>();
         simultaneous.sort_by_key(|e| match e {
-            Effect::Declare { declaration } if declaration.ability.event == Some(Event::Death) => (
+            Effect::Declare { declaration } if matches!(declaration.ability.event,
+                Some(Event::Death | Event::CharacterDeathObserved)) => (
                 self.team(declaration.actor) != self.first_team,
                 declaration.actor,
             ),
@@ -1830,6 +1838,7 @@ impl Game {
         self.prune_turn_attribute_modifiers();
     }
     pub(crate) fn choose(&mut self, seat: usize, a: Action) -> RuleResult<()> {
+        self.validate_death_observers()?;
         self.validate_deck_seal_choice()?;
         self.validate_entry_search_choice()?;
         let p = self.pending.clone().ok_or("没有待选")?;
@@ -2027,6 +2036,7 @@ impl Game {
         let hidden = c.face_down && c.controller != viewer;
         let asset = kind == Some("asset");
         CardView {
+            time_markers: (!asset && region.is_some() && c.time_markers > 0).then_some(c.time_markers),
             current_combat_glory: (!asset && !c.face_down && region.is_some()
                 && self.has_combat_glory(c)).then_some(true),
             current_kill: (!asset
@@ -2703,7 +2713,7 @@ mod tests {
     #[test]
     fn catalog_is_restricted_real_complete_and_decks_are_legal() {
         let c = catalog::catalog();
-        assert_eq!(c.cards.len(), 111);
+        assert_eq!(c.cards.len(), 114);
         let active = c
             .cards
             .iter()
@@ -2718,7 +2728,7 @@ mod tests {
                 .collect::<BTreeSet<_>>()
         );
         assert!(active.contains("DQJC116"));
-        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 101);
+        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 104);
         assert_eq!(c.decks.len(), 5);
         for deck in &c.decks {
             assert_eq!(deck.card_count, 50);

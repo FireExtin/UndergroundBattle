@@ -598,5 +598,20 @@
     "url": "/cards/XQ48.jpg",
     "source": "resource/ymsj-fun.github.io/cards/XQ48 街头演说家.jpg",
     "sha256": "0cd31207bda681093839e86e5bb87cee624a3c0a657c70b60fa765f439089746"
+  },
+  "JC045": {
+    "url": "/cards/JC045.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC045 钟摆祭司.jpg",
+    "sha256": "7b79668cee2cab604341a79f86decb03587046b31f3c5586123bcc95561d3d60"
+  },
+  "JC031": {
+    "url": "/cards/JC031.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC031 唤灵师.jpg",
+    "sha256": "c5d64c9392c3627659b405bc422a49535d35368b5aef5cc50cfc85f2123e6436"
+  },
+  "JC090": {
+    "url": "/cards/JC090.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC090 灵魂契约.jpg",
+    "sha256": "7734b37f8e222307c2958461e6d20a66400011707bc77413a4101e096f40ef0c"
   }
 }

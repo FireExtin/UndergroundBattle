@@ -384,19 +384,20 @@ impl Game {
     }
     pub(crate) fn source_snapshot(&self, c: &Card, region: Option<usize>) -> SourceSnapshot {
         SourceSnapshot {
+            observed_death: None,
             card: c.clone(),
             region,
             source_region_instance: if matches!(c.definition.as_str(), "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48") {
                 region.and_then(|r| self.regions.get(r)).map(|r| r.card.id.clone())
             } else { None },
-            attachment_host_instance: rules::definition(&c.definition)
+            attachment_host_instance: (c.definition == "JC090" || rules::definition(&c.definition)
                 .abilities
                 .iter()
                 .any(|a| {
                     a.ops
                         .iter()
                         .any(|op| matches!(op, Op::ModifyAttachmentHostUntilTurnEnd))
-                })
+                }))
                 .then(|| {
                     self.attachments
                         .iter()
@@ -972,6 +973,9 @@ impl Game {
         if self.players[actor].eliminated {
             return Ok(());
         }
+        if self.death_observer_limit_reached(&declaration) {
+            return Ok(());
+        }
         if spec.event == Some(Event::HandDiscard) && self.resources(actor) < 1 {
             return Ok(());
         }
@@ -1088,7 +1092,9 @@ impl Game {
             card(&declaration.source.card.definition).name,
             declaration.ability.label
         );
-        let paid = if declaration.ability.event == Some(Event::HandDiscard) {
+        let paid = if declaration.ability.event == Some(Event::HandDiscard)
+            || (declaration.source.card.definition == "JC031"
+                && declaration.ability.event == Some(Event::CharacterDeathObserved)) {
             self.pay_ability_costs(
                 declaration.actor,
                 &declaration.source,
@@ -1161,7 +1167,9 @@ impl Game {
         c
     }
     pub(crate) fn remove_dead(&mut self, target: &str, cause: RemovalCause) {
-        self.remove_dead_with_snapshot(target, cause, None);
+        if let Some((region, c)) = self.board(target) {
+            self.remove_death_batch(vec![(target.into(), cause, self.source_snapshot(c, Some(region)))]);
+        }
     }
     fn asset_location(&self, id: &str) -> Option<(usize, usize)> {
         self.players
@@ -1174,7 +1182,7 @@ impl Game {
         target: &str,
         cause: RemovalCause,
         simultaneous_source: Option<SourceSnapshot>,
-    ) {
+    ) -> bool {
         // Host departure can remove an attached control grant. Freeze before it;
         // an already captured simultaneous lethal-set snapshot remains authoritative.
         let snapshot = simultaneous_source.or_else(|| self.board(target)
@@ -1199,7 +1207,9 @@ impl Game {
             if character {
                 self.emit_event(controller, snapshot, Event::Death);
             }
+            return character;
         }
+        false
     }
     fn take_entity(&mut self, id: &str) -> Option<Card> {
         if let Some((_, c)) = self.leave_board(id) {
@@ -1483,6 +1493,38 @@ impl Game {
                             frame.source.source_region_instance.as_ref() == Some(&r.card.id))
                     }) {
                         self.place_influence(frame.actor, region, 1);
+                    }
+                }
+                Op::JC045AddOneTimeToOriginalSource => {
+                    if let Some(live) = self.board_mut(&frame.source.card.id)
+                        .filter(|c| c.definition == "JC045" && !c.face_down)
+                    {
+                        live.time_markers = live.time_markers.saturating_add(1);
+                    }
+                }
+                Op::JC090PlaceOneInfluenceInOriginalAttachedRegion => {
+                    if let Some(region) = frame.source.region.filter(|&r| self.regions.get(r)
+                        .is_some_and(|region| frame.source.attachment_host_instance.as_ref() == Some(&region.card.id)
+                            && frame.source.source_region_instance.as_ref() == Some(&region.card.id)))
+                    {
+                        self.place_influence(frame.actor, region, 1);
+                    }
+                }
+                Op::JC031DiscardForObservedDeath => {
+                    let seat = self.frame_player(&frame, step.context, PlayerRef::Target(0))?;
+                    if !self.players[seat].eliminated && !self.players[seat].hand.is_empty() {
+                        if frame.source.observed_death.as_ref().is_some_and(|d| d.vampire) {
+                            let i = self.random_below(self.players[seat].hand.len());
+                            let id = self.players[seat].hand[i].id.clone();
+                            self.discard_hand_card(seat, &id)?;
+                        } else {
+                            let options = self.players[seat].hand.iter()
+                                .map(|c| self.option(c, seat, None, None)).collect();
+                            self.choice(seat, "discard", "弃 1 张手牌".into(), options, 1, 1, None,
+                                ChoiceResolution::Frame { frame: Box::new(frame),
+                                    choice: FrameChoice::Discard { seat, redraw: false } });
+                            return Ok(());
+                        }
                     }
                 }
                 Op::PlaceInfluence {

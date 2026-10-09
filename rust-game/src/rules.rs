@@ -26,6 +26,7 @@ pub enum Event {
     EnterRegion,
     Reveal,
     Death,
+    CharacterDeathObserved,
     ReceiveWound,
     ConfrontationStart,
     RegionWon,
@@ -210,6 +211,9 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    JC045AddOneTimeToOriginalSource,
+    JC031DiscardForObservedDeath,
+    JC090PlaceOneInfluenceInOriginalAttachedRegion,
     XQ44SearchDreamSealOnTarget,
     JZ02SearchSpaceSpellSealOnSource,
     // Fixed JZ50 only: actor-private 0..1 Death character to owner graveyard, then shuffle.
@@ -420,6 +424,7 @@ pub struct Traits {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum StaticModifier {
+    JC045TimeInfluence,
     JC089HostDefenseMinusOneAndGlory,
     JZ48OtherControlledCriminalInfluenceAndDefense,
     JC030BloodAssetsVampireAndInvestigation,
@@ -473,6 +478,18 @@ pub struct Definition {
 // These are interpreter limits, not rules for resolving partially invalid targets.
 // Reject unsupported declarations before publishing actions or offering trigger choices.
 pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(), String> {
+    if ability.event == Some(Event::CharacterDeathObserved)
+        || ability.key.starts_with("death-observer-")
+        || death_observer_ops(&ability.ops)
+        || ability.modes.iter().any(|m| death_observer_ops(&m.ops))
+    {
+        let expected = death_observer_definition(card_id)
+            .and_then(|d| d.abilities.into_iter().find(|a| a.event == Some(Event::CharacterDeathObserved)))
+            .ok_or_else(|| format!("{card_id}: death observer cannot be transplanted"))?;
+        if serde_json::to_value(ability).unwrap() != serde_json::to_value(expected).unwrap() {
+            return Err(format!("{card_id}: only the complete printed death observer is admitted"));
+        }
+    }
     fn uses_deck_seal(ops: &[Op]) -> bool {
         ops.iter().any(|op| match op {
             Op::XQ44SearchDreamSealOnTarget | Op::JZ02SearchSpaceSpellSealOnSource => true,
@@ -884,6 +901,9 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
         ));
     }
     if let Some(limit) = ability.per_turn_limit {
+        let is_admitted_jc031_trigger = card_id == "JC031" && limit == 1
+            && serde_json::to_value(ability).unwrap() == serde_json::to_value(
+                &death_observer_definition("JC031").unwrap().abilities[0]).unwrap();
         let is_admitted_jc032_action = card_id == "JC032"
             && serde_json::to_value(ability).unwrap()
                 == serde_json::to_value(&jc032_definition().abilities[0]).unwrap();
@@ -899,9 +919,9 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
                 [Op::ModifyAttachmentHostUntilTurnEnd]
             )
             && ability.modes.is_empty();
-        if !is_admitted_jc032_action && !is_admitted_host_grant {
+        if !is_admitted_jc032_action && !is_admitted_host_grant && !is_admitted_jc031_trigger {
             return Err(format!(
-                "{card_id}: only the admitted host grant or JC032 once-per-turn action is supported"
+                "{card_id}: only the admitted host grant, JC032 action or JC031 trigger limit is supported"
             ));
         }
     }
@@ -1116,6 +1136,13 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
 
 pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -> Result<(), String> {
     for (card_id, definition) in definitions {
+        if let Some(expected) = death_observer_definition(card_id) {
+            if serde_json::to_value(definition).unwrap() != serde_json::to_value(expected).unwrap() {
+                return Err(format!("{card_id}: only the complete death observer definition is admitted"));
+            }
+        } else if definition.modifiers.iter().any(|m| matches!(m, StaticModifier::JC045TimeInfluence)) {
+            return Err(format!("{card_id}: time influence cannot be transplanted"));
+        }
         if deck_seal_search_definition(card_id).is_some_and(|expected|
             serde_json::to_value(definition).unwrap() != serde_json::to_value(expected).unwrap()) {
             return Err(format!("cardId={card_id}: only the complete XQ44/JZ02 definition is admitted"));
@@ -1241,7 +1268,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
                     "cardId={card_id}: finite target predicates cannot be an attachment host guard"
                 ));
             }
-            let admitted_region = card_id == "XQ43";
+            let admitted_region = matches!(card_id.as_str(), "XQ43" | "JC090");
             if !admitted_region
                 && (host.zone != Zone::Board
                     || host.kind != EntityKind::Character
@@ -1441,6 +1468,46 @@ fn jz31_definition() -> Definition {
     with_abilities(vec![ability("death-source-influence", "死亡触发：本地区放置一个本方势力标志", Timing::Fast,
         vec![], vec![], vec![Op::PlaceOneInfluenceInSourceRegion], Some(Event::Death))])
 }
+pub(crate) fn death_observer_ops(ops: &[Op]) -> bool {
+    ops.iter().any(|op| match op {
+        Op::JC045AddOneTimeToOriginalSource | Op::JC031DiscardForObservedDeath
+        | Op::JC090PlaceOneInfluenceInOriginalAttachedRegion => true,
+        Op::ForEachLivingPlayer(body) | Op::ForEachLivingPlayerFromActor(body) => death_observer_ops(body),
+        Op::IfTargetExhausted { exhausted, ready, .. } =>
+            death_observer_ops(std::slice::from_ref(exhausted))
+                || death_observer_ops(std::slice::from_ref(ready)),
+        _ => false,
+    })
+}
+pub(crate) fn death_observer_definition(id: &str) -> Option<Definition> {
+    let (label, op) = match id {
+        "JC045" => ("角色死亡：在原钟摆祭司上放置一个时间标志", Op::JC045AddOneTimeToOriginalSource),
+        "JC031" => ("另一本方角色死亡：令目标玩家弃一张手牌（吸血鬼则随机弃牌，每回合一次）", Op::JC031DiscardForObservedDeath),
+        "JC090" => ("本方角色死亡：在原结附地区放置一个本方势力标志", Op::JC090PlaceOneInfluenceInOriginalAttachedRegion),
+        _ => return None,
+    };
+    let mut trigger = ability(&format!("death-observer-{id}"), label, Timing::Fast,
+        vec![], if id == "JC031" {
+            vec![target(Zone::Player, EntityKind::Any, Relation::Any, Range::Anywhere)]
+        } else { vec![] }, vec![op], Some(Event::CharacterDeathObserved));
+    if id == "JC031" { trigger.per_turn_limit = Some(1); }
+    let mut d = with_abilities(vec![trigger]);
+    if id == "JC045" { d.modifiers = vec![StaticModifier::JC045TimeInfluence]; }
+    if id == "JC090" {
+        let host = target(Zone::Region, EntityKind::Any, Relation::Any, Range::Anywhere);
+        let mut attach = ability("attach", "结附目标地区", Timing::Standard,
+            vec![], vec![host.clone()], vec![], None);
+        attach.play_only = true;
+        d.abilities.insert(0, attach);
+        d.attachment = Some(AttachmentSpec {
+            controls_host: false, host_subtype_change: SubtypeChange::None,
+            host, host_icons: Icons::default(), host_temporary_icons: None,
+            host_barrier: false, host_defense_bonus: 0,
+            host_leaves: HostLeaveDestination::OwnerGraveyard,
+        });
+    }
+    Some(d)
+}
 fn jz49_definition() -> Definition {
     let mut definition = with_abilities(vec![ability(
         "mill-two-entry", "进场触发：目标玩家牌库顶两张置墓", Timing::Fast,
@@ -1608,6 +1675,9 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         m.insert("JC032".into(), jc032_definition());
         m.insert("JZ24".into(), jz24_definition());
         m.insert("JZ31".into(), jz31_definition());
+        for id in ["JC045", "JC031", "JC090"] {
+            m.insert(id.into(), death_observer_definition(id).unwrap());
+        }
         m.insert("JZ49".into(), jz49_definition());
         m.insert("JZ50".into(), jz50_definition());
         m.insert("BQ104".into(), entry_search_definition("BQ104").unwrap());

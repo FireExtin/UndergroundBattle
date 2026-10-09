@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.46-deck-seal-search-candidate",
-  "engineVersion": "rust-v0.2.51-deck-seal-search-candidate",
+  "cardPoolVersion": "limited-v2.48-three-color-death-candidate",
+  "engineVersion": "rust-v0.2.53-three-color-death-candidate",
   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
   "cards": [
     {
@@ -4310,6 +4310,118 @@
       "unique": true,
       "supported": true,
       "sourceImageSha256": "59546782075c26039bdc7d4da34a621bb86de1d8d34c25710a0d59d6761a19e8"
+    },
+    {
+      "id": "JC045",
+      "name": "钟摆祭司",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "法师",
+        "邪教徒"
+      ],
+      "cost": 4,
+      "loyalty": [
+        "红色",
+        "红色"
+      ],
+      "color": "红",
+      "magic": "鲜血",
+      "icons": {
+        "permanent": {
+          "investigation": 1,
+          "combat": 2,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "text": "【触发】每当一个角色死去时，在钟摆祭司上放置一个时间标志。\n【持续】在其上每有一个时间标志，钟摆祭司就获得一个【永久势力】。",
+      "keywords": [],
+      "unique": false,
+      "society": "",
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/JC045 钟摆祭司.jpg",
+        "image": "resource/ymsj-fun.github.io/cards/JC045 钟摆祭司.jpg",
+        "sha256": "7b79668cee2cab604341a79f86decb03587046b31f3c5586123bcc95561d3d60"
+      },
+      "defense": 2
+    },
+    {
+      "id": "JC031",
+      "name": "唤灵师",
+      "kind": "character",
+      "subtypes": [
+        "吸血鬼",
+        "法师"
+      ],
+      "cost": 3,
+      "loyalty": [
+        "蓝色",
+        "蓝色"
+      ],
+      "color": "蓝",
+      "magic": "死亡",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "text": "【触发】每当另一个本方角色死亡时，你可以令目标玩家弃一张手牌。若死去的是吸血鬼角色，则改为可以令目标玩家随机弃一张手牌。该能力每回合只能发动一次。",
+      "keywords": [],
+      "unique": false,
+      "society": "",
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/JC031 唤灵师.jpg",
+        "image": "resource/ymsj-fun.github.io/cards/JC031 唤灵师.jpg",
+        "sha256": "c5d64c9392c3627659b405bc422a49535d35368b5aef5cc50cfc85f2123e6436"
+      },
+      "defense": 1
+    },
+    {
+      "id": "JC090",
+      "name": "灵魂契约",
+      "kind": "attachment",
+      "subtypes": [
+        "仪式"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "黑色"
+      ],
+      "color": "黑",
+      "magic": "心灵",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "text": "结附于目标地区\n【触发】每当一个本方角色死去时，在受此结附的地区上放置一个本方势力标志。",
+      "keywords": [],
+      "unique": false,
+      "society": "",
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/JC090 灵魂契约.jpg",
+        "image": "resource/ymsj-fun.github.io/cards/JC090 灵魂契约.jpg",
+        "sha256": "7734b37f8e222307c2958461e6d20a66400011707bc77413a4101e096f40ef0c"
+      }
     }
   ],
   "decks": [

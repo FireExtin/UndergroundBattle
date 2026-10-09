@@ -31,7 +31,7 @@ export type Card = {
   instanceId: string; cardId?: string; name: string; owner: string; controller: string;
   kind: string; region?: number; exhausted: boolean; faceDown: boolean;
   cost?: number; effectiveCost?: number; text?: string; icons?: Icons; defense?: number; damage?: number;
-  shield?: number; wounds?: number; color?: string; magic?: string;
+  shield?: number; wounds?: number; timeMarkers?: number; color?: string; magic?: string;
   usedOncePerGame?: string[];
 };
 export type Attachment = Card & { hostId: string };
