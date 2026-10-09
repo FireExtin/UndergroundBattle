@@ -418,6 +418,59 @@ fn xq37_invalid_entry_frame_and_root_hidden_flag_rejected_and_exported() {
     invalid(18, &r);
     checkpoint(&g);
 }
+#[test]
+fn xq37_pending_trigger_actor_and_optional_accept_metadata_are_closed() {
+    for ability in 0..3 {
+        let mut g = initial(0);
+        g.regions[2].influence = [1, 0];
+        let id = entry(&mut g, 0, 0);
+        let preview = g.card_view(g.board(&id).unwrap().1, 0, Some(2), None);
+        if let ChoiceResolution::Declare { declaration, .. } =
+            &mut g.pending.as_mut().unwrap().resolution
+        {
+            let region = declaration.source.source_region_instance.as_deref().unwrap();
+            declaration.ability = match ability {
+                0 => definition("XQ37").abilities[0].clone(),
+                1 => crate::renown::renown_ability(region),
+                _ => jc089_combat_glory_ability(region),
+            };
+        } else {
+            panic!("normal entry must offer declaration");
+        }
+        // Both the printed trigger and its two existing exact granted rewards remain admitted.
+        checkpoint(&g);
+        let original = envelope(&g);
+        for mutation in 0..15 {
+            let mut r = original.clone();
+            let p = r.game.pending.as_mut().unwrap();
+            match mutation {
+                0 => p.seat = 2,
+                1 => p.choice.player_id = player_id(2),
+                2 => p.choice.id.clear(),
+                3 => p.choice.kind = "damage".into(),
+                4 => p.choice.min = Some(1),
+                5 => p.choice.max = Some(2),
+                6 => p.choice.amount = Some(1),
+                7 => p.choice.allow_decline = Some(false),
+                8 => p.choice.options[0].id = "forged".into(),
+                9 => p.choice.options[0].card = Some(preview.clone()),
+                10 => p.choice.options.clear(),
+                11 => p.choice.options.push(p.choice.options[0].clone()),
+                12 => p.choice.preview_cards.push(preview.clone()),
+                _ => {
+                    if let ChoiceResolution::Declare { stage, .. } = &mut p.resolution {
+                        *stage = if mutation == 13 {
+                            DeclareChoice::Target
+                        } else {
+                            DeclareChoice::Mode
+                        };
+                    }
+                }
+            }
+            invalid(19 + ability * 15 + mutation, &r);
+        }
+    }
+}
 fn invalid(n: usize, r: &RoomEnvelope) {
     let state = serde_json::to_string(r).unwrap();
     assert!(RoomEnvelope::from_persisted(&state)

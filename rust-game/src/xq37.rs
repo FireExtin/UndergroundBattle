@@ -170,7 +170,26 @@ impl Game {
                 ChoiceResolution::Frame { frame, .. } if relevant(frame) => {
                     return Err("XQ37原子程序不能暂停为帧选择".into())
                 }
-                ChoiceResolution::Declare { declaration: d, .. } => declaration(d)?,
+                ChoiceResolution::Declare { declaration: d, stage } => {
+                    declaration(d)?;
+                    if d.source.card.definition == "XQ37"
+                        && (!matches!(stage, DeclareChoice::Accept)
+                            || p.seat != d.actor
+                            || p.choice.player_id != player_id(d.actor)
+                            || p.choice.id.is_empty()
+                            || p.choice.kind != "trigger"
+                            || p.choice.min != Some(0)
+                            || p.choice.max != Some(1)
+                            || p.choice.amount.is_some()
+                            || p.choice.allow_decline != Some(true)
+                            || !p.choice.preview_cards.is_empty()
+                            || p.choice.options.len() != 1
+                            || p.choice.options[0].id != "accept"
+                            || p.choice.options[0].card.is_some())
+                    {
+                        return Err("XQ37可选触发的席位、阶段或选择元数据不符".into());
+                    }
+                }
                 _ => {}
             }
         }
