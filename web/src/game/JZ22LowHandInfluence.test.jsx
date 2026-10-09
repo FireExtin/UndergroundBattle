@@ -41,4 +41,11 @@ it('places exactly one after the response passes and restores every seat project
  const before=JSON.parse(wasm.view(d.state,0));expect(result.view.regions[2].influence.reduce((a,b)=>a+b,0)-before.regions[2].influence.reduce((a,b)=>a+b,0)).toBe(1);
 });
 
+it('accepts existing granted combat glory on JZ22 without blocking the response stack',()=>{
+ const d=native.glory,view=JSON.parse(wasm.view(d.state,d.seat));let result;
+ const {container}=render(<Table view={view} catalog={catalog} busy={false} onAction={action=>{result=JSON.parse(wasm.applyRoom(d.state,d.seat,JSON.stringify({...d.command,action:{kind:'game',action}}),'0'));}}/>);
+ fireEvent.click(container.querySelector('[data-choice-option]'));fireEvent.click(screen.getByRole('button',{name:'确认选择'}));expect(result).toEqual(d.expected);
+ for(let seat=0;seat<4;seat++)expect(JSON.parse(wasm.view(result.state,seat))).toEqual(d.views[seat]);
+});
+
 it('rejects the preserved previous engine53 room without silent migration',()=>{expect(()=>wasm.view(prior53.contractTrigger.state,0)).toThrow();});

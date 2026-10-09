@@ -637,3 +637,76 @@ fn jz22_paid_armor_and_curse_allow_existing_combat_glory_without_stalling() {
     pass_top(&mut g);
     assert_eq!(g.regions[2].influence, [1, 0]);
 }
+
+#[test]
+fn jz22_empty_transaction_aliases_and_real_transaction_origin_tampering_rejected() {
+    let mut g = initial(0);
+    enter(&mut g, 0, 0);
+    accept(&mut g);
+    for key in ["deploy", "reveal"] {
+        for forged_marker in [false, true] {
+            let mut state = serde_json::to_value(envelope(&g)).unwrap();
+            let frame = &mut state["game"]["stack"][0]["frame"];
+            frame["ability_key"] = key.into();
+            frame["steps"] = serde_json::json!([]);
+            frame["chosen_region"] = serde_json::json!(2);
+            if forged_marker {
+                frame["source"]["card"]["face_down"] = serde_json::json!(key == "reveal");
+                frame["source"]["play_source"] = if key == "deploy" {
+                    "Hand".into()
+                } else {
+                    serde_json::Value::Null
+                };
+            }
+            assert!(Game::from_persisted(&state["game"].to_string()).is_err());
+            assert!(RoomEnvelope::from_persisted(&state.to_string()).is_err());
+            if let Ok(dir) = std::env::var("JZ22_INVALID_DIR") {
+                std::fs::create_dir_all(&dir).unwrap();
+                std::fs::write(format!("{dir}/empty-{key}-{forged_marker}.json"),serde_json::json!({"state":state.to_string(),"nativeRejected":true,"mutation":"entry masquerading as empty transaction"}).to_string()).unwrap();
+            }
+        }
+    }
+    for reveal in [false, true] {
+        let mut g = initial(0);
+        fund(&mut g, 0, "JZ22", 2);
+        let id = if reveal {
+            let id = board(&mut g, "JZ22", 0, 2);
+            g.board_mut(&id).unwrap().face_down = true;
+            id
+        } else {
+            held(&mut g, "JZ22", 0)
+        };
+        apply(
+            &mut g,
+            0,
+            Action {
+                card_id: Some(id),
+                region: if reveal { None } else { Some(2) },
+                ..Action::new(if reveal { "reveal" } else { "deploy" })
+            },
+        );
+        let good = serde_json::to_value(envelope(&g)).unwrap();
+        for n in 0..4 {
+            let mut bad = good.clone();
+            match n {
+                0 => {
+                    bad["game"]["stack"][0]["frame"]["source"]["card"]["face_down"] =
+                        serde_json::json!(!reveal)
+                }
+                1 => {
+                    bad["game"]["stack"][0]["frame"]["source"]["play_source"] = if reveal {
+                        "Hand".into()
+                    } else {
+                        serde_json::Value::Null
+                    }
+                }
+                2 => bad["game"]["stack"][0]["card"] = serde_json::Value::Null,
+                _ => bad["game"]["stack"][0]["deploy_region"] = serde_json::json!(1),
+            }
+            assert!(RoomEnvelope::from_persisted(&bad.to_string()).is_err());
+            if let Ok(dir) = std::env::var("JZ22_INVALID_DIR") {
+                std::fs::write(format!("{dir}/transaction-{reveal}-{n}.json"),serde_json::json!({"state":bad.to_string(),"nativeRejected":true,"mutation":"real transaction origin or stack inconsistency"}).to_string()).unwrap();
+            }
+        }
+    }
+}

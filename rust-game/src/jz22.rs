@@ -89,8 +89,32 @@ impl Game {
                 || !frame.targets.is_empty()
                 || frame.cursor != 0
                 || !matches!(frame.guard, GuardState::Unchecked)
+                || frame.actor >= self.players.len()
+                || frame.source.card.owner >= self.players.len()
+                || frame.source.card.controller != frame.actor
+                || frame.source.card.id.is_empty()
+                || frame.source.region.is_none_or(|r| r >= self.regions.len())
+                || frame.chosen_region != frame.source.region
+                || frame
+                    .source
+                    .source_region_instance
+                    .as_ref()
+                    .is_none_or(|id| id.is_empty())
+                || frame.source.observed_death.is_some()
+                || frame.source.attachment_host_instance.is_some()
             {
-                return Err("JZ22派遣或现身不能携带额外程序".into());
+                return Err("JZ22派遣或现身空程序与来源不符".into());
+            }
+            let origin_matches = if frame.ability_key == "deploy" {
+                !frame.source.card.face_down
+                    && (frame.source.play_source == Some(PlaySource::Hand)
+                        || frame.source.play_source == Some(PlaySource::Graveyard)
+                            && rules::definition("JZ22").graveyard_face_up)
+            } else {
+                frame.source.card.face_down && frame.source.play_source.is_none()
+            };
+            if !origin_matches {
+                return Err("JZ22派遣或现身的原来源标记不符".into());
             }
             return Ok(());
         }
@@ -151,6 +175,17 @@ impl Game {
                     && (s.controller != f.actor || s.id != f.frame_id)
                 {
                     return Err("JZ22堆栈对象与冻结帧不符".into());
+                }
+                if f.source.card.definition == "JZ22"
+                    && matches!(f.ability_key.as_str(), "deploy" | "reveal")
+                    && (s
+                        .card
+                        .as_ref()
+                        .is_none_or(|c| c.definition != "JZ22" || c.owner != f.source.card.owner)
+                        || s.deploy_region != f.source.region
+                        || s.reveal != (f.ability_key == "reveal"))
+                {
+                    return Err("JZ22派遣或现身的堆栈实体/地区不符".into());
                 }
             }
         }
