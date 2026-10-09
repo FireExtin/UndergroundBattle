@@ -381,6 +381,59 @@ fn gray_lock_restore_rejects_transplanted_program_and_malformed_frozen_frame() {
 }
 
 #[test]
+fn gray_lock_restore_rejects_impossible_accepted_cursor_and_frame_choice_containers() {
+    let mut invalid_index=0;
+    for kind in ["chase-locked", "reveal-lock", "citizen-lock"] {
+        let mut g=game(0);
+        let source=board(&mut g,if kind=="citizen-lock" {"JZ43"}else{"JC069"},0,0);
+        let target=board(&mut g,"LC01",1,if kind=="citizen-lock" {0}else{4});
+        if kind=="chase-locked" {
+            lock(&mut g,&target,1);fund(&mut g,0,"JC125",2);
+            apply(&mut g,0,chase(&source,&target));
+        } else { trigger(&mut g,&source,Some(&target),kind=="reveal-lock"); }
+        let original=g.stack.last().unwrap().frame.as_ref().unwrap().clone();
+        checkpoint(&g);
+        for container in 0..3 { for (guard,cursor) in [
+            (GuardState::Unchecked,0),(GuardState::Accepted,0),(GuardState::Cancelled,0),
+            (GuardState::Unchecked,1),(GuardState::Accepted,1),
+        ] {
+            let mut broken=g.clone();
+            let mut frame=original.clone();frame.guard=guard;frame.cursor=cursor;
+            match container {
+                0=>broken.stack.last_mut().unwrap().frame=Some(frame),
+                1=>{broken.stack.clear();broken.effects.push_front(Effect::Frame{frame:Box::new(frame)});},
+                _=>{broken.stack.clear();broken.choice(0,"target","非法灰色帧暂停".into(),vec![],0,0,None,
+                    ChoiceResolution::Frame{frame:Box::new(frame),choice:FrameChoice::Region});},
+            }
+            let legitimate=container<2 && cursor==0
+                && matches!(if container==0 {&broken.stack.last().unwrap().frame.as_ref().unwrap().guard}
+                    else {match broken.effects.front().unwrap(){Effect::Frame{frame}=>&frame.guard,_=>unreachable!()}},GuardState::Unchecked);
+            let serialized=serde_json::to_string(&broken).unwrap();
+            let mut room=envelope(&g);room.game=broken;
+            if container>0 {room.pacing.window=None;}
+            let state=serde_json::to_string(&room).unwrap();
+            assert_eq!(Game::from_persisted(&serialized).is_ok(),legitimate,"{kind}/{container}/{cursor}");
+            assert_eq!(crate::room::RoomEnvelope::from_persisted(&state).is_ok(),legitimate);
+            if !legitimate {
+                if let Ok(dir)=std::env::var("GRAY_LOCK_GUARD_INVALID_DIR") {
+                    std::fs::create_dir_all(&dir).unwrap();
+                    std::fs::write(format!("{dir}/invalid-guard-{invalid_index:02}.json"),serde_json::to_vec(&serde_json::json!({"state":state})).unwrap()).unwrap();
+                }
+                invalid_index+=1;
+            }
+        }}
+        if kind=="chase-locked" {
+            // Losing the lock during responses remains a valid persisted frame;
+            // its genuine Unchecked target guard cancels the whole operation.
+            lock(&mut g,&target,0);checkpoint(&g);pass_top(&mut g);
+            assert_eq!(g.board(&source).unwrap().0,0);
+            assert_eq!(g.current_icons(g.board(&source).unwrap().1,0).investigation,0);
+        }
+    }
+    assert_eq!(invalid_index,39);
+}
+
+#[test]
 fn gray_lock_canonical_gates_reject_transplants_nested_ops_modes_and_field_edits() {
     for id in ["JC069","JZ43"] {
         let canonical=definition(id);

@@ -10,6 +10,17 @@ fn contains_lock_op(op: &Op) -> bool {
     }
 }
 impl Game {
+    fn validate_persisted_gray_lock_frame(&self, frame: &ResolutionFrame, pending_choice: bool) -> RuleResult<()> {
+        self.validate_gray_lock_frame(frame)?;
+        // These three closed programs each execute one atomic operation. They
+        // never suspend after accepting the target guard or create a frame choice.
+        // Preserve the runtime validator separately: an executing frame may have
+        // Accepted internally, but no persisted gray frame can reach that state.
+        if matches!(frame.source.card.definition.as_str(), "JC069" | "JZ43")
+            && (pending_choice || !matches!(frame.guard, GuardState::Unchecked) || frame.cursor != 0)
+        { return Err("灰色锁定原子程序不能保存已通过守卫、已执行游标或帧选择".into()); }
+        Ok(())
+    }
     pub(crate) fn validate_gray_lock_frame(&self, frame: &ResolutionFrame) -> RuleResult<()> {
         let printed = matches!(frame.source.card.definition.as_str(), "JC069" | "JZ43")
             .then(|| rules::definition(&frame.source.card.definition).abilities.iter()
@@ -56,18 +67,18 @@ impl Game {
             Ok(())
         };
         for item in &self.stack {
-            if let Some(frame) = &item.frame { self.validate_gray_lock_frame(frame)?; }
+            if let Some(frame) = &item.frame { self.validate_persisted_gray_lock_frame(frame, false)?; }
         }
         for e in &self.effects {
             match e {
-                Effect::Frame { frame } => self.validate_gray_lock_frame(frame)?,
+                Effect::Frame { frame } => self.validate_persisted_gray_lock_frame(frame, false)?,
                 Effect::Declare { declaration: d } => declaration(d)?,
                 _ => {},
             }
         }
         if let Some(p) = &self.pending {
             match &p.resolution {
-                ChoiceResolution::Frame { frame, .. } => self.validate_gray_lock_frame(frame)?,
+                ChoiceResolution::Frame { frame, .. } => self.validate_persisted_gray_lock_frame(frame, true)?,
                 ChoiceResolution::Declare { declaration: d, .. } => declaration(d)?,
                 _ => {},
             }
