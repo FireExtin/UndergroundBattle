@@ -598,5 +598,15 @@
     "url": "/cards/XQ48.jpg",
     "source": "resource/ymsj-fun.github.io/cards/XQ48 街头演说家.jpg",
     "sha256": "0cd31207bda681093839e86e5bb87cee624a3c0a657c70b60fa765f439089746"
+  },
+  "JC069": {
+    "url": "/cards/JC069.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC069 警犬.jpg",
+    "sha256": "4336d72dc69c89ce8ffe9cdfe7ff8c76423ef4fb73b21a5a70df9b523b1963d4"
+  },
+  "JZ43": {
+    "url": "/cards/JZ43.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JZ43 武装市民.jpg",
+    "sha256": "bbc107878f8041757b38f7674f57b1d5d34028edc79a10551e9f629ae97f6826"
   }
 }

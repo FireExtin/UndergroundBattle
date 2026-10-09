@@ -135,6 +135,7 @@ impl Game {
         self.turn_attribute_modifiers
             .retain(|m| m.target_instance != c.id || (m.kill_bonus == 0 && !m.grants_retreat));
         c.id = self.id();
+        c.lock_markers = 0;
         c
     }
     pub fn make_card(&mut self, definition: &str, owner: usize) -> Card {
@@ -150,6 +151,7 @@ impl Game {
             damage: 0,
             wounds: 0,
             shield: 0,
+            lock_markers: 0,
         }
     }
     pub(crate) fn note(&mut self, text: String) {
@@ -652,6 +654,11 @@ impl Game {
                     ));
                     self.reset_passes();
                 } else {
+                    if rules::definition(&c.definition).traits.city_play_only
+                        && !card(&self.regions[r].card.definition).subtypes.iter().any(|s| s == "城市")
+                    {
+                        return Err("该角色只能打出在城市地区".into());
+                    }
                     if !self.loyalty(seat, &c.definition) {
                         return Err("忠诚不足".into());
                     }
@@ -2144,6 +2151,9 @@ impl Game {
             } else {
                 Some(c.shield)
             },
+            // Board markers remain public even when the card's print is concealed.
+            lock_markers: (!asset && region.is_some() && c.lock_markers > 0)
+                .then_some(c.lock_markers),
             color: if hidden { None } else { Some(d.color.clone()) },
             magic: if hidden { None } else { Some(d.magic.clone()) },
             used_once_per_game: if hidden || d.kind != "society" {
@@ -2703,7 +2713,7 @@ mod tests {
     #[test]
     fn catalog_is_restricted_real_complete_and_decks_are_legal() {
         let c = catalog::catalog();
-        assert_eq!(c.cards.len(), 111);
+        assert_eq!(c.cards.len(), 113);
         let active = c
             .cards
             .iter()
@@ -2718,7 +2728,7 @@ mod tests {
                 .collect::<BTreeSet<_>>()
         );
         assert!(active.contains("DQJC116"));
-        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 101);
+        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 103);
         assert_eq!(c.decks.len(), 5);
         for deck in &c.decks {
             assert_eq!(deck.card_count, 50);

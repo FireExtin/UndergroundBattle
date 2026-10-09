@@ -81,6 +81,7 @@ pub enum AttachmentHostCondition {
 pub enum TargetPredicate {
     JC015NonHumanPrintedCostAtLeastThree,
     JZ55UniqueCharacter,
+    JC069LockedAnchor,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct TargetSlotSpec {
@@ -270,6 +271,10 @@ pub enum Op {
         slot: usize,
         amount: u32,
     },
+    // Exact printed gray lock pair, with no generic marker/binding language.
+    JC069LockTarget,
+    JC069ChaseLockedTarget,
+    JZ43LockOrDamageLocalTarget,
     PreventTargetDamageUntilTurnEnd {
         slot: usize,
     },
@@ -417,6 +422,8 @@ pub struct Traits {
     pub unlimited_copies: bool,
     #[serde(default)]
     pub cannot_be_equipped: bool,
+    #[serde(default, skip_serializing_if = "crate::model::is_false")]
+    pub city_play_only: bool,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum StaticModifier {
@@ -473,6 +480,24 @@ pub struct Definition {
 // These are interpreter limits, not rules for resolving partially invalid targets.
 // Reject unsupported declarations before publishing actions or offering trigger choices.
 pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(), String> {
+    fn uses_gray_lock(ops: &[Op]) -> bool {
+        ops.iter().any(|op| match op {
+            Op::JC069LockTarget | Op::JC069ChaseLockedTarget | Op::JZ43LockOrDamageLocalTarget => true,
+            Op::ForEachLivingPlayer(body) | Op::ForEachLivingPlayerFromActor(body) => uses_gray_lock(body),
+            Op::IfTargetExhausted { exhausted, ready, .. } => uses_gray_lock(std::slice::from_ref(exhausted)) || uses_gray_lock(std::slice::from_ref(ready)),
+            _ => false,
+        })
+    }
+    let gray_predicate = ability.targets.iter().chain(ability.modes.iter().flat_map(|m| &m.targets))
+        .any(|slot| slot.predicate == Some(TargetPredicate::JC069LockedAnchor));
+    if (gray_lock_definition(card_id).is_some() && ability.key != "renown")
+        || gray_predicate || uses_gray_lock(&ability.ops) || ability.modes.iter().any(|m| uses_gray_lock(&m.ops))
+    {
+        if gray_lock_definition(card_id).is_none_or(|d| !d.abilities.iter().any(|canonical|
+            serde_json::to_value(ability).unwrap() == serde_json::to_value(canonical).unwrap())) {
+            return Err(format!("{card_id}: only the complete printed gray lock ability is admitted"));
+        }
+    }
     fn uses_deck_seal(ops: &[Op]) -> bool {
         ops.iter().any(|op| match op {
             Op::XQ44SearchDreamSealOnTarget | Op::JZ02SearchSpaceSpellSealOnSource => true,
@@ -600,11 +625,12 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
         let admitted = match card_id {
             "JC015" => Some(jc015_definition()),
             "JZ55" => Some(jz55_definition()),
+            "JC069" => gray_lock_definition("JC069"),
             _ => None,
         };
-        if admitted.is_none_or(|d| serde_json::to_value(ability).unwrap()
-            != serde_json::to_value(&d.abilities[0]).unwrap()) {
-            return Err(format!("{card_id}: only the complete JC015 or JZ55 target predicate ability is supported"));
+        if admitted.is_none_or(|d| !d.abilities.iter().any(|canonical|
+            serde_json::to_value(ability).unwrap() == serde_json::to_value(canonical).unwrap())) {
+            return Err(format!("{card_id}: only the complete JC015, JZ55 or JC069 target predicate ability is supported"));
         }
     }
     let execution_op = |op: &Op| {
@@ -887,6 +913,9 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
         let is_admitted_jc032_action = card_id == "JC032"
             && serde_json::to_value(ability).unwrap()
                 == serde_json::to_value(&jc032_definition().abilities[0]).unwrap();
+        let is_admitted_jc069_action = card_id == "JC069"
+            && serde_json::to_value(ability).unwrap()
+                == serde_json::to_value(&gray_lock_definition("JC069").unwrap().abilities[1]).unwrap();
         let is_admitted_host_grant = limit == 2
             && ability.activation_only
             && ability.event.is_none()
@@ -899,9 +928,9 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
                 [Op::ModifyAttachmentHostUntilTurnEnd]
             )
             && ability.modes.is_empty();
-        if !is_admitted_jc032_action && !is_admitted_host_grant {
+        if !is_admitted_jc032_action && !is_admitted_jc069_action && !is_admitted_host_grant {
             return Err(format!(
-                "{card_id}: only the admitted host grant or JC032 once-per-turn action is supported"
+                "{card_id}: only the admitted host grant or JC032/JC069 once-per-turn action is supported"
             ));
         }
     }
@@ -1116,6 +1145,13 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
 
 pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -> Result<(), String> {
     for (card_id, definition) in definitions {
+        if let Some(canonical) = gray_lock_definition(card_id) {
+            if serde_json::to_value(definition).unwrap() != serde_json::to_value(canonical).unwrap() {
+                return Err(format!("cardId={card_id}: only the complete printed gray lock definition is admitted"));
+            }
+        } else if definition.traits.city_play_only {
+            return Err(format!("cardId={card_id}: the finite city play restriction cannot be transplanted"));
+        }
         if deck_seal_search_definition(card_id).is_some_and(|expected|
             serde_json::to_value(definition).unwrap() != serde_json::to_value(expected).unwrap()) {
             return Err(format!("cardId={card_id}: only the complete XQ44/JZ02 definition is admitted"));
@@ -1427,6 +1463,32 @@ fn jc030_definition() -> Definition {
     definition.modifiers = vec![StaticModifier::JC030BloodAssetsVampireAndInvestigation];
     definition
 }
+fn gray_lock_definition(id: &str) -> Option<Definition> {
+    match id {
+        "JC069" => {
+            let reveal = ability("reveal-lock", "现身触发：放置一个锁定标志", Timing::Fast,
+                vec![], vec![target(Zone::Board, EntityKind::CharacterOrHidden, Relation::Any, Range::Anywhere)],
+                vec![Op::JC069LockTarget], Some(Event::Reveal));
+            let mut anchor = target(Zone::Board, EntityKind::CharacterOrHidden, Relation::Any, Range::Anywhere);
+            anchor.predicate = Some(TargetPredicate::JC069LockedAnchor);
+            let mut chase = ability("chase-locked", "快速行动2：追逐锁定目标（每回合一次）", Timing::Fast,
+                vec![Cost::Assets(2)], vec![anchor], vec![Op::JC069ChaseLockedTarget], None);
+            chase.per_turn_limit = Some(1);
+            let mut d = with_abilities(vec![reveal, chase]);
+            d.traits.cannot_be_equipped = true;
+            Some(d)
+        }
+        "JZ43" => {
+            let mut d = with_abilities(vec![ability("entry-lock-or-damage", "进场触发：锁定或伤害", Timing::Fast,
+                vec![], vec![target(Zone::Board, EntityKind::Character, Relation::Any, Range::SourceRegion)],
+                vec![Op::JZ43LockOrDamageLocalTarget], Some(Event::Enter))]);
+            d.traits.public = true;
+            d.traits.city_play_only = true;
+            Some(d)
+        }
+        _ => None,
+    }
+}
 fn jc032_definition() -> Definition {
     let mut action = ability("top-six-vampire-hidden", "顶六张吸血鬼暗藏（每回合一次）", Timing::Standard,
         vec![Cost::Assets(2)], vec![], vec![Op::JC032TopSixVampireHidden], None);
@@ -1602,6 +1664,9 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         use EntityRef::{Source, Target};
         use PlayerRef::{Actor, Context};
         let mut m = BTreeMap::new();
+        for id in ["JC069", "JZ43"] {
+            m.insert(id.into(), gray_lock_definition(id).unwrap());
+        }
         for id in ["XQ40", "XQ41", "XQ45"] {
             m.insert(id.into(), sealing_definition(id).unwrap());
         }

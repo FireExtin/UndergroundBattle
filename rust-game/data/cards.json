@@ -4310,6 +4310,74 @@
       "unique": true,
       "supported": true,
       "sourceImageSha256": "59546782075c26039bdc7d4da34a621bb86de1d8d34c25710a0d59d6761a19e8"
+    },
+    {
+      "id": "JC069",
+      "name": "警犬",
+      "subtitle": null,
+      "kind": "character",
+      "subtypes": [
+        "狗"
+      ],
+      "cost": 2,
+      "loyalty": [],
+      "loyaltyText": "",
+      "color": "灰",
+      "magic": "",
+      "society": "国家机构",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 2,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "不能被装备结附\n【现身触发】在目标角色或暗藏者上放置一个锁定标志。\n【快速】行动2：将警犬移动到目标具有锁定标志的角色或暗藏者所在的地区，警犬获得【永久调查】直到回合结束。该能力每回合只能发动一次。",
+      "keywords": [],
+      "unique": false,
+      "supported": true,
+      "sourceImageSha256": "4336d72dc69c89ce8ffe9cdfe7ff8c76423ef4fb73b21a5a70df9b523b1963d4"
+    },
+    {
+      "id": "JZ43",
+      "name": "武装市民",
+      "subtitle": null,
+      "kind": "character",
+      "subtypes": [
+        "人类"
+      ],
+      "cost": 2,
+      "loyalty": [],
+      "loyaltyText": "",
+      "color": "灰",
+      "magic": "",
+      "society": "国家机构",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "公开\n只能打出在城市地区。\n进场触发 在本地区的目标角色上放置一个锁定标志。若该角色上已有锁定标志，则改为对其造成1点伤害。",
+      "keywords": [
+        "公开"
+      ],
+      "unique": false,
+      "supported": true,
+      "sourceImageSha256": "bbc107878f8041757b38f7674f57b1d5d34028edc79a10551e9f629ae97f6826"
     }
   ],
   "decks": [

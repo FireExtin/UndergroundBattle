@@ -4,6 +4,24 @@ import { CardContent, CardTile } from './CardTile';
 import { testCard, testCatalog } from './testFixtures';
 
 describe('concealed character presentation', () => {
+  it('keeps board lock markers public while erasing concealed print for all other seats', () => {
+    const card = { ...testCard, owner: 'p1', controller: 'p0', region: 2, kind: 'hidden', faceDown: true, lockMarkers: 2 };
+    const { rerender } = render(<CardTile card={card} definition={testCatalog.cards[0]} viewerId="p1" compact />);
+    for (const viewerId of ['p1', 'p2', 'p3']) {
+      rerender(<CardTile card={card} definition={testCatalog.cards[0]} viewerId={viewerId} compact />);
+      expect(screen.getByLabelText('锁定标志 2')).toHaveTextContent('锁定 2');
+      expect(screen.getByRole('button', { name: '查看暗藏者' })).toBeInTheDocument();
+      expect(screen.queryByText('真实印刷文字')).not.toBeInTheDocument();
+      expect(screen.queryByText('无知路人')).not.toBeInTheDocument();
+    }
+    rerender(<CardTile card={card} definition={testCatalog.cards[0]} viewerId="p0" />);
+    expect(screen.getByLabelText('锁定标志 2')).toBeInTheDocument();
+    expect(screen.getByText('真实印刷文字')).toBeInTheDocument();
+    rerender(<CardTile card={{ ...card, lockMarkers: undefined }} viewerId="p1" compact />);
+    expect(screen.queryByText('锁定 2')).not.toBeInTheDocument();
+    rerender(<CardTile card={{ ...card, region: undefined }} viewerId="p1" compact />);
+    expect(screen.queryByText('锁定 2')).not.toBeInTheDocument();
+  });
   it('shows damage immunity on own concealed board cards while preserving printed data in inspection', () => {
     const card = { ...testCard, kind: 'hidden', faceDown: true, damage: 2 };
     const definition = { ...testCatalog.cards[0], defense: 1 };

@@ -386,7 +386,7 @@ impl Game {
         SourceSnapshot {
             card: c.clone(),
             region,
-            source_region_instance: if matches!(c.definition.as_str(), "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48") {
+            source_region_instance: if matches!(c.definition.as_str(), "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43") {
                 region.and_then(|r| self.regions.get(r)).map(|r| r.card.id.clone())
             } else { None },
             attachment_host_instance: rules::definition(&c.definition)
@@ -629,8 +629,15 @@ impl Game {
                                     source.card.definition == "JZ55"
                                         && !c.face_down && d.kind == "character" && d.unique
                                 }
+                                rules::TargetPredicate::JC069LockedAnchor => {
+                                    source.card.definition == "JC069" && c.lock_markers > 0
+                                }
                             })
                         && (spec.range != Range::SourceRegion || region == source.region)
+                        && (source.card.definition != "JZ43" || spec.range != Range::SourceRegion
+                            || source.region.and_then(|r| self.regions.get(r))
+                                .zip(source.source_region_instance.as_ref())
+                                .is_some_and(|(region, instance)| region.card.id == *instance))
                         && spec.subtype.as_ref().is_none_or(|s| {
                             !c.face_down && self.target_subtypes(c, spec).contains(s)
                         })
@@ -746,6 +753,15 @@ impl Game {
                 };
                 if !self.valid_binding(actor, source, slot, &id) {
                     return Err("目标不存在或不满足目标条件".into());
+                }
+                // The FAQ forbids choosing an in-place movement. This is an
+                // activation check; later response movement does not add an
+                // unprinted distance condition to the target's frame guard.
+                if slot.predicate == Some(TargetPredicate::JC069LockedAnchor)
+                    && self.board(&source.card.id).zip(self.board(&id))
+                        .is_some_and(|((from, _), (to, _))| from == to)
+                {
+                    return Err("不能原地移动".into());
                 }
                 let public = self.public_target(actor, source, slot, &id);
                 Ok(BoundTarget {
@@ -1248,6 +1264,7 @@ impl Game {
         true
     }
     pub(crate) fn resolve_frame(&mut self, mut frame: ResolutionFrame) -> RuleResult<()> {
+        self.validate_gray_lock_frame(&frame)?;
         if !self.accept_frame_guard(&mut frame) {
             return Ok(());
         }
@@ -1403,6 +1420,44 @@ impl Game {
                         target.id.clone(),
                         amount,
                     )]))?;
+                }
+                Op::JC069LockTarget => {
+                    let target = frame.targets.first().ok_or("缺少锁定目标")?;
+                    if let Some(c) = self.board_mut(&target.id) {
+                        c.lock_markers = c.lock_markers.saturating_add(1);
+                    }
+                }
+                Op::JZ43LockOrDamageLocalTarget => {
+                    let target = frame.targets.first().ok_or("缺少锁定目标")?;
+                    if self.board(&target.id).is_some_and(|(_, c)| c.lock_markers > 0) {
+                        self.damage(BTreeMap::from([(target.id.clone(), 1)]))?;
+                    } else if let Some(c) = self.board_mut(&target.id) {
+                        c.lock_markers = c.lock_markers.saturating_add(1);
+                    }
+                }
+                Op::JC069ChaseLockedTarget => {
+                    let target = frame.targets.first().ok_or("缺少追逐目标")?;
+                    let destination = self.board(&target.id).map(|(r, _)| r);
+                    // Self-reference follows the original board instance. A
+                    // leave/flip/reentry gives a new ID and cannot inherit this.
+                    if let Some((from, c)) = self.board(&frame.source.card.id)
+                        .filter(|(_, c)| !c.face_down && card(&c.definition).kind == "character")
+                    {
+                        let id = c.id.clone();
+                        if let Some(to) = destination.filter(|to| *to != from) {
+                            let (_, c) = self.remove_board(&id).unwrap();
+                            let actor = c.controller;
+                            let source = self.source_snapshot(&c, Some(to));
+                            self.regions[to].cards.push(c);
+                            self.emit_event(actor, source, Event::EnterRegion);
+                        }
+                        self.turn_attribute_modifiers.push(TurnAttributeModifier {
+                            target_instance: id, defense_bonus: 0, kill_bonus: 0,
+                            grants_retreat: false, printed_defense_override: None,
+                            ordinary_icons: Icons { investigation: 1, ..Default::default() },
+                            grants_renown: false, prevents_damage: false, expires_turn: self.turn,
+                        });
+                    }
                 }
                 Op::PreventTargetDamageUntilTurnEnd { slot } => {
                     let target = frame.targets.get(slot).ok_or("缺少伤害防护目标")?;

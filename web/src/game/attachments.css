@@ -10,3 +10,5 @@
 .hg-attachment-context { margin-top: 8px; font-size: 13px; color: #d9d9c8; }
 .hg-region-attachments { display: flex; flex-wrap: wrap; gap: 4px; padding: 4px 8px; }
 .hg-region-attachments .hg-mounted-object { position: static; width: auto; }
+
+.hg-lock-marker { display: inline-block; padding: 2px 6px; border: 1px solid #997030; border-radius: 3px; color: #f5d38b; background: #40331c; font-size: 12px; font-weight: 600; }
