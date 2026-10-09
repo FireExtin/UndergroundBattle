@@ -33,3 +33,14 @@ for(const c of cases)test(`xq27-gray56 ${'final response'}: native transition, D
  assert.equal((await db.prepare('SELECT COUNT(*) AS n FROM commands WHERE room_id=?').bind(id).first()).n,1);
  t.diagnostic(JSON.stringify({engine:JSON.parse(abi.catalog()).engineVersion,preparedNativeLayout:true,inputName:c.inputName,completeOpaqueStateEqual:true,fourSeatViewsEqual:true,persistReopen:true,duplicateOriginalReceipt:true}));
 });
+
+// The exact Rust-produced corrupt state keeps u64 values as opaque bytes.
+test('XQ27-IR-01 rejects the hidden root flag in both production ABI entrypoints',()=>{
+ const d=JSON.parse(readFileSync(new URL('./fixtures/xq27-invalid-rootface-v056.json',import.meta.url),'utf8'));
+ assert.throws(()=>abi.view(d.state,0),/XQ27/);
+ assert.throws(()=>abi.applyRoom(d.state,0,JSON.stringify({commandId:'xq27-rootface',expectedVersion:0,action:{kind:'game',action:{kind:'pass'}}}),'0'),/XQ27/);
+});
+test('current-only routing rejects the exact previous engine55 room identity',()=>{
+ const previous=JSON.parse(readFileSync(new URL('./fixtures/jc050-native-v055.json',import.meta.url),'utf8'))[0];
+ assert.throws(()=>routeKernels(abi).assertSupported(previous.state),e=>e.status===410&&e.code==='unsupported_room_version');
+});

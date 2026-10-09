@@ -85,6 +85,7 @@ impl Game {
                         || s.target.is_some()
                         || s.card.as_ref().is_none_or(|c| {
                             c.definition != "XQ27"
+                                || c.face_down
                                 || c.owner != f.source.card.owner
                                 || c.controller != f.actor
                         })

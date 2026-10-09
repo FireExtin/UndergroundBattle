@@ -15,3 +15,5 @@
 验证已通过：Native新卡10项、同时移除复用15项及卡池断言1项；WASM逐字节215输入（137检查点、62成功命令、4拒绝、12非法存档）和812个席位视图一致；React5文件81项；两份TypeScript配置、Vite、Wrangler dry-run；本地workerd/D1及current-only路由4项。Native使用无默认特性的生产确定性核心／RoomEnvelope，未声称重跑Native HTTP整套。已停止该旧批全量回归。
 
 本批试验中修正了测试资产ID、响应现身费用及触发隔离布局，UI隐私断言按实际省略cardId修正；构建提高原192MB Node上限至384MB后通过。以上是测试／执行资源问题，不伪称为已修复产品缺陷。历史53/54/55共33份引擎原字节再次逐项SHA核验一致（54、55部分为无损ZIP，不再使用旧展开路径）。独审与提交结果待最终裁定登记。
+
+独审在初始提交ab6ff22实际证明P2问题XQ27-IR-01：把普通事务root堆栈卡face_down改为true，旧准入仍接受，既有Bury保留该标记，使事务在墓地继续隐藏。修复只在XQ27原root卡准入拒绝face_down；增加Rust完整Room单字段反例（非法存档13项），并增加实际Sites生产ABI双入口拒绝及旧engine55精确Room路由拒绝。没有修改通用Bury或状态框架，真实付费空reveal仍准入。修复Native10项已通过，新WASM已编译，最终216原输入、界面、Worker和独审结果待登记。

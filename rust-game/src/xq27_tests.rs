@@ -271,7 +271,7 @@ fn xq27_persisted_stack_mutants_rejected_by_game_and_room() {
     let mut g = game(0);
     cast(&mut g, 0);
     let original = envelope(&g);
-    for mutation in 0..12 {
+    for mutation in 0..13 {
         let mut r = original.clone();
         let s = r.game.stack.last_mut().unwrap();
         let f = s.frame.as_mut().unwrap();
@@ -287,7 +287,8 @@ fn xq27_persisted_stack_mutants_rejected_by_game_and_room() {
             8 => f.source.card.controller = 1,
             9 => s.target = Some("region:2".into()),
             10 => f.steps[0].op = Op::ForEachLivingPlayer(vec![Op::XQ27DestroyAllHidden]),
-            _ => s.frame = None,
+            11 => s.frame = None,
+            _ => s.card.as_mut().unwrap().face_down = true,
         };
         let state = serde_json::to_string(&r).unwrap();
         assert!(RoomEnvelope::from_persisted(&state)
