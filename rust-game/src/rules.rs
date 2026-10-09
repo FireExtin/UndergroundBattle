@@ -229,6 +229,8 @@ pub enum Op {
     // Two closed blue programs, with no configurable search/loop interpreter.
     JC032TopSixVampireHidden,
     JZ24LocalSacrificeSnapshot,
+    // JZ22 only: test living enemy hand counts at resolution, then place one.
+    JZ22LowHandInfluenceInSourceRegion,
     // Finite MSJC11 programs; no generic keyword or quantity interpreter.
     GrantTargetKillUntilTurnEnd {
         slot: usize,
@@ -485,6 +487,13 @@ pub struct Definition {
 // These are interpreter limits, not rules for resolving partially invalid targets.
 // Reject unsupported declarations before publishing actions or offering trigger choices.
 pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(), String> {
+    if (card_id == "JZ22" && ability.key != "renown") || crate::jz22::contains_jz22_op(&ability.ops)
+        || ability.modes.iter().any(|m| crate::jz22::contains_jz22_op(&m.ops)) {
+        if card_id != "JZ22" || serde_json::to_value(ability).unwrap()
+            != serde_json::to_value(&jz22_definition().abilities[0]).unwrap() {
+            return Err(format!("{card_id}: only the complete printed JZ22 entry ability is admitted"));
+        }
+    }
     if ability.event == Some(Event::CharacterDeathObserved)
         || ability.key.starts_with("death-observer-")
         || death_observer_ops(&ability.ops)
@@ -1239,6 +1248,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
         let expected = match card_id.as_str() {
             "JC032" => Some(jc032_definition()),
             "JZ24" => Some(jz24_definition()),
+            "JZ22" => Some(jz22_definition()),
             "MSJC03" => Some(msjc03_definition()),
             _ => None,
         };
@@ -1528,6 +1538,11 @@ fn jz24_definition() -> Definition {
     with_abilities(vec![ability("local-enemy-sacrifice", "敌方本地牺牲", Timing::Fast,
         vec![], vec![], vec![Op::JZ24LocalSacrificeSnapshot], Some(Event::Reveal))])
 }
+fn jz22_definition() -> Definition {
+    with_abilities(vec![ability("entry-low-hand-influence",
+        "进场触发：若有敌方玩家手牌不超过三张，本地区放置一个本方势力标志", Timing::Fast,
+        vec![], vec![], vec![Op::JZ22LowHandInfluenceInSourceRegion], Some(Event::Enter))])
+}
 fn jz31_definition() -> Definition {
     with_abilities(vec![ability("death-source-influence", "死亡触发：本地区放置一个本方势力标志", Timing::Fast,
         vec![], vec![], vec![Op::PlaceOneInfluenceInSourceRegion], Some(Event::Death))])
@@ -1741,6 +1756,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         }
         m.insert("JC032".into(), jc032_definition());
         m.insert("JZ24".into(), jz24_definition());
+        m.insert("JZ22".into(), jz22_definition());
         m.insert("JZ31".into(), jz31_definition());
         for id in ["JC045", "JC031", "JC090"] {
             m.insert(id.into(), death_observer_definition(id).unwrap());

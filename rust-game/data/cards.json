@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.48-three-color-death-candidate",
-  "engineVersion": "rust-v0.2.53-three-color-death-candidate",
+  "cardPoolVersion": "limited-v2.49-blue-low-hand-candidate",
+  "engineVersion": "rust-v0.2.54-blue-low-hand-candidate",
   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
   "cards": [
     {
@@ -4490,6 +4490,44 @@
       "unique": false,
       "supported": true,
       "sourceImageSha256": "bbc107878f8041757b38f7674f57b1d5d34028edc79a10551e9f629ae97f6826"
+    },
+    {
+      "id": "JZ22",
+      "name": "暗夜游掠者",
+      "kind": "character",
+      "subtypes": [
+        "吸血鬼"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "蓝色"
+      ],
+      "loyaltyText": "蓝色",
+      "color": "蓝",
+      "magic": "鲜血",
+      "society": "",
+      "defense": 1,
+      "text": "进场触发 若有敌方玩家的手牌数量少于或等于三张，则在本地区上放置一个本方势力标志。",
+      "keywords": [],
+      "unique": false,
+      "supported": true,
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/JZ22 暗夜游掠者.jpg",
+        "sha256": "b368bc3d75306dd0112cff180c8b10501c191e30b0c8d06d78e901ea20cd6160",
+        "basis": "actual original face checked with basic rulebook printed P2/P5/P6"
+      },
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        }
+      }
     }
   ],
   "decks": [

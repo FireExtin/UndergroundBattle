@@ -623,5 +623,10 @@
     "url": "/cards/JZ43.jpg",
     "source": "resource/ymsj-fun.github.io/cards/JZ43 武装市民.jpg",
     "sha256": "bbc107878f8041757b38f7674f57b1d5d34028edc79a10551e9f629ae97f6826"
+  },
+  "JZ22": {
+    "url": "/cards/JZ22.jpg",
+    "source": "JZ22 暗夜游掠者.jpg",
+    "sha256": "b368bc3d75306dd0112cff180c8b10501c191e30b0c8d06d78e901ea20cd6160"
   }
 }

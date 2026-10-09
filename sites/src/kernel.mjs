@@ -2,6 +2,6 @@ import * as current from '../generated/hegemony_wasm.js';
 import currentModule from '../generated/hegemony_wasm_bg.wasm';
 import { routeKernels } from './kernel-router.mjs';
 import { lazyKernel } from './lazy-kernel.mjs';
-const kernel0 = lazyKernel(current, currentModule, {"rulesVersion":"hegemony-pdf-v1","cardPoolVersion":"limited-v2.48-three-color-death-candidate","engineVersion":"rust-v0.2.53-three-color-death-candidate"});
+const kernel0 = lazyKernel(current, currentModule, {"rulesVersion":"hegemony-pdf-v1","cardPoolVersion":"limited-v2.49-blue-low-hand-candidate","engineVersion":"rust-v0.2.54-blue-low-hand-candidate"});
 // Experimental Site: only the reviewed current tuple is supported.
 export const kernel = routeKernels(kernel0);

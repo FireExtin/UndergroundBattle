@@ -40,6 +40,9 @@ mod jz50_search;
 mod bounded_search;
 mod deck_seal_search;
 mod gray_lock;
+mod jz22;
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod jz22_tests;
 #[cfg(all(test, not(feature = "society-fixtures")))]
 mod gray_lock_tests;
 // Retain the historical test-only positive seal preparation alongside actual-card tests.

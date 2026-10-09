@@ -387,7 +387,7 @@ impl Game {
             observed_death: None,
             card: c.clone(),
             region,
-            source_region_instance: if matches!(c.definition.as_str(), "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43") {
+            source_region_instance: if matches!(c.definition.as_str(), "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22") {
                 region.and_then(|r| self.regions.get(r)).map(|r| r.card.id.clone())
             } else { None },
             attachment_host_instance: (c.definition == "JC090" || rules::definition(&c.definition)
@@ -1275,6 +1275,7 @@ impl Game {
     }
     pub(crate) fn resolve_frame(&mut self, mut frame: ResolutionFrame) -> RuleResult<()> {
         self.validate_gray_lock_frame(&frame)?;
+        self.validate_jz22_frame(&frame)?;
         if !self.accept_frame_guard(&mut frame) {
             return Ok(());
         }
@@ -1296,6 +1297,7 @@ impl Game {
                 }
                 Op::JC032TopSixVampireHidden => return self.jc032_start(frame),
                 Op::JZ24LocalSacrificeSnapshot => return self.jz24_start(frame),
+                Op::JZ22LowHandInfluenceInSourceRegion => self.jz22_low_hand_influence(&frame),
                 Op::GainControl {
                     slot,
                     until_source_leaves,

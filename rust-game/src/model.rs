@@ -486,7 +486,7 @@ pub struct SourceSnapshot {
     pub observed_death: Option<ObservedCharacterDeath>,
     pub card: Card,
     pub region: Option<usize>,
-    // Only JC032/JZ24 bind their original local region, independently of source.
+    // Admitted finite local programs bind the original region independently of source.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub source_region_instance: Option<String>,
     // Non-targeted host effect keeps the declaration's exact host identity.
@@ -803,6 +803,7 @@ impl Game {
         game.validate_deck_seal_choice()?;
         game.validate_death_observers()?;
         game.validate_gray_lock_state()?;
+        game.validate_jz22_state()?;
         Ok(game)
     }
 }
