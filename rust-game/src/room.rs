@@ -239,6 +239,7 @@ impl RoomEnvelope {
         room.game.validate_jz22_state()?;
         room.game.validate_jc050_state()?;
         room.game.validate_xq27_state()?;
+        room.game.validate_xq37_state()?;
         if room.game.state_schema != 2
             || room.game.version != room.revision
             || room.game.versions.rules != room.versions.rules

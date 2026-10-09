@@ -235,6 +235,8 @@ pub enum Op {
     JZ24LocalSacrificeSnapshot,
     // JZ22 only: test living enemy hand counts at resolution, then place one.
     JZ22LowHandInfluenceInSourceRegion,
+    // XQ37 only: current friendly influence in its frozen entry region.
+    XQ37EntryInfluenceIfPresent,
     // Finite MSJC11 programs; no generic keyword or quantity interpreter.
     GrantTargetKillUntilTurnEnd {
         slot: usize,
@@ -505,6 +507,15 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
         if card_id != "JC050" || serde_json::to_value(ability).unwrap()
             != serde_json::to_value(&jc050_definition().abilities[0]).unwrap() {
             return Err(format!("{card_id}: only the complete printed JC050 transaction is admitted"));
+        }
+    }
+    if card_id == "XQ37" || ability.key == "entry-existing-influence"
+        || crate::xq37::contains_xq37_op(&ability.ops)
+        || ability.modes.iter().any(|m| crate::xq37::contains_xq37_op(&m.ops)) {
+        if card_id != "XQ37" || serde_json::to_value(ability).unwrap()
+            != serde_json::to_value(&xq37_definition().abilities[0]).unwrap()
+            && !crate::jz22::runtime_ability_is_admitted(ability) {
+            return Err(format!("{card_id}: only the complete printed XQ37 entry ability is admitted"));
         }
     }
     if card_id == "JZ22" || ability.key == "entry-low-hand-influence"
@@ -1264,6 +1275,9 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
             != serde_json::to_value(jz55_definition()).unwrap() {
             return Err("cardId=JZ55: only the complete admitted immediate unique destroy definition is supported".into());
         }
+        if card_id == "XQ37" && serde_json::to_value(definition).unwrap() != serde_json::to_value(xq37_definition()).unwrap() {
+            return Err("cardId=XQ37: only the complete original entry definition is admitted".into());
+        }
         if card_id == "JZ31" && serde_json::to_value(definition).unwrap()
             != serde_json::to_value(jz31_definition()).unwrap()
         {
@@ -1568,6 +1582,10 @@ fn jz24_definition() -> Definition {
     with_abilities(vec![ability("local-enemy-sacrifice", "敌方本地牺牲", Timing::Fast,
         vec![], vec![], vec![Op::JZ24LocalSacrificeSnapshot], Some(Event::Reveal))])
 }
+fn xq37_definition() -> Definition {
+    with_abilities(vec![ability("entry-existing-influence", "进场触发：已有本方势力时再放置一个", Timing::Fast,
+        vec![], vec![], vec![Op::XQ37EntryInfluenceIfPresent], Some(Event::Enter))])
+}
 fn jz22_definition() -> Definition {
     with_abilities(vec![ability("entry-low-hand-influence",
         "进场触发：若有敌方玩家手牌不超过三张，本地区放置一个本方势力标志", Timing::Fast,
@@ -1805,6 +1823,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         m.insert("JZ24".into(), jz24_definition());
         m.insert("JZ22".into(), jz22_definition());
         m.insert("JZ31".into(), jz31_definition());
+        m.insert("XQ37".into(), xq37_definition());
         for id in ["JC045", "JC031", "JC090"] {
             m.insert(id.into(), death_observer_definition(id).unwrap());
         }

@@ -2,6 +2,9 @@ mod attachment;
 mod attributes;
 mod jc050;
 mod xq27;
+mod xq37;
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod xq37_tests;
 #[cfg(all(test, not(feature = "society-fixtures")))]
 mod xq27_tests;
 #[cfg(all(test, not(feature = "society-fixtures")))]

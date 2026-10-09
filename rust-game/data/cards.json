@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.51-gray-hidden-sweep-candidate",
-  "engineVersion": "rust-v0.2.56-gray-hidden-sweep-candidate",
+  "cardPoolVersion": "limited-v2.52-black-entry-influence-candidate",
+  "engineVersion": "rust-v0.2.57-black-entry-influence-candidate",
   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
   "cards": [
     {
@@ -4606,6 +4606,44 @@
         "sha256": "78f2d5e2422b611bbf159a33083d70c75bf2ac83103325550430a394e8a803b5",
         "basis": "actual complete original image checked; standard non-targeted destruction of every hidden card"
       }
+    },
+    {
+      "id": "XQ37",
+      "name": "夜总会看门人",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "罪犯"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "黑色"
+      ],
+      "loyaltyText": "黑色",
+      "color": "黑",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "进场触发：若夜总会看门人位于有本方势力标志的地区，则在该地区上放置一个本方势力标志。",
+      "keywords": [],
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/cards.json",
+        "record": "XQ37",
+        "image": "resource/ymsj-fun.github.io/cards/XQ37 夜总会看门人.jpg"
+      },
+      "unique": false,
+      "society": ""
     }
   ],
   "decks": [

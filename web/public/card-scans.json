@@ -638,5 +638,10 @@
     "url": "/cards/XQ27.jpg",
     "source": "resource/ymsj-fun.github.io/cards/XQ27 定点清除行动.jpg",
     "sha256": "78f2d5e2422b611bbf159a33083d70c75bf2ac83103325550430a394e8a803b5"
+  },
+  "XQ37": {
+    "url": "/cards/XQ37.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/XQ37 夜总会看门人.jpg",
+    "sha256": "93778bc4ffa69e5b79ad08738e3f31a78a669a049c42a43e68d04bd6398856b9"
   }
 }

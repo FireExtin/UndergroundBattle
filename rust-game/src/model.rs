@@ -806,6 +806,7 @@ impl Game {
         game.validate_jz22_state()?;
         game.validate_jc050_state()?;
         game.validate_xq27_state()?;
+        game.validate_xq37_state()?;
         Ok(game)
     }
 }
