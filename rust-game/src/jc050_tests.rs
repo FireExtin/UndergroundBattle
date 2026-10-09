@@ -530,12 +530,13 @@ fn jc050_true_hidden_reveal_is_admitted_and_empty_program_aliases_reject() {
         .action;
     apply(&mut g, 0, a);
     let original = envelope(&g);
-    for kind in 0..5 {
+    for kind in 0..6 {
         let mut r = original.clone();
         let item = r.game.stack.last_mut().unwrap();
         match kind {
             0 => item.reveal = false,
             1 => item.deploy_region = Some(1),
+            5 => item.card.as_mut().unwrap().controller = 1,
             _ => {
                 let f = item.frame.as_mut().unwrap();
                 match kind {

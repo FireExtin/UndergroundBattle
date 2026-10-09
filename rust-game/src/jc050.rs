@@ -79,7 +79,9 @@ impl Game {
                         || s.controller != f.actor
                         || s.id != f.frame_id
                         || s.card.as_ref().is_none_or(|c| {
-                            c.definition != "JC050" || c.owner != f.source.card.owner
+                            c.definition != "JC050"
+                                || c.owner != f.source.card.owner
+                                || c.controller != f.actor
                         }))
                 {
                     return Err("JC050堆栈必须保留尚未执行的原事务".into());
