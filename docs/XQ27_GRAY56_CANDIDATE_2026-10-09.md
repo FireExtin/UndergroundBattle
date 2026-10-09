@@ -1,19 +1,17 @@
 # XQ27 定点清除行动：灰色有限候选 2026-10-09
 
-来源为已实际查看的完整原图 `resource/ymsj-fun.github.io/cards/XQ27 定点清除行动.jpg`，SHA256 `78f2d5e2422b611bbf159a33083d70c75bf2ac83103325550430a394e8a803b5`，与 `docs/factions/card-specifications.json` B13 原图规格一致。费用4、灰色忠诚2、事务／阴谋，没有魔法领域、关键词或目标要求。完整正文为标准行动“消灭所有暗藏者”。
+本批基于 `68547fce82bc5dbd8877fb4dac7685af703eed24` 加入一张完整灰色事务，当前119普通卡含10地区、8秘社。候选为 `rust-v0.2.56-gray-hidden-sweep-candidate` / `limited-v2.51-gray-hidden-sweep-candidate`。实现与测试源码固定在 `4d63b07608e473c828d16b403227654c5267e5ac`，已独审通过；后续收束提交仅增加文档证据，并对19个非docs改动路径做精确字节映射。
 
-基线为 `68547fce82bc5dbd8877fb4dac7685af703eed24`，加入一张完整卡，当前119普通卡含10地区、8秘社。候选版本为 engine56/pool51：`rust-v0.2.56-gray-hidden-sweep-candidate` / `limited-v2.51-gray-hidden-sweep-candidate`。
+真相源为已实际查看的完整原图 `resource/ymsj-fun.github.io/cards/XQ27 定点清除行动.jpg`，SHA256 `78f2d5e2422b611bbf159a33083d70c75bf2ac83103325550430a394e8a803b5`，与排期B13完整规格一致：费用4、灰色忠诚2、事务／阴谋，没有魔法领域、关键词或目标要求。正文为标准行动“消灭所有暗藏者”。原图已登记在两份运行时图索引，ReadModal可打开真实牌面。
 
-实现仅增加无参数 `XQ27DestroyAllHidden`，在响应完成后的结算时冻结所有当前地区的暗藏者，再复用既有 `remove_death_batch`。不预先选择地区、不指定目标、不新增队列或绑定框架。暗藏者无论正面类型均消灭，墓地归拥有者，暗藏者移除不产生角色死亡触发；正面角色、地区、秘社和资产区不属于本效果。既有离场、控制释放、结附清理及级联逻辑继续适用。真实付费现身事务仍使用原有空程序，不等于打出其标准行动。
+实现只增加无参数 `XQ27DestroyAllHidden`，在响应结束后的结算时冻结所有当前地区暗藏者，再复用既有 `remove_death_batch`，不增加队列、身份或绑定框架。暗藏者无论正面类型均消灭，墓地归拥有者；暗藏移除不产生角色死亡触发。已在响应中真实付费现身的角色逃离本次消灭。正面角色、地区、秘社与资产区不属于效果，既有离场／结附／控制清理继续适用。事务的真实付费现身仍使用原空程序，不等于打出标准行动。
 
-`xq27.rs` 只准入该完整程序和真实空现身帧，Game及RoomEnvelope存读入口一致拒绝操作移植、重复执行、伪造操控者／地区／目标／现身标记；打出入口在付费前拒绝预声明地区或目标。原118张定义、牌组、世界牌数据不变。原图与两份运行时图索引均登记，UI不添加新动作框架。
+有限准入在Game和RoomEnvelope存读入口一致拒绝程序移植、重复执行、伪造操控者、地区、目标及现身标记；打出入口在付费前拒绝预声明地区或目标。独审实际发现并关闭P2问题 `XQ27-IR-01`：伪造root堆栈卡暗藏标记会经原Bury保留为暗藏墓地牌。修复只在XQ27原root卡准入拒绝该标记，并以Rust完整Room单字段反例及实际WASM双入口证明拒绝；未改通用Bury。最终独审100项有限动态检查全部通过，无开放阻断。
 
-验证落点：`/dev/shm/xq27-gray56-evidence-20261009`；独审：`/dev/shm/xq27-gray56-independent-review`。使用明确准备的Native布局、真实Room命令、React与WASM、当地Worker/D1。没有自然浏览器整局或随机长局声明，本批不发布Sites、不改访问策略、不触碰GitHub/main。Site48匿名首页403已交父且停止该请求，不在本批重试。
+验证全部通过：Native新卡10项、同时移除复用15项及卡池断言1项；WASM逐字节216份原始Native输入（137检查点、62成功命令、4拒绝、13非法存档）和812个席位视图一致；React5文件81项；两份TypeScript配置、Vite、Wrangler dry-run；本地workerd/D1及current-only路由6项，包括持久化重开、四席视图、重复命令原回执、40历史身份、5篡改身份和精确engine55旧Room拒绝。
 
-最终测试、独审和协作分支提交结果在完成后追加。本任务旧Native54输入与可执行字节无损ZIP逐项SHA核验后移除展开副本；Native53、54、55历史版本字节保留，未删除Library资料或他人WIP。
+原118张定义、牌组和世界牌数据逐项不变；独审再次独立核算33份历史53/54/55引擎原始字节SHA，全部一致。部分旧可执行与输入已在逐项SHA核验后无损ZIP保存，旧展开路径不再作为当前入口；没有删除Library资料或他人WIP。
 
-验证已通过：Native新卡10项、同时移除复用15项及卡池断言1项；WASM逐字节215输入（137检查点、62成功命令、4拒绝、12非法存档）和812个席位视图一致；React5文件81项；两份TypeScript配置、Vite、Wrangler dry-run；本地workerd/D1及current-only路由4项。Native使用无默认特性的生产确定性核心／RoomEnvelope，未声称重跑Native HTTP整套。已停止该旧批全量回归。
+证据索引为本目录 `XQ27_GRAY56_EVIDENCE_2026-10-09.json`，独审原文为 `XQ27_GRAY56_INDEPENDENT_REVIEW_2026-10-09.md`。完整Native输入、编译WASM、可执行、增量bundle、完整diff及本地构建包保存在云端 `/dev/shm/xq27-gray56-evidence-20261009`；独审脚本、反例与结果位于 `/dev/shm/xq27-gray56-independent-review`。
 
-本批试验中修正了测试资产ID、响应现身费用及触发隔离布局，UI隐私断言按实际省略cardId修正；构建提高原192MB Node上限至384MB后通过。以上是测试／执行资源问题，不伪称为已修复产品缺陷。历史53/54/55共33份引擎原字节再次逐项SHA核验一致（54、55部分为无损ZIP，不再使用旧展开路径）。独审与提交结果待最终裁定登记。
-
-独审在初始提交ab6ff22实际证明P2问题XQ27-IR-01：把普通事务root堆栈卡face_down改为true，旧准入仍接受，既有Bury保留该标记，使事务在墓地继续隐藏。修复只在XQ27原root卡准入拒绝face_down；增加Rust完整Room单字段反例（非法存档13项），并增加实际Sites生产ABI双入口拒绝及旧engine55精确Room路由拒绝。没有修改通用Bury或状态框架，真实付费空reveal仍准入。修复Native10项已通过，新WASM已编译，最终216原输入、界面、Worker和独审结果待登记。
+范围说明：测试使用明确准备的Native布局、真实Room命令、React/WASM及当地Worker/D1，未声称自然浏览器整局。Native使用无默认特性的生产确定性核心／RoomEnvelope，未重跑Native HTTP整套或旧批长回归。本批不发布Sites、不改访问策略、不重试Site48匿名首页403、不触碰GitHub/main、不使用worktree或force。

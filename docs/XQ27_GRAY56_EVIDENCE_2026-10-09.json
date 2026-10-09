@@ -1,0 +1,97 @@
+{
+  "sourceCommit": "4d63b07608e473c828d16b403227654c5267e5ac",
+  "baseCommit": "68547fce82bc5dbd8877fb4dac7685af703eed24",
+  "card": {
+    "id": "XQ27",
+    "name": "定点清除行动",
+    "sourceImageSha256": "78f2d5e2422b611bbf159a33083d70c75bf2ac83103325550430a394e8a803b5",
+    "originalImageActuallyViewed": true,
+    "cost": 4,
+    "loyalty": [
+      "灰色",
+      "灰色"
+    ],
+    "magic": "",
+    "text": "标准行动：消灭所有暗藏者。"
+  },
+  "engine": "rust-v0.2.56-gray-hidden-sweep-candidate",
+  "pool": "limited-v2.51-gray-hidden-sweep-candidate",
+  "ordinaryCards": 119,
+  "regions": 10,
+  "societies": 8,
+  "native": {
+    "newTests": 10,
+    "reuseTests": 15,
+    "catalogTest": 1,
+    "allPassed": true,
+    "features": "no-default-features production deterministic core and RoomEnvelope; not a full native HTTP suite"
+  },
+  "wasm": {
+    "passed": true,
+    "engine": "rust-v0.2.56-gray-hidden-sweep-candidate",
+    "checkpoints": 137,
+    "commands": 62,
+    "rejections": 4,
+    "invalidStates": 13,
+    "views": 812,
+    "originalInputsByteVerified": true,
+    "completeTransitionsEqual": true,
+    "opaqueStateBytesEqual": true,
+    "wasmBytes": 2395545,
+    "wasmSha256": "e253c69ed274e477e1fbba8393802314f34975196a8d1524cf8ef4bc17a5a28e",
+    "scope": "Explicit native layouts and actual room commands; no natural browser play claim"
+  },
+  "react": {
+    "testFiles": 5,
+    "passed": 81,
+    "failed": 0
+  },
+  "build": {
+    "typeScriptConfigs": 2,
+    "vitePassed": true,
+    "wranglerDryRunPassed": true
+  },
+  "worker": {
+    "passed": 6,
+    "failed": 0,
+    "localWorkerdAndD1": true,
+    "persistReopen": true,
+    "fourSeatViewsExact": true,
+    "duplicateOriginalReceipt": true,
+    "historicalTuplesRejected": 40,
+    "exactEngine55RoomRejected": true,
+    "alteredIdentitiesRejected": 5
+  },
+  "independentDynamic": {
+    "sourceCommit": "4d63b07608e473c828d16b403227654c5267e5ac",
+    "passed": 100,
+    "failed": 0,
+    "closedRealIssue": "XQ27-IR-01 (hidden root stack card survives Bury as hidden grave card; XQ27-specific finite root-face admission now rejects)"
+  },
+  "preservation": {
+    "priorDefinitionsExact": 118,
+    "decksExact": true,
+    "worldExact": true,
+    "historicalEngineByteChecks": 33,
+    "allExact": true
+  },
+  "scope": {
+    "preparedNativeLayouts": true,
+    "naturalBrowserFullGameClaimed": false,
+    "sitePublished": false,
+    "mainChanged": false,
+    "noWorktree": true,
+    "noForce": true
+  },
+  "independentReview": {
+    "sourceCommit": "4d63b07608e473c828d16b403227654c5267e5ac",
+    "decision": "pass",
+    "openBlockers": 0,
+    "closedRealIssues": [
+      "XQ27-IR-01"
+    ],
+    "dynamicPassed": 100,
+    "dynamicFailed": 0,
+    "reportSha256": "39f381c1a1a431ded9bd53e0ab6433b9a1f558cefd95d0d044bac0a57bfd58e9"
+  }
+}
