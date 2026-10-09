@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.49-blue-low-hand-candidate",
-  "engineVersion": "rust-v0.2.54-blue-low-hand-candidate",
+  "cardPoolVersion": "limited-v2.50-red-region-destruction-candidate",
+  "engineVersion": "rust-v0.2.55-red-region-destruction-candidate",
   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
   "cards": [
     {
@@ -4527,6 +4527,45 @@
           "combat": 1,
           "influence": 0
         }
+      }
+    },
+    {
+      "id": "JC050",
+      "name": "丧钟回响",
+      "kind": "spell",
+      "subtypes": [
+        "灾难"
+      ],
+      "cost": 5,
+      "loyalty": [
+        "红色",
+        "红色"
+      ],
+      "loyaltyText": "红色 / 红色",
+      "color": "红",
+      "magic": "鲜血",
+      "society": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 0,
+      "text": "【标准行动】选择一个地区，消灭该地区上的所有角色和暗藏者。",
+      "keywords": [],
+      "unique": false,
+      "supported": true,
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/JC050 丧钟回响.jpg",
+        "sha256": "2dbbe996c5fec273a1340ca4acadc504689b1af6151b56fe5ae0c217d2df159e",
+        "basis": "actual original image checked; no chosen region or board victims declared as targets"
       }
     }
   ],

@@ -1276,6 +1276,7 @@ impl Game {
     pub(crate) fn resolve_frame(&mut self, mut frame: ResolutionFrame) -> RuleResult<()> {
         self.validate_gray_lock_frame(&frame)?;
         self.validate_jz22_frame(&frame)?;
+        self.validate_jc050_frame(&frame)?;
         if !self.accept_frame_guard(&mut frame) {
             return Ok(());
         }
@@ -1700,6 +1701,14 @@ impl Game {
                     } else {
                         self.remove_dead(&id, RemovalCause::Destroy);
                     }
+                }
+                Op::JC050DestroyChosenRegionCharacters => {
+                    let region = frame.chosen_region.ok_or("JC050缺少已选择地区")?;
+                    let deaths = self.regions.get(region).ok_or("JC050地区已失效")?
+                        .cards.iter().filter(|c| c.face_down || card(&c.definition).kind == "character")
+                        .map(|c| (c.id.clone(), RemovalCause::Destroy, self.source_snapshot(c, Some(region))))
+                        .collect();
+                    self.remove_death_batch(deaths);
                 }
                 Op::Destroy(entity) => {
                     if let Some(id) = Self::frame_entity(&frame, entity) {

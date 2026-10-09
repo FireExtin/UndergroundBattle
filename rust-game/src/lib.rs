@@ -1,5 +1,8 @@
 mod attachment;
 mod attributes;
+mod jc050;
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod jc050_tests;
 pub mod catalog;
 mod control;
 mod death_observers;

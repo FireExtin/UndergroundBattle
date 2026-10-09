@@ -212,6 +212,8 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    // JC050 only: destroy the board cards in the region chosen at resolution.
+    JC050DestroyChosenRegionCharacters,
     JC045AddOneTimeToOriginalSource,
     JC031DiscardForObservedDeath,
     JC090PlaceOneInfluenceInOriginalAttachedRegion,
@@ -487,6 +489,14 @@ pub struct Definition {
 // These are interpreter limits, not rules for resolving partially invalid targets.
 // Reject unsupported declarations before publishing actions or offering trigger choices.
 pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(), String> {
+    if card_id == "JC050" || ability.key == "region-destruction"
+        || crate::jc050::contains_jc050_op(&ability.ops)
+        || ability.modes.iter().any(|m| crate::jc050::contains_jc050_op(&m.ops)) {
+        if card_id != "JC050" || serde_json::to_value(ability).unwrap()
+            != serde_json::to_value(&jc050_definition().abilities[0]).unwrap() {
+            return Err(format!("{card_id}: only the complete printed JC050 transaction is admitted"));
+        }
+    }
     if card_id == "JZ22" || ability.key == "entry-low-hand-influence"
         || crate::jz22::contains_jz22_op(&ability.ops)
         || ability.modes.iter().any(|m| crate::jz22::contains_jz22_op(&m.ops)) {
@@ -1177,6 +1187,10 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
 
 pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -> Result<(), String> {
     for (card_id, definition) in definitions {
+        if card_id == "JC050" && serde_json::to_value(definition).unwrap()
+            != serde_json::to_value(jc050_definition()).unwrap() {
+            return Err("JC050: only the complete printed definition is admitted".into());
+        }
         if let Some(expected) = death_observer_definition(card_id) {
             if serde_json::to_value(definition).unwrap() != serde_json::to_value(expected).unwrap() {
                 return Err(format!("{card_id}: only the complete death observer definition is admitted"));
@@ -1744,12 +1758,21 @@ fn msjc02_definition() -> Definition {
     ])
 }
 
+pub(crate) fn jc050_definition() -> Definition {
+    let mut destroy = ability("region-destruction", "选择地区，消灭其中所有角色和暗藏者",
+        Timing::Standard, vec![], vec![],
+        vec![Op::ChooseRegion, Op::JC050DestroyChosenRegionCharacters], None);
+    destroy.play_only = true;
+    with_abilities(vec![destroy])
+}
+
 pub fn definitions() -> &'static BTreeMap<String, Definition> {
     static DEFINITIONS: OnceLock<BTreeMap<String, Definition>> = OnceLock::new();
     DEFINITIONS.get_or_init(|| {
         use EntityRef::{Source, Target};
         use PlayerRef::{Actor, Context};
         let mut m = BTreeMap::new();
+        m.insert("JC050".into(), jc050_definition());
         for id in ["JC069", "JZ43"] {
             m.insert(id.into(), gray_lock_definition(id).unwrap());
         }
