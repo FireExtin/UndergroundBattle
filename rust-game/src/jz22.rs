@@ -20,6 +20,26 @@ pub(crate) fn contains_jz22_op(ops: &[Op]) -> bool {
         _ => false,
     })
 }
+// Only the two existing exact granted reward programs are runtime exceptions.
+// A key string alone never admits a program or changes its original region.
+pub(crate) fn runtime_ability_is_admitted(a: &rules::AbilitySpec) -> bool {
+    let [Op::PlaceInfluence {
+        region_instance,
+        amount: 1,
+    }] = a.ops.as_slice()
+    else {
+        return false;
+    };
+    if region_instance.is_empty() {
+        return false;
+    }
+    let expected = match a.key.as_str() {
+        "renown" => crate::renown::renown_ability(region_instance),
+        "jc089-combat-glory" => rules::jc089_combat_glory_ability(region_instance),
+        _ => return false,
+    };
+    serde_json::to_value(a).unwrap() == serde_json::to_value(expected).unwrap()
+}
 fn jz22_source(g: &Game, actor: usize, source: &SourceSnapshot) -> RuleResult<()> {
     if actor >= g.players.len()
         || source.card.owner >= g.players.len()
@@ -53,21 +73,35 @@ impl Game {
         }
     }
     pub(crate) fn validate_jz22_frame(&self, frame: &ResolutionFrame) -> RuleResult<()> {
-        let printed = frame.source.card.definition == "JZ22"
-            && frame.ability_key == "entry-low-hand-influence";
-        if !printed
-            && !frame
-                .steps
-                .iter()
-                .any(|s| contains_jz22_op(std::slice::from_ref(&s.op)))
-        {
+        if frame.source.card.definition != "JZ22" {
+            if frame.ability_key == "entry-low-hand-influence"
+                || frame
+                    .steps
+                    .iter()
+                    .any(|s| contains_jz22_op(std::slice::from_ref(&s.op)))
+            {
+                return Err("JZ22进场程序不能移植到其他来源或能力".into());
+            }
             return Ok(());
         }
-        if !printed {
-            return Err("JZ22进场程序不能移植到其他来源或能力".into());
+        if matches!(frame.ability_key.as_str(), "deploy" | "reveal") {
+            if !frame.steps.is_empty()
+                || !frame.targets.is_empty()
+                || frame.cursor != 0
+                || !matches!(frame.guard, GuardState::Unchecked)
+            {
+                return Err("JZ22派遣或现身不能携带额外程序".into());
+            }
+            return Ok(());
         }
         jz22_source(self, frame.actor, &frame.source)?;
-        let a = &rules::definition("JZ22").abilities[0];
+        let region = frame.source.source_region_instance.as_deref().unwrap();
+        let a = match frame.ability_key.as_str() {
+            "entry-low-hand-influence" => rules::definition("JZ22").abilities[0].clone(),
+            "renown" => crate::renown::renown_ability(region),
+            "jc089-combat-glory" => rules::jc089_combat_glory_ability(region),
+            _ => return Err("JZ22来源不允许其他程序或能力别名".into()),
+        };
         if frame.frame_id.is_empty()
             || frame.cursor > 1
             || frame.steps.len() != 1
@@ -85,7 +119,6 @@ impl Game {
         let frame = |f: &ResolutionFrame, pending_choice: bool| -> RuleResult<()> {
             self.validate_jz22_frame(f)?;
             if f.source.card.definition == "JZ22"
-                && f.ability_key == "entry-low-hand-influence"
                 && (pending_choice || f.cursor != 0 || !matches!(f.guard, GuardState::Unchecked))
             {
                 return Err("JZ22原子程序不能保存已执行游标、已通过守卫或帧选择".into());
@@ -93,18 +126,32 @@ impl Game {
             Ok(())
         };
         let declaration = |d: &Declaration| -> RuleResult<()> {
-            if (d.source.card.definition == "JZ22" && d.ability.key != "renown")
+            if d.source.card.definition == "JZ22"
+                || d.ability.key == "entry-low-hand-influence"
                 || contains_jz22_op(&d.ability.ops)
                 || d.ability.modes.iter().any(|m| contains_jz22_op(&m.ops))
             {
                 rules::validate_ability(&d.source.card.definition, &d.ability)?;
                 jz22_source(self, d.actor, &d.source)?;
+                if let [Op::PlaceInfluence {
+                    region_instance, ..
+                }] = d.ability.ops.as_slice()
+                {
+                    if d.source.source_region_instance.as_ref() != Some(region_instance) {
+                        return Err("JZ22获授奖励只能绑定冻结的原地区".into());
+                    }
+                }
             }
             Ok(())
         };
         for s in &self.stack {
             if let Some(f) = &s.frame {
                 frame(f, false)?;
+                if f.source.card.definition == "JZ22"
+                    && (s.controller != f.actor || s.id != f.frame_id)
+                {
+                    return Err("JZ22堆栈对象与冻结帧不符".into());
+                }
             }
         }
         for e in &self.effects {

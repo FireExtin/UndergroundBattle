@@ -487,10 +487,12 @@ pub struct Definition {
 // These are interpreter limits, not rules for resolving partially invalid targets.
 // Reject unsupported declarations before publishing actions or offering trigger choices.
 pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(), String> {
-    if (card_id == "JZ22" && ability.key != "renown") || crate::jz22::contains_jz22_op(&ability.ops)
+    if card_id == "JZ22" || ability.key == "entry-low-hand-influence"
+        || crate::jz22::contains_jz22_op(&ability.ops)
         || ability.modes.iter().any(|m| crate::jz22::contains_jz22_op(&m.ops)) {
         if card_id != "JZ22" || serde_json::to_value(ability).unwrap()
-            != serde_json::to_value(&jz22_definition().abilities[0]).unwrap() {
+            != serde_json::to_value(&jz22_definition().abilities[0]).unwrap()
+            && !crate::jz22::runtime_ability_is_admitted(ability) {
             return Err(format!("{card_id}: only the complete printed JZ22 entry ability is admitted"));
         }
     }

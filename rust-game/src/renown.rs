@@ -6,6 +6,28 @@ use crate::{
     rules::{self, AbilitySpec, Event, Op, ResponsePolicy, Timing},
 };
 
+pub(crate) fn renown_ability(region_instance: &str) -> AbilitySpec {
+    AbilitySpec {
+        play_only: false,
+        activation_only: false,
+        key: "renown".into(),
+        label: "声望：本地区额外放置一个势力标志".into(),
+        timing: Timing::Fast,
+        response_policy: ResponsePolicy::Respondable,
+        costs: vec![],
+        targets: vec![],
+        ops: vec![Op::PlaceInfluence {
+            region_instance: region_instance.into(),
+            amount: 1,
+        }],
+        event: Some(Event::RegionConfrontationsEnded),
+        modes: vec![],
+        requires_ready_source: false,
+        once_per_game: false,
+        per_turn_limit: None,
+    }
+}
+
 impl Game {
     pub(crate) fn jc089_combat_glory(&self, team: usize, region: usize) -> Option<Declaration> {
         // Only the fully admitted JC018 print and real JC089 host grant qualify.
@@ -80,25 +102,7 @@ impl Game {
             .unwrap();
         let actor = source.controller;
         let source = self.source_snapshot(source, Some(region));
-        let ability = AbilitySpec {
-            play_only: false,
-            activation_only: false,
-            key: "renown".into(),
-            label: "声望：本地区额外放置一个势力标志".into(),
-            timing: Timing::Fast,
-            response_policy: ResponsePolicy::Respondable,
-            costs: vec![],
-            targets: vec![],
-            ops: vec![Op::PlaceInfluence {
-                region_instance: region_instance.into(),
-                amount: 1,
-            }],
-            event: Some(Event::RegionConfrontationsEnded),
-            modes: vec![],
-            requires_ready_source: false,
-            once_per_game: false,
-            per_turn_limit: None,
-        };
+        let ability = renown_ability(region_instance);
         self.effects.push_front(Effect::Declare {
             declaration: Declaration {
                 actor,

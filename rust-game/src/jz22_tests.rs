@@ -489,3 +489,151 @@ fn jz22_preserves_existing_granted_renown_program() {
     pass_top(&mut g);
     assert_eq!(g.regions[2].influence, [1, 0]);
 }
+
+#[test]
+fn jz22_joint_key_and_program_replacement_and_runtime_region_transplant_rejected() {
+    for accepted in [false, true] {
+        let mut g = initial(0);
+        enter(&mut g, 0, 0);
+        if accepted {
+            accept(&mut g);
+        }
+        let original = serde_json::to_value(&g).unwrap();
+        let original_room = serde_json::to_value(envelope(&g)).unwrap();
+        for key in [
+            "renown",
+            "jc089-combat-glory",
+            "forged-program",
+            "foreign-source",
+            "deploy",
+            "reveal",
+        ] {
+            let mut state = original.clone();
+            let draw = serde_json::to_value(Op::Draw {
+                player: PlayerRef::Actor,
+                count: 1,
+                end: DeckEnd::Top,
+            })
+            .unwrap();
+            let frame = if accepted {
+                &mut state["stack"][0]["frame"]
+            } else {
+                &mut state["pending"]["resolution"]["Declare"]["declaration"]
+            };
+            if accepted {
+                frame["ability_key"] = key.into();
+                frame["steps"][0]["op"] = draw;
+            } else {
+                frame["ability"]["key"] = key.into();
+                frame["ability"]["ops"] = serde_json::json!([draw]);
+            }
+            if key == "foreign-source" {
+                frame["source"]["card"]["definition"] = "JC059".into();
+                if accepted {
+                    frame["ability_key"] = "entry-low-hand-influence".into();
+                } else {
+                    frame["ability"]["key"] = "entry-low-hand-influence".into();
+                }
+            }
+            assert!(Game::from_persisted(&state.to_string()).is_err());
+            let mut room = original_room.clone();
+            room["game"] = state;
+            assert!(RoomEnvelope::from_persisted(&room.to_string()).is_err());
+            if let Ok(dir) = std::env::var("JZ22_INVALID_DIR") {
+                std::fs::create_dir_all(&dir).unwrap();
+                std::fs::write(format!("{dir}/alias-{accepted}-{key}.json"),serde_json::json!({"state":room.to_string(),"nativeRejected":true,"mutation":"joint key and program replacement"}).to_string()).unwrap();
+            }
+        }
+    }
+    // Real runtime reward, then mutation of only the frozen original region operand.
+    let mut g = initial(0);
+    let source = board(&mut g, "JZ22", 0, 2);
+    fund(&mut g, 0, "JC074", 2);
+    let spell = held(&mut g, "JC074", 0);
+    apply(
+        &mut g,
+        0,
+        Action {
+            card_id: Some(spell),
+            target_id: Some(source),
+            ..Action::new("play")
+        },
+    );
+    pass_top(&mut g);
+    g.begin_window(Window::After(2, 2));
+    let region = g.regions[2].card.id.clone();
+    g.declare_region_renown(2, &region);
+    g.drive().unwrap();
+    for accepted in [false, true] {
+        let mut mutated = g.clone();
+        if accepted {
+            accept(&mut mutated);
+        }
+        let room = serde_json::to_value(envelope(&mutated)).unwrap();
+        let mut state = serde_json::to_value(&mutated).unwrap();
+        let foreign = serde_json::to_value(Op::PlaceInfluence {
+            region_instance: g.regions[1].card.id.clone(),
+            amount: 1,
+        })
+        .unwrap();
+        if accepted {
+            state["stack"][0]["frame"]["steps"][0]["op"] = foreign;
+        } else {
+            state["pending"]["resolution"]["Declare"]["declaration"]["ability"]["ops"] =
+                serde_json::json!([foreign]);
+        }
+        assert!(Game::from_persisted(&state.to_string()).is_err());
+        let mut room = room;
+        room["game"] = state;
+        assert!(RoomEnvelope::from_persisted(&room.to_string()).is_err());
+        if let Ok(dir) = std::env::var("JZ22_INVALID_DIR") {
+            std::fs::write(format!("{dir}/runtime-region-{accepted}.json"),serde_json::json!({"state":room.to_string(),"nativeRejected":true,"mutation":"granted reward region transplant"}).to_string()).unwrap();
+        }
+    }
+}
+#[test]
+fn jz22_paid_armor_and_curse_allow_existing_combat_glory_without_stalling() {
+    let mut g = initial(0);
+    let source = board(&mut g, "JZ22", 0, 2);
+    fund(&mut g, 0, "JC089", 5);
+    for def in ["XQ47", "JC089"] {
+        let card = held(&mut g, def, 0);
+        apply(
+            &mut g,
+            0,
+            Action {
+                card_id: Some(card),
+                target_id: Some(source.clone()),
+                ..Action::new("play")
+            },
+        );
+        pass_top(&mut g);
+    }
+    assert_eq!(g.defense(g.board(&source).unwrap().1, 2), 1);
+    assert!(g.has_jc089_glory(g.board(&source).unwrap().1));
+    g.begin_window(Window::Before(2, 1));
+    for _ in 0..4 {
+        let s = (0..4)
+            .find(|s| g.legal_actions(*s).iter().any(|a| a.action.kind == "pass"))
+            .unwrap();
+        apply(&mut g, s, Action::new("pass"));
+    }
+    if g.pending
+        .as_ref()
+        .is_some_and(|p| p.choice.kind == "recipient")
+    {
+        let id = g.pending.as_ref().unwrap().choice.options[0].id.clone();
+        choose(&mut g, vec![id]);
+    }
+    let ChoiceResolution::Declare { declaration, .. } = &g.pending.as_ref().unwrap().resolution
+    else {
+        panic!("combat glory declaration expected")
+    };
+    assert_eq!(declaration.ability.key, "jc089-combat-glory");
+    checkpoint(&g);
+    fixture("granted-combat-glory", &g);
+    accept(&mut g);
+    checkpoint(&g);
+    pass_top(&mut g);
+    assert_eq!(g.regions[2].influence, [1, 0]);
+}
