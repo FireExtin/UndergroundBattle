@@ -750,6 +750,9 @@ impl Game {
                 if c.definition == "JC050" && (a.region.is_some() || a.target_id.is_some()) {
                     return Err("JC050须在结算时选择地区，不能预声明地区或目标".into());
                 }
+                if c.definition == "XQ27" && (a.region.is_some() || a.target_id.is_some()) {
+                    return Err("XQ27消灭所有暗藏者，不能预声明地区或目标".into());
+                }
                 let spec = self.ability_for_action(&c.definition, &a)?;
                 self.check_timing(seat, &spec)?;
                 if !self.loyalty(seat, &c.definition) {
@@ -2726,7 +2729,7 @@ mod tests {
     #[test]
     fn catalog_is_restricted_real_complete_and_decks_are_legal() {
         let c = catalog::catalog();
-        assert_eq!(c.cards.len(), 118);
+        assert_eq!(c.cards.len(), 119);
         let active = c
             .cards
             .iter()
@@ -2741,7 +2744,7 @@ mod tests {
                 .collect::<BTreeSet<_>>()
         );
         assert!(active.contains("DQJC116"));
-        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 108);
+        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 109);
         assert_eq!(c.decks.len(), 5);
         for deck in &c.decks {
             assert_eq!(deck.card_count, 50);

@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.50-red-region-destruction-candidate",
-  "engineVersion": "rust-v0.2.55-red-region-destruction-candidate",
+  "cardPoolVersion": "limited-v2.51-gray-hidden-sweep-candidate",
+  "engineVersion": "rust-v0.2.56-gray-hidden-sweep-candidate",
   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
   "cards": [
     {
@@ -4566,6 +4566,45 @@
         "file": "resource/ymsj-fun.github.io/cards/JC050 丧钟回响.jpg",
         "sha256": "2dbbe996c5fec273a1340ca4acadc504689b1af6151b56fe5ae0c217d2df159e",
         "basis": "actual original image checked; no chosen region or board victims declared as targets"
+      }
+    },
+    {
+      "id": "XQ27",
+      "name": "定点清除行动",
+      "kind": "spell",
+      "subtypes": [
+        "阴谋"
+      ],
+      "cost": 4,
+      "loyalty": [
+        "灰色",
+        "灰色"
+      ],
+      "loyaltyText": "灰色 / 灰色",
+      "color": "灰",
+      "magic": "",
+      "society": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 0,
+      "text": "【标准行动】消灭所有暗藏者。",
+      "keywords": [],
+      "unique": false,
+      "supported": true,
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/XQ27 定点清除行动.jpg",
+        "sha256": "78f2d5e2422b611bbf159a33083d70c75bf2ac83103325550430a394e8a803b5",
+        "basis": "actual complete original image checked; standard non-targeted destruction of every hidden card"
       }
     }
   ],

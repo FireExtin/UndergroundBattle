@@ -214,6 +214,8 @@ pub enum SearchVisibility {
 pub enum Op {
     // JC050 only: destroy the board cards in the region chosen at resolution.
     JC050DestroyChosenRegionCharacters,
+    // XQ27 only: a single simultaneous wave across all current regions.
+    XQ27DestroyAllHidden,
     JC045AddOneTimeToOriginalSource,
     JC031DiscardForObservedDeath,
     JC090PlaceOneInfluenceInOriginalAttachedRegion,
@@ -489,6 +491,14 @@ pub struct Definition {
 // These are interpreter limits, not rules for resolving partially invalid targets.
 // Reject unsupported declarations before publishing actions or offering trigger choices.
 pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(), String> {
+    if card_id == "XQ27" || ability.key == "hidden-sweep"
+        || crate::xq27::contains_xq27_op(&ability.ops)
+        || ability.modes.iter().any(|m| crate::xq27::contains_xq27_op(&m.ops)) {
+        if card_id != "XQ27" || serde_json::to_value(ability).unwrap()
+            != serde_json::to_value(&xq27_definition().abilities[0]).unwrap() {
+            return Err(format!("{card_id}: only the complete printed XQ27 transaction is admitted"));
+        }
+    }
     if card_id == "JC050" || ability.key == "region-destruction"
         || crate::jc050::contains_jc050_op(&ability.ops)
         || ability.modes.iter().any(|m| crate::jc050::contains_jc050_op(&m.ops)) {
@@ -1187,6 +1197,10 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
 
 pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -> Result<(), String> {
     for (card_id, definition) in definitions {
+        if card_id == "XQ27" && serde_json::to_value(definition).unwrap()
+            != serde_json::to_value(xq27_definition()).unwrap() {
+            return Err("XQ27: only the complete printed definition is admitted".into());
+        }
         if card_id == "JC050" && serde_json::to_value(definition).unwrap()
             != serde_json::to_value(jc050_definition()).unwrap() {
             return Err("JC050: only the complete printed definition is admitted".into());
@@ -1758,6 +1772,13 @@ fn msjc02_definition() -> Definition {
     ])
 }
 
+pub(crate) fn xq27_definition() -> Definition {
+    let mut destroy = ability("hidden-sweep", "消灭所有暗藏者", Timing::Standard,
+        vec![], vec![], vec![Op::XQ27DestroyAllHidden], None);
+    destroy.play_only = true;
+    with_abilities(vec![destroy])
+}
+
 pub(crate) fn jc050_definition() -> Definition {
     let mut destroy = ability("region-destruction", "选择地区，消灭其中所有角色和暗藏者",
         Timing::Standard, vec![], vec![],
@@ -1773,6 +1794,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         use PlayerRef::{Actor, Context};
         let mut m = BTreeMap::new();
         m.insert("JC050".into(), jc050_definition());
+        m.insert("XQ27".into(), xq27_definition());
         for id in ["JC069", "JZ43"] {
             m.insert(id.into(), gray_lock_definition(id).unwrap());
         }

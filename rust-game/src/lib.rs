@@ -1,6 +1,9 @@
 mod attachment;
 mod attributes;
 mod jc050;
+mod xq27;
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod xq27_tests;
 #[cfg(all(test, not(feature = "society-fixtures")))]
 mod jc050_tests;
 pub mod catalog;

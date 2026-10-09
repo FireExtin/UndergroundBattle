@@ -1277,6 +1277,7 @@ impl Game {
         self.validate_gray_lock_frame(&frame)?;
         self.validate_jz22_frame(&frame)?;
         self.validate_jc050_frame(&frame)?;
+        self.validate_xq27_frame(&frame)?;
         if !self.accept_frame_guard(&mut frame) {
             return Ok(());
         }
@@ -1701,6 +1702,14 @@ impl Game {
                     } else {
                         self.remove_dead(&id, RemovalCause::Destroy);
                     }
+                }
+                Op::XQ27DestroyAllHidden => {
+                    let game = &*self;
+                    let deaths = game.regions.iter().enumerate().flat_map(|(r, region)|
+                        region.cards.iter().filter(|c| c.face_down)
+                            .map(move |c| (c.id.clone(), RemovalCause::Destroy, game.source_snapshot(c, Some(r)))))
+                        .collect();
+                    self.remove_death_batch(deaths);
                 }
                 Op::JC050DestroyChosenRegionCharacters => {
                     let region = frame.chosen_region.ok_or("JC050缺少已选择地区")?;

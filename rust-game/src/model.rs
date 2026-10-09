@@ -805,6 +805,7 @@ impl Game {
         game.validate_gray_lock_state()?;
         game.validate_jz22_state()?;
         game.validate_jc050_state()?;
+        game.validate_xq27_state()?;
         Ok(game)
     }
 }

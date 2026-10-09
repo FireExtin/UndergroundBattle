@@ -633,5 +633,10 @@
     "url": "/cards/JC050.jpg",
     "source": "resource/ymsj-fun.github.io/cards/JC050 丧钟回响.jpg",
     "sha256": "2dbbe996c5fec273a1340ca4acadc504689b1af6151b56fe5ae0c217d2df159e"
+  },
+  "XQ27": {
+    "url": "/cards/XQ27.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/XQ27 定点清除行动.jpg",
+    "sha256": "78f2d5e2422b611bbf159a33083d70c75bf2ac83103325550430a394e8a803b5"
   }
 }
