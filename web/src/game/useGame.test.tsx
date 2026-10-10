@@ -295,7 +295,7 @@ describe('room lifecycle and reconciliation', () => {
     expect(result.current.view?.you).toBe('p0'); expect(pendingJson()).toBeNull();
   });
   it('confirms an interrupted persisted command after reload without regressing the current state', async () => {
-    saveSession(session); const command = { roomId: session.roomId, commandId: 'persisted-original', expectedVersion: 1, action: { kind: 'pass' } };
+    saveSession(session); const command = { roomId: session.roomId, seat: session.seat, commandId: 'persisted-original', expectedVersion: 1, action: { kind: 'pass' } };
     savePending(command); const commands: Record<string, unknown>[] = [];
     vi.stubGlobal('fetch', vi.fn(async (url: string, init?: RequestInit) => {
       if (url.endsWith('/commands')) { commands.push(JSON.parse(String(init?.body))); return json({ ...testView, version: 2 }); }
@@ -334,7 +334,7 @@ describe('room lifecycle and reconciliation', () => {
   });
   it('preserves the occupied seat and pending command when the private Site requires login', async () => {
     saveSession(session);
-    savePending({ roomId: session.roomId, commandId: 'preserve-after-login', expectedVersion: 1, action: { kind: 'pass' } });
+    savePending({ roomId: session.roomId, seat: session.seat, commandId: 'preserve-after-login', expectedVersion: 1, action: { kind: 'pass' } });
     vi.stubGlobal('fetch', vi.fn(async (url: string) => url.endsWith('/catalog') ? json(testCatalog) : json({ message: 'Sign in required' }, 403)));
     const { result } = renderHook(useGame);
     await waitFor(() => expect(result.current.connection).toBe('offline'));

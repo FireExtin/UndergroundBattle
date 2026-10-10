@@ -1,7 +1,7 @@
 import { fireEvent, render, screen, within } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { DeckLibrary } from './DeckLibraryPanel';
-import { createDeckDraft, DECK_LIBRARY_STORAGE_KEY, readDeckLibrary, saveDeckLibrary } from './deckLibrary';
+import { createDeckDraft, DECK_LIBRARY_STORAGE_KEY, readDeckLibrary, removeDeckDraft, saveDeckLibrary } from './deckLibrary';
 import type { DeckCatalog } from './deckLibrary';
 
 const catalog: DeckCatalog = {
@@ -102,12 +102,45 @@ describe('local named deck editor', () => {
     expect(screen.getByRole('alert')).toHaveTextContent('未覆盖原数据');
     expect(localStorage.getItem(DECK_LIBRARY_STORAGE_KEY)).toBe('{broken');
     first.unmount(); const select = vi.fn();
-    render(<DeckLibrary catalog={catalog} onSelectDraft={select} storage={{ getItem: () => null, setItem: () => { throw new Error('quota'); } }} />);
+    const setItem = vi.fn(() => { throw new Error('quota'); });
+    render(<DeckLibrary catalog={catalog} onSelectDraft={select} storage={{ getItem: () => null, key: () => null, length: 0, setItem }} />);
     fireEvent.click(screen.getByRole('button', { name: '复制为草稿' }));
     fireEvent.click(screen.getByRole('button', { name: '保存并选择此牌组' }));
     expect(screen.getByRole('alert')).toHaveTextContent('未能保存');
     expect(screen.getByRole('spinbutton', { name: '无知路人（JC125）张数' })).toHaveValue(50);
     expect(select).not.toHaveBeenCalled();
+    expect(setItem).toHaveBeenCalledOnce();
+  });
+  it('keeps the deleted draft save-as action available after a real quota failure and allows retry', () => {
+    const original = { ...createDeckDraft(catalog, catalog.decks[0]), name: 'original' }; saveDeckLibrary([original]);
+    let quota = false;
+    const setItem = vi.fn((key: string, value: string) => { if (quota) throw new Error('quota'); localStorage.setItem(key, value); });
+    const storage = { get length() { return localStorage.length; }, key: (i: number) => localStorage.key(i), getItem: (key: string) => localStorage.getItem(key), setItem };
+    render(<DeckLibrary catalog={catalog} storage={storage} />);
+    expect(removeDeckDraft(original.id)).toBeNull();
+    fireEvent.change(screen.getByRole('textbox', { name: '牌组名称' }), { target: { value: 'retained edits' } });
+    fireEvent.click(screen.getByRole('button', { name: '保存牌组' }));
+    expect(screen.getByRole('alert')).toHaveTextContent('已在另一页删除');
+    quota = true;
+    fireEvent.click(screen.getByRole('button', { name: '另存为新草稿' }));
+    expect(setItem).toHaveBeenCalledOnce();
+    expect(screen.getByRole('alert')).toHaveTextContent('未能保存');
+    expect(screen.getByRole('button', { name: '另存为新草稿' })).toBeEnabled();
+    expect(readDeckLibrary().drafts).toEqual([]);
+    quota = false;
+    fireEvent.click(screen.getByRole('button', { name: '另存为新草稿' }));
+    expect(setItem).toHaveBeenCalledTimes(2);
+    const copy = readDeckLibrary().drafts[0];
+    expect(copy.id).not.toBe(original.id); expect(copy.name).toBe('retained edits'); expect(copy.cards).toEqual(original.cards);
+    expect(screen.queryByRole('button', { name: '另存为新草稿' })).not.toBeInTheDocument();
+  });
+  it('retains a saved draft and permits a later deletion when writing its deletion marker fails', () => {
+    const original = { ...createDeckDraft(catalog), name: 'preserved' }; saveDeckLibrary([original]);
+    const setItem = vi.fn(() => { throw new Error('quota'); });
+    const denied = { get length() { return localStorage.length; }, key: (i: number) => localStorage.key(i), getItem: (key: string) => localStorage.getItem(key), setItem };
+    expect(removeDeckDraft(original.id, denied)).toContain('未能删除');
+    expect(setItem).toHaveBeenCalledOnce(); expect(readDeckLibrary().drafts).toEqual([original]);
+    expect(removeDeckDraft(original.id)).toBeNull(); expect(readDeckLibrary().drafts).toEqual([]);
   });
   it('does not certify custom decks when construction metadata is missing', () => {
     const legacy = { ...catalog, deckBuildRules: undefined, cards: catalog.cards.map(card => ({ ...card, deckCopyLimit: undefined })) };

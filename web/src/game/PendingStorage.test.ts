@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { clearPending, readPending, savePending, saveSession, type PendingCommand } from './api';
+import { clearPending, readPending, readPendings, retireSeatPendings, savePending, saveSession, type PendingCommand } from './api';
 import { playerStorage, selectPlayerMode } from './playerStorage';
 
 const seat = { roomId: 'first', seat: 0, token: 'opaque-original', inviteCode: 'FIRST' };
@@ -29,18 +29,38 @@ describe('command-scoped pending persistence and legacy recovery', () => {
     savePending(original); savePending({ ...original, expectedVersion: 8 });
     expect(readPending(seat)).toEqual(original);
   });
-  it('recovers an old record without a seat under the original saved actor and body', () => {
+  it('preserves a seatless old record without inferring its actor from a mutable saved session', () => {
     const { seat: _seat, ...old } = original;
     localStorage.setItem(legacyKey, JSON.stringify(old));
     const restored = readPending(seat)!;
-    expect(restored).toEqual(original);
+    expect(restored).toEqual({ ...old, seat: undefined });
     savePending(restored);
     saveSession({ ...seat, seat: 1, token: 'peer-token' });
-    expect(readPending({ ...seat, seat: 1 })).toBeNull();
-    expect(readPending(seat)).toEqual(original);
+    expect(readPending({ ...seat, seat: 1 })).toEqual(restored);
+    expect(readPending(seat)).toEqual(restored);
     clearPending(restored);
-    expect(readPending()).toBeNull();
-    expect(localStorage.getItem(legacyKey)).toBe(JSON.stringify(old)); // Logical retirement, no shared-slot deletion.
+    expect(readPending()).toEqual(restored);
+    expect(localStorage.getItem(legacyKey)).toBe(JSON.stringify(old));
+    expect(playerStorage().keys().some(key => key.startsWith('hegemony.pending.v2.'))).toBe(false);
+  });
+  it('does not trust guessed modern copies or markers of the same seatless legacy ID', () => {
+    savePending(original); savePending({ ...original, seat: 1 }); clearPending(original);
+    const { seat: _seat, ...old } = original;
+    localStorage.setItem(legacyKey, JSON.stringify(old));
+    const peer = { ...original, commandId: 'other-ID' }; savePending(peer);
+    expect(readPendings()).toEqual([{ ...old, seat: undefined }, peer]);
+    expect(readPending({ ...seat, seat: 1 })?.seat).toBeUndefined();
+  });
+  it('retires all matching actor records in the captured scope while preserving other actors and scopes', () => {
+    const ordinary = playerStorage();
+    const second = { ...original, commandId: 'second' }; const peer = { ...original, seat: 1 }; const other = { ...original, roomId: 'other' };
+    [original, second, peer, other].forEach(command => savePending(command, ordinary));
+    selectPlayerMode('independent', 'independent-player-0001'); savePending(original);
+    expect(retireSeatPendings(seat, ordinary)).toEqual([original, second]);
+    expect(readPending(seat, ordinary)).toBeNull();
+    expect(readPending({ ...seat, seat: 1 }, ordinary)).toEqual(peer);
+    expect(readPending({ ...seat, roomId: 'other' }, ordinary)).toEqual(other);
+    expect(readPending(seat)).toEqual(original);
   });
   it('a late legacy confirmation preserves both another legacy command and a new scoped command', () => {
     localStorage.setItem(legacyKey, JSON.stringify(original));

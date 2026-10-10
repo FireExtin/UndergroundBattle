@@ -81,7 +81,7 @@ export function DeckLibrary({ catalog, disabled = false, onSelectDraft, selected
   const persist = (candidate: DeckDraft = draft): DeckDraft | null => {
     const next = { ...publicDeckDraft(candidate), name: candidate.name.trim(), description: candidate.description.trim(), updatedAt: new Date().toISOString() };
     const error = saveDeckDraft(next, storageTarget);
-    if (error) { setStorageWarning(error); setDeletedDraft(isDeckDraftDeleted(next.id, storageTarget)); setNotice(''); return null; }
+    if (error) { setStorageWarning(error); setDeletedDraft(isDeckDraftDeleted(draft.id, storageTarget)); setNotice(''); return null; }
     const latest = readDeckLibrary(storageTarget);
     setSaved(latest.drafts); setDraft(next); setDirty(false); setDeletedDraft(false); setStorageWarning(latest.warning); setNotice('牌组已保存在此浏览器。');
     return next;
