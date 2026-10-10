@@ -59,7 +59,7 @@ fn fixture(kind: &str, g: &Game) {
 }
 #[test]
 fn entry_search_originals_and_closed_definitions_are_complete() {
-    assert_eq!(catalog::catalog().cards.len(), 120);
+    assert_eq!(catalog::catalog().cards.len(), 128);
     for (id, name, cost, subtype, renown) in [
         ("BQ104", "猎头顾问", 3, "雇员", false),
         ("XQ48", "街头演说家", 4, "政治家", true),

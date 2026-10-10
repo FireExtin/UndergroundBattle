@@ -11,7 +11,7 @@ const MSJC07: Spec = Spec {
         "XQ38",
     ],
     full: 33,
-    color_count: 19,
+    color_count: 21,
     uniques: &["JC096", "XQ38"],
     hits: ["JC096", "XQ38", "JC091", "LC23"],
 };

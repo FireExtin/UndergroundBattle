@@ -83,6 +83,8 @@ pub enum TargetPredicate {
     JC015NonHumanPrintedCostAtLeastThree,
     JZ55UniqueCharacter,
     JC069LockedAnchor,
+    XQ18CharacterOrAttachment,
+    JZ45LockedLocalTarget,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct TargetSlotSpec {
@@ -212,6 +214,13 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    XQ18AddOneTimeToTarget,
+    XQ18RemoveOneTimeFromTarget,
+    JZ30AddOneTimeToOriginalSource,
+    JZ30ForecastFrozenTime,
+    BQ028InspectTargetHandAttachments,
+    BQ078ReturnNamelessCorpse,
+    JZ45LockLocalTarget,
     // JC050 only: destroy the board cards in the region chosen at resolution.
     JC050DestroyChosenRegionCharacters,
     // XQ27 only: a single simultaneous wave across all current regions.
@@ -493,6 +502,10 @@ pub struct Definition {
 // These are interpreter limits, not rules for resolving partially invalid targets.
 // Reject unsupported declarations before publishing actions or offering trigger choices.
 pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(), String> {
+    crate::red_time::validate_ability(card_id, ability)?;
+    crate::blue_expansion::validate_ability(card_id, ability)?;
+    crate::black_expansion::validate_ability(card_id, ability)?;
+    crate::gray_expansion::validate_ability(card_id, ability)?;
     if card_id == "XQ27" || ability.key == "hidden-sweep"
         || crate::xq27::contains_xq27_op(&ability.ops)
         || ability.modes.iter().any(|m| crate::xq27::contains_xq27_op(&m.ops)) {
@@ -681,7 +694,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
         .iter()
         .chain(ability.modes.iter().flat_map(|m| &m.targets))
         .any(|t| t.predicate.is_some());
-    if finite_predicate || matches!(card_id, "JC015" | "JZ55") {
+    if (finite_predicate && !matches!(card_id, "XQ18" | "JZ45")) || matches!(card_id, "JC015" | "JZ55") {
         let admitted = match card_id {
             "JC015" => Some(jc015_definition()),
             "JZ55" => Some(jz55_definition()),
@@ -1208,6 +1221,10 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
 
 pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -> Result<(), String> {
     for (card_id, definition) in definitions {
+        crate::red_time::validate_definition(card_id, definition)?;
+        crate::blue_expansion::validate_definition(card_id, definition)?;
+        crate::black_expansion::validate_definition(card_id, definition)?;
+        crate::gray_expansion::validate_definition(card_id, definition)?;
         if card_id == "XQ27" && serde_json::to_value(definition).unwrap()
             != serde_json::to_value(xq27_definition()).unwrap() {
             return Err("XQ27: only the complete printed definition is admitted".into());
@@ -1228,7 +1245,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
             if serde_json::to_value(definition).unwrap() != serde_json::to_value(canonical).unwrap() {
                 return Err(format!("cardId={card_id}: only the complete printed gray lock definition is admitted"));
             }
-        } else if definition.traits.city_play_only {
+        } else if definition.traits.city_play_only && !matches!(card_id.as_str(), "JZ44" | "JZ45") {
             return Err(format!("cardId={card_id}: the finite city play restriction cannot be transplanted"));
         }
         if deck_seal_search_definition(card_id).is_some_and(|expected|
@@ -1388,7 +1405,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
     Ok(())
 }
 
-fn target(zone: Zone, kind: EntityKind, relation: Relation, range: Range) -> TargetSlotSpec {
+pub(crate) fn target(zone: Zone, kind: EntityKind, relation: Relation, range: Range) -> TargetSlotSpec {
     TargetSlotSpec {
         zone,
         kind,
@@ -1441,7 +1458,7 @@ fn xq43_definition() -> Definition {
         ..Definition::default()
     }
 }
-fn ability(
+pub(crate) fn ability(
     key: &str,
     label: &str,
     timing: Timing,
@@ -1467,7 +1484,7 @@ fn ability(
         per_turn_limit: None,
     }
 }
-fn with_abilities(abilities: Vec<AbilitySpec>) -> Definition {
+pub(crate) fn with_abilities(abilities: Vec<AbilitySpec>) -> Definition {
     Definition {
         abilities,
         ..Default::default()
@@ -1811,6 +1828,18 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         use EntityRef::{Source, Target};
         use PlayerRef::{Actor, Context};
         let mut m = BTreeMap::new();
+        for id in ["XQ18", "JZ30"] {
+            m.insert(id.into(), crate::red_time::definition(id).unwrap());
+        }
+        for id in ["BQ028", "BQ040"] {
+            m.insert(id.into(), crate::blue_expansion::definition(id).unwrap());
+        }
+        for id in ["WM059", "BQ078"] {
+            m.insert(id.into(), crate::black_expansion::definition(id).unwrap());
+        }
+        for id in ["JZ44", "JZ45"] {
+            m.insert(id.into(), crate::gray_expansion::definition(id).unwrap());
+        }
         m.insert("JC050".into(), jc050_definition());
         m.insert("XQ27".into(), xq27_definition());
         for id in ["JC069", "JZ43"] {

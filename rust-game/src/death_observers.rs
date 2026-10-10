@@ -77,8 +77,6 @@ impl Game {
             || (c.definition != "JC045" && dead.card.controller != actor)
             || (c.definition == "JC031" && c.id == dead.card.id)
             || (c.id == dead.card.id && (c.definition != "JC045" || !same(c, &dead.card)))
-            || (dead.card.time_markers > 0 && dead.card.definition != "JC045")
-            || (c.definition != "JC045" && c.time_markers != 0)
         { return Err("死亡旁观来源、死亡资格或冻结行动者无效".into()); }
         if c.definition == "JC090" {
             if !source.attachment_host_instance.as_ref().is_some_and(|id| !id.is_empty())
@@ -132,13 +130,23 @@ impl Game {
     }
     pub(crate) fn validate_death_observers(&self) -> RuleResult<()> {
         for c in self.regions.iter().flat_map(|r| &r.cards) {
-            if c.time_markers > 0 && (c.definition != "JC045" || c.face_down) {
-                return Err("时间标志只能存在于明置钟摆祭司".into());
+            if c.time_markers > 0 && (c.face_down || catalog::catalog().cards.iter()
+                .find(|d| d.id == c.definition).is_none_or(|d| d.kind != "character")) {
+                return Err("时间标志的场内对象必须为明置角色".into());
+            }
+        }
+        for a in &self.attachments {
+            if a.card.time_markers > 0 && (a.card.face_down
+                || catalog::catalog().cards.iter().find(|d| d.id == a.card.definition)
+                    .is_none_or(|d| d.kind != "attachment")
+                || self.board(&a.host_id).is_some_and(|(_, host)| !catalog::catalog().cards.iter()
+                    .any(|d| d.id == host.definition))
+                || !self.attachment_host_valid(a)) {
+                return Err("附属上的时间标志必须属于仍有合法宿主的明置附属".into());
             }
         }
         for c in self.players.iter().flat_map(|p| p.hand.iter().chain(&p.deck).chain(&p.assets)
             .chain(&p.graveyard).chain(&p.score_cards).chain(p.society_zone.card.iter()))
-            .chain(self.attachments.iter().map(|a| &a.card))
             .chain(self.sealed_cards.iter().map(|s| &s.card))
             .chain(self.regions.iter().map(|r| &r.card)).chain(&self.world)
             .chain(self.stack.iter().filter_map(|s| s.card.as_ref())) {

@@ -52,7 +52,7 @@ fn fixture(name: &str, g: &Game) {
 
 #[test]
 fn gray_lock_whole_original_fields_and_closed_definitions() {
-    assert_eq!(catalog::catalog().cards.len(),120);
+    assert_eq!(catalog::catalog().cards.len(),128);
     for (id, name, subtype, permanent, temporary) in [
         ("JC069", "警犬", "狗", Icons::default(), Icons{combat:2,..Default::default()}),
         ("JZ43", "武装市民", "人类", Icons{influence:1,..Default::default()}, Icons{combat:1,..Default::default()}),

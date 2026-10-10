@@ -569,6 +569,8 @@ pub enum DeclareChoice {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum FrameChoice {
+    BQ028InspectAttachments { seat: usize, inspected: Vec<Card> },
+    BQ078CorpseReturn,
     XQ44DreamSealSearch,
     JZ02SpaceSealSearch,
     BQ104EmployeeSearch,
@@ -807,6 +809,10 @@ impl Game {
         game.validate_jc050_state()?;
         game.validate_xq27_state()?;
         game.validate_xq37_state()?;
+        game.validate_red_time_state()?;
+        game.validate_blue_expansion_state()?;
+        game.validate_black_expansion_state()?;
+        game.validate_gray_expansion_state()?;
         Ok(game)
     }
 }

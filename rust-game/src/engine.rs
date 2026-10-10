@@ -401,7 +401,7 @@ impl Game {
         if c.definition == "JC045" && !c.face_down
             && self.board(&c.id).is_some_and(|(_, live)| live.definition == "JC045" && !live.face_down)
         {
-            permanent_result.influence = permanent_result.influence.saturating_add(c.time_markers);
+            permanent_result.influence = permanent_result.influence.saturating_add(self.effective_time_markers(c));
         }
         permanent_result.influence += u32::from(self.jz48_other_controlled_criminal_active(c, region));
         permanent_result.investigation += u32::from(self.jc030_blood_assets_active(c));
@@ -1851,6 +1851,10 @@ impl Game {
         self.prune_turn_attribute_modifiers();
     }
     pub(crate) fn choose(&mut self, seat: usize, a: Action) -> RuleResult<()> {
+        self.validate_red_time_state()?;
+        self.validate_blue_expansion_state()?;
+        self.validate_black_expansion_state()?;
+        self.validate_gray_expansion_state()?;
         self.validate_death_observers()?;
         self.validate_deck_seal_choice()?;
         self.validate_entry_search_choice()?;
@@ -2390,7 +2394,13 @@ impl Game {
                 .pending
                 .as_ref()
                 .filter(|p| p.seat == seat)
-                .map(|p| self.blue_private_choice(p, seat)),
+                .map(|p| {
+                    if matches!(p.resolution, ChoiceResolution::Frame { choice: FrameChoice::BQ028InspectAttachments { .. }, .. }) {
+                        self.blue_expansion_private_choice(p, seat)
+                    } else {
+                        self.blue_private_choice(p, seat)
+                    }
+                }),
             waiting_choice: self.pending.as_ref().map(|p| WaitingChoice {
                 player_id: player_id(p.seat),
                 kind: p.choice.kind.clone(),
@@ -2729,7 +2739,7 @@ mod tests {
     #[test]
     fn catalog_is_restricted_real_complete_and_decks_are_legal() {
         let c = catalog::catalog();
-        assert_eq!(c.cards.len(), 120);
+        assert_eq!(c.cards.len(), 128);
         let active = c
             .cards
             .iter()
@@ -2744,7 +2754,7 @@ mod tests {
                 .collect::<BTreeSet<_>>()
         );
         assert!(active.contains("DQJC116"));
-        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 110);
+        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 118);
         assert_eq!(c.decks.len(), 5);
         for deck in &c.decks {
             assert_eq!(deck.card_count, 50);
