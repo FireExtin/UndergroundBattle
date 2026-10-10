@@ -5,7 +5,7 @@ import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {createHash} from 'node:crypto';
 import * as wasm from '../../../rust-game-wasm/pkg/hegemony_wasm.js';
-import native from './xq37Native59Test.fixture.json';
+import native from './xq37Native60Test.fixture.json';
 import prior56 from './xq27Native56Test.fixture.json';
 import {Table} from './Table';
 import {ResponseWindow} from './ResponseWindow';

@@ -223,8 +223,8 @@ fn main() {
         let mut value: Value = serde_json::from_slice(&std::fs::read(&input).unwrap()).unwrap();
         regenerate(&mut value);
         let destination = source
-            .replace("v057", "v059")
-            .replace("Native57", "Native59");
+            .replace("v057", "v060")
+            .replace("Native57", "Native60");
         std::fs::write(
             Path::new(&root).join(&destination),
             serde_json::to_vec_pretty(&value).unwrap(),

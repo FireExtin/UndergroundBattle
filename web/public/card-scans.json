@@ -678,5 +678,10 @@
     "url": "/cards/JZ45.jpg",
     "source": "resource/ymsj-fun.github.io/cards/JZ45 警用直升机.jpg",
     "sha256": "20e18006a7b2f032d7d236f909dc57d75bfc14dc3acf36291c7ca16f3962008f"
+  },
+  "XQ18": {
+    "url": "/cards/XQ18.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/XQ18 计时人.jpg",
+    "sha256": "c33ebe42e01874807b60ff591a8e94c62e0ce8bfb1bdef7626bfad10432ed10e"
   }
 }

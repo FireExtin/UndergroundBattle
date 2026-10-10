@@ -37,7 +37,7 @@ fn pass_top(g: &mut Game) {
     }
     panic!("response did not finish");
 }
-fn fixture(attachment: bool, discard: bool) -> serde_json::Value {
+fn fixture(attachment: bool, discard: bool, target_seat: usize) -> serde_json::Value {
     let mut g = Game::new(
         "595959595959595959595959".into(),
         "LOCAL".into(),
@@ -77,8 +77,8 @@ fn fixture(attachment: bool, discard: bool) -> serde_json::Value {
     } else {
         vec!["JC125"]
     } {
-        let card = g.make_card(definition, 1);
-        g.players[1].hand.push(card);
+        let card = g.make_card(definition, target_seat);
+        g.players[target_seat].hand.push(card);
     }
     let source = g.make_card("BQ028", 0);
     let source_id = source.id.clone();
@@ -106,7 +106,7 @@ fn fixture(attachment: bool, discard: bool) -> serde_json::Value {
         },
     );
     pass_top(&mut g);
-    choose(&mut g, vec!["p1".into()]);
+    choose(&mut g, vec![format!("p{target_seat}")]);
     pass_top(&mut g);
     assert_eq!(
         g.pending.as_ref().unwrap().choice.kind,
@@ -130,21 +130,22 @@ fn fixture(attachment: bool, discard: bool) -> serde_json::Value {
         .map(|seat| room.view(seat, room.pacing.last_server_now_ms))
         .collect();
     let command = RoomCommand {
-        command_id: format!("seven-ui-{attachment}-{discard}"),
+        command_id: format!("seven-ui-{attachment}-{discard}-{target_seat}"),
         expected_version: room.revision,
         action: SessionAction::Game { action },
     };
     let transition = room.transition(0, Some(command.clone()), 1000).unwrap();
     assert_eq!(transition.outcome, "accepted");
     let next = RoomEnvelope::from_persisted(&transition.state).unwrap();
-    json!({"attachment":attachment,"discard":discard,"before":before,"views":views,"command":command,"after":transition.state,"afterViews":(0..4).map(|seat|next.view(seat,next.pacing.last_server_now_ms)).collect::<Vec<_>>()})
+    json!({"attachment":attachment,"discard":discard,"targetSeat":target_seat,"before":before,"views":views,"command":command,"after":transition.state,"afterViews":(0..4).map(|seat|next.view(seat,next.pacing.last_server_now_ms)).collect::<Vec<_>>()})
 }
 fn main() {
     let path = std::env::args().nth(1).expect("fixture output path");
     let fixtures = vec![
-        fixture(false, false),
-        fixture(true, false),
-        fixture(true, true),
+        fixture(false, false, 1),
+        fixture(true, false, 1),
+        fixture(true, true, 1),
+        fixture(true, false, 2),
     ];
     std::fs::write(path, serde_json::to_vec_pretty(&fixtures).unwrap()).unwrap();
 }
