@@ -1,0 +1,111 @@
+{
+  "published": true,
+  "version": {
+    "id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_ff8a94b97fd8819184efef4c2db57151",
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "version_number": 43,
+    "source": {
+      "commit_sha": "5fb79b63e4a041df712dc3e2cc09205d3dd06ba8"
+    },
+    "archive_storage": {
+      "archive_format": "tar",
+      "sediment_file_id": "file_000000005a4081f5a3a0586a08c648e6",
+      "content_hash": "sha256:593f58affbeeb2ab2988d8f7f925f0519b152ad0e00dff72fbde03ce8f1b4243",
+      "size_bytes": 69857280,
+      "file_count": 132
+    },
+    "deployment_id": "appgdep_6ac6f4d0c71c819184be22fddb742d8d",
+    "screenshotPresent": true
+  },
+  "source": {
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "checkout_path": "/tmp/lantern-site-fce0-official",
+    "commit_sha": "5fb79b63e4a041df712dc3e2cc09205d3dd06ba8",
+    "archive": "/workspace/game-publication-evidence/bounded-search50-publication-preparation/final-workflow-build.tar.gz"
+  },
+  "deployment": {
+    "id": "appgdep_6ac6f4d0c71c819184be22fddb742d8d",
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "title": "隐秘世界 · 霸权",
+    "version_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_ff8a94b97fd8819184efef4c2db57151",
+    "type": "publish",
+    "status": "succeeded",
+    "url": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site",
+    "has_mcp": false,
+    "screenshot_asset_pointer": "sediment://file_0000000045b481f88d67c39fb4a33e9a",
+    "provider_deployment_id": "site---6abf7bf54a7481918a50e1ef1509ca68",
+    "failure_message": null,
+    "env_set_revision": 0,
+    "updated_at": "2026-10-08T01:42:51.886123+00:00"
+  },
+  "site": {
+    "id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "status": "active",
+    "current_user_role": "owner",
+    "access_mode": "public",
+    "latest_version_number": 43,
+    "current_live_url": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site",
+    "latest_edit_context": {
+      "chatgpt_conversation_id": null,
+      "codex_thread_id": "01a10fcf-9a3a-755a-83bf-e8fe922ca0f4"
+    },
+    "automations": []
+  },
+  "userBq104Ruling": {
+    "answer": "同意",
+    "timeUtc": "2026-10-08T01:23:00Z",
+    "scope": "BQ104 original region lost: search/reveal eligible employee, remain in library when placement fails, shuffle"
+  },
+  "productCandidate": "d55a740b97fc75aab25eea3dacbf870385cd1615",
+  "qaCommit": "28a72af4b77fceb27b8452af48d48828dd53ba09",
+  "approvedMaterialCommit": "abe83b05f6a4382d6804cc975cb574821756753c",
+  "engine": "rust-v0.2.50-bounded-entry-search-candidate",
+  "pool": "limited-v2.45-bounded-entry-search-candidate",
+  "ordinaryCards": 109,
+  "societies": 8,
+  "currentOnly": true,
+  "old49Rooms": "unsupported_room_version / HTTP410; no permanent data deletion performed",
+  "publicBrowserAcceptanceCompleted": false,
+  "public403Bypassed": false,
+  "naturalNewCardBrowserMechanismsCompleted": 0,
+  "existingBoundedShortSmoke": {
+    "passed": true,
+    "actualNewTables": 1,
+    "uiCommands": 8,
+    "d1TerminalVersion": 9,
+    "repeatedThisPublication": false
+  },
+  "nativeArchiveContentReadback": {
+    "verified": false,
+    "action": "library.prepare_materialize",
+    "target": "file_000000005a4081f5a3a0586a08c648e6",
+    "error": "HTTP error prior to action invocation. HTTPException: 404: Library file ownership could not be verified.",
+    "noAlternativeRouteOrRetry": true
+  },
+  "nativeStorageRawBytesEqualLocalTarVerified": false,
+  "schedulesChanged": false,
+  "localBuildAudit": {
+    "exactSourceGitAndDiskFiles": 452,
+    "runtimeBuildFilesExactPreRuling": 128,
+    "onlyGeneratedBuildDifference": "server/README.md timestamp",
+    "tarRegularFiles": 132,
+    "archiveBytes": 51048019,
+    "archiveSha256": "c55aa6779e02666de7ba7830568c9657d5a2400cfd2891cb3dba3d5054738944",
+    "workerBytes": 47314,
+    "workerSha256": "005c4b99e2fa91b15bb77aa67f0fd6a9a568849f6371412f8602dd6a7d2982e4",
+    "wasmBytes": 2277324,
+    "wasmSha256": "e3d26f7041a114a96c9933374a33e63b0c8e45b9a4506b7937fb70cbf99a9d81",
+    "localDependencyLinksNoLongerTracked": true,
+    "localDependencyLinksStillPresent": true,
+    "allGameDataPreserved": true,
+    "frozen49Sha256": "9b8a7a69cd3c09781387cb4e66ad710d803783447fb6b0382fb2697eac50e885"
+  },
+  "archiveHashRepresentations": {
+    "localGzipSha256": "c55aa6779e02666de7ba7830568c9657d5a2400cfd2891cb3dba3d5054738944",
+    "localRawTarSha256": "d3be7347483056b25c22e1787c094a9b02842eeac2fa37032a0bdaf5f4fe7358",
+    "nativeStoredContentHash": "sha256:593f58affbeeb2ab2988d8f7f925f0519b152ad0e00dff72fbde03ce8f1b4243",
+    "nativeHashReadbackStable": true,
+    "rawByteEqualityVerified": false,
+    "reasonNotProven": "Native stored raw archive could not be materialized; do not claim normalization explains the difference"
+  }
+}

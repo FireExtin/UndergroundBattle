@@ -1,0 +1,19 @@
+{
+  "check": "accepted-JZ50-reveal-search-zero-still-shuffles",
+  "versions": [
+    235,
+    238
+  ],
+  "deckCounts": [
+    39,
+    39
+  ],
+  "graveCounts": [
+    0,
+    0
+  ],
+  "sameExactDeckIdentitySet": true,
+  "deckOrderChanged": true,
+  "rngChanged": true,
+  "dbMode": "read-only"
+}

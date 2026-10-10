@@ -1,0 +1,1105 @@
+{
+  "sourceCommit": "27b2d573073ff7211facc9ebe8feb2826cecbe40",
+  "deletedAtUtc": "2026-10-07T14:52:02.539348+00:00",
+  "deletedDirectories": [
+    "rust-game-wasm/legacy-v0.2.1",
+    "rust-game-wasm/legacy-v0.2.10",
+    "rust-game-wasm/legacy-v0.2.11",
+    "rust-game-wasm/legacy-v0.2.12",
+    "rust-game-wasm/legacy-v0.2.13",
+    "rust-game-wasm/legacy-v0.2.14",
+    "rust-game-wasm/legacy-v0.2.15",
+    "rust-game-wasm/legacy-v0.2.16",
+    "rust-game-wasm/legacy-v0.2.17",
+    "rust-game-wasm/legacy-v0.2.18",
+    "rust-game-wasm/legacy-v0.2.19",
+    "rust-game-wasm/legacy-v0.2.2",
+    "rust-game-wasm/legacy-v0.2.20",
+    "rust-game-wasm/legacy-v0.2.21",
+    "rust-game-wasm/legacy-v0.2.22",
+    "rust-game-wasm/legacy-v0.2.23",
+    "rust-game-wasm/legacy-v0.2.24",
+    "rust-game-wasm/legacy-v0.2.25",
+    "rust-game-wasm/legacy-v0.2.25-resource-policy",
+    "rust-game-wasm/legacy-v0.2.26",
+    "rust-game-wasm/legacy-v0.2.26-resource-policy",
+    "rust-game-wasm/legacy-v0.2.27",
+    "rust-game-wasm/legacy-v0.2.28",
+    "rust-game-wasm/legacy-v0.2.29",
+    "rust-game-wasm/legacy-v0.2.3",
+    "rust-game-wasm/legacy-v0.2.30",
+    "rust-game-wasm/legacy-v0.2.31",
+    "rust-game-wasm/legacy-v0.2.32",
+    "rust-game-wasm/legacy-v0.2.33",
+    "rust-game-wasm/legacy-v0.2.34",
+    "rust-game-wasm/legacy-v0.2.35",
+    "rust-game-wasm/legacy-v0.2.36",
+    "rust-game-wasm/legacy-v0.2.4",
+    "rust-game-wasm/legacy-v0.2.43",
+    "rust-game-wasm/legacy-v0.2.44",
+    "rust-game-wasm/legacy-v0.2.5",
+    "rust-game-wasm/legacy-v0.2.6",
+    "rust-game-wasm/legacy-v0.2.7",
+    "rust-game-wasm/legacy-v0.2.8",
+    "rust-game-wasm/legacy-v0.2.9"
+  ],
+  "deletedFileCount": 209,
+  "deletedLegacyPayloadBytes": 73678775,
+  "deletedRegenerableStagePayloadBytes": 73872001,
+  "availableTmpBeforeBytes": 118370304,
+  "availableTmpAfterBytes": 267239424,
+  "restoration": "Restore only deletedDirectories from sourceCommit with git restore --source=<sourceCommit> --worktree -- <exact 40 paths>. Do not restore the entire rust-game-wasm tree.",
+  "currentPkgPreserved": true,
+  "societyFixturesPreserved": true,
+  "sourceImagesAndExistingEvidencePreserved": true,
+  "files": [
+    {
+      "path": "rust-game-wasm/legacy-v0.2.1/README.md",
+      "bytes": 443,
+      "sha256": "b9433ca54fa80ad8460f9cffe5f88d82e348b1d2293ebdb4893dc9b46b786334"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.1/hegemony_wasm.js",
+      "bytes": 11122,
+      "sha256": "69f5f988232d411b0d76dc6a6cae5c0fc749ab556774d30544da26a07e5c98ca"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.1/hegemony_wasm_bg.wasm",
+      "bytes": 1040341,
+      "sha256": "a6366ef6bc7df03ba666b33286d3a01c412ac6bf779d6396fcbf6affcdc43966"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.1/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.10/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.10/hegemony_wasm_bg.wasm",
+      "bytes": 1641748,
+      "sha256": "ceb6ed540c491ed306e4e340ffda1333af5b3778302c8728b4c970d464ef2fb5"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.10/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.11/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.11/hegemony_wasm_bg.wasm",
+      "bytes": 1678291,
+      "sha256": "ebf8a25801cdcd0e7d476761dbeb0a42950cb274487d617a14aeca60998d762e"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.12/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.12/hegemony_wasm_bg.wasm",
+      "bytes": 1707355,
+      "sha256": "0e9e784b8986b6336b196068ec09fbf3be8afa27b05aa4b52896f888d2981240"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.12/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.13/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.13/hegemony_wasm_bg.wasm",
+      "bytes": 1732127,
+      "sha256": "cc1baa0d7893693b835962a52651806f0499a7ecae5f9e3411cde266df786916"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.13/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.14/README.md",
+      "bytes": 584,
+      "sha256": "fbfa11c8cbcff5efeb4b7b737a6cbf0cc4ac8ff86772de43fe532d3326f9fca3"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.14/hegemony_wasm.d.ts",
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.14/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.14/hegemony_wasm_bg.wasm",
+      "bytes": 1743010,
+      "sha256": "36d28923bf077edb23a339ad1c906b4171e09710aa4389309baf75b1c08fd631"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.14/hegemony_wasm_bg.wasm.d.ts",
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.14/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.15/README.md",
+      "bytes": 551,
+      "sha256": "5e0df792aa6c555ddc07fe000c1500d5fe55d875e31745b0b209e0328e96c26b"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.15/hegemony_wasm.d.ts",
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.15/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.15/hegemony_wasm_bg.wasm",
+      "bytes": 1805346,
+      "sha256": "a32fce15c7acac49793e6e3bab6a3c10caefbcdba00ffa5c51e7906a9d26d460"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.15/hegemony_wasm_bg.wasm.d.ts",
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.15/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.16/hegemony_wasm.d.ts",
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.16/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.16/hegemony_wasm_bg.wasm",
+      "bytes": 1811731,
+      "sha256": "9a3296af377c86a7f1e80076e4258e7dff9e787d920ccde499678e692749e5f6"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.16/hegemony_wasm_bg.wasm.d.ts",
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.16/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.17/README.md",
+      "bytes": 541,
+      "sha256": "4f3cd90515163d33694fa5fed191b935008ff987a365b49b79006a53b8ca0bc4"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.17/hegemony_wasm.d.ts",
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.17/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.17/hegemony_wasm_bg.wasm",
+      "bytes": 1825172,
+      "sha256": "e73b7aab29712fad7d79896559bc957b9c632d9b2afc9f6f85de7c4a0775e5df"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.17/hegemony_wasm_bg.wasm.d.ts",
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.17/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.18/README.md",
+      "bytes": 389,
+      "sha256": "51c65fb830910b342665b4a97e29dbb2518f4077ffff36ce9bab3224541557a8"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.18/hegemony_wasm.d.ts",
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.18/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.18/hegemony_wasm_bg.wasm",
+      "bytes": 1849234,
+      "sha256": "e49f37ee50e338f58a4ba5e45a71cadfd26d5f4498e80c75e6bb23c6b57fb9bd"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.18/hegemony_wasm_bg.wasm.d.ts",
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.18/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.19/README.md",
+      "bytes": 197,
+      "sha256": "1a6af08fc459e491130c4b41460a285c54e18580038198bdee3f0ba3d1975a0d"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.19/hegemony_wasm.d.ts",
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.19/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.19/hegemony_wasm_bg.wasm",
+      "bytes": 1860850,
+      "sha256": "918cad19fdfdf3acd920c9a0e00cf55365e8db8202dc47ac796ce6c8875dec33"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.19/hegemony_wasm_bg.wasm.d.ts",
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.19/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.2/README.md",
+      "bytes": 419,
+      "sha256": "8ab2e94b7269ae12b6880dc36616ca43ae65d1892b4ed2bd1b9a3623455f72d3"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.2/hegemony_wasm.js",
+      "bytes": 11810,
+      "sha256": "bb5709b94df02970729dbf80ea5ab3308343040f867d71a8142aa4b9cfafe229"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.2/hegemony_wasm_bg.wasm",
+      "bytes": 1052149,
+      "sha256": "b5e0070333a71ff5b01f31406118f523af473c0bb96fb732d3276d3855d7daae"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.2/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.20/README.md",
+      "bytes": 196,
+      "sha256": "8fc7f6dd71b3d28cf811ddc0eb102491b6129882037640688e3bd13be1bd4f32"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.20/hegemony_wasm.d.ts",
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.20/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.20/hegemony_wasm_bg.wasm",
+      "bytes": 1868865,
+      "sha256": "45988a5acdd949a39f154557d8923fb9eaa359ed2f25c385b769b8248360c313"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.20/hegemony_wasm_bg.wasm.d.ts",
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.20/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.21/README.md",
+      "bytes": 271,
+      "sha256": "611a53a200a3478f744a3dccfe2ab9e9be07fb30c8c01489a4fd8e19ae3909b6"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.21/hegemony_wasm.d.ts",
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.21/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.21/hegemony_wasm_bg.wasm",
+      "bytes": 1912863,
+      "sha256": "c227fa7279d733c3d18c981aa286314ec8c45740040763dc6c3ed35f0273ef3e"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.21/hegemony_wasm_bg.wasm.d.ts",
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.21/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.22/README.md",
+      "bytes": 205,
+      "sha256": "351521096f3dc024088d2b60ae182f56b0e598667d8fdbfc3cddeb116d51cb54"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.22/hegemony_wasm.d.ts",
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.22/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.22/hegemony_wasm_bg.wasm",
+      "bytes": 1930193,
+      "sha256": "a3df987aabbc634d47ba7c0bdca5f76f055b886e92a85b2f55b078e1f7757845"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.22/hegemony_wasm_bg.wasm.d.ts",
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.22/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.23/README.md",
+      "bytes": 205,
+      "sha256": "10516743dc574b69cd4d05edf1c47e70ddbbd79a5f6b864dc519be80ee29eb21"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.23/hegemony_wasm.d.ts",
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.23/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.23/hegemony_wasm_bg.wasm",
+      "bytes": 1936351,
+      "sha256": "1ad17daca87c593b999f8cdb32c27daddd8669eced881dcfcd8f45df29b4f9c0"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.23/hegemony_wasm_bg.wasm.d.ts",
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.23/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.24/README.md",
+      "bytes": 275,
+      "sha256": "c5e2fecdebf4a15f1ae348084fded469665b7d688d489d8625c675805fde8afc"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.24/hegemony_wasm.d.ts",
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.24/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.24/hegemony_wasm_bg.wasm",
+      "bytes": 1960357,
+      "sha256": "2c8aa2b13385abe085aff655a37dd5476f3ce9ae2563cc1301660bbf4e7e740c"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.24/hegemony_wasm_bg.wasm.d.ts",
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.24/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.25/README.md",
+      "bytes": 202,
+      "sha256": "ff08395d80bd854742ee99d3c525b98b95f7cc3001ebc527e0edb6e25175aba7"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.25/hegemony_wasm.d.ts",
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.25/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.25/hegemony_wasm_bg.wasm",
+      "bytes": 1965154,
+      "sha256": "8ca1e40edf0e1f969103eae3ff58f335459d364553e1e7136aba909f0c85cbfd"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.25/hegemony_wasm_bg.wasm.d.ts",
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.25/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.25-resource-policy/README.md",
+      "bytes": 179,
+      "sha256": "e665647e3c681254efe5d1e2ddf4b0d32ae7505d4f5b7d3e8bacd01593afbc7f"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.25-resource-policy/hegemony_wasm.d.ts",
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.25-resource-policy/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.25-resource-policy/hegemony_wasm_bg.wasm",
+      "bytes": 1965219,
+      "sha256": "7e77929d15020872fd7754547725a535f916baa943f2e7aa0486bfee097db105"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.25-resource-policy/hegemony_wasm_bg.wasm.d.ts",
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.25-resource-policy/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.26/README.md",
+      "bytes": 397,
+      "sha256": "59f6ce89678bdea6bc62ba418a4d27dfcbbb63c27a29081d1ef4cca8ce406982"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.26/hegemony_wasm.d.ts",
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.26/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.26/hegemony_wasm_bg.wasm",
+      "bytes": 1974053,
+      "sha256": "c187a493d3e32f82c8609cb203e12ffb1661fbe348260f6e010254bb9af395af"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.26/hegemony_wasm_bg.wasm.d.ts",
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.26/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.26-resource-policy/README.md",
+      "bytes": 230,
+      "sha256": "f846e521e6749163bfd1391d73c2946eec79bbddfd73340a7589d3d6a02faa04"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.26-resource-policy/hegemony_wasm.d.ts",
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.26-resource-policy/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.26-resource-policy/hegemony_wasm_bg.wasm",
+      "bytes": 1974208,
+      "sha256": "79b0a9fa5e9f2acc015230ec3cd42e7f0fae41d8e8f720be7e6c81db52cd824e"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.26-resource-policy/hegemony_wasm_bg.wasm.d.ts",
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.26-resource-policy/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.27/README.md",
+      "bytes": 327,
+      "sha256": "620626e37abfab7c0bb0d6d919227bba4cec923ec0e4ee5b906e6a9aed8ce657"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.27/hegemony_wasm.d.ts",
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.27/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.27/hegemony_wasm_bg.wasm",
+      "bytes": 1983801,
+      "sha256": "04b5ed811e39922ef4d0af5d8cb9539f16573f37c88d595cdc50a61856eddcc4"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.27/hegemony_wasm_bg.wasm.d.ts",
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.27/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.28/README.md",
+      "bytes": 287,
+      "sha256": "35fad2d7347f1a7b9da827e0e1efe2a99196554334d14ec0a0e26c33a87271c1"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.28/hegemony_wasm.d.ts",
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.28/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.28/hegemony_wasm_bg.wasm",
+      "bytes": 2055484,
+      "sha256": "a8a928e12e239161c082671a6008b64775c7b8e9e0181e7d765db23af8bb32e8"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.28/hegemony_wasm_bg.wasm.d.ts",
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.28/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.29/README.md",
+      "bytes": 188,
+      "sha256": "21f1d176c55d7d1f641b8c51ed0cd9e3ef3be3fd7031cf68004716c8d7e9c804"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.29/hegemony_wasm.d.ts",
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.29/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.29/hegemony_wasm_bg.wasm",
+      "bytes": 2063840,
+      "sha256": "78b6f630ecef5a35b50cd07852374566cd1063d55af15a3802e54df7cc27b19a"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.29/hegemony_wasm_bg.wasm.d.ts",
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.29/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.3/README.md",
+      "bytes": 408,
+      "sha256": "6e484031279fbd587cb414d83498b32c29fa37b6087b1ff4999e58cf4e366cf7"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.3/hegemony_wasm.js",
+      "bytes": 11810,
+      "sha256": "bb5709b94df02970729dbf80ea5ab3308343040f867d71a8142aa4b9cfafe229"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.3/hegemony_wasm_bg.wasm",
+      "bytes": 1053904,
+      "sha256": "2d5dcbaae76aa5706fa77af6747068e94da39654d25df3e764efa48e73905089"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.3/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.30/README.md",
+      "bytes": 201,
+      "sha256": "15d08f206822f92bf82cc7887886f3e710bba30bcff674f424d01f75d2c75a8d"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.30/hegemony_wasm.d.ts",
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.30/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.30/hegemony_wasm_bg.wasm",
+      "bytes": 2065651,
+      "sha256": "06dc444774f8681d0590794ce760fb0c6fd1ca9fc789532eb8cbda18b000a6a5"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.30/hegemony_wasm_bg.wasm.d.ts",
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.30/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.31/README.md",
+      "bytes": 236,
+      "sha256": "7c4fec02901469fdb44a768e8ca38867deafb6b7dc3727c96bcfa87b06ee6606"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.31/hegemony_wasm.d.ts",
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.31/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.31/hegemony_wasm_bg.wasm",
+      "bytes": 2114984,
+      "sha256": "d5c544fde889abf066cf794b24b62106d439aa453e9e6a210e88217e3e872bbe"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.31/hegemony_wasm_bg.wasm.d.ts",
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.31/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.32/README.md",
+      "bytes": 213,
+      "sha256": "4711076963d782f730adbf54775f0b33adc0dfc0cc88cab4a3987fc818b7941d"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.32/hegemony_wasm.d.ts",
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.32/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.32/hegemony_wasm_bg.wasm",
+      "bytes": 2119491,
+      "sha256": "fd375f5e05247c4e78b5cbd65f3da2e4393a729d49b4b2203347dd6d0e62fc89"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.32/hegemony_wasm_bg.wasm.d.ts",
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.32/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.33/README.md",
+      "bytes": 252,
+      "sha256": "8a9bde7f89ae13b9bd59e16cdaa6a8c94a13a62d577b3334ca5c333fd526586f"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.33/hegemony_wasm.d.ts",
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.33/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.33/hegemony_wasm_bg.wasm",
+      "bytes": 2165572,
+      "sha256": "2bdf206c232747045c481c47d3493be18bec9fea263293866ca4d95bf824c2bb"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.33/hegemony_wasm_bg.wasm.d.ts",
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.33/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.34/README.md",
+      "bytes": 378,
+      "sha256": "698d2c6442b4438ee3f8d36dc77eefd28eaf0fc7c7e18dceb0cfbb53ecf84cd9"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.34/hegemony_wasm.d.ts",
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.34/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.34/hegemony_wasm_bg.wasm",
+      "bytes": 2171802,
+      "sha256": "b17c350a65ba68291a9ff8c44f28382298932abb17a502a35cb9b6a73620482e"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.34/hegemony_wasm_bg.wasm.d.ts",
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.34/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.35/README.md",
+      "bytes": 340,
+      "sha256": "03718d621e8f5213e101c78263d7ddf655f416b4dcdb0159ee3eacc7fec157c2"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.35/hegemony_wasm.d.ts",
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.35/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.35/hegemony_wasm_bg.wasm",
+      "bytes": 2177325,
+      "sha256": "4ceb4f410ff96796888f2568b426a56866f8db743a8cebf41f41d9e47e98ee7b"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.35/hegemony_wasm_bg.wasm.d.ts",
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.35/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.36/README.md",
+      "bytes": 250,
+      "sha256": "0b4c0c3c40525f43f8a9ee40e09cc3bcc4937fbdc9cdf3593ad8e0c2da9b06f9"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.36/hegemony_wasm.d.ts",
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.36/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.36/hegemony_wasm_bg.wasm",
+      "bytes": 2181427,
+      "sha256": "0f3a637d854074fe0689927c51e7969e8a32551ddcb48e1e1f3f1b6d022ea036"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.36/hegemony_wasm_bg.wasm.d.ts",
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.36/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.4/README.md",
+      "bytes": 514,
+      "sha256": "1fa8d67c2dff9fa4bb4cdcb9b60ea918fc863ad48fc3734abc666a90317a3df2"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.4/hegemony_wasm.js",
+      "bytes": 15219,
+      "sha256": "282efbac8975c8cde3e728298ab3870b3aa11a8df0a60bff6debe87af6fcdc58"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.4/hegemony_wasm_bg.wasm",
+      "bytes": 1111835,
+      "sha256": "fcf7f714a9b09f566202c0a8b00571c0da55dfa255793f2cffd908003f6d660f"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.4/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.43/hegemony_wasm.d.ts",
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.43/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.43/hegemony_wasm_bg.wasm",
+      "bytes": 2186939,
+      "sha256": "3b0bee7b1c6788bc0a299338322f1c07d6108161a75e4999ac066971659520bb"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.43/hegemony_wasm_bg.wasm.d.ts",
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.43/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.44/hegemony_wasm.d.ts",
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.44/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.44/hegemony_wasm_bg.wasm",
+      "bytes": 2191175,
+      "sha256": "6cf6dca6a06844c84e38fbed2a084145bc0e63ae3897de18b864814c314d11f9"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.44/hegemony_wasm_bg.wasm.d.ts",
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.44/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.5/README.md",
+      "bytes": 1272,
+      "sha256": "c28487a28ef96c8cc7b85647970b2d7416a394c5164ac2b86db712b16099b25c"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.5/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.5/hegemony_wasm_bg.wasm",
+      "bytes": 1487505,
+      "sha256": "22299f6db9923a93ea7da7bd742afbf0a0b1e4de4ff3c41bd99f16860df3a971"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.5/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.6/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.6/hegemony_wasm_bg.wasm",
+      "bytes": 1579569,
+      "sha256": "d4a9d88fe3c44d94da938c0351a4f1654d72514568c9f927fecd6d2f9f3ded3f"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.6/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.7/README.md",
+      "bytes": 700,
+      "sha256": "121cb52effa59fb1cb126f859c05d28898e5dcee5a4217336629015b114a42cd"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.7/hegemony_wasm.d.ts",
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.7/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.7/hegemony_wasm_bg.wasm",
+      "bytes": 1593545,
+      "sha256": "21169e9d579886a55474b21aa506a4a9adca779428d7d11f2e966ae077656198"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.7/hegemony_wasm_bg.wasm.d.ts",
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.7/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.8/README.md",
+      "bytes": 442,
+      "sha256": "e0e8b5eeedb046f30deb927ba234bf1356cba8f87a157f9024d37f9573a76631"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.8/hegemony_wasm.d.ts",
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.8/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.8/hegemony_wasm_bg.wasm",
+      "bytes": 1619119,
+      "sha256": "6bbd2ce9ffdefdb3c24b7c0ca1786440ce087e4be34cff6af7f6c4af5e7bbc51"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.8/hegemony_wasm_bg.wasm.d.ts",
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.8/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.9/README.md",
+      "bytes": 469,
+      "sha256": "38e5d02781e35f5528e977bd3db2bd03e18d37698961d5050a7375129466227b"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.9/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.9/hegemony_wasm_bg.wasm",
+      "bytes": 1632788,
+      "sha256": "7321d85d112d56b2ff1ac7b7e61e4d1e3415a3aa823c75cbf1913193edec6313"
+    },
+    {
+      "path": "rust-game-wasm/legacy-v0.2.9/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    }
+  ],
+  "postDeletionSmokeMirrorAlsoRemoved": "/tmp/historical-dependency-cleanup-evidence/staged-site-postdelete",
+  "postDeletionSmokeMirrorPayloadBytes": 73902410,
+  "finalTmpAvailableBytes": 244543488
+}

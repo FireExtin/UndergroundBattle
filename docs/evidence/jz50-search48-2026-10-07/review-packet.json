@@ -1,0 +1,234 @@
+{
+  "base": "919e574a7eb0ca2531119486e54bfc4970abf9af",
+  "status": "JZ50-only-fixed-source-candidate-awaiting-parent-independent-review-unpublished",
+  "sourceFiles": [
+    {
+      "path": "rust-game/data/cards.json",
+      "bytes": 114860,
+      "sha256": "de4c8c737f28fe96af1abc6547fbe42848566506ea2dc5fa787253df7b922300"
+    },
+    {
+      "path": "rust-game/src/catalog.rs",
+      "bytes": 8244,
+      "sha256": "182868346f078b1bf3b2dce924216d861ead1cc777ab44c8d992888c6b5d20b2"
+    },
+    {
+      "path": "rust-game/src/engine.rs",
+      "bytes": 254561,
+      "sha256": "d9d87e774de952c99001a99232648ee561bf9b998cec63094070b9d9261da502"
+    },
+    {
+      "path": "rust-game/src/jc089_tests.rs",
+      "bytes": 35129,
+      "sha256": "c053642720db34d802c9260399c7a58529c2f32dce1899cf167ea822ff3f456f"
+    },
+    {
+      "path": "rust-game/src/lib.rs",
+      "bytes": 2262,
+      "sha256": "1b22722f8fc6ca40b34dc3981cbd94956ae2b87b3cf9135e4014f8a386aff76f"
+    },
+    {
+      "path": "rust-game/src/model.rs",
+      "bytes": 23462,
+      "sha256": "bfaa42f3c505e5e1185185a0ece8ba342220702f9110eabdc7a52d4077d66581"
+    },
+    {
+      "path": "rust-game/src/msjc07_tests.rs",
+      "bytes": 1428,
+      "sha256": "4330b7e2a0975655f5241eb685aa48a2dc868c455916ec566252e59ae27f8291"
+    },
+    {
+      "path": "rust-game/src/renown_tests.rs",
+      "bytes": 21509,
+      "sha256": "06155eb63ab1f5b1ad99785de8a59981d1d7b6f9ea8074b033d26ccc64f8ffd7"
+    },
+    {
+      "path": "rust-game/src/resolution.rs",
+      "bytes": 91819,
+      "sha256": "215a88d99ce5c418d732d5f6e8a3629e60c7d08798936b389c0f3770d69e21a1"
+    },
+    {
+      "path": "rust-game/src/room.rs",
+      "bytes": 29549,
+      "sha256": "389b58ed0b96454b61c47270a8df776c49066610b5ab6796be21114c9f6a2182"
+    },
+    {
+      "path": "rust-game/src/rules.rs",
+      "bytes": 137962,
+      "sha256": "eb1ac1d9c65634f60b5634a67a3876ac003afabea40836c90a04bb5ccac8311b"
+    },
+    {
+      "path": "sites/src/kernel.mjs",
+      "bytes": 544,
+      "sha256": "2d3be287e4507c044ad4d049f557c568754942411b82f862be2ffc37ff402df3"
+    },
+    {
+      "path": "sites/test/integration.test.mjs",
+      "bytes": 17678,
+      "sha256": "898cfb516ba41fc4792ad07622af0ea18e0ec9075a75c44d0d6e00fb8c95d692"
+    },
+    {
+      "path": "sites/test/pause-resume-integration.test.mjs",
+      "bytes": 6709,
+      "sha256": "9905a1e61637fa0e286c633a2fc0b1788e5380d5f459eed467a306aa400278e0"
+    },
+    {
+      "path": "sites/test/society-foundation.fixture.mjs",
+      "bytes": 9742,
+      "sha256": "8874db568ffc1c3713dfa745e5b8dfedb31368b91dd4ef6b564adb9ec5fc0692"
+    },
+    {
+      "path": "web/src/game/ChoicePanel.tsx",
+      "bytes": 11885,
+      "sha256": "62f56964dbe11b6dd954beeb27c4bf62d53974d4ffc24c4f3b03fcefc7bb0ff4"
+    },
+    {
+      "path": "rust-game/src/jz50_search.rs",
+      "bytes": 7138,
+      "sha256": "ddef90d3972d760897ab16cadf264908cb1e65fd9643d92194a169d1f3b3269c"
+    },
+    {
+      "path": "rust-game/src/jz50_search_tests.rs",
+      "bytes": 33410,
+      "sha256": "456c8920154737ee10f556a512bb95896459a357eaa87f0f79dcc4bca9d2e540"
+    },
+    {
+      "path": "sites/test/fixtures/jz50-room-native-v048.json",
+      "bytes": 780687,
+      "sha256": "002121ea1134cf5d10a67e493211d9fb1837a5c52c5ced105248e164257f6fc7"
+    },
+    {
+      "path": "sites/test/fixtures/pause-resume-native-v048.json",
+      "bytes": 768586,
+      "sha256": "b361d2dab8f6e9904841cee4be7f34dee85cd4822e568e79c9b9fb3c892f7d17"
+    },
+    {
+      "path": "sites/test/fixtures/sealing-room-native-v048.json",
+      "bytes": 919046,
+      "sha256": "c994397c2b83a01e1561d1e56d377aee2f899693a6a14a60889d0293f6b25d6d"
+    },
+    {
+      "path": "web/src/game/JZ50Search.test.tsx",
+      "bytes": 4936,
+      "sha256": "02382404538a19ef90066a21fc0ddd7be0d450efd2883fa4cbf67b9d28b1238d"
+    },
+    {
+      "path": "web/src/game/jz50Native48Test.fixture.json",
+      "bytes": 445704,
+      "sha256": "b3602c1562d64b305049f8925d68f7237bf8580c880cab8a1bbb152b1acf883d"
+    }
+  ],
+  "sourceFileCount": 23,
+  "versions": {
+    "engine": "rust-v0.2.48-jz50-death-search-candidate",
+    "pool": "limited-v2.44-jz50-death-search-candidate",
+    "cards": 107,
+    "societies": 8
+  },
+  "actualChecks": {
+    "Native": 623,
+    "JZ50NativeSpecific": 20,
+    "Web": 631,
+    "WorkerWasmLocalD1": 31,
+    "desktopReadOnlyNativeProjectionChecks": 4
+  },
+  "specificTestsOverlapFull": true,
+  "WasmParity": {
+    "engine": "rust-v0.2.48-jz50-death-search-candidate",
+    "pool": "limited-v2.44-jz50-death-search-candidate",
+    "cards": 107,
+    "societies": 8,
+    "actualWasm": true,
+    "commands": 214,
+    "rejected": 6,
+    "checkpoints": 469,
+    "chainCommands": 36,
+    "chains": {
+      "room-native48-exact": 14,
+      "pause-native48-final": 9,
+      "sealing-native48-final": 13
+    },
+    "views": 2876,
+    "completeTransitionEqual": true,
+    "opaqueStateByteEqual": true,
+    "wasmBytes": 2247997,
+    "wasmSha256": "90ba2fdc49c8dc256b69a2b4cc2acdf3acfaf87060140ec2829701db10805114",
+    "frozen45_46_47BytePreserved": true
+  },
+  "logs": [
+    {
+      "path": "jz50-native-full-verified.log.gz",
+      "uncompressedBytes": 64768,
+      "uncompressedSha256": "8b89ed9344bce418799dac921e22a9eea5884f52e61f807c08e6e811db53dbac",
+      "compressedSha256": "286c7e0cd75f5e1864596cabe554d87b98a92f8148cf1d73a9007306f6f4b5f7"
+    },
+    {
+      "path": "jz50-native-exact-traces.log.gz",
+      "uncompressedBytes": 4095,
+      "uncompressedSha256": "1b380abe4b0769889e3bc82562396901b8b6a1d4b2cb12935fd67f0b75657949",
+      "compressedSha256": "92f762848abcc099841859d102f1464f682fa46899dc504ab0d8888655a09670"
+    },
+    {
+      "path": "jz50-web-full-final.log.gz",
+      "uncompressedBytes": 597,
+      "uncompressedSha256": "8b2326a422c201988a2b7d96db109d46a865a2b47da7832c3ce99908fc32d054",
+      "compressedSha256": "4c9ecca62f801d339af2434601a6e71a52f7794bf94fae1b628ecc6313fa6203"
+    },
+    {
+      "path": "jz50-web-production.log.gz",
+      "uncompressedBytes": 689,
+      "uncompressedSha256": "0605d1d939e9701d86862ec9f69f2e3cf2387913c9b0913ba6189f994b8101cb",
+      "compressedSha256": "2bb9301346fb2d52578d678aac0686937c635e96a91ae87bfedba3a8d20bbba2"
+    },
+    {
+      "path": "jz50-wasm-exact-build.log.gz",
+      "uncompressedBytes": 234,
+      "uncompressedSha256": "cb9098d28e68341e119a286be8065de82ea1b31b2e855cd24129d2aa156fef95",
+      "compressedSha256": "bd9269fb1e673b0d4b71621f67e0c9e2a075db7c45769f1922dc311fc748c583"
+    },
+    {
+      "path": "jz50-wasm-exact-parity.log.gz",
+      "uncompressedBytes": 510,
+      "uncompressedSha256": "2f4bb5dabe02bcd3b337ace986edce3857b7b5b3f4abd69d8f622782ba805694",
+      "compressedSha256": "59a95d2272834411b90f038e7f4f72842ec2cbb04c4e429b4183e371ce593541"
+    },
+    {
+      "path": "jz50-worker-exact-build.log.gz",
+      "uncompressedBytes": 568,
+      "uncompressedSha256": "5c0b426e6b684ca60a013f571aaab9930d536a867072c86999f098bda2a882f4",
+      "compressedSha256": "39e2f06345e580968e03551db28779c6ceab0128e0b5afcc46014f5f23411503"
+    },
+    {
+      "path": "jz50-worker-exact-full.log.gz",
+      "uncompressedBytes": 4575,
+      "uncompressedSha256": "5f1ba56500dfe64b1ea90b2d600b05b0d8f5d3ad15644f818e48479fce0827b7",
+      "compressedSha256": "e15ef0d0bcc9580fe170f1ced884051b020c6f89a88aeede68b9aec1ab4613a5"
+    },
+    {
+      "path": "jz50-browser-desktop-retry.log.gz",
+      "uncompressedBytes": 857,
+      "uncompressedSha256": "2f198786590178849c3ff85aa69f93a4361042e9c33146e7a7487fcb59806606",
+      "compressedSha256": "77b3f1d73160432415d8349141bd235fbe5503ca53f98bbf3091351fc829f041"
+    }
+  ],
+  "browserScope": "local-real-React-readonly-actual-Native48-JZ50-desktop-projections",
+  "browserScreenshotsActuallyViewed": 3,
+  "browserAPIWrites": false,
+  "naturalJZ50BrowserFlow": false,
+  "mobileRefreshClaim": false,
+  "NativeStore": "actual disposable SQLite reopen/original receipts/idempotent command, no real DB",
+  "NativeUiAggregateEqualsFinalExactRun": true,
+  "ownerRuling": "JZ50-only project FAQ B, 2026-10-07 12:23 UTC; 0/1 accepted, zero shuffles, trigger decline does not",
+  "sourceImage": "403e44bb5f7f0ff8715acb267a8369c3715b2dc752d7fe612de085da29b523e7",
+  "unadmittedCards": [
+    "BQ104",
+    "XQ48"
+  ],
+  "remainingRulings": [
+    "BQ104 accepted eligible search minimum",
+    "XQ48 original-region replacement private search and independent shuffle tail"
+  ],
+  "societyFixtureABI": "script identity/count wired; separate new feature WASM/suite not generated or claimed",
+  "publication": "none; existing Site40 engine46/pool42 remains live; no main push",
+  "delivery": "source commit binds packet; full SHA, complete diff/bundle and exact ABI/Native trace archive recorded in cloud delivery JSON"
+}

@@ -1,0 +1,17 @@
+{
+  "engine": "rust-v0.2.47-sealed-cards-candidate",
+  "pool": "limited-v2.43-sealed-cards-candidate",
+  "cards": 106,
+  "societies": 8,
+  "actualWasm": true,
+  "commands": 115,
+  "rejected": 5,
+  "checkpoints": 242,
+  "chainCommands": 22,
+  "views": 1516,
+  "completeTransitionEqual": true,
+  "opaqueStateByteEqual": true,
+  "wasmBytes": 2229913,
+  "wasmSha256": "42ae5289b3998520bd8f9d1c35a32ffd2a1693960dc54579a9f47e184a01c4a9",
+  "preservedEngine46Bytes": 2209157
+}

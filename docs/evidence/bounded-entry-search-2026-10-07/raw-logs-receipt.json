@@ -1,0 +1,19 @@
+{
+  "archive": "raw-test-logs.zip",
+  "bytes": 81945,
+  "sha256": "6733a8481fbbbfa604a8b76dc7cbff2fbe3e61983f37cf854cd738c7056cff98",
+  "files": 43,
+  "exactOriginalsPreservedInZip": true,
+  "readableFiles": "ANSI and trailing whitespace normalized, one final newline; original bytes in ZIP",
+  "normalizedFiles": 7,
+  "trailingBlankEofNormalized": [
+    "bounded-search50-native-fixed.log",
+    "bounded-search50-native-fresh.log",
+    "bounded-search50-natural-browser.log",
+    "bounded-search50-post-go-smoke-fixed.log",
+    "bounded-search50-natural-browser-third.log",
+    "bounded-search50-native-invalid-export.log",
+    "bounded-search50-native-integration-final.log",
+    "bounded-search50-native-count-fixed.log"
+  ]
+}

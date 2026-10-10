@@ -1,17 +1,16 @@
-// Historical catalog/scan assertions use frozen32; current36 is covered independently by JZ55UniqueDestroy.
+// Current catalog, with the preserved engine32 scan registry and unchanged original artworks.
 import {createHash} from 'node:crypto';
 import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {render,screen,fireEvent} from '@testing-library/react';
 import {expect,it,vi} from 'vitest';
-import * as kernel from '../../../rust-game-wasm/legacy-v0.2.32/hegemony_wasm.js';
+import { kernel } from './testKernel';
 import {ReadModal} from './ReadModal';
-kernel.initSync({module:readFileSync(resolve('../rust-game-wasm/legacy-v0.2.32/hegemony_wasm_bg.wasm'))});
 const catalog=JSON.parse(kernel.catalog());
 const scans=JSON.parse(readFileSync(resolve('src/game/cardScansV032.fixture.json'),'utf8'));
-it('admits only the two approved original yellow unique cards with their printed numbers and loyalty',()=>{
- expect(catalog.cards).toHaveLength(94);expect(Object.keys(scans)).toHaveLength(101);
- expect(catalog.cards.filter(c=>c.color==='黄'&&c.unique).map(c=>c.id)).toEqual(['WM003','LC01']);
+it('admits the three approved yellow unique cards and preserves the original printed numbers and loyalty',()=>{
+ expect(Object.keys(scans)).toHaveLength(101);
+ expect(catalog.cards.filter(c=>c.color==='黄'&&c.unique).map(c=>c.id)).toEqual(['WM003','LC01','JZ02']);
  expect(catalog.cards.find(c=>c.id==='WM003')).toMatchObject({name:'千机庙离',color:'黄',unique:true,cost:1,defense:1,magic:'心灵',loyalty:['黄色','星辰','星辰'],subtypes:['人类','法师','学生'],permanentIcons:{investigation:0,combat:0,influence:0},temporaryIcons:{investigation:1,combat:0,influence:1},abilities:[{key:'search-any-private',timing:'fast'}]});
  expect(catalog.cards.find(c=>c.id==='LC01')).toMatchObject({name:'西比尔',color:'黄',unique:true,cost:5,defense:4,magic:'神圣',loyalty:['黄色','黄色'],subtypes:['人类','法师'],permanentIcons:{investigation:2,combat:0,influence:0},temporaryIcons:{investigation:1,combat:0,influence:0},abilities:[]});
  expect(catalog.privateDeckTop).toBeUndefined();

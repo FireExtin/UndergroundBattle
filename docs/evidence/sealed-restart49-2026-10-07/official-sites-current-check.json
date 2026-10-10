@@ -1,0 +1,10 @@
+{
+  "officialPackage": "OpenAI Sites 0.1.75",
+  "localPath": "/tmp/sites-official-restored-0.1.75",
+  "verifiedFiles": 167,
+  "helperBytes": 17583,
+  "helperSha256": "34c3408f93a12684c993adf0256d7fe138f2baa43ead46a63921c87e36935acd",
+  "original403EndpointRetried": false,
+  "pluginManagerInstallStateChanged": false,
+  "LibraryQuotaKnown": false
+}

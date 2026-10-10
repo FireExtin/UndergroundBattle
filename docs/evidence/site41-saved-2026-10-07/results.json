@@ -1,0 +1,36 @@
+{
+  "scope": "local-only-production-Site41-build-single-seat-real-UI-peer-normal-HTTP-commands",
+  "productionWrites": false,
+  "localD1Writes": true,
+  "checks": [
+    "real-UI-create-ready-start-private-choice-pause",
+    "pause-stops-poll-leave-reload-restores-original-seat-and-choice",
+    "real-peer-API-resume-and-UI-manual-sync-preserve-private-choice",
+    "UI-actually-submits-original-choice-after-restore"
+  ],
+  "passed": true,
+  "errors": [],
+  "catalog": {
+    "engineVersion": "rust-v0.2.49-sealed-restart-candidate",
+    "cardPoolVersion": "limited-v2.44-jz50-death-search-candidate",
+    "rulesVersion": "hegemony-pdf-v1"
+  },
+  "newFourCards": {
+    "XQ40": "催眠术表演者",
+    "XQ41": "启迪之梦",
+    "XQ45": "破颅而出",
+    "JZ50": "墓穴食尸鬼"
+  },
+  "roomId": "a235ecfb78e75a0c9527a1e7",
+  "revisions": [
+    5,
+    6,
+    7,
+    8
+  ],
+  "screenshots": {
+    "paused.png": "3a635d6e16799ba71bfb6f4e8532f7f05e7dc1982584aaeaa53da110bbc74b16",
+    "resumed.png": "5f27e0f69a50a13f9c978e08bca31c2f023e77ebfed974961046e7f76f45618d",
+    "continued-paused.png": "216c766bda2b66f202f8b90a11d89073ea85fca53bb1b52b1f50fe8b3b5ea83f"
+  }
+}

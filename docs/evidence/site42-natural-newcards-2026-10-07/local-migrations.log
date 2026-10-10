@@ -1,0 +1,32 @@
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mProxy environment variables detected. We'll use your proxy for fetch requests.[0m
+
+
+
+ ⛅️ wrangler 4.146.0
+────────────────────
+Resource location: local
+
+Use --remote if you want to access the remote instance.
+
+Migrations to be applied:
+┌────────────────────────────────┐
+│ name                           │
+├────────────────────────────────┤
+│ 0000_numerous_lucky_pierre.sql │
+└────────────────────────────────┘
+? About to apply 1 migration(s)
+Your database may not be available to serve requests during the migration, continue?
+🤖 Using fallback value in non-interactive context: yes
+🌀 Executing on local database DB (DB) from ../site42-natural-newcards-local-d1/v3/d1:
+🌀 To execute on your remote database, add a --remote flag to your wrangler command.
+🚣 8 commands executed successfully.
+┌────────────────────────────────┬────────┐
+│ name                           │ status │
+├────────────────────────────────┼────────┤
+│ 0000_numerous_lucky_pierre.sql │ ✅     │
+└────────────────────────────────┴────────┘
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

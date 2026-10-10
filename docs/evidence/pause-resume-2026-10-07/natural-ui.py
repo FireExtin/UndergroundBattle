@@ -1,0 +1,66 @@
+from pathlib import Path
+from playwright.sync_api import sync_playwright,expect
+import json,hashlib,time
+out=Path('/tmp/pause-resume-evidence/browser');out.mkdir(exist_ok=True)
+r={'scope':'local-real-UI-and-native-service-natural-duel','productionWrites':False,'checks':[],'errors':[],'passed':False}
+get_view="async()=>{const s=JSON.parse(localStorage.getItem('hegemony.session.v1'));return (await fetch('/api/rooms/'+s.roomId+'/state',{headers:{Authorization:'Bearer '+s.token}})).json()}"
+with sync_playwright() as p:
+ b=p.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox','--disable-dev-shm-usage','--no-zygote','--single-process','--disable-gpu'])
+ b2=p.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox','--disable-dev-shm-usage','--no-zygote','--single-process','--disable-gpu'])
+ a_ctx=b.new_context(viewport={'width':1440,'height':1000}); c_ctx=b2.new_context(viewport={'width':390,'height':844})
+ a=a_ctx.new_page();c=c_ctx.new_page()
+ for page in [a,c]:page.on('pageerror',lambda e:r['errors'].append(str(e)))
+ try:
+  a.goto('http://127.0.0.1:5191',wait_until='networkidle')
+  a.get_by_role('textbox',name='你的称呼').fill('Saved table A')
+  a.get_by_role('button',name='两人对决').click()
+  r['stage']='create';a.get_by_role('button',name='创建牌桌 →',exact=True).click()
+  expect(a.get_by_role('heading',name='等待秘社集结')).to_be_visible()
+  code=a.evaluate("()=>JSON.parse(localStorage.getItem('hegemony.session.v1')).inviteCode")
+  c.goto('http://127.0.0.1:5191/?invite='+code,wait_until='networkidle')
+  c.get_by_role('textbox',name='你的称呼').fill('Saved table B')
+  r['stage']='join';c.get_by_role('button',name='加入牌桌 →',exact=True).click()
+  expect(c.get_by_role('heading',name='等待秘社集结')).to_be_visible()
+  r['stage']='peer-ready';c.get_by_role('button',name='准备',exact=True).click()
+  expect(a.get_by_text('1 / 2 位玩家已准备',exact=True)).to_be_visible()
+  r['stage']='host-ready';a.get_by_role('button',name='准备',exact=True).click()
+  expect(a.get_by_text('2 / 2 位玩家已准备',exact=True)).to_be_visible()
+  r['stage']='start-game';a.get_by_role('button',name='开始游戏',exact=True).click()
+  expect(a.get_by_role('dialog',name='待完成的选择')).to_be_visible()
+  before=a.evaluate(get_view);choice=before['pendingChoice']['id']
+  r['stage']='chooser-pause';a.get_by_role('button',name='暂停并保存此桌',exact=True).click()
+  expect(a.get_by_role('button',name='恢复对局',exact=True)).to_be_enabled()
+  expect(a.get_by_role('dialog',name='待完成的选择')).to_have_count(0)
+  saved=a.evaluate(get_view);assert saved['pause'] and saved['pendingChoice']['id']==choice
+  a.screenshot(path=str(out/'desktop-paused-private-choice.png'));r['checks'].append('chooser-can-pause-and-resume-controls-are-accessible')
+  reads=[]
+  def observe(req):
+   if '/state' in req.url:reads.append(req.url.split('?')[0])
+  a.on('request',observe)
+  a.wait_for_timeout(3500);assert not reads,reads
+  a.get_by_role('button',name='返回大厅 / 新建牌桌',exact=True).click()
+  expect(a.get_by_role('region',name='我的牌桌')).to_be_visible()
+  a.reload(wait_until='networkidle')
+  a.get_by_role('button',name='回到牌桌 '+code+' · 席位 1',exact=True).click()
+  expect(a.get_by_role('button',name='恢复对局',exact=True)).to_be_enabled()
+  restored=a.evaluate(get_view);assert restored['version']==saved['version'] and restored['pendingChoice']['id']==choice
+  r['checks'].append('idle-no-poll-and-leave-reload-my-tables-restores-original-seat')
+  # A peer receives the pause, then resumes the same paid/choice boundary.
+  c.reload(wait_until='networkidle')
+  expect(c.get_by_role('button',name='恢复对局',exact=True)).to_be_enabled()
+  c.screenshot(path=str(out/'mobile-peer-paused.png'))
+  c.get_by_role('button',name='恢复对局',exact=True).click()
+  expect(c.get_by_role('button',name='暂停并保存',exact=True)).to_be_enabled()
+  a.get_by_role('button',name='查看最新状态',exact=True).click()
+  expect(a.get_by_role('dialog',name='待完成的选择')).to_be_visible()
+  after=a.evaluate(get_view);assert 'pause' not in after and after['pendingChoice']['id']==choice
+  assert [x['instanceId'] for x in after['hand']]==[x['instanceId'] for x in saved['hand']]
+  a.screenshot(path=str(out/'desktop-resumed-same-choice.png'))
+  r['checks'].append('peer-resume-manual-sync-preserves-choice-and-hand-instance-ids')
+  r['versions']=after['versions'];r['savedRevision']=saved['version'];r['resumedRevision']=after['version'];r['samePrivateChoice']=True
+  assert not r['errors'];r['passed']=True
+ except Exception as e:r['error']=str(e)[:1800];a.screenshot(path=str(out/'failure-a.png'));c.screenshot(path=str(out/'failure-b.png'))
+ finally:
+  b.close();b2.close();r['screenshots']={f.name:hashlib.sha256(f.read_bytes()).hexdigest() for f in out.glob('*.png')};(out/'results.json').write_text(json.dumps(r,ensure_ascii=False,indent=2)+'\n')
+print(json.dumps(r,ensure_ascii=False))
+if not r['passed']:raise SystemExit(1)

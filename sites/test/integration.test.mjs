@@ -7,7 +7,7 @@ import { Miniflare, convertV4MiniflareOptions } from 'miniflare';
 import { RoomStore } from '../src/store.mjs';
 import { digest, RoomService } from '../src/service.mjs';
 import { initSync, newGame } from '../generated/hegemony_wasm.js';
-import { frozenKernel } from './fixtures/frozen-kernel.mjs';
+import { historicalLobbies } from './fixtures/historical-rooms.mjs';
 
 test('real workerd/WASM with D1 SQLite: concurrency, receipts, rollback and reopen', async t => {
   const persist = mkdtempSync(join(tmpdir(), 'hegemony-worker-d1-'));
@@ -22,7 +22,7 @@ test('real workerd/WASM with D1 SQLite: concurrency, receipts, rollback and reop
   const migration = readdirSync('drizzle').find(name => name.endsWith('.sql'));
   for (const sql of readFileSync('drizzle/' + migration, 'utf8').split('--> statement-breakpoint').filter(s => s.trim())) await db.prepare(sql).run();
   const pacedRooms = new Set();
-  const pacedVersions = new Set(['rust-v0.2.5', 'rust-v0.2.6', 'rust-v0.2.7', 'rust-v0.2.8', 'rust-v0.2.9', 'rust-v0.2.10', 'rust-v0.2.11', 'rust-v0.2.43-jz49-slow-mill-candidate']);
+  const pacedVersions = new Set(['rust-v0.2.57-black-entry-influence-candidate']);
   const durableView = value => pacedVersions.has(value?.versions?.engine) ? { ...value, serverNowMs: undefined } : value;
   const api = async (path, body, session) => {
     if (body?.action && pacedRooms.has(session?.roomId) && !['game','beginResponse','passResponse','cancelAndPass','submitResponse'].includes(body.action.kind)) {
@@ -43,11 +43,11 @@ test('real workerd/WASM with D1 SQLite: concurrency, receipts, rollback and reop
   const path = (session, action) => `/api/rooms/${session.roomId}/${action}`;
   try {
     const health = await api('/api/health'); assert.equal(health.body.transport, 'polling');
-    const catalog = await api('/api/catalog'); assert.equal(catalog.body.cards.length, 101); for (const id of ['JC075','JC104','JZ31','JZ55','JZ49']) assert(catalog.body.cards.some(c => c.id === id)); assert.equal(catalog.body.entryIdempotency, true);
+    const catalog = await api('/api/catalog'); assert.equal(catalog.body.cards.length, 120); for (const id of ['JC075','JC104','JZ31','JZ55','JZ49','JZ48','JC089','XQ40','XQ41','XQ45','JZ50','BQ104','XQ48','XQ37']) assert(catalog.body.cards.some(c => c.id === id)); assert.equal(catalog.body.entryIdempotency, true);
     assert(catalog.body.cards.some(card => card.id === 'JC047'));
     assert(catalog.body.cards.some(card => card.id === 'JC007'));
-    assert.equal(catalog.body.engineVersion, 'rust-v0.2.43-jz49-slow-mill-candidate');
-    assert.equal(catalog.body.cardPoolVersion, 'limited-v2.40-jz49-slow-mill-candidate');
+    assert.equal(catalog.body.engineVersion, 'rust-v0.2.57-black-entry-influence-candidate');
+    assert.equal(catalog.body.cardPoolVersion, 'limited-v2.52-black-entry-influence-candidate');
     assert.equal(catalog.body.deckBuildRules.minimumCards, 50);
     assert.equal(catalog.body.cards.find(card => card.id === 'JC125').deckCopyLimit, null);
     const create = { name: '甲', mode: 'teams', deckId: 'responders', requestId: key() };
@@ -104,10 +104,8 @@ test('real workerd/WASM with D1 SQLite: concurrency, receipts, rollback and reop
     assert(opaqueAfter.includes('"seed":18446744073709551615')); assert(opaqueAfter.includes('"random":18446744073709551615'));
     // Local-only historical fixtures are retained byte-for-byte and fail closed.
     const oldRooms = [];
-    for (let minor = 1; minor <= 10; minor++) {
-      const oldKernel = await frozenKernel('legacy-v0.2.' + minor);
+    for (const { minor, room: old } of historicalLobbies()) {
       const id = String(minor).padStart(2, '0').repeat(12), token = String(minor).padStart(2, '0').repeat(32), invite = 'OLDTEST' + minor;
-      const old = JSON.parse(oldKernel.newGame(id, invite, 'duel', '旧核', 'watchers', '18446744073709551615'));
       const createBody = { name: '旧核', mode: 'duel', deckId: 'watchers', requestId: key() };
       const receiptKeys = new RoomService(db, {});
       const entryKey = await receiptKeys.entryKey(createBody, { kind: 'create', name: '旧核', mode: 'duel', deckId: 'watchers' });

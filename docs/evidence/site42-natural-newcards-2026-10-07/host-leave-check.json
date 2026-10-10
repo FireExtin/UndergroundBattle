@@ -1,0 +1,34 @@
+{
+  "check": "natural-region-win-host-leaves-both-sealed-payloads-return-to-owner",
+  "versions": [
+    367,
+    368
+  ],
+  "hostId": "i141",
+  "hostOwner": "p1",
+  "hostController": "p1",
+  "payloadOwner": "p0",
+  "payloadsReturnedTo": "p0",
+  "returnedCards": [
+    [
+      "i188",
+      "XQ41"
+    ],
+    [
+      "i189",
+      "JC125"
+    ]
+  ],
+  "p0HandCounts": [
+    4,
+    6
+  ],
+  "p1HandCounts": [
+    4,
+    4
+  ],
+  "blankSealedZoneNowEmptyBothSeats": true,
+  "mechanism": "normal region win then actual UI region_return confirmation; no fake board",
+  "XQ45CastClaimed": false,
+  "hostFlipClaimed": false
+}

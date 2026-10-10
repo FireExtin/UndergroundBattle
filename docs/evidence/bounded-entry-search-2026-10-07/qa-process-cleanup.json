@@ -1,0 +1,18 @@
+{
+  "timeUtc": "2026-10-07T23:46:56Z",
+  "stoppedOwnOrphanWranglerAndDescendants": [
+    261861,
+    261868,
+    261878,
+    261887,
+    261893,
+    263048
+  ],
+  "originalShellSigintHadLeftChildren": true,
+  "postGoAlternateServerLaunch": "failed because original8120 server was still active",
+  "actualShortSmokeServer": "original local candidate50 compiled Worker with newly built post-Go web/dist assets; no factory seed header used",
+  "actualWorkerSha256": "005c4b99e2fa91b15bb77aa67f0fd6a9a568849f6371412f8602dd6a7d2982e4",
+  "postGoBuildWorkerSha256": "005c4b99e2fa91b15bb77aa67f0fd6a9a568849f6371412f8602dd6a7d2982e4",
+  "exactWorkerBytesSame": true,
+  "scope": "own local 8120 only; all original and smoke D1 files preserved"
+}

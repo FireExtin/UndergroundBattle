@@ -1,0 +1,13 @@
+{
+  "source": "945e8b2c8b96e2d75fcb709db72c7a1e9e4ad635",
+  "providerSource": "57039066c304db8ccd51155ecf2941b91df3abbd",
+  "archiveBytes": 46032169,
+  "archiveSha256": "a444b3b1351e724fac9680228d3d77862e9f9038a2f1ade76682bcf9b6b1721a",
+  "files": 127,
+  "wasm": {
+    "path": "dist/server/64b5766cf0f388c39b8151295e74c9bcf9571a79-hegemony_wasm_bg.wasm",
+    "bytes": 2209157,
+    "sha256": "9e6362c967046ff245b94ab650bc9ed0f3af32e45cc4ca979305b3921543a2a9"
+  },
+  "noRuntimeDatabaseOrCredentialsPacked": true
+}

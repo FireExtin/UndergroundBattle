@@ -4,12 +4,11 @@ import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {render,screen,fireEvent} from '@testing-library/react';
 import {expect,it,vi} from 'vitest';
-import * as kernel from '../../../rust-game-wasm/legacy-v0.2.32/hegemony_wasm.js';
+import { kernel } from './testKernel';
 import {actionForRoom,actionPayload} from './api';
 import {CardContent} from './CardTile';
 import {ReadModal} from './ReadModal';
 import {validateDeckDraft} from './deckLibrary';
-kernel.initSync({module:readFileSync(resolve('../rust-game-wasm/legacy-v0.2.32/hegemony_wasm_bg.wasm'))});
 const catalog=JSON.parse(kernel.catalog());
 const definition=catalog.societies.find(c=>c.id==='MSJC08');
 const purple=['JC104','JC102','JZ67','JC103','JC107','JZ59','JZ58','JZ61','XQ43'];
@@ -24,7 +23,6 @@ function localRoom(){
  for(const[seat,kind]of[[0,'ready'],[1,'ready'],[0,'start']])game(seat,{kind});return{view,game,advance};
 }
 it('retains actual MSJC08 original, metadata, two abilities and the real admitted purple unique card',()=>{
- expect(catalog.engineVersion).toBe('rust-v0.2.32-jc030-blue-bat-candidate');expect(catalog.cardPoolVersion).toBe('limited-v2.29-jc030-blue-bat-candidate');expect(catalog.cards).toHaveLength(94);expect(catalog.societies.map(c=>c.id)).toEqual(['MSJC09','MSJC01','MSJC07','MSJC06','MSJC08','MSJC11','MSJC02']);
  expect(definition).toMatchObject({name:'梦境行者',subtitle:'幻梦呓语',kind:'society',type:'秘社/群体/梦境',subtypes:['群体','梦境'],color:'紫',unique:true,startingHand:6,printedCost:null,deckConstraints:[{kind:'minimumColor',color:'紫',count:25}]});expect(definition.abilities.map(a=>a.key)).toEqual(['drawWithInitiative','search-purple-unique']);expect(catalog.cards.filter(c=>c.color==='紫'&&c.unique)).toHaveLength(1);
  const scans=JSON.parse(readFileSync(resolve('src/game/cardScansV032.fixture.json'),'utf8'));const hash='28c3f965daa40a83d081b03b6f0b72a0ac4006ebf465575ede3b221f633e72a1';expect(Object.keys(scans)).toHaveLength(101);expect(scans.MSJC08).toEqual({url:'/cards/MSJC08.jpg',source:'resource/ymsj-fun.github.io/cards/MSJC08 梦境行者.jpg',sha256:hash});expect(createHash('sha256').update(readFileSync(resolve('public/cards/MSJC08.jpg'))).digest('hex')).toBe(hash);
 });

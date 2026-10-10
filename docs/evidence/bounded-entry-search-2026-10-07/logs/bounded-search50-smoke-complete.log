@@ -1,0 +1,1 @@
+{"scope": "post-Go current production client + compiled Worker50 + local D1; short lobby/table visual smoke", "maxNewTables": 1, "actualNewTables": 1, "maxUiCommands": 10, "noStateInjection": true, "naturalNewCardMechanismsVerified": false, "passed": true, "roomId": "673ba1befc08b0113d8e7374", "terminalVersion": 9, "uiCommands": 8, "browserStopped": true}

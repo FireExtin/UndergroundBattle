@@ -1,0 +1,61 @@
+{
+  "actuallyViewedByRoot": "JZ48 original, mutual-support desktop, after-destroy desktop/mobile reader/original and engine43 victory desktop; independent reviewers also inspected root JZ48 images",
+  "screenshots": [
+    {
+      "scope": "JZ48 focused natural UI",
+      "name": "jz48-natural-original.png",
+      "bytes": 708097,
+      "sha256": "41ceadad8488f4b6c28fd2a7ec3a039a2db0b6d18e86649e58dc2e0661a8f625",
+      "artifactLocation": "Local execution evidence only; screenshot pixels and private runtime records not added to repo"
+    },
+    {
+      "scope": "JZ48 focused natural UI",
+      "name": "jz48-lone-desktop.png",
+      "bytes": 1232668,
+      "sha256": "a9f8786e1d8ea3de73ef359413e43924c0f75a423f0fb057eef317bdd7e9097e",
+      "artifactLocation": "Local execution evidence only; screenshot pixels and private runtime records not added to repo"
+    },
+    {
+      "scope": "JZ48 focused natural UI",
+      "name": "jz48-mutual-support-desktop.png",
+      "bytes": 1220850,
+      "sha256": "4b24205f83f05ae61c06f689e44a643a115104838e99a19e033666852262c024",
+      "artifactLocation": "Local execution evidence only; screenshot pixels and private runtime records not added to repo"
+    },
+    {
+      "scope": "JZ48 focused natural UI",
+      "name": "jz48-after-destroy-desktop.png",
+      "bytes": 1234477,
+      "sha256": "d16ec1b54c501841d36001e13b420327d64b75a5f059f4b60f4501acff58e30c",
+      "artifactLocation": "Local execution evidence only; screenshot pixels and private runtime records not added to repo"
+    },
+    {
+      "scope": "JZ48 focused natural UI",
+      "name": "jz48-after-destroy-mobile-reader.png",
+      "bytes": 320805,
+      "sha256": "ebabb24dfe129e4a287cf5c2a4712a7b5798ac739d19eb6f6f8d5d1372280313",
+      "artifactLocation": "Local execution evidence only; screenshot pixels and private runtime records not added to repo"
+    },
+    {
+      "scope": "JZ48 focused natural UI",
+      "name": "jz48-after-destroy-mobile-original.png",
+      "bytes": 489895,
+      "sha256": "6a74269293a2a8588eab63da32bafdab32ec3c4d6e0f517aeda3d6def8b415e8",
+      "artifactLocation": "Local execution evidence only; screenshot pixels and private runtime records not added to repo"
+    },
+    {
+      "scope": "engine43 four-seat terminal UI",
+      "name": "real-victory-desktop.png",
+      "bytes": 1257943,
+      "sha256": "7e81587d15c1769fac0d17a1bde8ed96b18f7af9fac994bee1d140eb01f7ea82",
+      "artifactLocation": "Local execution evidence only; screenshot pixels and private runtime records not added to repo"
+    },
+    {
+      "scope": "engine43 four-seat terminal UI",
+      "name": "real-victory-mobile.png",
+      "bytes": 677653,
+      "sha256": "0594a3ef3c3bab436e0a623ec795359dcc376eee6069dcd2ae157ec905471fe9",
+      "artifactLocation": "Local execution evidence only; screenshot pixels and private runtime records not added to repo"
+    }
+  ]
+}

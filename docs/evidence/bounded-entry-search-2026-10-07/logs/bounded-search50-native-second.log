@@ -1,0 +1,123 @@
+   Compiling hegemony-server v0.1.0 (/tmp/undergroundbattle-shared-cloud/rust-game)
+error[E0609]: no field `rng_state` on type `model::Game`
+  --> rust-game/src/bounded_search_tests.rs:61:26
+   |
+61 |         let before_rng=g.rng_state; let before_deck=g.players[0].deck.clone();
+   |                          ^^^^^^^^^ unknown field
+   |
+   = note: available fields are: `state_schema`, `room_id`, `invite_code`, `mode`, `version` ... and 29 others
+
+error[E0609]: no field `rng_state` on type `model::Game`
+  --> rust-game/src/bounded_search_tests.rs:63:65
+   |
+63 |             assert_eq!(g.players[0].deck.len(),3); assert_ne!(g.rng_state,before_rng);
+   |                                                                 ^^^^^^^^^ unknown field
+   |
+   = note: available fields are: `state_schema`, `room_id`, `invite_code`, `mode`, `version` ... and 29 others
+
+error[E0609]: no field `rng_state` on type `model::Game`
+  --> rust-game/src/bounded_search_tests.rs:64:54
+   |
+64 | ...   } else { choose(&mut g,vec![]); assert_eq!(g.rng_state,before_rng); assert_eq!(serde_json::to_value(&g.players[0].deck).unwrap(),se...
+   |                                                    ^^^^^^^^^ unknown field
+   |
+   = note: available fields are: `state_schema`, `room_id`, `invite_code`, `mode`, `version` ... and 29 others
+
+error[E0609]: no field `rng_state` on type `model::Game`
+  --> rust-game/src/bounded_search_tests.rs:75:22
+   |
+75 |         let before=g.rng_state; choose(&mut g,if take {vec![ids[0].clone()]}else{vec![]});
+   |                      ^^^^^^^^^ unknown field
+   |
+   = note: available fields are: `state_schema`, `room_id`, `invite_code`, `mode`, `version` ... and 29 others
+
+error[E0609]: no field `rng_state` on type `model::Game`
+  --> rust-game/src/bounded_search_tests.rs:76:69
+   |
+76 |         assert!(g.pending.is_none()); if defs.len()>1 {assert_ne!(g.rng_state,before);}
+   |                                                                     ^^^^^^^^^ unknown field
+   |
+   = note: available fields are: `state_schema`, `room_id`, `invite_code`, `mode`, `version` ... and 29 others
+
+error[E0308]: mismatched types
+  --> rust-game/src/bounded_search_tests.rs:95:55
+   |
+95 |             if viewer==actor {assert_eq!(card.card_id,"XQ36");}else{assert!(card.card_id.is_empty());}}
+   |                                                       ^^^^^^ expected `Option<String>`, found `&str`
+   |
+   = note:   expected enum `std::option::Option<std::string::String>`
+           found reference `&str`
+
+error[E0599]: no method named `is_empty` found for enum `std::option::Option` in the current scope
+  --> rust-game/src/bounded_search_tests.rs:95:90
+   |
+95 |             if viewer==actor {assert_eq!(card.card_id,"XQ36");}else{assert!(card.card_id.is_empty());}}
+   |                                                                                          ^^^^^^^^ method not found in `std::option::Option<std::string::String>`
+   |
+note: the method `is_empty` exists on the type `std::string::String`
+  --> /rustc/1159e78c4747b02ef996e55082b704c09b970588/library/alloc/src/string.rs:1874:5
+help: consider using `Option::expect` to unwrap the `std::string::String` value, panicking if the value is an `Option::None`
+   |
+95 |             if viewer==actor {assert_eq!(card.card_id,"XQ36");}else{assert!(card.card_id.expect("REASON").is_empty());}}
+   |                                                                                         +++++++++++++++++
+
+error[E0609]: no field `rng_state` on type `model::Game`
+   --> rust-game/src/bounded_search_tests.rs:116:59
+    |
+116 |         choose(&mut g,ids[..count].to_vec());assert_eq!(g.rng_state,expected.rng_state);
+    |                                                           ^^^^^^^^^ unknown field
+    |
+    = note: available fields are: `state_schema`, `room_id`, `invite_code`, `mode`, `version` ... and 29 others
+
+error[E0609]: no field `rng_state` on type `model::Game`
+   --> rust-game/src/bounded_search_tests.rs:116:78
+    |
+116 |         choose(&mut g,ids[..count].to_vec());assert_eq!(g.rng_state,expected.rng_state);
+    |                                                                              ^^^^^^^^^ unknown field
+    |
+    = note: available fields are: `state_schema`, `room_id`, `invite_code`, `mode`, `version` ... and 29 others
+
+error[E0609]: no field `rng_state` on type `model::Game`
+   --> rust-game/src/bounded_search_tests.rs:127:119
+    |
+127 | ...d.shuffle_player(0);choose(&mut g,vec![]);assert_eq!(g.rng_state,expected.rng_state);assert!(g.pending.is_none());
+    |                                                           ^^^^^^^^^ unknown field
+    |
+    = note: available fields are: `state_schema`, `room_id`, `invite_code`, `mode`, `version` ... and 29 others
+
+error[E0609]: no field `rng_state` on type `model::Game`
+   --> rust-game/src/bounded_search_tests.rs:127:138
+    |
+127 | ...;choose(&mut g,vec![]);assert_eq!(g.rng_state,expected.rng_state);assert!(g.pending.is_none());
+    |                                                           ^^^^^^^^^ unknown field
+    |
+    = note: available fields are: `state_schema`, `room_id`, `invite_code`, `mode`, `version` ... and 29 others
+
+error[E0609]: no field `rng_state` on type `model::Game`
+   --> rust-game/src/bounded_search_tests.rs:160:51
+    |
+160 | ...   assert!(g.pending.is_none());assert_eq!(g.rng_state,expected.rng_state);assert_eq!(g.regions[2].cards.len(),1);assert_eq!(g.players...
+    |                                                 ^^^^^^^^^ unknown field
+    |
+    = note: available fields are: `state_schema`, `room_id`, `invite_code`, `mode`, `version` ... and 29 others
+
+error[E0609]: no field `rng_state` on type `model::Game`
+   --> rust-game/src/bounded_search_tests.rs:160:70
+    |
+160 | ...   assert!(g.pending.is_none());assert_eq!(g.rng_state,expected.rng_state);assert_eq!(g.regions[2].cards.len(),1);assert_eq!(g.players...
+    |                                                                    ^^^^^^^^^ unknown field
+    |
+    = note: available fields are: `state_schema`, `room_id`, `invite_code`, `mode`, `version` ... and 29 others
+
+rustc-LLVM ERROR: IO failure on output stream: No space left on device
+error: could not compile `hegemony-server` (lib)
+
+Caused by:
+  No space left on device (os error 28)
+
+Caused by:
+  failed to parse process output: `/workspace/jz31-tools/rustup/toolchains/1.90.0-x86_64-unknown-linux-gnu/bin/rustc --crate-name hegemony_server --edition=2021 rust-game/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no -C debuginfo=2 --cfg 'feature="default"' --cfg 'feature="native"' --check-cfg 'cfg(docsrs,test)' --check-cfg 'cfg(feature, values("default", "native", "society-fixtures"))' -C metadata=73fad878cef00ba6 -C extra-filename=-d7924ecba59d7cb1 --out-dir /tmp/jz49-native-target/debug/deps -C incremental=/tmp/jz49-native-target/debug/incremental -L dependency=/tmp/jz49-native-target/debug/deps --extern async_stream=/tmp/jz49-native-target/debug/deps/libasync_stream-2af31e12f226b52b.rmeta --extern axum=/tmp/jz49-native-target/debug/deps/libaxum-b7c4729126aef84d.rmeta --extern getrandom=/tmp/jz49-native-target/debug/deps/libgetrandom-4406c4f01ae9af41.rmeta --extern rusqlite=/tmp/jz49-native-target/debug/deps/librusqlite-ce0171505eedf843.rmeta --extern serde=/tmp/jz49-native-target/debug/deps/libserde-80a64a696d07eb54.rmeta --extern serde_json=/tmp/jz49-native-target/debug/deps/libserde_json-7419ff84deaa23d3.rmeta --extern sha2=/tmp/jz49-native-target/debug/deps/libsha2-39acc3f2571841df.rmeta --extern tokio=/tmp/jz49-native-target/debug/deps/libtokio-f572c9f773c655d9.rmeta --extern tower_http=/tmp/jz49-native-target/debug/deps/libtower_http-7cbd42810a988f4c.rmeta --extern tracing=/tmp/jz49-native-target/debug/deps/libtracing-c7e6bb466ab95b6c.rmeta --extern tracing_subscriber=/tmp/jz49-native-target/debug/deps/libtracing_subscriber-1e12dfb34b51c9d9.rmeta -L native=/tmp/jz49-native-target/debug/build/libsqlite3-sys-c3f9478665ec439b/out` (exit status: 101)
+warning: build failed, waiting for other jobs to finish...
+Some errors have detailed explanations: E0308, E0599, E0609.
+For more information about an error, try `rustc --explain E0308`.
+error: could not compile `hegemony-server` (lib test) due to 13 previous errors

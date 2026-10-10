@@ -1,0 +1,76 @@
+    Finished `test` profile [unoptimized] target(s) in 0.05s
+     Running tests/attachment_service.rs (/tmp/jz49-native-target/debug/deps/attachment_service-a1f23fe36078c626)
+
+running 3 tests
+test attachment_paid_stack_and_owner_recycle_restore_with_original_receipt_and_replay ... ok
+test grave_play_sqlite_preserves_paid_origin_and_full_intent_receipt_across_reopen ... ok
+test actual_hong_kong_attachment_commitments_are_private_and_resume_once_from_sqlite ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.11s
+
+     Running tests/deck_construction.rs (/tmp/jz49-native-target/debug/deps/deck_construction-18601b40d4fb0fe9)
+
+running 5 tests
+test minimum_unlimited_multifaction_and_canonical_duplicate_entries ... ok
+test printed_name_groups_versions_and_unique_is_distinct_from_in_play_unique ... ok
+test malformed_disabled_overflow_versions_and_society_are_rejected ... ok
+test frozen_snapshot_private_views_lobby_changes_and_started_rejections ... ok
+test custom_deck_join_change_receipt_reopen_and_replay_keep_frozen_private_specs ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+
+     Running tests/jc059_friendly.rs (/tmp/jz49-native-target/debug/deps/jc059_friendly-cd6d5107b9cb2d84)
+
+running 2 tests
+test friendly_defense_includes_teammate_but_not_enemy_other_region_hidden_or_source ... ok
+test public_region_totals_include_team_temporary_hidden_ready_and_static_icons_without_identity ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+     Running tests/room_pacing.rs (/tmp/jz49-native-target/debug/deps/room_pacing-688ee2cd99672c6e)
+
+running 12 tests
+test empty_stack_poll_has_no_revision_or_automatic_phase_advance_and_schema2_is_rejected ... ok
+test invalid_pause_records_resume_overflow_and_stale_management_reject_without_mutation ... ok
+test deadline_4999_accepts_begin_5000_expires_and_new_window_gets_fresh_time ... ok
+test one_teammate_times_out_while_the_other_composes_without_global_pass_or_private_leak ... ok
+test pause_after_deadline_commits_due_tick_before_rejecting_stale_pause ... ok
+test pause_keeps_private_pending_choice_and_no_window_resume_has_no_automatic_gameplay ... ok
+test pause_blocks_every_ordinary_protocol_command_and_quote_atomically ... ok
+test repeated_begin_keeps_epoch_and_composing_without_timeout_cancel_is_a_real_pass ... ok
+test direct_paid_response_is_blocked_invalid_submit_does_not_pay_or_reset_and_pending_choice_has_no_clock ... ok
+test teammates_begin_independently_but_formal_submit_changes_epoch_and_requires_requote ... ok
+test paused_room_freezes_paid_stack_and_remaining_clock_across_days_then_resumes ... ok
+test pause_native_full_transition_trace_for_actual_wasm_parity ... ok
+
+test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.13s
+
+     Running tests/service.rs (/tmp/jz49-native-target/debug/deps/service-0eda0c8b816d5e6b)
+
+running 10 tests
+test authenticated_sse_projects_actor_view_and_updates_after_commit ... ok
+test command_id_reuse_requires_same_complete_typed_intent_before_and_after_reopen ... ok
+test dedupe_conflicts_rejections_auth_and_replay_are_strict ... ok
+test failed_transaction_does_not_ack_or_mutate_state ... ok
+test legacy_state_is_rejected_explicitly_without_silent_migration ... ok
+test room_catalog_requires_a_token_for_that_room_and_returns_current_pool ... ok
+test read_only_audit_cli_matches_seed_journal_and_detects_corruption ... ok
+test sqlite_reopen_restores_identity_pending_choice_and_dedupe ... ok
+test paid_sacrifice_death_trigger_and_accepted_frame_restore_without_repayment ... ok
+test detective_reveal_choice_and_bound_frame_restore_without_repayment_or_private_leaks ... ok
+
+test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.08s
+
+     Running tests/session_service.rs (/tmp/jz49-native-target/debug/deps/session_service-774bc1d15f630f8f)
+
+running 8 tests
+test concurrent_join_cas_assigns_distinct_seats_and_replay_contains_both ... ok
+test failed_pacing_transaction_preserves_deadline_and_has_no_receipt_or_ack ... ok
+test expired_rejected_begin_commits_only_system_journal_and_poll_stops_at_empty_stack ... ok
+test begin_and_timeout_race_has_one_committed_order_and_replays ... ok
+test failed_pause_transaction_cannot_report_saved_or_leave_partial_pause_receipt ... ok
+test paid_response_reopen_quote_receipts_and_target_failure_keep_atomic_costs ... ok
+test paused_table_survives_store_restart_receipt_retries_and_other_table_progress ... ok
+test teammate_begins_from_one_revision_both_commit_without_rebasing_paid_actions ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.11s

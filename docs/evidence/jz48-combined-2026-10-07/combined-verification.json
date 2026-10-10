@@ -1,0 +1,33 @@
+{
+  "productCommit": "c98bf422795c48d5842011dd5b65a97e647d3f14",
+  "baseCommit": "2305aa17c53e73dd3683ae9fe1e654531777f16e",
+  "mechanismOriginalCommit": "02a69dc47142c4b48800f25af38ba3dae2b8e532",
+  "cardFaceOriginalCommit": "65ad3b97ec3bc7d3e6f567ad40dfda05d02cb190",
+  "trees": {
+    "rust-game": "b4f921ae4b1e1cb45266f5072667c532343cd001",
+    "rust-game-wasm": "9cdff1379436567e1bae70d8c73f832f81a88793",
+    "rust-game-wasm/src": "188680abc5cd379e03ee2bd8ba85c22662b49335",
+    "sites": "54993f3790128a5952d1d38b2fdc7e73e6f766d3",
+    "web": "cf67a80cdb3d980ff35fafda1fa4c5fb6c83bffb"
+  },
+  "combinedProductSourcePreservation": true,
+  "nativeEvidenceReuse": "Exact Rust tree equals reviewed mechanism. Reuse final545 implementation checks and independent19; no new Rust change.",
+  "web": {
+    "passed": 557,
+    "failed": 0
+  },
+  "worker": {
+    "passed": 25,
+    "failed": 0
+  },
+  "typeScriptViteWorkerBuild": "passed",
+  "singleCurrentWorkerWasm": {
+    "bytes": 2191175,
+    "sha256": "6cf6dca6a06844c84e38fbed2a084145bc0e63ae3897de18b864814c314d11f9"
+  },
+  "old109ArtworkByteExact": true,
+  "cardFaceCount": 111,
+  "currentSite": 35,
+  "publication": "not attempted",
+  "mainMerge": "not attempted"
+}

@@ -1,0 +1,38 @@
+{
+  "traceArchive": "/workspace/game-publication-evidence/jz50-native48-final-prepublication-cache.tar.gz",
+  "archiveSha256": "fead8fef017932612f5643746c68cbd1c69a17d746d54eca83526dca26f7b0af",
+  "byteVerifiedFiles": 683,
+  "removedExpandedBytes": 40473967,
+  "obsoleteCache": [
+    {
+      "path": "/tmp/jz49-native-target/debug/deps/hegemony_audit-2e5a50e264bad430",
+      "bytes": 11516128,
+      "sha256": "9e6ab7a9b1976af3958e8168da3d8175a28ffef295883a977a574ace898f8378",
+      "reason": "unrunning old rebuildable audit executable; dependency/source files and current executable retained"
+    },
+    {
+      "path": "/tmp/jz49-native-target/debug/deps/hegemony_audit-34826e9bcd86cfb9",
+      "bytes": 11308104,
+      "sha256": "4092c3da5054f4c08956826564327ef5f73d077fd8365ecc1437d077ed908673",
+      "reason": "unrunning old rebuildable audit executable; dependency/source files and current executable retained"
+    },
+    {
+      "path": "/tmp/jz49-native-target/debug/deps/hegemony_audit-e6349aefbd38a097",
+      "bytes": 11325432,
+      "sha256": "f77a6eb184af636a410c0a0fbdfdf85af8422914e57d672e42708f69d79f470a",
+      "reason": "unrunning old rebuildable audit executable; dependency/source files and current executable retained"
+    },
+    {
+      "path": "/tmp/jz49-native-target/debug/examples/semantic_scope_audit-5e5fc76436981619",
+      "bytes": 3076360,
+      "sha256": "e73820e9685063746501b1b827334b713e1426b62c97e1c61a3d6f43b4df707a",
+      "reason": "unrunning old rebuildable audit executable; dependency/source files and current executable retained"
+    },
+    {
+      "path": "/tmp/jz49-native-target/debug/examples/semantic_scope_audit-fd8be706cb0c5fc9",
+      "bytes": 3088704,
+      "sha256": "0def06f4f58352ec27e80e7216b347ad2be3437f186a036801906d448fd7e60c",
+      "reason": "unrunning old rebuildable audit executable; dependency/source files and current executable retained"
+    }
+  ]
+}

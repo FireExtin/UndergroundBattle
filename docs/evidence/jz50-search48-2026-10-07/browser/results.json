@@ -1,0 +1,18 @@
+{
+  "scope": "local-real-React-readonly-actual-Native48-JZ50-desktop-projections",
+  "productionWrites": false,
+  "APIWrites": [],
+  "errors": [],
+  "checks": [
+    "controller-private-actual-candidates-allow-zero-completion-without-second-decline",
+    "desktop-refresh-retains-original-seat-and-identical-private-choice",
+    "actual-empty-library-hit-view-still-offers-private-zero-and-shuffle-confirmation",
+    "actual-completed-Native-owner-graveyard-projection-closes-private-modal-and-survives-refresh"
+  ],
+  "passed": true,
+  "screenshots": {
+    "desktop-completed-owner-graveyard-refresh.png": "b5e919c2647bc7f243d27d7032668e401fa0b58c89cd228e74a744617740bf9e",
+    "desktop-empty-private-confirmation.png": "db038d9ad39decefabb049117c40ab93a707a4bdd12fc17af9ead5eab0ba0baa",
+    "desktop-private-zero-with-candidates.png": "ce3db7056216d19ef3f365fc1313c387966454930fa1e3dfe13a04be4f8940c9"
+  }
+}

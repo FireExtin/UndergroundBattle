@@ -26,10 +26,15 @@ pub enum Event {
     EnterRegion,
     Reveal,
     Death,
+    CharacterDeathObserved,
     ReceiveWound,
     ConfrontationStart,
     RegionWon,
     RegionConfrontationsEnded,
+    // Finite JC018 print / JC089-granted 威名 after won combat, separate from 声望.
+    CombatWon,
+    // XQ41's explicit self trigger is captured before sealing blanks its face.
+    Sealed,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Cost {
@@ -77,6 +82,9 @@ pub enum AttachmentHostCondition {
 pub enum TargetPredicate {
     JC015NonHumanPrintedCostAtLeastThree,
     JZ55UniqueCharacter,
+    JC069LockedAnchor,
+    XQ18CharacterOrAttachment,
+    JZ45LockedLocalTarget,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct TargetSlotSpec {
@@ -206,11 +214,38 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    XQ18AddOneTimeToTarget,
+    XQ18ChooseTimeCarrier,
+    JZ30AddOneTimeToOriginalSource,
+    JZ30ForecastFrozenTime,
+    BQ028InspectTargetHandAttachments,
+    BQ078ReturnNamelessCorpse,
+    JZ45LockLocalTarget,
+    // JC050 only: destroy the board cards in the region chosen at resolution.
+    JC050DestroyChosenRegionCharacters,
+    // XQ27 only: a single simultaneous wave across all current regions.
+    XQ27DestroyAllHidden,
+    JC045AddOneTimeToOriginalSource,
+    JC031DiscardForObservedDeath,
+    JC090PlaceOneInfluenceInOriginalAttachedRegion,
+    XQ44SearchDreamSealOnTarget,
+    JZ02SearchSpaceSpellSealOnSource,
+    // Fixed JZ50 only: actor-private 0..1 Death character to owner graveyard, then shuffle.
+    JZ50SearchDeathToGraveyard,
+    BQ104SearchEmployeeHiddenInSourceRegion,
+    XQ48SearchPassersIntoSourceRegion,
+    // Closed XQ40 / XQ45 programs; both use their single declared character.
+    SealOneActorHandCardOnTarget,
+    DestroyTargetIfSealed,
     // JZ31 only: one influence in the frozen source region, without parameters.
     PlaceOneInfluenceInSourceRegion,
     // Two closed blue programs, with no configurable search/loop interpreter.
     JC032TopSixVampireHidden,
     JZ24LocalSacrificeSnapshot,
+    // JZ22 only: test living enemy hand counts at resolution, then place one.
+    JZ22LowHandInfluenceInSourceRegion,
+    // XQ37 only: qualified entry, then current influence in the same source's region.
+    XQ37EntryInfluenceIfPresent,
     // Finite MSJC11 programs; no generic keyword or quantity interpreter.
     GrantTargetKillUntilTurnEnd {
         slot: usize,
@@ -257,6 +292,10 @@ pub enum Op {
         slot: usize,
         amount: u32,
     },
+    // Exact printed gray lock pair, with no generic marker/binding language.
+    JC069LockTarget,
+    JC069ChaseLockedTarget,
+    JZ43LockOrDamageLocalTarget,
     PreventTargetDamageUntilTurnEnd {
         slot: usize,
     },
@@ -404,9 +443,14 @@ pub struct Traits {
     pub unlimited_copies: bool,
     #[serde(default)]
     pub cannot_be_equipped: bool,
+    #[serde(default, skip_serializing_if = "crate::model::is_false")]
+    pub city_play_only: bool,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum StaticModifier {
+    JC045TimeInfluence,
+    JC089HostDefenseMinusOneAndGlory,
+    JZ48OtherControlledCriminalInfluenceAndDefense,
     JC030BloodAssetsVampireAndInvestigation,
     LC30WeaponsCombatAndDefense,
     JC018MindAssetsCombat,
@@ -458,6 +502,147 @@ pub struct Definition {
 // These are interpreter limits, not rules for resolving partially invalid targets.
 // Reject unsupported declarations before publishing actions or offering trigger choices.
 pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(), String> {
+    crate::red_time::validate_ability(card_id, ability)?;
+    crate::blue_expansion::validate_ability(card_id, ability)?;
+    crate::black_expansion::validate_ability(card_id, ability)?;
+    crate::gray_expansion::validate_ability(card_id, ability)?;
+    if card_id == "XQ27" || ability.key == "hidden-sweep"
+        || crate::xq27::contains_xq27_op(&ability.ops)
+        || ability.modes.iter().any(|m| crate::xq27::contains_xq27_op(&m.ops)) {
+        if card_id != "XQ27" || serde_json::to_value(ability).unwrap()
+            != serde_json::to_value(&xq27_definition().abilities[0]).unwrap() {
+            return Err(format!("{card_id}: only the complete printed XQ27 transaction is admitted"));
+        }
+    }
+    if card_id == "JC050" || ability.key == "region-destruction"
+        || crate::jc050::contains_jc050_op(&ability.ops)
+        || ability.modes.iter().any(|m| crate::jc050::contains_jc050_op(&m.ops)) {
+        if card_id != "JC050" || serde_json::to_value(ability).unwrap()
+            != serde_json::to_value(&jc050_definition().abilities[0]).unwrap() {
+            return Err(format!("{card_id}: only the complete printed JC050 transaction is admitted"));
+        }
+    }
+    if card_id == "XQ37" || ability.key == "entry-existing-influence"
+        || crate::xq37::contains_xq37_op(&ability.ops)
+        || ability.modes.iter().any(|m| crate::xq37::contains_xq37_op(&m.ops)) {
+        if card_id != "XQ37" || serde_json::to_value(ability).unwrap()
+            != serde_json::to_value(&xq37_definition().abilities[0]).unwrap()
+            && !crate::jz22::runtime_ability_is_admitted(ability) {
+            return Err(format!("{card_id}: only the complete printed XQ37 entry ability is admitted"));
+        }
+    }
+    if card_id == "JZ22" || ability.key == "entry-low-hand-influence"
+        || crate::jz22::contains_jz22_op(&ability.ops)
+        || ability.modes.iter().any(|m| crate::jz22::contains_jz22_op(&m.ops)) {
+        if card_id != "JZ22" || serde_json::to_value(ability).unwrap()
+            != serde_json::to_value(&jz22_definition().abilities[0]).unwrap()
+            && !crate::jz22::runtime_ability_is_admitted(ability) {
+            return Err(format!("{card_id}: only the complete printed JZ22 entry ability is admitted"));
+        }
+    }
+    if ability.event == Some(Event::CharacterDeathObserved)
+        || ability.key.starts_with("death-observer-")
+        || death_observer_ops(&ability.ops)
+        || ability.modes.iter().any(|m| death_observer_ops(&m.ops))
+    {
+        let expected = death_observer_definition(card_id)
+            .and_then(|d| d.abilities.into_iter().find(|a| a.event == Some(Event::CharacterDeathObserved)))
+            .ok_or_else(|| format!("{card_id}: death observer cannot be transplanted"))?;
+        if serde_json::to_value(ability).unwrap() != serde_json::to_value(expected).unwrap() {
+            return Err(format!("{card_id}: only the complete printed death observer is admitted"));
+        }
+    }
+
+    fn uses_gray_lock(ops: &[Op]) -> bool {
+        ops.iter().any(|op| match op {
+            Op::JC069LockTarget | Op::JC069ChaseLockedTarget | Op::JZ43LockOrDamageLocalTarget => true,
+            Op::ForEachLivingPlayer(body) | Op::ForEachLivingPlayerFromActor(body) => uses_gray_lock(body),
+            Op::IfTargetExhausted { exhausted, ready, .. } => uses_gray_lock(std::slice::from_ref(exhausted)) || uses_gray_lock(std::slice::from_ref(ready)),
+            _ => false,
+        })
+    }
+    let gray_predicate = ability.targets.iter().chain(ability.modes.iter().flat_map(|m| &m.targets))
+        .any(|slot| slot.predicate == Some(TargetPredicate::JC069LockedAnchor));
+    if (gray_lock_definition(card_id).is_some() && ability.key != "renown")
+        || gray_predicate || uses_gray_lock(&ability.ops) || ability.modes.iter().any(|m| uses_gray_lock(&m.ops))
+    {
+        if gray_lock_definition(card_id).is_none_or(|d| !d.abilities.iter().any(|canonical|
+            serde_json::to_value(ability).unwrap() == serde_json::to_value(canonical).unwrap())) {
+            return Err(format!("{card_id}: only the complete printed gray lock ability is admitted"));
+        }
+    }
+    fn uses_deck_seal(ops: &[Op]) -> bool {
+        ops.iter().any(|op| match op {
+            Op::XQ44SearchDreamSealOnTarget | Op::JZ02SearchSpaceSpellSealOnSource => true,
+            Op::ForEachLivingPlayer(body) | Op::ForEachLivingPlayerFromActor(body) => uses_deck_seal(body),
+            Op::IfTargetExhausted { exhausted, ready, .. } => uses_deck_seal(std::slice::from_ref(exhausted)) || uses_deck_seal(std::slice::from_ref(ready)),
+            _ => false,
+        })
+    }
+    if deck_seal_search_definition(card_id).is_some() || uses_deck_seal(&ability.ops)
+        || ability.modes.iter().any(|m| uses_deck_seal(&m.ops)) {
+        if deck_seal_search_definition(card_id).is_none_or(|d|
+            serde_json::to_value(ability).unwrap() != serde_json::to_value(&d.abilities[0]).unwrap()) {
+            return Err(format!("{card_id}: only the complete XQ44/JZ02 deck sealing search is admitted"));
+        }
+    }
+    fn uses_entry_search(ops: &[Op]) -> bool {
+        ops.iter().any(|op| match op {
+            Op::BQ104SearchEmployeeHiddenInSourceRegion | Op::XQ48SearchPassersIntoSourceRegion => true,
+            Op::ForEachLivingPlayer(body) | Op::ForEachLivingPlayerFromActor(body) => uses_entry_search(body),
+            Op::IfTargetExhausted { exhausted, ready, .. } => uses_entry_search(std::slice::from_ref(exhausted)) || uses_entry_search(std::slice::from_ref(ready)),
+            _ => false,
+        })
+    }
+    if (matches!(card_id, "BQ104" | "XQ48") && ability.key != "renown") || uses_entry_search(&ability.ops)
+        || ability.modes.iter().any(|m| uses_entry_search(&m.ops)) {
+        let canonical = entry_search_definition(card_id).ok_or_else(|| format!("{card_id}: entry search cannot be transplanted"))?;
+        if serde_json::to_value(ability).unwrap() != serde_json::to_value(&canonical.abilities[0]).unwrap() {
+            return Err(format!("{card_id}: only the complete printed entry search is admitted"));
+        }
+    }
+    fn uses_jz50_search(ops: &[Op]) -> bool {
+        ops.iter().any(|op| match op {
+            Op::JZ50SearchDeathToGraveyard => true,
+            Op::ForEachLivingPlayer(body) | Op::ForEachLivingPlayerFromActor(body) => uses_jz50_search(body),
+            Op::IfTargetExhausted { exhausted, ready, .. } =>
+                uses_jz50_search(std::slice::from_ref(exhausted)) || uses_jz50_search(std::slice::from_ref(ready)),
+            _ => false,
+        })
+    }
+    if (card_id == "JZ50" || uses_jz50_search(&ability.ops)
+        || ability.modes.iter().any(|m| uses_jz50_search(&m.ops)))
+        && (card_id != "JZ50" || serde_json::to_value(ability).unwrap()
+            != serde_json::to_value(&jz50_definition().abilities[0]).unwrap()) {
+        return Err(format!("{card_id}: only the complete JZ50 reveal search is admitted"));
+    }
+    fn uses_sealing(ops: &[Op]) -> bool {
+        ops.iter().any(|op| match op {
+            Op::SealOneActorHandCardOnTarget | Op::DestroyTargetIfSealed => true,
+            Op::ForEachLivingPlayer(body) | Op::ForEachLivingPlayerFromActor(body) => uses_sealing(body),
+            Op::IfTargetExhausted { exhausted, ready, .. } =>
+                uses_sealing(std::slice::from_ref(exhausted)) || uses_sealing(std::slice::from_ref(ready)),
+            _ => false,
+        })
+    }
+    if sealing_definition(card_id).is_some() || ability.event == Some(Event::Sealed)
+        || uses_sealing(&ability.ops) || ability.modes.iter().any(|m| uses_sealing(&m.ops)) {
+        if sealing_definition(card_id).is_none_or(|d|
+            serde_json::to_value(ability).unwrap() != serde_json::to_value(&d.abilities[0]).unwrap()) {
+            return Err(format!("{card_id}: only the complete admitted sealing ability is supported"));
+        }
+    }
+    if ability.event == Some(Event::CombatWon) || ability.key == "jc089-combat-glory" {
+        let region = match ability.ops.as_slice() {
+            [Op::PlaceInfluence { region_instance, amount: 1 }] if !region_instance.is_empty() => region_instance,
+            _ => return Err(format!("{card_id}: malformed finite JC089 combat reward")),
+        };
+        if serde_json::to_value(ability).unwrap()
+            != serde_json::to_value(jc089_combat_glory_ability(region)).unwrap()
+        {
+            return Err(format!("{card_id}: only the complete runtime JC089 combat reward is admitted"));
+        }
+    }
     let two_card_mill = ability.ops.iter().chain(ability.modes.iter().flat_map(|m| &m.ops))
         .any(|op| matches!(op, Op::MoveDeckTopToGraveyard { count: 2, .. }));
     if (card_id == "JZ49" || ability.key == "mill-two-entry" || two_card_mill)
@@ -509,15 +694,16 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
         .iter()
         .chain(ability.modes.iter().flat_map(|m| &m.targets))
         .any(|t| t.predicate.is_some());
-    if finite_predicate || matches!(card_id, "JC015" | "JZ55") {
+    if (finite_predicate && !matches!(card_id, "XQ18" | "JZ45")) || matches!(card_id, "JC015" | "JZ55") {
         let admitted = match card_id {
             "JC015" => Some(jc015_definition()),
             "JZ55" => Some(jz55_definition()),
+            "JC069" => gray_lock_definition("JC069"),
             _ => None,
         };
-        if admitted.is_none_or(|d| serde_json::to_value(ability).unwrap()
-            != serde_json::to_value(&d.abilities[0]).unwrap()) {
-            return Err(format!("{card_id}: only the complete JC015 or JZ55 target predicate ability is supported"));
+        if admitted.is_none_or(|d| !d.abilities.iter().any(|canonical|
+            serde_json::to_value(ability).unwrap() == serde_json::to_value(canonical).unwrap())) {
+            return Err(format!("{card_id}: only the complete JC015, JZ55 or JC069 target predicate ability is supported"));
         }
     }
     let execution_op = |op: &Op| {
@@ -797,9 +983,15 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
         ));
     }
     if let Some(limit) = ability.per_turn_limit {
+        let is_admitted_jc031_trigger = card_id == "JC031" && limit == 1
+            && serde_json::to_value(ability).unwrap() == serde_json::to_value(
+                &death_observer_definition("JC031").unwrap().abilities[0]).unwrap();
         let is_admitted_jc032_action = card_id == "JC032"
             && serde_json::to_value(ability).unwrap()
                 == serde_json::to_value(&jc032_definition().abilities[0]).unwrap();
+        let is_admitted_jc069_action = card_id == "JC069"
+            && serde_json::to_value(ability).unwrap()
+                == serde_json::to_value(&gray_lock_definition("JC069").unwrap().abilities[1]).unwrap();
         let is_admitted_host_grant = limit == 2
             && ability.activation_only
             && ability.event.is_none()
@@ -812,9 +1004,9 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
                 [Op::ModifyAttachmentHostUntilTurnEnd]
             )
             && ability.modes.is_empty();
-        if !is_admitted_jc032_action && !is_admitted_host_grant {
+        if !is_admitted_jc032_action && !is_admitted_jc069_action && !is_admitted_host_grant && !is_admitted_jc031_trigger {
             return Err(format!(
-                "{card_id}: only the admitted host grant or JC032 once-per-turn action is supported"
+                "{card_id}: only the admitted host grant, JC032/JC069 action or JC031 trigger limit is supported"
             ));
         }
     }
@@ -1029,6 +1221,67 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
 
 pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -> Result<(), String> {
     for (card_id, definition) in definitions {
+        crate::red_time::validate_definition(card_id, definition)?;
+        crate::blue_expansion::validate_definition(card_id, definition)?;
+        crate::black_expansion::validate_definition(card_id, definition)?;
+        crate::gray_expansion::validate_definition(card_id, definition)?;
+        if card_id == "XQ27" && serde_json::to_value(definition).unwrap()
+            != serde_json::to_value(xq27_definition()).unwrap() {
+            return Err("XQ27: only the complete printed definition is admitted".into());
+        }
+        if card_id == "JC050" && serde_json::to_value(definition).unwrap()
+            != serde_json::to_value(jc050_definition()).unwrap() {
+            return Err("JC050: only the complete printed definition is admitted".into());
+        }
+        if let Some(expected) = death_observer_definition(card_id) {
+            if serde_json::to_value(definition).unwrap() != serde_json::to_value(expected).unwrap() {
+                return Err(format!("{card_id}: only the complete death observer definition is admitted"));
+            }
+        } else if definition.modifiers.iter().any(|m| matches!(m, StaticModifier::JC045TimeInfluence)) {
+            return Err(format!("{card_id}: time influence cannot be transplanted"));
+        }
+
+        if let Some(canonical) = gray_lock_definition(card_id) {
+            if serde_json::to_value(definition).unwrap() != serde_json::to_value(canonical).unwrap() {
+                return Err(format!("cardId={card_id}: only the complete printed gray lock definition is admitted"));
+            }
+        } else if definition.traits.city_play_only && !matches!(card_id.as_str(), "JZ44" | "JZ45") {
+            return Err(format!("cardId={card_id}: the finite city play restriction cannot be transplanted"));
+        }
+        if deck_seal_search_definition(card_id).is_some_and(|expected|
+            serde_json::to_value(definition).unwrap() != serde_json::to_value(expected).unwrap()) {
+            return Err(format!("cardId={card_id}: only the complete XQ44/JZ02 definition is admitted"));
+        }
+        if let Some(canonical) = entry_search_definition(card_id) {
+            if serde_json::to_value(definition).unwrap() != serde_json::to_value(canonical).unwrap() {
+                return Err(format!("cardId={card_id}: only the complete printed entry search definition is admitted"));
+            }
+        }
+        if card_id == "JZ50" && serde_json::to_value(definition).unwrap()
+            != serde_json::to_value(jz50_definition()).unwrap() {
+            return Err(format!("cardId={card_id}: only the complete JZ50 definition is admitted"));
+        }
+        if sealing_definition(card_id).is_some_and(|expected|
+            serde_json::to_value(definition).unwrap() != serde_json::to_value(expected).unwrap()) {
+            return Err(format!("cardId={card_id}: only the complete admitted sealing definition is supported"));
+        }
+        if (card_id == "JC089" || definition.modifiers.iter().any(|m|
+            matches!(m, StaticModifier::JC089HostDefenseMinusOneAndGlory)))
+            && (card_id != "JC089" || serde_json::to_value(definition).unwrap()
+                != serde_json::to_value(jc089_definition()).unwrap())
+        {
+            return Err(format!("cardId={card_id}: only the complete JC089 curse is admitted"));
+        }
+        if definition.abilities.iter().any(|a| a.event == Some(Event::CombatWon)) {
+            return Err(format!("cardId={card_id}: CombatWon is only the finite runtime combat reward"));
+        }
+        if (card_id == "JZ48" || definition.modifiers.iter().any(|m|
+            matches!(m, StaticModifier::JZ48OtherControlledCriminalInfluenceAndDefense)))
+            && (card_id != "JZ48" || serde_json::to_value(definition).unwrap()
+                != serde_json::to_value(jz48_definition()).unwrap())
+        {
+            return Err(format!("cardId={card_id}: only the complete JZ48 criminal condition is admitted"));
+        }
         if (card_id == "JZ49" || definition.traits.slow)
             && (card_id != "JZ49" || serde_json::to_value(definition).unwrap()
                 != serde_json::to_value(jz49_definition()).unwrap())
@@ -1038,6 +1291,9 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
         if card_id == "JZ55" && serde_json::to_value(definition).unwrap()
             != serde_json::to_value(jz55_definition()).unwrap() {
             return Err("cardId=JZ55: only the complete admitted immediate unique destroy definition is supported".into());
+        }
+        if card_id == "XQ37" && serde_json::to_value(definition).unwrap() != serde_json::to_value(xq37_definition()).unwrap() {
+            return Err("cardId=XQ37: only the complete original entry definition is admitted".into());
         }
         if card_id == "JZ31" && serde_json::to_value(definition).unwrap()
             != serde_json::to_value(jz31_definition()).unwrap()
@@ -1053,6 +1309,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
         let expected = match card_id.as_str() {
             "JC032" => Some(jc032_definition()),
             "JZ24" => Some(jz24_definition()),
+            "JZ22" => Some(jz22_definition()),
             "MSJC03" => Some(msjc03_definition()),
             _ => None,
         };
@@ -1120,7 +1377,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
                     "cardId={card_id}: finite target predicates cannot be an attachment host guard"
                 ));
             }
-            let admitted_region = card_id == "XQ43";
+            let admitted_region = matches!(card_id.as_str(), "XQ43" | "JC090");
             if !admitted_region
                 && (host.zone != Zone::Board
                     || host.kind != EntityKind::Character
@@ -1148,7 +1405,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
     Ok(())
 }
 
-fn target(zone: Zone, kind: EntityKind, relation: Relation, range: Range) -> TargetSlotSpec {
+pub(crate) fn target(zone: Zone, kind: EntityKind, relation: Relation, range: Range) -> TargetSlotSpec {
     TargetSlotSpec {
         zone,
         kind,
@@ -1201,7 +1458,7 @@ fn xq43_definition() -> Definition {
         ..Definition::default()
     }
 }
-fn ability(
+pub(crate) fn ability(
     key: &str,
     label: &str,
     timing: Timing,
@@ -1227,7 +1484,7 @@ fn ability(
         per_turn_limit: None,
     }
 }
-fn with_abilities(abilities: Vec<AbilitySpec>) -> Definition {
+pub(crate) fn with_abilities(abilities: Vec<AbilitySpec>) -> Definition {
     Definition {
         abilities,
         ..Default::default()
@@ -1261,10 +1518,7 @@ fn lc30_definition() -> Definition {
 }
 fn jc018_definition() -> Definition {
     Definition {
-        traits: Traits {
-            renown: true,
-            ..Default::default()
-        },
+        // Printed 威名 is handled by the finite combat reward, never 声望.
         modifiers: vec![StaticModifier::JC018MindAssetsCombat],
         ..Default::default()
     }
@@ -1309,6 +1563,32 @@ fn jc030_definition() -> Definition {
     definition.modifiers = vec![StaticModifier::JC030BloodAssetsVampireAndInvestigation];
     definition
 }
+fn gray_lock_definition(id: &str) -> Option<Definition> {
+    match id {
+        "JC069" => {
+            let reveal = ability("reveal-lock", "现身触发：放置一个锁定标志", Timing::Fast,
+                vec![], vec![target(Zone::Board, EntityKind::CharacterOrHidden, Relation::Any, Range::Anywhere)],
+                vec![Op::JC069LockTarget], Some(Event::Reveal));
+            let mut anchor = target(Zone::Board, EntityKind::CharacterOrHidden, Relation::Any, Range::Anywhere);
+            anchor.predicate = Some(TargetPredicate::JC069LockedAnchor);
+            let mut chase = ability("chase-locked", "快速行动2：追逐锁定目标（每回合一次）", Timing::Fast,
+                vec![Cost::Assets(2)], vec![anchor], vec![Op::JC069ChaseLockedTarget], None);
+            chase.per_turn_limit = Some(1);
+            let mut d = with_abilities(vec![reveal, chase]);
+            d.traits.cannot_be_equipped = true;
+            Some(d)
+        }
+        "JZ43" => {
+            let mut d = with_abilities(vec![ability("entry-lock-or-damage", "进场触发：锁定或伤害", Timing::Fast,
+                vec![], vec![target(Zone::Board, EntityKind::Character, Relation::Any, Range::SourceRegion)],
+                vec![Op::JZ43LockOrDamageLocalTarget], Some(Event::Enter))]);
+            d.traits.public = true;
+            d.traits.city_play_only = true;
+            Some(d)
+        }
+        _ => None,
+    }
+}
 fn jc032_definition() -> Definition {
     let mut action = ability("top-six-vampire-hidden", "顶六张吸血鬼暗藏（每回合一次）", Timing::Standard,
         vec![Cost::Assets(2)], vec![], vec![Op::JC032TopSixVampireHidden], None);
@@ -1319,9 +1599,58 @@ fn jz24_definition() -> Definition {
     with_abilities(vec![ability("local-enemy-sacrifice", "敌方本地牺牲", Timing::Fast,
         vec![], vec![], vec![Op::JZ24LocalSacrificeSnapshot], Some(Event::Reveal))])
 }
+fn xq37_definition() -> Definition {
+    with_abilities(vec![ability("entry-existing-influence", "进场触发：已有本方势力时再放置一个", Timing::Fast,
+        vec![], vec![], vec![Op::XQ37EntryInfluenceIfPresent], Some(Event::Enter))])
+}
+fn jz22_definition() -> Definition {
+    with_abilities(vec![ability("entry-low-hand-influence",
+        "进场触发：若有敌方玩家手牌不超过三张，本地区放置一个本方势力标志", Timing::Fast,
+        vec![], vec![], vec![Op::JZ22LowHandInfluenceInSourceRegion], Some(Event::Enter))])
+}
 fn jz31_definition() -> Definition {
     with_abilities(vec![ability("death-source-influence", "死亡触发：本地区放置一个本方势力标志", Timing::Fast,
         vec![], vec![], vec![Op::PlaceOneInfluenceInSourceRegion], Some(Event::Death))])
+}
+pub(crate) fn death_observer_ops(ops: &[Op]) -> bool {
+    ops.iter().any(|op| match op {
+        Op::JC045AddOneTimeToOriginalSource | Op::JC031DiscardForObservedDeath
+        | Op::JC090PlaceOneInfluenceInOriginalAttachedRegion => true,
+        Op::ForEachLivingPlayer(body) | Op::ForEachLivingPlayerFromActor(body) => death_observer_ops(body),
+        Op::IfTargetExhausted { exhausted, ready, .. } =>
+            death_observer_ops(std::slice::from_ref(exhausted))
+                || death_observer_ops(std::slice::from_ref(ready)),
+        _ => false,
+    })
+}
+pub(crate) fn death_observer_definition(id: &str) -> Option<Definition> {
+    let (label, op) = match id {
+        "JC045" => ("角色死亡：在原钟摆祭司上放置一个时间标志", Op::JC045AddOneTimeToOriginalSource),
+        "JC031" => ("另一本方角色死亡：令目标玩家弃一张手牌（吸血鬼则随机弃牌，每回合一次）", Op::JC031DiscardForObservedDeath),
+        "JC090" => ("本方角色死亡：在原结附地区放置一个本方势力标志", Op::JC090PlaceOneInfluenceInOriginalAttachedRegion),
+        _ => return None,
+    };
+    let mut trigger = ability(&format!("death-observer-{id}"), label, Timing::Fast,
+        vec![], if id == "JC031" {
+            vec![target(Zone::Player, EntityKind::Any, Relation::Any, Range::Anywhere)]
+        } else { vec![] }, vec![op], Some(Event::CharacterDeathObserved));
+    if id == "JC031" { trigger.per_turn_limit = Some(1); }
+    let mut d = with_abilities(vec![trigger]);
+    if id == "JC045" { d.modifiers = vec![StaticModifier::JC045TimeInfluence]; }
+    if id == "JC090" {
+        let host = target(Zone::Region, EntityKind::Any, Relation::Any, Range::Anywhere);
+        let mut attach = ability("attach", "结附目标地区", Timing::Standard,
+            vec![], vec![host.clone()], vec![], None);
+        attach.play_only = true;
+        d.abilities.insert(0, attach);
+        d.attachment = Some(AttachmentSpec {
+            controls_host: false, host_subtype_change: SubtypeChange::None,
+            host, host_icons: Icons::default(), host_temporary_icons: None,
+            host_barrier: false, host_defense_bonus: 0,
+            host_leaves: HostLeaveDestination::OwnerGraveyard,
+        });
+    }
+    Some(d)
 }
 fn jz49_definition() -> Definition {
     let mut definition = with_abilities(vec![ability(
@@ -1332,6 +1661,109 @@ fn jz49_definition() -> Definition {
     )]);
     definition.traits.slow = true;
     definition
+}
+fn jz50_definition() -> Definition {
+    with_abilities(vec![ability(
+        "jz50-reveal-death-search", "现身触发", Timing::Fast, vec![], vec![],
+        vec![Op::JZ50SearchDeathToGraveyard], Some(Event::Reveal),
+    )])
+}
+fn entry_search_definition(id: &str) -> Option<Definition> {
+    let (key, op, renown) = match id {
+        "BQ104" => ("bq104-entry-employee-search", Op::BQ104SearchEmployeeHiddenInSourceRegion, false),
+        "XQ48" => ("xq48-entry-passer-search", Op::XQ48SearchPassersIntoSourceRegion, true),
+        _ => return None,
+    };
+    let mut d = with_abilities(vec![ability(key, "进场触发", Timing::Fast, vec![], vec![], vec![op], Some(Event::Enter))]);
+    d.traits.public = true;
+    d.traits.renown = renown;
+    Some(d)
+}
+fn deck_seal_search_definition(id: &str) -> Option<Definition> {
+    match id {
+        "XQ44" => {
+            let mut search = ability("xq44-dream-seal-search", "检索梦境牌封印并洗牌", Timing::Standard,
+                vec![], vec![target(Zone::Board, EntityKind::Character, Relation::Any, Range::Anywhere)],
+                vec![Op::XQ44SearchDreamSealOnTarget], None);
+            search.play_only = true;
+            Some(with_abilities(vec![search]))
+        }
+        "JZ02" => Some(with_abilities(vec![ability("jz02-space-seal-search", "进场触发", Timing::Fast,
+            vec![], vec![], vec![Op::JZ02SearchSpaceSpellSealOnSource], Some(Event::Enter))])),
+        _ => None,
+    }
+}
+fn jz48_definition() -> Definition {
+    Definition {
+        modifiers: vec![StaticModifier::JZ48OtherControlledCriminalInfluenceAndDefense],
+        ..Definition::default()
+    }
+}
+fn sealing_definition(id: &str) -> Option<Definition> {
+    let host = || target(Zone::Board, EntityKind::Character, Relation::Any, Range::Anywhere);
+    match id {
+        "XQ40" => Some(with_abilities(vec![ability(
+            "draw-hand-seal", "抓一张牌，然后封印一张手牌", Timing::Standard,
+            vec![Cost::Assets(2), Cost::ExhaustSource], vec![host()],
+            vec![Op::Draw { player: PlayerRef::Actor, count: 1, end: DeckEnd::Top },
+                Op::SealOneActorHandCardOnTarget], None,
+        )])),
+        "XQ41" => {
+            let mut definition = with_abilities(vec![ability(
+                "sealed-draw-one", "被封印触发：抓一张牌", Timing::Fast, vec![], vec![],
+                vec![Op::Draw { player: PlayerRef::Actor, count: 1, end: DeckEnd::Top }],
+                Some(Event::Sealed),
+            )]);
+            definition.traits.spirit = true;
+            Some(definition)
+        }
+        "XQ45" => {
+            let mut destroy = ability("destroy-sealed-host", "消灭带有封印牌的目标角色",
+                Timing::Fast, vec![], vec![host()], vec![Op::DestroyTargetIfSealed], None);
+            destroy.play_only = true;
+            Some(with_abilities(vec![destroy]))
+        }
+        _ => None,
+    }
+}
+fn jc089_definition() -> Definition {
+    let host = target(Zone::Board, EntityKind::Character, Relation::Any, Range::Anywhere);
+    let mut attach = ability("attach", "结附目标角色", Timing::Standard,
+        vec![], vec![host.clone()], vec![], None);
+    attach.play_only = true;
+    Definition {
+        abilities: vec![attach],
+        modifiers: vec![StaticModifier::JC089HostDefenseMinusOneAndGlory],
+        attachment: Some(AttachmentSpec {
+            controls_host: false,
+            host_subtype_change: SubtypeChange::None,
+            host,
+            host_icons: Icons { combat: 1, ..Icons::default() },
+            host_temporary_icons: Some(Icons { combat: 1, ..Icons::default() }),
+            host_barrier: false,
+            host_defense_bonus: 0,
+            host_leaves: HostLeaveDestination::OwnerGraveyard,
+        }),
+        ..Definition::default()
+    }
+}
+pub(crate) fn jc089_combat_glory_ability(region_instance: &str) -> AbilitySpec {
+    AbilitySpec {
+        play_only: false,
+        activation_only: false,
+        key: "jc089-combat-glory".into(),
+        label: "威名：战斗获胜，在本地区放置一个本方势力标志".into(),
+        timing: Timing::Fast,
+        response_policy: ResponsePolicy::Respondable,
+        costs: vec![],
+        targets: vec![],
+        ops: vec![Op::PlaceInfluence { region_instance: region_instance.into(), amount: 1 }],
+        event: Some(Event::CombatWon),
+        modes: vec![],
+        requires_ready_source: false,
+        once_per_game: false,
+        per_turn_limit: None,
+    }
 }
 fn msjc03_definition() -> Definition {
     let mut d = msjc02_definition();
@@ -1375,16 +1807,64 @@ fn msjc02_definition() -> Definition {
     ])
 }
 
+pub(crate) fn xq27_definition() -> Definition {
+    let mut destroy = ability("hidden-sweep", "消灭所有暗藏者", Timing::Standard,
+        vec![], vec![], vec![Op::XQ27DestroyAllHidden], None);
+    destroy.play_only = true;
+    with_abilities(vec![destroy])
+}
+
+pub(crate) fn jc050_definition() -> Definition {
+    let mut destroy = ability("region-destruction", "选择地区，消灭其中所有角色和暗藏者",
+        Timing::Standard, vec![], vec![],
+        vec![Op::ChooseRegion, Op::JC050DestroyChosenRegionCharacters], None);
+    destroy.play_only = true;
+    with_abilities(vec![destroy])
+}
+
 pub fn definitions() -> &'static BTreeMap<String, Definition> {
     static DEFINITIONS: OnceLock<BTreeMap<String, Definition>> = OnceLock::new();
     DEFINITIONS.get_or_init(|| {
         use EntityRef::{Source, Target};
         use PlayerRef::{Actor, Context};
         let mut m = BTreeMap::new();
+        for id in ["XQ18", "JZ30"] {
+            m.insert(id.into(), crate::red_time::definition(id).unwrap());
+        }
+        for id in ["BQ028", "BQ040"] {
+            m.insert(id.into(), crate::blue_expansion::definition(id).unwrap());
+        }
+        for id in ["WM059", "BQ078"] {
+            m.insert(id.into(), crate::black_expansion::definition(id).unwrap());
+        }
+        for id in ["JZ44", "JZ45"] {
+            m.insert(id.into(), crate::gray_expansion::definition(id).unwrap());
+        }
+        m.insert("JC050".into(), jc050_definition());
+        m.insert("XQ27".into(), xq27_definition());
+        for id in ["JC069", "JZ43"] {
+            m.insert(id.into(), gray_lock_definition(id).unwrap());
+        }
+        for id in ["XQ40", "XQ41", "XQ45"] {
+            m.insert(id.into(), sealing_definition(id).unwrap());
+        }
         m.insert("JC032".into(), jc032_definition());
         m.insert("JZ24".into(), jz24_definition());
+        m.insert("JZ22".into(), jz22_definition());
         m.insert("JZ31".into(), jz31_definition());
+        m.insert("XQ37".into(), xq37_definition());
+        for id in ["JC045", "JC031", "JC090"] {
+            m.insert(id.into(), death_observer_definition(id).unwrap());
+        }
         m.insert("JZ49".into(), jz49_definition());
+        m.insert("JZ50".into(), jz50_definition());
+        m.insert("BQ104".into(), entry_search_definition("BQ104").unwrap());
+        m.insert("XQ48".into(), entry_search_definition("XQ48").unwrap());
+        for id in ["XQ44", "JZ02"] {
+            m.insert(id.into(), deck_seal_search_definition(id).unwrap());
+        }
+        m.insert("JZ48".into(), jz48_definition());
+        m.insert("JC089".into(), jc089_definition());
         m.insert("JZ55".into(), jz55_definition());
         m.insert("JC030".into(), jc030_definition());
         m.insert("LC30".into(), lc30_definition());
@@ -3483,6 +3963,7 @@ mod tests {
     }
 
     #[test]
+    #[cfg(not(feature = "society-fixtures"))]
     fn blue_closed_definitions_reject_variants_and_finite_operation_transplants() {
         for id in ["JC032", "JZ24", "MSJC03"] {
             for variant in 0..10 {

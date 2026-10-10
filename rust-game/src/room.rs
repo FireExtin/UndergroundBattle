@@ -16,6 +16,8 @@ pub struct RoomCommand {
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(tag = "kind", rename_all = "camelCase")]
 pub enum SessionAction {
+    PauseRoom,
+    ResumeRoom,
     Game {
         action: Action,
     },
@@ -75,6 +77,14 @@ pub struct Pacing {
     pub window_seq: u64,
     pub last_server_now_ms: u64,
     pub window: Option<PriorityWindow>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub pause: Option<RoomPause>,
+}
+#[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct RoomPause {
+    pub paused_at_ms: u64,
+    pub paused_by: usize,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct RoomEnvelope {
@@ -110,6 +120,9 @@ pub struct RoomView {
     pub game: View,
     pub server_now_ms: u64,
     pub response_window: Option<ResponseWindowView>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub pause: Option<RoomPause>,
+    pub can_pause: bool,
 }
 impl std::ops::Deref for RoomView {
     type Target = View;
@@ -210,6 +223,27 @@ impl RoomEnvelope {
             return Err(incompatible());
         }
         let room: Self = serde_json::from_str(state).map_err(|_| "schema3房间状态无效")?;
+        if room.pacing.pause.as_ref().is_some_and(|p| {
+            room.game.status != "playing"
+                || p.paused_by >= room.game.players.len()
+                || p.paused_at_ms != room.pacing.last_server_now_ms
+        }) {
+            return Err("暂停记录与房间状态/冻结时间不一致".into());
+        }
+        room.game.validate_sealed_cards()?;
+        room.game.validate_jz50_search_choice()?;
+        room.game.validate_entry_search_choice()?;
+        room.game.validate_deck_seal_choice()?;
+        room.game.validate_death_observers()?;
+        room.game.validate_gray_lock_state()?;
+        room.game.validate_jz22_state()?;
+        room.game.validate_jc050_state()?;
+        room.game.validate_xq27_state()?;
+        room.game.validate_xq37_state()?;
+        room.game.validate_red_time_state()?;
+        room.game.validate_blue_expansion_state()?;
+        room.game.validate_black_expansion_state()?;
+        room.game.validate_gray_expansion_state()?;
         if room.game.state_schema != 2
             || room.game.version != room.revision
             || room.game.versions.rules != room.versions.rules
@@ -330,7 +364,8 @@ impl RoomEnvelope {
         view.version = self.revision;
         let response_window = self.pacing.window.as_ref().map(|w| {
             let mine = w.members.get(&seat);
-            let can_begin = matches!(mine, Some(Decision::Undecided { .. }))
+            let can_begin = self.pacing.pause.is_none()
+                && matches!(mine, Some(Decision::Undecided { .. }))
                 && view
                     .legal_actions
                     .iter()
@@ -368,13 +403,24 @@ impl RoomEnvelope {
                 },
             }
         });
+        if self.pacing.pause.is_some() {
+            view.legal_actions.clear();
+        }
         RoomView {
             game: view,
-            server_now_ms: server_now_ms.max(self.pacing.last_server_now_ms),
+            server_now_ms: self.pacing.pause.as_ref().map_or_else(
+                || server_now_ms.max(self.pacing.last_server_now_ms),
+                |p| p.paused_at_ms,
+            ),
             response_window,
+            pause: self.pacing.pause.clone(),
+            can_pause: self.game.status == "playing",
         }
     }
     fn expire_due(&mut self, now: u64, revision: u64) -> RuleResult<bool> {
+        if self.pacing.pause.is_some() {
+            return Ok(false);
+        }
         let Some(w) = self.pacing.window.clone() else {
             return Ok(false);
         };
@@ -436,7 +482,10 @@ impl RoomEnvelope {
         }
         let strict = matches!(
             command.action,
-            SessionAction::Game { .. } | SessionAction::SubmitResponse { .. }
+            SessionAction::Game { .. }
+                | SessionAction::SubmitResponse { .. }
+                | SessionAction::PauseRoom
+                | SessionAction::ResumeRoom
         );
         if (strict && command.expected_version != self.revision)
             || command.expected_version > self.revision
@@ -446,7 +495,47 @@ impl RoomEnvelope {
                 "房间已更新，请重新报价并确认动作",
             ));
         }
+        if self.pacing.pause.is_some() && !matches!(command.action, SessionAction::ResumeRoom) {
+            return Err(failure("room_paused", "此桌已暂停，请先恢复对局"));
+        }
         match &command.action {
+            SessionAction::PauseRoom => {
+                if self.game.status != "playing" {
+                    return Err(failure("invalid_action", "只有进行中的对局可以暂停"));
+                }
+                self.pacing.pause = Some(RoomPause {
+                    paused_at_ms: now,
+                    paused_by: seat,
+                });
+            }
+            SessionAction::ResumeRoom => {
+                let pause = self
+                    .pacing
+                    .pause
+                    .as_ref()
+                    .ok_or_else(|| failure("invalid_action", "此桌尚未暂停"))?;
+                if let Some(window) = &mut self.pacing.window {
+                    for decision in window.members.values_mut() {
+                        if let Decision::Undecided { deadline_ms } = decision {
+                            let remaining = deadline_ms
+                                .checked_sub(pause.paused_at_ms)
+                                .ok_or_else(|| failure("invalid_action", "暂停响应期限无效"))?;
+                            *deadline_ms = now
+                                .checked_add(remaining)
+                                .ok_or_else(|| failure("invalid_action", "恢复响应期限溢出"))?;
+                        }
+                    }
+                    // A late pre-pause window command cannot enter the resumed window.
+                    // Reuse the existing window sequence; preserve composing intents and paid stack.
+                    self.pacing.window_seq = self
+                        .pacing
+                        .window_seq
+                        .checked_add(1)
+                        .ok_or_else(|| failure("invalid_action", "响应窗口序号溢出"))?;
+                    window.id = format!("response:{}", self.pacing.window_seq);
+                }
+                self.pacing.pause = None;
+            }
             SessionAction::Game { action } => {
                 if self.pacing.window.is_some() {
                     return Err(failure(
@@ -662,6 +751,9 @@ impl RoomEnvelope {
         Ok(next)
     }
     pub fn quote(&self, seat: usize, request: QuoteRequest) -> RuleResult<Quote> {
+        if self.pacing.pause.is_some() {
+            return Err("此桌已暂停，请先恢复对局".into());
+        }
         if !matches!(self.require_member(seat, &request.window_id).map_err(|e|e.1)?, Decision::Composing { intent_id } if intent_id == &request.intent_id)
         {
             return Err("报价只可用于本席当前编辑意图".into());

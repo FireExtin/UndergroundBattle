@@ -74,6 +74,7 @@ impl Game {
             winner_team: None,
             regions: vec![],
             attachments: vec![],
+            sealed_cards: vec![],
             region_return: None,
             world: vec![],
             stack: vec![],
@@ -129,17 +130,20 @@ impl Game {
         }
     }
     pub(crate) fn fresh(&mut self, mut c: Card) -> Card {
+        c.time_markers = 0;
         // Only the new finite grants are removed here; old attribute cleanup
         // retains its published timing. A replacement cannot inherit a grant.
         self.turn_attribute_modifiers
             .retain(|m| m.target_instance != c.id || (m.kill_bonus == 0 && !m.grants_retreat));
         c.id = self.id();
+        c.lock_markers = 0;
         c
     }
     pub fn make_card(&mut self, definition: &str, owner: usize) -> Card {
         // Only active definitions may be instantiated, before allocating an identity.
         card(definition);
         Card {
+            time_markers: 0,
             id: self.id(),
             definition: definition.into(),
             owner,
@@ -149,6 +153,7 @@ impl Game {
             damage: 0,
             wounds: 0,
             shield: 0,
+            lock_markers: 0,
         }
     }
     pub(crate) fn note(&mut self, text: String) {
@@ -393,6 +398,12 @@ impl Game {
     fn character_icon_parts(&self, c: &Card, region: usize) -> (Icons, Icons, Icons) {
         let d = card(&c.definition);
         let mut permanent_result = d.permanent_icons;
+        if c.definition == "JC045" && !c.face_down
+            && self.board(&c.id).is_some_and(|(_, live)| live.definition == "JC045" && !live.face_down)
+        {
+            permanent_result.influence = permanent_result.influence.saturating_add(self.effective_time_markers(c));
+        }
+        permanent_result.influence += u32::from(self.jz48_other_controlled_criminal_active(c, region));
         permanent_result.investigation += u32::from(self.jc030_blood_assets_active(c));
         permanent_result.combat += self.green_source_attribute_bonus(c, region).0;
         let mut temporary_result = d.temporary_icons;
@@ -493,7 +504,9 @@ impl Game {
             + bonus
             + self.turn_attribute_bonus(c).0
             + self.green_source_attribute_bonus(c, region).1
+            + u32::from(self.jz48_other_controlled_criminal_active(c, region))
             + attachment_bonus)
+            .saturating_sub(self.jc089_host_curses(c) as u32)
             .saturating_sub(c.wounds)
     }
     pub(crate) fn reset_passes(&mut self) {
@@ -648,6 +661,11 @@ impl Game {
                     ));
                     self.reset_passes();
                 } else {
+                    if rules::definition(&c.definition).traits.city_play_only
+                        && !card(&self.regions[r].card.definition).subtypes.iter().any(|s| s == "城市")
+                    {
+                        return Err("该角色只能打出在城市地区".into());
+                    }
                     if !self.loyalty(seat, &c.definition) {
                         return Err("忠诚不足".into());
                     }
@@ -729,6 +747,12 @@ impl Game {
                 if d.kind != "spell" && d.kind != "attachment" {
                     return Err("该牌不是事务或附属".into());
                 }
+                if c.definition == "JC050" && (a.region.is_some() || a.target_id.is_some()) {
+                    return Err("JC050须在结算时选择地区，不能预声明地区或目标".into());
+                }
+                if c.definition == "XQ27" && (a.region.is_some() || a.target_id.is_some()) {
+                    return Err("XQ27消灭所有暗藏者，不能预声明地区或目标".into());
+                }
                 let spec = self.ability_for_action(&c.definition, &a)?;
                 self.check_timing(seat, &spec)?;
                 if !self.loyalty(seat, &c.definition) {
@@ -789,6 +813,7 @@ impl Game {
         self.turn_ability_usage.clear();
         self.regions.clear();
         self.attachments.clear();
+        self.sealed_cards.clear();
         self.region_return = None;
         self.world.clear();
         self.stack.clear();
@@ -907,6 +932,7 @@ impl Game {
             self.host_leaves(&id);
         }
         self.attachments.retain(|a| a.card.owner != seat);
+        self.sealed_cards.retain(|s| s.card.owner != seat);
         for r in &mut self.regions {
             r.cards.retain(|c| c.owner != seat);
         }
@@ -1093,6 +1119,7 @@ impl Game {
                                 (
                                     c.controller,
                                     SourceSnapshot {
+                                        observed_death: None,
                                         card: c.clone(),
                                         region: Some(r),
                                         source_region_instance: None,
@@ -1194,6 +1221,10 @@ impl Game {
             return Ok(());
         }
         if contest == 1 {
+            // Freeze the participating host/controller and real region before
+            // damage or departure. Exactly one optional 威名 declaration,
+            // even when printed JC018 or several curses/hosts contributed.
+            let glory = self.jc089_combat_glory(team, region);
             let kills = self.regions[region]
                 .cards
                 .iter()
@@ -1221,6 +1252,9 @@ impl Game {
                     region,
                     amount: total,
                 });
+            }
+            if let Some(declaration) = glory {
+                self.effects.push_back(Effect::Declare { declaration });
             }
         } else if contest == 0 {
             if seats.len() > 1 {
@@ -1797,9 +1831,8 @@ impl Game {
             if dead.is_empty() {
                 break;
             }
-            for (id, source) in dead {
-                self.remove_dead_with_snapshot(&id, RemovalCause::Lethal, Some(source));
-            }
+            self.remove_death_batch(dead.into_iter()
+                .map(|(id, source)| (id, RemovalCause::Lethal, source)).collect());
         }
         let mut simultaneous = self
             .effects
@@ -1807,7 +1840,8 @@ impl Game {
             .into_iter()
             .collect::<Vec<_>>();
         simultaneous.sort_by_key(|e| match e {
-            Effect::Declare { declaration } if declaration.ability.event == Some(Event::Death) => (
+            Effect::Declare { declaration } if matches!(declaration.ability.event,
+                Some(Event::Death | Event::CharacterDeathObserved)) => (
                 self.team(declaration.actor) != self.first_team,
                 declaration.actor,
             ),
@@ -1817,6 +1851,13 @@ impl Game {
         self.prune_turn_attribute_modifiers();
     }
     pub(crate) fn choose(&mut self, seat: usize, a: Action) -> RuleResult<()> {
+        self.validate_red_time_state()?;
+        self.validate_blue_expansion_state()?;
+        self.validate_black_expansion_state()?;
+        self.validate_gray_expansion_state()?;
+        self.validate_death_observers()?;
+        self.validate_deck_seal_choice()?;
+        self.validate_entry_search_choice()?;
         let p = self.pending.clone().ok_or("没有待选")?;
         if p.seat != seat || a.choice_id.as_deref() != Some(&p.choice.id) {
             return Err("选择者或选择ID不符".into());
@@ -2012,6 +2053,9 @@ impl Game {
         let hidden = c.face_down && c.controller != viewer;
         let asset = kind == Some("asset");
         CardView {
+            time_markers: (!asset && region.is_some() && c.time_markers > 0).then_some(c.time_markers),
+            current_combat_glory: (!asset && !c.face_down && region.is_some()
+                && self.has_combat_glory(c)).then_some(true),
             current_kill: (!asset
                 && !c.face_down
                 && region.is_some()
@@ -2127,6 +2171,9 @@ impl Game {
             } else {
                 Some(c.shield)
             },
+            // Board markers remain public even when the card's print is concealed.
+            lock_markers: (!asset && region.is_some() && c.lock_markers > 0)
+                .then_some(c.lock_markers),
             color: if hidden { None } else { Some(d.color.clone()) },
             magic: if hidden { None } else { Some(d.magic.clone()) },
             used_once_per_game: if hidden || d.kind != "society" {
@@ -2240,6 +2287,10 @@ impl Game {
             winner_team: self.winner_team,
             regions,
             society_zones: self.society_views(seat),
+            sealed_cards: self.sealed_cards.iter().map(|s| SealedCardView {
+                card: self.sealed_card_view(&s.card, seat),
+                host_id: s.host_id.clone(),
+            }).collect(),
             attachments: self
                 .attachments
                 .iter()
@@ -2343,7 +2394,13 @@ impl Game {
                 .pending
                 .as_ref()
                 .filter(|p| p.seat == seat)
-                .map(|p| self.blue_private_choice(p, seat)),
+                .map(|p| {
+                    if matches!(p.resolution, ChoiceResolution::Frame { choice: FrameChoice::BQ028InspectAttachments { .. }, .. }) {
+                        self.blue_expansion_private_choice(p, seat)
+                    } else {
+                        self.blue_private_choice(p, seat)
+                    }
+                }),
             waiting_choice: self.pending.as_ref().map(|p| WaitingChoice {
                 player_id: player_id(p.seat),
                 kind: p.choice.kind.clone(),
@@ -2682,7 +2739,7 @@ mod tests {
     #[test]
     fn catalog_is_restricted_real_complete_and_decks_are_legal() {
         let c = catalog::catalog();
-        assert_eq!(c.cards.len(), 101);
+        assert_eq!(c.cards.len(), 128);
         let active = c
             .cards
             .iter()
@@ -2697,7 +2754,7 @@ mod tests {
                 .collect::<BTreeSet<_>>()
         );
         assert!(active.contains("DQJC116"));
-        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 91);
+        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 118);
         assert_eq!(c.decks.len(), 5);
         for deck in &c.decks {
             assert_eq!(deck.card_count, 50);

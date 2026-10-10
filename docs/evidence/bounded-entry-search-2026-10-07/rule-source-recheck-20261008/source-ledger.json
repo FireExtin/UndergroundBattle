@@ -1,0 +1,45 @@
+{
+  "fullOriginalPagesActuallyViewed": true,
+  "bq104FullOriginalActuallyViewed": true,
+  "pdfs": [
+    {
+      "file": "霸权说明书.pdf",
+      "preexistingLocalReferencePath": "/workspace/jc094-game/resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+      "bytes": 15174985,
+      "sha256": "a1e5bca72b8dbb374357feace28b7fbfd31136349ee23455d60f5f62e0a6b886",
+      "copiedFullPdfIntoReview": false
+    },
+    {
+      "file": "隐秘世界规则手册.pdf",
+      "preexistingLocalReferencePath": "/workspace/jc094-game/resource/ymsj-fun.github.io/public/docs/隐秘世界规则手册.pdf",
+      "bytes": 4538093,
+      "sha256": "2a771874efbdb3ad8a339ea01ff62888766090d075fe2e013632c79de1aeba35",
+      "copiedFullPdfIntoReview": false
+    }
+  ],
+  "images": [
+    {
+      "path": "base-printed7-physical9.png",
+      "bytes": 782087,
+      "sha256": "c70ffc1abeefc28d6877b597dccfd0bd3b81d119848dd672c151fcea871669d2"
+    },
+    {
+      "path": "hegemony-printed14-physical15.png",
+      "bytes": 3842554,
+      "sha256": "e9dea4cd5fe5c5546f5fed244a3e8de8875456b21a07df3cc7bb0127549fb19b"
+    },
+    {
+      "path": "hegemony-printed16-physical17.png",
+      "bytes": 2987240,
+      "sha256": "99b0181b117ba24b39719549d264120e7f50cf092b499c06159edd672937c979"
+    }
+  ],
+  "claimedPartialInvalidTargetClauseConfirmed": false,
+  "noNewRuleRuling": true,
+  "bq104": {
+    "repositoryPath": "web/public/cards/BQ104.jpg",
+    "bytes": 1343044,
+    "sha256": "dbee5b3829cf0c46b2820beccefda28708c3c8e87c589dbefce1e975faa916eb",
+    "collectorNumber": "097/116"
+  }
+}

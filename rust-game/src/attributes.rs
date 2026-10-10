@@ -7,6 +7,45 @@ use crate::{
 };
 
 impl Game {
+    // One closed attachment effect. Exhaustion does not blank a curse; each
+    // real, still-attached JC089 contributes one negative defense scalar.
+    pub(crate) fn jc089_host_curses(&self, c: &Card) -> usize {
+        if c.face_down || card(&c.definition).kind != "character" {
+            return 0;
+        }
+        self.attachments.iter().filter(|a|
+            a.card.definition == "JC089" && !a.card.face_down && a.host_id == c.id
+                && self.attachment_host_valid(a)
+                && crate::rules::definition("JC089").modifiers.iter().any(|m|
+                    matches!(m, StaticModifier::JC089HostDefenseMinusOneAndGlory)))
+            .count()
+    }
+    pub(crate) fn has_jc089_glory(&self, c: &Card) -> bool {
+        self.jc089_host_curses(c) > 0
+    }
+    pub(crate) fn has_combat_glory(&self, c: &Card) -> bool {
+        !c.face_down && card(&c.definition).kind == "character"
+            && ((c.definition == "JC018"
+                && self.board(&c.id).is_some_and(|(_,live)| !live.face_down && live.definition == "JC018")
+                && crate::rules::definition("JC018").modifiers.iter().any(|m|
+                    matches!(m, StaticModifier::JC018MindAssetsCombat)))
+                || self.has_jc089_glory(c))
+    }
+    // One closed printed condition. "本方" means the current controller alone,
+    // and exhaustion leaves a face-up criminal's subtype in effect.
+    pub(crate) fn jz48_other_controlled_criminal_active(&self, c: &Card, region: usize) -> bool {
+        if c.definition != "JZ48" || c.face_down
+            || !crate::rules::definition("JZ48").modifiers.iter().any(|m|
+                matches!(m, StaticModifier::JZ48OtherControlledCriminalInfluenceAndDefense)) {
+            return false;
+        }
+        let Some(r) = self.regions.get(region) else { return false; };
+        let Some(live) = r.cards.iter().find(|live| live.id == c.id) else { return false; };
+        !live.face_down && live.definition == "JZ48" && r.cards.iter().any(|other|
+            other.id != live.id && !other.face_down && other.controller == live.controller
+                && card(&other.definition).kind == "character"
+                && self.current_subtypes(other).iter().any(|s| s == "罪犯"))
+    }
     // One printed JC030 condition, shared by its permanent icon and added
     // subtype. Only a live face-up bat's current controller's assets count.
     pub(crate) fn jc030_blood_assets_active(&self, c: &Card) -> bool {

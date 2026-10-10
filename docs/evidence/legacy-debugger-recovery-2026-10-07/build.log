@@ -1,0 +1,19 @@
+
+> undergroundbattle-web@0.1.0 build
+> tsc --noEmit -p tsconfig.app.json && tsc --noEmit -p tsconfig.node.json && vite build
+
+vite v8.0.3 building client environment for production...
+[2Ktransforming...✓ 68 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                0.47 kB │ gzip:   0.33 kB
+dist/assets/index-Cxy2pYea.css               182.86 kB │ gzip:  32.06 kB
+dist/assets/LegacyDebuggerEntry-DGGDZhfh.js   19.27 kB │ gzip:   5.49 kB
+dist/assets/index-BGrjBTgw.js                325.27 kB │ gzip: 101.06 kB
+
+✓ built in 218ms
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

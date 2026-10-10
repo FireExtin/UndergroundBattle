@@ -1,0 +1,9 @@
+{
+  "archive": "native-wasm-traces.zip",
+  "bytes": 23171785,
+  "sha256": "cfd53760bb3382273b47a33b03c99f55c4d7ca4c4b3079849df6e169343e6423",
+  "files": 2345,
+  "uncompressedBytes": 155506771,
+  "allEntriesReadAndSha256Verified": true,
+  "databaseAndCredentialsExcluded": true
+}

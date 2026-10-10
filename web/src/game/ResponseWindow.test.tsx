@@ -42,6 +42,19 @@ describe('server-owned response intent', () => {
   afterEach(() => { cleanup(); vi.useRealTimers(); vi.restoreAllMocks(); });
   const advance = (ms: number) => act(() => vi.advanceTimersByTime(ms));
 
+  it('freezes remaining response time and all intent controls for a saved paused table', () => {
+    const submit = vi.fn();
+    const { rerender } = render(<ResponseWindow view={{ ...view, serverNowMs: 102_000, pause: { pausedAtMs: 102_000, pausedBy: 1 } }} busy={false} uncertain={false} connection="online" onSelectCard={vi.fn()} onAction={submit} />);
+    expect(screen.getByRole('timer')).toHaveTextContent('剩余 3 秒');
+    advance(86_400_000); expect(screen.getByRole('timer')).toHaveTextContent('剩余 3 秒');
+    fireEvent.click(screen.getByRole('button', { name: '连锁' }));
+    fireEvent.click(screen.getByRole('button', { name: '不连锁，让过' }));
+    expect(submit).not.toHaveBeenCalled();
+    rerender(<ResponseWindow view={{ ...view, version: view.version + 1, serverNowMs: 86_502_000, responseWindow: { ...view.responseWindow!, id: 'resumed-window', members: [{ playerId: 'p0', status: 'undecided', deadlineMs: 86_505_000 }] } }} busy={false} uncertain={false} connection="online" onSelectCard={vi.fn()} onAction={submit} />);
+    expect(screen.getByRole('timer')).toHaveTextContent('剩余 3 秒');
+    advance(1000); expect(screen.getByRole('timer')).toHaveTextContent('剩余 2 秒');
+  });
+
   it('shows the server-sampled five seconds and waits for confirmation at zero without passing locally', () => {
     const submit = vi.fn();
     render(<ResponseWindow view={view} busy={false} uncertain={false} connection="online" onSelectCard={vi.fn()} onAction={submit} />);

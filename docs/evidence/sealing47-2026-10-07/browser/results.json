@@ -1,0 +1,19 @@
+{
+  "scope": "local-real-React-readonly-actual-Native47-desktop-projections",
+  "productionWrites": false,
+  "APIWrites": [],
+  "errors": [],
+  "checks": [
+    "public-exact-owner-carrier-reader-has-no-current-printed-stats",
+    "original-face-is-explicitly-inactive-during-sealing",
+    "latest-Native-return-projection-closes-stale-reader-and-menu",
+    "desktop-refresh-retains-original-seat-and-latest-owner-return-view"
+  ],
+  "passed": true,
+  "screenshots": {
+    "desktop-refreshed-owner-return.png": "36005544229e98502f3f22e59290ecb0feb68050195ccc441d8d7813b6d75271",
+    "desktop-original-face-inactive.png": "58b099b3302d8c4e020949a4b52571495de95c23aaad274532dbd593905e172d",
+    "desktop-sealed-blank-reader.png": "ae5dd4e8ca61009945557277ab4cafdc23693fbe2e7b2160a44ff535533d32a6",
+    "desktop-public-sealed-menu.png": "7c990e0efd36fbe72a9f2fd6df96d405ac1c1acaaba607c9cd7da90230101dfe"
+  }
+}

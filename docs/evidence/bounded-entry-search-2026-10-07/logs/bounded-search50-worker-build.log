@@ -1,0 +1,13 @@
+▲ [WARNING] Proxy environment variables detected. We'll use your proxy for fetch requests.
+
+
+
+ ⛅️ wrangler 4.146.0
+────────────────────
+Total Upload: 2270.15 KiB / gzip: 598.90 KiB
+Your Worker has access to the following bindings:
+Binding                     Resource
+env.DB (hegemony-test)      D1 Database
+
+--dry-run: exiting now.
+{"fixtureRegistry":false,"dist":"/workspace/game-publication-evidence/bounded-search50/backend/candidate-worker/dist","frontendBuilt":false,"deployed":false}

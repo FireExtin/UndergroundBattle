@@ -1,0 +1,18 @@
+{
+  "scope": "local actual published Worker/WASM/D1/browser; factory-seed-only shim and legal deck metadata; normal UI/HTTP commands, no board injection",
+  "seed": 16,
+  "commandCap": 400,
+  "commands": 3,
+  "checks": [
+    {
+      "check": "real-UI-custom-decks-create-independent-peer-join-ready-start",
+      "seed": 16,
+      "roomId": "43af73d2bd4274c81b8274a2",
+      "no_board_or_hand_injection": true
+    }
+  ],
+  "uncaughtJsErrors": [
+    "Failed to read the 'localStorage' property from 'Window': Access is denied for this document."
+  ],
+  "publicWrites": false
+}

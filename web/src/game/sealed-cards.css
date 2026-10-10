@@ -1,0 +1,9 @@
+.hg-sealed-cards { margin: 12px 0; padding: 12px 16px; border: 1px solid #967640; border-radius: 10px; color: #eedfbd; background: #221c15; }
+.hg-sealed-cards > p { margin: 5px 0 10px; font-size: 12px; }
+.hg-sealed-cards > div { display: flex; gap: 8px; max-height: 220px; overflow: auto; flex-wrap: wrap; }
+.hg-sealed-cards button { display: grid; gap: 5px; min-width: 180px; max-width: 100%; padding: 10px; color: inherit; text-align: left; border: 1px solid #796238; border-radius: 6px; background: #33291b; cursor: pointer; }
+.hg-sealed-cards button:hover, .hg-sealed-cards button:focus-visible { outline: 2px solid #d6b269; outline-offset: 2px; }
+.hg-sealed-cards small { font-size: 11px; font-weight: normal; }
+.hg-sealed-cards-menu { position: relative; flex-shrink: 0; font-size: 12px; }
+.hg-sealed-cards-menu > summary { cursor: pointer; color: #eedfbd; }
+.hg-sealed-cards-menu > .hg-sealed-cards { position: absolute; z-index: 65; right: 0; top: 100%; width: min(420px, 88vw); margin: 8px 0 0; box-shadow: 0 10px 30px #0009; }

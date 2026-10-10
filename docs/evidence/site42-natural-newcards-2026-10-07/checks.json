@@ -1,0 +1,87 @@
+{
+  "scope": "local actual published Worker/WASM/D1/browser; factory-seed-only shim and legal deck metadata; normal UI/HTTP commands, no board injection",
+  "singlePageOriginalUiGeneratedNamespaceSelector": true,
+  "imagesDisabledInBrowserToBoundMemory": true,
+  "artworkQa": false,
+  "seed": 16,
+  "commandCap": 400,
+  "commands": 69,
+  "checks": [
+    {
+      "check": "real-UI-custom-decks-create-independent-peer-join-ready-start",
+      "seed": 16,
+      "roomId": "d61b44bbe38eada719bcc4d8",
+      "no_board_or_hand_injection": true
+    },
+    {
+      "check": "actual-UI-choice-submit",
+      "seat": 0,
+      "choiceKind": "mulligan",
+      "choiceId": "i123",
+      "selected": [],
+      "versions": [
+        4,
+        5
+      ]
+    },
+    {
+      "check": "actual-UI-choice-submit",
+      "seat": 1,
+      "choiceKind": "mulligan",
+      "choiceId": "i124",
+      "selected": [],
+      "versions": [
+        5,
+        6
+      ]
+    },
+    {
+      "check": "actual-UI-pause-reload-resume-preserves-choice",
+      "seat": 0,
+      "choiceKind": "handSeal",
+      "choiceId": "i148",
+      "optionIds": [
+        "i115",
+        "i116",
+        "i125",
+        "i129",
+        "i136",
+        "i143",
+        "i147"
+      ],
+      "versions": [
+        172,
+        173,
+        174
+      ]
+    },
+    {
+      "check": "actual-UI-choice-submit",
+      "seat": 0,
+      "choiceKind": "handSeal",
+      "choiceId": "i148",
+      "selected": [
+        "i115"
+      ],
+      "versions": [
+        172,
+        175
+      ]
+    },
+    {
+      "check": "actual-UI-choice-submit",
+      "seat": 0,
+      "choiceKind": "trigger",
+      "choiceId": "i150",
+      "selected": [
+        "accept"
+      ],
+      "versions": [
+        175,
+        176
+      ]
+    }
+  ],
+  "uncaughtJsErrors": [],
+  "publicWrites": false
+}

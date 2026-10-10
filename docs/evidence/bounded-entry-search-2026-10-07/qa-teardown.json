@@ -1,0 +1,41 @@
+{
+  "timeUtc": "2026-10-07T23:39:26Z",
+  "localOnly": true,
+  "priorNaturalAttemptsActualTables": 2,
+  "postGoVisualSmokeActualTables": 1,
+  "actualTables": 3,
+  "actualCommandReceipts": 6,
+  "localDatabases": [
+    {
+      "path": "natural/d1/v3/d1/miniflare-D1DatabaseObject/270c8626a72d2844951b9fcc8d312f3d16755054e7cbb0804663c9aa78b016ee.sqlite",
+      "rooms": [
+        {
+          "roomId": "7fc137860d1fdd909fbe8da6",
+          "version": 2,
+          "stateSha256": "7bcab2887e9598c19d1462e2f4f984feb8fc4871272c2644e66f3507236d8d4c"
+        },
+        {
+          "roomId": "5cf857852c266e6eac27be8d",
+          "version": 0,
+          "stateSha256": "5b13828b3897c28558ac546e4728ea1b12be89b40083a57cfbd0f45694c08195"
+        },
+        {
+          "roomId": "affc4d4da5911ad2d0346357",
+          "version": 6,
+          "stateSha256": "59d9d48550db05cebb2d0f51a5c4f2781e6573ded120c3a1fe833debbaeb62e5"
+        }
+      ],
+      "commandReceipts": 6
+    }
+  ],
+  "rawDatabaseNotExported": true,
+  "seatTokensNotExported": true,
+  "browserClosed": true,
+  "originalNaturalAttemptFailuresPreserved": true,
+  "shortVisualChecksCompleted": 5,
+  "shortScriptPassed": false,
+  "shortScriptFailure": "Locator.click: Timeout 15000ms exceeded.",
+  "wranglerStoppedReportedInitially": true,
+  "initialStoppedAssertionIncorrect": true,
+  "laterActualProcessCleanup": "qa-process-cleanup.json"
+}

@@ -1,0 +1,14 @@
+{
+  "scope": "canonical D1 events are authoritative; client request observers are auxiliary",
+  "canonicalCommittedCommands": 391,
+  "uniqueClientObservedRequests": 391,
+  "clientViaCounts": {
+    "actual-browser-UI": 19,
+    "normal-local-HTTP": 59,
+    "normal-local-HTTP-sidecar": 313
+  },
+  "missingCanonicalCommandIds": [],
+  "observedUncommittedCommandIds": [],
+  "observerSeatAnnotationMismatchCommandIds": [],
+  "canonicalSeatsAuthoritative": true
+}

@@ -1,0 +1,8 @@
+{
+  "inputStreamsSemanticallyIdentical": true,
+  "submittedInputs": 31,
+  "independentFrozenStreamSha256": "df861682a177b6d7db036127c329c7eca58a122ade492c0fcb41156abaf2fbb8",
+  "workerCapturedStreamSha256": "a6c0e41b3e37631863d692715aa908e1c77b0f5894e860ceebe56ba31e5e872a",
+  "difference": "Independent wrapper also records step, serverNow0, and red errorCode; seat and full command payloads identical.",
+  "originalDriverSha256": "4d19e7b14d27d35186b98b45ed5952804cfdc099596c450d0c71772c47d5322f"
+}

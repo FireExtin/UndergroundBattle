@@ -115,7 +115,8 @@ impl Game {
         self.choice(
             frame.actor,
             "target",
-            "选择墓地角色进入的地区".into(),
+            if frame.source.card.definition == "JC050" { "选择要消灭其中角色与暗藏者的地区".into() }
+            else { "选择墓地角色进入的地区".into() },
             options,
             1,
             1,

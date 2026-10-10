@@ -1,0 +1,26 @@
+{
+  "candidateCommit": "84a36d624528ab61f752e4ad9f05fdeb1839d7e4",
+  "canonicalFaceComponents": 684,
+  "excludedInitiativeMarker": "TK007",
+  "ordinaryDefinitions": 103,
+  "ordinaryNonRegion": 93,
+  "regions": 10,
+  "societies": 8,
+  "admittedComponents": 111,
+  "pendingGameplayAdmission": 573,
+  "registeredOriginals": 115,
+  "unregisteredOriginals": 569,
+  "missingSourceOriginal": [
+    "TK011"
+  ],
+  "oldOriginalsAndManifestByteExact": 111,
+  "artOnlyCards": [
+    "JZ50",
+    "JZ51",
+    "JZ52",
+    "JZ53"
+  ],
+  "jc089Executable": true,
+  "jz48Preserved": true,
+  "jz49Preserved": true
+}

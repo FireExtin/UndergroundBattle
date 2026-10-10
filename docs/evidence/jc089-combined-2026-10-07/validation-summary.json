@@ -1,0 +1,96 @@
+{
+  "productCommit": "84a36d624528ab61f752e4ad9f05fdeb1839d7e4",
+  "mechanismFixCommit": "a96a5595d42b58ecf2d47abd4d4a87b3d6c7d1ae",
+  "originalArtCommit": "cf2b9657c9f4e0ba8dcb808aaa1e0c2afc80a0e4",
+  "engine": "rust-v0.2.45-jc089-poison-blood-candidate",
+  "pool": "limited-v2.42-jc089-poison-blood-candidate",
+  "native": {
+    "total": 571,
+    "focused": 26,
+    "basis": "Full final mechanism run on a96a559; combined Rust subtree exactly identical."
+  },
+  "wasm": {
+    "engineVersion": "rust-v0.2.45-jc089-poison-blood-candidate",
+    "poolVersion": "limited-v2.42-jc089-poison-blood-candidate",
+    "commands": 938,
+    "rejected": 5,
+    "checkpoints": 2033,
+    "chainCommands": 13,
+    "views": 11936,
+    "kinds": {
+      "game": 1,
+      "passResponse": 10,
+      "beginResponse": 1,
+      "submitResponse": 1
+    },
+    "wasmBytes": 2198305,
+    "wasmSha256": "afc1b42523111dc242fd21850da9af243112a619c9f759bc60cbabac045883f7",
+    "frozen44Bytes": 2191175,
+    "frozen44Sha256": "6cf6dca6a06844c84e38fbed2a084145bc0e63ae3897de18b864814c314d11f9"
+  },
+  "combinedWeb": {
+    "files": 68,
+    "tests": 607,
+    "passed": true,
+    "timeoutMs": 30000
+  },
+  "combinedWorker": {
+    "tests": 25,
+    "passed": true
+  },
+  "typecheckViteAndWorkerDryRun": true,
+  "buildArtifacts": {
+    "productCommit": "84a36d624528ab61f752e4ad9f05fdeb1839d7e4",
+    "artifactFilesChecked": 9,
+    "byteExactToFixedMechanismArtifacts": true,
+    "currentWasmCount": 1,
+    "wasmFilename": "5f45fc73a42dc6e2e8820fa6f5882db590b63a61-hegemony_wasm_bg.wasm",
+    "wasmBytes": 2198305,
+    "wasmSha256": "afc1b42523111dc242fd21850da9af243112a619c9f759bc60cbabac045883f7",
+    "workerJsBytes": 47263,
+    "workerJsSha256": "384050c24c4e79af52ed002036aa9400aa1e9aff077dd4b154a0f1b4bdbb71ea"
+  },
+  "originalArt": {
+    "candidateCommit": "84a36d624528ab61f752e4ad9f05fdeb1839d7e4",
+    "canonicalFaceComponents": 684,
+    "excludedInitiativeMarker": "TK007",
+    "ordinaryDefinitions": 103,
+    "ordinaryNonRegion": 93,
+    "regions": 10,
+    "societies": 8,
+    "admittedComponents": 111,
+    "pendingGameplayAdmission": 573,
+    "registeredOriginals": 115,
+    "unregisteredOriginals": 569,
+    "missingSourceOriginal": [
+      "TK011"
+    ],
+    "oldOriginalsAndManifestByteExact": 111,
+    "artOnlyCards": [
+      "JZ50",
+      "JZ51",
+      "JZ52",
+      "JZ53"
+    ],
+    "jc089Executable": true,
+    "jz48Preserved": true,
+    "jz49Preserved": true
+  },
+  "original31Inputs": {
+    "streamSha256": "df861682a177b6d7db036127c329c7eca58a122ade492c0fcb41156abaf2fbb8",
+    "submitted": 31,
+    "redAccepted": 31,
+    "redPoints": 2,
+    "greenAccepted": 26,
+    "greenAtomicRejects": 5,
+    "greenPoints": 1
+  },
+  "logHashes": {
+    "combined-web-tests.log": "04b43bb3f70e20ce0b0960047b32cf0a6b4af9405003592770b2ed19db3723db",
+    "combined-worker-tests.log": "49bb7ab037b929d688d3d7805af9243417a6051a5e599706a27f99ed623773b0",
+    "combined-build.log": "e775256c8512dd0c28751da97047bf5c8a510719d33e1d3796b628563eb29497"
+  },
+  "publicationCalled": false,
+  "mainMerged": false,
+  "naturalUi": "Separate fresh actual-browser evidence; attach its final sanitized integrity summary only after successful audit."
+}

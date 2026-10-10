@@ -1,0 +1,165 @@
+{
+  "sourceCommit": "2305aa17c53e73dd3683ae9fe1e654531777f16e",
+  "engine": "rust-v0.2.43-jz49-slow-mill-candidate",
+  "pool": "limited-v2.40-jz49-slow-mill-candidate",
+  "seed": 9,
+  "scope": "Same natural cloud Chromium four-seat room with visible create/join, actual UI development/response/choice actions and opt-in UI AutoPass; team0 watchers versus team1 responders cooperatively passing. Driver/browser restarts documented at versions8 and25. This does not claim adversarial/human strategy qualification or an engine44 terminal game.",
+  "terminalStatus": "finished",
+  "turn": 7,
+  "winnerTeam": 0,
+  "teamScores": [
+    13,
+    0
+  ],
+  "winScore": 10,
+  "version": 1066,
+  "journalEvents": 1066,
+  "acceptedUniqueCommands": 1063,
+  "acceptedCommandsObservedByBrowser": 1063,
+  "recordedAcceptedHttpResponses": 1068,
+  "recordedDuplicateHttpResponses": 5,
+  "allHttpRecordsPersistedFromOriginalCreate": true,
+  "reconstructedHttpRecords": 0,
+  "allReceiptsMatch": true,
+  "journalVersionsContiguous": true,
+  "fourSeatsAndFourOriginalEntries": true,
+  "nativeReplayMatches": true,
+  "auditLeavesDatabaseBytesUnchanged": true,
+  "persistedDigest": "866386e68741e83f1b381c8d728c19e700e684df40d621179f6dd811930935e4",
+  "nativeAuditBinarySha256": "abdca66a230c343621c28bb423513c632578af42c14701260e2630e7e0a97aa4",
+  "initialStateSha256": "63f95cb233b3d10f5f6d53737ce2d463bff6309dc030a22c539c5f7f990b9055",
+  "terminalStateSha256": "866386e68741e83f1b381c8d728c19e700e684df40d621179f6dd811930935e4",
+  "checks": {
+    "fourIndependentCloudBrowserSeats": true,
+    "normalVisibleCreateJoin": true,
+    "fixedSeed9FromNormalInitialState": true,
+    "success": true,
+    "documentedResumeVersions": [
+      8,
+      25
+    ],
+    "driverOnlyTimeoutCorrection": "Complete visible opening mulligans before locating the inert background AutoPass switch; preserved original naturally created room, initial state, entry receipts and D1.",
+    "actualUiAutoPassEnabledFourSeats": true,
+    "sourceCommit": "2305aa17c53e73dd3683ae9fe1e654531777f16e",
+    "engine": "rust-v0.2.43-jz49-slow-mill-candidate",
+    "pool": "limited-v2.40-jz49-slow-mill-candidate",
+    "policy": "Existing watchers preset on team 0, responders on team 1. Team 0 keeps influence cards and deploys through visible UI; team 1 cooperatively passes. No D1/engine-state injection.",
+    "rendererCrashAtVersion25": true,
+    "rendererCrashRecoveryScope": "Same naturally created room and original entry receipts. After renderer crash, original pending browser command reconstructed exactly from its four captured successful HTTP POST receipts; no engine/DB state modification. This is a documented driver/browser restart, not uninterrupted storage survival.",
+    "lostAcknowledgementsBeforeRendererCrash": 4,
+    "originalPendingReceiptReplayedViaVisibleUiWithoutWrites": true,
+    "targetCancellation": 1,
+    "concurrentStaleRejections": 5,
+    "realFinished": true,
+    "finalTurn": 7,
+    "winnerTeam": 0,
+    "teamScores": [
+      13,
+      0
+    ],
+    "scoreThresholdVictory": true,
+    "duplicateOriginalReceiptAfterVictoryNoWrites": true,
+    "staleAfterVictoryRejectedWithoutWrites": true,
+    "terminalSQLiteReopenByteExact": true,
+    "fourSeatsRestoreSameTerminal": true,
+    "journalEntries": 1066,
+    "commandReceipts": 1063
+  },
+  "visibleScreenshots": [
+    {
+      "seat": 0,
+      "name": "turn-1",
+      "version": 12,
+      "turn": 1,
+      "status": "playing"
+    },
+    {
+      "seat": 0,
+      "name": "lost-ack-recovered-after-renderer-crash",
+      "version": 25,
+      "turn": 1,
+      "status": "playing"
+    },
+    {
+      "seat": 0,
+      "name": "turn-1",
+      "version": 25,
+      "turn": 1,
+      "status": "playing"
+    },
+    {
+      "seat": 0,
+      "name": "target-confirm-1",
+      "version": 25,
+      "turn": 1,
+      "status": "playing"
+    },
+    {
+      "seat": 2,
+      "name": "visible-response-countdown",
+      "version": 26,
+      "turn": 1,
+      "status": "playing"
+    },
+    {
+      "seat": 0,
+      "name": "turn-2",
+      "version": 185,
+      "turn": 2,
+      "status": "playing"
+    },
+    {
+      "seat": 0,
+      "name": "turn-3",
+      "version": 352,
+      "turn": 3,
+      "status": "playing"
+    },
+    {
+      "seat": 0,
+      "name": "turn-4",
+      "version": 518,
+      "turn": 4,
+      "status": "playing"
+    },
+    {
+      "seat": 0,
+      "name": "turn-5",
+      "version": 679,
+      "turn": 5,
+      "status": "playing"
+    },
+    {
+      "seat": 0,
+      "name": "turn-6",
+      "version": 842,
+      "turn": 6,
+      "status": "playing"
+    },
+    {
+      "seat": 0,
+      "name": "turn-7",
+      "version": 1000,
+      "turn": 7,
+      "status": "playing"
+    },
+    {
+      "seat": 0,
+      "name": "real-victory-desktop",
+      "version": 1066,
+      "turn": 7,
+      "status": "finished"
+    },
+    {
+      "seat": 0,
+      "name": "real-victory-mobile",
+      "version": 1066,
+      "turn": 7,
+      "status": "finished"
+    }
+  ],
+  "privateRuntimeEvidence": "All raw DB, original entry credentials, full HTTP bodies, snapshots and browser sessions remain local; only this sanitized summary is eligible for repo review.",
+  "rejectedStatusCounts": {
+    "409": 357
+  }
+}

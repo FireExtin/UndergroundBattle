@@ -92,8 +92,6 @@ fn mill_public_whole_source_fields_and_ordinary_copy_limits() {
         assert!(!c.unique);
         assert_eq!(deck::copy_limit(c), Some(3));
     }
-    assert_eq!(catalog::catalog().cards.len(), 101);
-    assert_eq!(catalog::catalog().societies.len(), 8);
 }
 
 #[test]

@@ -1,0 +1,158 @@
+{
+  "roomId": "d61b44bbe38eada719bcc4d8",
+  "roomVersion": 238,
+  "turn": 5,
+  "gameVersion": 238,
+  "random": 16925034266083528678,
+  "privateStateSha256": "d685f74d32b6f2f8c6df56b02b9273fc557bc6b4ac68669cc4eaabd3acb8eb4e",
+  "players": [
+    {
+      "seat": 0,
+      "deckCount": 37,
+      "deckOrderSha256": "c78d3d5b2ba869d0eb64525c0170e854e0eec261bbfc41c3aa0e4308b1114c67",
+      "deckIdentitySetSha256": "06eeb654ef29d767ce239d5ede55e69aac36dbbc926d6f0f9688ec52059a2dfd",
+      "deckIds": [
+        "i39",
+        "i6",
+        "i32",
+        "i8",
+        "i49",
+        "i12",
+        "i25",
+        "i19",
+        "i24",
+        "i23",
+        "i10",
+        "i11",
+        "i4",
+        "i38",
+        "i48",
+        "i47",
+        "i1",
+        "i31",
+        "i20",
+        "i13",
+        "i3",
+        "i17",
+        "i41",
+        "i35",
+        "i15",
+        "i14",
+        "i2",
+        "i7",
+        "i36",
+        "i26",
+        "i46",
+        "i30",
+        "i37",
+        "i34",
+        "i28",
+        "i43",
+        "i27"
+      ],
+      "graveCount": 0,
+      "grave": [],
+      "handCount": 6,
+      "hand": [
+        [
+          "i116",
+          "JC125"
+        ],
+        [
+          "i125",
+          "JC125"
+        ],
+        [
+          "i129",
+          "JC125"
+        ],
+        [
+          "i136",
+          "JC125"
+        ],
+        [
+          "i147",
+          "XQ40"
+        ],
+        [
+          "i152",
+          "JC125"
+        ]
+      ]
+    },
+    {
+      "seat": 1,
+      "deckCount": 39,
+      "deckOrderSha256": "623c7b6c0fae939fc6c99486f0776d71c9383cd2dad4069c78729146a920ef6e",
+      "deckIdentitySetSha256": "d6b3d355e163c0aa15270ecf8335d1b7d9eb7685b577e56aa7e7ed84037c059c",
+      "deckIds": [
+        "i82",
+        "i71",
+        "i56",
+        "i76",
+        "i67",
+        "i93",
+        "i61",
+        "i74",
+        "i65",
+        "i81",
+        "i60",
+        "i53",
+        "i52",
+        "i51",
+        "i96",
+        "i80",
+        "i77",
+        "i64",
+        "i78",
+        "i69",
+        "i91",
+        "i84",
+        "i79",
+        "i85",
+        "i83",
+        "i55",
+        "i63",
+        "i72",
+        "i59",
+        "i88",
+        "i86",
+        "i57",
+        "i94",
+        "i87",
+        "i99",
+        "i100",
+        "i98",
+        "i75",
+        "i62"
+      ],
+      "graveCount": 0,
+      "grave": [],
+      "handCount": 5,
+      "hand": [
+        [
+          "i122",
+          "XQ12"
+        ],
+        [
+          "i130",
+          "JZ49"
+        ],
+        [
+          "i137",
+          "JC125"
+        ],
+        [
+          "i144",
+          "JC085"
+        ],
+        [
+          "i155",
+          "JC125"
+        ]
+      ]
+    }
+  ],
+  "dbMode": "read-only",
+  "boardInjection": false
+}

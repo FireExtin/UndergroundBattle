@@ -145,7 +145,7 @@ fn green_whole_printed_fields_and_closed_three_shapes() {
     assert_eq!(d.magic_icon, MagicIcon::Mind);
     assert_eq!(d.subtypes, ["人类", "猎手", "超能力者"]);
     assert_eq!(d.defense, Some(2));
-    assert!(d.rule_traits.renown && !d.unique);
+    assert!(!d.rule_traits.renown && !d.unique); // Printed 威名 is combat-timed, not 声望.
     assert_eq!(
         d.permanent_icons,
         Icons {
@@ -197,8 +197,6 @@ fn green_whole_printed_fields_and_closed_three_shapes() {
         a.targets[0].predicate,
         Some(TargetPredicate::JC015NonHumanPrintedCostAtLeastThree)
     );
-    assert_eq!(catalog::catalog().cards.len(), 101);
-    assert_eq!(catalog::catalog().societies.len(), 8);
     assert!(crate::society::definition("MSJC03").is_ok());
     assert!(!catalog::catalog().cards.iter().any(|c| c.id == "XQ11"));
 }

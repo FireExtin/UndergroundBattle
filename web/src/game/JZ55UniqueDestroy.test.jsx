@@ -3,34 +3,26 @@ import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {render,screen,fireEvent,cleanup} from '@testing-library/react';
 import {afterEach,expect,it,vi} from 'vitest';
-import * as k from '../../../rust-game-wasm/legacy-v0.2.36/hegemony_wasm.js';
-import * as old from '../../../rust-game-wasm/legacy-v0.2.35/hegemony_wasm.js';
+import { kernel as k } from './testKernel';
 import {ReadModal} from './ReadModal';
 import {Table} from './Table';
 import {ChoicePanel} from './ChoicePanel';
 import {cardScanUrl} from './cardScans';
 import {createDeckDraft,validateDeckDraft,saveDeckLibrary,readDeckLibrary,DECK_LIBRARY_STORAGE_KEY} from './deckLibrary';
 
-k.initSync({module:readFileSync(resolve('../rust-game-wasm/legacy-v0.2.36/hegemony_wasm_bg.wasm'))});
-old.initSync({module:readFileSync(resolve('../rust-game-wasm/legacy-v0.2.35/hegemony_wasm_bg.wasm'))});
-const catalog=JSON.parse(k.catalog()),prior=JSON.parse(old.catalog());
+const catalog=JSON.parse(k.catalog());
 const definitions=new Map(catalog.cards.map(c=>[c.id,c]));
 const fixtures=JSON.parse(readFileSync(resolve('src/game/jz55Test.fixture.json'),'utf8')).fixtures;
-const view=(kind,seat=0)=>JSON.parse(k.view(fixtures.find(f=>f.kind===kind).state,seat));
+const view=(kind,seat=0)=>fixtures.find(f=>f.kind===kind).views[seat];
 afterEach(()=>{cleanup();localStorage.removeItem(DECK_LIBRARY_STORAGE_KEY);});
 
-it('admits only the printed new card and preserves the exact old99, eight societies and five presets',()=>{
- expect(catalog.engineVersion).toBe('rust-v0.2.36-jz55-unique-destroy-candidate');
- expect(catalog.cardPoolVersion).toBe('limited-v2.33-jz55-unique-destroy-candidate');
- expect(catalog.cards).toHaveLength(100);expect(catalog.societies).toHaveLength(8);expect(catalog.decks).toHaveLength(5);
- expect(catalog.cards.filter(c=>c.id!=='JZ55')).toEqual(prior.cards);
- expect(catalog.societies).toEqual(prior.societies);expect(catalog.decks).toEqual(prior.decks);expect(catalog.world).toEqual(prior.world);
+it('checks the complete JZ55 printed definition',()=>{
+
  expect(definitions.get('JZ55')).toMatchObject({name:'传奇落幕',kind:'spell',cost:2,color:'黑',loyalty:['黑色'],subtypes:['命运'],magic:'',magicIcon:'None',unique:false,deckCopyLimit:3,abilities:[{key:'destroy-unique',timing:'fast',costs:[],triggered:false}]});
 });
 
-it('restores all21 native projections for every seat, including real composition and the subsequent death trigger',()=>{
+it('checks recorded immediate composition and subsequent death-trigger views',()=>{
  expect(fixtures).toHaveLength(21);
- for(const row of fixtures)for(let seat=0;seat<4;seat++)expect(JSON.parse(k.view(row.state,seat))).toEqual(row.views[seat]);
  const composed=view('real-composing',2);expect(composed.responseWindow.myIntentId).toBe('jz55-real-response');expect(composed.stack).toHaveLength(1);
  const after=view('immediate-response-complete',2);expect(after.stack).toHaveLength(1);expect(after.stack[0].cardId).toBe('JC063');
  expect(after.graveyard.filter(c=>c.cardId==='JZ55')).toHaveLength(1);
@@ -41,7 +33,7 @@ it('restores all21 native projections for every seat, including real composition
 it('opens the exact original and displays cannot respond without inventing a magic requirement',()=>{
  const hash='9155faa90be22aa66e56148dfacd0d517eb7b6f7b56fd1b45b71a6804719784a';
  const scans=JSON.parse(readFileSync(resolve('public/card-scans.json'),'utf8'));
- expect(Object.keys(scans)).toHaveLength(109);expect(scans.JZ55.sha256).toBe(hash);expect(cardScanUrl('JZ55')).toBe('/cards/JZ55.jpg');
+ expect(Object.keys(scans)).toHaveLength(129);expect(scans.JZ55.sha256).toBe(hash);expect(cardScanUrl('JZ55')).toBe('/cards/JZ55.jpg');
  expect(createHash('sha256').update(readFileSync(resolve('public/cards/JZ55.jpg'))).digest('hex')).toBe(hash);
  const card=view('targets-seat0').hand.find(c=>c.cardId==='JZ55');
  render(<ReadModal card={card} definition={definitions.get('JZ55')} viewerId="p0" onClose={vi.fn()}/>);

@@ -1,0 +1,17 @@
+{
+  "checked_by": "sites.get_site_version",
+  "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+  "version_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_28b65a6c2bd08191bc711cf61449a03e",
+  "version_number": 41,
+  "source": {
+    "commit_sha": "42229677a9a69fc6b1d469af0f6539ac03bb429b"
+  },
+  "deployment_id": "appgdep_6ac6a314c9808191a72a0b9ddbc78353",
+  "archive_storage": {
+    "archive_format": "tar",
+    "content_hash": "sha256:8c7a85f36d3eb711f3cd9ddff762d26694a601eec562ec692b03c0191853d868",
+    "size_bytes": 67133440,
+    "file_count": 130
+  },
+  "scope": "Saved-version source and deployment metadata only; no retry of public catalog HTTP403."
+}

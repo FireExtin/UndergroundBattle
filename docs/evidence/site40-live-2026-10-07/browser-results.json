@@ -1,0 +1,36 @@
+{
+  "scope": "public-Site40-real-UI-and-Worker-WASM-D1-natural-duel",
+  "productionWrites": true,
+  "checks": [
+    "chooser-can-pause-and-resume-controls-are-accessible",
+    "idle-no-poll-and-leave-reload-my-tables-restores-original-seat",
+    "peer-resume-manual-sync-preserves-choice-and-hand-instance-ids",
+    "original-choice-actually-submitted-after-resume"
+  ],
+  "errors": [],
+  "passed": true,
+  "catalog": {
+    "engineVersion": "rust-v0.2.46-pause-resume-candidate",
+    "cardPoolVersion": "limited-v2.42-jc089-poison-blood-candidate",
+    "rulesVersion": "hegemony-pdf-v1"
+  },
+  "stage": "leave-new-QA-table-paused",
+  "versions": {
+    "rules": "hegemony-pdf-v1",
+    "cardPool": "limited-v2.42-jc089-poison-blood-candidate",
+    "engine": "rust-v0.2.46-pause-resume-candidate"
+  },
+  "savedRevision": 5,
+  "resumedRevision": 6,
+  "samePrivateChoice": true,
+  "continuedRevision": 7,
+  "finalPausedRevision": 8,
+  "roomId": "ee7077836a199dcdb3719d55",
+  "testTableLeftPaused": true,
+  "screenshots": {
+    "desktop-continued-and-paused.png": "d5734458aab553fec702938c330ff7e693b327efe8b54930b1de5d5deabc8dd7",
+    "desktop-resumed-same-choice.png": "dcb90a25cd920cc80b609262673e1552b501ecc2c83310193ff0c293e15c4ea4",
+    "mobile-peer-paused.png": "2bbc4e0382b3953dc430df31e713aa547f6f35a6ea555d98a62462aba092c897",
+    "desktop-paused-private-choice.png": "6a7eb4667e071199a415be0367a6e28b1546185692ed14a98e544d53be8efd81"
+  }
+}

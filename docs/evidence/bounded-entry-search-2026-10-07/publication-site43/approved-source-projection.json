@@ -1,0 +1,3835 @@
+{
+  "timeUtc": "2026-10-08T01:28:56.643758+00:00",
+  "approvedMaterialCommit": "abe83b05f6a4382d6804cc975cb574821756753c",
+  "frozenProductCandidateUnchanged": true,
+  "providerBase": "4595431ba223736fee200844c200ccda48cd078b",
+  "projectedFiles": 452,
+  "projectedBytes": 91957689,
+  "exactVerifiedFiles": 452,
+  "retiredSourceRemoved": 27,
+  "sourceProvenance": {
+    "originalRepository": "https://github.com/FireExtin/UndergroundBattle.git",
+    "originalCommit": "abe83b05f6a4382d6804cc975cb574821756753c",
+    "frozenProductCandidate": "d55a740b97fc75aab25eea3dacbf870385cd1615",
+    "qaCommit": "28a72af4b77fceb27b8452af48d48828dd53ba09",
+    "wasmSha256": "e3d26f7041a114a96c9933374a33e63b0c8e45b9a4506b7937fb70cbf99a9d81",
+    "bq104SpecificUserRuling": "docs/rules/BQ104_ORIGINAL_REGION_RULING_2026-10-08.md",
+    "engine": "rust-v0.2.50-bounded-entry-search-candidate",
+    "pool": "limited-v2.45-bounded-entry-search-candidate",
+    "currentOnly": true
+  },
+  "logicalBindingsSchemaAndMigrationsExact": true,
+  "frozen49Bytes": 2248074,
+  "frozen49Sha256": "9b8a7a69cd3c09781387cb4e66ad710d803783447fb6b0382fb2697eac50e885",
+  "gameDataPermanentlyDeleted": false,
+  "candidateMainUntouched": true,
+  "sourceFiles": {
+    "Cargo.lock": {
+      "original": "Cargo.lock",
+      "bytes": 29338,
+      "sha256": "1745cc1af931f500e763222c39100da3ac0521f4a1f96fc54e82c8589e2edb54",
+      "git_mode": "100644",
+      "candidateBlob": "ac8d6c612aa2ce40400cf4b7ec8e99c57168886b",
+      "targetChange": "same"
+    },
+    "Cargo.toml": {
+      "original": "Cargo.toml",
+      "bytes": 69,
+      "sha256": "6a2e27cc47931d9285d713ced9aad949ebcf36cfd32f5eeaf329fec24fda3257",
+      "git_mode": "100644",
+      "candidateBlob": "3ad8bca268d886ed956a06596d3859d91662c75b",
+      "targetChange": "same"
+    },
+    "docs/BQ104_XQ48_CLOUD_CANDIDATE_2026-10-07.md": {
+      "original": "docs/BQ104_XQ48_CLOUD_CANDIDATE_2026-10-07.md",
+      "bytes": 19483,
+      "sha256": "7ae4107c896c320f7191bc79d69441bc95e2f7b27cd3bc7a58d1d3c1dd2f871b",
+      "git_mode": "100644",
+      "candidateBlob": "a6a30e999da30d7da19c97d09125aa98a4bdafef",
+      "targetChange": "add"
+    },
+    "docs/JZ50_DEATH_SEARCH48_CANDIDATE_2026-10-07.md": {
+      "original": "docs/JZ50_DEATH_SEARCH48_CANDIDATE_2026-10-07.md",
+      "bytes": 6951,
+      "sha256": "386301c778ab96dc2f299ad3873daf850a2e1fb18809f3c3388c54962ec9903e",
+      "git_mode": "100644",
+      "candidateBlob": "ffb5ce84722e39e2aae0ad452ce5d40e0c505148",
+      "targetChange": "same"
+    },
+    "docs/LEGACY_DEBUGGER_LAZY_CLEANUP_2026-10-07.md": {
+      "original": "docs/LEGACY_DEBUGGER_LAZY_CLEANUP_2026-10-07.md",
+      "bytes": 4595,
+      "sha256": "413a56fec136974ff4a18b79909216fb513a1e96cdbc7c1d5fcfc7a7419c3b69",
+      "git_mode": "100644",
+      "candidateBlob": "a1b267f4fca04798d188b923551effe86e803090",
+      "targetChange": "same"
+    },
+    "docs/LEGACY_DEBUGGER_LOAD_RECOVERY_2026-10-07.md": {
+      "original": "docs/LEGACY_DEBUGGER_LOAD_RECOVERY_2026-10-07.md",
+      "bytes": 3381,
+      "sha256": "9a76935f0910c0f79ed6efff58cd3459652a32a2137a262e73865d9b4e2d150c",
+      "git_mode": "100644",
+      "candidateBlob": "a94c50131eb7e51c967b3fd2cc7fa60baf10f1d8",
+      "targetChange": "same"
+    },
+    "docs/SEALED_RESTART49_P1_FIX_2026-10-07.md": {
+      "original": "docs/SEALED_RESTART49_P1_FIX_2026-10-07.md",
+      "bytes": 6093,
+      "sha256": "aea1a781fae2f7fec4072e1143238f616a0951886d686c2ca8b160679f8aee1a",
+      "git_mode": "100644",
+      "candidateBlob": "22226ab38ffe63ecfa3375b92d05c9c887ef7b9e",
+      "targetChange": "same"
+    },
+    "docs/SEALING47_CANDIDATE_2026-10-07.md": {
+      "original": "docs/SEALING47_CANDIDATE_2026-10-07.md",
+      "bytes": 5501,
+      "sha256": "00378e10bc8e77c7343ef78d335d821086b01ed00bd0282f7c083c4054673785",
+      "git_mode": "100644",
+      "candidateBlob": "d60372c15fc170f9522bac78483b078672ab36da",
+      "targetChange": "same"
+    },
+    "docs/TASK_DOCUMENTATION_POLICY.md": {
+      "original": "docs/TASK_DOCUMENTATION_POLICY.md",
+      "bytes": 984,
+      "sha256": "c747e8e1127994b3ed7294039e43bdc914abfb3af7a4dda37f2404de0f8696e6",
+      "git_mode": "100644",
+      "candidateBlob": "0188dcd9a1cfc55706555e9ba54c9ed30729beda",
+      "targetChange": "same"
+    },
+    "docs/rules/JZ50_SEARCH_OWNER_FAQ_2026-10-07.md": {
+      "original": "docs/rules/JZ50_SEARCH_OWNER_FAQ_2026-10-07.md",
+      "bytes": 1981,
+      "sha256": "82a1fa833e2be91063e15d09f0e940a9f7d1e844fac74300e3a275a17c0b445e",
+      "git_mode": "100644",
+      "candidateBlob": "2d323df308aa8414178d1a94a353345766bc6878",
+      "targetChange": "same"
+    },
+    "rust-game-wasm/Cargo.toml": {
+      "original": "rust-game-wasm/Cargo.toml",
+      "bytes": 375,
+      "sha256": "cbdeefa0ca26e19bab521fd24e56bdc4e2f2f7f3c53e78f9e0a4d61b6c4e0fd0",
+      "git_mode": "100644",
+      "candidateBlob": "e5f83d9d2f59d6a3f821953ac61329c1dbde129d",
+      "targetChange": "same"
+    },
+    "rust-game-wasm/README.md": {
+      "original": "rust-game-wasm/README.md",
+      "bytes": 5760,
+      "sha256": "4c9039bad34aba9d232b6a3f103b15e82a0e7cf9cd29822c1dce93015cd2c6f3",
+      "git_mode": "100644",
+      "candidateBlob": "4b3d8fc3c86a6c14b36dd14f5a58a338519117c5",
+      "targetChange": "same"
+    },
+    "rust-game-wasm/build.sh": {
+      "original": "rust-game-wasm/build.sh",
+      "bytes": 895,
+      "sha256": "f1773c8a3371e4cf65b0197a6d746a5ec3b1cf84ee56f47097d465cab8500278",
+      "git_mode": "100755",
+      "candidateBlob": "0f2f61e6d199a8f3bec89b606eb9e389260cc86a",
+      "targetChange": "same"
+    },
+    "rust-game-wasm/examples/native_fixtures.rs": {
+      "original": "rust-game-wasm/examples/native_fixtures.rs",
+      "bytes": 109132,
+      "sha256": "f127d985c042c84b581f25399853b625f1b0af5a14730ad763b5e4e8a345da20",
+      "git_mode": "100644",
+      "candidateBlob": "4c4dd4534538635a91e3ffe7f5b8dc14e384c3fe",
+      "targetChange": "same"
+    },
+    "rust-game-wasm/examples/support/control.rs": {
+      "original": "rust-game-wasm/examples/support/control.rs",
+      "bytes": 32299,
+      "sha256": "1618ccac6c656dcf2543b6a21af56c33238f3a61355e05bc61dfd9cc3ba7328c",
+      "git_mode": "100644",
+      "candidateBlob": "040cbf1d672433caa6b3bbc115fdda16dcb1aa46",
+      "targetChange": "same"
+    },
+    "rust-game-wasm/examples/support/defence_equipment.rs": {
+      "original": "rust-game-wasm/examples/support/defence_equipment.rs",
+      "bytes": 35306,
+      "sha256": "085237fdcbd268ec6f1e4a2268029163c5a389adc7a1178faeb7f5834602816a",
+      "git_mode": "100644",
+      "candidateBlob": "c226303d705a5c918e05b580a39ee1faee22dd5b",
+      "targetChange": "same"
+    },
+    "rust-game-wasm/examples/support/dream_reveal.rs": {
+      "original": "rust-game-wasm/examples/support/dream_reveal.rs",
+      "bytes": 26062,
+      "sha256": "c959a2f38defa321b6c36fe16f9accba13af4d596e320047d8e0e5be86fbf0e8",
+      "git_mode": "100644",
+      "candidateBlob": "27e3e2ff0a252a05822f3ba83be35e5388af0fb8",
+      "targetChange": "same"
+    },
+    "rust-game-wasm/examples/support/equipment_abilities.rs": {
+      "original": "rust-game-wasm/examples/support/equipment_abilities.rs",
+      "bytes": 46787,
+      "sha256": "d6f2591acfe15fe597a7ab70e6c85248a060acd57487f79d7e6b6f9573299b7a",
+      "git_mode": "100644",
+      "candidateBlob": "4c8b07655806fbb96d8820fbb5afa55cdddc2aee",
+      "targetChange": "same"
+    },
+    "rust-game-wasm/examples/support/hand_deck.rs": {
+      "original": "rust-game-wasm/examples/support/hand_deck.rs",
+      "bytes": 22585,
+      "sha256": "a4d034538019fe1fee159225da3e35ea7df38d2266c8bcb6597d65c75b4a6bd2",
+      "git_mode": "100644",
+      "candidateBlob": "21208d2120909e631ac6b4d1c2aa908df25a3ce9",
+      "targetChange": "same"
+    },
+    "rust-game-wasm/examples/support/hand_interactions.rs": {
+      "original": "rust-game-wasm/examples/support/hand_interactions.rs",
+      "bytes": 25670,
+      "sha256": "ca485bcefcace161bccb9227d8a8db8aa975d3d7f914d3f50d9b247556a55952",
+      "git_mode": "100644",
+      "candidateBlob": "bf619fc35ad6b10709b3858ad3e49aafa479135a",
+      "targetChange": "same"
+    },
+    "rust-game-wasm/examples/support/identity_overlap.rs": {
+      "original": "rust-game-wasm/examples/support/identity_overlap.rs",
+      "bytes": 22904,
+      "sha256": "1391b5c1fd88c220e3762778365e137cb8756c44c0e569a5bb3a7f58988d27f3",
+      "git_mode": "100644",
+      "candidateBlob": "0fc825181b6fa46ed33a0299f1c78d745656ce30",
+      "targetChange": "same"
+    },
+    "rust-game-wasm/examples/support/jc004.rs": {
+      "original": "rust-game-wasm/examples/support/jc004.rs",
+      "bytes": 17861,
+      "sha256": "634717ba75955c5cb81709653baf169af9f8dba879a819a0f74966047f944195",
+      "git_mode": "100644",
+      "candidateBlob": "7926b70b6b4eb315c54d3a70bc5f11555bedc630",
+      "targetChange": "same"
+    },
+    "rust-game-wasm/examples/support/jc005.rs": {
+      "original": "rust-game-wasm/examples/support/jc005.rs",
+      "bytes": 10615,
+      "sha256": "80a709822ea9c1789131a90085f16e09afc9bf4775d3502fc1ca09714d8df9e5",
+      "git_mode": "100644",
+      "candidateBlob": "7d5dce2fa8a05e1a1a6a5ddf30bfc326b500ffc5",
+      "targetChange": "same"
+    },
+    "rust-game-wasm/examples/support/jc008.rs": {
+      "original": "rust-game-wasm/examples/support/jc008.rs",
+      "bytes": 18934,
+      "sha256": "876b6b9b1b09a9f1f62f7dd5d696cb0466ac9107c89032a833a73f135b57ea7d",
+      "git_mode": "100644",
+      "candidateBlob": "9f62eb86fa55497b822c94e63f77f736c02c7b4e",
+      "targetChange": "same"
+    },
+    "rust-game-wasm/examples/support/mixed_decks.rs": {
+      "original": "rust-game-wasm/examples/support/mixed_decks.rs",
+      "bytes": 9450,
+      "sha256": "34b2e7db82a4e4b13aa28024fce6f40a1910e6caf97d825b74fafbc93403b49a",
+      "git_mode": "100644",
+      "candidateBlob": "e887a2c5e703ce9fac619994f5970cff35d53bb5",
+      "targetChange": "same"
+    },
+    "rust-game-wasm/examples/support/msjc01.rs": {
+      "original": "rust-game-wasm/examples/support/msjc01.rs",
+      "bytes": 19062,
+      "sha256": "2e329f0fe67cbaa47c2b44617c9dcb6b9f46915d4a4ea191b7212f629f115ded",
+      "git_mode": "100644",
+      "candidateBlob": "3bba8bd89c68c6d6484e8765e20e4299de8bf603",
+      "targetChange": "same"
+    },
+    "rust-game-wasm/examples/support/msjc06.rs": {
+      "original": "rust-game-wasm/examples/support/msjc06.rs",
+      "bytes": 23002,
+      "sha256": "b92e1deadd07607f61fe9000afc6f419b5887b2cc47300fee45de7dab501e604",
+      "git_mode": "100644",
+      "candidateBlob": "f11e01c42d110908af99e6989da33c3e79f2f042",
+      "targetChange": "same"
+    },
+    "rust-game-wasm/examples/support/msjc07.rs": {
+      "original": "rust-game-wasm/examples/support/msjc07.rs",
+      "bytes": 23037,
+      "sha256": "08655fcc1b107d2de814a0231eea1ce3a098554fa11562bfc42137c9729bea22",
+      "git_mode": "100644",
+      "candidateBlob": "7e1e7df37d618f8c49ac9bbddd4b6f5f3f6508a0",
+      "targetChange": "same"
+    },
+    "rust-game-wasm/examples/support/msjc08.rs": {
+      "original": "rust-game-wasm/examples/support/msjc08.rs",
+      "bytes": 23014,
+      "sha256": "adeb445615d0212b05b9c921db271c1978acde518ba5a42ce40159fd69a04867",
+      "git_mode": "100644",
+      "candidateBlob": "74db685b21cbea00148e6d39be5abcb0f4134eb6",
+      "targetChange": "same"
+    },
+    "rust-game-wasm/examples/support/msjc09.rs": {
+      "original": "rust-game-wasm/examples/support/msjc09.rs",
+      "bytes": 7086,
+      "sha256": "6799e96443d34cf1409cd18a51fb7d406ddb12be22e29f07162e805f38bbd731",
+      "git_mode": "100644",
+      "candidateBlob": "78668e8a1f0a5dd7bd13db684a2231abe3b10400",
+      "targetChange": "same"
+    },
+    "rust-game-wasm/examples/support/msjc11.rs": {
+      "original": "rust-game-wasm/examples/support/msjc11.rs",
+      "bytes": 35022,
+      "sha256": "ea52ac5120af22b4725f5fbf5ad500c9811f4a95762f321faf7667c8f61d96ac",
+      "git_mode": "100644",
+      "candidateBlob": "783f64ff766faf9c02e76779b8d5b0be49c81def",
+      "targetChange": "same"
+    },
+    "rust-game-wasm/examples/support/protection.rs": {
+      "original": "rust-game-wasm/examples/support/protection.rs",
+      "bytes": 28856,
+      "sha256": "1272d3010d72f1a58f9f45e691dccf19524f5aa5ba1b59ed84959e8e949d75a1",
+      "git_mode": "100644",
+      "candidateBlob": "2309cdc614897d7f017007dc879db5ac42736802",
+      "targetChange": "same"
+    },
+    "rust-game-wasm/examples/support/purple_tools.rs": {
+      "original": "rust-game-wasm/examples/support/purple_tools.rs",
+      "bytes": 20096,
+      "sha256": "d9550980f9937a58ea2d2c60e9ff3025c0d5696b23ad061b767ffb72a970f1e9",
+      "git_mode": "100644",
+      "candidateBlob": "8e62a2888df1de875a883c15786064ea0240c768",
+      "targetChange": "same"
+    },
+    "rust-game-wasm/examples/support/region_aura.rs": {
+      "original": "rust-game-wasm/examples/support/region_aura.rs",
+      "bytes": 36768,
+      "sha256": "96a903ef68b35a52281998cffbe1fcc03bf63177a1fc32e82a88e61a9e2dc6c8",
+      "git_mode": "100644",
+      "candidateBlob": "ce65a9a5ec9d0f3b58d7a9683f04ce013c050db4",
+      "targetChange": "same"
+    },
+    "rust-game-wasm/examples/support/renown.rs": {
+      "original": "rust-game-wasm/examples/support/renown.rs",
+      "bytes": 20352,
+      "sha256": "8940f9f534c12d3c6b8a0dd8eed6f67a4d3a94271e4f67b56d303a0f23392970",
+      "git_mode": "100644",
+      "candidateBlob": "fff65c85658ef2c2854467ff36026a2f03122d65",
+      "targetChange": "same"
+    },
+    "rust-game-wasm/examples/support/repress_assets.rs": {
+      "original": "rust-game-wasm/examples/support/repress_assets.rs",
+      "bytes": 24144,
+      "sha256": "4d6d082c56ad9a840c6785154c5cc49a4724b4dd72e99fa668e7d6951fae55eb",
+      "git_mode": "100644",
+      "candidateBlob": "9cf8f5b654f2bf4966c42c73090eae5d3ddf6034",
+      "targetChange": "same"
+    },
+    "rust-game-wasm/examples/support/society_fixture.rs": {
+      "original": "rust-game-wasm/examples/support/society_fixture.rs",
+      "bytes": 6201,
+      "sha256": "531b8909c33ac20bba4757a68c5217f6b27efc2d246f9031e5d6d5e08bf1224c",
+      "git_mode": "100644",
+      "candidateBlob": "89d22cba6045d3c472cdb986d1ab32b429d1059f",
+      "targetChange": "same"
+    },
+    "rust-game-wasm/examples/support/white_wound.rs": {
+      "original": "rust-game-wasm/examples/support/white_wound.rs",
+      "bytes": 26782,
+      "sha256": "2fbe71526baa5a04928f6a8380ad1a51a2e9c13b3be2ecca243b93d4fe716e0e",
+      "git_mode": "100644",
+      "candidateBlob": "682d3daf673fa8bb966f077fc81e846820719f48",
+      "targetChange": "same"
+    },
+    "rust-game-wasm/examples/support/wound_defence.rs": {
+      "original": "rust-game-wasm/examples/support/wound_defence.rs",
+      "bytes": 19612,
+      "sha256": "f0d3eebcf26928f736cc84cc8d0aac2d942992b0fbf4b59b131cce5ceac5e042",
+      "git_mode": "100644",
+      "candidateBlob": "dc10e088c2b06e0d7e84237e134a4c43a4926c01",
+      "targetChange": "same"
+    },
+    "rust-game-wasm/examples/support/yellow_search.rs": {
+      "original": "rust-game-wasm/examples/support/yellow_search.rs",
+      "bytes": 16961,
+      "sha256": "ea184291253d3faf4bc7a6722da25261e8bffe0e6a9b4990913aa1cc5e40b57b",
+      "git_mode": "100644",
+      "candidateBlob": "8607627945cecae5977e73792120c0b9e867a001",
+      "targetChange": "same"
+    },
+    "rust-game-wasm/src/lib.rs": {
+      "original": "rust-game-wasm/src/lib.rs",
+      "bytes": 7064,
+      "sha256": "e813ff003dfad6063d117333412e3dd15e70dd19967aa2b6279a30fe86deb4f3",
+      "git_mode": "100644",
+      "candidateBlob": "1e6035833bed9403c88826a82cfdcfb0bbb2ae3a",
+      "targetChange": "same"
+    },
+    "rust-game-wasm/tests/compare.mjs": {
+      "original": "rust-game-wasm/tests/compare.mjs",
+      "bytes": 6894,
+      "sha256": "23fbbe0c9bbfa73df486b60dccdede899324e2a279f5f431317f9fedf2e0d28d",
+      "git_mode": "100644",
+      "candidateBlob": "8731e4a6954963f92af65700a5e2a1b99f25731c",
+      "targetChange": "same"
+    },
+    "rust-game-wasm/tests/current-kernel.mjs": {
+      "original": "rust-game-wasm/tests/current-kernel.mjs",
+      "bytes": 549,
+      "sha256": "d4272f5b94a97774261aa51b41b5ee04cb610c268412d54bdefb3666b0ae0ecb",
+      "git_mode": "100644",
+      "candidateBlob": "723216a4c52b393257e2a55a9825323ae1c0868b",
+      "targetChange": "same"
+    },
+    "rust-game-wasm/tests/jc089_compare.mjs": {
+      "original": "rust-game-wasm/tests/jc089_compare.mjs",
+      "bytes": 2354,
+      "sha256": "434904ee922ee2bd84ea05376823ef634b547e6c7dfaf101b476f6f24809e8e8",
+      "git_mode": "100644",
+      "candidateBlob": "793f4ad4b2c4f0e2199b03a16b3a6a27f6970330",
+      "targetChange": "same"
+    },
+    "rust-game-wasm/tests/jz31_compare.mjs": {
+      "original": "rust-game-wasm/tests/jz31_compare.mjs",
+      "bytes": 1386,
+      "sha256": "3573c0ce4e7a17a3b12a2f146557684b028d0f079bd2c7fa58856d58cf2d7fbd",
+      "git_mode": "100644",
+      "candidateBlob": "507f5336794856144aa2a1a016895d941c0e27dd",
+      "targetChange": "same"
+    },
+    "rust-game-wasm/tests/jz31_response_compare.mjs": {
+      "original": "rust-game-wasm/tests/jz31_response_compare.mjs",
+      "bytes": 1238,
+      "sha256": "fc9487b47a19ae4615440102b7aa56dc766ebc59fc98571db369f17731b2d178",
+      "git_mode": "100644",
+      "candidateBlob": "2599ed7b482a1b0bc8e3b7626e5cea66ab2818a4",
+      "targetChange": "same"
+    },
+    "rust-game-wasm/tests/jz48_compare.mjs": {
+      "original": "rust-game-wasm/tests/jz48_compare.mjs",
+      "bytes": 2353,
+      "sha256": "261786c2a9c2496bc50fae3d49afba89435f1757c1fee072d1cbf57c0f68a502",
+      "git_mode": "100644",
+      "candidateBlob": "d6d1eb5ff89080539465fb9e7cb9716b5a9975b0",
+      "targetChange": "same"
+    },
+    "rust-game-wasm/tests/jz49_compare.mjs": {
+      "original": "rust-game-wasm/tests/jz49_compare.mjs",
+      "bytes": 2482,
+      "sha256": "5073e4203e92152e665e8c92f4ad1e7103e0e547901f0859971aae00e51dad1b",
+      "git_mode": "100644",
+      "candidateBlob": "84ec037b2899d28289d4c707ff30e928c3b946e0",
+      "targetChange": "same"
+    },
+    "rust-game-wasm/tests/jz55_compare.mjs": {
+      "original": "rust-game-wasm/tests/jz55_compare.mjs",
+      "bytes": 3615,
+      "sha256": "4e32c8a9ceb7ce4b860b4d349859a8b961af0d60157d01c4f58b0a3624db09fb",
+      "git_mode": "100644",
+      "candidateBlob": "c4c23c1c2967bfd637d7cce79729d0b15860150d",
+      "targetChange": "same"
+    },
+    "rust-game-wasm/verify.sh": {
+      "original": "rust-game-wasm/verify.sh",
+      "bytes": 413,
+      "sha256": "5ee866b309e35398b1e1480a7e3aefc5689309aa916c7057f60b18f46216682a",
+      "git_mode": "100755",
+      "candidateBlob": "6a95602a744d6cad15af73b7cbc168209c53702c",
+      "targetChange": "same"
+    },
+    "rust-game/Cargo.toml": {
+      "original": "rust-game/Cargo.toml",
+      "bytes": 1257,
+      "sha256": "618a6aa097de2505d66a1d0f060b62d8d19e8ccefd1d9427f1a17db841dc60f3",
+      "git_mode": "100644",
+      "candidateBlob": "abc01cb9769b684f5a80340b0c2cd6b2a6d8cf05",
+      "targetChange": "same"
+    },
+    "rust-game/README.md": {
+      "original": "rust-game/README.md",
+      "bytes": 8377,
+      "sha256": "6f5b8d58fcd339920d30b85c8a17c5c035209adce3bfffd04846c13a940cd627",
+      "git_mode": "100644",
+      "candidateBlob": "1bbd04ba9a6c546b20c76e09327c13022f24b809",
+      "targetChange": "same"
+    },
+    "rust-game/data/card-research-index.json": {
+      "original": "rust-game/data/card-research-index.json",
+      "bytes": 2098569,
+      "sha256": "8ebc08d35c4891051cd47dc611eb80462abaeb6325a4f5fc3b06f8ce364384cf",
+      "git_mode": "100644",
+      "candidateBlob": "79a124908221a9fdfc0ddb8831273c85d1e1bc3d",
+      "targetChange": "same"
+    },
+    "rust-game/data/cards.json": {
+      "original": "rust-game/data/cards.json",
+      "bytes": 117067,
+      "sha256": "89bfef71fbaa31a74e26cb2d3d9e2eda826eb5a8208f7a9806ee6b31141eafaf",
+      "git_mode": "100644",
+      "candidateBlob": "8c441cdb45a57b7f38496bf54f407243cac0269f",
+      "targetChange": "replace"
+    },
+    "rust-game/data/faction-coverage.json": {
+      "original": "rust-game/data/faction-coverage.json",
+      "bytes": 388469,
+      "sha256": "4b1368ec32910b9802d20d451f141e16ea36209795c156ef454f77a0b07b55ff",
+      "git_mode": "100644",
+      "candidateBlob": "00feb3247f64d187038ddab7c396de5a386fba0d",
+      "targetChange": "same"
+    },
+    "rust-game/data/source-verification.json": {
+      "original": "rust-game/data/source-verification.json",
+      "bytes": 8738,
+      "sha256": "c83a9ee0cbfe741148d88e7c9bc49fc1cf96eaaa21bf0b192094ac361d224bd3",
+      "git_mode": "100644",
+      "candidateBlob": "dc6334b7373e2d4ff8ff2e0e792f2e4a5d920612",
+      "targetChange": "same"
+    },
+    "rust-game/examples/semantic_scope_audit.rs": {
+      "original": "rust-game/examples/semantic_scope_audit.rs",
+      "bytes": 302,
+      "sha256": "fd5acb012a686f9a73cc1fe1b26553cbe199adb371e8d8ec917befe8b642a3fd",
+      "git_mode": "100644",
+      "candidateBlob": "f02d52de9a2910f98af61032ffdc402d5b3e2ced",
+      "targetChange": "same"
+    },
+    "rust-game/src/attachment.rs": {
+      "original": "rust-game/src/attachment.rs",
+      "bytes": 28105,
+      "sha256": "600a19237dff7f7051b645523bc37ee331f73794419ab80507041d4de8a9dc4b",
+      "git_mode": "100644",
+      "candidateBlob": "cc9a7ffd1489516a47e61088c4541e894dd5abe7",
+      "targetChange": "same"
+    },
+    "rust-game/src/attributes.rs": {
+      "original": "rust-game/src/attributes.rs",
+      "bytes": 10170,
+      "sha256": "6e42a1b49ce7a5f7b04f6e937d60f299d8a019178d467e590c114c6a33f5ccf2",
+      "git_mode": "100644",
+      "candidateBlob": "c061dcc0c49788bce76dbcb3337c7a1c6cbef569",
+      "targetChange": "same"
+    },
+    "rust-game/src/bin/hegemony-audit.rs": {
+      "original": "rust-game/src/bin/hegemony-audit.rs",
+      "bytes": 627,
+      "sha256": "6e1d4f5cb0b803f9aa4bc233dfb2445cbddb2801522846963aa2caf2b2090e2e",
+      "git_mode": "100644",
+      "candidateBlob": "9c700fec6644e25579772de6e2f72822e2d12d58",
+      "targetChange": "same"
+    },
+    "rust-game/src/blue_minimum.rs": {
+      "original": "rust-game/src/blue_minimum.rs",
+      "bytes": 8085,
+      "sha256": "2df32acfb82071791336622a0c86e9fe5bdfa7e7417a00dfa8b08f7d9f63aeb1",
+      "git_mode": "100644",
+      "candidateBlob": "ba4706444403a87dd02a646ae3a0f34b9c29e9b4",
+      "targetChange": "same"
+    },
+    "rust-game/src/blue_minimum_tests.rs": {
+      "original": "rust-game/src/blue_minimum_tests.rs",
+      "bytes": 35054,
+      "sha256": "70e0a8d18b5c49e32b7eb84dee46151ed2231664158d89372da1f5e8f46ff0cb",
+      "git_mode": "100644",
+      "candidateBlob": "cdd60740cf3cbb4198dff45c905ecd79428287fb",
+      "targetChange": "same"
+    },
+    "rust-game/src/bounded_entry_fresh_tests.rs": {
+      "original": "rust-game/src/bounded_entry_fresh_tests.rs",
+      "bytes": 7104,
+      "sha256": "90cfb2f3efca7dcfccacd78489b180d86363f4caf7bc07e4e08c77470ee799f4",
+      "git_mode": "100644",
+      "candidateBlob": "6ee166cfb884f1facbd27baeabb053ddad999571",
+      "targetChange": "add"
+    },
+    "rust-game/src/bounded_search.rs": {
+      "original": "rust-game/src/bounded_search.rs",
+      "bytes": 10701,
+      "sha256": "c511655c53b1acf6c3fb721b3127c6db35cbb6aa3fd5090118ce4774988db537",
+      "git_mode": "100644",
+      "candidateBlob": "539cc77284b373e594d85504fc63743951348512",
+      "targetChange": "add"
+    },
+    "rust-game/src/bounded_search_tests.rs": {
+      "original": "rust-game/src/bounded_search_tests.rs",
+      "bytes": 31102,
+      "sha256": "687d585a7f67342686298abe854553383d57de8e58f53a869de71aeb4874fcf8",
+      "git_mode": "100644",
+      "candidateBlob": "bcb135dd4aed0c4d802f5586617192005d58c801",
+      "targetChange": "add"
+    },
+    "rust-game/src/catalog.rs": {
+      "original": "rust-game/src/catalog.rs",
+      "bytes": 8253,
+      "sha256": "03be95f7f5c3c870ce47d7626bcc57c780a96e8d596fba32d8a9a359a5feec05",
+      "git_mode": "100644",
+      "candidateBlob": "544e1e65cefbd45095caed1197b4e2f62f2e7363",
+      "targetChange": "replace"
+    },
+    "rust-game/src/control.rs": {
+      "original": "rust-game/src/control.rs",
+      "bytes": 7013,
+      "sha256": "17a956e107004547814638c5729e5578f86aaed3f1326da9f855f554d76e68e3",
+      "git_mode": "100644",
+      "candidateBlob": "375f4a00667682771b0b0c69554f447b6a61bf00",
+      "targetChange": "same"
+    },
+    "rust-game/src/control_tests.rs": {
+      "original": "rust-game/src/control_tests.rs",
+      "bytes": 26786,
+      "sha256": "28e12e2fd639856abc3de3b5d93c402ba9f1c7dcbcd4563555af412df6fb5586",
+      "git_mode": "100644",
+      "candidateBlob": "2eb36e78382d359fd791e109ba472f499f2fdaee",
+      "targetChange": "same"
+    },
+    "rust-game/src/deck.rs": {
+      "original": "rust-game/src/deck.rs",
+      "bytes": 6066,
+      "sha256": "20b2a14c0de1ff8ca921fba06aa322daf625f87716963c4ed434c3e8f18494bd",
+      "git_mode": "100644",
+      "candidateBlob": "32b0566013e05e7a44166566ba5eee37b24bc472",
+      "targetChange": "same"
+    },
+    "rust-game/src/defence_equipment_tests.rs": {
+      "original": "rust-game/src/defence_equipment_tests.rs",
+      "bytes": 16130,
+      "sha256": "911114e3ef9bf06fcd75c8dc3ac609cb2391fc5c0fc5d5f7efb5ae79471ae462",
+      "git_mode": "100644",
+      "candidateBlob": "9d28eeb122ba552fbb9a62ce062986fa6e4f7136",
+      "targetChange": "same"
+    },
+    "rust-game/src/dream_reveal_tests.rs": {
+      "original": "rust-game/src/dream_reveal_tests.rs",
+      "bytes": 14832,
+      "sha256": "6ec4e9877f69cd49426138d8ba88dbc41b28d0863dc6c2702fba3453d107a94e",
+      "git_mode": "100644",
+      "candidateBlob": "c94c9b66a2b961021d4e7d3c14d53941374908f4",
+      "targetChange": "same"
+    },
+    "rust-game/src/engine.rs": {
+      "original": "rust-game/src/engine.rs",
+      "bytes": 254642,
+      "sha256": "24c0ed1aabbb5f9a654e86ad0323d0f3470f4c5ad1b9f4b210504f5db8182609",
+      "git_mode": "100644",
+      "candidateBlob": "fb5cdde3d1d60a71c4fd19f23011adb1561ebc7e",
+      "targetChange": "replace"
+    },
+    "rust-game/src/equipment_abilities_tests.rs": {
+      "original": "rust-game/src/equipment_abilities_tests.rs",
+      "bytes": 24063,
+      "sha256": "9afdb2620b714f42886a6e389b050a7a7c242a4b5c71104d45d678c46a58344c",
+      "git_mode": "100644",
+      "candidateBlob": "e818b1443981b062ede25d0d3c7407c3c4bdeb6d",
+      "targetChange": "same"
+    },
+    "rust-game/src/green_minimum_tests.rs": {
+      "original": "rust-game/src/green_minimum_tests.rs",
+      "bytes": 28713,
+      "sha256": "4206840dcb97261cc609501aee30e749a16c1a407b26a63d210627281d354bdf",
+      "git_mode": "100644",
+      "candidateBlob": "05ed842a4a6b207821a10a724ab5249b5a0a3eb5",
+      "targetChange": "same"
+    },
+    "rust-game/src/hand_deck_tests.rs": {
+      "original": "rust-game/src/hand_deck_tests.rs",
+      "bytes": 14114,
+      "sha256": "6ded1339c83045d889a82c022356e38487aabfd11aff26fdf734b67be5bca17c",
+      "git_mode": "100644",
+      "candidateBlob": "08d21ecfe2576e035206de5613bc755ec6527770",
+      "targetChange": "same"
+    },
+    "rust-game/src/hand_interactions_tests.rs": {
+      "original": "rust-game/src/hand_interactions_tests.rs",
+      "bytes": 19545,
+      "sha256": "7eaeacab6aa0acc7a0f5c89352557a424b70dade17376f7874d658fa7cf13517",
+      "git_mode": "100644",
+      "candidateBlob": "f2a0acc306493c7c83b6f4ef37d7811117da9a7e",
+      "targetChange": "same"
+    },
+    "rust-game/src/jc004_tests.rs": {
+      "original": "rust-game/src/jc004_tests.rs",
+      "bytes": 17587,
+      "sha256": "df50006ba54f6553494909ddfebce9dee7560b0bdbbdeb2a0d86d845dc046abf",
+      "git_mode": "100644",
+      "candidateBlob": "072319513273058d61810dc0eb14df7cce138198",
+      "targetChange": "same"
+    },
+    "rust-game/src/jc005_tests.rs": {
+      "original": "rust-game/src/jc005_tests.rs",
+      "bytes": 15057,
+      "sha256": "9f0ed04cf09f858c0f42868774dc3917a30ddcbf0c7e82a5fdec2366a3d08bee",
+      "git_mode": "100644",
+      "candidateBlob": "450c92675c8f20572691bdceabc3dddc4179b722",
+      "targetChange": "same"
+    },
+    "rust-game/src/jc008_tests.rs": {
+      "original": "rust-game/src/jc008_tests.rs",
+      "bytes": 16723,
+      "sha256": "b3859f1acccd68140986ec30569973e86d262e6dbb46ed0ca49c22f684297627",
+      "git_mode": "100644",
+      "candidateBlob": "5e0e93cbdded66a247bd4589416abc365c237b0c",
+      "targetChange": "same"
+    },
+    "rust-game/src/jc029_tests.rs": {
+      "original": "rust-game/src/jc029_tests.rs",
+      "bytes": 18163,
+      "sha256": "3412ada0846024cc54341196ca1420d8771c2b7b1d94f9498815c765f7e3cc19",
+      "git_mode": "100644",
+      "candidateBlob": "a4237a5c70e44b200edf2582be4fab83662f3cbb",
+      "targetChange": "same"
+    },
+    "rust-game/src/jc030_tests.rs": {
+      "original": "rust-game/src/jc030_tests.rs",
+      "bytes": 10280,
+      "sha256": "69971223f942abdb2206a3dfadfb308b6cebcd115c890e9b8fad440916915440",
+      "git_mode": "100644",
+      "candidateBlob": "a2c8188ca680722c736780861b160f3e31cf6f77",
+      "targetChange": "same"
+    },
+    "rust-game/src/jc089_tests.rs": {
+      "original": "rust-game/src/jc089_tests.rs",
+      "bytes": 35129,
+      "sha256": "276823d330b7ceea3c869f8a425673ea1fcad6b88196ebd703e545342aa491fe",
+      "git_mode": "100644",
+      "candidateBlob": "811fa096f9d884ce0c866326a56ba4a624251670",
+      "targetChange": "replace"
+    },
+    "rust-game/src/jz31_tests.rs": {
+      "original": "rust-game/src/jz31_tests.rs",
+      "bytes": 28850,
+      "sha256": "961799907e3bdffe55d447e92896c5fbe37e29b3360976be0b91b4f2d74b0b0a",
+      "git_mode": "100644",
+      "candidateBlob": "95580c929bd31e75002827f9a68b1a151a7a95b8",
+      "targetChange": "same"
+    },
+    "rust-game/src/jz48_tests.rs": {
+      "original": "rust-game/src/jz48_tests.rs",
+      "bytes": 23819,
+      "sha256": "b7fb20fccc11851b466a44e3ef367d11406585e23035c7a243c77bcb454d9e74",
+      "git_mode": "100644",
+      "candidateBlob": "99e0f2a57a83376a7478d03d732501d0da567158",
+      "targetChange": "same"
+    },
+    "rust-game/src/jz49_tests.rs": {
+      "original": "rust-game/src/jz49_tests.rs",
+      "bytes": 25190,
+      "sha256": "d2149e6e5d126cb7f832e6749f891962eb773f5fd6be765ce8b642a254797979",
+      "git_mode": "100644",
+      "candidateBlob": "01b1eaa2128e8696827dddcf42f056c0b527718f",
+      "targetChange": "same"
+    },
+    "rust-game/src/jz50_search.rs": {
+      "original": "rust-game/src/jz50_search.rs",
+      "bytes": 7138,
+      "sha256": "ddef90d3972d760897ab16cadf264908cb1e65fd9643d92194a169d1f3b3269c",
+      "git_mode": "100644",
+      "candidateBlob": "3c7799735d8ecf1b3476ad4d98231687649dac50",
+      "targetChange": "same"
+    },
+    "rust-game/src/jz50_search_tests.rs": {
+      "original": "rust-game/src/jz50_search_tests.rs",
+      "bytes": 33411,
+      "sha256": "e42fffac0a0993549f3305f6aeaabc323afc06d46f0fa985edeef33880442ca6",
+      "git_mode": "100644",
+      "candidateBlob": "b69068a0fe4abca6601687cb4f34aa6b49aea520",
+      "targetChange": "replace"
+    },
+    "rust-game/src/jz55_tests.rs": {
+      "original": "rust-game/src/jz55_tests.rs",
+      "bytes": 30201,
+      "sha256": "6fefc07141bef592f769c2e4d1b6ce30d5bd3539f7faf24f043405a20e5e1e02",
+      "git_mode": "100644",
+      "candidateBlob": "cc77d1f13de1fa653ea2aa0d219786d68d5bf648",
+      "targetChange": "same"
+    },
+    "rust-game/src/lib.rs": {
+      "original": "rust-game/src/lib.rs",
+      "bytes": 2445,
+      "sha256": "7d27d7447d43458eba4af0274b331babb8adbde5a5e85dbb0d29d3be3890ec88",
+      "git_mode": "100644",
+      "candidateBlob": "a64931b72832d2ec0b92b21ee72aa2ca71f12970",
+      "targetChange": "replace"
+    },
+    "rust-game/src/main.rs": {
+      "original": "rust-game/src/main.rs",
+      "bytes": 822,
+      "sha256": "b19047fc01dd00d864860551b41b2b8be883c04d77b158691b3bdc44252acf2e",
+      "git_mode": "100644",
+      "candidateBlob": "0e192fb0b063f969ae94de51dbd9687504f366fc",
+      "targetChange": "same"
+    },
+    "rust-game/src/mill_public_tests.rs": {
+      "original": "rust-game/src/mill_public_tests.rs",
+      "bytes": 14064,
+      "sha256": "e55fc52d8264d24d0b9832d936c49cf5b8b43a2f6947cbc0365fbc68cb691b49",
+      "git_mode": "100644",
+      "candidateBlob": "48038e4405bca20bd2d20e1d4e9e0043bf7ff940",
+      "targetChange": "same"
+    },
+    "rust-game/src/model.rs": {
+      "original": "rust-game/src/model.rs",
+      "bytes": 23555,
+      "sha256": "29e962ead98abd06079f684b253b47be42fee09cd2f1f8e4574655940e9f72e9",
+      "git_mode": "100644",
+      "candidateBlob": "c3879fd070b92627ff35d236f972c05bda0e5e84",
+      "targetChange": "replace"
+    },
+    "rust-game/src/msjc01_tests.rs": {
+      "original": "rust-game/src/msjc01_tests.rs",
+      "bytes": 15965,
+      "sha256": "b5a1816cbd7886a14deb704e85334f06223ee274178ddc4a4ec2bba067496fa7",
+      "git_mode": "100644",
+      "candidateBlob": "96511f1a8f5874aeb7cf9d8be14fd9d61ec9899c",
+      "targetChange": "same"
+    },
+    "rust-game/src/msjc06_tests.rs": {
+      "original": "rust-game/src/msjc06_tests.rs",
+      "bytes": 15004,
+      "sha256": "764613e131756e4a834fcd8613e196e3c13ccbcd4ab4790769b6a8d10dc21fb2",
+      "git_mode": "100644",
+      "candidateBlob": "059c35fb742dd0fdb5a516c325c0f2149ea9ec03",
+      "targetChange": "same"
+    },
+    "rust-game/src/msjc07_tests.rs": {
+      "original": "rust-game/src/msjc07_tests.rs",
+      "bytes": 1428,
+      "sha256": "4330b7e2a0975655f5241eb685aa48a2dc868c455916ec566252e59ae27f8291",
+      "git_mode": "100644",
+      "candidateBlob": "fc8f3ffc4d6a48d2c72460a7319c818fafe54359",
+      "targetChange": "same"
+    },
+    "rust-game/src/msjc08_tests.rs": {
+      "original": "rust-game/src/msjc08_tests.rs",
+      "bytes": 1396,
+      "sha256": "04cab2d5471f0c191241bc5747da9861553b1807384fcc996cd12abaa88ab1a2",
+      "git_mode": "100644",
+      "candidateBlob": "510980ef85f565193cd1bc0539c83c95a89eb723",
+      "targetChange": "same"
+    },
+    "rust-game/src/msjc11_tests.rs": {
+      "original": "rust-game/src/msjc11_tests.rs",
+      "bytes": 19648,
+      "sha256": "36aeded0ce3242a8eb0c4bb5d902ff8fb466fe4cf5ad8c2b2526e01d825dd378",
+      "git_mode": "100644",
+      "candidateBlob": "b3331ed516621a571faa99fc60907ed13ce4d5ae",
+      "targetChange": "same"
+    },
+    "rust-game/src/play_sources.rs": {
+      "original": "rust-game/src/play_sources.rs",
+      "bytes": 12029,
+      "sha256": "f1a80f2f4d34e2b4c61336b176e180dbca7551fbd82e752d3c80757418638dfd",
+      "git_mode": "100644",
+      "candidateBlob": "451760823220bf97cde232d2e6e012af0b91eda6",
+      "targetChange": "same"
+    },
+    "rust-game/src/protection_tests.rs": {
+      "original": "rust-game/src/protection_tests.rs",
+      "bytes": 18634,
+      "sha256": "603ae14cf365d77eefc7cef817fd7a91a95b0ee160f6180aa9abea7ac10dfbc8",
+      "git_mode": "100644",
+      "candidateBlob": "66588d8860fbb1cc3fe2350da490f0934c9225dc",
+      "targetChange": "same"
+    },
+    "rust-game/src/purple_tools_tests.rs": {
+      "original": "rust-game/src/purple_tools_tests.rs",
+      "bytes": 16491,
+      "sha256": "e642ab5cba65086996335831b2f67afc204994485f9d6ccd482a898d26dc351d",
+      "git_mode": "100644",
+      "candidateBlob": "df03778fbb95306f73f919c9cf0b0cd3fa20629b",
+      "targetChange": "same"
+    },
+    "rust-game/src/region_aura_tests.rs": {
+      "original": "rust-game/src/region_aura_tests.rs",
+      "bytes": 18741,
+      "sha256": "4c9ecd9bb268cb04467ddf924665731f62f24fa44bac638373354c0f12da4337",
+      "git_mode": "100644",
+      "candidateBlob": "82b1d84da50ed09ee430041abe87b63ceea4aba0",
+      "targetChange": "same"
+    },
+    "rust-game/src/renown.rs": {
+      "original": "rust-game/src/renown.rs",
+      "bytes": 4498,
+      "sha256": "447c157af0401c59fa1d210c52009569d70a313a83b3e92ed094c03cfd0ec9d9",
+      "git_mode": "100644",
+      "candidateBlob": "4ce8f0e88d4d2c5069ddfe976e24f4fe0c798656",
+      "targetChange": "same"
+    },
+    "rust-game/src/renown_tests.rs": {
+      "original": "rust-game/src/renown_tests.rs",
+      "bytes": 21509,
+      "sha256": "eddf9c7ff9146750dc50f1a1d4b298bb4dd8b9a8a58862f5fa9920fa175ce8f0",
+      "git_mode": "100644",
+      "candidateBlob": "d95f7af786ff5c337f2516f0869af088aff4bdb8",
+      "targetChange": "replace"
+    },
+    "rust-game/src/repress_assets_tests.rs": {
+      "original": "rust-game/src/repress_assets_tests.rs",
+      "bytes": 14834,
+      "sha256": "877d08dbc6080a4d595457f29cd8002056901e68ebd4b59c86e5f9ddffdb4660",
+      "git_mode": "100644",
+      "candidateBlob": "5e0d341d9785ad9277a35facc995fff2e8605196",
+      "targetChange": "same"
+    },
+    "rust-game/src/resolution.rs": {
+      "original": "rust-game/src/resolution.rs",
+      "bytes": 92360,
+      "sha256": "97d92faded4c7fb168aa9489416c0817058f24b6592d6dbcb9bc6a274206305f",
+      "git_mode": "100644",
+      "candidateBlob": "1c9d71243f1a77634d0efb2a3e78100eb13cb7af",
+      "targetChange": "replace"
+    },
+    "rust-game/src/room.rs": {
+      "original": "rust-game/src/room.rs",
+      "bytes": 29600,
+      "sha256": "361fac29b9c4b524d2c7c91cedb5914b40dc4c3f7ae9af6df1367ed0e0d2bbb2",
+      "git_mode": "100644",
+      "candidateBlob": "532d3068e8cc2126300827486ae79f15b2d9ff65",
+      "targetChange": "replace"
+    },
+    "rust-game/src/rules.rs": {
+      "original": "rust-game/src/rules.rs",
+      "bytes": 140082,
+      "sha256": "ddf72af85b2f83dedacec9f3318335a7f0f370a392c388bd98235330e6f31a64",
+      "git_mode": "100644",
+      "candidateBlob": "c729352d667e3afd0fc98afe59043b34da7405a1",
+      "targetChange": "replace"
+    },
+    "rust-game/src/sealing.rs": {
+      "original": "rust-game/src/sealing.rs",
+      "bytes": 8565,
+      "sha256": "fdbe776b99d1f387bec9521bb9c5df2ac5aa2988b9260c204a336f1e54281480",
+      "git_mode": "100644",
+      "candidateBlob": "96c36231c872437e3490170a2b3a8f7f19d7aac7",
+      "targetChange": "same"
+    },
+    "rust-game/src/sealing_tests.rs": {
+      "original": "rust-game/src/sealing_tests.rs",
+      "bytes": 55319,
+      "sha256": "4b4147bc2d98703464c7b5433c854a9c34c1496a956fc93d2f5703c6e58981cd",
+      "git_mode": "100644",
+      "candidateBlob": "d434210f51d25fd9b9e015bd31db2870b0704251",
+      "targetChange": "same"
+    },
+    "rust-game/src/service.rs": {
+      "original": "rust-game/src/service.rs",
+      "bytes": 29014,
+      "sha256": "c086433fe3e9b408332c1426c5637b4c1f6c649b2c40b382f4e5f1a102a5b512",
+      "git_mode": "100644",
+      "candidateBlob": "0492f1cbcc26cea3954a6e8cba4417e13dc213f4",
+      "targetChange": "same"
+    },
+    "rust-game/src/society.rs": {
+      "original": "rust-game/src/society.rs",
+      "bytes": 33322,
+      "sha256": "81500ad9b3db36e7b3238987d4764d675723669e01502736742f7454f5888d04",
+      "git_mode": "100644",
+      "candidateBlob": "6dd654a3abe0a9f473361bf2ba04e877083e1036",
+      "targetChange": "same"
+    },
+    "rust-game/src/society_msjc09_tests.rs": {
+      "original": "rust-game/src/society_msjc09_tests.rs",
+      "bytes": 13088,
+      "sha256": "0c202064bab7229e54352a392da1f5ed6bfd1b87d7ef53e5cbf91c9d42f13086",
+      "git_mode": "100644",
+      "candidateBlob": "976de1685464150a259b076781c771cb59f820d4",
+      "targetChange": "same"
+    },
+    "rust-game/src/unit_support.rs": {
+      "original": "rust-game/src/unit_support.rs",
+      "bytes": 7246,
+      "sha256": "a37407e58126278a97624a0debe39de8810859adb6d07272e94be7e677949683",
+      "git_mode": "100644",
+      "candidateBlob": "159081b40dd37efd442d810180652de368d084f5",
+      "targetChange": "same"
+    },
+    "rust-game/src/white_wound_tests.rs": {
+      "original": "rust-game/src/white_wound_tests.rs",
+      "bytes": 13035,
+      "sha256": "bcbb0ce418f390d53f546b8be69ce72da96d2d90e6bf0a35764ccab567502f7a",
+      "git_mode": "100644",
+      "candidateBlob": "4fb0c59098bcb385bdf4bbc7cb6109835266db57",
+      "targetChange": "same"
+    },
+    "rust-game/src/world.rs": {
+      "original": "rust-game/src/world.rs",
+      "bytes": 27285,
+      "sha256": "1474103db23b20ccafb4cd7242a06e70f24931d82d7a51d7528291fe930418b2",
+      "git_mode": "100644",
+      "candidateBlob": "2a4b1d4c4dc5c928d680d48dcd837196c2ce7813",
+      "targetChange": "same"
+    },
+    "rust-game/src/wound_defence_tests.rs": {
+      "original": "rust-game/src/wound_defence_tests.rs",
+      "bytes": 14728,
+      "sha256": "3595cc700517d3a29d49f5e4f8b47f30ca81ebd90fe3af035120280e0ce84cd5",
+      "git_mode": "100644",
+      "candidateBlob": "9c4bdb204c86ddf1ecbab658e3da5760fec7ab49",
+      "targetChange": "same"
+    },
+    "rust-game/src/yellow_search_batch_tests.rs": {
+      "original": "rust-game/src/yellow_search_batch_tests.rs",
+      "bytes": 12029,
+      "sha256": "eacb1cb6b1dfe13826ff63a48e9a923543acff3f26f64ce2668315ab205ff7f6",
+      "git_mode": "100644",
+      "candidateBlob": "b64ce89320c967a46b6405278c91447ed3dea452",
+      "targetChange": "same"
+    },
+    "rust-game/tests/attachment_service.rs": {
+      "original": "rust-game/tests/attachment_service.rs",
+      "bytes": 19490,
+      "sha256": "e01ce1381271fe4bb6c2e29fb0ec9c9ee2b91c2f2269c392121d746aa668b0bf",
+      "git_mode": "100644",
+      "candidateBlob": "2851d04a31cef6481cd1ee20768d70fa411e09a1",
+      "targetChange": "same"
+    },
+    "rust-game/tests/deck_construction.rs": {
+      "original": "rust-game/tests/deck_construction.rs",
+      "bytes": 12760,
+      "sha256": "c6541a9f981104c30320f3ff722b10ed2837b64f275f8deebfff99507993459e",
+      "git_mode": "100644",
+      "candidateBlob": "daa8ce5ab91c2b71e2e9b327dc4fe0b926451722",
+      "targetChange": "same"
+    },
+    "rust-game/tests/jc059_friendly.rs": {
+      "original": "rust-game/tests/jc059_friendly.rs",
+      "bytes": 4232,
+      "sha256": "119f746ec5d8a22fd3ee20293b4b7a020f3a1140e22412fb92e15985d0a0dcdc",
+      "git_mode": "100644",
+      "candidateBlob": "50db19d2069446831e672d45c7064b54a40cdfe4",
+      "targetChange": "same"
+    },
+    "rust-game/tests/room_pacing.rs": {
+      "original": "rust-game/tests/room_pacing.rs",
+      "bytes": 26700,
+      "sha256": "fd038fc90f2cb1f3d91897bca82054337d2b28c7283be5a22a0d4f36ce09fb46",
+      "git_mode": "100644",
+      "candidateBlob": "88810dfcf77a1cf9824423c9faab41befac8e72b",
+      "targetChange": "same"
+    },
+    "rust-game/tests/service.rs": {
+      "original": "rust-game/tests/service.rs",
+      "bytes": 34553,
+      "sha256": "2387f166af25aa1f3c60d6b953a22457fe115865f94f4db17b9a33bb76c523ab",
+      "git_mode": "100644",
+      "candidateBlob": "014ec6edeecf5094357d0ea325927f4eeb332b7f",
+      "targetChange": "same"
+    },
+    "rust-game/tests/session_service.rs": {
+      "original": "rust-game/tests/session_service.rs",
+      "bytes": 25798,
+      "sha256": "9f604523d1790931edf33b62acabaa9dfdecb03a2a38803c05f4f3bfa99f2f98",
+      "git_mode": "100644",
+      "candidateBlob": "8314c862de96674800125d0734462edba31fff94",
+      "targetChange": "same"
+    },
+    ".openai/hosting.json": {
+      "original": "sites/.openai/hosting.json",
+      "bytes": 91,
+      "sha256": "ed3a4753f9e2960e88424decbf7efb0b2d8583852f8b9200154674cda5ce25d2",
+      "git_mode": "100644",
+      "candidateBlob": "ad558c6717deea28acfd5817725017c8ca783c35",
+      "targetChange": "same"
+    },
+    "README.md": {
+      "original": "sites/README.md",
+      "bytes": 2502,
+      "sha256": "66c55f31ccf73f9675d11dae5d9117126df513fade2bc91a8693189cd7dd837c",
+      "git_mode": "100644",
+      "candidateBlob": "c4454dee1fad2b6d8e96cb19c0f71f43a2be6b1f",
+      "targetChange": "same"
+    },
+    "db/schema.ts": {
+      "original": "sites/db/schema.ts",
+      "bytes": 1782,
+      "sha256": "73e99c1f820fc1fbb86216028b5adcca874b5eac3062070c9fabe691fe832e6a",
+      "git_mode": "100644",
+      "candidateBlob": "89e75a2610733bfdb3f06bcbb2cfc7fbee940685",
+      "targetChange": "same"
+    },
+    "drizzle.config.ts": {
+      "original": "sites/drizzle.config.ts",
+      "bytes": 140,
+      "sha256": "1b971da8f8eb163e47ae808af9207df95367dbf15c6c8a54d39ac3a095101be6",
+      "git_mode": "100644",
+      "candidateBlob": "4f61ede754b9a6f9debca6e0e61a938902cb0963",
+      "targetChange": "same"
+    },
+    "drizzle/0000_numerous_lucky_pierre.sql": {
+      "original": "sites/drizzle/0000_numerous_lucky_pierre.sql",
+      "bytes": 1523,
+      "sha256": "e7e71337892cba7558c9bd5a3c3beb78c109fa93d1775f0b13e5377030a78b43",
+      "git_mode": "100644",
+      "candidateBlob": "127f35f26b524cb332e7e4fae7f70f5f4f24e0bd",
+      "targetChange": "same"
+    },
+    "drizzle/meta/0000_snapshot.json": {
+      "original": "sites/drizzle/meta/0000_snapshot.json",
+      "bytes": 7714,
+      "sha256": "a4e0d437f9b6d1c5f9cf2de0fbb7082f7a2dadf33f64e91cb0d7fc67780d254c",
+      "git_mode": "100644",
+      "candidateBlob": "ebc04845d897602af08bcbb53c4be8a30274f8d7",
+      "targetChange": "same"
+    },
+    "drizzle/meta/_journal.json": {
+      "original": "sites/drizzle/meta/_journal.json",
+      "bytes": 211,
+      "sha256": "568a9e1bf452c42d07a8f4067732cc82fe6fbb1e0951efb750e3028d02b8f561",
+      "git_mode": "100644",
+      "candidateBlob": "7b6ada5277370f1bba3da17237d18bc147c2fdd5",
+      "targetChange": "same"
+    },
+    "package-lock.json": {
+      "original": "sites/package-lock.json",
+      "bytes": 99867,
+      "sha256": "aa5349f37a028150bc3a6496cec9c9a95fa21becace91f698e911940323d270a",
+      "git_mode": "100644",
+      "candidateBlob": "3c018045cfe9d4dd73bd17e37e5393ce20b207c7",
+      "targetChange": "same"
+    },
+    "package.json": {
+      "original": "sites/package.json",
+      "bytes": 464,
+      "sha256": "0d8c6a457e318dd148e4864201b4ae4b518371ad6184f0a006c6312dcdc110cb",
+      "git_mode": "100644",
+      "candidateBlob": "a469c8f8e091d69e242dce684c863baabb3c2368",
+      "targetChange": "same"
+    },
+    "scripts/build-backend-test.mjs": {
+      "original": "sites/scripts/build-backend-test.mjs",
+      "bytes": 3525,
+      "sha256": "a1571155968c501e19056a067c550900b67854f75c5870a4bda71acf60db0a77",
+      "git_mode": "100644",
+      "candidateBlob": "b82f538e2c4747323c8ebe07757f910e0cd797cb",
+      "targetChange": "same"
+    },
+    "scripts/build.mjs": {
+      "original": "sites/scripts/build.mjs",
+      "bytes": 1536,
+      "sha256": "ab7a7a95eb6e90baad654181f30a463cad3f93a51480dad026566d95166e5fbd",
+      "git_mode": "100644",
+      "candidateBlob": "eb01f4387ba57ac1ad7c3ea5bd444f030b351d27",
+      "targetChange": "same"
+    },
+    "scripts/stage-source.mjs": {
+      "original": "sites/scripts/stage-source.mjs",
+      "bytes": 4027,
+      "sha256": "4cedef88b19662b1cfaa24505cadb9b57258fff963d779a16816bb60561ff51b",
+      "git_mode": "100644",
+      "candidateBlob": "6dd1c4fb7a74b1c3b9440f870d78336c2358fcbb",
+      "targetChange": "same"
+    },
+    "src/index.mjs": {
+      "original": "sites/src/index.mjs",
+      "bytes": 3552,
+      "sha256": "f6a1ae35a0361e2bad5422a9ab6d2e0a2c766c1e40c1c62bb0fe1446d5877551",
+      "git_mode": "100644",
+      "candidateBlob": "bff3f051a696ec0daf33ae22fb2f3a20e537fc67",
+      "targetChange": "same"
+    },
+    "src/kernel-router.mjs": {
+      "original": "sites/src/kernel-router.mjs",
+      "bytes": 1870,
+      "sha256": "c678d0728dae27449ba1a3d1d2b4beea7b3cca2a5e65c823cd915c712fcfaee7",
+      "git_mode": "100644",
+      "candidateBlob": "770f2b20370432bb8b9fd084c4420d466bca7329",
+      "targetChange": "same"
+    },
+    "src/kernel.mjs": {
+      "original": "sites/src/kernel.mjs",
+      "bytes": 550,
+      "sha256": "2a72feb808392aade3ff780b5f812a5a444a67873ecf1b05a38d46431e489ddb",
+      "git_mode": "100644",
+      "candidateBlob": "339d7a92edc72f4813c27b191c384d050ee62b2b",
+      "targetChange": "replace"
+    },
+    "src/lazy-kernel.mjs": {
+      "original": "sites/src/lazy-kernel.mjs",
+      "bytes": 912,
+      "sha256": "c3484b39f681e65ddeb0f3760f2ad13c13083f59f694420b140b43cab3609965",
+      "git_mode": "100644",
+      "candidateBlob": "772938e64d2a72bfca67895fdbe22f78ec6d6578",
+      "targetChange": "same"
+    },
+    "src/service.mjs": {
+      "original": "sites/src/service.mjs",
+      "bytes": 15359,
+      "sha256": "c3de9c90d6752fd2c77baa5de971dcae8c95fe13744500a1c969e1a4d85d96ef",
+      "git_mode": "100644",
+      "candidateBlob": "a5b3482a135d4d928c6ee10df68c6ba5b8060323",
+      "targetChange": "same"
+    },
+    "src/storage-errors.mjs": {
+      "original": "sites/src/storage-errors.mjs",
+      "bytes": 2556,
+      "sha256": "6979b752d13a2143f1e250051e5e2df1c81a7afef93727023b84ee8043b5f1a0",
+      "git_mode": "100644",
+      "candidateBlob": "1c8f68952d94b281e5e1d8db1ce3ffb8abb0fa65",
+      "targetChange": "same"
+    },
+    "src/store.mjs": {
+      "original": "sites/src/store.mjs",
+      "bytes": 3748,
+      "sha256": "39d50fc38e515a959d51f13a5673f5b3603edbc420b120c2326f49607f66d4d9",
+      "git_mode": "100644",
+      "candidateBlob": "4e7ce7e9fc74c3ad13c481acfa5eb709b00d7b7f",
+      "targetChange": "same"
+    },
+    "test/assassin-integration.test.mjs": {
+      "original": "sites/test/assassin-integration.test.mjs",
+      "bytes": 375,
+      "sha256": "de98cc15908067520846f41018f8731535b85a929b3fb319c96ce2522e29395c",
+      "git_mode": "100644",
+      "candidateBlob": "b6358b2606e9582040de57d334eb974fb9a1b1ee",
+      "targetChange": "same"
+    },
+    "test/bounded-entry-search.test.mjs": {
+      "original": "sites/test/bounded-entry-search.test.mjs",
+      "bytes": 5125,
+      "sha256": "77f039aaa57c4be293fdc531f15d7ff8c1c1401c12530be6c0703fd044292ef6",
+      "git_mode": "100644",
+      "candidateBlob": "ec83427194579bac8407d0a67077ea00c7010c41",
+      "targetChange": "add"
+    },
+    "test/control-pair-integration.test.mjs": {
+      "original": "sites/test/control-pair-integration.test.mjs",
+      "bytes": 383,
+      "sha256": "222cf79230e8f96d9f48d5ebc27f029d24f7dc8cd1ea02aa902d52d96ae6a509",
+      "git_mode": "100644",
+      "candidateBlob": "1f5cc799a3db9facba47fd6cec9e4864529d300d",
+      "targetChange": "same"
+    },
+    "test/fire-scholar-integration.test.mjs": {
+      "original": "sites/test/fire-scholar-integration.test.mjs",
+      "bytes": 383,
+      "sha256": "1a5fe54e516dd36d0891e61c9e93ba278498c4abebdd4a7a03a3858b9fecf775",
+      "git_mode": "100644",
+      "candidateBlob": "669c04a2630d4e9e0bc317da0537eecf815ed9f6",
+      "targetChange": "same"
+    },
+    "test/fixtures/bounded-entry-native-v050.json": {
+      "original": "sites/test/fixtures/bounded-entry-native-v050.json",
+      "bytes": 233618,
+      "sha256": "0ff7a60fa97c929a00bfc751e91404f8e6436eba1476cf7d2fa74ceefc938113",
+      "git_mode": "100644",
+      "candidateBlob": "fc6b1376b9c5e96daa694f2a733c23af27d4db39",
+      "targetChange": "add"
+    },
+    "test/fixtures/historical-rooms.json": {
+      "original": "sites/test/fixtures/historical-rooms.json",
+      "bytes": 41820,
+      "sha256": "daa452f4b7fa5bd695f29c02a2291cbddd61b0eaa87d04fde28c2afd6976a124",
+      "git_mode": "100644",
+      "candidateBlob": "71393d1a34a792415a4ceff21e86babaf57bf6dc",
+      "targetChange": "same"
+    },
+    "test/fixtures/historical-rooms.mjs": {
+      "original": "sites/test/fixtures/historical-rooms.mjs",
+      "bytes": 759,
+      "sha256": "a5137597ba31541e4b878c5e3ad3bc8bedba97918eede545009f4f0dc7bf2791",
+      "git_mode": "100644",
+      "candidateBlob": "1106e2620c8e94d132a68b0fe25b27de4d0a3f48",
+      "targetChange": "same"
+    },
+    "test/fixtures/jz50-room-native-v048.json": {
+      "original": "sites/test/fixtures/jz50-room-native-v048.json",
+      "bytes": 780687,
+      "sha256": "002121ea1134cf5d10a67e493211d9fb1837a5c52c5ced105248e164257f6fc7",
+      "git_mode": "100644",
+      "candidateBlob": "274ac07f1fc8ad76068f30f44aa414971d8304a3",
+      "targetChange": "same"
+    },
+    "test/fixtures/jz50-room-native-v049.json": {
+      "original": "sites/test/fixtures/jz50-room-native-v049.json",
+      "bytes": 779997,
+      "sha256": "f3dedf23388da8adec88cbe0dff3edf30365db33467c69f97b19e7b1ec311d3b",
+      "git_mode": "100644",
+      "candidateBlob": "e855d19e6bb6122ca2fd7fd213617c49a20dc4e5",
+      "targetChange": "same"
+    },
+    "test/fixtures/jz50-room-native-v050.json": {
+      "original": "sites/test/fixtures/jz50-room-native-v050.json",
+      "bytes": 782067,
+      "sha256": "6b5222ef8d714c4093ae0a12c84e6611900cff397e3e647d610bca6385222993",
+      "git_mode": "100644",
+      "candidateBlob": "2590e8595a5c7d44b7a03b9e2be6d96fc7676087",
+      "targetChange": "add"
+    },
+    "test/fixtures/pause-resume-native-v046.json": {
+      "original": "sites/test/fixtures/pause-resume-native-v046.json",
+      "bytes": 767986,
+      "sha256": "cca16a276aa95cb3d39584c90fcb8c21bee1f7838d2b884ef857c30f2c7dea77",
+      "git_mode": "100644",
+      "candidateBlob": "9a5ad3cd09bfa05c04fd78d438c01b124ae2c698",
+      "targetChange": "same"
+    },
+    "test/fixtures/pause-resume-native-v047.json": {
+      "original": "sites/test/fixtures/pause-resume-native-v047.json",
+      "bytes": 767086,
+      "sha256": "39f6fc03a6033315adba8bbfabcd08bf63e2814337b64d1bb3e21657ad2fce53",
+      "git_mode": "100644",
+      "candidateBlob": "66b55db34fbb3b518f31f2845536364861400e69",
+      "targetChange": "same"
+    },
+    "test/fixtures/pause-resume-native-v048.json": {
+      "original": "sites/test/fixtures/pause-resume-native-v048.json",
+      "bytes": 768586,
+      "sha256": "b361d2dab8f6e9904841cee4be7f34dee85cd4822e568e79c9b9fb3c892f7d17",
+      "git_mode": "100644",
+      "candidateBlob": "78bdd3dd6ddafc125643e65e8875f14ef6bdda9c",
+      "targetChange": "same"
+    },
+    "test/fixtures/pause-resume-native-v049.json": {
+      "original": "sites/test/fixtures/pause-resume-native-v049.json",
+      "bytes": 768136,
+      "sha256": "a6ee9278e75f000721989002fe9a11fff064947063941b5ea32b0080eb654848",
+      "git_mode": "100644",
+      "candidateBlob": "b50337d369cdde7d2ab0fc234ac483e1dd9fd93c",
+      "targetChange": "same"
+    },
+    "test/fixtures/pause-resume-native-v050.json": {
+      "original": "sites/test/fixtures/pause-resume-native-v050.json",
+      "bytes": 769486,
+      "sha256": "bae5008dc1b1b88a2a497e16ecbeeef3fba993dd014472a08f54db836ac318a2",
+      "git_mode": "100644",
+      "candidateBlob": "6bf2554afc0e7672360f0b24a5ca639e225e3ab5",
+      "targetChange": "add"
+    },
+    "test/fixtures/prepared-assassin-v028.json": {
+      "original": "sites/test/fixtures/prepared-assassin-v028.json",
+      "bytes": 35201,
+      "sha256": "f59af6b3d309b989a1b32bb90daf2b6da9c57b43defcfba2db2dda750f394b4a",
+      "git_mode": "100644",
+      "candidateBlob": "c98f8eec48d0de34078c166de2bff33abfc5ee01",
+      "targetChange": "same"
+    },
+    "test/fixtures/prepared-control-pair-v028.json": {
+      "original": "sites/test/fixtures/prepared-control-pair-v028.json",
+      "bytes": 35850,
+      "sha256": "8d7c5a77d89f5a707a7ee96f493f1d02fbd188166e5662be694061f66ebc4069",
+      "git_mode": "100644",
+      "candidateBlob": "e2edc2210eada125239d62ecb83dc39844f7093a",
+      "targetChange": "same"
+    },
+    "test/fixtures/prepared-fire-scholar-v028.json": {
+      "original": "sites/test/fixtures/prepared-fire-scholar-v028.json",
+      "bytes": 30898,
+      "sha256": "aaaf3878b7ce1098474b4aa5390daa329cee2b7a4d8873f7bdbbf5a5f77f3149",
+      "git_mode": "100644",
+      "candidateBlob": "77c9a727e4034b89b899a221ea5db20142556541",
+      "targetChange": "same"
+    },
+    "test/fixtures/prepared-rescue-forecast-v028.json": {
+      "original": "sites/test/fixtures/prepared-rescue-forecast-v028.json",
+      "bytes": 29918,
+      "sha256": "f28650b5d9cd6e095cc137c90748ea09fe4e96e33c4f709af275c572f9667f64",
+      "git_mode": "100644",
+      "candidateBlob": "b7e6e1448e9fd723c4ab42316314cd2f76babf11",
+      "targetChange": "same"
+    },
+    "test/fixtures/prepared-response-v025.json": {
+      "original": "sites/test/fixtures/prepared-response-v025.json",
+      "bytes": 35167,
+      "sha256": "41252046030a23ee55582bfe26815cd7984b9a895dc14c10edf82a4200a5faa7",
+      "git_mode": "100644",
+      "candidateBlob": "b91ac47e08f71cd4b059d05379a29f0e2c7be082",
+      "targetChange": "same"
+    },
+    "test/fixtures/prepared-response-v026.json": {
+      "original": "sites/test/fixtures/prepared-response-v026.json",
+      "bytes": 35538,
+      "sha256": "ea51975720b3d36c32a695620a5093d994ab1fbbc0bd256f377eccb5275a9be7",
+      "git_mode": "100644",
+      "candidateBlob": "f8382ae74fc42067d5158a0069cc41b22991a504",
+      "targetChange": "same"
+    },
+    "test/fixtures/prepared-response-v027.json": {
+      "original": "sites/test/fixtures/prepared-response-v027.json",
+      "bytes": 35134,
+      "sha256": "6bd803f9aa4d71168e83271c226408922bb1b774da65947e1e4334b5e7c5ba8b",
+      "git_mode": "100644",
+      "candidateBlob": "1e294ab67c26b7bc5963e0d9017549581b71bd0c",
+      "targetChange": "same"
+    },
+    "test/fixtures/prepared-response-v028.json": {
+      "original": "sites/test/fixtures/prepared-response-v028.json",
+      "bytes": 35135,
+      "sha256": "cbdad025e0695d2a97f613c7e6c759b3b4b6915a4210ec4716e6ee72f5725f2c",
+      "git_mode": "100644",
+      "candidateBlob": "58ec8821d7c6e5151aefbc9c79706244bade4579",
+      "targetChange": "same"
+    },
+    "test/fixtures/prepared-two-cards-v028.json": {
+      "original": "sites/test/fixtures/prepared-two-cards-v028.json",
+      "bytes": 35189,
+      "sha256": "00c0ebfffd78d29ef1311d6711d160de441618246ae71b0fde6b55a789ef6c16",
+      "git_mode": "100644",
+      "candidateBlob": "0cb18b4f497d4a832404f8149cd9d63ac3c2e3c3",
+      "targetChange": "same"
+    },
+    "test/fixtures/reject-historical-room.mjs": {
+      "original": "sites/test/fixtures/reject-historical-room.mjs",
+      "bytes": 3643,
+      "sha256": "7cdd854606f04dfc3c5bbcd120fdf325afbbb5a89c0916ffe1684011ddfa8274",
+      "git_mode": "100644",
+      "candidateBlob": "894c6b4aa593950eda03db4207e7ace450fed704",
+      "targetChange": "same"
+    },
+    "test/fixtures/reviewed-catalog-v044.json": {
+      "original": "sites/test/fixtures/reviewed-catalog-v044.json",
+      "bytes": 95650,
+      "sha256": "49386a177863cf15ba82a38811ba938e17e9c7c8600e5d568524ca2670b72901",
+      "git_mode": "100644",
+      "candidateBlob": "905a1bc7777a0fc6482c115b52f7e4046a62d4e0",
+      "targetChange": "same"
+    },
+    "test/fixtures/sealed-restart-native-v049.json": {
+      "original": "sites/test/fixtures/sealed-restart-native-v049.json",
+      "bytes": 270330,
+      "sha256": "32da519b3afc50c6603b21c7e2ee3e84290bb58e19a5ddc98a8d2f57a6a6a24c",
+      "git_mode": "100644",
+      "candidateBlob": "421bd9005f90ac0f0253ba10d48573479cb65293",
+      "targetChange": "same"
+    },
+    "test/fixtures/sealed-restart-native-v050.json": {
+      "original": "sites/test/fixtures/sealed-restart-native-v050.json",
+      "bytes": 270672,
+      "sha256": "c4319b08f514cef9c0320574af1c5f92163f3306b062571bf65a22ed849ffba1",
+      "git_mode": "100644",
+      "candidateBlob": "3b9187c482d95e227899f75baf8b6ac57f9f4ec1",
+      "targetChange": "add"
+    },
+    "test/fixtures/sealing-room-native-v047.json": {
+      "original": "sites/test/fixtures/sealing-room-native-v047.json",
+      "bytes": 916906,
+      "sha256": "3e7a3bcf612fdcf23d3580470a7e8042263b3c37a4587447825addb042c254db",
+      "git_mode": "100644",
+      "candidateBlob": "1d9007857f26ef828e71eed4d8487baa1877fc7d",
+      "targetChange": "same"
+    },
+    "test/fixtures/sealing-room-native-v048.json": {
+      "original": "sites/test/fixtures/sealing-room-native-v048.json",
+      "bytes": 919046,
+      "sha256": "c994397c2b83a01e1561d1e56d377aee2f899693a6a14a60889d0293f6b25d6d",
+      "git_mode": "100644",
+      "candidateBlob": "a3a124392c0d76edd71e664327cf6cf6335c383f",
+      "targetChange": "same"
+    },
+    "test/fixtures/sealing-room-native-v049.json": {
+      "original": "sites/test/fixtures/sealing-room-native-v049.json",
+      "bytes": 918404,
+      "sha256": "8a9dc59a04192f1c84c092a19b26e8f73e6af94f6b4e00f8637a9afba2a74931",
+      "git_mode": "100644",
+      "candidateBlob": "0435a2ae6c5205da7e870a4e2643f64afc419a64",
+      "targetChange": "same"
+    },
+    "test/fixtures/sealing-room-native-v050.json": {
+      "original": "sites/test/fixtures/sealing-room-native-v050.json",
+      "bytes": 920330,
+      "sha256": "d6b3e80c907c2fc8f5febae9e2b5c60f53a321061e99fd4208dcc4ba7edd3395",
+      "git_mode": "100644",
+      "candidateBlob": "365a92217777068b3e734b6cab3bae9a9465ebf2",
+      "targetChange": "add"
+    },
+    "test/integration.test.mjs": {
+      "original": "sites/test/integration.test.mjs",
+      "bytes": 17702,
+      "sha256": "5905c3769521a6394a62ab4605e86df56ca882d7d020d747fd3a7dd262fd73e4",
+      "git_mode": "100644",
+      "candidateBlob": "94b2102e0628cdf1a8ea1c186361a4d5c0b82721",
+      "targetChange": "replace"
+    },
+    "test/kernel-routing.test.mjs": {
+      "original": "sites/test/kernel-routing.test.mjs",
+      "bytes": 4615,
+      "sha256": "8838934a27df6383b138c3b9372324db1c9991fa6df66081aaa028a407855fb2",
+      "git_mode": "100644",
+      "candidateBlob": "13a31abc7e077fb9419756a95a0808d60481537a",
+      "targetChange": "same"
+    },
+    "test/msjc09-society-integration.test.mjs": {
+      "original": "sites/test/msjc09-society-integration.test.mjs",
+      "bytes": 9841,
+      "sha256": "8d417969948e9f72e7ff102e82209239f2c4b43b5fd1f911b5287b688919636b",
+      "git_mode": "100644",
+      "candidateBlob": "a26ed6bcfc05494e0f036fe17ea434e3692a9a19",
+      "targetChange": "same"
+    },
+    "test/pause-resume-integration.test.mjs": {
+      "original": "sites/test/pause-resume-integration.test.mjs",
+      "bytes": 6860,
+      "sha256": "2d4e164865f6d36a34b8d0768375efe0d2f2468bf51b0c073c6df21aa83fc08e",
+      "git_mode": "100644",
+      "candidateBlob": "eeeee67fcb1fa531a0dcddb998c20b6f310ac520",
+      "targetChange": "replace"
+    },
+    "test/rescue-forecast-integration.test.mjs": {
+      "original": "sites/test/rescue-forecast-integration.test.mjs",
+      "bytes": 389,
+      "sha256": "2fce8b04b1dbaecf8bf7fe9925f6d7b887776d236fa4be128506971acb6356df",
+      "git_mode": "100644",
+      "candidateBlob": "2b642fedf6fd309de2ebdacb90e092998b59f319",
+      "targetChange": "same"
+    },
+    "test/sealed-restart-integration.test.mjs": {
+      "original": "sites/test/sealed-restart-integration.test.mjs",
+      "bytes": 5147,
+      "sha256": "1e506e5d4a98b1d6974c79d00a38e9b49bb9376edb1f84a3044f0cbfe70369b1",
+      "git_mode": "100644",
+      "candidateBlob": "608a5b51c356eb0ba69fe0ae9f47090aee8850dc",
+      "targetChange": "replace"
+    },
+    "test/session-host.test.mjs": {
+      "original": "sites/test/session-host.test.mjs",
+      "bytes": 8586,
+      "sha256": "70fb29fdb406db650faac04b9bf41bc8deb3fea7ff91d60972e4308a9418a4c2",
+      "git_mode": "100644",
+      "candidateBlob": "05fa59dfe3148cdf7be92abb904bdb2f10cb4d1b",
+      "targetChange": "same"
+    },
+    "test/session-integration.test.mjs": {
+      "original": "sites/test/session-integration.test.mjs",
+      "bytes": 417,
+      "sha256": "383f9019a08b3c96890f61cb289d39c13cfb61eea413bc15a9949a14ad7ae46f",
+      "git_mode": "100644",
+      "candidateBlob": "87b31528f9dab17367c22cb9b019d181650f61a6",
+      "targetChange": "same"
+    },
+    "test/society-foundation.fixture.mjs": {
+      "original": "sites/test/society-foundation.fixture.mjs",
+      "bytes": 9748,
+      "sha256": "6993f979c0283a9d2b608d005d5d5263320f3e9ad67f3b1053fefbdefae03bcb",
+      "git_mode": "100644",
+      "candidateBlob": "ca100c918aeb6ff72720ffd3acb2bb0bc35a53f7",
+      "targetChange": "replace"
+    },
+    "test/storage-retry.test.mjs": {
+      "original": "sites/test/storage-retry.test.mjs",
+      "bytes": 4698,
+      "sha256": "fcf318007cb116300ca83ba2d821b5eec5ddfe16b287c151a8aa5f8e1121d881",
+      "git_mode": "100644",
+      "candidateBlob": "c0b35d3a75818fdd1ed556317713c997e6edf2f0",
+      "targetChange": "same"
+    },
+    "test/two-card-integration.test.mjs": {
+      "original": "sites/test/two-card-integration.test.mjs",
+      "bytes": 376,
+      "sha256": "336ab46a3fb885668e2719858702869e01aae10196b2e05377a02b4c392e6fc3",
+      "git_mode": "100644",
+      "candidateBlob": "9b768a89f6b4b90ee1cd4ac5dd4297169d4e118e",
+      "targetChange": "same"
+    },
+    "wrangler.jsonc": {
+      "original": "sites/wrangler.jsonc",
+      "bytes": 345,
+      "sha256": "7cd60bc5e5e9f377f6816c7eab154df58224d851548db8234c2b2d08e051f4f6",
+      "git_mode": "100644",
+      "candidateBlob": "f959c90aa382936711735fdb74179d33a3788545",
+      "targetChange": "same"
+    },
+    "web/.npmrc": {
+      "original": "web/.npmrc",
+      "bytes": 129,
+      "sha256": "2d0d3c1e09b4c9a4308507ea701b8852c689057f8636a907d9ecdee5e9e9f919",
+      "git_mode": "100644",
+      "candidateBlob": "82710539695ce84159281f81b2b77ffee62dcd2b",
+      "targetChange": "same"
+    },
+    "web/index.html": {
+      "original": "web/index.html",
+      "bytes": 377,
+      "sha256": "bda13861efc90cc0628d795a13b24a630943740158df5be7b0e550608f770a4d",
+      "git_mode": "100644",
+      "candidateBlob": "68844c38474f92120099be39e777344e0f8e323f",
+      "targetChange": "same"
+    },
+    "web/package-lock.json": {
+      "original": "web/package-lock.json",
+      "bytes": 66441,
+      "sha256": "bdc310d32e869dacf31b2bcf1f6b83ffbe7235a72b372820069e9cfd0911e12d",
+      "git_mode": "100644",
+      "candidateBlob": "5e81c383eae94e13e155e96a68fa7f4294232abf",
+      "targetChange": "same"
+    },
+    "web/package.json": {
+      "original": "web/package.json",
+      "bytes": 1011,
+      "sha256": "6a15d4542603ada58f671bd3a575c26159e56ae303c0bb1d42f9cc3d3c2dcf74",
+      "git_mode": "100644",
+      "candidateBlob": "699c7644563d1d3682b3a1e7856552aefb90b4fe",
+      "targetChange": "same"
+    },
+    "web/public/card-scans.json": {
+      "original": "web/public/card-scans.json",
+      "bytes": 24535,
+      "sha256": "9fdbe79f082c8594dd512ac92f87fc30b5d61878a357d81fcdcff7d740ac1411",
+      "git_mode": "100644",
+      "candidateBlob": "3dc6987aeb4ec498af921b4df38f3b49a66fcf4e",
+      "targetChange": "replace"
+    },
+    "web/public/cards/BQ022.jpg": {
+      "original": "web/public/cards/BQ022.jpg",
+      "bytes": 938512,
+      "sha256": "f1b58f299c3d901494c388be2123b325ca20c1f341106fe860d9761ded8231eb",
+      "git_mode": "100644",
+      "candidateBlob": "56cb81025c35e067c6f06684aa42def706b4bba0",
+      "targetChange": "same"
+    },
+    "web/public/cards/BQ083.jpg": {
+      "original": "web/public/cards/BQ083.jpg",
+      "bytes": 1318007,
+      "sha256": "619db97c8309d903e3781448c6ad35db91bb5f2e4b5660b6e0eef65fcbd6e675",
+      "git_mode": "100644",
+      "candidateBlob": "a0644345df5b8d6fbb7445e9005ae816cb4fe7a8",
+      "targetChange": "same"
+    },
+    "web/public/cards/BQ104.jpg": {
+      "original": "web/public/cards/BQ104.jpg",
+      "bytes": 1343044,
+      "sha256": "dbee5b3829cf0c46b2820beccefda28708c3c8e87c589dbefce1e975faa916eb",
+      "git_mode": "100644",
+      "candidateBlob": "041f2bc1126dc87222b601eae7c8e6f27c98737a",
+      "targetChange": "add"
+    },
+    "web/public/cards/DQJC107.jpg": {
+      "original": "web/public/cards/DQJC107.jpg",
+      "bytes": 44451,
+      "sha256": "339b9a130ea9c0a82bc5a20d34892a4de52b2ea777a1b0cfec340876d6a4b2b8",
+      "git_mode": "100644",
+      "candidateBlob": "3954d64e406d9472417089385f82bc802e92de2d",
+      "targetChange": "same"
+    },
+    "web/public/cards/DQJC108.jpg": {
+      "original": "web/public/cards/DQJC108.jpg",
+      "bytes": 48006,
+      "sha256": "5dd2014f700e73b7f8dda56b6c281f29946b6d36a96bdd3838af4b2b393f7c6e",
+      "git_mode": "100644",
+      "candidateBlob": "595ab257e8d448a79090fe239d0c3183c0069a4e",
+      "targetChange": "same"
+    },
+    "web/public/cards/DQJC109.jpg": {
+      "original": "web/public/cards/DQJC109.jpg",
+      "bytes": 46185,
+      "sha256": "337e5a45432d1ad434f971e66938e7506fc2997649648b21b7a6b1246306c60a",
+      "git_mode": "100644",
+      "candidateBlob": "2b2f9085e94d7c10c4b32cc14094fc35f621fcf1",
+      "targetChange": "same"
+    },
+    "web/public/cards/DQJC110.jpg": {
+      "original": "web/public/cards/DQJC110.jpg",
+      "bytes": 41958,
+      "sha256": "ecafefa26f0d3fa1aca9f63ecb50dcb21c1a51c157890516e94676880d8a1026",
+      "git_mode": "100644",
+      "candidateBlob": "2f7e13ab0830ca42004a15b06849d5998f08bdc9",
+      "targetChange": "same"
+    },
+    "web/public/cards/DQJC111.jpg": {
+      "original": "web/public/cards/DQJC111.jpg",
+      "bytes": 54744,
+      "sha256": "e2bc64426c121d41404d758a24b863f4c527a4f69e0582811599e2bc60471e41",
+      "git_mode": "100644",
+      "candidateBlob": "8213a81a50469c2b3bc00ed83f92dc9fa69bcc9f",
+      "targetChange": "same"
+    },
+    "web/public/cards/DQJC112.jpg": {
+      "original": "web/public/cards/DQJC112.jpg",
+      "bytes": 45356,
+      "sha256": "9efd49e63ad90c4849bcf123aec4c83cd63e8f135113c374412526be875832ad",
+      "git_mode": "100644",
+      "candidateBlob": "08570981d894de62c4d6b4ff64e02f4ff5cc0806",
+      "targetChange": "same"
+    },
+    "web/public/cards/DQJC113.jpg": {
+      "original": "web/public/cards/DQJC113.jpg",
+      "bytes": 46632,
+      "sha256": "3dcac24ae99667ac037001d85f54eb5b77bf83643222769726395571e7135c6e",
+      "git_mode": "100644",
+      "candidateBlob": "da2f7c44ce6a61668f557ae0fe6e8feda11530e6",
+      "targetChange": "same"
+    },
+    "web/public/cards/DQJC114.jpg": {
+      "original": "web/public/cards/DQJC114.jpg",
+      "bytes": 53746,
+      "sha256": "7ded8662b423543bccedf93e67c098cf0effdd73791b30cc6aaa4acf7bf2a3f2",
+      "git_mode": "100644",
+      "candidateBlob": "553c828b6ed54085264ce01c457a8943efc8d6c6",
+      "targetChange": "same"
+    },
+    "web/public/cards/DQJC115.jpg": {
+      "original": "web/public/cards/DQJC115.jpg",
+      "bytes": 53304,
+      "sha256": "66fa6d8ceb4ff3529c0d43386782aeac5553c564a761ec47d4e351beb91d0e94",
+      "git_mode": "100644",
+      "candidateBlob": "e95b9b9614384e34f5330eb1d14daeb2fa3c27b1",
+      "targetChange": "same"
+    },
+    "web/public/cards/DQJC116.jpg": {
+      "original": "web/public/cards/DQJC116.jpg",
+      "bytes": 57210,
+      "sha256": "e9dfbc396a733b3bbe7ffcb2a6d67ea371ffe4ca4bd6fc0f4e74b1ee73485d4d",
+      "git_mode": "100644",
+      "candidateBlob": "c1f17879b84bae6842859d1182db177edc0d3ac8",
+      "targetChange": "same"
+    },
+    "web/public/cards/JC001.jpg": {
+      "original": "web/public/cards/JC001.jpg",
+      "bytes": 304832,
+      "sha256": "33b9fd53b30630010a49a520d9e2b89d608822706e67e7c667682c3d1151e312",
+      "git_mode": "100644",
+      "candidateBlob": "75c097f037434bb1e5192b543b673f66adb0f406",
+      "targetChange": "same"
+    },
+    "web/public/cards/JC002.jpg": {
+      "original": "web/public/cards/JC002.jpg",
+      "bytes": 293615,
+      "sha256": "21a698ae184e7f909d24ac5374c3eaf7af77f1043b91048cfc8c5a46f9b08680",
+      "git_mode": "100644",
+      "candidateBlob": "879b8a2343d7d859260f344a01a116a2fd2496cb",
+      "targetChange": "same"
+    },
+    "web/public/cards/JC003.jpg": {
+      "original": "web/public/cards/JC003.jpg",
+      "bytes": 324904,
+      "sha256": "027fc054dd7c7ef301108bf0b169e01f91228bf2e918b3ddb8d12e8d05603c3a",
+      "git_mode": "100644",
+      "candidateBlob": "a7f32dfe28af91e8abf2a14b2961a9686c407b25",
+      "targetChange": "same"
+    },
+    "web/public/cards/JC004.jpg": {
+      "original": "web/public/cards/JC004.jpg",
+      "bytes": 322602,
+      "sha256": "d9209031b83d49c2eacdbedd2967384852acc51329093f362073c462dabf92c4",
+      "git_mode": "100644",
+      "candidateBlob": "1ca34332bbadad1a2f096e0aff401a895b8af328",
+      "targetChange": "same"
+    },
+    "web/public/cards/JC005.jpg": {
+      "original": "web/public/cards/JC005.jpg",
+      "bytes": 327083,
+      "sha256": "216c26cff74fe738dbc486e725828ddc8077705161b1fee566e9d806684364a1",
+      "git_mode": "100644",
+      "candidateBlob": "5f5f1d842c4aac2b41851591a145ddea6afbb260",
+      "targetChange": "same"
+    },
+    "web/public/cards/JC006.jpg": {
+      "original": "web/public/cards/JC006.jpg",
+      "bytes": 303268,
+      "sha256": "beec2b1d758e0186cdc4cb57e7c52d6e8df2a4623564e5f212b3d878abb91bf4",
+      "git_mode": "100644",
+      "candidateBlob": "d32e7108c1259b7e46b649025104498fb9925cde",
+      "targetChange": "same"
+    },
+    "web/public/cards/JC007.jpg": {
+      "original": "web/public/cards/JC007.jpg",
+      "bytes": 310229,
+      "sha256": "835b85f48270aa66f10f01fa4de7483b0ccf80dcf14e6dc5596639592e14f1ce",
+      "git_mode": "100644",
+      "candidateBlob": "634547dd40d0401794a068d85920a7f402ca1072",
+      "targetChange": "same"
+    },
+    "web/public/cards/JC008.jpg": {
+      "original": "web/public/cards/JC008.jpg",
+      "bytes": 294187,
+      "sha256": "31340e2535e0909359860a090186b7a5032e84d6da94c8181baf32565b5d4f45",
+      "git_mode": "100644",
+      "candidateBlob": "9454aaecae995f9610fcef3505f8e137649f7b56",
+      "targetChange": "same"
+    },
+    "web/public/cards/JC014.jpg": {
+      "original": "web/public/cards/JC014.jpg",
+      "bytes": 304089,
+      "sha256": "cd1969552197b3111e72ee4bb0725dc4ff513ddb8c940b568b7221699c248bb6",
+      "git_mode": "100644",
+      "candidateBlob": "67d089553433c3d6f44b5719d181350d5dcda7b0",
+      "targetChange": "same"
+    },
+    "web/public/cards/JC015.jpg": {
+      "original": "web/public/cards/JC015.jpg",
+      "bytes": 322933,
+      "sha256": "84ab4fb4fdf5e44f35b8cb8d9a40531d57bb0edb64d29a9c15f80d6e1cd37e1e",
+      "git_mode": "100644",
+      "candidateBlob": "0def79382e42d5d3bd630decdb5b2a3cfe1b16b5",
+      "targetChange": "same"
+    },
+    "web/public/cards/JC016.jpg": {
+      "original": "web/public/cards/JC016.jpg",
+      "bytes": 305023,
+      "sha256": "0a3b20635a7fa8e04d6f17ab7a7112a596ed0e7f21293d3e4f4a985463416c35",
+      "git_mode": "100644",
+      "candidateBlob": "b055de3d6a54f2b19c17f211b4f27352f48e1a31",
+      "targetChange": "same"
+    },
+    "web/public/cards/JC018.jpg": {
+      "original": "web/public/cards/JC018.jpg",
+      "bytes": 341242,
+      "sha256": "a764f6ad543c1aa25e287e42a508ecce2368277e64377c2969b2aff079b63af8",
+      "git_mode": "100644",
+      "candidateBlob": "a9c18a2e1932b35cd95f6a50d3503151df3a6290",
+      "targetChange": "same"
+    },
+    "web/public/cards/JC020.jpg": {
+      "original": "web/public/cards/JC020.jpg",
+      "bytes": 283808,
+      "sha256": "2edb40dfa18d2df22b5b397957d0a03642ade3cee1a10f965bb5e55b0c4f7223",
+      "git_mode": "100644",
+      "candidateBlob": "9cb387b4c6cabd7df4bef7c90ed1ba3b9e8a64ec",
+      "targetChange": "same"
+    },
+    "web/public/cards/JC029.jpg": {
+      "original": "web/public/cards/JC029.jpg",
+      "bytes": 338285,
+      "sha256": "b3da8f1546e2f8bbbaae8d3c4d4c79dd712cfa7f8d133fe1723efaa1fa152785",
+      "git_mode": "100644",
+      "candidateBlob": "ad4413df065848f59b666a172dfa5bc166f4414a",
+      "targetChange": "same"
+    },
+    "web/public/cards/JC030.jpg": {
+      "original": "web/public/cards/JC030.jpg",
+      "bytes": 314592,
+      "sha256": "e0627c1eec97eab04d8cbafb54c0d25ce496ab89e10e19a81485d84ad2915542",
+      "git_mode": "100644",
+      "candidateBlob": "112ac440d1ff00b2335d8fdc32f34a4f4fbdb8bd",
+      "targetChange": "same"
+    },
+    "web/public/cards/JC032.jpg": {
+      "original": "web/public/cards/JC032.jpg",
+      "bytes": 342051,
+      "sha256": "ebeb0a13c62cdf10569f4aa9f300998aff53a65788d756f055e9696f35489b4b",
+      "git_mode": "100644",
+      "candidateBlob": "5639edd93abcab68a107edf56593415911d80a0f",
+      "targetChange": "same"
+    },
+    "web/public/cards/JC036.jpg": {
+      "original": "web/public/cards/JC036.jpg",
+      "bytes": 340194,
+      "sha256": "017507e6a2a229f6541a4690b681ecd71fc09b35962b9673da70f5f035ddba83",
+      "git_mode": "100644",
+      "candidateBlob": "37b11f9f8ba2469f14f03bed824cb641b0116770",
+      "targetChange": "same"
+    },
+    "web/public/cards/JC042.jpg": {
+      "original": "web/public/cards/JC042.jpg",
+      "bytes": 342837,
+      "sha256": "242a17c708a96d27e95b23f9ab339e01d5b8c1eda282a2f7de8f51ba2c1bdbef",
+      "git_mode": "100644",
+      "candidateBlob": "0293abb7a92517bfb92ecd4d196ebfd33887fc03",
+      "targetChange": "same"
+    },
+    "web/public/cards/JC047.jpg": {
+      "original": "web/public/cards/JC047.jpg",
+      "bytes": 315262,
+      "sha256": "74d7e3c4bf75c52538fce551dda97f28e5b51d7d64ffbe89c9d427296a3ce9d6",
+      "git_mode": "100644",
+      "candidateBlob": "ff8f2fdc98f9392136b40d38ab8fb537fa736f05",
+      "targetChange": "same"
+    },
+    "web/public/cards/JC049.jpg": {
+      "original": "web/public/cards/JC049.jpg",
+      "bytes": 331035,
+      "sha256": "340c3fbc650b755d72c31ca06a8c379bacb572df6df061a9c52d0fb386d02d58",
+      "git_mode": "100644",
+      "candidateBlob": "4378225847dd60005862be46063fe80c1d9ac72a",
+      "targetChange": "same"
+    },
+    "web/public/cards/JC056.jpg": {
+      "original": "web/public/cards/JC056.jpg",
+      "bytes": 285784,
+      "sha256": "75503118eee2b80d23f59ea950884c152f33d28d552d0d051ed872f441810e6d",
+      "git_mode": "100644",
+      "candidateBlob": "8b5ed6dc0184a2780ffa23705d654197edea7004",
+      "targetChange": "same"
+    },
+    "web/public/cards/JC058.jpg": {
+      "original": "web/public/cards/JC058.jpg",
+      "bytes": 289748,
+      "sha256": "6585e89991049cb05e75db43143320fd12bf6be781847648d551cb433e85119a",
+      "git_mode": "100644",
+      "candidateBlob": "c7db8a1d1caa3f7d7afa687a981c6dde656438da",
+      "targetChange": "same"
+    },
+    "web/public/cards/JC059.jpg": {
+      "original": "web/public/cards/JC059.jpg",
+      "bytes": 299356,
+      "sha256": "7d9639d3115dcea8e42f21e1145397f3be4392a80fa0b6c040d7302139eff0ad",
+      "git_mode": "100644",
+      "candidateBlob": "a745606c46db4dc14ae6495e294b47e38a02f511",
+      "targetChange": "same"
+    },
+    "web/public/cards/JC063.jpg": {
+      "original": "web/public/cards/JC063.jpg",
+      "bytes": 292803,
+      "sha256": "1b20b9c7392543bf975b6391d227e03e4f50f3fd3134e7c6aa494e7357f88165",
+      "git_mode": "100644",
+      "candidateBlob": "6f252e10a2d84175a93dc105d3951cca709c67bd",
+      "targetChange": "same"
+    },
+    "web/public/cards/JC070.jpg": {
+      "original": "web/public/cards/JC070.jpg",
+      "bytes": 328410,
+      "sha256": "3dd1ef905e2cfb4d806b258fdde0b1ec1fe2adad7868bb5cd7dc0bcf9cfe9e1b",
+      "git_mode": "100644",
+      "candidateBlob": "8c0bb9bfcbbd675f1f6a796213a9faea0c9ab862",
+      "targetChange": "same"
+    },
+    "web/public/cards/JC071.jpg": {
+      "original": "web/public/cards/JC071.jpg",
+      "bytes": 325476,
+      "sha256": "85fde88b2a35d595f166d87c0ab27b244198c3919c1f6a381e54e07598f73b67",
+      "git_mode": "100644",
+      "candidateBlob": "bfb5c225124ce05e0dc715ad9eafc1d9c8948aa1",
+      "targetChange": "same"
+    },
+    "web/public/cards/JC073.jpg": {
+      "original": "web/public/cards/JC073.jpg",
+      "bytes": 328192,
+      "sha256": "cebf528de52de72d7400d4c769c2642063342d75a01670e120b5bc71aba23d42",
+      "git_mode": "100644",
+      "candidateBlob": "458e99eae621b5c6d375a5edda640f1169feda16",
+      "targetChange": "same"
+    },
+    "web/public/cards/JC074.jpg": {
+      "original": "web/public/cards/JC074.jpg",
+      "bytes": 4706143,
+      "sha256": "e34e5bb081f3ee459d99038c68d60f4be4a44af05baa4289759b730045140914",
+      "git_mode": "100644",
+      "candidateBlob": "8c53c8ca92f196400f1369c1cf064dc1ad6209a1",
+      "targetChange": "same"
+    },
+    "web/public/cards/JC075.jpg": {
+      "original": "web/public/cards/JC075.jpg",
+      "bytes": 331174,
+      "sha256": "7db960c7050614dae10a8e752db2567670169e782986e39a789842259231e434",
+      "git_mode": "100644",
+      "candidateBlob": "7667f46133424fd8244b92b303c7874db7f27d65",
+      "targetChange": "same"
+    },
+    "web/public/cards/JC076.jpg": {
+      "original": "web/public/cards/JC076.jpg",
+      "bytes": 326205,
+      "sha256": "4390ebf4eabcf44c541303bfb764061c1622cb483ed0e034ee9651571cee27ac",
+      "git_mode": "100644",
+      "candidateBlob": "22862ae9fe0f9d876b13f058f3f8fa69658f741c",
+      "targetChange": "same"
+    },
+    "web/public/cards/JC078.jpg": {
+      "original": "web/public/cards/JC078.jpg",
+      "bytes": 335412,
+      "sha256": "d238d2c7412349579c00fa4a5a662e9214bdad13df25b8917ae1034251f7e2b9",
+      "git_mode": "100644",
+      "candidateBlob": "7594b80fc07fae29f8e3ffe821974f73f52a3f1e",
+      "targetChange": "same"
+    },
+    "web/public/cards/JC084.jpg": {
+      "original": "web/public/cards/JC084.jpg",
+      "bytes": 316581,
+      "sha256": "3d068fa87dc6f9f7aef426637f71de22aef05f0f278dc096fad0ca50dee99872",
+      "git_mode": "100644",
+      "candidateBlob": "ffe1022be331057464d32d7a1a745dd012154b20",
+      "targetChange": "same"
+    },
+    "web/public/cards/JC085.jpg": {
+      "original": "web/public/cards/JC085.jpg",
+      "bytes": 337881,
+      "sha256": "f568ed4c26fc244830d840f0133eb1a78111aceff53a4a345f8ca44c1552aee2",
+      "git_mode": "100644",
+      "candidateBlob": "d9f18e589ad94db7d87ea56e45ba071546496ab1",
+      "targetChange": "same"
+    },
+    "web/public/cards/JC086.jpg": {
+      "original": "web/public/cards/JC086.jpg",
+      "bytes": 321608,
+      "sha256": "1bd405a60feeb41d60611050f4a37dd90dc971e1808ba712b66fe0cd37d2d743",
+      "git_mode": "100644",
+      "candidateBlob": "6c9d26f8d3de4eec771bf1ddb210b4cdc12510d8",
+      "targetChange": "same"
+    },
+    "web/public/cards/JC088.jpg": {
+      "original": "web/public/cards/JC088.jpg",
+      "bytes": 314244,
+      "sha256": "9c270203639dae978acb65e9255ac34b5a5d5192e681f8aafd63018ede301a5f",
+      "git_mode": "100644",
+      "candidateBlob": "ff1f7b41e54906cc065d0ac47ed78ffcbbf85e4e",
+      "targetChange": "same"
+    },
+    "web/public/cards/JC089.jpg": {
+      "original": "web/public/cards/JC089.jpg",
+      "bytes": 312412,
+      "sha256": "83853a1a4c3e6ecd9644f7bb5c843e70585d421f1792a0e4a141ebbe867d12f7",
+      "git_mode": "100644",
+      "candidateBlob": "0b67f36e7753bd011f496b4bcf14543c6e4a6334",
+      "targetChange": "same"
+    },
+    "web/public/cards/JC091.jpg": {
+      "original": "web/public/cards/JC091.jpg",
+      "bytes": 314574,
+      "sha256": "2ea5d65c270a107371f7d69cb22de3e4e60f9e9db81d4e6959744bbfbf6d11cb",
+      "git_mode": "100644",
+      "candidateBlob": "1c9ada28204ed4c450ca9934bd6c4cd65ef87fdb",
+      "targetChange": "same"
+    },
+    "web/public/cards/JC092.jpg": {
+      "original": "web/public/cards/JC092.jpg",
+      "bytes": 327819,
+      "sha256": "ea1ca5644c38831b659f29dcf4c7ec0cb5dc5a758b0b793ed120b24b74295947",
+      "git_mode": "100644",
+      "candidateBlob": "6e1bf53934d756a961bf85a24e2e088b117b56a5",
+      "targetChange": "same"
+    },
+    "web/public/cards/JC093.jpg": {
+      "original": "web/public/cards/JC093.jpg",
+      "bytes": 327300,
+      "sha256": "ac3398f82103f6d50eb97b6bb3467244834c8e3867fb92c295d3c420b522bdd2",
+      "git_mode": "100644",
+      "candidateBlob": "627d5a040524e153a0b06dce9dd5fab4424e56c4",
+      "targetChange": "same"
+    },
+    "web/public/cards/JC096.jpg": {
+      "original": "web/public/cards/JC096.jpg",
+      "bytes": 311787,
+      "sha256": "28c1eb001f27dc220b8905ba97d7d396680adda8f7c1b8c9e0f2ec97f4907c7c",
+      "git_mode": "100644",
+      "candidateBlob": "7a07cd732f46b7c4eddd74309d4903172a20fcd8",
+      "targetChange": "same"
+    },
+    "web/public/cards/JC102.jpg": {
+      "original": "web/public/cards/JC102.jpg",
+      "bytes": 346254,
+      "sha256": "842fb9f07e9b8afbc0cecd6c224972c5643bad9b710daa518faceb59fc9a3b5d",
+      "git_mode": "100644",
+      "candidateBlob": "2523ae1aba4aa4ba4ce82fc2dc64e46b11a2aecb",
+      "targetChange": "same"
+    },
+    "web/public/cards/JC103.jpg": {
+      "original": "web/public/cards/JC103.jpg",
+      "bytes": 336324,
+      "sha256": "8eee910793908999e04487b65f0e9a398d11ef5b307b360ba6e9d2012adaed63",
+      "git_mode": "100644",
+      "candidateBlob": "36bea100d0f34a9e0858aa5398a0d476faeb4ff2",
+      "targetChange": "same"
+    },
+    "web/public/cards/JC104.jpg": {
+      "original": "web/public/cards/JC104.jpg",
+      "bytes": 375404,
+      "sha256": "877aa980256730bb35350f1b99c2aa75b9110cd5905e61412664e2a89ef4e8da",
+      "git_mode": "100644",
+      "candidateBlob": "145ff6693267a3189044b5ee9afc76e7c45c220d",
+      "targetChange": "same"
+    },
+    "web/public/cards/JC107.jpg": {
+      "original": "web/public/cards/JC107.jpg",
+      "bytes": 343826,
+      "sha256": "ce402d531c9c9bb28da130de0627b4860ced56fb0fa7db1d487082c36e0462e2",
+      "git_mode": "100644",
+      "candidateBlob": "8b3c3cd48a1e66cf89b6f03580af0788d6b804b0",
+      "targetChange": "same"
+    },
+    "web/public/cards/JC112.jpg": {
+      "original": "web/public/cards/JC112.jpg",
+      "bytes": 295767,
+      "sha256": "870b526451ed20441601cfed413a99e2e64a266d60daa698bb2066840383bd71",
+      "git_mode": "100644",
+      "candidateBlob": "2e35ff3b634adb71bdfa7f32420bfbe5ceb52ae5",
+      "targetChange": "same"
+    },
+    "web/public/cards/JC114.jpg": {
+      "original": "web/public/cards/JC114.jpg",
+      "bytes": 325963,
+      "sha256": "2cd5cc66ceb3c9a8f9d07d341558489adb170dcb680331c7620e5f1162be12c7",
+      "git_mode": "100644",
+      "candidateBlob": "5e7c06297573f7c81f81867fec82c8352d02641e",
+      "targetChange": "same"
+    },
+    "web/public/cards/JC116.jpg": {
+      "original": "web/public/cards/JC116.jpg",
+      "bytes": 319810,
+      "sha256": "5a314d56e3d6c660f381e45710dbf0964cf8560cfa170906b3d4e938abb90e16",
+      "git_mode": "100644",
+      "candidateBlob": "5fe56918225deee01bf5b2dfbc82bbafc6d3344c",
+      "targetChange": "same"
+    },
+    "web/public/cards/JC118.jpg": {
+      "original": "web/public/cards/JC118.jpg",
+      "bytes": 283116,
+      "sha256": "0f112c86afcfd0e9b2b6dea66597e24e57a95155f1b624534b2f9a4b980df97a",
+      "git_mode": "100644",
+      "candidateBlob": "f87bf8599f9679ffc5b0617167d328b9c28e4376",
+      "targetChange": "same"
+    },
+    "web/public/cards/JC125.jpg": {
+      "original": "web/public/cards/JC125.jpg",
+      "bytes": 285153,
+      "sha256": "6392c2cdc2d9ea43deca6b26594618a2093ae887bd03d5ad29d130c7e329993a",
+      "git_mode": "100644",
+      "candidateBlob": "e8b5fede35e3d2083e639068f3c0bcafb0f9ee65",
+      "targetChange": "same"
+    },
+    "web/public/cards/JC126.jpg": {
+      "original": "web/public/cards/JC126.jpg",
+      "bytes": 302436,
+      "sha256": "33ed0032c1e6983f25be998c66891f137f2f0975031493883f6cc1a9bb5e40e0",
+      "git_mode": "100644",
+      "candidateBlob": "c8e0c4964a5b71549f5c877a805271f2542e58a9",
+      "targetChange": "same"
+    },
+    "web/public/cards/JC129.jpg": {
+      "original": "web/public/cards/JC129.jpg",
+      "bytes": 294504,
+      "sha256": "0c99776d13e342b85c6d6f6cc476459ec6463e6bbdc146046460518c738a0b59",
+      "git_mode": "100644",
+      "candidateBlob": "5b32fbd0fed5bec17d6712b44412a22602d18314",
+      "targetChange": "same"
+    },
+    "web/public/cards/JC130.jpg": {
+      "original": "web/public/cards/JC130.jpg",
+      "bytes": 289306,
+      "sha256": "be7d3ec07aea099829f0b01ea506999810091c7b7a202a6bfb0f8ec32eb3055f",
+      "git_mode": "100644",
+      "candidateBlob": "5368807b90565e8ebb2753381f185b49e45af41d",
+      "targetChange": "same"
+    },
+    "web/public/cards/JC131.jpg": {
+      "original": "web/public/cards/JC131.jpg",
+      "bytes": 270928,
+      "sha256": "78b1cff75c50f96763ae2cfeb346524e9046f2e3a445a5e00268113365bc976f",
+      "git_mode": "100644",
+      "candidateBlob": "54e50265baa26770b3896d785c95725bad309606",
+      "targetChange": "same"
+    },
+    "web/public/cards/JC132.jpg": {
+      "original": "web/public/cards/JC132.jpg",
+      "bytes": 295955,
+      "sha256": "219bb4062c3e9053b9fc9d309ad919ebe4b6a98c3af314c6987ca948b3eeb4f1",
+      "git_mode": "100644",
+      "candidateBlob": "f7aee4923aecad8ffbfe92513c81dfdc51652d8f",
+      "targetChange": "same"
+    },
+    "web/public/cards/JZ08.jpg": {
+      "original": "web/public/cards/JZ08.jpg",
+      "bytes": 497242,
+      "sha256": "343561bd351e06811f9a1fc77b6a9fe08e6dfbace83d8c8abb8f6b43fb031d12",
+      "git_mode": "100644",
+      "candidateBlob": "14d1df57cc6b45ca50a6a8e547295590d5195b1b",
+      "targetChange": "same"
+    },
+    "web/public/cards/JZ24.jpg": {
+      "original": "web/public/cards/JZ24.jpg",
+      "bytes": 515008,
+      "sha256": "e01995d70e06a6b179dcbbf81c3df73ab548269fc0efe9fafc33e2e2f3c8722d",
+      "git_mode": "100644",
+      "candidateBlob": "44f90a1dc8e5722d38bcac26cd361563953e6d25",
+      "targetChange": "same"
+    },
+    "web/public/cards/JZ27.jpg": {
+      "original": "web/public/cards/JZ27.jpg",
+      "bytes": 528092,
+      "sha256": "33fbdd4a062962b546cdb0d4f368f35b6c4c019908db73a37cfa09aaa237630e",
+      "git_mode": "100644",
+      "candidateBlob": "4ccee3e5fd3b1d8bb89dd78756c626398462a4a2",
+      "targetChange": "same"
+    },
+    "web/public/cards/JZ31.jpg": {
+      "original": "web/public/cards/JZ31.jpg",
+      "bytes": 507421,
+      "sha256": "57a1fd51243ab4616af46f4fb8a6a1ef46a09ab3c9a11ed2fe2fc90d8b83babf",
+      "git_mode": "100644",
+      "candidateBlob": "c2ca0436cd3854596bc285168000c21b012d442e",
+      "targetChange": "same"
+    },
+    "web/public/cards/JZ48.jpg": {
+      "original": "web/public/cards/JZ48.jpg",
+      "bytes": 499021,
+      "sha256": "a9a5da75938c22872cca524776356b10f2a0250370d3ba3ed3b31deb332e5b4f",
+      "git_mode": "100644",
+      "candidateBlob": "c796a1455c61879426e0ac7d6ac2dbb30d61fd2f",
+      "targetChange": "same"
+    },
+    "web/public/cards/JZ49.jpg": {
+      "original": "web/public/cards/JZ49.jpg",
+      "bytes": 499091,
+      "sha256": "208b2370433fb420ba91e1557ad6633589e43b1391d2008d63ebee2ed90fdf62",
+      "git_mode": "100644",
+      "candidateBlob": "801ef5d4a758aa15cea0378355b7745ffbe27df2",
+      "targetChange": "same"
+    },
+    "web/public/cards/JZ50.jpg": {
+      "original": "web/public/cards/JZ50.jpg",
+      "bytes": 533019,
+      "sha256": "403e44bb5f7f0ff8715acb267a8369c3715b2dc752d7fe612de085da29b523e7",
+      "git_mode": "100644",
+      "candidateBlob": "65e6b33f2779b1b754df729e58fcad60d5af3b33",
+      "targetChange": "same"
+    },
+    "web/public/cards/JZ51.jpg": {
+      "original": "web/public/cards/JZ51.jpg",
+      "bytes": 521395,
+      "sha256": "1b0311913bbf4a26c0e9e2dc2c0d6b656bd802cc6e831350f6f2500edf577dc0",
+      "git_mode": "100644",
+      "candidateBlob": "d325dede09ff58906b77700ca2a586f438568898",
+      "targetChange": "same"
+    },
+    "web/public/cards/JZ52.jpg": {
+      "original": "web/public/cards/JZ52.jpg",
+      "bytes": 521413,
+      "sha256": "7f9ad8adb68bdd84877ebdead2bc13ed04983099977333d2106486405c6478a3",
+      "git_mode": "100644",
+      "candidateBlob": "80b4e53c245d52dd63317684017de89f8772328d",
+      "targetChange": "same"
+    },
+    "web/public/cards/JZ53.jpg": {
+      "original": "web/public/cards/JZ53.jpg",
+      "bytes": 509401,
+      "sha256": "a84d896c1b552dabda05a1fc12c55224275a31b63a8408446508775235cc4623",
+      "git_mode": "100644",
+      "candidateBlob": "563bf76910160f7e4c72f657b67b235a1ef0649a",
+      "targetChange": "same"
+    },
+    "web/public/cards/JZ54.jpg": {
+      "original": "web/public/cards/JZ54.jpg",
+      "bytes": 543412,
+      "sha256": "c7902515865a26e1276d9e7a4bbd05c511704f76aee504c73539737012624af4",
+      "git_mode": "100644",
+      "candidateBlob": "721fb2523f0c66f999a3ef65e02db505f8be6d9f",
+      "targetChange": "same"
+    },
+    "web/public/cards/JZ55.jpg": {
+      "original": "web/public/cards/JZ55.jpg",
+      "bytes": 493536,
+      "sha256": "9155faa90be22aa66e56148dfacd0d517eb7b6f7b56fd1b45b71a6804719784a",
+      "git_mode": "100644",
+      "candidateBlob": "0d2b51e6129bbea37ff4d8150a24ea4cc2a738c8",
+      "targetChange": "same"
+    },
+    "web/public/cards/JZ58.jpg": {
+      "original": "web/public/cards/JZ58.jpg",
+      "bytes": 548446,
+      "sha256": "4cb1892b435cc14fd3f9d8310b428a16eaf5cc5afe1c870760a3dcc457d4dd95",
+      "git_mode": "100644",
+      "candidateBlob": "a95e9d3f285023fa72fe78891547c3a0a29a1d96",
+      "targetChange": "same"
+    },
+    "web/public/cards/JZ59.jpg": {
+      "original": "web/public/cards/JZ59.jpg",
+      "bytes": 518313,
+      "sha256": "b43bf4fc74654c089cf10429306980c2af12743d57d60b603efae03b28eae5f3",
+      "git_mode": "100644",
+      "candidateBlob": "f0202329f0c5a139f2b6aeea3a8956765cdf2de1",
+      "targetChange": "same"
+    },
+    "web/public/cards/JZ61.jpg": {
+      "original": "web/public/cards/JZ61.jpg",
+      "bytes": 493374,
+      "sha256": "5da40b475c306d3a295a6582576b9b720c8707050bdedfea3005b92578e4e37f",
+      "git_mode": "100644",
+      "candidateBlob": "35d0ba55e5fc2de22533f6a89f3cd175c70cf73c",
+      "targetChange": "same"
+    },
+    "web/public/cards/JZ67.jpg": {
+      "original": "web/public/cards/JZ67.jpg",
+      "bytes": 526684,
+      "sha256": "a6554b81e081c7292a32f2bf13ce269f276580f9a852e1df232c60c2c36ff477",
+      "git_mode": "100644",
+      "candidateBlob": "67c22c473e04114cb63b723e5d6fcc1d8d173e86",
+      "targetChange": "same"
+    },
+    "web/public/cards/JZ74.jpg": {
+      "original": "web/public/cards/JZ74.jpg",
+      "bytes": 500480,
+      "sha256": "3915ef2565eff330862507076c052942322e59f47039f31f7c0ebe658181f085",
+      "git_mode": "100644",
+      "candidateBlob": "93e1924d168c5cd7905fcb5f11bf3e6715d9232f",
+      "targetChange": "same"
+    },
+    "web/public/cards/LC01.jpg": {
+      "original": "web/public/cards/LC01.jpg",
+      "bytes": 467391,
+      "sha256": "a0defb07b43463cc882e15b993c73eda22ea77ca39062da71e6518a365cc5bd6",
+      "git_mode": "100644",
+      "candidateBlob": "4de8e142ab3326455982f7782ee6cb921e9d0cbe",
+      "targetChange": "same"
+    },
+    "web/public/cards/LC06.jpg": {
+      "original": "web/public/cards/LC06.jpg",
+      "bytes": 463742,
+      "sha256": "46bcfd890d040fc0b9e558ba601867f402bcc1443851e0ccf7f7a9e1579154b6",
+      "git_mode": "100644",
+      "candidateBlob": "7b13aae724b5bf5152e6728c56ed35612947dfc7",
+      "targetChange": "same"
+    },
+    "web/public/cards/LC12.jpg": {
+      "original": "web/public/cards/LC12.jpg",
+      "bytes": 484188,
+      "sha256": "2a13b5e0bf5fa11f320bcf31141cf0e68915a949f9031cd112b5c650420285cf",
+      "git_mode": "100644",
+      "candidateBlob": "8522301e2967027b26d5008171a2b6c58d869b9c",
+      "targetChange": "same"
+    },
+    "web/public/cards/LC19.jpg": {
+      "original": "web/public/cards/LC19.jpg",
+      "bytes": 469421,
+      "sha256": "41c0fe55aff401721ec54fbb08174d52d36747f0821e32c6ddc5006bba9e9f71",
+      "git_mode": "100644",
+      "candidateBlob": "9124f75566cd243da39514703aac4b2220a42263",
+      "targetChange": "same"
+    },
+    "web/public/cards/LC20.jpg": {
+      "original": "web/public/cards/LC20.jpg",
+      "bytes": 471968,
+      "sha256": "961b508b54f78c561b98268da91d901a3536a330aef0ea8a49b81b9f6a278248",
+      "git_mode": "100644",
+      "candidateBlob": "a060f24297dc7e0fd816864f17c31cf7ddda8aea",
+      "targetChange": "same"
+    },
+    "web/public/cards/LC21.jpg": {
+      "original": "web/public/cards/LC21.jpg",
+      "bytes": 437349,
+      "sha256": "62b05d9f5349d53dd6d47dae7077566c1f5735529bc2bd813a45c1d7c3a183b9",
+      "git_mode": "100644",
+      "candidateBlob": "467da16219bf24ba00ef823fa631d395d9e9c9aa",
+      "targetChange": "same"
+    },
+    "web/public/cards/LC22.jpg": {
+      "original": "web/public/cards/LC22.jpg",
+      "bytes": 441940,
+      "sha256": "26976ae01006603182b666cef0ea6960bc5d218dc904f2b1c760f3719f142b35",
+      "git_mode": "100644",
+      "candidateBlob": "9604c84656de547140e791b806d7da691bfbaff4",
+      "targetChange": "same"
+    },
+    "web/public/cards/LC23.jpg": {
+      "original": "web/public/cards/LC23.jpg",
+      "bytes": 487166,
+      "sha256": "977959c6deb74b125b18a8b40758deab354396fdffd49b0d9bcc57197144f1c8",
+      "git_mode": "100644",
+      "candidateBlob": "4ff20f5ee613751116cba9b04ce7ff7458333721",
+      "targetChange": "same"
+    },
+    "web/public/cards/LC24.jpg": {
+      "original": "web/public/cards/LC24.jpg",
+      "bytes": 464715,
+      "sha256": "05b4c30ee93bb8ea9b96636e9da3fbcaa560f206aaa5b6c73b5c5ac283fddccb",
+      "git_mode": "100644",
+      "candidateBlob": "61c27ac236acc280c7ac1ec44b1271e6c58d21e9",
+      "targetChange": "same"
+    },
+    "web/public/cards/LC30.jpg": {
+      "original": "web/public/cards/LC30.jpg",
+      "bytes": 1156537,
+      "sha256": "31ce6bd49725e5db643adb13daaef3529b8fb8440691214a00dd9fe666c5041d",
+      "git_mode": "100644",
+      "candidateBlob": "f063f9433b10dad5ed7fbb5b94003421d831e703",
+      "targetChange": "same"
+    },
+    "web/public/cards/MSJC01.jpg": {
+      "original": "web/public/cards/MSJC01.jpg",
+      "bytes": 263474,
+      "sha256": "c61c887558cb184a532758eac5db766234c32a3a3605162a38c0899993e7bdf2",
+      "git_mode": "100644",
+      "candidateBlob": "1f31166e0505d0219573c605f224a6b324fd2789",
+      "targetChange": "same"
+    },
+    "web/public/cards/MSJC02.jpg": {
+      "original": "web/public/cards/MSJC02.jpg",
+      "bytes": 249225,
+      "sha256": "915a723573028050980cb665d0de85f5e5fd5a6de1b54e3d7664e69882edc807",
+      "git_mode": "100644",
+      "candidateBlob": "6efa0d2e31d4419b84091e03147281f9f9ddce9f",
+      "targetChange": "same"
+    },
+    "web/public/cards/MSJC03.jpg": {
+      "original": "web/public/cards/MSJC03.jpg",
+      "bytes": 238826,
+      "sha256": "07463a18a5cc6726f098bedc10304ef6c4032929cff72535d5f9227338e45f29",
+      "git_mode": "100644",
+      "candidateBlob": "23dd737e2d17d8b184be618a6da57585766ea511",
+      "targetChange": "same"
+    },
+    "web/public/cards/MSJC06.jpg": {
+      "original": "web/public/cards/MSJC06.jpg",
+      "bytes": 229736,
+      "sha256": "38b76c70bda5759a9963a05c398b845f5c7e22c7f12fe2507b9a1ac123cda2a7",
+      "git_mode": "100644",
+      "candidateBlob": "a207d608351c415360b279190873d7274686de6f",
+      "targetChange": "same"
+    },
+    "web/public/cards/MSJC07.jpg": {
+      "original": "web/public/cards/MSJC07.jpg",
+      "bytes": 229888,
+      "sha256": "e9cd1af04560733f28e3bcfee4c687f6a2e5218b93862b5a74d4f35f6a8f3ed7",
+      "git_mode": "100644",
+      "candidateBlob": "25dff36c655e056dddb0919bed04ba2e1a105c48",
+      "targetChange": "same"
+    },
+    "web/public/cards/MSJC08.jpg": {
+      "original": "web/public/cards/MSJC08.jpg",
+      "bytes": 266822,
+      "sha256": "28c3f965daa40a83d081b03b6f0b72a0ac4006ebf465575ede3b221f633e72a1",
+      "git_mode": "100644",
+      "candidateBlob": "9c45bf5b511d37391b1bc84e971635b5b3d7da72",
+      "targetChange": "same"
+    },
+    "web/public/cards/MSJC09.jpg": {
+      "original": "web/public/cards/MSJC09.jpg",
+      "bytes": 210792,
+      "sha256": "41e478a3f38ead83477498fd88131831a5fd843be364c1c0daa3ba10153c2302",
+      "git_mode": "100644",
+      "candidateBlob": "22ba972b63253dae3c893202972aee2791885bb4",
+      "targetChange": "same"
+    },
+    "web/public/cards/MSJC11.jpg": {
+      "original": "web/public/cards/MSJC11.jpg",
+      "bytes": 239506,
+      "sha256": "df9964832e48bfef57bcaa0d5f4db67ce2ab9fe0e371ffecc2736c1728b1b853",
+      "git_mode": "100644",
+      "candidateBlob": "afc524236084b85783c625b8e381dfe0b2ab135b",
+      "targetChange": "same"
+    },
+    "web/public/cards/WM003.jpg": {
+      "original": "web/public/cards/WM003.jpg",
+      "bytes": 1306943,
+      "sha256": "2409ef206e3af93d1eece3ec0bf4ba00a9e3d0c12a8e70443877cc8a28cc9bff",
+      "git_mode": "100644",
+      "candidateBlob": "42e5e7ed7d4cc3a32433a12267c60dd441377494",
+      "targetChange": "same"
+    },
+    "web/public/cards/XQ03.jpg": {
+      "original": "web/public/cards/XQ03.jpg",
+      "bytes": 1430068,
+      "sha256": "c6e85106105d23ef55df70ba06d6c8878b6ce279a727908fbdeab0a8495679b0",
+      "git_mode": "100644",
+      "candidateBlob": "90f81665c08de1648cef913ca0b09aef1917f4d9",
+      "targetChange": "same"
+    },
+    "web/public/cards/XQ07.jpg": {
+      "original": "web/public/cards/XQ07.jpg",
+      "bytes": 1401415,
+      "sha256": "944a254795fc17e946f7150de9a47649d8c6efa3006770850447503b06a22df9",
+      "git_mode": "100644",
+      "candidateBlob": "99e6f370d7f3722b1045c8516b933e413bfc1579",
+      "targetChange": "same"
+    },
+    "web/public/cards/XQ12.jpg": {
+      "original": "web/public/cards/XQ12.jpg",
+      "bytes": 1381983,
+      "sha256": "4e9f3afa5f7f22d99fc89284e91586fba78a8ff2ee8827fc6a6ceeb41889fdc8",
+      "git_mode": "100644",
+      "candidateBlob": "0bc2b4f4a776b0bf2b52b7d8c2b755dadb488c7a",
+      "targetChange": "same"
+    },
+    "web/public/cards/XQ14.jpg": {
+      "original": "web/public/cards/XQ14.jpg",
+      "bytes": 1373623,
+      "sha256": "0baea888495adba62a7688be1b95c95b5ffa60d689c104b7ff3a26dd2340ffb2",
+      "git_mode": "100644",
+      "candidateBlob": "000bc20da80175bb38762bb53f3fd3658c8aba79",
+      "targetChange": "same"
+    },
+    "web/public/cards/XQ16.jpg": {
+      "original": "web/public/cards/XQ16.jpg",
+      "bytes": 1503073,
+      "sha256": "2ae947c0c5dccd45ae495d3c828ce9b4e1453c34dfb6e24c5e61eea8338cff80",
+      "git_mode": "100644",
+      "candidateBlob": "9a96ce04b04bc927a2bf103bfd4071d472bcee97",
+      "targetChange": "same"
+    },
+    "web/public/cards/XQ17.jpg": {
+      "original": "web/public/cards/XQ17.jpg",
+      "bytes": 1375211,
+      "sha256": "e5ad8fe27074632eab8d6207eb2e6f08efb69d20f343f2d50701d30f5a5bb5eb",
+      "git_mode": "100644",
+      "candidateBlob": "3c4e9ca248b889e83e3d81310a30003852c7e0b4",
+      "targetChange": "same"
+    },
+    "web/public/cards/XQ34.jpg": {
+      "original": "web/public/cards/XQ34.jpg",
+      "bytes": 1292584,
+      "sha256": "2ca1f5a4b25d308f8af13a7a80018010deaf93f9abe2275bef1fa7656be13e04",
+      "git_mode": "100644",
+      "candidateBlob": "968ddf0b12b62234f8194dafc2db7b6e4e2933fb",
+      "targetChange": "same"
+    },
+    "web/public/cards/XQ36.jpg": {
+      "original": "web/public/cards/XQ36.jpg",
+      "bytes": 1471604,
+      "sha256": "84b611615ecdbdf7940022160522187a28edb46322525e540fed1935de0526b9",
+      "git_mode": "100644",
+      "candidateBlob": "ef5c40550e82fbf06c4e06df45c25b0c17fdb332",
+      "targetChange": "same"
+    },
+    "web/public/cards/XQ38.jpg": {
+      "original": "web/public/cards/XQ38.jpg",
+      "bytes": 1487343,
+      "sha256": "26c8311674325491157577a3d295c148ce1c6f27ded59c4d27979faf58e9204e",
+      "git_mode": "100644",
+      "candidateBlob": "6b65e0ade705b5b7802b61e07ce3f0851d8c7e21",
+      "targetChange": "same"
+    },
+    "web/public/cards/XQ40.jpg": {
+      "original": "web/public/cards/XQ40.jpg",
+      "bytes": 1505785,
+      "sha256": "b4f4e3f294d9ee1893d5b6d11124f0c12e472076e52f6365bdde7ffe49d6162c",
+      "git_mode": "100644",
+      "candidateBlob": "aaade8128270d7a99efdbf811a46a889cdb0b616",
+      "targetChange": "same"
+    },
+    "web/public/cards/XQ41.jpg": {
+      "original": "web/public/cards/XQ41.jpg",
+      "bytes": 1463646,
+      "sha256": "02a56f5d1fe9d57121591f19d96f3756a8cf4ab60725ba292474758e5d0af179",
+      "git_mode": "100644",
+      "candidateBlob": "3055ecb6d26ffddd7c516ad7d5325ec7f643775a",
+      "targetChange": "same"
+    },
+    "web/public/cards/XQ43.jpg": {
+      "original": "web/public/cards/XQ43.jpg",
+      "bytes": 1456234,
+      "sha256": "6e950624afff514a9ffed208fe51dc4137e5114b3f67a24bb0e694be0c935c93",
+      "git_mode": "100644",
+      "candidateBlob": "a1d28dca933d04e8e6d08630399473c4e9b5dce7",
+      "targetChange": "same"
+    },
+    "web/public/cards/XQ45.jpg": {
+      "original": "web/public/cards/XQ45.jpg",
+      "bytes": 1476070,
+      "sha256": "6475556f30b08853ed5bb2e1c82b3314c73947fb59bc7d044060a5555f5ef8cf",
+      "git_mode": "100644",
+      "candidateBlob": "fd83422e0906fc13f06af51a37810ccdfc13eef2",
+      "targetChange": "same"
+    },
+    "web/public/cards/XQ46.jpg": {
+      "original": "web/public/cards/XQ46.jpg",
+      "bytes": 1254286,
+      "sha256": "d58e71df94753dde04595f5aa84de4039fcbbe594883acc018e2c06ddb103a89",
+      "git_mode": "100644",
+      "candidateBlob": "43c71a59b5d2c748eb95e9801d14ec0bdda0582b",
+      "targetChange": "same"
+    },
+    "web/public/cards/XQ47.jpg": {
+      "original": "web/public/cards/XQ47.jpg",
+      "bytes": 1347172,
+      "sha256": "9b370fb92ad2e1c3ac6f33d3402ab2c8cbdea1898aae4c4a386f17631d654a03",
+      "git_mode": "100644",
+      "candidateBlob": "84a52b18ab7d288cdd68ba471b70abe4197b6e3c",
+      "targetChange": "same"
+    },
+    "web/public/cards/XQ48.jpg": {
+      "original": "web/public/cards/XQ48.jpg",
+      "bytes": 1363262,
+      "sha256": "0cd31207bda681093839e86e5bb87cee624a3c0a657c70b60fa765f439089746",
+      "git_mode": "100644",
+      "candidateBlob": "81aeb8775f96283107819ee08a573d788b6b2ea1",
+      "targetChange": "add"
+    },
+    "web/public/cards/XQ49.jpg": {
+      "original": "web/public/cards/XQ49.jpg",
+      "bytes": 1336679,
+      "sha256": "8b160c52b18e49a7ef39085b63cc9a1b18531c02dc0ae3d92e2fedd874a29aca",
+      "git_mode": "100644",
+      "candidateBlob": "d0a94eaa25d70742bf89306e02bda7137852a044",
+      "targetChange": "same"
+    },
+    "web/src/App.tsx": {
+      "original": "web/src/App.tsx",
+      "bytes": 184,
+      "sha256": "61dffa5b8c8cfc67e5bc66ec91a17d9e20ca696e3a410fbcb8128429d9449c54",
+      "git_mode": "100644",
+      "candidateBlob": "5b179ba96166bb0b7cbfe19d82061eeb3dbef6a2",
+      "targetChange": "replace"
+    },
+    "web/src/game/ArchivePresentation.test.tsx": {
+      "original": "web/src/game/ArchivePresentation.test.tsx",
+      "bytes": 5021,
+      "sha256": "e7204f2f96686decd9c27243e924b54871c2298a23bb95ba1f1173a97d1d338a",
+      "git_mode": "100644",
+      "candidateBlob": "aad7e814ccfdd83fa1d813c0493c269aa3de7a59",
+      "targetChange": "same"
+    },
+    "web/src/game/ArchivePresentation.tsx": {
+      "original": "web/src/game/ArchivePresentation.tsx",
+      "bytes": 1297,
+      "sha256": "0d6b10f448a1863fbdd38c5e7508dedf8af1c5867430c351125c91f43bb9f578",
+      "git_mode": "100644",
+      "candidateBlob": "c23949383ce36d34a32cd540b9f661ef57e2a30b",
+      "targetChange": "same"
+    },
+    "web/src/game/Attachments.test.tsx": {
+      "original": "web/src/game/Attachments.test.tsx",
+      "bytes": 9498,
+      "sha256": "5e6e1bfb342ce11be2ca7218f8648ce69b0a39e8e2ba2c2a311a77243521a165",
+      "git_mode": "100644",
+      "candidateBlob": "a202d9b032272eea268cfa6f7b6464d187e6f2b6",
+      "targetChange": "same"
+    },
+    "web/src/game/AutoPass.test.tsx": {
+      "original": "web/src/game/AutoPass.test.tsx",
+      "bytes": 9007,
+      "sha256": "c46d1b8e18c30ae9bb2a6d48c22db72af3dd72305e222846c827af9f045be90b",
+      "git_mode": "100644",
+      "candidateBlob": "59bb88744bd25d0a0574bd489df2564a79a3798a",
+      "targetChange": "same"
+    },
+    "web/src/game/AutoPass.tsx": {
+      "original": "web/src/game/AutoPass.tsx",
+      "bytes": 2537,
+      "sha256": "22b710e0134a7a782b2a6e460c0f681bc7ded8e81b1bf9c9c5ee05c4cf3a6c89",
+      "git_mode": "100644",
+      "candidateBlob": "fa15889b4c1a4accbb7edc77670c670cfaf61b53",
+      "targetChange": "same"
+    },
+    "web/src/game/AutoPassPolling.fixture.jsx": {
+      "original": "web/src/game/AutoPassPolling.fixture.jsx",
+      "bytes": 3636,
+      "sha256": "518daba5f93da8b8f6246430e39ee06867a7ea1b92c49aabb0f2d749275db75c",
+      "git_mode": "100644",
+      "candidateBlob": "fd9a2823db2a921b880263b9fb80408e1a3d898a",
+      "targetChange": "same"
+    },
+    "web/src/game/AutoPassPolling.test.jsx": {
+      "original": "web/src/game/AutoPassPolling.test.jsx",
+      "bytes": 23761,
+      "sha256": "5e5a283ed5b3ce02f1e7d07b5a5c2e2a9d4f2734bbbb982a5c5e4428d7043167",
+      "git_mode": "100644",
+      "candidateBlob": "1140826764c5221c8dbe3678cfa6a126b111258f",
+      "targetChange": "same"
+    },
+    "web/src/game/BlueMinimumScan.test.jsx": {
+      "original": "web/src/game/BlueMinimumScan.test.jsx",
+      "bytes": 8505,
+      "sha256": "a2fcb65727cb908fe8112ac084125d00f5c4a3269010099585385fe1a46a80e5",
+      "git_mode": "100644",
+      "candidateBlob": "e729e47859991f392d1830ba010afcd22cbd19c1",
+      "targetChange": "same"
+    },
+    "web/src/game/BoundedEntrySearch.test.jsx": {
+      "original": "web/src/game/BoundedEntrySearch.test.jsx",
+      "bytes": 6358,
+      "sha256": "3e7b974bf073dd0875e583b38c2a800a16f7c8bb1a9b675fc77470f868b65c7e",
+      "git_mode": "100644",
+      "candidateBlob": "a117ddec681bc39dfe5dc3198b3a8cbc3565474a",
+      "targetChange": "add"
+    },
+    "web/src/game/CardTile.test.tsx": {
+      "original": "web/src/game/CardTile.test.tsx",
+      "bytes": 7266,
+      "sha256": "e959e7fa72a1e2793b5b68426b1e22490fd0c954bb1b9aa3e7e94aec2bb62832",
+      "git_mode": "100644",
+      "candidateBlob": "ee89ae8221d9926f60ae5eab1b4f0363eea2ed87",
+      "targetChange": "same"
+    },
+    "web/src/game/CardTile.tsx": {
+      "original": "web/src/game/CardTile.tsx",
+      "bytes": 15286,
+      "sha256": "382e4f04b3f182618ddbf8af71aab1cf1c284df2e87f33281d96db96a8bc0721",
+      "git_mode": "100644",
+      "candidateBlob": "d2b4cc8b29c84721b1d8250d0113ef9916bf1fa9",
+      "targetChange": "same"
+    },
+    "web/src/game/ChoicePanel.test.tsx": {
+      "original": "web/src/game/ChoicePanel.test.tsx",
+      "bytes": 10702,
+      "sha256": "29a40671a1903586067f57aee3fc84932bff33f3b09d91d57b72091e3438e743",
+      "git_mode": "100644",
+      "candidateBlob": "7c08561673ed4273c5433940cf92146cf01a7f3b",
+      "targetChange": "same"
+    },
+    "web/src/game/ChoicePanel.tsx": {
+      "original": "web/src/game/ChoicePanel.tsx",
+      "bytes": 12140,
+      "sha256": "762d9b8bccb3b629f7ebd0ab19aa95db7224e8c5eb9ebd08c1d459e72aeba2ad",
+      "git_mode": "100644",
+      "candidateBlob": "a48a87c43c7af5a5aa7c93203f61cfc2a1f87fde",
+      "targetChange": "replace"
+    },
+    "web/src/game/ControlTypeBatch.test.jsx": {
+      "original": "web/src/game/ControlTypeBatch.test.jsx",
+      "bytes": 3580,
+      "sha256": "aa99d680b502ec1a0c3c50fbde6dfacbf0c1bb04ce025225fd64759ff7bde4f1",
+      "git_mode": "100644",
+      "candidateBlob": "7cf2cd6430c2d9f1f8b4e736729593c3e43b2ada",
+      "targetChange": "same"
+    },
+    "web/src/game/DeckBuilderGrid.test.tsx": {
+      "original": "web/src/game/DeckBuilderGrid.test.tsx",
+      "bytes": 12094,
+      "sha256": "f8c2047b07e2a67297e1d9c2db81640a6f12a0ecfbc78013642669257ba67030",
+      "git_mode": "100644",
+      "candidateBlob": "c27b25d739a9398c1af26b752ce3115d2bf1038e",
+      "targetChange": "same"
+    },
+    "web/src/game/DeckCardFace.tsx": {
+      "original": "web/src/game/DeckCardFace.tsx",
+      "bytes": 1006,
+      "sha256": "7a08d9a60e1749095330c77ec7440bd5b6289e32c166111368b8912054166971",
+      "git_mode": "100644",
+      "candidateBlob": "9715604dc8a425683b6ebb021a853c4021cb93d9",
+      "targetChange": "same"
+    },
+    "web/src/game/DeckCardPreview.tsx": {
+      "original": "web/src/game/DeckCardPreview.tsx",
+      "bytes": 4004,
+      "sha256": "64cac2dd8e70bfe4e64979451b11f1b381ee927c5c3767b17c99f0bc99b77a92",
+      "git_mode": "100644",
+      "candidateBlob": "fa14f08a8473bf837c182e6b75fe4376b6281171",
+      "targetChange": "same"
+    },
+    "web/src/game/DeckLibrary.test.tsx": {
+      "original": "web/src/game/DeckLibrary.test.tsx",
+      "bytes": 9964,
+      "sha256": "48072ede9b8e5848ca19833bf829e1a231ec2acfde833d872c0d6b3741ed8619",
+      "git_mode": "100644",
+      "candidateBlob": "27dfe89ba577c6411215d7ca226f02335d8bbc0c",
+      "targetChange": "same"
+    },
+    "web/src/game/DeckLibraryPanel.tsx": {
+      "original": "web/src/game/DeckLibraryPanel.tsx",
+      "bytes": 20198,
+      "sha256": "a216af9342053f538db18460cd70da7946b9a5bd5806001ab3695d65ff9397c5",
+      "git_mode": "100644",
+      "candidateBlob": "e6816700796ee1e8c3f2e30e1cda443eb411fd22",
+      "targetChange": "same"
+    },
+    "web/src/game/DefenceEquipmentBatch.test.jsx": {
+      "original": "web/src/game/DefenceEquipmentBatch.test.jsx",
+      "bytes": 4234,
+      "sha256": "8d1a38c3065f1fc45d6c825cafccd5cf88a500950e27223e5bee5c0a8a183890",
+      "git_mode": "100644",
+      "candidateBlob": "a5e0480b4543c6b479a5ca5b78c0cbb7a3e91325",
+      "targetChange": "same"
+    },
+    "web/src/game/DialogIsolation.test.tsx": {
+      "original": "web/src/game/DialogIsolation.test.tsx",
+      "bytes": 7197,
+      "sha256": "707b5135484dc3583fba6bd1bddbe28048797962af1365339cdb5d5a1b9a2a70",
+      "git_mode": "100644",
+      "candidateBlob": "afb5f16d48fd794c0bfd35e63d24f8a13fcd92a1",
+      "targetChange": "same"
+    },
+    "web/src/game/DreamRevealBatch.test.jsx": {
+      "original": "web/src/game/DreamRevealBatch.test.jsx",
+      "bytes": 6882,
+      "sha256": "1d6afa078e70a0911c587a7db9cb25998ffb3afccf930d4654b14e544b6edaec",
+      "git_mode": "100644",
+      "candidateBlob": "643d0d55c1ef57e44b24cc54b2e66a4c662c36e2",
+      "targetChange": "same"
+    },
+    "web/src/game/EquipmentAbilitiesBatch.test.jsx": {
+      "original": "web/src/game/EquipmentAbilitiesBatch.test.jsx",
+      "bytes": 4021,
+      "sha256": "2e62b2b99efb61fb70baa547050750ad05f1b2271296088d05cdec69796c963a",
+      "git_mode": "100644",
+      "candidateBlob": "9be632f33605c3261f2629bb8074523f8ad6967d",
+      "targetChange": "same"
+    },
+    "web/src/game/FactionCoverage.tsx": {
+      "original": "web/src/game/FactionCoverage.tsx",
+      "bytes": 1688,
+      "sha256": "39b936acadf9800e5b6e86c24f0cca7524a8b71c6cf3c24caff0cd99d1dd34c3",
+      "git_mode": "100644",
+      "candidateBlob": "095f0477e4f3213b28786cd3ade99acba7c10903",
+      "targetChange": "same"
+    },
+    "web/src/game/GameApp.tsx": {
+      "original": "web/src/game/GameApp.tsx",
+      "bytes": 5118,
+      "sha256": "3b4da7980ffef21e7f01da407975b77d7445f17cb45eabe73070dac82b56a065",
+      "git_mode": "100644",
+      "candidateBlob": "ac3c8ca4b606a7d63335343a1ef75032a6d1791b",
+      "targetChange": "same"
+    },
+    "web/src/game/GreenMinimumScan.test.jsx": {
+      "original": "web/src/game/GreenMinimumScan.test.jsx",
+      "bytes": 6832,
+      "sha256": "b32931f3cf7112cf6410e3d96c34dfdc349c4a913d5a8770a918e1f30a1b72f8",
+      "git_mode": "100644",
+      "candidateBlob": "41777fe10915aba557b02c063b50a63f556c11a9",
+      "targetChange": "same"
+    },
+    "web/src/game/HandDeckBatch.test.jsx": {
+      "original": "web/src/game/HandDeckBatch.test.jsx",
+      "bytes": 3029,
+      "sha256": "0b9b798628a9bae66a75b0e0a58ac597b2da82c419562853683f600db64e6f5f",
+      "git_mode": "100644",
+      "candidateBlob": "63dbc10ecb87b2a442b883a63585ee1274d023cf",
+      "targetChange": "same"
+    },
+    "web/src/game/HandInteractionsBatch.test.jsx": {
+      "original": "web/src/game/HandInteractionsBatch.test.jsx",
+      "bytes": 5288,
+      "sha256": "19823a7cdbf8d87cce6caae36d22d26ee54d0bd8bef4e5f9953803d8add21574",
+      "git_mode": "100644",
+      "candidateBlob": "b0c655e4f653f0bb2b106d35215a2887fd77ca87",
+      "targetChange": "same"
+    },
+    "web/src/game/Help.test.tsx": {
+      "original": "web/src/game/Help.test.tsx",
+      "bytes": 852,
+      "sha256": "fd26815d3e9fe2a7062ac3d2adb401098db3411056a339b4ecf579f9783398b3",
+      "git_mode": "100644",
+      "candidateBlob": "cf1ae1c48e17aabd2525dbc5a0079e92f837004c",
+      "targetChange": "same"
+    },
+    "web/src/game/Help.tsx": {
+      "original": "web/src/game/Help.tsx",
+      "bytes": 2971,
+      "sha256": "72561b99e010f503ccb7f910846a0b20ddd1c7eeeadf0c52c6ebd59d6a3a95d6",
+      "git_mode": "100644",
+      "candidateBlob": "911b00e80694bc277c0a8aeea1539dcbd551907c",
+      "targetChange": "same"
+    },
+    "web/src/game/IdentityOverlap.test.jsx": {
+      "original": "web/src/game/IdentityOverlap.test.jsx",
+      "bytes": 5342,
+      "sha256": "fd3e2b764ba83fbfee49ff452a6f6a0d67c89cf84dee727efeb8b9e1de661329",
+      "git_mode": "100644",
+      "candidateBlob": "b8e32ca5eea6d4970185c00a45ca3e7e52063580",
+      "targetChange": "same"
+    },
+    "web/src/game/JC005Scan.test.jsx": {
+      "original": "web/src/game/JC005Scan.test.jsx",
+      "bytes": 3516,
+      "sha256": "ad098dee09f5896bb4ea72617b24ab67174d898458f58178aaee498609da6eef",
+      "git_mode": "100644",
+      "candidateBlob": "ecbe0ce32e4e8dccadbb7d5bc363853e5f5e17c7",
+      "targetChange": "same"
+    },
+    "web/src/game/JC008Scan.test.jsx": {
+      "original": "web/src/game/JC008Scan.test.jsx",
+      "bytes": 7796,
+      "sha256": "2e98f377ac7319c3699fc3bdbd56881ca7a9b92f4232364baf86fe8a4d079ba9",
+      "git_mode": "100644",
+      "candidateBlob": "0159e6d7b63cf6ea5501c262df8c236503020b1c",
+      "targetChange": "same"
+    },
+    "web/src/game/JC029Scan.test.jsx": {
+      "original": "web/src/game/JC029Scan.test.jsx",
+      "bytes": 2985,
+      "sha256": "8a2bd0e18d8a4ec6e8568141d2ef588569c542d04eabd6d10f6b10bb773f91f3",
+      "git_mode": "100644",
+      "candidateBlob": "c39a07cb08cd8974dbce487aa52e63fb02553468",
+      "targetChange": "same"
+    },
+    "web/src/game/JC030Scan.test.jsx": {
+      "original": "web/src/game/JC030Scan.test.jsx",
+      "bytes": 3296,
+      "sha256": "ca4082cf55aeb10a350f4e7ccabe62ba816233d6e706506b8e0c10aa31c8254d",
+      "git_mode": "100644",
+      "candidateBlob": "36f14a57fa87f5faba385f222923a3aad390b490",
+      "targetChange": "same"
+    },
+    "web/src/game/JC089Curse.test.jsx": {
+      "original": "web/src/game/JC089Curse.test.jsx",
+      "bytes": 7683,
+      "sha256": "8cb3dbc5028a214913a0fd92ca48140c437887fb59a951c0205192b61ccb192b",
+      "git_mode": "100644",
+      "candidateBlob": "19264249bfee9aba5f2bbea245813f022bcb8851",
+      "targetChange": "replace"
+    },
+    "web/src/game/JC089JZ51JZ53CardFaces.test.jsx": {
+      "original": "web/src/game/JC089JZ51JZ53CardFaces.test.jsx",
+      "bytes": 8703,
+      "sha256": "e46d48a69a0844083093c6ff9ca67e1aeacf523b05b771f5a6043131bc0d428f",
+      "git_mode": "100644",
+      "candidateBlob": "a9ba4db5986c00bd96e7636fdeef0ce07bfa08de",
+      "targetChange": "same"
+    },
+    "web/src/game/JZ31DeathInfluence.test.jsx": {
+      "original": "web/src/game/JZ31DeathInfluence.test.jsx",
+      "bytes": 4453,
+      "sha256": "1bd6d9c07c05d6ae9dc12f063aea92b654332df4ec35eb17bf7f25104f8dac88",
+      "git_mode": "100644",
+      "candidateBlob": "d5c21f1dc60aca166df5c7c60b16f75b2eb666a6",
+      "targetChange": "same"
+    },
+    "web/src/game/JZ48Criminal.test.jsx": {
+      "original": "web/src/game/JZ48Criminal.test.jsx",
+      "bytes": 5050,
+      "sha256": "af33e6edfe67e4765f71a8926159f07aab28f25dd312d40d40a80e5d473de021",
+      "git_mode": "100644",
+      "candidateBlob": "c51a4f71a66f0676a24139843171bf6090de9bfe",
+      "targetChange": "same"
+    },
+    "web/src/game/JZ48JZ50CardFaces.test.jsx": {
+      "original": "web/src/game/JZ48JZ50CardFaces.test.jsx",
+      "bytes": 6380,
+      "sha256": "0b92fc66daa3a0a3b2fe478141a00220f85e68fe456f284bf4620f3fbd34a8e1",
+      "git_mode": "100644",
+      "candidateBlob": "bf7c52b45bd21c28abc2ec8692c7fcd356163882",
+      "targetChange": "same"
+    },
+    "web/src/game/JZ49CardFace.test.jsx": {
+      "original": "web/src/game/JZ49CardFace.test.jsx",
+      "bytes": 4107,
+      "sha256": "8ed9c4e6f94f40ab88f1670df23000aaa7d8d498e721d1bfad178b62cfa3dbde",
+      "git_mode": "100644",
+      "candidateBlob": "7416e2390e9e6a78f0b884b427344ed52fee1329",
+      "targetChange": "same"
+    },
+    "web/src/game/JZ49Slow.test.jsx": {
+      "original": "web/src/game/JZ49Slow.test.jsx",
+      "bytes": 4411,
+      "sha256": "463156633d33b1d6071cb1483eb6bc28af36a0c43c548e58608da3c95532bb9d",
+      "git_mode": "100644",
+      "candidateBlob": "7e23ad00251407e382708bfeef4522afcfb75a78",
+      "targetChange": "same"
+    },
+    "web/src/game/JZ50Search.test.tsx": {
+      "original": "web/src/game/JZ50Search.test.tsx",
+      "bytes": 4936,
+      "sha256": "02382404538a19ef90066a21fc0ddd7be0d450efd2883fa4cbf67b9d28b1238d",
+      "git_mode": "100644",
+      "candidateBlob": "b996466ee5dba638aabeec32f8a93cd388f5d9d9",
+      "targetChange": "same"
+    },
+    "web/src/game/JZ55UniqueDestroy.test.jsx": {
+      "original": "web/src/game/JZ55UniqueDestroy.test.jsx",
+      "bytes": 7419,
+      "sha256": "e50b1281115ef4481462febdcc2e6a960d50316123e4174a292fdd62fd36df72",
+      "git_mode": "100644",
+      "candidateBlob": "505093e57730833905ce6ca0ac8746400632c244",
+      "targetChange": "replace"
+    },
+    "web/src/game/Lobby.test.tsx": {
+      "original": "web/src/game/Lobby.test.tsx",
+      "bytes": 5556,
+      "sha256": "a8bf3e60cad21ab4e06ae9e0191520a9c732f15aff2f91d303035d95f1364267",
+      "git_mode": "100644",
+      "candidateBlob": "ea56280c99420de985be2300168f6a656db60344",
+      "targetChange": "same"
+    },
+    "web/src/game/Lobby.tsx": {
+      "original": "web/src/game/Lobby.tsx",
+      "bytes": 9027,
+      "sha256": "2e39cc8be37f51b2c5f7483e3234b1e531942c1e4004aa322ff61d8609314c6d",
+      "git_mode": "100644",
+      "candidateBlob": "c2a2627758fb81b5c00f314289b51f8194379bbc",
+      "targetChange": "same"
+    },
+    "web/src/game/MSJC01Scan.test.jsx": {
+      "original": "web/src/game/MSJC01Scan.test.jsx",
+      "bytes": 6853,
+      "sha256": "dae2e7faaceb5d729c67c267c629b261b759aa70a1ed104de3f531595ba75e83",
+      "git_mode": "100644",
+      "candidateBlob": "1648981c0fe1f6c924553ccb361eccc178b794a1",
+      "targetChange": "same"
+    },
+    "web/src/game/MSJC06Scan.test.jsx": {
+      "original": "web/src/game/MSJC06Scan.test.jsx",
+      "bytes": 7765,
+      "sha256": "ab6d2c97ea49518e52c669231ea36cf5f818a8713205c2b05e2b0f4028387bad",
+      "git_mode": "100644",
+      "candidateBlob": "b2deb0c94e7ea2621a4c19a2a3884fbd1ce1de95",
+      "targetChange": "same"
+    },
+    "web/src/game/MSJC07Scan.test.jsx": {
+      "original": "web/src/game/MSJC07Scan.test.jsx",
+      "bytes": 7813,
+      "sha256": "e6cf4b22e1678e0b140a896ca7e09895884fae4f3800e513b46aaa5ee5e245a8",
+      "git_mode": "100644",
+      "candidateBlob": "1f47a4a3c273e8ba635f3d07806fd8764b2bd825",
+      "targetChange": "same"
+    },
+    "web/src/game/MSJC08Scan.test.jsx": {
+      "original": "web/src/game/MSJC08Scan.test.jsx",
+      "bytes": 7808,
+      "sha256": "2c060be285d48faf61eddb742576cc247fdc242a780e38a7ae259511836ce3c7",
+      "git_mode": "100644",
+      "candidateBlob": "d8b6a6b797a98a6949e0368d01e4f4e5ea41918d",
+      "targetChange": "same"
+    },
+    "web/src/game/MSJC11Scan.test.jsx": {
+      "original": "web/src/game/MSJC11Scan.test.jsx",
+      "bytes": 3866,
+      "sha256": "fb52661112ca9a6d8d93c1b34d66d573f3a852d6d381d876992614fdf749a80f",
+      "git_mode": "100644",
+      "candidateBlob": "ed2ace50c1de5f02d219365dbd400346ea41da48",
+      "targetChange": "same"
+    },
+    "web/src/game/MillPublicBatch.test.jsx": {
+      "original": "web/src/game/MillPublicBatch.test.jsx",
+      "bytes": 4975,
+      "sha256": "f4328464a253163225635d15cbe5abef0b46858f5f3b26a7e50b7ae018b9df8f",
+      "git_mode": "100644",
+      "candidateBlob": "5b39566af47b42e9fb0920546006a02537791229",
+      "targetChange": "same"
+    },
+    "web/src/game/MixedDeckConstruction.test.jsx": {
+      "original": "web/src/game/MixedDeckConstruction.test.jsx",
+      "bytes": 3469,
+      "sha256": "f75c5940fb2b002342ec95e53b156dc7c62d50305e315e1f6d097086a9649b06",
+      "git_mode": "100644",
+      "candidateBlob": "ad190c0a9d13a4971c0a66400572d8fd48eedfaf",
+      "targetChange": "same"
+    },
+    "web/src/game/ObjectActions.test.tsx": {
+      "original": "web/src/game/ObjectActions.test.tsx",
+      "bytes": 19755,
+      "sha256": "0923526346811e0cc00427101e04e8b5c5c19381184aadcf70cb04341dec1b5f",
+      "git_mode": "100644",
+      "candidateBlob": "560bd64ca177579394c93cfb8c7ac2d7e81e3b0d",
+      "targetChange": "same"
+    },
+    "web/src/game/OptionalNumeric.test.tsx": {
+      "original": "web/src/game/OptionalNumeric.test.tsx",
+      "bytes": 3843,
+      "sha256": "51b5fe1a33b1e20f9e130498cb53ba64efa36b9ea5ecdcfce0a02e3597af57e1",
+      "git_mode": "100644",
+      "candidateBlob": "0925ef9d7211e58876181a09b5c108b5f3243c03",
+      "targetChange": "same"
+    },
+    "web/src/game/PlayerSessions.test.tsx": {
+      "original": "web/src/game/PlayerSessions.test.tsx",
+      "bytes": 16548,
+      "sha256": "7b5690eb8e7052e649f8d9610975d27cb05e0c114c6569e3fee3428b128d66ff",
+      "git_mode": "100644",
+      "candidateBlob": "eb4c45956c3dc0d1d896e76fc5345bbc9bf509e4",
+      "targetChange": "same"
+    },
+    "web/src/game/PrivateDeckTop.test.tsx": {
+      "original": "web/src/game/PrivateDeckTop.test.tsx",
+      "bytes": 2877,
+      "sha256": "1480087c155af062c38b9b422e89db7f12049e4b429eb3328dd5836fcf74c481",
+      "git_mode": "100644",
+      "candidateBlob": "289998cccaa8ff94526e730b8f73fbbbcc68f5f8",
+      "targetChange": "same"
+    },
+    "web/src/game/ProtectionBatch.test.jsx": {
+      "original": "web/src/game/ProtectionBatch.test.jsx",
+      "bytes": 4123,
+      "sha256": "83b068e209ecbc931f83cc6bd89779b3d4bc55b79178fbb5b426bf335f0ad922",
+      "git_mode": "100644",
+      "candidateBlob": "1a106ec4baf3b363cb3066f165cb7ecb477a79b4",
+      "targetChange": "same"
+    },
+    "web/src/game/PurpleToolsBatch.test.jsx": {
+      "original": "web/src/game/PurpleToolsBatch.test.jsx",
+      "bytes": 6312,
+      "sha256": "f8b02ff3fb811e3f72b96ceeb309b8d8a05d89c9a24b9c64dd8dd463ff583499",
+      "git_mode": "100644",
+      "candidateBlob": "0832943b1eb925396307f5fc8e4f5f0cda3094ff",
+      "targetChange": "same"
+    },
+    "web/src/game/README.md": {
+      "original": "web/src/game/README.md",
+      "bytes": 7287,
+      "sha256": "e516d60cdab27d0a0d91f1b932e54c3fc07a1901002f58717db6faabfa5c9372",
+      "git_mode": "100644",
+      "candidateBlob": "a4334a3c17a4a6206b13167f4db45736bbf9bbd4",
+      "targetChange": "replace"
+    },
+    "web/src/game/ReadModal.test.tsx": {
+      "original": "web/src/game/ReadModal.test.tsx",
+      "bytes": 4012,
+      "sha256": "c0990e425851b01dc20752a4cf9463b7383e62c75f2e61dc4b45e9dd5853c1be",
+      "git_mode": "100644",
+      "candidateBlob": "b3f1e988e090b6549aaa567187e86c80ae6688ba",
+      "targetChange": "same"
+    },
+    "web/src/game/ReadModal.tsx": {
+      "original": "web/src/game/ReadModal.tsx",
+      "bytes": 2594,
+      "sha256": "a91d08484768a2683f192277aac0c8be809af9fef3018b43ed8544f89258b7ef",
+      "git_mode": "100644",
+      "candidateBlob": "ba0f7cb670b0b8100a90970a668dbb8ed6562894",
+      "targetChange": "same"
+    },
+    "web/src/game/RegionAura.test.jsx": {
+      "original": "web/src/game/RegionAura.test.jsx",
+      "bytes": 8349,
+      "sha256": "902a3c8f7f67ec009ff3dd3537a6e931f780d2b27d7efe6218915d13cf0d82f9",
+      "git_mode": "100644",
+      "candidateBlob": "45fd550bd8d7d4f23bd153586e77c307ab93e1c7",
+      "targetChange": "same"
+    },
+    "web/src/game/RenownBatch.test.jsx": {
+      "original": "web/src/game/RenownBatch.test.jsx",
+      "bytes": 3704,
+      "sha256": "4890fb5d895389e78a1e7b1fdb9ce180e5e6ab43ec80656cfee6a2a6cd171cac",
+      "git_mode": "100644",
+      "candidateBlob": "4473c4f46cea979373df3acafcf9efa691b7b899",
+      "targetChange": "same"
+    },
+    "web/src/game/RepressAssetsBatch.test.jsx": {
+      "original": "web/src/game/RepressAssetsBatch.test.jsx",
+      "bytes": 3297,
+      "sha256": "a99a5e8b0269184feb066e2c6686a8279739702e088b20f70da3aab6c51cd885",
+      "git_mode": "100644",
+      "candidateBlob": "87553522708ecbf2fa4c880c161fab7ffb4ebde9",
+      "targetChange": "same"
+    },
+    "web/src/game/ResponseWindow.test.tsx": {
+      "original": "web/src/game/ResponseWindow.test.tsx",
+      "bytes": 12275,
+      "sha256": "198e9fe7370feeb16ed2ace8e4c4e2046a1223f93f361d42b72cf80fd588044e",
+      "git_mode": "100644",
+      "candidateBlob": "0bb2ea8a754c9d713ba135d39ef79e1342b505b4",
+      "targetChange": "same"
+    },
+    "web/src/game/ResponseWindow.tsx": {
+      "original": "web/src/game/ResponseWindow.tsx",
+      "bytes": 7992,
+      "sha256": "1da03a476a29fbe4e9691469a682ad381e2c32b6edbe52c2b841b43fcf32f9b3",
+      "git_mode": "100644",
+      "candidateBlob": "eb00bacbc6fa0328d7f84bd90fa46926a4d52146",
+      "targetChange": "same"
+    },
+    "web/src/game/RoomManagement.test.tsx": {
+      "original": "web/src/game/RoomManagement.test.tsx",
+      "bytes": 2320,
+      "sha256": "a43b7ba5c92daf0af04768e1a3e3f6d55092149152c25187eb7e3c1079210b04",
+      "git_mode": "100644",
+      "candidateBlob": "892dacd740f9a9fc2ee157c183e01b634f42d70c",
+      "targetChange": "same"
+    },
+    "web/src/game/RoomManagement.tsx": {
+      "original": "web/src/game/RoomManagement.tsx",
+      "bytes": 2124,
+      "sha256": "5393d708c5e62b87468b6b8d5b7b487c35417db92060efd60c6501ec3f6645bd",
+      "git_mode": "100644",
+      "candidateBlob": "976264b0c30dc1529b0492cb608e99584e334504",
+      "targetChange": "same"
+    },
+    "web/src/game/SameNameInstances.test.tsx": {
+      "original": "web/src/game/SameNameInstances.test.tsx",
+      "bytes": 5605,
+      "sha256": "18e1a4dfcb944776d62bc940898464d77bd66cece610c96a6cbe95b14a4a17d1",
+      "git_mode": "100644",
+      "candidateBlob": "0e0df228a0ba34aafd97210442f0007ad0458166",
+      "targetChange": "same"
+    },
+    "web/src/game/SealedCards.test.tsx": {
+      "original": "web/src/game/SealedCards.test.tsx",
+      "bytes": 8064,
+      "sha256": "23fbf10519184167bbd79401b662181de2991ab503fcf3c7838657a2d1c9551d",
+      "git_mode": "100644",
+      "candidateBlob": "7c84ece6156948e68bbb10055aae0d618043f801",
+      "targetChange": "same"
+    },
+    "web/src/game/SealedCards.tsx": {
+      "original": "web/src/game/SealedCards.tsx",
+      "bytes": 1521,
+      "sha256": "97a66702abef7082091dd0c73558faa5960c9a4546fbb60ffa9fcf12eac1cb8e",
+      "git_mode": "100644",
+      "candidateBlob": "a1be5e53ae4f1bbcfbeda233df8cda1cb5e8434b",
+      "targetChange": "same"
+    },
+    "web/src/game/SocietyDeck.test.tsx": {
+      "original": "web/src/game/SocietyDeck.test.tsx",
+      "bytes": 5791,
+      "sha256": "2b580382c9df36afe5d5a0ef9efa22ca51ae4d9712c805462770fd0136c94083",
+      "git_mode": "100644",
+      "candidateBlob": "eef5ef69071ac7266ce08ba5a7f7eb8be1826d29",
+      "targetChange": "same"
+    },
+    "web/src/game/SocietyScan.test.jsx": {
+      "original": "web/src/game/SocietyScan.test.jsx",
+      "bytes": 5645,
+      "sha256": "4bd8dc49433ead016c6a1a13def0c34ab99134f1848fffb4ed5af6779d6ebb7d",
+      "git_mode": "100644",
+      "candidateBlob": "4478fecccab70a88b06992f32f0c04c5e588a077",
+      "targetChange": "same"
+    },
+    "web/src/game/SocietyTable.test.tsx": {
+      "original": "web/src/game/SocietyTable.test.tsx",
+      "bytes": 9839,
+      "sha256": "91ff6a039007b768e8eba324c3662b6219226a9318f3c6fae4b4ed1f80914649",
+      "git_mode": "100644",
+      "candidateBlob": "a32fae4124eee40d058df165e37095184f64465b",
+      "targetChange": "same"
+    },
+    "web/src/game/Table.test.tsx": {
+      "original": "web/src/game/Table.test.tsx",
+      "bytes": 23216,
+      "sha256": "adcea87931daa8483f205b745a1af2a4a39c3cd2c8e35e5b994594e165a6aa14",
+      "git_mode": "100644",
+      "candidateBlob": "50e77ec3fc10f024736bcbfc472d0f562b4ee177",
+      "targetChange": "same"
+    },
+    "web/src/game/Table.tsx": {
+      "original": "web/src/game/Table.tsx",
+      "bytes": 53132,
+      "sha256": "baee2ac3b50ecf359b49cf66cddc0df71357422f0778db5c536429852c3356c3",
+      "git_mode": "100644",
+      "candidateBlob": "9c7335dd34e9f6e1bca7c69d33f0dba9be341fb9",
+      "targetChange": "same"
+    },
+    "web/src/game/TargetRetention.test.tsx": {
+      "original": "web/src/game/TargetRetention.test.tsx",
+      "bytes": 16893,
+      "sha256": "a250d1f196bfaf05717746f20c94be791a5cc3b87fa80457a86036770c48722f",
+      "git_mode": "100644",
+      "candidateBlob": "46cf995405934de7b936f46ba09cc14e79a54b6a",
+      "targetChange": "same"
+    },
+    "web/src/game/V028DeckEntry.test.jsx": {
+      "original": "web/src/game/V028DeckEntry.test.jsx",
+      "bytes": 4760,
+      "sha256": "db5df023384d4272fdf90f3c67cea1f24765e8bb579e8f3fecf5f546c9b27ff2",
+      "git_mode": "100644",
+      "candidateBlob": "e31ba551dabf2beb6053818110aecf1be1b381e8",
+      "targetChange": "same"
+    },
+    "web/src/game/WhiteWoundBatch.test.jsx": {
+      "original": "web/src/game/WhiteWoundBatch.test.jsx",
+      "bytes": 4560,
+      "sha256": "0f005ffb3febf2115e0daaf12fbff9d2c2af9d665cfeb6c544f68892c81a4992",
+      "git_mode": "100644",
+      "candidateBlob": "219f2f48b5a35b1dd1402afcd4d20539a72946fa",
+      "targetChange": "same"
+    },
+    "web/src/game/WoundDefenceBatch.test.jsx": {
+      "original": "web/src/game/WoundDefenceBatch.test.jsx",
+      "bytes": 7222,
+      "sha256": "87f651fcdff48983aedeae7b9e227863951c1f2af3117b854fb42c17f0400988",
+      "git_mode": "100644",
+      "candidateBlob": "2c552df0608a7b3ae6e40457a5d5233e496bba1c",
+      "targetChange": "same"
+    },
+    "web/src/game/YellowSearchBatchScan.test.jsx": {
+      "original": "web/src/game/YellowSearchBatchScan.test.jsx",
+      "bytes": 2409,
+      "sha256": "db907ac7388c320cf38525c0cd4dc4e7412f366fda70eff0399db14dc3af5436",
+      "git_mode": "100644",
+      "candidateBlob": "9d225f1232d34f6a9bea44a5741492ca79e43bc4",
+      "targetChange": "same"
+    },
+    "web/src/game/api.test.ts": {
+      "original": "web/src/game/api.test.ts",
+      "bytes": 13023,
+      "sha256": "50c2a15d8238bfe605ca75c8e387737736577613997e1d2e72f0b96866783465",
+      "git_mode": "100644",
+      "candidateBlob": "745a89f01e16a0c35af03547c1b7a742377f1db5",
+      "targetChange": "same"
+    },
+    "web/src/game/api.ts": {
+      "original": "web/src/game/api.ts",
+      "bytes": 13011,
+      "sha256": "fef7a2c78e57960239f28aaf011230f02564962d559ed95fffef4275bfb6c3be",
+      "git_mode": "100644",
+      "candidateBlob": "2fa5642826991efa314499c54fbed3e9dbf5f40d",
+      "targetChange": "same"
+    },
+    "web/src/game/archive-desktop.css": {
+      "original": "web/src/game/archive-desktop.css",
+      "bytes": 16327,
+      "sha256": "65c27f27f80c3210a54303c5c67fb44f2ecbd73fc75095f0033aa152e52c5ce7",
+      "git_mode": "100644",
+      "candidateBlob": "f88ea076a66f03ab692f77f0bea38579d9b15c86",
+      "targetChange": "same"
+    },
+    "web/src/game/attachments.css": {
+      "original": "web/src/game/attachments.css",
+      "bytes": 1106,
+      "sha256": "684e288731d45866ca6ce7ad156a59b1e1b3ae9d013b6af1a55b5e4756ad7765",
+      "git_mode": "100644",
+      "candidateBlob": "021e1514bca497065eb8d7e45fcd88f3f0f475d5",
+      "targetChange": "same"
+    },
+    "web/src/game/blueMinimumTest.fixture.json": {
+      "original": "web/src/game/blueMinimumTest.fixture.json",
+      "bytes": 286910,
+      "sha256": "0326dae2291af890e43822b0e8ed0b98ebf331615495948f46d5af04a742332a",
+      "git_mode": "100644",
+      "candidateBlob": "873b02ca7342e2a2eabd89726bda43f3226cfb76",
+      "targetChange": "same"
+    },
+    "web/src/game/boundedEntryNative50Test.fixture.json": {
+      "original": "web/src/game/boundedEntryNative50Test.fixture.json",
+      "bytes": 492803,
+      "sha256": "884d03e1603814b2d5114dd86b0600c7499315854b0a17fe2a4c75606ed48728",
+      "git_mode": "100644",
+      "candidateBlob": "82c1453c90ba2fe5a5fd9092a2ebe1dd4f22d69d",
+      "targetChange": "add"
+    },
+    "web/src/game/cardScans.ts": {
+      "original": "web/src/game/cardScans.ts",
+      "bytes": 3980,
+      "sha256": "86473f60ae17f7ce2d5c8b94e14f881cdfd99d7888173b57d498e2c6efcd453c",
+      "git_mode": "100644",
+      "candidateBlob": "534e461eac179c6ddbb67c753e8c230e3f654ad6",
+      "targetChange": "replace"
+    },
+    "web/src/game/cardScansV032.fixture.json": {
+      "original": "web/src/game/cardScansV032.fixture.json",
+      "bytes": 20653,
+      "sha256": "9a46bf09c8cf4d6b6b1c13d928739e171b036c2762fd0b0f0788975faa5f20a6",
+      "git_mode": "100644",
+      "candidateBlob": "8af6eb8fb779ba0efde0f99f2585ed1af2733de7",
+      "targetChange": "same"
+    },
+    "web/src/game/cardScansV034.fixture.json": {
+      "original": "web/src/game/cardScansV034.fixture.json",
+      "bytes": 21679,
+      "sha256": "2a38e937782e7ca0c80f4b0fdc79bd3c382e8eb57952b535644721084d99a9ce",
+      "git_mode": "100644",
+      "candidateBlob": "26c4a37d47408415b23b358bdce136d6bafddda8",
+      "targetChange": "same"
+    },
+    "web/src/game/cardScansV035.fixture.json": {
+      "original": "web/src/game/cardScansV035.fixture.json",
+      "bytes": 21889,
+      "sha256": "8c06e08c8d0abbb81026e92c3af4a65305498d529129731bb6b37c97568f5f8f",
+      "git_mode": "100644",
+      "candidateBlob": "1c440d3e4338cd0318ce9c0436d01e8e72f16bb6",
+      "targetChange": "same"
+    },
+    "web/src/game/choice-readability.css": {
+      "original": "web/src/game/choice-readability.css",
+      "bytes": 3020,
+      "sha256": "0be57810a5757ed8e872a96b9db2d96aa3deb84bb67e7ced60e86eeb23e8ec44",
+      "git_mode": "100644",
+      "candidateBlob": "dac5d2ae37e6f1713e338ae713bb1396a53db10d",
+      "targetChange": "same"
+    },
+    "web/src/game/deck-library.css": {
+      "original": "web/src/game/deck-library.css",
+      "bytes": 11265,
+      "sha256": "5be17041183d15a4dbb2bc05dacd558205f38a1b9b62d3e4949177147f041f47",
+      "git_mode": "100644",
+      "candidateBlob": "b319c40cf930f251c86de0df153fe78f06b3273f",
+      "targetChange": "same"
+    },
+    "web/src/game/deckLibrary.test.ts": {
+      "original": "web/src/game/deckLibrary.test.ts",
+      "bytes": 9950,
+      "sha256": "9d32fe6196f9524965c42ace69952a5c21973ca3fe1ae2b1ca0c3f2fc4b5348f",
+      "git_mode": "100644",
+      "candidateBlob": "7f34d0ec2b24af8583539a858777564c4373ee69",
+      "targetChange": "same"
+    },
+    "web/src/game/deckLibrary.ts": {
+      "original": "web/src/game/deckLibrary.ts",
+      "bytes": 12507,
+      "sha256": "1ab5cc6a775e75a4dad03855d6b4557e9c15582a9ef99cf2f9d4768e01be3322",
+      "git_mode": "100644",
+      "candidateBlob": "360c86d3b83c9121f248aae1d5db08d283de5075",
+      "targetChange": "same"
+    },
+    "web/src/game/factions.test.tsx": {
+      "original": "web/src/game/factions.test.tsx",
+      "bytes": 7146,
+      "sha256": "9caed3d58c464c2b8e0b1d6f52b6e2651fff20d2420856910561e4e445af6c91",
+      "git_mode": "100644",
+      "candidateBlob": "88f2b9e9135ba77d3ebfd926958df43212fe6e7c",
+      "targetChange": "same"
+    },
+    "web/src/game/factions.ts": {
+      "original": "web/src/game/factions.ts",
+      "bytes": 3114,
+      "sha256": "99a3c6f43f07775ee6e42c97ae2ceaf6e452c9757c3ca0afbb678c981d2ce3f5",
+      "git_mode": "100644",
+      "candidateBlob": "ade0d29a3eb1c2ad9414b5d5a0b45c1a4eaa2e81",
+      "targetChange": "same"
+    },
+    "web/src/game/game.css": {
+      "original": "web/src/game/game.css",
+      "bytes": 54787,
+      "sha256": "92475ffc439541f2d7a4fc5a8932d21109e554085a4b1a1c1f02cbb3875db318",
+      "git_mode": "100644",
+      "candidateBlob": "ce306d910d3821f4e362c450a01d586319b39d3a",
+      "targetChange": "same"
+    },
+    "web/src/game/greenMinimumTest.fixture.json": {
+      "original": "web/src/game/greenMinimumTest.fixture.json",
+      "bytes": 148186,
+      "sha256": "bd8ec80e4365802325e444b286c385424d5506e5793a4bfe4344282513f8a125",
+      "git_mode": "100644",
+      "candidateBlob": "5a3528d67601b401b310b6a88948f6473b0a5804",
+      "targetChange": "same"
+    },
+    "web/src/game/jc030Test.fixture.json": {
+      "original": "web/src/game/jc030Test.fixture.json",
+      "bytes": 88254,
+      "sha256": "c76b25a0ccb8a01378046fd5a829b6b323c70bb43cc434faec54ea2942d23a39",
+      "git_mode": "100644",
+      "candidateBlob": "3ad193d6edfc5867e9616b320050ffcd1ee7293a",
+      "targetChange": "same"
+    },
+    "web/src/game/jc089Test.fixture.json": {
+      "original": "web/src/game/jc089Test.fixture.json",
+      "bytes": 690766,
+      "sha256": "e15db10257cd4e16591bd46ee2df97e0441a153860efeed54aae4d6ec97119ef",
+      "git_mode": "100644",
+      "candidateBlob": "57426233456f7c2f1406636e33f05ca68c5569bc",
+      "targetChange": "same"
+    },
+    "web/src/game/jz31Test.fixture.json": {
+      "original": "web/src/game/jz31Test.fixture.json",
+      "bytes": 832090,
+      "sha256": "cab6c8ef5a52d9b8340914be6f33f73b51b997b0c5167fc75eb29a5310f2a6cd",
+      "git_mode": "100644",
+      "candidateBlob": "d33c399decf958f2597ff1cadefb5882949e4364",
+      "targetChange": "same"
+    },
+    "web/src/game/jz48Test.fixture.json": {
+      "original": "web/src/game/jz48Test.fixture.json",
+      "bytes": 307135,
+      "sha256": "99182896ad5fe416cbe3fa327e19a22eee165dbf27a85330364cd24ff8542f43",
+      "git_mode": "100644",
+      "candidateBlob": "a80e4e008f365a99bca98ee79d0d03b020781f2f",
+      "targetChange": "same"
+    },
+    "web/src/game/jz49Test.fixture.json": {
+      "original": "web/src/game/jz49Test.fixture.json",
+      "bytes": 108016,
+      "sha256": "16be9fe8dcb6572de75a1f1bc53e9fad750f3b22b04ba612f72caef1c3dd5fa9",
+      "git_mode": "100644",
+      "candidateBlob": "4b74d08465400f066d2e22ebfc9be760ab76a723",
+      "targetChange": "same"
+    },
+    "web/src/game/jz50Native48Test.fixture.json": {
+      "original": "web/src/game/jz50Native48Test.fixture.json",
+      "bytes": 445704,
+      "sha256": "b3602c1562d64b305049f8925d68f7237bf8580c880cab8a1bbb152b1acf883d",
+      "git_mode": "100644",
+      "candidateBlob": "3afc1d3ae27aa1fc61bd2361a229a95fc835ca27",
+      "targetChange": "same"
+    },
+    "web/src/game/jz55Test.fixture.json": {
+      "original": "web/src/game/jz55Test.fixture.json",
+      "bytes": 589211,
+      "sha256": "866216f19b83147576fc64aefe3a7cc443a02b5f49fd85d78f6b639f2faa2886",
+      "git_mode": "100644",
+      "candidateBlob": "8c8713c9fa7ed4237e87262dbf45da7c59a5e390",
+      "targetChange": "same"
+    },
+    "web/src/game/lantern-table.css": {
+      "original": "web/src/game/lantern-table.css",
+      "bytes": 71553,
+      "sha256": "6d6350a046217055bf07a3d194fe5eda3b06da44291abd46e13b0f41ce2ad15b",
+      "git_mode": "100644",
+      "candidateBlob": "6c35530c84c0e8f3c6724c842d99e008d4ccd2ca",
+      "targetChange": "same"
+    },
+    "web/src/game/millPublicV035Test.fixture.json": {
+      "original": "web/src/game/millPublicV035Test.fixture.json",
+      "bytes": 1181764,
+      "sha256": "bb4189306f393e99634235777b7136fedb07d035a35c1e03256030c0ae470176",
+      "git_mode": "100644",
+      "candidateBlob": "f8d45b1d177e2236f15ff90d1c0de7642efe8e70",
+      "targetChange": "same"
+    },
+    "web/src/game/object-actions.css": {
+      "original": "web/src/game/object-actions.css",
+      "bytes": 4895,
+      "sha256": "cd4c9dfe2e76634d4b4184fb184bdbbfaeb9f6be44755782ebd1b6117d156c91",
+      "git_mode": "100644",
+      "candidateBlob": "401dc4b91dd76197a78821c8e1ccf7816f75b5ed",
+      "targetChange": "same"
+    },
+    "web/src/game/objectActions.test.ts": {
+      "original": "web/src/game/objectActions.test.ts",
+      "bytes": 1864,
+      "sha256": "8fa66d720b22dd58479aa814d865cf5d0a0e8b66e6f76136d89eab1780cc7cc5",
+      "git_mode": "100644",
+      "candidateBlob": "4655027312564cba9f99f5eeebe94e9e48cb2ef5",
+      "targetChange": "same"
+    },
+    "web/src/game/objectActions.ts": {
+      "original": "web/src/game/objectActions.ts",
+      "bytes": 1355,
+      "sha256": "8b0b9e31ed68a7f282c4edf51582af458d833caf91bd41784ac9c9e6f622117f",
+      "git_mode": "100644",
+      "candidateBlob": "03cbc94056dd4c01a8451c43e0d5c154e890d7ad",
+      "targetChange": "same"
+    },
+    "web/src/game/playerStorage.ts": {
+      "original": "web/src/game/playerStorage.ts",
+      "bytes": 1721,
+      "sha256": "51021f2c97ebba051009ba44415652ef3c75194a1cc6f1249ec148519db43e44",
+      "git_mode": "100644",
+      "candidateBlob": "d26d8a18d840487478809c1d935a59251fccdabd",
+      "targetChange": "same"
+    },
+    "web/src/game/response-intent.css": {
+      "original": "web/src/game/response-intent.css",
+      "bytes": 502,
+      "sha256": "337a3cfe984244bc080d5d485b2d8332870e32cb773d9e429239e8dc0f64b8fe",
+      "git_mode": "100644",
+      "candidateBlob": "66de8f35a1b79a706e645ea63406b361865ee194",
+      "targetChange": "same"
+    },
+    "web/src/game/room-management.css": {
+      "original": "web/src/game/room-management.css",
+      "bytes": 317,
+      "sha256": "8b1459a9139f393dd8c57bb0abd404027a4ecc339c52da66d8ff17e3311c938b",
+      "git_mode": "100644",
+      "candidateBlob": "8f9e2e1caa03749f60ee0b2844a2ffd4a2d2dd2d",
+      "targetChange": "same"
+    },
+    "web/src/game/sealed-cards.css": {
+      "original": "web/src/game/sealed-cards.css",
+      "bytes": 1037,
+      "sha256": "ad510f869a729d58c83c3c44d2da616dd689b7f85e2a50b4e29f05e630cbfd72",
+      "git_mode": "100644",
+      "candidateBlob": "9261f38f20ba6d15e6b3d01e3a9e7d0768328f18",
+      "targetChange": "same"
+    },
+    "web/src/game/sealedNative47Test.fixture.json": {
+      "original": "web/src/game/sealedNative47Test.fixture.json",
+      "bytes": 216995,
+      "sha256": "5db46eda15e4d866179ab93a20da03996cfe262cbe9141264f2dd103be9b608d",
+      "git_mode": "100644",
+      "candidateBlob": "ccb2e86f876afbc9721d18279ff17f592f9fb1e1",
+      "targetChange": "same"
+    },
+    "web/src/game/society.css": {
+      "original": "web/src/game/society.css",
+      "bytes": 2321,
+      "sha256": "a4735d0725c91ba925606999536158a3b5156932fb67f956ba0ca8c3ff1a5c12",
+      "git_mode": "100644",
+      "candidateBlob": "7edcae315a7c2d6d7c4a31280515749ff785bc14",
+      "targetChange": "same"
+    },
+    "web/src/game/societyTest.fixture.ts": {
+      "original": "web/src/game/societyTest.fixture.ts",
+      "bytes": 2929,
+      "sha256": "98baca279d61cca368e6b70e406741473c98e43d7941787de773f871e3357e67",
+      "git_mode": "100644",
+      "candidateBlob": "f45393501e47f722a2cf7b6bf2ad3ccd0b91f3f0",
+      "targetChange": "same"
+    },
+    "web/src/game/table-desktop.css": {
+      "original": "web/src/game/table-desktop.css",
+      "bytes": 38513,
+      "sha256": "3a19d34a53b8957fac9681e898b66904e7f1b93596837013186d49e65835d119",
+      "git_mode": "100644",
+      "candidateBlob": "81c57be37c2a273323d5a32c4bfbbbc9e4923f29",
+      "targetChange": "same"
+    },
+    "web/src/game/testFixtures.ts": {
+      "original": "web/src/game/testFixtures.ts",
+      "bytes": 1658,
+      "sha256": "7b6f9758e218b12eb4207ee86f74d989b738aa13aa2b24f4e0f0453b472a6757",
+      "git_mode": "100644",
+      "candidateBlob": "041fc33da90d0520e925f84a9faa465695290996",
+      "targetChange": "same"
+    },
+    "web/src/game/testKernel.js": {
+      "original": "web/src/game/testKernel.js",
+      "bytes": 547,
+      "sha256": "0609af651d375f59dddce67ed2c57571488d49e63d94939076bb68d470758bce",
+      "git_mode": "100644",
+      "candidateBlob": "fff21b0d681b2007dbcedf3f5381dc348b0c8361",
+      "targetChange": "same"
+    },
+    "web/src/game/types.ts": {
+      "original": "web/src/game/types.ts",
+      "bytes": 5347,
+      "sha256": "3a4a6bb2e2f747b1c988b611ca50ebb8c64ae70c65a5adf97e89c40dff6a2115",
+      "git_mode": "100644",
+      "candidateBlob": "9378cc0dfe9782ff142267dd962a804147b3e6f2",
+      "targetChange": "same"
+    },
+    "web/src/game/useDialogFocus.ts": {
+      "original": "web/src/game/useDialogFocus.ts",
+      "bytes": 4187,
+      "sha256": "9cebc3f5641da9ca95432a4b0bbf08a5e1fbf8ee2ee94d7b0a0907f038930847",
+      "git_mode": "100644",
+      "candidateBlob": "2f6448f0f9bf3fe50c735c0b2fdf58795d81b0e4",
+      "targetChange": "same"
+    },
+    "web/src/game/useGame.test.tsx": {
+      "original": "web/src/game/useGame.test.tsx",
+      "bytes": 26298,
+      "sha256": "8ccd935f216129fff908377df9b8431d4b8374f11fcc91c5858b74702bec1c39",
+      "git_mode": "100644",
+      "candidateBlob": "4396d5eb94419e4686ba63653351acfe1e1396d7",
+      "targetChange": "same"
+    },
+    "web/src/game/useGame.ts": {
+      "original": "web/src/game/useGame.ts",
+      "bytes": 16151,
+      "sha256": "50943f3deaa302e658f8cff47dc2c00aa6ecbeb57628634a558121e8758814e7",
+      "git_mode": "100644",
+      "candidateBlob": "fd4cca29997bacc1d634d65f70fd130bec2758fb",
+      "targetChange": "same"
+    },
+    "web/src/main.tsx": {
+      "original": "web/src/main.tsx",
+      "bytes": 318,
+      "sha256": "e0ac8e002a4c435bec84a25797cb52b9805869f450f926de101b5109d468fae1",
+      "git_mode": "100644",
+      "candidateBlob": "de2df02cadee5ecc1a294385a7e721863825ed03",
+      "targetChange": "same"
+    },
+    "web/src/styles/global.css": {
+      "original": "web/src/styles/global.css",
+      "bytes": 388,
+      "sha256": "78a41570aa3d21dd9ca640823fa1ef5e9291f4d9022ab57378af2dcaf25cb5b4",
+      "git_mode": "100644",
+      "candidateBlob": "030870941c436c58c9b6e4fd6085b59c92c7676b",
+      "targetChange": "replace"
+    },
+    "web/src/test/setup.ts": {
+      "original": "web/src/test/setup.ts",
+      "bytes": 246,
+      "sha256": "c8a77125a54df951f6e0df8d427a7f2902d38b08afd24e9f5e4e49671b77d17f",
+      "git_mode": "100644",
+      "candidateBlob": "fc3cd8290d3de38a899b252ae432c2717486bd31",
+      "targetChange": "same"
+    },
+    "web/src/vite-env.d.ts": {
+      "original": "web/src/vite-env.d.ts",
+      "bytes": 115,
+      "sha256": "9612ffbb2aa8b3b71c1ad509fef1a8fad92399fdb7bef52f9600fb8cfc05201a",
+      "git_mode": "100644",
+      "candidateBlob": "160f4e660aadf9fa3bf864f50fd0a57e62d14ef1",
+      "targetChange": "same"
+    },
+    "web/tsconfig.app.json": {
+      "original": "web/tsconfig.app.json",
+      "bytes": 541,
+      "sha256": "f2a7feb1daf24deb9112b478c714eed1d2d61f8f59610f44751ef70318c5bed1",
+      "git_mode": "100644",
+      "candidateBlob": "a640fa1ede3dbdc12b4544943f7f0a845adf3f59",
+      "targetChange": "same"
+    },
+    "web/tsconfig.json": {
+      "original": "web/tsconfig.json",
+      "bytes": 126,
+      "sha256": "c14bc73bac07443677f61403be4d35b8c5cb376686cfdd85f7240ab6ddfc593f",
+      "git_mode": "100644",
+      "candidateBlob": "7c5b4d3e882794e01167a48ba3260635039ec729",
+      "targetChange": "same"
+    },
+    "web/tsconfig.node.json": {
+      "original": "web/tsconfig.node.json",
+      "bytes": 293,
+      "sha256": "dfe6bec888fe2fba5b2c4d7985a9492334832b42c6a6dc212eab493ad94a51f7",
+      "git_mode": "100644",
+      "candidateBlob": "0944a17e872f7a5568e9e64199b2294ed064e2b3",
+      "targetChange": "same"
+    },
+    "web/vite.config.ts": {
+      "original": "web/vite.config.ts",
+      "bytes": 455,
+      "sha256": "3324507e978ca003cc0780d40695ddff717867dd957834ed2fa7a292dd777b05",
+      "git_mode": "100644",
+      "candidateBlob": "3069172512495895483d6ebc1baab1a09f3a8469",
+      "targetChange": "replace"
+    },
+    "rust-game-wasm/pkg/hegemony_wasm.d.ts": {
+      "original": "rust-game-wasm/pkg/hegemony_wasm.d.ts",
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758",
+      "git_mode": "100644",
+      "generatedCurrentWasmPackage": true,
+      "targetChange": "same"
+    },
+    "rust-game-wasm/pkg/hegemony_wasm.js": {
+      "original": "rust-game-wasm/pkg/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+      "git_mode": "100644",
+      "generatedCurrentWasmPackage": true,
+      "targetChange": "same"
+    },
+    "rust-game-wasm/pkg/hegemony_wasm_bg.wasm": {
+      "original": "rust-game-wasm/pkg/hegemony_wasm_bg.wasm",
+      "bytes": 2277324,
+      "sha256": "e3d26f7041a114a96c9933374a33e63b0c8e45b9a4506b7937fb70cbf99a9d81",
+      "git_mode": "100644",
+      "generatedCurrentWasmPackage": true,
+      "targetChange": "replace"
+    },
+    "rust-game-wasm/pkg/hegemony_wasm_bg.wasm.d.ts": {
+      "original": "rust-game-wasm/pkg/hegemony_wasm_bg.wasm.d.ts",
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3",
+      "git_mode": "100644",
+      "generatedCurrentWasmPackage": true,
+      "targetChange": "same"
+    },
+    "rust-game-wasm/pkg/package.json": {
+      "original": "rust-game-wasm/pkg/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035",
+      "git_mode": "100644",
+      "generatedCurrentWasmPackage": true,
+      "targetChange": "same"
+    },
+    "docs/rules/BQ104_ORIGINAL_REGION_RULING_2026-10-08.md": {
+      "original": "docs/rules/BQ104_ORIGINAL_REGION_RULING_2026-10-08.md",
+      "bytes": 2260,
+      "sha256": "0a831fd2e39d5bc2615dc20cae26b46bf34506b7992c6d7ff710cbeed751e1b1",
+      "git_mode": "100644",
+      "candidateBlob": "537d4f08d7511e3dfa49549f852655a552ff7e15",
+      "targetChange": "add"
+    }
+  },
+  "retiredSource": [
+    {
+      "target": "web/proposals/autopass-background/acceptance-red.spec.jsx",
+      "priorOriginal": "web/proposals/autopass-background/acceptance-red.spec.jsx",
+      "reason": "previously projected source removed from fixed approved-review candidate",
+      "priorBytes": 3045,
+      "priorSha256": "862689f52b376cf741f4acb9e5cfbaf91dbaa36bebffe61afaea8dcc5cf1060e"
+    },
+    {
+      "target": "web/proposals/autopass-background/harness.jsx",
+      "priorOriginal": "web/proposals/autopass-background/harness.jsx",
+      "reason": "previously projected source removed from fixed approved-review candidate",
+      "priorBytes": 2946,
+      "priorSha256": "8a0f5e8c8d41ae5dd0bd211ae17f05749698935865668427c2d624b840c600cc"
+    },
+    {
+      "target": "web/proposals/autopass-background/observation.spec.jsx",
+      "priorOriginal": "web/proposals/autopass-background/observation.spec.jsx",
+      "reason": "previously projected source removed from fixed approved-review candidate",
+      "priorBytes": 7258,
+      "priorSha256": "2a9002644c9ddf0fe8505cbfdf86d841690a8f1e39277ac3f1e6fd8ce8bbee19"
+    },
+    {
+      "target": "web/proposals/autopass-background/vitest.config.ts",
+      "priorOriginal": "web/proposals/autopass-background/vitest.config.ts",
+      "reason": "previously projected source removed from fixed approved-review candidate",
+      "priorBytes": 375,
+      "priorSha256": "91c1d230614f4dbe4b977e25080c289a425fc3fb5cefd194238f70d1f9a5ee0c"
+    },
+    {
+      "target": "web/src/app/AppShell.test.tsx",
+      "priorOriginal": "web/src/app/AppShell.test.tsx",
+      "reason": "previously projected source removed from fixed approved-review candidate",
+      "priorBytes": 3133,
+      "priorSha256": "e44153800eb0408a74ecce667fb8431925487cf08b6f6967a4b67079a5917e0e"
+    },
+    {
+      "target": "web/src/app/AppShell.tsx",
+      "priorOriginal": "web/src/app/AppShell.tsx",
+      "reason": "previously projected source removed from fixed approved-review candidate",
+      "priorBytes": 1255,
+      "priorSha256": "5e8f13004403f57ef2a725c8bf42af1ea88800f376bc3b6918b7a73f0b909afd"
+    },
+    {
+      "target": "web/src/components/ProjectOverview.tsx",
+      "priorOriginal": "web/src/components/ProjectOverview.tsx",
+      "reason": "previously projected source removed from fixed approved-review candidate",
+      "priorBytes": 430,
+      "priorSha256": "b4374a57f25cc017bf0b41a8629684b408aa3c5038a945c3d571c8b1d5c2d9b1"
+    },
+    {
+      "target": "web/src/debugger/DebuggerShell.test.tsx",
+      "priorOriginal": "web/src/debugger/DebuggerShell.test.tsx",
+      "reason": "previously projected source removed from fixed approved-review candidate",
+      "priorBytes": 11343,
+      "priorSha256": "d77d2878904bab58015d7c3dd80227994d2152fb07a6e9be180e684335f61be0"
+    },
+    {
+      "target": "web/src/debugger/DebuggerShell.tsx",
+      "priorOriginal": "web/src/debugger/DebuggerShell.tsx",
+      "reason": "previously projected source removed from fixed approved-review candidate",
+      "priorBytes": 3016,
+      "priorSha256": "2ae500e1763c6014df351c0e9f33892145c6b2112e1ce06ef34e13a84b8aa24a"
+    },
+    {
+      "target": "web/src/debugger/LegacyDebuggerEntry.tsx",
+      "priorOriginal": "web/src/debugger/LegacyDebuggerEntry.tsx",
+      "reason": "previously projected source removed from fixed approved-review candidate",
+      "priorBytes": 316,
+      "priorSha256": "96dd0c8730d120a330f9293b03aa4ca0af2978756322798cb6afc466d9cf01ba"
+    },
+    {
+      "target": "web/src/debugger/LiveDebuggerShell.test.tsx",
+      "priorOriginal": "web/src/debugger/LiveDebuggerShell.test.tsx",
+      "reason": "previously projected source removed from fixed approved-review candidate",
+      "priorBytes": 13244,
+      "priorSha256": "fd12526ba8663bece88c330995ff1b7daddadea257b8ff3cf91beb3d3bd2ec0c"
+    },
+    {
+      "target": "web/src/debugger/LiveDebuggerShell.tsx",
+      "priorOriginal": "web/src/debugger/LiveDebuggerShell.tsx",
+      "reason": "previously projected source removed from fixed approved-review candidate",
+      "priorBytes": 7251,
+      "priorSha256": "5b9a3344bf15d8cf071a99d345b0dc88d41a2562900bf154e780451a3f85ada9"
+    },
+    {
+      "target": "web/src/debugger/components/ActionControlsPanel.tsx",
+      "priorOriginal": "web/src/debugger/components/ActionControlsPanel.tsx",
+      "reason": "previously projected source removed from fixed approved-review candidate",
+      "priorBytes": 2880,
+      "priorSha256": "a5859140f79c5afdc8443388a034d1880cd98aaff2510be005d744973362a6e6"
+    },
+    {
+      "target": "web/src/debugger/components/ActionLogPanel.tsx",
+      "priorOriginal": "web/src/debugger/components/ActionLogPanel.tsx",
+      "reason": "previously projected source removed from fixed approved-review candidate",
+      "priorBytes": 1319,
+      "priorSha256": "d0e19239e0264ba714555be652ce095d1c0cbd68d86ad6076f2cbfb445d9c08a"
+    },
+    {
+      "target": "web/src/debugger/components/LegalityFailurePanel.tsx",
+      "priorOriginal": "web/src/debugger/components/LegalityFailurePanel.tsx",
+      "reason": "previously projected source removed from fixed approved-review candidate",
+      "priorBytes": 1026,
+      "priorSha256": "36c787c6c22be0bb075d6ed7c63d5a90a4c3400d5a766a65f27fa3f7f45bc99e"
+    },
+    {
+      "target": "web/src/debugger/components/MatchStatusPanel.tsx",
+      "priorOriginal": "web/src/debugger/components/MatchStatusPanel.tsx",
+      "reason": "previously projected source removed from fixed approved-review candidate",
+      "priorBytes": 2639,
+      "priorSha256": "bbc4734aded12af1aedbaf63f5f24fcf3116b27fb300e0f185418a1586942566"
+    },
+    {
+      "target": "web/src/debugger/components/PlayerViewPanel.tsx",
+      "priorOriginal": "web/src/debugger/components/PlayerViewPanel.tsx",
+      "reason": "previously projected source removed from fixed approved-review candidate",
+      "priorBytes": 1928,
+      "priorSha256": "0329e54e2b3d4a4116088fa6ee59f003e0e605a990a0f0bde5f4450a9515ee1b"
+    },
+    {
+      "target": "web/src/debugger/components/StackPanel.tsx",
+      "priorOriginal": "web/src/debugger/components/StackPanel.tsx",
+      "reason": "previously projected source removed from fixed approved-review candidate",
+      "priorBytes": 635,
+      "priorSha256": "658fa770a1de5a4f1c93e43d0c6984103f3820ea1d1500671666664b4f6b7904"
+    },
+    {
+      "target": "web/src/debugger/components/ViewerSwitcher.tsx",
+      "priorOriginal": "web/src/debugger/components/ViewerSwitcher.tsx",
+      "reason": "previously projected source removed from fixed approved-review candidate",
+      "priorBytes": 1039,
+      "priorSha256": "4cafa675b869b8eddb3ae737d61b587263cb00940de336b4ef9db0ff351990f2"
+    },
+    {
+      "target": "web/src/debugger/live.test.ts",
+      "priorOriginal": "web/src/debugger/live.test.ts",
+      "reason": "previously projected source removed from fixed approved-review candidate",
+      "priorBytes": 3619,
+      "priorSha256": "05ba07e38bc1c345b236bed46a53d5aed9eec96fd557405d07e5ce03de592234"
+    },
+    {
+      "target": "web/src/debugger/live.ts",
+      "priorOriginal": "web/src/debugger/live.ts",
+      "reason": "previously projected source removed from fixed approved-review candidate",
+      "priorBytes": 6188,
+      "priorSha256": "2cf54adcd46cad42cbd43b1a9dc97f5ed7e0163d64f9ae3bd1f17bd8251812a0"
+    },
+    {
+      "target": "web/src/debugger/liveModel.ts",
+      "priorOriginal": "web/src/debugger/liveModel.ts",
+      "reason": "previously projected source removed from fixed approved-review candidate",
+      "priorBytes": 2166,
+      "priorSha256": "6d5e84c4d941edd0c020ff72bba85004fb435381673b449fc0922e9b08105e33"
+    },
+    {
+      "target": "web/src/debugger/mockProtocol.ts",
+      "priorOriginal": "web/src/debugger/mockProtocol.ts",
+      "reason": "previously projected source removed from fixed approved-review candidate",
+      "priorBytes": 8754,
+      "priorSha256": "5781dc64455ca8010cf59120e3cdfea97a86431bfe912059b29226b76fd87e6a"
+    },
+    {
+      "target": "web/src/debugger/model.ts",
+      "priorOriginal": "web/src/debugger/model.ts",
+      "reason": "previously projected source removed from fixed approved-review candidate",
+      "priorBytes": 3147,
+      "priorSha256": "95d887b10c615c1a3dc1794364daac0a642f12da32e09178ae16f24b5c7bb782"
+    },
+    {
+      "target": "web/src/debugger/protocol.ts",
+      "priorOriginal": "web/src/debugger/protocol.ts",
+      "reason": "previously projected source removed from fixed approved-review candidate",
+      "priorBytes": 5298,
+      "priorSha256": "27303e4e320f9c9332c2e606ac25962116eb7ec6bd9f609bef8fde0448f69ebd"
+    },
+    {
+      "target": "web/src/lib/project.test.ts",
+      "priorOriginal": "web/src/lib/project.test.ts",
+      "reason": "previously projected source removed from fixed approved-review candidate",
+      "priorBytes": 579,
+      "priorSha256": "2924362695391e42ea792ba428f225392497c43b6939ba632aa4c31623ca45fa"
+    },
+    {
+      "target": "web/src/lib/project.ts",
+      "priorOriginal": "web/src/lib/project.ts",
+      "reason": "previously projected source removed from fixed approved-review candidate",
+      "priorBytes": 780,
+      "priorSha256": "7b5fb2fefe52db2564e58a73683cb679a6b88a3c6c833e6a79eb7affc4f04f7d"
+    }
+  ]
+}

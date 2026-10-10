@@ -1,0 +1,533 @@
+diff --git a/rust-game/data/cards.json b/rust-game/data/cards.json
+index 1cf9b89..8c441cd 100644
+--- a/rust-game/data/cards.json
++++ b/rust-game/data/cards.json
+@@ -1,7 +1,7 @@
+ {
+   "rulesVersion": "hegemony-pdf-v1",
+-  "cardPoolVersion": "limited-v2.44-jz50-death-search-candidate",
+-  "engineVersion": "rust-v0.2.49-sealed-restart-candidate",
++  "cardPoolVersion": "limited-v2.45-bounded-entry-search-candidate",
++  "engineVersion": "rust-v0.2.50-bounded-entry-search-candidate",
+   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
+   "cards": [
+     {
+@@ -4157,6 +4157,85 @@
+         "image": "resource/ymsj-fun.github.io/cards/JZ50 墓穴食尸鬼.jpg",
+         "imageSha256": "403e44bb5f7f0ff8715acb267a8369c3715b2dc752d7fe612de085da29b523e7"
+       }
++    },
++    {
++      "id": "BQ104",
++      "name": "猎头顾问",
++      "kind": "character",
++      "subtypes": [
++        "人类",
++        "雇员"
++      ],
++      "cost": 3,
++      "loyalty": [],
++      "loyaltyText": "",
++      "color": "中立",
++      "magic": "",
++      "icons": {
++        "permanent": {
++          "investigation": 0,
++          "combat": 0,
++          "influence": 1
++        },
++        "temporary": {
++          "investigation": 0,
++          "combat": 0,
++          "influence": 0
++        }
++      },
++      "defense": 1,
++      "text": "公开\n进场触发 从你的牌库中寻找一张印刷费用小于或等于③的雇员角色牌，展示后以暗藏者状态置于本地区，然后洗牌。",
++      "keywords": [
++        "公开"
++      ],
++      "unique": false,
++      "society": "",
++      "source": {
++        "file": "resource/ymsj-fun.github.io/cards/cards.json",
++        "record": "BQ104",
++        "image": "resource/ymsj-fun.github.io/cards/BQ104 猎头顾问.jpg",
++        "imageSha256": "dbee5b3829cf0c46b2820beccefda28708c3c8e87c589dbefce1e975faa916eb"
++      }
++    },
++    {
++      "id": "XQ48",
++      "name": "街头演说家",
++      "kind": "character",
++      "subtypes": [
++        "人类",
++        "政治家"
++      ],
++      "cost": 4,
++      "loyalty": [],
++      "loyaltyText": "",
++      "color": "中立",
++      "magic": "",
++      "icons": {
++        "permanent": {
++          "investigation": 0,
++          "combat": 0,
++          "influence": 1
++        },
++        "temporary": {
++          "investigation": 0,
++          "combat": 0,
++          "influence": 0
++        }
++      },
++      "defense": 1,
++      "text": "公开 声望\n进场触发 自你的牌库中寻找至多三张名为无知路人的牌，将他们放置进场且置于街头演说家所在的地区，然后洗牌。",
++      "keywords": [
++        "公开",
++        "声望"
++      ],
++      "unique": false,
++      "society": "",
++      "source": {
++        "file": "resource/ymsj-fun.github.io/cards/cards.json",
++        "record": "XQ48",
++        "image": "resource/ymsj-fun.github.io/cards/XQ48 街头演说家.jpg",
++        "imageSha256": "0cd31207bda681093839e86e5bb87cee624a3c0a657c70b60fa765f439089746"
++      }
+     }
+   ],
+   "decks": [
+diff --git a/rust-game/src/catalog.rs b/rust-game/src/catalog.rs
+index d145de9..544e1e6 100644
+--- a/rust-game/src/catalog.rs
++++ b/rust-game/src/catalog.rs
+@@ -3,11 +3,11 @@ use serde::{Deserialize, Serialize};
+ use std::sync::OnceLock;
+
+ pub const RULES_VERSION: &str = "hegemony-pdf-v1";
+-pub const POOL_VERSION: &str = "limited-v2.44-jz50-death-search-candidate";
++pub const POOL_VERSION: &str = "limited-v2.45-bounded-entry-search-candidate";
+ #[cfg(not(feature = "society-fixtures"))]
+-pub const ENGINE_VERSION: &str = "rust-v0.2.49-sealed-restart-candidate";
++pub const ENGINE_VERSION: &str = "rust-v0.2.50-bounded-entry-search-candidate";
+ #[cfg(feature = "society-fixtures")]
+-pub const ENGINE_VERSION: &str = "rust-v0.2.49-sealed-restart-fixture";
++pub const ENGINE_VERSION: &str = "rust-v0.2.50-bounded-entry-search-fixture";
+
+ #[derive(Clone, Debug, Serialize, Deserialize)]
+ #[serde(rename_all = "camelCase")]
+diff --git a/rust-game/src/engine.rs b/rust-game/src/engine.rs
+index 81259cc..fb5cdde 100644
+--- a/rust-game/src/engine.rs
++++ b/rust-game/src/engine.rs
+@@ -1830,6 +1830,7 @@ impl Game {
+         self.prune_turn_attribute_modifiers();
+     }
+     pub(crate) fn choose(&mut self, seat: usize, a: Action) -> RuleResult<()> {
++        self.validate_entry_search_choice()?;
+         let p = self.pending.clone().ok_or("没有待选")?;
+         if p.seat != seat || a.choice_id.as_deref() != Some(&p.choice.id) {
+             return Err("选择者或选择ID不符".into());
+@@ -2701,7 +2702,7 @@ mod tests {
+     #[test]
+     fn catalog_is_restricted_real_complete_and_decks_are_legal() {
+         let c = catalog::catalog();
+-        assert_eq!(c.cards.len(), 107);
++        assert_eq!(c.cards.len(), 109);
+         let active = c
+             .cards
+             .iter()
+@@ -2716,7 +2717,7 @@ mod tests {
+                 .collect::<BTreeSet<_>>()
+         );
+         assert!(active.contains("DQJC116"));
+-        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 97);
++        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 99);
+         assert_eq!(c.decks.len(), 5);
+         for deck in &c.decks {
+             assert_eq!(deck.card_count, 50);
+diff --git a/rust-game/src/jc089_tests.rs b/rust-game/src/jc089_tests.rs
+index 3179de0..811fa09 100644
+--- a/rust-game/src/jc089_tests.rs
++++ b/rust-game/src/jc089_tests.rs
+@@ -66,7 +66,7 @@ fn jc089_exact_printed_curse_and_complete_attached_host_definition() {
+     assert_eq!(c.loyalty,["黑色"]); assert_eq!(c.magic_icon,MagicIcon::Blood);
+     assert_eq!(c.subtypes,["诅咒"]); assert!(!c.unique&&c.keywords.is_empty());
+     assert_eq!(c.permanent_icons,Icons::default()); assert_eq!(c.temporary_icons,Icons::default());
+-    assert_eq!(deck::copy_limit(c),Some(3)); assert_eq!(catalog::catalog().cards.len(),107);
++    assert_eq!(deck::copy_limit(c),Some(3)); assert_eq!(catalog::catalog().cards.len(),109);
+     assert!(catalog::catalog().cards.iter().any(|c|c.id=="JZ50"));
+     let d=definition("JC089"); let s=d.attachment.as_ref().unwrap();
+     assert_eq!(s.host.relation,Relation::Any); assert_eq!(s.host.kind,EntityKind::Character);
+diff --git a/rust-game/src/jz50_search_tests.rs b/rust-game/src/jz50_search_tests.rs
+index 1b09a82..b69068a 100644
+--- a/rust-game/src/jz50_search_tests.rs
++++ b/rust-game/src/jz50_search_tests.rs
+@@ -65,7 +65,7 @@ fn fixture(kind: &str, g: &Game) {
+ }
+
+ #[test]
+-fn jz50_original_and_two_unadmitted_search_gates_are_explicit() {
++fn jz50_original_remains_unchanged_after_entry_search_admission() {
+     let j = catalog::card("JZ50");
+     assert_eq!(
+         (&*j.name, j.cost, &*j.color, j.defense),
+@@ -85,7 +85,7 @@ fn jz50_original_and_two_unadmitted_search_gates_are_explicit() {
+     assert_eq!(j.temporary_icons, Icons::default());
+     assert_eq!(catalog::card("JC125").name, "无知路人");
+     for id in ["BQ104", "XQ48"] {
+-        assert!(!catalog::catalog().cards.iter().any(|c| c.id == id));
++        assert!(catalog::catalog().cards.iter().any(|c| c.id == id));
+     }
+     let d = definition("JZ50");
+     let a = &d.abilities[0];
+diff --git a/rust-game/src/lib.rs b/rust-game/src/lib.rs
+index d5ef83b..a64931b 100644
+--- a/rust-game/src/lib.rs
++++ b/rust-game/src/lib.rs
+@@ -34,6 +34,11 @@ mod sealing;
+ #[cfg(all(test, not(feature = "society-fixtures")))]
+ mod sealing_tests;
+ mod jz50_search;
++mod bounded_search;
++#[cfg(all(test, not(feature = "society-fixtures")))]
++mod bounded_search_tests;
++#[cfg(all(test, not(feature = "society-fixtures")))]
++mod bounded_entry_fresh_tests;
+ #[cfg(all(test, not(feature = "society-fixtures")))]
+ mod jz50_search_tests;
+ pub mod room;
+diff --git a/rust-game/src/model.rs b/rust-game/src/model.rs
+index 2cf207a..c3879fd 100644
+--- a/rust-game/src/model.rs
++++ b/rust-game/src/model.rs
+@@ -553,6 +553,8 @@ pub enum DeclareChoice {
+ }
+ #[derive(Clone, Debug, Serialize, Deserialize)]
+ pub enum FrameChoice {
++    BQ104EmployeeSearch,
++    XQ48PasserSearch,
+     JZ50DeathSearch,
+     HandSeal { seat: usize, host_id: String },
+     JC032TopSix { inspected_ids: Vec<String> },
+@@ -779,6 +781,7 @@ impl Game {
+         let game: Self = serde_json::from_str(state).map_err(|_| "v2持久状态字段无效")?;
+         game.validate_sealed_cards()?;
+         game.validate_jz50_search_choice()?;
++        game.validate_entry_search_choice()?;
+         Ok(game)
+     }
+ }
+diff --git a/rust-game/src/renown_tests.rs b/rust-game/src/renown_tests.rs
+index 4b234d2..d95f7af 100644
+--- a/rust-game/src/renown_tests.rs
++++ b/rust-game/src/renown_tests.rs
+@@ -195,7 +195,7 @@ fn renown_original_fields_and_bounded_program_are_complete() {
+             ..
+         }
+     ));
+-    assert_eq!(catalog::catalog().cards.len(), 107);
++    assert_eq!(catalog::catalog().cards.len(), 109);
+ }
+
+ #[test]
+diff --git a/rust-game/src/resolution.rs b/rust-game/src/resolution.rs
+index b84bc47..1c9d712 100644
+--- a/rust-game/src/resolution.rs
++++ b/rust-game/src/resolution.rs
+@@ -386,7 +386,7 @@ impl Game {
+         SourceSnapshot {
+             card: c.clone(),
+             region,
+-            source_region_instance: if matches!(c.definition.as_str(), "JC032" | "JZ24" | "JZ31") {
++            source_region_instance: if matches!(c.definition.as_str(), "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48") {
+                 region.and_then(|r| self.regions.get(r)).map(|r| r.card.id.clone())
+             } else { None },
+             attachment_host_instance: rules::definition(&c.definition)
+@@ -1256,6 +1256,8 @@ impl Game {
+             frame.cursor += 1;
+             match step.op {
+                 Op::JZ50SearchDeathToGraveyard => return self.jz50_search_start(frame),
++                Op::BQ104SearchEmployeeHiddenInSourceRegion => return self.entry_search_start(frame, true),
++                Op::XQ48SearchPassersIntoSourceRegion => return self.entry_search_start(frame, false),
+                 Op::SealOneActorHandCardOnTarget => return self.choose_hand_seal(frame),
+                 Op::DestroyTargetIfSealed => {
+                     let host = &frame.targets.first().ok_or("缺少封印载体目标")?.id;
+@@ -1972,6 +1974,10 @@ impl Game {
+                 }
+                 self.jz50_search_complete(&frame, &selected)?;
+             }
++            FrameChoice::BQ104EmployeeSearch | FrameChoice::XQ48PasserSearch => {
++                if chooser != frame.actor { return Err("进场检索的选择者无效".into()); }
++                self.entry_search_complete(&frame, &selected, matches!(choice, FrameChoice::BQ104EmployeeSearch))?;
++            }
+             FrameChoice::HandSeal { seat, host_id } => {
+                 if chooser != seat || frame.actor != seat
+                     || frame.targets.first().is_none_or(|t| t.id != host_id) {
+diff --git a/rust-game/src/room.rs b/rust-game/src/room.rs
+index e4e9527..532d306 100644
+--- a/rust-game/src/room.rs
++++ b/rust-game/src/room.rs
+@@ -232,6 +232,7 @@ impl RoomEnvelope {
+         }
+         room.game.validate_sealed_cards()?;
+         room.game.validate_jz50_search_choice()?;
++        room.game.validate_entry_search_choice()?;
+         if room.game.state_schema != 2
+             || room.game.version != room.revision
+             || room.game.versions.rules != room.versions.rules
+diff --git a/rust-game/src/rules.rs b/rust-game/src/rules.rs
+index 31ae9d6..c729352 100644
+--- a/rust-game/src/rules.rs
++++ b/rust-game/src/rules.rs
+@@ -212,6 +212,8 @@ pub enum SearchVisibility {
+ pub enum Op {
+     // Fixed JZ50 only: actor-private 0..1 Death character to owner graveyard, then shuffle.
+     JZ50SearchDeathToGraveyard,
++    BQ104SearchEmployeeHiddenInSourceRegion,
++    XQ48SearchPassersIntoSourceRegion,
+     // Closed XQ40 / XQ45 programs; both use their single declared character.
+     SealOneActorHandCardOnTarget,
+     DestroyTargetIfSealed,
+@@ -469,6 +471,21 @@ pub struct Definition {
+ // These are interpreter limits, not rules for resolving partially invalid targets.
+ // Reject unsupported declarations before publishing actions or offering trigger choices.
+ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(), String> {
++    fn uses_entry_search(ops: &[Op]) -> bool {
++        ops.iter().any(|op| match op {
++            Op::BQ104SearchEmployeeHiddenInSourceRegion | Op::XQ48SearchPassersIntoSourceRegion => true,
++            Op::ForEachLivingPlayer(body) | Op::ForEachLivingPlayerFromActor(body) => uses_entry_search(body),
++            Op::IfTargetExhausted { exhausted, ready, .. } => uses_entry_search(std::slice::from_ref(exhausted)) || uses_entry_search(std::slice::from_ref(ready)),
++            _ => false,
++        })
++    }
++    if (matches!(card_id, "BQ104" | "XQ48") && ability.key != "renown") || uses_entry_search(&ability.ops)
++        || ability.modes.iter().any(|m| uses_entry_search(&m.ops)) {
++        let canonical = entry_search_definition(card_id).ok_or_else(|| format!("{card_id}: entry search cannot be transplanted"))?;
++        if serde_json::to_value(ability).unwrap() != serde_json::to_value(&canonical.abilities[0]).unwrap() {
++            return Err(format!("{card_id}: only the complete printed entry search is admitted"));
++        }
++    }
+     fn uses_jz50_search(ops: &[Op]) -> bool {
+         ops.iter().any(|op| match op {
+             Op::JZ50SearchDeathToGraveyard => true,
+@@ -1082,6 +1099,11 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
+
+ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -> Result<(), String> {
+     for (card_id, definition) in definitions {
++        if let Some(canonical) = entry_search_definition(card_id) {
++            if serde_json::to_value(definition).unwrap() != serde_json::to_value(canonical).unwrap() {
++                return Err(format!("cardId={card_id}: only the complete printed entry search definition is admitted"));
++            }
++        }
+         if card_id == "JZ50" && serde_json::to_value(definition).unwrap()
+             != serde_json::to_value(jz50_definition()).unwrap() {
+             return Err(format!("cardId={card_id}: only the complete JZ50 definition is admitted"));
+@@ -1414,6 +1436,17 @@ fn jz50_definition() -> Definition {
+         vec![Op::JZ50SearchDeathToGraveyard], Some(Event::Reveal),
+     )])
+ }
++fn entry_search_definition(id: &str) -> Option<Definition> {
++    let (key, op, renown) = match id {
++        "BQ104" => ("bq104-entry-employee-search", Op::BQ104SearchEmployeeHiddenInSourceRegion, false),
++        "XQ48" => ("xq48-entry-passer-search", Op::XQ48SearchPassersIntoSourceRegion, true),
++        _ => return None,
++    };
++    let mut d = with_abilities(vec![ability(key, "进场触发", Timing::Fast, vec![], vec![], vec![op], Some(Event::Enter))]);
++    d.traits.public = true;
++    d.traits.renown = renown;
++    Some(d)
++}
+ fn jz48_definition() -> Definition {
+     Definition {
+         modifiers: vec![StaticModifier::JZ48OtherControlledCriminalInfluenceAndDefense],
+@@ -1542,6 +1575,8 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
+         m.insert("JZ31".into(), jz31_definition());
+         m.insert("JZ49".into(), jz49_definition());
+         m.insert("JZ50".into(), jz50_definition());
++        m.insert("BQ104".into(), entry_search_definition("BQ104").unwrap());
++        m.insert("XQ48".into(), entry_search_definition("XQ48").unwrap());
+         m.insert("JZ48".into(), jz48_definition());
+         m.insert("JC089".into(), jc089_definition());
+         m.insert("JZ55".into(), jz55_definition());
+diff --git a/sites/src/kernel.mjs b/sites/src/kernel.mjs
+index 3b78493..339d7a9 100644
+--- a/sites/src/kernel.mjs
++++ b/sites/src/kernel.mjs
+@@ -2,6 +2,6 @@ import * as current from '../generated/hegemony_wasm.js';
+ import currentModule from '../generated/hegemony_wasm_bg.wasm';
+ import { routeKernels } from './kernel-router.mjs';
+ import { lazyKernel } from './lazy-kernel.mjs';
+-const kernel0 = lazyKernel(current, currentModule, {"rulesVersion":"hegemony-pdf-v1","cardPoolVersion":"limited-v2.44-jz50-death-search-candidate","engineVersion":"rust-v0.2.49-sealed-restart-candidate"});
++const kernel0 = lazyKernel(current, currentModule, {"rulesVersion":"hegemony-pdf-v1","cardPoolVersion":"limited-v2.45-bounded-entry-search-candidate","engineVersion":"rust-v0.2.50-bounded-entry-search-candidate"});
+ // Experimental Site: only the reviewed current tuple is supported.
+ export const kernel = routeKernels(kernel0);
+diff --git a/sites/test/integration.test.mjs b/sites/test/integration.test.mjs
+index 178779e..94b2102 100644
+--- a/sites/test/integration.test.mjs
++++ b/sites/test/integration.test.mjs
+@@ -22,7 +22,7 @@ test('real workerd/WASM with D1 SQLite: concurrency, receipts, rollback and reop
+   const migration = readdirSync('drizzle').find(name => name.endsWith('.sql'));
+   for (const sql of readFileSync('drizzle/' + migration, 'utf8').split('--> statement-breakpoint').filter(s => s.trim())) await db.prepare(sql).run();
+   const pacedRooms = new Set();
+-  const pacedVersions = new Set(['rust-v0.2.5', 'rust-v0.2.6', 'rust-v0.2.7', 'rust-v0.2.8', 'rust-v0.2.9', 'rust-v0.2.10', 'rust-v0.2.11', 'rust-v0.2.49-sealed-restart-candidate']);
++  const pacedVersions = new Set(['rust-v0.2.5', 'rust-v0.2.6', 'rust-v0.2.7', 'rust-v0.2.8', 'rust-v0.2.9', 'rust-v0.2.10', 'rust-v0.2.11', 'rust-v0.2.50-bounded-entry-search-candidate']);
+   const durableView = value => pacedVersions.has(value?.versions?.engine) ? { ...value, serverNowMs: undefined } : value;
+   const api = async (path, body, session) => {
+     if (body?.action && pacedRooms.has(session?.roomId) && !['game','beginResponse','passResponse','cancelAndPass','submitResponse'].includes(body.action.kind)) {
+@@ -43,11 +43,11 @@ test('real workerd/WASM with D1 SQLite: concurrency, receipts, rollback and reop
+   const path = (session, action) => `/api/rooms/${session.roomId}/${action}`;
+   try {
+     const health = await api('/api/health'); assert.equal(health.body.transport, 'polling');
+-    const catalog = await api('/api/catalog'); assert.equal(catalog.body.cards.length, 107); for (const id of ['JC075','JC104','JZ31','JZ55','JZ49','JZ48','JC089','XQ40','XQ41','XQ45','JZ50']) assert(catalog.body.cards.some(c => c.id === id)); assert.equal(catalog.body.entryIdempotency, true);
++    const catalog = await api('/api/catalog'); assert.equal(catalog.body.cards.length, 109); for (const id of ['JC075','JC104','JZ31','JZ55','JZ49','JZ48','JC089','XQ40','XQ41','XQ45','JZ50','BQ104','XQ48']) assert(catalog.body.cards.some(c => c.id === id)); assert.equal(catalog.body.entryIdempotency, true);
+     assert(catalog.body.cards.some(card => card.id === 'JC047'));
+     assert(catalog.body.cards.some(card => card.id === 'JC007'));
+-    assert.equal(catalog.body.engineVersion, 'rust-v0.2.49-sealed-restart-candidate');
+-    assert.equal(catalog.body.cardPoolVersion, 'limited-v2.44-jz50-death-search-candidate');
++    assert.equal(catalog.body.engineVersion, 'rust-v0.2.50-bounded-entry-search-candidate');
++    assert.equal(catalog.body.cardPoolVersion, 'limited-v2.45-bounded-entry-search-candidate');
+     assert.equal(catalog.body.deckBuildRules.minimumCards, 50);
+     assert.equal(catalog.body.cards.find(card => card.id === 'JC125').deckCopyLimit, null);
+     const create = { name: '甲', mode: 'teams', deckId: 'responders', requestId: key() };
+diff --git a/sites/test/pause-resume-integration.test.mjs b/sites/test/pause-resume-integration.test.mjs
+index 18f8f46..eeeee67 100644
+--- a/sites/test/pause-resume-integration.test.mjs
++++ b/sites/test/pause-resume-integration.test.mjs
+@@ -11,7 +11,7 @@ import { RoomService, digest } from '../src/service.mjs';
+ import { routeKernels } from '../src/kernel-router.mjs';
+ import * as abi from '../generated/hegemony_wasm.js';
+
+-for (const [label,file] of [['saved paused table','pause-resume-native-v049.json'],['sealed choice/trigger/paid stack pause','sealing-room-native-v049.json'],['JZ50 trigger/stack/private search pause','jz50-room-native-v049.json']]) test(label+': exact native transitions, D1 reopen, receipts and isolated second table', async t => {
++for (const [label,file] of [['saved paused table','pause-resume-native-v050.json'],['sealed choice/trigger/paid stack pause','sealing-room-native-v050.json'],['JZ50 trigger/stack/private search pause','jz50-room-native-v050.json']]) test(label+': exact native transitions, D1 reopen, receipts and isolated second table', async t => {
+   abi.initSync({ module: readFileSync('../rust-game-wasm/pkg/hegemony_wasm_bg.wasm') });
+   const trace = JSON.parse(readFileSync(new URL('./fixtures/'+file, import.meta.url), 'utf8'));
+   const kernel = routeKernels(abi);
+@@ -78,7 +78,7 @@ for (const [label,file] of [['saved paused table','pause-resume-native-v049.json
+   }
+ });
+
+-for(const [file,engine] of [['pause-resume-native-v046.json','rust-v0.2.46-pause-resume-candidate'],['pause-resume-native-v047.json','rust-v0.2.47-sealed-cards-candidate'],['pause-resume-native-v048.json','rust-v0.2.48-jz50-death-search-candidate']]) test('engine49 rejects preserved actual '+engine+' paused room without relabelling its state',()=>{
++for(const [file,engine] of [['pause-resume-native-v046.json','rust-v0.2.46-pause-resume-candidate'],['pause-resume-native-v047.json','rust-v0.2.47-sealed-cards-candidate'],['pause-resume-native-v048.json','rust-v0.2.48-jz50-death-search-candidate'],['pause-resume-native-v049.json','rust-v0.2.49-sealed-restart-candidate']]) test('engine50 rejects preserved actual '+engine+' paused room without relabelling its state',()=>{
+   abi.initSync({module:readFileSync('../rust-game-wasm/pkg/hegemony_wasm_bg.wasm')});
+   const old=JSON.parse(readFileSync(new URL('./fixtures/'+file,import.meta.url),'utf8'));
+   const identity=JSON.parse(abi.stateIdentity(old.initialState));
+diff --git a/sites/test/sealed-restart-integration.test.mjs b/sites/test/sealed-restart-integration.test.mjs
+index 4ca686e..608a5b5 100644
+--- a/sites/test/sealed-restart-integration.test.mjs
++++ b/sites/test/sealed-restart-integration.test.mjs
+@@ -13,7 +13,7 @@ import * as abi from '../generated/hegemony_wasm.js';
+
+ test('fresh Native match terminal seal: D1 restart, reopen, next choice and original restart receipt', async t => {
+   abi.initSync({ module: readFileSync('../rust-game-wasm/pkg/hegemony_wasm_bg.wasm') });
+-  const trace = JSON.parse(readFileSync(new URL('./fixtures/sealed-restart-native-v049.json', import.meta.url), 'utf8'));
++  const trace = JSON.parse(readFileSync(new URL('./fixtures/sealed-restart-native-v050.json', import.meta.url), 'utf8'));
+   assert.equal(trace.scope, 'natural-fresh-match-terminal-state-then-real-restart-persist-next-choice');
+   const kernel = routeKernels(abi);
+   const persist = mkdtempSync(join(tmpdir(), 'sealed-restart-d1-'));
+diff --git a/sites/test/society-foundation.fixture.mjs b/sites/test/society-foundation.fixture.mjs
+index 2420a5c..ca100c9 100644
+--- a/sites/test/society-foundation.fixture.mjs
++++ b/sites/test/society-foundation.fixture.mjs
+@@ -25,7 +25,7 @@ test('fixture-only society foundation follows four-seat APIs, opaque D1 reopen,
+     return { status: r.status, body: r.status === 204 ? null : await r.json() };
+   };
+   const cat = (await api('/api/catalog')).body;
+-  assert.equal(cat.engineVersion, 'rust-v0.2.49-sealed-restart-fixture'); assert.equal(cat.cardPoolVersion, 'limited-v2.44-jz50-death-search-candidate'); assert.equal(cat.cards.length, 107); assert.equal(cat.societies.length, 3);
++  assert.equal(cat.engineVersion, 'rust-v0.2.50-bounded-entry-search-fixture'); assert.equal(cat.cardPoolVersion, 'limited-v2.45-bounded-entry-search-candidate'); assert.equal(cat.cards.length, 109); assert.equal(cat.societies.length, 3);
+   assert(cat.societies.every(s => s.id.startsWith('FIXTURE_'))); assert(!cat.societies.some(s => s.id === 'MSJC09'));
+   const draft = societyId => ({ id: 'society-internal-deck', name: '内部fixture牌组', description: '', societyId, cards: [{ cardId: 'JC125', count: 50 }], rulesVersion: cat.rulesVersion, cardPoolVersion: cat.cardPoolVersion, engineVersion: cat.engineVersion, updatedAt: '' });
+   for (const d of [{ ...draft('MSJC09') }, { ...draft('FIXTURE_SOCIETY_SIX'), cards: [{ cardId: 'JC125', count: 49 }] }]) assert.equal((await api('/api/rooms', { name: '非法', mode: 'teams', deckDraft: d, requestId: crypto.randomUUID() })).status, 400);
+diff --git a/web/public/card-scans.json b/web/public/card-scans.json
+index da6ecee..3dc6987 100644
+--- a/web/public/card-scans.json
++++ b/web/public/card-scans.json
+@@ -588,5 +588,15 @@
+     "url": "/cards/XQ45.jpg",
+     "source": "resource/ymsj-fun.github.io/cards/XQ45 破颅而出.jpg",
+     "sha256": "6475556f30b08853ed5bb2e1c82b3314c73947fb59bc7d044060a5555f5ef8cf"
++  },
++  "BQ104": {
++    "url": "/cards/BQ104.jpg",
++    "source": "resource/ymsj-fun.github.io/cards/BQ104 猎头顾问.jpg",
++    "sha256": "dbee5b3829cf0c46b2820beccefda28708c3c8e87c589dbefce1e975faa916eb"
++  },
++  "XQ48": {
++    "url": "/cards/XQ48.jpg",
++    "source": "resource/ymsj-fun.github.io/cards/XQ48 街头演说家.jpg",
++    "sha256": "0cd31207bda681093839e86e5bb87cee624a3c0a657c70b60fa765f439089746"
+   }
+ }
+diff --git a/web/src/game/ChoicePanel.tsx b/web/src/game/ChoicePanel.tsx
+index 515cb73..a48a87c 100644
+--- a/web/src/game/ChoicePanel.tsx
++++ b/web/src/game/ChoicePanel.tsx
+@@ -39,7 +39,10 @@ export function ChoicePanel({ choice, action, definitions, busy, onSubmit, onRea
+   const min = choice.min ?? 1;
+   const max = choice.max ?? choice.options.length;
+   const jz50Search = choice.kind === 'jz50_death_search' && min === 0 && max === 1 && !choice.allowDecline;
+-  const zeroConfirmation = (choice.kind === 'jc032_top_six' && min === 0 && max === 0 && choice.options.length === 0) || jz50Search;
++  const entrySearchZero = !choice.allowDecline && min === 0 && (
++    (choice.kind === 'bq104_employee_search' && max === 0 && choice.options.length === 0)
++    || (choice.kind === 'xq48_passer_search' && max <= 3));
++  const zeroConfirmation = (choice.kind === 'jc032_top_six' && min === 0 && max === 0 && choice.options.length === 0) || jz50Search || entrySearchZero;
+   const valid = damage ? assigned === amount : ordering ? top.length + bottom.length === choice.options.length
+     : selected.length >= min && selected.length <= max && (selected.length > 0 || canDecline || zeroConfirmation);
+   const choose = (id: string) => setSelected(ids => ids.includes(id) ? ids.filter(value => value !== id) : ids.length < max ? [...ids, id] : ids);
+@@ -99,7 +102,7 @@ export function ChoicePanel({ choice, action, definitions, busy, onSubmit, onRea
+     </div>
+     <div className="hg-choice-footer"><span>{damage ? `共需分配 ${amount} 点，已分配 ${assigned} 点` : ordering ? '确认后按此顺序放回牌库。' : `请选择 ${min === max ? min : `${min}–${max}`} 项${choice.allowDecline ? '，或跳过' : ''}。`}</span>
+       <div>{canDecline && <button className="hg-button hg-button-quiet" disabled={busy || !action} onClick={() => submit(true)}>{choice.kind === 'mulligan' ? '保留全部手牌' : '跳过此选择'}</button>}
+-      <button className="hg-button hg-button-primary" disabled={busy || !valid || !action} onClick={() => submit()}>{busy ? '正在提交…' : jz50Search && selected.length === 0 ? '不取牌并洗牌' : '确认选择'}</button></div>
++      <button className="hg-button hg-button-primary" disabled={busy || !valid || !action} onClick={() => submit()}>{busy ? '正在提交…' : (jz50Search || entrySearchZero) && selected.length === 0 ? '不取牌并洗牌' : '确认选择'}</button></div>
+     </div>
+   </section>;
+ }
+diff --git a/web/src/game/JC089Curse.test.jsx b/web/src/game/JC089Curse.test.jsx
+index 48abf31..1926424 100644
+--- a/web/src/game/JC089Curse.test.jsx
++++ b/web/src/game/JC089Curse.test.jsx
+@@ -69,13 +69,14 @@ it('offers JC089 through the actual deck library controls',()=>{
+  expect(screen.getByRole('button',{name:'添加 毒血诅咒（JC089）'})).toBeEnabled();
+ });
+
+-it('validates three curse copies and rejects four without admitting JZ50',()=>{
++it('validates three curse copies and rejects four while unreviewed JZ51 stays unavailable',()=>{
+  const draft={...createDeckDraft(catalog),name:'毒血诅咒有限测试',cards:[{cardId:'JC089',count:3},{cardId:'JC125',count:47}]};
+  expect(validateDeckDraft(draft,catalog).valid).toBe(true);
+  expect(JSON.parse(kernel.newGameWithDeck('jc089-ui','LOCAL','teams','P0',JSON.stringify(draft),'9')).view.status).toBe('lobby');
+  const invalid={...draft,cards:[{cardId:'JC089',count:4},{cardId:'JC125',count:46}]};expect(validateDeckDraft(invalid,catalog).valid).toBe(false);
+  expect(()=>kernel.newGameWithDeck('jc089-invalid','LOCAL','teams','P0',JSON.stringify(invalid),'9')).toThrow();
+- expect(definitions.has('JZ50')).toBe(false);
++ expect(definitions.has('JZ50')).toBe(true);
++ expect(definitions.has('JZ51')).toBe(false);
+ });
+
+ it('merges a cursed printed glory while preserving separately granted true renown',()=>{
+diff --git a/web/src/game/JZ55UniqueDestroy.test.jsx b/web/src/game/JZ55UniqueDestroy.test.jsx
+index fbb2ad0..505093e 100644
+--- a/web/src/game/JZ55UniqueDestroy.test.jsx
++++ b/web/src/game/JZ55UniqueDestroy.test.jsx
+@@ -33,7 +33,7 @@ it('checks recorded immediate composition and subsequent death-trigger views',()
+ it('opens the exact original and displays cannot respond without inventing a magic requirement',()=>{
+  const hash='9155faa90be22aa66e56148dfacd0d517eb7b6f7b56fd1b45b71a6804719784a';
+  const scans=JSON.parse(readFileSync(resolve('public/card-scans.json'),'utf8'));
+- expect(Object.keys(scans)).toHaveLength(118);expect(scans.JZ55.sha256).toBe(hash);expect(cardScanUrl('JZ55')).toBe('/cards/JZ55.jpg');
++ expect(Object.keys(scans)).toHaveLength(120);expect(scans.JZ55.sha256).toBe(hash);expect(cardScanUrl('JZ55')).toBe('/cards/JZ55.jpg');
+  expect(createHash('sha256').update(readFileSync(resolve('public/cards/JZ55.jpg'))).digest('hex')).toBe(hash);
+  const card=view('targets-seat0').hand.find(c=>c.cardId==='JZ55');
+  render(<ReadModal card={card} definition={definitions.get('JZ55')} viewerId="p0" onClose={vi.fn()}/>);
+diff --git a/web/src/game/cardScans.ts b/web/src/game/cardScans.ts
+index 554cd61..534e461 100644
+--- a/web/src/game/cardScans.ts
++++ b/web/src/game/cardScans.ts
+@@ -106,6 +106,8 @@ const scans: Record<string, string> = {
+   "JZ48": "/cards/JZ48.jpg",
+   "JZ49": "/cards/JZ49.jpg",
+   "JZ50": "/cards/JZ50.jpg",
++  "XQ48": "/cards/XQ48.jpg",
++  "BQ104": "/cards/BQ104.jpg",
+   "JZ51": "/cards/JZ51.jpg",
+   "JZ52": "/cards/JZ52.jpg",
+   "JZ53": "/cards/JZ53.jpg",

@@ -1,0 +1,183 @@
+{
+  "baseCommit": "99a208c0e6dc73669292396268840a0d9034547a",
+  "reviewedProductCommit": "84a36d624528ab61f752e4ad9f05fdeb1839d7e4",
+  "sharedBranch": "codex/jz48-combined-review-20261007",
+  "newDocsOnly": true,
+  "privateRuntimeIncluded": false,
+  "copiedLocalInputsPreserved": true,
+  "rawSqliteAndHttpAndCredentialsRemainLocal": true,
+  "newPacketPrivateKeyCheckPassed": true,
+  "mechanismFinalReportSha256": "302435d9a9fab3f7cee2d7318147f74bbfd65b522c9b75b1e558f070029ea768",
+  "artFinalReportSha256": "6b0e35b393f687a99d25e453073b28774a2825db4f31f70fc7a39ee5ff1560fc",
+  "scope": "Focused real dual-seat turn6 playing sequence; distinct from unchanged31 offline JC018 closure and synthetic artwork presentation; no strategy terminal claim.",
+  "files": [
+    {
+      "path": "docs/evidence/jc089-combined-2026-10-07/candidate-fixed-identities.json",
+      "sourceLocalPath": "/tmp/jc089-combined-evidence/candidate-fixed-identities.json",
+      "byteExactCopy": true,
+      "bytes": 1022,
+      "sha256": "0b86b524128bc5adc8c95bd597e65775d5f0d18fdc9037f74185dc4c19e26765"
+    },
+    {
+      "path": "docs/evidence/jc089-combined-2026-10-07/validation-summary.json",
+      "sourceLocalPath": "/tmp/jc089-combined-evidence/combined-validation-summary.json",
+      "byteExactCopy": true,
+      "bytes": 3207,
+      "sha256": "1641595e1d0173c49671aa5eb106ca7a11fe6a53b807df4e5ae880bfc0b4585e"
+    },
+    {
+      "path": "docs/evidence/jc089-combined-2026-10-07/catalog-and-originals.json",
+      "sourceLocalPath": "/tmp/jc089-combined-evidence/combined-catalog-and-originals.json",
+      "byteExactCopy": true,
+      "bytes": 597,
+      "sha256": "a3097a53b7ba611c62130a3ebf903aa58353b71b282c5d987aabbd0c19b71188"
+    },
+    {
+      "path": "docs/evidence/jc089-combined-2026-10-07/build-artifacts.json",
+      "sourceLocalPath": "/tmp/jc089-combined-evidence/combined-build-artifacts.json",
+      "byteExactCopy": true,
+      "bytes": 472,
+      "sha256": "5d371065be670ef9014bfdbccc40cef14faa1dd6c2943864a08fbc334d7a2c92"
+    },
+    {
+      "path": "docs/evidence/jc089-combined-2026-10-07/unchanged-31-input-binding.json",
+      "sourceLocalPath": "/tmp/jc089-combined-evidence/unchanged-31-input-binding.json",
+      "byteExactCopy": true,
+      "bytes": 501,
+      "sha256": "eee0f4b69cd1778bcbc44bfeb80cb22eea67d0ee667f9599480b403c5132fab8"
+    },
+    {
+      "path": "docs/evidence/jc089-combined-2026-10-07/natural-ui-integrity.json",
+      "sourceLocalPath": "/tmp/jc089-combined-evidence/natural-ui-integrity.json",
+      "byteExactCopy": true,
+      "bytes": 4063,
+      "sha256": "517f191d436dbfbe77a649e03d48db4a8b2c4a15ebc25811fd00a420100424d8"
+    },
+    {
+      "path": "docs/evidence/jc089-combined-2026-10-07/natural-ui-wasm-replay.json",
+      "sourceLocalPath": "/tmp/jc089-combined-evidence/natural-ui-wasm-replay.json",
+      "byteExactCopy": true,
+      "bytes": 264,
+      "sha256": "164e777a9012fd9cad6134bb9c58d2e545006605e97c7e618a5ae1bebcc240ec"
+    },
+    {
+      "path": "docs/evidence/jc089-combined-2026-10-07/mechanism-independent-review.md",
+      "sourceLocalPath": "/tmp/jc089-mechanism-independent-review.md",
+      "byteExactCopy": true,
+      "bytes": 14686,
+      "sha256": "302435d9a9fab3f7cee2d7318147f74bbfd65b522c9b75b1e558f070029ea768"
+    },
+    {
+      "path": "docs/evidence/jc089-combined-2026-10-07/mechanism-independent-summary.json",
+      "sourceLocalPath": "/tmp/review-jc089-mechanism-evidence/final-independent-review-summary.json",
+      "byteExactCopy": true,
+      "bytes": 7760,
+      "sha256": "b99e05666a0978d37b897ee3120083aec67530909e1dd5aee0918c64faa0848b"
+    },
+    {
+      "path": "docs/evidence/jc089-combined-2026-10-07/natural-ui-replay-independent.json",
+      "sourceLocalPath": "/tmp/review-jc089-mechanism-evidence/natural-ui-replay-independent.json",
+      "byteExactCopy": true,
+      "bytes": 1007,
+      "sha256": "4d051496da81ea6c5541463027ad316e6e9a0e799cd8f33af2d7ff3c611e8732"
+    },
+    {
+      "path": "docs/evidence/jc089-combined-2026-10-07/natural-ui-integrity-independent.json",
+      "sourceLocalPath": "/tmp/review-jc089-mechanism-evidence/natural-ui-integrity-independent.json",
+      "byteExactCopy": true,
+      "bytes": 3019,
+      "sha256": "dd34c426e86a51b8b8e4102e20f6b5ad3e6dd5993c0d0ec9d88cdca1d1c33b50"
+    },
+    {
+      "path": "docs/evidence/jc089-combined-2026-10-07/art-independent-review.md",
+      "sourceLocalPath": "/tmp/jc089-jz51-jz53-card-faces-independent-review.md",
+      "byteExactCopy": true,
+      "bytes": 16348,
+      "sha256": "6b0e35b393f687a99d25e453073b28774a2825db4f31f70fc7a39ee5ff1560fc"
+    },
+    {
+      "path": "docs/evidence/jc089-combined-2026-10-07/art-independent-summary.json",
+      "sourceLocalPath": "/tmp/review-jc089-jz51-jz53-card-faces-evidence/independent-review-summary.json",
+      "byteExactCopy": true,
+      "bytes": 7305,
+      "sha256": "1c388be4430ea2808e9fa9867fe4782c3fee74b948d67b065f825f564f74c63a"
+    },
+    {
+      "path": "docs/evidence/jc089-combined-2026-10-07/art-combined-binding-review.json",
+      "sourceLocalPath": "/tmp/review-jc089-jz51-jz53-card-faces-evidence/combined-art-binding-review.json",
+      "byteExactCopy": true,
+      "bytes": 4526,
+      "sha256": "59503e28e776c45e7dac1455ef5479d28bd8a16d025f7b62f66e4190df105cb7"
+    },
+    {
+      "path": "docs/evidence/jc089-combined-2026-10-07/art-catalog-independent.json",
+      "sourceLocalPath": "/tmp/review-jc089-jz51-jz53-card-faces-evidence/combined-actual-catalog-summary.json",
+      "byteExactCopy": true,
+      "bytes": 2452,
+      "sha256": "4228a92f458ff0d828d226b4ff50bc9b3c20b8628a20c58d201a3693880b418e"
+    },
+    {
+      "path": "docs/evidence/jc089-combined-2026-10-07/art-catalog-preservation-independent.json",
+      "sourceLocalPath": "/tmp/review-jc089-jz51-jz53-card-faces-evidence/combined-preserved-catalog.json",
+      "byteExactCopy": true,
+      "bytes": 386,
+      "sha256": "5d6948bf23a52866c7abb400e5cf49bf27677aa75ad38bec345aac8c17606a5a"
+    },
+    {
+      "path": "docs/evidence/jc089-combined-2026-10-07/art-natural-ui-viewed.json",
+      "sourceLocalPath": "/tmp/review-jc089-jz51-jz53-card-faces-evidence/natural-ui-screenshots-actually-viewed.json",
+      "byteExactCopy": true,
+      "bytes": 3747,
+      "sha256": "ea4121d7e40659ae126d5b7cc526b0ba484e1537354903adfefa34c99e1e70e7"
+    },
+    {
+      "path": "docs/evidence/jc089-combined-2026-10-07/art-natural-ui-validation-review.json",
+      "sourceLocalPath": "/tmp/review-jc089-jz51-jz53-card-faces-evidence/natural-ui-and-validation-review.json",
+      "byteExactCopy": true,
+      "bytes": 3857,
+      "sha256": "a6c3cd700439693822f684af59ee2af8d063492d7d59e19aa24417f4c43b0b02"
+    },
+    {
+      "path": "docs/evidence/jc089-combined-2026-10-07/combined-web-tests.log",
+      "sourceLocalPath": "/tmp/jc089-combined-evidence/combined-web-tests.log",
+      "byteExactCopy": true,
+      "bytes": 512,
+      "sha256": "04b43bb3f70e20ce0b0960047b32cf0a6b4af9405003592770b2ed19db3723db"
+    },
+    {
+      "path": "docs/evidence/jc089-combined-2026-10-07/combined-worker-tests.log",
+      "sourceLocalPath": "/tmp/jc089-combined-evidence/combined-worker-tests.log",
+      "byteExactCopy": false,
+      "bytes": 4613,
+      "sha256": "94e2f788ff9d38a145b3a4d01afea9ae02d2411f190d1ab2d2b52555ff872656",
+      "sourceBytes": 4628,
+      "sourceSha256": "49bb7ab037b929d688d3d7805af9243417a6051a5e599706a27f99ed623773b0",
+      "normalization": "Remove trailing ASCII spaces from two terminal table lines only; original run log retained unchanged locally; sourceSha256 equals validation-summary original log hash."
+    },
+    {
+      "path": "docs/evidence/jc089-combined-2026-10-07/combined-build.log",
+      "sourceLocalPath": "/tmp/jc089-combined-evidence/combined-build.log",
+      "byteExactCopy": false,
+      "bytes": 1682,
+      "sha256": "71adf7dea73389fabc8e1ac0985bbc3da34e6219788f1ba409218a8a1ba3b664",
+      "sourceBytes": 1708,
+      "sourceSha256": "e775256c8512dd0c28751da97047bf5c8a510719d33e1d3796b628563eb29497",
+      "normalization": "Remove trailing ASCII spaces from three terminal table lines and normalize the single terminal clear-line carriage return (CR) to LF; original run log retained unchanged locally; sourceSha256 equals validation-summary original log hash."
+    },
+    {
+      "path": "docs/evidence/jc089-combined-2026-10-07/natural-ui-root-images-viewed.json",
+      "bytes": 1854,
+      "sha256": "46755488e9233caba43a1a48ba672d43fc497b9b08a32003e2f31613f559ba7a"
+    },
+    {
+      "path": "docs/JC089_COMBINED_REVIEW_2026-10-07.md",
+      "bytes": 9351,
+      "sha256": "85a4938c3bdd34356f61589193c30d162193b44460207732972b48586eb26bd1"
+    },
+    {
+      "path": "docs/JZ50_CLAUDE_HANDOFF_2026-10-07.md",
+      "bytes": 4359,
+      "sha256": "ea34843ee5b70ed60ba80dc342aefd09b50fe5dd93d885a2646c5012f2bc5474"
+    }
+  ]
+}

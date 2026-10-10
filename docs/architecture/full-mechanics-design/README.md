@@ -44,3 +44,45 @@ UI 仅设计数据和交互契约：桌面横屏、俯视二维牌桌、明确�
 ## 本次交付与边界
 
 本文档集提供全部机制的落点和分批实现路径，保留现有可工作的部分，并给出必须先裁定的分歧。它不把建议中的数据结构、未来测试或未开放卡写成已完成。主实施线程仍是唯一实施、验收及发布负责人；目录专人继续原图核对。本次未额外启动并行评审。
+
+## 2026-10-07 当前协作分工：封印族候选
+
+本段记录下一批实施分工，保留上面的历史设计快照。当前共享分支为 `codex/jz48-combined-review-20261007`，实施起点为已审并发布 Site37 的 `4c8260ca814e3af0e848b2522cf0564745ebb653`。该提交已于本日按用户授权普通快进到游戏仓库 main；下一批封印实现仍须独立审查和父验收，尚未实现或发布。
+
+云端任务 `01a10fcf-9a3a-755a-83bf-e8fe922ca0f4` 直接负责 **XQ40 催眠术表演者、XQ41 启迪之梦、XQ45 破颅而出**：手牌封印到声明时绑定的角色、封印自身产生可选抓牌触发、结算时按实际封印关系决定消灭载体。三张完整原图和霸权印刷 P15/P16、基础手册 P4、FAQ 相关页已经实际查看；原图和正式规则优先于旧资源 metadata。XQ45 没有领域图标，旧 metadata 的“星辰”不能作为入池字段。
+
+这批共用有限封印区与真实载体 ID 关系，复用现有 `Card`、选择、声明、堆栈和区域重置。封印牌公开可查看、场外空白、不能成为普通目标；载体离场或翻暗时各牌回自己的 owner 手牌，场内移动和控制权变化保留关系。必须同时覆盖 `leave_board`、赢区 `commit_region_return` 和 `eliminate` 的直接离场路径。XQ41 在封印成功时冻结来源和行动者，之后的空白状态不取消已经产生的触发。现阶段没有新的身份、队列或通用绑定框架。
+
+文件所有权：本任务负责新增封印生命周期模块、对应原生/WASM/UI 测试及这三张卡所需的原图登记；共享 `model.rs`、`rules.rs`、`engine.rs`、结附/赢区离场接点、目录、Web 视图与当前 ABI 接线只做这一族所需的增量。提交前在安全边界检查实际远端新提交，按实际树协调版本号和共享文件，不依据“已交给 Claude”推定已有代码。
+
+最初由 Claude 保留 [JZ50 交接记录](../../JZ50_CLAUDE_HANDOFF_2026-10-07.md) 中的搜索族。**用户于 2026-10-07 14:25 UTC 明确授权本云端任务接手 Claude 尚未完成的部分，替代等待 Claude 的安排。** 已安全快进到实际共享 HEAD `5eb5127008188bf445399b74f8909632ccbfce54`，保留封印工作树；再 fetch 仍是同一 SHA。Claude 的 JZ50/BQ104/XQ48 搜索机制尚无实际代码提交，40 个历史内核目录仍未删除，不能把旧报告的计划写成已完成。
+
+现分三个独立小批：A 由 root 直接继续封印三卡；B 负责 Sites 测试、compare 与构建脚本的历史依赖收口，在有效覆盖替代和独立审查后删除废弃历史目录；C 负责 JZ50/BQ104/XQ48 原图与正式规则核验、有限搜索到墓地模块和测试草稿。B/C 各用独立文件所有权，不能同时修改 root 统一负责的 `model.rs`、`rules.rs`、`engine.rs`、`resolution.rs`、目录、当前 ABI 和版本接线。普通 clone 的同一共享分支不另建 worktree；root 独占提交与推送整合。
+
+版本顺序固定为：B 的纯测试/构建清理不变更 engine45/pool42 产品身份；A 封印独立候选预留 **engine46 / pool43**；C 搜索族在 A 固定整合后使用 **engine47 / pool44**。不得用同一个 engine46 名称承载两种不同程序；若远端出现实际产品续作，先检查并在此记录真实调整，再生成 ABI。JZ50 的 owner B 裁定仅用于 JZ50，不自动套给 BQ104/XQ48。
+
+后续授权的 Go 旧实现、无引用缩略图/镜像、可再生成证据、重复流水线与引擎清理另做依赖核实和小批审查，不与 A/B/C 混为大提交。可以删除 Git 可恢复的废弃代码及确定可重建缓存；保留用户唯一原图、实际运行数据和未保存证据。每批均须完成实际测试、独立审查、固定候选后普通推送；产品批还须真实 UI 操作证据，网站发布待父验收。本段分工记录不代表产品放行。
+
+## 2026-10-07 Site38 and file ownership update
+
+S2 is fixed454e46f, independently accepted and normally pushed after one verified service-error retry. Official Site38 publication succeeded, engine45/pool42; no runtime data cleared. Root A/C WIP is excluded. Root continues the sealing46 and JZ50 search47 sequence. BQ104 hidden-search minimum and XQ48 missing-original-region partial execution remain specific parent decisions. Runtime retention/isolation audit and recoverable cleanup design are separate docs, with no live deletion.
+
+UI task `01a11700-0f1d-729f-978b-1ae1276290d9` independently owns deck construction grid/preview/filter/count/save and declares its exact files. This cloud task does not implement deck construction. For sealing, root reserves `Table.tsx`, `CardTile.tsx`, `ReadModal.tsx`, the optional sealed-zone additions in `types.ts`, new sealing-specific UI/CSS/tests, `cardScans.ts` and only the three new original scan/manifest entries. Deck UI can reuse these readers; any actual ownership overlap must be coordinated before edits. Shared core, current ABI and engine/pool identifiers remain root-owned.
+
+## 2026-10-07 Site39 and explicit saved-table pause batch
+
+Site39 source7e5cc3c is published and independently confirmed, engine45/pool42, reviewed deck UI plus S2.93aa782 records receipt and actual public grid/preview/mobile checks. No runtime reset. The user's corrected objective is saving one unfinished table and resuming later; no inactivity TTL or high-capacity expansion is inferred.
+
+Root completed the separate [pause/resume engine46 candidate](../../PAUSE_RESUME_CANDIDATE_2026-10-07.md), using existing seated capabilities, receipts, room CAS and journal; any seated player may pause/resume, remaining response time is frozen/rearranged, server timeout and client AutoPass both stop. The candidate is not yet independently reviewed or published. Sealing/search WIP was preserved separately, excluded from this batch.
+
+Current version assignment supersedes the prior reservation: pause engine46/pool42; sealing engine47/pool43; JZ50 search engine48/pool44. There is only one fixed program per engine identity. Root owns room-management UI and the small ChoicePanel/Table pause gate; deck construction files remain the independently reviewed201bee implementation. Sealing source already has19 passing native-specific tests but still requires complete WASM/UI/review; search source/test drafts remain unwired/unexecuted. BQ104 minimum and XQ48 missing-region behavior are still pending explicit decisions.
+
+## 2026-10-07 Site40 complete; sealing47 fixed for independent review
+
+Site40 pause/resume is published from independently accepted945e8b2, with official provider/deployment and four actual public natural-UI checks recorded in [publication evidence](../../PAUSE_RESUME_SITE40_PUBLICATION_2026-10-07.md). No data reset and no repeat publication. Current collaboration base22fe9cfc only records that completed publication.
+
+The [sealing47 candidate](../../SEALING47_CANDIDATE_2026-10-07.md) adds only XQ40/XQ41/XQ45 to engine47/pool43. Final metadata, ABI, Native603, Web625, actual WASM parity1,516 views and Worker29 are verified; desktop refresh uses read-only actual Native projections with its scope explicitly recorded. This fixed candidate awaits parent independent review and remains unpublished. JZ50-only integration proceeds next with engine48/pool44; BQ104/XQ48 still await the two specific rulings, and their uncompiled draft primitives are excluded from the sealing commit.
+
+## 2026-10-07 JZ50-only candidate48
+
+Sealing47 is fixed919e574a7eb0ca2531119486e54bfc4970abf9af and normally pushed to the collaboration branch. The subsequent [JZ50-only candidate48](../../JZ50_DEATH_SEARCH48_CANDIDATE_2026-10-07.md) uses the recorded owner B ruling, fixed no-argument Op/FrameChoice and controller-private search, without compiling BQ104/XQ48 prototype code. Native623, Web631, actual WASM2,876 views, Worker31 and four read-only desktop checks passed; both47 and48 still await parent independent review. Site40 engine46/pool42 remains the sole current live version; no publication, main push or online clearing occurs in either candidate.

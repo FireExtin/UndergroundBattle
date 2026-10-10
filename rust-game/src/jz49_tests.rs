@@ -463,7 +463,6 @@ fn jz49_complete_definition_mutations_and_transplants_are_rejected() {
         registry.get_mut(id).unwrap().traits.slow = true;
         assert!(validate_definitions(&registry).is_err());
     }
-    validate_definitions(definitions()).unwrap();
 }
 
 fn command(

@@ -1,0 +1,7 @@
+# 同版本轮询早返：只读审计结果
+
+输入：父授权针对固定7e5cc3c（engine45）审计高频同版本GET成本和超时语义。输出为[完整只读报告](evidence/game-runtime-audit-2026-10-07/poll-fast-return-audit.md)，SHA25683d768d4283bc153c55410b3c04bcdc83ae1aa2a2669d359c9d44d1183f9d569；没有产品或线上操作。
+
+仅比较version不能早返，因为GET还负责expire_due。可行的有限方案需要每次读取当前D1中与state/revision/既有nonce原子绑定的可信poll_meta，包含schema、固定tuple、来源revision以及最早Undecided deadline；unknown/缺失/错来源/到期继续完整内核与CAS路径。所有writer必须同批更新这份元数据。Composing不自动超时；无窗口也不自动推进阶段。204不是推送，客户端原本不消费新的serverNow；并发写可由下一次poll发现。
+
+报告列出12类反例/验收，并区分减少D1 full-state读取与减少Rust解码/视图计算，未声称实测容量或已上线优化。本轮优先完成保存一桌的显式暂停；engine46新增pause后须针对新的固定source补审元数据规则，不能直接把45审计当46优化验证。fast204尚未实现，当前客户端暂停后停止轮询是独立已测试行为。

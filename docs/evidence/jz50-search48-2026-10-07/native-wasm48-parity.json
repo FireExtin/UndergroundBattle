@@ -1,0 +1,22 @@
+{
+  "engine": "rust-v0.2.48-jz50-death-search-candidate",
+  "pool": "limited-v2.44-jz50-death-search-candidate",
+  "cards": 107,
+  "societies": 8,
+  "actualWasm": true,
+  "commands": 214,
+  "rejected": 6,
+  "checkpoints": 469,
+  "chainCommands": 36,
+  "chains": {
+    "room-native48-exact": 14,
+    "pause-native48-final": 9,
+    "sealing-native48-final": 13
+  },
+  "views": 2876,
+  "completeTransitionEqual": true,
+  "opaqueStateByteEqual": true,
+  "wasmBytes": 2247997,
+  "wasmSha256": "90ba2fdc49c8dc256b69a2b4cc2acdf3acfaf87060140ec2829701db10805114",
+  "frozen45_46_47BytePreserved": true
+}

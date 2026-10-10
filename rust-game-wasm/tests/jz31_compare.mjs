@@ -2,8 +2,7 @@
 import assert from 'node:assert/strict';
 import {readFileSync, readdirSync} from 'node:fs';
 import {resolve} from 'node:path';
-import * as kernel from '../pkg/hegemony_wasm.js';
-const instance=kernel.initSync({module:readFileSync(new URL('../pkg/hegemony_wasm_bg.wasm',import.meta.url))});
+import { kernel, instance } from './current-kernel.mjs';
 const root=resolve(process.argv[2]);
 let commands=0,rejections=0,checkpoints=0,projections=0;
 for(const name of readdirSync(root).sort()) {

@@ -9,7 +9,7 @@ export function visibleCard(card: Card, viewerId: string): Card {
   }
   return { ...card, cardId: undefined, name: '暗藏者', kind: 'hidden', cost: undefined, effectiveCost: undefined,
     text: undefined, icons: undefined, convertedTemporaryIcons: undefined, currentKill: undefined, currentRetreat: undefined, defense: undefined, damage: undefined, shield: undefined,
-    wounds: undefined, color: undefined, magic: undefined, currentSubtypes: undefined, currentRenown: undefined, currentBarrier: undefined, currentDamagePrevention: undefined, currentSpiritProtection: undefined, currentPrintedDefense: undefined };
+    wounds: undefined, timeMarkers: undefined, color: undefined, magic: undefined, currentSubtypes: undefined, currentRenown: undefined, currentCombatGlory: undefined, currentBarrier: undefined, currentDamagePrevention: undefined, currentSpiritProtection: undefined, currentPrintedDefense: undefined };
 }
 
 /** Display-only short form of a server instance ID; never used to match, merge or infer objects. */
@@ -60,6 +60,12 @@ export function CardContent({ card: source, definition: sourceDefinition, compac
   const card = archive && compact && projected.faceDown
     ? { ...projected, cardId: undefined, name: '暗藏者', kind: 'hidden' } : projected;
   const definition = card.cardId ? sourceDefinition : undefined;
+  if (card.kind === 'sealed') return <>
+    <span className="hg-card-top"><span className="hg-card-kind">已封印 · 场外空白牌</span></span>
+    <strong className="hg-card-name">{card.name}</strong>
+    {!compact && archive && <ArchiveArtwork key={card.instanceId} card={card} />}
+    <span className="hg-card-text">公开放置在载体上，不在场内；当前没有卡牌能力、图标或防御，不能成为效果目标。载体离场或翻暗时回到拥有者手牌。</span>
+  </>;
   const hidden = !card.cardId && card.faceDown;
   const asset = card.kind === 'asset';
   const region = card.kind === 'region';
@@ -85,6 +91,7 @@ export function CardContent({ card: source, definition: sourceDefinition, compac
     {!compact && startingHand !== undefined && <span className="hg-society-hand">起手 {startingHand} 张</span>}
     {!compact && !hidden && !asset && !region && !society && adjustedCost && <span className="hg-cost-explanation">当前费用 {actualCost} · 印刷费用 {printedCost}</span>}
     {archive ? <ArchiveArtwork key={`${card.instanceId}:${card.cardId}:${card.faceDown}`} card={card} /> : !compact && <span className="hg-card-art" aria-hidden="true"><span>{hidden ? '？' : card.kind === 'event' ? '✧' : card.kind === 'region' ? '⌖' : '◈'}</span><i /></span>}
+    {card.region !== undefined && !!card.lockMarkers && <span className="hg-lock-marker" aria-label={`锁定标志 ${card.lockMarkers}`}>锁定 {card.lockMarkers}</span>}
     {hidden ? <><IconStrip icons={hiddenIcons} /><span className="hg-card-text">{hiddenRule}。{card.exhausted ? '已横置，不参与对抗。' : '在地区内且未横置时参与势力对抗。'}</span></> : <>
       {!society && <span className="hg-card-affiliation">{region ? `赢得 ${definition?.points ?? '—'} 分 · 控制阈值 ${definition?.threshold ?? '—'}` : asset ? `${card.color || '无派系'}${card.magic ? ` · ${card.magic}` : ''}` : <>{definition?.loyaltyText || (definition?.loyalty?.length ? `忠诚 ${definition.loyalty.join(' / ')}` : '无忠诚要求')}{(card.magic || definition?.magic) && ` · ${card.magic || definition?.magic}`}</>}</span>}
       {!asset && !region && !attachment && !society && (effectiveStats && card.icons ? <>
@@ -101,6 +108,7 @@ export function CardContent({ card: source, definition: sourceDefinition, compac
         {!card.faceDown && card.region !== undefined && card.currentDamagePrevention && <span>本回合防止伤害</span>}
         {!card.faceDown && card.region !== undefined && typeof card.currentPrintedDefense === 'number' && <span>本回合印刷防御 {card.currentPrintedDefense}</span>}
         {!card.faceDown && card.region !== undefined && card.currentRenown && <span>声望</span>}
+        {!card.faceDown && card.region !== undefined && card.currentCombatGlory && <span>威名</span>}
         {!card.faceDown && card.region !== undefined && card.currentBarrier && <span>屏障</span>}
         {society && card.usedOncePerGame?.map(key => <span key={key}>
           {definition?.abilities?.find(ability => ability.key === key)?.label || '每局一次能力'} · 本局已使用
@@ -110,6 +118,7 @@ export function CardContent({ card: source, definition: sourceDefinition, compac
         {!society && !concealedCompact && !!card.damage && <span className="hg-hurt hg-damage-marker">伤害 {card.damage}</span>}
         {!society && !concealedCompact && !!card.wounds && <span className="hg-hurt hg-wound-marker">创伤 {card.wounds}</span>}
         {!society && !concealedCompact && !!card.shield && <span className="hg-shield-marker">护盾 {card.shield}</span>}
+        {!society && !asset && !card.faceDown && !!card.timeMarkers && <span className="hg-time-marker">时间 {card.timeMarkers}</span>}
         {card.exhausted && <span className="hg-exhausted-label">已横置</span>}
         {card.faceDown && <span>{hiddenRule}{card.exhausted ? ' · 横置不参与对抗' : ''}</span>}
       </span>

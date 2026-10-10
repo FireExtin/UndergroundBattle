@@ -77,6 +77,10 @@ pub struct LegalAction {
 #[serde(rename_all = "camelCase")]
 pub struct CardView {
     #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub time_markers: Option<u32>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub current_combat_glory: Option<bool>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub current_kill: Option<u32>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub current_retreat: Option<bool>,
@@ -121,6 +125,8 @@ pub struct CardView {
     pub shield: Option<u32>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub wounds: Option<u32>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub lock_markers: Option<u32>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub color: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -131,6 +137,13 @@ pub struct CardView {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct AttachmentView {
+    #[serde(flatten)]
+    pub card: CardView,
+    pub host_id: String,
+}
+#[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct SealedCardView {
     #[serde(flatten)]
     pub card: CardView,
     pub host_id: String,
@@ -272,6 +285,8 @@ pub struct View {
     pub society_zones: Vec<SocietyZoneView>,
     #[serde(default)]
     pub attachments: Vec<AttachmentView>,
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub sealed_cards: Vec<SealedCardView>,
     pub hand: Vec<CardView>,
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub revealed_hands: Vec<RevealedHandView>,
@@ -300,6 +315,8 @@ pub struct RevealedHandView {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Card {
+    #[serde(default, skip_serializing_if = "is_zero")]
+    pub time_markers: u32,
     pub id: String,
     pub definition: String,
     pub owner: usize,
@@ -309,6 +326,8 @@ pub struct Card {
     pub damage: u32,
     pub wounds: u32,
     pub shield: u32,
+    #[serde(default, skip_serializing_if = "is_zero")]
+    pub lock_markers: u32,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -463,9 +482,11 @@ pub struct StackItem {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct SourceSnapshot {
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub observed_death: Option<ObservedCharacterDeath>,
     pub card: Card,
     pub region: Option<usize>,
-    // Only JC032/JZ24 bind their original local region, independently of source.
+    // Admitted finite local programs bind the original region independently of source.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub source_region_instance: Option<String>,
     // Non-targeted host effect keeps the declaration's exact host identity.
@@ -473,6 +494,12 @@ pub struct SourceSnapshot {
     pub attachment_host_instance: Option<String>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub play_source: Option<PlaySource>,
+}
+/// Captured before any member of a death batch leaves, including subtype grants.
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct ObservedCharacterDeath {
+    pub card: Card,
+    pub vampire: bool,
 }
 #[derive(Clone, Copy, Debug, Serialize, Deserialize, PartialEq, Eq)]
 pub enum PlaySource {
@@ -542,6 +569,15 @@ pub enum DeclareChoice {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum FrameChoice {
+    XQ18TimeCarrier { target_instance: String },
+    BQ028InspectAttachments { seat: usize, inspected: Vec<Card> },
+    BQ078CorpseReturn,
+    XQ44DreamSealSearch,
+    JZ02SpaceSealSearch,
+    BQ104EmployeeSearch,
+    XQ48PasserSearch,
+    JZ50DeathSearch,
+    HandSeal { seat: usize, host_id: String },
     JC032TopSix { inspected_ids: Vec<String> },
     JZ24Sacrifice { remaining_players: Vec<usize> },
     RepressOne {
@@ -720,6 +756,9 @@ pub struct Game {
     pub regions: Vec<Region>,
     #[serde(default)]
     pub attachments: Vec<Attachment>,
+    // Public, blank, out-of-play cards. They are deliberately absent from board().
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub sealed_cards: Vec<SealedCard>,
     #[serde(default)]
     pub region_return: Option<RegionReturnBatch>,
     pub world: Vec<Card>,
@@ -760,6 +799,27 @@ impl Game {
                 crate::catalog::POOL_VERSION
             ));
         }
-        serde_json::from_str(state).map_err(|_| "v2持久状态字段无效".into())
+        let game: Self = serde_json::from_str(state).map_err(|_| "v2持久状态字段无效")?;
+        game.validate_sealed_cards()?;
+        game.validate_jz50_search_choice()?;
+        game.validate_entry_search_choice()?;
+        game.validate_deck_seal_choice()?;
+        game.validate_death_observers()?;
+        game.validate_gray_lock_state()?;
+        game.validate_jz22_state()?;
+        game.validate_jc050_state()?;
+        game.validate_xq27_state()?;
+        game.validate_xq37_state()?;
+        game.validate_red_time_state()?;
+        game.validate_blue_expansion_state()?;
+        game.validate_black_expansion_state()?;
+        game.validate_gray_expansion_state()?;
+        Ok(game)
     }
+}
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct SealedCard {
+    pub card: Card,
+    pub host_id: String,
 }

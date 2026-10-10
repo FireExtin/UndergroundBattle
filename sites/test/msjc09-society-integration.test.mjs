@@ -7,12 +7,9 @@ import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { Miniflare, convertV4MiniflareOptions } from 'miniflare';
 import { RoomStore } from '../src/store.mjs';
-import { execFileSync } from 'node:child_process';
 
-test('frozen11 real MSJC09 permits first/rear paid activation and restores four-seat frames, receipts, privacy and reset', async t => {
-  const build = mkdtempSync(join(tmpdir(), 'hegemony-msjc09-v011-worker-'));
-  execFileSync(process.execPath, ['scripts/build-backend-test.mjs', '--legacy-v0.2.11'], { stdio: 'inherit', env: { ...process.env, HEGEMONY_BACKEND_TEST_ROOT: build } });
-  const dist = join(build, 'legacy-v0.2.11-worker/dist'), persist = mkdtempSync(join(tmpdir(), 'hegemony-msjc09-'));
+test('current real MSJC09 permits first/rear paid activation and restores four-seat frames, receipts, privacy and reset', async t => {
+  const dist = resolve('dist/server'), persist = mkdtempSync(join(tmpdir(), 'hegemony-msjc09-'));
   const options = convertV4MiniflareOptions({ name:'printed-msjc09-local', modulesRoot:dist, resourcePersistencePath:persist,
     modules:[{type:'ESModule',path:join(dist,'index.js')},...readdirSync(dist).filter(n=>n.endsWith('.wasm')).map(n=>({type:'CompiledWasm',path:join(dist,n)}))],
     compatibilityDate:'2026-10-02',d1Databases:{DB:'printed-msjc09-db'} });
@@ -24,10 +21,10 @@ test('frozen11 real MSJC09 permits first/rear paid activation and restores four-
     return {status:r.status,body:r.status===204?null:await r.json()};
   };
   const cat = (await api('/api/catalog')).body;
-  assert.equal(cat.engineVersion,'rust-v0.2.11'); assert.equal(cat.cards.length,50);
-  assert.deepEqual(cat.societies.map(s=>s.id),['MSJC09']); assert(cat.deckBuildRules.societySupported);
-  assert.equal(cat.societies[0].unique,true);
-  assert.deepEqual([cat.societies[0].name,cat.societies[0].subtitle,cat.societies[0].color,cat.societies[0].startingHand,cat.societies[0].printedCost],['秘社','未知的聚会','中立',6,null]);
+  assert(cat.deckBuildRules.societySupported);
+  const printedSociety=cat.societies.find(s=>s.id==='MSJC09'); assert(printedSociety);
+  assert.equal(printedSociety.unique,true);
+  assert.deepEqual([printedSociety.name,printedSociety.subtitle,printedSociety.color,printedSociety.startingHand,printedSociety.printedCost],['秘社','未知的聚会','中立',6,null]);
   const draft = societyId => ({id:'printed-msjc09-deck',name:'真实MSJC09验证',description:'',societyId,cards:[{cardId:'JC125',count:50}],rulesVersion:cat.rulesVersion,cardPoolVersion:cat.cardPoolVersion,engineVersion:cat.engineVersion,updatedAt:''});
   for (const d of [draft('MSJC01'),draft('MSJC16'),draft('FIXTURE_SOCIETY_SIX'),{...draft('MSJC09'),cards:[{cardId:'JC125',count:49}]}]) assert.equal((await api('/api/rooms',{name:'非法',mode:'teams',deckDraft:d,requestId:crypto.randomUUID()})).status,400);
   const create = {name:'A',mode:'teams',deckDraft:draft('MSJC09'),requestId:crypto.randomUUID()};
@@ -109,5 +106,5 @@ test('frozen11 real MSJC09 permits first/rear paid activation and restores four-
     const seat=owners[i],s=all[seat].societyZones[seat].card;assert.equal(s.instanceId,sources[i]);assert(!s.exhausted);assert(all[seat].assets.every(a=>!a.exhausted));
     assert.deepEqual(await api(path(seat,'commands'),paid[i].command,sessions[seat]),paid[i].result);
   }
-  t.diagnostic(JSON.stringify({printedSociety:'MSJC09',syntheticInitialLayout:false,publicNaturalUiAcceptance:false,httpCalls:calls,acceptedCommands:commands,firstAndRearBothPaid:true,fourSeats:true,paidFrameReopens:reopens,restoredBeforeExpiry,sameInstanceNaturalNextTurnReset:true}));
+  t.diagnostic(JSON.stringify({engineVersion:cat.engineVersion,printedSociety:'MSJC09',syntheticInitialLayout:false,publicNaturalUiAcceptance:false,httpCalls:calls,acceptedCommands:commands,firstAndRearBothPaid:true,fourSeats:true,paidFrameReopens:reopens,restoredBeforeExpiry,sameInstanceNaturalNextTurnReset:true}));
 });

@@ -1,0 +1,4 @@
+   Compiling hegemony-server v0.1.0 (/tmp/undergroundbattle-shared-cloud/rust-game)
+error: failed to write query cache to `/tmp/jz49-native-target/debug/incremental/hegemony_server-0p24xfhnu5b4w/s-hn04hobmgy-0e08yo9-working/query-cache.bin`: No space left on device (os error 28)
+
+error: could not compile `hegemony-server` (lib test) due to 1 previous error

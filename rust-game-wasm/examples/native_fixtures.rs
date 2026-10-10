@@ -1277,6 +1277,7 @@ fn world_fixture(id: &str, generic_search: bool) -> Value {
             declaration: Declaration {
                 actor,
                 source: SourceSnapshot {
+                    observed_death: None,
                     source_region_instance: None,
                     card: scored,
                     region: Some(0),

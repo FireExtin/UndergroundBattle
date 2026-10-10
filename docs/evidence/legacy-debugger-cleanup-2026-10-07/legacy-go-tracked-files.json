@@ -1,0 +1,617 @@
+[
+  {
+    "path": "go.mod",
+    "bytes": 122,
+    "blob": "a5be9c08296dff6b1975bcadd05da620ed04b254"
+  },
+  {
+    "path": "server/cmd/api/main.go",
+    "bytes": 1040,
+    "blob": "98dcfc772cd5569e54ec1083de1f212fcd0641e9"
+  },
+  {
+    "path": "server/internal/README.md",
+    "bytes": 116,
+    "blob": "c414fbcb1afd8f5f66e398bd47b386e8bc202b96"
+  },
+  {
+    "path": "server/internal/api/http.go",
+    "bytes": 3000,
+    "blob": "53ca8e5424735fa86b0887962091a93a33e68a34"
+  },
+  {
+    "path": "server/internal/api/http_test.go",
+    "bytes": 1343,
+    "blob": "4c04972ec060d2c15a2f1ec32e591f3f272a11dd"
+  },
+  {
+    "path": "server/internal/api/session.go",
+    "bytes": 6275,
+    "blob": "0e376813ded6a52ced07d620473cc19468325ba8"
+  },
+  {
+    "path": "server/internal/api/session_test.go",
+    "bytes": 2513,
+    "blob": "3200cb5101a656169a1fc542a5e60bd54d81823c"
+  },
+  {
+    "path": "server/internal/contracts/catalog.go",
+    "bytes": 3474,
+    "blob": "69582537a3b55174bcae215ec0ec7ff651843701"
+  },
+  {
+    "path": "server/internal/contracts/loader.go",
+    "bytes": 550,
+    "blob": "f3d010e5a95730c1baee67effca68cfdcb2c90c7"
+  },
+  {
+    "path": "server/internal/contracts/loader_test.go",
+    "bytes": 5419,
+    "blob": "f759d51be1c8ba825e33ba970e0ceca1e29630d1"
+  },
+  {
+    "path": "server/pkg/README.md",
+    "bytes": 107,
+    "blob": "00b6f2c8cddf6efc55336f3cd32473704a5240bc"
+  },
+  {
+    "path": "server/pkg/contracts/parse.go",
+    "bytes": 1354,
+    "blob": "036dc1a977b8fbb58d5f8c6c2a994629649d0eb9"
+  },
+  {
+    "path": "server/pkg/contracts/types.go",
+    "bytes": 2498,
+    "blob": "6709cd74876ef8f00fc5848854f82bb31d6cae93"
+  },
+  {
+    "path": "server/pkg/rules/action_permission_flow.go",
+    "bytes": 3356,
+    "blob": "d9c4b398d101a5a4e4cb47485a94a42c69a562c9"
+  },
+  {
+    "path": "server/pkg/rules/action_permission_flow_test.go",
+    "bytes": 7209,
+    "blob": "05e29e18e7f9d86f75f46ac75b7e8c2faadcd54c"
+  },
+  {
+    "path": "server/pkg/rules/action_preflight_flow.go",
+    "bytes": 1454,
+    "blob": "b02f752d1d40e00634262c4ac45eb5b9d5140e37"
+  },
+  {
+    "path": "server/pkg/rules/asset_test.go",
+    "bytes": 3147,
+    "blob": "d6864d3f4c220d6a003404e47f79e22277aaae83"
+  },
+  {
+    "path": "server/pkg/rules/attachment.go",
+    "bytes": 6981,
+    "blob": "c2314253a82e02e6ea4c67b71addd4b2f8eeb8e7"
+  },
+  {
+    "path": "server/pkg/rules/attachment_lifecycle_test.go",
+    "bytes": 7803,
+    "blob": "f6d44aab8ecee0c4c6c28273532467e2f4bf0686"
+  },
+  {
+    "path": "server/pkg/rules/attachment_test.go",
+    "bytes": 9204,
+    "blob": "f3301e20baa93e03125a1a103e7a8d032448f61d"
+  },
+  {
+    "path": "server/pkg/rules/card_effect_resolution.go",
+    "bytes": 1703,
+    "blob": "2462b0c67af57b288d7a2b39a75cb37b8104b85d"
+  },
+  {
+    "path": "server/pkg/rules/card_marker_actions.go",
+    "bytes": 4370,
+    "blob": "0eedecbf7df4bb9b044d1e5a8500640e0df5acbf"
+  },
+  {
+    "path": "server/pkg/rules/card_source_adapter.go",
+    "bytes": 3084,
+    "blob": "f2748ce2ca9f1ba8830416548be5f85b3166c43f"
+  },
+  {
+    "path": "server/pkg/rules/card_source_adapter_test.go",
+    "bytes": 2928,
+    "blob": "ec682dc8f157a4893520d19886696b43799af8ea"
+  },
+  {
+    "path": "server/pkg/rules/clone.go",
+    "bytes": 6152,
+    "blob": "26f81325d4490d935fb5021bde02c54a3ad1433c"
+  },
+  {
+    "path": "server/pkg/rules/complexity_budget_test.go",
+    "bytes": 1500,
+    "blob": "d1fcc5441265a6c56b6dbc7bf64d9eab0c785baf"
+  },
+  {
+    "path": "server/pkg/rules/comprehensive_test.go",
+    "bytes": 31392,
+    "blob": "7d926d2dc889113fcecd20f461f622fd2b910a35"
+  },
+  {
+    "path": "server/pkg/rules/conflict_loop_test.go",
+    "bytes": 3397,
+    "blob": "e0fb4ddff41e1acb77a6f89a98fbea818c586017"
+  },
+  {
+    "path": "server/pkg/rules/continuous.go",
+    "bytes": 10336,
+    "blob": "3a6028f225c79cf83a0086d47cf1a2e6cd4423fc"
+  },
+  {
+    "path": "server/pkg/rules/continuous_binding.go",
+    "bytes": 3018,
+    "blob": "26f8eede7bfbe3e305faa631f65f001931528963"
+  },
+  {
+    "path": "server/pkg/rules/continuous_test.go",
+    "bytes": 45150,
+    "blob": "7d186eb2c0dd0a194655291140c2874f7e92843d"
+  },
+  {
+    "path": "server/pkg/rules/determinism_guard_test.go",
+    "bytes": 1919,
+    "blob": "aaa5f1cc5d13a42c511414728d48ec49baca5051"
+  },
+  {
+    "path": "server/pkg/rules/discard_test.go",
+    "bytes": 5505,
+    "blob": "8fe1cabb9c11b61c2b9d2786464d7246a77bb17c"
+  },
+  {
+    "path": "server/pkg/rules/dispatch_test.go",
+    "bytes": 6335,
+    "blob": "35ddcf61632111651b7f26008a2a9eb10deda538"
+  },
+  {
+    "path": "server/pkg/rules/dsl.go",
+    "bytes": 4512,
+    "blob": "9a5c16d6d97e62befab7d452c29c43ab76f4aa43"
+  },
+  {
+    "path": "server/pkg/rules/dsl_handlers.go",
+    "bytes": 726,
+    "blob": "f35f4c0dd9e65c413d9833ed0624cd314c4adb6c"
+  },
+  {
+    "path": "server/pkg/rules/dsl_handlers_test.go",
+    "bytes": 916,
+    "blob": "cdbef6cecc78b22b60affaacefd9cd57149afd3a"
+  },
+  {
+    "path": "server/pkg/rules/engine.go",
+    "bytes": 25359,
+    "blob": "8d2487ae6c147a20abbaf0f4aca9da57236de7e7"
+  },
+  {
+    "path": "server/pkg/rules/engine_modularity_guard_test.go",
+    "bytes": 2642,
+    "blob": "50ad4ff3ddd6a9e789c3b479523b8cc848bc7feb"
+  },
+  {
+    "path": "server/pkg/rules/engine_test.go",
+    "bytes": 41051,
+    "blob": "3cfbbbc929fecd71f11e4a40ad436442ff032b99"
+  },
+  {
+    "path": "server/pkg/rules/first_player_privilege_action.go",
+    "bytes": 5376,
+    "blob": "68ea65f6e2e922baa0d4da0882567b85badcd044"
+  },
+  {
+    "path": "server/pkg/rules/first_player_privilege_action_test.go",
+    "bytes": 9696,
+    "blob": "94c5560307b12beaf7e09f60d8ce0cbcc73fdfd2"
+  },
+  {
+    "path": "server/pkg/rules/golden_scenario_test.go",
+    "bytes": 15088,
+    "blob": "744554b8575b1c7c4079bc9effe8c1a24c519bc8"
+  },
+  {
+    "path": "server/pkg/rules/hidden_deployment_test.go",
+    "bytes": 5037,
+    "blob": "cd00fac4d20de515d8b33a59dc701f10ef8e6ad7"
+  },
+  {
+    "path": "server/pkg/rules/invariants.go",
+    "bytes": 4326,
+    "blob": "df5dbfa039968823d05e6dcbfd2985e1805fcdc5"
+  },
+  {
+    "path": "server/pkg/rules/invariants_test.go",
+    "bytes": 9032,
+    "blob": "72dbb9d09d7351dc58f2674787b43ac11d2074ab"
+  },
+  {
+    "path": "server/pkg/rules/legality_catalog.go",
+    "bytes": 1124,
+    "blob": "295a8f33ceb073ab352def678b7a10e283a2c588"
+  },
+  {
+    "path": "server/pkg/rules/legality_catalog_test.go",
+    "bytes": 3432,
+    "blob": "4379383a15fd78c0f380012615311c8421282217"
+  },
+  {
+    "path": "server/pkg/rules/legality_shared.go",
+    "bytes": 2206,
+    "blob": "ad482dd5b6fe7eda420f22fe4998b1d8dbb1a8fe"
+  },
+  {
+    "path": "server/pkg/rules/legality_shared_test.go",
+    "bytes": 1771,
+    "blob": "2f07b46e5b7c7e79c68e70e7eb6d8d338129d1bb"
+  },
+  {
+    "path": "server/pkg/rules/m0.go",
+    "bytes": 2283,
+    "blob": "1f94484a9949768ee7e89ce144cdf5362875f45a"
+  },
+  {
+    "path": "server/pkg/rules/m0_sandbox_test.go",
+    "bytes": 15525,
+    "blob": "c283e23f1ed6d8fc8491295466ac854f57bf4022"
+  },
+  {
+    "path": "server/pkg/rules/marker_actions.go",
+    "bytes": 4419,
+    "blob": "3672a44f6390736b184b79324df2dfecb8c3d36b"
+  },
+  {
+    "path": "server/pkg/rules/marker_registry.go",
+    "bytes": 1886,
+    "blob": "b915c471c0fc36408b8d2efd1f8b7b370cdd9601"
+  },
+  {
+    "path": "server/pkg/rules/marker_test.go",
+    "bytes": 5027,
+    "blob": "8aa7d5f74e4bacf0ef63dc9fc53f6554e55c058e"
+  },
+  {
+    "path": "server/pkg/rules/move_card_action.go",
+    "bytes": 4166,
+    "blob": "a3332839b552d4dc18e15f9c845e2ac787fb9133"
+  },
+  {
+    "path": "server/pkg/rules/movement_and_card_markers_test.go",
+    "bytes": 5964,
+    "blob": "6a0b239d7dc244da679da0949267a1c5620fc87f"
+  },
+  {
+    "path": "server/pkg/rules/priority.go",
+    "bytes": 1819,
+    "blob": "6e1c33bea8b6c938f8f99019b9629e8e8bc89e42"
+  },
+  {
+    "path": "server/pkg/rules/prohibition.go",
+    "bytes": 6395,
+    "blob": "794e2dfd6b454f2eb32ed84e06e2ce1e58e74c5d"
+  },
+  {
+    "path": "server/pkg/rules/prohibition_multicard_test.go",
+    "bytes": 6087,
+    "blob": "4ac64c290b1d8f57d5d29b7dc4d172bfe25a14da"
+  },
+  {
+    "path": "server/pkg/rules/prohibition_test.go",
+    "bytes": 13366,
+    "blob": "3836782e46326be68f1b89529e6d0719ccb8dfcf"
+  },
+  {
+    "path": "server/pkg/rules/projection.go",
+    "bytes": 10857,
+    "blob": "72ccf63a08dae75b8904e48db2f89f5b4ed5d8f1"
+  },
+  {
+    "path": "server/pkg/rules/projection_test.go",
+    "bytes": 9234,
+    "blob": "4be5a07c0e9f6b8032865f941efe057d44346cf4"
+  },
+  {
+    "path": "server/pkg/rules/protocol.go",
+    "bytes": 5569,
+    "blob": "92fe793d7137dfd35f98396e3173fd7f7f4463f7"
+  },
+  {
+    "path": "server/pkg/rules/queue_operation_flow.go",
+    "bytes": 5334,
+    "blob": "a40f276642a0509248d1f961bd575863ee8feb56"
+  },
+  {
+    "path": "server/pkg/rules/queue_operation_flow_test.go",
+    "bytes": 2059,
+    "blob": "e9530c2d5072b0f065edb7d9d30d0fc00c7838b5"
+  },
+  {
+    "path": "server/pkg/rules/region.go",
+    "bytes": 4054,
+    "blob": "daa3e5fc48883ffffcab9b5104fd8b761220d709"
+  },
+  {
+    "path": "server/pkg/rules/region_scoring_test.go",
+    "bytes": 7703,
+    "blob": "4190a3f4c8bc165f422ab105b07eab0d0932d69b"
+  },
+  {
+    "path": "server/pkg/rules/regression.go",
+    "bytes": 13030,
+    "blob": "3de7138240d10d4913a13aba0315764b1b77e206"
+  },
+  {
+    "path": "server/pkg/rules/regression_harness_test.go",
+    "bytes": 4916,
+    "blob": "1d65adbdb4ff48578b8497bf6106c7825b48366c"
+  },
+  {
+    "path": "server/pkg/rules/replay_test.go",
+    "bytes": 6299,
+    "blob": "4a9922895412d798fda7c59df8b8f08f00dcdc6e"
+  },
+  {
+    "path": "server/pkg/rules/rng.go",
+    "bytes": 614,
+    "blob": "920afae9c5b07d8305331e4380f9be50ce54add0"
+  },
+  {
+    "path": "server/pkg/rules/role_actions.go",
+    "bytes": 5533,
+    "blob": "d16a4859c4551a252f3cd5ede43b42d5bf0ea324"
+  },
+  {
+    "path": "server/pkg/rules/role_actions_test.go",
+    "bytes": 11251,
+    "blob": "a6ebfd8c5a14c6c50c708c381e42866797397f6d"
+  },
+  {
+    "path": "server/pkg/rules/rulebook_flow.go",
+    "bytes": 7059,
+    "blob": "a0d6c24dfe6ae689c39a764ea466fdab44b3e979"
+  },
+  {
+    "path": "server/pkg/rules/rulebook_flow_integration_test.go",
+    "bytes": 16091,
+    "blob": "403407b41a514bc103a9ff5502581447a7b09b4d"
+  },
+  {
+    "path": "server/pkg/rules/rulebook_policy.go",
+    "bytes": 4095,
+    "blob": "0526d2e992e7c502f45ccf92ec3f655d03a3bd66"
+  },
+  {
+    "path": "server/pkg/rules/rulebook_policy_test.go",
+    "bytes": 7001,
+    "blob": "1a958c39c957ef0d49ddc6d4632ede09a29733bb"
+  },
+  {
+    "path": "server/pkg/rules/sanity_check_test.go",
+    "bytes": 6847,
+    "blob": "eb6cf561a338c9ff610d5a4077a0e9bb063aa69e"
+  },
+  {
+    "path": "server/pkg/rules/scenario.go",
+    "bytes": 8874,
+    "blob": "7731aa033fc54555c7883ceb3961321bce7dd336"
+  },
+  {
+    "path": "server/pkg/rules/shield_flow.go",
+    "bytes": 3064,
+    "blob": "67961574232db2c21ee6d6d0e6a3b879d9cb5189"
+  },
+  {
+    "path": "server/pkg/rules/shield_test.go",
+    "bytes": 5116,
+    "blob": "28a6009e0874ab3ccd57544f5fea705318db767e"
+  },
+  {
+    "path": "server/pkg/rules/stack.go",
+    "bytes": 898,
+    "blob": "48dd443a30b58e4566e3c3eeb11407028be89589"
+  },
+  {
+    "path": "server/pkg/rules/state_transitions.go",
+    "bytes": 6838,
+    "blob": "ccd64f1d6f6d194dad0abddbf5d97843e93a9aa8"
+  },
+  {
+    "path": "server/pkg/rules/state_transitions_test.go",
+    "bytes": 12918,
+    "blob": "8a8f76ef383bf0d00719e04d2215596cdbd539a6"
+  },
+  {
+    "path": "server/pkg/rules/state_write_guard_test.go",
+    "bytes": 3880,
+    "blob": "654f0065bb6964e651994212c79c5efdb7fc752f"
+  },
+  {
+    "path": "server/pkg/rules/submit_pipeline.go",
+    "bytes": 6205,
+    "blob": "7e56af153aeaf4e9b24f762a549db99c2e622a7e"
+  },
+  {
+    "path": "server/pkg/rules/target_legality.go",
+    "bytes": 5115,
+    "blob": "7c589676f83ab04c5711c1f188f840927d02065e"
+  },
+  {
+    "path": "server/pkg/rules/target_legality_test.go",
+    "bytes": 10017,
+    "blob": "3cf0320040ae5388c18bdea5131f680cb6a2b935"
+  },
+  {
+    "path": "server/pkg/rules/testdata/m0/01-bootstrap-projections.json",
+    "bytes": 7028,
+    "blob": "1a870d7b70ef2196325dc0835e2ebb4308c7ba56"
+  },
+  {
+    "path": "server/pkg/rules/testdata/m0/02-pass-priority-transfer.json",
+    "bytes": 7207,
+    "blob": "9b06f8a41cddf3bb7cbab757453c762baab28852"
+  },
+  {
+    "path": "server/pkg/rules/testdata/m0/03-double-pass-empty-stack-ends-step.json",
+    "bytes": 7413,
+    "blob": "9d857d2026d764030ecd37e1aff5374acd9d0353"
+  },
+  {
+    "path": "server/pkg/rules/testdata/m0/04-reveal-own-secret-public.json",
+    "bytes": 7413,
+    "blob": "58b0fd028cf11e8c107ebc8e8f66c589874df46f"
+  },
+  {
+    "path": "server/pkg/rules/testdata/m0/05-read-minds-direct-resolve.json",
+    "bytes": 8970,
+    "blob": "0d104b2ef5c32031286519cc30c2b6545168147f"
+  },
+  {
+    "path": "server/pkg/rules/testdata/m0/06-multi-dream-maze-queued.json",
+    "bytes": 7495,
+    "blob": "887d6003c9cefb107f3e8503294c0ec2e7a3e959"
+  },
+  {
+    "path": "server/pkg/rules/testdata/m0/07-multi-dream-maze-resolves-after-double-pass.json",
+    "bytes": 7899,
+    "blob": "2e5e1d37325bf6678fbdb10d4d32a127cdfa9ad6"
+  },
+  {
+    "path": "server/pkg/rules/testdata/m0/08-alloy-knuckles-applies-permanent-keyword.json",
+    "bytes": 7693,
+    "blob": "9162496c8b2376f1b6453b5356c126c4c4b86c48"
+  },
+  {
+    "path": "server/pkg/rules/testdata/m0/09-illegal-not-your-priority.json",
+    "bytes": 7421,
+    "blob": "5e912c4a3d4a49f9f45c87c831d99134ad3ca53e"
+  },
+  {
+    "path": "server/pkg/rules/timing_window_test.go",
+    "bytes": 2041,
+    "blob": "08605f8c0ac5404b1187cf4f3f1c24899b5a7eee"
+  },
+  {
+    "path": "server/pkg/rules/types.go",
+    "bytes": 32576,
+    "blob": "8f411621ba1ae946d93705ba76447aa6c5d581ca"
+  },
+  {
+    "path": "shared/contracts/expectations/README.md",
+    "bytes": 210,
+    "blob": "8aebd3a832dac65817bb1f0cb0dfe0379620510a"
+  },
+  {
+    "path": "shared/contracts/fixtures/README.md",
+    "bytes": 364,
+    "blob": "27c3ca6af172481cb4938b8b0aa9aaec64b3c8bd"
+  },
+  {
+    "path": "shared/contracts/fixtures/bq005-multi-dream-maze.fixture.json",
+    "bytes": 829,
+    "blob": "21d72db750a28d1df686a49dcade52154580b41f"
+  },
+  {
+    "path": "shared/contracts/fixtures/bq010-read-minds.fixture.json",
+    "bytes": 879,
+    "blob": "bf135e26a25e722d8b3b85f1d56b4d8af9f5aeb1"
+  },
+  {
+    "path": "shared/contracts/fixtures/bq013-call-lightning.fixture.json",
+    "bytes": 847,
+    "blob": "297e2198f2368d0910addb1d7f0fa46db2f3a03f"
+  },
+  {
+    "path": "shared/contracts/fixtures/bq022-alloy-knuckles.fixture.json",
+    "bytes": 825,
+    "blob": "6a9f4ec8b1d066bebf1f520fec78e9f6d4316582"
+  },
+  {
+    "path": "shared/contracts/fixtures/bq024-spinal-bio-armor.fixture.json",
+    "bytes": 1149,
+    "blob": "b812aab9ffda96aa4b0bbfd3c36e5b99c6acd871"
+  },
+  {
+    "path": "shared/contracts/fixtures/jz74-unexpected-accident.fixture.json",
+    "bytes": 783,
+    "blob": "a181c88dfcc637cad41477fec4bb05c710adda21"
+  },
+  {
+    "path": "shared/contracts/fixtures/wm088-field-investigation.fixture.json",
+    "bytes": 787,
+    "blob": "0b66f60b8de9ea019158b6893c352ddbf2850216"
+  },
+  {
+    "path": "shared/contracts/fixtures/wm090-tea-leaf-divination.fixture.json",
+    "bytes": 783,
+    "blob": "adcafb57a7a5a9e429dea3fbb8018b37cec29107"
+  },
+  {
+    "path": "shared/contracts/fixtures/xq03-force-field-restraint.fixture.json",
+    "bytes": 780,
+    "blob": "a78428b9702195291f39efdceb99a72240f5a5ee"
+  },
+  {
+    "path": "shared/contracts/fixtures/xq34-inspiration.fixture.json",
+    "bytes": 769,
+    "blob": "b55fd8ccd37eeb52cf3ab554cdf0ff8db9a527b1"
+  },
+  {
+    "path": "shared/contracts/normalized/README.md",
+    "bytes": 285,
+    "blob": "b0b0486538b23daf923a71fb0316a9bc2a4d4864"
+  },
+  {
+    "path": "shared/contracts/normalized/card-logic.contracts.normalized.json",
+    "bytes": 5387,
+    "blob": "c04bd41635a1a6ff376ff8c25ef825f1921716d0"
+  },
+  {
+    "path": "shared/protocol/README.md",
+    "bytes": 120,
+    "blob": "ee26a0204abc39d4e399359c9594f39b195690dc"
+  },
+  {
+    "path": "shared/protocol/events/README.md",
+    "bytes": 109,
+    "blob": "7da0de5d793eb0779ed3de22245035112884296b"
+  },
+  {
+    "path": "shared/protocol/messages.schema.json",
+    "bytes": 1292,
+    "blob": "a2eedeb633534450d0c46b4757e02378268fb1d8"
+  },
+  {
+    "path": "shared/protocol/messages/README.md",
+    "bytes": 135,
+    "blob": "d87bdc9ca12a8596fdbf05edce9d45889c9da46c"
+  },
+  {
+    "path": "shared/protocol/views/README.md",
+    "bytes": 115,
+    "blob": "e0f99479218a1ad6edf566b6acb9e5f2b3ede920"
+  },
+  {
+    "path": "shared/schemas/README.md",
+    "bytes": 113,
+    "blob": "ca35b45476fbab2d77f57c4119de84b74c0800b3"
+  },
+  {
+    "path": "shared/schemas/card-logic.schema.json",
+    "bytes": 5230,
+    "blob": "8f4c95850f4d698966cdb696a6a3e3d1c874bbbf"
+  },
+  {
+    "path": "shared/schemas/card.schema.json",
+    "bytes": 1828,
+    "blob": "e232f457abcc5872f4f9412ea58aebd0b32e34fe"
+  },
+  {
+    "path": "shared/schemas/fixture.schema.json",
+    "bytes": 2570,
+    "blob": "9ab2d9c13d3bd55ea6839f69d49f5b7257901d69"
+  }
+]

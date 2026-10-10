@@ -1,0 +1,36 @@
+{
+  "scope": "Actual built client route/chunk checks, local backend absent; no fixtures or HTTP response interception",
+  "public_deployment_checked": false,
+  "live_backend_checked": false,
+  "checks": [
+    {
+      "route": "/",
+      "result": "pass",
+      "game_shell": true,
+      "debugger_chunk_requests": [],
+      "requests": [
+        "/",
+        "/assets/index-ClWuv-PL.js",
+        "/assets/index-Cxy2pYea.css",
+        "/api/catalog"
+      ]
+    },
+    {
+      "route": "/legacy-debugger",
+      "result": "pass",
+      "designed_mock_fallback": true,
+      "debugger_chunk_requests": [
+        "/assets/LegacyDebuggerEntry-CzejxkOr.js"
+      ],
+      "requests": [
+        "/legacy-debugger",
+        "/assets/index-ClWuv-PL.js",
+        "/assets/index-Cxy2pYea.css",
+        "/assets/LegacyDebuggerEntry-CzejxkOr.js",
+        "/api/debugger/messages"
+      ],
+      "submit_disabled_without_live_server": true
+    }
+  ],
+  "uncaught_javascript_errors": []
+}

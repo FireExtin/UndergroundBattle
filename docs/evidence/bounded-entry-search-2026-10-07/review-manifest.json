@@ -1,0 +1,414 @@
+{
+  "sourceCandidateCommit": "637a15908142ac43919cb6f0776e686b6733c52c",
+  "postGoMergeCommit": "54e0c68959cceeca26e938c8973980cbfdad7a51",
+  "branch": "codex/jz48-combined-review-20261007",
+  "engine": "rust-v0.2.50-bounded-entry-search-candidate",
+  "pool": "limited-v2.45-bounded-entry-search-candidate",
+  "rules": "hegemony-pdf-v1",
+  "cards": 109,
+  "societies": 8,
+  "notPublished": false,
+  "providerTrackedClean": true,
+  "coreFiles": [
+    {
+      "path": "rust-game/data/cards.json",
+      "sha256": "89bfef71fbaa31a74e26cb2d3d9e2eda826eb5a8208f7a9806ee6b31141eafaf",
+      "byteUnchangedSinceCandidateCommit": true
+    },
+    {
+      "path": "rust-game/src/bounded_entry_fresh_tests.rs",
+      "sha256": "90cfb2f3efca7dcfccacd78489b180d86363f4caf7bc07e4e08c77470ee799f4",
+      "byteUnchangedSinceCandidateCommit": true
+    },
+    {
+      "path": "rust-game/src/bounded_search.rs",
+      "sha256": "c511655c53b1acf6c3fb721b3127c6db35cbb6aa3fd5090118ce4774988db537",
+      "byteUnchangedSinceCandidateCommit": true
+    },
+    {
+      "path": "rust-game/src/bounded_search_tests.rs",
+      "sha256": "687d585a7f67342686298abe854553383d57de8e58f53a869de71aeb4874fcf8",
+      "byteUnchangedSinceCandidateCommit": true
+    },
+    {
+      "path": "rust-game/src/catalog.rs",
+      "sha256": "03be95f7f5c3c870ce47d7626bcc57c780a96e8d596fba32d8a9a359a5feec05",
+      "byteUnchangedSinceCandidateCommit": true
+    },
+    {
+      "path": "rust-game/src/engine.rs",
+      "sha256": "24c0ed1aabbb5f9a654e86ad0323d0f3470f4c5ad1b9f4b210504f5db8182609",
+      "byteUnchangedSinceCandidateCommit": true
+    },
+    {
+      "path": "rust-game/src/jc089_tests.rs",
+      "sha256": "276823d330b7ceea3c869f8a425673ea1fcad6b88196ebd703e545342aa491fe",
+      "byteUnchangedSinceCandidateCommit": true
+    },
+    {
+      "path": "rust-game/src/jz50_search_tests.rs",
+      "sha256": "e42fffac0a0993549f3305f6aeaabc323afc06d46f0fa985edeef33880442ca6",
+      "byteUnchangedSinceCandidateCommit": true
+    },
+    {
+      "path": "rust-game/src/lib.rs",
+      "sha256": "7d27d7447d43458eba4af0274b331babb8adbde5a5e85dbb0d29d3be3890ec88",
+      "byteUnchangedSinceCandidateCommit": true
+    },
+    {
+      "path": "rust-game/src/model.rs",
+      "sha256": "29e962ead98abd06079f684b253b47be42fee09cd2f1f8e4574655940e9f72e9",
+      "byteUnchangedSinceCandidateCommit": true
+    },
+    {
+      "path": "rust-game/src/renown_tests.rs",
+      "sha256": "eddf9c7ff9146750dc50f1a1d4b298bb4dd8b9a8a58862f5fa9920fa175ce8f0",
+      "byteUnchangedSinceCandidateCommit": true
+    },
+    {
+      "path": "rust-game/src/resolution.rs",
+      "sha256": "97d92faded4c7fb168aa9489416c0817058f24b6592d6dbcb9bc6a274206305f",
+      "byteUnchangedSinceCandidateCommit": true
+    },
+    {
+      "path": "rust-game/src/room.rs",
+      "sha256": "361fac29b9c4b524d2c7c91cedb5914b40dc4c3f7ae9af6df1367ed0e0d2bbb2",
+      "byteUnchangedSinceCandidateCommit": true
+    },
+    {
+      "path": "rust-game/src/rules.rs",
+      "sha256": "ddf72af85b2f83dedacec9f3318335a7f0f370a392c388bd98235330e6f31a64",
+      "byteUnchangedSinceCandidateCommit": true
+    },
+    {
+      "path": "sites/src/kernel.mjs",
+      "sha256": "2a72feb808392aade3ff780b5f812a5a444a67873ecf1b05a38d46431e489ddb",
+      "byteUnchangedSinceCandidateCommit": true
+    },
+    {
+      "path": "sites/test/bounded-entry-search.test.mjs",
+      "sha256": "77f039aaa57c4be293fdc531f15d7ff8c1c1401c12530be6c0703fd044292ef6",
+      "byteUnchangedSinceCandidateCommit": true
+    },
+    {
+      "path": "sites/test/fixtures/bounded-entry-native-v050.json",
+      "sha256": "0ff7a60fa97c929a00bfc751e91404f8e6436eba1476cf7d2fa74ceefc938113",
+      "byteUnchangedSinceCandidateCommit": true
+    },
+    {
+      "path": "sites/test/fixtures/jz50-room-native-v050.json",
+      "sha256": "6b5222ef8d714c4093ae0a12c84e6611900cff397e3e647d610bca6385222993",
+      "byteUnchangedSinceCandidateCommit": true
+    },
+    {
+      "path": "sites/test/fixtures/pause-resume-native-v050.json",
+      "sha256": "bae5008dc1b1b88a2a497e16ecbeeef3fba993dd014472a08f54db836ac318a2",
+      "byteUnchangedSinceCandidateCommit": true
+    },
+    {
+      "path": "sites/test/fixtures/sealed-restart-native-v050.json",
+      "sha256": "c4319b08f514cef9c0320574af1c5f92163f3306b062571bf65a22ed849ffba1",
+      "byteUnchangedSinceCandidateCommit": true
+    },
+    {
+      "path": "sites/test/fixtures/sealing-room-native-v050.json",
+      "sha256": "d6b3e80c907c2fc8f5febae9e2b5c60f53a321061e99fd4208dcc4ba7edd3395",
+      "byteUnchangedSinceCandidateCommit": true
+    },
+    {
+      "path": "sites/test/integration.test.mjs",
+      "sha256": "5905c3769521a6394a62ab4605e86df56ca882d7d020d747fd3a7dd262fd73e4",
+      "byteUnchangedSinceCandidateCommit": true
+    },
+    {
+      "path": "sites/test/pause-resume-integration.test.mjs",
+      "sha256": "2d4e164865f6d36a34b8d0768375efe0d2f2468bf51b0c073c6df21aa83fc08e",
+      "byteUnchangedSinceCandidateCommit": true
+    },
+    {
+      "path": "sites/test/sealed-restart-integration.test.mjs",
+      "sha256": "1e506e5d4a98b1d6974c79d00a38e9b49bb9376edb1f84a3044f0cbfe70369b1",
+      "byteUnchangedSinceCandidateCommit": true
+    },
+    {
+      "path": "sites/test/society-foundation.fixture.mjs",
+      "sha256": "6993f979c0283a9d2b608d005d5d5263320f3e9ad67f3b1053fefbdefae03bcb",
+      "byteUnchangedSinceCandidateCommit": true
+    },
+    {
+      "path": "web/public/card-scans.json",
+      "sha256": "9fdbe79f082c8594dd512ac92f87fc30b5d61878a357d81fcdcff7d740ac1411",
+      "byteUnchangedSinceCandidateCommit": true
+    },
+    {
+      "path": "web/public/cards/BQ104.jpg",
+      "sha256": "dbee5b3829cf0c46b2820beccefda28708c3c8e87c589dbefce1e975faa916eb",
+      "byteUnchangedSinceCandidateCommit": true
+    },
+    {
+      "path": "web/public/cards/XQ48.jpg",
+      "sha256": "0cd31207bda681093839e86e5bb87cee624a3c0a657c70b60fa765f439089746",
+      "byteUnchangedSinceCandidateCommit": true
+    },
+    {
+      "path": "web/src/game/BoundedEntrySearch.test.jsx",
+      "sha256": "3e7b974bf073dd0875e583b38c2a800a16f7c8bb1a9b675fc77470f868b65c7e",
+      "byteUnchangedSinceCandidateCommit": true
+    },
+    {
+      "path": "web/src/game/ChoicePanel.tsx",
+      "sha256": "762d9b8bccb3b629f7ebd0ab19aa95db7224e8c5eb9ebd08c1d459e72aeba2ad",
+      "byteUnchangedSinceCandidateCommit": true
+    },
+    {
+      "path": "web/src/game/JC089Curse.test.jsx",
+      "sha256": "8cb3dbc5028a214913a0fd92ca48140c437887fb59a951c0205192b61ccb192b",
+      "byteUnchangedSinceCandidateCommit": true
+    },
+    {
+      "path": "web/src/game/JZ55UniqueDestroy.test.jsx",
+      "sha256": "e50b1281115ef4481462febdcc2e6a960d50316123e4174a292fdd62fd36df72",
+      "byteUnchangedSinceCandidateCommit": true
+    },
+    {
+      "path": "web/src/game/boundedEntryNative50Test.fixture.json",
+      "sha256": "884d03e1603814b2d5114dd86b0600c7499315854b0a17fe2a4c75606ed48728",
+      "byteUnchangedSinceCandidateCommit": true
+    },
+    {
+      "path": "web/src/game/cardScans.ts",
+      "sha256": "86473f60ae17f7ce2d5c8b94e14f881cdfd99d7888173b57d498e2c6efcd453c",
+      "byteUnchangedSinceCandidateCommit": true
+    }
+  ],
+  "verification": {
+    "nativeFocused": {
+      "passed": 19,
+      "log": "logs/bounded-search50-native-fixed.log"
+    },
+    "nativeAggregate": {
+      "libCases": 606,
+      "integrationCases": 40,
+      "totalUniqueVerified": 646,
+      "singleCleanFullRun": false,
+      "fullInitialPassed": 604,
+      "fullInitialFailed": 1,
+      "staleCountFixedSeparately": true,
+      "freshTestAddedSeparately": true
+    },
+    "webPostGo": {
+      "files": 69,
+      "passed": 614,
+      "failed": 0,
+      "singleActualFullRun": true,
+      "command": "npm test -- --maxWorkers=2",
+      "log": "logs/bounded-search50-post-go-web.log"
+    },
+    "workerPostGo": {
+      "passed": 39,
+      "failed": 0,
+      "singleActualFullRun": true,
+      "command": "npm test -- --test-concurrency=1",
+      "log": "logs/bounded-search50-post-go-worker.log"
+    },
+    "typecheckPostGo": {
+      "exitCode": 0,
+      "command": "npm run typecheck",
+      "log": "logs/bounded-search50-post-go-typecheck.log"
+    },
+    "sitesBuildPostGo": {
+      "exitCode": 0,
+      "command": "npm run build",
+      "dryRunOnly": true,
+      "log": "logs/bounded-search50-post-go-site-build.log"
+    },
+    "wasmParity": {
+      "engine": "rust-v0.2.50-bounded-entry-search-candidate",
+      "pool": "limited-v2.45-bounded-entry-search-candidate",
+      "ordinaryCards": 109,
+      "explicitNativeSteps": 776,
+      "accepted": 743,
+      "rejected": 33,
+      "fourSeatViewParity": true,
+      "freshLegalFactoryByteEqual": true,
+      "freshNormalCommands": 497,
+      "freshWholeTransitionsAndOpaqueStatesExact": true,
+      "freshTerminalStateByteEqual": true,
+      "wasmSha256": "e3d26f7041a114a96c9933374a33e63b0c8e45b9a4506b7937fb70cbf99a9d81"
+    },
+    "invalidSnapshots": {
+      "engine": "rust-v0.2.50-bounded-entry-search-candidate",
+      "invalidNativeSnapshots": 192,
+      "viewAndCommandBothReject": true,
+      "scope": "Two fixed programs, four actors,24 malformed program/choice/library/source variants each; explicit Native test states"
+    },
+    "naturalNewCardBrowserMechanismsCompleted": 0,
+    "shortVisualChecks": 5,
+    "shortUiCommands": 5,
+    "shortBrowserScriptOverallPassed": false,
+    "shortBrowserScriptFailure": "extra pause step uses wrong button name; actual lobby/table/assets verified",
+    "initialShortBrowserScriptHistoricalScope": "Existing shortVisualChecks/shortUiCommands/shortBrowserScriptOverallPassed fields describe the first failed short script, preserved unchanged; completed follow-up below is separate.",
+    "completedShortSmoke": {
+      "result": "smoke-complete-20261007/result.json",
+      "passed": true,
+      "checks": 8,
+      "actualNewTables": 1,
+      "uiCommands": 8,
+      "maxUiCommands": 10,
+      "terminalVersion": 9,
+      "noStateInjection": true,
+      "naturalNewCardMechanismsVerified": false,
+      "mobileScope": "390x844 actual current CSS rendering only, not full usability",
+      "sqliteReadOnlyAudit": "smoke-complete-20261007/read-only-d1-audit.json",
+      "matchingD1Receipts": 8,
+      "exactCommandIdSeatAndVersionMatch": true,
+      "browserStopped": true,
+      "own8120PortConfirmedClosed": true,
+      "log": "logs/bounded-search50-smoke-complete.log"
+    },
+    "regionReplacementCoverageCorrection": {
+      "oldPendingAfterCoverageClaimWithdrawn": true,
+      "nativeCases": [
+        {
+          "path": "rust-game/src/bounded_search_tests.rs",
+          "line": 421,
+          "test": "xq48_region_replaced_before_declaration_or_during_response_skips_search_and_shuffles",
+          "coverage": "explicit layout: before optional declaration acceptance and after acceptance during response"
+        },
+        {
+          "path": "rust-game/src/bounded_search_tests.rs",
+          "line": 446,
+          "test": "bq104_lost_original_region_preserves_search_reveal_shuffle_without_placing_in_replacement",
+          "coverage": "explicit layout: after optional acceptance, before search pending opens"
+        }
+      ],
+      "pendingSearchOpenReplacementTestExists": false,
+      "ordinaryPendingCommandsGuard": "rust-game/src/engine.rs:566",
+      "noNaturalImpossibleCaseClaim": true
+    },
+    "ruleSourceRecheck": {
+      "note": "rule-source-recheck-20261008/README.md",
+      "ledger": "rule-source-recheck-20261008/source-ledger.json",
+      "fullOriginalPagesActuallyViewed": true,
+      "bq104OriginalActuallyViewed": true,
+      "bq104PrintSequenceConfirmed": true,
+      "sourceLostAbilityStillResolvesConfirmed": true,
+      "claimedPartialInvalidTargetClauseConfirmed": false,
+      "bq104OriginalRegionLostRulingStillPendingParent": false,
+      "specificBq104UserRulingAccepted": true
+    }
+  },
+  "openReviewItems": [
+    "Current-only Worker returns410 for old engine49 rooms",
+    "New bounded search browser natural mechanism chain remains unverified",
+    "Mobile rendering verified; full mobile usability remains unverified"
+  ],
+  "workerBytes": 47314,
+  "workerSha256": "005c4b99e2fa91b15bb77aa67f0fd6a9a568849f6371412f8602dd6a7d2982e4",
+  "currentWasmBytes": 2277324,
+  "currentWasmSha256": "e3d26f7041a114a96c9933374a33e63b0c8e45b9a4506b7937fb70cbf99a9d81",
+  "actualShortSmokeRuntime": {
+    "timeUtc": "2026-10-07T23:46:56Z",
+    "stoppedOwnOrphanWranglerAndDescendants": [
+      261861,
+      261868,
+      261878,
+      261887,
+      261893,
+      263048
+    ],
+    "originalShellSigintHadLeftChildren": true,
+    "postGoAlternateServerLaunch": "failed because original8120 server was still active",
+    "actualShortSmokeServer": "original local candidate50 compiled Worker with newly built post-Go web/dist assets; no factory seed header used",
+    "actualWorkerSha256": "005c4b99e2fa91b15bb77aa67f0fd6a9a568849f6371412f8602dd6a7d2982e4",
+    "postGoBuildWorkerSha256": "005c4b99e2fa91b15bb77aa67f0fd6a9a568849f6371412f8602dd6a7d2982e4",
+    "exactWorkerBytesSame": true,
+    "scope": "own local 8120 only; all original and smoke D1 files preserved"
+  },
+  "own8120PortConfirmedClosed": true,
+  "frozenProductCandidateCommit": "d55a740b97fc75aab25eea3dacbf870385cd1615",
+  "qaOnlyFollowup": {
+    "purpose": "Parent-requested single bounded short smoke, exact source quotes, and P3 coverage correction",
+    "productFilesUnchanged": true,
+    "originalFailureEvidencePreserved": true,
+    "newProductTestsAdded": false
+  },
+  "completedShortSmokeRuntime": {
+    "server": "successfully started local post-Go compiled Sites Worker50 + current assets; own8120 only",
+    "actualWorkerSha256": "005c4b99e2fa91b15bb77aa67f0fd6a9a568849f6371412f8602dd6a7d2982e4",
+    "actualWasmSha256": "e3d26f7041a114a96c9933374a33e63b0c8e45b9a4506b7937fb70cbf99a9d81",
+    "noFactorySeedHeader": true,
+    "cleanup": {
+      "timeUtc": "2026-10-07T23:53:03Z",
+      "stoppedOwnWranglerAndDescendants": [
+        264947,
+        264954,
+        264963,
+        264972,
+        264980,
+        264985
+      ],
+      "browserClosed": true,
+      "localD1Preserved": true,
+      "databaseAndCredentialsNotExported": true
+    },
+    "readOnlyD1Audit": {
+      "timeUtc": "2026-10-08T00:04:42.764042+00:00",
+      "sqliteReadOnly": true,
+      "roomId": "673ba1befc08b0113d8e7374",
+      "terminalVersion": 9,
+      "stateBytes": 17433,
+      "stateSha256": "0531c5ec95542d92468154d405333262d5df7fc0453ce123aed1a0ee219443ac",
+      "actualUiCommands": 8,
+      "matchingD1Receipts": 8,
+      "commandIdsAndSeatsAndVersionsMatchExactly": true,
+      "receiptVersions": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "ownQaNamespaceTotalRooms": 4,
+      "ownQaNamespaceTotalCommandReceipts": 14,
+      "fullDatabaseOrSeatCredentialsExported": false,
+      "own8120PortConfirmedClosed": true
+    },
+    "noDatabaseOrSeatCredentialsExported": true
+  },
+  "userBq104RegionLostRuling": {
+    "recordedAtUtc": "2026-10-08T01:27:25.382025+00:00",
+    "parentThreadId": "01a0fe65-0a4f-76cb-9bf7-44e1e01b70d6",
+    "questionTimeUtc": "2026-10-08T00:08:00Z",
+    "answerTimeUtc": "2026-10-08T01:23:00Z",
+    "timestampPrecision": "parent supplied minute precision",
+    "question": "两张卡的短烟测已通过，还剩 BQ104 一个边界要定：检索结算时，原地区已经消失。候选实现是“仍选出并展示一张合格雇员；无法放置就留在牌库，然后洗牌”。我倾向保留这个按牌面顺序尽量执行的处理，但原规则没有核实到明确裁定。你同意这样处理，还是与 XQ48 一样直接跳过检索、只洗牌？",
+    "userAnswer": "同意",
+    "acceptedBehavior": "BQ104 original source region lost: search/reveal one eligible employee; placement fails and card stays in original library; shuffle",
+    "scope": "specific BQ104 edge only, not a generic partial-resolution rule",
+    "productCandidateUnchanged": "d55a740b97fc75aab25eea3dacbf870385cd1615",
+    "qaCommit": "28a72af4b77fceb27b8452af48d48828dd53ba09",
+    "parentDirectedOfficialPublish": true
+  },
+  "publicationAuthorizedByParentAfterSpecificUserRuling": true,
+  "sourceClauseStillUnconfirmedButSpecificRulingReceived": true,
+  "publishedSiteAtInitialReview": 42,
+  "publishedSiteNow": 43,
+  "publicationReceipt": "publication-site43/site43-publication-receipt.json",
+  "publishedProviderSource": "5fb79b63e4a041df712dc3e2cc09205d3dd06ba8",
+  "deploymentId": "appgdep_6ac6f4d0c71c819184be22fddb742d8d",
+  "publicationStatus": "succeeded",
+  "nativeStoredArchiveHash": "sha256:593f58affbeeb2ab2988d8f7f925f0519b152ad0e00dff72fbde03ce8f1b4243",
+  "localFinalGzipArchiveHash": "c55aa6779e02666de7ba7830568c9657d5a2400cfd2891cb3dba3d5054738944",
+  "rawNativeArchiveByteEqualityVerified": false,
+  "archiveContentReadbackFailure": {
+    "verified": false,
+    "action": "library.prepare_materialize",
+    "target": "file_000000005a4081f5a3a0586a08c648e6",
+    "error": "HTTP error prior to action invocation. HTTPException: 404: Library file ownership could not be verified.",
+    "noAlternativeRouteOrRetry": true
+  }
+}

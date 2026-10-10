@@ -1,0 +1,18 @@
+{
+  "currentSourceCatalogMatchesSite37": true,
+  "comparedFields": [
+    "rulesVersion",
+    "cardPoolVersion",
+    "engineVersion",
+    "decks",
+    "cards",
+    "societies",
+    "deckBuildRules"
+  ],
+  "serviceOnlyFields": [
+    "transport",
+    "entryIdempotency"
+  ],
+  "engine": "rust-v0.2.45-jc089-poison-blood-candidate",
+  "cards": 103
+}

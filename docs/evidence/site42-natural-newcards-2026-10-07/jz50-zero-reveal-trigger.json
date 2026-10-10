@@ -1,0 +1,489 @@
+{
+  "commands": 227,
+  "checks": [],
+  "views": [
+    {
+      "seat": 0,
+      "version": 232,
+      "turn": 5,
+      "phase": "action",
+      "step": "team:1",
+      "hand": [
+        [
+          "i116",
+          "JC125"
+        ],
+        [
+          "i125",
+          "JC125"
+        ],
+        [
+          "i129",
+          "JC125"
+        ],
+        [
+          "i136",
+          "JC125"
+        ],
+        [
+          "i147",
+          "XQ40"
+        ],
+        [
+          "i152",
+          "JC125"
+        ]
+      ],
+      "assets": [
+        [
+          "i127",
+          null,
+          false
+        ],
+        [
+          "i132",
+          null,
+          false
+        ],
+        [
+          "i138",
+          null,
+          false
+        ],
+        [
+          "i153",
+          null,
+          false
+        ],
+        [
+          "i156",
+          null,
+          false
+        ],
+        [
+          "i128",
+          null,
+          true
+        ],
+        [
+          "i131",
+          null,
+          true
+        ],
+        [
+          "i142",
+          null,
+          true
+        ],
+        [
+          "i145",
+          null,
+          false
+        ]
+      ],
+      "board": [
+        [
+          0,
+          "i135",
+          "XQ40",
+          "p0",
+          false
+        ],
+        [
+          0,
+          "i141",
+          "JC125",
+          "p1",
+          false
+        ],
+        [
+          0,
+          "i160",
+          "JZ50",
+          "p1",
+          false
+        ]
+      ],
+      "sealed": [
+        {
+          "instanceId": "i149",
+          "cardId": "XQ41",
+          "name": "启迪之梦",
+          "owner": "p0",
+          "controller": "p0",
+          "kind": "sealed",
+          "exhausted": false,
+          "faceDown": false,
+          "text": "封印牌：公开、场外、空白；载体离场或翻暗时回到拥有者手牌",
+          "color": "紫",
+          "hostId": "i141"
+        }
+      ],
+      "graveyard": [],
+      "pending": null,
+      "waiting": {
+        "playerId": "p1",
+        "kind": "trigger",
+        "title": "墓穴食尸鬼：现身触发"
+      },
+      "responseWindow": null,
+      "stack": [],
+      "legalSample": [],
+      "legalKinds": [],
+      "relevantActions": [],
+      "actualAssets": [
+        {
+          "instanceId": "i127",
+          "name": "资产",
+          "owner": "p0",
+          "controller": "p0",
+          "kind": "asset",
+          "exhausted": false,
+          "faceDown": false,
+          "color": "紫",
+          "magic": ""
+        },
+        {
+          "instanceId": "i132",
+          "name": "资产",
+          "owner": "p0",
+          "controller": "p0",
+          "kind": "asset",
+          "exhausted": false,
+          "faceDown": false,
+          "color": "中立",
+          "magic": ""
+        },
+        {
+          "instanceId": "i138",
+          "name": "资产",
+          "owner": "p0",
+          "controller": "p0",
+          "kind": "asset",
+          "exhausted": false,
+          "faceDown": false,
+          "color": "中立",
+          "magic": ""
+        },
+        {
+          "instanceId": "i153",
+          "name": "资产",
+          "owner": "p0",
+          "controller": "p0",
+          "kind": "asset",
+          "exhausted": false,
+          "faceDown": false,
+          "color": "紫",
+          "magic": "星辰"
+        },
+        {
+          "instanceId": "i156",
+          "name": "资产",
+          "owner": "p0",
+          "controller": "p0",
+          "kind": "asset",
+          "exhausted": false,
+          "faceDown": false,
+          "color": "紫",
+          "magic": ""
+        },
+        {
+          "instanceId": "i128",
+          "name": "资产",
+          "owner": "p1",
+          "controller": "p1",
+          "kind": "asset",
+          "exhausted": true,
+          "faceDown": false,
+          "color": "黑",
+          "magic": "死亡"
+        },
+        {
+          "instanceId": "i131",
+          "name": "资产",
+          "owner": "p1",
+          "controller": "p1",
+          "kind": "asset",
+          "exhausted": true,
+          "faceDown": false,
+          "color": "蓝",
+          "magic": "鲜血"
+        },
+        {
+          "instanceId": "i142",
+          "name": "资产",
+          "owner": "p1",
+          "controller": "p1",
+          "kind": "asset",
+          "exhausted": true,
+          "faceDown": false,
+          "color": "中立",
+          "magic": ""
+        },
+        {
+          "instanceId": "i145",
+          "name": "资产",
+          "owner": "p1",
+          "controller": "p1",
+          "kind": "asset",
+          "exhausted": false,
+          "faceDown": false,
+          "color": "中立",
+          "magic": ""
+        }
+      ]
+    },
+    {
+      "seat": 1,
+      "version": 232,
+      "turn": 5,
+      "phase": "action",
+      "step": "team:1",
+      "hand": [
+        [
+          "i122",
+          "XQ12"
+        ],
+        [
+          "i130",
+          "JZ49"
+        ],
+        [
+          "i137",
+          "JC125"
+        ],
+        [
+          "i144",
+          "JC085"
+        ],
+        [
+          "i155",
+          "JC125"
+        ]
+      ],
+      "assets": [
+        [
+          "i127",
+          null,
+          false
+        ],
+        [
+          "i132",
+          null,
+          false
+        ],
+        [
+          "i138",
+          null,
+          false
+        ],
+        [
+          "i153",
+          null,
+          false
+        ],
+        [
+          "i156",
+          null,
+          false
+        ],
+        [
+          "i128",
+          null,
+          true
+        ],
+        [
+          "i131",
+          null,
+          true
+        ],
+        [
+          "i142",
+          null,
+          true
+        ],
+        [
+          "i145",
+          null,
+          false
+        ]
+      ],
+      "board": [
+        [
+          0,
+          "i135",
+          "XQ40",
+          "p0",
+          false
+        ],
+        [
+          0,
+          "i141",
+          "JC125",
+          "p1",
+          false
+        ],
+        [
+          0,
+          "i160",
+          "JZ50",
+          "p1",
+          false
+        ]
+      ],
+      "sealed": [
+        {
+          "instanceId": "i149",
+          "cardId": "XQ41",
+          "name": "启迪之梦",
+          "owner": "p0",
+          "controller": "p0",
+          "kind": "sealed",
+          "exhausted": false,
+          "faceDown": false,
+          "text": "封印牌：公开、场外、空白；载体离场或翻暗时回到拥有者手牌",
+          "color": "紫",
+          "hostId": "i141"
+        }
+      ],
+      "graveyard": [],
+      "pending": {
+        "id": "i161",
+        "kind": "trigger",
+        "title": "墓穴食尸鬼：现身触发",
+        "description": "选择符合数量限制的选项，然后确认。",
+        "playerId": "p1",
+        "options": [
+          {
+            "id": "accept",
+            "label": "发动触发能力"
+          }
+        ],
+        "min": 0,
+        "max": 1,
+        "allowDecline": true
+      },
+      "waiting": {
+        "playerId": "p1",
+        "kind": "trigger",
+        "title": "墓穴食尸鬼：现身触发"
+      },
+      "responseWindow": null,
+      "stack": [],
+      "legalSample": [
+        {
+          "kind": "choose",
+          "choiceId": "i161",
+          "id": "choose:i161",
+          "label": "确认选择"
+        }
+      ],
+      "legalKinds": [
+        "choose"
+      ],
+      "relevantActions": [],
+      "actualAssets": [
+        {
+          "instanceId": "i127",
+          "name": "资产",
+          "owner": "p0",
+          "controller": "p0",
+          "kind": "asset",
+          "exhausted": false,
+          "faceDown": false,
+          "color": "紫",
+          "magic": ""
+        },
+        {
+          "instanceId": "i132",
+          "name": "资产",
+          "owner": "p0",
+          "controller": "p0",
+          "kind": "asset",
+          "exhausted": false,
+          "faceDown": false,
+          "color": "中立",
+          "magic": ""
+        },
+        {
+          "instanceId": "i138",
+          "name": "资产",
+          "owner": "p0",
+          "controller": "p0",
+          "kind": "asset",
+          "exhausted": false,
+          "faceDown": false,
+          "color": "中立",
+          "magic": ""
+        },
+        {
+          "instanceId": "i153",
+          "name": "资产",
+          "owner": "p0",
+          "controller": "p0",
+          "kind": "asset",
+          "exhausted": false,
+          "faceDown": false,
+          "color": "紫",
+          "magic": "星辰"
+        },
+        {
+          "instanceId": "i156",
+          "name": "资产",
+          "owner": "p0",
+          "controller": "p0",
+          "kind": "asset",
+          "exhausted": false,
+          "faceDown": false,
+          "color": "紫",
+          "magic": ""
+        },
+        {
+          "instanceId": "i128",
+          "name": "资产",
+          "owner": "p1",
+          "controller": "p1",
+          "kind": "asset",
+          "exhausted": true,
+          "faceDown": false,
+          "color": "黑",
+          "magic": "死亡"
+        },
+        {
+          "instanceId": "i131",
+          "name": "资产",
+          "owner": "p1",
+          "controller": "p1",
+          "kind": "asset",
+          "exhausted": true,
+          "faceDown": false,
+          "color": "蓝",
+          "magic": "鲜血"
+        },
+        {
+          "instanceId": "i142",
+          "name": "资产",
+          "owner": "p1",
+          "controller": "p1",
+          "kind": "asset",
+          "exhausted": true,
+          "faceDown": false,
+          "color": "中立",
+          "magic": ""
+        },
+        {
+          "instanceId": "i145",
+          "name": "资产",
+          "owner": "p1",
+          "controller": "p1",
+          "kind": "asset",
+          "exhausted": false,
+          "faceDown": false,
+          "color": "中立",
+          "magic": ""
+        }
+      ]
+    }
+  ],
+  "stopped": "private-choice"
+}

@@ -1,0 +1,94 @@
+{
+  "baseline": "99a208c0e6dc73669292396268840a0d9034547a",
+  "engine": "rust-v0.2.45-jc089-poison-blood-candidate",
+  "pool": "limited-v2.42-jc089-poison-blood-candidate",
+  "native": {
+    "library": 536,
+    "integration": 32,
+    "total": 568,
+    "jc089Focused": 23
+  },
+  "wasm": {
+    "engineVersion": "rust-v0.2.45-jc089-poison-blood-candidate",
+    "poolVersion": "limited-v2.42-jc089-poison-blood-candidate",
+    "commands": 579,
+    "rejected": 5,
+    "checkpoints": 1299,
+    "chainCommands": 13,
+    "views": 7564,
+    "kinds": {
+      "game": 1,
+      "passResponse": 10,
+      "beginResponse": 1,
+      "submitResponse": 1
+    },
+    "wasmBytes": 2197622,
+    "wasmSha256": "ffbabae8bdb36352ae11acab613365ea3bdcdb0681d246a8d11b354864f01099",
+    "frozen44Bytes": 2191175,
+    "frozen44Sha256": "6cf6dca6a06844c84e38fbed2a084145bc0e63ae3897de18b864814c314d11f9"
+  },
+  "web": {
+    "files": 67,
+    "tests": 566,
+    "jc089Focused": 9,
+    "timeoutMs": 30000,
+    "fixtureLayouts": 23
+  },
+  "worker": {
+    "tests": 25,
+    "historicalTuplesRejected": 40,
+    "alteredIdentitiesRejected": 5,
+    "currentWasmCount": 1
+  },
+  "historicalBytes": {
+    "baselineFilesUnchanged": 204,
+    "newFrozen44Files": 5,
+    "finalFiles": 209,
+    "finalDirectories": 40
+  },
+  "typecheckAndViteBuild": true,
+  "workerDryRun": true,
+  "naturalBrowserUi": "not performed by this task; parent will verify separately",
+  "auditBinary": {
+    "path": "/tmp/jc089-mechanism-evidence/hegemony-audit-engine45-frozen",
+    "bytes": 11324840,
+    "sha256": "cd8ddd98dcc299c2026dda3b2d58dfdd8695fcc18d95a81a7da6c667ad0e5577",
+    "cargoBinary": "hegemony-audit",
+    "rustc": "rustc 1.90.0 (1159e78c4 2025-09-14)",
+    "profile": "dev; CARGO_INCREMENTAL=0; CARGO_PROFILE_DEV_DEBUG=0; CARGO_PROFILE_DEV_STRIP=debuginfo; --locked --offline --jobs 1 --bin hegemony-audit",
+    "target": "/tmp/jz49-native-target",
+    "sourceFilesManifestSha256": "67f7c20a18a6924948b41848d75a929f8a0787b38b42445a2964cfee2a46281e"
+  },
+  "driverAndTestFiles": [
+    {
+      "path": "rust-game/src/jc089_tests.rs",
+      "bytes": 29247,
+      "sha256": "b6b48e87063503b15cb956c7b6cd8d1d998728fccb3e1e74e055d47a2561af2f"
+    },
+    {
+      "path": "rust-game-wasm/tests/jc089_compare.mjs",
+      "bytes": 3514,
+      "sha256": "86442816d01a2ed2e2486c17cfe94fa04a9c349b503a4ff282f68406c0f86e55"
+    },
+    {
+      "path": "web/src/game/JC089Curse.test.jsx",
+      "bytes": 7779,
+      "sha256": "b1a648753b79b76399950cd0086e541001e7ecb1d34ddc0a3615ef670b768320"
+    },
+    {
+      "path": "web/src/game/jc089Test.fixture.json",
+      "bytes": 1430557,
+      "sha256": "cf81b58051b40ce158b042ab53fb13199266641faaafb3d99fb14ef478f1bdc0"
+    },
+    {
+      "path": "sites/test/kernel-routing.test.mjs",
+      "bytes": 4616,
+      "sha256": "bf0efe71854cc5b031b990d8ea2b7f46d042069aeaae0f7f4cdda49843b68bfd"
+    },
+    {
+      "path": "sites/test/integration.test.mjs",
+      "bytes": 17814,
+      "sha256": "35e74abbd1c970e4215c60a4211c2bb48075b05fd1337731fe23ddbb3343b4fe"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "scope": "post-Go current production client + compiled Worker50 + local D1; short lobby/table visual smoke",
+  "maxNewTables": 1,
+  "actualNewTables": 1,
+  "maxUiCommands": 10,
+  "noStateInjection": true,
+  "naturalNewCardMechanismsVerified": false,
+  "passed": false,
+  "error": "Locator.click: Timeout 15000ms exceeded.\nCall log:\n  - waiting for get_by_role(\"button\", name=\"暂停并保存此桌\", exact=True)\n",
+  "uiCommands": 5,
+  "checks": [
+    {
+      "check": "live GameApp lobby, retired debugger absent"
+    },
+    {
+      "check": "actual two-seat ready/start/keep-hand UI; desktop table and 3 regions",
+      "version": 6,
+      "engine": "rust-v0.2.50-bounded-entry-search-candidate"
+    },
+    {
+      "check": "actual hosted original asset byte hash",
+      "card": "BQ104",
+      "sha256": "dbee5b3829cf0c46b2820beccefda28708c3c8e87c589dbefce1e975faa916eb"
+    },
+    {
+      "check": "actual hosted original asset byte hash",
+      "card": "XQ48",
+      "sha256": "0cd31207bda681093839e86e5bb87cee624a3c0a657c70b60fa765f439089746"
+    },
+    {
+      "check": "mobile table renders in current CSS",
+      "viewport": [
+        390,
+        844
+      ]
+    }
+  ],
+  "pageErrors": [],
+  "browserStopped": true
+}

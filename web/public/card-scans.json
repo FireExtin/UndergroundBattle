@@ -543,5 +543,105 @@
     "url": "/cards/JZ55.jpg",
     "source": "resource/ymsj-fun.github.io/cards/JZ55 传奇落幕.jpg",
     "sha256": "9155faa90be22aa66e56148dfacd0d517eb7b6f7b56fd1b45b71a6804719784a"
+  },
+  "JZ48": {
+    "url": "/cards/JZ48.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JZ48 街头劫匪.jpg",
+    "sha256": "a9a5da75938c22872cca524776356b10f2a0250370d3ba3ed3b31deb332e5b4f"
+  },
+  "JZ50": {
+    "url": "/cards/JZ50.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JZ50 墓穴食尸鬼.jpg",
+    "sha256": "403e44bb5f7f0ff8715acb267a8369c3715b2dc752d7fe612de085da29b523e7"
+  },
+  "JZ51": {
+    "url": "/cards/JZ51.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JZ51 温迪戈.jpg",
+    "sha256": "1b0311913bbf4a26c0e9e2dc2c0d6b656bd802cc6e831350f6f2500edf577dc0"
+  },
+  "JZ52": {
+    "url": "/cards/JZ52.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JZ52 大维齐尔迈哈穆德.jpg",
+    "sha256": "7f9ad8adb68bdd84877ebdead2bc13ed04983099977333d2106486405c6478a3"
+  },
+  "JZ53": {
+    "url": "/cards/JZ53.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JZ53 尸舞舒拉密兹.jpg",
+    "sha256": "a84d896c1b552dabda05a1fc12c55224275a31b63a8408446508775235cc4623"
+  },
+  "JC089": {
+    "url": "/cards/JC089.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC089 毒血诅咒.jpg",
+    "sha256": "83853a1a4c3e6ecd9644f7bb5c843e70585d421f1792a0e4a141ebbe867d12f7"
+  },
+  "XQ40": {
+    "url": "/cards/XQ40.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/XQ40 催眠术表演者.jpg",
+    "sha256": "b4f4e3f294d9ee1893d5b6d11124f0c12e472076e52f6365bdde7ffe49d6162c"
+  },
+  "XQ41": {
+    "url": "/cards/XQ41.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/XQ41 启迪之梦.jpg",
+    "sha256": "02a56f5d1fe9d57121591f19d96f3756a8cf4ab60725ba292474758e5d0af179"
+  },
+  "XQ45": {
+    "url": "/cards/XQ45.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/XQ45 破颅而出.jpg",
+    "sha256": "6475556f30b08853ed5bb2e1c82b3314c73947fb59bc7d044060a5555f5ef8cf"
+  },
+  "BQ104": {
+    "url": "/cards/BQ104.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/BQ104 猎头顾问.jpg",
+    "sha256": "dbee5b3829cf0c46b2820beccefda28708c3c8e87c589dbefce1e975faa916eb"
+  },
+  "XQ48": {
+    "url": "/cards/XQ48.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/XQ48 街头演说家.jpg",
+    "sha256": "0cd31207bda681093839e86e5bb87cee624a3c0a657c70b60fa765f439089746"
+  },
+  "JC045": {
+    "url": "/cards/JC045.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC045 钟摆祭司.jpg",
+    "sha256": "7b79668cee2cab604341a79f86decb03587046b31f3c5586123bcc95561d3d60"
+  },
+  "JC031": {
+    "url": "/cards/JC031.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC031 唤灵师.jpg",
+    "sha256": "c5d64c9392c3627659b405bc422a49535d35368b5aef5cc50cfc85f2123e6436"
+  },
+  "JC090": {
+    "url": "/cards/JC090.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC090 灵魂契约.jpg",
+    "sha256": "7734b37f8e222307c2958461e6d20a66400011707bc77413a4101e096f40ef0c"
+  },
+  "JC069": {
+    "url": "/cards/JC069.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC069 警犬.jpg",
+    "sha256": "4336d72dc69c89ce8ffe9cdfe7ff8c76423ef4fb73b21a5a70df9b523b1963d4"
+  },
+  "JZ43": {
+    "url": "/cards/JZ43.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JZ43 武装市民.jpg",
+    "sha256": "bbc107878f8041757b38f7674f57b1d5d34028edc79a10551e9f629ae97f6826"
+  },
+  "JZ22": {
+    "url": "/cards/JZ22.jpg",
+    "source": "JZ22 暗夜游掠者.jpg",
+    "sha256": "b368bc3d75306dd0112cff180c8b10501c191e30b0c8d06d78e901ea20cd6160"
+  },
+  "JC050": {
+    "url": "/cards/JC050.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC050 丧钟回响.jpg",
+    "sha256": "2dbbe996c5fec273a1340ca4acadc504689b1af6151b56fe5ae0c217d2df159e"
+  },
+  "XQ27": {
+    "url": "/cards/XQ27.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/XQ27 定点清除行动.jpg",
+    "sha256": "78f2d5e2422b611bbf159a33083d70c75bf2ac83103325550430a394e8a803b5"
+  },
+  "XQ37": {
+    "url": "/cards/XQ37.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/XQ37 夜总会看门人.jpg",
+    "sha256": "93778bc4ffa69e5b79ad08738e3f31a78a669a049c42a43e68d04bd6398856b9"
   }
 }

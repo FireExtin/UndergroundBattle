@@ -1,0 +1,48 @@
+{
+  "taskId": "01a10fcf-9a3a-755a-83bf-e8fe922ca0f4",
+  "approvedSourceCommit": "454e46f67f4a55814321b66817b704d74fbad2bc",
+  "reviewEvidenceCommit": "fff81ec77bd06106450bb83cdaf1ea73928a3eee",
+  "workflow": {
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "checkout_path": "/tmp/lantern-site-fce0-official",
+    "commit_sha": "2657f7a9c345d3bf92b4432f6bc5c92cd232c4ca",
+    "archive": "/workspace/game-publication-evidence/site38-fixed-454e46f.tar.gz"
+  },
+  "saved": {
+    "id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_ea3aee353598819181fd7e9a418113e2",
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "version_number": 38,
+    "source": {
+      "commit_sha": "2657f7a9c345d3bf92b4432f6bc5c92cd232c4ca"
+    },
+    "archive_storage": {
+      "archive_format": "tar",
+      "sediment_file_id": "file_00000000801081fbafea3d4874aaedda",
+      "content_hash": "sha256:761a95132683555013dcb923adc6daab37f98cfdf97663a167443157543c099a",
+      "size_bytes": 62617600,
+      "file_count": 127
+    },
+    "screenshot_url": null,
+    "deployment_id": null
+  },
+  "deployment": {
+    "id": "appgdep_6ac66a7deffc8191bafec8938d188c43",
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "title": "隐秘世界 · 霸权",
+    "version_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_ea3aee353598819181fd7e9a418113e2",
+    "type": "publish",
+    "status": "succeeded",
+    "url": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site",
+    "has_mcp": false,
+    "screenshot_asset_pointer": null,
+    "provider_deployment_id": "site---6abf7bf54a7481918a50e1ef1509ca68",
+    "failure_message": null,
+    "env_set_revision": 0,
+    "updated_at": "2026-10-07T15:51:34.557249+00:00"
+  },
+  "sealingAndSearchExcluded": true,
+  "productEngine": 45,
+  "productPool": 42,
+  "onlineRuntimeDataReset": false,
+  "officialDownload403Retried": false
+}

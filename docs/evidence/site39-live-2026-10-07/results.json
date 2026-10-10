@@ -1,0 +1,29 @@
+{
+  "scope": "actual-public-Site39-browser-readonly",
+  "url": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site",
+  "browserErrors": [],
+  "apiWrites": [],
+  "checks": [
+    "actual-desktop-original-grid",
+    "actual-large-original-preview",
+    "actual-mobile-two-columns-no-overflow"
+  ],
+  "passed": true,
+  "priorAttempts": [
+    "Page.goto crashed",
+    "separate APIRequestContext IPv6 ENETUNREACH"
+  ],
+  "usesBrowserNetwork": true,
+  "httpStatus": 200,
+  "versions": {
+    "engineVersion": "rust-v0.2.45-jc089-poison-blood-candidate",
+    "cardPoolVersion": "limited-v2.42-jc089-poison-blood-candidate",
+    "rulesVersion": "hegemony-pdf-v1"
+  },
+  "desktopColumns": 5,
+  "screenshots": {
+    "mobile-grid.png": "8c1bfd7e64ecc033ade36a379066e42a70f18d58eca65efb8426540def57a42f",
+    "desktop-grid.png": "21826e748be83c988ed2fd5d466f98e4099d052cc927f369a852b0c619167488",
+    "desktop-preview.png": "0640fdfb788388523339a07599b284106335599c24f9f0eccb296c22ea4de50f"
+  }
+}

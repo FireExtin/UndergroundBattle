@@ -25,15 +25,18 @@ export type Card = {
   currentDamagePrevention?: boolean;
   currentPrintedDefense?: number;
   currentRenown?: boolean;
+  currentCombatGlory?: boolean;
   currentBarrier?: boolean;
   currentSubtypes?: string[];
   instanceId: string; cardId?: string; name: string; owner: string; controller: string;
   kind: string; region?: number; exhausted: boolean; faceDown: boolean;
   cost?: number; effectiveCost?: number; text?: string; icons?: Icons; defense?: number; damage?: number;
-  shield?: number; wounds?: number; color?: string; magic?: string;
+  shield?: number; wounds?: number; timeMarkers?: number; color?: string; magic?: string;
+  lockMarkers?: number;
   usedOncePerGame?: string[];
 };
 export type Attachment = Card & { hostId: string };
+export type SealedCard = Card & { hostId: string };
 export type Action = {
   kind: string; cardId?: string; targetId?: string; region?: number; option?: string;
   abilityId?: string; costSelected?: string[];
@@ -83,6 +86,7 @@ export type View = {
   regions: Region[]; hand: Card[]; assets: Card[]; graveyard: Card[]; scoreCards: Card[];
   privateDeckTop?: Card;
   attachments?: Attachment[];
+  sealedCards?: SealedCard[];
   societyZones?: { id: string; playerId: string; card: Card | null }[];
   stack: StackEffect[];
   pendingChoice: Choice | null;
@@ -93,6 +97,8 @@ export type View = {
   yourDeck?: import('./deckLibrary').DeckDraft | null;
   serverNowMs?: number;
   responseWindow?: ResponseIntentWindow | null;
+  pause?: { pausedAtMs: number; pausedBy: number };
+  canPause?: boolean;
 };
 export type Deck = { id: string; name: string; description: string; cardCount: number; cards: { cardId: string; count: number }[] };
 export type Catalog = { rulesVersion: string; cardPoolVersion: string; engineVersion: string; decks: Deck[]; cards: CardDefinition[];

@@ -1,0 +1,102 @@
+
+> test
+> node --test test/*.test.mjs
+
+✔ historical assassin fixture rejects without altering persisted data (1165.362146ms)
+✔ bounded employee/1: private candidates, pause/reopen, exact result and one receipt (1501.258216ms)
+ℹ {"engine":"rust-v0.2.50-bounded-entry-search-candidate","preparedNativeLayout":true,"privateOtherSeats":3,"acceptedCount":1,"pauseReopen":true,"duplicateReceipt":true,"exactNativeWasmD1State":true}
+✖ bounded employeeEmpty/0: private candidates, pause/reopen, exact result and one receipt (1201.63616ms)
+✔ bounded passers/0: private candidates, pause/reopen, exact result and one receipt (1301.735145ms)
+ℹ {"engine":"rust-v0.2.50-bounded-entry-search-candidate","preparedNativeLayout":true,"privateOtherSeats":3,"acceptedCount":0,"pauseReopen":true,"duplicateReceipt":true,"exactNativeWasmD1State":true}
+✔ bounded passers/3: private candidates, pause/reopen, exact result and one receipt (1122.352369ms)
+ℹ {"engine":"rust-v0.2.50-bounded-entry-search-candidate","preparedNativeLayout":true,"privateOtherSeats":3,"acceptedCount":3,"pauseReopen":true,"duplicateReceipt":true,"exactNativeWasmD1State":true}
+✔ bounded passersEmpty/0: private candidates, pause/reopen, exact result and one receipt (1204.370509ms)
+ℹ {"engine":"rust-v0.2.50-bounded-entry-search-candidate","preparedNativeLayout":true,"privateOtherSeats":3,"acceptedCount":0,"pauseReopen":true,"duplicateReceipt":true,"exactNativeWasmD1State":true}
+✔ historical control-pair fixture rejects without altering persisted data (1286.370164ms)
+✔ historical fire-scholar fixture rejects without altering persisted data (1156.56088ms)
+✔ real workerd/WASM with D1 SQLite: concurrency, receipts, rollback and reopen (4865.693594ms)
+ℹ {"currentVersion":"rust-v0.2.50-bounded-entry-search-candidate","unsupportedFrozenVersions":["rust-v0.2.1","rust-v0.2.10","rust-v0.2.2","rust-v0.2.3","rust-v0.2.4","rust-v0.2.5","rust-v0.2.6","rust-v0.2.7","rust-v0.2.8","rust-v0.2.9"],"oldDataUntouchedBeforeAndAfterReopen":true,"localWorkerdD1Only":true}
+ℹ Provider emulation only; remote Cloudflare D1 acceptance is still required. Persisted at /tmp/hegemony-worker-d1-CWDUwI
+✔ current-only Site keeps the source ABI bytes, reviewed prior definitions and exact new-room flow (23.995311ms)
+✔ every historical tuple and altered identity rejects before any current state operation (9.331291ms)
+ℹ {"historicalTuplesRejected":40,"alteredIdentityCases":5,"currentStateOperationsOnRejectedStates":0}
+✔ production generated modules and Worker contain only the reviewed current WASM (2.093993ms)
+✔ current real MSJC09 permits first/rear paid activation and restores four-seat frames, receipts, privacy and reset (14500.191535ms)
+ℹ {"engineVersion":"rust-v0.2.50-bounded-entry-search-candidate","printedSociety":"MSJC09","syntheticInitialLayout":false,"publicNaturalUiAcceptance":false,"httpCalls":2346,"acceptedCommands":461,"firstAndRearBothPaid":true,"fourSeats":true,"paidFrameReopens":2,"restoredBeforeExpiry":2,"sameInstanceNaturalNextTurnReset":true}
+✖ saved paused table: exact native transitions, D1 reopen, receipts and isolated second table (6.069519ms)
+✔ sealed choice/trigger/paid stack pause: exact native transitions, D1 reopen, receipts and isolated second table (2930.363877ms)
+✔ JZ50 trigger/stack/private search pause: exact native transitions, D1 reopen, receipts and isolated second table (2630.315364ms)
+✔ engine50 rejects preserved actual rust-v0.2.46-pause-resume-candidate paused room without relabelling its state (11.35592ms)
+✔ engine50 rejects preserved actual rust-v0.2.47-sealed-cards-candidate paused room without relabelling its state (10.581418ms)
+✔ engine50 rejects preserved actual rust-v0.2.48-jz50-death-search-candidate paused room without relabelling its state (6.889965ms)
+✔ engine50 rejects preserved actual rust-v0.2.49-sealed-restart-candidate paused room without relabelling its state (7.060802ms)
+✔ historical rescue-forecast fixture rejects without altering persisted data (1179.129723ms)
+✔ fresh Native match terminal seal: D1 restart, reopen, next choice and original restart receipt (1816.406546ms)
+✔ pause/resume are parameterless session commands and reject injected clocks or nested use (2.616701ms)
+✔ recovering a paid response receipt precedes all later clock evaluation (9.710241ms)
+✔ a matching-version GET persists an expired window before deciding to return 204 (1.757627ms)
+✔ an expired response commits only the system tick and never an accepted user receipt (1.279847ms)
+✔ a CAS conflict retries Begin with its original expected version and complete intent (1.757136ms)
+✔ a formal response cannot be rebased by the host after another seat wins CAS (1.886871ms)
+✔ client clock injection and nested Session commands are rejected before the reducer (0.476066ms)
+✔ quoting an active composition refreshes its clock and does not commit a draft or receipt (1.607831ms)
+✔ historical response5 rejects before pacing and survives reopen byte-for-byte (1125.870274ms)
+✔ historical response6 rejects before pacing and survives reopen byte-for-byte (909.341342ms)
+✔ historical response7 rejects before pacing and survives reopen byte-for-byte (928.78526ms)
+✔ historical response8 rejects before pacing and survives reopen byte-for-byte (1092.856399ms)
+hegemony storage retry { code: 'network_lost', retryable: true, attempt: 1 }
+✔ an ambiguous D1 commit retries the identical command and returns its receipt without applying twice (182.816777ms)
+✔ storage diagnostics expose fixed labels and do not retry quota, constraint or unknown failures (0.35905ms)
+hegemony storage retry { code: 'network_lost', retryable: true, attempt: 1 }
+hegemony storage retry { code: 'network_lost', retryable: true, attempt: 1 }
+hegemony storage retry { code: 'network_lost', retryable: true, attempt: 2 }
+✔ a failure before commit retries the original identity, while an exhausted failure never returns success (771.08244ms)
+✔ transient failures have a finite budget; HTTP rejections and unclassified failures are returned immediately (0.701456ms)
+✔ historical two-card fixture rejects without altering persisted data (1168.82715ms)
+ℹ tests 39
+ℹ suites 0
+ℹ pass 37
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 18120.647848
+
+✖ failing tests:
+
+test at test/bounded-entry-search.test.mjs:15:113
+✖ bounded employeeEmpty/0: private candidates, pause/reopen, exact result and one receipt (1201.63616ms)
+  AssertionError [ERR_ASSERTION]: Expected "actual" to be strictly unequal to:
+
+  16821621004361896000
+      at TestContext.<anonymous> (file:///tmp/undergroundbattle-shared-cloud/sites/test/bounded-entry-search.test.mjs:39:51)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 16821621004361896000,
+    expected: 16821621004361896000,
+    operator: 'notStrictEqual',
+    diff: 'simple'
+  }
+
+test at test/pause-resume-integration.test.mjs:14:234
+✖ saved paused table: exact native transitions, D1 reopen, receipts and isolated second table (6.069519ms)
+  Error: ENOENT: no such file or directory, open '/tmp/undergroundbattle-shared-cloud/sites/test/fixtures/pause-resume-native-v050.json'
+      at readFileSync (node:fs:484:20)
+      at TestContext.<anonymous> (file:///tmp/undergroundbattle-shared-cloud/sites/test/pause-resume-integration.test.mjs:16:28)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/tmp/undergroundbattle-shared-cloud/sites/test/fixtures/pause-resume-native-v050.json'
+  }
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

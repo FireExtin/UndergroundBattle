@@ -1,0 +1,14 @@
+{
+  "scope": "candidate50 actual local compiled Worker + D1 + production client; UI entry/choices, HTTP phase progress; no public acceptance",
+  "finiteLimit": 600,
+  "newTables": 3,
+  "factorySeed": 9,
+  "noStateInjection": true,
+  "passed": false,
+  "error": "Locator.click: Target crashed \nCall log:\n  - waiting for get_by_role(\"button\", name=\"保存并选择此牌组\", exact=True)\n",
+  "commands": 0,
+  "uiCommands": 0,
+  "httpCommands": 0,
+  "checks": [],
+  "pageErrors": []
+}

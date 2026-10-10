@@ -1,10 +1,38 @@
 mod attachment;
+mod red_time;
+mod blue_expansion;
+mod black_expansion;
+mod gray_expansion;
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod red_time_tests;
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod xq18_tests;
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod blue_expansion_tests;
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod black_expansion_tests;
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod gray_expansion_tests;
 mod attributes;
+mod jc050;
+mod xq27;
+mod xq37;
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod xq37_tests;
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod xq27_tests;
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod jc050_tests;
 pub mod catalog;
 mod control;
+mod death_observers;
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod death_observer_tests;
 #[cfg(test)]
 mod control_tests;
 pub mod deck;
+#[cfg(test)]
+mod unit_support;
 #[cfg(test)]
 mod defence_equipment_tests;
 pub mod engine;
@@ -28,6 +56,29 @@ mod renown;
 #[cfg(test)]
 mod renown_tests;
 mod resolution;
+mod sealing;
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod sealing_tests;
+mod jz50_search;
+mod bounded_search;
+mod deck_seal_search;
+mod gray_lock;
+mod jz22;
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod jz22_tests;
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod gray_lock_tests;
+// Retain the historical test-only positive seal preparation alongside actual-card tests.
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod deck_seal_search_draft;
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod deck_seal_search_tests;
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod bounded_search_tests;
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod bounded_entry_fresh_tests;
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod jz50_search_tests;
 pub mod room;
 pub mod rules;
 #[cfg(feature = "native")]
@@ -85,5 +136,9 @@ mod mill_public_tests;
 mod jz31_tests;
 #[cfg(all(test, not(feature = "society-fixtures")))]
 mod jz55_tests;
-#[cfg(test)]
+#[cfg(all(test, not(feature = "society-fixtures")))]
 mod jz49_tests;
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod jz48_tests;
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod jc089_tests;

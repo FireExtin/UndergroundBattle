@@ -1,0 +1,48 @@
+{
+  "savedVersion": {
+    "id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_ff8a94b97fd8819184efef4c2db57151",
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "version_number": 43,
+    "source": {
+      "commit_sha": "5fb79b63e4a041df712dc3e2cc09205d3dd06ba8"
+    },
+    "archive_storage": {
+      "archive_format": "tar",
+      "sediment_file_id": "file_000000005a4081f5a3a0586a08c648e6",
+      "content_hash": "sha256:593f58affbeeb2ab2988d8f7f925f0519b152ad0e00dff72fbde03ce8f1b4243",
+      "size_bytes": 69857280,
+      "file_count": 132
+    },
+    "screenshot_url": null,
+    "deployment_id": null
+  },
+  "versionReadback": {
+    "id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_ff8a94b97fd8819184efef4c2db57151",
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "version_number": 43,
+    "source": {
+      "commit_sha": "5fb79b63e4a041df712dc3e2cc09205d3dd06ba8"
+    },
+    "archive_storage": {
+      "archive_format": "tar",
+      "sediment_file_id": "file_000000005a4081f5a3a0586a08c648e6",
+      "content_hash": "sha256:593f58affbeeb2ab2988d8f7f925f0519b152ad0e00dff72fbde03ce8f1b4243",
+      "size_bytes": 69857280,
+      "file_count": 132
+    },
+    "screenshot_url": null,
+    "deployment_id": null
+  },
+  "sourceExact": true,
+  "nativeStoredArchiveHashReadbackStable": true,
+  "localArchiveFilesAndSourceExact": true,
+  "nativeRawArchiveByteEqualityVerified": false,
+  "archiveMaterialization": {
+    "action": "library.prepare_materialize",
+    "target": "file_000000005a4081f5a3a0586a08c648e6",
+    "error": "HTTP error prior to action invocation. HTTPException: 404: Library file ownership could not be verified.",
+    "furtherAttempts": 0
+  },
+  "publicHttpAcceptanceCompleted": false,
+  "naturalNewCardBrowserMechanismsCompleted": 0
+}

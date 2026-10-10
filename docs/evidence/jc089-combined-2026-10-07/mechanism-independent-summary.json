@@ -1,0 +1,194 @@
+{
+  "candidate": "a96a5595d42b58ecf2d47abd4d4a87b3d6c7d1ae",
+  "combinedProduct": "84a36d624528ab61f752e4ad9f05fdeb1839d7e4",
+  "unresolvedFindings": [],
+  "resolvedFinding": {
+    "severity": "P2",
+    "id": "jc018-removal-restores-false-renown",
+    "old": "19e594f00004c16c95cc1846c4ad3d252c5b0021",
+    "fixed": "a96a5595d42b58ecf2d47abd4d4a87b3d6c7d1ae",
+    "streamSha256": "df861682a177b6d7db036127c329c7eca58a122ade492c0fcb41156abaf2fbb8",
+    "red": {
+      "accepted": 31,
+      "rejected": 0,
+      "influence": [
+        2,
+        0
+      ]
+    },
+    "green": {
+      "accepted": 26,
+      "rejected": 5,
+      "influence": [
+        1,
+        0
+      ],
+      "allRejectedAtomic": true
+    }
+  },
+  "nativeFocusedPassed": 26,
+  "webFocusedPassed": 10,
+  "typescriptPassed": true,
+  "wasmOracle": {
+    "commands": 938,
+    "checkpoints": 2033,
+    "chainCommands": 13,
+    "views": 11936
+  },
+  "historicalFilesByteExact": 209,
+  "nativeAuditSourceRowsMatchedFixedGit": 67,
+  "status": "final independent mechanism review and actual natural UI evidence supplement passed; no unresolved P0/P1/P2/P3",
+  "naturalUiReviewed": true,
+  "naturalUiReviewerMethod": "actual 8 screenshot inspection, complete raw HTTP/journal/SQL/progress comparison and independent pure WASM creation+replay; root operated actual browser; reviewer did not pretend a separate new browser session",
+  "naturalUi": {
+    "productCommit": "84a36d624528ab61f752e4ad9f05fdeb1839d7e4",
+    "engine": "rust-v0.2.45-jc089-poison-blood-candidate",
+    "pool": "limited-v2.42-jc089-poison-blood-candidate",
+    "scope": "Independent read-only pure WASM replay of actual natural room; no state/DB modification. Focused dual-seat sequence remains playing, not strategy-terminal or natural JC018-specific case.",
+    "normalCreationFromSeed4952ByteExact": true,
+    "joinWithDeckEvents": 1,
+    "commandEvents": 273,
+    "journalEvents": 274,
+    "replayedReceiptViewsMatched": 273,
+    "finalOpaqueStateByteExact": true,
+    "initialStateSha256": "2d89b0e305f8e86cf36e83fe33b4edcb16579a46684fee0cfe7640039cc2e426",
+    "finalStateSha256": "3c0f8d0783037b11b1c10a01973581299978258fc24c7eaa8c1b4054ffc4509c",
+    "wasmBytes": 2198305,
+    "wasmSha256": "afc1b42523111dc242fd21850da9af243112a619c9f759bc60cbabac045883f7",
+    "finalVersion": 274,
+    "finalTurn": 6,
+    "finalStatus": "playing",
+    "twoSeatOwnHandPrivacy": true,
+    "survivorSupportLossVerified": true
+  },
+  "naturalUiIntegrity": {
+    "productCommit": "84a36d624528ab61f752e4ad9f05fdeb1839d7e4",
+    "mechanismFixCommit": "a96a5595d42b58ecf2d47abd4d4a87b3d6c7d1ae",
+    "scope": "Independent full raw HTTP/SQLite/journal/progress comparison, SELECT-only read and actual eight screenshot inspection. Focused two-seat playing sequence; no strategy-terminal or natural JC018-specific claim. Raw credentials, IDs, snapshots and DB remain local.",
+    "requestRows": 279,
+    "commandHttpResponses": 277,
+    "uniqueCommands": 273,
+    "duplicates": 4,
+    "oneCommandObservedFiveTimes": true,
+    "allHttpReceiptsByteEquivalent": true,
+    "allJournalCommandsMatchActualHttpInputs": true,
+    "allBrowserProgressMatchesReceipts": true,
+    "journalVersionsContiguous": 274,
+    "rawSqliteTablesMatchFinalSnapshot": true,
+    "readonlySqliteDbWalUnchanged": true,
+    "nativeReplayEvidenceBoundToFinalStateAndFrozenBinary": true,
+    "nativeAuditRerunByReviewer": false,
+    "normalUiTargetCancellation": 1,
+    "lostAcknowledgements": 4,
+    "actualGloryAddsExactlyOne": true,
+    "twoPaidCursesAndOwnerGraveyards": true,
+    "survivorSupportLoss": true,
+    "twoSeatRestoreAndExactReopenAssertedInActualDriver": true,
+    "combinedWebTests": 607,
+    "combinedWorkerTests": 25,
+    "combinedLogsHashesVerified": true,
+    "combinedBuildArtifactRowsVerified": 9,
+    "finalStatus": "playing",
+    "finalTurn": 6,
+    "finalVersion": 274,
+    "screenshotsActuallyViewed": [
+      {
+        "name": "jc089-before-curse-pair-desktop",
+        "bytes": 1232488,
+        "sha256": "7148d5fe326e2a34730ede1f98853f1b6c2371eb8436e946623933d04641d74c",
+        "actuallyViewedByReviewer": true
+      },
+      {
+        "name": "jc089-natural-original",
+        "bytes": 707230,
+        "sha256": "faa6ae0663057c5ab1119de6800e79421dbf176b2d564d79020b4db5cdc06d13",
+        "actuallyViewedByReviewer": true
+      },
+      {
+        "name": "target-confirm-1",
+        "bytes": 1136887,
+        "sha256": "94f81aecd3b816ff0bee1d4dc3835f00b0accaeabdc81b29d33589cb2b0732bb",
+        "actuallyViewedByReviewer": true
+      },
+      {
+        "name": "jc089-first-curse-attributes-desktop",
+        "bytes": 1240437,
+        "sha256": "12a7d7f3533aab4308323389c33e8dc76f355e402b5c7d4675317a302916c3c1",
+        "actuallyViewedByReviewer": true
+      },
+      {
+        "name": "jc089-glory-one-marker-desktop",
+        "bytes": 1240574,
+        "sha256": "2155026a56eef73a33866f8e05bf2e62c59b5cd4440b68126c106725ef472bbb",
+        "actuallyViewedByReviewer": true
+      },
+      {
+        "name": "lost-ack-recovered",
+        "bytes": 1181411,
+        "sha256": "aaf9c5af4dbba6398fe3d27b7b6a7e753ea5f8aa0d59eda6b8f4eef758f79155",
+        "actuallyViewedByReviewer": true
+      },
+      {
+        "name": "jc089-second-curse-death-desktop",
+        "bytes": 1237262,
+        "sha256": "a19e33d45ba529b8b3686599f7f9fd72a1a188f96f5e5aa443ddd02232c8a6bf",
+        "actuallyViewedByReviewer": true
+      },
+      {
+        "name": "jc089-survivor-mobile-reader",
+        "bytes": 334224,
+        "sha256": "edc6bf880ac070160eae5beb3b7fc5b668beb71844fdecbc850a89bc91b5e943",
+        "actuallyViewedByReviewer": true
+      }
+    ]
+  },
+  "scopeLimits": [
+    "focused 2-seat turn6 playing sequence, not complete strategy terminal",
+    "JC018 specific P2 closure established by frozen31 offline same-input stream and 26 native cases, not claimed as this natural UI match",
+    "artcf2 separately reviewed; only JC089 naturally read here",
+    "no publication/main merge or product mutation by this reviewer"
+  ],
+  "reportSha256": "302435d9a9fab3f7cee2d7318147f74bbfd65b522c9b75b1e558f070029ea768",
+  "files": [
+    {
+      "path": "/tmp/jc089-mechanism-independent-review.md",
+      "bytes": 14686,
+      "sha256": "302435d9a9fab3f7cee2d7318147f74bbfd65b522c9b75b1e558f070029ea768"
+    },
+    {
+      "path": "/tmp/review-jc089-mechanism-evidence/exact31-closure-independent.json",
+      "bytes": 24330,
+      "sha256": "36eec99e42863ed55ebb1508bfb5937b16d300825c9e41d1f7ceaceb578a4db5"
+    },
+    {
+      "path": "/tmp/review-jc089-mechanism-evidence/natural-ui-replay-independent.json",
+      "bytes": 1007,
+      "sha256": "4d051496da81ea6c5541463027ad316e6e9a0e799cd8f33af2d7ff3c611e8732"
+    },
+    {
+      "path": "/tmp/review-jc089-mechanism-evidence/natural-ui-integrity-independent.json",
+      "bytes": 3019,
+      "sha256": "dd34c426e86a51b8b8e4102e20f6b5ad3e6dd5993c0d0ec9d88cdca1d1c33b50"
+    },
+    {
+      "path": "/tmp/review-jc089-mechanism-evidence/verify-natural-ui-replay.mjs",
+      "bytes": 3951,
+      "sha256": "d61f90037159e07f7c59fec5985ae68324a18f2287ab71e1a7a4fb2f450e209f"
+    },
+    {
+      "path": "/tmp/review-jc089-mechanism-evidence/verify-natural-ui-integrity.py",
+      "bytes": 7781,
+      "sha256": "3685a88357fc6b191be3045eeb5dd7b1786f24fa03330a93b575c929b88eae40"
+    },
+    {
+      "path": "/tmp/review-jc089-mechanism-evidence/closure-a96a559/report-before-ui-supplement.md",
+      "bytes": 10587,
+      "sha256": "23ff0e63cd40b24cc57cfedd62e1d631e5fab30e500b5e3062af3e0c3aa39178"
+    },
+    {
+      "path": "/tmp/review-jc089-mechanism-evidence/initial-review-before-a96a559.md",
+      "bytes": 6634,
+      "sha256": "1682c2213ddf30cd28433df46817fd31f31541ae424ac89efc9c87944780677c"
+    }
+  ]
+}

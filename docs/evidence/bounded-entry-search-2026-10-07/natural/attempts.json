@@ -1,0 +1,30 @@
+{
+  "actualNewTables": 2,
+  "maxAttempts": 3,
+  "passedNaturalMechanismBrowserChecks": 0,
+  "attempts": [
+    {
+      "file": "first-attempt-result.json",
+      "passed": false,
+      "commands": 1,
+      "uiCommands": 1,
+      "error": "Locator.click: Timeout 30000ms exceeded."
+    },
+    {
+      "file": "second-attempt-result.json",
+      "passed": false,
+      "commands": 0,
+      "uiCommands": 0,
+      "error": "BrowserContext.new_page: Target page, context or browser has been closed"
+    },
+    {
+      "file": "result.json",
+      "passed": false,
+      "commands": 0,
+      "uiCommands": 0,
+      "error": "Locator.click: Target crashed "
+    }
+  ],
+  "thirdAttemptCreatedNoTable": true,
+  "browserStopped": true
+}

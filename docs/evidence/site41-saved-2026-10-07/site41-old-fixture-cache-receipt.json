@@ -1,0 +1,10 @@
+{
+  "removedPaths": [
+    "/tmp/jz49-native-target/debug/examples/native_fixtures",
+    "/tmp/jz49-native-target/debug/examples/native_fixtures-a4335555fd6643bd"
+  ],
+  "sharedInode": 221571,
+  "bytesFreedOnce": 16632696,
+  "sha256": "fb80c6d6ca11df2171da1263360820b83d98a41f75a367f4f739fe4f4308e0bb",
+  "reason": "old unexecuting compiled fixture emitter; source/dependency files, golden evidence and current native test executable retained"
+}

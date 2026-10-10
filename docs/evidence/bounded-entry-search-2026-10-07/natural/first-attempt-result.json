@@ -1,0 +1,14 @@
+{
+  "scope": "candidate50 actual local compiled Worker + D1 + production client; UI entry/choices, HTTP phase progress; no public acceptance",
+  "finiteLimit": 600,
+  "newTables": 1,
+  "factorySeed": 9,
+  "noStateInjection": true,
+  "passed": false,
+  "error": "Locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for get_by_role(\"button\", name=\"开始新的独立玩家会话\", exact=True)\n",
+  "commands": 1,
+  "uiCommands": 1,
+  "httpCommands": 0,
+  "checks": [],
+  "pageErrors": []
+}

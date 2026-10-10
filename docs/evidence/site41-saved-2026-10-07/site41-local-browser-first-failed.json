@@ -1,0 +1,10 @@
+{
+  "scope": "local-only-saved-Site41-production-build-real-UI-Worker-WASM-local-D1-natural-duel",
+  "productionWrites": false,
+  "localD1Writes": true,
+  "checks": [],
+  "errors": [],
+  "passed": false,
+  "error": "Page.goto: Target page, context or browser has been closed\nCall log:\n  - navigating to \"http://127.0.0.1:8113/\", waiting until \"networkidle\"\n",
+  "screenshots": {}
+}

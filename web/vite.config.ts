@@ -6,16 +6,12 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      "/api/debugger": "http://127.0.0.1:8080",
       "/api": "http://127.0.0.1:8090"
     }
   },
   test: {
     environment: "jsdom",
     setupFiles: ["src/test/setup.ts"],
-    include: ["src/**/*.test.ts", "src/**/*.test.tsx", "src/**/*.test.jsx"],
-    coverage: {
-      provider: "v8"
-    }
+    include: ["src/**/*.test.ts", "src/**/*.test.tsx", "src/**/*.test.jsx"]
   }
 });

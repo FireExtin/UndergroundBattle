@@ -1,0 +1,77 @@
+{
+  "reviewedSource": "97de78d52141ae4ebe41da441cc6410691384509",
+  "workflow": {
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "checkout_path": "/tmp/lantern-site-fce0-official",
+    "commit_sha": "4595431ba223736fee200844c200ccda48cd078b",
+    "archive": "/workspace/game-publication-evidence/site42-lazy-debugger-97de78d.tar.gz"
+  },
+  "savedVersion": {
+    "id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_20ab97e0166481919a3f2bb63d2f7ea6",
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "version_number": 42,
+    "source": {
+      "commit_sha": "4595431ba223736fee200844c200ccda48cd078b"
+    },
+    "archive_storage": {
+      "archive_format": "tar",
+      "sediment_file_id": "file_00000000220881fbab770a64fd8f5861",
+      "content_hash": "sha256:b5cb2cc09ade7aae178fec1ceed29034d99213f03cfa0e616dd072da6e2db9cf",
+      "size_bytes": 67143680,
+      "file_count": 131
+    },
+    "deployment_id_at_save": null
+  },
+  "deployment": {
+    "id": "appgdep_6ac6b12bb48c8191bfae2fd680647d50",
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "title": "隐秘世界 · 霸权",
+    "version_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_20ab97e0166481919a3f2bb63d2f7ea6",
+    "type": "publish",
+    "status": "succeeded",
+    "url": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site",
+    "has_mcp": false,
+    "screenshot_asset_pointer": null,
+    "provider_deployment_id": "site---6abf7bf54a7481918a50e1ef1509ca68",
+    "failure_message": null,
+    "env_set_revision": 0,
+    "updated_at": "2026-10-07T20:53:10.402017+00:00"
+  },
+  "postPublicationSite": {
+    "id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "access_mode": "public",
+    "current_user_role": "owner",
+    "latest_version_number": 42,
+    "current_live_url": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site",
+    "status": "active"
+  },
+  "postPublicationVersion": {
+    "id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_20ab97e0166481919a3f2bb63d2f7ea6",
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "version_number": 42,
+    "source": {
+      "commit_sha": "4595431ba223736fee200844c200ccda48cd078b"
+    },
+    "deployment_id": "appgdep_6ac6b12bb48c8191bfae2fd680647d50",
+    "archive_storage": {
+      "archive_format": "tar",
+      "sediment_file_id": "file_00000000220881fbab770a64fd8f5861",
+      "content_hash": "sha256:b5cb2cc09ade7aae178fec1ceed29034d99213f03cfa0e616dd072da6e2db9cf",
+      "size_bytes": 67143680,
+      "file_count": 131
+    }
+  },
+  "engine": "rust-v0.2.49-sealed-restart-candidate",
+  "pool": "limited-v2.44-jz50-death-search-candidate",
+  "ordinaryCards": 107,
+  "regionsIncluded": 10,
+  "societies": 8,
+  "initialJsReductionPercent": 5.078,
+  "authorization": "User explicitly authorized updating the existing Sites website; standing original user AGENTS subsequent reviewed-public-version authorization was previously supplied and accepted. Parent independent reviewer passed97de/P2closed and instructed publication.",
+  "nativeDeployCalls": 1,
+  "approvalRejection": false,
+  "scope": "Reviewed lazy debugger wrapper and recoverable chunk loading only; exact Worker/WASM/schema bytes retained.",
+  "publicHttpOrUiAcceptance": false,
+  "verificationLimit": "Previous public catalog HTTP403 and official package-download403 not retried by alternative route or executor. Native terminal succeeded confirms publication; local UI evidence is not public UI acceptance.",
+  "noRuntimeDataDeletionOrAccessChange": true
+}

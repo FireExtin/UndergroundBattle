@@ -6,6 +6,19 @@ import { testCatalog, testView, testChoice } from './testFixtures';
 import { testCard } from './testFixtures';
 import type { Catalog, View } from './types';
 
+it('lets the private chooser pause and releases its modal while paused, then restores the same choice', () => {
+  const submit = vi.fn();
+  const view: View = { ...testView, status: 'playing', canPause: true, pendingChoice: testChoice,
+    legalActions: [{ id: 'choose', kind: 'choose', choiceId: testChoice.id, label: '确认选择' }] };
+  const { rerender } = render(<Table view={view} catalog={testCatalog} busy={false} onAction={submit} />);
+  fireEvent.click(within(screen.getByRole('dialog', { name: '待完成的选择' })).getByRole('button', { name: '暂停并保存此桌' }));
+  expect(submit).toHaveBeenCalledExactlyOnceWith({ kind: 'pauseRoom' });
+  rerender(<Table view={{ ...view, pause: { pausedAtMs: 2000, pausedBy: 0 }, legalActions: [] }} catalog={testCatalog} busy={true} onAction={submit} />);
+  expect(screen.queryByRole('dialog', { name: '待完成的选择' })).not.toBeInTheDocument();
+  rerender(<Table view={view} catalog={testCatalog} busy={false} onAction={submit} />);
+  expect(screen.getByRole('dialog', { name: '待完成的选择' })).toHaveAttribute('data-choice-id', testChoice.id);
+});
+
 describe('room deck selection', () => {
   const catalog: Catalog = { ...testCatalog, deckBuildRules: { minimumCards: 50, serviceCardCapacity: 2048, societySupported: false }, cards: testCatalog.cards.map(card => ({ ...card, supported: true, deckCopyLimit: null })) };
   const saved = { ...createDeckDraft(catalog, catalog.decks[0]), name: '已保存的牌组' };

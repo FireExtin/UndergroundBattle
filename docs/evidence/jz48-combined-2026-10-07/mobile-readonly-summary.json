@@ -1,0 +1,22 @@
+{
+  "scope": "Read-only same natural JZ48 room after successful120-command sequence; mobile horizontal region scrolled to surviving instance, current reader and original shown; no gameplay command or DB state injection",
+  "productCommit": "c98bf422795c48d5842011dd5b65a97e647d3f14",
+  "version": 121,
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "runtimeInfluence": 0,
+  "runtimeDefense": 1,
+  "originalImage": {
+    "width": 400,
+    "height": 560,
+    "fit": "contain"
+  },
+  "postRequests": 0,
+  "databaseUnchanged": true,
+  "screenshots": [
+    "jz48-after-destroy-mobile-reader.png",
+    "jz48-after-destroy-mobile-original.png"
+  ]
+}

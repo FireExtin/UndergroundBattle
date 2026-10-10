@@ -1,9 +1,7 @@
 // Compare a single continuous RoomEnvelope chain including real composition.
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import * as kernel from '../pkg/hegemony_wasm.js';
-kernel.initSync({module:readFileSync(new URL('../pkg/hegemony_wasm_bg.wasm',import.meta.url))});
-assert.equal(JSON.parse(kernel.catalog()).engineVersion,'rust-v0.2.35-jz31-death-influence-candidate');
+import { kernel } from './current-kernel.mjs';
 const fixture=JSON.parse(readFileSync(process.argv[2],'utf8'));
 let state=fixture.initialState, projections=0;
 const kinds={};

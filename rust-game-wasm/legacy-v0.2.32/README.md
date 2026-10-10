@@ -1,1 +1,0 @@
-Frozen accepted JC030 candidate 713be787f47d4188640922a5d373662bd04ffe38. Complete five-file ABI, WASM SHA256 fd375f5e05247c4e78b5cbd65f3da2e4393a729d49b4b2203347dd6d0e62fc89. Do not rebuild or migrate old rooms.

@@ -1,0 +1,63 @@
+{
+  "restoredStash": "a28163acccb42f1c8f4108a0f55023e5dd66d61e",
+  "filesEqualPreservedStash": 14,
+  "stashRetained": true,
+  "files": [
+    {
+      "path": "rust-game/data/cards.json",
+      "sha256": "835a1c9847617a11108f420a06557ce48dc878978b4b46ea4135eb87129570ab"
+    },
+    {
+      "path": "rust-game/src/attachment.rs",
+      "sha256": "600a19237dff7f7051b645523bc37ee331f73794419ab80507041d4de8a9dc4b"
+    },
+    {
+      "path": "rust-game/src/catalog.rs",
+      "sha256": "7b9587ad28cee7db88fddffbddc1d9efdad32ea218a119963fc7c48bbd0111c8"
+    },
+    {
+      "path": "rust-game/src/engine.rs",
+      "sha256": "2521d30ca7f94853970c5068d19023c28d3f485f3cf9560b06e023f4d558db37"
+    },
+    {
+      "path": "rust-game/src/jc089_tests.rs",
+      "sha256": "d6007fb056ebbb1ff9a0f0b3ed99e06e5f94623bf86c7046cf064a6fd11095fe"
+    },
+    {
+      "path": "rust-game/src/lib.rs",
+      "sha256": "545668ee6b309402a30f227fcb9d461c7374a1473a6974913c849d6db5b7ed85"
+    },
+    {
+      "path": "rust-game/src/model.rs",
+      "sha256": "c5fee2e8ed052e5d126804f6a3105888d3e3d89fce11c0cecfefcd83082e7af9"
+    },
+    {
+      "path": "rust-game/src/resolution.rs",
+      "sha256": "51dad656f32abbd1116b6989c16c56f1eca03be7a760bd78e6b409452c51b111"
+    },
+    {
+      "path": "rust-game/src/room.rs",
+      "sha256": "dc66b40a215f58e1576da32ca2529ce177125de689d0eb6dd21c47d7e4136252"
+    },
+    {
+      "path": "rust-game/src/rules.rs",
+      "sha256": "408b737d9ad55139b199b8e91cced811fe3949d71e86a84b09499cc66332fd06"
+    },
+    {
+      "path": "rust-game/src/sealing.rs",
+      "sha256": "89915b06621c3549dc020a9122be579dd1928088b72f4f7b1a209991a25eac83"
+    },
+    {
+      "path": "rust-game/src/sealing_tests.rs",
+      "sha256": "e341db0a1222be299942c1e0877f72ccbce682375fa9dc8a7db0a07f41193c4e"
+    },
+    {
+      "path": "rust-game/src/bounded_search.rs",
+      "sha256": "3b331a87b936532d76568802cb7cdf0b0f2e629a25a1e72a8e6b46b12dbf5f37"
+    },
+    {
+      "path": "rust-game/src/bounded_search_tests.rs",
+      "sha256": "7249ccbfabe58c553034e80222193cbecc5e50ae34c3896938b5d72718c6d963"
+    }
+  ]
+}

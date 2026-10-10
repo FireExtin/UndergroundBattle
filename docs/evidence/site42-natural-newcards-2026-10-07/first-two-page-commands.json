@@ -1,0 +1,44 @@
+[
+  {
+    "via": "actual-browser-UI",
+    "seat": 1,
+    "command": {
+      "commandId": "4b24d92f-038c-4591-8474-fff8f0ae6020",
+      "expectedVersion": 1,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "ready"
+        }
+      }
+    }
+  },
+  {
+    "via": "actual-browser-UI",
+    "seat": 0,
+    "command": {
+      "commandId": "f631ad36-9e17-44a3-b143-e606f7878cd4",
+      "expectedVersion": 2,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "ready"
+        }
+      }
+    }
+  },
+  {
+    "via": "actual-browser-UI",
+    "seat": 0,
+    "command": {
+      "commandId": "31ff7cda-5af7-468a-b165-4faa50bb7959",
+      "expectedVersion": 3,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "start"
+        }
+      }
+    }
+  }
+]

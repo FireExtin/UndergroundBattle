@@ -1,0 +1,867 @@
+{
+  "scope": "Only32 offline actual-WASM factory seeds; legal decks, ready/start actions; no altered state fed back",
+  "decks": [
+    {
+      "id": "Local seal QA",
+      "name": "Local seal QA",
+      "description": "Local natural new-card QA: legal fixed deck, no board injection",
+      "societyId": null,
+      "cards": [
+        {
+          "cardId": "XQ40",
+          "count": 3
+        },
+        {
+          "cardId": "XQ41",
+          "count": 3
+        },
+        {
+          "cardId": "XQ45",
+          "count": 3
+        },
+        {
+          "cardId": "JZ58",
+          "count": 3
+        },
+        {
+          "cardId": "JC104",
+          "count": 3
+        },
+        {
+          "cardId": "JZ59",
+          "count": 3
+        },
+        {
+          "cardId": "JZ61",
+          "count": 3
+        },
+        {
+          "cardId": "JC125",
+          "count": 29
+        }
+      ],
+      "rulesVersion": "hegemony-pdf-v1",
+      "cardPoolVersion": "limited-v2.44-jz50-death-search-candidate",
+      "engineVersion": "rust-v0.2.49-sealed-restart-candidate",
+      "updatedAt": "2026-10-07"
+    },
+    {
+      "id": "Local reveal QA",
+      "name": "Local reveal QA",
+      "description": "Local natural new-card QA: legal fixed deck, no board injection",
+      "societyId": null,
+      "cards": [
+        {
+          "cardId": "XQ16",
+          "count": 3
+        },
+        {
+          "cardId": "JZ50",
+          "count": 3
+        },
+        {
+          "cardId": "JZ49",
+          "count": 3
+        },
+        {
+          "cardId": "JC085",
+          "count": 3
+        },
+        {
+          "cardId": "JC029",
+          "count": 3
+        },
+        {
+          "cardId": "XQ12",
+          "count": 3
+        },
+        {
+          "cardId": "JZ48",
+          "count": 3
+        },
+        {
+          "cardId": "JC125",
+          "count": 29
+        }
+      ],
+      "rulesVersion": "hegemony-pdf-v1",
+      "cardPoolVersion": "limited-v2.44-jz50-death-search-candidate",
+      "engineVersion": "rust-v0.2.49-sealed-restart-candidate",
+      "updatedAt": "2026-10-07"
+    }
+  ],
+  "selected": [
+    {
+      "seed": 16,
+      "hands": [
+        [
+          "JC125",
+          "JC125",
+          "XQ45",
+          "XQ40",
+          "XQ41",
+          "JC125"
+        ],
+        [
+          "JC125",
+          "JZ50",
+          "JC125",
+          "JZ49",
+          "XQ12",
+          "XQ12"
+        ]
+      ],
+      "score": 25
+    },
+    {
+      "seed": 20,
+      "hands": [
+        [
+          "XQ41",
+          "JC125",
+          "XQ45",
+          "XQ40",
+          "JC125",
+          "JC104"
+        ],
+        [
+          "JC085",
+          "JC125",
+          "JZ49",
+          "JC125",
+          "JC125",
+          "XQ16"
+        ]
+      ],
+      "score": 25
+    },
+    {
+      "seed": 24,
+      "hands": [
+        [
+          "JC125",
+          "JZ61",
+          "JZ58",
+          "JC125",
+          "XQ41",
+          "XQ40"
+        ],
+        [
+          "JC125",
+          "JC125",
+          "JC125",
+          "XQ16",
+          "JC125",
+          "JZ48"
+        ]
+      ],
+      "score": 25
+    }
+  ],
+  "allOpeningHands": [
+    {
+      "seed": 16,
+      "hands": [
+        [
+          "JC125",
+          "JC125",
+          "XQ45",
+          "XQ40",
+          "XQ41",
+          "JC125"
+        ],
+        [
+          "JC125",
+          "JZ50",
+          "JC125",
+          "JZ49",
+          "XQ12",
+          "XQ12"
+        ]
+      ],
+      "score": 25
+    },
+    {
+      "seed": 20,
+      "hands": [
+        [
+          "XQ41",
+          "JC125",
+          "XQ45",
+          "XQ40",
+          "JC125",
+          "JC104"
+        ],
+        [
+          "JC085",
+          "JC125",
+          "JZ49",
+          "JC125",
+          "JC125",
+          "XQ16"
+        ]
+      ],
+      "score": 25
+    },
+    {
+      "seed": 24,
+      "hands": [
+        [
+          "JC125",
+          "JZ61",
+          "JZ58",
+          "JC125",
+          "XQ41",
+          "XQ40"
+        ],
+        [
+          "JC125",
+          "JC125",
+          "JC125",
+          "XQ16",
+          "JC125",
+          "JZ48"
+        ]
+      ],
+      "score": 25
+    },
+    {
+      "seed": 5,
+      "hands": [
+        [
+          "JC125",
+          "XQ41",
+          "JC104",
+          "JC125",
+          "JC125",
+          "XQ40"
+        ],
+        [
+          "XQ16",
+          "XQ12",
+          "JC125",
+          "JC125",
+          "JC125",
+          "JC125"
+        ]
+      ],
+      "score": 24
+    },
+    {
+      "seed": 8,
+      "hands": [
+        [
+          "XQ41",
+          "JC125",
+          "JC125",
+          "JC125",
+          "JC104",
+          "XQ40"
+        ],
+        [
+          "JC029",
+          "XQ16",
+          "JZ48",
+          "JC125",
+          "JC125",
+          "JC125"
+        ]
+      ],
+      "score": 24
+    },
+    {
+      "seed": 29,
+      "hands": [
+        [
+          "JC125",
+          "XQ41",
+          "JC125",
+          "XQ40",
+          "JC125",
+          "JC125"
+        ],
+        [
+          "JC125",
+          "JC125",
+          "JC125",
+          "JC125",
+          "XQ12",
+          "JZ50"
+        ]
+      ],
+      "score": 24
+    },
+    {
+      "seed": 31,
+      "hands": [
+        [
+          "JC125",
+          "JC125",
+          "JZ59",
+          "XQ40",
+          "JC125",
+          "XQ41"
+        ],
+        [
+          "JZ49",
+          "JC125",
+          "XQ16",
+          "JC125",
+          "JC125",
+          "JC125"
+        ]
+      ],
+      "score": 24
+    },
+    {
+      "seed": 11,
+      "hands": [
+        [
+          "JZ61",
+          "JC125",
+          "JC125",
+          "JC125",
+          "XQ41",
+          "XQ45"
+        ],
+        [
+          "JC125",
+          "XQ12",
+          "XQ16",
+          "JZ48",
+          "JZ50",
+          "JZ49"
+        ]
+      ],
+      "score": 22
+    },
+    {
+      "seed": 30,
+      "hands": [
+        [
+          "XQ41",
+          "JC125",
+          "JC125",
+          "JZ61",
+          "JC125",
+          "XQ45"
+        ],
+        [
+          "JC125",
+          "XQ16",
+          "JC029",
+          "JZ49",
+          "JZ50",
+          "XQ12"
+        ]
+      ],
+      "score": 22
+    },
+    {
+      "seed": 6,
+      "hands": [
+        [
+          "JC125",
+          "XQ40",
+          "XQ41",
+          "JC125",
+          "JC125",
+          "JC125"
+        ],
+        [
+          "JC125",
+          "JZ49",
+          "JZ48",
+          "JC125",
+          "XQ12",
+          "JC125"
+        ]
+      ],
+      "score": 18
+    },
+    {
+      "seed": 22,
+      "hands": [
+        [
+          "JC125",
+          "JZ58",
+          "XQ45",
+          "XQ40",
+          "JC125",
+          "XQ45"
+        ],
+        [
+          "JC125",
+          "JC125",
+          "JC125",
+          "JZ50",
+          "JC125",
+          "JZ50"
+        ]
+      ],
+      "score": 18
+    },
+    {
+      "seed": 18,
+      "hands": [
+        [
+          "JC125",
+          "XQ40",
+          "JZ61",
+          "JC125",
+          "JC125",
+          "JC125"
+        ],
+        [
+          "JC125",
+          "JZ50",
+          "JC125",
+          "JC029",
+          "JC125",
+          "JC125"
+        ]
+      ],
+      "score": 16
+    },
+    {
+      "seed": 23,
+      "hands": [
+        [
+          "JC125",
+          "XQ41",
+          "JC125",
+          "JC125",
+          "XQ41",
+          "JC125"
+        ],
+        [
+          "JC125",
+          "JC125",
+          "JC125",
+          "JC125",
+          "JC125",
+          "JZ50"
+        ]
+      ],
+      "score": 16
+    },
+    {
+      "seed": 7,
+      "hands": [
+        [
+          "JC125",
+          "JC125",
+          "JC125",
+          "XQ40",
+          "JC125",
+          "JC125"
+        ],
+        [
+          "JC125",
+          "JC125",
+          "JZ49",
+          "JC125",
+          "JC125",
+          "JZ50"
+        ]
+      ],
+      "score": 15
+    },
+    {
+      "seed": 13,
+      "hands": [
+        [
+          "JC125",
+          "XQ41",
+          "JC125",
+          "JC125",
+          "XQ45",
+          "JC125"
+        ],
+        [
+          "JC125",
+          "JC125",
+          "XQ16",
+          "JC125",
+          "JC085",
+          "XQ12"
+        ]
+      ],
+      "score": 15
+    },
+    {
+      "seed": 28,
+      "hands": [
+        [
+          "JC125",
+          "JC104",
+          "JC125",
+          "JC125",
+          "JZ59",
+          "JC125"
+        ],
+        [
+          "JC125",
+          "XQ16",
+          "JC125",
+          "JC125",
+          "JZ50",
+          "JC125"
+        ]
+      ],
+      "score": 13
+    },
+    {
+      "seed": 3,
+      "hands": [
+        [
+          "XQ40",
+          "JZ59",
+          "JC125",
+          "JC125",
+          "JC125",
+          "JZ61"
+        ],
+        [
+          "JC125",
+          "JC125",
+          "JZ48",
+          "JC125",
+          "JZ49",
+          "JC029"
+        ]
+      ],
+      "score": 11
+    },
+    {
+      "seed": 17,
+      "hands": [
+        [
+          "XQ40",
+          "JZ61",
+          "JC125",
+          "JC125",
+          "JC125",
+          "JZ59"
+        ],
+        [
+          "XQ12",
+          "JC125",
+          "JC125",
+          "JC029",
+          "JC125",
+          "JC125"
+        ]
+      ],
+      "score": 11
+    },
+    {
+      "seed": 26,
+      "hands": [
+        [
+          "JC125",
+          "JC125",
+          "XQ41",
+          "JC125",
+          "JZ61",
+          "JZ59"
+        ],
+        [
+          "JC125",
+          "JC125",
+          "JC125",
+          "JZ48",
+          "JC125",
+          "JZ48"
+        ]
+      ],
+      "score": 11
+    },
+    {
+      "seed": 27,
+      "hands": [
+        [
+          "JC125",
+          "JZ59",
+          "JZ58",
+          "JC125",
+          "JC125",
+          "XQ40"
+        ],
+        [
+          "JC125",
+          "JC125",
+          "JC125",
+          "JC125",
+          "JC125",
+          "JC029"
+        ]
+      ],
+      "score": 11
+    },
+    {
+      "seed": 2,
+      "hands": [
+        [
+          "JZ61",
+          "XQ40",
+          "JC125",
+          "JC125",
+          "JC125",
+          "JC125"
+        ],
+        [
+          "XQ12",
+          "JC125",
+          "JC085",
+          "JC125",
+          "JC125",
+          "JC125"
+        ]
+      ],
+      "score": 10
+    },
+    {
+      "seed": 25,
+      "hands": [
+        [
+          "JZ58",
+          "JC125",
+          "XQ40",
+          "JC125",
+          "JC125",
+          "JC125"
+        ],
+        [
+          "JC125",
+          "JC125",
+          "JZ49",
+          "JZ49",
+          "JC085",
+          "JC125"
+        ]
+      ],
+      "score": 10
+    },
+    {
+      "seed": 21,
+      "hands": [
+        [
+          "XQ45",
+          "JC125",
+          "JC104",
+          "JZ58",
+          "JC125",
+          "JC125"
+        ],
+        [
+          "JC125",
+          "JC029",
+          "JC125",
+          "JZ48",
+          "JC125",
+          "JZ50"
+        ]
+      ],
+      "score": 9
+    },
+    {
+      "seed": 1,
+      "hands": [
+        [
+          "JC125",
+          "JC125",
+          "JZ59",
+          "JC125",
+          "JC104",
+          "JC125"
+        ],
+        [
+          "JC029",
+          "JC125",
+          "JC125",
+          "JZ50",
+          "XQ12",
+          "XQ12"
+        ]
+      ],
+      "score": 8
+    },
+    {
+      "seed": 10,
+      "hands": [
+        [
+          "JC125",
+          "JZ61",
+          "JZ61",
+          "JC125",
+          "JC125",
+          "JC125"
+        ],
+        [
+          "XQ12",
+          "JC125",
+          "JC125",
+          "JZ48",
+          "JC125",
+          "JZ50"
+        ]
+      ],
+      "score": 8
+    },
+    {
+      "seed": 4,
+      "hands": [
+        [
+          "JC125",
+          "JC125",
+          "JZ58",
+          "XQ45",
+          "JC125",
+          "JC125"
+        ],
+        [
+          "JZ49",
+          "JC125",
+          "XQ16",
+          "JZ48",
+          "JC125",
+          "JC125"
+        ]
+      ],
+      "score": 7
+    },
+    {
+      "seed": 14,
+      "hands": [
+        [
+          "JZ61",
+          "JC125",
+          "JC125",
+          "JC125",
+          "JC125",
+          "JC125"
+        ],
+        [
+          "XQ16",
+          "JC125",
+          "JZ48",
+          "JC125",
+          "XQ12",
+          "JZ49"
+        ]
+      ],
+      "score": 6
+    },
+    {
+      "seed": 32,
+      "hands": [
+        [
+          "JC125",
+          "JC125",
+          "JC125",
+          "JC125",
+          "JC125",
+          "JC125"
+        ],
+        [
+          "JC125",
+          "JC125",
+          "JZ48",
+          "JC125",
+          "XQ16",
+          "XQ12"
+        ]
+      ],
+      "score": 5
+    },
+    {
+      "seed": 9,
+      "hands": [
+        [
+          "JC104",
+          "JC125",
+          "JZ58",
+          "JC125",
+          "JC125",
+          "JZ61"
+        ],
+        [
+          "XQ12",
+          "JC125",
+          "JC085",
+          "JC125",
+          "JC029",
+          "JC125"
+        ]
+      ],
+      "score": 3
+    },
+    {
+      "seed": 12,
+      "hands": [
+        [
+          "XQ45",
+          "JC125",
+          "JC125",
+          "JC125",
+          "XQ45",
+          "JC104"
+        ],
+        [
+          "JZ49",
+          "JC125",
+          "JC125",
+          "JC085",
+          "JC125",
+          "JC125"
+        ]
+      ],
+      "score": 3
+    },
+    {
+      "seed": 15,
+      "hands": [
+        [
+          "JC125",
+          "JC125",
+          "XQ45",
+          "JC125",
+          "JZ61",
+          "JC125"
+        ],
+        [
+          "JC125",
+          "JC029",
+          "JC125",
+          "JC125",
+          "JC125",
+          "XQ12"
+        ]
+      ],
+      "score": 2
+    },
+    {
+      "seed": 19,
+      "hands": [
+        [
+          "JC125",
+          "JC125",
+          "JC125",
+          "JC125",
+          "JC125",
+          "JC125"
+        ],
+        [
+          "JC125",
+          "JZ49",
+          "JC029",
+          "JZ49",
+          "JC125",
+          "JC125"
+        ]
+      ],
+      "score": 0
+    }
+  ]
+}

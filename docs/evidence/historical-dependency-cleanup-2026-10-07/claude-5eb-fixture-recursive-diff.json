@@ -1,0 +1,90 @@
+{
+  "beforeCommit": "a10a549fb299c8316ef27bcdd8c8b867314f7945",
+  "afterCommit": "5eb5127008188bf445399b74f8909632ccbfce54",
+  "files": [
+    {
+      "path": "web/src/game/blueMinimumTest.fixture.json",
+      "removedStateFields": 11,
+      "allOtherFieldsRecursivelyEqual": true,
+      "oldSha256": "f81f24e73a5b21c6861e63148e8b3a351a9a9e01f8cc7ed16f27bf793c6956c0",
+      "newSha256": "0326dae2291af890e43822b0e8ed0b98ebf331615495948f46d5af04a742332a",
+      "oldBytes": 625354,
+      "newBytes": 286910
+    },
+    {
+      "path": "web/src/game/greenMinimumTest.fixture.json",
+      "removedStateFields": 5,
+      "allOtherFieldsRecursivelyEqual": true,
+      "oldSha256": "b994ed35777098824ca925b898b6c90ab8e71c0c54bc879d4fbbb8f267d18937",
+      "newSha256": "bd8ec80e4365802325e444b286c385424d5506e5793a4bfe4344282513f8a125",
+      "oldBytes": 216951,
+      "newBytes": 148186
+    },
+    {
+      "path": "web/src/game/jc030Test.fixture.json",
+      "removedStateFields": 5,
+      "allOtherFieldsRecursivelyEqual": true,
+      "oldSha256": "67a400795a96d4b60d944e2f583c274028ad17621194c91f4f13cc42b954b2f0",
+      "newSha256": "c76b25a0ccb8a01378046fd5a829b6b323c70bb43cc434faec54ea2942d23a39",
+      "oldBytes": 261263,
+      "newBytes": 88254
+    },
+    {
+      "path": "web/src/game/jc089Test.fixture.json",
+      "removedStateFields": 27,
+      "allOtherFieldsRecursivelyEqual": true,
+      "oldSha256": "2a24ed2a2ca7858ee1315a02c54b2e66ba11c66ee8dbce9fd9131179f9b4f273",
+      "newSha256": "e15db10257cd4e16591bd46ee2df97e0441a153860efeed54aae4d6ec97119ef",
+      "oldBytes": 1664291,
+      "newBytes": 690766
+    },
+    {
+      "path": "web/src/game/jz31Test.fixture.json",
+      "removedStateFields": 40,
+      "allOtherFieldsRecursivelyEqual": true,
+      "oldSha256": "2b70302654a6360c408a9dfc281cabab78c7ecd9f67eecfe12908ec876fd5143",
+      "newSha256": "cab6c8ef5a52d9b8340914be6f33f73b51b997b0c5167fc75eb29a5310f2a6cd",
+      "oldBytes": 2250063,
+      "newBytes": 832090
+    },
+    {
+      "path": "web/src/game/jz48Test.fixture.json",
+      "removedStateFields": 14,
+      "allOtherFieldsRecursivelyEqual": true,
+      "oldSha256": "67cba8cab796a272c4c87292b02d4634c7cef5afb7997cddd03ea29b0e7e08a8",
+      "newSha256": "99182896ad5fe416cbe3fa327e19a22eee165dbf27a85330364cd24ff8542f43",
+      "oldBytes": 1198612,
+      "newBytes": 307135
+    },
+    {
+      "path": "web/src/game/jz49Test.fixture.json",
+      "removedStateFields": 5,
+      "allOtherFieldsRecursivelyEqual": true,
+      "oldSha256": "37983db05cb1b2665fda0d3c06aa0dbbd18ba1ee0c98c41c819e2d8a8075efca",
+      "newSha256": "16be9fe8dcb6572de75a1f1bc53e9fad750f3b22b04ba612f72caef1c3dd5fa9",
+      "oldBytes": 426639,
+      "newBytes": 108016
+    },
+    {
+      "path": "web/src/game/jz55Test.fixture.json",
+      "removedStateFields": 21,
+      "allOtherFieldsRecursivelyEqual": true,
+      "oldSha256": "f4d31d7a0dbdd9c78e0c1630bb69fa285d2be162b74347b63e37fb4ade17b27a",
+      "newSha256": "866216f19b83147576fc64aefe3a7cc443a02b5f49fd85d78f6b639f2faa2886",
+      "oldBytes": 1352603,
+      "newBytes": 589211
+    },
+    {
+      "path": "web/src/game/millPublicV035Test.fixture.json",
+      "removedStateFields": 46,
+      "allOtherFieldsRecursivelyEqual": true,
+      "oldSha256": "cd62f762d21f8af74a1fc7ec0aadde14109b8063ae3c132dcbb4cde7b3742c30",
+      "newSha256": "bb4189306f393e99634235777b7136fedb07d035a35c1e03256030c0ae470176",
+      "oldBytes": 1639720,
+      "newBytes": 1181764
+    }
+  ],
+  "allOtherFieldsEqual": true,
+  "totalRemovedStateFields": 174,
+  "assessment": "Recorded per-seat UI views only; removed opaque state prevents these fixtures proving runtime Native/WASM restoration."
+}

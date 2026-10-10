@@ -1,0 +1,67 @@
+{
+  "baseSource": "9aa74dc5163128d424d94f0e423253f3171e686d",
+  "engine": "rust-v0.2.49-sealed-restart-candidate",
+  "pool": "limited-v2.44-jz50-death-search-candidate",
+  "productionBehaviorChange": "Game::start clears sealed_cards; finish still retains reviewable board",
+  "counts": {
+    "ordinaryCards": 107,
+    "societies": 8,
+    "nativeRuleTests": 586,
+    "nativeIntegrationTests": 40,
+    "workerTests": 33,
+    "relatedWebTests": 22
+  },
+  "freshMatch": {
+    "commands": 6311,
+    "terminalTurn": 43,
+    "winner": 0,
+    "terminalSeals": 1,
+    "scope": "actual-fresh-lobby-validated-decks-seed9-legal-Room-commands-no-board-or-terminal-injection"
+  },
+  "parity": {
+    "engine": "rust-v0.2.49-sealed-restart-candidate",
+    "pool": "limited-v2.44-jz50-death-search-candidate",
+    "cards": 107,
+    "societies": 8,
+    "actualWasm": true,
+    "additionalChainExecutions": 40,
+    "chains": {
+      "jz50": 14,
+      "pause": 9,
+      "sealing": 13,
+      "restart-trace": 2,
+      "fresh": 2
+    },
+    "views": 25404,
+    "completeTransitionEqual": true,
+    "opaqueStateByteEqual": true,
+    "wasmBytes": 2248074,
+    "wasmSha256": "9b8a7a69cd3c09781387cb4e66ad710d803783447fb6b0382fb2697eac50e885",
+    "freshCommands": 6311,
+    "freshScope": "actual-fresh-lobby-validated-decks-seed9-legal-Room-commands-no-board-or-terminal-injection",
+    "frozen45_46_47_48BytePreserved": true
+  },
+  "sitePublished": false,
+  "mainPushed": false,
+  "remainingGates": [
+    "parent original reviewer independently reviews fixed source",
+    "BQ104/XQ48 existing unanswered owner rule gates; unrelated to this lifecycle fix"
+  ],
+  "evidenceSha256": {
+    "sites-read-current.json": "2adbea1fd150440609d1a57c112b378c493bd1614269772dec6090a8c139aa99",
+    "official-sites-current-check.json": "e609c58f0ff03d7f94813c0bc4a717470af66bd6dd72efc9353e4948765286e5",
+    "history-integrity.json": "6e5ffb05800941910e7d1806bd88735b3afa680f2d91ebcd1e4ce5d909ed5009",
+    "native-wasm49-parity.json": "f320dba267fb7a24590ce04e15247096c17464436ed61bfb9bff58921ea8bafd",
+    "check-native-wasm49.mjs": "d915488e56ecafc31310710f02fb259d7f16c2bbb222310a59d71d2c4edb1758",
+    "restart-p1-before-fix.log.gz": "54b619f57d72ff49fe3ce42a3356f6f3d161884db9fd2ee91181fe13a7eae68d",
+    "web-related.log.gz": "8718594ef278c31be2d757bbafb7107866065479339f8668dfe5fa3757b9c473",
+    "web-typecheck.log.gz": "bd2a61a4380b08ae8e78d294046d07c92f6c82efe600108321b53eb0a1f473f4",
+    "worker-tests.log.gz": "332c37ec552d780aee07a47f4c40f308f78242ba12fba39b8c32a0118e6dbff3",
+    "worker-build.log.gz": "3870d115a901bc5b0ab15787fd2755c009c3668f74ea1f4428d7fe6d9ce1faf1",
+    "native-wasm49.log.gz": "10e589a4dc8420f98dafe60ee906d660f8e1dd323f8f8ae0d0d2a1500ad31047",
+    "wasm-build.log.gz": "a356f4ce6db9b80d45430eb4ba2d972fd2853dd5a6734419a0c340c80ebcb1c5",
+    "native-full.log.gz": "480235d8cac7e329e65cea9174176dcdcf6f93171f84c3126e5a05604a0fc0f6",
+    "fresh-native.log.gz": "46c8b936f797aa091f7348f64eded9f01d655c58e33d423c2a014e704140530a",
+    "native-focused.log.gz": "2b5a5890c9162e8fd00a76811d545d98aa36988daae2745354fcc1b387164ae9"
+  }
+}

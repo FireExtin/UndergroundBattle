@@ -1,0 +1,8 @@
+error: no test target named `service_receipts` in `hegemony-server` package
+help: available test targets:
+    attachment_service
+    deck_construction
+    jc059_friendly
+    room_pacing
+    service
+    session_service

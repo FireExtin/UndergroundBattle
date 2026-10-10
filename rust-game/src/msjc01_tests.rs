@@ -172,7 +172,7 @@ fn msjc01_printed_program_and_registry_admission() {
             .iter()
             .filter(|c| c.color == "黄" && c.unique)
             .count(),
-        2
+        3
     );
 }
 #[test]
@@ -321,7 +321,7 @@ fn msjc01_printed_color_and_unique_filter_accepts_all_kinds_not_unique_keyword()
             .filter(|d| f.matches(d))
             .map(|d| d.id.as_str())
             .collect::<Vec<_>>(),
-        ["WM003", "LC01"]
+        ["WM003", "LC01", "JZ02"]
     );
 }
 #[test]

@@ -1,0 +1,110 @@
+{
+  "imports": [
+    {
+      "module": "wbg",
+      "name": "__wbindgen_init_externref_table",
+      "kind": "function"
+    },
+    {
+      "module": "wbg",
+      "name": "__wbindgen_cast_2241b6af4c4b2941",
+      "kind": "function"
+    }
+  ],
+  "exports": [
+    {
+      "name": "memory",
+      "kind": "memory"
+    },
+    {
+      "name": "stateIdentity",
+      "kind": "function"
+    },
+    {
+      "name": "catalog",
+      "kind": "function"
+    },
+    {
+      "name": "newGame",
+      "kind": "function"
+    },
+    {
+      "name": "joinGame",
+      "kind": "function"
+    },
+    {
+      "name": "newGameWithDeck",
+      "kind": "function"
+    },
+    {
+      "name": "joinGameWithDeck",
+      "kind": "function"
+    },
+    {
+      "name": "roomCatalog",
+      "kind": "function"
+    },
+    {
+      "name": "apply",
+      "kind": "function"
+    },
+    {
+      "name": "applyRoom",
+      "kind": "function"
+    },
+    {
+      "name": "pollRoom",
+      "kind": "function"
+    },
+    {
+      "name": "quoteRoom",
+      "kind": "function"
+    },
+    {
+      "name": "view",
+      "kind": "function"
+    },
+    {
+      "name": "__wbindgen_export_0",
+      "kind": "table"
+    },
+    {
+      "name": "__wbindgen_malloc",
+      "kind": "function"
+    },
+    {
+      "name": "__wbindgen_realloc",
+      "kind": "function"
+    },
+    {
+      "name": "__externref_table_dealloc",
+      "kind": "function"
+    },
+    {
+      "name": "__wbindgen_free",
+      "kind": "function"
+    },
+    {
+      "name": "__wbindgen_start",
+      "kind": "function"
+    }
+  ],
+  "catalogKeys": [
+    "rulesVersion",
+    "cardPoolVersion",
+    "engineVersion",
+    "decks",
+    "cards",
+    "societies",
+    "deckBuildRules"
+  ],
+  "engine": "rust-v0.2.50-bounded-entry-search-candidate",
+  "pool": "limited-v2.45-bounded-entry-search-candidate",
+  "rules": "hegemony-pdf-v1",
+  "cards": 109,
+  "societies": 8,
+  "wasmBytes": 2277324,
+  "wasmSha256": "e3d26f7041a114a96c9933374a33e63b0c8e45b9a4506b7937fb70cbf99a9d81",
+  "sameExportNamesAndKindsAs49": true,
+  "actualCurrentJsInstantiatesCurrentWasm": true
+}

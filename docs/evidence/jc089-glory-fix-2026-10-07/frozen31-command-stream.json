@@ -1,0 +1,485 @@
+[
+  {
+    "step": 1,
+    "seat": 2,
+    "serverNow": "0",
+    "command": {
+      "commandId": "review-boundary-1",
+      "expectedVersion": 18,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "actualErrorCode": null
+  },
+  {
+    "step": 2,
+    "seat": 3,
+    "serverNow": "0",
+    "command": {
+      "commandId": "review-boundary-2",
+      "expectedVersion": 19,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "actualErrorCode": null
+  },
+  {
+    "step": 3,
+    "seat": 0,
+    "serverNow": "0",
+    "command": {
+      "commandId": "review-boundary-3",
+      "expectedVersion": 20,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "actualErrorCode": null
+  },
+  {
+    "step": 4,
+    "seat": 1,
+    "serverNow": "0",
+    "command": {
+      "commandId": "review-boundary-4",
+      "expectedVersion": 21,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "actualErrorCode": null
+  },
+  {
+    "step": 5,
+    "seat": 0,
+    "serverNow": "0",
+    "command": {
+      "commandId": "review-boundary-5",
+      "expectedVersion": 22,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "choose",
+          "choiceId": "i258",
+          "allocations": {
+            "i253": 4
+          }
+        }
+      }
+    },
+    "actualErrorCode": null
+  },
+  {
+    "step": 6,
+    "seat": 0,
+    "serverNow": "0",
+    "command": {
+      "commandId": "review-boundary-6",
+      "expectedVersion": 23,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "choose",
+          "choiceId": "i260",
+          "selected": [
+            "accept"
+          ]
+        }
+      }
+    },
+    "actualErrorCode": null
+  },
+  {
+    "step": 7,
+    "seat": 2,
+    "serverNow": "0",
+    "command": {
+      "commandId": "review-boundary-7",
+      "expectedVersion": 24,
+      "action": {
+        "kind": "passResponse",
+        "windowId": "response:1"
+      }
+    },
+    "actualErrorCode": null
+  },
+  {
+    "step": 8,
+    "seat": 3,
+    "serverNow": "0",
+    "command": {
+      "commandId": "review-boundary-8",
+      "expectedVersion": 25,
+      "action": {
+        "kind": "passResponse",
+        "windowId": "response:1"
+      }
+    },
+    "actualErrorCode": null
+  },
+  {
+    "step": 9,
+    "seat": 0,
+    "serverNow": "0",
+    "command": {
+      "commandId": "review-boundary-9",
+      "expectedVersion": 26,
+      "action": {
+        "kind": "beginResponse",
+        "windowId": "response:2",
+        "intentId": "review-boundary-remove"
+      }
+    },
+    "actualErrorCode": null
+  },
+  {
+    "step": 10,
+    "seat": 0,
+    "serverNow": "0",
+    "command": {
+      "commandId": "review-boundary-10",
+      "expectedVersion": 27,
+      "action": {
+        "kind": "submitResponse",
+        "windowId": "response:2",
+        "intentId": "review-boundary-remove",
+        "action": {
+          "kind": "play",
+          "cardId": "i255",
+          "targetId": "i252"
+        }
+      }
+    },
+    "actualErrorCode": null
+  },
+  {
+    "step": 11,
+    "seat": 0,
+    "serverNow": "0",
+    "command": {
+      "commandId": "review-boundary-11",
+      "expectedVersion": 28,
+      "action": {
+        "kind": "passResponse",
+        "windowId": "response:3"
+      }
+    },
+    "actualErrorCode": null
+  },
+  {
+    "step": 12,
+    "seat": 1,
+    "serverNow": "0",
+    "command": {
+      "commandId": "review-boundary-12",
+      "expectedVersion": 29,
+      "action": {
+        "kind": "passResponse",
+        "windowId": "response:3"
+      }
+    },
+    "actualErrorCode": null
+  },
+  {
+    "step": 13,
+    "seat": 2,
+    "serverNow": "0",
+    "command": {
+      "commandId": "review-boundary-13",
+      "expectedVersion": 30,
+      "action": {
+        "kind": "passResponse",
+        "windowId": "response:4"
+      }
+    },
+    "actualErrorCode": null
+  },
+  {
+    "step": 14,
+    "seat": 3,
+    "serverNow": "0",
+    "command": {
+      "commandId": "review-boundary-14",
+      "expectedVersion": 31,
+      "action": {
+        "kind": "passResponse",
+        "windowId": "response:4"
+      }
+    },
+    "actualErrorCode": null
+  },
+  {
+    "step": 15,
+    "seat": 2,
+    "serverNow": "0",
+    "command": {
+      "commandId": "review-boundary-15",
+      "expectedVersion": 32,
+      "action": {
+        "kind": "passResponse",
+        "windowId": "response:5"
+      }
+    },
+    "actualErrorCode": null
+  },
+  {
+    "step": 16,
+    "seat": 3,
+    "serverNow": "0",
+    "command": {
+      "commandId": "review-boundary-16",
+      "expectedVersion": 33,
+      "action": {
+        "kind": "passResponse",
+        "windowId": "response:5"
+      }
+    },
+    "actualErrorCode": null
+  },
+  {
+    "step": 17,
+    "seat": 0,
+    "serverNow": "0",
+    "command": {
+      "commandId": "review-boundary-17",
+      "expectedVersion": 34,
+      "action": {
+        "kind": "passResponse",
+        "windowId": "response:6"
+      }
+    },
+    "actualErrorCode": null
+  },
+  {
+    "step": 18,
+    "seat": 1,
+    "serverNow": "0",
+    "command": {
+      "commandId": "review-boundary-18",
+      "expectedVersion": 35,
+      "action": {
+        "kind": "passResponse",
+        "windowId": "response:6"
+      }
+    },
+    "actualErrorCode": null
+  },
+  {
+    "step": 19,
+    "seat": 2,
+    "serverNow": "0",
+    "command": {
+      "commandId": "review-boundary-19",
+      "expectedVersion": 36,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "actualErrorCode": null
+  },
+  {
+    "step": 20,
+    "seat": 3,
+    "serverNow": "0",
+    "command": {
+      "commandId": "review-boundary-20",
+      "expectedVersion": 37,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "actualErrorCode": null
+  },
+  {
+    "step": 21,
+    "seat": 0,
+    "serverNow": "0",
+    "command": {
+      "commandId": "review-boundary-21",
+      "expectedVersion": 38,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "actualErrorCode": null
+  },
+  {
+    "step": 22,
+    "seat": 1,
+    "serverNow": "0",
+    "command": {
+      "commandId": "review-boundary-22",
+      "expectedVersion": 39,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "actualErrorCode": null
+  },
+  {
+    "step": 23,
+    "seat": 2,
+    "serverNow": "0",
+    "command": {
+      "commandId": "review-boundary-23",
+      "expectedVersion": 40,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "actualErrorCode": null
+  },
+  {
+    "step": 24,
+    "seat": 3,
+    "serverNow": "0",
+    "command": {
+      "commandId": "review-boundary-24",
+      "expectedVersion": 41,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "actualErrorCode": null
+  },
+  {
+    "step": 25,
+    "seat": 0,
+    "serverNow": "0",
+    "command": {
+      "commandId": "review-boundary-25",
+      "expectedVersion": 42,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "actualErrorCode": null
+  },
+  {
+    "step": 26,
+    "seat": 1,
+    "serverNow": "0",
+    "command": {
+      "commandId": "review-boundary-26",
+      "expectedVersion": 43,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      }
+    },
+    "actualErrorCode": null
+  },
+  {
+    "step": 27,
+    "seat": 0,
+    "serverNow": "0",
+    "command": {
+      "commandId": "review-boundary-27",
+      "expectedVersion": 44,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "choose",
+          "choiceId": "i266",
+          "selected": [
+            "accept"
+          ]
+        }
+      }
+    },
+    "actualErrorCode": null
+  },
+  {
+    "step": 28,
+    "seat": 2,
+    "serverNow": "0",
+    "command": {
+      "commandId": "review-boundary-28",
+      "expectedVersion": 45,
+      "action": {
+        "kind": "passResponse",
+        "windowId": "response:7"
+      }
+    },
+    "actualErrorCode": null
+  },
+  {
+    "step": 29,
+    "seat": 3,
+    "serverNow": "0",
+    "command": {
+      "commandId": "review-boundary-29",
+      "expectedVersion": 46,
+      "action": {
+        "kind": "passResponse",
+        "windowId": "response:7"
+      }
+    },
+    "actualErrorCode": null
+  },
+  {
+    "step": 30,
+    "seat": 0,
+    "serverNow": "0",
+    "command": {
+      "commandId": "review-boundary-30",
+      "expectedVersion": 47,
+      "action": {
+        "kind": "passResponse",
+        "windowId": "response:8"
+      }
+    },
+    "actualErrorCode": null
+  },
+  {
+    "step": 31,
+    "seat": 1,
+    "serverNow": "0",
+    "command": {
+      "commandId": "review-boundary-31",
+      "expectedVersion": 48,
+      "action": {
+        "kind": "passResponse",
+        "windowId": "response:8"
+      }
+    },
+    "actualErrorCode": null
+  }
+]

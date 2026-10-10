@@ -1,0 +1,26 @@
+{
+  "files": [
+    {
+      "file": "moved-carrier.json",
+      "sha256": "fdf74e6899c58b2515dcc16eb53591c1cfab23d1b4e8f656406a7c8cc91ad652"
+    },
+    {
+      "file": "owner-return.json",
+      "sha256": "886297a364d686a1e83fd9ad44d562b5fee0ef152c4a131fde2d104945823913"
+    },
+    {
+      "file": "private-hand-seal.json",
+      "sha256": "02d984754089922d533a4fa02355e83f481f053fc0b373563f9452d23234bd46"
+    },
+    {
+      "file": "public-sealed.json",
+      "sha256": "a568b1682ddfa7dd422b35a4e637fcc14a9ed80ebad5e12e07ac1f4b5f602110"
+    },
+    {
+      "file": "sealed-trigger.json",
+      "sha256": "7cfbbecf31a2971e64fb20dd9bc34fdfe702e4796b7d3e0001a283171da522c8"
+    }
+  ],
+  "aggregate": "web/src/game/sealedNative47Test.fixture.json",
+  "aggregateSha256": "5db46eda15e4d866179ab93a20da03996cfe262cbe9141264f2dd103be9b608d"
+}

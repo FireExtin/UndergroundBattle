@@ -26,6 +26,7 @@ const name = value => {
 };
 const commandFields = new Set(['kind','cardId','targetId','region','option','choiceId','selected','top','bottom','allocations','abilityId','costSelected','deckDraft']);
 const sessionFields = {
+  pauseRoom: ['kind'], resumeRoom: ['kind'],
   game: ['kind', 'action'], beginResponse: ['kind', 'windowId', 'intentId'],
   passResponse: ['kind', 'windowId'], cancelAndPass: ['kind', 'windowId', 'intentId'],
   submitResponse: ['kind', 'windowId', 'intentId', 'action'],

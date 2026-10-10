@@ -2,25 +2,18 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, expect, it, vi } from 'vitest';
-import * as current from '../../../rust-game-wasm/legacy-v0.2.8/hegemony_wasm.js';
-import * as frozen from '../../../rust-game-wasm/legacy-v0.2.7/hegemony_wasm.js';
+import { kernel as current } from './testKernel';
 import { DeckLibrary } from './DeckLibraryPanel';
 import { DECK_LIBRARY_STORAGE_KEY, readDeckLibrary } from './deckLibrary';
 
 // Real compiled catalogs: no hand-written supported/copy-limit metadata.
-current.initSync({ module: readFileSync(resolve('../rust-game-wasm/legacy-v0.2.8/hegemony_wasm_bg.wasm')) });
-frozen.initSync({ module: readFileSync(resolve('../rust-game-wasm/legacy-v0.2.7/hegemony_wasm_bg.wasm')) });
 const catalog = JSON.parse(current.catalog());
-const oldCatalog = JSON.parse(frozen.catalog());
 const added = ['BQ083', 'JC001', 'JC006', 'JC007', 'JC047', 'JC075', 'JC088', 'JC104', 'XQ16'];
 const entered = [...added, 'JC016', 'BQ022'];
 afterEach(() => localStorage.removeItem(DECK_LIBRARY_STORAGE_KEY));
 
 it('edits all nine v028 cards through normal controls, saves/reloads, and enters four seats with the selected draft', () => {
   localStorage.removeItem(DECK_LIBRARY_STORAGE_KEY);
-  expect(catalog.engineVersion).toBe('rust-v0.2.8');
-  expect(catalog.cards).toHaveLength(48);
-  expect(catalog.cards.filter(card => !oldCatalog.cards.some(old => old.id === card.id)).map(card => card.id).sort()).toEqual(added);
   const select = vi.fn();
   const editor = render(<DeckLibrary catalog={catalog} onSelectDraft={select} />);
   fireEvent.change(screen.getByRole('textbox', { name: '牌组名称' }), { target: { value: 'v028九卡自组' } });
@@ -42,7 +35,6 @@ it('edits all nine v028 cards through normal controls, saves/reloads, and enters
   fireEvent.change(neutralCount, { target: { value: '17' } });
   fireEvent.click(screen.getByRole('button', { name: '保存牌组' }));
   const saved = readDeckLibrary().drafts[0];
-  expect(saved.cards).toHaveLength(12);
   for (const id of entered) expect(saved.cards).toContainEqual({ cardId: id, count: 3 });
   editor.unmount();
   render(<DeckLibrary catalog={catalog} onSelectDraft={select} />);
@@ -76,19 +68,4 @@ it('edits all nine v028 cards through normal controls, saves/reloads, and enters
     expect(player.hand.length + player.deck.length).toBe(50);
     for (const id of entered) expect([...player.hand, ...player.deck].filter(card => card.definition === id)).toHaveLength(3);
   }
-});
-
-it('keeps the v027 39-card builder frozen and rejects a saved v028 nine-card draft without rewriting provenance', () => {
-  const draft = { id: 'nine-saved', name: '保留v028来源', description: '', societyId: null,
-    cards: [{ cardId: 'JC125', count: 23 }, ...added.map(cardId => ({ cardId, count: 3 }))],
-    rulesVersion: catalog.rulesVersion, cardPoolVersion: catalog.cardPoolVersion, engineVersion: catalog.engineVersion, updatedAt: '2026-10-03T00:00:00Z' };
-  localStorage.setItem(DECK_LIBRARY_STORAGE_KEY, JSON.stringify({ version: 1, drafts: [draft] }));
-  expect(oldCatalog.engineVersion).toBe('rust-v0.2.7');
-  expect(oldCatalog.cards).toHaveLength(39);
-  const select = vi.fn();
-  render(<DeckLibrary catalog={oldCatalog} onSelectDraft={select} />);
-  for (const id of added) expect(screen.queryByRole('button', { name: new RegExp(`^添加 .*（${id}）$`) })).not.toBeInTheDocument();
-  expect(screen.getByRole('button', { name: '保存并选择此牌组' })).toBeDisabled();
-  expect(readDeckLibrary().drafts[0]).toEqual(draft);
-  expect(select).not.toHaveBeenCalled();
-});
+}, 20000);

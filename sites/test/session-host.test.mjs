@@ -3,6 +3,14 @@ import assert from 'node:assert/strict';
 import { HttpError, RoomService, normalizedAction } from '../src/service.mjs';
 
 const authorization = 'Bearer ' + 'a'.repeat(64);
+test('pause/resume are parameterless session commands and reject injected clocks or nested use', () => {
+  for (const kind of ['pauseRoom', 'resumeRoom']) {
+    assert.deepEqual(normalizedAction({ kind }), { kind });
+    for (const value of [{ kind, serverNowMs: 10 }, { kind, windowId: 'old' }, { kind: 'game', action: { kind } }]) {
+      assert.throws(() => normalizedAction(value), error => error.status === 400);
+    }
+  }
+});
 const actorView = version => ({ roomId: 'clock-room', version, you: 'p0' });
 const accepted = version => JSON.stringify({ state: `opaque-${version}`, version, seat: 0,
   view: actorView(version), changed: true, outcome: 'accepted', journal: [{ Command: { seat: 0 } }] });

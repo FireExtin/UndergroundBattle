@@ -1,0 +1,95 @@
+{
+  "engine": "rust-v0.2.49-sealed-restart-candidate",
+  "pool": "limited-v2.44-jz50-death-search-candidate",
+  "wasmSha256": "9b8a7a69cd3c09781387cb4e66ad710d803783447fb6b0382fb2697eac50e885",
+  "imports": [
+    {
+      "module": "wbg",
+      "name": "__wbindgen_init_externref_table",
+      "kind": "function"
+    },
+    {
+      "module": "wbg",
+      "name": "__wbindgen_cast_2241b6af4c4b2941",
+      "kind": "function"
+    }
+  ],
+  "exports": [
+    {
+      "name": "memory",
+      "kind": "memory"
+    },
+    {
+      "name": "stateIdentity",
+      "kind": "function"
+    },
+    {
+      "name": "catalog",
+      "kind": "function"
+    },
+    {
+      "name": "newGame",
+      "kind": "function"
+    },
+    {
+      "name": "joinGame",
+      "kind": "function"
+    },
+    {
+      "name": "newGameWithDeck",
+      "kind": "function"
+    },
+    {
+      "name": "joinGameWithDeck",
+      "kind": "function"
+    },
+    {
+      "name": "roomCatalog",
+      "kind": "function"
+    },
+    {
+      "name": "apply",
+      "kind": "function"
+    },
+    {
+      "name": "applyRoom",
+      "kind": "function"
+    },
+    {
+      "name": "pollRoom",
+      "kind": "function"
+    },
+    {
+      "name": "quoteRoom",
+      "kind": "function"
+    },
+    {
+      "name": "view",
+      "kind": "function"
+    },
+    {
+      "name": "__wbindgen_export_0",
+      "kind": "table"
+    },
+    {
+      "name": "__wbindgen_malloc",
+      "kind": "function"
+    },
+    {
+      "name": "__wbindgen_realloc",
+      "kind": "function"
+    },
+    {
+      "name": "__externref_table_dealloc",
+      "kind": "function"
+    },
+    {
+      "name": "__wbindgen_free",
+      "kind": "function"
+    },
+    {
+      "name": "__wbindgen_start",
+      "kind": "function"
+    }
+  ]
+}

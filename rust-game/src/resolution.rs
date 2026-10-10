@@ -384,19 +384,26 @@ impl Game {
     }
     pub(crate) fn source_snapshot(&self, c: &Card, region: Option<usize>) -> SourceSnapshot {
         SourceSnapshot {
-            card: c.clone(),
+            observed_death: None,
+            card: {
+                let mut snapshot = c.clone();
+                if c.definition == "JZ30" && !c.face_down && self.board(&c.id).is_some() {
+                    snapshot.time_markers = self.effective_time_markers(c);
+                }
+                snapshot
+            },
             region,
-            source_region_instance: if matches!(c.definition.as_str(), "JC032" | "JZ24" | "JZ31") {
+            source_region_instance: if matches!(c.definition.as_str(), "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028") {
                 region.and_then(|r| self.regions.get(r)).map(|r| r.card.id.clone())
             } else { None },
-            attachment_host_instance: rules::definition(&c.definition)
+            attachment_host_instance: (c.definition == "JC090" || rules::definition(&c.definition)
                 .abilities
                 .iter()
                 .any(|a| {
                     a.ops
                         .iter()
                         .any(|op| matches!(op, Op::ModifyAttachmentHostUntilTurnEnd))
-                })
+                }))
                 .then(|| {
                     self.attachments
                         .iter()
@@ -629,8 +636,21 @@ impl Game {
                                     source.card.definition == "JZ55"
                                         && !c.face_down && d.kind == "character" && d.unique
                                 }
+                                rules::TargetPredicate::JC069LockedAnchor => {
+                                    source.card.definition == "JC069" && c.lock_markers > 0
+                                }
+                                rules::TargetPredicate::XQ18CharacterOrAttachment => {
+                                    self.xq18_character_or_attachment(source, c)
+                                }
+                                rules::TargetPredicate::JZ45LockedLocalTarget => {
+                                    source.card.definition == "JZ45" && c.lock_markers > 0
+                                }
                             })
                         && (spec.range != Range::SourceRegion || region == source.region)
+                        && (!matches!(source.card.definition.as_str(), "JZ43" | "JZ44" | "JZ45" | "WM059") || spec.range != Range::SourceRegion
+                            || source.region.and_then(|r| self.regions.get(r))
+                                .zip(source.source_region_instance.as_ref())
+                                .is_some_and(|(region, instance)| region.card.id == *instance))
                         && spec.subtype.as_ref().is_none_or(|s| {
                             !c.face_down && self.target_subtypes(c, spec).contains(s)
                         })
@@ -746,6 +766,15 @@ impl Game {
                 };
                 if !self.valid_binding(actor, source, slot, &id) {
                     return Err("目标不存在或不满足目标条件".into());
+                }
+                // The FAQ forbids choosing an in-place movement. This is an
+                // activation check; later response movement does not add an
+                // unprinted distance condition to the target's frame guard.
+                if slot.predicate == Some(TargetPredicate::JC069LockedAnchor)
+                    && self.board(&source.card.id).zip(self.board(&id))
+                        .is_some_and(|((from, _), (to, _))| from == to)
+                {
+                    return Err("不能原地移动".into());
                 }
                 let public = self.public_target(actor, source, slot, &id);
                 Ok(BoundTarget {
@@ -956,6 +985,17 @@ impl Game {
             .iter()
             .filter(|s| s.event == Some(event))
         {
+            // XQ37's printed if-condition must hold at the actual entry event.
+            // Do not defer this gate to declaration processing: earlier queued
+            // rewards or responses must not retroactively qualify an entry.
+            if source.card.definition == "XQ37"
+                && spec.key == "entry-existing-influence"
+                && !source
+                    .region
+                    .is_some_and(|r| self.regions[r].influence[self.team(actor)] > 0)
+            {
+                continue;
+            }
             self.effects.push_back(Effect::Declare {
                 declaration: Declaration {
                     actor,
@@ -970,6 +1010,9 @@ impl Game {
         let actor = declaration.actor;
         let spec = &declaration.ability;
         if self.players[actor].eliminated {
+            return Ok(());
+        }
+        if self.death_observer_limit_reached(&declaration) {
             return Ok(());
         }
         if spec.event == Some(Event::HandDiscard) && self.resources(actor) < 1 {
@@ -1088,7 +1131,9 @@ impl Game {
             card(&declaration.source.card.definition).name,
             declaration.ability.label
         );
-        let paid = if declaration.ability.event == Some(Event::HandDiscard) {
+        let paid = if declaration.ability.event == Some(Event::HandDiscard)
+            || (declaration.source.card.definition == "JC031"
+                && declaration.ability.event == Some(Event::CharacterDeathObserved)) {
             self.pay_ability_costs(
                 declaration.actor,
                 &declaration.source,
@@ -1161,7 +1206,9 @@ impl Game {
         c
     }
     pub(crate) fn remove_dead(&mut self, target: &str, cause: RemovalCause) {
-        self.remove_dead_with_snapshot(target, cause, None);
+        if let Some((region, c)) = self.board(target) {
+            self.remove_death_batch(vec![(target.into(), cause, self.source_snapshot(c, Some(region)))]);
+        }
     }
     fn asset_location(&self, id: &str) -> Option<(usize, usize)> {
         self.players
@@ -1174,7 +1221,7 @@ impl Game {
         target: &str,
         cause: RemovalCause,
         simultaneous_source: Option<SourceSnapshot>,
-    ) {
+    ) -> bool {
         // Host departure can remove an attached control grant. Freeze before it;
         // an already captured simultaneous lethal-set snapshot remains authoritative.
         let snapshot = simultaneous_source.or_else(|| self.board(target)
@@ -1199,7 +1246,9 @@ impl Game {
             if character {
                 self.emit_event(controller, snapshot, Event::Death);
             }
+            return character;
         }
+        false
     }
     fn take_entity(&mut self, id: &str) -> Option<Card> {
         if let Some((_, c)) = self.leave_board(id) {
@@ -1248,6 +1297,15 @@ impl Game {
         true
     }
     pub(crate) fn resolve_frame(&mut self, mut frame: ResolutionFrame) -> RuleResult<()> {
+        self.validate_red_time_frame(&frame)?;
+        self.validate_blue_expansion_frame(&frame)?;
+        self.validate_black_expansion_frame(&frame)?;
+        self.validate_gray_expansion_frame(&frame)?;
+        self.validate_gray_lock_frame(&frame)?;
+        self.validate_jz22_frame(&frame)?;
+        self.validate_jc050_frame(&frame)?;
+        self.validate_xq27_frame(&frame)?;
+        self.validate_xq37_frame(&frame)?;
         if !self.accept_frame_guard(&mut frame) {
             return Ok(());
         }
@@ -1255,8 +1313,31 @@ impl Game {
             let step = frame.steps[frame.cursor].clone();
             frame.cursor += 1;
             match step.op {
+                Op::XQ18AddOneTimeToTarget => self.xq18_add_one_time(&frame),
+                Op::XQ18ChooseTimeCarrier => return self.xq18_choose_carrier(frame),
+                Op::JZ30AddOneTimeToOriginalSource => self.jz30_add_one_time(&frame),
+                Op::JZ30ForecastFrozenTime => {
+                    if self.jz30_forecast_frozen_time(&frame)? { return Ok(()); }
+                }
+                Op::BQ028InspectTargetHandAttachments => return self.bq028_inspect_start(frame),
+                Op::BQ078ReturnNamelessCorpse => return self.bq078_return_start(frame),
+                Op::JZ45LockLocalTarget => self.jz45_lock_local_target(&frame)?,
+                Op::XQ44SearchDreamSealOnTarget => return self.deck_seal_search_start(frame, true),
+                Op::JZ02SearchSpaceSpellSealOnSource => return self.deck_seal_search_start(frame, false),
+                Op::JZ50SearchDeathToGraveyard => return self.jz50_search_start(frame),
+                Op::BQ104SearchEmployeeHiddenInSourceRegion => return self.entry_search_start(frame, true),
+                Op::XQ48SearchPassersIntoSourceRegion => return self.entry_search_start(frame, false),
+                Op::SealOneActorHandCardOnTarget => return self.choose_hand_seal(frame),
+                Op::DestroyTargetIfSealed => {
+                    let host = &frame.targets.first().ok_or("缺少封印载体目标")?.id;
+                    if self.sealed_cards.iter().any(|s| s.host_id == *host) {
+                        self.remove_dead(host, RemovalCause::Destroy);
+                    }
+                }
                 Op::JC032TopSixVampireHidden => return self.jc032_start(frame),
                 Op::JZ24LocalSacrificeSnapshot => return self.jz24_start(frame),
+                Op::JZ22LowHandInfluenceInSourceRegion => self.jz22_low_hand_influence(&frame),
+                Op::XQ37EntryInfluenceIfPresent => self.xq37_entry_influence(&frame),
                 Op::GainControl {
                     slot,
                     until_source_leaves,
@@ -1392,6 +1473,44 @@ impl Game {
                         amount,
                     )]))?;
                 }
+                Op::JC069LockTarget => {
+                    let target = frame.targets.first().ok_or("缺少锁定目标")?;
+                    if let Some(c) = self.board_mut(&target.id) {
+                        c.lock_markers = c.lock_markers.saturating_add(1);
+                    }
+                }
+                Op::JZ43LockOrDamageLocalTarget => {
+                    let target = frame.targets.first().ok_or("缺少锁定目标")?;
+                    if self.board(&target.id).is_some_and(|(_, c)| c.lock_markers > 0) {
+                        self.damage(BTreeMap::from([(target.id.clone(), 1)]))?;
+                    } else if let Some(c) = self.board_mut(&target.id) {
+                        c.lock_markers = c.lock_markers.saturating_add(1);
+                    }
+                }
+                Op::JC069ChaseLockedTarget => {
+                    let target = frame.targets.first().ok_or("缺少追逐目标")?;
+                    let destination = self.board(&target.id).map(|(r, _)| r);
+                    // Self-reference follows the original board instance. A
+                    // leave/flip/reentry gives a new ID and cannot inherit this.
+                    if let Some((from, c)) = self.board(&frame.source.card.id)
+                        .filter(|(_, c)| !c.face_down && card(&c.definition).kind == "character")
+                    {
+                        let id = c.id.clone();
+                        if let Some(to) = destination.filter(|to| *to != from) {
+                            let (_, c) = self.remove_board(&id).unwrap();
+                            let actor = c.controller;
+                            let source = self.source_snapshot(&c, Some(to));
+                            self.regions[to].cards.push(c);
+                            self.emit_event(actor, source, Event::EnterRegion);
+                        }
+                        self.turn_attribute_modifiers.push(TurnAttributeModifier {
+                            target_instance: id, defense_bonus: 0, kill_bonus: 0,
+                            grants_retreat: false, printed_defense_override: None,
+                            ordinary_icons: Icons { investigation: 1, ..Default::default() },
+                            grants_renown: false, prevents_damage: false, expires_turn: self.turn,
+                        });
+                    }
+                }
                 Op::PreventTargetDamageUntilTurnEnd { slot } => {
                     let target = frame.targets.get(slot).ok_or("缺少伤害防护目标")?;
                     self.turn_attribute_modifiers.push(TurnAttributeModifier {
@@ -1471,6 +1590,38 @@ impl Game {
                             frame.source.source_region_instance.as_ref() == Some(&r.card.id))
                     }) {
                         self.place_influence(frame.actor, region, 1);
+                    }
+                }
+                Op::JC045AddOneTimeToOriginalSource => {
+                    if let Some(live) = self.board_mut(&frame.source.card.id)
+                        .filter(|c| c.definition == "JC045" && !c.face_down)
+                    {
+                        live.time_markers = live.time_markers.saturating_add(1);
+                    }
+                }
+                Op::JC090PlaceOneInfluenceInOriginalAttachedRegion => {
+                    if let Some(region) = frame.source.region.filter(|&r| self.regions.get(r)
+                        .is_some_and(|region| frame.source.attachment_host_instance.as_ref() == Some(&region.card.id)
+                            && frame.source.source_region_instance.as_ref() == Some(&region.card.id)))
+                    {
+                        self.place_influence(frame.actor, region, 1);
+                    }
+                }
+                Op::JC031DiscardForObservedDeath => {
+                    let seat = self.frame_player(&frame, step.context, PlayerRef::Target(0))?;
+                    if !self.players[seat].eliminated && !self.players[seat].hand.is_empty() {
+                        if frame.source.observed_death.as_ref().is_some_and(|d| d.vampire) {
+                            let i = self.random_below(self.players[seat].hand.len());
+                            let id = self.players[seat].hand[i].id.clone();
+                            self.discard_hand_card(seat, &id)?;
+                        } else {
+                            let options = self.players[seat].hand.iter()
+                                .map(|c| self.option(c, seat, None, None)).collect();
+                            self.choice(seat, "discard", "弃 1 张手牌".into(), options, 1, 1, None,
+                                ChoiceResolution::Frame { frame: Box::new(frame),
+                                    choice: FrameChoice::Discard { seat, redraw: false } });
+                            return Ok(());
+                        }
                     }
                 }
                 Op::PlaceInfluence {
@@ -1589,6 +1740,22 @@ impl Game {
                     } else {
                         self.remove_dead(&id, RemovalCause::Destroy);
                     }
+                }
+                Op::XQ27DestroyAllHidden => {
+                    let game = &*self;
+                    let deaths = game.regions.iter().enumerate().flat_map(|(r, region)|
+                        region.cards.iter().filter(|c| c.face_down)
+                            .map(move |c| (c.id.clone(), RemovalCause::Destroy, game.source_snapshot(c, Some(r)))))
+                        .collect();
+                    self.remove_death_batch(deaths);
+                }
+                Op::JC050DestroyChosenRegionCharacters => {
+                    let region = frame.chosen_region.ok_or("JC050缺少已选择地区")?;
+                    let deaths = self.regions.get(region).ok_or("JC050地区已失效")?
+                        .cards.iter().filter(|c| c.face_down || card(&c.definition).kind == "character")
+                        .map(|c| (c.id.clone(), RemovalCause::Destroy, self.source_snapshot(c, Some(region))))
+                        .collect();
+                    self.remove_death_batch(deaths);
                 }
                 Op::Destroy(entity) => {
                     if let Some(id) = Self::frame_entity(&frame, entity) {
@@ -1958,6 +2125,37 @@ impl Game {
         option_ids: BTreeSet<String>,
     ) -> RuleResult<()> {
         match choice {
+            FrameChoice::XQ18TimeCarrier { target_instance } => {
+                self.xq18_remove_from_carrier(&frame, chooser, &target_instance, &selected)?;
+            }
+            FrameChoice::BQ028InspectAttachments { seat, inspected } => {
+                self.bq028_inspect_complete(&frame, seat, inspected, &selected)?;
+            }
+            FrameChoice::BQ078CorpseReturn => {
+                self.bq078_return_complete(&frame, chooser, &selected)?;
+            }
+            FrameChoice::XQ44DreamSealSearch | FrameChoice::JZ02SpaceSealSearch => {
+                if chooser != frame.actor { return Err("牌库封印检索选择者无效".into()); }
+                self.deck_seal_search_complete(&frame, &selected, matches!(choice, FrameChoice::XQ44DreamSealSearch))?;
+            }
+            FrameChoice::JZ50DeathSearch => {
+                if chooser != frame.actor {
+                    return Err("墓穴食尸鬼检索的选择者无效".into());
+                }
+                self.jz50_search_complete(&frame, &selected)?;
+            }
+            FrameChoice::BQ104EmployeeSearch | FrameChoice::XQ48PasserSearch => {
+                if chooser != frame.actor { return Err("进场检索的选择者无效".into()); }
+                self.entry_search_complete(&frame, &selected, matches!(choice, FrameChoice::BQ104EmployeeSearch))?;
+            }
+            FrameChoice::HandSeal { seat, host_id } => {
+                if chooser != seat || frame.actor != seat
+                    || frame.targets.first().is_none_or(|t| t.id != host_id) {
+                    return Err("封印手牌的选择者无效".into());
+                }
+                let id = selected.first().ok_or("必须选择一张手牌封印")?;
+                self.seal_hand_card(seat, id, &host_id)?;
+            }
             FrameChoice::JC032TopSix { inspected_ids } => {
                 self.jc032_complete(&frame, inspected_ids, &selected)?;
             }

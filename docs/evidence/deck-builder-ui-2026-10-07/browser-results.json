@@ -1,0 +1,34 @@
+{
+  "scope": "local-frontend-public-catalog-recording",
+  "baseUrl": "http://localhost:5173",
+  "catalogSha256": "57e7688e0046ab4c780fc9e01b2d1c10a5f82d445a92d3844dc57e6baf7a28d2",
+  "versions": {
+    "rulesVersion": "hegemony-pdf-v1",
+    "cardPoolVersion": "limited-v2.42-jc089-poison-blood-candidate",
+    "engineVersion": "rust-v0.2.45-jc089-poison-blood-candidate"
+  },
+  "liveServerAdmissionTested": false,
+  "published": false,
+  "apiWrites": [],
+  "browserErrors": [],
+  "checkpoints": [
+    "desktop-5-columns-and-multiple-rows",
+    "repeated-grid-preview-and-selected-list-counts-and-focus",
+    "zero-cost-selected-search-empty-reset",
+    "combined-faction-type-cost-id-filters",
+    "invalid-draft-saved-and-restored-with-legality-retained",
+    "valid-draft-selection-and-workspace-close-reopen",
+    "last-selected-copy-removal-and-search-focus-fallback",
+    "mobile-two-columns-preview-controls-close-no-overflow",
+    "simulated-image-404-placeholder-and-backdrop-close"
+  ],
+  "screenshots": {
+    "desktop-grid.png": "e4669c9adc76e398343a49e29fd62fbd46816238f74ff914e12a2f47c3013db5",
+    "desktop-original-preview.png": "f68f42322dbe23971a6f1b4979349de005be72950ea75b6c35a314994be337e9",
+    "desktop-copy-limit-feedback.png": "05d03315ccaeddc280bf462e3b65c1ef46a11c5429929734fdb8e87f5044c486",
+    "mobile-grid.png": "553f60ddfb3c012f342c7dba15c4491ebfc8895ed668fb08eb91e05de301613c",
+    "mobile-original-preview.png": "b53be22fdf61289a4124fad6e1482f4eb7a5c85ff807d46be6428ba37dd28fe5",
+    "desktop-image-failure-placeholder.png": "0fb0a71a57a2c548d0d63c89948c83d84d82a14186a6aa91dd37a75a4a58de7b"
+  },
+  "passed": true
+}

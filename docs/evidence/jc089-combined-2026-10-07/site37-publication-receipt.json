@@ -1,0 +1,93 @@
+{
+  "taskId": "01a10fcf-9a3a-755a-83bf-e8fe922ca0f4",
+  "acceptedGitHubSourceCommit": "0dcff4cf3f682c5cbcc1132776e99fabd831b058",
+  "reviewedProductCommit": "84a36d624528ab61f752e4ad9f05fdeb1839d7e4",
+  "mechanismFixCommit": "a96a5595d42b58ecf2d47abd4d4a87b3d6c7d1ae",
+  "officialWorkflow": {
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "checkout_path": "/tmp/lantern-site-fce0-official",
+    "commit_sha": "c92b0f6c593281c785e6f7f88516ff960d0cfa2a",
+    "archive": "/tmp/jc089-combined-evidence/site37-approved-0dcff4c.tar.gz"
+  },
+  "saved": {
+    "id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_6845543d81c88191a2e4afe1f3e76e8c",
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "version_number": 37,
+    "source": {
+      "commit_sha": "c92b0f6c593281c785e6f7f88516ff960d0cfa2a"
+    },
+    "archive_storage": {
+      "archive_format": "tar",
+      "sediment_file_id": "file_0000000060a8820da9e92e8ae194c36b",
+      "content_hash": "sha256:f0bf3e7e2ae7bd20688d57e65d2ed526a9f54cf0ef19eb50e1cca886edf36e01",
+      "size_bytes": 62617600,
+      "file_count": 127
+    },
+    "screenshot_url": null,
+    "deployment_id": null
+  },
+  "deployment": {
+    "id": "appgdep_6ac64d1826d48191836ca986bb52657a",
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "title": "隐秘世界 · 霸权",
+    "version_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_6845543d81c88191a2e4afe1f3e76e8c",
+    "type": "publish",
+    "status": "succeeded",
+    "url": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site",
+    "has_mcp": false,
+    "screenshot_asset_pointer": null,
+    "provider_deployment_id": "site---6abf7bf54a7481918a50e1ef1509ca68",
+    "failure_message": null,
+    "env_set_revision": 0,
+    "updated_at": "2026-10-07T13:46:12.820896+00:00"
+  },
+  "engine": "rust-v0.2.45-jc089-poison-blood-candidate",
+  "pool": "limited-v2.42-jc089-poison-blood-candidate",
+  "prepublicationSharedRemote": "0dcff4cf3f682c5cbcc1132776e99fabd831b058",
+  "audience": {
+    "before": "public",
+    "requestedChange": false,
+    "accessMutationCalled": false
+  },
+  "scopes": {
+    "githubMainMerge": false,
+    "newerUnreviewedCommitsIncluded": false,
+    "JZ50": "Claude-owned; artwork only, no gameplay admission",
+    "naturalUi": "Focused dual-seat turn6 playing, 273 unique commands; not strategy terminal or natural JC018-specific case",
+    "permanentDataDeletion": false,
+    "extraLiveUrlFetch": false,
+    "library401Retried": false,
+    "newOfficialDownload403Retried": false
+  },
+  "verification": {
+    "productTrees": {
+      "rust-game": "6a7a2afe39e719925a2879d01a1c8df91bd17e35",
+      "rust-game-wasm": "acd84940795276c1d9b9226eb27230c8976bbba0",
+      "web": "8accde6581ce75188e4bb98107cf3f1e95e6dedf",
+      "sites": "67de5b05acf41ad066c6e5b6487d6d09e2bd8214"
+    },
+    "sourcePayloadsByteExact": 616,
+    "currentAbiByteExact": true,
+    "clientByteExact": true,
+    "registeredOriginals": 115,
+    "oneCurrentWasm": true,
+    "wasm": {
+      "filename": "5f45fc73a42dc6e2e8820fa6f5882db590b63a61-hegemony_wasm_bg.wasm",
+      "bytes": 2198305,
+      "sha256": "afc1b42523111dc242fd21850da9af243112a619c9f759bc60cbabac045883f7"
+    },
+    "workerJs": {
+      "bytes": 47263,
+      "sha256": "384050c24c4e79af52ed002036aa9400aa1e9aff077dd4b154a0f1b4bdbb71ea"
+    },
+    "totalWorkerBytes": 2245568,
+    "archiveBytes": 46016775,
+    "archiveSha256": "872c77f535974fe2f08adb7d3724f661a3e61ae35a5d17c2a24d2065f45ed4a5",
+    "packagedFilesByteExact": 127,
+    "unchangedMigrationsByteExact": true,
+    "officialWorkflowPushedSource": true,
+    "succeededNativeReceiptCompletesVerification": true
+  },
+  "postPublicationSharedRemote": "0dcff4cf3f682c5cbcc1132776e99fabd831b058",
+  "newClaudeCommitsObserved": []
+}

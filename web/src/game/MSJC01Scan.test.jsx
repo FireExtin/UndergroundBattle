@@ -1,15 +1,14 @@
-// Historical catalog/scan assertions use frozen32; current36 is covered independently by JZ55UniqueDestroy.
+// Current catalog, with the preserved engine32 scan registry and unchanged original artworks.
 import {createHash} from 'node:crypto';
 import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {render,screen,fireEvent} from '@testing-library/react';
 import {expect,it,vi} from 'vitest';
-import * as kernel from '../../../rust-game-wasm/legacy-v0.2.32/hegemony_wasm.js';
+import { kernel } from './testKernel';
 import {actionForRoom,actionPayload} from './api';
 import {CardContent} from './CardTile';
 import {ReadModal} from './ReadModal';
 import {validateDeckDraft} from './deckLibrary';
-kernel.initSync({module:readFileSync(resolve('../rust-game-wasm/legacy-v0.2.32/hegemony_wasm_bg.wasm'))});
 const catalog=JSON.parse(kernel.catalog());
 const definition=catalog.societies.find(c=>c.id==='MSJC01');
 const yellow=['JC001','JC002','JC003','JC004','JC005','JC006','JC007','XQ03','JC008'];
@@ -23,9 +22,8 @@ function localRoom(){
  const advance=done=>{for(let n=0;n<600;n++){const views=[view(0),view(1)];if(done(views))return;const chooser=views.findIndex(v=>v.pendingChoice);if(chooser>=0){const p=views[chooser].pendingChoice;game(chooser,{kind:'choose',choiceId:p.id,selected:p.allowDecline?[]:p.options.slice(0,p.min??1).map(o=>o.id)});}else{const passer=views.findIndex(v=>v.legalActions.some(a=>a.kind==='pass'));expect(passer).toBeGreaterThanOrEqual(0);game(passer,{kind:'pass'});}}throw Error('bounded normal Room progress failed');};
  for(const[seat,kind]of[[0,'ready'],[1,'ready'],[0,'start']])game(seat,{kind});return{view,game,advance};
 }
-it('retains actual MSJC01 original, metadata, two abilities and two real admitted yellow unique cards',()=>{
- expect(catalog.engineVersion).toBe('rust-v0.2.32-jc030-blue-bat-candidate');expect(catalog.cardPoolVersion).toBe('limited-v2.29-jc030-blue-bat-candidate');expect(catalog.cards).toHaveLength(94);expect(catalog.societies.map(c=>c.id)).toEqual(['MSJC09','MSJC01','MSJC07','MSJC06','MSJC08','MSJC11','MSJC02']);
- expect(definition).toMatchObject({name:'帷幕守望',subtitle:'世界守护者',kind:'society',type:'秘社/法师结社',subtypes:['法师结社'],color:'黄',unique:true,startingHand:6,printedCost:null,deckConstraints:[{kind:'minimumColor',color:'黄',count:25}]});expect(definition.abilities.map(a=>a.key)).toEqual(['drawWithInitiative','search-yellow-unique']);expect(catalog.cards.filter(c=>c.color==='黄'&&c.unique)).toHaveLength(2);
+it('retains actual MSJC01 original, metadata, two abilities and the three admitted yellow unique cards',()=>{
+ expect(definition).toMatchObject({name:'帷幕守望',subtitle:'世界守护者',kind:'society',type:'秘社/法师结社',subtypes:['法师结社'],color:'黄',unique:true,startingHand:6,printedCost:null,deckConstraints:[{kind:'minimumColor',color:'黄',count:25}]});expect(definition.abilities.map(a=>a.key)).toEqual(['drawWithInitiative','search-yellow-unique']);expect(catalog.cards.filter(c=>c.color==='黄'&&c.unique).map(c=>c.id)).toEqual(['WM003','LC01','JZ02']);
  const scans=JSON.parse(readFileSync(resolve('src/game/cardScansV032.fixture.json'),'utf8'));const hash='c61c887558cb184a532758eac5db766234c32a3a3605162a38c0899993e7bdf2';expect(Object.keys(scans)).toHaveLength(101);expect(scans.MSJC01).toEqual({url:'/cards/MSJC01.jpg',source:'resource/ymsj-fun.github.io/cards/MSJC01 帷幕守望.jpg',sha256:hash});expect(createHash('sha256').update(readFileSync(resolve('public/cards/MSJC01.jpg'))).digest('hex')).toBe(hash);
 });
 it('agrees with actual WASM on 24/25/27 yellow and excludes the society from 50 cards',()=>{

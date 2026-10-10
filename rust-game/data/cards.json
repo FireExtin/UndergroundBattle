@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.40-jz49-slow-mill-candidate",
-  "engineVersion": "rust-v0.2.43-jz49-slow-mill-candidate",
+  "cardPoolVersion": "limited-v2.55-xq18-carrier-candidate",
+  "engineVersion": "rust-v0.2.60-xq18-carrier-candidate",
   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
   "cards": [
     {
@@ -3934,6 +3934,1047 @@
         "image": "resource/ymsj-fun.github.io/cards/JZ49 蹒跚行尸.jpg",
         "sha256": "208b2370433fb420ba91e1557ad6633589e43b1391d2008d63ebee2ed90fdf62"
       }
+    },
+    {
+      "id": "JZ48",
+      "name": "街头劫匪",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "罪犯"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "黑色"
+      ],
+      "loyaltyText": "黑色",
+      "color": "黑",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "持续 若本地区有其他本方罪犯角色，则街头劫匪获得永久势力1和防御力+1。",
+      "keywords": [],
+      "unique": false,
+      "society": "",
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JZ48",
+        "image": "resource/ymsj-fun.github.io/cards/JZ48 街头劫匪.jpg",
+        "sha256": "a9a5da75938c22872cca524776356b10f2a0250370d3ba3ed3b31deb332e5b4f"
+      }
+    },
+    {
+      "id": "JC089",
+      "name": "毒血诅咒",
+      "kind": "attachment",
+      "subtypes": [
+        "诅咒"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "黑色"
+      ],
+      "color": "黑",
+      "magic": "鲜血",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "text": "结附于目标角色\n持续：受此结附的角色获得防御-1、永久战斗1和临时战斗1，并获得威名。",
+      "keywords": [],
+      "unique": false,
+      "society": "方碑序列",
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/JC089 毒血诅咒.jpg",
+        "image": "resource/ymsj-fun.github.io/cards/JC089 毒血诅咒.jpg",
+        "sha256": "83853a1a4c3e6ecd9644f7bb5c843e70585d421f1792a0e4a141ebbe867d12f7"
+      }
+    },
+    {
+      "id": "XQ40",
+      "name": "催眠术表演者",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "艺术家"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "紫色"
+      ],
+      "loyaltyText": "紫色",
+      "color": "紫",
+      "magic": "",
+      "society": "梦境行者",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "行动②，横置：抓一张牌，然后将一张你的手牌封印在目标角色上。",
+      "keywords": [],
+      "unique": false,
+      "supported": true,
+      "sourceImageSha256": "b4f4e3f294d9ee1893d5b6d11124f0c12e472076e52f6365bdde7ffe49d6162c"
+    },
+    {
+      "id": "XQ41",
+      "name": "启迪之梦",
+      "kind": "character",
+      "subtypes": [
+        "梦境"
+      ],
+      "cost": 3,
+      "loyalty": [
+        "紫色",
+        "紫色"
+      ],
+      "loyaltyText": "紫色 / 紫色",
+      "color": "紫",
+      "magic": "星辰",
+      "society": "梦境行者",
+      "icons": {
+        "permanent": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        }
+      },
+      "defense": 1,
+      "text": "灵体\n触发 当启迪之梦被封印在一个角色上时，抓一张牌。",
+      "keywords": [
+        "灵体"
+      ],
+      "unique": false,
+      "supported": true,
+      "sourceImageSha256": "02a56f5d1fe9d57121591f19d96f3756a8cf4ab60725ba292474758e5d0af179"
+    },
+    {
+      "id": "XQ45",
+      "name": "破颅而出",
+      "kind": "spell",
+      "subtypes": [
+        "阴谋",
+        "梦境"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "紫色",
+        "紫色",
+        "紫色"
+      ],
+      "loyaltyText": "紫色 / 紫色 / 紫色",
+      "color": "紫",
+      "magic": "",
+      "society": "梦境行者",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "快速行动 选择目标角色，若有其他卡牌被封印在其上，则消灭该角色。",
+      "keywords": [],
+      "unique": false,
+      "supported": true,
+      "sourceImageSha256": "6475556f30b08853ed5bb2e1c82b3314c73947fb59bc7d044060a5555f5ef8cf",
+      "type": "事务-阴谋"
+    },
+    {
+      "id": "JZ50",
+      "name": "墓穴食尸鬼",
+      "kind": "character",
+      "subtypes": [
+        "不死生物",
+        "食尸鬼"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "黑色"
+      ],
+      "loyaltyText": "黑色",
+      "color": "黑",
+      "magic": "死亡",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "现身触发 从你的牌库中寻找一张死亡领域的角色牌，将该牌置于你的墓地，然后洗牌。",
+      "keywords": [],
+      "unique": false,
+      "society": "",
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/cards.json",
+        "record": "JZ50",
+        "image": "resource/ymsj-fun.github.io/cards/JZ50 墓穴食尸鬼.jpg",
+        "imageSha256": "403e44bb5f7f0ff8715acb267a8369c3715b2dc752d7fe612de085da29b523e7"
+      }
+    },
+    {
+      "id": "BQ104",
+      "name": "猎头顾问",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "雇员"
+      ],
+      "cost": 3,
+      "loyalty": [],
+      "loyaltyText": "",
+      "color": "中立",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "公开\n进场触发 从你的牌库中寻找一张印刷费用小于或等于③的雇员角色牌，展示后以暗藏者状态置于本地区，然后洗牌。",
+      "keywords": [
+        "公开"
+      ],
+      "unique": false,
+      "society": "",
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/cards.json",
+        "record": "BQ104",
+        "image": "resource/ymsj-fun.github.io/cards/BQ104 猎头顾问.jpg",
+        "imageSha256": "dbee5b3829cf0c46b2820beccefda28708c3c8e87c589dbefce1e975faa916eb"
+      }
+    },
+    {
+      "id": "XQ48",
+      "name": "街头演说家",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "政治家"
+      ],
+      "cost": 4,
+      "loyalty": [],
+      "loyaltyText": "",
+      "color": "中立",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "公开 声望\n进场触发 自你的牌库中寻找至多三张名为无知路人的牌，将他们放置进场且置于街头演说家所在的地区，然后洗牌。",
+      "keywords": [
+        "公开",
+        "声望"
+      ],
+      "unique": false,
+      "society": "",
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/cards.json",
+        "record": "XQ48",
+        "image": "resource/ymsj-fun.github.io/cards/XQ48 街头演说家.jpg",
+        "imageSha256": "0cd31207bda681093839e86e5bb87cee624a3c0a657c70b60fa765f439089746"
+      }
+    },
+    {
+      "id": "XQ44",
+      "name": "随风入梦",
+      "subtitle": null,
+      "kind": "spell",
+      "subtypes": [
+        "法术",
+        "心灵"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "紫色",
+        "紫色"
+      ],
+      "loyaltyText": "紫色 / 紫色",
+      "color": "紫",
+      "magic": "心灵",
+      "society": "梦境行者",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "行动 从你的牌库中寻找一张梦境牌，将该牌封印在目标角色上，然后洗牌。",
+      "keywords": [],
+      "unique": false,
+      "supported": true,
+      "sourceImageSha256": "d4f41bf42958d15358bc7fcb1119967ab94bd187c758273952fd6b70475de047"
+    },
+    {
+      "id": "JZ02",
+      "name": "西姆斯教授",
+      "subtitle": "相位专家",
+      "kind": "character",
+      "subtypes": [
+        "猫",
+        "法师"
+      ],
+      "cost": 3,
+      "loyalty": [
+        "黄色",
+        "黄色"
+      ],
+      "loyaltyText": "黄色 / 黄色",
+      "color": "黄",
+      "magic": "心灵",
+      "society": "帷幕守望",
+      "icons": {
+        "permanent": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "进场触发 从你的牌库中寻找一张空间法术牌，将该牌封印在西姆斯教授上，然后洗牌。",
+      "keywords": [],
+      "unique": true,
+      "supported": true,
+      "sourceImageSha256": "59546782075c26039bdc7d4da34a621bb86de1d8d34c25710a0d59d6761a19e8"
+    },
+    {
+      "id": "JC045",
+      "name": "钟摆祭司",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "法师",
+        "邪教徒"
+      ],
+      "cost": 4,
+      "loyalty": [
+        "红色",
+        "红色"
+      ],
+      "color": "红",
+      "magic": "鲜血",
+      "icons": {
+        "permanent": {
+          "investigation": 1,
+          "combat": 2,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "text": "【触发】每当一个角色死去时，在钟摆祭司上放置一个时间标志。\n【持续】在其上每有一个时间标志，钟摆祭司就获得一个【永久势力】。",
+      "keywords": [],
+      "unique": false,
+      "society": "",
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/JC045 钟摆祭司.jpg",
+        "image": "resource/ymsj-fun.github.io/cards/JC045 钟摆祭司.jpg",
+        "sha256": "7b79668cee2cab604341a79f86decb03587046b31f3c5586123bcc95561d3d60"
+      },
+      "defense": 2
+    },
+    {
+      "id": "JC031",
+      "name": "唤灵师",
+      "kind": "character",
+      "subtypes": [
+        "吸血鬼",
+        "法师"
+      ],
+      "cost": 3,
+      "loyalty": [
+        "蓝色",
+        "蓝色"
+      ],
+      "color": "蓝",
+      "magic": "死亡",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "text": "【触发】每当另一个本方角色死亡时，你可以令目标玩家弃一张手牌。若死去的是吸血鬼角色，则改为可以令目标玩家随机弃一张手牌。该能力每回合只能发动一次。",
+      "keywords": [],
+      "unique": false,
+      "society": "",
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/JC031 唤灵师.jpg",
+        "image": "resource/ymsj-fun.github.io/cards/JC031 唤灵师.jpg",
+        "sha256": "c5d64c9392c3627659b405bc422a49535d35368b5aef5cc50cfc85f2123e6436"
+      },
+      "defense": 1
+    },
+    {
+      "id": "JC090",
+      "name": "灵魂契约",
+      "kind": "attachment",
+      "subtypes": [
+        "仪式"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "黑色"
+      ],
+      "color": "黑",
+      "magic": "心灵",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "text": "结附于目标地区\n【触发】每当一个本方角色死去时，在受此结附的地区上放置一个本方势力标志。",
+      "keywords": [],
+      "unique": false,
+      "society": "",
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/JC090 灵魂契约.jpg",
+        "image": "resource/ymsj-fun.github.io/cards/JC090 灵魂契约.jpg",
+        "sha256": "7734b37f8e222307c2958461e6d20a66400011707bc77413a4101e096f40ef0c"
+      }
+    },
+    {
+      "id": "JC069",
+      "name": "警犬",
+      "subtitle": null,
+      "kind": "character",
+      "subtypes": [
+        "狗"
+      ],
+      "cost": 2,
+      "loyalty": [],
+      "loyaltyText": "",
+      "color": "灰",
+      "magic": "",
+      "society": "国家机构",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 2,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "不能被装备结附\n【现身触发】在目标角色或暗藏者上放置一个锁定标志。\n【快速】行动2：将警犬移动到目标具有锁定标志的角色或暗藏者所在的地区，警犬获得【永久调查】直到回合结束。该能力每回合只能发动一次。",
+      "keywords": [],
+      "unique": false,
+      "supported": true,
+      "sourceImageSha256": "4336d72dc69c89ce8ffe9cdfe7ff8c76423ef4fb73b21a5a70df9b523b1963d4"
+    },
+    {
+      "id": "JZ43",
+      "name": "武装市民",
+      "subtitle": null,
+      "kind": "character",
+      "subtypes": [
+        "人类"
+      ],
+      "cost": 2,
+      "loyalty": [],
+      "loyaltyText": "",
+      "color": "灰",
+      "magic": "",
+      "society": "国家机构",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "公开\n只能打出在城市地区。\n进场触发 在本地区的目标角色上放置一个锁定标志。若该角色上已有锁定标志，则改为对其造成1点伤害。",
+      "keywords": [
+        "公开"
+      ],
+      "unique": false,
+      "supported": true,
+      "sourceImageSha256": "bbc107878f8041757b38f7674f57b1d5d34028edc79a10551e9f629ae97f6826"
+    },
+    {
+      "id": "JZ22",
+      "name": "暗夜游掠者",
+      "kind": "character",
+      "subtypes": [
+        "吸血鬼"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "蓝色"
+      ],
+      "loyaltyText": "蓝色",
+      "color": "蓝",
+      "magic": "鲜血",
+      "society": "",
+      "defense": 1,
+      "text": "进场触发 若有敌方玩家的手牌数量少于或等于三张，则在本地区上放置一个本方势力标志。",
+      "keywords": [],
+      "unique": false,
+      "supported": true,
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/JZ22 暗夜游掠者.jpg",
+        "sha256": "b368bc3d75306dd0112cff180c8b10501c191e30b0c8d06d78e901ea20cd6160",
+        "basis": "actual original face checked with basic rulebook printed P2/P5/P6"
+      },
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        }
+      }
+    },
+    {
+      "id": "JC050",
+      "name": "丧钟回响",
+      "kind": "spell",
+      "subtypes": [
+        "灾难"
+      ],
+      "cost": 5,
+      "loyalty": [
+        "红色",
+        "红色"
+      ],
+      "loyaltyText": "红色 / 红色",
+      "color": "红",
+      "magic": "鲜血",
+      "society": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 0,
+      "text": "【标准行动】选择一个地区，消灭该地区上的所有角色和暗藏者。",
+      "keywords": [],
+      "unique": false,
+      "supported": true,
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/JC050 丧钟回响.jpg",
+        "sha256": "2dbbe996c5fec273a1340ca4acadc504689b1af6151b56fe5ae0c217d2df159e",
+        "basis": "actual original image checked; no chosen region or board victims declared as targets"
+      }
+    },
+    {
+      "id": "XQ27",
+      "name": "定点清除行动",
+      "kind": "spell",
+      "subtypes": [
+        "阴谋"
+      ],
+      "cost": 4,
+      "loyalty": [
+        "灰色",
+        "灰色"
+      ],
+      "loyaltyText": "灰色 / 灰色",
+      "color": "灰",
+      "magic": "",
+      "society": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 0,
+      "text": "【标准行动】消灭所有暗藏者。",
+      "keywords": [],
+      "unique": false,
+      "supported": true,
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/XQ27 定点清除行动.jpg",
+        "sha256": "78f2d5e2422b611bbf159a33083d70c75bf2ac83103325550430a394e8a803b5",
+        "basis": "actual complete original image checked; standard non-targeted destruction of every hidden card"
+      }
+    },
+    {
+      "id": "XQ37",
+      "name": "夜总会看门人",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "罪犯"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "黑色"
+      ],
+      "loyaltyText": "黑色",
+      "color": "黑",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "进场触发：若夜总会看门人位于有本方势力标志的地区，则在该地区上放置一个本方势力标志。",
+      "keywords": [],
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/cards.json",
+        "record": "XQ37",
+        "image": "resource/ymsj-fun.github.io/cards/XQ37 夜总会看门人.jpg"
+      },
+      "unique": false,
+      "society": ""
+    },
+    {
+      "id": "XQ18",
+      "name": "计时人",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "法师",
+        "邪教徒"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "红色",
+        "红色"
+      ],
+      "loyaltyText": "红色红色",
+      "color": "红",
+      "magic": "死亡",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "【现身触发】在目标角色或附属上放置或移除一个时间标志。",
+      "keywords": [],
+      "unique": false,
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "XQ18",
+        "image": "resource/ymsj-fun.github.io/cards/XQ18 计时人.jpg",
+        "sha256": "c33ebe42e01874807b60ff591a8e94c62e0ce8bfb1bdef7626bfad10432ed10e"
+      },
+      "society": "鸣钟教派"
+    },
+    {
+      "id": "JZ30",
+      "name": "末世论者",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "流浪者"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "红色"
+      ],
+      "loyaltyText": "红色",
+      "color": "红",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "公开；时间标志1\n死亡触发 预测X，X等于末世论者上的时间标志数量。",
+      "keywords": [
+        "公开",
+        "时间标志1"
+      ],
+      "unique": false,
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JZ30",
+        "image": "resource/ymsj-fun.github.io/cards/JZ30 末世论者.jpg",
+        "sha256": "ae1c7e086f18752377467e1cf5e8adef9dcc04b7929e69f9cef2ceb23deb3264"
+      },
+      "society": "鸣钟教派"
+    },
+    {
+      "id": "BQ028",
+      "name": "水沟鼠群密探",
+      "kind": "character",
+      "subtypes": [
+        "鼠",
+        "奴仆",
+        "魔宠"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "蓝色"
+      ],
+      "loyaltyText": "蓝色",
+      "color": "蓝",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "不能被装备结附\n现身触发 检视目标玩家的手牌。你可以选择其中一张附属牌，该玩家弃掉该牌。",
+      "keywords": [],
+      "unique": false,
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "BQ028",
+        "image": "resource/ymsj-fun.github.io/cards/BQ028 水沟鼠群密探.jpg",
+        "sha256": "edefc7294d8df74c8b36dda31591197c878d02c0a7d9b725e0805a3796a32ea6"
+      },
+      "society": "王座会"
+    },
+    {
+      "id": "BQ040",
+      "name": "鲜血",
+      "kind": "attachment",
+      "subtypes": [
+        "状态"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "蓝色"
+      ],
+      "loyaltyText": "蓝色",
+      "color": "蓝",
+      "magic": "鲜血",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "结附于目标吸血鬼角色\n持续 受此结附的角色获得防御+1和永久战斗1。",
+      "keywords": [],
+      "unique": false,
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "BQ040",
+        "image": "resource/ymsj-fun.github.io/cards/BQ040 鲜血.jpg",
+        "sha256": "fb62686626c7bdaf7d9c9c9a255fbfb40dfd986f06347a9444efae65e6b875c6"
+      },
+      "society": "王座会"
+    },
+    {
+      "id": "WM059",
+      "name": "雨夜屠夫",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "罪犯"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "黑色"
+      ],
+      "loyaltyText": "黑色",
+      "color": "黑",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "杀伤1\n触发 当雨夜屠夫进入一个地区时，消灭位于该地区，且印刷费用小于或等于①的目标敌方角色。",
+      "keywords": [
+        "杀伤1"
+      ],
+      "unique": true,
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "WM059",
+        "image": "resource/ymsj-fun.github.io/cards/WM059 雨夜屠夫.jpg",
+        "sha256": "cc9e57a90d6747733c1edcb6b46bb14307eee908e533f993677841f1b8ef646f"
+      },
+      "society": "方碑序列",
+      "subtitle": "连环杀手"
+    },
+    {
+      "id": "BQ078",
+      "name": "专业清理员",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "雇员"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "黑色"
+      ],
+      "loyaltyText": "黑色",
+      "color": "黑",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "公开\n进场触发 将目标玩家牌库顶的四张牌置于该玩家的墓地。\n死亡触发 将你墓地中的一张名为无名尸体的牌置于你的手中。",
+      "keywords": [
+        "公开"
+      ],
+      "unique": false,
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "BQ078",
+        "image": "resource/ymsj-fun.github.io/cards/BQ078 专业清理员.jpg",
+        "sha256": "d1f6b348c636dd7eb82e367b5cd8abcda4d93bb3fe1ecc7bf95bac3ed36446ea"
+      },
+      "society": "方碑序列"
+    },
+    {
+      "id": "JZ44",
+      "name": "洛杉矶巡警",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "警察"
+      ],
+      "cost": 3,
+      "loyalty": [
+        "灰色"
+      ],
+      "loyaltyText": "灰色",
+      "color": "灰",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "公开；护卫1\n只能打出在城市地区。\n进场触发 将本地区的目标罪犯角色翻面为暗藏者，然后抓一张牌。",
+      "keywords": [
+        "公开",
+        "护卫1"
+      ],
+      "unique": false,
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JZ44",
+        "image": "resource/ymsj-fun.github.io/cards/JZ44 洛杉矶巡警.jpg",
+        "sha256": "b5ca6ecde925805b86eeac70bd796ad402695daf342835abfd669e9a157637eb"
+      },
+      "society": "国家机构"
+    },
+    {
+      "id": "JZ45",
+      "name": "警用直升机",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "警察",
+        "载具"
+      ],
+      "cost": 5,
+      "loyalty": [
+        "灰色",
+        "灰色",
+        "灰色"
+      ],
+      "loyaltyText": "灰色灰色灰色",
+      "color": "灰",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 1,
+          "combat": 1,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 3,
+      "text": "公开；机动\n只能打出在城市地区。\n进场触发 选择一项：\n在本地区的目标角色或暗藏者上放置一个锁定标志。\n消灭位于本地区，且其上有锁定标志的目标角色或暗藏者。",
+      "keywords": [
+        "公开",
+        "机动"
+      ],
+      "unique": false,
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JZ45",
+        "image": "resource/ymsj-fun.github.io/cards/JZ45 警用直升机.jpg",
+        "sha256": "20e18006a7b2f032d7d236f909dc57d75bfc14dc3acf36291c7ca16f3962008f"
+      },
+      "society": "国家机构"
     }
   ],
   "decks": [

@@ -1,0 +1,23 @@
+{
+  "archive": "/workspace/game-publication-evidence/site40-pause-945e8b2.tar.gz",
+  "verifiedArchiveFiles": 127,
+  "removed": [
+    {
+      "path": "/tmp/lantern-site-fce0-official/web/dist",
+      "bytes": 60200120,
+      "type": "reproducible-build-mirror"
+    },
+    {
+      "path": "/tmp/lantern-site-fce0-official/public",
+      "bytes": 60200120,
+      "type": "reproducible-build-mirror"
+    },
+    {
+      "path": "/tmp/lantern-site-fce0-official/dist/client",
+      "bytes": 60200120,
+      "type": "reproducible-build-mirror"
+    }
+  ],
+  "bytesReclaimed": 180600360,
+  "sourceServerAndFixedArchivePreserved": true
+}

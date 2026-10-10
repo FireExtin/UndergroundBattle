@@ -1,0 +1,66 @@
+{
+  "scope": "harness and environment limits; not product mechanism passes",
+  "attempts": [
+    {
+      "roomId": "43af73d2bd4274c81b8274a2",
+      "outcome": "stopped before card mechanisms",
+      "observed": [
+        "Unable to capture screenshot",
+        "peer reload net::ERR_INSUFFICIENT_RESOURCES"
+      ],
+      "mechanismPassClaimed": false
+    },
+    {
+      "roomId": "c261b9df1e868e5d5dbf16fd",
+      "outcome": "stopped during bootstrap",
+      "observed": [
+        "TargetClosed during bootstrap"
+      ],
+      "mechanismPassClaimed": false
+    },
+    {
+      "roomId": "d61b44bbe38eada719bcc4d8",
+      "outcome": "natural chain completed to finite cap; browser restarted for same original seats after tool connection refresh",
+      "observed": [
+        "stdin OSError: [Errno 5] Input/output error; original driver finally saved checks and commands",
+        "write_stdin: Unknown process id29082; original browser process no longer present"
+      ],
+      "mechanismPassClaimed": "only checks explicitly evidenced"
+    }
+  ],
+  "harnessCorrections": [
+    {
+      "check": "returned-XQ41 reader",
+      "initialFailure": "KeyError: sealedCards",
+      "reason": "empty optional field omitted in actual view; corrected to get(field,[])",
+      "productFix": false
+    },
+    {
+      "check": "returned-XQ41 reader",
+      "initialFailure": "expected trigger abbreviation rather than printed wording; expected one icon strip",
+      "reason": "actual print says 触发 当启迪之梦被封印在一个角色上时，抓一张牌。 and has permanent plus temporary icon strips; exact UI reader then passed",
+      "productFix": false
+    },
+    {
+      "check": "offline factory replay",
+      "initialFailure": "compared factory result wrapper to opaque state",
+      "reason": "newGameWithDeck/joinGameWithDeck return a wrapper with state; unpacked documented wrapper and replay passed byte equality",
+      "productFix": false
+    },
+    {
+      "check": "runtime byte ledger mapping",
+      "initialFailure": "two FileNotFoundError paths while mapping archive dist/.openai/drizzle and its meta subdirectory to source drizzle",
+      "reason": "preserved full drizzle relative path; final130 client/Worker/WASM/drizzle files verified, one archive-only manifest excluded explicitly",
+      "productFix": false
+    }
+  ],
+  "browserImageDecodingDisabled": true,
+  "artworkQa": false,
+  "sharedMemoryPressureObservedEarlier": "about16.1GB/17.2GB",
+  "outOfMemoryRootCauseProven": false,
+  "maximumNewTables": 3,
+  "maximumCommittedCommandsPerTable": 400,
+  "actualFinalPrimaryTableCommands": 391,
+  "publicHttp403Retried": false,
+  "liveDbWrites": false
+}

@@ -1,0 +1,23 @@
+{
+  "engine": "rust-v0.2.49-sealed-restart-candidate",
+  "pool": "limited-v2.44-jz50-death-search-candidate",
+  "cards": 107,
+  "societies": 8,
+  "actualWasm": true,
+  "additionalChainExecutions": 40,
+  "chains": {
+    "jz50": 14,
+    "pause": 9,
+    "sealing": 13,
+    "restart-trace": 2,
+    "fresh": 2
+  },
+  "views": 25404,
+  "completeTransitionEqual": true,
+  "opaqueStateByteEqual": true,
+  "wasmBytes": 2248074,
+  "wasmSha256": "9b8a7a69cd3c09781387cb4e66ad710d803783447fb6b0382fb2697eac50e885",
+  "freshCommands": 6311,
+  "freshScope": "actual-fresh-lobby-validated-decks-seed9-legal-Room-commands-no-board-or-terminal-injection",
+  "frozen45_46_47_48BytePreserved": true
+}

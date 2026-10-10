@@ -1,7 +1,7 @@
 //! JC005 uses the shared live target guard and Destroy operation.
 //! Non-character hosts and post-declaration mutations are explicit primitive
 //! fixtures, not additional playable attachment cards or natural gameplay.
-use crate::{catalog, deck, model::*, room::RoomEnvelope, rules::*};
+use crate::{catalog, deck, model::*, rules::*};
 
 fn game() -> Game {
     let mut g = Game::new(
@@ -150,11 +150,6 @@ fn jc005_printed_metadata_is_fast_two_cost_one_yellow_mind_without_extra_cost_or
     d.cards[1].count = 46;
     assert!(deck::validate(d).is_err());
     assert!(catalog::catalog().cards.iter().any(|c| c.id == "JC008"));
-    let mut old = RoomEnvelope::from_game(game());
-    old.versions.engine = "rust-v0.2.10".into();
-    old.versions.card_pool = "limited-v2.7".into();
-    old.game.versions = old.versions.clone();
-    assert!(RoomEnvelope::from_persisted(&serde_json::to_string(&old).unwrap()).is_err());
 }
 
 #[test]

@@ -14,13 +14,14 @@ function move(ids: string[], id: string, delta: number) {
   if (index < 0 || target < 0 || target >= ids.length) return ids;
   const result = [...ids]; [result[index], result[target]] = [result[target], result[index]]; return result;
 }
-export function ChoicePanel({ choice, action, definitions, busy, onSubmit, onReadCard, viewerId, playerLabels, modal = false, modalActive = true }: {
+export function ChoicePanel({ choice, action, definitions, busy, onSubmit, onReadCard, viewerId, playerLabels, modal = false, modalActive = true, onPauseRoom }: {
   choice: Choice; action?: LegalAction; definitions: Map<string, CardDefinition>; busy: boolean; onSubmit: (action: Action) => void;
   onReadCard?: (card: Card) => void;
   viewerId?: string;
   playerLabels?: Record<string, string>;
   modal?: boolean;
   modalActive?: boolean;
+  onPauseRoom?: () => void;
 }) {
   const dialog = useRef<HTMLElement>(null);
   useDialogFocus(dialog, modal && modalActive);
@@ -37,7 +38,13 @@ export function ChoicePanel({ choice, action, definitions, busy, onSubmit, onRea
   const assigned = Object.values(allocations).reduce((total, n) => total + n, 0);
   const min = choice.min ?? 1;
   const max = choice.max ?? choice.options.length;
-  const zeroConfirmation = choice.kind === 'jc032_top_six' && min === 0 && max === 0 && choice.options.length === 0;
+  const jz50Search = choice.kind === 'jz50_death_search' && min === 0 && max === 1 && !choice.allowDecline;
+  const entrySearchZero = !choice.allowDecline && min === 0 && (
+    (choice.kind === 'bq104_employee_search' && max === 0 && choice.options.length === 0)
+    || (choice.kind === 'xq48_passer_search' && max <= 3));
+  const deckSealZero = ['xq44_dream_seal_search', 'jz02_space_seal_search'].includes(choice.kind)
+    && !choice.allowDecline && min === 0 && max === 0 && choice.options.length === 0;
+  const zeroConfirmation = (choice.kind === 'jc032_top_six' && min === 0 && max === 0 && choice.options.length === 0) || jz50Search || entrySearchZero || deckSealZero;
   const valid = damage ? assigned === amount : ordering ? top.length + bottom.length === choice.options.length
     : selected.length >= min && selected.length <= max && (selected.length > 0 || canDecline || zeroConfirmation);
   const choose = (id: string) => setSelected(ids => ids.includes(id) ? ids.filter(value => value !== id) : ids.length < max ? [...ids, id] : ids);
@@ -68,6 +75,7 @@ export function ChoicePanel({ choice, action, definitions, busy, onSubmit, onRea
   </ol>;
 
   return <section ref={dialog} className="hg-choice" data-choice-id={choice.id} role={modal ? 'dialog' : undefined} aria-modal={modal ? true : undefined} aria-label="待完成的选择" tabIndex={-1}>
+    {onPauseRoom && <button type="button" className="hg-button hg-button-quiet" disabled={busy} onClick={onPauseRoom}>暂停并保存此桌</button>}
     <div className="hg-choice-heading">
     <div className="hg-section-title"><span className="hg-eyebrow">轮到你选择</span><span className="hg-choice-tag">{damage ? `尚余 ${amount - assigned} 点` : ordering ? '自上而下排列' : `已选 ${selected.length} / ${max}`}</span></div>
     <h2>{choice.title}</h2><p>{choice.description}</p>
@@ -96,7 +104,7 @@ export function ChoicePanel({ choice, action, definitions, busy, onSubmit, onRea
     </div>
     <div className="hg-choice-footer"><span>{damage ? `共需分配 ${amount} 点，已分配 ${assigned} 点` : ordering ? '确认后按此顺序放回牌库。' : `请选择 ${min === max ? min : `${min}–${max}`} 项${choice.allowDecline ? '，或跳过' : ''}。`}</span>
       <div>{canDecline && <button className="hg-button hg-button-quiet" disabled={busy || !action} onClick={() => submit(true)}>{choice.kind === 'mulligan' ? '保留全部手牌' : '跳过此选择'}</button>}
-      <button className="hg-button hg-button-primary" disabled={busy || !valid || !action} onClick={() => submit()}>{busy ? '正在提交…' : '确认选择'}</button></div>
+      <button className="hg-button hg-button-primary" disabled={busy || !valid || !action} onClick={() => submit()}>{busy ? '正在提交…' : (jz50Search || entrySearchZero || deckSealZero) && selected.length === 0 ? '不取牌并洗牌' : '确认选择'}</button></div>
     </div>
   </section>;
 }

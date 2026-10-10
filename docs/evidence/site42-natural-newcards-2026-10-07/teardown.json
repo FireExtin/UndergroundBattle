@@ -1,0 +1,13 @@
+{
+  "ownedLocalServerPort": 8114,
+  "exactConfig": ".sites-runtime/site42-natural-qa.json",
+  "sigintPids": [
+    251300,
+    251307
+  ],
+  "localServerStopped": true,
+  "browserDriversClosed": true,
+  "publicEndpointTouched": false,
+  "otherServersOrAgentsStopped": false,
+  "localD1StateRetained": true
+}

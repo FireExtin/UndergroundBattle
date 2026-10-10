@@ -110,6 +110,7 @@ fn finish_turn(g: &mut Game) {
 }
 
 #[test]
+#[cfg(not(feature = "society-fixtures"))]
 fn jc008_printed_admission_and_finite_modifier_program() {
     let c = catalog::card("JC008");
     assert_eq!(

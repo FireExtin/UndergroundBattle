@@ -1,1 +1,0 @@
-Frozen accepted3805 white-wound/society27 ABI, exact pre-purple runtime identity; all five generated files preserved. This reviewed game baseline was published as Site version27, deployment appgdep_6ac37a4f980081918156c72f2dadcbcc (native status succeeded). The private purple candidate is separate and has not been published.

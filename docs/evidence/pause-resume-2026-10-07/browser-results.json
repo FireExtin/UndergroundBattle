@@ -1,0 +1,30 @@
+{
+  "scope": "local-real-UI-and-native-service-natural-duel",
+  "productionWrites": false,
+  "checks": [
+    "chooser-can-pause-and-resume-controls-are-accessible",
+    "idle-no-poll-and-leave-reload-my-tables-restores-original-seat",
+    "peer-resume-manual-sync-preserves-choice-and-hand-instance-ids"
+  ],
+  "errors": [],
+  "passed": true,
+  "stage": "chooser-pause",
+  "versions": {
+    "rules": "hegemony-pdf-v1",
+    "cardPool": "limited-v2.42-jc089-poison-blood-candidate",
+    "engine": "rust-v0.2.46-pause-resume-candidate"
+  },
+  "savedRevision": 5,
+  "resumedRevision": 6,
+  "samePrivateChoice": true,
+  "screenshots": {
+    "desktop-resumed-same-choice.png": "5d2b5445547b914495a546c70cb2587ce58dddcfa0ef7c8eac02e58a7e35342c",
+    "mobile-peer-paused.png": "e5ad475e53ae9f84d6090c361f3d5cb7fd9db48f63d6e1cdd3589d8428d8655b",
+    "desktop-paused-private-choice.png": "f354efe32322bce908426e90f5108ea45715b32818ddaa48be3db8e6a91c483f"
+  },
+  "priorAttempts": [
+    "Single-process Chromium could not create two contexts; two separate browser processes were used.",
+    "Two early scripts clicked host Ready before peer revision synchronized; the correct version rejection prevented start. Final script waits for current ready count.",
+    "Desktop management inherited a compact seat banner and clipped explanation; scoped room-management CSS repaired it."
+  ]
+}

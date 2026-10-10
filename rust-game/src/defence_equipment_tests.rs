@@ -1,167 +1,7 @@
 //! Explicit starting layouts; declarations, costs, responses and restoration use real actions.
+use crate::unit_support::*;
 use crate::{catalog, model::*, rules::*};
 
-fn game() -> Game {
-    let mut g = Game::new(
-        "defence-unit".into(),
-        "LOCAL".into(),
-        "teams".into(),
-        "P0".into(),
-        "watchers".into(),
-        8,
-    )
-    .unwrap();
-    for s in 1..4 {
-        g.join(format!("P{s}"), "watchers".into()).unwrap();
-    }
-    for p in &mut g.players {
-        p.ready = true;
-    }
-    g.apply(0, Action::new("start")).unwrap();
-    while g.pending.is_some() {
-        choose(&mut g, vec![]);
-    }
-    for p in &mut g.players {
-        p.hand.clear();
-        p.assets.clear();
-        p.graveyard.clear();
-    }
-    for r in &mut g.regions {
-        r.cards.clear();
-        r.influence = [0; 2];
-    }
-    g.regions[0].card = g.make_card("DQJC115", 0);
-    g.first_team = 0;
-    g.begin_window(Window::Action(0));
-    g
-}
-fn field(g: &mut Game, id: &str, seat: usize) -> String {
-    let c = g.make_card(id, seat);
-    let id = c.id.clone();
-    g.regions[0].cards.push(c);
-    id
-}
-fn held(g: &mut Game, id: &str, seat: usize) -> String {
-    let c = g.make_card(id, seat);
-    let id = c.id.clone();
-    g.players[seat].hand.push(c);
-    id
-}
-fn fund(g: &mut Game, seat: usize, id: &str, n: usize) {
-    for _ in 0..n {
-        let c = g.make_card(id, seat);
-        g.players[seat].assets.push(c);
-    }
-}
-fn restore(g: &mut Game) {
-    let state = serde_json::to_string(g).unwrap();
-    let views = (0..4)
-        .map(|s| serde_json::to_value(g.view(s)).unwrap())
-        .collect::<Vec<_>>();
-    *g = Game::from_persisted(&state).unwrap();
-    assert_eq!(serde_json::to_string(g).unwrap(), state);
-    for s in 0..4 {
-        assert_eq!(serde_json::to_value(g.view(s)).unwrap(), views[s]);
-    }
-}
-fn act(g: &mut Game, s: usize, a: Action) {
-    restore(g);
-    g.apply(s, a).unwrap();
-    restore(g);
-}
-fn reject(g: &mut Game, s: usize, a: Action) {
-    let before = serde_json::to_string(g).unwrap();
-    assert!(g.apply(s, a).is_err());
-    assert_eq!(serde_json::to_string(g).unwrap(), before);
-    restore(g);
-}
-fn choose(g: &mut Game, ids: Vec<String>) {
-    let p = g.pending.clone().unwrap();
-    act(
-        g,
-        p.seat,
-        Action {
-            choice_id: Some(p.choice.id),
-            selected: Some(ids),
-            ..Action::new("choose")
-        },
-    );
-}
-fn pass(g: &mut Game) {
-    let s = (0..4)
-        .find(|s| g.legal_actions(*s).iter().any(|a| a.action.kind == "pass"))
-        .unwrap();
-    act(g, s, Action::new("pass"));
-}
-fn top(g: &mut Game) {
-    let n = g.stack.len();
-    assert!(n > 0);
-    for _ in 0..64 {
-        if g.pending.is_some() {
-            resolve_choice(g);
-        } else if g.stack.len() < n {
-            return;
-        } else {
-            pass(g);
-        }
-    }
-    panic!("bounded stack");
-}
-fn resolve_choice(g: &mut Game) {
-    let p = g.pending.clone().unwrap();
-    if matches!(
-        p.resolution,
-        ChoiceResolution::Forecast { .. }
-            | ChoiceResolution::Frame {
-                choice: FrameChoice::Forecast { .. },
-                ..
-            }
-    ) {
-        let ids = p.choice.options.iter().map(|o| o.id.clone()).collect();
-        act(
-            g,
-            p.seat,
-            Action {
-                choice_id: Some(p.choice.id),
-                top: Some(ids),
-                bottom: Some(vec![]),
-                ..Action::new("choose")
-            },
-        );
-    } else if matches!(p.resolution, ChoiceResolution::Bottom { .. }) {
-        let ids = p.choice.options.iter().map(|o| o.id.clone()).collect();
-        act(
-            g,
-            p.seat,
-            Action {
-                choice_id: Some(p.choice.id),
-                bottom: Some(ids),
-                ..Action::new("choose")
-            },
-        );
-    } else if matches!(p.resolution, ChoiceResolution::Damage { .. }) {
-        let mut allocations = std::collections::BTreeMap::new();
-        allocations.insert(p.choice.options[0].id.clone(), p.choice.amount.unwrap());
-        act(
-            g,
-            p.seat,
-            Action {
-                choice_id: Some(p.choice.id),
-                allocations: Some(allocations),
-                ..Action::new("choose")
-            },
-        );
-    } else {
-        let ids = p
-            .choice
-            .options
-            .iter()
-            .take(p.choice.min.unwrap_or(0))
-            .map(|o| o.id.clone())
-            .collect();
-        choose(g, ids);
-    }
-}
 fn priority(g: &mut Game, s: usize) {
     while g.priority_team != g.team(s) {
         pass(g);
@@ -179,26 +19,6 @@ fn advance(g: &mut Game, done: impl Fn(&Game) -> bool) {
         }
     }
     panic!("bounded turn");
-}
-fn play(g: &mut Game, source: &str, s: usize, target: &str) {
-    act(
-        g,
-        s,
-        Action {
-            card_id: Some(source.into()),
-            target_id: Some(target.into()),
-            ..Action::new("play")
-        },
-    );
-    top(g);
-}
-fn cast(g: &mut Game, id: &str, s: usize, target: &str) {
-    let source = held(g, id, s);
-    play(g, &source, s, target);
-}
-fn attach(g: &mut Game, id: &str, target: &str) -> String {
-    cast(g, id, 0, target);
-    g.attachments.last().unwrap().card.id.clone()
 }
 fn transfer(source: &str, target: &str) -> Action {
     Action {
@@ -243,7 +63,6 @@ fn reduce(g: &mut Game, source: &str) {
 
 #[test]
 fn defence_original_fields_and_finite_bindings() {
-    assert_eq!(catalog::catalog().cards.len(), 101);
     let shield = catalog::card("JC078");
     assert_eq!(shield.cost, 1);
     assert_eq!(shield.loyalty, ["白色"]);

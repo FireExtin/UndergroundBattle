@@ -1,0 +1,18 @@
+
+> undergroundbattle-web@0.1.0 test
+> vitest --run src/debugger/DebuggerShell.test.tsx src/debugger/LiveDebuggerShell.test.tsx src/debugger/live.test.ts
+
+
+ RUN  v4.1.2 /tmp/undergroundbattle-shared-cloud/web
+
+
+ Test Files  3 passed (3)
+      Tests  29 passed (29)
+   Start at  20:11:14
+   Duration  1.71s (transform 278ms, setup 322ms, import 322ms, tests 1.36s, environment 1.20s)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

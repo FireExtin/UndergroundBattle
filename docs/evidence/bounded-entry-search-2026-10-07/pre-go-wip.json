@@ -1,0 +1,180 @@
+{
+  "base": "a266f6a8c709957485efb26f219abf844c513704",
+  "paths": [
+    {
+      "path": "rust-game/data/cards.json",
+      "bytes": 117067,
+      "sha256": "89bfef71fbaa31a74e26cb2d3d9e2eda826eb5a8208f7a9806ee6b31141eafaf"
+    },
+    {
+      "path": "rust-game/src/catalog.rs",
+      "bytes": 8253,
+      "sha256": "03be95f7f5c3c870ce47d7626bcc57c780a96e8d596fba32d8a9a359a5feec05"
+    },
+    {
+      "path": "rust-game/src/engine.rs",
+      "bytes": 254642,
+      "sha256": "24c0ed1aabbb5f9a654e86ad0323d0f3470f4c5ad1b9f4b210504f5db8182609"
+    },
+    {
+      "path": "rust-game/src/jc089_tests.rs",
+      "bytes": 35129,
+      "sha256": "276823d330b7ceea3c869f8a425673ea1fcad6b88196ebd703e545342aa491fe"
+    },
+    {
+      "path": "rust-game/src/jz50_search_tests.rs",
+      "bytes": 33411,
+      "sha256": "e42fffac0a0993549f3305f6aeaabc323afc06d46f0fa985edeef33880442ca6"
+    },
+    {
+      "path": "rust-game/src/lib.rs",
+      "bytes": 2445,
+      "sha256": "7d27d7447d43458eba4af0274b331babb8adbde5a5e85dbb0d29d3be3890ec88"
+    },
+    {
+      "path": "rust-game/src/model.rs",
+      "bytes": 23555,
+      "sha256": "29e962ead98abd06079f684b253b47be42fee09cd2f1f8e4574655940e9f72e9"
+    },
+    {
+      "path": "rust-game/src/renown_tests.rs",
+      "bytes": 21509,
+      "sha256": "eddf9c7ff9146750dc50f1a1d4b298bb4dd8b9a8a58862f5fa9920fa175ce8f0"
+    },
+    {
+      "path": "rust-game/src/resolution.rs",
+      "bytes": 92360,
+      "sha256": "97d92faded4c7fb168aa9489416c0817058f24b6592d6dbcb9bc6a274206305f"
+    },
+    {
+      "path": "rust-game/src/room.rs",
+      "bytes": 29600,
+      "sha256": "361fac29b9c4b524d2c7c91cedb5914b40dc4c3f7ae9af6df1367ed0e0d2bbb2"
+    },
+    {
+      "path": "rust-game/src/rules.rs",
+      "bytes": 140082,
+      "sha256": "ddf72af85b2f83dedacec9f3318335a7f0f370a392c388bd98235330e6f31a64"
+    },
+    {
+      "path": "sites/src/kernel.mjs",
+      "bytes": 550,
+      "sha256": "2a72feb808392aade3ff780b5f812a5a444a67873ecf1b05a38d46431e489ddb"
+    },
+    {
+      "path": "sites/test/integration.test.mjs",
+      "bytes": 17702,
+      "sha256": "5905c3769521a6394a62ab4605e86df56ca882d7d020d747fd3a7dd262fd73e4"
+    },
+    {
+      "path": "sites/test/pause-resume-integration.test.mjs",
+      "bytes": 6860,
+      "sha256": "2d4e164865f6d36a34b8d0768375efe0d2f2468bf51b0c073c6df21aa83fc08e"
+    },
+    {
+      "path": "sites/test/sealed-restart-integration.test.mjs",
+      "bytes": 5147,
+      "sha256": "1e506e5d4a98b1d6974c79d00a38e9b49bb9376edb1f84a3044f0cbfe70369b1"
+    },
+    {
+      "path": "sites/test/society-foundation.fixture.mjs",
+      "bytes": 9748,
+      "sha256": "6993f979c0283a9d2b608d005d5d5263320f3e9ad67f3b1053fefbdefae03bcb"
+    },
+    {
+      "path": "web/public/card-scans.json",
+      "bytes": 24535,
+      "sha256": "9fdbe79f082c8594dd512ac92f87fc30b5d61878a357d81fcdcff7d740ac1411"
+    },
+    {
+      "path": "web/src/game/ChoicePanel.tsx",
+      "bytes": 12140,
+      "sha256": "762d9b8bccb3b629f7ebd0ab19aa95db7224e8c5eb9ebd08c1d459e72aeba2ad"
+    },
+    {
+      "path": "web/src/game/JC089Curse.test.jsx",
+      "bytes": 7683,
+      "sha256": "8cb3dbc5028a214913a0fd92ca48140c437887fb59a951c0205192b61ccb192b"
+    },
+    {
+      "path": "web/src/game/JZ55UniqueDestroy.test.jsx",
+      "bytes": 7419,
+      "sha256": "e50b1281115ef4481462febdcc2e6a960d50316123e4174a292fdd62fd36df72"
+    },
+    {
+      "path": "web/src/game/cardScans.ts",
+      "bytes": 3980,
+      "sha256": "86473f60ae17f7ce2d5c8b94e14f881cdfd99d7888173b57d498e2c6efcd453c"
+    },
+    {
+      "path": "rust-game/src/bounded_entry_fresh_tests.rs",
+      "bytes": 7104,
+      "sha256": "90cfb2f3efca7dcfccacd78489b180d86363f4caf7bc07e4e08c77470ee799f4"
+    },
+    {
+      "path": "rust-game/src/bounded_search.rs",
+      "bytes": 10701,
+      "sha256": "c511655c53b1acf6c3fb721b3127c6db35cbb6aa3fd5090118ce4774988db537"
+    },
+    {
+      "path": "rust-game/src/bounded_search_tests.rs",
+      "bytes": 31102,
+      "sha256": "687d585a7f67342686298abe854553383d57de8e58f53a869de71aeb4874fcf8"
+    },
+    {
+      "path": "sites/test/bounded-entry-search.test.mjs",
+      "bytes": 5125,
+      "sha256": "77f039aaa57c4be293fdc531f15d7ff8c1c1401c12530be6c0703fd044292ef6"
+    },
+    {
+      "path": "sites/test/fixtures/bounded-entry-native-v050.json",
+      "bytes": 233618,
+      "sha256": "0ff7a60fa97c929a00bfc751e91404f8e6436eba1476cf7d2fa74ceefc938113"
+    },
+    {
+      "path": "sites/test/fixtures/jz50-room-native-v050.json",
+      "bytes": 782067,
+      "sha256": "6b5222ef8d714c4093ae0a12c84e6611900cff397e3e647d610bca6385222993"
+    },
+    {
+      "path": "sites/test/fixtures/pause-resume-native-v050.json",
+      "bytes": 769486,
+      "sha256": "bae5008dc1b1b88a2a497e16ecbeeef3fba993dd014472a08f54db836ac318a2"
+    },
+    {
+      "path": "sites/test/fixtures/sealed-restart-native-v050.json",
+      "bytes": 270672,
+      "sha256": "c4319b08f514cef9c0320574af1c5f92163f3306b062571bf65a22ed849ffba1"
+    },
+    {
+      "path": "sites/test/fixtures/sealing-room-native-v050.json",
+      "bytes": 920330,
+      "sha256": "d6b3e80c907c2fc8f5febae9e2b5c60f53a321061e99fd4208dcc4ba7edd3395"
+    },
+    {
+      "path": "web/public/cards/BQ104.jpg",
+      "bytes": 1343044,
+      "sha256": "dbee5b3829cf0c46b2820beccefda28708c3c8e87c589dbefce1e975faa916eb"
+    },
+    {
+      "path": "web/public/cards/XQ48.jpg",
+      "bytes": 1363262,
+      "sha256": "0cd31207bda681093839e86e5bb87cee624a3c0a657c70b60fa765f439089746"
+    },
+    {
+      "path": "web/src/game/BoundedEntrySearch.test.jsx",
+      "bytes": 6358,
+      "sha256": "3e7b974bf073dd0875e583b38c2a800a16f7c8bb1a9b675fc77470f868b65c7e"
+    },
+    {
+      "path": "web/src/game/boundedEntryNative50Test.fixture.json",
+      "bytes": 492803,
+      "sha256": "884d03e1603814b2d5114dd86b0600c7499315854b0a17fe2a4c75606ed48728"
+    }
+  ],
+  "trackedDiffSha256": "2d30c5388ea254f3b64f90bbc9040065b95304569bc3e05c313175ae42155387",
+  "excludedSymlinks": [
+    "sites/node_modules",
+    "web/node_modules"
+  ]
+}

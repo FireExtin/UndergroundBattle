@@ -3,7 +3,7 @@
 use crate::{catalog::card, engine::RuleResult, model::*};
 
 impl Game {
-    fn blue_original_region(&self, frame: &ResolutionFrame) -> Option<usize> {
+    pub(crate) fn blue_original_region(&self, frame: &ResolutionFrame) -> Option<usize> {
         let r = frame.source.region?;
         let instance = frame.source.source_region_instance.as_ref()?;
         self.regions

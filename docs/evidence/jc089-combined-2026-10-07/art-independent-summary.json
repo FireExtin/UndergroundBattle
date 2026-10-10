@@ -1,0 +1,191 @@
+{
+  "reviewer": "/root/review_jc089_jz51_jz53_card_faces",
+  "fixedCandidate": "cf2b9657c9f4e0ba8dcb808aaa1e0c2afc80a0e4",
+  "baseline": "99a208c0e6dc73669292396268840a0d9034547a",
+  "findings": [],
+  "severityCounts": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0,
+    "P3": 0
+  },
+  "independentTests": {
+    "files": 8,
+    "passed": 116,
+    "failed": 0,
+    "productionTypeScriptPassed": true
+  },
+  "actuallyViewed": {
+    "canonicalOriginals": 4,
+    "presentationScreenshots": 24,
+    "printedFaqPages": [
+      4
+    ],
+    "naturalUiScreenshots": 8
+  },
+  "preservation": {
+    "baselineImagesAndManifestEntries": 111,
+    "byteExact": true,
+    "registeredAfter": 115,
+    "rustWasmSitesTreesUnchanged": true
+  },
+  "scope": "Independent artwork diff/source/hash/admission/DOM/typecheck review; implementer presentation fixture driver/results/screenshots inspected. No independent browser run, natural room, server-projection or mechanism qualification.",
+  "combinedCommit": "84a36d624528ab61f752e4ad9f05fdeb1839d7e4",
+  "worktreeCleanAfterReview": true,
+  "evidenceBindings": [
+    {
+      "path": "/tmp/jc089-jz51-jz53-card-faces-independent-review.md",
+      "bytes": 16348,
+      "sha256": "6b0e35b393f687a99d25e453073b28774a2825db4f31f70fc7a39ee5ff1560fc"
+    },
+    {
+      "path": "/tmp/review-jc089-jz51-jz53-card-faces-evidence/source-preservation-and-review-bindings.json",
+      "bytes": 37818,
+      "sha256": "51c326c3acacbe1fedcfe717ea3b47aadbf97fa17435c00a6e6b3078e79e636e"
+    },
+    {
+      "path": "/tmp/review-jc089-jz51-jz53-card-faces-evidence/actual-catalog-summary.json",
+      "bytes": 1995,
+      "sha256": "c01803c85096dac171ffdea97c11d1308e871d8c767523c027da12d14844db22"
+    },
+    {
+      "path": "/tmp/review-jc089-jz51-jz53-card-faces-evidence/focused-tests.json",
+      "bytes": 40335,
+      "sha256": "7079e983e76e35824fa21f21b68ac81b9243fae0e1dc1c79ee7b6cbd1faca539"
+    },
+    {
+      "path": "/tmp/review-jc089-jz51-jz53-card-faces-evidence/focused-tests.log",
+      "bytes": 2032,
+      "sha256": "d149fc9530cd87375b9ce6538b2a98b4b3d75c688f78fee1c1558c063103205a"
+    },
+    {
+      "path": "/tmp/review-jc089-jz51-jz53-card-faces-evidence/typecheck.log",
+      "bytes": 324,
+      "sha256": "59b887d884d1fbd4456a43e76a9bf4bcb96168ed75959ab8703975561f591aa5"
+    },
+    {
+      "path": "/tmp/review-jc089-jz51-jz53-card-faces-evidence/restored-clean-worktree.json",
+      "bytes": 261,
+      "sha256": "693e950e25715fa759a386de0e921d55226b93b1f5b198fad29c7d6e89108269"
+    },
+    {
+      "path": "/tmp/review-jc089-jz51-jz53-card-faces-evidence/inspect-catalog.mjs",
+      "bytes": 1887,
+      "sha256": "afbdecacc2d9a8ee6fb908218cc5888dc69a08de834808853af5e054f799d6e1"
+    },
+    {
+      "path": "/tmp/review-jc089-jz51-jz53-card-faces-evidence/check-source-preservation.py",
+      "bytes": 7465,
+      "sha256": "83ab0f0cfa54284164ef962beb00a7872534907715cf400ba0a39d5e366c8a96"
+    },
+    {
+      "path": "/tmp/review-jc089-jz51-jz53-card-faces-evidence/combined-art-binding-review.json",
+      "bytes": 4526,
+      "sha256": "59503e28e776c45e7dac1455ef5479d28bd8a16d025f7b62f66e4190df105cb7"
+    },
+    {
+      "path": "/tmp/review-jc089-jz51-jz53-card-faces-evidence/combined-actual-catalog-summary.json",
+      "bytes": 2452,
+      "sha256": "4228a92f458ff0d828d226b4ff50bc9b3c20b8628a20c58d201a3693880b418e"
+    },
+    {
+      "path": "/tmp/review-jc089-jz51-jz53-card-faces-evidence/combined-preserved-catalog.json",
+      "bytes": 386,
+      "sha256": "5d6948bf23a52866c7abb400e5cf49bf27677aa75ad38bec345aac8c17606a5a"
+    },
+    {
+      "path": "/tmp/review-jc089-jz51-jz53-card-faces-evidence/inspect-combined-catalog.mjs",
+      "bytes": 2549,
+      "sha256": "75856c47c6446ccd1cc771f17925c449d8de574a3317d8c0f916bfb73cdd9b9a"
+    },
+    {
+      "path": "/tmp/review-jc089-jz51-jz53-card-faces-evidence/check-combined-art-bindings.py",
+      "bytes": 4537,
+      "sha256": "661e3587a5b9185d6c7aaf266fa9cc618dbf9d870937447b6b023240a22d18ab"
+    },
+    {
+      "path": "/tmp/review-jc089-jz51-jz53-card-faces-evidence/check-combined-preserved-catalog.mjs",
+      "bytes": 1486,
+      "sha256": "a98ad17a295e88a3c08a5be0dbd9bad52f3eade794e39859b391443136bbd1b0"
+    },
+    {
+      "path": "/tmp/review-jc089-jz51-jz53-card-faces-evidence/natural-ui-screenshots-actually-viewed.json",
+      "bytes": 3747,
+      "sha256": "ea4121d7e40659ae126d5b7cc526b0ba484e1537354903adfefa34c99e1e70e7"
+    },
+    {
+      "path": "/tmp/review-jc089-jz51-jz53-card-faces-evidence/natural-ui-and-validation-review.json",
+      "bytes": 3857,
+      "sha256": "a6c3cd700439693822f684af59ee2af8d063492d7d59e19aa24417f4c43b0b02"
+    },
+    {
+      "path": "/tmp/review-jc089-jz51-jz53-card-faces-evidence/check-natural-ui-and-validation.py",
+      "bytes": 5511,
+      "sha256": "90eeaaafd5b77035a34fafb17eb8a7ae6af6490ce402d3d192960e0d52f14d54"
+    }
+  ],
+  "originalArtReportPreservedPrefixSha256": "ac269a5bb40867c8a8c7e5249bf86288feb4f39111a766013bed002844f95b76",
+  "combinedReview": {
+    "findings": [],
+    "severityCounts": {
+      "P0": 0,
+      "P1": 0,
+      "P2": 0,
+      "P3": 0
+    },
+    "artPathsByteExact": 9,
+    "priorImagesBytePreserved": 111,
+    "registeredOriginals": 115,
+    "engineVersion": "rust-v0.2.45-jc089-poison-blood-candidate",
+    "cardPoolVersion": "limited-v2.42-jc089-poison-blood-candidate",
+    "actualOrdinaryDefinitions": 103,
+    "actualRegions": 10,
+    "actualNonRegion": 93,
+    "actualSocieties": 8,
+    "admittedComponents": 111,
+    "pendingGameplayAdmission": 573,
+    "unregisteredOriginals": 569,
+    "missingCanonicalOriginals": [
+      "TK011"
+    ],
+    "artOnly": [
+      "JZ50",
+      "JZ51",
+      "JZ52",
+      "JZ53"
+    ],
+    "newNaturalUiScreenshotsViewed": true,
+    "rootOwnedLinksModified": false,
+    "scope": "Exact combined art/catalog/count/source-hidden-read binding plus actual8 natural UI visual/hash review and root full logs/current-only build byte checks; natural DB/journal/native/WASM replay results are root audits, not independent reruns.",
+    "fullCombinedTestsIndependentlyRerun": false,
+    "rootCombinedLogsInspected": {
+      "webFiles": 68,
+      "webTests": 607,
+      "workerTests": 25,
+      "passed": true,
+      "typeScriptViteWorkerDryRun": true
+    },
+    "rootNaturalUiIntegrityBound": {
+      "uniqueCommands": 273,
+      "version": 274,
+      "turn": 6,
+      "status": "playing",
+      "rootNativeReplayMatches": true,
+      "rootWasmReplayMatchesReported": true,
+      "fullStrategyTerminalClaimed": false
+    },
+    "mobileScreenshotScope": {
+      "viewportFromDriver": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPagePng": {
+        "width": 390,
+        "height": 1426
+      },
+      "readerFullTextVisible": true,
+      "independentViewportGeometryProved": false
+    }
+  },
+  "reportScope": "Independent original-art source/diff/hash/admission and reader-projection review; independently rerun cf2 focused116 DOM and TypeScript; exact combined84 art/catalog/count binding; actual fresh8 natural-UI images inspected and byte/SHA checked; root combined607Web/25Worker/build logs and actual current-only artifact bytes verified. No independent browser/natural journal/native replay/DB inspection, mechanism acceptance or full strategy terminal."
+}

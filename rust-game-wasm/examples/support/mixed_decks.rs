@@ -18,11 +18,17 @@ fn draft(seat: usize) -> deck::DeckDraft {
     d.id = format!("mixed-red-{other}");
     d.name = format!("红{other}混搭（合法中立补足）");
     let black = ["JC086", "JC092", "JC091", "JC084"];
+    // Keep the original regression decks finite as the public card pool grows.
+    let red = ["JC042", "JC049", "JC047", "XQ17"];
+    let blue = ["XQ12", "XQ16", "JC036", "JZ27", "XQ14"];
     d.cards = catalog::catalog()
         .cards
         .iter()
         .filter(|c| {
-            c.color == "红" || c.color == other && (other == "蓝" || black.contains(&c.id.as_str()))
+            c.color == "红" && red.contains(&c.id.as_str())
+                || c.color == other
+                    && (if other == "蓝" { &blue[..] } else { &black[..] })
+                        .contains(&c.id.as_str())
         })
         .map(|c| catalog::DeckEntry {
             card_id: c.id.clone(),
