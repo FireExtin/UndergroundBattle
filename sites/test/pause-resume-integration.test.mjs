@@ -11,7 +11,7 @@ import { RoomService, digest } from '../src/service.mjs';
 import { routeKernels } from '../src/kernel-router.mjs';
 import * as abi from '../generated/hegemony_wasm.js';
 
-for (const [label,file] of [['saved paused table','pause-resume-native-v057.json'],['sealed choice/trigger/paid stack pause','sealing-room-native-v057.json'],['JZ50 trigger/stack/private search pause','jz50-room-native-v057.json']]) test(label+': exact native transitions, D1 reopen, receipts and isolated second table', async t => {
+for (const [label,file] of [['saved paused table','pause-resume-native-v059.json'],['sealed choice/trigger/paid stack pause','sealing-room-native-v059.json'],['JZ50 trigger/stack/private search pause','jz50-room-native-v059.json']]) test(label+': exact native transitions, D1 reopen, receipts and isolated second table', async t => {
   abi.initSync({ module: readFileSync('../rust-game-wasm/pkg/hegemony_wasm_bg.wasm') });
   const trace = JSON.parse(readFileSync(new URL('./fixtures/'+file, import.meta.url), 'utf8'));
   const kernel = routeKernels(abi);

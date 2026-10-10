@@ -61,3 +61,19 @@ test('production generated modules and Worker contain only the reviewed current 
   assert.deepEqual(readFileSync('dist/server/' + files[0]), currentBytes);
   assert(readFileSync('dist/server/index.js').length + currentBytes.length < 64 * 1024 * 1024);
 });
+
+test('engine59 rejects the preserved actual57 room and the withdrawn58 header before interpretation', () => {
+  const original = JSON.parse(readFileSync(new URL('./fixtures/xq37-native-v057.json', import.meta.url), 'utf8')).accept.state;
+  const withdrawn = JSON.stringify({ state_schema: 3, versions: {
+    rules: 'hegemony-pdf-v1', cardPool: 'limited-v2.53-four-faction-engine-candidate', engine: 'rust-v0.2.58-four-faction-engine-candidate',
+  } }); // Header-only routing case; not an invented playable historical room.
+  let interpreted = 0;
+  const operations = ['view', 'apply', 'joinGame', 'joinGameWithDeck', 'applyRoom', 'pollRoom', 'quoteRoom'];
+  const guarded = { ...current };
+  for (const name of operations) guarded[name] = () => { interpreted++; throw Error('Historical room reached reducer'); };
+  const routed = routeKernels(guarded);
+  for (const state of [original, withdrawn]) {
+    for (const name of ['assertSupported', 'catalog', 'supportsPacing', ...operations]) assert.throws(() => routed[name](state, 0, '{}', '0'), isUnsupported);
+  }
+  assert.equal(interpreted, 0);
+});
