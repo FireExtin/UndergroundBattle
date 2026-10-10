@@ -14,6 +14,7 @@ const invalidSeatToken = (error: unknown) => error instanceof ApiError && (error
 const needsSiteLogin = (error: unknown) => error instanceof ApiError && (error.status === 401 || error.status === 403) && !invalidSeatToken(error);
 const loginMessage = '访问牌桌需要重新登录。座位和未确认行动已保留，请登录后刷新页面继续。';
 const unboundMessage = '旧行动缺少原座位记录，无法安全自动恢复。原记录已保留，当前仅同步牌桌状态。';
+const retirementMessage = '未能保存行动清理结果。原席位和行动已保留，请检查浏览器存储空间后回到该席位重试。';
 const unbound = (command: PendingCommand | null) => !!command && command.seat === undefined;
 const AUTO_PASS_KEY = 'hegemony.autoPass.v1';
 const readAutoPassPreference = () => {
@@ -53,28 +54,31 @@ export function useGame() {
   const isActive = (captured: SavedSession) => activeSession.current?.roomId === captured.roomId
     && activeSession.current.seat === captured.seat && activeSession.current.token === captured.token;
   const retireActor = (captured: SavedSession) => {
-    retireSeatPendings(captured).forEach(command => locallyConfirmed.current.add(confirmationKey(command)));
+    const retirement = retireSeatPendings(captured);
+    retirement.attempted.forEach(command => locallyConfirmed.current.add(confirmationKey(command)));
     if (commandFor(pending.current, captured)) {
       locallyConfirmed.current.add(confirmationKey(pending.current!)); pending.current = null;
     }
+    return retirement.persisted;
   };
   const retireInvalidSeat = (captured: SavedSession, failure: unknown) => {
     if (!isActive(captured) || !(invalidSeatToken(failure) || failure instanceof ApiError && failure.code === 'room_not_found')) return false;
-    retireActor(captured);
-    forgetSavedSeat(captured); setSavedSeats(readSavedSeats()); returnToLobby();
+    const persisted = retireActor(captured);
+    if (persisted) forgetSavedSeat(captured);
+    setSavedSeats(readSavedSeats()); returnToLobby();
     activeSession.current = null; acceptedView.current = null; acceptedVersion.current = 0;
     setUncertain(unbound(pending.current)); setSession(null); setView(null);
-    setError(unbound(pending.current) ? unboundMessage : '保存的座位已无法恢复。请使用邀请码重新加入牌桌。');
+    setError(unbound(pending.current) ? unboundMessage : !persisted ? retirementMessage : '保存的座位已无法恢复。请使用邀请码重新加入牌桌。');
     return true;
   };
   const retireUnsupportedRoom = (captured: SavedSession, failure: unknown) => {
     if (!(failure instanceof ApiError) || failure.code !== 'unsupported_room_version' || !isActive(captured)) return false;
     // The server definitively rejects this tuple. Keep its saved seat for a future
     // rollback, but stop polling/retrying an obsolete room and allow a new game.
-    retireActor(captured);
+    const persisted = retireActor(captured);
     returnToLobby(); activeSession.current = null; acceptedView.current = null; acceptedVersion.current = 0;
     setSession(null); setView(null); setUncertain(unbound(pending.current)); setConnection('connecting');
-    setError(unbound(pending.current) ? unboundMessage : failure.message); return true;
+    setError(unbound(pending.current) ? unboundMessage : !persisted ? retirementMessage : failure.message); return true;
   };
   const accept = useCallback((next: View) => {
     if (next.roomId === activeSession.current?.roomId && next.you === `p${activeSession.current.seat}`

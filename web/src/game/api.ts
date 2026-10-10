@@ -77,7 +77,7 @@ export function savePending(command: PendingCommand, capturedStorage?: ReturnTyp
   } catch { /* Preserve the in-memory command while this tab is open. */ }
 }
 export function clearPending(command: PendingCommand, capturedStorage?: ReturnType<typeof playerStorage>) {
-  if (command.seat === undefined) return;
+  if (command.seat === undefined) return false;
   try {
     const storage = capturedStorage || playerStorage();
     const key = pendingKey(command);
@@ -86,12 +86,19 @@ export function clearPending(command: PendingCommand, capturedStorage?: ReturnTy
       storage.setItem(`${LEGACY_CONFIRMED_PREFIX}${key.slice(PENDING_PREFIX.length)}`, JSON.stringify(command));
     }
     if (samePending(decodePending(storage.getItem(key)), command)) storage.removeItem(key);
+    return true;
   } catch { /* A retained receipt can safely be confirmed again with its original identity. */ }
+  return false;
 }
-export function retireSeatPendings(session: SavedSession, capturedStorage?: ReturnType<typeof playerStorage>): PendingCommand[] {
-  const records = readPendings(capturedStorage).filter(command => command.roomId === session.roomId && command.seat === session.seat);
-  records.forEach(command => clearPending(command, capturedStorage));
-  return records;
+export function retireSeatPendings(session: SavedSession, capturedStorage?: ReturnType<typeof playerStorage>) {
+  let storage: ReturnType<typeof playerStorage>;
+  try { storage = capturedStorage || playerStorage(); }
+  catch { return { attempted: [], remaining: [], persisted: false }; }
+  const records = readPendings(storage).filter(command => command.roomId === session.roomId && command.seat === session.seat);
+  let persisted = true;
+  records.forEach(command => { if (!clearPending(command, storage)) persisted = false; });
+  const remaining = readPendings(storage).filter(command => command.roomId === session.roomId && command.seat === session.seat);
+  return { attempted: records, remaining, persisted: persisted && remaining.length === 0 };
 }
 
 export class ApiError extends Error {

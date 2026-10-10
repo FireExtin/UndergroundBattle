@@ -56,7 +56,7 @@ describe('command-scoped pending persistence and legacy recovery', () => {
     const second = { ...original, commandId: 'second' }; const peer = { ...original, seat: 1 }; const other = { ...original, roomId: 'other' };
     [original, second, peer, other].forEach(command => savePending(command, ordinary));
     selectPlayerMode('independent', 'independent-player-0001'); savePending(original);
-    expect(retireSeatPendings(seat, ordinary)).toEqual([original, second]);
+    expect(retireSeatPendings(seat, ordinary)).toEqual({ attempted: [original, second], remaining: [], persisted: true });
     expect(readPending(seat, ordinary)).toBeNull();
     expect(readPending({ ...seat, seat: 1 }, ordinary)).toEqual(peer);
     expect(readPending({ ...seat, roomId: 'other' }, ordinary)).toEqual(other);
@@ -104,6 +104,7 @@ describe('command-scoped pending persistence and legacy recovery', () => {
     const storage = playerStorage();
     const denied = { ...storage, setItem: () => { throw new Error('quota'); } };
     savePending(original, denied); clearPending(original, denied);
+    expect(retireSeatPendings(seat, denied)).toEqual({ attempted: [original], remaining: [original], persisted: false });
     expect(readPending(seat)).toEqual(original);
     expect(localStorage.getItem(legacyKey)).toBe(JSON.stringify(original));
   });
