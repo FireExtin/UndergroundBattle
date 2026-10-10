@@ -235,7 +235,7 @@ pub enum Op {
     JZ24LocalSacrificeSnapshot,
     // JZ22 only: test living enemy hand counts at resolution, then place one.
     JZ22LowHandInfluenceInSourceRegion,
-    // XQ37 only: current friendly influence in its frozen entry region.
+    // XQ37 only: qualified entry, then current influence in the same source's region.
     XQ37EntryInfluenceIfPresent,
     // Finite MSJC11 programs; no generic keyword or quantity interpreter.
     GrantTargetKillUntilTurnEnd {

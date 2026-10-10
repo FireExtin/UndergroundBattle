@@ -165,8 +165,12 @@ fn xq37_only_current_friendly_team_count_one_for_all_four_seats() {
             g.regions[2].influence[team] = friendly;
             g.regions[2].influence[1 - team] = 1;
             entry(&mut g, actor, actor);
-            accept(&mut g);
-            pass_top(&mut g);
+            if friendly > 0 {
+                accept(&mut g);
+                pass_top(&mut g);
+            } else {
+                assert!(g.pending.is_none() && g.stack.is_empty());
+            }
             // Existing influence placement cancels enemy influence before adding friendly markers.
             assert_eq!(g.regions[2].influence[team], friendly);
             assert_eq!(g.regions[2].influence[1 - team], u32::from(friendly == 0));
@@ -175,17 +179,17 @@ fn xq37_only_current_friendly_team_count_one_for_all_four_seats() {
     }
 }
 #[test]
-fn xq37_condition_at_resolution_can_become_true_or_false_and_decline_is_noop() {
-    for before in [false, true] {
+fn xq37_qualified_entry_rechecks_current_count_and_decline_is_noop() {
+    for after in [0, 1, 2] {
         let mut g = initial(0);
-        g.regions[2].influence = [u32::from(before), 0];
+        g.regions[2].influence = [1, 0];
         entry(&mut g, 0, 0);
         accept(&mut g);
-        // Explicit prepared response perturbation: condition is not frozen with declaration.
-        g.regions[2].influence = [u32::from(!before), 0];
+        // Prepared response perturbation after a genuinely qualified entry.
+        g.regions[2].influence = [after, 0];
         checkpoint(&g);
         pass_top(&mut g);
-        assert_eq!(g.regions[2].influence, [if before { 0 } else { 2 }, 0]);
+        assert_eq!(g.regions[2].influence, [after + u32::from(after > 0), 0]);
     }
     let mut g = initial(0);
     g.regions[2].influence = [1, 0];
@@ -196,11 +200,42 @@ fn xq37_condition_at_resolution_can_become_true_or_false_and_decline_is_noop() {
     checkpoint(&g);
 }
 #[test]
-fn xq37_frozen_actor_owner_and_original_region_survive_source_departure_or_move() {
+fn xq37_entry_gate_is_at_event_not_later_declaration_or_response() {
+    for qualified in [false, true] {
+        let mut g = initial(0);
+        g.regions[2].influence = [u32::from(qualified), 0];
+        let id = board(&mut g, "XQ37", 0, 2);
+        g.enter_triggers(0, "XQ37", &id, false);
+        // A queued reward changes markers before Declare is processed.
+        g.regions[2].influence = [u32::from(!qualified), 0];
+        g.drive().unwrap();
+        checkpoint(&g);
+        if qualified {
+            assert!(g.pending.is_some());
+            accept(&mut g);
+            pass_top(&mut g);
+            assert_eq!(g.regions[2].influence, [0, 0]);
+        } else {
+            assert!(g.pending.is_none() && g.stack.is_empty());
+            assert_eq!(g.regions[2].influence, [1, 0]);
+        }
+    }
+    let mut g = initial(0);
+    entry(&mut g, 0, 0);
+    assert!(g.pending.is_none() && g.stack.is_empty());
+    g.place_influence(0, 2, 1);
+    g.drive().unwrap();
+    assert!(g.pending.is_none() && g.stack.is_empty());
+    assert_eq!(g.regions[2].influence, [1, 0]);
+    fixture("zero-entry-no-trigger", &g);
+    checkpoint(&g);
+}
+#[test]
+fn xq37_frozen_actor_owner_follow_current_source_region_and_not_departed_source() {
     for change in 0..4 {
         let mut g = initial(2);
         g.regions[2].influence = [0, 1];
-        g.regions[1].influence = [1, 0];
+        g.regions[1].influence = [0, 1];
         let id = entry(&mut g, 0, 2);
         accept(&mut g);
         match change {
@@ -217,23 +252,54 @@ fn xq37_frozen_actor_owner_and_original_region_survive_source_departure_or_move(
         }
         checkpoint(&g);
         pass_top(&mut g);
-        assert_eq!(g.regions[2].influence, [0, 2]);
-        assert_eq!(g.regions[1].influence, [1, 0]);
+        assert_eq!(g.regions[2].influence, [0, if change == 3 { 2 } else { 1 }]);
+        assert_eq!(g.regions[1].influence, [0, if change == 1 { 2 } else { 1 }]);
         checkpoint(&g);
     }
 }
 #[test]
-fn xq37_replaced_original_region_never_rewards_same_index_replacement() {
+fn xq37_move_to_unmarked_region_and_other_same_name_never_substitute_source() {
+    for marked in [false, true] {
+        let mut g = initial(0);
+        g.regions[2].influence = [1, 0];
+        g.regions[1].influence = [u32::from(marked), 0];
+        let id = entry(&mut g, 0, 0);
+        accept(&mut g);
+        let impostor = board(&mut g, "XQ37", 0, 2);
+        assert_ne!(id, impostor);
+        let (_, c) = g.remove_board(&id).unwrap();
+        g.regions[1].cards.push(c);
+        checkpoint(&g);
+        pass_top(&mut g);
+        assert_eq!(g.regions[2].influence, [1, 0]);
+        assert_eq!(g.regions[1].influence, [if marked { 2 } else { 0 }, 0]);
+        fixture(
+            if marked {
+                "moved-marked-region"
+            } else {
+                "moved-zero-region"
+            },
+            &g,
+        );
+    }
+}
+#[test]
+fn xq37_original_region_departure_never_rewards_same_index_replacement() {
     for after_accept in [false, true] {
         let mut g = initial(0);
         g.regions[2].influence = [1, 0];
-        entry(&mut g, 0, 0);
+        let id = entry(&mut g, 0, 0);
         if after_accept {
             accept(&mut g);
         }
+        // Explicit prepared region departure: its original source leaves first.
+        // Replacing only the region card while retaining its inhabitants would
+        // not model a real region departure under the current-source ruling.
+        g.return_hand(&id);
         let old = g.regions[2].card.id.clone();
         g.regions[2].card = g.make_card("DQJC107", 0);
         assert_ne!(old, g.regions[2].card.id);
+        assert!(g.board(&id).is_none());
         checkpoint(&g);
         if !after_accept {
             accept(&mut g);
@@ -242,6 +308,130 @@ fn xq37_replaced_original_region_never_rewards_same_index_replacement() {
         assert_eq!(g.regions[2].influence, [1, 0]);
         checkpoint(&g);
     }
+}
+fn responsive(g: &mut Game, seat: usize, action: Action) {
+    for _ in 0..8 {
+        if g.legal_actions(seat)
+            .iter()
+            .any(|a| a.action.kind == action.kind && a.action.card_id == action.card_id)
+        {
+            apply(g, seat, action);
+            return;
+        }
+        let other = (0..4)
+            .find(|s| g.legal_actions(*s).iter().any(|a| a.action.kind == "pass"))
+            .unwrap();
+        apply(g, other, Action::new("pass"));
+    }
+    panic!("response action never became legal");
+}
+#[test]
+fn xq37_real_hide_and_paid_reveal_do_not_migrate_old_trigger_to_new_instance() {
+    for reveal_again in [false, true] {
+        let mut g = initial(0);
+        g.regions[2].influence = [1, 0];
+        let old = entry(&mut g, 0, 0);
+        accept(&mut g);
+        let spell = g.make_card("JC063", 0);
+        let spell_id = spell.id.clone();
+        g.players[0].hand.push(spell);
+        fund(&mut g, 0, "JC056", 5);
+        responsive(
+            &mut g,
+            0,
+            Action {
+                card_id: Some(spell_id),
+                target_id: Some(old.clone()),
+                option: Some("hide".into()),
+                ..Action::new("play")
+            },
+        );
+        pass_top(&mut g);
+        assert!(g.board(&old).is_none());
+        let hidden = g.regions[2]
+            .cards
+            .iter()
+            .find(|c| c.definition == "XQ37")
+            .unwrap();
+        assert!(hidden.face_down);
+        let hidden_id = hidden.id.clone();
+        assert_ne!(hidden_id, old);
+        checkpoint(&g);
+        if reveal_again {
+            fund(&mut g, 0, "XQ37", 2);
+            responsive(
+                &mut g,
+                0,
+                Action {
+                    card_id: Some(hidden_id.clone()),
+                    ..Action::new("reveal")
+                },
+            );
+            pass_top(&mut g);
+            assert!(g.pending.is_some());
+            let current = g.regions[2]
+                .cards
+                .iter()
+                .find(|c| c.definition == "XQ37")
+                .unwrap();
+            assert!(!current.face_down && current.id != old && current.id != hidden_id);
+            accept(&mut g);
+            pass_top(&mut g);
+            assert_eq!(g.regions[2].influence, [2, 0]);
+        }
+        pass_top(&mut g);
+        assert_eq!(
+            g.regions[2].influence,
+            [if reveal_again { 2 } else { 1 }, 0]
+        );
+        assert!(g.pending.is_none() && g.stack.is_empty());
+        checkpoint(&g);
+    }
+}
+#[test]
+fn xq37_moved_source_survives_original_region_replacement_before_or_after_accept() {
+    for accepted in [false, true] {
+        let mut g = initial(0);
+        g.regions[2].influence = [1, 0];
+        g.regions[1].influence = [1, 0];
+        let id = entry(&mut g, 0, 0);
+        if accepted {
+            accept(&mut g);
+        }
+        let (_, c) = g.remove_board(&id).unwrap();
+        g.regions[1].cards.push(c);
+        let original_region = g.regions[2].card.id.clone();
+        g.regions[2].card = g.make_card("DQJC107", 0);
+        assert_ne!(g.regions[2].card.id, original_region);
+        checkpoint(&g);
+        if !accepted {
+            accept(&mut g);
+        }
+        pass_top(&mut g);
+        assert_eq!(g.regions[2].influence, [1, 0]);
+        assert_eq!(g.regions[1].influence, [2, 0]);
+        checkpoint(&g);
+    }
+}
+#[test]
+fn xq37_opposing_same_colour_source_instances_do_not_replace_departed_source() {
+    let mut g = initial(0);
+    g.regions[2].influence = [1, 0];
+    g.regions[1].influence = [0, 1];
+    let first = entry(&mut g, 0, 0);
+    accept(&mut g);
+    let second = board(&mut g, "XQ37", 2, 1);
+    assert_ne!(first, second);
+    g.enter_triggers(2, "XQ37", &second, false);
+    g.drive().unwrap();
+    accept(&mut g);
+    g.return_hand(&first);
+    checkpoint(&g);
+    pass_top(&mut g);
+    pass_top(&mut g);
+    assert_eq!(g.regions[2].influence, [1, 0]);
+    assert_eq!(g.regions[1].influence, [0, 2]);
+    checkpoint(&g);
 }
 #[test]
 fn xq37_same_name_independent_instances_one_point_and_win_threshold() {
@@ -428,7 +618,11 @@ fn xq37_pending_trigger_actor_and_optional_accept_metadata_are_closed() {
         if let ChoiceResolution::Declare { declaration, .. } =
             &mut g.pending.as_mut().unwrap().resolution
         {
-            let region = declaration.source.source_region_instance.as_deref().unwrap();
+            let region = declaration
+                .source
+                .source_region_instance
+                .as_deref()
+                .unwrap();
             declaration.ability = match ability {
                 0 => definition("XQ37").abilities[0].clone(),
                 1 => crate::renown::renown_ability(region),

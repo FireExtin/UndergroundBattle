@@ -973,6 +973,17 @@ impl Game {
             .iter()
             .filter(|s| s.event == Some(event))
         {
+            // XQ37's printed if-condition must hold at the actual entry event.
+            // Do not defer this gate to declaration processing: earlier queued
+            // rewards or responses must not retroactively qualify an entry.
+            if source.card.definition == "XQ37"
+                && spec.key == "entry-existing-influence"
+                && !source
+                    .region
+                    .is_some_and(|r| self.regions[r].influence[self.team(actor)] > 0)
+            {
+                continue;
+            }
             self.effects.push_back(Effect::Declare {
                 declaration: Declaration {
                     actor,

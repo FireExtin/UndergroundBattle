@@ -1,4 +1,4 @@
-//! Closed XQ37 entry program using the existing frozen source region and influence primitive.
+//! Closed XQ37 entry qualification and same-source current-region influence program.
 use crate::{
     engine::RuleResult,
     model::*,
@@ -28,9 +28,13 @@ fn relevant(f: &ResolutionFrame) -> bool {
 }
 impl Game {
     pub(crate) fn xq37_entry_influence(&mut self, f: &ResolutionFrame) {
-        // The already triggered effect stays in the original real entry region.
-        // Its conditional count is evaluated after responses, using the frozen actor's team.
-        if let Some(r) = self.blue_original_region(f) {
+        // Entry qualification was checked when Enter was emitted. At resolution
+        // use the same current character, retaining the trigger actor's team.
+        // Leaving or hiding creates a different instance; the old ability still resolves.
+        if let Some((r, _)) = self
+            .board(&f.source.card.id)
+            .filter(|(_, c)| !c.face_down && c.definition == "XQ37")
+        {
             if self.regions[r].influence[self.team(f.actor)] > 0 {
                 self.place_influence(f.actor, r, 1);
             }
@@ -170,7 +174,10 @@ impl Game {
                 ChoiceResolution::Frame { frame, .. } if relevant(frame) => {
                     return Err("XQ37原子程序不能暂停为帧选择".into())
                 }
-                ChoiceResolution::Declare { declaration: d, stage } => {
+                ChoiceResolution::Declare {
+                    declaration: d,
+                    stage,
+                } => {
                     declaration(d)?;
                     if d.source.card.definition == "XQ37"
                         && (!matches!(stage, DeclareChoice::Accept)
