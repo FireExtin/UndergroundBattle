@@ -643,5 +643,40 @@
     "url": "/cards/XQ37.jpg",
     "source": "resource/ymsj-fun.github.io/cards/XQ37 夜总会看门人.jpg",
     "sha256": "93778bc4ffa69e5b79ad08738e3f31a78a669a049c42a43e68d04bd6398856b9"
+  },
+  "JZ30": {
+    "url": "/cards/JZ30.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JZ30 末世论者.jpg",
+    "sha256": "ae1c7e086f18752377467e1cf5e8adef9dcc04b7929e69f9cef2ceb23deb3264"
+  },
+  "BQ028": {
+    "url": "/cards/BQ028.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/BQ028 水沟鼠群密探.jpg",
+    "sha256": "edefc7294d8df74c8b36dda31591197c878d02c0a7d9b725e0805a3796a32ea6"
+  },
+  "BQ040": {
+    "url": "/cards/BQ040.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/BQ040 鲜血.jpg",
+    "sha256": "fb62686626c7bdaf7d9c9c9a255fbfb40dfd986f06347a9444efae65e6b875c6"
+  },
+  "WM059": {
+    "url": "/cards/WM059.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/WM059 雨夜屠夫.jpg",
+    "sha256": "cc9e57a90d6747733c1edcb6b46bb14307eee908e533f993677841f1b8ef646f"
+  },
+  "BQ078": {
+    "url": "/cards/BQ078.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/BQ078 专业清理员.jpg",
+    "sha256": "d1f6b348c636dd7eb82e367b5cd8abcda4d93bb3fe1ecc7bf95bac3ed36446ea"
+  },
+  "JZ44": {
+    "url": "/cards/JZ44.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JZ44 洛杉矶巡警.jpg",
+    "sha256": "b5ca6ecde925805b86eeac70bd796ad402695daf342835abfd669e9a157637eb"
+  },
+  "JZ45": {
+    "url": "/cards/JZ45.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JZ45 警用直升机.jpg",
+    "sha256": "20e18006a7b2f032d7d236f909dc57d75bfc14dc3acf36291c7ca16f3962008f"
   }
 }

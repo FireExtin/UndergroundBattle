@@ -82,7 +82,7 @@ export function ChoicePanel({ choice, action, definitions, busy, onSubmit, onRea
     <p className="hg-choice-scroll-hint" id={scrollHintId}>{choice.kind === 'mulligan' ? '点选要替换的手牌，未选中的保留。' : '先查看选项，再确认你的选择。'} 选项区可上下滚动，确认按钮始终在下方。</p>
     </div>
     <div className="hg-choice-body" tabIndex={0} role="region" aria-label="选择选项，可滚动查看" aria-describedby={scrollHintId}>
-    {!!choice.previewCards?.length && <div className="hg-choice-preview"><h3>你查看的牌库顶牌</h3><div className="hg-choice-options">{choice.previewCards.map(card => <div className="hg-choice-option-entry" key={card.instanceId}>
+    {!!choice.previewCards?.length && <div className="hg-choice-preview"><h3>{choice.kind === 'bq028-hand-inspect' ? '你查看的对手手牌' : '你查看的牌库顶牌'}</h3><div className="hg-choice-options">{choice.previewCards.map(card => <div className="hg-choice-option-entry" key={card.instanceId}>
       <CardContent card={card} definition={definitions.get(card.cardId || '')} viewerId={viewerId} />
       {onReadCard && <button type="button" className="hg-choice-read hg-small-read" onClick={() => readCard(card)} aria-label={`放大阅读${card.name}`}>放大文字与图标 ↗</button>}
     </div>)}</div></div>}
@@ -103,7 +103,7 @@ export function ChoicePanel({ choice, action, definitions, busy, onSubmit, onRea
     </>}
     </div>
     <div className="hg-choice-footer"><span>{damage ? `共需分配 ${amount} 点，已分配 ${assigned} 点` : ordering ? '确认后按此顺序放回牌库。' : `请选择 ${min === max ? min : `${min}–${max}`} 项${choice.allowDecline ? '，或跳过' : ''}。`}</span>
-      <div>{canDecline && <button className="hg-button hg-button-quiet" disabled={busy || !action} onClick={() => submit(true)}>{choice.kind === 'mulligan' ? '保留全部手牌' : '跳过此选择'}</button>}
+      <div>{canDecline && <button className="hg-button hg-button-quiet" disabled={busy || !action} onClick={() => submit(true)}>{choice.kind === 'mulligan' ? '保留全部手牌' : choice.kind === 'bq028-hand-inspect' ? '不弃牌并确认' : '跳过此选择'}</button>}
       <button className="hg-button hg-button-primary" disabled={busy || !valid || !action} onClick={() => submit()}>{busy ? '正在提交…' : (jz50Search || entrySearchZero || deckSealZero) && selected.length === 0 ? '不取牌并洗牌' : '确认选择'}</button></div>
     </div>
   </section>;

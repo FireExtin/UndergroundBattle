@@ -230,6 +230,7 @@ function TableSurface({ view, catalog, busy, uncertain = false, connection = 'co
       ? view.privateDeckTop?.instanceId === reading.instanceId ? visibleCard(view.privateDeckTop, view.you) : undefined
       : allCards.find(item => item.instanceId === reading.instanceId)
       || view.pendingChoice?.options.map(option => option.card && visibleCard(option.card, view.you)).find(item => item?.instanceId === reading.instanceId)
+      || view.pendingChoice?.previewCards?.map(item => visibleCard(item, view.you)).find(item => item.instanceId === reading.instanceId)
       || regionCard : undefined;
   const attachedCards = card ? attachments.filter(item => item.hostId === card.instanceId) : [];
   const attachmentContext = (item: Attachment, includeInstance = true) => {
