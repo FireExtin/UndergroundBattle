@@ -337,7 +337,8 @@ fn death_observer_duplicate_command_is_exact_and_illegal_markers_rejected() {
         action:SessionAction::Game{action:Action{choice_id:Some(g.pending.as_ref().unwrap().choice.id.clone()),selected:Some(vec!["p1".into()]),..Action::new("choose")}}};
     let result=r.transition(0,Some(command.clone()),0).unwrap();assert!(result.error_code.is_none());let next=RoomEnvelope::from_persisted(&result.state).unwrap();
     let duplicate=next.transition(0,Some(command),0).unwrap();assert_eq!(duplicate.state,result.state);assert_eq!(duplicate.outcome,"rejected");assert_eq!(duplicate.error_code.as_deref(),Some("version_conflict"));
-    let mut v=serde_json::to_value(&g).unwrap();v["regions"][2]["cards"][0]["time_markers"]=1.into();bad_state(&g,v);
+    let mut marked=g.clone();marked.regions[2].cards[0].time_markers=1;checkpoint(&marked);
+    let mut v=serde_json::to_value(&marked).unwrap();v["regions"][2]["cards"][0]["face_down"]=true.into();bad_state(&marked,v);
     let h=held(&mut g,"JC045",0);let mut v=serde_json::to_value(&g).unwrap();let i=g.players[0].hand.iter().position(|c|c.id==h).unwrap();v["players"][0]["hand"][i]["time_markers"]=1.into();bad_state(&g,v);
     let mut v=serde_json::to_value(&g).unwrap();v["world"][0]["time_markers"]=1.into();bad_state(&g,v);
     let mut v=serde_json::to_value(&g).unwrap();v["regions"][0]["card"]["time_markers"]=1.into();bad_state(&g,v);

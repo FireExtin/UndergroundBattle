@@ -385,9 +385,15 @@ impl Game {
     pub(crate) fn source_snapshot(&self, c: &Card, region: Option<usize>) -> SourceSnapshot {
         SourceSnapshot {
             observed_death: None,
-            card: c.clone(),
+            card: {
+                let mut snapshot = c.clone();
+                if c.definition == "JZ30" && !c.face_down && self.board(&c.id).is_some() {
+                    snapshot.time_markers = self.effective_time_markers(c);
+                }
+                snapshot
+            },
             region,
-            source_region_instance: if matches!(c.definition.as_str(), "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37") {
+            source_region_instance: if matches!(c.definition.as_str(), "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "WM059" | "BQ078" | "JZ30" | "BQ028") {
                 region.and_then(|r| self.regions.get(r)).map(|r| r.card.id.clone())
             } else { None },
             attachment_host_instance: (c.definition == "JC090" || rules::definition(&c.definition)
@@ -633,9 +639,12 @@ impl Game {
                                 rules::TargetPredicate::JC069LockedAnchor => {
                                     source.card.definition == "JC069" && c.lock_markers > 0
                                 }
+                                rules::TargetPredicate::JZ45LockedLocalTarget => {
+                                    source.card.definition == "JZ45" && c.lock_markers > 0
+                                }
                             })
                         && (spec.range != Range::SourceRegion || region == source.region)
-                        && (source.card.definition != "JZ43" || spec.range != Range::SourceRegion
+                        && (!matches!(source.card.definition.as_str(), "JZ43" | "JZ44" | "JZ45" | "WM059") || spec.range != Range::SourceRegion
                             || source.region.and_then(|r| self.regions.get(r))
                                 .zip(source.source_region_instance.as_ref())
                                 .is_some_and(|(region, instance)| region.card.id == *instance))
@@ -1285,6 +1294,10 @@ impl Game {
         true
     }
     pub(crate) fn resolve_frame(&mut self, mut frame: ResolutionFrame) -> RuleResult<()> {
+        self.validate_red_time_frame(&frame)?;
+        self.validate_blue_expansion_frame(&frame)?;
+        self.validate_black_expansion_frame(&frame)?;
+        self.validate_gray_expansion_frame(&frame)?;
         self.validate_gray_lock_frame(&frame)?;
         self.validate_jz22_frame(&frame)?;
         self.validate_jc050_frame(&frame)?;
@@ -1297,6 +1310,13 @@ impl Game {
             let step = frame.steps[frame.cursor].clone();
             frame.cursor += 1;
             match step.op {
+                Op::JZ30AddOneTimeToOriginalSource => self.jz30_add_one_time(&frame),
+                Op::JZ30ForecastFrozenTime => {
+                    if self.jz30_forecast_frozen_time(&frame)? { return Ok(()); }
+                }
+                Op::BQ028InspectTargetHandAttachments => return self.bq028_inspect_start(frame),
+                Op::BQ078ReturnNamelessCorpse => return self.bq078_return_start(frame),
+                Op::JZ45LockLocalTarget => self.jz45_lock_local_target(&frame)?,
                 Op::XQ44SearchDreamSealOnTarget => return self.deck_seal_search_start(frame, true),
                 Op::JZ02SearchSpaceSpellSealOnSource => return self.deck_seal_search_start(frame, false),
                 Op::JZ50SearchDeathToGraveyard => return self.jz50_search_start(frame),
@@ -2100,6 +2120,12 @@ impl Game {
         option_ids: BTreeSet<String>,
     ) -> RuleResult<()> {
         match choice {
+            FrameChoice::BQ028InspectAttachments { seat, inspected } => {
+                self.bq028_inspect_complete(&frame, seat, inspected, &selected)?;
+            }
+            FrameChoice::BQ078CorpseReturn => {
+                self.bq078_return_complete(&frame, chooser, &selected)?;
+            }
             FrameChoice::XQ44DreamSealSearch | FrameChoice::JZ02SpaceSealSearch => {
                 if chooser != frame.actor { return Err("牌库封印检索选择者无效".into()); }
                 self.deck_seal_search_complete(&frame, &selected, matches!(choice, FrameChoice::XQ44DreamSealSearch))?;

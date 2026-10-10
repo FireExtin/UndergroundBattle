@@ -1,4 +1,16 @@
 mod attachment;
+mod red_time;
+mod blue_expansion;
+mod black_expansion;
+mod gray_expansion;
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod red_time_tests;
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod blue_expansion_tests;
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod black_expansion_tests;
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod gray_expansion_tests;
 mod attributes;
 mod jc050;
 mod xq27;
