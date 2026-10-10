@@ -393,7 +393,7 @@ impl Game {
                 snapshot
             },
             region,
-            source_region_instance: if matches!(c.definition.as_str(), "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "WM059" | "BQ078" | "JZ30" | "BQ028") {
+            source_region_instance: if matches!(c.definition.as_str(), "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028") {
                 region.and_then(|r| self.regions.get(r)).map(|r| r.card.id.clone())
             } else { None },
             attachment_host_instance: (c.definition == "JC090" || rules::definition(&c.definition)
@@ -638,6 +638,9 @@ impl Game {
                                 }
                                 rules::TargetPredicate::JC069LockedAnchor => {
                                     source.card.definition == "JC069" && c.lock_markers > 0
+                                }
+                                rules::TargetPredicate::XQ18CharacterOrAttachment => {
+                                    self.xq18_character_or_attachment(source, c)
                                 }
                                 rules::TargetPredicate::JZ45LockedLocalTarget => {
                                     source.card.definition == "JZ45" && c.lock_markers > 0
@@ -1310,6 +1313,8 @@ impl Game {
             let step = frame.steps[frame.cursor].clone();
             frame.cursor += 1;
             match step.op {
+                Op::XQ18AddOneTimeToTarget => self.xq18_add_one_time(&frame),
+                Op::XQ18ChooseTimeCarrier => return self.xq18_choose_carrier(frame),
                 Op::JZ30AddOneTimeToOriginalSource => self.jz30_add_one_time(&frame),
                 Op::JZ30ForecastFrozenTime => {
                     if self.jz30_forecast_frozen_time(&frame)? { return Ok(()); }
@@ -2120,6 +2125,9 @@ impl Game {
         option_ids: BTreeSet<String>,
     ) -> RuleResult<()> {
         match choice {
+            FrameChoice::XQ18TimeCarrier { target_instance } => {
+                self.xq18_remove_from_carrier(&frame, chooser, &target_instance, &selected)?;
+            }
             FrameChoice::BQ028InspectAttachments { seat, inspected } => {
                 self.bq028_inspect_complete(&frame, seat, inspected, &selected)?;
             }

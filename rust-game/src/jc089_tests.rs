@@ -66,7 +66,7 @@ fn jc089_exact_printed_curse_and_complete_attached_host_definition() {
     assert_eq!(c.loyalty,["黑色"]); assert_eq!(c.magic_icon,MagicIcon::Blood);
     assert_eq!(c.subtypes,["诅咒"]); assert!(!c.unique&&c.keywords.is_empty());
     assert_eq!(c.permanent_icons,Icons::default()); assert_eq!(c.temporary_icons,Icons::default());
-    assert_eq!(deck::copy_limit(c),Some(3)); assert_eq!(catalog::catalog().cards.len(),127);
+    assert_eq!(deck::copy_limit(c),Some(3)); assert_eq!(catalog::catalog().cards.len(),128);
     assert!(catalog::catalog().cards.iter().any(|c|c.id=="JZ50"));
     let d=definition("JC089"); let s=d.attachment.as_ref().unwrap();
     assert_eq!(s.host.relation,Relation::Any); assert_eq!(s.host.kind,EntityKind::Character);

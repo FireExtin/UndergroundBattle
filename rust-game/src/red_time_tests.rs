@@ -7,47 +7,25 @@ use std::sync::atomic::{AtomicUsize, Ordering};
 static EVIDENCE: AtomicUsize = AtomicUsize::new(0);
 
 #[test]
-fn red_time_xq18_excluded_from_catalog_construction_generation_and_restoration() {
-    assert!(!catalog::catalog().cards.iter().any(|c| c.id == "XQ18"));
-    assert!(!definitions().contains_key("XQ18"));
-    assert!(crate::red_time::definition("XQ18").is_none());
+fn red_time_xq18_restored_admission_and_legacy_state_rejection() {
+    assert!(catalog::catalog().cards.iter().any(|c| c.id == "XQ18" && c.supported));
+    assert!(definitions().contains_key("XQ18"));
+    assert!(crate::red_time::definition("XQ18").is_some());
     let draft = crate::deck::DeckDraft {
-        id: "excluded-timer".into(), name: "excluded timer".into(), description: String::new(),
-        society_id: None,
+        id: "timer".into(), name: "timer".into(), description: String::new(), society_id: None,
         cards: vec![catalog::DeckEntry { card_id: "JC125".into(), count: 47 },
             catalog::DeckEntry { card_id: "XQ18".into(), count: 3 }],
         rules_version: catalog::RULES_VERSION.into(), card_pool_version: catalog::POOL_VERSION.into(),
         engine_version: catalog::ENGINE_VERSION.into(), updated_at: String::new(),
     };
-    assert!(crate::deck::validate(draft.clone()).unwrap_err().contains("XQ18"));
-    let result = Game::new_with_deck("timer".into(), "invite".into(), "teams".into(),
-        "one".into(), draft, 1);
-    assert!(result.is_err());
-    let mut g = initial(0);
-    let before = serde_json::to_string(&g).unwrap();
-    // The existing constructor checks admission before allocating a new identity.
-    let result = std::panic::catch_unwind(std::panic::AssertUnwindSafe(|| g.make_card("XQ18", 0)));
-    assert!(result.is_err());
-    assert_eq!(serde_json::to_string(&g).unwrap(), before);
-    for zone in ["hand", "deck", "assets", "graveyard"] {
-        let mut v = serde_json::to_value(&g).unwrap();
-        let mut card = serde_json::to_value(g.make_card("JC125", 0)).unwrap();
-        card["definition"] = serde_json::json!("XQ18");
-        v["players"][0][zone].as_array_mut().unwrap().push(card);
+    crate::deck::validate(draft.clone()).unwrap();
+    Game::new_with_deck("timer".into(), "invite".into(), "teams".into(), "one".into(), draft, 1).unwrap();
+    let mut g = initial(0); let c = g.make_card("XQ18", 0); g.players[0].hand.push(c); checkpoint(&g);
+    assert!(serde_json::from_value::<Op>(serde_json::json!("XQ18RemoveOneTimeFromTarget")).is_err());
+    for engine in ["rust-v0.2.58-four-faction-engine-candidate", "rust-v0.2.59-seven-card-engine-candidate"] {
+        let mut v = serde_json::to_value(&g).unwrap(); v["versions"]["engine"] = serde_json::json!(engine);
         invalid(&g, v);
     }
-    let mut v = serde_json::to_value(&g).unwrap();
-    let mut card = serde_json::to_value(g.make_card("JC125", 0)).unwrap();
-    card["definition"] = serde_json::json!("XQ18");
-    v["regions"][0]["cards"].as_array_mut().unwrap().push(card);
-    invalid(&g, v);
-    for op in ["XQ18AddOneTimeToTarget", "XQ18RemoveOneTimeFromTarget"] {
-        assert!(serde_json::from_value::<Op>(serde_json::json!(op)).is_err());
-    }
-    assert!(serde_json::from_value::<TargetPredicate>(serde_json::json!("XQ18CharacterOrAttachment")).is_err());
-    let mut v = serde_json::to_value(&g).unwrap();
-    v["versions"]["engine"] = serde_json::json!("rust-v0.2.58-four-faction-engine-candidate");
-    invalid(&g, v);
 }
 
 #[test]
@@ -363,7 +341,7 @@ fn red_time_real_room_paid_jz30_entry_destroy_and_private_forecast_restore() {
 
 #[test]
 fn red_time_real_granted_renown_glory_freeze_region_and_reject_other_region_in_game_and_room() {
-    for def in ["JZ30"] { for glory in [false, true] {
+    for def in ["XQ18", "JZ30"] { for glory in [false, true] {
         let mut g = initial(0); let source = board(&mut g, def, 0, 2);
         if glory {
             // Vest preserves the defense-one character under JC089's -1.

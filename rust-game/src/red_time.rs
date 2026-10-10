@@ -1,8 +1,11 @@
-//! Closed JZ30 printed time program; XQ18 is excluded pending a ruling. Zone/reset ownership stays in the
+//! Closed XQ18 / JZ30 time programs. XQ18 carrier selection follows the explicit
+//! user ruling; zone/reset ownership stays in the
 //! shared engine; no generic marker interpreter or configurable X is admitted.
 use crate::{catalog, engine::RuleResult, model::*, rules::{self, *}};
 use std::{collections::BTreeSet, sync::OnceLock};
 
+const XQ18_KEY: &str = "reveal-time-marker";
+const XQ18_CARRIER_TITLE: &str = "选择移除时间标志的载体";
 const JZ30_ENTRY: &str = "entry-one-time";
 const JZ30_DEATH: &str = "death-frozen-time-forecast";
 
@@ -28,6 +31,19 @@ fn admitted_source(source: &SourceSnapshot) -> RuleResult<()> {
 
 pub(crate) fn definition(id: &str) -> Option<Definition> {
     match id {
+        "XQ18" => {
+            let mut slot = rules::target(Zone::Board, EntityKind::Any, Relation::Any, Range::Anywhere);
+            slot.predicate = Some(TargetPredicate::XQ18CharacterOrAttachment);
+            let mut a = rules::ability(XQ18_KEY, "现身触发：放置或移除一个时间标志", Timing::Fast,
+                vec![], vec![], vec![], Some(Event::Reveal));
+            a.modes = vec![
+                Mode { key: "add-time".into(), label: "放置一个时间标志".into(),
+                    targets: vec![slot.clone()], ops: vec![Op::XQ18AddOneTimeToTarget] },
+                Mode { key: "remove-time".into(), label: "移除一个时间标志".into(),
+                    targets: vec![slot], ops: vec![Op::XQ18ChooseTimeCarrier] },
+            ];
+            Some(rules::with_abilities(vec![a]))
+        }
         "JZ30" => {
             let mut d = rules::with_abilities(vec![
                 rules::ability(JZ30_ENTRY, "进场触发：放置一个时间标志", Timing::Fast,
@@ -44,7 +60,8 @@ pub(crate) fn definition(id: &str) -> Option<Definition> {
 
 pub(crate) fn contains_red_time_op(ops: &[Op]) -> bool {
     ops.iter().any(|op| match op {
-        Op::JZ30AddOneTimeToOriginalSource | Op::JZ30ForecastFrozenTime => true,
+        Op::XQ18AddOneTimeToTarget | Op::XQ18ChooseTimeCarrier
+            | Op::JZ30AddOneTimeToOriginalSource | Op::JZ30ForecastFrozenTime => true,
         Op::ForEachLivingPlayer(body) | Op::ForEachLivingPlayerFromActor(body) => contains_red_time_op(body),
         Op::IfTargetExhausted { exhausted, ready, .. } => contains_red_time_op(std::slice::from_ref(exhausted))
             || contains_red_time_op(std::slice::from_ref(ready)),
@@ -53,8 +70,10 @@ pub(crate) fn contains_red_time_op(ops: &[Op]) -> bool {
 }
 
 fn relevant_ability(card: &str, a: &AbilitySpec) -> bool {
-    definition(card).is_some() || matches!(a.key.as_str(), JZ30_ENTRY | JZ30_DEATH)
+    definition(card).is_some() || matches!(a.key.as_str(), XQ18_KEY | JZ30_ENTRY | JZ30_DEATH)
         || contains_red_time_op(&a.ops) || a.modes.iter().any(|m| contains_red_time_op(&m.ops))
+        || a.targets.iter().chain(a.modes.iter().flat_map(|m| &m.targets))
+            .any(|t| t.predicate == Some(TargetPredicate::XQ18CharacterOrAttachment))
 }
 
 // The shared declaration reducer flattens a selected mode before target choice.
@@ -90,8 +109,9 @@ pub(crate) fn validate_definition(card: &str, d: &Definition) -> RuleResult<()> 
 
 fn relevant_frame(f: &ResolutionFrame) -> bool {
     definition(&f.source.card.definition).is_some()
-        || matches!(f.ability_key.as_str(), JZ30_ENTRY | JZ30_DEATH)
+        || matches!(f.ability_key.as_str(), XQ18_KEY | JZ30_ENTRY | JZ30_DEATH)
         || f.steps.iter().any(|s| contains_red_time_op(std::slice::from_ref(&s.op)))
+        || f.targets.iter().any(|t| t.spec.predicate == Some(TargetPredicate::XQ18CharacterOrAttachment))
 }
 
 impl Game {
@@ -145,6 +165,73 @@ impl Game {
             .filter(|c| c.definition == "JZ30" && !c.face_down) {
             c.time_markers = c.time_markers.saturating_add(1);
         }
+    }
+
+    pub(crate) fn xq18_character_or_attachment(&self, source: &SourceSnapshot, c: &Card) -> bool {
+        source.card.definition == "XQ18" && !c.face_down
+            && (catalog::card(&c.definition).kind == "character"
+                || self.attachments.iter().find(|a| a.card.id == c.id)
+                    .is_some_and(|a| catalog::card(&a.card.definition).kind == "attachment"
+                        && self.attachment_host_valid(a)))
+    }
+
+    pub(crate) fn xq18_add_one_time(&mut self, f: &ResolutionFrame) {
+        if let Some(c) = f.targets.first().and_then(|t| self.board_mut(&t.id)).filter(|c| !c.face_down) {
+            c.time_markers = c.time_markers.saturating_add(1);
+        }
+    }
+
+    fn validate_xq18_carrier_frame(&self, f: &ResolutionFrame, target_instance: &str) -> RuleResult<()> {
+        self.validate_red_time_frame(f)?;
+        if f.source.card.definition != "XQ18" || f.ability_key != XQ18_KEY
+            || f.cursor != 1 || !matches!(f.guard, GuardState::Accepted)
+            || !matches!(f.steps.as_slice(), [Step { op: Op::XQ18ChooseTimeCarrier, .. }])
+            || f.targets.len() != 1 || f.targets[0].id != target_instance
+            || !self.valid_bound_target(f.actor, &f.source, &f.targets[0]) {
+            return Err("计时人的原目标、载体选择程序或续体无效".into());
+        }
+        Ok(())
+    }
+
+    fn xq18_carrier_options(&self, target_instance: &str) -> RuleResult<Vec<ChoiceOption>> {
+        self.validate_red_time_catalogue()?;
+        let (_, target) = self.board(target_instance).ok_or("计时人的原目标已离场")?;
+        let mut carriers = vec![];
+        if !target.face_down && target.time_markers > 0 { carriers.push((target, "原目标")); }
+        if catalog::card(&target.definition).kind == "character" {
+            carriers.extend(self.attachments.iter().filter(|a| a.host_id == target_instance
+                && !a.card.face_down && a.card.time_markers > 0 && self.attachment_host_valid(a))
+                .map(|a| (&a.card, "附属")));
+        }
+        // These are physical carrier choices, not additional declared targets.
+        // No actor/team restriction or body-first automatic removal is added.
+        Ok(carriers.into_iter().map(|(c, role)| ChoiceOption { id: c.id.clone(),
+            label: format!("{}（{}，{}个时间标志）", catalog::card(&c.definition).name, role, c.time_markers),
+            card: None }).collect())
+    }
+
+    pub(crate) fn xq18_choose_carrier(&mut self, f: ResolutionFrame) -> RuleResult<()> {
+        let target_instance = f.targets.first().ok_or("计时人缺少原目标")?.id.clone();
+        self.validate_xq18_carrier_frame(&f, &target_instance)?;
+        let options = self.xq18_carrier_options(&target_instance)?;
+        if options.is_empty() { return Ok(()); }
+        self.choice(f.actor, "xq18-time-carrier", XQ18_CARRIER_TITLE.into(), options, 1, 1, Some(1),
+            ChoiceResolution::Frame { frame: Box::new(f), choice: FrameChoice::XQ18TimeCarrier { target_instance } });
+        Ok(())
+    }
+
+    pub(crate) fn xq18_remove_from_carrier(&mut self, f: &ResolutionFrame, chooser: usize,
+        target_instance: &str, selected: &[String]) -> RuleResult<()> {
+        self.validate_xq18_carrier_frame(f, target_instance)?;
+        if chooser != f.actor || selected.len() != 1
+            || !self.xq18_carrier_options(target_instance)?.iter().any(|o| o.id == selected[0]) {
+            return Err("计时人的选择者或实际时间标志载体已失效".into());
+        }
+        let c = self.board_mut(&selected[0]).ok_or("实际时间标志载体已离场")?;
+        let name = catalog::card(&c.definition).name.clone();
+        c.time_markers = c.time_markers.checked_sub(1).ok_or("实际载体已无时间标志")?;
+        self.note(format!("{} 从{}移除1个时间标志", self.players[chooser].name, name));
+        Ok(())
     }
 
     // Called after the interpreter increments cursor and accepts the frame guard.
@@ -207,8 +294,10 @@ impl Game {
             return Err("红色时间帧的程序、目标形状或能力别名无效".into());
         }
         let forecast = f.source.card.definition == "JZ30" && f.ability_key == JZ30_DEATH;
+        let carrier = f.source.card.definition == "XQ18" && f.ability_key == XQ18_KEY
+            && matches!(f.steps[0].op, Op::XQ18ChooseTimeCarrier);
         if !((f.cursor == 0 && matches!(f.guard, GuardState::Unchecked))
-            || (forecast && f.cursor == 1 && matches!(f.guard, GuardState::Accepted))) {
+            || ((forecast || carrier) && f.cursor == 1 && matches!(f.guard, GuardState::Accepted))) {
             return Err("红色时间原子程序游标或预测续体守卫无效".into());
         }
         Ok(())
@@ -286,8 +375,23 @@ impl Game {
                         }
                     }
                 }
-                ChoiceResolution::Frame { frame: f, choice } if relevant_frame(f) => {
+                ChoiceResolution::Frame { frame: f, choice }
+                    if relevant_frame(f) || matches!(choice, FrameChoice::XQ18TimeCarrier { .. }) => {
                     self.validate_red_time_frame(f)?;
+                    if let FrameChoice::XQ18TimeCarrier { target_instance } = choice {
+                        self.validate_xq18_carrier_frame(f, target_instance)?;
+                        let options = self.xq18_carrier_options(target_instance)?;
+                        if options.is_empty() || p.seat != f.actor || p.choice.player_id != format!("p{}", f.actor)
+                            || p.choice.id.is_empty() || p.choice.kind != "xq18-time-carrier"
+                            || p.choice.title != XQ18_CARRIER_TITLE
+                            || p.choice.description != "选择符合数量限制的选项，然后确认。"
+                            || p.choice.min != Some(1) || p.choice.max != Some(1)
+                            || p.choice.amount != Some(1) || p.choice.allow_decline != Some(false)
+                            || !p.choice.preview_cards.is_empty() || !same(&p.choice.options, &options) {
+                            return Err("计时人载体待选的席位、元数据或当前载体不符".into());
+                        }
+                        return Ok(());
+                    }
                     if !matches!(choice, FrameChoice::Forecast { seat } if *seat == f.actor)
                         || f.source.card.definition != "JZ30" || f.ability_key != JZ30_DEATH
                         || f.cursor != 1 || !matches!(f.guard, GuardState::Accepted)

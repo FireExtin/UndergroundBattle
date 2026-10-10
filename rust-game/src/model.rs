@@ -569,6 +569,7 @@ pub enum DeclareChoice {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum FrameChoice {
+    XQ18TimeCarrier { target_instance: String },
     BQ028InspectAttachments { seat: usize, inspected: Vec<Card> },
     BQ078CorpseReturn,
     XQ44DreamSealSearch,
