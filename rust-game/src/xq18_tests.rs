@@ -346,6 +346,64 @@ fn xq18_multiple_carriers_choose_each_without_body_priority() {
 }
 
 #[test]
+fn xq18_same_name_same_markers_carriers_have_public_stable_identity() {
+    // Equal printed cards and marker counts, including equal owners, must be
+    // distinguishable in the existing text-only ChoicePanel. Controllers are
+    // explicit prepared state; the frozen actor still performs the real choice.
+    for same_owner in [false, true] {
+        for same_controller in [false, true] {
+            for selected in 0..2 {
+                let mut g = initial(0);
+                let target = board(&mut g, "JC125", 2, 0);
+                let a = attachment(&mut g, "XQ47", 0, &target, 3);
+                let b = attachment(&mut g, "XQ47", if same_owner { 0 } else { 2 }, &target, 3);
+                g.board_mut(&b).unwrap().controller = if same_controller { 0 } else { 3 };
+                let hidden = board(&mut g, "XQ18", 2, 1);
+                g.board_mut(&hidden).unwrap().face_down = true;
+                declare(&mut g, 0, &target, false);
+                pass_top(&mut g);
+                let ids = [a, b];
+                assert_eq!(carrier_ids(&g), ids.iter().cloned().collect());
+                let choice = g.view(0).pending_choice.unwrap();
+                assert_ne!(choice.options[0].label, choice.options[1].label);
+                for (index, id) in ids.iter().enumerate() {
+                    let option = choice.options.iter().find(|o| o.id == *id).unwrap();
+                    assert!(option.label.contains("防弹战术背心"));
+                    assert!(option.label.contains("3个时间标志"));
+                    assert!(option.label.contains(&format!("#{id}")));
+                    assert!(option.label.contains(if index == 0 || same_owner {
+                        "1号席拥有"
+                    } else {
+                        "3号席拥有"
+                    }));
+                    assert!(option.card.is_none());
+                    assert!(!option.label.contains(&hidden));
+                }
+                for seat in 1..4 {
+                    assert!(g.view(seat).pending_choice.is_none());
+                }
+                let projected = g.card_view(g.board(&hidden).unwrap().1, 0, Some(1), None);
+                assert_eq!(projected.name, "暗藏者");
+                assert!(projected.card_id.is_none() && projected.text.is_none());
+                let valid = g.clone();
+                let mut tampered = serde_json::to_value(&g).unwrap();
+                tampered["pending"]["choice"]["options"][1]["label"] =
+                    serde_json::json!(choice.options[0].label);
+                bad(&valid, tampered);
+                checkpoint(&g);
+                choose(&mut g, vec![ids[selected].clone()]);
+                for (index, id) in ids.iter().enumerate() {
+                    assert_eq!(
+                        g.board(id).unwrap().1.time_markers,
+                        3 - u32::from(index == selected)
+                    );
+                }
+            }
+        }
+    }
+}
+
+#[test]
 fn xq18_attachment_target_excludes_host_and_siblings() {
     let mut g = initial(0);
     let t = board(&mut g, "JC125", 2, 0);

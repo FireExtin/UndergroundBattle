@@ -206,7 +206,8 @@ impl Game {
         // These are physical carrier choices, not additional declared targets.
         // No actor/team restriction or body-first automatic removal is added.
         Ok(carriers.into_iter().map(|(c, role)| ChoiceOption { id: c.id.clone(),
-            label: format!("{}（{}，{}个时间标志）", catalog::card(&c.definition).name, role, c.time_markers),
+            label: format!("{}（{}，{}个时间标志，#{}，{}号席拥有）",
+                catalog::card(&c.definition).name, role, c.time_markers, c.id, c.owner.saturating_add(1)),
             card: None }).collect())
     }
 
