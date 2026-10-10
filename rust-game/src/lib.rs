@@ -6,6 +6,8 @@ mod gray_expansion;
 #[cfg(all(test, not(feature = "society-fixtures")))]
 mod red_time_tests;
 #[cfg(all(test, not(feature = "society-fixtures")))]
+mod xq18_tests;
+#[cfg(all(test, not(feature = "society-fixtures")))]
 mod blue_expansion_tests;
 #[cfg(all(test, not(feature = "society-fixtures")))]
 mod black_expansion_tests;
