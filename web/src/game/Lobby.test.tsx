@@ -5,8 +5,8 @@ import { DECK_LIBRARY_STORAGE_KEY } from './deckLibrary';
 import type { DeckCatalog } from './deckLibrary';
 import { testCatalog } from './testFixtures';
 
-beforeEach(() => localStorage.removeItem(DECK_LIBRARY_STORAGE_KEY));
-afterEach(() => { history.replaceState({}, '', '/'); localStorage.removeItem(DECK_LIBRARY_STORAGE_KEY); });
+beforeEach(() => localStorage.clear());
+afterEach(() => { history.replaceState({}, '', '/'); localStorage.clear(); });
 const draftCatalog: DeckCatalog = {
   ...testCatalog,
   deckBuildRules: { minimumCards: 50, serviceCardCapacity: 2048, societySupported: false },

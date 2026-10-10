@@ -2,7 +2,7 @@
 import { writeFileSync } from 'node:fs';
 import { act, cleanup, fireEvent, screen } from '@testing-library/react';
 import { afterAll, afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { savePending } from './api';
+import { readPending, savePending } from './api';
 import { playerStorage } from './playerStorage';
 import { testChoice } from './testFixtures';
 import { advance, changeVisibility, json, mountSynthetic, pass, playing, session } from './AutoPassPolling.fixture';
@@ -289,7 +289,7 @@ describe('fast polling identity, commands and chooser boundaries', () => {
     const bodies = h.commands().map(({ timeMs, ...body }) => body);
     expect(bodies).toEqual(Array.from({ length: 5 }, () => bodies[0]));
     expect(bodies[0]).toMatchObject({ authorization: `Bearer ${session.token}`, expectedVersion: 1, action: { kind: 'game', action: { kind: 'pass' } } });
-    expect(localStorage.getItem('hegemony.pending.v1')).toBeNull();
+    expect(readPending()).toBeNull();
     await advance(3_000); expect(h.commands()).toHaveLength(5); record(h, `3s lost ACK reconciliation preserves original paced command, manual recovery ${manualRecovery}`);
   });
   it('restores a persisted original command on reload without regressing the newer view or opt-in', async () => {

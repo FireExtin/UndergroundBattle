@@ -1,10 +1,11 @@
 import { act, renderHook, waitFor } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { readSavedSeats, returnToLobby, savePending, saveSession } from './api';
+import { readPending, readSavedSeats, returnToLobby, savePending, saveSession } from './api';
 import { testCatalog, testView } from './testFixtures';
 import type { View } from './types';
 import { newerView, useGame } from './useGame';
 
+const pendingJson = () => { const pending = readPending(); return pending ? JSON.stringify(pending) : null; };
 const session = { roomId: testView.roomId, inviteCode: 'INVITE', token: 'opaque-token', seat: 0 };
 const json = (body: unknown, status = 200) => new Response(JSON.stringify(body), { status });
 afterEach(() => { vi.useRealTimers(); vi.restoreAllMocks(); vi.unstubAllGlobals(); localStorage.clear(); });
@@ -26,7 +27,7 @@ describe('experimental current-only rooms', () => {
     expect(result.current.error).toBe(message);
     expect(result.current.uncertain).toBe(false);
     expect(readSavedSeats()).toEqual([session]);
-    expect(localStorage.getItem('hegemony.pending.v1')).toBeNull();
+    expect(pendingJson()).toBeNull();
     expect(fetchMock.mock.calls.some(([url]) => url.endsWith('/commands'))).toBe(false);
     await act(async () => { await result.current.create('新桌', 'duel', 'watchers'); });
     expect(result.current.session?.roomId).toBe('current-room');
@@ -43,7 +44,7 @@ describe('experimental current-only rooms', () => {
     expect(result.current.session).toBeNull(); expect(result.current.view).toBeNull();
     expect(result.current.error).toBe(message); expect(result.current.busy).toBe(false);
     expect(result.current.uncertain).toBe(false); expect(readSavedSeats()).toEqual([session]);
-    expect(localStorage.getItem('hegemony.pending.v1')).toBeNull();
+    expect(pendingJson()).toBeNull();
     expect(fetchMock.mock.calls.filter(([url]) => url.endsWith('/commands'))).toHaveLength(1);
   });
   it('a concurrent unsupported poll stops an in-flight lost-ACK retry', async () => {
@@ -65,7 +66,7 @@ describe('experimental current-only rooms', () => {
     await act(async () => { rejectCommand!(new Error('lost ACK')); await action!; });
     expect(fetchMock.mock.calls.filter(([url]) => url.endsWith('/commands'))).toHaveLength(1);
     expect(result.current.error).toBe(message); expect(result.current.busy).toBe(false);
-    expect(localStorage.getItem('hegemony.pending.v1')).toBeNull(); expect(readSavedSeats()).toEqual([session]);
+    expect(pendingJson()).toBeNull(); expect(readSavedSeats()).toEqual([session]);
   });
 });
 describe('room lifecycle and reconciliation', () => {
@@ -240,12 +241,12 @@ describe('room lifecycle and reconciliation', () => {
     const { result } = renderHook(useGame);
     await waitFor(() => expect(result.current.view).not.toBeNull());
     await act(async () => { await result.current.act({ kind: 'pass' }); });
-    const original = localStorage.getItem('hegemony.pending.v1');
+    const original = pendingJson();
     act(() => result.current.leave());
     await act(async () => { await result.current.create('新桌', 'duel', 'watchers'); });
     expect(result.current.session).toBeNull();
     expect(result.current.error).toContain('旧牌桌还有待确认行动');
-    expect(localStorage.getItem('hegemony.pending.v1')).toBe(original);
+    expect(pendingJson()).toBe(original);
     expect(result.current.savedSeats).toEqual([session]);
   });
   it('retries a lost acknowledgement with the same identity and blocks unresolved new commands', async () => {
@@ -262,7 +263,7 @@ describe('room lifecycle and reconciliation', () => {
     fail = false;
     await act(async () => { await result.current.act({ kind: 'deploy', cardId: 'never-send-new' }); });
     expect(commands).toHaveLength(3); expect(commands[2]).toEqual(commands[0]);
-    expect(result.current.uncertain).toBe(false); expect(localStorage.getItem('hegemony.pending.v1')).toBeNull();
+    expect(result.current.uncertain).toBe(false); expect(pendingJson()).toBeNull();
   });
   it('keeps an uncertain command bound to its original seat when the same browser has two seats in one room', async () => {
     const other = { ...session, seat: 1, token: 'other-seat-token' };
@@ -280,18 +281,18 @@ describe('room lifecycle and reconciliation', () => {
     const { result } = renderHook(useGame);
     await waitFor(() => expect(result.current.view).not.toBeNull());
     await act(async () => { await result.current.act({ kind: 'pass' }); });
-    const original = localStorage.getItem('hegemony.pending.v1');
+    const original = pendingJson();
     expect(JSON.parse(original!).seat).toBe(0);
     act(() => result.current.leave());
     act(() => result.current.resume(other));
     expect(result.current.session).toBeNull(); expect(result.current.error).toContain('原席位');
-    expect(localStorage.getItem('hegemony.pending.v1')).toBe(original); expect(commands).toHaveLength(2);
+    expect(pendingJson()).toBe(original); expect(commands).toHaveLength(2);
     fail = false;
     act(() => result.current.resume(session));
     await waitFor(() => expect(result.current.uncertain).toBe(false));
     expect(commands).toHaveLength(3); expect(commands[2]).toEqual(commands[0]);
     expect(commands.every(command => command.actor === 'Bearer opaque-token')).toBe(true);
-    expect(result.current.view?.you).toBe('p0'); expect(localStorage.getItem('hegemony.pending.v1')).toBeNull();
+    expect(result.current.view?.you).toBe('p0'); expect(pendingJson()).toBeNull();
   });
   it('confirms an interrupted persisted command after reload without regressing the current state', async () => {
     saveSession(session); const command = { roomId: session.roomId, commandId: 'persisted-original', expectedVersion: 1, action: { kind: 'pass' } };
@@ -339,7 +340,7 @@ describe('room lifecycle and reconciliation', () => {
     await waitFor(() => expect(result.current.connection).toBe('offline'));
     expect(result.current.session).toEqual(session);
     expect(JSON.parse(localStorage.getItem('hegemony.session.v1')!)).toEqual(session);
-    expect(JSON.parse(localStorage.getItem('hegemony.pending.v1')!).commandId).toBe('preserve-after-login');
+    expect(JSON.parse(pendingJson()!).commandId).toBe('preserve-after-login');
     expect(result.current.error).toContain('需要重新登录');
   });
   it('clears a seat only when the game service explicitly confirms an invalid seat token', async () => {
@@ -365,11 +366,11 @@ describe('room lifecycle and reconciliation', () => {
     await act(async () => { await result.current.act({ kind: 'pass' }); });
     expect(commands).toHaveLength(2); expect(commands[0]).toEqual(commands[1]);
     expect(result.current.uncertain).toBe(true);
-    expect(localStorage.getItem('hegemony.pending.v1')).not.toBeNull();
+    expect(pendingJson()).not.toBeNull();
     blocked = false;
     await act(async () => { await result.current.act({ kind: 'deploy', cardId: 'do-not-send-new' }); });
     expect(commands).toHaveLength(3); expect(commands[2]).toEqual(commands[0]);
     expect(result.current.view?.version).toBe(3); expect(result.current.uncertain).toBe(false);
-    expect(localStorage.getItem('hegemony.pending.v1')).toBeNull();
+    expect(pendingJson()).toBeNull();
   });
 });

@@ -16,7 +16,7 @@ const catalog: DeckCatalog = {
     { id: 'world', name: '地区', kind: 'region', cost: 0, text: '世界牌', supported: true },
   ],
 };
-beforeEach(() => { localStorage.removeItem(DECK_LIBRARY_STORAGE_KEY); });
+beforeEach(() => { localStorage.clear(); });
 const count = (name: string) => screen.getByRole('spinbutton', { name: `${name}张数` });
 const options = () => screen.getByRole('list', { name: '卡面目录' });
 

@@ -16,6 +16,15 @@ export function playerStorage() {
   const storage = id ? sessionStorage : localStorage;
   const keyFor = (key: string) => id ? `hegemony.player.${id}.${key}` : key;
   return { scope: id || 'ordinary',
+    keys: () => {
+      const keys: string[] = [];
+      const prefix = id ? `hegemony.player.${id}.` : '';
+      for (let index = 0; index < storage.length; index++) {
+        const key = storage.key(index);
+        if (key !== null && key.startsWith(prefix)) keys.push(key.slice(prefix.length));
+      }
+      return keys;
+    },
     getItem: (key: string) => storage.getItem(keyFor(key)),
     setItem: (key: string, value: string) => storage.setItem(keyFor(key), value),
     removeItem: (key: string) => storage.removeItem(keyFor(key)),

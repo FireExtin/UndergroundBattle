@@ -24,8 +24,8 @@ describe('room deck selection', () => {
   const saved = { ...createDeckDraft(catalog, catalog.decks[0]), name: '已保存的牌组' };
   const frozen = { ...saved, id: 'frozen-deck', name: '冻结牌组' };
   const view: View = { ...testView, yourDeck: frozen, players: [{ ...testView.players[0], deckName: frozen.name, ready: true }], legalActions: [{ id: 'deck', kind: 'deck', option: 'watchers', label: '更换预组' }] };
-  beforeEach(() => { localStorage.removeItem(DECK_LIBRARY_STORAGE_KEY); saveDeckLibrary([saved]); });
-  afterEach(() => localStorage.removeItem(DECK_LIBRARY_STORAGE_KEY));
+  beforeEach(() => { localStorage.clear(); saveDeckLibrary([saved]); });
+  afterEach(() => localStorage.clear());
 
   it('saves edits locally and sends a full draft only after explicit selection, retaining the frozen public name', () => {
     const submit = vi.fn();

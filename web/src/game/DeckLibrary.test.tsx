@@ -16,8 +16,8 @@ const catalog: DeckCatalog = {
     { id: 'pending', name: '未实现卡', kind: 'character', cost: 0, text: '', supported: false, deckCopyLimit: 3 },
   ],
 };
-beforeEach(() => localStorage.removeItem(DECK_LIBRARY_STORAGE_KEY));
-afterEach(() => localStorage.removeItem(DECK_LIBRARY_STORAGE_KEY));
+beforeEach(() => localStorage.clear());
+afterEach(() => localStorage.clear());
 
 describe('local named deck editor', () => {
   it('copies a preset, names and saves it, reloads it, and selects a full public draft', () => {

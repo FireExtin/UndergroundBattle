@@ -1,6 +1,10 @@
 import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { GameApp } from './GameApp';
+import { readPending } from './api';
+import { playerStorage } from './playerStorage';
+const ordinaryStorage = playerStorage();
+const ordinaryPendingJson = () => { const pending = readPending(undefined, ordinaryStorage); return pending ? JSON.stringify(pending) : null; };
 import { testCatalog, testView } from './testFixtures';
 import type { SavedSession } from './types';
 
@@ -90,11 +94,11 @@ describe('explicit independent player sessions through normal UI', () => {
     await screen.findByRole('button', { name: '确认上一行动' });
     await waitFor(() => expect(screen.getByRole('button', { name: '返回大厅 / 新建牌桌' })).toBeEnabled());
     expect(tableSwitch).toBeDisabled();
-    const pending = localStorage.getItem('hegemony.pending.v1');
+    const pending = ordinaryPendingJson();
     await lobby();
     const lobbySwitch = screen.getByRole('button', { name: '开始新的独立玩家会话' });
     expect(lobbySwitch).toBeDisabled(); fireEvent.click(lobbySwitch);
-    expect(localStorage.getItem('hegemony.pending.v1')).toBe(pending);
+    expect(ordinaryPendingJson()).toBe(pending);
     expect(localStorage.getItem('hegemony.screen.v1')).toBe('lobby');
     expect(sessionStorage.getItem('hegemony.playerSession.v1')).toBeNull();
     expect(entries()).toHaveLength(1);
@@ -167,10 +171,10 @@ describe('explicit independent player sessions through normal UI', () => {
     fireEvent.click(screen.getByRole('button', { name: '准备' }));
     await screen.findByRole('button', { name: '确认上一行动' });
     await waitFor(() => expect(screen.getByRole('button', { name: '返回大厅 / 新建牌桌' })).toBeEnabled());
-    const pending = localStorage.getItem('hegemony.pending.v1'); expect(pending).not.toBeNull();
+    const pending = ordinaryPendingJson(); expect(pending).not.toBeNull();
     await lobby(); fireEvent.click(screen.getByRole('button', { name: '开始新的独立玩家会话' }));
     expect(screen.queryByText('独立玩家会话 · 当前标签')).not.toBeInTheDocument();
-    expect(localStorage.getItem('hegemony.pending.v1')).toBe(pending); expect(entries()).toHaveLength(1);
+    expect(ordinaryPendingJson()).toBe(pending); expect(entries()).toHaveLength(1);
   });
   it('refreshes an independent unconfirmed command with the original actor and command ID', async () => {
     let app = render(<GameApp />); await lobbyReady(); await independent(); await join();
@@ -179,7 +183,7 @@ describe('explicit independent player sessions through normal UI', () => {
     await waitFor(() => expect(screen.getByRole('button', { name: '返回大厅 / 新建牌桌' })).toBeEnabled());
     const originals = posts.filter(p => p.url.endsWith('/commands'));
     expect(originals).toHaveLength(2); expect(originals[1]).toEqual(originals[0]);
-    expect(localStorage.getItem('hegemony.pending.v1')).toBeNull();
+    expect(ordinaryPendingJson()).toBeNull();
     app.unmount(); rejectCommand = false; app = render(<GameApp />);
     await screen.findByText('等待秘社集结');
     await waitFor(() => expect(posts.filter(p => p.url.endsWith('/commands'))).toHaveLength(3));

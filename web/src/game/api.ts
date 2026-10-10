@@ -4,6 +4,8 @@ import { playerStorage } from './playerStorage';
 
 const STORAGE_KEY = 'hegemony.session.v1';
 const PENDING_KEY = 'hegemony.pending.v1';
+const PENDING_PREFIX = 'hegemony.pending.v2.';
+const LEGACY_CONFIRMED_PREFIX = 'hegemony.pending.legacyConfirmed.v2.';
 const ENTRY_KEY = 'hegemony.entry.v1';
 const SEATS_KEY = 'hegemony.seats.v1';
 const SCREEN_KEY = 'hegemony.screen.v1';
@@ -13,22 +15,75 @@ export function newCommandId(): string {
   return Array.from(crypto.getRandomValues(new Uint8Array(16)), byte => byte.toString(16).padStart(2, '0')).join('');
 }
 export type PendingCommand = { roomId: string; seat?: number; commandId: string; expectedVersion: number; action: Action };
-export function readPending(): PendingCommand | null {
+function decodePending(raw: string | null, capturedStorage?: ReturnType<typeof playerStorage>): PendingCommand | null {
+  const value = JSON.parse(raw || 'null');
+  if (!value || typeof value.roomId !== 'string' || typeof value.commandId !== 'string'
+    || !Number.isSafeInteger(value.expectedVersion) || value.expectedVersion < 0 || typeof value.action?.kind !== 'string') return null;
+  // Older clients recorded no seat; retain their original last-saved actor.
+  const original = readSession(capturedStorage);
+  return { roomId: value.roomId, commandId: value.commandId, expectedVersion: value.expectedVersion, action: value.action,
+    seat: Number.isInteger(value.seat) ? value.seat : original && original.roomId === value.roomId ? original.seat : undefined };
+}
+const pendingKey = (command: PendingCommand) => `${PENDING_PREFIX}${JSON.stringify([command.roomId, command.seat ?? null, command.commandId])}`;
+const samePending = (a: PendingCommand | null, b: PendingCommand) => !!a && a.roomId === b.roomId && a.seat === b.seat
+  && a.commandId === b.commandId && a.expectedVersion === b.expectedVersion && JSON.stringify(a.action) === JSON.stringify(b.action);
+function sameLegacyPending(raw: string | null, command: PendingCommand): boolean {
   try {
-    const value = JSON.parse(playerStorage().getItem(PENDING_KEY) || 'null');
-    if (value && typeof value.roomId === 'string' && typeof value.commandId === 'string' && typeof value.expectedVersion === 'number' && typeof value.action?.kind === 'string') {
-      // Older clients recorded no seat; their last saved session is the original actor.
-      const original = readSession();
-      return { ...value, seat: Number.isInteger(value.seat) ? value.seat : original && original.roomId === value.roomId ? original.seat : undefined };
+    const value = JSON.parse(raw || 'null');
+    return !!value && (value.seat === undefined || value.seat === command.seat) && value.roomId === command.roomId
+      && value.commandId === command.commandId && value.expectedVersion === command.expectedVersion && JSON.stringify(value.action) === JSON.stringify(command.action);
+  } catch { return false; }
+}
+export function readPending(session?: SavedSession | null, capturedStorage?: ReturnType<typeof playerStorage>): PendingCommand | null {
+  try {
+    const storage = capturedStorage || playerStorage();
+    // Each command is its own atomic storage item. No shared index can overwrite a peer's receipt.
+    const keys = storage.keys();
+    const originals: PendingCommand[] = [];
+    for (const key of keys.filter(key => key.startsWith(PENDING_PREFIX)).sort()) {
+      try {
+        const command = decodePending(storage.getItem(key), storage);
+        if (command && key === pendingKey(command)) {
+          originals.push(command);
+          if (!session || command.roomId === session.roomId && command.seat === session.seat) return command;
+        }
+      } catch { /* One malformed record cannot hide other recoverable commands. */ }
     }
+    const legacy = storage.getItem(PENDING_KEY);
+    // A copied legacy command already has its captured actor; do not infer another seat from a peer's later saved session.
+    if (originals.some(command => sameLegacyPending(legacy, command))) return null;
+    for (const key of keys.filter(key => key.startsWith(LEGACY_CONFIRMED_PREFIX))) {
+      try {
+        const command = decodePending(storage.getItem(key), storage);
+        if (command && key === `${LEGACY_CONFIRMED_PREFIX}${pendingKey(command).slice(PENDING_PREFIX.length)}` && sameLegacyPending(legacy, command)) return null;
+      }
+      catch { /* A malformed legacy marker cannot suppress a different command. */ }
+    }
+    const command = decodePending(legacy, storage);
+    if (command && (!session || command.roomId === session.roomId && command.seat === session.seat)) return command;
   } catch { /* Browser storage is optional. */ }
   return null;
 }
-export function savePending(command: PendingCommand | null) {
+export function savePending(command: PendingCommand, capturedStorage?: ReturnType<typeof playerStorage>) {
   try {
-    if (command) playerStorage().setItem(PENDING_KEY, JSON.stringify(command));
-    else playerStorage().removeItem(PENDING_KEY);
+    const storage = capturedStorage || playerStorage();
+    const normalized = decodePending(JSON.stringify(command), storage);
+    if (!normalized) return;
+    const key = pendingKey(normalized);
+    const existing = decodePending(storage.getItem(key), storage);
+    if (!existing || samePending(existing, normalized)) storage.setItem(key, JSON.stringify(normalized));
   } catch { /* Preserve the in-memory command while this tab is open. */ }
+}
+export function clearPending(command: PendingCommand, capturedStorage?: ReturnType<typeof playerStorage>) {
+  try {
+    const storage = capturedStorage || playerStorage();
+    const key = pendingKey(command);
+    // Never delete the shared legacy slot: an old page can replace it between comparison and removal.
+    if (sameLegacyPending(storage.getItem(PENDING_KEY), command)) {
+      storage.setItem(`${LEGACY_CONFIRMED_PREFIX}${key.slice(PENDING_PREFIX.length)}`, JSON.stringify(command));
+    }
+    if (samePending(decodePending(storage.getItem(key), storage), command)) storage.removeItem(key);
+  } catch { /* A retained receipt can safely be confirmed again with its original identity. */ }
 }
 
 export class ApiError extends Error {
@@ -40,9 +95,9 @@ export class ApiError extends Error {
   }
 }
 
-export function readSession(): SavedSession | null {
+export function readSession(capturedStorage?: ReturnType<typeof playerStorage>): SavedSession | null {
   try {
-    const value = JSON.parse(playerStorage().getItem(STORAGE_KEY) || 'null');
+    const value = JSON.parse((capturedStorage || playerStorage()).getItem(STORAGE_KEY) || 'null');
     if (value && typeof value.roomId === 'string' && typeof value.token === 'string'
       && typeof value.inviteCode === 'string' && Number.isInteger(value.seat)) return value;
   } catch { /* A corrupted or unavailable storage must not block the lobby. */ }

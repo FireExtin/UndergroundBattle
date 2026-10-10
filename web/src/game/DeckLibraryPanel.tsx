@@ -1,6 +1,6 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { factions, neutral } from './factions';
-import { createDeckDraft, isEditableDeckCard, localDeckStorage, publicDeckDraft, readDeckLibrary, revalidateDraftVersions, saveDeckLibrary, selectableSocieties, setDraftCardCount, societyColorCount, validateDeckDraft } from './deckLibrary';
+import { createDeckDraft, isDeckDraftDeleted, isEditableDeckCard, localDeckStorage, publicDeckDraft, readDeckLibrary, removeDeckDraft, revalidateDraftVersions, saveDeckDraft, selectableSocieties, setDraftCardCount, societyColorCount, validateDeckDraft } from './deckLibrary';
 import type { DeckCardDefinition, DeckCatalog, DeckDraft, DeckStorage } from './deckLibrary';
 import { DeckCardFace } from './DeckCardFace';
 import { DeckCardPreview } from './DeckCardPreview';
@@ -32,6 +32,7 @@ export function DeckLibrary({ catalog, disabled = false, onSelectDraft, selected
   const [saved, setSaved] = useState(initial.drafts);
   const [draft, setDraft] = useState<DeckDraft>(() => initial.drafts[0] ? publicDeckDraft(initial.drafts[0]) : createDeckDraft(catalog));
   const [storageWarning, setStorageWarning] = useState(initial.warning);
+  const [deletedDraft, setDeletedDraft] = useState(false);
   const [notice, setNotice] = useState('');
   const [dirty, setDirty] = useState(false);
   const [presetId, setPresetId] = useState(catalog.decks[0]?.id || '');
@@ -76,20 +77,20 @@ export function DeckLibrary({ catalog, disabled = false, onSelectDraft, selected
   const edit = (next: DeckDraft | ((current: DeckDraft) => DeckDraft)) => { setDraft(next); setDirty(true); setNotice(''); };
   const changeCount = (cardId: string, delta: number) => edit(current => setDraftCardCount(current, cardId, Math.max(0, (current.cards.find(entry => entry.cardId === cardId)?.count || 0) + delta)));
   const resetFilters = () => { setSearch(''); setFaction('all'); setKind('all'); setCost('all'); setSelectedOnly(false); setImplementation('implemented'); };
-  const replace = (next: DeckDraft, unsaved = false) => { setDraft(next); setDirty(unsaved); setNotice(''); };
-  const persist = (): DeckDraft | null => {
-    const next = { ...publicDeckDraft(draft), name: draft.name.trim(), description: draft.description.trim(), updatedAt: new Date().toISOString() };
-    const list = [next, ...saved.filter(item => item.id !== next.id)];
-    const error = saveDeckLibrary(list, storageTarget);
-    if (error) { setStorageWarning(error); setNotice(''); return null; }
-    setSaved(list); setDraft(next); setDirty(false); setStorageWarning(null); setNotice('牌组已保存在此浏览器。');
+  const replace = (next: DeckDraft, unsaved = false) => { setDraft(next); setDirty(unsaved); setDeletedDraft(false); setNotice(''); };
+  const persist = (candidate: DeckDraft = draft): DeckDraft | null => {
+    const next = { ...publicDeckDraft(candidate), name: candidate.name.trim(), description: candidate.description.trim(), updatedAt: new Date().toISOString() };
+    const error = saveDeckDraft(next, storageTarget);
+    if (error) { setStorageWarning(error); setDeletedDraft(isDeckDraftDeleted(next.id, storageTarget)); setNotice(''); return null; }
+    const latest = readDeckLibrary(storageTarget);
+    setSaved(latest.drafts); setDraft(next); setDirty(false); setDeletedDraft(false); setStorageWarning(latest.warning); setNotice('牌组已保存在此浏览器。');
     return next;
   };
   const remove = (id: string) => {
-    const list = saved.filter(item => item.id !== id);
-    const error = saveDeckLibrary(list, storageTarget);
+    const error = removeDeckDraft(id, storageTarget);
     if (error) { setStorageWarning(error); return; }
-    setSaved(list); setStorageWarning(null);
+    const latest = readDeckLibrary(storageTarget); const list = latest.drafts;
+    setSaved(list); setStorageWarning(latest.warning);
     if (draft.id === id) replace(list[0] ? publicDeckDraft(list[0]) : createDeckDraft(catalog));
     setNotice('已删除此浏览器中的草稿；已入席牌桌使用的牌组不会因此改变。');
   };
@@ -113,7 +114,8 @@ export function DeckLibrary({ catalog, disabled = false, onSelectDraft, selected
         <div className="hg-library-deck-status">
           <div className="hg-library-total" role="status"><strong>{validation.total} 张</strong><span>{validation.valid ? '构筑校验通过' : '暂不可开局'}{dirty ? ' · 有未保存修改' : ''}</span></div>
           <div className="hg-library-save-actions">
-            <button type="button" className="hg-button hg-button-quiet" disabled={disabled || !draft.name.trim()} onClick={persist}>保存牌组</button>
+            <button type="button" className="hg-button hg-button-quiet" disabled={disabled || !draft.name.trim()} onClick={() => persist()}>保存牌组</button>
+            {deletedDraft && <button type="button" className="hg-button hg-button-quiet" disabled={disabled || !draft.name.trim()} onClick={() => persist({ ...publicDeckDraft(draft), id: createDeckDraft(catalog).id })}>另存为新草稿</button>}
             <button type="button" className="hg-button hg-button-primary" disabled={disabled || !validation.valid || !onSelectDraft} onClick={() => { const next = persist(); if (next) onSelectDraft?.(publicDeckDraft(next)); }}>保存并选择此牌组</button>
           </div>
           {notice && <p className="hg-library-notice" role="status">{notice}</p>}

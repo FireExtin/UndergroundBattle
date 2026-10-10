@@ -25,8 +25,10 @@ export type DeckCatalog = Catalog & {
 };
 export type DeckIssue = { code: string; message: string; cardId?: string };
 export type DeckValidation = { valid: boolean; total: number; issues: DeckIssue[] };
-export type DeckStorage = Pick<Storage, 'getItem' | 'setItem'>;
+export type DeckStorage = Pick<Storage, 'getItem' | 'setItem'> & Partial<Pick<Storage, 'key' | 'length'>>;
 export const DECK_LIBRARY_STORAGE_KEY = 'hegemony.deckLibrary.v1';
+export const DECK_DRAFT_STORAGE_PREFIX = 'hegemony.deckDraft.v2.';
+export const DECK_DELETED_STORAGE_PREFIX = 'hegemony.deckDeleted.v2.';
 
 // The live Rust catalog calls transaction cards "spell"; "event" is retained
 // only for reading older public catalogs, not as a replacement runtime kind.
@@ -167,7 +169,7 @@ export function localDeckStorage(): DeckStorage | null {
   try { return typeof window === 'undefined' ? null : window.localStorage; } catch { return null; }
 }
 
-export function readDeckLibrary(storage: DeckStorage | null = localDeckStorage()): { drafts: DeckDraft[]; warning: string | null } {
+function readLegacyDeckLibrary(storage: DeckStorage | null): { drafts: DeckDraft[]; warning: string | null } {
   if (!storage) return { drafts: [], warning: '浏览器本地存储不可用；草稿仍可编辑，本次保存无法持久保留。' };
   try {
     const raw = storage.getItem(DECK_LIBRARY_STORAGE_KEY);
@@ -186,10 +188,58 @@ export function readDeckLibrary(storage: DeckStorage | null = localDeckStorage()
     }
     return { drafts, warning: discarded ? '部分本地草稿格式损坏，已保留仍可读取的草稿。' : null };
   } catch {
-    return { drafts: [], warning: '本地牌组库暂时无法读取，未覆盖原数据；可以新建草稿，保存时将重建牌组库。' };
+    return { drafts: [], warning: '本地牌组库暂时无法读取，未覆盖原数据；可以另存新的草稿。' };
   }
 }
 
+const deckKey = (id: string) => `${DECK_DRAFT_STORAGE_PREFIX}${encodeURIComponent(id)}`;
+const deletedKey = (id: string) => `${DECK_DELETED_STORAGE_PREFIX}${encodeURIComponent(id)}`;
+export function isDeckDraftDeleted(id: string, storage: DeckStorage | null = localDeckStorage()): boolean {
+  try { return storage?.getItem(deletedKey(id)) === 'true'; } catch { return false; }
+}
+export function readDeckLibrary(storage: DeckStorage | null = localDeckStorage()): { drafts: DeckDraft[]; warning: string | null } {
+  const legacy = readLegacyDeckLibrary(storage);
+  if (!storage || typeof storage.key !== 'function' || typeof storage.length !== 'number') {
+    return { ...legacy, drafts: legacy.drafts.filter(draft => !isDeckDraftDeleted(draft.id, storage)) };
+  }
+  const drafts = new Map(legacy.drafts.map(draft => [draft.id, draft]));
+  let warning = legacy.warning;
+  try {
+    for (let index = 0; index < storage.length; index++) {
+      const key = storage.key(index);
+      if (!key?.startsWith(DECK_DRAFT_STORAGE_PREFIX)) continue;
+      try {
+        const raw = storage.getItem(key);
+        if (!raw || raw.length > 2_000_000) throw new Error('invalid draft storage');
+        const draft = decodeDraft(JSON.parse(raw));
+        if (!draft || key !== deckKey(draft.id)) throw new Error('invalid draft identity');
+        drafts.set(draft.id, draft);
+      } catch { warning ||= '部分本地草稿格式损坏，已保留仍可读取的草稿。'; }
+    }
+    // Deletion has its own item, so even a late stale save cannot erase the tombstone.
+    for (const id of drafts.keys()) if (isDeckDraftDeleted(id, storage)) drafts.delete(id);
+  } catch { warning ||= '浏览器本地存储暂时无法读取，已保留可读取的草稿。'; }
+  return { drafts: [...drafts.values()].sort((a, b) => b.updatedAt.localeCompare(a.updatedAt) || a.id.localeCompare(b.id)), warning };
+}
+const saveFailure = '浏览器未能保存牌组，可能空间不足或存储被禁用；当前编辑仍保留在本页。';
+export function saveDeckDraft(draft: DeckDraft, storage: DeckStorage | null = localDeckStorage()): string | null {
+  if (!storage) return '浏览器本地存储不可用，草稿尚未保存。';
+  if (decodeDraft(draft) === null) return '草稿格式有误，无法保存。';
+  if (typeof storage.key !== 'function' || typeof storage.length !== 'number') return saveFailure;
+  try {
+    if (storage.getItem(deletedKey(draft.id)) === 'true') return '此草稿已在另一页删除；当前编辑保留，请另存为新草稿。';
+    storage.setItem(deckKey(draft.id), JSON.stringify(publicDeckDraft(draft)));
+    if (storage.getItem(deletedKey(draft.id)) === 'true') return '此草稿已在另一页删除；当前编辑保留，请另存为新草稿。';
+    return null;
+  } catch { return saveFailure; }
+}
+export function removeDeckDraft(id: string, storage: DeckStorage | null = localDeckStorage()): string | null {
+  if (!storage) return '浏览器本地存储不可用，草稿尚未删除。';
+  try { storage.setItem(deletedKey(id), 'true'); return null; }
+  catch { return '浏览器未能删除牌组；原草稿保留，请检查本地存储。'; }
+}
+
+/** Legacy import/fixture writer. Interactive edits use one-item saveDeckDraft/removeDeckDraft. */
 export function saveDeckLibrary(drafts: DeckDraft[], storage: DeckStorage | null = localDeckStorage()): string | null {
   if (!storage) return '浏览器本地存储不可用，草稿尚未保存。';
   if (drafts.some(draft => decodeDraft(draft) === null) || new Set(drafts.map(draft => draft.id)).size !== drafts.length) return '草稿格式有误，无法保存。';
