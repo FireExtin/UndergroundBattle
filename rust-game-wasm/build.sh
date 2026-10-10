@@ -11,6 +11,9 @@ case "${1:-}" in
   --society-fixtures) build_args=(--features society-fixtures); output_dir="rust-game-wasm/pkg-society-fixtures" ;;
   *) printf '%s\n' 'Usage: build.sh [--society-fixtures]' >&2; exit 2 ;;
 esac
+if [[ "${UNDERGROUNDBATTLE_BUILD_STORAGE_READY:-}" != "1" ]]; then
+  exec node "$project_root/tools/build-storage.mjs" --output-dir "$project_root/$output_dir" -- bash "$project_root/rust-game-wasm/build.sh" "$@"
+fi
 # Bash 3.2 on macOS treats an empty array as unset under nounset.
 cargo build --locked --release -p hegemony-wasm --target wasm32-unknown-unknown ${build_args[@]+"${build_args[@]}"}
 "$wasm_bindgen_bin" "$build_target_dir/wasm32-unknown-unknown/release/hegemony_wasm.wasm" --target web --out-dir "$output_dir" --out-name hegemony_wasm

@@ -1,11 +1,11 @@
-// Fresh engine54 Native inputs; React controls plus actual WASM, not natural UI play.
+// Fresh engine57 Native inputs; React controls plus actual WASM, not natural UI play.
 import {cleanup,fireEvent,render,screen} from '@testing-library/react';
 import {afterEach,expect,it,vi} from 'vitest';
 import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {createHash} from 'node:crypto';
 import * as wasm from '../../../rust-game-wasm/pkg/hegemony_wasm.js';
-import native from './jz22Native54Test.fixture.json';
+import native from './jz22Native57Test.fixture.json';
 import prior53 from './threeColorDeathNative53Test.fixture.json';
 import {Table} from './Table';
 import {ReadModal} from './ReadModal';

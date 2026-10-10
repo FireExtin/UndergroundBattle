@@ -1,6 +1,6 @@
 # XQ37 夜总会看门人：黑色有限候选
 
-本批从已审并发布 Site49 的 `7e51625cf30074adfc4f8923ce45ea455c788c71` 接续，仅加入原排期 B13 黑色 XQ37。当前120普通卡含10地区、8秘社；候选身份为 `rust-v0.2.57-black-entry-influence-candidate` / `limited-v2.52-black-entry-influence-candidate`。中立新增、JC037领袖跨名及JZ25/JZ26费用未决内容不在本次范围内。既有证据和他人工作保留。
+本批从已审并发布 Site49 的 `7e51625cf30074adfc4f8923ce45ea455c788c71` 接续，仅加入原排期 B13 黑色 XQ37。当前120普通卡（含10地区），另有8秘社；候选身份为 `rust-v0.2.57-black-entry-influence-candidate` / `limited-v2.52-black-entry-influence-candidate`。中立新增、JC037领袖跨名及JZ25/JZ26费用未决内容不在本次范围内。既有证据和他人工作保留。
 
 ## 原卡与已确认规则
 
@@ -24,14 +24,20 @@
 
 保留c94c007的P2修复：仅XQ37待选声明校验冻结actor的seat/playerId、Accept阶段、trigger种类、0到1可选数量、allowDecline=true、空amount/preview、唯一accept且card=None；标题、描述和显示标签可变。Game、RoomEnvelope及帧执行仍拒绝程序移植、别名、重复或嵌套执行、伪造actor/地区/目标/支付/游标与暗藏根卡。秘密派遣不触发，正常派遣和付费现身依既有Enter事件触发，单纯移动不产生进场触发。
 
-## 本轮验证及实际限制
+## 本轮验证及实际限制（2026-10-10 更新）
 
-新增或调整18个XQ37测试函数，覆盖实际Enter门槛与Declare前势力变化、响应后增减、接受/跳过、移动至有/无势力地区、来源回手/摧毁、owner与controller不同、控制权变化、2v2冻结队伍、同名同色敌我独立实例、地区替换前后、真实JC063暗藏及付费再次现身新身份、恰好1点与胜利阈值、Room存读/重复命令、非法定义和P2待选声明变体。加上原生产卡池断言，共19个有限Native集成测试目标。
+已完成规则B的实际完整生产验证，早期方案A/c94c007运行结果不计入本轮：
 
-Native验证使用真实生产模块，原测试函数体和断言仅去除#[test]及公开入口，由小型Cargo集成测试调用；转换与生产模块指纹另存。此方法避开无关历史内嵌测试的编译，并不声称原hegemony-server整份lib-test二进制通过。两次构建均在运行测试前因16GiB cgroup上限而失败：CGU256退出101、rustc SIGKILL、OOM+3/kill+1；限定CGU1退出101、rustc SIGKILL、OOM+3/kill+2，于2026-10-10 00:33:38 UTC结束。第二次确实重建部分依赖，未将其描述为完全复用。日志、命令和资源采样保留，没有重复启动同一配置。
+- Native workspace：776项通过、0失败、0跳过，包含原hegemony-server完整lib-test二进制及18项XQ37测试。GREEN导出及其真实Room begin/submit、存读、回放断言全部开启。
+- 新编译WASM：433个场景、24,403次转换、96,975个视图与独立Native输出完全一致；319非法命令、42非法构筑拒绝，1次quote一致。最大u64种子保持原opaque字节。
+- XQ37专项：706份原Native输入（494快照、212真实Room命令）及2,824个四席视图一致；64非法定义在view/applyRoom两入口共128次拒绝。
+- React全量：75个文件、667项通过。7份当前UI材料直接取自原Native生产函数，旧51–56材料仍保持原字节并用于旧版本拒绝；另逐项比对全部24快照、9命令、1quote和132视图。
+- Worker：实际构建后21个文件、68项通过，包含真实workerd、临时本地D1、并发、鉴权、暂停重开、私有选择、重复命令、回滚、40个历史tuple拒绝；MSJC09自然Room链2346 HTTP调用、461个接受命令通过。12份当前Worker材料直接复制原Native导出，旧材料字节不改。一次首轮失败仅为陈旧的109卡/engine50夹具；将精确断言与已有session协议夹具更新至120卡/engine57后，全量通过。
 
-本规则B的Native测试尚未执行通过，新WASM／React／Worker验证尚未完成；历史c94c007的Native公共API、WASM、UI和Worker成功记录不计入本轮。候选生成的runtime仍是c94c007旧构建，禁止用于发布本轮源码。当前内存可用余量低于此前WASM编译峰值；没有擅自删除任何缓存或证据，不盲目重复编译。
+本次Native、WASM、UI和Worker成功运行均无OOM/kill；完整Native/WASM运行触及cgroup max计数，不能描述为所有memory.events均为0。当前生产WASM为2,406,075字节，SHA256 `6dd02fc245292ebf0d7a0a233f9402db37dc85e3610d0e8d368a5de2e6116915`，pkg、Worker generated及部署产物三处实读一致。原行为断言未删减；Native和UI混色牌组各自固定到其原引入时有限卡集，恢复原50卡场景而非随全卡池增长溢出。
 
-完整本轮源码、用户裁定、失败命令、原始日志与资源诊断位于同一执行器 `/dev/shm/xq37-black57-confirmed-20261010`。独立审查以新固定Git SHA为准，其运行限制和结果另存；静态审查不能替代以上尚未完成的运行验证。
+早期两次rustc SIGKILL/OOM失败的命令、日志和旧控制运行材料均保留。资源核查确认/tmp构建及/dev/shm材料累计约16.44GB shmem被计入16GiB cgroup，并非证明rustc本身需要16GiB。按用户授权移至普通磁盘、保全源码/Git/在途改动和历史原字节后，33个闲置target目录已清理，只保留一个实际复用且受限的普通磁盘Cargo target。验证导出在逐成员SHA校验后压缩保存；verify.sh退出即清理其自身临时大包。构建入口加入普通磁盘/可用余量校验与单进程配置，后续清理规则写于rust-game-wasm/README.md；未加入通用缓存管理框架。
 
-用户已授权在验证及固定候选独审通过后正常推送协作分支并更新现有Sites，保持public audience与D1；本轮仍未满足这些放行条件，尚未推送或发布。main不改，不使用worktree/force，不删除缓存、共享文件、证据，不切换执行器。先前首页403不重试。Sites官方插件及辅助脚本已恢复；Library401及官方包旧403保持原失败记录，不推断为Library容量不足。
+完整原Native原始材料、源码差异、命令/日志/资源采样和独审报告位于 `/workspace/game-publication-evidence/xq37-black57-B-rebuild-20261010`；清理和迁移凭据位于 `/workspace/game-build-storage-recovery-20261010`。历史36份Native/WASM原字节（399,300,603字节）保留为原文件或经校验的压缩成员；没有重建历史核作为替代。
+
+Sites官方包167文件及site-workflow.mjs校验通过，原生Sites owner权限和同一云端task归属已核，官方source helper已打开现有公开Site49。用户授权在固定候选独审通过后正常推送协作分支并更新该现有Sites；发布结果另记独立交付凭据。GitHub/main不改，不强推、不建worktree、不换执行器。Library401和官方包旧403保持原失败记录；无Library容量不足证据，未删除Library文件。当前没有可用浏览器控制插件，以上React/Worker验证不声称自然浏览器或在线D1验收。

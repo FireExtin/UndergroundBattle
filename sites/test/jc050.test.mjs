@@ -10,7 +10,7 @@ import {routeKernels} from '../src/kernel-router.mjs';
 import {RoomStore} from '../src/store.mjs';
 import {RoomService,digest} from '../src/service.mjs';
 abi.initSync({module:readFileSync('generated/hegemony_wasm_bg.wasm')});
-const cases=JSON.parse(readFileSync(new URL('./fixtures/jc050-native-v055.json',import.meta.url),'utf8'));
+const cases=JSON.parse(readFileSync(new URL('./fixtures/jc050-native-v057.json',import.meta.url),'utf8'));
 for(const c of cases)test(`jc050-red55 ${c.name}: native transition, D1 reopening, privacy and duplicate receipt`,async t=>{
  const persist=mkdtempSync(join(tmpdir(),'jc050-red55-d1-'));
  const options=convertV4MiniflareOptions({name:'jc050-red55-test',resourcePersistencePath:persist,modules:[

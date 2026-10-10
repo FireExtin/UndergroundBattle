@@ -12,3 +12,4 @@ coverage/
 /sites/public/
 rust-game-wasm/pkg-society-fixtures/
 /rust-game*.sqlite3*
+/.build-cache/

@@ -9,8 +9,11 @@ import { createDeckDraft, validateDeckDraft, saveDeckLibrary, readDeckLibrary, D
 kernel.initSync({ module: readFileSync(resolve('../rust-game-wasm/pkg/hegemony_wasm_bg.wasm')) });
 const catalog = JSON.parse(kernel.catalog());
 function draft(other) {
+  // Keep the finite cards used by this original 50-card regression as the pool grows.
+  const red = ['JC042', 'JC049', 'JC047', 'XQ17', 'JZ31'];
+  const blue = ['XQ12', 'XQ16', 'JC036', 'JZ27', 'XQ14', 'JC029', 'JC030', 'JC032', 'JZ24'];
   const black = ['JC086', 'JC092', 'JC091', 'JC084'];
-  const cards = catalog.cards.filter(c => c.color === '红' || c.color === other && (other === '蓝' || black.includes(c.id))).map(c => ({ cardId: c.id, count: 3 }));
+  const cards = catalog.cards.filter(c => c.color === '红' && red.includes(c.id) || c.color === other && (other === '蓝' ? blue : black).includes(c.id)).map(c => ({ cardId: c.id, count: 3 }));
   cards.push({ cardId: 'JC125', count: 50 - cards.reduce((n, c) => n + c.count, 0) });
   return { ...createDeckDraft(catalog), name: `红${other}混搭（合法中立补足）`, societyId: null, cards };
 }

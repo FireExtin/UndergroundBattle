@@ -241,6 +241,7 @@ fn boundary(kind: &str) -> Value {
                 ability_key: "movement-primitive".into(),
                 actor: 0,
                 source: SourceSnapshot {
+                    observed_death: None,
                     source_region_instance: None,
                     card: board(&pre, &friend).unwrap().clone(),
                     region: Some(0),

@@ -68,7 +68,7 @@ fn fixture(name: &str, g: &Game) {
 }
 #[test]
 fn deck_seal_printed_registry_and_finite_programs() {
-    assert_eq!(catalog::catalog().cards.len(), 118);
+    assert_eq!(catalog::catalog().cards.len(), 120);
     for (id, cost, color, kind, subtypes, unique) in [
         ("XQ44", 2, "紫", "spell", vec!["法术", "心灵"], false),
         ("JZ02", 3, "黄", "character", vec!["猫", "法师"], true),
