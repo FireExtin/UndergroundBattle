@@ -1,3 +1,5 @@
+> 历史记录：以下内容及计数对应父候选 `0cd1a8083a34bc87508c3217c37a972d0f8f3147`。现行七牌候选已排除 XQ18 的全部运行准入，详见 [新版说明](SEVEN_CARD_ENGINE_CANDIDATE_2026-10-10.md)。
+
 # 四派规则候选认领与边界
 
 本执行任务从已审 `37d05bc09aeaaea409dcd04b2d25f0c1f4e89a0e` 接续，普通克隆 `/workspace/UndergroundBattle`，协作分支 `codex/jz48-combined-review-20261007`。起始工作区干净；指定远端精确等于已审起点。本仓库、祖先目录和环境的 `.agents` 未找到 `AGENTS.md` 或可读的技能文件。

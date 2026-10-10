@@ -83,7 +83,6 @@ pub enum TargetPredicate {
     JC015NonHumanPrintedCostAtLeastThree,
     JZ55UniqueCharacter,
     JC069LockedAnchor,
-    XQ18CharacterOrAttachment,
     JZ45LockedLocalTarget,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
@@ -214,8 +213,6 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
-    XQ18AddOneTimeToTarget,
-    XQ18RemoveOneTimeFromTarget,
     JZ30AddOneTimeToOriginalSource,
     JZ30ForecastFrozenTime,
     BQ028InspectTargetHandAttachments,
@@ -694,7 +691,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
         .iter()
         .chain(ability.modes.iter().flat_map(|m| &m.targets))
         .any(|t| t.predicate.is_some());
-    if (finite_predicate && !matches!(card_id, "XQ18" | "JZ45")) || matches!(card_id, "JC015" | "JZ55") {
+    if (finite_predicate && card_id != "JZ45") || matches!(card_id, "JC015" | "JZ55") {
         let admitted = match card_id {
             "JC015" => Some(jc015_definition()),
             "JZ55" => Some(jz55_definition()),
@@ -1828,7 +1825,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         use EntityRef::{Source, Target};
         use PlayerRef::{Actor, Context};
         let mut m = BTreeMap::new();
-        for id in ["XQ18", "JZ30"] {
+        for id in ["JZ30"] {
             m.insert(id.into(), crate::red_time::definition(id).unwrap());
         }
         for id in ["BQ028", "BQ040"] {

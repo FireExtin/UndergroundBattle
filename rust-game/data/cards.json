@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.53-four-faction-engine-candidate",
-  "engineVersion": "rust-v0.2.58-four-faction-engine-candidate",
+  "cardPoolVersion": "limited-v2.54-seven-card-engine-candidate",
+  "engineVersion": "rust-v0.2.59-seven-card-engine-candidate",
   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
   "cards": [
     {
@@ -4644,47 +4644,6 @@
       },
       "unique": false,
       "society": ""
-    },
-    {
-      "id": "XQ18",
-      "name": "计时人",
-      "kind": "character",
-      "subtypes": [
-        "人类",
-        "法师",
-        "邪教徒"
-      ],
-      "cost": 2,
-      "loyalty": [
-        "红色",
-        "红色"
-      ],
-      "loyaltyText": "红色红色",
-      "color": "红",
-      "magic": "死亡",
-      "icons": {
-        "permanent": {
-          "investigation": 0,
-          "combat": 0,
-          "influence": 0
-        },
-        "temporary": {
-          "investigation": 1,
-          "combat": 0,
-          "influence": 0
-        }
-      },
-      "defense": 1,
-      "text": "【现身触发】在目标角色或附属上放置或移除一个时间标志。",
-      "keywords": [],
-      "unique": false,
-      "source": {
-        "file": "docs/factions/card-specifications.json",
-        "record": "XQ18",
-        "image": "resource/ymsj-fun.github.io/cards/XQ18 计时人.jpg",
-        "sha256": "c33ebe42e01874807b60ff591a8e94c62e0ce8bfb1bdef7626bfad10432ed10e"
-      },
-      "society": "鸣钟教派"
     },
     {
       "id": "JZ30",

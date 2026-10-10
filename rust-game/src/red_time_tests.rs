@@ -6,6 +6,73 @@ use std::sync::atomic::{AtomicUsize, Ordering};
 
 static EVIDENCE: AtomicUsize = AtomicUsize::new(0);
 
+#[test]
+fn red_time_xq18_excluded_from_catalog_construction_generation_and_restoration() {
+    assert!(!catalog::catalog().cards.iter().any(|c| c.id == "XQ18"));
+    assert!(!definitions().contains_key("XQ18"));
+    assert!(crate::red_time::definition("XQ18").is_none());
+    let draft = crate::deck::DeckDraft {
+        id: "excluded-timer".into(), name: "excluded timer".into(), description: String::new(),
+        society_id: None,
+        cards: vec![catalog::DeckEntry { card_id: "JC125".into(), count: 47 },
+            catalog::DeckEntry { card_id: "XQ18".into(), count: 3 }],
+        rules_version: catalog::RULES_VERSION.into(), card_pool_version: catalog::POOL_VERSION.into(),
+        engine_version: catalog::ENGINE_VERSION.into(), updated_at: String::new(),
+    };
+    assert!(crate::deck::validate(draft.clone()).unwrap_err().contains("XQ18"));
+    let result = Game::new_with_deck("timer".into(), "invite".into(), "teams".into(),
+        "one".into(), draft, 1);
+    assert!(result.is_err());
+    let mut g = initial(0);
+    let before = serde_json::to_string(&g).unwrap();
+    // The existing constructor checks admission before allocating a new identity.
+    let result = std::panic::catch_unwind(std::panic::AssertUnwindSafe(|| g.make_card("XQ18", 0)));
+    assert!(result.is_err());
+    assert_eq!(serde_json::to_string(&g).unwrap(), before);
+    for zone in ["hand", "deck", "assets", "graveyard"] {
+        let mut v = serde_json::to_value(&g).unwrap();
+        let mut card = serde_json::to_value(g.make_card("JC125", 0)).unwrap();
+        card["definition"] = serde_json::json!("XQ18");
+        v["players"][0][zone].as_array_mut().unwrap().push(card);
+        invalid(&g, v);
+    }
+    let mut v = serde_json::to_value(&g).unwrap();
+    let mut card = serde_json::to_value(g.make_card("JC125", 0)).unwrap();
+    card["definition"] = serde_json::json!("XQ18");
+    v["regions"][0]["cards"].as_array_mut().unwrap().push(card);
+    invalid(&g, v);
+    for op in ["XQ18AddOneTimeToTarget", "XQ18RemoveOneTimeFromTarget"] {
+        assert!(serde_json::from_value::<Op>(serde_json::json!(op)).is_err());
+    }
+    assert!(serde_json::from_value::<TargetPredicate>(serde_json::json!("XQ18CharacterOrAttachment")).is_err());
+    let mut v = serde_json::to_value(&g).unwrap();
+    v["versions"]["engine"] = serde_json::json!("rust-v0.2.58-four-faction-engine-candidate");
+    invalid(&g, v);
+}
+
+#[test]
+fn red_time_jz30_declaration_and_stack_program_tampering_rejected() {
+    let mut g = initial(0); fund(&mut g, 0, "JZ30", 1); let h = held(&mut g, "JZ30", 0);
+    apply(&mut g, 0, Action { card_id: Some(h), region: Some(2), ..Action::new("deploy") });
+    pass_top(&mut g);
+    let base = serde_json::to_value(&g).unwrap();
+    for (key, value) in [("actor", serde_json::json!(2)), ("ability", serde_json::json!({}))] {
+        let mut v = base.clone(); v["pending"]["resolution"]["Declare"]["declaration"][key] = value;
+        invalid(&g, v);
+    }
+    choose(&mut g, vec!["accept".into()]); let base = serde_json::to_value(&g).unwrap();
+    let i = g.stack.len()-1;
+    for (key, value) in [("ability_key", serde_json::json!("forged")), ("actor", serde_json::json!(2)),
+        ("cursor", serde_json::json!(1)), ("guard", serde_json::json!("Accepted"))] {
+        let mut v = base.clone(); v["stack"][i]["frame"][key] = value; invalid(&g, v);
+    }
+    for op in ["JZ30ForecastFrozenTime", "XQ18AddOneTimeToTarget", "XQ18RemoveOneTimeFromTarget"] {
+        let mut v = base.clone(); v["stack"][i]["frame"]["steps"][0]["op"] = serde_json::json!(op);
+        invalid(&g, v);
+    }
+    pass_top(&mut g); fixture("jz30-admitted-entry-after-exclusion", &g);
+}
+
 fn initial(actor: usize) -> Game {
     let mut g = game(actor);
     for r in &mut g.regions { r.influence = [0; 2]; }
@@ -40,7 +107,7 @@ fn invalid(g: &Game, v: serde_json::Value) {
     }
 }
 fn deploy_jz30(g: &mut Game, actor: usize, accept: bool) -> String {
-    fund(g, actor, "XQ18", 1); let h = held(g, "JZ30", actor);
+    fund(g, actor, "JZ30", 1); let h = held(g, "JZ30", actor);
     assert_eq!(g.players[actor].hand.iter().find(|c| c.id == h).unwrap().time_markers, 0);
     apply(g, actor, Action { card_id: Some(h), region: Some(2), ..Action::new("deploy") });
     pass_top(g);
@@ -52,22 +119,6 @@ fn deploy_jz30(g: &mut Game, actor: usize, accept: bool) -> String {
     if accept { assert_eq!(g.board(&id).unwrap().1.time_markers, 0); pass_top(g); }
     assert_eq!(g.board(&id).unwrap().1.time_markers, u32::from(accept));
     id
-}
-fn reveal_xq18(g: &mut Game, actor: usize) -> String {
-    // Prepared hidden card layout; actual paid conceal has its own full case.
-    let old = board(g, "XQ18", actor, 2); g.board_mut(&old).unwrap().face_down = true;
-    fund(g, actor, "XQ18", 2);
-    apply(g, actor, Action { card_id: Some(old.clone()), ..Action::new("reveal") });
-    assert!(g.pending.is_none()); pass_top(g);
-    let ChoiceResolution::Declare { declaration: d, .. } = &g.pending.as_ref().unwrap().resolution else { panic!("XQ18 declaration expected") };
-    let id = d.source.card.id.clone();
-    assert_ne!(old, id); fixture("xq18-mode-choice", g); id
-}
-fn target_time(g: &mut Game, actor: usize, target: &str, add: bool) {
-    reveal_xq18(g, actor);
-    choose(g, vec![if add { "add-time".into() } else { "remove-time".into() }]);
-    fixture("xq18-target-choice", g); choose(g, vec![target.into()]);
-    fixture("xq18-target-stack", g); pass_top(g);
 }
 fn cast(g: &mut Game, def: &str, actor: usize, target: &str) {
     give_priority(g, actor);
@@ -94,12 +145,6 @@ fn forecast(g: &mut Game, top: Vec<String>, bottom: Vec<String>) {
 
 #[test]
 fn red_time_original_fields_and_whole_printed_programs() {
-    let x = catalog::card("XQ18");
-    assert_eq!((&*x.name, x.cost, x.defense, &*x.magic), ("计时人", 2, Some(1), "死亡"));
-    assert_eq!(x.loyalty, ["红色", "红色"]); assert_eq!(x.subtypes, ["人类", "法师", "邪教徒"]);
-    assert_eq!(x.permanent_icons, Icons::default());
-    assert_eq!(x.temporary_icons, Icons { investigation: 1, ..Icons::default() });
-    assert!(x.keywords.is_empty() && !x.unique);
     let j = catalog::card("JZ30");
     assert_eq!((&*j.name, j.cost, j.defense, &*j.magic), ("末世论者", 1, Some(1), ""));
     assert_eq!(j.loyalty, ["红色"]); assert_eq!(j.subtypes, ["人类", "流浪者"]);
@@ -107,10 +152,9 @@ fn red_time_original_fields_and_whole_printed_programs() {
     assert_eq!(j.temporary_icons, Icons::default()); assert!(!j.unique);
     assert_eq!(j.keywords, ["公开", "时间标志1"]);
     assert!(definition("JZ30").traits.public);
-    assert_eq!(definition("XQ18").abilities[0].event, Some(Event::Reveal));
     assert_eq!(definition("JZ30").abilities.iter().map(|a| a.event).collect::<Vec<_>>(),
         [Some(Event::Enter), Some(Event::Death)]);
-    for id in ["XQ18", "JZ30"] {
+    for id in ["JZ30"] {
         let d = definition(id); crate::red_time::validate_definition(id, &d).unwrap();
         for a in &d.abilities { validate_ability(id, a).unwrap(); assert_eq!(a.response_policy, ResponsePolicy::Respondable);
             assert!(a.costs.is_empty() && !a.requires_ready_source && a.per_turn_limit.is_none()); }
@@ -133,111 +177,8 @@ fn red_time_jz30_real_public_payment_and_optional_respondable_entry() {
 }
 
 #[test]
-fn red_time_xq18_real_deploy_is_silent_conceal_and_paid_reveal_only_trigger_once() {
-    let mut g = initial(0); fund(&mut g, 0, "XQ18", 2); let h = held(&mut g, "XQ18", 0);
-    apply(&mut g, 0, Action { card_id: Some(h), region: Some(2), ..Action::new("deploy") });
-    pass_top(&mut g); assert!(g.pending.is_none() && g.stack.is_empty());
-    let visible = g.regions[2].cards[0].id.clone();
-    assert_eq!(g.current_icons(g.board(&visible).unwrap().1, 2).investigation, 1);
-    g.first_team = 1; assert_eq!(g.current_icons(g.board(&visible).unwrap().1, 2).investigation, 0);
-    g.first_team = 0;
-    for c in &mut g.players[0].assets { c.exhausted = false; }
-    let h = held(&mut g, "XQ18", 0);
-    apply(&mut g, 0, Action { card_id: Some(h), region: Some(1), ..Action::new("conceal") });
-    assert!(g.pending.is_none()); let hidden = g.regions[1].cards[0].id.clone();
-    for c in &mut g.players[0].assets { c.exhausted = false; }
-    apply(&mut g, 0, Action { card_id: Some(hidden.clone()), ..Action::new("reveal") });
-    assert_eq!(g.players[0].assets.iter().filter(|c| c.exhausted).count(), 2);
-    pass_top(&mut g); assert!(g.board(&hidden).is_none());
-    assert_eq!(g.pending.as_ref().unwrap().choice.options.iter().map(|o| o.id.as_str()).collect::<Vec<_>>(), ["add-time", "remove-time"]);
-    choose(&mut g, vec![]); assert!(g.pending.is_none());
-    for c in &mut g.players[0].assets { c.exhausted = false; }
-    let face_up = g.regions[1].cards[0].id.clone();
-    reject(&mut g, 0, Action { card_id: Some(face_up), ..Action::new("reveal") });
-}
-
-#[test]
-fn red_time_xq18_cost_and_double_red_loyalty_fail_atomically() {
-    for asset_defs in [vec!["JC125", "JC125"], vec!["XQ18", "JC125"], vec!["XQ18"]] {
-        let mut g = initial(0); for d in asset_defs { fund(&mut g, 0, d, 1); }
-        let h = held(&mut g, "XQ18", 0);
-        reject(&mut g, 0, Action { card_id: Some(h), region: Some(2), ..Action::new("deploy") });
-        let hidden = board(&mut g, "XQ18", 0, 1); g.board_mut(&hidden).unwrap().face_down = true;
-        reject(&mut g, 0, Action { card_id: Some(hidden), ..Action::new("reveal") });
-    }
-}
-
-#[test]
-fn red_time_xq18_both_modes_all_relations_regions_characters_and_region_attachments() {
-    for actor in 0..4 { for owner in 0..4 { for add in [true, false] {
-        let mut g = initial(actor); let target = board(&mut g, "JC125", owner, 0);
-        g.board_mut(&target).unwrap().time_markers = u32::from(!add);
-        target_time(&mut g, actor, &target, add);
-        assert_eq!(g.board(&target).unwrap().1.time_markers, u32::from(add));
-        assert_eq!(g.current_icons(g.board(&target).unwrap().1, 0), Icons::default());
-        fixture("xq18-character-marker", &g);
-    }}}
-    for add in [true, false] {
-        let mut g = initial(0); let host = g.regions[0].card.id.clone();
-        let target = attached(&mut g, "JC090", 2, &host);
-        g.board_mut(&target).unwrap().time_markers = u32::from(!add);
-        target_time(&mut g, 0, &target, add);
-        assert_eq!(g.board(&target).unwrap().1.time_markers, u32::from(add));
-        fixture("xq18-attachment-marker", &g);
-    }
-}
-
-#[test]
-fn red_time_xq18_no_time_removal_can_resolve_and_target_choice_can_decline() {
-    let mut g = initial(0); let target = board(&mut g, "JC125", 2, 0);
-    target_time(&mut g, 0, &target, false); assert_eq!(g.board(&target).unwrap().1.time_markers, 0);
-    reveal_xq18(&mut g, 0); choose(&mut g, vec!["add-time".into()]); choose(&mut g, vec![]);
-    assert!(g.pending.is_none() && g.stack.is_empty()); assert_eq!(g.board(&target).unwrap().1.time_markers, 0);
-}
-
-#[test]
-fn red_time_xq18_target_restrictions_hidden_assets_hand_grave_region_and_barrier() {
-    let mut g = initial(0); let hidden = board(&mut g, "JC125", 1, 0); g.board_mut(&hidden).unwrap().face_down = true;
-    let barrier = board(&mut g, "JZ08", 2, 0);
-    let h = held(&mut g, "JC125", 2); fund(&mut g, 2, "JC125", 1); let asset = g.players[2].assets[0].id.clone();
-    let c = g.make_card("JC125", 2); let grave = c.id.clone(); g.players[2].graveyard.push(c);
-    let visible = board(&mut g, "JC125", 3, 0);
-    reveal_xq18(&mut g, 0); choose(&mut g, vec!["add-time".into()]);
-    let p = g.pending.clone().unwrap(); let ids = p.choice.options.iter().map(|o| o.id.clone()).collect::<Vec<_>>();
-    assert!(ids.contains(&visible)); assert!(!ids.contains(&hidden) && !ids.contains(&barrier));
-    for id in [hidden, barrier, h, asset, grave, "region:0".into(), "p0".into(), "unknown".into()] {
-        reject(&mut g, 0, Action { choice_id: Some(p.choice.id.clone()), selected: Some(vec![id]), ..Action::new("choose") });
-    }
-    choose(&mut g, vec![visible]); pass_top(&mut g);
-}
-
-#[test]
-fn red_time_xq18_real_rescue_response_invalidates_original_target_without_repayment() {
-    let mut g = initial(0); let target = board(&mut g, "JC125", 2, 0);
-    let rescue = board(&mut g, "JC075", 2, 1); fund(&mut g, 2, "JC075", 2);
-    reveal_xq18(&mut g, 0); choose(&mut g, vec!["add-time".into()]); choose(&mut g, vec![target.clone()]);
-    let paid = g.players[0].assets.iter().filter(|c| c.exhausted).count();
-    give_priority(&mut g, 2);
-    apply(&mut g, 2, Action { card_id: Some(rescue), target_id: Some(target.clone()), ..Action::new("activate") });
-    pass_top(&mut g); assert!(g.board(&target).is_none());
-    let fresh = board(&mut g, "JC125", 2, 0); pass_top(&mut g);
-    assert_eq!(g.board(&fresh).unwrap().1.time_markers, 0);
-    assert_eq!(g.players[0].assets.iter().filter(|c| c.exhausted).count(), paid);
-    assert!(g.log.iter().any(|l| l.text.contains("效果取消"))); fixture("xq18-invalidated-target", &g);
-}
-
-#[test]
-fn red_time_xq18_source_departure_retains_accepted_target_effect() {
-    let mut g = initial(0); let target = board(&mut g, "JC125", 2, 0);
-    let source = reveal_xq18(&mut g, 0); choose(&mut g, vec!["add-time".into()]); choose(&mut g, vec![target.clone()]);
-    fund(&mut g, 2, "JC084", 3); cast(&mut g, "JC091", 2, &source);
-    assert!(g.board(&source).is_none()); pass_top(&mut g);
-    assert_eq!(g.board(&target).unwrap().1.time_markers, 1); fixture("xq18-source-departed", &g);
-}
-
-#[test]
 fn red_time_jz30_entry_response_death_freezes_zero_and_cannot_mark_replacement() {
-    let mut g = initial(0); fund(&mut g, 0, "XQ18", 1); let h = held(&mut g, "JZ30", 0);
+    let mut g = initial(0); fund(&mut g, 0, "JZ30", 1); let h = held(&mut g, "JZ30", 0);
     apply(&mut g, 0, Action { card_id: Some(h), region: Some(2), ..Action::new("deploy") }); pass_top(&mut g);
     let old = g.regions[2].cards[0].id.clone(); choose(&mut g, vec!["accept".into()]);
     fund(&mut g, 2, "JC084", 3); cast(&mut g, "JC091", 2, &old);
@@ -298,7 +239,8 @@ fn red_time_jz30_zero_short_empty_deck_and_declined_death_are_finite() {
 fn red_time_attachment_inheritance_transfer_and_death_snapshot_are_exact() {
     let mut g = initial(0); let priest = board(&mut g, "JC045", 0, 1); let j = deploy_jz30(&mut g, 0, true);
     let vest = attached(&mut g, "XQ47", 0, &priest);
-    target_time(&mut g, 0, &vest, true);
+    // Explicit accumulated attachment time fixture; XQ18 is not admitted.
+    g.board_mut(&vest).unwrap().time_markers = 1; checkpoint(&g);
     assert_eq!(g.board(&priest).unwrap().1.time_markers, 0);
     assert_eq!(g.effective_time_markers(g.board(&priest).unwrap().1), 1);
     assert_eq!(g.current_icons(g.board(&priest).unwrap().1, 1).influence, 1);
@@ -333,27 +275,6 @@ fn red_time_all_marked_characters_and_attachments_reset_on_leave_and_hide() {
         assert!(g.players.iter().flat_map(|p| p.hand.iter().chain(&p.deck).chain(&p.graveyard)).all(|c| c.time_markers == 0));
         assert!(!g.attachments.iter().any(|x| x.card.id == a)); checkpoint(&g);
     }
-}
-
-#[test]
-fn red_time_persisted_program_alias_mode_target_actor_and_cursor_tampering_rejected() {
-    let mut g = initial(0); let c = board(&mut g, "JC125", 2, 0); reveal_xq18(&mut g, 0);
-    let base = serde_json::to_value(&g).unwrap();
-    for (key, value) in [("actor", serde_json::json!(2)), ("ability", serde_json::json!({}))] {
-        let mut v = base.clone(); v["pending"]["resolution"]["Declare"]["declaration"][key] = value; invalid(&g, v);
-    }
-    choose(&mut g, vec!["add-time".into()]);
-    let mut v = serde_json::to_value(&g).unwrap();
-    v["pending"]["resolution"]["Declare"]["declaration"]["ability"]["targets"][0]["predicate"] = serde_json::Value::Null;
-    invalid(&g, v); choose(&mut g, vec![c]);
-    let base = serde_json::to_value(&g).unwrap();
-    let i = g.stack.len()-1;
-    for (key, value) in [("ability_key", serde_json::json!("forged")), ("actor", serde_json::json!(2)),
-        ("cursor", serde_json::json!(1)), ("guard", serde_json::json!("Accepted"))] {
-        let mut v = base.clone(); v["stack"][i]["frame"][key] = value; invalid(&g, v);
-    }
-    let mut v = base.clone(); v["stack"][i]["frame"]["steps"][0]["op"] = serde_json::json!("JZ30ForecastFrozenTime"); invalid(&g, v);
-    let mut v = base; v["stack"][i]["frame"]["targets"][0]["spec"]["relation"] = serde_json::json!("FriendlyTeam"); invalid(&g, v);
 }
 
 #[test]
@@ -422,7 +343,7 @@ fn room_pass_top(r: &mut RoomEnvelope) {
 }
 #[test]
 fn red_time_real_room_paid_jz30_entry_destroy_and_private_forecast_restore() {
-    let mut g = initial(0); fund(&mut g, 0, "XQ18", 1); fund(&mut g, 0, "JC084", 3);
+    let mut g = initial(0); fund(&mut g, 0, "JZ30", 1); fund(&mut g, 0, "JC084", 3);
     let h = held(&mut g, "JZ30", 0); let spell = held(&mut g, "JC091", 0); let mut r = envelope(&g);
     room_action(&mut r, 0, Action { card_id: Some(h), region: Some(2), ..Action::new("deploy") }); room_pass_top(&mut r);
     let p = r.game.pending.clone().unwrap(); room_action(&mut r, 0, Action { choice_id: Some(p.choice.id), selected: Some(vec!["accept".into()]), ..Action::new("choose") });
@@ -442,7 +363,7 @@ fn red_time_real_room_paid_jz30_entry_destroy_and_private_forecast_restore() {
 
 #[test]
 fn red_time_real_granted_renown_glory_freeze_region_and_reject_other_region_in_game_and_room() {
-    for def in ["XQ18", "JZ30"] { for glory in [false, true] {
+    for def in ["JZ30"] { for glory in [false, true] {
         let mut g = initial(0); let source = board(&mut g, def, 0, 2);
         if glory {
             // Vest preserves the defense-one character under JC089's -1.

@@ -1,9 +1,8 @@
-//! Closed XQ18 / JZ30 printed time programs. Zone/reset ownership stays in the
+//! Closed JZ30 printed time program; XQ18 is excluded pending a ruling. Zone/reset ownership stays in the
 //! shared engine; no generic marker interpreter or configurable X is admitted.
 use crate::{catalog, engine::RuleResult, model::*, rules::{self, *}};
 use std::{collections::BTreeSet, sync::OnceLock};
 
-const XQ18_KEY: &str = "reveal-time-marker";
 const JZ30_ENTRY: &str = "entry-one-time";
 const JZ30_DEATH: &str = "death-frozen-time-forecast";
 
@@ -29,19 +28,6 @@ fn admitted_source(source: &SourceSnapshot) -> RuleResult<()> {
 
 pub(crate) fn definition(id: &str) -> Option<Definition> {
     match id {
-        "XQ18" => {
-            let mut slot = rules::target(Zone::Board, EntityKind::Any, Relation::Any, Range::Anywhere);
-            slot.predicate = Some(TargetPredicate::XQ18CharacterOrAttachment);
-            let mut a = rules::ability(XQ18_KEY, "现身触发：放置或移除一个时间标志", Timing::Fast,
-                vec![], vec![], vec![], Some(Event::Reveal));
-            a.modes = vec![
-                Mode { key: "add-time".into(), label: "放置一个时间标志".into(),
-                    targets: vec![slot.clone()], ops: vec![Op::XQ18AddOneTimeToTarget] },
-                Mode { key: "remove-time".into(), label: "移除一个时间标志".into(),
-                    targets: vec![slot], ops: vec![Op::XQ18RemoveOneTimeFromTarget] },
-            ];
-            Some(rules::with_abilities(vec![a]))
-        }
         "JZ30" => {
             let mut d = rules::with_abilities(vec![
                 rules::ability(JZ30_ENTRY, "进场触发：放置一个时间标志", Timing::Fast,
@@ -58,8 +44,7 @@ pub(crate) fn definition(id: &str) -> Option<Definition> {
 
 pub(crate) fn contains_red_time_op(ops: &[Op]) -> bool {
     ops.iter().any(|op| match op {
-        Op::XQ18AddOneTimeToTarget | Op::XQ18RemoveOneTimeFromTarget
-            | Op::JZ30AddOneTimeToOriginalSource | Op::JZ30ForecastFrozenTime => true,
+        Op::JZ30AddOneTimeToOriginalSource | Op::JZ30ForecastFrozenTime => true,
         Op::ForEachLivingPlayer(body) | Op::ForEachLivingPlayerFromActor(body) => contains_red_time_op(body),
         Op::IfTargetExhausted { exhausted, ready, .. } => contains_red_time_op(std::slice::from_ref(exhausted))
             || contains_red_time_op(std::slice::from_ref(ready)),
@@ -68,10 +53,8 @@ pub(crate) fn contains_red_time_op(ops: &[Op]) -> bool {
 }
 
 fn relevant_ability(card: &str, a: &AbilitySpec) -> bool {
-    definition(card).is_some() || matches!(a.key.as_str(), XQ18_KEY | JZ30_ENTRY | JZ30_DEATH)
+    definition(card).is_some() || matches!(a.key.as_str(), JZ30_ENTRY | JZ30_DEATH)
         || contains_red_time_op(&a.ops) || a.modes.iter().any(|m| contains_red_time_op(&m.ops))
-        || a.targets.iter().chain(a.modes.iter().flat_map(|m| &m.targets))
-            .any(|t| t.predicate == Some(TargetPredicate::XQ18CharacterOrAttachment))
 }
 
 // The shared declaration reducer flattens a selected mode before target choice.
@@ -107,9 +90,8 @@ pub(crate) fn validate_definition(card: &str, d: &Definition) -> RuleResult<()> 
 
 fn relevant_frame(f: &ResolutionFrame) -> bool {
     definition(&f.source.card.definition).is_some()
-        || matches!(f.ability_key.as_str(), XQ18_KEY | JZ30_ENTRY | JZ30_DEATH)
+        || matches!(f.ability_key.as_str(), JZ30_ENTRY | JZ30_DEATH)
         || f.steps.iter().any(|s| contains_red_time_op(std::slice::from_ref(&s.op)))
-        || f.targets.iter().any(|t| t.spec.predicate == Some(TargetPredicate::XQ18CharacterOrAttachment))
 }
 
 impl Game {
@@ -156,25 +138,6 @@ impl Game {
             || (face_down && c.time_markers != 0)
         { return Err("红色时间能力的冻结来源、行动者或原地区无效".into()); }
         Ok(())
-    }
-
-    pub(crate) fn xq18_character_or_attachment(&self, source: &SourceSnapshot, c: &Card) -> bool {
-        source.card.definition == "XQ18" && !c.face_down
-            && (catalog::card(&c.definition).kind == "character"
-                || self.attachments.iter().find(|a| a.card.id == c.id)
-                    .is_some_and(|a| catalog::card(&a.card.definition).kind == "attachment"
-                        && self.attachment_host_valid(a)))
-    }
-
-    pub(crate) fn xq18_change_target_time(&mut self, f: &ResolutionFrame, add: bool) {
-        // The shared frame guard has already checked range, identity, protection
-        // and legal attachment host. Never follow a fresh replacement instance.
-        if let Some(id) = f.targets.first().map(|t| t.id.as_str()) {
-            if let Some(c) = self.board_mut(id).filter(|c| !c.face_down) {
-                c.time_markers = if add { c.time_markers.saturating_add(1) }
-                    else { c.time_markers.saturating_sub(1) };
-            }
-        }
     }
 
     pub(crate) fn jz30_add_one_time(&mut self, f: &ResolutionFrame) {
