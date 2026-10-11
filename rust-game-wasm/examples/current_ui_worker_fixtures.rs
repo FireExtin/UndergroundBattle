@@ -72,12 +72,14 @@ fn normalized(value: &Value) -> Value {
         Value::String(s)
             if s == "rust-v0.2.57-black-entry-influence-candidate"
                 || s == "rust-v0.2.60-xq18-carrier-candidate"
+                || s == "rust-v0.2.62-fixed-empty-slots-candidate"
                 || s == catalog::ENGINE_VERSION =>
         {
             json!("CURRENT_ENGINE")
         }
         Value::String(s)
             if s == "limited-v2.52-black-entry-influence-candidate"
+                || s == "limited-v2.55-xq18-carrier-candidate"
                 || s == catalog::POOL_VERSION =>
         {
             json!("CURRENT_POOL")
@@ -250,9 +252,9 @@ fn main() {
         }
         regenerate(&mut value);
         let destination = source
-            .replace("v057", "v062")
-            .replace("Native57", "Native62")
-            .replace("Native60", "Native62");
+            .replace("v057", "v063")
+            .replace("Native57", "Native63")
+            .replace("Native60", "Native63");
         std::fs::write(
             Path::new(&root).join(&destination),
             serde_json::to_vec_pretty(&value).unwrap(),

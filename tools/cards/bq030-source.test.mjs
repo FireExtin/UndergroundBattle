@@ -109,7 +109,7 @@ test('only BQ030 is admitted beyond the 128-card baseline and candidate version 
     'Decks, world and source metadata must be preserved; candidate versions are checked separately');
   assert.equal(rulesVersion, 'hegemony-pdf-v1');
   assert.equal(cardPoolVersion, 'limited-v2.56-bq030-attachment-candidate');
-  assert.equal(engineVersion, 'rust-v0.2.61-bq030-attachment-candidate');
+  assert.equal(engineVersion, 'rust-v0.2.63-bq030-fixed-slots-candidate');
 
   const catalog = read('rust-game/src/catalog.rs').toString('utf8');
   const constant = name => {

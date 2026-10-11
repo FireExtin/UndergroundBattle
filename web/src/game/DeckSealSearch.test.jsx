@@ -4,7 +4,7 @@ import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {createHash} from 'node:crypto';
 import * as wasm from '../../../rust-game-wasm/pkg/hegemony_wasm.js';
-import native from './deckSealNative62Test.fixture.json';
+import native from './deckSealNative63Test.fixture.json';
 import {Table} from './Table';
 import {ChoicePanel} from './ChoicePanel';
 import {ReadModal} from './ReadModal';

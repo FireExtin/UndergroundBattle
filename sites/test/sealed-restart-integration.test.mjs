@@ -13,7 +13,7 @@ import * as abi from '../generated/hegemony_wasm.js';
 
 test('fresh Native match terminal seal: D1 restart, reopen, next choice and original restart receipt', async t => {
   abi.initSync({ module: readFileSync('../rust-game-wasm/pkg/hegemony_wasm_bg.wasm') });
-  const trace = JSON.parse(readFileSync(new URL('./fixtures/sealed-restart-native-v062.json', import.meta.url), 'utf8'));
+  const trace = JSON.parse(readFileSync(new URL('./fixtures/sealed-restart-native-v063.json', import.meta.url), 'utf8'));
   assert.equal(trace.scope, 'natural-fresh-match-terminal-state-then-real-restart-persist-next-choice');
   const kernel = routeKernels(abi);
   const persist = mkdtempSync(join(tmpdir(), 'sealed-restart-d1-'));

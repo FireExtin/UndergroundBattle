@@ -62,20 +62,24 @@ test('production generated modules and Worker contain only the reviewed current 
   assert(readFileSync('dist/server/index.js').length + currentBytes.length < 64 * 1024 * 1024);
 });
 
-test('engine62 rejects preserved actual57/59/60/61 rooms and the withdrawn58 header before interpretation', () => {
+test('engine63 rejects preserved actual57/59/60/61/62 rooms and separate candidate headers before interpretation', () => {
   const original = JSON.parse(readFileSync(new URL('./fixtures/xq37-native-v057.json', import.meta.url), 'utf8')).accept.state;
   const prior59 = JSON.parse(readFileSync(new URL('./fixtures/xq37-native-v059.json', import.meta.url), 'utf8')).accept.state;
   const prior60 = JSON.parse(readFileSync(new URL('./fixtures/xq37-native-v060.json', import.meta.url), 'utf8')).accept.state;
   const prior61 = readFileSync(new URL('./fixtures/original-engine61-room.json', import.meta.url), 'utf8');
+  const prior62 = JSON.parse(readFileSync(new URL('./fixtures/xq37-native-v062.json', import.meta.url), 'utf8')).accept.state;
   const withdrawn = JSON.stringify({ state_schema: 3, versions: {
     rules: 'hegemony-pdf-v1', cardPool: 'limited-v2.53-four-faction-engine-candidate', engine: 'rust-v0.2.58-four-faction-engine-candidate',
   } }); // Header-only routing case; not an invented playable historical room.
+  const separateBQ030 = JSON.stringify({ state_schema: 3, versions: {
+    rules: 'hegemony-pdf-v1', cardPool: 'limited-v2.56-bq030-attachment-candidate', engine: 'rust-v0.2.61-bq030-attachment-candidate',
+  } }); // Exact standalone BQ030 tuple, used only to exercise routing.
   let interpreted = 0;
   const operations = ['view', 'apply', 'joinGame', 'joinGameWithDeck', 'applyRoom', 'pollRoom', 'quoteRoom'];
   const guarded = { ...current };
   for (const name of operations) guarded[name] = () => { interpreted++; throw Error('Historical room reached reducer'); };
   const routed = routeKernels(guarded);
-  for (const state of [original, prior59, prior60, prior61, withdrawn]) {
+  for (const state of [original, prior59, prior60, prior61, prior62, withdrawn, separateBQ030]) {
     for (const name of ['assertSupported', 'catalog', 'supportsPacing', ...operations]) assert.throws(() => routed[name](state, 0, '{}', '0'), isUnsupported);
   }
   assert.equal(interpreted, 0);

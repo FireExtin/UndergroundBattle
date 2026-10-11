@@ -10,7 +10,7 @@ import {routeKernels} from '../src/kernel-router.mjs';
 import {RoomStore} from '../src/store.mjs';
 import {RoomService,digest} from '../src/service.mjs';
 abi.initSync({module:readFileSync('generated/hegemony_wasm_bg.wasm')});
-const cases=JSON.parse(readFileSync(new URL('./fixtures/three-color-death-native-v062.json',import.meta.url),'utf8'));
+const cases=JSON.parse(readFileSync(new URL('./fixtures/three-color-death-native-v063.json',import.meta.url),'utf8'));
 for(const c of cases)test(`three-color53 ${c.name}: native transition, D1 reopening, privacy and duplicate receipt`,async t=>{
  const persist=mkdtempSync(join(tmpdir(),'three-color53-d1-'));
  const options=convertV4MiniflareOptions({name:'three-color53-test',resourcePersistencePath:persist,modules:[

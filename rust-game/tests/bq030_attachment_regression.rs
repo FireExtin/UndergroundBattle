@@ -1555,3 +1555,270 @@ fn bq030_lethal_source_can_be_ordered_with_a_surviving_observer() {
     assert_eq!(room.game.players[0].hand.len(), hand + 1);
     assert!(room.game.pending.is_none() && room.game.stack.is_empty());
 }
+
+// Independent combination coverage. All mutations below prepare the initial
+// layout; after the first command only the real Room protocol changes state.
+fn combination_roundtrip(room: &RoomEnvelope) {
+    let state = serde_json::to_string(room).unwrap();
+    assert_eq!(
+        serde_json::to_string(&RoomEnvelope::from_persisted(&state).unwrap()).unwrap(),
+        state
+    );
+    let game = serde_json::to_string(&room.game).unwrap();
+    assert_eq!(
+        serde_json::to_string(&Game::from_persisted(&game).unwrap()).unwrap(),
+        game
+    );
+}
+
+#[test]
+fn combined_bq030_empty_deck_draw_eliminates_and_restores_with_a_vacant_slot() {
+    let (mut room, host) = initial(0, 0, true);
+    room.game.players[0].deck.clear();
+    room.game.world.clear();
+    room.game.regions[4].vacant = true;
+    room.game.regions[4].influence = [0, 0];
+    room.game.regions[4].skip = false;
+    let blood = held(&mut room, "BQ040", 0);
+    combination_roundtrip(&room);
+    attach(&mut room, 0, blood, &host);
+    choose(&mut room, true);
+    pass_top(&mut room);
+    assert!(room.game.players[0].eliminated);
+    assert!(!room.game.players[1].eliminated);
+    assert_eq!(room.game.status, "playing");
+    assert!(
+        room.game.pending.is_none() && room.game.stack.is_empty() && room.game.effects.is_empty()
+    );
+    for seat in 0..4 {
+        assert_eq!(room.view(seat, 0).regions.len(), 5);
+        assert_eq!(room.view(seat, 0).regions[4].card_id, "");
+    }
+    combination_roundtrip(&room);
+}
+
+#[test]
+fn combined_bq030_empty_deck_prunes_all_already_ordered_draws_for_eliminated_actor() {
+    let (mut room, host) = initial(0, 0, true);
+    room.game.players[0].deck.clear();
+    let first = room.game.regions[2].cards[0].id.clone();
+    let second = observer(&mut room, 1, 0, 4);
+    let blood = held(&mut room, "BQ040", 0);
+    attach(&mut room, 0, blood, &host);
+    select(&mut room, vec![first]);
+    select(&mut room, vec!["accept".into()]);
+    assert_eq!(room.game.stack.len(), 2);
+    assert_eq!(
+        room.game
+            .stack
+            .last()
+            .unwrap()
+            .frame
+            .as_ref()
+            .unwrap()
+            .source
+            .card
+            .id,
+        second
+    );
+    pass_top(&mut room);
+    assert!(room.game.players[0].eliminated);
+    assert!(
+        room.game.pending.is_none() && room.game.stack.is_empty() && room.game.effects.is_empty()
+    );
+    combination_roundtrip(&room);
+}
+
+fn combination_reward_layout(
+    contest: usize,
+    almost_won: bool,
+) -> (RoomEnvelope, String, String, String, (String, String)) {
+    let (mut room, _) = initial(0, 0, true);
+    room.game.regions[0].cards.clear();
+    let officer = room.game.regions[2].cards.pop().unwrap();
+    let officer_id = officer.id.clone();
+    room.game.regions[0].cards.push(officer);
+    room.game.regions[0].card = room.game.make_card("DQJC115", 0);
+    for region in &mut room.game.regions {
+        region.influence = [0, 0];
+    }
+    room.game.window = Some(if contest == 1 {
+        Window::Action(0)
+    } else {
+        Window::Before(0, contest)
+    });
+    if almost_won {
+        room.game.world.clear();
+        room.game.regions[0].influence = [1, 0];
+    }
+    let grant = held(&mut room, "JC074", 0);
+    let return_spell = held(&mut room, "JC006", 2);
+    let protection = held(&mut room, "XQ47", 0);
+    let curse = held(&mut room, "JC089", 0);
+    fund(&mut room, "JC075", 0, 2);
+    fund(&mut room, "JC002", 2, 2);
+    fund(&mut room, "JC084", 0, 2);
+    combination_roundtrip(&room);
+    (room, officer_id, grant, return_spell, (protection, curse))
+}
+
+fn combination_contest(room: &mut RoomEnvelope, ability_key: &str) {
+    for _ in 0..64 {
+        if room.game.pending.is_some() {
+            break;
+        }
+        let seat = (0..4)
+            .find(|s| {
+                room.game
+                    .legal_actions(*s)
+                    .iter()
+                    .any(|a| a.action.kind == "pass")
+            })
+            .unwrap();
+        act(room, seat, Action::new("pass"));
+    }
+    let pending = room
+        .game
+        .pending
+        .as_ref()
+        .expect("real contest must declare granted reward");
+    let ChoiceResolution::Declare { declaration, .. } = &pending.resolution else {
+        panic!()
+    };
+    assert_eq!(declaration.source.card.definition, "BQ030");
+    assert_eq!(declaration.ability.key, ability_key);
+    assert!(declaration.source.source_region_instance.is_some());
+    combination_roundtrip(room);
+}
+
+#[test]
+fn combined_bq030_paid_granted_renown_accept_and_decline_remain_optional() {
+    for accept in [false, true] {
+        let (mut room, officer, grant, _, _) = combination_reward_layout(2, false);
+        attach(&mut room, 0, grant, &officer);
+        combination_contest(&mut room, "renown");
+        let before = room.game.regions[0].influence[0];
+        select(
+            &mut room,
+            if accept {
+                vec!["accept".into()]
+            } else {
+                vec![]
+            },
+        );
+        if accept {
+            pass_top(&mut room);
+        }
+        assert_eq!(
+            room.game.regions[0].influence[0],
+            before + u32::from(accept)
+        );
+        assert!(room.game.pending.is_none() && room.game.stack.is_empty());
+        combination_roundtrip(&room);
+    }
+}
+
+#[test]
+fn combined_bq030_granted_renown_frozen_source_survives_real_return_response() {
+    let (mut room, officer, grant, return_spell, _) = combination_reward_layout(2, false);
+    attach(&mut room, 0, grant, &officer);
+    combination_contest(&mut room, "renown");
+    let before = room.game.regions[0].influence[0];
+    select(&mut room, vec!["accept".into()]);
+    response(
+        &mut room,
+        2,
+        Action {
+            card_id: Some(return_spell),
+            target_id: Some(officer.clone()),
+            ..Action::new("play")
+        },
+    );
+    pass_top(&mut room);
+    assert!(!room
+        .game
+        .regions
+        .iter()
+        .any(|r| r.cards.iter().any(|c| c.id == officer)));
+    pass_top(&mut room);
+    assert_eq!(room.game.regions[0].influence[0], before + 1);
+    combination_roundtrip(&room);
+}
+
+#[test]
+fn combined_bq030_granted_renown_capture_preserves_original_empty_slot() {
+    let (mut room, officer, grant, _, _) = combination_reward_layout(2, true);
+    let old_region = room.game.regions[0].card.id.clone();
+    attach(&mut room, 0, grant, &officer);
+    combination_contest(&mut room, "renown");
+    select(&mut room, vec!["accept".into()]);
+    pass_top(&mut room);
+    for _ in 0..32 {
+        if room.game.regions[0].vacant {
+            break;
+        }
+        if let Some(pending) = room.game.pending.clone() {
+            let chosen = if pending.choice.allow_decline == Some(true) {
+                vec![]
+            } else {
+                pending
+                    .choice
+                    .options
+                    .iter()
+                    .take(pending.choice.min.unwrap_or(1) as usize)
+                    .map(|o| o.id.clone())
+                    .collect()
+            };
+            select(&mut room, chosen);
+        } else if room.pacing.window.is_some() {
+            pass_top(&mut room);
+        } else {
+            let seat = (0..4)
+                .find(|s| {
+                    room.game
+                        .legal_actions(*s)
+                        .iter()
+                        .any(|a| a.action.kind == "pass")
+                })
+                .unwrap();
+            act(&mut room, seat, Action::new("pass"));
+        }
+    }
+    assert!(room.game.regions[0].vacant);
+    assert_eq!(room.game.regions.len(), 5);
+    let scored = &room.game.players[0].score_cards;
+    assert!(scored
+        .iter()
+        .any(|c| c.definition == "DQJC115" && c.id != old_region));
+    combination_roundtrip(&room);
+}
+
+#[test]
+fn combined_bq030_paid_granted_combat_glory_accept_and_decline_restore() {
+    for accept in [false, true] {
+        let (mut room, officer, _, _, attachments) = combination_reward_layout(1, false);
+        let (protection, curse) = attachments;
+        attach(&mut room, 0, protection.into(), &officer);
+        choose(&mut room, false);
+        attach(&mut room, 0, curse.into(), &officer);
+        choose(&mut room, false);
+        combination_contest(&mut room, "jc089-combat-glory");
+        let before = room.game.regions[0].influence[0];
+        select(
+            &mut room,
+            if accept {
+                vec!["accept".into()]
+            } else {
+                vec![]
+            },
+        );
+        if accept {
+            pass_top(&mut room);
+        }
+        assert_eq!(
+            room.game.regions[0].influence[0],
+            before + u32::from(accept)
+        );
+        combination_roundtrip(&room);
+    }
+}

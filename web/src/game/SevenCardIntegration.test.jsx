@@ -11,7 +11,7 @@ import { Table } from './Table';
 import { cardScanUrl } from './cardScans';
 kernel.initSync({ module: readFileSync(resolve('../rust-game-wasm/pkg/hegemony_wasm_bg.wasm')) });
 const catalog = JSON.parse(kernel.catalog());
-const fixtures = JSON.parse(readFileSync(resolve('src/game/sevenCardUIV062.fixture.json'), 'utf8'));
+const fixtures = JSON.parse(readFileSync(resolve('src/game/sevenCardUIV063.fixture.json'), 'utf8'));
 const definitions = new Map(catalog.cards.map(card => [card.id, card]));
 const scans = JSON.parse(readFileSync(resolve('public/card-scans.json'), 'utf8'));
 
@@ -24,9 +24,9 @@ it.each(['JZ30', 'BQ028', 'BQ040', 'WM059', 'BQ078', 'JZ44', 'JZ45', 'XQ18'])('r
   expect(screen.getByRole('img', { name: `${definition.name}原始牌面` })).toHaveAttribute('src', registered.url);
 });
 it('uses engine60/pool55 and admits the reviewed XQ18', () => {
-  expect(catalog.engineVersion).toBe('rust-v0.2.62-fixed-empty-slots-candidate');
-  expect(catalog.cardPoolVersion).toBe('limited-v2.55-xq18-carrier-candidate');
-  expect(catalog.cards).toHaveLength(128); expect(definitions.has('XQ18')).toBe(true);
+  expect(catalog.engineVersion).toBe('rust-v0.2.63-bq030-fixed-slots-candidate');
+  expect(catalog.cardPoolVersion).toBe('limited-v2.56-bq030-attachment-candidate');
+  expect(catalog.cards).toHaveLength(129); expect(definitions.has('XQ18')).toBe(true);
 });
 it('rejects the preserved engine57 opaque room without upgrading its state', () => {
   const previous = JSON.parse(readFileSync(resolve('src/game/xq37Native57Test.fixture.json'), 'utf8')).accept;

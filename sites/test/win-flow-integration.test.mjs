@@ -12,14 +12,18 @@ import { RoomStore } from '../src/store.mjs';
 import { RoomService, digest } from '../src/service.mjs';
 
 abi.initSync({ module: readFileSync('generated/hegemony_wasm_bg.wasm') });
-const fixtures = JSON.parse(readFileSync(new URL('./fixtures/win-flow-native-v062.json', import.meta.url), 'utf8'));
+const fixtures = { scenarios: [
+  ...JSON.parse(readFileSync(new URL('./fixtures/win-flow-native-v063.json', import.meta.url), 'utf8')).scenarios,
+  ...JSON.parse(readFileSync(new URL('./fixtures/bq030-native-v063.json', import.meta.url), 'utf8')).scenarios
+    .map(s => ({ ...s, name: 'BQ030 ' + s.name })),
+] };
 
-for (const scenario of fixtures.scenarios) test(`engine62 ${scenario.name}: continuous Native commands, journals, D1 reopening and receipts`, async t => {
-  const persist = mkdtempSync(join(tmpdir(), 'win-flow-62-d1-'));
-  const options = convertV4MiniflareOptions({ name: 'win-flow-62', resourcePersistencePath: persist, modules: [
+for (const scenario of fixtures.scenarios) test(`engine63 ${scenario.name}: continuous Native commands, journals, D1 reopening and receipts`, async t => {
+  const persist = mkdtempSync(join(tmpdir(), 'win-flow-63-d1-'));
+  const options = convertV4MiniflareOptions({ name: 'win-flow-63', resourcePersistencePath: persist, modules: [
     { type: 'ESModule', path: resolve('dist/server/index.js') },
     ...readdirSync('dist/server').filter(n => n.endsWith('.wasm')).map(n => ({ type: 'CompiledWasm', path: resolve('dist/server', n) })),
-  ], compatibilityDate: '2026-10-02', cf: false, d1Databases: { DB: 'win-flow-62' } });
+  ], compatibilityDate: '2026-10-02', cf: false, d1Databases: { DB: 'win-flow-63' } });
   let mf = new Miniflare(options), db = await mf.getD1Database('DB');
   t.after(async () => { await mf.dispose(); rmSync(persist, { recursive: true, force: true }); });
   for (const file of readdirSync('drizzle').filter(n => n.endsWith('.sql'))) {
@@ -33,6 +37,12 @@ for (const scenario of fixtures.scenarios) test(`engine62 ${scenario.name}: cont
   await db.prepare('UPDATE rooms SET version=? WHERE id=?').bind(initial.version, id).run();
   for (let seat = 1; seat < tokens.length; seat++) await db.prepare('INSERT INTO seats(room_id,seat,token_hash) VALUES(?,?,?)').bind(id, seat, await digest(tokens[seat])).run();
   let accepted = 0, rejected = 0, reopened = 0, lastAccepted, lastView;
+  if (scenario.name.startsWith('BQ030 ')) {
+    await mf.dispose(); mf = new Miniflare(options); db = await mf.getD1Database('DB');
+    store = new RoomStore(db); service = new RoomService(db, routeKernels(abi), () => now);
+    assert.equal((await store.room(id)).state, first.state);
+    reopened++;
+  }
   const reopenedStates = new Set();
   for (const step of scenario.steps) {
     now = Number(step.serverNowMs);
@@ -50,7 +60,9 @@ for (const scenario of fixtures.scenarios) test(`engine62 ${scenario.name}: cont
     }
     assert.equal((await store.room(id)).state, step.expected.state, step.inputName);
     for (let seat = 0; seat < tokens.length; seat++) assert.deepEqual(await service.state(id, 'Bearer ' + tokens[seat], null), step.views[seat]);
-    const key = step.expected.view.paused ? 'paused' : step.expected.view.regions.some(r => r.cardId === '') ? 'vacant' : step.expected.view.step.includes(':win') ? 'win' : null;
+    const key = step.expected.view.paused ? 'paused' : step.expected.view.regions.some(r => r.cardId === '') ? 'vacant'
+      : step.expected.view.step.includes(':win') ? 'win' : step.expected.view.pendingChoice ? 'choice'
+      : step.expected.view.stack.some(s => s.name?.includes('裁定官')) ? 'BQ030-stack' : null;
     if (key && !reopenedStates.has(key)) {
       reopenedStates.add(key);
       await mf.dispose(); mf = new Miniflare(options); db = await mf.getD1Database('DB');

@@ -12,7 +12,7 @@ import { RoomStore } from '../src/store.mjs';
 import { RoomService, digest } from '../src/service.mjs';
 
 abi.initSync({ module: readFileSync('generated/hegemony_wasm_bg.wasm') });
-const native = JSON.parse(readFileSync(new URL('../../web/src/game/xq18Native62Test.fixture.json', import.meta.url), 'utf8'));
+const native = JSON.parse(readFileSync(new URL('../../web/src/game/xq18Native63Test.fixture.json', import.meta.url), 'utf8'));
 
 async function setup(t, state) {
   const persist = mkdtempSync(join(tmpdir(), 'xq18-60-d1-'));

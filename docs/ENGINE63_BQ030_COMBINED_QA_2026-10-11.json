@@ -1,0 +1,326 @@
+{
+  "recordedAtUTC": "2026-10-11T04:48:55.324922+00:00",
+  "scope": "Independent cloud QA of merged BQ030 + fixed-slot sources. Parent browser gameplay acceptance remains pending.",
+  "source": {
+    "baseCommit": "591b48f0c05e64aa59d3520361a8d53c3fa09d33",
+    "BQ030Commit": "23569135031d2e8e2fd18caf66ca6d2ef35a64b7",
+    "BQ030MergedCommit": "cf5e3cd98f1277ea5cd4ea5fb181d9ed7f3c2da8",
+    "localBranch": "qa/engine63-bq030-ui-integration-20261011",
+    "conflicts": [
+      "rust-game/src/catalog.rs",
+      "rust-game/src/resolution.rs",
+      "web/public/card-scans.json"
+    ],
+    "resolution": "BQ030 admission list retains !vacant filtering. Shared scan records identical; only BQ030 appended. Distinct Engine63 identity and pool56 used consistently.",
+    "unreceivedReportCommit": "b3749f087386a1446c7a0cb69298ef887242ba04",
+    "unreceivedReportRead": false,
+    "independentNewCrossTests": 6,
+    "BQ030RuntimeByteIdenticalToSource": true,
+    "productionInputs": [
+      {
+        "path": "rust-game/src/catalog.rs",
+        "bytes": 8260,
+        "sha256": "9103d0e59e0060b51bd78af4f0dfafd7211fae94ecad1aec2c80976555b8c6f9"
+      },
+      {
+        "path": "rust-game/src/bq030.rs",
+        "bytes": 36686,
+        "sha256": "f8d6a6b27ae156331ce300156419f54a27ea4c298b5f1722f773d39939d92937"
+      },
+      {
+        "path": "rust-game/src/attachment.rs",
+        "bytes": 28362,
+        "sha256": "b556b68fc0c2156ebd8bc47bb423671f45532572fe3ee15a256be4d15361f8dc"
+      },
+      {
+        "path": "rust-game/src/resolution.rs",
+        "bytes": 104288,
+        "sha256": "9097b903a37c8ebd2892e3044927925b749f0288f7897127e6d3573478779583"
+      },
+      {
+        "path": "rust-game/src/model.rs",
+        "bytes": 28973,
+        "sha256": "49774ad1aef8daa5f6d71c6e09c088cbe50e057038eb23c0a89ac0ea08616f26"
+      },
+      {
+        "path": "rust-game/src/rules.rs",
+        "bytes": 156327,
+        "sha256": "4f27ae71263e9012f1d3ecbeeb2e624551452f9fc00a82b32b5b4a987a8da05a"
+      },
+      {
+        "path": "rust-game/src/blue_expansion.rs",
+        "bytes": 21967,
+        "sha256": "733ae2f2ad8451a0c1739337ef6393d6f5feefd295d42c08171704c6b6d2e45b"
+      },
+      {
+        "path": "rust-game/data/cards.json",
+        "bytes": 138013,
+        "sha256": "e693c1438092e0d4ceb34ff2c88d0a173f1dcd6026a021ef9a2f533e55653423"
+      },
+      {
+        "path": "sites/src/kernel.mjs",
+        "bytes": 543,
+        "sha256": "7958f2e7b195b8bc034986a088d37d7a78db1493680a59062454e81f1c60d30d"
+      },
+      {
+        "path": "web/public/card-scans.json",
+        "bytes": 28597,
+        "sha256": "5941b4d44e326699848bb185064bb717dd5f8e90af957ed8241f5480653419f3"
+      },
+      {
+        "path": "web/public/cards/BQ030.jpg",
+        "bytes": 1333870,
+        "sha256": "85aaa7444b65060ab09f33f2ea9057647f88c961ff103fcca0c0763ce2564b86"
+      }
+    ]
+  },
+  "identity": {
+    "rules": "hegemony-pdf-v1",
+    "pool": "limited-v2.56-bq030-attachment-candidate",
+    "engine": "rust-v0.2.63-bq030-fixed-slots-candidate",
+    "fixtureEngine": "rust-v0.2.63-bq030-fixed-slots-fixture",
+    "ordinaryCards": 129,
+    "nonRegionCards": 119,
+    "regions": 10,
+    "scanRecords": 140
+  },
+  "toolchain": {
+    "rust": "1.90.0",
+    "cargo": "1.90.0",
+    "wasmBindgen": "0.2.104",
+    "node": "24.19.0"
+  },
+  "checks": {
+    "Native": {
+      "command": "cargo test --locked --workspace",
+      "passed": 930,
+      "failed": 0,
+      "library": 863,
+      "integration": 67,
+      "BQ030TestsIncludingNewCrossTests": 27,
+      "P1Tests": 20
+    },
+    "fullNativeWasm": {
+      "ok": true,
+      "cases": 433,
+      "wasmBytes": 2640686,
+      "wasmSha256": "23f0d415e584afcfa69c87d29df59e095e67dbe76a362265f19674431c068e1d",
+      "transitions": 24403,
+      "projections": 96975,
+      "quotes": 1,
+      "rejectedCommands": 319,
+      "rejectedDeckCreations": 42,
+      "choiceKinds": [
+        "damage",
+        "discard",
+        "investigation",
+        "mulligan",
+        "optional-shuffle",
+        "recipient",
+        "region_return",
+        "revealed-hand-discard",
+        "search",
+        "target",
+        "trigger"
+      ],
+      "slowestFixtureStepMs": 177.65,
+      "opaqueState": true,
+      "maximumU64SeedExact": true,
+      "nativeWasmStateAndViewsMatch": true
+    },
+    "BQ030NativeWasm": {
+      "passed": true,
+      "scope": "BQ030 Native Room command parity; browser playtesting remains with parent.",
+      "commands": 379,
+      "acceptedCommands": 377,
+      "rejectedCommands": 2,
+      "fullTransitionComparisons": 379,
+      "opaqueStateByteComparisons": 379,
+      "views": 1516,
+      "invalidStates": 37,
+      "invalidViewRejections": 37,
+      "invalidCommandRejections": 37,
+      "catalogComparisons": 1,
+      "bq030AcceptedDeclarations": 14,
+      "bq030AttachmentOrderAcceptedDeclarations": 4,
+      "bq030MultiObserverAcceptedDeclarations": 7,
+      "bq030AcceptedFrozenSourcesOffBoard": 2,
+      "bq030ReattachmentObservedTransitions": 1,
+      "bq030LethalBQ030ObservedTransitions": 3,
+      "bindingsBytes": 18203,
+      "bindingsSha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+      "wasmBytes": 2640686,
+      "wasmSha256": "23f0d415e584afcfa69c87d29df59e095e67dbe76a362265f19674431c068e1d",
+      "engine": "rust-v0.2.63-bq030-fixed-slots-candidate",
+      "catalogSha256": "7121a5006b6aa6e9a48dc9fae78ebb0696288905d392043763cca9a0c2ab11a3",
+      "sourceInputCount": 417,
+      "sourceInputChecksumsSha256": "41d296b3841ebcf8b6f7e868b1be987b9ab374a32672d6b9ae519a4cbc738c4c",
+      "stateInputsUsedVerbatim": true
+    },
+    "P1NativeWasm": {
+      "passed": true,
+      "engine": "rust-v0.2.63-bq030-fixed-slots-candidate",
+      "checkpoints": 946,
+      "commands": 889,
+      "rejections": 9,
+      "invalidStates": 21,
+      "views": 7298,
+      "originalInputsByteVerified": true,
+      "completeTransitionsEqual": true,
+      "opaqueStateBytesEqual": true,
+      "wasmBytes": 2640686,
+      "wasmSha256": "23f0d415e584afcfa69c87d29df59e095e67dbe76a362265f19674431c068e1d",
+      "scope": "Explicit native layouts and actual room commands; no natural browser play claim"
+    },
+    "finalWorkspaceP1InputsByteIdenticalToTestedArchive": 1865,
+    "UI": {
+      "files": 89,
+      "tests": 833,
+      "passed": 833,
+      "failed": 0,
+      "maxWorkers": 1
+    },
+    "Worker": {
+      "tests": 91,
+      "passed": 91,
+      "failed": 0,
+      "concurrency": 2,
+      "ordinaryHTTPWorkerdD1": true,
+      "preparedNativeContinuousServiceD1Cases": 15,
+      "newBQ030Cases": 7
+    },
+    "build": {
+      "typescriptConfigs": 2,
+      "typeChecksPassed": true,
+      "vitePassed": true,
+      "workerDryRunPassed": true,
+      "deployPerformed": false
+    },
+    "cardSourceAndScanTests": {
+      "passed": 6,
+      "failed": 0,
+      "ordinaryDefinitionsChecked": 129,
+      "scanRecords": 140
+    },
+    "HTTPPreview": {
+      "ok": true,
+      "engine": "rust-v0.2.63-bq030-fixed-slots-candidate",
+      "realHttp": true,
+      "realWorkerd": true,
+      "localD1SQLite": true,
+      "assetsChecked": 144,
+      "createJoinReady": true,
+      "unauthenticated401": true,
+      "idempotentCreateAndCommand": true,
+      "persistedReopen": true,
+      "reopenedVersion": 2,
+      "tableCounts": {
+        "rooms": 1,
+        "seats": 2,
+        "commands": 1,
+        "entry_receipts": 2,
+        "journal": 2
+      },
+      "parentBrowserGameplayAcceptance": "pending"
+    },
+    "sourceStartupScript": {
+      "path": "sites/scripts/qa-preview.mjs",
+      "actuallyStarted": true,
+      "healthHTTP": 200,
+      "clientHTTP": 200,
+      "BQ030ImageHTTP": 200,
+      "BQ030ImageSha256": "85aaa7444b65060ab09f33f2ea9057647f88c961ff103fcca0c0763ce2564b86",
+      "parentDirectReachability": false
+    }
+  },
+  "initialFailuresAndCorrections": {
+    "nativeFirstRun": "862 pass,1 fail: stale non-region118 assertion after total-card129 update. Updated119; final full930 pass.",
+    "newCrossFirstRun": "5/6. Standard attachment incorrectly started in Before window. Initial layout corrected to Action; actual commands advance to combat. Final27/27.",
+    "UIFirstRun": "827/833. Five new assertions incorrectly included UI id/label metadata in Native payload comparison; corrected and5/5 pass. Existing V02820s timeout under parallel Native load; followup1/1 at11.11s and final full833/833 without loosening timeout."
+  },
+  "evidenceFiles": [
+    {
+      "path": "native-workspace-final.log",
+      "bytes": 96554,
+      "sha256": "e8c50f03554c877eecd5a386336ebaa11bc0582321ee3b6953be8f4de87f7fab"
+    },
+    {
+      "path": "worker.log",
+      "bytes": 20925,
+      "sha256": "bd4d8cd686a280473c7f1b55b200f272b48dd4eb72034f06202cc6fded4f0600"
+    },
+    {
+      "path": "build.log",
+      "bytes": 1081,
+      "sha256": "0c4e276ab4f5fa029400a3a8f51a1ff333cd271f029da5e7abfa23edd504c2ff"
+    },
+    {
+      "path": "http-smoke.log",
+      "bytes": 435,
+      "sha256": "66c3bf7db57f77c0b18f6152e8d80f13132d137d989e4ceed5481d6582ca7f41"
+    },
+    {
+      "path": "ui-bq-final.log",
+      "bytes": 319,
+      "sha256": "7ccb99159c0b2f17d73ca46a0a401ef222e4a082cbb16b343990c620d61b0983"
+    },
+    {
+      "path": "ui-v028-followup.log",
+      "bytes": 321,
+      "sha256": "1ecf887d46e65d6c54d7a9a00a40ad5df183786d5d1b72d2b52dcd4e84085f4a"
+    },
+    {
+      "path": "ui-final-results.json",
+      "bytes": 303051,
+      "sha256": "8c27e75a5b8b7f0dcdad83332fa783a1a0be8b35c46dd26209fbc55f83c9661c"
+    },
+    {
+      "path": "full-native-corpus.log",
+      "bytes": 47742,
+      "sha256": "2652297e5884c564cd1de436fc04a4b035b98d4a8dbf27db9ba016d184f12c04"
+    },
+    {
+      "path": "full-wasm.log",
+      "bytes": 77270,
+      "sha256": "47bd7ce89324149c9d4ed059115d7ae91a37e44d64ed1410a297910340aba919"
+    },
+    {
+      "path": "bq-workspace-wasm.log",
+      "bytes": 1385,
+      "sha256": "87957c70aeaa9df60320607288d076bdcb882c9bc17caf26be2a9fbbd68732da"
+    },
+    {
+      "path": "p1-wasm.log",
+      "bytes": 433,
+      "sha256": "071c3fbb22dc4311ad6d2ac75a6da47a9a057f111cedab2803356c5bec7dfd0a"
+    },
+    {
+      "path": "card-tests.log",
+      "bytes": 721,
+      "sha256": "0e94dae71253d091653c49beb4ff3c3b8e6afac230efd3fa9052c2ec5cefd0d5"
+    }
+  ],
+  "boundaries": {
+    "naturalBrowserAcceptance": "pending with parent",
+    "deployed": false,
+    "forcePush": false,
+    "mainModified": false,
+    "newWorktreeCreated": false,
+    "LibraryAuthenticationRetried": false,
+    "unreceivedOriginalZIPVerified": false,
+    "fullRegenerableCorpusIncludedInGit": false,
+    "runtimeDatabaseOrDependenciesIncludedInGit": false
+  },
+  "parentAccess": {
+    "delivery": "New ordinary GitHub review branch; exact final commit and readback provided in delivery message.",
+    "startup": "Build current WASM and Sites from that exact commit, then cd sites and run HOST=0.0.0.0 PORT=8113 HEGEMONY_QA_STATE_DIR=/tmp/engine63-qa-d1 node scripts/qa-preview.mjs.",
+    "qaLocalhostIsParentAddress": false,
+    "browserGaps": [
+      "natural win resume and renown timing",
+      "fixed original empty slots after world depletion",
+      "BQ030 lethal optional accept/decline and multiple observer ordering",
+      "refresh/reconnect",
+      "scan readability and mobile controls"
+    ]
+  }
+}

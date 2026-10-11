@@ -1,10 +1,10 @@
-// Actual Engine62 Native inputs and WASM projections, without edited view fields.
+// Actual Engine63 Native inputs and WASM projections, without edited view fields.
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { cleanup, fireEvent, render, screen, within } from '@testing-library/react';
 import { afterEach, expect, it, vi } from 'vitest';
 import * as abi from '../../../rust-game-wasm/pkg/hegemony_wasm.js';
-import fixtures from './fixedSlotsNative62.fixture.json';
+import fixtures from './fixedSlotsNative63.fixture.json';
 import { Table } from './Table';
 
 abi.initSync({ module: readFileSync(resolve('../rust-game-wasm/pkg/hegemony_wasm_bg.wasm')) });

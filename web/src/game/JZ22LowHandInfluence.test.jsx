@@ -5,7 +5,7 @@ import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {createHash} from 'node:crypto';
 import * as wasm from '../../../rust-game-wasm/pkg/hegemony_wasm.js';
-import native from './jz22Native62Test.fixture.json';
+import native from './jz22Native63Test.fixture.json';
 import prior53 from './threeColorDeathNative53Test.fixture.json';
 import {Table} from './Table';
 import {ReadModal} from './ReadModal';
