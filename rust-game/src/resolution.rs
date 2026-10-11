@@ -393,7 +393,7 @@ impl Game {
                 snapshot
             },
             region,
-            source_region_instance: if matches!(c.definition.as_str(), "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028") {
+            source_region_instance: if matches!(c.definition.as_str(), "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030") {
                 region.and_then(|r| self.regions.get(r)).map(|r| r.card.id.clone())
             } else { None },
             attachment_host_instance: (c.definition == "JC090" || rules::definition(&c.definition)
@@ -980,6 +980,13 @@ impl Game {
         }
     }
     pub(crate) fn emit_event(&mut self, actor: usize, source: SourceSnapshot, event: Event) {
+        // User ruling: freeze successful attachment facts before death cleanup.
+        // enter_triggers runs after the attachment's continuous control change.
+        if event == Event::Enter
+            && self.attachments.iter().any(|a| a.card.id == source.card.id)
+        {
+            self.observe_attachment_committed(&source.card.id);
+        }
         for spec in rules::definition(&source.card.definition)
             .abilities
             .iter()
@@ -1006,6 +1013,9 @@ impl Game {
         }
     }
     pub(crate) fn declare_trigger(&mut self, declaration: Declaration) -> RuleResult<()> {
+        if self.bq030_declare(declaration.clone())? {
+            return Ok(());
+        }
         rules::validate_ability(&declaration.source.card.definition, &declaration.ability)?;
         let actor = declaration.actor;
         let spec = &declaration.ability;
@@ -1078,10 +1088,14 @@ impl Game {
         selected: Vec<String>,
     ) -> RuleResult<()> {
         rules::validate_ability(&declaration.source.card.definition, &declaration.ability)?;
+        if crate::bq030::is_attachment_declaration(&declaration) {
+            return self.bq030_choose(declaration, stage, selected);
+        }
         let Some(selected) = selected.first() else {
             return Ok(());
         };
         let targets = match stage {
+            DeclareChoice::AttachmentOrder => return Err("结附触发排序来源无效".into()),
             DeclareChoice::Accept => vec![],
             DeclareChoice::Target => {
                 let slot = declaration
@@ -1320,6 +1334,7 @@ impl Game {
                     if self.jz30_forecast_frozen_time(&frame)? { return Ok(()); }
                 }
                 Op::BQ028InspectTargetHandAttachments => return self.bq028_inspect_start(frame),
+                Op::BQ030AttachmentDraw { .. } => self.bq030_draw_one(&frame)?,
                 Op::BQ078ReturnNamelessCorpse => return self.bq078_return_start(frame),
                 Op::JZ45LockLocalTarget => self.jz45_lock_local_target(&frame)?,
                 Op::XQ44SearchDreamSealOnTarget => return self.deck_seal_search_start(frame, true),

@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.55-xq18-carrier-candidate",
-  "engineVersion": "rust-v0.2.60-xq18-carrier-candidate",
+  "cardPoolVersion": "limited-v2.56-bq030-attachment-candidate",
+  "engineVersion": "rust-v0.2.61-bq030-attachment-candidate",
   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
   "cards": [
     {
@@ -4975,6 +4975,44 @@
         "sha256": "20e18006a7b2f032d7d236f909dc57d75bfc14dc3acf36291c7ca16f3962008f"
       },
       "society": "国家机构"
+    },
+    {
+      "id": "BQ030",
+      "name": "裁定官",
+      "kind": "character",
+      "subtypes": [
+        "吸血鬼",
+        "政治家"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "蓝色"
+      ],
+      "loyaltyText": "蓝色",
+      "color": "蓝",
+      "magic": "鲜血",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        }
+      },
+      "defense": 1,
+      "text": "触发 当一个附属结附于本方角色上时，抓一张牌。",
+      "keywords": [],
+      "unique": false,
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "BQ030",
+        "image": "resource/ymsj-fun.github.io/cards/BQ030 裁定官.jpg",
+        "sha256": "85aaa7444b65060ab09f33f2ea9057647f88c961ff103fcca0c0763ce2564b86"
+      }
     }
   ],
   "decks": [

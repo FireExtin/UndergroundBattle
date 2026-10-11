@@ -1,3 +1,4 @@
+pub use crate::bq030::AttachmentEvent;
 use crate::society::{SocietyZone, SocietyZoneView};
 use serde::{Deserialize, Serialize};
 use std::collections::{BTreeMap, BTreeSet, VecDeque};
@@ -563,6 +564,7 @@ pub struct Declaration {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum DeclareChoice {
+    AttachmentOrder,
     Accept,
     Mode,
     Target,
