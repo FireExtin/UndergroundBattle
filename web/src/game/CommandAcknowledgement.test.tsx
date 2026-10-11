@@ -39,8 +39,8 @@ describe('command acknowledgement validation', () => {
     vi.stubGlobal('fetch', vi.fn(async (url: string, init?: RequestInit) => {
       if (url.endsWith('/catalog')) return json(testCatalog);
       if (!url.endsWith('/commands')) return json(readyView(commands.length ? 5 : 1));
-      commands.push(JSON.parse(String(init?.body)));
-      return recover ? json(readyView(2)) : invalidReply();
+      const command = JSON.parse(String(init?.body)); commands.push(command);
+      return recover ? json(readyView(command.commandId === commands[0].commandId ? 2 : command.expectedVersion + 1)) : invalidReply();
     }));
     let hook = renderHook(useGame); await act(async () => {});
     await act(async () => { await hook.result.current.act({ kind: 'ready' }); });
@@ -92,4 +92,56 @@ describe('command acknowledgement validation', () => {
     expect(hook.result.current.view?.players[0].ready).toBe(true);
     expect(hook.result.current.uncertain).toBe(false); expect(readPending(seat)).toBeNull();
   });
+
+  it.each([4, 0])('retains the original expected-v5 command after a full ACK v%i while reads reach v9', async ackVersion => {
+    const commands: Command[] = [];
+    let recover = false;
+    vi.stubGlobal('fetch', vi.fn(async (url: string, init?: RequestInit) => {
+      if (url.endsWith('/catalog')) return json(testCatalog);
+      if (!url.endsWith('/commands')) return json(readyView(commands.length ? 9 : 5));
+      const command = JSON.parse(String(init?.body)); commands.push(command);
+      return json(readyView(!recover ? ackVersion : command.commandId === commands[0].commandId ? 6 : 10));
+    }));
+    const hook = renderHook(useGame); await act(async () => {});
+    await act(async () => { await hook.result.current.act({ kind: 'ready' }); });
+    const original = commands[0];
+    expect(hook.result.current.uncertain).toBe(true);
+    expect(readPending(seat)).toEqual({ roomId: seat.roomId, seat: 0, ...original });
+    expect(original.expectedVersion).toBe(5);
+    expect(commands).toHaveLength(2); expect(commands[1]).toEqual(original);
+    expect(hook.result.current.view?.version).toBe(9);
+    recover = true;
+    await act(async () => { await hook.result.current.act({ kind: 'ready' }); });
+    expect(commands).toHaveLength(3); expect(commands[2]).toEqual(original);
+    expect(hook.result.current.uncertain).toBe(false); expect(readPending(seat)).toBeNull();
+    expect(hook.result.current.view?.version).toBe(9);
+    await act(async () => { await hook.result.current.act({ kind: 'ready' }); });
+    expect(commands).toHaveLength(4); expect(commands[3].commandId).not.toBe(original.commandId);
+    expect(commands[3].expectedVersion).toBe(9);
+  });
+
+  it.each([{ ackVersion: 5, kind: 'pauseRoom' }, { ackVersion: 6, kind: 'ready' }])(
+    'confirms a valid $kind receipt v$ackVersion for expected-v5 without replacing the v9 table', async ({ ackVersion, kind }) => {
+      const commands: Command[] = [];
+      let release: (() => void) | undefined;
+      vi.stubGlobal('fetch', vi.fn((url: string, init?: RequestInit) => {
+        if (url.endsWith('/catalog')) return Promise.resolve(json(testCatalog));
+        const table = { ...readyView(commands.length ? 9 : 5), status: kind === 'pauseRoom' ? 'playing' as const : 'lobby' as const };
+        if (!url.endsWith('/commands')) return Promise.resolve(json(table));
+        commands.push(JSON.parse(String(init?.body)));
+        return new Promise<Response>(resolve => { release = () => resolve(json({ ...table, version: ackVersion,
+          ...(kind === 'pauseRoom' ? { pause: { pausedAtMs: 1000, pausedBy: 0 } } : {}) })); });
+      }));
+      const hook = renderHook(useGame); await act(async () => {});
+      let request: Promise<void> | undefined;
+      await act(async () => { request = hook.result.current.act({ kind }); });
+      expect(commands).toHaveLength(1); expect(commands[0].expectedVersion).toBe(5);
+      act(() => { hook.result.current.refresh(); });
+      await act(async () => { await vi.advanceTimersByTimeAsync(0); });
+      expect(hook.result.current.view?.version).toBe(9);
+      await act(async () => { release!(); await request; });
+      expect(hook.result.current.view?.version).toBe(9);
+      expect(commands).toHaveLength(1);
+      expect(hook.result.current.uncertain).toBe(false); expect(readPending(seat)).toBeNull();
+    });
 });

@@ -357,9 +357,9 @@ describe('room lifecycle and reconciliation', () => {
       if (url.endsWith('/commands')) {
         commands.push(JSON.parse(String(init?.body)));
         if (commands.length === 1) throw new Error('lost committed ACK');
-        return blocked ? json({ message: 'Sign in required' }, 403) : json({ ...testView, version: 2 });
+        return blocked ? json({ message: 'Sign in required' }, 403) : json({ ...testView, version: 4 });
       }
-      return url.endsWith('/catalog') ? json(testCatalog) : json({ ...testView, version: 3 });
+      return url.endsWith('/catalog') ? json(testCatalog) : json({ ...testView, version: commands.length ? 5 : 3 });
     }));
     const { result } = renderHook(useGame);
     await waitFor(() => expect(result.current.view?.version).toBe(3));
@@ -370,7 +370,7 @@ describe('room lifecycle and reconciliation', () => {
     blocked = false;
     await act(async () => { await result.current.act({ kind: 'deploy', cardId: 'do-not-send-new' }); });
     expect(commands).toHaveLength(3); expect(commands[2]).toEqual(commands[0]);
-    expect(result.current.view?.version).toBe(3); expect(result.current.uncertain).toBe(false);
+    expect(result.current.view?.version).toBe(5); expect(result.current.uncertain).toBe(false);
     expect(pendingJson()).toBeNull();
   });
 });

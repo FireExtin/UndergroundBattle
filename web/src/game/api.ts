@@ -281,7 +281,8 @@ export async function sendCommand(session: SavedSession, version: number, action
     method: 'POST', headers: { ...headers(session), 'Content-Type': 'application/json' },
     body: JSON.stringify({ commandId, expectedVersion: version, action: actionPayload(action) }),
   });
-  if (!isRoomView(view, session)) throw new ApiError(0, '行动回执格式不正确，结果尚未确认。');
+  // A deadline tick may share the command revision; replay still binds the original version.
+  if (!isRoomView(view, session) || view.version < version) throw new ApiError(0, '行动回执格式不正确，结果尚未确认。');
   return view;
 }
 

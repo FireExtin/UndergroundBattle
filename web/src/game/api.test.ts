@@ -40,7 +40,7 @@ describe('cloud table API', () => {
     expect(() => actionForRoom(pacedView('passed'), { kind: 'pass' })).toThrow();
   });
   it('stores a complete response wrapper without UI labels and retries its original body after a lost ACK', async () => {
-    const fetchMock = vi.fn().mockRejectedValueOnce(new Error('lost ACK')).mockResolvedValueOnce(new Response(JSON.stringify(pacedView('composing')), { status: 200 }));
+    const fetchMock = vi.fn().mockRejectedValueOnce(new Error('lost ACK')).mockResolvedValueOnce(new Response(JSON.stringify({ ...pacedView('composing'), version: 8 }), { status: 200 }));
     vi.stubGlobal('fetch', fetchMock);
     const payload = actionForRoom(pacedView('composing'), { id: 'display-only', label: '响应', kind: 'play', cardId: 'source', targetId: 'target' } as Parameters<typeof actionPayload>[0]);
     await expect(sendCommand(session, 7, payload, 'original-command-id')).rejects.toMatchObject({ status: 0 });
@@ -66,7 +66,7 @@ describe('cloud table API', () => {
     expect(readSession()).toBeNull();
   });
   it('sends a bearer token and canonical authoritative action with command identity and version', async () => {
-    const fetchMock = vi.fn().mockResolvedValue(new Response(JSON.stringify(testView), { status: 200 }));
+    const fetchMock = vi.fn().mockResolvedValue(new Response(JSON.stringify({ ...testView, version: 8 }), { status: 200 }));
     vi.stubGlobal('fetch', fetchMock);
     await sendCommand(session, 7, actionPayload({ id: 'ui-action', label: '派遣', kind: 'deploy', cardId: 'instance-a', region: 2 }), 'stable-command');
     const [url, init] = fetchMock.mock.calls[0];
@@ -79,7 +79,7 @@ describe('cloud table API', () => {
     await expect(getState(session)).rejects.toMatchObject({ status: 409, view: testView });
   });
   it('forwards an authoritative ability and sacrifice cost selection without display metadata', async () => {
-    const fetchMock = vi.fn().mockResolvedValue(new Response(JSON.stringify(testView), { status: 200 }));
+    const fetchMock = vi.fn().mockResolvedValue(new Response(JSON.stringify({ ...testView, version: 9 }), { status: 200 }));
     vi.stubGlobal('fetch', fetchMock);
     await sendCommand(session, 8, {
       id: 'fast-response', label: '牺牲角色并响应', description: '服务端合法费用', kind: 'activate',
@@ -145,7 +145,7 @@ describe('cloud table API', () => {
       cards: [{ cardId: 'JC125', count: 50 }], rulesVersion: 'rules1', cardPoolVersion: 'pool1', engineVersion: 'engine1', updatedAt: '2026-10-02T16:00:00Z' };
     const fetchMock = vi.fn().mockResolvedValueOnce(new Response(JSON.stringify({ entryIdempotency: true }), { status: 200 }))
       .mockRejectedValueOnce(new Error('lost ACK')).mockResolvedValueOnce(new Response(JSON.stringify(session), { status: 200 }))
-      .mockResolvedValueOnce(new Response(JSON.stringify(testView), { status: 200 }));
+      .mockResolvedValueOnce(new Response(JSON.stringify({ ...testView, version: 8 }), { status: 200 }));
     vi.stubGlobal('fetch', fetchMock); await getCatalog();
     expect(await createRoomWithDeck('构筑玩家', 'teams', draft)).toEqual(session);
     expect(fetchMock.mock.calls[1][1].body).toBe(fetchMock.mock.calls[2][1].body);
