@@ -8,7 +8,7 @@ impl Game {
         let instance = frame.source.source_region_instance.as_ref()?;
         self.regions
             .get(r)
-            .filter(|r| &r.card.id == instance)
+            .filter(|r| !r.vacant && &r.card.id == instance)
             .map(|_| r)
     }
     fn jc032_match(c: &Card) -> bool {

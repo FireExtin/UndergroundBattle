@@ -23,7 +23,7 @@ impl Game {
         }
         for a in &self.attachments {
             if a.card.definition == "JC090" && !a.card.face_down && self.attachment_host_valid(a) {
-                if let Some(r) = self.regions.iter().position(|r| r.card.id == a.host_id) {
+                if let Some(r) = self.regions.iter().position(|r| !r.vacant && r.card.id == a.host_id) {
                     let mut source = self.source_snapshot(&a.card, Some(r));
                     source.source_region_instance = Some(a.host_id.clone());
                     observers.push(source);

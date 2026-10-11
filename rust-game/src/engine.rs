@@ -211,7 +211,7 @@ impl Game {
             && !self.players[seat].eliminated
     }
     pub(crate) fn accessible(&self, seat: usize, region: usize) -> bool {
-        region < self.regions.len()
+        self.region_live(region)
             && (self.mode == "duel"
                 || if seat % 2 == 0 {
                     region <= 2
@@ -787,7 +787,7 @@ impl Game {
                         op,
                         rules::Op::Move(_, rules::Destination::HiddenInChosenRegion)
                     )
-                }) && a.region.is_none_or(|r| r >= self.regions.len())
+                }) && a.region.is_none_or(|r| !self.region_live(r))
                 {
                     return Err("请选择合法地区".into());
                 }
@@ -888,6 +888,7 @@ impl Game {
         let count = if self.mode == "duel" { 3 } else { 5 };
         for _ in 0..count {
             self.regions.push(Region {
+                vacant: false,
                 card: world.remove(0),
                 influence: [0; 2],
                 cards: vec![],
@@ -1039,6 +1040,10 @@ impl Game {
         let mut frame = item.frame.take().ok_or("v2堆叠对象缺少已支付的通用frame")?;
         if let Some(c) = item.card.take() {
             if let Some(region) = item.deploy_region {
+                if !self.region_live(region) {
+                    self.effects.push_front(Effect::Bury { card: c });
+                    return Ok(());
+                }
                 let mut c = self.fresh(c);
                 c.face_down = false;
                 let id = c.id.clone();
@@ -1159,8 +1164,12 @@ impl Game {
                     self.emit_event(seat, source, Event::ConfrontationStart);
                 }
             }
-            Window::Mobility => self.begin_window(Window::Before(0, 0)),
+            Window::Mobility => self.begin_next_region(0),
             Window::Before(region, contest) => {
+                if !self.region_live(region) {
+                    self.begin_next_region(region + 1);
+                    return Ok(());
+                }
                 self.begin_window(Window::After(region, contest));
                 if !self.regions[region].skip {
                     let counts = self.contest_counts(region, contest);
@@ -1177,17 +1186,16 @@ impl Game {
                 }
             }
             Window::After(region, contest) => {
-                if contest < 2 {
+                if self.region_live(region) && contest < 2 {
                     self.begin_window(Window::Before(region, contest + 1));
-                } else if region + 1 < self.regions.len() {
-                    self.begin_window(Window::Before(region + 1, 0));
                 } else {
-                    self.begin_window(Window::End);
+                    self.begin_next_region(region + 1);
                 }
             }
             Window::Win(region, seat) => {
                 let context = self.win_contexts.pop().ok_or("赢区缺少恢复上下文")?;
                 if context.region != region || context.seat != seat
+                    || !self.region_live(region)
                     || self.regions[region].card.id != context.region_instance {
                     return Err("赢区恢复上下文已失效".into());
                 }
@@ -1210,7 +1218,15 @@ impl Game {
         }
         Ok(())
     }
+    fn begin_next_region(&mut self, start: usize) {
+        if let Some(region) = (start..self.regions.len()).find(|&r| self.region_live(r)) {
+            self.begin_window(Window::Before(region, 0));
+        } else {
+            self.begin_window(Window::End);
+        }
+    }
     pub(crate) fn contest_counts(&self, region: usize, contest: usize) -> [u32; 2] {
+        if !self.region_live(region) { return [0, 0]; }
         let mut counts = [0; 2];
         for c in &self.regions[region].cards {
             counts[self.team(c.controller)] += self.icons(c, region).at(contest);
@@ -1235,6 +1251,7 @@ impl Game {
         contest: usize,
         amount: u32,
     ) -> RuleResult<()> {
+        if !self.region_live(region) { return Ok(()); }
         self.note(format!(
             "地区 {} {}：团队 {} 差值 {}",
             region + 1,
@@ -1310,6 +1327,7 @@ impl Game {
         let Some(Window::Before(region, contest)) = self.window else {
             return Err("仅可在对抗前发动先手特权".into());
         };
+        if !self.region_live(region) { return Err("空位不能发动先手特权".into()); }
         let counts = self.contest_counts(region, contest);
         if !self.stack.is_empty()
             || self.privilege_used
@@ -1495,6 +1513,7 @@ impl Game {
                 region,
                 amount,
             } => {
+                if !self.region_live(region) { return Ok(()); }
                 let options: Vec<_> = self.regions[region]
                     .cards
                     .iter()
@@ -1522,6 +1541,7 @@ impl Game {
                 amount,
                 seats,
             } => {
+                if !self.region_live(region) { return Ok(()); }
                 let chooser = seats[0];
                 let options = seats
                     .into_iter()
@@ -1547,7 +1567,7 @@ impl Game {
                 );
             }
             Effect::Award { seat, region, region_instance } => {
-                if self.regions.get(region).is_none_or(|r| r.card.id != region_instance)
+                if self.regions.get(region).is_none_or(|r| r.vacant || r.card.id != region_instance)
                     || self.win_contexts.iter().any(|c| c.region_instance == region_instance) {
                     return Ok(());
                 }
@@ -1560,6 +1580,7 @@ impl Game {
             Effect::PrepareRegionReturn { region } => self.prepare_region_return(region)?,
             Effect::CommitRegionReturn { region } => self.commit_region_return(region)?,
             Effect::Bottom { seat, region } => {
+                if !self.region_live(region) { return Ok(()); }
                 if self
                     .region_return
                     .as_ref()
@@ -1624,6 +1645,7 @@ impl Game {
                 }
             }
             Effect::Score { seat, region } => {
+                if !self.region_live(region) { return Ok(()); }
                 let definition = self.regions[region].card.definition.clone();
                 let mut scored = self.regions[region].card.clone();
                 scored.owner = seat;
@@ -1640,11 +1662,18 @@ impl Game {
                     let c = self.world.remove(0);
                     let c = self.fresh(c);
                     self.regions[region] = Region {
+                        vacant: false,
                         card: c,
                         influence: [0; 2],
                         cards: vec![],
                         skip: false,
                     };
+                } else {
+                    // Keep the original slot. The retired card metadata is not
+                    // part of the live world and is never projected as a card.
+                    self.regions[region].vacant = true;
+                    self.regions[region].influence = [0, 0];
+                    self.regions[region].skip = false;
                 }
                 self.check_win();
                 if self.status == "playing" {
@@ -2255,6 +2284,15 @@ impl Game {
             .iter()
             .enumerate()
             .map(|(index, r)| {
+                if r.vacant {
+                    return RegionView {
+                        id: format!("empty-region:{index}"), index,
+                        card_id: String::new(), name: "空位".into(),
+                        threshold: 0, points: 0, influence: [0, 0],
+                        skip_confrontation: true, icons_by_team: [Icons::default(); 2],
+                        characters: vec![],
+                    };
+                }
                 let d = card(&r.card.definition);
                 RegionView {
                     id: r.card.id.clone(),
@@ -2524,6 +2562,7 @@ impl Game {
                 }
                 if d.kind == "character" {
                     for r in 0..self.regions.len() {
+                        if !self.region_live(r) { continue; }
                         for kind in ["deploy", "conceal"] {
                             candidates.push((
                                 Action {
@@ -2556,6 +2595,7 @@ impl Game {
                         continue;
                     }
                     for r in 0..self.regions.len() {
+                        if !self.region_live(r) { continue; }
                         candidates.push((
                             Action {
                                 card_id: Some(c.id.clone()),

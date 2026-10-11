@@ -139,12 +139,10 @@ impl Game {
                             || p.choice.description != "选择符合数量限制的选项，然后确认。"
                             || p.choice.min != Some(1)
                             || p.choice.max != Some(1)
-                            || p.choice.options.len() != self.regions.len()
-                            || p.choice
-                                .options
-                                .iter()
-                                .enumerate()
-                                .any(|(r, o)| o.id != format!("region:{r}") || o.card.is_some()))
+                            || p.choice.options.iter().map(|o| o.id.clone()).collect::<Vec<_>>()
+                                != self.regions.iter().enumerate().filter(|(_, r)| !r.vacant)
+                                    .map(|(r, _)| format!("region:{r}")).collect::<Vec<_>>()
+                            || p.choice.options.iter().any(|o| o.card.is_some()))
                     {
                         return Err("JC050只能等待原操控者选择地区".into());
                     }

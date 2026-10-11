@@ -376,6 +376,10 @@ impl Player {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Region {
+    /// A fixed slot whose region has left play. `card` is retired metadata for
+    /// persistence compatibility, never an in-play card or attachment host.
+    #[serde(default, skip_serializing_if = "is_false")]
+    pub vacant: bool,
     pub card: Card,
     pub influence: [u32; 2],
     pub cards: Vec<Card>,
@@ -812,6 +816,7 @@ impl Game {
             ));
         }
         let game: Self = serde_json::from_str(state).map_err(|_| "v2持久状态字段无效")?;
+        game.validate_vacant_regions()?;
         game.validate_win_contexts()?;
         game.validate_sealed_cards()?;
         game.validate_jz50_search_choice()?;
@@ -830,6 +835,23 @@ impl Game {
         Ok(game)
     }
 
+    pub(crate) fn region_live(&self, region: usize) -> bool {
+        self.regions.get(region).is_some_and(|r| !r.vacant)
+    }
+    pub(crate) fn validate_vacant_regions(&self) -> Result<(), String> {
+        for (index, r) in self.regions.iter().enumerate().filter(|(_, r)| r.vacant) {
+            if !self.world.is_empty() || !r.cards.is_empty() || r.influence != [0, 0] || r.skip
+                || !crate::catalog::catalog().cards.iter().any(|d| d.id == r.card.definition && d.kind == "region")
+                || self.attachments.iter().any(|a| a.host_id == r.card.id)
+                || self.sealed_cards.iter().any(|s| s.host_id == r.card.id)
+                || self.region_return.as_ref().is_some_and(|b| b.region == index)
+                || matches!(self.window, Some(Window::Before(region, _)) if region == index)
+            {
+                return Err("空位不能保留场内实体、标志、宿主或对抗前步骤".into());
+            }
+        }
+        Ok(())
+    }
     pub(crate) fn validate_win_contexts(&self) -> Result<(), String> {
         if self.win_contexts.is_empty() {
             return if self.status == "playing" && matches!(self.window, Some(Window::Win(_, _))) {
@@ -850,7 +872,7 @@ impl Game {
             if context.seat >= self.players.len()
                 || !regions.insert(context.region)
                 || self.regions.get(context.region)
-                    .is_none_or(|r| r.card.id != context.region_instance)
+                    .is_none_or(|r| r.vacant || r.card.id != context.region_instance)
             {
                 return Err("赢区上下文地区、实例或执行席无效".into());
             }
@@ -864,6 +886,7 @@ impl Game {
                     Window::Action(team) => team < 2,
                     Window::Before(region, contest) | Window::After(region, contest) => {
                         region < self.regions.len() && contest < 3
+                            && (self.region_live(region) || context.resume_window == Window::After(region, 2))
                             && (!self.win_contexts.iter().any(|c| c.region == region)
                                 || context.resume_window == Window::After(region, 2))
                     }
