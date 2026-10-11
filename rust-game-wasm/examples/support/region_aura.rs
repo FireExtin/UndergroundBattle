@@ -266,7 +266,7 @@ fn boundary(kind: &str) -> Value {
             });
         }
         if kind == "win-four-owner-return" {
-            pre.game.window = Some(Window::Win(0, 0));
+            prepared_win(&mut pre.game, 0, 0);
             pre.game.priority_team = 0;
             pre.game.active_team = 0;
             pre.game.passed.clear();

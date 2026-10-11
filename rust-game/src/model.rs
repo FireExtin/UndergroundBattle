@@ -399,6 +399,15 @@ pub enum Window {
     Win(usize, usize),
     End,
 }
+/// A captured region temporarily interrupts a step, including another win.
+/// Its physical instance keeps nested wins bound to their original regions.
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct WinContext {
+    pub region: usize,
+    pub seat: usize,
+    pub region_instance: String,
+    pub resume_window: Window,
+}
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Effect {
     RegionConfrontationsEnded {
@@ -444,6 +453,7 @@ pub enum Effect {
     Award {
         seat: usize,
         region: usize,
+        region_instance: String,
     },
     Bottom {
         seat: usize,
@@ -766,6 +776,8 @@ pub struct Game {
     pub pending: Option<Pending>,
     pub effects: VecDeque<Effect>,
     pub window: Option<Window>,
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub win_contexts: Vec<WinContext>,
     pub passed: BTreeSet<usize>,
     pub team_passed: [bool; 2],
     pub privilege_used: bool,
@@ -800,6 +812,7 @@ impl Game {
             ));
         }
         let game: Self = serde_json::from_str(state).map_err(|_| "v2持久状态字段无效")?;
+        game.validate_win_contexts()?;
         game.validate_sealed_cards()?;
         game.validate_jz50_search_choice()?;
         game.validate_entry_search_choice()?;
@@ -815,6 +828,54 @@ impl Game {
         game.validate_black_expansion_state()?;
         game.validate_gray_expansion_state()?;
         Ok(game)
+    }
+
+    pub(crate) fn validate_win_contexts(&self) -> Result<(), String> {
+        if self.win_contexts.is_empty() {
+            return if self.status == "playing" && matches!(self.window, Some(Window::Win(_, _))) {
+                Err("赢区窗口缺少恢复上下文".into())
+            } else {
+                Ok(())
+            };
+        }
+        let top = self.win_contexts.last().unwrap();
+        if self.status != "playing"
+            || self.window != Some(Window::Win(top.region, top.seat))
+            || self.win_contexts.len() > self.regions.len()
+        {
+            return Err("赢区上下文与当前步骤不一致".into());
+        }
+        let mut regions = BTreeSet::new();
+        for (index, context) in self.win_contexts.iter().enumerate() {
+            if context.seat >= self.players.len()
+                || !regions.insert(context.region)
+                || self.regions.get(context.region)
+                    .is_none_or(|r| r.card.id != context.region_instance)
+            {
+                return Err("赢区上下文地区、实例或执行席无效".into());
+            }
+            if index > 0 {
+                let parent = &self.win_contexts[index - 1];
+                if context.resume_window != Window::Win(parent.region, parent.seat) {
+                    return Err("嵌套赢区恢复链不一致".into());
+                }
+            } else {
+                let valid = match context.resume_window {
+                    Window::Action(team) => team < 2,
+                    Window::Before(region, contest) | Window::After(region, contest) => {
+                        region < self.regions.len() && contest < 3
+                            && (!self.win_contexts.iter().any(|c| c.region == region)
+                                || context.resume_window == Window::After(region, 2))
+                    }
+                    Window::Win(_, _) => false,
+                    _ => true,
+                };
+                if !valid {
+                    return Err("赢区恢复步骤无效".into());
+                }
+            }
+        }
+        Ok(())
     }
 }
 

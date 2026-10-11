@@ -1,6 +1,6 @@
 #![cfg(feature = "native")]
 use hegemony_server::{
-    model::{Action, Window},
+    model::{Action, WinContext, Window},
     room::{RoomCommand, RoomEnvelope, SessionAction},
     service::{CreateRoom, JoinRoom, Session, Store},
 };
@@ -93,6 +93,11 @@ async fn fixture(
             std::mem::swap(&mut g.regions[0].card, &mut g.world[i]);
         }
         g.window = Some(Window::Win(0, 0));
+        g.win_contexts = vec![WinContext {
+            region: 0, seat: 0,
+            region_instance: g.regions[0].card.id.clone(),
+            resume_window: Window::After(0, 2),
+        }];
         for s in 0..n {
             g.players[s].deck.clear();
             for _ in 0..2 {

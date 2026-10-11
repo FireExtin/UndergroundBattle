@@ -81,6 +81,7 @@ impl Game {
             pending: None,
             effects: Default::default(),
             window: None,
+            win_contexts: vec![],
             passed: Default::default(),
             team_passed: [false; 2],
             privilege_used: false,
@@ -521,6 +522,27 @@ impl Game {
         }
     }
     pub(crate) fn begin_window(&mut self, window: Window) {
+        if let Window::Win(region, seat) = window {
+            let region_instance = self.regions[region].card.id.clone();
+            if !self.win_contexts.iter().any(|c| c.region_instance == region_instance) {
+                // A nested capture also invalidates an earlier saved contest
+                // in this region; its replacement must not contest this turn.
+                for context in &mut self.win_contexts {
+                    if matches!(context.resume_window,
+                        Window::Before(r, _) | Window::After(r, _) if r == region) {
+                        context.resume_window = Window::After(region, 2);
+                    }
+                }
+                let interrupted = self.window.clone().unwrap_or(Window::After(region, 2));
+                // Replacement does not give the captured region another set of
+                // contests this turn. Wins elsewhere preserve the interrupted step.
+                let resume_window = match interrupted {
+                    Window::Before(r, _) | Window::After(r, _) if r == region => Window::After(region, 2),
+                    _ => interrupted,
+                };
+                self.win_contexts.push(WinContext { region, seat, region_instance, resume_window });
+            }
+        }
         if let Window::Action(team) = window {
             self.active_team = team;
         }
@@ -815,6 +837,7 @@ impl Game {
         self.attachments.clear();
         self.sealed_cards.clear();
         self.region_return = None;
+        self.win_contexts.clear();
         self.world.clear();
         self.stack.clear();
         self.pending = None;
@@ -971,6 +994,7 @@ impl Game {
         self.effects.clear();
         self.stack.clear();
         self.note(format!("团队 {} 获胜", team + 1));
+        self.win_contexts.clear();
     }
     pub(crate) fn check_win(&mut self) {
         let mut scores = [0; 2];
@@ -1162,6 +1186,11 @@ impl Game {
                 }
             }
             Window::Win(region, seat) => {
+                let context = self.win_contexts.pop().ok_or("赢区缺少恢复上下文")?;
+                if context.region != region || context.seat != seat
+                    || self.regions[region].card.id != context.region_instance {
+                    return Err("赢区恢复上下文已失效".into());
+                }
                 self.effects
                     .push_back(Effect::PrepareRegionReturn { region });
                 for owner in 0..self.players.len() {
@@ -1173,7 +1202,7 @@ impl Game {
                 self.effects
                     .push_back(Effect::CommitRegionReturn { region });
                 self.effects.push_back(Effect::Score { seat, region });
-                self.begin_window(Window::After(region, 2));
+                self.begin_window(context.resume_window);
             }
             Window::End => {
                 self.effects.push_back(Effect::Cleanup);
@@ -1298,6 +1327,12 @@ impl Game {
         self.privilege_used = true;
         self.begin_window(Window::After(region, contest));
         self.reward(self.first_team, region, contest, 1)?;
+        if contest == 2 {
+            self.effects.push_back(Effect::RegionConfrontationsEnded {
+                region,
+                region_instance: self.regions[region].card.id.clone(),
+            });
+        }
         Ok(())
     }
     pub(crate) fn choice(
@@ -1511,7 +1546,11 @@ impl Game {
                     },
                 );
             }
-            Effect::Award { seat, region } => {
+            Effect::Award { seat, region, region_instance } => {
+                if self.regions.get(region).is_none_or(|r| r.card.id != region_instance)
+                    || self.win_contexts.iter().any(|c| c.region_instance == region_instance) {
+                    return Ok(());
+                }
                 self.note(format!(
                     "团队 {} 达到地区阈值，赢区前快速行动窗口",
                     self.team(seat) + 1

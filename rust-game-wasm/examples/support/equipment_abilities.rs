@@ -339,7 +339,7 @@ fn boundary(kind: &str) -> Value {
             .unwrap()
             .owner = 3;
         gun = pre_attach(&mut g, &gun, &host);
-        g.window = Some(Window::Win(0, 0));
+        prepared_win(&mut g, 0, 0);
     }
     if kind == "water-group" {
         let c = g.make_card("BQ022", 2);
