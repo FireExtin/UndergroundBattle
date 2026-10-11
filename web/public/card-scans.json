@@ -626,7 +626,7 @@
   },
   "JZ22": {
     "url": "/cards/JZ22.jpg",
-    "source": "JZ22 暗夜游掠者.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JZ22 暗夜游掠者.jpg",
     "sha256": "b368bc3d75306dd0112cff180c8b10501c191e30b0c8d06d78e901ea20cd6160"
   },
   "JC050": {
@@ -683,5 +683,15 @@
     "url": "/cards/XQ18.jpg",
     "source": "resource/ymsj-fun.github.io/cards/XQ18 计时人.jpg",
     "sha256": "c33ebe42e01874807b60ff591a8e94c62e0ce8bfb1bdef7626bfad10432ed10e"
+  },
+  "XQ44": {
+    "url": "/cards/XQ44.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/XQ44 随风入梦.jpg",
+    "sha256": "d4f41bf42958d15358bc7fcb1119967ab94bd187c758273952fd6b70475de047"
+  },
+  "JZ02": {
+    "url": "/cards/JZ02.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JZ02 西姆斯教授.jpg",
+    "sha256": "59546782075c26039bdc7d4da34a621bb86de1d8d34c25710a0d59d6761a19e8"
   }
 }
