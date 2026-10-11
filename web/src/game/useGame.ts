@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { actionForRoom, ApiError, clearPending, createRoom, createRoomWithDeck, forgetSavedSeat, getCatalog, getState, joinRoom, joinRoomWithDeck, newCommandId, pollState, readActiveSession, readPendings, readSavedSeats, readSession, retireSeatPendings, returnToLobby, savePending, saveSession, sendCommand, type PendingCommand } from './api';
+import { actionForRoom, ApiError, clearPending, createRoom, createRoomWithDeck, forgetSavedSeat, getCatalog, getState, isRoomView, joinRoom, joinRoomWithDeck, newCommandId, pollState, readActiveSession, readPendings, readSavedSeats, readSession, retireSeatPendings, returnToLobby, savePending, saveSession, sendCommand, type PendingCommand } from './api';
 import type { Action, Catalog, SavedSession, Session, View } from './types';
 import type { DeckDraft } from './deckLibrary';
 import { playerStorage, readPlayerMode, selectPlayerMode, type PlayerMode } from './playerStorage';
@@ -81,8 +81,7 @@ export function useGame() {
     setError(unbound(pending.current) ? unboundMessage : !persisted ? retirementMessage : failure.message); return true;
   };
   const accept = useCallback((next: View) => {
-    if (next.roomId === activeSession.current?.roomId && next.you === `p${activeSession.current.seat}`
-      && Number.isSafeInteger(next.version) && next.version >= 0) {
+    if (activeSession.current && isRoomView(next, activeSession.current)) {
       acceptedVersion.current = Math.max(acceptedVersion.current, next.version);
       acceptedView.current = newerView(acceptedView.current, next);
       setView(acceptedView.current);
@@ -220,7 +219,8 @@ export function useGame() {
         // A lost acknowledgement can hide a committed action. Retry only its original identity.
         result = await sendCommand(currentSession, command.expectedVersion, command.action, command.commandId);
       }
-      accept(result); confirmed = true;
+      if (!accept(result)) throw new ApiError(0, '行动回执未能确认，请同步后重试原行动。');
+      confirmed = true;
     }
     catch (e) {
       if (!isActive(currentSession)) return;

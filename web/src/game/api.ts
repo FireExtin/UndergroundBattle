@@ -171,6 +171,29 @@ function timedSignal(signal?: AbortSignal | null): AbortSignal {
 }
 const headers = (session: SavedSession) => ({ Authorization: `Bearer ${session.token}` });
 const roomPath = (session: SavedSession) => `/api/rooms/${encodeURIComponent(session.roomId)}`;
+/** A successful table response must belong to this seat and contain a usable table. */
+export function isRoomView(value: unknown, session: SavedSession): value is View {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return false;
+  const view = value as Partial<View>;
+  const records = (items: unknown) => Array.isArray(items)
+    && items.every(item => !!item && typeof item === 'object' && !Array.isArray(item));
+  return view.roomId === session.roomId && view.you === `p${session.seat}`
+    && typeof view.version === 'number' && Number.isSafeInteger(view.version) && view.version >= 0
+    && typeof view.inviteCode === 'string' && (view.mode === 'duel' || view.mode === 'teams')
+    && (view.status === 'lobby' || view.status === 'playing' || view.status === 'finished')
+    && [view.firstTeam, view.activeTeam, view.priorityTeam, view.turn, view.winScore].every(Number.isSafeInteger)
+    && typeof view.phase === 'string' && typeof view.step === 'string'
+    && [view.players, view.regions, view.hand, view.assets, view.graveyard, view.scoreCards,
+      view.stack, view.legalActions, view.log].every(records)
+    && view.regions!.every(region => records(region.characters) && Array.isArray(region.influence)
+      && region.influence.every(Number.isFinite))
+    && (view.pendingChoice === null || !!view.pendingChoice && typeof view.pendingChoice === 'object'
+      && records(view.pendingChoice.options))
+    && (view.responseWindow === undefined || view.responseWindow === null
+      || typeof view.responseWindow === 'object' && records(view.responseWindow.members))
+    && !!view.versions && typeof view.versions.rules === 'string'
+    && typeof view.versions.cardPool === 'string' && typeof view.versions.engine === 'string';
+}
 let supportsEntryReceipts = false;
 export const getCatalog = async (signal?: AbortSignal, session?: SavedSession | null) => {
   const catalog = await request<Catalog & { entryIdempotency?: boolean }>(session ? `${roomPath(session)}/catalog` : '/api/catalog', {
@@ -180,8 +203,8 @@ export const getCatalog = async (signal?: AbortSignal, session?: SavedSession | 
   return catalog;
 };
 export const getState = async (session: SavedSession, signal?: AbortSignal) => {
-  const view = await request<View>(`${roomPath(session)}/state`, { headers: headers(session), signal });
-  if (view.roomId !== session.roomId || !Number.isSafeInteger(view.version)) throw new ApiError(0, '同步返回格式不正确，请登录后重新同步。');
+  const view = await request<unknown>(`${roomPath(session)}/state`, { headers: headers(session), signal });
+  if (!isRoomView(view, session)) throw new ApiError(0, '同步返回格式不正确，请登录后重新同步。');
   return view;
 };
 const entryMemory = new Map<string, { intent: string; requestId: string }>();
@@ -228,8 +251,8 @@ export async function pollState(session: SavedSession, version: number, signal: 
   if (response.status === 204) return null;
   const body = await response.json().catch(() => ({}));
   if (!response.ok) throw new ApiError(response.status, body.message || '同步暂不可用。', body.view, typeof body.error === 'string' ? body.error : undefined);
-  if (body.roomId !== session.roomId || !Number.isSafeInteger(body.version)) throw new ApiError(0, '同步返回格式不正确。');
-  return body as View;
+  if (!isRoomView(body, session)) throw new ApiError(0, '同步返回格式不正确。');
+  return body;
 }
 
 export function actionPayload(action: Action | (Action & { id: string; label: string; description?: string })): Action {
@@ -253,10 +276,14 @@ export function actionForRoom(view: View, action: Action): Action {
   }
   throw new Error('请先选择连锁；已让过的窗口须等待牌桌继续。');
 }
-export const sendCommand = (session: SavedSession, version: number, action: Action, commandId: string = newCommandId()) => request<View>(`${roomPath(session)}/commands`, {
-  method: 'POST', headers: { ...headers(session), 'Content-Type': 'application/json' },
-  body: JSON.stringify({ commandId, expectedVersion: version, action: actionPayload(action) }),
-});
+export async function sendCommand(session: SavedSession, version: number, action: Action, commandId: string = newCommandId()) {
+  const view = await request<unknown>(`${roomPath(session)}/commands`, {
+    method: 'POST', headers: { ...headers(session), 'Content-Type': 'application/json' },
+    body: JSON.stringify({ commandId, expectedVersion: version, action: actionPayload(action) }),
+  });
+  if (!isRoomView(view, session)) throw new ApiError(0, '行动回执格式不正确，结果尚未确认。');
+  return view;
+}
 
 /** SSE over authenticated fetch keeps the seat credential out of URLs and browser history. */
 export async function streamEvents(session: SavedSession, signal: AbortSignal, onView: (view: View) => void) {
