@@ -693,5 +693,10 @@
     "url": "/cards/JZ02.jpg",
     "source": "resource/ymsj-fun.github.io/cards/JZ02 西姆斯教授.jpg",
     "sha256": "59546782075c26039bdc7d4da34a621bb86de1d8d34c25710a0d59d6761a19e8"
+  },
+  "BQ030": {
+    "url": "/cards/BQ030.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/BQ030 裁定官.jpg",
+    "sha256": "85aaa7444b65060ab09f33f2ea9057647f88c961ff103fcca0c0763ce2564b86"
   }
 }

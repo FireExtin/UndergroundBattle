@@ -27,6 +27,7 @@ pub enum Event {
     Reveal,
     Death,
     CharacterDeathObserved,
+    AttachmentCommittedObserved,
     ReceiveWound,
     ConfrontationStart,
     RegionWon,
@@ -219,6 +220,9 @@ pub enum Op {
     JZ30AddOneTimeToOriginalSource,
     JZ30ForecastFrozenTime,
     BQ028InspectTargetHandAttachments,
+    BQ030AttachmentDraw {
+        observation: Option<Box<crate::model::AttachmentEvent>>,
+    },
     BQ078ReturnNamelessCorpse,
     JZ45LockLocalTarget,
     // JC050 only: destroy the board cards in the region chosen at resolution.
@@ -1831,7 +1835,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         for id in ["XQ18", "JZ30"] {
             m.insert(id.into(), crate::red_time::definition(id).unwrap());
         }
-        for id in ["BQ028", "BQ040"] {
+        for id in ["BQ028", "BQ030", "BQ040"] {
             m.insert(id.into(), crate::blue_expansion::definition(id).unwrap());
         }
         for id in ["WM059", "BQ078"] {

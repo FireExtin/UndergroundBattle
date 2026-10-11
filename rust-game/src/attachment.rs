@@ -22,11 +22,16 @@ impl Game {
             self.note("转移结附的来源已离场，效果不再改变场上对象".into());
             return;
         };
+        let changed_host = self.attachments[index].host_id != target_id;
         self.attachments[index].host_id = target_id.into();
         self.note(format!(
             "{} 转移结附",
             card(&self.attachments[index].card.definition).name
         ));
+        if changed_host {
+            // Capture this successful new attachment before subsequent deaths.
+            self.observe_attachment_committed(source_id);
+        }
         self.settle_deaths();
     }
     pub(crate) fn prepare_region_return(&mut self, region: usize) -> Result<(), String> {

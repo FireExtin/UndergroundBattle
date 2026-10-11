@@ -12,6 +12,7 @@ fn same<T: serde::Serialize>(a: &T, b: &T) -> bool {
 
 pub(crate) fn definition(id: &str) -> Option<Definition> {
     match id {
+        "BQ030" => Some(crate::bq030::definition()),
         "BQ040" => {
             // Construct the exact XQ14 definition without re-entering the rule
             // registry's OnceLock while that registry is being initialized.
@@ -89,6 +90,7 @@ pub(crate) fn contains_bq028_op(ops: &[Op]) -> bool {
 }
 
 pub(crate) fn validate_ability(card_id: &str, a: &AbilitySpec) -> RuleResult<()> {
+    crate::bq030::validate_ability(card_id, a)?;
     if card_id == "BQ028"
         || a.key == "reveal-inspect-attachment"
         || contains_bq028_op(&a.ops)
@@ -175,6 +177,7 @@ impl Game {
     }
 
     pub(crate) fn validate_blue_expansion_frame(&self, f: &ResolutionFrame) -> RuleResult<()> {
+        self.validate_bq030_frame(f)?;
         if !relevant_frame(f) {
             return Ok(());
         }
@@ -386,6 +389,7 @@ impl Game {
     }
 
     pub(crate) fn validate_blue_expansion_state(&self) -> RuleResult<()> {
+        self.validate_bq030_state()?;
         for item in &self.stack {
             if let Some(f) = &item.frame {
                 self.validate_blue_expansion_frame(f)?;
