@@ -11,7 +11,7 @@ impl Game {
         let spec = rules::definition(&attachment.card.definition)
             .attachment
             .as_ref()?;
-        self.regions.iter().position(|r| match spec.host.zone {
+        self.regions.iter().position(|r| !r.vacant && match spec.host.zone {
             Zone::Region => r.card.id == attachment.host_id,
             Zone::Board => r.cards.iter().any(|c| c.id == attachment.host_id),
             _ => false,
@@ -30,7 +30,7 @@ impl Game {
         self.settle_deaths();
     }
     pub(crate) fn prepare_region_return(&mut self, region: usize) -> Result<(), String> {
-        if self.region_return.is_some() || region >= self.regions.len() {
+        if self.region_return.is_some() || !self.region_live(region) {
             return Err("赢区回底批次无效".into());
         }
         let mut batch = RegionReturnBatch {

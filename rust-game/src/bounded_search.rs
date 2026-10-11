@@ -56,7 +56,7 @@ impl Game {
         let r = frame.source.region?;
         self.regions
             .get(r)
-            .filter(|region| Some(&region.card.id) == frame.source.source_region_instance.as_ref())
+            .filter(|region| !region.vacant && Some(&region.card.id) == frame.source.source_region_instance.as_ref())
             .map(|_| r)
     }
     fn entry_search_candidates(&self, actor: usize, employee: bool) -> RuleResult<Vec<&Card>> {

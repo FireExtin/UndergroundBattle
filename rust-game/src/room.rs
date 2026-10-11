@@ -230,6 +230,7 @@ impl RoomEnvelope {
         }) {
             return Err("暂停记录与房间状态/冻结时间不一致".into());
         }
+        room.game.validate_vacant_regions()?;
         room.game.validate_win_contexts()?;
         room.game.validate_sealed_cards()?;
         room.game.validate_jz50_search_choice()?;

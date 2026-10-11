@@ -52,6 +52,7 @@ impl Game {
     }
 
     pub(crate) fn place_influence(&mut self, seat: usize, region: usize, amount: u32) {
+        if !self.region_live(region) { return; }
         let team = self.team(seat);
         let enemy = 1 - team;
         let removed = amount.min(self.regions[region].influence[enemy]);
@@ -75,7 +76,7 @@ impl Game {
             || !self
                 .regions
                 .get(region)
-                .is_some_and(|r| r.card.id == region_instance && !r.skip)
+                .is_some_and(|r| !r.vacant && r.card.id == region_instance && !r.skip)
         {
             return;
         }

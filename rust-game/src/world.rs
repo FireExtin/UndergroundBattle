@@ -106,12 +106,14 @@ impl Game {
             .regions
             .iter()
             .enumerate()
+            .filter(|(_, reg)| !reg.vacant)
             .map(|(r, reg)| ChoiceOption {
                 id: format!("region:{r}"),
                 label: format!("地区{}：{}", r + 1, card(&reg.card.definition).name),
                 card: None,
             })
-            .collect();
+            .collect::<Vec<_>>();
+        if options.is_empty() { return; }
         self.choice(
             frame.actor,
             "target",
@@ -163,7 +165,7 @@ impl Game {
         region: usize,
         id: &str,
     ) -> RuleResult<()> {
-        if region >= self.regions.len() {
+        if !self.region_live(region) {
             return Err("墓地进场地区已失效".into());
         }
         let index = self.players[seat]

@@ -22,6 +22,36 @@ impl Case {
         case
     }
     fn checkpoint(&self) {
+        if self.name == "world-empty-conservation" {
+            let g = &self.room.game;
+            let live: Vec<_> = g
+                .regions
+                .iter()
+                .filter(|r| !r.vacant)
+                .map(|r| &r.card)
+                .chain(&g.world)
+                .chain(g.players.iter().flat_map(|p| &p.score_cards))
+                .collect();
+            assert_eq!(live.len(), 10);
+            assert_eq!(
+                live.iter()
+                    .map(|c| c.id.as_str())
+                    .collect::<std::collections::BTreeSet<_>>()
+                    .len(),
+                10
+            );
+            assert_eq!(
+                live.iter()
+                    .map(|c| c.definition.as_str())
+                    .collect::<std::collections::BTreeSet<_>>(),
+                (107..=116)
+                    .map(|n| format!("DQJC{n}"))
+                    .collect::<Vec<_>>()
+                    .iter()
+                    .map(|s| s.as_str())
+                    .collect()
+            );
+        }
         let state = serde_json::to_string(&self.room).unwrap();
         let restored = RoomEnvelope::from_persisted(&state).unwrap();
         assert_eq!(serde_json::to_string(&restored).unwrap(), state);
@@ -298,6 +328,729 @@ fn win_flow_paid_xq37_and_jz22_entries_resume_both_action_steps() {
             }
         }
     }
+}
+
+#[test]
+fn world_empty_win_leaves_original_slot_empty_and_preserves_other_regions() {
+    for index in [0, 2, 4] {
+        let mut g = jc029_tests::game(0);
+        g.world.clear();
+        region(&mut g, index, "DQJC115");
+        g.regions[index].influence = [2, 0];
+        jc029_tests::fund(&mut g, 0, "JZ22", 2);
+        let source = jc029_tests::board(&mut g, "JZ22", 0, index);
+        g.board_mut(&source).unwrap().face_down = true;
+        let other = (index + 1) % 5;
+        let preserved = jc029_tests::board(&mut g, "JC125", 1, other);
+        let preserved = g.board_mut(&preserved).unwrap();
+        preserved.controller = 3;
+        preserved.exhausted = true;
+        preserved.face_down = true;
+        g.regions[other].influence = [1, 2];
+        let before: Vec<_> = g
+            .regions
+            .iter()
+            .map(|r| serde_json::to_value(r).unwrap())
+            .collect();
+        let mut case = Case::new(&format!("world-empty-slot-{index}"), g);
+        case.game(
+            0,
+            Action {
+                card_id: Some(source),
+                ..Action::new("reveal")
+            },
+        );
+        accept_entry(&mut case, index, 0);
+        case.finish_win(1);
+        assert_eq!(case.room.game.regions.len(), 5);
+        for slot in 0..5 {
+            if slot != index {
+                assert_eq!(
+                    serde_json::to_value(&case.room.game.regions[slot]).unwrap(),
+                    before[slot]
+                );
+            }
+        }
+        for seat in 0..4 {
+            let view = case.room.game.view(seat);
+            assert_eq!(view.regions.len(), 5);
+            let empty = &view.regions[index];
+            assert_eq!(empty.index, index);
+            assert!(
+                empty.card_id.is_empty(),
+                "won card must leave the contested slot"
+            );
+            assert_eq!(empty.name, "空位");
+            assert_eq!(empty.influence, [0, 0]);
+            assert_eq!((empty.points, empty.threshold), (0, 0));
+            assert!(empty.characters.is_empty());
+            assert_eq!(empty.icons_by_team, [Icons::default(); 2]);
+        }
+    }
+}
+
+fn empty_win_case(name: &str, index: usize, original: Window) -> Case {
+    let mut g = jc029_tests::game(0);
+    g.world.clear();
+    region(&mut g, index, "DQJC109");
+    g.regions[index].influence = [2, 0];
+    jc029_tests::fund(&mut g, 0, "JZ22", 2);
+    let id = jc029_tests::board(&mut g, "JZ22", 0, index);
+    g.board_mut(&id).unwrap().face_down = true;
+    g.begin_window(original);
+    let mut case = Case::new(name, g);
+    case.game(
+        0,
+        Action {
+            card_id: Some(id),
+            ..Action::new("reveal")
+        },
+    );
+    accept_entry(&mut case, index, 0);
+    case.finish_win(1);
+    case
+}
+
+#[test]
+fn world_empty_contests_keep_original_positions_and_skip_empty_slots() {
+    for (index, original, next) in [
+        (0, Window::Mobility, Window::Before(1, 0)),
+        (2, Window::After(1, 2), Window::Before(3, 0)),
+        (4, Window::After(3, 2), Window::End),
+        (2, Window::Before(2, 0), Window::Before(3, 0)),
+        (4, Window::After(4, 1), Window::End),
+    ] {
+        let mut case = empty_win_case(
+            &format!("world-empty-next-{index}-{original:?}"),
+            index,
+            original,
+        );
+        let restored = case.room.game.window.clone();
+        case.until(|g| g.window != restored);
+        assert_eq!(case.room.game.window, Some(next));
+        assert_eq!(case.room.game.players[0].score_cards.len(), 1);
+        assert_eq!(case.room.game.regions[index].influence, [0, 0]);
+        assert!(case.renown_choices.is_empty());
+    }
+    let mut case = empty_win_case("world-empty-cleanup", 2, Window::End);
+    case.until(|g| g.window == Some(Window::Prepare));
+    assert!(case.room.game.regions[2].vacant);
+    assert_eq!(case.room.game.view(0).regions[2].card_id, "");
+}
+
+#[test]
+fn world_empty_nested_wins_preserve_contexts_and_owner_return_positions() {
+    for (outer, inner) in [(0, 4), (4, 0), (2, 1)] {
+        let mut g = jc029_tests::game(0);
+        g.world.clear();
+        let mut sources = vec![];
+        for (seat, index, definition) in [(0, outer, "DQJC115"), (1, inner, "DQJC109")] {
+            region(&mut g, index, definition);
+            g.regions[index].influence = [2, 0];
+            jc029_tests::fund(&mut g, seat, "JZ22", 2);
+            let source = jc029_tests::board(&mut g, "JZ22", seat, index);
+            g.board_mut(&source).unwrap().face_down = true;
+            jc029_tests::board(&mut g, "JC125", seat, index);
+            sources.push(source);
+        }
+        g.begin_window(Window::Before(inner, 0));
+        let prefixes: Vec<_> = g.players[..2]
+            .iter()
+            .map(|p| serde_json::to_value(&p.deck).unwrap())
+            .collect();
+        let mut case = Case::new(&format!("world-empty-nested-{outer}-{inner}"), g);
+        for (seat, index) in [(0, outer), (1, inner)] {
+            case.game(
+                seat,
+                Action {
+                    card_id: Some(sources[seat].clone()),
+                    ..Action::new("reveal")
+                },
+            );
+            accept_entry(&mut case, index, seat);
+        }
+        case.until(|g| {
+            g.pending
+                .as_ref()
+                .is_some_and(|p| p.choice.kind == "region_return")
+        });
+        assert_eq!(case.room.game.window, Some(Window::Win(outer, 0)));
+        assert_eq!(case.room.game.region_return.as_ref().unwrap().region, inner);
+        case.command(0, SessionAction::PauseRoom);
+        case.command(1, SessionAction::ResumeRoom);
+        case.finish_win(1);
+        assert!(case.room.game.players[0].score_cards.is_empty());
+        assert_eq!(
+            case.room.game.players[1].score_cards[0].definition,
+            "DQJC109"
+        );
+        assert!(case.room.game.regions[inner].vacant);
+        assert!(!case.room.game.regions[outer].vacant);
+        assert_eq!(case.room.game.win_contexts[0].region, outer);
+        assert_eq!(case.room.game.window, Some(Window::Win(outer, 0)));
+        case.finish_win(2);
+        assert!(case.room.game.regions[outer].vacant);
+        assert_eq!(case.room.game.window, Some(Window::After(inner, 2)));
+        for (seat, index) in [(0, outer), (1, inner)] {
+            let ordered = &case.return_orders[&(seat, index)];
+            assert_eq!(ordered.len(), 2);
+            assert_eq!(case.room.game.players[seat].score_cards.len(), 1);
+            assert_eq!(
+                case.room.game.players[seat].score_cards[0].definition,
+                if seat == 0 { "DQJC115" } else { "DQJC109" }
+            );
+            let deck = &case.room.game.players[seat].deck;
+            let prefix_len = prefixes[seat].as_array().unwrap().len();
+            assert_eq!(deck.len(), prefix_len + 2);
+            assert_eq!(
+                serde_json::to_value(&deck[..prefix_len]).unwrap(),
+                prefixes[seat]
+            );
+            for (offset, (old_id, definition)) in ordered.iter().enumerate() {
+                let returned = &deck[prefix_len + offset];
+                assert_eq!(&returned.definition, definition);
+                assert_ne!(&returned.id, old_id);
+                assert_eq!((returned.owner, returned.controller), (seat, seat));
+            }
+        }
+        let expected = (inner + 1..5)
+            .find(|&r| !case.room.game.regions[r].vacant)
+            .map_or(Window::End, |r| Window::Before(r, 0));
+        case.until(|g| g.window != Some(Window::After(inner, 2)));
+        assert_eq!(case.room.game.window, Some(expected));
+    }
+}
+
+#[test]
+fn world_empty_rejects_deploy_conceal_targets_and_cross_gap_mobility() {
+    let mut g = jc029_tests::game(0);
+    g.world.clear();
+    region(&mut g, 1, "DQJC109");
+    g.regions[1].influence = [2, 0];
+    jc029_tests::fund(&mut g, 0, "JZ22", 2);
+    let source = jc029_tests::board(&mut g, "JZ22", 0, 1);
+    g.board_mut(&source).unwrap().face_down = true;
+    let held = held(&mut g, "JC125", 0);
+    let mover = jc029_tests::board(&mut g, "JC014", 0, 2);
+    let mut case = Case::new("world-empty-targets", g);
+    case.game(
+        0,
+        Action {
+            card_id: Some(source),
+            ..Action::new("reveal")
+        },
+    );
+    accept_entry(&mut case, 1, 0);
+    case.finish_win(1);
+    for seat in 0..4 {
+        assert!(!case.room.game.accessible(seat, 1));
+        for r in [0, 2, 3, 4] {
+            assert_eq!(
+                case.room.game.accessible(seat, r),
+                if seat % 2 == 0 { r <= 2 } else { r >= 2 }
+            );
+        }
+        assert!(case
+            .room
+            .game
+            .legal_actions(seat)
+            .iter()
+            .all(|a| a.action.region != Some(1)));
+    }
+    for kind in ["deploy", "conceal"] {
+        case.reject(
+            0,
+            SessionAction::Game {
+                action: Action {
+                    card_id: Some(held.clone()),
+                    region: Some(1),
+                    ..Action::new(kind)
+                },
+            },
+            "invalid_action",
+        );
+    }
+    case.until(|g| {
+        g.pending.as_ref().is_some_and(|p| {
+            matches!(&p.resolution,
+        ChoiceResolution::Declare { declaration, .. } if declaration.ability.key == "mobility")
+        })
+    });
+    let choice = case.room.game.pending.as_ref().unwrap().choice.clone();
+    assert_eq!(
+        choice
+            .options
+            .iter()
+            .map(|o| o.id.as_str())
+            .collect::<Vec<_>>(),
+        ["region:3"]
+    );
+    for target in ["region:1", "region:0"] {
+        case.reject(
+            0,
+            SessionAction::Game {
+                action: Action {
+                    choice_id: Some(choice.id.clone()),
+                    selected: Some(vec![target.into()]),
+                    ..Action::new("choose")
+                },
+            },
+            "invalid_action",
+        );
+    }
+    case.game(
+        0,
+        Action {
+            choice_id: Some(choice.id),
+            selected: Some(vec!["region:3".into()]),
+            ..Action::new("choose")
+        },
+    );
+    case.until(|g| g.board(&mover).is_some_and(|(r, _)| r == 3));
+    assert_eq!(case.room.game.board(&mover).unwrap().1.id, mover);
+}
+
+#[test]
+fn world_empty_jc050_choice_and_won_graveyard_entry_exclude_original_empty_slot() {
+    let mut g = jc029_tests::game(0);
+    g.world.clear();
+    g.regions[1].vacant = true;
+    jc029_tests::fund(&mut g, 0, "JC050", 10);
+    let spell = held(&mut g, "JC050", 0);
+    let victim = jc029_tests::board(&mut g, "JC125", 1, 2);
+    let mut case = Case::new("world-empty-jc050", g);
+    case.game(
+        0,
+        Action {
+            card_id: Some(spell),
+            ..Action::new("play")
+        },
+    );
+    case.until(|g| g.pending.is_some());
+    let choice = case.room.game.pending.as_ref().unwrap().choice.clone();
+    assert_eq!(
+        choice
+            .options
+            .iter()
+            .map(|o| o.id.as_str())
+            .collect::<Vec<_>>(),
+        ["region:0", "region:2", "region:3", "region:4"]
+    );
+    case.reject(
+        0,
+        SessionAction::Game {
+            action: Action {
+                choice_id: Some(choice.id.clone()),
+                selected: Some(vec!["region:1".into()]),
+                ..Action::new("choose")
+            },
+        },
+        "invalid_action",
+    );
+    case.game(
+        0,
+        Action {
+            choice_id: Some(choice.id),
+            selected: Some(vec!["region:2".into()]),
+            ..Action::new("choose")
+        },
+    );
+    assert!(case.room.game.board(&victim).is_none());
+
+    let mut g = jc029_tests::game(0);
+    g.world.clear();
+    region(&mut g, 1, "DQJC115");
+    g.regions[1].influence = [2, 0];
+    jc029_tests::fund(&mut g, 0, "JZ22", 2);
+    let source = jc029_tests::board(&mut g, "JZ22", 0, 1);
+    g.board_mut(&source).unwrap().face_down = true;
+    let dead = g.make_card("JC125", 0);
+    let old_dead = dead.id.clone();
+    g.players[0].graveyard.push(dead);
+    let mut case = Case::new("world-empty-graveyard", g);
+    case.game(
+        0,
+        Action {
+            card_id: Some(source),
+            ..Action::new("reveal")
+        },
+    );
+    accept_entry(&mut case, 1, 0);
+    case.until(|g| !g.players[0].score_cards.is_empty());
+    let choice = case.room.game.pending.as_ref().unwrap().choice.id.clone();
+    case.game(
+        0,
+        Action {
+            choice_id: Some(choice),
+            selected: Some(vec!["accept".into()]),
+            ..Action::new("choose")
+        },
+    );
+    case.until(|g| {
+        g.pending.as_ref().is_some_and(|p| {
+            matches!(
+                &p.resolution,
+                ChoiceResolution::Frame {
+                    choice: FrameChoice::Region,
+                    ..
+                }
+            )
+        })
+    });
+    let choice = case.room.game.pending.as_ref().unwrap().choice.clone();
+    assert_eq!(
+        choice
+            .options
+            .iter()
+            .map(|o| o.id.as_str())
+            .collect::<Vec<_>>(),
+        ["region:0", "region:2", "region:3", "region:4"]
+    );
+    case.game(
+        0,
+        Action {
+            choice_id: Some(choice.id),
+            selected: Some(vec!["region:2".into()]),
+            ..Action::new("choose")
+        },
+    );
+    let choice = case.room.game.pending.as_ref().unwrap().choice.id.clone();
+    case.game(
+        0,
+        Action {
+            choice_id: Some(choice),
+            selected: Some(vec![old_dead.clone()]),
+            ..Action::new("choose")
+        },
+    );
+    assert!(case.room.game.board(&old_dead).is_none());
+    assert!(case.room.game.regions[2]
+        .cards
+        .iter()
+        .any(|c| c.definition == "JC125" && c.owner == 0));
+    assert!(case.room.game.regions[1].cards.is_empty());
+}
+
+#[test]
+fn world_empty_all_vacant_fixture_has_no_forced_empty_choice_or_new_terminal_rule() {
+    // All slots vacant is a prepared robustness boundary, not a claim that
+    // natural ten-point games can reach this layout.
+    for spell in [false, true] {
+        let mut g = jc029_tests::game(0);
+        g.world.clear();
+        for r in &mut g.regions {
+            r.vacant = true;
+        }
+        let action = if spell {
+            jc029_tests::fund(&mut g, 0, "JC050", 10);
+            Action {
+                card_id: Some(held(&mut g, "JC050", 0)),
+                ..Action::new("play")
+            }
+        } else {
+            g.begin_window(Window::Mobility);
+            Action::new("pass")
+        };
+        let mut case = Case::new(&format!("world-empty-all-{spell}"), g);
+        case.game(0, action);
+        if spell {
+            case.until(|g| g.stack.is_empty());
+        } else {
+            case.until(|g| g.window != Some(Window::Mobility));
+        }
+        assert!(case.room.game.pending.is_none());
+        assert_eq!(case.room.game.status, "playing");
+        if !spell {
+            assert_eq!(case.room.game.window, Some(Window::End));
+        }
+        assert!(case
+            .room
+            .game
+            .players
+            .iter()
+            .all(|p| p.score_cards.is_empty()));
+    }
+
+    let mut g = jc029_tests::game(0);
+    g.world.clear();
+    for (index, r) in g.regions.iter_mut().enumerate() {
+        r.vacant = index != 2;
+    }
+    region(&mut g, 2, "DQJC115");
+    g.regions[2].influence = [2, 0];
+    jc029_tests::fund(&mut g, 0, "JZ22", 2);
+    let source = jc029_tests::board(&mut g, "JZ22", 0, 2);
+    g.board_mut(&source).unwrap().face_down = true;
+    let dead = g.make_card("JC125", 0);
+    let dead_id = dead.id.clone();
+    g.players[0].graveyard.push(dead);
+    let mut case = Case::new("world-empty-last-graveyard-trigger", g);
+    case.game(
+        0,
+        Action {
+            card_id: Some(source),
+            ..Action::new("reveal")
+        },
+    );
+    accept_entry(&mut case, 2, 0);
+    case.until(|g| !g.players[0].score_cards.is_empty());
+    let choice = case.room.game.pending.as_ref().unwrap().choice.id.clone();
+    case.game(
+        0,
+        Action {
+            choice_id: Some(choice),
+            selected: Some(vec!["accept".into()]),
+            ..Action::new("choose")
+        },
+    );
+    case.until(|g| g.stack.is_empty());
+    assert!(case.room.game.pending.is_none());
+    assert_eq!(case.room.game.status, "playing");
+    assert!(case.room.game.regions.iter().all(|r| r.vacant));
+    assert_eq!(case.room.game.players[0].graveyard[0].id, dead_id);
+}
+
+#[test]
+fn world_empty_stale_effects_and_influence_do_not_revive_or_rescore_slot() {
+    let mut g = jc029_tests::game(0);
+    g.world.clear();
+    g.regions[2].vacant = true;
+    let original = g.regions[2].card.id.clone();
+    // Explicit initial queue probes: do not claim a naturally occurring queued
+    // duplicate across Score. All probes execute through a real Room command.
+    g.effects.push_back(Effect::Award {
+        seat: 0,
+        region: 2,
+        region_instance: original.clone(),
+    });
+    g.effects.push_back(Effect::RegionConfrontationsEnded {
+        region: 2,
+        region_instance: original.clone(),
+    });
+    g.effects.push_back(Effect::Recipient {
+        team: 0,
+        region: 2,
+        contest: 2,
+        amount: 3,
+        seats: vec![0, 1],
+    });
+    g.effects.push_back(Effect::Score { seat: 0, region: 2 });
+    let card = g.make_card("JC075", 0);
+    let source = g.source_snapshot(&card, Some(2));
+    let frame = g.make_frame(
+        0,
+        source,
+        &crate::renown::renown_ability(&original),
+        vec![],
+        vec![],
+        None,
+    );
+    g.effects.push_back(Effect::Frame {
+        frame: Box::new(frame),
+    });
+    let mut case = Case::new("world-empty-stale-queue", g);
+    case.game(0, Action::new("pass"));
+    assert_eq!(case.room.game.regions[2].influence, [0, 0]);
+    assert!(case
+        .room
+        .game
+        .players
+        .iter()
+        .all(|p| p.score_cards.is_empty()));
+    assert!(case.room.game.pending.is_none() && case.room.game.win_contexts.is_empty());
+    assert!(case.room.game.effects.is_empty());
+}
+
+#[test]
+fn world_empty_corrupt_slot_and_saved_before_window_rejected_by_both_loaders() {
+    let mut g = jc029_tests::game(0);
+    g.world.clear();
+    g.regions[1].vacant = true;
+    region(&mut g, 2, "DQJC109");
+    g.regions[2].influence = [3, 0];
+    g.begin_window(Window::Win(2, 0));
+    let room = jc029_tests::envelope(&g);
+    let valid = serde_json::to_value(&room).unwrap();
+    let mut mutations = vec![];
+    let mut v = valid.clone();
+    v["game"]["regions"][1]["influence"] = serde_json::json!([1, 0]);
+    mutations.push(v);
+    let mut v = valid.clone();
+    v["game"]["regions"][1]["skip"] = serde_json::json!(true);
+    mutations.push(v);
+    let mut v = valid.clone();
+    v["game"]["world"] = serde_json::json!([g.regions[0].card]);
+    mutations.push(v);
+    let mut v = valid.clone();
+    v["game"]["regions"][1]["cards"] = serde_json::json!([g.make_card("JC125", 0)]);
+    mutations.push(v);
+    let mut v = valid.clone();
+    v["game"]["win_contexts"][0]["resume_window"] = serde_json::json!({"Before":[1,0]});
+    mutations.push(v);
+    let mut v = valid.clone();
+    v["game"]["regions"][2]["vacant"] = serde_json::json!(true);
+    v["game"]["regions"][2]["influence"] = serde_json::json!([0, 0]);
+    mutations.push(v);
+    for (index, value) in mutations.iter().enumerate() {
+        let state = serde_json::to_string(value).unwrap();
+        assert!(
+            RoomEnvelope::from_persisted(&state).is_err(),
+            "corrupt slot mutation {index}"
+        );
+        assert!(Game::from_persisted(&serde_json::to_string(&value["game"]).unwrap()).is_err());
+        if let Ok(root) = std::env::var("WIN_FLOW_EVIDENCE_DIR") {
+            std::fs::create_dir_all(format!("{root}/invalid")).unwrap();
+            std::fs::write(
+                format!("{root}/invalid/world-empty-{index}.json"),
+                serde_json::to_vec(&serde_json::json!({"state":state})).unwrap(),
+            )
+            .unwrap();
+        }
+    }
+    let mut valid_after = valid;
+    valid_after["game"]["win_contexts"][0]["resume_window"] = serde_json::json!({"After":[1,2]});
+    assert!(RoomEnvelope::from_persisted(&serde_json::to_string(&valid_after).unwrap()).is_ok());
+}
+
+#[test]
+fn world_empty_ten_region_conservation_last_refill_then_vacancy() {
+    let mut g = jc029_tests::game(0);
+    // Repartition the original ten physical cards once, before Case creation.
+    // There are no new region instances or edits during the actual Room flow.
+    let mut originals: std::collections::BTreeMap<_, _> = g
+        .regions
+        .drain(..)
+        .map(|r| r.card)
+        .chain(g.world.drain(..))
+        .map(|c| (c.definition.clone(), c))
+        .collect();
+    assert_eq!(originals.len(), 10);
+    for (seat, definitions) in [(0, ["DQJC115", "DQJC116"]), (2, ["DQJC109", "DQJC111"])] {
+        for definition in definitions {
+            let mut card = originals.remove(definition).unwrap();
+            card.owner = seat;
+            card.controller = seat;
+            g.players[seat].score_cards.push(card);
+        }
+    }
+    for definition in ["DQJC113", "DQJC107", "DQJC110", "DQJC112", "DQJC114"] {
+        g.regions.push(Region {
+            vacant: false,
+            card: originals.remove(definition).unwrap(),
+            influence: [0, 0],
+            cards: vec![],
+            skip: false,
+        });
+    }
+    g.world.push(originals.remove("DQJC108").unwrap());
+    assert!(originals.is_empty());
+    let world_id = g.world[0].id.clone();
+    let retired: Vec<_> = [0, 4].map(|r| g.regions[r].card.id.clone()).into();
+    let mut sources = vec![];
+    for (seat, index) in [(0, 0), (2, 4)] {
+        let team = g.team(seat);
+        g.regions[index].influence[team] = catalog::card(&g.regions[index].card.definition)
+            .threshold
+            .unwrap()
+            - 1;
+        jc029_tests::fund(&mut g, seat, "JZ22", 2);
+        let source = jc029_tests::board(&mut g, "JZ22", seat, index);
+        g.board_mut(&source).unwrap().face_down = true;
+        sources.push(source);
+    }
+    let others: Vec<_> = g.regions[1..4]
+        .iter()
+        .map(|r| serde_json::to_value(r).unwrap())
+        .collect();
+    let mut case = Case::new("world-empty-conservation", g);
+    case.game(
+        0,
+        Action {
+            card_id: Some(sources[0].clone()),
+            ..Action::new("reveal")
+        },
+    );
+    accept_entry(&mut case, 0, 0);
+    case.finish_win(5);
+    assert!(case.room.game.world.is_empty());
+    assert_eq!(case.room.game.regions[0].card.definition, "DQJC108");
+    assert_ne!(case.room.game.regions[0].card.id, world_id);
+    assert_ne!(case.room.game.regions[0].card.id, retired[0]);
+    case.until(|g| g.priority_team == 1 && g.pending.is_none() && g.stack.is_empty());
+    case.game(
+        2,
+        Action {
+            card_id: Some(sources[1].clone()),
+            ..Action::new("reveal")
+        },
+    );
+    accept_entry(&mut case, 4, 2);
+    case.finish_win(6);
+    assert!(case.room.game.regions[4].vacant);
+    assert_eq!(case.room.game.status, "playing");
+    for (seat, definition) in [(0, "DQJC113"), (2, "DQJC114")] {
+        let score = case.room.game.players[seat].score_cards.last().unwrap();
+        assert_eq!(score.definition, definition);
+        assert_eq!((score.owner, score.controller), (seat, seat));
+    }
+    assert_eq!(
+        case.room.game.regions[1..4]
+            .iter()
+            .map(|r| serde_json::to_value(r).unwrap())
+            .collect::<Vec<_>>(),
+        others
+    );
+    for id in retired {
+        assert!(case
+            .room
+            .game
+            .regions
+            .iter()
+            .filter(|r| !r.vacant)
+            .all(|r| r.card.id != id));
+    }
+}
+
+#[test]
+fn world_empty_terminal_score_and_restart_remove_then_rebuild_slot() {
+    let mut g = jc029_tests::game(0);
+    g.world.clear();
+    for definition in ["DQJC107", "DQJC110"] {
+        let c = g.make_card(definition, 1);
+        g.players[1].score_cards.push(c);
+    }
+    region(&mut g, 2, "DQJC115");
+    g.regions[2].influence = [2, 0];
+    jc029_tests::fund(&mut g, 0, "JZ22", 2);
+    let source = jc029_tests::board(&mut g, "JZ22", 0, 2);
+    g.board_mut(&source).unwrap().face_down = true;
+    let mut case = Case::new("world-empty-terminal", g);
+    case.game(
+        0,
+        Action {
+            card_id: Some(source),
+            ..Action::new("reveal")
+        },
+    );
+    accept_entry(&mut case, 2, 0);
+    case.until(|g| g.status == "finished");
+    assert_eq!(case.room.game.winner_team, Some(0));
+    assert!(case.room.game.regions[2].vacant);
+    assert_eq!(
+        case.room.game.players[0].score_cards[0].definition,
+        "DQJC115"
+    );
+    assert!(case.room.game.win_contexts.is_empty());
+    case.game(0, Action::new("restart"));
+    assert_eq!(case.room.game.regions.len(), 5);
+    assert_eq!(case.room.game.world.len(), 5);
+    assert!(case.room.game.regions.iter().all(|r| !r.vacant));
+    assert!(case
+        .room
+        .game
+        .players
+        .iter()
+        .all(|p| p.score_cards.is_empty()));
 }
 
 #[test]

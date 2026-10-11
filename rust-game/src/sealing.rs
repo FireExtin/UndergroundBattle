@@ -193,6 +193,7 @@ impl Game {
             .chain(
                 self.regions
                     .iter()
+                    .filter(|r| !r.vacant)
                     .flat_map(|r| std::iter::once(&r.card).chain(&r.cards)),
             )
             .chain(&self.world)

@@ -38,7 +38,7 @@ impl Game {
                 .and_then(|t| t.id.strip_prefix("region:"))
                 .and_then(|s| s.parse().ok()),
         };
-        region.filter(|r| *r < self.regions.len())
+        region.filter(|r| self.region_live(*r))
     }
     // Non-target queries deliberately do not apply targetability, barriers or shields.
     fn matching_board(&self, frame: &ResolutionFrame, selector: &BoardSelector) -> Vec<String> {
@@ -110,7 +110,7 @@ impl Game {
                     .iter()
                     .any(|op| matches!(op, Op::Move(_, Destination::HiddenInChosenRegion)))
                 {
-                    (0..self.regions.len()).map(Some).collect()
+                    (0..self.regions.len()).filter(|&r| self.region_live(r)).map(Some).collect()
                 } else {
                     vec![None]
                 };
@@ -278,7 +278,7 @@ impl Game {
         } else if let Some(r) = id
             .strip_prefix("region:")
             .and_then(|s| s.parse::<usize>().ok())
-            .filter(|r| *r < self.regions.len())
+            .filter(|r| self.region_live(*r))
         {
             (
                 card(&self.regions[r].card.definition).name.clone(),
@@ -342,10 +342,10 @@ impl Game {
                     .players
                     .iter()
                     .any(|p| p.graveyard.iter().any(|c| c.id == target.id)),
-                Zone::Region => target
-                    .region_instance
-                    .as_ref()
-                    .is_none_or(|id| self.regions.iter().any(|r| r.card.id == *id)),
+                Zone::Region => target.id.strip_prefix("region:")
+                    .and_then(|r| r.parse::<usize>().ok())
+                    .and_then(|r| self.regions.get(r))
+                    .is_some_and(|r| !r.vacant && target.region_instance.as_ref().is_none_or(|id| r.card.id == *id)),
                 Zone::Player => true,
             };
             summary.status = if present { "changed" } else { "missing" }.into();
@@ -394,7 +394,7 @@ impl Game {
             },
             region,
             source_region_instance: if matches!(c.definition.as_str(), "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028") {
-                region.and_then(|r| self.regions.get(r)).map(|r| r.card.id.clone())
+                region.and_then(|r| self.regions.get(r)).filter(|r| !r.vacant).map(|r| r.card.id.clone())
             } else { None },
             attachment_host_instance: (c.definition == "JC090" || rules::definition(&c.definition)
                 .abilities
@@ -569,7 +569,7 @@ impl Game {
                 .strip_prefix("region:")
                 .and_then(|s| s.parse::<usize>().ok())
                 .is_some_and(|r| {
-                    r < self.regions.len()
+                    self.region_live(r)
                         && (spec.range != Range::Mobility
                             || source.region.is_some_and(|from| {
                                 r != from && (self.mode == "duel" || r.abs_diff(from) == 1)
@@ -650,7 +650,7 @@ impl Game {
                         && (!matches!(source.card.definition.as_str(), "JZ43" | "JZ44" | "JZ45" | "WM059") || spec.range != Range::SourceRegion
                             || source.region.and_then(|r| self.regions.get(r))
                                 .zip(source.source_region_instance.as_ref())
-                                .is_some_and(|(region, instance)| region.card.id == *instance))
+                                .is_some_and(|(region, instance)| !region.vacant && region.card.id == *instance))
                         && spec.subtype.as_ref().is_none_or(|s| {
                             !c.face_down && self.target_subtypes(c, spec).contains(s)
                         })
@@ -710,6 +710,7 @@ impl Game {
                 .regions
                 .iter()
                 .enumerate()
+                .filter(|(_, reg)| !reg.vacant)
                 .map(|(r, reg)| ChoiceOption {
                     id: format!("region:{r}"),
                     label: card(&reg.card.definition).name.clone(),
@@ -737,7 +738,7 @@ impl Game {
                         .strip_prefix("region:")
                         .and_then(|s| s.parse::<usize>().ok())
                         .and_then(|r| self.regions.get(r))
-                        .is_some_and(|r| r.card.id == *instance)
+                        .is_some_and(|r| !r.vacant && r.card.id == *instance)
                 }))
     }
     fn requires_region_instance(source: &SourceSnapshot, slot: &TargetSlotSpec) -> bool {
@@ -1406,7 +1407,7 @@ impl Game {
                         .regions
                         .iter()
                         .enumerate()
-                        .filter(|(_, r)| r.influence[team] > 0)
+                        .filter(|(_, r)| !r.vacant && r.influence[team] > 0)
                         .map(|(r, region)| (r, region.card.id.clone()))
                         .collect();
                     if !regions.is_empty() {
@@ -1587,7 +1588,7 @@ impl Game {
                 Op::PlaceOneInfluenceInSourceRegion => {
                     if let Some(region) = frame.source.region.filter(|&region| {
                         self.regions.get(region).is_some_and(|r|
-                            frame.source.source_region_instance.as_ref() == Some(&r.card.id))
+                            !r.vacant && frame.source.source_region_instance.as_ref() == Some(&r.card.id))
                     }) {
                         self.place_influence(frame.actor, region, 1);
                     }
@@ -1601,7 +1602,7 @@ impl Game {
                 }
                 Op::JC090PlaceOneInfluenceInOriginalAttachedRegion => {
                     if let Some(region) = frame.source.region.filter(|&r| self.regions.get(r)
-                        .is_some_and(|region| frame.source.attachment_host_instance.as_ref() == Some(&region.card.id)
+                        .is_some_and(|region| !region.vacant && frame.source.attachment_host_instance.as_ref() == Some(&region.card.id)
                             && frame.source.source_region_instance.as_ref() == Some(&region.card.id)))
                     {
                         self.place_influence(frame.actor, region, 1);
@@ -1631,7 +1632,7 @@ impl Game {
                     if let Some(region) = frame.source.region.filter(|&region| {
                         self.regions
                             .get(region)
-                            .is_some_and(|r| r.card.id == region_instance)
+                            .is_some_and(|r| !r.vacant && r.card.id == region_instance)
                     }) {
                         self.place_influence(frame.actor, region, amount);
                     }
@@ -1676,6 +1677,10 @@ impl Game {
                     }
                 }
                 Op::Move(entity, destination) => {
+                    if matches!(destination, Destination::HiddenInChosenRegion)
+                        && frame.chosen_region.is_none_or(|r| !self.region_live(r)) {
+                        continue;
+                    }
                     if let Some(id) = Self::frame_entity(&frame, entity) {
                         if let Some(c) = self.take_entity(id) {
                             let mut c = self.reset_zone_card(c);
@@ -2295,7 +2300,7 @@ impl Game {
                 let r = self
                     .regions
                     .get_mut(region)
-                    .filter(|r| r.card.id == original.1 && r.influence[team] > 0)
+                    .filter(|r| !r.vacant && r.card.id == original.1 && r.influence[team] > 0)
                     .ok_or("遏制地区或势力已失效")?;
                 r.influence[team] -= 1;
                 self.note(format!(
@@ -2309,7 +2314,7 @@ impl Game {
                     .first()
                     .and_then(|id| id.strip_prefix("region:"))
                     .and_then(|r| r.parse::<usize>().ok())
-                    .filter(|r| *r < self.regions.len())
+                    .filter(|r| self.region_live(*r))
                     .ok_or("地区选择已失效")?;
                 frame.chosen_region = Some(region);
             }
