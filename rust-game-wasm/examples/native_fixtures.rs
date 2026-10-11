@@ -614,6 +614,17 @@ fn detective_fixture(kill_source: bool) -> Value {
     }
     json!({"name":if kill_source {"detective-source-death-independent-hidden-destroy"} else {"detective-target-reveal-invalidates-original-instance"},"seed":seed,"steps":steps,"rejectedCommands":[rejected(&game,0,choose),rejected(&game,0,Action{card_id:Some(detective_id),..Action::new("reveal")})]})
 }
+// Explicit boundary layouts have no interrupted real step. Give their Win
+// checkpoint the same After(r,2) continuation that the layout intends.
+fn prepared_win(game: &mut Game, region: usize, seat: usize) {
+    game.window = Some(Window::Win(region, seat));
+    game.win_contexts = vec![hegemony_server::model::WinContext {
+        region, seat,
+        region_instance: game.regions[region].card.id.clone(),
+        resume_window: Window::After(region, 2),
+    }];
+}
+
 fn fixture(mode: &str, seed: &str) -> Value {
     let game = Game::new(
         format!("wasm-{mode}"),
@@ -1183,7 +1194,7 @@ fn world_fixture(id: &str, generic_search: bool) -> Value {
         let at = game.world.iter().position(|c| c.definition == id).unwrap();
         std::mem::swap(&mut game.regions[0].card, &mut game.world[at]);
     }
-    game.window = Some(Window::Win(0, actor));
+    prepared_win(&mut game, 0, actor);
     game.first_team = 0;
     game.priority_team = 0;
     game.active_team = 0;
@@ -1287,6 +1298,9 @@ fn world_fixture(id: &str, generic_search: bool) -> Value {
                 ability,
             },
         });
+        // This branch prepares an already-scored layout, rather than closing
+        // its synthetic Win window through commands.
+        game.win_contexts.clear();
         game.window = Some(Window::After(0, 2));
     }
     fn distinct_world(g: &Game) {
@@ -1736,7 +1750,7 @@ fn attachment_hk_fixture() -> Value {
             .unwrap();
         std::mem::swap(&mut game.regions[0].card, &mut game.world[at]);
     }
-    game.window = Some(Window::Win(0, 0));
+    prepared_win(&mut game, 0, 0);
     for seat in 0..4 {
         game.players[seat].deck.clear();
         for _ in 0..2 {
@@ -1887,7 +1901,7 @@ fn attachment_region_return_fixture() -> Value {
         .iter()
         .map(|p| p.deck.len())
         .collect::<Vec<_>>();
-    game.window = Some(Window::Win(0, 0));
+    prepared_win(&mut game, 0, 0);
     let mut room = RoomEnvelope::from_game(game);
     let mut steps = vec![step(
         &room,

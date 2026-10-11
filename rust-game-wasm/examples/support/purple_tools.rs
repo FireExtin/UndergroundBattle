@@ -279,7 +279,7 @@ fn free_reveal() -> Value {
             .unwrap();
         std::mem::swap(&mut g.regions[0].card, &mut g.world[at]);
     }
-    g.window = Some(Window::Win(0, 0));
+    prepared_win(&mut g, 0, 0);
     let p = field(&mut g, "JC103", 0);
     let h = field(&mut g, "JC104", 0);
     g.regions[0].cards.last_mut().unwrap().face_down = true;

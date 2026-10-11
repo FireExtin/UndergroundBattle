@@ -62,7 +62,9 @@ impl Game {
                 .threshold
                 .unwrap_or(3)
         {
-            self.effects.push_back(Effect::Award { seat, region });
+            self.effects.push_back(Effect::Award {
+                seat, region, region_instance: self.regions[region].card.id.clone(),
+            });
         }
     }
 
