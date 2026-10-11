@@ -12,7 +12,7 @@ import { RoomStore } from '../src/store.mjs';
 import { RoomService, digest } from '../src/service.mjs';
 
 abi.initSync({ module: readFileSync('generated/hegemony_wasm_bg.wasm') });
-const fixtures = JSON.parse(readFileSync(new URL('../../web/src/game/sevenCardUIV060.fixture.json', import.meta.url), 'utf8'));
+const fixtures = JSON.parse(readFileSync(new URL('../../web/src/game/sevenCardUIV062.fixture.json', import.meta.url), 'utf8'));
 for (const fixture of fixtures) test(`seven60 BQ028 attachment=${fixture.attachment} discard=${fixture.discard} seat=${fixture.targetSeat}: private HTTP, exact Native state and reopened receipt`, async t => {
   const persist = mkdtempSync(join(tmpdir(), 'seven60-d1-'));
   const options = convertV4MiniflareOptions({ name: 'seven60-test', resourcePersistencePath: persist, modules: [
@@ -32,7 +32,7 @@ for (const fixture of fixtures) test(`seven60 BQ028 attachment=${fixture.attachm
   await db.prepare('UPDATE rooms SET version=? WHERE id=?').bind(fixture.views[0].version, id).run();
   for (let seat = 1; seat < 4; seat++) await db.prepare('INSERT INTO seats(room_id,seat,token_hash) VALUES(?,?,?)').bind(id, seat, await digest(tokens[seat])).run();
   const health = await (await mf.dispatchFetch('http://localhost/api/health')).json();
-  assert.equal(health.engineVersion, 'rust-v0.2.60-xq18-carrier-candidate');
+  assert.equal(health.engineVersion, 'rust-v0.2.62-fixed-empty-slots-candidate');
   const httpViews = async expected => {
     for (let seat = 0; seat < 4; seat++) {
       const response = await mf.dispatchFetch(`http://localhost/api/rooms/${id}/state`, { headers: { Authorization: 'Bearer ' + tokens[seat] } });

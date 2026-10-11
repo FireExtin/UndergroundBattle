@@ -30,7 +30,7 @@ for await (const line of createInterface({input:py.stdout,crlfDelay:Infinity})) 
     assert.deepEqual(result,d.expected,name); state=result.state;
     if (d.expected.errorCode) rejections++; else commands++;
   } else checkpoints++;
-  for (let seat=0;seat<4;seat++) { assert.deepEqual(JSON.parse(abi.view(state,seat)),d.views[seat],`${name}, seat ${seat}`);views++; }
+  for (let seat=0;seat<d.views.length;seat++) { assert.deepEqual(JSON.parse(abi.view(state,seat)),d.views[seat],`${name}, seat ${seat}`);views++; }
 }
 const exit=py.exitCode??await new Promise(resolve=>py.on('exit',resolve));assert.equal(exit,0);
 const result={passed:true,engine:JSON.parse(abi.catalog()).engineVersion,checkpoints,commands,rejections,invalidStates,views,

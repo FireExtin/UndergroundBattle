@@ -60,7 +60,7 @@ impl Case {
             serde_json::to_string(&Game::from_persisted(&game).unwrap()).unwrap(),
             game
         );
-        let views: Vec<_> = (0..4)
+        let views: Vec<_> = (0..self.room.game.players.len())
             .map(|seat| serde_json::to_value(self.room.view(seat, 0)).unwrap())
             .collect();
         for (seat, view) in views.iter().enumerate() {
@@ -97,7 +97,7 @@ impl Case {
             serde_json::json!({
                 "state": state, "seat": seat, "command": command,
                 "serverNowMs": "0", "expected": expected,
-                "views": (0..4).map(|s|
+                "views": (0..self.room.game.players.len()).map(|s|
                     RoomEnvelope::from_persisted(&expected.state).unwrap().view(s, 0)
                 ).collect::<Vec<_>>()
             }),
@@ -180,7 +180,7 @@ impl Case {
             "step",
             serde_json::json!({"state": state, "seat": seat,
             "command": command, "serverNowMs": "0", "expected": expected,
-            "views": (0..4).map(|s| self.room.view(s, 0)).collect::<Vec<_>>() }),
+            "views": (0..self.room.game.players.len()).map(|s| self.room.view(s, 0)).collect::<Vec<_>>() }),
         );
         self.step += 1;
         self.checkpoint();
@@ -223,7 +223,7 @@ impl Case {
                 },
             );
         } else {
-            let seat = (0..4)
+            let seat = (0..self.room.game.players.len())
                 .find(|s| {
                     self.room
                         .game
@@ -1437,4 +1437,84 @@ fn win_flow_privilege_reaching_threshold_skips_old_region_renown() {
         case.renown_choices.is_empty(),
         "no renown silently declined during return"
     );
+}
+
+#[test]
+fn world_empty_duel_preserves_three_positions_and_any_live_region_mobility() {
+    let mut g = Game::new(
+        "duel-fixed-slot-native".into(), "LOCAL".into(), "duel".into(),
+        "P0".into(), "watchers".into(), 9,
+    ).unwrap();
+    g.join("P1".into(), "watchers".into()).unwrap();
+    for player in &mut g.players { player.ready = true; }
+    g.apply(0, Action::new("start")).unwrap();
+    while let Some(pending) = g.pending.clone() {
+        g.apply(pending.seat, Action {
+            choice_id: Some(pending.choice.id), selected: Some(vec![]),
+            ..Action::new("choose")
+        }).unwrap();
+    }
+    // Explicit offline layout. All following captures, pauses and movement use
+    // continuous Room commands with both strict loaders and journal replay.
+    for player in &mut g.players { player.hand.clear(); player.assets.clear(); }
+    for r in &mut g.regions { r.cards.clear(); r.influence = [0, 0]; }
+    g.world.clear();
+    g.first_team = 0;
+    g.priority_team = 0;
+    g.passed.clear();
+    g.team_passed = [false; 2];
+    g.begin_window(Window::Action(0));
+    let original = g.regions.iter().map(|r| r.card.id.clone()).collect::<Vec<_>>();
+    let won_definition = g.regions[1].card.definition.clone();
+    g.regions[1].influence[0] = crate::catalog::card(&won_definition).threshold.unwrap() - 1;
+    for _ in 0..2 {
+        let asset = g.make_card("JZ22", 0);
+        g.players[0].assets.push(asset);
+    }
+    let mut source = g.make_card("JZ22", 0);
+    source.face_down = true;
+    let source_id = source.id.clone();
+    g.regions[1].cards.push(source);
+    let mover = g.make_card("JC014", 0);
+    let mover_id = mover.id.clone();
+    g.regions[0].cards.push(mover);
+    let mut case = Case::new("world-empty-duel", g);
+    case.game(0, Action { card_id: Some(source_id), ..Action::new("reveal") });
+    accept_entry(&mut case, 1, 0);
+    case.finish_win(1);
+    assert_eq!(case.room.game.window, Some(Window::Action(0)));
+    assert!(case.room.game.regions[1].vacant);
+    assert_eq!(case.room.game.regions.len(), 3);
+    for seat in 0..2 {
+        let view = case.room.game.view(seat);
+        assert_eq!(view.regions.len(), 3);
+        assert_eq!(view.regions[0].id, original[0]);
+        assert_eq!(view.regions[1].id, "empty-region:1");
+        assert!(view.regions[1].card_id.is_empty());
+        assert_eq!(view.regions[2].id, original[2]);
+        assert!(case.room.game.legal_actions(seat).iter().all(|a| a.action.region != Some(1)));
+    }
+    assert_eq!(case.room.game.players[0].score_cards[0].definition, won_definition);
+    assert_ne!(case.room.game.players[0].score_cards[0].id, original[1]);
+    case.command(0, SessionAction::PauseRoom);
+    case.command(1, SessionAction::ResumeRoom);
+    case.until(|g| g.pending.as_ref().is_some_and(|p|
+        matches!(&p.resolution, ChoiceResolution::Declare { declaration, .. }
+            if declaration.ability.key == "mobility")
+    ));
+    let pending = case.room.game.pending.clone().unwrap();
+    let ids = pending.choice.options.iter().map(|o| o.id.as_str()).collect::<Vec<_>>();
+    assert!(ids.contains(&"region:2"));
+    assert!(!ids.contains(&"region:1"));
+    case.reject(0, SessionAction::Game { action: Action {
+        choice_id: Some(pending.choice.id.clone()), selected: Some(vec!["region:1".into()]),
+        ..Action::new("choose")
+    } }, "invalid_action");
+    case.game(0, Action {
+        choice_id: Some(pending.choice.id), selected: Some(vec!["region:2".into()]),
+        ..Action::new("choose")
+    });
+    case.until(|g| g.board(&mover_id).is_some_and(|(r, _)| r == 2));
+    assert_eq!(case.room.game.board(&mover_id).unwrap().1.id, mover_id);
+    assert!(case.room.game.regions[1].vacant);
 }
