@@ -2,7 +2,7 @@ import { act, cleanup, renderHook } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { getState, pollState, readPending, saveSession, sendCommand } from './api';
 import { testCatalog, testView } from './testFixtures';
-import type { Action, View } from './types';
+import type { Action, Region, View } from './types';
 import { useGame } from './useGame';
 
 const seat = { roomId: testView.roomId, seat: 0, token: 'ack-validation-seat', inviteCode: 'INVITE' };
@@ -33,6 +33,34 @@ beforeEach(() => { localStorage.clear(); sessionStorage.clear(); vi.useFakeTimer
 afterEach(() => { cleanup(); vi.useRealTimers(); vi.restoreAllMocks(); vi.unstubAllGlobals(); localStorage.clear(); sessionStorage.clear(); });
 
 describe('command acknowledgement validation', () => {
+  it.each([{ mode: 'duel' as const, count: 3 }, { mode: 'teams' as const, count: 5 }])(
+    'accepts the complete $count-slot $mode projection and confirms its command receipt', async ({ mode, count }) => {
+      const regions: Region[] = Array.from({ length: count }, (_, index) => index === 1
+        ? { id: `empty-region:${index}`, index, cardId: '', name: '空位', threshold: 0, points: 0,
+          influence: [0, 0], characters: [], iconsByTeam: [{ investigation: 0, combat: 0, influence: 0 },
+            { investigation: 0, combat: 0, influence: 0 }], skipConfrontation: true }
+        : { id: `region-instance:${index}`, index, cardId: 'DQJC112', name: '纽约', threshold: 4, points: 4,
+          influence: [0, 0], characters: [] });
+      const view: View = { ...readyView(3), mode, status: 'playing', worldDeckCount: 0, regions,
+        legalActions: [{ id: 'pass', kind: 'pass', label: '让过' }] };
+      const before = { ...view, version: 2 };
+      const commands: Command[] = [];
+      vi.stubGlobal('fetch', vi.fn(async (url: string, init?: RequestInit) => {
+        if (url.endsWith('/catalog')) return json(testCatalog);
+        if (url.endsWith('/commands')) { commands.push(JSON.parse(String(init?.body))); return json(view); }
+        return json(before);
+      }));
+      expect(await getState(seat)).toEqual(before);
+      expect(await pollState(seat, 1, new AbortController().signal)).toEqual(before);
+      expect(await sendCommand(seat, 2, { kind: 'pass' }, 'slot-projection-receipt')).toEqual(view);
+      const hook = renderHook(useGame); await act(async () => {});
+      await act(async () => { await hook.result.current.act({ kind: 'pass' }); });
+      expect(commands).toHaveLength(2);
+      expect(commands[1].expectedVersion).toBe(2);
+      expect(hook.result.current.view?.regions).toEqual(regions);
+      expect(hook.result.current.uncertain).toBe(false); expect(readPending(seat)).toBeNull();
+    });
+
   it.each(invalidReplies)('keeps the original pending command after a successful %s response, even when state reads succeed', async (_name, invalidReply) => {
     const commands: Command[] = [];
     let recover = false;

@@ -633,3 +633,14 @@
   .hg-app .hg-lantern-table.hg-archive-table.hg-table .hg-inspector:has(.hg-object-targeting) .hg-small-read,
   .hg-app .hg-lantern-table.hg-archive-table.hg-table .hg-object-targeting .hg-target-navigation .hg-button { min-height: 26px; padding: 4px 8px; font-size: 12px; }
 }
+
+.hg-table.hg-desktop-table.hg-archive-table.hg-lantern-table .hg-region-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-style: dashed;
+  background: transparent;
+  box-shadow: none;
+  color: #a99a7d;
+  font-size: 13px;
+}
