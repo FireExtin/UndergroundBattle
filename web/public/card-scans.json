@@ -698,5 +698,10 @@
     "url": "/cards/BQ030.jpg",
     "source": "resource/ymsj-fun.github.io/cards/BQ030 裁定官.jpg",
     "sha256": "85aaa7444b65060ab09f33f2ea9057647f88c961ff103fcca0c0763ce2564b86"
+  },
+  "XQ24": {
+    "url": "/cards/XQ24.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/XQ24 防暴警察.jpg",
+    "sha256": "420b412908d7b86112e26c2ba0f94593a29c40bf8f6b54e8809ce489a66f61b8"
   }
 }

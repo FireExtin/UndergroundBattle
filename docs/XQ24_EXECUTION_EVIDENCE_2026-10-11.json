@@ -1,0 +1,151 @@
+{
+  "createdAt": "2026-10-11T10:19:48.422775+00:00",
+  "parentCommit": "780997119458a9140056f2f51d77c6347819e4ca",
+  "localBranch": "codex/xq24-riot-police-review-20261011",
+  "rulesVersion": "hegemony-pdf-v1",
+  "cardPoolVersion": "limited-v2.57-xq24-riot-police-candidate",
+  "engineVersion": "rust-v0.2.64-xq24-riot-police-candidate",
+  "status": "local-candidate-awaiting-independent-review",
+  "native": {
+    "passed": 945,
+    "library": 878,
+    "integration": 67,
+    "xq24Focused": 15
+  },
+  "ui": {
+    "files": 90,
+    "passed": 842
+  },
+  "worker": {
+    "passed": 103,
+    "failed": 0,
+    "cancelled": 0,
+    "xq24Scenarios": 12,
+    "xq24Commands": 117,
+    "msjc09NaturalCommands": 457,
+    "msjc09DeadlineHolderTransitions": 2,
+    "finalRoutingChecks": 4
+  },
+  "sourceTests": 9,
+  "build": {
+    "rust": "1.90",
+    "wasmBindgen": "0.2.104",
+    "node": "24.19",
+    "typeChecks": "both sites tsconfigs passed",
+    "workerDryRun": true,
+    "clientAssets": 147
+  },
+  "focusedNativeWasm": {
+    "passed": true,
+    "engine": "rust-v0.2.64-xq24-riot-police-candidate",
+    "commands": 477,
+    "rejectedCommands": 35,
+    "projections": 4430,
+    "checkpoints": 655,
+    "invalidStates": 29,
+    "continuousScenarios": 12,
+    "sourceInputs": 1056
+  },
+  "fullNativeWasm": {
+    "ok": true,
+    "cases": 433,
+    "wasmBytes": 2669890,
+    "wasmSha256": "9b960e8ad3be934a5d93768b758a76dd37febb50448fa38bf03efb659aa57494",
+    "transitions": 24403,
+    "projections": 96975,
+    "quotes": 1,
+    "rejectedCommands": 319,
+    "rejectedDeckCreations": 42,
+    "choiceKinds": [
+      "damage",
+      "discard",
+      "investigation",
+      "mulligan",
+      "optional-shuffle",
+      "recipient",
+      "region_return",
+      "revealed-hand-discard",
+      "search",
+      "target",
+      "trigger"
+    ],
+    "slowestFixtureStepMs": 1044.28,
+    "opaqueState": true,
+    "maximumU64SeedExact": true,
+    "nativeWasmStateAndViewsMatch": true
+  },
+  "evidenceRoot": "/workspace/qa-xq24-20261011",
+  "logs": [
+    {
+      "path": "/workspace/qa-xq24-20261011/logs/native-full.log",
+      "bytes": 98367,
+      "sha256": "9b1b7b3e3dcf79052e046db541e42cda7c72eecd0d36cd1c27c00627027f7298"
+    },
+    {
+      "path": "/workspace/qa-xq24-20261011/logs/xq24-native-final.log",
+      "bytes": 1753,
+      "sha256": "919b94ca74b1a5119ef0226ede350047b162e56cf781fa6a3a45b31b0d0e0191"
+    },
+    {
+      "path": "/workspace/qa-xq24-20261011/logs/ui-full-final.log",
+      "bytes": 508,
+      "sha256": "e3da46bafc614ba48336fda5d0bddb7cf3bc2573dba437f49064f249fd7f1569"
+    },
+    {
+      "path": "/workspace/qa-xq24-20261011/logs/abi-full.log",
+      "bytes": 77271,
+      "sha256": "cdf19f205ae6570b8936ebf3d5cbda84f780934c024a324f9140916bceef7fed"
+    },
+    {
+      "path": "/workspace/qa-xq24-20261011/logs/xq24-wasm-parity.log",
+      "bytes": 205,
+      "sha256": "a186381cd8d6e30db51d6b05c000eaf2f18336066ec0fe2857ead8707dbd99fd"
+    },
+    {
+      "path": "/workspace/qa-xq24-20261011/logs/xq24-d1.log",
+      "bytes": 3088,
+      "sha256": "649d0f5c7b11e1cd144adbcee3a9c49493de0314c5a209f81b08c8610f4315df"
+    },
+    {
+      "path": "/workspace/qa-xq24-20261011/logs/worker-full-final.log",
+      "bytes": 23860,
+      "sha256": "9baf3b235114ed42f22a146ef01190ebb26eee98fc5d5a9674611190982ed40c"
+    },
+    {
+      "path": "/workspace/qa-xq24-20261011/logs/msjc09-deadline-final.log",
+      "bytes": 581,
+      "sha256": "3b8ba52af78efda7bbb72c6b048bc23a541d7e3d828dc3285e5585c1ff8d7158"
+    },
+    {
+      "path": "/workspace/qa-xq24-20261011/logs/routing-final.log",
+      "bytes": 662,
+      "sha256": "f3ca82423fe4c0d49337c28cbb487b140a88e2fc1ea2d0e403a8f2a33c210853"
+    },
+    {
+      "path": "/workspace/qa-xq24-20261011/logs/sites-build.log",
+      "bytes": 1081,
+      "sha256": "9e1cf0fdaf5b358b45a6738cecd00278f1e8e7dd3c47afc2632e33469e0d5877"
+    },
+    {
+      "path": "/workspace/qa-xq24-20261011/logs/wasm-build.log",
+      "bytes": 220,
+      "sha256": "59690337bf2bb04ea9526d1fd618ca0fe9610db1a0725ff79c1f9efd4db4dcce"
+    },
+    {
+      "path": "/workspace/qa-xq24-20261011/logs/source-tests.log",
+      "bytes": 1018,
+      "sha256": "faa515e3760463336191d58101473d3339b811535bc0e886f6d9bc65d002f4ec"
+    }
+  ],
+  "browserAcceptance": false,
+  "published": false,
+  "pushed": false,
+  "libraryUploaded": false,
+  "fixture": {
+    "path": "sites/test/fixtures/xq24-native-v064.json",
+    "bytes": 10009508,
+    "sha256": "3d44c3429810e5f3e42762e1d5f3a997478db7252ec31f67b43236483229805e",
+    "syntheticNativeInitialLayouts": true,
+    "continuousScenarios": 12
+  }
+}

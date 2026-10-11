@@ -15,6 +15,8 @@ mod blue_expansion_tests;
 mod black_expansion_tests;
 #[cfg(all(test, not(feature = "society-fixtures")))]
 mod gray_expansion_tests;
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod xq24_tests;
 mod attributes;
 mod jc050;
 mod xq27;

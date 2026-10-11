@@ -7,15 +7,20 @@ import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { Miniflare, convertV4MiniflareOptions } from 'miniflare';
 import { RoomStore } from '../src/store.mjs';
+import { RoomService } from '../src/service.mjs';
+import { routeKernels } from '../src/kernel-router.mjs';
+import * as abi from '../generated/hegemony_wasm.js';
 
 test('current real MSJC09 permits first/rear paid activation and restores four-seat frames, receipts, privacy and reset', async t => {
+  abi.initSync({ module: readFileSync('../rust-game-wasm/pkg/hegemony_wasm_bg.wasm') });
+  const kernel = routeKernels(abi);
   const dist = resolve('dist/server'), persist = mkdtempSync(join(tmpdir(), 'hegemony-msjc09-'));
   const options = convertV4MiniflareOptions({ name:'printed-msjc09-local', modulesRoot:dist, resourcePersistencePath:persist,
     modules:[{type:'ESModule',path:join(dist,'index.js')},...readdirSync(dist).filter(n=>n.endsWith('.wasm')).map(n=>({type:'CompiledWasm',path:join(dist,n)}))],
     compatibilityDate:'2026-10-02',d1Databases:{DB:'printed-msjc09-db'} });
   let mf = new Miniflare(options); t.after(()=>mf.dispose()); let db = await mf.getD1Database('DB');
   for (const name of readdirSync('drizzle').filter(n=>n.endsWith('.sql'))) for (const sql of readFileSync('drizzle/'+name,'utf8').split('--> statement-breakpoint').filter(s=>s.trim())) await db.prepare(sql).run();
-  let calls=0, commands=0, reopens=0, restoredBeforeExpiry=0;
+  let calls=0, commands=0, reopens=0, expiredHolderTransitions=0;
   const api = async (path,body,session) => {
     calls++; const r = await mf.dispatchFetch('http://localhost'+path,{method:body?'POST':'GET',headers:{...(body?{'Content-Type':'application/json'}:{}),...(session?{Authorization:'Bearer '+session.token}:{})},...(body?{body:JSON.stringify(body)}:{})});
     return {status:r.status,body:r.status===204?null:await r.json()};
@@ -88,9 +93,33 @@ test('current real MSJC09 permits first/rear paid activation and restores four-s
         assert.equal((await new RoomStore(db).room(sessions[0].roomId)).state,opaque);
         assert.deepEqual(await api(path(seat,'commands'),sent.command,sessions[seat]),sent.result);
         assert.equal((await api(path(seat,'commands'),{...sent.command,action:{kind:'game',action:{...a,abilityId:'other'}}},sessions[seat])).status,409);
+        const originalWindow=sent.result.body.responseWindow;
+        const deadline=Math.min(...originalWindow.members.filter(m=>m.status==='undecided').map(m=>m.deadlineMs));
+        // Reproduce response:1 -> response:2 with exact clocks in this normally
+        // created paid room after actual workerd/D1 reopen. The first team's
+        // 5000ms expiry opens the other team's window without resolving the frame.
+        const beforeExpiry=JSON.parse(abi.pollRoom(opaque,seat,String(deadline-1)));
+        assert.equal(beforeExpiry.changed,false);assert.equal(beforeExpiry.state,opaque);
+        assert.deepEqual(await new RoomService(db,kernel,()=>deadline-1).state(sessions[0].roomId,'Bearer '+sessions[seat].token,null),beforeExpiry.view);
+        const atExpiry=JSON.parse(abi.pollRoom(opaque,seat,String(deadline)));
+        assert.equal(atExpiry.changed,true);assert.equal(atExpiry.version,sent.result.body.version+1);
+        assert.equal(atExpiry.view.responseWindow.stackTopId,originalWindow.stackTopId);
+        assert.notEqual(atExpiry.view.responseWindow.holderTeam,originalWindow.holderTeam);
+        assert.equal(atExpiry.view.responseWindow.id,'response:'+(Number(originalWindow.id.split(':')[1])+1));
+        assert.equal(atExpiry.view.hand.length,before);
+        assert(atExpiry.view.responseWindow.members.every(m=>m.status==='undecided' && m.deadlineMs===deadline+5000));
+        assert.deepEqual(await new RoomService(db,kernel,()=>deadline).state(sessions[0].roomId,'Bearer '+sessions[seat].token,null),atExpiry.view);
+        assert.equal((await new RoomStore(db).room(sessions[0].roomId)).state,atExpiry.state);
+        const journal=await db.prepare('SELECT entry FROM journal WHERE room_id=? AND version=?').bind(sessions[0].roomId,atExpiry.version).first();
+        assert.deepEqual(JSON.parse(journal.entry),{SessionEvents:{events:atExpiry.journal}});
+        expiredHolderTransitions++;
         all=await views();checkPrivacy(all);
-        if (all[seat].responseWindow) {restoredBeforeExpiry++;assert.equal(all[seat].responseWindow.id,sent.result.body.responseWindow.id);assert.deepEqual(all[seat].responseWindow.members,sent.result.body.responseWindow.members);assert.equal(all[seat].hand.length,before);}
-        else assert.equal(all[seat].hand.length,before+draw); // Actual elapsed expiry may resolve once.
+        if (all[seat].responseWindow) {
+          assert.equal(all[seat].responseWindow.stackTopId,originalWindow.stackTopId);
+          assert.equal(all[seat].hand.length,before);
+          assert(all[seat].serverNowMs>=deadline);
+          assert.deepEqual(all[seat].responseWindow,atExpiry.view.responseWindow);
+        } else assert.equal(all[seat].hand.length,before+draw); // Both teams may have expired.
         acted=true;break;
       }
       const asset=v.legalActions.find(a=>a.kind==='asset');
@@ -101,10 +130,10 @@ test('current real MSJC09 permits first/rear paid activation and restores four-s
     for (let seat=0;seat<4;seat++) {const v=all[seat];if (v.legalActions.some(a=>a.kind==='pass')) {await command(seat,v.responseWindow?{kind:'passResponse',windowId:v.responseWindow.id}:{kind:'game',action:{kind:'pass'}},v.version);passed=true;break;}}
     assert(passed,'normal pass advances bounded neutral deck');
   }
-  assert(resolved.every(Boolean) && all[0].turn>=4);assert.deepEqual([...sawInitiative].sort(),[0,1]);assert.equal(reopens,2);
+  assert(resolved.every(Boolean) && all[0].turn>=4);assert.deepEqual([...sawInitiative].sort(),[0,1]);assert.equal(reopens,2);assert.equal(expiredHolderTransitions,2);
   for (let i=0;i<2;i++) {
     const seat=owners[i],s=all[seat].societyZones[seat].card;assert.equal(s.instanceId,sources[i]);assert(!s.exhausted);assert(all[seat].assets.every(a=>!a.exhausted));
     assert.deepEqual(await api(path(seat,'commands'),paid[i].command,sessions[seat]),paid[i].result);
   }
-  t.diagnostic(JSON.stringify({engineVersion:cat.engineVersion,printedSociety:'MSJC09',syntheticInitialLayout:false,publicNaturalUiAcceptance:false,httpCalls:calls,acceptedCommands:commands,firstAndRearBothPaid:true,fourSeats:true,paidFrameReopens:reopens,restoredBeforeExpiry,sameInstanceNaturalNextTurnReset:true}));
+  t.diagnostic(JSON.stringify({engineVersion:cat.engineVersion,printedSociety:'MSJC09',syntheticInitialLayout:false,publicNaturalUiAcceptance:false,httpCalls:calls,acceptedCommands:commands,firstAndRearBothPaid:true,fourSeats:true,paidFrameReopens:reopens,expiredHolderTransitions,sameInstanceNaturalNextTurnReset:true}));
 });

@@ -3,11 +3,11 @@ use serde::{Deserialize, Serialize};
 use std::sync::OnceLock;
 
 pub const RULES_VERSION: &str = "hegemony-pdf-v1";
-pub const POOL_VERSION: &str = "limited-v2.56-bq030-attachment-candidate";
+pub const POOL_VERSION: &str = "limited-v2.57-xq24-riot-police-candidate";
 #[cfg(not(feature = "society-fixtures"))]
-pub const ENGINE_VERSION: &str = "rust-v0.2.63-bq030-fixed-slots-candidate";
+pub const ENGINE_VERSION: &str = "rust-v0.2.64-xq24-riot-police-candidate";
 #[cfg(feature = "society-fixtures")]
-pub const ENGINE_VERSION: &str = "rust-v0.2.63-bq030-fixed-slots-fixture";
+pub const ENGINE_VERSION: &str = "rust-v0.2.64-xq24-riot-police-fixture";
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]

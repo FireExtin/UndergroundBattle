@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.56-bq030-attachment-candidate",
-  "engineVersion": "rust-v0.2.63-bq030-fixed-slots-candidate",
+  "cardPoolVersion": "limited-v2.57-xq24-riot-police-candidate",
+  "engineVersion": "rust-v0.2.64-xq24-riot-police-candidate",
   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
   "cards": [
     {
@@ -5012,6 +5012,47 @@
         "record": "BQ030",
         "image": "resource/ymsj-fun.github.io/cards/BQ030 裁定官.jpg",
         "sha256": "85aaa7444b65060ab09f33f2ea9057647f88c961ff103fcca0c0763ce2564b86"
+      }
+    },
+    {
+      "id": "XQ24",
+      "name": "防暴警察",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "警察"
+      ],
+      "cost": 4,
+      "loyalty": [
+        "灰色",
+        "灰色"
+      ],
+      "loyaltyText": "灰色 / 灰色",
+      "color": "灰",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 1,
+          "combat": 1,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 2,
+      "text": "公开\n【进场触发】将所有与防暴警察位于相同地区，且印刷费用小于或等于3的角色翻面为暗藏者。",
+      "keywords": [
+        "公开"
+      ],
+      "unique": false,
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "XQ24",
+        "image": "resource/ymsj-fun.github.io/cards/XQ24 防暴警察.jpg",
+        "sha256": "420b412908d7b86112e26c2ba0f94593a29c40bf8f6b54e8809ce489a66f61b8"
       }
     }
   ],

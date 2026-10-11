@@ -95,9 +95,11 @@ test('BQ030 registry exactly normalizes every approved printed gameplay field an
   }, 'The complete runtime record must match the approved source normalization');
 });
 
-test('only BQ030 is admitted beyond the 128-card baseline and candidate version metadata agrees', () => {
+test('historical BQ030 admission preserves its 128-card baseline inside the current candidate', () => {
   const pool = readJson('rust-game/data/cards.json');
-  const { cards, rulesVersion, cardPoolVersion, engineVersion, ...otherData } = pool;
+  const { cards: currentCards, rulesVersion, cardPoolVersion, engineVersion, ...otherData } = pool;
+  // Preserve the historical BQ030 admission assertion inside the newer XQ24 pool.
+  const cards = currentCards.filter(card => card.id !== 'XQ24');
   assert.equal(cards.length, 129);
   assert.equal(new Set(cards.map(card => card.id)).size, 129, 'Registry IDs must be unique');
   assert.equal(cards.filter(card => card.id === 'BQ030').length, 1);
@@ -108,8 +110,8 @@ test('only BQ030 is admitted beyond the 128-card baseline and candidate version 
   assert.equal(digest(otherData), approvedPins.otherPoolMetadata,
     'Decks, world and source metadata must be preserved; candidate versions are checked separately');
   assert.equal(rulesVersion, 'hegemony-pdf-v1');
-  assert.equal(cardPoolVersion, 'limited-v2.56-bq030-attachment-candidate');
-  assert.equal(engineVersion, 'rust-v0.2.63-bq030-fixed-slots-candidate');
+  assert.equal(cardPoolVersion, 'limited-v2.57-xq24-riot-police-candidate');
+  assert.equal(engineVersion, 'rust-v0.2.64-xq24-riot-police-candidate');
 
   const catalog = read('rust-game/src/catalog.rs').toString('utf8');
   const constant = name => {
@@ -128,7 +130,7 @@ test('only BQ030 is admitted beyond the 128-card baseline and candidate version 
 test('actual admitted scans retain pinned original bytes, published bytes and both BQ030 URL mappings', () => {
   // Reuse the existing byte/provenance/TS/public mapping checker instead of duplicating it.
   const result = validateAdmittedScans(repository);
-  assert.equal(result.checkedCards, 129);
+  assert.equal(result.checkedCards, 130);
   assert.ok(result.checkedIds.includes('BQ030'));
 });
 

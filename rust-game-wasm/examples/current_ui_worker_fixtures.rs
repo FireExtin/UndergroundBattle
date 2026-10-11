@@ -252,9 +252,9 @@ fn main() {
         }
         regenerate(&mut value);
         let destination = source
-            .replace("v057", "v063")
-            .replace("Native57", "Native63")
-            .replace("Native60", "Native63");
+            .replace("v057", "v064")
+            .replace("Native57", "Native64")
+            .replace("Native60", "Native64");
         std::fs::write(
             Path::new(&root).join(&destination),
             serde_json::to_vec_pretty(&value).unwrap(),

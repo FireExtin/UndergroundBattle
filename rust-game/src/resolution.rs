@@ -8,6 +8,20 @@ use crate::{
 use std::collections::{BTreeMap, BTreeSet};
 
 impl Game {
+    // Shared with XQ24; preserve the existing single-character Hide cleanup,
+    // identity reset, orientation and region rather than creating a second rule.
+    pub(crate) fn hide_in_place(&mut self, id: &str) {
+        let controller = self.controller_after_reset(id);
+        if let Some((r, c)) = self.leave_board(id) {
+            let mut c = self.fresh(c);
+            if let Some(controller) = controller { c.controller = controller; }
+            c.face_down = true;
+            c.damage = 0;
+            c.wounds = 0;
+            c.shield = 0;
+            self.regions[r].cards.push(c);
+        }
+    }
     fn attachment_host_matches(
         &self,
         actor: usize,
@@ -393,7 +407,7 @@ impl Game {
                 snapshot
             },
             region,
-            source_region_instance: if matches!(c.definition.as_str(), "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030") {
+            source_region_instance: if matches!(c.definition.as_str(), "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030") {
                 region.and_then(|r| self.regions.get(r)).filter(|r| !r.vacant).map(|r| r.card.id.clone())
             } else { None },
             attachment_host_instance: (c.definition == "JC090" || rules::definition(&c.definition)
@@ -1338,6 +1352,7 @@ impl Game {
                 Op::BQ030AttachmentDraw { .. } => self.bq030_draw_one(&frame)?,
                 Op::BQ078ReturnNamelessCorpse => return self.bq078_return_start(frame),
                 Op::JZ45LockLocalTarget => self.jz45_lock_local_target(&frame)?,
+                Op::XQ24HideCheapCharactersInSourceRegion => self.xq24_hide_cheap_characters(&frame),
                 Op::XQ44SearchDreamSealOnTarget => return self.deck_seal_search_start(frame, true),
                 Op::JZ02SearchSpaceSpellSealOnSource => return self.deck_seal_search_start(frame, false),
                 Op::JZ50SearchDeathToGraveyard => return self.jz50_search_start(frame),
@@ -1715,18 +1730,7 @@ impl Game {
                 }
                 Op::Hide(entity) => {
                     if let Some(id) = Self::frame_entity(&frame, entity) {
-                        let controller = self.controller_after_reset(id);
-                        if let Some((r, c)) = self.leave_board(id) {
-                            let mut c = self.fresh(c);
-                            if let Some(controller) = controller {
-                                c.controller = controller;
-                            }
-                            c.face_down = true;
-                            c.damage = 0;
-                            c.wounds = 0;
-                            c.shield = 0;
-                            self.regions[r].cards.push(c);
-                        }
+                        self.hide_in_place(id);
                     }
                 }
                 Op::MoveOnBoard { entity, region } => {

@@ -46,7 +46,7 @@ def write(relative, value):
     (root / relative).write_text(json.dumps(value, ensure_ascii=False, separators=(",", ":")) + "\n")
 
 
-write("sites/test/fixtures/win-flow-native-v063.json", {
+write("sites/test/fixtures/win-flow-native-v064.json", {
     "scenarios": [{"name": name, "steps": steps(name)} for name in names]})
 captures = []
 for name, empty_index in [("world-empty-duel", 1), ("world-empty-slot-2", 2)]:
@@ -64,6 +64,6 @@ sparse = [s for s in steps("world-empty-jc050")
           == ["region:0", "region:2", "region:3", "region:4"]
           and not s["expected"].get("errorCode")]
 assert len(sparse) == 1
-write("web/src/game/fixedSlotsNative63.fixture.json", {
+write("web/src/game/fixedSlotsNative64.fixture.json", {
     "captures": captures, "sparseChoice": {"beforeViews": before_views(sparse[0]), "step": sparse[0]}})
 print(json.dumps({"continuousD1Scenarios": len(names), "captures": len(captures), "sparseChoices": 1}))

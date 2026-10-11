@@ -1,4 +1,4 @@
-//! Complete, finite JZ44/JZ45 programs. Integration stays in the shared engine.
+//! Complete, finite JZ44/JZ45/XQ24 programs. Integration stays in the shared engine.
 use crate::{
     engine::RuleResult,
     model::*,
@@ -7,6 +7,19 @@ use crate::{
 
 pub(crate) fn definition(id: &str) -> Option<Definition> {
     match id {
+        "XQ24" => {
+            let mut d = with_abilities(vec![ability(
+                "entry-hide-cheap-characters",
+                "进场触发：同地区费用不超过3的角色翻面为暗藏者",
+                Timing::Fast,
+                vec![],
+                vec![],
+                vec![Op::XQ24HideCheapCharactersInSourceRegion],
+                Some(Event::Enter),
+            )]);
+            d.traits.public = true;
+            Some(d)
+        }
         "JZ44" => {
             let mut criminal = target(
                 Zone::Board,
@@ -99,7 +112,7 @@ pub(crate) fn definition(id: &str) -> Option<Definition> {
 
 pub(crate) fn contains_gray_expansion_op(ops: &[Op]) -> bool {
     ops.iter().any(|op| match op {
-        Op::JZ45LockLocalTarget => true,
+        Op::JZ45LockLocalTarget | Op::XQ24HideCheapCharactersInSourceRegion => true,
         Op::ForEachLivingPlayer(body) | Op::ForEachLivingPlayerFromActor(body) => {
             contains_gray_expansion_op(body)
         }
@@ -118,7 +131,7 @@ fn has_predicate(targets: &[TargetSlotSpec]) -> bool {
         .any(|t| t.predicate == Some(TargetPredicate::JZ45LockedLocalTarget))
 }
 fn own_key(key: &str) -> bool {
-    matches!(key, "entry-hide-criminal-draw" | "entry-lock-or-destroy")
+    matches!(key, "entry-hide-criminal-draw" | "entry-lock-or-destroy" | "entry-hide-cheap-characters")
 }
 fn selected_modes(id: &str) -> Vec<AbilitySpec> {
     let Some(d) = definition(id) else {
@@ -155,7 +168,7 @@ pub(crate) fn validate_ability(id: &str, a: &AbilitySpec) -> RuleResult<()> {
         && !(definition(id).is_some() && crate::jz22::runtime_ability_is_admitted(a))
     {
         return Err(format!(
-            "{id}: only complete JZ44/JZ45 printed or selected-mode programs are admitted"
+            "{id}: only complete JZ44/JZ45/XQ24 printed or selected-mode programs are admitted"
         ));
     }
     Ok(())
@@ -217,6 +230,26 @@ fn validate_source(
     Ok(())
 }
 impl Game {
+    pub(crate) fn xq24_hide_cheap_characters(&mut self, frame: &ResolutionFrame) {
+        // User ruling: bind the real region at triggering. Source departure or
+        // movement does not retarget this untargeted effect to another region.
+        let Some(region) = frame.source.region.filter(|r| {
+            self.regions.get(*r).is_some_and(|reg| {
+                !reg.vacant && frame.source.source_region_instance.as_ref() == Some(&reg.card.id)
+            })
+        }) else { return; };
+        // Only visible characters qualify. Hidden identities are not consulted;
+        // printed cost, not a player's cost modifiers, supplies the threshold.
+        let ids = self.regions[region].cards.iter().filter(|c| {
+            !c.face_down && {
+                let d = crate::catalog::card(&c.definition);
+                d.kind == "character" && d.cost <= 3
+            }
+        }).map(|c| c.id.clone()).collect::<Vec<_>>();
+        for id in ids {
+            self.hide_in_place(&id);
+        }
+    }
     pub(crate) fn jz45_lock_local_target(&mut self, frame: &ResolutionFrame) -> RuleResult<()> {
         let target = frame.targets.first().ok_or("JZ45缺少锁定目标")?;
         if let Some(c) = self.board_mut(&target.id) {
@@ -317,6 +350,13 @@ impl Game {
             Ok(())
         };
         for s in &self.stack {
+            // A forged paid frame must not escape the finite XQ24 checks by
+            // changing its snapshot to an unrelated definition with no ops.
+            if s.card.as_ref().is_some_and(|c| c.definition == "XQ24")
+                && s.frame.as_ref().is_some_and(|f| f.source.card.definition != "XQ24")
+            {
+                return Err("XQ24派遣或现身的实体与冻结来源不符".into());
+            }
             if s.frame.is_none()
                 && s.card
                     .as_ref()

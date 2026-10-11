@@ -10,7 +10,7 @@ const root = fileURLToPath(new URL('../../', import.meta.url));
 const abi = await import(pathToFileURL(resolve(bindings)));
 abi.initSync({ module: readFileSync(new URL('./hegemony_wasm_bg.wasm', pathToFileURL(resolve(bindings)))) });
 const catalog = JSON.parse(abi.catalog());
-assert.equal(catalog.engineVersion, 'rust-v0.2.63-bq030-fixed-slots-candidate');
+assert.equal(catalog.engineVersion, 'rust-v0.2.64-xq24-riot-police-candidate');
 const records = readdirSync(resolve(evidence, 'room')).map(name => {
   const raw = readFileSync(resolve(evidence, 'room', name)), step = JSON.parse(raw);
   return { ...step, serverNowMs: '0', inputName: name,
@@ -49,8 +49,8 @@ const scenarios = starts.map(([name, predicate]) => {
   return { name, steps };
 });
 const serial = JSON.stringify({ scenarios }) + '\n';
-writeFileSync(resolve(root, 'sites/test/fixtures/bq030-native-v063.json'), serial);
-writeFileSync(resolve(root, 'web/src/game/bq030Native63.fixture.json'), JSON.stringify({
+writeFileSync(resolve(root, 'sites/test/fixtures/bq030-native-v064.json'), serial);
+writeFileSync(resolve(root, 'web/src/game/bq030Native64.fixture.json'), JSON.stringify({
   choices: scenarios.filter(s => !['empty-deck-elimination', 'granted-renown-vacant'].includes(s.name))
     .map(s => ({ name: s.name, step: s.steps[0] })) }) + '\n');
 console.log(JSON.stringify({ scenarios: scenarios.length, steps: scenarios.map(s => ({ name: s.name, count: s.steps.length })) }));

@@ -334,6 +334,8 @@ pub enum Op {
     HealWounds(EntityRef),
     Move(EntityRef, Destination),
     Hide(EntityRef),
+    // XQ24's untargeted finite entry effect, not the global world-hide rule.
+    XQ24HideCheapCharactersInSourceRegion,
     MoveOnBoard {
         entity: EntityRef,
         region: RegionRef,
@@ -1841,7 +1843,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         for id in ["WM059", "BQ078"] {
             m.insert(id.into(), crate::black_expansion::definition(id).unwrap());
         }
-        for id in ["JZ44", "JZ45"] {
+        for id in ["JZ44", "JZ45", "XQ24"] {
             m.insert(id.into(), crate::gray_expansion::definition(id).unwrap());
         }
         m.insert("JC050".into(), jc050_definition());
