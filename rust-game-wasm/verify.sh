@@ -10,3 +10,4 @@ trap 'rm -f "$fixture_file"; rm -rf "$fixture_file.cases"' EXIT
 bash rust-game-wasm/build.sh
 cargo run --locked -p hegemony-wasm --example native_fixtures -- "$fixture_file"
 node rust-game-wasm/tests/compare.mjs "$fixture_file"
+node tools/cards/check-xq24-containers.mjs

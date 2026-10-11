@@ -1,0 +1,190 @@
+{
+  "createdAt": "2026-10-11T11:04:17.787144+00:00",
+  "parentCommit": "107fc0634db5fee76cc795d563b1d98e687915c6",
+  "branch": "codex/xq24-riot-police-review-20261011",
+  "status": "follow-up-candidate-awaiting-independent-review",
+  "scope": "Reject only persisted XQ24/entry-hide-cheap-characters Effect::Frame; other gray containers unchanged",
+  "versionsUnchanged": true,
+  "native": {
+    "xq24Passed": 16,
+    "grayPassed": 47,
+    "finalContainerProducerPassed": 1,
+    "u64MaxSeed": true,
+    "illegalStates": 4,
+    "rejectsGameAndRoomRestore": true
+  },
+  "wasmContainer": {
+    "passed": true,
+    "rejectedStates": 4,
+    "restoreEntrypoints": 12,
+    "normalScenarios": 12,
+    "normalCommands": 117,
+    "seatViews": 370,
+    "fixtureSha256": "480c35560b6542273c5c668264dda15307a30a5d9b2672b7717b27d5cc389695",
+    "wasmBytes": 2670198,
+    "wasmSha256": "8a306d040cfebdc92f26f9a4f7f225bd9e7ab20fb700080d08ed954bcb1c7b2b"
+  },
+  "fullNativeWasm": {
+    "ok": true,
+    "cases": 433,
+    "wasmBytes": 2670198,
+    "wasmSha256": "8a306d040cfebdc92f26f9a4f7f225bd9e7ab20fb700080d08ed954bcb1c7b2b",
+    "transitions": 24403,
+    "projections": 96975,
+    "quotes": 1,
+    "rejectedCommands": 319,
+    "rejectedDeckCreations": 42,
+    "choiceKinds": [
+      "damage",
+      "discard",
+      "investigation",
+      "mulligan",
+      "optional-shuffle",
+      "recipient",
+      "region_return",
+      "revealed-hand-discard",
+      "search",
+      "target",
+      "trigger"
+    ],
+    "slowestFixtureStepMs": 206.82,
+    "opaqueState": true,
+    "maximumU64SeedExact": true,
+    "nativeWasmStateAndViewsMatch": true
+  },
+  "worker": {
+    "unchangedLegalScenariosPassed": 12,
+    "unchangedLegalCommands": 117,
+    "newHttpRestoreTestPassed": 1,
+    "invalidSaves": 4,
+    "d1Reopens": 4,
+    "httpRestoreRejections": 8,
+    "dbStateUnchanged": true,
+    "journalAndCommandsWritten": 0,
+    "firstCombinedRun": {
+      "passed": 12,
+      "failed": 1,
+      "reason": "Synthetic Native room ID did not match existing 24-hex HTTP route; corrected test input and reran affected test only"
+    }
+  },
+  "ui": {
+    "xq24Passed": 9
+  },
+  "build": {
+    "typeChecks": "both tsconfigs passed",
+    "workerDryRun": true,
+    "clientAssets": 147
+  },
+  "standardWasmVerifyIncludesContainerCheck": true,
+  "baselineReproduction": {
+    "candidate": "107fc0634db5fee76cc795d563b1d98e687915c6",
+    "precisePythonU64PreservingTransform": true,
+    "reports": [
+      {
+        "mode": "duel",
+        "restored": true,
+        "originalPassError": "invalid_action",
+        "forgedWindow": null,
+        "outcome": "accepted",
+        "changed": true,
+        "version": 11,
+        "hiddenBefore": 0,
+        "hiddenAfter": 1
+      },
+      {
+        "mode": "teams",
+        "restored": true,
+        "originalPassError": "invalid_action",
+        "forgedWindow": null,
+        "outcome": "accepted",
+        "changed": true,
+        "version": 17,
+        "hiddenBefore": 0,
+        "hiddenAfter": 1
+      }
+    ]
+  },
+  "logs": [
+    {
+      "path": "/workspace/qa-xq24-container-20261011/logs/baseline-wasm-reproduction.json",
+      "bytes": 635,
+      "sha256": "9286c784ec8cb6b6ed7ad848f8b618c510bc2538544fda91d3d11a84448d786f"
+    },
+    {
+      "path": "/workspace/qa-xq24-container-20261011/logs/native-red.log",
+      "bytes": 1504,
+      "sha256": "5972de6408b26c1a3c7d48131b9c6ad40afd0ed6100cfe6a438c44b4f58d9ec0"
+    },
+    {
+      "path": "/workspace/qa-xq24-container-20261011/logs/wasm-red.log",
+      "bytes": 389,
+      "sha256": "e44df2e262d2731c1e3b3df747251e1b4e78ef40ec6fad5a9ef77a8839248a51"
+    },
+    {
+      "path": "/workspace/qa-xq24-container-20261011/logs/native-xq24-green.log",
+      "bytes": 2566,
+      "sha256": "95bb84045c569e42c2a35c8fb5d7da7f20f0ff5ec4e7befea98af425dab940e2"
+    },
+    {
+      "path": "/workspace/qa-xq24-container-20261011/logs/native-gray-green.log",
+      "bytes": 5971,
+      "sha256": "f2fae6982f84c97f735cfb9f4fa62a675ca6a191e890de2a66e19739fda32233"
+    },
+    {
+      "path": "/workspace/qa-xq24-container-20261011/logs/native-container-http-green.log",
+      "bytes": 1109,
+      "sha256": "4b873dd9dc049a4c85f667758c15419041ecd7b90ef8fd30d3590e2928c38e5e"
+    },
+    {
+      "path": "/workspace/qa-xq24-container-20261011/logs/wasm-container-final.log",
+      "bytes": 300,
+      "sha256": "ce1559399aeb6aae64e2907facee0d79d456e78ec39d6665269002d8989ab842"
+    },
+    {
+      "path": "/workspace/qa-xq24-container-20261011/logs/abi-full-green.log",
+      "bytes": 77270,
+      "sha256": "c6eb5d5dc6b7958e096b482e52ada7a52351f7d959d956049948b99fbddbcd4a"
+    },
+    {
+      "path": "/workspace/qa-xq24-container-20261011/logs/worker-xq24-green.log",
+      "bytes": 3968,
+      "sha256": "3c111594fd136beaeb7013c82e77359dec4ecc752cb1d4267f08cd9dd30635b3"
+    },
+    {
+      "path": "/workspace/qa-xq24-container-20261011/logs/worker-container-final.log",
+      "bytes": 999,
+      "sha256": "40094b018639d4d7ea6038dec3c2d1f2051c77e8bb99888ced5c299eb091841f"
+    },
+    {
+      "path": "/workspace/qa-xq24-container-20261011/logs/worker-container-http-final.log",
+      "bytes": 357,
+      "sha256": "7a178549b62ae372e5ec86cda33db320c5383d33116be504640bd62f8c4a3bd7"
+    },
+    {
+      "path": "/workspace/qa-xq24-container-20261011/logs/ui-xq24-green.log",
+      "bytes": 514,
+      "sha256": "63ce5db0578ae7fd66906ddd4e10f1a71788d11a78feb883f1e0426852d078c9"
+    },
+    {
+      "path": "/workspace/qa-xq24-container-20261011/logs/wasm-build.log",
+      "bytes": 220,
+      "sha256": "e8c65cbb0eac22439a4d652e9418c68cd896b8cadf8125ecea5be3d1a7dad435"
+    },
+    {
+      "path": "/workspace/qa-xq24-container-20261011/logs/sites-build.log",
+      "bytes": 1081,
+      "sha256": "13b924d9b5b2275e49cd7e66f0f02aceed977be7452dd87817f3be1e71850aec"
+    }
+  ],
+  "published": false,
+  "pushedAtEvidenceCreation": false,
+  "parentBrowserV3Changed": false,
+  "externalToolAuthRejection": false,
+  "nativeFixture": {
+    "path": "sites/test/fixtures/xq24-container-invalid-v064.json",
+    "bytes": 225037,
+    "sha256": "480c35560b6542273c5c668264dda15307a30a5d9b2672b7717b27d5cc389695",
+    "producer": "xq24_entry_frame_container_restore_rejects_response_bypass",
+    "syntheticNativeInitialLayouts": true
+  }
+}

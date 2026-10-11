@@ -632,6 +632,145 @@ fn room_pass_top(room: &mut RoomEnvelope, steps: &mut Vec<serde_json::Value>) {
 }
 
 #[test]
+fn xq24_entry_frame_container_restore_rejects_response_bypass() {
+    let mut forged = Vec::new();
+    for mode in ["duel", "teams"] {
+        let mut g = Game::new(
+            if mode == "duel" {
+                "240000000000000000000001"
+            } else {
+                "240000000000000000000002"
+            }
+            .into(),
+            "LOCAL".into(),
+            mode.into(),
+            "P0".into(),
+            "watchers".into(),
+            u64::MAX,
+        )
+        .unwrap();
+        for s in 1..g.capacity() {
+            g.join(format!("P{s}"), "watchers".into()).unwrap();
+        }
+        for p in &mut g.players {
+            p.ready = true;
+        }
+        g.apply(0, Action::new("start")).unwrap();
+        while let Some(p) = g.pending.clone() {
+            g.apply(
+                p.seat,
+                Action {
+                    choice_id: Some(p.choice.id),
+                    selected: Some(vec![]),
+                    ..Action::new("choose")
+                },
+            )
+            .unwrap();
+        }
+        for p in &mut g.players {
+            p.hand.clear();
+            p.assets.clear();
+            p.graveyard.clear();
+        }
+        for r in &mut g.regions {
+            r.cards.clear();
+        }
+        g.first_team = 0;
+        g.begin_window(Window::Action(0));
+        let enemy = if mode == "duel" { 1 } else { 2 };
+        board(&mut g, "JZ44", enemy, 2);
+        let source = held(&mut g, "XQ24", 0);
+        fund(&mut g, 0, "JC059", 4);
+        let mut room = envelope(&g);
+        let mut steps = Vec::new();
+        room_action(
+            &mut room,
+            0,
+            Action {
+                card_id: Some(source),
+                region: Some(2),
+                ..Action::new("deploy")
+            },
+            &mut steps,
+        );
+        room_pass_top(&mut room, &mut steps);
+        let choice = room.game.pending.clone().unwrap();
+        room_action(
+            &mut room,
+            0,
+            Action {
+                choice_id: Some(choice.choice.id),
+                selected: Some(vec!["accept".into()]),
+                ..Action::new("choose")
+            },
+            &mut steps,
+        );
+        let item = room.game.stack.last().unwrap().clone();
+        assert_eq!(
+            item.frame.as_ref().unwrap().ability_key,
+            "entry-hide-cheap-characters"
+        );
+        assert!(room.game.effects.is_empty());
+        let original = serde_json::to_string(&room).unwrap();
+        // Normal Game pass cannot bypass the still-open responsive frame.
+        let pass = RoomCommand {
+            command_id: "ordinary-pass".into(),
+            expected_version: room.revision,
+            action: SessionAction::Game {
+                action: Action::new("pass"),
+            },
+        };
+        let denied = room.transition(0, Some(pass), 0).unwrap();
+        assert_eq!(denied.error_code.as_deref(), Some("invalid_action"));
+        assert_eq!(denied.state, original);
+        for keep_stack in [false, true] {
+            let mut bad = room.clone();
+            if !keep_stack {
+                bad.game.stack.clear();
+                bad.pacing.window = None;
+            }
+            bad.game.effects.push_back(Effect::Frame {
+                frame: Box::new(item.frame.clone().unwrap()),
+            });
+            forged.push(json!({"mode":mode,"keepStack":keep_stack,
+                "original":original,"state":serde_json::to_string(&bad).unwrap()}));
+        }
+        // The same real Room commands cross both teams and restore each legal
+        // paid/declaration/response boundary, then restore the finished effect.
+        room_pass_top(&mut room, &mut steps);
+        assert!(room.game.stack.is_empty());
+        assert!(hidden(&room.game, "JZ44", enemy, 2).face_down);
+        for s in &steps {
+            let state = s["expected"]["state"].as_str().unwrap();
+            RoomEnvelope::from_persisted(state).unwrap();
+        }
+    }
+    if let Ok(path) = std::env::var("XQ24_CONTAINER_EVIDENCE_FILE") {
+        std::fs::write(
+            path,
+            serde_json::to_vec(&json!({
+                "producer":"xq24_entry_frame_container_restore_rejects_response_bypass",
+                "syntheticNativeInitialLayouts":true,"cases":forged
+            }))
+            .unwrap(),
+        )
+        .unwrap();
+    }
+    for record in forged {
+        let state = record["state"].as_str().unwrap();
+        let raw: RoomEnvelope = serde_json::from_str(state).unwrap();
+        assert!(
+            Game::from_persisted(&serde_json::to_string(&raw.game).unwrap()).is_err(),
+            "XQ24 entry frame in effects must fail Game restore"
+        );
+        assert!(
+            RoomEnvelope::from_persisted(state).is_err(),
+            "XQ24 entry frame in effects must fail Room restore"
+        );
+    }
+}
+
+#[test]
 fn xq24_continuous_duel_teams_room_pause_restore_journal_and_receipt_inputs() {
     for mode in ["duel", "teams"] {
         for name in [

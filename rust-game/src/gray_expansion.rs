@@ -394,7 +394,18 @@ impl Game {
         }
         for e in &self.effects {
             match e {
-                Effect::Frame { frame: f } => frame(f, false)?,
+                Effect::Frame { frame: f } => {
+                    frame(f, false)?;
+                    // This respondable, single-step entry frame finishes in
+                    // the same drive() after both teams pass. It has no legal
+                    // saved boundary in effects; accepting one bypasses stack
+                    // priority. Other gray frames and declarations are unchanged.
+                    if f.source.card.definition == "XQ24"
+                        && f.ability_key == "entry-hide-cheap-characters"
+                    {
+                        return Err("XQ24进场响应帧不能保存于直接效果队列".into());
+                    }
+                }
                 Effect::Declare { declaration: d } => declaration(d)?,
                 _ => {}
             }
