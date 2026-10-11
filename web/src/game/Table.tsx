@@ -186,7 +186,7 @@ function TableSurface({ view, catalog, busy, uncertain = false, connection = 'co
   const [previewRegion, setPreviewRegion] = useState<number | null>(null);
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
   const [reading, setReading] = useState<{ instanceId: string; roomId: string; viewerId: string; privateDeckTop?: boolean } | null>(null);
-  const [draft, setDraft] = useState<{ key: string; version: number; responseFrame: string | null; regionId?: string } | null>(null);
+  const [draft, setDraft] = useState<{ key: string; actionFrame: string | null; responseFrame: string | null; regionId?: string } | null>(null);
   const [targetNotice, setTargetNotice] = useState('');
   const submittedDraft = useRef(false);
   const tableRoot = useRef<HTMLElement>(null);
@@ -266,8 +266,13 @@ function TableSurface({ view, catalog, busy, uncertain = false, connection = 'co
     && responseWindow.stackTopId === stackTop?.id && stackTop?.resolutionState !== 'resolving'
     && responseWindow.members.some(member => member.playerId === view.you && member.status === 'composing')
     ? JSON.stringify([responseWindow.id, responseWindow.stackTopId, responseWindow.holderTeam, responseWindow.myIntentId]) : null;
+  // Teammates can act in the same window. Keep the draft only while its window,
+  // source, ability/mode/cost group and selected destination remain authoritative.
+  const actionFrame = view.status === 'playing' && !responseWindow
+    ? JSON.stringify([view.turn, view.phase, view.step, view.activeTeam, view.priorityTeam,
+      view.stack.map(effect => [effect.id, effect.resolutionState])]) : null;
   const sameDraftFrame = draft && (draft.responseFrame ? draft.responseFrame === responseFrame
-    : draft.version === view.version && !responseWindow);
+    : !!draft.actionFrame && draft.actionFrame === actionFrame);
   const activeGroup = draft && sameDraftFrame && card && !view.pendingChoice && !view.waitingChoice
     ? groups.find(group => group.key === draft.key) : undefined;
   const destinations = activeGroup?.actions || sourceActions;
@@ -290,7 +295,7 @@ function TableSurface({ view, catalog, busy, uncertain = false, connection = 'co
     if (actionBusy) return;
     submittedDraft.current = false;
     nextFocus.current = 'targets';
-    setDraft({ key: group.key, version: view.version, responseFrame });
+    setDraft({ key: group.key, actionFrame, responseFrame });
     setSelectedTarget(null); setSelectedRegion(null); setTargetNotice(''); setHoveredCard(null);
   };
   const cancelTargeting = () => { nextFocus.current = 'actions'; setDraft(null); setSelectedTarget(null); setSelectedRegion(null); setTargetNotice('已取消选目标，可选择其他动作。'); };

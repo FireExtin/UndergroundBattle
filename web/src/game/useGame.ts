@@ -229,7 +229,7 @@ export function useGame() {
       confirmed = e instanceof ApiError && e.status >= 400 && e.status < 500 && !needsSiteLogin(e);
       let synced = false;
       if (e instanceof ApiError && e.view) synced = accept(e.view);
-      else { try { synced = accept(await getState(currentSession)); } catch { /* Keep the last confirmed table visible. */ } }
+      if (!synced) { try { synced = accept(await getState(currentSession)); } catch { /* Keep the last confirmed table visible. */ } }
       const readyConflict = e instanceof ApiError && e.status === 409 && e.code === 'version_conflict'
         && (command.action.kind === 'ready' || command.action.kind === 'game' && command.action.action?.kind === 'ready');
       const latest = acceptedView.current;
@@ -240,7 +240,9 @@ export function useGame() {
           ? '准备状态已同步；你当前已准备。如需取消，请再点“取消准备”。'
           : '准备状态已同步；你当前尚未准备。需要准备时，请再点“准备”。';
       setError(needsSiteLogin(e) ? loginMessage : e instanceof ApiError && e.status === 409
-        ? readyConflict ? readyMessage : '牌桌刚刚发生了变化，已同步最新状态。请查看当前可用行动后重新选择。'
+        ? readyConflict ? readyMessage : synced
+          ? '牌桌刚刚发生了变化，已同步最新状态。请查看当前可用行动后重新选择。'
+          : '牌桌状态已变化。请查看最新牌桌后重新选择行动。'
         : !confirmed ? '行动结果暂未确认，已尝试同步牌桌。请确认上一行动后继续；重试不会重复执行。'
         : e instanceof Error ? `操作未执行：${e.message}` : '操作未执行，请重试。');
     } finally {

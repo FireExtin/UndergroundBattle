@@ -228,13 +228,14 @@ describe('response target retention', () => {
     expect(submit).not.toHaveBeenCalled();
   });
 
-  it('keeps the conservative revision reset for ordinary actions without a response intent', () => {
+  it('preserves a still-legal ordinary draft across a peer revision in the same action window', () => {
     const submit = vi.fn();
     const ordinary: View = { ...composing, stack: [], responseWindow: null };
     const { rerender } = render(<Table {...props} view={ordinary} onAction={submit} />);
     choose();
     rerender(<Table {...props} view={{ ...ordinary, version: 2 }} onAction={submit} />);
-    expect(screen.queryByRole('region', { name: '点选合法目标' })).not.toBeInTheDocument();
+    expect(screen.getByRole('region', { name: '点选合法目标' })).toBeInTheDocument();
+    expect(screen.getByText('目标：队友的墓地目标')).toBeInTheDocument();
     expect(submit).not.toHaveBeenCalled();
   });
 });
