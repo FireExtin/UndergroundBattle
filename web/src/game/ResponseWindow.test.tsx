@@ -103,6 +103,7 @@ describe('server-owned response intent', () => {
     const composing: View = { ...view, responseWindow: { ...view.responseWindow!, myIntentId: 'restored-intent', members: [{ playerId: 'p0', status: 'composing' }] } };
     render(<ResponseWindow view={composing} busy={false} uncertain={false} connection="online" onSelectCard={select} onAction={submit} />);
     expect(screen.getByText('正在选择响应，确认前可取消')).toBeInTheDocument();
+    expect(screen.getByLabelText('响应选择时限')).toHaveTextContent('选择期间不会自动让过，可取消响应或暂停保存此桌。');
     expect(screen.queryByRole('timer')).not.toBeInTheDocument();
     advance(60_000);
     expect(screen.getByRole('button', { name: '取消并让过' })).toBeEnabled();
@@ -123,6 +124,20 @@ describe('server-owned response intent', () => {
     expect(screen.queryByRole('button', { name: '连锁' })).not.toBeInTheDocument();
     expect(screen.queryByRole('button', { name: '查看响应牌' })).not.toBeInTheDocument();
     expect(screen.queryByText(/全队.*让过|没有可用响应/)).not.toBeInTheDocument();
+  });
+
+  it('keeps the untimed-selection hint specific to this unpaused composing intent', () => {
+    const submit = vi.fn();
+    const composing: View = { ...view, responseWindow: { ...view.responseWindow!, myIntentId: 'own-intent', members: [{ playerId: 'p0', status: 'composing' }] } };
+    const { rerender } = render(<ResponseWindow view={composing} busy={false} uncertain={false} connection="online" onSelectCard={vi.fn()} onAction={submit} />);
+    expect(screen.getByLabelText('响应选择时限')).toBeInTheDocument();
+    for (const next of [view, { ...composing, pause: { pausedAtMs: 100_000, pausedBy: 0 } },
+      { ...composing, responseWindow: { ...composing.responseWindow!, myIntentId: undefined, members: [{ playerId: 'p0', status: 'passed' as const }] } },
+      { ...composing, pendingChoice: testChoice }]) {
+      rerender(<ResponseWindow view={next} busy={false} uncertain={false} connection="online" onSelectCard={vi.fn()} onAction={submit} />);
+      expect(screen.queryByLabelText('响应选择时限')).not.toBeInTheDocument();
+    }
+    expect(submit).not.toHaveBeenCalled();
   });
 
   it.each([{ busy: true }, { uncertain: true }, { connection: 'offline' as const }, { connection: 'connecting' as const }])('does not send decision or cancellation commands while blocked by %o', blocker => {
