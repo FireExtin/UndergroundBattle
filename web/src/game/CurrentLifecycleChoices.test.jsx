@@ -80,7 +80,7 @@ it.each(fixture.cases)('$name grants only the real chooser a modal and never act
   try {
     row.beforeViews.forEach((view, seat) => {
       const submit = vi.fn();
-      const ui = render(<Table {...props} view={view} onAction={submit} />);
+      const ui = render(<Table {...props} view={view} onAction={submit} autoPassEnabled />);
       expect(!!screen.queryByRole('dialog', { name: '待完成的选择' })).toBe(seat === row.seat);
       expect(view.pendingChoice !== null).toBe(seat === row.seat);
       if (seat !== row.seat && row.color !== 'black') {

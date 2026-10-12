@@ -61,7 +61,7 @@ JC052 原图已重新查看并与固定规格核对，但本批未准入或改�
 新 Native 输入由既有测试导出，原始 64 位状态保持 opaque 字符串；
 `tools/fixture-tools/current-four-faction-choices.py` 按完整状态匹配原始 accepted Room 命令，保留输入 SHA。
 `CurrentLifecycleChoices.test.jsx` 以实际 f105 WASM核对10个输入，20项用例检查真实组件点击、完整 Native
-转换、40个输入视图、四席输出、私密权限与60秒无擅自提交。
+转换、40个输入视图、四席输出、私密权限，以及开启自动让过后60秒仍无擅自提交。
 
 这些是明确准备的离线 Native 布局，不是自然发牌、线上状态注入或真实浏览器验收。
 组件重新挂载只验证服务端投影恢复，不声称保存未提交的本地勾选，也不替代会话/席位持久性。
