@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.60-jc094-voodoo-sacrifice-candidate",
-  "engineVersion": "rust-v0.2.67-jc094-voodoo-sacrifice-candidate",
+  "cardPoolVersion": "limited-v2.61-wm056-influence-move-candidate",
+  "engineVersion": "rust-v0.2.68-wm056-influence-move-candidate",
   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
   "cards": [
     {
@@ -5177,6 +5177,45 @@
         "record": "JC094",
         "image": "resource/ymsj-fun.github.io/cards/JC094 威达的汀巴巴迪.jpg",
         "sha256": "5050b8e0b6d8101d6badcd0aed22f4fa75a2baa61c85e98c17bcd811a5ec72fd"
+      }
+    },
+    {
+      "id": "WM056",
+      "name": "赃物贩子",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "罪犯",
+        "商人"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "黑色"
+      ],
+      "loyaltyText": "黑色",
+      "color": "黑",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "行动②：将相邻地区上的一个本方势力标志移动至本地区。该能力每回合只能发动一次。",
+      "keywords": [],
+      "unique": false,
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "WM056",
+        "image": "resource/ymsj-fun.github.io/cards/WM056 赃物贩子.jpg",
+        "sha256": "35c67bb88ff9547e63932fd51d1581e77aaf649e1124eef706e4d63a8f20b497"
       }
     }
   ],

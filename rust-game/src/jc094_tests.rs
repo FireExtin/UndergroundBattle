@@ -374,6 +374,10 @@ fn jc094_payment_frame_program_and_response_boundary_tampering_rejected() {
     let mut bad = g.clone();
     let f = bad.stack.pop().unwrap().frame.unwrap();
     bad.effects.push_back(Effect::Frame { frame: Box::new(f) });
+    assert_eq!(
+        Game::from_persisted(&serde_json::to_string(&bad).unwrap()).err().unwrap(),
+        "JC094标准行动响应帧不能保存于直接效果队列"
+    );
     invalid(&g, bad, "frame-response-bypass");
 }
 

@@ -585,6 +585,7 @@ pub enum DeclareChoice {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum FrameChoice {
+    WM056InfluenceOrigin { regions: Vec<(usize, String)> },
     XQ18TimeCarrier { target_instance: String },
     BQ028InspectAttachments { seat: usize, inspected: Vec<Card> },
     BQ078CorpseReturn,
@@ -833,12 +834,17 @@ impl Game {
         game.validate_red_time_state()?;
         game.validate_blue_expansion_state()?;
         game.validate_black_expansion_state()?;
+        game.validate_wm056_state()?;
         game.validate_gray_expansion_state()?;
         Ok(game)
     }
 
     pub(crate) fn region_live(&self, region: usize) -> bool {
         self.regions.get(region).is_some_and(|r| !r.vacant)
+    }
+    pub(crate) fn regions_adjacent(&self, a: usize, b: usize) -> bool {
+        a < self.regions.len() && b < self.regions.len() && a != b
+            && (self.mode == "duel" || a.abs_diff(b) == 1)
     }
     pub(crate) fn validate_vacant_regions(&self) -> Result<(), String> {
         for (index, r) in self.regions.iter().enumerate().filter(|(_, r)| r.vacant) {

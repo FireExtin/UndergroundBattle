@@ -10,13 +10,13 @@ import { ReadModal } from './ReadModal';
 import { cardScanUrl } from './cardScans';
 const wasm=readFileSync(resolve('../rust-game-wasm/pkg/hegemony_wasm_bg.wasm'));
 abi.initSync({module:wasm});
-const fixture=JSON.parse(readFileSync(resolve('src/game/jc061Native67.fixture.json'),'utf8'));
+const fixture=JSON.parse(readFileSync(resolve('src/game/jc061Native68.fixture.json'),'utf8'));
 const catalog=JSON.parse(abi.catalog());
 const definition=catalog.cards.find(c=>c.id==='JC061');
 
 it('exposes the original JC061 card face and complete paid-entry/mobility definition',()=>{
   expect(createHash('sha256').update(wasm).digest('hex')).toBe(fixture.wasmSha256);
-  expect(catalog.engineVersion).toBe('rust-v0.2.67-jc094-voodoo-sacrifice-candidate');
+  expect(catalog.engineVersion).toBe('rust-v0.2.68-wm056-influence-move-candidate');
   expect(definition).toMatchObject({name:'危机处理特派小组',color:'灰',cost:5,loyalty:['灰色','灰色'],defense:2,
     subtypes:['人类','特工'],permanentIcons:{investigation:1,combat:2,influence:1},keywords:['机动']});
   expect(definition.abilities).toMatchObject([{key:'enter-region-paid-hidden-destroy',costs:[{Assets:1}],triggered:true},

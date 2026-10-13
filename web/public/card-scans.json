@@ -718,5 +718,10 @@
     "url": "/cards/JC094.jpg",
     "source": "resource/ymsj-fun.github.io/cards/JC094 威达的汀巴巴迪.jpg",
     "sha256": "5050b8e0b6d8101d6badcd0aed22f4fa75a2baa61c85e98c17bcd811a5ec72fd"
+  },
+  "WM056": {
+    "url": "/cards/WM056.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/WM056 赃物贩子.jpg",
+    "sha256": "35c67bb88ff9547e63932fd51d1581e77aaf649e1124eef706e4d63a8f20b497"
   }
 }

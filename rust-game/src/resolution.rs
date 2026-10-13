@@ -411,7 +411,7 @@ impl Game {
                 snapshot
             },
             region,
-            source_region_instance: if matches!(c.definition.as_str(), "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094") {
+            source_region_instance: if matches!(c.definition.as_str(), "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056") {
                 region.and_then(|r| self.regions.get(r)).filter(|r| !r.vacant).map(|r| r.card.id.clone())
             } else { None },
             attachment_host_instance: (c.definition == "JC090" || rules::definition(&c.definition)
@@ -506,6 +506,13 @@ impl Game {
         definition: &str,
         a: &Action,
     ) -> RuleResult<AbilitySpec> {
+        if definition == "WM056" && *a != (Action {
+            card_id: a.card_id.clone(),
+            ability_id: a.ability_id.clone(),
+            ..Action::new(&a.kind)
+        }) {
+            return Err("WM056移动势力行动不声明目标、地区或额外选择".into());
+        }
         let mut candidates = rules::definition(definition)
             .abilities
             .iter()
@@ -590,7 +597,7 @@ impl Game {
                     self.region_live(r)
                         && (spec.range != Range::Mobility
                             || source.region.is_some_and(|from| {
-                                r != from && (self.mode == "duel" || r.abs_diff(from) == 1)
+                                self.regions_adjacent(r, from)
                             }))
                 }),
             Zone::Board | Zone::Graveyard => {
@@ -1338,6 +1345,7 @@ impl Game {
         self.validate_red_time_frame(&frame)?;
         self.validate_blue_expansion_frame(&frame)?;
         self.validate_black_expansion_frame(&frame)?;
+        self.validate_wm056_frame(&frame)?;
         self.validate_gray_expansion_frame(&frame)?;
         self.validate_gray_lock_frame(&frame)?;
         self.validate_jz22_frame(&frame)?;
@@ -1351,6 +1359,7 @@ impl Game {
             let step = frame.steps[frame.cursor].clone();
             frame.cursor += 1;
             match step.op {
+                Op::WM056MoveOneAdjacentInfluence => return self.wm056_start(frame),
                 Op::XQ18AddOneTimeToTarget => self.xq18_add_one_time(&frame),
                 Op::XQ18ChooseTimeCarrier => return self.xq18_choose_carrier(frame),
                 Op::JZ30AddOneTimeToOriginalSource => self.jz30_add_one_time(&frame),
@@ -2337,6 +2346,9 @@ impl Game {
                     self.players[seat].name,
                     region + 1
                 ));
+            }
+            FrameChoice::WM056InfluenceOrigin { regions } => {
+                self.wm056_move(&frame, chooser, &regions, &selected)?;
             }
             FrameChoice::Region => {
                 let region = selected

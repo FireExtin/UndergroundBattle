@@ -4,6 +4,9 @@ mod bq030;
 mod red_time;
 mod blue_expansion;
 mod black_expansion;
+mod wm056;
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod wm056_tests;
 mod gray_expansion;
 #[cfg(all(test, not(feature = "society-fixtures")))]
 mod red_time_tests;

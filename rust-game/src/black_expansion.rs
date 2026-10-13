@@ -338,7 +338,11 @@ impl Game {
                     if (frame.source.card.definition == "JC087" && frame.ability_key == "jc087-enter-region-hide-influence")
                         || (frame.source.card.definition == "JC094" && frame.ability_key == "jc094-local-sacrifice-destroy")
                     {
-                        return Err("JC087入区响应帧不能保存于直接效果队列".into());
+                        return Err(if frame.source.card.definition == "JC094" {
+                            "JC094标准行动响应帧不能保存于直接效果队列"
+                        } else {
+                            "JC087入区响应帧不能保存于直接效果队列"
+                        }.into());
                     }
                 }
                 Effect::Declare { declaration: d }

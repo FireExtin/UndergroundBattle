@@ -216,6 +216,7 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    WM056MoveOneAdjacentInfluence,
     XQ18AddOneTimeToTarget,
     XQ18ChooseTimeCarrier,
     JZ30AddOneTimeToOriginalSource,
@@ -513,6 +514,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
     crate::red_time::validate_ability(card_id, ability)?;
     crate::blue_expansion::validate_ability(card_id, ability)?;
     crate::black_expansion::validate_ability(card_id, ability)?;
+    crate::wm056::validate_ability(card_id, ability)?;
     crate::gray_expansion::validate_ability(card_id, ability)?;
     if card_id == "XQ27" || ability.key == "hidden-sweep"
         || crate::xq27::contains_xq27_op(&ability.ops)
@@ -1012,7 +1014,10 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
                 [Op::ModifyAttachmentHostUntilTurnEnd]
             )
             && ability.modes.is_empty();
-        if !is_admitted_jc032_action && !is_admitted_jc069_action && !is_admitted_host_grant && !is_admitted_jc031_trigger {
+        let is_admitted_wm056_action = card_id == "WM056"
+            && serde_json::to_value(ability).unwrap()
+                == serde_json::to_value(&crate::wm056::definition().abilities[0]).unwrap();
+        if !is_admitted_jc032_action && !is_admitted_jc069_action && !is_admitted_host_grant && !is_admitted_jc031_trigger && !is_admitted_wm056_action {
             return Err(format!(
                 "{card_id}: only the admitted host grant, JC032/JC069 action or JC031 trigger limit is supported"
             ));
@@ -1232,6 +1237,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
         crate::red_time::validate_definition(card_id, definition)?;
         crate::blue_expansion::validate_definition(card_id, definition)?;
         crate::black_expansion::validate_definition(card_id, definition)?;
+        crate::wm056::validate_definition(card_id, definition)?;
         crate::gray_expansion::validate_definition(card_id, definition)?;
         if card_id == "XQ27" && serde_json::to_value(definition).unwrap()
             != serde_json::to_value(xq27_definition()).unwrap() {
@@ -1836,6 +1842,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         use EntityRef::{Source, Target};
         use PlayerRef::{Actor, Context};
         let mut m = BTreeMap::new();
+        m.insert("WM056".into(), crate::wm056::definition());
         for id in ["XQ18", "JZ30"] {
             m.insert(id.into(), crate::red_time::definition(id).unwrap());
         }

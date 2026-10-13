@@ -4,7 +4,7 @@ import { resolve } from 'node:path';
 import { cleanup, fireEvent, render, screen, within } from '@testing-library/react';
 import { afterEach, expect, it, vi } from 'vitest';
 import * as abi from '../../../rust-game-wasm/pkg/hegemony_wasm.js';
-import fixtures from './fixedSlotsNative67.fixture.json';
+import fixtures from './fixedSlotsNative68.fixture.json';
 import { Table } from './Table';
 
 abi.initSync({ module: readFileSync(resolve('../rust-game-wasm/pkg/hegemony_wasm_bg.wasm')) });
