@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.59-jc087-smuggler-candidate",
-  "engineVersion": "rust-v0.2.66-jc087-smuggler-candidate",
+  "cardPoolVersion": "limited-v2.60-jc094-voodoo-sacrifice-candidate",
+  "engineVersion": "rust-v0.2.67-jc094-voodoo-sacrifice-candidate",
   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
   "cards": [
     {
@@ -5135,6 +5135,48 @@
         "record": "JC087",
         "image": "resource/ymsj-fun.github.io/cards/JC087 格鲁尼的走私客.jpg",
         "sha256": "cbd39806bd8126021edff506a65dad651485c6661f181d6e8d8ff9d16911ce00"
+      }
+    },
+    {
+      "id": "JC094",
+      "name": "威达的汀巴巴迪",
+      "subtitle": "巫毒大师",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "法师",
+        "罪犯"
+      ],
+      "cost": 6,
+      "loyalty": [
+        "黑色",
+        "黑色",
+        "黑色"
+      ],
+      "loyaltyText": "黑色 / 黑色 / 黑色",
+      "color": "黑",
+      "magic": "死亡",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 2
+        },
+        "temporary": {
+          "investigation": 3,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 3,
+      "text": "【标准行动】牺牲本地区的另一个角色：消灭目标角色或暗藏者。",
+      "keywords": [],
+      "unique": true,
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JC094",
+        "image": "resource/ymsj-fun.github.io/cards/JC094 威达的汀巴巴迪.jpg",
+        "sha256": "5050b8e0b6d8101d6badcd0aed22f4fa75a2baa61c85e98c17bcd811a5ec72fd"
       }
     }
   ],

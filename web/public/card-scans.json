@@ -713,5 +713,10 @@
     "url": "/cards/JC087.jpg",
     "source": "resource/ymsj-fun.github.io/cards/JC087 格鲁尼的走私客.jpg",
     "sha256": "cbd39806bd8126021edff506a65dad651485c6661f181d6e8d8ff9d16911ce00"
+  },
+  "JC094": {
+    "url": "/cards/JC094.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC094 威达的汀巴巴迪.jpg",
+    "sha256": "5050b8e0b6d8101d6badcd0aed22f4fa75a2baa61c85e98c17bcd811a5ec72fd"
   }
 }

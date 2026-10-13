@@ -133,17 +133,19 @@ impl Game {
                 let costs = if ability
                     .costs
                     .iter()
-                    .any(|c| matches!(c, Cost::SacrificeSelectedControlledCharacter))
+                    .any(|c| matches!(c, Cost::SacrificeSelectedControlledCharacter | Cost::SacrificeSelectedOtherLocalControlledCharacter))
                 {
+                    let local_other = ability.costs.iter().any(|cost| matches!(cost, Cost::SacrificeSelectedOtherLocalControlledCharacter));
                     self.regions
-                        .iter()
-                        .flat_map(|r| r.cards.iter())
-                        .filter(|c| {
+                        .iter().enumerate()
+                        .flat_map(|(r, region)| region.cards.iter().map(move |c| (r, c)))
+                        .filter(|(r, c)| {
                             c.controller == actor
                                 && !c.face_down
                                 && card(&c.definition).kind == "character"
+                                && (!local_other || (Some(*r) == source.region && c.id != source.card.id))
                         })
-                        .map(|c| Some(vec![c.id.clone()]))
+                        .map(|(_, c)| Some(vec![c.id.clone()]))
                         .collect()
                 } else if ability
                     .costs
@@ -409,7 +411,7 @@ impl Game {
                 snapshot
             },
             region,
-            source_region_instance: if matches!(c.definition.as_str(), "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087") {
+            source_region_instance: if matches!(c.definition.as_str(), "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094") {
                 region.and_then(|r| self.regions.get(r)).filter(|r| !r.vacant).map(|r| r.card.id.clone())
             } else { None },
             attachment_host_instance: (c.definition == "JC090" || rules::definition(&c.definition)
@@ -858,7 +860,7 @@ impl Game {
                     }
                     paid.push(self.discard_hand_card(actor, &ids[0])?);
                 }
-                Cost::SacrificeSource | Cost::SacrificeSelectedControlledCharacter => {
+                Cost::SacrificeSource | Cost::SacrificeSelectedControlledCharacter | Cost::SacrificeSelectedOtherLocalControlledCharacter => {
                     let id = if matches!(cost, Cost::SacrificeSource) {
                         source.card.id.clone()
                     } else {
@@ -870,9 +872,11 @@ impl Game {
                     };
                     let (_, c) = self
                         .board(&id)
-                        .filter(|(_, c)| {
+                        .filter(|(r, c)| {
                             c.controller == actor
                                 && !c.face_down
+                                && (!matches!(cost, Cost::SacrificeSelectedOtherLocalControlledCharacter)
+                                    || (Some(*r) == source.region && c.id != source.card.id))
                                 && (card(&c.definition).kind == "character"
                                     || (matches!(cost, Cost::SacrificeSource)
                                         && card(&c.definition).kind == "attachment"

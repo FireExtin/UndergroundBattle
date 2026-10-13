@@ -43,6 +43,7 @@ pub enum Cost {
     ExhaustSource,
     SacrificeSource,
     SacrificeSelectedControlledCharacter,
+    SacrificeSelectedOtherLocalControlledCharacter,
     DiscardSelectedHandCard,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
@@ -1841,7 +1842,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         for id in ["BQ028", "BQ030", "BQ040"] {
             m.insert(id.into(), crate::blue_expansion::definition(id).unwrap());
         }
-        for id in ["WM059", "BQ078", "JC087"] {
+        for id in ["WM059", "BQ078", "JC087", "JC094"] {
             m.insert(id.into(), crate::black_expansion::definition(id).unwrap());
         }
         for id in ["JZ44", "JZ45", "XQ24", "JC061"] {

@@ -9,6 +9,16 @@ use std::collections::BTreeSet;
 
 pub(crate) fn definition(id: &str) -> Option<Definition> {
     match id {
+        "JC094" => {
+            let mut action = rules::ability(
+                "jc094-local-sacrifice-destroy", "标准行动：牺牲本地区另一个本方角色，消灭目标角色或暗藏者",
+                Timing::Standard, vec![Cost::SacrificeSelectedOtherLocalControlledCharacter],
+                vec![rules::target(Zone::Board, EntityKind::CharacterOrHidden, Relation::Any, Range::Anywhere)],
+                vec![Op::Destroy(EntityRef::Target(0))], None,
+            );
+            action.activation_only = true;
+            Some(rules::with_abilities(vec![action]))
+        }
         "JC087" => {
             let mut d = rules::with_abilities(vec![rules::ability(
                 "jc087-enter-region-hide-influence",
@@ -92,12 +102,12 @@ pub(crate) fn contains_black_expansion_op(ops: &[Op]) -> bool {
     })
 }
 fn relevant_definition(id: &str) -> bool {
-    matches!(id, "WM059" | "BQ078" | "JC087")
+    matches!(id, "WM059" | "BQ078" | "JC087" | "JC094")
 }
 fn relevant_key(key: &str) -> bool {
     matches!(
         key,
-        "wm059-enter-region-destroy" | "bq078-entry-mill-four" | "bq078-death-corpse-return" | "jc087-enter-region-hide-influence"
+        "wm059-enter-region-destroy" | "bq078-entry-mill-four" | "bq078-death-corpse-return" | "jc087-enter-region-hide-influence" | "jc094-local-sacrifice-destroy"
     )
 }
 fn same<T: serde::Serialize>(a: &T, b: &T) -> bool {
@@ -115,6 +125,7 @@ fn wm059_selector(targets: &[TargetSlotSpec]) -> bool {
 pub(crate) fn validate_ability(id: &str, a: &AbilitySpec) -> RuleResult<()> {
     if !relevant_definition(id)
         && !relevant_key(&a.key)
+        && !a.costs.iter().any(|c| matches!(c, Cost::SacrificeSelectedOtherLocalControlledCharacter))
         && !contains_black_expansion_op(&a.ops)
         && !wm059_selector(&a.targets)
         && !a
@@ -218,15 +229,21 @@ impl Game {
                 || f.cursor != 0
                 || !matches!(f.guard, GuardState::Unchecked)
                 || f.chosen_region != f.source.region
+                || (f.source.card.definition == "JC094" && !matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)]
+                    if ids.len() <= 6 && ids.iter().all(|id| !id.is_empty()) && ids.iter().collect::<BTreeSet<_>>().len() == ids.len()))
             {
                 return Err("黑色扩展派遣/现身来源或空程序不符".into());
             }
             return Ok(());
         }
+        let paid_valid = if f.source.card.definition == "JC094" && f.ability_key == "jc094-local-sacrifice-destroy" {
+            matches!(f.already_paid.as_slice(), [PaidCost::Sacrificed { old_instance, controller, owner }]
+                if !old_instance.is_empty() && old_instance != &f.source.card.id && *controller == f.actor && *owner < self.players.len())
+        } else { f.already_paid.is_empty() };
         if f.source.card.face_down
             || f.source.play_source.is_some()
             || f.chosen_region.is_some()
-            || !f.already_paid.is_empty()
+            || !paid_valid
         {
             return Err("黑色扩展触发不能伪造暗藏、支付或派遣".into());
         }
@@ -255,6 +272,9 @@ impl Game {
     fn black_declaration(&self, d: &Declaration) -> RuleResult<()> {
         validate_ability(&d.source.card.definition, &d.ability)?;
         self.black_source(d.actor, &d.source)?;
+        if d.source.card.definition == "JC094" && d.ability.key == "jc094-local-sacrifice-destroy" {
+            return Err("JC094标准行动不能伪装为触发声明".into());
+        }
         if d.source.card.face_down || d.source.play_source.is_some() {
             return Err("黑色扩展声明只能来自公开的在场或死亡前快照".into());
         }
@@ -315,8 +335,8 @@ impl Game {
             match e {
                 Effect::Frame { frame } => {
                     stored_frame(frame)?;
-                    if frame.source.card.definition == "JC087"
-                        && frame.ability_key == "jc087-enter-region-hide-influence"
+                    if (frame.source.card.definition == "JC087" && frame.ability_key == "jc087-enter-region-hide-influence")
+                        || (frame.source.card.definition == "JC094" && frame.ability_key == "jc094-local-sacrifice-destroy")
                     {
                         return Err("JC087入区响应帧不能保存于直接效果队列".into());
                     }
