@@ -228,7 +228,11 @@ fn regenerate(value: &mut Value) {
 fn main() {
     let root = std::env::args().nth(1).unwrap_or_else(|| ".".into());
     let fresh_death = std::env::args().nth(2);
+    let suffix = std::env::args().nth(3).unwrap_or_else(|| "64".into());
+    assert!(!suffix.is_empty() && suffix.chars().all(|c| c.is_ascii_digit()));
+    let web_only = std::env::args().nth(4).as_deref() == Some("--web-only");
     for source in FILES {
+        if web_only && source.starts_with("sites/") { continue; }
         let input = Path::new(&root).join(source);
         let mut value: Value = serde_json::from_slice(&std::fs::read(&input).unwrap()).unwrap();
         if *source == "web/src/game/threeColorDeathNative57Test.fixture.json" {
@@ -252,9 +256,9 @@ fn main() {
         }
         regenerate(&mut value);
         let destination = source
-            .replace("v057", "v064")
-            .replace("Native57", "Native64")
-            .replace("Native60", "Native64");
+            .replace("v057", &format!("v0{suffix}"))
+            .replace("Native57", &format!("Native{suffix}"))
+            .replace("Native60", &format!("Native{suffix}"));
         std::fs::write(
             Path::new(&root).join(&destination),
             serde_json::to_vec_pretty(&value).unwrap(),

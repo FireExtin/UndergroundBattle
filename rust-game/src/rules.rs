@@ -1843,7 +1843,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         for id in ["WM059", "BQ078"] {
             m.insert(id.into(), crate::black_expansion::definition(id).unwrap());
         }
-        for id in ["JZ44", "JZ45", "XQ24"] {
+        for id in ["JZ44", "JZ45", "XQ24", "JC061"] {
             m.insert(id.into(), crate::gray_expansion::definition(id).unwrap());
         }
         m.insert("JC050".into(), jc050_definition());

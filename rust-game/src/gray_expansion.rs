@@ -1,4 +1,4 @@
-//! Complete, finite JZ44/JZ45/XQ24 programs. Integration stays in the shared engine.
+//! Complete, finite JZ44/JZ45/XQ24/JC061 programs. Integration stays in the shared engine.
 use crate::{
     engine::RuleResult,
     model::*,
@@ -7,6 +7,25 @@ use crate::{
 
 pub(crate) fn definition(id: &str) -> Option<Definition> {
     match id {
+        "JC061" => {
+            let entry = ability(
+                "enter-region-paid-hidden-destroy",
+                "进入地区触发：支付1，消灭本地区目标暗藏者",
+                Timing::Fast,
+                vec![Cost::Assets(1)],
+                vec![target(Zone::Board, EntityKind::Hidden, Relation::Any, Range::SourceRegion)],
+                vec![Op::Destroy(EntityRef::Target(0))],
+                Some(Event::EnterRegion),
+            );
+            let mut mobility = ability(
+                "mobility", "机动", Timing::Fast, vec![],
+                vec![target(Zone::Region, EntityKind::Any, Relation::Any, Range::Mobility)],
+                vec![Op::MoveOnBoard { entity: EntityRef::Source, region: RegionRef::Target(0) }],
+                Some(Event::ConfrontationStart),
+            );
+            mobility.requires_ready_source = true;
+            Some(with_abilities(vec![entry, mobility]))
+        }
         "XQ24" => {
             let mut d = with_abilities(vec![ability(
                 "entry-hide-cheap-characters",
@@ -131,7 +150,7 @@ fn has_predicate(targets: &[TargetSlotSpec]) -> bool {
         .any(|t| t.predicate == Some(TargetPredicate::JZ45LockedLocalTarget))
 }
 fn own_key(key: &str) -> bool {
-    matches!(key, "entry-hide-criminal-draw" | "entry-lock-or-destroy" | "entry-hide-cheap-characters")
+    matches!(key, "entry-hide-criminal-draw" | "entry-lock-or-destroy" | "entry-hide-cheap-characters" | "enter-region-paid-hidden-destroy")
 }
 fn selected_modes(id: &str) -> Vec<AbilitySpec> {
     let Some(d) = definition(id) else {
@@ -168,7 +187,7 @@ pub(crate) fn validate_ability(id: &str, a: &AbilitySpec) -> RuleResult<()> {
         && !(definition(id).is_some() && crate::jz22::runtime_ability_is_admitted(a))
     {
         return Err(format!(
-            "{id}: only complete JZ44/JZ45/XQ24 printed or selected-mode programs are admitted"
+            "{id}: only complete JZ44/JZ45/XQ24/JC061 printed or selected-mode programs are admitted"
         ));
     }
     Ok(())
@@ -288,9 +307,13 @@ impl Game {
             }
             return Ok(());
         }
-        if f.source.play_source.is_some() || !f.already_paid.is_empty() || f.chosen_region.is_some()
+        let paid_valid = if f.source.card.definition == "JC061"
+            && f.ability_key == "enter-region-paid-hidden-destroy" {
+            matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if ids.len() == 1 && !ids[0].is_empty())
+        } else { f.already_paid.is_empty() };
+        if f.source.play_source.is_some() || !paid_valid || f.chosen_region.is_some()
         {
-            return Err("灰色扩充触发程序不得夹带支付、打出来源或选择地区".into());
+            return Err("灰色扩充触发费用记录、打出来源或选择地区不符".into());
         }
         let mut candidates = definition(&f.source.card.definition).unwrap().abilities;
         candidates.extend(selected_modes(&f.source.card.definition));
@@ -404,6 +427,11 @@ impl Game {
                         && f.ability_key == "entry-hide-cheap-characters"
                     {
                         return Err("XQ24进场响应帧不能保存于直接效果队列".into());
+                    }
+                    if f.source.card.definition == "JC061"
+                        && f.ability_key == "enter-region-paid-hidden-destroy"
+                    {
+                        return Err("JC061进场响应帧不能保存于直接效果队列".into());
                     }
                 }
                 Effect::Declare { declaration: d } => declaration(d)?,

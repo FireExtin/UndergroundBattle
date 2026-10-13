@@ -703,5 +703,10 @@
     "url": "/cards/XQ24.jpg",
     "source": "resource/ymsj-fun.github.io/cards/XQ24 防暴警察.jpg",
     "sha256": "420b412908d7b86112e26c2ba0f94593a29c40bf8f6b54e8809ce489a66f61b8"
+  },
+  "JC061": {
+    "url": "/cards/JC061.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC061 危机处理特派小组.jpg",
+    "sha256": "132918615db6a2233eed3f2d2d045c368c65348e43c52f101f17e4c4ecd756f6"
   }
 }

@@ -11,6 +11,8 @@ import sys
 
 root = pathlib.Path(__file__).resolve().parents[2]
 source = pathlib.Path(sys.argv[1])
+suffix = sys.argv[2] if len(sys.argv) > 2 else "64"
+assert suffix.isdigit()
 names = ["entry-XQ37-0-first-0", "nested-reveal-Before(1, 0)",
          "privilege-renown-true", "privilege-already-wins", "world-empty-nested-2-1",
          "world-empty-jc050", "world-empty-conservation", "world-empty-duel"]
@@ -43,10 +45,11 @@ def before_views(step):
 
 
 def write(relative, value):
+    if "--web-only" in sys.argv and relative.startswith("sites/"): return
     (root / relative).write_text(json.dumps(value, ensure_ascii=False, separators=(",", ":")) + "\n")
 
 
-write("sites/test/fixtures/win-flow-native-v064.json", {
+write(f"sites/test/fixtures/win-flow-native-v0{suffix}.json", {
     "scenarios": [{"name": name, "steps": steps(name)} for name in names]})
 captures = []
 for name, empty_index in [("world-empty-duel", 1), ("world-empty-slot-2", 2)]:
@@ -64,6 +67,6 @@ sparse = [s for s in steps("world-empty-jc050")
           == ["region:0", "region:2", "region:3", "region:4"]
           and not s["expected"].get("errorCode")]
 assert len(sparse) == 1
-write("web/src/game/fixedSlotsNative64.fixture.json", {
+write(f"web/src/game/fixedSlotsNative{suffix}.fixture.json", {
     "captures": captures, "sparseChoice": {"beforeViews": before_views(sparse[0]), "step": sparse[0]}})
 print(json.dumps({"continuousD1Scenarios": len(names), "captures": len(captures), "sparseChoices": 1}))

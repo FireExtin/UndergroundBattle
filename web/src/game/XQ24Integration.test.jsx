@@ -12,7 +12,7 @@ import { groupObjectActions } from './objectActions';
 
 abi.initSync({module:readFileSync(resolve('../rust-game-wasm/pkg/hegemony_wasm_bg.wasm'))});
 const catalog=JSON.parse(abi.catalog()), definitions=new Map(catalog.cards.map(c=>[c.id,c]));
-const fixtures=JSON.parse(readFileSync(resolve('../sites/test/fixtures/xq24-native-v064.json')));
+const fixtures=JSON.parse(readFileSync(resolve('src/game/xq24Native65.fixture.json')));
 
 it('reads the complete original XQ24 face from the admitted public asset',()=>{
   const definition=definitions.get('XQ24');

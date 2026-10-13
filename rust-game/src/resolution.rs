@@ -407,7 +407,7 @@ impl Game {
                 snapshot
             },
             region,
-            source_region_instance: if matches!(c.definition.as_str(), "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030") {
+            source_region_instance: if matches!(c.definition.as_str(), "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061") {
                 region.and_then(|r| self.regions.get(r)).filter(|r| !r.vacant).map(|r| r.card.id.clone())
             } else { None },
             attachment_host_instance: (c.definition == "JC090" || rules::definition(&c.definition)
@@ -661,7 +661,7 @@ impl Game {
                                 }
                             })
                         && (spec.range != Range::SourceRegion || region == source.region)
-                        && (!matches!(source.card.definition.as_str(), "JZ43" | "JZ44" | "JZ45" | "WM059") || spec.range != Range::SourceRegion
+                        && (!matches!(source.card.definition.as_str(), "JZ43" | "JZ44" | "JZ45" | "WM059" | "JC061") || spec.range != Range::SourceRegion
                             || source.region.and_then(|r| self.regions.get(r))
                                 .zip(source.source_region_instance.as_ref())
                                 .is_some_and(|(region, instance)| !region.vacant && region.card.id == *instance))
@@ -1162,7 +1162,10 @@ impl Game {
         );
         let paid = if declaration.ability.event == Some(Event::HandDiscard)
             || (declaration.source.card.definition == "JC031"
-                && declaration.ability.event == Some(Event::CharacterDeathObserved)) {
+                && declaration.ability.event == Some(Event::CharacterDeathObserved))
+            || (declaration.source.card.definition == "JC061"
+                && declaration.ability.key == "enter-region-paid-hidden-destroy"
+                && declaration.ability.event == Some(Event::EnterRegion)) {
             self.pay_ability_costs(
                 declaration.actor,
                 &declaration.source,
