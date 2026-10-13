@@ -26,7 +26,7 @@ it.each(fixture.cases)('$name submits the exact untargeted paid Native Room comm
   const legal=view.legalActions.find(a=>a.kind==='play'&&a.cardId===wanted.cardId&&a.abilityId===wanted.abilityId);
   expect(legal).toBeDefined();expect(legal.targetId).toBeUndefined();expect(legal.region).toBeUndefined();
   const source=ui.container.querySelector(`[data-card-instance="${wanted.cardId}"]`);expect(source).toBeInTheDocument();fireEvent.click(source);
-  const button=ui.container.querySelector(`[data-action-id="${legal.id}"]`);expect(button).toBeEnabled();
+  const button=Array.from(ui.container.querySelectorAll("[data-action-id]")).find(element=>element.getAttribute("data-action-id")===legal.id);expect(button).toBeEnabled();
   fireEvent.click(button);expect(submit).toHaveBeenCalledOnce();
   const action=JSON.parse(JSON.stringify(actionForRoom(view,submit.mock.calls[0][0])));expect(action).toEqual(row.command.action);
   const result=JSON.parse(abi.applyRoom(row.before,row.seat,JSON.stringify({...row.command,action}),'0'));expect(result).toEqual(row.expected);

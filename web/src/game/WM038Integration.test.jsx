@@ -11,11 +11,11 @@ import { cardScanUrl } from './cardScans';
 import { groupObjectActions } from './objectActions';
 const wasm=readFileSync(resolve('../rust-game-wasm/pkg/hegemony_wasm_bg.wasm'));
 abi.initSync({module:wasm});
-const fixture=JSON.parse(readFileSync(resolve('src/game/wm038Native71.fixture.json'),'utf8'));
+const fixture=JSON.parse(readFileSync(resolve('src/game/wm038Native72.fixture.json'),'utf8'));
 const catalog=JSON.parse(abi.catalog()),definition=catalog.cards.find(c=>c.id==='WM038');
 it('reads all four rules of the complete pinned WM038 face and its Blood identity',()=>{
   expect(createHash('sha256').update(wasm).digest('hex')).toBe(fixture.wasmSha256);
-  expect(catalog.engineVersion).toBe('rust-v0.2.71-wm038-cultist-blood-candidate');
+  expect(catalog.engineVersion).toBe('rust-v0.2.72-jz35-host-return-candidate');
   expect(definition).toMatchObject({name:'信徒烙印',kind:'attachment',color:'红',cost:1,loyalty:['红色'],unique:false,subtypes:['纹身'],magic:'鲜血',keywords:[],permanentIcons:{investigation:0,combat:0,influence:0},temporaryIcons:{investigation:0,combat:0,influence:0}});
   expect(definition.defense).toBeNull();expect(definition.abilities).toHaveLength(3);
   const original=readFileSync(resolve('../resource/ymsj-fun.github.io/cards/WM038 信徒烙印.jpg'));
