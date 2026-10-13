@@ -224,6 +224,7 @@ pub enum Op {
         observation: Option<Box<crate::model::AttachmentEvent>>,
     },
     BQ078ReturnNamelessCorpse,
+    JC087HideTargetThenInfluence,
     JZ45LockLocalTarget,
     // JC050 only: destroy the board cards in the region chosen at resolution.
     JC050DestroyChosenRegionCharacters,
@@ -1840,7 +1841,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         for id in ["BQ028", "BQ030", "BQ040"] {
             m.insert(id.into(), crate::blue_expansion::definition(id).unwrap());
         }
-        for id in ["WM059", "BQ078"] {
+        for id in ["WM059", "BQ078", "JC087"] {
             m.insert(id.into(), crate::black_expansion::definition(id).unwrap());
         }
         for id in ["JZ44", "JZ45", "XQ24", "JC061"] {

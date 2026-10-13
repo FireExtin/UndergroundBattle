@@ -3,6 +3,8 @@ from pathlib import Path
 import hashlib,json,sys
 
 root=Path(sys.argv[1]).resolve()
+suffix=sys.argv[2] if len(sys.argv)>2 else '65'
+assert suffix.isdigit()
 steps=[(p,json.loads(p.read_text())) for p in sorted((root/'trace').glob('step-*.json'))]
 cases=[]
 for p in sorted((root/'native').glob('*.json')):
@@ -23,6 +25,6 @@ wasm=Path('rust-game-wasm/pkg/hegemony_wasm_bg.wasm').read_bytes()
 result={'scope':'Explicit offline Native layouts and actual accepted Room commands; no browser, saved-room migration or online injection.',
         'sourceBaseline':'f2989ba51b33d084e16cc52df2031e4b7d1fcb6a',
         'wasmSha256':hashlib.sha256(wasm).hexdigest(),'cases':cases}
-out=Path('web/src/game/jc061Native65.fixture.json')
+out=Path(f'web/src/game/jc061Native{suffix}.fixture.json')
 out.write_text(json.dumps(result,ensure_ascii=False,separators=(',',':'))+'\n')
 print(json.dumps({'cases':len(cases),'path':str(out),'bytes':out.stat().st_size}))

@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.58-jc061-crisis-team-candidate",
-  "engineVersion": "rust-v0.2.65-jc061-crisis-team-candidate",
+  "cardPoolVersion": "limited-v2.59-jc087-smuggler-candidate",
+  "engineVersion": "rust-v0.2.66-jc087-smuggler-candidate",
   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
   "cards": [
     {
@@ -5094,6 +5094,47 @@
         "record": "JC061",
         "image": "resource/ymsj-fun.github.io/cards/JC061 危机处理特派小组.jpg",
         "sha256": "132918615db6a2233eed3f2d2d045c368c65348e43c52f101f17e4c4ecd756f6"
+      }
+    },
+    {
+      "id": "JC087",
+      "name": "格鲁尼的走私客",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "罪犯"
+      ],
+      "cost": 4,
+      "loyalty": [
+        "黑色",
+        "黑色"
+      ],
+      "loyaltyText": "黑色 / 黑色",
+      "color": "黑",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 1,
+          "combat": 1,
+          "influence": 0
+        }
+      },
+      "defense": 2,
+      "text": "撤回\n【触发】当格鲁尼的走私客进入一个地区时，你可以令本地区的目标本方角色潜伏，若你如此做，在该地区上放置一个本方势力标志。",
+      "keywords": [
+        "撤回"
+      ],
+      "unique": false,
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JC087",
+        "image": "resource/ymsj-fun.github.io/cards/JC087 格鲁尼的走私客.jpg",
+        "sha256": "cbd39806bd8126021edff506a65dad651485c6661f181d6e8d8ff9d16911ce00"
       }
     }
   ],

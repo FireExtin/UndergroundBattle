@@ -9,6 +9,18 @@ use std::collections::BTreeSet;
 
 pub(crate) fn definition(id: &str) -> Option<Definition> {
     match id {
+        "JC087" => {
+            let mut d = rules::with_abilities(vec![rules::ability(
+                "jc087-enter-region-hide-influence",
+                "进入地区触发：令本方角色潜伏，若如此做放置势力",
+                Timing::Fast, vec![],
+                vec![rules::target(Zone::Board, EntityKind::Character, Relation::ControlledByActor, Range::SourceRegion)],
+                vec![Op::JC087HideTargetThenInfluence],
+                Some(Event::EnterRegion),
+            )]);
+            d.traits.retreat = true;
+            Some(d)
+        }
         "WM059" => {
             let mut victim = rules::target(
                 Zone::Board,
@@ -66,7 +78,7 @@ pub(crate) fn definition(id: &str) -> Option<Definition> {
 }
 pub(crate) fn contains_black_expansion_op(ops: &[Op]) -> bool {
     ops.iter().any(|op| match op {
-        Op::BQ078ReturnNamelessCorpse => true,
+        Op::BQ078ReturnNamelessCorpse | Op::JC087HideTargetThenInfluence => true,
         Op::ForEachLivingPlayer(body) | Op::ForEachLivingPlayerFromActor(body) => {
             contains_black_expansion_op(body)
         }
@@ -80,12 +92,12 @@ pub(crate) fn contains_black_expansion_op(ops: &[Op]) -> bool {
     })
 }
 fn relevant_definition(id: &str) -> bool {
-    matches!(id, "WM059" | "BQ078")
+    matches!(id, "WM059" | "BQ078" | "JC087")
 }
 fn relevant_key(key: &str) -> bool {
     matches!(
         key,
-        "wm059-enter-region-destroy" | "bq078-entry-mill-four" | "bq078-death-corpse-return"
+        "wm059-enter-region-destroy" | "bq078-entry-mill-four" | "bq078-death-corpse-return" | "jc087-enter-region-hide-influence"
     )
 }
 fn same<T: serde::Serialize>(a: &T, b: &T) -> bool {
@@ -140,6 +152,17 @@ fn relevant_frame(f: &ResolutionFrame) -> bool {
             .any(|s| contains_black_expansion_op(std::slice::from_ref(&s.op)))
 }
 impl Game {
+    pub(crate) fn jc087_hide_then_influence(&mut self, f: &ResolutionFrame) -> RuleResult<()> {
+        let target = f.targets.first().ok_or("JC087缺少目标角色")?;
+        let Some(region) = f.source.region.filter(|r| self.regions.get(*r).is_some_and(|reg|
+            !reg.vacant && f.source.source_region_instance.as_ref() == Some(&reg.card.id))) else { return Ok(()); };
+        // Keep the core Hide departure/reset/attachment cleanup. Its success
+        // result gates the printed "if you do" consequence, including self-hide.
+        if self.hide_in_place(&target.id) {
+            self.place_influence(f.actor, region, 1);
+        }
+        Ok(())
+    }
     fn black_source(&self, actor: usize, source: &SourceSnapshot) -> RuleResult<()> {
         if !relevant_definition(&source.card.definition)
             || actor >= self.players.len()
@@ -290,7 +313,14 @@ impl Game {
         }
         for e in &self.effects {
             match e {
-                Effect::Frame { frame } => stored_frame(frame)?,
+                Effect::Frame { frame } => {
+                    stored_frame(frame)?;
+                    if frame.source.card.definition == "JC087"
+                        && frame.ability_key == "jc087-enter-region-hide-influence"
+                    {
+                        return Err("JC087入区响应帧不能保存于直接效果队列".into());
+                    }
+                }
                 Effect::Declare { declaration: d }
                     if relevant_definition(&d.source.card.definition)
                         || relevant_key(&d.ability.key)

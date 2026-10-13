@@ -10,7 +10,7 @@ use std::collections::{BTreeMap, BTreeSet};
 impl Game {
     // Shared with XQ24; preserve the existing single-character Hide cleanup,
     // identity reset, orientation and region rather than creating a second rule.
-    pub(crate) fn hide_in_place(&mut self, id: &str) {
+    pub(crate) fn hide_in_place(&mut self, id: &str) -> bool {
         let controller = self.controller_after_reset(id);
         if let Some((r, c)) = self.leave_board(id) {
             let mut c = self.fresh(c);
@@ -20,7 +20,9 @@ impl Game {
             c.wounds = 0;
             c.shield = 0;
             self.regions[r].cards.push(c);
+            return true;
         }
+        false
     }
     fn attachment_host_matches(
         &self,
@@ -407,7 +409,7 @@ impl Game {
                 snapshot
             },
             region,
-            source_region_instance: if matches!(c.definition.as_str(), "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061") {
+            source_region_instance: if matches!(c.definition.as_str(), "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087") {
                 region.and_then(|r| self.regions.get(r)).filter(|r| !r.vacant).map(|r| r.card.id.clone())
             } else { None },
             attachment_host_instance: (c.definition == "JC090" || rules::definition(&c.definition)
@@ -661,7 +663,7 @@ impl Game {
                                 }
                             })
                         && (spec.range != Range::SourceRegion || region == source.region)
-                        && (!matches!(source.card.definition.as_str(), "JZ43" | "JZ44" | "JZ45" | "WM059" | "JC061") || spec.range != Range::SourceRegion
+                        && (!matches!(source.card.definition.as_str(), "JZ43" | "JZ44" | "JZ45" | "WM059" | "JC061" | "JC087") || spec.range != Range::SourceRegion
                             || source.region.and_then(|r| self.regions.get(r))
                                 .zip(source.source_region_instance.as_ref())
                                 .is_some_and(|(region, instance)| !region.vacant && region.card.id == *instance))
@@ -1354,6 +1356,7 @@ impl Game {
                 Op::BQ028InspectTargetHandAttachments => return self.bq028_inspect_start(frame),
                 Op::BQ030AttachmentDraw { .. } => self.bq030_draw_one(&frame)?,
                 Op::BQ078ReturnNamelessCorpse => return self.bq078_return_start(frame),
+                Op::JC087HideTargetThenInfluence => self.jc087_hide_then_influence(&frame)?,
                 Op::JZ45LockLocalTarget => self.jz45_lock_local_target(&frame)?,
                 Op::XQ24HideCheapCharactersInSourceRegion => self.xq24_hide_cheap_characters(&frame),
                 Op::XQ44SearchDreamSealOnTarget => return self.deck_seal_search_start(frame, true),
