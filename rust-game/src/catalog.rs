@@ -3,11 +3,11 @@ use serde::{Deserialize, Serialize};
 use std::sync::OnceLock;
 
 pub const RULES_VERSION: &str = "hegemony-pdf-v1";
-pub const POOL_VERSION: &str = "limited-v2.66-jc052-original-region-candidate";
+pub const POOL_VERSION: &str = "limited-v2.67-jc037-hidden-investigation-candidate";
 #[cfg(not(feature = "society-fixtures"))]
-pub const ENGINE_VERSION: &str = "rust-v0.2.73-jc052-original-region-candidate";
+pub const ENGINE_VERSION: &str = "rust-v0.2.74-jc037-hidden-investigation-candidate";
 #[cfg(feature = "society-fixtures")]
-pub const ENGINE_VERSION: &str = "rust-v0.2.73-jc052-original-region-fixture";
+pub const ENGINE_VERSION: &str = "rust-v0.2.74-jc037-hidden-investigation-fixture";
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -134,7 +134,7 @@ pub fn catalog() -> &'static Catalog {
                     })
                     .unwrap_or_default();
                 // Preserve old definitions; expose only individually reviewed subtitles.
-                if !["JZ27", "JC096", "JC114", "XQ38", "LC06", "LC30", "JZ02", "WM059", "JC094", "WM023", "JC052"]
+                if !["JZ27", "JC096", "JC114", "XQ38", "LC06", "LC30", "JZ02", "WM059", "JC094", "WM023", "JC052", "JC037"]
                     .contains(&definition.id.as_str())
                 {
                     definition.subtitle = None;

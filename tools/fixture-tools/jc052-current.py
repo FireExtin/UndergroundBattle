@@ -10,14 +10,16 @@ import subprocess
 import sys
 
 root = Path(sys.argv[1]).resolve()
-version = 'rust-v0.2.73-jc052-original-region-candidate'
+versions = {'rust-v0.2.73-jc052-original-region-candidate':'limited-v2.66-jc052-original-region-candidate',
+            'rust-v0.2.74-jc037-hidden-investigation-candidate':'limited-v2.67-jc037-hidden-investigation-candidate'}
 catalog = json.loads(subprocess.check_output([
     'node', '--input-type=module', '-e',
     "import {catalog} from './rust-game-wasm/tests/current-kernel.mjs';"
     "console.log(JSON.stringify({engineVersion:catalog.engineVersion,cardPoolVersion:catalog.cardPoolVersion}));"
 ], text=True))
-assert catalog['engineVersion'] == version, 'Build the actual current JC052 ABI first.'
-assert catalog['cardPoolVersion'] == 'limited-v2.66-jc052-original-region-candidate'
+version=catalog['engineVersion']
+assert version in versions, 'Build an explicitly supported current ABI first.'
+assert catalog['cardPoolVersion'] == versions[version]
 steps = [(p, json.loads(p.read_text())) for p in sorted((root / 'trace').glob('step-*.json'))]
 cases = []
 for p in sorted((root / 'native').glob('*.json')):
@@ -29,6 +31,8 @@ for p in sorted((root / 'native').glob('*.json')):
                and s['expected']['outcome'] == 'accepted']
     assert matches, f'{p}: no exact accepted Native command; regenerate evidence.'
     q, s = matches[0]
+    assert all(v['versions']['engine'] == version and v['versions']['cardPool'] == catalog['cardPoolVersion'] for v in snap['views'])
+    assert s['expected']['view']['versions']['engine'] == version, 'Regenerate current Native commands; never relabel old states.'
     cases.append({
         'name': p.stem, 'seat': s['seat'], 'before': snap['state'],
         'beforeViews': snap['views'], 'command': s['command'],

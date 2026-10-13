@@ -12,7 +12,12 @@ const abi = await import(bindings.href);
 const wasm = readFileSync(new URL('./hegemony_wasm_bg.wasm', bindings));
 abi.initSync({ module: wasm });
 const root = new URL('../../', import.meta.url);
-const bytes = readFileSync(new URL('sites/test/fixtures/xq24-container-invalid-v064.json', root));
+const catalog = JSON.parse(abi.catalog());
+const version = catalog.engineVersion.match(/^rust-v0\.2\.(\d+)-/)[1];
+const pool = JSON.parse(readFileSync(new URL('rust-game/data/cards.json',root)));
+assert.equal(catalog.engineVersion,pool.engineVersion);
+assert.equal(catalog.cardPoolVersion,pool.cardPoolVersion);
+const bytes = readFileSync(new URL(`sites/test/fixtures/xq24-container-invalid-v0${version}.json`, root));
 const native = JSON.parse(bytes);
 assert.equal(native.producer, 'xq24_entry_frame_container_restore_rejects_response_bypass');
 assert.equal(native.cases.length, 4);
@@ -39,7 +44,7 @@ for (const c of native.cases) {
 }
 // Previously exported real Native Room commands retain exactly the same result.
 // Includes optional acceptance/decline, source movement/removal and lost regions.
-const legal = JSON.parse(readFileSync(new URL('sites/test/fixtures/xq24-native-v064.json', root)));
+const legal = JSON.parse(readFileSync(new URL(`sites/test/fixtures/xq24-native-v0${version}.json`, root)));
 assert.deepEqual(JSON.parse(abi.catalog()), legal.catalog);
 for (const scenario of legal.scenarios) {
   let previous;

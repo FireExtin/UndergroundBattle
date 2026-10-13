@@ -410,6 +410,9 @@ impl Game {
         let mut temporary_result = d.temporary_icons;
         let ordinary = self.turn_attribute_bonus(c).1;
         for modifier in &rules::definition(&c.definition).modifiers {
+            if matches!(modifier, StaticModifier::JC037ControlledHiddenInvestigation) {
+                permanent_result.investigation = permanent_result.investigation.saturating_add(self.jc037_controlled_hidden(c));
+            }
             if let StaticModifier::NoEnemyCharacters(permanent, temporary) = modifier {
                 if !self.regions[region].cards.iter().any(|other| {
                     !other.face_down
@@ -2834,7 +2837,7 @@ mod tests {
     #[test]
     fn catalog_is_restricted_real_complete_and_decks_are_legal() {
         let c = catalog::catalog();
-        assert_eq!(c.cards.len(), 139);
+        assert_eq!(c.cards.len(), 140);
         let active = c
             .cards
             .iter()
@@ -2849,7 +2852,7 @@ mod tests {
                 .collect::<BTreeSet<_>>()
         );
         assert!(active.contains("DQJC116"));
-        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 129);
+        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 130);
         assert_eq!(c.decks.len(), 5);
         for deck in &c.decks {
             assert_eq!(deck.card_count, 50);

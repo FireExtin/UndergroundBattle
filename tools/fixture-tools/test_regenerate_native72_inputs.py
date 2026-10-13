@@ -30,7 +30,7 @@ class GeneratorEntrypoints(unittest.TestCase):
             shutil.copyfile(REPOSITORY / "tools/fixture-tools" / name, tools / name)
         shutil.copyfile(REPOSITORY / "tools/build-storage.mjs", self.source / "tools/build-storage.mjs")
         shutil.copyfile(REPOSITORY / "rust-game-wasm/build.sh", self.source / "rust-game-wasm/build.sh")
-        for name in ["jc061", "jc087", "jc094", "wm056", "wm023", "xq25", "wm038", "jz35", "jc052"]:
+        for name in ["jc061", "jc087", "jc094", "wm056", "wm023", "xq25", "wm038", "jz35", "jc052", "jc037"]:
             (tools / f"{name}-current.py").write_text("import json,sys; print(json.dumps(sys.argv))\n")
         for name in ["current-four-faction-choices.py", "current-win-flow.py"]:
             (tools / name).write_text("print('fixture stub')\n")
@@ -41,7 +41,7 @@ class GeneratorEntrypoints(unittest.TestCase):
         self.pool = self.source / 'rust-game/data/cards.json'
         self.pool.parent.mkdir(parents=True, exist_ok=True)
         self.pool.write_text(json.dumps({'engineVersion':'rust-v0.2.72-jz35-host-return-candidate','cardPoolVersion':'limited-v2.65-jz35-host-return-candidate'}))
-        for name in ["jc061", "jc087", "jc094", "wm056", "wm023", "xq25", "wm038", "jz35", "jc052"]:
+        for name in ["jc061", "jc087", "jc094", "wm056", "wm023", "xq25", "wm038", "jz35", "jc052", "jc037"]:
             (wasm_tests / f"{name}_compare.mjs").write_text("console.log('parity stub');\n")
         (self.source / "web/src/game").mkdir(parents=True)
         self.calls = self.base / "calls.jsonl"
@@ -251,6 +251,23 @@ if Path(sys.argv[0]).name=='wasm-bindgen':
         self.assertTrue((self.source / 'web/src/game/xq24Native73.fixture.json').is_file())
         self.assertIn('"73"', (output / 'evidence/ui-refresh/jz35-fixture.log').read_text())
         self.assertIn('jc052Native73Current.fixture.json', (output / 'evidence/ui-refresh/jc052-fixture.log').read_text())
+
+    def test_native74_keeps_prior73_and72_inputs_and_requires_exact_pool(self):
+        self.pool.write_text(json.dumps({'engineVersion':'rust-v0.2.74-jc037-hidden-investigation-candidate','cardPoolVersion':'limited-v2.67-jc037-hidden-investigation-candidate'}))
+        original = self.source / 'web/src/game/jc052Native73Current.fixture.json'
+        original.write_text('preserved Native73 input\n')
+        output = self.base / 'Native74 current output'
+        result = self.invoke('python', output)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(original.read_text(), 'preserved Native73 input\n')
+        self.assertTrue((self.source / 'web/src/game/xq24Native74.fixture.json').is_file())
+        self.assertIn('jc052Native74Current.fixture.json', (output / 'evidence/ui-refresh/jc052-fixture.log').read_text())
+        self.assertTrue((output / 'evidence/ui-refresh/jc037-fixture.log').is_file())
+        self.pool.write_text(json.dumps({'engineVersion':'rust-v0.2.74-jc037-hidden-investigation-candidate','cardPoolVersion':'limited-v2.66-jc052-original-region-candidate'}))
+        untouched = self.base / 'wrong74 pool'
+        result = self.invoke('python', untouched)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertFalse(untouched.exists())
 
 
 if __name__ == "__main__":

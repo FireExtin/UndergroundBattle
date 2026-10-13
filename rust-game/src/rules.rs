@@ -466,6 +466,7 @@ pub enum StaticModifier {
     WM038HostCultistSubtype,
     XQ25UntappedRegionConcealSurcharge,
     JC045TimeInfluence,
+    JC037ControlledHiddenInvestigation,
     JC089HostDefenseMinusOneAndGlory,
     JZ48OtherControlledCriminalInfluenceAndDefense,
     JC030BloodAssetsVampireAndInvestigation,
@@ -1256,6 +1257,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
         crate::wm038::validate_definition(card_id, definition)?;
         crate::jz35::validate_definition(card_id, definition)?;
         crate::jc052::validate_definition(card_id, definition)?;
+        crate::jc037::validate_definition(card_id, definition)?;
         crate::gray_expansion::validate_definition(card_id, definition)?;
         if card_id == "XQ27" && serde_json::to_value(definition).unwrap()
             != serde_json::to_value(xq27_definition()).unwrap() {
@@ -1866,6 +1868,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         m.insert("WM038".into(), crate::wm038::definition());
         m.insert("JZ35".into(), crate::jz35::definition());
         m.insert("JC052".into(), crate::jc052::definition());
+        m.insert("JC037".into(), crate::jc037::definition());
         m.insert("XQ25".into(), crate::xq25::definition());
         m.insert("WM023".into(), crate::wm023::definition());
         m.insert("WM056".into(), crate::wm056::definition());

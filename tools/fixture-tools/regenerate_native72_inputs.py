@@ -1,4 +1,4 @@
-"""Generate current Native72/73 inputs, retaining every prior evidence directory."""
+"""Generate current Native72/73/74 inputs, retaining every prior evidence directory."""
 import argparse
 import json
 import os
@@ -41,10 +41,12 @@ def regenerate(source, root, build_and_check):
     versions = {
         'rust-v0.2.72-jz35-host-return-candidate': ('72', 'limited-v2.65-jz35-host-return-candidate'),
         'rust-v0.2.73-jc052-original-region-candidate': ('73', 'limited-v2.66-jc052-original-region-candidate'),
+        'rust-v0.2.74-jc037-hidden-investigation-candidate': ('74', 'limited-v2.67-jc037-hidden-investigation-candidate'),
     }
     if pool.get('engineVersion') not in versions:
-        raise ValueError('Only reviewed ABI72/73 generation is supported.')
+        raise ValueError('Only explicitly supported ABI72/73/74 candidate generation is supported.')
     version, expected_pool = versions[pool['engineVersion']]
+    web_only = [] if version == '74' else ['--web-only']
     if pool.get('cardPoolVersion') != expected_pool:
         raise ValueError('Source engine/card-pool versions do not match.')
     # Reuse the project guard before creating evidence or touching any source.
@@ -106,12 +108,12 @@ def regenerate(source, root, build_and_check):
     tests('lifecycle-red','red_time',{'GREEN_EVIDENCE_DIR':str(e/'lifecycle/trace-red'),'RED_TIME_EVIDENCE_DIR':str(e/'lifecycle/red')})
     run('lifecycle-fixture',['python3','tools/fixture-tools/current-four-faction-choices.py',str(e/'lifecycle'),version,revision])
     tests('death-frontends','death_observer',{'DEATH_OBSERVER_FRONTEND_DIR':str(e/'death')})
-    run('current-worker-web-fixtures',['cargo','run','--locked','-p','hegemony-wasm','--example','current_ui_worker_fixtures','--',str(source),str(e/'death'),version,'--web-only'])
+    run('current-worker-web-fixtures',['cargo','run','--locked','-p','hegemony-wasm','--example','current_ui_worker_fixtures','--',str(source),str(e/'death'),version,*web_only])
     run('seven-card-fixtures',['cargo','run','--locked','-p','hegemony-wasm','--example','seven_card_ui_fixtures','--',str(source/f'web/src/game/sevenCardUIV0{version}.fixture.json')])
     tests('win-flow','win_flow',{'WIN_FLOW_EVIDENCE_DIR':str(e/'win')})
-    run('fixed-slots-fixture',['python3','tools/fixture-tools/current-win-flow.py',str(e/'win'),version,'--web-only'])
+    run('fixed-slots-fixture',['python3','tools/fixture-tools/current-win-flow.py',str(e/'win'),version,*web_only])
     run('bq030',['cargo','test','--locked','-p','hegemony-server','--test','bq030_attachment_regression','--','--test-threads=1'],{'BQ030_TRACE_DIR':str(e/'bq030/room')})
-    run('bq030-fixture',['node','tools/fixture-tools/current-bq030.mjs',str(e/'bq030'),str(source/'rust-game-wasm/pkg/hegemony_wasm.js'),'--web-only'])
+    run('bq030-fixture',['node','tools/fixture-tools/current-bq030.mjs',str(e/'bq030'),str(source/'rust-game-wasm/pkg/hegemony_wasm.js'),*web_only])
     base=root/'evidence'
     tests('jz35','jz35',{'GREEN_EVIDENCE_DIR':str(base/'trace'),'JZ35_EVIDENCE_DIR':str(base/'native'),'JZ35_INVALID_DIR':str(base/'invalid')})
     run('jz35-fixture',['python3','tools/fixture-tools/jz35-current.py',str(base),version])
@@ -119,13 +121,19 @@ def regenerate(source, root, build_and_check):
     rows=[json.loads(p.read_text()) for p in sorted((e/'xq24').glob('*.json'))]
     assert len(rows)==12,len(rows)
     (source/f'web/src/game/xq24Native{version}.fixture.json').write_text(json.dumps({'catalog':rows[0]['catalog'],'scenarios':rows},ensure_ascii=False,separators=(',',':'))+'\n')
-    if version == '73':
+    if version in {'73', '74'}:
         jc052 = e / 'jc052'
         tests('jc052', 'jc052', {'GREEN_EVIDENCE_DIR':str(jc052/'trace'),
               'JC052_EVIDENCE_DIR':str(jc052/'native'), 'JC052_INVALID_DIR':str(jc052/'invalid')})
         # Keep the author-produced ABI-hashed evidence immutable as well.
         run('jc052-fixture', ['python3','tools/fixture-tools/jc052-current.py',str(jc052),
-                             str(source/'web/src/game/jc052Native73Current.fixture.json')])
+                             str(source/f'web/src/game/jc052Native{version}Current.fixture.json')])
+    if version == '74':
+        (source/'sites/test/fixtures').mkdir(parents=True,exist_ok=True)
+        (source/'sites/test/fixtures/xq24-native-v074.json').write_text(json.dumps({'catalog':rows[0]['catalog'],'scenarios':rows},ensure_ascii=False,separators=(',',':'))+'\n')
+        run('jc052-worker-fixtures',['cargo','run','--locked','-p','hegemony-wasm','--example','current_jc052_worker_fixtures','--',str(source/'web/src/game/jc052Native74Current.fixture.json'),str(source/'sites/test/fixtures/jc052-native-v074.json')])
+        tests('jc037', 'jc037', {'JC037_NATIVE_DIR':str(e/'jc037/native')})
+        run('jc037-fixture', ['python3','tools/fixture-tools/jc037-current.py',str(e/'jc037/native')])
     print(f'native{version}-input-generation-complete',flush=True)
 
     if build_and_check:
@@ -133,11 +141,13 @@ def regenerate(source, root, build_and_check):
         for card in ['jc061', 'jc087', 'jc094', 'wm056', 'wm023', 'xq25', 'wm038']:
             run(card + '-parity', ['node', f'rust-game-wasm/tests/{card}_compare.mjs',
                                   str(e / card)])
-        if version == '73':
+        if version in {'73', '74'}:
             run('jc052-parity', ['node','rust-game-wasm/tests/jc052_compare.mjs',str(e/'jc052')])
+        if version == '74':
+            run('jc037-parity', ['node','rust-game-wasm/tests/jc037_compare.mjs',str(source/'web/src/game/jc037Native74.fixture.json')])
         focused = ['src/game/JZ35Integration.test.jsx', 'src/game/JZ35Face.test.jsx',
                    'src/game/CurrentLifecycleChoices.test.jsx', 'src/game/SevenCardIntegration.test.jsx']
-        if version == '73':
+        if version in {'73', '74'}:
             focused.extend(['src/game/JC052Integration.test.jsx', 'src/game/JC052Face.test.jsx'])
         run('focused-ui', ['npm', '--prefix', 'web', 'test', '--', *focused, '--maxWorkers=1'])
         run('full-ui', ['npm', '--prefix', 'web', 'test', '--', '--maxWorkers=1'])

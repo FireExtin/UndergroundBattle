@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.66-jc052-original-region-candidate",
-  "engineVersion": "rust-v0.2.73-jc052-original-region-candidate",
+  "cardPoolVersion": "limited-v2.67-jc037-hidden-investigation-candidate",
+  "engineVersion": "rust-v0.2.74-jc037-hidden-investigation-candidate",
   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
   "cards": [
     {
@@ -5412,6 +5412,48 @@
         "record": "JC052",
         "image": "resource/ymsj-fun.github.io/cards/JC052 终焉的诗寇蒂.jpg",
         "sha256": "3b42cde3d48132e0ecbf73dd7ee78c6379c2319a0b83cb7304f24033ab361d33"
+      }
+    },
+    {
+      "id": "JC037",
+      "name": "克里斯蒂娜·爱弗罗德",
+      "subtitle": "寂静女士",
+      "kind": "character",
+      "subtypes": [
+        "吸血鬼"
+      ],
+      "cost": 6,
+      "loyalty": [
+        "蓝色",
+        "蓝色",
+        "蓝色"
+      ],
+      "loyaltyText": "蓝色 蓝色 蓝色",
+      "color": "蓝",
+      "magic": "鲜血",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 2,
+          "influence": 2
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        }
+      },
+      "defense": 3,
+      "text": "领袖\n【持续】你每操控一个暗藏者，克里斯蒂娜·爱弗罗德就获得一个永久调查1。",
+      "keywords": [
+        "领袖"
+      ],
+      "unique": true,
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JC037",
+        "image": "resource/ymsj-fun.github.io/cards/JC037 克里斯蒂娜·爱弗罗德.jpg",
+        "sha256": "6d4199bd890373683c100b78cebca1cb6e291346b3c8a4fc7b25beea1f2feece"
       }
     }
   ],
