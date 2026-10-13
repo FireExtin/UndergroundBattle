@@ -1353,6 +1353,7 @@ impl Game {
         self.validate_black_expansion_frame(&frame)?;
         self.validate_wm056_frame(&frame)?;
         self.validate_wm023_frame(&frame)?;
+        self.validate_xq25_frame(&frame)?;
         self.validate_gray_expansion_frame(&frame)?;
         self.validate_gray_lock_frame(&frame)?;
         self.validate_jz22_frame(&frame)?;

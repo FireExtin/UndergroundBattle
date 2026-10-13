@@ -837,6 +837,7 @@ impl Game {
         game.validate_black_expansion_state()?;
         game.validate_wm056_state()?;
         game.validate_wm023_state()?;
+        game.validate_xq25_state()?;
         game.validate_gray_expansion_state()?;
         Ok(game)
     }

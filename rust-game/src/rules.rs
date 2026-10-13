@@ -458,6 +458,7 @@ pub struct Traits {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum StaticModifier {
+    XQ25UntappedRegionConcealSurcharge,
     JC045TimeInfluence,
     JC089HostDefenseMinusOneAndGlory,
     JZ48OtherControlledCriminalInfluenceAndDefense,
@@ -517,6 +518,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
     crate::black_expansion::validate_ability(card_id, ability)?;
     crate::wm056::validate_ability(card_id, ability)?;
     crate::wm023::validate_ability(card_id, ability)?;
+    crate::xq25::validate_ability(card_id, ability)?;
     crate::gray_expansion::validate_ability(card_id, ability)?;
     if card_id == "XQ27" || ability.key == "hidden-sweep"
         || crate::xq27::contains_xq27_op(&ability.ops)
@@ -1241,6 +1243,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
         crate::black_expansion::validate_definition(card_id, definition)?;
         crate::wm056::validate_definition(card_id, definition)?;
         crate::wm023::validate_definition(card_id, definition)?;
+        crate::xq25::validate_definition(card_id, definition)?;
         crate::gray_expansion::validate_definition(card_id, definition)?;
         if card_id == "XQ27" && serde_json::to_value(definition).unwrap()
             != serde_json::to_value(xq27_definition()).unwrap() {
@@ -1397,7 +1400,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
                     "cardId={card_id}: finite target predicates cannot be an attachment host guard"
                 ));
             }
-            let admitted_region = matches!(card_id.as_str(), "XQ43" | "JC090");
+            let admitted_region = matches!(card_id.as_str(), "XQ43" | "JC090" | "XQ25");
             if !admitted_region
                 && (host.zone != Zone::Board
                     || host.kind != EntityKind::Character
@@ -1848,6 +1851,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         use EntityRef::{Source, Target};
         use PlayerRef::{Actor, Context};
         let mut m = BTreeMap::new();
+        m.insert("XQ25".into(), crate::xq25::definition());
         m.insert("WM023".into(), crate::wm023::definition());
         m.insert("WM056".into(), crate::wm056::definition());
         for id in ["XQ18", "JZ30"] {

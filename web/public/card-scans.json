@@ -728,5 +728,10 @@
     "url": "/cards/WM023.jpg",
     "source": "resource/ymsj-fun.github.io/cards/WM023 尽职的珍珠.jpg",
     "sha256": "b209fe484e37b930ce4d64be078bd3e72a10bdff5250bfd38ba97cb7648cee85"
+  },
+  "XQ25": {
+    "url": "/cards/XQ25.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/XQ25 监控探头.jpg",
+    "sha256": "c755f3d8ac0b85c3ab619b01626b92ee316f73885a5dd5a8102d53f3691306a0"
   }
 }

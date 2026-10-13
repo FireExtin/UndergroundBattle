@@ -670,7 +670,8 @@ impl Game {
                     {
                         return Err("该角色不能秘密派遣或本回合已用".into());
                     }
-                    self.pay(seat, 1)?;
+                    self.validate_xq25_state()?;
+                    self.pay(seat, self.secret_deploy_cost(r))?;
                     let mut c = self.remove_hand(seat, id)?;
                     c = self.fresh(c);
                     c.face_down = true;
@@ -769,6 +770,7 @@ impl Game {
                 if d.kind != "spell" && d.kind != "attachment" {
                     return Err("该牌不是事务或附属".into());
                 }
+                crate::xq25::validate_play_action(&c.definition, &a)?;
                 if c.definition == "JC050" && (a.region.is_some() || a.target_id.is_some()) {
                     return Err("JC050须在结算时选择地区，不能预声明地区或目标".into());
                 }
@@ -2573,14 +2575,17 @@ impl Game {
                                     ..Action::new(kind)
                                 },
                                 format!(
-                                    "{} {} → {}",
+                                    "{} {} → {}{}",
                                     if kind == "deploy" {
                                         "派遣"
                                     } else {
                                         "秘密派遣"
                                     },
                                     d.name,
-                                    card(&self.regions[r].card.definition).name
+                                    card(&self.regions[r].card.definition).name,
+                                    if kind == "conceal" && self.secret_deploy_cost(r) > 1 {
+                                        format!("（费用：支付{}）", self.secret_deploy_cost(r))
+                                    } else { String::new() }
                                 ),
                             ));
                         }
@@ -2820,7 +2825,7 @@ mod tests {
     #[test]
     fn catalog_is_restricted_real_complete_and_decks_are_legal() {
         let c = catalog::catalog();
-        assert_eq!(c.cards.len(), 135);
+        assert_eq!(c.cards.len(), 136);
         let active = c
             .cards
             .iter()
@@ -2835,7 +2840,7 @@ mod tests {
                 .collect::<BTreeSet<_>>()
         );
         assert!(active.contains("DQJC116"));
-        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 125);
+        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 126);
         assert_eq!(c.decks.len(), 5);
         for deck in &c.decks {
             assert_eq!(deck.card_count, 50);

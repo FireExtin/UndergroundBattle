@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.62-wm023-unique-hand-entry-candidate",
-  "engineVersion": "rust-v0.2.69-wm023-unique-hand-entry-candidate",
+  "cardPoolVersion": "limited-v2.63-xq25-conceal-surcharge-candidate",
+  "engineVersion": "rust-v0.2.70-xq25-conceal-surcharge-candidate",
   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
   "cards": [
     {
@@ -5258,6 +5258,43 @@
         "record": "WM023",
         "image": "resource/ymsj-fun.github.io/cards/WM023 尽职的珍珠.jpg",
         "sha256": "b209fe484e37b930ce4d64be078bd3e72a10bdff5250bfd38ba97cb7648cee85"
+      }
+    },
+    {
+      "id": "XQ25",
+      "name": "监控探头",
+      "kind": "attachment",
+      "subtypes": [
+        "设施"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "灰色",
+        "灰色"
+      ],
+      "loyaltyText": "灰色 / 灰色",
+      "color": "灰",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "text": "结附于目标地区\n【持续】只要监控探头未横置，玩家向其所结附的地区进行秘密派遣所需的费用额外增加1。",
+      "keywords": [],
+      "unique": false,
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "XQ25",
+        "image": "resource/ymsj-fun.github.io/cards/XQ25 监控探头.jpg",
+        "sha256": "c755f3d8ac0b85c3ab619b01626b92ee316f73885a5dd5a8102d53f3691306a0"
       }
     }
   ],
