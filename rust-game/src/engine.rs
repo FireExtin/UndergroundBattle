@@ -772,6 +772,7 @@ impl Game {
                 }
                 crate::xq25::validate_play_action(&c.definition, &a)?;
                 crate::wm038::validate_play_action(&c.definition, &a)?;
+                crate::jz35::validate_play_action(&c.definition, &a)?;
                 if c.definition == "JC050" && (a.region.is_some() || a.target_id.is_some()) {
                     return Err("JC050须在结算时选择地区，不能预声明地区或目标".into());
                 }
@@ -2826,7 +2827,7 @@ mod tests {
     #[test]
     fn catalog_is_restricted_real_complete_and_decks_are_legal() {
         let c = catalog::catalog();
-        assert_eq!(c.cards.len(), 137);
+        assert_eq!(c.cards.len(), 138);
         let active = c
             .cards
             .iter()

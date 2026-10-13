@@ -738,5 +738,10 @@
     "url": "/cards/WM038.jpg",
     "source": "resource/ymsj-fun.github.io/cards/WM038 信徒烙印.jpg",
     "sha256": "847dabd861d6350ae21df04ac548a975e99a7cfd4814f213444409d4c42d7acd"
+  },
+  "JZ35": {
+    "url": "/cards/JZ35.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JZ35 思维湮灭.jpg",
+    "sha256": "5b84ed6442f88c2406d7a0955ef225e1a8061fe1951da58818567234c193c1dc"
   }
 }

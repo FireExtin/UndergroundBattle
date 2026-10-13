@@ -99,7 +99,7 @@ test('historical BQ030 admission preserves its 128-card baseline inside the curr
   const pool = readJson('rust-game/data/cards.json');
   const { cards: currentCards, rulesVersion, cardPoolVersion, engineVersion, ...otherData } = pool;
   // Preserve the historical BQ030 admission assertion inside the newer XQ24 pool.
-  const cards = currentCards.filter(card => !['XQ24', 'JC061', 'JC087', 'JC094', 'WM056', 'WM023','XQ25','WM038'].includes(card.id));
+  const cards = currentCards.filter(card => !['XQ24', 'JC061', 'JC087', 'JC094', 'WM056', 'WM023','XQ25','WM038','JZ35'].includes(card.id));
   assert.equal(cards.length, 129);
   assert.equal(new Set(cards.map(card => card.id)).size, 129, 'Registry IDs must be unique');
   assert.equal(cards.filter(card => card.id === 'BQ030').length, 1);
@@ -110,8 +110,8 @@ test('historical BQ030 admission preserves its 128-card baseline inside the curr
   assert.equal(digest(otherData), approvedPins.otherPoolMetadata,
     'Decks, world and source metadata must be preserved; candidate versions are checked separately');
   assert.equal(rulesVersion, 'hegemony-pdf-v1');
-  assert.equal(cardPoolVersion, 'limited-v2.64-wm038-cultist-blood-candidate');
-  assert.equal(engineVersion, 'rust-v0.2.71-wm038-cultist-blood-candidate');
+  assert.equal(cardPoolVersion, 'limited-v2.65-jz35-host-return-candidate');
+  assert.equal(engineVersion, 'rust-v0.2.72-jz35-host-return-candidate');
 
   const catalog = read('rust-game/src/catalog.rs').toString('utf8');
   const constant = name => {
@@ -130,7 +130,7 @@ test('historical BQ030 admission preserves its 128-card baseline inside the curr
 test('actual admitted scans retain pinned original bytes, published bytes and both BQ030 URL mappings', () => {
   // Reuse the existing byte/provenance/TS/public mapping checker instead of duplicating it.
   const result = validateAdmittedScans(repository);
-  assert.equal(result.checkedCards, 137);
+  assert.equal(result.checkedCards, 138);
   assert.ok(result.checkedIds.includes('BQ030'));
 });
 

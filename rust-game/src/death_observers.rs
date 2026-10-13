@@ -2,6 +2,14 @@
 //! the existing event queue and stack retain all declaration/resolution timing.
 use crate::{catalog, engine::RuleResult, model::*, rules::{self, Event}};
 
+/// Actual character departure receipt; never persisted or inferred from a name.
+#[derive(Clone, Debug)]
+pub(crate) struct CharacterDeathReceipt {
+    pub old_instance: String,
+    pub grave_instance: String,
+    pub owner: usize,
+}
+
 fn relevant_source(source: &SourceSnapshot) -> bool { source.observed_death.is_some() }
 fn relevant_frame(frame: &ResolutionFrame) -> bool {
     relevant_source(&frame.source) || frame.ability_key.starts_with("death-observer-")
@@ -12,7 +20,11 @@ fn same<T: serde::Serialize>(a: &T, b: &T) -> bool {
 }
 impl Game {
     pub(crate) fn remove_death_batch(&mut self, deaths: Vec<(String, RemovalCause, SourceSnapshot)>) {
+        self.remove_death_batch_with_receipts(deaths);
+    }
+    pub(crate) fn remove_death_batch_with_receipts(&mut self, deaths: Vec<(String, RemovalCause, SourceSnapshot)>) -> Vec<CharacterDeathReceipt> {
         let previous_effects = self.effects.len();
+        let mut receipts = Vec::new();
         let mut observers = Vec::new();
         for (r, region) in self.regions.iter().enumerate() {
             for c in &region.cards {
@@ -38,7 +50,8 @@ impl Game {
         }).collect::<Vec<_>>();
         for (id, cause, source, vampire) in deaths {
             let dead = ObservedCharacterDeath { card: source.card.clone(), vampire };
-            if self.remove_dead_with_snapshot(&id, cause, Some(source)) {
+            if let Some(receipt) = self.remove_dead_with_snapshot(&id, cause, Some(source)) {
+                receipts.push(receipt);
                 for observer in &observers {
                     if observer.card.definition != "JC045"
                         && (dead.card.controller != observer.card.controller
@@ -58,6 +71,7 @@ impl Game {
             _ => (true, usize::MAX),
         });
         self.effects.extend(simultaneous);
+        receipts
     }
     pub(crate) fn death_observer_limit_reached(&self, d: &Declaration) -> bool {
         d.ability.event == Some(Event::CharacterDeathObserved) && d.source.card.definition == "JC031"

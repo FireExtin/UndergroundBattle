@@ -148,6 +148,7 @@ const scans: Record<string, string> = {
   "WM056": "/cards/WM056.jpg",
   "WM023": "/cards/WM023.jpg",
   "XQ25": "/cards/XQ25.jpg",
-  "WM038": "/cards/WM038.jpg"
+  "WM038": "/cards/WM038.jpg",
+  "JZ35": "/cards/JZ35.jpg"
 };
 export const cardScanUrl = (cardId?: string) => cardId ? scans[cardId] : undefined;

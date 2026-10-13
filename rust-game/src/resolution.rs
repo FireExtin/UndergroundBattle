@@ -1273,7 +1273,7 @@ impl Game {
         target: &str,
         cause: RemovalCause,
         simultaneous_source: Option<SourceSnapshot>,
-    ) -> bool {
+    ) -> Option<crate::death_observers::CharacterDeathReceipt> {
         // Host departure can remove an attached control grant. Freeze before it;
         // an already captured simultaneous lethal-set snapshot remains authoritative.
         let snapshot = simultaneous_source.or_else(|| self.board(target)
@@ -1285,6 +1285,7 @@ impl Game {
                 !snapshot.card.face_down && card(&snapshot.card.definition).kind == "character";
             let owner = c.owner;
             let c = self.reset_zone_card(c);
+            let grave_instance = c.id.clone();
             self.players[owner].graveyard.push(c);
             self.note(format!(
                 "{}：{}",
@@ -1297,10 +1298,14 @@ impl Game {
             ));
             if character {
                 self.emit_event(controller, snapshot, Event::Death);
+                return Some(crate::death_observers::CharacterDeathReceipt {
+                    old_instance: target.into(),
+                    grave_instance,
+                    owner,
+                });
             }
-            return character;
         }
-        false
+        None
     }
     fn take_entity(&mut self, id: &str) -> Option<Card> {
         if let Some((_, c)) = self.leave_board(id) {
@@ -1356,6 +1361,7 @@ impl Game {
         self.validate_wm023_frame(&frame)?;
         self.validate_xq25_frame(&frame)?;
         self.validate_wm038_frame(&frame)?;
+        self.validate_jz35_frame(&frame)?;
         self.validate_gray_expansion_frame(&frame)?;
         self.validate_gray_lock_frame(&frame)?;
         self.validate_jz22_frame(&frame)?;
@@ -1369,6 +1375,7 @@ impl Game {
             let step = frame.steps[frame.cursor].clone();
             frame.cursor += 1;
             match step.op {
+                Op::JZ35SacrificeReturnControlledHosts => self.jz35_resolve(&frame)?,
                 Op::WM038AddOneTimeToOriginalHost => self.wm038_add_time(&frame),
                 Op::WM023PutUniqueMageOrVampireFromHand => return self.wm023_start(frame),
                 Op::WM056MoveOneAdjacentInfluence => return self.wm056_start(frame),

@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.64-wm038-cultist-blood-candidate",
-  "engineVersion": "rust-v0.2.71-wm038-cultist-blood-candidate",
+  "cardPoolVersion": "limited-v2.65-jz35-host-return-candidate",
+  "engineVersion": "rust-v0.2.72-jz35-host-return-candidate",
   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
   "cards": [
     {
@@ -5331,6 +5331,43 @@
         "record": "WM038",
         "image": "resource/ymsj-fun.github.io/cards/WM038 信徒烙印.jpg",
         "sha256": "847dabd861d6350ae21df04ac548a975e99a7cfd4814f213444409d4c42d7acd"
+      }
+    },
+    {
+      "id": "JZ35",
+      "name": "思维湮灭",
+      "kind": "spell",
+      "subtypes": [
+        "法术",
+        "心灵"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "红色"
+      ],
+      "loyaltyText": "红色",
+      "color": "红",
+      "magic": "心灵",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "text": "行动 牺牲所有本方宿主角色，然后将这些角色牌从墓地移回场上，且分别置于其之前所在的地区。",
+      "keywords": [],
+      "unique": false,
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JZ35",
+        "image": "resource/ymsj-fun.github.io/cards/JZ35 思维湮灭.jpg",
+        "sha256": "5b84ed6442f88c2406d7a0955ef225e1a8061fe1951da58818567234c193c1dc"
       }
     }
   ],
