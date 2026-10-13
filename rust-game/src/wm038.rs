@@ -371,9 +371,29 @@ impl Game {
                 } => {
                     self.validate_wm038_declaration(d)?;
                     if d.source.card.definition == "WM038"
-                        && (!matches!(stage, DeclareChoice::Accept) || p.seat != d.actor)
+                        && (!matches!(stage, DeclareChoice::Accept)
+                            || p.seat != d.actor
+                            || p.choice.player_id != player_id(d.actor)
+                            || p.choice.id.is_empty()
+                            || p.choice.kind != "trigger"
+                            || p.choice.title
+                                != format!("{}：{}", catalog::card("WM038").name, d.ability.label)
+                            || p.choice.description != "选择符合数量限制的选项，然后确认。"
+                            || p.choice.min != Some(0)
+                            || p.choice.max != Some(1)
+                            || p.choice.allow_decline != Some(true)
+                            || p.choice.amount.is_some()
+                            || !p.choice.preview_cards.is_empty()
+                            || !same(
+                                &p.choice.options,
+                                &vec![ChoiceOption {
+                                    id: "accept".into(),
+                                    label: "发动触发能力".into(),
+                                    card: None,
+                                }],
+                            ))
                     {
-                        return Err("WM038进场接受待选座位或阶段无效".into());
+                        return Err("WM038可选进场待选座位、阶段、元数据或完整选项无效".into());
                     }
                 }
                 ChoiceResolution::Frame { frame: f, .. } if related(f) => {

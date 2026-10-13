@@ -621,6 +621,137 @@ fn wm038_continuous_subtype_is_not_exhaustion_or_controller_gated_and_invalid_hu
     checkpoint(&g);
 }
 #[test]
+fn wm038_pending_entry_metadata_tampering_rejects_game_and_room() {
+    let mut g = game(0);
+    let host = board(&mut g, "JC125", 0, 2);
+    fund(&mut g, 0, "JC042", 1);
+    let id = held(&mut g, 0, "WM038");
+    apply(&mut g, 0, play(&id, &host));
+    pass_top(&mut g);
+    checkpoint(&g);
+    let projected = g.card_view(g.board(&host).unwrap().1, 0, Some(2), None);
+    let cases = [
+        "mandatory-min",
+        "mandatory-decline",
+        "mandatory-both",
+        "missing-min",
+        "zero-max",
+        "larger-max",
+        "missing-max",
+        "missing-decline",
+        "wrong-kind",
+        "empty-choice-id",
+        "wrong-title",
+        "wrong-description",
+        "wrong-player",
+        "extra-amount",
+        "extra-preview",
+        "missing-option",
+        "duplicate-option",
+        "wrong-option-id",
+        "wrong-option-label",
+        "extra-option-card",
+        "extra-option",
+    ];
+    for (n, name) in cases.iter().enumerate() {
+        let mut bad = g.clone();
+        let c = &mut bad.pending.as_mut().unwrap().choice;
+        match n {
+            0 => c.min = Some(1),
+            1 => c.allow_decline = Some(false),
+            2 => {
+                c.min = Some(1);
+                c.allow_decline = Some(false);
+            }
+            3 => c.min = None,
+            4 => c.max = Some(0),
+            5 => c.max = Some(2),
+            6 => c.max = None,
+            7 => c.allow_decline = None,
+            8 => c.kind = "target".into(),
+            9 => c.id.clear(),
+            10 => c.title.clear(),
+            11 => c.description.clear(),
+            12 => c.player_id = player_id(1),
+            13 => c.amount = Some(0),
+            14 => c.preview_cards.push(projected.clone()),
+            15 => c.options.clear(),
+            16 => {
+                let option = c.options[0].clone();
+                c.options.push(option);
+            }
+            17 => c.options[0].id = "decline".into(),
+            18 => c.options[0].label.clear(),
+            19 => c.options[0].card = Some(projected.clone()),
+            _ => c.options.push(ChoiceOption {
+                id: "other".into(),
+                label: "other".into(),
+                card: None,
+            }),
+        }
+        invalid(&g, bad, &format!("entry-metadata-{name}"));
+    }
+}
+#[test]
+fn wm038_restored_optional_entry_can_decline_or_accept_game_and_room_all_seats() {
+    use crate::room::{RoomCommand, RoomEnvelope, SessionAction};
+    for actor in 0..4 {
+        let mut g = game(actor);
+        let host = board(&mut g, "JC125", (actor + 2) % 4, 2);
+        fund(&mut g, actor, "JC042", 1);
+        let id = held(&mut g, actor, "WM038");
+        apply(&mut g, actor, play(&id, &host));
+        pass_top(&mut g);
+        let game_state = serde_json::to_string(&g).unwrap();
+        let room_state = serde_json::to_string(&envelope(&g)).unwrap();
+        for accept in [false, true] {
+            let mut restored = Game::from_persisted(&game_state).unwrap();
+            let mut room = RoomEnvelope::from_persisted(&room_state).unwrap();
+            checkpoint(&restored);
+            let choice = &restored.pending.as_ref().unwrap().choice;
+            assert_eq!(
+                (choice.min, choice.max, choice.allow_decline),
+                (Some(0), Some(1), Some(true))
+            );
+            let action = Action {
+                choice_id: Some(choice.id.clone()),
+                selected: Some(if accept {
+                    vec!["accept".into()]
+                } else {
+                    vec![]
+                }),
+                ..Action::new("choose")
+            };
+            restored.apply(actor, action.clone()).unwrap();
+            let command = RoomCommand {
+                command_id: format!("wm038-restored-entry-{actor}-{accept}"),
+                expected_version: room.revision,
+                action: SessionAction::Game { action },
+            };
+            let result = room.transition(actor, Some(command), 0).unwrap();
+            assert!(result.error_code.is_none(), "{:?}", result.error_message);
+            assert_eq!(result.outcome, "accepted");
+            room = RoomEnvelope::from_persisted(&result.state).unwrap();
+            assert_eq!(
+                serde_json::to_value(&restored).unwrap(),
+                serde_json::to_value(&room.game).unwrap()
+            );
+            assert!(restored.pending.is_none());
+            if accept {
+                assert_eq!(restored.stack.len(), 1);
+                pass_top(&mut restored);
+            } else {
+                assert!(restored.stack.is_empty());
+            }
+            assert_eq!(
+                restored.board(&host).unwrap().1.time_markers,
+                u32::from(accept)
+            );
+            checkpoint(&restored);
+        }
+    }
+}
+#[test]
 fn wm038_pending_entry_and_play_frame_tampering_reject_both_loaders() {
     let mut g = game(0);
     let host = board(&mut g, "JC125", 0, 2);
