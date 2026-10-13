@@ -13,6 +13,7 @@ fn held(g: &mut Game, actor: usize) -> String {
 fn play(id: &str) -> Action {
     Action {
         card_id: Some(id.into()),
+        ability_id: Some(definition("JZ35").abilities[0].key.clone()),
         ..Action::new("play")
     }
 }
@@ -32,6 +33,15 @@ fn cast(g: &mut Game, actor: usize, name: Option<&str>) -> String {
     fund(g, actor, "JC042", 2);
     let id = held(g, actor);
     let a = play(&id);
+    let legal = g
+        .legal_actions(actor)
+        .into_iter()
+        .find(|legal| legal.action.kind == "play" && legal.action.card_id.as_deref() == Some(&id))
+        .expect("funded JZ35 has a real Native legal action");
+    assert_eq!(
+        serde_json::to_value(&a).unwrap(),
+        serde_json::to_value(&legal.action).unwrap()
+    );
     if let Some(name) = name {
         snapshot(name, g, &a);
     }

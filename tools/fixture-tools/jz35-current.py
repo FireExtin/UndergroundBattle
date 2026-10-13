@@ -14,6 +14,11 @@ for p in sorted((root/'native').glob('*.json')):
              and s['command']['action'].get('action')==snap['action'] and s['expected']['outcome']=='accepted']
     assert matches,p
     q,s=matches[0]
+    # Reject old partial payloads; regenerate Native evidence rather than patch it.
+    legal_ids={a.get('abilityId') for a in snap['views'][s['seat']]['legalActions']
+               if a.get('kind')=='play' and a.get('cardId')==snap['action'].get('cardId')}
+    assert snap['action'].get('abilityId') and legal_ids=={snap['action']['abilityId']}, \
+        f'{p}: regenerate Native input with its complete legal abilityId'
     cases.append({'name':p.stem,'seat':s['seat'],'before':snap['state'],'beforeViews':snap['views'],
                   'command':s['command'],'expected':s['expected'],'afterViews':s['views'],
                   'provenance':{'snapshotSha256':hashlib.sha256(p.read_bytes()).hexdigest(),
