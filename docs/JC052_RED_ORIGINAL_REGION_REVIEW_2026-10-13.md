@@ -77,3 +77,17 @@
 当前刷新入口 `tools/fixture-tools/regenerate_native72_inputs.py` 保留原名称，按已审源码元数据明确选择 ABI72/73，并在写新输入前核对实际 ABI。延续既有磁盘守卫、全新/空目录约束、排他日志与进度快照；新增版本不匹配、未审版本拒绝和 Native73 保留 Native72 的轻量检查，总计12组通过。`jz35-current.py` 输出改为实际匹配的版本，拒绝与 ABI 不同的原始 Native输入。刷新通过已有有限 Native 导出和离线当前布局示例产生23份当前输入；布局示例仍是显式测试准备，不是旧存档迁移。新增前端检查明确拒绝保留的 Native72 房间。源状态、完整动作、结果、视图、ABI哈希断言及历史拒绝检查均保留。
 
 云端证据位于 `/workspace/jc052-independent-review-a3ab031/evidence`；修复前输入、日志及源码构建 ABI 均保留，最终证据使用独立的 `after-uid` 路径。未推送 main、部署或操作 Library；源码候选交父会话复审，实际多人浏览器试玩和原始运行产物资格仍需另核。
+
+## Sites ABI73 绑定及本地 Worker/D1 补充
+
+用户明确授权在已接受 `8d4070a1` 上修复 Sites 版本绑定并交新固定提交独审，未授权发布或本次直接合 main。`sites/src/kernel.mjs` 原冻结 ABI64/pool57，而当前实际源码构建是 ABI73/pool66；严格 `lazy-kernel` 曾实际拒绝该组合。现在仅把冻结元组绑定到已审 JC052 ABI73，严格初始化校验和旧版本恢复拒绝保持。
+
+新增19份 Native73 Sites 输入，保留全部旧输入。已有有限 Native 当前布局示例在单独准备目录重跑，实际 Native 产生当前状态/动作/结果，未把旧不透明状态改版本直接拿去执行；这仍是离线布局准备，不是存档迁移。赢区和BQ030输入来自此前已验证的当前 Native 原始轨迹；XQ24有效场景和四份非法队列输入也由当前 Native 导出。JC052 原UI布局房间ID不符合HTTP路由格式，因此新增 `current_jc052_worker_fixtures` Native示例：在同版本布局准备阶段设置合法HTTP ID，再由真实Native生成四席视图和完整转移，原UI文件不动。该示例排他创建输出，已有输入时拒绝。
+
+新增JC052四场景验证真实本地workerd/D1的完整状态、四席隐私、严格Native日志、强制牺牲空选拒绝、重开及原始HTTP回执。原生准备使用0ms时钟；带响应期限的精确后续投影使用现有可注入时钟的RoomService，避免真实HTTP时钟合法超时推进与Native0ms预期混淆。原始回执依旧通过真实HTTP、数据库重开后核对。另新增明确标注源码重建来源的ABI72新桌负向输入，验证当前HTTP入口和重开后持续拒绝、D1数据不改；不是Air原始产物。
+
+最终正常生产 Worker/D1 完整批次 **111/111** 通过，生成器守卫 **12/12** 通过，绑定红灯后正向/错元组拒绝及旧64/72版本路由检查均通过。对应旧前端955/955和Native1017/1017已在接受的 `8d4070a1` 独审完成，本批次逐字节保持前端及规则实现；未借新fixture触发重新解释卡牌。实际生成模块和本地编译Worker均含同一份云端源码构建ABI73，SHA256 **`acf154df88f4a8a7da870aba5dae38beee32e20d6ce58d8882ded38ac9eb11ad`**，不是Air原始WASM资格证明。
+
+可复跑：在新的空准备目录通过既有磁盘守卫执行 `cargo run --locked -p hegemony-wasm --example current_ui_worker_fixtures -- <seed-copy> <fresh-death-exports> 73`（只复制新Sites输出，旧文件保留）；赢区与BQ030按现有 `current-win-flow.py <fresh-win> 73`、`current-bq030.mjs <fresh-bq030> <matching-bindings>` 连接真实Native轨迹；JC052为 `cargo run --locked -p hegemony-wasm --example current_jc052_worker_fixtures -- web/src/game/jc052Native73Current.fixture.json <new-output>`。HTTP/D1输入在 `sites/test/fixtures/*v073.json`，完整执行为守卫下 `cd sites && node --test --test-concurrency=1 test/*.test.mjs`。本地后端使用新的 `HEGEMONY_BACKEND_TEST_ROOT` 和现有 `sites/scripts/build-backend-test.mjs`，Wrangler仅 `--dry-run`，实际记录 `deployed:false`。循环预览脚本同步73版本及新默认本地状态目录，不触及旧63目录；本轮未启动预览网站。
+
+证据在 `/workspace/sites-abi73-binding-review-8d4070a/evidence`。库/规则、严格lazy校验、旧输入、数据库定义及迁移保持，537份受保护blob已与基线逐项核对。当前结果是源码构建、provider本地模拟与D1 SQLite自动测试，不是远端Cloudflare D1或真实多人浏览器试玩。固定新提交仍须父端独审，再决定后续main资格；本轮未改变权限、推送main、发布、操作Library或清理旧缓存。

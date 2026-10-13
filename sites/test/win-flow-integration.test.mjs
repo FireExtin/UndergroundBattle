@@ -13,8 +13,8 @@ import { RoomService, digest } from '../src/service.mjs';
 
 abi.initSync({ module: readFileSync('generated/hegemony_wasm_bg.wasm') });
 const fixtures = { scenarios: [
-  ...JSON.parse(readFileSync(new URL('./fixtures/win-flow-native-v064.json', import.meta.url), 'utf8')).scenarios,
-  ...JSON.parse(readFileSync(new URL('./fixtures/bq030-native-v064.json', import.meta.url), 'utf8')).scenarios
+  ...JSON.parse(readFileSync(new URL('./fixtures/win-flow-native-v073.json', import.meta.url), 'utf8')).scenarios,
+  ...JSON.parse(readFileSync(new URL('./fixtures/bq030-native-v073.json', import.meta.url), 'utf8')).scenarios
     .map(s => ({ ...s, name: 'BQ030 ' + s.name })),
 ] };
 
