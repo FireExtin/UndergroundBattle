@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.63-xq25-conceal-surcharge-candidate",
-  "engineVersion": "rust-v0.2.70-xq25-conceal-surcharge-candidate",
+  "cardPoolVersion": "limited-v2.64-wm038-cultist-blood-candidate",
+  "engineVersion": "rust-v0.2.71-wm038-cultist-blood-candidate",
   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
   "cards": [
     {
@@ -5295,6 +5295,42 @@
         "record": "XQ25",
         "image": "resource/ymsj-fun.github.io/cards/XQ25 监控探头.jpg",
         "sha256": "c755f3d8ac0b85c3ab619b01626b92ee316f73885a5dd5a8102d53f3691306a0"
+      }
+    },
+    {
+      "id": "WM038",
+      "name": "信徒烙印",
+      "kind": "attachment",
+      "subtypes": [
+        "纹身"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "红色"
+      ],
+      "loyaltyText": "红色",
+      "color": "红",
+      "magic": "鲜血",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "text": "结附于目标人类角色\n持续 受此结附的角色额外具有邪教徒类别。\n进场触发 在受此结附的角色上放置一个时间标志。\n快速行动 横置，牺牲一个邪教徒：本回合中，你所打出的下一张血脉领域牌，其所需费用减少②。",
+      "keywords": [],
+      "unique": false,
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "WM038",
+        "image": "resource/ymsj-fun.github.io/cards/WM038 信徒烙印.jpg",
+        "sha256": "847dabd861d6350ae21df04ac548a975e99a7cfd4814f213444409d4c42d7acd"
       }
     }
   ],

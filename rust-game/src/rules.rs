@@ -162,6 +162,7 @@ pub enum MagicIcon {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum CardFilter {
+    WM038BloodCard,
     NamedCharacter(String),
     PrintedColor(String),
     Any,
@@ -182,6 +183,7 @@ pub enum CardFilter {
 impl CardFilter {
     pub(crate) fn matches(&self, definition: &crate::catalog::CardDefinition) -> bool {
         match self {
+            Self::WM038BloodCard => definition.magic_icon == MagicIcon::Blood,
             Self::PrintedColor(color) => definition.color == *color,
             Self::Any => true,
             Self::HasPrintedMagic => definition.magic_icon != MagicIcon::None,
@@ -216,6 +218,7 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    WM038AddOneTimeToOriginalHost,
     WM023PutUniqueMageOrVampireFromHand,
     WM056MoveOneAdjacentInfluence,
     XQ18AddOneTimeToTarget,
@@ -458,6 +461,7 @@ pub struct Traits {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum StaticModifier {
+    WM038HostCultistSubtype,
     XQ25UntappedRegionConcealSurcharge,
     JC045TimeInfluence,
     JC089HostDefenseMinusOneAndGlory,
@@ -519,6 +523,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
     crate::wm056::validate_ability(card_id, ability)?;
     crate::wm023::validate_ability(card_id, ability)?;
     crate::xq25::validate_ability(card_id, ability)?;
+    crate::wm038::validate_ability(card_id, ability)?;
     crate::gray_expansion::validate_ability(card_id, ability)?;
     if card_id == "XQ27" || ability.key == "hidden-sweep"
         || crate::xq27::contains_xq27_op(&ability.ops)
@@ -1244,6 +1249,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
         crate::wm056::validate_definition(card_id, definition)?;
         crate::wm023::validate_definition(card_id, definition)?;
         crate::xq25::validate_definition(card_id, definition)?;
+        crate::wm038::validate_definition(card_id, definition)?;
         crate::gray_expansion::validate_definition(card_id, definition)?;
         if card_id == "XQ27" && serde_json::to_value(definition).unwrap()
             != serde_json::to_value(xq27_definition()).unwrap() {
@@ -1851,6 +1857,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         use EntityRef::{Source, Target};
         use PlayerRef::{Actor, Context};
         let mut m = BTreeMap::new();
+        m.insert("WM038".into(), crate::wm038::definition());
         m.insert("XQ25".into(), crate::xq25::definition());
         m.insert("WM023".into(), crate::wm023::definition());
         m.insert("WM056".into(), crate::wm056::definition());

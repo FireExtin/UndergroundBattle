@@ -18,16 +18,16 @@ test('XQ24 matches its reviewed original and preserves the entire 7809971 baseli
     '733a75092c102e631f1e96971c04250047e5349853c43aa37bb826b1ce0ea5d5');
   const pool = json('rust-game/data/cards.json');
   const { cards: allCards, rulesVersion, cardPoolVersion, engineVersion, ...metadata } = pool;
-  const cards = allCards.filter(c => !['JC061', 'JC087', 'JC094', 'WM056', 'WM023','XQ25'].includes(c.id));
-  assert.equal(allCards.length, 136);
+  const cards = allCards.filter(c => !['JC061', 'JC087', 'JC094', 'WM056', 'WM023','XQ25','WM038'].includes(c.id));
+  assert.equal(allCards.length, 137);
   assert.equal(cards.length, 130);
   assert.equal(new Set(cards.map(c => c.id)).size, 130);
   assert.equal(digest(cards.filter(c => c.id !== 'XQ24')),
     'da45496e0eb1497cb141809f4d3aaa1b173a15983497f65d0a957230caf6a556');
   assert.equal(digest(metadata), '5a331fc2c9cacb7f40248ca854ccc7245819162d675d3424130c060b22e48f58');
   assert.equal(rulesVersion, 'hegemony-pdf-v1');
-  assert.equal(cardPoolVersion, 'limited-v2.63-xq25-conceal-surcharge-candidate');
-  assert.equal(engineVersion, 'rust-v0.2.70-xq25-conceal-surcharge-candidate');
+  assert.equal(cardPoolVersion, 'limited-v2.64-wm038-cultist-blood-candidate');
+  assert.equal(engineVersion, 'rust-v0.2.71-wm038-cultist-blood-candidate');
   const f = spec.fields, source = spec.sourceVerification;
   assert.deepEqual(cards.find(c => c.id === 'XQ24'), {
     id: 'XQ24', name: f.name, kind: 'character', subtypes: f.subtypes,
@@ -62,6 +62,6 @@ test('XQ24 original, published card face and both client mappings agree byte for
     '420b412908d7b86112e26c2ba0f94593a29c40bf8f6b54e8809ce489a66f61b8');
   assert.deepEqual(read('web/public/cards/XQ24.jpg'), original);
   const result = validateAdmittedScans();
-  assert.equal(result.checkedCards, 136);
+  assert.equal(result.checkedCards, 137);
   assert.ok(result.checkedIds.includes('XQ24'));
 });

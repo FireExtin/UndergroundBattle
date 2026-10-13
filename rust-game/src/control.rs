@@ -79,6 +79,10 @@ impl Game {
                 }
             }
         }
+        if result.iter().any(|s| s == "人类") && self.wm038_grants_cultist(c)
+            && !result.iter().any(|s| s == "邪教徒") {
+            result.push("邪教徒".into());
+        }
         result
     }
     pub(crate) fn target_subtypes(&self, c: &Card, slot: &TargetSlotSpec) -> Vec<String> {

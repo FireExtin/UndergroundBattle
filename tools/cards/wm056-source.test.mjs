@@ -9,10 +9,10 @@ const digest=v=>createHash('sha256').update(JSON.stringify(canonical(v))).digest
 const spec=json('docs/factions/card-specifications.json').cards.WM056,pool=json('rust-game/data/cards.json');
 test('WM056 preserves the cumulative 133 definitions and metadata from 3bbd8b5',()=>{
   const {cards,cardPoolVersion,engineVersion,...metadata}=pool;
-  assert.equal(cards.length,136);assert.equal(new Set(cards.map(c=>c.id)).size,136);
-  assert.equal(digest(cards.filter(c=>!['WM056','WM023','XQ25'].includes(c.id))),'dc9c67b1bfe71e241ace7c9e59f8dadfdfe46e888ad31387421ab51ada963074');
+  assert.equal(cards.length,137);assert.equal(new Set(cards.map(c=>c.id)).size,137);
+  assert.equal(digest(cards.filter(c=>!['WM056','WM023','XQ25','WM038'].includes(c.id))),'dc9c67b1bfe71e241ace7c9e59f8dadfdfe46e888ad31387421ab51ada963074');
   assert.equal(digest(metadata),'a0ca39bf9ba052ac13c2e64e7698bb1d5f051d38f5a75a380d54424811a357f0');
-  assert.equal(cardPoolVersion,'limited-v2.63-xq25-conceal-surcharge-candidate');assert.equal(engineVersion,'rust-v0.2.70-xq25-conceal-surcharge-candidate');
+  assert.equal(cardPoolVersion,'limited-v2.64-wm038-cultist-blood-candidate');assert.equal(engineVersion,'rust-v0.2.71-wm038-cultist-blood-candidate');
 });
 test('WM056 complete fields and exact printed source have no unresolved question',()=>{
   assert.equal(digest({fields:spec.fields,sourceVerification:spec.sourceVerification,edition:spec.edition}),'a385a5674cd8f00b935e4e78a487aee46ce6a1d2d94a0bcf0a3a79511be8dafc');
@@ -28,5 +28,5 @@ test('WM056 public image retains original bytes and all admitted scans validate'
   const original=read(spec.sourceVerification.imagePath);
   assert.equal(createHash('sha256').update(original).digest('hex'),spec.sourceVerification.imageSha256);
   assert.deepEqual(read('web/public/cards/WM056.jpg'),original);
-  const result=validateAdmittedScans();assert.equal(result.checkedCards,136);assert.ok(result.checkedIds.includes('WM056'));
+  const result=validateAdmittedScans();assert.equal(result.checkedCards,137);assert.ok(result.checkedIds.includes('WM056'));
 });

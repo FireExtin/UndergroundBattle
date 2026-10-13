@@ -7,6 +7,9 @@ mod black_expansion;
 mod wm056;
 mod wm023;
 mod xq25;
+mod wm038;
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod wm038_tests;
 #[cfg(all(test, not(feature = "society-fixtures")))]
 mod xq25_tests;
 #[cfg(all(test, not(feature = "society-fixtures")))]
