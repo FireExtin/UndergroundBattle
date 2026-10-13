@@ -756,3 +756,43 @@ fn jc052_source_guard_preserves_existing_granted_renown_and_combat_glory_program
         checkpoint(&g);
     }
 }
+
+#[test]
+fn jc052_source_uid_cannot_alias_an_existing_other_entity_or_change_immutable_owner() {
+    let mut g = game(0);
+    let victim = board(&mut g, "JC125", 0, 1);
+    let source = enter(&mut g, 0);
+    let asset = g.players[0].assets[0].id.clone();
+    let region = g.regions[1].card.id.clone();
+    for (name, id) in [("board", victim), ("asset", asset), ("region", region)] {
+        let mut bad = g.clone();
+        if let ChoiceResolution::Declare { declaration, .. } =
+            &mut bad.pending.as_mut().unwrap().resolution
+        {
+            declaration.source.card.id = id;
+        }
+        invalid(&g, bad, &format!("source-uid-alias-{name}"));
+    }
+    let mut bad = g.clone();
+    if let ChoiceResolution::Declare { declaration, .. } =
+        &mut bad.pending.as_mut().unwrap().resolution
+    {
+        declaration.source.card.owner = 1;
+    }
+    invalid(&g, bad, "source-immutable-owner");
+
+    // Explicit existing control primitive: snapshot control is historical, owner is immutable.
+    g.add_control(&source, 2, ControlLifetime::TurnEnd { turn: g.turn }, SubtypeChange::None);
+    let restored = Game::from_persisted(&serde_json::to_string(&g).unwrap()).unwrap();
+    assert_eq!(restored.board(&source).unwrap().1.controller, 2);
+    assert!(crate::room::RoomEnvelope::from_persisted(&serde_json::to_string(&envelope(&g)).unwrap()).is_ok());
+    choose(&mut g, vec!["accept".into()]);
+    let other = board(&mut g, "JC125", 2, 2);
+    let mut bad = g.clone();
+    bad.stack[0].frame.as_mut().unwrap().source.card.id = other.clone();
+    invalid(&g, bad, "source-stack-uid-alias");
+    pass_top(&mut g);
+    assert!(g.board(&source).is_some() && g.board(&other).is_none());
+    finish_optional(&mut g);
+    checkpoint(&g);
+}

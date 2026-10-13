@@ -11,12 +11,17 @@ import {groupObjectActions} from './objectActions';
 const wasm=readFileSync(resolve('../rust-game-wasm/pkg/hegemony_wasm_bg.wasm'));
 abi.initSync({module:wasm});
 const catalog=JSON.parse(abi.catalog());
-const fixture=JSON.parse(readFileSync(resolve('src/game/jc052Native73.fixture.json'),'utf8'));
+const fixture=JSON.parse(readFileSync(resolve('src/game/jc052Native73Current.fixture.json'),'utf8'));
 it('uses the actual JC052 ABI73 and complete, untargeted optional entry definition',()=>{
   expect(catalog.engineVersion).toBe('rust-v0.2.73-jc052-original-region-candidate');
   expect(catalog.cardPoolVersion).toBe('limited-v2.66-jc052-original-region-candidate');
   expect(createHash('sha256').update(wasm).digest('hex')).toBe(fixture.wasmSha256);
   expect(catalog.cards.find(c=>c.id==='JC052')).toMatchObject({color:'红',subtitle:'剪断命运者',keywords:['领袖'],abilities:[{key:'jc052-destroy-other-original-region-characters',triggered:true,timing:'fast',costs:[]}]});
+});
+it('rejects the preserved Native72 room through both current ABI read and action paths',()=>{
+  const previous=JSON.parse(readFileSync(resolve('src/game/jz35Native72.fixture.json'),'utf8')).cases[0];
+  expect(()=>abi.view(previous.before,previous.seat)).toThrow(/旧局schema\/固定版本/);
+  expect(()=>abi.applyRoom(previous.before,previous.seat,JSON.stringify(previous.command),'0')).toThrow(/旧局schema\/固定版本/);
 });
 it.each(fixture.cases)('$name restores the real choice or paid command and sends its complete Native payload',row=>{
   const view=JSON.parse(abi.view(row.before,row.seat));expect(view).toEqual(row.beforeViews[row.seat]);

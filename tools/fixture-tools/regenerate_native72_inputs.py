@@ -1,4 +1,4 @@
-"""Generate fresh Native72 inputs, retaining every prior evidence directory."""
+"""Generate current Native72/73 inputs, retaining every prior evidence directory."""
 import argparse
 import json
 import os
@@ -37,6 +37,16 @@ def validate_empty_output(root):
 
 def regenerate(source, root, build_and_check):
     validate_empty_output(root)
+    pool = json.loads((source / 'rust-game/data/cards.json').read_text())
+    versions = {
+        'rust-v0.2.72-jz35-host-return-candidate': ('72', 'limited-v2.65-jz35-host-return-candidate'),
+        'rust-v0.2.73-jc052-original-region-candidate': ('73', 'limited-v2.66-jc052-original-region-candidate'),
+    }
+    if pool.get('engineVersion') not in versions:
+        raise ValueError('Only reviewed ABI72/73 generation is supported.')
+    version, expected_pool = versions[pool['engineVersion']]
+    if pool.get('cardPoolVersion') != expected_pool:
+        raise ValueError('Source engine/card-pool versions do not match.')
     # Reuse the project guard before creating evidence or touching any source.
     # Do not trust an inherited BUILD_STORAGE_READY flag at either entrypoint.
     guard = ['node', str(source / 'tools/build-storage.mjs'),
@@ -80,39 +90,56 @@ def regenerate(source, root, build_and_check):
                 if path.is_file():
                     path.touch()
         run('wasm-build', ['bash', 'rust-game-wasm/build.sh'])
+    # Check real bindings before any generator can overwrite a prior ABI input.
+    run('abi-version-check', ['node', '--input-type=module', '-e',
+        "import assert from 'node:assert/strict';"
+        "import {catalog} from './rust-game-wasm/tests/current-kernel.mjs';"
+        f"assert.equal(catalog.engineVersion,{json.dumps(pool['engineVersion'])});"
+        f"assert.equal(catalog.cardPoolVersion,{json.dumps(expected_pool)});"])
+    revision = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=source, text=True).strip()
     for card in ['jc061','jc087','jc094','wm056','wm023','xq25','wm038']:
         base=e/card
         tests(card,card,{'GREEN_EVIDENCE_DIR':str(base/'trace'),card.upper()+'_EVIDENCE_DIR':str(base/'native'),card.upper()+'_INVALID_DIR':str(base/'invalid')})
-        run(card+'-fixture',['python3','tools/fixture-tools/'+card+'-current.py',str(base),'72'])
+        run(card+'-fixture',['python3','tools/fixture-tools/'+card+'-current.py',str(base),version])
     tests('lifecycle-blue','blue_jc032',{'GREEN_EVIDENCE_DIR':str(e/'lifecycle/trace-blue'),'BLUE_FRONTEND_DIR':str(e/'lifecycle/blue')})
     tests('lifecycle-black','black_expansion',{'GREEN_EVIDENCE_DIR':str(e/'lifecycle/trace-black'),'BLACK_EXPANSION_EVIDENCE_DIR':str(e/'lifecycle/black')})
     tests('lifecycle-red','red_time',{'GREEN_EVIDENCE_DIR':str(e/'lifecycle/trace-red'),'RED_TIME_EVIDENCE_DIR':str(e/'lifecycle/red')})
-    run('lifecycle-fixture',['python3','tools/fixture-tools/current-four-faction-choices.py',str(e/'lifecycle'),'72','3e2a0cfba34c80b844482ba838776c079acb58c3'])
+    run('lifecycle-fixture',['python3','tools/fixture-tools/current-four-faction-choices.py',str(e/'lifecycle'),version,revision])
     tests('death-frontends','death_observer',{'DEATH_OBSERVER_FRONTEND_DIR':str(e/'death')})
-    run('current-worker-web-fixtures',['cargo','run','--locked','-p','hegemony-wasm','--example','current_ui_worker_fixtures','--',str(source),str(e/'death'),'72','--web-only'])
-    run('seven-card-fixtures',['cargo','run','--locked','-p','hegemony-wasm','--example','seven_card_ui_fixtures','--',str(source/'web/src/game/sevenCardUIV072.fixture.json')])
+    run('current-worker-web-fixtures',['cargo','run','--locked','-p','hegemony-wasm','--example','current_ui_worker_fixtures','--',str(source),str(e/'death'),version,'--web-only'])
+    run('seven-card-fixtures',['cargo','run','--locked','-p','hegemony-wasm','--example','seven_card_ui_fixtures','--',str(source/f'web/src/game/sevenCardUIV0{version}.fixture.json')])
     tests('win-flow','win_flow',{'WIN_FLOW_EVIDENCE_DIR':str(e/'win')})
-    run('fixed-slots-fixture',['python3','tools/fixture-tools/current-win-flow.py',str(e/'win'),'72','--web-only'])
+    run('fixed-slots-fixture',['python3','tools/fixture-tools/current-win-flow.py',str(e/'win'),version,'--web-only'])
     run('bq030',['cargo','test','--locked','-p','hegemony-server','--test','bq030_attachment_regression','--','--test-threads=1'],{'BQ030_TRACE_DIR':str(e/'bq030/room')})
     run('bq030-fixture',['node','tools/fixture-tools/current-bq030.mjs',str(e/'bq030'),str(source/'rust-game-wasm/pkg/hegemony_wasm.js'),'--web-only'])
     base=root/'evidence'
     tests('jz35','jz35',{'GREEN_EVIDENCE_DIR':str(base/'trace'),'JZ35_EVIDENCE_DIR':str(base/'native'),'JZ35_INVALID_DIR':str(base/'invalid')})
-    run('jz35-fixture',['python3','tools/fixture-tools/jz35-current.py',str(base)])
+    run('jz35-fixture',['python3','tools/fixture-tools/jz35-current.py',str(base),version])
     tests('xq24','xq24_continuous_duel_teams_room_pause_restore_journal_and_receipt_inputs',{'XQ24_TRACE_DIR':str(e/'xq24')})
     rows=[json.loads(p.read_text()) for p in sorted((e/'xq24').glob('*.json'))]
     assert len(rows)==12,len(rows)
-    (source/'web/src/game/xq24Native72.fixture.json').write_text(json.dumps({'catalog':rows[0]['catalog'],'scenarios':rows},ensure_ascii=False,separators=(',',':'))+'\n')
-    print('native72-input-generation-complete',flush=True)
+    (source/f'web/src/game/xq24Native{version}.fixture.json').write_text(json.dumps({'catalog':rows[0]['catalog'],'scenarios':rows},ensure_ascii=False,separators=(',',':'))+'\n')
+    if version == '73':
+        jc052 = e / 'jc052'
+        tests('jc052', 'jc052', {'GREEN_EVIDENCE_DIR':str(jc052/'trace'),
+              'JC052_EVIDENCE_DIR':str(jc052/'native'), 'JC052_INVALID_DIR':str(jc052/'invalid')})
+        # Keep the author-produced ABI-hashed evidence immutable as well.
+        run('jc052-fixture', ['python3','tools/fixture-tools/jc052-current.py',str(jc052),
+                             str(source/'web/src/game/jc052Native73Current.fixture.json')])
+    print(f'native{version}-input-generation-complete',flush=True)
 
     if build_and_check:
         run('jz35-parity', ['node', 'rust-game-wasm/tests/jz35_compare.mjs', str(root / 'evidence')])
         for card in ['jc061', 'jc087', 'jc094', 'wm056', 'wm023', 'xq25', 'wm038']:
             run(card + '-parity', ['node', f'rust-game-wasm/tests/{card}_compare.mjs',
                                   str(e / card)])
-        run('focused-ui', ['npm', '--prefix', 'web', 'test', '--',
-                          'src/game/JZ35Integration.test.jsx', 'src/game/JZ35Face.test.jsx',
-                          'src/game/CurrentLifecycleChoices.test.jsx', 'src/game/SevenCardIntegration.test.jsx',
-                          '--maxWorkers=1'])
+        if version == '73':
+            run('jc052-parity', ['node','rust-game-wasm/tests/jc052_compare.mjs',str(e/'jc052')])
+        focused = ['src/game/JZ35Integration.test.jsx', 'src/game/JZ35Face.test.jsx',
+                   'src/game/CurrentLifecycleChoices.test.jsx', 'src/game/SevenCardIntegration.test.jsx']
+        if version == '73':
+            focused.extend(['src/game/JC052Integration.test.jsx', 'src/game/JC052Face.test.jsx'])
+        run('focused-ui', ['npm', '--prefix', 'web', 'test', '--', *focused, '--maxWorkers=1'])
         run('full-ui', ['npm', '--prefix', 'web', 'test', '--', '--maxWorkers=1'])
         run('web-build', ['npm', '--prefix', 'web', 'run', 'build'])
 

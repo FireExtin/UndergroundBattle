@@ -30,14 +30,18 @@ class GeneratorEntrypoints(unittest.TestCase):
             shutil.copyfile(REPOSITORY / "tools/fixture-tools" / name, tools / name)
         shutil.copyfile(REPOSITORY / "tools/build-storage.mjs", self.source / "tools/build-storage.mjs")
         shutil.copyfile(REPOSITORY / "rust-game-wasm/build.sh", self.source / "rust-game-wasm/build.sh")
-        for name in ["jc061", "jc087", "jc094", "wm056", "wm023", "xq25", "wm038", "jz35"]:
-            (tools / f"{name}-current.py").write_text("print('fixture stub')\n")
+        for name in ["jc061", "jc087", "jc094", "wm056", "wm023", "xq25", "wm038", "jz35", "jc052"]:
+            (tools / f"{name}-current.py").write_text("import json,sys; print(json.dumps(sys.argv))\n")
         for name in ["current-four-faction-choices.py", "current-win-flow.py"]:
             (tools / name).write_text("print('fixture stub')\n")
         (tools / "current-bq030.mjs").write_text("console.log('fixture stub');\n")
         wasm_tests = self.source / "rust-game-wasm/tests"
         wasm_tests.mkdir()
-        for name in ["jc061", "jc087", "jc094", "wm056", "wm023", "xq25", "wm038", "jz35"]:
+        (wasm_tests / 'current-kernel.mjs').write_text("import {readFileSync} from 'node:fs'; const data=JSON.parse(readFileSync(new URL('../../rust-game/data/cards.json',import.meta.url))); export const catalog={...data,...(process.env.STUB_ABI_ENGINE?{engineVersion:process.env.STUB_ABI_ENGINE}: {})};\n")
+        self.pool = self.source / 'rust-game/data/cards.json'
+        self.pool.parent.mkdir(parents=True, exist_ok=True)
+        self.pool.write_text(json.dumps({'engineVersion':'rust-v0.2.72-jz35-host-return-candidate','cardPoolVersion':'limited-v2.65-jz35-host-return-candidate'}))
+        for name in ["jc061", "jc087", "jc094", "wm056", "wm023", "xq25", "wm038", "jz35", "jc052"]:
             (wasm_tests / f"{name}_compare.mjs").write_text("console.log('parity stub');\n")
         (self.source / "web/src/game").mkdir(parents=True)
         self.calls = self.base / "calls.jsonl"
@@ -61,6 +65,9 @@ if Path(sys.argv[0]).name=='wasm-bindgen':
             path = self.bin / name
             path.write_text(stub)
             path.chmod(0o755)
+        git = self.bin / 'git'
+        git.write_text(f'#!{sys.executable}\nprint("9890163a093621f814f9768712e2663de2fd5239")\n')
+        git.chmod(0o755)
         self.env = dict(os.environ, PATH=str(self.bin) + os.pathsep + os.environ["PATH"],
                         STUB_CALLS=str(self.calls), CARGO_TARGET_DIR=str(self.base / "target"),
                         WASM_BINDGEN=str(self.bin / "wasm-bindgen"),
@@ -216,6 +223,34 @@ if Path(sys.argv[0]).name=='wasm-bindgen':
                 self.assertEqual(len([call for call in calls if call["command"] == "cargo"]), 1)
                 logs = '\n'.join(path.read_text() for path in (output / "evidence/ui-refresh").glob("*.log"))
                 self.assertIn("Build preflight failed", logs)
+
+    def test_abi_mismatch_stops_before_native_export_or_input_changes(self):
+        original = self.source / 'web/src/game/jz35Native72.fixture.json'
+        original.write_text('preserved prior input\n')
+        result = self.invoke('python', self.base / 'ABI mismatch output',
+                             {'STUB_ABI_ENGINE':'rust-v0.2.73-jc052-original-region-candidate'})
+        self.assertNotEqual(result.returncode, 0)
+        self.assertFalse(self.calls.exists())
+        self.assertEqual(original.read_text(), 'preserved prior input\n')
+
+    def test_unreviewed_version_is_rejected_before_output_mutation(self):
+        self.pool.write_text(json.dumps({'engineVersion':'rust-v0.2.74-unreviewed'}))
+        before = self.snapshot()
+        result = self.invoke('python', self.base / 'unsupported output')
+        self.assertNotEqual(result.returncode, 0)
+        self.assertEqual(before, self.snapshot())
+
+    def test_native73_generation_keeps_native72_inputs(self):
+        self.pool.write_text(json.dumps({'engineVersion':'rust-v0.2.73-jc052-original-region-candidate','cardPoolVersion':'limited-v2.66-jc052-original-region-candidate'}))
+        original = self.source / 'web/src/game/xq24Native72.fixture.json'
+        original.write_text('preserved Native72 input\n')
+        output = self.base / 'Native73 current output'
+        result = self.invoke('shell', output)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(original.read_text(), 'preserved Native72 input\n')
+        self.assertTrue((self.source / 'web/src/game/xq24Native73.fixture.json').is_file())
+        self.assertIn('"73"', (output / 'evidence/ui-refresh/jz35-fixture.log').read_text())
+        self.assertIn('jc052Native73Current.fixture.json', (output / 'evidence/ui-refresh/jc052-fixture.log').read_text())
 
 
 if __name__ == "__main__":

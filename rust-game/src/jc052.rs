@@ -181,6 +181,27 @@ impl Game {
         {
             return Err("JC052冻结来源、操控者或原地区身份无效".into());
         }
+        // A departed source need not exist now. If its UID still names an entity,
+        // printed definition and owner are immutable; current control may change.
+        let owner_cards = self.players.iter().flat_map(|p| {
+            p.hand.iter().chain(&p.deck).chain(&p.assets).chain(&p.graveyard)
+                .chain(&p.score_cards).chain(p.society_zone.card.iter())
+        });
+        let contradicts_source = self.regions.iter()
+            .flat_map(|r| std::iter::once(&r.card).chain(&r.cards))
+            .chain(owner_cards)
+            .chain(&self.world)
+            .chain(self.attachments.iter().map(|a| &a.card))
+            .chain(self.stack.iter().filter_map(|item| item.card.as_ref()))
+            .chain(self.sealed_cards.iter().map(|sealed| &sealed.card))
+            .chain(self.effects.iter().filter_map(|effect| {
+                if let Effect::Bury { card } = effect { Some(card) } else { None }
+            }))
+            .any(|card| card.id == s.card.id
+                && (card.definition != s.card.definition || card.owner != s.card.owner));
+        if contradicts_source {
+            return Err("JC052冻结来源UID与已存在实体的印刷定义或拥有者矛盾".into());
+        }
         Ok(())
     }
     fn jc052_trigger(&self, key: &str, source: &SourceSnapshot) -> RuleResult<AbilitySpec> {
