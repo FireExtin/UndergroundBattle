@@ -1923,6 +1923,7 @@ impl Game {
         self.validate_blue_expansion_state()?;
         self.validate_black_expansion_state()?;
         self.validate_wm056_state()?;
+        self.validate_wm023_state()?;
         self.validate_gray_expansion_state()?;
         self.validate_death_observers()?;
         self.validate_deck_seal_choice()?;
@@ -2819,7 +2820,7 @@ mod tests {
     #[test]
     fn catalog_is_restricted_real_complete_and_decks_are_legal() {
         let c = catalog::catalog();
-        assert_eq!(c.cards.len(), 134);
+        assert_eq!(c.cards.len(), 135);
         let active = c
             .cards
             .iter()
@@ -2834,7 +2835,7 @@ mod tests {
                 .collect::<BTreeSet<_>>()
         );
         assert!(active.contains("DQJC116"));
-        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 124);
+        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 125);
         assert_eq!(c.decks.len(), 5);
         for deck in &c.decks {
             assert_eq!(deck.card_count, 50);

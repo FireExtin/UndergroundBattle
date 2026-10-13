@@ -2,6 +2,7 @@
 from pathlib import Path
 import hashlib,json,sys
 root=Path(sys.argv[1]).resolve()
+suffix=sys.argv[2] if len(sys.argv)>2 else '68'
 steps=[(p,json.loads(p.read_text())) for p in sorted((root/'trace').glob('step-*.json'))]
 cases=[]
 for p in sorted((root/'native').glob('*.json')):
@@ -17,7 +18,7 @@ for p in sorted((root/'native').glob('*.json')):
                   'provenance':{'snapshotSha256':hashlib.sha256(p.read_bytes()).hexdigest(),
                                 'acceptedNativeStepSha256':hashlib.sha256(q.read_bytes()).hexdigest()}})
 assert len(cases)==4,len(cases)
-out=Path('web/src/game/wm056Native68.fixture.json')
+out=Path(f'web/src/game/wm056Native{suffix}.fixture.json')
 result={'scope':'Explicit offline Native layouts; real paid Room commands, projections and guarded resolution choices. Not browser play or save migration.',
         'sourceBaseline':'3bbd8b5e6d4deaf10a348d68e959abdd8c32dc75',
         'wasmSha256':hashlib.sha256(Path('rust-game-wasm/pkg/hegemony_wasm_bg.wasm').read_bytes()).hexdigest(),'cases':cases}

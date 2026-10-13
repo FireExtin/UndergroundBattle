@@ -411,7 +411,7 @@ impl Game {
                 snapshot
             },
             region,
-            source_region_instance: if matches!(c.definition.as_str(), "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056") {
+            source_region_instance: if matches!(c.definition.as_str(), "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023") {
                 region.and_then(|r| self.regions.get(r)).filter(|r| !r.vacant).map(|r| r.card.id.clone())
             } else { None },
             attachment_host_instance: (c.definition == "JC090" || rules::definition(&c.definition)
@@ -506,6 +506,12 @@ impl Game {
         definition: &str,
         a: &Action,
     ) -> RuleResult<AbilitySpec> {
+        if definition == "WM023" && *a != (Action {
+            card_id: a.card_id.clone(), ability_id: a.ability_id.clone(), region: a.region,
+            ..Action::new(&a.kind)
+        }) {
+            return Err("WM023行动只声明一个地区，不声明手牌目标或额外选项".into());
+        }
         if definition == "WM056" && *a != (Action {
             card_id: a.card_id.clone(),
             ability_id: a.ability_id.clone(),
@@ -768,7 +774,7 @@ impl Game {
     }
     fn requires_region_instance(source: &SourceSnapshot, slot: &TargetSlotSpec) -> bool {
         slot.zone == Zone::Region
-            && (source.card.definition == "MSJC11"
+            && (matches!(source.card.definition.as_str(), "MSJC11" | "WM023")
                 || rules::definition(&source.card.definition)
                     .attachment
                     .as_ref()
@@ -1346,6 +1352,7 @@ impl Game {
         self.validate_blue_expansion_frame(&frame)?;
         self.validate_black_expansion_frame(&frame)?;
         self.validate_wm056_frame(&frame)?;
+        self.validate_wm023_frame(&frame)?;
         self.validate_gray_expansion_frame(&frame)?;
         self.validate_gray_lock_frame(&frame)?;
         self.validate_jz22_frame(&frame)?;
@@ -1359,6 +1366,7 @@ impl Game {
             let step = frame.steps[frame.cursor].clone();
             frame.cursor += 1;
             match step.op {
+                Op::WM023PutUniqueMageOrVampireFromHand => return self.wm023_start(frame),
                 Op::WM056MoveOneAdjacentInfluence => return self.wm056_start(frame),
                 Op::XQ18AddOneTimeToTarget => self.xq18_add_one_time(&frame),
                 Op::XQ18ChooseTimeCarrier => return self.xq18_choose_carrier(frame),
@@ -2168,6 +2176,7 @@ impl Game {
         option_ids: BTreeSet<String>,
     ) -> RuleResult<()> {
         match choice {
+            FrameChoice::WM023HandEntry => self.wm023_complete(&frame, chooser, &selected)?,
             FrameChoice::XQ18TimeCarrier { target_instance } => {
                 self.xq18_remove_from_carrier(&frame, chooser, &target_instance, &selected)?;
             }

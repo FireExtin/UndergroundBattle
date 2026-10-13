@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.61-wm056-influence-move-candidate",
-  "engineVersion": "rust-v0.2.68-wm056-influence-move-candidate",
+  "cardPoolVersion": "limited-v2.62-wm023-unique-hand-entry-candidate",
+  "engineVersion": "rust-v0.2.69-wm023-unique-hand-entry-candidate",
   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
   "cards": [
     {
@@ -5216,6 +5216,48 @@
         "record": "WM056",
         "image": "resource/ymsj-fun.github.io/cards/WM056 赃物贩子.jpg",
         "sha256": "35c67bb88ff9547e63932fd51d1581e77aaf649e1124eef706e4d63a8f20b497"
+      }
+    },
+    {
+      "id": "WM023",
+      "name": "尽职的珍珠",
+      "subtitle": "庄园仆役",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "奴仆"
+      ],
+      "cost": 4,
+      "loyalty": [
+        "蓝色"
+      ],
+      "loyaltyText": "蓝色",
+      "color": "蓝",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "公开；迟缓\n行动①，横置：选择目标地区，将一张法师或吸血鬼独有角色牌从你手中放置进场并位于该地区。",
+      "keywords": [
+        "公开",
+        "迟缓"
+      ],
+      "unique": true,
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "WM023",
+        "image": "resource/ymsj-fun.github.io/cards/WM023 尽职的珍珠.jpg",
+        "sha256": "b209fe484e37b930ce4d64be078bd3e72a10bdff5250bfd38ba97cb7648cee85"
       }
     }
   ],

@@ -585,6 +585,7 @@ pub enum DeclareChoice {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum FrameChoice {
+    WM023HandEntry,
     WM056InfluenceOrigin { regions: Vec<(usize, String)> },
     XQ18TimeCarrier { target_instance: String },
     BQ028InspectAttachments { seat: usize, inspected: Vec<Card> },
@@ -835,6 +836,7 @@ impl Game {
         game.validate_blue_expansion_state()?;
         game.validate_black_expansion_state()?;
         game.validate_wm056_state()?;
+        game.validate_wm023_state()?;
         game.validate_gray_expansion_state()?;
         Ok(game)
     }

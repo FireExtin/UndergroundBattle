@@ -723,5 +723,10 @@
     "url": "/cards/WM056.jpg",
     "source": "resource/ymsj-fun.github.io/cards/WM056 赃物贩子.jpg",
     "sha256": "35c67bb88ff9547e63932fd51d1581e77aaf649e1124eef706e4d63a8f20b497"
+  },
+  "WM023": {
+    "url": "/cards/WM023.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/WM023 尽职的珍珠.jpg",
+    "sha256": "b209fe484e37b930ce4d64be078bd3e72a10bdff5250bfd38ba97cb7648cee85"
   }
 }

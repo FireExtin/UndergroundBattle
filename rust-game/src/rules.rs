@@ -216,6 +216,7 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    WM023PutUniqueMageOrVampireFromHand,
     WM056MoveOneAdjacentInfluence,
     XQ18AddOneTimeToTarget,
     XQ18ChooseTimeCarrier,
@@ -515,6 +516,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
     crate::blue_expansion::validate_ability(card_id, ability)?;
     crate::black_expansion::validate_ability(card_id, ability)?;
     crate::wm056::validate_ability(card_id, ability)?;
+    crate::wm023::validate_ability(card_id, ability)?;
     crate::gray_expansion::validate_ability(card_id, ability)?;
     if card_id == "XQ27" || ability.key == "hidden-sweep"
         || crate::xq27::contains_xq27_op(&ability.ops)
@@ -1238,6 +1240,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
         crate::blue_expansion::validate_definition(card_id, definition)?;
         crate::black_expansion::validate_definition(card_id, definition)?;
         crate::wm056::validate_definition(card_id, definition)?;
+        crate::wm023::validate_definition(card_id, definition)?;
         crate::gray_expansion::validate_definition(card_id, definition)?;
         if card_id == "XQ27" && serde_json::to_value(definition).unwrap()
             != serde_json::to_value(xq27_definition()).unwrap() {
@@ -1296,11 +1299,14 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
         {
             return Err(format!("cardId={card_id}: only the complete JZ48 criminal condition is admitted"));
         }
-        if (card_id == "JZ49" || definition.traits.slow)
-            && (card_id != "JZ49" || serde_json::to_value(definition).unwrap()
-                != serde_json::to_value(jz49_definition()).unwrap())
+        let admitted_slow = match card_id.as_str() {
+            "JZ49" => serde_json::to_value(definition).unwrap() == serde_json::to_value(jz49_definition()).unwrap(),
+            "WM023" => serde_json::to_value(definition).unwrap() == serde_json::to_value(crate::wm023::definition()).unwrap(),
+            _ => false,
+        };
+        if (card_id == "JZ49" || card_id == "WM023" || definition.traits.slow) && !admitted_slow
         {
-            return Err(format!("cardId={card_id}: only the complete JZ49 slow definition is admitted"));
+            return Err(format!("cardId={card_id}: only complete admitted slow definitions are supported"));
         }
         if card_id == "JZ55" && serde_json::to_value(definition).unwrap()
             != serde_json::to_value(jz55_definition()).unwrap() {
@@ -1842,6 +1848,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         use EntityRef::{Source, Target};
         use PlayerRef::{Actor, Context};
         let mut m = BTreeMap::new();
+        m.insert("WM023".into(), crate::wm023::definition());
         m.insert("WM056".into(), crate::wm056::definition());
         for id in ["XQ18", "JZ30"] {
             m.insert(id.into(), crate::red_time::definition(id).unwrap());
