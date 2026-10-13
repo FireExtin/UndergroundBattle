@@ -840,6 +840,7 @@ impl Game {
         game.validate_xq25_state()?;
         game.validate_wm038_state()?;
         game.validate_jz35_state()?;
+        game.validate_jc052_state()?;
         game.validate_gray_expansion_state()?;
         Ok(game)
     }

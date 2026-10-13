@@ -218,6 +218,7 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    JC052DestroyOtherOriginalRegionCharacters,
     JZ35SacrificeReturnControlledHosts,
     WM038AddOneTimeToOriginalHost,
     WM023PutUniqueMageOrVampireFromHand,
@@ -526,6 +527,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
     crate::xq25::validate_ability(card_id, ability)?;
     crate::wm038::validate_ability(card_id, ability)?;
     crate::jz35::validate_ability(card_id, ability)?;
+    crate::jc052::validate_ability(card_id, ability)?;
     crate::gray_expansion::validate_ability(card_id, ability)?;
     if card_id == "XQ27" || ability.key == "hidden-sweep"
         || crate::xq27::contains_xq27_op(&ability.ops)
@@ -1253,6 +1255,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
         crate::xq25::validate_definition(card_id, definition)?;
         crate::wm038::validate_definition(card_id, definition)?;
         crate::jz35::validate_definition(card_id, definition)?;
+        crate::jc052::validate_definition(card_id, definition)?;
         crate::gray_expansion::validate_definition(card_id, definition)?;
         if card_id == "XQ27" && serde_json::to_value(definition).unwrap()
             != serde_json::to_value(xq27_definition()).unwrap() {
@@ -1862,6 +1865,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         let mut m = BTreeMap::new();
         m.insert("WM038".into(), crate::wm038::definition());
         m.insert("JZ35".into(), crate::jz35::definition());
+        m.insert("JC052".into(), crate::jc052::definition());
         m.insert("XQ25".into(), crate::xq25::definition());
         m.insert("WM023".into(), crate::wm023::definition());
         m.insert("WM056".into(), crate::wm056::definition());

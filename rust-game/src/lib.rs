@@ -9,6 +9,9 @@ mod wm023;
 mod xq25;
 mod wm038;
 mod jz35;
+mod jc052;
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod jc052_tests;
 #[cfg(all(test, not(feature = "society-fixtures")))]
 mod jz35_tests;
 #[cfg(all(test, not(feature = "society-fixtures")))]

@@ -9,10 +9,10 @@ const digest=v=>createHash('sha256').update(JSON.stringify(canonical(v))).digest
 const spec=json('docs/factions/card-specifications.json').cards.WM038,pool=json('rust-game/data/cards.json');
 test('WM038 preserves all 136 definitions and metadata from cumulative 912f230',()=>{
   const {cards,cardPoolVersion,engineVersion,...metadata}=pool;
-  assert.equal(cards.length,138);assert.equal(new Set(cards.map(c=>c.id)).size,138);
-  assert.equal(digest(cards.filter(c=>!['WM038','JZ35'].includes(c.id))),'9d71a64108f1850060337fda12466c5e588c0f8b3e7d762f898ea678a0bc7b37');
+  assert.equal(cards.length,139);assert.equal(new Set(cards.map(c=>c.id)).size,139);
+  assert.equal(digest(cards.filter(c=>!['WM038','JZ35','JC052'].includes(c.id))),'9d71a64108f1850060337fda12466c5e588c0f8b3e7d762f898ea678a0bc7b37');
   assert.equal(digest(metadata),'a0ca39bf9ba052ac13c2e64e7698bb1d5f051d38f5a75a380d54424811a357f0');
-  assert.equal(engineVersion,'rust-v0.2.72-jz35-host-return-candidate');assert.equal(cardPoolVersion,'limited-v2.65-jz35-host-return-candidate');
+  assert.equal(engineVersion,'rust-v0.2.73-jc052-original-region-candidate');assert.equal(cardPoolVersion,'limited-v2.66-jc052-original-region-candidate');
 });
 test('WM038 complete fields match the pinned original and have no unresolved source question',()=>{
   assert.equal(digest({fields:spec.fields,sourceVerification:spec.sourceVerification,edition:spec.edition}),'d7ac78da2029dee8ce26aaa645df0261c1ba21dba9db34f276cab404bf0f7143');
@@ -25,5 +25,5 @@ test('WM038 complete fields match the pinned original and have no unresolved sou
 });
 test('WM038 public bytes preserve the original and all admitted scans validate',()=>{
   const original=read(spec.sourceVerification.imagePath);assert.equal(createHash('sha256').update(original).digest('hex'),spec.sourceVerification.imageSha256);
-  assert.deepEqual(read('web/public/cards/WM038.jpg'),original);const r=validateAdmittedScans();assert.equal(r.checkedCards,138);assert.ok(r.checkedIds.includes('WM038'));
+  assert.deepEqual(read('web/public/cards/WM038.jpg'),original);const r=validateAdmittedScans();assert.equal(r.checkedCards,139);assert.ok(r.checkedIds.includes('WM038'));
 });

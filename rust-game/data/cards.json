@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.65-jz35-host-return-candidate",
-  "engineVersion": "rust-v0.2.72-jz35-host-return-candidate",
+  "cardPoolVersion": "limited-v2.66-jc052-original-region-candidate",
+  "engineVersion": "rust-v0.2.73-jc052-original-region-candidate",
   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
   "cards": [
     {
@@ -5368,6 +5368,50 @@
         "record": "JZ35",
         "image": "resource/ymsj-fun.github.io/cards/JZ35 思维湮灭.jpg",
         "sha256": "5b84ed6442f88c2406d7a0955ef225e1a8061fe1951da58818567234c193c1dc"
+      }
+    },
+    {
+      "id": "JC052",
+      "name": "终焉的诗寇蒂",
+      "subtitle": "剪断命运者",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "圣者"
+      ],
+      "cost": 7,
+      "loyalty": [
+        "红色",
+        "红色",
+        "红色",
+        "红色"
+      ],
+      "loyaltyText": "红色 红色 红色 红色",
+      "color": "红",
+      "magic": "星辰",
+      "icons": {
+        "permanent": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 2
+        },
+        "temporary": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "领袖\n【进场触发】消灭所有本地区的其他角色和暗藏者。",
+      "keywords": [
+        "领袖"
+      ],
+      "unique": true,
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JC052",
+        "image": "resource/ymsj-fun.github.io/cards/JC052 终焉的诗寇蒂.jpg",
+        "sha256": "3b42cde3d48132e0ecbf73dd7ee78c6379c2319a0b83cb7304f24033ab361d33"
       }
     }
   ],

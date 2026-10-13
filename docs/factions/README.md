@@ -198,6 +198,8 @@
 | leader | 领袖与唯一构筑 | unimplemented |
 | token | 生成指示物角色/附属 | unimplemented |
 | mysticContest | 隐秘对抗、隐秘/暴露与隐秘等级 | unimplemented |
+
+上表保留该研究基线的审计状态。后续JC052单卡候选新增按当前操控席、印刷关键词分组的领袖在场限制及可恢复强制牺牲；只准入已完整核图的JC052，不宣称其他领袖卡完成。原图、规则手册印刷P6和诗寇蒂勘误P3、完整范围及本轮实际验证见 [JC052独审交付](../JC052_RED_ORIGINAL_REGION_REVIEW_2026-10-13.md)。
 | plan | 秘密计划与推进 | unimplemented |
 | rumor | 传闻 | unimplemented |
 | blood | 鲜血附属与饮血 | unimplemented |

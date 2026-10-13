@@ -660,6 +660,7 @@ impl Game {
                     return Err("超出正常派遣距离".into());
                 }
                 let (c, play_source) = self.character_play_source(seat, id, a.kind == "conceal")?;
+                crate::jc052::validate_character_action(&c.definition, &a)?;
                 let d = card(&c.definition);
                 if d.kind != "character" {
                     return Err("只有角色可派遣".into());
@@ -726,6 +727,7 @@ impl Game {
                 if c.controller != seat || !c.face_down {
                     return Err("只能现身自己的暗藏者".into());
                 }
+                crate::jc052::validate_character_action(&c.definition, &a)?;
                 let d = card(&c.definition);
                 if !self.loyalty(seat, &c.definition) {
                     return Err("忠诚不足".into());
@@ -1042,9 +1044,11 @@ impl Game {
     pub(crate) fn resolve_stack(&mut self, mut item: StackItem) -> RuleResult<()> {
         self.note(format!("结算：{}", item.label));
         let mut frame = item.frame.take().ok_or("v2堆叠对象缺少已支付的通用frame")?;
+        self.validate_jc052_frame(&frame)?;
         if let Some(c) = item.card.take() {
             if let Some(region) = item.deploy_region {
-                if !self.region_live(region) {
+                if !self.region_live(region)
+                    || (c.definition == "JC052" && !self.jc052_original_region_live(&frame.source)) {
                     self.effects.push_front(Effect::Bury { card: c });
                     return Ok(());
                 }
@@ -1115,7 +1119,7 @@ impl Game {
                 self.emit_event(seat, source, Event::Reveal);
             }
         }
-        if card(definition).unique {
+        if card(definition).unique || crate::jc052::printed_leader(definition) {
             self.effects.push_front(Effect::Unique { seat });
         }
     }
@@ -1689,6 +1693,7 @@ impl Game {
                 }
             }
             Effect::Unique { seat } => {
+                if self.offer_leader_choice(seat) { return Ok(()); }
                 let mut options = vec![];
                 let mut group = None;
                 let in_play = self.in_play_cards();
@@ -1921,8 +1926,10 @@ impl Game {
         });
         self.effects.extend(simultaneous);
         self.prune_turn_attribute_modifiers();
+        self.queue_leader_checks();
     }
     pub(crate) fn choose(&mut self, seat: usize, a: Action) -> RuleResult<()> {
+        self.validate_jc052_state()?;
         self.validate_red_time_state()?;
         self.validate_blue_expansion_state()?;
         self.validate_black_expansion_state()?;
@@ -2827,7 +2834,7 @@ mod tests {
     #[test]
     fn catalog_is_restricted_real_complete_and_decks_are_legal() {
         let c = catalog::catalog();
-        assert_eq!(c.cards.len(), 138);
+        assert_eq!(c.cards.len(), 139);
         let active = c
             .cards
             .iter()
@@ -2842,7 +2849,7 @@ mod tests {
                 .collect::<BTreeSet<_>>()
         );
         assert!(active.contains("DQJC116"));
-        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 128);
+        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 129);
         assert_eq!(c.decks.len(), 5);
         for deck in &c.decks {
             assert_eq!(deck.card_count, 50);

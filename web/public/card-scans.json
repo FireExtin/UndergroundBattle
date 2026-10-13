@@ -743,5 +743,10 @@
     "url": "/cards/JZ35.jpg",
     "source": "resource/ymsj-fun.github.io/cards/JZ35 思维湮灭.jpg",
     "sha256": "5b84ed6442f88c2406d7a0955ef225e1a8061fe1951da58818567234c193c1dc"
+  },
+  "JC052": {
+    "url": "/cards/JC052.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC052 终焉的诗寇蒂.jpg",
+    "sha256": "3b42cde3d48132e0ecbf73dd7ee78c6379c2319a0b83cb7304f24033ab361d33"
   }
 }
