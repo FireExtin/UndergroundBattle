@@ -87,6 +87,14 @@
       "cardPool": "limited-v2.70-jc046-mandatory-sacrifice-candidate",
       "cards": 143,
       "matchingFiles": 158
+    },
+    {
+      "name": "resume-retains-same-public-entry-and-engine",
+      "passed": true,
+      "engine": "rust-v0.2.77-jc046-mandatory-sacrifice-candidate",
+      "cardPool": "limited-v2.70-jc046-mandatory-sacrifice-candidate",
+      "priorCompleteFrontendHashFiles": 158,
+      "publicEntry": "assets/index-DB950mFA.js"
     }
   ]
 }

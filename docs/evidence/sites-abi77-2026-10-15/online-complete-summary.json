@@ -1,0 +1,123 @@
+{
+  "passed": true,
+  "completeOnlineGame": true,
+  "mode": "duel",
+  "viewport": [
+    1180,
+    760
+  ],
+  "candidateSha": "4918cfb6372fb9ec900f037e8ed518385d6183e6",
+  "version": 54,
+  "deploymentId": "appgdep_6ad09dcf575c819182ed0f3340eccfb1",
+  "roomId": "fd08636bd17bf0e956e194d1",
+  "publicAnonymous": true,
+  "hostingOwnerBypass": false,
+  "stateInjection": false,
+  "apiMoves": false,
+  "sameOwnedRoomAcrossAttempts": true,
+  "scriptAttempts": 5,
+  "uiPostCount": 341,
+  "uiCommandRecords": 339,
+  "acceptedUiCommands": 337,
+  "expectedExpiredResponse409s": 2,
+  "unexpectedPageErrors": 0,
+  "expectedBrowser409ConsoleEvents": 2,
+  "unexpectedBrowserErrors": 0,
+  "status": "finished",
+  "turn": 6,
+  "winnerTeam": 1,
+  "scores": [
+    5,
+    8
+  ],
+  "versions": {
+    "rules": "hegemony-pdf-v1",
+    "cardPool": "limited-v2.70-jc046-mandatory-sacrifice-candidate",
+    "engine": "rust-v0.2.77-jc046-mandatory-sacrifice-candidate"
+  },
+  "requiredPcChecksPassed": [
+    "online-pause-reload-resume-keeps-choice-and-draft",
+    "paused-peer-page-refreshed-after-other-seat-resume",
+    "public-engine-pool-and-all158-frontend-hashes",
+    "rapid-choice-clicks-one-command",
+    "real-choice-select-unselect-reselect",
+    "reload-retains-own-seat-choice-and-selected-draft"
+  ],
+  "actionKinds": {
+    "ready": 2,
+    "start": 1,
+    "pauseRoom": 2,
+    "resumeRoom": 2,
+    "choose": 14,
+    "pass": 280,
+    "asset": 8,
+    "conceal": 10,
+    "deploy": 5,
+    "play": 1,
+    "passResponse": 12
+  },
+  "priorInterruptedAttempts": [
+    {
+      "name": "attempt1-paused-peer-sync-timeout",
+      "passed": false,
+      "failure": "TimeoutError: Page.wait_for_function: Timeout 25000ms exceeded.",
+      "uiPostCount": 7
+    },
+    {
+      "name": "attempt2-legacy-action-selector",
+      "passed": false,
+      "failure": "TimeoutError: Locator.wait_for: Timeout 30000ms exceeded.\nCall log:\n  - waiting for get_by_role(\"button\", name=\"秘密派遣 无知路人 → 死者之城\", exact=True).first to be visible\n",
+      "uiPostCount": 16
+    },
+    {
+      "name": "attempt3-resume-client-ready",
+      "passed": false,
+      "failure": "TypeError: 'NoneType' object is not subscriptable",
+      "uiPostCount": 16
+    },
+    {
+      "name": "attempt4-expired-response",
+      "passed": false,
+      "failure": "AssertionError: duel seat 1 passResponse rejected HTTP 409: window_expired 响应窗口已经改变或关闭",
+      "uiPostCount": 71
+    }
+  ],
+  "rejectedCommands": [
+    {
+      "seat": 1,
+      "kind": "passResponse",
+      "httpStatus": 409,
+      "commandId": "9607dfb9-d39a-429a-8e76-0bdca8bdbb7e",
+      "expectedVersion": 70,
+      "action": {
+        "kind": "passResponse",
+        "windowId": "response:2"
+      },
+      "error": {
+        "error": "window_expired",
+        "message": "响应窗口已经改变或关闭"
+      }
+    },
+    {
+      "seat": 0,
+      "kind": "passResponse",
+      "httpStatus": 409,
+      "commandId": "6a133c65-eb32-4cb2-94d7-728123f4e980",
+      "expectedVersion": 77,
+      "action": {
+        "kind": "passResponse",
+        "windowId": "response:4"
+      },
+      "error": {
+        "error": "window_expired",
+        "message": "响应窗口已经改变或关闭"
+      }
+    }
+  ],
+  "limits": [
+    "PC only; no mobile acceptance",
+    "One natural duel, not full-card mechanism acceptance",
+    "Paused peers refresh after another seat resumes; no claim of automatic paused polling",
+    "Native save content_hash is recorded separately from the local tar.gz/tar whole-byte hashes"
+  ]
+}

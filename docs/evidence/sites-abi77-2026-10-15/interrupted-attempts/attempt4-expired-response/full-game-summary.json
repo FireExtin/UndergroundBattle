@@ -1,0 +1,461 @@
+{
+  "passed": false,
+  "failure": "AssertionError: duel seat 1 passResponse rejected HTTP 409: window_expired 响应窗口已经改变或关闭",
+  "testType": "complete-natural-desktop-ui-game",
+  "mode": "duel",
+  "stateInjection": false,
+  "apiMoves": false,
+  "uiPostCount": 71,
+  "uiPostBudget": 2000,
+  "browserErrors": [
+    {
+      "seat": 1,
+      "kind": "console",
+      "message": "Failed to load resource: the server responded with a status of 409 (Conflict)"
+    }
+  ],
+  "coverage": {
+    "ready": 2,
+    "start": 1,
+    "pauseRoom": 2,
+    "resumeRoom": 2,
+    "choose": 2,
+    "choice:mulligan": 2,
+    "pass": 52,
+    "asset": 3,
+    "ui:grouped-destination-confirmation": 4,
+    "conceal": 3,
+    "deploy": 1
+  },
+  "graveChecks": [],
+  "graveRecovery": [],
+  "postResults": [
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 1,
+      "status": 409,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    }
+  ],
+  "conditionChecks": [],
+  "expiryRaces": [],
+  "final": {
+    "version": 71,
+    "mode": "duel",
+    "status": "playing",
+    "you": "p0",
+    "players": [
+      {
+        "id": "p0",
+        "seat": 0,
+        "name": "完整局duel甲",
+        "team": 0,
+        "deckId": "watchers",
+        "deckName": "帷幕调查",
+        "ready": true,
+        "eliminated": false,
+        "handCount": 3,
+        "deckCount": 42,
+        "score": 0
+      },
+      {
+        "id": "p1",
+        "seat": 1,
+        "name": "完整局duel2",
+        "team": 1,
+        "deckId": "hunters",
+        "deckName": "公路猎手",
+        "ready": true,
+        "eliminated": false,
+        "handCount": 6,
+        "deckCount": 42,
+        "score": 0
+      }
+    ],
+    "firstTeam": 0,
+    "activeTeam": 0,
+    "priorityTeam": 0,
+    "turn": 2,
+    "phase": "action",
+    "step": "team:0",
+    "winScore": 8,
+    "versions": {
+      "rules": "hegemony-pdf-v1",
+      "cardPool": "limited-v2.70-jc046-mandatory-sacrifice-candidate",
+      "engine": "rust-v0.2.77-jc046-mandatory-sacrifice-candidate"
+    },
+    "handCount": 3,
+    "assetCounts": {
+      "p0": 2,
+      "p1": 1
+    },
+    "regions": [
+      {
+        "index": 0,
+        "cardId": "DQJC115",
+        "name": "死者之城",
+        "threshold": 3,
+        "points": 2,
+        "influence": [
+          0,
+          0
+        ],
+        "characters": [
+          {
+            "instanceId": "i132",
+            "owner": "p1",
+            "controller": "p1",
+            "kind": "hidden",
+            "exhausted": false,
+            "faceDown": true
+          },
+          {
+            "instanceId": "i134",
+            "owner": "p0",
+            "controller": "p0",
+            "kind": "hidden",
+            "exhausted": false,
+            "faceDown": true
+          },
+          {
+            "instanceId": "i138",
+            "owner": "p0",
+            "controller": "p0",
+            "kind": "hidden",
+            "exhausted": false,
+            "faceDown": true
+          },
+          {
+            "instanceId": "i141",
+            "owner": "p0",
+            "controller": "p0",
+            "kind": "character",
+            "exhausted": false,
+            "faceDown": false,
+            "cardId": "LC19",
+            "name": "外科医生",
+            "icons": {
+              "investigation": 0,
+              "combat": 0,
+              "influence": 1
+            },
+            "defense": 1,
+            "damage": 0,
+            "wounds": 0,
+            "shield": 0
+          }
+        ]
+      },
+      {
+        "index": 1,
+        "cardId": "DQJC107",
+        "name": "沉没的废墟",
+        "threshold": 4,
+        "points": 4,
+        "influence": [
+          0,
+          0
+        ],
+        "characters": []
+      },
+      {
+        "index": 2,
+        "cardId": "DQJC111",
+        "name": "莫斯科",
+        "threshold": 4,
+        "points": 3,
+        "influence": [
+          0,
+          0
+        ],
+        "characters": []
+      }
+    ],
+    "pendingChoice": null,
+    "waitingChoice": null,
+    "legalActionKinds": [
+      "deploy",
+      "pass",
+      "reveal"
+    ],
+    "stackCount": 0,
+    "graveyardCount": 0,
+    "scoreCards": []
+  },
+  "roomId": "fd08636bd17bf0e956e194d1",
+  "durationSeconds": 507.08,
+  "resumedExistingRoom": true,
+  "priorUiPostCount": 16,
+  "graveSliceOnly": false,
+  "completeGame": false,
+  "pendingGraveEntries": []
+}

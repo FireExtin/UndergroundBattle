@@ -1,0 +1,87 @@
+{"mode": "duel", "passed": false, "posts": 7, "failure": "TimeoutError: Page.wait_for_function: Timeout 25000ms exceeded.", "roomId": "fd08636bd17bf0e956e194d1"}
+Traceback (most recent call last):
+  File "/workspace/abi77-publication-20261015/online_pc_abi77.py", line 123, in <module>
+    asyncio.run(main(p.parse_args()))
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/asyncio/runners.py", line 195, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/asyncio/base_events.py", line 691, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/workspace/abi77-publication-20261015/online_pc_abi77.py", line 112, in main
+    await run.play_full()
+  File "/workspace/UndergroundBattle/tools/cloud-playtest/full_game_persistent.py", line 233, in play_full
+    assert result['passed'], result.get('failure')
+           ~~~~~~^^^^^^^^^^
+AssertionError: TimeoutError: Page.wait_for_function: Timeout 25000ms exceeded.
+{"mode": "duel", "passed": false, "posts": 16, "failure": "TimeoutError: Locator.wait_for: Timeout 30000ms exceeded.\nCall log:\n  - waiting for get_by_role(\"button\", name=\"\u79d8\u5bc6\u6d3e\u9063 \u65e0\u77e5\u8def\u4eba \u2192 \u6b7b\u8005\u4e4b\u57ce\", exact=True).first to be visible\n", "roomId": "fd08636bd17bf0e956e194d1"}
+Traceback (most recent call last):
+  File "/workspace/abi77-publication-20261015/online_pc_abi77.py", line 137, in <module>
+    asyncio.run(main(p.parse_args()))
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/asyncio/runners.py", line 195, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/asyncio/base_events.py", line 691, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/workspace/abi77-publication-20261015/online_pc_abi77.py", line 126, in main
+    await run.play_full()
+  File "/workspace/UndergroundBattle/tools/cloud-playtest/full_game_persistent.py", line 233, in play_full
+    assert result['passed'], result.get('failure')
+           ~~~~~~^^^^^^^^^^
+AssertionError: TimeoutError: Locator.wait_for: Timeout 30000ms exceeded.
+Call log:
+  - waiting for get_by_role("button", name="秘密派遣 无知路人 → 死者之城", exact=True).first to be visible
+
+{"mode": "duel", "passed": false, "posts": 16, "failure": "TypeError: 'NoneType' object is not subscriptable", "roomId": "fd08636bd17bf0e956e194d1"}
+Traceback (most recent call last):
+  File "/workspace/abi77-publication-20261015/online_pc_abi77.py", line 169, in <module>
+    asyncio.run(main(p.parse_args()))
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/asyncio/runners.py", line 195, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/asyncio/base_events.py", line 691, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/workspace/abi77-publication-20261015/online_pc_abi77.py", line 158, in main
+    await run.play_full()
+  File "/workspace/UndergroundBattle/tools/cloud-playtest/full_game_persistent.py", line 233, in play_full
+    assert result['passed'], result.get('failure')
+           ~~~~~~^^^^^^^^^^
+AssertionError: TypeError: 'NoneType' object is not subscriptable
+{"mode": "duel", "posts": 50, "version": 49, "turn": 1, "score": [0, 0]}
+{"mode": "duel", "passed": false, "posts": 71, "failure": "AssertionError: duel seat 1 passResponse rejected HTTP 409: window_expired \u54cd\u5e94\u7a97\u53e3\u5df2\u7ecf\u6539\u53d8\u6216\u5173\u95ed", "roomId": "fd08636bd17bf0e956e194d1"}
+Traceback (most recent call last):
+  File "/workspace/abi77-publication-20261015/online_pc_abi77.py", line 171, in <module>
+    asyncio.run(main(p.parse_args()))
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/asyncio/runners.py", line 195, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/asyncio/base_events.py", line 691, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/workspace/abi77-publication-20261015/online_pc_abi77.py", line 160, in main
+    await run.play_full()
+  File "/workspace/UndergroundBattle/tools/cloud-playtest/full_game_persistent.py", line 233, in play_full
+    assert result['passed'], result.get('failure')
+           ~~~~~~^^^^^^^^^^
+AssertionError: AssertionError: duel seat 1 passResponse rejected HTTP 409: window_expired 响应窗口已经改变或关闭
+{"mode": "duel", "posts": 100, "version": 101, "turn": 2, "score": [0, 0]}
+{"mode": "duel", "posts": 150, "version": 151, "turn": 3, "score": [2, 0]}
+{"mode": "duel", "posts": 200, "version": 201, "turn": 4, "score": [2, 0]}
+{"mode": "duel", "posts": 250, "version": 251, "turn": 5, "score": [2, 4]}
+{"mode": "duel", "posts": 300, "version": 301, "turn": 5, "score": [5, 4]}
+{"mode": "duel", "passed": true, "posts": 341, "failure": null, "roomId": "fd08636bd17bf0e956e194d1"}
+{"passed": true, "completeOnlineGame": true, "roomId": "fd08636bd17bf0e956e194d1", "uiPostCount": 341, "checks": 12}

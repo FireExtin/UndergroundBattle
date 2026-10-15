@@ -1,0 +1,174 @@
+{
+  "passed": false,
+  "failure": "TimeoutError: Locator.wait_for: Timeout 30000ms exceeded.\nCall log:\n  - waiting for get_by_role(\"button\", name=\"秘密派遣 无知路人 → 死者之城\", exact=True).first to be visible\n",
+  "testType": "complete-natural-desktop-ui-game",
+  "mode": "duel",
+  "stateInjection": false,
+  "apiMoves": false,
+  "uiPostCount": 16,
+  "uiPostBudget": 2000,
+  "browserErrors": [],
+  "coverage": {
+    "ready": 2,
+    "start": 1,
+    "pauseRoom": 2,
+    "resumeRoom": 2,
+    "choose": 2,
+    "choice:mulligan": 2,
+    "pass": 4,
+    "asset": 1
+  },
+  "graveChecks": [],
+  "graveRecovery": [],
+  "postResults": [
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    }
+  ],
+  "conditionChecks": [],
+  "expiryRaces": [],
+  "final": {
+    "version": 15,
+    "mode": "duel",
+    "status": "playing",
+    "you": "p0",
+    "players": [
+      {
+        "id": "p0",
+        "seat": 0,
+        "name": "完整局duel甲",
+        "team": 0,
+        "deckId": "watchers",
+        "deckName": "帷幕调查",
+        "ready": true,
+        "eliminated": false,
+        "handCount": 7,
+        "deckCount": 43,
+        "score": 0
+      },
+      {
+        "id": "p1",
+        "seat": 1,
+        "name": "完整局duel2",
+        "team": 1,
+        "deckId": "hunters",
+        "deckName": "公路猎手",
+        "ready": true,
+        "eliminated": false,
+        "handCount": 6,
+        "deckCount": 43,
+        "score": 0
+      }
+    ],
+    "firstTeam": 1,
+    "activeTeam": 1,
+    "priorityTeam": 1,
+    "turn": 1,
+    "phase": "action",
+    "step": "team:1",
+    "winScore": 8,
+    "versions": {
+      "rules": "hegemony-pdf-v1",
+      "cardPool": "limited-v2.70-jc046-mandatory-sacrifice-candidate",
+      "engine": "rust-v0.2.77-jc046-mandatory-sacrifice-candidate"
+    },
+    "handCount": 7,
+    "assetCounts": {
+      "p0": 0,
+      "p1": 1
+    },
+    "regions": [
+      {
+        "index": 0,
+        "cardId": "DQJC115",
+        "name": "死者之城",
+        "threshold": 3,
+        "points": 2,
+        "influence": [
+          0,
+          0
+        ],
+        "characters": []
+      },
+      {
+        "index": 1,
+        "cardId": "DQJC107",
+        "name": "沉没的废墟",
+        "threshold": 4,
+        "points": 4,
+        "influence": [
+          0,
+          0
+        ],
+        "characters": []
+      },
+      {
+        "index": 2,
+        "cardId": "DQJC111",
+        "name": "莫斯科",
+        "threshold": 4,
+        "points": 3,
+        "influence": [
+          0,
+          0
+        ],
+        "characters": []
+      }
+    ],
+    "pendingChoice": null,
+    "waitingChoice": null,
+    "legalActionKinds": [],
+    "stackCount": 0,
+    "graveyardCount": 0,
+    "scoreCards": []
+  },
+  "roomId": "fd08636bd17bf0e956e194d1",
+  "durationSeconds": 111.44,
+  "resumedExistingRoom": true,
+  "priorUiPostCount": 7,
+  "graveSliceOnly": false,
+  "completeGame": false,
+  "pendingGraveEntries": []
+}

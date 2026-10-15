@@ -1,0 +1,43 @@
+{
+  "publicAnonymous": true,
+  "hostingOwnerBypass": false,
+  "transportEvents": [],
+  "infrastructurePosts": [],
+  "postResults": [
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/join"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    }
+  ]
+}

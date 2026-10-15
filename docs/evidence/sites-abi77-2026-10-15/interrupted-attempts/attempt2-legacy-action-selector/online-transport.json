@@ -1,0 +1,70 @@
+{
+  "publicAnonymous": true,
+  "hostingOwnerBypass": false,
+  "transportEvents": [
+    {
+      "kind": "qa-route-failure",
+      "time": 1792057111.2546086,
+      "path": "hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site/api/rooms/fd08636bd17bf0e956e194d1/state",
+      "errorType": "TargetClosedError",
+      "cause": "other-suppressed",
+      "syntheticHttpStatus": 503
+    },
+    {
+      "kind": "qa-route-failure",
+      "time": 1792057111.2615588,
+      "path": "hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site/api/rooms/fd08636bd17bf0e956e194d1/state",
+      "errorType": "TargetClosedError",
+      "cause": "other-suppressed",
+      "syntheticHttpStatus": 503
+    }
+  ],
+  "infrastructurePosts": [],
+  "postResults": [
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/fd08636bd17bf0e956e194d1/commands"
+    }
+  ]
+}

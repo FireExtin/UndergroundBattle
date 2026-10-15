@@ -20,6 +20,14 @@ class PublicGame(FullGame):
             self.online_checks = json.loads((self.output/'online-pc-checks.json').read_text())['checks']
         self.initial_probe_done = any(c['name']=='rapid-choice-clicks-one-command' for c in self.online_checks)
         self.refresh_paused_peers = False
+        if resume:
+            actions=self.output/'duel-actions.jsonl'
+            if actions.exists():
+                for line in actions.read_text().splitlines():
+                    row=json.loads(line)
+                    if row['httpStatus']==409 and row.get('error',{}).get('error')=='window_expired':
+                        if not any(e.get('commandId')==row['commandId'] for e in self.expiry_races):
+                            self.expiry_races.append(dict(kind='prior-ui-expired-response-rejection',commandId=row['commandId'],seat=row['seat'],beforeVersion=row['before']['version'],afterVersion=row['after']['version'],httpStatus=409,error='window_expired'))
 
     def check(self, name, **data):
         self.online_checks.append(dict(name=name, passed=True, **data))
@@ -28,6 +36,7 @@ class PublicGame(FullGame):
 
     async def new_seat(self, seat, session=None):
         page = await super().new_seat(seat, session)
+        await page.bring_to_front()
         if self.resume:
             await page.wait_for_function('(id)=>window.__cloudView?.roomId===id',arg=self.previous['roomId'],timeout=30000)
         if seat == 0:
@@ -37,6 +46,14 @@ class PublicGame(FullGame):
             health = await page.evaluate('async()=>{const r=await fetch("/api/health");if(!r.ok)throw Error("health "+r.status);return r.json()}')
             assert health['engineVersion']==ENGINE
             rows = json.loads(Path('/workspace/abi77-publication-20261015/client-files-158.json').read_text())['files']
+            prior_identity=self.output/'online-identity.json'
+            if self.resume and prior_identity.exists():
+                prior=json.loads(prior_identity.read_text())
+                assert prior['candidate']==CANDIDATE and prior['all158Match']
+                script_paths=await page.locator('script[src]').evaluate_all('(es)=>es.map(e=>new URL(e.src).pathname.slice(1))')
+                assert 'assets/index-DB950mFA.js' in script_paths
+                self.check('resume-retains-same-public-entry-and-engine',engine=ENGINE,cardPool=POOL,priorCompleteFrontendHashFiles=158,publicEntry='assets/index-DB950mFA.js')
+                return page
             hashes = await page.evaluate('''async rows=>{
                 const result=[];let index=0;
                 async function worker(){while(index<rows.length){const row=rows[index++];
@@ -69,8 +86,25 @@ class PublicGame(FullGame):
 
     async def submit(self, seat, click, intended_kind):
         self.refresh_paused_peers = intended_kind=='resumeRoom'
+        before_records=len(self.records);before_errors=len(self.errors)
         try:
             return await super().submit(seat,click,intended_kind)
+        except AssertionError:
+            row=self.records[-1] if len(self.records)>before_records else None
+            if not (row and intended_kind=='passResponse' and row['httpStatus']==409
+                    and row.get('error',{}).get('error')=='window_expired'
+                    and row.get('after') and row['after']['version']>row['before']['version']):
+                raise
+            await self.sync(row['after']['version'])
+            current=await self.view(seat);window=current.get('responseWindow') or {}
+            member=next((m for m in window.get('members',[]) if m['playerId']==current['you']),{})
+            assert window.get('id')!=row['action'].get('windowId') or member.get('status')!='undecided' or member.get('deadlineMs',0)<=current['serverNowMs']
+            await asyncio.sleep(.05)
+            console='Failed to load resource: the server responded with a status of 409 (Conflict)'
+            expected=[e for e in self.errors[before_errors:] if e['seat']==seat and e['kind']=='console' and e['message']==console]
+            for e in expected:self.errors.remove(e);self.expected_errors.append(dict(**e,cause='verified-expired-response-409'))
+            self.expiry_races.append(dict(kind='ui-expired-response-rejected-and-authoritative-view-accepted',commandId=row['commandId'],seat=seat,beforeVersion=row['before']['version'],afterVersion=current['version'],httpStatus=409,error='window_expired',classifiedExpectedConsoleErrors=len(expected)))
+            return current
         finally:
             self.refresh_paused_peers = False
 
@@ -160,7 +194,8 @@ async def main(args):
             await run.play_full()
         finally:
             write_json(output/'online-transport.json',dict(publicAnonymous=True,hostingOwnerBypass=False,
-                transportEvents=run.transport_events,infrastructurePosts=run.infrastructure_posts,postResults=run.post_results))
+                transportEvents=run.transport_events,infrastructurePosts=run.infrastructure_posts,postResults=run.post_results,
+                expectedBrowserErrors=run.expected_errors))
     summary=json.loads((output/'full-game-summary.json').read_text())
     assert summary['completeGame'] and summary['passed']
     print(json.dumps(dict(passed=True,completeOnlineGame=True,roomId=summary['roomId'],uiPostCount=summary['uiPostCount'],checks=len(run.online_checks))),flush=True)
