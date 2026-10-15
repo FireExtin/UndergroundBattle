@@ -1,7 +1,8 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
-import type { CSSProperties } from 'react';
+import type { CSSProperties, ReactNode } from 'react';
 import { CardContent, CardTile, sameNameTags, visibleCard } from './CardTile';
 import { ChoicePanel } from './ChoicePanel';
+import { createChoiceDraftStore, reconcileChoiceDraft } from './choiceDraftStorage';
 import { DeckPicker } from './Lobby';
 import { DeckLibrary } from './DeckLibraryPanel';
 import { AutoPass } from './AutoPass';
@@ -175,14 +176,16 @@ function RegionTile({ region, view, definitions, selected, targeted, available, 
   </article>;
 }
 
-type TableProps = { view: View; catalog: Catalog | null; busy: boolean; uncertain?: boolean; connection?: 'connecting' | 'online' | 'offline'; modalPaused?: boolean; onAction: (action: Action) => void; autoPassEnabled?: boolean; onAutoPassEnabledChange?: (enabled: boolean) => void };
+type TableProps = { recoveryNotices?: ReactNode; view: View; catalog: Catalog | null; busy: boolean; uncertain?: boolean; connection?: 'connecting' | 'online' | 'offline'; modalPaused?: boolean; onAction: (action: Action) => void; autoPassEnabled?: boolean; onAutoPassEnabledChange?: (enabled: boolean) => void };
 
 export function Table(props: TableProps) {
   // Even equal versions/instance IDs in another room or seat start a new local interaction.
   return <ArchivePresentation.Provider value><TableSurface key={JSON.stringify([props.view.roomId, props.view.you])} {...props} /></ArchivePresentation.Provider>;
 }
 
-function TableSurface({ view, catalog, busy, uncertain = false, connection = 'connecting', modalPaused = false, onAction, autoPassEnabled = false, onAutoPassEnabledChange = () => {} }: TableProps) {
+function TableSurface({ recoveryNotices, view, catalog, busy, uncertain = false, connection = 'connecting', modalPaused = false, onAction, autoPassEnabled = false, onAutoPassEnabledChange = () => {} }: TableProps) {
+  const choiceDraftStore = useMemo(() => createChoiceDraftStore(view.roomId, view.you), [view.roomId, view.you]);
+  useEffect(() => { reconcileChoiceDraft(choiceDraftStore, view.pendingChoice); }, [choiceDraftStore, view.pendingChoice]);
   const [selectedCard, setSelectedCard] = useState<string | null>(null);
   const [selectedTarget, setSelectedTarget] = useState<string | null>(null);
   const [selectedRegion, setSelectedRegion] = useState<number | null>(null);
@@ -403,7 +406,7 @@ function TableSurface({ view, catalog, busy, uncertain = false, connection = 'co
       </section>}
     </aside>}
     {hover && !reading && !activeGroup && <aside className="hg-card-hover" aria-label={`悬停阅读${hover.name}`} data-hover-card={hover.instanceId}><CardContent card={hover} definition={definitions.get(hover.cardId || '')} viewerId={view.you} /></aside>}
-    {view.pendingChoice && !view.pause && <div className="hg-table-choice-layer"><ChoicePanel modal modalActive={!readingCard && !modalPaused} key={JSON.stringify([view.pendingChoice.id, view.pendingChoice.options.map(option => [option.id, option.card?.instanceId])])} choice={view.pendingChoice} action={choiceAction} definitions={definitions} busy={busy} onSubmit={onAction} onPauseRoom={view.canPause ? () => onAction({ kind: 'pauseRoom' }) : undefined} onReadCard={readCard} viewerId={view.you} playerLabels={Object.fromEntries(view.players.map(player => [player.id, player.name]))} /></div>}
+    {view.pendingChoice && !view.pause && <div className="hg-table-choice-layer"><ChoicePanel recoveryNotices={recoveryNotices} modal modalActive={!readingCard && !modalPaused} draftStore={choiceDraftStore} choice={view.pendingChoice} action={choiceAction} definitions={definitions} busy={busy} onSubmit={onAction} onPauseRoom={view.canPause ? () => onAction({ kind: 'pauseRoom' }) : undefined} onReadCard={readCard} viewerId={view.you} playerLabels={Object.fromEntries(view.players.map(player => [player.id, player.name]))} /></div>}
     {view.status === 'finished' && <section className="hg-victory" role="status"><span aria-hidden="true">✧</span><div><small>对局结束</small><h1>{view.winnerTeam === you?.team ? '你的秘社取得了霸权' : `${view.winnerTeam === undefined ? '本局' : teamName(view.winnerTeam, view)}赢得了霸权`}</h1><p>胜利目标 {view.winScore} 分 · 可以回顾牌桌，或由房主发起新一局。</p></div><ActionButtons actions={view.legalActions.filter(action => action.kind === 'restart')} busy={busy} onAction={onAction} /></section>}
     {readingCard && <ReadModal card={readingCard} definition={definitions.get(readingCard.cardId || '')} viewerId={view.you} context={reading?.privateDeckTop ? "你的牌库顶牌 · 仅你可见" : readingSealed ? sealedContext(readingSealed) : readingAttachment ? attachmentContext(readingAttachment) : societyContext(readingCard) ?? objectContext(readingCard)} onClose={() => setReading(null)} />}
   </main>;
