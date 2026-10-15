@@ -1,0 +1,110 @@
+    Finished `test` profile [unoptimized] target(s) in 0.06s
+     Running tests/attachment_service.rs (/workspace/undergroundbattle-build/target/debug/deps/attachment_service-910a0216cc894d0a)
+
+running 3 tests
+test actual_hong_kong_attachment_commitments_are_private_and_resume_once_from_sqlite ... ok
+test attachment_paid_stack_and_owner_recycle_restore_with_original_receipt_and_replay ... ok
+test grave_play_sqlite_preserves_paid_origin_and_full_intent_receipt_across_reopen ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.46s
+
+     Running tests/bq030_attachment_regression.rs (/workspace/undergroundbattle-build/target/debug/deps/bq030_attachment_regression-77c06b9c11ba7356)
+
+running 27 tests
+test bq030_accepted_source_can_die_to_real_response_and_still_draws ... ok
+test bq030_attachment_fizzling_after_real_host_death_emits_no_observation ... ok
+test bq030_deploy_transaction_cannot_erase_or_disguise_its_frame_on_restore ... ok
+test bq030_embrace_observation_uses_new_host_controller ... ok
+test bq030_foreign_attachment_qualifies_but_teammate_host_does_not ... ok
+test bq030_frozen_event_cannot_borrow_a_live_card_identity ... ok
+test bq030_hidden_source_and_barred_attachment_do_not_trigger_or_pay ... ok
+test bq030_lethal_poison_retains_frozen_optional_source_for_accept_or_decline ... ok
+test bq030_lethal_source_can_be_ordered_with_a_surviving_observer ... ok
+test bq030_multiple_sources_choose_stack_order_and_can_decline_remaining ... ok
+test bq030_paid_deploy_frame_cannot_be_restored_as_an_effect ... ok
+test bq030_paid_deploy_then_cross_region_attachment_accepts_one_draw_or_declines ... ok
+test bq030_paid_reveal_preserves_snapshot_and_then_observes_attachment ... ok
+test bq030_real_xq47_paid_transfer_to_own_host_emits_one_observation ... ok
+test bq030_region_attachment_is_not_attachment_to_a_character ... ok
+test bq030_runtime_payload_and_order_cannot_be_transplanted_or_corrupted_on_restore ... ok
+test bq030_same_host_transfer_rejected_without_new_event_or_payment ... ok
+test bq030_source_fields_must_be_admitted_before_runtime_acceptance ... ok
+test bq030_sqlite_reopen_pending_stack_and_duplicate_receipt_draw_exactly_once ... ok
+test combined_bq030_empty_deck_draw_eliminates_and_restores_with_a_vacant_slot ... ok
+test combined_bq030_empty_deck_prunes_all_already_ordered_draws_for_eliminated_actor ... ok
+test combined_bq030_granted_renown_capture_preserves_original_empty_slot ... ok
+test combined_bq030_granted_renown_frozen_source_survives_real_return_response ... ok
+test combined_bq030_paid_granted_combat_glory_accept_and_decline_restore ... ok
+test combined_bq030_paid_granted_renown_accept_and_decline_remain_optional ... ok
+test preparation_room_harness_uses_existing_bq040_payment_replay_and_four_views ... ok
+test room_response_control_uses_real_begin_submit_and_fizzles_xq47_after_host_death ... ok
+
+test result: ok. 27 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 3.97s
+
+     Running tests/deck_construction.rs (/workspace/undergroundbattle-build/target/debug/deps/deck_construction-dad209cedcedf88a)
+
+running 5 tests
+test custom_deck_join_change_receipt_reopen_and_replay_keep_frozen_private_specs ... ok
+test frozen_snapshot_private_views_lobby_changes_and_started_rejections ... ok
+test malformed_disabled_overflow_versions_and_society_are_rejected ... ok
+test minimum_unlimited_multifaction_and_canonical_duplicate_entries ... ok
+test printed_name_groups_versions_and_unique_is_distinct_from_in_play_unique ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.07s
+
+     Running tests/jc059_friendly.rs (/workspace/undergroundbattle-build/target/debug/deps/jc059_friendly-79ebf50ffa421112)
+
+running 2 tests
+test friendly_defense_includes_teammate_but_not_enemy_other_region_hidden_or_source ... ok
+test public_region_totals_include_team_temporary_hidden_ready_and_static_icons_without_identity ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+     Running tests/room_pacing.rs (/workspace/undergroundbattle-build/target/debug/deps/room_pacing-feb3dcb8504c6c86)
+
+running 12 tests
+test deadline_4999_accepts_begin_5000_expires_and_new_window_gets_fresh_time ... ok
+test direct_paid_response_is_blocked_invalid_submit_does_not_pay_or_reset_and_pending_choice_has_no_clock ... ok
+test empty_stack_poll_has_no_revision_or_automatic_phase_advance_and_schema2_is_rejected ... ok
+test invalid_pause_records_resume_overflow_and_stale_management_reject_without_mutation ... ok
+test one_teammate_times_out_while_the_other_composes_without_global_pass_or_private_leak ... ok
+test pause_after_deadline_commits_due_tick_before_rejecting_stale_pause ... ok
+test pause_blocks_every_ordinary_protocol_command_and_quote_atomically ... ok
+test pause_keeps_private_pending_choice_and_no_window_resume_has_no_automatic_gameplay ... ok
+test pause_native_full_transition_trace_for_actual_wasm_parity ... ok
+test paused_room_freezes_paid_stack_and_remaining_clock_across_days_then_resumes ... ok
+test repeated_begin_keeps_epoch_and_composing_without_timeout_cancel_is_a_real_pass ... ok
+test teammates_begin_independently_but_formal_submit_changes_epoch_and_requires_requote ... ok
+
+test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.34s
+
+     Running tests/service.rs (/workspace/undergroundbattle-build/target/debug/deps/service-7f6175c1018173f7)
+
+running 10 tests
+test authenticated_sse_projects_actor_view_and_updates_after_commit ... ok
+test command_id_reuse_requires_same_complete_typed_intent_before_and_after_reopen ... ok
+test dedupe_conflicts_rejections_auth_and_replay_are_strict ... ok
+test detective_reveal_choice_and_bound_frame_restore_without_repayment_or_private_leaks ... ok
+test failed_transaction_does_not_ack_or_mutate_state ... ok
+test legacy_state_is_rejected_explicitly_without_silent_migration ... ok
+test paid_sacrifice_death_trigger_and_accepted_frame_restore_without_repayment ... ok
+test read_only_audit_cli_matches_seed_journal_and_detects_corruption ... ok
+test room_catalog_requires_a_token_for_that_room_and_returns_current_pool ... ok
+test sqlite_reopen_restores_identity_pending_choice_and_dedupe ... ok
+
+test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.47s
+
+     Running tests/session_service.rs (/workspace/undergroundbattle-build/target/debug/deps/session_service-0682a822adeccbac)
+
+running 8 tests
+test begin_and_timeout_race_has_one_committed_order_and_replays ... ok
+test concurrent_join_cas_assigns_distinct_seats_and_replay_contains_both ... ok
+test expired_rejected_begin_commits_only_system_journal_and_poll_stops_at_empty_stack ... ok
+test failed_pacing_transaction_preserves_deadline_and_has_no_receipt_or_ack ... ok
+test failed_pause_transaction_cannot_report_saved_or_leave_partial_pause_receipt ... ok
+test paid_response_reopen_quote_receipts_and_target_failure_keep_atomic_costs ... ok
+test paused_table_survives_store_restart_receipt_retries_and_other_table_progress ... ok
+test teammate_begins_from_one_revision_both_commit_without_rebasing_paid_actions ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.52s
+

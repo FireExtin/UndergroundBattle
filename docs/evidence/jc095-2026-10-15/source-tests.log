@@ -1,0 +1,45 @@
+✔ BQ030 registry exactly normalizes every approved printed gameplay field and original source (30.508985ms)
+✔ historical BQ030 admission preserves its 128-card baseline inside the current candidate (4.029408ms)
+✔ actual admitted scans retain pinned original bytes, published bytes and both BQ030 URL mappings (229.254053ms)
+✔ XQ44, JZ02 and JZ22 repaired provenance entries remain exactly as reviewed at e067b3b (2.05566ms)
+✔ JC037 preserves all 139 accepted0939 definitions, decks, world and metadata (5.82373ms)
+✔ JC037 complete gold-name Leader and continuous text match the pinned037/135 original (1.217745ms)
+✔ JC037 public image retains original bytes and all admitted scans validate (262.043028ms)
+✔ JC052 preserves all 138 prior definitions and pool metadata from 9890163 (4.462286ms)
+✔ JC052 full gold-name Leader and entry text match its pinned original (1.098793ms)
+✔ JC052 source image and public copy are identical and all scans validate (232.412083ms)
+✔ JC060 preserves the complete accepted 140-card baseline, decks and metadata (4.300815ms)
+✔ JC060 complete printed fields and continuous text match pinned060/135 original (1.114482ms)
+✔ JC060 public scan is the byte-identical original and existing scans remain valid (177.797975ms)
+✔ JC094 preserves all 132 definitions and metadata from cumulative 3860acd (3.860011ms)
+✔ JC094 matches the complete pinned original with no unresolved source question (1.033631ms)
+✔ JC094 original and public bytes agree and all admitted scans remain valid (182.858238ms)
+✔ JC095 preserves all 141 accepted ABI75 definitions, decks and metadata (3.885739ms)
+✔ JC095 complete gold-name Leader and Renown face matches pinned095/135 original (1.277557ms)
+✔ JC095 public scan is the byte-identical original and all admitted scans remain valid (203.615665ms)
+✔ JZ35 preserves all 137 definitions and metadata from d303545 (4.015701ms)
+✔ JZ35 complete fields match its original without unresolved source questions (1.064859ms)
+✔ JZ35 public face is the exact pinned original and all admitted scans validate (266.367465ms)
+✔ WM023 preserves all 134 definitions and metadata from cumulative a967e13 (4.461284ms)
+✔ WM023 fields match its complete pinned original with no unresolved source question (1.163834ms)
+✔ WM023 public bytes preserve the original and all admitted scans validate (285.358922ms)
+✔ WM038 preserves all 136 definitions and metadata from cumulative 912f230 (4.562403ms)
+✔ WM038 complete fields match the pinned original and have no unresolved source question (1.143967ms)
+✔ WM038 public bytes preserve the original and all admitted scans validate (255.995007ms)
+✔ WM056 preserves the cumulative 133 definitions and metadata from 3bbd8b5 (3.599013ms)
+✔ WM056 complete fields and exact printed source have no unresolved question (1.024594ms)
+✔ WM056 public image retains original bytes and all admitted scans validate (184.675863ms)
+✔ XQ24 matches its reviewed original and preserves the entire 7809971 baseline (25.829373ms)
+✔ the rule pages and analogous FAQ retain the exact locally reviewed source bytes (26.714517ms)
+✔ XQ24 original, published card face and both client mappings agree byte for byte (157.002124ms)
+✔ XQ25 preserves all 135 definitions and metadata from cumulative c51231c (3.985475ms)
+✔ XQ25 fields match its complete pinned original with no unresolved source question (1.072163ms)
+✔ XQ25 public bytes preserve the original and all admitted scans validate (235.990509ms)
+ℹ tests 37
+ℹ suites 0
+ℹ pass 37
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1370.066994

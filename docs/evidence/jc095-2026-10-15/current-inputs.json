@@ -1,0 +1,247 @@
+{
+  "generationCommandsPassed": 37,
+  "historicalResourcesAndInputsUnchanged": 1175,
+  "against": "e53e8b017f0ec974c6cf3d8f446b6541771cf4a5",
+  "inputs": [
+    {
+      "path": "sites/test/fixtures/bounded-entry-native-v076.json",
+      "bytes": 234231,
+      "sha256": "6486e22c14fd12356fc7eb7eca3c0e42afc68ee2d191040fb7f436d5640254f3"
+    },
+    {
+      "path": "sites/test/fixtures/bq030-native-v076.json",
+      "bytes": 4903793,
+      "sha256": "3438e6583800ea1c7732a0116658209dc736987e615f0d9ecfb9e163393cb808"
+    },
+    {
+      "path": "sites/test/fixtures/deck-seal-native-v076.json",
+      "bytes": 1971433,
+      "sha256": "767381ec6781fe1b39c921e5e6c2eb5a2ad5fcc944615106844366ac9c8f2d6a"
+    },
+    {
+      "path": "sites/test/fixtures/gray-lock-native-v076.json",
+      "bytes": 2364783,
+      "sha256": "8960b5ba03a20e8c937ba310e85bf5e5f47f4d589462e42e3e143f1605efb91a"
+    },
+    {
+      "path": "sites/test/fixtures/jc037-native-v076.json",
+      "bytes": 5838224,
+      "sha256": "7e4600716c60f3e281143d6306a804ed79d8ff24cf0f781930a54d3fe0ad8524"
+    },
+    {
+      "path": "sites/test/fixtures/jc050-native-v076.json",
+      "bytes": 130808,
+      "sha256": "3efde02a77895018a9d69d3ff2bbd06e531075b3b223c1baccee19105b0e48b6"
+    },
+    {
+      "path": "sites/test/fixtures/jc052-native-v076.json",
+      "bytes": 630382,
+      "sha256": "612b356f986549feac594acafa323b47e5463b5ee39f8efb425b19c4c0fb0803"
+    },
+    {
+      "path": "sites/test/fixtures/jc060-native-v076.json",
+      "bytes": 11379286,
+      "sha256": "81a293077d617a4bf7b01c80550e8e9d1688b97261ebd77f9b61f9dc22b929b6"
+    },
+    {
+      "path": "sites/test/fixtures/jc095-native-v076.json",
+      "bytes": 17117994,
+      "sha256": "4aa76e328e64a6d4c04f205c3765f961284e413aaea895805c1c38a2b494e84d"
+    },
+    {
+      "path": "sites/test/fixtures/jz22-native-v076.json",
+      "bytes": 957974,
+      "sha256": "56b80ec550d8fd19ee5fb6a0422b3b385670ca353c884765023aae9fe2119f79"
+    },
+    {
+      "path": "sites/test/fixtures/jz50-room-native-v076.json",
+      "bytes": 1221297,
+      "sha256": "415b40f1ac2c588eafed36ca6b2bbc59bc9d65850d3fe0a65cfc2407364330e7"
+    },
+    {
+      "path": "sites/test/fixtures/pause-resume-native-v076.json",
+      "bytes": 1250841,
+      "sha256": "cfbff4c29a546fbeeaa2e8d5902672bd10674ae5cc767d3ca7fb5f46175bb03e"
+    },
+    {
+      "path": "sites/test/fixtures/sealed-restart-native-v076.json",
+      "bytes": 434549,
+      "sha256": "f810b600b1a94f0e0905886de18d0cce4811bdb6f4e3e83793a7907acd1b3207"
+    },
+    {
+      "path": "sites/test/fixtures/sealing-room-native-v076.json",
+      "bytes": 1431871,
+      "sha256": "6891984574706d58ac86fc6d2f2ff53dc33ee5056fd7b2c53bbfddb0516e4227"
+    },
+    {
+      "path": "sites/test/fixtures/three-color-death-native-v076.json",
+      "bytes": 700011,
+      "sha256": "5fa0d6779fa030313b95b54347f36cbad3709a230590488ead9f752cc54b44b5"
+    },
+    {
+      "path": "sites/test/fixtures/win-flow-native-v076.json",
+      "bytes": 16907410,
+      "sha256": "b70ab6527fc1515ca4c8093e6b4371fc77437af8695c2f924f79843498d11a95"
+    },
+    {
+      "path": "sites/test/fixtures/xq24-container-invalid-v076.json",
+      "bytes": 225837,
+      "sha256": "6081c08eda00c9b7f31cbff570548d3d3115d6209d22b47e70b8f86895c7cec2"
+    },
+    {
+      "path": "sites/test/fixtures/xq24-native-v076.json",
+      "bytes": 11647541,
+      "sha256": "1981513c3b295db0711360d34c6046f48a293220947724e2d4728a2f3d7b0c21"
+    },
+    {
+      "path": "sites/test/fixtures/xq27-invalid-rootface-v076.json",
+      "bytes": 35798,
+      "sha256": "bcd13d5def244e0507110975add9be1bdbc79ea9646dfe7323b78d45710d59cd"
+    },
+    {
+      "path": "sites/test/fixtures/xq27-native-v076.json",
+      "bytes": 123570,
+      "sha256": "fc997051c0016ec4a7d22ada28e09d1b19b9f27354c672c072e1a6058c955e0a"
+    },
+    {
+      "path": "sites/test/fixtures/xq37-invalid-rootface-v076.json",
+      "bytes": 35484,
+      "sha256": "3184691283398db174ee648a5b2f4afe070f807d8810a2a2e7bcb124b564846d"
+    },
+    {
+      "path": "sites/test/fixtures/xq37-native-v076.json",
+      "bytes": 357192,
+      "sha256": "295598fcaea06a2cca3dbdbca2af7377f88ce6f11ce6acafef5de7ff0f984e9a"
+    },
+    {
+      "path": "web/src/game/boundedEntryNative76Test.fixture.json",
+      "bytes": 2708281,
+      "sha256": "36eb768a0b148908cb1144f58e7c3cc3b03845d7afdb530629e16ccf15b6eb56"
+    },
+    {
+      "path": "web/src/game/bq030Native76.fixture.json",
+      "bytes": 609763,
+      "sha256": "13404dde874f4af22ce2f0ca2bb9efdd13a0e7064dcbe3824f38dc1bb80bc495"
+    },
+    {
+      "path": "web/src/game/currentLifecycle76.fixture.json",
+      "bytes": 1011470,
+      "sha256": "f4ed62f8e392a5482cb98654ac888c5bcf74384d1f6211964fafc31eaa6d37cf"
+    },
+    {
+      "path": "web/src/game/deckSealNative76Test.fixture.json",
+      "bytes": 2715479,
+      "sha256": "72281bb23d35f3e7da91cd4a6c24b6fafcbe3d438318637e7689c399f2a5ffa4"
+    },
+    {
+      "path": "web/src/game/fixedSlotsNative76.fixture.json",
+      "bytes": 360132,
+      "sha256": "1da2c4b1a137f2a7894156cea22f8232cc2d90e814b7ad6652cdc90c845b5311"
+    },
+    {
+      "path": "web/src/game/jc037Native76.fixture.json",
+      "bytes": 5838224,
+      "sha256": "7e4600716c60f3e281143d6306a804ed79d8ff24cf0f781930a54d3fe0ad8524"
+    },
+    {
+      "path": "web/src/game/jc050Native76QuoteTest.fixture.json",
+      "bytes": 38813,
+      "sha256": "2dcf50f6b236a2237a8489f8a22419230befcb570ea43ed3be2b5d48c61ebb7e"
+    },
+    {
+      "path": "web/src/game/jc050Native76Test.fixture.json",
+      "bytes": 126108,
+      "sha256": "992edb920265b88d2ecfc360b76c4051319a9ed8cc7c7e5982a33b364996e831"
+    },
+    {
+      "path": "web/src/game/jc052Native76Current.fixture.json",
+      "bytes": 498889,
+      "sha256": "3552811b757172382844a4bdd48c9c76ec74dd37de7903808e7eaec277b46c1c"
+    },
+    {
+      "path": "web/src/game/jc060Native76.fixture.json",
+      "bytes": 11379286,
+      "sha256": "81a293077d617a4bf7b01c80550e8e9d1688b97261ebd77f9b61f9dc22b929b6"
+    },
+    {
+      "path": "web/src/game/jc061Native76.fixture.json",
+      "bytes": 508429,
+      "sha256": "adf13c801f59f3aec17ec77d3ab02fc8dd85d729622c834656c5280142fa417d"
+    },
+    {
+      "path": "web/src/game/jc087Native76.fixture.json",
+      "bytes": 545307,
+      "sha256": "4ab9dbfbec1e05467833bc04e21643b1b1e377f0d613223d8a70cc65768248f0"
+    },
+    {
+      "path": "web/src/game/jc094Native76.fixture.json",
+      "bytes": 526332,
+      "sha256": "9a20da0f60d68356c3a13c2302ceb758b6507605b93232b109a111334070e132"
+    },
+    {
+      "path": "web/src/game/jc095Native76.fixture.json",
+      "bytes": 17117994,
+      "sha256": "4aa76e328e64a6d4c04f205c3765f961284e413aaea895805c1c38a2b494e84d"
+    },
+    {
+      "path": "web/src/game/jz22Native76Test.fixture.json",
+      "bytes": 957890,
+      "sha256": "1c766c16d31136646572caab34d5fe20915a5179d9bba4f2ef3de7e8a4740395"
+    },
+    {
+      "path": "web/src/game/jz35Native76.fixture.json",
+      "bytes": 484135,
+      "sha256": "5e0cd11a49260f6474267db1ef57906b23e3ad3025d41963a4f2e05ffa445636"
+    },
+    {
+      "path": "web/src/game/sevenCardUIV076.fixture.json",
+      "bytes": 672164,
+      "sha256": "4d803f9258918403027e098a761ec8e3b787f1ed834b69039ec215aa8ef7ab50"
+    },
+    {
+      "path": "web/src/game/threeColorDeathNative76Test.fixture.json",
+      "bytes": 672178,
+      "sha256": "3278a152b17b0bdb1e98beed91b7add04b0a7e220fa680af249ee8a10a473519"
+    },
+    {
+      "path": "web/src/game/wm023Native76.fixture.json",
+      "bytes": 517147,
+      "sha256": "1903a203e19e505ddec1f36bcffd0f65594c216327bcc3d4cbcbc6551030ba83"
+    },
+    {
+      "path": "web/src/game/wm038Native76.fixture.json",
+      "bytes": 497473,
+      "sha256": "bb70d9b18cd8b81bacbb6fffb06ae4e6d114909594a7317373141b4a91ee31a1"
+    },
+    {
+      "path": "web/src/game/wm056Native76.fixture.json",
+      "bytes": 479964,
+      "sha256": "46299f9c1237b51721e902f8b2be42c9cf6ea1c486750417ea536047f22a9bfd"
+    },
+    {
+      "path": "web/src/game/xq18Native76Test.fixture.json",
+      "bytes": 836395,
+      "sha256": "9474e2177e0bd41b37646d5e7a9953e9fc706d36cd82d0f80d675ae1bcdf5777"
+    },
+    {
+      "path": "web/src/game/xq24Native76.fixture.json",
+      "bytes": 11647541,
+      "sha256": "1981513c3b295db0711360d34c6046f48a293220947724e2d4728a2f3d7b0c21"
+    },
+    {
+      "path": "web/src/game/xq25Native76.fixture.json",
+      "bytes": 488693,
+      "sha256": "5bdf9d1934b69f1bd47dccebca21ed208fb9009b484ead8b661591e9bd5d828b"
+    },
+    {
+      "path": "web/src/game/xq27Native76Test.fixture.json",
+      "bytes": 123570,
+      "sha256": "fc997051c0016ec4a7d22ada28e09d1b19b9f27354c672c072e1a6058c955e0a"
+    },
+    {
+      "path": "web/src/game/xq37Native76Test.fixture.json",
+      "bytes": 357192,
+      "sha256": "295598fcaea06a2cca3dbdbca2af7377f88ce6f11ce6acafef5de7ff0f984e9a"
+    }
+  ]
+}

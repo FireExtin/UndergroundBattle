@@ -1,4 +1,4 @@
-// Requires newly generated Native75 inputs and the matching production ABI.
+// Requires newly generated Native76 inputs and the matching production ABI.
 // Intentionally has no fallback to Native71 or synthetic state expectations.
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
@@ -11,10 +11,10 @@ import { actionForRoom } from './api';
 const wasm=readFileSync(resolve('../rust-game-wasm/pkg/hegemony_wasm_bg.wasm'));
 abi.initSync({module:wasm});
 const catalog=JSON.parse(abi.catalog());
-const fixture=JSON.parse(readFileSync(resolve('src/game/jz35Native75.fixture.json'),'utf8'));
-it('uses the newly built JZ35 catalog and the exact matching Native75 ABI hash',()=>{
-  expect(catalog.engineVersion).toBe('rust-v0.2.75-jc060-occult-adviser-candidate');
-  expect(catalog.cardPoolVersion).toBe('limited-v2.68-jc060-occult-adviser-candidate');
+const fixture=JSON.parse(readFileSync(resolve('src/game/jz35Native76.fixture.json'),'utf8'));
+it('uses the newly built JZ35 catalog and the exact matching Native76 ABI hash',()=>{
+  expect(catalog.engineVersion).toBe('rust-v0.2.76-jc095-influence-conversion-candidate');
+  expect(catalog.cardPoolVersion).toBe('limited-v2.69-jc095-influence-conversion-candidate');
   expect(createHash('sha256').update(wasm).digest('hex')).toBe(fixture.wasmSha256);
   expect(catalog.cards.find(c=>c.id==='JZ35').abilities).toMatchObject([{key:'jz35-sacrifice-return-controlled-hosts',timing:'standard',triggered:false,costs:[]}]);
 });

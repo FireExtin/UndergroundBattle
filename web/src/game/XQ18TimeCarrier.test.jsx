@@ -7,7 +7,7 @@ import * as kernel from '../../../rust-game-wasm/pkg/hegemony_wasm.js';
 import { actionForRoom } from './api';
 import { ChoicePanel } from './ChoicePanel';
 import { Table } from './Table';
-import native from './xq18Native75Test.fixture.json';
+import native from './xq18Native76Test.fixture.json';
 
 kernel.initSync({ module: readFileSync(resolve('../rust-game-wasm/pkg/hegemony_wasm_bg.wasm')) });
 const catalog = JSON.parse(kernel.catalog());

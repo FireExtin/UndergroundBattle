@@ -1,0 +1,37 @@
+
+> undergroundbattle-web@0.1.0 test
+> vitest --run --maxWorkers=1
+
+
+ RUN  v4.1.2 /workspace/UndergroundBattle/web
+
+ ❯ src/game/MSJC07Scan.test.jsx (4 tests | 1 failed) 943ms
+   × retains actual MSJC07 original, metadata, two abilities and three real admitted black unique cards 12ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/game/MSJC07Scan.test.jsx > retains actual MSJC07 original, metadata, two abilities and three real admitted black unique cards
+AssertionError: expected [ 'JC094', 'JC095', 'JC096', …(2) ] to deeply equal [ 'JC094', 'JC096', 'WM059', 'XQ38' ]
+
+- Expected
++ Received
+
+  [
+    "JC094",
++   "JC095",
+    "JC096",
+    "WM059",
+    "XQ38",
+  ]
+
+ ❯ src/game/MSJC07Scan.test.jsx:26:401
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 106 passed (107)
+      Tests  1 failed | 970 passed (971)
+   Start at  05:59:30
+   Duration  218.10s (transform 3.76s, setup 10.69s, import 9.81s, tests 132.33s, environment 50.10s)
+

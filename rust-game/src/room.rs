@@ -251,6 +251,7 @@ impl RoomEnvelope {
         room.game.validate_wm038_state()?;
         room.game.validate_jz35_state()?;
         room.game.validate_jc052_state()?;
+        room.game.validate_jc095_state()?;
         room.game.validate_gray_expansion_state()?;
         if room.game.state_schema != 2
             || room.game.version != room.revision

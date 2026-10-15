@@ -1,0 +1,13 @@
+
+> undergroundbattle-web@0.1.0 build
+> tsc --noEmit -p tsconfig.app.json && tsc --noEmit -p tsconfig.node.json && vite build
+
+vite v8.0.3 building client environment for production...
+[2Ktransforming...✓ 52 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.47 kB │ gzip:   0.34 kB
+dist/assets/index-CvIIbvSH.css  180.79 kB │ gzip:  31.46 kB
+dist/assets/index-DV-DQXYd.js   332.24 kB │ gzip: 102.86 kB
+
+✓ built in 414ms

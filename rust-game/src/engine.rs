@@ -667,6 +667,7 @@ impl Game {
                 }
                 let (c, play_source) = self.character_play_source(seat, id, a.kind == "conceal")?;
                 crate::jc052::validate_character_action(&c.definition, &a)?;
+                crate::jc095::validate_character_action(&c.definition, &a)?;
                 let d = card(&c.definition);
                 if d.kind != "character" {
                     return Err("只有角色可派遣".into());
@@ -734,6 +735,7 @@ impl Game {
                     return Err("只能现身自己的暗藏者".into());
                 }
                 crate::jc052::validate_character_action(&c.definition, &a)?;
+                crate::jc095::validate_character_action(&c.definition, &a)?;
                 let d = card(&c.definition);
                 if !self.loyalty(seat, &c.definition) {
                     return Err("忠诚不足".into());
@@ -1051,10 +1053,12 @@ impl Game {
         self.note(format!("结算：{}", item.label));
         let mut frame = item.frame.take().ok_or("v2堆叠对象缺少已支付的通用frame")?;
         self.validate_jc052_frame(&frame)?;
+        self.validate_jc095_frame(&frame)?;
         if let Some(c) = item.card.take() {
             if let Some(region) = item.deploy_region {
                 if !self.region_live(region)
-                    || (c.definition == "JC052" && !self.jc052_original_region_live(&frame.source)) {
+                    || (c.definition == "JC052" && !self.jc052_original_region_live(&frame.source))
+                    || (c.definition == "JC095" && !self.jc095_original_region_live(&frame.source)) {
                     self.effects.push_front(Effect::Bury { card: c });
                     return Ok(());
                 }
@@ -1936,6 +1940,7 @@ impl Game {
     }
     pub(crate) fn choose(&mut self, seat: usize, a: Action) -> RuleResult<()> {
         self.validate_jc052_state()?;
+        self.validate_jc095_state()?;
         self.validate_red_time_state()?;
         self.validate_blue_expansion_state()?;
         self.validate_black_expansion_state()?;
@@ -2845,7 +2850,7 @@ mod tests {
     #[test]
     fn catalog_is_restricted_real_complete_and_decks_are_legal() {
         let c = catalog::catalog();
-        assert_eq!(c.cards.len(), 141);
+        assert_eq!(c.cards.len(), 142);
         let active = c
             .cards
             .iter()
@@ -2860,7 +2865,7 @@ mod tests {
                 .collect::<BTreeSet<_>>()
         );
         assert!(active.contains("DQJC116"));
-        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 131);
+        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 132);
         assert_eq!(c.decks.len(), 5);
         for deck in &c.decks {
             assert_eq!(deck.card_count, 50);

@@ -1,0 +1,86 @@
+{
+  "uniquePassedAcrossRuns": 1139,
+  "longUnchangedTestFiltered": 1,
+  "resolvedOldCountFailure": true,
+  "singleFullGreenRun": false,
+  "runs": {
+    "native-regression": [
+      {
+        "status": "FAILED",
+        "passed": 1071,
+        "failed": 1,
+        "ignored": 0,
+        "filtered": 1,
+        "seconds": 424.46
+      }
+    ],
+    "native-count-fix": [
+      {
+        "status": "ok",
+        "passed": 1,
+        "failed": 0,
+        "ignored": 0,
+        "filtered": 1072,
+        "seconds": 0.02
+      }
+    ],
+    "native-integration": [
+      {
+        "status": "ok",
+        "passed": 3,
+        "failed": 0,
+        "ignored": 0,
+        "filtered": 0,
+        "seconds": 0.46
+      },
+      {
+        "status": "ok",
+        "passed": 27,
+        "failed": 0,
+        "ignored": 0,
+        "filtered": 0,
+        "seconds": 3.97
+      },
+      {
+        "status": "ok",
+        "passed": 5,
+        "failed": 0,
+        "ignored": 0,
+        "filtered": 0,
+        "seconds": 0.07
+      },
+      {
+        "status": "ok",
+        "passed": 2,
+        "failed": 0,
+        "ignored": 0,
+        "filtered": 0,
+        "seconds": 0.02
+      },
+      {
+        "status": "ok",
+        "passed": 12,
+        "failed": 0,
+        "ignored": 0,
+        "filtered": 0,
+        "seconds": 0.34
+      },
+      {
+        "status": "ok",
+        "passed": 10,
+        "failed": 0,
+        "ignored": 0,
+        "filtered": 0,
+        "seconds": 0.47
+      },
+      {
+        "status": "ok",
+        "passed": 8,
+        "failed": 0,
+        "ignored": 0,
+        "filtered": 0,
+        "seconds": 0.52
+      }
+    ]
+  }
+}

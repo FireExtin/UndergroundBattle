@@ -758,5 +758,10 @@
     "url": "/cards/JC060.jpg",
     "source": "resource/ymsj-fun.github.io/cards/JC060 神秘学顾问.jpg",
     "sha256": "6a879cc4c380b2a79b9fc3f60acf57c408768a9f8fc4dfa07682c9db63b2a4ae"
+  },
+  "JC095": {
+    "url": "/cards/JC095.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC095 唐·格鲁尼.jpg",
+    "sha256": "32dbf8c8af063f8b680bbba87c82920ac5a7dd4a18bcdb33e0d861894e05c020"
   }
 }

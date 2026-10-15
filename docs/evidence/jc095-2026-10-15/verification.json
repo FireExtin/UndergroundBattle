@@ -1,0 +1,132 @@
+{
+  "baseline": "e53e8b017f0ec974c6cf3d8f446b6541771cf4a5",
+  "branch": "codex/jc095-black-influence-conversion-review-20261015",
+  "engine": "rust-v0.2.76-jc095-influence-conversion-candidate",
+  "pool": "limited-v2.69-jc095-influence-conversion-candidate",
+  "cards": 142,
+  "native": {
+    "uniquePassedAcrossRuns": 1139,
+    "longUnchangedTestFiltered": 1,
+    "resolvedOldCountFailure": true,
+    "singleFullGreenRun": false,
+    "runs": {
+      "native-regression": [
+        {
+          "status": "FAILED",
+          "passed": 1071,
+          "failed": 1,
+          "ignored": 0,
+          "filtered": 1,
+          "seconds": 424.46
+        }
+      ],
+      "native-count-fix": [
+        {
+          "status": "ok",
+          "passed": 1,
+          "failed": 0,
+          "ignored": 0,
+          "filtered": 1072,
+          "seconds": 0.02
+        }
+      ],
+      "native-integration": [
+        {
+          "status": "ok",
+          "passed": 3,
+          "failed": 0,
+          "ignored": 0,
+          "filtered": 0,
+          "seconds": 0.46
+        },
+        {
+          "status": "ok",
+          "passed": 27,
+          "failed": 0,
+          "ignored": 0,
+          "filtered": 0,
+          "seconds": 3.97
+        },
+        {
+          "status": "ok",
+          "passed": 5,
+          "failed": 0,
+          "ignored": 0,
+          "filtered": 0,
+          "seconds": 0.07
+        },
+        {
+          "status": "ok",
+          "passed": 2,
+          "failed": 0,
+          "ignored": 0,
+          "filtered": 0,
+          "seconds": 0.02
+        },
+        {
+          "status": "ok",
+          "passed": 12,
+          "failed": 0,
+          "ignored": 0,
+          "filtered": 0,
+          "seconds": 0.34
+        },
+        {
+          "status": "ok",
+          "passed": 10,
+          "failed": 0,
+          "ignored": 0,
+          "filtered": 0,
+          "seconds": 0.47
+        },
+        {
+          "status": "ok",
+          "passed": 8,
+          "failed": 0,
+          "ignored": 0,
+          "filtered": 0,
+          "seconds": 0.52
+        }
+      ]
+    }
+  },
+  "web": {
+    "uniquePassedAcrossRuns": 971,
+    "files": 107,
+    "firstRunPassed": 970,
+    "firstRunFailed": 1,
+    "focusedFixRunPassed": 4,
+    "singleFullGreenRun": false,
+    "resolvedFailure": "MSJC07 unique black-card list now includes JC095"
+  },
+  "worker": {
+    "passed": 142,
+    "failed": 0,
+    "skipped": 0,
+    "cancelled": 0
+  },
+  "sourceTests": 37,
+  "inputGuardTests": 19,
+  "typescriptAndViteBuild": "passed",
+  "wasmParity": {
+    "scenarios": 11,
+    "steps": 146,
+    "seatViews": 614,
+    "rejected": 3,
+    "invalidStates": 45,
+    "wasmSha256": "5c00126ab73033631150d78bdfc21076bc2b30b0bf3cf41dba20cb1bae95ddf5",
+    "completeNativeStatesEqual": true,
+    "previous75Rejected": true
+  },
+  "reviewedFileFingerprintsMatch": 39,
+  "originalResourcesAndInputsUnchanged": 1175,
+  "currentInputFiles": 48,
+  "currentGenerationCommands": 37,
+  "mergedMain": false,
+  "deployed": false,
+  "liveBrowserAcceptance": false,
+  "pending": [
+    "Parallel UI/recovery branch integration",
+    "Successful deployment and matching-SHA live browser acceptance"
+  ]
+}

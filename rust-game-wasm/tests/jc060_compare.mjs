@@ -1,12 +1,17 @@
-// Full current ABI75 comparison against independently asserted Native traces.
+// Full matching current ABI comparison against independently asserted Native traces.
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {kernel,catalog,moduleBytes} from './current-kernel.mjs';
-const fixture=JSON.parse(readFileSync(process.argv[2] || new URL('../../web/src/game/jc060Native75.fixture.json',import.meta.url)));
+const versions=new Map([
+  ['rust-v0.2.75-jc060-occult-adviser-candidate',['75','limited-v2.68-jc060-occult-adviser-candidate']],
+  ['rust-v0.2.76-jc095-influence-conversion-candidate',['76','limited-v2.69-jc095-influence-conversion-candidate']],
+]);
+assert(versions.has(catalog.engineVersion),'Build an explicitly supported current ABI first.');
+const [suffix,expectedPool]=versions.get(catalog.engineVersion);
+assert.equal(catalog.cardPoolVersion,expectedPool);
+const fixture=JSON.parse(readFileSync(process.argv[2] || new URL(`../../web/src/game/jc060Native${suffix}.fixture.json`,import.meta.url)));
 assert.deepEqual(fixture.catalog,catalog);
-assert.equal(catalog.engineVersion,'rust-v0.2.75-jc060-occult-adviser-candidate');
-assert.equal(catalog.cardPoolVersion,'limited-v2.68-jc060-occult-adviser-candidate');
 assert.equal(createHash('sha256').update(moduleBytes).digest('hex'),fixture.wasmSha256);
 const previous=JSON.parse(readFileSync(new URL('../../web/src/game/jc037Native74.fixture.json',import.meta.url))).scenarios[0].steps[0];
 assert.throws(()=>kernel.view(previous.state,previous.seat),/旧局schema\/固定版本/);

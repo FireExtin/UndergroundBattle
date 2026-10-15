@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.68-jc060-occult-adviser-candidate",
-  "engineVersion": "rust-v0.2.75-jc060-occult-adviser-candidate",
+  "cardPoolVersion": "limited-v2.69-jc095-influence-conversion-candidate",
+  "engineVersion": "rust-v0.2.76-jc095-influence-conversion-candidate",
   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
   "cards": [
     {
@@ -5491,6 +5491,50 @@
         "record": "JC060",
         "image": "resource/ymsj-fun.github.io/cards/JC060 神秘学顾问.jpg",
         "sha256": "6a879cc4c380b2a79b9fc3f60acf57c408768a9f8fc4dfa07682c9db63b2a4ae"
+      }
+    },
+    {
+      "id": "JC095",
+      "name": "唐·格鲁尼",
+      "subtitle": "波士顿之主",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "罪犯"
+      ],
+      "cost": 7,
+      "loyalty": [
+        "黑色",
+        "黑色",
+        "黑色"
+      ],
+      "loyaltyText": "黑色 黑色 黑色",
+      "color": "黑",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 2,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 3,
+          "combat": 1,
+          "influence": 0
+        }
+      },
+      "defense": 2,
+      "text": "领袖　声望\n【进场触发】将本地区上的所有敌方势力标志移除，然后放置等量的本方势力标志。",
+      "keywords": [
+        "领袖",
+        "声望"
+      ],
+      "unique": true,
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JC095",
+        "image": "resource/ymsj-fun.github.io/cards/JC095 唐·格鲁尼.jpg",
+        "sha256": "32dbf8c8af063f8b680bbba87c82920ac5a7dd4a18bcdb33e0d861894e05c020"
       }
     }
   ],

@@ -1,0 +1,40 @@
+   Compiling hegemony-server v0.1.0 (/workspace/UndergroundBattle/rust-game)
+    Finished `test` profile [unoptimized] target(s) in 25.85s
+     Running unittests src/lib.rs (/workspace/undergroundbattle-build/target/debug/deps/hegemony_server-fc575c20deac8fce)
+
+running 19 tests
+test jc095_tests::jc095_all_four_actors_optional_entry_zero_one_two_and_own_markers ... ok
+test jc095_tests::jc095_assets_hidden_and_region_movement_do_not_retrigger_entry_or_apply_printed_traits ... ok
+test jc095_tests::jc095_existing_granted_combat_glory_remains_source_bound ... ok
+test jc095_tests::jc095_frozen_actor_region_and_original_instance_survive_explicit_source_changes ... ok
+test jc095_tests::jc095_non_targets_ignore_barrier_shield_and_keep_current_permanent_and_temporary_icons ... ok
+test jc095_tests::jc095_original_fields_complete_definition_and_nested_transplants_are_closed ... ok
+test jc095_tests::jc095_original_region_incarnation_guards_paid_entry_and_conversion ... ok
+test jc095_tests::jc095_paid_trigger_reward_and_nested_frames_cannot_be_forged_or_replayed ... ok
+test jc095_tests::jc095_payment_loyalty_and_extra_payload_fail_atomically ... ok
+test jc095_tests::jc095_pending_metadata_and_frozen_source_identity_are_strict ... ok
+test jc095_tests::jc095_room_duel_paid_entry_converts_only_the_other_player_pool ... ok
+test jc095_tests::jc095_room_new_leader_sacrifice_keeps_the_already_observed_entry_trigger ... ok
+test jc095_tests::jc095_room_paid_deploy_accept_and_decline_are_optional_untargeted_and_public ... ok
+test jc095_tests::jc095_room_response_reads_current_enemy_count_including_zero_after_cancellation ... ok
+test jc095_tests::jc095_room_reveal_in_already_won_window_cannot_change_winner_or_award_twice ... FAILED
+test jc095_tests::jc095_room_secret_deployment_and_paid_reveal_only_offer_one_entry_trigger ... ok
+test jc095_tests::jc095_room_source_hide_response_preserves_declared_actor_and_conversion ... ok
+test jc095_tests::jc095_room_source_return_response_does_not_cancel_original_conversion ... ok
+test jc095_tests::jc095_room_two_teammate_leaders_produce_one_current_renown_reward ... ok
+
+failures:
+
+---- jc095_tests::jc095_room_reveal_in_already_won_window_cannot_change_winner_or_award_twice stdout ----
+
+thread 'jc095_tests::jc095_room_reveal_in_already_won_window_cannot_change_winner_or_award_twice' panicked at rust-game/src/jc095_tests.rs:825:9:
+win-window-fixed-winner did not reach bounded state
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    jc095_tests::jc095_room_reveal_in_already_won_window_cannot_change_winner_or_award_twice
+
+test result: FAILED. 18 passed; 1 failed; 0 ignored; 0 measured; 1054 filtered out; finished in 6.62s
+
+error: test failed, to rerun pass `-p hegemony-server --lib`

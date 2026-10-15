@@ -1,4 +1,4 @@
-// Requires fresh Native75 inputs and its exact production ABI; no older fallback.
+// Requires fresh Native76 inputs and its exact production ABI; no older fallback.
 import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {createHash} from 'node:crypto';
@@ -11,10 +11,10 @@ import {groupObjectActions} from './objectActions';
 const wasm=readFileSync(resolve('../rust-game-wasm/pkg/hegemony_wasm_bg.wasm'));
 abi.initSync({module:wasm});
 const catalog=JSON.parse(abi.catalog());
-const fixture=JSON.parse(readFileSync(resolve('src/game/jc052Native75Current.fixture.json'),'utf8'));
+const fixture=JSON.parse(readFileSync(resolve('src/game/jc052Native76Current.fixture.json'),'utf8'));
 it('uses the actual JC052 ABI73 and complete, untargeted optional entry definition',()=>{
-  expect(catalog.engineVersion).toBe('rust-v0.2.75-jc060-occult-adviser-candidate');
-  expect(catalog.cardPoolVersion).toBe('limited-v2.68-jc060-occult-adviser-candidate');
+  expect(catalog.engineVersion).toBe('rust-v0.2.76-jc095-influence-conversion-candidate');
+  expect(catalog.cardPoolVersion).toBe('limited-v2.69-jc095-influence-conversion-candidate');
   expect(createHash('sha256').update(wasm).digest('hex')).toBe(fixture.wasmSha256);
   expect(catalog.cards.find(c=>c.id==='JC052')).toMatchObject({color:'红',subtitle:'剪断命运者',keywords:['领袖'],abilities:[{key:'jc052-destroy-other-original-region-characters',triggered:true,timing:'fast',costs:[]}]});
 });

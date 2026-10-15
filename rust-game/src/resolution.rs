@@ -411,7 +411,7 @@ impl Game {
                 snapshot
             },
             region,
-            source_region_instance: if matches!(c.definition.as_str(), "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052") {
+            source_region_instance: if matches!(c.definition.as_str(), "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC095") {
                 region.and_then(|r| self.regions.get(r)).filter(|r| !r.vacant).map(|r| r.card.id.clone())
             } else { None },
             attachment_host_instance: (matches!(c.definition.as_str(), "JC090" | "WM038") || rules::definition(&c.definition)
@@ -1363,6 +1363,7 @@ impl Game {
         self.validate_wm038_frame(&frame)?;
         self.validate_jz35_frame(&frame)?;
         self.validate_jc052_frame(&frame)?;
+        self.validate_jc095_frame(&frame)?;
         self.validate_gray_expansion_frame(&frame)?;
         self.validate_gray_lock_frame(&frame)?;
         self.validate_jz22_frame(&frame)?;
@@ -1377,6 +1378,7 @@ impl Game {
             frame.cursor += 1;
             match step.op {
                 Op::JC052DestroyOtherOriginalRegionCharacters => self.jc052_destroy_others(&frame),
+                Op::JC095ConvertEnemyInfluenceInOriginalRegion => self.jc095_convert_enemy_influence(&frame),
                 Op::JZ35SacrificeReturnControlledHosts => self.jz35_resolve(&frame)?,
                 Op::WM038AddOneTimeToOriginalHost => self.wm038_add_time(&frame),
                 Op::WM023PutUniqueMageOrVampireFromHand => return self.wm023_start(frame),

@@ -9,10 +9,10 @@ const digest=v=>createHash('sha256').update(JSON.stringify(canonical(v))).digest
 const spec=json('docs/factions/card-specifications.json').cards.JC060,pool=json('rust-game/data/cards.json');
 test('JC060 preserves the complete accepted 140-card baseline, decks and metadata',()=>{
  const {cards,engineVersion,cardPoolVersion,...metadata}=pool;
- assert.equal(cards.length,141);assert.equal(new Set(cards.map(c=>c.id)).size,141);
- assert.equal(digest(cards.filter(c=>c.id!=='JC060')),'fb7b098df40bf6db04df91ef6480e037af535acf37c44c25daa50bcd33345a75');
+ assert.equal(cards.length,142);assert.equal(new Set(cards.map(c=>c.id)).size,142);
+ assert.equal(digest(cards.filter(c=>!['JC060','JC095'].includes(c.id))),'fb7b098df40bf6db04df91ef6480e037af535acf37c44c25daa50bcd33345a75');
  assert.equal(digest(metadata),'a0ca39bf9ba052ac13c2e64e7698bb1d5f051d38f5a75a380d54424811a357f0');
- assert.equal(engineVersion,'rust-v0.2.75-jc060-occult-adviser-candidate');assert.equal(cardPoolVersion,'limited-v2.68-jc060-occult-adviser-candidate');
+ assert.equal(engineVersion,'rust-v0.2.76-jc095-influence-conversion-candidate');assert.equal(cardPoolVersion,'limited-v2.69-jc095-influence-conversion-candidate');
 });
 test('JC060 complete printed fields and continuous text match pinned060/135 original',()=>{
  assert.equal(digest({fields:spec.fields,sourceVerification:spec.sourceVerification,edition:spec.edition}),'fbe71295b4a88c02f5b08db8076ca72c4a737fd0a51005e44e03e59a20f4daed');
@@ -24,5 +24,5 @@ test('JC060 complete printed fields and continuous text match pinned060/135 orig
 });
 test('JC060 public scan is the byte-identical original and existing scans remain valid',()=>{
  const original=read(spec.sourceVerification.imagePath);assert.equal(createHash('sha256').update(original).digest('hex'),spec.sourceVerification.imageSha256);
- assert.deepEqual(read('web/public/cards/JC060.jpg'),original);const r=validateAdmittedScans();assert.equal(r.checkedCards,141);assert.equal(r.manifestEntries,152);
+ assert.deepEqual(read('web/public/cards/JC060.jpg'),original);const r=validateAdmittedScans();assert.equal(r.checkedCards,142);assert.equal(r.manifestEntries,153);
 });

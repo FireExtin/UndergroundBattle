@@ -8,6 +8,7 @@ const versions=new Map([
   ['rust-v0.2.73-jc052-original-region-candidate','limited-v2.66-jc052-original-region-candidate'],
   ['rust-v0.2.74-jc037-hidden-investigation-candidate','limited-v2.67-jc037-hidden-investigation-candidate'],
   ['rust-v0.2.75-jc060-occult-adviser-candidate','limited-v2.68-jc060-occult-adviser-candidate'],
+  ['rust-v0.2.76-jc095-influence-conversion-candidate','limited-v2.69-jc095-influence-conversion-candidate'],
 ]);
 assert(versions.has(catalog.engineVersion),'Build an explicitly supported current ABI first.');
 assert.equal(catalog.cardPoolVersion,versions.get(catalog.engineVersion));

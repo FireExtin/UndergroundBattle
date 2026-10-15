@@ -1,4 +1,4 @@
-// Prepared actual Native75 cases; local workerd/D1, not browser or online play.
+// Prepared actual Native76 cases; local workerd/D1, not browser or online play.
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {mkdtempSync,readFileSync,readdirSync,rmSync} from 'node:fs';
@@ -10,7 +10,7 @@ import {routeKernels} from '../src/kernel-router.mjs';
 import {RoomStore} from '../src/store.mjs';
 import {RoomService,digest} from '../src/service.mjs';
 abi.initSync({module:readFileSync('generated/hegemony_wasm_bg.wasm')});
-const fixture=JSON.parse(readFileSync(new URL('./fixtures/jc052-native-v075.json',import.meta.url)));
+const fixture=JSON.parse(readFileSync(new URL('./fixtures/jc052-native-v076.json',import.meta.url)));
 assert.deepEqual(JSON.parse(abi.catalog()),fixture.catalog);
 
 for(const row of fixture.cases) test(`JC052 ${row.name}: complete Native command, D1 reopen and original HTTP receipt`,async t=>{

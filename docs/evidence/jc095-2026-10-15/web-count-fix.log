@@ -1,0 +1,13 @@
+
+> undergroundbattle-web@0.1.0 test
+> vitest --run --maxWorkers=1 src/game/MSJC07Scan.test.jsx
+
+
+ RUN  v4.1.2 /workspace/UndergroundBattle/web
+
+
+ Test Files  1 passed (1)
+      Tests  4 passed (4)
+   Start at  06:06:01
+   Duration  1.79s (transform 197ms, setup 129ms, import 239ms, tests 814ms, environment 471ms)
+

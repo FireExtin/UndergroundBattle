@@ -8,10 +8,13 @@ catalog=json.loads(subprocess.check_output(['node','--input-type=module','-e',
 versions={
     'rust-v0.2.74-jc037-hidden-investigation-candidate':('74','limited-v2.67-jc037-hidden-investigation-candidate','0939eab8f0ac971fc375183315313f4459a4e489'),
     'rust-v0.2.75-jc060-occult-adviser-candidate':('75','limited-v2.68-jc060-occult-adviser-candidate','3d642f0c1e6e5ac021cd40560086df35638bfe4c'),
+    'rust-v0.2.76-jc095-influence-conversion-candidate':('76','limited-v2.69-jc095-influence-conversion-candidate','e53e8b017f0ec974c6cf3d8f446b6541771cf4a5'),
 }
 assert catalog['engineVersion'] in versions, 'Build an explicitly supported current ABI first.'
 suffix,expected_pool,source_baseline=versions[catalog['engineVersion']]
 assert catalog['cardPoolVersion']==expected_pool
+assert len(source_baseline)==40 and all(c in '0123456789abcdef' for c in source_baseline), \
+    'Set the exact completed ABI75 checkpoint commit before generating ABI76.'
 scenarios=[]
 for path in sorted(root.glob('*.json')):
     raw=path.read_bytes();row=json.loads(raw)

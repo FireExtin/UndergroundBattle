@@ -1,0 +1,9 @@
+   Compiling hegemony-server v0.1.0 (/workspace/UndergroundBattle/rust-game)
+    Finished `test` profile [unoptimized] target(s) in 26.82s
+     Running unittests src/lib.rs (/workspace/undergroundbattle-build/target/debug/deps/hegemony_server-fc575c20deac8fce)
+
+running 1 test
+test msjc07_tests::msjc07_original_whole_card_and_finite_existing_search_program ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 1072 filtered out; finished in 0.02s
+
