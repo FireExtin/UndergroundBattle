@@ -1,0 +1,468 @@
+{
+  "scope": "Fresh Native77 exports compared byte-for-byte with preserved ABI77 WIP inputs; full regression still running",
+  "nativeRoomScenarios": 37,
+  "invalidStates": 55,
+  "matched": 92,
+  "entries": [
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/native-room/aura-loss-before-next-seat.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/native-room/aura-loss-before-next-seat.json",
+      "sha256": "dc119d60351421100eb0b035bd677eecff5871a9dead002c9cfee58b9b0832d8"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/native-room/choose-self-among-others.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/native-room/choose-self-among-others.json",
+      "sha256": "b777018612562a46889f0f6332095213b03bdc09b82681be1b25ce1714acc440"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/native-room/combat-exhausted.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/native-room/combat-exhausted.json",
+      "sha256": "d72063010913993ca7f3ac7809d16cdeadaaea096173717bcf1fa1d00d0ee62f"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/native-room/combat-hidden.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/native-room/combat-hidden.json",
+      "sha256": "e13445820dfc56a25c4dcf2ef3307fd5a47436c643fb996b1fddc716a5277ddd"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/native-room/combat-kill-two.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/native-room/combat-kill-two.json",
+      "sha256": "e85b9f02c33b56e9b0ef35c75b173627a15f3d13ee2f96eb084eae9a027e8f1f"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/native-room/combat-other-region.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/native-room/combat-other-region.json",
+      "sha256": "0dc3cf4956b6b697b113a4215b69c34f86e911f14ae0a47ee7151a7a8bfb7ed8"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/native-room/combat-two-sources.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/native-room/combat-two-sources.json",
+      "sha256": "63cb1ed03bf385a1b00b2c84c4ffb240a28a9a3b114320e56606ca7dcc7fa31f"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/native-room/conceal-no-trigger.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/native-room/conceal-no-trigger.json",
+      "sha256": "0ee58b51c8e36012c125cfaa6b4de7c53562e59348d52b2d6379b1735deca843"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/native-room/continuation-container-reference.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/native-room/continuation-container-reference.json",
+      "sha256": "618814738f0b2895ea5fceee99eda52056572ae577d5ea597eb9064913cb27c3"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/native-room/control-source-sacrifice-restores-next-seat.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/native-room/control-source-sacrifice-restores-next-seat.json",
+      "sha256": "61fbdd95e05fe385454feab1739afbde2e186a70765f43f6739d8248418170ee"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/native-room/current-control-owner-graves.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/native-room/current-control-owner-graves.json",
+      "sha256": "8593f6202ae13435de88446600b1685d2f2639e4e4943012c826f9f437caf50d"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/native-room/death-callbacks-after-all-seats.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/native-room/death-callbacks-after-all-seats.json",
+      "sha256": "3205741bd25a913ea481d194ea5b74a772bc2245d62879aea7015bda5c713be3"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/native-room/deploy-no-trigger.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/native-room/deploy-no-trigger.json",
+      "sha256": "ea227ad82c13a8696bfcd7bcebcb31c527861d5b1378d3ac8282db2ccc277d18"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/native-room/duel-seat-zero-first.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/native-room/duel-seat-zero-first.json",
+      "sha256": "d67145be158196a1b8e4604541ccfd164bd9bc7d0a187b0a7b19a291c6c30292"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/native-room/duplicate-frame-reference.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/native-room/duplicate-frame-reference.json",
+      "sha256": "75830cd095e00c5d8212f3a424c201335b04e35c2b2d5bfe1dbef66dd54db219"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/native-room/illegal-and-stale-choices.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/native-room/illegal-and-stale-choices.json",
+      "sha256": "4e4b0cdd4a1d203eafb38b79a60736b104293683a928963b7266ef480252c72f"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/native-room/paid-entry-guard-reference.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/native-room/paid-entry-guard-reference.json",
+      "sha256": "b8f489e0fdfadf8b79b97a45737208fc7cd4209c0854a72a4e449fca1d4a47b6"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/native-room/paid-seat0.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/native-room/paid-seat0.json",
+      "sha256": "6eae5c04f31d6e62171ea6cb0702cc8f763b3d7ce6662f92d0b48d487425567f"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/native-room/paid-seat1.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/native-room/paid-seat1.json",
+      "sha256": "dfa7a9be91457dd76fd1f9ddc4fb882994f9527610d3fa716e09e8db59940022"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/native-room/paid-seat2.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/native-room/paid-seat2.json",
+      "sha256": "b8b678efb2972b57715528e4e7a3f2cf9135a8887c706a07f5874ebf06afb566"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/native-room/paid-seat3.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/native-room/paid-seat3.json",
+      "sha256": "a0a95e6dd9ab7ced7515e53fd23aaca3a985e49d5336ed29409c0de38b3b1492"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/native-room/pending-guard-reference.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/native-room/pending-guard-reference.json",
+      "sha256": "bd0836dd84a203bec61e40d8f4cb0408a98e6b1647e7e91b8917dcef2b516133"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/native-room/pre-eliminated-seat-skip.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/native-room/pre-eliminated-seat-skip.json",
+      "sha256": "cd5fe735b5040b0a4b0cc677b0ef06c070c88ef0a3a998d37dac066951a8a6a8"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/native-room/prepared-florence-free-reveal.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/native-room/prepared-florence-free-reveal.json",
+      "sha256": "b1881eff4d8adbc9fa6884f13a9c6cc4bd322b3c4324fe6f2309d943dd10307b"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/native-room/prepared-granted-glory.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/native-room/prepared-granted-glory.json",
+      "sha256": "7f97ee664aec759d289b394d888da143435677de5ff493fca0842403633354a2"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/native-room/prepared-granted-renown.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/native-room/prepared-granted-renown.json",
+      "sha256": "ac20940558e373645299a3204084df1ff01ce434e6a3918b856d219e6c7f8d10"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/native-room/prepared-leader-paused-continuation.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/native-room/prepared-leader-paused-continuation.json",
+      "sha256": "db5ce0b11a45a8e543f80c49da5290d56daece9849ba68c667d595f106275ecf"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/native-room/prepared-response-source-destroyed.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/native-room/prepared-response-source-destroyed.json",
+      "sha256": "50973d8b4143b844f6797e0b9ae60107927baad91540caa5e42be87f1e99c4f4"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/native-room/prepared-source-control-change.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/native-room/prepared-source-control-change.json",
+      "sha256": "d2b0bafcb72cbda35a15f8fb623f4e80bf495b44bfe7efc84c95f7c357bdc33f"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/native-room/response-source-bounce.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/native-room/response-source-bounce.json",
+      "sha256": "d23a9953caf7f088e0c0fccf39465d1fd53c8cb031a0cb82087df0e2441fcc71"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/native-room/response-source-hide.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/native-room/response-source-hide.json",
+      "sha256": "a1836ef095904d8cf4e50830b31b9a7b347a85aecc642d38c2f8d07fa1033b46"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/native-room/reveal-extra-target.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/native-room/reveal-extra-target.json",
+      "sha256": "2e1bf6d27a7077a2e41ae52be195e37d1f8e0c053bf4bbb3cda7001a72c91cd1"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/native-room/reveal-low-assets.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/native-room/reveal-low-assets.json",
+      "sha256": "9912139379b28589b0822b3b7702de2adc2a6493d854bdaa936bd71e1ba8e7bb"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/native-room/reveal-no-red-loyalty.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/native-room/reveal-no-red-loyalty.json",
+      "sha256": "5b1e43f9512b39eca0dc09b1e9f0ef6d8bdcb7de856996e1e4acec112aa808c2"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/native-room/sacrifice-bypasses-protection.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/native-room/sacrifice-bypasses-protection.json",
+      "sha256": "31624e61e6609f109617ed07704f56f52782ea24c53301932caef84981fd657a"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/native-room/self-sacrifice-continues.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/native-room/self-sacrifice-continues.json",
+      "sha256": "84af8acddf6323aefb26bdec18f50f50cfe4cf2f0c6e39307bfbc6882141b00d"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/native-room/two-real-reveals-independent-frames.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/native-room/two-real-reveals-independent-frames.json",
+      "sha256": "cfe67d0a3735cb3cd98a681f78f830ecb7a0bf5fbafa7f4bab348eda064477b2"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/invalid-room/effect-copy-with-unrelated-sacrifice-pending.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/invalid-room/effect-copy-with-unrelated-sacrifice-pending.json",
+      "sha256": "ec4a390d07f04cf8d87b4e0b1f5f1c63e75320b101efc6ee38d28703aafa1439"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/invalid-room/entry-0.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/invalid-room/entry-0.json",
+      "sha256": "0c08ddfd90a853bd5954798b70700749a7f66a25282546e8da82502ec4b10eb3"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/invalid-room/entry-1.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/invalid-room/entry-1.json",
+      "sha256": "5863e181a77bc2b90fc184129fd9d7a86809df787c07ca550cc4e32de56d5b93"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/invalid-room/entry-2.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/invalid-room/entry-2.json",
+      "sha256": "644d446e1c0f05be0aee8fbd076b06784a86e16dd2271a2ffb29d0ce0cbc787c"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/invalid-room/entry-3.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/invalid-room/entry-3.json",
+      "sha256": "a01d34ed26b8176966765f8d18a3cbfac5c7295ea0ac96e65215186199902d8f"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/invalid-room/entry-4.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/invalid-room/entry-4.json",
+      "sha256": "1059b7ff64b71f076d9f73417ba0c37f827c3227c42a48fbb1b5f4314a208bcb"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/invalid-room/entry-5.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/invalid-room/entry-5.json",
+      "sha256": "af427e8d7fceb43ecf6167596476dd2314550efc570a81fefc193fd40d0412cc"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/invalid-room/entry-6.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/invalid-room/entry-6.json",
+      "sha256": "ebbba1cf20fb65675c0c2d83863adedb113d1b3ca943974b833527f1cfb167fd"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/invalid-room/entry-7.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/invalid-room/entry-7.json",
+      "sha256": "9d7d117b31acf69f635d0bd7dec8d4a3bb02ecc1b8f64841c75b6b787ad51cbe"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/invalid-room/forged-optional-declaration.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/invalid-room/forged-optional-declaration.json",
+      "sha256": "79f54e2d9d0d724ecbdb5843fe7b20cffb0015e0d68fb0f4b50449eb6db5fb2d"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/invalid-room/immediate-bypass.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/invalid-room/immediate-bypass.json",
+      "sha256": "e662ebd69b116baef532782b49357c1a07ff1070bf14525c9803fafe8e0b9907"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/invalid-room/leader-pause-without-required-recheck.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/invalid-room/leader-pause-without-required-recheck.json",
+      "sha256": "065f6df6551efd7c897156540259e4debe85549ffc47fb5a911a178d49188e7f"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/invalid-room/mandatory-trigger-shell-without-frame.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/invalid-room/mandatory-trigger-shell-without-frame.json",
+      "sha256": "f20622fa490e2a7760c297402df9e0616e4aa4eaf1067fa1e4c7d09d0678383f"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/invalid-room/orphan-accepted-effect-without-forced-pause.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/invalid-room/orphan-accepted-effect-without-forced-pause.json",
+      "sha256": "66fb2678c1fa2e9ae9147dfb0cc1067903cb60f9abce3fe1654d104a2cf7a5bd"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/invalid-room/pending-0.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/invalid-room/pending-0.json",
+      "sha256": "a0c0e6f5eb26ddcb3be3192559dfa151b617133ca4ebbd91cffe48a2bea439d0"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/invalid-room/pending-1.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/invalid-room/pending-1.json",
+      "sha256": "46048f0a9839c1359246b42a6c0e4cab61647187ff93daba897546ae5e093601"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/invalid-room/pending-10.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/invalid-room/pending-10.json",
+      "sha256": "a10abe5e1e1c8fb8298f868e5dfa55abaae5c578e2eefb3bd8cd9cf1cabae824"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/invalid-room/pending-11.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/invalid-room/pending-11.json",
+      "sha256": "349cfbb520c2fc2e652db45ab04031689cbd0609931681e00aafa49e9036c25f"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/invalid-room/pending-12.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/invalid-room/pending-12.json",
+      "sha256": "16224ce79589a4dbc56750d9d94a7508e5a9592fc72dd8f138a983f34a4f45d5"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/invalid-room/pending-13.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/invalid-room/pending-13.json",
+      "sha256": "d98fcbc2b9e69a82758ef36031ff1d266bc9dd04e80b1f1c21807967b76e361b"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/invalid-room/pending-14.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/invalid-room/pending-14.json",
+      "sha256": "e626b0425c4a9257722ac770758383e6fbca3f2b6fd2be07a87ec37fcb1d29fa"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/invalid-room/pending-15.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/invalid-room/pending-15.json",
+      "sha256": "bf2ebd37fbc5ca164d2d1b32af216610acadbb753df1d0782afb9036f7eda952"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/invalid-room/pending-16.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/invalid-room/pending-16.json",
+      "sha256": "639e29a972d9b4b2b3495c3dd1f505aca5850fd734a7fa278a0dc44e38cc89df"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/invalid-room/pending-17.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/invalid-room/pending-17.json",
+      "sha256": "15aa11ee6339d1ae55ea36a3156d1cf2fdaba2a60db0722082b43cba3a5b1a1c"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/invalid-room/pending-18.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/invalid-room/pending-18.json",
+      "sha256": "ea3036ad6a819bb0ad8b7382393c93b3e24ce7459a4da5c75360f8d10c06cf38"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/invalid-room/pending-2.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/invalid-room/pending-2.json",
+      "sha256": "97e291418f67ef4d010b75efd4bdc881eb240d4d51757315a6bf25ac4e0b9617"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/invalid-room/pending-3.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/invalid-room/pending-3.json",
+      "sha256": "59674a4ced4f046f961fffa97ffa8b3068b1632dbc85ff929841d0013a23b8ce"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/invalid-room/pending-4.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/invalid-room/pending-4.json",
+      "sha256": "796eafd8b419474bb80bea7b866e110be082b767650e83e09142854240745a5e"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/invalid-room/pending-5.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/invalid-room/pending-5.json",
+      "sha256": "211096cb1769a038c6353599e918de0928f05e3a0258ab848134c9407ff3dc17"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/invalid-room/pending-6.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/invalid-room/pending-6.json",
+      "sha256": "c3cb4b1ba8f5d69dff6adadc1bc4e35ec5395f0a321ea0ee6c2a9b977aa80c55"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/invalid-room/pending-7.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/invalid-room/pending-7.json",
+      "sha256": "4354ed5a18ee41b15706b583c4a4c0892705643e700e7204b997fbb60e9a6455"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/invalid-room/pending-8.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/invalid-room/pending-8.json",
+      "sha256": "f813d162b082b02b3f863db4b10f98062b0a2d4eec76a05a6bf6b603c96536f7"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/invalid-room/pending-9.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/invalid-room/pending-9.json",
+      "sha256": "9391b2fb6423377009d82cc25608b15fa8c8731aeb834f8834e488c5fd94ca94"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/invalid-room/same-frame-in-pending-and-effect.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/invalid-room/same-frame-in-pending-and-effect.json",
+      "sha256": "bd896fdcab17022e7a5302e25e38de79a99903f4326b7f98ed9486940e49ebdc"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/invalid-room/same-frame-in-stack-and-effect.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/invalid-room/same-frame-in-stack-and-effect.json",
+      "sha256": "0a5e5b2c17dbd0044317010bbb23ce11d7fe3a2bf0ac162a0cf702da925f088e"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/invalid-room/same-frame-in-two-effects.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/invalid-room/same-frame-in-two-effects.json",
+      "sha256": "813a305b9b28ef904c88214f7e915bc92415729e5a3d072e25c499f6ba5a6e21"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/invalid-room/stack-0.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/invalid-room/stack-0.json",
+      "sha256": "09279dbd9459485bfcb0502a0517112f80a36f35841d957f68c2b995d1912730"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/invalid-room/stack-1.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/invalid-room/stack-1.json",
+      "sha256": "e4011c86b6de95b41ca2e809ac21c01bf111b84f18896bf02e20d9906daad7a2"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/invalid-room/stack-10.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/invalid-room/stack-10.json",
+      "sha256": "d06150fc34987a2e077d543f9c972abe2b10f2acbf700488539a14e03a1f4764"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/invalid-room/stack-11.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/invalid-room/stack-11.json",
+      "sha256": "15746b7d36c0f71c53ab11cb53b71ad47f77969efb61af56ffe864893eb56ccb"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/invalid-room/stack-12.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/invalid-room/stack-12.json",
+      "sha256": "abccaee781ded61eecaa3b0bcbd671d25c651fddaf2094103756c2016df37817"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/invalid-room/stack-13.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/invalid-room/stack-13.json",
+      "sha256": "08376b4cf5c5af0be75ea438a19c565e31b8dac0e3ec05b40fe9c061c6b9b07b"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/invalid-room/stack-14.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/invalid-room/stack-14.json",
+      "sha256": "23d71d5bac96d82d4ba11ed0a08b34db3fce0ed3cc675c04c21adaa80bd8b4c9"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/invalid-room/stack-15.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/invalid-room/stack-15.json",
+      "sha256": "2124f8f0f8f1f79d664c2299af2b7d7d0f3a69efe1f9856abc1907a2d08b163b"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/invalid-room/stack-16.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/invalid-room/stack-16.json",
+      "sha256": "2dad21dc42c07379ec3e1c90f03c2ae67edf8dac79898cb94a8e62b97ebe4b7a"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/invalid-room/stack-2.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/invalid-room/stack-2.json",
+      "sha256": "5cbd752d718ce8c86cb460a92cc64acfd7f049dc4d78e3e7a0c0bc98b3173414"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/invalid-room/stack-3.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/invalid-room/stack-3.json",
+      "sha256": "0ecda9ccd0881184868aae201ad58abc60f1230eb28169bee9b167321d7d8aae"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/invalid-room/stack-4.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/invalid-room/stack-4.json",
+      "sha256": "8f7762bb4adb55531028ac13dfaab4830aa80d3a91516adf9c0127e3adc1d24e"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/invalid-room/stack-5.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/invalid-room/stack-5.json",
+      "sha256": "537b71e1dfd9979559f5519bb919deb19b7e1733437d65614aa40f6ed953b97e"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/invalid-room/stack-6.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/invalid-room/stack-6.json",
+      "sha256": "7e3da0f815b04ba900e8e4ea9935f499a4b2bcd72001df2419aded2367917e07"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/invalid-room/stack-7.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/invalid-room/stack-7.json",
+      "sha256": "40b99ad91e415ff872d64c5fdb840fc5f7bac54feb09dbe0de1b9b2cf813b222"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/invalid-room/stack-8.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/invalid-room/stack-8.json",
+      "sha256": "b69b210789476edeceefcb525bb442a9f1c9c81cb9ad59382c8782c30b521374"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/invalid-room/stack-9.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/invalid-room/stack-9.json",
+      "sha256": "7ee344ed367094ba06f74ab147464325b530282b49ea915ef87971960bec1f49"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/invalid-room/two-paused-frames-with-different-ids.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/invalid-room/two-paused-frames-with-different-ids.json",
+      "sha256": "294e30a15aaf7aa41f32a2a365fb92d12325fecdef0fd1ee3415af2dff00ea5a"
+    },
+    {
+      "currentExport": "/workspace/serial-evidence-20261015/jc046/invalid-room/unrelated-effect-before-paused-continuation.json",
+      "preservedSource": "docs/evidence/jc046-2026-10-15/invalid-room/unrelated-effect-before-paused-continuation.json",
+      "sha256": "0976db3da82ee0c4ff27793f720ed0a484dbd929c48c4412879fd18a2542be9c"
+    }
+  ]
+}

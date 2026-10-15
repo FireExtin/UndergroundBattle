@@ -1,0 +1,1575 @@
+
+> undergroundbattle-web@0.1.0 test
+> vitest --run --maxWorkers=1
+
+
+ RUN  v4.1.2 /workspace/UndergroundBattle/web
+
+ ❯ src/game/RecoveryReviewRegression.test.tsx (9 tests | 6 failed) 499ms
+     × retires all rejected actor records on invalid_seat_token (401) from a read path and permits recovery of the surviving actors 19ms
+     × retires all rejected actor records on room_not_found (404) from a read path and permits recovery of the surviving actors 10ms
+     × retires all rejected actor records on unsupported_room_version (410) from a read path and permits recovery of the surviving actors 11ms
+     × retires all rejected actor records on invalid_seat_token (401) from a command path and permits recovery of the surviving actors 14ms
+     × retires all rejected actor records on room_not_found (404) from a command path and permits recovery of the surviving actors 148ms
+     × retires all rejected actor records on unsupported_room_version (410) from a command path and permits recovery of the surviving actors 8ms
+ ❯ src/game/BoundedEntrySearch.test.jsx (13 tests | 1 failed) 1847ms
+     × BQ104 accepts exactly one employee and keeps zero and a second employee unavailable 314ms
+ ❯ src/game/XQ25Integration.test.jsx (9 tests | 1 failed) 7915ms
+   × reads the complete pinned XQ25 face with original temporary investigation and no invented tapping ability 5566ms
+ ❯ src/game/DeckSealSearch.test.jsx (9 tests | 2 failed) 1386ms
+   × xq44Choice requires one and submits the selected actual instance into candidate WASM 512ms
+   × jz02Choice requires one and submits the selected actual instance into candidate WASM 200ms
+ ❯ src/game/JC052Integration.test.jsx (10 tests | 1 failed) 2112ms
+   × 'entry-decline' restores the real choice or paid command and sends its complete Native payload 150ms
+ ❯ src/game/JZ49Slow.test.jsx (9 tests | 4 failed) 827ms
+   × selects the actual optional player target p0 and submits one native choose action 321ms
+   × selects the actual optional player target p1 and submits one native choose action 101ms
+   × selects the actual optional player target p2 and submits one native choose action 105ms
+   × selects the actual optional player target p3 and submits one native choose action 88ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 15 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/game/BoundedEntrySearch.test.jsx > fixed printed entry searches; actual Native layouts and current WASM > BQ104 accepts exactly one employee and keeps zero and a second employee unavailable
+AssertionError: expected "vi.fn()" to be called once with arguments: [ { choiceId: 'i245', …(4) } ]
+
+Received:
+
+  1st vi.fn() call:
+
+@@ -3,9 +3,9 @@
+      "choiceId": "i245",
+      "id": "choose:i245",
+      "kind": "choose",
+      "label": "确认选择",
+      "selected": [
+-       "i239",
++       "i241",
+      ],
+    },
+  ]
+
+
+Number of calls: 1
+
+ ❯ src/game/BoundedEntrySearch.test.jsx:31:18
+     29|   fireEvent.click(container.querySelector(`[data-choice-option="${seco…
+     30|   fireEvent.click(screen.getByRole('button',{name:'确认选择'}));
+     31|   expect(submit).toHaveBeenCalledExactlyOnceWith({...action(v),choiceI…
+       |                  ^
+     32|  });
+     33|  it.each(['employeeEmpty','passersEmpty'])('%s has an enabled explicit…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/15]⎯
+
+ FAIL  src/game/DeckSealSearch.test.jsx > xq44Choice requires one and submits the selected actual instance into candidate WASM
+Error: expect(element).toBeDisabled()
+
+Received element is not disabled:
+  <button
+  aria-describedby="i249-selection-hint"
+  aria-pressed="false"
+  class="hg-choice-option "
+  data-choice-candidate-number="2"
+  data-choice-option="i241"
+  type="button"
+/>
+ ❯ src/game/DeckSealSearch.test.jsx:21:83
+     19|  expect(screen.getByRole('button',{name:'确认选择'})).toBeDisabled();expec…
+     20|  const [first,second]=view.pendingChoice.options;fireEvent.click(conta…
+     21|  if(second)expect(container.querySelector(`[data-choice-option="${seco…
+       |                                                                                   ^
+     22|  fireEvent.click(screen.getByRole('button',{name:'确认选择'}));expect(tran…
+     23|  const next=JSON.parse(wasm.view(state,0));expect(next.sealedCards).to…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/15]⎯
+
+ FAIL  src/game/DeckSealSearch.test.jsx > jz02Choice requires one and submits the selected actual instance into candidate WASM
+Error: expect(element).toBeDisabled()
+
+Received element is not disabled:
+  <button
+  aria-describedby="i246-selection-hint"
+  aria-pressed="false"
+  class="hg-choice-option "
+  data-choice-candidate-number="2"
+  data-choice-option="i241"
+  type="button"
+/>
+ ❯ src/game/DeckSealSearch.test.jsx:21:83
+     19|  expect(screen.getByRole('button',{name:'确认选择'})).toBeDisabled();expec…
+     20|  const [first,second]=view.pendingChoice.options;fireEvent.click(conta…
+     21|  if(second)expect(container.querySelector(`[data-choice-option="${seco…
+       |                                                                                   ^
+     22|  fireEvent.click(screen.getByRole('button',{name:'确认选择'}));expect(tran…
+     23|  const next=JSON.parse(wasm.view(state,0));expect(next.sealedCards).to…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/15]⎯
+
+ FAIL  src/game/JC052Integration.test.jsx > 'entry-decline' restores the real choice or paid command and sends its complete Native payload
+AssertionError: expected { kind: 'game', action: { …(3) } } to deeply equal { …(2) }
+
+- Expected
++ Received
+
+  {
+    "action": {
+      "choiceId": "i250",
+      "kind": "choose",
+-     "selected": [],
++     "selected": [
++       "accept",
++     ],
+    },
+    "kind": "game",
+  }
+
+ ❯ src/game/JC052Integration.test.jsx:49:103
+     47|   }
+     48|   expect(submit).toHaveBeenCalledOnce();
+     49|   const action=JSON.parse(JSON.stringify(actionForRoom(view,submit.moc…
+       |                                                                                                       ^
+     50|   const result=JSON.parse(abi.applyRoom(row.before,row.seat,JSON.strin…
+     51|   row.afterViews.forEach((v,seat)=>expect(JSON.parse(abi.view(result.s…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/15]⎯
+
+ FAIL  src/game/JZ49Slow.test.jsx > selects the actual optional player target p0 and submits one native choose action
+TestingLibraryElementError: Unable to find an accessible element with the role "button" and name "+P0"
+
+Here are the accessible roles:
+
+  region:
+
+  Name "待完成的选择":
+  [36m<section[39m
+    [33maria-label[39m=[32m"待完成的选择"[39m
+    [33mclass[39m=[32m"hg-choice"[39m
+    [33mdata-choice-id[39m=[32m"i245"[39m
+    [33mtabindex[39m=[32m"-1"[39m
+  [36m/>[39m
+
+  Name "选择选项，可滚动查看":
+  [36m<div[39m
+    [33maria-describedby[39m=[32m"i245-scroll-hint"[39m
+    [33maria-label[39m=[32m"选择选项，可滚动查看"[39m
+    [33mclass[39m=[32m"hg-choice-body"[39m
+    [33mrole[39m=[32m"region"[39m
+    [33mtabindex[39m=[32m"0"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  status:
+
+  Name "":
+  [36m<span[39m
+    [33maria-atomic[39m=[32m"true"[39m
+    [33mclass[39m=[32m"hg-choice-tag"[39m
+    [33mrole[39m=[32m"status"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  heading:
+
+  Name "蹒跚行尸：进场触发：目标玩家牌库顶两张置墓":
+  [36m<h2 />[39m
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-choice-scroll-hint"[39m
+    [33mid[39m=[32m"i245-scroll-hint"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  button:
+
+  Name "P0":
+  [36m<button[39m
+    [33maria-describedby[39m=[32m"i245-selection-hint"[39m
+    [33maria-pressed[39m=[32m"false"[39m
+    [33mclass[39m=[32m"hg-choice-option "[39m
+    [33mdata-choice-option[39m=[32m"p0"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "P1":
+  [36m<button[39m
+    [33maria-describedby[39m=[32m"i245-selection-hint"[39m
+    [33maria-pressed[39m=[32m"false"[39m
+    [33mclass[39m=[32m"hg-choice-option "[39m
+    [33mdata-choice-option[39m=[32m"p1"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "P2":
+  [36m<button[39m
+    [33maria-describedby[39m=[32m"i245-selection-hint"[39m
+    [33maria-pressed[39m=[32m"false"[39m
+    [33mclass[39m=[32m"hg-choice-option "[39m
+    [33mdata-choice-option[39m=[32m"p2"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "P3":
+  [36m<button[39m
+    [33maria-describedby[39m=[32m"i245-selection-hint"[39m
+    [33maria-pressed[39m=[32m"false"[39m
+    [33mclass[39m=[32m"hg-choice-option "[39m
+    [33mdata-choice-option[39m=[32m"p3"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "跳过此选择":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-button hg-button-quiet"[39m
+  [36m/>[39m
+
+  Name "确认选择":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-button hg-button-primary"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  strong:
+
+  Name "":
+  [36m<strong[39m
+    [33mclass[39m=[32m"hg-choice-option-label"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<strong[39m
+    [33mclass[39m=[32m"hg-choice-option-label"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<strong[39m
+    [33mclass[39m=[32m"hg-choice-option-label"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<strong[39m
+    [33mclass[39m=[32m"hg-choice-option-label"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<section[39m
+      [33maria-label[39m=[32m"待完成的选择"[39m
+      [33mclass[39m=[32m"hg-choice"[39m
+      [33mdata-choice-id[39m=[32m"i245"[39m
+      [33mtabindex[39m=[32m"-1"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"hg-choice-heading"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"hg-section-title"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"hg-eyebrow"[39m
+          [36m>[39m
+            [0m轮到你选择[0m
+          [36m</span>[39m
+          [36m<span[39m
+            [33maria-atomic[39m=[32m"true"[39m
+            [33mclass[39m=[32m"hg-choice-tag"[39m
+            [33mrole[39m=[32m"status"[39m
+          [36m>[39m
+            [0m已选 0 / 1[0m
+          [36m</span>[39m
+        [36m</div>[39m
+        [36m<h2>[39m
+          [0m蹒跚行尸：进场触发：目标玩家牌库顶两张置墓[0m
+        [36m</h2>[39m
+        [36m<p>[39m
+          [0m选择符合数量限制的选项，然后确认。[0m
+        [36m</p>[39m
+        [36m<p[39m
+          [33mclass[39m=[32m"hg-choice-scroll-hint"[39m
+          [33mid[39m=[32m"i245-scroll-hint"[39m
+        [36m>[39m
+          [0m先查看选项，再确认你的选择。[0m
+          [0m 选项区可上下滚动，确认按钮始终在下方。[0m
+          [36m<span[39m
+            [33mclass[39m=[32m"hg-choice-keyboard-hint"[39m
+          [36m>[39m
+            [0m方向键浏览 · Home / End 首尾 · Enter / 空格选择[0m
+          [36m</span>[39m
+        [36m</p>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33maria-describedby[39m=[32m"i245-scroll-hint"[39m
+        [33maria-label[39m=[32m"选择选项，可滚动查看"[39m
+        [33mclass[39m=[32m"hg-choice-body"[39m
+        [33mrole[39m=[32m"region"[39m
+        [33mtabindex[39m=[32m"0"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"hg-choice-options"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-choice-option-entry"[39m
+          [36m>[39m
+            [36m<button[39m
+              [33maria-describedby[39m=[32m"i245-selection-hint"[39m
+              [33maria-pressed[39m=[32m"false"[39m
+              [33mclass[39m=[32m"hg-choice-option "[39m
+              [33mdata-choice-option[39m=[32m"p0"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mclass[39m=[32m"hg-choice-selection-state"[39m
+              [36m>[39m
+                [36m<span[39m
+                  [33mclass[39m=[32m"hg-choice-check"[39m
+                [36m>[39m
+                  [0m+[0m
+                [36m</span>[39m
+                [36m<span>[39m
+                  [0m点击选择[0m
+                [36m</span>[39m
+              [36m</span>[39m
+              [36m<strong[39m
+                [33mclass[39m=[32m"hg-choice-option-label"[39m
+              [36m>[39m
+                [0mP0[0m
+              [36m</strong>[39m
+            [36m</button>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-choice-option-entry"[39m
+          [36m>[39m
+            [36m<button[39m
+              [33maria-describedby[39m=[32m"i245-selection-hint"[39m
+              [33maria-pressed[39m=[32m"false"[39m
+              [33mclass[39m=[32m"hg-choice-option "[39m
+              [33mdata-choice-option[39m=[32m"p1"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mclass[39m=[32m"hg-choice-selection-state"[39m
+              [36m>[39m
+                [36m<span[39m
+                  [33mclass[39m=[32m"hg-choice-check"[39m
+                [36m>[39m
+                  [0m+[0m
+                [36m</span>[39m
+                [36m<span>[39m
+                  [0m点击选择[0m
+                [36m</span>[39m
+              [36m</span>[39m
+              [36m<strong[39m
+                [33mclass[39m=[32m"hg-choice-option-label"[39m
+              [36m>[39m
+                [0mP1[0m
+              [36m</strong>[39m
+            [36m</button>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-choice-option-entry"[39m
+          [36m>[39m
+            [36m<button[39m
+              [33maria-describedby[39m=[32m"i245-selection-hint"[39m
+              [33maria-pressed[39m=[32m"false"[39m
+              [33mclass[39m=[32m"hg-choice-option "[39m
+              [33mdata-choice-option[39m=[32m"p2"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mclass[39m=[32m"hg-choice-selection-state"[39m
+              [36m>[39m
+                [36m<span[39m
+                  [33mclass[39m=[32m"hg-choice-check"[39m
+                [36m>[39m
+                  [0m+[0m
+                [36m</span>[39m
+                [36m<span>[39m
+                  [0m点击选择[0m
+                [36m</span>[39m
+              [36m</span>[39m
+              [36m<strong[39m
+                [33mclass[39m=[32m"hg-choice-option-label"[39m
+              [36m>[39m
+                [0mP2[0m
+              [36m</strong>[39m
+            [36m</button>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-choice-option-entry"[39m
+          [36m>[39m
+            [36m<button[39m
+              [33maria-describedby[39m=[32m"i245-selection-hint"[39m
+              [33maria-pressed[39m=[32m"false"[39m
+              [33mclass[39m=[32m"hg-choice-option "[39m
+              [33mdata-choice-option[39m=[32m"p3"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mclass[39m=[32m"hg-choice-selection-state"[39m
+              [36m>[39m
+                [36m<span[39m
+                  [33mclass[39m=[32m"hg-choice-check"[39m
+                [36m>[39m
+                  [0m+[0m
+                [36m</span>[39m
+                [36m<span>[39m
+                  [0m点击选择[0m
+                [36m</span>[39m
+              [36m</span>[39m
+              [36m<strong[39m
+                [33mclass[39m=[32m"hg-choice-option-label"[39m
+              [36m>[39m
+                [0mP3[0m
+              [36m</strong>[39m
+            [36m</button>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"hg-choice-footer"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"hg-choice-summary"[39m
+        [36m>[39m
+          [0m请选择 0–1 项，或跳过。[0m
+          [36m<small[39m
+            [33mid[39m=[32m"i245-selection-hint"[39m
+          [36m>[39m
+            [0m再次点击已选项可取消；点击其他项可直接替换。[0m
+          [36m</small>[39m
+        [36m</span>[39m
+        [36m<div>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"hg-button hg-button-quiet"[39m
+          [36m>[39m
+            [0m跳过此选择[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"hg-button hg-button-primary"[39m
+          [36m>[39m
+            [0m确认选择[0m
+          [36m</button>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+    [36m</section>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ src/game/JZ49Slow.test.jsx:38:26
+     36|   render(<ChoicePanel choice={v.pendingChoice} action={action} definit…
+     37|     busy={false} onSubmit={submit} viewerId="p0" />);
+     38|   fireEvent.click(screen.getByRole('button', { name: `+P${seat}`, exac…
+       |                          ^
+     39|   fireEvent.click(screen.getByRole('button', { name: '确认选择' }));
+     40|   expect(submit).toHaveBeenCalledExactlyOnceWith({ ...action, choiceId…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/15]⎯
+
+ FAIL  src/game/JZ49Slow.test.jsx > selects the actual optional player target p1 and submits one native choose action
+TestingLibraryElementError: Unable to find an accessible element with the role "button" and name "+P1"
+
+Here are the accessible roles:
+
+  region:
+
+  Name "待完成的选择":
+  [36m<section[39m
+    [33maria-label[39m=[32m"待完成的选择"[39m
+    [33mclass[39m=[32m"hg-choice"[39m
+    [33mdata-choice-id[39m=[32m"i245"[39m
+    [33mtabindex[39m=[32m"-1"[39m
+  [36m/>[39m
+
+  Name "选择选项，可滚动查看":
+  [36m<div[39m
+    [33maria-describedby[39m=[32m"i245-scroll-hint"[39m
+    [33maria-label[39m=[32m"选择选项，可滚动查看"[39m
+    [33mclass[39m=[32m"hg-choice-body"[39m
+    [33mrole[39m=[32m"region"[39m
+    [33mtabindex[39m=[32m"0"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  status:
+
+  Name "":
+  [36m<span[39m
+    [33maria-atomic[39m=[32m"true"[39m
+    [33mclass[39m=[32m"hg-choice-tag"[39m
+    [33mrole[39m=[32m"status"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  heading:
+
+  Name "蹒跚行尸：进场触发：目标玩家牌库顶两张置墓":
+  [36m<h2 />[39m
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-choice-scroll-hint"[39m
+    [33mid[39m=[32m"i245-scroll-hint"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  button:
+
+  Name "P0":
+  [36m<button[39m
+    [33maria-describedby[39m=[32m"i245-selection-hint"[39m
+    [33maria-pressed[39m=[32m"false"[39m
+    [33mclass[39m=[32m"hg-choice-option "[39m
+    [33mdata-choice-option[39m=[32m"p0"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "P1":
+  [36m<button[39m
+    [33maria-describedby[39m=[32m"i245-selection-hint"[39m
+    [33maria-pressed[39m=[32m"false"[39m
+    [33mclass[39m=[32m"hg-choice-option "[39m
+    [33mdata-choice-option[39m=[32m"p1"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "P2":
+  [36m<button[39m
+    [33maria-describedby[39m=[32m"i245-selection-hint"[39m
+    [33maria-pressed[39m=[32m"false"[39m
+    [33mclass[39m=[32m"hg-choice-option "[39m
+    [33mdata-choice-option[39m=[32m"p2"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "P3":
+  [36m<button[39m
+    [33maria-describedby[39m=[32m"i245-selection-hint"[39m
+    [33maria-pressed[39m=[32m"false"[39m
+    [33mclass[39m=[32m"hg-choice-option "[39m
+    [33mdata-choice-option[39m=[32m"p3"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "跳过此选择":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-button hg-button-quiet"[39m
+  [36m/>[39m
+
+  Name "确认选择":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-button hg-button-primary"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  strong:
+
+  Name "":
+  [36m<strong[39m
+    [33mclass[39m=[32m"hg-choice-option-label"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<strong[39m
+    [33mclass[39m=[32m"hg-choice-option-label"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<strong[39m
+    [33mclass[39m=[32m"hg-choice-option-label"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<strong[39m
+    [33mclass[39m=[32m"hg-choice-option-label"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<section[39m
+      [33maria-label[39m=[32m"待完成的选择"[39m
+      [33mclass[39m=[32m"hg-choice"[39m
+      [33mdata-choice-id[39m=[32m"i245"[39m
+      [33mtabindex[39m=[32m"-1"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"hg-choice-heading"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"hg-section-title"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"hg-eyebrow"[39m
+          [36m>[39m
+            [0m轮到你选择[0m
+          [36m</span>[39m
+          [36m<span[39m
+            [33maria-atomic[39m=[32m"true"[39m
+            [33mclass[39m=[32m"hg-choice-tag"[39m
+            [33mrole[39m=[32m"status"[39m
+          [36m>[39m
+            [0m已选 0 / 1[0m
+          [36m</span>[39m
+        [36m</div>[39m
+        [36m<h2>[39m
+          [0m蹒跚行尸：进场触发：目标玩家牌库顶两张置墓[0m
+        [36m</h2>[39m
+        [36m<p>[39m
+          [0m选择符合数量限制的选项，然后确认。[0m
+        [36m</p>[39m
+        [36m<p[39m
+          [33mclass[39m=[32m"hg-choice-scroll-hint"[39m
+          [33mid[39m=[32m"i245-scroll-hint"[39m
+        [36m>[39m
+          [0m先查看选项，再确认你的选择。[0m
+          [0m 选项区可上下滚动，确认按钮始终在下方。[0m
+          [36m<span[39m
+            [33mclass[39m=[32m"hg-choice-keyboard-hint"[39m
+          [36m>[39m
+            [0m方向键浏览 · Home / End 首尾 · Enter / 空格选择[0m
+          [36m</span>[39m
+        [36m</p>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33maria-describedby[39m=[32m"i245-scroll-hint"[39m
+        [33maria-label[39m=[32m"选择选项，可滚动查看"[39m
+        [33mclass[39m=[32m"hg-choice-body"[39m
+        [33mrole[39m=[32m"region"[39m
+        [33mtabindex[39m=[32m"0"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"hg-choice-options"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-choice-option-entry"[39m
+          [36m>[39m
+            [36m<button[39m
+              [33maria-describedby[39m=[32m"i245-selection-hint"[39m
+              [33maria-pressed[39m=[32m"false"[39m
+              [33mclass[39m=[32m"hg-choice-option "[39m
+              [33mdata-choice-option[39m=[32m"p0"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mclass[39m=[32m"hg-choice-selection-state"[39m
+              [36m>[39m
+                [36m<span[39m
+                  [33mclass[39m=[32m"hg-choice-check"[39m
+                [36m>[39m
+                  [0m+[0m
+                [36m</span>[39m
+                [36m<span>[39m
+                  [0m点击选择[0m
+                [36m</span>[39m
+              [36m</span>[39m
+              [36m<strong[39m
+                [33mclass[39m=[32m"hg-choice-option-label"[39m
+              [36m>[39m
+                [0mP0[0m
+              [36m</strong>[39m
+            [36m</button>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-choice-option-entry"[39m
+          [36m>[39m
+            [36m<button[39m
+              [33maria-describedby[39m=[32m"i245-selection-hint"[39m
+              [33maria-pressed[39m=[32m"false"[39m
+              [33mclass[39m=[32m"hg-choice-option "[39m
+              [33mdata-choice-option[39m=[32m"p1"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mclass[39m=[32m"hg-choice-selection-state"[39m
+              [36m>[39m
+                [36m<span[39m
+                  [33mclass[39m=[32m"hg-choice-check"[39m
+                [36m>[39m
+                  [0m+[0m
+                [36m</span>[39m
+                [36m<span>[39m
+                  [0m点击选择[0m
+                [36m</span>[39m
+              [36m</span>[39m
+              [36m<strong[39m
+                [33mclass[39m=[32m"hg-choice-option-label"[39m
+              [36m>[39m
+                [0mP1[0m
+              [36m</strong>[39m
+            [36m</button>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-choice-option-entry"[39m
+          [36m>[39m
+            [36m<button[39m
+              [33maria-describedby[39m=[32m"i245-selection-hint"[39m
+              [33maria-pressed[39m=[32m"false"[39m
+              [33mclass[39m=[32m"hg-choice-option "[39m
+              [33mdata-choice-option[39m=[32m"p2"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mclass[39m=[32m"hg-choice-selection-state"[39m
+              [36m>[39m
+                [36m<span[39m
+                  [33mclass[39m=[32m"hg-choice-check"[39m
+                [36m>[39m
+                  [0m+[0m
+                [36m</span>[39m
+                [36m<span>[39m
+                  [0m点击选择[0m
+                [36m</span>[39m
+              [36m</span>[39m
+              [36m<strong[39m
+                [33mclass[39m=[32m"hg-choice-option-label"[39m
+              [36m>[39m
+                [0mP2[0m
+              [36m</strong>[39m
+            [36m</button>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-choice-option-entry"[39m
+          [36m>[39m
+            [36m<button[39m
+              [33maria-describedby[39m=[32m"i245-selection-hint"[39m
+              [33maria-pressed[39m=[32m"false"[39m
+              [33mclass[39m=[32m"hg-choice-option "[39m
+              [33mdata-choice-option[39m=[32m"p3"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mclass[39m=[32m"hg-choice-selection-state"[39m
+              [36m>[39m
+                [36m<span[39m
+                  [33mclass[39m=[32m"hg-choice-check"[39m
+                [36m>[39m
+                  [0m+[0m
+                [36m</span>[39m
+                [36m<span>[39m
+                  [0m点击选择[0m
+                [36m</span>[39m
+              [36m</span>[39m
+              [36m<strong[39m
+                [33mclass[39m=[32m"hg-choice-option-label"[39m
+              [36m>[39m
+                [0mP3[0m
+              [36m</strong>[39m
+            [36m</button>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"hg-choice-footer"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"hg-choice-summary"[39m
+        [36m>[39m
+          [0m请选择 0–1 项，或跳过。[0m
+          [36m<small[39m
+            [33mid[39m=[32m"i245-selection-hint"[39m
+          [36m>[39m
+            [0m再次点击已选项可取消；点击其他项可直接替换。[0m
+          [36m</small>[39m
+        [36m</span>[39m
+        [36m<div>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"hg-button hg-button-quiet"[39m
+          [36m>[39m
+            [0m跳过此选择[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"hg-button hg-button-primary"[39m
+          [36m>[39m
+            [0m确认选择[0m
+          [36m</button>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+    [36m</section>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ src/game/JZ49Slow.test.jsx:38:26
+     36|   render(<ChoicePanel choice={v.pendingChoice} action={action} definit…
+     37|     busy={false} onSubmit={submit} viewerId="p0" />);
+     38|   fireEvent.click(screen.getByRole('button', { name: `+P${seat}`, exac…
+       |                          ^
+     39|   fireEvent.click(screen.getByRole('button', { name: '确认选择' }));
+     40|   expect(submit).toHaveBeenCalledExactlyOnceWith({ ...action, choiceId…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/15]⎯
+
+ FAIL  src/game/JZ49Slow.test.jsx > selects the actual optional player target p2 and submits one native choose action
+TestingLibraryElementError: Unable to find an accessible element with the role "button" and name "+P2"
+
+Here are the accessible roles:
+
+  region:
+
+  Name "待完成的选择":
+  [36m<section[39m
+    [33maria-label[39m=[32m"待完成的选择"[39m
+    [33mclass[39m=[32m"hg-choice"[39m
+    [33mdata-choice-id[39m=[32m"i245"[39m
+    [33mtabindex[39m=[32m"-1"[39m
+  [36m/>[39m
+
+  Name "选择选项，可滚动查看":
+  [36m<div[39m
+    [33maria-describedby[39m=[32m"i245-scroll-hint"[39m
+    [33maria-label[39m=[32m"选择选项，可滚动查看"[39m
+    [33mclass[39m=[32m"hg-choice-body"[39m
+    [33mrole[39m=[32m"region"[39m
+    [33mtabindex[39m=[32m"0"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  status:
+
+  Name "":
+  [36m<span[39m
+    [33maria-atomic[39m=[32m"true"[39m
+    [33mclass[39m=[32m"hg-choice-tag"[39m
+    [33mrole[39m=[32m"status"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  heading:
+
+  Name "蹒跚行尸：进场触发：目标玩家牌库顶两张置墓":
+  [36m<h2 />[39m
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-choice-scroll-hint"[39m
+    [33mid[39m=[32m"i245-scroll-hint"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  button:
+
+  Name "P0":
+  [36m<button[39m
+    [33maria-describedby[39m=[32m"i245-selection-hint"[39m
+    [33maria-pressed[39m=[32m"false"[39m
+    [33mclass[39m=[32m"hg-choice-option "[39m
+    [33mdata-choice-option[39m=[32m"p0"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "P1":
+  [36m<button[39m
+    [33maria-describedby[39m=[32m"i245-selection-hint"[39m
+    [33maria-pressed[39m=[32m"false"[39m
+    [33mclass[39m=[32m"hg-choice-option "[39m
+    [33mdata-choice-option[39m=[32m"p1"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "P2":
+  [36m<button[39m
+    [33maria-describedby[39m=[32m"i245-selection-hint"[39m
+    [33maria-pressed[39m=[32m"false"[39m
+    [33mclass[39m=[32m"hg-choice-option "[39m
+    [33mdata-choice-option[39m=[32m"p2"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "P3":
+  [36m<button[39m
+    [33maria-describedby[39m=[32m"i245-selection-hint"[39m
+    [33maria-pressed[39m=[32m"false"[39m
+    [33mclass[39m=[32m"hg-choice-option "[39m
+    [33mdata-choice-option[39m=[32m"p3"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "跳过此选择":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-button hg-button-quiet"[39m
+  [36m/>[39m
+
+  Name "确认选择":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-button hg-button-primary"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  strong:
+
+  Name "":
+  [36m<strong[39m
+    [33mclass[39m=[32m"hg-choice-option-label"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<strong[39m
+    [33mclass[39m=[32m"hg-choice-option-label"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<strong[39m
+    [33mclass[39m=[32m"hg-choice-option-label"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<strong[39m
+    [33mclass[39m=[32m"hg-choice-option-label"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<section[39m
+      [33maria-label[39m=[32m"待完成的选择"[39m
+      [33mclass[39m=[32m"hg-choice"[39m
+      [33mdata-choice-id[39m=[32m"i245"[39m
+      [33mtabindex[39m=[32m"-1"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"hg-choice-heading"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"hg-section-title"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"hg-eyebrow"[39m
+          [36m>[39m
+            [0m轮到你选择[0m
+          [36m</span>[39m
+          [36m<span[39m
+            [33maria-atomic[39m=[32m"true"[39m
+            [33mclass[39m=[32m"hg-choice-tag"[39m
+            [33mrole[39m=[32m"status"[39m
+          [36m>[39m
+            [0m已选 0 / 1[0m
+          [36m</span>[39m
+        [36m</div>[39m
+        [36m<h2>[39m
+          [0m蹒跚行尸：进场触发：目标玩家牌库顶两张置墓[0m
+        [36m</h2>[39m
+        [36m<p>[39m
+          [0m选择符合数量限制的选项，然后确认。[0m
+        [36m</p>[39m
+        [36m<p[39m
+          [33mclass[39m=[32m"hg-choice-scroll-hint"[39m
+          [33mid[39m=[32m"i245-scroll-hint"[39m
+        [36m>[39m
+          [0m先查看选项，再确认你的选择。[0m
+          [0m 选项区可上下滚动，确认按钮始终在下方。[0m
+          [36m<span[39m
+            [33mclass[39m=[32m"hg-choice-keyboard-hint"[39m
+          [36m>[39m
+            [0m方向键浏览 · Home / End 首尾 · Enter / 空格选择[0m
+          [36m</span>[39m
+        [36m</p>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33maria-describedby[39m=[32m"i245-scroll-hint"[39m
+        [33maria-label[39m=[32m"选择选项，可滚动查看"[39m
+        [33mclass[39m=[32m"hg-choice-body"[39m
+        [33mrole[39m=[32m"region"[39m
+        [33mtabindex[39m=[32m"0"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"hg-choice-options"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-choice-option-entry"[39m
+          [36m>[39m
+            [36m<button[39m
+              [33maria-describedby[39m=[32m"i245-selection-hint"[39m
+              [33maria-pressed[39m=[32m"false"[39m
+              [33mclass[39m=[32m"hg-choice-option "[39m
+              [33mdata-choice-option[39m=[32m"p0"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mclass[39m=[32m"hg-choice-selection-state"[39m
+              [36m>[39m
+                [36m<span[39m
+                  [33mclass[39m=[32m"hg-choice-check"[39m
+                [36m>[39m
+                  [0m+[0m
+                [36m</span>[39m
+                [36m<span>[39m
+                  [0m点击选择[0m
+                [36m</span>[39m
+              [36m</span>[39m
+              [36m<strong[39m
+                [33mclass[39m=[32m"hg-choice-option-label"[39m
+              [36m>[39m
+                [0mP0[0m
+              [36m</strong>[39m
+            [36m</button>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-choice-option-entry"[39m
+          [36m>[39m
+            [36m<button[39m
+              [33maria-describedby[39m=[32m"i245-selection-hint"[39m
+              [33maria-pressed[39m=[32m"false"[39m
+              [33mclass[39m=[32m"hg-choice-option "[39m
+              [33mdata-choice-option[39m=[32m"p1"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mclass[39m=[32m"hg-choice-selection-state"[39m
+              [36m>[39m
+                [36m<span[39m
+                  [33mclass[39m=[32m"hg-choice-check"[39m
+                [36m>[39m
+                  [0m+[0m
+                [36m</span>[39m
+                [36m<span>[39m
+                  [0m点击选择[0m
+                [36m</span>[39m
+              [36m</span>[39m
+              [36m<strong[39m
+                [33mclass[39m=[32m"hg-choice-option-label"[39m
+              [36m>[39m
+                [0mP1[0m
+              [36m</strong>[39m
+            [36m</button>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-choice-option-entry"[39m
+          [36m>[39m
+            [36m<button[39m
+              [33maria-describedby[39m=[32m"i245-selection-hint"[39m
+              [33maria-pressed[39m=[32m"false"[39m
+              [33mclass[39m=[32m"hg-choice-option "[39m
+              [33mdata-choice-option[39m=[32m"p2"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mclass[39m=[32m"hg-choice-selection-state"[39m
+              [36m>[39m
+                [36m<span[39m
+                  [33mclass[39m=[32m"hg-choice-check"[39m
+                [36m>[39m
+                  [0m+[0m
+                [36m</span>[39m
+                [36m<span>[39m
+                  [0m点击选择[0m
+                [36m</span>[39m
+              [36m</span>[39m
+              [36m<strong[39m
+                [33mclass[39m=[32m"hg-choice-option-label"[39m
+              [36m>[39m
+                [0mP2[0m
+              [36m</strong>[39m
+            [36m</button>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-choice-option-entry"[39m
+          [36m>[39m
+            [36m<button[39m
+              [33maria-describedby[39m=[32m"i245-selection-hint"[39m
+              [33maria-pressed[39m=[32m"false"[39m
+              [33mclass[39m=[32m"hg-choice-option "[39m
+              [33mdata-choice-option[39m=[32m"p3"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mclass[39m=[32m"hg-choice-selection-state"[39m
+              [36m>[39m
+                [36m<span[39m
+                  [33mclass[39m=[32m"hg-choice-check"[39m
+                [36m>[39m
+                  [0m+[0m
+                [36m</span>[39m
+                [36m<span>[39m
+                  [0m点击选择[0m
+                [36m</span>[39m
+              [36m</span>[39m
+              [36m<strong[39m
+                [33mclass[39m=[32m"hg-choice-option-label"[39m
+              [36m>[39m
+                [0mP3[0m
+              [36m</strong>[39m
+            [36m</button>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"hg-choice-footer"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"hg-choice-summary"[39m
+        [36m>[39m
+          [0m请选择 0–1 项，或跳过。[0m
+          [36m<small[39m
+            [33mid[39m=[32m"i245-selection-hint"[39m
+          [36m>[39m
+            [0m再次点击已选项可取消；点击其他项可直接替换。[0m
+          [36m</small>[39m
+        [36m</span>[39m
+        [36m<div>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"hg-button hg-button-quiet"[39m
+          [36m>[39m
+            [0m跳过此选择[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"hg-button hg-button-primary"[39m
+          [36m>[39m
+            [0m确认选择[0m
+          [36m</button>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+    [36m</section>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ src/game/JZ49Slow.test.jsx:38:26
+     36|   render(<ChoicePanel choice={v.pendingChoice} action={action} definit…
+     37|     busy={false} onSubmit={submit} viewerId="p0" />);
+     38|   fireEvent.click(screen.getByRole('button', { name: `+P${seat}`, exac…
+       |                          ^
+     39|   fireEvent.click(screen.getByRole('button', { name: '确认选择' }));
+     40|   expect(submit).toHaveBeenCalledExactlyOnceWith({ ...action, choiceId…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/15]⎯
+
+ FAIL  src/game/JZ49Slow.test.jsx > selects the actual optional player target p3 and submits one native choose action
+TestingLibraryElementError: Unable to find an accessible element with the role "button" and name "+P3"
+
+Here are the accessible roles:
+
+  region:
+
+  Name "待完成的选择":
+  [36m<section[39m
+    [33maria-label[39m=[32m"待完成的选择"[39m
+    [33mclass[39m=[32m"hg-choice"[39m
+    [33mdata-choice-id[39m=[32m"i245"[39m
+    [33mtabindex[39m=[32m"-1"[39m
+  [36m/>[39m
+
+  Name "选择选项，可滚动查看":
+  [36m<div[39m
+    [33maria-describedby[39m=[32m"i245-scroll-hint"[39m
+    [33maria-label[39m=[32m"选择选项，可滚动查看"[39m
+    [33mclass[39m=[32m"hg-choice-body"[39m
+    [33mrole[39m=[32m"region"[39m
+    [33mtabindex[39m=[32m"0"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  status:
+
+  Name "":
+  [36m<span[39m
+    [33maria-atomic[39m=[32m"true"[39m
+    [33mclass[39m=[32m"hg-choice-tag"[39m
+    [33mrole[39m=[32m"status"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  heading:
+
+  Name "蹒跚行尸：进场触发：目标玩家牌库顶两张置墓":
+  [36m<h2 />[39m
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"hg-choice-scroll-hint"[39m
+    [33mid[39m=[32m"i245-scroll-hint"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  button:
+
+  Name "P0":
+  [36m<button[39m
+    [33maria-describedby[39m=[32m"i245-selection-hint"[39m
+    [33maria-pressed[39m=[32m"false"[39m
+    [33mclass[39m=[32m"hg-choice-option "[39m
+    [33mdata-choice-option[39m=[32m"p0"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "P1":
+  [36m<button[39m
+    [33maria-describedby[39m=[32m"i245-selection-hint"[39m
+    [33maria-pressed[39m=[32m"false"[39m
+    [33mclass[39m=[32m"hg-choice-option "[39m
+    [33mdata-choice-option[39m=[32m"p1"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "P2":
+  [36m<button[39m
+    [33maria-describedby[39m=[32m"i245-selection-hint"[39m
+    [33maria-pressed[39m=[32m"false"[39m
+    [33mclass[39m=[32m"hg-choice-option "[39m
+    [33mdata-choice-option[39m=[32m"p2"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "P3":
+  [36m<button[39m
+    [33maria-describedby[39m=[32m"i245-selection-hint"[39m
+    [33maria-pressed[39m=[32m"false"[39m
+    [33mclass[39m=[32m"hg-choice-option "[39m
+    [33mdata-choice-option[39m=[32m"p3"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "跳过此选择":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-button hg-button-quiet"[39m
+  [36m/>[39m
+
+  Name "确认选择":
+  [36m<button[39m
+    [33mclass[39m=[32m"hg-button hg-button-primary"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  strong:
+
+  Name "":
+  [36m<strong[39m
+    [33mclass[39m=[32m"hg-choice-option-label"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<strong[39m
+    [33mclass[39m=[32m"hg-choice-option-label"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<strong[39m
+    [33mclass[39m=[32m"hg-choice-option-label"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<strong[39m
+    [33mclass[39m=[32m"hg-choice-option-label"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<section[39m
+      [33maria-label[39m=[32m"待完成的选择"[39m
+      [33mclass[39m=[32m"hg-choice"[39m
+      [33mdata-choice-id[39m=[32m"i245"[39m
+      [33mtabindex[39m=[32m"-1"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"hg-choice-heading"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"hg-section-title"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"hg-eyebrow"[39m
+          [36m>[39m
+            [0m轮到你选择[0m
+          [36m</span>[39m
+          [36m<span[39m
+            [33maria-atomic[39m=[32m"true"[39m
+            [33mclass[39m=[32m"hg-choice-tag"[39m
+            [33mrole[39m=[32m"status"[39m
+          [36m>[39m
+            [0m已选 0 / 1[0m
+          [36m</span>[39m
+        [36m</div>[39m
+        [36m<h2>[39m
+          [0m蹒跚行尸：进场触发：目标玩家牌库顶两张置墓[0m
+        [36m</h2>[39m
+        [36m<p>[39m
+          [0m选择符合数量限制的选项，然后确认。[0m
+        [36m</p>[39m
+        [36m<p[39m
+          [33mclass[39m=[32m"hg-choice-scroll-hint"[39m
+          [33mid[39m=[32m"i245-scroll-hint"[39m
+        [36m>[39m
+          [0m先查看选项，再确认你的选择。[0m
+          [0m 选项区可上下滚动，确认按钮始终在下方。[0m
+          [36m<span[39m
+            [33mclass[39m=[32m"hg-choice-keyboard-hint"[39m
+          [36m>[39m
+            [0m方向键浏览 · Home / End 首尾 · Enter / 空格选择[0m
+          [36m</span>[39m
+        [36m</p>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33maria-describedby[39m=[32m"i245-scroll-hint"[39m
+        [33maria-label[39m=[32m"选择选项，可滚动查看"[39m
+        [33mclass[39m=[32m"hg-choice-body"[39m
+        [33mrole[39m=[32m"region"[39m
+        [33mtabindex[39m=[32m"0"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"hg-choice-options"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-choice-option-entry"[39m
+          [36m>[39m
+            [36m<button[39m
+              [33maria-describedby[39m=[32m"i245-selection-hint"[39m
+              [33maria-pressed[39m=[32m"false"[39m
+              [33mclass[39m=[32m"hg-choice-option "[39m
+              [33mdata-choice-option[39m=[32m"p0"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mclass[39m=[32m"hg-choice-selection-state"[39m
+              [36m>[39m
+                [36m<span[39m
+                  [33mclass[39m=[32m"hg-choice-check"[39m
+                [36m>[39m
+                  [0m+[0m
+                [36m</span>[39m
+                [36m<span>[39m
+                  [0m点击选择[0m
+                [36m</span>[39m
+              [36m</span>[39m
+              [36m<strong[39m
+                [33mclass[39m=[32m"hg-choice-option-label"[39m
+              [36m>[39m
+                [0mP0[0m
+              [36m</strong>[39m
+            [36m</button>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-choice-option-entry"[39m
+          [36m>[39m
+            [36m<button[39m
+              [33maria-describedby[39m=[32m"i245-selection-hint"[39m
+              [33maria-pressed[39m=[32m"false"[39m
+              [33mclass[39m=[32m"hg-choice-option "[39m
+              [33mdata-choice-option[39m=[32m"p1"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mclass[39m=[32m"hg-choice-selection-state"[39m
+              [36m>[39m
+                [36m<span[39m
+                  [33mclass[39m=[32m"hg-choice-check"[39m
+                [36m>[39m
+                  [0m+[0m
+                [36m</span>[39m
+                [36m<span>[39m
+                  [0m点击选择[0m
+                [36m</span>[39m
+              [36m</span>[39m
+              [36m<strong[39m
+                [33mclass[39m=[32m"hg-choice-option-label"[39m
+              [36m>[39m
+                [0mP1[0m
+              [36m</strong>[39m
+            [36m</button>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-choice-option-entry"[39m
+          [36m>[39m
+            [36m<button[39m
+              [33maria-describedby[39m=[32m"i245-selection-hint"[39m
+              [33maria-pressed[39m=[32m"false"[39m
+              [33mclass[39m=[32m"hg-choice-option "[39m
+              [33mdata-choice-option[39m=[32m"p2"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mclass[39m=[32m"hg-choice-selection-state"[39m
+              [36m>[39m
+                [36m<span[39m
+                  [33mclass[39m=[32m"hg-choice-check"[39m
+                [36m>[39m
+                  [0m+[0m
+                [36m</span>[39m
+                [36m<span>[39m
+                  [0m点击选择[0m
+                [36m</span>[39m
+              [36m</span>[39m
+              [36m<strong[39m
+                [33mclass[39m=[32m"hg-choice-option-label"[39m
+              [36m>[39m
+                [0mP2[0m
+              [36m</strong>[39m
+            [36m</button>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hg-choice-option-entry"[39m
+          [36m>[39m
+            [36m<button[39m
+              [33maria-describedby[39m=[32m"i245-selection-hint"[39m
+              [33maria-pressed[39m=[32m"false"[39m
+              [33mclass[39m=[32m"hg-choice-option "[39m
+              [33mdata-choice-option[39m=[32m"p3"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mclass[39m=[32m"hg-choice-selection-state"[39m
+              [36m>[39m
+                [36m<span[39m
+                  [33mclass[39m=[32m"hg-choice-check"[39m
+                [36m>[39m
+                  [0m+[0m
+                [36m</span>[39m
+                [36m<span>[39m
+                  [0m点击选择[0m
+                [36m</span>[39m
+              [36m</span>[39m
+              [36m<strong[39m
+                [33mclass[39m=[32m"hg-choice-option-label"[39m
+              [36m>[39m
+                [0mP3[0m
+              [36m</strong>[39m
+            [36m</button>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"hg-choice-footer"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"hg-choice-summary"[39m
+        [36m>[39m
+          [0m请选择 0–1 项，或跳过。[0m
+          [36m<small[39m
+            [33mid[39m=[32m"i245-selection-hint"[39m
+          [36m>[39m
+            [0m再次点击已选项可取消；点击其他项可直接替换。[0m
+          [36m</small>[39m
+        [36m</span>[39m
+        [36m<div>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"hg-button hg-button-quiet"[39m
+          [36m>[39m
+            [0m跳过此选择[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"hg-button hg-button-primary"[39m
+          [36m>[39m
+            [0m确认选择[0m
+          [36m</button>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+    [36m</section>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ src/game/JZ49Slow.test.jsx:38:26
+     36|   render(<ChoicePanel choice={v.pendingChoice} action={action} definit…
+     37|     busy={false} onSubmit={submit} viewerId="p0" />);
+     38|   fireEvent.click(screen.getByRole('button', { name: `+P${seat}`, exac…
+       |                          ^
+     39|   fireEvent.click(screen.getByRole('button', { name: '确认选择' }));
+     40|   expect(submit).toHaveBeenCalledExactlyOnceWith({ ...action, choiceId…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/15]⎯
+
+ FAIL  src/game/RecoveryReviewRegression.test.tsx > independent review recovery regressions > retires all rejected actor records on invalid_seat_token (401) from a read path and permits recovery of the surviving actors
+ FAIL  src/game/RecoveryReviewRegression.test.tsx > independent review recovery regressions > retires all rejected actor records on room_not_found (404) from a read path and permits recovery of the surviving actors
+ FAIL  src/game/RecoveryReviewRegression.test.tsx > independent review recovery regressions > retires all rejected actor records on unsupported_room_version (410) from a read path and permits recovery of the surviving actors
+ FAIL  src/game/RecoveryReviewRegression.test.tsx > independent review recovery regressions > retires all rejected actor records on invalid_seat_token (401) from a command path and permits recovery of the surviving actors
+ FAIL  src/game/RecoveryReviewRegression.test.tsx > independent review recovery regressions > retires all rejected actor records on room_not_found (404) from a command path and permits recovery of the surviving actors
+ FAIL  src/game/RecoveryReviewRegression.test.tsx > independent review recovery regressions > retires all rejected actor records on unsupported_room_version (410) from a command path and permits recovery of the surviving actors
+AssertionError: expected undefined to be 'new-room' // Object.is equality
+
+- Expected:
+"new-room"
+
++ Received:
+undefined
+
+ ❯ src/game/RecoveryReviewRegression.test.tsx:98:49
+     96|     await act(async () => { hook.result.current.leave(); });
+     97|     await act(async () => { await hook.result.current.create('new', 'd…
+     98|     expect(hook.result.current.session?.roomId).toBe('new-room'); expe…
+       |                                                 ^
+     99|   });
+    100|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/15]⎯
+
+ FAIL  src/game/XQ25Integration.test.jsx > reads the complete pinned XQ25 face with original temporary investigation and no invented tapping ability
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/game/XQ25Integration.test.jsx:16:1
+     14| const fixture=JSON.parse(readFileSync(resolve('src/game/xq25Native77.f…
+     15| const catalog=JSON.parse(abi.catalog()),definition=catalog.cards.find(…
+     16| it('reads the complete pinned XQ25 face with original temporary invest…
+       | ^
+     17|   expect(createHash('sha256').update(wasm).digest('hex')).toBe(fixture…
+     18|   expect(catalog.engineVersion).toBe('rust-v0.2.77-jc046-mandatory-sac…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/15]⎯
+
+
+ Test Files  6 failed | 115 passed (121)
+      Tests  15 failed | 1130 passed (1145)
+   Start at  06:50:29
+   Duration  291.69s (transform 9.36s, setup 12.70s, import 20.26s, tests 176.85s, environment 62.10s)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

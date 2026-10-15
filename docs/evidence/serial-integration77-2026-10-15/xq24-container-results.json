@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "rejectedStates": 4,
+  "restoreEntrypoints": 12,
+  "normalScenarios": 12,
+  "normalCommands": 117,
+  "seatViews": 370,
+  "fixtureSha256": "670972d6f4d09440d5334bf35c85e8556b93f07ecc3252ef4a79293bed276904",
+  "wasmBytes": 2909006,
+  "wasmSha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c"
+}

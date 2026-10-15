@@ -1,0 +1,197 @@
+[
+  {
+    "name": "abi-version-check",
+    "exit_code": 0,
+    "log": "/workspace/serial-native77-inputs-20261015/evidence/ui-refresh/abi-version-check.log"
+  },
+  {
+    "name": "jc061",
+    "exit_code": 0,
+    "log": "/workspace/serial-native77-inputs-20261015/evidence/ui-refresh/jc061.log"
+  },
+  {
+    "name": "jc061-fixture",
+    "exit_code": 0,
+    "log": "/workspace/serial-native77-inputs-20261015/evidence/ui-refresh/jc061-fixture.log"
+  },
+  {
+    "name": "jc087",
+    "exit_code": 0,
+    "log": "/workspace/serial-native77-inputs-20261015/evidence/ui-refresh/jc087.log"
+  },
+  {
+    "name": "jc087-fixture",
+    "exit_code": 0,
+    "log": "/workspace/serial-native77-inputs-20261015/evidence/ui-refresh/jc087-fixture.log"
+  },
+  {
+    "name": "jc094",
+    "exit_code": 0,
+    "log": "/workspace/serial-native77-inputs-20261015/evidence/ui-refresh/jc094.log"
+  },
+  {
+    "name": "jc094-fixture",
+    "exit_code": 0,
+    "log": "/workspace/serial-native77-inputs-20261015/evidence/ui-refresh/jc094-fixture.log"
+  },
+  {
+    "name": "wm056",
+    "exit_code": 0,
+    "log": "/workspace/serial-native77-inputs-20261015/evidence/ui-refresh/wm056.log"
+  },
+  {
+    "name": "wm056-fixture",
+    "exit_code": 0,
+    "log": "/workspace/serial-native77-inputs-20261015/evidence/ui-refresh/wm056-fixture.log"
+  },
+  {
+    "name": "wm023",
+    "exit_code": 0,
+    "log": "/workspace/serial-native77-inputs-20261015/evidence/ui-refresh/wm023.log"
+  },
+  {
+    "name": "wm023-fixture",
+    "exit_code": 0,
+    "log": "/workspace/serial-native77-inputs-20261015/evidence/ui-refresh/wm023-fixture.log"
+  },
+  {
+    "name": "xq25",
+    "exit_code": 0,
+    "log": "/workspace/serial-native77-inputs-20261015/evidence/ui-refresh/xq25.log"
+  },
+  {
+    "name": "xq25-fixture",
+    "exit_code": 0,
+    "log": "/workspace/serial-native77-inputs-20261015/evidence/ui-refresh/xq25-fixture.log"
+  },
+  {
+    "name": "wm038",
+    "exit_code": 0,
+    "log": "/workspace/serial-native77-inputs-20261015/evidence/ui-refresh/wm038.log"
+  },
+  {
+    "name": "wm038-fixture",
+    "exit_code": 0,
+    "log": "/workspace/serial-native77-inputs-20261015/evidence/ui-refresh/wm038-fixture.log"
+  },
+  {
+    "name": "lifecycle-blue",
+    "exit_code": 0,
+    "log": "/workspace/serial-native77-inputs-20261015/evidence/ui-refresh/lifecycle-blue.log"
+  },
+  {
+    "name": "lifecycle-black",
+    "exit_code": 0,
+    "log": "/workspace/serial-native77-inputs-20261015/evidence/ui-refresh/lifecycle-black.log"
+  },
+  {
+    "name": "lifecycle-red",
+    "exit_code": 0,
+    "log": "/workspace/serial-native77-inputs-20261015/evidence/ui-refresh/lifecycle-red.log"
+  },
+  {
+    "name": "lifecycle-fixture",
+    "exit_code": 0,
+    "log": "/workspace/serial-native77-inputs-20261015/evidence/ui-refresh/lifecycle-fixture.log"
+  },
+  {
+    "name": "death-frontends",
+    "exit_code": 0,
+    "log": "/workspace/serial-native77-inputs-20261015/evidence/ui-refresh/death-frontends.log"
+  },
+  {
+    "name": "current-worker-web-fixtures",
+    "exit_code": 0,
+    "log": "/workspace/serial-native77-inputs-20261015/evidence/ui-refresh/current-worker-web-fixtures.log"
+  },
+  {
+    "name": "seven-card-fixtures",
+    "exit_code": 0,
+    "log": "/workspace/serial-native77-inputs-20261015/evidence/ui-refresh/seven-card-fixtures.log"
+  },
+  {
+    "name": "win-flow",
+    "exit_code": 0,
+    "log": "/workspace/serial-native77-inputs-20261015/evidence/ui-refresh/win-flow.log"
+  },
+  {
+    "name": "fixed-slots-fixture",
+    "exit_code": 0,
+    "log": "/workspace/serial-native77-inputs-20261015/evidence/ui-refresh/fixed-slots-fixture.log"
+  },
+  {
+    "name": "bq030",
+    "exit_code": 0,
+    "log": "/workspace/serial-native77-inputs-20261015/evidence/ui-refresh/bq030.log"
+  },
+  {
+    "name": "bq030-fixture",
+    "exit_code": 0,
+    "log": "/workspace/serial-native77-inputs-20261015/evidence/ui-refresh/bq030-fixture.log"
+  },
+  {
+    "name": "jz35",
+    "exit_code": 0,
+    "log": "/workspace/serial-native77-inputs-20261015/evidence/ui-refresh/jz35.log"
+  },
+  {
+    "name": "jz35-fixture",
+    "exit_code": 0,
+    "log": "/workspace/serial-native77-inputs-20261015/evidence/ui-refresh/jz35-fixture.log"
+  },
+  {
+    "name": "xq24",
+    "exit_code": 0,
+    "log": "/workspace/serial-native77-inputs-20261015/evidence/ui-refresh/xq24.log"
+  },
+  {
+    "name": "jc052",
+    "exit_code": 0,
+    "log": "/workspace/serial-native77-inputs-20261015/evidence/ui-refresh/jc052.log"
+  },
+  {
+    "name": "jc052-fixture",
+    "exit_code": 0,
+    "log": "/workspace/serial-native77-inputs-20261015/evidence/ui-refresh/jc052-fixture.log"
+  },
+  {
+    "name": "xq24-container",
+    "exit_code": 0,
+    "log": "/workspace/serial-native77-inputs-20261015/evidence/ui-refresh/xq24-container.log"
+  },
+  {
+    "name": "jc052-worker-fixtures",
+    "exit_code": 0,
+    "log": "/workspace/serial-native77-inputs-20261015/evidence/ui-refresh/jc052-worker-fixtures.log"
+  },
+  {
+    "name": "jc037",
+    "exit_code": 0,
+    "log": "/workspace/serial-native77-inputs-20261015/evidence/ui-refresh/jc037.log"
+  },
+  {
+    "name": "jc037-fixture",
+    "exit_code": 0,
+    "log": "/workspace/serial-native77-inputs-20261015/evidence/ui-refresh/jc037-fixture.log"
+  },
+  {
+    "name": "jc060",
+    "exit_code": 0,
+    "log": "/workspace/serial-native77-inputs-20261015/evidence/ui-refresh/jc060.log"
+  },
+  {
+    "name": "jc060-fixture",
+    "exit_code": 0,
+    "log": "/workspace/serial-native77-inputs-20261015/evidence/ui-refresh/jc060-fixture.log"
+  },
+  {
+    "name": "jc095",
+    "exit_code": 0,
+    "log": "/workspace/serial-native77-inputs-20261015/evidence/ui-refresh/jc095.log"
+  },
+  {
+    "name": "jc095-fixture",
+    "exit_code": 0,
+    "log": "/workspace/serial-native77-inputs-20261015/evidence/ui-refresh/jc095-fixture.log"
+  }
+]

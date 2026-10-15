@@ -1,0 +1,27 @@
+{
+  "rustc": "rustc 1.90.0 (1159e78c4 2025-09-14)",
+  "cargo": "cargo 1.90.0 (840b83a10 2025-07-30)",
+  "wasmBindgen": "wasm-bindgen 0.2.104",
+  "node": "v24.19.0",
+  "npm": "11.9.0",
+  "python": "Python 3.12.14",
+  "chromium": "Chromium 151.0.7922.173 built on Debian GNU/Linux 13 (trixie)",
+  "platform": "Linux 6.18.44 x86_64",
+  "cargoBuildJobs": 1,
+  "cargoIncremental": 0,
+  "cargoProfileDebug": 0,
+  "cargoProfileCodegenUnits": 256,
+  "buildStorageGuard": "tools/build-storage.mjs",
+  "cargoTargetDir": "/workspace/undergroundbattle-build/target",
+  "nativeWorkspaceCommand": [
+    "cargo",
+    "test",
+    "--locked",
+    "--workspace",
+    "--",
+    "--test-threads=1"
+  ],
+  "nativeStartedAtCommit": "a4207164ff5ddf60539fc7980db9bb2633212112",
+  "generationBaseCommit": "b6f19ce0e25d6c40bb95ea31b9516a7d0d63341e",
+  "nativeCoreUnchangedSinceStart": true
+}
