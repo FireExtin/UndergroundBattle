@@ -1,0 +1,34 @@
+{
+  "reviewedAtUtc": "2026-10-15T14:02:50.442500+00:00",
+  "viewport": [
+    1366,
+    900
+  ],
+  "publicSiteVersion": 54,
+  "observations": [
+    "Viewed the actual online optional JC095 entry trigger and its normal selection controls.",
+    "Viewed the live post-resolution table: NY has one friendly marker and zero enemy markers from actor-seat1 view."
+  ],
+  "privateScreenshotsRetainedLocally": true,
+  "imagesNotCopiedToGit": true,
+  "screenshots": [
+    {
+      "stage": "actual optional entry trigger before selection",
+      "path": "/workspace/jc095-nonzero54-20261015/probe1/duel-jc095-nonzero-before-trigger.png",
+      "bytes": 395159,
+      "sha256": "cd5070dd435865b6f1e881379f0b6c6010e7886846c4beb06363f6b7b85d9298"
+    },
+    {
+      "stage": "actual live converted public counters",
+      "path": "/workspace/jc095-nonzero54-20261015/probe1/duel-jc095-nonzero-converted.png",
+      "bytes": 1148302,
+      "sha256": "8ea3dc6e80888f4344948843cdeb502311cf2a6df82d937f21789e434e7b1751"
+    },
+    {
+      "stage": "same owned paused profiles reopened",
+      "path": "/workspace/jc095-nonzero54-20261015/paused-reopen-01/duel-jc095-nonzero-paused-reopened.png",
+      "bytes": 1170170,
+      "sha256": "9c2a7b62b7be309f9f5e8edab4badf4973da3732b9c0116b4d97cce4a8ab373b"
+    }
+  ]
+}

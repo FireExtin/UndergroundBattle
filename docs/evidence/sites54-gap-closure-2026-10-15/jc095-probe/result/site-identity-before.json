@@ -1,0 +1,31 @@
+{
+  "checkedAtUtc": "2026-10-15 13:02:00 UTC",
+  "site": {
+    "id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "status": "active",
+    "current_live_url": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site",
+    "latest_version_number": 54,
+    "access_mode": "public",
+    "updated_at": "2026-10-15T09:33:29.774314+00:00"
+  },
+  "version": {
+    "id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_42a67f56836c8191a1a053c3dee65514",
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "version_number": 54,
+    "source": {
+      "commit_sha": "cec2bd64b847d47ac971a459dc8ef2d61aec9e89"
+    },
+    "archive_storage": {
+      "archive_format": "tar",
+      "sediment_file_id": "file_00000000f50082079d6c4d34d9571f27",
+      "content_hash": "sha256:8266fedc8816af615f1d882aeb0f2a583c46521cc56a2c6be348f088dccb0881",
+      "size_bytes": 96378880,
+      "file_count": 166
+    },
+    "screenshot_url": null,
+    "deployment_id": "appgdep_6ad09dcf575c819182ed0f3340eccfb1"
+  },
+  "approvedGameSource": "4918cfb6372fb9ec900f037e8ed518385d6183e6",
+  "readOnly": true,
+  "newDeployment": false
+}

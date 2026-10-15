@@ -1,5 +1,7 @@
 # Site54四席PC自然终局与验收缺口（WIP）
 
+后续补测已单独完成：[历史原逻辑命令只读核实](SITES54_RECEIPT_RECONCILIATION_2026-10-15.md)及[新自有桌JC095非零转换](SITES54_JC095_NONZERO_PUBLIC_PROBE_2026-10-15.md)。下文及原始四席证据保留当时边界；早期3次HTTP尝试的逐项回包仍无法还原，未改记全绿。
+
 父会话要求沿原v54/ABI77、自有四席、真实PC界面继续自然对局，补新卡逐席选择、权限、连点及刷新恢复。原桌 `1609f4e9dabfb4d970646b44` 已在**第11回合自然终局，团队0:团队1为5:12，团队1获胜，最终状态版本1904**。关闭原四个profile后重开并刷新四页，8份视图一致，0个游戏POST。完整验收仍保留WIP：JC095非零敌方标记转换未发生，早期3次HTTP尝试缺少逐项回执。
 
 输入和过程见[原WIP记录](SITES54_FOUR_SEAT_PC_ACCEPTANCE_2026-10-15.md)；输出为[最终证据](evidence/sites54-four-seat-2026-10-15/result-with-gaps/README.md)、本篇结果说明及 `tools/cloud-playtest/` 的四席操作与事后审计脚本。改动仅为QA工具和证据。

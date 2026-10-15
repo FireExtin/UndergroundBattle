@@ -1,0 +1,101 @@
+{
+  "createdAtUtc": "2026-10-15T14:07:33.191576+00:00",
+  "scope": "Result files; manifest itself excluded",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 2683,
+      "sha256": "efa31343945bb2fc4317dd6e58e66e7a82777ee282e40efb84fd007073bfa9c6"
+    },
+    {
+      "path": "audit-tool-identities.json",
+      "bytes": 913,
+      "sha256": "0a0d1d9ab474df43ef9fd6c6912a1c3b5ac4a0d00b505dfb284539c696b133d0"
+    },
+    {
+      "path": "audit.json",
+      "bytes": 4528,
+      "sha256": "2b7d20cde8d679b1ca8f4e4f276cf54683b8b9c450771a5d965165286ffd7b0f"
+    },
+    {
+      "path": "browser-identity.json",
+      "bytes": 955,
+      "sha256": "df788c79d77acada33289675440bc5c7dbcafa34e4a816c42a0d35c660aa28d6"
+    },
+    {
+      "path": "duel-actions.jsonl",
+      "bytes": 205752,
+      "sha256": "3497125afeab58a429e9d171a73d5829729e423ce3a948ba528e7758a331242e"
+    },
+    {
+      "path": "network-attempt-01.jsonl",
+      "bytes": 695604,
+      "sha256": "6a379b7f22cdf012f8647ed3c19b56ec064212bd1131914af5b2ccf8cf30d357"
+    },
+    {
+      "path": "paused-reopen-runner.py",
+      "bytes": 3770,
+      "sha256": "67e3782b691118d526cded1b4abf3db5e3a179e2881cda9988f922f26621e252"
+    },
+    {
+      "path": "paused-reopen-summary.json",
+      "bytes": 7744,
+      "sha256": "7baf1a10bdb648cb0fd7aaf6b23fdc320f953fd3044d1c70f0ee783b4e1d1fb4"
+    },
+    {
+      "path": "paused-reopen.log",
+      "bytes": 88,
+      "sha256": "704044f2130a9136d71e2c9425649735f0f551633ef38173d5a339777845ca87"
+    },
+    {
+      "path": "probe.log",
+      "bytes": 2616,
+      "sha256": "a8beba2bd090609417132a314518c122c74047cf6d2e5a184316d509e60d1035"
+    },
+    {
+      "path": "result.json",
+      "bytes": 1995,
+      "sha256": "19f9dd9218fab0c35c5915725aa507e07e137025f928ff418eef3aea7e337006"
+    },
+    {
+      "path": "runner-attempt-01.py",
+      "bytes": 21137,
+      "sha256": "d62edf0cf64093b05c8eb3406a4e3d6749e7eebc371d99eaa3969ea4b1f9541f"
+    },
+    {
+      "path": "site-identity-after.json",
+      "bytes": 401,
+      "sha256": "d7e45a2c5cfdaf916713378c3740a914c9c0fb8a885b2024e62bd43d79d72436"
+    },
+    {
+      "path": "site-identity-before.json",
+      "bytes": 1131,
+      "sha256": "85705e2a15d18fb2a9540a444d110f5e375b7632d261b632eb092ad9981b2bb7"
+    },
+    {
+      "path": "target-pc-checks.json",
+      "bytes": 1190,
+      "sha256": "9f1aee273b58f05b3fb534fe00b4b0fed077b455ad6a65eb61d475d31776b446"
+    },
+    {
+      "path": "target-summary.json",
+      "bytes": 70282,
+      "sha256": "bff9d2de0e897ffd0b61ef5b069b1e95c0c3550f0dbdeb8b5ff4ea1706734552"
+    },
+    {
+      "path": "visual-review.json",
+      "bytes": 1297,
+      "sha256": "cc8024a970822f0fb718e9781f8c1d7dec7e688e9385ca8a642bd5eb0367a853"
+    }
+  ],
+  "validation": {
+    "copiedEvidenceAuditByteIdentical": true,
+    "executedRunnerIdentity": true,
+    "readerAndAuditToolIdentity": true,
+    "pythonAst": true,
+    "jsonAndJsonlSyntax": true,
+    "credentialFieldsAndPatterns": true,
+    "noFullHandsOrProfiles": true,
+    "relativeDocumentationLinks": true
+  }
+}

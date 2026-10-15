@@ -1,0 +1,50 @@
+{
+  "capturedAtUtc": "2026-10-15T14:02:50.442240+00:00",
+  "requestedMechanismObserved": true,
+  "pausedTwoSeatReadbackPassed": true,
+  "siteVersion": 54,
+  "approvedGameSource": "4918cfb6372fb9ec900f037e8ed518385d6183e6",
+  "providerSource": "cec2bd64b847d47ac971a459dc8ef2d61aec9e89",
+  "roomId": "cadc0c7dc3a8f7da299f03db",
+  "turn": 8,
+  "actorSeat": 1,
+  "regionCardId": "DQJC112",
+  "regionName": "纽约",
+  "beforeInfluence": [
+    1,
+    0
+  ],
+  "afterInfluence": [
+    0,
+    1
+  ],
+  "sourceInstanceId": "i183",
+  "conversionViewVersion": 372,
+  "pausedVersion": 373,
+  "gameStatus": "playing-and-paused",
+  "fullGameCompleted": false,
+  "deployCommandId": "4878b3ac-4924-42d9-9a19-938a97020f97",
+  "triggerCommandId": "7d6a7c8c-cae8-485a-80cb-2310d59e4bfd",
+  "triggerChoiceId": "i184",
+  "uiPostAttempts": 377,
+  "observedResponses": 372,
+  "newCapturedAbortedHttpAttempts": 5,
+  "allNewLogicalIntentsHaveKnownOutcomes": true,
+  "pausedReadbackGamePosts": 0,
+  "oldRoomId": "1609f4e9dabfb4d970646b44",
+  "oldRoomUntouched": true,
+  "oldLogicalCommandReconciled": true,
+  "oldDurableCommandVersion": 811,
+  "oldUnidentifiableHttpAttempts": 3,
+  "oldAttemptCount": 1830,
+  "oldObservedResponses": 1827,
+  "historicalProof": "../../receipt-reconciliation/proof.json",
+  "newDeployment": false,
+  "productCodeChanged": false,
+  "limits": [
+    "One actual conversion: one enemy marker removed and one friendly marker added from zero; other JC095 quantities and timing branches are outside this probe.",
+    "Five current aborted HTTP attempts retain their failure event; same original-ID successful receipts close their logical results. They are not relabeled successful HTTP attempts.",
+    "The original four-seat three unidentifiable HTTP attempts remain individually unrecoverable; their known original logical command has a matching durable row and journal.",
+    "No full-game replay or complete Native/Web/Worker regression rerun was performed for these QA-only changes."
+  ]
+}

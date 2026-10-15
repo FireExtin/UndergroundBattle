@@ -1,0 +1,26 @@
+[
+  {
+    "path": "tools/cloud-playtest/public_jc095_nonzero.py",
+    "sha256": "d62edf0cf64093b05c8eb3406a4e3d6749e7eebc371d99eaa3969ea4b1f9541f"
+  },
+  {
+    "path": "tools/cloud-playtest/public_jc095_nonzero_reopen.py",
+    "sha256": "67e3782b691118d526cded1b4abf3db5e3a179e2881cda9988f922f26621e252"
+  },
+  {
+    "path": "tools/cloud-playtest/audit_jc095_nonzero.py",
+    "sha256": "2fa7c5ca5786df81cd7e607c751ddeb7f7aaa503c83d2491216381459cc97701"
+  },
+  {
+    "path": "tools/cloud-playtest/public_abi77_teams.py",
+    "sha256": "8c894cdf6d33c3a534412f878fd62501395b0861da382cae8d944137e921105a"
+  },
+  {
+    "path": "tools/cloud-playtest/attachment_v026.py",
+    "sha256": "c574b1203b31be392c574e6efdb0e735f3fa210994f41c86051260ed45235092"
+  },
+  {
+    "path": "docs/evidence/sites-abi77-2026-10-15/online_pc_abi77.py",
+    "sha256": "d8e2f0b10abf4d7fa26e747d0b46446397a80969d5eca6f444498e27f4931297"
+  }
+]

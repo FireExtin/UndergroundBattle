@@ -1,0 +1,173 @@
+{
+  "passed": true,
+  "scope": "one actual nonzero counter conversion and its paused two-seat readback",
+  "roomId": "cadc0c7dc3a8f7da299f03db",
+  "siteVersion": 54,
+  "turn": 8,
+  "actorSeat": 1,
+  "regionCardId": "DQJC112",
+  "beforeInfluence": [
+    1,
+    0
+  ],
+  "afterInfluence": [
+    0,
+    1
+  ],
+  "convertedEnemyMarkers": 1,
+  "conversionViewVersion": 372,
+  "pausedReadbackVersion": 373,
+  "uiPostAttempts": 377,
+  "observedResponses": 372,
+  "responseStatuses": {
+    "200": 370,
+    "409": 2
+  },
+  "entryResponses": 2,
+  "tracedCommandHttpAttempts": 375,
+  "distinctOriginalCommandIds": 370,
+  "distinctAcceptedCommandIds": 368,
+  "distinctRejectedCommandIds": 2,
+  "failedAttemptCount": 5,
+  "failedTransportAttempts": [
+    {
+      "sequence": 36,
+      "seat": 1,
+      "commandId": "dcdbfc71-998f-45a2-bb5b-2dae39b1cf41",
+      "expectedVersion": 36,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      },
+      "requestedAtEpochSeconds": 1792070280.0305443,
+      "terminalEvent": "request-failed",
+      "cause": "ERR_ABORTED",
+      "httpStatus": null,
+      "errorCode": null,
+      "receiptVersion": null,
+      "logicalOutcomeKnown": true,
+      "sameOriginalIdSuccessfulReceipts": [
+        {
+          "sequence": 37,
+          "status": 200,
+          "version": 37
+        }
+      ]
+    },
+    {
+      "sequence": 57,
+      "seat": 0,
+      "commandId": "ad878a6f-f791-49ea-9b31-df07a16fa13d",
+      "expectedVersion": 56,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      },
+      "requestedAtEpochSeconds": 1792070445.8200364,
+      "terminalEvent": "request-failed",
+      "cause": "ERR_ABORTED",
+      "httpStatus": null,
+      "errorCode": null,
+      "receiptVersion": null,
+      "logicalOutcomeKnown": true,
+      "sameOriginalIdSuccessfulReceipts": [
+        {
+          "sequence": 58,
+          "status": 200,
+          "version": 57
+        }
+      ]
+    },
+    {
+      "sequence": 59,
+      "seat": 1,
+      "commandId": "6bf66503-11b4-420c-b399-7b6c3a1aa5b7",
+      "expectedVersion": 57,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      },
+      "requestedAtEpochSeconds": 1792070461.0958638,
+      "terminalEvent": "request-failed",
+      "cause": "ERR_ABORTED",
+      "httpStatus": null,
+      "errorCode": null,
+      "receiptVersion": null,
+      "logicalOutcomeKnown": true,
+      "sameOriginalIdSuccessfulReceipts": [
+        {
+          "sequence": 60,
+          "status": 200,
+          "version": 58
+        }
+      ]
+    },
+    {
+      "sequence": 116,
+      "seat": 0,
+      "commandId": "3815c0ea-4f49-4c30-9090-96ccb83379bb",
+      "expectedVersion": 113,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "asset",
+          "cardId": "i155"
+        }
+      },
+      "requestedAtEpochSeconds": 1792070821.5612826,
+      "terminalEvent": "request-failed",
+      "cause": "ERR_ABORTED",
+      "httpStatus": null,
+      "errorCode": null,
+      "receiptVersion": null,
+      "logicalOutcomeKnown": true,
+      "sameOriginalIdSuccessfulReceipts": [
+        {
+          "sequence": 117,
+          "status": 200,
+          "version": 114
+        }
+      ]
+    },
+    {
+      "sequence": 298,
+      "seat": 0,
+      "commandId": "32076a15-6c35-40e5-980b-a71fbe487757",
+      "expectedVersion": 294,
+      "action": {
+        "kind": "game",
+        "action": {
+          "kind": "pass"
+        }
+      },
+      "requestedAtEpochSeconds": 1792071961.221713,
+      "terminalEvent": "request-failed",
+      "cause": "ERR_ABORTED",
+      "httpStatus": null,
+      "errorCode": null,
+      "receiptVersion": null,
+      "logicalOutcomeKnown": true,
+      "sameOriginalIdSuccessfulReceipts": [
+        {
+          "sequence": 299,
+          "status": 200,
+          "version": 295
+        }
+      ]
+    }
+  ],
+  "unresolvedLogicalCommandIds": [],
+  "allCapturedIntentIdentitiesStable": true,
+  "allTrackedRequestsHaveTerminalEvent": true,
+  "deployAndAcceptCommandMappingsVerified": true,
+  "pausedReadbackGamePosts": 0,
+  "historicalOldTableMissingHttpAttemptsNotIncluded": 3,
+  "historicalOriginalCommandDurableVersion": 811,
+  "limitation": "Observed aborts remain aborted HTTP attempts; same-ID receipts verify their logical outcomes. The old four-seat three unidentifiable attempts remain a separate historical limitation. This proves one actual counter case, not every JC095 edge case."
+}
