@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Bounded local PC recovery checks with real UI commands and an owned SQLite service.
+"""Bounded local browser recovery checks with real UI commands and an owned SQLite service.
 
 This does not play a complete match, publish a site, or use production credentials.
 Only two pause acknowledgements are replaced with explicit synthetic HTTP 503s.
@@ -25,6 +25,7 @@ async def main(args):
     service = IsolatedService(args.binary, args.cwd, output, args.port, args.static_dir)
     result = {'passed': False, 'scope': 'local Chromium, current native server, bounded two-seat UI recovery',
               'fullMatch': False, 'remoteDeployment': False, 'sourceCommit': args.source_commit,
+              'viewport': {'width': args.viewport_width, 'height': args.viewport_height},
               'checks': [], 'synthetic503s': 0, 'pageErrors': []}
     service.start()
     try:
@@ -34,7 +35,7 @@ async def main(args):
             commands = []
 
             async def new_context():
-                context = await browser.new_context(viewport={'width': 1366, 'height': 900})
+                context = await browser.new_context(viewport=result['viewport'])
                 await context.add_init_script(OBSERVE_FETCH)
                 context.on('page', lambda page: page.on('pageerror', lambda error: result['pageErrors'].append(str(error))))
                 return context
@@ -91,6 +92,12 @@ async def main(args):
             current = await view(host)
             choice = current['pendingChoice']
             assert choice and choice['kind'] == 'mulligan' and choice['options'], 'Expected the ordinary initial private choice'
+            dialog = host.get_by_role('dialog', name='待完成的选择')
+            bounds = await dialog.bounding_box()
+            confirm_bounds = await dialog.get_by_role('button', name='确认选择', exact=True).bounding_box()
+            assert bounds and 0 <= bounds['y'] and bounds['y'] + bounds['height'] <= args.viewport_height
+            assert confirm_bounds and 0 <= confirm_bounds['y'] and confirm_bounds['y'] + confirm_bounds['height'] <= args.viewport_height
+            result['initialChoiceBounds'] = {'dialog': bounds, 'confirm': confirm_bounds}
             option_id = choice['options'][0]['id']
             option = host.locator('[data-choice-option=' + json.dumps(option_id) + ']')
             await option.click()
@@ -185,5 +192,7 @@ if __name__ == '__main__':
     parser.add_argument('--output', required=True)
     parser.add_argument('--port', type=int, default=8194)
     parser.add_argument('--chromium', default='/usr/bin/chromium')
+    parser.add_argument('--viewport-width', type=int, default=1366)
+    parser.add_argument('--viewport-height', type=int, default=900)
     parser.add_argument('--source-commit', required=True, help='Exact base commit plus a dirty/WIP label when source is uncommitted')
     asyncio.run(main(parser.parse_args()))

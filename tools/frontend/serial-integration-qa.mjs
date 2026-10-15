@@ -90,8 +90,21 @@ createRoot(document.getElementById('root')!).render(<App/>);
     await expect(dialog.locator(`[data-choice-option="${selected}"]`)).toHaveAttribute('aria-pressed', 'true');
     assert.deepEqual(await page.evaluate(() => window.__reviewActions), []);
     await page.screenshot({ path: join(output, `${viewport.width}-mandatory-choice.png`) });
+    const choiceBounds = await dialog.evaluate(root => {
+      const panel = root.getBoundingClientRect();
+      const confirm = root.querySelector('.hg-choice-footer .hg-button-primary').getBoundingClientRect();
+      const body = root.querySelector('.hg-choice-body');
+      return { top: panel.top, bottom: panel.bottom, confirmTop: confirm.top, confirmBottom: confirm.bottom,
+        viewportHeight: innerHeight, optionsHeight: body.clientHeight, optionsOverflowY: getComputedStyle(body).overflowY };
+    });
+    assert(choiceBounds.top >= 0 && choiceBounds.bottom <= viewport.height,
+      `Choice must stay inside the viewport: ${JSON.stringify(choiceBounds)}`);
+    assert(choiceBounds.confirmTop >= 0 && choiceBounds.confirmBottom <= viewport.height,
+      `Confirmation must remain visible: ${JSON.stringify(choiceBounds)}`);
+    assert(choiceBounds.optionsHeight > 0 && choiceBounds.optionsOverflowY === 'auto');
     await dialog.getByRole('button', { name: '确认选择' }).click();
-    assert.deepEqual(await page.evaluate(() => window.__reviewActions), [step.command.action]);
+    // Match the actual JSON request body: optional undefined fields are omitted on the wire.
+    assert.deepEqual(await page.evaluate(() => JSON.parse(JSON.stringify(window.__reviewActions))), [step.command.action]);
     await setCase('deck');
     await page.getByRole('button', { name: '展开组卡工作台' }).click();
     await page.getByRole('searchbox', { name: '检索卡牌' }).fill('JC046');
@@ -103,7 +116,7 @@ createRoot(document.getElementById('root')!).render(<App/>);
     await page.screenshot({ path: join(output, `${viewport.width}-deck.png`) });
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth > innerWidth);
     assert.equal(overflow, false, 'Deck workbench overflows horizontally');
-    report.checks.push({ viewport, domainCounts: [2, 1, 0], mandatoryChoiceRestored: true,
+    report.checks.push({ viewport, choiceBounds, domainCounts: [2, 1, 0], mandatoryChoiceRestored: true,
       exactNativeAction: true, deckCard: 'JC046', deckCount: 1, horizontalOverflow: overflow });
     await context.close();
   }
