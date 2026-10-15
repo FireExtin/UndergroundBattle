@@ -43,6 +43,76 @@ describe('visible browser recovery persistence failures', () => {
     expect(restored.result.current.session).toEqual(seat); expect(entries).toBe(1);
   });
 
+  it('rejoins an invitation using its memory-only seat after a failed save instead of allocating a second seat', async () => {
+    const write = Storage.prototype.setItem;
+    vi.spyOn(Storage.prototype, 'setItem').mockImplementation(function (this: Storage, key, value) {
+      if (key === 'hegemony.seats.v1') throw new DOMException('full', 'QuotaExceededError');
+      write.call(this, key, value);
+    });
+    const posts: string[] = [];
+    vi.stubGlobal('fetch', vi.fn(async (url: string, init?: RequestInit) => {
+      if (init?.method === 'POST') posts.push(url);
+      if (url.endsWith('/catalog')) return json({ ...testCatalog, entryIdempotency: true });
+      if (url === '/api/rooms') return json({ ...seat, view: testView });
+      if (url === '/api/rooms/join') return json({ ...seat, seat: 1, token: 'accidental-second-seat-token', view: { ...testView, you: 'p1' } });
+      const secondSeat = new Headers(init?.headers).get('Authorization') === 'Bearer accidental-second-seat-token';
+      return json({ ...testView, you: secondSeat ? 'p1' : 'p0' });
+    }));
+    const hook = renderHook(useGame); await act(async () => {});
+    await act(async () => { await hook.result.current.create('原昵称', 'duel', 'watchers'); });
+    expect(readSession()).toBeNull(); expect(hook.result.current.savedSeats).toEqual([seat]);
+    act(() => { hook.result.current.leave(); });
+    await act(async () => { await hook.result.current.join(' invite ', '换个昵称', 'watchers'); });
+    expect(posts).toEqual(['/api/rooms']);
+    expect(hook.result.current.session).toEqual(seat);
+    expect(hook.result.current.view?.you).toBe('p0');
+    expect(hook.result.current.persistenceWarning).toContain('此席位');
+  });
+
+  it('uses a freshly persisted token instead of the older seat snapshot when rejoining', async () => {
+    saveSession(seat);
+    const authorizations: (string | null)[] = [];
+    const posts: string[] = [];
+    vi.stubGlobal('fetch', vi.fn(async (url: string, init?: RequestInit) => {
+      if (init?.method === 'POST') posts.push(url);
+      if (url.endsWith('/catalog')) return json(testCatalog);
+      authorizations.push(new Headers(init?.headers).get('Authorization'));
+      return json(testView);
+    }));
+    const hook = renderHook(useGame); await act(async () => {});
+    act(() => { hook.result.current.leave(); });
+    const refreshed = { ...seat, token: 'freshly-persisted-seat-token' };
+    saveSession(refreshed);
+    expect(hook.result.current.savedSeats).toEqual([seat]);
+    await act(async () => { await hook.result.current.join('INVITE', '改名', 'watchers'); });
+    expect(hook.result.current.session).toEqual(refreshed);
+    expect(authorizations.at(-1)).toBe(`Bearer ${refreshed.token}`);
+    expect(posts).toEqual([]);
+  });
+
+  it('prioritizes the original pending actor over another matching seat added to storage', async () => {
+    saveSession(seat);
+    const posts: { url: string; authorization: string | null; body: unknown }[] = [];
+    vi.stubGlobal('fetch', vi.fn(async (url: string, init?: RequestInit) => {
+      if (url.endsWith('/catalog')) return json(testCatalog);
+      if (init?.method === 'POST') posts.push({ url, authorization: new Headers(init.headers).get('Authorization'), body: JSON.parse(String(init.body)) });
+      if (url.endsWith('/commands')) return json({ message: 'lost receipt' }, 503);
+      return json(testView);
+    }));
+    const hook = renderHook(useGame); await act(async () => {});
+    await act(async () => { await hook.result.current.act({ kind: 'ready' }); });
+    const original = readPending(seat);
+    expect(original).not.toBeNull(); expect(posts).toHaveLength(2);
+    saveSession({ ...seat, seat: 1, token: 'newer-peer-seat-token' });
+    act(() => { hook.result.current.leave(); });
+    await act(async () => { await hook.result.current.join(' invite ', '改名', 'watchers'); });
+    expect(hook.result.current.session).toEqual(seat);
+    expect(readPending(seat)).toEqual(original);
+    expect(posts).toHaveLength(4);
+    expect(posts.every(post => post.url.endsWith('/commands') && post.authorization === `Bearer ${seat.token}`)).toBe(true);
+    expect(posts.slice(1).every(post => JSON.stringify(post.body) === JSON.stringify(posts[0].body))).toBe(true);
+  });
+
   it('offers a visible retry when the original command only exists in memory and persists the same identity before refresh', async () => {
     saveSession(seat);
     let blocked = true;

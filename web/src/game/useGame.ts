@@ -303,7 +303,10 @@ export function useGame() {
   };
   const join = (inviteCode: string, task: () => Promise<Session>) => {
     const code = inviteCode.trim().toUpperCase();
-    const matching = readSavedSeats().filter(seat => seat.inviteCode.trim().toUpperCase() === code);
+    const durable = readSavedSeats();
+    // Keep this scope's unsaved seats reachable without replacing freshly persisted credentials with an old snapshot.
+    const local = savedSeats.filter(seat => !durable.some(saved => saved.roomId === seat.roomId && saved.seat === seat.seat));
+    const matching = [...durable, ...local].filter(seat => seat.inviteCode.trim().toUpperCase() === code);
     // The invite is a room locator. A stored token, never a display name, identifies its occupant.
     const saved = matching.find(seat => commandFor(pending.current, seat)) || matching.at(-1);
     if (saved) { resume(saved); return Promise.resolve(); }
