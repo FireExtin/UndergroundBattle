@@ -18,6 +18,7 @@ export type SocietyDefinition = CardDefinition & {
   unresolvedAbilities: Record<string, string>;
 };
 export type Card = {
+  currentDomains?: { magic: string; count: number }[];
   currentKill?: number;
   currentRetreat?: boolean;
   convertedTemporaryIcons?: Icons;
