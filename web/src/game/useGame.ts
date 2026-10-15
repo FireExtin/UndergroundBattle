@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { actionForRoom, ApiError, clearPending, createRoom, createRoomWithDeck, forgetSavedSeat, getCatalog, getState, isRoomView, joinRoom, joinRoomWithDeck, newCommandId, pollState, readActiveSession, readPendings, readSavedSeats, readSession, retireSeatPendings, returnToLobby, savePending, saveSession, sendCommand, type PendingCommand } from './api';
+import { actionForRoom, ApiError, clearPending, createRoom, createRoomWithDeck, forgetSavedSeat, getCatalog, getState, isRoomView, isSessionSaved, joinRoom, joinRoomWithDeck, newCommandId, pollState, readActiveSession, readPendings, readSavedSeats, readSession, retireSeatPendings, returnToLobby, savePending, saveSession, sendCommand, type PendingCommand } from './api';
 import type { Action, Catalog, SavedSession, Session, View } from './types';
 import type { DeckDraft } from './deckLibrary';
 import { playerStorage, readPlayerMode, selectPlayerMode, type PlayerMode } from './playerStorage';
@@ -27,6 +27,15 @@ export function useGame() {
   const [catalog, setCatalog] = useState<Catalog | null>(null);
   const [session, setSession] = useState<SavedSession | null>(readActiveSession);
   const [savedSeats, setSavedSeats] = useState<SavedSession[]>(readSavedSeats);
+  const [seatPersistenceFailed, setSeatPersistenceFailed] = useState(false);
+  const [pendingPersistenceFailed, setPendingPersistenceFailed] = useState(false);
+  const mounted = useRef(false);
+  useEffect(() => { mounted.current = true; return () => { mounted.current = false; }; }, []);
+  const rememberLocalSeat = (saved: SavedSession, storage?: ReturnType<typeof playerStorage>) => {
+    const durable = readSavedSeats(storage);
+    setSavedSeats(previous => [...new Map([...previous, ...durable, saved].map(seat =>
+      [JSON.stringify([seat.roomId, seat.seat]), seat])).values()]);
+  };
   const locallyConfirmed = useRef(new Set<string>());
   const confirmationKey = (command: PendingCommand, storage?: ReturnType<typeof playerStorage>) => {
     let scope = 'unavailable';
@@ -59,6 +68,7 @@ export function useGame() {
     if (commandFor(pending.current, captured)) {
       locallyConfirmed.current.add(confirmationKey(pending.current!)); pending.current = null;
     }
+    setPendingPersistenceFailed(false);
     return retirement.persisted;
   };
   const retireInvalidSeat = (captured: SavedSession, failure: unknown) => {
@@ -114,6 +124,9 @@ export function useGame() {
     let initialized = false;
     let polling = false;
     let scheduledDelay: number | null = null;
+    // Pausing stops game-state polling only after the original request is settled.
+    // A state read can show a committed pause even though its receipt is still lost.
+    const pausedAndSettled = () => acceptedView.current?.pause && !commandFor(pending.current, session);
     const delay = () => document.visibilityState === 'hidden'
       ? autoPassPreference.current && acceptedView.current?.status === 'playing' ? 3000 : 12000
       : 1500;
@@ -125,7 +138,7 @@ export function useGame() {
     const rearm = () => {
       // Preference/status changes only rearm an idle healthy timer, never an in-flight read or backoff.
       if (controller.signal.aborted || !isActive(session) || polling) return;
-      if (acceptedView.current?.pause) {
+      if (pausedAndSettled()) {
         if (timer !== undefined) clearTimeout(timer);
         timer = undefined; scheduledDelay = null;
         return;
@@ -154,7 +167,7 @@ export function useGame() {
         if (commandFor(pending.current, session) && !commandLock.current) {
           await resolvePending(session);
         }
-        if (!controller.signal.aborted && isActive(session) && !acceptedView.current?.pause) schedule(delay(), true);
+        if (!controller.signal.aborted && isActive(session) && !pausedAndSettled()) schedule(delay(), true);
         return;
       } catch (e) {
         if (controller.signal.aborted || !isActive(session)) return;
@@ -168,7 +181,7 @@ export function useGame() {
       }
     };
     const visible = () => {
-      if (document.visibilityState === 'visible' && !controller.signal.aborted && !acceptedView.current?.pause) {
+      if (document.visibilityState === 'visible' && !controller.signal.aborted && !pausedAndSettled()) {
         schedule(0, false);
       }
     };
@@ -188,12 +201,18 @@ export function useGame() {
     if (pending.current) { setError(unbound(pending.current) ? unboundMessage : '旧牌桌还有待确认行动，请先回到该牌桌确认，再新建或加入另一桌。'); return; }
     commandLock.current = true; setBusy(true); setError('');
     try {
+      const capturedStorage = playerStorage();
       const next = await task();
+      // An old page may finish after a remount chose another player namespace.
+      // The API has already persisted only into its captured original scope.
+      if (!mounted.current || playerStorage().scope !== capturedStorage.scope) return;
       pending.current = null; setUncertain(false);
-      saveSession(next); setSavedSeats(readSavedSeats()); activeSession.current = next;
+      const saved = { roomId: next.roomId, inviteCode: next.inviteCode, token: next.token, seat: next.seat };
+      setSeatPersistenceFailed(!isSessionSaved(saved, capturedStorage)); setPendingPersistenceFailed(false);
+      rememberLocalSeat(saved, capturedStorage); activeSession.current = saved;
       acceptedVersion.current = next.view.version;
       acceptedView.current = next.view;
-      setSession({ roomId: next.roomId, inviteCode: next.inviteCode, token: next.token, seat: next.seat });
+      setSession(saved);
       setView(next.view);
       // Invitations contain only a room code; seat credentials are stored locally.
       if (new URL(location.href).searchParams.has('invite')) history.replaceState({}, '', location.pathname);
@@ -208,7 +227,7 @@ export function useGame() {
     let capturedStorage: ReturnType<typeof playerStorage> | undefined;
     try { capturedStorage = playerStorage(); } catch { /* Continue with the in-memory original if storage is unavailable. */ }
     commandLock.current = true; setBusy(true); setError('');
-    savePending(command, capturedStorage); // Preserve a legacy receipt separately before attempting recovery.
+    setPendingPersistenceFailed(!savePending(command, capturedStorage)); // Preserve a legacy receipt separately before attempting recovery.
     let confirmed = false;
     try {
       let result: View;
@@ -250,11 +269,13 @@ export function useGame() {
         if (confirmed) {
           locallyConfirmed.current.add(confirmationKey(command, capturedStorage));
           clearPending(command, capturedStorage); pending.current = storedPending(currentSession, capturedStorage);
+          setPendingPersistenceFailed(false);
         }
         if (unbound(pending.current)) setError(unboundMessage);
         setUncertain(!confirmed || unbound(pending.current) || commandFor(pending.current, currentSession));
       }
       commandLock.current = false; setBusy(false);
+      rearmPolling.current?.();
     }
   };
   const act = async (action: Action) => {
@@ -276,13 +297,16 @@ export function useGame() {
     if (!saved) return;
     pending.current ||= storedPending(saved) || storedPending();
     if (pending.current && !unbound(pending.current) && !commandFor(pending.current, saved)) { setError('请先恢复待确认行动所在的原席位，再切换牌桌或席位。'); return; }
-    saveSession(saved); setSavedSeats(readSavedSeats()); activeSession.current = saved; acceptedVersion.current = 0; acceptedView.current = null;
+    setSeatPersistenceFailed(!saveSession(saved)); rememberLocalSeat(saved); activeSession.current = saved; acceptedVersion.current = 0; acceptedView.current = null;
     setView(null); setSession(saved); setUncertain(!!pending.current); setError(unbound(pending.current) ? unboundMessage : '');
     if (new URL(location.href).searchParams.has('invite')) history.replaceState({}, '', location.pathname);
   };
   const join = (inviteCode: string, task: () => Promise<Session>) => {
     const code = inviteCode.trim().toUpperCase();
-    const matching = readSavedSeats().filter(seat => seat.inviteCode.trim().toUpperCase() === code);
+    const durable = readSavedSeats();
+    // Keep this scope's unsaved seats reachable without replacing freshly persisted credentials with an old snapshot.
+    const local = savedSeats.filter(seat => !durable.some(saved => saved.roomId === seat.roomId && saved.seat === seat.seat));
+    const matching = [...durable, ...local].filter(seat => seat.inviteCode.trim().toUpperCase() === code);
     // The invite is a room locator. A stored token, never a display name, identifies its occupant.
     const saved = matching.find(seat => commandFor(pending.current, seat)) || matching.at(-1);
     if (saved) { resume(saved); return Promise.resolve(); }
@@ -299,6 +323,7 @@ export function useGame() {
     pending.current = storedPending(next) || storedPending(); activeSession.current = next; acceptedVersion.current = 0; acceptedView.current = null;
     autoPassPreference.current = readAutoPassPreference(); setAutoPassState(autoPassPreference.current);
     setPlayerMode(mode); setSavedSeats(readSavedSeats()); setSession(next); setView(null);
+    setSeatPersistenceFailed(false); setPendingPersistenceFailed(false);
     setUncertain(unbound(pending.current) || commandFor(pending.current, next)); setError(unbound(pending.current) ? unboundMessage : ''); setConnection('connecting');
     setCatalog(null); setCatalogRetry(n => n + 1);
   };
@@ -306,6 +331,15 @@ export function useGame() {
   return {
     catalog, session, view, error, busy, uncertain, connection, act, playerMode, autoPassEnabled, setAutoPassEnabled,
     legacyRecoveryBlocked: unbound(pending.current),
+    persistenceWarning: [
+      seatPersistenceFailed ? '此席位的恢复信息尚未完整写入浏览器。请保持页面打开，回到此席位后重试保存；刷新或关闭页面可能无法恢复原席。' : '',
+      pendingPersistenceFailed ? '上一行动的确认记录尚未写入浏览器。请保持页面打开并重试保存，避免刷新后丢失原行动的确认方式。' : '',
+    ].filter(Boolean).join(' '),
+    retryPersistence: () => {
+      if (commandLock.current || !session) return;
+      setSeatPersistenceFailed(!saveSession(session)); rememberLocalSeat(session);
+      setPendingPersistenceFailed(!!pending.current && !savePending(pending.current));
+    },
     playerModeLocked: busy || !!pending.current,
     startIndependentSession: () => switchPlayerMode('independent'),
     useOrdinarySession: () => switchPlayerMode('ordinary'),

@@ -2,7 +2,7 @@ import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { act, fireEvent, render, screen, within } from '@testing-library/react';
-import { expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import * as abi from '../../../rust-game-wasm/pkg/hegemony_wasm.js';
 import { actionForRoom } from './api';
 import { Table } from './Table';
@@ -13,6 +13,8 @@ expect(createHash('sha256').update(wasm).digest('hex')).toBe(fixture.wasmSha256)
 abi.initSync({ module: wasm });
 const catalog = JSON.parse(abi.catalog());
 const props = { catalog, busy: false, connection: 'online' };
+beforeEach(() => sessionStorage.clear());
+afterEach(() => sessionStorage.clear());
 
 function before(row) {
   const views = row.beforeViews.map((view, seat) => {
@@ -37,6 +39,8 @@ it.each(fixture.cases.filter(row => row.color !== 'red'))('$name restores the cu
   const first = render(<Table {...props} view={view} onAction={submit} />);
   let dialog = screen.getByRole('dialog', { name: '待完成的选择' });
   const choice = view.pendingChoice;
+  const selected = row.command.action.action.selected;
+  selected.forEach(id => fireEvent.click(dialog.querySelector(`[data-choice-option="${id}"]`)));
   expect(within(dialog).queryByRole('button', { name: '跳过此选择' })).not.toBeInTheDocument();
   if (choice.previewCards?.length) {
     const read = within(dialog).getAllByRole('button', { name: /^放大阅读/ })[0];
@@ -44,13 +48,11 @@ it.each(fixture.cases.filter(row => row.color !== 'red'))('$name restores the cu
     expect(submit).not.toHaveBeenCalled();
     fireEvent.click(screen.getByRole('button', { name: '关闭放大阅读' }));
   }
-  first.unmount(); // A fresh component models restored projection display, not browser seat persistence.
+  first.unmount(); // Restore tab-local edits against the current projection; not browser seat persistence.
   const fresh = render(<Table {...props} view={JSON.parse(abi.view(row.before, row.seat))} onAction={submit} />);
   dialog = screen.getByRole('dialog', { name: '待完成的选择' });
   const confirm = within(dialog).getByRole('button', { name: '确认选择' });
-  const selected = row.command.action.action.selected;
-  expect(confirm.disabled).toBe(selected.length > 0);
-  selected.forEach(id => fireEvent.click(dialog.querySelector(`[data-choice-option="${id}"]`)));
+  selected.forEach(id => expect(dialog.querySelector(`[data-choice-option="${id}"]`)).toHaveAttribute('aria-pressed', 'true'));
   expect(confirm).toBeEnabled(); fireEvent.click(confirm);
   replay(row, view, submit);
   fresh.rerender(<Table {...props} view={row.afterViews[row.seat]} onAction={submit} />);
@@ -60,15 +62,16 @@ it.each(fixture.cases.filter(row => row.color !== 'red'))('$name restores the cu
 it.each(fixture.cases.filter(row => row.color === 'red'))('$name preserves private forecast order across a fresh mount and matches Native', row => {
   const view = before(row), submit = vi.fn();
   const first = render(<Table {...props} view={view} onAction={submit} />);
-  expect(screen.getByRole('dialog', { name: '待完成的选择' })).toBeInTheDocument();
-  first.unmount();
-  const fresh = render(<Table {...props} view={JSON.parse(abi.view(row.before, row.seat))} onAction={submit} />);
-  const dialog = screen.getByRole('dialog', { name: '待完成的选择' });
+  let dialog = screen.getByRole('dialog', { name: '待完成的选择' });
   for (const id of row.command.action.action.bottom) {
     const label = view.pendingChoice.options.find(o => o.id === id).label;
     const li = [...dialog.querySelectorAll('.hg-order-columns > div:first-child li')].find(el => el.querySelector('strong')?.textContent === label);
     fireEvent.click(within(li).getByRole('button', { name: '置于底' }));
   }
+  first.unmount();
+  const fresh = render(<Table {...props} view={JSON.parse(abi.view(row.before, row.seat))} onAction={submit} />);
+  dialog = screen.getByRole('dialog', { name: '待完成的选择' });
+  expect(submit).not.toHaveBeenCalled();
   fireEvent.click(within(dialog).getByRole('button', { name: '确认选择' }));
   replay(row, view, submit);
   fresh.rerender(<Table {...props} view={row.afterViews[row.seat]} onAction={submit} />);

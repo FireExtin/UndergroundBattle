@@ -20,7 +20,7 @@ export function RoomManagement({ view, blocked, onAction, refresh }: {
         catch { setCopyStatus(`无法复制，请分享邀请码 ${view.inviteCode}`); }
       }}>复制此桌邀请链接</button>
     </div>
-    {view.pause && <p>暂停的牌桌不自动轮询。伙伴恢复后，点“查看最新状态”或刷新页面同步。</p>}
+    {view.pause && <p>暂停且行动已确认后，牌桌不自动轮询。伙伴恢复后，点“查看最新状态”或刷新页面同步。</p>}
     {copyStatus && <p role="status">{copyStatus}</p>}
   </section>;
 }
