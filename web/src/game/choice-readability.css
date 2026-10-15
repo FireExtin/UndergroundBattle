@@ -23,6 +23,8 @@
 .hg-choice-option .hg-choice-selection-state { display: flex; align-items: center; gap: 8px; width: 100%; padding-bottom: 7px; border-bottom: 1px solid #79613c55; color: #614a29; font-size: 12px; line-height: 1.5; }
 .hg-choice-option .hg-choice-check { position: static; flex: 0 0 24px; width: 24px; height: 24px; }
 .hg-choice-option.hg-selected .hg-choice-selection-state { color: #473211; font-weight: 800; }
+.hg-choice-candidate { align-self: flex-start; border: 1px solid #79613c55; border-radius: 3px; padding: 1px 6px; color: #614a29; font-size: 12px; font-weight: 700; line-height: 1.5; }
+.hg-choice-target-context { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
 .hg-choice-option:focus-visible { box-shadow: 0 0 0 3px #182e34, 0 0 0 6px #88c7dd; }
 .hg-choice-option-label { min-height: 48px; display: flex; align-items: center; overflow-wrap: anywhere; font-size: 16px; line-height: 1.6; }
 .hg-choice-option-entry > .hg-choice-read { margin: 0; width: 100%; min-height: 34px; text-align: center; font-size: 13px; }

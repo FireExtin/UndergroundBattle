@@ -99,7 +99,12 @@ export function DeckLibrary({ catalog, disabled = false, onSelectDraft, selected
   const preview = previewId ? definitions.get(previewId) : undefined;
   const previewSequence = previewIds.filter(id => definitions.has(id));
   const previewIndex = previewId ? previewSequence.indexOf(previewId) : -1;
-  useEffect(() => { if (previewId && !definitions.has(previewId)) setPreviewId(null); }, [previewId, definitions]);
+  useEffect(() => {
+    if (previewId && !definitions.has(previewId)) {
+      setPreviewId(null);
+      setNotice('目录已更新，刚才预览的卡牌已不在当前目录。草稿内容仍保留。');
+    }
+  }, [previewId, definitions]);
   const navigatePreview = (delta: number) => setPreviewId(current => {
     const index = current ? previewSequence.indexOf(current) : -1;
     return index < 0 ? current : previewSequence[index + delta] || current;
@@ -126,11 +131,12 @@ export function DeckLibrary({ catalog, disabled = false, onSelectDraft, selected
     const source = document.activeElement;
     if (!(source instanceof HTMLElement)) return;
     const row = source.closest('[data-catalog-card], [data-draft-card]');
-    const own = row?.querySelector<HTMLButtonElement>('.hg-library-card-preview, .hg-library-entry-preview');
-    if (!own || !row?.parentElement) return;
-    const previews = Array.from(row.parentElement.querySelectorAll<HTMLButtonElement>('.hg-library-card-preview, .hg-library-entry-preview'));
-    const index = previews.indexOf(own);
-    countFocus.current = { source, targets: [own, previews[index + 1], previews[index - 1]].filter((button): button is HTMLButtonElement => !!button) };
+    if (!row?.parentElement) return;
+    const rows = Array.from(row.parentElement.children);
+    const index = rows.indexOf(row);
+    // A retained draft may contain a card that has left the catalog and has no preview.
+    const focusTarget = (entry?: Element) => entry?.querySelector<HTMLButtonElement>('.hg-library-card-preview, .hg-library-entry-preview, button:not(:disabled)');
+    countFocus.current = { source, targets: [focusTarget(row), focusTarget(rows[index + 1]), focusTarget(rows[index - 1])].filter((button): button is HTMLButtonElement => !!button) };
   };
   const changeCount = (cardId: string, delta: number) => {
     rememberCountFocus();
@@ -180,7 +186,7 @@ export function DeckLibrary({ catalog, disabled = false, onSelectDraft, selected
         </div>
         <div className="hg-library-toolbar">
           <button type="button" className="hg-button hg-button-quiet" disabled={disabled} onClick={() => replace(createDeckDraft(catalog), true)}>新建空白牌组</button>
-          <label className="hg-field">预组模板<select value={presetId} onChange={event => setPresetId(event.target.value)} disabled={disabled || !catalog.decks.length}>{catalog.decks.map(deck => <option key={deck.id} value={deck.id}>{deck.name}</option>)}</select></label>
+          <label className="hg-field">预组模板<select value={presetId} onChange={event => setPresetId(event.target.value)} disabled={disabled || !catalog.decks.length}><option value="">选择预组模板</option>{presetId && !catalog.decks.some(deck => deck.id === presetId) && <option value={presetId}>原模板已不在当前目录</option>}{catalog.decks.map(deck => <option key={deck.id} value={deck.id}>{deck.name}</option>)}</select></label>
           <button type="button" className="hg-button hg-button-quiet" disabled={disabled || !catalog.decks.some(deck => deck.id === presetId)} onClick={() => replace(createDeckDraft(catalog, catalog.decks.find(deck => deck.id === presetId)), true)}>复制为草稿</button>
         </div>
         {saved.length > 0 && <ul className="hg-library-saved" aria-label="已保存牌组">{saved.map(item => <li key={item.id}>
@@ -234,8 +240,8 @@ export function DeckLibrary({ catalog, disabled = false, onSelectDraft, selected
         <label className="hg-field hg-library-search"><span>检索卡牌</span><input ref={searchBox} type="search" value={search} onChange={event => setSearch(event.target.value)} placeholder="名称、编号或规则文字" disabled={disabled} /></label>
         <div id={filtersId} className="hg-library-filters" hidden={expanded && !showFilters}>
           <label className="hg-field">派系<select value={faction} onChange={event => setFaction(event.target.value)} disabled={disabled}><option value="all">全部派系</option>{[...factions, neutral].map(item => <option key={item.id} value={item.id}>{item.name}</option>)}<option value="unknown">颜色未标</option></select></label>
-          <label className="hg-field">卡牌类型<select value={kind} onChange={event => setKind(event.target.value)} disabled={disabled}><option value="all">全部类型</option>{Object.entries(kinds).filter(([value]) => catalog.cards.some(card => card.kind === value)).map(([value, label]) => <option key={value} value={value}>{label}</option>)}</select></label>
-          <label className="hg-field">印刷费用<select value={cost} onChange={event => setCost(event.target.value)} disabled={disabled}><option value="all">全部费用</option>{costs.map(value => <option key={value} value={value}>{value} 费</option>)}</select></label>
+          <label className="hg-field">卡牌类型<select value={kind} onChange={event => setKind(event.target.value)} disabled={disabled}><option value="all">全部类型</option>{kind !== 'all' && !catalog.cards.some(card => card.kind === kind) && <option value={kind}>{kinds[kind] || kind}（当前目录无此类型）</option>}{Object.entries(kinds).filter(([value]) => catalog.cards.some(card => card.kind === value)).map(([value, label]) => <option key={value} value={value}>{label}</option>)}</select></label>
+          <label className="hg-field">印刷费用<select value={cost} onChange={event => setCost(event.target.value)} disabled={disabled}><option value="all">全部费用</option>{cost !== 'all' && !costs.some(value => String(value) === cost) && <option value={cost}>{cost} 费（当前目录无此费用）</option>}{costs.map(value => <option key={value} value={value}>{value} 费</option>)}</select></label>
           <label className="hg-field">实现状态<select value={implementation} onChange={event => setImplementation(event.target.value)} disabled={disabled}><option value="implemented">已实现玩家卡</option><option value="unavailable">不可加入牌组</option><option value="all">当前目录全部</option></select></label>
         </div>
         {expanded && !showFilters && advancedFilterLabels.length > 0 && <p className="hg-library-active-filters" aria-label="生效的更多筛选">筛选：{advancedFilterLabels.join(' · ')}</p>}

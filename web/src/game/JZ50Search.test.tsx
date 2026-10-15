@@ -18,7 +18,7 @@ it.each([{options:[]},{options:[{id:'death-one',label:'墓穴食尸鬼',card:{..
   expect(submit).toHaveBeenCalledExactlyOnceWith({...action,choiceId:base.id,selected:[]});
 });
 
-it('reads privately without selecting, chooses one real instance and disables another until deselection', () => {
+it('reads privately without selecting and switches directly between real instances', () => {
   const submit=vi.fn(),read=vi.fn();
   const options=['first','second'].map(id=>({id,label:id,card:{...testCard,instanceId:id,cardId:'JZ50',name:'墓穴食尸鬼'}}));
   const {container}=render(<ChoicePanel choice={{...base,options}} action={action} definitions={new Map()} busy={false} onSubmit={submit} onReadCard={read} viewerId="p0" />);
@@ -27,9 +27,12 @@ it('reads privately without selecting, chooses one real instance and disables an
   const first=container.querySelector('[data-choice-option="first"]')!;
   const second=container.querySelector('[data-choice-option="second"]')!;
   expect(first).toHaveAttribute('aria-pressed','false');fireEvent.click(first);
-  expect(second).toBeDisabled();
+  expect(second).toBeEnabled();
+  fireEvent.click(second);
+  expect(first).toHaveAttribute('aria-pressed','false');
+  expect(second).toHaveAttribute('aria-pressed','true');
   fireEvent.click(screen.getByRole('button',{name:'确认选择'}));
-  expect(submit).toHaveBeenCalledExactlyOnceWith({...action,choiceId:base.id,selected:['first']});
+  expect(submit).toHaveBeenCalledExactlyOnceWith({...action,choiceId:base.id,selected:['second']});
 });
 
 it('keeps unrelated mandatory private choices from inheriting JZ50 zero confirmation', () => {

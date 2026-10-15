@@ -232,6 +232,7 @@ describe('card-face deck workspace', () => {
     expect(screen.getByRole('dialog')).toHaveAccessibleName('卡面组卡工作台');
     expect(screen.getByRole('searchbox', { name: '检索卡牌' })).toHaveFocus();
     expect(count('未知卡牌（JC002）')).toHaveValue(1);
+    expect(screen.getByText('目录已更新，刚才预览的卡牌已不在当前目录。草稿内容仍保留。')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: '保存牌组' })).toBeEnabled();
   });
 
@@ -314,6 +315,20 @@ describe('card-face deck workspace', () => {
     expect(options().scrollTop).toBe(0);
   });
 
+  it('preserves keyboard focus when removing a retained card that no longer has a catalog preview', () => {
+    const { rerender } = render(<DeckLibrary catalog={catalog} />);
+    fireEvent.click(screen.getByRole('button', { name: '添加 无知路人（JC125）' }));
+    fireEvent.click(screen.getByRole('button', { name: '添加 巨石阵看护人（JC002）' }));
+    rerender(<DeckLibrary catalog={{ ...catalog, cards: catalog.cards.filter(card => card.id !== 'JC125') }} />);
+    const removeFirst = screen.getByRole('button', { name: '移除 未知卡牌（JC125）' });
+    removeFirst.focus(); fireEvent.click(removeFirst);
+    expect(screen.getByRole('button', { name: '预览已选 巨石阵看护人（JC002）' })).toHaveFocus();
+    rerender(<DeckLibrary catalog={{ ...catalog, cards: catalog.cards.filter(card => card.id !== 'JC002') }} />);
+    const removeLast = screen.getByRole('button', { name: '移除 未知卡牌（JC002）' });
+    removeLast.focus(); fireEvent.click(removeLast);
+    expect(screen.getByRole('searchbox', { name: '检索卡牌' })).toHaveFocus();
+  });
+
   it('does not discard current edits when the selected saved deck is clicked again', () => {
     render(<DeckLibrary catalog={catalog} />);
     fireEvent.click(screen.getByRole('button', { name: '复制为草稿' }));
@@ -326,5 +341,32 @@ describe('card-face deck workspace', () => {
     expect(screen.getByRole('textbox', { name: '牌组名称' })).toHaveValue('未保存的牌组名');
     expect(saved).toHaveTextContent('正在编辑未保存修改');
     expect(readDeckLibrary().drafts[0].cards).not.toContainEqual({ cardId: 'JC002', count: 1 });
+  });
+
+  it('explains filter values removed by a catalog refresh instead of displaying an unfiltered select', () => {
+    const extra = { ...catalog.cards[1], id: 'FIXTURE_NINE', name: '九费测试附属', kind: 'attachment', cost: 9 };
+    const { rerender } = render(<DeckLibrary catalog={{ ...catalog, cards: [...catalog.cards, extra] }} />);
+    fireEvent.change(screen.getByRole('combobox', { name: '卡牌类型' }), { target: { value: 'attachment' } });
+    fireEvent.change(screen.getByRole('combobox', { name: '印刷费用' }), { target: { value: '9' } });
+    fireEvent.click(screen.getByRole('button', { name: '添加 九费测试附属（FIXTURE_NINE）' }));
+    rerender(<DeckLibrary catalog={catalog} />);
+    expect(screen.getByRole('combobox', { name: '卡牌类型' })).toHaveDisplayValue('附属（当前目录无此类型）');
+    expect(screen.getByRole('combobox', { name: '印刷费用' })).toHaveDisplayValue('9 费（当前目录无此费用）');
+    expect(within(options()).queryByRole('listitem')).not.toBeInTheDocument();
+    expect(count('未知卡牌（FIXTURE_NINE）')).toHaveValue(1);
+    fireEvent.click(screen.getByRole('button', { name: '重置筛选' }));
+    expect(within(options()).getAllByRole('listitem')).toHaveLength(3);
+  });
+
+  it('requires an explicit new template choice after the old preset leaves the catalog', () => {
+    const { rerender } = render(<DeckLibrary catalog={catalog} />);
+    fireEvent.click(screen.getByRole('button', { name: '添加 巨石阵看护人（JC002）' }));
+    rerender(<DeckLibrary catalog={{ ...catalog, decks: [{ ...catalog.decks[0], id: 'new-preset', name: '新模板' }] }} />);
+    expect(screen.getByRole('combobox', { name: '预组模板' })).toHaveDisplayValue('原模板已不在当前目录');
+    expect(screen.getByRole('button', { name: '复制为草稿' })).toBeDisabled();
+    expect(count('巨石阵看护人（JC002）')).toHaveValue(1);
+    fireEvent.change(screen.getByRole('combobox', { name: '预组模板' }), { target: { value: 'new-preset' } });
+    expect(screen.getByRole('button', { name: '复制为草稿' })).toBeEnabled();
+    expect(count('巨石阵看护人（JC002）')).toHaveValue(1);
   });
 });
