@@ -20,7 +20,7 @@ it('reads all four rules of the complete pinned WM038 face and its Blood identit
   expect(definition.defense).toBeNull();expect(definition.abilities).toHaveLength(3);
   const original=readFileSync(resolve('../resource/ymsj-fun.github.io/cards/WM038 信徒烙印.jpg'));
   expect(createHash('sha256').update(original).digest('hex')).toBe('847dabd861d6350ae21df04ac548a975e99a7cfd4814f213444409d4c42d7acd');
-  expect(readFileSync(resolve('public/cards/WM038.jpg'))).toEqual(original);expect(cardScanUrl('WM038')).toBe('/cards/WM038.jpg');
+  expect(readFileSync(resolve('public/cards/WM038.jpg')).equals(original)).toBe(true);expect(cardScanUrl('WM038')).toBe('/cards/WM038.jpg');
   render(<ReadModal card={{...definition,cardId:'WM038',instanceId:'read-wm038',owner:'p0',controller:'p0'}} definition={definition} viewerId="p0" onClose={vi.fn()}/>);
   expect(screen.getByRole('dialog')).toHaveTextContent('邪教徒');expect(screen.getByRole('dialog')).toHaveTextContent('血脉领域');expect(screen.getByRole('dialog')).toHaveTextContent('时间标志');
   fireEvent.click(screen.getByRole('button',{name:'原始牌面'}));expect(screen.getByRole('img',{name:'信徒烙印原始牌面'})).toHaveAttribute('src','/cards/WM038.jpg');

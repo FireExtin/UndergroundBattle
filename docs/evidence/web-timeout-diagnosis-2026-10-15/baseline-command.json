@@ -1,0 +1,36 @@
+{
+  "kind": "diagnostic_single_focused_pass_with_cpu_profiler",
+  "fixed": "4918cfb6372fb9ec900f037e8ed518385d6183e6",
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "npm",
+    "--prefix",
+    "web",
+    "test",
+    "--",
+    "src/game/V028DeckEntry.test.jsx",
+    "src/game/WM023Integration.test.jsx",
+    "src/game/WM038Integration.test.jsx",
+    "--maxWorkers=1",
+    "--execArgv=--cpu-prof",
+    "--execArgv=--cpu-prof-dir=/workspace/web-timeout-diagnosis-20261015/profiles-baseline",
+    "--reporter=default",
+    "--reporter=json",
+    "--outputFile=/workspace/web-timeout-diagnosis-20261015/baseline-vitest.json"
+  ],
+  "thresholdsUnchanged": true,
+  "originalFullWebFailurePreserved": true,
+  "profilingMayAffectTiming": true,
+  "startedAtUtc": "2026-10-15T14:59:04.864399+00:00",
+  "cpuAffinity": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "nodeVersion": "v24.19.0",
+  "vitestVersion": "4.1.2"
+}

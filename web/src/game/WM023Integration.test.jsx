@@ -21,7 +21,7 @@ it('reads the complete pinned public/slow unique WM023 face and paid exhaustion 
   expect(definition.abilities).toMatchObject([{key:'wm023-unique-hand-entry',timing:'standard',triggered:false}]);
   const original=readFileSync(resolve('../resource/ymsj-fun.github.io/cards/WM023 尽职的珍珠.jpg'));
   expect(createHash('sha256').update(original).digest('hex')).toBe('b209fe484e37b930ce4d64be078bd3e72a10bdff5250bfd38ba97cb7648cee85');
-  expect(readFileSync(resolve('public/cards/WM023.jpg'))).toEqual(original);expect(cardScanUrl('WM023')).toBe('/cards/WM023.jpg');
+  expect(readFileSync(resolve('public/cards/WM023.jpg')).equals(original)).toBe(true);expect(cardScanUrl('WM023')).toBe('/cards/WM023.jpg');
   render(<ReadModal card={{...definition,cardId:'WM023',instanceId:'read-wm023',owner:'p0',controller:'p0'}} definition={definition} viewerId="p0" onClose={vi.fn()}/>);
   fireEvent.click(screen.getByRole('button',{name:'原始牌面'}));expect(screen.getByRole('img',{name:'尽职的珍珠原始牌面'})).toHaveAttribute('src','/cards/WM023.jpg');
 });

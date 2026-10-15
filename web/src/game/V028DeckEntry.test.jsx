@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, within } from '@testing-library/react';
 import { afterEach, expect, it, vi } from 'vitest';
 import { kernel as current } from './testKernel';
 import { DeckLibrary } from './DeckLibraryPanel';
@@ -15,14 +15,17 @@ afterEach(() => localStorage.removeItem(DECK_LIBRARY_STORAGE_KEY));
 it('edits all nine v028 cards through normal controls, saves/reloads, and enters four seats with the selected draft', () => {
   localStorage.removeItem(DECK_LIBRARY_STORAGE_KEY);
   const select = vi.fn();
-  const editor = render(<DeckLibrary catalog={catalog} onSelectDraft={select} />);
+  let editor = render(<DeckLibrary catalog={catalog} onSelectDraft={select} />);
+  // Keep accessible-name checks local while the full real catalog stays rendered.
+  const saveControls = () => within(editor.container.querySelector('.hg-library-save-actions'));
   fireEvent.change(screen.getByRole('textbox', { name: '牌组名称' }), { target: { value: 'v028九卡自组' } });
   for (const id of [...entered, 'JC125']) {
     const card = catalog.cards.find(value => value.id === id);
-    fireEvent.click(screen.getByRole('button', { name: `添加 ${card.name}（${id}）` }));
+    const cardRow = within(editor.container.querySelector(`[data-catalog-card="${id}"]`));
+    fireEvent.click(cardRow.getByRole('button', { name: `添加 ${card.name}（${id}）` }));
     fireEvent.change(screen.getByRole('spinbutton', { name: `${card.name}（${id}）张数` }), { target: { value: id === 'JC125' ? '17' : '3' } });
   }
-  const selectButton = () => screen.getByRole('button', { name: '保存并选择此牌组' });
+  const selectButton = () => saveControls().getByRole('button', { name: '保存并选择此牌组' });
   expect(selectButton()).toBeEnabled();
   const lawyer = catalog.cards.find(card => card.id === 'XQ16');
   const lawyerCount = screen.getByRole('spinbutton', { name: `${lawyer.name}（XQ16）张数` });
@@ -33,11 +36,11 @@ it('edits all nine v028 cards through normal controls, saves/reloads, and enters
   fireEvent.change(neutralCount, { target: { value: '16' } });
   expect(selectButton()).toBeDisabled();
   fireEvent.change(neutralCount, { target: { value: '17' } });
-  fireEvent.click(screen.getByRole('button', { name: '保存牌组' }));
+  fireEvent.click(saveControls().getByRole('button', { name: '保存牌组' }));
   const saved = readDeckLibrary().drafts[0];
   for (const id of entered) expect(saved.cards).toContainEqual({ cardId: id, count: 3 });
   editor.unmount();
-  render(<DeckLibrary catalog={catalog} onSelectDraft={select} />);
+  editor = render(<DeckLibrary catalog={catalog} onSelectDraft={select} />);
   expect(screen.getByRole('textbox', { name: '牌组名称' })).toHaveValue('v028九卡自组');
   fireEvent.click(selectButton());
   const draft = select.mock.calls[0][0];

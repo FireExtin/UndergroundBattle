@@ -1,0 +1,103 @@
+{
+  "baseline": "4918cfb6372fb9ec900f037e8ed518385d6183e6",
+  "diagnosticBranchBase": "c9fbaa286144ee4aed620823f9f59d032b64edfe",
+  "thresholdsUnchanged": true,
+  "originalFullWebFailurePreserved": true,
+  "files": [
+    {
+      "path": "analyze_profiles.py",
+      "bytes": 4430,
+      "sha256": "ed5c6476e01381b818943649e81246d130ad06b7cf152f8266d43af473570cea"
+    },
+    {
+      "path": "baseline-command.json",
+      "bytes": 930,
+      "sha256": "69880049a56c2a7f1125fc68cfda4703ddf60caca304ec83932b1339fad957d3"
+    },
+    {
+      "path": "baseline-resources.jsonl",
+      "bytes": 21870,
+      "sha256": "ef536e7fd58630a2ca922d903751b7485f292c7ed4db60e5196b622fe38f9dd9"
+    },
+    {
+      "path": "baseline-result.json",
+      "bytes": 483,
+      "sha256": "2cce7bcc00f3fcd4bc0cee831146d82ce2ef1fb059e1a7c2946f78f175ec8ccd"
+    },
+    {
+      "path": "baseline-vitest.json",
+      "bytes": 10435,
+      "sha256": "6f2350b0877ca490e0b083542e31e8dc81b8e1d375c2379a6bd64045c7201a97"
+    },
+    {
+      "path": "baseline.log",
+      "bytes": 5427,
+      "sha256": "e80852a2f643cb67dcc849ba83b155a003e62597fb599c9ebb922cf15ac2cc9a"
+    },
+    {
+      "path": "fixed-command.json",
+      "bytes": 927,
+      "sha256": "384cdaf8b1fb9fa5ae6142835177063d1fa4ebeab48876b1e9d712b576f30515"
+    },
+    {
+      "path": "fixed-focused.log",
+      "bytes": 1785,
+      "sha256": "a7549accdcb4ba441987d757bcc822d9ecbfc3b9b504be73bccb780d9aa7288a"
+    },
+    {
+      "path": "fixed-resources.jsonl",
+      "bytes": 8015,
+      "sha256": "5637ae7a9b182f8161346acdb303c0da667d362f0ee1ce20215fdb97b0da9bc3"
+    },
+    {
+      "path": "fixed-result.json",
+      "bytes": 606,
+      "sha256": "ce8f80045a11fdc4a20736fd51a9b75b88964011c9abe8421c2764f7d03fbe6b"
+    },
+    {
+      "path": "fixed-vitest.json",
+      "bytes": 6806,
+      "sha256": "cfd610905491e92b3569ee73dbc58910f5d480fd52457fb70a6ab5b8a467f068"
+    },
+    {
+      "path": "profile-summary.json",
+      "bytes": 23160,
+      "sha256": "9c2994e2574fb00fd7cbd20c7773fa519867a4159b3439feb43a5ce4017fb459"
+    },
+    {
+      "path": "profiles-baseline/CPU.20261015.145906.45668.0.001.cpuprofile.gz",
+      "bytes": 279691,
+      "sha256": "da4fb8144483501e09054222448991dcb159053f46b5e6977a3f584a757f0297"
+    },
+    {
+      "path": "profiles-baseline/CPU.20261015.145928.45677.0.001.cpuprofile.gz",
+      "bytes": 170820,
+      "sha256": "251aebc0028201eaf1d3618d3f174bdb50647ff6f1236ed747e8db21d1b06d4d"
+    },
+    {
+      "path": "profiles-baseline/CPU.20261015.145938.45698.0.001.cpuprofile.gz",
+      "bytes": 173256,
+      "sha256": "77798bacf4481fa44333f634dee9e15adc38cb174302dba9dc412ab0db18a3e9"
+    },
+    {
+      "path": "profiles-fixed/CPU.20261015.150234.45863.0.001.cpuprofile.gz",
+      "bytes": 139418,
+      "sha256": "a7191d34a4b6bb132675f20732a1592ff5d558b7a80631e9f67e8b8a138e3a82"
+    },
+    {
+      "path": "profiles-fixed/CPU.20261015.150240.45872.0.001.cpuprofile.gz",
+      "bytes": 171683,
+      "sha256": "d0fc6d4e91e59da4096bb0bccd8c3dcb828396eaceebd0c3a7b1f1523063038f"
+    },
+    {
+      "path": "profiles-fixed/CPU.20261015.150244.45881.0.001.cpuprofile.gz",
+      "bytes": 158605,
+      "sha256": "51a41a64eaaafc967b9636f3706c59438977036ca86900e18963a6d6b733e9fd"
+    },
+    {
+      "path": "test-source-identity.json",
+      "bytes": 717,
+      "sha256": "992d5d0ef34dd120bb5b42955805fc57666aec636861c29c7445b64e247f04c0"
+    }
+  ]
+}

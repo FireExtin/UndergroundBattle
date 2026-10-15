@@ -1,0 +1,655 @@
+{
+  "method": "Node statistical CPU samples; inclusive categories overlap and must not be summed; profiling changes timing",
+  "runs": {
+    "baseline": {
+      "passed": 16,
+      "failed": 3,
+      "tests": [
+        {
+          "file": "V028DeckEntry.test.jsx",
+          "firstTest": "edits all nine v028 cards through normal controls, saves/reloads, and enters four seats with the selected draft",
+          "durationMs": 20954.542488,
+          "status": "failed"
+        },
+        {
+          "file": "WM023Integration.test.jsx",
+          "firstTest": "reads the complete pinned public/slow unique WM023 face and paid exhaustion ability",
+          "durationMs": 5653.8781309999995,
+          "status": "failed"
+        },
+        {
+          "file": "WM038Integration.test.jsx",
+          "firstTest": "reads all four rules of the complete pinned WM038 face and its Blood identity",
+          "durationMs": 5261.180267,
+          "status": "failed"
+        }
+      ],
+      "resourceObservationSeconds": 43.343735,
+      "cpuQuota": "400000 100000",
+      "cpuStatDelta": {
+        "usage_usec": 56343059,
+        "user_usec": 48355538,
+        "system_usec": 7987522,
+        "nice_usec": 0,
+        "nr_periods": 433,
+        "nr_throttled": 0,
+        "throttled_usec": 0,
+        "nr_bursts": 0,
+        "burst_usec": 0
+      },
+      "memoryLimitBytes": 17179869184,
+      "memoryPeakSampledBytes": 7658541056,
+      "memoryEventDelta": {
+        "low": 0,
+        "high": 0,
+        "max": 0,
+        "oom": 0,
+        "oom_kill": 0,
+        "oom_group_kill": 0
+      },
+      "profiles": [
+        {
+          "path": "profiles-baseline/CPU.20261015.145906.45668.0.001.cpuprofile",
+          "bytes": 3315394,
+          "sha256": "6d3308c8c6a6a6c49c8b9ed350eaaebb8b31e536ff2621bb73e23fd8a8326322",
+          "testFiles": [
+            "V028DeckEntry.test.jsx"
+          ],
+          "sampleSeconds": 22.814872,
+          "inclusiveSeconds": {
+            "garbageCollector": 0.727614,
+            "react": 4.831368,
+            "accessibleName": 14.137274,
+            "roleQuery": 15.393875,
+            "wasm": 0.162796,
+            "testCallback": 20.241578,
+            "vitestDeepEquality": 0.002278
+          },
+          "topSelfFrames": [
+            {
+              "function": "process.env.NODE_ENV.exports.jsxDEV",
+              "url": "file:///workspace/UndergroundBattle/web/node_modules/react/cjs/react-jsx-dev-runtime.development.js",
+              "line": 324,
+              "seconds": 1.9245
+            },
+            {
+              "function": "",
+              "url": "file:///workspace/UndergroundBattle/web/src/game/DeckLibraryPanel.tsx",
+              "line": 1365,
+              "seconds": 0.937242
+            },
+            {
+              "function": "has",
+              "url": "file:///workspace/UndergroundBattle/web/node_modules/lru-cache/dist/commonjs/index.min.js",
+              "line": 1,
+              "seconds": 0.88965
+            },
+            {
+              "function": "_matchLeaves",
+              "url": "file:///workspace/UndergroundBattle/web/node_modules/@asamuzakjp/dom-selector/dist/cjs/index.cjs",
+              "line": 3282,
+              "seconds": 0.871525
+            },
+            {
+              "function": "(garbage collector)",
+              "url": "",
+              "line": 0,
+              "seconds": 0.727614
+            },
+            {
+              "function": "check",
+              "url": "file:///workspace/UndergroundBattle/web/node_modules/@asamuzakjp/dom-selector/dist/cjs/index.cjs",
+              "line": 4409,
+              "seconds": 0.63064
+            },
+            {
+              "function": "sharedSpecifiedAndComputedAndUsed",
+              "url": "file:///workspace/UndergroundBattle/web/node_modules/jsdom/lib/jsdom/living/helpers/colors.js",
+              "line": 187,
+              "seconds": 0.61368
+            },
+            {
+              "function": "matches",
+              "url": "file:///workspace/UndergroundBattle/web/node_modules/jsdom/lib/jsdom/living/helpers/style-rules.js",
+              "line": 197,
+              "seconds": 0.530776
+            },
+            {
+              "function": "matchTypeSelector",
+              "url": "file:///workspace/UndergroundBattle/web/node_modules/@asamuzakjp/dom-selector/dist/cjs/index.cjs",
+              "line": 1477,
+              "seconds": 0.447496
+            },
+            {
+              "function": "(idle)",
+              "url": "",
+              "line": 0,
+              "seconds": 0.423294
+            },
+            {
+              "function": "_node",
+              "url": "file:///workspace/UndergroundBattle/web/node_modules/symbol-tree/lib/SymbolTree.js",
+              "line": 49,
+              "seconds": 0.388139
+            },
+            {
+              "function": "resolveContent",
+              "url": "file:///workspace/UndergroundBattle/web/node_modules/@asamuzakjp/dom-selector/dist/cjs/index.cjs",
+              "line": 224,
+              "seconds": 0.381717
+            }
+          ]
+        },
+        {
+          "path": "profiles-baseline/CPU.20261015.145928.45677.0.001.cpuprofile",
+          "bytes": 2176644,
+          "sha256": "9b9ca59a929715d7f8be97b5564ef81a521617a59e08d0447a782af5d9c96e5c",
+          "testFiles": [
+            "WM023Integration.test.jsx"
+          ],
+          "sampleSeconds": 9.52133,
+          "inclusiveSeconds": {
+            "garbageCollector": 1.184676,
+            "react": 1.898803,
+            "accessibleName": 0.349917,
+            "testCallback": 6.760734,
+            "wasm": 0.113244,
+            "vitestDeepEquality": 4.320204,
+            "roleQuery": 0.441016
+          },
+          "topSelfFrames": [
+            {
+              "function": "keys",
+              "url": "file:///workspace/UndergroundBattle/web/node_modules/@vitest/expect/dist/index.js",
+              "line": 398,
+              "seconds": 2.152065
+            },
+            {
+              "function": "(garbage collector)",
+              "url": "",
+              "line": 0,
+              "seconds": 1.184676
+            },
+            {
+              "function": "eq",
+              "url": "file:///workspace/UndergroundBattle/web/node_modules/@vitest/expect/dist/index.js",
+              "line": 265,
+              "seconds": 0.845234
+            },
+            {
+              "function": "iterableEquality",
+              "url": "file:///workspace/UndergroundBattle/web/node_modules/@vitest/expect/dist/index.js",
+              "line": 482,
+              "seconds": 0.613137
+            },
+            {
+              "function": "process.env.NODE_ENV.exports.jsxDEV",
+              "url": "file:///workspace/UndergroundBattle/web/node_modules/react/cjs/react-jsx-dev-runtime.development.js",
+              "line": 324,
+              "seconds": 0.337204
+            },
+            {
+              "function": "(idle)",
+              "url": "",
+              "line": 0,
+              "seconds": 0.309985
+            },
+            {
+              "function": "iterableEqualityWithStack",
+              "url": "file:///workspace/UndergroundBattle/web/node_modules/@vitest/expect/dist/index.js",
+              "line": 502,
+              "seconds": 0.300143
+            },
+            {
+              "function": "wrapSafe",
+              "url": "node:internal/modules/cjs/loader",
+              "line": 1762,
+              "seconds": 0.298851
+            },
+            {
+              "function": "hasKey",
+              "url": "file:///workspace/UndergroundBattle/web/node_modules/@vitest/expect/dist/index.js",
+              "line": 410,
+              "seconds": 0.137812
+            },
+            {
+              "function": "isAsymmetric",
+              "url": "file:///workspace/UndergroundBattle/web/node_modules/@vitest/expect/dist/index.js",
+              "line": 216,
+              "seconds": 0.10896
+            },
+            {
+              "function": "hasDefinedKey",
+              "url": "file:///workspace/UndergroundBattle/web/node_modules/@vitest/expect/dist/index.js",
+              "line": 407,
+              "seconds": 0.097275
+            },
+            {
+              "function": "compileSourceTextModule",
+              "url": "node:internal/modules/esm/utils",
+              "line": 316,
+              "seconds": 0.064166
+            }
+          ]
+        },
+        {
+          "path": "profiles-baseline/CPU.20261015.145938.45698.0.001.cpuprofile",
+          "bytes": 2167339,
+          "sha256": "4f6d391ca2216af7e870daf3a76c5ee8119e3c1775d8652565840f920750cbcb",
+          "testFiles": [
+            "WM038Integration.test.jsx"
+          ],
+          "sampleSeconds": 9.227233,
+          "inclusiveSeconds": {
+            "garbageCollector": 1.270547,
+            "react": 2.058848,
+            "accessibleName": 0.550749,
+            "roleQuery": 0.656869,
+            "testCallback": 6.672221,
+            "wasm": 0.138495,
+            "vitestDeepEquality": 3.771904
+          },
+          "topSelfFrames": [
+            {
+              "function": "keys",
+              "url": "file:///workspace/UndergroundBattle/web/node_modules/@vitest/expect/dist/index.js",
+              "line": 398,
+              "seconds": 1.786637
+            },
+            {
+              "function": "(garbage collector)",
+              "url": "",
+              "line": 0,
+              "seconds": 1.270547
+            },
+            {
+              "function": "eq",
+              "url": "file:///workspace/UndergroundBattle/web/node_modules/@vitest/expect/dist/index.js",
+              "line": 265,
+              "seconds": 0.757442
+            },
+            {
+              "function": "iterableEquality",
+              "url": "file:///workspace/UndergroundBattle/web/node_modules/@vitest/expect/dist/index.js",
+              "line": 482,
+              "seconds": 0.535205
+            },
+            {
+              "function": "process.env.NODE_ENV.exports.jsxDEV",
+              "url": "file:///workspace/UndergroundBattle/web/node_modules/react/cjs/react-jsx-dev-runtime.development.js",
+              "line": 324,
+              "seconds": 0.400899
+            },
+            {
+              "function": "iterableEqualityWithStack",
+              "url": "file:///workspace/UndergroundBattle/web/node_modules/@vitest/expect/dist/index.js",
+              "line": 502,
+              "seconds": 0.295306
+            },
+            {
+              "function": "wrapSafe",
+              "url": "node:internal/modules/cjs/loader",
+              "line": 1762,
+              "seconds": 0.291785
+            },
+            {
+              "function": "hasKey",
+              "url": "file:///workspace/UndergroundBattle/web/node_modules/@vitest/expect/dist/index.js",
+              "line": 410,
+              "seconds": 0.130957
+            },
+            {
+              "function": "isAsymmetric",
+              "url": "file:///workspace/UndergroundBattle/web/node_modules/@vitest/expect/dist/index.js",
+              "line": 216,
+              "seconds": 0.101708
+            },
+            {
+              "function": "exports.is",
+              "url": "file:///workspace/UndergroundBattle/web/node_modules/jsdom/lib/jsdom/living/generated/Node.js",
+              "line": 15,
+              "seconds": 0.083213
+            },
+            {
+              "function": "hasDefinedKey",
+              "url": "file:///workspace/UndergroundBattle/web/node_modules/@vitest/expect/dist/index.js",
+              "line": 407,
+              "seconds": 0.0745
+            },
+            {
+              "function": "compileSourceTextModule",
+              "url": "node:internal/modules/esm/utils",
+              "line": 316,
+              "seconds": 0.074366
+            }
+          ]
+        }
+      ]
+    },
+    "fixed": {
+      "passed": 19,
+      "failed": 0,
+      "tests": [
+        {
+          "file": "V028DeckEntry.test.jsx",
+          "firstTest": "edits all nine v028 cards through normal controls, saves/reloads, and enters four seats with the selected draft",
+          "durationMs": 3939.182312,
+          "status": "passed"
+        },
+        {
+          "file": "WM023Integration.test.jsx",
+          "firstTest": "reads the complete pinned public/slow unique WM023 face and paid exhaustion ability",
+          "durationMs": 447.39154299999996,
+          "status": "passed"
+        },
+        {
+          "file": "WM038Integration.test.jsx",
+          "firstTest": "reads all four rules of the complete pinned WM038 face and its Blood identity",
+          "durationMs": 351.4969229999999,
+          "status": "passed"
+        }
+      ],
+      "resourceObservationSeconds": 15.095529,
+      "cpuQuota": "400000 100000",
+      "cpuStatDelta": {
+        "usage_usec": 22229027,
+        "user_usec": 19497176,
+        "system_usec": 2731850,
+        "nice_usec": 0,
+        "nr_periods": 151,
+        "nr_throttled": 1,
+        "throttled_usec": 5391,
+        "nr_bursts": 0,
+        "burst_usec": 0
+      },
+      "memoryLimitBytes": 17179869184,
+      "memoryPeakSampledBytes": 7245594624,
+      "memoryEventDelta": {
+        "low": 0,
+        "high": 0,
+        "max": 0,
+        "oom": 0,
+        "oom_kill": 0,
+        "oom_group_kill": 0
+      },
+      "profiles": [
+        {
+          "path": "profiles-fixed/CPU.20261015.150234.45863.0.001.cpuprofile",
+          "bytes": 1841098,
+          "sha256": "16c526169b0d8e98dcdcc7c900364193a22ea9fcefe552d1e8578e0750a64583",
+          "testFiles": [
+            "V028DeckEntry.test.jsx"
+          ],
+          "sampleSeconds": 5.516369,
+          "inclusiveSeconds": {
+            "garbageCollector": 0.209456,
+            "react": 2.635107,
+            "accessibleName": 0.755721,
+            "wasm": 0.110502,
+            "testCallback": 3.768184,
+            "roleQuery": 1.06117,
+            "vitestDeepEquality": 0.00108
+          },
+          "topSelfFrames": [
+            {
+              "function": "process.env.NODE_ENV.exports.jsxDEV",
+              "url": "file:///workspace/UndergroundBattle/web/node_modules/react/cjs/react-jsx-dev-runtime.development.js",
+              "line": 324,
+              "seconds": 0.721219
+            },
+            {
+              "function": "",
+              "url": "file:///workspace/UndergroundBattle/web/src/game/DeckLibraryPanel.tsx",
+              "line": 1365,
+              "seconds": 0.332029
+            },
+            {
+              "function": "(idle)",
+              "url": "",
+              "line": 0,
+              "seconds": 0.318501
+            },
+            {
+              "function": "wrapSafe",
+              "url": "node:internal/modules/cjs/loader",
+              "line": 1762,
+              "seconds": 0.288745
+            },
+            {
+              "function": "DeckCardFace",
+              "url": "file:///workspace/UndergroundBattle/web/src/game/DeckCardFace.tsx",
+              "line": 10,
+              "seconds": 0.24077
+            },
+            {
+              "function": "(garbage collector)",
+              "url": "",
+              "line": 0,
+              "seconds": 0.209456
+            },
+            {
+              "function": "ReactElement",
+              "url": "file:///workspace/UndergroundBattle/web/node_modules/react/cjs/react-jsx-dev-runtime.development.js",
+              "line": 153,
+              "seconds": 0.169862
+            },
+            {
+              "function": "compileSourceTextModule",
+              "url": "node:internal/modules/esm/utils",
+              "line": 316,
+              "seconds": 0.060484
+            },
+            {
+              "function": "updateProperties",
+              "url": "file:///workspace/UndergroundBattle/web/node_modules/react-dom/cjs/react-dom-client.development.js",
+              "line": 20755,
+              "seconds": 0.05001
+            },
+            {
+              "function": "validateProperty",
+              "url": "file:///workspace/UndergroundBattle/web/node_modules/react-dom/cjs/react-dom-client.development.js",
+              "line": 2899,
+              "seconds": 0.042952
+            },
+            {
+              "function": "has",
+              "url": "file:///workspace/UndergroundBattle/web/node_modules/lru-cache/dist/commonjs/index.min.js",
+              "line": 1,
+              "seconds": 0.041928
+            },
+            {
+              "function": "readFileUtf8",
+              "url": "",
+              "line": 0,
+              "seconds": 0.040773
+            }
+          ]
+        },
+        {
+          "path": "profiles-fixed/CPU.20261015.150240.45872.0.001.cpuprofile",
+          "bytes": 2290719,
+          "sha256": "c2671fc98ac3c480aff2c2266cd279395fa7ea793955387925097f52152f78a3",
+          "testFiles": [
+            "WM023Integration.test.jsx"
+          ],
+          "sampleSeconds": 4.410524,
+          "inclusiveSeconds": {
+            "garbageCollector": 0.158687,
+            "react": 2.036705,
+            "accessibleName": 0.453806,
+            "testCallback": 2.79152,
+            "wasm": 0.124499,
+            "vitestDeepEquality": 0.012713,
+            "roleQuery": 0.561331
+          },
+          "topSelfFrames": [
+            {
+              "function": "process.env.NODE_ENV.exports.jsxDEV",
+              "url": "file:///workspace/UndergroundBattle/web/node_modules/react/cjs/react-jsx-dev-runtime.development.js",
+              "line": 324,
+              "seconds": 0.390829
+            },
+            {
+              "function": "(idle)",
+              "url": "",
+              "line": 0,
+              "seconds": 0.334589
+            },
+            {
+              "function": "wrapSafe",
+              "url": "node:internal/modules/cjs/loader",
+              "line": 1762,
+              "seconds": 0.252695
+            },
+            {
+              "function": "(garbage collector)",
+              "url": "",
+              "line": 0,
+              "seconds": 0.158687
+            },
+            {
+              "function": "CSSStyleDeclaration",
+              "url": "file:///workspace/UndergroundBattle/web/node_modules/cssstyle/lib/CSSStyleDeclaration.js",
+              "line": 39,
+              "seconds": 0.069971
+            },
+            {
+              "function": "compileSourceTextModule",
+              "url": "node:internal/modules/esm/utils",
+              "line": 316,
+              "seconds": 0.06402
+            },
+            {
+              "function": "Module",
+              "url": "",
+              "line": 0,
+              "seconds": 0.050965
+            },
+            {
+              "function": "_node",
+              "url": "file:///workspace/UndergroundBattle/web/node_modules/symbol-tree/lib/SymbolTree.js",
+              "line": 49,
+              "seconds": 0.050876
+            },
+            {
+              "function": "ReactElement",
+              "url": "file:///workspace/UndergroundBattle/web/node_modules/react/cjs/react-jsx-dev-runtime.development.js",
+              "line": 153,
+              "seconds": 0.048589
+            },
+            {
+              "function": "has",
+              "url": "file:///workspace/UndergroundBattle/web/node_modules/lru-cache/dist/commonjs/index.min.js",
+              "line": 1,
+              "seconds": 0.036732
+            },
+            {
+              "function": "_matchLeaves",
+              "url": "file:///workspace/UndergroundBattle/web/node_modules/@asamuzakjp/dom-selector/dist/cjs/index.cjs",
+              "line": 3282,
+              "seconds": 0.035069
+            },
+            {
+              "function": "exports.installInterfaces",
+              "url": "file:///workspace/UndergroundBattle/web/node_modules/jsdom/lib/jsdom/living/interfaces.js",
+              "line": 231,
+              "seconds": 0.033823
+            }
+          ]
+        },
+        {
+          "path": "profiles-fixed/CPU.20261015.150244.45881.0.001.cpuprofile",
+          "bytes": 2054700,
+          "sha256": "648ebeb74047c24360c36a0c66bd6fb33bca12ff78279ed095bf3fd5f979f2a9",
+          "testFiles": [
+            "WM038Integration.test.jsx"
+          ],
+          "sampleSeconds": 3.737642,
+          "inclusiveSeconds": {
+            "garbageCollector": 0.16165,
+            "react": 1.850719,
+            "accessibleName": 0.342373,
+            "roleQuery": 0.435813,
+            "testCallback": 2.421598,
+            "wasm": 0.122442,
+            "vitestDeepEquality": 0.01756
+          },
+          "topSelfFrames": [
+            {
+              "function": "process.env.NODE_ENV.exports.jsxDEV",
+              "url": "file:///workspace/UndergroundBattle/web/node_modules/react/cjs/react-jsx-dev-runtime.development.js",
+              "line": 324,
+              "seconds": 0.367026
+            },
+            {
+              "function": "wrapSafe",
+              "url": "node:internal/modules/cjs/loader",
+              "line": 1762,
+              "seconds": 0.263021
+            },
+            {
+              "function": "(garbage collector)",
+              "url": "",
+              "line": 0,
+              "seconds": 0.16165
+            },
+            {
+              "function": "compileSourceTextModule",
+              "url": "node:internal/modules/esm/utils",
+              "line": 316,
+              "seconds": 0.063231
+            },
+            {
+              "function": "CSSStyleDeclaration",
+              "url": "file:///workspace/UndergroundBattle/web/node_modules/cssstyle/lib/CSSStyleDeclaration.js",
+              "line": 39,
+              "seconds": 0.051832
+            },
+            {
+              "function": "ReactElement",
+              "url": "file:///workspace/UndergroundBattle/web/node_modules/react/cjs/react-jsx-dev-runtime.development.js",
+              "line": 153,
+              "seconds": 0.051112
+            },
+            {
+              "function": "(idle)",
+              "url": "",
+              "line": 0,
+              "seconds": 0.04401
+            },
+            {
+              "function": "readFileUtf8",
+              "url": "",
+              "line": 0,
+              "seconds": 0.035875
+            },
+            {
+              "function": "exports.installInterfaces",
+              "url": "file:///workspace/UndergroundBattle/web/node_modules/jsdom/lib/jsdom/living/interfaces.js",
+              "line": 231,
+              "seconds": 0.035348
+            },
+            {
+              "function": "_node",
+              "url": "file:///workspace/UndergroundBattle/web/node_modules/symbol-tree/lib/SymbolTree.js",
+              "line": 49,
+              "seconds": 0.034773
+            },
+            {
+              "function": "validateProperty",
+              "url": "file:///workspace/UndergroundBattle/web/node_modules/react-dom/cjs/react-dom-client.development.js",
+              "line": 2899,
+              "seconds": 0.034669
+            },
+            {
+              "function": "completeWork",
+              "url": "file:///workspace/UndergroundBattle/web/node_modules/react-dom/cjs/react-dom-client.development.js",
+              "line": 12430,
+              "seconds": 0.033801
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "exitCode": 1,
+  "elapsedSeconds": 43.349,
+  "logSha256": "e80852a2f643cb67dcc849ba83b155a003e62597fb599c9ebb922cf15ac2cc9a",
+  "childUserSeconds": 48.025988,
+  "childSystemSeconds": 7.583914,
+  "childMaxRssKiB": 760584,
+  "profileFiles": [
+    "CPU.20261015.145906.45668.0.001.cpuprofile",
+    "CPU.20261015.145928.45677.0.001.cpuprofile",
+    "CPU.20261015.145938.45698.0.001.cpuprofile"
+  ],
+  "headAfter": "4918cfb6372fb9ec900f037e8ed518385d6183e6",
+  "gitStatusAfter": ""
+}

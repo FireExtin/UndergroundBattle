@@ -1,0 +1,15 @@
+{
+  "exitCode": 0,
+  "elapsedSeconds": 15.101,
+  "logSha256": "a7549accdcb4ba441987d757bcc822d9ecbfc3b9b504be73bccb780d9aa7288a",
+  "childUserSeconds": 19.450268,
+  "childSystemSeconds": 2.749315,
+  "childMaxRssKiB": 362204,
+  "profileFiles": [
+    "CPU.20261015.150234.45863.0.001.cpuprofile",
+    "CPU.20261015.150240.45872.0.001.cpuprofile",
+    "CPU.20261015.150244.45881.0.001.cpuprofile"
+  ],
+  "headAfter": "c9fbaa286144ee4aed620823f9f59d032b64edfe",
+  "gitStatusAfter": "M web/src/game/V028DeckEntry.test.jsx\n M web/src/game/WM023Integration.test.jsx\n M web/src/game/WM038Integration.test.jsx"
+}

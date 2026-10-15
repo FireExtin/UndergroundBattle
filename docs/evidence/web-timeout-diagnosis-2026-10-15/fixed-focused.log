@@ -1,0 +1,29 @@
+
+> undergroundbattle-web@0.1.0 test
+> vitest --run src/game/V028DeckEntry.test.jsx src/game/WM023Integration.test.jsx src/game/WM038Integration.test.jsx --maxWorkers=1 --execArgv=--cpu-prof --execArgv=--cpu-prof-dir=/workspace/web-timeout-diagnosis-20261015/profiles-fixed --reporter=default --reporter=json --outputFile=/workspace/web-timeout-diagnosis-20261015/fixed-vitest.json
+
+
+ RUN  v4.1.2 /workspace/UndergroundBattle/web
+
+ ✓ src/game/V028DeckEntry.test.jsx (1 test) 3941ms
+   ✓ edits all nine v028 cards through normal controls, saves/reloads, and enters four seats with the selected draft  3939ms
+ ✓ src/game/WM023Integration.test.jsx (9 tests) 2813ms
+   ✓ reads the complete pinned public/slow unique WM023 face and paid exhaustion ability  447ms
+   ✓ 'activation' submits the exact Native command after projection restore  662ms
+   ✓ 'hand-after-source-hide' submits the exact Native command after projection restore  302ms
+ ✓ src/game/WM038Integration.test.jsx (9 tests) 2504ms
+   ✓ reads all four rules of the complete pinned WM038 face and its Blood identity  351ms
+   ✓ 'attach' submits the exact paid or optional Native Room command after projection restore  613ms
+   ✓ 'discounted-blood-deploy' submits the exact paid or optional Native Room command after projection restore  418ms
+
+ Test Files  3 passed (3)
+      Tests  19 passed (19)
+   Start at  15:02:34
+   Duration  13.76s (transform 622ms, setup 484ms, import 1.05s, tests 9.26s, environment 2.16s)
+
+JSON report written to /workspace/web-timeout-diagnosis-20261015/fixed-vitest.json
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
