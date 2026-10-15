@@ -1,0 +1,107 @@
+{
+  "fixed": "00c273d4a0ae4b75ab3f2a66be2e3eca96c75ede",
+  "singleSerialPass": true,
+  "checks": [
+    {
+      "name": "web-full",
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "npm",
+        "--prefix",
+        "web",
+        "test",
+        "--",
+        "--maxWorkers=1",
+        "--reporter=default",
+        "--reporter=json",
+        "--outputFile=/workspace/web-timeout-diagnosis-20261015/verification/web-full-vitest.json"
+      ],
+      "exitCode": 1,
+      "seconds": 388.741,
+      "sha256": "f63403cc9433ac3f1df0ad7bed9fbd88406608505f21d728529a412e31b924cc",
+      "bytes": 37379
+    },
+    {
+      "name": "worker-full",
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "bash",
+        "-c",
+        "cd sites && node --test --test-concurrency=1 test/*.test.mjs"
+      ],
+      "exitCode": 0,
+      "seconds": 700.479,
+      "sha256": "20c34d587ead37400eaf570b7708ee864e6a8e0ee90d3ad7c6e7cf9d5bf77678",
+      "bytes": 46547
+    },
+    {
+      "name": "source-guards",
+      "command": [
+        "node",
+        "--test",
+        "tools/cards/admitted-scans.test.mjs",
+        "tools/cards/bq030-source.test.mjs",
+        "tools/cards/jc037-source.test.mjs",
+        "tools/cards/jc046-source.test.mjs",
+        "tools/cards/jc052-source.test.mjs",
+        "tools/cards/jc060-source.test.mjs",
+        "tools/cards/jc094-source.test.mjs",
+        "tools/cards/jc095-source.test.mjs",
+        "tools/cards/jz35-source.test.mjs",
+        "tools/cards/wm023-source.test.mjs",
+        "tools/cards/wm038-source.test.mjs",
+        "tools/cards/wm056-source.test.mjs",
+        "tools/cards/xq24-source.test.mjs",
+        "tools/cards/xq25-source.test.mjs"
+      ],
+      "exitCode": 0,
+      "seconds": 4.08,
+      "sha256": "1020b9b84e2eeef43942dadb284faee8acf2ce9747f77e496de1fd6cd0ea2410",
+      "bytes": 4107
+    },
+    {
+      "name": "fixture-guards",
+      "command": [
+        "python3",
+        "tools/fixture-tools/test_regenerate_native72_inputs.py"
+      ],
+      "exitCode": 0,
+      "seconds": 45.231,
+      "sha256": "67fcaa553de30d1c7f8d5fdd2b36e50d9d2b320dca4d66155dea843077ef7473",
+      "bytes": 122
+    },
+    {
+      "name": "p2-cli-contract",
+      "command": [
+        "node",
+        "--test",
+        "rust-game-wasm/tests/jc046_compare.test.mjs"
+      ],
+      "exitCode": 0,
+      "seconds": 3.655,
+      "sha256": "32e3daf4b805803ef8da8a91742a18349faf76494675ce456ae0d2337faf96cc",
+      "bytes": 693
+    },
+    {
+      "name": "jc046-complete-parity",
+      "command": [
+        "node",
+        "rust-game-wasm/tests/jc046_compare.mjs",
+        "web/src/game/jc046Native77.fixture.json",
+        "/workspace/serial-evidence-20261015/jc046/invalid-room"
+      ],
+      "exitCode": 0,
+      "seconds": 2.63,
+      "sha256": "b9736a2e8eb6279b5f799150d39849c4480416c81cfeea5d214e142edd5ddee8",
+      "bytes": 376
+    },
+    {
+      "name": "production-build-dry-run",
+      "status": "not_started_due_to_failed_preceding_check"
+    }
+  ]
+}

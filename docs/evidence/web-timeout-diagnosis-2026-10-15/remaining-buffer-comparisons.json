@@ -1,0 +1,50 @@
+[
+  {
+    "cardId": "JC061",
+    "test": "web/src/game/JC061Integration.test.jsx",
+    "deepComparisonLines": [
+      26
+    ],
+    "sourceBytes": 306855,
+    "servedBytes": 306855,
+    "byteEqual": true,
+    "sha256": "132918615db6a2233eed3f2d2d045c368c65348e43c52f101f17e4c4ecd756f6",
+    "sourceHashPinnedInTest": true
+  },
+  {
+    "cardId": "JC087",
+    "test": "web/src/game/JC087Integration.test.jsx",
+    "deepComparisonLines": [
+      25
+    ],
+    "sourceBytes": 339745,
+    "servedBytes": 339745,
+    "byteEqual": true,
+    "sha256": "cbd39806bd8126021edff506a65dad651485c6661f181d6e8d8ff9d16911ce00",
+    "sourceHashPinnedInTest": true
+  },
+  {
+    "cardId": "JC094",
+    "test": "web/src/game/JC094Integration.test.jsx",
+    "deepComparisonLines": [
+      28
+    ],
+    "sourceBytes": 322070,
+    "servedBytes": 322070,
+    "byteEqual": true,
+    "sha256": "5050b8e0b6d8101d6badcd0aed22f4fa75a2baa61c85e98c17bcd811a5ec72fd",
+    "sourceHashPinnedInTest": true
+  },
+  {
+    "cardId": "WM056",
+    "test": "web/src/game/WM056Integration.test.jsx",
+    "deepComparisonLines": [
+      25
+    ],
+    "sourceBytes": 1302421,
+    "servedBytes": 1302421,
+    "byteEqual": true,
+    "sha256": "35c67bb88ff9547e63932fd51d1581e77aaf649e1124eef706e4d63a8f20b497",
+    "sourceHashPinnedInTest": true
+  }
+]

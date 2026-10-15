@@ -22,7 +22,7 @@ it('reads the original WM056 and complete once-per-turn paid standard action',()
   expect(definition.text).toBe('行动②：将相邻地区上的一个本方势力标志移动至本地区。该能力每回合只能发动一次。');
   const original=readFileSync(resolve('../resource/ymsj-fun.github.io/cards/WM056 赃物贩子.jpg'));
   expect(createHash('sha256').update(original).digest('hex')).toBe('35c67bb88ff9547e63932fd51d1581e77aaf649e1124eef706e4d63a8f20b497');
-  expect(readFileSync(resolve('public/cards/WM056.jpg'))).toEqual(original);expect(cardScanUrl('WM056')).toBe('/cards/WM056.jpg');
+  expect(readFileSync(resolve('public/cards/WM056.jpg')).equals(original)).toBe(true);expect(cardScanUrl('WM056')).toBe('/cards/WM056.jpg');
   render(<ReadModal card={{...definition,cardId:'WM056',instanceId:'read-wm056',owner:'p0',controller:'p0'}} definition={definition} viewerId="p0" onClose={vi.fn()}/>);
   fireEvent.click(screen.getByRole('button',{name:'原始牌面'}));expect(screen.getByRole('img',{name:'赃物贩子原始牌面'})).toHaveAttribute('src','/cards/WM056.jpg');
 });

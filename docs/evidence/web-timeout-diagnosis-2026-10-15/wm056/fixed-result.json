@@ -1,0 +1,13 @@
+{
+  "exitCode": 0,
+  "elapsedSeconds": 7.07,
+  "logSha256": "323cb63b00ea00a15956863774ba4d8ef26ea383e0c92677f27317333a60df96",
+  "childUserSeconds": 7.636513,
+  "childSystemSeconds": 1.414159,
+  "childMaxRssKiB": 326772,
+  "profileFiles": [
+    "CPU.20261015.152649.54555.0.001.cpuprofile"
+  ],
+  "headAfter": "00c273d4a0ae4b75ab3f2a66be2e3eca96c75ede",
+  "gitStatusAfter": "M web/src/game/WM056Integration.test.jsx"
+}

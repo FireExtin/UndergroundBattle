@@ -1,0 +1,32 @@
+{
+  "baseline": "4918cfb6372fb9ec900f037e8ed518385d6183e6",
+  "candidate": "00c273d4a0ae4b75ab3f2a66be2e3eca96c75ede",
+  "nonDocumentationDifferences": [
+    "web/src/game/V028DeckEntry.test.jsx",
+    "web/src/game/WM023Integration.test.jsx",
+    "web/src/game/WM038Integration.test.jsx"
+  ],
+  "runtimeSourcesUnchanged": true,
+  "fixtureInputsUnchanged": true,
+  "testConfigUnchanged": true,
+  "thresholdsUnchanged": true,
+  "same19TestNamesBeforeAndAfter": true,
+  "focusedFixedBytesMatchCandidateCommit": true,
+  "sourceIdentities": [
+    {
+      "path": "web/src/game/V028DeckEntry.test.jsx",
+      "baselineSha256": "db5df023384d4272fdf90f3c67cea1f24765e8bb579e8f3fecf5f546c9b27ff2",
+      "fixedSha256": "ea78d88a6a89b7448f6af6e608022dd3de0a9257ae5bf2bfed7bd99adea97267"
+    },
+    {
+      "path": "web/src/game/WM023Integration.test.jsx",
+      "baselineSha256": "a904e39b5f507f47ca0be2887b1312a44935f8a4ce3d6359fdad5fc78192296d",
+      "fixedSha256": "f5e1535abc931482e66aa7bd6edfc32cfb949d6370d3f95db9d88ad3b1cb3398"
+    },
+    {
+      "path": "web/src/game/WM038Integration.test.jsx",
+      "baselineSha256": "102b103a8910e37f51406c00a0de4e8d47258a49789f5f450f42c18c1084f8fa",
+      "fixedSha256": "3407907ce0a91caadf8bb4c2b409d29206c7067114493831ac5564195743e398"
+    }
+  ]
+}

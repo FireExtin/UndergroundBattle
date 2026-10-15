@@ -1,0 +1,45 @@
+
+> undergroundbattle-web@0.1.0 test
+> vitest --run src/game/WM056Integration.test.jsx --maxWorkers=1 --execArgv=--cpu-prof --execArgv=--cpu-prof-dir=/workspace/web-timeout-diagnosis-20261015/wm056/profiles-baseline --reporter=default --reporter=json --outputFile=/workspace/web-timeout-diagnosis-20261015/wm056/baseline-vitest.json
+
+
+ RUN  v4.1.2 /workspace/UndergroundBattle/web
+
+ ❯ src/game/WM056Integration.test.jsx (9 tests | 1 failed) 6916ms
+   × reads the original WM056 and complete once-per-turn paid standard action 5215ms
+   ✓ 'activation' restores the projection and submits the exact Native command  331ms
+   ✓ 'origin-left' restores the projection and submits the exact Native command 252ms
+   ✓ 'origin-right' restores the projection and submits the exact Native command 233ms
+   ✓ 'origin-single' restores the projection and submits the exact Native command 251ms
+   ✓ 'activation' keeps chooser privacy and never submits automatically 152ms
+   ✓ 'origin-left' keeps chooser privacy and never submits automatically 169ms
+   ✓ 'origin-right' keeps chooser privacy and never submits automatically 156ms
+   ✓ 'origin-single' keeps chooser privacy and never submits automatically 153ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/game/WM056Integration.test.jsx > reads the original WM056 and complete once-per-turn paid standard action
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/game/WM056Integration.test.jsx:15:1
+     13| const fixture=JSON.parse(readFileSync(resolve('src/game/wm056Native77.…
+     14| const catalog=JSON.parse(abi.catalog()),definition=catalog.cards.find(…
+     15| it('reads the original WM056 and complete once-per-turn paid standard …
+       | ^
+     16|   expect(createHash('sha256').update(wasm).digest('hex')).toBe(fixture…
+     17|   expect(catalog.engineVersion).toBe('rust-v0.2.77-jc046-mandatory-sac…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 8 passed (9)
+   Start at  15:26:06
+   Duration  8.74s (transform 512ms, setup 214ms, import 628ms, tests 6.92s, environment 759ms)
+
+JSON report written to /workspace/web-timeout-diagnosis-20261015/wm056/baseline-vitest.json
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

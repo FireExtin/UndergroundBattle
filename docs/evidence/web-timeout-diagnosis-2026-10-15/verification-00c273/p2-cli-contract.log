@@ -1,0 +1,16 @@
+✔ JC046 refuses a missing invalid-state directory argument (117.734604ms)
+✔ JC046 refuses an empty invalid-state directory (110.721613ms)
+✔ JC046 refuses a 54-file subset (143.053491ms)
+✔ JC046 refuses an extra unreviewed file (109.907107ms)
+✔ JC046 refuses 55 files with a replaced name (129.257449ms)
+✔ JC046 refuses a same-length byte change even when that state is still invalid (113.659456ms)
+✔ JC046 refuses a changed manifest identity (111.580785ms)
+✔ JC046 requires the complete reviewed 55 files and executes both rejection entrypoints (2671.323685ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3603.733751

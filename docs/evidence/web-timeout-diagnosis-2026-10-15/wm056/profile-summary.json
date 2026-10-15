@@ -1,0 +1,263 @@
+{
+  "method": "Node statistical CPU samples; inclusive categories overlap and must not be summed; profiling changes timing",
+  "runs": {
+    "baseline": {
+      "passed": 8,
+      "failed": 1,
+      "tests": [
+        {
+          "file": "WM056Integration.test.jsx",
+          "firstTest": "reads the original WM056 and complete once-per-turn paid standard action",
+          "durationMs": 5214.506444000001,
+          "status": "failed"
+        }
+      ],
+      "resourceObservationSeconds": 10.060409,
+      "cpuQuota": "400000 100000",
+      "cpuStatDelta": {
+        "usage_usec": 12873460,
+        "user_usec": 10070441,
+        "system_usec": 2803018,
+        "nice_usec": 0,
+        "nr_periods": 100,
+        "nr_throttled": 0,
+        "throttled_usec": 0,
+        "nr_bursts": 0,
+        "burst_usec": 0
+      },
+      "memoryLimitBytes": 17179869184,
+      "memoryPeakSampledBytes": 7680278528,
+      "memoryEventDelta": {
+        "low": 0,
+        "high": 0,
+        "max": 0,
+        "oom": 0,
+        "oom_kill": 0,
+        "oom_group_kill": 0
+      },
+      "profiles": [
+        {
+          "path": "profiles-baseline/CPU.20261015.152606.54459.0.001.cpuprofile",
+          "bytes": 2081243,
+          "sha256": "8b9a5fecf777a2926da3bdbcd2d4defdcaa4ced7da5ba839f8d451d94243b090",
+          "testFiles": [
+            "WM056Integration.test.jsx"
+          ],
+          "sampleSeconds": 8.708321,
+          "inclusiveSeconds": {
+            "garbageCollector": 1.38645,
+            "react": 1.634361,
+            "accessibleName": 0.214973,
+            "roleQuery": 0.291649,
+            "testCallback": 5.564245,
+            "wasm": 0.115346,
+            "vitestDeepEquality": 3.61462
+          },
+          "topSelfFrames": [
+            {
+              "function": "keys",
+              "url": "file:///workspace/UndergroundBattle/web/node_modules/@vitest/expect/dist/index.js",
+              "line": 398,
+              "seconds": 1.801823
+            },
+            {
+              "function": "(garbage collector)",
+              "url": "",
+              "line": 0,
+              "seconds": 1.38645
+            },
+            {
+              "function": "eq",
+              "url": "file:///workspace/UndergroundBattle/web/node_modules/@vitest/expect/dist/index.js",
+              "line": 265,
+              "seconds": 0.695815
+            },
+            {
+              "function": "(idle)",
+              "url": "",
+              "line": 0,
+              "seconds": 0.537113
+            },
+            {
+              "function": "iterableEquality",
+              "url": "file:///workspace/UndergroundBattle/web/node_modules/@vitest/expect/dist/index.js",
+              "line": 482,
+              "seconds": 0.53145
+            },
+            {
+              "function": "process.env.NODE_ENV.exports.jsxDEV",
+              "url": "file:///workspace/UndergroundBattle/web/node_modules/react/cjs/react-jsx-dev-runtime.development.js",
+              "line": 324,
+              "seconds": 0.2794
+            },
+            {
+              "function": "wrapSafe",
+              "url": "node:internal/modules/cjs/loader",
+              "line": 1762,
+              "seconds": 0.266841
+            },
+            {
+              "function": "iterableEqualityWithStack",
+              "url": "file:///workspace/UndergroundBattle/web/node_modules/@vitest/expect/dist/index.js",
+              "line": 502,
+              "seconds": 0.248758
+            },
+            {
+              "function": "hasKey",
+              "url": "file:///workspace/UndergroundBattle/web/node_modules/@vitest/expect/dist/index.js",
+              "line": 410,
+              "seconds": 0.115421
+            },
+            {
+              "function": "hasDefinedKey",
+              "url": "file:///workspace/UndergroundBattle/web/node_modules/@vitest/expect/dist/index.js",
+              "line": 407,
+              "seconds": 0.089794
+            },
+            {
+              "function": "isAsymmetric",
+              "url": "file:///workspace/UndergroundBattle/web/node_modules/@vitest/expect/dist/index.js",
+              "line": 216,
+              "seconds": 0.080577
+            },
+            {
+              "function": "readFileUtf8",
+              "url": "",
+              "line": 0,
+              "seconds": 0.068031
+            }
+          ]
+        }
+      ]
+    },
+    "fixed": {
+      "passed": 9,
+      "failed": 0,
+      "tests": [
+        {
+          "file": "WM056Integration.test.jsx",
+          "firstTest": "reads the original WM056 and complete once-per-turn paid standard action",
+          "durationMs": 338.553889,
+          "status": "passed"
+        }
+      ],
+      "resourceObservationSeconds": 7.063643,
+      "cpuQuota": "400000 100000",
+      "cpuStatDelta": {
+        "usage_usec": 9214908,
+        "user_usec": 7738408,
+        "system_usec": 1476500,
+        "nice_usec": 0,
+        "nr_periods": 65,
+        "nr_throttled": 0,
+        "throttled_usec": 0,
+        "nr_bursts": 0,
+        "burst_usec": 0
+      },
+      "memoryLimitBytes": 17179869184,
+      "memoryPeakSampledBytes": 7267995648,
+      "memoryEventDelta": {
+        "low": 0,
+        "high": 0,
+        "max": 0,
+        "oom": 0,
+        "oom_kill": 0,
+        "oom_group_kill": 0
+      },
+      "profiles": [
+        {
+          "path": "profiles-fixed/CPU.20261015.152649.54555.0.001.cpuprofile",
+          "bytes": 2015641,
+          "sha256": "fd832ac011a1e7d3e5dcffb2b676d68e40fdbb3d1d66d9a99a7b2fefef31d360",
+          "testFiles": [
+            "WM056Integration.test.jsx"
+          ],
+          "sampleSeconds": 4.525,
+          "inclusiveSeconds": {
+            "garbageCollector": 0.188389,
+            "react": 2.031155,
+            "accessibleName": 0.48737,
+            "testCallback": 2.763621,
+            "wasm": 0.105761,
+            "vitestDeepEquality": 0.007352,
+            "roleQuery": 0.640525
+          },
+          "topSelfFrames": [
+            {
+              "function": "(idle)",
+              "url": "",
+              "line": 0,
+              "seconds": 0.489426
+            },
+            {
+              "function": "process.env.NODE_ENV.exports.jsxDEV",
+              "url": "file:///workspace/UndergroundBattle/web/node_modules/react/cjs/react-jsx-dev-runtime.development.js",
+              "line": 324,
+              "seconds": 0.307632
+            },
+            {
+              "function": "wrapSafe",
+              "url": "node:internal/modules/cjs/loader",
+              "line": 1762,
+              "seconds": 0.290781
+            },
+            {
+              "function": "(garbage collector)",
+              "url": "",
+              "line": 0,
+              "seconds": 0.188389
+            },
+            {
+              "function": "has",
+              "url": "file:///workspace/UndergroundBattle/web/node_modules/lru-cache/dist/commonjs/index.min.js",
+              "line": 1,
+              "seconds": 0.139896
+            },
+            {
+              "function": "_findEntryNodes",
+              "url": "file:///workspace/UndergroundBattle/web/node_modules/@asamuzakjp/dom-selector/dist/cjs/index.cjs",
+              "line": 3831,
+              "seconds": 0.104958
+            },
+            {
+              "function": "now",
+              "url": "node:internal/perf/performance",
+              "line": 137,
+              "seconds": 0.092272
+            },
+            {
+              "function": "beginWork",
+              "url": "file:///workspace/UndergroundBattle/web/node_modules/react-dom/cjs/react-dom-client.development.js",
+              "line": 11629,
+              "seconds": 0.090835
+            },
+            {
+              "function": "CSSStyleDeclaration",
+              "url": "file:///workspace/UndergroundBattle/web/node_modules/cssstyle/lib/CSSStyleDeclaration.js",
+              "line": 39,
+              "seconds": 0.084653
+            },
+            {
+              "function": "compileSourceTextModule",
+              "url": "node:internal/modules/esm/utils",
+              "line": 316,
+              "seconds": 0.060963
+            },
+            {
+              "function": "ReactElement",
+              "url": "file:///workspace/UndergroundBattle/web/node_modules/react/cjs/react-jsx-dev-runtime.development.js",
+              "line": 153,
+              "seconds": 0.046478
+            },
+            {
+              "function": "_node",
+              "url": "file:///workspace/UndergroundBattle/web/node_modules/symbol-tree/lib/SymbolTree.js",
+              "line": 49,
+              "seconds": 0.04588
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
