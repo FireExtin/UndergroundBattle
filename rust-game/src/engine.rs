@@ -407,6 +407,9 @@ impl Game {
         permanent_result.influence += u32::from(self.jz48_other_controlled_criminal_active(c, region));
         permanent_result.investigation += u32::from(self.jc030_blood_assets_active(c));
         permanent_result.combat += self.green_source_attribute_bonus(c, region).0;
+        permanent_result.combat = permanent_result
+            .combat
+            .saturating_add(self.jc060_friendly_sources(c));
         let mut temporary_result = d.temporary_icons;
         let ordinary = self.turn_attribute_bonus(c).1;
         for modifier in &rules::definition(&c.definition).modifiers {
@@ -2137,6 +2140,11 @@ impl Game {
         let hidden = c.face_down && c.controller != viewer;
         let asset = kind == Some("asset");
         CardView {
+            current_domains: if hidden || asset || c.face_down || region.is_none() {
+                None
+            } else {
+                self.jc060_current_domains(c)
+            },
             time_markers: (!asset && region.is_some() && c.time_markers > 0).then_some(c.time_markers),
             current_combat_glory: (!asset && !c.face_down && region.is_some()
                 && self.has_combat_glory(c)).then_some(true),
@@ -2837,7 +2845,7 @@ mod tests {
     #[test]
     fn catalog_is_restricted_real_complete_and_decks_are_legal() {
         let c = catalog::catalog();
-        assert_eq!(c.cards.len(), 140);
+        assert_eq!(c.cards.len(), 141);
         let active = c
             .cards
             .iter()
@@ -2852,7 +2860,7 @@ mod tests {
                 .collect::<BTreeSet<_>>()
         );
         assert!(active.contains("DQJC116"));
-        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 130);
+        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 131);
         assert_eq!(c.decks.len(), 5);
         for deck in &c.decks {
             assert_eq!(deck.card_count, 50);

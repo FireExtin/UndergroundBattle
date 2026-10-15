@@ -1,4 +1,4 @@
-// JC037 continuous prepared Native74 traces through the production service and real D1.
+// JC037 continuous prepared Native75 traces through the production service and real D1.
 // Native fixture IDs use RoomService; the ordinary HTTP suite covers routing.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
@@ -12,10 +12,10 @@ import { RoomStore } from '../src/store.mjs';
 import { RoomService, digest } from '../src/service.mjs';
 
 abi.initSync({ module: readFileSync('generated/hegemony_wasm_bg.wasm') });
-const fixtures = JSON.parse(readFileSync(new URL('./fixtures/jc037-native-v074.json',import.meta.url),'utf8'));
+const fixtures = JSON.parse(readFileSync(new URL('./fixtures/jc037-native-v075.json',import.meta.url),'utf8'));
 assert.deepEqual(JSON.parse(abi.catalog()),fixtures.catalog);
 
-for (const scenario of fixtures.scenarios) test(`JC037 ABI74 ${scenario.name}: continuous Native commands, journals, D1 reopening and receipts`, async t => {
+for (const scenario of fixtures.scenarios) test(`JC037 ABI75 ${scenario.name}: continuous Native commands, journals, D1 reopening and receipts`, async t => {
   const persist = mkdtempSync(join(tmpdir(), 'jc037-74-d1-'));
   const options = convertV4MiniflareOptions({ name: 'jc037-74', resourcePersistencePath: persist, modules: [
     { type: 'ESModule', path: resolve('dist/server/index.js') },

@@ -12,7 +12,7 @@ import * as abi from '../generated/hegemony_wasm.js';
 
 test('XQ24 invalid effects saves reject at real Worker restore before HTTP pass or clock polling', async t => {
   abi.initSync({ module:readFileSync('generated/hegemony_wasm_bg.wasm') });
-  const fixture=JSON.parse(readFileSync(new URL('./fixtures/xq24-container-invalid-v074.json', import.meta.url)));
+  const fixture=JSON.parse(readFileSync(new URL('./fixtures/xq24-container-invalid-v075.json', import.meta.url)));
   const persist=mkdtempSync(join(tmpdir(), 'xq24-container-d1-'));
   const options=convertV4MiniflareOptions({ name:'xq24-container-restore', resourcePersistencePath:persist,
     modules:[{ type:'ESModule', path:resolve('dist/server/index.js') },

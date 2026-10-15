@@ -1,4 +1,4 @@
-"""Generate current Native72/73/74 inputs, retaining every prior evidence directory."""
+"""Generate current Native72/73/74/75 inputs, retaining all recorded inputs and evidence."""
 import argparse
 import json
 import os
@@ -35,6 +35,33 @@ def validate_empty_output(root):
         raise ValueError('Output must be new or empty; existing input and logs are preserved.')
 
 
+def validate_new_input_targets(source, version):
+    web = [f'{card}Native{version}.fixture.json'
+           for card in ['jc061', 'jc087', 'jc094', 'wm056', 'wm023', 'xq25',
+                        'wm038', 'jz35', 'xq24', 'bq030', 'fixedSlots']]
+    web += [f'currentLifecycle{version}.fixture.json', f'sevenCardUIV0{version}.fixture.json']
+    web += [f'{name}Native{version}Test.fixture.json'
+            for name in ['threeColorDeath', 'xq37', 'jz22', 'deckSeal', 'xq27',
+                         'boundedEntry', 'jc050', 'xq18']]
+    web.append(f'jc050Native{version}QuoteTest.fixture.json')
+    if version in {'73', '74', '75'}:
+        web.append(f'jc052Native{version}Current.fixture.json')
+    sites = []
+    if version in {'74', '75'}:
+        web.append(f'jc037Native{version}.fixture.json')
+        sites = [f'{name}-v0{version}.json' for name in [
+            'xq37-native', 'gray-lock-native', 'jc050-native', 'xq27-invalid-rootface',
+            'deck-seal-native', 'three-color-death-native', 'xq37-invalid-rootface',
+            'jz50-room-native', 'bounded-entry-native', 'xq27-native', 'pause-resume-native',
+            'jz22-native', 'sealing-room-native', 'sealed-restart-native', 'win-flow-native',
+            'bq030-native', 'xq24-native', 'xq24-container-invalid', 'jc052-native', 'jc037-native']]
+    paths = [source / 'web/src/game' / name for name in web]
+    paths += [source / 'sites/test/fixtures' / name for name in sites]
+    for path in paths:
+        if path.exists() or path.is_symlink():
+            raise ValueError(f'Native input already exists; preserve it and use fresh destinations: {path}')
+
+
 def regenerate(source, root, build_and_check):
     validate_empty_output(root)
     pool = json.loads((source / 'rust-game/data/cards.json').read_text())
@@ -42,13 +69,15 @@ def regenerate(source, root, build_and_check):
         'rust-v0.2.72-jz35-host-return-candidate': ('72', 'limited-v2.65-jz35-host-return-candidate'),
         'rust-v0.2.73-jc052-original-region-candidate': ('73', 'limited-v2.66-jc052-original-region-candidate'),
         'rust-v0.2.74-jc037-hidden-investigation-candidate': ('74', 'limited-v2.67-jc037-hidden-investigation-candidate'),
+        'rust-v0.2.75-jc060-occult-adviser-candidate': ('75', 'limited-v2.68-jc060-occult-adviser-candidate'),
     }
     if pool.get('engineVersion') not in versions:
-        raise ValueError('Only explicitly supported ABI72/73/74 candidate generation is supported.')
+        raise ValueError('Only explicitly supported ABI72/73/74/75 candidate generation is supported.')
     version, expected_pool = versions[pool['engineVersion']]
-    web_only = [] if version == '74' else ['--web-only']
+    web_only = [] if version in {'74', '75'} else ['--web-only']
     if pool.get('cardPoolVersion') != expected_pool:
         raise ValueError('Source engine/card-pool versions do not match.')
+    validate_new_input_targets(source, version)
     # Reuse the project guard before creating evidence or touching any source.
     # Do not trust an inherited BUILD_STORAGE_READY flag at either entrypoint.
     guard = ['node', str(source / 'tools/build-storage.mjs'),
@@ -59,6 +88,7 @@ def regenerate(source, root, build_and_check):
         sys.stderr.write(preflight.stderr)
         raise SystemExit(preflight.returncode)
     validate_empty_output(root)
+    validate_new_input_targets(source, version)
     root.mkdir(parents=True, exist_ok=True)
     e = root / 'evidence/ui-refresh'
     e.mkdir(parents=True, exist_ok=False)
@@ -120,18 +150,27 @@ def regenerate(source, root, build_and_check):
     tests('xq24','xq24_continuous_duel_teams_room_pause_restore_journal_and_receipt_inputs',{'XQ24_TRACE_DIR':str(e/'xq24')})
     rows=[json.loads(p.read_text()) for p in sorted((e/'xq24').glob('*.json'))]
     assert len(rows)==12,len(rows)
-    (source/f'web/src/game/xq24Native{version}.fixture.json').write_text(json.dumps({'catalog':rows[0]['catalog'],'scenarios':rows},ensure_ascii=False,separators=(',',':'))+'\n')
-    if version in {'73', '74'}:
+    assert all(row['catalog']['engineVersion'] == pool['engineVersion']
+               and row['catalog']['cardPoolVersion'] == expected_pool for row in rows)
+    xq24_payload = json.dumps({'catalog':rows[0]['catalog'],'scenarios':rows},ensure_ascii=False,separators=(',',':'))+'\n'
+    with (source/f'web/src/game/xq24Native{version}.fixture.json').open('x') as output:
+        output.write(xq24_payload)
+    if version in {'73', '74', '75'}:
         jc052 = e / 'jc052'
         tests('jc052', 'jc052', {'GREEN_EVIDENCE_DIR':str(jc052/'trace'),
               'JC052_EVIDENCE_DIR':str(jc052/'native'), 'JC052_INVALID_DIR':str(jc052/'invalid')})
         # Keep the author-produced ABI-hashed evidence immutable as well.
         run('jc052-fixture', ['python3','tools/fixture-tools/jc052-current.py',str(jc052),
                              str(source/f'web/src/game/jc052Native{version}Current.fixture.json')])
-    if version == '74':
+    if version in {'74', '75'}:
         (source/'sites/test/fixtures').mkdir(parents=True,exist_ok=True)
-        (source/'sites/test/fixtures/xq24-native-v074.json').write_text(json.dumps({'catalog':rows[0]['catalog'],'scenarios':rows},ensure_ascii=False,separators=(',',':'))+'\n')
-        run('jc052-worker-fixtures',['cargo','run','--locked','-p','hegemony-wasm','--example','current_jc052_worker_fixtures','--',str(source/'web/src/game/jc052Native74Current.fixture.json'),str(source/'sites/test/fixtures/jc052-native-v074.json')])
+        with (source/f'sites/test/fixtures/xq24-native-v0{version}.json').open('x') as output:
+            output.write(xq24_payload)
+        tests('xq24-container', 'xq24_entry_frame_container_restore_rejects_response_bypass',
+              {'XQ24_CONTAINER_EVIDENCE_FILE':str(e/'xq24-container-invalid.json')})
+        with (source/f'sites/test/fixtures/xq24-container-invalid-v0{version}.json').open('xb') as output:
+            output.write((e/'xq24-container-invalid.json').read_bytes())
+        run('jc052-worker-fixtures',['cargo','run','--locked','-p','hegemony-wasm','--example','current_jc052_worker_fixtures','--',str(source/f'web/src/game/jc052Native{version}Current.fixture.json'),str(source/f'sites/test/fixtures/jc052-native-v0{version}.json')])
         tests('jc037', 'jc037', {'JC037_NATIVE_DIR':str(e/'jc037/native')})
         run('jc037-fixture', ['python3','tools/fixture-tools/jc037-current.py',str(e/'jc037/native')])
     print(f'native{version}-input-generation-complete',flush=True)
@@ -141,13 +180,13 @@ def regenerate(source, root, build_and_check):
         for card in ['jc061', 'jc087', 'jc094', 'wm056', 'wm023', 'xq25', 'wm038']:
             run(card + '-parity', ['node', f'rust-game-wasm/tests/{card}_compare.mjs',
                                   str(e / card)])
-        if version in {'73', '74'}:
+        if version in {'73', '74', '75'}:
             run('jc052-parity', ['node','rust-game-wasm/tests/jc052_compare.mjs',str(e/'jc052')])
-        if version == '74':
-            run('jc037-parity', ['node','rust-game-wasm/tests/jc037_compare.mjs',str(source/'web/src/game/jc037Native74.fixture.json')])
+        if version in {'74', '75'}:
+            run('jc037-parity', ['node','rust-game-wasm/tests/jc037_compare.mjs',str(source/f'web/src/game/jc037Native{version}.fixture.json')])
         focused = ['src/game/JZ35Integration.test.jsx', 'src/game/JZ35Face.test.jsx',
                    'src/game/CurrentLifecycleChoices.test.jsx', 'src/game/SevenCardIntegration.test.jsx']
-        if version in {'73', '74'}:
+        if version in {'73', '74', '75'}:
             focused.extend(['src/game/JC052Integration.test.jsx', 'src/game/JC052Face.test.jsx'])
         run('focused-ui', ['npm', '--prefix', 'web', 'test', '--', *focused, '--maxWorkers=1'])
         run('full-ui', ['npm', '--prefix', 'web', 'test', '--', '--maxWorkers=1'])
@@ -171,7 +210,7 @@ def main():
         source, root = validated_paths(source_value, output_value)
         regenerate(source, root, args.build_and_check)
     except (OSError, ValueError) as error:
-        print(f'Native72 generation refused: {error}', file=sys.stderr)
+        print(f'Native input generation refused: {error}', file=sys.stderr)
         return 2
     return 0
 

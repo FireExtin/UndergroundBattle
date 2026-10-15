@@ -11,11 +11,11 @@ import { cardScanUrl } from './cardScans';
 import { groupObjectActions } from './objectActions';
 const wasm=readFileSync(resolve('../rust-game-wasm/pkg/hegemony_wasm_bg.wasm'));
 abi.initSync({module:wasm});
-const fixture=JSON.parse(readFileSync(resolve('src/game/xq25Native74.fixture.json'),'utf8'));
+const fixture=JSON.parse(readFileSync(resolve('src/game/xq25Native75.fixture.json'),'utf8'));
 const catalog=JSON.parse(abi.catalog()),definition=catalog.cards.find(c=>c.id==='XQ25');
 it('reads the complete pinned XQ25 face with original temporary investigation and no invented tapping ability',()=>{
   expect(createHash('sha256').update(wasm).digest('hex')).toBe(fixture.wasmSha256);
-  expect(catalog.engineVersion).toBe('rust-v0.2.74-jc037-hidden-investigation-candidate');
+  expect(catalog.engineVersion).toBe('rust-v0.2.75-jc060-occult-adviser-candidate');
   expect(definition).toMatchObject({name:'监控探头',kind:'attachment',color:'灰',cost:2,loyalty:['灰色','灰色'],unique:false,
     subtypes:['设施'],magic:'',keywords:[],permanentIcons:{investigation:0,combat:0,influence:0},temporaryIcons:{investigation:1,combat:0,influence:0}});
   expect(definition.defense).toBeNull();expect(definition.abilities).toMatchObject([{key:'xq25-attach-region',timing:'standard',triggered:false}]);

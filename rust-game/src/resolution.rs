@@ -640,7 +640,7 @@ impl Game {
                                 self.attachment_host_matches(actor, id, condition)
                             })
                         && (!spec.requires_magic
-                            || (!c.face_down && d.magic_icon != MagicIcon::None))
+                            || (!c.face_down && self.current_magic_count(c) > 0))
                         && (!spec.exclude_source || c.id != source.card.id)
                         && (!spec.exclude_attachment_host
                             || self
@@ -1637,7 +1637,7 @@ impl Game {
                         .into_iter()
                         .filter(|id| {
                             self.board(id).is_some_and(|(_, c)| {
-                                card(&c.definition).magic_icon != MagicIcon::None
+                                self.current_magic_count(c) > 0
                             })
                         })
                         .collect::<Vec<_>>();

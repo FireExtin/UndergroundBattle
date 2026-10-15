@@ -1,4 +1,4 @@
-// Fresh source-produced ABI74 inputs only; old opaque states remain unchanged.
+// Fresh source-produced ABI75 inputs only; old opaque states remain unchanged.
 import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {createHash} from 'node:crypto';
@@ -9,10 +9,10 @@ import {Table} from './Table';
 import {actionForRoom} from './api';
 import {groupObjectActions} from './objectActions';
 const bytes=readFileSync(resolve('../rust-game-wasm/pkg/hegemony_wasm_bg.wasm'));abi.initSync({module:bytes});
-const fixture=JSON.parse(readFileSync(resolve('src/game/jc037Native74.fixture.json'))),catalog=JSON.parse(abi.catalog());
-it('binds the complete JC037 face and actual source-built ABI74',()=>{
- expect(catalog).toEqual(fixture.catalog);expect(catalog.engineVersion).toBe('rust-v0.2.74-jc037-hidden-investigation-candidate');
- expect(catalog.cardPoolVersion).toBe('limited-v2.67-jc037-hidden-investigation-candidate');expect(createHash('sha256').update(bytes).digest('hex')).toBe(fixture.wasmSha256);
+const fixture=JSON.parse(readFileSync(resolve('src/game/jc037Native75.fixture.json'))),catalog=JSON.parse(abi.catalog());
+it('binds the complete JC037 face and actual source-built ABI75',()=>{
+ expect(catalog).toEqual(fixture.catalog);expect(catalog.engineVersion).toBe('rust-v0.2.75-jc060-occult-adviser-candidate');
+ expect(catalog.cardPoolVersion).toBe('limited-v2.68-jc060-occult-adviser-candidate');expect(createHash('sha256').update(bytes).digest('hex')).toBe(fixture.wasmSha256);
  expect(catalog.cards.find(c=>c.id==='JC037')).toMatchObject({color:'蓝',subtitle:'寂静女士',keywords:['领袖'],permanentIcons:{investigation:0,combat:2,influence:2},abilities:[]});
 });
 it('rejects preserved Native73 states through both current ABI entrypoints',()=>{

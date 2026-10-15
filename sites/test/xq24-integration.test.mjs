@@ -11,7 +11,7 @@ import { RoomStore } from '../src/store.mjs';
 import { RoomService, digest } from '../src/service.mjs';
 
 abi.initSync({ module:readFileSync('generated/hegemony_wasm_bg.wasm') });
-const fixtures = JSON.parse(readFileSync(new URL('./fixtures/xq24-native-v074.json', import.meta.url)));
+const fixtures = JSON.parse(readFileSync(new URL('./fixtures/xq24-native-v075.json', import.meta.url)));
 for (const scenario of fixtures.scenarios) test(`XQ24 ${scenario.name}: Native journals, continuous D1 restore and original receipts`, async t => {
   const persist = mkdtempSync(join(tmpdir(), 'xq24-d1-'));
   const options = convertV4MiniflareOptions({ name:'xq24-test', resourcePersistencePath:persist, modules:[

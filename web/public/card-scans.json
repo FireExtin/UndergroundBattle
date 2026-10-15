@@ -753,5 +753,10 @@
     "url": "/cards/JC037.jpg",
     "source": "resource/ymsj-fun.github.io/cards/JC037 克里斯蒂娜·爱弗罗德.jpg",
     "sha256": "6d4199bd890373683c100b78cebca1cb6e291346b3c8a4fc7b25beea1f2feece"
+  },
+  "JC060": {
+    "url": "/cards/JC060.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC060 神秘学顾问.jpg",
+    "sha256": "6a879cc4c380b2a79b9fc3f60acf57c408768a9f8fc4dfa07682c9db63b2a4ae"
   }
 }

@@ -78,6 +78,8 @@ pub struct LegalAction {
 #[serde(rename_all = "camelCase")]
 pub struct CardView {
     #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub current_domains: Option<Vec<MagicDomainCount>>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub time_markers: Option<u32>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub current_combat_glory: Option<bool>,
@@ -134,6 +136,12 @@ pub struct CardView {
     pub magic: Option<String>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub used_once_per_game: Option<Vec<String>>,
+}
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct MagicDomainCount {
+    pub magic: String,
+    pub count: u32,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]

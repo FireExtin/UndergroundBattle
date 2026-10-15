@@ -9,10 +9,10 @@ const digest=v=>createHash('sha256').update(JSON.stringify(canonical(v))).digest
 const spec=json('docs/factions/card-specifications.json').cards.XQ25,pool=json('rust-game/data/cards.json');
 test('XQ25 preserves all 135 definitions and metadata from cumulative c51231c',()=>{
   const {cards,cardPoolVersion,engineVersion,...metadata}=pool;
-  assert.equal(cards.length,140);assert.equal(new Set(cards.map(c=>c.id)).size,140);
-  assert.equal(digest(cards.filter(c=>!['XQ25','WM038','JZ35','JC052','JC037'].includes(c.id))),'b570e06865d6ebd4097ebedc72acb70cc5ff5573b20a488c988349146343fc42');
+  assert.equal(cards.length,141);assert.equal(new Set(cards.map(c=>c.id)).size,141);
+  assert.equal(digest(cards.filter(c=>!['XQ25','WM038','JZ35','JC052','JC037','JC060'].includes(c.id))),'b570e06865d6ebd4097ebedc72acb70cc5ff5573b20a488c988349146343fc42');
   assert.equal(digest(metadata),'a0ca39bf9ba052ac13c2e64e7698bb1d5f051d38f5a75a380d54424811a357f0');
-  assert.equal(engineVersion,'rust-v0.2.74-jc037-hidden-investigation-candidate');assert.equal(cardPoolVersion,'limited-v2.67-jc037-hidden-investigation-candidate');
+  assert.equal(engineVersion,'rust-v0.2.75-jc060-occult-adviser-candidate');assert.equal(cardPoolVersion,'limited-v2.68-jc060-occult-adviser-candidate');
 });
 test('XQ25 fields match its complete pinned original with no unresolved source question',()=>{
   assert.equal(digest({fields:spec.fields,sourceVerification:spec.sourceVerification,edition:spec.edition}),'b1dad08dd37e3869abc1af9f6cd0f8e3bdacd7ae8c3b21dda7a83266be222697');
@@ -25,5 +25,5 @@ test('XQ25 fields match its complete pinned original with no unresolved source q
 });
 test('XQ25 public bytes preserve the original and all admitted scans validate',()=>{
   const original=read(spec.sourceVerification.imagePath);assert.equal(createHash('sha256').update(original).digest('hex'),spec.sourceVerification.imageSha256);
-  assert.deepEqual(read('web/public/cards/XQ25.jpg'),original);const r=validateAdmittedScans();assert.equal(r.checkedCards,140);assert.ok(r.checkedIds.includes('XQ25'));
+  assert.deepEqual(read('web/public/cards/XQ25.jpg'),original);const r=validateAdmittedScans();assert.equal(r.checkedCards,141);assert.ok(r.checkedIds.includes('XQ25'));
 });

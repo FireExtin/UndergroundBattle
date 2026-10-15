@@ -37,7 +37,7 @@ class GeneratorEntrypoints(unittest.TestCase):
         (tools / "current-bq030.mjs").write_text("console.log('fixture stub');\n")
         wasm_tests = self.source / "rust-game-wasm/tests"
         wasm_tests.mkdir()
-        (wasm_tests / 'current-kernel.mjs').write_text("import {readFileSync} from 'node:fs'; const data=JSON.parse(readFileSync(new URL('../../rust-game/data/cards.json',import.meta.url))); export const catalog={...data,...(process.env.STUB_ABI_ENGINE?{engineVersion:process.env.STUB_ABI_ENGINE}: {})};\n")
+        (wasm_tests / 'current-kernel.mjs').write_text("import {readFileSync} from 'node:fs'; const data=JSON.parse(readFileSync(new URL('../../rust-game/data/cards.json',import.meta.url))); export const catalog={...data,...(process.env.STUB_ABI_ENGINE?{engineVersion:process.env.STUB_ABI_ENGINE}: {}),...(process.env.STUB_ABI_POOL?{cardPoolVersion:process.env.STUB_ABI_POOL}: {})};\n")
         self.pool = self.source / 'rust-game/data/cards.json'
         self.pool.parent.mkdir(parents=True, exist_ok=True)
         self.pool.write_text(json.dumps({'engineVersion':'rust-v0.2.72-jz35-host-return-candidate','cardPoolVersion':'limited-v2.65-jz35-host-return-candidate'}))
@@ -57,7 +57,10 @@ if Path(sys.argv[0]).name=='cargo' and 'STUB_LOG_COLLISION' in os.environ:
     if not log.exists(): log.write_text('preserve colliding log\\n')
 if 'XQ24_TRACE_DIR' in os.environ:
     directory=Path(os.environ['XQ24_TRACE_DIR']);directory.mkdir(parents=True,exist_ok=True)
-    for n in range(12): (directory/f'case-{{n:02}}.json').write_text(json.dumps({{'catalog':{{}},'name':str(n)}}))
+    catalog=json.loads(Path('rust-game/data/cards.json').read_text())
+    for n in range(12): (directory/f'case-{{n:02}}.json').write_text(json.dumps({{'catalog':catalog,'name':str(n)}}))
+if 'XQ24_CONTAINER_EVIDENCE_FILE' in os.environ:
+    Path(os.environ['XQ24_CONTAINER_EVIDENCE_FILE']).write_text('{{"opaque":"unaltered Native export"}}\\n')
 if Path(sys.argv[0]).name=='wasm-bindgen':
     Path(sys.argv[sys.argv.index('--out-dir')+1]).mkdir(parents=True,exist_ok=True)
 """.format(python=sys.executable)
@@ -154,8 +157,11 @@ if Path(sys.argv[0]).name=='wasm-bindgen':
                     self.assertFalse(self.calls.exists())
 
     def test_fresh_output_runs_all_commands_through_existing_guard(self):
+        original_source = self.source
         for entry in ["shell", "python"]:
             with self.subTest(entry=entry):
+                self.source = self.base / (entry + " fresh source")
+                shutil.copytree(original_source, self.source)
                 output = self.base / (entry + " fresh output")
                 if self.calls.exists():
                     self.calls.unlink()
@@ -225,13 +231,14 @@ if Path(sys.argv[0]).name=='wasm-bindgen':
                 self.assertIn("Build preflight failed", logs)
 
     def test_abi_mismatch_stops_before_native_export_or_input_changes(self):
-        original = self.source / 'web/src/game/jz35Native72.fixture.json'
+        original = self.source / 'web/src/game/jz35Native71.fixture.json'
         original.write_text('preserved prior input\n')
         result = self.invoke('python', self.base / 'ABI mismatch output',
                              {'STUB_ABI_ENGINE':'rust-v0.2.73-jc052-original-region-candidate'})
         self.assertNotEqual(result.returncode, 0)
         self.assertFalse(self.calls.exists())
         self.assertEqual(original.read_text(), 'preserved prior input\n')
+        self.assertTrue((self.base / 'ABI mismatch output/evidence/ui-refresh/abi-version-check.log').is_file())
 
     def test_unreviewed_version_is_rejected_before_output_mutation(self):
         self.pool.write_text(json.dumps({'engineVersion':'rust-v0.2.74-unreviewed'}))
@@ -268,6 +275,78 @@ if Path(sys.argv[0]).name=='wasm-bindgen':
         result = self.invoke('python', untouched)
         self.assertNotEqual(result.returncode, 0)
         self.assertFalse(untouched.exists())
+
+    def test_native75_routes_current_exports_and_preserves_all_prior_inputs(self):
+        self.pool.write_text(json.dumps({'engineVersion':'rust-v0.2.75-jc060-occult-adviser-candidate','cardPoolVersion':'limited-v2.68-jc060-occult-adviser-candidate'}))
+        originals = []
+        for relative in ['web/src/game/xq24Native72.fixture.json',
+                         'web/src/game/jc052Native73Current.fixture.json',
+                         'web/src/game/jc037Native74.fixture.json',
+                         'sites/test/fixtures/jc037-native-v074.json',
+                         'sites/test/fixtures/xq24-container-invalid-v074.json']:
+            path = self.source / relative
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_bytes(b'preserved opaque state 18446744073709551615 and expectations\n')
+            originals.append((path, path.read_bytes(), path.stat().st_mtime_ns))
+        output = self.base / 'Native75 current output'
+        result = self.invoke('shell', output)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        for path, data, mtime in originals:
+            self.assertEqual(path.read_bytes(), data)
+            self.assertEqual(path.stat().st_mtime_ns, mtime)
+        evidence = output / 'evidence/ui-refresh'
+        self.assertTrue((self.source / 'web/src/game/xq24Native75.fixture.json').is_file())
+        self.assertEqual((self.source / 'sites/test/fixtures/xq24-container-invalid-v075.json').read_bytes(),
+                         (evidence / 'xq24-container-invalid.json').read_bytes())
+        self.assertIn('"75"', (evidence / 'jz35-fixture.log').read_text())
+        self.assertIn('jc052Native75Current.fixture.json', (evidence / 'jc052-fixture.log').read_text())
+        self.assertTrue((evidence / 'jc037-fixture.log').is_file())
+        self.assertTrue((evidence / 'jc037-parity.log').is_file())
+        calls = [json.loads(line) for line in self.calls.read_text().splitlines()]
+        worker = next(call for call in calls if 'current_ui_worker_fixtures' in call['args'])
+        self.assertEqual(worker['args'][-1], '75')
+        self.assertNotIn('--web-only', worker['args'])
+        jc052 = next(call for call in calls if 'current_jc052_worker_fixtures' in call['args'])
+        self.assertEqual(jc052['args'][-2:], [str(self.source / 'web/src/game/jc052Native75Current.fixture.json'),
+                                           str(self.source / 'sites/test/fixtures/jc052-native-v075.json')])
+        self.assertTrue(any('xq24_entry_frame_container_restore_rejects_response_bypass' in call['args'] for call in calls))
+
+    def test_native75_requires_exact_source_and_built_identity(self):
+        engine = 'rust-v0.2.75-jc060-occult-adviser-candidate'
+        expected_pool = 'limited-v2.68-jc060-occult-adviser-candidate'
+        prior_pool = 'limited-v2.67-jc037-hidden-investigation-candidate'
+        self.pool.write_text(json.dumps({'engineVersion':engine,'cardPoolVersion':prior_pool}))
+        before = self.snapshot()
+        result = self.invoke('python', self.base / 'wrong75 source pool')
+        self.assertNotEqual(result.returncode, 0)
+        self.assertEqual(before, self.snapshot())
+        self.assertFalse(self.calls.exists())
+        self.pool.write_text(json.dumps({'engineVersion':engine,'cardPoolVersion':expected_pool}))
+        for key, value in [('STUB_ABI_ENGINE', 'rust-v0.2.74-jc037-hidden-investigation-candidate'),
+                           ('STUB_ABI_POOL', prior_pool)]:
+            with self.subTest(key=key):
+                result = self.invoke('python', self.base / key, {key:value})
+                self.assertNotEqual(result.returncode, 0)
+                self.assertFalse(self.calls.exists())
+                self.assertFalse((self.source / 'web/src/game/xq24Native75.fixture.json').exists())
+
+    def test_recorded_current_input_targets_reject_before_any_mutation(self):
+        self.pool.write_text(json.dumps({'engineVersion':'rust-v0.2.75-jc060-occult-adviser-candidate','cardPoolVersion':'limited-v2.68-jc060-occult-adviser-candidate'}))
+        for relative in ['web/src/game/currentLifecycle75.fixture.json',
+                         'web/src/game/jc050Native75QuoteTest.fixture.json',
+                         'sites/test/fixtures/xq24-container-invalid-v075.json',
+                         'sites/test/fixtures/jc037-native-v075.json']:
+            with self.subTest(relative=relative):
+                original = self.source / relative
+                original.parent.mkdir(parents=True, exist_ok=True)
+                original.write_bytes(b'preserve already recorded current input\n')
+                before = self.snapshot()
+                result = self.invoke('python', self.base / 'new evidence output')
+                self.assertNotEqual(result.returncode, 0)
+                self.assertIn('Native input already exists', result.stderr)
+                self.assertEqual(before, self.snapshot())
+                self.assertFalse(self.calls.exists())
+                original.unlink()
 
 
 if __name__ == "__main__":

@@ -1,0 +1,228 @@
+✔ historical assassin fixture rejects without altering persisted data (1161.284694ms)
+✔ bounded employee/1: private candidates, pause/reopen, exact result and one receipt (1350.326969ms)
+ℹ {"engine":"rust-v0.2.75-jc060-occult-adviser-candidate","preparedNativeLayout":true,"privateOtherSeats":3,"acceptedCount":1,"pauseReopen":true,"duplicateReceipt":true,"exactNativeWasmD1State":true}
+✔ bounded employeeEmpty/0: private candidates, pause/reopen, exact result and one receipt (1163.837991ms)
+ℹ {"engine":"rust-v0.2.75-jc060-occult-adviser-candidate","preparedNativeLayout":true,"privateOtherSeats":3,"acceptedCount":0,"pauseReopen":true,"duplicateReceipt":true,"exactNativeWasmD1State":true}
+✔ bounded passers/0: private candidates, pause/reopen, exact result and one receipt (1136.887168ms)
+ℹ {"engine":"rust-v0.2.75-jc060-occult-adviser-candidate","preparedNativeLayout":true,"privateOtherSeats":3,"acceptedCount":0,"pauseReopen":true,"duplicateReceipt":true,"exactNativeWasmD1State":true}
+✔ bounded passers/3: private candidates, pause/reopen, exact result and one receipt (1134.498298ms)
+ℹ {"engine":"rust-v0.2.75-jc060-occult-adviser-candidate","preparedNativeLayout":true,"privateOtherSeats":3,"acceptedCount":3,"pauseReopen":true,"duplicateReceipt":true,"exactNativeWasmD1State":true}
+✔ bounded passersEmpty/0: private candidates, pause/reopen, exact result and one receipt (1121.248905ms)
+ℹ {"engine":"rust-v0.2.75-jc060-occult-adviser-candidate","preparedNativeLayout":true,"privateOtherSeats":3,"acceptedCount":0,"pauseReopen":true,"duplicateReceipt":true,"exactNativeWasmD1State":true}
+✔ historical control-pair fixture rejects without altering persisted data (1109.059555ms)
+✔ deck seal51 Native/D1 0: private choice, pause/reopen, sealing/event and duplicate receipt (1465.978754ms)
+ℹ {"engine":"rust-v0.2.75-jc060-occult-adviser-candidate","preparedNativeLayout":true,"commands":3,"privateOtherSeats":3,"pauseReopen":true,"duplicateOriginalReceipt":true,"completeNativeWasmD1StateEqual":true}
+✔ deck seal51 Native/D1 1: private choice, pause/reopen, sealing/event and duplicate receipt (1326.059189ms)
+ℹ {"engine":"rust-v0.2.75-jc060-occult-adviser-candidate","preparedNativeLayout":true,"commands":3,"privateOtherSeats":3,"pauseReopen":true,"duplicateOriginalReceipt":true,"completeNativeWasmD1StateEqual":true}
+✔ deck seal51 Native/D1 2: private choice, pause/reopen, sealing/event and duplicate receipt (1357.38508ms)
+ℹ {"engine":"rust-v0.2.75-jc060-occult-adviser-candidate","preparedNativeLayout":true,"commands":3,"privateOtherSeats":3,"pauseReopen":true,"duplicateOriginalReceipt":true,"completeNativeWasmD1StateEqual":true}
+✔ deck seal51 Native/D1 3: private choice, pause/reopen, sealing/event and duplicate receipt (1508.698322ms)
+ℹ {"engine":"rust-v0.2.75-jc060-occult-adviser-candidate","preparedNativeLayout":true,"commands":4,"privateOtherSeats":3,"pauseReopen":true,"duplicateOriginalReceipt":true,"completeNativeWasmD1StateEqual":true}
+✔ deck seal51 Native/D1 4: private choice, pause/reopen, sealing/event and duplicate receipt (1428.121208ms)
+ℹ {"engine":"rust-v0.2.75-jc060-occult-adviser-candidate","preparedNativeLayout":true,"commands":4,"privateOtherSeats":3,"pauseReopen":true,"duplicateOriginalReceipt":true,"completeNativeWasmD1StateEqual":true}
+✔ historical fire-scholar fixture rejects without altering persisted data (1117.208548ms)
+✔ gray lock52 Native/D1 0: lock/chase, pause/reopen, real responses and duplicate receipt (2102.212343ms)
+ℹ {"engine":"rust-v0.2.75-jc060-occult-adviser-candidate","preparedNativeLayout":true,"commands":7,"publicLockAllSeats":4,"pauseReopen":true,"duplicateOriginalReceipt":true,"completeNativeWasmD1StateEqual":true}
+✔ gray lock52 Native/D1 1: lock/chase, pause/reopen, real responses and duplicate receipt (1936.608615ms)
+ℹ {"engine":"rust-v0.2.75-jc060-occult-adviser-candidate","preparedNativeLayout":true,"commands":7,"publicLockAllSeats":4,"pauseReopen":true,"duplicateOriginalReceipt":true,"completeNativeWasmD1StateEqual":true}
+✔ gray lock52 Native/D1 2: lock/chase, pause/reopen, real responses and duplicate receipt (1946.716697ms)
+ℹ {"engine":"rust-v0.2.75-jc060-occult-adviser-candidate","preparedNativeLayout":true,"commands":7,"publicLockAllSeats":4,"pauseReopen":true,"duplicateOriginalReceipt":true,"completeNativeWasmD1StateEqual":true}
+✔ real workerd/WASM with D1 SQLite: concurrency, receipts, rollback and reopen (10914.994116ms)
+ℹ {"currentVersion":"rust-v0.2.75-jc060-occult-adviser-candidate","unsupportedFrozenVersions":["rust-v0.2.1","rust-v0.2.10","rust-v0.2.2","rust-v0.2.3","rust-v0.2.4","rust-v0.2.5","rust-v0.2.6","rust-v0.2.7","rust-v0.2.8","rust-v0.2.9"],"oldDataUntouchedBeforeAndAfterReopen":true,"localWorkerdD1Only":true}
+ℹ Provider emulation only; remote Cloudflare D1 acceptance is still required. Persisted at /tmp/hegemony-worker-d1-PDxmtc
+✔ JC037 ABI75 duel-paid-deploy: continuous Native commands, journals, D1 reopening and receipts (1701.823667ms)
+ℹ {"preparedNativeLayout":true,"accepted":3,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ JC037 ABI75 leader-replace: continuous Native commands, journals, D1 reopening and receipts (2750.755272ms)
+ℹ {"preparedNativeLayout":true,"accepted":6,"rejected":1,"reopened":3,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ JC037 ABI75 paid-deploy: continuous Native commands, journals, D1 reopening and receipts (2354.409249ms)
+ℹ {"preparedNativeLayout":true,"accepted":7,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ JC037 ABI75 paid-reveal: continuous Native commands, journals, D1 reopening and receipts (2292.671591ms)
+ℹ {"preparedNativeLayout":true,"accepted":5,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ JC037 ABI75 secret-deployment: continuous Native commands, journals, D1 reopening and receipts (1215.686436ms)
+ℹ {"preparedNativeLayout":true,"accepted":1,"rejected":0,"reopened":1,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ JC037 ABI75 source-control: continuous Native commands, journals, D1 reopening and receipts (2088.263195ms)
+ℹ {"preparedNativeLayout":true,"accepted":5,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ JC037 ABI75 source-hide: continuous Native commands, journals, D1 reopening and receipts (2627.09777ms)
+ℹ {"preparedNativeLayout":true,"accepted":10,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ JC037 ABI75 source-return: continuous Native commands, journals, D1 reopening and receipts (1859.608918ms)
+ℹ {"preparedNativeLayout":true,"accepted":5,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ jc050-red55 chosen-region: native transition, D1 reopening, privacy and duplicate receipt (1089.154208ms)
+ℹ {"engine":"rust-v0.2.75-jc060-occult-adviser-candidate","preparedNativeLayout":true,"inputName":"original-native-choose","completeOpaqueStateEqual":true,"fourSeatViewsEqual":true,"persistReopen":true,"duplicateOriginalReceipt":true}
+✔ JC052 deploy: complete Native command, D1 reopen and original HTTP receipt (1140.733729ms)
+✔ JC052 entry-accept: complete Native command, D1 reopen and original HTTP receipt (1039.144738ms)
+✔ JC052 entry-decline: complete Native command, D1 reopen and original HTTP receipt (1046.6037ms)
+✔ JC052 leader-sacrifice: complete Native command, D1 reopen and original HTTP receipt (1109.427944ms)
+✔ JC060 ABI75 current-magic-return: continuous Native commands, journals, D1 reopening and receipts (2091.351293ms)
+ℹ {"preparedNativeLayout":true,"accepted":5,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ JC060 ABI75 duel-paid-deploy: continuous Native commands, journals, D1 reopening and receipts (1449.817405ms)
+ℹ {"preparedNativeLayout":true,"accepted":3,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ JC060 ABI75 holy-water-current-domain: continuous Native commands, journals, D1 reopening and receipts (2618.868111ms)
+ℹ {"preparedNativeLayout":true,"accepted":10,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ JC060 ABI75 magic-target-revalidation: continuous Native commands, journals, D1 reopening and receipts (3018.944216ms)
+ℹ {"preparedNativeLayout":true,"accepted":13,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ JC060 ABI75 paid-deploy-team: continuous Native commands, journals, D1 reopening and receipts (1869.745493ms)
+ℹ {"preparedNativeLayout":true,"accepted":5,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ JC060 ABI75 paid-reveal-team: continuous Native commands, journals, D1 reopening and receipts (1895.309878ms)
+ℹ {"preparedNativeLayout":true,"accepted":5,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ JC060 ABI75 recipient-control: continuous Native commands, journals, D1 reopening and receipts (1936.952152ms)
+ℹ {"preparedNativeLayout":true,"accepted":5,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ JC060 ABI75 source-control: continuous Native commands, journals, D1 reopening and receipts (1893.247405ms)
+ℹ {"preparedNativeLayout":true,"accepted":5,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ JC060 ABI75 source-hide: continuous Native commands, journals, D1 reopening and receipts (2548.884254ms)
+ℹ {"preparedNativeLayout":true,"accepted":10,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ JC060 ABI75 spirit-two-domains: continuous Native commands, journals, D1 reopening and receipts (3925.400552ms)
+ℹ {"preparedNativeLayout":true,"accepted":20,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ JC060 ABI75 stacking-return: continuous Native commands, journals, D1 reopening and receipts (1848.997752ms)
+ℹ {"preparedNativeLayout":true,"accepted":5,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ jz22-blue54 placement: native transition, D1 reopening, privacy and duplicate receipt (1104.756391ms)
+ℹ {"engine":"rust-v0.2.75-jc060-occult-adviser-candidate","preparedNativeLayout":true,"inputName":"step-0015.json","completeOpaqueStateEqual":true,"fourSeatViewsEqual":true,"persistReopen":true,"duplicateOriginalReceipt":true}
+✔ jz22-blue54 accept: native transition, D1 reopening, privacy and duplicate receipt (947.463624ms)
+ℹ {"engine":"rust-v0.2.75-jc060-occult-adviser-candidate","preparedNativeLayout":true,"inputName":"step-0138.json","completeOpaqueStateEqual":true,"fourSeatViewsEqual":true,"persistReopen":true,"duplicateOriginalReceipt":true}
+✔ jz22-blue54 decline: native transition, D1 reopening, privacy and duplicate receipt (932.427807ms)
+ℹ {"engine":"rust-v0.2.75-jc060-occult-adviser-candidate","preparedNativeLayout":true,"inputName":"step-0208.json","completeOpaqueStateEqual":true,"fourSeatViewsEqual":true,"persistReopen":true,"duplicateOriginalReceipt":true}
+✔ jz22-blue54 deploy: native transition, D1 reopening, privacy and duplicate receipt (937.890621ms)
+ℹ {"engine":"rust-v0.2.75-jc060-occult-adviser-candidate","preparedNativeLayout":true,"inputName":"step-0215.json","completeOpaqueStateEqual":true,"fourSeatViewsEqual":true,"persistReopen":true,"duplicateOriginalReceipt":true}
+✔ jz22-blue54 glory: native transition, D1 reopening, privacy and duplicate receipt (907.547314ms)
+ℹ {"engine":"rust-v0.2.75-jc060-occult-adviser-candidate","preparedNativeLayout":true,"inputName":"step-0287.json","completeOpaqueStateEqual":true,"fourSeatViewsEqual":true,"persistReopen":true,"duplicateOriginalReceipt":true}
+✔ jz22-blue54 enemyCompose: native transition, D1 reopening, privacy and duplicate receipt (894.834856ms)
+ℹ {"engine":"rust-v0.2.75-jc060-occult-adviser-candidate","preparedNativeLayout":true,"inputName":"step-0414.json","completeOpaqueStateEqual":true,"fourSeatViewsEqual":true,"persistReopen":true,"duplicateOriginalReceipt":true}
+✔ jz22-blue54 enemySubmit: native transition, D1 reopening, privacy and duplicate receipt (952.480677ms)
+ℹ {"engine":"rust-v0.2.75-jc060-occult-adviser-candidate","preparedNativeLayout":true,"inputName":"step-0415.json","completeOpaqueStateEqual":true,"fourSeatViewsEqual":true,"persistReopen":true,"duplicateOriginalReceipt":true}
+✔ fixed production Site identity agrees with the candidate source-built ABI75 (4.511437ms)
+✔ strict lazy initialization rejects a mismatching frozen identity (1.693884ms)
+✔ current-only Site keeps the source ABI bytes, reviewed prior definitions and exact new-room flow (31.348817ms)
+✔ every historical tuple and altered identity rejects before any current state operation (9.994519ms)
+ℹ {"historicalTuplesRejected":40,"alteredIdentityCases":5,"currentStateOperationsOnRejectedStates":0}
+✔ production generated modules and Worker contain only the candidate current WASM (1.921329ms)
+✔ engine74 rejects preserved actual57/59/60/61/62/63/64/72/73 rooms and separate candidate headers before interpretation (24.969431ms)
+✔ current real MSJC09 permits first/rear paid activation and restores four-seat frames, receipts, privacy and reset (23263.7674ms)
+ℹ {"engineVersion":"rust-v0.2.75-jc060-occult-adviser-candidate","printedSociety":"MSJC09","syntheticInitialLayout":false,"publicNaturalUiAcceptance":false,"httpCalls":2326,"acceptedCommands":457,"firstAndRearBothPaid":true,"fourSeats":true,"paidFrameReopens":2,"expiredHolderTransitions":2,"sameInstanceNaturalNextTurnReset":true}
+✔ saved paused table: exact native transitions, D1 reopen, receipts and isolated second table (1992.780749ms)
+✔ sealed choice/trigger/paid stack pause: exact native transitions, D1 reopen, receipts and isolated second table (2260.845172ms)
+✔ JZ50 trigger/stack/private search pause: exact native transitions, D1 reopen, receipts and isolated second table (2114.720925ms)
+✔ engine50 rejects preserved actual rust-v0.2.46-pause-resume-candidate paused room without relabelling its state (7.422856ms)
+✔ engine50 rejects preserved actual rust-v0.2.47-sealed-cards-candidate paused room without relabelling its state (6.897344ms)
+✔ engine50 rejects preserved actual rust-v0.2.48-jz50-death-search-candidate paused room without relabelling its state (6.741743ms)
+✔ engine50 rejects preserved actual rust-v0.2.49-sealed-restart-candidate paused room without relabelling its state (6.926639ms)
+✔ ABI75 rejects a genuine source-built ABI72 lobby before operations and preserves D1 after reopen (1011.517145ms)
+✔ ABI75 rejects a genuine source-built ABI73 lobby and preserves every D1 table after reopen (983.157066ms)
+✔ historical rescue-forecast fixture rejects without altering persisted data (999.618835ms)
+✔ fresh Native match terminal seal: D1 restart, reopen, next choice and original restart receipt (1453.962026ms)
+✔ pause/resume are parameterless session commands and reject injected clocks or nested use (2.86404ms)
+✔ recovering a paid response receipt precedes all later clock evaluation (12.848921ms)
+✔ a matching-version GET persists an expired window before deciding to return 204 (1.778061ms)
+✔ an expired response commits only the system tick and never an accepted user receipt (1.371171ms)
+✔ a CAS conflict retries Begin with its original expected version and complete intent (1.442705ms)
+✔ a formal response cannot be rebased by the host after another seat wins CAS (1.456581ms)
+✔ client clock injection and nested Session commands are rejected before the reducer (0.445673ms)
+✔ quoting an active composition refreshes its clock and does not commit a draft or receipt (1.78257ms)
+✔ historical response5 rejects before pacing and survives reopen byte-for-byte (1015.054297ms)
+✔ historical response6 rejects before pacing and survives reopen byte-for-byte (935.642092ms)
+✔ historical response7 rejects before pacing and survives reopen byte-for-byte (904.765303ms)
+✔ historical response8 rejects before pacing and survives reopen byte-for-byte (931.464051ms)
+✔ seven60 BQ028 attachment=false discard=false seat=1: private HTTP, exact Native state and reopened receipt (1164.645771ms)
+ℹ {"nativeStateByteEqual":true,"privateHttpViews":4,"duplicateHttpOriginalReceipt":true,"persistReopen":true,"browserAcceptance":false}
+✔ seven60 BQ028 attachment=true discard=false seat=1: private HTTP, exact Native state and reopened receipt (1043.648585ms)
+ℹ {"nativeStateByteEqual":true,"privateHttpViews":4,"duplicateHttpOriginalReceipt":true,"persistReopen":true,"browserAcceptance":false}
+✔ seven60 BQ028 attachment=true discard=true seat=1: private HTTP, exact Native state and reopened receipt (1008.011351ms)
+ℹ {"nativeStateByteEqual":true,"privateHttpViews":4,"duplicateHttpOriginalReceipt":true,"persistReopen":true,"browserAcceptance":false}
+✔ seven60 BQ028 attachment=true discard=false seat=2: private HTTP, exact Native state and reopened receipt (979.370281ms)
+ℹ {"nativeStateByteEqual":true,"privateHttpViews":4,"duplicateHttpOriginalReceipt":true,"persistReopen":true,"browserAcceptance":false}
+hegemony storage retry { code: 'network_lost', retryable: true, attempt: 1 }
+✔ an ambiguous D1 commit retries the identical command and returns its receipt without applying twice (178.907239ms)
+✔ storage diagnostics expose fixed labels and do not retry quota, constraint or unknown failures (0.444889ms)
+hegemony storage retry { code: 'network_lost', retryable: true, attempt: 1 }
+hegemony storage retry { code: 'network_lost', retryable: true, attempt: 1 }
+hegemony storage retry { code: 'network_lost', retryable: true, attempt: 2 }
+✔ a failure before commit retries the original identity, while an exhausted failure never returns success (750.227446ms)
+✔ transient failures have a finite budget; HTTP rejections and unclassified failures are returned immediately (0.859876ms)
+✔ three-color53 declare: native transition, D1 reopening, privacy and duplicate receipt (1131.981711ms)
+ℹ {"engine":"rust-v0.2.75-jc060-occult-adviser-candidate","preparedNativeLayout":true,"inputName":"step-0004.json","completeOpaqueStateEqual":true,"fourSeatViewsEqual":true,"persistReopen":true,"duplicateOriginalReceipt":true}
+✔ three-color53 randomDiscard: native transition, D1 reopening, privacy and duplicate receipt (1011.880193ms)
+ℹ {"engine":"rust-v0.2.75-jc060-occult-adviser-candidate","preparedNativeLayout":true,"inputName":"step-0017.json","completeOpaqueStateEqual":true,"fourSeatViewsEqual":true,"persistReopen":true,"duplicateOriginalReceipt":true}
+✔ three-color53 influence: native transition, D1 reopening, privacy and duplicate receipt (1014.952975ms)
+ℹ {"engine":"rust-v0.2.75-jc060-occult-adviser-candidate","preparedNativeLayout":true,"inputName":"step-0049.json","completeOpaqueStateEqual":true,"fourSeatViewsEqual":true,"persistReopen":true,"duplicateOriginalReceipt":true}
+✔ three-color53 ordinaryDiscard: native transition, D1 reopening, privacy and duplicate receipt (926.486673ms)
+ℹ {"engine":"rust-v0.2.75-jc060-occult-adviser-candidate","preparedNativeLayout":true,"inputName":"step-0064.json","completeOpaqueStateEqual":true,"fourSeatViewsEqual":true,"persistReopen":true,"duplicateOriginalReceipt":true}
+✔ three-color53 timeMarker: native transition, D1 reopening, privacy and duplicate receipt (945.766002ms)
+ℹ {"engine":"rust-v0.2.75-jc060-occult-adviser-candidate","preparedNativeLayout":true,"inputName":"step-0076.json","completeOpaqueStateEqual":true,"fourSeatViewsEqual":true,"persistReopen":true,"duplicateOriginalReceipt":true}
+✔ historical two-card fixture rejects without altering persisted data (1035.128684ms)
+✔ engine63 entry-XQ37-0-first-0: continuous Native commands, journals, D1 reopening and receipts (4466.485081ms)
+ℹ {"preparedNativeLayout":true,"accepted":21,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ engine63 nested-reveal-Before(1, 0): continuous Native commands, journals, D1 reopening and receipts (6061.905618ms)
+ℹ {"preparedNativeLayout":true,"accepted":34,"rejected":1,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ engine63 privilege-renown-true: continuous Native commands, journals, D1 reopening and receipts (2917.934761ms)
+ℹ {"preparedNativeLayout":true,"accepted":12,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ engine63 privilege-already-wins: continuous Native commands, journals, D1 reopening and receipts (2218.563333ms)
+ℹ {"preparedNativeLayout":true,"accepted":7,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ engine63 world-empty-nested-2-1: continuous Native commands, journals, D1 reopening and receipts (6464.387904ms)
+ℹ {"preparedNativeLayout":true,"accepted":38,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ engine63 world-empty-jc050: continuous Native commands, journals, D1 reopening and receipts (1759.630498ms)
+ℹ {"preparedNativeLayout":true,"accepted":6,"rejected":1,"reopened":1,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ engine63 world-empty-conservation: continuous Native commands, journals, D1 reopening and receipts (5690.387546ms)
+ℹ {"preparedNativeLayout":true,"accepted":32,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ engine63 world-empty-duel: continuous Native commands, journals, D1 reopening and receipts (2937.856765ms)
+ℹ {"preparedNativeLayout":true,"accepted":18,"rejected":1,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ engine63 BQ030 lethal-offboard-accept: continuous Native commands, journals, D1 reopening and receipts (1452.953681ms)
+ℹ {"preparedNativeLayout":true,"accepted":5,"rejected":0,"reopened":1,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ engine63 BQ030 lethal-offboard-decline: continuous Native commands, journals, D1 reopening and receipts (918.298794ms)
+ℹ {"preparedNativeLayout":true,"accepted":1,"rejected":0,"reopened":1,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ engine63 BQ030 multiple-observer-order: continuous Native commands, journals, D1 reopening and receipts (1978.831768ms)
+ℹ {"preparedNativeLayout":true,"accepted":6,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ engine63 BQ030 empty-deck-elimination: continuous Native commands, journals, D1 reopening and receipts (1241.779189ms)
+ℹ {"preparedNativeLayout":true,"accepted":1,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ engine63 BQ030 granted-renown: continuous Native commands, journals, D1 reopening and receipts (2489.136409ms)
+ℹ {"preparedNativeLayout":true,"accepted":13,"rejected":0,"reopened":1,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ engine63 BQ030 granted-combat-glory: continuous Native commands, journals, D1 reopening and receipts (1437.639768ms)
+ℹ {"preparedNativeLayout":true,"accepted":5,"rejected":0,"reopened":1,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ engine63 BQ030 granted-renown-vacant: continuous Native commands, journals, D1 reopening and receipts (2650.067658ms)
+ℹ {"preparedNativeLayout":true,"accepted":9,"rejected":0,"reopened":3,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ XQ18 same-name carrier i240: exact Native choice and D1 reopened receipt (1091.299648ms)
+✔ XQ18 same-name carrier i241: exact Native choice and D1 reopened receipt (979.349481ms)
+✔ XQ18 pause, reopen, resume and exact carrier choice preserve all Native state strings (1947.995101ms)
+✔ XQ24 invalid effects saves reject at real Worker restore before HTTP pass or clock polling (2296.005726ms)
+ℹ {"invalidNativeSaves":4,"workerdD1Reopens":4,"httpRestoreRejections":8,"savedStateUnchanged":true,"noCommandsOrJournal":true}
+✔ XQ24 duel-accept: Native journals, continuous D1 restore and original receipts (3566.76717ms)
+ℹ {"preparedNativeLayout":true,"commands":10,"reopened":5,"fullJournals":true,"opaqueStates":true,"seatViews":2,"originalReceipts":true}
+✔ XQ24 duel-decline: Native journals, continuous D1 restore and original receipts (2195.684311ms)
+ℹ {"preparedNativeLayout":true,"commands":6,"reopened":3,"fullJournals":true,"opaqueStates":true,"seatViews":2,"originalReceipts":true}
+✔ XQ24 duel-murder-response: Native journals, continuous D1 restore and original receipts (4085.745446ms)
+ℹ {"preparedNativeLayout":true,"commands":15,"reopened":5,"fullJournals":true,"opaqueStates":true,"seatViews":2,"originalReceipts":true}
+✔ XQ24 duel-region-replaced-fixture: Native journals, continuous D1 restore and original receipts (2806.713401ms)
+ℹ {"preparedNativeLayout":true,"commands":6,"reopened":5,"fullJournals":true,"opaqueStates":true,"seatViews":2,"originalReceipts":true}
+✔ XQ24 duel-region-vacant-fixture: Native journals, continuous D1 restore and original receipts (2855.754317ms)
+ℹ {"preparedNativeLayout":true,"commands":6,"reopened":5,"fullJournals":true,"opaqueStates":true,"seatViews":2,"originalReceipts":true}
+✔ XQ24 duel-source-moved-fixture: Native journals, continuous D1 restore and original receipts (2724.695379ms)
+ℹ {"preparedNativeLayout":true,"commands":6,"reopened":5,"fullJournals":true,"opaqueStates":true,"seatViews":2,"originalReceipts":true}
+✔ XQ24 teams-accept: Native journals, continuous D1 restore and original receipts (4483.517149ms)
+ℹ {"preparedNativeLayout":true,"commands":14,"reopened":5,"fullJournals":true,"opaqueStates":true,"seatViews":4,"originalReceipts":true}
+✔ XQ24 teams-decline: Native journals, continuous D1 restore and original receipts (2783.894008ms)
+ℹ {"preparedNativeLayout":true,"commands":8,"reopened":3,"fullJournals":true,"opaqueStates":true,"seatViews":4,"originalReceipts":true}
+✔ XQ24 teams-murder-response: Native journals, continuous D1 restore and original receipts (5768.448497ms)
+ℹ {"preparedNativeLayout":true,"commands":22,"reopened":5,"fullJournals":true,"opaqueStates":true,"seatViews":4,"originalReceipts":true}
+✔ XQ24 teams-region-replaced-fixture: Native journals, continuous D1 restore and original receipts (3441.809873ms)
+ℹ {"preparedNativeLayout":true,"commands":8,"reopened":5,"fullJournals":true,"opaqueStates":true,"seatViews":4,"originalReceipts":true}
+✔ XQ24 teams-region-vacant-fixture: Native journals, continuous D1 restore and original receipts (3534.060072ms)
+ℹ {"preparedNativeLayout":true,"commands":8,"reopened":5,"fullJournals":true,"opaqueStates":true,"seatViews":4,"originalReceipts":true}
+✔ XQ24 teams-source-moved-fixture: Native journals, continuous D1 restore and original receipts (3524.011843ms)
+ℹ {"preparedNativeLayout":true,"commands":8,"reopened":5,"fullJournals":true,"opaqueStates":true,"seatViews":4,"originalReceipts":true}
+✔ xq27-gray56 final response: native transition, D1 reopening, privacy and duplicate receipt (1069.64988ms)
+ℹ {"engine":"rust-v0.2.75-jc060-occult-adviser-candidate","preparedNativeLayout":true,"completeOpaqueStateEqual":true,"fourSeatViewsEqual":true,"persistReopen":true,"duplicateOriginalReceipt":true}
+✔ XQ27-IR-01 rejects the hidden root flag in both production ABI entrypoints (1.855883ms)
+✔ current-only routing rejects the exact previous engine55 room identity (2.073602ms)
+✔ xq37-black57 accept: native transition, D1 reopening, privacy and duplicate receipt (1079.057197ms)
+ℹ {"engine":"rust-v0.2.75-jc060-occult-adviser-candidate","preparedNativeLayout":true,"inputName":"step-0002.json","completeOpaqueStateEqual":true,"fourSeatViewsEqual":true,"persistReopen":true,"duplicateOriginalReceipt":true}
+✔ xq37-black57 decline: native transition, D1 reopening, privacy and duplicate receipt (906.400722ms)
+ℹ {"engine":"rust-v0.2.75-jc060-occult-adviser-candidate","preparedNativeLayout":true,"inputName":"step-0036.json","completeOpaqueStateEqual":true,"fourSeatViewsEqual":true,"persistReopen":true,"duplicateOriginalReceipt":true}
+✔ xq37-black57 placement: native transition, D1 reopening, privacy and duplicate receipt (947.308434ms)
+ℹ {"engine":"rust-v0.2.75-jc060-occult-adviser-candidate","preparedNativeLayout":true,"completeOpaqueStateEqual":true,"fourSeatViewsEqual":true,"persistReopen":true,"duplicateOriginalReceipt":true}
+✔ rejects the hidden root flag in both production ABI entrypoints (2.340452ms)
+✔ current-only routing rejects the exact previous engine56 room identity (2.267124ms)
+ℹ tests 131
+ℹ suites 0
+ℹ pass 131
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 246083.013005

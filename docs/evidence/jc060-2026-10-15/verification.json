@@ -1,0 +1,49 @@
+{
+  "baseline": "3d642f0c1e6e5ac021cd40560086df35638bfe4c",
+  "branch": "codex/jc060-gray-occult-adviser-review-20261015",
+  "engine": "rust-v0.2.75-jc060-occult-adviser-candidate",
+  "pool": "limited-v2.68-jc060-occult-adviser-candidate",
+  "cards": 141,
+  "native": {
+    "passed": 1121,
+    "unit": 1054,
+    "integration": 67,
+    "failed": 0,
+    "ignored": 0
+  },
+  "web": {
+    "files": 106,
+    "passed": 970,
+    "failed": 0
+  },
+  "worker": {
+    "passed": 131,
+    "failed": 0,
+    "skipped": 0,
+    "cancelled": 0
+  },
+  "sourceTests": 34,
+  "inputGuardTests": 16,
+  "typescriptAndViteBuild": "passed",
+  "wasmParity": {
+    "scenarios": 11,
+    "steps": 86,
+    "seatViews": 380,
+    "rejected": 0,
+    "wasmSha256": "8b2cc9b3ac99bfecd02ad0ce2f3a18dc78c7baa94c301feec08b6707f3d50d56",
+    "completeNativeStatesEqual": true,
+    "previous74Rejected": true
+  },
+  "reviewedFileFingerprintsMatch": 33,
+  "originalResourcesAndInputsUnchanged": 1131,
+  "currentInputFiles": 46,
+  "currentGenerationCommands": 35,
+  "mergedMain": false,
+  "deployed": false,
+  "liveBrowserAcceptance": false,
+  "pending": [
+    "Parallel UI/recovery branch integration",
+    "currentDomains UI projection display",
+    "Successful deployment and matching-SHA live browser acceptance"
+  ]
+}

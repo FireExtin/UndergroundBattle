@@ -3,10 +3,15 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {kernel,catalog,moduleBytes} from './current-kernel.mjs';
-const fixture=JSON.parse(readFileSync(process.argv[2] || new URL('../../web/src/game/jc037Native74.fixture.json',import.meta.url)));
+const versions=new Map([
+  ['rust-v0.2.74-jc037-hidden-investigation-candidate',['74','limited-v2.67-jc037-hidden-investigation-candidate']],
+  ['rust-v0.2.75-jc060-occult-adviser-candidate',['75','limited-v2.68-jc060-occult-adviser-candidate']],
+]);
+assert(versions.has(catalog.engineVersion),'Build an explicitly supported current ABI first.');
+const [suffix,expectedPool]=versions.get(catalog.engineVersion);
+assert.equal(catalog.cardPoolVersion,expectedPool);
+const fixture=JSON.parse(readFileSync(process.argv[2] || new URL(`../../web/src/game/jc037Native${suffix}.fixture.json`,import.meta.url)));
 assert.deepEqual(fixture.catalog,catalog);
-assert.equal(catalog.engineVersion,'rust-v0.2.74-jc037-hidden-investigation-candidate');
-assert.equal(catalog.cardPoolVersion,'limited-v2.67-jc037-hidden-investigation-candidate');
 assert.equal(createHash('sha256').update(moduleBytes).digest('hex'),fixture.wasmSha256);
 let steps=0,views=0,rejected=0;
 for(const scenario of fixture.scenarios) {

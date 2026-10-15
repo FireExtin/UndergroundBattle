@@ -1,0 +1,13 @@
+
+> undergroundbattle-web@0.1.0 test
+> vitest --run --maxWorkers=1
+
+
+ RUN  v4.1.2 /workspace/UndergroundBattle/web
+
+
+ Test Files  106 passed (106)
+      Tests  970 passed (970)
+   Start at  05:32:22
+   Duration  210.95s (transform 3.58s, setup 10.48s, import 9.41s, tests 127.98s, environment 48.91s)
+

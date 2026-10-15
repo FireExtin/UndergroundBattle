@@ -1,0 +1,17 @@
+{
+  "wasmSha256": "8b2cc9b3ac99bfecd02ad0ce2f3a18dc78c7baa94c301feec08b6707f3d50d56",
+  "bytes": 2853792,
+  "copies": [
+    {
+      "path": "sites/generated/hegemony_wasm_bg.wasm",
+      "sameAsPkg": true,
+      "sha256": "8b2cc9b3ac99bfecd02ad0ce2f3a18dc78c7baa94c301feec08b6707f3d50d56"
+    },
+    {
+      "path": "sites/dist/server/14584c63f5150b7f77b4f00b6b386e01b86c61ab-hegemony_wasm_bg.wasm",
+      "sameAsPkg": true,
+      "sha256": "8b2cc9b3ac99bfecd02ad0ce2f3a18dc78c7baa94c301feec08b6707f3d50d56"
+    }
+  ],
+  "deploymentPerformed": false
+}

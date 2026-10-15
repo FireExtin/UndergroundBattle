@@ -1,6 +1,6 @@
-"""Join unchanged Native73 states with complete, actually accepted Room commands.
+"""Join unchanged current Native states with complete, actually accepted Room commands.
 
-Run in the current checkout after its real ABI73 build and Native export.
+Run in the current checkout after its real matching ABI build and Native export.
 No old state relabeling, payload repair, or baseline ABI fallback is allowed.
 """
 from pathlib import Path
@@ -11,7 +11,8 @@ import sys
 
 root = Path(sys.argv[1]).resolve()
 versions = {'rust-v0.2.73-jc052-original-region-candidate':'limited-v2.66-jc052-original-region-candidate',
-            'rust-v0.2.74-jc037-hidden-investigation-candidate':'limited-v2.67-jc037-hidden-investigation-candidate'}
+            'rust-v0.2.74-jc037-hidden-investigation-candidate':'limited-v2.67-jc037-hidden-investigation-candidate',
+            'rust-v0.2.75-jc060-occult-adviser-candidate':'limited-v2.68-jc060-occult-adviser-candidate'}
 catalog = json.loads(subprocess.check_output([
     'node', '--input-type=module', '-e',
     "import {catalog} from './rust-game-wasm/tests/current-kernel.mjs';"
@@ -44,7 +45,8 @@ for p in sorted((root / 'native').glob('*.json')):
     })
 assert {c['name'] for c in cases} == {'deploy', 'entry-accept', 'entry-decline', 'leader-sacrifice'}
 assert len(cases) == 4
-out = Path(sys.argv[2]) if len(sys.argv) > 2 else Path('web/src/game/jc052Native73.fixture.json')
+suffix = version.split('-', 2)[1].removeprefix('v0.2.')
+out = Path(sys.argv[2]) if len(sys.argv) > 2 else Path(f'web/src/game/jc052Native{suffix}.fixture.json')
 result = {
     'scope': 'Exact prepared Native layouts and accepted Room commands; not browser play or save migration.',
     'sourceBaseline': '9890163a093621f814f9768712e2663de2fd5239',

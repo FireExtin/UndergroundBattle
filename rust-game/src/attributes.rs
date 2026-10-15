@@ -159,11 +159,8 @@ impl Game {
         };
         let mut domains = [0usize; 2];
         for (r, other) in self.in_play_cards() {
-            if r == region
-                && !other.face_down
-                && card(&other.definition).magic_icon != MagicIcon::None
-            {
-                domains[self.team(other.controller)] += 1;
+            if r == region && !other.face_down {
+                domains[self.team(other.controller)] += self.current_magic_count(other) as usize;
             }
         }
         let team = self.team(c.controller);
