@@ -14,8 +14,19 @@ export function DeckCardPreview({ card, count, disabled, copyLabel, sameNameCoun
   onChangeCount: (delta: number) => void; onClose: () => void;
 }) {
   const dialog = useRef<HTMLElement>(null);
+  const focusedControl = useRef<HTMLElement | null>(null);
+  const editable = isEditableDeckCard(card);
   useDialogFocus(dialog, true, onClose);
   useLayoutEffect(() => { if (dialog.current) dialog.current.scrollTop = 0; }, [card.id]);
+  useLayoutEffect(() => {
+    const previous = focusedControl.current;
+    if (!previous || (previous.isConnected && !previous.matches(':disabled'))) return;
+    // Browsers blur a button when its last decrement or navigation disables it.
+    const group = previous.closest('.hg-library-preview-navigation, .hg-library-preview-actions');
+    const next = (group?.isConnected ? group.querySelector<HTMLButtonElement>('button:not(:disabled)') : null)
+      || dialog.current?.querySelector<HTMLButtonElement>('button:not(:disabled)') || dialog.current;
+    next?.focus({ preventScroll: true });
+  }, [card.id, count, disabled, editable, navigation.index, navigation.total]);
   useEffect(() => {
     // An expanded workspace already owns the body scroll lock.
     if (document.body.style.overflow === 'hidden') return;
@@ -25,7 +36,7 @@ export function DeckCardPreview({ card, count, disabled, copyLabel, sameNameCoun
   }, []);
   const source = cardScanUrl(card.id);
   return createPortal(<div className="hg-library-preview-backdrop" onClick={onClose}>
-    <section className="hg-library-preview" ref={dialog} tabIndex={-1} role="dialog" aria-modal="true" aria-label={`卡面预览 ${card.name}（${card.id}）`} onClick={event => event.stopPropagation()}
+    <section className="hg-library-preview" ref={dialog} tabIndex={-1} role="dialog" aria-modal="true" aria-label={`卡面预览 ${card.name}（${card.id}）`} onClick={event => event.stopPropagation()} onFocusCapture={event => { if (event.target instanceof HTMLElement) focusedControl.current = event.target; }}
       onKeyDown={event => {
         if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
         if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
@@ -53,14 +64,14 @@ export function DeckCardPreview({ card, count, disabled, copyLabel, sameNameCoun
           {card.kind !== 'society' && card.kind !== 'region' && <p>{card.loyaltyText || (card.loyalty?.length ? `忠诚 ${card.loyalty.join(' / ')}` : '无忠诚要求')}</p>}
           <p className="hg-library-card-text">{card.text || '目录未提供额外规则文字。'}</p>
           <p>{copyLabel}</p>
-          <div className="hg-library-preview-actions"><button type="button" className="hg-button hg-button-quiet" aria-label={`预览减少 ${card.name}（${card.id}）`} disabled={disabled || count === 0} onClick={() => onChangeCount(-1)}>− 减少</button><strong role="status">已加入 {count} 张</strong><button type="button" className="hg-button hg-button-primary" aria-label={`预览添加 ${card.name}（${card.id}）`} disabled={disabled || !isEditableDeckCard(card)} onClick={() => onChangeCount(1)}>+ 添加</button></div>
+          <div className="hg-library-preview-actions"><button type="button" className="hg-button hg-button-quiet" aria-label={`预览减少 ${card.name}（${card.id}）`} disabled={disabled || count === 0} onClick={() => onChangeCount(-1)}>− 减少</button><strong role="status">已加入 {count} 张</strong><button type="button" className="hg-button hg-button-primary" aria-label={`预览添加 ${card.name}（${card.id}）`} disabled={disabled || !editable} onClick={() => onChangeCount(1)}>+ 添加</button></div>
           <div className="hg-library-preview-validation" aria-live="polite" aria-atomic="true">
             {sameNameCount !== count && <p>其他编号也有此牌：同名合计 {sameNameCount} 张。</p>}
             {issues.length > 0 && <ul className="hg-library-issues" aria-label="此卡构筑提示">{issues.map((issue, index) => <li key={`${issue.code}-${index}`}>{issue.message}</li>)}</ul>}
             <p className={validation.valid ? 'hg-library-notice' : 'hg-muted'}>牌组共 {validation.total} 张 · {validation.valid ? '构筑校验通过' : '暂不可开局'}</p>
             {validation.issues.length > 0 && <details><summary>查看牌组的 {validation.issues.length} 项构筑提示</summary><ul className="hg-library-issues">{validation.issues.map((issue, index) => <li key={`${issue.code}-${index}`}>{issue.message}</li>)}</ul></details>}
           </div>
-          {!isEditableDeckCard(card) && <p className="hg-library-warning">此卡不可加入玩家牌组。请在目录指定的入口选择秘社或查看地区。</p>}
+          {!editable && <p className="hg-library-warning">此卡不可加入玩家牌组。请在目录指定的入口选择秘社或查看地区。</p>}
           <small>构筑校验以当前目录为准；对局中的费用与效果由服务端裁定。</small>
         </div>
       </div>

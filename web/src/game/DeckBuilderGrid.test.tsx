@@ -161,6 +161,26 @@ describe('card-face deck workspace', () => {
     expect(readDeckLibrary().drafts[0].cards).toContainEqual({ cardId: 'JC002', count: 1 });
   });
 
+  it('keeps the expanded composition in view while settings retain edits behind their disclosure', () => {
+    render(<DeckLibrary catalog={catalog} />);
+    fireEvent.click(screen.getByRole('button', { name: '展开组卡工作台' }));
+    expect(screen.queryByRole('textbox', { name: '牌组名称' })).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: '添加 巨石阵看护人（JC002）' }));
+    expect(count('巨石阵看护人（JC002）')).toHaveValue(1);
+    expect(screen.getByRole('list', { name: '牌组校验问题' })).toBeInTheDocument();
+    const toggle = screen.getByRole('button', { name: '牌组设置与模板' });
+    fireEvent.click(toggle);
+    expect(toggle).toHaveAttribute('aria-expanded', 'true');
+    fireEvent.change(screen.getByRole('textbox', { name: '牌组名称' }), { target: { value: '红黑试组' } });
+    fireEvent.click(screen.getByRole('button', { name: '收起牌组设置' }));
+    expect(screen.getByLabelText('当前草稿')).toHaveTextContent('红黑试组');
+    expect(count('巨石阵看护人（JC002）')).toHaveValue(1);
+    fireEvent.click(screen.getByRole('button', { name: '保存牌组' }));
+    expect(readDeckLibrary().drafts[0]).toMatchObject({ name: '红黑试组', cards: [{ cardId: 'JC002', count: 1 }] });
+    fireEvent.click(screen.getByRole('button', { name: '返回大厅组卡' }));
+    expect(screen.getByRole('textbox', { name: '牌组名称' })).toHaveValue('红黑试组');
+  });
+
   it('shows same-name violations inside the reader and clears them immediately after correction', () => {
     render(<DeckLibrary catalog={{ ...catalog, cards: [...catalog.cards, { ...catalog.cards[1], id: 'same-name' }] }} />);
     fireEvent.click(screen.getByRole('button', { name: '复制为草稿' }));
@@ -220,6 +240,23 @@ describe('card-face deck workspace', () => {
     expect(within(options()).getAllByRole('listitem')).toHaveLength(2);
     expect(count('无知路人（JC125）')).toHaveValue(1);
     expect(count('巨石阵看护人（JC002）')).toHaveValue(1);
+  });
+
+  it('keeps keyboard focus inside the reader after a counter or boundary navigation disables itself', () => {
+    render(<DeckLibrary catalog={catalog} />);
+    fireEvent.click(screen.getByRole('button', { name: '添加 无知路人（JC125）' }));
+    fireEvent.click(screen.getByRole('button', { name: '预览 无知路人（JC125）' }));
+    const subtract = screen.getByRole('button', { name: '预览减少 无知路人（JC125）' });
+    subtract.focus(); fireEvent.click(subtract);
+    expect(screen.getByRole('button', { name: '预览添加 无知路人（JC125）' })).toHaveFocus();
+    const next = screen.getByRole('button', { name: '下一张卡面' });
+    next.focus(); fireEvent.click(next); fireEvent.click(next);
+    const previous = screen.getByRole('button', { name: '上一张卡面' });
+    expect(previous).toHaveFocus();
+    expect(next).toBeDisabled();
+    fireEvent.keyDown(previous, { key: 'ArrowLeft' });
+    expect(screen.getByRole('dialog')).toHaveAccessibleName('卡面预览 巨石阵看护人（JC002）');
+    expect(screen.getByRole('status')).toHaveTextContent('已加入 0 张');
   });
 
   it('dismisses a removed catalog card and restores the workspace without discarding the draft', () => {

@@ -1,11 +1,11 @@
 import type { KeyboardEvent } from 'react';
 
 /** Navigate the rendered card rows, including resized grids and an incomplete last row. */
-export function moveCardGridFocus(event: KeyboardEvent<HTMLButtonElement>, grid: HTMLElement | null) {
+export function moveCardGridFocus(event: KeyboardEvent<HTMLButtonElement>, grid: HTMLElement | null, selector = '.hg-library-card-preview') {
   if (!grid || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
   const keys = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End'];
   if (!keys.includes(event.key)) return;
-  const cards = Array.from(grid.querySelectorAll<HTMLButtonElement>('.hg-library-card-preview'));
+  const cards = Array.from(grid.querySelectorAll<HTMLButtonElement>(selector)).filter(card => !card.disabled);
   const index = cards.indexOf(event.currentTarget);
   if (index < 0) return;
   let target = event.key === 'Home' ? cards[0] : event.key === 'End' ? cards.at(-1)

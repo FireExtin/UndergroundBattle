@@ -40,6 +40,7 @@ export function DeckLibrary({ catalog, disabled = false, onSelectDraft, selected
   const titleId = `${componentId}-library-title`;
   const gridHintId = `${componentId}-grid-hint`;
   const filtersId = `${componentId}-filters`;
+  const settingsId = `${componentId}-deck-settings`;
   const [initial] = useState(() => readDeckLibrary(storage === undefined ? localDeckStorage() : storage));
   const [saved, setSaved] = useState(initial.drafts);
   const [draft, setDraft] = useState<DeckDraft>(() => initial.drafts[0] ? publicDeckDraft(initial.drafts[0]) : createDeckDraft(catalog));
@@ -57,6 +58,7 @@ export function DeckLibrary({ catalog, disabled = false, onSelectDraft, selected
   const [sort, setSort] = useState('catalog');
   const [density, setDensity] = useState<'compact' | 'comfortable'>('compact');
   const [showFilters, setShowFilters] = useState(false);
+  const [showDeckSettings, setShowDeckSettings] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const [previewId, setPreviewId] = useState<string | null>(null);
   const [previewIds, setPreviewIds] = useState<string[]>([]);
@@ -176,6 +178,7 @@ export function DeckLibrary({ catalog, disabled = false, onSelectDraft, selected
     <div className="hg-library-editor">
       <div className="hg-library-edit-panel">
         <div className="hg-library-deck-status">
+          {expanded && <strong className="hg-library-current-name" aria-label="当前草稿">{draft.name.trim() || '未命名牌组'}</strong>}
           <div className="hg-library-total" role="status"><strong>{validation.total} 张</strong><span>{validation.valid ? '构筑校验通过' : '暂不可开局'}{dirty ? ' · 有未保存修改' : ''}</span></div>
           <div className="hg-library-save-actions">
             <button type="button" className="hg-button hg-button-quiet" disabled={disabled || !draft.name.trim()} onClick={() => persist()}>保存牌组</button>
@@ -184,6 +187,8 @@ export function DeckLibrary({ catalog, disabled = false, onSelectDraft, selected
           </div>
           {notice && <p className="hg-library-notice" role="status">{notice}</p>}
         </div>
+        {expanded && <button type="button" className="hg-button hg-button-quiet hg-library-settings-toggle" aria-expanded={showDeckSettings} aria-controls={settingsId} onClick={() => setShowDeckSettings(value => !value)}>{showDeckSettings ? '收起牌组设置' : '牌组设置与模板'}{versionsChanged ? ' · 版本待确认' : ''}</button>}
+        <div id={settingsId} hidden={expanded && !showDeckSettings}>
         <div className="hg-library-toolbar">
           <button type="button" className="hg-button hg-button-quiet" disabled={disabled} onClick={() => replace(createDeckDraft(catalog), true)}>新建空白牌组</button>
           <label className="hg-field">预组模板<select value={presetId} onChange={event => setPresetId(event.target.value)} disabled={disabled || !catalog.decks.length}><option value="">选择预组模板</option>{presetId && !catalog.decks.some(deck => deck.id === presetId) && <option value={presetId}>原模板已不在当前目录</option>}{catalog.decks.map(deck => <option key={deck.id} value={deck.id}>{deck.name}</option>)}</select></label>
@@ -213,6 +218,7 @@ export function DeckLibrary({ catalog, disabled = false, onSelectDraft, selected
         </section>
         <p className="hg-library-version">草稿来源：{draft.rulesVersion} / {draft.cardPoolVersion} / {draft.engineVersion}</p>
         {versionsChanged && <button type="button" className="hg-button hg-button-quiet" disabled={disabled} onClick={() => edit(revalidateDraftVersions(draft, catalog))}>按当前卡池重新校验</button>}
+        </div>
         {validation.issues.length > 0 && <ul className="hg-library-issues" aria-label="牌组校验问题">{validation.issues.map((issue, index) => <li key={`${issue.code}-${index}`}>{issue.message}</li>)}</ul>}
         {!onSelectDraft && <p className="hg-muted">此入口尚未接入自定义牌组选择，仍可编辑与保存草稿。</p>}
         <h3>牌组组成</h3>

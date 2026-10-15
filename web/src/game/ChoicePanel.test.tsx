@@ -299,6 +299,112 @@ describe('choice option browsing', () => {
   });
 });
 
+describe('choice grid keyboard navigation', () => {
+  const buttons = (container: HTMLElement) => Array.from(container.querySelectorAll<HTMLButtonElement>('.hg-choice-option'));
+  const layout = (cards: HTMLButtonElement[], columns: number) => cards.forEach((card, index) => {
+    vi.spyOn(card, 'getBoundingClientRect').mockReturnValue(new DOMRect(index % columns * 220, Math.floor(index / columns) * 360, 200, 340));
+  });
+
+  it('moves through rendered rows and the nearest tail card without selecting, reading or submitting', () => {
+    const submit = vi.fn(), read = vi.fn();
+    const { container } = render(<ChoicePanel choice={largeCardChoice} action={base} definitions={new Map()} busy={false} onSubmit={submit} onReadCard={read} viewerId="p0" />);
+    const cards = buttons(container);
+    layout(cards, 3);
+    cards[2].focus();
+    fireEvent.keyDown(cards[2], { key: 'ArrowDown' }); expect(cards[5]).toHaveFocus();
+    fireEvent.keyDown(cards[5], { key: 'ArrowDown' }); expect(cards[7]).toHaveFocus();
+    fireEvent.keyDown(cards[7], { key: 'ArrowDown' }); expect(cards[7]).toHaveFocus();
+    fireEvent.keyDown(cards[7], { key: 'ArrowUp' }); expect(cards[4]).toHaveFocus();
+    fireEvent.keyDown(cards[4], { key: 'Home' }); expect(cards[0]).toHaveFocus();
+    fireEvent.keyDown(cards[0], { key: 'ArrowRight' }); expect(cards[1]).toHaveFocus();
+    fireEvent.keyDown(cards[1], { key: 'ArrowLeft' }); expect(cards[0]).toHaveFocus();
+    fireEvent.keyDown(cards[0], { key: 'ArrowLeft' }); expect(cards[0]).toHaveFocus();
+    fireEvent.keyDown(cards[0], { key: 'End' }); expect(cards[7]).toHaveFocus();
+    fireEvent.keyDown(cards[7], { key: 'ArrowRight' }); expect(cards[7]).toHaveFocus();
+    cards.forEach(card => expect(card).toHaveAttribute('aria-pressed', 'false'));
+    expect(screen.getByRole('button', { name: '确认选择' })).toBeDisabled();
+    expect(read).not.toHaveBeenCalled();
+    expect(submit).not.toHaveBeenCalled();
+  });
+
+  it('uses the filtered layout while retaining original candidate numbers and selected IDs', () => {
+    const submit = vi.fn();
+    const choice = { ...largeCardChoice, max: 3, options: largeCardChoice.options.map((option, index) => ({
+      ...option, card: { ...option.card, name: [0, 3, 7].includes(index) ? '同名角色' : '其他角色' },
+    })) };
+    const { container } = render(<ChoicePanel choice={choice} action={base} definitions={new Map()} busy={false} onSubmit={submit} viewerId="p0" />);
+    fireEvent.change(screen.getByRole('searchbox', { name: '检索选项' }), { target: { value: '同名角色' } });
+    const filtered = buttons(container);
+    expect(filtered.map(card => card.dataset.choiceCandidateNumber)).toEqual(['1', '4', '8']);
+    layout(filtered, 2);
+    filtered[1].focus();
+    fireEvent.keyDown(filtered[1], { key: 'ArrowDown' }); expect(filtered[2]).toHaveFocus();
+    fireEvent.keyDown(filtered[2], { key: 'ArrowUp' }); expect(filtered[0]).toHaveFocus();
+    fireEvent.click(filtered[0]);
+    fireEvent.click(filtered[2]);
+    fireEvent.click(screen.getByRole('checkbox', { name: '只看已选' }));
+    const selected = buttons(container);
+    layout(selected, 1);
+    selected[0].focus();
+    fireEvent.keyDown(selected[0], { key: 'ArrowDown' }); expect(selected[1]).toHaveFocus();
+    fireEvent.keyDown(selected[1], { key: 'Home' }); expect(selected[0]).toHaveFocus();
+    fireEvent.keyDown(selected[0], { key: 'End' }); expect(selected[1]).toHaveFocus();
+    expect(selected[1]).toHaveAttribute('data-choice-candidate-number', '8');
+    expect(submit).not.toHaveBeenCalled();
+    fireEvent.click(screen.getByRole('button', { name: '确认选择' }));
+    expect(submit).toHaveBeenCalledExactlyOnceWith({ ...base, selected: ['option-0', 'option-7'] });
+  });
+
+  it('skips disabled candidates at the multi-selection limit and restores them after cancellation', () => {
+    const submit = vi.fn();
+    const { container } = render(<ChoicePanel choice={{ ...largeCardChoice, max: 2 }} action={base} definitions={new Map()} busy={false} onSubmit={submit} viewerId="p0" />);
+    const cards = buttons(container);
+    layout(cards, 3);
+    fireEvent.click(cards[0]);
+    fireEvent.click(cards[7]);
+    cards.slice(1, 7).forEach(card => expect(card).toBeDisabled());
+    cards[0].focus();
+    fireEvent.keyDown(cards[0], { key: 'ArrowRight' }); expect(cards[7]).toHaveFocus();
+    fireEvent.keyDown(cards[7], { key: 'ArrowUp' }); expect(cards[0]).toHaveFocus();
+    fireEvent.keyDown(cards[0], { key: 'ArrowDown' }); expect(cards[7]).toHaveFocus();
+    fireEvent.keyDown(cards[7], { key: 'Home' }); expect(cards[0]).toHaveFocus();
+    fireEvent.keyDown(cards[0], { key: 'End' }); expect(cards[7]).toHaveFocus();
+    expect(cards[0]).toHaveAttribute('aria-pressed', 'true');
+    expect(cards[7]).toHaveAttribute('aria-pressed', 'true');
+    fireEvent.click(cards[7]);
+    fireEvent.keyDown(cards[7], { key: 'ArrowLeft' }); expect(cards[6]).toHaveFocus();
+    expect(cards[6]).toHaveAttribute('aria-pressed', 'false');
+    expect(submit).not.toHaveBeenCalled();
+    fireEvent.click(screen.getByRole('button', { name: '确认选择' }));
+    expect(submit).toHaveBeenCalledExactlyOnceWith({ ...base, selected: ['option-0'] });
+  });
+
+  it('leaves activation, modifier shortcuts and reader keys to their native behavior', () => {
+    const submit = vi.fn(), read = vi.fn();
+    const { container } = render(<ChoicePanel choice={largeCardChoice} action={base} definitions={new Map()} busy={false} onSubmit={submit} onReadCard={read} viewerId="p0" />);
+    const first = buttons(container)[0];
+    first.focus();
+    for (const key of ['Enter', ' ', 'Tab']) expect(fireEvent.keyDown(first, { key })).toBe(true);
+    expect(fireEvent.keyDown(first, { key: 'ArrowRight', altKey: true })).toBe(true);
+    expect(first).toHaveFocus();
+    const reader = screen.getByRole('button', { name: '放大阅读候选角色1' });
+    reader.focus();
+    expect(fireEvent.keyDown(reader, { key: 'ArrowRight' })).toBe(true);
+    expect(reader).toHaveFocus();
+    expect(first).toHaveAttribute('aria-pressed', 'false');
+    expect(read).not.toHaveBeenCalled();
+    expect(submit).not.toHaveBeenCalled();
+  });
+
+  it.each(['damage', 'investigation'])('does not intercept keys in the %s branch', kind => {
+    render(<ChoicePanel choice={{ ...testChoice, kind, amount: 3 }} action={base} definitions={new Map()} busy={false} onSubmit={vi.fn()} />);
+    const control = kind === 'damage' ? screen.getByRole('spinbutton', { name: '给角色甲分配伤害' }) : screen.getByRole('button', { name: '角色乙上移' });
+    control.focus();
+    for (const key of ['ArrowUp', 'ArrowDown', 'Home', 'End']) expect(fireEvent.keyDown(control, { key })).toBe(true);
+    expect(control).toHaveFocus();
+  });
+});
+
 describe('batched choice interactions', () => {
   it.each(['分配', '增加'])('counts each rapid damage %s click without exceeding the shared total', verb => {
     const submit = vi.fn();

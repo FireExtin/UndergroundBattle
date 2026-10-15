@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import type { ReactNode } from 'react';
 import { CardContent, visibleCard } from './CardTile';
+import { moveCardGridFocus } from './cardGridNavigation';
 import { choiceDraftFingerprint, initialChoiceDraft, readChoiceDraft, saveChoiceDraft } from './choiceDraftStorage';
 import type { ChoiceDraft, ChoiceDraftStore } from './choiceDraftStorage';
 import { useDialogFocus } from './useDialogFocus';
@@ -136,7 +137,7 @@ function ChoicePanelContent({ choice, action, definitions, busy, onSubmit, onRea
     <div className="hg-choice-heading">
     <div className="hg-section-title"><span className="hg-eyebrow">轮到你选择</span><span className="hg-choice-tag" role="status" aria-atomic="true">{damage ? `尚余 ${amount - assigned} 点` : ordering ? '自上而下排列' : `已选 ${selected.length} / ${max}`}</span></div>
     <h2>{choice.title}</h2><p>{choice.description}</p>
-    <p className="hg-choice-scroll-hint" id={scrollHintId}>{choice.kind === 'mulligan' ? '点选要替换的手牌，未选中的保留。' : '先查看选项，再确认你的选择。'} 选项区可上下滚动，确认按钮始终在下方。</p>
+    <p className="hg-choice-scroll-hint" id={scrollHintId}>{choice.kind === 'mulligan' ? '点选要替换的手牌，未选中的保留。' : '先查看选项，再确认你的选择。'} 选项区可上下滚动，确认按钮始终在下方。{!ordering && !damage && choice.options.length > 1 && <span className="hg-choice-keyboard-hint">方向键浏览 · Home / End 首尾 · Enter / 空格选择</span>}</p>
     </div>
     {filterable && <div className="hg-choice-filters">
       <label className="hg-field">检索选项<input ref={searchBox} type="search" value={search} placeholder="名称或卡牌编号" disabled={busy} onChange={event => {
@@ -169,7 +170,7 @@ function ChoicePanelContent({ choice, action, definitions, busy, onSubmit, onRea
         const atLimit = !isSelected && max !== 1 && selectionFull;
         const candidateNumber = option.card && option.card.region === undefined && choice.options.length > 1 ? index + 1 : undefined;
         const contextId = option.card && (candidateNumber || option.card.region !== undefined) ? `${choice.id}-option-context-${index}` : undefined;
-        return <div key={option.id} className="hg-choice-option-entry"><button type="button" data-choice-option={option.id} data-choice-target-number={option.card?.region === undefined ? undefined : index + 1} data-choice-candidate-number={candidateNumber} className={`hg-choice-option ${isSelected ? 'hg-selected' : ''}`} disabled={busy || atLimit} onClick={() => choose(option.id)} aria-pressed={isSelected} aria-describedby={max > 0 ? selectionHintId : undefined}>
+        return <div key={option.id} className="hg-choice-option-entry"><button type="button" data-choice-option={option.id} data-choice-target-number={option.card?.region === undefined ? undefined : index + 1} data-choice-candidate-number={candidateNumber} className={`hg-choice-option ${isSelected ? 'hg-selected' : ''}`} disabled={busy || atLimit} onKeyDown={event => moveCardGridFocus(event, optionsRegion.current, '.hg-choice-option')} onClick={() => choose(option.id)} aria-pressed={isSelected} aria-describedby={max > 0 ? selectionHintId : undefined}>
         <span className="hg-choice-selection-state" aria-hidden="true"><span className="hg-choice-check">{isSelected ? selectedIndex + 1 : '+'}</span><span>{isSelected ? '已选 · 再点取消' : atLimit ? '已达上限' : max === 1 && selected.length > 0 ? '换选此项' : '点击选择'}</span></span>
         {candidateNumber && <span className="hg-choice-candidate" id={contextId}>候选 {candidateNumber}</span>}
         {option.card?.region !== undefined && <span className="hg-choice-target-context" id={contextId}><span className="hg-target-number" style={{ color: 'inherit', marginLeft: 0 }}>目标 {index + 1}</span>{' '}<small>{playerLabels?.[option.card.owner] || option.card.owner} 拥有{option.card.controller !== option.card.owner && ` · ${playerLabels?.[option.card.controller] || option.card.controller} 操控`} · 地区 {option.card.region + 1}</small></span>}

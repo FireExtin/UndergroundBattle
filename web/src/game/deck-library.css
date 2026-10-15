@@ -22,6 +22,8 @@
 .hg-library-catalog-heading .hg-button { min-height: 32px; padding: .25rem .6rem; }
 .hg-library-deck-status { position: sticky; top: -1rem; z-index: 2; margin: -1rem -1rem 1rem; padding: .5rem 1rem 1rem; background: #20252e; border-bottom: 1px solid #4b5060; }
 .hg-library-deck-status .hg-library-total { margin-top: .5rem; }
+.hg-library-current-name { display: block; margin-top: .4rem; color: #ead2a3; overflow-wrap: anywhere; }
+.hg-library-settings-toggle { width: 100%; margin-bottom: .35rem; }
 .hg-library-workspace-actions { display: flex; align-items: center; flex-wrap: wrap; gap: .75rem; }
 .hg-library-expanded { position: fixed; inset: 0; z-index: 80; margin: 0; padding: 1.4rem 2rem; background: radial-gradient(ellipse at top left, #55402b22, transparent 60%), #11151b; overflow: hidden; color: #efece4; display: flex; flex-direction: column; }
 .hg-library-expanded .hg-library-workspace-heading { flex-shrink: 0; max-height: 35%; overflow-y: auto; }
