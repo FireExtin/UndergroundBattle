@@ -1,0 +1,7 @@
+{
+  "baseline142CardsSha256": "31ad961e23fe0e7a32aeff70a45bfa98019b3f24e3491c7f67f72a414a9a8e6c",
+  "specSha256": "a2568741ea75534fd7830ecef3e76a87247bb6843eae1aabc7aa2113e87d1279",
+  "originalImageSha256": "5d22023e0848d5d2e6566b2fdfe94ef62a80c7b97812f3f81066392aa97cc1ab",
+  "engine": "rust-v0.2.77-jc046-mandatory-sacrifice-candidate",
+  "pool": "limited-v2.70-jc046-mandatory-sacrifice-candidate"
+}

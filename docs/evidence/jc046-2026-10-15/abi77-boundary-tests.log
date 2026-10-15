@@ -1,0 +1,8 @@
+test_native77_routes_current_exports_and_preserves_all_prior_inputs (<run_path>.GeneratorEntrypoints.test_native77_routes_current_exports_and_preserves_all_prior_inputs) ... ok
+test_native77_requires_exact_source_and_built_identity (<run_path>.GeneratorEntrypoints.test_native77_requires_exact_source_and_built_identity) ... ok
+test_native77_recorded_current_input_targets_reject_before_any_mutation (<run_path>.GeneratorEntrypoints.test_native77_recorded_current_input_targets_reject_before_any_mutation) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 4.220s
+
+OK

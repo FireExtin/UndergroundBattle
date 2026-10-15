@@ -9,10 +9,10 @@ const digest=v=>createHash('sha256').update(JSON.stringify(canonical(v))).digest
 const spec=json('docs/factions/card-specifications.json').cards.JC095,pool=json('rust-game/data/cards.json');
 test('JC095 preserves all 141 accepted ABI75 definitions, decks and metadata',()=>{
  const {cards,engineVersion,cardPoolVersion,...metadata}=pool;
- assert.equal(cards.length,142);assert.equal(new Set(cards.map(c=>c.id)).size,142);
- assert.equal(digest(cards.filter(c=>c.id!=='JC095')),'77b09d55d0208d66d301928343d7ce7918db017b00fdd98937be2f215ff320f0');
+ assert.equal(cards.length,143);assert.equal(new Set(cards.map(c=>c.id)).size,143);
+ assert.equal(digest(cards.filter(c=>!['JC095','JC046'].includes(c.id))),'77b09d55d0208d66d301928343d7ce7918db017b00fdd98937be2f215ff320f0');
  assert.equal(digest(metadata),'a0ca39bf9ba052ac13c2e64e7698bb1d5f051d38f5a75a380d54424811a357f0');
- assert.equal(engineVersion,'rust-v0.2.76-jc095-influence-conversion-candidate');assert.equal(cardPoolVersion,'limited-v2.69-jc095-influence-conversion-candidate');
+ assert.equal(engineVersion,'rust-v0.2.77-jc046-mandatory-sacrifice-candidate');assert.equal(cardPoolVersion,'limited-v2.70-jc046-mandatory-sacrifice-candidate');
 });
 test('JC095 complete gold-name Leader and Renown face matches pinned095/135 original',()=>{
  assert.equal(digest({fields:spec.fields,sourceVerification:spec.sourceVerification,edition:spec.edition}),'9720d1ed8a4aec97e480ebe7ed5384716951c5a46c2e33593b2f9d1059a7dc18');
@@ -24,5 +24,5 @@ test('JC095 complete gold-name Leader and Renown face matches pinned095/135 orig
 });
 test('JC095 public scan is the byte-identical original and all admitted scans remain valid',()=>{
  const original=read(spec.sourceVerification.imagePath);assert.equal(createHash('sha256').update(original).digest('hex'),spec.sourceVerification.imageSha256);
- assert.deepEqual(read('web/public/cards/JC095.jpg'),original);const r=validateAdmittedScans();assert.equal(r.checkedCards,142);assert.equal(r.manifestEntries,153);
+ assert.deepEqual(read('web/public/cards/JC095.jpg'),original);const r=validateAdmittedScans();assert.equal(r.checkedCards,143);assert.equal(r.manifestEntries,154);
 });

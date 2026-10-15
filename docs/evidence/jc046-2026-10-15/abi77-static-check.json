@@ -1,0 +1,12 @@
+{
+  "pythonSyntax": "passed",
+  "sourceFilesUnchanged": 56,
+  "fixtureTargets": {
+    "web": 26,
+    "sites": 22
+  },
+  "jc095InvalidLoopUnchangedSha256": "e9a0fd50d84297c3c8c337f2f57d27e17c6ac2e11a26953dfa07e24bff1f70ef",
+  "abi76SourceBaselinePreserved": "e53e8b017f0ec974c6cf3d8f446b6541771cf4a5",
+  "abi77PlaceholderCount": 3,
+  "abi77RejectsPreviousNative76": true
+}

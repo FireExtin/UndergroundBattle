@@ -1,4 +1,4 @@
-"""Join unchanged JC095 Native Room traces for the exact current ABI76."""
+"""Join unchanged JC095 Native Room traces for the exact matching current ABI."""
 from pathlib import Path
 import hashlib
 import json
@@ -11,8 +11,15 @@ catalog = json.loads(subprocess.check_output([
     'node', '--input-type=module', '-e',
     "import {catalog} from './rust-game-wasm/tests/current-kernel.mjs';console.log(JSON.stringify(catalog));"
 ], cwd=repo, text=True))
-assert catalog['engineVersion'] == 'rust-v0.2.76-jc095-influence-conversion-candidate'
-assert catalog['cardPoolVersion'] == 'limited-v2.69-jc095-influence-conversion-candidate'
+versions = {
+    'rust-v0.2.76-jc095-influence-conversion-candidate': ('76', 'limited-v2.69-jc095-influence-conversion-candidate', 'e53e8b017f0ec974c6cf3d8f446b6541771cf4a5'),
+    'rust-v0.2.77-jc046-mandatory-sacrifice-candidate': ('77', 'limited-v2.70-jc046-mandatory-sacrifice-candidate', 'dbdee5d6014c260f9833c162bf85aff4b491b690'),
+}
+assert catalog['engineVersion'] in versions, 'Build an explicitly supported current ABI first.'
+suffix, expected_pool, source_baseline = versions[catalog['engineVersion']]
+assert catalog['cardPoolVersion'] == expected_pool
+assert len(source_baseline) == 40 and all(c in '0123456789abcdef' for c in source_baseline), \
+    'Set the exact completed source checkpoint commit before generating the current ABI.'
 scenarios = []
 for path in sorted(root.glob('*.json')):
     raw = path.read_bytes()
@@ -33,13 +40,13 @@ assert {s['name'] for s in scenarios} == {
 assert len({s['name'] for s in scenarios}) == len(scenarios)
 result = {
     'scope': 'Unchanged current Native Room traces from explicit offline layouts; not browser gameplay or save migration.',
-    'sourceBaseline': 'e53e8b017f0ec974c6cf3d8f446b6541771cf4a5',
+    'sourceBaseline': source_baseline,
     'catalog': catalog,
     'wasmSha256': hashlib.sha256((repo / 'rust-game-wasm/pkg/hegemony_wasm_bg.wasm').read_bytes()).hexdigest(),
     'scenarios': scenarios,
 }
 payload = json.dumps(result, ensure_ascii=False, separators=(',', ':')) + '\n'
-for name in ['web/src/game/jc095Native76.fixture.json', 'sites/test/fixtures/jc095-native-v076.json']:
+for name in [f'web/src/game/jc095Native{suffix}.fixture.json', f'sites/test/fixtures/jc095-native-v0{suffix}.json']:
     output = repo / name
     if output.exists():
         assert output.read_text() == payload, 'Preserve existing inputs; do not overwrite different evidence.'

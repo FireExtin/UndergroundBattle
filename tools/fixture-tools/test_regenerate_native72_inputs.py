@@ -30,7 +30,7 @@ class GeneratorEntrypoints(unittest.TestCase):
             shutil.copyfile(REPOSITORY / "tools/fixture-tools" / name, tools / name)
         shutil.copyfile(REPOSITORY / "tools/build-storage.mjs", self.source / "tools/build-storage.mjs")
         shutil.copyfile(REPOSITORY / "rust-game-wasm/build.sh", self.source / "rust-game-wasm/build.sh")
-        for name in ["jc061", "jc087", "jc094", "wm056", "wm023", "xq25", "wm038", "jz35", "jc052", "jc037", "jc060"]:
+        for name in ["jc061", "jc087", "jc094", "wm056", "wm023", "xq25", "wm038", "jz35", "jc052", "jc037", "jc060", "jc095"]:
             (tools / f"{name}-current.py").write_text("import json,sys; print(json.dumps(sys.argv))\n")
         for name in ["current-four-faction-choices.py", "current-win-flow.py"]:
             (tools / name).write_text("print('fixture stub')\n")
@@ -41,7 +41,7 @@ class GeneratorEntrypoints(unittest.TestCase):
         self.pool = self.source / 'rust-game/data/cards.json'
         self.pool.parent.mkdir(parents=True, exist_ok=True)
         self.pool.write_text(json.dumps({'engineVersion':'rust-v0.2.72-jz35-host-return-candidate','cardPoolVersion':'limited-v2.65-jz35-host-return-candidate'}))
-        for name in ["jc061", "jc087", "jc094", "wm056", "wm023", "xq25", "wm038", "jz35", "jc052", "jc037", "jc060"]:
+        for name in ["jc061", "jc087", "jc094", "wm056", "wm023", "xq25", "wm038", "jz35", "jc052", "jc037", "jc060", "jc095"]:
             (wasm_tests / f"{name}_compare.mjs").write_text("console.log('parity stub');\n")
         (self.source / "web/src/game").mkdir(parents=True)
         self.calls = self.base / "calls.jsonl"
@@ -49,7 +49,7 @@ class GeneratorEntrypoints(unittest.TestCase):
 import json,os,sys
 from pathlib import Path
 with Path(os.environ['STUB_CALLS']).open('a') as f:
-    f.write(json.dumps({{'command':Path(sys.argv[0]).name,'args':sys.argv[1:],'ready':os.environ.get('UNDERGROUNDBATTLE_BUILD_STORAGE_READY'),'target':os.environ.get('CARGO_TARGET_DIR'),'temporary':os.environ.get('TMPDIR'),'jc060_native':os.environ.get('JC060_NATIVE_DIR')}})+'\\n')
+    f.write(json.dumps({{'command':Path(sys.argv[0]).name,'args':sys.argv[1:],'ready':os.environ.get('UNDERGROUNDBATTLE_BUILD_STORAGE_READY'),'target':os.environ.get('CARGO_TARGET_DIR'),'temporary':os.environ.get('TMPDIR'),'jc060_native':os.environ.get('JC060_NATIVE_DIR'),'jc095_native':os.environ.get('JC095_NATIVE_DIR'),'jc095_invalid':os.environ.get('JC095_INVALID_DIR')}})+'\\n')
 if Path(sys.argv[0]).name=='cargo' and 'STUB_FILL_DISK' in os.environ:
     Path(os.environ['STUB_FILL_DISK']).touch()
 if Path(sys.argv[0]).name=='cargo' and 'STUB_LOG_COLLISION' in os.environ:
@@ -418,6 +418,99 @@ if Path(sys.argv[0]).name=='wasm-bindgen':
                          'sites/test/fixtures/jc037-native-v076.json',
                          'web/src/game/jc060Native76.fixture.json',
                          'sites/test/fixtures/jc060-native-v076.json']:
+            with self.subTest(relative=relative):
+                original = self.source / relative
+                original.parent.mkdir(parents=True, exist_ok=True)
+                original.write_bytes(b'preserve already recorded current input\n')
+                before = self.snapshot()
+                result = self.invoke('python', self.base / 'new evidence output')
+                self.assertNotEqual(result.returncode, 0)
+                self.assertIn('Native input already exists', result.stderr)
+                self.assertEqual(before, self.snapshot())
+                self.assertFalse(self.calls.exists())
+                original.unlink()
+
+
+    def test_native77_routes_current_exports_and_preserves_all_prior_inputs(self):
+        self.pool.write_text(json.dumps({'engineVersion':'rust-v0.2.77-jc046-mandatory-sacrifice-candidate','cardPoolVersion':'limited-v2.70-jc046-mandatory-sacrifice-candidate'}))
+        originals = []
+        for relative in ['web/src/game/xq24Native72.fixture.json',
+                         'web/src/game/jc052Native73Current.fixture.json',
+                         'web/src/game/jc037Native74.fixture.json',
+                         'sites/test/fixtures/jc037-native-v074.json',
+                         'sites/test/fixtures/xq24-container-invalid-v074.json',
+                         'web/src/game/jc060Native75.fixture.json',
+                         'sites/test/fixtures/jc060-native-v075.json',
+                         'web/src/game/xq24Native75.fixture.json',
+                         'web/src/game/jc095Native76.fixture.json',
+                         'sites/test/fixtures/jc095-native-v076.json',
+                         'web/src/game/jc060Native76.fixture.json',
+                         'web/src/game/xq24Native76.fixture.json']:
+            path = self.source / relative
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_bytes(b'preserved opaque state 18446744073709551615 and expectations\n')
+            originals.append((path, path.read_bytes(), path.stat().st_mtime_ns))
+        output = self.base / 'Native77 current output'
+        result = self.invoke('shell', output)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        for path, data, mtime in originals:
+            self.assertEqual(path.read_bytes(), data)
+            self.assertEqual(path.stat().st_mtime_ns, mtime)
+        evidence = output / 'evidence/ui-refresh'
+        self.assertTrue((self.source / 'web/src/game/xq24Native77.fixture.json').is_file())
+        self.assertEqual((self.source / 'sites/test/fixtures/xq24-container-invalid-v077.json').read_bytes(),
+                         (evidence / 'xq24-container-invalid.json').read_bytes())
+        self.assertIn('"77"', (evidence / 'jz35-fixture.log').read_text())
+        self.assertIn('jc052Native77Current.fixture.json', (evidence / 'jc052-fixture.log').read_text())
+        self.assertTrue((evidence / 'jc037-fixture.log').is_file())
+        self.assertTrue((evidence / 'jc037-parity.log').is_file())
+        self.assertIn(str(evidence / 'jc060/native'), (evidence / 'jc060-fixture.log').read_text())
+        self.assertTrue((evidence / 'jc060-parity.log').is_file())
+        self.assertIn(str(evidence / 'jc095/native'), (evidence / 'jc095-fixture.log').read_text())
+        self.assertTrue((evidence / 'jc095-parity.log').is_file())
+        calls = [json.loads(line) for line in self.calls.read_text().splitlines()]
+        worker = next(call for call in calls if 'current_ui_worker_fixtures' in call['args'])
+        self.assertEqual(worker['args'][-1], '77')
+        self.assertNotIn('--web-only', worker['args'])
+        jc052 = next(call for call in calls if 'current_jc052_worker_fixtures' in call['args'])
+        self.assertEqual(jc052['args'][-2:], [str(self.source / 'web/src/game/jc052Native77Current.fixture.json'),
+                                           str(self.source / 'sites/test/fixtures/jc052-native-v077.json')])
+        self.assertTrue(any('xq24_entry_frame_container_restore_rejects_response_bypass' in call['args'] for call in calls))
+        jc060 = next(call for call in calls if 'jc060' in call['args'])
+        self.assertEqual(jc060['jc060_native'], str(evidence / 'jc060/native'))
+        jc095 = next(call for call in calls if 'jc095' in call['args'])
+        self.assertEqual(jc095['jc095_native'], str(evidence / 'jc095/native'))
+        self.assertEqual(jc095['jc095_invalid'], str(evidence / 'jc095/invalid'))
+
+    def test_native77_requires_exact_source_and_built_identity(self):
+        engine = 'rust-v0.2.77-jc046-mandatory-sacrifice-candidate'
+        expected_pool = 'limited-v2.70-jc046-mandatory-sacrifice-candidate'
+        prior_pool = 'limited-v2.69-jc095-influence-conversion-candidate'
+        self.pool.write_text(json.dumps({'engineVersion':engine,'cardPoolVersion':prior_pool}))
+        before = self.snapshot()
+        result = self.invoke('python', self.base / 'wrong77 source pool')
+        self.assertNotEqual(result.returncode, 0)
+        self.assertEqual(before, self.snapshot())
+        self.assertFalse(self.calls.exists())
+        self.pool.write_text(json.dumps({'engineVersion':engine,'cardPoolVersion':expected_pool}))
+        for key, value in [('STUB_ABI_ENGINE', 'rust-v0.2.76-jc095-influence-conversion-candidate'),
+                           ('STUB_ABI_POOL', prior_pool)]:
+            with self.subTest(key=key):
+                result = self.invoke('python', self.base / key, {key:value})
+                self.assertNotEqual(result.returncode, 0)
+                self.assertFalse(self.calls.exists())
+                self.assertFalse((self.source / 'web/src/game/xq24Native77.fixture.json').exists())
+
+    def test_native77_recorded_current_input_targets_reject_before_any_mutation(self):
+        self.pool.write_text(json.dumps({'engineVersion':'rust-v0.2.77-jc046-mandatory-sacrifice-candidate','cardPoolVersion':'limited-v2.70-jc046-mandatory-sacrifice-candidate'}))
+        for relative in ['web/src/game/currentLifecycle77.fixture.json',
+                         'web/src/game/jc050Native77QuoteTest.fixture.json',
+                         'sites/test/fixtures/xq24-container-invalid-v077.json',
+                         'sites/test/fixtures/jc037-native-v077.json',
+                         'web/src/game/jc060Native77.fixture.json',
+                         'sites/test/fixtures/jc060-native-v077.json',
+                         'web/src/game/jc095Native77.fixture.json',
+                         'sites/test/fixtures/jc095-native-v077.json']:
             with self.subTest(relative=relative):
                 original = self.source / relative
                 original.parent.mkdir(parents=True, exist_ok=True)

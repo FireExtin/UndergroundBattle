@@ -1,4 +1,4 @@
-"""Generate current Native72/73/74/75/76 inputs, retaining all recorded inputs and evidence."""
+"""Generate current Native72/73/74/75/76/77 inputs, retaining all recorded inputs and evidence."""
 import argparse
 import json
 import os
@@ -44,10 +44,10 @@ def validate_new_input_targets(source, version):
             for name in ['threeColorDeath', 'xq37', 'jz22', 'deckSeal', 'xq27',
                          'boundedEntry', 'jc050', 'xq18']]
     web.append(f'jc050Native{version}QuoteTest.fixture.json')
-    if version in {'73', '74', '75', '76'}:
+    if version in {'73', '74', '75', '76', '77'}:
         web.append(f'jc052Native{version}Current.fixture.json')
     sites = []
-    if version in {'74', '75', '76'}:
+    if version in {'74', '75', '76', '77'}:
         web.append(f'jc037Native{version}.fixture.json')
         sites = [f'{name}-v0{version}.json' for name in [
             'xq37-native', 'gray-lock-native', 'jc050-native', 'xq27-invalid-rootface',
@@ -55,9 +55,12 @@ def validate_new_input_targets(source, version):
             'jz50-room-native', 'bounded-entry-native', 'xq27-native', 'pause-resume-native',
             'jz22-native', 'sealing-room-native', 'sealed-restart-native', 'win-flow-native',
             'bq030-native', 'xq24-native', 'xq24-container-invalid', 'jc052-native', 'jc037-native']]
-    if version == '76':
+    if version in {'76', '77'}:
         web.append(f'jc060Native{version}.fixture.json')
         sites.append(f'jc060-native-v0{version}.json')
+    if version == '77':
+        web.append(f'jc095Native{version}.fixture.json')
+        sites.append(f'jc095-native-v0{version}.json')
     paths = [source / 'web/src/game' / name for name in web]
     paths += [source / 'sites/test/fixtures' / name for name in sites]
     for path in paths:
@@ -74,11 +77,12 @@ def regenerate(source, root, build_and_check):
         'rust-v0.2.74-jc037-hidden-investigation-candidate': ('74', 'limited-v2.67-jc037-hidden-investigation-candidate'),
         'rust-v0.2.75-jc060-occult-adviser-candidate': ('75', 'limited-v2.68-jc060-occult-adviser-candidate'),
         'rust-v0.2.76-jc095-influence-conversion-candidate': ('76', 'limited-v2.69-jc095-influence-conversion-candidate'),
+        'rust-v0.2.77-jc046-mandatory-sacrifice-candidate': ('77', 'limited-v2.70-jc046-mandatory-sacrifice-candidate'),
     }
     if pool.get('engineVersion') not in versions:
-        raise ValueError('Only explicitly supported ABI72/73/74/75/76 candidate generation is supported.')
+        raise ValueError('Only explicitly supported ABI72/73/74/75/76/77 candidate generation is supported.')
     version, expected_pool = versions[pool['engineVersion']]
-    web_only = [] if version in {'74', '75', '76'} else ['--web-only']
+    web_only = [] if version in {'74', '75', '76', '77'} else ['--web-only']
     if pool.get('cardPoolVersion') != expected_pool:
         raise ValueError('Source engine/card-pool versions do not match.')
     validate_new_input_targets(source, version)
@@ -159,14 +163,14 @@ def regenerate(source, root, build_and_check):
     xq24_payload = json.dumps({'catalog':rows[0]['catalog'],'scenarios':rows},ensure_ascii=False,separators=(',',':'))+'\n'
     with (source/f'web/src/game/xq24Native{version}.fixture.json').open('x') as output:
         output.write(xq24_payload)
-    if version in {'73', '74', '75', '76'}:
+    if version in {'73', '74', '75', '76', '77'}:
         jc052 = e / 'jc052'
         tests('jc052', 'jc052', {'GREEN_EVIDENCE_DIR':str(jc052/'trace'),
               'JC052_EVIDENCE_DIR':str(jc052/'native'), 'JC052_INVALID_DIR':str(jc052/'invalid')})
         # Keep the author-produced ABI-hashed evidence immutable as well.
         run('jc052-fixture', ['python3','tools/fixture-tools/jc052-current.py',str(jc052),
                              str(source/f'web/src/game/jc052Native{version}Current.fixture.json')])
-    if version in {'74', '75', '76'}:
+    if version in {'74', '75', '76', '77'}:
         (source/'sites/test/fixtures').mkdir(parents=True,exist_ok=True)
         with (source/f'sites/test/fixtures/xq24-native-v0{version}.json').open('x') as output:
             output.write(xq24_payload)
@@ -177,9 +181,13 @@ def regenerate(source, root, build_and_check):
         run('jc052-worker-fixtures',['cargo','run','--locked','-p','hegemony-wasm','--example','current_jc052_worker_fixtures','--',str(source/f'web/src/game/jc052Native{version}Current.fixture.json'),str(source/f'sites/test/fixtures/jc052-native-v0{version}.json')])
         tests('jc037', 'jc037', {'JC037_NATIVE_DIR':str(e/'jc037/native')})
         run('jc037-fixture', ['python3','tools/fixture-tools/jc037-current.py',str(e/'jc037/native')])
-    if version == '76':
+    if version in {'76', '77'}:
         tests('jc060', 'jc060', {'JC060_NATIVE_DIR':str(e/'jc060/native')})
         run('jc060-fixture', ['python3','tools/fixture-tools/jc060-current.py',str(e/'jc060/native')])
+    if version == '77':
+        tests('jc095', 'jc095', {'JC095_NATIVE_DIR':str(e/'jc095/native'),
+              'JC095_INVALID_DIR':str(e/'jc095/invalid')})
+        run('jc095-fixture', ['python3','tools/fixture-tools/jc095-current.py',str(e/'jc095/native')])
     print(f'native{version}-input-generation-complete',flush=True)
 
     if build_and_check:
@@ -187,15 +195,18 @@ def regenerate(source, root, build_and_check):
         for card in ['jc061', 'jc087', 'jc094', 'wm056', 'wm023', 'xq25', 'wm038']:
             run(card + '-parity', ['node', f'rust-game-wasm/tests/{card}_compare.mjs',
                                   str(e / card)])
-        if version in {'73', '74', '75', '76'}:
+        if version in {'73', '74', '75', '76', '77'}:
             run('jc052-parity', ['node','rust-game-wasm/tests/jc052_compare.mjs',str(e/'jc052')])
-        if version in {'74', '75', '76'}:
+        if version in {'74', '75', '76', '77'}:
             run('jc037-parity', ['node','rust-game-wasm/tests/jc037_compare.mjs',str(source/f'web/src/game/jc037Native{version}.fixture.json')])
-        if version == '76':
+        if version in {'76', '77'}:
             run('jc060-parity', ['node','rust-game-wasm/tests/jc060_compare.mjs',str(source/f'web/src/game/jc060Native{version}.fixture.json')])
+        if version == '77':
+            run('jc095-parity', ['node','rust-game-wasm/tests/jc095_compare.mjs',
+                                str(source/f'web/src/game/jc095Native{version}.fixture.json'),str(e/'jc095/invalid')])
         focused = ['src/game/JZ35Integration.test.jsx', 'src/game/JZ35Face.test.jsx',
                    'src/game/CurrentLifecycleChoices.test.jsx', 'src/game/SevenCardIntegration.test.jsx']
-        if version in {'73', '74', '75', '76'}:
+        if version in {'73', '74', '75', '76', '77'}:
             focused.extend(['src/game/JC052Integration.test.jsx', 'src/game/JC052Face.test.jsx'])
         run('focused-ui', ['npm', '--prefix', 'web', 'test', '--', *focused, '--maxWorkers=1'])
         run('full-ui', ['npm', '--prefix', 'web', 'test', '--', '--maxWorkers=1'])

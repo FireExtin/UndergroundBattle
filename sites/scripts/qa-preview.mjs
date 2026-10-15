@@ -8,10 +8,10 @@ import { fileURLToPath } from 'node:url';
 import { Miniflare, convertV4MiniflareOptions } from 'miniflare';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
-const name = 'hegemony-qa76';
+const name = 'hegemony-qa77';
 const port = Number(process.env.PORT || 8113);
 assert(Number.isInteger(port) && port >= 0 && port <= 65535, 'PORT must be 0..65535');
-const stateDir = path.resolve(process.env.HEGEMONY_QA_STATE_DIR || path.join(tmpdir(), 'undergroundbattle-engine76-preview'));
+const stateDir = path.resolve(process.env.HEGEMONY_QA_STATE_DIR || path.join(tmpdir(), 'undergroundbattle-engine77-preview'));
 mkdirSync(stateDir, { recursive: true });
 const server = path.join(root, 'dist/server');
 const mf = new Miniflare(convertV4MiniflareOptions({
@@ -22,7 +22,7 @@ const mf = new Miniflare(convertV4MiniflareOptions({
     ...readdirSync(server).filter(file => file.endsWith('.wasm'))
       .map(file => ({ type: 'CompiledWasm', path: path.join(server, file) })),
   ],
-  d1Databases: { DB: 'hegemony-qa76-db' },
+  d1Databases: { DB: 'hegemony-qa77-db' },
   assets: { directory: path.join(root, 'dist/client'), binding: 'ASSETS', run_worker_first: ['/api/*'],
     routerConfig: { has_user_worker: true }, assetConfig: { not_found_handling: 'single-page-application' } },
 }));
@@ -41,13 +41,13 @@ try {
   const response = await fetch(new URL('/api/health', url));
   assert.equal(response.status, 200);
   const health = await response.json();
-  assert.equal(health.engineVersion, 'rust-v0.2.76-jc095-influence-conversion-candidate');
+  assert.equal(health.engineVersion, 'rust-v0.2.77-jc046-mandatory-sacrifice-candidate');
   const catalogResponse = await fetch(new URL('/api/catalog', url));
   assert.equal(catalogResponse.status, 200);
   const catalog = await catalogResponse.json();
-  assert.equal(catalog.cardPoolVersion, 'limited-v2.69-jc095-influence-conversion-candidate');
+  assert.equal(catalog.cardPoolVersion, 'limited-v2.70-jc046-mandatory-sacrifice-candidate');
   assert.equal(catalog.engineVersion, health.engineVersion);
-  assert.equal(catalog.cards.length, 142);
+  assert.equal(catalog.cards.length, 143);
   assert(catalog.cards.some(card => card.id === 'BQ030'));
   console.log(`READY ${url.href}`);
   console.log(`ENGINE ${health.engineVersion} | local workerd and persistent D1 SQLite`);
