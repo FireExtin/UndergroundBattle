@@ -1,0 +1,698 @@
+{
+  "passed": false,
+  "stage": "building-natural-nonzero-opportunity",
+  "failure": null,
+  "attempt": 1,
+  "mode": "duel",
+  "boundedMechanismProbe": true,
+  "completeGame": false,
+  "roomId": "cadc0c7dc3a8f7da299f03db",
+  "oldFourSeatRoomId": "1609f4e9dabfb4d970646b44",
+  "originalFourSeatRoomUntouched": true,
+  "siteVersion": 54,
+  "candidate": "4918cfb6372fb9ec900f037e8ed518385d6183e6",
+  "providerSource": "cec2bd64b847d47ac971a459dc8ef2d61aec9e89",
+  "publicAnonymous": true,
+  "ownerBypass": false,
+  "stateInjection": false,
+  "apiMoves": false,
+  "newDeployment": false,
+  "viewport": [
+    1366,
+    900
+  ],
+  "uiPostCount": 58,
+  "postResults": [
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/join"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/cadc0c7dc3a8f7da299f03db/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/cadc0c7dc3a8f7da299f03db/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/cadc0c7dc3a8f7da299f03db/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/cadc0c7dc3a8f7da299f03db/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/cadc0c7dc3a8f7da299f03db/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/cadc0c7dc3a8f7da299f03db/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/cadc0c7dc3a8f7da299f03db/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/cadc0c7dc3a8f7da299f03db/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/cadc0c7dc3a8f7da299f03db/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/cadc0c7dc3a8f7da299f03db/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/cadc0c7dc3a8f7da299f03db/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/cadc0c7dc3a8f7da299f03db/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/cadc0c7dc3a8f7da299f03db/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/cadc0c7dc3a8f7da299f03db/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/cadc0c7dc3a8f7da299f03db/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/cadc0c7dc3a8f7da299f03db/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/cadc0c7dc3a8f7da299f03db/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/cadc0c7dc3a8f7da299f03db/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/cadc0c7dc3a8f7da299f03db/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/cadc0c7dc3a8f7da299f03db/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/cadc0c7dc3a8f7da299f03db/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/cadc0c7dc3a8f7da299f03db/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/cadc0c7dc3a8f7da299f03db/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/cadc0c7dc3a8f7da299f03db/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/cadc0c7dc3a8f7da299f03db/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/cadc0c7dc3a8f7da299f03db/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/cadc0c7dc3a8f7da299f03db/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/cadc0c7dc3a8f7da299f03db/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/cadc0c7dc3a8f7da299f03db/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/cadc0c7dc3a8f7da299f03db/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/cadc0c7dc3a8f7da299f03db/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/cadc0c7dc3a8f7da299f03db/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/cadc0c7dc3a8f7da299f03db/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/cadc0c7dc3a8f7da299f03db/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/cadc0c7dc3a8f7da299f03db/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/cadc0c7dc3a8f7da299f03db/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/cadc0c7dc3a8f7da299f03db/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/cadc0c7dc3a8f7da299f03db/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/cadc0c7dc3a8f7da299f03db/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/cadc0c7dc3a8f7da299f03db/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/cadc0c7dc3a8f7da299f03db/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/cadc0c7dc3a8f7da299f03db/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/cadc0c7dc3a8f7da299f03db/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/cadc0c7dc3a8f7da299f03db/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/cadc0c7dc3a8f7da299f03db/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/cadc0c7dc3a8f7da299f03db/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/cadc0c7dc3a8f7da299f03db/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/cadc0c7dc3a8f7da299f03db/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/cadc0c7dc3a8f7da299f03db/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/cadc0c7dc3a8f7da299f03db/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/cadc0c7dc3a8f7da299f03db/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/cadc0c7dc3a8f7da299f03db/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/cadc0c7dc3a8f7da299f03db/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/cadc0c7dc3a8f7da299f03db/commands"
+    }
+  ],
+  "unansweredUiPostAttempts": 2,
+  "uiPostBudget": 900,
+  "checks": [
+    {
+      "name": "public-v54-engine-pool-and-entry-assets",
+      "passed": true,
+      "engine": "rust-v0.2.77-jc046-mandatory-sacrifice-candidate",
+      "cardPool": "limited-v2.70-jc046-mandatory-sacrifice-candidate",
+      "matchingEntryFiles": 2
+    },
+    {
+      "name": "legal-black-50-card-deck-through-ui",
+      "passed": true,
+      "seat": 0,
+      "count": 50,
+      "jc095Copies": 3
+    },
+    {
+      "name": "legal-black-50-card-deck-through-ui",
+      "passed": true,
+      "seat": 1,
+      "count": 50,
+      "jc095Copies": 3
+    },
+    {
+      "name": "two-owned-native77-seats-same-new-table",
+      "passed": true,
+      "roomId": "cadc0c7dc3a8f7da299f03db"
+    },
+    {
+      "name": "normal-ui-auto-pass-preference",
+      "passed": true,
+      "enabled": true
+    }
+  ],
+  "choicePrivacy": [
+    {
+      "choiceId": "i123",
+      "kind": "mulligan",
+      "title": "一次再调度：暂放任意手牌，抓等量，再洗回原牌",
+      "seat": 0,
+      "version": 4,
+      "ownOptionCount": 6,
+      "otherSeatHasNoPrivateOptions": true
+    },
+    {
+      "choiceId": "i136",
+      "kind": "mulligan",
+      "title": "一次再调度：暂放任意手牌，抓等量，再洗回原牌",
+      "seat": 1,
+      "version": 5,
+      "ownOptionCount": 6,
+      "otherSeatHasNoPrivateOptions": true
+    }
+  ],
+  "entry": null,
+  "goal": null,
+  "markerRegions": [
+    0,
+    1
+  ],
+  "jc095DrawnSeats": [
+    1,
+    0
+  ],
+  "deck": {
+    "JC086": 3,
+    "JC084": 3,
+    "JC085": 3,
+    "JC088": 3,
+    "BQ083": 3,
+    "JC096": 3,
+    "XQ38": 3,
+    "XQ36": 3,
+    "JZ49": 3,
+    "JZ48": 3,
+    "JZ50": 2,
+    "XQ37": 3,
+    "WM059": 3,
+    "BQ078": 3,
+    "JC087": 3,
+    "WM056": 3,
+    "JC095": 3
+  },
+  "coverage": {
+    "ready": 2,
+    "start": 1,
+    "choose": 2,
+    "choice:mulligan": 2,
+    "asset": 2,
+    "pass": 2
+  },
+  "browserErrors": [],
+  "expectedBrowserErrors": [],
+  "expiryRaces": [],
+  "transportEvents": [],
+  "final": {
+    "version": 55,
+    "mode": "duel",
+    "status": "playing",
+    "you": "p0",
+    "players": [
+      {
+        "id": "p0",
+        "seat": 0,
+        "name": "非零验收甲",
+        "team": 0,
+        "deckId": "custom",
+        "deckName": "JC095非零专项-1",
+        "ready": true,
+        "eliminated": false,
+        "handCount": 6,
+        "deckCount": 43,
+        "score": 0
+      },
+      {
+        "id": "p1",
+        "seat": 1,
+        "name": "非零验收乙",
+        "team": 1,
+        "deckId": "custom",
+        "deckName": "JC095非零专项-2",
+        "ready": true,
+        "eliminated": false,
+        "handCount": 6,
+        "deckCount": 43,
+        "score": 0
+      }
+    ],
+    "firstTeam": 1,
+    "activeTeam": 0,
+    "priorityTeam": 0,
+    "turn": 1,
+    "phase": "end",
+    "step": "end",
+    "winScore": 8,
+    "versions": {
+      "rules": "hegemony-pdf-v1",
+      "cardPool": "limited-v2.70-jc046-mandatory-sacrifice-candidate",
+      "engine": "rust-v0.2.77-jc046-mandatory-sacrifice-candidate"
+    },
+    "handCount": 6,
+    "assetCounts": {
+      "p0": 1,
+      "p1": 1
+    },
+    "regions": [
+      {
+        "index": 0,
+        "cardId": "DQJC112",
+        "name": "纽约",
+        "threshold": 4,
+        "points": 4,
+        "influence": [
+          0,
+          0
+        ],
+        "characters": []
+      },
+      {
+        "index": 1,
+        "cardId": "DQJC110",
+        "name": "伦敦",
+        "threshold": 4,
+        "points": 4,
+        "influence": [
+          0,
+          0
+        ],
+        "characters": []
+      },
+      {
+        "index": 2,
+        "cardId": "DQJC111",
+        "name": "莫斯科",
+        "threshold": 4,
+        "points": 3,
+        "influence": [
+          0,
+          0
+        ],
+        "characters": []
+      }
+    ],
+    "pendingChoice": null,
+    "waitingChoice": null,
+    "legalActionKinds": [
+      "pass"
+    ],
+    "stackCount": 0,
+    "graveyardCount": 0,
+    "scoreCards": []
+  },
+  "views": [
+    {
+      "version": 55,
+      "mode": "duel",
+      "status": "playing",
+      "you": "p0",
+      "players": [
+        {
+          "id": "p0",
+          "seat": 0,
+          "name": "非零验收甲",
+          "team": 0,
+          "deckId": "custom",
+          "deckName": "JC095非零专项-1",
+          "ready": true,
+          "eliminated": false,
+          "handCount": 6,
+          "deckCount": 43,
+          "score": 0
+        },
+        {
+          "id": "p1",
+          "seat": 1,
+          "name": "非零验收乙",
+          "team": 1,
+          "deckId": "custom",
+          "deckName": "JC095非零专项-2",
+          "ready": true,
+          "eliminated": false,
+          "handCount": 6,
+          "deckCount": 43,
+          "score": 0
+        }
+      ],
+      "firstTeam": 1,
+      "activeTeam": 0,
+      "priorityTeam": 0,
+      "turn": 1,
+      "phase": "end",
+      "step": "end",
+      "winScore": 8,
+      "versions": {
+        "rules": "hegemony-pdf-v1",
+        "cardPool": "limited-v2.70-jc046-mandatory-sacrifice-candidate",
+        "engine": "rust-v0.2.77-jc046-mandatory-sacrifice-candidate"
+      },
+      "handCount": 6,
+      "assetCounts": {
+        "p0": 1,
+        "p1": 1
+      },
+      "regions": [
+        {
+          "index": 0,
+          "cardId": "DQJC112",
+          "name": "纽约",
+          "threshold": 4,
+          "points": 4,
+          "influence": [
+            0,
+            0
+          ],
+          "characters": []
+        },
+        {
+          "index": 1,
+          "cardId": "DQJC110",
+          "name": "伦敦",
+          "threshold": 4,
+          "points": 4,
+          "influence": [
+            0,
+            0
+          ],
+          "characters": []
+        },
+        {
+          "index": 2,
+          "cardId": "DQJC111",
+          "name": "莫斯科",
+          "threshold": 4,
+          "points": 3,
+          "influence": [
+            0,
+            0
+          ],
+          "characters": []
+        }
+      ],
+      "pendingChoice": null,
+      "waitingChoice": null,
+      "legalActionKinds": [
+        "pass"
+      ],
+      "stackCount": 0,
+      "graveyardCount": 0,
+      "scoreCards": []
+    },
+    {
+      "version": 55,
+      "mode": "duel",
+      "status": "playing",
+      "you": "p1",
+      "players": [
+        {
+          "id": "p0",
+          "seat": 0,
+          "name": "非零验收甲",
+          "team": 0,
+          "deckId": "custom",
+          "deckName": "JC095非零专项-1",
+          "ready": true,
+          "eliminated": false,
+          "handCount": 6,
+          "deckCount": 43,
+          "score": 0
+        },
+        {
+          "id": "p1",
+          "seat": 1,
+          "name": "非零验收乙",
+          "team": 1,
+          "deckId": "custom",
+          "deckName": "JC095非零专项-2",
+          "ready": true,
+          "eliminated": false,
+          "handCount": 6,
+          "deckCount": 43,
+          "score": 0
+        }
+      ],
+      "firstTeam": 1,
+      "activeTeam": 0,
+      "priorityTeam": 0,
+      "turn": 1,
+      "phase": "end",
+      "step": "end",
+      "winScore": 8,
+      "versions": {
+        "rules": "hegemony-pdf-v1",
+        "cardPool": "limited-v2.70-jc046-mandatory-sacrifice-candidate",
+        "engine": "rust-v0.2.77-jc046-mandatory-sacrifice-candidate"
+      },
+      "handCount": 6,
+      "assetCounts": {
+        "p0": 1,
+        "p1": 1
+      },
+      "regions": [
+        {
+          "index": 0,
+          "cardId": "DQJC112",
+          "name": "纽约",
+          "threshold": 4,
+          "points": 4,
+          "influence": [
+            0,
+            0
+          ],
+          "characters": []
+        },
+        {
+          "index": 1,
+          "cardId": "DQJC110",
+          "name": "伦敦",
+          "threshold": 4,
+          "points": 4,
+          "influence": [
+            0,
+            0
+          ],
+          "characters": []
+        },
+        {
+          "index": 2,
+          "cardId": "DQJC111",
+          "name": "莫斯科",
+          "threshold": 4,
+          "points": 3,
+          "influence": [
+            0,
+            0
+          ],
+          "characters": []
+        }
+      ],
+      "pendingChoice": null,
+      "waitingChoice": null,
+      "legalActionKinds": [],
+      "stackCount": 0,
+      "graveyardCount": 0,
+      "scoreCards": []
+    }
+  ],
+  "pausedViews": [
+    false,
+    false
+  ]
+}

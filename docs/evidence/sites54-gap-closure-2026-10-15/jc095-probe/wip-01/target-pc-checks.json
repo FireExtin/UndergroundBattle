@@ -1,0 +1,37 @@
+{
+  "mode": "duel",
+  "scope": "JC095 nonzero only",
+  "checks": [
+    {
+      "name": "public-v54-engine-pool-and-entry-assets",
+      "passed": true,
+      "engine": "rust-v0.2.77-jc046-mandatory-sacrifice-candidate",
+      "cardPool": "limited-v2.70-jc046-mandatory-sacrifice-candidate",
+      "matchingEntryFiles": 2
+    },
+    {
+      "name": "legal-black-50-card-deck-through-ui",
+      "passed": true,
+      "seat": 0,
+      "count": 50,
+      "jc095Copies": 3
+    },
+    {
+      "name": "legal-black-50-card-deck-through-ui",
+      "passed": true,
+      "seat": 1,
+      "count": 50,
+      "jc095Copies": 3
+    },
+    {
+      "name": "two-owned-native77-seats-same-new-table",
+      "passed": true,
+      "roomId": "cadc0c7dc3a8f7da299f03db"
+    },
+    {
+      "name": "normal-ui-auto-pass-preference",
+      "passed": true,
+      "enabled": true
+    }
+  ]
+}

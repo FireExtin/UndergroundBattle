@@ -1,0 +1,59 @@
+{
+  "wip": true,
+  "passed": false,
+  "stage": "early ordinary development; no conversion yet",
+  "capturedAtUtc": "2026-10-15T13:20:54.312271+00:00",
+  "roomId": "cadc0c7dc3a8f7da299f03db",
+  "turn": 1,
+  "version": 55,
+  "assets": {
+    "p0": 1,
+    "p1": 1
+  },
+  "jc095DrawnSeats": [
+    1,
+    0
+  ],
+  "uiPostAttempts": 58,
+  "observedResponses": 56,
+  "liveCountsMayIncludeInFlightRequests": true,
+  "rawFilesAreCompleteLinePrefixes": true,
+  "notFinalReceiptAudit": true,
+  "files": [
+    {
+      "path": "browser-identity.json",
+      "bytes": 955,
+      "sha256": "df788c79d77acada33289675440bc5c7dbcafa34e4a816c42a0d35c660aa28d6"
+    },
+    {
+      "path": "target-summary.json",
+      "bytes": 15233,
+      "sha256": "c8b7841105a77b10e2b9aa19f236b45024f7690b678a4adc3eb1665776ac4510"
+    },
+    {
+      "path": "duel-actions.jsonl",
+      "bytes": 24547,
+      "sha256": "88eaf6e8e6bf2af93940ae94f968ca1ab399cedb693004920450462fef4c94b3"
+    },
+    {
+      "path": "target-pc-checks.json",
+      "bytes": 867,
+      "sha256": "a7a87aa439f3561a14eccc2114af1a3fa32a8335399f9019ae9a7620ff7c4de3"
+    },
+    {
+      "path": "network-attempt-01.jsonl",
+      "bytes": 100968,
+      "sha256": "8ebf9cec8826567274fca39fccbf300c50648c0f7df08f45b06229c0d5bc982c"
+    },
+    {
+      "path": "runner-attempt-01.py",
+      "bytes": 21137,
+      "sha256": "d62edf0cf64093b05c8eb3406a4e3d6749e7eebc371d99eaa3969ea4b1f9541f"
+    },
+    {
+      "path": "site-identity-before.json",
+      "bytes": 1131,
+      "sha256": "85705e2a15d18fb2a9540a444d110f5e375b7632d261b632eb092ad9981b2bb7"
+    }
+  ]
+}
