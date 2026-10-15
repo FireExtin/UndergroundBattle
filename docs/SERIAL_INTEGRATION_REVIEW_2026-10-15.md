@@ -24,6 +24,14 @@
 
 此检查点尚未完成组合回归或生产构建，保持 WIP。依赖与构建缓存放在 Git 忽略目录或仓库外；不提交凭据、数据库或缓存。
 
+## 接续验证准备
+
+本机锁定工具链为 Rust 1.90.0、wasm32-unknown-unknown、wasm-bindgen-cli 0.2.104，入口 `/workspace/tooling/env.sh`；构建统一经过仓库现有存储/资源守卫，缓存只用一个磁盘 target。
+
+新增 `web/src/game/JC046Integration.test.jsx`，用真实当前 Native37 场景中的强制选择验证四席处理、来源牺牲后继续、领袖暂停续体、两个独立现身帧；测试精确命令、完整返回与各席视图，并覆盖整合后的单选换选、草稿重挂载、不可跳过和自动让过不代选。新增 `tools/frontend/serial-integration-qa.mjs` 用现有 Vite/Playwright 对当前77投影做桌面/手机本地显示检查；它阻止 API 请求并明确不计作线上试玩。两项在此准备提交尚未运行，仍是 WIP。
+
+已完成的本轮检查：来源42项、输入生成守卫22项；JC046静态复审14份源码指纹全部匹配。完整 Native workspace 回归正在执行，不跳过原长对局。新证据根 `/workspace/serial-evidence-20261015`；不沿用被中止日志作为通过证明。
+
 ## JC046 接续与发布边界
 
 按 `docs/EARLY_STOP_HANDOFF_2026-10-15.md`、`docs/evidence/jc046-2026-10-15/README.md` 的原文恢复。JC046 保存点缺少真实 ABI77 当前输入及 WASM；原先被 SIGTERM 中止的 Native 回归不能称为全量通过。先在新目录生成原始证据，再完成 Native/WASM/当前输入/前端/Worker 验证。
