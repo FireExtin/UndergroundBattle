@@ -20,15 +20,18 @@ function choice(name) {
  return {...rendered,v,submit};
 }
 describe('fixed printed entry searches; actual Native layouts and current WASM',()=>{
- it('BQ104 accepts exactly one employee and keeps zero and a second employee unavailable',()=>{
+ it('BQ104 requires exactly one employee and replaces the first selection when another is chosen',()=>{
   const {v,submit,container}=choice('employee');
   expect(screen.getByRole('button',{name:'确认选择'})).toBeDisabled();
   expect(screen.queryByRole('button',{name:'跳过此选择'})).not.toBeInTheDocument();
   const [first,second]=v.pendingChoice.options;
   fireEvent.click(container.querySelector(`[data-choice-option="${first.id}"]`));
+  expect(container.querySelector(`[data-choice-option="${first.id}"]`)).toHaveAttribute('aria-pressed','true');
   fireEvent.click(container.querySelector(`[data-choice-option="${second.id}"]`));
+  expect(container.querySelector(`[data-choice-option="${first.id}"]`)).toHaveAttribute('aria-pressed','false');
+  expect(container.querySelector(`[data-choice-option="${second.id}"]`)).toHaveAttribute('aria-pressed','true');
   fireEvent.click(screen.getByRole('button',{name:'确认选择'}));
-  expect(submit).toHaveBeenCalledExactlyOnceWith({...action(v),choiceId:v.pendingChoice.id,selected:[first.id]});
+  expect(submit).toHaveBeenCalledExactlyOnceWith({...action(v),choiceId:v.pendingChoice.id,selected:[second.id]});
  });
  it.each(['employeeEmpty','passersEmpty'])('%s has an enabled explicit zero completion and no decline',name=>{
   const {v,submit}=choice(name);const button=screen.getByRole('button',{name:'不取牌并洗牌'});

@@ -18,7 +18,12 @@ it.each(['xq44Choice','jz02Choice'])('%s requires one and submits the selected a
  const {container,rerender}=render(<Table view={view} catalog={catalog} busy={false} onAction={submit}/>);
  expect(screen.getByRole('button',{name:'确认选择'})).toBeDisabled();expect(screen.queryByRole('button',{name:'跳过此选择'})).not.toBeInTheDocument();
  const [first,second]=view.pendingChoice.options;fireEvent.click(container.querySelector(`[data-choice-option="${first.id}"]`));
- if(second)expect(container.querySelector(`[data-choice-option="${second.id}"]`)).toBeDisabled();
+ expect(second).toBeDefined();
+ const firstButton=container.querySelector(`[data-choice-option="${first.id}"]`),secondButton=container.querySelector(`[data-choice-option="${second.id}"]`);
+ expect(secondButton).toBeEnabled();fireEvent.click(secondButton);
+ expect(firstButton).toHaveAttribute('aria-pressed','false');expect(secondButton).toHaveAttribute('aria-pressed','true');
+ fireEvent.click(firstButton);
+ expect(firstButton).toHaveAttribute('aria-pressed','true');expect(secondButton).toHaveAttribute('aria-pressed','false');
  fireEvent.click(screen.getByRole('button',{name:'确认选择'}));expect(transition.outcome).toBe('accepted');
  const next=JSON.parse(wasm.view(state,0));expect(next.sealedCards).toHaveLength(1);expect(next.sealedCards[0].cardId).toBe(first.card.cardId);
  expect(JSON.parse(state).game.players[0].deck).toHaveLength(3);

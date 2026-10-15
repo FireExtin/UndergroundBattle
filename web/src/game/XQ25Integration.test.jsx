@@ -22,7 +22,7 @@ it('reads the complete pinned XQ25 face with original temporary investigation an
   expect(definition.abilities).toHaveLength(1);
   const original=readFileSync(resolve('../resource/ymsj-fun.github.io/cards/XQ25 监控探头.jpg'));
   expect(createHash('sha256').update(original).digest('hex')).toBe('c755f3d8ac0b85c3ab619b01626b92ee316f73885a5dd5a8102d53f3691306a0');
-  expect(readFileSync(resolve('public/cards/XQ25.jpg'))).toEqual(original);expect(cardScanUrl('XQ25')).toBe('/cards/XQ25.jpg');
+  expect(readFileSync(resolve('public/cards/XQ25.jpg')).equals(original)).toBe(true);expect(cardScanUrl('XQ25')).toBe('/cards/XQ25.jpg');
   render(<ReadModal card={{...definition,cardId:'XQ25',instanceId:'read-xq25',owner:'p0',controller:'p0'}} definition={definition} viewerId="p0" onClose={vi.fn()}/>);
   expect(screen.getByRole('dialog')).toHaveTextContent('未横置');expect(screen.getByRole('dialog')).toHaveTextContent('额外增加1');
   fireEvent.click(screen.getByRole('button',{name:'原始牌面'}));expect(screen.getByRole('img',{name:'监控探头原始牌面'})).toHaveAttribute('src','/cards/XQ25.jpg');

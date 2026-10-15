@@ -10,7 +10,7 @@ const first: SavedSession = { roomId: testView.roomId, seat: 0, token: 'token-A'
 const peer: SavedSession = { ...first, seat: 1, token: 'token-B' };
 const legacy = { roomId: first.roomId, commandId: 'legacy-X', expectedVersion: 7, action: { kind: 'game', action: { kind: 'ready' } } };
 const json = (body: unknown, status = 200) => new Response(JSON.stringify(body), { status });
-const viewFor = (seat: SavedSession, version = 7) => ({ ...testView, roomId: seat.roomId, you: `p${seat.seat}`, version, serverNowMs: 1000 });
+const viewFor = (seat: SavedSession, version = 7) => ({ ...testView, roomId: seat.roomId, inviteCode: seat.inviteCode, you: `p${seat.seat}`, version, serverNowMs: 1000 });
 const actorFor = (init?: RequestInit) => new Headers(init?.headers).get('Authorization');
 beforeEach(() => { localStorage.clear(); sessionStorage.clear(); vi.useFakeTimers(); });
 afterEach(() => { cleanup(); vi.useRealTimers(); vi.restoreAllMocks(); vi.unstubAllGlobals(); localStorage.clear(); sessionStorage.clear(); });

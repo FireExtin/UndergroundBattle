@@ -35,7 +35,7 @@ it.each([0, 1, 2, 3])('selects the actual optional player target p%s and submits
   expect(view('entry-declaration', 2).pendingChoice).toBeNull();
   render(<ChoicePanel choice={v.pendingChoice} action={action} definitions={definitions}
     busy={false} onSubmit={submit} viewerId="p0" />);
-  fireEvent.click(screen.getByRole('button', { name: `+P${seat}`, exact: true }));
+  fireEvent.click(screen.getByRole('button', { name: `P${seat}`, exact: true }));
   fireEvent.click(screen.getByRole('button', { name: '确认选择' }));
   expect(submit).toHaveBeenCalledExactlyOnceWith({ ...action, choiceId: v.pendingChoice.id, selected: [`p${seat}`] });
 });
