@@ -1,0 +1,363 @@
+{
+  "scope": "Exact card/definition excerpts for UI display checks only; no engine replay, live gameplay, or WASM identity claim. Choices composed in component tests are UI fixtures.",
+  "sourceCommit": "dbdee5d6014c260f9833c162bf85aff4b491b690",
+  "sourcePath": "web/src/game/jc060Native76.fixture.json",
+  "definitions": [
+    {
+      "abilities": [
+        {
+          "costs": [
+            {
+              "Assets": 2
+            },
+            "ExhaustSource"
+          ],
+          "key": "rescue",
+          "label": "快速行动",
+          "timing": "fast",
+          "triggered": false
+        }
+      ],
+      "color": "白",
+      "cost": 1,
+      "deckCopyLimit": 3,
+      "defense": 1,
+      "id": "JC075",
+      "keywords": [
+        "公开"
+      ],
+      "kind": "character",
+      "loyalty": [
+        "白色"
+      ],
+      "magic": "",
+      "magicIcon": "None",
+      "name": "雪地救援队",
+      "permanentIcons": {
+        "combat": 0,
+        "influence": 1,
+        "investigation": 0
+      },
+      "points": null,
+      "ruleTraits": {
+        "barrier": false,
+        "cannot_be_equipped": false,
+        "guard": 0,
+        "kill": 0,
+        "public": true,
+        "retreat": false,
+        "unlimited_copies": false
+      },
+      "society": "圣贤",
+      "subtypes": [
+        "人类",
+        "医疗员"
+      ],
+      "supported": true,
+      "temporaryIcons": {
+        "combat": 0,
+        "influence": 0,
+        "investigation": 0
+      },
+      "text": "公开（该角色不能被秘密派遣为暗藏者）\n【快速】行动2，【横置】：将另一个目标本方角色移回其拥有者手上。",
+      "threshold": null,
+      "type": "人类/医疗员",
+      "unique": false
+    },
+    {
+      "abilities": [],
+      "color": "中立",
+      "cost": 0,
+      "deckCopyLimit": null,
+      "defense": 1,
+      "id": "JC125",
+      "keywords": [],
+      "kind": "character",
+      "loyalty": [],
+      "magic": "",
+      "magicIcon": "None",
+      "name": "无知路人",
+      "permanentIcons": {
+        "combat": 0,
+        "influence": 0,
+        "investigation": 0
+      },
+      "points": null,
+      "ruleTraits": {
+        "barrier": false,
+        "cannot_be_equipped": false,
+        "guard": 0,
+        "kill": 0,
+        "public": false,
+        "retreat": false,
+        "unlimited_copies": true
+      },
+      "society": "",
+      "subtypes": [
+        "人类"
+      ],
+      "supported": true,
+      "temporaryIcons": {
+        "combat": 0,
+        "influence": 0,
+        "investigation": 0
+      },
+      "text": "持续：名称为无知路人的牌，构筑时在牌组中的数量没有限制。",
+      "threshold": null,
+      "type": "人类",
+      "unique": false
+    },
+    {
+      "abilities": [],
+      "color": "灰",
+      "cost": 3,
+      "deckCopyLimit": 3,
+      "defense": 1,
+      "id": "JC060",
+      "keywords": [],
+      "kind": "character",
+      "loyalty": [
+        "灰色"
+      ],
+      "magic": "心灵",
+      "magicIcon": "Mind",
+      "name": "神秘学顾问",
+      "permanentIcons": {
+        "combat": 0,
+        "influence": 1,
+        "investigation": 1
+      },
+      "points": null,
+      "ruleTraits": {
+        "barrier": false,
+        "cannot_be_equipped": false,
+        "guard": 0,
+        "kill": 0,
+        "public": false,
+        "retreat": false,
+        "unlimited_copies": false
+      },
+      "society": "",
+      "subtypes": [
+        "人类",
+        "学者"
+      ],
+      "supported": true,
+      "temporaryIcons": {
+        "combat": 0,
+        "influence": 0,
+        "investigation": 0
+      },
+      "text": "【持续】所有未印刷有魔法领域图标的友方角色获得心灵1图标和永久战斗1。",
+      "threshold": null,
+      "type": "人类/学者",
+      "unique": false
+    }
+  ],
+  "cases": {
+    "two": {
+      "scenario": "stacking-return",
+      "frame": "initial",
+      "seat": 0,
+      "viewerId": "p0",
+      "card": {
+        "cardId": "JC075",
+        "color": "白",
+        "controller": "p0",
+        "cost": 1,
+        "currentDomains": [
+          {
+            "count": 2,
+            "magic": "心灵"
+          }
+        ],
+        "damage": 0,
+        "defense": 1,
+        "exhausted": false,
+        "faceDown": false,
+        "icons": {
+          "combat": 2,
+          "influence": 1,
+          "investigation": 0
+        },
+        "instanceId": "i242",
+        "kind": "character",
+        "magic": "",
+        "name": "雪地救援队",
+        "owner": "p0",
+        "region": 0,
+        "shield": 0,
+        "text": "公开（该角色不能被秘密派遣为暗藏者）\n【快速】行动2，【横置】：将另一个目标本方角色移回其拥有者手上。",
+        "wounds": 0
+      }
+    },
+    "twoExhausted": {
+      "scenario": "stacking-return",
+      "frame": 0,
+      "seat": 0,
+      "viewerId": "p0",
+      "card": {
+        "cardId": "JC075",
+        "color": "白",
+        "controller": "p0",
+        "cost": 1,
+        "currentDomains": [
+          {
+            "count": 2,
+            "magic": "心灵"
+          }
+        ],
+        "damage": 0,
+        "defense": 1,
+        "exhausted": true,
+        "faceDown": false,
+        "icons": {
+          "combat": 0,
+          "influence": 0,
+          "investigation": 0
+        },
+        "instanceId": "i242",
+        "kind": "character",
+        "magic": "",
+        "name": "雪地救援队",
+        "owner": "p0",
+        "region": 0,
+        "shield": 0,
+        "text": "公开（该角色不能被秘密派遣为暗藏者）\n【快速】行动2，【横置】：将另一个目标本方角色移回其拥有者手上。",
+        "wounds": 0
+      }
+    },
+    "one": {
+      "scenario": "stacking-return",
+      "frame": 4,
+      "seat": 0,
+      "viewerId": "p0",
+      "card": {
+        "cardId": "JC075",
+        "color": "白",
+        "controller": "p0",
+        "cost": 1,
+        "currentDomains": [
+          {
+            "count": 1,
+            "magic": "心灵"
+          }
+        ],
+        "damage": 0,
+        "defense": 1,
+        "exhausted": true,
+        "faceDown": false,
+        "icons": {
+          "combat": 0,
+          "influence": 0,
+          "investigation": 0
+        },
+        "instanceId": "i242",
+        "kind": "character",
+        "magic": "",
+        "name": "雪地救援队",
+        "owner": "p0",
+        "region": 0,
+        "shield": 0,
+        "text": "公开（该角色不能被秘密派遣为暗藏者）\n【快速】行动2，【横置】：将另一个目标本方角色移回其拥有者手上。",
+        "wounds": 0
+      }
+    },
+    "granted": {
+      "scenario": "source-hide",
+      "frame": "initial",
+      "seat": 0,
+      "viewerId": "p0",
+      "card": {
+        "cardId": "JC125",
+        "color": "中立",
+        "controller": "p1",
+        "cost": 0,
+        "currentDomains": [
+          {
+            "count": 1,
+            "magic": "心灵"
+          }
+        ],
+        "damage": 0,
+        "defense": 1,
+        "exhausted": false,
+        "faceDown": false,
+        "icons": {
+          "combat": 1,
+          "influence": 0,
+          "investigation": 0
+        },
+        "instanceId": "i240",
+        "kind": "character",
+        "magic": "",
+        "name": "无知路人",
+        "owner": "p1",
+        "region": 4,
+        "shield": 0,
+        "text": "持续：名称为无知路人的牌，构筑时在牌组中的数量没有限制。",
+        "wounds": 0
+      }
+    },
+    "removed": {
+      "scenario": "source-hide",
+      "frame": 9,
+      "seat": 0,
+      "viewerId": "p0",
+      "card": {
+        "cardId": "JC125",
+        "color": "中立",
+        "controller": "p1",
+        "cost": 0,
+        "damage": 0,
+        "defense": 1,
+        "exhausted": false,
+        "faceDown": false,
+        "icons": {
+          "combat": 0,
+          "influence": 0,
+          "investigation": 0
+        },
+        "instanceId": "i240",
+        "kind": "character",
+        "magic": "",
+        "name": "无知路人",
+        "owner": "p1",
+        "region": 4,
+        "shield": 0,
+        "text": "持续：名称为无知路人的牌，构筑时在牌组中的数量没有限制。",
+        "wounds": 0
+      }
+    },
+    "printed": {
+      "scenario": "stacking-return",
+      "frame": "initial",
+      "seat": 0,
+      "viewerId": "p0",
+      "card": {
+        "cardId": "JC060",
+        "color": "灰",
+        "controller": "p0",
+        "cost": 3,
+        "damage": 0,
+        "defense": 1,
+        "exhausted": false,
+        "faceDown": false,
+        "icons": {
+          "combat": 0,
+          "influence": 1,
+          "investigation": 1
+        },
+        "instanceId": "i239",
+        "kind": "character",
+        "magic": "心灵",
+        "name": "神秘学顾问",
+        "owner": "p0",
+        "region": 0,
+        "shield": 0,
+        "text": "【持续】所有未印刷有魔法领域图标的友方角色获得心灵1图标和永久战斗1。",
+        "wounds": 0
+      }
+    }
+  }
+}

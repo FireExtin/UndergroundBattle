@@ -100,6 +100,36 @@ describe('pending choice draft recovery', () => {
     expect(submit).toHaveBeenCalledExactlyOnceWith({ ...choose, selected: ['b'] });
   });
 
+  it('restores the latest single-card replacement after filtering without changing candidate identities', () => {
+    const submit = vi.fn();
+    const options = Array.from({ length: 8 }, (_, index) => ({
+      id: `search-${index}`, label: `服务器标签${index + 1}`,
+      card: { ...testCard, instanceId: `search-card-${index}`, name: index === 0 || index === 7 ? '同名角色' : `其他角色${index + 1}` },
+    }));
+    const view = choosing({ ...testChoice, options });
+    const first = render(<StrictMode><Table view={view} catalog={testCatalog} busy={false} onAction={submit} /></StrictMode>);
+    fireEvent.change(screen.getByRole('searchbox', { name: '检索选项' }), { target: { value: '同名角色' } });
+    const a = option('search-0'), b = option('search-7');
+    act(() => {
+      a.click(); b.click();
+      expect(readChoiceDraft(createChoiceDraftStore(view.roomId, view.you), view.pendingChoice!)?.selected).toEqual(['search-7']);
+    });
+    fireEvent.click(screen.getByRole('checkbox', { name: '只看已选' }));
+    expect(option('search-7')).toHaveAttribute('data-choice-candidate-number', '8');
+    expect(screen.getByRole('button', { name: '放大阅读同名角色' })).toHaveAccessibleDescription('候选 8');
+    fireEvent.change(screen.getByRole('searchbox', { name: '检索选项' }), { target: { value: '其他角色' } });
+    expect(screen.getByRole('status', { name: '选项筛选结果' })).toHaveTextContent('另有 1 项已选不在当前结果中');
+    expect(confirm()).toBeEnabled();
+    expect(submit).not.toHaveBeenCalled();
+    first.unmount();
+    render(<Table view={view} catalog={testCatalog} busy={false} onAction={submit} />);
+    expect(option('search-7')).toHaveAttribute('aria-pressed', 'true');
+    expect(option('search-0')).toHaveAttribute('aria-pressed', 'false');
+    expect(option('search-7')).toHaveAttribute('data-choice-candidate-number', '8');
+    fireEvent.click(confirm());
+    expect(submit).toHaveBeenCalledExactlyOnceWith({ ...choose, selected: ['search-7'] });
+  });
+
   it('retains a partial selection while the room is paused and after resuming', () => {
     const submit = vi.fn();
     const view = choosing({ ...testChoice, min: 2, max: 2 });
@@ -158,10 +188,10 @@ describe('pending choice draft recovery', () => {
     const submit = vi.fn();
     const content = (choice: Choice) => <ChoicePanel choice={choice} action={{ ...choose, choiceId: choice.id }} definitions={new Map()} busy={false} onSubmit={submit} />;
     const { rerender } = render(content(testChoice));
-    fireEvent.click(screen.getByRole('button', { name: '+角色乙' }));
+    fireEvent.click(screen.getByRole('button', { name: '角色乙' }));
     rerender(content({ ...testChoice, id: 'next-choice', options: [{ id: 'new-target', label: '新目标' }] }));
     expect(confirm()).toBeDisabled();
-    expect(within(screen.getByRole('region', { name: '选择选项，可滚动查看' })).getByRole('button', { name: '+新目标' })).toHaveAttribute('aria-pressed', 'false');
+    expect(within(screen.getByRole('region', { name: '选择选项，可滚动查看' })).getByRole('button', { name: '新目标' })).toHaveAttribute('aria-pressed', 'false');
     expect(submit).not.toHaveBeenCalled();
   });
 
@@ -225,7 +255,7 @@ describe('pending choice draft recovery', () => {
     first.unmount();
     const updated = { ...testChoice, title: '新的标题', options: testChoice.options.map(item => ({ ...item, label: `最新角色${item.id}` })) };
     render(<Table view={choosing(updated)} catalog={testCatalog} busy={false} onAction={submit} />);
-    expect(option('b')).toHaveAccessibleName('1最新角色b');
+    expect(option('b')).toHaveAccessibleName('最新角色b');
     expect(option('b')).toHaveAttribute('aria-pressed', 'true');
     expect(screen.queryByText('角色乙')).not.toBeInTheDocument();
     expect(Array.from({ length: sessionStorage.length }, (_, i) => sessionStorage.getItem(sessionStorage.key(i)!)).join('')).not.toMatch(/角色|选择目标/);
