@@ -1,0 +1,580 @@
+{
+  "passed": false,
+  "completeGame": false,
+  "stage": "interrupted",
+  "failure": "AssertionError: teams seat 3 pass rejected HTTP 409: window_expired 响应窗口已经改变或关闭",
+  "mode": "teams",
+  "attempt": 1,
+  "candidate": "4918cfb6372fb9ec900f037e8ed518385d6183e6",
+  "version": 54,
+  "providerSource": "cec2bd64b847d47ac971a459dc8ef2d61aec9e89",
+  "roomId": "1609f4e9dabfb4d970646b44",
+  "publicAnonymous": true,
+  "ownerBypass": false,
+  "stateInjection": false,
+  "apiMoves": false,
+  "viewport": [
+    1366,
+    900
+  ],
+  "uiPostCount": 29,
+  "uiPostBudget": 3000,
+  "postResults": [
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/join"
+    },
+    {
+      "seat": 2,
+      "status": 200,
+      "endpoint": "rooms/join"
+    },
+    {
+      "seat": 3,
+      "status": 200,
+      "endpoint": "rooms/join"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/1609f4e9dabfb4d970646b44/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/1609f4e9dabfb4d970646b44/commands"
+    },
+    {
+      "seat": 2,
+      "status": 200,
+      "endpoint": "rooms/1609f4e9dabfb4d970646b44/commands"
+    },
+    {
+      "seat": 3,
+      "status": 200,
+      "endpoint": "rooms/1609f4e9dabfb4d970646b44/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/1609f4e9dabfb4d970646b44/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/1609f4e9dabfb4d970646b44/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/1609f4e9dabfb4d970646b44/commands"
+    },
+    {
+      "seat": 2,
+      "status": 200,
+      "endpoint": "rooms/1609f4e9dabfb4d970646b44/commands"
+    },
+    {
+      "seat": 3,
+      "status": 200,
+      "endpoint": "rooms/1609f4e9dabfb4d970646b44/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/1609f4e9dabfb4d970646b44/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/1609f4e9dabfb4d970646b44/commands"
+    },
+    {
+      "seat": 2,
+      "status": 200,
+      "endpoint": "rooms/1609f4e9dabfb4d970646b44/commands"
+    },
+    {
+      "seat": 3,
+      "status": 200,
+      "endpoint": "rooms/1609f4e9dabfb4d970646b44/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/1609f4e9dabfb4d970646b44/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/1609f4e9dabfb4d970646b44/commands"
+    },
+    {
+      "seat": 2,
+      "status": 200,
+      "endpoint": "rooms/1609f4e9dabfb4d970646b44/commands"
+    },
+    {
+      "seat": 3,
+      "status": 200,
+      "endpoint": "rooms/1609f4e9dabfb4d970646b44/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/1609f4e9dabfb4d970646b44/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/1609f4e9dabfb4d970646b44/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/1609f4e9dabfb4d970646b44/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/1609f4e9dabfb4d970646b44/commands"
+    },
+    {
+      "seat": 0,
+      "status": 200,
+      "endpoint": "rooms/1609f4e9dabfb4d970646b44/commands"
+    },
+    {
+      "seat": 1,
+      "status": 200,
+      "endpoint": "rooms/1609f4e9dabfb4d970646b44/commands"
+    },
+    {
+      "seat": 2,
+      "status": 200,
+      "endpoint": "rooms/1609f4e9dabfb4d970646b44/commands"
+    },
+    {
+      "seat": 3,
+      "status": 409,
+      "endpoint": "rooms/1609f4e9dabfb4d970646b44/commands"
+    }
+  ],
+  "checks": [
+    {
+      "name": "public-v54-engine-pool-and-entry-assets",
+      "passed": true,
+      "engine": "rust-v0.2.77-jc046-mandatory-sacrifice-candidate",
+      "cardPool": "limited-v2.70-jc046-mandatory-sacrifice-candidate",
+      "matchingEntryFiles": 2
+    },
+    {
+      "name": "legal-50-card-deck-built-and-selected-through-ui",
+      "passed": true,
+      "seat": 0,
+      "cardCount": 50,
+      "newCardCopies": {
+        "JC046": 3,
+        "JC060": 3,
+        "JC095": 3
+      }
+    },
+    {
+      "name": "legal-50-card-deck-built-and-selected-through-ui",
+      "passed": true,
+      "seat": 1,
+      "cardCount": 50,
+      "newCardCopies": {
+        "JC046": 3,
+        "JC060": 3,
+        "JC095": 3
+      }
+    },
+    {
+      "name": "legal-50-card-deck-built-and-selected-through-ui",
+      "passed": true,
+      "seat": 2,
+      "cardCount": 50,
+      "newCardCopies": {
+        "JC046": 3,
+        "JC060": 3,
+        "JC095": 3
+      }
+    },
+    {
+      "name": "legal-50-card-deck-built-and-selected-through-ui",
+      "passed": true,
+      "seat": 3,
+      "cardCount": 50,
+      "newCardCopies": {
+        "JC046": 3,
+        "JC060": 3,
+        "JC095": 3
+      }
+    },
+    {
+      "name": "four-owned-seats-native77",
+      "passed": true,
+      "roomId": "1609f4e9dabfb4d970646b44"
+    },
+    {
+      "name": "four-seat-choice-refresh-restores-own-draft",
+      "passed": true,
+      "seat": 0,
+      "choiceId": "i235",
+      "kind": "mulligan",
+      "extraPosts": 0
+    },
+    {
+      "name": "four-seat-rapid-choice-clicks-one-command",
+      "passed": true,
+      "seat": 0,
+      "choiceId": "i235",
+      "kind": "mulligan",
+      "posts": 1,
+      "versionBefore": 8,
+      "versionAfter": 9
+    }
+  ],
+  "newCards": {
+    "JC046": {
+      "drawnSeats": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "faceupInstances": []
+    },
+    "JC060": {
+      "drawnSeats": [
+        3
+      ],
+      "faceupInstances": []
+    },
+    "JC095": {
+      "drawnSeats": [
+        2
+      ],
+      "faceupInstances": []
+    }
+  },
+  "jc046Sequences": {},
+  "jc095Entries": [],
+  "auraChecks": [],
+  "choicePrivacy": [
+    {
+      "choiceId": "i235",
+      "kind": "mulligan",
+      "title": "一次再调度：暂放任意手牌，抓等量，再洗回原牌",
+      "chooserSeat": 0,
+      "version": 8,
+      "viewerPrivateOptionCounts": [
+        6,
+        0,
+        0,
+        0
+      ],
+      "fourViewsChecked": true,
+      "otherSeatsHaveNoPrivateChoice": true,
+      "passed": true
+    },
+    {
+      "choiceId": "i244",
+      "kind": "mulligan",
+      "title": "一次再调度：暂放任意手牌，抓等量，再洗回原牌",
+      "chooserSeat": 1,
+      "version": 9,
+      "viewerPrivateOptionCounts": [
+        0,
+        6,
+        0,
+        0
+      ],
+      "fourViewsChecked": true,
+      "otherSeatsHaveNoPrivateChoice": true,
+      "passed": true
+    },
+    {
+      "choiceId": "i253",
+      "kind": "mulligan",
+      "title": "一次再调度：暂放任意手牌，抓等量，再洗回原牌",
+      "chooserSeat": 2,
+      "version": 10,
+      "viewerPrivateOptionCounts": [
+        0,
+        0,
+        6,
+        0
+      ],
+      "fourViewsChecked": true,
+      "otherSeatsHaveNoPrivateChoice": true,
+      "passed": true
+    },
+    {
+      "choiceId": "i262",
+      "kind": "mulligan",
+      "title": "一次再调度：暂放任意手牌，抓等量，再洗回原牌",
+      "chooserSeat": 3,
+      "version": 11,
+      "viewerPrivateOptionCounts": [
+        0,
+        0,
+        0,
+        6
+      ],
+      "fourViewsChecked": true,
+      "otherSeatsHaveNoPrivateChoice": true,
+      "passed": true
+    }
+  ],
+  "mulliganProbeDone": true,
+  "coverage": {
+    "ready": 4,
+    "start": 1,
+    "choose": 4,
+    "choice:mulligan": 4,
+    "pass": 8,
+    "asset": 2,
+    "ui:grouped-destination-confirmation": 2,
+    "conceal": 1,
+    "deploy": 1,
+    "passResponse": 3
+  },
+  "expiryRaces": [
+    {
+      "kind": "prior-expired-response-rejection",
+      "commandId": "4e591232-e250-4872-b4e1-2da611cb79a7",
+      "seat": 3,
+      "beforeVersion": 27,
+      "afterVersion": 28,
+      "httpStatus": 409,
+      "error": "window_expired"
+    }
+  ],
+  "expectedBrowserErrors": [
+    {
+      "seat": 3,
+      "kind": "console",
+      "message": "Failed to load resource: the server responded with a status of 409 (Conflict)",
+      "cause": "prior-verified-expired-response-409"
+    }
+  ],
+  "browserErrors": [
+    {
+      "seat": 3,
+      "kind": "console",
+      "message": "Failed to load resource: the server responded with a status of 409 (Conflict)"
+    }
+  ],
+  "transportEvents": [],
+  "final": {
+    "version": 28,
+    "mode": "teams",
+    "status": "playing",
+    "you": "p0",
+    "players": [
+      {
+        "id": "p0",
+        "seat": 0,
+        "name": "四人77甲",
+        "team": 0,
+        "deckId": "custom",
+        "deckName": "四人77新卡验收-1",
+        "ready": true,
+        "eliminated": false,
+        "handCount": 5,
+        "deckCount": 43,
+        "score": 0
+      },
+      {
+        "id": "p1",
+        "seat": 1,
+        "name": "四人772",
+        "team": 0,
+        "deckId": "custom",
+        "deckName": "四人77新卡验收-2",
+        "ready": true,
+        "eliminated": false,
+        "handCount": 5,
+        "deckCount": 43,
+        "score": 0
+      },
+      {
+        "id": "p2",
+        "seat": 2,
+        "name": "四人773",
+        "team": 1,
+        "deckId": "custom",
+        "deckName": "四人77新卡验收-3",
+        "ready": true,
+        "eliminated": false,
+        "handCount": 7,
+        "deckCount": 43,
+        "score": 0
+      },
+      {
+        "id": "p3",
+        "seat": 3,
+        "name": "四人774",
+        "team": 1,
+        "deckId": "custom",
+        "deckName": "四人77新卡验收-4",
+        "ready": true,
+        "eliminated": false,
+        "handCount": 7,
+        "deckCount": 43,
+        "score": 0
+      }
+    ],
+    "firstTeam": 0,
+    "activeTeam": 0,
+    "priorityTeam": 0,
+    "turn": 1,
+    "phase": "action",
+    "step": "team:0",
+    "winScore": 10,
+    "versions": {
+      "rules": "hegemony-pdf-v1",
+      "cardPool": "limited-v2.70-jc046-mandatory-sacrifice-candidate",
+      "engine": "rust-v0.2.77-jc046-mandatory-sacrifice-candidate"
+    },
+    "handCount": 5,
+    "assetCounts": {
+      "p0": 1,
+      "p1": 1,
+      "p2": 0,
+      "p3": 0
+    },
+    "regions": [
+      {
+        "index": 0,
+        "cardId": "DQJC114",
+        "name": "上海",
+        "threshold": 4,
+        "points": 3,
+        "influence": [
+          0,
+          0
+        ],
+        "characters": [
+          {
+            "instanceId": "i276",
+            "owner": "p0",
+            "controller": "p0",
+            "kind": "hidden",
+            "exhausted": false,
+            "faceDown": true
+          }
+        ]
+      },
+      {
+        "index": 1,
+        "cardId": "DQJC107",
+        "name": "沉没的废墟",
+        "threshold": 4,
+        "points": 4,
+        "influence": [
+          0,
+          0
+        ],
+        "characters": []
+      },
+      {
+        "index": 2,
+        "cardId": "DQJC112",
+        "name": "纽约",
+        "threshold": 4,
+        "points": 4,
+        "influence": [
+          0,
+          0
+        ],
+        "characters": [
+          {
+            "instanceId": "i280",
+            "owner": "p1",
+            "controller": "p1",
+            "kind": "character",
+            "exhausted": false,
+            "faceDown": false,
+            "cardId": "JC125",
+            "name": "无知路人",
+            "icons": {
+              "investigation": 0,
+              "combat": 0,
+              "influence": 0
+            },
+            "defense": 1,
+            "damage": 0,
+            "wounds": 0,
+            "shield": 0
+          }
+        ]
+      },
+      {
+        "index": 3,
+        "cardId": "DQJC113",
+        "name": "切尔诺贝利",
+        "threshold": 3,
+        "points": 2,
+        "influence": [
+          0,
+          0
+        ],
+        "characters": []
+      },
+      {
+        "index": 4,
+        "cardId": "DQJC116",
+        "name": "香港",
+        "threshold": 3,
+        "points": 3,
+        "influence": [
+          0,
+          0
+        ],
+        "characters": []
+      }
+    ],
+    "pendingChoice": null,
+    "waitingChoice": null,
+    "legalActionKinds": [
+      "pass"
+    ],
+    "stackCount": 0,
+    "graveyardCount": 0,
+    "scoreCards": []
+  },
+  "deck": {
+    "JC046": 3,
+    "JC060": 3,
+    "JC095": 3,
+    "JC084": 3,
+    "JC085": 3,
+    "JC088": 3,
+    "JZ49": 3,
+    "XQ37": 3,
+    "WM056": 3,
+    "JC042": 3,
+    "XQ17": 3,
+    "JZ31": 3,
+    "XQ18": 3,
+    "JC029": 3,
+    "JZ22": 3,
+    "JC069": 3,
+    "JC125": 2
+  },
+  "actualCoverageOnly": true,
+  "notCovered": [
+    "JC046",
+    "JC060",
+    "JC095"
+  ]
+}

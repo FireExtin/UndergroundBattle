@@ -1,0 +1,99 @@
+{
+  "mode": "teams",
+  "candidate": "4918cfb6372fb9ec900f037e8ed518385d6183e6",
+  "version": 54,
+  "publicAnonymous": true,
+  "viewport": [
+    1366,
+    900
+  ],
+  "productionUrl": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site",
+  "checks": [
+    {
+      "name": "public-v54-engine-pool-and-entry-assets",
+      "passed": true,
+      "engine": "rust-v0.2.77-jc046-mandatory-sacrifice-candidate",
+      "cardPool": "limited-v2.70-jc046-mandatory-sacrifice-candidate",
+      "matchingEntryFiles": 2
+    },
+    {
+      "name": "legal-50-card-deck-built-and-selected-through-ui",
+      "passed": true,
+      "seat": 0,
+      "cardCount": 50,
+      "newCardCopies": {
+        "JC046": 3,
+        "JC060": 3,
+        "JC095": 3
+      }
+    },
+    {
+      "name": "legal-50-card-deck-built-and-selected-through-ui",
+      "passed": true,
+      "seat": 1,
+      "cardCount": 50,
+      "newCardCopies": {
+        "JC046": 3,
+        "JC060": 3,
+        "JC095": 3
+      }
+    },
+    {
+      "name": "legal-50-card-deck-built-and-selected-through-ui",
+      "passed": true,
+      "seat": 2,
+      "cardCount": 50,
+      "newCardCopies": {
+        "JC046": 3,
+        "JC060": 3,
+        "JC095": 3
+      }
+    },
+    {
+      "name": "legal-50-card-deck-built-and-selected-through-ui",
+      "passed": true,
+      "seat": 3,
+      "cardCount": 50,
+      "newCardCopies": {
+        "JC046": 3,
+        "JC060": 3,
+        "JC095": 3
+      }
+    },
+    {
+      "name": "four-owned-seats-native77",
+      "passed": true,
+      "roomId": "1609f4e9dabfb4d970646b44"
+    },
+    {
+      "name": "four-seat-choice-refresh-restores-own-draft",
+      "passed": true,
+      "seat": 0,
+      "choiceId": "i235",
+      "kind": "mulligan",
+      "extraPosts": 0
+    },
+    {
+      "name": "four-seat-rapid-choice-clicks-one-command",
+      "passed": true,
+      "seat": 0,
+      "choiceId": "i235",
+      "kind": "mulligan",
+      "posts": 1,
+      "versionBefore": 8,
+      "versionAfter": 9
+    },
+    {
+      "name": "public-v54-engine-pool-and-entry-assets",
+      "passed": true,
+      "engine": "rust-v0.2.77-jc046-mandatory-sacrifice-candidate",
+      "cardPool": "limited-v2.70-jc046-mandatory-sacrifice-candidate",
+      "matchingEntryFiles": 2
+    },
+    {
+      "name": "four-owned-seats-native77",
+      "passed": true,
+      "roomId": "1609f4e9dabfb4d970646b44"
+    }
+  ]
+}

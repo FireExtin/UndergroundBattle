@@ -1,0 +1,14 @@
+{
+  "wip": true,
+  "completeGame": false,
+  "copiedAtUtc": "2026-10-15T10:54:42.244442+00:00",
+  "roomId": "1609f4e9dabfb4d970646b44",
+  "summaryPostCount": 145,
+  "completeCommandLines": 141,
+  "truncatedIncompleteTail": false,
+  "scriptSha256": {
+    "runner-attempt-02.py": "6ca6637d01589e13cbc7965f7d89f026fd4e767a11a62e68b598e31253daa6a4",
+    "runner-attempt-01.py": "6da256c9d2fdc7d3b5138f189bb3c555bf63fcf032a8567c3935d8fbd1980b93"
+  },
+  "snapshotBoundary": "Live intermediate files captured separately; no final count equality claim."
+}

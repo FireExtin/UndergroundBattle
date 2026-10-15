@@ -1,0 +1,26 @@
+{"posts": 20, "version": 19, "turn": 1, "score": [0, 0, 0, 0], "jc046FourSeats": false}
+{"passed": false, "completeGame": false, "roomId": "1609f4e9dabfb4d970646b44", "uiPostCount": 29, "failure": "AssertionError: teams seat 3 pass rejected HTTP 409: window_expired \u54cd\u5e94\u7a97\u53e3\u5df2\u7ecf\u6539\u53d8\u6216\u5173\u95ed"}
+Traceback (most recent call last):
+  File "/workspace/UndergroundBattle/tools/cloud-playtest/public_abi77_teams.py", line 358, in <module>
+    asyncio.run(main(p.parse_args()))
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/asyncio/runners.py", line 195, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/asyncio/base_events.py", line 691, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/workspace/UndergroundBattle/tools/cloud-playtest/public_abi77_teams.py", line 353, in main
+    await TeamsRun(p,Remote(),output,args.resume,args.budget).play()
+  File "/workspace/UndergroundBattle/tools/cloud-playtest/public_abi77_teams.py", line 346, in play
+    assert result['passed'],result['failure']
+           ~~~~~~^^^^^^^^^^
+AssertionError: AssertionError: teams seat 3 pass rejected HTTP 409: window_expired 响应窗口已经改变或关闭
+{"posts": 40, "version": 40, "turn": 1, "score": [0, 0, 0, 0], "jc046FourSeats": false}
+{"posts": 60, "version": 61, "turn": 1, "score": [0, 0, 0, 0], "jc046FourSeats": false}
+{"posts": 80, "version": 81, "turn": 1, "score": [0, 0, 0, 0], "jc046FourSeats": false}
+{"posts": 100, "version": 101, "turn": 1, "score": [0, 0, 0, 0], "jc046FourSeats": false}
+{"posts": 120, "version": 121, "turn": 1, "score": [0, 0, 0, 0], "jc046FourSeats": false}
+{"posts": 140, "version": 141, "turn": 1, "score": [0, 0, 0, 0], "jc046FourSeats": false}

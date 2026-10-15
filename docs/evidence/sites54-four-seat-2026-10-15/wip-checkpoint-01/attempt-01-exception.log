@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/workspace/UndergroundBattle/tools/cloud-playtest/public_abi77_teams.py", line 330, in play
+    await self.legal_button(*chosen)
+  File "/workspace/UndergroundBattle/tools/cloud-playtest/public_abi77_teams.py", line 278, in legal_button
+    await super().legal_button(seat,action)
+  File "/workspace/UndergroundBattle/docs/evidence/sites-abi77-2026-10-15/online_pc_abi77.py", line 141, in legal_button
+    await self.submit(seat,button.first.click,action['kind'])
+  File "/workspace/UndergroundBattle/docs/evidence/sites-abi77-2026-10-15/online_pc_abi77.py", line 91, in submit
+    return await super().submit(seat,click,intended_kind)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/UndergroundBattle/tools/cloud-playtest/browser_playtest.py", line 138, in submit
+    assert response.ok, f'{self.mode} seat {seat} {intended_kind} rejected HTTP {response.status}: {body.get("error")} {body.get("message")}'
+           ^^^^^^^^^^^
+AssertionError: teams seat 3 pass rejected HTTP 409: window_expired 响应窗口已经改变或关闭
