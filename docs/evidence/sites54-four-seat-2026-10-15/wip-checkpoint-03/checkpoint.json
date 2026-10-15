@@ -1,0 +1,90 @@
+{
+  "wip": true,
+  "passed": false,
+  "completeGame": false,
+  "capturedAtUtc": "2026-10-15T12:21:31.437609+00:00",
+  "roomId": "1609f4e9dabfb4d970646b44",
+  "attempt": 3,
+  "stage": "interrupted",
+  "failure": "TimeoutError: Page.wait_for_function: Timeout 25000ms exceeded.",
+  "turn": 10,
+  "teamScores": [
+    5,
+    5
+  ],
+  "lastAcceptedCommand": {
+    "commandId": "c043f9ec-b0f3-48a7-86fb-915db3d3340d",
+    "status": 200,
+    "beforeVersion": 1624,
+    "afterVersion": 1625
+  },
+  "uiPostAttempts": 1566,
+  "observedResponses": 1563,
+  "manualActionRecords": 1558,
+  "historicalUnansweredAttempts": 3,
+  "checkpointAttempted": false,
+  "interruption": "Actual four-seat sync timeout; no planned SIGINT was sent because the runner had already exited.",
+  "actualCoverage": {
+    "JC046": "4 real roots with eligible seats [1], [1,2], [0,1,3], [0,1,2,3]; last root independently checked from actual UI records",
+    "JC060": "Live team domains and printed combat prefix observed; counts are observations, not independent tests",
+    "JC095": "Face-up i517 observed; entry tracker missed it, nonzero conversion not yet claimed"
+  },
+  "limitation": "Not terminal acceptance. Three earlier attempts still unreconciled. Synthetic 503 entries are QA proxy timeout responses, not proof of an origin HTTP503.",
+  "files": [
+    {
+      "path": "attempt-03-ui-diagnostics.json",
+      "bytes": 28205,
+      "sha256": "296236154d2fd8626fc0e2b8ee6b63f08b5085e454803d62ce0bee0d1cb6ff10"
+    },
+    {
+      "path": "public-identity-attempt-03.json",
+      "bytes": 955,
+      "sha256": "df788c79d77acada33289675440bc5c7dbcafa34e4a816c42a0d35c660aa28d6"
+    },
+    {
+      "path": "jc046-sequences.json",
+      "bytes": 5145,
+      "sha256": "e3aa73ec5cbdee8224f66ea186fedc05734be8d2146f7145656e40c171fedb86"
+    },
+    {
+      "path": "runner-attempt-03.py",
+      "bytes": 33557,
+      "sha256": "9e7fa99141733725821b2374eb7132b0de5a50ab3bdc8aff352d5d160719e171"
+    },
+    {
+      "path": "attempt-03-exception.log",
+      "bytes": 2981,
+      "sha256": "5ad59bac26ada6e423f14579b76cc7d5ab51df078dc2c5fec3cd281bd9cb3c2f"
+    },
+    {
+      "path": "runner-through-attempt03.log",
+      "bytes": 11310,
+      "sha256": "aa234f32212e952671da96eb4149e7caba632a784d1c4fee9ed2c7dfda3b18ae"
+    },
+    {
+      "path": "teams-summary.json",
+      "bytes": 218481,
+      "sha256": "59c11b6e0f9553aa374524bc6ee5bd0c1bbfd32e78c033c22b158b554341cb00"
+    },
+    {
+      "path": "framework-instrument-hook.py",
+      "bytes": 20063,
+      "sha256": "c574b1203b31be392c574e6efdb0e735f3fa210994f41c86051260ed45235092"
+    },
+    {
+      "path": "network-attempt-03.jsonl",
+      "bytes": 2986542,
+      "sha256": "3e80ef00dca81d872f4a53b84adbc6fe39cbd5eec65f99cc10adf107519abf43"
+    },
+    {
+      "path": "pc-checks.json",
+      "bytes": 6970,
+      "sha256": "9d0de0be3ca66a44a11236368fcba3f3bd4e5bacc70d3245a4fe19426cc84a35"
+    },
+    {
+      "path": "teams-actions.jsonl",
+      "bytes": 10774193,
+      "sha256": "8784e98aed3e7318b174f2a709ccdf7193980acc1dec0aa4c47db3f78806bf26"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+Traceback (most recent call last):
+  File "/workspace/UndergroundBattle/tools/cloud-playtest/public_abi77_teams.py", line 397, in play
+    await self.legal_button(*chosen)
+  File "/workspace/UndergroundBattle/tools/cloud-playtest/public_abi77_teams.py", line 339, in legal_button
+    await super().legal_button(seat,action)
+  File "/workspace/UndergroundBattle/docs/evidence/sites-abi77-2026-10-15/online_pc_abi77.py", line 141, in legal_button
+    await self.submit(seat,button.first.click,action['kind'])
+  File "/workspace/UndergroundBattle/tools/cloud-playtest/public_abi77_teams.py", line 178, in submit
+    try:return await super().submit(seat,click,intended_kind)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/UndergroundBattle/docs/evidence/sites-abi77-2026-10-15/online_pc_abi77.py", line 91, in submit
+    return await super().submit(seat,click,intended_kind)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/UndergroundBattle/tools/cloud-playtest/browser_playtest.py", line 140, in submit
+    await self.sync(body['version'])
+  File "/workspace/UndergroundBattle/tools/cloud-playtest/public_abi77_teams.py", line 170, in sync
+    await super().sync(version)
+  File "/workspace/UndergroundBattle/docs/evidence/sites-abi77-2026-10-15/online_pc_abi77.py", line 83, in sync
+    await super().sync(version)
+  File "/workspace/UndergroundBattle/tools/cloud-playtest/browser_playtest.py", line 107, in sync
+    await asyncio.gather(*(page.wait_for_function('(v) => window.__cloudView && window.__cloudView.version >= v', arg=version, timeout=25000) for page in self.pages))
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/playwright/async_api/_generated.py", line 12687, in wait_for_function
+    await self._impl_obj.wait_for_function(
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/playwright/_impl/_page.py", line 1151, in wait_for_function
+    return await self._main_frame.wait_for_function(**locals_to_params(locals()))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/playwright/_impl/_frame.py", line 940, in wait_for_function
+    await self._channel.send("waitForFunction", self._timeout, params)
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 76, in send
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 632, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.TimeoutError: Page.wait_for_function: Timeout 25000ms exceeded.
