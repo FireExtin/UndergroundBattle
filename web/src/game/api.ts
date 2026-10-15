@@ -169,12 +169,15 @@ export function saveSession(session: SavedSession | null, capturedStorage?: Retu
   try {
     const storage = capturedStorage || playerStorage();
     if (session) {
-      const saved = rememberSeat(session, storage);
-      storage.setItem(STORAGE_KEY, JSON.stringify(saved));
-      storage.setItem(SCREEN_KEY, 'table');
-      const persisted = isSessionSaved(saved, storage);
+      let persisted = isSessionSaved(session, storage);
+      if (!persisted) {
+        const saved = rememberSeat(session, storage);
+        storage.setItem(STORAGE_KEY, JSON.stringify(saved));
+        storage.setItem(SCREEN_KEY, 'table');
+        persisted = isSessionSaved(saved, storage);
+      }
       const acknowledged = acknowledgedEntries.get(storage.scope);
-      if (persisted && acknowledged && sameSavedSession(acknowledged.session, saved)) clearEntry(acknowledged.receipt, storage);
+      if (persisted && acknowledged && sameSavedSession(acknowledged.session, session)) clearEntry(acknowledged.receipt, storage);
       return persisted;
     }
     storage.removeItem(STORAGE_KEY);

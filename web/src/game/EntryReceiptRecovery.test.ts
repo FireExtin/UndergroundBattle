@@ -168,4 +168,45 @@ describe('entry receipt recovery', () => {
     expect(api.isSessionSaved(seat, dropped)).toBe(false);
     expect(api.readSession(dropped)).toEqual(seat);
   });
+
+  it('recognizes an already durable seat when later writes are denied', () => {
+    expect(api.saveSession(seat)).toBe(true);
+    const write = vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => { throw new DOMException('blocked', 'SecurityError'); });
+    expect(api.isSessionSaved(seat)).toBe(true);
+    expect(api.saveSession({ ...seat })).toBe(true);
+    expect(write).not.toHaveBeenCalled();
+    expect(api.readActiveSession()).toEqual(seat);
+  });
+
+  it('retires a matching acknowledged entry when its seat is already durable without rewriting it', async () => {
+    expect(api.saveSession(seat)).toBe(true);
+    const originalSet = Storage.prototype.setItem;
+    const seatWrites: string[] = [];
+    vi.spyOn(Storage.prototype, 'setItem').mockImplementation(function (this: Storage, key: string, value: string) {
+      if (key !== entryKey) { seatWrites.push(key); throw new DOMException('full', 'QuotaExceededError'); }
+      originalSet.call(this, key, value);
+    });
+    const posts: { requestId: string }[] = [];
+    vi.stubGlobal('fetch', vi.fn(async (_url: string, init?: RequestInit) => {
+      posts.push(JSON.parse(String(init?.body))); return json(session);
+    }));
+    await api.createRoom('已保存玩家', 'duel', 'watchers');
+    expect(localStorage.getItem(entryKey)).toBeNull();
+    await api.createRoom('已保存玩家', 'duel', 'watchers');
+    expect(posts).toHaveLength(2);
+    expect(posts[1].requestId).not.toBe(posts[0].requestId);
+    expect(seatWrites).toEqual([]);
+  });
+
+  it.each(['lobby screen', 'different token'] as const)('still requires writes for a %s and reports their failure', change => {
+    expect(api.saveSession(seat)).toBe(true);
+    if (change === 'lobby screen') api.returnToLobby();
+    const target = change === 'different token' ? { ...seat, token: 'different-seat-test-token' } : seat;
+    const write = vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => { throw new DOMException('blocked', 'SecurityError'); });
+    expect(api.isSessionSaved(target)).toBe(false);
+    expect(api.saveSession(target)).toBe(false);
+    expect(write).toHaveBeenCalled();
+    expect(api.isSessionSaved(target)).toBe(false);
+    expect(api.readSession()).toEqual(seat);
+  });
 });
