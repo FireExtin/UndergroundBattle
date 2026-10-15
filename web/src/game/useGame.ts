@@ -114,6 +114,9 @@ export function useGame() {
     let initialized = false;
     let polling = false;
     let scheduledDelay: number | null = null;
+    // Pausing stops game-state polling only after the original request is settled.
+    // A state read can show a committed pause even though its receipt is still lost.
+    const pausedAndSettled = () => acceptedView.current?.pause && !commandFor(pending.current, session);
     const delay = () => document.visibilityState === 'hidden'
       ? autoPassPreference.current && acceptedView.current?.status === 'playing' ? 3000 : 12000
       : 1500;
@@ -125,7 +128,7 @@ export function useGame() {
     const rearm = () => {
       // Preference/status changes only rearm an idle healthy timer, never an in-flight read or backoff.
       if (controller.signal.aborted || !isActive(session) || polling) return;
-      if (acceptedView.current?.pause) {
+      if (pausedAndSettled()) {
         if (timer !== undefined) clearTimeout(timer);
         timer = undefined; scheduledDelay = null;
         return;
@@ -154,7 +157,7 @@ export function useGame() {
         if (commandFor(pending.current, session) && !commandLock.current) {
           await resolvePending(session);
         }
-        if (!controller.signal.aborted && isActive(session) && !acceptedView.current?.pause) schedule(delay(), true);
+        if (!controller.signal.aborted && isActive(session) && !pausedAndSettled()) schedule(delay(), true);
         return;
       } catch (e) {
         if (controller.signal.aborted || !isActive(session)) return;
@@ -168,7 +171,7 @@ export function useGame() {
       }
     };
     const visible = () => {
-      if (document.visibilityState === 'visible' && !controller.signal.aborted && !acceptedView.current?.pause) {
+      if (document.visibilityState === 'visible' && !controller.signal.aborted && !pausedAndSettled()) {
         schedule(0, false);
       }
     };
@@ -255,6 +258,7 @@ export function useGame() {
         setUncertain(!confirmed || unbound(pending.current) || commandFor(pending.current, currentSession));
       }
       commandLock.current = false; setBusy(false);
+      rearmPolling.current?.();
     }
   };
   const act = async (action: Action) => {
