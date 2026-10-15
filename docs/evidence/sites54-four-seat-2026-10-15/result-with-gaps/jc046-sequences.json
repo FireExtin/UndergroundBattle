@@ -1,0 +1,233 @@
+{
+  "passed": true,
+  "scope": "actual four-player table; only face-up controlled characters qualify",
+  "sourceContract": "rust-game/src/jc046.rs jc046_options: controller + !face_down + character",
+  "stateInjection": false,
+  "apiMoves": false,
+  "sequenceCount": 4,
+  "fourEligibleSeatSequenceObserved": true,
+  "sequences": [
+    {
+      "frameId": "i429",
+      "sourceInstanceId": "i428",
+      "concealedRevealInstanceId": "i281",
+      "sourceBinding": "Sole newly face-up JC046 between latest actual reveal and first mandatory choice",
+      "revealCommandId": "a6ebf586-fba1-4f2c-ab6b-df270e3c2c28",
+      "sourceSacrificedAtSeat": null,
+      "laterSeatsObservedAfterSourceSacrifice": [],
+      "eligibleAtFirstChoice": [
+        1
+      ],
+      "promptedSeats": [
+        1
+      ],
+      "skippedSeatsWithNoFaceupCharacter": [
+        0,
+        2,
+        3
+      ],
+      "allEligibleHandled": true,
+      "fourEligibleSeatsObserved": false,
+      "resolutionObservedAfterChoices": true,
+      "checks": [
+        {
+          "seat": 1,
+          "choiceId": "i430",
+          "versionBefore": 1035,
+          "versionAfter": 1036,
+          "optionCount": 2,
+          "selected": "i425",
+          "privateOtherViewsChecked": 3,
+          "refreshAndDoubleClickChecked": true,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "frameId": "i435",
+      "sourceInstanceId": "i434",
+      "concealedRevealInstanceId": "i283",
+      "sourceBinding": "Sole newly face-up JC046 between latest actual reveal and first mandatory choice",
+      "revealCommandId": "22218c84-ff0c-40a9-8f9f-98d5dffea165",
+      "sourceSacrificedAtSeat": 2,
+      "laterSeatsObservedAfterSourceSacrifice": [],
+      "eligibleAtFirstChoice": [
+        1,
+        2
+      ],
+      "promptedSeats": [
+        1,
+        2
+      ],
+      "skippedSeatsWithNoFaceupCharacter": [
+        0,
+        3
+      ],
+      "allEligibleHandled": true,
+      "fourEligibleSeatsObserved": false,
+      "resolutionObservedAfterChoices": true,
+      "checks": [
+        {
+          "seat": 1,
+          "choiceId": "i436",
+          "versionBefore": 1047,
+          "versionAfter": 1048,
+          "optionCount": 1,
+          "selected": "i428",
+          "privateOtherViewsChecked": 3,
+          "refreshAndDoubleClickChecked": true,
+          "passed": true
+        },
+        {
+          "seat": 2,
+          "choiceId": "i438",
+          "versionBefore": 1048,
+          "versionAfter": 1049,
+          "optionCount": 1,
+          "selected": "i434",
+          "privateOtherViewsChecked": 3,
+          "refreshAndDoubleClickChecked": true,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "frameId": "i457",
+      "sourceInstanceId": "i456",
+      "concealedRevealInstanceId": "i448",
+      "sourceBinding": "Sole newly face-up JC046 between latest actual reveal and first mandatory choice",
+      "revealCommandId": "18b16931-9b88-4371-abae-e0529b23e5ef",
+      "sourceSacrificedAtSeat": 1,
+      "laterSeatsObservedAfterSourceSacrifice": [
+        3
+      ],
+      "eligibleAtFirstChoice": [
+        0,
+        1,
+        3
+      ],
+      "promptedSeats": [
+        0,
+        1,
+        3
+      ],
+      "skippedSeatsWithNoFaceupCharacter": [
+        2
+      ],
+      "allEligibleHandled": true,
+      "fourEligibleSeatsObserved": false,
+      "resolutionObservedAfterChoices": true,
+      "checks": [
+        {
+          "seat": 0,
+          "choiceId": "i458",
+          "versionBefore": 1218,
+          "versionAfter": 1219,
+          "optionCount": 1,
+          "selected": "i446",
+          "privateOtherViewsChecked": 3,
+          "refreshAndDoubleClickChecked": true,
+          "passed": true
+        },
+        {
+          "seat": 1,
+          "choiceId": "i460",
+          "versionBefore": 1219,
+          "versionAfter": 1220,
+          "optionCount": 1,
+          "selected": "i456",
+          "privateOtherViewsChecked": 3,
+          "refreshAndDoubleClickChecked": true,
+          "passed": true
+        },
+        {
+          "seat": 3,
+          "choiceId": "i462",
+          "versionBefore": 1220,
+          "versionAfter": 1221,
+          "optionCount": 1,
+          "selected": "i453",
+          "privateOtherViewsChecked": 3,
+          "refreshAndDoubleClickChecked": true,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "frameId": "i535",
+      "sourceInstanceId": "i534",
+      "concealedRevealInstanceId": "i531",
+      "sourceBinding": "Sole newly face-up JC046 between latest actual reveal and first mandatory choice",
+      "revealCommandId": "b241436c-cb0c-4984-b3b2-c4e47370221d",
+      "sourceSacrificedAtSeat": null,
+      "laterSeatsObservedAfterSourceSacrifice": [],
+      "eligibleAtFirstChoice": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "promptedSeats": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "skippedSeatsWithNoFaceupCharacter": [],
+      "allEligibleHandled": true,
+      "fourEligibleSeatsObserved": true,
+      "resolutionObservedAfterChoices": true,
+      "checks": [
+        {
+          "seat": 0,
+          "choiceId": "i536",
+          "versionBefore": 1597,
+          "versionAfter": 1598,
+          "optionCount": 1,
+          "selected": "i513",
+          "privateOtherViewsChecked": 3,
+          "refreshAndDoubleClickChecked": true,
+          "passed": true
+        },
+        {
+          "seat": 1,
+          "choiceId": "i538",
+          "versionBefore": 1598,
+          "versionAfter": 1599,
+          "optionCount": 2,
+          "selected": "i515",
+          "privateOtherViewsChecked": 3,
+          "refreshAndDoubleClickChecked": true,
+          "passed": true
+        },
+        {
+          "seat": 2,
+          "choiceId": "i540",
+          "versionBefore": 1599,
+          "versionAfter": 1600,
+          "optionCount": 4,
+          "selected": "i498",
+          "privateOtherViewsChecked": 3,
+          "refreshAndDoubleClickChecked": true,
+          "passed": true
+        },
+        {
+          "seat": 3,
+          "choiceId": "i542",
+          "versionBefore": 1600,
+          "versionAfter": 1601,
+          "optionCount": 2,
+          "selected": "i519",
+          "privateOtherViewsChecked": 3,
+          "refreshAndDoubleClickChecked": true,
+          "passed": true
+        }
+      ],
+      "passed": true
+    }
+  ],
+  "limitation": "Successful eligible-seat subsets are not relabeled as a four-eligible-seat scenario."
+}

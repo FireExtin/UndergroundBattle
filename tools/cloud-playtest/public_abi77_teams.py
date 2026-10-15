@@ -32,6 +32,7 @@ class TeamsRun(frozen.PublicGame):
         self.jc046_sequences={};self.jc095_entries=[];self.aura_checks=[];self.aura_seen=set();self.choice_seen=set()
         self.mulligan_probe_done=False;self.privacy_snapshots=[];self.command_observations=[]
         self.network_sequence=0;self.network_requests={};self.network_body_tasks=set()
+        self.last_046_reveal=None
         if resume:
             prior=json.loads((self.output/'teams-summary.json').read_text())
             assert prior['mode']=='teams' and not prior['passed']
@@ -41,6 +42,7 @@ class TeamsRun(frozen.PublicGame):
             self.aura_checks=prior['auraChecks'];self.aura_seen={tuple(x['fingerprint']) for x in self.aura_checks}
             self.privacy_snapshots=prior['choicePrivacy'];self.choice_seen={x['choiceId'] for x in self.privacy_snapshots}
             self.mulligan_probe_done=prior['mulliganProbeDone'];self.expiry_races=prior['expiryRaces']
+            self.last_046_reveal=prior.get('last046Reveal')
             self.expected_errors=prior['expectedBrowserErrors'];self.coverage.update(prior['coverage'])
             log=self.output/'teams-actions.jsonl'
             if log.exists():self.records=[json.loads(line) for line in log.read_text().splitlines()]
@@ -166,6 +168,39 @@ class TeamsRun(frozen.PublicGame):
             await self.legal_button(0,next(a for a in (await self.view(0))['legalActions'] if a['kind']=='start'))
         self.check('four-owned-seats-native77',roomId=self.room_id)
 
+    async def resume_preflight(self):
+        # Read only known pending-command storage records. Never read session
+        # credentials or write/retire a receipt from the test harness.
+        pending_js='''roomId=>{
+            const ns=sessionStorage.getItem('hegemony.playerSession.v1');
+            const store=ns?sessionStorage:localStorage;
+            const prefix=ns?'hegemony.player.'+ns+'.':'';
+            const records=[];
+            for(let i=0;i<store.length;i++){
+                const key=store.key(i);
+                if(!key.startsWith(prefix))continue;
+                const logical=key.slice(prefix.length);
+                if(logical!=='hegemony.pending.v1'&&!logical.startsWith('hegemony.pending.v2.'))continue;
+                const item=JSON.parse(store.getItem(key)||'null');
+                if(item?.roomId===roomId)records.push({roomId:item.roomId,seat:item.seat,
+                    commandId:item.commandId,expectedVersion:item.expectedVersion,action:item.action});
+            }
+            return records;
+        }'''
+        initial=[await page.evaluate(pending_js,self.room_id) for page in self.pages]
+        # Ordinary application recovery may retry the exact persisted command.
+        # No new gameplay click is allowed while an original receipt remains.
+        for page in self.pages:
+            await page.wait_for_function('arg=>('+pending_js+')(arg).length===0',arg=self.room_id,timeout=20000)
+        views=await self.views();await self.sync(max(v['version'] for v in views))
+        write_json(self.output/f'resume-preflight-attempt-{self.attempt:02d}.json',dict(
+            roomId=self.room_id,initialPendingBySeat=initial,
+            finalPendingBySeat=[await page.evaluate(pending_js,self.room_id) for page in self.pages],
+            publicViews=[public_view(v) for v in await self.views()],
+            noHarnessStorageWrites=True,noHarnessReceiptRetry=True,
+            historicalUnansweredAttempts=self.post_count-len(self.post_results),
+            limitation='Empty current pending storage does not identify three untraced historical HTTP attempts.'))
+
     async def sync(self,version):
         await super().sync(version)
         views=await self.views()
@@ -277,8 +312,8 @@ class TeamsRun(frozen.PublicGame):
             assert await self.pages[seat].locator('.hg-choice').get_by_role('button',name='跳过此选择',exact=True).count()==0
             option=min(choice['options'],key=lambda o:(o.get('card',{}).get('cardId') in NEW,self.card_value(o.get('card',{}))))
             frame=next((f['id'] for f in reversed(view['stack']) if f.get('cardId')=='JC046'),None)
-            key=frame or getattr(self,'last_046_reveal','unbound')
-            assert key!='unbound','Mandatory choice must bind an observed JC046 reveal/frame'
+            key=frame or self.last_046_reveal
+            assert key,'Mandatory choice must bind an observed JC046 reveal/frame'
             record=self.jc046_sequences.setdefault(key,dict(frameId=frame,seats=[],choiceIds=[],completedFourSeats=False))
             probe=seat not in record['seats']
             await self.confirm_draft(seat,view,[option['id']],probe)
@@ -292,11 +327,11 @@ class TeamsRun(frozen.PublicGame):
         if not legal:return None
         hand={c['instanceId']:c for c in view['hand']};board=[c for r in view['regions'] for c in r['characters']]
         own=[c for c in board if c['controller']==view['you']]
-        all_have_bodies=all(any(c['controller']==p['id'] for c in board) for p in view['players'] if not p['eliminated'])
+        other_seats_faceup=all(any(c['controller']==p['id'] and not c['faceDown'] and c['kind']=='character' for c in board) for p in view['players'] if not p['eliminated'] and p['id']!=view['you'])
         hidden46={c['instanceId'] for c in own if c['faceDown'] and c.get('cardId')=='JC046'}
         covered_four=any(row['completedFourSeats'] for row in self.jc046_sequences.values())
         reveal=next((a for a in legal if a['kind']=='reveal' and a.get('cardId') in hidden46),None)
-        if reveal and not covered_four and (all_have_bodies or view['turn']>=7):return reveal
+        if reveal and not covered_four and other_seats_faceup:return reveal
         assets=[a for a in legal if a['kind']=='asset']
         owned_assets=[c for c in view['assets'] if c['controller']==view['you']]
         if assets and len(owned_assets)<8 and len(hand)>1:
@@ -317,8 +352,8 @@ class TeamsRun(frozen.PublicGame):
             bodies=[a for a in deploy if hand[a['cardId']].get('cost',99)<=2 and hand[a['cardId']].get('cardId') not in NEW]
             if bodies:return max(bodies,key=lambda a:(placement(a),-hand[a['cardId']].get('cost',0)))
         if not own and not covered_four:
-            # A legally concealed card is also a character. Use the ordinary UI
-            # option when the only hand card cannot meet its printed loyalty.
+            # This develops a legal hidden character; it does not make the
+            # seat eligible for JC046 until it is actually revealed.
             bodies=[a for a in legal if a['kind']=='conceal' and a.get('cardId') in hand]
             if bodies:return min(bodies,key=lambda a:(hand[a['cardId']].get('cardId') in NEW,self.card_value(hand[a['cardId']]),a.get('region')!=4))
         conceal=[a for a in legal if a['kind']=='conceal' and hand.get(a.get('cardId'),{}).get('cardId')=='JC046']
@@ -351,6 +386,7 @@ class TeamsRun(frozen.PublicGame):
             unansweredUiPostAttempts=self.post_count-len(self.post_results),
             checks=self.online_checks,newCards=self.newcards,jc046Sequences=self.jc046_sequences,jc095Entries=self.jc095_entries,
             auraChecks=self.aura_checks,choicePrivacy=self.privacy_snapshots,mulliganProbeDone=self.mulligan_probe_done,
+            last046Reveal=self.last_046_reveal,
             coverage=dict(self.coverage),expiryRaces=self.expiry_races,expectedBrowserErrors=self.expected_errors,
             browserErrors=self.errors,transportEvents=self.transport_events,final=public_view(v),deck=DECK,
             actualCoverageOnly=True,notFaceupObserved=[x for x in sorted(NEW) if not self.newcards[x]['faceupInstances']],
@@ -366,10 +402,13 @@ class TeamsRun(frozen.PublicGame):
         result=None
         try:
             await self.setup()
+            if self.resume_run:await self.resume_preflight()
             while self.post_count<self.post_limit:
                 views=await self.views();await self.sync(max(v['version'] for v in views));views=await self.observe()
                 latest=max(views,key=lambda v:v['version'])
                 if latest['status']=='finished':
+                    await self.sync(latest['version'])
+                    assert all(v['status']=='finished' and v['winnerTeam']==latest['winnerTeam'] for v in await self.views())
                     await self.screenshot('complete-four-seat-game')
                     assert not self.errors,'Unexpected browser errors'
                     result=await self.checkpoint('natural-complete',True);break

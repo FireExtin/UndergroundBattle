@@ -1,0 +1,78 @@
+{
+  "actualFaceupEntries": [
+    {
+      "instanceId": "i517",
+      "seat": 2,
+      "team": 1,
+      "regionIndex": 0,
+      "regionCardId": "DQJC109",
+      "firstFaceupVersion": 1461,
+      "firstFaceupObservedSide": "after",
+      "entryUiCommandId": "b2c61f25-b5ab-47e3-957c-a69b0d1d38dc",
+      "entryUiAction": {
+        "kind": "game",
+        "action": {
+          "kind": "choose",
+          "choiceId": "i516",
+          "selected": [
+            "i341"
+          ]
+        }
+      },
+      "entryReceiptVersion": 1461,
+      "binding": "Observed directly in the receipt for the normal graveyard-deployment choice",
+      "influenceBefore": [
+        0,
+        0
+      ],
+      "triggerChoiceId": "i520",
+      "triggerTitle": "唐·格鲁尼：进场触发：移除原地区所有敌方势力并放置等量本方势力",
+      "triggerAccepted": true,
+      "triggerUiCommandId": "996aafcc-ce52-4eeb-8494-f29c0779e6bf",
+      "subsequentResolvedVersion": 1467,
+      "influenceAfter": [
+        0,
+        0
+      ],
+      "nonzeroEnemyBefore": false,
+      "nonzeroConversionObserved": false
+    },
+    {
+      "instanceId": "i570",
+      "seat": 3,
+      "team": 1,
+      "regionIndex": 3,
+      "regionCardId": "DQJC110",
+      "firstFaceupVersion": 1778,
+      "firstFaceupObservedSide": "before",
+      "entryUiCommandId": "4488b5d4-4d22-4dd4-ab1a-86fa5b162bc4",
+      "entryUiAction": {
+        "kind": "game",
+        "action": {
+          "kind": "deploy",
+          "cardId": "i555",
+          "region": 3
+        }
+      },
+      "entryReceiptVersion": 1775,
+      "binding": "Sole new face-up JC095 in the same controller/region after the latest actual paid-deploy command; first observed in a subsequent projected state",
+      "influenceBefore": [
+        0,
+        3
+      ],
+      "triggerChoiceId": "i571",
+      "triggerTitle": "唐·格鲁尼：进场触发：移除原地区所有敌方势力并放置等量本方势力",
+      "triggerAccepted": true,
+      "triggerUiCommandId": "611f6051-fbab-4510-a7b6-e215846b9175",
+      "subsequentResolvedVersion": 1783,
+      "influenceAfter": [
+        0,
+        3
+      ],
+      "nonzeroEnemyBefore": false,
+      "nonzeroConversionObserved": false
+    }
+  ],
+  "nonzeroConversionObserved": false,
+  "limitation": "Both actual entries and accepted triggers had zero enemy markers. They do not cover nonzero conversion. The graveyard entry was missed by the live deploy/reveal-only tracker; its resolved flag also compares counters before actual entry, so that flag alone is not a trigger receipt. This audit uses the actual trigger choice and later resolved public state."
+}

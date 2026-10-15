@@ -1,0 +1,74 @@
+{
+  "scope": "Observed UI commands and passive traces; no API retry or storage mutation",
+  "roomId": "1609f4e9dabfb4d970646b44",
+  "naturalGameComplete": true,
+  "uiPostAttempts": 1830,
+  "observedPostResponses": 1827,
+  "responseStatuses": {
+    "200": 1825,
+    "409": 2
+  },
+  "unobservedResponseAttempts": 3,
+  "historicalMissingAttemptIdentitiesRecovered": false,
+  "missingAttemptLimitation": "Three pre-trace attempts lack request IDs. A later original-command receipt and empty pending storage cannot prove the identity or individual outcome of those HTTP attempts.",
+  "manualRecords": 1822,
+  "manualActualActionKinds": {
+    "ready": 4,
+    "start": 1,
+    "choose": 57,
+    "pass": 1579,
+    "asset": 29,
+    "conceal": 10,
+    "deploy": 27,
+    "passResponse": 111,
+    "reveal": 4
+  },
+  "knownDistinctCommandIds": 1823,
+  "knownDistinctSuccessfulCommandIds": 1821,
+  "observedRejections": [
+    {
+      "commandId": "4e591232-e250-4872-b4e1-2da611cb79a7",
+      "seat": 3,
+      "status": 409,
+      "error": {
+        "error": "window_expired",
+        "message": "响应窗口已经改变或关闭"
+      },
+      "actionKind": "passResponse"
+    },
+    {
+      "commandId": "566c6b99-f18d-45e9-9d72-4376ba4ba0aa",
+      "seat": 0,
+      "status": 409,
+      "error": {
+        "error": "window_expired",
+        "message": "响应窗口已经改变或关闭"
+      },
+      "actionKind": "passResponse"
+    }
+  ],
+  "tracedPostAttempts": 1035,
+  "tracedAttemptsWithSuccessfulReceipt": 1034,
+  "tracedAttemptsWithoutSuccessfulReceipt": [
+    {
+      "trace": "network-attempt-03.jsonl",
+      "sequence": 742,
+      "commandId": "566c6b99-f18d-45e9-9d72-4376ba4ba0aa",
+      "seat": 0,
+      "expectedVersion": 1590,
+      "actionKind": "passResponse",
+      "terminalEvent": "response-body",
+      "status": 409,
+      "receiptVersion": 1591,
+      "successfulReceiptObserved": false,
+      "errorCode": "window_expired"
+    }
+  ],
+  "tracedAttemptsWithoutTerminalEvent": [],
+  "repeatedRequestIdentityInvariantChecked": true,
+  "allHistoricalAttemptsReconciled": false,
+  "fullOutputSha256": "7482b51ab89eccc3215664cc82eaf73515a7451dfbd6b63c9b85ba4be09dcdf3",
+  "fullOutputBytes": 385193,
+  "fullOutputLocalPath": "/workspace/abi77-teams54-20261015/request-receipts-final.json",
+  "reproducibleFrom": "569807eead07df2fff84960640dd5e74282fdb4eaeba01d88b598fcc89c8f0ad"
+}

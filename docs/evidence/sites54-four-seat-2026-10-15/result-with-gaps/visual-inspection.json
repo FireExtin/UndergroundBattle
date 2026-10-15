@@ -1,0 +1,36 @@
+{
+  "reviewedAtUtc": "2026-10-15T12:36:53.391581+00:00",
+  "siteVersion": 54,
+  "ownedRoomId": "1609f4e9dabfb4d970646b44",
+  "viewport": [
+    1366,
+    900
+  ],
+  "localPrivateScreenshot": {
+    "path": "/workspace/abi77-teams54-20261015/run1/teams-draft-restored-target-p3.png",
+    "sha256": "1fa5342916362fdfcc1e34d60243573e5c162cb337ddc9e4949b8e8a5df46470",
+    "bytes": 546590,
+    "notCopiedToGit": true
+  },
+  "observations": [
+    "Online JC046 mandatory sacrifice selection; two visible options and selected 1/1",
+    "Fixed confirmation button visible within PC viewport",
+    "Selected/replacement guidance visible",
+    "Target WM056 displays current Mind domain count 1 and printed domain None"
+  ],
+  "limits": [
+    "This is one actual online choice screenshot, not a complete visual sweep or mobile check",
+    "Own private hand visible in the local screenshot; only this metadata is committed"
+  ],
+  "terminalScreenshotReview": {
+    "reviewedAtUtc": "2026-10-15T12:43:52.379774+00:00",
+    "path": "/workspace/abi77-teams54-20261015/terminal-reopen-01/teams-four-seat-terminal-reopened-p0.png",
+    "sha256": "addf6b089bca7457d5196116b96fe73dc0e0f276cb98caa948d087f59877f566",
+    "bytes": 1051192,
+    "observed": [
+      "Round 11; 5 versus 12 score; finished banner names seats p2/p3 as winners",
+      "Four restored seats and browse-only finished action dock visible"
+    ],
+    "notCopiedToGit": true
+  }
+}

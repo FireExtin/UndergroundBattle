@@ -1,0 +1,14 @@
+{
+  "prefixPath": "../wip-checkpoint-03/teams-actions.jsonl",
+  "prefixBytes": 10774193,
+  "prefixSha256": "8784e98aed3e7318b174f2a709ccdf7193980acc1dec0aa4c47db3f78806bf26",
+  "prefixRecords": 1558,
+  "deltaPath": "teams-actions-after-checkpoint03.jsonl",
+  "deltaBytes": 2201412,
+  "deltaSha256": "7813e11bc42b9968010bc14746168561d3ca979d8f23dc401692976f7f9dd027",
+  "deltaRecords": 264,
+  "combinedBytes": 12975605,
+  "combinedSha256": "569807eead07df2fff84960640dd5e74282fdb4eaeba01d88b598fcc89c8f0ad",
+  "combinedRecords": 1822,
+  "reconstruction": "Concatenate the prefix and delta in that order; all original incomplete epochs remain in earlier checkpoints."
+}

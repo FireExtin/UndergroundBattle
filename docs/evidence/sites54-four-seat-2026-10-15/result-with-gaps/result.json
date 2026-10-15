@@ -1,0 +1,126 @@
+{
+  "capturedAtUtc": "2026-10-15T12:43:52.381567+00:00",
+  "overallAcceptanceComplete": false,
+  "naturalGamePassed": true,
+  "terminalReopenPassed": true,
+  "newDeploymentThisTask": false,
+  "productCodeChanged": false,
+  "roomId": "1609f4e9dabfb4d970646b44",
+  "siteVersion": 54,
+  "approvedGameSource": "4918cfb6372fb9ec900f037e8ed518385d6183e6",
+  "providerSource": "cec2bd64b847d47ac971a459dc8ef2d61aec9e89",
+  "finalVersion": 1904,
+  "turn": 11,
+  "teamScores": [
+    5,
+    12
+  ],
+  "winnerTeam": 1,
+  "uiPostAttempts": 1830,
+  "observedResponses": 1827,
+  "responseStatuses": {
+    "200": 1825,
+    "409": 2
+  },
+  "knownDistinctSuccessfulCommandIds": 1821,
+  "unobservedHistoricalResponseAttempts": 3,
+  "actualDrawAndFaceupCoverage": {
+    "JC046": {
+      "drawnSeats": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "faceupInstances": [
+        "i428",
+        "i434",
+        "i456",
+        "i534"
+      ]
+    },
+    "JC060": {
+      "drawnSeats": [
+        3,
+        2,
+        0
+      ],
+      "faceupInstances": [
+        "i325",
+        "i379",
+        "i530",
+        "i559"
+      ]
+    },
+    "JC095": {
+      "drawnSeats": [
+        2,
+        3,
+        1,
+        0
+      ],
+      "faceupInstances": [
+        "i517",
+        "i570"
+      ]
+    }
+  },
+  "jc046EligibleSeatSequences": [
+    [
+      1
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      0,
+      1,
+      3
+    ],
+    [
+      0,
+      1,
+      2,
+      3
+    ]
+  ],
+  "jc046SourceLeaveContinuation": [
+    {
+      "frameId": "i457",
+      "sourceInstanceId": "i456",
+      "laterSeats": [
+        3
+      ]
+    }
+  ],
+  "jc060DomainPositiveObservations": 36,
+  "jc060TeammateDomainPositiveObservations": 16,
+  "jc060CombatObservations": 12591,
+  "jc060ActiveGrantObservations": 2239,
+  "jc060TeammateGrantObservations": 1300,
+  "jc060OpponentControlObservations": 1111,
+  "jc060MaxAdvisersObserved": 1,
+  "jc060ExhaustedSourceObservations": 0,
+  "privateChoiceSnapshots": 57,
+  "terminalReadOnlyChecks": 8,
+  "terminalReadOnlyGamePosts": 0,
+  "actualCoverageOnly": true,
+  "knownGaps": [
+    "JC095 entry with nonzero enemy markers not observed",
+    "Three pre-trace HTTP attempts lack original request identities and individual receipts"
+  ],
+  "additionalUnobservedCases": [
+    "Two simultaneous friendly JC060 sources",
+    "Unexhausted beneficiary with an exhausted JC060 source"
+  ],
+  "boundaries": [
+    "Observation counts are not independent test counts",
+    "Current pending storage was empty in all four owned profiles before the final continuation; this does not reconcile untraced historical attempts",
+    "QA proxy generated synthetic503 after upstream state read timeouts; no origin HTTP503 or root cause inferred",
+    "Native/Web/Worker historical suites were not rerun for these QA-only tools",
+    "PC only; no new neutral or dual admission, no 1v1 repeat, no state injection, direct API moves, foreign tables, or new deployment"
+  ],
+  "jc095ActualEntries": 2,
+  "jc095NonzeroConversionObserved": false
+}

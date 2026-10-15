@@ -16,6 +16,23 @@ def main(args):
     for frame,sequence in summary['jc046Sequences'].items():
         assert sequence['choiceIds']
         first=by_choice[sequence['choiceIds'][0]]['before']
+        faceup046={c['instanceId'] for region in first['regions'] for c in region['characters'] if not c['faceDown'] and c.get('cardId')=='JC046'}
+        reveals=[]
+        for row in rows:
+            action=row['action'];action=action.get('action',action)
+            if action['kind']!='reveal' or row['httpStatus']!=200 or row['after']['version']>first['version']:continue
+            reveals.append(row)
+        assert reveals,'A sequence must follow an actual UI reveal of JC046'
+        reveal=max(reveals,key=lambda r:r['after']['version'])
+        before046={c['instanceId'] for region in reveal['before']['regions'] for c in region['characters'] if not c['faceDown'] and c.get('cardId')=='JC046'}
+        # Paid reveal consumes the concealed instance and enters a new entity.
+        # The public trace binds the sole new face-up JC046, without deriving IDs.
+        appeared=faceup046-before046
+        assert len(appeared)==1,(frame,appeared)
+        source_id=next(iter(appeared))
+        source_card=next(c for region in first['regions'] for c in region['characters'] if c['instanceId']==source_id)
+        assert source_card['controller']==f'p{reveal["seat"]}'
+        reveal_action=reveal['action'];reveal_action=reveal_action.get('action',reveal_action)
         live=[c for region in first['regions'] for c in region['characters'] if not c['faceDown'] and c['kind']=='character']
         eligible=sorted({int(c['controller'][1:]) for c in live})
         prompted=sequence['seats']
@@ -30,6 +47,7 @@ def main(args):
             action=row['action'];action=action.get('action',action)
             assert action['kind']=='choose' and len(action['selected'])==1
             selected=action['selected'][0];assert selected in {c['instanceId'] for c in candidates}
+            assert not any(c['instanceId']==selected for region in row['after']['regions'] for c in region['characters'])
             assert row['after']['version']==view['version']+1
             p=privacy[choice_id]
             assert p['fourViewsChecked'] and p['otherSeatsHaveNoPrivateChoice']
@@ -41,7 +59,12 @@ def main(args):
         # character creation or removal beyond each selected sacrifice.
         assert prompted==eligible,(frame,prompted,eligible)
         later=[v for row in rows for v in [row.get('before'),row.get('after')] if v and v['version']>=checks[-1]['versionAfter'] and not v['stackCount'] and not v.get('pendingChoice') and not v.get('waitingChoice')]
-        sequences.append(dict(frameId=frame,eligibleAtFirstChoice=eligible,promptedSeats=prompted,
+        source_choice=next((i for i,c in enumerate(checks) if c['selected']==source_id),None)
+        sequences.append(dict(frameId=frame,sourceInstanceId=source_id,concealedRevealInstanceId=reveal_action['cardId'],
+            sourceBinding='Sole newly face-up JC046 between latest actual reveal and first mandatory choice',revealCommandId=reveal['commandId'],
+            sourceSacrificedAtSeat=checks[source_choice]['seat'] if source_choice is not None else None,
+            laterSeatsObservedAfterSourceSacrifice=prompted[source_choice+1:] if source_choice is not None else [],
+            eligibleAtFirstChoice=eligible,promptedSeats=prompted,
             skippedSeatsWithNoFaceupCharacter=[i for i in range(4) if i not in eligible],
             allEligibleHandled=True,fourEligibleSeatsObserved=eligible==[0,1,2,3],
             resolutionObservedAfterChoices=bool(later),checks=checks,passed=True))

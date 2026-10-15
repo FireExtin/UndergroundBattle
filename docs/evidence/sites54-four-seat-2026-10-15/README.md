@@ -1,6 +1,8 @@
-# Site54四人PC真实验收（WIP）
+# Site54四人PC真实验收（有残留缺口）
 
 正式站点、候选和部署身份沿用[Site54已发布批次](../../SITES_ABI77_PUBLICATION_2026-10-15.md)。本目录只保存新四人桌的脱敏阶段证据，没有重复部署或1V1。
+
+最终原桌已在第11回合5:12自然终局，版本1904；原四席重开及四页刷新8份视图一致、0游戏POST。结果在[result-with-gaps](result-with-gaps/README.md)。JC095非零转换和历史3次HTTP尝试逐项回执仍缺，完整验收保留WIP。
 
 `site-identity-before.json`为本轮官方只读确认；浏览器入口JS/CSS核验另在检查点记录。
 `wip-checkpoint-01/`为正在进行中的阶段快照，不宣称完整对局或未触发的新卡能力通过。
@@ -11,4 +13,4 @@
 
 原始待选选项、完整手牌、Cookie、Authorization、座位token、数据库及浏览器profile均不复制。新卡drawnSeats仅记录本任务自有席位是否实际抽到指定目标卡；能力覆盖按具体结果分别统计。
 
-完整进度和边界见[四人任务文档](../../SITES54_FOUR_SEAT_PC_ACCEPTANCE_2026-10-15.md)。
+最终结果和边界见[四人结果文档](../../SITES54_FOUR_SEAT_PC_RESULTS_2026-10-15.md)；早期过程见[WIP记录](../../SITES54_FOUR_SEAT_PC_ACCEPTANCE_2026-10-15.md)。

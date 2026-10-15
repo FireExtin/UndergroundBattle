@@ -1,0 +1,30 @@
+[
+  {
+    "path": "tools/cloud-playtest/public_abi77_teams.py",
+    "sha256": "8c894cdf6d33c3a534412f878fd62501395b0861da382cae8d944137e921105a"
+  },
+  {
+    "path": "tools/cloud-playtest/public_abi77_four_reopen.py",
+    "sha256": "66d40b544cb7c9bd584ae767d276b57ad991fad24f54d774ee2874b6e2b60c5f"
+  },
+  {
+    "path": "tools/cloud-playtest/abi77_jc046_public_sequences.py",
+    "sha256": "9297a18b5791b9124ddf1931a2e032b68f70aad8af8624e196b9c1e0af7dcb1e"
+  },
+  {
+    "path": "tools/cloud-playtest/abi77_jc060_public_combat.py",
+    "sha256": "509daa446e31143196a9abd8fcdc4625b7e921f0db2c27e09002353e5e38ca6b"
+  },
+  {
+    "path": "tools/cloud-playtest/abi77_request_receipts.py",
+    "sha256": "c717819e2ba4c1ff98a165388ba9fc9c581601bb250dd1436b41b519e1e2c74d"
+  },
+  {
+    "path": "tools/cloud-playtest/attachment_v026.py",
+    "sha256": "c574b1203b31be392c574e6efdb0e735f3fa210994f41c86051260ed45235092"
+  },
+  {
+    "path": "docs/evidence/sites-abi77-2026-10-15/online_pc_abi77.py",
+    "sha256": "d8e2f0b10abf4d7fa26e747d0b46446397a80969d5eca6f444498e27f4931297"
+  }
+]

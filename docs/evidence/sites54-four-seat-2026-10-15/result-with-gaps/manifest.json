@@ -1,0 +1,121 @@
+{
+  "createdAtUtc": "2026-10-15T12:49:08.129411+00:00",
+  "scope": "Result evidence files; manifest itself excluded",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 3372,
+      "sha256": "b873917fe86049fc7b872e3cc855018dcc97bba7bfa76200154ef794082491b6"
+    },
+    {
+      "path": "action-log-composition.json",
+      "bytes": 668,
+      "sha256": "f687c00f448332fe9324c139c1c075402ab791ab2691cbd0f30dafc11f79155e"
+    },
+    {
+      "path": "audit-tool-identities.json",
+      "bytes": 1076,
+      "sha256": "867deade28fd9f70934b491e4d22334d706984f8a5fbed186bfc68002caef727"
+    },
+    {
+      "path": "four-seat-reopen-summary.json",
+      "bytes": 56275,
+      "sha256": "e835065b68cacf12be4608569dac145094f252349672017039f9ecbad05136c6"
+    },
+    {
+      "path": "four-seat-reopen.log",
+      "bytes": 84,
+      "sha256": "bc33792f61fbc27859531915ce7636861b1574a6b4f3f6311309a4679f9a5c52"
+    },
+    {
+      "path": "jc046-sequences.json",
+      "bytes": 6512,
+      "sha256": "4bdf2f974b363712a2059473c63c26c7c672ff336661217174f1f03f0f40dda5"
+    },
+    {
+      "path": "jc060-combat-summary.json",
+      "bytes": 8384,
+      "sha256": "8b2ca079d935cfdfc008d5682b19be31ffc0021bc98498db89b1c3dc7a06334a"
+    },
+    {
+      "path": "jc095-entries.json",
+      "bytes": 2655,
+      "sha256": "a0f95f3366c61fc75e51eced77ac2d2a9977ada012868907476fc9ac9c5197bb"
+    },
+    {
+      "path": "network-attempt-04.jsonl",
+      "bytes": 1202725,
+      "sha256": "e43695aaa16afa28ca9cb1399ff9c80e07e8e6d5aa8bbaeaf33b29a8b50ad979"
+    },
+    {
+      "path": "pc-checks.json",
+      "bytes": 7352,
+      "sha256": "167a0086e45e4ede868f8790611c2175a193fa7c4a571ec291218f0b7fd0bf2b"
+    },
+    {
+      "path": "public-identity-attempt-04.json",
+      "bytes": 955,
+      "sha256": "df788c79d77acada33289675440bc5c7dbcafa34e4a816c42a0d35c660aa28d6"
+    },
+    {
+      "path": "request-receipts-summary.json",
+      "bytes": 2390,
+      "sha256": "71b4e06a3c5fbd652f11e2f99df20b983fe824203490149bdefd9cb940addb19"
+    },
+    {
+      "path": "result.json",
+      "bytes": 3029,
+      "sha256": "20a8dc8758c9743725f1248c0880f3b161416f6a517f3753954cc749e10173d0"
+    },
+    {
+      "path": "resume-preflight-attempt-04.json",
+      "bytes": 28190,
+      "sha256": "81b82dc975e281a1f5f544f7b27d7eb617f39707aa05528a63251e0cfcb80e44"
+    },
+    {
+      "path": "runner-all-attempts.log",
+      "bytes": 12621,
+      "sha256": "8d98a38975d81b54c25c140a316ff0e9d9be55e6b8b0ba58446bb6cde15d75dd"
+    },
+    {
+      "path": "runner-attempt-04.py",
+      "bytes": 36067,
+      "sha256": "8c894cdf6d33c3a534412f878fd62501395b0861da382cae8d944137e921105a"
+    },
+    {
+      "path": "site-identity-reconfirmed.json",
+      "bytes": 1887,
+      "sha256": "c7c29a5c6fcae3eacf108e031e06c04a162685ccdaa7ac44e5856ef0007d84b2"
+    },
+    {
+      "path": "teams-actions-after-checkpoint03.jsonl",
+      "bytes": 2201412,
+      "sha256": "7813e11bc42b9968010bc14746168561d3ca979d8f23dc401692976f7f9dd027"
+    },
+    {
+      "path": "teams-summary.json",
+      "bytes": 251519,
+      "sha256": "0e28727e120b25770027ebcdde4c535ea0342be4ab2f4ca15e0863ec807868d8"
+    },
+    {
+      "path": "visual-inspection.json",
+      "bytes": 1433,
+      "sha256": "943e81e4c04c7ccd0c284ea9d7ff16da1d23e05c8b6be49ecb2935d39fa911f3"
+    },
+    {
+      "path": "worker-errors-after-sync.json",
+      "bytes": 736,
+      "sha256": "8c49e0e33bc8b45acdc2c1699b87f6ad043aa0800a2b163ca781752a92e216e0"
+    }
+  ],
+  "validation": {
+    "jsonSyntax": true,
+    "actionPrefixDeltaSha256": true,
+    "executedRunnerAndFrameworkIdentity": true,
+    "auditToolIdentities": true,
+    "credentialFieldAndPatternScan": true,
+    "noCompleteHandsOrProfiles": true,
+    "newDocumentRelativeLinks": true,
+    "pythonAst": true
+  }
+}

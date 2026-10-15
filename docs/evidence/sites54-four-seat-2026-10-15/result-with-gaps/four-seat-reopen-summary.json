@@ -1,0 +1,2168 @@
+{
+  "passed": true,
+  "scope": "same four owned browser profiles, terminal page reopen and reload",
+  "publicAnonymous": true,
+  "ownerBypass": false,
+  "stateInjection": false,
+  "apiMoves": false,
+  "roomId": "1609f4e9dabfb4d970646b44",
+  "viewport": [
+    1366,
+    900
+  ],
+  "checks": [
+    {
+      "stage": "persistent-profile-reopen",
+      "seat": 0,
+      "ownIdentityRestored": true,
+      "terminalStateUnchanged": true,
+      "otherHiddenCards": [
+        {
+          "instanceId": "i584",
+          "controller": "p2",
+          "privateFieldsAbsent": true
+        },
+        {
+          "instanceId": "i585",
+          "controller": "p1",
+          "privateFieldsAbsent": true
+        },
+        {
+          "instanceId": "i473",
+          "controller": "p3",
+          "privateFieldsAbsent": true
+        }
+      ],
+      "publicView": {
+        "version": 1904,
+        "mode": "teams",
+        "status": "finished",
+        "you": "p0",
+        "players": [
+          {
+            "id": "p0",
+            "seat": 0,
+            "name": "四人77甲",
+            "team": 0,
+            "deckId": "custom",
+            "deckName": "四人77新卡验收-1",
+            "ready": true,
+            "eliminated": false,
+            "handCount": 1,
+            "deckCount": 36,
+            "score": 5
+          },
+          {
+            "id": "p1",
+            "seat": 1,
+            "name": "四人772",
+            "team": 0,
+            "deckId": "custom",
+            "deckName": "四人77新卡验收-2",
+            "ready": true,
+            "eliminated": false,
+            "handCount": 0,
+            "deckCount": 31,
+            "score": 0
+          },
+          {
+            "id": "p2",
+            "seat": 2,
+            "name": "四人773",
+            "team": 1,
+            "deckId": "custom",
+            "deckName": "四人77新卡验收-3",
+            "ready": true,
+            "eliminated": false,
+            "handCount": 1,
+            "deckCount": 32,
+            "score": 3
+          },
+          {
+            "id": "p3",
+            "seat": 3,
+            "name": "四人774",
+            "team": 1,
+            "deckId": "custom",
+            "deckName": "四人77新卡验收-4",
+            "ready": true,
+            "eliminated": false,
+            "handCount": 0,
+            "deckCount": 39,
+            "score": 9
+          }
+        ],
+        "firstTeam": 0,
+        "activeTeam": 1,
+        "priorityTeam": 0,
+        "turn": 11,
+        "phase": "confrontation",
+        "step": "region:3:influence:after",
+        "winScore": 10,
+        "winnerTeam": 1,
+        "versions": {
+          "rules": "hegemony-pdf-v1",
+          "cardPool": "limited-v2.70-jc046-mandatory-sacrifice-candidate",
+          "engine": "rust-v0.2.77-jc046-mandatory-sacrifice-candidate"
+        },
+        "handCount": 1,
+        "assetCounts": {
+          "p0": 7,
+          "p1": 7,
+          "p2": 8,
+          "p3": 7
+        },
+        "regions": [
+          {
+            "index": 0,
+            "cardId": "DQJC108",
+            "name": "佛罗伦萨",
+            "threshold": 4,
+            "points": 3,
+            "influence": [
+              0,
+              0
+            ],
+            "characters": []
+          },
+          {
+            "index": 1,
+            "cardId": "DQJC107",
+            "name": "沉没的废墟",
+            "threshold": 4,
+            "points": 4,
+            "influence": [
+              0,
+              0
+            ],
+            "characters": []
+          },
+          {
+            "index": 2,
+            "cardId": "DQJC112",
+            "name": "纽约",
+            "threshold": 4,
+            "points": 4,
+            "influence": [
+              0,
+              1
+            ],
+            "characters": [
+              {
+                "instanceId": "i530",
+                "owner": "p2",
+                "controller": "p2",
+                "kind": "character",
+                "exhausted": false,
+                "faceDown": false,
+                "cardId": "JC060",
+                "name": "神秘学顾问",
+                "icons": {
+                  "investigation": 1,
+                  "combat": 0,
+                  "influence": 1
+                },
+                "defense": 1,
+                "damage": 0,
+                "wounds": 0,
+                "shield": 0
+              },
+              {
+                "instanceId": "i566",
+                "owner": "p2",
+                "controller": "p2",
+                "kind": "character",
+                "exhausted": false,
+                "faceDown": false,
+                "cardId": "JC042",
+                "name": "末日信徒",
+                "icons": {
+                  "investigation": 0,
+                  "combat": 1,
+                  "influence": 0
+                },
+                "defense": 1,
+                "damage": 0,
+                "wounds": 0,
+                "shield": 0
+              },
+              {
+                "instanceId": "i584",
+                "owner": "p2",
+                "controller": "p2",
+                "kind": "hidden",
+                "exhausted": false,
+                "faceDown": true
+              },
+              {
+                "instanceId": "i585",
+                "owner": "p1",
+                "controller": "p1",
+                "kind": "hidden",
+                "exhausted": false,
+                "faceDown": true
+              }
+            ]
+          },
+          {
+            "index": 3,
+            "cardId": "",
+            "name": "空位",
+            "threshold": 0,
+            "points": 0,
+            "influence": [
+              0,
+              0
+            ],
+            "characters": []
+          },
+          {
+            "index": 4,
+            "cardId": "DQJC116",
+            "name": "香港",
+            "threshold": 3,
+            "points": 3,
+            "influence": [
+              0,
+              2
+            ],
+            "characters": [
+              {
+                "instanceId": "i473",
+                "owner": "p3",
+                "controller": "p3",
+                "kind": "hidden",
+                "exhausted": false,
+                "faceDown": true
+              }
+            ]
+          }
+        ],
+        "pendingChoice": null,
+        "waitingChoice": null,
+        "legalActionKinds": [
+          "restart"
+        ],
+        "stackCount": 0,
+        "graveyardCount": 26,
+        "scoreCards": [
+          {
+            "instanceId": "i330",
+            "cardId": "DQJC114",
+            "owner": "p0",
+            "name": "上海"
+          },
+          {
+            "instanceId": "i507",
+            "cardId": "DQJC115",
+            "owner": "p0",
+            "name": "死者之城"
+          },
+          {
+            "instanceId": "i580",
+            "cardId": "DQJC109",
+            "owner": "p2",
+            "name": "京都"
+          },
+          {
+            "instanceId": "i357",
+            "cardId": "DQJC113",
+            "owner": "p3",
+            "name": "切尔诺贝利"
+          },
+          {
+            "instanceId": "i413",
+            "cardId": "DQJC111",
+            "owner": "p3",
+            "name": "莫斯科"
+          },
+          {
+            "instanceId": "i591",
+            "cardId": "DQJC110",
+            "owner": "p3",
+            "name": "伦敦"
+          }
+        ]
+      }
+    },
+    {
+      "stage": "persistent-profile-reopen",
+      "seat": 1,
+      "ownIdentityRestored": true,
+      "terminalStateUnchanged": true,
+      "otherHiddenCards": [
+        {
+          "instanceId": "i584",
+          "controller": "p2",
+          "privateFieldsAbsent": true
+        },
+        {
+          "instanceId": "i473",
+          "controller": "p3",
+          "privateFieldsAbsent": true
+        }
+      ],
+      "publicView": {
+        "version": 1904,
+        "mode": "teams",
+        "status": "finished",
+        "you": "p1",
+        "players": [
+          {
+            "id": "p0",
+            "seat": 0,
+            "name": "四人77甲",
+            "team": 0,
+            "deckId": "custom",
+            "deckName": "四人77新卡验收-1",
+            "ready": true,
+            "eliminated": false,
+            "handCount": 1,
+            "deckCount": 36,
+            "score": 5
+          },
+          {
+            "id": "p1",
+            "seat": 1,
+            "name": "四人772",
+            "team": 0,
+            "deckId": "custom",
+            "deckName": "四人77新卡验收-2",
+            "ready": true,
+            "eliminated": false,
+            "handCount": 0,
+            "deckCount": 31,
+            "score": 0
+          },
+          {
+            "id": "p2",
+            "seat": 2,
+            "name": "四人773",
+            "team": 1,
+            "deckId": "custom",
+            "deckName": "四人77新卡验收-3",
+            "ready": true,
+            "eliminated": false,
+            "handCount": 1,
+            "deckCount": 32,
+            "score": 3
+          },
+          {
+            "id": "p3",
+            "seat": 3,
+            "name": "四人774",
+            "team": 1,
+            "deckId": "custom",
+            "deckName": "四人77新卡验收-4",
+            "ready": true,
+            "eliminated": false,
+            "handCount": 0,
+            "deckCount": 39,
+            "score": 9
+          }
+        ],
+        "firstTeam": 0,
+        "activeTeam": 1,
+        "priorityTeam": 0,
+        "turn": 11,
+        "phase": "confrontation",
+        "step": "region:3:influence:after",
+        "winScore": 10,
+        "winnerTeam": 1,
+        "versions": {
+          "rules": "hegemony-pdf-v1",
+          "cardPool": "limited-v2.70-jc046-mandatory-sacrifice-candidate",
+          "engine": "rust-v0.2.77-jc046-mandatory-sacrifice-candidate"
+        },
+        "handCount": 0,
+        "assetCounts": {
+          "p0": 7,
+          "p1": 7,
+          "p2": 8,
+          "p3": 7
+        },
+        "regions": [
+          {
+            "index": 0,
+            "cardId": "DQJC108",
+            "name": "佛罗伦萨",
+            "threshold": 4,
+            "points": 3,
+            "influence": [
+              0,
+              0
+            ],
+            "characters": []
+          },
+          {
+            "index": 1,
+            "cardId": "DQJC107",
+            "name": "沉没的废墟",
+            "threshold": 4,
+            "points": 4,
+            "influence": [
+              0,
+              0
+            ],
+            "characters": []
+          },
+          {
+            "index": 2,
+            "cardId": "DQJC112",
+            "name": "纽约",
+            "threshold": 4,
+            "points": 4,
+            "influence": [
+              0,
+              1
+            ],
+            "characters": [
+              {
+                "instanceId": "i530",
+                "owner": "p2",
+                "controller": "p2",
+                "kind": "character",
+                "exhausted": false,
+                "faceDown": false,
+                "cardId": "JC060",
+                "name": "神秘学顾问",
+                "icons": {
+                  "investigation": 1,
+                  "combat": 0,
+                  "influence": 1
+                },
+                "defense": 1,
+                "damage": 0,
+                "wounds": 0,
+                "shield": 0
+              },
+              {
+                "instanceId": "i566",
+                "owner": "p2",
+                "controller": "p2",
+                "kind": "character",
+                "exhausted": false,
+                "faceDown": false,
+                "cardId": "JC042",
+                "name": "末日信徒",
+                "icons": {
+                  "investigation": 0,
+                  "combat": 1,
+                  "influence": 0
+                },
+                "defense": 1,
+                "damage": 0,
+                "wounds": 0,
+                "shield": 0
+              },
+              {
+                "instanceId": "i584",
+                "owner": "p2",
+                "controller": "p2",
+                "kind": "hidden",
+                "exhausted": false,
+                "faceDown": true
+              },
+              {
+                "instanceId": "i585",
+                "owner": "p1",
+                "controller": "p1",
+                "kind": "hidden",
+                "exhausted": false,
+                "faceDown": true
+              }
+            ]
+          },
+          {
+            "index": 3,
+            "cardId": "",
+            "name": "空位",
+            "threshold": 0,
+            "points": 0,
+            "influence": [
+              0,
+              0
+            ],
+            "characters": []
+          },
+          {
+            "index": 4,
+            "cardId": "DQJC116",
+            "name": "香港",
+            "threshold": 3,
+            "points": 3,
+            "influence": [
+              0,
+              2
+            ],
+            "characters": [
+              {
+                "instanceId": "i473",
+                "owner": "p3",
+                "controller": "p3",
+                "kind": "hidden",
+                "exhausted": false,
+                "faceDown": true
+              }
+            ]
+          }
+        ],
+        "pendingChoice": null,
+        "waitingChoice": null,
+        "legalActionKinds": [],
+        "stackCount": 0,
+        "graveyardCount": 26,
+        "scoreCards": [
+          {
+            "instanceId": "i330",
+            "cardId": "DQJC114",
+            "owner": "p0",
+            "name": "上海"
+          },
+          {
+            "instanceId": "i507",
+            "cardId": "DQJC115",
+            "owner": "p0",
+            "name": "死者之城"
+          },
+          {
+            "instanceId": "i580",
+            "cardId": "DQJC109",
+            "owner": "p2",
+            "name": "京都"
+          },
+          {
+            "instanceId": "i357",
+            "cardId": "DQJC113",
+            "owner": "p3",
+            "name": "切尔诺贝利"
+          },
+          {
+            "instanceId": "i413",
+            "cardId": "DQJC111",
+            "owner": "p3",
+            "name": "莫斯科"
+          },
+          {
+            "instanceId": "i591",
+            "cardId": "DQJC110",
+            "owner": "p3",
+            "name": "伦敦"
+          }
+        ]
+      }
+    },
+    {
+      "stage": "persistent-profile-reopen",
+      "seat": 2,
+      "ownIdentityRestored": true,
+      "terminalStateUnchanged": true,
+      "otherHiddenCards": [
+        {
+          "instanceId": "i585",
+          "controller": "p1",
+          "privateFieldsAbsent": true
+        },
+        {
+          "instanceId": "i473",
+          "controller": "p3",
+          "privateFieldsAbsent": true
+        }
+      ],
+      "publicView": {
+        "version": 1904,
+        "mode": "teams",
+        "status": "finished",
+        "you": "p2",
+        "players": [
+          {
+            "id": "p0",
+            "seat": 0,
+            "name": "四人77甲",
+            "team": 0,
+            "deckId": "custom",
+            "deckName": "四人77新卡验收-1",
+            "ready": true,
+            "eliminated": false,
+            "handCount": 1,
+            "deckCount": 36,
+            "score": 5
+          },
+          {
+            "id": "p1",
+            "seat": 1,
+            "name": "四人772",
+            "team": 0,
+            "deckId": "custom",
+            "deckName": "四人77新卡验收-2",
+            "ready": true,
+            "eliminated": false,
+            "handCount": 0,
+            "deckCount": 31,
+            "score": 0
+          },
+          {
+            "id": "p2",
+            "seat": 2,
+            "name": "四人773",
+            "team": 1,
+            "deckId": "custom",
+            "deckName": "四人77新卡验收-3",
+            "ready": true,
+            "eliminated": false,
+            "handCount": 1,
+            "deckCount": 32,
+            "score": 3
+          },
+          {
+            "id": "p3",
+            "seat": 3,
+            "name": "四人774",
+            "team": 1,
+            "deckId": "custom",
+            "deckName": "四人77新卡验收-4",
+            "ready": true,
+            "eliminated": false,
+            "handCount": 0,
+            "deckCount": 39,
+            "score": 9
+          }
+        ],
+        "firstTeam": 0,
+        "activeTeam": 1,
+        "priorityTeam": 0,
+        "turn": 11,
+        "phase": "confrontation",
+        "step": "region:3:influence:after",
+        "winScore": 10,
+        "winnerTeam": 1,
+        "versions": {
+          "rules": "hegemony-pdf-v1",
+          "cardPool": "limited-v2.70-jc046-mandatory-sacrifice-candidate",
+          "engine": "rust-v0.2.77-jc046-mandatory-sacrifice-candidate"
+        },
+        "handCount": 1,
+        "assetCounts": {
+          "p0": 7,
+          "p1": 7,
+          "p2": 8,
+          "p3": 7
+        },
+        "regions": [
+          {
+            "index": 0,
+            "cardId": "DQJC108",
+            "name": "佛罗伦萨",
+            "threshold": 4,
+            "points": 3,
+            "influence": [
+              0,
+              0
+            ],
+            "characters": []
+          },
+          {
+            "index": 1,
+            "cardId": "DQJC107",
+            "name": "沉没的废墟",
+            "threshold": 4,
+            "points": 4,
+            "influence": [
+              0,
+              0
+            ],
+            "characters": []
+          },
+          {
+            "index": 2,
+            "cardId": "DQJC112",
+            "name": "纽约",
+            "threshold": 4,
+            "points": 4,
+            "influence": [
+              0,
+              1
+            ],
+            "characters": [
+              {
+                "instanceId": "i530",
+                "owner": "p2",
+                "controller": "p2",
+                "kind": "character",
+                "exhausted": false,
+                "faceDown": false,
+                "cardId": "JC060",
+                "name": "神秘学顾问",
+                "icons": {
+                  "investigation": 1,
+                  "combat": 0,
+                  "influence": 1
+                },
+                "defense": 1,
+                "damage": 0,
+                "wounds": 0,
+                "shield": 0
+              },
+              {
+                "instanceId": "i566",
+                "owner": "p2",
+                "controller": "p2",
+                "kind": "character",
+                "exhausted": false,
+                "faceDown": false,
+                "cardId": "JC042",
+                "name": "末日信徒",
+                "icons": {
+                  "investigation": 0,
+                  "combat": 1,
+                  "influence": 0
+                },
+                "defense": 1,
+                "damage": 0,
+                "wounds": 0,
+                "shield": 0
+              },
+              {
+                "instanceId": "i584",
+                "owner": "p2",
+                "controller": "p2",
+                "kind": "hidden",
+                "exhausted": false,
+                "faceDown": true
+              },
+              {
+                "instanceId": "i585",
+                "owner": "p1",
+                "controller": "p1",
+                "kind": "hidden",
+                "exhausted": false,
+                "faceDown": true
+              }
+            ]
+          },
+          {
+            "index": 3,
+            "cardId": "",
+            "name": "空位",
+            "threshold": 0,
+            "points": 0,
+            "influence": [
+              0,
+              0
+            ],
+            "characters": []
+          },
+          {
+            "index": 4,
+            "cardId": "DQJC116",
+            "name": "香港",
+            "threshold": 3,
+            "points": 3,
+            "influence": [
+              0,
+              2
+            ],
+            "characters": [
+              {
+                "instanceId": "i473",
+                "owner": "p3",
+                "controller": "p3",
+                "kind": "hidden",
+                "exhausted": false,
+                "faceDown": true
+              }
+            ]
+          }
+        ],
+        "pendingChoice": null,
+        "waitingChoice": null,
+        "legalActionKinds": [],
+        "stackCount": 0,
+        "graveyardCount": 26,
+        "scoreCards": [
+          {
+            "instanceId": "i330",
+            "cardId": "DQJC114",
+            "owner": "p0",
+            "name": "上海"
+          },
+          {
+            "instanceId": "i507",
+            "cardId": "DQJC115",
+            "owner": "p0",
+            "name": "死者之城"
+          },
+          {
+            "instanceId": "i580",
+            "cardId": "DQJC109",
+            "owner": "p2",
+            "name": "京都"
+          },
+          {
+            "instanceId": "i357",
+            "cardId": "DQJC113",
+            "owner": "p3",
+            "name": "切尔诺贝利"
+          },
+          {
+            "instanceId": "i413",
+            "cardId": "DQJC111",
+            "owner": "p3",
+            "name": "莫斯科"
+          },
+          {
+            "instanceId": "i591",
+            "cardId": "DQJC110",
+            "owner": "p3",
+            "name": "伦敦"
+          }
+        ]
+      }
+    },
+    {
+      "stage": "persistent-profile-reopen",
+      "seat": 3,
+      "ownIdentityRestored": true,
+      "terminalStateUnchanged": true,
+      "otherHiddenCards": [
+        {
+          "instanceId": "i584",
+          "controller": "p2",
+          "privateFieldsAbsent": true
+        },
+        {
+          "instanceId": "i585",
+          "controller": "p1",
+          "privateFieldsAbsent": true
+        }
+      ],
+      "publicView": {
+        "version": 1904,
+        "mode": "teams",
+        "status": "finished",
+        "you": "p3",
+        "players": [
+          {
+            "id": "p0",
+            "seat": 0,
+            "name": "四人77甲",
+            "team": 0,
+            "deckId": "custom",
+            "deckName": "四人77新卡验收-1",
+            "ready": true,
+            "eliminated": false,
+            "handCount": 1,
+            "deckCount": 36,
+            "score": 5
+          },
+          {
+            "id": "p1",
+            "seat": 1,
+            "name": "四人772",
+            "team": 0,
+            "deckId": "custom",
+            "deckName": "四人77新卡验收-2",
+            "ready": true,
+            "eliminated": false,
+            "handCount": 0,
+            "deckCount": 31,
+            "score": 0
+          },
+          {
+            "id": "p2",
+            "seat": 2,
+            "name": "四人773",
+            "team": 1,
+            "deckId": "custom",
+            "deckName": "四人77新卡验收-3",
+            "ready": true,
+            "eliminated": false,
+            "handCount": 1,
+            "deckCount": 32,
+            "score": 3
+          },
+          {
+            "id": "p3",
+            "seat": 3,
+            "name": "四人774",
+            "team": 1,
+            "deckId": "custom",
+            "deckName": "四人77新卡验收-4",
+            "ready": true,
+            "eliminated": false,
+            "handCount": 0,
+            "deckCount": 39,
+            "score": 9
+          }
+        ],
+        "firstTeam": 0,
+        "activeTeam": 1,
+        "priorityTeam": 0,
+        "turn": 11,
+        "phase": "confrontation",
+        "step": "region:3:influence:after",
+        "winScore": 10,
+        "winnerTeam": 1,
+        "versions": {
+          "rules": "hegemony-pdf-v1",
+          "cardPool": "limited-v2.70-jc046-mandatory-sacrifice-candidate",
+          "engine": "rust-v0.2.77-jc046-mandatory-sacrifice-candidate"
+        },
+        "handCount": 0,
+        "assetCounts": {
+          "p0": 7,
+          "p1": 7,
+          "p2": 8,
+          "p3": 7
+        },
+        "regions": [
+          {
+            "index": 0,
+            "cardId": "DQJC108",
+            "name": "佛罗伦萨",
+            "threshold": 4,
+            "points": 3,
+            "influence": [
+              0,
+              0
+            ],
+            "characters": []
+          },
+          {
+            "index": 1,
+            "cardId": "DQJC107",
+            "name": "沉没的废墟",
+            "threshold": 4,
+            "points": 4,
+            "influence": [
+              0,
+              0
+            ],
+            "characters": []
+          },
+          {
+            "index": 2,
+            "cardId": "DQJC112",
+            "name": "纽约",
+            "threshold": 4,
+            "points": 4,
+            "influence": [
+              0,
+              1
+            ],
+            "characters": [
+              {
+                "instanceId": "i530",
+                "owner": "p2",
+                "controller": "p2",
+                "kind": "character",
+                "exhausted": false,
+                "faceDown": false,
+                "cardId": "JC060",
+                "name": "神秘学顾问",
+                "icons": {
+                  "investigation": 1,
+                  "combat": 0,
+                  "influence": 1
+                },
+                "defense": 1,
+                "damage": 0,
+                "wounds": 0,
+                "shield": 0
+              },
+              {
+                "instanceId": "i566",
+                "owner": "p2",
+                "controller": "p2",
+                "kind": "character",
+                "exhausted": false,
+                "faceDown": false,
+                "cardId": "JC042",
+                "name": "末日信徒",
+                "icons": {
+                  "investigation": 0,
+                  "combat": 1,
+                  "influence": 0
+                },
+                "defense": 1,
+                "damage": 0,
+                "wounds": 0,
+                "shield": 0
+              },
+              {
+                "instanceId": "i584",
+                "owner": "p2",
+                "controller": "p2",
+                "kind": "hidden",
+                "exhausted": false,
+                "faceDown": true
+              },
+              {
+                "instanceId": "i585",
+                "owner": "p1",
+                "controller": "p1",
+                "kind": "hidden",
+                "exhausted": false,
+                "faceDown": true
+              }
+            ]
+          },
+          {
+            "index": 3,
+            "cardId": "",
+            "name": "空位",
+            "threshold": 0,
+            "points": 0,
+            "influence": [
+              0,
+              0
+            ],
+            "characters": []
+          },
+          {
+            "index": 4,
+            "cardId": "DQJC116",
+            "name": "香港",
+            "threshold": 3,
+            "points": 3,
+            "influence": [
+              0,
+              2
+            ],
+            "characters": [
+              {
+                "instanceId": "i473",
+                "owner": "p3",
+                "controller": "p3",
+                "kind": "hidden",
+                "exhausted": false,
+                "faceDown": true
+              }
+            ]
+          }
+        ],
+        "pendingChoice": null,
+        "waitingChoice": null,
+        "legalActionKinds": [],
+        "stackCount": 0,
+        "graveyardCount": 26,
+        "scoreCards": [
+          {
+            "instanceId": "i330",
+            "cardId": "DQJC114",
+            "owner": "p0",
+            "name": "上海"
+          },
+          {
+            "instanceId": "i507",
+            "cardId": "DQJC115",
+            "owner": "p0",
+            "name": "死者之城"
+          },
+          {
+            "instanceId": "i580",
+            "cardId": "DQJC109",
+            "owner": "p2",
+            "name": "京都"
+          },
+          {
+            "instanceId": "i357",
+            "cardId": "DQJC113",
+            "owner": "p3",
+            "name": "切尔诺贝利"
+          },
+          {
+            "instanceId": "i413",
+            "cardId": "DQJC111",
+            "owner": "p3",
+            "name": "莫斯科"
+          },
+          {
+            "instanceId": "i591",
+            "cardId": "DQJC110",
+            "owner": "p3",
+            "name": "伦敦"
+          }
+        ]
+      }
+    },
+    {
+      "stage": "four-page-reload",
+      "seat": 0,
+      "ownIdentityRestored": true,
+      "terminalStateUnchanged": true,
+      "otherHiddenCards": [
+        {
+          "instanceId": "i584",
+          "controller": "p2",
+          "privateFieldsAbsent": true
+        },
+        {
+          "instanceId": "i585",
+          "controller": "p1",
+          "privateFieldsAbsent": true
+        },
+        {
+          "instanceId": "i473",
+          "controller": "p3",
+          "privateFieldsAbsent": true
+        }
+      ],
+      "publicView": {
+        "version": 1904,
+        "mode": "teams",
+        "status": "finished",
+        "you": "p0",
+        "players": [
+          {
+            "id": "p0",
+            "seat": 0,
+            "name": "四人77甲",
+            "team": 0,
+            "deckId": "custom",
+            "deckName": "四人77新卡验收-1",
+            "ready": true,
+            "eliminated": false,
+            "handCount": 1,
+            "deckCount": 36,
+            "score": 5
+          },
+          {
+            "id": "p1",
+            "seat": 1,
+            "name": "四人772",
+            "team": 0,
+            "deckId": "custom",
+            "deckName": "四人77新卡验收-2",
+            "ready": true,
+            "eliminated": false,
+            "handCount": 0,
+            "deckCount": 31,
+            "score": 0
+          },
+          {
+            "id": "p2",
+            "seat": 2,
+            "name": "四人773",
+            "team": 1,
+            "deckId": "custom",
+            "deckName": "四人77新卡验收-3",
+            "ready": true,
+            "eliminated": false,
+            "handCount": 1,
+            "deckCount": 32,
+            "score": 3
+          },
+          {
+            "id": "p3",
+            "seat": 3,
+            "name": "四人774",
+            "team": 1,
+            "deckId": "custom",
+            "deckName": "四人77新卡验收-4",
+            "ready": true,
+            "eliminated": false,
+            "handCount": 0,
+            "deckCount": 39,
+            "score": 9
+          }
+        ],
+        "firstTeam": 0,
+        "activeTeam": 1,
+        "priorityTeam": 0,
+        "turn": 11,
+        "phase": "confrontation",
+        "step": "region:3:influence:after",
+        "winScore": 10,
+        "winnerTeam": 1,
+        "versions": {
+          "rules": "hegemony-pdf-v1",
+          "cardPool": "limited-v2.70-jc046-mandatory-sacrifice-candidate",
+          "engine": "rust-v0.2.77-jc046-mandatory-sacrifice-candidate"
+        },
+        "handCount": 1,
+        "assetCounts": {
+          "p0": 7,
+          "p1": 7,
+          "p2": 8,
+          "p3": 7
+        },
+        "regions": [
+          {
+            "index": 0,
+            "cardId": "DQJC108",
+            "name": "佛罗伦萨",
+            "threshold": 4,
+            "points": 3,
+            "influence": [
+              0,
+              0
+            ],
+            "characters": []
+          },
+          {
+            "index": 1,
+            "cardId": "DQJC107",
+            "name": "沉没的废墟",
+            "threshold": 4,
+            "points": 4,
+            "influence": [
+              0,
+              0
+            ],
+            "characters": []
+          },
+          {
+            "index": 2,
+            "cardId": "DQJC112",
+            "name": "纽约",
+            "threshold": 4,
+            "points": 4,
+            "influence": [
+              0,
+              1
+            ],
+            "characters": [
+              {
+                "instanceId": "i530",
+                "owner": "p2",
+                "controller": "p2",
+                "kind": "character",
+                "exhausted": false,
+                "faceDown": false,
+                "cardId": "JC060",
+                "name": "神秘学顾问",
+                "icons": {
+                  "investigation": 1,
+                  "combat": 0,
+                  "influence": 1
+                },
+                "defense": 1,
+                "damage": 0,
+                "wounds": 0,
+                "shield": 0
+              },
+              {
+                "instanceId": "i566",
+                "owner": "p2",
+                "controller": "p2",
+                "kind": "character",
+                "exhausted": false,
+                "faceDown": false,
+                "cardId": "JC042",
+                "name": "末日信徒",
+                "icons": {
+                  "investigation": 0,
+                  "combat": 1,
+                  "influence": 0
+                },
+                "defense": 1,
+                "damage": 0,
+                "wounds": 0,
+                "shield": 0
+              },
+              {
+                "instanceId": "i584",
+                "owner": "p2",
+                "controller": "p2",
+                "kind": "hidden",
+                "exhausted": false,
+                "faceDown": true
+              },
+              {
+                "instanceId": "i585",
+                "owner": "p1",
+                "controller": "p1",
+                "kind": "hidden",
+                "exhausted": false,
+                "faceDown": true
+              }
+            ]
+          },
+          {
+            "index": 3,
+            "cardId": "",
+            "name": "空位",
+            "threshold": 0,
+            "points": 0,
+            "influence": [
+              0,
+              0
+            ],
+            "characters": []
+          },
+          {
+            "index": 4,
+            "cardId": "DQJC116",
+            "name": "香港",
+            "threshold": 3,
+            "points": 3,
+            "influence": [
+              0,
+              2
+            ],
+            "characters": [
+              {
+                "instanceId": "i473",
+                "owner": "p3",
+                "controller": "p3",
+                "kind": "hidden",
+                "exhausted": false,
+                "faceDown": true
+              }
+            ]
+          }
+        ],
+        "pendingChoice": null,
+        "waitingChoice": null,
+        "legalActionKinds": [
+          "restart"
+        ],
+        "stackCount": 0,
+        "graveyardCount": 26,
+        "scoreCards": [
+          {
+            "instanceId": "i330",
+            "cardId": "DQJC114",
+            "owner": "p0",
+            "name": "上海"
+          },
+          {
+            "instanceId": "i507",
+            "cardId": "DQJC115",
+            "owner": "p0",
+            "name": "死者之城"
+          },
+          {
+            "instanceId": "i580",
+            "cardId": "DQJC109",
+            "owner": "p2",
+            "name": "京都"
+          },
+          {
+            "instanceId": "i357",
+            "cardId": "DQJC113",
+            "owner": "p3",
+            "name": "切尔诺贝利"
+          },
+          {
+            "instanceId": "i413",
+            "cardId": "DQJC111",
+            "owner": "p3",
+            "name": "莫斯科"
+          },
+          {
+            "instanceId": "i591",
+            "cardId": "DQJC110",
+            "owner": "p3",
+            "name": "伦敦"
+          }
+        ]
+      }
+    },
+    {
+      "stage": "four-page-reload",
+      "seat": 1,
+      "ownIdentityRestored": true,
+      "terminalStateUnchanged": true,
+      "otherHiddenCards": [
+        {
+          "instanceId": "i584",
+          "controller": "p2",
+          "privateFieldsAbsent": true
+        },
+        {
+          "instanceId": "i473",
+          "controller": "p3",
+          "privateFieldsAbsent": true
+        }
+      ],
+      "publicView": {
+        "version": 1904,
+        "mode": "teams",
+        "status": "finished",
+        "you": "p1",
+        "players": [
+          {
+            "id": "p0",
+            "seat": 0,
+            "name": "四人77甲",
+            "team": 0,
+            "deckId": "custom",
+            "deckName": "四人77新卡验收-1",
+            "ready": true,
+            "eliminated": false,
+            "handCount": 1,
+            "deckCount": 36,
+            "score": 5
+          },
+          {
+            "id": "p1",
+            "seat": 1,
+            "name": "四人772",
+            "team": 0,
+            "deckId": "custom",
+            "deckName": "四人77新卡验收-2",
+            "ready": true,
+            "eliminated": false,
+            "handCount": 0,
+            "deckCount": 31,
+            "score": 0
+          },
+          {
+            "id": "p2",
+            "seat": 2,
+            "name": "四人773",
+            "team": 1,
+            "deckId": "custom",
+            "deckName": "四人77新卡验收-3",
+            "ready": true,
+            "eliminated": false,
+            "handCount": 1,
+            "deckCount": 32,
+            "score": 3
+          },
+          {
+            "id": "p3",
+            "seat": 3,
+            "name": "四人774",
+            "team": 1,
+            "deckId": "custom",
+            "deckName": "四人77新卡验收-4",
+            "ready": true,
+            "eliminated": false,
+            "handCount": 0,
+            "deckCount": 39,
+            "score": 9
+          }
+        ],
+        "firstTeam": 0,
+        "activeTeam": 1,
+        "priorityTeam": 0,
+        "turn": 11,
+        "phase": "confrontation",
+        "step": "region:3:influence:after",
+        "winScore": 10,
+        "winnerTeam": 1,
+        "versions": {
+          "rules": "hegemony-pdf-v1",
+          "cardPool": "limited-v2.70-jc046-mandatory-sacrifice-candidate",
+          "engine": "rust-v0.2.77-jc046-mandatory-sacrifice-candidate"
+        },
+        "handCount": 0,
+        "assetCounts": {
+          "p0": 7,
+          "p1": 7,
+          "p2": 8,
+          "p3": 7
+        },
+        "regions": [
+          {
+            "index": 0,
+            "cardId": "DQJC108",
+            "name": "佛罗伦萨",
+            "threshold": 4,
+            "points": 3,
+            "influence": [
+              0,
+              0
+            ],
+            "characters": []
+          },
+          {
+            "index": 1,
+            "cardId": "DQJC107",
+            "name": "沉没的废墟",
+            "threshold": 4,
+            "points": 4,
+            "influence": [
+              0,
+              0
+            ],
+            "characters": []
+          },
+          {
+            "index": 2,
+            "cardId": "DQJC112",
+            "name": "纽约",
+            "threshold": 4,
+            "points": 4,
+            "influence": [
+              0,
+              1
+            ],
+            "characters": [
+              {
+                "instanceId": "i530",
+                "owner": "p2",
+                "controller": "p2",
+                "kind": "character",
+                "exhausted": false,
+                "faceDown": false,
+                "cardId": "JC060",
+                "name": "神秘学顾问",
+                "icons": {
+                  "investigation": 1,
+                  "combat": 0,
+                  "influence": 1
+                },
+                "defense": 1,
+                "damage": 0,
+                "wounds": 0,
+                "shield": 0
+              },
+              {
+                "instanceId": "i566",
+                "owner": "p2",
+                "controller": "p2",
+                "kind": "character",
+                "exhausted": false,
+                "faceDown": false,
+                "cardId": "JC042",
+                "name": "末日信徒",
+                "icons": {
+                  "investigation": 0,
+                  "combat": 1,
+                  "influence": 0
+                },
+                "defense": 1,
+                "damage": 0,
+                "wounds": 0,
+                "shield": 0
+              },
+              {
+                "instanceId": "i584",
+                "owner": "p2",
+                "controller": "p2",
+                "kind": "hidden",
+                "exhausted": false,
+                "faceDown": true
+              },
+              {
+                "instanceId": "i585",
+                "owner": "p1",
+                "controller": "p1",
+                "kind": "hidden",
+                "exhausted": false,
+                "faceDown": true
+              }
+            ]
+          },
+          {
+            "index": 3,
+            "cardId": "",
+            "name": "空位",
+            "threshold": 0,
+            "points": 0,
+            "influence": [
+              0,
+              0
+            ],
+            "characters": []
+          },
+          {
+            "index": 4,
+            "cardId": "DQJC116",
+            "name": "香港",
+            "threshold": 3,
+            "points": 3,
+            "influence": [
+              0,
+              2
+            ],
+            "characters": [
+              {
+                "instanceId": "i473",
+                "owner": "p3",
+                "controller": "p3",
+                "kind": "hidden",
+                "exhausted": false,
+                "faceDown": true
+              }
+            ]
+          }
+        ],
+        "pendingChoice": null,
+        "waitingChoice": null,
+        "legalActionKinds": [],
+        "stackCount": 0,
+        "graveyardCount": 26,
+        "scoreCards": [
+          {
+            "instanceId": "i330",
+            "cardId": "DQJC114",
+            "owner": "p0",
+            "name": "上海"
+          },
+          {
+            "instanceId": "i507",
+            "cardId": "DQJC115",
+            "owner": "p0",
+            "name": "死者之城"
+          },
+          {
+            "instanceId": "i580",
+            "cardId": "DQJC109",
+            "owner": "p2",
+            "name": "京都"
+          },
+          {
+            "instanceId": "i357",
+            "cardId": "DQJC113",
+            "owner": "p3",
+            "name": "切尔诺贝利"
+          },
+          {
+            "instanceId": "i413",
+            "cardId": "DQJC111",
+            "owner": "p3",
+            "name": "莫斯科"
+          },
+          {
+            "instanceId": "i591",
+            "cardId": "DQJC110",
+            "owner": "p3",
+            "name": "伦敦"
+          }
+        ]
+      }
+    },
+    {
+      "stage": "four-page-reload",
+      "seat": 2,
+      "ownIdentityRestored": true,
+      "terminalStateUnchanged": true,
+      "otherHiddenCards": [
+        {
+          "instanceId": "i585",
+          "controller": "p1",
+          "privateFieldsAbsent": true
+        },
+        {
+          "instanceId": "i473",
+          "controller": "p3",
+          "privateFieldsAbsent": true
+        }
+      ],
+      "publicView": {
+        "version": 1904,
+        "mode": "teams",
+        "status": "finished",
+        "you": "p2",
+        "players": [
+          {
+            "id": "p0",
+            "seat": 0,
+            "name": "四人77甲",
+            "team": 0,
+            "deckId": "custom",
+            "deckName": "四人77新卡验收-1",
+            "ready": true,
+            "eliminated": false,
+            "handCount": 1,
+            "deckCount": 36,
+            "score": 5
+          },
+          {
+            "id": "p1",
+            "seat": 1,
+            "name": "四人772",
+            "team": 0,
+            "deckId": "custom",
+            "deckName": "四人77新卡验收-2",
+            "ready": true,
+            "eliminated": false,
+            "handCount": 0,
+            "deckCount": 31,
+            "score": 0
+          },
+          {
+            "id": "p2",
+            "seat": 2,
+            "name": "四人773",
+            "team": 1,
+            "deckId": "custom",
+            "deckName": "四人77新卡验收-3",
+            "ready": true,
+            "eliminated": false,
+            "handCount": 1,
+            "deckCount": 32,
+            "score": 3
+          },
+          {
+            "id": "p3",
+            "seat": 3,
+            "name": "四人774",
+            "team": 1,
+            "deckId": "custom",
+            "deckName": "四人77新卡验收-4",
+            "ready": true,
+            "eliminated": false,
+            "handCount": 0,
+            "deckCount": 39,
+            "score": 9
+          }
+        ],
+        "firstTeam": 0,
+        "activeTeam": 1,
+        "priorityTeam": 0,
+        "turn": 11,
+        "phase": "confrontation",
+        "step": "region:3:influence:after",
+        "winScore": 10,
+        "winnerTeam": 1,
+        "versions": {
+          "rules": "hegemony-pdf-v1",
+          "cardPool": "limited-v2.70-jc046-mandatory-sacrifice-candidate",
+          "engine": "rust-v0.2.77-jc046-mandatory-sacrifice-candidate"
+        },
+        "handCount": 1,
+        "assetCounts": {
+          "p0": 7,
+          "p1": 7,
+          "p2": 8,
+          "p3": 7
+        },
+        "regions": [
+          {
+            "index": 0,
+            "cardId": "DQJC108",
+            "name": "佛罗伦萨",
+            "threshold": 4,
+            "points": 3,
+            "influence": [
+              0,
+              0
+            ],
+            "characters": []
+          },
+          {
+            "index": 1,
+            "cardId": "DQJC107",
+            "name": "沉没的废墟",
+            "threshold": 4,
+            "points": 4,
+            "influence": [
+              0,
+              0
+            ],
+            "characters": []
+          },
+          {
+            "index": 2,
+            "cardId": "DQJC112",
+            "name": "纽约",
+            "threshold": 4,
+            "points": 4,
+            "influence": [
+              0,
+              1
+            ],
+            "characters": [
+              {
+                "instanceId": "i530",
+                "owner": "p2",
+                "controller": "p2",
+                "kind": "character",
+                "exhausted": false,
+                "faceDown": false,
+                "cardId": "JC060",
+                "name": "神秘学顾问",
+                "icons": {
+                  "investigation": 1,
+                  "combat": 0,
+                  "influence": 1
+                },
+                "defense": 1,
+                "damage": 0,
+                "wounds": 0,
+                "shield": 0
+              },
+              {
+                "instanceId": "i566",
+                "owner": "p2",
+                "controller": "p2",
+                "kind": "character",
+                "exhausted": false,
+                "faceDown": false,
+                "cardId": "JC042",
+                "name": "末日信徒",
+                "icons": {
+                  "investigation": 0,
+                  "combat": 1,
+                  "influence": 0
+                },
+                "defense": 1,
+                "damage": 0,
+                "wounds": 0,
+                "shield": 0
+              },
+              {
+                "instanceId": "i584",
+                "owner": "p2",
+                "controller": "p2",
+                "kind": "hidden",
+                "exhausted": false,
+                "faceDown": true
+              },
+              {
+                "instanceId": "i585",
+                "owner": "p1",
+                "controller": "p1",
+                "kind": "hidden",
+                "exhausted": false,
+                "faceDown": true
+              }
+            ]
+          },
+          {
+            "index": 3,
+            "cardId": "",
+            "name": "空位",
+            "threshold": 0,
+            "points": 0,
+            "influence": [
+              0,
+              0
+            ],
+            "characters": []
+          },
+          {
+            "index": 4,
+            "cardId": "DQJC116",
+            "name": "香港",
+            "threshold": 3,
+            "points": 3,
+            "influence": [
+              0,
+              2
+            ],
+            "characters": [
+              {
+                "instanceId": "i473",
+                "owner": "p3",
+                "controller": "p3",
+                "kind": "hidden",
+                "exhausted": false,
+                "faceDown": true
+              }
+            ]
+          }
+        ],
+        "pendingChoice": null,
+        "waitingChoice": null,
+        "legalActionKinds": [],
+        "stackCount": 0,
+        "graveyardCount": 26,
+        "scoreCards": [
+          {
+            "instanceId": "i330",
+            "cardId": "DQJC114",
+            "owner": "p0",
+            "name": "上海"
+          },
+          {
+            "instanceId": "i507",
+            "cardId": "DQJC115",
+            "owner": "p0",
+            "name": "死者之城"
+          },
+          {
+            "instanceId": "i580",
+            "cardId": "DQJC109",
+            "owner": "p2",
+            "name": "京都"
+          },
+          {
+            "instanceId": "i357",
+            "cardId": "DQJC113",
+            "owner": "p3",
+            "name": "切尔诺贝利"
+          },
+          {
+            "instanceId": "i413",
+            "cardId": "DQJC111",
+            "owner": "p3",
+            "name": "莫斯科"
+          },
+          {
+            "instanceId": "i591",
+            "cardId": "DQJC110",
+            "owner": "p3",
+            "name": "伦敦"
+          }
+        ]
+      }
+    },
+    {
+      "stage": "four-page-reload",
+      "seat": 3,
+      "ownIdentityRestored": true,
+      "terminalStateUnchanged": true,
+      "otherHiddenCards": [
+        {
+          "instanceId": "i584",
+          "controller": "p2",
+          "privateFieldsAbsent": true
+        },
+        {
+          "instanceId": "i585",
+          "controller": "p1",
+          "privateFieldsAbsent": true
+        }
+      ],
+      "publicView": {
+        "version": 1904,
+        "mode": "teams",
+        "status": "finished",
+        "you": "p3",
+        "players": [
+          {
+            "id": "p0",
+            "seat": 0,
+            "name": "四人77甲",
+            "team": 0,
+            "deckId": "custom",
+            "deckName": "四人77新卡验收-1",
+            "ready": true,
+            "eliminated": false,
+            "handCount": 1,
+            "deckCount": 36,
+            "score": 5
+          },
+          {
+            "id": "p1",
+            "seat": 1,
+            "name": "四人772",
+            "team": 0,
+            "deckId": "custom",
+            "deckName": "四人77新卡验收-2",
+            "ready": true,
+            "eliminated": false,
+            "handCount": 0,
+            "deckCount": 31,
+            "score": 0
+          },
+          {
+            "id": "p2",
+            "seat": 2,
+            "name": "四人773",
+            "team": 1,
+            "deckId": "custom",
+            "deckName": "四人77新卡验收-3",
+            "ready": true,
+            "eliminated": false,
+            "handCount": 1,
+            "deckCount": 32,
+            "score": 3
+          },
+          {
+            "id": "p3",
+            "seat": 3,
+            "name": "四人774",
+            "team": 1,
+            "deckId": "custom",
+            "deckName": "四人77新卡验收-4",
+            "ready": true,
+            "eliminated": false,
+            "handCount": 0,
+            "deckCount": 39,
+            "score": 9
+          }
+        ],
+        "firstTeam": 0,
+        "activeTeam": 1,
+        "priorityTeam": 0,
+        "turn": 11,
+        "phase": "confrontation",
+        "step": "region:3:influence:after",
+        "winScore": 10,
+        "winnerTeam": 1,
+        "versions": {
+          "rules": "hegemony-pdf-v1",
+          "cardPool": "limited-v2.70-jc046-mandatory-sacrifice-candidate",
+          "engine": "rust-v0.2.77-jc046-mandatory-sacrifice-candidate"
+        },
+        "handCount": 0,
+        "assetCounts": {
+          "p0": 7,
+          "p1": 7,
+          "p2": 8,
+          "p3": 7
+        },
+        "regions": [
+          {
+            "index": 0,
+            "cardId": "DQJC108",
+            "name": "佛罗伦萨",
+            "threshold": 4,
+            "points": 3,
+            "influence": [
+              0,
+              0
+            ],
+            "characters": []
+          },
+          {
+            "index": 1,
+            "cardId": "DQJC107",
+            "name": "沉没的废墟",
+            "threshold": 4,
+            "points": 4,
+            "influence": [
+              0,
+              0
+            ],
+            "characters": []
+          },
+          {
+            "index": 2,
+            "cardId": "DQJC112",
+            "name": "纽约",
+            "threshold": 4,
+            "points": 4,
+            "influence": [
+              0,
+              1
+            ],
+            "characters": [
+              {
+                "instanceId": "i530",
+                "owner": "p2",
+                "controller": "p2",
+                "kind": "character",
+                "exhausted": false,
+                "faceDown": false,
+                "cardId": "JC060",
+                "name": "神秘学顾问",
+                "icons": {
+                  "investigation": 1,
+                  "combat": 0,
+                  "influence": 1
+                },
+                "defense": 1,
+                "damage": 0,
+                "wounds": 0,
+                "shield": 0
+              },
+              {
+                "instanceId": "i566",
+                "owner": "p2",
+                "controller": "p2",
+                "kind": "character",
+                "exhausted": false,
+                "faceDown": false,
+                "cardId": "JC042",
+                "name": "末日信徒",
+                "icons": {
+                  "investigation": 0,
+                  "combat": 1,
+                  "influence": 0
+                },
+                "defense": 1,
+                "damage": 0,
+                "wounds": 0,
+                "shield": 0
+              },
+              {
+                "instanceId": "i584",
+                "owner": "p2",
+                "controller": "p2",
+                "kind": "hidden",
+                "exhausted": false,
+                "faceDown": true
+              },
+              {
+                "instanceId": "i585",
+                "owner": "p1",
+                "controller": "p1",
+                "kind": "hidden",
+                "exhausted": false,
+                "faceDown": true
+              }
+            ]
+          },
+          {
+            "index": 3,
+            "cardId": "",
+            "name": "空位",
+            "threshold": 0,
+            "points": 0,
+            "influence": [
+              0,
+              0
+            ],
+            "characters": []
+          },
+          {
+            "index": 4,
+            "cardId": "DQJC116",
+            "name": "香港",
+            "threshold": 3,
+            "points": 3,
+            "influence": [
+              0,
+              2
+            ],
+            "characters": [
+              {
+                "instanceId": "i473",
+                "owner": "p3",
+                "controller": "p3",
+                "kind": "hidden",
+                "exhausted": false,
+                "faceDown": true
+              }
+            ]
+          }
+        ],
+        "pendingChoice": null,
+        "waitingChoice": null,
+        "legalActionKinds": [],
+        "stackCount": 0,
+        "graveyardCount": 26,
+        "scoreCards": [
+          {
+            "instanceId": "i330",
+            "cardId": "DQJC114",
+            "owner": "p0",
+            "name": "上海"
+          },
+          {
+            "instanceId": "i507",
+            "cardId": "DQJC115",
+            "owner": "p0",
+            "name": "死者之城"
+          },
+          {
+            "instanceId": "i580",
+            "cardId": "DQJC109",
+            "owner": "p2",
+            "name": "京都"
+          },
+          {
+            "instanceId": "i357",
+            "cardId": "DQJC113",
+            "owner": "p3",
+            "name": "切尔诺贝利"
+          },
+          {
+            "instanceId": "i413",
+            "cardId": "DQJC111",
+            "owner": "p3",
+            "name": "莫斯科"
+          },
+          {
+            "instanceId": "i591",
+            "cardId": "DQJC110",
+            "owner": "p3",
+            "name": "伦敦"
+          }
+        ]
+      }
+    }
+  ],
+  "browserErrors": [],
+  "gamePosts": 0,
+  "transportEvents": []
+}

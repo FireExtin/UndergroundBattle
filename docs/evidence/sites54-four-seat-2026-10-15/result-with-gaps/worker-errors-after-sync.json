@@ -1,0 +1,25 @@
+{
+  "projectId": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+  "query": {
+    "sinceMinutes": 20,
+    "limit": 25,
+    "errorsOnly": true
+  },
+  "matchingOwnedRoomEvents": [
+    {
+      "timestamp": 1792066486737,
+      "requestId": "d020bfb06f1f5b4645f4494851681f08",
+      "rayId": "a4aebec688c9a327",
+      "outcome": "ok",
+      "wallTimeMs": 265,
+      "cpuTimeMs": 12,
+      "eventType": "fetch",
+      "method": "POST",
+      "path": "/api/rooms/1609f4e9dabfb4d970646b44/commands",
+      "status": 409,
+      "level": "info"
+    }
+  ],
+  "omittedOtherRoomEvents": 0,
+  "limitation": "No exception stack returned; an errors-only result can include an ordinary HTTP409. It does not establish the cause of QA proxy GET timeouts."
+}
