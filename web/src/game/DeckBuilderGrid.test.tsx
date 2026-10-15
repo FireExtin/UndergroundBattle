@@ -160,4 +160,171 @@ describe('card-face deck workspace', () => {
     expect(screen.getByRole('button', { name: '添加 巨石阵看护人（JC002）' }).closest('li')).toHaveAttribute('data-selected-count', '1');
     expect(readDeckLibrary().drafts[0].cards).toContainEqual({ cardId: 'JC002', count: 1 });
   });
+
+  it('shows same-name violations inside the reader and clears them immediately after correction', () => {
+    render(<DeckLibrary catalog={{ ...catalog, cards: [...catalog.cards, { ...catalog.cards[1], id: 'same-name' }] }} />);
+    fireEvent.click(screen.getByRole('button', { name: '复制为草稿' }));
+    const add = screen.getByRole('button', { name: '添加 巨石阵看护人（JC002）' });
+    fireEvent.click(add); fireEvent.click(add); fireEvent.click(add);
+    fireEvent.click(screen.getByRole('button', { name: '预览 巨石阵看护人（same-name）' }));
+    fireEvent.click(screen.getByRole('button', { name: '预览添加 巨石阵看护人（same-name）' }));
+    const preview = screen.getByRole('dialog');
+    expect(within(preview).getByRole('list', { name: '此卡构筑提示' })).toHaveTextContent('当前合计 4 张');
+    expect(within(preview).getByText('其他编号也有此牌：同名合计 4 张。')).toBeInTheDocument();
+    expect(within(preview).getByText('牌组共 54 张 · 暂不可开局')).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: '预览减少 巨石阵看护人（same-name）' }));
+    expect(within(preview).queryByRole('list', { name: '此卡构筑提示' })).not.toBeInTheDocument();
+    expect(within(preview).getByText('牌组共 53 张 · 构筑校验通过')).toBeInTheDocument();
+  });
+
+  it('browses the filtered card sequence without adding cards or leaving the active reader', () => {
+    render(<DeckLibrary catalog={catalog} />);
+    fireEvent.click(screen.getByRole('button', { name: '展开组卡工作台' }));
+    fireEvent.change(screen.getByRole('combobox', { name: '卡牌排序' }), { target: { value: 'cost-up' } });
+    const opener = screen.getByRole('button', { name: '预览 无知路人（JC125）' });
+    opener.focus(); fireEvent.click(opener);
+    const reader = screen.getByRole('dialog');
+    const close = screen.getByRole('button', { name: '关闭卡面预览' });
+    expect(close).toHaveFocus();
+    expect(screen.getByRole('button', { name: '上一张卡面' })).toBeDisabled();
+    reader.scrollTop = 400;
+    act(() => { fireEvent.keyDown(close, { key: 'ArrowRight' }); fireEvent.keyDown(close, { key: 'ArrowRight' }); });
+    expect(reader).toHaveAccessibleName('卡面预览 巨石阵看护人（JC002）');
+    expect(reader.scrollTop).toBe(0);
+    expect(screen.getByRole('button', { name: '下一张卡面' })).toBeDisabled();
+    expect(close).toHaveFocus();
+    fireEvent.keyDown(close, { key: 'ArrowLeft' });
+    expect(reader).toHaveAccessibleName('卡面预览 缺图事务（no-scan）');
+    expect(screen.getByRole('status')).toHaveTextContent('已加入 0 张');
+    expect(screen.getByText('牌组共 0 张 · 暂不可开局')).toBeInTheDocument();
+    fireEvent.keyDown(document, { key: 'Escape' });
+    expect(screen.getByRole('dialog')).toHaveAccessibleName('卡面组卡工作台');
+    expect(opener).toHaveFocus();
+  });
+
+  it('keeps the selected-only preview sequence stable while its last copies are removed', () => {
+    render(<DeckLibrary catalog={catalog} />);
+    fireEvent.click(screen.getByRole('button', { name: '添加 无知路人（JC125）' }));
+    fireEvent.click(screen.getByRole('button', { name: '添加 巨石阵看护人（JC002）' }));
+    fireEvent.click(screen.getByRole('checkbox', { name: '只看已加入' }));
+    const opener = screen.getByRole('button', { name: '预览 无知路人（JC125）' });
+    opener.focus(); fireEvent.click(opener);
+    fireEvent.click(screen.getByRole('button', { name: '预览减少 无知路人（JC125）' }));
+    fireEvent.click(screen.getByRole('button', { name: '下一张卡面' }));
+    expect(screen.getByRole('dialog')).toHaveAccessibleName('卡面预览 巨石阵看护人（JC002）');
+    expect(screen.getByRole('status')).toHaveTextContent('已加入 1 张');
+    fireEvent.click(screen.getByRole('button', { name: '上一张卡面' }));
+    expect(screen.getByRole('status')).toHaveTextContent('已加入 0 张');
+    fireEvent.click(screen.getByRole('button', { name: '预览添加 无知路人（JC125）' }));
+    fireEvent.keyDown(document, { key: 'Escape' });
+    expect(within(options()).getAllByRole('listitem')).toHaveLength(2);
+    expect(count('无知路人（JC125）')).toHaveValue(1);
+    expect(count('巨石阵看护人（JC002）')).toHaveValue(1);
+  });
+
+  it('dismisses a removed catalog card and restores the workspace without discarding the draft', () => {
+    const { rerender } = render(<DeckLibrary catalog={catalog} />);
+    fireEvent.click(screen.getByRole('button', { name: '展开组卡工作台' }));
+    fireEvent.click(screen.getByRole('button', { name: '添加 巨石阵看护人（JC002）' }));
+    const opener = screen.getByRole('button', { name: '预览 巨石阵看护人（JC002）' });
+    opener.focus(); fireEvent.click(opener);
+    rerender(<DeckLibrary catalog={{ ...catalog, cards: catalog.cards.filter(card => card.id !== 'JC002') }} />);
+    expect(screen.getByRole('dialog')).toHaveAccessibleName('卡面组卡工作台');
+    expect(screen.getByRole('searchbox', { name: '检索卡牌' })).toHaveFocus();
+    expect(count('未知卡牌（JC002）')).toHaveValue(1);
+    expect(screen.getByRole('button', { name: '保存牌组' })).toBeEnabled();
+  });
+
+  it('combines priority faction shortcuts with sorting and keeps every unavailable cost searchable', () => {
+    const extra = [
+      { ...catalog.cards[1], id: 'FIXTURE_RED', name: '红色测试牌', color: '红', cost: 3 },
+      { ...catalog.cards[1], id: 'FIXTURE_BLUE', name: '蓝色测试牌', color: '蓝', cost: 1 },
+      { ...catalog.cards[1], id: 'FIXTURE_GRAY', name: '灰色测试牌', color: '灰', cost: 9, supported: false },
+    ];
+    render(<DeckLibrary catalog={{ ...catalog, cards: [...catalog.cards, ...extra] }} />);
+    const quick = screen.getByRole('group', { name: '派系速选' });
+    const red = within(quick).getByRole('button', { name: '红 · 鸣钟教派' });
+    fireEvent.click(red);
+    expect(screen.getByRole('combobox', { name: '派系' })).toHaveValue('red');
+    expect(within(options()).getAllByRole('listitem')).toHaveLength(1);
+    expect(red).toHaveAttribute('aria-pressed', 'true');
+    fireEvent.click(red);
+    expect(screen.getByRole('combobox', { name: '派系' })).toHaveValue('all');
+    fireEvent.change(screen.getByRole('combobox', { name: '卡牌排序' }), { target: { value: 'cost-down' } });
+    expect(within(options()).getAllByRole('listitem')[0]).toHaveAttribute('data-catalog-card', 'FIXTURE_RED');
+    fireEvent.click(screen.getByRole('button', { name: '添加 蓝色测试牌（FIXTURE_BLUE）' }));
+    fireEvent.change(screen.getByRole('combobox', { name: '卡牌排序' }), { target: { value: 'selected' } });
+    expect(within(options()).getAllByRole('listitem')[0]).toHaveAttribute('data-catalog-card', 'FIXTURE_BLUE');
+    fireEvent.change(screen.getByRole('combobox', { name: '实现状态' }), { target: { value: 'unavailable' } });
+    fireEvent.change(screen.getByRole('combobox', { name: '印刷费用' }), { target: { value: '9' } });
+    fireEvent.click(within(quick).getByRole('button', { name: '灰 · 国家机构' }));
+    expect(within(options()).getAllByRole('listitem')).toHaveLength(1);
+    expect(screen.getByRole('button', { name: '添加 灰色测试牌（FIXTURE_GRAY）' })).toBeDisabled();
+    expect(count('蓝色测试牌（FIXTURE_BLUE）')).toHaveValue(1);
+  });
+
+  it('navigates rendered grid rows with arrows and leaves counts unchanged', () => {
+    render(<DeckLibrary catalog={catalog} />);
+    const previews = Array.from(options().querySelectorAll<HTMLButtonElement>('.hg-library-card-preview'));
+    previews.forEach((button, index) => vi.spyOn(button, 'getBoundingClientRect').mockReturnValue(new DOMRect(index % 2 * 180, Math.floor(index / 2) * 300, 160, 260)));
+    previews[0].focus();
+    fireEvent.keyDown(previews[0], { key: 'ArrowRight' }); expect(previews[1]).toHaveFocus();
+    fireEvent.keyDown(previews[1], { key: 'ArrowDown' }); expect(previews[2]).toHaveFocus();
+    fireEvent.keyDown(previews[2], { key: 'ArrowUp' }); expect(previews[0]).toHaveFocus();
+    fireEvent.keyDown(previews[0], { key: 'End' }); expect(previews[2]).toHaveFocus();
+    fireEvent.keyDown(previews[2], { key: 'Home' }); expect(previews[0]).toHaveFocus();
+    fireEvent.keyDown(previews[0], { key: 'ArrowLeft' }); expect(previews[0]).toHaveFocus();
+    fireEvent.keyDown(previews[0], { key: 'ArrowRight', altKey: true }); expect(previews[0]).toHaveFocus();
+    fireEvent.click(screen.getByRole('button', { name: '舒展' }));
+    expect(options()).toHaveAttribute('data-density', 'comfortable');
+    expect(screen.queryByRole('spinbutton')).not.toBeInTheDocument();
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+  });
+
+  it('keeps keyboard focus usable when count controls remove their own row', () => {
+    render(<DeckLibrary catalog={catalog} />);
+    fireEvent.click(screen.getByRole('button', { name: '添加 无知路人（JC125）' }));
+    fireEvent.click(screen.getByRole('button', { name: '添加 巨石阵看护人（JC002）' }));
+    fireEvent.click(screen.getByRole('checkbox', { name: '只看已加入' }));
+    const subtract = screen.getByRole('button', { name: '目录减少 无知路人（JC125）' });
+    subtract.focus(); fireEvent.click(subtract);
+    expect(screen.getByRole('button', { name: '预览 巨石阵看护人（JC002）' })).toHaveFocus();
+    const remove = screen.getByRole('button', { name: '移除 巨石阵看护人（JC002）' });
+    remove.focus(); fireEvent.click(remove);
+    expect(screen.getByRole('searchbox', { name: '检索卡牌' })).toHaveFocus();
+    expect(within(options()).queryByRole('listitem')).not.toBeInTheDocument();
+  });
+
+  it('keeps collapsed filter conditions visible and starts new results at the top', () => {
+    render(<DeckLibrary catalog={catalog} />);
+    fireEvent.change(screen.getByRole('combobox', { name: '派系' }), { target: { value: 'yellow' } });
+    fireEvent.change(screen.getByRole('combobox', { name: '印刷费用' }), { target: { value: '2' } });
+    fireEvent.click(screen.getByRole('button', { name: '展开组卡工作台' }));
+    expect(screen.queryByRole('combobox', { name: '印刷费用' })).not.toBeInTheDocument();
+    expect(screen.getByLabelText('生效的更多筛选')).toHaveTextContent('帷幕守望 · 2 费');
+    fireEvent.click(screen.getByRole('button', { name: '更多筛选 · 2 项' }));
+    expect(screen.getByRole('combobox', { name: '印刷费用' })).toHaveValue('2');
+    options().scrollTop = 500;
+    fireEvent.click(screen.getByRole('button', { name: '重置筛选' }));
+    expect(options().scrollTop).toBe(0);
+    options().scrollTop = 200;
+    fireEvent.click(screen.getByRole('button', { name: '添加 无知路人（JC125）' }));
+    expect(options().scrollTop).toBe(200);
+    fireEvent.change(screen.getByRole('combobox', { name: '卡牌排序' }), { target: { value: 'cost-down' } });
+    expect(options().scrollTop).toBe(0);
+  });
+
+  it('does not discard current edits when the selected saved deck is clicked again', () => {
+    render(<DeckLibrary catalog={catalog} />);
+    fireEvent.click(screen.getByRole('button', { name: '复制为草稿' }));
+    fireEvent.click(screen.getByRole('button', { name: '保存牌组' }));
+    fireEvent.click(screen.getByRole('button', { name: '添加 巨石阵看护人（JC002）' }));
+    fireEvent.change(screen.getByRole('textbox', { name: '牌组名称' }), { target: { value: '未保存的牌组名' } });
+    const saved = within(screen.getByRole('list', { name: '已保存牌组' })).getByRole('button', { pressed: true });
+    act(() => { fireEvent.click(saved); fireEvent.click(saved); });
+    expect(count('巨石阵看护人（JC002）')).toHaveValue(1);
+    expect(screen.getByRole('textbox', { name: '牌组名称' })).toHaveValue('未保存的牌组名');
+    expect(saved).toHaveTextContent('正在编辑未保存修改');
+    expect(readDeckLibrary().drafts[0].cards).not.toContainEqual({ cardId: 'JC002', count: 1 });
+  });
 });
