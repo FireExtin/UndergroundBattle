@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, within } from '@testing-library/react';
+import { act, fireEvent, render, screen, within } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import { ChoicePanel } from './ChoicePanel';
 import { visibleCard } from './CardTile';
@@ -10,7 +10,7 @@ import type { CardDefinition, View } from './types';
 
 // These checks use immutable Native74 projections. They do not replay the engine or a live room.
 const blueLeader = blue.scenarios.find(row => row.name === 'leader-replace')!.steps
-  .flatMap(step => step.views).find(view => view.pendingChoice?.kind === 'target');
+  .flatMap(step => step.views as unknown as View[]).find(view => view.pendingChoice?.kind === 'target');
 const cases = [
   { faction: 'red', view: red.cases.find(row => row.name === 'leader-sacrifice')!.beforeViews[0] },
   { faction: 'black', view: black.cases.find(row => row.name === 'move-entry')!.beforeViews[0] },
@@ -48,7 +48,9 @@ describe('priority faction selection projections', () => {
       expect(reader).toHaveAccessibleName('放大阅读暗藏者');
       expect(read.mock.calls[0][0].cardId).toBeUndefined();
     }
-    fireEvent.click(screen.getByRole('button', { name: '确认选择' }));
+    fireEvent.click(first);
+    const confirm = screen.getByRole('button', { name: '确认选择' });
+    act(() => { fireEvent.click(last); fireEvent.click(confirm); });
     expect(submit).toHaveBeenCalledExactlyOnceWith({ ...action, choiceId: choice.id, selected: [choice.options.at(-1)!.id] });
   });
 });
