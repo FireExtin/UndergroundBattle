@@ -118,16 +118,26 @@ function ChoicePanelContent({ choice, action, definitions, busy, onSubmit, onRea
   };
   const label = (id: string) => choice.options.find(option => option.id === id)?.label || id;
   const reorderList = (ids: string[], place: 'top' | 'bottom') => <ol className="hg-order-list">
-    {ids.map((id, index) => <li key={id}><span className="hg-order-number">{index + 1}</span><strong>{label(id)}</strong><span className="hg-order-buttons">
-      <button type="button" disabled={index === 0 || busy} onClick={() => updateDraft(current => ({ ...current, [place]: move(current[place], id, -1) }))} aria-label={`${label(id)}上移`}>↑</button>
-      <button type="button" disabled={index === ids.length - 1 || busy} onClick={() => updateDraft(current => ({ ...current, [place]: move(current[place], id, 1) }))} aria-label={`${label(id)}下移`}>↓</button>
-      <button type="button" disabled={busy} onClick={() => updateDraft(current => {
+    {ids.map((id, index) => {
+      const optionIndex = choice.options.findIndex(option => option.id === id);
+      const card = choice.options[optionIndex]?.card;
+      const name = card ? (viewerId ? visibleCard(card, viewerId) : card).name : label(id);
+      const contextId = card ? `${choice.id}-order-candidate-${optionIndex}` : undefined;
+      return <li key={id} className={card ? 'hg-order-card' : undefined} data-choice-order-option={id} data-choice-candidate-number={card ? optionIndex + 1 : undefined}>
+      <span className="hg-order-number" title={card ? '当前牌序' : undefined}>{index + 1}</span>
+      {card ? <span className="hg-order-card-label"><span className="hg-order-candidate" id={contextId}>候选 {optionIndex + 1}</span><strong>{name}</strong></span> : <strong>{name}</strong>}
+      <span className="hg-order-buttons">
+      <button type="button" disabled={index === 0 || busy} onClick={() => updateDraft(current => ({ ...current, [place]: move(current[place], id, -1) }))} aria-label={`${name}上移`} aria-describedby={contextId}>↑</button>
+      <button type="button" disabled={index === ids.length - 1 || busy} onClick={() => updateDraft(current => ({ ...current, [place]: move(current[place], id, 1) }))} aria-label={`${name}下移`} aria-describedby={contextId}>↓</button>
+      <button type="button" disabled={busy} aria-describedby={contextId} onClick={() => updateDraft(current => {
         if (!current[place].includes(id)) return current;
         return place === 'top'
           ? { ...current, top: current.top.filter(value => value !== id), bottom: [...current.bottom, id] }
           : { ...current, bottom: current.bottom.filter(value => value !== id), top: [...current.top, id] };
       })}>{place === 'top' ? '置于底' : '置于顶'}</button>
-    </span></li>)}
+      {card && onReadCard && <button type="button" className="hg-order-read" aria-label={`放大阅读${name}`} aria-describedby={contextId} onClick={() => readCard(card)}>放大阅读 ↗</button>}
+    </span></li>;
+    })}
     {!ids.length && <li className="hg-empty">这里没有牌</li>}
   </ol>;
 

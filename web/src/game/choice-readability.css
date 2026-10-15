@@ -33,6 +33,11 @@
 .hg-app .hg-choice-footer > span { font-size: 14px; }
 .hg-choice-summary { line-height: 1.6; }
 .hg-choice-summary > small { display: block; margin-top: 3px; color: inherit; font-size: 12px; }
+.hg-order-list .hg-order-card { flex-wrap: wrap; }
+.hg-order-card-label { flex: 1; min-width: 100px; display: flex; flex-direction: column; gap: 4px; overflow-wrap: anywhere; }
+.hg-order-candidate { color: #decda6; font-size: 11px; line-height: 1.4; }
+.hg-order-card .hg-order-buttons { flex-wrap: wrap; margin-left: auto; }
+.hg-order-buttons .hg-order-read { border-color: #a88c55; color: #f1d290; }
 
 @media (max-width: 680px) {
   .hg-choice-filters { grid-template-columns: minmax(0, 1fr) auto; gap: 8px; }
