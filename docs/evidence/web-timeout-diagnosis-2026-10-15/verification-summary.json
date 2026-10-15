@@ -1,0 +1,60 @@
+{
+  "sourceCandidate": "a15321a91e7b712f4d38dda96676043de04c9868",
+  "webTree": "08bc0537480cd524a5a6fd113ad12c170fd10755",
+  "finalWeb": {
+    "passed": 1145,
+    "failed": 0,
+    "files": 121,
+    "commandSeconds": 379.752,
+    "same1145NamesAsFailed00c273FullRun": true
+  },
+  "finalProductionBuildDryRun": {
+    "exitCode": 0,
+    "seconds": 24.875,
+    "publication": false
+  },
+  "carriedByIdenticalSource": {
+    "worker": {
+      "executedAt": "00c273d4a0ae4b75ab3f2a66be2e3eca96c75ede",
+      "passed": 180
+    },
+    "sourceGuards": 42,
+    "fixtureGuards": 22,
+    "cliContracts": 8,
+    "jc046Parity": {
+      "scenarios": 37,
+      "steps": 334,
+      "seatViews": 1468,
+      "invalidStates": 55,
+      "invalidStateEntrypoints": 110
+    },
+    "native": {
+      "executedAt": "4918cfb6372fb9ec900f037e8ed518385d6183e6",
+      "passed": 1169,
+      "rerun": false
+    }
+  },
+  "earlierWebResultsPreserved": [
+    {
+      "at": "4918cfb6372fb9ec900f037e8ed518385d6183e6",
+      "passed": 1142,
+      "failed": 3
+    },
+    {
+      "at": "00c273d4a0ae4b75ab3f2a66be2e3eca96c75ede",
+      "passed": 1144,
+      "failed": 1
+    }
+  ],
+  "nonDocumentationFiles": 4,
+  "codeLinesAdded": 12,
+  "codeLinesDeleted": 9,
+  "thresholdsUnchanged": true,
+  "localFrontendFilesPerDirectory": 158,
+  "localRuntimeHashesStillMatch": true,
+  "mainPush": false,
+  "deployment": false,
+  "onlineGameCommands": false,
+  "independentReview": "pending_parent_serial_arrangement",
+  "githubCiPassedClaim": false
+}

@@ -1,6 +1,6 @@
-# WIP：四份测试中Web超时的串行诊断与最小修复（2026-10-15）
+# Web超时的串行诊断与四文件最小修复（2026-10-15）
 
-原候选 `4918cfb6372fb9ec900f037e8ed518385d6183e6` 的完整Web结果仍为1142通过、3项超时，不被覆盖。原三项在定向采样轮复现并修复后，`00c273d4a0ae4b75ab3f2a66be2e3eca96c75ede` 的完整Web为1144通过、1失败，新增WM056同类大图片深比较超时。随后对WM056单独复现并最小修复，修后9项通过。最终改动为四份测试；最终四文件修复SHA的完整Web及构建尚待运行。本分支不可直接推进main或部署。
+最终四文件修复 `a15321a91e7b712f4d38dda96676043de04c9868` 的完整Web为121文件、1145项通过，production build dry-run通过；待父会话串行独立复审。原4918的1142通过/3超时、第一次修复00c273的1144通过/WM056超时均保留。产品源码、产物字节及阈值未变化，本次没有推main或部署。
 
 ## 真相源与准确位置
 
@@ -58,4 +58,23 @@ node tools/build-storage.mjs -- npm --prefix web test -- \
 
 非法状态manifest仍为`bedea2a79fc7cc98a6c1d0ed98a5d166396d638dba07060a91b6436ea5698661`，WASM仍为`b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c`。Native1169是原4918完整回归结果，本次未重跑。
 
-接着固定四文件修复SHA运行一次不带profiler的完整Web；通过后才执行production build dry-run。Worker、来源、fixture、CLI与parity输入均未变化，以上结果按内容身份保留，不重复运行。最终SHA仍需父会话串行复审；原4918精确SHA授权不能直接解释为新提交的main授权。当前未推main，未部署，也未对线上牌桌发送命令。
+## 最终四文件批次的完整验证
+
+以下两项在固定 `a15321a91e7b712f4d38dda96676043de04c9868`、干净工作区串行执行一次，完整Web未启用profiler，使用原阈值及`--maxWorkers=1`。原始日志、逐项JSON与命令结果保存在`verification-final/`。
+
+| 检查 | 实际结果 |
+| --- | --- |
+| 完整Web | 121文件、1145通过、0失败；退出0，命令耗时379.752秒 |
+| production build dry-run | 两个TypeScript配置、Vite生产构建、Wrangler `--dry-run`均通过；退出0，24.875秒；没有发布 |
+
+V028、WM023、WM038、WM056在此完整轮的首项测试分别为3472.03、323.35、356.23、320.52ms，均通过。没有依赖只跑定向用例来补写完整轮，也没有在同一源码上重跑碰运气：00c273失败后新增了已复现的WM056一行比较修复，才验证新SHA。
+
+从4918到a15321，文档之外只有四份测试变化，共12行新增、9行删除。`sites`、`rust-game`、`rust-game-wasm`和`tools`的Git树在4918、00c273、a15321分别完全一致，fixture与测试配置也未变化，见[最终内容身份核对](evidence/web-timeout-diagnosis-2026-10-15/scope-final-candidate.json)。因此Worker180、来源42、fixture22、CLI8、JC046完整parity及原Native1169按未变内容保留，没有重复运行或改写其执行SHA。最终Web树为`08bc0537480cd524a5a6fd113ad12c170fd10755`。
+
+## 本地产物身份与交接边界
+
+重建后，三个WASM均为2,909,006字节，SHA256仍为`b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c`；Worker bundle为47,324字节，SHA256仍为`e9a2282ea515402467c0f6dacdd695f9494e4141332e9764c950a1aa589a64e6`。`web/dist`、`sites/public`、`sites/dist/client`各158个本地文件的路径、长度、SHA256与构建前完全相同，没有增加、删除或变化。[构建后产物核对](evidence/web-timeout-diagnosis-2026-10-15/artifact-identity-after-build.json)和[前端逐文件清单](evidence/web-timeout-diagnosis-2026-10-15/frontend-identity-after-build.json)只证明本地构建身份，不代表一次新部署或线上试玩。
+
+交接前只读远端核对记录在[remote/CI审计](evidence/web-timeout-diagnosis-2026-10-15/pre-handoff-remote-ci-audit.json)：main仍为`3d642f0c1e6e5ac021cd40560086df35638bfe4c`；JC095证据分支仍为`f4754add6d6239b50234394055b8f9c8e80fbc2a`。a15321没有GitHub check run、workflow run或combined status记录，不能宣称CI通过；空statuses返回的`pending`也不是正在执行的CI。
+
+最终SHA仍需父会话串行复审；原4918精确SHA授权不能直接解释为新提交的main授权。本次没有推main、部署、线上游戏命令或新的线上试玩。独立复审与之后的main决策是剩余边界，验证没有通过改阈值、删断言、减少用例或合计不同轮次数量来补齐。

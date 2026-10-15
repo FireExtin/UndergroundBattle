@@ -1,0 +1,44 @@
+{
+  "fixed": "a15321a91e7b712f4d38dda96676043de04c9868",
+  "singleSerialPass": true,
+  "checks": [
+    {
+      "name": "web-full",
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "npm",
+        "--prefix",
+        "web",
+        "test",
+        "--",
+        "--maxWorkers=1",
+        "--reporter=default",
+        "--reporter=json",
+        "--outputFile=/workspace/web-timeout-diagnosis-20261015/verification-final/web-full-vitest.json"
+      ],
+      "exitCode": 0,
+      "seconds": 379.752,
+      "sha256": "7bd02c010ec634fcce07af07deec2535b00de0fbf52aeb25c1d60fe0ce1d9ac6",
+      "bytes": 36124
+    },
+    {
+      "name": "production-build-dry-run",
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "npm",
+        "--prefix",
+        "sites",
+        "run",
+        "build"
+      ],
+      "exitCode": 0,
+      "seconds": 24.875,
+      "sha256": "801c708e5b5d3225929dd75cb1e1d0d7a991e37c25b26a8ada9f5ed3384531df",
+      "bytes": 1705
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "candidate": "a15321a91e7b712f4d38dda96676043de04c9868",
+  "originalRuntimeCandidate": "4918cfb6372fb9ec900f037e8ed518385d6183e6",
+  "independentChecksAt": "00c273d4a0ae4b75ab3f2a66be2e3eca96c75ede",
+  "atUtc": "2026-10-15T15:30:23.570539+00:00",
+  "nonDocumentationDifferences": [
+    "web/src/game/V028DeckEntry.test.jsx",
+    "web/src/game/WM023Integration.test.jsx",
+    "web/src/game/WM038Integration.test.jsx",
+    "web/src/game/WM056Integration.test.jsx"
+  ],
+  "allProductionSourceDifferences": [],
+  "unchangedTrees": [
+    {
+      "path": "sites",
+      "trees": {
+        "baseline4918": "e32b317018460a9388197d44de794528f7a2c9a8",
+        "independentChecks00c273": "e32b317018460a9388197d44de794528f7a2c9a8",
+        "fourFileFixA15321": "e32b317018460a9388197d44de794528f7a2c9a8"
+      },
+      "identical": true
+    },
+    {
+      "path": "rust-game",
+      "trees": {
+        "baseline4918": "e5e0ababf3e9fc4497143526f0636f2eed84d0ef",
+        "independentChecks00c273": "e5e0ababf3e9fc4497143526f0636f2eed84d0ef",
+        "fourFileFixA15321": "e5e0ababf3e9fc4497143526f0636f2eed84d0ef"
+      },
+      "identical": true
+    },
+    {
+      "path": "rust-game-wasm",
+      "trees": {
+        "baseline4918": "7d6a9bbf1e6ef4bf7e68cdf859fb2c721df522d7",
+        "independentChecks00c273": "7d6a9bbf1e6ef4bf7e68cdf859fb2c721df522d7",
+        "fourFileFixA15321": "7d6a9bbf1e6ef4bf7e68cdf859fb2c721df522d7"
+      },
+      "identical": true
+    },
+    {
+      "path": "tools",
+      "trees": {
+        "baseline4918": "bed7655bb5dd2efedf1b0d0844df2226bd8ec053",
+        "independentChecks00c273": "bed7655bb5dd2efedf1b0d0844df2226bd8ec053",
+        "fourFileFixA15321": "bed7655bb5dd2efedf1b0d0844df2226bd8ec053"
+      },
+      "identical": true
+    }
+  ],
+  "webTree": "08bc0537480cd524a5a6fd113ad12c170fd10755",
+  "testThresholdsChanged": false,
+  "nativeFullRerun": false,
+  "workerFullRerunAfterA15321": false,
+  "mainPush": false,
+  "deployment": false,
+  "auditSetupCorrection": "Initial read-only tree query used nonexistent rust-game-core; corrected from Cargo.toml workspace members. No test or build was rerun for this correction."
+}

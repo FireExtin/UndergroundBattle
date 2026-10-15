@@ -1,7 +1,8 @@
 {
   "baseline": "4918cfb6372fb9ec900f037e8ed518385d6183e6",
   "initialFixCommit": "00c273d4a0ae4b75ab3f2a66be2e3eca96c75ede",
-  "phase": "four-file repair before final full Web",
+  "finalSourceCandidate": "a15321a91e7b712f4d38dda96676043de04c9868",
+  "phase": "local verification complete; independent review pending",
   "thresholdsUnchanged": true,
   "originalFullWebFailurePreserved": true,
   "files": [
@@ -9,6 +10,11 @@
       "path": "analyze_profiles.py",
       "bytes": 4430,
       "sha256": "ed5c6476e01381b818943649e81246d130ad06b7cf152f8266d43af473570cea"
+    },
+    {
+      "path": "artifact-identity-after-build.json",
+      "bytes": 1502,
+      "sha256": "e6228996697263a5928a4db8376f3c7c7370e147d6de4a6abdf052bbe365b229"
     },
     {
       "path": "artifact-identity-before-build.json",
@@ -71,9 +77,19 @@
       "sha256": "75d40331e75cf6f875d61540c55ea37f1a126a5721d592f333f93620ac48538b"
     },
     {
+      "path": "frontend-identity-after-build.json",
+      "bytes": 82480,
+      "sha256": "20b7e1ed06bb608ce563fcc6566fe6052bc0984859619ed38d31d9012fbf1ac0"
+    },
+    {
       "path": "frontend-identity-before-build.json",
       "bytes": 81957,
       "sha256": "e66366087b2ac8b87825114c6baa2b570c98758694b06ee641bea230c198a534"
+    },
+    {
+      "path": "pre-handoff-remote-ci-audit.json",
+      "bytes": 1104,
+      "sha256": "693fc375695bfd347f187176dc8bb23fe03e1dfd248ddcbcf716b9216f00c8ee"
     },
     {
       "path": "profile-summary.json",
@@ -121,6 +137,11 @@
       "sha256": "822264d4da0014abb772591a8478d2f18b6d02e3365b92bfecdbe35597ca4668"
     },
     {
+      "path": "scope-final-candidate.json",
+      "bytes": 2157,
+      "sha256": "7e8efaebedaa143905b686b7d005015bd86acacd1affa2428b40fbbf0fab8a92"
+    },
+    {
       "path": "test-source-identity.json",
       "bytes": 717,
       "sha256": "992d5d0ef34dd120bb5b42955805fc57666aec636861c29c7445b64e247f04c0"
@@ -164,6 +185,31 @@
       "path": "verification-00c273/worker-full.log",
       "bytes": 46547,
       "sha256": "20c34d587ead37400eaf570b7708ee864e6a8e0ee90d3ad7c6e7cf9d5bf77678"
+    },
+    {
+      "path": "verification-final/production-build-dry-run.log.gz",
+      "bytes": 755,
+      "sha256": "8bb022955f306d6dded5cbb0bc06ceac67ae2bd30c07bfc0b39992fcc3823a8b"
+    },
+    {
+      "path": "verification-final/results.json",
+      "bytes": 1037,
+      "sha256": "0e47c2d356d7e00ca7171bedf440b6b26dc21d7f53fa71c5db900970abbd9d11"
+    },
+    {
+      "path": "verification-final/web-full-vitest.json.gz",
+      "bytes": 49886,
+      "sha256": "a8c803f4a0a9143a936caefaf5a554da5285d13702f771b9128d530366e15a16"
+    },
+    {
+      "path": "verification-final/web-full.log",
+      "bytes": 36124,
+      "sha256": "7bd02c010ec634fcce07af07deec2535b00de0fbf52aeb25c1d60fe0ce1d9ac6"
+    },
+    {
+      "path": "verification-summary.json",
+      "bytes": 1504,
+      "sha256": "c7238f0fa5554e3faafd986f5f215c8af71e5aabc87b27e531aa5f0ccf5bac27"
     },
     {
       "path": "wm056/baseline-command.json",
@@ -230,5 +276,6 @@
       "bytes": 153499,
       "sha256": "c54c14f1e7b54670d667f52b8266bdff9a53a11fe448ed1842040412cb745feb"
     }
-  ]
+  ],
+  "rawBuildLogCompression": "production-build-dry-run.log.gz decompresses byte-for-byte to the raw log SHA256 in verification-final/results.json"
 }
