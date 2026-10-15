@@ -1,0 +1,17 @@
+{
+  "baseline": "a3b57e7f24658750e69c40e341d4b9e375ac76de",
+  "paths": [
+    "rust-game",
+    "rust-game-wasm/src",
+    "web",
+    "sites/src",
+    "sites/db",
+    "sites/drizzle",
+    "Cargo.toml",
+    "Cargo.lock",
+    "rust-toolchain.toml"
+  ],
+  "unchanged": true,
+  "wasmSha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c",
+  "frozenInvalidManifestSha256": "bedea2a79fc7cc98a6c1d0ed98a5d166396d638dba07060a91b6436ea5698661"
+}

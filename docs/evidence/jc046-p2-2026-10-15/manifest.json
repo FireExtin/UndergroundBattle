@@ -1,0 +1,36 @@
+{
+  "baseline": "a3b57e7f24658750e69c40e341d4b9e375ac76de",
+  "files": [
+    {
+      "path": "comparator-contract.log",
+      "bytes": 689,
+      "sha256": "fa32ba92b20a26a1a1694eafba0aecaebf9f1eb193626088468f494ec9838ab3"
+    },
+    {
+      "path": "jc046-wasm-parity.log",
+      "bytes": 376,
+      "sha256": "b9736a2e8eb6279b5f799150d39849c4480416c81cfeea5d214e142edd5ddee8"
+    },
+    {
+      "path": "review-fingerprint-delta.json",
+      "bytes": 3814,
+      "sha256": "52b82d5042ec1c4e0bab2c09c008cedebd6f0208be2e5bebb60570b06ace5395"
+    },
+    {
+      "path": "runtime-unchanged.json",
+      "bytes": 455,
+      "sha256": "6c7043e63577a73488d2b69e1716f204317770df7e1f29443db6e8546cd3f785"
+    },
+    {
+      "path": "verification.json",
+      "bytes": 2780,
+      "sha256": "0ece97915ed5cb6fd4ea1416293e8bc1fd9b6e321e61622c3fa31768ae187dab"
+    },
+    {
+      "path": "worker-targeted-first.log",
+      "bytes": 13594,
+      "sha256": "6581f673cda132c7afcb44dc310f6fe9fa88cc9660ef0b711dfb79b17e80a0d5"
+    }
+  ],
+  "compiledArtifactsIncluded": false
+}

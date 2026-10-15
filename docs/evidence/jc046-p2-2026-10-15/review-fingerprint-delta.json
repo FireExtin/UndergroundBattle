@@ -1,0 +1,94 @@
+{
+  "baseline": "a3b57e7f24658750e69c40e341d4b9e375ac76de",
+  "unchanged": 12,
+  "changed": [
+    "rust-game-wasm/tests/jc046_compare.mjs",
+    "sites/test/jc046-integration.test.mjs"
+  ],
+  "files": [
+    {
+      "path": "rust-game/src/jc046.rs",
+      "sha256": "b767146f5d3942305caa1a34caf40461729bbdd05e84208f3e7af97a578021b2",
+      "currentSha256": "b767146f5d3942305caa1a34caf40461729bbdd05e84208f3e7af97a578021b2",
+      "unchanged": true
+    },
+    {
+      "path": "rust-game/src/jc046_tests.rs",
+      "sha256": "4a08fb9e94b501f929b4d672c311e7bf8bb924e5274dcf78f909aa2ca5729c99",
+      "currentSha256": "4a08fb9e94b501f929b4d672c311e7bf8bb924e5274dcf78f909aa2ca5729c99",
+      "unchanged": true
+    },
+    {
+      "path": "rust-game/src/lib.rs",
+      "sha256": "52e08066aca6a65d57eaae62d2defecc51c374a09ce48c8d2053053c7f520957",
+      "currentSha256": "52e08066aca6a65d57eaae62d2defecc51c374a09ce48c8d2053053c7f520957",
+      "unchanged": true
+    },
+    {
+      "path": "rust-game/src/rules.rs",
+      "sha256": "ba5f56925e439af69ab9c262d36f21f4a64e65d04d1b06efa8484e44376b6a5b",
+      "currentSha256": "ba5f56925e439af69ab9c262d36f21f4a64e65d04d1b06efa8484e44376b6a5b",
+      "unchanged": true
+    },
+    {
+      "path": "rust-game/src/engine.rs",
+      "sha256": "11b628c731524a2382068bc21c4cbc57ab0c5b48f84cf9f1b583946bac6e7e75",
+      "currentSha256": "11b628c731524a2382068bc21c4cbc57ab0c5b48f84cf9f1b583946bac6e7e75",
+      "unchanged": true
+    },
+    {
+      "path": "rust-game/src/model.rs",
+      "sha256": "bc9b1c8e1dd110ed211d05e32b2120d2ef55b8d77c449671cae9de629f5c3ea4",
+      "currentSha256": "bc9b1c8e1dd110ed211d05e32b2120d2ef55b8d77c449671cae9de629f5c3ea4",
+      "unchanged": true
+    },
+    {
+      "path": "rust-game/src/room.rs",
+      "sha256": "2423e7e3483e2d00cded662050110bef7e2a433972495407bb31eb4435879079",
+      "currentSha256": "2423e7e3483e2d00cded662050110bef7e2a433972495407bb31eb4435879079",
+      "unchanged": true
+    },
+    {
+      "path": "rust-game/src/resolution.rs",
+      "sha256": "f8c88bf7e73cca311fca83284c7a10473b7666feb84a3d1d23862f727d0bcc2a",
+      "currentSha256": "f8c88bf7e73cca311fca83284c7a10473b7666feb84a3d1d23862f727d0bcc2a",
+      "unchanged": true
+    },
+    {
+      "path": "rust-game/data/cards.json",
+      "sha256": "694751f8429c433115047dddd5ac01c3b04ef5899ab6317271c73db8bf044ea6",
+      "currentSha256": "694751f8429c433115047dddd5ac01c3b04ef5899ab6317271c73db8bf044ea6",
+      "unchanged": true
+    },
+    {
+      "path": "tools/fixture-tools/jc046-current.py",
+      "sha256": "4c068e48c2443536295dc3fa7fb16a19eab08bf51bbd66a17ffa3fc339917cea",
+      "currentSha256": "4c068e48c2443536295dc3fa7fb16a19eab08bf51bbd66a17ffa3fc339917cea",
+      "unchanged": true
+    },
+    {
+      "path": "rust-game-wasm/tests/jc046_compare.mjs",
+      "sha256": "6b62237e83f2bc7581901eb9cd6f02502c1089bff73cbbb15d6952285378d3c3",
+      "currentSha256": "a3f29d67f4a0e0ed82d16a432be0ed4b42a656462f872ddaa4aea488fadd32d9",
+      "unchanged": false
+    },
+    {
+      "path": "sites/test/jc046-integration.test.mjs",
+      "sha256": "7f89cc9dd097eba833bed6a2614f77ef138cbf8639cf9d845127f813db0e3a37",
+      "currentSha256": "97608e5f783e11f39b8da165a1133a7f4a531067e66c1d08418d17f5df00adc6",
+      "unchanged": false
+    },
+    {
+      "path": "tools/cards/jc046-source.test.mjs",
+      "sha256": "3dc5a41a06897de0c7fcf95bbdcfbe6fff892224a19e74e7b1e6b74358bb205a",
+      "currentSha256": "3dc5a41a06897de0c7fcf95bbdcfbe6fff892224a19e74e7b1e6b74358bb205a",
+      "unchanged": true
+    },
+    {
+      "path": "web/src/game/JC046Face.test.jsx",
+      "sha256": "3b98b4e99d18a365c053c4357fea525573698d4f8b56c793011f029742b42799",
+      "currentSha256": "3b98b4e99d18a365c053c4357fea525573698d4f8b56c793011f029742b42799",
+      "unchanged": true
+    }
+  ]
+}

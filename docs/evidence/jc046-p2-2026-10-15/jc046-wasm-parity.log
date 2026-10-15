@@ -1,0 +1,1 @@
+{"scenarios":37,"steps":334,"seatViews":1468,"rejected":12,"invalidStates":55,"invalidStateEntrypoints":110,"invalidStateDirectoryProvided":true,"invalidManifestSha256":"bedea2a79fc7cc98a6c1d0ed98a5d166396d638dba07060a91b6436ea5698661","wasmSha256":"b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c","completeNativeStatesEqual":true,"previous76Rejected":true}

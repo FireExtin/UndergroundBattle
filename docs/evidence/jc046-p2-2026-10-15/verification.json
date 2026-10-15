@@ -1,0 +1,93 @@
+{
+  "baseline": "a3b57e7f24658750e69c40e341d4b9e375ac76de",
+  "branch": "codex/hidden-world-serial-integration-review-20261015",
+  "scope": "Two independently identified JC046 P2 validation gaps; test/comparison changes only",
+  "comparatorContract": {
+    "tests": 8,
+    "pass": 8,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "workerTargeted": {
+    "tests": 45,
+    "pass": 45,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "jc046Cases": 38,
+    "existingPauseCases": 7,
+    "fullWorkerSuiteRerun": false
+  },
+  "newPauseChain": {
+    "preparedNativeLayout": true,
+    "nativePrefixCommands": 9,
+    "accepted": 15,
+    "pausedD1Reopened": true,
+    "resumedD1Reopened": true,
+    "reopened": 3,
+    "mandatoryChoicePreserved": true,
+    "choiceSeats": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "pausedChoiceRejectedWithoutWrite": true,
+    "completeKernelStatesAndJournalsEqual": true,
+    "nativeGameProjectionsEqual": true,
+    "duplicatePauseResumeReceipts": true
+  },
+  "fullParity": {
+    "scenarios": 37,
+    "steps": 334,
+    "seatViews": 1468,
+    "rejected": 12,
+    "invalidStates": 55,
+    "invalidStateEntrypoints": 110,
+    "invalidStateDirectoryProvided": true,
+    "invalidManifestSha256": "bedea2a79fc7cc98a6c1d0ed98a5d166396d638dba07060a91b6436ea5698661",
+    "wasmSha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c",
+    "completeNativeStatesEqual": true,
+    "previous76Rejected": true
+  },
+  "runtimeUnchanged": true,
+  "wasmBindings": [
+    {
+      "path": "rust-game-wasm/pkg/hegemony_wasm_bg.wasm",
+      "sha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c"
+    },
+    {
+      "path": "sites/generated/hegemony_wasm_bg.wasm",
+      "sha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c"
+    },
+    {
+      "path": "sites/dist/server/9b2c4d3e4e9562fdb0bd7c078c66341ea6cdea39-hegemony_wasm_bg.wasm",
+      "sha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c"
+    }
+  ],
+  "changedFiles": [
+    {
+      "path": "rust-game-wasm/tests/jc046_compare.mjs",
+      "sha256": "a3f29d67f4a0e0ed82d16a432be0ed4b42a656462f872ddaa4aea488fadd32d9"
+    },
+    {
+      "path": "rust-game-wasm/tests/jc046_compare.test.mjs",
+      "sha256": "9c810731a1d294d03c1cbbee43f6176abedf0b16447f99bbc9438fcfc2aa3818"
+    },
+    {
+      "path": "sites/test/jc046-integration.test.mjs",
+      "sha256": "97608e5f783e11f39b8da165a1133a7f4a531067e66c1d08418d17f5df00adc6"
+    }
+  ],
+  "staticReviewDelta": {
+    "unchanged": 12,
+    "intentionallyChanged": 2
+  },
+  "independentFollowupReviewCompleted": false,
+  "mainMerged": false,
+  "deployed": false,
+  "liveBrowserAcceptance": false,
+  "existingDataRemoved": false,
+  "committedBuildArtifacts": false
+}
