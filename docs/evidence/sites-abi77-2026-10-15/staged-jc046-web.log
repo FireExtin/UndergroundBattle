@@ -1,0 +1,23 @@
+
+> undergroundbattle-web@0.1.0 pretest
+> node ../scripts/restore-test-fixtures.mjs
+
+Restored 2 reviewed test fixtures (41911207 bytes each)
+
+> undergroundbattle-web@0.1.0 test
+> vitest --run src/game/JC046Integration.test.jsx
+
+
+ RUN  v4.1.2 /workspace/hidden-world-sites-abi77-20261015/web
+
+
+ Test Files  1 passed (1)
+      Tests  6 passed (6)
+   Start at  09:29:53
+   Duration  6.16s (transform 390ms, setup 134ms, import 962ms, tests 4.40s, environment 515ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

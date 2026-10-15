@@ -1,5 +1,7 @@
 # JC046独审P2修正：暂停重开与55份负例身份
 
+> 后续状态：父会话确认4918cfb独立补审通过、两个P2关闭；正式Site54发布及线上PC验收另见[发布记录](SITES_ABI77_PUBLICATION_2026-10-15.md)。下文保持该修正批次当时的定向验证范围。
+
 输入为父会话独审反馈及精确基线 `a3b57e7f24658750e69c40e341d4b9e375ac76de`，沿用 `codex/hidden-world-serial-integration-review-20261015`。续接后shell、文件和Git远端均可访问，工作区初始干净，本地/远端SHA相同；没有启动阻塞。仅串行修改验收脚本/测试，没有修改规则核、WASM源码、Worker运行代码或PC前端，也没有worktree、main合并或发布。
 
 ## P2：暂停状态字段与真实连续恢复

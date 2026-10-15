@@ -1,0 +1,15 @@
+{
+  "localTarGzipBytes": 68894798,
+  "localTarGzipSha256": "8ef5cd675ffdb01cec3ec7230d370c88bc98d761ad0438796eea0c6ad7992cea",
+  "localUncompressedTarBytes": 96378880,
+  "localUncompressedTarSha256": "931304cf93780261fffe5a64dd0deeb9f600f5fd48c2bc6c824430616f603eff",
+  "nativeSaveArchiveStorage": {
+    "archive_format": "tar",
+    "sediment_file_id": "file_00000000f50082079d6c4d34d9571f27",
+    "content_hash": "sha256:8266fedc8816af615f1d882aeb0f2a583c46521cc56a2c6be348f088dccb0881",
+    "size_bytes": 96378880,
+    "file_count": 166
+  },
+  "nativeContentHashEqualsLocalTarSha256": false,
+  "boundary": "Native content_hash encoding is unspecified; no claim of whole archive SHA equality. Preupload archive per-file hashes and all158 public frontend bytes match the reviewed build."
+}

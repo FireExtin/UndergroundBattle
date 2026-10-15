@@ -1,0 +1,10 @@
+{
+  "missingTargetsRestoredExact": true,
+  "repeatIdempotent": true,
+  "identityMismatchRejected": true,
+  "jsonBytes": 41911207,
+  "jsonSha256": "a6e3bc6c1ca236d908912320471b51c231a6bc8067fbf9d05f87ea70ee963601",
+  "gzipBytes": 3067696,
+  "gzipSha256": "7bafedfeef38eb076caeddc9c0890faf8ab8d78ea5d5430db74679246dc5d848",
+  "runtimeSourceUnchanged": true
+}
