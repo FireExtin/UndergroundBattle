@@ -1,0 +1,91 @@
+{
+  "sourceCheckpoint": "b8ced08ec5a55be3b96bfd96cc528e5aef00d4e3",
+  "matched": 17,
+  "files": [
+    {
+      "path": "web/src/game/ChoicePanel.tsx",
+      "inputCommit": "9f3556d0983d5887b20ba61f3ae571bcd00defe2",
+      "sha256": "dcde56e15d15710263b771137c760d4ee25dfa055f47d539d475963565f84144"
+    },
+    {
+      "path": "web/src/game/ChoiceRecovery.test.tsx",
+      "inputCommit": "9f3556d0983d5887b20ba61f3ae571bcd00defe2",
+      "sha256": "51277574f2ff13349244309cc195fadec24a38be4246d4a8e823714972b5cff6"
+    },
+    {
+      "path": "web/src/game/CardTile.tsx",
+      "inputCommit": "9f3556d0983d5887b20ba61f3ae571bcd00defe2",
+      "sha256": "77505e805f14973f628b53864558f1e58e6a40561b57f542e69bc6505eb02520"
+    },
+    {
+      "path": "web/src/game/types.ts",
+      "inputCommit": "9f3556d0983d5887b20ba61f3ae571bcd00defe2",
+      "sha256": "c5cbc44d8f96bc90f10c9d463ad03e99f452121146b3ca416e7eec40a281febb"
+    },
+    {
+      "path": "web/src/game/DeckLibraryPanel.tsx",
+      "inputCommit": "9f3556d0983d5887b20ba61f3ae571bcd00defe2",
+      "sha256": "73d299d3ddba64f63539e0268dbc24ccb5c62b6dbf17b826290d15cceaab282e"
+    },
+    {
+      "path": "web/src/game/DeckCardPreview.tsx",
+      "inputCommit": "9f3556d0983d5887b20ba61f3ae571bcd00defe2",
+      "sha256": "b423e266f9c4f09c1cab53ced73b173cf4174de6a9a8604a8969ab8e8f127f71"
+    },
+    {
+      "path": "web/src/game/useChoiceActionFocus.ts",
+      "inputCommit": "9f3556d0983d5887b20ba61f3ae571bcd00defe2",
+      "sha256": "e539b34f15c629ed6ef56b2c1c6b8ac994c3d8157ad31a396c6054debba126ff"
+    },
+    {
+      "path": "web/src/game/cardGridNavigation.ts",
+      "inputCommit": "9f3556d0983d5887b20ba61f3ae571bcd00defe2",
+      "sha256": "28441995f086b22510c583ea7d66805cfebc4869536e6d3d8e8e3b2fdca378ce"
+    },
+    {
+      "path": "web/src/game/choice-readability.css",
+      "inputCommit": "9f3556d0983d5887b20ba61f3ae571bcd00defe2",
+      "sha256": "0e61783179fb063ef5308107eba297682d5c12b714490b12a96f54cf8be81901"
+    },
+    {
+      "path": "web/src/game/deck-library.css",
+      "inputCommit": "9f3556d0983d5887b20ba61f3ae571bcd00defe2",
+      "sha256": "113383c3db38ad2cdb55d7e6b38cde2645a1564eafbc4919f36302455ffd1836"
+    },
+    {
+      "path": "web/src/game/api.ts",
+      "inputCommit": "799717557a3536ebae75c472e1e5c4a58ac12fc9",
+      "sha256": "0dcfe5c6578696dd5f914e1da6b44892bc2873b90f913451abe50d7a79f2f033"
+    },
+    {
+      "path": "web/src/game/useGame.ts",
+      "inputCommit": "799717557a3536ebae75c472e1e5c4a58ac12fc9",
+      "sha256": "faee378ca53fb16b7e962e117b49bc5de2a82a74993bf0455605fd014eb9a867"
+    },
+    {
+      "path": "web/src/game/GameApp.tsx",
+      "inputCommit": "799717557a3536ebae75c472e1e5c4a58ac12fc9",
+      "sha256": "982ac55f31c7de37a824eb75cb65cb4efbf4500805bc0ce72921b37ebe7c39ca"
+    },
+    {
+      "path": "web/src/game/Table.tsx",
+      "inputCommit": "799717557a3536ebae75c472e1e5c4a58ac12fc9",
+      "sha256": "197172646d4a98fd1b5655c6690c60b37f59fd27b20251a27d0d90056bed03a3"
+    },
+    {
+      "path": "web/src/game/RoomManagement.tsx",
+      "inputCommit": "799717557a3536ebae75c472e1e5c4a58ac12fc9",
+      "sha256": "cccbd36c5a158ea36a505b63f30dfaf982707b6022877554be1a5da274ca0ad5"
+    },
+    {
+      "path": "web/src/game/choiceDraftStorage.ts",
+      "inputCommit": "799717557a3536ebae75c472e1e5c4a58ac12fc9",
+      "sha256": "7ee170ad77f696e87598da16915fb433e4ebb697984e40f5a70abbdcd69f6612"
+    },
+    {
+      "path": "web/src/game/useSeatConflict.ts",
+      "inputCommit": "799717557a3536ebae75c472e1e5c4a58ac12fc9",
+      "sha256": "bc8f8d3aa773edfa13abd0a211b79d56a749f96d3507a885a161587c01cf0266"
+    }
+  ]
+}

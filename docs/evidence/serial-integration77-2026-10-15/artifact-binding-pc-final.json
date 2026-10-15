@@ -1,0 +1,41 @@
+{
+  "sourceCheckpoint": "b8ced08ec5a55be3b96bfd96cc528e5aef00d4e3",
+  "wasmBindings": [
+    {
+      "path": "rust-game-wasm/pkg/hegemony_wasm_bg.wasm",
+      "sha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c",
+      "bytes": 2909006
+    },
+    {
+      "path": "sites/generated/hegemony_wasm_bg.wasm",
+      "sha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c",
+      "bytes": 2909006
+    },
+    {
+      "path": "sites/dist/server/9b2c4d3e4e9562fdb0bd7c078c66341ea6cdea39-hegemony_wasm_bg.wasm",
+      "sha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c",
+      "bytes": 2909006
+    }
+  ],
+  "workerBundle": {
+    "path": "sites/dist/server/index.js",
+    "sha256": "e9a2282ea515402467c0f6dacdd695f9494e4141332e9764c950a1aa589a64e6"
+  },
+  "workerTestedBundleAndKernelUnchanged": true,
+  "nativeServerBinary": {
+    "path": "/workspace/undergroundbattle-build/target/debug/hegemony-server",
+    "sha256": "20f714a32ff58aed85385d0f3ebbd3fb4a2c5249abfcbc030df8719016e45ac8"
+  },
+  "clientAssetCopiesMatched": 158,
+  "clientAssetsIdenticalToPassed4bacf3aBuild": true,
+  "webGitTree": "d2f2c681476749dd1b63e1e4553ceac2989fd77b",
+  "passedWebCheckpoint": "4bacf3ae4886a708a1bce805c9270e4ba8645173",
+  "passedWebTree": "d2f2c681476749dd1b63e1e4553ceac2989fd77b",
+  "webTreeIdenticalToFull1145Pass": true,
+  "localFrozenKernelArchive": {
+    "path": "/workspace/serial-evidence-20261015/frozen-kernel/abi77-serial-candidate-kernel-20261015.tar.gz",
+    "sha256": "f26a7d4b8b1eaf155c086d8a8cb33a3d60322aa68504db37b9b68d85cdffe200",
+    "committed": false
+  },
+  "compiledArtifactsCommitted": false
+}

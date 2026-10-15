@@ -1,0 +1,415 @@
+{
+  "status": "PC combined local validation complete; independent review pending",
+  "branch": "codex/hidden-world-serial-integration-review-20261015",
+  "validatedSourceCheckpoint": "b8ced08ec5a55be3b96bfd96cc528e5aef00d4e3",
+  "engine": "rust-v0.2.77-jc046-mandatory-sacrifice-candidate",
+  "cardPool": "limited-v2.70-jc046-mandatory-sacrifice-candidate",
+  "cards": 143,
+  "native": {
+    "exitCode": 0,
+    "singleFullRun": true,
+    "command": [
+      "cargo",
+      "test",
+      "--locked",
+      "--workspace",
+      "--",
+      "--test-threads=1"
+    ],
+    "passed": 1169,
+    "failed": 0,
+    "ignored": 0,
+    "filtered": 0,
+    "jc046Passed": 29,
+    "longSealingTestIncluded": true,
+    "suites": [
+      {
+        "passed": 1102,
+        "failed": 0,
+        "ignored": 0,
+        "measured": 0,
+        "filtered": 0,
+        "seconds": 725.81
+      },
+      {
+        "passed": 0,
+        "failed": 0,
+        "ignored": 0,
+        "measured": 0,
+        "filtered": 0,
+        "seconds": 0.0
+      },
+      {
+        "passed": 0,
+        "failed": 0,
+        "ignored": 0,
+        "measured": 0,
+        "filtered": 0,
+        "seconds": 0.0
+      },
+      {
+        "passed": 3,
+        "failed": 0,
+        "ignored": 0,
+        "measured": 0,
+        "filtered": 0,
+        "seconds": 0.5
+      },
+      {
+        "passed": 27,
+        "failed": 0,
+        "ignored": 0,
+        "measured": 0,
+        "filtered": 0,
+        "seconds": 4.43
+      },
+      {
+        "passed": 5,
+        "failed": 0,
+        "ignored": 0,
+        "measured": 0,
+        "filtered": 0,
+        "seconds": 0.08
+      },
+      {
+        "passed": 2,
+        "failed": 0,
+        "ignored": 0,
+        "measured": 0,
+        "filtered": 0,
+        "seconds": 0.02
+      },
+      {
+        "passed": 12,
+        "failed": 0,
+        "ignored": 0,
+        "measured": 0,
+        "filtered": 0,
+        "seconds": 0.39
+      },
+      {
+        "passed": 10,
+        "failed": 0,
+        "ignored": 0,
+        "measured": 0,
+        "filtered": 0,
+        "seconds": 0.57
+      },
+      {
+        "passed": 8,
+        "failed": 0,
+        "ignored": 0,
+        "measured": 0,
+        "filtered": 0,
+        "seconds": 0.61
+      },
+      {
+        "passed": 0,
+        "failed": 0,
+        "ignored": 0,
+        "measured": 0,
+        "filtered": 0,
+        "seconds": 0.0
+      },
+      {
+        "passed": 0,
+        "failed": 0,
+        "ignored": 0,
+        "measured": 0,
+        "filtered": 0,
+        "seconds": 0.0
+      },
+      {
+        "passed": 0,
+        "failed": 0,
+        "ignored": 0,
+        "measured": 0,
+        "filtered": 0,
+        "seconds": 0.0
+      }
+    ]
+  },
+  "web": {
+    "firstRun": {
+      "passed": 1130,
+      "failed": 15,
+      "files": 121
+    },
+    "correctedSingleFullRun": {
+      "passed": 1145,
+      "failed": 0,
+      "files": 121,
+      "exitCode": 0
+    },
+    "passedCheckpoint": "4bacf3ae4886a708a1bce805c9270e4ba8645173",
+    "currentWebGitTreeIdentical": true,
+    "currentProductionAssetsIdentical": true
+  },
+  "worker": {
+    "tests": 179,
+    "pass": 179,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "current77Inputs": {
+    "web": 27,
+    "worker": 23,
+    "generationCommands": 39
+  },
+  "sourceTests": 42,
+  "inputGuardTests": 22,
+  "wasmParity": {
+    "jc037": {
+      "scenarios": 8,
+      "steps": 43,
+      "seatViews": 196,
+      "rejected": 1,
+      "wasmSha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c",
+      "completeNativeStatesEqual": true
+    },
+    "wm056": {
+      "scope": "current Native→WASM full transitions/four-seat views and invalid state rejection",
+      "steps": 277,
+      "snapshots": 561,
+      "projections": 3352,
+      "rejected": 23,
+      "wasmSha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c"
+    },
+    "jc087": {
+      "scope": "current Native→WASM full transitions/four-seat views and invalid state rejection",
+      "steps": 300,
+      "snapshots": 595,
+      "projections": 3580,
+      "rejected": 10,
+      "wasmSha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c"
+    },
+    "jz35": {
+      "scope": "current Native→WASM full transitions/four-seat views and invalid state rejection",
+      "steps": 187,
+      "snapshots": 383,
+      "projections": 2280,
+      "rejected": 28,
+      "wasmSha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c"
+    },
+    "jc060": {
+      "scenarios": 11,
+      "steps": 86,
+      "seatViews": 380,
+      "rejected": 0,
+      "wasmSha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c",
+      "completeNativeStatesEqual": true,
+      "previous74Rejected": true
+    },
+    "jc094": {
+      "scope": "current Native→WASM full transitions/four-seat views and invalid state rejection",
+      "steps": 213,
+      "snapshots": 429,
+      "projections": 2568,
+      "rejected": 7,
+      "wasmSha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c"
+    },
+    "jc052": {
+      "scope": "current Native/WASM full transitions, four-seat views, invalid restoration",
+      "steps": 238,
+      "snapshots": 495,
+      "projections": 2932,
+      "rejected": 43,
+      "wasmSha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c"
+    },
+    "jc046": {
+      "scenarios": 37,
+      "steps": 334,
+      "seatViews": 1468,
+      "rejected": 12,
+      "invalidStates": 55,
+      "invalidStateEntrypoints": 110,
+      "invalidStateDirectoryProvided": true,
+      "wasmSha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c",
+      "completeNativeStatesEqual": true,
+      "previous76Rejected": true
+    },
+    "jc061": {
+      "scope": "current Native→WASM full transitions/four-seat views and invalid state rejection",
+      "steps": 264,
+      "snapshots": 514,
+      "projections": 3112,
+      "rejected": 11,
+      "wasmSha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c"
+    },
+    "xq25": {
+      "scope": "current Native→WASM full transitions/four-seat views and invalid state rejection",
+      "steps": 241,
+      "snapshots": 495,
+      "projections": 2944,
+      "rejected": 27,
+      "wasmSha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c"
+    },
+    "wm038": {
+      "scope": "current Native→WASM full transitions/four-seat views and invalid state rejection",
+      "steps": 593,
+      "snapshots": 1219,
+      "projections": 7248,
+      "rejected": 53,
+      "wasmSha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c"
+    },
+    "jc095": {
+      "scenarios": 11,
+      "steps": 146,
+      "seatViews": 614,
+      "rejected": 3,
+      "invalidStates": 45,
+      "wasmSha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c",
+      "completeNativeStatesEqual": true,
+      "previous76Rejected": true
+    },
+    "wm023": {
+      "scope": "current Native→WASM full transitions/four-seat views and invalid state rejection",
+      "steps": 253,
+      "snapshots": 510,
+      "projections": 3052,
+      "rejected": 27,
+      "wasmSha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c"
+    }
+  },
+  "xq24Containers": {
+    "passed": true,
+    "rejectedStates": 4,
+    "restoreEntrypoints": 12,
+    "normalScenarios": 12,
+    "normalCommands": 117,
+    "seatViews": 370,
+    "fixtureSha256": "670972d6f4d09440d5334bf35c85e8556b93f07ecc3252ef4a79293bed276904",
+    "wasmBytes": 2909006,
+    "wasmSha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c"
+  },
+  "wasmSha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c",
+  "wasmCopiesIdentical": 3,
+  "productionClientFilesIdentical": 158,
+  "typescriptViteWorkerDryRun": "passed for final PC candidate",
+  "pcBrowserUi": {
+    "passed": true,
+    "scope": "Local browser + exact Native77 projections; fixture rendering, not live gameplay",
+    "engine": "rust-v0.2.77-jc046-mandatory-sacrifice-candidate",
+    "wasmSha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c",
+    "apiCalls": 0,
+    "pageErrors": [],
+    "checks": [
+      {
+        "viewport": {
+          "width": 1366,
+          "height": 900
+        },
+        "choiceBounds": {
+          "top": 118.5,
+          "bottom": 818.5,
+          "confirmTop": 753,
+          "confirmBottom": 799,
+          "viewportHeight": 900,
+          "optionsHeight": 405,
+          "optionsOverflowY": "auto"
+        },
+        "domainCounts": [
+          2,
+          1,
+          0
+        ],
+        "mandatoryChoiceRestored": true,
+        "exactNativeAction": true,
+        "deckCard": "JC046",
+        "deckCount": 1,
+        "horizontalOverflow": false
+      },
+      {
+        "viewport": {
+          "width": 1366,
+          "height": 768
+        },
+        "choiceBounds": {
+          "top": 110.5,
+          "bottom": 688.5,
+          "confirmTop": 623,
+          "confirmBottom": 669,
+          "viewportHeight": 768,
+          "optionsHeight": 288,
+          "optionsOverflowY": "auto"
+        },
+        "domainCounts": [
+          2,
+          1,
+          0
+        ],
+        "mandatoryChoiceRestored": true,
+        "exactNativeAction": true,
+        "deckCard": "JC046",
+        "deckCount": 1,
+        "horizontalOverflow": false
+      }
+    ]
+  },
+  "pcRecovery": {
+    "passed": true,
+    "scope": "local Chromium, current native server, bounded two-seat UI recovery",
+    "fullMatch": false,
+    "remoteDeployment": false,
+    "sourceCommit": "b8ced08ec5a55be3b96bfd96cc528e5aef00d4e3",
+    "viewport": {
+      "width": 1366,
+      "height": 900
+    },
+    "checks": [
+      "copied independent same seat detected; other seat isolated; close clears warning",
+      "private choice and selected draft survive a real browser reload",
+      "ordinary same-seat conflict is symmetric; drafts remain tab-local; close clears warning",
+      "storage-event fallback detects separate tabs without leaving a presence record",
+      "lost pause ACK automatically recovers the identical tuple; server version advances once",
+      "SQLite service reopen preserves paused private choice; resume restores local selection",
+      "rapid duplicate choice clicks emit one command; authoritative completion clears draft"
+    ],
+    "synthetic503s": 2,
+    "pageErrors": [],
+    "initialChoiceBounds": {
+      "dialog": {
+        "x": 153,
+        "y": 118.5,
+        "width": 1060,
+        "height": 700
+      },
+      "confirm": {
+        "x": 1093.984375,
+        "y": 753,
+        "width": 96.015625,
+        "height": 46
+      }
+    },
+    "versions": {
+      "rules": "hegemony-pdf-v1",
+      "cardPool": "limited-v2.70-jc046-mandatory-sacrifice-candidate",
+      "engine": "rust-v0.2.77-jc046-mandatory-sacrifice-candidate"
+    },
+    "commandCounts": {
+      "pausePosts": 3,
+      "choicePosts": 1
+    }
+  },
+  "pcRecoveryMetadata": {
+    "authoritativeRun": "browser-recovery-pc-verified",
+    "gitSourceCommitVerified": true,
+    "discardedMetadataOnlyRunKeptLocally": "browser-recovery-pc-final"
+  },
+  "staticReviewFingerprintsMatched": 14,
+  "integratedUiRecoveryFilesMatchExactInputs": 17,
+  "oldScansAndFixtureFilesUnchanged": 698,
+  "mobileLayoutWorkInActiveCandidate": false,
+  "mobileLimitation": "390x844 mandatory choice confirmation may remain below viewport; mobile trial patch withdrawn from active candidate per PC-first scope; retained in historical WIP 67ecfe0defad6b18bccdda99901c82195ce71ced",
+  "historicalAbi74RebuildIdentityDifferenceResolved": false,
+  "independentReviewCompleted": false,
+  "mergedMain": false,
+  "deployed": false,
+  "liveBrowserAcceptance": false,
+  "committedCompiledArtifacts": false,
+  "remaining": [
+    "Parent-arranged serial independent review",
+    "Publication and matching-identity live acceptance only after review and applicable authorization"
+  ]
+}

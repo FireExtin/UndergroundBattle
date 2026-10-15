@@ -1,0 +1,60 @@
+{
+  "passed": true,
+  "scope": "Local browser + exact Native77 projections; fixture rendering, not live gameplay",
+  "engine": "rust-v0.2.77-jc046-mandatory-sacrifice-candidate",
+  "wasmSha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c",
+  "apiCalls": 0,
+  "pageErrors": [],
+  "checks": [
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 900
+      },
+      "choiceBounds": {
+        "top": 118.5,
+        "bottom": 818.5,
+        "confirmTop": 753,
+        "confirmBottom": 799,
+        "viewportHeight": 900,
+        "optionsHeight": 405,
+        "optionsOverflowY": "auto"
+      },
+      "domainCounts": [
+        2,
+        1,
+        0
+      ],
+      "mandatoryChoiceRestored": true,
+      "exactNativeAction": true,
+      "deckCard": "JC046",
+      "deckCount": 1,
+      "horizontalOverflow": false
+    },
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "choiceBounds": {
+        "top": 110.5,
+        "bottom": 688.5,
+        "confirmTop": 623,
+        "confirmBottom": 669,
+        "viewportHeight": 768,
+        "optionsHeight": 288,
+        "optionsOverflowY": "auto"
+      },
+      "domainCounts": [
+        2,
+        1,
+        0
+      ],
+      "mandatoryChoiceRestored": true,
+      "exactNativeAction": true,
+      "deckCard": "JC046",
+      "deckCount": 1,
+      "horizontalOverflow": false
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{"passed":false,"scope":"Local browser + exact Native77 projections; fixture rendering, not live gameplay","engine":"rust-v0.2.77-jc046-mandatory-sacrifice-candidate","wasmSha256":"b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c","apiCalls":0,"pageErrors":[],"checks":[],"failure":"AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n\n  [\n    {\n      action: {\n+       abilityId: undefined,\n+       allocations: undefined,\n+       bottom: undefined,\n+       cardId: undefined,\n        choiceId: 'i250',\n+       costSelected: undefined,\n+       deckDraft: undefined,\n+       intentId: undefined,\n        kind: 'choose',\n+       option: undefined,\n+       region: undefined,\n        selected: [\n          'i248'\n        ],\n+       targetId: undefined,\n+       top: undefined,\n+       windowId: undefined\n      },\n      kind: 'game'\n    }\n  ]\n"}
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
++ actual - expected
+
+  [
+    {
+      action: {
++       abilityId: undefined,
++       allocations: undefined,
++       bottom: undefined,
++       cardId: undefined,
+        choiceId: 'i250',
++       costSelected: undefined,
++       deckDraft: undefined,
++       intentId: undefined,
+        kind: 'choose',
++       option: undefined,
++       region: undefined,
+        selected: [
+          'i248'
+        ],
++       targetId: undefined,
++       top: undefined,
++       windowId: undefined
+      },
+      kind: 'game'
+    }
+  ]
+
+    at file:///workspace/UndergroundBattle/tools/frontend/serial-integration-qa.mjs:94:12 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: [
+    {
+      kind: 'game',
+      action: {
+        kind: 'choose',
+        cardId: undefined,
+        targetId: undefined,
+        region: undefined,
+        option: undefined,
+        abilityId: undefined,
+        costSelected: undefined,
+        choiceId: 'i250',
+        selected: [ 'i248' ],
+        top: undefined,
+        bottom: undefined,
+        allocations: undefined,
+        deckDraft: undefined,
+        windowId: undefined,
+        intentId: undefined
+      }
+    }
+  ],
+  expected: [
+    {
+      action: { choiceId: 'i250', kind: 'choose', selected: [ 'i248' ] },
+      kind: 'game'
+    }
+  ],
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0
