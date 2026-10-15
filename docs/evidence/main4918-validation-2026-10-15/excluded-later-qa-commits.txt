@@ -1,0 +1,9 @@
+23aebd5aa259451b2b3bee8d2cb392c9abb0df6e	docs: record Site54 publication and WIP online PC acceptance
+c71d711be0819c24d9586c057130faad22c038b8	docs: complete Site54 public PC match acceptance and source binding
+ffe232cb2461037744c63208f658a53593cc6714	test: checkpoint WIP Site54 four-seat public PC acceptance
+33fe788002b62d404a48b8e787b1406f7591db7c	test: preserve four-seat timeout evidence and track normal UI recovery
+7260cd92fc656470774b125f5a9b8ebbc593da83	WIP: preserve Site54 four-seat chain and sync timeout evidence
+f450f284eacfc1cee41cc91d4195bbce28363502	WIP: record Site54 four-seat natural finish with explicit coverage gaps
+4e2631c3761a2c9c4898c4b1290436b7df68eade	QA: reconcile original Site54 pending command against durable records
+2426c9261c5fc52f66fbe67c55d7c86be79fbbed	WIP: start one owned Site54 JC095 nonzero UI probe
+f4754add6d6239b50234394055b8f9c8e80fbc2a	QA: prove Site54 JC095 nonzero conversion and retain receipt boundaries

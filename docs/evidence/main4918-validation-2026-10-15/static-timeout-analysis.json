@@ -1,0 +1,50 @@
+{
+  "method": "Static source inspection and read-only file byte/hash comparison only; no test rerun or timing benchmark",
+  "failures": [
+    {
+      "file": "web/src/game/V028DeckEntry.test.jsx",
+      "line": 15,
+      "testDurationMs": 29496,
+      "timeoutMs": 20000,
+      "callback": "12 card types added/edited, saved/reloaded, local four-seat game setup; no per-step timings",
+      "causeProven": false
+    },
+    {
+      "file": "web/src/game/WM023Integration.test.jsx",
+      "line": 16,
+      "testDurationMs": 7388,
+      "timeoutMs": 5000,
+      "bufferComparisonLine": 24,
+      "causeProven": false
+    },
+    {
+      "file": "web/src/game/WM038Integration.test.jsx",
+      "line": 16,
+      "testDurationMs": 5101,
+      "timeoutMs": 5000,
+      "bufferComparisonLine": 23,
+      "causeProven": false
+    }
+  ],
+  "assetIdentity": [
+    {
+      "cardId": "WM023",
+      "source": "resource/ymsj-fun.github.io/cards/WM023 尽职的珍珠.jpg",
+      "served": "web/public/cards/WM023.jpg",
+      "bytes": 1317198,
+      "equalBytes": true,
+      "sourceSha256": "b209fe484e37b930ce4d64be078bd3e72a10bdff5250bfd38ba97cb7648cee85",
+      "servedSha256": "b209fe484e37b930ce4d64be078bd3e72a10bdff5250bfd38ba97cb7648cee85"
+    },
+    {
+      "cardId": "WM038",
+      "source": "resource/ymsj-fun.github.io/cards/WM038 信徒烙印.jpg",
+      "served": "web/public/cards/WM038.jpg",
+      "bytes": 1240666,
+      "equalBytes": true,
+      "sourceSha256": "847dabd861d6350ae21df04ac548a975e99a7cfd4814f213444409d4c42d7acd",
+      "servedSha256": "847dabd861d6350ae21df04ac548a975e99a7cfd4814f213444409d4c42d7acd"
+    }
+  ],
+  "rootCause": "Undetermined; full callback timeouts do not identify the precise slow operation or establish correctness of all assertions"
+}

@@ -1,0 +1,12 @@
+A	docs/JC046_P2_VALIDATION_FIX_2026-10-15.md
+M	docs/SERIAL_INTEGRATION_REVIEW_2026-10-15.md
+A	docs/evidence/jc046-p2-2026-10-15/comparator-contract.log
+A	docs/evidence/jc046-p2-2026-10-15/jc046-wasm-parity.log
+A	docs/evidence/jc046-p2-2026-10-15/manifest.json
+A	docs/evidence/jc046-p2-2026-10-15/review-fingerprint-delta.json
+A	docs/evidence/jc046-p2-2026-10-15/runtime-unchanged.json
+A	docs/evidence/jc046-p2-2026-10-15/verification.json
+A	docs/evidence/jc046-p2-2026-10-15/worker-targeted-first.log
+M	rust-game-wasm/tests/jc046_compare.mjs
+A	rust-game-wasm/tests/jc046_compare.test.mjs
+M	sites/test/jc046-integration.test.mjs

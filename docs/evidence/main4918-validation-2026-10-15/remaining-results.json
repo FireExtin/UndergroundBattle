@@ -1,0 +1,24 @@
+{
+  "fixed": "4918cfb6372fb9ec900f037e8ed518385d6183e6",
+  "singleSerialPass": true,
+  "checks": [
+    {
+      "name": "web-full",
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "npm",
+        "--prefix",
+        "web",
+        "test",
+        "--",
+        "--maxWorkers=1"
+      ],
+      "exitCode": 1,
+      "seconds": 466.11,
+      "sha256": "50cb79ea1d7b72c2f789c70d6e7557f5e97802f66083ce630e26dbe0f6d1cea6",
+      "bytes": 3482
+    }
+  ]
+}

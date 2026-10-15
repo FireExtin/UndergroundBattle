@@ -1,0 +1,34 @@
+{
+  "checks": [
+    {
+      "path": "rust-game-wasm/pkg/hegemony_wasm_bg.wasm",
+      "exists": true,
+      "expectedSha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c",
+      "sha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c",
+      "matched": true
+    },
+    {
+      "path": "sites/generated/hegemony_wasm_bg.wasm",
+      "exists": true,
+      "expectedSha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c",
+      "sha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c",
+      "matched": true
+    },
+    {
+      "path": "sites/dist/server/9b2c4d3e4e9562fdb0bd7c078c66341ea6cdea39-hegemony_wasm_bg.wasm",
+      "exists": true,
+      "expectedSha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c",
+      "sha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c",
+      "matched": true
+    },
+    {
+      "path": "sites/dist/server/index.js",
+      "exists": true,
+      "expectedSha256": "e9a2282ea515402467c0f6dacdd695f9494e4141332e9764c950a1aa589a64e6",
+      "sha256": "e9a2282ea515402467c0f6dacdd695f9494e4141332e9764c950a1aa589a64e6",
+      "matched": true
+    }
+  ],
+  "webTree": "d2f2c681476749dd1b63e1e4553ceac2989fd77b",
+  "matchesPassed1145Tree": true
+}

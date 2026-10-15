@@ -1,0 +1,28 @@
+{
+  "atUtc": "2026-10-15T14:50:46.906408+00:00",
+  "fixed": "4918cfb6372fb9ec900f037e8ed518385d6183e6",
+  "fixedTree": "3678ce1106d2001a62c96dc7a3d493a3a3b4e6b2",
+  "headClean": true,
+  "remoteRefs": {
+    "refs/heads/codex/sites54-jc095-gap-closure-review-20261015": "f4754add6d6239b50234394055b8f9c8e80fbc2a",
+    "refs/heads/main": "3d642f0c1e6e5ac021cd40560086df35638bfe4c"
+  },
+  "mainProtected": false,
+  "requiredStatusChecks": {
+    "enforcement_level": "off",
+    "contexts": [],
+    "checks": []
+  },
+  "branchRules": [],
+  "candidateCheckRuns": 0,
+  "candidateWorkflowRuns": 0,
+  "candidateCombinedStatus": {
+    "state": "pending",
+    "totalCount": 0,
+    "statuses": []
+  },
+  "mainPushAttempted": false,
+  "deploymentAttempted": false,
+  "newTestExecutionAfterWebFailure": false,
+  "queuedChecksStartedAfterFailure": false
+}
