@@ -1,0 +1,83 @@
+{"posts": 20, "version": 19, "turn": 1, "score": [0, 0, 0, 0], "jc046FourSeats": false}
+{"passed": false, "completeGame": false, "roomId": "1609f4e9dabfb4d970646b44", "uiPostCount": 29, "failure": "AssertionError: teams seat 3 pass rejected HTTP 409: window_expired \u54cd\u5e94\u7a97\u53e3\u5df2\u7ecf\u6539\u53d8\u6216\u5173\u95ed"}
+Traceback (most recent call last):
+  File "/workspace/UndergroundBattle/tools/cloud-playtest/public_abi77_teams.py", line 358, in <module>
+    asyncio.run(main(p.parse_args()))
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/asyncio/runners.py", line 195, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/asyncio/base_events.py", line 691, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/workspace/UndergroundBattle/tools/cloud-playtest/public_abi77_teams.py", line 353, in main
+    await TeamsRun(p,Remote(),output,args.resume,args.budget).play()
+  File "/workspace/UndergroundBattle/tools/cloud-playtest/public_abi77_teams.py", line 346, in play
+    assert result['passed'],result['failure']
+           ~~~~~~^^^^^^^^^^
+AssertionError: AssertionError: teams seat 3 pass rejected HTTP 409: window_expired 响应窗口已经改变或关闭
+{"posts": 40, "version": 40, "turn": 1, "score": [0, 0, 0, 0], "jc046FourSeats": false}
+{"posts": 60, "version": 61, "turn": 1, "score": [0, 0, 0, 0], "jc046FourSeats": false}
+{"posts": 80, "version": 81, "turn": 1, "score": [0, 0, 0, 0], "jc046FourSeats": false}
+{"posts": 100, "version": 101, "turn": 1, "score": [0, 0, 0, 0], "jc046FourSeats": false}
+{"posts": 120, "version": 121, "turn": 1, "score": [0, 0, 0, 0], "jc046FourSeats": false}
+{"posts": 140, "version": 141, "turn": 1, "score": [0, 0, 0, 0], "jc046FourSeats": false}
+{"posts": 160, "version": 161, "turn": 1, "score": [0, 0, 0, 0], "jc046FourSeats": false}
+{"posts": 180, "version": 181, "turn": 2, "score": [0, 0, 0, 0], "jc046FourSeats": false}
+{"posts": 200, "version": 202, "turn": 2, "score": [0, 0, 0, 0], "jc046FourSeats": false}
+{"posts": 220, "version": 223, "turn": 2, "score": [0, 0, 0, 0], "jc046FourSeats": false}
+{"posts": 240, "version": 243, "turn": 2, "score": [0, 0, 0, 0], "jc046FourSeats": false}
+{"posts": 260, "version": 263, "turn": 2, "score": [0, 0, 0, 0], "jc046FourSeats": false}
+{"posts": 280, "version": 283, "turn": 2, "score": [0, 0, 0, 0], "jc046FourSeats": false}
+{"posts": 300, "version": 303, "turn": 2, "score": [0, 0, 0, 0], "jc046FourSeats": false}
+{"posts": 320, "version": 323, "turn": 2, "score": [0, 0, 0, 0], "jc046FourSeats": false}
+{"posts": 340, "version": 343, "turn": 3, "score": [0, 0, 0, 0], "jc046FourSeats": false}
+{"posts": 360, "version": 367, "turn": 3, "score": [0, 0, 0, 0], "jc046FourSeats": false}
+{"posts": 380, "version": 389, "turn": 3, "score": [0, 0, 0, 0], "jc046FourSeats": false}
+{"posts": 400, "version": 410, "turn": 3, "score": [3, 0, 0, 0], "jc046FourSeats": false}
+{"posts": 420, "version": 430, "turn": 3, "score": [3, 0, 0, 0], "jc046FourSeats": false}
+{"posts": 440, "version": 450, "turn": 3, "score": [3, 0, 0, 0], "jc046FourSeats": false}
+{"posts": 460, "version": 470, "turn": 3, "score": [3, 0, 0, 0], "jc046FourSeats": false}
+{"posts": 480, "version": 490, "turn": 3, "score": [3, 0, 0, 0], "jc046FourSeats": false}
+{"posts": 500, "version": 514, "turn": 3, "score": [3, 0, 0, 2], "jc046FourSeats": false}
+{"posts": 520, "version": 534, "turn": 3, "score": [3, 0, 0, 2], "jc046FourSeats": false}
+{"posts": 540, "version": 554, "turn": 4, "score": [3, 0, 0, 2], "jc046FourSeats": false}
+{"posts": 560, "version": 578, "turn": 4, "score": [3, 0, 0, 2], "jc046FourSeats": false}
+{"posts": 580, "version": 598, "turn": 4, "score": [3, 0, 0, 2], "jc046FourSeats": false}
+{"posts": 600, "version": 618, "turn": 4, "score": [3, 0, 0, 2], "jc046FourSeats": false}
+{"posts": 620, "version": 638, "turn": 4, "score": [3, 0, 0, 2], "jc046FourSeats": false}
+{"posts": 640, "version": 658, "turn": 4, "score": [3, 0, 0, 2], "jc046FourSeats": false}
+{"posts": 660, "version": 678, "turn": 4, "score": [3, 0, 0, 2], "jc046FourSeats": false}
+{"posts": 680, "version": 698, "turn": 4, "score": [3, 0, 0, 2], "jc046FourSeats": false}
+{"posts": 700, "version": 718, "turn": 5, "score": [3, 0, 0, 2], "jc046FourSeats": false}
+{"posts": 720, "version": 738, "turn": 5, "score": [3, 0, 0, 2], "jc046FourSeats": false}
+{"posts": 740, "version": 758, "turn": 5, "score": [3, 0, 0, 2], "jc046FourSeats": false}
+{"posts": 760, "version": 778, "turn": 5, "score": [3, 0, 0, 2], "jc046FourSeats": false}
+{"posts": 780, "version": 798, "turn": 5, "score": [3, 0, 0, 2], "jc046FourSeats": false}
+{"passed": false, "completeGame": false, "roomId": "1609f4e9dabfb4d970646b44", "uiPostCount": 795, "failure": "TimeoutError: Timeout 20000ms exceeded while waiting for event \"response\""}
+Traceback (most recent call last):
+  File "/workspace/UndergroundBattle/tools/cloud-playtest/public_abi77_teams.py", line 388, in <module>
+    asyncio.run(main(p.parse_args()))
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/asyncio/runners.py", line 195, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/asyncio/base_events.py", line 691, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/workspace/UndergroundBattle/tools/cloud-playtest/public_abi77_teams.py", line 383, in main
+    await TeamsRun(p,Remote(),output,args.resume,args.budget).play()
+  File "/workspace/UndergroundBattle/tools/cloud-playtest/public_abi77_teams.py", line 376, in play
+    assert result['passed'],result['failure']
+           ~~~~~~^^^^^^^^^^
+AssertionError: TimeoutError: Timeout 20000ms exceeded while waiting for event "response"
+{"posts": 800, "version": 815, "turn": 5, "score": [3, 0, 0, 2], "jc046FourSeats": false}
+{"posts": 820, "version": 835, "turn": 5, "score": [3, 0, 0, 2], "jc046FourSeats": false}
+{"posts": 840, "version": 855, "turn": 6, "score": [3, 0, 0, 2], "jc046FourSeats": false}
+{"posts": 860, "version": 877, "turn": 6, "score": [3, 0, 0, 5], "jc046FourSeats": false}
+{"posts": 880, "version": 899, "turn": 6, "score": [3, 0, 0, 5], "jc046FourSeats": false}
+{"posts": 900, "version": 919, "turn": 6, "score": [3, 0, 0, 5], "jc046FourSeats": false}

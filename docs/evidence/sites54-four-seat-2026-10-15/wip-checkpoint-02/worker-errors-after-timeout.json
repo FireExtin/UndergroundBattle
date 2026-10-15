@@ -1,0 +1,171 @@
+{
+  "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+  "since_minutes": 20,
+  "errors_only": true,
+  "events": [
+    {
+      "matchesOwnedRoom": true,
+      "fields": [
+        {
+          "field": "$metadata.timestampNs",
+          "value": "1792063379675000000"
+        },
+        {
+          "field": "$metadata.message",
+          "value": "POST https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site/api/rooms/1609f4e9dabfb4d970646b44/commands"
+        },
+        {
+          "field": "source.message",
+          "value": "POST https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site/api/rooms/1609f4e9dabfb4d970646b44/commands"
+        },
+        {
+          "field": "timestamp",
+          "value": 1792063379675
+        },
+        {
+          "field": "$workers.event.request.method",
+          "value": "POST"
+        },
+        {
+          "field": "$workers.event.request.url",
+          "value": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site/api/rooms/1609f4e9dabfb4d970646b44/commands"
+        },
+        {
+          "field": "$workers.outcome",
+          "value": "canceled"
+        },
+        {
+          "field": "$workers.wallTimeMs",
+          "value": 8303
+        },
+        {
+          "field": "$workers.cpuTimeMs",
+          "value": 2
+        }
+      ]
+    },
+    {
+      "matchesOwnedRoom": true,
+      "fields": [
+        {
+          "field": "$metadata.timestampNs",
+          "value": "1792063378250000000"
+        },
+        {
+          "field": "$metadata.message",
+          "value": "GET https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site/api/rooms/1609f4e9dabfb4d970646b44/state?afterVersion=811"
+        },
+        {
+          "field": "source.message",
+          "value": "GET https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site/api/rooms/1609f4e9dabfb4d970646b44/state?afterVersion=811"
+        },
+        {
+          "field": "timestamp",
+          "value": 1792063378250
+        },
+        {
+          "field": "$workers.event.request.method",
+          "value": "GET"
+        },
+        {
+          "field": "$workers.event.request.url",
+          "value": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site/api/rooms/1609f4e9dabfb4d970646b44/state?afterVersion=811"
+        },
+        {
+          "field": "$workers.outcome",
+          "value": "canceled"
+        },
+        {
+          "field": "$workers.wallTimeMs",
+          "value": 1729
+        },
+        {
+          "field": "$workers.cpuTimeMs",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "matchesOwnedRoom": true,
+      "fields": [
+        {
+          "field": "$metadata.timestampNs",
+          "value": "1792063378235000000"
+        },
+        {
+          "field": "$metadata.message",
+          "value": "GET https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site/api/rooms/1609f4e9dabfb4d970646b44/state?afterVersion=811"
+        },
+        {
+          "field": "source.message",
+          "value": "GET https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site/api/rooms/1609f4e9dabfb4d970646b44/state?afterVersion=811"
+        },
+        {
+          "field": "timestamp",
+          "value": 1792063378235
+        },
+        {
+          "field": "$workers.event.request.method",
+          "value": "GET"
+        },
+        {
+          "field": "$workers.event.request.url",
+          "value": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site/api/rooms/1609f4e9dabfb4d970646b44/state?afterVersion=811"
+        },
+        {
+          "field": "$workers.outcome",
+          "value": "canceled"
+        },
+        {
+          "field": "$workers.wallTimeMs",
+          "value": 1756
+        },
+        {
+          "field": "$workers.cpuTimeMs",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "matchesOwnedRoom": true,
+      "fields": [
+        {
+          "field": "$metadata.timestampNs",
+          "value": "1792063376624000000"
+        },
+        {
+          "field": "$metadata.message",
+          "value": "GET https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site/api/rooms/1609f4e9dabfb4d970646b44/state?afterVersion=810"
+        },
+        {
+          "field": "source.message",
+          "value": "GET https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site/api/rooms/1609f4e9dabfb4d970646b44/state?afterVersion=810"
+        },
+        {
+          "field": "timestamp",
+          "value": 1792063376624
+        },
+        {
+          "field": "$workers.event.request.method",
+          "value": "GET"
+        },
+        {
+          "field": "$workers.event.request.url",
+          "value": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site/api/rooms/1609f4e9dabfb4d970646b44/state?afterVersion=810"
+        },
+        {
+          "field": "$workers.outcome",
+          "value": "canceled"
+        },
+        {
+          "field": "$workers.wallTimeMs",
+          "value": 6232
+        },
+        {
+          "field": "$workers.cpuTimeMs",
+          "value": 0
+        }
+      ]
+    }
+  ]
+}

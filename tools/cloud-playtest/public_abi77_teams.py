@@ -31,6 +31,7 @@ class TeamsRun(frozen.PublicGame):
         self.newcards={key:{'drawnSeats':[],'faceupInstances':[]} for key in sorted(NEW)}
         self.jc046_sequences={};self.jc095_entries=[];self.aura_checks=[];self.aura_seen=set();self.choice_seen=set()
         self.mulligan_probe_done=False;self.privacy_snapshots=[];self.command_observations=[]
+        self.network_sequence=0;self.network_requests={};self.network_body_tasks=set()
         if resume:
             prior=json.loads((self.output/'teams-summary.json').read_text())
             assert prior['mode']=='teams' and not prior['passed']
@@ -51,6 +52,36 @@ class TeamsRun(frozen.PublicGame):
                 assert e['kind']=='console' and e['message']=='Failed to load resource: the server responded with a status of 409 (Conflict)' and any(r['seat']==e['seat'] for r in expired), 'Unexpected prior browser error requires defect review'
                 self.expected_errors.append(dict(**e,cause='prior-verified-expired-response-409'))
             (self.output/f'attempt-{prior["attempt"]:02d}-summary.json').write_text(json.dumps(prior,ensure_ascii=False,indent=2)+'\n')
+
+    def network_event(self,event):
+        with (self.output/f'network-attempt-{self.attempt:02d}.jsonl').open('a') as stream:
+            stream.write(json.dumps(dict(attempt=self.attempt,observedAt=time.time(),**event),ensure_ascii=False)+'\n')
+
+    async def instrument_context(self,context,page,seat):
+        def request_seen(request):
+            if request.method!='POST' or '/commands' not in request.url:return
+            self.network_sequence+=1;seq=self.network_sequence;self.network_requests[request]=seq
+            try:
+                data=request.post_data_json
+                self.network_event(dict(event='request',sequence=seq,seat=seat,commandId=data.get('commandId'),expectedVersion=data.get('expectedVersion'),action=data.get('action')))
+            except Exception as e:self.network_event(dict(event='request-parse-failure',sequence=seq,seat=seat,errorType=type(e).__name__))
+        async def body_seen(response,seq):
+            try:
+                body=await response.json();view=body if body.get('roomId') else body.get('view')
+                self.network_event(dict(event='response-body',sequence=seq,seat=seat,status=response.status,errorCode=body.get('error'),publicView=public_view(view)))
+            except Exception as e:self.network_event(dict(event='response-body-unavailable',sequence=seq,seat=seat,errorType=type(e).__name__))
+        def response_seen(response):
+            request=response.request
+            if request.method!='POST' or '/commands' not in request.url:return
+            seq=self.network_requests.get(request)
+            self.network_event(dict(event='response',sequence=seq,seat=seat,status=response.status))
+            task=asyncio.create_task(body_seen(response,seq));self.network_body_tasks.add(task);task.add_done_callback(self.network_body_tasks.discard)
+        def request_failed(request):
+            if request.method!='POST' or '/commands' not in request.url:return
+            failure=request.failure or ''
+            cause=next((x for x in ['ERR_ABORTED','ERR_FAILED','ERR_TIMED_OUT','ERR_CONNECTION_RESET'] if x in failure),'other-suppressed')
+            self.network_event(dict(event='request-failed',sequence=self.network_requests.get(request),seat=seat,cause=cause))
+        page.on('request',request_seen);page.on('response',response_seen);page.on('requestfailed',request_failed)
 
     def check(self,name,**data):
         self.online_checks.append(dict(name=name,passed=True,**data))
@@ -285,6 +316,11 @@ class TeamsRun(frozen.PublicGame):
         if len(own)<2:
             bodies=[a for a in deploy if hand[a['cardId']].get('cost',99)<=2 and hand[a['cardId']].get('cardId') not in NEW]
             if bodies:return max(bodies,key=lambda a:(placement(a),-hand[a['cardId']].get('cost',0)))
+        if not own and not covered_four:
+            # A legally concealed card is also a character. Use the ordinary UI
+            # option when the only hand card cannot meet its printed loyalty.
+            bodies=[a for a in legal if a['kind']=='conceal' and a.get('cardId') in hand]
+            if bodies:return min(bodies,key=lambda a:(hand[a['cardId']].get('cardId') in NEW,self.card_value(hand[a['cardId']]),a.get('region')!=4))
         conceal=[a for a in legal if a['kind']=='conceal' and hand.get(a.get('cardId'),{}).get('cardId')=='JC046']
         if conceal and not hidden46 and not covered_four:return max(conceal,key=placement)
         adviser=[a for a in deploy if hand[a['cardId']].get('cardId')=='JC060']
@@ -312,6 +348,7 @@ class TeamsRun(frozen.PublicGame):
             candidate=CANDIDATE,version=54,providerSource='cec2bd64b847d47ac971a459dc8ef2d61aec9e89',roomId=self.room_id,
             publicAnonymous=True,ownerBypass=False,stateInjection=False,apiMoves=False,viewport=[1366,900],
             uiPostCount=self.post_count,uiPostBudget=self.post_limit,postResults=self.post_results,
+            unansweredUiPostAttempts=self.post_count-len(self.post_results),
             checks=self.online_checks,newCards=self.newcards,jc046Sequences=self.jc046_sequences,jc095Entries=self.jc095_entries,
             auraChecks=self.aura_checks,choicePrivacy=self.privacy_snapshots,mulliganProbeDone=self.mulligan_probe_done,
             coverage=dict(self.coverage),expiryRaces=self.expiry_races,expectedBrowserErrors=self.expected_errors,
@@ -365,6 +402,13 @@ class TeamsRun(frozen.PublicGame):
         except BaseException as e:
             failure=f'{type(e).__name__}: {e}'
             (self.output/f'attempt-{self.attempt:02d}-exception.log').write_text(traceback.format_exc())
+            diagnostics=[]
+            for seat,page in enumerate(self.pages):
+                try:
+                    view=await self.view(seat);window=(view or {}).get('responseWindow') or {}
+                    diagnostics.append(dict(seat=seat,publicView=public_view(view),responseWindowId=window.get('id'),members=[{k:m.get(k) for k in ['playerId','status','deadlineMs']} for m in window.get('members',[])],alerts=await page.get_by_role('alert').all_text_contents()))
+                except Exception as error:diagnostics.append(dict(seat=seat,diagnosticErrorType=type(error).__name__))
+            write_json(self.output/f'attempt-{self.attempt:02d}-ui-diagnostics.json',diagnostics)
             if self.pages:
                 try:await self.screenshot('four-seat-failure')
                 except Exception:pass
@@ -372,6 +416,14 @@ class TeamsRun(frozen.PublicGame):
             if isinstance(e,asyncio.CancelledError):raise
         finally:
             await asyncio.gather(*(c.close() for c in self.contexts),return_exceptions=True)
+            if self.network_body_tasks:
+                done,pending=await asyncio.wait(self.network_body_tasks,timeout=3)
+                for task in pending:task.cancel()
+                await asyncio.gather(*pending,return_exceptions=True)
+            if result:
+                result.update(postResults=self.post_results,transportEvents=self.transport_events,browserErrors=self.errors,
+                    unansweredUiPostAttempts=self.post_count-len(self.post_results),shutdownTelemetryCollected=True)
+                write_json(self.output/'teams-summary.json',result)
         print(json.dumps({k:result.get(k) for k in ['passed','completeGame','roomId','uiPostCount','failure']}),flush=True)
         assert result['passed'],result['failure']
 

@@ -89,6 +89,9 @@ class AttachmentRun(UiRun):
                 # counts/status only; never persist cookies or challenge paths.
                 self.infrastructure_posts.append({'seat': seat, 'status': response.status, 'kind': 'hosting-browser-verification'})
         page.on('response', observe_post)
+        instrument = getattr(self, 'instrument_context', None)
+        if instrument is not None:
+            await instrument(context, page, seat)
         self.contexts.append(context)
         self.pages.append(page)
         await page.goto(self.base, wait_until='domcontentloaded')
