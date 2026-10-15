@@ -5,6 +5,7 @@ import { actionForRoom } from './api';
 import type { View } from './types';
 
 const session = { roomId: 'room-test', inviteCode: 'INVITE', token: 'opaque-seat-token', seat: 0 };
+const entrySession = { ...session, view: testView };
 const pacedView = (status: 'undecided' | 'composing' | 'passed'): View => ({ ...testView, serverNowMs: 1000,
   responseWindow: { id: 'response:2', stackTopId: 'effect:7', holderTeam: 0, canBegin: true,
     members: [{ playerId: testView.you, status, ...(status === 'undecided' ? { deadlineMs: 6000 } : {}) }],
@@ -14,7 +15,7 @@ describe('cloud table API', () => {
   it('an obsolete entry receipt rejects once and a later explicit create uses a fresh key', async () => {
     const fetchMock = vi.fn().mockResolvedValueOnce(new Response(JSON.stringify({ entryIdempotency: true }), { status: 200 }))
       .mockResolvedValueOnce(new Response(JSON.stringify({ error: 'unsupported_room_version', message: '请新建牌桌' }), { status: 410 }))
-      .mockResolvedValueOnce(new Response(JSON.stringify(session), { status: 200 }));
+      .mockResolvedValueOnce(new Response(JSON.stringify(entrySession), { status: 200 }));
     vi.stubGlobal('fetch', fetchMock); await getCatalog();
     await expect(createRoom('最新玩家', 'duel', 'watchers')).rejects.toMatchObject({ status: 410, code: 'unsupported_room_version' });
     expect(fetchMock).toHaveBeenCalledTimes(2);
@@ -123,16 +124,16 @@ describe('cloud table API', () => {
   });
   it('recovers a lost lobby acknowledgement with the exact original request key', async () => {
     const fetchMock = vi.fn().mockResolvedValueOnce(new Response(JSON.stringify({ entryIdempotency: true }), { status: 200 }))
-      .mockRejectedValueOnce(new Error('lost ACK')).mockResolvedValueOnce(new Response(JSON.stringify(session), { status: 200 }));
+      .mockRejectedValueOnce(new Error('lost ACK')).mockResolvedValueOnce(new Response(JSON.stringify(entrySession), { status: 200 }));
     vi.stubGlobal('fetch', fetchMock); await getCatalog();
-    expect(await createRoom('甲', 'duel', 'responders')).toEqual(session);
+    expect(await createRoom('甲', 'duel', 'responders')).toEqual(entrySession);
     expect(fetchMock.mock.calls[1][1].body).toBe(fetchMock.mock.calls[2][1].body);
     expect(JSON.parse(fetchMock.mock.calls[1][1].body).requestId.length).toBeGreaterThanOrEqual(32);
     expect(localStorage.getItem('hegemony.entry.v1')).toBeNull();
   });
   it('keeps a failed entry key for an explicit retry and does not retry legacy servers automatically', async () => {
     const fetchMock = vi.fn().mockResolvedValueOnce(new Response('{}', { status: 200 }))
-      .mockRejectedValueOnce(new Error('lost ACK')).mockResolvedValueOnce(new Response(JSON.stringify(session), { status: 200 }));
+      .mockRejectedValueOnce(new Error('lost ACK')).mockResolvedValueOnce(new Response(JSON.stringify(entrySession), { status: 200 }));
     vi.stubGlobal('fetch', fetchMock); await getCatalog();
     await expect(createRoom('乙', 'duel', 'watchers')).rejects.toMatchObject({ status: 0 });
     expect(fetchMock).toHaveBeenCalledTimes(2);
@@ -144,10 +145,10 @@ describe('cloud table API', () => {
     const draft = { id: 'draft-a', name: '我的牌组', description: '', societyId: null,
       cards: [{ cardId: 'JC125', count: 50 }], rulesVersion: 'rules1', cardPoolVersion: 'pool1', engineVersion: 'engine1', updatedAt: '2026-10-02T16:00:00Z' };
     const fetchMock = vi.fn().mockResolvedValueOnce(new Response(JSON.stringify({ entryIdempotency: true }), { status: 200 }))
-      .mockRejectedValueOnce(new Error('lost ACK')).mockResolvedValueOnce(new Response(JSON.stringify(session), { status: 200 }))
+      .mockRejectedValueOnce(new Error('lost ACK')).mockResolvedValueOnce(new Response(JSON.stringify(entrySession), { status: 200 }))
       .mockResolvedValueOnce(new Response(JSON.stringify({ ...testView, version: 8 }), { status: 200 }));
     vi.stubGlobal('fetch', fetchMock); await getCatalog();
-    expect(await createRoomWithDeck('构筑玩家', 'teams', draft)).toEqual(session);
+    expect(await createRoomWithDeck('构筑玩家', 'teams', draft)).toEqual(entrySession);
     expect(fetchMock.mock.calls[1][1].body).toBe(fetchMock.mock.calls[2][1].body);
     expect(JSON.parse(fetchMock.mock.calls[1][1].body)).toMatchObject({ name: '构筑玩家', mode: 'teams', deckDraft: draft });
     expect(JSON.parse(fetchMock.mock.calls[1][1].body)).not.toHaveProperty('deckId');
