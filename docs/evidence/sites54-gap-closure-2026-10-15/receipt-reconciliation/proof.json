@@ -1,0 +1,139 @@
+{
+  "capturedAtUtc": "2026-10-15 12:59:48 UTC",
+  "projectId": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+  "originalRoomId": "1609f4e9dabfb4d970646b44",
+  "readOnly": true,
+  "sourceBaseline": "f450f284eacfc1cee41cc91d4195bbce28363502",
+  "persistedCommandMetadata": {
+    "command_id": "30a5f7cb-a9ff-47b2-9c3a-f34cb1e49b57",
+    "seat": 3,
+    "version": 811,
+    "intent_hash": "c98357c4c0506ff3a05aac6ce2511cb00b9b20df6d1ab1cc3a5027f9e38dd328"
+  },
+  "originalIntent": {
+    "seat": 3,
+    "expectedVersion": 810,
+    "action": {
+      "kind": "game",
+      "action": {
+        "kind": "pass"
+      }
+    }
+  },
+  "canonicalIntentHash": "c98357c4c0506ff3a05aac6ce2511cb00b9b20df6d1ab1cc3a5027f9e38dd328",
+  "canonicalHashMatched": true,
+  "journal": [
+    {
+      "roomId": "1609f4e9dabfb4d970646b44",
+      "version": 810,
+      "events": [
+        {
+          "kind": "Command",
+          "seat": 2,
+          "command": {
+            "commandId": "b0822608-2a9c-4db0-ac83-f29e51737e96",
+            "expectedVersion": 809,
+            "action": {
+              "kind": "game",
+              "action": {
+                "kind": "pass"
+              }
+            }
+          },
+          "serverNowMs": 1792063350915,
+          "serverTimeUtc": "2026-10-15T11:22:30.915Z"
+        }
+      ]
+    },
+    {
+      "roomId": "1609f4e9dabfb4d970646b44",
+      "version": 811,
+      "events": [
+        {
+          "kind": "Command",
+          "seat": 3,
+          "command": {
+            "commandId": "30a5f7cb-a9ff-47b2-9c3a-f34cb1e49b57",
+            "expectedVersion": 810,
+            "action": {
+              "kind": "game",
+              "action": {
+                "kind": "pass"
+              }
+            }
+          },
+          "serverNowMs": 1792063370871,
+          "serverTimeUtc": "2026-10-15T11:22:50.871Z"
+        }
+      ]
+    },
+    {
+      "roomId": "1609f4e9dabfb4d970646b44",
+      "version": 812,
+      "events": [
+        {
+          "kind": "Command",
+          "seat": 0,
+          "command": {
+            "commandId": "8bbc3656-8296-4395-8240-22eeb849846c",
+            "expectedVersion": 811,
+            "action": {
+              "kind": "game",
+              "action": {
+                "kind": "pass"
+              }
+            }
+          },
+          "serverNowMs": 1792064159139,
+          "serverTimeUtc": "2026-10-15T11:35:59.139Z"
+        }
+      ]
+    }
+  ],
+  "normalClientRetry": {
+    "observedRequestAtUtc": "2026-10-15T11:35:56.303602Z",
+    "observedResponseAtUtc": "2026-10-15T11:35:57.296526Z",
+    "sameCommandId": "30a5f7cb-a9ff-47b2-9c3a-f34cb1e49b57",
+    "expectedVersion": 810,
+    "status": 200,
+    "receiptVersion": 811,
+    "source": "docs/evidence/sites54-four-seat-2026-10-15/wip-checkpoint-03/network-attempt-03.jsonl sequence 1"
+  },
+  "confirmed": [
+    "The original seat-3 game/pass intent with expected version810 has one durable command row at version811.",
+    "The durable journal has the exact original ID and intent, and consecutive neighboring versions810/811/812 bind the interruption and later continuation.",
+    "Between these consecutive journal revisions there is no separate accepted state-changing command.",
+    "No command was replayed or generated during this reconciliation; the original terminal room was not changed."
+  ],
+  "notRecoverable": [
+    "Individual request identities, delivery outcomes or HTTP responses for the three pre-trace POST attempts.",
+    "Whether all three attempts carried the same original command ID; deduplicated persistence does not log every network attempt."
+  ],
+  "unchangedCounters": {
+    "uiPostAttempts": 1830,
+    "observedPostResponses": 1827,
+    "historicalMissingResponses": 3
+  },
+  "limits": [
+    "server_now_ms is the reducer's recorded server time, not an exact D1 transaction-completion timestamp.",
+    "The generic database preview truncates large response strings; only complete command metadata and untruncated selected journal events are retained.",
+    "Pagination ordering was used only to find positive matching rows; no negative-existence claim is based on sampling.",
+    "Other-room rows, response bodies, full game state, seat hashes, entry receipts and credentials are not retained."
+  ],
+  "method": {
+    "nativeTools": [
+      "sites_read_database_overview",
+      "sites_read_database_table_rows"
+    ],
+    "binding": "DB",
+    "tables": [
+      "commands",
+      "journal"
+    ],
+    "directD1Credentials": false,
+    "writeCalls": 0,
+    "gamePostCalls": 0,
+    "lookupBounded": true,
+    "rawDatabaseCache": false
+  }
+}
