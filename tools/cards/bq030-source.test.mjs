@@ -99,7 +99,7 @@ test('historical BQ030 admission preserves its 128-card baseline inside the curr
   const pool = readJson('rust-game/data/cards.json');
   const { cards: currentCards, rulesVersion, cardPoolVersion, engineVersion, ...otherData } = pool;
   // Preserve the historical BQ030 admission assertion inside the newer XQ24 pool.
-  const cards = currentCards.filter(card => !['XQ24', 'JC061', 'JC087', 'JC094', 'WM056', 'WM023','XQ25','WM038','JZ35','JC052','JC037','JC060','JC095'].includes(card.id));
+  const cards = currentCards.filter(card => !['XQ24', 'JC061', 'JC087', 'JC094', 'WM056', 'WM023','XQ25','WM038','JZ35','JC052','JC037','JC060','JC095','JC046'].includes(card.id));
   assert.equal(cards.length, 129);
   assert.equal(new Set(cards.map(card => card.id)).size, 129, 'Registry IDs must be unique');
   assert.equal(cards.filter(card => card.id === 'BQ030').length, 1);
@@ -110,8 +110,8 @@ test('historical BQ030 admission preserves its 128-card baseline inside the curr
   assert.equal(digest(otherData), approvedPins.otherPoolMetadata,
     'Decks, world and source metadata must be preserved; candidate versions are checked separately');
   assert.equal(rulesVersion, 'hegemony-pdf-v1');
-  assert.equal(cardPoolVersion, 'limited-v2.69-jc095-influence-conversion-candidate');
-  assert.equal(engineVersion, 'rust-v0.2.76-jc095-influence-conversion-candidate');
+  assert.equal(cardPoolVersion, 'limited-v2.70-jc046-mandatory-sacrifice-candidate');
+  assert.equal(engineVersion, 'rust-v0.2.77-jc046-mandatory-sacrifice-candidate');
 
   const catalog = read('rust-game/src/catalog.rs').toString('utf8');
   const constant = name => {
@@ -130,7 +130,7 @@ test('historical BQ030 admission preserves its 128-card baseline inside the curr
 test('actual admitted scans retain pinned original bytes, published bytes and both BQ030 URL mappings', () => {
   // Reuse the existing byte/provenance/TS/public mapping checker instead of duplicating it.
   const result = validateAdmittedScans(repository);
-  assert.equal(result.checkedCards, 142);
+  assert.equal(result.checkedCards, 143);
   assert.ok(result.checkedIds.includes('BQ030'));
 });
 

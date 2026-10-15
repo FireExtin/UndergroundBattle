@@ -1,0 +1,50 @@
+   Compiling hegemony-server v0.1.0 (/workspace/UndergroundBattle/rust-game)
+    Finished `test` profile [unoptimized] target(s) in 28.60s
+     Running unittests src/lib.rs (/workspace/undergroundbattle-build/target/debug/deps/hegemony_server-fc575c20deac8fce)
+
+running 29 tests
+test jc046_tests::jc046_choices_use_current_control_all_regions_and_exclude_hidden_assets_and_attachments ... ok
+test jc046_tests::jc046_complete_original_fields_and_closed_definition ... ok
+test jc046_tests::jc046_death_callbacks_wait_until_all_players_and_own_observers_exclude_teammate_death ... ok
+test jc046_tests::jc046_effect_containers_and_mandatory_trigger_shell_are_bound ... ok
+test jc046_tests::jc046_existing_granted_renown_and_combat_glory_remain_optional ... ok
+test jc046_tests::jc046_faceup_deployment_and_concealment_do_not_trigger_reveal ... ok
+test jc046_tests::jc046_frame_identity_is_unique_across_pending_effects_and_stack ... ok
+test jc046_tests::jc046_illegal_sacrifice_choices_are_strict_noops_and_stale_choice_cannot_repeat ... ok
+test jc046_tests::jc046_initial_eliminated_seats_are_excluded_from_frozen_program ... ok
+test jc046_tests::jc046_kill_two_uses_actual_ready_winning_participation_and_stacks ... ok
+test jc046_tests::jc046_non_target_sacrifice_ignores_barrier_spirit_shield_and_damage_prevention ... ok
+test jc046_tests::jc046_prepared_leader_pause_restores_and_resumes_each_remaining_player_once ... ok
+test jc046_tests::jc046_prepared_response_destroyed_source_returns_sealed_card_and_preserves_trigger ... ok
+test jc046_tests::jc046_prepared_source_control_change_preserves_frozen_actor_but_moves_choice_ownership ... ok
+test jc046_tests::jc046_previous_sacrifice_recomputes_next_seat_after_aura_death_cleanup ... FAILED
+test jc046_tests::jc046_printed_blood_permanent_combat_and_temporary_influence_stay_distinct ... ok
+test jc046_tests::jc046_real_duel_reveal_preserves_two_player_independent_choices ... ok
+test jc046_tests::jc046_real_florence_free_reveal_is_mandatory_without_assets_and_keeps_exhaustion ... ok
+test jc046_tests::jc046_real_hide_and_second_reveal_keep_two_independent_mandatory_frames ... ok
+test jc046_tests::jc046_real_paid_reveal_is_mandatory_responsive_and_all_seats_start_at_zero ... ok
+test jc046_tests::jc046_real_response_bounce_keeps_the_frozen_trigger_and_remaining_sacrifices ... ok
+test jc046_tests::jc046_real_response_hide_excludes_the_new_hidden_instance_but_keeps_trigger ... ok
+test jc046_tests::jc046_reveal_payment_loyalty_and_extra_command_fields_reject_atomically ... ok
+test jc046_tests::jc046_sacrificing_control_source_restores_teammate_control_before_their_choice ... ok
+test jc046_tests::jc046_saved_paid_entry_rejects_malformed_payment_and_source_identity ... ok
+test jc046_tests::jc046_saved_sacrifice_pending_rejects_optional_metadata_and_wrong_continuations ... ok
+test jc046_tests::jc046_saved_stack_rejects_program_order_actor_cost_and_shell_forgeries ... ok
+test jc046_tests::jc046_self_sacrifice_is_required_when_alone_and_does_not_cancel_later_players ... ok
+test jc046_tests::jc046_source_can_be_selected_even_with_other_characters ... ok
+
+failures:
+
+---- jc046_tests::jc046_previous_sacrifice_recomputes_next_seat_after_aura_death_cleanup stdout ----
+
+thread 'jc046_tests::jc046_previous_sacrifice_recomputes_next_seat_after_aura_death_cleanup' panicked at rust-game/src/jc046_tests.rs:750:5:
+assertion failed: t.room.game.board(&doomed).is_some()
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    jc046_tests::jc046_previous_sacrifice_recomputes_next_seat_after_aura_death_cleanup
+
+test result: FAILED. 28 passed; 1 failed; 0 ignored; 0 measured; 1073 filtered out; finished in 7.19s
+
+error: test failed, to rerun pass `-p hegemony-server --lib`

@@ -13,7 +13,8 @@ root = Path(sys.argv[1]).resolve()
 versions = {'rust-v0.2.73-jc052-original-region-candidate':'limited-v2.66-jc052-original-region-candidate',
             'rust-v0.2.74-jc037-hidden-investigation-candidate':'limited-v2.67-jc037-hidden-investigation-candidate',
             'rust-v0.2.75-jc060-occult-adviser-candidate':'limited-v2.68-jc060-occult-adviser-candidate',
-            'rust-v0.2.76-jc095-influence-conversion-candidate':'limited-v2.69-jc095-influence-conversion-candidate'}
+            'rust-v0.2.76-jc095-influence-conversion-candidate':'limited-v2.69-jc095-influence-conversion-candidate',
+            'rust-v0.2.77-jc046-mandatory-sacrifice-candidate':'limited-v2.70-jc046-mandatory-sacrifice-candidate'}
 catalog = json.loads(subprocess.check_output([
     'node', '--input-type=module', '-e',
     "import {catalog} from './rust-game-wasm/tests/current-kernel.mjs';"

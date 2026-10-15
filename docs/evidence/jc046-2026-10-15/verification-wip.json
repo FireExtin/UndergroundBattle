@@ -1,0 +1,36 @@
+{
+  "status": "WIP stopped early at user request",
+  "baseline": "dbdee5d6014c260f9833c162bf85aff4b491b690",
+  "branch": "codex/jc046-red-mandatory-sacrifice-review-20261015",
+  "engine": "rust-v0.2.77-jc046-mandatory-sacrifice-candidate",
+  "pool": "limited-v2.70-jc046-mandatory-sacrifice-candidate",
+  "sourceTests": 40,
+  "inputGuardTests": 22,
+  "nativeFirst": {
+    "passed": 28,
+    "failed": 1,
+    "cause": "Test placed JC059 defense beneficiary in a different region; layout corrected without production change"
+  },
+  "nativeInterrupted": {
+    "exitCode": 101,
+    "signal": "SIGTERM on user early-stop instruction",
+    "passedLines": 604,
+    "failedAssertionLines": 0,
+    "jc046Passed": 29,
+    "fullRunCompleted": false,
+    "integrationTargetsRun": false,
+    "longUnchangedSealingTestFiltered": true
+  },
+  "nativeRoomScenarios": 37,
+  "invalidRoomStates": 55,
+  "wasm77Built": false,
+  "nativeWasmParityRun": false,
+  "current77InputsGenerated": false,
+  "web77TestsRun": false,
+  "web77BuildRun": false,
+  "worker77TestsRun": false,
+  "mergedMain": false,
+  "deployed": false,
+  "liveBrowserAcceptance": false,
+  "historicalResourcesAndInputsUnchanged": 1223
+}

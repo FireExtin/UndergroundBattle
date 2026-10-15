@@ -1,4 +1,4 @@
-// Fresh source-produced ABI76 inputs only; old opaque states remain unchanged.
+// Fresh source-produced ABI77 inputs only; old opaque states remain unchanged.
 import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {createHash} from 'node:crypto';
@@ -9,10 +9,10 @@ import {Table} from './Table';
 import {actionForRoom} from './api';
 import {groupObjectActions} from './objectActions';
 const bytes=readFileSync(resolve('../rust-game-wasm/pkg/hegemony_wasm_bg.wasm'));abi.initSync({module:bytes});
-const fixture=JSON.parse(readFileSync(resolve('src/game/jc037Native76.fixture.json'))),catalog=JSON.parse(abi.catalog());
-it('binds the complete JC037 face and actual source-built ABI76',()=>{
- expect(catalog).toEqual(fixture.catalog);expect(catalog.engineVersion).toBe('rust-v0.2.76-jc095-influence-conversion-candidate');
- expect(catalog.cardPoolVersion).toBe('limited-v2.69-jc095-influence-conversion-candidate');expect(createHash('sha256').update(bytes).digest('hex')).toBe(fixture.wasmSha256);
+const fixture=JSON.parse(readFileSync(resolve('src/game/jc037Native77.fixture.json'))),catalog=JSON.parse(abi.catalog());
+it('binds the complete JC037 face and actual source-built ABI77',()=>{
+ expect(catalog).toEqual(fixture.catalog);expect(catalog.engineVersion).toBe('rust-v0.2.77-jc046-mandatory-sacrifice-candidate');
+ expect(catalog.cardPoolVersion).toBe('limited-v2.70-jc046-mandatory-sacrifice-candidate');expect(createHash('sha256').update(bytes).digest('hex')).toBe(fixture.wasmSha256);
  expect(catalog.cards.find(c=>c.id==='JC037')).toMatchObject({color:'蓝',subtitle:'寂静女士',keywords:['领袖'],permanentIcons:{investigation:0,combat:2,influence:2},abilities:[]});
 });
 it('rejects preserved Native73 states through both current ABI entrypoints',()=>{

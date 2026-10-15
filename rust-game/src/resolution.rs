@@ -411,7 +411,7 @@ impl Game {
                 snapshot
             },
             region,
-            source_region_instance: if matches!(c.definition.as_str(), "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC095") {
+            source_region_instance: if matches!(c.definition.as_str(), "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC095") {
                 region.and_then(|r| self.regions.get(r)).filter(|r| !r.vacant).map(|r| r.card.id.clone())
             } else { None },
             attachment_host_instance: (matches!(c.definition.as_str(), "JC090" | "WM038") || rules::definition(&c.definition)
@@ -1048,6 +1048,9 @@ impl Game {
         }
     }
     pub(crate) fn declare_trigger(&mut self, declaration: Declaration) -> RuleResult<()> {
+        if self.jc046_declare(declaration.clone())? {
+            return Ok(());
+        }
         if self.bq030_declare(declaration.clone())? {
             return Ok(());
         }
@@ -1122,6 +1125,7 @@ impl Game {
         stage: DeclareChoice,
         selected: Vec<String>,
     ) -> RuleResult<()> {
+        self.jc046_reject_optional_declaration(&declaration)?;
         rules::validate_ability(&declaration.source.card.definition, &declaration.ability)?;
         if crate::bq030::is_attachment_declaration(&declaration) {
             return self.bq030_choose(declaration, stage, selected);
@@ -1363,6 +1367,7 @@ impl Game {
         self.validate_wm038_frame(&frame)?;
         self.validate_jz35_frame(&frame)?;
         self.validate_jc052_frame(&frame)?;
+        self.validate_jc046_frame(&frame)?;
         self.validate_jc095_frame(&frame)?;
         self.validate_gray_expansion_frame(&frame)?;
         self.validate_gray_lock_frame(&frame)?;
@@ -2190,6 +2195,7 @@ impl Game {
         selected: Vec<String>,
         option_ids: BTreeSet<String>,
     ) -> RuleResult<()> {
+        self.validate_jc046_choice(&frame, &choice, chooser, &a, &selected)?;
         match choice {
             FrameChoice::WM023HandEntry => self.wm023_complete(&frame, chooser, &selected)?,
             FrameChoice::XQ18TimeCarrier { target_instance } => {

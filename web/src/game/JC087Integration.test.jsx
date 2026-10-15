@@ -10,13 +10,13 @@ import { ReadModal } from './ReadModal';
 import { cardScanUrl } from './cardScans';
 const wasm=readFileSync(resolve('../rust-game-wasm/pkg/hegemony_wasm_bg.wasm'));
 abi.initSync({module:wasm});
-const fixture=JSON.parse(readFileSync(resolve('src/game/jc087Native76.fixture.json'),'utf8'));
+const fixture=JSON.parse(readFileSync(resolve('src/game/jc087Native77.fixture.json'),'utf8'));
 const catalog=JSON.parse(abi.catalog());
 const definition=catalog.cards.find(c=>c.id==='JC087');
 
 it('exposes the original JC087 card face and complete conditional self-hide/influence/retreat definition',()=>{
   expect(createHash('sha256').update(wasm).digest('hex')).toBe(fixture.wasmSha256);
-  expect(catalog.engineVersion).toBe('rust-v0.2.76-jc095-influence-conversion-candidate');
+  expect(catalog.engineVersion).toBe('rust-v0.2.77-jc046-mandatory-sacrifice-candidate');
   expect(definition).toMatchObject({name:'格鲁尼的走私客',color:'黑',cost:4,loyalty:['黑色','黑色'],defense:2,
     subtypes:['人类','罪犯'],permanentIcons:{investigation:0,combat:1,influence:1},temporaryIcons:{investigation:1,combat:1,influence:0},keywords:['撤回']});
   expect(definition.abilities).toMatchObject([{key:'jc087-enter-region-hide-influence',costs:[],triggered:true}]);

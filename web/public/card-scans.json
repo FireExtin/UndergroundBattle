@@ -763,5 +763,10 @@
     "url": "/cards/JC095.jpg",
     "source": "resource/ymsj-fun.github.io/cards/JC095 唐·格鲁尼.jpg",
     "sha256": "32dbf8c8af063f8b680bbba87c82920ac5a7dd4a18bcdb33e0d861894e05c020"
+  },
+  "JC046": {
+    "url": "/cards/JC046.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC046 无面屠戮者.jpg",
+    "sha256": "5d22023e0848d5d2e6566b2fdfe94ef62a80c7b97812f3f81066392aa97cc1ab"
   }
 }

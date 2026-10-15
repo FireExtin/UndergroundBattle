@@ -8,7 +8,7 @@ import { actionForRoom } from './api';
 import { Table } from './Table';
 
 const wasm = readFileSync(resolve('../rust-game-wasm/pkg/hegemony_wasm_bg.wasm'));
-const fixture = JSON.parse(readFileSync(resolve('src/game/currentLifecycle76.fixture.json'), 'utf8'));
+const fixture = JSON.parse(readFileSync(resolve('src/game/currentLifecycle77.fixture.json'), 'utf8'));
 expect(createHash('sha256').update(wasm).digest('hex')).toBe(fixture.wasmSha256);
 abi.initSync({ module: wasm });
 const catalog = JSON.parse(abi.catalog());
