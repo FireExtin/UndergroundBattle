@@ -57,7 +57,8 @@ describe('choice action focus recovery', () => {
     const { container } = render(<ChoicePanel choice={choice} action={action} definitions={new Map()} busy={false} onSubmit={submit} onReadCard={read} draftStore={store()} viewerId="p0" />);
     const row = () => container.querySelector<HTMLElement>('[data-choice-order-option="b"]')!;
     const transfer = within(row()).getByRole('button', { name: '置于底' });
-    transfer.focus(); fireEvent.click(transfer);
+    transfer.focus();
+    act(() => { fireEvent.click(transfer); fireEvent.click(transfer); });
     expect(transfer).not.toBeInTheDocument();
     const back = within(row()).getByRole('button', { name: '置于顶' });
     expect(back).toHaveFocus();

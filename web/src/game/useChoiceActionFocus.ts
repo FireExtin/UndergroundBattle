@@ -30,9 +30,12 @@ export function useChoiceActionFocus(panel: RefObject<HTMLElement | null>, activ
   }, [active, editState, panel]);
 
   return (changed: boolean) => {
+    // A repeated transfer can be a no-op in the same batch as the first edit.
+    // Keep that edit's pending recovery until its render removes the old control.
+    if (!changed) return;
     pending.current = null;
     const control = document.activeElement;
-    if (!changed || !active || !(control instanceof HTMLElement) || !panel.current?.contains(control)) return;
+    if (!active || !(control instanceof HTMLElement) || !panel.current?.contains(control)) return;
     const row = control.closest<HTMLElement>(rowSelector);
     if (!row) return;
     const controlIndex = editControls(row).indexOf(control);

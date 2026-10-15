@@ -170,13 +170,20 @@ function ChoicePanelContent({ choice, action, definitions, busy, onSubmit, onRea
       {onReadCard && <button type="button" className="hg-choice-read hg-small-read" onClick={() => readCard(card)} aria-label={`放大阅读${viewerId ? visibleCard(card, viewerId).name : card.name}`}>放大文字与图标 ↗</button>}
     </div>)}</div></div>}
     {ordering ? <div className="hg-order-columns"><div><h3>牌库顶 · 最上面先抓</h3>{reorderList(top, 'top')}</div><div><h3>牌库底 · 自上而下</h3>{reorderList(bottom, 'bottom')}</div></div>
-      : damage ? <><div className="hg-damage-meter"><span>总计 <b>{amount}</b></span><span>已分配 <b>{assigned}</b></span><span>剩余 <b>{amount - assigned}</b></span><small>{amount === 1 ? '点选角色分配这一点伤害，可切换目标。' : '点选角色或使用加减按钮分配，每次一点。'}</small></div><div className="hg-damage-options">{choice.options.map((option, index) => <div key={option.id} data-choice-damage-option={option.id} className={`hg-damage-row ${(allocations[option.id] || 0) > 0 ? 'hg-damage-assigned' : ''}`}>
-        <button type="button" className="hg-damage-target" data-choice-option={option.id} data-choice-target-number={index + 1} aria-label={`给${option.label}分配1点伤害`} aria-describedby={`${choice.id}-damage-${index}`} aria-pressed={(allocations[option.id] || 0) > 0} disabled={busy || (amount !== 1 && assigned >= amount)} onClick={() => tapDamage(option.id)}><span><strong>{option.label} <em className="hg-target-number">目标 {index + 1}</em></strong>{option.card && <small id={`${choice.id}-damage-${index}`}>{playerLabels?.[option.card.owner] || playerLabels?.[option.card.controller] || '公开角色'} 拥有 · 防御 {option.card.defense ?? '—'} · 已受伤 {option.card.damage ?? 0}{option.card.exhausted ? ' · 已横置' : ''}</small>}</span><b>+1</b></button>
-        <div className="hg-damage-adjust"><button type="button" disabled={busy || !allocations[option.id]} aria-label={`给${option.label}减少1点伤害`} onClick={() => allocate(option.id, value => value - 1)}>−</button>
-          <input type="number" inputMode="numeric" min={0} max={amount - assigned + (allocations[option.id] || 0)} value={allocations[option.id] || 0} disabled={busy} aria-label={`给${option.label}分配伤害`} onChange={event => allocate(option.id, Number(event.target.value))} />
-          <button type="button" disabled={busy || assigned >= amount} aria-label={`给${option.label}增加1点伤害`} onClick={() => allocate(option.id, value => value + 1)}>+</button>
-        </div>{option.card && onReadCard && <button type="button" className="hg-small-read" onClick={() => readCard(option.card!)}>放大阅读</button>}
-      </div>)}</div></>
+      : damage ? <><div className="hg-damage-meter"><span>总计 <b>{amount}</b></span><span>已分配 <b>{assigned}</b></span><span>剩余 <b>{amount - assigned}</b></span><small>{amount === 1 ? '点选角色分配这一点伤害，可切换目标。' : '点选角色或使用加减按钮分配，每次一点。'}</small></div><div className="hg-damage-options">{choice.options.map((option, index) => {
+        const card = option.card && (viewerId ? visibleCard(option.card, viewerId) : option.card);
+        const name = card?.kind === 'hidden' ? card.name : option.label;
+        const numberId = `${choice.id}-damage-target-${index}`;
+        const contextId = `${choice.id}-damage-${index}`;
+        const contextIds = card ? `${numberId} ${contextId}` : numberId;
+        return <div key={option.id} data-choice-damage-option={option.id} className={`hg-damage-row ${(allocations[option.id] || 0) > 0 ? 'hg-damage-assigned' : ''}`}>
+        <button type="button" className="hg-damage-target" data-choice-option={option.id} data-choice-target-number={index + 1} aria-label={`给${name}分配1点伤害`} aria-describedby={contextIds} aria-pressed={(allocations[option.id] || 0) > 0} disabled={busy || (amount !== 1 && assigned >= amount)} onClick={() => tapDamage(option.id)}><span><strong>{name} <em className="hg-target-number" id={numberId}>目标 {index + 1}</em></strong>{card && <small id={contextId}>{playerLabels?.[card.owner] || card.owner} 拥有{card.controller !== card.owner && ` · ${playerLabels?.[card.controller] || card.controller} 操控`}{card.region !== undefined && ` · 地区 ${card.region + 1}`}{card.kind !== 'hidden' && <> · 防御 {card.defense ?? '—'} · 已受伤 {card.damage ?? 0}</>}{card.exhausted ? ' · 已横置' : ''}</small>}</span><b>+1</b></button>
+        <div className="hg-damage-adjust"><button type="button" disabled={busy || !allocations[option.id]} aria-label={`给${name}减少1点伤害`} aria-describedby={contextIds} onClick={() => allocate(option.id, value => value - 1)}>−</button>
+          <input type="number" inputMode="numeric" min={0} max={amount - assigned + (allocations[option.id] || 0)} value={allocations[option.id] || 0} disabled={busy} aria-label={`给${name}分配伤害`} aria-describedby={contextIds} onChange={event => allocate(option.id, Number(event.target.value))} />
+          <button type="button" disabled={busy || assigned >= amount} aria-label={`给${name}增加1点伤害`} aria-describedby={contextIds} onClick={() => allocate(option.id, value => value + 1)}>+</button>
+        </div>{card && onReadCard && <button type="button" className="hg-small-read" aria-label={`放大阅读${card.name}`} aria-describedby={contextIds} onClick={() => readCard(option.card!)}>放大阅读</button>}
+      </div>;
+      })}</div></>
       : <><div className="hg-choice-options">{visibleOptions.map(({ option, index }) => {
         const selectedIndex = selected.indexOf(option.id);
         const isSelected = selectedIndex >= 0;
