@@ -64,7 +64,7 @@ createRoot(document.getElementById('root')!).render(<App/>);
   await server.listen();
   const url = `http://127.0.0.1:${server.httpServer.address().port}/${fixture.slice(web.length + 1)}/index.html`;
   browser = await chromium.launch({ headless: true, executablePath: process.env.CHROMIUM_EXECUTABLE || '/usr/bin/chromium', args: ['--no-sandbox', '--disable-dev-shm-usage'] });
-  for (const viewport of [{ width: 1366, height: 900 }, { width: 390, height: 844 }]) {
+  for (const viewport of [{ width: 1366, height: 900 }, { width: 1366, height: 768 }]) {
     const context = await browser.newContext({ viewport }), page = await context.newPage();
     page.on('pageerror', error => report.pageErrors.push(String(error)));
     await page.route('**/api/**', route => { report.apiCalls++; return route.abort(); });
@@ -72,7 +72,8 @@ createRoot(document.getElementById('root')!).render(<App/>);
     const setCase = async mode => { await page.evaluate(mode => window.__setReviewCase(mode), mode); };
     const group = page.getByRole('group', { name: '领域对照' });
     await expect(group).toHaveText('当前领域心灵 ×2印刷领域：无');
-    await page.screenshot({ path: join(output, `${viewport.width}-domain-two.png`) });
+    const size = `${viewport.width}x${viewport.height}`;
+    await page.screenshot({ path: join(output, `${size}-domain-two.png`) });
     await setCase('one'); await expect(group).toHaveText('当前领域心灵 ×1印刷领域：无');
     await setCase('removed'); await expect(group).toHaveCount(0);
     await setCase('choice');
@@ -89,7 +90,7 @@ createRoot(document.getElementById('root')!).render(<App/>);
     dialog = page.getByRole('dialog', { name: '待完成的选择' });
     await expect(dialog.locator(`[data-choice-option="${selected}"]`)).toHaveAttribute('aria-pressed', 'true');
     assert.deepEqual(await page.evaluate(() => window.__reviewActions), []);
-    await page.screenshot({ path: join(output, `${viewport.width}-mandatory-choice.png`) });
+    await page.screenshot({ path: join(output, `${size}-mandatory-choice.png`) });
     const choiceBounds = await dialog.evaluate(root => {
       const panel = root.getBoundingClientRect();
       const confirm = root.querySelector('.hg-choice-footer .hg-button-primary').getBoundingClientRect();
@@ -113,7 +114,7 @@ createRoot(document.getElementById('root')!).render(<App/>);
     await expect(page.locator('[data-catalog-card]')).toHaveCount(1);
     await entry.getByRole('button', { name: /^添加 / }).click();
     await expect(entry).toHaveAttribute('data-selected-count', '1');
-    await page.screenshot({ path: join(output, `${viewport.width}-deck.png`) });
+    await page.screenshot({ path: join(output, `${size}-deck.png`) });
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth > innerWidth);
     assert.equal(overflow, false, 'Deck workbench overflows horizontally');
     report.checks.push({ viewport, choiceBounds, domainCounts: [2, 1, 0], mandatoryChoiceRestored: true,

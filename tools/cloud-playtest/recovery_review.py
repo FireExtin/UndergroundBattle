@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Bounded local browser recovery checks with real UI commands and an owned SQLite service.
+"""Bounded local PC recovery checks with real UI commands and an owned SQLite service.
 
 This does not play a complete match, publish a site, or use production credentials.
 Only two pause acknowledgements are replaced with explicit synthetic HTTP 503s.
@@ -25,7 +25,7 @@ async def main(args):
     service = IsolatedService(args.binary, args.cwd, output, args.port, args.static_dir)
     result = {'passed': False, 'scope': 'local Chromium, current native server, bounded two-seat UI recovery',
               'fullMatch': False, 'remoteDeployment': False, 'sourceCommit': args.source_commit,
-              'viewport': {'width': args.viewport_width, 'height': args.viewport_height},
+              'viewport': {'width': 1366, 'height': 900},
               'checks': [], 'synthetic503s': 0, 'pageErrors': []}
     service.start()
     try:
@@ -95,8 +95,8 @@ async def main(args):
             dialog = host.get_by_role('dialog', name='待完成的选择')
             bounds = await dialog.bounding_box()
             confirm_bounds = await dialog.get_by_role('button', name='确认选择', exact=True).bounding_box()
-            assert bounds and 0 <= bounds['y'] and bounds['y'] + bounds['height'] <= args.viewport_height
-            assert confirm_bounds and 0 <= confirm_bounds['y'] and confirm_bounds['y'] + confirm_bounds['height'] <= args.viewport_height
+            assert bounds and 0 <= bounds['y'] and bounds['y'] + bounds['height'] <= result['viewport']['height']
+            assert confirm_bounds and 0 <= confirm_bounds['y'] and confirm_bounds['y'] + confirm_bounds['height'] <= result['viewport']['height']
             result['initialChoiceBounds'] = {'dialog': bounds, 'confirm': confirm_bounds}
             option_id = choice['options'][0]['id']
             option = host.locator('[data-choice-option=' + json.dumps(option_id) + ']')
@@ -192,7 +192,5 @@ if __name__ == '__main__':
     parser.add_argument('--output', required=True)
     parser.add_argument('--port', type=int, default=8194)
     parser.add_argument('--chromium', default='/usr/bin/chromium')
-    parser.add_argument('--viewport-width', type=int, default=1366)
-    parser.add_argument('--viewport-height', type=int, default=900)
     parser.add_argument('--source-commit', required=True, help='Exact base commit plus a dirty/WIP label when source is uncommitted')
     asyncio.run(main(parser.parse_args()))

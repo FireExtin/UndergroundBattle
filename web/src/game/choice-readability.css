@@ -39,19 +39,10 @@
 .hg-order-card .hg-order-buttons { flex-wrap: wrap; margin-left: auto; }
 .hg-order-buttons .hg-order-read { border-color: #a88c55; color: #f1d290; }
 
-@media (max-width: 1059px) {
-  /* Center the chooser in the viewport, independent of the tall mobile table. */
-  .hg-app .hg-desktop-table.hg-table .hg-table-choice-layer { position: fixed; inset: 64px 0 0; padding: 12px; }
-  .hg-app .hg-desktop-table.hg-table .hg-choice { width: min(860px, calc(100vw - 24px)); height: min(700px, calc(100dvh - 88px)); max-height: calc(100dvh - 88px); padding: 14px; overflow: hidden; }
-  .hg-app .hg-desktop-table.hg-table .hg-choice-body { flex: 1 1 auto; }
-}
-
 @media (max-width: 680px) {
   .hg-choice-filters { grid-template-columns: minmax(0, 1fr) auto; gap: 8px; }
   .hg-choice-filters > .hg-field { grid-column: 1 / -1; }
   .hg-choice-filter-summary { grid-column: 1 / -1; }
-  .hg-app .hg-desktop-table.hg-table .hg-choice-options { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .hg-app .hg-desktop-table.hg-table .hg-choice-option-entry { width: auto; }
 }
 
 @media (min-width: 1060px) {
