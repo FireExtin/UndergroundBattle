@@ -1,0 +1,118 @@
+{
+  "recordedAtUtc": "2026-10-16T19:12:01.666096+00:00",
+  "status": "local implementation and applicable verification complete; WIP pending independent serial review; unpublished",
+  "rustCompilerCheckpoint": "ccc0b5b0e79a126bf0c095ba311955210a23e664",
+  "runtimeUiCheckpoint": "8788af17a4f7d77e2957d7d9efb640079ddcf7b8",
+  "wasmSha256": "445e1449d241bc7ddf8d5c3366730ab093d2c4eb1c8bd3dde820a646f0231e53",
+  "native": {
+    "lib": 1139,
+    "integration": 67,
+    "workspaceExitCode": 0,
+    "jz46SpecialistTestsIncludedInLib": 9
+  },
+  "jz46NativeWasm": {
+    "scenarios": 10,
+    "commands": 363,
+    "projections": 1492,
+    "rejected": 16,
+    "invalid": 34,
+    "negativeRestoreCalls": 408,
+    "wasmSha256": "445e1449d241bc7ddf8d5c3366730ab093d2c4eb1c8bd3dde820a646f0231e53",
+    "completeOpaqueStateAndAllViews": true
+  },
+  "oldMechanismsFresh79": {
+    "ok": true,
+    "cases": 433,
+    "wasmBytes": 3005118,
+    "wasmSha256": "445e1449d241bc7ddf8d5c3366730ab093d2c4eb1c8bd3dde820a646f0231e53",
+    "transitions": 24403,
+    "projections": 96975,
+    "quotes": 1,
+    "rejectedCommands": 319,
+    "rejectedDeckCreations": 42,
+    "choiceKinds": [
+      "damage",
+      "discard",
+      "investigation",
+      "mulligan",
+      "optional-shuffle",
+      "recipient",
+      "region_return",
+      "revealed-hand-discard",
+      "search",
+      "target",
+      "trigger"
+    ],
+    "slowestFixtureStepMs": 220,
+    "opaqueState": true,
+    "maximumU64SeedExact": true,
+    "nativeWasmStateAndViewsMatch": true
+  },
+  "sourceTests": {
+    "passed": 47,
+    "priorFirstRoundPassed": 33,
+    "priorFirstRoundFailed": 14
+  },
+  "frozen78AndHistoricalOracleTests": 7,
+  "frozen77Tests": 5,
+  "worker": {
+    "firstFullTests": 215,
+    "firstFullPassed": 214,
+    "firstFullFailed": 1,
+    "firstFullFailure": "ENOENT scandir dist/server caused by overlapping local artifact rebuild; core bytes unchanged",
+    "historicalFailureOnlyRecheckPassed": 1,
+    "additionalBadSaveTestsPassed": 2,
+    "additionalHttpRestoreRejections": 8,
+    "badSaveTestHarnessPriorFailures": "Input selection then HTTP 503 expectation; corrected to exact Native error with HTTP400 request_failed",
+    "finalFull217NotRerun": true,
+    "roundsNotAdditive": true
+  },
+  "frontend": {
+    "firstFullFiles": 131,
+    "firstFullTests": 1240,
+    "firstFullPassed": 1238,
+    "firstFullFailed": 2,
+    "failedFilesRecheckPassed": 19,
+    "privateFaceFourFilesPassed": 76,
+    "readerGuardsFiveFilesPassed": 90,
+    "completeFaceVisibilityTwoFilesPassed": 16,
+    "newJz46ReaderBoundaryCases": 3,
+    "finalFullNotRerun": true,
+    "roundsNotAdditive": true
+  },
+  "browser": {
+    "passed": true,
+    "acceptedViaProductionUi": 13,
+    "rejectionViaBrowserFetch": 1,
+    "duplicateOriginalReceiptFetch": 1,
+    "workerReopens": 2,
+    "fourRealContexts": true,
+    "ordinaryCenterClickHit": true,
+    "privateFrontAndOriginalReadWithoutCommand": true,
+    "doubleClickOneSubmission": true,
+    "originalReceiptAfterRestart": true,
+    "onlineGameplay": false,
+    "syntheticInitialLayout": true,
+    "fixedClockOnlyInLocalTestEntry": true
+  },
+  "production": {
+    "finalDryRunPassed": true,
+    "wasmModules": 3,
+    "clientFilesByteEqualToBrowserVerified": 160,
+    "workerJsAndThreeWasmBytesUnchanged": true,
+    "deployed": false
+  },
+  "online": {
+    "lastKnownVersion": 60,
+    "lastKnownSource": "6d1a1fed34b5abad208488f09055554269e3df10",
+    "latestNormalBrowserAtUtc": "2026-10-16T18:33:55.623695+00:00",
+    "result": "net::ERR_CERT_AUTHORITY_INVALID",
+    "get": 1,
+    "post": 0,
+    "versionIdentityReached": false,
+    "rooms": 0,
+    "games": 0,
+    "bypass": false
+  },
+  "reviewSourceClosurePendingNextDocumentationCommit": true
+}

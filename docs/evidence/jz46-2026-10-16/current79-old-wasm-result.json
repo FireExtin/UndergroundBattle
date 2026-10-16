@@ -1,0 +1,28 @@
+{
+  "ok": true,
+  "cases": 433,
+  "wasmBytes": 3005118,
+  "wasmSha256": "445e1449d241bc7ddf8d5c3366730ab093d2c4eb1c8bd3dde820a646f0231e53",
+  "transitions": 24403,
+  "projections": 96975,
+  "quotes": 1,
+  "rejectedCommands": 319,
+  "rejectedDeckCreations": 42,
+  "choiceKinds": [
+    "damage",
+    "discard",
+    "investigation",
+    "mulligan",
+    "optional-shuffle",
+    "recipient",
+    "region_return",
+    "revealed-hand-discard",
+    "search",
+    "target",
+    "trigger"
+  ],
+  "slowestFixtureStepMs": 220,
+  "opaqueState": true,
+  "maximumU64SeedExact": true,
+  "nativeWasmStateAndViewsMatch": true
+}

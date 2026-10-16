@@ -159,5 +159,14 @@
     "rust-game/src/xq37_tests.rs": "028d8dac1804a3786cccb637847c46fcd48e2af0ea1f26bd2dbd69c6db00d0c8",
     "rust-game/src/yellow_search_batch_tests.rs": "eacb1cb6b1dfe13826ff63a48e9a923543acff3f26f64ce2668315ab205ff7f6"
   },
-  "scope": "Before fresh current79 old-mechanism Native generation; no opaque state or old input rewrites"
+  "scope": "Before fresh current79 old-mechanism Native generation; no opaque state or old input rewrites",
+  "runtimeCompilerSourceCheckpoint": "ccc0b5b0e79a126bf0c095ba311955210a23e664",
+  "runtimeUiSourceCheckpoint": "8788af17a4f7d77e2957d7d9efb640079ddcf7b8",
+  "all153SourceFilesUnchangedAfterGenerationAndComparison": true,
+  "completeFreshGeneration": true,
+  "caseCount": 433,
+  "rawCaseBytes": 2502023950,
+  "rawIndexSha256": "bc3744f9251da0cbd1687bd8362800d9f6b29f35b5ae01003690fb9a53a0d1ef",
+  "currentWasmSha256": "445e1449d241bc7ddf8d5c3366730ab093d2c4eb1c8bd3dde820a646f0231e53",
+  "runResult": "Complete fresh Native generation and full current79 opaque state, view, journal and rejection comparison passed"
 }

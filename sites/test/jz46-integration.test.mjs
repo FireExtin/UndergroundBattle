@@ -92,6 +92,30 @@ async function runScenario(t, scenario, expectedCards = 145) {
 }
 for (const scenario of fixture.scenarios) test(`JZ46 ABI79 HTTP ${scenario.name}`, t => runScenario(t, scenario));
 
+for (const name of ['pending-00', 'unknown-front']) test(`JZ46 ABI79 corrupted ${name} rejects before D1 writes and after reopening`, async t => {
+  const index=fixture.negative.findIndex(row=>row.file===name+'.json');
+  const invalid=index<0?undefined:fixture.invalid[index];
+  // The raw Native input has a known79 tuple and an intentionally invalid
+  // pending continuation. Keep its opaque bytes, rather than repairing it.
+  assert(invalid, name);
+  const outer=JSON.parse(invalid.state),reference=fixture.scenarios[0];
+  const scenario={name:'invalid-'+name,initial:{state:invalid.state,views:reference.initial.views.map(v=>({...v,version:outer.revision}))}};
+  const h=await harness(t,scenario);
+  const catalog=await h.api('catalog',0);assert.equal(catalog.status,200);assert.equal(catalog.body.engineVersion,fixture.catalog.engineVersion);
+  const snapshot=async()=>({room:await h.store().room(h.id),commands:(await h.db().prepare('SELECT * FROM commands WHERE room_id=?').bind(h.id).all()).results,
+    journal:(await h.db().prepare('SELECT * FROM journal WHERE room_id=?').bind(h.id).all()).results});
+  const before=await snapshot();
+  const reject=async(operation,seat,command)=>{
+    const r=await h.api(operation,seat,command);assert.equal(r.status,400);assert.equal(r.body.error,'request_failed');
+    assert.equal(r.body.message,invalid.roomError);
+    assert.deepEqual(Object.keys(r.body).sort(),['error','message']);assert.deepEqual(await snapshot(),before);
+  };
+  await reject('state',0);await reject('state',3);
+  await reject('commands',0,{commandId:'invalid-jz46-'+name,expectedVersion:outer.revision,action:{kind:'pauseRoom'}});
+  await h.reopen();await reject('state',0);
+  t.diagnostic(JSON.stringify({invalidNativeName:name,known79Catalog:true,httpRestoreRejections:4,opaqueD1StateUnchanged:true,noCommandOrJournal:true,reopened:true}));
+});
+
 test('published v60 ABI78 keeps its exact reducer, private view, D1 state and original receipts through candidate79 Worker', async t => {
   const { loadBq035Fixture } = await import(pathToFileURL(root + 'tools/bq035-oracle.mjs').href);
   const scenario=loadBq035Fixture().scenarios.find(s=>s.name==='wm023-duel-paid-conversion-blood-knight-move');
