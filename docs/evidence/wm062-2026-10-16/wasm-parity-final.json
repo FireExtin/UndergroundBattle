@@ -10,7 +10,7 @@
   "wasmSha256": "0229f75b7af79035f2a4025fc11c6de6f3f0b895127cc8b537f829268d030472",
   "wasmBytes": 3047680,
   "completeOpaqueStateAndAllViews": true,
-  "fixtureSha256": "850a1622a1416bfa02e72d3c0f62951574c42b5ec1e971fa6958e4b53fc2aca7",
-  "nativeRound": "round4",
+  "fixtureSha256": "319cfa610957694c8fa4f849c0ad628f6cab0d5650a5a1644fe58d3f854a0b19",
+  "nativeRound": "round5",
   "previousWasm": "ef6877650dfddeed7a88e4ebafa08d7eace96cc179fd200a3424156452049879"
 }
